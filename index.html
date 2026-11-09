@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F1F6FB">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -504,6 +505,60 @@ body.lesson .toast{top:calc(env(safe-area-inset-top) + 70px)!important}
 .xopt.right{border-color:var(--good);background:var(--good-bg);color:var(--good)}
 .xopt.wrongsel{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
 .exq.no > p.de b{color:var(--bad)}.exq.ok > p.de b{color:var(--good)}
+.ticks{padding-left:1.2em;margin:0 0 12px}.ticks li{margin:6px 0}
+.lvintro{text-align:center}.lvintro .lvava{margin:0 auto 10px}
+.lvava{border-radius:50%;background:var(--pc);color:#fff;display:grid;place-items:center;font-weight:800;font-size:2.2rem;position:relative;z-index:1;box-shadow:0 12px 30px color-mix(in srgb, var(--pc) 40%, transparent)}
+.lvstage{display:flex;flex-direction:column;align-items:center;justify-content:space-between;min-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 28px);gap:14px}
+.lvtop{display:flex;align-items:center;gap:10px;width:100%}.lvname{flex:1;font-weight:800;font-size:1.1rem}
+.lvorb{position:relative;display:grid;place-items:center;width:250px;height:250px;margin-top:8px}
+.lvorb i{position:absolute;inset:0;border-radius:50%;background:var(--pc);opacity:.13;transform:scale(calc(.62 + var(--m,0)*.45 + var(--u,0)*.25));transition:transform .12s ease, background .3s}
+.lvorb i:nth-child(2){inset:34px;opacity:.22;transform:scale(calc(.82 + var(--m,0)*.3 + var(--u,0)*.2))}
+.lvorb[data-s=user] i{background:var(--good)}
+.lvorb[data-s=wait] i{animation:lvbreath 2.4s ease-in-out infinite}
+@keyframes lvbreath{50%{transform:scale(.9)}}
+.lvcap{min-height:5em;text-align:center;font-size:1.15rem;line-height:1.5;padding:0 6px;font-weight:600}.lvcap.u{color:var(--muted);font-weight:500}.lvcap.hid{visibility:hidden}
+.lvwait{opacity:0;transition:opacity .5s;text-align:center;font-size:.92rem;background:var(--soft);padding:10px 14px;border-radius:14px}.lvwait.on{opacity:1}
+.lvfoot{display:flex;gap:10px;width:100%}.lvfoot .lbtn{flex:1.4}.lvfoot .btn{flex:1;min-height:60px}
+@media (prefers-reduced-motion: reduce){.lvorb i{transition:none;animation:none}}
+/* ================= Odak kabuğu + sade üst çubuk ================= */
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.top{justify-content:center;padding-top:calc(8px + env(safe-area-inset-top));padding-bottom:8px}
+.top .sub{display:none}
+.top .chips{flex-wrap:nowrap;justify-content:space-between;width:100%;max-width:560px;gap:8px}
+.top .chip{font-size:.9rem;padding:6px 12px;flex:1;justify-content:center}
+.chip.c-goal{background:color-mix(in srgb, var(--accent) 12%, var(--card));color:var(--accent)}
+body.focus .top, body.focus .nav{display:none}
+body.focus main{padding-top:calc(env(safe-area-inset-top) + 6px);padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+.fbar{position:sticky;top:calc(env(safe-area-inset-top) + 0px);z-index:6;display:flex;align-items:center;gap:10px;padding:8px 0;background:var(--paper);margin-bottom:2px}
+.fbar b{flex:1;text-align:center;font-size:1.05rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fbar .licon{text-decoration:none;color:var(--ink);flex:none}
+.fxp{position:relative;flex:none;width:76px;height:30px;border-radius:99px;background:var(--soft);overflow:hidden;display:grid;place-items:center}
+.fxp i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg, var(--pop), var(--fire));opacity:.5;border-radius:0;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.fxp em{position:relative;font-style:normal;font-weight:800;font-size:.82rem;font-variant-numeric:tabular-nums}
+.fxp.done i{background:var(--good);opacity:.35}
+.xmods{display:grid;gap:10px}
+.xmod{padding:14px 16px}.xmod summary{display:flex;align-items:center;gap:12px;list-style:none;cursor:pointer}.xmod summary::-webkit-details-marker{display:none}
+.xmi{font-size:1.6rem;width:44px;height:44px;display:grid;place-items:center;background:var(--soft);border-radius:14px}
+.xmt{flex:1;display:flex;flex-direction:column}.xmt em{font-style:normal;font-size:.82rem;color:var(--muted)}
+.xring{--p:0;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.9rem;background:radial-gradient(closest-side, var(--card) 76%, transparent 78%),conic-gradient(var(--accent) calc(var(--p)*1%), var(--soft) 0)}
+.xring.ok{background:radial-gradient(closest-side, var(--card) 76%, transparent 78%),conic-gradient(var(--good) calc(var(--p)*1%), var(--soft) 0);color:var(--good)}
+.xring.lo{background:radial-gradient(closest-side, var(--card) 76%, transparent 78%),conic-gradient(var(--fire) calc(var(--p)*1%), var(--soft) 0)}
+.xmod[open] summary{margin-bottom:6px}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fcard{border:0;border-radius:22px;padding:16px 14px;min-height:132px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:2px;color:#fff;text-align:left;cursor:pointer;background:linear-gradient(145deg,var(--fc1),var(--fc2));box-shadow:0 5px 0 color-mix(in srgb, var(--fc2) 75%, #000);transition:transform .08s ease, box-shadow .08s ease;position:relative;overflow:hidden}
+.fcard:active{transform:translateY(3px);box-shadow:0 2px 0 color-mix(in srgb, var(--fc2) 75%, #000)}
+.fcard i{font-style:normal;font-size:2rem;position:absolute;top:12px;left:14px}
+.fcard b{font-size:1.08rem;font-weight:800}.fcard span{font-size:.8rem;opacity:.9}
+.mcard h3{font-size:.95rem;margin:0 0 10px}
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:12px 4px;min-height:84px;border-radius:16px;border:0;background:var(--soft);color:var(--ink);font-weight:700;font-size:.8rem;line-height:1.2;text-align:center;text-decoration:none;cursor:pointer;transition:transform .08s ease}
+.mt:active{transform:scale(.95)}
+.mt i{font-style:normal;font-size:1.55rem}
+.ehero{text-align:center;padding:26px 18px 18px}.ehero h2{margin:6px 0 4px}
+.ei{font-size:2.6rem;line-height:1}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pcard{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 10px;border:0;border-radius:20px;background:var(--card);box-shadow:var(--shadow);color:var(--ink);cursor:pointer;text-align:center}
+.pcard b{font-size:.95rem}.pcard em{font-style:normal;font-size:.76rem;color:var(--muted);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 #micPill{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));z-index:9999;padding:10px 18px;border-radius:999px;font-weight:700;font-size:1.05rem;box-shadow:0 4px 16px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}#micPill .x{margin-left:12px;font-weight:600;font-size:.9rem;opacity:.85}#micPill.busy{background:#dde7ef;color:#23415a}#micPill .lv{display:block;height:4px;margin-top:6px;border-radius:2px;background:rgba(255,255,255,.9);transform:scaleX(0);transform-origin:left;transition:transform .08s}#micPill.wait{background:#f4e3b5;color:#5a4410}#micPill.go{background:#2f7d4f;color:#fff}
 body.kb .nav{display:none}
 #updBar{position:fixed;left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:9998;background:#23415a;color:#fff;padding:12px 14px;border-radius:14px;font-weight:700;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.2);cursor:pointer}
@@ -512,7 +567,7 @@ body.kb .nav{display:none}
 <body>
 <header class="top">
   <div>
-    <h1>Deutsch-Werkstatt</h1>
+    <h1 class="sr">Deutsch-Werkstatt</h1>
     <div class="sub">A2 → B1 · önce öğren, sonra üret</div>
   </div>
   <div class="chips" id="topchips"></div>
@@ -919,22 +974,26 @@ async function addWords(list){
 const VIEWS = { more: renderMore, seviye: renderSeviye, plan: renderPlan, lernen: renderLernen, schreiben: renderSchreiben, sprechen: renderSprechen, spielen: renderSpielen, kartei: renderKartei, seans: renderSeans, ses: renderSes, shadow: renderShadow, koc: renderKoc, akici: renderAkici, media: renderMedia, olcum: renderOlcum, odev: renderOdev, kelime: renderKelime, hikaye: renderHikaye, senaryo: renderSenaryo, denk: renderDenk, rehber: renderRehber, kurulum: renderKurulum, gercek: renderGercek, sinav: renderMock };
 function route(){
   const h = (location.hash||"").slice(1); const prev = S.view;
-  S.view = VIEWS[h] ? h : "plan";
+  S.view = VIEWS[h] ? h : "plan"; if(["plan","seviye","more"].includes(S.view)) S.lastTab = S.view;
   if(prev && prev !== S.view && ["hikaye","senaryo","sprechen","ses"].includes(prev) && S.view !== "seans"){ if(stopReading() || (S.listen && S.listen.playing) || (S.audio && S.audio.playing)){ stopSpeech(); audioStop(); } }
   const navTab = ["plan","seviye"].includes(S.view) ? S.view : "more";
   document.querySelectorAll(".nav a").forEach(a => a.setAttribute("aria-current", a.dataset.tab===navTab ? "page" : "false"));
   render(); window.scrollTo(0,0);
 }
 function go(view, fn){ if(S.view !== view){ location.hash = view; } if(fn) fn(); else render(); }
-function applyTheme(){ const t = S.state.theme || "auto"; const el = document.documentElement; if(t === "auto"){ const h = new Date().getHours(); if((S.state.themeNight ?? true) && (h >= 20 || h < 7)) el.dataset.theme = "dark"; else delete el.dataset.theme; } else el.dataset.theme = t; }
+function applyTheme(){ const t = S.state.theme || "auto"; const el = document.documentElement; let dark;
+  if(t === "auto"){ const h = new Date().getHours(); const sys = !!(window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches); dark = sys || ((S.state.themeNight ?? true) && (h >= 20 || h < 7)); } else dark = t === "dark";
+  el.dataset.theme = dark ? "dark" : "light"; const m = document.querySelector('meta[name="theme-color"]'); if(m) m.setAttribute("content", getComputedStyle(el).getPropertyValue("--paper").trim() || (dark ? "#0D1A2A" : "#F1F6FB")); }
+try { matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ()=>{ try { applyTheme(); } catch(e){} }); } catch(e){}
 function render(){
   refreshGoal(); applyTheme();
   renderTop();
   const flash = S.flash ? `<div class="fb ok">${esc(S.flash)}</div>` : "";
   S.flash = "";
-  const back = (typeof lessonOn === "function" && lessonOn()) ? "" : S.sess && S.view !== "plan" ? sessBar() : ["plan","seviye","more"].includes(S.view) ? "" : `<div class="row"><a class="btn small ghost" href="#plan">← Bugün</a></div>`;
+  const back = (typeof lessonOn === "function" && lessonOn()) ? "" : S.sess && S.view !== "plan" ? sessBar() : ["plan","seviye","more"].includes(S.view) || (S.view === "canli" && S.live && ["live","connecting"].includes(S.live.phase)) ? "" : focusBar();
   setTimeout(()=>{ if(S.ex) exAudioAuto(); }, 0);
-  $("#view").innerHTML = back + (S.loadNote ? `<div class="note">${esc(S.loadNote)}</div>` : "") + flash + VIEWS[S.view]();
+  let body = VIEWS[S.view](); if(typeof entryHero === "function" && body.replace(/<[^>]+>/g, "").trim().length < 60) body = entryHero(S.view) + body;
+  $("#view").innerHTML = back + (S.loadNote ? `<div class="note">${esc(S.loadNote)}</div>` : "") + flash + body;
 }
 function refresh(force){
   renderTop();
@@ -951,9 +1010,9 @@ function streak(){
 }
 function daysToExam(){ const t = new Date(S.state.examDate+"T09:00:00"); return isNaN(t) ? null : Math.ceil((t - new Date())/86400000); }
 function renderTop(){
-  try { document.body.classList.toggle("lesson", typeof lessonOn === "function" && lessonOn()); document.body.classList.toggle("insess", !!S.sess); document.body.classList.toggle("study", ["kelime","lernen","spielen","sprechen","hikaye","shadow","seans","akici","ses","dikte"].includes(S.view)); } catch(e){}
+  try { document.body.classList.toggle("lesson", typeof lessonOn === "function" && lessonOn()); document.body.classList.toggle("insess", !!S.sess); document.body.classList.toggle("focus", !["plan","seviye","more"].includes(S.view)); document.body.classList.toggle("study", ["kelime","lernen","spielen","sprechen","hikaye","shadow","seans","akici","ses","dikte"].includes(S.view)); } catch(e){}
   const st = streak(), dx = daysToExam(), cur = current();
-  $("#topchips").innerHTML = `<span class="chip c-fire ${st?"flame":""}" title="Seri">🔥 ${st}</span><span class="chip c-xp ${xpToday()>=xpGoal()?"good":""}" title="Bugünkü XP">⭐ ${xpToday()}/${xpGoal()}</span><span class="chip c-min ${minsToday()>=DAILY_GOAL?"good":""}" title="Bugünkü dakika">⏱ ${minsToday()}/${DAILY_GOAL}</span><span class="chip">Gün ${cur.d.n}</span>` + (dx!==null ? `<span class="chip">B1: ${dx} gün</span>` : "");
+  $("#topchips").innerHTML = `<span class="chip c-fire ${st?"flame":""}" title="Seri">🔥 ${st}</span><span class="chip c-xp ${xpToday()>=xpGoal()?"good":""}" title="Bugünkü XP">⭐ ${xpToday()}/${xpGoal()}</span><span class="chip c-min ${minsToday()>=DAILY_GOAL?"good":""}" title="Bugünkü dakika">⏱ ${minsToday()}/${DAILY_GOAL}</span>` + (dx!==null ? `<span class="chip c-goal" title="B1 sınavına kalan gün">🎯 ${dx} gün</span>` : "");
 }
 
 /* ================= view: Plan ================= */
@@ -2842,9 +2901,10 @@ function sessPick(){
   const s = S.sess, C = CTXS[s.ctx]; const remain = C.len ? C.len - s.sec/60 : 99;
   const prev = s.hist[s.hist.length-1];
   if(C.audio){
-    const ai = aiReady(), voiceOK = !C.silent && useSR() && ai && stage().n >= 2;
+    const ai = aiReady(), voiceOK = !C.silent && (useSR() || (typeof liveOk === "function" && liveOk())) && ai && stage().n >= 2;
+    const lifeOK = !C.silent && ai && typeof lifeBuilt === "function" && lifeBuilt().length > 0 && !daily().lifeA && (useSR() || (typeof mic2Ok === "function" && mic2Ok()));
     const vocDue = vStats().due + newQuota() > 0;
-    const seq = C.silent ? ["audio", ...(vocDue ? ["vocab"] : []), ...(ai ? ["listen"] : [])] : ["audio", ...(ai ? ["denk","listen"] : []), ...(voiceOK ? ["audio","rp"] : [])];
+    const seq = C.silent ? ["audio", ...(vocDue ? ["vocab"] : []), ...(ai ? ["listen"] : [])] : ["audio", ...(ai ? ["denk","listen"] : []), ...(voiceOK ? ["audio","rp"] : []), ...(lifeOK ? ["lifea"] : [])];
     const k = s.hist.filter(x=>seq.includes(x)).length % seq.length;
     return {type: seq[k]};
   }
@@ -2888,6 +2948,7 @@ function sessRun(b){
   else if(t === "rp"){ const C = CTXS[s.ctx]; const ids = C.audio ? ["frau","markus","tobi","mama"] : Object.keys(PERSONAS); const pid = ids[Math.floor(Math.random()*ids.length)]; startRoleplay(pid, null, C.audio ? 1 : (Math.random()<0.5?2:3), C.audio); }
   else if(t === "replay"){ const r = (S.state.replays||[]).shift(); Store.saveState(); if(r && PERSONAS[r.pid]) startRoleplay(r.pid, r.scen, 2); else sessNext(); }
   else if(t === "check") startCheck();
+  else if(t === "lifea") startLifeAudio();
   else go("lernen", startReview);
 }
 function sessBar(){
@@ -5102,7 +5163,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09r";
+const APP_VER = "2026-11-09t";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -6994,9 +7055,9 @@ function renderExamHome(){
   const st = examSt(); const d = daysToExam();
   return `<section class="card hero"><h2>B1 sınav atölyesi</h2><p class="small">Goethe-Zertifikat B1'in 4 modülü ve 15 bölümü, gerçek sınav biçiminde. Görevler her seferinde yeniden yazılır. Her modülde geçmek için %60 gerekir.${d !== null ? ` Sınava ${d} gün var.` : ""}</p>
     <button class="btn primary block" data-act="examGo" data-p="">Sıradaki bölüm: ${esc(examNextPart().id)} · ${esc(examNextPart().t)}</button></section>
-  ${EXAM_MODS.map(([m,i,tr])=>{ const sc = examModScore(m); return `<section class="card"><div class="row between"><h3>${i} ${m} <span class="small muted">(${tr})</span></h3><span class="chip ${sc === null ? "" : sc >= 60 ? "good" : "bad"}">${sc === null ? "henüz yok" : "%" + sc}</span></div>
-    <div class="progress"><i style="width:${sc||0}%;${sc !== null && sc < 60 ? "background:var(--bad)" : ""}"></i></div>
-    <div class="xlist">${EXAM_PARTS.filter(p=>p.mod === m).map(p=>{ const ps = examPartScore(p.id); const n = st.log.filter(x=>x.id===p.id).length; return `<button class="lrow" data-act="examGo" data-p="${p.id}"><span>${n ? (ps >= 60 ? "✓" : "↻") : "○"}</span><b>${esc(p.t)}</b><em>${ps === null ? p.min + " dk" : "%" + ps + " · " + n + "×"}</em></button>`; }).join("")}</div></section>`; }).join("")}
+  <section class="xmods">${EXAM_MODS.map(([m,i,tr])=>{ const sc = examModScore(m); const parts = EXAM_PARTS.filter(p=>p.mod === m); const done = parts.filter(p=>st.log.some(x=>x.id === p.id)).length;
+    return `<details class="card xmod"><summary><span class="xmi">${i}</span><span class="xmt"><b>${m}</b><em>${tr} · ${done}/${parts.length} bölüm</em></span><span class="xring ${sc === null ? "" : sc >= 60 ? "ok" : "lo"}" style="--p:${sc||0}">${sc === null ? "–" : sc}</span></summary>
+    <div class="xlist">${parts.map(p=>{ const ps = examPartScore(p.id); const n = st.log.filter(x=>x.id===p.id).length; return `<button class="lrow" data-act="examGo" data-p="${p.id}"><span>${n ? (ps >= 60 ? "✓" : "↻") : "○"}</span><b>${esc(p.t)}</b><em>${ps === null ? p.min + " dk" : "%" + ps + " · " + n + "×"}</em></button>`; }).join("")}</div></details>`; }).join("")}</section>
   <section class="card"><p class="small muted">Gerçek ölçüm için Goethe-Institut'un resmî deneme setini de 4. ve 8. ayda yapacağız; atölye seni o biçime hazırlar.</p></section>`;
 }
 function renderExam(){
@@ -7241,6 +7302,266 @@ renderMore = function(){
 };
 VIEWS.more = () => renderMore();
 
+/* ================= Canlı sohbet: gerçek zamanlı sesli konuşma (Gemini Live, ücretsiz katman) ================= */
+/* Sokaktaki konuşma gibi: bekleme yok, sözünü kesebilirsin, karşı taraf da doğal hızda konuşur. Bittikten sonra
+   konuşmanın dökümünden geri bildirim, hatalar hata defterine, "cevaba başlama süren" (donma ölçüsü) kaydedilir. */
+const LIVE = { model:null, broken:"" };
+const LIVE_VOICE = {frau:"Aoede", schwiegermutter:"Leda", mama:"Kore", markus:"Charon", tobi:"Puck", huber:"Sulafat", maier:"Despina", pembe:"Leda"};
+function liveOk(){
+  try { return !!KEYS.gem && aiReady() && !!window.WebSocket && !!(window.AudioContext||window.webkitAudioContext) && !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) && !(S.state && S.state.liveOff) && LIVE.broken !== dayKey(); } catch(e){ return false; }
+}
+async function liveModel(){
+  if(LIVE.model) return LIVE.model;
+  let names = [];
+  try{ const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key=${encodeURIComponent(KEYS.gem)}`);
+    if(r.ok){ const j = await r.json(); names = (j.models||[]).filter(m=>(m.supportedGenerationMethods||[]).includes("bidiGenerateContent")).map(m=>m.name.replace(/^models\//,"")); } }catch(e){}
+  const ok = names.filter(n=>/live|native-audio/i.test(n) && !/translate|transcribe|thinking/i.test(n));
+  const ver = n => { const m = n.match(/gemini-(\d+(?:\.\d+)?)/i); return m ? parseFloat(m[1]) : 0; };
+  ok.sort((a,b)=> ver(b) - ver(a) || (/preview/i.test(a) ? 1 : 0) - (/preview/i.test(b) ? 1 : 0));
+  LIVE.model = ok[0] || "gemini-3.8-live";
+  return LIVE.model;
+}
+const LIVE_WORKLET = `class P extends AudioWorkletProcessor{constructor(){super();this.r=sampleRate/16000;this.acc=0;this.buf=[];this.sum=0;this.n=0;this.lvl=0;}
+process(i){const ch=i[0]&&i[0][0];if(!ch)return true;let s2=0;for(let k=0;k<ch.length;k++){const v=ch[k];s2+=v*v;this.sum+=v;this.n++;this.acc+=1;if(this.acc>=this.r){this.acc-=this.r;const x=Math.max(-1,Math.min(1,this.sum/this.n));this.buf.push(x<0?x*32768:x*32767);this.sum=0;this.n=0;}}
+this.lvl=Math.sqrt(s2/ch.length);if(this.buf.length>=1600){this.port.postMessage({pcm:Int16Array.from(this.buf),lvl:this.lvl});this.buf=[];}return true;}}
+registerProcessor("dw-pcm",P);`;
+function b64FromI16(a){ const u = new Uint8Array(a.buffer); let s = ""; for(let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(s); }
+function i16FromB64(b){ const s = atob(b); const u = new Uint8Array(s.length); for(let i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return new Int16Array(u.buffer, 0, Math.floor(u.length/2)); }
+function liveSys(L){
+  const P = PERSONAS[L.pid] || PERSONAS.frau; const n = stage().n;
+  const pace = n <= 1 ? "Sprich LANGSAM und deutlich, sehr kurze Sätze (max. 8 Wörter), nur A1/A2-Wörter." : n === 2 ? "Sprich etwas langsamer als normal, einfache Sätze (A2), ab und zu normale Umgangssprache (hab's, gibt's)." : n === 3 ? "Sprich in natürlichem Tempo, A2/B1, normale Umgangssprache, gelegentlich ein bairisches Wort." : "Sprich in normalem, authentischem Tempo auf B1-Niveau, wie ein echter Mensch in Bayern.";
+  return `Du bist ${P.name === "Eşin" ? "die Ehefrau des Lerners" : P.name}. ${P.desc}
+SITUATION: ${L.scen}
+Du führst ein ECHTES, spontanes Gespräch mit einem türkischen Deutschlerner (er lebt in Bayern, IT-Sicherheit, verheiratet mit einer Deutschen, kleine Tochter, Fitnessstudio). ${pace}
+REGELN:
+- Sprich NUR Deutsch. Halte jede Antwort kurz (1-3 Sätze) und stelle fast immer eine Frage zurück, damit ER viel spricht.
+- Reagiere wie ein echter Mensch: Interesse, Humor, Nachfragen zu Details ("Ach echt? Und dann?", "Wie war das genau?").
+- Korrigiere NICHT ausdrücklich. Wenn er einen Fehler macht, wiederhole den Satz beiläufig richtig in deiner Antwort (Recast).
+- Wenn er stockt, lange schweigt oder "Wie bitte?" sagt: wiederhole langsamer mit einfacheren Wörtern oder stelle eine leichtere Ja/Nein-Frage. Wenn er auf Türkisch fragt, wie man etwas sagt, gib ihm kurz den deutschen Satz und lass ihn nachsprechen.
+- Bringe ihn dazu, auch über Vergangenes zu erzählen (Perfekt/Präteritum) und seine Meinung zu begründen (weil …).
+- Beginne du das Gespräch mit einer natürlichen Begrüßung passend zur Situation.
+${(lifeBuilt().length && Math.random() < 0.35) ? "- Frag ihn irgendwann nach etwas aus seinem Leben (Kindheit, Militär, Umzug nach Deutschland), so wie ein neuer Bekannter es tun würde." : ""}`;
+}
+function startLive(pid, scen, level, auto){
+  stopAll && stopAll();
+  const P = PERSONAS[pid] ? pid : "frau";
+  S.live = {level: level||1, pid:P, scen: scen || PERSONAS[P].scen, auto:!!auto, phase:"intro", turns:[], cur:{u:"", m:""}, err:"", secs:0, lat:[], speaking:"", lvl:0, mlvl:0, captions: !auto && stage().n <= 2, hints:0};
+  go("canli"); render();
+  if(auto) liveConnect();
+}
+async function liveConnect(){
+  const L = S.live; if(!L) return;
+  L.phase = "connecting"; L.err = ""; render();
+  primeTTS(); stopSpeech(); try { neuStop(); } catch(e){}
+  try{
+    const AC = window.AudioContext || window.webkitAudioContext;
+    audioSess("play-and-record");
+    const ctx = new AC(); L.ctx = ctx; if(ctx.state !== "running"){ try { await Promise.race([ctx.resume(), sleep(1200)]); } catch(e){} }
+    if(ctx.state !== "running"){ liveTeardown(L); L.phase = "intro"; L.err = "Başlatmak için bir kez dokun."; render(); return; }
+    const stream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true, noiseSuppression:true, autoGainControl:true, channelCount:1}});
+    L.stream = stream; MIC_STREAMS.add(stream);
+    const h = { _cancel:false, onend:null, abort(){ liveEnd(true); }, stop(){} }; REC_CUR = h; L.h = h;
+    const src = ctx.createMediaStreamSource(stream);
+    const url = URL.createObjectURL(new Blob([LIVE_WORKLET], {type:"application/javascript"}));
+    await ctx.audioWorklet.addModule(url); URL.revokeObjectURL(url);
+    const node = new AudioWorkletNode(ctx, "dw-pcm"); L.node = node; src.connect(node);
+    const sink = ctx.createGain(); sink.gain.value = 0; node.connect(sink); sink.connect(ctx.destination);
+    L.out = ctx.createGain(); L.out.connect(ctx.destination); L.an = ctx.createAnalyser(); L.an.fftSize = 512; L.out.connect(L.an);
+    L.nextT = 0; L.srcs = new Set();
+    const to = setTimeout(()=>{ if(L.phase === "connecting") liveFail("timeout"); }, 20000);
+    L.tryN = 0;
+    /* kurulum reddedilirse (ör. model dil kodunu desteklemiyor) daha sade ayarlarla bir kez daha dene */
+    const openWS = () => {
+      const ws = new WebSocket(`wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=${encodeURIComponent(KEYS.gem)}`);
+      L.ws = ws; L.model = model;
+      const speech = {voiceConfig:{prebuiltVoiceConfig:{voiceName: LIVE_VOICE[L.pid] || "Aoede"}}}; if(L.tryN === 0) speech.languageCode = "de-DE";
+      const setup = { model: "models/" + model, generationConfig: {responseModalities:["AUDIO"], speechConfig: speech}, systemInstruction: {parts:[{text: liveSys(L)}]}, inputAudioTranscription: {}, outputAudioTranscription: {} };
+      if(L.tryN < 2) setup.realtimeInputConfig = {automaticActivityDetection: {silenceDurationMs: stage().n <= 2 ? 1400 : 900}};
+      ws.onopen = () => ws.send(JSON.stringify({setup}));
+      ws.onmessage = async ev => { if(L.ws !== ws) return; let d = ev.data; if(typeof d !== "string") d = await (d.text ? d.text() : new Response(d).text()); let m; try { m = JSON.parse(d); } catch(e){ return; } liveMsg(m, to); };
+      ws.onerror = () => {};
+      ws.onclose = e => { if(L.ws !== ws) return;
+        if(S.live === L && L.phase === "connecting" && L.tryN < 2 && !L.gotSetup){ L.tryN++; openWS(); return; }
+        clearTimeout(to); if(S.live === L && L.phase === "live") liveEnd(false); else if(S.live === L && L.phase === "connecting") liveFail("close:" + (e.code||"") + " " + (e.reason||"")); };
+    };
+    const model = await liveModel();
+    openWS();
+    node.port.onmessage = e => { const {pcm, lvl} = e.data; L.lvl = lvl;
+      const ws = L.ws; if(L.phase !== "live" || !ws || ws.readyState !== 1) return;
+      if(lvl > 0.02){ if(L.waitFrom){ L.lat.push((Date.now() - L.waitFrom)/1000); L.waitFrom = 0; } L.lastVoice = Date.now(); }
+      ws.send(JSON.stringify({realtimeInput:{audio:{data: b64FromI16(pcm), mimeType:"audio/pcm;rate=16000"}}})); };
+  }catch(e){ liveFail((e && e.name) || "init"); }
+}
+function liveFail(why){
+  const L = S.live; if(!L) return;
+  liveTeardown(L);
+  const denied = /NotAllowed/.test(String(why));
+  L.phase = "error"; L.err = denied ? micMsg("not-allowed") : "Canlı bağlantı kurulamadı (" + String(why).slice(0,60) + "). Bugün klasik sesli sohbetle devam edebilirsin.";
+  if(!denied) LIVE.broken = dayKey();
+  try { const lg = JSON.parse(localStorage.getItem("dw-ailog")||"[]"); lg.push({t:Date.now(), m:"live:"+(L.model||"?"), ok:false, ms:0, err:String(why).slice(0,80)}); localStorage.setItem("dw-ailog", JSON.stringify(lg.slice(-12))); } catch(e){}
+  render();
+}
+function liveMsg(m, to){
+  const L = S.live; if(!L) return;
+  if(m.setupComplete){ clearTimeout(to); L.phase = "live"; L.t0 = Date.now(); chime && chime();
+    L.tick = setInterval(()=>{ if(S.live !== L || L.phase !== "live") return clearInterval(L.tick); L.secs = Math.round((Date.now() - L.t0)/1000); liveFrame(); }, 250);
+    try { L.ws.send(JSON.stringify({realtimeInput:{text:"(Das Gespräch beginnt jetzt. Begrüße ihn.)"}})); } catch(e){}
+    render(); return; }
+  if(m.goAway){ setTimeout(()=>{ if(S.live === L && L.phase === "live") liveEnd(false); }, 1500); }
+  const sc = m.serverContent; if(!sc) return;
+  if(sc.interrupted){ for(const s of L.srcs){ try { s.stop(); } catch(e){} } L.srcs.clear(); L.nextT = 0; L.speaking = "user"; }
+  if(sc.inputTranscription && sc.inputTranscription.text){ if(L.cur.m){ L.turns.push({who:"m", t:L.cur.m.trim()}); L.cur.m = ""; } L.cur.u += sc.inputTranscription.text; L.speaking = "user"; liveCap(); }
+  if(sc.outputTranscription && sc.outputTranscription.text){ if(L.cur.u){ L.turns.push({who:"u", t:L.cur.u.trim()}); L.cur.u = ""; } L.cur.m += sc.outputTranscription.text; liveCap(); }
+  for(const p of ((sc.modelTurn && sc.modelTurn.parts) || [])){
+    const id = p.inlineData; if(!id || !/audio/.test(id.mimeType||"")) continue;
+    const rate = +((id.mimeType.match(/rate=(\d+)/)||[])[1] || 24000);
+    const i16 = i16FromB64(id.data); const f = new Float32Array(i16.length); for(let i = 0; i < i16.length; i++) f[i] = i16[i] / 32768;
+    const buf = L.ctx.createBuffer(1, f.length, rate); buf.copyToChannel ? buf.copyToChannel(f, 0) : buf.getChannelData(0).set(f);
+    const s = L.ctx.createBufferSource(); s.buffer = buf; s.connect(L.out);
+    const t = Math.max(L.ctx.currentTime + 0.03, L.nextT || 0); s.start(t); L.nextT = t + buf.duration;
+    L.srcs.add(s); s.onended = () => { L.srcs.delete(s); if(!L.srcs.size && L.mDone){ L.mDone = false; L.waitFrom = Date.now(); L.speaking = ""; } };
+    L.speaking = "model"; L.mDone = false;
+  }
+  if(sc.turnComplete || sc.generationComplete){ L.mDone = true; if(!L.srcs.size){ L.mDone = false; L.waitFrom = Date.now(); L.speaking = ""; } }
+}
+function liveCap(){ const el = $("#lvCap"); if(!el) return; const L = S.live; const last = L.cur.m || L.cur.u || ((L.turns[L.turns.length-1]||{}).t) || ""; const who = L.cur.m ? "m" : L.cur.u ? "u" : ((L.turns[L.turns.length-1]||{}).who); el.className = "lvcap " + (who === "u" ? "u" : "m"); el.textContent = last.split(/\s+/).slice(-28).join(" "); }
+function liveFrame(){
+  const L = S.live; if(!L || L.phase !== "live") return;
+  let ml = 0; if(L.an){ const a = new Uint8Array(L.an.fftSize); L.an.getByteTimeDomainData(a); let s = 0; for(const v of a){ const x = (v-128)/128; s += x*x; } ml = Math.sqrt(s/a.length); }
+  const orb = $("#lvOrb"); if(orb){ const u = Math.min(1, L.lvl*12), m = Math.min(1, ml*6); orb.style.setProperty("--u", u.toFixed(2)); orb.style.setProperty("--m", m.toFixed(2)); orb.dataset.s = m > 0.05 ? "model" : u > 0.15 ? "user" : (L.waitFrom ? "wait" : ""); }
+  const tm = $("#lvTime"); if(tm) tm.textContent = Math.floor(L.secs/60) + ":" + String(L.secs%60).padStart(2,"0");
+  const w = $("#lvWait"); if(w){ const ws = L.waitFrom ? (Date.now() - L.waitFrom)/1000 : 0; w.classList.toggle("on", ws > 6); }
+  if(L.secs >= (L.auto ? 420 : 600)) liveEnd(false);
+}
+function liveTeardown(L){
+  clearInterval(L.tick);
+  try { L.ws && L.ws.readyState <= 1 && L.ws.close(); } catch(e){}
+  try { for(const s of (L.srcs||[])) s.stop(); } catch(e){}
+  try { L.node && L.node.disconnect(); } catch(e){}
+  try { L.stream && L.stream.getTracks().forEach(t=>t.stop()); MIC_STREAMS.delete(L.stream); } catch(e){}
+  try { L.ctx && L.ctx.close(); } catch(e){}
+  if(REC_CUR === L.h) REC_CUR = null; audioSess("auto");
+}
+function liveEnd(cancel){
+  const L = S.live; if(!L || ["done","fb","busy"].includes(L.phase)) return;
+  if(L.cur.u){ L.turns.push({who:"u", t:L.cur.u.trim()}); L.cur.u = ""; } if(L.cur.m){ L.turns.push({who:"m", t:L.cur.m.trim()}); L.cur.m = ""; }
+  liveTeardown(L);
+  const uw = L.turns.filter(t=>t.who === "u").map(t=>ntok(t.t).length);
+  if(cancel || uw.reduce((a,b)=>a+b,0) < 5){ L.phase = "intro"; L.err = cancel ? "" : "Neredeyse hiç konuşma duyulmadı. Mikrofonu kontrol edip tekrar dene."; render(); return; }
+  L.stats = {mins: Math.max(1, Math.round(L.secs/60)), turns: uw.length, words: uw.reduce((a,b)=>a+b,0), longest: Math.max(...uw), lat: L.lat.length ? +(L.lat.reduce((a,b)=>a+b,0)/L.lat.length).toFixed(1) : null};
+  const log = S.state.liveLog || (S.state.liveLog = []); log.push({date:dayKey(), pid:L.pid, ...L.stats}); S.state.liveLog = log.slice(-120);
+  Store.saveState(); markUsed(L.turns.filter(t=>t.who==="u").map(t=>t.t).join(" "), "konuşma");
+  planDone("roleplay"); addXP(15 + Math.min(25, Math.round(L.stats.words/10)));
+  liveFeedback();
+}
+async function liveFeedback(){
+  const L = S.live; L.phase = "busy"; render();
+  try{
+    const r = await askJSON(`${profile()}
+Ein spontanes Live-Gespräch (Sprachaufnahme, automatisch transkribiert) zwischen dem Lerner (U) und ${PERSONAS[L.pid].name} (M). Situation: ${L.scen}
+${L.turns.map(t=>(t.who === "u" ? "U: " : "M: ") + t.t).join("\n")}
+Gib Feedback wie ein guter Sprachcoach, der FLÜSSIGKEIT über Perfektion stellt. Erkennungsfehler der Transkription ignorieren.
+Antworte NUR mit JSON: {"score":0-100,"praise_tr":"1 konkretes Lob","feedback_tr":"2 Sätze: was nächstes Mal besser","mistakes":[{"wrong":"…","right":"…","rule_tr":"…","topic":"eine von: ${MTOPICS.join(", ")}"}],"upgrades":[{"said":"was er (ungefähr) gesagt hat","better":"natürlichere Version","tr":"…"}],"next_tr":"1 Satz: was er beim nächsten Mal ausprobieren soll"}`);
+    if((r.mistakes||[]).length) await addMistakes(r.mistakes.slice(0,6), "canlı sohbet");
+    L.fb = r; L.score = Math.max(0, Math.min(100, +r.score || 0));
+    if(L.score >= 60){ confetti(L.score >= 85 ? 110 : 60); sfx("up"); }
+  }catch(e){ L.fb = {feedback_tr: aiMsg(e)}; L.score = null; }
+  L.phase = "fb"; render();
+  if(L.auto && L.fb && L.fb.praise_tr){ try { await say(L.fb.praise_tr, "tr", 1.0); if(L.fb.next_tr) await say(L.fb.next_tr, "tr", 1.0); } catch(e){} if(S.sess && S.live === L && S.view === "canli") setTimeout(()=>{ if(S.live === L && S.view === "canli") sessNext(); }, 1200); }
+}
+function liveTrend(){ const g = (S.state.liveLog||[]).filter(x=>x.lat !== null && x.lat !== undefined); if(g.length < 2) return ""; const a = g.slice(-6, -1), b = g[g.length-1]; const av = a.reduce((s,x)=>s+x.lat,0)/a.length; const d = av - b.lat; return d > 0.2 ? `Önceki sohbetlere göre ${d.toFixed(1)} sn daha hızlı cevaba başladın.` : d < -0.2 ? `Bugün cevaba başlaman ${(-d).toFixed(1)} sn daha uzun sürdü; normal, konu zor olabilir.` : "Cevaba başlama hızın sabit."; }
+function renderLive(){
+  const L = S.live; if(!L) return `<section class="card"><p>Bir karakter seç.</p></section>`;
+  const P = PERSONAS[L.pid];
+  const ava = (sz) => `<div class="lvava" style="--pc:${P.color};width:${sz}px;height:${sz}px">${esc(P.ini)}</div>`;
+  if(L.phase === "intro" || L.phase === "error") return `<section class="card hero lvintro">${ava(76)}<h2>${esc(P.name)} ile canlı sohbet</h2><p class="small">${esc(P.tr)}</p><p><b>Durum:</b> <span class="de">${esc(L.scen)}</span></p></section>
+    <section class="card"><ul class="ticks"><li>Gerçek bir telefon görüşmesi gibi: beklemek yok, sözünü kesebilirsin.</li><li>Takılırsan "Wie bitte?" ya da "Wie sagt man …?" de; karşındaki yardım eder.</li><li>Kulaklıkla en iyisi. 5–7 dakika sürer, sonunda geri bildirim gelir.</li></ul>
+      ${L.err ? `<div class="note">${esc(L.err)}</div>` : ""}
+      ${L.phase === "error" ? `<button class="btn primary block" data-act="liveClassic">Klasik sesli sohbetle devam et</button><button class="btn ghost block" data-act="liveRetry">Canlıyı tekrar dene</button>` : `<button class="lbtn go" style="width:100%" data-act="liveGo">📞 Sohbeti başlat</button>`}
+      <label class="row small" style="justify-content:flex-start;gap:8px;margin-top:10px"><input type="checkbox" data-act="liveCap" ${L.captions ? "checked" : ""}> Altyazıyı göster (kapalıysa kulağın daha çok çalışır)</label></section>`;
+  if(L.phase === "connecting") return thinkingCard(`${P.name} aranıyor…`);
+  if(L.phase === "busy") return thinkingCard("Sohbetin değerlendiriliyor…");
+  if(L.phase === "live") return `<div class="lvstage"><div class="lvtop"><button class="licon" data-act="liveStop" aria-label="Bitir">✕</button><span class="lvname">${esc(P.name)}</span><span id="lvTime" class="chip">0:00</span></div>
+    <div id="lvOrb" class="lvorb" style="--pc:${P.color}"><i></i><i></i>${ava(120)}</div>
+    <div id="lvCap" class="lvcap ${L.captions ? "" : "hid"}"></div>
+    <div id="lvWait" class="lvwait">Takıldın mı? Basit bir şey söyle: <b class="de">"Moment, ich überlege…"</b> ya da <b class="de">"Wie sagt man … auf Deutsch?"</b></div>
+    <div class="lvfoot"><button class="btn" data-act="liveCapT">${L.captions ? "Altyazıyı gizle" : "Altyazı"}</button><button class="lbtn warn" data-act="liveStop">Bitir</button></div></div>`;
+  const st = L.stats || {}, r = L.fb || {};
+  return `<section class="card ${L.score >= 60 ? "hl" : ""}"><div class="sumtop">${brezi(L.score >= 85 ? "party" : "happy", 56)}<h2>${st.mins} dk canlı konuştun${L.score !== null && L.score !== undefined ? " · %" + L.score : ""}</h2></div>
+    <div class="sumstats"><div><b>${st.words}</b><span>kelime söyledin</span></div><div><b>${st.turns}</b><span>söz sırası</span></div><div><b>${st.lat === null ? "–" : st.lat + " sn"}</b><span>cevaba başlama</span></div></div>
+    ${liveTrend() ? `<p class="small muted">${esc(liveTrend())}</p>` : ""}
+    ${r.praise_tr ? `<p>👏 ${esc(r.praise_tr)}</p>` : ""}<p>${esc(r.feedback_tr||"")}</p>
+    ${(r.upgrades||[]).length ? `<h3>Böyle de diyebilirdin</h3><div class="stack">${r.upgrades.slice(0,4).map(u=>`<div class="ex"><s class="small">${esc(u.said)}</s><div class="row between" style="flex-wrap:nowrap"><b class="de">${esc(u.better)}</b><button class="btn small ghost" data-act="sayDe" data-t="${esc(u.better)}" aria-label="Dinle">🔊</button></div><div class="tr">${esc(u.tr||"")}</div></div>`).join("")}</div>` : ""}
+    ${(r.mistakes||[]).length ? `<p class="small muted">${r.mistakes.length} hata hata defterine eklendi; tekrarlarda karşına çıkacak.</p>` : ""}
+    ${r.next_tr ? `<p class="small"><b>Gelecek sefer:</b> ${esc(r.next_tr)}</p>` : ""}
+    <details><summary>Konuşmanın dökümü</summary>${L.turns.map(t=>`<p class="small ${t.who === "u" ? "" : "de"}"><b>${t.who === "u" ? "Sen" : esc(P.name)}:</b> ${esc(t.t)}</p>`).join("")}</details>
+    ${S.sess ? continueBtn() : `<div class="grid2"><a class="btn" href="#plan">Bugün</a><button class="btn primary" data-act="liveAgain">Tekrar konuş</button></div>`}</section>`;
+}
+VIEWS.canli = () => renderLive();
+/* sesli rol oyunları canlı moda yönlenir; bağlantı kurulamazsa klasik moda düşer */
+const _startRoleplayL = startRoleplay;
+startRoleplay = function(pid, scen, level, auto){ if(liveOk() && !(S.state && S.state.liveOff)) return startLive(pid, scen, level, auto); return _startRoleplayL.apply(this, arguments); };
+document.addEventListener("visibilitychange", () => { if(document.hidden && S.live && S.live.phase === "live") liveEnd(false); });
+window.addEventListener("hashchange", () => { if(S.live && S.live.phase === "live" && (location.hash||"").slice(1) !== "canli") liveEnd(true); });
+
+/* Hayat hikâyem, eller serbest (araba/mutfak): hikâyeni dinle → bip → anlat → sesli geri bildirim */
+function lifeAudioPick(){ const d = lifeDue(); return d[0] || lifeBuilt().sort((a,b)=>String((lifeCh(a.id)||{}).last||"").localeCompare(String((lifeCh(b.id)||{}).last||"")))[0] || null; }
+async function startLifeAudio(){
+  const c = lifeAudioPick(); if(!c){ sessNext(); return; }
+  daily().lifeA = true; Store.saveState();
+  const L = S.life = {id:c.id, phase:"audio", step:"listen", busy:false, err:"", text:"", audio:true}; go("hayat"); render();
+  const x = lifeCh(c.id); const alive = () => S.life === L && (location.hash||"").slice(1) === "hayat";
+  try{
+    await say("Hayat hikâyen: " + c.t + ". Önce dinle, sonra kendi sözlerinle anlat.", "tr", 1.0); if(!alive()) return;
+    await say(x.story.de, "de", 0.92); if(!alive()) return;
+    await sleep(400); await say("Şimdi sen anlat. Bitince ekrana dokun ya da durma; doksan saniye sonra kendiliğinden biter.", "tr", 1.05); if(!alive()) return;
+    try { micBeep(); } catch(e){}
+    L.step = "rec"; render();
+    freeRecToggle(L, txt => { clearTimeout(L.auto); if(!alive()) return; L.text = txt; if(!txt){ L.step = "fail"; render(); say("Sesini duyamadım. Bir dahaki sefere tekrar deneriz.", "tr", 1.0).then(()=>{ if(alive() && S.sess) sessNext(); }); return; } L.step = "eval"; lifeEval().then(lifeAudioSpeak); });
+    L.auto = setTimeout(()=>{ if(alive() && L.recOn) freeRecToggle(L); }, 90000);
+  }catch(e){ if(alive() && S.sess) sessNext(); }
+}
+async function lifeAudioSpeak(){
+  const L = S.life; if(!L || !L.res) return; const r = L.res;
+  try{ await say((L.score >= 60 ? "Harika anlattın. " : "Güzel bir deneme. ") + (r.feedback_tr || ""), "tr", 1.0);
+    if(r.better_de && S.life === L){ await say("Şöyle de anlatabilirdin:", "tr", 1.0); await say(r.better_de, "de", 0.92); } }catch(e){}
+  if(S.life === L && S.sess && (location.hash||"").slice(1) === "hayat") setTimeout(()=>{ if(S.life === L) sessNext(); }, 1200);
+}
+
+BLK.lifea = {min:6, ai:true, label:"Hayat hikâyem (sesli)"};
+/* ================= Odak kabuğu: çalışma ekranlarında üst başlık ve alt menü yok; tek ince çubuk (✕ · başlık · günlük hedef) ================= */
+const VIEW_TITLE = {koc:"Koç", kelime:"Kelime kartları", lernen:"Ders", spielen:"Oyun", sprechen:"Konuşma", schreiben:"Yazma", hikaye:"Hikâye", shadow:"Shadowing", akici:"Akıcılık", ses:"Sesli tekrar", senaryo:"Senaryo", denk:"Düşün ve kur", media:"Video", olcum:"Aylık ölçüm", odev:"VHS ödev", gercek:"Gerçek ses", sinav:"Deneme sınavı", sinavatolye:"B1 sınav atölyesi", hayat:"Hayat hikâyem", canli:"Canlı sohbet", kartei:"Kartlarım", kurulum:"Kurulum", rehber:"Koçun", seans:"Seans"};
+function focusBar(){
+  const back = S.lastTab && S.lastTab !== S.view ? S.lastTab : "plan"; const g = xpGoal(), x = xpToday(); const pc = Math.min(100, Math.round(x / Math.max(1, g) * 100));
+  return `<div class="fbar"><a class="licon" href="#${back}" aria-label="Kapat">✕</a><b>${esc(VIEW_TITLE[S.view] || "")}</b><span class="fxp ${x >= g ? "done" : ""}" title="Bugünkü XP"><i style="width:${pc}%"></i><em>⭐ ${x}</em></span></div>`;
+}
+/* ================= Daha fazla: gruplu, sade menü (bulamaç değil) ================= */
+const MORE_GROUPS = [
+  ["Konuş", [["🥨","Senaryolar","goScenList"],["⚡","Akıcılık 3-2-1","fluStart"],["🗣️","Shadowing","goShadow"],["🛟","Donma ilacı","repairStart"],["💬","Sohbet ve dinleme","#sprechen"],["✍️","Yaz","#schreiben"]]],
+  ["Öğren", [["📘","Dersler","#lernen"],["🃏","Kelime kartları","vocabStart"],["📖","Hikâye","storyStart"],["🧠","Düşün ve kur","denkStart"],["🎬","Video","mediaStart"],["🎧","Dikte","dictStart"],["🏔️","Bavyera ağzı","reducedStart"],["🚗","Sesli tekrar","goAudio"],["🎮","Oyunlar","#spielen"]]],
+  ["Sınav ve ilerleme", [["🎓","B1 atölyesi","goExam"],["📈","Aylık ölçüm","checkStart"],["📝","Resmî deneme","#sinav"]]],
+  ["Araçlar", [["🗂️","Kartlarım","#kartei"],["🏫","VHS ödev","odevStart"],["🧭","Koçun","goRehber"],["⚙️","Kurulum","#kurulum"]]]
+];
+renderMore = function(){
+  const lb = lifeBuilt().length, ld = lifeDue().length; const live = liveOk();
+  const t = ([i, n, a]) => a[0] === "#" ? `<a class="mt" href="${a}"><i aria-hidden="true">${i}</i>${esc(n)}</a>` : `<button class="mt" data-act="${a}"><i aria-hidden="true">${i}</i>${esc(n)}</button>`;
+  return `<section class="feat">
+      <button class="fcard" data-act="${live ? "goLive" : "goVoice"}" style="--fc1:#1784D6;--fc2:#0E5E9E"><i aria-hidden="true">🎙️</i><b>${live ? "Canlı sohbet" : "Sesli sohbet"}</b><span>${live ? "Gerçek zamanlı, telefon gibi" : "Karakterle sesli konuş"}</span></button>
+      <button class="fcard" data-act="goLife" style="--fc1:#FF8A1F;--fc2:#D9620A"><i aria-hidden="true">📜</i><b>Hayat hikâyem</b><span>${lb}/${LIFE_CH.length} bölüm${ld ? " · " + ld + " tekrar" : ""}</span></button></section>
+    ${MORE_GROUPS.map(([h, items])=>`<section class="card mcard"><h3>${h}</h3><div class="mgrid">${items.map(t).join("")}</div></section>`).join("")}
+    <p class="small muted" style="text-align:center">Sürüm ${APP_VER}</p>`;
+};
+VIEWS.more = () => renderMore();
+/* boş giriş ekranları: tek düğme yerine ne olduğunu anlatan kısa bir giriş */
+const VIEW_INFO = {akici:["⚡","Aynı konuyu giderek kısalan sürede anlat; dakikadaki kelime sayın ölçülür."], denk:["🧠","Ezber yok: mantıkla cümle kur. Arabada eller serbest çalışır."], gercek:["📻","Gerçek insanlardan gerçek Almanca: haber, röportaj, dizi."], hikaye:["📖","Her gün yeni bölüm; bugünün kelimeleri bir olayın içinde."], kelime:["🃏","Görsel, cümle içinde, aralıklı tekrarla kalıcı kelimeler."], media:["🎬","Önce kelimeler, sonra izle, sorular, shadowing ve sesli özet."], olcum:["📈","Dinleme ve konuşmada gerçek ilerlemeni ölç."], ses:["🚗","Türkçesini duy, Almancasını söyle. Eller serbest."], shadow:["🗣️","Dinle, aynı ritimle söyle; telaffuzun kontrol edilir."], koc:["🧭","Koçunla plan ve sorular."], seans:["▶️","Bugün ekranından bir yer seç, seans başlasın."]};
+function entryHero(v){ const x = VIEW_INFO[v]; if(!x) return ""; return `<section class="card ehero"><div class="ei" aria-hidden="true">${x[0]}</div><h2>${esc(VIEW_TITLE[v]||"")}</h2><p class="small muted">${esc(x[1])}</p></section>`; }
+function renderLivePick(){
+  return `<section class="card hero lvintro"><div class="ei" aria-hidden="true">🎙️</div><h2>Canlı sohbet</h2><p class="small">Telefon görüşmesi gibi: beklemek yok, sözünü kesebilirsin. Kiminle konuşmak istersin?</p></section>
+  <section class="pgrid">${Object.entries(PERSONAS).map(([id,P])=>`<button class="pcard" data-act="liveWith" data-p="${id}"><span class="lvava" style="--pc:${P.color};width:52px;height:52px;font-size:1.3rem">${esc(P.ini)}</span><b>${esc(P.name)}</b><em>${esc(P.scen)}</em></button>`).join("")}</section>`;
+}
+const _renderLiveP = renderLive;
+renderLive = function(){ return S.live ? _renderLiveP() : renderLivePick(); };
+VIEWS.canli = () => renderLive();
 /* ================= events ================= */
 const ACT = {
   sessStart(b){ micWarm(); sessStart(b.dataset.c); },
@@ -7549,6 +7870,17 @@ Object.assign(ACT, {
   lifeTypeMode(){ S.life.typeMode = true; render(); },
   lifeTyped(){ const v = (($("#lifeSay")||{}).value || "").trim(); if(ntok(v).length < 8){ S.life.err = "Biraz daha anlat (birkaç cümle)."; render(); return; } lifeOnText(v); }
 });
+Object.assign(ACT, {
+  liveGo(){ liveConnect(); },
+  liveStop(){ liveEnd(false); },
+  liveCap(){ const L = S.live; if(L){ L.captions = !L.captions; render(); } },
+  liveCapT(){ const L = S.live; if(!L) return; L.captions = !L.captions; const c = $("#lvCap"); if(c) c.classList.toggle("hid", !L.captions); const b = document.querySelector('[data-act=liveCapT]'); if(b) b.textContent = L.captions ? "Altyazıyı gizle" : "Altyazı"; },
+  liveClassic(){ const L = S.live; _startRoleplayL(L.pid, L.scen, L.level, L.auto); },
+  liveRetry(){ LIVE.broken = ""; LIVE.model = null; liveConnect(); },
+  liveAgain(){ const L = S.live; startLive(L.pid, L.scen, L.level, false); },
+  goLive(){ const ids = Object.keys(PERSONAS); startLive(ids[Math.floor(Math.random()*ids.length)], null, 2, false); }
+});
+Object.assign(ACT, { liveWith(el){ startLive(el.dataset.p, null, 2, false); } });
 </script>
 </body>
 </html>
