@@ -2,7 +2,10 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>Meine Deutsch-Werkstatt</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -53,7 +56,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 
-.top{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.top{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) 10px calc(16px + env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between;gap:10px}
 .top .sub{font-size:.78rem;color:var(--muted)}
 .chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
 .chip{display:inline-flex;align-items:center;gap:4px;font-size:.76rem;padding:3px 9px;border-radius:999px;background:var(--soft);color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
