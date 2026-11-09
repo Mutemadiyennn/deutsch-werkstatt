@@ -4815,7 +4815,7 @@ function renderKurulum(){
     ${K.pex ? `<div class="fb ${K.pex.ok?"ok":"no"}">${K.pex.ok && K.pex.src ? `<img src="${esc(K.pex.src)}" alt="" style="width:100%;border-radius:10px;margin-bottom:6px">` : ""}${esc(K.pex.msg)}</div>` : ""}</section>
   ${neuSetupHtml()}
   <section class="card"><h3>3 · Mikrofon</h3>
-    <p class="small">iPhone'da <b>Safari'de</b> açık olmalı (ana ekrana eklenmiş sürümde Apple mikrofonu kapatıyor). Ayarlar → Siri'nin açık olması ve Ayarlar → Safari → Mikrofon izni gerekir.</p>
+    <p class="small">iPhone'da Safari'de ya da ana ekrana eklenmiş tam ekran sürümde çalışır. Ayarlar → Siri'nin açık olması ve mikrofon izni gerekir.</p>
     <button class="btn block" data-act="micTest2">🎤 Mikrofonu dene: „Guten Morgen“ de</button>
     ${S.micTest ? `<div class="fb ${S.micTest.ok?"ok":"no"}">${esc(S.micTest.msg)}</div>` : ""}</section>
   <section class="card"><h3>4 · Verilerini taşı</h3>
