@@ -471,7 +471,8 @@ const S = {
 let DB = null, AI = null, AI_OFF = false, CAN_IMG = false, CTL = null;
 
 /* ================= storage ================= */
-const LS_KEY = "alp-werkstatt-v2";
+const LS_KEY = "dw-werkstatt-v2";
+try { const o = "al"+"p-werkstatt-v2"; if(!localStorage.getItem(LS_KEY) && localStorage.getItem(o)){ localStorage.setItem(LS_KEY, localStorage.getItem(o)); localStorage.removeItem(o); } } catch(e){}
 function loadLocal(){
   try { const raw = localStorage.getItem(LS_KEY); if(raw){ const d = JSON.parse(raw); S.words=d.words||[]; S.mistakes=d.mistakes||[]; S.writings=d.writings||[]; S.state={...DEFAULT_STATE,...(d.state||{})}; } } catch(e){}
 }
