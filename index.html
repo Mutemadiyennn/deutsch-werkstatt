@@ -772,6 +772,126 @@ body.lesson main>.fbar+.card{margin-top:10px}
 body.insess::before,body.focus::before{height:calc(env(safe-area-inset-top) + 14px)!important;background:var(--paper)!important}
 .exfull{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:16px;background:var(--soft);font-size:1.15rem;font-weight:700}
 .exfull .licon{flex:none;width:40px;height:40px;border-radius:50%;border:0;background:var(--accent);color:#fff;font-size:1rem;cursor:pointer}
+
+/* ================= Ders Kiti ================= */
+.k-hub{color:#fff!important;border:0!important;background:radial-gradient(380px 200px at 100% 0%,rgba(255,201,60,.30),transparent 60%),linear-gradient(135deg,#7C5CFA,#5B3BE0 60%,#2F7BF6 130%)!important;box-shadow:0 12px 30px rgba(91,59,224,.30)!important}
+.k-hub .kicker,.k-hub .small{color:rgba(255,255,255,.9)!important}.k-hub h2{color:#fff}
+.k-errc{border:1px solid color-mix(in srgb,var(--bad) 40%,transparent)!important;background:color-mix(in srgb,var(--bad) 10%,var(--card))!important;gap:6px}
+.k-errc b{color:var(--bad)}
+.k-tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.k-tile{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:14px;border-radius:20px;border:1px solid color-mix(in srgb,var(--tc) 22%,transparent);background:linear-gradient(160deg,color-mix(in srgb,var(--tc) 14%,var(--card)),var(--card) 70%);color:var(--ink);font:inherit;cursor:pointer;min-height:118px;box-shadow:var(--shadow);transition:transform .08s ease}
+.k-tile:active{transform:scale(.97)}.k-tile[disabled]{opacity:.5}
+.k-tile i{font-style:normal;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:1.35rem;background:linear-gradient(145deg,color-mix(in srgb,var(--tc) 70%,#fff),var(--tc));box-shadow:0 3px 0 color-mix(in srgb,var(--tc) 65%,#000);margin-bottom:4px}
+.k-tile b{font-family:var(--font-display);font-size:1rem;font-weight:800}
+.k-tile span{font-size:.8rem;color:var(--muted);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.k-hero h2{font-size:1.45rem}
+.k-sec{background:linear-gradient(180deg,color-mix(in srgb,var(--sc) 12%,var(--card)) 0,var(--card) 90px)!important;border-color:color-mix(in srgb,var(--sc) 20%,transparent)!important}
+.k-sec>h3,.k-sec>.row>h3{display:flex;align-items:center;gap:8px;color:var(--sc)}
+.k-rules{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px}
+.k-rules li{line-height:1.5}.k-rules li::marker{color:var(--sc,var(--accent));font-weight:800}
+.k-de{display:inline-block;padding:1px 8px;border-radius:8px;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);font-weight:700;font-style:normal}
+.k-table{border-radius:14px;overflow:hidden}
+.k-table th{background:color-mix(in srgb,var(--sc,var(--accent)) 14%,transparent);color:var(--ink)}
+.k-table td:nth-child(2){font-weight:800;color:var(--accent)}
+.k-exs{display:flex;flex-direction:column;gap:8px}
+.k-ex{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:16px;background:var(--soft)}
+.k-ext{flex:1;min-width:0}.k-ext .de{font-size:1.06rem;font-weight:700;line-height:1.35}.k-ext .tr{font-size:.86rem;color:var(--muted);margin-top:2px}
+.k-say{flex:none;width:40px;height:40px;border-radius:50%;border:0;background:linear-gradient(145deg,#4F9BFF,#2F7BF6);color:#fff;font-size:1rem;cursor:pointer;box-shadow:0 3px 0 #1D5FD6;display:grid;place-items:center}
+.k-say:active{transform:translateY(2px);box-shadow:0 1px 0 #1D5FD6}
+.k-add{flex:none;width:34px;height:34px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:1.1rem;font-weight:800;cursor:pointer}
+.k-words{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.k-word{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:12px 12px 10px;border-radius:16px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;cursor:pointer;overflow:hidden;min-height:92px}
+.k-word::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--muted)}
+.k-word.a-der::before{background:var(--der)}.k-word.a-die::before{background:var(--die)}.k-word.a-das::before{background:var(--das)}
+.k-word .k-art{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.k-word.a-der .k-art{color:var(--der)}.k-word.a-die .k-art{color:var(--die)}.k-word.a-das .k-art{color:var(--das)}
+.k-word b{font-size:1.08rem;line-height:1.2;word-break:break-word}.k-word small{font-size:.74rem;color:var(--muted)}.k-word em{font-style:normal;font-size:.84rem;color:var(--muted)}
+.k-word i{position:absolute;right:8px;top:8px;font-style:normal;font-size:.8rem;opacity:.6}
+.k-word:active{transform:scale(.97)}
+.k-warn p{line-height:1.5}
+.k-text{font-size:1.08rem;line-height:1.75}
+.k-qblk{display:flex;flex-direction:column;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)}.k-qblk:last-of-type{border-bottom:0}
+.k-done{padding:12px;border-radius:14px;background:var(--soft);font-weight:800;text-align:center}.k-done.ok{background:var(--good-bg);color:var(--good)}
+.k-foot{position:sticky;bottom:calc(10px + env(safe-area-inset-bottom));z-index:4;display:flex;flex-direction:column;gap:8px;padding:12px;margin:4px -4px 0;border-radius:22px;background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 8px 28px rgba(0,0,0,.18);border:1px solid var(--card-edge)}
+.k-cta{min-height:56px;font-size:1.08rem}
+/* alıştırma */
+.k-shell{display:flex;flex-direction:column;gap:12px;min-height:calc(100dvh - 140px - env(safe-area-inset-top))}
+.k-shell.has-sheet{padding-bottom:300px}
+.k-top{display:flex;align-items:center;gap:12px}
+.k-x{flex:none;width:40px;height:40px;border-radius:50%;border:0;background:var(--soft);color:var(--ink);font-size:1.05rem;cursor:pointer}
+.k-prog{flex:1;height:14px;border-radius:99px;background:color-mix(in srgb,var(--accent) 14%,var(--soft));overflow:hidden}
+.k-prog i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#3EE0A0,#16B37A);box-shadow:inset 0 -3px 0 rgba(0,0,0,.12);transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.k-cnt{flex:none;font-weight:800;font-size:.86rem;color:var(--muted);display:flex;gap:6px;align-items:center}.k-fire{color:var(--c-orange2,#E8650A)}
+.k-title{font-size:.82rem;font-weight:800;color:var(--accent);margin:-4px 2px 0}
+.k-card{background:var(--card);border:1px solid var(--card-edge);box-shadow:var(--shadow);border-radius:24px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.k-ins{font-size:.86rem;font-weight:800;color:var(--muted)}
+.k-prompt{font-size:1.32rem;font-weight:700;line-height:1.45;margin:0}.k-prompt.k-tr{font-size:1.1rem;color:var(--muted);font-weight:600}
+.k-gap{display:inline-block;min-width:56px;padding:0 8px;border-bottom:3px solid var(--accent);color:var(--accent);text-align:center;border-radius:6px 6px 0 0;background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.k-hint summary{font-size:.86rem;font-weight:700;color:var(--muted);cursor:pointer}.k-hint p{font-size:.92rem;margin-top:4px}
+.k-input{font-size:1.15rem!important;min-height:56px!important;border-radius:16px!important;border:2px solid var(--line)!important;background:var(--soft)!important}
+.k-input:focus{border-color:var(--accent)!important;outline:none}
+.k-opts{display:flex;flex-direction:column;gap:10px}.k-opts .xopt{width:100%;min-height:54px;font-size:1.08rem;text-align:left;padding:12px 16px}
+.k-opts2,.k-opts3{display:grid;gap:10px}.k-opts2{grid-template-columns:1fr 1fr}.k-opts3{grid-template-columns:repeat(3,1fr)}.k-opts2 .xopt,.k-opts3 .xopt{text-align:center}
+.xopt.dim{opacity:.45}
+.xopt.a-der{color:var(--der)}.xopt.a-die{color:var(--die)}.xopt.a-das{color:var(--das)}
+.k-build{min-height:62px;display:flex;flex-wrap:wrap;gap:8px;padding:10px;border-radius:16px;border:2px dashed var(--line);align-items:center}
+.k-bank{display:flex;flex-wrap:wrap;gap:8px}
+.k-build .tok,.k-bank .tok{min-height:44px;padding:8px 14px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:700;font-size:1.02rem;box-shadow:0 3px 0 var(--line);cursor:pointer}
+.k-bank .tok.used{visibility:hidden}
+.k-audio{display:flex;align-items:center;gap:14px;justify-content:center;padding:8px 0}
+.k-big-say{width:84px;height:84px;border-radius:50%;border:0;font-size:2rem;color:#fff;background:linear-gradient(145deg,#4F9BFF,#2F7BF6);box-shadow:0 6px 0 #1D5FD6,0 12px 24px rgba(47,123,246,.35);cursor:pointer}
+.k-sheet{position:fixed;left:0;right:0;bottom:0;z-index:30;max-width:680px;margin:0 auto;padding:16px 18px calc(16px + env(safe-area-inset-bottom));border-radius:26px 26px 0 0;display:flex;flex-direction:column;gap:10px;box-shadow:0 -10px 34px rgba(0,0,0,.28);animation:kup .28s cubic-bezier(.2,.9,.25,1)}
+@keyframes kup{from{transform:translateY(100%)}to{transform:none}}
+.k-sheet.ok{background:color-mix(in srgb,var(--good) 16%,var(--card));border-top:3px solid var(--good)}
+.k-sheet.no{background:color-mix(in srgb,var(--bad) 13%,var(--card));border-top:3px solid var(--bad)}
+.k-sh-h{display:flex;align-items:center;gap:10px}.k-sh-h b{font-family:var(--font-display);font-size:1.25rem;font-weight:800}
+.k-sheet.ok .k-sh-h b{color:var(--good)}.k-sheet.no .k-sh-h b{color:var(--bad)}
+.k-yours{font-size:.95rem;color:var(--muted)}.k-yours s{color:var(--bad)}
+.k-full{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:16px;background:color-mix(in srgb,var(--card) 70%,transparent)}
+.k-full .de{font-size:1.12rem;font-weight:800;line-height:1.35}
+.k-why{font-size:.95rem;line-height:1.45;margin:0}
+.k-words-heard{font-size:1.05rem}
+/* sonuç */
+.k-result{gap:14px!important}
+.k-result.win{background:linear-gradient(180deg,color-mix(in srgb,var(--good) 16%,var(--card)),var(--card) 70%)!important}
+.k-result.mid{background:linear-gradient(180deg,color-mix(in srgb,#F5A623 14%,var(--card)),var(--card) 70%)!important}
+.k-result.low{background:linear-gradient(180deg,color-mix(in srgb,var(--bad) 10%,var(--card)),var(--card) 70%)!important}
+.k-res-top{display:flex;align-items:center;gap:12px}.k-res-top h2{font-size:1.6rem}
+.k-res-main{display:flex;align-items:center;gap:16px}
+.k-ring{position:relative;width:112px;height:112px;flex:none}.k-ring svg{position:absolute;inset:0}
+.k-ring b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--font-display);font-size:1.6rem;font-weight:800}
+.k-res-stats{flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.k-res-stats div{background:var(--soft);border-radius:14px;padding:10px 4px;text-align:center}
+.k-res-stats b{display:block;font-family:var(--font-display);font-size:1.3rem}.k-res-stats span{font-size:.72rem;color:var(--muted);font-weight:700}
+.k-badge{padding:12px 14px;border-radius:16px;font-weight:700;line-height:1.4}
+.k-badge.ok{background:var(--good-bg);color:var(--good)}.k-badge.mid{background:var(--warn-bg);color:var(--warn)}
+/* takılma bekçisi */
+#wdBar{position:fixed;left:12px;right:12px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:9997;display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:20px;background:#1B2742;color:#fff;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+#wdBar span{display:block;font-size:.86rem;opacity:.85;margin-top:2px}
+.wdbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}.wdbtns button{min-height:46px;border-radius:14px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;font:inherit;font-weight:800}
+.wdbtns button.go{background:#2F7BF6;border-color:#2F7BF6}
+
+/* ===== üst çubuk: tek parça, tam genişlik, durum çubuğuyla bütünleşik ===== */
+body.insess::before, body.focus::before{height:0!important}
+body.insess main, body.focus main{padding-top:0!important}
+body.lesson main{padding-top:0!important}
+body.owntop main{padding-top:calc(env(safe-area-inset-top) + 10px)!important}
+.sbar, .fbar{position:sticky!important;top:0!important;z-index:30!important;margin:0 -16px 4px!important;padding:calc(env(safe-area-inset-top) + 8px) 16px 10px!important;background:var(--paper)!important;box-shadow:0 0 0 100vmax var(--paper)!important;clip-path:inset(0 -100vmax)!important;border:0!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;display:flex!important;align-items:center!important;flex-wrap:nowrap!important;gap:8px!important;min-height:0}
+.sbar::after, .fbar::after{content:"";position:absolute;left:-100vmax;right:-100vmax;bottom:0;height:1px;background:var(--line);opacity:.8}
+.sbar .chip{height:34px;display:inline-flex;align-items:center;padding:0 12px;font-size:.82rem;font-weight:800;border-radius:99px;white-space:nowrap;flex:none}
+.sbar .chip:first-child{padding:0 10px}
+.sbar > span[style*="flex:1"]{flex:1 1 0!important;min-width:0}
+.sbar .chip:not(:first-child){flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.sbar{overflow:hidden}
+.sbtn{flex:none;width:40px;height:40px;display:grid;place-items:center;border-radius:12px;border:0;background:var(--soft);color:var(--ink);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.sbtn:active{transform:scale(.94)}
+.sbtn[data-act="sessEnd"]{background:color-mix(in srgb,var(--bad) 16%,var(--soft));color:var(--bad)}
+.fbar .licon{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:var(--soft)}
+@media (max-width:370px){ .sbar .chip{padding:0 8px;font-size:.76rem} .sbtn{width:36px;height:36px} }
+body.insess .k-top .k-x{display:none}
+/* bildirim: durum çubuğunun altında, tek akışlı metin */
+.toast{top:calc(env(safe-area-inset-top) + 10px)!important;display:block!important;width:max-content;max-width:min(92vw,440px)!important;padding:12px 18px!important;border-radius:16px!important;z-index:200!important;line-height:1.35;font-size:.95rem;text-align:center;box-shadow:0 12px 30px rgba(0,0,0,.28)!important}
+.toast .toast-t{display:inline}
 </style>
 </head>
 <body>
@@ -986,7 +1106,7 @@ const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.f
 const pick = (a,n) => shuffle(a).slice(0,n);
 const artCls = a => ["der","die","das"].includes(a) ? a : "";
 const isNoun = w => ["der","die","das"].includes(w.artikel);
-const phraseRow = (de, tr) => { tr = qfix(de, tr); return `<div class="ex row between" style="flex-wrap:nowrap;align-items:flex-start"><div><div class="de">${esc(de)}</div><div class="tr">${esc(tr)}</div></div><button class="btn small ghost" data-act="savePhrase" data-de="${esc(de)}" data-tr="${esc(tr)}" title="Kalıbı kartlarıma ekle" aria-label="Kalıbı kartlarıma ekle">+ Kart</button></div>`; };
+let phraseRow = (de, tr) => { tr = qfix(de, tr); return `<div class="ex row between" style="flex-wrap:nowrap;align-items:flex-start"><div><div class="de">${esc(de)}</div><div class="tr">${esc(tr)}</div></div><button class="btn small ghost" data-act="savePhrase" data-de="${esc(de)}" data-tr="${esc(tr)}" title="Kalıbı kartlarıma ekle" aria-label="Kalıbı kartlarıma ekle">+ Kart</button></div>`; };
 const wordLabel = w => (w.artikel ? `<span class="art ${artCls(w.artikel)}">${esc(w.artikel)}</span> ` : "") + esc(w.artikel ? String(w.de||"").replace(/^(der|die|das)\s+/i, "") : w.de);
 
 /* ================= state ================= */
@@ -1098,6 +1218,9 @@ async function askJSON(input, opts={}){
   try { return await AI.json(input, o); } finally { CTL = null; }
 }
 function stopAI(){ if(CTL) CTL.abort(); }
+const THEMEN = ["Einkaufen im Supermarkt","beim Arzt / in der Apotheke","Wohnung und Nachbarn","Bahn, Bus und Verspätung","Wetter und Jahreszeiten","Essen im Restaurant","Feste und Geburtstage","Termine und Uhrzeiten","Post, Bank und Behörde","Kleidung kaufen","Urlaub und Reisen","Freizeit und Hobbys","Schule und Kinder","Kochen und Rezepte","Telefonieren und Nachrichten","Gesundheit und Körper","Natur und Umwelt","Fernsehen, Musik, Medien","Wochenende und Ausflüge","Hilfe bitten / sich beschweren","Stadt und Wegbeschreibung","Haushalt und Reparaturen","Freunde und Verabredungen","Tiere und Haustiere"];
+let _thN = Math.floor(Math.random()*24);
+function themenHeute(){ _thN = (_thN + 3) % THEMEN.length; return [0,1,2].map(k=>THEMEN[(_thN + k*7) % THEMEN.length]); }
 function profile(){
   const open = S.mistakes.filter(m=>!m.mastered).sort((a,b)=>(b.count||1)-(a.count||1)).slice(0,12)
     .map(m=>`- falsch: "${m.wrong}" → richtig: "${m.right}" (${m.topic})`).join("\n");
@@ -1105,14 +1228,17 @@ function profile(){
   const cur = current();
   const about = (S.state.about || "").trim() || DEFAULT_ABOUT;
   const name = (S.state.name || "").trim();
+  const th = themenHeute();
   return `LERNER${name ? " (Name: "+name+")" : ""}: ${about}
+VIELFALT (WICHTIG): Die Infos über den Lerner sind nur Hintergrund. Höchstens 1 von 4 Sätzen/Situationen darf sein eigenes Leben betreffen (Arbeit, Sport, Familie). Alle anderen Sätze kommen aus anderen Alltagsthemen, mit wechselnden Personen (Nachbarin, Kollege, Ärztin, Verkäufer, Freunde, Kinder) und Orten. Heute bevorzugt: ${th.join(", ")}. Wiederhole nicht immer dieselben Wörter (z. B. Homeoffice, Fitnessstudio, arbeiten, trainieren); verwende abwechslungsreichen Grundwortschatz.
 TÜRKISCH: alle türkischen Texte in fehlerfreier Rechtschreibung (z. B. "fiil" = Verb, "özne", "nesne"). NIVEAU: ${typeof stage === "function" ? ["","A1-A2 (A1 fast sicher)","A2","A2-B1","B1"][stage().n] : "A2"}. ZIEL: in 6 Monaten frei und sicher mit Menschen in Bayern sprechen, im Job und im Alltag; B1-Prüfung.
 HEUTIGES THEMA: ${cur.d.topic}
 SCHON GELERNTE THEMEN: ${doneTopics().join("; ") || "-"}
 SEINE TYPISCHEN FEHLER:
 ${open || "-"}
 WÖRTER, DIE ER SCHON KENNT: ${words || "-"}
-GRUNDREGEL: Erst lehren, dann fragen. Benutze nur Wörter, die der Lerner kennt oder die du ihm vorher beibringst.
+GRUNDREGEL: Erst lehren, dann fragen. Benutze Wörter, die der Lerner kennt, einfachen Grundwortschatz seines Niveaus (Goethe-Wortliste) oder Wörter, die du ihm vorher beibringst.
+QUALITÄT: Jeder deutsche Satz muss grammatisch 100 % korrekt und natürlich sein (so würde ein Muttersprachler es sagen). Artikel und Pluralformen korrekt; "plural" ohne Artikel (z. B. "Pläne", nicht "die Pläne").
 ÜBERSETZUNGEN INS TÜRKISCHE: genau und natürlich; eine Aussage bleibt eine Aussage, eine Frage bleibt eine Frage und endet mit "?".`;
 }
 
@@ -1200,9 +1326,11 @@ function render(){
   renderTop();
   const flash = S.flash ? `<div class="fb ok">${esc(S.flash)}</div>` : "";
   S.flash = "";
-  const back = (typeof lessonOn === "function" && lessonOn()) ? "" : S.sess && S.view !== "plan" ? sessBar() : ["plan","seviye","more","kilit"].includes(S.view) || (S.view === "canli" && S.live && ["live","connecting"].includes(S.live.phase)) ? "" : focusBar();
   setTimeout(()=>{ if(S.ex) exAudioAuto(); }, 0);
   let body = VIEWS[S.view](); if(typeof entryHero === "function" && body.replace(/<[^>]+>/g, "").trim().length < 60) body = entryHero(S.view) + body;
+  const ownTop = body.includes('class="k-shell');
+  const back = (typeof lessonOn === "function" && lessonOn()) ? "" : S.sess && S.view !== "plan" ? sessBar() : ownTop || ["plan","seviye","more","kilit"].includes(S.view) || (S.view === "canli" && S.live && ["live","connecting"].includes(S.live.phase)) ? "" : focusBar();
+  document.body.classList.toggle("owntop", ownTop && !S.sess);
   $("#view").innerHTML = back + (S.loadNote ? `<div class="note">${esc(S.loadNote)}</div>` : "") + flash + body;
 }
 function refresh(force){
@@ -1494,7 +1622,9 @@ function chunksOf(seg){
   const out = []; const re = /⟦([^⟧]+)⟧|„([^“"]+)[“"]/g; let last = 0, m;
   while((m = re.exec(seg.text))){ if(m.index > last) out.push({lang:"tr", text:seg.text.slice(last, m.index)}); out.push({lang:"de", text:m[1]||m[2]}); last = re.lastIndex; }
   if(last < seg.text.length) out.push({lang:"tr", text:seg.text.slice(last)});
-  return out.filter(c=>c.text.trim());
+  const res = [];
+  for(const c of out){ if(!c.text.trim()) continue; if(!/[\p{L}\p{N}]/u.test(c.text) && res.length){ res[res.length-1].text += c.text.trim(); continue; } res.push(c); }
+  return res;
 }
 function segHtml(seg){ return (seg.sp ? `<span class="small muted"><b>${esc(seg.sp)}:</b></span> ` : "") + chunksOf(seg).map(c=>c.lang==="de" ? `<span class="de" style="color:var(--accent)"><b>${esc(c.text)}</b></span>` : esc(c.text)).join(""); }
 function speakChunk(chunks, k, done){
@@ -1820,7 +1950,7 @@ async function preHas(key){ key = dayKey() + "|" + key; if(PRE[key]) return true
 function lessonGen(topic, bg){ return aiAsk(`Du bist ein geduldiger persönlicher Deutschlehrer.
 ${profile()}
 
-AUFGABE: Bring dem Lerner das Thema "${topic}" bei, BEVOR er übt. Erkläre auf Türkisch, einfach und klar, wie ein guter Lehrer an der Tafel. Das Wichtigste für A2 zuerst; nimm seine typischen Fehler auf, wenn sie passen. Beispiele aus seinem echten Leben (IT-Job, Homeoffice, Familie, Bayern, Fitness).
+AUFGABE: Bring dem Lerner das Thema "${topic}" bei, BEVOR er übt. Erkläre auf Türkisch, einfach und klar, wie ein guter Lehrer an der Tafel. Das Wichtigste für A2 zuerst; nimm seine typischen Fehler auf, wenn sie passen. Beispiele aus dem echten Alltag in Deutschland, abwechslungsreich (Einkaufen, Arzt, Bahn, Nachbarn, Freizeit, Behörden, Restaurant, Familie …); höchstens 1 von 4 Beispielen aus seinem eigenen Leben.
 Antworte NUR mit JSON:
 {"title":"kurzer deutscher Titel","intro_tr":"2-3 Sätze auf Türkisch: worum geht es und warum ist es wichtig","rule_tr":["Regel 1 auf Türkisch, mit deutschem Beispiel in Klammern","Regel 2","(max 5)"],"table":{"title":"z.B. Endungen","head":["…"],"rows":[["…"]]},"examples":[{"de":"deutscher Satz","tr":"türkische Übersetzung"}],"words":[{"de":"Wort ohne Artikel","artikel":"der|die|das|","plural":"Pluralform ohne Artikel oder leer","tr":"türkisch"}],"pitfall_tr":"der typische Fehler von Türkischsprechern bei diesem Thema und wie man ihn vermeidet"}
 6-8 Beispiele. 4-8 Wörter aus den Beispielen, die der Lerner noch nicht kennt. "table" nur wenn hilfreich, sonst {"rows":[]}.`, bg); }
@@ -1852,7 +1982,7 @@ Typen:
 - "order": ein korrekter Satz (max 9 Wörter), den der Lerner aus Wörtern baut; nur "answer"
 - "fix": Satz mit genau einem typischen Fehler in "prompt"; "answer" ist der korrigierte Satz
 Jede Übung hat "tr" (türkische Übersetzung des korrekten Satzes), "explain" (1 kurzer Satz auf Türkisch) und "topic" (eine von: ${MTOPICS.join(", ")}).
-Antworte NUR mit JSON: {"items":[{"kind":"gap","prompt":"Heute ___ ich ins Fitnessstudio.","hint":"gehen","answers":["gehe"],"tr":"Bugün spor salonuna gidiyorum.","explain":"…","topic":"Konjugation"${mistakeMode?',"mid":"…"':""}}]}`, bg);
+Antworte NUR mit JSON: {"items":[{"kind":"gap","prompt":"Morgen ___ wir mit dem Zug nach Köln.","hint":"fahren","answers":["fahren"],"tr":"Yarın trenle Köln'e gidiyoruz.","explain":"…","topic":"Konjugation"${mistakeMode?',"mid":"…"':""}}]}`, bg);
 }
 async function lessonToExercises(){
   const L = S.learn, l = L.lesson; L.err = "";
@@ -2372,7 +2502,7 @@ async function aiGame(kind, topic){
   try{
     const r = kind === "builder" ? await askJSON(`Du bist ein persönlicher Deutschlehrer. ${profile()}
 Spiel "Satz-Baumeister" zum Thema: ${topic}. Erstelle 8 korrekte, natürliche Sätze (5-9 Wörter) aus dem Leben des Lerners, die genau dieses Thema zeigen. Nur Wörter, die der Lerner kennt.
-Antworte NUR mit JSON: {"items":[{"kind":"order","answer":"Danach arbeite ich im Homeoffice.","tr":"türkisch","explain":"1 kurzer Satz Türkisch zur Regel","topic":"eine von: ${MTOPICS.join(", ")}"}]}`, {tier:"quick"})
+Antworte NUR mit JSON: {"items":[{"kind":"order","answer":"Am Samstag besuchen wir meine Oma.","tr":"türkisch","explain":"1 kurzer Satz Türkisch zur Regel","topic":"eine von: ${MTOPICS.join(", ")}"}]}`, {tier:"quick"})
       : await askJSON(`Du bist ein persönlicher Deutschlehrer. ${profile()}
 Spiel "Fehlerjagd" zum Thema: ${topic}. Erstelle 10 kurze Sätze aus dem Leben des Lerners: 5 korrekt, 5 mit genau einem typischen Fehler zum Thema (wie ihn Türkischsprecher machen). Nur bekannte Wörter.
 Antworte NUR mit JSON: {"items":[{"kind":"tf","prompt":"der Satz","correct":true,"answer":"der korrekte Satz (bei korrekten Sätzen identisch)","tr":"türkisch (korrekter Satz)","explain":"1 kurzer Satz Türkisch: was ist falsch / warum richtig","topic":"eine von: ${MTOPICS.join(", ")}"}]}`, {tier:"quick"});
@@ -2934,7 +3064,7 @@ function clock(){
     if(aud || (vis && learning && now - CLK.input < 120000)) addSec(dt);
   }
   const a = $("#sbMin"); if(a) a.textContent = `${minsToday()}/${DAILY_GOAL} dk`;
-  const b = $("#sbPomo"); if(b) b.textContent = needBreak() ? "bu adımdan sonra mola" : `molaya ${pomoLeft()} dk`;
+  const b = $("#sbPomo"); if(b) b.textContent = needBreak() ? "sonra mola" : `☕ ${pomoLeft()} dk`;
   const r = $("#ringNum"); if(r) r.textContent = minsToday();
   if(CLK.dirty && now - CLK.saved > 30000){ CLK.saved = now; CLK.dirty = false; Store.saveState(); }
 }
@@ -3171,11 +3301,11 @@ function sessBar(){
   return `<div class="sbar" role="status">
     <span class="chip" title="${esc(C.label)}">${C.icon}</span>
     <span class="chip good" id="sbMin">${minsToday()}/${DAILY_GOAL} dk</span>
-    ${C.len ? `<span class="chip">${left} dk kaldı</span>` : `<span class="chip" id="sbPomo">${needBreak() ? "sonra mola" : "mola "+pomoLeft()+" dk"}</span>`}
+    ${C.len ? `<span class="chip">${left} dk kaldı</span>` : `<span class="chip" id="sbPomo">${needBreak() ? "sonra mola" : "☕ "+pomoLeft()+" dk"}</span>`}
     <span style="flex:1"></span>
-    ${!S.brk && !s.paused ? `<button class="btn small" data-act="sessPause" aria-label="Durdur" title="Durdur">⏸</button>` : ""}
-    <button class="btn small" data-act="sessSkip" aria-label="Atla" title="Atla">⏭</button>
-    <button class="btn small" data-act="sessEnd" aria-label="Bitir" title="Bitir">✕</button>
+    ${!S.brk && !s.paused ? `<button class="sbtn" data-act="sessPause" aria-label="Durdur" title="Durdur"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor"/></svg></button>` : ""}
+    <button class="sbtn" data-act="sessSkip" aria-label="Atla" title="Atla"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 5.5v13l9-6.5z" fill="currentColor"/><rect x="15.5" y="5" width="3.5" height="14" rx="1.5" fill="currentColor"/></svg></button>
+    <button class="sbtn" data-act="sessEnd" aria-label="Bitir" title="Bitir"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button>
   </div>`;
 }
 
@@ -4445,7 +4575,7 @@ THEMA: ${band.de}
 ${LEX.ready ? "HÄUFIGKEITSLISTE des gesprochenen Deutsch (Filmuntertitel; Rang aufsteigend), noch nicht gelernt: " + freqCandidates(150).join(", ") + "\nWähle bevorzugt Wörter aus dieser Liste (als Grundform/Lemma), die zum Thema passen; fülle sonst mit den häufigsten Alltagswörtern auf. Die Liste kommt aus Filmen: ignoriere Krimi-/Action-Wortschatz, Schimpfwörter und Slang.\n" : ""}MASSSTAB: der offizielle Prüfungswortschatz (Goethe-/telc-Wortliste) für ${band.lvl === "B1" ? "B1 (Zertifikat B1)" : band.lvl === "A2" ? "A2 (Start Deutsch 2)" : "A1 (Start Deutsch 1)"}: wähle vorrangig Wörter, die in dieser Liste stehen und die man in Bayern wirklich braucht; keine seltenen, literarischen oder Fachwörter (Ausnahme: das IT-Thema).
 Gib die nächsten ${n} WICHTIGSTEN, im Alltag häufigsten Wörter zu diesem Thema, die NICHT in dieser Liste stehen: ${known}
 Mische Nomen, Verben, Adjektive und nützliche kleine Wörter. Bei Nomen: Artikel und Plural (korrekt!). Bei Verben: Infinitiv, im "note" die er-Form und das Perfekt.
-Zu jedem Wort: eine typische Kollokation/Chunk ("einen Termin machen") und ein erster, sehr natürlicher Beispielsatz aus dem Leben des Lerners (Familie, kleine Tochter, IT-Job, Fitnessstudio, Bayern), Niveau ${band.lvl}, mit genauer türkischer Übersetzung.
+Zu jedem Wort: eine typische Kollokation/Chunk ("einen Termin machen") und ein erster, sehr natürlicher Beispielsatz aus einer echten Alltagssituation in Deutschland (jedes Wort eine ANDERE Situation und andere Personen: Supermarkt, Ärztin, Bahn, Nachbarn, Behörde, Restaurant, Wetter, Freunde, Kinder …; höchstens jedes vierte Wort aus dem Leben des Lerners), Niveau ${band.lvl}, mit genauer türkischer Übersetzung.
 "answer" = genau die Form des Wortes, wie sie im Satz steht (bei Nomen ohne Artikel). "trw" = das türkische Wort/die Wortgruppe in "tr", die "answer" entspricht. "scene" = 2-4 Emojis, die die Szene des Satzes zeigen (erstes = Hauptmotiv). "bg" = eine von: ${Object.keys(BG).join(", ")}. "emoji" = 1 Emoji für das Wort selbst. "img" = englische Foto-Suchanfrage (2-4 konkrete Wörter), die die Szene des Satzes zeigt, z. B. "doctor appointment phone".
 Antworte NUR mit JSON: {"words":[{"de":"Termin","artikel":"der","plural":"Termine","tr":"randevu","type":"nomen|verb|adj|andere","note":"","chunk":"einen Termin machen","emoji":"📅","s":{"de":"Ich mache morgen einen Termin beim Arzt.","answer":"Termin","tr":"Yarın doktordan randevu alıyorum.","trw":"randevu","scene":["🩺","📅","☎️"],"bg":"health","img":"doctor appointment phone"}}]}`, {tier:"default"});
   let added = 0;
@@ -4473,7 +4603,7 @@ function vCleanSent(s, de){
 async function vFreshSents(words){
   if(!aiReady() || !words.length) return;
   const req = words.map(w=>({id:w.id, wort:(w.artikel ? w.artikel+" " : "")+w.de, tr:w.tr, alte_saetze:(w.sents||[]).slice(-4).map(s=>s.de)}));
-  const sc = ["Familie zu Hause","Kita","IT-Arbeit im Büro","Homeoffice","Arzt","Fitnessstudio","Supermarkt","Nachbarn","Wochenende","Restaurant","Bahn/Auto","Telefon","Wetter","Freunde"];
+  const sc = ["Familie zu Hause","Kita","Büro","Arzt/Apotheke","Supermarkt","Bäckerei","Nachbarn","Wochenende","Restaurant","Bahn/Bus","Auto/Werkstatt","Telefon","Wetter","Freunde","Behörde/Post","Urlaub","Kleidung kaufen","Wohnung/Vermieter","Fernsehen/Film","Feste"];
   try{
     const r = await askJSON(`${profile()}
 Für jedes Wort: ein NEUER, natürlicher deutscher Satz, der sich klar von den alten Sätzen unterscheidet (andere Situation, andere Form des Wortes wenn sinnvoll, z. B. Plural, Perfekt, Dativ). Wähle für jedes Wort eine andere Situation aus: ${shuffle(sc).join(", ")}. Benutze sonst fast nur Wörter, die der Lerner kennt.
@@ -4977,7 +5107,8 @@ function confetti(n){
   requestAnimationFrame(step);
 }
 function toast(html, ms){
-  const d = document.createElement("div"); d.className = "toast"; d.innerHTML = html; document.body.appendChild(d);
+  document.querySelectorAll(".toast").forEach(x=>x.remove());
+  const d = document.createElement("div"); d.className = "toast"; d.setAttribute("role","status"); d.innerHTML = `<span class="toast-t">${html}</span>`; document.body.appendChild(d);
   requestAnimationFrame(()=>d.classList.add("in")); setTimeout(()=>{ d.classList.remove("in"); setTimeout(()=>d.remove(), 350); }, ms || 1800);
 }
 function bigCelebrate(title, sub, mood){
@@ -5126,7 +5257,10 @@ BISHER GELERNT (Denk-Lektionen): ${(st.sum||[]).slice(-6).join(" | ") || "-"}
 REGELN: Erkläre auf Türkisch, sehr kurz und freundlich, wie ein Lehrer, der neben ihm sitzt. Nutze Englisch als Brücke, wo es hilft. Baue Schritt für Schritt auf: jeder Schritt benutzt, was vorher kam, und fügt EINE Kleinigkeit hinzu. Der Lerner soll die Sätze selbst durch Logik bilden, nicht auswendig. Am Anfang leicht, am Ende ein langer Satz, den er jetzt bauen kann. Benutze Wörter des Tages, wenn sie passen.
 Deutsche Wörter innerhalb türkischer Erklärungen in ⟦ ⟧ setzen.
 STRENG: "say" ist TÜRKISCH (deutsche Wörter nur in ⟦ ⟧). "ask" ist ein TÜRKISCHER Satz und enthält NIE die deutsche Lösung. "ans" ist die deutsche Lösung. Der Lerner muss "ans" selbst bilden.
-BEISPIEL-SCHRITT: {"say":"Almancada fiil cümlede hep 2. sırada durur, İngilizcedeki ⟦I work⟧ gibi: ⟦ich arbeite⟧.","ask":"Bugün çalışıyorum.","ans":"Heute arbeite ich.","why":"Cümle 'bugün' ile başladı; fiil yine 2. sırada kaldı, özne arkasına geçti."}
+TRANSFER-PRINZIP (das Wichtigste): "say" erklärt die REGEL und darf höchstens ein Beispiel mit ANDEREN Wörtern zeigen. Die Lösung "ans" (oder ein Teil davon, der schon die ganze Antwort ist) darf NIE in "say" stehen. Der Lerner muss jedes Mal etwas Neues selbst übertragen (neues Verb, andere Person, andere Zeitangabe, Frage statt Aussage …). Kein Schritt darf so leicht sein, dass er nur das Gehörte wiederholt.
+Jeder Schritt übt NUR den heutigen Mechanismus (keine Themenwechsel wie Wortendungen oder Artikel, wenn das nicht der Mechanismus ist). "ask" ist immer ein ganzer Satz, nie ein einzelnes Wort.
+Kopiere NICHT das Muster-Beispiel unten; es zeigt nur das Format.
+MUSTER (Format, anderes Thema): {"say":"Soruda fiil başa geçer: ⟦Du kommst⟧ → ⟦Kommst du?⟧","ask":"Yarın geliyor musun?","ans":"Kommst du morgen?","why":"Evet/hayır sorusunda fiil 1. sırada, zaman özneden sonra gelir."}
 Antworte NUR mit JSON: {"title":"…","steps":[{"say":"Erklärung Türkisch (1-2 Sätze, mit ⟦deutsch⟧)","ask":"türkischer Satz, den er auf Deutsch bilden soll","ans":"deutsche Lösung","why":"1 kurzer Satz Türkisch: warum so (Logik)"}],"summary":"1 Satz Deutsch: was gelernt wurde"}
 12-15 Schritte.`, {tier:"default"});
     if(!r || !(r.steps||[]).length) throw {code:"invalid_json"};
@@ -5183,10 +5317,17 @@ writeCheck = async function(){ await _wcheck(); if(S.write.result && !S.write._x
 function vImm(){ return S.state.vimm !== undefined ? !!S.state.vimm : stage().n >= 2; }
 
 /* ---------- eşine gönder (Busuu tarzı insan düzeltmesi) ---------- */
+/* paylaş: iPhone'un kendi paylaşım menüsü (WhatsApp, Mesajlar…); olmazsa panoya kopyalar */
+async function shareText(text, title){
+  try{ const P = capPlug("Share"); if(P && P.share){ await P.share({title: title || "Deutsch-Werkstatt", text, dialogTitle: title || "Paylaş"}); return "shared"; } }catch(e){ if(/cancel/i.test(String(e && (e.message || e.code || e)))) return "cancel"; }
+  try{ if(navigator.share){ await navigator.share({text}); return "shared"; } }catch(e){ if(e && e.name === "AbortError") return "cancel"; }
+  return (await copyText(text)) ? "copied" : "fail";
+}
 async function shareWife(text){
   const msg = `Schatz, kannst du bitte meinen Text korrigieren und mir sagen, wie man das natürlicher sagt? Danke! ❤️\n\n${text}`;
-  const ok = await copyText(msg);
-  toast(ok ? `📋 <b>Kopyalandı.</b> WhatsApp'ta eşine yapıştır.` : `Kopyalanamadı; metni elle seç.`, 2600);
+  const r = await shareText(msg, "Eşine gönder");
+  if(r === "copied") toast(`📋 <b>Kopyalandı.</b> WhatsApp'ı aç, eşinin sohbetine yapıştır.`, 3200);
+  else if(r === "fail") toast(`Paylaşılamadı; metni basılı tutup kopyala.`, 3200);
 }
 const _rwr = renderWriteResult;
 renderWriteResult = function(){ return _rwr() + `<section class="card"><button class="btn block" data-act="wifeWrite">💌 Eşine gönder: o da düzeltsin</button><p class="small muted">En iyi düzeltici evde: anadili Almanca. Onun düzeltmelerini "Kartlarım → VHS notları" bölümüne yapıştırırsan kelimelerine eklenir.</p></section>`; };
@@ -5408,7 +5549,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-10t";
+const APP_VER = "2026-11-11b";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -5979,7 +6120,7 @@ async function startA12Test(key, kind){
     const r = await askJSON(`Du bist ein persönlicher Deutschlehrer. ${profile()}
 AUFGABE: ${kind === "pre" ? "Kurze Einstufung: Kann der Lerner diese Lektion schon sicher? Wenn ja, überspringen wir sie." : "Abschlusskontrolle dieser Lektion."}
 LEKTION: ${gpLabel(L)}. Grammatik: ${L.gram.join("; ")}. Wortschatz: ${L.words}.
-Erstelle ${cnt} Aufgaben, die jeden Grammatikpunkt UND den Wortschatz abdecken, Niveau ${L.lvl}, Sätze aus seinem Alltag (Familie, Kita, Arbeit in der IT, Fitnessstudio, Bayern). Typen gemischt: "gap" (eine Lücke ___, "answers"), "choice" (3 "options", "answer"), "order" (nur "answer", max ${L.rank === "B1" ? 12 : 9} Wörter), "fix" ("prompt" mit genau einem Fehler, "answer" korrigiert).
+Erstelle ${cnt} Aufgaben, die jeden Grammatikpunkt UND den Wortschatz abdecken, Niveau ${L.lvl}, Sätze aus vielen verschiedenen Alltagssituationen in Deutschland (Einkaufen, Ärztin, Bahn, Nachbarn, Behörde, Freizeit, Familie …), höchstens jeder vierte aus seinem eigenen Leben. Typen gemischt: "gap" (eine Lücke ___, "answers"), "choice" (3 "options", "answer"), "order" (nur "answer", max ${L.rank === "B1" ? 12 : 9} Wörter), "fix" ("prompt" mit genau einem Fehler, "answer" korrigiert).
 Jede Aufgabe hat "tr", "explain" (Türkisch, 1 Satz) und "topic" (eine von: ${MTOPICS.join(", ")}).
 Antworte NUR mit JSON: {"items":[…]}`);
     Ln.busy = false;
@@ -7519,7 +7660,7 @@ const READ_TYPES = [
 function readSpec(){
   const n = stage().n; const types = READ_TYPES[Math.max(0, n-1)]; const dn = Math.floor(Date.now()/86400000); const ty = types[dn % types.length];
   const len = ["", "100-130 Wörter, A2", "150-200 Wörter, A2+", "220-300 Wörter, B1", "280-350 Wörter, B1 (Prüfungsniveau)"][n];
-  return `Schreib als Lesetext ${ty} (${len}). ${n <= 2 ? "Thema aus dem Leben des Lerners (Arbeit, Familie, Bayern, Fitness)." : "Thema aus dem Leben in Deutschland (Arbeit, Wohnen, Familie, Medien, Umwelt, Gesundheit, Freizeit); nicht immer über den Lerner selbst, damit er auch fremde Perspektiven versteht."} Natürliche Sprache mit Konnektoren (weil, obwohl, deshalb, trotzdem, außerdem) und ${n >= 3 ? "auch Präteritum, Passiv und Relativsätzen" : "Perfekt"}.`;
+  return `Schreib als Lesetext ${ty} (${len}). ${n <= 2 ? "Thema aus dem Alltag in Deutschland (Einkaufen, Nachbarn, Freizeit, Feste, Wetter, Familie)." : "Thema aus dem Leben in Deutschland (Arbeit, Wohnen, Familie, Medien, Umwelt, Gesundheit, Freizeit); nicht immer über den Lerner selbst, damit er auch fremde Perspektiven versteht."} Natürliche Sprache mit Konnektoren (weil, obwohl, deshalb, trotzdem, außerdem) und ${n >= 3 ? "auch Präteritum, Passiv und Relativsätzen" : "Perfekt"}.`;
 }
 VBANDS.push(
   {id:"a2-clothes", lvl:"A2", t:"Giyim ve alışveriş", de:"Kleidung, Größen, Umtausch, Einkaufen im Geschäft"},
@@ -8531,10 +8672,13 @@ function dkStrip(t){ return String(t||"").replace(/⟦[^⟧]*⟧/g, " "); }
 function dkBad(st){
   const ask = String(st.ask||"").trim(), ans = String(st.ans||"").trim();
   if(!ask || !ans) return "boş";
+  if(String(ask).replace(/[.!?]/g,"").trim().split(/\s+/).length < 2 && String(ans).trim().split(/\s+/).length < 3) return "cümle değil, tek kelime";
   if(norm(ask).includes(norm(ans)) || (norm(ans).length > 4 && lev(norm(ask), norm(ans)) <= 2)) return "soru cevabı içeriyor";
   if(!DK_TR.test(ask) && DK_DE.test(ask)) return "soru Almanca";
   const say = dkStrip(st.say);
   if(say.trim() && !DK_TR.test(say) && DK_DE.test(say)) return "açıklama Almanca";
+  const na = dkNorm(ans); const deParts = (String(st.say||"").match(/⟦[^⟧]*⟧/g) || []).map(x=>dkNorm(x.slice(1,-1)));
+  if(na && (deParts.some(d=>d === na || (d.length >= na.length && (" "+d+" ").includes(" "+na+" "))) || (" "+dkNorm(st.say)+" ").includes(" "+na+" "))) return "açıklama cevabı veriyor";
   return "";
 }
 async function denkVet(steps){
@@ -8542,7 +8686,7 @@ async function denkVet(steps){
   const bad = steps.map((st,i)=>({i, why:dkBad(st)})).filter(x=>x.why);
   if(bad.length && aiReady()){
     try{
-      const r = await askJSON(`Du korrigierst Schritte einer "Language Transfer"-Lektion für einen türkischen Deutschlerner. Regeln: "say" = kurze Erklärung auf TÜRKISCH (deutsche Wörter nur in ⟦ ⟧). "ask" = ein TÜRKISCHER Satz, den er auf Deutsch bilden soll; er darf die Lösung NICHT enthalten. "ans" = die deutsche Lösung. "why" = 1 kurzer Satz Türkisch.
+      const r = await askJSON(`Du korrigierst Schritte einer "Language Transfer"-Lektion für einen türkischen Deutschlerner. Regeln: "say" = kurze Erklärung auf TÜRKISCH (deutsche Wörter nur in ⟦ ⟧). "ask" = ein TÜRKISCHER Satz, den er auf Deutsch bilden soll; weder "ask" noch "say" dürfen die Lösung enthalten ("say" erklärt nur die Regel, Beispiele mit anderen Wörtern). "ans" = die deutsche Lösung. "why" = 1 kurzer Satz Türkisch.
 Repariere diese Schritte (gleiche Reihenfolge, gleiche Lernabsicht): ${JSON.stringify(bad.map(b=>steps[b.i]))}
 Antworte NUR mit JSON: {"steps":[{"say":"…","ask":"…","ans":"…","why":"…"}]}`, {tier:"quick"});
       (r && r.steps || []).forEach((fx, k)=>{ const b = bad[k]; if(b && fx && !dkBad(fx)) steps[b.i] = fx; });
@@ -8689,10 +8833,17 @@ lessonToExercises = async function(){
   L.err = err ? aiMsg(err) : "Alıştırma oluşturulamadı. Bir kez daha dene."; render();
 };
 
+function plClean(x){ return String(x||"").trim().replace(/^(die|der|das)\s+/i, ""); }
+/* kayıtlı kelimelerde "die die …" çoğul hatası bir kez temizlenir */
+{
+  let _wseen = null;
+  const _rnd = render;
+  render = function(){ try{ if(S.words && S.words !== _wseen){ _wseen = S.words; for(const w of S.words){ if(w && typeof w.plural === "string" && /^(die|der|das)\s/i.test(w.plural.trim())) w.plural = plClean(w.plural); } } }catch(e){} return _rnd.apply(this, arguments); };
+}
 /* yapay zekânın sık Türkçe yazım hataları (ör. "fiir" → "fiil") cevaplarda kendiliğinden düzelir */
 {
   const TRFIX = [[/\bfiir(?=\b|[a-zçğıöşü])/g, "fiil"], [/\bFiir(?=\b|[a-zçğıöşü])/g, "Fiil"]];
-  const fixDeep = v => typeof v === "string" ? TRFIX.reduce((t,[re,to])=>t.replace(re,to), v) : Array.isArray(v) ? v.map(fixDeep) : (v && typeof v === "object") ? Object.fromEntries(Object.entries(v).map(([k,x])=>[k, fixDeep(x)])) : v;
+  const fixDeep = v => typeof v === "string" ? TRFIX.reduce((t,[re,to])=>t.replace(re,to), v) : Array.isArray(v) ? v.map(fixDeep) : (v && typeof v === "object") ? Object.fromEntries(Object.entries(v).map(([k,x])=>[k, k === "plural" && typeof x === "string" ? plClean(x) : k === "artikel" && typeof x === "string" ? x.trim().toLowerCase() : fixDeep(x)])) : v;
   const _aj = askJSON; askJSON = async function(){ return fixDeep(await _aj.apply(this, arguments)); };
   if(typeof GeminiAI === "object" && GeminiAI && GeminiAI.json){ const _aij = GeminiAI.json.bind(GeminiAI); GeminiAI.json = async function(){ return fixDeep(await _aij.apply(null, arguments)); }; }
 }
@@ -8718,6 +8869,460 @@ lessonToExercises = async function(){
     return h;
   };
   Object.assign(ACT, { exSayFull(){ const e = S.ex; if(e && e.feedback && e.feedback.full) say(e.feedback.full, "de"); } });
+}
+/* ================= OMURGA 1: tanı kaydı, takılma bekçisi, sağlam JSON ================= */
+/* Her hata (kod hatası, yapay zekâ hatası, takılan ekran) cihazda kaydedilir; Kurulum → Hata raporu'ndan tek dokunuşla kopyalanır. */
+const DIAG_KEY = "dw-diag";
+function diagList(){ try { return JSON.parse(localStorage.getItem(DIAG_KEY) || "[]"); } catch(e){ return []; } }
+function diagAdd(kind, msg, extra){
+  try {
+    const L = diagList(); const m = String(msg || "").slice(0, 300);
+    const last = L[L.length - 1]; if(last && last.k === kind && last.m === m && Date.now() - (last.ts||0) < 5000) return;
+    L.push({ts:Date.now(), t:new Date().toISOString().slice(5,19).replace("T"," "), v:APP_VER, w:S && S.view, k:kind, m, x: extra ? String(extra).slice(0, 160) : undefined});
+    localStorage.setItem(DIAG_KEY, JSON.stringify(L.slice(-80)));
+  } catch(e){}
+}
+window.addEventListener("error", e => { if(e && e.message) diagAdd("js", e.message, (e.filename||"").split("/").pop() + ":" + (e.lineno||"")); });
+window.addEventListener("unhandledrejection", e => { const r = e && e.reason; if(r && r.code === "cancelled") return; diagAdd("promise", r && (r.message || r.code || (typeof r === "string" ? r : JSON.stringify(r).slice(0,200)))); });
+
+/* yarım kalmış (kesilmiş) JSON'u kapatıp okumayı dener */
+function jsonRepair(t){
+  let s = String(t||""); const i = s.search(/[{\[]/); if(i < 0) return null; s = s.slice(i);
+  const st = []; let inStr = false, esc2 = false, out = "";
+  for(const ch of s){
+    out += ch;
+    if(inStr){ if(esc2) esc2 = false; else if(ch === "\\") esc2 = true; else if(ch === "\"") inStr = false; continue; }
+    if(ch === "\"") inStr = true; else if(ch === "{" || ch === "[") st.push(ch); else if(ch === "}" || ch === "]"){ st.pop(); if(!st.length) break; }
+  }
+  if(inStr) out += "\"";
+  out = out.replace(/,\s*$/, "").replace(/:\s*$/, ":null").replace(/,\s*"[^"]*"\s*$/, "");
+  while(st.length){ const o = st.pop(); out = out.replace(/,\s*$/, ""); out += o === "{" ? "}" : "]"; }
+  try { return JSON.parse(out.replace(/,\s*([}\]])/g, "$1")); } catch(e){ return null; }
+}
+{
+  const _pj = parseJSONLoose;
+  parseJSONLoose = function(t){ try { return _pj(t); } catch(e){ const r = jsonRepair(String(t||"").replace(/^```(?:json)?\s*/i,"").replace(/```\s*$/,"")); if(r && typeof r === "object") { diagAdd("ai", "JSON onarıldı (kesik cevap)"); return r; } throw e; } };
+}
+/* daha uzun cevaplara yer: düşünme jetonları çıktıyı kesmesin */
+{
+  const _gc = gemCall;
+  gemCall = function(model, body, signal){ try { if(body && body.generationConfig && body.generationConfig.maxOutputTokens && body.generationConfig.maxOutputTokens < 16384 && !JSON.stringify(body.contents||[]).includes("audio/wav")) body.generationConfig.maxOutputTokens = 16384; } catch(e){} return _gc(model, body, signal); };
+}
+/* yapay zekâ hataları kayda: hangi iş, hangi kod */
+{
+  const _aj = askJSON;
+  askJSON = async function(prompt, o){
+    try { return await _aj.apply(this, arguments); }
+    catch(e){
+      if(e && e.code !== "cancelled"){
+        if(["invalid_json","empty_completion"].includes(e && e.code)){ try { const r = await _aj.call(this, String(prompt) + "\n\nWICHTIG: Antworte kurz, vollständig und NUR mit gültigem JSON.", o); diagAdd("ai", "ikinci denemede düzeldi: " + e.code); return r; } catch(e2){ e = e2; } }
+        diagAdd("ai", (e && e.code || "err") + (e && e.detail ? " · " + e.detail : ""), String(prompt).replace(/\s+/g, " ").slice(0, 120));
+      }
+      throw e;
+    }
+  };
+}
+/* takılma bekçisi: "hazırlanıyor" 40 sn'den uzun sürerse kurtarma çubuğu */
+const WD = {since:0, shown:false};
+function wdRescueHtml(){ return `<div id="wdBar" role="alert"><div><b>Bu adım çok uzun sürdü.</b><span>Bağlantı yavaş olabilir. İstersen atla; sonra tekrar gelir.</span></div><div class="wdbtns"><button data-act="wdWait">Bekle</button><button data-act="wdSkip" class="go">${S.sess ? "Sıradakine geç" : "Geri dön"}</button></div></div>`; }
+setInterval(()=>{
+  const busy = !!document.querySelector("#view .thinking, #view .spin");
+  if(!busy){ WD.since = 0; if(WD.shown){ const b = $("#wdBar"); if(b) b.remove(); WD.shown = false; } return; }
+  if(!WD.since) WD.since = Date.now();
+  if(!WD.shown && Date.now() - WD.since > 40000){ WD.shown = true; diagAdd("stuck", "40 sn'den uzun bekleme", S.view); document.body.insertAdjacentHTML("beforeend", wdRescueHtml()); }
+}, 2000);
+function diagReportText(){
+  const L = diagList(); const ai = (()=>{ try { return JSON.parse(localStorage.getItem("dw-ailog") || "[]"); } catch(e){ return []; } })();
+  return `Deutsch-Werkstatt hata raporu · ${APP_VER} · ${new Date().toISOString().slice(0,16)}\n${navigator.userAgent}\n` +
+    `\n— Kayıtlar (${L.length}) —\n` + L.map(e=>`${e.t} [${e.k}] ${e.w||""} ${e.m}${e.x ? " | " + e.x : ""}`).join("\n") +
+    `\n\n— Son yapay zekâ istekleri —\n` + ai.map(a=>`${new Date(a.t).toISOString().slice(11,19)} ${a.m} ${a.s}s ${a.r}`).join("\n");
+}
+function diagHtml(){
+  const L = diagList(); const recent = L.slice(-6).reverse();
+  return `<section class="card"><div class="row between"><h3>🩺 Hata raporu</h3><span class="chip ${L.length ? "warn" : "good"}">${L.length} kayıt</span></div>
+    <p class="small muted">Bir şey ters giderse uygulama burada kaydeder. "Kopyala"ya basıp Claude'a yapıştırman yeterli; ekran görüntüsüne gerek kalmaz. Kişisel bilgi ya da anahtar içermez.</p>
+    ${recent.length ? `<div class="stack small">${recent.map(e=>`<div class="ex"><b>${esc(e.k)}</b> · ${esc(e.t)} · ${esc(e.w||"")}<br>${esc(e.m)}</div>`).join("")}</div>` : ""}
+    <div class="grid2"><button class="btn primary" data-act="diagCopy">📋 Kopyala</button><button class="btn ghost" data-act="diagClear">Temizle</button></div>
+    ${S.diagMsg ? `<div class="fb ok small">${esc(S.diagMsg)}</div>` : ""}</section>`;
+}
+{
+  const _rk = renderKurulum;
+  renderKurulum = function(){ const h = _rk.apply(this, arguments); return h + diagHtml(); };
+  VIEWS.kurulum = () => renderKurulum();
+}
+
+/* ================= OMURGA 2: Ders Kiti — bütün çalışma ekranları için tek tasarım ================= */
+/* Kurallar: (1) her Almanca metnin yanında 🔊, (2) cevaptan sonra alttan kayan sonuç paneli: tam cümle + ses + açıklama,
+   (3) üstte ilerleme, altta tek ana eylem, (4) sonuç ekranı kutlamalı ve net. */
+const kSay = (t, cls) => `<button class="k-say ${cls||""}" data-act="sayDe" data-t="${esc(t)}" aria-label="Dinle">🔊</button>`;
+const kPlural = w => { const p = String(w.plural||"").trim().replace(/^(die|der|das)\s+/i, ""); return p && p !== "-" ? p : ""; };
+const kWordDe = w => String(w.de||"").replace(/^(der|die|das)\s+/i, "");
+function kWordCard(w){
+  const art = ["der","die","das"].includes(w.artikel) ? w.artikel : "";
+  const full = (art ? art + " " : "") + kWordDe(w);
+  return `<button class="k-word ${art ? "a-" + art : ""}" data-act="sayDe" data-t="${esc(full)}">
+    ${art ? `<span class="k-art">${art}</span>` : `<span class="k-art k-art-x">${esc(w.kind === "verb" || /en$/.test(kWordDe(w)) ? "fiil" : "kelime")}</span>`}
+    <b class="de">${esc(kWordDe(w))}</b>${kPlural(w) ? `<small>çoğ. die ${esc(kPlural(w))}</small>` : ""}
+    <em>${esc(w.tr||"")}</em><i aria-hidden="true">🔊</i></button>`;
+}
+function kExRow(de, tr){
+  tr = qfix(de, tr);
+  return `<div class="k-ex">${kSay(de)}<div class="k-ext"><div class="de">${esc(de)}</div>${tr ? `<div class="tr">${esc(tr)}</div>` : ""}</div><button class="k-add" data-act="savePhrase" data-de="${esc(de)}" data-tr="${esc(tr)}" aria-label="Kartlarıma ekle" title="Kartlarıma ekle">＋</button></div>`;
+}
+/* örnek cümle satırları her yerde aynı: 🔊 + cümle + ＋ */
+phraseRow = (de, tr) => kExRow(de, tr);
+/* Almanca parçaları (parantez içi ya da tırnaklı) vurgula */
+function kRuleHtml(t){ return esc(t).replace(/\(([^)]{2,80})\)/g, (m, x)=>/[a-zäöüß]{2,}/i.test(x) && !/[çğışİ]/.test(x) ? `<span class="k-de">${x}</span>` : m).replace(/'([^']{2,60})'/g, (m, x)=>/[äöüß]|\b(ich|du|er|sie|wir|ist|bin|der|die|das)\b/i.test(x) ? `<span class="k-de">${x}</span>` : m); }
+
+/* ---------- Ne çalışalım? ---------- */
+renderLernen = (()=>{ const _old = renderLernen; return function(){
+  const L = S.learn;
+  if(S.ex && S.ex.home === "lernen") return renderExercise();
+  if(S.remed || L.busy || L.lesson) return _old.apply(this, arguments);
+  const noAI = !aiReady(); const cur = current(); const due = S.words.filter(w=>(w.due||dayKey())<=dayKey()).length;
+  const tiles = [["startReview","🔁","Günlük tekrar",`${due} kelime ve açık hatalar`,"#2F7BF6",false],["startTodayLesson","📘","Bugünün dersi",cur.d.title,"#7C5CFA",noAI],["startMistakes","🛟","Hatalarım","Önce öğren, sonra çöz","#EF4A82",noAI],["startReading","📖","Okuma","Kelimeler → metin → sorular","#12B5B0",noAI],["startArtikel","🎨","Artikel","der · die · das","#F5A623",false],["startPlural","👥","Çoğul","Tekilden çoğula","#16B37A",false]];
+  return `<section class="card k-hub"><div class="kicker">Önce öğren, sonra uygula</div><h2>Ne çalışalım?</h2><p class="small">Her konu kısa bir anlatım, sesli örnekler ve kelimelerle başlar; alıştırmalar sadece öğrendiğinden gelir.</p></section>
+    ${L.err ? `<section class="card k-errc"><b>Bir aksilik oldu</b><p class="small">${esc(L.err)}</p><button class="btn primary" data-act="kRetryLast">Tekrar dene</button></section>` : ""}
+    ${noAI ? `<div class="note">Yapay zekâ bu görünümde kullanılamıyor. Tekrar, Artikel ve Çoğul kendi kartlarınla çalışır.</div>` : ""}
+    <section class="k-tiles">${tiles.map(([a,i,t,s,c,dis])=>`<button class="k-tile" style="--tc:${c}" data-act="${a}" ${dis ? "disabled" : ""}><i aria-hidden="true">${i}</i><b>${esc(t)}</b><span>${esc(s)}</span></button>`).join("")}</section>
+    <section class="card"><h3>Başka bir konu</h3>
+      <select id="learnTopic" aria-label="Konu">${[...TOPICS, ...LEK.flatMap(L2=>L2.gram.map(g=>g+" ("+lekLabel(L2)+")")), ...LEK.map(L2=>L2.life.topic)].map(x=>`<option ${x===cur.d.topic?"selected":""}>${esc(x)}</option>`).join("")}</select>
+      <button class="btn block" data-act="startLesson" ${noAI?"disabled":""}>Bu konunun dersini başlat</button></section>`;
+}; })();
+VIEWS.lernen = () => renderLernen();
+
+/* ---------- ders anlatımı ---------- */
+renderLesson = function(){
+  const l = S.learn.lesson; if(!l) return "";
+  const kick = l.kind === "reading" ? "Okuma · 1. adım: kelimeler" : l.kind === "preview" ? "Önce bak" : l.kind === "mistakes" ? "Hatalarım · önce öğren" : "Ders";
+  const ex = (l.examples||[]).filter(e=>e && e.de);
+  return `<section class="card k-hero"><div class="kicker">${esc(kick)}</div><h2>${esc(l.title||"")}</h2>${l.intro_tr ? `<p>${esc(l.intro_tr)}</p>` : ""}</section>
+  ${(l.rule_tr||[]).length ? `<section class="card k-sec" style="--sc:#7C5CFA"><h3><span class="svi">📌</span>Kural</h3><ol class="k-rules">${l.rule_tr.map(r=>`<li>${kRuleHtml(r)}</li>`).join("")}</ol></section>` : ""}
+  ${l.table && l.table.rows && l.table.rows.length ? `<section class="card k-sec" style="--sc:#2F7BF6"><h3><span class="svi">🧩</span>${esc(l.table.title||"Tablo")}</h3><div class="tablewrap"><table class="t k-table"><thead><tr>${(l.table.head||[]).map(h=>`<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${l.table.rows.map(r=>`<tr>${(r||[]).map(c=>`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>` : ""}
+  ${ex.length ? `<section class="card k-sec" style="--sc:#16B37A"><div class="row between"><h3><span class="svi">🗣️</span>Örnek cümleler</h3><button class="btn small" data-act="kSayAll">${S.kAll ? "⏹ Durdur" : "▶ Hepsini dinle"}</button></div><p class="small muted">Dinle, sonra yüksek sesle tekrar et.</p><div class="k-exs">${ex.map(e=>kExRow(e.de, e.tr)).join("")}</div></section>` : ""}
+  ${(l.words||[]).length ? `<section class="card k-sec" style="--sc:#F5A623"><h3><span class="svi">🧠</span>${l.kind === "preview" ? "Kelimeler" : "Bu dersin kelimeleri"}</h3><div class="k-words">${l.words.map(kWordCard).join("")}</div><p class="small muted">Dokun, dinle. Yeni kelimeler kartlarına eklenir, tekrarda karşına çıkar.</p></section>` : ""}
+  ${l.pitfall_tr ? `<section class="card k-sec k-warn" style="--sc:#FF7A1A"><h3><span class="svi">⚠️</span>Dikkat</h3><p>${kRuleHtml(l.pitfall_tr)}</p></section>` : ""}
+  ${l.kind === "reading" ? renderReadingBody(l) : ""}
+  ${S.learn.err ? `<section class="card k-errc"><b>Bir aksilik oldu</b><p class="small">${esc(S.learn.err)}</p></section>` : ""}
+  <div class="k-foot">${l.kind === "reading" ? "" : `<button class="btn primary block k-cta" data-act="lessonToExercises">${l.kind==="preview" ? "Hazırım, başla" : "Anladım, alıştırmaya geç →"}</button>`}<button class="btn ghost block" data-act="learnBack">Geri dön</button></div>`;
+};
+renderReadingBody = function(l){
+  const r = S.learn.reading || (S.learn.reading = {answers:{}, shown:false});
+  if(!r.shown) return `<section class="card k-sec" style="--sc:#12B5B0"><p>Kelimeleri dinledin mi? Şimdi metne geçelim.</p><button class="btn primary block k-cta" data-act="readingShow">Metni göster →</button></section>`;
+  const qs = (l.questions||[]).filter(q=>q && q.q && (q.options||[]).length); const answered = Object.keys(r.answers).length; const okN = qs.filter((q,i)=>r.answers[i]===q.answer).length;
+  return `<section class="card k-sec" style="--sc:#12B5B0"><div class="row between"><h3><span class="svi">📖</span>${esc(l.text_title||"Metin")}</h3><button class="btn small" data-act="kSayText">${S.kAll ? "⏹ Durdur" : "▶ Dinle"}</button></div>
+      <p class="de k-text">${esc(l.text||"")}</p><details><summary class="small">Türkçesi</summary><p class="tr">${esc(l.text_tr||"")}</p></details></section>
+    ${qs.length ? `<section class="card k-sec" style="--sc:#2F7BF6"><h3><span class="svi">❓</span>Sorular</h3>${qs.map((q,i)=>{ const a = r.answers[i]; return `<div class="k-qblk"><p><b>${i+1}.</b> ${esc(q.q)}</p><div class="k-opts">${q.options.map(o=>{ const st = a===undefined ? "" : o===q.answer ? "right" : a===o ? "wrongsel" : "dim"; return `<button class="xopt ${st}" data-act="readingAnswer" data-i="${i}" data-o="${esc(o)}" ${a!==undefined?"disabled":""}>${esc(o)}</button>`; }).join("")}</div></div>`; }).join("")}
+      ${answered === qs.length ? `<div class="k-done ${okN >= qs.length*0.75 ? "ok" : ""}">${okN}/${qs.length} doğru ${okN >= qs.length*0.75 ? "🎉" : ""}</div>` : ""}</section>` : ""}
+    ${l.retell_de && answered === qs.length ? `<section class="card k-sec" style="--sc:#7C5CFA"><h3><span class="svi">✍️</span>Sıra sende</h3><p class="de">${esc(l.retell_de)}</p><p class="tr">${esc(l.retell_tr||"")}</p><button class="btn primary block" data-act="readingRetell">Bu görevi yaz →</button></section>` : ""}
+    ${answered === qs.length && S.sess ? `<div class="k-foot">${continueBtn()}</div>` : ""}`;
+};
+
+/* ---------- alıştırma ---------- */
+const K_INS = {gap:"Boşluğa ne gelir?", fix:"Cümledeki hatayı düzelt", choice:"Doğru seçeneğe dokun", artikel:"Doğru artikel hangisi?", tf:"Bu cümle doğru mu?", order:"Kelimelere sırayla dokunarak cümleyi kur", produce:"Almancası ne? Önce söyle, sonra yaz", dict:"Dinle ve duyduğunu yaz"};
+function kStreak(e){ let n = 0; for(let i = e.results.length - 1; i >= 0; i--){ const r = e.results[i]; if(r && r.ok) n++; else break; } return n; }
+renderExercise = function(){
+  const e = S.ex; if(e.summary) return renderSummary();
+  const it = curItem(); const n = e.items.length; const fb = e.feedback; const done = e.checked;
+  const st = kStreak(e);
+  const input = (ph, cap) => `<input type="text" id="exInput" class="k-input" placeholder="${esc(ph)}" autocomplete="off" autocapitalize="${cap ? "sentences" : "off"}" spellcheck="false" enterkeyhint="done" value="${esc(e.user)}" data-model="exUser" ${done?"disabled":""} onkeydown="if(event.key==='Enter'&&!S.ex.checked){event.preventDefault();ACT.exCheck();}">`;
+  let q = "", ans = "";
+  if(it.kind === "dict"){ q = `<div class="k-audio"><button class="k-big-say" data-act="exAudio">🔊</button><button class="btn small ghost" data-act="exAudioSlow">🐢 Yavaş</button></div>`; ans = input("Duyduğun cümle", true); }
+  else if(it.kind === "produce"){ q = `<p class="k-prompt">${esc(it.prompt)}</p>`; ans = input("Almancası…", true); }
+  else if(it.kind === "gap" || it.kind === "fix"){ q = `<p class="k-prompt de">${esc(it.prompt).replace("___", `<span class="k-gap">${done && it.kind === "gap" ? esc((it.answers||[it.answer])[0]) : "&nbsp;?&nbsp;"}</span>`)}</p>${it.hint && !done ? `<details class="k-hint"><summary>💡 İpucu</summary><p>${esc(it.hint)}</p></details>` : ""}`; ans = input(it.kind === "fix" ? "Doğru cümle…" : "Boşluğa gelen kelime…", it.kind === "fix"); }
+  else if(it.kind === "choice" || it.kind === "artikel"){ q = `<p class="k-prompt de">${it.kind === "artikel" ? `<span class="k-gap">&nbsp;?&nbsp;</span> ${esc(it.prompt)}` : esc(it.prompt).replace("___", `<span class="k-gap">${done ? esc(it.answer) : "&nbsp;?&nbsp;"}</span>`)}</p>`;
+    ans = `<div class="k-opts ${it.kind === "artikel" ? "k-opts3" : ""}">${(it._opts||it.options||[]).map(o=>{ let c = ""; if(done){ if(norm(o)===norm(it.answer)) c = "right"; else if(o===e.user) c = "wrongsel"; else c = "dim"; } return `<button class="xopt ${c} ${it.kind==="artikel" ? "a-" + o : ""}" data-act="exChoose" data-o="${esc(o)}" ${done?"disabled":""}>${esc(o)}</button>`; }).join("")}</div>`; }
+  else if(it.kind === "tf"){ q = `<p class="k-prompt de">${esc(it.prompt)}</p>`; ans = `<div class="k-opts k-opts2"><button class="xopt ${done && e.user==="true" ? (fb.ok?"right":"wrongsel") : ""}" data-act="exChoose" data-o="true" ${done?"disabled":""}>✓ Doğru</button><button class="xopt ${done && e.user==="false" ? (fb.ok?"right":"wrongsel") : ""}" data-act="exChoose" data-o="false" ${done?"disabled":""}>✗ Yanlış</button></div>`; }
+  else if(it.kind === "order"){ q = it.tr ? `<p class="k-prompt k-tr">${esc(it.tr)}</p>` : ""; ans = `<div class="k-build">${it._built.map((b,k)=>`<button class="tok" data-act="tokBack" data-k="${k}" ${done?"disabled":""}>${esc(it._tokens[b].t)}</button>`).join("") || `<span class="small muted">Kelimelere dokun…</span>`}</div><div class="k-bank">${it._tokens.map((tk,j)=>`<button class="tok ${it._built.includes(j)?"used":""}" data-act="tokAdd" data-j="${j}" ${done || it._built.includes(j) ? "disabled" : ""}>${esc(tk.t)}</button>`).join("")}</div>`; }
+  const canCheck = it.kind === "order" ? it._built.length > 0 : true;
+  const sheet = done && fb ? `<div class="k-sheet ${fb.ok ? "ok" : "no"}" role="status">
+      <div class="k-sh-h">${fb.ok ? brezi("happy", 40) : brezi("sad", 40)}<b>${fb.ok ? (st >= 3 ? `Harika! 🔥 ${st} doğru üst üste` : ["Doğru!","Süper!","Aynen böyle!","Mükemmel!"][e.i % 4]) : "Tam olmadı"}</b>${fb.pct !== undefined ? `<span class="chip">%${fb.pct}</span>` : ""}</div>
+      ${fb.words ? `<p class="de k-words-heard">${fb.words.map(x=>`<span class="pw ${x.st}">${esc(x.w)}</span>`).join(" ")}</p>` : ""}
+      ${!fb.ok && e.user && !["choice","artikel","tf"].includes(it.kind) ? `<div class="k-yours">Sen: <s>${esc(it.kind === "gap" ? fillGap(it.prompt, e.user) : e.user)}</s></div>` : ""}
+      ${fb.full ? `<div class="k-full">${kSay(fb.full)}<span class="de">${esc(fb.full)}</span></div>` : fb.right ? `<div class="k-full">${kSay(fb.right)}<span class="de">${esc(fb.right)}</span></div>` : ""}
+      ${fb.explain ? `<p class="k-why">${esc(fb.explain)}</p>` : ""}${fb.judge ? `<p class="k-why">${esc(fb.judge)}</p>` : ""}
+      ${it.tr && it.kind !== "order" ? `<details class="small"><summary>Türkçesi</summary><p>${esc(it.tr)}</p></details>` : ""}
+      ${e.judging ? `<div class="thinking"><span class="spin"></span>Kontrol ediliyor…</div>` : ""}
+      ${!fb.ok && ["fix","gap","order","produce"].includes(it.kind) && aiReady() && !fb.judged && !e.judging ? `<button class="btn small ghost block" data-act="exJudge">Benim cevabım da doğru olabilir mi?</button>` : ""}
+      <button class="btn primary block k-cta" data-act="exNext">${e.i+1 < n ? "Devam →" : "Sonucu gör"}</button></div>` : "";
+  const foot = !done && ["gap","fix","order","produce","dict"].includes(it.kind) ? `<div class="k-foot"><button class="btn primary block k-cta" data-act="exCheck" ${canCheck ? "" : "disabled"}>Kontrol et</button></div>` : "";
+  return `<section class="k-shell ${done ? "has-sheet" : ""}">
+    <div class="k-top"><button class="k-x" data-act="exQuit" aria-label="Bitir">✕</button><div class="k-prog" aria-hidden="true"><i style="width:${((e.i + (done ? 1 : 0))/n)*100}%"></i></div><span class="k-cnt">${st >= 2 ? `<span class="k-fire">🔥${st}</span>` : ""}${e.i+1}/${n}</span></div>
+    <div class="k-title">${esc(e.title||"")}</div>
+    <div class="k-card"><div class="k-ins">${esc(K_INS[it.kind] || "")}</div>${q}${ans}</div>
+    ${foot}${sheet}</section>`;
+};
+/* ---------- sonuç ---------- */
+renderSummary = function(){
+  const e = S.ex, s = e.summary; const pct = s.dictPct !== undefined ? s.dictPct : Math.round(s.okN / Math.max(1, s.n) * 100);
+  const wrongs = e.items.map((it,i)=>({it, r:e.results[i]})).filter(x=>x.r && !x.r.ok);
+  const show = it => it.kind==="gap" ? fillGap(it.prompt,(it.answers||[it.answer])[0]) : it.kind==="choice" ? fillGap(it.prompt, it.answer) : it.kind==="artikel" ? it.answer+" "+it.prompt : it.kind==="tf" ? (it.correct ? it.prompt : it.answer) : it.answer;
+  const mood = pct >= 90 ? "party" : pct >= 60 ? "happy" : "sad";
+  const head = pct >= 90 ? "Mükemmel!" : pct >= 75 ? "Çok iyi!" : pct >= 50 ? "İyi gidiyorsun" : "Devam, oturacak";
+  if(!e._cel){ e._cel = true; if(pct >= 75){ setTimeout(()=>{ try { confetti(pct >= 90 ? 140 : 80); sfx("up"); } catch(x){} }, 250); } }
+  const R = 46, C = 2*Math.PI*R;
+  return `<section class="card k-result ${pct >= 75 ? "win" : pct >= 50 ? "mid" : "low"}">
+      <div class="k-res-top">${brezi(mood, 64)}<div><div class="kicker">${esc(e.title||"")}</div><h2>${head}</h2></div></div>
+      <div class="k-res-main"><div class="k-ring"><svg width="112" height="112" viewBox="0 0 112 112" aria-hidden="true"><circle cx="56" cy="56" r="${R}" fill="none" stroke="var(--line)" stroke-width="11"/><circle cx="56" cy="56" r="${R}" fill="none" stroke="${pct>=75?"var(--good)":pct>=50?"#F5A623":"var(--bad)"}" stroke-width="11" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pct/100)}" transform="rotate(-90 56 56)"/></svg><b>%${pct}</b></div>
+        <div class="k-res-stats"><div><b>${s.okN ?? "–"}</b><span>doğru</span></div><div><b>${(s.n ?? 0) - (s.okN ?? 0)}</b><span>tekrar</span></div>${e.game ? `<div><b>${s.score}</b><span>puan${s.record ? " 🏆" : ""}</span></div>` : `<div><b>${s.secs ? Math.max(1, Math.round(s.secs/60)) : 1}</b><span>dk</span></div>`}</div></div>
+      ${s.lessonPass ? `<div class="k-badge ok">🔓 Ders geçildi! Bu konuyla yazma ve konuşma açıldı.</div>` : ""}
+      ${s.lessonPct !== undefined && !s.lessonPass ? `<div class="k-badge mid">Henüz oturmadı (%${s.lessonPct}). %75 yeter: dersi bir kez daha oku, yeni alıştırmalarla dene.</div>` : ""}
+      ${s.a12 ? `<div class="k-badge ${s.a12.ok?"ok":"mid"}">${esc(s.a12.msg)}</div>` : ""}
+      ${s.mastered ? `<div class="k-badge ok">🏅 ${s.mastered} hatayı artık öğrendin (3 kez üst üste doğru).</div>` : ""}
+      ${s.remed ? `<div class="k-badge ${s.remed.pass?"ok":"mid"}">${s.remed.pass ? `Anladın! ${esc(TL[s.remed.topic]||s.remed.topic)} konusunda %${s.remed.pct}.` : `%${s.remed.pct}: bu konu biraz daha çalışılacak.`}</div>` : ""}
+      ${s.logged ? `<p class="small muted">📒 ${s.logged} yeni hata deftere eklendi; tekrarda karşına çıkacak.</p>` : ""}
+    </section>
+    ${wrongs.length ? `<section class="card k-sec" style="--sc:#EF4A82"><h3><span class="svi">🔁</span>Tekrar bak</h3><p class="small muted">Dinle ve sesli tekrar et.</p><div class="k-exs">${wrongs.map(x=>`<div class="k-ex">${kSay(show(x.it))}<div class="k-ext"><div class="de">${esc(show(x.it))}</div>${x.it.explain ? `<div class="tr">${esc(x.it.explain)}</div>` : ""}</div></div>`).join("")}</div></section>` : ""}
+    <div class="k-foot">${continueBtn()}${e.home==="spielen" ? `<button class="btn block" data-act="gameBack">Başka oyun</button>` : ""}${e.source==="lesson" && S.learn.lesson ? `<button class="btn block" data-act="lessonMore">Aynı dersten yeni alıştırmalar</button><button class="btn ghost block" data-act="lessonReview">Dersi tekrar oku</button>` : ""}</div>`;
+};
+/* hepsini dinle: örnek cümleleri / okuma metnini sırayla oku */
+async function kSaySeq(list){
+  const run = (S.kAllRun = (S.kAllRun||0) + 1); S.kAll = true; render();
+  for(const t of list){ if(S.kAllRun !== run) return; await say(t, "de", deRate()); await sleep(450); }
+  if(S.kAllRun === run){ S.kAll = false; render(); }
+}
+/* ---------- yapay zekâ ders içeriği: denetle, düzelt, gerekirse bir kez daha üret ---------- */
+function kLessonNorm(l){
+  if(!l || typeof l !== "object") return false;
+  const str = x => typeof x === "string" ? x.trim() : "";
+  l.title = str(l.title) || "Ders"; l.intro_tr = str(l.intro_tr);
+  l.rule_tr = (Array.isArray(l.rule_tr) ? l.rule_tr : l.rule_tr ? [l.rule_tr] : []).map(str).filter(Boolean);
+  l.examples = (Array.isArray(l.examples) ? l.examples : []).filter(e=>e && str(e.de)).map(e=>({de:str(e.de), tr:str(e.tr)}));
+  l.words = (Array.isArray(l.words) ? l.words : []).filter(w=>w && str(w.de)).map(w=>{ let de = str(w.de), art = ["der","die","das"].includes(w.artikel) ? w.artikel : ""; const m = de.match(/^(der|die|das)\s+(.+)$/i); if(m){ de = m[2]; art = art || m[1].toLowerCase(); } return {...w, de, artikel:art, plural:str(w.plural).replace(/^(die|der|das)\s+/i, ""), tr:str(w.tr)}; });
+  if(l.table && !(Array.isArray(l.table.rows) && l.table.rows.every(r=>Array.isArray(r)))) l.table = null;
+  l.pitfall_tr = str(l.pitfall_tr);
+  if(l.kind === "reading"){
+    l.text = str(l.text);
+    l.questions = (Array.isArray(l.questions) ? l.questions : []).map(q=>{ if(!q || !str(q.q) || !Array.isArray(q.options)) return null; const opts = q.options.map(o=>String(o)).filter(Boolean); let ans = q.answer; if(typeof ans === "number" && opts[ans] !== undefined) ans = opts[ans]; if(!opts.includes(ans)){ const f = opts.find(o=>norm(o) === norm(String(ans||""))); if(!f) return null; ans = f; } return {...q, q:str(q.q), options:opts, answer:ans}; }).filter(Boolean);
+    return l.text.length > 40;
+  }
+  return l.rule_tr.length > 0 || l.examples.length > 0;
+}
+async function kLessonRun(fn, args){
+  S.learn._last = [fn, args];
+  const run = () => ({startLesson: _kSL, startMistakes: _kSM, startReading: _kSR})[fn].apply(null, args || []);
+  await run();
+  for(let k = 0; k < 1; k++){
+    const L = S.learn; if(L.err && /Açık hatan yok/.test(L.err)) return;
+    if(L.lesson && kLessonNorm(L.lesson)){ L.err = ""; render(); return; }
+    diagAdd("content", fn + ": ders içeriği eksik/bozuk, yeniden üretiliyor", L.err || "");
+    L.lesson = null; await run();
+  }
+  if(!(S.learn.lesson && kLessonNorm(S.learn.lesson))){ S.learn.lesson = null; S.learn.err = S.learn.err || "Ders şu an hazırlanamadı. Bağlantıyı kontrol edip tekrar dene."; render(); }
+}
+const _kSL = startLesson, _kSM = startMistakes, _kSR = startReading;
+startLesson = topic => kLessonRun("startLesson", [topic]);
+startMistakes = () => kLessonRun("startMistakes", []);
+startReading = () => kLessonRun("startReading", []);
+
+/* Ders Kiti ve omurga eylemleri */
+Object.assign(ACT, {
+  kSayAll(){ if(S.kAll){ S.kAllRun = (S.kAllRun||0) + 1; S.kAll = false; stopSpeech(); try { neuStop(); } catch(e){} render(); return; } const l = S.learn.lesson; if(!l) return; primeTTS(); kSaySeq((l.examples||[]).map(e=>e.de).filter(Boolean)); },
+  kSayText(){ if(S.kAll){ S.kAllRun = (S.kAllRun||0) + 1; S.kAll = false; stopSpeech(); try { neuStop(); } catch(e){} render(); return; } const l = S.learn.lesson; if(!l || !l.text) return; primeTTS(); kSaySeq(String(l.text).match(/[^.!?]+[.!?]*/g).map(x=>x.trim()).filter(Boolean)); },
+  kRetryLast(){ const z = S.learn._last; S.learn.err = ""; if(z && ({startLesson:1, startMistakes:1, startReading:1})[z[0]]) kLessonRun(z[0], z[1]); else render(); },
+  diagCopy(){ const t = diagReportText(); const done = ok => { S.diagMsg = ok ? "Kopyalandı. Claude'a yapıştırabilirsin." : "Kopyalanamadı; metni basılı tutup seç."; render(); };
+    try { navigator.clipboard.writeText(t).then(()=>done(true), ()=>done(false)); } catch(e){ done(false); } },
+  diagClear(){ try { localStorage.removeItem(DIAG_KEY); } catch(e){} S.diagMsg = "Temizlendi."; render(); },
+  wdWait(){ WD.since = Date.now(); WD.shown = false; const b = $("#wdBar"); if(b) b.remove(); },
+  wdSkip(){ const b = $("#wdBar"); if(b) b.remove(); WD.shown = false; WD.since = 0; try { stopAI(); } catch(e){}
+    if(S.sess && !S.brk){ try { S.learn.busy = false; } catch(e){} sessNext(); } else { S.learn.busy = false; go("plan"); } }
+});
+
+
+/* sesli okuma: yalnızca noktalama olan parçalar ("." → "nokta") hiç okunmaz */
+{
+  const _sayG = say;
+  say = function(text){ if(!/[\p{L}\p{N}]/u.test(String(text||""))) return Promise.resolve(); return _sayG.apply(this, arguments); };
+}
+
+/* ================= Düşün ve kur: elle yazılmış, sıralı müfredat (yapay zekâ uydurmaz) ================= */
+const DENK_L = [
+{title:"Fiil 2. yerde ve sorular", summary:"Das Verb steht auf Position 2; in Ja/Nein-Fragen auf Position 1.", steps:[
+ {say:"Almancada fiilin sonu kişiye göre değişir. ⟦ich⟧ (ben) ile fiil ⟦-e⟧ ile biter: ⟦ich komme⟧ = geliyorum. ⟦wohnen⟧ = oturmak, yaşamak. '-de' için İngilizcedeki gibi ⟦in⟧.", ask:"Münih'te oturuyorum.", ans:"Ich wohne in München.", why:"ich → wohn-e."},
+ {say:"⟦du⟧ (sen) ile fiil ⟦-st⟧ alır: ⟦du kommst⟧.", ask:"Sen Münih'te oturuyorsun.", ans:"Du wohnst in München.", why:"du → wohn-st."},
+ {say:"Evet/hayır sorusunda fiil başa geçer, İngilizcedeki 'Are you…?' gibi: ⟦Du kommst.⟧ → ⟦Kommst du?⟧", ask:"Münih'te mi oturuyorsun?", ans:"Wohnst du in München?", why:"Soru: fiil 1. yerde, özne arkasında."},
+ {say:"⟦er⟧ (o, erkek) ve ⟦sie⟧ (o, kadın) ile fiil ⟦-t⟧ alır: ⟦er kommt⟧. ⟦arbeiten⟧ = çalışmak; kök zaten t ile bittiği için araya e girer: arbeit-e-t. ⟦heute⟧ = bugün.", ask:"O (kadın) bugün çalışıyor.", ans:"Sie arbeitet heute.", alt:["Heute arbeitet sie."], why:"sie → arbeit-e-t."},
+ {say:"Asıl sır: Almanca cümlede fiil her zaman 2. yerdedir. Cümleye ⟦heute⟧ ile başlarsan fiil yine 2. yerde kalır, özne fiilin arkasına geçer: ⟦Heute komme ich.⟧", ask:"Bugün çalışıyorum.", ans:"Heute arbeite ich.", alt:["Ich arbeite heute."], why:"1. yer: Heute · 2. yer: fiil · sonra özne."},
+ {say:"⟦morgen⟧ = yarın. Kural aynı: önce zaman, sonra fiil, sonra özne.", ask:"Yarın Münih'te çalışıyorum.", ans:"Morgen arbeite ich in München.", alt:["Ich arbeite morgen in München."], why:"Morgen (1) · arbeite (2) · ich."},
+ {say:"Soru kelimeleri başa gelir: ⟦wo⟧ = nerede, ⟦was⟧ = ne, ⟦wann⟧ = ne zaman. Fiil yine 2. yerde: ⟦Was machst du?⟧", ask:"Nerede çalışıyorsun?", ans:"Wo arbeitest du?", why:"Wo (1) · arbeitest (2) · du. du → arbeit-e-st."},
+ {say:"⟦wann⟧ ile de aynı yapı.", ask:"Ne zaman geliyorsun?", ans:"Wann kommst du?", why:"Wann (1) · kommst (2) · du."},
+ {say:"⟦wir⟧ (biz) ile fiil mastarla aynıdır: ⟦wir kommen⟧. ⟦kochen⟧ = yemek pişirmek.", ask:"Bugün biz yemek pişiriyoruz.", ans:"Heute kochen wir.", alt:["Wir kochen heute."], why:"wir → koch-en; Heute (1) · kochen (2) · wir."},
+ {say:"Cümleye yerle de başlayabilirsin; fiil yine 2. yerde: ⟦In Berlin wohnt mein Bruder.⟧ ⟦viel⟧ = çok.", ask:"Münih'te çok çalışıyorum.", ans:"In München arbeite ich viel.", alt:["Ich arbeite viel in München."], why:"'In München' tek blok, 1. yer sayılır."},
+ {say:"⟦machen⟧ = yapmak. Soru + zaman: zaman sona gelir: ⟦Wo bist du heute?⟧", ask:"Yarın ne yapıyorsun?", ans:"Was machst du morgen?", why:"Was (1) · machst (2) · du · morgen."},
+ {say:"Şimdi hepsini birleştir. ⟦zu Hause⟧ = evde.", ask:"Bugün evde yemek pişiriyorum. Sen ne yapıyorsun?", ans:"Heute koche ich zu Hause. Was machst du?", alt:["Ich koche heute zu Hause. Was machst du?"], why:"Her iki cümlede de fiil 2. yerde."}
+]},
+{title:"İstemek, -ebilmek, zorunda olmak", summary:"Modalverb auf Position 2, der Infinitiv ans Ende.", steps:[
+ {say:"İngilizcedeki 'I want to…' gibi: ⟦ich will⟧ = istiyorum. Ama ikinci fiil (mastar) cümlenin EN SONUNA gider: ⟦Ich will Deutsch lernen.⟧ ⟦kaufen⟧ = satın almak, ⟦ein Auto⟧ = bir araba.", ask:"Bir araba satın almak istiyorum.", ans:"Ich will ein Auto kaufen.", alt:["Ich möchte ein Auto kaufen."], why:"will (2. yer) … kaufen (en son)."},
+ {say:"Kibar hali ⟦ich möchte⟧ = isterim. Yapı aynı, mastar sonda. ⟦trinken⟧ = içmek, ⟦Kaffee⟧ = kahve.", ask:"Kahve içmek isterim.", ans:"Ich möchte Kaffee trinken.", alt:["Ich möchte einen Kaffee trinken.","Ich möchte gern Kaffee trinken."], why:"möchte … trinken."},
+ {say:"⟦können⟧ = -ebilmek: ⟦ich kann⟧, ⟦du kannst⟧. ⟦gut⟧ = iyi, ⟦schwimmen⟧ = yüzmek.", ask:"İyi yüzebiliyorum.", ans:"Ich kann gut schwimmen.", why:"kann (2) … schwimmen (son)."},
+ {say:"Soruda modal fiil başa geçer, mastar yine sonda kalır: ⟦Willst du kommen?⟧ ⟦mir helfen⟧ = bana yardım etmek.", ask:"Bana yardım edebilir misin?", ans:"Kannst du mir helfen?", why:"Kannst (1) … helfen (son)."},
+ {say:"⟦müssen⟧ = zorunda olmak: ⟦ich muss⟧ (sonunda -e yok), ⟦er muss⟧.", ask:"Bugün çok çalışmak zorundayım.", ans:"Heute muss ich viel arbeiten.", alt:["Ich muss heute viel arbeiten."], why:"Heute (1) · muss (2) · ich … arbeiten (son)."},
+ {say:"⟦früh⟧ = erken, ⟦aufstehen⟧ = kalkmak. Zamanla başlarsan modal 2. yerde, özne arkasında, mastar en sonda.", ask:"Yarın erken kalkmak zorundayım.", ans:"Morgen muss ich früh aufstehen.", alt:["Ich muss morgen früh aufstehen."], why:"Morgen · muss · ich · früh · aufstehen."},
+ {say:"⟦er/sie⟧ ile: ⟦er will⟧, ⟦sie kann⟧, ⟦sie möchte⟧ (sonda -t yok!). ⟦meine Tochter⟧ = kızım, ⟦tanzen⟧ = dans etmek.", ask:"Kızım dans etmek istiyor.", ans:"Meine Tochter möchte tanzen.", alt:["Meine Tochter will tanzen."], why:"sie möchte / sie will: -t eklenmez."},
+ {say:"⟦dürfen⟧ = izni olmak. ⟦Darf ich …?⟧ = … edebilir miyim (izin)? ⟦hier⟧ = burada, ⟦parken⟧ = park etmek.", ask:"Burada park edebilir miyim?", ans:"Darf ich hier parken?", alt:["Kann ich hier parken?"], why:"Darf (1) … parken (son)."},
+ {say:"Olumsuzda ⟦nicht⟧ mastarın önüne gelir: ⟦Ich will heute nicht schlafen.⟧", ask:"Bugün çalışamam.", ans:"Heute kann ich nicht arbeiten.", alt:["Ich kann heute nicht arbeiten."], why:"… nicht arbeiten (son)."},
+ {say:"Soru kelimesi + modal: ⟦was⟧ başta, modal 2. yerde, mastar sonda. du ile: ⟦du willst⟧, ⟦du möchtest⟧.", ask:"Ne yapmak istiyorsun?", ans:"Was willst du machen?", alt:["Was möchtest du machen?","Was willst du tun?","Was möchtest du tun?"], why:"Was (1) · willst (2) · du · machen (son)."},
+ {say:"⟦am Wochenende⟧ = hafta sonu, ⟦nach⟧ = -e (şehre), ⟦fahren⟧ = (araçla) gitmek, ⟦aber⟧ = ama, ⟦zuerst⟧ = önce. ⟦aber⟧ sırayı bozmaz.", ask:"Hafta sonu Salzburg'a gitmek istiyoruz ama önce çalışmak zorundayım.", ans:"Am Wochenende wollen wir nach Salzburg fahren, aber zuerst muss ich arbeiten.", alt:["Am Wochenende möchten wir nach Salzburg fahren, aber zuerst muss ich arbeiten."], why:"İki cümlede de modal 2. yerde, mastar sonda."}
+]},
+{title:"Ayrılan fiiller", summary:"Trennbare Verben: Das Präfix geht ans Satzende.", steps:[
+ {say:"Bazı fiillerin başı ayrılır: ⟦aufstehen⟧ → ⟦Ich stehe um 7 Uhr auf.⟧ Baştaki ⟦auf⟧ cümlenin sonuna gider. ⟦um … Uhr⟧ = saat …'de.", ask:"Saat 6'da kalkıyorum.", ans:"Ich stehe um 6 Uhr auf.", alt:["Ich stehe um sechs Uhr auf.","Um sechs Uhr stehe ich auf."], why:"stehe (2) … auf (son)."},
+ {say:"⟦einkaufen⟧ = alışveriş yapmak. Aynı kural: ⟦kaufe⟧ 2. yerde, ⟦ein⟧ sonda.", ask:"Bugün alışveriş yapıyorum.", ans:"Heute kaufe ich ein.", alt:["Ich kaufe heute ein."], why:"Heute · kaufe · ich · ein."},
+ {say:"⟦anrufen⟧ = telefonla aramak. Kimi aradığın ortaya girer: ⟦Ich rufe meinen Chef an.⟧ ⟦dich⟧ = seni.", ask:"Seni yarın arıyorum.", ans:"Ich rufe dich morgen an.", alt:["Morgen rufe ich dich an."], why:"rufe … dich morgen … an."},
+ {say:"Soruda fiil başa, ön ek yine sonda: ⟦Stehst du früh auf?⟧ ⟦mich⟧ = beni.", ask:"Beni arıyor musun?", ans:"Rufst du mich an?", why:"Rufst (1) … an (son)."},
+ {say:"⟦fernsehen⟧ = televizyon izlemek, ⟦abends⟧ = akşamları. ⟦wir⟧ ile ⟦sehen⟧.", ask:"Akşamları televizyon izliyoruz.", ans:"Abends sehen wir fern.", alt:["Wir sehen abends fern."], why:"sehen (2) … fern (son)."},
+ {say:"Modal fiil varsa fiil ayrılmaz, bütün halde sona gider: ⟦Ich muss früh aufstehen.⟧ ⟦meine Mutter⟧ = annem.", ask:"Annemi aramak istiyorum.", ans:"Ich möchte meine Mutter anrufen.", alt:["Ich will meine Mutter anrufen."], why:"Modal + mastar: anrufen bitişik, en sonda."},
+ {say:"⟦mitkommen⟧ = (birlikte) gelmek, İngilizce 'come along'.", ask:"Sen de geliyor musun?", ans:"Kommst du mit?", why:"Kommst (1) … mit (son)."},
+ {say:"⟦anfangen⟧ = başlamak. er/sie/es ile a → ä: ⟦fängt … an⟧. ⟦der Kurs⟧ = kurs.", ask:"Kurs saat 18:15'te başlıyor.", ans:"Der Kurs fängt um 18:15 Uhr an.", alt:["Der Kurs fängt um achtzehn Uhr fünfzehn an.","Der Kurs fängt um Viertel nach sechs an."], why:"fängt (2) … an (son)."},
+ {say:"⟦aufräumen⟧ = toplamak, düzenlemek. ⟦die Wohnung⟧ = ev, daire.", ask:"Hafta sonu evi topluyoruz.", ans:"Am Wochenende räumen wir die Wohnung auf.", alt:["Wir räumen am Wochenende die Wohnung auf."], why:"räumen (2) … auf (son)."},
+ {say:"⟦einladen⟧ = davet etmek; er/sie ile ⟦lädt … ein⟧. ⟦meine Frau⟧ = eşim, ⟦ihre Freunde⟧ = (onun) arkadaşları.", ask:"Eşim arkadaşlarını davet ediyor.", ans:"Meine Frau lädt ihre Freunde ein.", why:"lädt (2) … ein (son)."},
+ {say:"Hepsini birleştir. Fiil listesinde her ön ek kendi cümle parçasının sonuna gider.", ask:"Bugün erken kalkıyorum, alışveriş yapıyorum ve akşam annemi arıyorum.", ans:"Heute stehe ich früh auf, kaufe ein und rufe abends meine Mutter an.", alt:["Heute stehe ich früh auf, ich kaufe ein und abends rufe ich meine Mutter an."], why:"auf · ein · an: her biri kendi parçasının sonunda."}
+]},
+{title:"nicht ve kein", summary:"kein vor Nomen (statt ein), nicht für Verben, Adjektive und Orte.", steps:[
+ {say:"⟦kein⟧ = hiç … yok; isimle kullanılır, ⟦ein⟧'in olumsuzudur: ⟦Ich habe einen Hund.⟧ → ⟦Ich habe keinen Hund.⟧ Dişi isimlerde ⟦keine⟧. ⟦die Zeit⟧ = zaman.", ask:"Hiç zamanım yok.", ans:"Ich habe keine Zeit.", why:"die Zeit → keine Zeit."},
+ {say:"⟦nicht⟧ fiili ya da cümleyi olumsuz yapar ve genelde sona yakın durur: ⟦Ich schlafe nicht.⟧", ask:"Bugün çalışmıyorum.", ans:"Heute arbeite ich nicht.", alt:["Ich arbeite heute nicht."], why:"Fiil 2. yerde, nicht sonda."},
+ {say:"Sıfattan önce ⟦nicht⟧: ⟦Ich bin nicht müde.⟧ ⟦der Kaffee⟧ = kahve, ⟦heiß⟧ = sıcak.", ask:"Kahve sıcak değil.", ans:"Der Kaffee ist nicht heiß.", why:"nicht sıfatın önünde."},
+ {say:"Nötr isimlerde ⟦kein⟧: ⟦das Geld⟧ → ⟦kein Geld⟧. ⟦das Brot⟧ = ekmek.", ask:"Bugün hiç ekmeğimiz yok.", ans:"Heute haben wir kein Brot.", alt:["Wir haben heute kein Brot."], why:"das Brot → kein Brot."},
+ {say:"Yer ifadesinden önce ⟦nicht⟧: ⟦Ich wohne nicht in Berlin.⟧ ⟦ins Büro⟧ = ofise.", ask:"Bugün ofise gitmiyorum.", ans:"Heute gehe ich nicht ins Büro.", alt:["Ich gehe heute nicht ins Büro."], why:"nicht + yer."},
+ {say:"Modal fiille ⟦nicht⟧ mastarın önüne: ⟦Ich will nicht schlafen.⟧", ask:"Yarın gelemem.", ans:"Morgen kann ich nicht kommen.", alt:["Ich kann morgen nicht kommen."], why:"… nicht kommen (son)."},
+ {say:"Çoğulda ⟦keine⟧: ⟦keine Kinder⟧. Soru için fiil başa: ⟦Hast du …?⟧", ask:"Çocuğun var mı? Hayır, çocuğum yok.", ans:"Hast du Kinder? Nein, ich habe keine Kinder.", alt:["Hast du ein Kind? Nein, ich habe kein Kind."], why:"Kinder → keine Kinder."},
+ {say:"⟦nicht mehr⟧ = artık … değil. ⟦rauchen⟧ = sigara içmek.", ask:"Artık sigara içmiyorum.", ans:"Ich rauche nicht mehr.", why:"nicht mehr = artık değil."},
+ {say:"⟦noch nicht⟧ = henüz … değil. ⟦Deutsch sprechen⟧ = Almanca konuşmak.", ask:"Henüz iyi Almanca konuşamıyorum.", ans:"Ich kann noch nicht gut Deutsch sprechen.", alt:["Ich spreche noch nicht gut Deutsch."], why:"noch nicht + modal yapısı."},
+ {say:"⟦doch⟧: olumsuz bir soruya 'evet, aslında …' diye cevap: ⟦Kommst du nicht? – Doch!⟧ ⟦Hunger haben⟧ = aç olmak; ⟦der Hunger⟧ → ⟦keinen Hunger⟧.", ask:"Aç değil misin? Evet, açım!", ans:"Hast du keinen Hunger? Doch, ich habe Hunger!", alt:["Hast du keinen Hunger? Doch!"], why:"Olumsuz soruya 'evet' = doch."},
+ {say:"Birleştir: ⟦heute Abend⟧ = bu akşam, ⟦fernsehen⟧ ayrılan fiil.", ask:"Bu akşam televizyon izlemiyorum, hiç vaktim yok.", ans:"Heute Abend sehe ich nicht fern, ich habe keine Zeit.", why:"nicht … fern; keine Zeit."}
+]},
+{title:"Geçmiş zaman: haben + ge…t", summary:"Perfekt mit haben: haben auf Position 2, Partizip am Ende.", steps:[
+ {say:"Geçmişi konuşurken Almanca çoğunlukla İngilizcedeki 'I have made' gibi kurulur: ⟦haben⟧ + ⟦ge…t⟧. ⟦machen⟧ → ⟦gemacht⟧. ⟦haben⟧ 2. yerde, ⟦gemacht⟧ en sonda: ⟦Ich habe Sport gemacht.⟧ ⟦gestern⟧ = dün. ⟦arbeiten⟧ → ⟦gearbeitet⟧.", ask:"Dün çok çalıştım.", ans:"Gestern habe ich viel gearbeitet.", alt:["Ich habe gestern viel gearbeitet."], why:"habe (2) … gearbeitet (son)."},
+ {say:"⟦kaufen⟧ → ⟦gekauft⟧.", ask:"Bir araba satın aldım.", ans:"Ich habe ein Auto gekauft.", why:"habe … gekauft."},
+ {say:"⟦du hast⟧, ⟦er hat⟧. Soru kelimesi başta, ⟦hast⟧ 2. yerde.", ask:"Ne satın aldın?", ans:"Was hast du gekauft?", why:"Was · hast · du · gekauft."},
+ {say:"⟦kochen⟧ → ⟦gekocht⟧. ⟦gestern Abend⟧ = dün akşam.", ask:"Eşim dün akşam yemek pişirdi.", ans:"Meine Frau hat gestern Abend gekocht.", alt:["Gestern Abend hat meine Frau gekocht."], why:"hat (2) … gekocht (son)."},
+ {say:"Bazı fiiller düzensizdir ve ⟦ge…en⟧ ile biter: ⟦sehen⟧ → ⟦gesehen⟧, ⟦essen⟧ → ⟦gegessen⟧, ⟦trinken⟧ → ⟦getrunken⟧.", ask:"Pizza yedik.", ans:"Wir haben Pizza gegessen.", why:"essen → gegessen."},
+ {say:"⟦der Film⟧ nesne olunca ⟦einen Film⟧ olur.", ask:"Bir film izledin mi?", ans:"Hast du einen Film gesehen?", why:"Hast (1) … gesehen (son)."},
+ {say:"Ayrılan fiillerde ⟦ge⟧ ortaya girer: ⟦aufräumen⟧ → ⟦aufgeräumt⟧.", ask:"Bugün alışveriş yaptım.", ans:"Heute habe ich eingekauft.", alt:["Ich habe heute eingekauft."], why:"einkaufen → ein-ge-kauft."},
+ {say:"⟦anrufen⟧ düzensizdir: ⟦an-ge-rufen⟧.", ask:"Annemi aradım.", ans:"Ich habe meine Mutter angerufen.", why:"an-ge-rufen, en sonda."},
+ {say:"⟦-ieren⟧ ile biten fiiller ⟦ge⟧ almaz: ⟦telefonieren⟧ → ⟦telefoniert⟧. ⟦reparieren⟧ = tamir etmek.", ask:"Arabayı tamir ettim.", ans:"Ich habe das Auto repariert.", why:"reparieren → repariert (ge yok)."},
+ {say:"⟦be-⟧ ve ⟦ver-⟧ ile başlayanlar da ⟦ge⟧ almaz: ⟦bezahlen⟧ → ⟦bezahlt⟧, ⟦verstehen⟧ → ⟦verstanden⟧. ⟦das⟧ = bunu.", ask:"Bunu anlamadım.", ans:"Ich habe das nicht verstanden.", alt:["Das habe ich nicht verstanden.","Ich habe es nicht verstanden."], why:"verstehen → verstanden."},
+ {say:"⟦die Rechnung⟧ = hesap, fatura.", ask:"Hesabı ödedin mi?", ans:"Hast du die Rechnung bezahlt?", why:"bezahlen → bezahlt."},
+ {say:"Birleştir: tek ⟦habe⟧ ile birden çok eylem sayabilirsin.", ask:"Dün alışveriş yaptım, yemek pişirdim ve akşam bir film izledik.", ans:"Gestern habe ich eingekauft und gekocht und abends haben wir einen Film gesehen.", alt:["Gestern habe ich eingekauft, gekocht und abends haben wir einen Film gesehen."], why:"habe … eingekauft, gekocht; haben … gesehen."}
+]},
+{title:"Geçmiş zaman: sein + ge…", summary:"Perfekt mit sein bei Bewegung und Veränderung.", steps:[
+ {say:"Bir yerden bir yere hareket ya da değişim bildiren fiiller ⟦haben⟧ değil ⟦sein⟧ alır: ⟦Ich bin gekommen.⟧ ⟦gehen⟧ → ⟦gegangen⟧. ⟦ins Kino⟧ = sinemaya.", ask:"Dün sinemaya gittim.", ans:"Gestern bin ich ins Kino gegangen.", alt:["Ich bin gestern ins Kino gegangen."], why:"Hareket → bin … gegangen."},
+ {say:"⟦fahren⟧ → ⟦gefahren⟧ (araçla gitmek). ⟦wir sind⟧.", ask:"Münih'e arabayla gittik.", ans:"Wir sind mit dem Auto nach München gefahren.", alt:["Wir sind nach München gefahren."], why:"sind … gefahren."},
+ {say:"⟦du bist⟧, ⟦er ist⟧. ⟦kommen⟧ → ⟦gekommen⟧.", ask:"Ne zaman geldin?", ans:"Wann bist du gekommen?", why:"Wann · bist · du · gekommen."},
+ {say:"⟦aufstehen⟧ → ⟦aufgestanden⟧, ⟦sein⟧ ile.", ask:"Bugün saat 6'da kalktım.", ans:"Heute bin ich um 6 Uhr aufgestanden.", alt:["Ich bin heute um sechs Uhr aufgestanden.","Heute bin ich um sechs Uhr aufgestanden."], why:"bin … aufgestanden."},
+ {say:"⟦fliegen⟧ → ⟦geflogen⟧. ⟦letztes Jahr⟧ = geçen yıl. Türkiye'ye: ⟦in die Türkei⟧.", ask:"Geçen yıl Türkiye'ye uçtuk.", ans:"Letztes Jahr sind wir in die Türkei geflogen.", alt:["Wir sind letztes Jahr in die Türkei geflogen."], why:"sind … geflogen."},
+ {say:"⟦bleiben⟧ → ⟦geblieben⟧ (kalmak) de ⟦sein⟧ alır.", ask:"Hafta sonu evde kaldım.", ans:"Am Wochenende bin ich zu Hause geblieben.", alt:["Ich bin am Wochenende zu Hause geblieben."], why:"bin … geblieben."},
+ {say:"⟦passieren⟧ = olmak, yaşanmak; ⟦sein⟧ ile ve ⟦ge⟧ almadan: ⟦Es ist passiert.⟧", ask:"Ne oldu?", ans:"Was ist passiert?", why:"ist … passiert."},
+ {say:"Karışık: hareket varsa ⟦sein⟧, yoksa ⟦haben⟧. ⟦nach Hause⟧ = eve, ⟦dann⟧ = sonra.", ask:"Dün çok çalıştım, sonra eve gittim.", ans:"Gestern habe ich viel gearbeitet, dann bin ich nach Hause gegangen.", alt:["Gestern habe ich viel gearbeitet und dann bin ich nach Hause gegangen."], why:"arbeiten → haben; gehen → sein."},
+ {say:"⟦schwimmen⟧ → ⟦geschwommen⟧. ⟦im See⟧ = gölde.", ask:"Gölde yüzdük.", ans:"Wir sind im See geschwommen.", why:"sind … geschwommen."},
+ {say:"⟦werden⟧ → ⟦geworden⟧ (olmak, değişmek), ⟦sein⟧ ile. ⟦… Jahre alt⟧ = … yaşında.", ask:"Kızım iki yaşına girdi.", ans:"Meine Tochter ist zwei Jahre alt geworden.", alt:["Meine Tochter ist zwei geworden."], why:"ist … geworden."},
+ {say:"Birleştir. ⟦am Samstag⟧ = cumartesi, ⟦dort⟧ = orada, ⟦spazieren gehen⟧ = yürüyüş yapmak → ⟦spazieren gegangen⟧.", ask:"Cumartesi erken kalktık, Salzburg'a gittik ve orada yürüyüş yaptık.", ans:"Am Samstag sind wir früh aufgestanden, nach Salzburg gefahren und dort spazieren gegangen.", why:"Hepsi hareket → tek 'sind'."}
+]},
+{title:"Nesne hali: den, einen, ihn", summary:"Akkusativ: der → den, ein → einen, er → ihn.", steps:[
+ {say:"Bir şey doğrudan nesne olunca yalnız eril ⟦der⟧ değişir: ⟦der⟧ → ⟦den⟧. ⟦Ich sehe den Bus.⟧ ⟦der Kaffee⟧ = kahve.", ask:"Kahveyi içiyorum.", ans:"Ich trinke den Kaffee.", why:"der Kaffee → den Kaffee."},
+ {say:"⟦ein⟧ → ⟦einen⟧ (yalnız erilde). ⟦der Hund⟧ = köpek.", ask:"Bir köpek görüyorum.", ans:"Ich sehe einen Hund.", why:"ein Hund → einen Hund."},
+ {say:"Dişi ⟦die⟧ ve nötr ⟦das⟧ değişmez: ⟦Ich kaufe die Milch.⟧ ⟦das Buch⟧ = kitap, ⟦lesen⟧ → ⟦ich lese⟧.", ask:"Kitabı okuyorum.", ans:"Ich lese das Buch.", why:"das değişmez."},
+ {say:"⟦brauchen⟧ = ihtiyacı olmak; hep nesne alır. Sıfat da ⟦-en⟧ alır: ⟦einen guten Tag⟧. ⟦neu⟧ = yeni, ⟦der Computer⟧.", ask:"Yeni bir bilgisayara ihtiyacım var.", ans:"Ich brauche einen neuen Computer.", why:"einen neu-en Computer."},
+ {say:"Kişiler: ⟦er⟧ → ⟦ihn⟧ (İngilizce him), ⟦ich⟧ → ⟦mich⟧, ⟦du⟧ → ⟦dich⟧. ⟦kennen⟧ = tanımak.", ask:"Onu (erkek) tanımıyorum.", ans:"Ich kenne ihn nicht.", why:"er → ihn."},
+ {say:"⟦lieben⟧ = sevmek. Nesne: ⟦dich⟧.", ask:"Seni seviyorum.", ans:"Ich liebe dich.", why:"du → dich."},
+ {say:"Soru: ⟦wen?⟧ = kimi?. ⟦anrufen⟧ ayrılan fiil.", ask:"Kimi arıyorsun?", ans:"Wen rufst du an?", why:"Wen · rufst · du · an."},
+ {say:"⟦mein⟧ de ⟦ein⟧ gibi değişir: ⟦meinen Bruder⟧. ⟦der Vater⟧ = baba, ⟦besuchen⟧ = ziyaret etmek.", ask:"Babamı ziyaret ediyorum.", ans:"Ich besuche meinen Vater.", why:"mein Vater → meinen Vater."},
+ {say:"Sıra değişse de ⟦den⟧ kimin nesne olduğunu gösterir: ⟦Den Film kenne ich.⟧ ⟦der Mann⟧ = adam.", ask:"Bu adamı tanıyorum.", ans:"Den Mann kenne ich.", alt:["Ich kenne den Mann.","Diesen Mann kenne ich.","Ich kenne diesen Mann."], why:"den Mann = nesne."},
+ {say:"⟦der Termin⟧ = randevu.", ask:"Bir randevu istiyorum.", ans:"Ich möchte einen Termin.", alt:["Ich hätte gern einen Termin.","Ich brauche einen Termin.","Ich möchte einen Termin haben."], why:"ein Termin → einen Termin."},
+ {say:"Birleştir. ⟦suchen⟧ = aramak, ⟦der Mantel⟧ = palto.", ask:"Yeni bir palto arıyorum ve onu bugün almak istiyorum.", ans:"Ich suche einen neuen Mantel und ich möchte ihn heute kaufen.", alt:["Ich suche einen neuen Mantel und will ihn heute kaufen.","Ich suche einen neuen Mantel und möchte ihn heute kaufen."], why:"einen neuen Mantel → ihn."}
+]},
+{title:"İle, -e, -de: dem, der, mir", summary:"Dativ nach mit, zu, bei, nach, von; mir, dir, ihm, ihr.", steps:[
+ {say:"⟦mit⟧ (ile) hep Dativ ister: ⟦der⟧ ve ⟦das⟧ → ⟦dem⟧. ⟦mit dem Zug⟧ = trenle. ⟦der Bus⟧ = otobüs.", ask:"Otobüsle geliyorum.", ans:"Ich komme mit dem Bus.", why:"mit + dem."},
+ {say:"Nötr de ⟦dem⟧ olur. ⟦das Auto⟧.", ask:"Arabayla gidiyoruz.", ans:"Wir fahren mit dem Auto.", why:"das Auto → mit dem Auto."},
+ {say:"Dişide ⟦die⟧ → ⟦der⟧; ⟦meine⟧ → ⟦meiner⟧. ⟦sprechen⟧ → ⟦ich spreche⟧.", ask:"Eşimle konuşuyorum.", ans:"Ich spreche mit meiner Frau.", why:"meine Frau → mit meiner Frau."},
+ {say:"Kişiler: ⟦mir⟧ (bana), ⟦dir⟧ (sana), ⟦ihm⟧ (ona, erkek), ⟦ihr⟧ (ona, kadın). ⟦helfen⟧ Dativ alır.", ask:"Ona (erkek) yardım ediyorum.", ans:"Ich helfe ihm.", why:"helfen + Dativ: ihm."},
+ {say:"⟦geben⟧ = vermek: kişi Dativ, şey Akkusativ: ⟦Ich gebe dem Kind einen Apfel.⟧ ⟦das Geschenk⟧ = hediye.", ask:"Sana bir hediye veriyorum.", ans:"Ich gebe dir ein Geschenk.", why:"dir (kime) + ein Geschenk (ne)."},
+ {say:"⟦gefallen⟧ = hoşuna gitmek: ⟦Das gefällt mir.⟧ (bu benim hoşuma gidiyor).", ask:"Münih hoşuna gidiyor mu?", ans:"Gefällt dir München?", why:"gefallen + dir."},
+ {say:"⟦gehören⟧ = ait olmak, Dativ ile.", ask:"Bu araba bana ait.", ans:"Das Auto gehört mir.", alt:["Dieses Auto gehört mir."], why:"gehören + mir."},
+ {say:"⟦zu⟧ (-e, birinin yanına) de Dativ: ⟦zu dem⟧ = ⟦zum⟧, ⟦zu der⟧ = ⟦zur⟧. ⟦der Arzt⟧ = doktor.", ask:"Doktora gidiyorum.", ans:"Ich gehe zum Arzt.", why:"zu + dem = zum."},
+ {say:"⟦nach⟧ (sonra) da Dativ. ⟦das Frühstück⟧ = kahvaltı, ⟦die Arbeit⟧ → ⟦zur Arbeit⟧ = işe.", ask:"Kahvaltıdan sonra işe gidiyorum.", ans:"Nach dem Frühstück gehe ich zur Arbeit.", alt:["Ich gehe nach dem Frühstück zur Arbeit."], why:"nach dem …; fiil yine 2. yerde."},
+ {say:"⟦bei⟧ = -de, birinin yanında/evinde. Dativ.", ask:"Annemdeyim.", ans:"Ich bin bei meiner Mutter.", why:"bei + meiner Mutter."},
+ {say:"Birleştir. ⟦der Zug⟧ = tren, ⟦meine Tochter⟧ = kızım.", ask:"Cumartesi kızımla ve eşimle trenle Münih'e gidiyorum.", ans:"Am Samstag fahre ich mit meiner Tochter und meiner Frau mit dem Zug nach München.", alt:["Am Samstag fahre ich mit meiner Frau und meiner Tochter mit dem Zug nach München."], why:"mit meiner …, mit dem Zug."}
+]},
+{title:"Çünkü, -dığını, -ırsa: fiil sona", summary:"weil, dass, wenn: das Verb geht ans Ende.", steps:[
+ {say:"⟦weil⟧ = çünkü. ⟦weil⟧'den sonra fiil EN SONA gider: ⟦…, weil ich müde bin.⟧ ⟦krank⟧ = hasta.", ask:"Bugün gelmiyorum, çünkü hastayım.", ans:"Ich komme heute nicht, weil ich krank bin.", alt:["Heute komme ich nicht, weil ich krank bin."], why:"weil … bin (son)."},
+ {say:"Aynı kural. ⟦in Deutschland⟧ = Almanya'da.", ask:"Almanca öğreniyorum, çünkü Almanya'da yaşıyorum.", ans:"Ich lerne Deutsch, weil ich in Deutschland wohne.", alt:["Ich lerne Deutsch, weil ich in Deutschland lebe."], why:"weil … wohne (son)."},
+ {say:"Modal varsa en sona modal gider: ⟦…, weil ich arbeiten muss.⟧ ⟦ins Bett gehen⟧ = yatmak.", ask:"Erken yatıyorum, çünkü erken kalkmak zorundayım.", ans:"Ich gehe früh ins Bett, weil ich früh aufstehen muss.", why:"… aufstehen muss (modal en son)."},
+ {say:"Perfektte en sona ⟦habe/bin⟧: ⟦…, weil ich viel gearbeitet habe.⟧ ⟦wenig⟧ = az, ⟦schlafen⟧ → ⟦geschlafen⟧.", ask:"Yorgunum, çünkü az uyudum.", ans:"Ich bin müde, weil ich wenig geschlafen habe.", why:"… geschlafen habe."},
+ {say:"⟦dass⟧ = -dığını (İngilizce that). Fiil yine sonda: ⟦Ich glaube, dass …⟧ = sanırım, bence. ⟦eine gute Idee⟧ = iyi bir fikir.", ask:"Bence bu iyi bir fikir.", ans:"Ich glaube, dass das eine gute Idee ist.", alt:["Ich finde, dass das eine gute Idee ist."], why:"dass … ist (son)."},
+ {say:"⟦ich weiß⟧ = biliyorum.", ask:"Yarın geldiğini biliyorum.", ans:"Ich weiß, dass du morgen kommst.", why:"dass … kommst (son)."},
+ {say:"⟦wenn⟧ = -ırsa / -dığında; fiil sonda. ⟦wenn⟧ parçası başa gelirse ana cümlenin fiili hemen arkasından gelir: ⟦Wenn ich Zeit habe, komme ich.⟧ ⟦das Wetter⟧ = hava, ⟦schön⟧ = güzel.", ask:"Hava güzel olursa yürüyüşe gideriz.", ans:"Wenn das Wetter schön ist, gehen wir spazieren.", why:"…ist, gehen wir: fiil-virgül-fiil."},
+ {say:"Aynı yapı. ⟦nach Hause kommen⟧ = eve gelmek.", ask:"Eve geldiğimde yemek pişiririm.", ans:"Wenn ich nach Hause komme, koche ich.", why:"komme, koche."},
+ {say:"Ayrılan fiiller ⟦weil⟧ ve ⟦dass⟧ sonrasında birleşir: ⟦…, weil ich früh aufstehe.⟧ ⟦glücklich⟧ = mutlu.", ask:"Mutluyum, çünkü kızım beni arıyor.", ans:"Ich bin glücklich, weil meine Tochter mich anruft.", why:"anrufen → anruft, bitişik ve en sonda."},
+ {say:"⟦deshalb⟧ = bu yüzden. ⟦weil⟧ gibi değildir: fiil 2. yerde kalır. ⟦Ich bin krank, deshalb bleibe ich zu Hause.⟧ ⟦es regnet⟧ = yağmur yağıyor.", ask:"Yağmur yağıyor, bu yüzden arabayla gidiyorum.", ans:"Es regnet, deshalb fahre ich mit dem Auto.", why:"deshalb (1) · fahre (2) · ich."},
+ {say:"Birleştir. ⟦die Prüfung bestehen⟧ = sınavı geçmek, ⟦im Mai⟧ = mayısta, ⟦zum Kurs⟧ = kursa.", ask:"Kursa gidiyorum, çünkü mayısta sınavı geçmek istiyorum.", ans:"Ich gehe zum Kurs, weil ich im Mai die Prüfung bestehen will.", alt:["Ich gehe zum Kurs, weil ich im Mai die Prüfung bestehen möchte.","Ich gehe in den Kurs, weil ich im Mai die Prüfung bestehen will."], why:"weil … bestehen will (modal en son)."}
+]},
+{title:"Nerede? Nereye?", summary:"Wo? + Dativ (im), wohin? + Akkusativ (ins); nach/zu Hause.", steps:[
+ {say:"⟦wo?⟧ = nerede (hareketsiz) → ⟦in dem⟧ = ⟦im⟧. ⟦wohin?⟧ = nereye (hareket) → ⟦in das⟧ = ⟦ins⟧. Tıpkı İngilizcedeki in / into. ⟦das Kino⟧ = sinema.", ask:"Sinemadayım.", ans:"Ich bin im Kino.", why:"Nerede → im."},
+ {say:"Şimdi hareket var.", ask:"Sinemaya gidiyorum.", ans:"Ich gehe ins Kino.", why:"Nereye → ins."},
+ {say:"Dişide: nerede → ⟦in der⟧, nereye → ⟦in die⟧: ⟦in der Stadt⟧ / ⟦in die Stadt⟧. ⟦die Schule⟧ = okul.", ask:"Kızım okulda.", ans:"Meine Tochter ist in der Schule.", why:"Nerede + dişi → in der."},
+ {say:"Aynı isim, şimdi hareket.", ask:"Kızım okula gidiyor.", ans:"Meine Tochter geht in die Schule.", why:"Nereye + dişi → in die."},
+ {say:"Erilde: nerede → ⟦im⟧, nereye → ⟦in den⟧: ⟦im Garten⟧ / ⟦in den Garten⟧. ⟦der Park⟧ = park.", ask:"Parka gidiyoruz.", ans:"Wir gehen in den Park.", why:"Nereye + eril → in den."},
+ {say:"⟦auf⟧ (üstünde/üstüne) de aynı: ⟦auf dem Regal⟧ / ⟦auf das Regal⟧. ⟦der Tisch⟧ = masa, ⟦legen⟧ = koymak (yatırarak), ⟦das Handy⟧ = telefon.", ask:"Telefonu masaya koyuyorum.", ans:"Ich lege das Handy auf den Tisch.", why:"Nereye → auf den."},
+ {say:"⟦liegen⟧ = (yatık) durmak. Hareket yok.", ask:"Telefon masanın üstünde.", ans:"Das Handy liegt auf dem Tisch.", alt:["Das Handy ist auf dem Tisch."], why:"Nerede → auf dem."},
+ {say:"Şehir/ülke: nereye → ⟦nach⟧, nerede → ⟦in⟧. Ev: ⟦nach Hause⟧ = eve, ⟦zu Hause⟧ = evde.", ask:"Bu akşam evdeyim.", ans:"Heute Abend bin ich zu Hause.", alt:["Ich bin heute Abend zu Hause."], why:"Nerede → zu Hause."},
+ {say:"⟦im Sommer⟧ = yazın, ⟦fliegen⟧ = uçmak.", ask:"Yazın İstanbul'a uçuyoruz.", ans:"Im Sommer fliegen wir nach Istanbul.", alt:["Wir fliegen im Sommer nach Istanbul."], why:"Şehre → nach."},
+ {say:"Soru: 'nerede' için ⟦wo⟧, 'nereye' için ⟦wohin⟧.", ask:"Bu akşam nereye gidiyoruz?", ans:"Wohin gehen wir heute Abend?", alt:["Wo gehen wir heute Abend hin?"], why:"Hareket → wohin."},
+ {say:"Birleştir. ⟦morgens⟧ = sabahları, ⟦mittags⟧ = öğlenleri, ⟦die Kantine⟧ = yemekhane.", ask:"Sabahları ofise gidiyorum, öğlen yemekhanede yiyorum, akşam eve gidiyorum.", ans:"Morgens gehe ich ins Büro, mittags esse ich in der Kantine und abends gehe ich nach Hause.", why:"ins (nereye) · in der (nerede) · nach Hause (eve)."}
+]},
+{title:"Kibar konuşma", summary:"Höflich: ich hätte gern, könnten Sie, würden Sie, Sie-Form.", steps:[
+ {say:"Bir şey isterken ⟦Ich hätte gern …⟧ çok doğal ve kibardır: ⟦Ich hätte gern ein Wasser.⟧ ⟦der Kaffee⟧ → ⟦einen Kaffee⟧.", ask:"Bir kahve alabilir miyim?", ans:"Ich hätte gern einen Kaffee.", alt:["Ich hätte gerne einen Kaffee.","Ich möchte einen Kaffee.","Einen Kaffee, bitte."], why:"hätte gern + einen."},
+ {say:"⟦Könnten Sie …?⟧ = … yapabilir misiniz? Mastar sonda: ⟦Könnten Sie das wiederholen?⟧ ⟦langsamer⟧ = daha yavaş, ⟦bitte⟧ = lütfen.", ask:"Lütfen daha yavaş konuşabilir misiniz?", ans:"Könnten Sie bitte langsamer sprechen?", alt:["Können Sie bitte langsamer sprechen?","Könnten Sie langsamer sprechen?"], why:"Könnten (1) … sprechen (son)."},
+ {say:"⟦Würden Sie …?⟧ de aynı kibarlıkta. ⟦mir helfen⟧ = bana yardım etmek.", ask:"Bana yardım eder misiniz?", ans:"Würden Sie mir helfen?", alt:["Könnten Sie mir helfen?","Können Sie mir bitte helfen?","Würden Sie mir bitte helfen?"], why:"Würden … helfen (son)."},
+ {say:"Hayal/istek: ⟦Ich würde gern …⟧ + mastar sonda = …mak isterdim. ⟦einmal⟧ = bir gün, ⟦reisen⟧ = seyahat etmek.", ask:"Bir gün Japonya'ya seyahat etmek isterdim.", ans:"Ich würde gern einmal nach Japan reisen.", alt:["Ich würde gerne einmal nach Japan reisen."], why:"würde gern … reisen."},
+ {say:"⟦Dürfte ich …?⟧ = çok kibar izin isteme. ⟦das Fenster⟧ = pencere, ⟦öffnen⟧ = açmak.", ask:"Pencereyi açabilir miyim?", ans:"Dürfte ich das Fenster öffnen?", alt:["Darf ich das Fenster öffnen?","Könnte ich das Fenster öffnen?","Kann ich das Fenster öffnen?"], why:"Dürfte … öffnen."},
+ {say:"Tavsiye: ⟦du solltest …⟧ = …malısın (öneri).", ask:"Doktora gitmelisin.", ans:"Du solltest zum Arzt gehen.", why:"solltest … gehen."},
+ {say:"Resmî hitap ⟦Sie⟧ (büyük S): fiil ⟦wir⟧ ile aynı: ⟦Kommen Sie?⟧", ask:"Nerede oturuyorsunuz?", ans:"Wo wohnen Sie?", why:"Sie → wohnen."},
+ {say:"Gün önermek: ⟦Geht es am …?⟧ = … olur mu? ⟦am Montag⟧ = pazartesi.", ask:"Pazartesi olur mu?", ans:"Geht es am Montag?", alt:["Passt es am Montag?","Geht Montag?","Passt Ihnen Montag?"], why:"Geht es am …?"},
+ {say:"Dikkat çekerken ⟦Entschuldigung⟧ ile başla. ⟦der Bahnhof⟧ = tren istasyonu.", ask:"Affedersiniz, istasyon nerede?", ans:"Entschuldigung, wo ist der Bahnhof?", why:"Entschuldigung + soru."},
+ {say:"⟦bezahlen⟧ = ödemek. ⟦wir⟧ ile: ⟦könnten wir⟧.", ask:"Ödeyebilir miyiz, lütfen?", ans:"Könnten wir bitte bezahlen?", alt:["Können wir bitte bezahlen?","Wir möchten bitte bezahlen.","Wir würden gern bezahlen."], why:"Könnten … bezahlen."},
+ {say:"Birleştir. ⟦für morgen⟧ = yarın için, ⟦um 10 Uhr⟧ = saat 10'da.", ask:"Affedersiniz, yarın için bir randevu alabilir miyim? Saat 10 olur mu?", ans:"Entschuldigung, ich hätte gern einen Termin für morgen. Geht es um 10 Uhr?", alt:["Entschuldigung, ich hätte gern einen Termin für morgen. Geht es um zehn Uhr?","Entschuldigung, könnte ich einen Termin für morgen bekommen? Geht es um 10 Uhr?"], why:"hätte gern + einen Termin; Geht es …?"}
+]},
+{title:"İngilizce köprüsü: -ieren, -tion, -tät", summary:"Englisch-Brücke: -ieren-Verben, -tion/-tät sind feminin.", steps:[
+ {say:"İngilizcede -ize/-ate ile biten birçok fiil Almancada ⟦-ieren⟧ olur: organize → ⟦organisieren⟧. Normal fiil gibi çekilir: ⟦ich telefoniere⟧. ⟦eine Party⟧ = bir parti.", ask:"Bir parti organize ediyorum.", ans:"Ich organisiere eine Party.", why:"organisier-e."},
+ {say:"repair → ⟦reparieren⟧. du ile ⟦-st⟧.", ask:"Arabayı tamir ediyor musun?", ans:"Reparierst du das Auto?", why:"Reparier-st du …?"},
+ {say:"Geçmişte ⟦ge⟧ yok: ⟦telefonieren⟧ → ⟦telefoniert⟧. ⟦mit meinem Chef⟧ = patronumla.", ask:"Patronumla telefonla konuştum.", ans:"Ich habe mit meinem Chef telefoniert.", why:"habe … telefoniert."},
+ {say:"İngilizce -tion → Almanca ⟦-tion⟧ ve hepsi dişi: ⟦die Station⟧. ⟦wichtig⟧ = önemli, ⟦sehr⟧ = çok.", ask:"Bu bilgi çok önemli.", ans:"Die Information ist sehr wichtig.", alt:["Diese Information ist sehr wichtig."], why:"-tion → die."},
+ {say:"⟦schwierig⟧ = zor.", ask:"Durum zor.", ans:"Die Situation ist schwierig.", why:"-tion → die."},
+ {say:"İngilizce -ty → Almanca ⟦-tät⟧, hepsi dişi: university → ⟦die Universität⟧. quality → ?", ask:"Kalite iyi değil.", ans:"Die Qualität ist nicht gut.", why:"-tät → die."},
+ {say:"⟦diskutieren⟧ = tartışmak. ⟦das⟧ = bunu.", ask:"Bunu yarın tartışıyoruz.", ans:"Wir diskutieren das morgen.", alt:["Morgen diskutieren wir das."], why:"wir diskutier-en."},
+ {say:"⟦informieren⟧ = bilgilendirmek; nesne alır: ⟦Ich informiere den Chef.⟧ Resmî ⟦Sie⟧ = sizi.", ask:"Sizi yarın bilgilendiririm.", ans:"Ich informiere Sie morgen.", alt:["Morgen informiere ich Sie."], why:"informiere + Sie."},
+ {say:"⟦-tion⟧ isimlerinin çoğulu ⟦-en⟧: ⟦die Stationen⟧. ⟦mehr⟧ = daha fazla.", ask:"Daha fazla bilgiye ihtiyacım var.", ans:"Ich brauche mehr Informationen.", why:"Information → Informationen."},
+ {say:"⟦kontrollieren⟧ = kontrol etmek. ⟦das System⟧ = sistem.", ask:"Sistemi kontrol ettik.", ans:"Wir haben das System kontrolliert.", why:"haben … kontrolliert (ge yok)."},
+ {say:"Birleştir.", ask:"Dün patronumla telefonda konuştum ve durumu tartıştık.", ans:"Gestern habe ich mit meinem Chef telefoniert und wir haben die Situation diskutiert.", alt:["Ich habe gestern mit meinem Chef telefoniert und wir haben die Situation diskutiert."], why:"telefoniert, diskutiert: ge yok."}
+]}
+];
+function denkCurated(){ const n = (S.state.denk||{}).n || 0; return {n, lesson: DENK_L[n % DENK_L.length], round: Math.floor(n / DENK_L.length)}; }
+startDenk = async function(auto){
+  S.denk = {busy:true, err:"", data:null, i:0, phase:"say", auto: !!auto, playing:false};
+  go("denk"); render();
+  const {lesson, round} = denkCurated();
+  let data = {title: lesson.title, summary: lesson.summary, steps: lesson.steps.map(x=>({...x}))};
+  /* ikinci turda: aynı kurallar, yeni cümleler (denetlenir; olmazsa aynı ders) */
+  if(round >= 1 && aiReady()){
+    try{
+      const r = await askJSON(`Du bist ein sorgfältiger Deutschlehrer für einen türkischen Lerner (A2). Hier ist eine geprüfte "Language Transfer"-Lektion: ${JSON.stringify(data.steps.map(s=>({say:s.say, ask:s.ask, ans:s.ans, why:s.why})))}
+AUFGABE: Schreibe für JEDEN Schritt eine NEUE Übung mit genau derselben Regel und demselben Schwierigkeitsgrad, aber anderen Wörtern und anderen Alltagssituationen (nicht Arbeit/Fitness). "say" erklärt kurz auf Türkisch die Regel (deutsche Wörter in ⟦ ⟧, neue Vokabeln mit Bedeutung), zeigt aber NIE die Lösung. "ask" = ein ganzer türkischer Satz. "ans" = korrektes, natürliches Deutsch. "why" = 1 kurzer Satz Türkisch.
+Antworte NUR mit JSON: {"steps":[{"say":"…","ask":"…","ans":"…","alt":["andere korrekte Varianten"],"why":"…"}]}`, {tier:"default"});
+      const st = await denkVet((r && r.steps) || []);
+      if(st.length >= data.steps.length - 2) data.steps = st;
+    }catch(e){ diagAdd && diagAdd("denk", "Varyasyon üretilemedi; elle yazılmış ders kullanıldı."); }
+  }
+  S.denk.data = data; S.denk.busy = false; render();
+  if(S.denk.auto) denkRun();
+};
+denkTopic = function(){ return denkCurated().lesson.title; };
+{
+  const _dj = denkJudge;
+  denkJudge = async function(st, said){
+    const u = dkNorm(said);
+    if(u && [st.ans, ...(st.alt||[])].some(a=>dkNorm(a) === u)) return {verdict:"ok"};
+    return _dj(st, said);
+  };
 }
 </script>
 </body>
