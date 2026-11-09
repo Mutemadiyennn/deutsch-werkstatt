@@ -5571,7 +5571,7 @@ function neuWarm(text, lang, vo, rate){ if(!neuOn() || !text) return; (async()=>
 try { if(TTS.ok){ const ss = window.speechSynthesis; const c0 = ss.cancel.bind(ss); ss.cancel = function(){ neuStop(); return c0(); }; } } catch(e){}
 if(STANDALONE && KEYS.tts) setTimeout(()=>{ neuVoices().catch(neuErr); }, 1500);
 async function neuTest(){
-  const v = ($("#gttsKey")||{}).value || ""; try { localStorage.setItem("dw-gtts", v.trim()); localStorage.removeItem("dw-gtts-voices"); } catch(e){}
+  const v = String(($("#gttsKey")||{}).value || "").replace(/[\s\u200B-\u200D\uFEFF"'`]/g, ""); try { localStorage.setItem("dw-gtts", v); localStorage.removeItem("dw-gtts-voices"); } catch(e){}
   NEU.off = false; NEU.err = ""; NEU.list = null; S.setup.neu = {ok:true, msg:"Test ediliyor…"}; render();
   if(!v.trim()){ S.setup.neu = null; render(); return; }
   try{
@@ -5595,7 +5595,8 @@ function neuSetupHtml(){
       <li>Üstteki aramaya <b>Cloud Text-to-Speech API</b> yaz → <b>Enable</b> (Etkinleştir).</li>
       <li>APIs &amp; Services → <b>Credentials</b> → Create credentials → <b>API key</b>. Anahtarı düzenle: "API restrictions" → sadece Cloud Text-to-Speech API; "Website restrictions" → <code>mutemadiyennn.github.io/*</code>.</li>
       <li>Anahtarı aşağıya yapıştır ve test et.</li></ol>
-    <input type="password" id="gttsKey" placeholder="Google Cloud API key" value="${esc(KEYS.tts)}" autocomplete="off">
+    <input type="text" id="gttsKey" placeholder="Google Cloud API key (AIza…)" value="${esc(KEYS.tts)}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-1p-ignore data-lpignore="true" style="-webkit-text-security:disc">
+    ${KEYS.tts ? `<p class="small muted">Kayıtlı anahtar: <code>${esc(KEYS.tts.slice(0,4))}…${esc(KEYS.tts.slice(-4))}</code> · ${KEYS.tts.length} karakter${KEYS.tts.length !== 39 ? ` <b style="color:var(--bad,#b33)">(Google anahtarları 39 karakterdir: eksik ya da fazla kopyalanmış)</b>` : ""}. Son 4 karakteri Google Cloud'daki anahtarınla karşılaştır.</p>` : ""}
     <button class="btn ${KEYS.tts?"":"primary"} block" data-act="neuTest">Kaydet ve test et</button>
     ${K.neu ? `<div class="fb ${K.neu.ok?"ok":"no"}">${esc(K.neu.msg)}</div>` : ""}
     ${KEYS.tts ? `<p class="small muted">Bu ay: ${u.n.toLocaleString("de-DE")} / 1.000.000 karakter${NEU.err ? " · " + esc(NEU.err) : ""}</p>` : ""}
