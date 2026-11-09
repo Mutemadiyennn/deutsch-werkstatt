@@ -5166,7 +5166,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09x";
+const APP_VER = "2026-11-09y";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -7977,7 +7977,7 @@ async function syAppPass0(){
     SY.apmsg = {ok:true, msg:"✓ Şifre hazır. iPhone uygulamasında e-postan " + (u.email || "") + " ve bu şifreyle giriş yap."};
   }catch(e){
     const c = String((e && e.code) || e);
-    SY.apmsg = {ok:false, msg: /requires-recent-login/.test(c) ? "Güvenlik için çıkış yapıp Google ile tekrar gir, sonra yeniden dene." : /operation-not-allowed/.test(c) ? "Firebase'de Email/Password girişi kapalı: Authentication → Sign-in method → Email/Password → Enable → Save." : /provider-already-linked|credential-already-in-use|email-already-in-use/.test(c) ? "Bu e-postaya zaten bir şifre bağlı; 'Şifreyi değiştir'i kullan." : syErrMsg(e)};
+    SY.apmsg = {ok:false, msg: /requires-recent-login/.test(c) ? "Güvenlik için çıkış yapıp Google ile tekrar gir, sonra yeniden dene." : /operation-not-allowed/.test(c) ? "Firebase'de Email/Password girişi kapalı: Authentication → Sign-in method → Email/Password → Enable → Save." : /admin-restricted-operation/.test(c) ? "Firebase'de yeni hesap oluşturma kapalı olduğu için şifre eklenemiyor. Firebase → Authentication → Settings → User actions → 'Enable create (sign-up)' kutusunu geçici olarak işaretle → Save, burada şifreyi belirle, sonra kutuyu yine kaldır." : /provider-already-linked|credential-already-in-use|email-already-in-use/.test(c) ? "Bu e-postaya zaten bir şifre bağlı; 'Şifreyi değiştir'i kullan." : syErrMsg(e)};
   }
   ["#syAp1","#syAp2"].forEach(s=>{ const el = $(s); if(el) el.value = ""; }); render();
 }
