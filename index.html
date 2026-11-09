@@ -562,6 +562,170 @@ body.focus main{padding-top:calc(env(safe-area-inset-top) + 6px);padding-bottom:
 #micPill{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));z-index:9999;padding:10px 18px;border-radius:999px;font-weight:700;font-size:1.05rem;box-shadow:0 4px 16px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}#micPill .x{margin-left:12px;font-weight:600;font-size:.9rem;opacity:.85}#micPill.busy{background:#dde7ef;color:#23415a}#micPill .lv{display:block;height:4px;margin-top:6px;border-radius:2px;background:rgba(255,255,255,.9);transform:scaleX(0);transform-origin:left;transition:transform .08s}#micPill.wait{background:#f4e3b5;color:#5a4410}#micPill.go{background:#2f7d4f;color:#fff}
 body.kb .nav{display:none}
 #updBar{position:fixed;left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:9998;background:#23415a;color:#fff;padding:12px 14px;border-radius:14px;font-weight:700;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.2);cursor:pointer}
+/* ================= Tasarım v3: canlı ama düzenli ================= */
+:root{
+  --c-blue:#2F7BF6; --c-blue2:#1D5FD6; --c-orange:#FF8A1F; --c-orange2:#E8650A; --c-green:#16B37A; --c-green2:#0E8F60;
+  --c-purple:#7C5CFA; --c-purple2:#5B3BE0; --c-pink:#EF4A82; --c-pink2:#D02D65; --c-teal:#12B5B0; --c-teal2:#0B8F8B; --c-amber:#F5A623; --c-amber2:#D68708;
+  --paper:#F3F6FC; --card:#FFFFFF; --ink:#101C30; --muted:#5B6B82; --line:#E3EAF4; --soft:#EEF4FD;
+  --glow1:#D9E8FF; --glow2:#EFE4FF; --glow3:#FFE9D6;
+  --card-edge:rgba(16,28,48,.06);
+  --shadow:0 1px 2px rgba(16,28,48,.05),0 6px 20px rgba(16,28,48,.07);
+}
+:root[data-theme="dark"]{
+  --paper:#0A1222; --card:#121B2E; --ink:#EEF3FB; --muted:#9AA9BF; --line:#1F2B42; --soft:#1A2540;
+  --glow1:rgba(47,123,246,.28); --glow2:rgba(124,92,250,.22); --glow3:rgba(255,138,31,.10);
+  --card-edge:rgba(255,255,255,.07);
+  --shadow:0 1px 0 rgba(255,255,255,.04) inset,0 8px 24px rgba(0,0,0,.35);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0A1222; --card:#121B2E; --ink:#EEF3FB; --muted:#9AA9BF; --line:#1F2B42; --soft:#1A2540;
+  --glow1:rgba(47,123,246,.28); --glow2:rgba(124,92,250,.22); --glow3:rgba(255,138,31,.10);
+  --card-edge:rgba(255,255,255,.07);
+  --shadow:0 1px 0 rgba(255,255,255,.04) inset,0 8px 24px rgba(0,0,0,.35);
+}}
+html{background:var(--paper)}
+body{background:
+  radial-gradient(900px 520px at -10% -8%, var(--glow1), transparent 62%),
+  radial-gradient(760px 460px at 112% 4%, var(--glow2), transparent 60%),
+  radial-gradient(700px 520px at 50% 115%, var(--glow3), transparent 65%),
+  var(--paper);background-repeat:no-repeat;min-height:100%}
+.card{background:var(--card);border:1px solid var(--card-edge);box-shadow:var(--shadow)}
+:root[data-theme="dark"] .card{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0) 60%),var(--card)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .card{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0) 60%),var(--card)}}
+.card.hl{border-color:color-mix(in srgb, var(--accent) 55%, transparent);box-shadow:0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent) inset,var(--shadow)}
+
+/* üst çubuk: durum çubuğunun altında nefes alır, kesilmez */
+body::before{height:env(safe-area-inset-top);background:var(--paper)}
+.top{padding-top:calc(env(safe-area-inset-top) + 12px)!important;padding-bottom:10px;padding-left:calc(14px + env(safe-area-inset-left));padding-right:calc(14px + env(safe-area-inset-right));background:color-mix(in srgb, var(--paper) 82%, transparent)}
+.top .chips{gap:6px!important;max-width:560px}
+.top .chip{flex:1 1 0;min-width:0;font-size:.82rem!important;padding:7px 6px!important;font-weight:800;border:1px solid transparent;overflow:hidden;text-overflow:ellipsis}
+.chip.c-fire{background:color-mix(in srgb, var(--c-orange) 16%, var(--card));color:var(--c-orange2)}
+.chip.c-xp{background:color-mix(in srgb, var(--c-amber) 20%, var(--card));color:#9A5B00}
+.chip.c-min{background:color-mix(in srgb, var(--c-blue) 14%, var(--card));color:var(--c-blue2)}
+.chip.c-goal{background:color-mix(in srgb, var(--c-pink) 14%, var(--card));color:var(--c-pink2)}
+:root[data-theme="dark"] .chip.c-fire{color:#FFB070} :root[data-theme="dark"] .chip.c-xp{color:#FFD66B} :root[data-theme="dark"] .chip.c-min{color:#8DB8FF} :root[data-theme="dark"] .chip.c-goal{color:#FF8DB3}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.c-fire{color:#FFB070}:root:not([data-theme="light"]) .chip.c-xp{color:#FFD66B}:root:not([data-theme="light"]) .chip.c-min{color:#8DB8FF}:root:not([data-theme="light"]) .chip.c-goal{color:#FF8DB3}}
+
+/* Bugün kartı */
+.hero3{padding:18px 18px 16px;gap:14px;background-color:#1D5FD6!important;background-image:
+  radial-gradient(420px 220px at 100% 0%, rgba(255,201,60,.35), transparent 60%),
+  linear-gradient(135deg,#2F7BF6 0%,#1D5FD6 55%,#5B3BE0 120%),
+  repeating-linear-gradient(60deg, rgba(255,255,255,.10) 0 2px, transparent 2px 34px),
+  repeating-linear-gradient(-60deg, rgba(255,255,255,.10) 0 2px, transparent 2px 34px)!important;
+  box-shadow:0 14px 34px rgba(29,95,214,.35)!important;border:0!important}
+.h3top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.h3greet{font-family:var(--font-display);font-weight:800;font-size:1.55rem;line-height:1.1;color:#fff}
+.h3sub{margin-top:4px;font-size:.88rem;color:rgba(255,255,255,.85);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.h3main{display:flex;align-items:center;gap:16px}
+.h3ring{position:relative;width:96px;height:96px;flex:none}
+.h3ring svg{position:absolute;inset:0}
+.h3ring b{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-family:var(--font-display);font-size:1.7rem;font-weight:800;color:#fff;line-height:1}
+.h3ring b small{display:block;font-size:.62rem;font-weight:700;opacity:.85;font-family:var(--font-body);line-height:1;white-space:nowrap}
+.h3stats{flex:1;display:flex;flex-direction:column;gap:8px;min-width:0}
+.h3big{color:#fff;font-weight:800;font-size:1.05rem}.h3big span{opacity:.75;font-weight:700}
+.h3pills{display:flex;gap:6px;flex-wrap:wrap}
+.h3pills span{background:rgba(255,255,255,.18);color:#fff;border-radius:999px;padding:4px 10px;font-size:.78rem;font-weight:800;white-space:nowrap}
+.h3pills span.fire{background:linear-gradient(135deg,#FFB547,#FF7A1A)}
+.h3bar{height:10px;border-radius:99px;background:rgba(255,255,255,.22);overflow:hidden}
+.h3bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#FFE27A,#FFC93C);box-shadow:0 0 12px rgba(255,201,60,.6);transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.h3barlbl{display:flex;justify-content:space-between;font-size:.76rem;font-weight:700;color:rgba(255,255,255,.85);margin-top:-8px}
+
+/* nerede çalışıyorsun: büyük ana düğme + 4 renkli kutu */
+.cxwrap{display:flex;flex-direction:column;gap:10px}
+.cxh{font-family:var(--font-display);font-weight:800;font-size:1.05rem;margin:2px 4px 0}
+.cx{--c1:var(--c-blue);--c2:var(--c-blue2);border:0;cursor:pointer;font:inherit;color:#fff;text-align:left}
+.cx.main{display:flex;align-items:center;gap:14px;width:100%;padding:16px 16px;border-radius:22px;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 5px 0 color-mix(in srgb,var(--c2) 70%,#000),0 12px 26px color-mix(in srgb,var(--c1) 35%,transparent);transition:transform .08s ease, box-shadow .08s ease}
+.cx.main:active{transform:translateY(4px);box-shadow:0 1px 0 color-mix(in srgb,var(--c2) 70%,#000)}
+.cx.main .cxi{width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:1.7rem;flex:none}
+.cx.main .cxt{flex:1;display:flex;flex-direction:column;min-width:0}
+.cx.main b{font-family:var(--font-display);font-size:1.25rem;font-weight:800;line-height:1.15}
+.cx.main em{font-style:normal;font-size:.84rem;opacity:.9}
+.cx.main .cxgo{width:40px;height:40px;border-radius:50%;background:#fff;color:var(--c2);display:grid;place-items:center;font-size:1rem;flex:none;box-shadow:0 3px 8px rgba(0,0,0,.18)}
+.cxgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cx.sm{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 4px 10px;border-radius:18px;background:var(--card);color:var(--ink);border:1px solid var(--card-edge);box-shadow:var(--shadow);text-align:center;transition:transform .08s ease}
+.cx.sm:active{transform:scale(.95)}
+.cx.sm .cxi{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:1.4rem;background:linear-gradient(145deg,var(--c1),var(--c2));box-shadow:0 3px 0 color-mix(in srgb,var(--c2) 65%,#000)}
+.cx.sm b{font-size:.78rem;font-weight:800;line-height:1.15}
+.c-desk{--c1:#3B8BFF;--c2:#1D5FD6}.c-pause{--c1:#FFB547;--c2:#E8860A}.c-gym{--c1:#2BD08F;--c2:#0E9A67}.c-kitchen{--c1:#FF6B9E;--c2:#D63A71}.c-car{--c1:#9B7BFF;--c2:#6A45F0}
+
+/* Daha fazla: grup renkleri */
+.mcard h3{display:flex;align-items:center;gap:8px;font-size:1rem!important}
+.mcard h3::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--tc);box-shadow:0 0 0 4px color-mix(in srgb,var(--tc) 22%,transparent)}
+.mt{background:color-mix(in srgb,var(--tc) 9%,var(--card))!important;border:1px solid color-mix(in srgb,var(--tc) 16%,transparent)!important;min-height:92px!important}
+.mt i{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:1.45rem!important;background:linear-gradient(145deg,color-mix(in srgb,var(--tc) 70%,#fff),var(--tc));box-shadow:0 3px 0 color-mix(in srgb,var(--tc) 65%,#000)}
+.g-konus{--tc:#FF7A1A}.g-ogren{--tc:#2F7BF6}.g-sinav{--tc:#7C5CFA}.g-arac{--tc:#12B5B0}
+
+/* alt menü: etkin sekme renkli hap */
+.nav a[aria-current="page"]{background:linear-gradient(135deg,color-mix(in srgb,var(--c-blue) 18%,var(--card)),color-mix(in srgb,var(--c-purple) 14%,var(--card)))!important;color:var(--c-blue)!important}
+:root[data-theme="dark"] .nav a[aria-current="page"]{color:#8DB8FF!important}
+
+/* birincil düğme: hafif degrade + basılabilir kenar */
+.btn.primary{background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 88%,#fff),var(--accent));border:0;box-shadow:0 4px 0 var(--accent-edge)}
+.btn.primary:active{transform:translateY(3px);box-shadow:0 1px 0 var(--accent-edge)}
+
+/* uzun metinler: önce özet */
+.clamp4{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+details.more3{border-top:1px solid var(--line);padding-top:10px}
+details.more3>summary{cursor:pointer;font-weight:800;color:var(--accent);list-style:none}
+details.more3>summary::-webkit-details-marker{display:none}
+details.more3>summary::after{content:" ▾"}
+details.more3[open]>summary::after{content:" ▴"}
+.statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.statrow div{background:var(--soft);border-radius:14px;padding:8px 4px;text-align:center}
+.statrow b{display:block;font-family:var(--font-display);font-size:1.05rem}
+.statrow span{font-size:.7rem;color:var(--muted);font-weight:700}
+
+/* giriş ekranı */
+.lockv3{position:fixed;inset:0;z-index:50;overflow:auto;display:flex;flex-direction:column;justify-content:center;gap:22px;padding:calc(env(safe-area-inset-top) + 24px) 22px calc(env(safe-area-inset-bottom) + 24px);
+  background:radial-gradient(520px 320px at 85% 0%, rgba(255,201,60,.45), transparent 60%),radial-gradient(600px 400px at 0% 100%, rgba(239,74,130,.35), transparent 60%),linear-gradient(160deg,#2F7BF6 0%,#1D5FD6 45%,#5B3BE0 100%);color:#fff}
+.lk-hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
+.lk-hero .brz{filter:drop-shadow(0 10px 18px rgba(0,0,0,.25));animation:lkfloat 3.2s ease-in-out infinite}
+@keyframes lkfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.lk-hero h1{font-family:var(--font-display);font-size:2rem;font-weight:800;letter-spacing:-.01em;color:#fff;margin:0}
+.lk-hero p{font-size:1rem;color:rgba(255,255,255,.88);max-width:300px}
+.lk-card{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:26px;padding:18px;display:flex;flex-direction:column;gap:12px;max-width:420px;width:100%;margin:0 auto;box-shadow:0 20px 50px rgba(15,20,60,.35)}
+.lk-card input{background:#fff!important;color:#101C30!important;border:0!important;border-radius:16px!important;min-height:54px!important;padding:0 16px!important;font-size:1.02rem!important}
+.lk-card label{color:rgba(255,255,255,.9)}
+.lk-btn{min-height:56px;border:0;border-radius:18px;background:#fff;color:#1D5FD6;font:inherit;font-weight:800;font-size:1.1rem;cursor:pointer;box-shadow:0 5px 0 rgba(10,20,70,.35);transition:transform .08s ease, box-shadow .08s ease}
+.lk-btn:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(10,20,70,.35)}
+.lk-btn[disabled]{opacity:.7}
+.lk-err{background:rgba(255,255,255,.95);color:#C8264A;border-radius:14px;padding:10px 12px;font-size:.9rem;font-weight:700}
+.lk-help{max-width:420px;width:100%;margin:0 auto;color:rgba(255,255,255,.9);font-size:.88rem}
+.lk-help summary{cursor:pointer;font-weight:700;text-align:center;list-style:none}.lk-help summary::-webkit-details-marker{display:none}
+.lk-help ol{margin:10px 0 0;padding-left:20px}.lk-help li{margin-bottom:6px}
+.lk-lock{font-size:.78rem;color:rgba(255,255,255,.75);text-align:center}
+
+input[type=checkbox],input[type=radio]{accent-color:var(--accent);width:20px;height:20px;flex:none}
+.card.mini{padding:12px 14px;gap:6px}
+.clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.top>div:first-child{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.top .chips{justify-content:space-between!important}
+.top .chip{flex:1 1 auto!important;padding:7px 8px!important;font-size:.8rem!important;text-overflow:clip}
+.fcard{min-height:138px!important;padding-top:60px!important}
+
+/* Seviyem: her kart kendi rengiyle, ilerleme çubukları canlı */
+.progress{height:10px;border-radius:99px;background:color-mix(in srgb,var(--accent) 14%,var(--soft))}
+.progress i{border-radius:99px;background:linear-gradient(90deg,#4F9BFF,#7C5CFA)!important;box-shadow:0 0 10px rgba(79,155,255,.45)}
+.svhero{color:#fff!important;border:0!important;background:radial-gradient(380px 200px at 100% 0%,rgba(255,201,60,.35),transparent 60%),linear-gradient(135deg,#7C5CFA 0%,#5B3BE0 45%,#D02D65 130%)!important;box-shadow:0 14px 34px rgba(91,59,224,.35)!important}
+.svhero .kicker,.svhero .muted,.svhero .small{color:rgba(255,255,255,.88)!important}
+.svhero .big{color:#fff;font-size:2rem!important;font-weight:800;font-family:var(--font-display)}
+.svhero .progress{background:rgba(255,255,255,.22)!important}.svhero .progress i{background:linear-gradient(90deg,#FFE27A,#FFC93C)!important;box-shadow:0 0 12px rgba(255,201,60,.6)}
+.svhero .statrow div{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.18)}
+.svhero .statrow b{color:#fff;font-size:1.2rem}.svhero .statrow span{color:rgba(255,255,255,.85)}
+.svc{background:linear-gradient(180deg,color-mix(in srgb,var(--sc) 16%,var(--card)) 0,var(--card) 110px)!important;border-color:color-mix(in srgb,var(--sc) 22%,transparent)!important}
+.svc>h3,.svc>.row>h3,.svc>.kicker,.svc>.row>.kicker{color:var(--sc)!important;display:flex;align-items:center;gap:8px}
+.svi{width:30px;height:30px;border-radius:10px;display:inline-grid;place-items:center;font-size:1rem;background:linear-gradient(145deg,color-mix(in srgb,var(--sc) 70%,#fff),var(--sc));box-shadow:0 2px 0 color-mix(in srgb,var(--sc) 65%,#000);flex:none}
+.svc .big{color:var(--sc)}
+.sv-blue{--sc:#2F7BF6}.sv-teal{--sc:#12B5B0}.sv-purple{--sc:#7C5CFA}.sv-amber{--sc:#F5A623}.sv-pink{--sc:#EF4A82}.sv-orange{--sc:#FF7A1A}.sv-green{--sc:#16B37A}
+.svc .btn.primary{background:linear-gradient(180deg,color-mix(in srgb,var(--sc) 80%,#fff),var(--sc));box-shadow:0 4px 0 color-mix(in srgb,var(--sc) 65%,#000)}
+.ach{border:1px dashed color-mix(in srgb,var(--muted) 35%,transparent)}
+.ach.on{border:0;background:linear-gradient(145deg,#FFE27A,#FFB547)!important;color:#5A3B00;box-shadow:0 4px 0 #D68708,0 8px 18px rgba(245,166,35,.35)}
+.ach.on small{color:#5A3B00}
+.ach:not(.on) span{filter:grayscale(1);opacity:.45}
+.svc .btn.primary{color:#fff!important}
+.svc details.more3>summary{color:var(--sc)}
+.svc .quest .progress i,.svc .progress i{background:linear-gradient(90deg,color-mix(in srgb,var(--sc) 70%,#fff),var(--sc))!important;box-shadow:0 0 10px color-mix(in srgb,var(--sc) 45%,transparent)}
+.svhero .progress i{background:linear-gradient(90deg,#FFE27A,#FFC93C)!important}
 </style>
 </head>
 <body>
@@ -1203,7 +1367,7 @@ function renderMission(){
     <p>${esc(m.tr)}</p>
     <p class="de"><b>${esc(m.de)}</b></p>
     <label class="row small"><input type="checkbox" data-change="mission" ${done?"checked":""} style="width:22px;height:22px"> Yaptım! Gerçek bir insanla Almanca konuştum.</label>
-    <button class="btn ${done?"primary":""} small" data-act="debrief">Gerçek bir konuşma yaptım: nasıl geçtiğini anlat (2 dk)</button>
+    <button class="btn ${done?"primary":""} small" data-act="debrief">🗣️ Konuşmamı anlat (2 dk)</button>
   </section>`;
 }
 function ctxGo(a){
@@ -2296,7 +2460,8 @@ function renderSeviye(){
     <div class="kicker">Seviyem · ${esc(t)}</div>
     <div class="big">${esc(R.label)}</div>
     <div class="progress" aria-hidden="true"><i style="width:${R.pct}%"></i></div>
-    <p class="small muted">B1 yolunda tahmini %${R.pct}: dilbilgisi %${R.grammar} · sağlam kelime %${R.words} · dinleme ${R.listen===null?"ölçülmedi":"%"+R.listen} · konuşma ${R.output===null?"ölçülmedi":"%"+R.output}. Dinleme dikteden, konuşma kelime/dk ve ilk kelimeye kadar geçen süreden ölçülür. Bu bir sınav sonucu değil, verilerinden hesaplanan bir tahmin.</p>
+    <div class="statrow"><div><b>%${R.grammar}</b><span>dilbilgisi</span></div><div><b>%${R.words}</b><span>kelime</span></div><div><b>${R.listen===null?"–":"%"+R.listen}</b><span>dinleme</span></div><div><b>${R.output===null?"–":"%"+R.output}</b><span>konuşma</span></div></div>
+    <p class="small muted">B1 yolunda tahmini <b>%${R.pct}</b> · verilerinden hesaplanan tahmin</p>
   </section>
   <section class="card"><div class="row between"><h3>Aylık ölçüm</h3>${checkDue() ? `<span class="chip warn">zamanı geldi</span>` : ""}</div>${renderChecksTable()}<button class="btn small ${checkDue()?"primary":""}" data-act="checkStart">Ölçümü şimdi yap</button>
   </section>
@@ -2309,20 +2474,23 @@ function renderSeviye(){
     ${S.repBusy ? `<div class="thinking"><span class="spin"></span>Bütün verilerin okunuyor…</div>` : ""}
     ${S.repErr ? `<div class="fb no">${esc(S.repErr)}</div>` : ""}
     ${rep ? `
-      <p><b>${esc(rep.level_tr||"")}</b></p><p>${esc(rep.summary_tr||"")}</p>
+      <p><b>${esc(rep.level_tr||"")}</b></p><p class="clamp4">${esc(rep.summary_tr||"")}</p>
+      <details class="more3"><summary>Raporun tamamı</summary><div class="stack" style="margin-top:10px"><p>${esc(rep.summary_tr||"")}</p>
       ${(rep.strengths||[]).length ? `<h3>Güçlü yanların</h3><ul class="rule">${rep.strengths.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : ""}
       ${(rep.patterns||[]).length ? `<h3>Tekrar eden hataların ve nedeni</h3><div class="stack">${rep.patterns.map(p=>`<div class="ex"><b>${esc(p.title_tr)}</b><div class="small">${esc(p.explain_tr)}</div>${p.example_wrong?`<div><span class="strike">${esc(p.example_wrong)}</span> → <span class="fixed">${esc(p.example_right)}</span></div>`:""}</div>`).join("")}</div>` : ""}
       ${(rep.focus_tr||[]).length ? `<h3>Bu hafta odak</h3><ol class="rule">${rep.focus_tr.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>` : ""}
-      ${rep.b1_tr ? `<h3>B1'e mesafe</h3><p>${esc(rep.b1_tr)}</p>` : ""}` : `<p class="small muted">Henüz rapor yok. Bütün alıştırma, yazı ve sohbet verilerine bakıp sana dürüst bir değerlendirme yazayım.</p>`}
+      ${rep.b1_tr ? `<h3>B1'e mesafe</h3><p>${esc(rep.b1_tr)}</p>` : ""}</div></details>` : `<p class="small muted">Henüz rapor yok. Bütün alıştırma, yazı ve sohbet verilerine bakıp sana dürüst bir değerlendirme yazayım.</p>`}
     <button class="btn ${rep?"":"primary"}" data-act="reportGen" ${aiReady()&&!S.repBusy?"":"disabled"}>${rep ? "Raporu güncelle" : "Raporumu hazırla"}</button>
   </section>
   <section class="card">
     <h3>Konu konu</h3>
-    <div class="list">${order.map(x=>{ const st = statusOf(x); return `
+    ${order.some(x=>x.score!==null||x.open) ? "" : `<p class="small muted">Alıştırma yaptıkça konuların burada dolacak; zayıf olanlar kırmızıyla öne çıkar.</p>`}
+    <div class="list">${order.filter(x=>x.score!==null||x.open).map(x=>{ const st = statusOf(x); return `
       <div class="li"><div class="main"><div class="row between"><b>${esc(x.label)}</b><span class="chip ${st.cls}">${st.txt}</span></div>
         <div class="progress" style="margin-top:6px" aria-hidden="true"><i style="width:${x.score===null?0:Math.round(x.score*100)}%;${x.score!==null&&x.score<0.6?"background:var(--bad)":x.score!==null&&x.score<0.8?"background:var(--warn)":"background:var(--good)"}"></i></div>
         <div class="small muted" style="margin-top:4px">${x.score===null?"Henüz çalışılmadı":"%"+Math.round(x.score*100)}${x.n?` · ${x.n} soru`:""}${x.open?` · ${x.open} açık hata`:""}${x.recheck?` · kontrol: ${esc(x.recheck)}`:""}</div></div>
         ${(x.open || (x.score!==null && x.score<0.8)) && aiReady() ? `<button class="btn small" data-act="remedStart" data-t="${esc(x.t)}">Takviye</button>` : ""}</div>`; }).join("")}</div>
+    ${(()=>{ const u = order.filter(x=>!(x.score!==null||x.open)); return u.length ? `<details class="more3"><summary>Henüz başlamadığın konular (${u.length})</summary><div class="row" style="margin-top:8px">${u.map(x=>`<span class="chip">${esc(x.label)}</span>`).join("")}</div></details>` : ""; })()}
   </section>
   <section class="card">
     <h3>Kelimeler</h3>
@@ -4700,11 +4868,11 @@ renderMission = function(){
   const t = dayKey(); const h = (S.state.home||{})[t]; const sc = todayScen(); const done = (S.state.missions||{})[t];
   return `<section class="card ${done?"":"hl"}">
     <div class="kicker">Bugün gerçek hayatta</div>
-    <p><b>🏠 Evde:</b> ${h && h.lines && h.lines.length ? `bu akşam eşine şunlardan birini söyle:` : `akşam yemeğinde 10 dakika sadece Almanca konuşun. Bugünün hikâyesi bittikten sonra burada söyleyeceğin cümleler çıkar.`}</p>
+    <p><b>🏠 Evde:</b> ${h && h.lines && h.lines.length ? `bu akşam eşine şunlardan birini söyle:` : `akşam yemeğinde 10 dakika sadece Almanca. Cümlelerin hikâyeden sonra burada çıkar.`}</p>
     ${h && h.lines ? `<div class="stack">${h.lines.map(x=>phraseRow(x.de, x.tr)).join("")}</div>${h.ask_de ? `<p class="small">Sor: <span class="de"><b>${esc(h.ask_de)}</b></span></p>` : ""}` : ""}
     <p style="margin-top:8px"><b>🚶 Dışarıda:</b> ${esc(sc.t)}${(S.state.scen||{})[sc.id] && (S.state.scen[sc.id].n>0) ? " — uygulamada çalıştın, şimdi gerçekte dene." : " — önce uygulamada çalışacağız."}</p>
     <label class="row small"><input type="checkbox" data-change="mission" ${done?"checked":""} style="width:22px;height:22px"> Yaptım! Gerçek bir insanla Almanca konuştum.</label>
-    <button class="btn ${done?"primary":""} small" data-act="debrief">Gerçek bir konuşma yaptım: nasıl geçtiğini anlat (2 dk)</button>
+    <button class="btn ${done?"primary":""} small" data-act="debrief">🗣️ Konuşmamı anlat (2 dk)</button>
   </section>`;
 };
 
@@ -4848,7 +5016,11 @@ function checkAch(){
 }
 function renderAch(){
   const got = S.state.ach || {};
-  return `<section class="card"><h3>Rozetler (${Object.keys(got).length}/${ACH.length})</h3><div class="achgrid">${ACH.map(a=>`<div class="ach ${got[a.id]?"on":""}" title="${esc(a.t)}"><span>${a.i}</span><small>${esc(a.t)}</small></div>`).join("")}</div></section>`;
+  const cell = a=>`<div class="ach ${got[a.id]?"on":""}" title="${esc(a.t)}"><span>${a.i}</span><small>${esc(a.t)}</small></div>`;
+  const on = ACH.filter(a=>got[a.id]), off = ACH.filter(a=>!got[a.id]); const k = 3 - (on.length % 3) + (on.length % 3 === 0 ? 0 : 0);
+  const first = on.concat(off.slice(0, on.length % 3 === 0 ? 3 : 3 - on.length % 3 + 3));
+  return `<section class="card"><h3>Rozetler (${on.length}/${ACH.length})</h3><div class="achgrid">${first.map(cell).join("")}</div>
+    ${ACH.length > first.length ? `<details class="more3"><summary>Bütün rozetler</summary><div class="achgrid" style="margin-top:8px">${ACH.filter(a=>!first.includes(a)).map(cell).join("")}</div></details>` : ""}</section>`;
 }
 
 /* --- yol haritası (Duolingo yolu) --- */
@@ -5166,7 +5338,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-10a";
+const APP_VER = "2026-11-10i";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -5814,8 +5986,9 @@ function renderA12Card(){
   const media = nx ? `${nx.L.book}, Lektion ${nx.L.n}` : "";
   const mediaVhs = vhsLek() ? `Schritte plus Neu 3, Lektion ${vhsLek()}` : "";
   return `<section class="card"><div class="kicker">Gramer yolu · Schritte plus Neu</div>
-    <p class="small" style="margin:4px 0">A1.2 temeli kurs dersleriyle paralel gelir; A2.2, B1.1 ve B1.2 sırası gelince açılır. Her ders önce kısa kontrolle başlar: biliyorsan atlarız. Takıldığın konular ayrıca "Takviye" olarak farklı anlatımla tekrar gelir ve 3 ve 14 gün sonra yeniden kontrol edilir.</p>
-    ${rows.join("")}
+    <p class="small clamp2" style="margin:4px 0">A1.2 temeli kurs dersleriyle paralel gelir; A2.2, B1.1 ve B1.2 sırası gelince açılır. Her ders önce kısa kontrolle başlar: biliyorsan atlarız. Takıldığın konular ayrıca "Takviye" olarak farklı anlatımla tekrar gelir ve 3 ve 14 gün sonra yeniden kontrol edilir.</p>
+    ${rows.filter(r=>!r.includes("🔒")).join("")}
+    ${rows.some(r=>r.includes("🔒")) ? `<details class="more3" style="margin-top:8px"><summary>Sonraki seviyeler (${rows.filter(r=>r.includes("🔒")).length})</summary>${rows.filter(r=>r.includes("🔒")).join("")}</details>` : ""}
     ${media || mediaVhs ? `<div class="ex small" style="margin-top:8px">📀 <b>Kitabın kendi sesleri (ücretsiz):</b> Hueber Media uygulamasında${media ? ` <b>${esc(media)}</b>` : ""}${media && mediaVhs ? " ve" : ""}${mediaVhs ? ` <b>${esc(mediaVhs)}</b> (VHS'den önce)` : ""} → Foto-Hörgeschichte'yi dinle. Önce sadece dinle, sonra kitaptaki resimlere bakarak bir daha dinle. <a href="https://apps.apple.com/app/id1597468436" target="_blank" rel="noopener">Hueber Media'yı aç</a></div>` : ""}
     <p class="small muted" style="margin-top:8px">${nx ? `Sıradaki: <b>${esc(gpShort(nx.L))}</b> → ${esc(nx.part.t)}${nx.L.track === "a12" && a12For(nx.L.n).length ? ` <span class="muted">(A2.1 Lektion ${a12For(nx.L.n).join(", ")} için temel)</span>` : ""}` : GP_TRACKS.every(T=>gpTrackDone(T.id)) ? "Gramer yolu bitti 🎉 Sırada B1 sınav provaları." : "Sıradaki seviye kilitli; o zamana kadar günlük plan ve VHS dersleri devam ediyor."}</p>
   </section>`;
@@ -5955,11 +6128,11 @@ async function neuGet(text, lang, name, rate){
   if(NEU.mem[k]) return NEU.mem[k];
   if(NEU.inflight[k]) return NEU.inflight[k];
   const p = (async()=>{
-    try { const c = await IDB.get(k); if(c) return c; } catch(e){}
+    try { const c = await Promise.race([IDB.get(k), sleep(1500).then(()=>null)]); if(c) return c; } catch(e){}
     if(neuUseTotal() + text.length > NEU_CAP) throw {status:0, msg:"cap"};
     const body = {input:{text}, voice:{languageCode: lang === "de" ? "de-DE" : "tr-TR", name}, audioConfig:{audioEncoding:"MP3"}};
     if(rate !== 1) body.audioConfig.speakingRate = rate;
-    const call = () => fetch(`https://texttospeech.googleapis.com/v1/text:synthesize?key=${encodeURIComponent(KEYS.tts)}`, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body)});
+    const call = () => { const ac = new AbortController(); const t = setTimeout(()=>ac.abort(), 8000); return fetch(`https://texttospeech.googleapis.com/v1/text:synthesize?key=${encodeURIComponent(KEYS.tts)}`, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body), signal: ac.signal}).finally(()=>clearTimeout(t)); };
     let r = await call();
     if(!r.ok && r.status === 400 && body.audioConfig.speakingRate){ delete body.audioConfig.speakingRate; r = await call(); }
     if(!r.ok){ let msg = ""; try { msg = (await r.json()).error.message || ""; } catch(e){} throw {status:r.status, msg}; }
@@ -5986,12 +6159,14 @@ function neuPlay(b64, rate){
     const a = neuAudio();
     if(NEU.cur){ const f = NEU.cur.fin; NEU.cur = null; f("stop"); }
     let done = false, guard = null;
-    const fin = v => { if(done) return; done = true; clearTimeout(guard); a.onended = null; a.onerror = null; if(NEU.cur && NEU.cur.fin === fin) NEU.cur = null; res(v); };
+    const fin = v => { if(done) return; done = true; clearTimeout(guard); a.onended = null; a.onerror = null; a.onplaying = null; if(NEU.cur && NEU.cur.fin === fin) NEU.cur = null; res(v); };
     NEU.cur = {fin};
     a.onended = () => fin(true); a.onerror = () => fin(false);
     a.src = "data:audio/mpeg;base64," + b64;
     try { a.defaultPlaybackRate = rate; a.playbackRate = rate; a.preservesPitch = true; a.webkitPreservesPitch = true; } catch(e){}
-    guard = setTimeout(()=>fin(true), 90000);
+    /* takılma kalkanı: 5 sn içinde çalmaya başlamazsa telefonun sesine geç; başlarsa süresi + 3 sn sonra mutlaka bitir */
+    guard = setTimeout(()=>fin(false), 5000);
+    a.onplaying = () => { clearTimeout(guard); const d = isFinite(a.duration) && a.duration > 0 ? a.duration : 30; guard = setTimeout(()=>fin(true), (d / Math.max(0.5, rate || 1)) * 1000 + 3000); };
     try { const p = a.play(); if(p && p.catch) p.catch(()=>fin(false)); } catch(e){ fin(false); }
   });
 }
@@ -8058,6 +8233,124 @@ function remindHtml(){
   const opts = ["off","07:00","08:00","12:30","17:30","18:00","19:00","19:30","20:00","21:00","22:00"];
   return `<section class="card"><h3>🔔 Günlük hatırlatma</h3><p class="small muted">Seçtiğin saatte telefonuna kısa bir hatırlatma gelir. O gün hedefinin yarısını geçtiysen gelmez. Serin varken akşam hiç çalışmadıysan 21:30'da bir uyarı daha gelir.</p>
     <select id="remindT" data-change="remindT">${opts.map(o=>`<option value="${o}" ${o === t ? "selected" : ""}>${o === "off" ? "Kapalı" : o}</option>`).join("")}</select></section>`;
+}
+/* ================= Tasarım v3: Bugün ekranının üstü (az yazı, net eylem) ================= */
+const CTX_SHORT = {desk:["Masada","Ders · sohbet · oyun"], pause:["15 dk mola","Kısa karışık"], gym:["Sporda","Kulaklıkla"], kitchen:["Mutfakta","Eller serbest"], car:["Arabada","Sadece ses"]};
+function heroV3(q, w, d){
+  const h = new Date().getHours(); const greet = h<11 ? "Guten Morgen" : h<18 ? "Servus" : "Guten Abend";
+  const name = S.state.name ? ", " + esc(S.state.name) : "";
+  const m = minsToday(), pct = Math.min(1, m/DAILY_GOAL); const R = 40, Cf = 2*Math.PI*R;
+  const core = q.filter(x=>!x.extra), done = core.filter(x=>x.done).length;
+  const L = lvlOf(xpState().total);
+  return `<section class="card hero hero3">
+    <div class="h3top"><div style="min-width:0"><div class="h3greet">${greet}${name}!</div><div class="h3sub">Gün ${d.n} · ${esc(d.title)}</div></div>${brezi(streak()>0||xpToday()>0?"happy":"sad",50)}</div>
+    <div class="h3main">
+      <div class="h3ring"><svg width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="${R}" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="10"/><circle cx="48" cy="48" r="${R}" fill="none" stroke="${pct>=1?"#4FE3A6":"#FFC93C"}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${Cf}" stroke-dashoffset="${Cf*(1-pct)}" transform="rotate(-90 48 48)" style="filter:drop-shadow(0 0 6px rgba(255,201,60,.55))"/></svg><b>${m}<small>/ ${DAILY_GOAL} dk</small></b></div>
+      <div class="h3stats">
+        <div class="h3big">${done}/${core.length} <span>adım bugün</span></div>
+        <div class="h3pills"><span class="${streak() ? "fire" : ""}">🔥 ${streak()} gün</span><span>⭐ Lv ${L.l}</span><span>🪜 ${esc(stage().name)}</span></div>
+      </div>
+    </div>
+    <div class="h3bar" title="Seviye ilerlemesi"><i style="width:${Math.round(L.into/L.need*100)}%"></i></div>
+    <div class="h3barlbl"><span>Lv ${L.l}</span><span>${L.into}/${L.need} XP</span></div>
+  </section>`;
+}
+function ctxV3(){
+  const g = guessCtx(); const others = Object.keys(CTXS).filter(k=>k !== g);
+  const [t, sub] = CTX_SHORT[g] || [CTXS[g].label, ""];
+  return `<section class="cxwrap">
+    <button class="cx main c-${g}" data-act="sessStart" data-c="${g}"><span class="cxi" aria-hidden="true">${CTXS[g].icon}</span><span class="cxt"><b>${esc(t)} başla</b><em>${esc(sub)}</em></span><span class="cxgo" aria-hidden="true">▶</span></button>
+    <div class="cxgrid">${others.map(k=>`<button class="cx sm c-${k}" data-act="sessStart" data-c="${k}"><span class="cxi" aria-hidden="true">${CTXS[k].icon}</span><b>${esc((CTX_SHORT[k]||[CTXS[k].label])[0])}</b></button>`).join("")}</div>
+  </section>`;
+}
+const _renderPlanV3 = renderPlan;
+renderPlan = function(){
+  let html = _renderPlanV3();
+  const {q, w, d} = todayQueue();
+  /* eski kahraman kartını yenisiyle, uzun "Neredesin?" kartını kompakt seçiciyle değiştir */
+  html = html.replace(/<section class="card hero">[\s\S]*?<\/section>/, heroV3(q, w, d));
+  html = html.replace(/<section class="card (?:hl)?">\s*<div class="kicker">Neredesin\? Dokun, hemen başlasın<\/div>[\s\S]*?<\/section>/, ctxV3());
+  return html;
+};
+VIEWS.plan = () => renderPlan();
+/* Daha fazla: her grubun kendi rengi */
+const _renderMoreV3 = renderMore;
+renderMore = function(){
+  const gc = {"Konuş":"g-konus", "Öğren":"g-ogren", "Sınav ve ilerleme":"g-sinav", "Araçlar":"g-arac"};
+  return _renderMoreV3().replace(/<section class="card mcard"><h3>([^<]+)<\/h3>/g, (m0, h)=>`<section class="card mcard ${gc[h] || ""}"><h3>${h}</h3>`);
+};
+VIEWS.more = () => renderMore();
+
+
+/* uygulama gibi gezinme: ekranlar arası geçiş geçmişe yazılmaz, kenardan kaydırınca "geri" gidip akış bozulmaz */
+go = function(view, fn){ if(S.view !== view){ try { location.replace("#" + view); } catch(e){ location.hash = view; } } if(fn) fn(); else render(); };
+document.addEventListener("click", e => { const a = e.target && e.target.closest && e.target.closest('a[href^="#"]'); if(!a || a.target) return; const h = a.getAttribute("href"); if(!h || h === "#") return; e.preventDefault(); try { location.replace(h); } catch(err){ location.hash = h.slice(1); } }, true);
+
+/* giriş ekranı v3: tek ekran, maskot, büyük alanlar */
+renderKilit = function(){
+  const form = NATIVE ? `<form class="lk-card" onsubmit="event.preventDefault(); ACT.syEmailIn();">
+      <input type="email" id="syEm" placeholder="E-posta" autocomplete="username" autocapitalize="off" spellcheck="false" inputmode="email">
+      <input type="password" id="syPw" placeholder="Uygulama şifresi" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false">
+      <label class="small" style="display:flex;gap:8px;align-items:center"><input type="checkbox" style="width:auto;min-height:0" onchange="var p=document.getElementById('syPw'); if(p) p.type=this.checked?'text':'password'"> Şifreyi göster</label>
+      <button class="lk-btn" type="submit" ${SY.app && !SY.signing ? "" : "disabled"}>${!SY.app ? "Hazırlanıyor…" : SY.signing ? "Giriş yapılıyor…" : "Giriş yap"}</button>
+      ${SY.err ? `<div class="lk-err">${esc(SY.err)}</div>` : ""}
+      ${!SY.app && !SY.loading ? `<button type="button" class="lk-btn" style="background:transparent;color:#fff;box-shadow:none;border:1px solid rgba(255,255,255,.5)" data-act="syRetry">Tekrar dene</button>` : ""}
+    </form>
+    <details class="lk-help"><summary>Uygulama şifrem yok</summary><ol>
+      <li>Firebase → Authentication → Sign-in method → Email/Password → Enable.</li>
+      <li>Bilgisayarda uygulamayı aç (Google ile girişli) → Kurulum → Hesap → "iPhone uygulaması şifresi".</li>
+      <li>Buraya e-postanı ve o şifreyi yaz.</li></ol></details>`
+    : `<div class="lk-card">${syCfg() ? `<button class="lk-btn" data-act="sySignIn" ${SY.app ? "" : "disabled"}>${SY.app ? "Google ile giriş yap" : "Hazırlanıyor…"}</button>` : ""}${SY.err ? `<div class="lk-err">${esc(SY.err)}</div>` : ""}</div>`;
+  return `<section class="lockv3"><div class="lk-hero"><span class="brz">${brezi("happy", 104)}</span><h1>Deutsch-Werkstatt</h1><p>Servus! Kaldığın yerden devam edelim.</p></div>${form}<p class="lk-lock">🔒 Sadece senin hesabın girebilir</p></section>`;
+};
+VIEWS.kilit = () => renderKilit();
+
+/* Bugün ekranı sade: gramer yolu Seviyem'e taşındı, VHS kartı kısaldı */
+{
+  const _rp = renderPlan;
+  renderPlan = function(){ const a = renderA12Card; renderA12Card = () => ""; try { return _rp(); } finally { renderA12Card = a; } };
+  VIEWS.plan = () => renderPlan();
+  const _rs = renderSeviye;
+  renderSeviye = function(){ const h = _rs(); const i = h.indexOf("</section>"); return i < 0 ? h : h.slice(0, i + 10) + renderA12Card() + h.slice(i + 10); };
+  VIEWS.seviye = () => renderSeviye();
+  const _vhs = renderVhsCheck;
+  renderVhsCheck = function(){
+    const v = S.state.vhs || {}; const t = dayKey();
+    if(v.from && t < v.from){ const dn = (v.days||[]).map(d=>["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"][d]).join("/");
+      return `<section class="card mini"><div class="row between" style="flex-wrap:nowrap;gap:10px"><span>🏫 <b>VHS kursu</b> <span class="small muted">${esc(v.from.split("-").reverse().slice(0,2).join("."))}'de başlıyor</span></span>${dn ? `<span class="chip">${esc(dn)} ${esc(v.start||"")}</span>` : ""}</div></section>`; }
+    return _vhs().replace(/<p class="small muted">L\d[^<]*<\/p>/, "");
+  };
+}
+
+/* Seviyem: kartlara renk ve simge */
+{
+  const SVMAP = [["Gramer yolu","sv-blue","📘"],["Aylık ölçüm","sv-teal","📈"],["Basamağın","sv-purple","🪜"],["Rozetler","sv-amber","🏅"],["Öğretmen raporu","sv-pink","🧑‍🏫"],["Konu konu","sv-orange","🎯"],["Kelimeler","sv-green","🧠"],["Son 14 gün","sv-blue","📊"],["Dış ölçüm","sv-purple","🎓"],["Odak","sv-orange","🔎"]];
+  const _rsC = renderSeviye;
+  renderSeviye = function(){
+    let h = _rsC();
+    h = h.replace('<section class="card hl">\n    <div class="kicker">Seviyem', '<section class="card svhero">\n    <div class="kicker">Seviyem');
+    return h.replace(/<section class="card([^"]*)">([\s\S]*?)(<h3>|<div class="kicker">)([^<]+)/g, (m0, cls, mid, tag, title) => {
+      if(/svhero/.test(cls)) return m0;
+      const hit = SVMAP.find(([k]) => title.trim().startsWith(k)); if(!hit) return m0;
+      return `<section class="card${cls} svc ${hit[1]}">${mid}${tag}<span class="svi" aria-hidden="true">${hit[2]}</span>${title}`;
+    });
+  };
+  VIEWS.seviye = () => renderSeviye();
+}
+
+/* Bugün ekranındaki kartlar da kendi renkleriyle */
+{
+  const PMAP = [["Günlük görevler","sv-amber","🎯"],["🎁 Haftalık","sv-pink",""],["Haftalık","sv-pink","🎁"],["VHS","sv-teal","🏫"],["Bugün gerçek hayatta","sv-green","🌍"],["Günün Bavyera sözü","sv-blue",""],["Moladasın","sv-teal",""],["Seans sürüyor","sv-blue","▶️"]];
+  const colorize = (h, map) => h.replace(/<section class="card([^"]*)">(\s*(?:<div[^>]*>\s*)?)(<h3>|<h2>|<div class="kicker">)([^<]+)/g, (m0, cls, mid, tag, title) => {
+    if(/hero|svc/.test(cls)) return m0;
+    let hit = map.find(([k]) => title.trim().startsWith(k));
+    if(!hit && /^\d+\. hafta/.test(title.trim())) hit = ["","sv-blue","🗺️"];
+    if(!hit) return m0;
+    return `<section class="card${cls} svc ${hit[1]}">${mid}${tag}${hit[2] ? `<span class="svi" aria-hidden="true">${hit[2]}</span>` : ""}${title}`;
+  });
+  const _rpC = renderPlan;
+  renderPlan = function(){ return colorize(_rpC(), PMAP); };
+  VIEWS.plan = () => renderPlan();
 }
 </script>
 </body>
