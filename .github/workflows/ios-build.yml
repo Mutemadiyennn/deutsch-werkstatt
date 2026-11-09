@@ -1,8 +1,10 @@
 name: Build Unsigned iOS IPA
 
+# Uygulama, yayındaki sayfayı (GitHub Pages) açan bir iPhone kabuğu. Bu yüzden
+# uygulamadaki her güncelleme kendiliğinden gelir; IPA'yı sadece bu dosya
+# (kabuk ayarları) değişince yeniden kurman gerekir.
+
 on:
-  push:
-    branches: [ gh-pages ]
   workflow_dispatch:
 
 jobs:
@@ -30,29 +32,58 @@ jobs:
           for item in index.html manifest.webmanifest apple-touch-icon.png favicon.png icon-192.png icon-512.png robots.txt data; do
             if [ -e "$item" ]; then cp -r "$item" www/; fi
           done
+          # İnternet yokken açılışta gösterilecek sayfa
+          cat > www/offline.html <<'HTML'
+          <!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+          <title>Deutsch-Werkstatt</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;font:17px -apple-system,system-ui,sans-serif;background:#F1F6FB;color:#13233A;text-align:center;padding:24px}
+          button{margin-top:18px;font:inherit;font-weight:700;color:#fff;background:#1784D6;border:0;border-radius:16px;padding:14px 28px;box-shadow:0 4px 0 #0E5E9E}</style></head>
+          <body><div><div style="font-size:3rem">📡</div><h2>İnternet bağlantısı yok</h2><p>Bağlantı gelince tekrar dene.</p>
+          <button onclick="location.href='https://mutemadiyennn.github.io/deutsch-werkstatt/'">Tekrar dene</button></div></body></html>
+          HTML
 
       - name: Initialize Capacitor and Add iOS
         run: |
           npx cap init "Deutsch Werkstatt" "com.mutemadiyenn.deutschwerkstatt" --web-dir=www
-          
-          # Hata verirse bile durma, devam et (|| true sihri)
+          # Kabuk, yayındaki sayfayı açar: güncellemeler anında gelir, Firebase girişi yetkili adreste çalışır
+          rm -f capacitor.config.ts capacitor.config.js
+          cat > capacitor.config.json <<'JSON'
+          {
+            "appId": "com.mutemadiyenn.deutschwerkstatt",
+            "appName": "Deutsch Werkstatt",
+            "webDir": "www",
+            "server": {
+              "url": "https://mutemadiyennn.github.io/deutsch-werkstatt/",
+              "allowNavigation": ["mutemadiyennn.github.io"],
+              "errorPath": "offline.html"
+            },
+            "ios": { "contentInset": "never" }
+          }
+          JSON
+
+          # Hata verirse bile durma, devam et
           npx cap add ios || true
-          
+
           # Sürümü zorla 15.0 yap
-          perl -pi -e "s/platform :ios, .*/platform :ios, '15.0'/" ios/App/Podfile
+          perl -pi -e "s/platform :ios, .*/platform :ios, '15.0'/" ios/App/Podfile || true
           perl -pi -e "s/IPHONEOS_DEPLOYMENT_TARGET = .*/IPHONEOS_DEPLOYMENT_TARGET = 15.0;/g" ios/App/App.xcodeproj/project.pbxproj
-          
-          # Şimdi temiz bir kurulum yap
+
           npx cap sync ios
 
-      - name: Add Microphone Permission
+      - name: Add Permissions
         run: |
-          /usr/libexec/PlistBuddy -c "Add :NSMicrophoneUsageDescription string 'Mikrofon izni gerekli.'" ios/App/App/Info.plist
+          P=ios/App/App/Info.plist
+          /usr/libexec/PlistBuddy -c "Add :NSMicrophoneUsageDescription string 'Konuşma alıştırmaları için mikrofon gerekli.'" $P || /usr/libexec/PlistBuddy -c "Set :NSMicrophoneUsageDescription 'Konuşma alıştırmaları için mikrofon gerekli.'" $P
+          # VHS ödev fotoğrafı için (yoksa fotoğraf seçerken uygulama kapanır)
+          /usr/libexec/PlistBuddy -c "Add :NSCameraUsageDescription string 'Ödev sayfasının fotoğrafını çekmek için.'" $P || true
+          /usr/libexec/PlistBuddy -c "Add :NSPhotoLibraryUsageDescription string 'Ödev fotoğrafını seçmek için.'" $P || true
+          # Arka planda ses (arabada sesli tekrar ekran kapanınca da sürsün)
+          /usr/libexec/PlistBuddy -c "Add :UIBackgroundModes array" $P || true
+          /usr/libexec/PlistBuddy -c "Add :UIBackgroundModes:0 string audio" $P || true
 
       - name: Build iOS App (Unsigned)
         run: |
           xcodebuild -workspace ios/App/App.xcworkspace -scheme App -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGNING_ALLOWED=NO
-          
+
       - name: Package into IPA
         run: |
           mkdir -p Payload
