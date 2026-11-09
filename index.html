@@ -3321,7 +3321,27 @@ function renderSes(){
 }
 
 /* ---------- Shadowing + telaffuz kontrolü ---------- */
-const SRC0 = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+/* iPhone uygulamasında tarayıcı konuşma tanıması yok: varsa Apple'ın cihaz üstü tanıması (yerel eklenti) aynı arayüzle yedek olur */
+const NATIVE_SR = (()=>{ try{
+  const C = window.Capacitor; const P = C && C.Plugins && C.Plugins.SpeechRecognition; if(!P || !P.start) return null;
+  return class {
+    constructor(){ this.lang = "de-DE"; this.interimResults = true; this.continuous = false; this.maxAlternatives = 1; this._subs = []; this._last = ""; this._ended = false; }
+    _emit(t, final){ const alt = {transcript:t, confidence:0.9}; const res = [alt]; res.isFinal = !!final; this.onresult && this.onresult({results:[res], resultIndex:0}); }
+    async start(){ const self = this;
+      try{
+        let pm = await P.checkPermissions(); if(pm.speechRecognition !== "granted"){ pm = await P.requestPermissions(); if(pm.speechRecognition !== "granted"){ self.onerror && self.onerror({error:"not-allowed"}); self._end(); return; } }
+        self._subs.push(await P.addListener("partialResults", d => { const m = (d && d.matches) || []; if(m[0]){ self._last = m[0]; self._emit(m[0], false); } }));
+        self._subs.push(await P.addListener("listeningState", d => { if(d && d.status === "stopped") setTimeout(()=>self._end(), 150); }));
+        await P.start({language: self.lang || "de-DE", maxResults:1, partialResults:true, popup:false});
+        self.onstart && self.onstart(); self.onaudiostart && self.onaudiostart();
+      }catch(e){ self.onerror && self.onerror({error:"start"}); self._end(); }
+    }
+    stop(){ try { P.stop(); } catch(e){} setTimeout(()=>this._end(), 400); }
+    abort(){ this._cancel = true; try { P.stop(); } catch(e){} this._end(); }
+    _end(){ if(this._ended) return; this._ended = true; if(this._last && !this._cancel) this._emit(this._last, true); this._subs.forEach(x=>{ try { x.remove(); } catch(e){} }); this._subs = []; this.onend && this.onend(); }
+  };
+} catch(e){ return null; } })();
+const SRC0 = window.SpeechRecognition || window.webkitSpeechRecognition || NATIVE_SR || null;
 const SRC = SRC0;
 function useSR(){ return !!(SRC && S.state && S.state.srOK); }
 const PRON = [
@@ -5338,7 +5358,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-10i";
+const APP_VER = "2026-11-10k";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -8351,6 +8371,15 @@ VIEWS.kilit = () => renderKilit();
   const _rpC = renderPlan;
   renderPlan = function(){ return colorize(_rpC(), PMAP); };
   VIEWS.plan = () => renderPlan();
+}
+
+/* simge rozeti (bugün daha başlamadıysan kırmızı 1) ve uygulamaya dönüşte tazeleme */
+function nativeBadge(){ const B = capPlug("Badge"); if(!B) return; try { (minsToday() >= 10 ? B.clear() : B.set({count:1})).catch(()=>{}); } catch(e){} }
+if(NATIVE){
+  setTimeout(nativeBadge, 3000);
+  document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState === "hidden") nativeBadge(); });
+  const AP = capPlug("App");
+  if(AP && AP.addListener){ try { AP.addListener("appStateChange", st => { if(st && st.isActive){ try { applyTheme(); } catch(e){} try { if(typeof updCheck === "function") updCheck(); } catch(e){} if(!S.sess && !lessonOn()) render(); } }); } catch(e){} }
 }
 </script>
 </body>
