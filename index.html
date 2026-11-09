@@ -774,6 +774,7 @@ function renderPlan(){
   ${S.sess ? "" : renderPath()}
   ${S.sess ? "" : renderStageCard(false)}
   ${S.sess ? "" : renderVhsCheck()}
+  ${S.sess ? "" : renderA12Card()}
   ${renderMission()}
   <section class="card">
     <details><summary>Bugünün planı (${doneN}/${q.length})</summary>
@@ -805,7 +806,7 @@ function renderNextCard(x){
     <button class="btn ghost small" data-act="taskSkip" data-k="${esc(x.key)}">Bu adımı atla</button>
   </section>`;
 }
-function needsAI(k){ return ["remed","recheck","lesson","write","chat","test","roleplay","media","story","scen"].includes(k); }
+function needsAI(k){ return ["a12","remed","recheck","lesson","write","chat","test","roleplay","media","story","scen"].includes(k); }
 function findTask(key){ return todayQueue().q.find(x=>x.key===key); }
 function taskGo(key){
   const x = findTask(key); if(!x) return;
@@ -816,7 +817,8 @@ function taskGo(key){
   if(x.kind === "vhspost"){ S.kartei.tab = "import"; go("kartei"); render(); return; }
   if(x.kind === "mock"){ go("sinav"); render(); return; }
   if(x.kind === "scen"){ startScen(todayScen().id); return; }
-  S.flow = true;
+  S.flow = true; S._a12pending = null;
+  if(x.kind === "a12"){ a12Go(); return; }
   if(x.kind === "recheck") go("lernen", ()=>startRecheck(x.topic));
   else if(x.kind === "review") go("lernen", startReview);
   else if(x.kind === "remed") go("lernen", ()=>startRemed(x.topic, 1, []));
@@ -842,6 +844,7 @@ function taskDone(key, skip){
   else if(x.kind === "vhsprep") dd.vhsprep = true;
   else if(x.kind === "vhspost") dd.vhspost = true;
   else if(x.kind === "scen") dd.scen = true;
+  else if(x.kind === "a12"){ if(skip) dd.a12cnt = 99; }
   else if(x.kind === "review") dd.review = true;
   else if(x.kind === "remed"){ dd.remed = true; dd.remedTopic = x.topic; }
   else if(x.kind === "recheck"){ dd.recheck = true; dd.recheckTopic = x.topic; if(skip){ const st = S.state.topics||{}; if(st[x.topic]) st[x.topic].recheck = addDays(dayKey(),1); } }
@@ -1205,7 +1208,9 @@ async function exFinish(){
   else if(e.source === "repair") planDone("repair");
   else if(e.source === "media" && S.media){ S.media.pct = Math.round(okN/e.items.length*100); }
   if(e.source === "review"){ const rl = S.state.revLog || (S.state.revLog = []); rl.push({date:dayKey(), pct:Math.round(okN/Math.max(1,e.items.length)*100)}); S.state.revLog = rl.slice(-40); Store.saveState(); }
-  if(e.source === "lesson"){
+  if(e.source === "lesson" && S.a12ctx){ a12LessonResult(e, okN); }
+  else if(e.source === "a12test"){ a12TestResult(e, okN); }
+  else if(e.source === "lesson"){
     const pct = Math.round(okN/Math.max(1,e.items.length)*100); lessonPassRecord(pct);
     const {w:cw, d:cd} = current(); const k = pkey(cw,cd); const tries = S.state.lessonTry || (S.state.lessonTry = {}); tries[k] = (tries[k]||0)+1;
     e.summary.lessonPct = pct; e.summary.lessonPass = pct >= 75 || (tries[k] >= 2 && pct >= 60);
@@ -1233,6 +1238,7 @@ function renderSummary(){
     <div class="kicker">${esc(e.title)}</div>
     <div class="big">${s.dictPct!==undefined ? "%"+s.dictPct+" doğru duydun" : s.okN+" / "+s.n+" doğru"}</div>
     ${e.game ? `<p><b>${s.score} puan</b> · ${s.secs} sn ${s.record ? `<span class="chip good">Yeni rekor!</span>` : s.best ? `<span class="chip">Rekor: ${s.best}</span>` : ""}</p>` : ""}
+    ${s.a12 ? `<div class="fb ${s.a12.ok?"ok":"no"}">${esc(s.a12.msg)}</div>` : ""}
     ${s.mastered ? `<div class="fb ok">${s.mastered} hatayı artık öğrendin: 3 kez üst üste doğru.</div>` : ""}
     ${s.logged ? `<p class="small muted">${s.logged} yeni hata deftere eklendi; tekrarda karşına çıkacak.</p>` : ""}
     ${s.remed ? (s.remed.pass ? `<div class="fb ok"><b>Anladın! 🎉</b> ${esc(TL[s.remed.topic]||s.remed.topic)} konusunda %${s.remed.pct}. ${s.remed.recheck ? "Gerçekten oturduğundan emin olmak için "+esc(s.remed.recheck)+" tarihinde kısa bir kontrol gelecek." : "Bu konu artık sağlam."}</div>` : `<div class="fb no"><b>%${s.remed.pct}: henüz tam oturmadı.</b> Sorun değil; yanlış yaptığın sorulara göre konuyu bu sefer başka bir yoldan anlatacağım.</div><button class="btn primary block" data-act="remedAgain">Farklı bir anlatımla tekrar</button>`) : ""}
@@ -2495,7 +2501,7 @@ function sessMust(remain){
   for(const x of q){ if(x.done || x.locked) continue;
     if(needsAI(x.kind) && !aiReady()) continue;
     if(C === "gym" || CTXS[C].audio) continue;
-    if(C === "pause"){ if(!["vocab","story","real","review","recheck","remed","lesson","game","chat","write","dict","repair"].includes(x.kind)) continue; if(x.min > remain + 3) continue; }
+    if(C === "pause"){ if(!["vocab","story","real","review","recheck","remed","lesson","game","chat","write","dict","repair","a12"].includes(x.kind)) continue; if(x.min > remain + 3) continue; }
     if(["roleplay","fluency"].includes(x.kind) && !SRC && C !== "desk") continue;
     if(x.kind === "game" && x.step && (x.step.game==="builder"||x.step.game==="hunt") && !aiReady()) continue;
     out.push({type: x.step ? "core:"+x.kind : x.kind, x});
@@ -5038,6 +5044,277 @@ genScenData = async function(sc){
 
 /* ---------- Claude'daki eski uygulamadan veri taşıma ---------- */
 async function exportAll(){ const ok = await copyText(JSON.stringify(dataSnapshot())); toast(ok ? `📦 <b>Bütün verilerin kopyalandı.</b> Yeni uygulamada Kurulum → "Verilerini taşı" kutusuna yapıştır.` : "Kopyalanamadı.", 4000); }
+
+/* ================= Gramer yolu: Schritte plus Neu A1.2 → (A2.1 = VHS) → A2.2 → B1.1 → B1.2 ================= */
+/* A2.1 VHS'de ve günlük planda işleniyor. Bu yol, onun altını (A1.2) ve devamını (A2.2, B1.1, B1.2) aynı yöntemle öğretir:
+   her ders: ön kontrol (biliyorsan atlanır) → 2 kısa ders → hayatta kullan (sesli konuşma) → kapanış kontrolü.
+   Yanlışlar hata defterine ve konu istatistiğine gider; sık hata yapılan konular "Takviye" ile farklı anlatımla tekrar öğretilir ve 3 ve 14 gün sonra yeniden kontrol edilir. */
+Object.assign(PERSONAS, {
+  hotline: {name:"Kundenservice (Hotline)", color:"#0E7490", ini:"KS", sie:true, tr:"Müşteri hizmetleri. Kibar ama hızlı; 'Sie' diyor, müşteri numarası soruyor.", desc:"Mitarbeiterin im Kundenservice. Freundlich, schnell, siezt, fragt nach Kundennummer, seit wann das Problem besteht und was schon versucht wurde. Nennt Termine (in drei Tagen, ab Montag, bis 18 Uhr)."},
+  laden: {name:"Verkäuferin im Geschäft", color:"#9D174D", ini:"VK", sie:true, tr:"Mağazada satış görevlisi. Yardımsever; beden, renk, fiyat, iade soruyor.", desc:"Verkäuferin in einem Geschäft in Niederbayern. Hilfsbereit, siezt, fragt nach Größe, Farbe, Kassenbon; vergleicht Produkte."},
+  post: {name:"Postfiliale", color:"#CA8A04", ini:"PF", sie:true, tr:"Postanede görevli. Hızlı ve net; paket boyutu, gönderim şekli, gümrük formu soruyor.", desc:"Mitarbeiter in der Postfiliale. Schnell und sachlich, siezt; fragt nach Paketgröße, Versandart (Päckchen, Paket, versichert), Zollformular und erklärt Preise und Lieferzeiten."},
+  bank: {name:"Bankberaterin", color:"#1E3A8A", ini:"BB", sie:true, tr:"Bankada danışman. Resmî ve kibar; kimlik, hesap, kart soruyor.", desc:"Beraterin am Bankschalter. Sachlich und höflich, siezt; spricht über Konto, Karte, Überweisung, PIN, Online-Banking und fragt nach dem Ausweis."},
+  rezeption: {name:"Hotelrezeption", color:"#0F766E", ini:"HR", sie:true, tr:"Otel resepsiyonu. Güler yüzlü; tarih, oda tipi, kahvaltı, fiyat soruyor.", desc:"Rezeptionistin in einem Familienhotel am Gardasee (spricht Deutsch). Freundlich, siezt; fragt nach Datum, Personen, Zimmerart, Kinderbett, Frühstück, Anreise."}
+});
+const GP_TRACKS = [
+  {id:"a12", lvl:"A1.2", book:"Schritte plus Neu 2", rank:"A1", lessons:[
+    {n:8, t:"Beruf und Arbeit", tr:"Meslekler, iş, geçmişten kısaca bahsetmek",
+      gram:["Präteritum von sein und haben (ich war, ich hatte)", "Temporale Präpositionen vor, seit, für + Dativ (seit zwei Jahren, vor einem Monat)", "bei + Firma, als + Beruf (Ich arbeite bei …, als …)"],
+      words:"Berufe, Arbeitsplatz, Ausbildung, Stellenanzeige", life:{p:"chef", s:"Erster Tag in einem neuen Projekt: Herr Schmid stellt dich dem Team vor und fragt: Was sind Sie von Beruf? Seit wann arbeiten Sie bei uns? Wo waren Sie vorher? Hatten Sie schon Erfahrung mit …?"}},
+    {n:9, t:"Ämter und Behörden", tr:"Resmî daireler, formlar, kurallar",
+      gram:["Modalverben müssen und dürfen, Satzklammer und das Pronomen man", "Imperativ mit du, ihr und Sie (Komm mit! Wartet kurz! Füllen Sie das bitte aus!)"],
+      words:"Amt, Antrag, Formular, Anmeldung, Regeln im Alltag", life:{p:"amt", s:"Im Bürgerbüro: Du brauchst eine Meldebescheinigung für den Kita-Platz deiner Tochter. Die Sachbearbeiterin erklärt, was du ausfüllen und mitbringen musst. Frag nach, wenn du etwas nicht verstehst."}},
+    {n:10, t:"Gesundheit und Krankheit", tr:"Vücut, hastalık, doktor, işe hasta bildirmek",
+      gram:["Possessivartikel (mein, dein, sein, ihr, unser, euer, Ihr)", "Modalverb sollen: Ratschläge weitergeben (Der Arzt sagt, ich soll …)"],
+      words:"Körperteile, Beschwerden, Krankmeldung, Notruf", life:{p:"aerztin", s:"Beim Hausarzt: Nach dem Training tut dir der Rücken weh. Die Ärztin fragt, seit wann, wo genau und was du gemacht hast, und sagt dir, was du tun sollst."}},
+    {n:11, t:"In der Stadt unterwegs", tr:"Yol tarifi, ulaşım, şehirde yer bildirmek",
+      gram:["Wo? lokale Präpositionen + Dativ (an, auf, hinter, in, neben, über, unter, vor, zwischen, bei)", "Wohin? zu, nach, in; mit + Dativ (mit dem Auto, mit der S-Bahn)"],
+      words:"Orte in der Stadt, Verkehrsmittel, Bahnhof, Durchsagen", life:{p:"bahn", s:"Am Bahnhof: Dein Zug nach München fällt aus. Du fragst nach der nächsten Verbindung, dem Gleis und wo du umsteigen musst."}},
+    {n:12, t:"Kundenservice", tr:"Müşteri hizmetleri, kibar rica, zaman ifadeleri",
+      gram:["Temporale Präpositionen vor, nach, bei, in, bis, ab (+ Dativ): in drei Tagen, ab Montag, bis 18 Uhr", "Höfliche Bitten mit Konjunktiv II: Könnten Sie …? Würden Sie …?"],
+      words:"Reparatur, Hotline, Termin, Gerät, an-/aus-/auf-/zumachen", life:{p:"hotline", s:"Dein Internet zu Hause funktioniert seit gestern nicht. Du rufst den Kundenservice an, erklärst das Problem höflich und fragst, wann ein Techniker kommen könnte."}},
+    {n:13, t:"Neue Kleider", tr:"Giyim, beğenmek, karşılaştırmak, seçmek",
+      gram:["Verben mit Dativ (gefallen, passen, gehören, stehen) und Personalpronomen im Dativ (mir, dir, ihm, ihr, uns, euch, ihnen)", "welch-? / dies- und der, die, das als Demonstrativ; Komparation gut–besser–am besten, gern–lieber–am liebsten, viel–mehr–am meisten"],
+      words:"Kleidung, Größen, Farben, Wetter und Jahreszeiten", life:{p:"laden", s:"Im Kaufhaus: Du kaufst eine warme Winterjacke für deine Tochter. Die Verkäuferin fragt nach Größe und Farbe; du vergleichst zwei Jacken und entscheidest dich."}},
+    {n:14, t:"Feste", tr:"Bayramlar, tarih, davet, kabul ve ret",
+      gram:["Ordinalzahlen und Datum (der erste Mai, am fünfzehnten Januar)", "Personalpronomen im Akkusativ (mich, dich, ihn, sie, uns, euch) und Begründen mit denn"],
+      words:"Monate, Feste und Feiertage, Einladungen, Glückwünsche", life:{p:"lena", s:"Lena lädt euch zum Kindergeburtstag ihres Sohnes ein. Frag nach Datum und Uhrzeit, sag zu oder ab und nenne einen Grund mit denn."}}
+  ]},
+  {id:"a22", lvl:"A2.2", book:"Schritte plus Neu 4", rank:"A2", lessons:[
+    {n:8, t:"Am Wochenende", tr:"Hafta sonu, istekler, öneriler",
+      gram:["Konjunktiv II: wäre, hätte, würde, könnte (Wünsche äußern und Vorschläge machen)", "Konjunktion trotzdem (Gegensätze ausdrücken)"],
+      words:"Freizeit, Wochenende, Veranstaltungen, Vorschläge", life:{p:"tobi", s:"Tobi fragt, was ihr am Wochenende macht. Macht Vorschläge (Wir könnten …), sag, was du gern machen würdest, und reagiere auf seine Ideen."}},
+    {n:9, t:"Meine Sachen", tr:"Eşyalar, malzemeler, karşılaştırma, fikir",
+      gram:["Adjektivdeklination nach unbestimmtem Artikel (ein neuer Laptop, einen neuen Laptop, mit einem neuen Laptop)", "Komparation und Vergleiche mit als und wie (größer als, genauso gut wie)"],
+      words:"Gegenstände, Materialien, kaufen und verkaufen, Kleinanzeigen", life:{p:"markus", s:"Markus will einen gebrauchten Laptop kaufen und fragt dich um Rat. Ihr vergleicht zwei Angebote und begründet eure Meinung."}},
+    {n:10, t:"Kommunikation", tr:"Posta, telefon, medya, iletişim",
+      gram:["Passiv Präsens (Das Paket wird morgen geliefert.)", "Adjektivdeklination nach bestimmtem Artikel und Frageartikel Was für ein …?"],
+      words:"Post, Handy, Medien, Kontakt halten", life:{p:"post", s:"In der Postfiliale: Du willst ein Paket in die Türkei schicken. Frag, wie es verschickt wird, was es kostet und wie lange es dauert."}},
+    {n:11, t:"Unterwegs", tr:"Yol tarifi (nereden/nereye), trafik, hava, sebep",
+      gram:["Lokale Präpositionen: aus, von, an … vorbei, bis zu, durch, … entlang, gegenüber, über, um … herum", "Konjunktion deshalb (Gründe nennen)"],
+      words:"Wegbeschreibung, Verkehr, Wetter, Verkehrsmeldungen", life:{p:"bahn", s:"Ein Fahrgast am Bahnhof fragt dich nach dem Weg ins Zentrum. Beschreib ihn genau (durch den Park, an der Kirche vorbei, bis zur Ampel …)."}},
+    {n:12, t:"Reisen", tr:"Seyahat, konaklama, rezervasyon",
+      gram:["Lokale Präpositionen an, auf, in mit Wo? und Wohin? (am Meer – ans Meer, in den Bergen – in die Berge)", "Adjektivdeklination ohne Artikel (Zimmer mit großem Balkon); von … an, über, ohne"],
+      words:"Reiseziele, Unterkunft, buchen, Urlaubsaktivitäten", life:{p:"rezeption", s:"Du rufst ein Familienhotel am Gardasee an und buchst für die Pfingstferien: Familienzimmer, Kinderbett, Frühstück, Preis, Anreise."}},
+    {n:13, t:"Auf der Bank", tr:"Banka, hesap, kart, hizmetler",
+      gram:["Indirekte Fragen mit W-Wort und mit ob (Können Sie mir sagen, wann …? Wissen Sie, ob …?)", "Verb lassen (Ich lasse mein Auto reparieren.)"],
+      words:"Bank, Konto, Karte, Überweisung, Dienstleistungen", life:{p:"bank", s:"Am Bankschalter: Deine Karte wurde gesperrt. Frag höflich mit indirekten Fragen, was passiert ist und was du jetzt tun musst."}},
+    {n:14, t:"Lebensstationen", tr:"Hayat dönemleri, anılar, hayaller (A2 genel tekrar)",
+      gram:["Wiederholung: Nebensätze mit wenn, weil, dass; Perfekt und Präteritum", "Wiederholung: Konjunktiv II; Wortbildung (-ig, -bar, -los, un-, -ung, -chen)"],
+      words:"Lebenslauf, Familie, Erinnerungen, Wünsche und Träume", life:{p:"schwiegermutter", s:"Deine Schwiegermutter fragt nach deiner Kindheit in der Türkei, wie ihr euch kennengelernt habt und welche Träume du für die Zukunft hast."}}
+  ]},
+  {id:"b11", lvl:"B1.1", book:"Schritte plus Neu 5", rank:"B1", lessons:[
+    {n:1, t:"Glück im Alltag", tr:"Geçmişi anlatmak, şans ve şanssızlık",
+      gram:["Präteritum (regelmäßige und unregelmäßige Verben) zum Erzählen", "Konjunktion als (damals) und Plusquamperfekt"],
+      words:"Kindheit, Erinnerungen, Glück und Pech, Unfallbericht", life:{p:"markus", s:"Montag im Büro: Erzähl Markus von einem Glücks- oder Pechmoment am Wochenende. Er fragt nach."}},
+    {n:2, t:"Unterhaltung", tr:"Diziler, filmler, müzik, fikir ve uzlaşma",
+      gram:["Konjunktion obwohl und Gradpartikeln (echt, ziemlich, total)", "Relativsatz mit der, das, die (Nominativ, Akkusativ, Dativ)"],
+      words:"Serien, Filme, Musik, Meinung äußern", life:{p:"frau", s:"Ihr sucht abends eine Serie aus. Beschreib, was dir gefällt (obwohl …), und einigt euch auf eine Serie."}},
+    {n:3, t:"Gesund bleiben", tr:"Sağlık, check-up, öneri almak ve vermek",
+      gram:["Passiv Präsens mit Modalverben (Das muss untersucht werden.)", "Genitiv (die Praxis des Arztes, das Zimmer meiner Tochter)"],
+      words:"Gesundheit, Vorsorge, Untersuchungen, Fitness", life:{p:"aerztin", s:"Vorsorgeuntersuchung: Die Ärztin erklärt, was untersucht werden muss, und gibt dir Tipps für Training und Ernährung. Frag nach."}},
+    {n:4, t:"Sprachen", tr:"Diller, çok dillilik, kibar ret ve soru",
+      gram:["Konjunktiv II: irreale Bedingungen mit wenn (Wenn ich mehr Zeit hätte, würde ich …)", "Präposition wegen + Genitiv; höflich absagen und nachfragen"],
+      words:"Sprachen lernen, Mehrsprachigkeit, Kinder zweisprachig erziehen", life:{p:"maier", s:"Elterngespräch in der Kita: Frau Maier fragt, wie ihr zu Hause sprecht (Türkisch und Deutsch). Erkläre eure Situation und frag höflich nach Tipps."}},
+    {n:5, t:"Eine Arbeit finden", tr:"İş ilanı, başvuru, mülakat",
+      gram:["Infinitiv mit zu (Ich habe vor, … zu …; Es ist wichtig, … zu …)", "während, außerhalb, innerhalb + Genitiv"],
+      words:"Stellenanzeige, Bewerbung, Vorstellungsgespräch, Kompetenzen", life:{p:"chef", s:"Vorstellungsgespräch für eine Stelle als IT-Sicherheitsberater: Herr Schmid fragt nach Erfahrung, Stärken, Schwächen und Plänen."}},
+    {n:6, t:"Dienstleistung", tr:"Hizmetler, iş hayatı, şikâyet",
+      gram:["Ausdrücke mit es (Es gibt …, Es ist schwierig, … zu …)", "um … zu und damit; statt … zu und ohne … zu"],
+      words:"Dienstleistungen, Arbeitsalltag, reklamieren", life:{p:"laden", s:"Die neue Waschmaschine läuft aus. Du reklamierst im Geschäft, erklärst das Problem und sagst, was du willst, damit es schnell gelöst wird."}},
+    {n:7, t:"Rund ums Wohnen", tr:"Komşuluk, ev kuralları, kibar eleştiri",
+      gram:["Zweiteilige Konjunktionen: nicht nur … sondern auch, zwar … aber, entweder … oder", "Konjunktiv II der Vergangenheit (Ich hätte … gesagt), irreale Wünsche (Hätte ich bloß …), trotz + Genitiv"],
+      words:"Zusammenleben, Hausordnung, Nachbarn, Konflikte lösen", life:{p:"huber", s:"Frau Huber beschwert sich über Lärm am Abend. Reagiere höflich, erkläre die Situation und findet zusammen eine Lösung."}}
+  ]},
+  {id:"b12", lvl:"B1.2", book:"Schritte plus Neu 6", rank:"B1", lessons:[
+    {n:8, t:"Unter Kollegen", tr:"İş arkadaşları, kibar ret, kişileri tarif",
+      gram:["falls und je … desto / umso", "Relativsatz mit Präposition (die Kollegin, mit der ich arbeite); n-Deklination; Adjektiv als Nomen (der/die Bekannte)"],
+      words:"Kollegen, Büroalltag, du oder Sie", life:{p:"markus", s:"Markus bittet dich, am Freitag seinen Bereitschaftsdienst zu übernehmen. Lehne höflich ab oder findet einen Kompromiss."}},
+    {n:9, t:"Virtuelle Welt", tr:"Teknoloji, dijital hayat, cihaz anlatmak",
+      gram:["Zeitliche Reihenfolge: während, nachdem, bevor", "als ob (Er tut so, als ob …)"],
+      words:"Technik, digitale Medien, Geräte und Anleitungen", life:{p:"schwiegermutter", s:"Deine Schwiegermutter hat ein neues Smartphone. Erkläre ihr Schritt für Schritt, wie ein Videoanruf funktioniert (bevor, nachdem, während)."}},
+    {n:10, t:"Werbung und Konsum", tr:"Reklam, ürünler, şikâyet ve iade",
+      gram:["sowohl … als auch, weder … noch", "Relativsatz mit wo und was; Partizip I als Adjektiv (ein wohltuendes Bad)"],
+      words:"Werbung, Produkte, Reklamation, Pannen im Alltag", life:{p:"hotline", s:"Das bestellte Gerät kam kaputt an. Beschwer dich beim Kundenservice und verlange Ersatz oder dein Geld zurück."}},
+    {n:11, t:"Miteinander", tr:"Kurallar, görgü, gelecek planları",
+      gram:["Futur I (Vermutungen, Pläne, Versprechen) und Präsens mit Zeitangabe", "Konjunktion da (Grund)"],
+      words:"Regeln, Gesetze, Umgangsformen, Verkehr", life:{p:"frau", s:"Ihr plant das nächste Jahr: Was werdet ihr machen? Versprich etwas, äußere Vermutungen und begründe mit da."}},
+    {n:12, t:"Soziales Engagement", tr:"Dernekler, gönüllülük, örnek insanlar",
+      gram:["seit/seitdem, bis, indem", "ohne dass / ohne zu; außer + Dativ"],
+      words:"Vereine, Ehrenamt, Vorbilder, Meinung begründen", life:{p:"lena", s:"Lena erzählt vom Elternbeirat der Kita und fragt, ob du mitmachen möchtest. Sprich über Zeit, Interesse und was du beitragen kannst."}},
+    {n:13, t:"Aus Politik und Geschichte", tr:"Biyografi, demokrasi, haberleri özetlemek",
+      gram:["Passiv Präteritum und Passiv Perfekt (wurde gegründet / ist gegründet worden)", "Adjektivdeklination mit Komparativ und Superlativ (die schönere Stadt, der schnellste Weg)"],
+      words:"Biografien, Demokratie, Politik, Geschichte Deutschlands", life:{p:"markus", s:"In der Mittagspause sprecht ihr über eine Nachricht aus der Zeitung. Fasse sie zusammen und sag deine Meinung."}},
+    {n:14, t:"Alte und neue Heimat", tr:"Memleket, yöresel lezzetler, Avrupa",
+      gram:["Wortbildung Nomen (das Volksfest) und Verben mit Präpositionen (denken an, sich freuen auf)", "Präpositionaladverbien daran, darauf, woran (Wiederholung)"],
+      words:"Heimat, Spezialitäten, Feste, Europa", life:{p:"tobi", s:"Tobi fragt dich, was du an der Türkei vermisst und was dir an Bayern gefällt. Erzähl und frag zurück."}}
+  ]}
+];
+for(const T of GP_TRACKS) for(const L of T.lessons){ L.track = T.id; L.lvl = T.lvl; L.book = T.book; L.key = T.id + "-" + L.n; }
+const GP_ALL = GP_TRACKS.flatMap(T=>T.lessons);
+const LEK12 = GP_TRACKS[0].lessons;
+/* Hangi A1.2 dersi hangi A2.1 (VHS) dersinin temeli */
+const A12_FOR = {1:[8,14], 2:[11], 3:[13], 4:[12,10], 5:[10,9], 6:[9,8], 7:[13,14]};
+const A12_PARTS = [
+  {id:"pre", t:"Ön kontrol (biliyorsan atlarız)", min:8},
+  {id:"g1", t:"Ders 1", min:15},
+  {id:"g2", t:"Ders 2", min:15},
+  {id:"use", t:"Hayatta kullan: sesli konuşma", min:10},
+  {id:"fin", t:"Kapanış kontrolü", min:8}
+];
+BLK.a12 = {min:15, ai:true, heavy:true, label:"Gramer yolu"};
+function gpSt(){ const s = S.state.gp || (S.state.gp = {}); s.done = s.done || {}; s.parts = s.parts || {}; s.pct = s.pct || {}; return s; }
+function a12St(){ return gpSt(); }
+function gpCourseOver(){ const VH = S.state.vhs || {}; return !!(VH.to && dayKey() > VH.to); }
+function gpTrackDone(id){ const st = gpSt(); return GP_TRACKS.find(T=>T.id===id).lessons.every(L=>st.done[L.key]); }
+/* Bir seviye ne zaman açılır: altındaki seviye bitmiş olmalı ve VHS'deki A2.1 yeterince ilerlemiş olmalı */
+function gpOpen(id){
+  if(id === "a12") return true;
+  if(id === "a22") return gpTrackDone("a12") && (vhsLek() >= 4 || gpCourseOver());
+  if(id === "b11") return gpTrackDone("a22") && (vhsLek() >= 7 || gpCourseOver());
+  if(id === "b12") return gpTrackDone("b11");
+  return false;
+}
+function gpWhyLocked(id){
+  if(id === "a22") return !gpTrackDone("a12") ? "A1.2 bitince" : "VHS'de A2.1 Lektion 4'e gelince";
+  if(id === "b11") return !gpTrackDone("a22") ? "A2.2 bitince" : "VHS'de A2.1 bitince";
+  if(id === "b12") return "B1.1 bitince";
+  return "";
+}
+function a12Order(){
+  const v = Math.min(7, Math.max(1, vhsLek() || 1)); const seq = [];
+  for(const k of [...[1,2,3,4,5,6,7].filter(k=>k>=v), ...[1,2,3,4,5,6,7].filter(k=>k<v)]) for(const n of (A12_FOR[k]||[])) if(!seq.includes(n)) seq.push(n);
+  for(const L of LEK12) if(!seq.includes(L.n)) seq.push(L.n);
+  return seq;
+}
+function gpOrder(){
+  const out = a12Order().map(n=>LEK12.find(L=>L.n===n));
+  for(const T of GP_TRACKS.slice(1)) out.push(...T.lessons);
+  return out;
+}
+function a12Next(){
+  const st = gpSt();
+  for(const L of gpOrder()){
+    if(st.done[L.key]) continue;
+    if(!gpOpen(L.track)) return null;
+    const got = st.parts[L.key] || [];
+    const part = A12_PARTS.find(p=>!got.includes(p.id)) || A12_PARTS[A12_PARTS.length-1];
+    return {L, part};
+  }
+  return null;
+}
+function gpPerDay(){ return gpCourseOver() ? 3 : 2; }
+function a12For(n){ return Object.keys(A12_FOR).filter(k=>A12_FOR[k].includes(n)).map(Number); }
+function gpLabel(L){ return `${L.book} (${L.lvl}), Lektion ${L.n}: ${L.t}`; }
+function gpShort(L){ return `${L.lvl} · L${L.n} ${L.t}`; }
+function a12Topic(L, part){
+  const g = part === "g1" ? L.gram[0] : L.gram.slice(1).join(" + ");
+  const why = L.track === "a12" ? `Grundlagenwissen (A1.2), das er für den VHS-Kurs A2.1${a12For(L.n).length ? ", Lektion " + a12For(L.n).join(" und ") : ""} sicher braucht` : `Stoff auf dem Weg zur B1-Prüfung (${L.lvl})`;
+  return `${g} (${gpLabel(L)}; Wortfeld: ${L.words}). ${why}: kurz und klar erklären, viele Beispiele aus seinem Alltag.`;
+}
+function a12PartDone(ctx){
+  const st = gpSt(); const got = st.parts[ctx.key] || (st.parts[ctx.key] = []);
+  if(!got.includes(ctx.part)) got.push(ctx.part);
+  const dd = daily(); dd.a12cnt = (dd.a12cnt||0) + 1;
+  const L = GP_ALL.find(x=>x.key===ctx.key);
+  S.flash = `Gramer yolu · ${L ? gpShort(L) : ""}: "${(A12_PARTS.find(p=>p.id===ctx.part)||{}).t||""}" tamam ✓`;
+  Store.saveState();
+}
+function a12LessonResult(e, okN){
+  const ctx = S.a12ctx; const pct = Math.round(okN/Math.max(1,e.items.length)*100);
+  const k = "gp-" + ctx.key + "-" + ctx.part; const tries = S.state.lessonTry || (S.state.lessonTry = {}); tries[k] = (tries[k]||0) + 1;
+  const lp = S.state.lessonPass || (S.state.lessonPass = {}); lp[k] = Math.max(lp[k]||0, pct);
+  e.summary.lessonPct = pct; e.summary.lessonPass = pct >= 75 || (tries[k] >= 2 && pct >= 60);
+  if(e.summary.lessonPass) a12PartDone(ctx); else Store.saveState();
+}
+async function startA12Test(key, kind){
+  const L = GP_ALL.find(x=>x.key===key); if(!L) return;
+  const Ln = S.learn; Ln.err = ""; Ln.busy = true; Ln.busyText = kind === "pre" ? "Ön kontrol hazırlanıyor…" : "Kapanış kontrolü hazırlanıyor…"; Ln.lesson = null; S.ex = null; render();
+  const cnt = kind === "pre" ? 10 : 12;
+  try{
+    const r = await askJSON(`Du bist ein persönlicher Deutschlehrer. ${profile()}
+AUFGABE: ${kind === "pre" ? "Kurze Einstufung: Kann der Lerner diese Lektion schon sicher? Wenn ja, überspringen wir sie." : "Abschlusskontrolle dieser Lektion."}
+LEKTION: ${gpLabel(L)}. Grammatik: ${L.gram.join("; ")}. Wortschatz: ${L.words}.
+Erstelle ${cnt} Aufgaben, die jeden Grammatikpunkt UND den Wortschatz abdecken, Niveau ${L.lvl}, Sätze aus seinem Alltag (Familie, Kita, Arbeit in der IT, Fitnessstudio, Bayern). Typen gemischt: "gap" (eine Lücke ___, "answers"), "choice" (3 "options", "answer"), "order" (nur "answer", max ${L.rank === "B1" ? 12 : 9} Wörter), "fix" ("prompt" mit genau einem Fehler, "answer" korrigiert).
+Jede Aufgabe hat "tr", "explain" (Türkisch, 1 Satz) und "topic" (eine von: ${MTOPICS.join(", ")}).
+Antworte NUR mit JSON: {"items":[…]}`);
+    Ln.busy = false;
+    startExercise(`${gpShort(L)}: ${kind === "pre" ? "ön kontrol" : "kapanış kontrolü"}`, (r && r.items) || [], "a12test", "lernen");
+    if(S.ex) S.ex.a12 = {key, kind};
+    return;
+  }catch(err){ Ln.err = aiMsg(err); }
+  Ln.busy = false; render();
+}
+function a12TestResult(e, okN){
+  const A = e.a12; if(!A) return; const st = gpSt(); const L = GP_ALL.find(x=>x.key===A.key);
+  const pct = Math.round(okN/Math.max(1,e.items.length)*100);
+  st.pct[A.key] = Math.max(st.pct[A.key]||0, pct);
+  const lp = S.state.lessonPass || (S.state.lessonPass = {});
+  if(A.kind === "pre"){
+    if(pct >= 85){ st.done[A.key] = "known"; lp["gp-"+A.key] = pct; e.summary.a12 = {ok:true, msg:`%${pct}: ${gpShort(L)} konusunu zaten biliyorsun. Bu dersi atlıyoruz; yanlışların tekrar listene eklendi.`}; const dd = daily(); dd.a12cnt = (dd.a12cnt||0) + 1; Store.saveState(); }
+    else { a12PartDone({key:A.key, part:"pre"}); e.summary.a12 = {ok:false, msg:`%${pct}: Bazı eksikler var. Şimdi kısa derslerle tam bunları kapatıyoruz.`}; }
+  } else {
+    if(pct >= 75){ st.done[A.key] = true; lp["gp-"+A.key] = pct; a12PartDone({key:A.key, part:"fin"}); e.summary.a12 = {ok:true, msg:`%${pct}: ${gpShort(L)} tamam! 🎉`}; addXP(20); confetti(60); }
+    else { const dd = daily(); dd.a12cnt = (dd.a12cnt||0) + 1; Store.saveState(); e.summary.a12 = {ok:false, msg:`%${pct}: Az kaldı (%75 yeter). Yanlışların tekrar listende; yarın kontrol tekrar gelecek.`}; }
+  }
+}
+function a12Go(){
+  const nx = a12Next(); if(!nx) return;
+  const {L, part} = nx; const ctx = {key:L.key, part:part.id};
+  if(part.id === "pre" || part.id === "fin"){ S.a12ctx = null; go("lernen", ()=>startA12Test(L.key, part.id)); return; }
+  S._a12pending = ctx;
+  if(part.id === "use"){ startRoleplay(L.life.p, L.life.s, L.rank === "A1" ? 1 : L.rank === "A2" ? 2 : 3); return; }
+  go("lernen", ()=>startLesson(a12Topic(L, part.id)));
+}
+/* bağlam: sadece gramer yolundan başlatılan ders/konuşma oraya yazılır; başka her başlatma bağlamı temizler */
+const _startLessonA12 = startLesson;
+startLesson = function(topic){ S.a12ctx = S._a12pending || null; S._a12pending = null; return _startLessonA12(topic); };
+const _startRoleplayA12 = startRoleplay;
+startRoleplay = function(pid, scen, level, auto){ S.a12ctx = S._a12pending || null; S._a12pending = null; return _startRoleplayA12(pid, scen, Math.min(level||1, stage().rpMax), auto); };
+const _planDoneA12 = planDone;
+planDone = function(kind, extra){
+  if(S.a12ctx && kind === "roleplay" && S.a12ctx.part === "use"){ const c = S.a12ctx; S.a12ctx = null; a12PartDone(c); return; }
+  return _planDoneA12(kind, extra);
+};
+const _todayQueueA12 = todayQueue;
+todayQueue = function(){
+  const r = _todayQueueA12(); const nx = a12Next(); if(!nx) return r;
+  const dd = (S.state.daily||{})[dayKey()] || {}; const cnt = dd.a12cnt || 0; const per = gpPerDay();
+  const done = cnt >= per;
+  r.q.splice(Math.min(3, r.q.length), 0, {key:"a12", kind:"a12", title: done ? `Gramer yolu: bugün ${Math.min(cnt, per)} adım ✓` : `Gramer ${gpShort(nx.L)}: ${nx.part.t}`, min: nx.part.min, done});
+  return r;
+};
+/* kelime kartları: sıradaki gramer dersinin kelime alanı, VHS dersinin alanıyla dönüşümlü gelir (ders başına en çok 25 kelime) */
+const _vBandA12 = vBand;
+vBand = function(){
+  const nx = a12Next(); S._vbAlt = !S._vbAlt;
+  if(nx && S._vbAlt){
+    const id = "gp-" + nx.L.key; const done = S.state.vbandDone || {};
+    if(!done[id] && S.words.filter(w=>w.band===id).length < 25) return {id, lvl: nx.L.rank, t: gpShort(nx.L), de: nx.L.words + " (" + gpLabel(nx.L) + ")"};
+  }
+  return _vBandA12();
+};
+const _profileA12 = profile;
+profile = function(){
+  const st = gpSt(); const nx = a12Next();
+  const ok = GP_TRACKS.map(T=>{ const d = T.lessons.filter(L=>st.done[L.key]).map(L=>"L"+L.n); return d.length ? T.lvl + ": " + d.join(", ") : ""; }).filter(Boolean);
+  return _profileA12() + `\nGRAMMATIK-PFAD (Schritte plus Neu A1.2 → A2.1 im VHS → A2.2 → B1.1 → B1.2): ${ok.length ? "sicher: " + ok.join("; ") : "noch am Anfang"}${nx ? "; gerade: " + gpShort(nx.L) : ""}. Setze nur Grammatik voraus, die als sicher markiert ist oder im VHS-Kurs schon dran war; sonst kurz wiederholen.`;
+};
+function renderA12Card(){
+  const st = gpSt(); const nx = a12Next();
+  const rows = GP_TRACKS.map(T=>{
+    const ls = T.id === "a12" ? a12Order().map(n=>LEK12.find(L=>L.n===n)) : T.lessons;
+    const nDone = T.lessons.filter(L=>st.done[L.key]).length; const open = gpOpen(T.id);
+    const chips = ls.map(L=>{ const d = st.done[L.key]; const cur = nx && nx.L.key === L.key; return `<span class="chip ${d?"good":""}" style="${cur?"background:var(--accent);color:var(--accent-ink)":""}${!open && !d?";opacity:.55":""}" title="${esc(L.t)}">${d ? "✓" : cur ? "▶" : "○"} L${L.n}</span>`; }).join(" ");
+    return `<div style="margin-top:8px"><div class="small"><b>${T.lvl}</b> <span class="muted">· ${esc(T.book)} · ${nDone}/7${!open && nDone < 7 ? " · 🔒 " + gpWhyLocked(T.id) : ""}</span></div><div class="row" style="margin-top:4px">${chips}</div></div>`;
+  });
+  rows.splice(1, 0, `<div style="margin-top:8px"><div class="small"><b>A2.1</b> <span class="muted">· Schritte plus Neu 3 · VHS kursunda ve günlük planda${vhsLek() ? " · şu an Lektion " + vhsLek() : ""}</span></div></div>`);
+  return `<section class="card"><div class="kicker">Gramer yolu · Schritte plus Neu</div>
+    <p class="small" style="margin:4px 0">A1.2 temeli kurs dersleriyle paralel gelir; A2.2, B1.1 ve B1.2 sırası gelince açılır. Her ders önce kısa kontrolle başlar: biliyorsan atlarız. Takıldığın konular ayrıca "Takviye" olarak farklı anlatımla tekrar gelir ve 3 ve 14 gün sonra yeniden kontrol edilir.</p>
+    ${rows.join("")}
+    <p class="small muted" style="margin-top:8px">${nx ? `Sıradaki: <b>${esc(gpShort(nx.L))}</b> → ${esc(nx.part.t)}${nx.L.track === "a12" && a12For(nx.L.n).length ? ` <span class="muted">(A2.1 Lektion ${a12For(nx.L.n).join(", ")} için temel)</span>` : ""}` : GP_TRACKS.every(T=>gpTrackDone(T.id)) ? "Gramer yolu bitti 🎉 Sırada B1 sınav provaları." : "Sıradaki seviye kilitli; o zamana kadar günlük plan ve VHS dersleri devam ediyor."}</p>
+  </section>`;
+}
 
 /* ================= events ================= */
 const ACT = {
