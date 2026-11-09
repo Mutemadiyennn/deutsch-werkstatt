@@ -34,7 +34,20 @@ jobs:
       - name: Initialize Capacitor and Add iOS
         run: |
           npx cap init "Deutsch Werkstatt" "com.mutemadiyenn.deutschwerkstatt" --web-dir=www
-          npx cap add ios
+          
+          # CocoaPods otomatik kurulumunu atla (hata veriyor)
+          CAPACITOR_SKIP_POD_INSTALL=1 npx cap add ios
+          
+          # iOS Sürümünü zorla 15.0 yap (Podfile ve Xcode ayarları)
+          sed -i '' "s/platform :ios, '13.0'/platform :ios, '15.0'/" ios/App/Podfile || true
+          sed -i '' "s/platform :ios, '12.0'/platform :ios, '15.0'/" ios/App/Podfile || true
+          sed -i '' "s/platform :ios, '11.0'/platform :ios, '15.0'/" ios/App/Podfile || true
+          
+          sed -i '' "s/IPHONEOS_DEPLOYMENT_TARGET = 13.0;/IPHONEOS_DEPLOYMENT_TARGET = 15.0;/g" ios/App/App.xcodeproj/project.pbxproj
+          sed -i '' "s/IPHONEOS_DEPLOYMENT_TARGET = 12.0;/IPHONEOS_DEPLOYMENT_TARGET = 15.0;/g" ios/App/App.xcodeproj/project.pbxproj
+          sed -i '' "s/IPHONEOS_DEPLOYMENT_TARGET = 11.0;/IPHONEOS_DEPLOYMENT_TARGET = 15.0;/g" ios/App/App.xcodeproj/project.pbxproj
+          
+          # Paketleri yükle
           npx cap sync ios
 
       - name: Add Microphone Permission
