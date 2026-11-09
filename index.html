@@ -756,6 +756,7 @@ function renderPlan(){
     </div>
   </section>
   ${S.brk ? `<section class="card hl"><h2>Moladasın ☕</h2><a class="btn primary block" href="#seans">Molaya dön</a></section>` : ""}
+  ${backupDue() ? `<section class="card"><div class="row between" style="flex-wrap:nowrap;gap:10px"><p class="small" style="margin:0">📋 <b>Haftalık yedek zamanı.</b> Kopyala, Notlar'a yapıştır. 10 saniye sürer, ilerlemeni korur.</p><button class="btn" data-act="backupCopy">Kopyala</button></div></section>` : ""}
   ${S.sess && !S.brk ? `<section class="card hl"><div class="kicker">Seans sürüyor · ${CTXS[S.sess.ctx].icon} ${esc(CTXS[S.sess.ctx].label)}</div>
     <div class="grid2"><button class="btn primary" style="min-height:56px" data-act="sessResume">Seansa dön</button><button class="btn" data-act="sessEnd">Seansı bitir</button></div></section>` : ""}
   ${!S.sess && !S.brk && needBreak() ? `<section class="card hl"><h3>${POMO_WORK} dakika çalıştın: mola zamanı</h3><button class="btn primary block" data-act="brkStart">${POMO_BREAK} dk mola başlat</button></section>` : ""}
@@ -4528,6 +4529,11 @@ const IDB = {
   async set(k, v){ const db = await this.open(); return new Promise((res, rej)=>{ const t = db.transaction("kv", "readwrite"); t.objectStore("kv").put(v, k); t.oncomplete = () => res(); t.onerror = () => rej(t.error); }); }
 };
 const stripPriv = o => { const c = {}; for(const k in o) if(!k.startsWith("_")) c[k] = o[k]; return c; };
+function backupDue(){
+  if(!STANDALONE) return false;
+  if(!S.state.backupAt){ S.state.backupAt = Date.now(); try{ Store.saveState(); }catch(e){} return false; }
+  return Date.now() - S.state.backupAt > 7*864e5;
+}
 function dataSnapshot(){ return {v:1, words:S.words.map(stripPriv), mistakes:S.mistakes, writings:S.writings, state:S.state}; }
 let _idbT = null;
 const _saveLocal = saveLocal;
@@ -4956,7 +4962,7 @@ const ACT = {
   pixTest(){ pixTest(); },
   micTest2(){ micTest2(); },
   importAll(){ const v = ($("#impAll")||{}).value || ""; try { importData(JSON.parse(v)); S.setup.imp = {ok:true, msg:`✓ ${S.words.length} kelime, ${S.mistakes.length} hata ve bütün ilerlemen taşındı.`}; } catch(e){ S.setup.imp = {ok:false, msg:"Metin okunamadı. Eski uygulamada 'Verilerimi yeni uygulamaya taşı' düğmesine basıp tamamını yapıştır."}; } render(); },
-  async backupCopy(){ const ok = await copyText(JSON.stringify(dataSnapshot())); toast(ok ? "📋 Yedek kopyalandı. Notlar'a ya da kendine e-postayla gönder." : "Kopyalanamadı.", 3000); },
+  async backupCopy(){ const ok = await copyText(JSON.stringify(dataSnapshot())); if(ok){ S.state.backupAt = Date.now(); Store.saveState(); render(); } toast(ok ? "📋 Yedek kopyalandı. Notlar'a ya da kendine e-postayla gönder." : "Kopyalanamadı.", 3000); },
   setupDone(){ S.state.setupDone = true; Store.saveState(); go("plan"); render(); },
   realStart(){ startReal(); },
   realDone(){ realDone(); },
