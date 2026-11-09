@@ -4999,7 +4999,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09m";
+const APP_VER = "2026-11-09n";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -6434,7 +6434,7 @@ function updBanner(){
   document.body.appendChild(el);
 }
 document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState === "visible") updCheck(); });
-setInterval(updCheck, 10*60000); setTimeout(updCheck, 5000);
+setInterval(updCheck, 2*60000); setTimeout(updCheck, 4000); window.addEventListener("hashchange", ()=>setTimeout(updCheck, 500)); window.addEventListener("focus", ()=>updCheck());
 const _prefetchToday0 = prefetchToday;
 prefetchToday = async function(){
   await _prefetchToday0();
