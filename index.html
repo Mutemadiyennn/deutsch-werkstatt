@@ -5166,7 +5166,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09y";
+const APP_VER = "2026-11-09z";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -8000,6 +8000,20 @@ Object.assign(ACT, {
   syRetry(){ SY.err = ""; syInit().then(()=>render()); render(); }
 });
 
+
+/* uygulama kabuğunun yerel yetenekleri: klavyedeki ^ v ✓ çubuğunu gizle, doğru/yanlışta titreşim */
+function capPlug(n){ try { return window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins[n] || null; } catch(e){ return null; } }
+function nativeKb(){ const K = capPlug("Keyboard"); if(K && K.setAccessoryBarVisible){ try { K.setAccessoryBarVisible({isVisible:false}).catch(()=>{}); } catch(e){} } }
+if(NATIVE){ nativeKb(); setTimeout(nativeKb, 1500); document.addEventListener("focusin", e => { if(/INPUT|TEXTAREA/.test((e.target||{}).tagName||"")) nativeKb(); }); }
+function hap(kind){
+  const H = capPlug("Haptics"); if(!H || S.state.hapOff) return;
+  try{
+    if(kind === "ok") H.impact({style:"LIGHT"}); else if(kind === "combo") H.impact({style:"MEDIUM"});
+    else if(kind === "no") H.notification({type:"WARNING"}); else if(kind === "up") H.notification({type:"SUCCESS"});
+  }catch(e){}
+}
+const _sfxN = sfx;
+sfx = function(kind){ hap(kind); return _sfxN.apply(this, arguments); };
 </script>
 </body>
 </html>
