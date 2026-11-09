@@ -5705,7 +5705,7 @@ async function syPush(force){
         batch.set(syRef(k), {z, h:h[k], ts:now}); n++;
       }
       const use = (R && R.use) || {}; use[syDev()] = neuUsage();
-      batch.set(metaRef, {ts:now, dev:syDev(), h, use});
+      batch.set(metaRef, {ts:now, dev:syDev(), h, use, wc:S.words.length, xp:(xpState().total || 0)});
       await batch.commit();
       sySetMeta({ts:now, h}); SY.dirty = false; SY.err = ""; SY.last = now; syStoreUse(use);
     }
@@ -5721,11 +5721,14 @@ async function syPull(){
   try{
     const {fs} = SY.mods; const m = syMeta();
     const rm = await fs.getDoc(syRef("_meta"));
-    if(!rm.exists()){ pushAfter = "first"; }
+    const hasLocal = S.words.length > 0 || !!S.state.setupDone;
+    if(!rm.exists()){ pushAfter = hasLocal ? "first" : null; }
     else {
       const R = rm.data(); syStoreUse(R.use);
       if(R.ts <= (m.ts || 0)){ if(SY.dirty) pushAfter = "normal"; }
       else if(m.ts && SY.dirty && SY.dirtyAt > R.ts){ pushAfter = "force"; }
+      /* bu cihazın ilk eşitlemesi ve iki tarafta da veri var: daha çok ilerleme olan kazanır (diğeri yedeklenir) */
+      else if(!m.ts && hasLocal && ((R.wc || 0) < S.words.length || ((R.wc || 0) === S.words.length && (R.xp || 0) < (xpState().total || 0)))){ try { await IDB.set("sync-backup-remote-skipped", {t:Date.now(), wc:R.wc, xp:R.xp}); } catch(e){} pushAfter = "force"; }
       else {
         const local = syParts(); const known = m.h || {}; const parts = {};
         const all = !m.ts || SY.dirty;
