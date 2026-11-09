@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="Deutsch">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
 <style>
 :root{
   /* Layout: one mobile column, sticky header, fixed 6-tab bar. Article colours der/die/das carry meaning everywhere. */
@@ -270,6 +270,106 @@ details summary{cursor:pointer;font-weight:700}
 .tog.on{border-color:var(--accent);background:var(--soft);color:var(--accent)}
 .seg{border-radius:12px;box-shadow:var(--shadow)}
 .seg button{font-size:.85rem;white-space:nowrap}
+
+/* ================= Tema v2: Bavyera mavisi + Brezel turuncusu, canlı ve sıcak ================= */
+:root{
+  --paper:#F1F6FB; --card:#FFFFFF; --ink:#13233A; --muted:#5E6F84; --line:#DCE7F2;
+  --accent:#1784D6; --accent2:#3BA3F0; --accent-edge:#0E5E9E; --accent-ink:#FFFFFF; --soft:#E7F2FC;
+  --pop:#FFC93C; --pop-ink:#5A3B00; --fire:#FF8A1F;
+  --der:#2F6BFF; --die:#F0435E; --das:#12A874;
+  --good:#0E9466; --good-bg:#E2F7EE; --bad:#D63650; --bad-bg:#FDE8EC; --warn:#A35C00; --warn-bg:#FFF2D6;
+  --shadow:0 1px 2px rgba(19,52,92,.06),0 8px 24px rgba(19,52,92,.08); --shadow-lg:0 2px 6px rgba(19,52,92,.10),0 18px 40px rgba(19,52,92,.16);
+  --radius:22px;
+}
+:root[data-theme="dark"]{
+  --paper:#0D1A2A; --card:#152539; --ink:#EAF2FB; --muted:#9BB0C6; --line:#24384F;
+  --accent:#3BA3F0; --accent2:#6CC0FF; --accent-edge:#1C6CAE; --accent-ink:#06213A; --soft:#1B3049;
+  --pop:#FFD15C; --pop-ink:#4A3000; --fire:#FF9C42;
+  --der:#7FA6FF; --die:#FF7C90; --das:#4FD3A0;
+  --good:#4FD3A0; --good-bg:#123326; --bad:#FF7C90; --bad-bg:#3A1C25; --warn:#FFC36B; --warn-bg:#3A2A10;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 24px rgba(0,0,0,.30); --shadow-lg:0 2px 6px rgba(0,0,0,.45),0 18px 40px rgba(0,0,0,.45);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0D1A2A; --card:#152539; --ink:#EAF2FB; --muted:#9BB0C6; --line:#24384F;
+  --accent:#3BA3F0; --accent2:#6CC0FF; --accent-edge:#1C6CAE; --accent-ink:#06213A; --soft:#1B3049;
+  --pop:#FFD15C; --pop-ink:#4A3000; --fire:#FF9C42;
+  --der:#7FA6FF; --die:#FF7C90; --das:#4FD3A0;
+  --good:#4FD3A0; --good-bg:#123326; --bad:#FF7C90; --bad-bg:#3A1C25; --warn:#FFC36B; --warn-bg:#3A2A10;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 24px rgba(0,0,0,.30); --shadow-lg:0 2px 6px rgba(0,0,0,.45),0 18px 40px rgba(0,0,0,.45);
+}}
+body{background:var(--paper)}
+h1,h2,h3,.big,.vword,.timer{font-weight:800;letter-spacing:-.01em}
+h2{font-size:1.45rem}
+.top{background:color-mix(in srgb, var(--paper) 88%, transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:0}
+.top h1{font-weight:800}
+.kicker{text-transform:none;letter-spacing:0;font-size:.86rem;font-weight:700;color:var(--accent)}
+.card{border:0;border-radius:var(--radius);box-shadow:var(--shadow)}
+.card.hl{box-shadow:var(--shadow),0 0 0 2px var(--accent) inset}
+.li,.step,.ctxbtn,.tile,.quest{border-radius:16px}
+/* düğmeler: dokununca basılan, dolgun */
+.btn{border:2px solid var(--line);border-radius:16px;background:var(--card);box-shadow:0 3px 0 var(--line);font-weight:800;transition:transform .08s ease, box-shadow .08s ease}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
+.btn.primary{background:var(--accent);background-image:none;border-color:var(--accent);color:var(--accent-ink);box-shadow:0 4px 0 var(--accent-edge)}
+.btn.primary:active{box-shadow:0 1px 0 var(--accent-edge)}
+.btn.ghost{box-shadow:none;border-color:transparent;background:transparent}
+.btn.ghost:active{transform:none}
+.btn.small{border-radius:12px}
+.tile{border:2px solid var(--line);box-shadow:0 3px 0 var(--line)}
+.tile:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
+.ctxbtn{border:2px solid var(--line);box-shadow:0 3px 0 var(--line)}
+.ctxbtn.main{border-color:var(--accent);background:var(--soft);box-shadow:0 4px 0 var(--accent)}
+/* çipler */
+.chip{background:var(--soft);font-weight:800}
+.chip.c-fire{background:color-mix(in srgb, var(--fire) 18%, var(--card));color:var(--fire)}
+.chip.c-xp{background:color-mix(in srgb, var(--pop) 30%, var(--card));color:var(--pop-ink)}
+.chip.c-min{background:var(--soft);color:var(--accent)}
+.chip.c-xp.good,.chip.c-min.good{background:var(--good-bg);color:var(--good)}
+:root[data-theme="dark"] .chip.c-xp{color:var(--pop)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.c-xp{color:var(--pop)}}
+/* ilerleme */
+.progress{height:12px;background:var(--soft);border-radius:99px}
+.progress i{background:var(--accent);background-image:none;border-radius:99px}
+.vprog{height:30px;background:var(--soft);box-shadow:none}
+.vprog i{background:var(--good);background-image:none}
+.vprog span{line-height:30px}
+.seg{border:2px solid var(--line);border-radius:14px;box-shadow:none}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.tog{border-width:2px}
+.tog.on{background:var(--pop);border-color:var(--pop);color:var(--pop-ink)}
+/* geri bildirim */
+.fb{border-left:0;border-radius:16px;padding:12px 14px}
+.fb.ok b:first-child{color:var(--good)}
+.note{border-radius:14px}
+/* alt menü */
+.nav{background:color-mix(in srgb, var(--card) 92%, transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 -6px 24px rgba(19,52,92,.08);border-top:0;padding-top:4px}
+.nav a{border-radius:14px;margin:2px 10px}
+.nav a[aria-current="page"]{color:var(--accent);background:var(--soft)}
+/* yol, rozetler */
+.pnode .pc{background:var(--soft);box-shadow:inset 0 -4px 0 rgba(0,0,0,.08)}
+.pnode.done .pc{background:var(--pop);color:var(--pop-ink)}
+.ach{background:var(--soft);border-radius:16px}
+.ach.on{background:color-mix(in srgb, var(--pop) 28%, var(--card))}
+/* Bugün kartı: Bavyera mavisi, beyaz eşkenar dörtgenler */
+.card.hero{color:#fff;background-color:#1784D6;background-image:
+  linear-gradient(135deg, rgba(23,132,214,.94) 0%, rgba(14,94,158,.96) 100%),
+  repeating-linear-gradient(60deg, rgba(255,255,255,.16) 0 2px, transparent 2px 34px),
+  repeating-linear-gradient(-60deg, rgba(255,255,255,.16) 0 2px, transparent 2px 34px);
+  box-shadow:var(--shadow-lg)}
+.card.hero h2{color:#fff}
+.card.hero .muted,.card.hero .small{color:rgba(255,255,255,.88)}
+.card.hero .chip{background:rgba(255,255,255,.18);color:#fff}
+.card.hero .chip.flame{background:var(--fire);color:#fff}
+.card.hero .progress{background:rgba(255,255,255,.25)}
+.card.hero .progress i{background:var(--pop)!important}
+.card.hero svg circle:first-child{stroke:rgba(255,255,255,.25)}
+.card.hero svg circle:nth-child(2){stroke:var(--pop)}
+.card.hero svg text{fill:#fff}
+.tile{position:relative;padding-top:58px}
+.tile .ti{position:absolute;top:12px;left:12px;width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:1.25rem;background:color-mix(in srgb, var(--c) 18%, var(--card));box-shadow:inset 0 -3px 0 color-mix(in srgb, var(--c) 30%, transparent)}
+.tgrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px}
+.tgrid .tile{padding:58px 12px 12px;min-height:150px}
+.tgrid .tile b{font-size:.98rem;line-height:1.2}
+.tgrid .tile span{font-size:.8rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 #micPill{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));z-index:9999;padding:10px 18px;border-radius:999px;font-weight:700;font-size:1.05rem;box-shadow:0 4px 16px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}#micPill .x{margin-left:12px;font-weight:600;font-size:.9rem;opacity:.85}#micPill.busy{background:#dde7ef;color:#23415a}#micPill .lv{display:block;height:4px;margin-top:6px;border-radius:2px;background:rgba(255,255,255,.9);transform:scaleX(0);transform-origin:left;transition:transform .08s}#micPill.wait{background:#f4e3b5;color:#5a4410}#micPill.go{background:#2f7d4f;color:#fff}
 body.kb .nav{display:none}
 #updBar{position:fixed;left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:9998;background:#23415a;color:#fff;padding:12px 14px;border-radius:14px;font-weight:700;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.2);cursor:pointer}
@@ -718,7 +818,7 @@ function streak(){
 function daysToExam(){ const t = new Date(S.state.examDate+"T09:00:00"); return isNaN(t) ? null : Math.ceil((t - new Date())/86400000); }
 function renderTop(){
   const st = streak(), dx = daysToExam(), cur = current();
-  $("#topchips").innerHTML = `<span class="chip ${st?"flame":""}" title="Seri">🔥 ${st}</span><span class="chip ${xpToday()>=xpGoal()?"good":""}" title="Bugünkü XP">⭐ ${xpToday()}/${xpGoal()}</span><span class="chip ${minsToday()>=DAILY_GOAL?"good":""}">${minsToday()}/${DAILY_GOAL} dk</span><span class="chip">Gün ${cur.d.n}</span>` + (dx!==null ? `<span class="chip">B1: ${dx} gün</span>` : "");
+  $("#topchips").innerHTML = `<span class="chip c-fire ${st?"flame":""}" title="Seri">🔥 ${st}</span><span class="chip c-xp ${xpToday()>=xpGoal()?"good":""}" title="Bugünkü XP">⭐ ${xpToday()}/${xpGoal()}</span><span class="chip c-min ${minsToday()>=DAILY_GOAL?"good":""}" title="Bugünkü dakika">⏱ ${minsToday()}/${DAILY_GOAL}</span><span class="chip">Gün ${cur.d.n}</span>` + (dx!==null ? `<span class="chip">B1: ${dx} gün</span>` : "");
 }
 
 /* ================= view: Plan ================= */
@@ -779,7 +879,7 @@ function renderPlan(){
   const g = guessCtx(); const order = [g, ...Object.keys(CTXS).filter(k=>k!==g)];
   const R = 34, Cf = 2*Math.PI*R;
   return `
-  <section class="card">
+  <section class="card hero">
     <div class="row" style="flex-wrap:nowrap;gap:14px">
       <svg width="86" height="86" viewBox="0 0 86 86" aria-hidden="true" style="flex:none"><circle cx="43" cy="43" r="${R}" fill="none" stroke="var(--line)" stroke-width="9"/><circle cx="43" cy="43" r="${R}" fill="none" stroke="${pct>=1?"var(--good)":"var(--accent)"}" stroke-width="9" stroke-linecap="round" stroke-dasharray="${Cf}" stroke-dashoffset="${Cf*(1-pct)}" transform="rotate(-90 43 43)"/><text x="43" y="47" text-anchor="middle" font-size="20" font-weight="800" fill="currentColor" id="ringNum">${m}</text></svg>
       <div style="flex:1"><div class="row between" style="flex-wrap:nowrap"><h2 style="margin:0">${greet}${name}!</h2>${brezi(streak()>0||xpToday()>0?"happy":"sad",46)}</div>
@@ -2215,27 +2315,27 @@ function remedResult(e, okN){
 function renderMore(){
   return `
   <section class="card"><h2>Daha fazla</h2><p class="small muted">Günlük akış "Bugün" ekranında. Burası canın isterse serbest çalışmak için.</p><p class="small muted">Sürüm: ${typeof APP_VER !== "undefined" ? APP_VER : "?"}</p></section>
-  <section class="grid2">
-    <a class="tile" href="#lernen" style="text-decoration:none"><b>Öğren</b><span>Herhangi bir konunun dersi, okuma parçası, hatalarım.</span></a>
-    <a class="tile" href="#schreiben" style="text-decoration:none"><b>Yaz</b><span>Kendi seçtiğin bir yazma görevi.</span></a>
-    <a class="tile" href="#sprechen" style="text-decoration:none"><b>Konuş ve dinle</b><span>Karakterlerle sohbet, konuşma kartı, Hör-Lektion.</span></a>
-    <a class="tile" href="#spielen" style="text-decoration:none"><b>Oyna</b><span>Memory, 60 saniye Blitz, cümle kurma, hata avı.</span></a>
-    <button class="tile" data-act="goRehber"><b>Koçun ve yol haritan</b><span>A1'den ileri seviyeye kişisel plan; istediğin soruyu sor.</span></button>
-    <button class="tile" data-act="denkStart"><b>Düşün ve kur</b><span>Ezber yok: mantıkla cümle kur (Language Transfer yöntemi). Arabada eller serbest.</span></button>
-    <button class="tile" data-act="storyStart"><b>Hikâye</b><span>Her gün yeni bölüm; bugünün kelimeleri bir olayın içinde. Okuma + dinleme.</span></button>
-    <button class="tile" data-act="goScenList"><b>Gerçek hayat senaryoları</b><span>${SCEN.length} durum: fırın, doktor, Kita, komşu, iş… Aralıklı tekrar.</span></button>
-    <button class="tile" data-act="vocabStart"><b>Kelime kartları</b><span>Görsel, cümle içinde, aralıklı tekrar. ${vStats().learned} öğrenildi · ${vStats().due} bekliyor.</span></button>
-    <button class="tile" data-act="goVoice"><b>Sesli konuşma</b><span>Karakter konuşur, sen sesle cevap verirsin. 3 zorluk seviyesi.</span></button>
-    <button class="tile" data-act="mediaStart"><b>Video / dizi</b><span>Önce kelimeler, sonra izle, sorular, shadowing ve sesli özet.</span></button>
-    <button class="tile" data-act="fluStart"><b>Akıcılık 3-2-1</b><span>Aynı hikâye, giderek kısalan süre. Dakikadaki kelime sayın ölçülür.</span></button>
-    <button class="tile" data-act="dictStart"><b>Dikte</b><span>Dinle ve yaz; hız giderek artar.</span></button>
-    <button class="tile" data-act="reducedStart"><b>Yutulan sesler ve Bavyera</b><span>hab's, gibt's, ned, passt scho…</span></button>
-    <button class="tile" data-act="repairStart"><b>Donma ilacı</b><span>Anlamadığında ne dersin? Kalıpları öğren ve dene.</span></button>
-    <button class="tile" data-act="odevStart"><b>VHS ödev yardımcısı</b><span>Açıklar ve ipucu verir; cevabı vermez.</span></button>
-    <button class="tile" data-act="checkStart"><b>Aylık ölçüm</b><span>Dinleme ve konuşmada gerçek ilerlemen.</span></button>
-    <button class="tile" data-act="goShadow"><b>Shadowing</b><span>Dinle, aynı ritimle söyle; mikrofon telaffuzunu kontrol eder.</span></button>
-    <button class="tile" data-act="goAudio"><b>Sesli tekrar</b><span>Eller serbest: Türkçesini duy, Almancasını söyle.</span></button>
-    <a class="tile" href="#kartei" style="text-decoration:none"><b>Kartlarım</b><span>Kelimeler, hata defteri, VHS notlarını yükle.</span></a>
+  <section class="grid2 tgrid">
+    <a class="tile" href="#lernen" style="text-decoration:none"><i class="ti" style="--c:var(--accent)" aria-hidden="true">📘</i><b>Öğren</b><span>Herhangi bir konunun dersi, okuma parçası, hatalarım.</span></a>
+    <a class="tile" href="#schreiben" style="text-decoration:none"><i class="ti" style="--c:var(--fire)" aria-hidden="true">✍️</i><b>Yaz</b><span>Kendi seçtiğin bir yazma görevi.</span></a>
+    <a class="tile" href="#sprechen" style="text-decoration:none"><i class="ti" style="--c:var(--die)" aria-hidden="true">💬</i><b>Konuş ve dinle</b><span>Karakterlerle sohbet, konuşma kartı, Hör-Lektion.</span></a>
+    <a class="tile" href="#spielen" style="text-decoration:none"><i class="ti" style="--c:var(--pop)" aria-hidden="true">🎮</i><b>Oyna</b><span>Memory, 60 saniye Blitz, cümle kurma, hata avı.</span></a>
+    <button class="tile" data-act="goRehber"><i class="ti" style="--c:var(--accent)" aria-hidden="true">🧭</i><b>Koçun ve yol haritan</b><span>A1'den ileri seviyeye kişisel plan; istediğin soruyu sor.</span></button>
+    <button class="tile" data-act="denkStart"><i class="ti" style="--c:var(--das)" aria-hidden="true">🧠</i><b>Düşün ve kur</b><span>Ezber yok: mantıkla cümle kur (Language Transfer yöntemi). Arabada eller serbest.</span></button>
+    <button class="tile" data-act="storyStart"><i class="ti" style="--c:var(--fire)" aria-hidden="true">📖</i><b>Hikâye</b><span>Her gün yeni bölüm; bugünün kelimeleri bir olayın içinde. Okuma + dinleme.</span></button>
+    <button class="tile" data-act="goScenList"><i class="ti" style="--c:var(--die)" aria-hidden="true">🥨</i><b>Gerçek hayat senaryoları</b><span>${SCEN.length} durum: fırın, doktor, Kita, komşu, iş… Aralıklı tekrar.</span></button>
+    <button class="tile" data-act="vocabStart"><i class="ti" style="--c:var(--good)" aria-hidden="true">🃏</i><b>Kelime kartları</b><span>Görsel, cümle içinde, aralıklı tekrar. ${vStats().learned} öğrenildi · ${vStats().due} bekliyor.</span></button>
+    <button class="tile" data-act="goVoice"><i class="ti" style="--c:var(--die)" aria-hidden="true">🎙️</i><b>Sesli konuşma</b><span>Karakter konuşur, sen sesle cevap verirsin. 3 zorluk seviyesi.</span></button>
+    <button class="tile" data-act="mediaStart"><i class="ti" style="--c:var(--pop)" aria-hidden="true">🎬</i><b>Video / dizi</b><span>Önce kelimeler, sonra izle, sorular, shadowing ve sesli özet.</span></button>
+    <button class="tile" data-act="fluStart"><i class="ti" style="--c:var(--fire)" aria-hidden="true">⚡</i><b>Akıcılık 3-2-1</b><span>Aynı hikâye, giderek kısalan süre. Dakikadaki kelime sayın ölçülür.</span></button>
+    <button class="tile" data-act="dictStart"><i class="ti" style="--c:var(--das)" aria-hidden="true">🎧</i><b>Dikte</b><span>Dinle ve yaz; hız giderek artar.</span></button>
+    <button class="tile" data-act="reducedStart"><i class="ti" style="--c:var(--accent)" aria-hidden="true">🏔️</i><b>Yutulan sesler ve Bavyera</b><span>hab's, gibt's, ned, passt scho…</span></button>
+    <button class="tile" data-act="repairStart"><i class="ti" style="--c:var(--die)" aria-hidden="true">🛟</i><b>Donma ilacı</b><span>Anlamadığında ne dersin? Kalıpları öğren ve dene.</span></button>
+    <button class="tile" data-act="odevStart"><i class="ti" style="--c:var(--accent)" aria-hidden="true">🏫</i><b>VHS ödev yardımcısı</b><span>Açıklar ve ipucu verir; cevabı vermez.</span></button>
+    <button class="tile" data-act="checkStart"><i class="ti" style="--c:var(--good)" aria-hidden="true">📈</i><b>Aylık ölçüm</b><span>Dinleme ve konuşmada gerçek ilerlemen.</span></button>
+    <button class="tile" data-act="goShadow"><i class="ti" style="--c:var(--das)" aria-hidden="true">🗣️</i><b>Shadowing</b><span>Dinle, aynı ritimle söyle; mikrofon telaffuzunu kontrol eder.</span></button>
+    <button class="tile" data-act="goAudio"><i class="ti" style="--c:var(--pop)" aria-hidden="true">🚗</i><b>Sesli tekrar</b><span>Eller serbest: Türkçesini duy, Almancasını söyle.</span></button>
+    <a class="tile" href="#kartei" style="text-decoration:none"><i class="ti" style="--c:var(--accent)" aria-hidden="true">🗂️</i><b>Kartlarım</b><span>Kelimeler, hata defteri, VHS notlarını yükle.</span></a>
   </section>`;
 }
 /* ================= view: Kartei ================= */
@@ -4866,7 +4966,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09j";
+const APP_VER = "2026-11-09k";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
