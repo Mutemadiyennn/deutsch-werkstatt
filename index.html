@@ -245,7 +245,8 @@ details summary{cursor:pointer;font-weight:700}
 .wpop{background:var(--card);width:100%;max-width:560px;border-radius:20px 20px 0 0;padding:16px 16px 26px;box-shadow:0 -10px 30px rgba(0,0,0,.2);display:flex;flex-direction:column;gap:10px;animation:slideup .22s ease}
 @keyframes slideup{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
 .de,.vsent,.story,.chat .bub{cursor:pointer}
-#micPill{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));z-index:9999;padding:10px 18px;border-radius:999px;font-weight:700;font-size:1.05rem;box-shadow:0 4px 16px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}#micPill .x{margin-left:12px;font-weight:600;font-size:.9rem;opacity:.85}#micPill.wait{background:#f4e3b5;color:#5a4410}#micPill.go{background:#2f7d4f;color:#fff}
+#micPill{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));z-index:9999;padding:10px 18px;border-radius:999px;font-weight:700;font-size:1.05rem;box-shadow:0 4px 16px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}#micPill .x{margin-left:12px;font-weight:600;font-size:.9rem;opacity:.85}#micPill.busy{background:#dde7ef;color:#23415a}#micPill .lv{display:block;height:4px;margin-top:6px;border-radius:2px;background:rgba(255,255,255,.9);transform:scaleX(0);transform-origin:left;transition:transform .08s}#micPill.wait{background:#f4e3b5;color:#5a4410}#micPill.go{background:#2f7d4f;color:#fff}
+body.kb .nav{display:none}
 </style>
 </head>
 <body>
@@ -2539,7 +2540,7 @@ function sessPick(){
   const s = S.sess, C = CTXS[s.ctx]; const remain = C.len ? C.len - s.sec/60 : 99;
   const prev = s.hist[s.hist.length-1];
   if(C.audio){
-    const ai = aiReady(), voiceOK = !C.silent && SRC && S.state.srOK && ai && stage().n >= 2;
+    const ai = aiReady(), voiceOK = !C.silent && useSR() && ai && stage().n >= 2;
     const vocDue = vStats().due + newQuota() > 0;
     const seq = C.silent ? ["audio", ...(vocDue ? ["vocab"] : []), ...(ai ? ["listen"] : [])] : ["audio", ...(ai ? ["denk","listen"] : []), ...(voiceOK ? ["audio","rp"] : [])];
     const k = s.hist.filter(x=>seq.includes(x)).length % seq.length;
@@ -2741,7 +2742,7 @@ async function audioPlay(){
       A.phase = "you"; upd();
       const wait = (it.kind === "satz" ? Math.max(4500, it.de.length*110) : 3500) * (silent ? 0.8 : 1);
       let heardOK = null;
-      if(!silent && SRC && S.state.srOK && it.wid){
+      if(!silent && useSR() && it.wid){
         try{ const alts = await Promise.race([recognize(), sleep(wait*slow + 2500).then(()=>{ try { REC_CUR && REC_CUR.stop(); } catch(e){} return []; })]);
           if(!alive()) return; if(alts && alts.length){ const best = Math.max(...alts.map(x=>scoreHeard(it.de, x).score)); heardOK = best >= 0.8; } }
         catch(e){ if(!alive()) return; await W(wait); }
@@ -4845,7 +4846,8 @@ function renderKurulum(){
     ${K.pex ? `<div class="fb ${K.pex.ok?"ok":"no"}">${K.pex.ok && K.pex.src ? `<img src="${esc(K.pex.src)}" alt="" style="width:100%;border-radius:10px;margin-bottom:6px">` : ""}${esc(K.pex.msg)}</div>` : ""}</section>
   ${neuSetupHtml()}
   <section class="card"><h3>3 · Mikrofon</h3>
-    <p class="small">iPhone'da Safari'de ya da ana ekrana eklenmiş tam ekran sürümde çalışır. Ayarlar → Siri'nin açık olması ve mikrofon izni gerekir.</p>
+    <p class="small">Safari'de de, ana ekrandaki tam ekran sürümde de çalışır. Mikrofon izni gerekir; „Telefonun kendi tanıması“ seçiliyse ayrıca Siri açık olmalı.</p>
+    ${typeof mic2SetupHtml === "function" ? mic2SetupHtml() : ""}
     <button class="btn block" data-act="micTest2">🎤 Mikrofonu dene: „Guten Morgen“ de</button>
     ${S.micTest ? `<div class="fb ${S.micTest.ok?"ok":"no"}">${esc(S.micTest.msg)}</div>` : ""}</section>
   <section class="card"><h3>4 · Verilerini taşı</h3>
@@ -5983,6 +5985,149 @@ function gateLockHtml(){
     <button class="btn small" data-act="gateCopy">📋 Kilit kodunu kopyala</button></details>`;
 }
 
+/* ================= Mikrofon 2: sesi kendimiz kaydediyoruz, yapay zekâ yazıya döküyor ================= */
+/* iPhone'un konuşma tanıması (Siri dikte) web uygulamalarında, özellikle hemen önce ses çaldıysa, sık sık kesiliyor ya da ilk kelimeyi kaçırıyor.
+   Burada mikrofonu doğrudan açıp kaydediyoruz (kayıt mikrofon açıldığı an başlar, ilk kelime kaybolmaz),
+   konuşmanın bittiğini sessizlikten anlıyoruz ve kaydı Gemini'ye kelimesi kelimesine yazdırıyoruz (hataların düzeltilmeden).
+   Gemini'ye ulaşılamazsa ya da günlük ücretsiz kota dolarsa telefonun kendi tanımasına döner. */
+const MIC2 = { day:"", n:0, off:"", denied:false };
+try { Object.assign(MIC2, JSON.parse(localStorage.getItem("dw-mic2") || "{}")); } catch(e){}
+function mic2Save(){ try { localStorage.setItem("dw-mic2", JSON.stringify({day:MIC2.day, n:MIC2.n, off:MIC2.off})); } catch(e){} }
+function mic2Ok(){
+  return STANDALONE && S.state.mic2 !== false && !MIC2.denied && aiReady() && MIC2.off !== dayKey()
+    && !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) && !!(window.AudioContext || window.webkitAudioContext);
+}
+function audioSess(t){ try { if(navigator.audioSession) navigator.audioSession.type = t; } catch(e){} }
+function micLevel(v){ const i = document.querySelector("#micPill .lv"); if(i) i.style.transform = "scaleX(" + Math.min(1, v*14).toFixed(2) + ")"; }
+micPill = function(st){
+  let el = document.getElementById("micPill");
+  if(!st){ if(el) el.remove(); return; }
+  if(!el){ el = document.createElement("div"); el.id = "micPill"; document.body.appendChild(el); }
+  const label = st === "wait" ? "⏳ Mikrofon açılıyor… bekle" : st === "busy" ? "🎧 Anlıyorum…" : "🎤 Şimdi konuş";
+  el.className = st; el.innerHTML = label + '<span class="x">✕ iptal</span>' + (st === "go" ? '<i class="lv"></i>' : "");
+  el.onclick = micCancel;
+};
+/* 16 kHz mono WAV */
+function mic2Wav(chunks, rate){
+  let n = 0; for(const c of chunks) n += c.length;
+  const all = new Float32Array(n); let o = 0; for(const c of chunks){ all.set(c, o); o += c.length; }
+  const R = 16000, ratio = rate / R, len = Math.floor(n / ratio);
+  const v = new DataView(new ArrayBuffer(44 + len*2)); const ws = (p, s) => { for(let i = 0; i < s.length; i++) v.setUint8(p+i, s.charCodeAt(i)); };
+  ws(0,"RIFF"); v.setUint32(4, 36 + len*2, true); ws(8,"WAVE"); ws(12,"fmt "); v.setUint32(16,16,true); v.setUint16(20,1,true); v.setUint16(22,1,true); v.setUint32(24,R,true); v.setUint32(28,R*2,true); v.setUint16(32,2,true); v.setUint16(34,16,true); ws(36,"data"); v.setUint32(40, len*2, true);
+  for(let i = 0; i < len; i++){
+    const a = Math.floor(i*ratio), b = Math.min(n, Math.floor((i+1)*ratio)); let s = 0; for(let k = a; k < b; k++) s += all[k];
+    const x = Math.max(-1, Math.min(1, b > a ? s/(b-a) : all[a] || 0)); v.setInt16(44 + i*2, x < 0 ? x*0x8000 : x*0x7FFF, true);
+  }
+  return new Blob([v], {type:"audio/wav"});
+}
+async function mic2Transcribe(wav, signal){
+  const list = await gemModels(); const m1 = rankModel(list, true), m2 = rankModel(list, false);
+  const prompt = `Transkribiere diese kurze Aufnahme eines Deutschlernenden (Muttersprache Türkisch) wortwörtlich auf Deutsch.
+Schreibe GENAU das, was gesagt wurde: auch falsche Artikel, Endungen, Verbformen und Wortstellung. Korrigiere nichts, ergänze nichts, übersetze nichts.
+Unverständliche Teile lässt du weg. Wenn nichts Verständliches gesagt wurde (Stille, Rauschen, Husten), gib einen leeren Text zurück.
+Antworte NUR mit JSON: {"text":"..."}`;
+  const contents = [{role:"user", parts:[{text:prompt}, {inline_data:{mime_type:"audio/wav", data: await blobToB64(wav)}}]}];
+  const body = m => { const b = {contents, generationConfig:{responseMimeType:"application/json", temperature:0}}; if(/2\.5/.test(m)) b.generationConfig.thinkingConfig = {thinkingBudget: /lite/i.test(m) ? 0 : 128}; return b; };
+  let r;
+  try { r = await gemCall(m1, body(m1), signal); }
+  catch(e){ if(e.code === "rate_limited" && m2 && m2 !== m1) r = await gemCall(m2, body(m2), signal); else throw e; }
+  const d = dayKey(); if(MIC2.day !== d){ MIC2.day = d; MIC2.n = 0; } MIC2.n++; mic2Save();
+  return String((r && r.text) || "").replace(/\s+/g, " ").trim();
+}
+function mic2Listen(onLive){
+  return new Promise((res, rej)=>{
+    const h = { _cancel:false, onend:null };
+    let stream = null, src = null, proc = null, ac = null, chunks = [], rate = 48000, settled = false, ended = false;
+    let t0 = 0, firstFrame = 0, floor = 1, calib = 0, speechMs = 0, speech = false, lastVoice = 0, speechAt = 0, ctl = null;
+    const timers = [];
+    const release = () => {
+      timers.forEach(clearTimeout);
+      try { if(proc){ proc.onaudioprocess = null; proc.disconnect(); } if(src) src.disconnect(); } catch(e){}
+      try { if(stream) stream.getTracks().forEach(t=>t.stop()); } catch(e){}
+      stream = null; audioSess("playback"); setTimeout(()=>audioSess("auto"), 0);
+    };
+    const done = (ok, val) => { if(settled) return; settled = true; release(); micPill(null);
+      if(REC_CUR === h) REC_CUR = null; if(S.sh && S.sh.rec === h) S.sh.rec = null;
+      ok ? res(val) : rej(val); };
+    h.abort = () => { h._cancel = true; if(ctl) try { ctl.abort(); } catch(e){} done(false, {code:"cancel"}); };
+    h.stop = () => finishRec();
+    const finishRec = async () => {
+      if(ended || settled) return; ended = true; release();
+      if(!speech){ done(false, {code:"no-speech"}); return; }
+      /* konuşmadan 0,4 sn öncesinden, bittikten 0,5 sn sonrasına kadar */
+      const per = chunks.length ? chunks[0].length / rate : 0.085;
+      const from = Math.max(0, Math.floor((speechAt - t0) / 1000 / per) - 5), to = Math.min(chunks.length, Math.ceil((lastVoice - t0) / 1000 / per) + 6);
+      const wav = mic2Wav(chunks.slice(from, to), rate); chunks = [];
+      micPill("busy");
+      ctl = new AbortController(); const tm = setTimeout(()=>{ try { ctl.abort(); } catch(e){} }, 12000);
+      try{
+        const txt = await mic2Transcribe(wav, ctl.signal); clearTimeout(tm);
+        if(settled) return;
+        if(txt){ onLive && onLive(txt); if(!S.state.srOK){ S.state.srOK = true; Store.saveState(); } done(true, [txt]); }
+        else done(false, {code:"no-speech"});
+      }catch(e){
+        clearTimeout(tm); if(settled) return;
+        if(e && e.code === "rate_limited"){ MIC2.off = dayKey(); mic2Save(); done(false, {code:"quota"}); }
+        else if(e && e.code === "cancelled") done(false, {code: h._cancel ? "cancel" : "network"});
+        else done(false, {code:"network"});
+      }
+    };
+    REC_CUR = h; if(S.sh) S.sh.rec = h;
+    micPill("wait");
+    (async ()=>{
+      try{
+        audioSess("play-and-record");
+        stream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true, noiseSuppression:true, autoGainControl:true}});
+        if(settled){ release(); return; }
+        ac = ACX = ACX || new (window.AudioContext || window.webkitAudioContext)();
+        if(ac.state === "suspended"){ try { await ac.resume(); } catch(e){} }
+        rate = ac.sampleRate; src = ac.createMediaStreamSource(stream); proc = ac.createScriptProcessor(2048, 1, 1);
+        t0 = performance.now();
+        proc.onaudioprocess = e => {
+          if(ended || settled) return;
+          const d = e.inputBuffer.getChannelData(0); chunks.push(new Float32Array(d));
+          const now = performance.now(), dur = d.length / rate * 1000;
+          if(!firstFrame){ firstFrame = now; micPill("go"); }
+          let s = 0; for(let i = 0; i < d.length; i++) s += d[i]*d[i]; const rms = Math.sqrt(s / d.length);
+          micLevel(rms);
+          if(calib < 6){ calib++; floor = Math.min(floor, rms); }
+          const thr = Math.min(0.06, Math.max(0.012, floor * 3));
+          if(rms > thr){ speechMs += dur; lastVoice = now; if(!speech && speechMs > 140){ speech = true; speechAt = now - speechMs; onLive && onLive("…"); } }
+          else if(!speech) speechMs = Math.max(0, speechMs - dur);
+          if(speech && now - lastVoice > (S.view === "sprechen" ? 1500 : 1100)) finishRec();
+          else if(!speech && now - t0 > 7000) finishRec();
+          else if(now - t0 > 15000) finishRec();
+        };
+        src.connect(proc); proc.connect(ac.destination);
+        /* ses akmıyorsa (ses motoru uyanmadı) telefonun kendi tanımasına geç */
+        timers.push(setTimeout(()=>{ if(!firstFrame && !settled){ settled = true; release(); micPill(null); if(REC_CUR === h) REC_CUR = null; _recognize0(onLive).then(res, rej); } }, 2500));
+      }catch(e){
+        if(settled) return;
+        if(e && (e.name === "NotAllowedError" || e.name === "SecurityError")){ MIC2.denied = true; done(false, {code:"not-allowed"}); }
+        else { settled = true; release(); micPill(null); if(REC_CUR === h) REC_CUR = null; _recognize0(onLive).then(res, rej); }
+      }
+    })();
+  });
+}
+const _recognize0 = recognize;
+recognize = function(onLive, _again){ return mic2Ok() ? mic2Listen(onLive) : _recognize0(onLive, _again); };
+const _useSR0 = useSR;
+useSR = function(){ return mic2Ok() || _useSR0(); };
+const _micMsg0 = micMsg;
+micMsg = function(code){
+  if(code === "quota") return "Yapay zekânın bugünkü ücretsiz dinleme hakkı doldu; yarına kadar telefonun kendi tanımasını kullanıyorum. 🎤'a tekrar bas.";
+  if(code === "network") return "Kayıt yazıya dökülemedi (internet?). 🎤'a tekrar bas.";
+  return _micMsg0(code);
+};
+function mic2SetupHtml(){
+  const on = S.state.mic2 !== false; const n = MIC2.day === dayKey() ? MIC2.n : 0;
+  return `<div class="field"><label>Konuşma tanıma</label>
+    <select data-change="mic2Mode"><option value="ai" ${on?"selected":""}>Yapay zekâ ile (önerilen, iPhone'da en güvenilir)</option><option value="os" ${!on?"selected":""}>Telefonun kendi tanıması</option></select>
+    <p class="small muted">Yapay zekâ modunda sesin kaydedilip Gemini'ye yazdırılır (telaffuz analizinde olduğu gibi); hatalarını düzeltmeden yazar. Bugün: ${n} kayıt${MIC2.off === dayKey() ? " · bugünkü ücretsiz hak doldu, telefonun tanıması kullanılıyor" : ""}.</p></div>`;
+}
+
+document.addEventListener("focusin", e => { if(e.target && e.target.matches && e.target.matches("input:not([type=checkbox]):not([type=radio]):not([type=range]),textarea,[contenteditable]")) document.body.classList.add("kb"); });
+document.addEventListener("focusout", () => { setTimeout(()=>{ const a = document.activeElement; if(!(a && a.matches && a.matches("input,textarea,[contenteditable]"))) document.body.classList.remove("kb"); }, 50); });
 /* ================= events ================= */
 const ACT = {
   sessStart(b){ sessStart(b.dataset.c); },
@@ -6224,6 +6369,7 @@ document.addEventListener("change", e => {
   else if(c === "name"){ S.state.name = e.target.value.trim(); Store.saveState(); }
   else if(c === "about"){ S.state.about = e.target.value.trim(); Store.saveState(); }
   else if(c === "gemMode"){ S.state.gemMode = e.target.value; Store.saveState(); }
+  else if(c === "mic2Mode"){ S.state.mic2 = e.target.value === "ai"; if(S.state.mic2){ MIC2.off = ""; MIC2.denied = false; mic2Save(); } Store.saveState(); render(); }
   else if(c === "sfxSel"){ S.state.sfxOff = e.target.value === "off"; Store.saveState(); }
   else if(c === "immSel"){ const v = e.target.value; if(v === "auto") delete S.state.vimm; else S.state.vimm = v === "1"; Store.saveState(); }
   else if(c === "themeSel"){ const v = e.target.value; S.state.themeNight = v === "night"; S.state.theme = v === "night" ? "auto" : v; Store.saveState(); render(); }
