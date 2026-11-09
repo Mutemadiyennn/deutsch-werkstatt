@@ -5358,7 +5358,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-10k";
+const APP_VER = "2026-11-10l";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -8381,6 +8381,22 @@ if(NATIVE){
   const AP = capPlug("App");
   if(AP && AP.addListener){ try { AP.addListener("appStateChange", st => { if(st && st.isActive){ try { applyTheme(); } catch(e){} try { if(typeof updCheck === "function") updCheck(); } catch(e){} if(!S.sess && !lessonOn()) render(); } }); } catch(e){} }
 }
+
+/* internetsiz açılış: service worker (Safari'de ve uygulamada; sadece https) */
+if("serviceWorker" in navigator && location.protocol === "https:"){ window.addEventListener("load", ()=>{ navigator.serviceWorker.register("sw.js").catch(()=>{}); }); }
+/* dokunuş titreşimi: ana eylemlerde hafif bir "tık" */
+document.addEventListener("click", e => {
+  if(!NATIVE) return; const t = e.target && e.target.closest && e.target.closest(".btn.primary,.lbtn,.cx,.mt,.fcard,.tile,.nav a,.xopt,.lk-btn,.lrow");
+  if(!t || t.disabled) return; const H = capPlug("Haptics"); if(H && !S.state.hapOff){ try { H.impact({style:"LIGHT"}); } catch(err){} }
+}, true);
+
+/* hesapla eşitleniyorsa elle haftalık yedeğe gerek yok */
+{ const _bd = backupDue; backupDue = function(){ return !(SY && SY.user) && _bd(); }; }
+/* doğal ses varsa yavaş okuma gerçekten yavaş cümle olarak gelsin (kelime kelime bölmeye gerek yok) */
+{ const _ss = saySlow; saySlow = async function(text){
+    const words = String(text||"").split(/\s+/).filter(Boolean);
+    if(words.length > 1 && typeof neuOn === "function" && neuOn()){ holdReading(); const run = ++SLOW_RUN; try { if(TTS.ok) window.speechSynthesis.cancel(); } catch(e){} if(run !== SLOW_RUN) return; await say(String(text), "de", 0.72); return; }
+    return _ss.apply(this, arguments); }; }
 </script>
 </body>
 </html>
