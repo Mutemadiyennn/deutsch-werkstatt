@@ -1163,7 +1163,7 @@ function exCheck(){
   e.feedback = { ok, right: it.kind==="tf" ? (it.correct ? "" : it.answer) : right, explain: it.explain||"" };
   e.results[e.i] = { ok, user };
   render(); sfx(ok ? "ok" : "no");
-  if(S.sess && ok && !it.audio && ["choice","artikel","tf"].includes(it.kind)){ const idx = e.i; setTimeout(()=>{ if(S.ex === e && e.i === idx && e.checked && !e.summary) ACT.exNext(); }, 900); }
+  /* doğru cevaptan sonra kendiliğinden geçmez: açıklamayı okuyup "Devam"a sen basarsın */
 }
 async function exJudge(){
   const e = S.ex, it = curItem();
@@ -2876,7 +2876,7 @@ async function shPlay(slow){
       H.res = {...best, heard}; H.tries++; H.phase = "result"; H.busy = false;
       shRecord(best.words);
       render();
-      if(best.score >= 0.85){ await say(best.score === 1 ? "Sehr gut!" : "Gut!", "de"); setTimeout(()=>{ if(S.sh === H && H.phase === "result") shNext(); }, 900); }
+      if(best.score >= 0.85){ await say(best.score === 1 ? "Sehr gut!" : "Gut!", "de"); if(S.sess && CTXS[S.sess.ctx].audio) setTimeout(()=>{ if(S.sh === H && H.phase === "result" && !S.sess.paused) shNext(); }, 3000); }
     }catch(e){
       if(S.sh !== H) return; H.busy = false;
       if(["not-allowed","service-not-allowed","unsupported","start","audio-capture"].includes(e.code)){ H.mic = "self"; H.err = micMsg(e.code); H.phase = "self"; }
@@ -3895,12 +3895,15 @@ function vCheck(given){
   V.phase = "result"; V.graded = false;
   V.needArt = !!(w.artikel && (V.res.ok || V.res.close));
   if(V.needArt && typedArt && ["der","die","das"].includes(typedArt) && !V.sent){ V.needArt = false; V.art = {pick:typedArt, ok: typedArt === w.artikel}; }
+  /* cümlede artikel zaten boşluğun hemen önünde görünüyorsa sormanın anlamı yok */
+  if(V.needArt && V.sent){ const i = V.sent.de.indexOf(V.sent.answer); const prev = (V.sent.de.slice(0, Math.max(0, i)).trim().split(/\s+/).pop() || "").toLowerCase(); if(prev === w.artikel) V.needArt = false; }
   render();
-  if(V.sent) say(V.sent.de, "de"); else say((w.artikel ? w.artikel+" " : "")+w.de, "de");
+  /* artikel sorulacaksa cevabı ele vermemek için seslendirme artikelden sonra */
+  if(!V.needArt) V.sayP = V.sent ? say(V.sent.de, "de") : say((w.artikel ? w.artikel+" " : "")+w.de, "de");
   if(!V.needArt) vGradeNow();
 }
 function vReveal(){ const V = S.voc; if(V.res) return; V.hint = 99; vCheck("\u0000"); }
-function vArt(a){ const V = S.voc; const w = vWord(); if(!w || V.art) return; V.art = {pick:a, ok:a === w.artikel}; V.needArt = false; render(); vGradeNow(); }
+function vArt(a){ const V = S.voc; const w = vWord(); if(!w || V.art) return; V.art = {pick:a, ok:a === w.artikel}; V.needArt = false; render(); V.sayP = V.sent ? say(V.sent.de, "de") : say(w.artikel+" "+w.de, "de"); vGradeNow(); }
 async function vGradeNow(){
   const V = S.voc; const w = vWord(); if(!w || V.graded) return; V.graded = true; const x = V.q[V.i]; const r = V.res;
   const right = r.ok || r.close; const artOk = !w.artikel || !V.art || V.art.ok;
@@ -3913,13 +3916,15 @@ async function vGradeNow(){
   delete w._fresh;
   if(x.step === "test1"){ x.graded = true; V.q.splice(Math.min(V.q.length, V.i + 4), 0, {id:w.id, step:"test2"}); if(!right) {} Object.assign(patch, {intro: w.intro || dayKey()}); }
   else if(x.step === "test2" || x.step === "rev" || x.step === "again"){
-    const sch = vSchedule(w, g); Object.assign(patch, sch, {right:(w.right||0)+(right?1:0), wrong:(w.wrong||0)+(right?0:1), lastMs:r.ms});
+    const sch = vSchedule(w, g);
+    if(w.artikel && V.art && !V.art.ok && sch.ivl > 2){ sch.ivl = 2; sch.due = addDays(dayKey(), 2); }
+    Object.assign(patch, sch, {right:(w.right||0)+(right?1:0), wrong:(w.wrong||0)+(right?0:1), lastMs:r.ms});
     if(g === 0) V.q.splice(Math.min(V.q.length, V.i + 4), 0, {id:w.id, step:"again"});
   }
   if(w.artikel && V.art && !V.art.ok) recordTopic("Artikel", false); else if(w.artikel && V.art) recordTopic("Artikel", true);
   V.lastGrade = g;
   await Store.put("words", {...w, ...patch});
-  if(right && S.sess && g >= 2){ const idx = V.i; setTimeout(()=>{ if(S.voc === V && V.i === idx && V.phase === "result") vNext(); }, 2200); }
+  if(right && S.sess && CTXS[S.sess.ctx].audio && g >= 2){ const idx = V.i; (async()=>{ try { await V.sayP; } catch(e){} await sleep(3500); if(S.voc === V && V.i === idx && V.phase === "result" && S.sess && !S.sess.paused) vNext(); })(); }
 }
 function vNext(){
   const V = S.voc; if(!V) return; if(V.res && V.needArt) return; if(V.res && !V.graded) vGradeNow(); stopSpeech();
@@ -3988,12 +3993,12 @@ function renderKelime(){
     <div class="row between"><button class="btn small ghost" data-act="vFlag" title="Hata bildir">⚠️</button><span class="small muted">${x.step==="rev" ? "Tekrar" : x.step==="again" ? "Bir daha" : "Yeni kelime testi"}</span></div>
     ${sceneHtml(s, w)}
     ${label}
-    ${s ? `<p class="vsent de">${vClozeHtml(s, V)}</p>${imm ? `<p style="text-align:center"><button class="btn small ghost" data-act="vTr">🇹🇷 Türkçe ipucu</button></p>` : `<p class="tr" style="text-align:center">${vTrHtml(s)}</p>`}` : `<p class="vsent de">${V.res ? `<b>${esc((w.artikel?w.artikel+" ":"")+w.de)}</b>` : V.mode==="type" ? `<input id="vIn" class="vin" style="width:12ch" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(V.user)}" data-model="vUser">` : "?"}</p>`}
+    ${s ? `<p class="vsent de">${vClozeHtml(s, V)}</p>${imm ? `<p style="text-align:center"><button class="btn small ghost" data-act="vTr">🇹🇷 Türkçe ipucu</button></p>` : `<p class="tr" style="text-align:center">${vTrHtml(s)}</p>`}` : `<p class="vsent de">${V.res ? `<b>${esc((w.artikel && !V.needArt ? w.artikel+" " : "")+w.de)}</b>` : V.mode==="type" ? `<input id="vIn" class="vin" style="width:12ch" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(V.user)}" data-model="vUser">` : "?"}</p>`}
     ${!V.res && V.mode === "tap" && V.opts ? `<div class="grid2">${V.opts.map(o=>`<button class="btn" style="min-height:56px" data-act="vTap" data-o="${esc(o)}">${esc(o)}</button>`).join("")}</div>` : ""}
     ${V.res ? `<div class="fb ${V.res.ok?"ok":V.res.close?"ok":"no"}"><b>${V.res.ok ? "Doğru!" : V.res.close ? "Neredeyse: yazımına dikkat" : "Doğrusu: "+esc((w.artikel ? w.artikel+" " : "")+V.res.ans)}</b>
-      ${w.plural && w.plural!=="-" ? `<div class="small">${esc(w.artikel||"")} ${esc(w.de)} · die ${esc(w.plural)}</div>` : ""}${w.chunk ? `<div class="small">Kalıp: <b>${esc(w.chunk)}</b></div>` : ""}${w.used ? `<div class="small">Kendi cümlelerinde ${w.used} kez kullandın ✓</div>` : `<div class="small muted">Henüz kendi cümlende kullanmadın: bugün bir sohbette dene.</div>`}</div>` : ""}
+      ${!V.needArt && w.plural && w.plural!=="-" ? `<div class="small">${esc(w.artikel||"")} ${esc(w.de)} · die ${esc(w.plural)}</div>` : ""}${w.chunk ? `<div class="small">Kalıp: <b>${esc(w.chunk)}</b></div>` : ""}${w.used ? `<div class="small">Kendi cümlelerinde ${w.used} kez kullandın ✓</div>` : `<div class="small muted">Henüz kendi cümlende kullanmadın: bugün bir sohbette dene.</div>`}</div>` : ""}
     ${V.needArt ? `<p style="text-align:center"><b>Artikeli?</b></p><div class="row" style="justify-content:center">${["der","die","das"].map(a=>`<button class="btn" style="min-width:80px;min-height:52px" data-act="vArt" data-a="${a}"><span class="pill-${a}">${a}</span></button>`).join("")}</div>` : ""}
-    ${V.art ? `<div class="fb ${V.art.ok?"ok":"no"}">${V.art.ok ? "Artikel doğru ✓" : "Artikel: <b>"+esc(w.artikel)+"</b> "+esc(w.de)}</div>` : ""}
+    ${V.art ? `<div class="fb ${V.art.ok?"ok":"no"}">${V.art.ok ? "Artikel doğru ✓" : "Artikel yanlış. Doğrusu:"} <b>${esc(w.artikel)} ${esc(w.de)}</b>${w.plural && w.plural!=="-" ? ` · die ${esc(w.plural)}` : ""}${V.art.ok ? "" : `<div class="small">Bu kelime 1–2 gün içinde tekrar gelecek.</div>`}</div>` : ""}
     <div class="row" style="justify-content:center">
       <button class="btn small" data-act="vSay" title="Cümleyi dinle">🔊</button><button class="btn small" data-act="vSaySlow" title="Yavaş">🐢</button>
       ${!V.res ? `<button class="btn small" data-act="vHint">💡 İpucu</button>` : ""}
