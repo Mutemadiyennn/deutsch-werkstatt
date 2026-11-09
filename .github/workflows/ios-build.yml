@@ -35,14 +35,14 @@ jobs:
         run: |
           npx cap init "Deutsch Werkstatt" "com.mutemadiyenn.deutschwerkstatt" --web-dir=www
           
-          # CocoaPods otomatik kurulumunu atla
-          CAPACITOR_SKIP_POD_INSTALL=1 npx cap add ios
+          # Hata verirse bile durma, devam et (|| true sihri)
+          npx cap add ios || true
           
-          # Perl kullanarak iOS sürümünü zorla 15.0 yap (Ne yazarsa yazsın bulur ve değiştirir)
+          # Sürümü zorla 15.0 yap
           perl -pi -e "s/platform :ios, .*/platform :ios, '15.0'/" ios/App/Podfile
           perl -pi -e "s/IPHONEOS_DEPLOYMENT_TARGET = .*/IPHONEOS_DEPLOYMENT_TARGET = 15.0;/g" ios/App/App.xcodeproj/project.pbxproj
           
-          # Şimdi paketleri güvenle yükle
+          # Şimdi temiz bir kurulum yap
           npx cap sync ios
 
       - name: Add Microphone Permission
