@@ -1615,7 +1615,7 @@ async function talkSend(){
     T.msgs.push({who:"p", de:r.reply||"", tr:r.reply_tr||""});
   }catch(err){ T.err = aiMsg(err); T.turns.pop(); T.msgs.pop(); T.input = msg; }
   T.busy = false; render();
-  if(T.voice){ if(!T.err) rpSpeak(); return; }
+  if(T.voice){ if(!T.err){ if(!me.ok && me.better){ const go = await rpRepeat(me); if(!go) return; } rpSpeak(); } return; }
   const box = $("#chatIn"); if(box) box.scrollIntoView({block:"center"});
 }
 async function talkHelp(){
@@ -3236,6 +3236,30 @@ async function rpSpeak(){
   if(T.auto && T.msgs.filter(m=>m.who==="a").length >= 5 && !T.ended){ await say("Super, das war's! Bis bald!", "de"); await talkEnd(); setTimeout(()=>{ if(S.sess && S.talk === T && !S.sess.paused) sessNext(); }, 2500); return; }
   if(T.mic === "sr" && !T.ended) rpListen();
 }
+/* yanlış söylediysen: doğrusunu duy, bir kez doğru söyle, sonra sohbet devam eder (en çok 2 deneme) */
+async function rpRepeat(me){
+  const T = S.talk; const halt = () => S.talk !== T || T.ended || (S.sess && S.sess.paused);
+  T.rep = {text: me.better, tries:0, ok:null, live:""}; render();
+  await say("Besser so:", "de", 1.0); if(halt()) return false;
+  await say(me.better, "de", deRate()*0.9); if(halt()) return false;
+  if(T.mic === "sr"){
+    for(let k = 0; k < 2; k++){
+      T.rep.tries = k + 1; T.rep.live = ""; T.rep.listening = true; render();
+      let alts = [];
+      try { alts = await recognize(txt => { T.rep.live = txt; const el = $("#rpRepLive"); if(el) el.textContent = txt; }); } catch(e){ alts = []; }
+      T.rep.listening = false; if(halt()) return false;
+      const best = alts.length ? Math.max(...alts.map(x=>scoreHeard(me.better, x).score)) : 0;
+      if(best >= 0.8){ T.rep.ok = true; render(); sfx("ok"); await say("Genau!", "de", 1.0); if(halt()) return false; break; }
+      T.rep.ok = false; render();
+      if(k === 0){ await say("Noch einmal:", "de", 1.0); if(halt()) return false; await say(me.better, "de", deRate()*0.8); if(halt()) return false; }
+    }
+  } else {
+    T.rep.self = true; render();
+    await sleep(Math.max(3500, me.better.length * 120)); if(halt()) return false;
+  }
+  await sleep(400); T.rep = null; render();
+  return !halt();
+}
 async function rpListen(){
   const T = S.talk; if(T.listening || T.busy) return;
   T.listening = true; T.live = ""; T.heardErr = ""; if(!T.waitStart) T.waitStart = Date.now(); render();
@@ -3272,6 +3296,8 @@ function renderVoiceChat(){
     ${T.busy ? `<div class="thinking"><span class="spin"></span>${esc(p.name)} düşünüyor…</div>` : ""}
     ${T.speaking ? `<div class="big">🔊</div><p class="small muted">Dinle… (metin gizli)</p>` : ""}
     ${last && !T.speaking && !T.busy ? (T.show ? `<p class="de" style="font-size:1.25rem"><b>${esc(last.de)}</b></p><p class="tr small">${esc(last.tr||"")}</p>` : `<button class="btn small ghost" data-act="rpShow">Metni göster</button>`) : ""}
+    ${T.rep ? `<div class="fb ${T.rep.ok===true?"ok":T.rep.ok===false?"no":"ok"}" style="text-align:left"><div class="small">🔁 Doğrusunu bir kez sesli söyle${T.rep.tries ? " (" + T.rep.tries + "/2)" : ""}:</div><div class="de" style="font-size:1.15rem"><b>${esc(T.rep.text)}</b></div>
+      ${T.rep.listening ? `<div class="small">🎤 Dinliyorum… <span id="rpRepLive">${esc(T.rep.live||"")}</span></div>` : ""}${T.rep.ok===true ? `<div class="small">Genau! ✓</div>` : T.rep.ok===false ? `<div class="small">Bir kez daha, yavaşça.</div>` : ""}${T.rep.self ? `<div class="small">Şimdi yüksek sesle söyle; sohbet birazdan devam edecek.</div>` : ""}</div>` : ""}
     ${T.listening ? `<div class="fb ok"><b>🎤 Seni dinliyorum…</b><div class="small" id="rpLive">${esc(T.live||"")}</div></div>` : ""}
     ${T.heardErr ? `<div class="note">${esc(T.heardErr)}</div>` : ""}
     ${T.err ? `<div class="fb no">${esc(T.err)}</div>` : ""}
