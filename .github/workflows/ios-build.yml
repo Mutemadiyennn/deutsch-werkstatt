@@ -26,7 +26,7 @@ jobs:
           npm init -y
           npm install @capacitor/core @capacitor/cli @capacitor/ios
           # Yerel eklentiler: klavyedeki ^ v ✓ çubuğunu gizleme, doğru/yanlışta titreşim
-          npm install @capacitor/keyboard @capacitor/haptics
+          npm install @capacitor/keyboard @capacitor/haptics @capacitor/status-bar @capacitor/local-notifications
 
       - name: Prepare Web Directory
         run: |
@@ -58,7 +58,8 @@ jobs:
               "allowNavigation": ["mutemadiyennn.github.io"],
               "errorPath": "offline.html"
             },
-            "ios": { "contentInset": "never" }
+            "backgroundColor": "#F1F6FB",
+            "ios": { "contentInset": "never", "allowsLinkPreview": false, "backgroundColor": "#F1F6FB" }
           }
           JSON
 
@@ -81,6 +82,32 @@ jobs:
           # Arka planda ses (arabada sesli tekrar ekran kapanınca da sürsün)
           /usr/libexec/PlistBuddy -c "Add :UIBackgroundModes array" $P || true
           /usr/libexec/PlistBuddy -c "Add :UIBackgroundModes:0 string audio" $P || true
+
+      - name: Native Tweaks
+        run: |
+          P=ios/App/App/Info.plist
+          # Sadece dikey (araçta tutucuda dönmesin)
+          /usr/libexec/PlistBuddy -c "Delete :UISupportedInterfaceOrientations" $P || true
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations array" $P
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations:0 string UIInterfaceOrientationPortrait" $P
+          # Uygulama açıkken ekran kararmasın (eller serbest çalışma) + sessiz modda da ses çıksın
+          AD=ios/App/App/AppDelegate.swift
+          if grep -q "import Capacitor" $AD && ! grep -q "import AVFoundation" $AD; then
+            perl -0pi -e 's/import Capacitor\n/import Capacitor\nimport AVFoundation\n/' $AD
+          fi
+          perl -0pi -e 's/(didFinishLaunchingWithOptions[^\{]*\{\n)/$1        application.isIdleTimerDisabled = true\n        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])\n/' $AD
+          cat $AD | head -30
+          # Açılış ekranı: uygulamanın açık zemin rengi (Capacitor logosu yerine)
+          python3 - <<'PY'
+          import zlib, struct, glob
+          def png(w, h, rgb):
+              raw = b"".join(b"\x00" + bytes(rgb) * w for _ in range(h))
+              def ch(t, d): return struct.pack(">I", len(d)) + t + d + struct.pack(">I", zlib.crc32(t + d) & 0xffffffff)
+              return b"\x89PNG\r\n\x1a\n" + ch(b"IHDR", struct.pack(">IIBBBBB", w, h, 8, 2, 0, 0, 0)) + ch(b"IDAT", zlib.compress(raw, 9)) + ch(b"IEND", b"")
+          data = png(2732, 2732, (0xF1, 0xF6, 0xFB))
+          for f in glob.glob("ios/App/App/Assets.xcassets/Splash.imageset/*.png"):
+              open(f, "wb").write(data)
+          PY
 
       - name: Build iOS App (Unsigned)
         run: |
