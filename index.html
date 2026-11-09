@@ -5166,7 +5166,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09z";
+const APP_VER = "2026-11-10a";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -5238,6 +5238,7 @@ function renderKurulum(){
   const gemOK = !!KEYS.gem, pexOK = !!KEYS.pex;
   return `<section class="card hl"><div class="row" style="gap:12px;flex-wrap:nowrap">${brezi("happy",60)}<div><div class="kicker">Kurulum</div><h2>Uygulamanı hazırlayalım</h2><p class="small muted">Anahtarlar sadece bu telefonda, bu tarayıcıda saklanır. Kimseyle paylaşılmaz.</p></div></div></section>
   ${sySetupHtml()}
+  ${typeof remindHtml === "function" ? remindHtml() : ""}
   <section class="card"><h3>1 · Yapay zekâ: Google Gemini (ücretsiz)</h3>
     <ol class="rule small"><li><a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> sayfasını aç, Google hesabınla gir.</li><li>"Create API key" (API anahtarı oluştur) → anahtarı kopyala.</li><li>Aşağıya yapıştır ve "Test et".</li></ol>
     <input type="password" id="gemKey" placeholder="AIza…" value="${esc(KEYS.gem)}" autocomplete="off">
@@ -7807,6 +7808,7 @@ document.addEventListener("change", e => {
   else if(c === "name"){ S.state.name = e.target.value.trim(); Store.saveState(); }
   else if(c === "about"){ S.state.about = e.target.value.trim(); Store.saveState(); }
   else if(c === "gemMode"){ S.state.gemMode = e.target.value; Store.saveState(); }
+  else if(c === "remindT"){ S.state.remind = e.target.value; Store.saveState(); if(typeof remindSchedule === "function") remindSchedule(); }
   else if(c === "mic2Mode"){ S.state.mic2 = e.target.value === "ai"; if(S.state.mic2){ MIC2.off = ""; MIC2.denied = false; mic2Save(); } Store.saveState(); render(); }
   else if(c === "sfxSel"){ S.state.sfxOff = e.target.value === "off"; Store.saveState(); }
   else if(c === "immSel"){ const v = e.target.value; if(v === "auto") delete S.state.vimm; else S.state.vimm = v === "1"; Store.saveState(); }
@@ -8014,6 +8016,49 @@ function hap(kind){
 }
 const _sfxN = sfx;
 sfx = function(kind){ hap(kind); return _sfxN.apply(this, arguments); };
+
+/* durum çubuğu yazı rengi temaya uysun (koyu temada açık yazı) */
+const _applyThemeN = applyTheme;
+applyTheme = function(){ const r = _applyThemeN.apply(this, arguments); const SB = capPlug("StatusBar");
+  if(SB && SB.setStyle){ const dark = document.documentElement.dataset.theme === "dark"; if(nativeSB !== dark){ nativeSB = dark; try { SB.setStyle({style: dark ? "DARK" : "LIGHT"}).catch(()=>{}); } catch(e){} } } return r; };
+let nativeSB = null;
+/* günlük hatırlatma (yerel bildirim, sunucu yok): seçtiğin saatte; bugün hedefin yarısını geçtiysen bugünkü atlanır; seri tehlikedeyse 21:30'da son uyarı */
+const REMIND_TXT = [
+  ["Brezi seni bekliyor 🥨", "Bugünkü planın hazır. Masada, arabada ya da sporda; nerede olursan başla."],
+  ["Servus! 🇩🇪", "Bugün bir şey anlatma günü: kısa bir canlı sohbetle ısın."],
+  ["10 dakika yeter 💪", "En zor kısım başlamak. Bir kelime turuyla aç, gerisi gelir."],
+  ["Sınava bir gün daha yakın 🎯", "B1 yolunda bugünkü adımın seni bekliyor."],
+  ["Kendi hikâyeni anlat 📜", "Almanca konuştukça donma azalır. Bugün birkaç dakika konuş."]
+];
+async function remindSchedule(){
+  const LN = capPlug("LocalNotifications"); if(!LN || !S.state) return;
+  try{
+    const pend = await LN.getPending(); const mine = (pend.notifications || []).filter(n => n.id >= 7100 && n.id < 7300);
+    if(mine.length) await LN.cancel({notifications: mine.map(n => ({id:n.id}))});
+    const t = S.state.remind === undefined ? "19:30" : S.state.remind; if(!t || t === "off") return;
+    let perm = await LN.checkPermissions(); if(perm.display !== "granted"){ if(S.state.remindAsked && perm.display === "denied") return; S.state.remindAsked = true; Store.saveState(); perm = await LN.requestPermissions(); if(perm.display !== "granted") return; }
+    const [hh, mm] = t.split(":").map(Number); const now = new Date(); const list = [];
+    for(let d = 0; d < 7; d++){
+      const at = new Date(now); at.setDate(now.getDate() + d); at.setHours(hh, mm, 0, 0);
+      if(at <= now) continue; if(d === 0 && minsToday() >= DAILY_GOAL / 2) continue;
+      const k = REMIND_TXT[(at.getDate() + d) % REMIND_TXT.length]; list.push({id:7101 + d, title:k[0], body:k[1], schedule:{at}});
+    }
+    const late = new Date(now); late.setHours(21, 30, 0, 0);
+    if(late > now && minsToday() < 10 && streak() > 0) list.push({id:7200, title:"Serin tehlikede 🔥", body:`${streak()} günlük serin bitmesin: 5 dakikalık bir tur yeter.`, schedule:{at:late}});
+    if(list.length) await LN.schedule({notifications:list});
+  }catch(e){}
+}
+if(NATIVE){
+  setTimeout(()=>{ try { applyTheme(); } catch(e){} remindSchedule(); }, 2500);
+  document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState === "hidden") remindSchedule(); });
+}
+function remindHtml(){
+  if(!NATIVE || !capPlug("LocalNotifications")) return "";
+  const t = S.state.remind === undefined ? "19:30" : S.state.remind;
+  const opts = ["off","07:00","08:00","12:30","17:30","18:00","19:00","19:30","20:00","21:00","22:00"];
+  return `<section class="card"><h3>🔔 Günlük hatırlatma</h3><p class="small muted">Seçtiğin saatte telefonuna kısa bir hatırlatma gelir. O gün hedefinin yarısını geçtiysen gelmez. Serin varken akşam hiç çalışmadıysan 21:30'da bir uyarı daha gelir.</p>
+    <select id="remindT" data-change="remindT">${opts.map(o=>`<option value="${o}" ${o === t ? "selected" : ""}>${o === "off" ? "Kapalı" : o}</option>`).join("")}</select></section>`;
+}
 </script>
 </body>
 </html>
