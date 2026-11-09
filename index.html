@@ -89,7 +89,7 @@ main{max-width:680px;margin:0 auto;padding:16px 16px calc(96px + env(safe-area-i
 .tile b{font-family:var(--font-display);font-size:1rem}
 .tile span{font-size:.85rem;color:var(--muted)}
 
-input[type=text],input[type=date],select,textarea{width:100%;border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:10px 12px;min-height:44px}
+input[type=text],input[type=date],input[type=email],input[type=password],input[type=number],input[type=search],input:not([type]),select,textarea{font:inherit;color:var(--ink);width:100%;border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:10px 12px;min-height:44px}
 textarea{min-height:150px;resize:vertical;line-height:1.55}
 label.lbl{font-size:.85rem;color:var(--muted);display:block;margin-bottom:4px}
 
@@ -990,7 +990,7 @@ function render(){
   renderTop();
   const flash = S.flash ? `<div class="fb ok">${esc(S.flash)}</div>` : "";
   S.flash = "";
-  const back = (typeof lessonOn === "function" && lessonOn()) ? "" : S.sess && S.view !== "plan" ? sessBar() : ["plan","seviye","more"].includes(S.view) || (S.view === "canli" && S.live && ["live","connecting"].includes(S.live.phase)) ? "" : focusBar();
+  const back = (typeof lessonOn === "function" && lessonOn()) ? "" : S.sess && S.view !== "plan" ? sessBar() : ["plan","seviye","more","kilit"].includes(S.view) || (S.view === "canli" && S.live && ["live","connecting"].includes(S.live.phase)) ? "" : focusBar();
   setTimeout(()=>{ if(S.ex) exAudioAuto(); }, 0);
   let body = VIEWS[S.view](); if(typeof entryHero === "function" && body.replace(/<[^>]+>/g, "").trim().length < 60) body = entryHero(S.view) + body;
   $("#view").innerHTML = back + (S.loadNote ? `<div class="note">${esc(S.loadNote)}</div>` : "") + flash + body;
@@ -5163,7 +5163,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09t";
+const APP_VER = "2026-11-09u";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -5228,8 +5228,8 @@ function renderKurulum(){
   /* yeni cihaz: sadece Google girişi; uzun kurulum gizli */
   if(STANDALONE && syCfg() && !SY.user && !KEYS.gem && !S.state.setupDone && !S.fullSetup) return `<section class="card hl" style="text-align:center">
     ${brezi("happy",72)}<h2>Meine Deutsch-Werkstatt</h2>
-    <p>Google hesabınla giriş yap; ilerlemen ve ayarların kendiliğinden gelir.</p>
-    <button class="btn primary block" style="min-height:56px" data-act="sySignIn" ${SY.app ? "" : "disabled"}>${SY.app ? "Google ile giriş yap" : "Hazırlanıyor…"}</button>
+    <p>${typeof NATIVE !== "undefined" && NATIVE ? "Hesabınla" : "Google hesabınla"} giriş yap; ilerlemen ve ayarların kendiliğinden gelir.</p>
+    ${syLoginHtml(true)}
     ${SY.err ? `<div class="fb no">${esc(SY.err)}</div>` : ""}
     <button class="btn ghost small" style="margin-top:10px" data-act="fullSetup">İlk kez mi kuruyorsun? Kurulumu göster</button></section>`;
   const gemOK = !!KEYS.gem, pexOK = !!KEYS.pex;
@@ -6312,7 +6312,7 @@ function sySetupHtml(){
     <button class="btn block" data-act="syCfgSave">Kaydet</button>
     ${SY.err ? `<div class="fb no">${esc(SY.err)}</div>` : ""}</section>`;
   if(!SY.user) return `<section class="card hl">${head}
-    <button class="btn primary block" data-act="sySignIn" ${SY.app ? "" : "disabled"}>${SY.app ? "Google ile giriş yap" : "Hazırlanıyor…"}</button>
+    ${syLoginHtml(false)}
     ${SY.err ? `<div class="fb no">${esc(SY.err)}</div>` : ""}
     <p class="small muted">Yeni bir cihazdaysan: giriş yap, ilerlemen birkaç saniyede gelir; sonra aşağıda anahtarlarını şifrenle getir.</p>
     <details><summary class="small">Firebase ayarlarını değiştir</summary><button class="btn small" data-act="syCfgReset">Ayarları sil</button></details></section>`;
@@ -6325,6 +6325,7 @@ function sySetupHtml(){
       <pre class="small" style="white-space:pre-wrap;user-select:all">${esc(syRulesLocked(SY.user.uid))}</pre>
       <button class="btn small" data-act="syCopyRulesLocked">📋 Kopyala</button></details>
     ${gateLockHtml()}
+    ${syAppPassHtml()}
     <p class="small muted" style="margin-top:8px">🔐 API anahtarların hesabına şifreli olarak kendiliğinden kaydedilir; yeni bir cihazda Google ile giriş yapınca otomatik gelir. Onları sadece senin Google hesabın açabilir. Google hesabında iki adımlı doğrulamanın açık olması önerilir.</p>
     ${SY.kmsg ? `<div class="fb ${SY.kmsg.ok ? "ok" : "no"} small">${esc(SY.kmsg.msg)}</div>` : ""}</section>`;
 }
@@ -6367,7 +6368,7 @@ function renderKilit(){
   return `<section class="card hl" style="text-align:center">
     <div style="font-size:3rem">🔒</div><h2>Meine Deutsch-Werkstatt</h2>
     <p>Bu uygulama özeldir. Devam etmek için Google hesabınla giriş yap.</p>
-    ${cfg ? `<button class="btn primary block" style="min-height:56px" data-act="sySignIn" ${SY.app ? "" : "disabled"}>${SY.app ? "Google ile giriş yap" : "Hazırlanıyor…"}</button>` : ""}
+    ${cfg ? syLoginHtml(true) : ""}
     ${SY.err ? `<div class="fb no">${esc(SY.err)}</div>` : ""}
     ${!cfg ? `<details style="text-align:left;margin-top:8px"><summary class="small">Bu cihazda ilk açılış</summary>
       <p class="small">Firebase'deki <code>firebaseConfig</code> bloğunu yapıştır, sonra giriş yap.</p>
@@ -7881,6 +7882,113 @@ Object.assign(ACT, {
   goLive(){ const ids = Object.keys(PERSONAS); startLive(ids[Math.floor(Math.random()*ids.length)], null, 2, false); }
 });
 Object.assign(ACT, { liveWith(el){ startLive(el.dataset.p, null, 2, false); } });
+/* ================= iPhone uygulaması (Capacitor kabuğu) ================= */
+/* Uygulama içi tarayıcıda Google'ın açılır giriş penceresi çalışmaz (Google gömülü tarayıcıları engeller) ve
+   Firebase'in getAuth()'u gizli iframe'i beklerken takılır ("Hazırlanıyor…"da kalma). Çözüm:
+   - kimlik doğrulama doğrudan initializeAuth + IndexedDB ile başlatılır (iframe yok);
+   - giriş, AYNI Firebase hesabına bağlanmış e-posta + uygulama şifresiyle yapılır → aynı kullanıcı kimliği (uid),
+     yani kilit, eşitleme ve şifreli anahtarlar aynen çalışır; başka hiçbir hesap giremez. */
+const NATIVE = (()=>{ try { const C = window.Capacitor; return !!(C && (typeof C.isNativePlatform === "function" ? C.isNativePlatform() : (C.platform && C.platform !== "web"))); } catch(e){ return false; } })();
+if(NATIVE) document.documentElement.classList.add("native");
+const _syInitN = syInit;
+syInit = async function(){
+  if(!NATIVE) return _syInitN();
+  const cfg = syCfg(); if(!cfg) return false;
+  if(SY.app) return true;
+  if(SY.loading) return SY.loading;
+  SY.loading = (async()=>{
+    try{
+      const base = `https://www.gstatic.com/firebasejs/${FB_VER}/`;
+      const load = Promise.all([import(base + "firebase-app.js"), import(base + "firebase-auth.js"), import(base + "firebase-firestore.js")]);
+      const [a, au, fs] = await Promise.race([load, sleep(20000).then(()=>{ throw new Error("zaman aşımı (internet?)"); })]);
+      SY.mods = {a, au, fs};
+      const app = a.getApps().length ? a.getApp() : a.initializeApp(cfg);
+      let auth; try { auth = au.initializeAuth(app, {persistence:[au.indexedDBLocalPersistence, au.browserLocalPersistence]}); } catch(e){ auth = au.getAuth(app); }
+      SY.auth = auth; SY.db = fs.getFirestore(app); SY.app = app;
+      au.onAuthStateChanged(auth, u => { gateAuth(u || null); });
+      /* oturum yoksa onAuthStateChanged yine de null ile döner; dönmezse 4 sn sonra giriş formunu aç */
+      setTimeout(()=>{ if(!SY.ready){ SY.ready = true; render(); } }, 4000);
+      render();
+      return true;
+    }catch(e){ SY.err = "Bağlantı kurulamadı (" + String((e && e.message) || e).slice(0, 80) + "). İnterneti kontrol et ve tekrar dene."; SY.loading = null; render(); return false; }
+  })();
+  return SY.loading;
+};
+function syNativeMsg(e){
+  const c = String((e && (e.code || e.message)) || e);
+  if(/invalid-credential|wrong-password|user-not-found|invalid-email|invalid-login/.test(c)) return "E-posta ya da uygulama şifresi yanlış. Şifreyi Safari'deki uygulamada Kurulum → Hesap bölümünden belirle.";
+  if(/operation-not-allowed/.test(c)) return "Firebase'de e-posta girişi kapalı: Authentication → Sign-in method → Email/Password → Enable → Save.";
+  if(/too-many-requests/.test(c)) return "Çok fazla deneme; birkaç dakika bekle.";
+  return syErrMsg(e);
+}
+async function syEmailIn(){
+  if(!SY.app){ SY.err = "Bağlantı hazırlanıyor, birkaç saniye sonra tekrar bas."; syInit().then(()=>render()); render(); return; }
+  const em = (($("#syEm")||{}).value || "").trim(), pw = ($("#syPw")||{}).value || "";
+  if(!em || pw.length < 8){ SY.err = "E-posta ve en az 8 karakterlik uygulama şifresi gir."; render(); return; }
+  SY.err = ""; SY.signing = true; render();
+  try { await SY.mods.au.signInWithEmailAndPassword(SY.auth, em, pw); }
+  catch(e){ SY.err = syNativeMsg(e); }
+  SY.signing = false; render();
+}
+/* giriş düğmesi: tarayıcıda Google, iPhone uygulamasında e-posta + uygulama şifresi (iOS anahtar zinciri hatırlar) */
+function syLoginHtml(big){
+  if(!NATIVE) return `<button class="btn primary block" ${big ? 'style="min-height:56px"' : ""} data-act="sySignIn" ${SY.app ? "" : "disabled"}>${SY.app ? "Google ile giriş yap" : "Hazırlanıyor…"}</button>`;
+  return `<form class="stack" style="text-align:left" onsubmit="event.preventDefault(); ACT.syEmailIn();">
+    <input type="email" id="syEm" placeholder="Google e-posta adresin" autocomplete="username" autocapitalize="off" spellcheck="false">
+    <input type="password" id="syPw" placeholder="Uygulama şifren" autocomplete="current-password">
+    <button class="btn primary block" ${big ? 'style="min-height:56px"' : ""} type="submit" ${SY.app && !SY.signing ? "" : "disabled"}>${!SY.app ? "Hazırlanıyor…" : SY.signing ? "Giriş yapılıyor…" : "Giriş yap"}</button></form>
+    <details class="small" style="text-align:left;margin-top:6px"><summary>Uygulama şifrem yok</summary>
+      <p class="small">Google'ın giriş penceresi uygulamaların içinde açılmıyor. Bu yüzden iPhone uygulaması aynı hesaba bağlı bir şifreyle girer (bir kerelik):</p>
+      <ol class="rule small"><li>Firebase konsolu → <b>Authentication → Sign-in method → Email/Password → Enable → Save</b>.</li>
+      <li>Safari'de uygulamayı aç (Google ile girişli) → <b>Kurulum → Hesap → "iPhone uygulaması şifresi"</b> → şifre belirle.</li>
+      <li>Buraya Google e-postanı ve o şifreyi yaz. iPhone şifreyi hatırlar.</li></ol></details>`;
+}
+/* Safari/PWA tarafı: mevcut Google hesabına e-posta şifresi bağla (aynı uid) */
+function syAppPassHtml(){
+  if(NATIVE || !SY.user) return "";
+  const has = (SY.user.providerData || []).some(p=>p.providerId === "password");
+  return `<details style="margin-top:8px"><summary class="small"><b>📱 iPhone uygulaması şifresi</b> ${has ? "· ✓ belirlendi" : ""}</summary>
+    <p class="small">iPhone uygulaması Google penceresini açamadığı için bu hesaba bağlı bir şifreyle girer. Aynı hesap olduğu için ilerlemen ve anahtarların orada da aynen gelir. Önce Firebase'de <b>Authentication → Sign-in method → Email/Password</b>'ü aç.</p>
+    <input type="password" id="syAp1" placeholder="Yeni uygulama şifresi (en az 8 karakter)" autocomplete="new-password">
+    <input type="password" id="syAp2" placeholder="Tekrar" autocomplete="new-password">
+    <button class="btn block" data-act="syAppPass">${has ? "Şifreyi değiştir" : "Şifreyi belirle"}</button>
+    ${SY.apmsg ? `<div class="fb ${SY.apmsg.ok ? "ok" : "no"} small">${esc(SY.apmsg.msg)}</div>` : ""}</details>`;
+}
+async function syAppPass(){
+  const p1 = ($("#syAp1")||{}).value || "", p2 = ($("#syAp2")||{}).value || "";
+  if(p1.length < 8){ SY.apmsg = {ok:false, msg:"En az 8 karakter."}; render(); return; }
+  if(p1 !== p2){ SY.apmsg = {ok:false, msg:"İki şifre aynı değil."}; render(); return; }
+  const {au} = SY.mods; const u = SY.auth.currentUser;
+  try{
+    if((u.providerData || []).some(p=>p.providerId === "password")) await au.updatePassword(u, p1);
+    else await au.linkWithCredential(u, au.EmailAuthProvider.credential(u.email, p1));
+    await u.reload(); SY.user = SY.auth.currentUser;
+    SY.apmsg = {ok:true, msg:"✓ Şifre hazır. iPhone uygulamasında e-postan " + (u.email || "") + " ve bu şifreyle giriş yap."};
+  }catch(e){
+    const c = String((e && e.code) || e);
+    SY.apmsg = {ok:false, msg: /requires-recent-login/.test(c) ? "Güvenlik için çıkış yapıp Google ile tekrar gir, sonra yeniden dene." : /operation-not-allowed/.test(c) ? "Firebase'de Email/Password girişi kapalı: Authentication → Sign-in method → Email/Password → Enable → Save." : /provider-already-linked|credential-already-in-use|email-already-in-use/.test(c) ? "Bu e-postaya zaten bir şifre bağlı; 'Şifreyi değiştir'i kullan." : syErrMsg(e)};
+  }
+  ["#syAp1","#syAp2"].forEach(s=>{ const el = $(s); if(el) el.value = ""; }); render();
+}
+/* kilit ekranı: uygulamada da sadece senin hesabın girer */
+const _renderKilitN = renderKilit;
+renderKilit = function(){
+  if(!NATIVE) return _renderKilitN();
+  return `<section class="card hl" style="text-align:center">
+    <div style="font-size:3rem">🔒</div><h2>Meine Deutsch-Werkstatt</h2>
+    <p>Bu uygulama özeldir. Hesabınla giriş yap.</p>
+    ${syLoginHtml(true)}
+    ${SY.err ? `<div class="fb no">${esc(SY.err)}</div>` : ""}
+    ${!SY.app && !SY.loading ? `<button class="btn ghost block" data-act="syRetry">Tekrar dene</button>` : ""}
+  </section>`;
+};
+VIEWS.kilit = () => renderKilit();
+Object.assign(ACT, {
+  syEmailIn(){ syEmailIn(); },
+  syAppPass(){ syAppPass(); },
+  syRetry(){ SY.err = ""; syInit().then(()=>render()); render(); }
+});
+
 </script>
 </body>
 </html>
