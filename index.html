@@ -4504,7 +4504,7 @@ async function vPrepare(){
     if(!V.q.length){
       /* gösterecek kart yok: önce 4 kelime hızlıca, kalanı sen çalışırken */
       V.busy = true; V.busyTxt = "Yeni kelimeler hazırlanıyor…"; render();
-      try{ await vFill(Math.min(4, V.needMore + 1)); insert(); }
+      try{ let got = await vFill(Math.min(4, V.needMore + 1)); if(!got) got = await vFill(Math.min(4, V.needMore + 1)); insert(); }
       catch(e){ V.err = aiMsg(e); V.needMore = 0; daily().vocab = true; Store.saveState(); }
       V.busy = false;
     }
@@ -5391,7 +5391,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-10p";
+const APP_VER = "2026-11-10q";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -8480,6 +8480,32 @@ Object.assign(ACT, {
     if(S.sess && !S.brk){ stopAll(); const b = sessMust(99).find(x=>x.x && x.x.key === k); if(b){ S.sessFocus = null; sessRun(b); return; } }
     if(!S.sess) sessStart("desk"); else sessNext(); }
 });
+
+/* kelime turu hiç kart göstermeden biterse "%0 · Dranbleiben" yerine açık bir mesaj */
+{
+  const _vFE = vFinish;
+  vFinish = function(){
+    const V = S.voc;
+    if(V && !V.done){
+      V.phase = "empty"; V.summary = null;
+      if(!V.err){ daily().vocab = true; Store.saveState(); }
+      render();
+      if(S.sess && !V.err) setTimeout(()=>{ if(S.voc === V && V.phase === "empty" && S.sess) sessNext(); }, 1800);
+      return;
+    }
+    return _vFE.apply(this, arguments);
+  };
+  const _rkE = renderKelime;
+  renderKelime = function(){
+    const V = S.voc;
+    if(V && V.phase === "empty") return V.err
+      ? `<section class="card" style="text-align:center;align-items:center">${brezi("sad",72)}<h2>Yeni kelimeler şu an hazırlanamadı</h2><p class="small muted">${esc(V.err)}</p><div class="grid2" style="width:100%"><button class="btn" data-act="vRetry">Tekrar dene</button>${S.sess ? continueBtn() : `<a class="btn primary" href="#plan">Bugün</a>`}</div></section>`
+      : `<section class="card" style="text-align:center;align-items:center">${brezi("happy",72)}<h2>Kelimeler bugünlük tamam ✓</h2><p class="small muted">${newQuota() > 0 ? "Tekrar zamanı gelen kart yok; yeni kelimeler de şu an eklenemedi, sonra tekrar denerim." : "Tekrar zamanı gelen kart yok, bugünkü yeni kelime hakkın da doldu."} ${S.sess ? "Sıradakine geçiyoruz…" : ""}</p>${S.sess ? continueBtn() : `<a class="btn primary block" href="#plan">Bugün</a>`}</section>`;
+    return _rkE.apply(this, arguments);
+  };
+  VIEWS.kelime = () => renderKelime();
+  Object.assign(ACT, { vRetry(){ daily().vocab = false; Store.saveState(); startVocab(); } });
+}
 </script>
 </body>
 </html>
