@@ -25,6 +25,8 @@ jobs:
         run: |
           npm init -y
           npm install @capacitor/core @capacitor/cli @capacitor/ios
+          # Yerel eklentiler: klavyedeki ^ v ✓ çubuğunu gizleme, doğru/yanlışta titreşim
+          npm install @capacitor/keyboard @capacitor/haptics
 
       - name: Prepare Web Directory
         run: |
