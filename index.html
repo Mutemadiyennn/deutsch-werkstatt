@@ -651,8 +651,9 @@ async function addWords(list){
 /* ================= routing ================= */
 const VIEWS = { more: renderMore, seviye: renderSeviye, plan: renderPlan, lernen: renderLernen, schreiben: renderSchreiben, sprechen: renderSprechen, spielen: renderSpielen, kartei: renderKartei, seans: renderSeans, ses: renderSes, shadow: renderShadow, koc: renderKoc, akici: renderAkici, media: renderMedia, olcum: renderOlcum, odev: renderOdev, kelime: renderKelime, hikaye: renderHikaye, senaryo: renderSenaryo, denk: renderDenk, rehber: renderRehber, kurulum: renderKurulum, gercek: renderGercek, sinav: renderMock };
 function route(){
-  const h = (location.hash||"").slice(1);
+  const h = (location.hash||"").slice(1); const prev = S.view;
   S.view = VIEWS[h] ? h : "plan";
+  if(prev && prev !== S.view && ["hikaye","senaryo","sprechen","ses"].includes(prev) && S.view !== "seans"){ if(stopReading() || (S.listen && S.listen.playing) || (S.audio && S.audio.playing)){ stopSpeech(); audioStop(); } }
   const navTab = ["plan","seviye"].includes(S.view) ? S.view : "more";
   document.querySelectorAll(".nav a").forEach(a => a.setAttribute("aria-current", a.dataset.tab===navTab ? "page" : "false"));
   render(); window.scrollTo(0,0);
@@ -913,7 +914,7 @@ function renderListen(){
     <p class="${(sc.segments[L.i]||{}).lang==="de"?"de":""}" style="font-size:1.25rem">${sc.segments[L.i] ? segHtml(sc.segments[L.i]) : ""}</p>
     ${L.done ? `<div class="fb ok">Ders bitti! Çok iyi. 🎧</div>${continueBtn()}` : ""}
     <div class="grid2">
-      <button class="btn primary" data-act="listenPlay" ${TTS.ok?"":"disabled"}>${L.playing ? "Duraklat" : L.done ? "Baştan dinle" : "Dinlemeye başla"}</button>
+      <button class="btn primary" data-act="listenPlay" ${TTS.ok?"":"disabled"}>${L.playing ? "⏸ Duraklat" : L.done ? "Baştan dinle" : L.i > 0 ? "▶ Devam et" : "▶ Dinlemeye başla"}</button>
       <button class="btn" data-act="listenNext" ${TTS.ok?"":"disabled"}>İleri</button>
       <button class="btn" data-act="listenPrev" ${TTS.ok?"":"disabled"}>Geri</button>
       <button class="btn ghost" data-act="listenNew">Yeni ders</button>
@@ -933,10 +934,11 @@ Erklärungen auf Türkisch nur sehr kurz (max. 1 Satz); mindestens 70 % der Lekt
 WICHTIG FÜR DIE SPRACHAUSGABE: Ein türkisches Segment wird von einer türkischen Stimme gelesen. Jedes deutsche Wort oder jeden deutschen Satz INNERHALB eines türkischen Segments MUSST du in ⟦ ⟧ einschließen, z. B. "Şimdi ⟦der Termin⟧ kelimesini öğreniyoruz." Deutsche Segmente (lang "de") enthalten nur Deutsch, ohne Klammern. Nie Deutsch ohne ⟦ ⟧ in einem türkischen Segment!
 Struktur: 1) kurze Einführung (Türkisch). 2) 6 Schlüsselsätze: jeweils Deutsch, dann die türkische Bedeutung, dann noch einmal Deutsch, dann Pause zum Nachsprechen. 3) ein kurzer Dialog (8 Zeilen Deutsch). 4) 4 Fragen auf Deutsch an den Lerner, Pause zum Antworten, dann eine Musterantwort auf Deutsch. 5) Abschluss: die 3 wichtigsten Sätze noch einmal.
 Antworte NUR mit JSON: {"title":"…","segments":[{"lang":"tr","text":"…","pause":0},{"lang":"de","text":"…","pause":4}]}
+Im Dialog (Teil 3) ist jede Zeile ein eigenes deutsches Segment mit "sp" (Name des Sprechers) und "g" (m/f/k), damit jede Person eine eigene Stimme bekommt; sonst "sp":"".
 "pause" = Sekunden Stille danach (Nachsprechen 4, Antworten 7, sonst 0 oder 1). Jedes Segment höchstens 2 kurze Sätze und nur eine Sprache.`);
-    const segs = (r && r.segments || []).filter(s=>s && s.text).map(s=>({lang: s.lang==="de"?"de":"tr", text:String(s.text), pause: Math.min(10, Math.max(0, +s.pause||0))}));
+    const segs = (r && r.segments || []).filter(s=>s && s.text).map(s=>({lang: s.lang==="de"?"de":"tr", text:String(s.text), pause: Math.min(10, Math.max(0, +s.pause||0)), sp: s.lang==="de" && s.sp ? String(s.sp).slice(0,30) : "", g: String(s.g||"").slice(0,1)}));
     if(!segs.length) throw {code:"invalid_json"};
-    L.script = {title: r.title || "Hör-Lektion", segments: segs};
+    L.script = {title: r.title || "Hör-Lektion", segments: segs}; L.cast = makeCast();
   }catch(err){ L.err = aiMsg(err); }
   L.busy = false;
   if(L.auto && L.script && S.view === "sprechen" && S.talk.mode === "listen"){ L.auto = false; L.playing = true; render(); speakCurrent(); return; }
@@ -946,20 +948,21 @@ Antworte NUR mit JSON: {"title":"…","segments":[{"lang":"tr","text":"…","pau
 let ttsTimer = null;
 function stopSpeech(){ clearTimeout(ttsTimer); try { if(TTS.ok) window.speechSynthesis.cancel(); } catch(e){} S.listen.playing = false; }
 function chunksOf(seg){
-  if(seg.lang === "de") return [{lang:"de", text:seg.text.replace(/[⟦⟧]/g,"")}];
+  if(seg.lang === "de") return [{lang:"de", text:seg.text.replace(/[⟦⟧]/g,""), sp:seg.sp||"", g:seg.g||""}];
   const out = []; const re = /⟦([^⟧]+)⟧|„([^“"]+)[“"]/g; let last = 0, m;
   while((m = re.exec(seg.text))){ if(m.index > last) out.push({lang:"tr", text:seg.text.slice(last, m.index)}); out.push({lang:"de", text:m[1]||m[2]}); last = re.lastIndex; }
   if(last < seg.text.length) out.push({lang:"tr", text:seg.text.slice(last)});
   return out.filter(c=>c.text.trim());
 }
-function segHtml(seg){ return chunksOf(seg).map(c=>c.lang==="de" ? `<span class="de" style="color:var(--accent)"><b>${esc(c.text)}</b></span>` : esc(c.text)).join(""); }
+function segHtml(seg){ return (seg.sp ? `<span class="small muted"><b>${esc(seg.sp)}:</b></span> ` : "") + chunksOf(seg).map(c=>c.lang==="de" ? `<span class="de" style="color:var(--accent)"><b>${esc(c.text)}</b></span>` : esc(c.text)).join(""); }
 function speakChunk(chunks, k, done){
   const L = S.listen; if(!L.playing) return;
   if(k >= chunks.length){ done(); return; }
   const c = chunks[k];
   const u = new SpeechSynthesisUtterance(c.text);
   u.lang = c.lang === "de" ? "de-DE" : "tr-TR";
-  const v = voiceFor(c.lang); if(v) u.voice = v;
+  const cv = c.lang === "de" && c.sp ? castFor(L.cast || (L.cast = makeCast()), c.sp, c.g) : null;
+  const v = (cv && cv.voice) || voiceFor(c.lang); if(v) u.voice = v; if(cv && cv.pitch) u.pitch = cv.pitch;
   u.rate = c.lang === "de" ? deRate()*0.95 : 1.0;
   u.onend = () => speakChunk(chunks, k+1, done);
   u.onerror = (ev) => { if(ev && (ev.error === "interrupted" || ev.error === "canceled")) return; L.playing = false; L.err = "Ses çalınamadı. Telefonun sessiz modda olmasın; olmuyorsa metni Claude sesli moduna kopyala."; if(S.view==="sprechen") render(); };
@@ -968,7 +971,7 @@ function speakChunk(chunks, k, done){
 function speakCurrent(){
   const L = S.listen, sc = L.script; if(!sc || !L.playing) return;
   const seg = sc.segments[L.i];
-  if(!seg){ L.playing = false; L.done = true; L.played = true; addXP(10); if(S.sess && CTXS[S.sess.ctx].audio) setTimeout(()=>{ if(S.sess && !S.brk && S.view==="sprechen") sessNext(); }, 1500); const d = S.state.days || (S.state.days = {}); const t = dayKey(); const dd = d[t] || {n:0}; dd.listen = (dd.listen||0) + 1; dd.n = (dd.n||0) + 1; d[t] = dd; Store.saveState(); if(S.view==="sprechen") render(); return; }
+  if(!seg){ L.playing = false; L.done = true; L.played = true; addXP(10); if(S.sess && CTXS[S.sess.ctx].audio) setTimeout(()=>{ if(S.sess && !S.brk && !S.sess.paused && S.view==="sprechen") sessNext(); }, 1500); const d = S.state.days || (S.state.days = {}); const t = dayKey(); const dd = d[t] || {n:0}; dd.listen = (dd.listen||0) + 1; dd.n = (dd.n||0) + 1; d[t] = dd; Store.saveState(); if(S.view==="sprechen") render(); return; }
   try{
     speakChunk(chunksOf(seg), 0, () => { if(!L.playing) return; ttsTimer = setTimeout(()=>{ if(!L.playing) return; L.i++; if(S.view==="sprechen") render(); speakCurrent(); }, (seg.pause||0)*1000 + 350); });
   }catch(e){ L.playing = false; L.err = "Bu görünümde sesli okuma çalışmıyor. Metni Claude sesli moduna kopyala."; render(); }
@@ -2383,14 +2386,68 @@ function voiceScore(v, lang){
 function voicesOf(lang){ return TTS.voices.filter(v=>v.lang && v.lang.toLowerCase().replace("_","-").startsWith(lang)).sort((a,b)=>voiceScore(b,lang)-voiceScore(a,lang)); }
 function voiceFor(lang){ const list = voicesOf(lang); const pref = (S.state.voice||{})[lang]; if(pref){ const p = list.find(v=>v.name===pref); if(p) return p; } return list[0] || null; }
 function deRate(){ return +((S.state.voice||{}).rate) || 0.9; }
-function say(text, lang, rate){
+/* ---------- çok sesli diyalog: her konuşmacıya ayrı ses ---------- */
+const V_MALE = /martin|markus|yannick|viktor|reed|rocko|eddy|grandpa|ralph|fred|albert|jürgen|stefan|hans|klaus|daniel|thomas|conrad|killian|florian|jonas|bernd|helmut|\bmale\b|männlich/i;
+const V_FEMALE = /anna|helena|petra|katja|marlene|vicki|sandy|shelley|\bflo\b|grandma|kathy|steffi|amala|elke|gisela|ingrid|klara|louisa|maja|tanja|female|weiblich/i;
+const V_NOVELTY = /bad news|bells|boing|bubbles|cellos|jester|organ|superstar|trinoids|whisper|wobble|zarvox|good news|hysterical|deranged|bahh|pipe/i;
+const CAST_G = {"frau huber":"o", huber:"o", deniz:"m", anna:"f", mia:"k", markus:"m", tobi:"m", du:"m", ich:"m"};
+const CAST_NAMES = ["Frau Huber","Deniz","Anna","Mia","Markus","Tobi"];
+function vGender(v){ const n = (v.name||"")+" "+(v.voiceURI||""); return V_MALE.test(n) ? "m" : V_FEMALE.test(n) ? "f" : ""; }
+function spGender(sp, g){
+  g = String(g||"").toLowerCase(); if(/^[mfko]/.test(g)) return g[0];
+  const k = String(sp||"").toLowerCase().trim(); if(CAST_G[k]) return CAST_G[k];
+  for(const n in CAST_G) if(k.includes(n)) return CAST_G[n];
+  if(/kind|tochter|sohn|junge|mädchen/.test(k)) return "k";
+  if(/frau|mutter|mama|oma|ärztin|lehrerin|erzieherin|verkäuferin|nachbarin|kollegin|in$/.test(k)) return "f";
+  if(/herr|vater|papa|opa|arzt|lehrer|trainer|verkäufer|nachbar|kollege|mann/.test(k)) return "m";
+  return "";
+}
+function makeCast(){ return {map:{}, used:{}}; }
+function castFor(cast, sp, g){
+  const narr = voiceFor("de");
+  if(!sp) return {voice:narr, pitch:1};
+  const key = String(sp).toLowerCase().trim();
+  if(cast.map[key]) return cast.map[key];
+  const G = spGender(sp, g); const want = G === "m" ? "m" : G ? "f" : "";
+  const all = voicesOf("de").filter(v=>!V_NOVELTY.test(v.name||"") && !/grandma|grandpa/i.test(v.name||""));
+  const taken = v => cast.used[v.name] || (narr && v.name === narr.name);
+  let v = all.find(x=>!taken(x) && want && vGender(x) === want) || all.find(x=>!taken(x) && !vGender(x)) || (!want ? all.find(x=>!taken(x)) : null);
+  let pitch = G === "k" ? 1.4 : G === "o" ? 0.95 : 1;
+  if(!v){
+    /* yeterli ses yok: aynı sesi farklı perdeyle konuştur */
+    const base = all.find(x=>want && vGender(x) === want) || narr || all[0] || null;
+    const ladder = G === "m" ? [0.8, 0.7, 0.9] : G === "k" ? [1.45, 1.6] : G === "o" ? [0.95, 1.05] : G === "f" ? [1.2, 1.32, 1.1] : [0.85, 1.25, 1.1, 0.75];
+    const usedP = Object.values(cast.map).filter(c=>c.voice === base).map(c=>c.pitch);
+    pitch = ladder.find(p=>!usedP.includes(p)) || ladder[0];
+    if(base && narr && base.name === narr.name && pitch === 1) pitch = 0.85;
+    v = base;
+  } else if(v && want && vGender(v) && vGender(v) !== want){ pitch = want === "m" ? 0.8 : 1.2; }
+  if(v) cast.used[v.name] = true;
+  return (cast.map[key] = {voice:v, pitch});
+}
+/* Bir cümledeki anlatıcı ve konuşma kısımlarını ayırır (eski hikâyeler ve modelin kuralı unuttuğu durumlar için). */
+function speechParts(s){
+  const de = String(s.de||"").replace(/\*\*/g,"");
+  if(s.sp) return [{text:de.replace(/^[„“"»«]+|[„“"»«]+$/g,""), sp:s.sp, g:s.g}];
+  const re = /[„"»]([^“"«]+)[“"«]/g; const out = []; let last = 0, m; const quotes = [];
+  while((m = re.exec(de))){ if(m.index > last) out.push({text:de.slice(last, m.index)}); out.push({text:m[1], q:true}); quotes.push(m[1]); last = re.lastIndex; }
+  if(!quotes.length) return [{text:de}];
+  if(last < de.length) out.push({text:de.slice(last)});
+  const rest = out.filter(x=>!x.q).map(x=>x.text).join(" ");
+  const who = CAST_NAMES.find(n=>new RegExp("\\b"+n+"\\b").test(rest));
+  return out.filter(x=>x.text.replace(/[\s,.:;!?–-]/g,"")).map(x=>x.q ? {text:x.text, sp: who || "_quote", g:""} : {text:x.text.replace(/^[\s,–-]+/,"")});
+}
+async function sayParts(parts, cast, rate, alive){
+  for(const p of parts){ if(alive && !alive()) return; await say(p.text, "de", rate, castFor(cast, p.sp, p.g)); if(parts.length > 1) await sleep(150); }
+}
+function say(text, lang, rate, vo){
   return new Promise(res=>{
     if(!TTS.ok || !text){ res(false); return; }
     let done = false, guard = null;
     const fin = ok => { if(done) return; done = true; clearTimeout(guard); res(ok); };
     try{
       const u = new SpeechSynthesisUtterance(String(text));
-      u.lang = lang === "de" ? "de-DE" : "tr-TR"; const v = voiceFor(lang); if(v) u.voice = v;
+      u.lang = lang === "de" ? "de-DE" : "tr-TR"; const v = (vo && vo.voice) || voiceFor(lang); if(v){ u.voice = v; if(v.lang) u.lang = v.lang; } if(vo && vo.pitch) u.pitch = vo.pitch;
       u.rate = rate || (lang === "de" ? deRate() : 1.0);
       u.onend = () => fin(true); u.onerror = () => fin(false);
       guard = setTimeout(()=>fin(true), 2500 + String(text).length * 160 / u.rate);
@@ -2404,7 +2461,7 @@ const sleep = ms => new Promise(r=>setTimeout(r, ms));
 function syllables(w0){ const w = String(w0).replace(/sch/g,"\u00a7").replace(/ch/g,"\u00a2").replace(/ck/g,"\u00a4").replace(/ei|ie|eu|äu|au/gi, x=>({ei:"\u00e6",ie:"\u00f8",eu:"\u00e5",äu:"\u00f0",au:"\u00fe"})[x.toLowerCase()] || x); const back = x => x.replace(/\u00a7/g,"sch").replace(/\u00a2/g,"ch").replace(/\u00a4/g,"ck").replace(/\u00e6/g,"ei").replace(/\u00f8/g,"ie").replace(/\u00e5/g,"eu").replace(/\u00f0/g,"äu").replace(/\u00fe/g,"au"); const m0 = w.match(/[^aeiouäöüyæøåðþAEIOUÄÖÜY]*[aeiouäöüyæøåðþAEIOUÄÖÜY]+(?:[^aeiouäöüyæøåðþAEIOUÄÖÜY]*$|[^aeiouäöüyæøåðþAEIOUÄÖÜY](?=[^aeiouäöüyæøåðþAEIOUÄÖÜY]))?/g); if(m0 && m0.length) return m0.map(back); const m = String(w0).match(/[^aeiouäöüyAEIOUÄÖÜY]*[aeiouäöüyAEIOUÄÖÜY]+(?:[^aeiouäöüyAEIOUÄÖÜY]*$|[^aeiouäöüyAEIOUÄÖÜY](?=[^aeiouäöüyAEIOUÄÖÜY]))?/g); return m && m.length ? m : [w]; }
 let SLOW_RUN = 0;
 async function saySlow(text){
-  const run = ++SLOW_RUN; try { if(TTS.ok) window.speechSynthesis.cancel(); } catch(e){}
+  holdReading(); const run = ++SLOW_RUN; try { if(TTS.ok) window.speechSynthesis.cancel(); } catch(e){}
   const words = String(text||"").replace(/[„“"…]/g,"").split(/\s+/).filter(Boolean);
   if(words.length === 1){ const syl = syllables(words[0].replace(/[.,!?;:]/g,""));
     if(syl.length > 1){ for(const x of syl){ if(run !== SLOW_RUN) return; await say(x, "de", 0.6); await sleep(250); } await sleep(300); }
@@ -2429,7 +2486,10 @@ function sessStart(ctx){
   sessNext();
 }
 function sessEnd(){ stopAll(); wakeOff(); S.sess = null; S.brk = null; Store.saveState(); go("plan"); }
-function stopAll(){ stopSpeech(); audioStop(); shStop(); clearInterval(S.blitzIv); }
+function stopReading(){ let was = null; if(S.story && S.story.playing){ S.story.playing = false; S.story.run = (S.story.run||0)+1; was = "story"; } if(S.scen && S.scen.playing){ S.scen.playing = false; S.scen.run = (S.scen.run||0)+1; was = "scen"; } SLOW_RUN++; return was; }
+/* Tek seferlik okuma (kelimeye dokunma, 🔊, 🐢) uzun oynatıcıyı yerini koruyarak duraklatır; "Devam" ile kaldığı yerden sürer. */
+function holdReading(){ const r = stopReading(); const l = S.listen && S.listen.playing, a = S.audio && S.audio.playing; if(l) stopSpeech(); if(a) audioStop(); if(r || l || a){ try { window.speechSynthesis.cancel(); } catch(e){} setTimeout(render, 0); } }
+function stopAll(){ const rd = stopReading(); stopSpeech(); audioStop(); shStop(); micAbort(); clearInterval(S.blitzIv); return rd; }
 function sessMust(remain){
   const C = S.sess.ctx; const {q} = todayQueue(); const out = [];
   for(const x of q){ if(x.done || x.locked) continue;
@@ -2530,17 +2590,29 @@ function sessBar(){
 
 /* ---------- mola ---------- */
 const BREAK_IDEAS = ["Kalk, biraz yürü ya da gerin.","Bir bardak su iç.","Gözlerini ekrandan ayır; uzağa bak.","Omuzlarını 10 kez geriye çevir.","Pencereyi aç, derin nefes al."];
-function startBreak(){
-  stopAll(); S.brk = { end: Date.now() + POMO_BREAK*60000, idea: BREAK_IDEAS[Math.floor(Math.random()*BREAK_IDEAS.length)] };
+function startBreak(midway){
+  let ret = null;
+  if(midway && S.sess && S.view !== "seans"){ ret = {view: S.view}; if(S.audio && S.audio.playing) ret.audio = true; if(S.listen && S.listen.playing) ret.listen = true; }
+  const rd = stopAll(); if(ret && rd) ret.read = rd;
+  S.brk = { end: Date.now() + POMO_BREAK*60000, idea: BREAK_IDEAS[Math.floor(Math.random()*BREAK_IDEAS.length)], ret };
   chime(); Store.saveState();
   if(S.sess && CTXS[S.sess.ctx].audio){ (async()=>{ await say("Mola! Beş dakika dinlen. Ben seni çağıracağım.", "tr"); await say("Pause!", "de"); })(); }
   go("seans"); render();
 }
+function resumeAfterBreak(R){
+  go(R.view);
+  if(R.audio && S.audio){ S.audio.intro = false; audioPlay(); }
+  else if(R.listen && S.listen.script){ S.listen.playing = true; render(); speakCurrent(); }
+  else if(R.read === "story" && S.story && S.story.data){ render(); storyPlay(); }
+  else if(R.read === "scen" && S.scen && S.scen.data){ render(); scenPlay(); }
+  else render();
+}
 function endBreak(){
-  if(!S.brk) return; S.brk = null; pomo().work = 0; chime(); Store.saveState();
+  if(!S.brk) return; const R = S.brk.ret; S.brk = null; pomo().work = 0; chime(); Store.saveState();
   if(S.sess){
-    if(CTXS[S.sess.ctx].audio){ (async()=>{ await say("Mola bitti. Devam ediyoruz.", "tr"); await say("Weiter geht's!", "de"); if(S.sess && !S.brk) sessNext(); })(); }
-    else sessNext();
+    const cont = () => { if(!S.sess || S.brk) return; if(R) resumeAfterBreak(R); else sessNext(); };
+    if(CTXS[S.sess.ctx].audio){ (async()=>{ await say("Mola bitti. Devam ediyoruz.", "tr"); await say("Weiter geht's!", "de"); cont(); })(); }
+    else cont();
   } else { S.flash = "Mola bitti. Hazırsan devam!"; go("plan"); render(); }
 }
 function renderSeans(){
@@ -2637,7 +2709,7 @@ async function audioPlay(){
     await say(silent ? "Türkçesini söylüyorum. Almancasını içinden söyle; sesli söylemene gerek yok. Set arasında bildiysen ekrana dokun." : "Türkçesini söylüyorum. Sen Almancasını yüksek sesle söyle. Sonra doğrusunu duyacaksın.", "tr");
     if(!alive()) return; await sleep(400); }
   while(alive() && A.i < A.items.length){
-    if(S.sess && CTXS[S.sess.ctx].audio && needBreak()){ startBreak(); return; }
+    if(S.sess && CTXS[S.sess.ctx].audio && needBreak()){ startBreak(true); return; }
     const it = A.items[A.i]; A.phase = "ask"; A.graded = null; upd();
     if(it.kind === "bav" || it.kind === "red"){
       await say(it.kind === "bav" ? "Bavyera dili." : "Konuşma Almancası. Ne dedi?", "tr"); if(!alive()) return;
@@ -2760,6 +2832,8 @@ function startShadow(){
   render();
   if(S.sess && items.length){ const H = S.sh; setTimeout(()=>{ if(S.sh === H && H.phase === "teach" && !H.busy && S.view === "shadow") shPlay(false); }, 2500); }
 }
+let REC_CUR = null;
+function micAbort(){ if(REC_CUR){ try { REC_CUR.abort(); } catch(e){} REC_CUR = null; } }
 function shStop(){ const H = S.sh; if(H){ H.busy = false; if(H.rec){ try { H.rec.abort(); } catch(e){} H.rec = null; } } }
 function recognize(onLive){
   return new Promise((res, rej)=>{
@@ -2770,7 +2844,7 @@ function recognize(onLive){
       const last = e.results[e.results.length-1]; if(last.isFinal){ const pre = Array.from(e.results).slice(0,-1).map(x=>x[0].transcript).join(" "); alts = Array.from(last).map(a=>(pre+" "+a.transcript).trim()); } };
     r.onerror = e => { err = e.error || "error"; };
     r.onend = () => { if(S.sh) S.sh.rec = null; if(!alts.length && live) alts = [live.trim()]; if(alts.length && !S.state.srOK){ S.state.srOK = true; Store.saveState(); } if(err && !alts.length) rej({code:err}); else res(alts); };
-    if(S.sh) S.sh.rec = r;
+    if(S.sh) S.sh.rec = r; REC_CUR = r;
     try { r.start(); } catch(e){ rej({code:"start"}); return; }
     setTimeout(()=>{ try { r.stop(); } catch(e){} }, 12000);
   });
@@ -3144,6 +3218,7 @@ async function rpSpeak(){
   T.speaking = true; T.show = false; render();
   await say(m.de, "de", rpRate()); T.slowNext = false;
   if(S.talk !== T) return;
+  if(S.sess && S.sess.paused){ T.speaking = false; return; }
   T.speaking = false; T.waitStart = Date.now(); T._typed = false; render();
   if(!T.auto && !T.ended && T.msgs.filter(m=>m.who==="a").length >= stage().rpTurns){ await say(stage().n===1 ? "Super! Das hast du toll gemacht." : "Super, das war's!", "de"); talkEnd(); return; }
   if(stage().guided && !T.auto && !T.ended){ await talkHelp(); if(S.talk !== T) return; }
@@ -3157,12 +3232,14 @@ async function rpListen(){
   try{
     const alts = await recognize(txt => { if(!first){ first = Date.now(); } T.live = txt; const el = $("#rpLive"); if(el) el.textContent = txt; });
     T.listening = false;
+    if(S.talk !== T || (S.sess && S.sess.paused)) return;
     const said = (alts[0]||"").trim();
     if(!said){ if(T.auto){ T.miss = (T.miss||0)+1; if(T.miss >= 2){ if(S.sess) sessNext(); return; } T.waitStart = 0; rpSpeak(); return; } T.heardErr = "Seni duyamadım. 🎤'a dokun ve tekrar söyle."; render(); return; }
     if(first) T.lat.push(Math.max(0, (first - T.waitStart)/1000));
     T.input = said; T.waitStart = 0; T._typed = true; await talkSend();
   }catch(e){
     T.listening = false;
+    if(S.talk !== T || (S.sess && S.sess.paused)) return;
     if(T.auto && S.sess){ if(e.code === "no-speech" && (T.miss=(T.miss||0)+1) < 2){ T.waitStart = 0; rpSpeak(); return; } if(["not-allowed","service-not-allowed"].includes(e.code)){ S.state.srOK = false; Store.saveState(); } sessNext(); return; }
     if(["not-allowed","service-not-allowed","unsupported","start","audio-capture"].includes(e.code)){ T.mic = "off"; T.heardErr = micMsg(e.code) + " Şimdilik yazarak devam et; cevabı sesli söyleyip sonra yaz."; }
     else T.heardErr = micMsg(e.code);
@@ -3430,7 +3507,7 @@ async function odevRun(){
   O.busy = false; render();
 }
 function renderOdev(){
-  const O = S.odev; const r = O.res;
+  const O = S.odev || (S.odev = {text:"", mine:"", busy:false, res:null, err:""}); const r = O.res;
   return `<section class="card hl"><div class="kicker">VHS ödev yardımcısı</div><h2>Açıklar, ipucu verir; cevabı vermez</h2>
     <p class="small">Ödevi kendin çözersen öğrenirsin. Burası konuyu anlatır, her görev için ipucu verir ve istersen cevaplarını kontrol eder.</p>
     ${CAN_IMG ? `<label class="lbl" for="odFile">Ödev fotoğrafı (en fazla 4)</label><input type="file" id="odFile" accept="image/jpeg,image/png,image/webp" multiple>` : ""}
@@ -3506,8 +3583,11 @@ function sessPause(){
   if(S.listen && S.listen.playing){ P.listen = true; }
   if(S.game && S.game.type === "blitz" && !S.game.over){ P.blitz = Math.max(1, Math.ceil((S.game.end - Date.now())/1000)); clearInterval(S.blitzIv); }
   if(S.flu && S.flu.phase === "run"){ fluStop(); }
-  stopSpeech(); audioStop(); shStop();
-  if(S.talk && S.talk.listening){ S.talk.listening = false; }
+  const rd = stopReading(); if(rd) P.read = rd;
+  if(S.sh && S.sh.busy) P.sh = true;
+  const T = S.talk; if(T && T.voice && T.started && !T.ended && (T.speaking || T.listening || T.busy)) P.talk = true;
+  stopSpeech(); audioStop(); shStop(); micAbort();
+  if(T){ T.listening = false; T.speaking = false; }
   s.paused = P; Store.saveState(); go("seans"); render();
 }
 function sessUnpause(){
@@ -3517,6 +3597,10 @@ function sessUnpause(){
   go(P.view);
   if(P.audio && S.audio){ S.audio.intro = false; audioPlay(); }
   else if(P.listen && S.listen.script){ S.listen.playing = true; render(); speakCurrent(); }
+  else if(P.read === "story" && S.story && S.story.data){ render(); storyPlay(); }
+  else if(P.sh && S.sh){ render(); shPlay(false); }
+  else if(P.talk && S.talk && S.talk.voice && !S.talk.ended){ S.talk.waitStart = 0; render(); if(!S.talk.busy) rpSpeak(); }
+  else if(P.read === "scen" && S.scen && S.scen.data){ render(); scenPlay(); }
   else if(P.blitz && S.game && S.game.type === "blitz"){ S.game.end = Date.now() + P.blitz*1000; clearInterval(S.blitzIv); S.blitzIv = setInterval(blitzTick, 250); render(); }
   else render();
   return true;
@@ -3980,7 +4064,8 @@ BISHER: ${(st.sum||[]).slice(-6).join(" ") || "Erste Folge: Deniz beschließt, z
 THEMA HEUTE: ${scen ? scen.t + " (" + scen.s + ")" : ""}${lek ? "; Kurs: "+lek.t : ""}
 REGELN: ${storyLen()} Wörter. Etwa 95 % Wörter, die der Lerner kennt. Benutze JEDES dieser Wörter mindestens einmal (in natürlicher Form): ${tw.slice(0,12).join(", ") || "-"}. Viel wörtliche Rede (so sprechen Menschen wirklich). Kurze Sätze. Keine Liste, eine echte kleine Geschichte mit Ende.
 Markiere die Wörter des Tages im Text mit **…**.
-Antworte NUR mit JSON: {"title":"…","sentences":[{"de":"…","tr":"genaue türkische Übersetzung"}],"glossary":[{"de":"neues Wort, das nicht in seiner Liste ist","tr":"…"}],"questions":[{"q":"einfache Verständnisfrage auf Türkisch","options":["…","…","…"],"answer":"…"}],"summary_de":"1 Satz Zusammenfassung für die nächste Folge","home":[{"de":"Satz aus der Geschichte, den er heute Abend zu seiner Frau sagen kann","tr":"…"}],"ask_de":"eine Frage, die er heute seiner Frau stellen kann","ask_tr":"…"}
+FORMAT DER SÄTZE: Jede wörtliche Rede ist ein EIGENES Element mit "sp" = Name des Sprechers und "g" = m (Mann), f (Frau) oder k (Kind); "de" enthält dann NUR das Gesagte, ohne Anführungszeichen und ohne "sagt Anna". Erzählsätze haben "sp":"". So bekommt jede Figur beim Vorlesen eine eigene Stimme.
+Antworte NUR mit JSON: {"title":"…","sentences":[{"sp":"","g":"","de":"…","tr":"genaue türkische Übersetzung"}],"glossary":[{"de":"neues Wort, das nicht in seiner Liste ist","tr":"…"}],"questions":[{"q":"einfache Verständnisfrage auf Türkisch","options":["…","…","…"],"answer":"…"}],"summary_de":"1 Satz Zusammenfassung für die nächste Folge","home":[{"de":"Satz aus der Geschichte, den er heute Abend zu seiner Frau sagen kann","tr":"…"}],"ask_de":"eine Frage, die er heute seiner Frau stellen kann","ask_tr":"…"}
 3 Fragen, 3 home-Sätze, höchstens 5 glossary-Wörter.`, {tier:"default"});
     if(!r || !(r.sentences||[]).length) throw {code:"invalid_json"};
     S.story.data = r; S.story.busy = false;
@@ -3993,11 +4078,13 @@ function storyHtml(sent){ return esc(sent).replace(/\*\*([^*]+)\*\*/g, (m,x)=>`<
 async function storyPlay(){
   const H = S.story; if(!H || !H.data) return; primeTTS();
   if(H.playing){ H.playing = false; stopSpeech(); render(); return; }
-  H.playing = true; const run = (H.run = (H.run||0) + 1);
+  H.playing = true; const run = (H.run = (H.run||0) + 1); H.cast = H.cast || makeCast();
+  const alive = () => H.playing && H.run === run && S.story === H;
   for(let i = Math.max(0, H.i); i < H.data.sentences.length; i++){
-    if(!H.playing || H.run !== run || S.story !== H) return;
+    if(!alive()) return;
     H.i = i; render(); const el = document.getElementById("st"+i); if(el) el.scrollIntoView({block:"center", behavior:"smooth"});
-    await say(H.data.sentences[i].de.replace(/\*\*/g,""), "de", deRate()*0.95);
+    await sayParts(speechParts(H.data.sentences[i]), H.cast, deRate()*0.95, alive);
+    if(!alive()) return;
     await sleep(500);
   }
   if(S.story === H){ H.playing = false; H.i = -1; H.listened = true; render(); }
@@ -4023,8 +4110,8 @@ function renderHikaye(){
     <h2>${esc(D.title||"")}</h2>
     <p class="small muted">Önce dinle ve oku. <b>Kalın</b> kelimeler bugünün kelimelerin: dokununca okunur. Bir cümleyi anlamazsan altındaki "TR"ye dokun. Ezber yok: sadece anla.</p>
     ${(D.glossary||[]).length ? `<div class="ex small"><b>Yeni:</b> ${D.glossary.map(g=>`<span class="de">${esc(g.de)}</span> = ${esc(g.tr)}`).join(" · ")}</div>` : ""}
-    <button class="btn ${H.playing?"":"primary"} block" data-act="storyPlay">${H.playing ? "⏸ Durdur" : H.listened ? "🔁 Tekrar dinle" : "▶ Dinleyerek oku"}</button>
-    <div class="story">${D.sentences.map((s,i)=>`<p id="st${i}" class="${H.i===i?"cur":""}"><span class="de">${storyHtml(s.de)}</span> <button class="trb" data-act="storyTr" data-i="${i}">TR</button>${H.show[i]?`<br><span class="tr small">${esc(qfix(s.de, s.tr))}</span>`:""}</p>`).join("")}</div>
+    <button class="btn ${H.playing?"":"primary"} block" data-act="storyPlay">${H.playing ? "⏸ Durdur" : H.i >= 0 ? "▶ Devam et" : H.listened ? "🔁 Tekrar dinle" : "▶ Dinleyerek oku"}</button>
+    <div class="story">${D.sentences.map((s,i)=>`<p id="st${i}" class="${H.i===i?"cur":""}">${s.sp ? `<span class="small muted"><b>${esc(s.sp)}:</b></span> ` : ""}<span class="de">${s.sp ? "„"+storyHtml(String(s.de).replace(/^[„“"]+|[„“"]+$/g,""))+"“" : storyHtml(s.de)}</span> <button class="trb" data-act="storyTr" data-i="${i}">TR</button>${H.show[i]?`<br><span class="tr small">${esc(qfix(s.de, s.tr))}</span>`:""}</p>`).join("")}</div>
   </section>
   <section class="card"><h3>Anladın mı?</h3><p class="small muted">Sınav değil; hikâyeyi takip edebildiğini görmek için.</p>
     ${(D.questions||[]).map((q,i)=>`<div class="stack" style="margin-top:8px"><b>${esc(q.q)}</b><div class="row">${q.options.map(o=>{ const a = H.ans[i]; const cls = a ? (o===q.answer ? "fb ok" : (o===a ? "fb no" : "")) : ""; return `<button class="btn small ${cls}" data-act="storyAns" data-i="${i}" data-o="${esc(o)}" ${a?"disabled":""}>${esc(o)}</button>`; }).join("")}</div></div>`).join("")}
@@ -4091,7 +4178,7 @@ async function startScen(id){
 SZENARIO (${st.n ? "Wiederholung Nr. "+(st.n+1)+": eine NEUE Variante mit anderen Details und etwas anderen Wendungen" : "erstes Mal"}): ${sc.s}
 Andere Person: ${p.name} – ${p.desc}
 AUFGABE: Bring ihm dieses Gespräch bei, BEVOR er es selbst übt. Schreib einen realistischen Mustedialog (8-10 kurze Zeilen) zwischen "du" (der Lerner) und "andere", so wie man in Bayern wirklich spricht (${stage().n >= 3 ? "mit normaler Umgangssprache und ein, zwei bairischen Wörtern mit Erklärung" : "klar und einfach, Niveau des Lerners"}). Benutze möglichst Wörter des Tages. Danach die 5-6 wichtigsten Chunks (feste Wendungen), die er für diese Situation braucht, und einen Tipp, was in Deutschland dabei üblich ist.
-Antworte NUR mit JSON: {"lines":[{"who":"andere|du","de":"…","tr":"…"}],"chunks":[{"de":"…","tr":"…"}],"tip_tr":"1-2 Sätze (z. B. Kultur: Siezen, Grüß Gott, Bon …)","mission_tr":"konkrete Aufgabe für das echte Leben diese Woche","mission_de":"ein Satz, den er dabei sagen kann"}`, {tier:"default"});
+Antworte NUR mit JSON: {"lines":[{"who":"andere|du","g":"m|f (Geschlecht der anderen Person)","de":"…","tr":"…"}],"chunks":[{"de":"…","tr":"…"}],"tip_tr":"1-2 Sätze (z. B. Kultur: Siezen, Grüß Gott, Bon …)","mission_tr":"konkrete Aufgabe für das echte Leben diese Woche","mission_de":"ein Satz, den er dabei sagen kann"}`, {tier:"default"});
     if(!r || !(r.lines||[]).length) throw {code:"invalid_json"};
     S.scen.data = r;
   }catch(e){ S.scen.err = aiMsg(e); }
@@ -4100,12 +4187,12 @@ Antworte NUR mit JSON: {"lines":[{"who":"andere|du","de":"…","tr":"…"}],"chu
 async function scenPlay(){
   const X = S.scen; if(!X || !X.data) return; primeTTS();
   if(X.playing){ X.playing = false; stopSpeech(); render(); return; }
-  X.playing = true; const run = (X.run = (X.run||0)+1);
-  for(let i = 0; i < X.data.lines.length; i++){
+  X.playing = true; const run = (X.run = (X.run||0)+1); X.cast = X.cast || makeCast();
+  for(let i = Math.max(0, X.i); i < X.data.lines.length; i++){
     if(!X.playing || X.run !== run || S.scen !== X) return;
     X.i = i; render();
     const l = X.data.lines[i];
-    await sayPitch(l.de, l.who === "du" ? 0.9 : 1.15, X.phase === "listen" ? 1.0 : deRate()*0.92);
+    await say(l.de, "de", X.phase === "listen" ? 1.0 : deRate()*0.92, castFor(X.cast, l.who === "du" ? "du" : (l.name || "andere"), l.who === "du" ? "m" : l.g));
     await sleep(X.phase === "listen" ? 400 : 700);
   }
   if(S.scen === X){ X.playing = false; X.i = -1; X.heard = (X.heard||0) + 1; render(); }
@@ -4139,7 +4226,7 @@ function renderSenaryo(){
     <h2>${esc(X.sc.t)}</h2>
     <div class="seg" style="margin-top:6px"><button aria-pressed="${X.phase==="model"}" data-act="scenPhase" data-p="model">1 · Öğren</button><button aria-pressed="${X.phase==="listen"}" data-act="scenPhase" data-p="listen">2 · Sadece dinle</button></div>
     <p class="small muted" style="margin-top:6px">${X.phase==="model" ? "Önce örnek konuşmayı dinle ve oku. Her cümleyi yüksek sesle tekrar et." : "Şimdi metin gizli, normal hızda: sadece kulağınla takip et. Sonra metni açıp kontrol et."}</p>
-    <button class="btn ${X.playing?"":"primary"} block" data-act="scenPlay">${X.playing ? "⏸ Durdur" : "▶ Konuşmayı dinle"}</button>
+    <button class="btn ${X.playing?"":"primary"} block" data-act="scenPlay">${X.playing ? "⏸ Durdur" : X.i >= 0 ? "▶ Devam et" : "▶ Konuşmayı dinle"}</button>
     ${hide ? `<button class="btn small ghost" data-act="scenShow">Metni göster</button>` : `<div class="chat">${D.lines.map((l,i)=>`<div class="bub ${l.who==="du"?"a":"p"} ${X.i===i?"cur":""}"><span class="de">${esc(l.de)}</span> <button class="trb" data-act="sayDe" data-t="${esc(l.de)}">🔊</button><br><span class="tr small">${esc(qfix(l.de,l.tr))}</span></div>`).join("")}</div>`}
   </section>
   <section class="card"><h3>Bu durum için kalıplar</h3><div class="stack">${(D.chunks||[]).map(c=>phraseRow(c.de,c.tr)).join("")}</div>
@@ -4464,7 +4551,8 @@ BISHER: ${(st.sum||[]).slice(-6).join(" ") || "Erste Folge: Deniz beschließt, z
 THEMA HEUTE: ${scen ? scen.t + " (" + scen.s + ")" : ""}${lek ? "; Kurs: "+lek.t : ""}
 REGELN: ${storyLen()} Wörter. Etwa 95 % Wörter, die der Lerner kennt. Benutze JEDES dieser Wörter mindestens einmal (in natürlicher Form): ${tw.slice(0,12).join(", ") || "-"}. Viel wörtliche Rede. Kurze Sätze. Eine echte kleine Geschichte mit Spannung und Ende.
 Markiere die Wörter des Tages im Text mit **…**.
-Antworte NUR mit JSON: {"title":"…","sentences":[{"de":"…","tr":"genaue türkische Übersetzung"}],"glossary":[{"de":"neues Wort","tr":"…"}],"questions":[{"q":"einfache Verständnisfrage auf Türkisch","options":["…","…","…"],"answer":"…"}],"summary_de":"1 Satz Zusammenfassung","scene":"1 Satz: was man auf einem Bild sehen würde","img":"englische Foto-Suchanfrage 2-4 Wörter","home":[{"de":"Satz, den er heute Abend zu seiner Frau sagen kann","tr":"…"}],"ask_de":"eine Frage an seine Frau","ask_tr":"…"}
+FORMAT DER SÄTZE: Jede wörtliche Rede ist ein EIGENES Element mit "sp" = Name des Sprechers und "g" = m (Mann), f (Frau) oder k (Kind); "de" enthält dann NUR das Gesagte, ohne Anführungszeichen und ohne "sagt Anna". Erzählsätze haben "sp":"". So bekommt jede Figur beim Vorlesen eine eigene Stimme.
+Antworte NUR mit JSON: {"title":"…","sentences":[{"sp":"","g":"","de":"…","tr":"genaue türkische Übersetzung"}],"glossary":[{"de":"neues Wort","tr":"…"}],"questions":[{"q":"einfache Verständnisfrage auf Türkisch","options":["…","…","…"],"answer":"…"}],"summary_de":"1 Satz Zusammenfassung","scene":"1 Satz: was man auf einem Bild sehen würde","img":"englische Foto-Suchanfrage 2-4 Wörter","home":[{"de":"Satz, den er heute Abend zu seiner Frau sagen kann","tr":"…"}],"ask_de":"eine Frage an seine Frau","ask_tr":"…"}
 3 Fragen, 3 home-Sätze, höchstens 5 glossary-Wörter.`, {tier:"default"});
   return r && (r.sentences||[]).length ? r : null;
 }
@@ -4484,7 +4572,7 @@ async function genScenData(sc){
 SZENARIO (${st.n ? "Wiederholung Nr. "+(st.n+1)+": eine NEUE Variante mit anderen Details und etwas anderen Wendungen" : "erstes Mal"}): ${sc.s}
 Andere Person: ${p.name} – ${p.desc}
 AUFGABE: Bring ihm dieses Gespräch bei, BEVOR er es selbst übt. Schreib einen realistischen Musterdialog (8-10 kurze Zeilen) zwischen "du" (der Lerner) und "andere", so wie man in Bayern wirklich spricht (${stage().n >= 3 ? "mit normaler Umgangssprache und ein, zwei bairischen Wörtern mit Erklärung" : "klar und einfach, Niveau des Lerners"}). Benutze möglichst Wörter des Tages. Danach die 5-6 wichtigsten Chunks und einen Tipp, was in Deutschland dabei üblich ist.
-Antworte NUR mit JSON: {"lines":[{"who":"andere|du","de":"…","tr":"…"}],"chunks":[{"de":"…","tr":"…"}],"tip_tr":"1-2 Sätze","mission_tr":"konkrete Aufgabe für das echte Leben diese Woche","mission_de":"ein Satz, den er dabei sagen kann","img":"englische Foto-Suchanfrage 2-4 Wörter"}`, {tier:"default"});
+Antworte NUR mit JSON: {"lines":[{"who":"andere|du","g":"m|f (Geschlecht der anderen Person)","de":"…","tr":"…"}],"chunks":[{"de":"…","tr":"…"}],"tip_tr":"1-2 Sätze","mission_tr":"konkrete Aufgabe für das echte Leben diese Woche","mission_de":"ein Satz, den er dabei sagen kann","img":"englische Foto-Suchanfrage 2-4 Wörter"}`, {tier:"default"});
   return r && (r.lines||[]).length ? r : null;
 }
 startStory = async function(){
@@ -4806,7 +4894,7 @@ async function openWordPop(word, sent){
   const taps = S.state.taps || (S.state.taps = {}); taps[word] = (taps[word]||0) + 1;
   const known = S.words.find(w=>norm(w.de) === norm(word) || [...wordForms(w)].includes(word.toLowerCase()));
   S.wpop = {word, sent, known, g: GLOSS[word.toLowerCase()] || null, busy:false, added:false};
-  renderWordPop(); say(word, "de");
+  renderWordPop(); holdReading(); say(word, "de");
   if(!S.wpop.g && !known && aiReady()){
     S.wpop.busy = true; renderWordPop();
     try{ const r = await askJSON(`Ein Deutschlerner (Türkisch, A2) tippt auf ein Wort.\nWORT: "${word}"\nSATZ: "${sent}"\nGib Grundform (Lemma), Wortart, bei Nomen Artikel und Plural, bei Verben er-Form und Perfekt, und die türkische Bedeutung GENAU in diesem Satz. Wenn bairisch/umgangssprachlich: Hochdeutsch nennen.\nAntworte NUR mit JSON: {"lemma":"…","type":"nomen|verb|adj|andere","artikel":"der|die|das|","plural":"…","note":"…","tr":"…","img":"englische Bildsuche 2-3 Wörter"}`, {tier:"quick"});
@@ -4831,7 +4919,7 @@ function renderWordPop(){
     ${!k && P.g && !P.added && taps >= 2 ? `<p class="small" style="color:var(--warn)">Bu kelimeye ${taps}. kez bakıyorsun: destene ekleyelim mi?</p>` : ""}
   </div>`;
   el.querySelectorAll("[data-wp]").forEach(b=>b.onclick = ev=>{ ev.stopPropagation(); const a = b.dataset.wp;
-    if(a === "close") closeWordPop(); else if(a === "say") say(g ? (g.artikel ? g.artikel+" " : "")+g.de : P.word, "de"); else if(a === "slow") saySlow(P.word); else if(a === "add") wordPopAdd(); });
+    if(a === "close") closeWordPop(); else if(a === "say"){ holdReading(); say(g ? (g.artikel ? g.artikel+" " : "")+g.de : P.word, "de"); } else if(a === "slow") saySlow(P.word); else if(a === "add") wordPopAdd(); });
 }
 function closeWordPop(){ S.wpop = null; renderWordPop(); }
 async function wordPopAdd(){
@@ -4991,7 +5079,7 @@ const ACT = {
   storyDone(){ storyDone(); },
   scenStart(b){ primeTTS(); startScen(b && b.dataset && b.dataset.id); },
   scenPlay(){ scenPlay(); },
-  scenPhase(b){ const X = S.scen; stopSpeech(); X.playing = false; X.phase = b.dataset.p; X.show = false; render(); },
+  scenPhase(b){ const X = S.scen; stopReading(); stopSpeech(); X.i = -1; X.phase = b.dataset.p; X.show = false; render(); },
   scenShow(){ S.scen.show = true; render(); },
   scenRoleplay(){ scenToRoleplay(); },
   goScenList(){ S.scen = null; go("senaryo"); render(); },
@@ -5004,7 +5092,7 @@ const ACT = {
   vArt(b){ vArt(b.dataset.a); },
   vNext(){ vNext(); },
   vHint(){ const V = S.voc; const i = $("#vIn"); if(i) V.user = i.value; const ans = V.sent ? V.sent.answer : (vWord()||{}).de || ""; V.hint = Math.min(ans.length, Math.floor(V.hint||0) + 1); V.user = ans.slice(0, V.hint); render(); const j = $("#vIn"); if(j){ try { j.focus(); j.setSelectionRange(j.value.length, j.value.length); } catch(e){} } },
-  vSay(){ primeTTS(); const V = S.voc; const w = vWord(); if(V.sent) say(V.res ? V.sent.de : V.sent.de.replace(V.sent.answer, "…"), "de"); else if(w) say((w.artikel ? w.artikel+" " : "")+w.de, "de"); },
+  vSay(){ primeTTS(); holdReading(); const V = S.voc; const w = vWord(); if(V.sent) say(V.res ? V.sent.de : V.sent.de.replace(V.sent.answer, "…"), "de"); else if(w) say((w.artikel ? w.artikel+" " : "")+w.de, "de"); },
   vSaySlow(){ primeTTS(); const V = S.voc; const w = vWord(); if(V.sent) saySlow(V.res ? V.sent.de : V.sent.de.replace(V.sent.answer, "…")); else if(w) saySlow((w.artikel ? w.artikel+" " : "")+w.de); },
   vFlag(){ vFlag(); },
   rpFocus(){ const b = $("#chatIn"); if(b){ b.focus(); b.scrollIntoView({block:"center"}); } },
@@ -5013,9 +5101,9 @@ const ACT = {
   stageUp(){ const n = Math.min(4, stage().n + 1); S.state.stage = n; Store.saveState(); S.flash = `🎓 Tebrikler! Artık ${STAGES[n].name} basamağındasın: ${STAGES[n].tr}`; render(); },
   goalMore(){ const s = S.sess; if(!s) return; s.goalScreen = false; sessNext(); },
   vhsSet(b){ S.state.vhs = {...(S.state.vhs||{}), lek:+b.dataset.n, asked:dayKey()}; Store.saveState(); S.flash = +b.dataset.n ? `VHS: Lektion ${b.dataset.n} olarak ayarlandı. Plan buna göre ilerler.` : "Tamam; kurs başlayınca tekrar soracağım."; render(); },
-  sayDe(b){ primeTTS(); say(b.dataset.t, "de"); },
+  sayDe(b){ primeTTS(); holdReading(); say(b.dataset.t, "de"); },
   teachGo(){ const T = S.teach; if(!T) return; startExercise(T.exTitle||T.title, T.items, T.src, "koc"); },
-  exAudio(){ const it = curItem(); if(it && it.audio){ primeTTS(); say(it.audio, "de", it.rate||deRate()); } },
+  exAudio(){ const it = curItem(); if(it && it.audio){ primeTTS(); holdReading(); say(it.audio, "de", it.rate||deRate()); } },
   exAudioSlow(){ const it = curItem(); if(it && it.audio){ primeTTS(); saySlow(it.audio); } },
   talkVoice(b){ S.talk.voice = b.dataset.v === "1"; if(S.talk.voice && !S.talk.level) S.talk.level = 1; if(S.talk.voice){ S.talk.lat = S.talk.lat||[]; S.talk.mic = useSR() ? "sr" : "off"; } render(); },
   talkLevel(b){ S.talk.level = +b.dataset.l; render(); },
@@ -5052,7 +5140,7 @@ const ACT = {
   sessEnd(){ sessEnd(); },
   sessMore(){ const s = S.sess; if(!s) return; s.ended = false; s.sec = Math.max(0, CTXS[s.ctx].len*60 - 5*60); sessNext(); },
   sessResume(){ const s = S.sess; if(!s) return; if(sessUnpause()) return; if(S.brk){ go("seans"); return; } if(s.cur){ sessRun(s.cur.x ? s.cur : {type:s.cur.type}); s.hist.pop(); } else sessNext(); },
-  brkStart(){ startBreak(); },
+  brkStart(){ startBreak(true); },
   brkSkip(){ endBreak(); },
   extDone(){ daily().ext = true; addSec(600); Store.saveState(); sessNext(); },
   manualDone(){ const b = S.sess && S.sess.cur; if(b && b.x) taskDone(b.x.key); sessNext(); },
@@ -5064,7 +5152,7 @@ const ACT = {
   shSlow(){ primeTTS(); shPlay(true); },
   shNext(){ shNext(); },
   shWord(b){ saySlow(b.dataset.w.replace(/[.,!?„“"]/g,"")); },
-  voiceTest(b){ primeTTS(); b.dataset.l === "de" ? say("Hallo! Ich heiße Anna. Wie geht es dir heute?", "de") : say("Merhaba! Bu Türkçe sesin nasıl duyuluyor?", "tr"); },
+  voiceTest(b){ primeTTS(); holdReading(); b.dataset.l === "de" ? say("Hallo! Ich heiße Anna. Wie geht es dir heute?", "de") : say("Merhaba! Bu Türkçe sesin nasıl duyuluyor?", "tr"); },
   async micTest(){ primeTTS(); S.micTest = {ok:true, msg:"Dinliyorum… 'Guten Morgen, wie geht's?' de."}; render();
     S.sh = S.sh || {busy:false};
     try{ const alts = await recognize(); const sc = scoreHeard("Guten Morgen, wie geht's?", alts[0]||""); S.micTest = {ok:true, msg:`Çalışıyor ✓ Duyduğum: „${alts[0]||""}“ · %${Math.round(sc.score*100)}`}; }
