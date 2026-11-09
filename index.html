@@ -5667,7 +5667,7 @@ async function syInit(){
       SY.app = a.initializeApp(cfg); SY.auth = au.getAuth(SY.app);
       try { await au.setPersistence(SY.auth, au.browserLocalPersistence); } catch(e){}
       SY.db = fs.getFirestore(SY.app);
-      au.onAuthStateChanged(SY.auth, u => { SY.user = u || null; SY.ready = true; if(S.view === "kurulum") render(); if(u) syPull(); });
+      au.onAuthStateChanged(SY.auth, u => { gateAuth(u || null); });
       return true;
     }catch(e){ SY.err = "Firebase yüklenemedi (" + String((e && e.message) || e).slice(0, 80) + ")"; SY.loading = null; return false; }
   })();
@@ -5837,6 +5837,7 @@ function sySetupHtml(){
       <p class="small">Firebase → <b>Firestore Database → Rules</b> sekmesinde her şeyi sil, aşağıdakini yapıştır → <b>Publish</b>. Bundan sonra başka hiçbir Google hesabı bu veritabanında tek bir şey okuyamaz ya da yazamaz.</p>
       <pre class="small" style="white-space:pre-wrap;user-select:all">${esc(syRulesLocked(SY.user.uid))}</pre>
       <button class="btn small" data-act="syCopyRulesLocked">📋 Kopyala</button></details>
+    ${gateLockHtml()}
     <h4 style="margin-top:12px">🔐 API anahtarlarım</h4>
     <p class="small">Anahtarların sadece senin bildiğin bir şifreyle bu cihazda kilitlenip hesabına öyle gider. Şifreyi kimse göremez, ben de. Unutursan anahtarları yeniden girersin; ilerlemen kaybolmaz.</p>
     <input type="text" id="syPass" placeholder="Anahtar şifren (en az 8 karakter)" autocomplete="off" autocapitalize="off" spellcheck="false" style="-webkit-text-security:disc" data-1p-ignore data-lpignore="true">
@@ -5847,6 +5848,65 @@ if(STANDALONE && syCfg()) setTimeout(()=>{ syInit().then(()=>{ if(S.view === "ku
 
 /* doğal ses kotası: bütün cihazların bu ayki kullanımı birlikte sayılır */
 function neuUseTotal(){ const m = dayKey().slice(0,7); let o = {}; try { o = JSON.parse(localStorage.getItem("dw-gtts-others") || "{}"); } catch(e){} return neuUsage().n + (o.m === m ? (+o.n || 0) : 0); }
+
+/* ================= Giriş kilidi: uygulama sadece sahibinin Google hesabıyla açılır ================= */
+/* İzinli hesap, kimliğinin geri çevrilemez özetiyle (SHA-256) tanınır; kodda kişisel bilgi yok.
+   İnternetsiz kullanım için: bu cihazda son 30 gün içinde doğrulanmışsa açılır. */
+const GATE_ALLOW = [];
+function gateOn(){ return STANDALONE && GATE_ALLOW.length > 0; }
+async function gateHash(uid){ const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("dw-gate|" + uid)); return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2, "0")).join(""); }
+function gateCache(){ try { const v = JSON.parse(localStorage.getItem("dw-gate") || "null"); return v && GATE_ALLOW.includes(v.h) && Date.now() - v.t < 30*864e5 ? v : null; } catch(e){ return null; } }
+function gateOk(){ if(!gateOn()) return true; return !!(SY.user && SY.gateOk) || (!!gateCache() && !SY.gateDenied); }
+async function gateAuth(u){
+  SY.ready = true;
+  if(u){
+    const h = await gateHash(u.uid); SY.myHash = h;
+    if(gateOn() && !GATE_ALLOW.includes(h)){
+      SY.user = null; SY.gateOk = false; SY.gateDenied = true; SY.err = "Bu Google hesabının bu uygulamaya erişimi yok.";
+      try { localStorage.removeItem("dw-gate"); } catch(e){}
+      try { await SY.mods.au.signOut(SY.auth); } catch(e){}
+      route(); return;
+    }
+    SY.user = u; SY.gateOk = true; SY.gateDenied = false;
+    try { localStorage.setItem("dw-gate", JSON.stringify({h, t:Date.now()})); } catch(e){}
+    if(S.view === "kilit"){ go(S.state.setupDone && KEYS.gem ? "plan" : "kurulum"); } else if(S.view === "kurulum") render();
+    syPull();
+  } else {
+    SY.user = null; SY.gateOk = false;
+    if(gateOn()){ try { localStorage.removeItem("dw-gate"); } catch(e){} SY.gateDenied = true; route(); }
+    else if(S.view === "kurulum") render();
+  }
+}
+function renderKilit(){
+  const cfg = syCfg();
+  return `<section class="card hl" style="text-align:center">
+    <div style="font-size:3rem">🔒</div><h2>Meine Deutsch-Werkstatt</h2>
+    <p>Bu uygulama özeldir. Devam etmek için Google hesabınla giriş yap.</p>
+    ${cfg ? `<button class="btn primary block" style="min-height:56px" data-act="sySignIn" ${SY.app ? "" : "disabled"}>${SY.app ? "Google ile giriş yap" : "Hazırlanıyor…"}</button>` : ""}
+    ${SY.err ? `<div class="fb no">${esc(SY.err)}</div>` : ""}
+    ${!cfg ? `<details style="text-align:left;margin-top:8px"><summary class="small">Bu cihazda ilk açılış</summary>
+      <p class="small">Firebase'deki <code>firebaseConfig</code> bloğunu yapıştır, sonra giriş yap.</p>
+      <textarea id="fbCfg" style="min-height:90px" autocomplete="off" spellcheck="false"></textarea>
+      <button class="btn block" data-act="syCfgSave">Kaydet</button></details>` : ""}
+  </section>`;
+}
+VIEWS.kilit = renderKilit;
+const _routeGate = route;
+route = function(){
+  if(gateOn() && !gateOk()){
+    if((location.hash || "").slice(1) !== "kilit"){ location.hash = "kilit"; return; }
+    S.view = "kilit"; document.querySelectorAll(".nav a").forEach(a=>a.setAttribute("aria-current","false")); render(); return;
+  }
+  if((location.hash || "").slice(1) === "kilit"){ location.hash = S.state.setupDone && KEYS.gem ? "plan" : "kurulum"; return; }
+  return _routeGate();
+};
+function gateLockHtml(){
+  if(!STANDALONE || !SY.user || gateOn()) return "";
+  return `<details style="margin-top:8px"><summary class="small"><b>🔑 Uygulamayı sadece bu hesaba kilitle</b></summary>
+    <p class="small">Uygulama açılırken Google girişi istesin ve sadece bu hesabı kabul etsin diye aşağıdaki kilit kodunu Claude'a gönder. Bu kod hesabının geri çevrilemez bir özeti; e-postan ya da şifren değil, kimse onunla hesabına giremez.</p>
+    <pre class="small" style="white-space:pre-wrap;user-select:all">${esc(SY.myHash || "hesaplanıyor…")}</pre>
+    <button class="btn small" data-act="gateCopy">📋 Kilit kodunu kopyala</button></details>`;
+}
 
 /* ================= events ================= */
 const ACT = {
@@ -6115,6 +6175,7 @@ Object.assign(ACT, {
   sySignOut(){ sySignOut(); },
   syCfgSave(){ syCfgSave(); },
   syCfgReset(){ localStorage.removeItem("dw-fbcfg"); SY.app = null; SY.loading = null; SY.err = ""; render(); },
+  gateCopy(){ if(SY.myHash) copyText(SY.myHash).then(ok=>toast(ok ? "📋 Kilit kodu kopyalandı. Claude'a gönder." : "Kopyalanamadı.", 2500)); },
   syCopyRulesLocked(){ if(SY.user) copyText(syRulesLocked(SY.user.uid)).then(ok=>toast(ok ? "📋 Kilitli kurallar kopyalandı." : "Kopyalanamadı.", 2000)); },
   syCopyRules(){ copyText(SY_RULES).then(ok=>toast(ok ? "📋 Kurallar kopyalandı." : "Kopyalanamadı.", 2000)); },
   syNow(){ SY.dirty = true; SY.dirtyAt = Date.now(); syPull().then(()=>render()); },
