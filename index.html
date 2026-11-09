@@ -726,6 +726,13 @@ input[type=checkbox],input[type=radio]{accent-color:var(--accent);width:20px;hei
 .svc details.more3>summary{color:var(--sc)}
 .svc .quest .progress i,.svc .progress i{background:linear-gradient(90deg,color-mix(in srgb,var(--sc) 70%,#fff),var(--sc))!important;box-shadow:0 0 10px color-mix(in srgb,var(--sc) 45%,transparent)}
 .svhero .progress i{background:linear-gradient(90deg,#FFE27A,#FFC93C)!important}
+
+/* üst bant ile zemin arasında dikiş olmasın; maskot kartta beyaz baloncukta */
+.top{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+body.scrolled .top{background:color-mix(in srgb,var(--paper) 88%,transparent)!important;backdrop-filter:blur(14px)!important;-webkit-backdrop-filter:blur(14px)!important}
+body::before{background:transparent}
+body.scrolled::before{background:var(--paper)}
+.hero3 .h3top>.brezi{flex:none;background:#fff;border-radius:50%;padding:6px;box-sizing:content-box;box-shadow:0 6px 16px rgba(10,20,70,.25);animation:lkfloat 3.2s ease-in-out infinite}
 </style>
 </head>
 <body>
@@ -5358,7 +5365,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-10l";
+const APP_VER = "2026-11-10m";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -8397,6 +8404,9 @@ document.addEventListener("click", e => {
     const words = String(text||"").split(/\s+/).filter(Boolean);
     if(words.length > 1 && typeof neuOn === "function" && neuOn()){ holdReading(); const run = ++SLOW_RUN; try { if(TTS.ok) window.speechSynthesis.cancel(); } catch(e){} if(run !== SLOW_RUN) return; await say(String(text), "de", 0.72); return; }
     return _ss.apply(this, arguments); }; }
+
+/* kaydırınca üst bant buzlu cama dönsün */
+{ const sc = () => document.body.classList.toggle("scrolled", (window.scrollY || document.documentElement.scrollTop) > 8); window.addEventListener("scroll", sc, {passive:true}); sc(); }
 </script>
 </body>
 </html>
