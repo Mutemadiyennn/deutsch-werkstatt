@@ -24,10 +24,18 @@ jobs:
           npm init -y
           npm install @capacitor/core @capacitor/cli @capacitor/ios
 
+      - name: Prepare Web Directory
+        run: |
+          mkdir -p www
+          for item in index.html manifest.webmanifest apple-touch-icon.png favicon.png icon-192.png icon-512.png robots.txt data; do
+            if [ -e "$item" ]; then cp -r "$item" www/; fi
+          done
+
       - name: Initialize Capacitor and Add iOS
         run: |
-          npx cap init "Deutsch Werkstatt" "com.mutemadiyenn.deutschwerkstatt" --web-dir=.
+          npx cap init "Deutsch Werkstatt" "com.mutemadiyenn.deutschwerkstatt" --web-dir=www
           npx cap add ios
+          npx cap sync ios
 
       - name: Add Microphone Permission
         run: |
