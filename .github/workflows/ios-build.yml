@@ -26,7 +26,7 @@ jobs:
 
       - name: Initialize Capacitor and Add iOS
         run: |
-          npx cap init "Deutsch Werkstatt" "com.mutemadiyenn.deutschwerkstatt" --web-dir=. --yes
+          npx cap init "Deutsch Werkstatt" "com.mutemadiyenn.deutschwerkstatt" --web-dir=.
           npx cap add ios
 
       - name: Add Microphone Permission
