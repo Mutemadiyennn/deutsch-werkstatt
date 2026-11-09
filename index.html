@@ -5912,6 +5912,7 @@ async function gateAuth(u){
       route(); return;
     }
     SY.user = u; SY.gateOk = true; SY.gateDenied = false;
+    if(/Giriş penceresi|Bağlantı hazırlanıyor/.test(SY.err || "")) SY.err = "";
     try { localStorage.setItem("dw-gate", JSON.stringify({h, t:Date.now()})); } catch(e){}
     if(S.view === "kilit") route(); else if(S.view === "kurulum") render();
     syAfterLogin();
