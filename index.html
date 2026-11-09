@@ -495,6 +495,15 @@ body.lesson main{height:100dvh;max-height:100dvh;overflow:hidden;padding:calc(en
 .sumstats div{background:var(--soft);border-radius:16px;padding:10px 6px;display:flex;flex-direction:column}
 .sumstats b{font-family:var(--font-display);font-size:1.3rem}.sumstats span{font-size:.78rem;color:var(--muted)}
 body.lesson .toast{top:calc(env(safe-area-inset-top) + 70px)!important}
+.xlist{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.exq{padding:12px 0;border-bottom:1px solid var(--line)}.exq:last-of-type{border-bottom:0}
+.exq .row{gap:8px;flex-wrap:wrap;justify-content:flex-start;margin-top:6px}
+.xopt{min-height:44px;padding:8px 14px;border-radius:14px;border:2px solid var(--line);background:var(--card);font:inherit;font-weight:700;color:var(--ink);cursor:pointer;text-align:left;max-width:100%;transition:transform .08s ease}
+.xopt:active{transform:scale(.97)}
+.xopt.sel{border-color:var(--accent);background:var(--soft);color:var(--accent)}
+.xopt.right{border-color:var(--good);background:var(--good-bg);color:var(--good)}
+.xopt.wrongsel{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
+.exq.no > p.de b{color:var(--bad)}.exq.ok > p.de b{color:var(--good)}
 #micPill{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));z-index:9999;padding:10px 18px;border-radius:999px;font-weight:700;font-size:1.05rem;box-shadow:0 4px 16px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}#micPill .x{margin-left:12px;font-weight:600;font-size:.9rem;opacity:.85}#micPill.busy{background:#dde7ef;color:#23415a}#micPill .lv{display:block;height:4px;margin-top:6px;border-radius:2px;background:rgba(255,255,255,.9);transform:scaleX(0);transform-origin:left;transition:transform .08s}#micPill.wait{background:#f4e3b5;color:#5a4410}#micPill.go{background:#2f7d4f;color:#fff}
 body.kb .nav{display:none}
 #updBar{position:fixed;left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:9998;background:#23415a;color:#fff;padding:12px 14px;border-radius:14px;font-weight:700;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.2);cursor:pointer}
@@ -832,7 +841,7 @@ function profile(){
   const about = (S.state.about || "").trim() || DEFAULT_ABOUT;
   const name = (S.state.name || "").trim();
   return `LERNER${name ? " (Name: "+name+")" : ""}: ${about}
-NIVEAU: A2 (A1 fast sicher). ZIEL: in 6 Monaten frei und sicher mit Menschen in Bayern sprechen, im Job und im Alltag; B1-Prüfung.
+NIVEAU: ${typeof stage === "function" ? ["","A1-A2 (A1 fast sicher)","A2","A2-B1","B1"][stage().n] : "A2"}. ZIEL: in 6 Monaten frei und sicher mit Menschen in Bayern sprechen, im Job und im Alltag; B1-Prüfung.
 HEUTIGES THEMA: ${cur.d.topic}
 SCHON GELERNTE THEMEN: ${doneTopics().join("; ") || "-"}
 SEINE TYPISCHEN FEHLER:
@@ -1618,9 +1627,9 @@ async function startReading(){
   const L = S.learn; L.err = ""; L.busy = true; L.busyText = "Okuma parçası hazırlanıyor…"; S.ex = null; render();
   try{
     const r = await askJSON(`Du bist ein persönlicher Deutschlehrer. ${profile()}
-AUFGABE: Schreib einen kurzen Lesetext (110-150 Wörter, A2) aus dem Leben des Lerners (Arbeit, Familie, Bayern, Fitness – wähle ein Thema). Benutze das heutige Thema und viele seiner Wörter. Höchstens 6 neue Wörter; diese stehen in "words" und werden VOR dem Text gelernt.
+AUFGABE: ${readSpec()} Benutze das heutige Thema und viele seiner Wörter. Höchstens 6 neue Wörter; diese stehen in "words" und werden VOR dem Text gelernt.
 Antworte NUR mit JSON: {"title":"Lesen: …","intro_tr":"1 Satz: Worum geht es? (Türkisch)","words":[{"de":"…","artikel":"der|die|das|","plural":"…","tr":"…"}],"examples":[{"de":"ein Satz mit einem neuen Wort","tr":"…"}],"text_title":"…","text":"der Text","text_tr":"türkische Übersetzung","questions":[{"q":"Frage auf Deutsch","options":["…","…","…"],"answer":"…"}],"retell_de":"Schreibaufgabe auf Deutsch, die den Text mit dem Leben des Lerners verbindet (3-5 Sätze)","retell_tr":"dieselbe Aufgabe auf Türkisch"}
-4 Fragen.`);
+${stage().n >= 3 ? 6 : 4} Fragen. Fragen prüfen Detail- und Globalverständnis (auch: Was meint der Autor? Was steht NICHT im Text?).`);
     L.lesson = {...r, kind:"reading"}; L.reading = {answers:{}, shown:false};
   }catch(err){ L.err = aiMsg(err); }
   L.busy = false; render();
@@ -4138,7 +4147,8 @@ async function vFill(n){
   const band = vBand(); const known = S.words.map(w=>(w.artikel ? w.artikel+" " : "")+w.de).slice(-1500).join(", ");
   const r = await askJSON(`Du baust einen Wortschatz-Stapel (Anki-Stil) für einen türkischen Deutschlerner in Bayern (Niveau ${band.lvl}, Ziel: frei im Alltag sprechen).
 THEMA: ${band.de}
-${LEX.ready ? "HÄUFIGKEITSLISTE des gesprochenen Deutsch (Filmuntertitel; Rang aufsteigend), noch nicht gelernt: " + freqCandidates(150).join(", ") + "\nWähle bevorzugt Wörter aus dieser Liste (als Grundform/Lemma), die zum Thema passen; fülle sonst mit den häufigsten Alltagswörtern auf.\n" : ""}Gib die nächsten ${n} WICHTIGSTEN, im Alltag häufigsten Wörter zu diesem Thema, die NICHT in dieser Liste stehen: ${known}
+${LEX.ready ? "HÄUFIGKEITSLISTE des gesprochenen Deutsch (Filmuntertitel; Rang aufsteigend), noch nicht gelernt: " + freqCandidates(150).join(", ") + "\nWähle bevorzugt Wörter aus dieser Liste (als Grundform/Lemma), die zum Thema passen; fülle sonst mit den häufigsten Alltagswörtern auf. Die Liste kommt aus Filmen: ignoriere Krimi-/Action-Wortschatz, Schimpfwörter und Slang.\n" : ""}MASSSTAB: der offizielle Prüfungswortschatz (Goethe-/telc-Wortliste) für ${band.lvl === "B1" ? "B1 (Zertifikat B1)" : band.lvl === "A2" ? "A2 (Start Deutsch 2)" : "A1 (Start Deutsch 1)"}: wähle vorrangig Wörter, die in dieser Liste stehen und die man in Bayern wirklich braucht; keine seltenen, literarischen oder Fachwörter (Ausnahme: das IT-Thema).
+Gib die nächsten ${n} WICHTIGSTEN, im Alltag häufigsten Wörter zu diesem Thema, die NICHT in dieser Liste stehen: ${known}
 Mische Nomen, Verben, Adjektive und nützliche kleine Wörter. Bei Nomen: Artikel und Plural (korrekt!). Bei Verben: Infinitiv, im "note" die er-Form und das Perfekt.
 Zu jedem Wort: eine typische Kollokation/Chunk ("einen Termin machen") und ein erster, sehr natürlicher Beispielsatz aus dem Leben des Lerners (Familie, kleine Tochter, IT-Job, Fitnessstudio, Bayern), Niveau ${band.lvl}, mit genauer türkischer Übersetzung.
 "answer" = genau die Form des Wortes, wie sie im Satz steht (bei Nomen ohne Artikel). "trw" = das türkische Wort/die Wortgruppe in "tr", die "answer" entspricht. "scene" = 2-4 Emojis, die die Szene des Satzes zeigen (erstes = Hauptmotiv). "bg" = eine von: ${Object.keys(BG).join(", ")}. "emoji" = 1 Emoji für das Wort selbst. "img" = englische Foto-Suchanfrage (2-4 konkrete Wörter), die die Szene des Satzes zeigt, z. B. "doctor appointment phone".
@@ -5092,7 +5102,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09q";
+const APP_VER = "2026-11-09r";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -6830,6 +6840,407 @@ renderKelime = function(){
 };
 VIEWS.kelime = () => renderKelime();
 
+/* ================= B1 sınav atölyesi: Goethe-Zertifikat B1 biçiminde özgün alıştırmalar (4 modül, 15 bölüm) ================= */
+/* Görevler her seferinde yapay zekâ tarafından yeni yazılır (resmî sınav metinleri kopyalanmaz); sadece biçim ve süreler resmî sınavla aynıdır. */
+const EXAM_PARTS = [
+  {id:"L1", mod:"Lesen", t:"Teil 1: Blogbeitrag, richtig/falsch", min:10, kind:"obj", spec:"Ein persönlicher Blogbeitrag oder eine private E-Mail (ca. 220-260 Wörter) über ein Erlebnis. 6 Aussagen, jeweils richtig oder falsch."},
+  {id:"L2", mod:"Lesen", t:"Teil 2: Zeitungsartikel, a/b/c", min:12, kind:"obj", spec:"Zwei kurze Zeitungsartikel (je ca. 180-220 Wörter) zu Alltagsthemen. Zu jedem 3 Fragen mit drei Antworten a/b/c."},
+  {id:"L3", mod:"Lesen", t:"Teil 3: Anzeigen zuordnen", min:10, kind:"match", spec:"7 kurze Situationen (Personen suchen etwas) und 10 kurze Anzeigen (a-j). Jede Situation passt zu genau einer Anzeige; eine Situation passt zu keiner (Lösung 0)."},
+  {id:"L4", mod:"Lesen", t:"Teil 4: Meinungen, ja/nein", min:12, kind:"obj", spec:"Eine Frage zu einem Gesellschaftsthema und 7 kurze Leserbriefe/Kommentare (je 50-70 Wörter) von Personen mit Namen. Für jede Person: Ist sie dafür? ja oder nein."},
+  {id:"L5", mod:"Lesen", t:"Teil 5: Regeln, a/b/c", min:8, kind:"obj", spec:"Eine Hausordnung oder Kursregeln (ca. 200 Wörter). 4 Fragen mit drei Antworten a/b/c."},
+  {id:"H1", mod:"Hören", t:"Teil 1: Kurze Ansagen", min:8, kind:"listen", plays:2, spec:"5 kurze Hörtexte (Durchsage im Bahnhof, Ansage auf dem Anrufbeantworter, Radio-Verkehrsmeldung, Werbung, Wetter; je 40-60 Wörter). Zu jedem Text 2 Aufgaben: eine richtig/falsch, eine a/b/c."},
+  {id:"H2", mod:"Hören", t:"Teil 2: Führung oder Vortrag", min:8, kind:"listen", plays:1, spec:"Ein Monolog: Stadtführung oder Vortrag (ca. 300 Wörter, eine Person). 5 Fragen mit a/b/c."},
+  {id:"H3", mod:"Hören", t:"Teil 3: Alltagsgespräch", min:8, kind:"listen", plays:1, spec:"Ein Gespräch zwischen zwei Bekannten (ca. 300 Wörter, abwechselnd, Mann und Frau). 7 Aussagen richtig/falsch."},
+  {id:"H4", mod:"Hören", t:"Teil 4: Radiodiskussion", min:10, kind:"listen", plays:2, spec:"Eine Radiodiskussion mit Moderatorin und zwei Gästen (ca. 400 Wörter). 8 Aussagen; zu jeder: Wer sagt das? (Moderatorin, Gast 1 oder Gast 2 mit Namen)."},
+  {id:"S1", mod:"Schreiben", t:"Teil 1: Persönliche E-Mail", min:20, kind:"write", words:80, spec:"Eine Situation (z. B. Ereignis, Umzug, Feier) und drei Inhaltspunkte. Der Lerner schreibt einem Freund eine E-Mail (ca. 80 Wörter)."},
+  {id:"S2", mod:"Schreiben", t:"Teil 2: Forumsbeitrag (Meinung)", min:25, kind:"write", words:80, spec:"Ein Diskussionsthema aus einer Fernsehsendung/Online-Forum mit einem kurzen Gästebuch-Kommentar. Der Lerner schreibt seine Meinung (ca. 80 Wörter)."},
+  {id:"S3", mod:"Schreiben", t:"Teil 3: Formelle E-Mail", min:15, kind:"write", words:40, spec:"Eine Situation mit einer Person, die man siezt (Kursleiterin, Vermieter, Chefin). Der Lerner entschuldigt sich höflich, nennt den Grund und macht einen Vorschlag (ca. 40 Wörter)."},
+  {id:"P1", mod:"Sprechen", t:"Teil 1: Gemeinsam etwas planen", min:8, kind:"plan", spec:"Eine Planungsaufgabe für zwei Personen (z. B. Abschiedsfeier für eine Kollegin) mit 5 Leitpunkten (Wann? Wo? Essen? Geschenk? Wer macht was?)."},
+  {id:"P2", mod:"Sprechen", t:"Teil 2: Präsentation", min:10, kind:"present", spec:"Ein Präsentationsthema aus dem Alltag mit 5 Folien: Thema vorstellen, eigene Erfahrung, Situation im Heimatland, Vor- und Nachteile + Meinung, Abschluss und Dank."},
+  {id:"P3", mod:"Sprechen", t:"Teil 3: Fragen zur Präsentation", min:5, kind:"qa", spec:"Eine Frage, die das Publikum nach der Präsentation stellt; der Lerner reagiert und antwortet."}
+];
+const EXAM_MODS = [["Lesen","📖","Okuma"],["Hören","🎧","Dinleme"],["Schreiben","✍️","Yazma"],["Sprechen","🗣️","Konuşma"]];
+function examSt(){ const e = S.state.exam || (S.state.exam = {}); e.log = e.log || []; return e; }
+function examPartScore(id){ const L = examSt().log.filter(x=>x.id === id).slice(-3); return L.length ? Math.round(L.reduce((a,x)=>a+x.pct,0)/L.length) : null; }
+function examModScore(mod){ const ps = EXAM_PARTS.filter(p=>p.mod === mod).map(p=>examPartScore(p.id)).filter(x=>x !== null); return ps.length ? Math.round(ps.reduce((a,b)=>a+b,0)/ps.length) : null; }
+function examNextPart(){
+  /* en az çalışılan ve en zayıf bölüm önce; aynı modül art arda gelmez */
+  const last = examSt().log.slice(-1)[0];
+  const lastMod = last ? (EXAM_PARTS.find(p=>p.id === last.id)||{}).mod : "";
+  const rank = p => { const n = examSt().log.filter(x=>x.id === p.id).length, sc = examPartScore(p.id); return n * 100 + (sc === null ? 0 : sc) + (p.mod === lastMod ? 1000 : 0); };
+  return EXAM_PARTS.slice().sort((a,b)=>rank(a)-rank(b))[0];
+}
+function examActive(){ const d = daysToExam(); return stage().n >= 3 || (d !== null && d <= 150); }
+function examLevel(){ return stage().n >= 3 ? "B1 (echtes Prüfungsniveau)" : "A2+ bis B1 (Prüfungsformat, Sprache etwas leichter)"; }
+async function startExam(id){
+  const P = EXAM_PARTS.find(p=>p.id === id) || examNextPart();
+  S.exam = {P, busy:true, err:"", data:null, ans:{}, done:false, plays:0, text:"", rec:null};
+  go("sinavatolye"); render();
+  const common = `${profile()}
+Du bist Prüfer:in für das GOETHE-ZERTIFIKAT B1 und erstellst eine ORIGINALE Übungsaufgabe im Format der Prüfung (keine Texte aus echten Prüfungen kopieren, alles neu erfinden). Sprachniveau: ${examLevel()}. Alltagsnah (Arbeit, Familie, Wohnen, Freizeit, Gesundheit, Medien, Umwelt, Reisen).
+MODUL: ${P.mod} – ${P.t}. FORMAT: ${P.spec}`;
+  try{
+    let r;
+    if(P.kind === "obj" || P.kind === "listen") r = await askJSON(common + `
+${P.kind === "listen" ? 'Die Hörtexte werden vorgelesen: Teile sie in "segments" mit "sp" (Sprechername, leer für Ansager/Erzähler) und "g" (m/f). ' : ""}Antworte NUR mit JSON: {"title":"…","intro_tr":"1 Satz Arbeitsanweisung auf Türkisch","texts":[{"label":"z. B. Text 1","de":"…"${P.kind === "listen" ? ',"segments":[{"sp":"","g":"f","de":"…"}]' : ""}}],"items":[{"text":0,"q":"Aussage oder Frage auf Deutsch","options":["richtig","falsch"] ODER ["a) …","b) …","c) …"] ODER ["ja","nein"] ODER Namen,"answer":"genau eine der options","why_tr":"kurze Begründung auf Türkisch mit Textstelle"}]}`);
+    else if(P.kind === "match") r = await askJSON(common + `
+Antworte NUR mit JSON: {"title":"…","intro_tr":"…","ads":[{"id":"a","de":"Anzeige 30-50 Wörter"}],"items":[{"q":"Situation einer Person (1-2 Sätze)","answer":"a"|"0","why_tr":"…"}]}`);
+    else if(P.kind === "write") r = await askJSON(common + `
+Antworte NUR mit JSON: {"title":"…","task_de":"Aufgabenstellung wie in der Prüfung","points_de":["Inhaltspunkt 1","Inhaltspunkt 2","Inhaltspunkt 3"],"task_tr":"kurze türkische Erklärung","source_de":"bei Teil 2: der Kommentar, auf den man reagiert; sonst leer","redemittel":["nützliche Wendung", "…"]}`);
+    else if(P.kind === "plan") r = await askJSON(common + `
+Antworte NUR mit JSON: {"title":"…","task_de":"Situation","points_de":["Leitpunkt 1","…5"],"task_tr":"…","redemittel":["Wollen wir …?","Was hältst du von …?","Ich schlage vor, …","Das ist eine gute Idee, aber …"]}`);
+    else r = await askJSON(common + `
+Antworte NUR mit JSON: {"title":"Thema der Präsentation","slides":[{"t":"Folientitel","hint_de":"was man sagt"}],"task_tr":"…","redemittel":["Ich möchte euch heute … vorstellen.","Ich persönlich habe … erlebt.","In meinem Heimatland …","Einerseits …, andererseits …","Zum Schluss möchte ich …"],"question_de":"eine typische Publikumsfrage zum Thema"}`);
+    if(!r) throw {code:"invalid_json"};
+    S.exam.data = r;
+  }catch(e){ S.exam.err = aiMsg(e); }
+  S.exam.busy = false; render();
+}
+function examFinish(pct, extra){
+  const E = S.exam; if(!E || E.done) return;
+  E.done = true; E.pct = Math.round(pct); Object.assign(E, extra || {});
+  const st = examSt(); st.log.push({id:E.P.id, pct:E.pct, date:dayKey()}); st.log = st.log.slice(-300);
+  daily().exam = true; Store.saveState(); addXP(E.pct >= 60 ? 25 : 12);
+  if(E.pct >= 60){ confetti(E.pct >= 85 ? 110 : 60); sfx("up"); }
+  render();
+}
+function examCheckObj(){
+  const E = S.exam, d = E.data; const items = d.items || []; let ok = 0;
+  for(let i = 0; i < items.length; i++){ const a = E.ans[i]; if(a !== undefined && String(a).trim().toLowerCase() === String(items[i].answer).trim().toLowerCase()) ok++; }
+  examFinish(items.length ? ok/items.length*100 : 0, {ok, n:items.length});
+}
+async function examPlay(){
+  const E = S.exam, d = E.data; if(!d || E.playing) return;
+  const max = E.P.plays || 1; if(E.plays >= max && !E.done) return;
+  E.playing = true; E.plays++; render();
+  const cast = {map:{}, used:{}}; const alive = () => S.exam === E && E.playing;
+  for(const tx of (d.texts||[])){
+    if(!alive()) break;
+    await say(tx.label || "", "de", 1.0);
+    for(const sg of (tx.segments || [{de:tx.de}])){ if(!alive()) break; await say(sg.de, "de", 0.95, castFor(cast, sg.sp, sg.g)); await sleep(200); }
+    await sleep(700);
+  }
+  E.playing = false; render();
+}
+async function examEvalWrite(){
+  const E = S.exam, d = E.data; const txt = (($("#exText")||{}).value || E.text || "").trim(); E.text = txt;
+  if(txt.split(/\s+/).length < 15){ E.err = "Biraz daha yaz: en az birkaç cümle gerekli."; render(); return; }
+  E.busy = true; E.busyTxt = "Sınav ölçütlerine göre değerlendiriliyor…"; render();
+  try{
+    const r = await askJSON(`${profile()}
+Du bewertest eine Schreibaufgabe im Format GOETHE-ZERTIFIKAT B1, ${E.P.t}. Aufgabe: ${d.task_de} Inhaltspunkte: ${(d.points_de||[]).join(" | ")}. Ziel: ca. ${E.P.words} Wörter.
+TEXT DES LERNERS: """${txt}"""
+Bewerte streng wie eine Prüferin nach den vier Kriterien (je 0-5): Erfüllung (alle Punkte, Textsorte, Register du/Sie, Länge), Kohärenz (Verknüpfung, Anrede/Gruß), Wortschatz, Strukturen (Grammatik). Erkläre auf Türkisch.
+Antworte NUR mit JSON: {"scores":{"erfuellung":0,"kohaerenz":0,"wortschatz":0,"strukturen":0},"feedback_tr":"2-3 Sätze","points_ok":[true,true,false],"mistakes":[{"wrong":"…","right":"…","rule_tr":"…","topic":"eine von: ${MTOPICS.join(", ")}"}],"better_de":"verbesserte Version seines Textes (gleicher Inhalt)","model_de":"eine B1-Musterlösung"}`);
+    const sc = r.scores || {}; const tot = ["erfuellung","kohaerenz","wortschatz","strukturen"].reduce((a,k)=>a + Math.max(0, Math.min(5, +sc[k]||0)), 0);
+    E.res = r; if((r.mistakes||[]).length) await addMistakes(r.mistakes, "sınav: " + E.P.id);
+    E.busy = false; examFinish(tot/20*100);
+  }catch(e){ E.busy = false; E.err = aiMsg(e); render(); }
+}
+function examMicOk(){ return (typeof mic2Ok === "function" && mic2Ok()) || useSR(); }
+/* serbest kayıt: dokun → kaydet, tekrar dokun → yazıya dök. Sınav ve hayat hikâyesi ortak kullanır. */
+async function freeRecToggle(o, onText){
+  if(o.recOn){ o.recOn = false; const st = o.stopRec; o.stopRec = null; if(st) st(); render(); return; }
+  stopSpeech(); try { neuStop(); } catch(e){}
+  o.recOn = true; o.err = ""; render();
+  const finish = txt => { o.busy = false; onText((txt || "").trim()); };
+  if(typeof mic2Ok === "function" && mic2Ok()){
+    let stream = null, rec = null, chunks = [];
+    const h = { _cancel:false, onend:null, abort(){ try { if(rec && rec.state !== "inactive"){ rec.onstop = null; rec.stop(); } } catch(e){} try { stream && stream.getTracks().forEach(t=>t.stop()); MIC_STREAMS.delete(stream); } catch(e){} if(REC_CUR === h) REC_CUR = null; o.recOn = false; }, stop(){} };
+    REC_CUR = h;
+    try{
+      audioSess("play-and-record");
+      stream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true, noiseSuppression:true, autoGainControl:true}}); MIC_STREAMS.add(stream);
+      if(!o.recOn){ h.abort(); return; }
+      rec = new MediaRecorder(stream); rec.ondataavailable = e => { if(e.data && e.data.size) chunks.push(e.data); }; rec.start(1000);
+    }catch(e){ h.abort(); o.err = micMsg((e && e.name === "NotAllowedError") ? "not-allowed" : "audio-capture"); render(); return; }
+    o.stopRec = () => {
+      o.busy = true; o.busyTxt = "Konuşman yazıya dökülüyor…"; render();
+      rec.onstop = async () => {
+        try { stream.getTracks().forEach(t=>t.stop()); MIC_STREAMS.delete(stream); } catch(e){} if(REC_CUR === h) REC_CUR = null;
+        let txt = "";
+        try { const w = await paToWav(new Blob(chunks, {type:(chunks[0] && chunks[0].type) || rec.mimeType || "audio/mp4"})); if(w.sec >= 1 && w.peak >= 0.015) txt = await mic2Transcribe(w.wav); } catch(e){}
+        finish(txt);
+      };
+      try { rec.stop(); } catch(e){ finish(""); }
+    };
+  } else {
+    const stop = _startCont0(()=>{});
+    o.stopRec = () => finish(stop());
+  }
+}
+function examMicOk(){ return (typeof mic2Ok === "function" && mic2Ok()) || useSR(); }
+async function examSpeakRun(){
+  const E = S.exam;
+  if(!E.recOn && !examMicOk()){ E.typeMode = true; render(); return; }
+  if(!E.recOn) E.text = "";
+  freeRecToggle(E, txt => { if(S.exam !== E) return; E.text = txt; if(!txt){ E.err = "Ses anlaşılamadı. Tekrar dene ya da yazarak cevapla."; render(); return; } examEvalSpeak(); });
+}
+async function examEvalSpeak(){
+  const E = S.exam, d = E.data;
+  E.busy = true; E.busyTxt = "Konuşman değerlendiriliyor…"; render();
+  try{
+    const r = await askJSON(`${profile()}
+Du bewertest mündliche Leistung im Format GOETHE-ZERTIFIKAT B1, ${E.P.t}. Aufgabe: ${JSON.stringify({title:d.title, task:d.task_de, points:d.points_de, slides:d.slides, question:d.question_de})}.
+TRANSKRIPT (automatisch erkannt, kleine Erkennungsfehler ignorieren): """${E.text}"""
+Bewerte wie eine Prüferin (je 0-5): Aufgabenerfüllung, Interaktion/Kohärenz, Wortschatz, Strukturen. Feedback auf Türkisch, konkret.
+Antworte NUR mit JSON: {"scores":{"aufgabe":0,"kohaerenz":0,"wortschatz":0,"strukturen":0},"feedback_tr":"2-3 Sätze","missing_tr":"was gefehlt hat","mistakes":[{"wrong":"…","right":"…","rule_tr":"…","topic":"eine von: ${MTOPICS.join(", ")}"}],"model_de":"wie eine gute B1-Antwort klingen könnte (kurz)"}`);
+    const sc = r.scores || {}; const tot = ["aufgabe","kohaerenz","wortschatz","strukturen"].reduce((a,k)=>a + Math.max(0, Math.min(5, +sc[k]||0)), 0);
+    E.res = r; if((r.mistakes||[]).length) await addMistakes(r.mistakes, "sınav: " + E.P.id);
+    E.busy = false; examFinish(tot/20*100);
+  }catch(e){ E.busy = false; E.err = aiMsg(e); render(); }
+}
+function renderExamHome(){
+  const st = examSt(); const d = daysToExam();
+  return `<section class="card hero"><h2>B1 sınav atölyesi</h2><p class="small">Goethe-Zertifikat B1'in 4 modülü ve 15 bölümü, gerçek sınav biçiminde. Görevler her seferinde yeniden yazılır. Her modülde geçmek için %60 gerekir.${d !== null ? ` Sınava ${d} gün var.` : ""}</p>
+    <button class="btn primary block" data-act="examGo" data-p="">Sıradaki bölüm: ${esc(examNextPart().id)} · ${esc(examNextPart().t)}</button></section>
+  ${EXAM_MODS.map(([m,i,tr])=>{ const sc = examModScore(m); return `<section class="card"><div class="row between"><h3>${i} ${m} <span class="small muted">(${tr})</span></h3><span class="chip ${sc === null ? "" : sc >= 60 ? "good" : "bad"}">${sc === null ? "henüz yok" : "%" + sc}</span></div>
+    <div class="progress"><i style="width:${sc||0}%;${sc !== null && sc < 60 ? "background:var(--bad)" : ""}"></i></div>
+    <div class="xlist">${EXAM_PARTS.filter(p=>p.mod === m).map(p=>{ const ps = examPartScore(p.id); const n = st.log.filter(x=>x.id===p.id).length; return `<button class="lrow" data-act="examGo" data-p="${p.id}"><span>${n ? (ps >= 60 ? "✓" : "↻") : "○"}</span><b>${esc(p.t)}</b><em>${ps === null ? p.min + " dk" : "%" + ps + " · " + n + "×"}</em></button>`; }).join("")}</div></section>`; }).join("")}
+  <section class="card"><p class="small muted">Gerçek ölçüm için Goethe-Institut'un resmî deneme setini de 4. ve 8. ayda yapacağız; atölye seni o biçime hazırlar.</p></section>`;
+}
+function renderExam(){
+  const E = S.exam;
+  if(!E) return renderExamHome();
+  if(E.busy) return thinkingCard(E.busyTxt || "Sınav görevi hazırlanıyor…");
+  const P = E.P, d = E.data;
+  const head = `<section class="card"><div class="row between"><span class="ltag">${esc(P.mod)} · ${esc(P.id)}</span><span class="small muted">~${P.min} dk</span></div><h2>${esc(d && d.title || P.t)}</h2>${d && d.intro_tr ? `<p class="small muted">${esc(d.intro_tr)}</p>` : ""}</section>`;
+  if(E.err && !d) return `<section class="card"><div class="fb no">${esc(E.err)}</div><button class="btn block" data-act="examGo" data-p="${P.id}">Tekrar dene</button><a class="btn ghost block" href="#sinavatolye" data-act="examHome">Atölyeye dön</a></section>`;
+  const result = E.done ? `<section class="card ${E.pct >= 60 ? "hl" : ""}"><div class="sumtop">${brezi(E.pct >= 85 ? "party" : E.pct >= 60 ? "happy" : "sad", 56)}<h2>%${E.pct} ${E.pct >= 60 ? "· geçme puanı ✓" : "· henüz %60 değil"}</h2></div>
+      ${E.res ? `<p>${esc(E.res.feedback_tr||"")}</p>${E.res.missing_tr ? `<p class="small muted">${esc(E.res.missing_tr)}</p>` : ""}${E.res.scores ? `<div class="sumstats">${Object.entries(E.res.scores).map(([k,v])=>`<div><b>${v}/5</b><span>${esc(k)}</span></div>`).join("")}</div>` : ""}
+        ${E.res.better_de ? `<details><summary>Düzeltilmiş hâli</summary><p class="de">${esc(E.res.better_de)}</p></details>` : ""}${E.res.model_de ? `<details><summary>Örnek B1 cevabı</summary><p class="de">${esc(E.res.model_de)}</p></details>` : ""}` : `<p>${E.ok}/${E.n} doğru.</p>`}
+      ${S.sess ? continueBtn() : `<div class="grid2"><button class="btn" data-act="examHome">Atölye</button><button class="btn primary" data-act="examNext">Sıradaki bölüm</button></div>`}</section>` : "";
+  if(P.kind === "obj" || P.kind === "listen" || P.kind === "match"){
+    const texts = P.kind === "match" ? `<section class="card"><h3>Anzeigen</h3>${(d.ads||[]).map(a=>`<div class="ex"><b>${esc(a.id)})</b> <span class="de">${esc(a.de)}</span></div>`).join("")}</section>`
+      : P.kind === "listen" ? `<section class="card" style="text-align:center"><p class="small muted">Metni ${P.plays === 2 ? "iki kez" : "bir kez"} dinleyebilirsin (sınavdaki gibi). Okunan metin cevaplardan sonra açılır.</p><button class="btn primary block" data-act="examPlay" ${E.playing || (E.plays >= (P.plays||1) && !E.done) ? "disabled" : ""}>${E.playing ? "🔊 Çalıyor…" : "🎧 Dinle (" + E.plays + "/" + (P.plays||1) + ")"}</button>${E.done ? `<details><summary>Okunan metin</summary>${(d.texts||[]).map(t=>`<p class="small"><b>${esc(t.label||"")}</b> ${esc((t.segments||[]).map(s=>(s.sp?s.sp+": ":"")+s.de).join(" ") || t.de || "")}</p>`).join("")}</details>` : ""}</section>`
+      : (d.texts||[]).map(t=>`<section class="card"><h3>${esc(t.label||"")}</h3><p class="de" style="line-height:1.7">${esc(t.de||"")}</p></section>`).join("");
+    const opts = P.kind === "match" ? [...(d.ads||[]).map(a=>a.id), "0"] : null;
+    const items = (d.items||[]).map((it, i)=>{ const o = opts || it.options || []; const a = E.ans[i]; const right = E.done && String(a).toLowerCase() === String(it.answer).toLowerCase();
+      return `<div class="exq ${E.done ? (right ? "ok" : "no") : ""}"><p class="de"><b>${i+1}.</b> ${esc(it.q)}</p><div class="row">${o.map(x=>`<button class="xopt ${a === x ? "sel" : ""} ${E.done && String(x).toLowerCase() === String(it.answer).toLowerCase() ? "right" : E.done && a === x ? "wrongsel" : ""}" data-act="examAns" data-i="${i}" data-v="${esc(x)}" ${E.done ? "disabled" : ""}>${esc(x)}</button>`).join("")}</div>${E.done && !right ? `<p class="small muted">${esc(it.why_tr||"")}</p>` : ""}</div>`; }).join("");
+    return head + texts + `<section class="card"><h3>Aufgaben</h3>${items}${E.done ? "" : `<button class="btn primary block" data-act="examCheck" ${Object.keys(E.ans).length < (d.items||[]).length ? "disabled" : ""}>Kontrol et</button>`}</section>` + result;
+  }
+  if(P.kind === "write") return head + `<section class="card"><p class="de"><b>${esc(d.task_de||"")}</b></p>${d.source_de ? `<div class="ex de">${esc(d.source_de)}</div>` : ""}<ul class="rule">${(d.points_de||[]).map(x=>`<li class="de">${esc(x)}</li>`).join("")}</ul><p class="small muted">${esc(d.task_tr||"")}</p>
+      ${(d.redemittel||[]).length ? `<details><summary>Kalıplar (Redemittel)</summary><p class="small de">${(d.redemittel||[]).map(esc).join(" · ")}</p></details>` : ""}
+      <textarea id="exText" placeholder="Hier schreiben … (ca. ${P.words} Wörter)" ${E.done ? "disabled" : ""} data-model="exText">${esc(E.text||"")}</textarea><p class="small muted" style="text-align:right"><span id="exWc">${ntok(E.text).length} kelime</span> · hedef ~${P.words}</p>
+      ${E.err ? `<div class="note">${esc(E.err)}</div>` : ""}${E.done ? "" : `<button class="btn primary block" data-act="examWrite">Değerlendir</button>`}</section>` + result;
+  const slides = P.kind === "present" ? `<div class="stack">${(d.slides||[]).map((s,i)=>`<div class="ex"><b>${i+1}. ${esc(s.t)}</b><div class="small muted de">${esc(s.hint_de||"")}</div></div>`).join("")}</div>` : "";
+  const qa = P.kind === "qa" ? `<p class="de"><b>${esc(d.question_de || "")}</b> <button class="licon" data-act="sayDe" data-t="${esc(d.question_de||"")}" aria-label="Dinle">🔊</button></p>` : "";
+  return head + `<section class="card">${d.task_de ? `<p class="de"><b>${esc(d.task_de)}</b></p>` : ""}${(d.points_de||[]).length ? `<ul class="rule">${d.points_de.map(x=>`<li class="de">${esc(x)}</li>`).join("")}</ul>` : ""}${slides}${qa}
+      <p class="small muted">${esc(d.task_tr||"")} ${P.kind === "plan" ? "Partnerin yokmuş gibi iki tarafı da konuşma: öneri yap, soruya cevap ver, karar ver." : P.kind === "present" ? "Yaklaşık 3 dakika, her slayt için 2-3 cümle." : "Kısa ve net cevap ver, bir örnek ekle."}</p>
+      ${(d.redemittel||[]).length ? `<details><summary>Kalıplar (Redemittel)</summary><p class="small de">${d.redemittel.map(esc).join(" · ")}</p></details>` : ""}
+      ${E.err ? `<div class="note">${esc(E.err)}</div>` : ""}
+      ${E.done ? "" : E.typeMode ? `<textarea id="exText" data-model="exText" placeholder="Mikrofon yok: söyleyeceklerini yaz">${esc(E.text||"")}</textarea><button class="btn primary block" data-act="examTyped">Değerlendir</button>` : `<button class="lbtn ${E.recOn ? "warn mic live" : "go"}" style="width:100%" data-act="examSpeak">${E.recOn ? "⏹ Bitir ve değerlendir" : "🎤 Konuşmaya başla"}</button>${E.recOn ? `<p class="small muted" style="text-align:center">Kaydediyorum… ${E.P.kind === "present" ? "yaklaşık 3 dakika" : "1-2 dakika"} konuş, bitince dokun.</p>` : `<button class="btn ghost small block" data-act="examTypeMode">Yazarak cevapla</button>`}`}
+      ${E.text ? `<details><summary>Söylediklerin</summary><p class="small de">${esc(E.text)}</p></details>` : ""}</section>` + result;
+}
+VIEWS.sinavatolye = () => renderExam();
+document.addEventListener("input", e => { const t = e.target; if(t && t.dataset && t.dataset.model === "exText" && S.exam){ S.exam.text = t.value; const c = $("#exWc"); if(c) c.textContent = ntok(t.value).length + " kelime"; } });
+/* plan: sınav yaklaştıkça günlük sınav bölümü; son 60 günde çekirdek adım */
+PLAN_PRIO.exam = 3;
+const _todayQueueEx = todayQueue;
+todayQueue = function(){
+  const r = _todayQueueEx();
+  if(!examActive()) return r;
+  const dd = (S.state.daily||{})[dayKey()] || {}; const P = examNextPart(); const d = daysToExam();
+  const it = {key:"exam", kind:"exam", title:`B1 sınav atölyesi: ${P.mod} ${P.t}`, min:P.min, done: !!dd.exam};
+  const core = d !== null && d <= 60;
+  if(!it.done){
+    const used = r.q.filter(x=>!x.extra && !x.done).reduce((a,x)=>a + (x.min||0), 0);
+    if(core){ /* yer açmak için en düşük öncelikli çekirdek adımı bonusa kaydır */
+      const lo = r.q.filter(x=>!x.extra && !x.done && (PLAN_PRIO[x.kind] ?? 4) >= 4).slice(-1)[0]; if(lo && used + it.min > (r.budget||80)) lo.extra = true; }
+    else if(used + it.min > (r.budget||80)) it.extra = true;
+  }
+  r.q.push(it); return r;
+};
+const _taskGoEx = taskGo;
+taskGo = function(key){ const x = findTask(key); if(x && x.kind === "exam"){ S.flow = true; startExam(""); return; } return _taskGoEx.apply(this, arguments); };
+const _taskDoneEx = taskDone;
+taskDone = function(key, skip){ const x = findTask(key); if(x && x.kind === "exam"){ daily().exam = true; Store.saveState(); render(); return; } return _taskDoneEx.apply(this, arguments); };
+const _needsAIEx = needsAI;
+needsAI = function(k){ return k === "exam" || _needsAIEx(k); };
+if(typeof KIND_WHY === "object") KIND_WHY.exam = "Goethe B1'in gerçek biçimi: süre, görev tipi ve puanlama aynı. Biçimi tanıyan sınavda puan kaybetmez.";
+
+/* ================= Hayat hikâyem: kendi geçmişini Almanca anlatabilmek (B1'in çekirdek becerisi) ================= */
+/* Akış: notların (Türkçe olabilir) → seviyene göre senin hikâyen → kalıplar + dinle → serbestçe anlat → geri bildirim + meraklı dinleyicinin soruları → aralıklı tekrar. */
+const LIFE_CH = [
+  {id:"herkunft", i:"🏡", t:"Nereden geliyorum, çocukluğum", q:"Nerede doğdun, nasıl bir yerde büyüdün? Ailen, oyunların, unutamadığın bir çocukluk anın.", gram:"Präteritum war/hatte, als ich klein war …"},
+  {id:"schule", i:"🎒", t:"Okul ve gençlik", q:"Okulun, sevdiğin/sevmediğin dersler, arkadaşlar, ilk işin ya da gençlikte yaptığın bir şey.", gram:"Perfekt, Modalverben im Präteritum (musste, durfte, konnte)"},
+  {id:"militaer", i:"🎖️", t:"Askerlik anılarım", q:"Nerede, ne kadar, ne görevdeydin? Zor bir gün, komik bir olay, arkadaşlık. (Sadece paylaşmak istediğin kadarını yaz.)", gram:"als + Präteritum, nachdem + Plusquamperfekt"},
+  {id:"beruf", i:"💻", t:"Mesleğim ve kariyerim", q:"Nasıl IT güvenliğine geldin? İlk işin, bir başarı, bir zorluk, bugün ne yapıyorsun.", gram:"seit/vor + Dativ, weil/obwohl"},
+  {id:"umzug", i:"✈️", t:"Almanya'ya gelişim", q:"Neden ve ne zaman geldin? İlk günler, ilk şaşırtan şey, bürokrasi, Bavyera'da yeni hayat.", gram:"Temporale Nebensätze (als, bevor, seitdem)"},
+  {id:"liebe", i:"💍", t:"Eşimle tanışmam", q:"Nerede, nasıl tanıştınız? İlk izlenim, düğün ya da birlikte bir anı.", gram:"Reflexive Verben (sich kennenlernen, sich verlieben)"},
+  {id:"familie", i:"👨‍👩‍👧", t:"Kızım ve aile hayatı", q:"Kızının doğumu, baba olmak, sıradan bir aile günü, tatiller.", gram:"wenn (wiederholt) vs. als (einmal)"},
+  {id:"erlebnis", i:"⚡", t:"Başımdan geçen bir olay", q:"Bir kaza, bir yolculuk, kaybolma, bir şans eseri — başından geçen akılda kalan bir olay.", gram:"Erzählstruktur: zuerst, plötzlich, danach, am Ende"},
+  {id:"sport", i:"🏋️", t:"Spor ve kendime iyi bakmak", q:"Spora nasıl başladın, haftada 5 gün spor salonu, bir sakatlık ya da hedef.", gram:"Komparativ, um … zu"},
+  {id:"zukunft", i:"🔭", t:"Bugün ve gelecek planlarım", q:"Şu an hayatın, 5 yıl sonra nerede olmak istersin, hayallerin.", gram:"Futur (werden), Konjunktiv II (ich würde gern …)"}
+];
+const LIFE_GAPS = [1, 3, 7, 14, 30, 60];
+function lifeSt(){ const l = S.state.life || (S.state.life = {}); l.ch = l.ch || {}; return l; }
+function lifeCh(id){ return lifeSt().ch[id] || null; }
+function lifeDue(){ const t = dayKey(); return LIFE_CH.filter(c=>{ const x = lifeCh(c.id); return x && x.story && x.due && x.due <= t; }); }
+function lifeBuilt(){ return LIFE_CH.filter(c=>{ const x = lifeCh(c.id); return x && x.story; }); }
+function lifeLevelTxt(){ const n = stage().n; return n <= 1 ? "A2 (kurze Sätze, Perfekt, war/hatte, weil, dann)" : n === 2 ? "A2+ (Perfekt + Präteritum der Modalverben, als/weil/dass, Zeitangaben)" : "B1 (Präteritum, als/nachdem/während, Plusquamperfekt einmal, Meinung und Gefühle)"; }
+function startLife(id){ S.life = {id:id || "", phase: id ? "notes" : "list", busy:false, err:"", text:"", rec:false}; if(id){ const x = lifeCh(id); if(x && x.story) S.life.phase = "story"; } go("hayat"); render(); }
+async function lifeBuild(){
+  const L = S.life; const c = LIFE_CH.find(x=>x.id === L.id); const notes = (($("#lifeNotes")||{}).value || L.notes || "").trim();
+  if(notes.length < 20){ L.err = "Birkaç cümle yaz: ne olduğunu, ne zaman, nerede, nasıl hissettin."; render(); return; }
+  L.notes = notes; L.busy = true; L.busyTxt = "Hikâyen senin seviyende Almancaya dönüşüyor…"; render();
+  try{
+    const r = await askJSON(`${profile()}
+Der Lerner möchte über sein Leben erzählen können. Kapitel: "${c.t}". Seine Notizen (oft Türkisch): """${notes}"""
+Schreibe daraus SEINE Geschichte in der Ich-Form auf Niveau ${lifeLevelTxt()}: 8-12 natürliche, gesprochene Sätze, wie man sie einem neuen Bekannten erzählt (nicht wie ein Aufsatz). Erfinde KEINE neuen Fakten; wenn etwas fehlt, lass es weg. Grammatik-Schwerpunkt: ${c.gram}.
+Dann: 6 wiederverwendbare Erzähl-Chunks aus dem Text (mit Türkisch), 1 Grammatik-Tipp auf Türkisch zum Schwerpunkt, 3 Fragen, die ein neugieriger Gesprächspartner (z. B. ein Nachbar beim Grillfest) danach stellen würde.
+Antworte NUR mit JSON: {"de":"…","tr":"Türkische Übersetzung","chunks":[{"de":"…","tr":"…"}],"tip_tr":"…","questions":["…","…","…"]}`);
+    if(!r || !r.de) throw {code:"invalid_json"};
+    const st = lifeSt(); st.ch[L.id] = Object.assign(st.ch[L.id] || {}, {notes, story:r, reps:0, due:dayKey(), built:dayKey()});
+    Store.saveState(); L.phase = "story"; addXP(10);
+  }catch(e){ L.err = aiMsg(e); }
+  L.busy = false; render();
+}
+async function lifeEval(){
+  const L = S.life, x = lifeCh(L.id), c = LIFE_CH.find(y=>y.id === L.id);
+  L.busy = true; L.busyTxt = "Anlattıkların değerlendiriliyor…"; render();
+  try{
+    const r = await askJSON(`${profile()}
+Der Lerner erzählt frei (ohne Text) aus seinem Leben, Kapitel "${c.t}". Seine Vorlage war: """${x.story.de}"""
+WAS ER JETZT GESAGT HAT (Transkript, kleine Erkennungsfehler ignorieren): """${L.text}"""
+Bewerte wie eine freundliche Lehrerin: Er muss die Vorlage NICHT auswendig können; frei und verständlich erzählen ist das Ziel. Lobe konkret, korrigiere die 3-5 wichtigsten Fehler (vor allem Vergangenheitsformen, Verbposition, als/wenn).
+Antworte NUR mit JSON: {"score":0-100,"understandable":true,"feedback_tr":"2-3 Sätze, ermutigend und konkret","mistakes":[{"wrong":"…","right":"…","rule_tr":"…","topic":"eine von: ${MTOPICS.join(", ")}"}],"better_de":"seine Erzählung, korrigiert und etwas flüssiger (seine Inhalte!)","followup":"eine natürliche Nachfrage eines Zuhörers auf Deutsch"}`);
+    if((r.mistakes||[]).length) await addMistakes(r.mistakes, "hayat hikâyem");
+    const sc = Math.max(0, Math.min(100, +r.score || 0));
+    x.reps = (x.reps||0) + (sc >= 60 ? 1 : 0); x.due = addDays(dayKey(), sc >= 60 ? LIFE_GAPS[Math.min(x.reps-1, LIFE_GAPS.length-1)] : 1);
+    x.last = dayKey(); x.best = Math.max(x.best||0, sc); x.words = Math.max(x.words||0, ntok(L.text).length);
+    daily().life = true; Store.saveState(); addXP(sc >= 60 ? 20 : 10); markUsed(L.text, "konuşma");
+    L.res = r; L.score = sc; L.phase = "fb";
+    if(sc >= 60){ confetti(sc >= 85 ? 100 : 50); sfx("up"); }
+  }catch(e){ L.err = aiMsg(e); }
+  L.busy = false; render();
+}
+async function lifeAnswer(){
+  const L = S.life; L.phase = "qa"; L.text = ""; render();
+}
+function renderLifeList(){
+  const due = lifeDue(), built = lifeBuilt();
+  return `<section class="card hero"><h2>Hayat hikâyem</h2><p class="small">B1 demek: başından geçenleri, anılarını ve planlarını anlatabilmek. Her bölümde notlarını yazarsın (Türkçe olabilir); senin hikâyen senin seviyende Almancaya dönüşür, kalıplarını öğrenirsin, sonra <b>ezberlemeden</b> kendi sözlerinle anlatırsın. Anlattıkça seyrekleşen tekrarlar kalıcı yapar.</p>
+    <p class="small muted">🔒 Sadece paylaşmak istediğini yaz. Notların senin hesabında saklanır ve hikâyeyi yazmak için yapay zekâya gönderilir.</p>
+    <div class="row"><span class="chip">${built.length}/${LIFE_CH.length} bölüm</span>${due.length ? `<span class="chip c-fire">${due.length} tekrar bekliyor</span>` : ""}</div></section>
+  <section class="card"><div class="xlist">${LIFE_CH.map(c=>{ const x = lifeCh(c.id); const st = !x || !x.story ? "yeni" : x.due <= dayKey() ? "anlat ↻" : "✓ " + (x.reps||0) + "×";
+    return `<button class="lrow" data-act="lifeOpen" data-id="${c.id}"><span>${c.i}</span><b>${esc(c.t)}</b><em>${st}</em></button>`; }).join("")}</div></section>`;
+}
+function renderLife(){
+  const L = S.life; if(!L || L.phase === "list") return renderLifeList();
+  if(L.busy) return thinkingCard(L.busyTxt || "Hazırlanıyor…");
+  const c = LIFE_CH.find(x=>x.id === L.id), x = lifeCh(L.id), s = x && x.story;
+  const head = `<section class="card"><div class="row between"><span class="ltag">${c.i} Hayat hikâyem</span><button class="btn small ghost" data-act="lifeList">Bölümler</button></div><h2>${esc(c.t)}</h2></section>`;
+  const err = L.err ? `<div class="note">${esc(L.err)}</div>` : "";
+  const recBtn = (lbl) => L.typeMode ? `<textarea id="lifeSay" data-model="lifeSay" placeholder="Mikrofon yok: anlatacaklarını yaz">${esc(L.text||"")}</textarea><button class="btn primary block" data-act="lifeTyped">Değerlendir</button>`
+    : `<button class="lbtn ${L.recOn ? "warn mic live" : "go"}" style="width:100%" data-act="lifeRec">${L.recOn ? "⏹ Bitirdim" : lbl}</button>${L.recOn ? `<p class="small muted" style="text-align:center">Kaydediyorum… takılırsan "Wie sagt man …?" de ya da başka kelimeyle anlat, durma.</p>` : `<button class="btn ghost small block" data-act="lifeTypeMode">Yazarak anlat</button>`}`;
+  if(L.phase === "notes") return head + `<section class="card"><p>${esc(c.q)}</p><p class="small muted">Türkçe, Almanca ya da karışık yazabilirsin. Ne kadar somut olursa (yer, yıl, kişi, duygu) hikâye o kadar senin olur.</p>
+    <textarea id="lifeNotes" style="min-height:150px" placeholder="ör. 1990'da İzmir'de doğdum, …">${esc((x && x.notes) || L.notes || "")}</textarea>${err}
+    <button class="btn primary block" data-act="lifeBuild">Hikâyemi oluştur</button></section>`;
+  if(L.phase === "story") return head + `<section class="card"><div class="row between"><h3>Senin hikâyen</h3><button class="btn small" data-act="lifeListen">🔊 Dinle</button></div>
+      <p class="de" style="line-height:1.75">${esc(s.de)}</p><details><summary>Türkçesi</summary><p class="small">${esc(s.tr||"")}</p></details></section>
+    <section class="card"><h3>Anlatırken işine yarayacak kalıplar</h3><div class="stack">${(s.chunks||[]).map(k=>`<div class="ex row between" style="flex-wrap:nowrap"><div><div class="de"><b>${esc(k.de)}</b></div><div class="tr">${esc(k.tr)}</div></div><button class="btn small ghost" data-act="sayDe" data-t="${esc(k.de)}" aria-label="Dinle">🔊</button></div>`).join("")}</div>
+      ${s.tip_tr ? `<p class="small"><b>Dil ipucu:</b> ${esc(s.tip_tr)}</p>` : ""}</section>
+    <section class="card"><p class="small">Şimdi metne bakmadan, <b>kendi kelimelerinle</b> anlat. Hepsini hatırlaman gerekmez; akıcı ve anlaşılır olmak hedef.</p>${err}
+      <button class="btn primary block" data-act="lifeGoRetell">Metni gizle ve anlat →</button><button class="btn ghost small block" data-act="lifeEdit">Notlarımı düzenle</button></section>`;
+  if(L.phase === "retell" || L.phase === "qa"){
+    const q = L.phase === "qa" ? (L.res && L.res.followup) || (s.questions||[])[0] : "";
+    return head + `<section class="card" style="text-align:center">${q ? `<p class="small muted">Bir komşu soruyor:</p><p class="de"><b>${esc(q)}</b> <button class="licon" data-act="sayDe" data-t="${esc(q)}" aria-label="Dinle">🔊</button></p>` : `<p>Anlat: <b>${esc(c.t)}</b></p><p class="small muted">İpucu kelimeler: ${(s.chunks||[]).slice(0,4).map(k=>`<span class="de">${esc(k.de.split(/\s+/).slice(0,3).join(" "))}…</span>`).join(" · ")}</p>`}
+      ${err}${recBtn(q ? "🎤 Cevap ver" : "🎤 Anlatmaya başla")}</section>`;
+  }
+  if(L.phase === "fb"){ const r = L.res || {};
+    return head + `<section class="card ${L.score >= 60 ? "hl" : ""}"><div class="sumtop">${brezi(L.score >= 85 ? "party" : L.score >= 60 ? "happy" : "sad", 56)}<h2>${L.score >= 60 ? "Anlattın! 👏" : "Bir tur daha"} · %${L.score}</h2></div>
+      <p>${esc(r.feedback_tr||"")}</p>
+      ${(r.mistakes||[]).length ? `<div class="stack">${r.mistakes.map(m=>`<div class="ex"><s class="small">${esc(m.wrong)}</s> → <b class="de">${esc(m.right)}</b><div class="small muted">${esc(m.rule_tr||"")}</div></div>`).join("")}</div>` : ""}
+      ${r.better_de ? `<details><summary>Senin anlattığın, düzeltilmiş</summary><p class="de">${esc(r.better_de)}</p><button class="btn small" data-act="sayDe" data-t="${esc(r.better_de)}">🔊 Dinle</button></details>` : ""}
+      <p class="small muted">Sonraki tekrar: ${esc(x.due)}</p>
+      ${r.followup ? `<button class="btn primary block" data-act="lifeQA">Komşunun sorusuna cevap ver →</button>` : ""}
+      ${S.sess ? continueBtn() : `<div class="grid2"><button class="btn" data-act="lifeList">Bölümler</button><button class="btn" data-act="lifeGoRetell">Tekrar anlat</button></div>`}</section>`;
+  }
+  return renderLifeList();
+}
+VIEWS.hayat = () => renderLife();
+async function lifeQAEval(){
+  const L = S.life; const q = (L.res && L.res.followup) || "";
+  L.busy = true; L.busyTxt = "Cevabın değerlendiriliyor…"; render();
+  try{
+    const r = await askJSON(`${profile()}
+Ein Nachbar hat gefragt: "${q}". Der Lerner antwortete (Transkript): """${L.text}"""
+Gib kurzes Feedback auf Türkisch, korrigiere max. 3 Fehler, und stelle eine weitere natürliche Nachfrage.
+Antworte NUR mit JSON: {"feedback_tr":"…","mistakes":[{"wrong":"…","right":"…","rule_tr":"…","topic":"eine von: ${MTOPICS.join(", ")}"}],"better_de":"…","followup":"…","score":0-100}`);
+    if((r.mistakes||[]).length) await addMistakes(r.mistakes, "hayat hikâyem");
+    L.res = Object.assign({}, r); L.score = Math.max(0, Math.min(100, +r.score || 0)); L.phase = "fb"; addXP(8); markUsed(L.text, "konuşma");
+  }catch(e){ L.err = aiMsg(e); L.phase = "qa"; }
+  L.busy = false; render();
+}
+function lifeOnText(txt){ const L = S.life; if(!L) return; L.text = txt; if(!txt){ L.err = "Ses anlaşılamadı. Tekrar dene ya da yazarak anlat."; render(); return; } (L.phase === "qa" ? lifeQAEval : lifeEval)(); }
+document.addEventListener("input", e => { const t = e.target; if(t && t.id === "lifeNotes" && S.life) S.life.notes = t.value; if(t && t.dataset && t.dataset.model === "lifeSay" && S.life) S.life.text = t.value; });
+/* plan: tekrarı gelen bölüm varsa günlük 10 dk; hiç yoksa hafta sonu yeni bölüm */
+PLAN_PRIO.life = 3;
+const _todayQueueLife = todayQueue;
+todayQueue = function(){
+  const r = _todayQueueLife();
+  const dd = (S.state.daily||{})[dayKey()] || {}; const due = lifeDue(); const wd = new Date().getDay();
+  let it = null;
+  if(due.length) it = {key:"life", kind:"life", title:`Hayat hikâyem: "${due[0].t}" bölümünü anlat`, min:10, done: !!dd.life, lifeId: due[0].id};
+  else if(stage().n >= 1 && (wd === 6 || wd === 0 || lifeBuilt().length === 0) && lifeBuilt().length < LIFE_CH.length){ const nx = LIFE_CH.find(c=>!lifeCh(c.id) || !lifeCh(c.id).story); it = {key:"life", kind:"life", title:`Hayat hikâyem: yeni bölüm "${nx.t}"`, min:15, done: !!dd.life, lifeId: nx.id}; }
+  if(it){ /* anlatabilmek ana hedef: yer açmak için en düşük öncelikli çekirdek adımı bonusa kaydır */
+    const used = r.q.filter(x=>!x.extra && !x.done).reduce((a,x)=>a + (x.min||0), 0);
+    if(!it.done && used + it.min > (r.budget||80)){ const lo = r.q.filter(x=>!x.extra && !x.done && ["fluency","real","write","offline","chat"].includes(x.kind)).slice(-1)[0]; if(lo) lo.extra = true; else it.extra = true; }
+    r.q.push(it); }
+  return r;
+};
+const _taskGoLife = taskGo;
+taskGo = function(key){ const x = findTask(key); if(x && x.kind === "life"){ S.flow = true; startLife(x.lifeId); return; } return _taskGoLife.apply(this, arguments); };
+const _taskDoneLife = taskDone;
+taskDone = function(key, skip){ const x = findTask(key); if(x && x.kind === "life"){ daily().life = true; Store.saveState(); render(); return; } return _taskDoneLife.apply(this, arguments); };
+const _needsAILife = needsAI;
+needsAI = function(k){ return k === "life" || _needsAILife(k); };
+KIND_WHY.life = "B1 sınavında da sokakta da en çok sorulan şey: kimsin, nereden geldin, başından ne geçti. Kendi hikâyeni akıcı anlatmak sohbetin kapısını açar.";
+
+/* ================= İçerik: seviyeyle büyüyen okuma, B1 kelime alanları, film sözlüğü süzgeci, yeni modüllerin girişleri ================= */
+const READ_TYPES = [
+  ["eine E-Mail von einem Freund", "einen Blogbeitrag"],
+  ["eine E-Mail von einem Freund", "einen Blogbeitrag", "eine kurze Zeitungsmeldung", "eine Anzeige mit Details"],
+  ["einen Zeitungsartikel über ein Alltagsthema in Deutschland", "eine Forumsdiskussion mit 4 verschiedenen Meinungen", "einen Ratgebertext (Tipps)", "einen Blogbeitrag über ein Erlebnis", "Regeln/Hausordnung mit Ausnahmen", "ein Interview"],
+  ["einen Zeitungsartikel über ein Gesellschaftsthema", "eine Forumsdiskussion mit 4 verschiedenen Meinungen", "einen Ratgebertext", "einen persönlichen Erfahrungsbericht", "eine offizielle Information (Behörde, Kursanbieter)", "ein Interview"]
+];
+function readSpec(){
+  const n = stage().n; const types = READ_TYPES[Math.max(0, n-1)]; const dn = Math.floor(Date.now()/86400000); const ty = types[dn % types.length];
+  const len = ["", "100-130 Wörter, A2", "150-200 Wörter, A2+", "220-300 Wörter, B1", "280-350 Wörter, B1 (Prüfungsniveau)"][n];
+  return `Schreib als Lesetext ${ty} (${len}). ${n <= 2 ? "Thema aus dem Leben des Lerners (Arbeit, Familie, Bayern, Fitness)." : "Thema aus dem Leben in Deutschland (Arbeit, Wohnen, Familie, Medien, Umwelt, Gesundheit, Freizeit); nicht immer über den Lerner selbst, damit er auch fremde Perspektiven versteht."} Natürliche Sprache mit Konnektoren (weil, obwohl, deshalb, trotzdem, außerdem) und ${n >= 3 ? "auch Präteritum, Passiv und Relativsätzen" : "Perfekt"}.`;
+}
+VBANDS.push(
+  {id:"a2-clothes", lvl:"A2", t:"Giyim ve alışveriş", de:"Kleidung, Größen, Umtausch, Einkaufen im Geschäft"},
+  {id:"a2-media", lvl:"A2", t:"Telefon, internet, TV", de:"Handy, Internet, Fernsehen, Apps, Nachrichten schreiben"},
+  {id:"a2-past", lvl:"A2", t:"Geçmişi anlatmak", de:"Erzählen in der Vergangenheit: Zeitangaben, Erlebnisse, Erinnerungen (früher, damals, letztes Jahr, als Kind)"},
+  {id:"b1-connect", lvl:"B1", t:"Bağlaçlar ve akıcı anlatım", de:"Konnektoren und Redemittel zum Erzählen und Argumentieren (trotzdem, deshalb, außerdem, nachdem, während, zum Schluss)"},
+  {id:"b1-life", lvl:"B1", t:"Hayat hikâyesi ve anılar", de:"Lebenslauf, Kindheit, Militärdienst, Umzug, Erinnerungen, Wendepunkte im Leben"},
+  {id:"b1-feel", lvl:"B1", t:"Duygular ve ilişkiler (ileri)", de:"Gefühle genauer beschreiben, Beziehungen, Freundschaft, Streit und Versöhnung"},
+  {id:"b1-media", lvl:"B1", t:"Medya ve dijital hayat", de:"Medien, soziale Netzwerke, Datenschutz, Werbung, Online-Einkauf"},
+  {id:"b1-env", lvl:"B1", t:"Çevre ve iklim", de:"Umwelt, Mülltrennung, Energie sparen, Klima, Verkehr"},
+  {id:"b1-consume", lvl:"B1", t:"Alışveriş, şikâyet, haklar", de:"Reklamation, Beschwerde, Garantie, Vertrag kündigen, Kundenservice"},
+  {id:"b1-living", lvl:"B1", t:"Ev arama ve kira", de:"Wohnungssuche, Mietvertrag, Nebenkosten, Hausverwaltung, Umzug"},
+  {id:"b1-money", lvl:"B1", t:"Para, banka, vergiler", de:"Geld, Konto, Überweisung, Versicherung, Steuern, sparen"},
+  {id:"b1-culture", lvl:"B1", t:"Kültür, bayramlar, boş zaman", de:"Kultur, Feste in Deutschland und der Türkei, Vereine, Ehrenamt, Ausflüge"},
+  {id:"b1-travel", lvl:"B1", t:"Yolculukta sorunlar", de:"Reiseprobleme: Verspätung, Hotelbeschwerde, Gepäck verloren, Panne"},
+  {id:"b1-exam", lvl:"B1", t:"Sınav dili", de:"Wörter aus Prüfungsaufgaben: Aussage, zutreffen, Anzeige, Stellung nehmen, Vor- und Nachteile, Erfahrung"}
+);
+/* film altyazısı sözlüğünden suç/şiddet ve küfür kelimelerini ayıkla */
+const LEX_BAD = /^(töt|tot$|tote|mord|mörder|leiche|waffe|schieß|erschieß|knarre|scheiß|verdammt|arsch|fick|hure|schlampe|wichs|bastard|idiot|blut|bombe|gefängnis|bulle|kill|teufel|hölle|gott$|herrgott|töte|erschoss|geschossen|umbring|mist$|kacke|dreck)/;
+const _freqCand0 = freqCandidates;
+freqCandidates = function(n){ return _freqCand0(n * 2).filter(f=>!LEX_BAD.test(f)).slice(0, n); };
+BLK.exam = {min:12, ai:true, heavy:true, label:"B1 sınav atölyesi"};
+BLK.life = {min:10, ai:true, heavy:true, label:"Hayat hikâyem"};
+const _renderMoreC = renderMore;
+renderMore = function(){
+  const lb = lifeBuilt().length, ld = lifeDue().length, ms = EXAM_MODS.map(([m])=>examModScore(m)).filter(x=>x !== null);
+  const tiles = `<button class="tile" data-act="goLife"><i class="ti" style="--c:var(--fire)" aria-hidden="true">📜</i><b>Hayat hikâyem</b><span>Kendini, geçmişini, askerlik anılarını Almanca anlat. ${lb}/${LIFE_CH.length} bölüm${ld ? " · " + ld + " tekrar" : ""}.</span></button>
+    <button class="tile" data-act="goExam"><i class="ti" style="--c:var(--accent)" aria-hidden="true">🎓</i><b>B1 sınav atölyesi</b><span>Goethe B1 biçimi: okuma, dinleme, yazma, konuşma. ${ms.length ? "Ortalama %" + Math.round(ms.reduce((a,b)=>a+b,0)/ms.length) : "15 bölüm"}.</span></button>`;
+  return _renderMoreC().replace('<section class="grid2 tgrid">', '<section class="grid2 tgrid">' + tiles);
+};
+VIEWS.more = () => renderMore();
+
 /* ================= events ================= */
 const ACT = {
   sessStart(b){ micWarm(); sessStart(b.dataset.c); },
@@ -7111,6 +7522,33 @@ Object.assign(ACT, {
 });
 route();
 initRuntime();
+/* sınav atölyesi + hayat hikâyem eylemleri (ACT tanımından sonra) */
+Object.assign(ACT, {
+  examHome(){ stopSpeech(); if(S.exam) S.exam.playing = false; S.exam = null; go("sinavatolye"); render(); },
+  examGo(el){ primeTTS(); startExam(el.dataset.p || ""); },
+  examNext(){ primeTTS(); startExam(""); },
+  examAns(el){ const E = S.exam; if(!E || E.done) return; E.ans[+el.dataset.i] = el.dataset.v; render(); },
+  examCheck(){ examCheckObj(); },
+  examPlay(){ primeTTS(); examPlay(); },
+  examWrite(){ examEvalWrite(); },
+  examSpeak(){ examSpeakRun(); },
+  examTypeMode(){ const E = S.exam; if(E){ E.typeMode = true; render(); } },
+  examTyped(){ const E = S.exam; if(!E) return; E.text = (($("#exText")||{}).value || E.text || "").trim(); if(E.text.split(/\s+/).length < 8){ E.err = "Biraz daha yaz."; render(); return; } examEvalSpeak(); },
+  goExam(){ S.exam = null; go("sinavatolye"); render(); }
+});
+Object.assign(ACT, {
+  goLife(){ primeTTS(); startLife(""); },
+  lifeList(){ stopSpeech(); S.life = {phase:"list"}; render(); },
+  lifeOpen(el){ primeTTS(); startLife(el.dataset.id); },
+  lifeEdit(){ S.life.phase = "notes"; render(); },
+  lifeBuild(){ lifeBuild(); },
+  lifeListen(){ const x = lifeCh(S.life.id); if(x && x.story) say(x.story.de, "de", 0.92); },
+  lifeGoRetell(){ stopSpeech(); const L = S.life; L.phase = "retell"; L.text = ""; L.err = ""; render(); },
+  lifeQA(){ lifeAnswer(); },
+  lifeRec(){ const L = S.life; if(!L.recOn && !examMicOk()){ L.typeMode = true; render(); return; } freeRecToggle(L, lifeOnText); },
+  lifeTypeMode(){ S.life.typeMode = true; render(); },
+  lifeTyped(){ const v = (($("#lifeSay")||{}).value || "").trim(); if(ntok(v).length < 8){ S.life.err = "Biraz daha anlat (birkaç cümle)."; render(); return; } lifeOnText(v); }
+});
 </script>
 </body>
 </html>
