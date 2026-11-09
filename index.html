@@ -5166,7 +5166,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09w";
+const APP_VER = "2026-11-09x";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -7951,18 +7951,25 @@ function syLoginHtml(big){
 function syAppPassHtml(){
   if(NATIVE || !SY.user) return "";
   const has = (SY.user.providerData || []).some(p=>p.providerId === "password");
-  return `<details style="margin-top:8px"><summary class="small"><b>📱 iPhone uygulaması şifresi</b> ${has ? "· ✓ belirlendi" : ""}</summary>
+  return `<details style="margin-top:8px" ${SY.apOpen ? "open" : ""} ontoggle="SY.apOpen = this.open"><summary class="small"><b>📱 iPhone uygulaması şifresi</b> ${has ? "· ✓ belirlendi" : ""}</summary>
     <p class="small">iPhone uygulaması Google penceresini açamadığı için bu hesaba bağlı bir şifreyle girer. Aynı hesap olduğu için ilerlemen ve anahtarların orada da aynen gelir. Önce Firebase'de <b>Authentication → Sign-in method → Email/Password</b>'ü aç.</p>
     <input type="password" id="syAp1" placeholder="Yeni uygulama şifresi (en az 8 karakter)" autocomplete="new-password">
     <input type="password" id="syAp2" placeholder="Tekrar" autocomplete="new-password">
-    <button class="btn block" data-act="syAppPass">${has ? "Şifreyi değiştir" : "Şifreyi belirle"}</button>
+    <button class="btn block" data-act="syAppPass" ${SY.apBusy ? "disabled" : ""}>${SY.apBusy ? "Kaydediliyor…" : has ? "Şifreyi değiştir" : "Şifreyi belirle"}</button>
     ${SY.apmsg ? `<div class="fb ${SY.apmsg.ok ? "ok" : "no"} small">${esc(SY.apmsg.msg)}</div>` : ""}</details>`;
 }
 async function syAppPass(){
+  SY.apOpen = true; SY.apmsg = null;
+  try { await syAppPass0(); } catch(e){ SY.apmsg = {ok:false, msg:"Hata: " + String((e && (e.code || e.message)) || e).slice(0, 120)}; }
+  SY.apBusy = false; SY.apOpen = true; render();
+}
+async function syAppPass0(){
   const p1 = ($("#syAp1")||{}).value || "", p2 = ($("#syAp2")||{}).value || "";
   if(p1.length < 8){ SY.apmsg = {ok:false, msg:"En az 8 karakter."}; render(); return; }
   if(p1 !== p2){ SY.apmsg = {ok:false, msg:"İki şifre aynı değil."}; render(); return; }
-  const {au} = SY.mods; const u = SY.auth.currentUser;
+  const {au} = SY.mods; const u = SY.auth && SY.auth.currentUser;
+  if(!u){ SY.apmsg = {ok:false, msg:"Oturum bulunamadı; çıkış yapıp Google ile tekrar gir."}; return; }
+  SY.apBusy = true; render();
   try{
     if((u.providerData || []).some(p=>p.providerId === "password")) await au.updatePassword(u, p1);
     else await au.linkWithCredential(u, au.EmailAuthProvider.credential(u.email, p1));
