@@ -5798,6 +5798,16 @@ service cloud.firestore {
     }
   }
 }`;
+function syRulesLocked(uid){ return `rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid}/{document=**} {
+      allow read, write: if request.auth != null
+                         && request.auth.uid == uid
+                         && uid == "${uid}";
+    }
+  }
+}`; }
 function sySetupHtml(){
   if(!STANDALONE) return "";
   const cfg = syCfg();
@@ -5823,6 +5833,10 @@ function sySetupHtml(){
     <div class="fb ok small">✓ Giriş: <b>${esc(SY.user.email || "")}</b> · Son eşitleme: ${esc(syAgo(SY.last || syMeta().ts))}${SY.busy ? " · eşitleniyor…" : ""}</div>
     ${SY.err ? `<div class="fb no small">${esc(SY.err)}</div>` : ""}
     <div class="grid2"><button class="btn" data-act="syNow" ${SY.busy ? "disabled" : ""}>☁️ Şimdi eşitle</button><button class="btn ghost" data-act="sySignOut">Çıkış</button></div>
+    <details style="margin-top:8px"><summary class="small"><b>🔒 Veritabanını sadece bu hesaba kilitle</b> (önerilir, bir kerelik)</summary>
+      <p class="small">Firebase → <b>Firestore Database → Rules</b> sekmesinde her şeyi sil, aşağıdakini yapıştır → <b>Publish</b>. Bundan sonra başka hiçbir Google hesabı bu veritabanında tek bir şey okuyamaz ya da yazamaz.</p>
+      <pre class="small" style="white-space:pre-wrap;user-select:all">${esc(syRulesLocked(SY.user.uid))}</pre>
+      <button class="btn small" data-act="syCopyRulesLocked">📋 Kopyala</button></details>
     <h4 style="margin-top:12px">🔐 API anahtarlarım</h4>
     <p class="small">Anahtarların sadece senin bildiğin bir şifreyle bu cihazda kilitlenip hesabına öyle gider. Şifreyi kimse göremez, ben de. Unutursan anahtarları yeniden girersin; ilerlemen kaybolmaz.</p>
     <input type="text" id="syPass" placeholder="Anahtar şifren (en az 8 karakter)" autocomplete="off" autocapitalize="off" spellcheck="false" style="-webkit-text-security:disc" data-1p-ignore data-lpignore="true">
@@ -6101,6 +6115,7 @@ Object.assign(ACT, {
   sySignOut(){ sySignOut(); },
   syCfgSave(){ syCfgSave(); },
   syCfgReset(){ localStorage.removeItem("dw-fbcfg"); SY.app = null; SY.loading = null; SY.err = ""; render(); },
+  syCopyRulesLocked(){ if(SY.user) copyText(syRulesLocked(SY.user.uid)).then(ok=>toast(ok ? "📋 Kilitli kurallar kopyalandı." : "Kopyalanamadı.", 2000)); },
   syCopyRules(){ copyText(SY_RULES).then(ok=>toast(ok ? "📋 Kurallar kopyalandı." : "Kopyalanamadı.", 2000)); },
   syNow(){ SY.dirty = true; SY.dirtyAt = Date.now(); syPull().then(()=>render()); },
   syKeysSave(){ syKeysSave(); },
