@@ -894,6 +894,31 @@ body.insess .k-top .k-x{display:none}
 /* bildirim: durum çubuğunun altında, tek akışlı metin */
 .toast{top:calc(env(safe-area-inset-top) + 10px)!important;display:block!important;width:max-content;max-width:min(92vw,440px)!important;padding:12px 18px!important;border-radius:16px!important;z-index:200!important;line-height:1.35;font-size:.95rem;text-align:center;box-shadow:0 12px 30px rgba(0,0,0,.28)!important}
 .toast .toast-t{display:inline}
+/* ===== 1500 kelime paneli ===== */
+.c-hero{display:flex!important;flex-direction:row!important;align-items:center;gap:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--c-green) 18%,var(--card)),color-mix(in srgb,var(--c-teal) 14%,var(--card)))!important}
+.c-ring{--p:0;flex:none;width:96px;height:96px;border-radius:50%;display:grid;place-content:center;text-align:center;background:radial-gradient(closest-side,var(--card) 76%,transparent 77% 100%),conic-gradient(var(--c-green) calc(var(--p)*1%),color-mix(in srgb,var(--c-green) 18%,var(--line)) 0)}
+.c-ring b{font-size:1.45rem;line-height:1}.c-ring span{font-size:.75rem;opacity:.7}
+.c-hx{min-width:0}.c-hx h2{margin:2px 0 4px}
+.c-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 14px}
+.c-stats>div{background:color-mix(in srgb,var(--c) 14%,var(--card));border:1px solid color-mix(in srgb,var(--c) 30%,transparent);border-radius:16px;padding:10px 6px;text-align:center;display:flex;flex-direction:column;gap:2px;min-width:0}
+.c-stats b{font-size:1.25rem;color:var(--c)}.c-stats span{font-size:.72rem;line-height:1.2;opacity:.8}
+.c-next{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.c-chip{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:10px 12px;border-radius:14px;border:1px solid var(--line);background:var(--soft);color:var(--ink);cursor:pointer;min-width:0}
+.c-chip b{font-size:1rem;overflow-wrap:anywhere}.c-chip span{font-size:.8rem;opacity:.75;overflow-wrap:anywhere}
+.c-chip i{font-style:normal}.c-chip i.der{color:#2F7BF6}.c-chip i.die{color:#EF4A82}.c-chip i.das{color:#16A34A}
+.c-themes{display:flex;flex-direction:column;gap:10px}
+.c-th .row{font-size:.92rem}
+.c-bar{height:8px;border-radius:99px;background:color-mix(in srgb,var(--c-green) 14%,var(--line));overflow:hidden;margin-top:4px}
+.c-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--c-green),var(--c-teal))}
+.c-mini{padding:12px 16px!important}
+.note.ok{background:color-mix(in srgb,var(--c-green) 14%,var(--card));border-color:color-mix(in srgb,var(--c-green) 35%,transparent)}
+@media (max-width:370px){.c-stats{grid-template-columns:1fr 1fr}.c-next{grid-template-columns:1fr}}
+
+.seg.lvcorr{display:grid!important;grid-template-columns:repeat(3,1fr);gap:6px;width:100%}
+.seg.lvcorr{grid-template-columns:repeat(3,minmax(0,1fr))!important;border:0!important;background:transparent!important;overflow:visible!important}
+.seg.lvcorr button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:10px 6px!important;min-height:72px;min-width:0;text-align:center;white-space:normal!important;border:2px solid var(--line)!important;border-radius:14px!important;background:var(--card)!important;color:var(--ink)!important}
+.seg.lvcorr button[aria-pressed="true"]{border-color:var(--accent)!important;background:color-mix(in srgb,var(--accent) 16%,var(--card))!important;color:var(--ink)!important}
+.seg.lvcorr button b{font-size:.95rem}.seg.lvcorr button span{font-size:.7rem;line-height:1.2;opacity:.75;font-weight:500}
 </style>
 </head>
 <body>
@@ -5551,7 +5576,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-11c";
+const APP_VER = "2026-11-12a";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -5659,7 +5684,7 @@ function renderKurulum(){
 async function gemTest(){
   const v = ($("#gemKey")||{}).value || ""; KEYS.set("gem", v); GEM.models = null; AI = v ? GeminiAI : null; AI_OFF = false;
   S.setup.gem = {ok:true, msg:"Test ediliyor…"}; render();
-  try{ const r = await GeminiAI.json(`Antworte NUR mit JSON: {"ok":true,"satz":"ein kurzer freundlicher deutscher Satz"}`, {modelTier:"quick"}); const list = await gemModels(); S.setup.gem = {ok:true, msg:`Çalışıyor ✓ „${(r && r.satz) || "OK"}“ · Model: ${rankModel(list,true)} / ${rankModel(list,false)}`}; }
+  try{ const r = await GeminiAI.json(`Antworte NUR mit JSON: {"ok":true,"satz":"ein kurzer freundlicher deutscher Satz"}`, {modelTier:"quick"}); const list = await gemModels(); S.setup.gem = {ok:true, msg:`Çalışıyor ✓ „${(r && r.satz) || "OK"}“ ${rankModel(list,true) ? " · Model: " + rankModel(list,true) + " / " + (rankModel(list,false)||"–") : ""}`}; }
   catch(e){ S.setup.gem = {ok:false, msg: aiMsg(e) + (e.message ? " ("+String(e.message).slice(0,120)+")" : "")}; if(e.code === "bad_key") AI = null; }
   render();
 }
@@ -7725,11 +7750,12 @@ function liveSys(L){
   const pace = n <= 1 ? "Sprich LANGSAM und deutlich, sehr kurze Sätze (max. 8 Wörter), nur A1/A2-Wörter." : n === 2 ? "Sprich etwas langsamer als normal, einfache Sätze (A2), ab und zu normale Umgangssprache (hab's, gibt's)." : n === 3 ? "Sprich in natürlichem Tempo, A2/B1, normale Umgangssprache, gelegentlich ein bairisches Wort." : "Sprich in normalem, authentischem Tempo auf B1-Niveau, wie ein echter Mensch in Bayern.";
   return `Du bist ${P.name === "Eşin" ? "die Ehefrau des Lerners" : P.name}. ${P.desc}
 SITUATION: ${L.scen}
-Du führst ein ECHTES, spontanes Gespräch mit einem türkischen Deutschlerner (er lebt in Bayern, IT-Sicherheit, verheiratet mit einer Deutschen, kleine Tochter, Fitnessstudio). ${pace}
+Du führst ein ECHTES, spontanes Gespräch mit einem türkischen Deutschlerner (er lebt in Bayern, verheiratet mit einer Deutschen, kleine Tochter). ${pace}
+Sprich über viele verschiedene Alltagsthemen passend zur Situation; frag NICHT ständig nach Arbeit oder Sport.${(()=>{ try{ const w = S.words.filter(x=>x.src === "core" && x.intro && x.intro >= addDays(dayKey(), -6)).slice(-10).map(x=>(x.artikel ? x.artikel+" " : "")+x.de); return w.length ? " Benutze im Gespräch natürlich einige Wörter, die er gerade lernt: " + w.join(", ") + "." : ""; }catch(e){ return ""; } })()}
 REGELN:
 - Sprich NUR Deutsch. Halte jede Antwort kurz (1-3 Sätze) und stelle fast immer eine Frage zurück, damit ER viel spricht.
 - Reagiere wie ein echter Mensch: Interesse, Humor, Nachfragen zu Details ("Ach echt? Und dann?", "Wie war das genau?").
-- Korrigiere NICHT ausdrücklich. Wenn er einen Fehler macht, wiederhole den Satz beiläufig richtig in deiner Antwort (Recast).
+${liveCorrRule()}
 - Wenn er stockt, lange schweigt oder "Wie bitte?" sagt: wiederhole langsamer mit einfacheren Wörtern oder stelle eine leichtere Ja/Nein-Frage. Wenn er auf Türkisch fragt, wie man etwas sagt, gib ihm kurz den deutschen Satz und lass ihn nachsprechen.
 - Bringe ihn dazu, auch über Vergangenes zu erzählen (Perfekt/Präteritum) und seine Meinung zu begründen (weil …).
 - Beginne du das Gespräch mit einer natürlichen Begrüßung passend zur Situation.
@@ -7852,8 +7878,8 @@ async function liveFeedback(){
   try{
     const r = await askJSON(`${profile()}
 Ein spontanes Live-Gespräch (Sprachaufnahme, automatisch transkribiert) zwischen dem Lerner (U) und ${PERSONAS[L.pid].name} (M). Situation: ${L.scen}
-${L.turns.map(t=>(t.who === "u" ? "U: " : "M: ") + t.t).join("\n")}
-Gib Feedback wie ein guter Sprachcoach, der FLÜSSIGKEIT über Perfektion stellt. Erkennungsfehler der Transkription ignorieren.
+${L.turns.filter(t=>t.who !== "u" || liveIsDe(t.t)).map(t=>(t.who === "u" ? "U: " : "M: ") + t.t).join("\n")}
+Gib Feedback wie ein guter Sprachcoach, der FLÜSSIGKEIT über Perfektion stellt. Erkennungsfehler der Transkription ignorieren; Zeilen, die nicht auf Deutsch sind (falsch erkannt), komplett ignorieren und NIE als Fehler werten. "mistakes": jeder echte Grammatik-/Wortfehler des Lerners (bis zu 8), "wrong" genau wie gesagt, "right" vollständig korrekt.
 Antworte NUR mit JSON: {"score":0-100,"praise_tr":"1 konkretes Lob","feedback_tr":"2 Sätze: was nächstes Mal besser","mistakes":[{"wrong":"…","right":"…","rule_tr":"…","topic":"eine von: ${MTOPICS.join(", ")}"}],"upgrades":[{"said":"was er (ungefähr) gesagt hat","better":"natürlichere Version","tr":"…"}],"next_tr":"1 Satz: was er beim nächsten Mal ausprobieren soll"}`);
     if((r.mistakes||[]).length) await addMistakes(r.mistakes.slice(0,6), "canlı sohbet");
     L.fb = r; L.score = Math.max(0, Math.min(100, +r.score || 0));
@@ -7869,6 +7895,8 @@ function renderLive(){
   const ava = (sz) => `<div class="lvava" style="--pc:${P.color};width:${sz}px;height:${sz}px">${esc(P.ini)}</div>`;
   if(L.phase === "intro" || L.phase === "error") return `<section class="card hero lvintro">${ava(76)}<h2>${esc(P.name)} ile canlı sohbet</h2><p class="small">${esc(P.tr)}</p><p><b>Durum:</b> <span class="de">${esc(L.scen)}</span></p></section>
     <section class="card"><ul class="ticks"><li>Gerçek bir telefon görüşmesi gibi: beklemek yok, sözünü kesebilirsin.</li><li>Takılırsan "Wie bitte?" ya da "Wie sagt man …?" de; karşındaki yardım eder.</li><li>Kulaklıkla en iyisi. 5–7 dakika sürer, sonunda geri bildirim gelir.</li></ul>
+      <div class="lbl" style="margin-top:4px">Hatalarını nasıl düzeltsin?</div>
+      <div class="seg lvcorr">${[["light","Hafif","Doğrusunu tekrar eder"],["normal","Normal","+ önemli hatada tekrar ettirir"],["strict","Sıkı","Her hatada durur, tekrar ettirir"]].map(([k,t,d])=>`<button aria-pressed="${liveCorr()===k}" data-act="liveCorrSet" data-k="${k}"><b>${t}</b><span>${d}</span></button>`).join("")}</div>
       ${L.err ? `<div class="note">${esc(L.err)}</div>` : ""}
       ${L.phase === "error" ? `<button class="btn primary block" data-act="liveClassic">Klasik sesli sohbetle devam et</button><button class="btn ghost block" data-act="liveRetry">Canlıyı tekrar dene</button>` : `<button class="lbtn go" style="width:100%" data-act="liveGo">📞 Sohbeti başlat</button>`}
       <label class="row small" style="justify-content:flex-start;gap:8px;margin-top:10px"><input type="checkbox" data-act="liveCap" ${L.captions ? "checked" : ""}> Altyazıyı göster (kapalıysa kulağın daha çok çalışır)</label></section>`;
@@ -7887,7 +7915,7 @@ function renderLive(){
     ${(r.upgrades||[]).length ? `<h3>Böyle de diyebilirdin</h3><div class="stack">${r.upgrades.slice(0,4).map(u=>`<div class="ex"><s class="small">${esc(u.said)}</s><div class="row between" style="flex-wrap:nowrap"><b class="de">${esc(u.better)}</b><button class="btn small ghost" data-act="sayDe" data-t="${esc(u.better)}" aria-label="Dinle">🔊</button></div><div class="tr">${esc(u.tr||"")}</div></div>`).join("")}</div>` : ""}
     ${(r.mistakes||[]).length ? `<p class="small muted">${r.mistakes.length} hata hata defterine eklendi; tekrarlarda karşına çıkacak.</p>` : ""}
     ${r.next_tr ? `<p class="small"><b>Gelecek sefer:</b> ${esc(r.next_tr)}</p>` : ""}
-    <details><summary>Konuşmanın dökümü</summary>${L.turns.map(t=>`<p class="small ${t.who === "u" ? "" : "de"}"><b>${t.who === "u" ? "Sen" : esc(P.name)}:</b> ${esc(t.t)}</p>`).join("")}</details>
+    <details><summary>Konuşmanın dökümü</summary>${L.turns.map(t=>`<p class="small ${t.who === "u" ? "" : "de"}"><b>${t.who === "u" ? "Sen" : esc(P.name)}:</b> ${t.who === "u" && !liveIsDe(t.t) ? `<span class="muted">(anlaşılamadı)</span>` : esc(t.t)}</p>`).join("")}</details>
     ${S.sess ? continueBtn() : `<div class="grid2"><a class="btn" href="#plan">Bugün</a><button class="btn primary" data-act="liveAgain">Tekrar konuş</button></div>`}</section>`;
 }
 VIEWS.canli = () => renderLive();
@@ -9324,6 +9352,253 @@ denkTopic = function(){ return denkCurated().lesson.title; };
     const u = dkNorm(said);
     if(u && [st.ans, ...(st.alt||[])].some(a=>dkNorm(a) === u)) return {verdict:"ok"};
     return _dj(st, said);
+  };
+}
+
+/* ================= 1500 çekirdek kelime: liste, uyarlanır günlük miktar, hızlı tarama, panel ================= */
+const CORE = {ready:false, loading:null, items:[], themes:[], byId:new Map()};
+const CORE_GOAL = "2027-03-31";
+function loadCore(){
+  if(CORE.ready) return Promise.resolve(true);
+  if(CORE.loading) return CORE.loading;
+  CORE.loading = fetch("data/core1500.json").then(r=>r.ok ? r.json() : Promise.reject(new Error("HTTP "+r.status))).then(j=>{
+    CORE.items = j.items || []; CORE.themes = j.themes || []; CORE.items.forEach(x=>CORE.byId.set(x.i, x)); CORE.ready = true;
+    if(["kelime","c1500","lernen"].includes(S.view)) render(); return true;
+  }).catch(e=>{ CORE.loading = null; try{ diagAdd("core", "1500 listesi yüklenemedi: " + (e && e.message || e)); }catch(_){} return false; });
+  return CORE.loading;
+}
+loadCore();
+const coreNorm = s => norm(String(s||"").replace(/^sich\s+/i, "").split("/")[0].split(" (")[0]);
+let _cMapN = -1, _cMap = new Map();
+function coreWordMap(){
+  if(_cMapN === S.words.length && _cMap.size) return _cMap;
+  _cMap = new Map(); for(const w of S.words){ if(!w || !w.de || w.kind === "satz") continue; _cMap.set(w.core ? "#"+w.core : coreNorm(w.de), w); if(!w.core) _cMap.set(coreNorm(w.de), w); }
+  _cMapN = S.words.length; return _cMap;
+}
+function coreWordOf(x){ const m = coreWordMap(); return m.get("#"+x.i) || m.get(coreNorm(x.de)) || null; }
+function coreMature(w){ return !!w && ((w.fs && w.fs.s >= 21) || (w.ivl||0) >= 21 || (w.box||0) >= 4); }
+function coreStatus(x){ const w = coreWordOf(x); if(!w) return "new"; if(w.known) return "known"; if(vIsNew(w)) return "queued"; return coreMature(w) ? "learned" : "learning"; }
+function coreStats(){
+  const s = {total: CORE.items.length, known:0, learned:0, learning:0, queued:0, fresh:0, byTheme:{}};
+  for(const x of CORE.items){ const st = coreStatus(x); if(st === "new") s.fresh++; else s[st]++;
+    const k = x.th || ({f:"_f", v:"_v", a:"_a"})[x.t]; const b = s.byTheme[k] || (s.byTheme[k] = {n:0, done:0}); b.n++; if(st !== "new" && st !== "queued") b.done++; }
+  s.covered = s.known + s.learned + s.learning; return s;
+}
+function coreDaysLeft(){ return Math.max(1, Math.round((new Date(CORE_GOAL) - new Date(dayKey())) / 864e5)); }
+function coreLogDay(){ const L = S.state.coreLog || (S.state.coreLog = {}); const t = dayKey(); return L[t] || (L[t] = {ok:0, n:0, known:0}); }
+function coreRecent(days){ const L = S.state.coreLog || {}; let ok = 0, n = 0, known = 0; for(let k = 0; k < days; k++){ const d = L[addDays(dayKey(), -k)]; if(d){ ok += d.ok; n += d.n; known += d.known||0; } } return {ok, n, known, r: n ? ok/n : null}; }
+/* uyarlanan günlük yeni kelime hedefi */
+function coreTarget(){
+  if(!CORE.ready) return NEW_PER_DAY[stage().n];
+  const st = coreStats(); const remaining = Math.max(0, st.total - st.covered);
+  if(!remaining) return 0;
+  const pace = Math.ceil(remaining / coreDaysLeft());
+  const rec = coreRecent(7); const due = S.words.filter(w=>vIsCard(w) && vDue(w)).length;
+  let q = Math.max(12, pace); const why = [];
+  if(rec.n >= 20 && rec.r >= 0.9 && due < 40){ q += 5; why.push("hatırlaman çok iyi"); }
+  if(rec.n >= 20 && rec.r < 0.75){ q -= 5; why.push("önce pekiştirme"); }
+  if(due > 120){ q = Math.min(q, 6); why.push("biriken tekrarlar"); } else if(due > 70){ q -= 4; why.push("tekrarlar birikiyor"); }
+  q = Math.max(6, Math.min(30, q));
+  CORE.why = why; CORE.pace = pace; CORE.due = due; CORE.rec = rec;
+  return q;
+}
+newQuota = function(){ return Math.max(0, coreTarget() - newToday()); };
+/* sıradaki kelimeler: sık kullanılan önce; isimlerde o haftaki VHS dersinin konusu öne */
+function coreNext(n, skip){
+  if(!CORE.ready) return [];
+  skip = skip || new Set();
+  const lek = typeof vhsLek === "function" ? vhsLek() : 0;
+  const hot = new Set(CORE.themes.filter(t=>lek && t.lek === lek).map(t=>t.id));
+  const pool = CORE.items.filter(x=>!skip.has(x.i) && coreStatus(x) === "new");
+  const by = t => pool.filter(x=>x.t === t).sort((a,b)=>a.r - b.r);
+  const nouns = pool.filter(x=>x.t === "n").sort((a,b)=>((hot.has(b.th)?1:0) - (hot.has(a.th)?1:0)) || a.r - b.r);
+  const S2 = {f:by("f"), v:by("v"), a:by("a"), n:nouns};
+  const pat = ["f","v","n","n","a","v","n","f","n","v"]; const out = []; let k = 0, guard = 0;
+  while(out.length < n && guard++ < n*12){ const t = pat[k++ % pat.length]; const x = S2[t].shift(); if(x) out.push(x); else if(!S2.f.length && !S2.v.length && !S2.a.length && !S2.n.length) break; }
+  return out;
+}
+function coreWord(x, extra){
+  const kind = x.t === "n" ? "nomen" : x.t === "v" ? "verb" : x.t === "a" ? "adj" : "andere";
+  return Object.assign({id:uid("w"), de:x.de, artikel: x.t === "n" ? (x.art||"") : "", plural: x.plo ? "" : (x.pl||""), tr:x.tr, note: x.plo ? "yalnız çoğul" : (x.note||""), kind, chunk:"", emoji:"", band:"core", src:"core", core:x.i, right:0, wrong:0, box:0, due:dayKey(), added:new Date().toISOString(), sents:[]}, extra||{});
+}
+async function coreTopUp(){
+  if(!CORE.ready) await loadCore(); if(!CORE.ready) return 0;
+  const fresh = S.words.filter(w=>vIsCard(w) && vIsNew(w)).length;
+  const need = newQuota() - fresh; if(need <= 0) return 0;
+  const xs = coreNext(need); for(const x of xs) await Store.put("words", coreWord(x));
+  _cMapN = -1; return xs.length;
+}
+{
+  const _vf = vFill;
+  vFill = async function(n){ if(!CORE.ready) await loadCore(); const xs = coreNext(n); if(!xs.length) return _vf.apply(this, arguments); for(const x of xs) await Store.put("words", coreWord(x)); _cMapN = -1; return xs.length; };
+  const _sv = startVocab;
+  startVocab = function(opts){ const a = arguments, self = this; coreTopUp().catch(()=>0).then(()=>_sv.apply(self, a)); };
+  const _vs = vSchedule;
+  vSchedule = function(w, g){ try{ const d = coreLogDay(); d.n++; if(g > 0) d.ok++; }catch(e){} return _vs.apply(this, arguments); };
+  /* her içerik üreticisi bugünün ve zorlanılan kelimeleri doğal şekilde kullanır */
+  const _pf = profile;
+  profile = function(){
+    const base = _pf.apply(this, arguments);
+    try{
+      const t = dayKey();
+      const today = S.words.filter(w=>w.intro === t && w.src === "core");
+      const weak = S.words.filter(w=>vIsCard(w) && !vIsNew(w) && !w.known && (w.wrong||0) > (w.right||0)).slice(-8);
+      const recent = S.words.filter(w=>w.src === "core" && w.intro && w.intro >= addDays(t, -6)).slice(-12);
+      const pick = [...today, ...weak, ...recent].filter((w,i,a)=>a.findIndex(o=>o.id===w.id)===i).slice(0, 14).map(w=>(w.artikel ? w.artikel+" " : "")+w.de);
+      return pick.length ? base + `\nAKTUELLE LERNWÖRTER (baue einige davon natürlich ein, wo es passt; nicht erzwingen): ${pick.join(", ")}` : base;
+    }catch(e){ return base; }
+  };
+}
+/* ---------- panel ve hızlı tarama ---------- */
+const CTH = {_f:"Küçük ama önemli kelimeler", _v:"Fiiller", _a:"Sıfatlar"};
+function coreThemeName(k){ return CTH[k] || ((CORE.themes.find(t=>t.id===k)||{}).tr) || k; }
+function coreFinishDate(st){
+  const rec = coreRecent(14); const learned14 = S.words.filter(w=>w.src === "core" && w.intro && w.intro >= addDays(dayKey(), -13)).length + rec.known;
+  const rate = Math.max(learned14 / 14, 0.1); const left = st.total - st.covered;
+  return {rate, date: addDays(dayKey(), Math.ceil(left / Math.max(rate, coreTarget()*0.8 || 1))), dateObs: learned14 >= 10 ? addDays(dayKey(), Math.ceil(left / rate)) : null};
+}
+function fmtDay(d){ try{ return new Date(d).toLocaleDateString("tr-TR", {day:"numeric", month:"long"}); }catch(e){ return d; } }
+function renderCore(){
+  if(!CORE.ready) return thinkingCard("1500 kelime listesi yükleniyor…");
+  if(S.cscan) return renderCoreScan();
+  const st = coreStats(); const tgt = coreTarget(); const nt = newToday(); const pct = Math.round(st.covered / st.total * 100);
+  const fin = coreFinishDate(st); const onTrack = fin.dateObs ? fin.dateObs <= CORE_GOAL : null;
+  const next = coreNext(8);
+  const themes = Object.entries(st.byTheme).sort((a,b)=>b[1].n - a[1].n);
+  return `<section class="card c-hero">
+      <div class="c-ring" style="--p:${pct}"><b>${st.covered}</b><span>/ ${st.total}</span></div>
+      <div class="c-hx"><div class="kicker">1500 kelime yolculuğu</div><h2>Günlük konuşmanın çekirdeği</h2>
+      <p class="small">Doktorda, fırında, sokakta, işte en sık geçen kelimeler. Kursta (VHS) o hafta işlenen konunun kelimeleri öne alınır.</p></div></section>
+    <section class="c-stats">
+      <div style="--c:var(--c-green)"><b>${st.learned}</b><span>sağlam</span></div>
+      <div style="--c:var(--c-blue)"><b>${st.learning}</b><span>öğreniliyor</span></div>
+      <div style="--c:var(--c-purple)"><b>${st.known}</b><span>zaten biliyordun</span></div>
+      <div style="--c:var(--c-orange)"><b>${st.fresh + st.queued}</b><span>sırada</span></div></section>
+    <section class="card">
+      <h3>Bugün</h3>
+      <p><b>${tgt}</b> yeni kelime hedefi · <b>${nt}</b> başladın${CORE.due ? ` · <b>${CORE.due}</b> tekrar bekliyor` : ""}</p>
+      <p class="small muted">Hedef her gün kendini ayarlar: listeyi ${fmtDay(CORE_GOAL)}'a kadar bitirmek için günde en az ${CORE.pace} kelime gerekiyor${(CORE.why||[]).length ? "; bugün: " + CORE.why.join(", ") : ""}.${CORE.rec && CORE.rec.r !== null ? ` Son 7 günde hatırlama oranın %${Math.round(CORE.rec.r*100)}.` : ""}</p>
+      ${fin.dateObs ? `<div class="note ${onTrack ? "ok" : ""}">${onTrack ? "✓ Bu hızla liste " + fmtDay(fin.dateObs) + " tarihinde biter; hedefin önündesin." : "Bu hızla liste " + fmtDay(fin.dateObs) + " tarihinde biter; hedef " + fmtDay(CORE_GOAL) + ". Günlük hedefi tamamlarsan yetişirsin."}</div>` : ""}
+      <div class="grid2"><button class="btn primary" data-act="vocabStart">Kelime kartları</button><button class="btn" data-act="cScan">⚡ Hızlı tarama</button></div>
+      <p class="small muted">Hızlı tarama: bildiğin kelimeleri tek soruyla doğrulayıp ayırır; onlar günlük hedefini yemez.</p></section>
+    ${next.length ? `<section class="card"><h3>Sıradaki kelimeler</h3><div class="c-next">${next.map(x=>`<button class="c-chip" data-act="sayDe" data-t="${esc((x.t==="n" && x.art ? x.art+" " : "")+x.de)}"><b>${x.t==="n" && x.art ? `<i class="${artCls(x.art)}">${esc(x.art)}</i> ` : ""}${esc(x.de)}</b><span>${esc(x.tr)}</span></button>`).join("")}</div></section>` : ""}
+    <section class="card"><h3>Konulara göre</h3><div class="c-themes">${themes.map(([k,b])=>`<div class="c-th"><div class="row between"><span>${esc(coreThemeName(k))}</span><span class="small muted">${b.done}/${b.n}</span></div><div class="c-bar"><i style="width:${Math.round(b.done/b.n*100)}%"></i></div></div>`).join("")}</div></section>`;
+}
+function coreOpts(x){
+  const same = CORE.items.filter(o=>o.t === x.t && o.i !== x.i && o.tr !== x.tr);
+  return shuffle([x.tr, ...shuffle(same).slice(0,3).map(o=>o.tr)]);
+}
+function renderCoreScan(){
+  const C = S.cscan; const x = C.list[C.i];
+  if(!x) return `<section class="card" style="text-align:center;align-items:center">${brezi("party",72)}<h2>Tarama bitti</h2>
+    <p><b>${C.known}</b> kelimeyi zaten biliyormuşsun; bunlar ayrıldı ve günlük hedefini yemeyecek.</p>
+    <p class="small muted">${C.unknown} kelime öğrenme sırasında kaldı${C.miss ? `, ${C.miss} kelimeyi bildiğini sandın ama yanlış seçtin` : ""}.</p>
+    <div class="grid2" style="width:100%"><button class="btn" data-act="cScan">Devam: 15 kelime daha</button><button class="btn primary" data-act="cScanEnd">Bitir</button></div></section>`;
+  const head = `${x.t==="n" && x.art ? `<span class="art ${artCls(x.art)}">${esc(x.art)}</span> ` : ""}<b>${esc(x.de)}</b>`;
+  const top = `<div class="k-top"><button class="licon k-x" data-act="cScanEnd" aria-label="Kapat">✕</button><div class="k-prog"><i style="width:${Math.round(C.i/C.list.length*100)}%"></i></div><span class="chip">${C.i+1}/${C.list.length}</span></div>`;
+  if(C.phase === "ask") return `<div class="k-shell">${top}<section class="card k-card" style="text-align:center">
+      <div class="kicker">Bu kelimeyi biliyor musun?</div><p class="vhead" style="font-size:1.6rem">${head} <button class="btn small ghost" data-act="sayDe" data-t="${esc((x.t==="n" && x.art ? x.art+" " : "")+x.de)}" aria-label="Dinle">🔊</button></p>
+      <div class="grid2"><button class="btn" data-act="cScanNo">Bilmiyorum</button><button class="btn primary" data-act="cScanYes">Biliyorum</button></div>
+      <p class="small muted">"Biliyorum" dersen tek soruyla kontrol ederim.</p></section></div>`;
+  const ok = C.res === "ok", no = C.res === "no";
+  return `<div class="k-shell">${top}<section class="card k-card" style="text-align:center">
+      <div class="kicker">Anlamı hangisi?</div><p class="vhead" style="font-size:1.5rem">${head}</p>
+      <div class="k-opts">${C.opts.map(o=>`<button class="xopt ${C.res && o === x.tr ? "right" : ""} ${no && o === C.pick ? "wrongsel" : ""}" data-act="cScanPick" data-o="${esc(o)}" ${C.res ? "disabled" : ""}>${esc(o)}</button>`).join("")}</div>
+      ${C.res ? `<p class="${ok ? "good" : ""}">${ok ? "✓ Biliyorsun; bu kelime ayrıldı. Bir ay sonra bir kez daha soracağım." : "Bu kelime öğrenme sırasında kalıyor."}</p><button class="btn primary block" data-act="cScanNext">Devam</button>` : ""}</section></div>`;
+}
+Object.assign(ACT, {
+  coreOpen(){ go("c1500"); render(); },
+  async cScan(){ if(!CORE.ready) await loadCore(); const done = S.cscan ? S.cscan.seen : new Set(); const list = coreNext(15, done); list.forEach(x=>done.add(x.i)); S.cscan = {list, i:0, phase:"ask", known:0, unknown:0, miss:0, seen:done}; go("c1500"); render(); if(list[0]) say((list[0].t==="n" && list[0].art ? list[0].art+" " : "")+list[0].de, "de"); },
+  cScanEnd(){ S.cscan = null; render(); },
+  cScanNo(){ const C = S.cscan; C.unknown++; ACT.cScanNext(); },
+  cScanYes(){ const C = S.cscan; const x = C.list[C.i]; C.opts = coreOpts(x); C.phase = "check"; C.res = null; render(); },
+  async cScanPick(b){
+    const C = S.cscan; const x = C.list[C.i]; const o = b.dataset.o; C.pick = o;
+    if(o === x.tr){ C.res = "ok"; C.known++; sfx && sfx("ok");
+      await Store.put("words", coreWord(x, {known:dayKey(), reps:3, ivl:30, ease:2.6, box:5, right:1, due:addDays(dayKey(), 30)})); _cMapN = -1;
+      const d = coreLogDay(); d.known = (d.known||0) + 1; Store.saveState(); }
+    else { C.res = "no"; C.miss++; sfx && sfx("no"); }
+    render();
+  },
+  cScanNext(){ const C = S.cscan; C.i++; C.phase = "ask"; C.res = null; C.pick = null; render(); const x = C.list[C.i]; if(x) say((x.t==="n" && x.art ? x.art+" " : "")+x.de, "de"); }
+});
+VIEWS.c1500 = () => renderCore();
+if(typeof VIEW_TITLE === "object") VIEW_TITLE.c1500 = "1500 kelime";
+/* giriş noktaları: Ne çalışalım? ve Kelime ekranı */
+{
+  const _rl = renderLernen;
+  renderLernen = function(){
+    const h = _rl.apply(this, arguments);
+    if(!h.includes('class="k-tiles"') || !CORE.ready) return h;
+    const st = coreStats();
+    const tile = `<button class="k-tile" style="--tc:#16A34A" data-act="coreOpen"><i aria-hidden="true">🧱</i><b>1500 kelime</b><span>${st.covered}/${st.total} · bugün ${coreTarget()} yeni</span></button>`;
+    return h.replace('<section class="k-tiles">', '<section class="k-tiles">' + tile);
+  };
+  const _rk = renderKelime;
+  renderKelime = function(){
+    const h = _rk.apply(this, arguments);
+    if(S.voc || !CORE.ready) return h;
+    const st = coreStats();
+    return `<section class="card c-mini"><div class="row between"><b>🧱 1500 kelime: ${st.covered}/${st.total}</b><button class="btn small" data-act="coreOpen">Panel</button></div><div class="c-bar"><i style="width:${Math.round(st.covered/st.total*100)}%"></i></div></section>` + h;
+  };
+}
+
+/* canlı sohbet: düzeltme biçimi ve yanlış dilde algılanan konuşmaları ayıklama */
+function liveCorr(){ return ["light","normal","strict"].includes(S.state.liveCorr) ? S.state.liveCorr : "normal"; }
+function liveCorrRule(){
+  const m = liveCorr();
+  if(m === "light") return "- Korrigiere nicht ausdrücklich. Wenn er einen Fehler macht, beginne deine Antwort damit, seinen Satz beiläufig RICHTIG zu wiederholen (Recast, z. B. \"Ah, die Leute sind langsam? …\"), und mach dann normal weiter.";
+  if(m === "strict") return "- Bei JEDEM Grammatik- oder Wortfehler: sag sofort freundlich den korrekten Satz (\"Richtig ist: …\"), nenne in max. 6 einfachen deutschen Wörtern den Grund, bitte ihn, den Satz zu wiederholen (\"Sag es bitte noch einmal.\"), warte auf seine Wiederholung, lob kurz und mach dann mit dem Gespräch weiter.";
+  return "- Bei JEDEM Fehler: beginne deine Antwort damit, seinen Satz beiläufig RICHTIG zu wiederholen (Recast, z. B. \"Ah, die Leute sind langsam? …\"). Bei wichtigen Fehlern (Verbposition, Verbform, Artikel/Fall, falsches Wort) sag zusätzlich kurz \"Sag mal: …\" mit dem korrekten Satz, warte, bis er ihn wiederholt hat, lob kurz und mach dann weiter. Das höchstens einmal pro Fehlerart, damit das Gespräch fließt.\n- Wenn er ein englisches oder türkisches Wort benutzt, sag ihm das deutsche Wort und lass es ihn im Satz benutzen.";
+}
+function liveIsDe(t){
+  t = String(t||"").trim(); if(!t) return false;
+  if(/[^\sA-Za-zÄÖÜäöüß0-9.,!?;:'’"„“‚‘()\-–…%€]/.test(t)) return false;
+  const w = t.toLowerCase().match(/[a-zäöüß]+/g) || []; if(!w.length) return false;
+  const de = w.filter(x=>/^(ich|du|er|sie|es|wir|ihr|und|nicht|ist|bin|bist|sind|habe|hast|hat|der|die|das|den|dem|ein|eine|einen|mit|auf|in|im|zu|ja|nein|was|wie|wo|warum|aber|auch|noch|schon|sehr|gut|mein|meine|dein|kann|will|muss|heute|morgen|gestern|danke|bitte|hallo|so|da|hier|weil|dass|oder|mir|mich|dir|dich|uns|war|gehe|geht|mache|macht|kommt|komme)$/.test(x)).length;
+  const fo = w.filter(x=>/^(the|and|you|is|are|good|evening|morning|what|how|un|une|le|la|les|lapin|est|je|tu|el|los|que|ve|bir|ben|sen|bu|mı|mi)$/.test(x)).length;
+  if(w.length <= 2) return de > 0 || /^[A-ZÄÖÜ]/.test(t) && fo === 0;
+  return de >= fo && (de > 0 || /[äöüß]/.test(t));
+}
+Object.assign(ACT, { liveCorrSet(b){ S.state.liveCorr = b.dataset.k; Store.saveState(); render(); } });
+
+/* ===== içerik kalite kapısı: her yapay zekâ cevabı ekrana gelmeden denetlenir ===== */
+const QG_TRKEY = /^(tr|why|explain|explain_tr|rule|rule_tr|hint_tr|tip|tip_tr|feedback_tr|praise_tr|next_tr|summary_tr|desc_tr|meaning|bedeutung_tr|note_tr|question_tr|q_tr|title_tr|trw)$/i;
+const QG_DEKEY = /^(de|answer|better|right|ans|sentence|satz|text_de|example|beispiel)$/i;
+function qgLint(v, path, out){
+  out = out || []; path = path || "";
+  if(Array.isArray(v)){ v.forEach((x,i)=>qgLint(x, path+"["+i+"]", out)); return out; }
+  if(!v || typeof v !== "object") return out;
+  for(const [k, x] of Object.entries(v)){
+    if(typeof x === "string"){
+      const t = x.trim(); if(!t) continue;
+      if(QG_TRKEY.test(k) && k !== "trw" && t.length > 14 && DK_DE.test(t) && !DK_TR.test(t) && !/[çğışİ]/.test(t)) out.push(`${path}.${k} muss TÜRKISCH sein, ist aber Deutsch: "${t.slice(0,60)}"`);
+      if(QG_DEKEY.test(k) && /[çğışİ]/.test(t) && !/[äöüß]/i.test(t) && !DK_DE.test(t)) out.push(`${path}.${k} muss DEUTSCH sein, ist aber Türkisch: "${t.slice(0,60)}"`);
+    } else qgLint(x, path+"."+k, out);
+  }
+  if(typeof v.de === "string" && typeof v.tr === "string" && v.de.trim().length > 3 && norm(v.de) === norm(v.tr)) out.push(`${path}.tr ist keine türkische Übersetzung von "${v.de.slice(0,40)}"`);
+  return out;
+}
+function qgFix(v){
+  if(typeof v === "string") return v.replace(/\b(der|die|das|Der|Die|Das)\s+(der|die|das)\s+(?=[A-ZÄÖÜ])/g, "$1 ").replace(/\b(den|dem|des)\s+(den|dem|des)\s+(?=[A-ZÄÖÜ])/g, "$1 ");
+  if(Array.isArray(v)) return v.map(qgFix);
+  if(v && typeof v === "object"){ for(const k of Object.keys(v)) v[k] = qgFix(v[k]); }
+  return v;
+}
+{
+  const _ajQ = askJSON;
+  askJSON = async function(prompt, o){
+    let r = qgFix(await _ajQ.apply(this, arguments));
+    if(o && o._qg) return r;
+    let iss = []; try{ iss = qgLint(r); }catch(e){}
+    if(iss.length && typeof prompt === "string"){
+      try{ diagAdd("içerik", `${iss.length} sorun bulundu, yeniden üretiliyor`, iss.slice(0,2).join(" | ")); }catch(e){}
+      try{
+        const r2 = qgFix(await _ajQ.call(this, prompt + "\n\nKORREKTUR: Deine letzte Antwort hatte diese Fehler:\n- " + iss.slice(0,8).join("\n- ") + "\nAntworte noch einmal vollständig und korrekt im selben JSON-Format.", Object.assign({}, o||{}, {_qg:1})));
+        if(qgLint(r2).length < iss.length) r = r2;
+      }catch(e){}
+    }
+    return r;
   };
 }
 </script>
