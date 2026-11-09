@@ -370,6 +370,33 @@ h2{font-size:1.45rem}
 .tgrid .tile{padding:58px 12px 12px;min-height:150px}
 .tgrid .tile b{font-size:.98rem;line-height:1.2}
 .tgrid .tile span{font-size:.8rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ================= ders ekranı tek ekrana sığsın ================= */
+body.insess .nav{display:none}
+body.insess .vhint{display:none}
+body.insess main{padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+body.insess .top{display:none}
+.sbar{flex-wrap:nowrap;gap:6px;border-bottom:0;padding:6px 0 4px;background:color-mix(in srgb, var(--paper) 92%, transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.sbar .chip{font-size:.78rem;padding:4px 9px}
+.sbar .btn.small{min-height:36px;min-width:40px;padding:4px 8px;font-size:1rem}
+body.study main{gap:10px;padding-top:10px}
+.vtop{gap:8px}
+.vprog{height:22px}.vprog span{line-height:22px;font-size:.8rem}
+.vtop .tog{padding:5px 10px;font-size:.8rem}
+.vtop .seg button{padding:6px 8px;font-size:.8rem}
+.vcard{position:relative;gap:8px;padding:12px}
+.vcard > .row.between:first-child{position:absolute;top:18px;left:18px;right:18px;z-index:2;pointer-events:none}
+.vcard > .row.between:first-child > *{pointer-events:auto}
+.vcard > .row.between:first-child .btn{min-height:32px;padding:2px 8px;background:rgba(255,255,255,.85);border:0;box-shadow:none}
+.vcard > .row.between:first-child .small{background:rgba(0,0,0,.45);color:#fff!important;padding:2px 8px;border-radius:99px}
+.vcard .vphoto,.vcard .vscene{height:clamp(96px, 21vh, 180px)!important}
+.vcard .vscene .m{font-size:min(76px, 9vh)}
+.vword{font-size:1.4rem;margin:2px 0 0}
+.vsent{font-size:1.18rem;line-height:1.6}
+.vcard .tr{font-size:.88rem}
+.vcard .btn{min-height:40px}
+.vcard .btn.primary.block{min-height:54px!important;font-size:1.05rem!important}
+.vcard .btn.small{min-height:34px}
 #micPill{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));z-index:9999;padding:10px 18px;border-radius:999px;font-weight:700;font-size:1.05rem;box-shadow:0 4px 16px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}#micPill .x{margin-left:12px;font-weight:600;font-size:.9rem;opacity:.85}#micPill.busy{background:#dde7ef;color:#23415a}#micPill .lv{display:block;height:4px;margin-top:6px;border-radius:2px;background:rgba(255,255,255,.9);transform:scaleX(0);transform-origin:left;transition:transform .08s}#micPill.wait{background:#f4e3b5;color:#5a4410}#micPill.go{background:#2f7d4f;color:#fff}
 body.kb .nav{display:none}
 #updBar{position:fixed;left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:9998;background:#23415a;color:#fff;padding:12px 14px;border-radius:14px;font-weight:700;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.2);cursor:pointer}
@@ -817,6 +844,7 @@ function streak(){
 }
 function daysToExam(){ const t = new Date(S.state.examDate+"T09:00:00"); return isNaN(t) ? null : Math.ceil((t - new Date())/86400000); }
 function renderTop(){
+  try { document.body.classList.toggle("insess", !!S.sess); document.body.classList.toggle("study", ["kelime","lernen","spielen","sprechen","hikaye","shadow","seans","akici","ses","dikte"].includes(S.view)); } catch(e){}
   const st = streak(), dx = daysToExam(), cur = current();
   $("#topchips").innerHTML = `<span class="chip c-fire ${st?"flame":""}" title="Seri">🔥 ${st}</span><span class="chip c-xp ${xpToday()>=xpGoal()?"good":""}" title="Bugünkü XP">⭐ ${xpToday()}/${xpGoal()}</span><span class="chip c-min ${minsToday()>=DAILY_GOAL?"good":""}" title="Bugünkü dakika">⏱ ${minsToday()}/${DAILY_GOAL}</span><span class="chip">Gün ${cur.d.n}</span>` + (dx!==null ? `<span class="chip">B1: ${dx} gün</span>` : "");
 }
@@ -2759,13 +2787,13 @@ function sessBar(){
   const s = S.sess, C = CTXS[s.ctx];
   const left = C.len ? Math.max(0, Math.ceil(C.len - s.sec/60)) : null;
   return `<div class="sbar" role="status">
-    <span class="chip">${C.icon} ${esc(C.label)}</span>
+    <span class="chip" title="${esc(C.label)}">${C.icon}</span>
     <span class="chip good" id="sbMin">${minsToday()}/${DAILY_GOAL} dk</span>
-    ${C.len ? `<span class="chip">${left} dk kaldı</span>` : `<span class="chip" id="sbPomo">${needBreak() ? "bu adımdan sonra mola" : "molaya "+pomoLeft()+" dk"}</span>`}
+    ${C.len ? `<span class="chip">${left} dk kaldı</span>` : `<span class="chip" id="sbPomo">${needBreak() ? "sonra mola" : "mola "+pomoLeft()+" dk"}</span>`}
     <span style="flex:1"></span>
-    ${!S.brk && !s.paused ? `<button class="btn small" data-act="sessPause" aria-label="Durdur">⏸ Durdur</button>` : ""}
-    <button class="btn small ghost" data-act="sessSkip">Atla</button>
-    <button class="btn small ghost" data-act="sessEnd">Bitir</button>
+    ${!S.brk && !s.paused ? `<button class="btn small" data-act="sessPause" aria-label="Durdur" title="Durdur">⏸</button>` : ""}
+    <button class="btn small" data-act="sessSkip" aria-label="Atla" title="Atla">⏭</button>
+    <button class="btn small" data-act="sessEnd" aria-label="Bitir" title="Bitir">✕</button>
   </div>`;
 }
 
@@ -4254,7 +4282,7 @@ function renderKelime(){
     ${!V.res && V.mode!=="mic" ? (V.mode==="type" ? `<div class="grid2"><button class="btn" data-act="vReveal">Göster</button><button class="btn primary" data-act="vCheck">Kontrol</button></div>` : `<button class="btn block" data-act="vReveal">Bilmiyorum, göster</button>`) : ""}
     ${V.res ? (V.needArt ? "" : `<button class="btn primary block" style="min-height:56px" data-act="vNext">Sonraki →</button>`) : ""}
   </section>
-  <p class="small muted" style="text-align:center">${V.mode==="type" ? "Yazmak yerine klavyedeki 🎤 ile Almanca söyleyebilirsin (Almanca klavye seçiliyken)." : "Sporda/yolda: tek dokunuş."}</p>`;
+  <p class="small muted vhint" style="text-align:center">${V.mode==="type" ? "Yazmak yerine klavyedeki 🎤 ile Almanca söyleyebilirsin (Almanca klavye seçiliyken)." : "Sporda/yolda: tek dokunuş."}</p>`;
 }
 async function vFlag(){
   const w = vWord(); if(!w || !aiReady()) return; const V = S.voc; V.busy = true; V.busyTxt = "Kelime kontrol ediliyor…"; render();
@@ -4966,7 +4994,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09k";
+const APP_VER = "2026-11-09l";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -6257,6 +6285,12 @@ function micBeep(){
     const o = ACX.createOscillator(), g = ACX.createGain(); o.frequency.value = 880; o.type = "sine"; o.connect(g); g.connect(ACX.destination);
     const t0 = ACX.currentTime; g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(0.25, t0 + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.16); o.start(t0); o.stop(t0 + 0.18); }catch(e){}
 }
+/* izin penceresi ilk kaydın ortasında çıkınca o kart bozuluyordu: izni çalışmaya başlarken bir kez al */
+let MIC_WARM = false;
+function micWarm(){
+  if(MIC_WARM || !mic2Ok()) return; MIC_WARM = true;
+  try { navigator.mediaDevices.getUserMedia({audio:true}).then(st => { st.getTracks().forEach(t=>t.stop()); }).catch(e => { MIC_WARM = false; if(e && e.name === "NotAllowedError") MIC2.denied = true; }); } catch(e){ MIC_WARM = false; }
+}
 function micLog(r, ms){ try { const L = JSON.parse(localStorage.getItem("dw-ailog") || "[]"); L.push({t:Date.now(), m:"mikrofon açılışı", s:Math.round(ms/100)/10, r, a:1}); localStorage.setItem("dw-ailog", JSON.stringify(L.slice(-12))); } catch(e){} }
 function mic2Listen(onLive){
   try { stopSpeech(); if(typeof neuStop === "function") neuStop(); } catch(e){}
@@ -6310,9 +6344,11 @@ function mic2Listen(onLive){
     try { vac = new (window.AudioContext || window.webkitAudioContext)(); vac.resume().catch(()=>{}); } catch(e){ vac = null; }
     (async ()=>{
       try{
+        const firstUse = !MIC_WARM; MIC_WARM = true;
         stream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true, noiseSuppression:true, autoGainControl:true}});
         MIC_STREAMS.add(stream);
         if(settled){ release(); return; }
+        if(firstUse && performance.now() - t0 > 1200){ /* izin penceresi çıktı: ses motoru yeniden kurulsun */ try { if(vac && vacOwn) vac.close(); } catch(e){} vac = null; try { vac = new (window.AudioContext || window.webkitAudioContext)(); vacOwn = true; } catch(e){ vac = null; } }
         /* eller serbest (araba/spor): ekrana bakmadan bilesin diye kayıt başlamadan kısa bir "dıt" (kayda girmesin diye önce) */
         if(S.sess && CTXS[S.sess.ctx] && CTXS[S.sess.ctx].audio){ micBeep(); await sleep(280); if(settled){ release(); return; } }
         rec = new MediaRecorder(stream);
@@ -6542,7 +6578,7 @@ const _fluFeedback0 = fluFeedback;
 fluFeedback = async function(){ const F = S.flu; if(F && F._pend){ try { await F._pend; } catch(e){} } if(S.flu === F && F.txt.some(Boolean)) return _fluFeedback0.apply(this, arguments); };
 /* ================= events ================= */
 const ACT = {
-  sessStart(b){ sessStart(b.dataset.c); },
+  sessStart(b){ micWarm(); sessStart(b.dataset.c); },
   sessPause(){ sessPause(); },
   goSetup(){ go("kurulum"); render(); },
   exportAll(){ exportAll(); },
@@ -6586,7 +6622,7 @@ const ACT = {
   scenRoleplay(){ scenToRoleplay(); },
   goScenList(){ S.scen = null; go("senaryo"); render(); },
   vocabStart(){ primeTTS(); go("kelime", ()=>startVocab()); },
-  vMode(b){ const V = S.voc; S.state.vmode = b.dataset.m; Store.saveState(); if(V){ V.mode = b.dataset.m; if(!V.res) vCardStart(true); } },
+  vMode(b){ if(b.dataset.m === "mic") micWarm(); const V = S.voc; S.state.vmode = b.dataset.m; Store.saveState(); if(V){ V.mode = b.dataset.m; if(!V.res) vCardStart(true); } },
   vIntroDone(){ vIntroDone(); },
   vCheck(){ const i = $("#vIn"); if(i) S.voc.user = i.value; vCheck(); },
   vTap(b){ vCheck(b.dataset.o); },
