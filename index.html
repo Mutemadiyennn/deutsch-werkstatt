@@ -770,6 +770,8 @@ body.lesson main>.fbar+.card{margin-top:10px}
 .dkv{font-weight:800;font-size:1.1rem}
 .dkans{font-size:1.35rem;font-weight:800}
 body.insess::before,body.focus::before{height:calc(env(safe-area-inset-top) + 14px)!important;background:var(--paper)!important}
+.exfull{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:16px;background:var(--soft);font-size:1.15rem;font-weight:700}
+.exfull .licon{flex:none;width:40px;height:40px;border-radius:50%;border:0;background:var(--accent);color:#fff;font-size:1rem;cursor:pointer}
 </style>
 </head>
 <body>
@@ -5406,7 +5408,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-10s";
+const APP_VER = "2026-11-10t";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -8693,6 +8695,29 @@ lessonToExercises = async function(){
   const fixDeep = v => typeof v === "string" ? TRFIX.reduce((t,[re,to])=>t.replace(re,to), v) : Array.isArray(v) ? v.map(fixDeep) : (v && typeof v === "object") ? Object.fromEntries(Object.entries(v).map(([k,x])=>[k, fixDeep(x)])) : v;
   const _aj = askJSON; askJSON = async function(){ return fixDeep(await _aj.apply(this, arguments)); };
   if(typeof GeminiAI === "object" && GeminiAI && GeminiAI.json){ const _aij = GeminiAI.json.bind(GeminiAI); GeminiAI.json = async function(){ return fixDeep(await _aij.apply(null, arguments)); }; }
+}
+
+/* alıştırmada her cevaptan sonra doğru cümlenin tamamı görünür ve Almanca okunur */
+{
+  const fullOf = it => { if(!it) return ""; const a0 = (it.answers && it.answers.length ? it.answers[0] : it.answer);
+    if(it.kind === "gap" || it.kind === "choice") return fillGap(it.prompt, it.kind === "choice" ? it.answer : a0);
+    if(["order","fix","produce"].includes(it.kind)) return String(it.answer||"");
+    if(it.kind === "tf") return it.correct ? String(it.prompt||"") : String(it.answer||"");
+    return ""; };
+  const _exC = exCheck;
+  exCheck = function(){
+    const r = _exC.apply(this, arguments); const e = S.ex, it = curItem();
+    if(e && e.feedback && it){ const full = fullOf(it).replace(/\s+/g, " ").trim();
+      if(full && /[a-zäöüß]/i.test(full)){ e.feedback.full = full; render(); setTimeout(()=>{ if(S.ex === e && e.checked) say(full, "de"); }, 450); } }
+    return r;
+  };
+  const _rEx = renderExercise;
+  renderExercise = function(){
+    let h = _rEx.apply(this, arguments); const e = S.ex; const f = e && e.feedback && e.feedback.full;
+    if(f){ const i = h.indexOf('<div class="fb '); const blk = `<div class="exfull"><button class="licon" data-act="exSayFull" aria-label="Tekrar dinle">🔊</button><span class="de">${esc(f)}</span></div>`; if(i >= 0) h = h.slice(0, i) + blk + h.slice(i); }
+    return h;
+  };
+  Object.assign(ACT, { exSayFull(){ const e = S.ex; if(e && e.feedback && e.feedback.full) say(e.feedback.full, "de"); } });
 }
 </script>
 </body>
