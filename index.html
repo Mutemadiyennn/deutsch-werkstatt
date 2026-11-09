@@ -2829,7 +2829,10 @@ function shPool(){
   const ph = S.words.filter(w=>w.kind === "satz" && w.de).map(w=>({de:w.de, tr:w.tr||"", kind:"kalıp"}));
   const ms = S.mistakes.filter(m=>m.right && m.right.split(/\s+/).length <= 10).map(m=>({de:m.right, tr:"", kind:"hata defteri"}));
   const ws = S.words.filter(w=>w.kind !== "satz" && w.de && w.tr).map(w=>({de:(w.artikel?w.artikel+" ":"")+w.de, tr:w.tr, kind:"kelime"}));
-  return [...weak.slice(0,2), ...shuffle(ph).slice(0,3), ...shuffle(ms).slice(0,2), ...shuffle(ws).slice(0,3)];
+  /* telaffuz analizinde sık takıldığın seslerin örnek kelimeleri öne gelir */
+  const snd = Object.entries(S.state.pronSnd || {}).filter(([,v])=>v.n >= 2).sort((a,b)=>b[1].n-a[1].n).slice(0,2).flatMap(([k,v])=>(v.ex||[]).slice(-1).map(x=>({de:x, tr:"", kind:"zor ses: "+k})));
+  const sndSent = snd.length ? shuffle(ph.filter(x=>snd.some(y=>x.de.toLowerCase().includes(y.de.toLowerCase())))).slice(0,1) : [];
+  return [...snd, ...sndSent, ...weak.slice(0,2), ...shuffle(ph).slice(0,3), ...shuffle(ms).slice(0,2), ...shuffle(ws).slice(0,3)];
 }
 function startShadow(){
   shStop();
@@ -2839,7 +2842,8 @@ function startShadow(){
   if(S.sess && items.length){ const H = S.sh; setTimeout(()=>{ if(S.sh === H && H.phase === "teach" && !H.busy && S.view === "shadow") shPlay(false); }, 2500); }
 }
 let REC_CUR = null;
-function micAbort(){ if(REC_CUR){ try { REC_CUR.abort(); } catch(e){} REC_CUR = null; } }
+function micAbort(){ if(REC_CUR){ try { REC_CUR.abort(); } catch(e){} REC_CUR = null; }
+  if(typeof PA !== "undefined" && PA.rec && PA.rec.state === "recording"){ try { PA.rec.onstop = null; PA.rec.stop(); } catch(e){} paCleanup(); if(S.pa) S.pa.phase = "idle"; } }
 function shStop(){ const H = S.sh; if(H){ H.busy = false; if(H.rec){ try { H.rec.abort(); } catch(e){} H.rec = null; } } }
 function recognize(onLive){
   return new Promise((res, rej)=>{
@@ -2939,8 +2943,9 @@ function renderShadow(){
       <button class="btn ${r && r.score>=0.85 ? "primary" : ""}" data-act="shNext" ${H.busy?"disabled":""}>${H.i+1<H.items.length ? "Sonraki" : "Bitir"}</button>
       ${H.mic==="self" && !H.busy && H.phase==="self" ? `<button class="btn ghost" data-act="shNext">İyi söyledim ✓</button>` : ""}
     </div>
+    ${!H.busy ? paHtml(it.de) : ""}
     ${H.mic==="dict" && H.phase!=="dict" && !H.busy ? `<p class="small muted">Telaffuz kontrolü klavye diktesiyle: telefonun söylediğini doğru yazıya dökerse, sesin anlaşılır demektir.</p>` : ""}
-    ${H.mic==="sr" ? `<p class="small muted">Not: telefonun konuşma tanıması kelime düzeyinde kontrol eder (Android'de Google, iPhone'da Apple). Ses ses (fonem) puanlama için arada Rosetta Stone bloğu gelir.</p>` : ""}
+    ${H.mic==="sr" ? `<p class="small muted">Not: telefonun konuşma tanıması kelime düzeyinde kontrol eder (Android'de Google, iPhone'da Apple). ${paOK() ? "Hangi sesi nasıl düzelteceğini görmek için 🔬 analiz düğmesini kullan." : "Ses ses (fonem) puanlama için arada Rosetta Stone bloğu gelir."}</p>` : ""}
   </section>`;
 }
 
@@ -5324,6 +5329,91 @@ function renderA12Card(){
   </section>`;
 }
 
+/* ================= Telaffuz analizi: kaydet → Gemini dinler → ses ses geri bildirim ================= */
+/* Telefonun konuşma tanıması sadece "anlaşıldı mı" der. Burada kaydı yapay zekâ dinler ve hangi sesin (ch, r, uzun/kısa ünlü, -er, z, sp/st …) nasıl düzeltileceğini söyler. */
+const PA = { rec:null, stream:null, chunks:[], timer:null };
+function paOK(){ return STANDALONE && aiReady() && !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) && typeof window.MediaRecorder !== "undefined"; }
+function paCleanup(){ clearTimeout(PA.timer); PA.timer = null; if(PA.stream){ try { PA.stream.getTracks().forEach(t=>t.stop()); } catch(e){} } PA.stream = null; PA.rec = null; }
+async function paStart(text){
+  const P = S.pa = {text, phase:"rec", res:null, err:"", t0:Date.now()};
+  stopAll(); render();
+  try{
+    PA.stream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true, noiseSuppression:true}});
+    PA.chunks = []; PA.rec = new MediaRecorder(PA.stream);
+    PA.rec.ondataavailable = e => { if(e.data && e.data.size) PA.chunks.push(e.data); };
+    PA.rec.onstop = () => { const type = (PA.chunks[0] && PA.chunks[0].type) || (PA.rec && PA.rec.mimeType) || "audio/mp4"; const blob = new Blob(PA.chunks, {type}); paCleanup(); if(S.pa === P && P.phase === "rec") paAnalyze(P, blob); };
+    PA.rec.start();
+    PA.timer = setTimeout(()=>paStop(), 12000);
+  }catch(e){ paCleanup(); P.phase = "idle"; P.err = (e && e.name === "NotAllowedError") ? "Mikrofon izni yok. Safari'de adres çubuğundaki aA → Website-Einstellungen → Mikrofon: Erlauben." : "Kayıt başlatılamadı."; render(); }
+}
+function paStop(){ clearTimeout(PA.timer); if(PA.rec && PA.rec.state === "recording"){ try { PA.rec.stop(); } catch(e){ paCleanup(); } } }
+function paCancel(){ const P = S.pa; if(P) P.phase = "idle"; if(PA.rec && PA.rec.state === "recording"){ try { PA.rec.onstop = null; PA.rec.stop(); } catch(e){} } paCleanup(); S.pa = null; render(); }
+/* kaydı 16 kHz mono WAV'a çevir: her tarayıcı kaydını yapay zekânın kesin okuyabileceği biçime getirir; sessizlik kontrolü de burada */
+async function paToWav(blob){
+  const AC = window.AudioContext || window.webkitAudioContext; const ac = new AC();
+  const buf = await blob.arrayBuffer();
+  const audio = await new Promise((res, rej)=>{ try { const p = ac.decodeAudioData(buf, res, rej); if(p && p.then) p.then(res, rej); } catch(e){ rej(e); } });
+  try { ac.close(); } catch(e){}
+  const rate = 16000; const len = Math.max(1, Math.ceil(audio.duration * rate));
+  const OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext; const off = new OAC(1, len, rate);
+  const src = off.createBufferSource(); src.buffer = audio; src.connect(off.destination); src.start(0);
+  const out = await new Promise((res, rej)=>{ off.oncomplete = e => res(e.renderedBuffer); try { const p = off.startRendering(); if(p && p.then) p.then(res, rej); } catch(e){ rej(e); } });
+  const d = out.getChannelData(0); let peak = 0; for(let i = 0; i < d.length; i++){ const a = Math.abs(d[i]); if(a > peak) peak = a; }
+  const v = new DataView(new ArrayBuffer(44 + d.length*2)); const ws = (o, s) => { for(let i = 0; i < s.length; i++) v.setUint8(o+i, s.charCodeAt(i)); };
+  ws(0,"RIFF"); v.setUint32(4, 36 + d.length*2, true); ws(8,"WAVE"); ws(12,"fmt "); v.setUint32(16,16,true); v.setUint16(20,1,true); v.setUint16(22,1,true); v.setUint32(24,rate,true); v.setUint32(28,rate*2,true); v.setUint16(32,2,true); v.setUint16(34,16,true); ws(36,"data"); v.setUint32(40, d.length*2, true);
+  for(let i = 0; i < d.length; i++){ const x = Math.max(-1, Math.min(1, d[i])); v.setInt16(44 + i*2, x < 0 ? x*0x8000 : x*0x7FFF, true); }
+  return {wav: new Blob([v], {type:"audio/wav"}), peak, sec: audio.duration};
+}
+async function paAnalyze(P, blob){
+  P.phase = "busy"; render();
+  try{
+    const w = await paToWav(blob);
+    if(w.sec < 0.6 || w.peak < 0.02){ P.phase = "idle"; P.err = "Sesin çok kısa ya da çok sessiz geldi. Telefonu ağzına 20–30 cm yaklaştır ve tekrar dene."; render(); return; }
+    const r = await GeminiAI.json(`Du bist eine erfahrene Aussprachetrainerin für Deutsch (Phonetik), spezialisiert auf Lernende mit Türkisch als Muttersprache. Höre die Aufnahme genau an.
+ZIELSATZ: "${P.text}"
+Bewerte ehrlich und konkret, nicht übertrieben freundlich. Markiere nur Fehler, die in der Aufnahme wirklich hörbar sind. Typische Probleme türkischer Muttersprachler: ch (ich-Laut [ç] vs. ach-Laut [x]), r (Zäpfchen-r, vokalisiertes -er am Wortende), lange vs. kurze Vokale (Staat/Stadt, ihn/in), Murmel-e [ə] in Endungen (-e, -en), Auslautverhärtung (Tag → [k]), z = [ts], sp/st am Wortanfang = [ʃp]/[ʃt], w = [v], ei/ie, h hörbar, Wortakzent und Satzmelodie. ü und ö sind für Türken meist kein Problem: nur markieren, wenn wirklich falsch.
+Wenn die Aufnahme leer ist, nur Rauschen enthält oder ein ganz anderer Satz gesagt wurde, setze "score" auf null und erkläre es in "tip_tr".
+Antworte NUR mit JSON: {"heard":"was du tatsächlich gehört hast","score":0-100,"words":[{"w":"Wort aus dem Zielsatz","ok":true,"note_tr":"kurz, nur wenn nicht ok"}],"sounds":[{"s":"betroffener Laut, z. B. ch","in":"Wort aus dem Satz","tip_tr":"wie man ihn bildet, 1-2 Sätze Türkisch, mit türkischem Vergleich falls möglich"}],"rhythm_tr":"1 Satz zu Betonung/Melodie/Tempo","tip_tr":"der wichtigste Tipp für den nächsten Versuch, 1 Satz"}
+Höchstens 3 Einträge in "sounds", die wichtigsten zuerst.`, {images:[w.wav]});
+    if(S.pa !== P) return;
+    const words = (r && r.words || []).filter(x=>x && x.w).map(x=>({w:String(x.w), ok:x.ok !== false, note:String(x.note_tr||"")}));
+    const sounds = (r && r.sounds || []).filter(x=>x && x.s).slice(0,3).map(x=>({s:String(x.s).slice(0,12), in:String(x.in||""), tip:String(x.tip_tr||"")}));
+    P.res = {heard:String((r && r.heard)||""), score: r && r.score != null && isFinite(+r.score) ? Math.max(0, Math.min(100, Math.round(+r.score))) : null, words, sounds, rhythm:String((r && r.rhythm_tr)||""), tip:String((r && r.tip_tr)||"")};
+    P.phase = "done";
+    if(P.res.score !== null){
+      const st = S.state.pronSnd || (S.state.pronSnd = {});
+      for(const x of sounds){ const k = x.s.toLowerCase(); const e = st[k] || (st[k] = {n:0, ex:[]}); e.n++; e.last = dayKey(); if(x.in && !e.ex.includes(x.in)) e.ex = [...e.ex, x.in].slice(-5); }
+      const log = S.state.paLog || (S.state.paLog = []); log.push({date:dayKey(), score:P.res.score}); S.state.paLog = log.slice(-100);
+      addXP(3); Store.saveState();
+      if(P.res.score >= 85) sfx("ok");
+    }
+  }catch(e){ if(S.pa !== P) return; P.phase = "idle"; P.err = aiMsg(e) + (e && e.message ? " (" + String(e.message).slice(0,100) + ")" : ""); }
+  render();
+}
+const _profilePA = profile;
+profile = function(){ const w = Object.entries(S.state.pronSnd || {}).filter(([,v])=>v.n >= 2).sort((a,b)=>b[1].n-a[1].n).slice(0,4); return _profilePA() + (w.length ? `\nAUSSPRACHE-SCHWÄCHEN (aus Aufnahmen): ${w.map(([k,v])=>k+" (z. B. "+(v.ex||[]).slice(-2).join(", ")+")").join("; ")}. Baue in Sprech- und Shadowing-Sätze gelegentlich Wörter mit diesen Lauten ein.` : ""); };
+function paWeakSounds(){ const st = S.state.pronSnd || {}; return Object.entries(st).sort((a,b)=>b[1].n-a[1].n).slice(0,4); }
+function paHtml(text){
+  if(!paOK()) return "";
+  const P = S.pa && S.pa.text === text ? S.pa : null;
+  if(!P || P.phase === "idle") return `${P && P.err ? `<div class="note">${esc(P.err)}</div>` : ""}<button class="btn block" data-act="paStart" style="margin-top:8px">🔬 Telaffuzumu ses ses analiz et</button>`;
+  if(P.phase === "rec") return `<div class="fb ok" style="text-align:center;margin-top:8px"><b>🔴 Kaydediyorum: cümleyi söyle</b><div class="small">Bitince aşağıya dokun (en fazla 12 saniye).</div></div><div class="grid2"><button class="btn primary" style="min-height:56px" data-act="paStop">■ Bitti</button><button class="btn ghost" data-act="paCancel">Vazgeç</button></div>`;
+  if(P.phase === "busy") return `<div class="thinking" style="margin-top:8px"><span class="spin"></span>Sesini dinliyorum… (5–15 sn)</div>`;
+  const R = P.res; const weak = paWeakSounds().filter(([k])=>!R.sounds.some(x=>x.s.toLowerCase()===k));
+  return `<section class="card" style="margin-top:8px;border:1px solid var(--line)"><div class="kicker">Telaffuz analizi</div>
+    ${R.score === null ? `<div class="note">${esc(R.tip || "Kayıtta cümleyi duyamadım.")}</div>` : `
+    <div class="row between"><div class="big" style="font-size:2rem">%${R.score}</div><span class="small muted">${R.score >= 85 ? "Çok iyi, anlaşılır ve doğal." : R.score >= 65 ? "Anlaşılır; birkaç ses düzelirse çok iyi olur." : "Bu sesleri tek tek çalışalım."}</span></div>
+    <p class="de" style="font-size:1.25rem;line-height:1.6">${R.words.length ? R.words.map(x=>`<span class="pw ${x.ok?"ok":"miss"}" ${x.note ? `title="${esc(x.note)}"` : ""}>${esc(x.w)}</span>`).join(" ") : esc(P.text)}</p>
+    ${R.heard ? `<p class="small muted">Duyduğum: „${esc(R.heard)}“</p>` : ""}
+    ${R.words.filter(x=>!x.ok && x.note).map(x=>`<div class="small">• <b class="de">${esc(x.w)}</b>: ${esc(x.note)}</div>`).join("")}
+    ${R.sounds.map(x=>`<div class="ex"><b>🗣️ ${esc(x.s)}</b>${x.in ? ` · <span class="de">${esc(x.in)}</span> <button class="btn small ghost" data-act="sayDe" data-t="${esc(x.in)}">🔊</button> <button class="btn small ghost" data-act="shWord" data-w="${esc(x.in)}">🐢</button>` : ""}<div class="small">${esc(x.tip)}</div></div>`).join("")}
+    ${R.rhythm ? `<p class="small">🎵 ${esc(R.rhythm)}</p>` : ""}
+    ${R.tip ? `<div class="fb ok small"><b>Sonraki denemede:</b> ${esc(R.tip)}</div>` : ""}
+    ${weak.length ? `<p class="small muted">Genelde zorlandığın sesler: ${weak.map(([k,v])=>`<b>${esc(k)}</b> (${v.n})`).join(", ")}</p>` : ""}`}
+    <div class="grid2"><button class="btn primary" data-act="paStart">🔁 Tekrar kaydet</button><button class="btn" data-act="sayDe" data-t="${esc(P.text)}">🔊 Doğrusunu dinle</button></div>
+  </section>`;
+}
+
 /* ================= events ================= */
 const ACT = {
   sessStart(b){ sessStart(b.dataset.c); },
@@ -5581,6 +5671,11 @@ document.addEventListener("keydown", e => {
 });
 window.addEventListener("hashchange", route);
 
+Object.assign(ACT, {
+  paStart(){ const it = S.sh && S.sh.items[S.sh.i]; if(it) paStart(it.de); },
+  paStop(){ paStop(); },
+  paCancel(){ paCancel(); }
+});
 route();
 initRuntime();
 </script>
