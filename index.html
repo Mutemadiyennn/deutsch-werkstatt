@@ -5059,6 +5059,9 @@ startScen = async function(id){
 };
 
 /* ================= Platform: Claude içinde veya kendi adresinde (mikrofon, Pexels foto, Gemini) ================= */
+const NATIVE = (()=>{ try { const C = window.Capacitor; if(C && (typeof C.isNativePlatform === "function" ? C.isNativePlatform() : (C.platform && C.platform !== "web"))) return true;
+  /* Capacitor kabuğu, sayfa betiği enjekte edilmese bile web görünümüne "bridge" mesaj kanalını kaydeder; Safari'de bu yok */
+  return !!(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.bridge); } catch(e){ return false; } })();
 const STANDALONE = !(window.claude && typeof window.claude.use === "function");
 const IS_IOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
 const KEYS = {
@@ -5163,7 +5166,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09u";
+const APP_VER = "2026-11-09v";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -7888,7 +7891,7 @@ Object.assign(ACT, { liveWith(el){ startLive(el.dataset.p, null, 2, false); } })
    - kimlik doğrulama doğrudan initializeAuth + IndexedDB ile başlatılır (iframe yok);
    - giriş, AYNI Firebase hesabına bağlanmış e-posta + uygulama şifresiyle yapılır → aynı kullanıcı kimliği (uid),
      yani kilit, eşitleme ve şifreli anahtarlar aynen çalışır; başka hiçbir hesap giremez. */
-const NATIVE = (()=>{ try { const C = window.Capacitor; return !!(C && (typeof C.isNativePlatform === "function" ? C.isNativePlatform() : (C.platform && C.platform !== "web"))); } catch(e){ return false; } })();
+
 if(NATIVE) document.documentElement.classList.add("native");
 const _syInitN = syInit;
 syInit = async function(){
