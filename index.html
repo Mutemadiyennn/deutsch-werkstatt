@@ -245,7 +245,7 @@ details summary{cursor:pointer;font-weight:700}
 .wpop{background:var(--card);width:100%;max-width:560px;border-radius:20px 20px 0 0;padding:16px 16px 26px;box-shadow:0 -10px 30px rgba(0,0,0,.2);display:flex;flex-direction:column;gap:10px;animation:slideup .22s ease}
 @keyframes slideup{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
 .de,.vsent,.story,.chat .bub{cursor:pointer}
-#micPill{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));z-index:9999;padding:10px 18px;border-radius:999px;font-weight:700;font-size:1.05rem;box-shadow:0 4px 16px rgba(0,0,0,.18);pointer-events:none}#micPill.wait{background:#f4e3b5;color:#5a4410}#micPill.go{background:#2f7d4f;color:#fff}
+#micPill{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));z-index:9999;padding:10px 18px;border-radius:999px;font-weight:700;font-size:1.05rem;box-shadow:0 4px 16px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}#micPill .x{margin-left:12px;font-weight:600;font-size:.9rem;opacity:.85}#micPill.wait{background:#f4e3b5;color:#5a4410}#micPill.go{background:#2f7d4f;color:#fff}
 </style>
 </head>
 <body>
@@ -2742,7 +2742,7 @@ async function audioPlay(){
       const wait = (it.kind === "satz" ? Math.max(4500, it.de.length*110) : 3500) * (silent ? 0.8 : 1);
       let heardOK = null;
       if(!silent && SRC && S.state.srOK && it.wid){
-        try{ const alts = await Promise.race([recognize(), sleep(wait*slow + 2500).then(()=>{ try { S.sh && S.sh.rec && S.sh.rec.stop(); } catch(e){} return []; })]);
+        try{ const alts = await Promise.race([recognize(), sleep(wait*slow + 2500).then(()=>{ try { REC_CUR && REC_CUR.stop(); } catch(e){} return []; })]);
           if(!alive()) return; if(alts && alts.length){ const best = Math.max(...alts.map(x=>scoreHeard(it.de, x).score)); heardOK = best >= 0.8; } }
         catch(e){ if(!alive()) return; await W(wait); }
       } else await W(wait);
@@ -2849,7 +2849,7 @@ function startShadow(){
   if(S.sess && items.length){ const H = S.sh; setTimeout(()=>{ if(S.sh === H && H.phase === "teach" && !H.busy && S.view === "shadow") shPlay(false); }, 2500); }
 }
 let REC_CUR = null;
-function micAbort(){ if(REC_CUR){ try { REC_CUR.abort(); } catch(e){} REC_CUR = null; }
+function micAbort(){ if(REC_CUR){ REC_CUR._cancel = true; try { REC_CUR.abort(); } catch(e){} REC_CUR = null; }
   if(typeof PA !== "undefined" && PA.rec && PA.rec.state === "recording"){ try { PA.rec.onstop = null; PA.rec.stop(); } catch(e){} paCleanup(); if(S.pa) S.pa.phase = "idle"; } }
 function shStop(){ const H = S.sh; if(H){ H.busy = false; if(H.rec){ try { H.rec.abort(); } catch(e){} H.rec = null; } } }
 /* mikrofon gerçekten açılana kadar "bekle", açılınca "şimdi konuş" (+ kısa ses); sessizlikte kendini bitirir */
@@ -2857,22 +2857,23 @@ function micPill(st){
   let el = document.getElementById("micPill");
   if(!st){ if(el) el.remove(); return; }
   if(!el){ el = document.createElement("div"); el.id = "micPill"; document.body.appendChild(el); }
-  el.className = st; el.textContent = st === "wait" ? "⏳ Mikrofon açılıyor… bekle" : "🎤 Şimdi konuş";
+  el.className = st; el.innerHTML = (st === "wait" ? "⏳ Mikrofon açılıyor… bekle" : "🎤 Şimdi konuş") + '<span class="x">✕ iptal</span>';
+  el.onclick = micCancel;
 }
-function micTick(){
-  try{ ACX = ACX || new (window.AudioContext||window.webkitAudioContext)(); const o = ACX.createOscillator(), g = ACX.createGain(); o.frequency.value = 990; o.type = "sine"; o.connect(g); g.connect(ACX.destination);
-    const t0 = ACX.currentTime; g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(0.18, t0+0.015); g.gain.exponentialRampToValueAtTime(0.0001, t0+0.14); o.start(t0); o.stop(t0+0.16); }catch(e){}
-}
-function recognize(onLive){
-  return new Promise((res, rej)=>{
+/* dinlemeyi iptal et: sonuç sayılmaz, baştan başlanabilir */
+function micCancel(){ const r = REC_CUR; if(!r) return; r._cancel = true; try { r.abort(); } catch(e){} setTimeout(()=>{ if(r.onend) r.onend(); }, 300); }
+function recognize(onLive, _again){
+  return new Promise((res, rej)=>{ const t0 = Date.now();
     let r; try { r = new SRC(); } catch(e){ rej({code:"unsupported"}); return; }
     r.lang = "de-DE"; r.interimResults = true; r.maxAlternatives = 5; r.continuous = false;
     let alts = [], err = null, live = "", done = false, ready = false, quiet = null, hard = null;
     const finish = () => { if(done) return; done = true; clearTimeout(quiet); clearTimeout(hard); micPill(null);
       if(S.sh && S.sh.rec === r) S.sh.rec = null; if(REC_CUR === r) REC_CUR = null;
       if(!alts.length && live) alts = [live.trim()]; if(alts.length && !S.state.srOK){ S.state.srOK = true; Store.saveState(); }
-      if(err && !alts.length) rej({code:err}); else res(alts); };
-    const goReady = () => { if(ready || done) return; ready = true; micPill("go"); micTick(); };
+      /* iPhone bazen dinlemeyi daha başlarken keser (aborted): bir kez sessizce yeniden aç */
+      if(!r._cancel && err === "aborted" && !alts.length && Date.now() - t0 < 3000 && !_again){ setTimeout(()=>recognize(onLive, true).then(res, rej), 200); return; }
+      if(r._cancel) rej({code:"cancel"}); else if(err && !alts.length) rej({code:err}); else res(alts); };
+    const goReady = () => { if(ready || done) return; ready = true; micPill("go"); };
     r.onstart = () => { setTimeout(goReady, 500); };
     r.onaudiostart = goReady;
     r.onresult = e => { goReady(); live = ""; for(let i=0;i<e.results.length;i++) live += e.results[i][0].transcript + " "; onLive && onLive(live.trim());
@@ -2894,14 +2895,15 @@ function micMsg(code){
   if(code === "no-speech") return "Ses duyamadım. Telefonu biraz daha yakın tut ve yüksek sesle söyle.";
   if(code === "audio-capture") return "Mikrofon bulunamadı.";
   if(code === "network") return "Konuşma tanıma için internet gerekiyor (Android'de Google kullanır). Bağlantını kontrol et.";
-  return "Konuşma tanıma bu cihazda çalışmadı; dinle-tekrar et moduna geçtim.";
+  if(code === "aborted" || code === "cancel") return "Dinleme yarıda kesildi. 🎤'a tekrar bas.";
+  return "Bu sefer anlayamadım (" + code + "). 🎤'a tekrar bas.";
 }
 async function shPlay(slow){
   const H = S.sh; if(!H) return; const it = H.items[H.i]; if(!it) return;
   H.busy = true; H.phase = "listen"; H.res = null; H.live = ""; H.err = ""; render();
   if(slow) await saySlow(it.de); else await say(it.de, "de", deRate()); if(!S.sh || S.sh !== H || !H.busy) return;
   if(H.mic === "sr"){
-    H.phase = "rec"; render();
+    H.phase = "rec"; render(); chime();
     try{
       const alts = await recognize(txt => { H.live = txt; const el = $("#shLive"); if(el) el.textContent = txt; });
       if(S.sh !== H) return;
@@ -2913,6 +2915,7 @@ async function shPlay(slow){
       if(best.score >= 0.85){ await say(best.score === 1 ? "Sehr gut!" : "Gut!", "de"); if(S.sess && CTXS[S.sess.ctx].audio) setTimeout(()=>{ if(S.sh === H && H.phase === "result" && !S.sess.paused) shNext(); }, 3000); }
     }catch(e){
       if(S.sh !== H) return; H.busy = false;
+      if(e.code === "cancel"){ H.phase = H.tries ? "result" : "teach"; H.res = null; render(); return; }
       if(["not-allowed","service-not-allowed","unsupported","start","audio-capture"].includes(e.code)){ H.mic = "self"; H.err = micMsg(e.code); H.phase = "self"; }
       else { H.err = micMsg(e.code); H.phase = "result"; H.res = null; }
       render();
@@ -2968,7 +2971,7 @@ function renderShadow(){
     ${r ? `<div class="fb ${r.score>=0.85?"ok":"no"}"><b>%${Math.round(r.score*100)}</b> ${r.score>=0.85 ? "Çok iyi!" : r.score>=0.6 ? "Yaklaştın. Kırmızı kelimelere dokun, yavaşça dinle, tekrar dene." : "Bir daha deneyelim: önce yavaş dinle."}<div class="small muted">Duyduğum: „${esc(r.heard)}“</div></div>` : ""}
     ${r && r.words.some(x=>x.st!=="ok") ? `<div class="row">${r.words.filter(x=>x.st!=="ok").map(x=>`<button class="btn small" data-act="shWord" data-w="${esc(x.w)}">🔊 ${esc(x.w)}</button>`).join("")}</div>` : ""}
     <div class="grid2">
-      <button class="btn primary" data-act="shPlay" ${H.busy?"disabled":""}>${H.tries || H.phase==="self" ? "🔁 Tekrar dene" : "▶ Dinle ve söyle"}</button>
+      <button class="btn primary" data-act="shPlay" ${H.busy && H.phase!=="rec"?"disabled":""}>${H.phase==="rec" ? "✋ İptal · baştan" : H.tries || H.phase==="self" ? "🔁 Tekrar dene" : "▶ Dinle ve söyle"}</button>
       <button class="btn" data-act="shSlow" ${H.busy?"disabled":""}>🐢 Yavaş dinle</button>
       <button class="btn ${r && r.score>=0.85 ? "primary" : ""}" data-act="shNext" ${H.busy?"disabled":""}>${H.i+1<H.items.length ? "Sonraki" : "Bitir"}</button>
       ${H.mic==="self" && !H.busy && H.phase==="self" ? `<button class="btn ghost" data-act="shNext">İyi söyledim ✓</button>` : ""}
@@ -3277,8 +3280,10 @@ async function rpRepeat(me){
     for(let k = 0; k < 2; k++){
       T.rep.tries = k + 1; T.rep.live = ""; T.rep.listening = true; render();
       let alts = [];
-      try { alts = await recognize(txt => { T.rep.live = txt; const el = $("#rpRepLive"); if(el) el.textContent = txt; }); } catch(e){ alts = []; }
+      let canc = false;
+      try { alts = await recognize(txt => { T.rep.live = txt; const el = $("#rpRepLive"); if(el) el.textContent = txt; }); } catch(e){ alts = []; canc = e.code === "cancel"; }
       T.rep.listening = false; if(halt()) return false;
+      if(canc && !T.rep.redo){ T.rep.redo = 1; k--; continue; }
       const best = alts.length ? Math.max(...alts.map(x=>scoreHeard(me.better, x).score)) : 0;
       if(best >= 0.8){ T.rep.ok = true; render(); sfx("ok"); await say("Genau!", "de", 1.0); if(halt()) return false; break; }
       T.rep.ok = false; render();
@@ -3292,7 +3297,7 @@ async function rpRepeat(me){
   return !halt();
 }
 async function rpListen(){
-  const T = S.talk; if(T.listening || T.busy) return;
+  const T = S.talk; if(T.listening){ micCancel(); return; } if(T.busy) return;
   T.listening = true; T.live = ""; T.heardErr = ""; if(!T.waitStart) T.waitStart = Date.now(); render();
   let first = 0;
   try{
@@ -3306,6 +3311,7 @@ async function rpListen(){
   }catch(e){
     T.listening = false;
     if(S.talk !== T || (S.sess && S.sess.paused)) return;
+    if(e.code === "cancel"){ T.heardErr = ""; render(); return; }
     if(T.auto && S.sess){ if(e.code === "no-speech" && (T.miss=(T.miss||0)+1) < 2){ T.waitStart = 0; rpSpeak(); return; } if(["not-allowed","service-not-allowed"].includes(e.code)){ S.state.srOK = false; Store.saveState(); } sessNext(); return; }
     if(["not-allowed","service-not-allowed","unsupported","start","audio-capture"].includes(e.code)){ T.mic = "off"; T.heardErr = micMsg(e.code) + " Şimdilik yazarak devam et; cevabı sesli söyleyip sonra yaz."; }
     else T.heardErr = micMsg(e.code);
@@ -3333,7 +3339,7 @@ function renderVoiceChat(){
     ${T.heardErr ? `<div class="note">${esc(T.heardErr)}</div>` : ""}
     ${T.err ? `<div class="fb no">${esc(T.err)}</div>` : ""}
     <div class="grid2" style="margin-top:8px">
-      ${T.mic==="sr" ? `<button class="btn primary" style="min-height:64px;font-size:1.1rem" data-act="rpListen" ${T.busy||T.speaking||T.listening?"disabled":""}>🎤 Konuş</button>` : `<button class="btn primary" style="min-height:64px;font-size:1.1rem" data-act="rpFocus" ${T.busy||T.speaking?"disabled":""}>🎤 Cevap ver</button>`}
+      ${T.mic==="sr" ? `<button class="btn primary" style="min-height:64px;font-size:1.1rem" data-act="rpListen" ${T.busy||T.speaking?"disabled":""}>${T.listening ? "✋ İptal · baştan" : "🎤 Konuş"}</button>` : `<button class="btn primary" style="min-height:64px;font-size:1.1rem" data-act="rpFocus" ${T.busy||T.speaking?"disabled":""}>🎤 Cevap ver</button>`}
       <button class="btn" style="min-height:64px" data-act="rpWieBitte" ${T.busy||T.speaking?"disabled":""}>🐢 Wie bitte?</button>
       <button class="btn" data-act="rpReplay" ${T.busy||T.speaking||!last?"disabled":""}>🔁 Tekrar dinle</button>
       <button class="btn" data-act="talkHelp" ${T.busy||!last?"disabled":""}>💡 Ne diyebilirim?</button>
@@ -4066,7 +4072,7 @@ function renderKelime(){
       <button class="btn small" data-act="vSay" title="Cümleyi dinle">🔊</button><button class="btn small" data-act="vSaySlow" title="Yavaş">🐢</button>
       ${!V.res ? `<button class="btn small" data-act="vHint">💡 İpucu</button>` : ""}
     </div>
-    ${!V.res && V.mode==="mic" ? `<button class="btn primary block" style="min-height:64px;font-size:1.15rem" data-act="vMic">🎤 ${V.listening ? "Dinliyorum…" : "Söyle (cümlenin tamamını)"}</button>${V.heard ? `<p class="small muted" style="text-align:center">Duyduğum: „${esc(V.heard)}“</p>` : ""}<button class="btn small ghost block" data-act="vReveal">Bilmiyorum, göster</button>` : ""}
+    ${!V.res && V.mode==="mic" ? `<button class="btn primary block" style="min-height:64px;font-size:1.15rem" data-act="vMic">${V.listening ? "✋ Dinliyorum… (iptal için dokun)" : "🎤 " + "Söyle (cümlenin tamamını)"}</button>${V.heard ? `<p class="small muted" style="text-align:center">Duyduğum: „${esc(V.heard)}“</p>` : ""}<button class="btn small ghost block" data-act="vReveal">Bilmiyorum, göster</button>` : ""}
     ${!V.res && V.mode!=="mic" ? (V.mode==="type" ? `<div class="grid2"><button class="btn" data-act="vReveal">Göster</button><button class="btn primary" data-act="vCheck">Kontrol</button></div>` : `<button class="btn block" data-act="vReveal">Bilmiyorum, göster</button>`) : ""}
     ${V.res ? (V.needArt ? "" : `<button class="btn primary block" style="min-height:56px" data-act="vNext">Sonraki →</button>`) : ""}
   </section>
@@ -5994,11 +6000,11 @@ const ACT = {
   realStart(){ startReal(); },
   realDone(){ realDone(); },
   mockSave(b){ const k = b.dataset.k; const h = +($("#mockH")||{}).value || 0, l = +($("#mockL")||{}).value || 0; const M = S.state.mock || (S.state.mock = {}); M[k] = {h, l, date:dayKey()}; Store.saveState(); addXP(50); bigCelebrate("Dış ölçüm kaydedildi 📊", `Hören %${h} · Lesen %${l}. ${Math.min(h,l) >= 60 ? "B1 düzeyindesin!" : "Hangi bölümün zayıf olduğunu gördük; plan buna göre ağırlık verecek."}`, "party"); go("plan"); render(); },
-  async vMic(){ const V = S.voc; if(!V || V.listening) return; primeTTS(); V.listening = true; V.heard = ""; render();
+  async vMic(){ const V = S.voc; if(!V) return; if(V.listening){ micCancel(); return; } primeTTS(); V.listening = true; V.heard = ""; render();
     try{ const alts = await recognize(t=>{ V.heard = t; }); V.listening = false; const ans = V.sent ? V.sent.answer : (vWord()||{}).de || ""; const a = vNorm(ans);
       const hit = alts.find(x=>vNorm(x).split(/\s+/).some(tok=>tok === a || (a.length >= 5 && lev(tok, a) <= 1)) || vNorm(x).includes(a));
       V.heard = alts[0] || ""; vCheck(hit ? ans : (alts[0]||"").split(/\s+/).find(tok=>lev(vNorm(tok), a) <= 2) || alts[0] || ""); }
-    catch(e){ V.listening = false; srFail(e.code); V.heard = ""; S.flash = micMsg(e.code); if(!useSR()){ V.mode = "type"; } render(); } },
+    catch(e){ V.listening = false; V.heard = ""; if(e.code === "cancel"){ render(); return; } srFail(e.code); S.flash = micMsg(e.code); if(!useSR()){ V.mode = "type"; } render(); } },
   denkStart(){ primeTTS(); startDenk(S.sess ? CTXS[S.sess.ctx].audio : false); },
   denkPlay(){ const D = S.denk; if(D.playing){ D.playing = false; stopSpeech(); render(); } else denkRun(); },
   denkShow(){ const D = S.denk; D.phase = "ans"; denkRun(); },
@@ -6087,7 +6093,7 @@ const ACT = {
   audioToggle(){ const A = S.audio; if(!A) return; if(A.playing){ audioStop(); render(); } else { primeTTS(); if(A.done){ A.i = 0; A.done = false; } audioPlay(); } },
   audioSkip(){ const A = S.audio; if(!A) return; const was = A.playing; audioStop(); A.i = Math.min(A.items.length, A.i+1); if(A.i >= A.items.length){ A.done = true; render(); if(S.sess) sessNext(); return; } if(was) audioPlay(); else render(); },
   shStart(){ startShadow(); },
-  shPlay(){ primeTTS(); shPlay(false); },
+  shPlay(){ const H = S.sh; if(H && H.phase === "rec"){ micCancel(); return; } primeTTS(); shPlay(false); },
   shSlow(){ primeTTS(); shPlay(true); },
   shNext(){ shNext(); },
   shWord(b){ saySlow(b.dataset.w.replace(/[.,!?„“"]/g,"")); },
