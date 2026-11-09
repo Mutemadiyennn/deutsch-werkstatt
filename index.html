@@ -245,6 +245,31 @@ details summary{cursor:pointer;font-weight:700}
 .wpop{background:var(--card);width:100%;max-width:560px;border-radius:20px 20px 0 0;padding:16px 16px 26px;box-shadow:0 -10px 30px rgba(0,0,0,.2);display:flex;flex-direction:column;gap:10px;animation:slideup .22s ease}
 @keyframes slideup{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
 .de,.vsent,.story,.chat .bub{cursor:pointer}
+
+/* --- görünüm cilası --- */
+:root{--shadow:0 1px 2px rgba(46,42,37,.06),0 6px 18px rgba(46,42,37,.07);--shadow-lg:0 2px 4px rgba(46,42,37,.08),0 12px 28px rgba(46,42,37,.12);--radius:18px;--accent2:#5B93B5}
+:root[data-theme="dark"]{--shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.35);--shadow-lg:0 2px 4px rgba(0,0,0,.5),0 12px 28px rgba(0,0,0,.45);--accent2:#B5D3E3}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.35);--shadow-lg:0 2px 4px rgba(0,0,0,.5),0 12px 28px rgba(0,0,0,.45);--accent2:#B5D3E3}}
+.card{box-shadow:var(--shadow);border-color:transparent}
+.card.hl{border-color:var(--accent);box-shadow:var(--shadow),0 0 0 1.5px var(--accent) inset}
+.tile{box-shadow:var(--shadow);border-color:transparent;transition:transform .12s ease, box-shadow .12s ease}
+.tile:active{transform:scale(.98)}
+.btn{border-radius:12px;transition:transform .1s ease, box-shadow .15s ease, background .15s ease}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:linear-gradient(180deg,var(--accent2),var(--accent));box-shadow:0 2px 0 rgba(0,0,0,.12),0 6px 14px rgba(60,110,143,.28);border-color:transparent}
+.progress{height:9px;background:var(--soft)}
+.progress i{background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px;transition:width .35s ease}
+.chip{font-weight:700;padding:4px 10px}
+.fb{border-left:4px solid currentColor}
+.nav{box-shadow:0 -4px 18px rgba(0,0,0,.06);border-top-color:transparent}
+.vtop{display:flex;flex-direction:column;gap:10px}
+.vprog{position:relative;height:26px;border-radius:99px;background:var(--soft);overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.08)}
+.vprog i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--good),#58A06F);border-radius:99px;transition:width .4s cubic-bezier(.3,.8,.3,1)}
+.vprog span{position:relative;display:block;text-align:center;line-height:26px;font-weight:800;font-size:.85rem;font-variant-numeric:tabular-nums;color:var(--ink)}
+.tog{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:7px 12px;font-weight:700;font-size:.85rem;color:var(--muted);cursor:pointer;white-space:nowrap}
+.tog.on{border-color:var(--accent);background:var(--soft);color:var(--accent)}
+.seg{border-radius:12px;box-shadow:var(--shadow)}
+.seg button{font-size:.85rem;white-space:nowrap}
 #micPill{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));z-index:9999;padding:10px 18px;border-radius:999px;font-weight:700;font-size:1.05rem;box-shadow:0 4px 16px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}#micPill .x{margin-left:12px;font-weight:600;font-size:.9rem;opacity:.85}#micPill.busy{background:#dde7ef;color:#23415a}#micPill .lv{display:block;height:4px;margin-top:6px;border-radius:2px;background:rgba(255,255,255,.9);transform:scaleX(0);transform-origin:left;transition:transform .08s}#micPill.wait{background:#f4e3b5;color:#5a4410}#micPill.go{background:#2f7d4f;color:#fff}
 body.kb .nav{display:none}
 #updBar{position:fixed;left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:9998;background:#23415a;color:#fff;padding:12px 14px;border-radius:14px;font-weight:700;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.2);cursor:pointer}
@@ -779,16 +804,18 @@ function renderPlan(){
     <p class="small muted" style="margin-top:8px">Uygulama sıradaki işi kendisi seçer: tekrar, takviye, günün dersi, oyun, shadowing, sohbet. Hiçbir blok art arda iki kez gelmez. ${POMO_WORK} dakikada bir ${POMO_BREAK} dakikalık mola otomatik gelir.</p>
   </section>` : ""}
   ${S.sess ? "" : renderQuests()}
+  ${S.sess || typeof renderBonusCard !== "function" ? "" : renderBonusCard()}
   ${S.sess ? "" : renderPath()}
   ${S.sess ? "" : renderStageCard(false)}
   ${S.sess ? "" : renderVhsCheck()}
   ${S.sess ? "" : renderA12Card()}
   ${renderMission()}
   <section class="card">
-    <details><summary>Bugünün planı (${doneN}/${q.length})</summary>
-      <div class="list" style="margin-top:6px">${q.map(x=>`<div class="li"><div class="main">${x.done?"✓ ":x.locked?"🔒 ":""}${esc(x.title)} <span class="small muted">· ${x.min} dk${x.locked?" · dersi geçince açılır":""}</span></div></div>`).join("")}</div>
-      ${!q.some(x=>!x.done) && !cur.allDone ? `<button class="btn small ghost" data-act="forceNext">Enerjim var: yarının gününü de aç</button>` : ""}
-      ${cur.allDone ? `<p class="small">Bu hafta bitti! Sonraki hafta için Claude'daki sohbetimize "2. haftayı planla" yaz.</p>` : ""}
+    <details><summary>Bugünün planı (${q.filter(x=>!x.extra && x.done).length}/${q.filter(x=>!x.extra).length}) · ~${q.filter(x=>!x.extra).reduce((a,x)=>a+(x.min||0),0)} dk + aralarda kısa bloklar</summary>
+      <div class="list" style="margin-top:6px">${q.filter(x=>!x.extra).map(x=>`<div class="li"><div class="main">${x.done?"✓ ":x.locked?"🔒 ":""}${esc(x.title)} <span class="small muted">· ${x.min} dk${x.locked?" · dersi geçince açılır":""}</span></div></div>`).join("")}</div>
+      ${q.some(x=>x.extra) ? `<p class="small muted" style="margin:10px 0 4px">Vakit kalırsa (bonus):</p><div class="list">${q.filter(x=>x.extra).map(x=>`<div class="li"><div class="main">${x.done?"✓ ":"＋ "}${esc(x.title)} <span class="small muted">· ${x.min} dk</span></div></div>`).join("")}</div>` : ""}
+      ${!q.some(x=>!x.done && !x.extra) && !cur.allDone ? `<button class="btn small ghost" data-act="forceNext">Enerjim var: yarının gününü de aç</button>` : ""}
+      ${cur.allDone ? `<p class="small">Kurs haftalarının hepsi bitti 🎉 Günlük akış devam ediyor: gramer yolu (A2.2 → B1), kelimeler, hikâye, senaryolar ve konuşma her gün yenilenir.</p>` : ""}
     </details>
   </section>
   <section class="card">
@@ -1264,29 +1291,49 @@ function renderSummary(){
 }
 
 /* lessons */
-async function startLesson(topic){
-  const L = S.learn; L.err = ""; L.busy = true; L.busyText = "Ders hazırlanıyor…"; L.lesson = null; S.ex = null; render();
-  try{
-    const r = await askJSON(`Du bist ein geduldiger persönlicher Deutschlehrer.
+/* önceden hazırlama: dersler, hata dersi ve alıştırmalar sen başka bir şey yaparken arka planda üretilir; açınca beklemezsin */
+const PRE = {};
+function aiAsk(prompt, bg){ return bg ? AI.json(prompt, {modelTier:"default"}) : askJSON(prompt); }
+function preWait(p){
+  CTL = new AbortController(); const sig = CTL.signal;
+  return new Promise((res, rej)=>{ sig.addEventListener("abort", ()=>rej({code:"cancelled"})); p.then(res, rej); }).finally(()=>{ CTL = null; });
+}
+async function preGet(key, make){
+  key = dayKey() + "|" + key; const e = PRE[key];
+  if(e && e.r){ delete PRE[key]; preDrop(key); return e.r; }
+  if(e && e.p){ try { const r = await preWait(e.p); delete PRE[key]; return r; } catch(err){ delete PRE[key]; if(err && err.code === "cancelled") throw err; return make(false); } }
+  try { const st = await IDB.get("pre"); if(st && st[key]){ const r = st[key]; delete st[key]; IDB.set("pre", st).catch(()=>{}); return r; } } catch(x){}
+  return make(false);
+}
+function prePut(key, make){
+  if(!aiReady()) return; key = dayKey() + "|" + key; if(PRE[key]) return;
+  const p = make(true); PRE[key] = {p};
+  p.then(async r => { if(!PRE[key]) return; PRE[key].r = r; try { const st = (await IDB.get("pre")) || {}; for(const k of Object.keys(st)) if(!k.startsWith(dayKey())) delete st[k]; st[key] = r; await IDB.set("pre", st); } catch(x){} })
+   .catch(()=>{ delete PRE[key]; });
+}
+function preDrop(key){ IDB.get("pre").then(st=>{ if(st && st[key]){ delete st[key]; return IDB.set("pre", st); } }).catch(()=>{}); }
+async function preHas(key){ key = dayKey() + "|" + key; if(PRE[key]) return true; try { const st = await IDB.get("pre"); return !!(st && st[key]); } catch(e){ return false; } }
+function lessonGen(topic, bg){ return aiAsk(`Du bist ein geduldiger persönlicher Deutschlehrer.
 ${profile()}
 
 AUFGABE: Bring dem Lerner das Thema "${topic}" bei, BEVOR er übt. Erkläre auf Türkisch, einfach und klar, wie ein guter Lehrer an der Tafel. Das Wichtigste für A2 zuerst; nimm seine typischen Fehler auf, wenn sie passen. Beispiele aus seinem echten Leben (IT-Job, Homeoffice, Familie, Bayern, Fitness).
 Antworte NUR mit JSON:
 {"title":"kurzer deutscher Titel","intro_tr":"2-3 Sätze auf Türkisch: worum geht es und warum ist es wichtig","rule_tr":["Regel 1 auf Türkisch, mit deutschem Beispiel in Klammern","Regel 2","(max 5)"],"table":{"title":"z.B. Endungen","head":["…"],"rows":[["…"]]},"examples":[{"de":"deutscher Satz","tr":"türkische Übersetzung"}],"words":[{"de":"Wort ohne Artikel","artikel":"der|die|das|","plural":"Pluralform ohne Artikel oder leer","tr":"türkisch"}],"pitfall_tr":"der typische Fehler von Türkischsprechern bei diesem Thema und wie man ihn vermeidet"}
-6-8 Beispiele. 4-8 Wörter aus den Beispielen, die der Lerner noch nicht kennt. "table" nur wenn hilfreich, sonst {"rows":[]}.`);
+6-8 Beispiele. 4-8 Wörter aus den Beispielen, die der Lerner noch nicht kennt. "table" nur wenn hilfreich, sonst {"rows":[]}.`, bg); }
+async function startLesson(topic){
+  const L = S.learn; L.err = ""; L.busy = true; L.busyText = "Ders hazırlanıyor…"; L.lesson = null; S.ex = null; render();
+  try{
+    const r = await preGet("L|"+topic, bg => lessonGen(topic, bg));
     L.lesson = {...r, kind:"lesson", topic};
+    prePut(exKey(L.lesson), bg => exGen(L.lesson, bg));
   }catch(err){ L.err = aiMsg(err); }
   L.busy = false; render();
 }
-async function lessonToExercises(){
-  const L = S.learn, l = L.lesson; L.err = "";
-  if(l.kind === "preview"){ const items = l._items; const title = l.title2; L.lesson = null; startExercise(title, items, "local", "lernen"); return; }
-  if(l.kind === "lesson" && (l.words||[]).length && !l._added){ l._added = true; addWords(l.words); }
-  L.busy = true; L.busyText = "Alıştırmalar hazırlanıyor…"; render();
+function exKey(l){ return "E|" + l.kind + "|" + (l.title||"") + "|" + JSON.stringify(l.rule_tr||"").length + "|" + (l.focusItems||[]).map(x=>x.id).join(","); }
+function exGen(l, bg){
   const mistakeMode = l.kind === "mistakes";
   const lessonTxt = JSON.stringify({title:l.title, rule_tr:l.rule_tr, examples:l.examples, words:l.words, items:l.focusItems});
-  try{
-    const r = await askJSON(`Du bist ein persönlicher Deutschlehrer.
+  return aiAsk(`Du bist ein persönlicher Deutschlehrer.
 ${profile()}
 
 Der Lerner hat gerade diese Lektion gelernt:
@@ -1301,28 +1348,43 @@ Typen:
 - "order": ein korrekter Satz (max 9 Wörter), den der Lerner aus Wörtern baut; nur "answer"
 - "fix": Satz mit genau einem typischen Fehler in "prompt"; "answer" ist der korrigierte Satz
 Jede Übung hat "tr" (türkische Übersetzung des korrekten Satzes), "explain" (1 kurzer Satz auf Türkisch) und "topic" (eine von: ${MTOPICS.join(", ")}).
-Antworte NUR mit JSON: {"items":[{"kind":"gap","prompt":"Heute ___ ich ins Fitnessstudio.","hint":"gehen","answers":["gehe"],"tr":"Bugün spor salonuna gidiyorum.","explain":"…","topic":"Konjugation"${mistakeMode?',"mid":"…"':""}}]}`);
+Antworte NUR mit JSON: {"items":[{"kind":"gap","prompt":"Heute ___ ich ins Fitnessstudio.","hint":"gehen","answers":["gehe"],"tr":"Bugün spor salonuna gidiyorum.","explain":"…","topic":"Konjugation"${mistakeMode?',"mid":"…"':""}}]}`, bg);
+}
+async function lessonToExercises(){
+  const L = S.learn, l = L.lesson; L.err = "";
+  if(l.kind === "preview"){ const items = l._items; const title = l.title2; L.lesson = null; startExercise(title, items, "local", "lernen"); return; }
+  if(l.kind === "lesson" && (l.words||[]).length && !l._added){ l._added = true; addWords(l.words); }
+  L.busy = true; L.busyText = "Alıştırmalar hazırlanıyor…"; render();
+  const mistakeMode = l.kind === "mistakes";
+  const lessonTxt = JSON.stringify({title:l.title, rule_tr:l.rule_tr, examples:l.examples, words:l.words, items:l.focusItems});
+  try{
+    const r = await preGet(exKey(l), bg => exGen(l, bg));
     L.busy = false;
     startExercise(l.title, (r && r.items) || [], mistakeMode ? "mistakes" : "lesson", "lernen");
     return;
   }catch(err){ L.err = aiMsg(err); }
   L.busy = false; render();
 }
-async function startMistakes(){
-  const L = S.learn; L.err = ""; S.ex = null;
-  const open = S.mistakes.filter(m=>!m.mastered).sort((a,b)=>(a.streak||0)-(b.streak||0) || (b.count||1)-(a.count||1)).slice(0,8);
-  if(!open.length){ L.err = "Açık hatan yok. Harika! Önce biraz yaz ve konuş; hatalar buraya gelsin."; render(); return; }
-  L.busy = true; L.busyText = "Hataların için ders hazırlanıyor…"; render();
-  const items = open.map(m=>({id:m.id, wrong:m.wrong, right:m.right, topic:m.topic, rule:m.rule}));
-  try{
-    const r = await askJSON(`Du bist ein persönlicher Deutschlehrer. ${profile()}
+function mistOpen(){ return S.mistakes.filter(m=>!m.mastered).sort((a,b)=>(a.streak||0)-(b.streak||0) || (b.count||1)-(a.count||1)).slice(0,8); }
+function mistItems(open){ return (open || mistOpen()).map(m=>({id:m.id, wrong:m.wrong, right:m.right, topic:m.topic, rule:m.rule})); }
+function mistKey(items){ return "M|" + items.map(x=>x.id).join(","); }
+function mistakesGen(items, bg){ return aiAsk(`Du bist ein persönlicher Deutschlehrer. ${profile()}
 
 Das sind die offenen Fehler des Lerners:
 ${JSON.stringify(items)}
 
 AUFGABE: Erkläre die Regeln hinter diesen Fehlern noch einmal kurz auf Türkisch, BEVOR er übt. Fasse ähnliche Fehler zusammen.
-Antworte NUR mit JSON: {"title":"Meine Fehler – Wiederholung","intro_tr":"1-2 Sätze Ermutigung auf Türkisch","rule_tr":["eine Regel pro Fehlergruppe, auf Türkisch, mit richtigem deutschen Beispiel in Klammern"],"examples":[{"de":"richtiger Satz","tr":"türkisch"}],"words":[],"pitfall_tr":"der wichtigste Merksatz"}`);
+Antworte NUR mit JSON: {"title":"Meine Fehler – Wiederholung","intro_tr":"1-2 Sätze Ermutigung auf Türkisch","rule_tr":["eine Regel pro Fehlergruppe, auf Türkisch, mit richtigem deutschen Beispiel in Klammern"],"examples":[{"de":"richtiger Satz","tr":"türkisch"}],"words":[],"pitfall_tr":"der wichtigste Merksatz"}`, bg); }
+async function startMistakes(){
+  const L = S.learn; L.err = ""; S.ex = null;
+  const open = mistOpen();
+  if(!open.length){ L.err = "Açık hatan yok. Harika! Önce biraz yaz ve konuş; hatalar buraya gelsin."; render(); return; }
+  L.busy = true; L.busyText = "Hataların için ders hazırlanıyor…"; render();
+  const items = mistItems(open);
+  try{
+    const r = await preGet(mistKey(items), bg => mistakesGen(items, bg));
     L.lesson = {...r, kind:"mistakes", focusItems: items};
+    prePut(exKey(L.lesson), bg => exGen(L.lesson, bg));
   }catch(err){ L.err = aiMsg(err); }
   L.busy = false; render();
 }
@@ -2509,11 +2571,13 @@ function holdReading(){ const r = stopReading(); const l = S.listen && S.listen.
 function stopAll(){ const rd = stopReading(); stopSpeech(); audioStop(); shStop(); micAbort(); clearInterval(S.blitzIv); return rd; }
 function sessMust(remain){
   const C = S.sess.ctx; const {q} = todayQueue(); const out = [];
+  const coreLeft = q.some(x=>!x.done && !x.locked && !x.extra);
   for(const x of q){ if(x.done || x.locked) continue;
+    if(x.extra && coreLeft) continue;
     if(needsAI(x.kind) && !aiReady()) continue;
     if(C === "gym" || CTXS[C].audio) continue;
     if(C === "pause"){ if(!["vocab","story","real","review","recheck","remed","lesson","game","chat","write","dict","repair","a12"].includes(x.kind)) continue; if(x.min > remain + 3) continue; }
-    if(["roleplay","fluency"].includes(x.kind) && !SRC && C !== "desk") continue;
+    if(["roleplay","fluency"].includes(x.kind) && !useSR() && C !== "desk") continue;
     if(x.kind === "game" && x.step && (x.step.game==="builder"||x.step.game==="hunt") && !aiReady()) continue;
     out.push({type: x.step ? "core:"+x.kind : x.kind, x});
   }
@@ -2907,7 +2971,7 @@ async function shPlay(slow){
   H.busy = true; H.phase = "listen"; H.res = null; H.live = ""; H.err = ""; render();
   if(slow) await saySlow(it.de); else await say(it.de, "de", deRate()); if(!S.sh || S.sh !== H || !H.busy) return;
   if(H.mic === "sr"){
-    H.phase = "rec"; render(); chime();
+    H.phase = "rec"; render(); if(!mic2Ok()) chime();
     try{
       const alts = await recognize(txt => { H.live = txt; const el = $("#shLive"); if(el) el.textContent = txt; });
       if(S.sh !== H) return;
@@ -3402,7 +3466,7 @@ function fluStop(){
   const secs = (F.times[F.round] - F.left) || F.times[F.round];
   const words = ntok(txt || F.cur).length; F.txt[F.round] = txt || F.cur || ""; markUsed(F.txt[F.round], "konuşma"); F.wpm[F.round] = (!F.noMic && words > 0) ? Math.round(words / (secs/60)) : null;
   chime(); F.round++;
-  if(F.round >= F.times.length){ F.phase = "done"; const log = S.state.fluLog || (S.state.fluLog = []); log.push({date:dayKey(), topic:F.topic, mode:F.mode, wpm:F.wpm}); S.state.fluLog = log.slice(-60); Store.saveState(); if(F.mode !== "mono") planDone("fluency"); addXP(15); if(aiReady() && F.txt.some(Boolean)) fluFeedback(); }
+  if(F.round >= F.times.length){ F.phase = "done"; const log = S.state.fluLog || (S.state.fluLog = []); log.push({date:dayKey(), topic:F.topic, mode:F.mode, wpm:F.wpm}); S.state.fluLog = log.slice(-60); Store.saveState(); if(F.mode !== "mono") planDone("fluency"); addXP(15); if(aiReady() && (F.txt.some(Boolean) || F._pend)) fluFeedback(); }
   else F.phase = "between";
   render();
 }
@@ -3686,9 +3750,9 @@ function sessUnpause(){
 
 /* ================= Basamaklar: Çırak → Kalfa → Usta → Uzman ================= */
 const STAGES = [null,
-  {n:1, name:"Çırak", en:"Junior", tr:"Önce anla, sonra kalıplarla konuş.", goal:60, rpMax:1, rpTurns:4, guided:true, write:"frames", dictMax:0.95, flu:null, reduced:false, freeze:false, media:["nico","extra"],
+  {n:1, name:"Çırak", en:"Junior", tr:"Önce anla, sonra kalıplarla konuş.", goal:100, rpMax:1, rpTurns:4, guided:true, write:"frames", dictMax:0.95, flu:null, reduced:false, freeze:false, media:["nico","extra"],
     ai:"LERNSTUFE 1 (Junior): Erkläre extrem einfach und Schritt für Schritt, immer zuerst 2-3 Beispiele, dann erst Übungen. Kurze Sätze (max. 7 Wörter). Höchstens 5 neue Wörter pro Aufgabe. Keine Umgangssprache, kein Dialekt."},
-  {n:2, name:"Kalfa", en:"Intermediate", tr:"İpuçlarıyla konuş, kısa metinler yaz, kulağı hızlandır.", goal:80, rpMax:2, rpTurns:6, guided:false, write:"guided", dictMax:1.05, flu:[60,45], reduced:true, freeze:false, media:["nico","extra","easy"],
+  {n:2, name:"Kalfa", en:"Intermediate", tr:"İpuçlarıyla konuş, kısa metinler yaz, kulağı hızlandır.", goal:100, rpMax:2, rpTurns:6, guided:false, write:"guided", dictMax:1.05, flu:[60,45], reduced:true, freeze:false, media:["nico","extra","easy"],
     ai:"LERNSTUFE 2: einfache, natürliche Sätze (max. 10 Wörter), neue Wörter immer erklären, etwas normale Umgangssprache (hab's, gibt's) ist ok."},
   {n:3, name:"Usta", en:"Advanced", tr:"Hazırlıksız konuş, gerçek Almancayı ve Bavyera ağzını anla.", goal:100, rpMax:3, rpTurns:10, guided:false, write:"free", dictMax:1.2, flu:[120,90,60], reduced:true, freeze:true, media:["nico","extra","easy","dahoam"],
     ai:"LERNSTUFE 3: natürliches A2/B1-Deutsch, Umgangssprache und gelegentlich bairische Wörter erlaubt (mit Erklärung)."},
@@ -4052,9 +4116,12 @@ function renderKelime(){
     ${continueBtn()}${s.leftDue && !S.sess ? `<button class="btn block" data-act="vocabStart">Devam: kalan kartlar</button>` : ""}</section>`; }
   const w = vWord(); if(!w) return `<section class="card">${continueBtn()}</section>`;
   const x = V.q[V.i]; const s = V.sent; const remain = V.q.length - V.i;
-  const top = `<div class="row between" style="flex-wrap:nowrap"><div class="progress" style="flex:1;margin:0" aria-hidden="true"><i style="width:${V.i/Math.max(1,V.q.length)*100}%"></i></div><span class="chip">${remain}</span>
-    <button class="btn small ${vImm()?"primary":"ghost"}" data-act="vImmToggle" title="Türkçesiz mod">🇩🇪</button>
-    <div class="seg" style="width:auto">${useSR() ? `<button aria-pressed="${V.mode==="mic"}" data-act="vMode" data-m="mic" title="Söyle">🎤</button>` : ""}<button aria-pressed="${V.mode==="type"}" data-act="vMode" data-m="type" title="Yaz">⌨️</button><button aria-pressed="${V.mode==="tap"}" data-act="vMode" data-m="tap" title="Seç">👆</button></div></div>`;
+  const top = `<div class="vtop">
+    <div class="vprog" role="progressbar" aria-valuemin="0" aria-valuemax="${V.q.length}" aria-valuenow="${V.i}"><i style="width:${Math.max(4, V.i/Math.max(1,V.q.length)*100)}%"></i><span>${V.i+1} / ${V.q.length}${V.bg ? " · yeniler hazırlanıyor" : ""}</span></div>
+    <div class="row between" style="flex-wrap:nowrap;gap:8px">
+      <button class="tog ${vImm()?"on":""}" data-act="vImmToggle" aria-pressed="${vImm()}" title="Açıkken Türkçe anlam gizlenir; resimden ve cümleden tahmin edersin">🇩🇪 Türkçesiz</button>
+      <div class="seg" style="width:auto">${useSR() ? `<button aria-pressed="${V.mode==="mic"}" data-act="vMode" data-m="mic">🎤 Söyle</button>` : ""}<button aria-pressed="${V.mode==="type"}" data-act="vMode" data-m="type">⌨️ Yaz</button><button aria-pressed="${V.mode==="tap"}" data-act="vMode" data-m="tap">👆 Seç</button></div>
+    </div></div>`;
   const imm = vImm() && !V.trShown && !V.res;
   const label = imm ? `<p class="vword">${esc(w.emoji||"🇩🇪")} <span class="small muted">(${esc(w.kind==="nomen" ? "isim" : w.kind==="verb" ? "fiil" : w.kind==="adj" ? "sıfat" : "kelime")})</span></p>` : `<p class="vword">${esc(w.tr)} <span class="small muted">(${esc(w.kind==="nomen" ? "isim" : w.kind==="verb" ? "fiil" : w.kind==="adj" ? "sıfat" : "kelime")})</span></p>`;
   if(V.phase === "intro") return `${top}<section class="card vcard">
@@ -4075,7 +4142,7 @@ function renderKelime(){
     ${label}
     ${s ? `<p class="vsent de">${vClozeHtml(s, V)}</p>${imm ? `<p style="text-align:center"><button class="btn small ghost" data-act="vTr">🇹🇷 Türkçe ipucu</button></p>` : `<p class="tr" style="text-align:center">${vTrHtml(s)}</p>`}` : `<p class="vsent de">${V.res ? `<b>${esc((w.artikel && !V.needArt ? w.artikel+" " : "")+w.de)}</b>` : V.mode==="type" ? `<input id="vIn" class="vin" style="width:12ch" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(V.user)}" data-model="vUser">` : "?"}</p>`}
     ${!V.res && V.mode === "tap" && V.opts ? `<div class="grid2">${V.opts.map(o=>`<button class="btn" style="min-height:56px" data-act="vTap" data-o="${esc(o)}">${esc(o)}</button>`).join("")}</div>` : ""}
-    ${V.res ? `<div class="fb ${V.res.ok?"ok":V.res.close?"ok":"no"}"><b>${V.res.ok ? "Doğru!" : V.res.close ? "Neredeyse: yazımına dikkat" : "Doğrusu: "+esc((w.artikel ? w.artikel+" " : "")+V.res.ans)}</b>${V.mode === "mic" && V.heard ? `<div class="small muted">Duyduğum: „${esc(V.heard)}“</div>` : ""}
+    ${V.res ? `<div class="fb ${V.res.ok?"ok":V.res.close?"ok":"no"}"><b>${V.res.ok ? "Doğru!" : V.res.close ? "Neredeyse: yazımına dikkat" : "Doğrusu: "+esc((w.artikel ? w.artikel+" " : "")+V.res.ans)}</b>${V.mode === "mic" && V.heard && !V.res.ok && !V.res.close ? `<div class="small muted">Duyduğum: „${esc(V.heard)}“</div>` : ""}
       ${!V.needArt && w.plural && w.plural!=="-" ? `<div class="small">${esc(w.artikel||"")} ${esc(w.de)} · die ${esc(w.plural)}</div>` : ""}${w.chunk ? `<div class="small">Kalıp: <b>${esc(w.chunk)}</b></div>` : ""}${V.mode !== "mic" && !V.needArt ? `<div class="small">🗣️ Geçmeden önce cümleyi bir kez yüksek sesle söyle.</div>` : ""}${w.used ? `<div class="small">Kendi cümlelerinde ${w.used} kez kullandın ✓</div>` : `<div class="small muted">Henüz kendi cümlende kullanmadın: bugün bir sohbette dene.</div>`}</div>` : ""}
     ${V.needArt ? `<p style="text-align:center"><b>Artikeli?</b></p><div class="row" style="justify-content:center">${["der","die","das"].map(a=>`<button class="btn" style="min-width:80px;min-height:52px" data-act="vArt" data-a="${a}"><span class="pill-${a}">${a}</span></button>`).join("")}</div>` : ""}
     ${V.art ? `<div class="fb ${V.art.ok?"ok":"no"}">${V.art.ok ? "Artikel doğru ✓" : "Artikel yanlış. Doğrusu:"} <b>${esc(w.artikel)} ${esc(w.de)}</b>${w.plural && w.plural!=="-" ? ` · die ${esc(w.plural)}` : ""}${V.art.ok ? "" : `<div class="small">Bu kelime 1–2 gün içinde tekrar gelecek.</div>`}</div>` : ""}
@@ -4799,7 +4866,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09g";
+const APP_VER = "2026-11-09j";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -6085,6 +6152,11 @@ function micStopAll(){ for(const st of MIC_STREAMS){ try { st.getTracks().forEac
 /* güvenlik: dinleme yokken açık mikrofon kalmasın */
 setInterval(()=>{ if(!REC_CUR && MIC_STREAMS.size) micStopAll(); }, 3000);
 document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState === "hidden"){ if(REC_CUR){ try { REC_CUR._cancel = true; REC_CUR.abort(); } catch(e){} } micStopAll(); } });
+function micBeep(){
+  try{ ACX = ACX || new (window.AudioContext || window.webkitAudioContext)(); if(ACX.state !== "running") ACX.resume();
+    const o = ACX.createOscillator(), g = ACX.createGain(); o.frequency.value = 880; o.type = "sine"; o.connect(g); g.connect(ACX.destination);
+    const t0 = ACX.currentTime; g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(0.25, t0 + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.16); o.start(t0); o.stop(t0 + 0.18); }catch(e){}
+}
 function micLog(r, ms){ try { const L = JSON.parse(localStorage.getItem("dw-ailog") || "[]"); L.push({t:Date.now(), m:"mikrofon açılışı", s:Math.round(ms/100)/10, r, a:1}); localStorage.setItem("dw-ailog", JSON.stringify(L.slice(-12))); } catch(e){} }
 function mic2Listen(onLive){
   try { stopSpeech(); if(typeof neuStop === "function") neuStop(); } catch(e){}
@@ -6097,7 +6169,7 @@ function mic2Listen(onLive){
       timers.forEach(clearTimeout); clearInterval(iv); iv = null;
       try { if(rec && rec.state !== "inactive"){ rec.ondataavailable = null; rec.onstop = null; rec.stop(); } } catch(e){}
       try { if(stream){ stream.getTracks().forEach(t=>t.stop()); MIC_STREAMS.delete(stream); } } catch(e){}
-      try { if(vac) vac.close(); } catch(e){}
+      try { if(vac && vacOwn) vac.close(); } catch(e){}
       stream = null; vac = null; an = null;
       audioSess("playback"); setTimeout(()=>audioSess("auto"), 0);
     };
@@ -6108,7 +6180,6 @@ function mic2Listen(onLive){
     h.stop = () => finishRec();
     const finishRec = () => {
       if(ended || settled) return; ended = true; clearInterval(iv);
-      if(vadOk && !speech){ done(false, {code:"no-speech"}); return; }
       if(!rec || rec.state === "inactive"){ done(false, {code:"no-speech"}); return; }
       rec.onstop = async () => {
         const type = (chunks[0] && chunks[0].type) || rec.mimeType || "audio/mp4"; const blob = new Blob(chunks, {type});
@@ -6118,7 +6189,7 @@ function mic2Listen(onLive){
         try{
           const w = await paToWav(blob);
           if(settled) return;
-          if(w.sec < 0.4 || w.peak < 0.015){ done(false, {code:"no-speech"}); return; }
+          if(w.sec < 0.4 || w.peak < (speech ? 0.015 : 0.03)){ done(false, {code:"no-speech"}); return; }
           ctl = new AbortController(); const tm = setTimeout(()=>{ try { ctl.abort(); } catch(e){} }, 15000);
           const txt = await mic2Transcribe(w.wav, ctl.signal); clearTimeout(tm);
           if(settled) return;
@@ -6135,11 +6206,15 @@ function mic2Listen(onLive){
     };
     REC_CUR = h; if(S.sh) S.sh.rec = h;
     micPill("wait");
+    let vacOwn = true;
+    try { vac = new (window.AudioContext || window.webkitAudioContext)(); vac.resume().catch(()=>{}); } catch(e){ vac = null; }
     (async ()=>{
       try{
         stream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true, noiseSuppression:true, autoGainControl:true}});
         MIC_STREAMS.add(stream);
         if(settled){ release(); return; }
+        /* eller serbest (araba/spor): ekrana bakmadan bilesin diye kayıt başlamadan kısa bir "dıt" (kayda girmesin diye önce) */
+        if(S.sess && CTXS[S.sess.ctx] && CTXS[S.sess.ctx].audio){ micBeep(); await sleep(280); if(settled){ release(); return; } }
         rec = new MediaRecorder(stream);
         rec.ondataavailable = e => { if(e.data && e.data.size) chunks.push(e.data); };
         rec.start(250);
@@ -6147,15 +6222,16 @@ function mic2Listen(onLive){
         micPill("go");
         /* sessizlik takibi */
         try{
-          const AC = window.AudioContext || window.webkitAudioContext; vac = new AC();
-          if(vac.state !== "running"){ try { await vac.resume(); } catch(e){} }
+          if(!vac || vac.state !== "running"){ try { if(vac) await Promise.race([vac.resume(), sleep(350)]); } catch(e){} }
+          if((!vac || vac.state !== "running") && ACX && ACX.state === "running"){ try { if(vac) vac.close(); } catch(e){} vac = ACX; vacOwn = false; }
+          if(!vac) throw 0;
           an = vac.createAnalyser(); an.fftSize = 1024; vac.createMediaStreamSource(stream).connect(an);
           const buf = new Float32Array(an.fftSize); let last = performance.now();
           iv = setInterval(()=>{
             if(ended || settled || !an) return;
             const now = performance.now(), dur = now - last; last = now;
             an.getFloatTimeDomainData(buf); let s = 0; for(let i = 0; i < buf.length; i++) s += buf[i]*buf[i]; const rms = Math.sqrt(s / buf.length);
-            if(vac.state === "running" && rms > 0) vadOk = true;
+            if(vac.state === "running" && rms > 0.0015){ vadOk = true; }
             if(!vadOk) return;
             micLevel(rms);
             if(calib < 5){ calib++; floor = Math.min(floor, rms); }
@@ -6218,6 +6294,152 @@ function updBanner(){
 }
 document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState === "visible") updCheck(); });
 setInterval(updCheck, 10*60000); setTimeout(updCheck, 5000);
+const _prefetchToday0 = prefetchToday;
+prefetchToday = async function(){
+  await _prefetchToday0();
+  if(!aiReady() || !S.loaded || S._pre2) return; S._pre2 = true;
+  try{
+    /* yeni kelimeler: bugünkü yeni kelime hakkı kadar hazır kart yoksa şimdiden üret */
+    const freshN = S.words.filter(w=>vIsCard(w) && vIsNew(w)).length;
+    if(!daily().vocab && freshN < newQuota()) { try { await vFill(Math.min(12, newQuota() - freshN + 2)); } catch(e){} }
+    const {q, d} = todayQueue();
+    const lessonStep = q.find(x=>x.kind === "lesson" && !x.done);
+    if(lessonStep && d && d.topic && !(await preHas("L|" + d.topic))) prePut("L|" + d.topic, bg => lessonGen(d.topic, bg));
+    const nx = typeof a12Next === "function" ? a12Next() : null;
+    if(nx && (nx.part.id === "g1" || nx.part.id === "g2")){ const tp = a12Topic(nx.L, nx.part.id); if(!(await preHas("L|" + tp))) prePut("L|" + tp, bg => lessonGen(tp, bg)); }
+    const open = mistOpen(); if(open.length >= 3){ const it = mistItems(open); if(!(await preHas(mistKey(it)))) prePut(mistKey(it), bg => mistakesGen(it, bg)); }
+  }catch(e){}
+  S._pre2 = false;
+};
+const _todayQueueB = todayQueue;
+const PLAN_PRIO = {vhsprep:0, vhspost:0, mock:0, vocab:1, a12:1, recheck:2, review:2, lesson:2, remed:3, scen:3, roleplay:3, chat:3, story:3, real:4, fluency:4, write:5, offline:5};
+todayQueue = function(){
+  const r = _todayQueueB();
+  for(const x of r.q){ if(x.kind === "vocab") x.min = Math.min(x.min, 20); }
+  const budget = Math.round(DAILY_GOAL * 0.8);
+  const order = r.q.map((x, i)=>({x, i, p: PLAN_PRIO[x.kind] ?? 4})).sort((a,b)=>a.p - b.p || a.i - b.i);
+  let used = 0;
+  for(const o of order){ used += o.x.min || 0; if(used > budget && !o.x.done && o.p >= 2) o.x.extra = true; }
+  r.budget = budget; return r;
+};
+/* ================= Ödüller: seri jokeri, haftalık bonus hikâye, gerçek beceri rozetleri ================= */
+/* Puan değil gerçek ilerleme ödüllendirilir: çok kart çevirmek değil, hedefi tutturmak, kalıcı öğrenmek, konuşmak. */
+const WEEK_DAYS_GOAL = 5, WEEK_DAY_MIN = 60;
+function weekKey(d){ d = d ? new Date(d) : new Date(); const wd = (d.getDay() + 6) % 7; d.setDate(d.getDate() - wd); return dayKey(d); }
+function weekDaysHit(){ const wk = weekKey(); let n = 0; for(let i = 0; i < 7; i++){ const k = addDays(wk, i); if(k > dayKey()) break; if(Math.floor(((S.state.mins||{})[k]||0)/60) >= WEEK_DAY_MIN) n++; } return n; }
+function bonusSt(){ const b = S.state.bonus || (S.state.bonus = {}); if(b.week !== weekKey()){ b.week = weekKey(); b.unlocked = false; b.done = false; } return b; }
+function rewardTick(){
+  if(!S.loaded) return;
+  const d = daily();
+  /* 1) seri jokeri: 100 dakikayı ve XP hedefinin 1,5 katını aştığın gün */
+  if(!d.jokerGiven && minsToday() >= DAILY_GOAL && xpToday() >= Math.round(xpGoal()*1.5)){
+    d.jokerGiven = true;
+    if((S.state.freezes ?? 1) < 3){ S.state.freezes = (S.state.freezes ?? 1) + 1; Store.saveState();
+      setTimeout(()=>bigCelebrate("🧊 Seri jokeri kazandın!", "Bugün hedefini aştın. Hasta ya da çok yoğun olduğun bir günde serin bozulmaz (en çok 3 joker birikir).", "party"), 700); }
+    else Store.saveState();
+  }
+  /* 2) haftalık bonus hikâye: bu hafta 5 gün en az 60 dakika */
+  const b = bonusSt();
+  if(!b.unlocked && weekDaysHit() >= WEEK_DAYS_GOAL){ b.unlocked = true; Store.saveState();
+    setTimeout(()=>bigCelebrate("📖 Bonus hikâye açıldı!", "Bu hafta 5 gün çalıştın. Ailenle geçen özel bir hikâye seni bekliyor (Bugün ekranında).", "party"), 900); }
+}
+const _addXPR = addXP;
+addXP = function(){ const r = _addXPR.apply(this, arguments); try { rewardTick(); } catch(e){} return r; };
+function renderBonusCard(){
+  const b = bonusSt(); const n = weekDaysHit();
+  if(b.done) return `<section class="card"><div class="row between" style="flex-wrap:nowrap;gap:10px"><p class="small" style="margin:0">📖 <b>Bu haftanın bonus hikâyesi okundu.</b> Gelecek hafta yenisi.</p><span class="chip good">✓</span></div></section>`;
+  if(b.unlocked) return `<section class="card hl"><div class="kicker">Haftalık ödül</div><h3 style="margin:4px 0">📖 Bonus hikâye hazır</h3><p class="small">Bu haftanın kelimeleriyle, Anna ve Mia'nın da olduğu özel bir bölüm.</p><button class="btn primary block" data-act="bonusStory">Bonus hikâyeyi aç</button></section>`;
+  return `<section class="card"><div class="row between" style="flex-wrap:nowrap;gap:10px"><div style="flex:1"><div class="small"><b>🎁 Haftalık bonus hikâye</b> <span class="muted">${n}/${WEEK_DAYS_GOAL} gün (günde ${WEEK_DAY_MIN}+ dk)</span></div><div class="progress" style="margin:4px 0 0"><i style="width:${Math.min(1, n/WEEK_DAYS_GOAL)*100}%"></i></div></div><span class="small muted">🧊 ${S.state.freezes ?? 1}</span></div></section>`;
+}
+async function startBonusStory(){
+  const b = bonusSt(); if(!b.unlocked) return;
+  S.story = {busy:true, err:"", data:null, show:{}, ans:{}, playing:false, i:-1, bonus:true};
+  go("hikaye"); render();
+  try{
+    if(b.data){ S.story.data = b.data; }
+    else {
+      const wk = weekKey(); const ww = S.words.filter(w=>w.added && String(w.added).slice(0,10) >= wk).slice(-14).map(wLabel);
+      const themes = ["ein Ausflug der Familie in die Berge", "Mias Geburtstag", "ein Volksfest mit Blasmusik", "ein Regentag, an dem zu Hause alles schiefgeht", "ein Besuch bei Annas Eltern", "ein Abend, an dem Deniz zum ersten Mal ganz auf Deutsch kocht und erzählt"];
+      const th = themes[Math.floor(Date.now()/604800000) % themes.length];
+      const r = await askJSON(`${profile()}
+Du schreibst eine BONUS-FOLGE (Belohnung für eine fleißige Woche) der Alltagsserie über Deniz (Türke, IT-Sicherheit, lernt Deutsch), Anna (seine deutsche Frau) und Mia (ihre kleine Tochter), in einer Kleinstadt in Niederbayern. Ton: warm, lustig, mit einem schönen Moment am Ende, in dem Deniz merkt, wie viel Deutsch er schon kann.
+THEMA: ${th}.
+REGELN: ${storyLen() + 60} Wörter. Etwa 95 % Wörter, die der Lerner kennt. Benutze möglichst viele dieser Wörter aus seiner Woche (natürliche Form): ${ww.join(", ") || "-"}. Viel wörtliche Rede. Kurze Sätze.
+Markiere die Wörter aus seiner Woche im Text mit **…**.
+FORMAT DER SÄTZE: Jede wörtliche Rede ist ein EIGENES Element mit "sp" = Name des Sprechers und "g" = m (Mann), f (Frau) oder k (Kind); "de" enthält dann NUR das Gesagte, ohne Anführungszeichen und ohne "sagt Anna". Erzählsätze haben "sp":"".
+Antworte NUR mit JSON: {"title":"…","sentences":[{"sp":"","g":"","de":"…","tr":"genaue türkische Übersetzung"}],"glossary":[{"de":"neues Wort","tr":"…"}],"questions":[{"q":"einfache Verständnisfrage auf Türkisch","options":["…","…","…"],"answer":"…"}],"summary_de":"1 Satz Zusammenfassung","scene":"1 Satz: was man auf einem Bild sehen würde","img":"englische Foto-Suchanfrage 2-4 Wörter","home":[{"de":"Satz, den er heute Abend zu seiner Frau sagen kann","tr":"…"}],"ask_de":"eine Frage an seine Frau","ask_tr":"…"}
+3 Fragen, 3 home-Sätze, höchstens 5 glossary-Wörter.`);
+      if(!r || !(r.sentences||[]).length) throw {code:"invalid_json"};
+      b.data = r; Store.saveState(); S.story.data = r;
+    }
+  }catch(e){ S.story.err = aiMsg(e); }
+  S.story.busy = false; render();
+}
+const _storyDoneR = storyDone;
+storyDone = function(){
+  const H = S.story;
+  if(H && H.bonus && H.data){ const b = bonusSt(); b.done = true; b.data = null; Store.saveState(); addXP(30); confetti(90); sfx("up"); H.finished = true; render(); return; }
+  return _storyDoneR();
+};
+/* gerçek beceri rozetleri */
+function studyHours(){ return Object.values(S.state.mins||{}).reduce((a,x)=>a + (+x||0), 0) / 3600; }
+ACH.push(
+  {id:"m25", i:"🧠", t:"25 kelime uzun süreli hafızada", c:()=>vStats().mature >= 25},
+  {id:"m100", i:"🏛️", t:"100 kelime uzun süreli hafızada", c:()=>vStats().mature >= 100},
+  {id:"m300", i:"🗝️", t:"300 kelime uzun süreli hafızada", c:()=>vStats().mature >= 300},
+  {id:"fix10", i:"🛠️", t:"10 hatanı kalıcı düzelttin", c:()=>S.mistakes.filter(m=>m.mastered).length >= 10},
+  {id:"fix50", i:"🧰", t:"50 hatanı kalıcı düzelttin", c:()=>S.mistakes.filter(m=>m.mastered).length >= 50},
+  {id:"pron5", i:"👄", t:"5 kez %85+ telaffuz", c:()=>(S.state.paLog||[]).filter(x=>x.score >= 85).length >= 5},
+  {id:"h10", i:"⏳", t:"10 saat çalışma", c:()=>studyHours() >= 10},
+  {id:"h50", i:"⌛", t:"50 saat çalışma", c:()=>studyHours() >= 50},
+  {id:"gpa12", i:"📗", t:"A1.2 temeli tamam", c:()=>gpTrackDone("a12")},
+  {id:"gpa22", i:"📘", t:"A2.2 tamam", c:()=>gpTrackDone("a22")},
+  {id:"gpb11", i:"📙", t:"B1.1 tamam", c:()=>gpTrackDone("b11")},
+  {id:"gpb12", i:"🎓", t:"B1.2 tamam: sınava hazırsın", c:()=>gpTrackDone("b12")},
+  {id:"b1mock", i:"🏆", t:"B1 deneme: Hören ve Lesen %60+", c:()=>Object.values(S.state.mock||{}).some(m=>Math.min(m.h||0, m.l||0) >= 60)},
+  {id:"bonus1", i:"🎁", t:"İlk haftalık bonus hikâye", c:()=>!!(S.state.bonusN)},
+  {id:"joker1", i:"🧊", t:"Hedefini aşıp joker kazandın", c:()=>Object.values(S.state.daily||{}).some(d=>d && d.jokerGiven)}
+);
+const _storyDoneR2 = storyDone;
+storyDone = function(){ const H = S.story; if(H && H.bonus) S.state.bonusN = (S.state.bonusN||0) + 1; const r = _storyDoneR2(); try { checkAch(); } catch(e){} return r; };
+
+/* serbest konuşma (60–120 sn): yapay zekâ modunda tüm konuşma kaydedilir, tur bitince yazıya dökülür */
+const _startCont0 = startContinuous;
+startContinuous = function(onText){
+  if(!mic2Ok()) return _startCont0(onText);
+  const F = S.flu; let stream = null, rec = null, chunks = [], dead = false;
+  const h = { _cancel:false, onend:null, abort(){ dead = true; try { if(rec && rec.state !== "inactive"){ rec.onstop = null; rec.stop(); } } catch(e){} try { stream && stream.getTracks().forEach(t=>t.stop()); MIC_STREAMS.delete(stream); } catch(e){} if(REC_CUR === h) REC_CUR = null; }, stop(){} };
+  REC_CUR = h;
+  (async ()=>{
+    try{
+      stream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true, noiseSuppression:true, autoGainControl:true}}); MIC_STREAMS.add(stream);
+      if(dead){ h.abort(); return; }
+      rec = new MediaRecorder(stream); rec.ondataavailable = e => { if(e.data && e.data.size) chunks.push(e.data); }; rec.start(1000);
+      onText("", "🎙️ Kaydediyorum… konuşmaya devam et; tur bitince yazıya dökeceğim.");
+    }catch(e){ h.abort(); onText("", "", (e && e.name === "NotAllowedError") ? "not-allowed" : "audio-capture"); }
+  })();
+  return () => {
+    if(!F) { h.abort(); return ""; }
+    const r = F.round, secs = (F.times[F.round] - F.left) || F.times[F.round];
+    if(!rec || rec.state === "inactive"){ h.abort(); return ""; }
+    F._pend = new Promise(done => {
+      rec.onstop = async () => {
+        try { stream.getTracks().forEach(t=>t.stop()); MIC_STREAMS.delete(stream); } catch(e){} if(REC_CUR === h) REC_CUR = null;
+        try{
+          const w = await paToWav(new Blob(chunks, {type:(chunks[0] && chunks[0].type) || rec.mimeType || "audio/mp4"}));
+          const txt = (w.sec >= 1 && w.peak >= 0.015) ? await mic2Transcribe(w.wav) : "";
+          if(S.flu === F){ F.txt[r] = txt; markUsed(txt, "konuşma"); const n = ntok(txt).length; F.wpm[r] = n ? Math.round(n / (secs/60)) : null;
+            const log = S.state.fluLog; if(F.phase === "done" && log && log.length){ log[log.length-1].wpm = F.wpm; Store.saveState(); } render(); }
+        }catch(e){ if(S.flu === F){ F.err = micMsg("network"); render(); } }
+        done();
+      };
+      try { rec.stop(); } catch(e){ done(); }
+    });
+    return "";
+  };
+};
+const _fluFeedback0 = fluFeedback;
+fluFeedback = async function(){ const F = S.flu; if(F && F._pend){ try { await F._pend; } catch(e){} } if(S.flu === F && F.txt.some(Boolean)) return _fluFeedback0.apply(this, arguments); };
 /* ================= events ================= */
 const ACT = {
   sessStart(b){ sessStart(b.dataset.c); },
@@ -6478,6 +6700,7 @@ document.addEventListener("keydown", e => {
 window.addEventListener("hashchange", route);
 
 Object.assign(ACT, {
+  bonusStory(){ startBonusStory(); },
   paStart(b){ const t = (b && b.dataset && b.dataset.t) || (S.sh && S.sh.items[S.sh.i] && S.sh.items[S.sh.i].de); if(t) paStart(t); },
   storyRA(){ if(S.story){ stopReading(); stopSpeech(); S.story.ra = 0; render(); } },
   storyRANext(){ const H = S.story; if(!H || H.ra == null) return; H.ra++; addXP(1); if(H.ra >= H.data.sentences.length){ daily().readAloud = true; addXP(5); Store.saveState(); } render(); },
