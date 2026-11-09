@@ -402,6 +402,99 @@ body.study main{gap:10px;padding-top:10px}
 body::before{content:"";position:fixed;left:0;right:0;top:0;height:calc(env(safe-area-inset-top) + 14px);background:var(--paper);z-index:40;pointer-events:none}
 .sbar{top:calc(env(safe-area-inset-top) + 14px);background:var(--paper);backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 6px 10px -8px rgba(19,52,92,.25)}
 body.insess main{padding-top:calc(22px + env(safe-area-inset-top))}
+
+/* ================= Ders kabuğu ================= */
+body.lesson .top, body.lesson .nav{display:none}
+body.lesson main{height:100dvh;max-height:100dvh;overflow:hidden;padding:calc(env(safe-area-inset-top) + 12px) 16px calc(env(safe-area-inset-bottom) + 12px);gap:0}
+.lshell{display:flex;flex-direction:column;height:100%;min-height:0}
+.lhead{display:flex;align-items:center;gap:10px;height:44px;flex:none}
+.lh-btn{width:42px;height:42px;border-radius:14px;border:0;background:transparent;font-size:1.25rem;color:var(--muted);display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer}
+.lh-btn:active{background:var(--soft)}
+.lprog{flex:1;height:14px;border-radius:99px;background:var(--soft);overflow:hidden}
+.lprog i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--good),color-mix(in srgb, var(--good) 70%, #fff));transition:width .45s cubic-bezier(.3,.9,.3,1)}
+.lcount{font-weight:800;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums;min-width:3.2em;text-align:right}
+.lbody{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:10px 2px}
+.lbody.enter{animation:cardIn .28s cubic-bezier(.2,.8,.3,1)}
+@keyframes cardIn{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:none}}
+.lmedia{position:relative;flex:none}
+.lbody .vphoto,.lbody .vscene{height:clamp(120px, 30vh, 280px)!important;border-radius:24px}
+.ltag{align-self:center;font-weight:800;font-size:.85rem;color:var(--accent);background:var(--soft);padding:4px 12px;border-radius:99px}
+.ltag.on{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.45);color:#fff;backdrop-filter:blur(6px)}
+.lword{text-align:center;font-family:var(--font-display);font-weight:800;font-size:2rem;line-height:1.15;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.lmean{text-align:center;font-size:1.1rem;color:var(--muted)}
+.lmean span{font-size:.85rem;opacity:.8}
+.lmean.q{font-family:var(--font-display);font-weight:800;font-size:1.55rem;color:var(--ink)}
+.lmean.q span{font-family:var(--font-body);font-weight:700;color:var(--muted);margin-left:4px}
+.lnote{text-align:center;font-size:.9rem;color:var(--muted)}
+.lex{background:var(--soft);border-radius:18px;padding:12px 14px;text-align:center}
+.lex .de{font-size:1.15rem}
+.lsent{text-align:center;font-size:1.32rem;line-height:1.65;margin:0}
+.ltr{text-align:center;color:var(--muted);font-size:.95rem}
+.ltools{display:flex;justify-content:center;gap:12px}
+.licon{width:46px;height:46px;border-radius:50%;border:0;background:var(--soft);font-size:1.15rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.licon:active{transform:scale(.94)}
+.lopts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lopt{min-height:56px;border-radius:16px;border:2px solid var(--line);background:var(--card);box-shadow:0 4px 0 var(--line);font-weight:800;font-size:1.05rem;color:var(--ink);cursor:pointer}
+.lopt:active{transform:translateY(2px);box-shadow:0 2px 0 var(--line)}
+.lfoot{flex:none;display:flex;flex-direction:column;gap:6px;padding-top:10px}
+.lfoot.two{flex-direction:row;gap:10px}.lfoot.two .lbtn{flex:1}
+.lbtn{min-height:60px;border-radius:18px;border:0;font-weight:800;font-size:1.12rem;cursor:pointer;color:#fff;transition:transform .08s ease, box-shadow .08s ease}
+.lbtn.go{background:var(--accent);box-shadow:0 5px 0 var(--accent-edge)}
+.lbtn.go:active{transform:translateY(3px);box-shadow:0 2px 0 var(--accent-edge)}
+.lbtn.ghost{background:var(--card);color:var(--ink);border:2px solid var(--line);box-shadow:0 4px 0 var(--line)}
+.lbtn.warn{background:var(--bad);box-shadow:0 5px 0 color-mix(in srgb, var(--bad) 70%, #000)}
+.sheet.good .lbtn.go{background:var(--good);box-shadow:0 5px 0 color-mix(in srgb, var(--good) 70%, #000)}
+.lbtn.mic.live{background:var(--bad);box-shadow:0 5px 0 color-mix(in srgb, var(--bad) 70%, #000);animation:pulse 1.4s infinite}
+.ltext{background:none;border:0;color:var(--muted);font-weight:800;padding:10px;cursor:pointer;font-size:.95rem}
+.lfoot.sheet{margin:0 -16px calc(-12px - env(safe-area-inset-bottom));padding:18px 18px calc(18px + env(safe-area-inset-bottom));border-radius:26px 26px 0 0;gap:6px;animation:sheetUp .3s cubic-bezier(.2,.9,.3,1)}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:none}}
+.sheet.good{background:var(--good-bg)}.sheet.bad{background:var(--bad-bg)}
+.sheet.neutral{background:var(--card);box-shadow:0 -10px 30px rgba(19,52,92,.12)}
+.lf-t{font-family:var(--font-display);font-weight:800;font-size:1.25rem;margin:0}
+.sheet.good .lf-t{color:var(--good)}.sheet.bad .lf-t{color:var(--bad)}.sheet.neutral .lf-t{text-align:center;color:var(--ink)}
+.lf-w{font-size:1.3rem;margin:0}.lf-pl{font-size:1rem;color:var(--muted)}
+.lf-s{font-size:.92rem;color:var(--muted);margin:0}
+.sheet .lbtn{margin-top:8px}
+.lart{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px}
+.lartb{min-height:60px;border-radius:16px;border:0;color:#fff;font-weight:800;font-size:1.25rem;cursor:pointer}
+.lartb.der{background:var(--der);box-shadow:0 5px 0 color-mix(in srgb, var(--der) 65%, #000)}
+.lartb.die{background:var(--die);box-shadow:0 5px 0 color-mix(in srgb, var(--die) 65%, #000)}
+.lartb.das{background:var(--das);box-shadow:0 5px 0 color-mix(in srgb, var(--das) 65%, #000)}
+.lartb:active{transform:translateY(3px)}
+.lsheet-bg{position:fixed;inset:0;background:rgba(10,20,35,.38);z-index:60;animation:fadein .2s}
+.lsheet{position:fixed;left:0;right:0;bottom:0;z-index:61;background:var(--card);border-radius:26px 26px 0 0;padding:10px 18px calc(18px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px;animation:sheetUp .28s cubic-bezier(.2,.9,.3,1);max-width:680px;margin:0 auto}
+.lsheet .grab{width:42px;height:5px;border-radius:99px;background:var(--line);align-self:center;margin-bottom:6px}
+.lsheet-t{font-weight:800;color:var(--muted);font-size:.85rem;margin:0}
+.lmodes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.lmode{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px;border-radius:16px;border:2px solid var(--line);background:var(--card);font-weight:800;color:var(--ink);cursor:pointer}
+.lmode span{font-size:1.4rem}.lmode.on{border-color:var(--accent);background:var(--soft);color:var(--accent)}
+.lrow{display:flex;align-items:center;gap:12px;padding:14px 12px;border-radius:16px;border:0;background:var(--soft);color:var(--ink);text-decoration:none;cursor:pointer;font-size:1rem;text-align:left}
+.lrow span{font-size:1.2rem;width:1.6em;text-align:center}.lrow b{flex:1}.lrow em{font-style:normal;color:var(--muted);font-size:.85rem}
+.lrow.danger b{color:var(--bad)}
+
+/* ödül anları */
+.xpfly{position:fixed;z-index:70;font-family:var(--font-display);font-weight:800;font-size:1rem;color:var(--pop-ink);background:var(--pop);padding:3px 10px;border-radius:99px;pointer-events:none;animation:xpfly 1.1s cubic-bezier(.2,.8,.3,1) forwards;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+@keyframes xpfly{0%{opacity:0;transform:translate(-50%,6px) scale(.7)}20%{opacity:1;transform:translate(-50%,-8px) scale(1.08)}100%{opacity:0;transform:translate(-50%,-46px) scale(1)}}
+.lprog.pop i{animation:barpop .6s ease}
+@keyframes barpop{0%{filter:brightness(1)}40%{filter:brightness(1.35);box-shadow:0 0 14px color-mix(in srgb, var(--good) 70%, transparent)}100%{filter:brightness(1)}}
+.lf-head{display:flex;align-items:center;gap:12px}
+.lf-head .brezi{flex:none;animation:bob .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes bob{0%{transform:scale(.6) rotate(-8deg)}100%{transform:none}}
+.lf-praise{font-family:var(--font-display);font-weight:800;font-size:1.35rem;margin:0}
+.sheet.good .lf-praise{color:var(--good)}.sheet.bad .lf-praise{color:var(--bad)}
+.combo{display:inline-block;margin-top:2px;font-weight:800;font-size:.85rem;background:var(--fire);color:#fff;padding:2px 10px;border-radius:99px;animation:bob .45s cubic-bezier(.3,1.6,.5,1)}
+.sheet.bad{animation:sheetUp .3s cubic-bezier(.2,.9,.3,1), shake .4s .3s}
+@keyframes shake{0%,100%{transform:none}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.sumcard{align-items:center;text-align:center;gap:14px}
+.sumtop{display:flex;flex-direction:column;align-items:center;gap:6px}
+.sumring{position:relative;width:140px;height:140px}
+.sumring b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:2rem}
+.sumarc{animation:ringfill 1s cubic-bezier(.3,.8,.3,1)}
+@keyframes ringfill{from{stroke-dashoffset:var(--c)}}
+.sumstats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
+.sumstats div{background:var(--soft);border-radius:16px;padding:10px 6px;display:flex;flex-direction:column}
+.sumstats b{font-family:var(--font-display);font-size:1.3rem}.sumstats span{font-size:.78rem;color:var(--muted)}
+body.lesson .toast{top:calc(env(safe-area-inset-top) + 70px)!important}
 #micPill{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));z-index:9999;padding:10px 18px;border-radius:999px;font-weight:700;font-size:1.05rem;box-shadow:0 4px 16px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}#micPill .x{margin-left:12px;font-weight:600;font-size:.9rem;opacity:.85}#micPill.busy{background:#dde7ef;color:#23415a}#micPill .lv{display:block;height:4px;margin-top:6px;border-radius:2px;background:rgba(255,255,255,.9);transform:scaleX(0);transform-origin:left;transition:transform .08s}#micPill.wait{background:#f4e3b5;color:#5a4410}#micPill.go{background:#2f7d4f;color:#fff}
 body.kb .nav{display:none}
 #updBar{position:fixed;left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:9998;background:#23415a;color:#fff;padding:12px 14px;border-radius:14px;font-weight:700;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.2);cursor:pointer}
@@ -830,7 +923,7 @@ function render(){
   renderTop();
   const flash = S.flash ? `<div class="fb ok">${esc(S.flash)}</div>` : "";
   S.flash = "";
-  const back = S.sess && S.view !== "plan" ? sessBar() : ["plan","seviye","more"].includes(S.view) ? "" : `<div class="row"><a class="btn small ghost" href="#plan">← Bugün</a></div>`;
+  const back = (typeof lessonOn === "function" && lessonOn()) ? "" : S.sess && S.view !== "plan" ? sessBar() : ["plan","seviye","more"].includes(S.view) ? "" : `<div class="row"><a class="btn small ghost" href="#plan">← Bugün</a></div>`;
   setTimeout(()=>{ if(S.ex) exAudioAuto(); }, 0);
   $("#view").innerHTML = back + (S.loadNote ? `<div class="note">${esc(S.loadNote)}</div>` : "") + flash + VIEWS[S.view]();
 }
@@ -849,7 +942,7 @@ function streak(){
 }
 function daysToExam(){ const t = new Date(S.state.examDate+"T09:00:00"); return isNaN(t) ? null : Math.ceil((t - new Date())/86400000); }
 function renderTop(){
-  try { document.body.classList.toggle("insess", !!S.sess); document.body.classList.toggle("study", ["kelime","lernen","spielen","sprechen","hikaye","shadow","seans","akici","ses","dikte"].includes(S.view)); } catch(e){}
+  try { document.body.classList.toggle("lesson", typeof lessonOn === "function" && lessonOn()); document.body.classList.toggle("insess", !!S.sess); document.body.classList.toggle("study", ["kelime","lernen","spielen","sprechen","hikaye","shadow","seans","akici","ses","dikte"].includes(S.view)); } catch(e){}
   const st = streak(), dx = daysToExam(), cur = current();
   $("#topchips").innerHTML = `<span class="chip c-fire ${st?"flame":""}" title="Seri">🔥 ${st}</span><span class="chip c-xp ${xpToday()>=xpGoal()?"good":""}" title="Bugünkü XP">⭐ ${xpToday()}/${xpGoal()}</span><span class="chip c-min ${minsToday()>=DAILY_GOAL?"good":""}" title="Bugünkü dakika">⏱ ${minsToday()}/${DAILY_GOAL}</span><span class="chip">Gün ${cur.d.n}</span>` + (dx!==null ? `<span class="chip">B1: ${dx} gün</span>` : "");
 }
@@ -4187,7 +4280,7 @@ async function vGradeNow(){
   let g = !right ? 0 : (V.hint || r.close || !artOk || r.ms > 12000) ? 1 : (r.ms < 4000 && vReps(w) >= 2) ? 3 : 2;
   if(right) V.ok++;
   V.done++; V.combo = right ? (V.combo||0) + 1 : 0; daily().cards = (daily().cards||0) + 1;
-  if(right){ addXP(x.step === "test2" ? 3 : 2); if(V.combo > 0 && V.combo % 5 === 0){ sfx("combo"); toast(`🔥 <b>${V.combo}'li seri!</b> ${brezi("party",30)}`); if(V.combo % 10 === 0) confetti(60); } else sfx("ok"); } else sfx("no");
+  if(right){ addXP(x.step === "test2" ? 3 : 2); if(V.combo > 0 && V.combo % 5 === 0 && !(typeof lessonOn === "function" && lessonOn())){ sfx("combo"); toast(`🔥 <b>${V.combo}'li seri!</b> ${brezi("party",30)}`); if(V.combo % 10 === 0) confetti(60); } else sfx("ok"); } else sfx("no");
   const patch = {};
   if(V.sent){ const ss = (w.sents||[]).slice(); if(!ss.some(s=>s.de === V.sent.de)) ss.push(V.sent); patch.sents = ss.slice(-8); patch.lastSent = V.sent.de; }
   delete w._fresh;
@@ -4999,7 +5092,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09o";
+const APP_VER = "2026-11-09q";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -6581,6 +6674,162 @@ startContinuous = function(onText){
 };
 const _fluFeedback0 = fluFeedback;
 fluFeedback = async function(){ const F = S.flu; if(F && F._pend){ try { await F._pend; } catch(e){} } if(S.flu === F && F.txt.some(Boolean)) return _fluFeedback0.apply(this, arguments); };
+/* ================= Ders kabuğu: kelime kartları için tam ekran, tek ince üst satır, altta sabit eylem alanı ================= */
+/* Düzen: [⏸/✕] [ilerleme] [⋯]  ·  ortada içerik  ·  altta başparmak bölgesinde tek ana eylem; sonuç alttan kayan panelde. */
+function lessonOn(){ const V = S.voc; return S.view === "kelime" && V && !V.busy && V.phase !== "summary" && !!vWord(); }
+const KIND_TR = k => k === "nomen" ? "isim" : k === "verb" ? "fiil" : k === "adj" ? "sıfat" : "kelime";
+function lessonHead(V){
+  const pct = Math.max(3, V.i / Math.max(1, V.q.length) * 100);
+  const left = S.sess ? `<button class="lh-btn" data-act="sessPause" aria-label="Durdur" title="Durdur">⏸</button>` : `<a class="lh-btn" href="#plan" aria-label="Kapat" title="Kapat">✕</a>`;
+  return `<div class="lhead">
+    ${left}
+    <div class="lprog" role="progressbar" aria-valuemin="0" aria-valuemax="${V.q.length}" aria-valuenow="${V.i}" aria-label="Kart ${V.i+1} / ${V.q.length}"><i style="width:${pct}%"></i></div>
+    <span class="lcount">${V.i+1}/${V.q.length}</span>
+    <button class="lh-btn" data-act="vMenu" aria-label="Seçenekler" aria-expanded="${!!V.menu}">⋯</button>
+  </div>`;
+}
+function lessonMenu(V){
+  if(!V.menu) return "";
+  const modes = [...(useSR() ? [["mic","🎤","Söyle"]] : []), ["type","⌨️","Yaz"], ["tap","👆","Seç"]];
+  return `<div class="lsheet-bg" data-act="vMenu"></div><div class="lsheet menu" role="dialog" aria-label="Seçenekler">
+    <div class="grab"></div>
+    <p class="lsheet-t">Cevap verme şekli</p>
+    <div class="lmodes">${modes.map(([m,i,t])=>`<button class="lmode ${V.mode===m?"on":""}" data-act="vMode" data-m="${m}" aria-pressed="${V.mode===m}"><span>${i}</span>${t}</button>`).join("")}</div>
+    <button class="lrow" data-act="vImmToggle" aria-pressed="${vImm()}"><span>🇩🇪</span><b>Türkçesiz mod</b><em>${vImm() ? "açık" : "kapalı"}</em></button>
+    <button class="lrow" data-act="vFlag"><span>⚠️</span><b>Bu kartta hata var</b><em>kontrol et</em></button>
+    ${S.sess ? `<button class="lrow" data-act="sessSkip"><span>⏭</span><b>Bu adımı atla</b><em>${minsToday()}/${DAILY_GOAL} dk</em></button>
+    <button class="lrow danger" data-act="sessEnd"><span>✕</span><b>Seansı bitir</b><em></em></button>` : `<a class="lrow" href="#plan"><span>←</span><b>Bugün ekranına dön</b><em></em></a>`}
+  </div>`;
+}
+function lessonFeedback(V, w){
+  if(V.needArt) return `<div class="lfoot sheet neutral">
+    <p class="lf-t">Artikeli?</p>
+    <div class="lart">${["der","die","das"].map(a=>`<button class="lartb ${a}" data-act="vArt" data-a="${a}">${a}</button>`).join("")}</div></div>`;
+  const ok = V.res.ok || V.res.close, artBad = V.art && !V.art.ok;
+  const good = ok && !artBad;
+  const title = V.res.ok ? (artBad ? "Kelime doğru, artikel yanlış" : "Richtig!") : V.res.close ? "Neredeyse: yazımına dikkat" : "Doğrusu:";
+  const full = (w.artikel ? w.artikel + " " : "") + w.de;
+  return `<div class="lfoot sheet ${good ? "good" : "bad"}">
+    ${good && !V.res.close ? "" : `<p class="lf-t">${esc(title)}</p>`}
+    <p class="lf-w">${w.artikel ? `<span class="art ${artCls(w.artikel)}">${esc(w.artikel)}</span> ` : ""}<b>${esc(w.de)}</b>${w.plural && w.plural !== "-" ? ` <span class="lf-pl">· die ${esc(w.plural)}</span>` : ""}</p>
+    ${V.mode === "mic" && V.heard && !V.res.ok && !V.res.close ? `<p class="lf-s">Duyduğum: „${esc(V.heard)}“</p>` : ""}
+    ${artBad ? `<p class="lf-s">Bu kelime 1–2 gün içinde tekrar gelecek.</p>` : w.chunk ? `<p class="lf-s">Kalıp: <b>${esc(w.chunk)}</b></p>` : ""}
+    <button class="lbtn ${good ? "go" : "warn"}" data-act="vNext">Weiter</button></div>`;
+}
+const _renderKelime0 = renderKelime;
+renderKelime = function(){
+  if(!lessonOn()) return _renderKelime0();
+  const V = S.voc, w = vWord(), x = V.q[V.i], s = V.sent;
+  const anim = V._animI !== V.i ? " enter" : ""; V._animI = V.i;
+  const head = lessonHead(V);
+  if(V.phase === "intro"){
+    return `<div class="lshell">${head}
+      <div class="lbody${anim}">
+        <p class="ltag">Yeni kelime</p>
+        ${sceneHtml(s, w, true)}
+        <p class="lword">${w.artikel ? `<span class="art ${artCls(w.artikel)}">${esc(w.artikel)}</span> ` : ""}${esc(w.de)} <button class="licon" data-act="sayDe" data-t="${esc(lFull(w))}" aria-label="Dinle">🔊</button></p>
+        <p class="lmean">${esc(w.tr)}${w.plural && w.plural !== "-" ? ` <span>· çoğul: die ${esc(w.plural)}</span>` : ""}</p>
+        ${w.note ? `<p class="lnote">${esc(w.note)}</p>` : ""}
+        ${s ? `<div class="lex"><p class="de">${esc(s.de)} <button class="licon" data-act="sayDe" data-t="${esc(s.de)}" aria-label="Dinle">🔊</button></p><p class="tr">${vTrHtml(s)}</p></div>` : ""}
+        ${w.chunk ? `<p class="lnote">Kalıp: <b class="de">${esc(w.chunk)}</b></p>` : ""}
+      </div>
+      <div class="lfoot"><button class="lbtn go" data-act="vIntroDone">Öğrendim, dene</button></div>
+      ${lessonMenu(V)}</div>`;
+  }
+  const imm = vImm() && !V.trShown && !V.res;
+  const tag = x.step === "rev" ? "Tekrar" : x.step === "again" ? "Bir daha" : "Yeni kelime testi";
+  const meaning = imm ? `<p class="lmean q">${esc(w.emoji || "❔")} <span>${KIND_TR(w.kind)}</span></p>` : `<p class="lmean q">${esc(w.tr)} <span>${KIND_TR(w.kind)}</span></p>`;
+  const sentence = s ? `<p class="lsent de">${vClozeHtml(s, V)}</p>${imm ? `<button class="ltext" data-act="vTr">🇹🇷 Türkçe ipucu</button>` : `<p class="ltr">${vTrHtml(s)}</p>`}`
+    : `<p class="lsent de">${V.res ? `<b>${esc((w.artikel && !V.needArt ? w.artikel+" " : "")+w.de)}</b>` : V.mode==="type" ? `<input id="vIn" class="vin" style="width:12ch" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(V.user)}" data-model="vUser">` : "?"}</p>`;
+  const tools = `<div class="ltools"><button class="licon" data-act="vSay" aria-label="Cümleyi dinle">🔊</button><button class="licon" data-act="vSaySlow" aria-label="Yavaş dinle">🐢</button>${!V.res ? `<button class="licon" data-act="vHint" aria-label="İpucu">💡</button>` : ""}</div>`;
+  const taps = !V.res && V.mode === "tap" && V.opts ? `<div class="lopts">${V.opts.map(o=>`<button class="lopt" data-act="vTap" data-o="${esc(o)}">${esc(o)}</button>`).join("")}</div>` : "";
+  let foot = "";
+  if(V.res || V.needArt) foot = lessonFeedback(V, w);
+  else if(V.mode === "mic") foot = `<div class="lfoot"><button class="lbtn go mic ${V.listening ? "live" : ""}" data-act="vMic">${V.listening ? "✋ Dinliyorum… dokun: iptal" : "🎤 Cümleyi söyle"}</button><button class="ltext" data-act="vReveal">Bilmiyorum, göster</button></div>`;
+  else if(V.mode === "type") foot = `<div class="lfoot two"><button class="lbtn ghost" data-act="vReveal">Göster</button><button class="lbtn go" data-act="vCheck">Kontrol</button></div>`;
+  else foot = `<div class="lfoot"><button class="ltext" data-act="vReveal">Bilmiyorum, göster</button></div>`;
+  return `<div class="lshell">${head}
+    <div class="lbody${anim}">
+      <div class="lmedia">${sceneHtml(s, w)}<span class="ltag on">${tag}</span></div>
+      ${meaning}
+      ${sentence}
+      ${tools}
+      ${taps}
+    </div>
+    ${foot}
+    ${lessonMenu(V)}</div>`;
+};
+const lFull = w => (w.artikel ? w.artikel + " " : "") + w.de;
+
+/* ================= Ders içi ödül anları: seri sayacı, XP uçuşu, maskot tepkisi, kutlama ================= */
+const PRAISE = ["Richtig!", "Super!", "Genau!", "Sehr gut!", "Klasse!", "Perfekt!", "Stark!", "Prima!"];
+const PRAISE_COMBO = {3:"Läuft bei dir! 🔥", 5:"Fünf am Stück! 🚀", 10:"Unaufhaltsam! 🏆", 15:"Wahnsinn! 💎", 20:"Legende! 👑"};
+const KEEP_GOING = ["Kein Problem, weiter!", "Fast! Gleich nochmal.", "Fehler sind Lernen.", "Das merkst du dir jetzt."];
+function lessonJuice(ok){
+  const V = S.voc; if(!V) return;
+  if(ok){
+    V.jCombo = (V.jCombo || 0) + 1; V.jMax = Math.max(V.jMax || 0, V.jCombo);
+    V.praise = PRAISE_COMBO[V.jCombo] || PRAISE[Math.floor(Math.random()*PRAISE.length)];
+    if(PRAISE_COMBO[V.jCombo]){ setTimeout(()=>{ confetti(V.jCombo >= 10 ? 90 : 45); sfx("combo"); }, 120); }
+    V.pop = true;
+  } else { V.jCombo = 0; V.praise = KEEP_GOING[Math.floor(Math.random()*KEEP_GOING.length)]; V.pop = false; }
+}
+const _vCardStartJ = vCardStart;
+vCardStart = function(){ if(S.voc) S.voc._jDone = false; return _vCardStartJ.apply(this, arguments); };
+const _vArtJ = vArt;
+vArt = function(){
+  const V = S.voc; const r = _vArtJ.apply(this, arguments);
+  if(V && V.art && !V.art.ok){ V.jCombo = 0; V.praise = "Artikel merken: Farbe hilft!"; }
+  return r;
+};
+/* XP kazanınca ilerleme çubuğunun yanından yükselen +XP */
+const _addXPJ = addXP;
+addXP = function(n){
+  const r = _addXPJ.apply(this, arguments);
+  try{
+    if(n > 0 && typeof lessonOn === "function" && lessonOn() && !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)){
+      const el = document.createElement("div"); el.className = "xpfly"; el.textContent = "+" + n + " XP";
+      const p = document.querySelector(".lprog"); const b = p ? p.getBoundingClientRect() : {left:innerWidth/2, top:60, width:0};
+      el.style.left = (b.left + b.width*0.7) + "px"; el.style.top = (b.top + 18) + "px";
+      document.body.appendChild(el); setTimeout(()=>el.remove(), 1100);
+    }
+  }catch(e){}
+  return r;
+};
+/* özet: büyük halka, en uzun seri, kutlama */
+const _vFinishJ = vFinish;
+vFinish = function(){ const V = S.voc; const r = _vFinishJ.apply(this, arguments); if(V && V.summary){ V.summary.comboMax = V.jMax || 0; if(S.view === "kelime") render(); if(V.summary.done >= 3) setTimeout(()=>{ confetti(V.summary.ok/Math.max(1,V.summary.done) >= 0.8 ? 120 : 60); sfx("up"); }, 250); } return r; };
+const _renderKelimeJ = renderKelime;
+renderKelime = function(){
+  const V = S.voc;
+  if(V && V.phase === "summary" && V.summary && !V.busy){
+    const s = V.summary, pct = s.done ? Math.round(s.ok/s.done*100) : 0, R = 54, C = 2*Math.PI*R;
+    const mood = pct >= 80 ? "party" : pct >= 50 ? "happy" : "sad";
+    const msg = pct >= 90 ? "Ausgezeichnet!" : pct >= 75 ? "Sehr gut gemacht!" : pct >= 50 ? "Gut! Weiter so." : "Dranbleiben, das wird!";
+    return `<section class="card sumcard">
+      <div class="sumtop">${brezi(mood, 70)}<h2>${msg}</h2></div>
+      <div class="sumring"><svg width="140" height="140" viewBox="0 0 140 140" aria-hidden="true"><circle cx="70" cy="70" r="${R}" fill="none" stroke="var(--soft)" stroke-width="14"/><circle class="sumarc" cx="70" cy="70" r="${R}" fill="none" stroke="var(--good)" stroke-width="14" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pct/100)}" transform="rotate(-90 70 70)" style="--c:${C}"/></svg><b>${pct}%</b></div>
+      <div class="sumstats">
+        <div><b>${s.done}</b><span>kart</span></div>
+        <div><b>${s.newN}</b><span>yeni kelime</span></div>
+        <div><b>🔥 ${s.comboMax || 0}</b><span>en uzun seri</span></div>
+      </div>
+      <p class="small muted" style="text-align:center">${s.leftDue ? s.leftDue + " kart hâlâ bekliyor" : "Bugünkü tekrarlar bitti ✓"} · ${s.st.mature} kelime uzun süreli hafızada</p>
+      ${V.err ? `<div class="note">${esc(V.err)}</div>` : ""}
+      ${continueBtn()}${s.leftDue && !S.sess ? `<button class="btn block" data-act="vocabStart">Devam: kalan kartlar</button>` : ""}</section>`;
+  }
+  if(V && lessonOn() && V.res && !V._jDone){ V._jDone = true; lessonJuice(!!(V.res.ok || V.res.close)); }
+  let html = _renderKelimeJ();
+  if(V && lessonOn() && (V.res || V.art)){
+    const good = V.res && (V.res.ok || V.res.close) && !(V.art && !V.art.ok);
+    const badge = good && (V.jCombo||0) >= 2 ? `<span class="combo">🔥 ${V.jCombo} üst üste</span>` : "";
+    html = html.replace('<div class="lfoot sheet ' + (good ? "good" : "bad") + '">', `<div class="lfoot sheet ${good ? "good" : "bad"}"><div class="lf-head">${brezi(good ? ((V.jCombo||0) >= 5 ? "party" : "happy") : "sad", 46)}<div><p class="lf-praise">${esc(V.praise || "")}</p>${badge}</div></div>`);
+  }
+  if(V && V.pop && lessonOn()){ html = html.replace('<div class="lprog"', '<div class="lprog pop"'); V.pop = false; }
+  return html;
+};
+VIEWS.kelime = () => renderKelime();
+
 /* ================= events ================= */
 const ACT = {
   sessStart(b){ micWarm(); sessStart(b.dataset.c); },
@@ -6841,6 +7090,7 @@ document.addEventListener("keydown", e => {
 window.addEventListener("hashchange", route);
 
 Object.assign(ACT, {
+  vMenu(){ const V = S.voc; if(V){ V.menu = !V.menu; render(); } },
   bonusStory(){ startBonusStory(); },
   paStart(b){ const t = (b && b.dataset && b.dataset.t) || (S.sh && S.sh.items[S.sh.i] && S.sh.items[S.sh.i].de); if(t) paStart(t); },
   storyRA(){ if(S.story){ stopReading(); stopSpeech(); S.story.ra = 0; render(); } },
