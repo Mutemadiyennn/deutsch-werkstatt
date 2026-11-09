@@ -755,6 +755,10 @@ body.lesson main>.fbar+.card{margin-top:10px}
 :root[data-theme="dark"]{--accent:#3D8BFF;--accent-ink:#FFFFFF;--accent-edge:#1D5FD6;--accent2:#6AA8FF}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--accent:#3D8BFF;--accent-ink:#FFFFFF;--accent-edge:#1D5FD6;--accent2:#6AA8FF}}
 .btn.primary{color:#fff}
+.qbtn{width:100%;border:0;background:transparent;color:var(--ink);font:inherit;cursor:pointer;display:flex;align-items:center;gap:10px;padding:6px 6px;border-radius:14px;text-align:left}
+.qbtn:active{background:var(--soft)}
+.qgo{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:.75rem;color:#fff;background:linear-gradient(145deg,#FFB547,#FF7A1A);box-shadow:0 2px 0 #C2600A;flex:none}
+.quest.qdone{padding:6px}
 </style>
 </head>
 <body>
@@ -5387,7 +5391,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-10o";
+const APP_VER = "2026-11-10p";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -8430,6 +8434,52 @@ document.addEventListener("click", e => {
 
 /* kaydırınca üst bant buzlu cama dönsün */
 { const sc = () => document.body.classList.toggle("scrolled", (window.scrollY || document.documentElement.scrollTop) > 8); window.addEventListener("scroll", sc, {passive:true}); sc(); }
+
+/* ================= Günlük görevler = bugünün planından 3 adım (tek mantık) ================= */
+/* Görevler, "Masada başla"nın zaten getireceği planın en öncelikli 3 adımıdır; gün içinde sabit kalır.
+   Görev satırına dokununca o adım masa oturumu içinde hemen başlar; oturum da önce görevleri getirir. */
+const QKIND_ICON = {vocab:"🃏", story:"📖", scen:"🎭", lesson:"📘", a12:"📗", review:"🔁", recheck:"🔁", remed:"🛟", repair:"🛟", life:"📜", exam:"🎓", chat:"💬", roleplay:"🎤", fluency:"⚡", write:"✍️", real:"🌍", game:"🎮", dict:"👂", media:"🎬", test:"🏁", vhsprep:"🏫", vhspost:"🏫", mock:"📝", offline:"🏠", external:"🔗"};
+function questKeys(){
+  const d = daily(); const {q} = todayQueue();
+  const core = q.filter(x=>!x.extra && !x.locked && !(needsAI(x.kind) && !aiReady()) && x.kind !== "offline" && x.kind !== "external");
+  if(Array.isArray(d.qkeys) && d.qkeys.length && d.qkeys.every(k=>q.some(x=>x.key === k))) return d.qkeys;
+  const pr = k => (PLAN_PRIO[k] ?? 4);
+  const pick = core.map((x,i)=>({x,i})).sort((a,b)=>pr(a.x.kind)-pr(b.x.kind) || a.i-b.i).slice(0,3).map(o=>o.x.key);
+  if(pick.length){ d.qkeys = pick; Store.saveState(); }
+  return pick;
+}
+todayQuests = function(){
+  const {q} = todayQueue(); const keys = questKeys();
+  const list = keys.map(k=>q.find(x=>x.key === k)).filter(Boolean).map(x=>({id:x.key, key:x.key, t:(()=>{ let t = String(x.title||"").replace(/\s*\([^)]*\)/g, "").trim(); if(t.length > 34 && t.includes(":")) t = t.split(":")[0].trim(); return t; })(), goal:1, v:x.done ? 1 : 0, icon:QKIND_ICON[x.kind] || "⭐", min:x.min}));
+  /* plan kısa kaldıysa (ör. her şey bitti) zaman görevleriyle tamamla */
+  const fill = [{id:"mins", t:"20 dakika çalış", goal:20, v:Math.min(20, minsToday()), icon:"⏱️"}, {id:"xp", t:"50 XP topla", goal:50, v:Math.min(50, xpToday()), icon:"⭐"}];
+  while(list.length < 3 && fill.length) list.push(fill.shift());
+  return list;
+};
+renderQuests = function(){
+  const qs = todayQuests(); const d = daily(); const left = qs.filter(x=>x.v < x.goal).length;
+  return `<section class="card"><div class="row between"><div class="kicker">Günlük görevler</div><span class="small muted" title="Bir gün çalışamazsan serin bozulmaz">🧊 ${S.state.freezes ?? 1} seri koruyucu</span></div>
+    <p class="small muted" style="margin:-4px 0 0">${left ? `Bugünün planındaki ilk ${qs.length} adım. "Masada başla" bunları sırayla getirir; istersen birine dokun.` : "Hepsi tamam! Planın geri kalanı bonus."}</p>
+    <div class="stack" style="margin-top:4px">${qs.map(q=>{ const done = q.v >= q.goal; const tap = q.key && !done;
+      return `<${tap ? `button class="quest qbtn" data-act="questGo" data-k="${esc(q.key)}"` : `div class="quest ${done ? "qdone" : ""}"`}><span class="qi">${q.icon}</span><div style="flex:1;min-width:0;text-align:left"><div class="small"><b>${esc(q.t)}</b> <span class="muted">${q.key ? (done ? "✓" : "· " + (q.min||5) + " dk") : q.v + "/" + q.goal}</span></div><div class="progress" style="margin:4px 0 0"><i style="width:${q.v/q.goal*100}%;${done?"background:var(--good)":""}"></i></div></div>${done ? "✅" : tap ? `<span class="qgo" aria-hidden="true">▶</span>` : ""}</${tap ? "button" : "div"}>`; }).join("")}</div>
+    ${d.chestReady && !d.chestOpened ? `<button class="btn primary block chestbtn" data-act="openChest">🎁 Sandığı aç</button>` : d.chestOpened ? `<p class="small muted">🎁 Bugünün sandığı açıldı.</p>` : ""}</section>`;
+};
+/* oturum önce görevleri, dokunulan görevi de hemen getirsin */
+{
+  const _sm = sessMust;
+  sessMust = function(remain){
+    const out = _sm(remain); const keys = (typeof questKeys === "function") ? questKeys() : [];
+    const rank = b => { if(!b.x) return 9; if(S.sessFocus && b.x.key === S.sessFocus) return -1; const i = keys.indexOf(b.x.key); return i < 0 ? 5 : i; };
+    return out.map((b,i)=>({b,i})).sort((a,c)=>rank(a.b)-rank(c.b) || a.i-c.i).map(o=>o.b);
+  };
+  const _sp = sessPick;
+  sessPick = function(){ const r = _sp.apply(this, arguments); if(r && r.x && r.x.key === S.sessFocus) S.sessFocus = null; return r; };
+}
+Object.assign(ACT, {
+  questGo(el){ const k = el.dataset.k; if(!k) return; primeTTS(); S.sessFocus = k;
+    if(S.sess && !S.brk){ stopAll(); const b = sessMust(99).find(x=>x.x && x.x.key === k); if(b){ S.sessFocus = null; sessRun(b); return; } }
+    if(!S.sess) sessStart("desk"); else sessNext(); }
+});
 </script>
 </body>
 </html>
