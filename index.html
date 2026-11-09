@@ -545,6 +545,7 @@ function subscribe(){
 
 /* ================= AI ================= */
 const AI_MSG = {
+  server:"Yapay zekâ sunucusu şu an yanıt vermedi. Biraz sonra tekrar dene.",
   not_granted:"Yapay zekâya izin verilmedi. Sayfayı yeniden açıp izin verirsen bu özellikler açılır.",
   sampling_disabled:"Bu hesapta yapay zekâ kullanılamıyor.",
   rate_limited:"Şu an çok fazla istek var ya da kullanım sınırına ulaştın. Birkaç dakika sonra tekrar dene.",
@@ -4739,6 +4740,12 @@ function rankModel(list, lite){
   const ver = n => { const m = n.match(/gemini-(\d+(?:\.\d+)?)/i); return m ? parseFloat(m[1]) : 0; };
   return pool.slice().sort((a,b)=> ver(b) - ver(a) || (/preview|exp/i.test(a) ? 1 : 0) - (/preview|exp/i.test(b) ? 1 : 0) || a.length - b.length)[0];
 }
+/* Gemini 3+ modelleri varsayılan olarak uzun düşünür (orta/yüksek seviye); bizim işler için düşük yeterli ve çok daha hızlı */
+function thinkCfg(m){
+  if(/2\.5/.test(m)) return {thinkingBudget: /lite/i.test(m) ? 0 : 512};
+  if(/gemini-[3-9]/i.test(m)) return {thinkingLevel: /lite/i.test(m) ? "minimal" : "low"};
+  return null;
+}
 function parseJSONLoose(t){
   t = String(t||"").trim().replace(/^```(?:json)?\s*/i,"").replace(/```\s*$/,"").trim();
   try { return JSON.parse(t); } catch(e){ const i = t.indexOf("{"), j = t.lastIndexOf("}"); if(i >= 0 && j > i){ try { return JSON.parse(t.slice(i, j+1)); } catch(e2){} } throw {code:"invalid_json"}; }
@@ -4749,7 +4756,10 @@ async function gemCall(model, body, signal){
   try { r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(KEYS.gem)}`, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body), signal}); }
   catch(e){ if(e && e.name === "AbortError") throw {code:"cancelled"}; throw {code:"http"}; }
   if(r.status === 429 || r.status === 503) throw {code:"rate_limited"};
-  if(r.status === 400 || r.status === 403){ const t = await r.text(); if(/api key|API_KEY|permission/i.test(t)) throw {code:"bad_key"}; throw {code:"refused", message:t}; }
+  if(r.status === 400 || r.status === 403){ const t = await r.text(); if(/api key|API_KEY|permission/i.test(t)) throw {code:"bad_key"};
+    if(r.status === 400 && /thinking/i.test(t) && body.generationConfig && body.generationConfig.thinkingConfig){ const b2 = JSON.parse(JSON.stringify(body)); delete b2.generationConfig.thinkingConfig; return gemCall(model, b2, signal); }
+    throw {code:"refused", message:t}; }
+  if(r.status >= 500) throw {code:"server"};
   if(!r.ok) throw {code:"http"};
   const j = await r.json();
   const txt = ((((j.candidates||[])[0]||{}).content||{}).parts||[]).map(p=>p.text||"").join("");
@@ -4765,9 +4775,9 @@ const GeminiAI = {
     const list = await gemModels();
     const wantLite = S.state.gemMode === "lite" || (S.state.gemMode !== "full" && o.modelTier === "quick");
     const m1 = rankModel(list, wantLite), m2 = rankModel(list, !wantLite);
-    const body = m => { const b = {contents, generationConfig:{responseMimeType:"application/json", temperature:0.8}}; if(/2\.5/.test(m)) b.generationConfig.thinkingConfig = {thinkingBudget: /lite/i.test(m) ? 0 : 512}; return b; };
+    const body = m => { const b = {contents, generationConfig:{responseMimeType:"application/json", temperature:0.8}}; const t = thinkCfg(m); if(t) b.generationConfig.thinkingConfig = t; return b; };
     try { return await gemCall(m1, body(m1), o.signal); }
-    catch(e){ if((e.code === "rate_limited" || e.code === "empty_completion" || e.code === "invalid_json") && m2 && m2 !== m1) return await gemCall(m2, body(m2), o.signal); throw e; }
+    catch(e){ if(["rate_limited","empty_completion","invalid_json","server","http"].includes(e.code) && m2 && m2 !== m1) return await gemCall(m2, body(m2), o.signal); throw e; }
   },
   async limits(){ return {images:true}; }
 };
@@ -6027,10 +6037,10 @@ Schreibe GENAU das, was gesagt wurde: auch falsche Artikel, Endungen, Verbformen
 Unverständliche Teile lässt du weg. Wenn nichts Verständliches gesagt wurde (Stille, Rauschen, Husten), gib einen leeren Text zurück.
 Antworte NUR mit JSON: {"text":"..."}`;
   const contents = [{role:"user", parts:[{text:prompt}, {inline_data:{mime_type:"audio/wav", data: await blobToB64(wav)}}]}];
-  const body = m => { const b = {contents, generationConfig:{responseMimeType:"application/json", temperature:0}}; if(/2\.5/.test(m)) b.generationConfig.thinkingConfig = {thinkingBudget: /lite/i.test(m) ? 0 : 128}; return b; };
+  const body = m => { const b = {contents, generationConfig:{responseMimeType:"application/json", temperature:0}}; const t = thinkCfg(m); if(t) b.generationConfig.thinkingConfig = t; return b; };
   let r;
   try { r = await gemCall(m1, body(m1), signal); }
-  catch(e){ if(e.code === "rate_limited" && m2 && m2 !== m1) r = await gemCall(m2, body(m2), signal); else throw e; }
+  catch(e){ if(["rate_limited","server"].includes(e.code) && m2 && m2 !== m1) r = await gemCall(m2, body(m2), signal); else throw e; }
   const d = dayKey(); if(MIC2.day !== d){ MIC2.day = d; MIC2.n = 0; } MIC2.n++; mic2Save();
   return String((r && r.text) || "").replace(/\s+/g, " ").trim();
 }
