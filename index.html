@@ -278,10 +278,10 @@ const TOPICS = [
   "Präteritum: war, hatte, Modalverben",
   "Genitiv und Wechselpräpositionen"
 ];
-const TL = {Konjugation:"Fiil çekimi", Verbposition:"Fiilin yeri (2. sıra)", Satzklammer:"Modal/ayrılan fiil, nicht'in yeri", Artikel:"Artikel (der/die/das)", Plural:"Çoğul", Akkusativ:"Akkusativ", Dativ:"Dativ", Perfekt:"Geçmiş zaman (Perfekt)", "Präposition":"Edatlar", Negation:"Olumsuzluk (nicht/kein)", Nebensatz:"Yan cümle (weil, dass, wenn)", "Konjunktiv II":"Konjunktiv II (hätte, würde)", Rechtschreibung:"Yazım", Wortwahl:"Kelime seçimi", Sonstiges:"Diğer"};
+const TL = {Konjugation:"Fiil çekimi", Verbposition:"Fiilin yeri (2. sıra)", Satzklammer:"Modal/ayrılan fiil, nicht'in yeri", Artikel:"Artikel (der/die/das)", Plural:"Çoğul", Akkusativ:"Akkusativ", Dativ:"Dativ", Perfekt:"Geçmiş zaman (Perfekt)", "Präposition":"Edatlar", Negation:"Olumsuzluk (nicht/kein)", Nebensatz:"Yan cümle (weil, dass, wenn)", "Konjunktiv II":"Konjunktiv II (hätte, würde)", Genitiv:"Genitiv", Adjektivendung:"Sıfat çekimi (ein neuer, den neuen)", Passiv:"Passiv (wird gemacht)", Rechtschreibung:"Yazım", Wortwahl:"Kelime seçimi", Sonstiges:"Diğer"};
 const A1T = ["Konjugation","Verbposition","Satzklammer","Artikel","Plural","Akkusativ","Negation"];
 const A2T = ["Perfekt","Dativ","Präposition","Nebensatz","Konjunktiv II"];
-const MTOPICS = ["Konjugation","Verbposition","Satzklammer","Artikel","Plural","Akkusativ","Dativ","Perfekt","Präposition","Negation","Nebensatz","Konjunktiv II","Rechtschreibung","Wortwahl","Sonstiges"];
+const MTOPICS = ["Konjugation","Verbposition","Satzklammer","Artikel","Plural","Akkusativ","Dativ","Perfekt","Präposition","Negation","Nebensatz","Konjunktiv II","Genitiv","Adjektivendung","Passiv","Rechtschreibung","Wortwahl","Sonstiges"];
 const DEFAULT_ABOUT = "Deutschlerner mit Türkisch als Muttersprache, lebt in Bayern.";
 const DEFAULT_STATE = { examDate: "2027-05-15", days: {}, prog: {}, games: {} };
 const INTERVALS = [0,1,3,7,14,30,60];
@@ -4001,7 +4001,7 @@ function renderKelime(){
     ${s ? `<p class="vsent de">${vClozeHtml(s, V)}</p>${imm ? `<p style="text-align:center"><button class="btn small ghost" data-act="vTr">🇹🇷 Türkçe ipucu</button></p>` : `<p class="tr" style="text-align:center">${vTrHtml(s)}</p>`}` : `<p class="vsent de">${V.res ? `<b>${esc((w.artikel && !V.needArt ? w.artikel+" " : "")+w.de)}</b>` : V.mode==="type" ? `<input id="vIn" class="vin" style="width:12ch" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(V.user)}" data-model="vUser">` : "?"}</p>`}
     ${!V.res && V.mode === "tap" && V.opts ? `<div class="grid2">${V.opts.map(o=>`<button class="btn" style="min-height:56px" data-act="vTap" data-o="${esc(o)}">${esc(o)}</button>`).join("")}</div>` : ""}
     ${V.res ? `<div class="fb ${V.res.ok?"ok":V.res.close?"ok":"no"}"><b>${V.res.ok ? "Doğru!" : V.res.close ? "Neredeyse: yazımına dikkat" : "Doğrusu: "+esc((w.artikel ? w.artikel+" " : "")+V.res.ans)}</b>
-      ${!V.needArt && w.plural && w.plural!=="-" ? `<div class="small">${esc(w.artikel||"")} ${esc(w.de)} · die ${esc(w.plural)}</div>` : ""}${w.chunk ? `<div class="small">Kalıp: <b>${esc(w.chunk)}</b></div>` : ""}${w.used ? `<div class="small">Kendi cümlelerinde ${w.used} kez kullandın ✓</div>` : `<div class="small muted">Henüz kendi cümlende kullanmadın: bugün bir sohbette dene.</div>`}</div>` : ""}
+      ${!V.needArt && w.plural && w.plural!=="-" ? `<div class="small">${esc(w.artikel||"")} ${esc(w.de)} · die ${esc(w.plural)}</div>` : ""}${w.chunk ? `<div class="small">Kalıp: <b>${esc(w.chunk)}</b></div>` : ""}${V.mode !== "mic" && !V.needArt ? `<div class="small">🗣️ Geçmeden önce cümleyi bir kez yüksek sesle söyle.</div>` : ""}${w.used ? `<div class="small">Kendi cümlelerinde ${w.used} kez kullandın ✓</div>` : `<div class="small muted">Henüz kendi cümlende kullanmadın: bugün bir sohbette dene.</div>`}</div>` : ""}
     ${V.needArt ? `<p style="text-align:center"><b>Artikeli?</b></p><div class="row" style="justify-content:center">${["der","die","das"].map(a=>`<button class="btn" style="min-width:80px;min-height:52px" data-act="vArt" data-a="${a}"><span class="pill-${a}">${a}</span></button>`).join("")}</div>` : ""}
     ${V.art ? `<div class="fb ${V.art.ok?"ok":"no"}">${V.art.ok ? "Artikel doğru ✓" : "Artikel yanlış. Doğrusu:"} <b>${esc(w.artikel)} ${esc(w.de)}</b>${w.plural && w.plural!=="-" ? ` · die ${esc(w.plural)}` : ""}${V.art.ok ? "" : `<div class="small">Bu kelime 1–2 gün içinde tekrar gelecek.</div>`}</div>` : ""}
     <div class="row" style="justify-content:center">
@@ -4129,6 +4129,9 @@ function renderHikaye(){
     <button class="btn ${H.playing?"":"primary"} block" data-act="storyPlay">${H.playing ? "⏸ Durdur" : H.i >= 0 ? "▶ Devam et" : H.listened ? "🔁 Tekrar dinle" : "▶ Dinleyerek oku"}</button>
     <div class="story">${D.sentences.map((s,i)=>`<p id="st${i}" class="${H.i===i?"cur":""}">${s.sp ? `<span class="small muted"><b>${esc(s.sp)}:</b></span> ` : ""}<span class="de">${s.sp ? "„"+storyHtml(String(s.de).replace(/^[„“"]+|[„“"]+$/g,""))+"“" : storyHtml(s.de)}</span> <button class="trb" data-act="storyTr" data-i="${i}">TR</button>${H.show[i]?`<br><span class="tr small">${esc(qfix(s.de, s.tr))}</span>`:""}</p>`).join("")}</div>
   </section>
+  ${H.listened || H.ra != null ? `<section class="card"><h3>📢 Şimdi sen sesli oku</h3><p class="small muted">Dinledin; şimdi sıra sende. Cümle cümle yüksek sesle oku: ağzın ve kulağın birlikte çalışsın. İstediğin cümleyi 🔬 ile analiz ettir.</p>
+    ${H.ra == null ? `<button class="btn primary block" data-act="storyRA">Sesli okumaya başla</button>` : (()=>{ const s0 = D.sentences[H.ra]; if(!s0) return `<div class="fb ok">Bütün hikâyeyi sesli okudun ✓</div>`; const txt = String(s0.de).replace(/\*\*/g,""); return `<p class="small muted">${H.ra+1} / ${D.sentences.length}${s0.sp ? " · " + esc(s0.sp) : ""}</p><p class="de" style="font-size:1.3rem;line-height:1.5"><b>${esc(txt)}</b></p><div class="grid2"><button class="btn" data-act="sayDe" data-t="${esc(txt)}">🔊 Önce dinle</button><button class="btn primary" data-act="storyRANext">Okudum →</button></div>${paHtml(txt)}`; })()}
+  </section>` : ""}
   <section class="card"><h3>Anladın mı?</h3><p class="small muted">Sınav değil; hikâyeyi takip edebildiğini görmek için.</p>
     ${(D.questions||[]).map((q,i)=>`<div class="stack" style="margin-top:8px"><b>${esc(q.q)}</b><div class="row">${q.options.map(o=>{ const a = H.ans[i]; const cls = a ? (o===q.answer ? "fb ok" : (o===a ? "fb no" : "")) : ""; return `<button class="btn small ${cls}" data-act="storyAns" data-i="${i}" data-o="${esc(o)}" ${a?"disabled":""}>${esc(o)}</button>`; }).join("")}</div></div>`).join("")}
   </section>
@@ -5396,7 +5399,7 @@ function paWeakSounds(){ const st = S.state.pronSnd || {}; return Object.entries
 function paHtml(text){
   if(!paOK()) return "";
   const P = S.pa && S.pa.text === text ? S.pa : null;
-  if(!P || P.phase === "idle") return `${P && P.err ? `<div class="note">${esc(P.err)}</div>` : ""}<button class="btn block" data-act="paStart" style="margin-top:8px">🔬 Telaffuzumu ses ses analiz et</button>`;
+  if(!P || P.phase === "idle") return `${P && P.err ? `<div class="note">${esc(P.err)}</div>` : ""}<button class="btn block" data-act="paStart" data-t="${esc(text)}" style="margin-top:8px">🔬 Telaffuzumu ses ses analiz et</button>`;
   if(P.phase === "rec") return `<div class="fb ok" style="text-align:center;margin-top:8px"><b>🔴 Kaydediyorum: cümleyi söyle</b><div class="small">Bitince aşağıya dokun (en fazla 12 saniye).</div></div><div class="grid2"><button class="btn primary" style="min-height:56px" data-act="paStop">■ Bitti</button><button class="btn ghost" data-act="paCancel">Vazgeç</button></div>`;
   if(P.phase === "busy") return `<div class="thinking" style="margin-top:8px"><span class="spin"></span>Sesini dinliyorum… (5–15 sn)</div>`;
   const R = P.res; const weak = paWeakSounds().filter(([k])=>!R.sounds.some(x=>x.s.toLowerCase()===k));
@@ -5410,7 +5413,7 @@ function paHtml(text){
     ${R.rhythm ? `<p class="small">🎵 ${esc(R.rhythm)}</p>` : ""}
     ${R.tip ? `<div class="fb ok small"><b>Sonraki denemede:</b> ${esc(R.tip)}</div>` : ""}
     ${weak.length ? `<p class="small muted">Genelde zorlandığın sesler: ${weak.map(([k,v])=>`<b>${esc(k)}</b> (${v.n})`).join(", ")}</p>` : ""}`}
-    <div class="grid2"><button class="btn primary" data-act="paStart">🔁 Tekrar kaydet</button><button class="btn" data-act="sayDe" data-t="${esc(P.text)}">🔊 Doğrusunu dinle</button></div>
+    <div class="grid2"><button class="btn primary" data-act="paStart" data-t="${esc(P.text)}">🔁 Tekrar kaydet</button><button class="btn" data-act="sayDe" data-t="${esc(P.text)}">🔊 Doğrusunu dinle</button></div>
   </section>`;
 }
 
@@ -5672,7 +5675,9 @@ document.addEventListener("keydown", e => {
 window.addEventListener("hashchange", route);
 
 Object.assign(ACT, {
-  paStart(){ const it = S.sh && S.sh.items[S.sh.i]; if(it) paStart(it.de); },
+  paStart(b){ const t = (b && b.dataset && b.dataset.t) || (S.sh && S.sh.items[S.sh.i] && S.sh.items[S.sh.i].de); if(t) paStart(t); },
+  storyRA(){ if(S.story){ stopReading(); stopSpeech(); S.story.ra = 0; render(); } },
+  storyRANext(){ const H = S.story; if(!H || H.ra == null) return; H.ra++; addXP(1); if(H.ra >= H.data.sentences.length){ daily().readAloud = true; addXP(5); Store.saveState(); } render(); },
   paStop(){ paStop(); },
   paCancel(){ paCancel(); }
 });
