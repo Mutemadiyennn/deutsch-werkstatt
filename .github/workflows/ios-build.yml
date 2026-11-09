@@ -26,7 +26,9 @@ jobs:
           npm init -y
           npm install @capacitor/core @capacitor/cli @capacitor/ios
           # Yerel eklentiler: klavyedeki ^ v ✓ çubuğunu gizleme, doğru/yanlışta titreşim
-          npm install @capacitor/keyboard @capacitor/haptics @capacitor/status-bar @capacitor/local-notifications
+          npm install @capacitor/keyboard @capacitor/haptics @capacitor/status-bar @capacitor/local-notifications @capacitor/app @capawesome/capacitor-badge
+          # İnternetsiz/kota dolunca yedek: Apple'ın cihaz üstü konuşma tanıma (topluluk eklentisi; derlenmezse aşağıda otomatik çıkarılır)
+          npm install @capacitor-community/speech-recognition || true
 
       - name: Prepare Web Directory
         run: |
@@ -79,6 +81,7 @@ jobs:
           # VHS ödev fotoğrafı için (yoksa fotoğraf seçerken uygulama kapanır)
           /usr/libexec/PlistBuddy -c "Add :NSCameraUsageDescription string 'Ödev sayfasının fotoğrafını çekmek için.'" $P || true
           /usr/libexec/PlistBuddy -c "Add :NSPhotoLibraryUsageDescription string 'Ödev fotoğrafını seçmek için.'" $P || true
+          /usr/libexec/PlistBuddy -c "Add :NSSpeechRecognitionUsageDescription string 'İnternet yokken konuşmanı cihazda yazıya dökmek için.'" $P || true
           # Arka planda ses (arabada sesli tekrar ekran kapanınca da sürsün)
           /usr/libexec/PlistBuddy -c "Add :UIBackgroundModes array" $P || true
           /usr/libexec/PlistBuddy -c "Add :UIBackgroundModes:0 string audio" $P || true
@@ -111,7 +114,15 @@ jobs:
 
       - name: Build iOS App (Unsigned)
         run: |
-          xcodebuild -workspace ios/App/App.xcworkspace -scheme App -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGNING_ALLOWED=NO
+          build() {
+            if [ -d ios/App/App.xcworkspace ]; then
+              xcodebuild -workspace ios/App/App.xcworkspace -scheme App -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGNING_ALLOWED=NO
+            else
+              xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGNING_ALLOWED=NO
+            fi
+          }
+          # Topluluk eklentisi derlemeyi bozarsa onu çıkarıp yeniden dene; uygulama yine kurulabilir olsun
+          build || { echo "::warning::Derleme başarısız; konuşma tanıma eklentisi çıkarılıp yeniden deneniyor"; npm uninstall @capacitor-community/speech-recognition; npx cap sync ios; rm -rf build; build; }
 
       - name: Package into IPA
         run: |
