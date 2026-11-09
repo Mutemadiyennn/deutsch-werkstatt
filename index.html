@@ -733,6 +733,28 @@ body.scrolled .top{background:color-mix(in srgb,var(--paper) 88%,transparent)!im
 body::before{background:transparent}
 body.scrolled::before{background:var(--paper)}
 .hero3 .h3top>.brezi{flex:none;background:#fff;border-radius:50%;padding:6px;box-sizing:content-box;box-shadow:0 6px 16px rgba(10,20,70,.25);animation:lkfloat 3.2s ease-in-out infinite}
+
+/* bağlam seçimi tek kartta */
+.cxcard{padding:12px!important;gap:10px!important}
+.cxcard .cx.main{box-shadow:0 4px 0 color-mix(in srgb,var(--c2) 70%,#000)!important}
+.cxcard .cx.main:active{box-shadow:0 1px 0 color-mix(in srgb,var(--c2) 70%,#000)!important}
+.cxlbl{font-size:.78rem;font-weight:800;color:var(--muted);margin:2px 4px -2px}
+.cxcard .cxgrid{gap:8px}
+.cxcard .cx.sm{background:color-mix(in srgb,var(--c1) 12%,var(--card))!important;border:1px solid color-mix(in srgb,var(--c1) 22%,transparent)!important;box-shadow:none!important;padding:10px 4px 9px!important;border-radius:16px!important}
+.cxcard .cx.sm .cxi{width:40px;height:40px;border-radius:13px;font-size:1.25rem}
+.cxcard .cx.sm b{font-size:.76rem}
+/* biten görev */
+.quest.qdone b{color:var(--good)}
+.quest.qdone .progress i{background:linear-gradient(90deg,#3EE0A0,#16B37A)!important;box-shadow:0 0 10px rgba(22,179,122,.45)!important}
+.quest{transition:background .3s ease;border-radius:14px}
+.quest.qdone{background:color-mix(in srgb,var(--good) 10%,transparent)}
+body.lesson main>.card+.card{margin-top:14px}
+body.lesson main>.fbar+.card{margin-top:10px}
+
+/* koyu temada birincil düğmeler: daha doygun mavi, beyaz yazı */
+:root[data-theme="dark"]{--accent:#3D8BFF;--accent-ink:#FFFFFF;--accent-edge:#1D5FD6;--accent2:#6AA8FF}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--accent:#3D8BFF;--accent-ink:#FFFFFF;--accent-edge:#1D5FD6;--accent2:#6AA8FF}}
+.btn.primary{color:#fff}
 </style>
 </head>
 <body>
@@ -1183,7 +1205,7 @@ function daysToExam(){ const t = new Date(S.state.examDate+"T09:00:00"); return 
 function renderTop(){
   try { document.body.classList.toggle("lesson", typeof lessonOn === "function" && lessonOn()); document.body.classList.toggle("insess", !!S.sess); document.body.classList.toggle("focus", !["plan","seviye","more"].includes(S.view)); document.body.classList.toggle("study", ["kelime","lernen","spielen","sprechen","hikaye","shadow","seans","akici","ses","dikte"].includes(S.view)); } catch(e){}
   const st = streak(), dx = daysToExam(), cur = current();
-  $("#topchips").innerHTML = `<span class="chip c-fire ${st?"flame":""}" title="Seri">🔥 ${st}</span><span class="chip c-xp ${xpToday()>=xpGoal()?"good":""}" title="Bugünkü XP">⭐ ${xpToday()}/${xpGoal()}</span><span class="chip c-min ${minsToday()>=DAILY_GOAL?"good":""}" title="Bugünkü dakika">⏱ ${minsToday()}/${DAILY_GOAL}</span>` + (dx!==null ? `<span class="chip c-goal" title="B1 sınavına kalan gün">🎯 ${dx} gün</span>` : "");
+  $("#topchips").innerHTML = `<span class="chip c-fire ${st?"flame":""}" title="Seri">🔥 ${st}</span><span class="chip c-xp ${xpToday()>=xpGoal()?"good":""}" title="Bugünkü XP">${xpToday()>=xpGoal() ? "⭐ " + xpToday() + " ✓" : "⭐ " + xpToday() + "/" + xpGoal()}</span><span class="chip c-min ${minsToday()>=DAILY_GOAL?"good":""}" title="Bugünkü dakika">${minsToday()>=DAILY_GOAL ? "⏱ " + minsToday() + " ✓" : "⏱ " + minsToday() + "/" + DAILY_GOAL}</span>` + (dx!==null ? `<span class="chip c-goal" title="B1 sınavına kalan gün">🎯 ${dx} gün</span>` : "");
 }
 
 /* ================= view: Plan ================= */
@@ -2877,7 +2899,7 @@ function addSec(n){
   const before = Math.floor((m[t]||0)/60);
   m[t] = (m[t]||0) + n; pomo().work += n; if(S.sess) S.sess.sec += n; CLK.dirty = true;
   const after = Math.floor(m[t]/60);
-  if(before < DAILY_GOAL && after >= DAILY_GOAL){ const g = S.state.goalHit || (S.state.goalHit = {}); if(!g[t]){ g[t] = true; chime(); S.flash = "🎉 Bugünkü 100 dakika tamam! Bundan sonrası bonus."; if(S.sess && CTXS[S.sess.ctx].audio) say("Tebrikler! Bugünkü yüz dakika tamam.", "tr"); } }
+  if(before < DAILY_GOAL && after >= DAILY_GOAL){ const g = S.state.goalHit || (S.state.goalHit = {}); if(!g[t]){ g[t] = true; chime(); S.flash = "🎉 Bugünkü 100 dakika tamam! Bundan sonrası bonus."; setTimeout(()=>{ try { confetti(140); sfx("up"); bigCelebrate("100 dakika tamam! 🎉", `🔥 ${streak()} günlük seri · bugün ${xpToday()} XP. Bundan sonrası bonus.`, "party"); } catch(e){} }, 400); if(S.sess && CTXS[S.sess.ctx].audio) say("Tebrikler! Bugünkü yüz dakika tamam.", "tr"); } }
 }
 function clock(){
   const now = Date.now();
@@ -5009,8 +5031,8 @@ function openChest(){
 }
 function renderQuests(){
   const qs = todayQuests(); const d = daily();
-  return `<section class="card"><div class="row between"><div class="kicker">Günlük görevler</div><span class="small muted">🧊 ${S.state.freezes ?? 1} dondurucu</span></div>
-    <div class="stack" style="margin-top:6px">${qs.map(q=>`<div class="quest"><span class="qi">${q.icon}</span><div style="flex:1"><div class="small"><b>${esc(q.t)}</b> <span class="muted">${q.v}/${q.goal}</span></div><div class="progress" style="margin:4px 0 0"><i style="width:${q.v/q.goal*100}%;${q.v>=q.goal?"background:var(--good)":""}"></i></div></div>${q.v>=q.goal?"✅":""}</div>`).join("")}</div>
+  return `<section class="card"><div class="row between"><div class="kicker">Günlük görevler</div><span class="small muted" title="Bir gün çalışamazsan serin bozulmaz">🧊 ${S.state.freezes ?? 1} seri koruyucu</span></div>
+    <div class="stack" style="margin-top:6px">${qs.map(q=>`<div class="quest ${q.v>=q.goal?"qdone":""}"><span class="qi">${q.icon}</span><div style="flex:1"><div class="small"><b>${esc(q.t)}</b> <span class="muted">${q.v}/${q.goal}</span></div><div class="progress" style="margin:4px 0 0"><i style="width:${q.v/q.goal*100}%;${q.v>=q.goal?"background:var(--good)":""}"></i></div></div>${q.v>=q.goal?"✅":""}</div>`).join("")}</div>
     ${d.chestReady && !d.chestOpened ? `<button class="btn primary block chestbtn" data-act="openChest">🎁 Sandığı aç</button>` : d.chestOpened ? `<p class="small muted">🎁 Bugünün sandığı açıldı.</p>` : ""}</section>`;
 }
 
@@ -5365,7 +5387,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-10m";
+const APP_VER = "2026-11-10o";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -8279,14 +8301,15 @@ function heroV3(q, w, d){
       </div>
     </div>
     <div class="h3bar" title="Seviye ilerlemesi"><i style="width:${Math.round(L.into/L.need*100)}%"></i></div>
-    <div class="h3barlbl"><span>Lv ${L.l}</span><span>${L.into}/${L.need} XP</span></div>
+    <div class="h3barlbl"><span>Lv ${L.l}</span><span>Sonraki seviyeye ${Math.max(0, L.need - L.into)} XP</span></div>
   </section>`;
 }
 function ctxV3(){
   const g = guessCtx(); const others = Object.keys(CTXS).filter(k=>k !== g);
   const [t, sub] = CTX_SHORT[g] || [CTXS[g].label, ""];
-  return `<section class="cxwrap">
+  return `<section class="card cxcard">
     <button class="cx main c-${g}" data-act="sessStart" data-c="${g}"><span class="cxi" aria-hidden="true">${CTXS[g].icon}</span><span class="cxt"><b>${esc(t)} başla</b><em>${esc(sub)}</em></span><span class="cxgo" aria-hidden="true">▶</span></button>
+    <div class="cxlbl">Başka yerdeysen</div>
     <div class="cxgrid">${others.map(k=>`<button class="cx sm c-${k}" data-act="sessStart" data-c="${k}"><span class="cxi" aria-hidden="true">${CTXS[k].icon}</span><b>${esc((CTX_SHORT[k]||[CTXS[k].label])[0])}</b></button>`).join("")}</div>
   </section>`;
 }
