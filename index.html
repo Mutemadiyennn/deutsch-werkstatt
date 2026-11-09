@@ -4784,6 +4784,13 @@ function srFail(code){ if(["not-allowed","service-not-allowed","audio-capture","
 /* --- kurulum ekranı --- */
 function renderKurulum(){
   const K = S.setup || (S.setup = {});
+  /* yeni cihaz: sadece Google girişi; uzun kurulum gizli */
+  if(STANDALONE && syCfg() && !SY.user && !KEYS.gem && !S.state.setupDone && !S.fullSetup) return `<section class="card hl" style="text-align:center">
+    ${brezi("happy",72)}<h2>Meine Deutsch-Werkstatt</h2>
+    <p>Google hesabınla giriş yap; ilerlemen ve ayarların kendiliğinden gelir.</p>
+    <button class="btn primary block" style="min-height:56px" data-act="sySignIn" ${SY.app ? "" : "disabled"}>${SY.app ? "Google ile giriş yap" : "Hazırlanıyor…"}</button>
+    ${SY.err ? `<div class="fb no">${esc(SY.err)}</div>` : ""}
+    <button class="btn ghost small" style="margin-top:10px" data-act="fullSetup">İlk kez mi kuruyorsun? Kurulumu göster</button></section>`;
   const gemOK = !!KEYS.gem, pexOK = !!KEYS.pex;
   return `<section class="card hl"><div class="row" style="gap:12px;flex-wrap:nowrap">${brezi("happy",60)}<div><div class="kicker">Kurulum</div><h2>Uygulamanı hazırlayalım</h2><p class="small muted">Anahtarlar sadece bu telefonda, bu tarayıcıda saklanır. Kimseyle paylaşılmaz.</p></div></div></section>
   ${sySetupHtml()}
@@ -5614,7 +5621,7 @@ function personaVo(pid){ if(!neuOn() || !NEU.list) return undefined; const g = P
 const FB_VER = "10.12.2";
 const SY = { mods:null, app:null, auth:null, db:null, user:null, ready:false, busy:false, err:"", msg:"", t:null, dirty:false, dirtyAt:0, applying:false, loading:null };
 /* sahibinin Firebase bağlantı bilgisi (gizli değil: güvenlik veritabanı kuralları ve giriş kilidiyle sağlanır); boşsa cihazda girilen kullanılır */
-const FB_DEFAULT = null;
+const FB_DEFAULT = {apiKey:"AIzaSyDU2GSwCowKMKWBOvTZdKQjCtxLsQFTlDg", authDomain:"deutsch-sync.firebaseapp.com", projectId:"deutsch-sync", storageBucket:"deutsch-sync.firebasestorage.app", messagingSenderId:"595639793001", appId:"1:595639793001:web:1da15f7299e7759537b9f8"};
 function syCfg(){ try { return JSON.parse(localStorage.getItem("dw-fbcfg") || "null") || FB_DEFAULT; } catch(e){ return FB_DEFAULT; } }
 function syParseCfg(txt){
   const g = k => { const m = String(txt).match(new RegExp(k + "[\"']?\\s*:\\s*[\"']([^\"']+)[\"']")); return m ? m[1].trim() : ""; };
@@ -6209,6 +6216,7 @@ Object.assign(ACT, {
   sySignOut(){ sySignOut(); },
   syCfgSave(){ syCfgSave(); },
   syCfgReset(){ localStorage.removeItem("dw-fbcfg"); SY.app = null; SY.loading = null; SY.err = ""; render(); },
+  fullSetup(){ S.fullSetup = true; render(); },
   gateCopy(){ if(SY.myHash) copyText(SY.myHash).then(ok=>toast(ok ? "📋 Kilit kodu kopyalandı. Claude'a gönder." : "Kopyalanamadı.", 2500)); },
   syCopyRulesLocked(){ if(SY.user) copyText(syRulesLocked(SY.user.uid)).then(ok=>toast(ok ? "📋 Kilitli kurallar kopyalandı." : "Kopyalanamadı.", 2000)); },
   syCopyRules(){ copyText(SY_RULES).then(ok=>toast(ok ? "📋 Kurallar kopyalandı." : "Kopyalanamadı.", 2000)); },
