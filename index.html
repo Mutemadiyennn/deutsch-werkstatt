@@ -5613,7 +5613,9 @@ function personaVo(pid){ if(!neuOn() || !NEU.list) return undefined; const g = P
    API anahtarları asla düz metin gitmez: kullanıcının şifresiyle (PBKDF2 + AES-GCM) cihazda kilitlenir. */
 const FB_VER = "10.12.2";
 const SY = { mods:null, app:null, auth:null, db:null, user:null, ready:false, busy:false, err:"", msg:"", t:null, dirty:false, dirtyAt:0, applying:false, loading:null };
-function syCfg(){ try { return JSON.parse(localStorage.getItem("dw-fbcfg") || "null"); } catch(e){ return null; } }
+/* sahibinin Firebase bağlantı bilgisi (gizli değil: güvenlik veritabanı kuralları ve giriş kilidiyle sağlanır); boşsa cihazda girilen kullanılır */
+const FB_DEFAULT = null;
+function syCfg(){ try { return JSON.parse(localStorage.getItem("dw-fbcfg") || "null") || FB_DEFAULT; } catch(e){ return FB_DEFAULT; } }
 function syParseCfg(txt){
   const g = k => { const m = String(txt).match(new RegExp(k + "[\"']?\\s*:\\s*[\"']([^\"']+)[\"']")); return m ? m[1].trim() : ""; };
   const c = {apiKey:g("apiKey"), authDomain:g("authDomain"), projectId:g("projectId"), appId:g("appId"), storageBucket:g("storageBucket"), messagingSenderId:g("messagingSenderId")};
@@ -5707,7 +5709,7 @@ async function syPush(force){
       const use = (R && R.use) || {}; use[syDev()] = neuUsage();
       batch.set(metaRef, {ts:now, dev:syDev(), h, use, wc:S.words.length, xp:(xpState().total || 0)});
       await batch.commit();
-      sySetMeta({ts:now, h}); SY.dirty = false; SY.err = ""; SY.last = now; syStoreUse(use);
+      sySetMeta({ts:now, h}); SY.dirty = false; SY.err = ""; SY.last = now; syStoreUse(use); syKeysAutoSave();
     }
   }catch(e){ SY.err = syErrMsg(e); }
   SY.busy = false;
@@ -5783,6 +5785,41 @@ async function syKeysLoad(){
   }catch(e){ SY.kmsg = {ok:false, msg: syErrMsg(e)}; }
   const el = $("#syPass"); if(el) el.value = ""; render();
 }
+/* anahtarlar: hesabına şifreli kaydedilir, yeni cihazda girişle kendiliğinden gelir.
+   Veritabanı kuralları sadece senin hesabının okumasına izin verir; ayrıca hesabına bağlı bir anahtarla şifrelenir. */
+async function syAutoKey(){ const base = await crypto.subtle.importKey("raw", new TextEncoder().encode("dw-keys-v1|" + SY.user.uid), "PBKDF2", false, ["deriveKey"]); return crypto.subtle.deriveKey({name:"PBKDF2", salt:new TextEncoder().encode("deutsch-werkstatt|" + ((syCfg() || {}).projectId || "")), iterations:120000, hash:"SHA-256"}, base, {name:"AES-GCM", length:256}, false, ["encrypt", "decrypt"]); }
+function syLocalKeys(){ return {gem:KEYS.gem, pix:KEYS.pix, pex:KEYS.pex, tts:KEYS.tts}; }
+async function syKeysAutoSave(){
+  if(!SY.user || !SY.gateOk && gateOn()) return;
+  const keys = syLocalKeys(); if(!Object.values(keys).some(Boolean)) return;
+  const kh = syHash(JSON.stringify(keys)); if(localStorage.getItem("dw-kh") === kh) return;
+  try{
+    const iv = crypto.getRandomValues(new Uint8Array(12)); const k = await syAutoKey();
+    const ct = new Uint8Array(await crypto.subtle.encrypt({name:"AES-GCM", iv}, k, new TextEncoder().encode(JSON.stringify(keys))));
+    await SY.mods.fs.setDoc(syRef("_keysA"), {iv:syB64(iv), ct:syB64(ct), ts:Date.now()});
+    localStorage.setItem("dw-kh", kh);
+  }catch(e){}
+}
+async function syKeysAutoLoad(){
+  if(!SY.user) return 0;
+  const cur = syLocalKeys(); if(cur.gem && cur.pix && (cur.tts || cur.pex)) return 0;
+  try{
+    const d = await SY.mods.fs.getDoc(syRef("_keysA")); if(!d.exists()) return 0;
+    const x = d.data(); const k = await syAutoKey();
+    const keys = JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM", iv:syUnB64(x.iv)}, k, syUnB64(x.ct))));
+    const map = {gem:"dw-gemini", pix:"dw-pixabay", pex:"dw-pexels", tts:"dw-gtts"}; let n = 0;
+    for(const kk in map){ if(keys[kk] && !cur[kk]){ localStorage.setItem(map[kk], keys[kk]); n++; } }
+    if(n){ localStorage.removeItem("dw-gtts-voices"); NEU.list = null; NEU.off = false; GEM.models = null; AI = KEYS.gem ? GeminiAI : null; AI_OFF = false; CAN_IMG = !!AI; localStorage.setItem("dw-kh", syHash(JSON.stringify(syLocalKeys()))); }
+    return n;
+  }catch(e){ return 0; }
+}
+async function syAfterLogin(){
+  await syPull();
+  const n = await syKeysAutoLoad();
+  syKeysAutoSave();
+  if(n) S.flash = "🔑 Anahtarların bu cihaza geldi.";
+  if(["kilit","kurulum"].includes(S.view) && KEYS.gem && S.state.setupDone) go("plan"); else render();
+}
 async function syCfgSave(){
   const c = syParseCfg(($("#fbCfg") || {}).value || "");
   if(!c){ SY.err = "Ayarlar okunamadı. Firebase'in verdiği firebaseConfig bloğunun tamamını yapıştır (apiKey, authDomain, projectId, appId içermeli)."; render(); return; }
@@ -5838,10 +5875,7 @@ function sySetupHtml(){
       <pre class="small" style="white-space:pre-wrap;user-select:all">${esc(syRulesLocked(SY.user.uid))}</pre>
       <button class="btn small" data-act="syCopyRulesLocked">📋 Kopyala</button></details>
     ${gateLockHtml()}
-    <h4 style="margin-top:12px">🔐 API anahtarlarım</h4>
-    <p class="small">Anahtarların sadece senin bildiğin bir şifreyle bu cihazda kilitlenip hesabına öyle gider. Şifreyi kimse göremez, ben de. Unutursan anahtarları yeniden girersin; ilerlemen kaybolmaz.</p>
-    <input type="text" id="syPass" placeholder="Anahtar şifren (en az 8 karakter)" autocomplete="off" autocapitalize="off" spellcheck="false" style="-webkit-text-security:disc" data-1p-ignore data-lpignore="true">
-    <div class="grid2"><button class="btn" data-act="syKeysSave">🔐 Şifrele ve kaydet</button><button class="btn" data-act="syKeysLoad">🔑 Bu cihaza getir</button></div>
+    <p class="small muted" style="margin-top:8px">🔐 API anahtarların hesabına şifreli olarak kendiliğinden kaydedilir; yeni bir cihazda Google ile giriş yapınca otomatik gelir. Onları sadece senin Google hesabın açabilir. Google hesabında iki adımlı doğrulamanın açık olması önerilir.</p>
     ${SY.kmsg ? `<div class="fb ${SY.kmsg.ok ? "ok" : "no"} small">${esc(SY.kmsg.msg)}</div>` : ""}</section>`;
 }
 if(STANDALONE && syCfg()) setTimeout(()=>{ syInit().then(()=>{ if(S.view === "kurulum") render(); }); }, 300);
@@ -5869,8 +5903,8 @@ async function gateAuth(u){
     }
     SY.user = u; SY.gateOk = true; SY.gateDenied = false;
     try { localStorage.setItem("dw-gate", JSON.stringify({h, t:Date.now()})); } catch(e){}
-    if(S.view === "kilit"){ go(S.state.setupDone && KEYS.gem ? "plan" : "kurulum"); } else if(S.view === "kurulum") render();
-    syPull();
+    if(S.view === "kurulum") render();
+    syAfterLogin();
   } else {
     SY.user = null; SY.gateOk = false;
     if(gateOn()){ try { localStorage.removeItem("dw-gate"); } catch(e){} SY.gateDenied = true; route(); }
