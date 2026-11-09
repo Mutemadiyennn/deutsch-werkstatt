@@ -759,6 +759,17 @@ body.lesson main>.fbar+.card{margin-top:10px}
 .qbtn:active{background:var(--soft)}
 .qgo{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:.75rem;color:#fff;background:linear-gradient(145deg,#FFB547,#FF7A1A);box-shadow:0 2px 0 #C2600A;flex:none}
 .quest.qdone{padding:6px}
+.dkq{border-left:4px solid var(--accent);padding:6px 0 6px 12px;margin-top:6px}
+.dkask{font-size:1.35rem;font-weight:800;margin:4px 0 0;font-family:var(--font-display)}
+.dklive{display:flex;align-items:center;gap:10px;font-size:1rem;padding:10px 12px;border-radius:14px;background:var(--soft)}
+.dkres{border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.dkres.ok{background:var(--good-bg);color:var(--ink)}.dkres.ok .dkv{color:var(--good)}
+.dkres.close{background:var(--warn-bg)}.dkres.close .dkv{color:var(--warn)}
+.dkres.no{background:var(--bad-bg)}.dkres.no .dkv{color:var(--bad)}
+.dkres.skip{background:var(--soft)}
+.dkv{font-weight:800;font-size:1.1rem}
+.dkans{font-size:1.35rem;font-weight:800}
+body.insess::before,body.focus::before{height:calc(env(safe-area-inset-top) + 14px)!important;background:var(--paper)!important}
 </style>
 </head>
 <body>
@@ -974,7 +985,7 @@ const pick = (a,n) => shuffle(a).slice(0,n);
 const artCls = a => ["der","die","das"].includes(a) ? a : "";
 const isNoun = w => ["der","die","das"].includes(w.artikel);
 const phraseRow = (de, tr) => { tr = qfix(de, tr); return `<div class="ex row between" style="flex-wrap:nowrap;align-items:flex-start"><div><div class="de">${esc(de)}</div><div class="tr">${esc(tr)}</div></div><button class="btn small ghost" data-act="savePhrase" data-de="${esc(de)}" data-tr="${esc(tr)}" title="Kalıbı kartlarıma ekle" aria-label="Kalıbı kartlarıma ekle">+ Kart</button></div>`; };
-const wordLabel = w => (w.artikel ? `<span class="art ${artCls(w.artikel)}">${esc(w.artikel)}</span> ` : "") + esc(w.de);
+const wordLabel = w => (w.artikel ? `<span class="art ${artCls(w.artikel)}">${esc(w.artikel)}</span> ` : "") + esc(w.artikel ? String(w.de||"").replace(/^(der|die|das)\s+/i, "") : w.de);
 
 /* ================= state ================= */
 const S = {
@@ -1093,7 +1104,7 @@ function profile(){
   const about = (S.state.about || "").trim() || DEFAULT_ABOUT;
   const name = (S.state.name || "").trim();
   return `LERNER${name ? " (Name: "+name+")" : ""}: ${about}
-NIVEAU: ${typeof stage === "function" ? ["","A1-A2 (A1 fast sicher)","A2","A2-B1","B1"][stage().n] : "A2"}. ZIEL: in 6 Monaten frei und sicher mit Menschen in Bayern sprechen, im Job und im Alltag; B1-Prüfung.
+TÜRKISCH: alle türkischen Texte in fehlerfreier Rechtschreibung (z. B. "fiil" = Verb, "özne", "nesne"). NIVEAU: ${typeof stage === "function" ? ["","A1-A2 (A1 fast sicher)","A2","A2-B1","B1"][stage().n] : "A2"}. ZIEL: in 6 Monaten frei und sicher mit Menschen in Bayern sprechen, im Job und im Alltag; B1-Prüfung.
 HEUTIGES THEMA: ${cur.d.topic}
 SCHON GELERNTE THEMEN: ${doneTopics().join("; ") || "-"}
 SEINE TYPISCHEN FEHLER:
@@ -1159,7 +1170,7 @@ async function addWords(list){
   let n = 0;
   for(const w of (list||[])){
     if(!w || !w.de) continue;
-    const de = String(w.de).trim();
+    let de = String(w.de).trim(); const m0 = de.match(/^(der|die|das)\s+(.+)$/i); if(m0){ de = m0[2]; if(!w.artikel) w = {...w, artikel:m0[1].toLowerCase()}; }
     if(S.words.some(x => norm(x.de) === norm(de) && (x.artikel||"") === (w.artikel||""))) continue;
     await Store.put("words", {id:uid("w"), de, artikel:["der","die","das"].includes(w.artikel)? w.artikel : "", plural:String(w.plural||""), tr:String(w.tr||""), note:String(w.note||""), kind:String(w.kind || (["der","die","das"].includes(w.artikel)? "nomen":"andere")), right:0, wrong:0, box:0, due:dayKey(), added:new Date().toISOString()});
     n++;
@@ -5112,9 +5123,13 @@ HEUTIGER MECHANISMUS: ${denkTopic()}
 BISHER GELERNT (Denk-Lektionen): ${(st.sum||[]).slice(-6).join(" | ") || "-"}
 REGELN: Erkläre auf Türkisch, sehr kurz und freundlich, wie ein Lehrer, der neben ihm sitzt. Nutze Englisch als Brücke, wo es hilft. Baue Schritt für Schritt auf: jeder Schritt benutzt, was vorher kam, und fügt EINE Kleinigkeit hinzu. Der Lerner soll die Sätze selbst durch Logik bilden, nicht auswendig. Am Anfang leicht, am Ende ein langer Satz, den er jetzt bauen kann. Benutze Wörter des Tages, wenn sie passen.
 Deutsche Wörter innerhalb türkischer Erklärungen in ⟦ ⟧ setzen.
+STRENG: "say" ist TÜRKISCH (deutsche Wörter nur in ⟦ ⟧). "ask" ist ein TÜRKISCHER Satz und enthält NIE die deutsche Lösung. "ans" ist die deutsche Lösung. Der Lerner muss "ans" selbst bilden.
+BEISPIEL-SCHRITT: {"say":"Almancada fiil cümlede hep 2. sırada durur, İngilizcedeki ⟦I work⟧ gibi: ⟦ich arbeite⟧.","ask":"Bugün çalışıyorum.","ans":"Heute arbeite ich.","why":"Cümle 'bugün' ile başladı; fiil yine 2. sırada kaldı, özne arkasına geçti."}
 Antworte NUR mit JSON: {"title":"…","steps":[{"say":"Erklärung Türkisch (1-2 Sätze, mit ⟦deutsch⟧)","ask":"türkischer Satz, den er auf Deutsch bilden soll","ans":"deutsche Lösung","why":"1 kurzer Satz Türkisch: warum so (Logik)"}],"summary":"1 Satz Deutsch: was gelernt wurde"}
 12-15 Schritte.`, {tier:"default"});
     if(!r || !(r.steps||[]).length) throw {code:"invalid_json"};
+    r.steps = await denkVet(r.steps);
+    if(r.steps.length < 5) throw {code:"invalid_json"};
     S.denk.data = r;
   }catch(e){ S.denk.err = aiMsg(e); }
   S.denk.busy = false; render();
@@ -5391,7 +5406,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-10q";
+const APP_VER = "2026-11-10s";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -8505,6 +8520,179 @@ Object.assign(ACT, {
   };
   VIEWS.kelime = () => renderKelime();
   Object.assign(ACT, { vRetry(){ daily().vocab = false; Store.saveState(); startVocab(); } });
+}
+
+/* ================= Düşün ve kur v2: adım denetimi + cevabını ölçen sistem ================= */
+const DK_TR = /[çğışöüÇĞİŞÖÜ]|\b(ben|sen|biz|siz|onlar|bir|ve|bu|şu|mı|mi|mu|mü|musun|misin|değil|var|yok|için|ile|çok|ama|ne|nasıl|neden|bugün|yarın|dün)\b/i;
+const DK_DE = /\b(ich|du|wir|ihr|sie|er|es|ist|bin|bist|sind|habe|hast|hat|der|die|das|und|nicht|kein|auf|mit|schon|sag|heute|morgen|gern)\b/i;
+function dkStrip(t){ return String(t||"").replace(/⟦[^⟧]*⟧/g, " "); }
+function dkBad(st){
+  const ask = String(st.ask||"").trim(), ans = String(st.ans||"").trim();
+  if(!ask || !ans) return "boş";
+  if(norm(ask).includes(norm(ans)) || (norm(ans).length > 4 && lev(norm(ask), norm(ans)) <= 2)) return "soru cevabı içeriyor";
+  if(!DK_TR.test(ask) && DK_DE.test(ask)) return "soru Almanca";
+  const say = dkStrip(st.say);
+  if(say.trim() && !DK_TR.test(say) && DK_DE.test(say)) return "açıklama Almanca";
+  return "";
+}
+async function denkVet(steps){
+  steps = (steps||[]).filter(x=>x && typeof x === "object");
+  const bad = steps.map((st,i)=>({i, why:dkBad(st)})).filter(x=>x.why);
+  if(bad.length && aiReady()){
+    try{
+      const r = await askJSON(`Du korrigierst Schritte einer "Language Transfer"-Lektion für einen türkischen Deutschlerner. Regeln: "say" = kurze Erklärung auf TÜRKISCH (deutsche Wörter nur in ⟦ ⟧). "ask" = ein TÜRKISCHER Satz, den er auf Deutsch bilden soll; er darf die Lösung NICHT enthalten. "ans" = die deutsche Lösung. "why" = 1 kurzer Satz Türkisch.
+Repariere diese Schritte (gleiche Reihenfolge, gleiche Lernabsicht): ${JSON.stringify(bad.map(b=>steps[b.i]))}
+Antworte NUR mit JSON: {"steps":[{"say":"…","ask":"…","ans":"…","why":"…"}]}`, {tier:"quick"});
+      (r && r.steps || []).forEach((fx, k)=>{ const b = bad[k]; if(b && fx && !dkBad(fx)) steps[b.i] = fx; });
+    }catch(e){}
+  }
+  return steps.filter(st=>!dkBad(st));
+}
+function denkMicOk(){ return (typeof mic2Ok === "function" && mic2Ok()) || useSR(); }
+function dkNorm(t){ return norm(t).replace(/ß/g,"ss").replace(/[.,!?;:"'„“]/g,"").replace(/\s+/g," ").trim(); }
+async function denkJudge(st, said){
+  const a = dkNorm(st.ans), u = dkNorm(said);
+  if(!u) return {verdict:"wrong", better:st.ans, why_tr:"Cevap anlaşılamadı."};
+  if(a === u) return {verdict:"ok"};
+  try{
+    const r = await askJSON(`Bewerte die Antwort eines türkischen Deutschlerners (A1-A2). Aufgabe (Türkisch): "${st.ask}". Erwartete Lösung: "${st.ans}". Regel der Lektion: "${dkStrip(st.why)}".
+Antwort des Lerners (Spracherkennung; Groß-/Kleinschreibung, Satzzeichen und kleine Erkennungsfehler ignorieren): "${said}".
+"ok" = korrektes, natürliches Deutsch mit derselben Bedeutung (andere korrekte Wortstellungen/Varianten zählen auch). "close" = verständlich, aber genau ein kleiner Fehler (Endung, Artikel, Wortstellung). "wrong" = falsch oder andere Bedeutung.
+Antworte NUR mit JSON: {"verdict":"ok|close|wrong","better":"korrigierte Version SEINES Satzes (bei ok: sein Satz)","why_tr":"1 kurzer Satz Türkisch: was genau falsch ist (bei ok: leer)","topic":"eine von: ${MTOPICS.join(", ")}"}`, {tier:"quick"});
+    if(r && ["ok","close","wrong"].includes(r.verdict)) return r;
+  }catch(e){}
+  const sim = 1 - lev(a, u) / Math.max(a.length, u.length, 1);
+  return sim >= 0.92 ? {verdict:"ok"} : sim >= 0.75 ? {verdict:"close", better:st.ans, why_tr:"Neredeyse; doğrusuyla karşılaştır."} : {verdict:"wrong", better:st.ans, why_tr:""};
+}
+async function denkEval(D, said){
+  const st = D.data.steps[D.i]; D.said = said; D.phase = "check"; render();
+  const r = await denkJudge(st, said); if(S.denk !== D) return;
+  D.res = r; D.tries = (D.tries||0) + 1;
+  const sc = D.score || (D.score = {ok:0, close:0, wrong:0}); sc[r.verdict] = (sc[r.verdict]||0) + 1;
+  if(r.verdict === "ok"){ sfx("ok"); addXP(3); }
+  else { sfx("no"); if(r.verdict === "close") addXP(1);
+    try { await addMistakes([{wrong:said, right:r.better && r.verdict === "close" ? r.better : st.ans, rule_tr:r.why_tr || dkStrip(st.why), topic:r.topic || "Wortstellung"}], "düşün ve kur"); } catch(e){} }
+  D.phase = "ans"; render();
+}
+async function denkListen(D){
+  D.listening = true; D.live = ""; D.micErr = ""; render();
+  try{ const alts = await recognize(t=>{ D.live = t; const el = $("#dkLive"); if(el) el.textContent = t; }); D.listening = false; return (alts && alts[0]) || ""; }
+  catch(e){ D.listening = false; if(e && e.code !== "cancel") D.micErr = micMsg(e.code); render(); return ""; }
+}
+denkRun = async function(){
+  const D = S.denk; if(!D || !D.data) return; primeTTS();
+  D.playing = true; const run = (D.run = (D.run||0)+1); const alive = () => S.denk === D && D.run === run && D.playing;
+  while(alive() && D.i < D.data.steps.length){
+    const st = D.data.steps[D.i];
+    if(D.phase === "say"){ D.res = null; D.said = ""; D.tries = 0; D.typing = false; render(); if(dkStrip(st.say).trim() || st.say) await sayMixed(st.say); if(!alive()) return; D.phase = "ask"; }
+    if(D.phase === "ask"){ render(); await say(st.ask, "tr"); if(!alive()) return;
+      if(!D.auto){ D.playing = false; render(); return; }
+      if(denkMicOk()){ const said = await denkListen(D); if(!alive()) return; if(said) await denkEval(D, said); else { D.res = {verdict:"skip"}; D.phase = "ans"; } }
+      else { await sleep(Math.max(5000, st.ans.length*140)); D.res = {verdict:"skip"}; D.phase = "ans"; }
+      if(!alive()) return; }
+    if(D.phase === "check"){ D.playing = false; return; }
+    if(D.phase === "ans"){ render(); const v = D.res && D.res.verdict;
+      if(v === "ok") await say("Richtig!", "de"); else if(v === "close") await say("Fast.", "de"); else if(v === "wrong") await say("Nicht ganz.", "de");
+      if(!alive()) return; await say(st.ans, "de"); if(!alive()) return; await sleep(400);
+      if(v !== "ok" || D.auto){ await sayMixed(st.why); if(!alive()) return; }
+      if(!D.auto){ D.playing = false; D.waitNext = true; render(); return; }
+      await sleep(900); D.i++; D.phase = "say"; addXP(1); }
+  }
+  if(alive() && D.i >= D.data.steps.length) denkFinish();
+};
+renderDenk = (()=>{ const _old = renderDenk; return function(){
+  const D = S.denk;
+  if(!D || D.busy || D.err || D.finished || !D.data) {
+    if(D && D.finished && D.score){ const sc = D.score, tot = sc.ok + sc.close + sc.wrong; return `<section class="card hl" style="text-align:center;align-items:center">${brezi(sc.ok >= tot*0.7 ? "party" : "happy",80)}<h2>Ders bitti!</h2><p>${esc(D.data.summary||"")}</p>${tot ? `<div class="sumstats" style="width:100%"><div><b>${sc.ok}</b><span>doğru</span></div><div><b>${sc.close}</b><span>neredeyse</span></div><div><b>${sc.wrong}</b><span>yanlış</span></div></div>` : ""}<p class="small muted">Yanlış ve "neredeyse" olanlar Hatalarım'a eklendi; birkaç gün içinde tekrar karşına çıkacak.</p>${continueBtn()}</section>`; }
+    return _old();
+  }
+  const st = D.data.steps[D.i]; const n = D.data.steps.length; const r = D.res || {};
+  const head = `<section class="card hl"><div class="row between"><div class="kicker">Düşün ve kur · ${esc(D.data.title||"")}</div><span class="small muted">${D.i+1}/${n}</span></div>
+    <div class="progress"><i style="width:${D.i/n*100}%"></i></div>
+    ${st.say ? `<p style="font-size:1.05rem;margin-top:6px">${segHtml({lang:"tr", text:st.say})}</p>` : ""}`;
+  if(D.phase === "say") return head + `<button class="btn primary block" style="min-height:56px" data-act="denkPlay">${D.playing ? "⏸ Durdur" : "▶ Başla"}</button></section>`;
+  const q = `<div class="dkq"><div class="small muted">Almancası ne? Önce düşün, sonra söyle:</div><p class="dkask">${esc(st.ask)}</p></div>`;
+  if(D.phase === "ask"){
+    const mic = denkMicOk();
+    return head + q + (D.listening ? `<div class="dklive"><span class="spin"></span> Dinliyorum… <span id="dkLive" class="de">${esc(D.live||"")}</span></div>` : "")
+      + (D.micErr ? `<div class="note">${esc(D.micErr)}</div>` : "")
+      + (D.typing ? `<input type="text" id="dkIn" class="de" placeholder="Almanca yaz…" autocomplete="off" autocapitalize="sentences" spellcheck="false" enterkeyhint="done" onkeydown="if(event.key==='Enter'){event.preventDefault();ACT.denkTyped();}"><button class="btn primary block" data-act="denkTyped">Kontrol et</button>`
+        : `<button class="lbtn ${D.listening ? "warn mic live" : "go"}" style="width:100%;min-height:64px;font-size:1.15rem" data-act="${mic ? "denkMic" : "denkType"}">${D.listening ? "⏹ Bitirdim" : mic ? "🎤 Söyle" : "⌨️ Yaz"}</button>`)
+      + `<div class="grid2">${!D.typing && mic ? `<button class="btn" data-act="denkType">⌨️ Yazarak</button>` : `<span></span>`}<button class="btn ghost" data-act="denkShow">Bilmiyorum, göster</button></div>
+      <button class="btn small ghost" data-act="denkAuto">${D.auto ? "🚗 Eller serbest: açık" : "🚗 Eller serbest (sor, dinle, değerlendir)"}</button></section>`;
+  }
+  if(D.phase === "check") return head + q + `<div class="dklive"><span class="spin"></span> Değerlendiriyorum… <span class="de">„${esc(D.said)}“</span></div></section>`;
+  const v = r.verdict; const cls = v === "ok" ? "ok" : v === "close" ? "close" : v === "wrong" ? "no" : "skip";
+  const label = v === "ok" ? "✓ Doğru!" : v === "close" ? "≈ Neredeyse" : v === "wrong" ? "✗ Tam değil" : "Cevap";
+  return head + q + `<div class="dkres ${cls}"><div class="dkv">${label}</div>
+      ${D.said && v !== "skip" ? `<div class="small">Sen: <span class="de">„${esc(D.said)}“</span></div>` : ""}
+      ${v === "close" && r.better && dkNorm(r.better) !== dkNorm(st.ans) ? `<div class="small">Düzeltilmiş: <b class="de">${esc(r.better)}</b></div>` : ""}
+      <div class="dkans de">${esc(st.ans)}</div>
+      ${r.why_tr ? `<div class="small">${esc(r.why_tr)}</div>` : ""}
+      <div class="small muted">${segHtml({lang:"tr", text:st.why})}</div></div>
+    ${D.playing ? `<button class="btn block" data-act="denkPlay">⏸ Durdur</button>` : `<div class="grid2">${v === "close" && (D.tries||0) < 2 ? `<button class="btn" data-act="denkRetry">↻ Bir daha dene</button>` : `<button class="btn" data-act="denkHear">🔊 Tekrar dinle</button>`}<button class="btn primary" style="min-height:56px" data-act="denkNext">Devam →</button></div>`}</section>`;
+}; })();
+VIEWS.denk = () => renderDenk();
+Object.assign(ACT, {
+  denkMic(){ const D = S.denk; if(!D) return; if(D.listening){ try { if(typeof micCancel === "function" && REC_CUR && REC_CUR.stop) REC_CUR.stop(); } catch(e){} return; }
+    D.playing = false; D.run = (D.run||0) + 1; (async()=>{ const said = await denkListen(D); if(said) await denkEval(D, said); else render(); if(S.denk === D && D.phase === "ans"){ D.playing = true; const run = ++D.run; const st = D.data.steps[D.i]; const v = D.res && D.res.verdict; try { await say(st.ans, "de"); } catch(e){} if(S.denk === D && D.run === run){ D.playing = false; render(); } } })(); },
+  denkType(){ const D = S.denk; if(!D) return; D.typing = true; render(); setTimeout(()=>{ const el = $("#dkIn"); if(el) el.focus(); }, 50); },
+  denkTyped(){ const D = S.denk; const v = (($("#dkIn")||{}).value || "").trim(); if(!D || !v) return; D.typing = false; denkEval(D, v); },
+  denkShow(){ const D = S.denk; if(!D) return; D.res = {verdict:"skip"}; D.phase = "ans"; const sc = D.score || (D.score = {ok:0, close:0, wrong:0}); sc.wrong++; D.playing = false; render(); const st = D.data.steps[D.i]; say(st.ans, "de"); },
+  denkRetry(){ const D = S.denk; if(!D) return; D.phase = "ask"; D.res = null; D.said = ""; render(); },
+  denkHear(){ const D = S.denk; if(!D) return; const st = D.data.steps[D.i]; say(st.ans, "de", deRate()*0.9); },
+  denkNext(){ const D = S.denk; if(!D) return; stopSpeech(); D.waitNext = false; D.i++; D.phase = "say"; addXP(1); if(D.i >= D.data.steps.length){ denkFinish(); return; } denkRun(); }
+});
+
+/* ================= Alıştırma üretimi: bozuk/eksik cevaplara dayanıklı, asla boş kalmaz ================= */
+function exNormalize(r){
+  const arr = Array.isArray(r) ? r : (r && (r.items || r.exercises || r.uebungen || r["übungen"] || r.aufgaben || r.tasks)) || [];
+  const K = {gap:"gap", "lücke":"gap", luecke:"gap", fill:"gap", cloze:"gap", fill_in:"gap", choice:"choice", mc:"choice", multiple_choice:"choice", multiplechoice:"choice", order:"order", satzbau:"order", word_order:"order", fix:"fix", korrektur:"fix", correct:"fix", correction:"fix"};
+  return arr.map(it=>{
+    if(!it || typeof it !== "object") return null;
+    const k = K[String(it.kind || it.type || "").toLowerCase().trim().replace(/[\s-]+/g, "_")]; if(!k) return null;
+    const o = {...it, kind:k};
+    if(typeof o.answers === "string") o.answers = [o.answers];
+    if(k === "gap"){ if(!(o.answers||[]).length && o.answer) o.answers = [String(o.answer)]; if(!(o.answers||[]).length || !String(o.prompt||"").includes("___")) return null; }
+    if(k === "choice"){ if(!Array.isArray(o.options) || o.options.length < 2) return null; if(o.answer === undefined && (o.answers||[]).length) o.answer = o.answers[0]; if(!o.options.includes(o.answer)) return null; if(!String(o.prompt||"").includes("___")) return null; }
+    if(k === "order"){ if(!o.answer && (o.answers||[]).length) o.answer = o.answers[0]; if(!o.answer || String(o.answer).trim().split(/\s+/).length < 2) return null; }
+    if(k === "fix"){ if(!o.answer && (o.answers||[]).length) o.answer = o.answers[0]; if(!o.answer || !o.prompt) return null; }
+    return o;
+  }).filter(Boolean);
+}
+/* yapay zekâ hiç vermezse: dersin kendi örnek cümlelerinden yerel alıştırma */
+function exLocal(l){
+  const out = []; const words = (l.words||[]).map(w=>String(w.de||"").trim()).filter(Boolean);
+  for(const e of (l.examples||[])){
+    const de = String(e.de||"").trim(); if(!de) continue;
+    const w = words.find(x=>new RegExp("\\b" + x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i").test(de));
+    if(w && out.length % 2 === 0) out.push({kind:"gap", prompt:de.replace(new RegExp("\\b" + w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i"), "___"), answers:[w], hint:"", tr:String(e.tr||""), explain:"Dersin örnek cümlesi.", topic:"Wortschatz"});
+    else if(de.split(/\s+/).length >= 3) out.push({kind:"order", answer:de, tr:String(e.tr||""), explain:"Cümleyi kendin kur.", topic:"Wortstellung"});
+  }
+  for(const m of (l.focusItems||[])){ if(m && m.wrong && m.right) out.push({kind:"fix", prompt:m.wrong, answer:m.right, tr:"", explain:String(m.rule||""), topic:m.topic||"Grammatik", mid:m.id}); }
+  return out.slice(0, 8);
+}
+lessonToExercises = async function(){
+  const L = S.learn, l = L.lesson; if(!l) return; L.err = "";
+  if(l.kind === "preview"){ const items = l._items; const title = l.title2; L.lesson = null; startExercise(title, items, "local", "lernen"); return; }
+  if(l.kind === "lesson" && (l.words||[]).length && !l._added){ l._added = true; addWords(l.words); }
+  L.busy = true; L.busyText = "Alıştırmalar hazırlanıyor…"; render();
+  const mistakeMode = l.kind === "mistakes"; let items = [], err = null;
+  try { items = exNormalize(await preGet(exKey(l), bg => exGen(l, bg))); } catch(e){ err = e; }
+  if(items.length < 4 && aiReady()){ try { const again = exNormalize(await exGen(l, false)); if(again.length > items.length) items = again; } catch(e){ err = err || e; } }
+  if(items.length < 4){ items = items.concat(exLocal(l)); }
+  L.busy = false;
+  if(S.learn !== L) return;
+  if(items.length){ startExercise(l.title, items, mistakeMode ? "mistakes" : "lesson", "lernen"); return; }
+  L.err = err ? aiMsg(err) : "Alıştırma oluşturulamadı. Bir kez daha dene."; render();
+};
+
+/* yapay zekânın sık Türkçe yazım hataları (ör. "fiir" → "fiil") cevaplarda kendiliğinden düzelir */
+{
+  const TRFIX = [[/\bfiir(?=\b|[a-zçğıöşü])/g, "fiil"], [/\bFiir(?=\b|[a-zçğıöşü])/g, "Fiil"]];
+  const fixDeep = v => typeof v === "string" ? TRFIX.reduce((t,[re,to])=>t.replace(re,to), v) : Array.isArray(v) ? v.map(fixDeep) : (v && typeof v === "object") ? Object.fromEntries(Object.entries(v).map(([k,x])=>[k, fixDeep(x)])) : v;
+  const _aj = askJSON; askJSON = async function(){ return fixDeep(await _aj.apply(this, arguments)); };
+  if(typeof GeminiAI === "object" && GeminiAI && GeminiAI.json){ const _aij = GeminiAI.json.bind(GeminiAI); GeminiAI.json = async function(){ return fixDeep(await _aij.apply(null, arguments)); }; }
 }
 </script>
 </body>
