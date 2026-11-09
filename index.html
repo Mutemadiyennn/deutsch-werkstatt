@@ -245,6 +245,7 @@ details summary{cursor:pointer;font-weight:700}
 .wpop{background:var(--card);width:100%;max-width:560px;border-radius:20px 20px 0 0;padding:16px 16px 26px;box-shadow:0 -10px 30px rgba(0,0,0,.2);display:flex;flex-direction:column;gap:10px;animation:slideup .22s ease}
 @keyframes slideup{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
 .de,.vsent,.story,.chat .bub{cursor:pointer}
+#micPill{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));z-index:9999;padding:10px 18px;border-radius:999px;font-weight:700;font-size:1.05rem;box-shadow:0 4px 16px rgba(0,0,0,.18);pointer-events:none}#micPill.wait{background:#f4e3b5;color:#5a4410}#micPill.go{background:#2f7d4f;color:#fff}
 </style>
 </head>
 <body>
@@ -2851,18 +2852,41 @@ let REC_CUR = null;
 function micAbort(){ if(REC_CUR){ try { REC_CUR.abort(); } catch(e){} REC_CUR = null; }
   if(typeof PA !== "undefined" && PA.rec && PA.rec.state === "recording"){ try { PA.rec.onstop = null; PA.rec.stop(); } catch(e){} paCleanup(); if(S.pa) S.pa.phase = "idle"; } }
 function shStop(){ const H = S.sh; if(H){ H.busy = false; if(H.rec){ try { H.rec.abort(); } catch(e){} H.rec = null; } } }
+/* mikrofon gerçekten açılana kadar "bekle", açılınca "şimdi konuş" (+ kısa ses); sessizlikte kendini bitirir */
+function micPill(st){
+  let el = document.getElementById("micPill");
+  if(!st){ if(el) el.remove(); return; }
+  if(!el){ el = document.createElement("div"); el.id = "micPill"; document.body.appendChild(el); }
+  el.className = st; el.textContent = st === "wait" ? "⏳ Mikrofon açılıyor… bekle" : "🎤 Şimdi konuş";
+}
+function micTick(){
+  try{ ACX = ACX || new (window.AudioContext||window.webkitAudioContext)(); const o = ACX.createOscillator(), g = ACX.createGain(); o.frequency.value = 990; o.type = "sine"; o.connect(g); g.connect(ACX.destination);
+    const t0 = ACX.currentTime; g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(0.18, t0+0.015); g.gain.exponentialRampToValueAtTime(0.0001, t0+0.14); o.start(t0); o.stop(t0+0.16); }catch(e){}
+}
 function recognize(onLive){
   return new Promise((res, rej)=>{
     let r; try { r = new SRC(); } catch(e){ rej({code:"unsupported"}); return; }
     r.lang = "de-DE"; r.interimResults = true; r.maxAlternatives = 5; r.continuous = false;
-    let alts = [], err = null, live = "";
-    r.onresult = e => { live = ""; for(let i=0;i<e.results.length;i++) live += e.results[i][0].transcript + " "; onLive && onLive(live.trim());
-      const last = e.results[e.results.length-1]; if(last.isFinal){ const pre = Array.from(e.results).slice(0,-1).map(x=>x[0].transcript).join(" "); alts = Array.from(last).map(a=>(pre+" "+a.transcript).trim()); } };
+    let alts = [], err = null, live = "", done = false, ready = false, quiet = null, hard = null;
+    const finish = () => { if(done) return; done = true; clearTimeout(quiet); clearTimeout(hard); micPill(null);
+      if(S.sh && S.sh.rec === r) S.sh.rec = null; if(REC_CUR === r) REC_CUR = null;
+      if(!alts.length && live) alts = [live.trim()]; if(alts.length && !S.state.srOK){ S.state.srOK = true; Store.saveState(); }
+      if(err && !alts.length) rej({code:err}); else res(alts); };
+    const goReady = () => { if(ready || done) return; ready = true; micPill("go"); micTick(); };
+    r.onstart = () => { setTimeout(goReady, 500); };
+    r.onaudiostart = goReady;
+    r.onresult = e => { goReady(); live = ""; for(let i=0;i<e.results.length;i++) live += e.results[i][0].transcript + " "; onLive && onLive(live.trim());
+      const last = e.results[e.results.length-1]; if(last.isFinal){ const pre = Array.from(e.results).slice(0,-1).map(x=>x[0].transcript).join(" "); alts = Array.from(last).map(a=>(pre+" "+a.transcript).trim()); }
+      /* konuşma bitti ama iPhone dinlemeyi kapatmıyorsa: 2,5 sn sessizlikte bitir */
+      clearTimeout(quiet); quiet = setTimeout(()=>{ try { r.stop(); } catch(e){} }, 2500); };
     r.onerror = e => { err = e.error || "error"; };
-    r.onend = () => { if(S.sh) S.sh.rec = null; if(!alts.length && live) alts = [live.trim()]; if(alts.length && !S.state.srOK){ S.state.srOK = true; Store.saveState(); } if(err && !alts.length) rej({code:err}); else res(alts); };
+    r.onend = finish;
     if(S.sh) S.sh.rec = r; REC_CUR = r;
-    try { r.start(); } catch(e){ rej({code:"start"}); return; }
+    micPill("wait");
+    try { r.start(); } catch(e){ micPill(null); rej({code:"start"}); return; }
     setTimeout(()=>{ try { r.stop(); } catch(e){} }, 12000);
+    /* onend hiç gelmezse ekran "dinliyorum"da kalmasın */
+    hard = setTimeout(()=>{ try { r.abort(); } catch(e){} if(!alts.length && !live && !err) err = "no-speech"; finish(); }, 14500);
   });
 }
 function micMsg(code){
@@ -2877,7 +2901,7 @@ async function shPlay(slow){
   H.busy = true; H.phase = "listen"; H.res = null; H.live = ""; H.err = ""; render();
   if(slow) await saySlow(it.de); else await say(it.de, "de", deRate()); if(!S.sh || S.sh !== H || !H.busy) return;
   if(H.mic === "sr"){
-    H.phase = "rec"; render(); chime();
+    H.phase = "rec"; render();
     try{
       const alts = await recognize(txt => { H.live = txt; const el = $("#shLive"); if(el) el.textContent = txt; });
       if(S.sh !== H) return;
