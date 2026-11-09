@@ -5825,7 +5825,7 @@ async function syAfterLogin(){
   const n = await syKeysAutoLoad();
   syKeysAutoSave();
   if(n) S.flash = "🔑 Anahtarların bu cihaza geldi.";
-  if(["kilit","kurulum"].includes(S.view) && KEYS.gem && S.state.setupDone) go("plan"); else render();
+  if(["kilit","kurulum"].includes(S.view) && KEYS.gem && S.state.setupDone) go("plan"); else if(S.view === "kilit") go("kurulum"); else render();
 }
 async function syCfgSave(){
   const c = syParseCfg(($("#fbCfg") || {}).value || "");
@@ -5893,7 +5893,7 @@ function neuUseTotal(){ const m = dayKey().slice(0,7); let o = {}; try { o = JSO
 /* ================= Giriş kilidi: uygulama sadece sahibinin Google hesabıyla açılır ================= */
 /* İzinli hesap, kimliğinin geri çevrilemez özetiyle (SHA-256) tanınır; kodda kişisel bilgi yok.
    İnternetsiz kullanım için: bu cihazda son 30 gün içinde doğrulanmışsa açılır. */
-const GATE_ALLOW = [];
+const GATE_ALLOW = ["2a4fd738768c5609c205edf6dcd7dd72c2da1add10f40b3d013ffa70660e0135"];
 function gateOn(){ return STANDALONE && GATE_ALLOW.length > 0; }
 async function gateHash(uid){ const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("dw-gate|" + uid)); return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2, "0")).join(""); }
 function gateCache(){ try { const v = JSON.parse(localStorage.getItem("dw-gate") || "null"); return v && GATE_ALLOW.includes(v.h) && Date.now() - v.t < 30*864e5 ? v : null; } catch(e){ return null; } }
@@ -5910,7 +5910,7 @@ async function gateAuth(u){
     }
     SY.user = u; SY.gateOk = true; SY.gateDenied = false;
     try { localStorage.setItem("dw-gate", JSON.stringify({h, t:Date.now()})); } catch(e){}
-    if(S.view === "kurulum") render();
+    if(S.view === "kilit") route(); else if(S.view === "kurulum") render();
     syAfterLogin();
   } else {
     SY.user = null; SY.gateOk = false;
