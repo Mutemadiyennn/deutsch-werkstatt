@@ -2963,7 +2963,7 @@ function renderVoiceSettings(){
     <div class="row" style="flex-wrap:nowrap"><select id="vTr" data-change="voiceTr" style="flex:1">${opt(tr, cur.tr, "tr")}</select><button class="btn small" data-act="voiceTest" data-l="tr">Dene</button></div>
     <label class="lbl" for="vRate">Almanca hız</label>
     <select id="vRate" data-change="voiceRate">${[[0.75,"Yavaş"],[0.9,"Normal (önerilen)"],[1.0,"Doğal hız"]].map(([v,l])=>`<option value="${v}" ${deRate()===v?"selected":""}>${l}</option>`).join("")}</select>
-    ${STANDALONE ? `<div class="${KEYS.tts && !NEU.off ? "fb ok" : "note"} small">${KEYS.tts ? (NEU.off ? "Doğal ses şu an kapalı: " + esc(NEU.err || "") : "🎙️ Doğal ses açık (Google Chirp 3 HD). Bu ay " + neuUsage().n.toLocaleString("de-DE") + " / 1.000.000 karakter.") : "🎙️ İnsan gibi okuyan doğal sesler için: Kurulum → Doğal ses."} <button class="btn small" data-act="goSetup">Kurulum</button></div>` : ""}
+    ${STANDALONE ? `<div class="${KEYS.tts && !NEU.off ? "fb ok" : "note"} small">${KEYS.tts ? (NEU.off ? "Doğal ses şu an kapalı: " + esc(NEU.err || "") : "🎙️ Doğal ses açık (Google Chirp 3 HD). Bu ay " + neuUseTotal().toLocaleString("de-DE") + " / 1.000.000 karakter.") : "🎙️ İnsan gibi okuyan doğal sesler için: Kurulum → Doğal ses."} <button class="btn small" data-act="goSetup">Kurulum</button></div>` : ""}
     <div class="note small"><b>En doğal sesler için:</b> iPhone'da Ayarlar → Erişilebilirlik → Sesli İçerik → Sesler → Almanca → "Anna (Gelişmiş)" ya da Premium sesi indir; Türkçe için "Yelda (Gelişmiş)". Android'de Ayarlar → Metin okuma çıkışı → Google → Almanca ve Türkçe yüksek kaliteli sesleri indir. Sonra bu sayfayı yeniden aç.</div>
     <div class="note small"><b>Konuşma nasıl kontrol ediliyor?</b> Bu uygulama güvenli bir çerçevede çalışıyor ve sayfanın mikrofona doğrudan erişmesine izin verilmiyor (bu bir Claude güvenlik kuralı). Çözüm: <b>telefonun klavye diktesi</b>. Cevap kutusuna dokun, klavyedeki 🎤'a bas, Almanca konuş; telefon yazıya döker, uygulama kontrol eder. Bunun için bir kez: iPhone'da Ayarlar → Genel → Klavye → Klavyeler → <b>Almanca ekle</b> ve <b>Dikte'yi aç</b>. Konuşmadan önce klavyedeki 🌐 ile Deutsch'a geç.</div>
     <label class="lbl" for="dictTest">Dikte testi: kutuya dokun, 🎤'a bas ve „Guten Morgen, wie geht's?“ de</label>
@@ -4786,6 +4786,7 @@ function renderKurulum(){
   const K = S.setup || (S.setup = {});
   const gemOK = !!KEYS.gem, pexOK = !!KEYS.pex;
   return `<section class="card hl"><div class="row" style="gap:12px;flex-wrap:nowrap">${brezi("happy",60)}<div><div class="kicker">Kurulum</div><h2>Uygulamanı hazırlayalım</h2><p class="small muted">Anahtarlar sadece bu telefonda, bu tarayıcıda saklanır. Kimseyle paylaşılmaz.</p></div></div></section>
+  ${sySetupHtml()}
   <section class="card"><h3>1 · Yapay zekâ: Google Gemini (ücretsiz)</h3>
     <ol class="rule small"><li><a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> sayfasını aç, Google hesabınla gir.</li><li>"Create API key" (API anahtarı oluştur) → anahtarı kopyala.</li><li>Aşağıya yapıştır ve "Test et".</li></ol>
     <input type="password" id="gemKey" placeholder="AIza…" value="${esc(KEYS.gem)}" autocomplete="off">
@@ -5460,7 +5461,7 @@ const NEU = { list:null, audio:null, cur:null, gen:0, inflight:{}, mem:{}, memKe
 const NEU_CAP = 900000;
 function neuUsage(){ const m = dayKey().slice(0,7); let u = {}; try { u = JSON.parse(localStorage.getItem("dw-gtts-use") || "{}"); } catch(e){} if(u.m !== m) u = {m, n:0}; return u; }
 function neuAddUse(n){ const u = neuUsage(); u.n += n; try { localStorage.setItem("dw-gtts-use", JSON.stringify(u)); } catch(e){} }
-function neuOn(){ return STANDALONE && !!KEYS.tts && !NEU.off && neuUsage().n < NEU_CAP && navigator.onLine !== false; }
+function neuOn(){ return STANDALONE && !!KEYS.tts && !NEU.off && neuUseTotal() < NEU_CAP && navigator.onLine !== false; }
 const NEU_PREF = { f:["Aoede","Kore","Leda","Zephyr","Despina","Erinome","Gacrux","Laomedeia","Pulcherrima","Sulafat","Vindemiatrix","Achernar","Autonoe","Callirrhoe"], m:["Charon","Puck","Orus","Fenrir","Iapetus","Umbriel","Algieba","Alnilam","Rasalgethi","Sadachbia","Sadaltager","Schedar","Zubenelgenubi","Achird","Algenib","Enceladus"] };
 function neuShort(n){ return String(n).split("-").pop(); }
 async function neuVoices(force){
@@ -5501,7 +5502,7 @@ async function neuGet(text, lang, name, rate){
   if(NEU.inflight[k]) return NEU.inflight[k];
   const p = (async()=>{
     try { const c = await IDB.get(k); if(c) return c; } catch(e){}
-    if(neuUsage().n + text.length > NEU_CAP) throw {status:0, msg:"cap"};
+    if(neuUseTotal() + text.length > NEU_CAP) throw {status:0, msg:"cap"};
     const body = {input:{text}, voice:{languageCode: lang === "de" ? "de-DE" : "tr-TR", name}, audioConfig:{audioEncoding:"MP3"}};
     if(rate !== 1) body.audioConfig.speakingRate = rate;
     const call = () => fetch(`https://texttospeech.googleapis.com/v1/text:synthesize?key=${encodeURIComponent(KEYS.tts)}`, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body)});
@@ -5599,12 +5600,236 @@ function neuSetupHtml(){
     ${KEYS.tts ? `<p class="small muted">Kayıtlı anahtar: <code>${esc(KEYS.tts.slice(0,4))}…${esc(KEYS.tts.slice(-4))}</code> · ${KEYS.tts.length} karakter${KEYS.tts.length !== 39 ? ` <b style="color:var(--bad,#b33)">(Google anahtarları 39 karakterdir: eksik ya da fazla kopyalanmış)</b>` : ""}. Son 4 karakteri Google Cloud'daki anahtarınla karşılaştır.</p>` : ""}
     <button class="btn ${KEYS.tts?"":"primary"} block" data-act="neuTest">Kaydet ve test et</button>
     ${K.neu ? `<div class="fb ${K.neu.ok?"ok":"no"}">${esc(K.neu.msg)}</div>` : ""}
-    ${KEYS.tts ? `<p class="small muted">Bu ay: ${u.n.toLocaleString("de-DE")} / 1.000.000 karakter${NEU.err ? " · " + esc(NEU.err) : ""}</p>` : ""}
+    ${KEYS.tts ? `<p class="small muted">Bu ay (bütün cihazlar): ${neuUseTotal().toLocaleString("de-DE")} / 1.000.000 karakter${NEU.err ? " · " + esc(NEU.err) : ""}</p>` : ""}
   </section>`;
 }
 
 const PERSONA_G = {frau:"f", schwiegermutter:"f", mama:"f", markus:"m", tobi:"m", huber:"f", maier:"f", pembe:"k", praxis:"f", aerztin:"f", hausmeister:"m", verkauf:"f", chef:"m", lena:"f", fremd:"m", kasse:"f", paket:"m", apotheke:"f", kellner:"m", bahn:"m", amt:"f", friseur:"f", hotline:"f", laden:"f", post:"m", bank:"f", rezeption:"f"};
 function personaVo(pid){ if(!neuOn() || !NEU.list) return undefined; const g = PERSONA_G[pid] || "f"; const L = NEU.list.de || []; const narr = neuDefaultName("de"); const v = L.find(x=>x.g === (g === "m" ? "m" : "f") && x.name !== narr) || L.find(x=>x.name !== narr); return v ? {neu:v.name} : undefined; }
+
+/* ================= Hesap ve eşitleme: Firebase (Google ile giriş), telefon + bilgisayar ================= */
+/* Veriler kullanıcının kendi Firebase projesinde, sadece kendi hesabının okuyabildiği yerde durur.
+   Parça parça ve sıkıştırılmış gönderilir; sadece değişen parçalar yüklenir.
+   API anahtarları asla düz metin gitmez: kullanıcının şifresiyle (PBKDF2 + AES-GCM) cihazda kilitlenir. */
+const FB_VER = "10.12.2";
+const SY = { mods:null, app:null, auth:null, db:null, user:null, ready:false, busy:false, err:"", msg:"", t:null, dirty:false, dirtyAt:0, applying:false, loading:null };
+function syCfg(){ try { return JSON.parse(localStorage.getItem("dw-fbcfg") || "null"); } catch(e){ return null; } }
+function syParseCfg(txt){
+  const g = k => { const m = String(txt).match(new RegExp(k + "[\"']?\\s*:\\s*[\"']([^\"']+)[\"']")); return m ? m[1].trim() : ""; };
+  const c = {apiKey:g("apiKey"), authDomain:g("authDomain"), projectId:g("projectId"), appId:g("appId"), storageBucket:g("storageBucket"), messagingSenderId:g("messagingSenderId")};
+  return c.apiKey && c.authDomain && c.projectId && c.appId ? c : null;
+}
+function syDev(){ let d = ""; try { d = localStorage.getItem("dw-dev") || ""; if(!d){ d = Math.random().toString(36).slice(2, 10); localStorage.setItem("dw-dev", d); } } catch(e){} return d || "x"; }
+function syMeta(){ try { return JSON.parse(localStorage.getItem("dw-sync") || "{}"); } catch(e){ return {}; } }
+function sySetMeta(m){ try { localStorage.setItem("dw-sync", JSON.stringify(m)); } catch(e){} }
+function syFnv(s){ let h = 0x811c9dc5; for(let i = 0; i < s.length; i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); } return h >>> 0; }
+function syHash(s){ return syFnv(s).toString(36) + "-" + s.length; }
+const syB64 = u8 => { let b = ""; for(let i = 0; i < u8.length; i += 0x8000) b += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000)); return btoa(b); };
+const syUnB64 = s => { const b = atob(s); const u = new Uint8Array(b.length); for(let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; };
+async function syGz(str){
+  if(typeof CompressionStream === "undefined") return "r:" + str;
+  const buf = await new Response(new Blob([str]).stream().pipeThrough(new CompressionStream("gzip"))).arrayBuffer();
+  return "g:" + syB64(new Uint8Array(buf));
+}
+async function syUngz(z){
+  if(z.startsWith("r:")) return z.slice(2);
+  return await new Response(new Blob([syUnB64(z.slice(2))]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
+}
+const SY_B = 16;
+function syParts(){
+  const snap = dataSnapshot(); const out = {state: snap.state, mistakes: snap.mistakes, writings: snap.writings};
+  for(let b = 0; b < SY_B; b++) out["w" + b] = [];
+  for(const w of snap.words) out["w" + (syFnv(String(w.id)) % SY_B)].push(w);
+  return out;
+}
+function syErrMsg(e){
+  const c = String((e && (e.code || e.message)) || e);
+  if(/popup-blocked/.test(c)) return "Safari açılır pencereyi engelledi. Tekrar \"Google ile giriş yap\"a bas.";
+  if(/popup-closed|cancelled-popup/.test(c)) return "Giriş penceresi kapatıldı.";
+  if(/unauthorized-domain/.test(c)) return "Firebase'de bu adres yetkili değil: Authentication → Settings → Authorized domains'e mutemadiyennn.github.io ekle.";
+  if(/operation-not-allowed|configuration-not-found/.test(c)) return "Firebase'de Google ile giriş açık değil: Authentication → Sign-in method → Google → Enable.";
+  if(/permission-denied|insufficient permissions/i.test(c)) return "Veritabanı kuralları erişime izin vermiyor: Firestore → Rules'a uygulamadaki kuralları yapıştır ve Publish'e bas.";
+  if(/not-found|NOT_FOUND/.test(c)) return "Firestore veritabanı yok: Build → Firestore Database → Create database.";
+  if(/unavailable|network|offline|Failed to fetch/i.test(c)) return "İnternet yok; bağlantı gelince eşitlenecek.";
+  if(/too_big/.test(c)) return "Bir veri parçası çok büyük; eşitleme durduruldu.";
+  if(/bad_pass|OperationError/.test(c)) return "Şifre yanlış.";
+  return "Eşitleme hatası: " + c.slice(0, 120);
+}
+async function syInit(){
+  const cfg = syCfg(); if(!STANDALONE || !cfg) return false;
+  if(SY.app) return true;
+  if(SY.loading) return SY.loading;
+  SY.loading = (async()=>{
+    try{
+      const base = `https://www.gstatic.com/firebasejs/${FB_VER}/`;
+      const [a, au, fs] = await Promise.all([import(base + "firebase-app.js"), import(base + "firebase-auth.js"), import(base + "firebase-firestore.js")]);
+      SY.mods = {a, au, fs};
+      SY.app = a.initializeApp(cfg); SY.auth = au.getAuth(SY.app);
+      try { await au.setPersistence(SY.auth, au.browserLocalPersistence); } catch(e){}
+      SY.db = fs.getFirestore(SY.app);
+      au.onAuthStateChanged(SY.auth, u => { SY.user = u || null; SY.ready = true; if(S.view === "kurulum") render(); if(u) syPull(); });
+      return true;
+    }catch(e){ SY.err = "Firebase yüklenemedi (" + String((e && e.message) || e).slice(0, 80) + ")"; SY.loading = null; return false; }
+  })();
+  return SY.loading;
+}
+function sySignIn(){
+  if(!SY.app){ SY.err = "Bağlantı hazırlanıyor, birkaç saniye sonra tekrar bas."; syInit().then(()=>render()); render(); return; }
+  /* açılır pencere dokunuşla aynı anda açılmalı; arada bekleme yok */
+  const {au} = SY.mods; const p = new au.GoogleAuthProvider(); p.setCustomParameters({prompt:"select_account"});
+  SY.err = ""; au.signInWithPopup(SY.auth, p).catch(e=>{ SY.err = syErrMsg(e); render(); });
+}
+async function sySignOut(){ try { await syPush(); } catch(e){} try { await SY.mods.au.signOut(SY.auth); } catch(e){} SY.user = null; sySetMeta({}); render(); }
+function syRef(k){ const {fs} = SY.mods; return fs.doc(SY.db, "users", SY.user.uid, "sync", k); }
+function syStoreUse(use){
+  const m = dayKey().slice(0, 7); let n = 0; const me = syDev();
+  for(const d in (use || {})){ if(d === me) continue; const u = use[d]; if(u && u.m === m) n += +u.n || 0; }
+  try { localStorage.setItem("dw-gtts-others", JSON.stringify({m, n})); } catch(e){}
+}
+/* gönder: sadece değişen parçalar; buluttaki daha yeniyse önce onu al */
+async function syPush(force){
+  if(!SY.user || SY.busy || SY.applying) return;
+  const m = syMeta(); if(!m.ts && !force) return;
+  SY.busy = true; let pullAfter = false;
+  try{
+    const {fs} = SY.mods; const metaRef = syRef("_meta");
+    const rm = await fs.getDoc(metaRef); const R = rm.exists() ? rm.data() : null;
+    if(R && R.ts > (m.ts || 0) && !force){ pullAfter = true; }
+    else {
+      const parts = syParts(); const known = m.h || {}; const h = {}; const now = Date.now();
+      const batch = fs.writeBatch(SY.db); let n = 0;
+      for(const [k, v] of Object.entries(parts)){
+        const str = JSON.stringify(v); h[k] = syHash(str);
+        if(!force && known[k] === h[k] && R && R.h && R.h[k] === h[k]) continue;
+        const z = await syGz(str); if(z.length > 900000) throw {code:"too_big"};
+        batch.set(syRef(k), {z, h:h[k], ts:now}); n++;
+      }
+      const use = (R && R.use) || {}; use[syDev()] = neuUsage();
+      batch.set(metaRef, {ts:now, dev:syDev(), h, use});
+      await batch.commit();
+      sySetMeta({ts:now, h}); SY.dirty = false; SY.err = ""; SY.last = now; syStoreUse(use);
+    }
+  }catch(e){ SY.err = syErrMsg(e); }
+  SY.busy = false;
+  if(pullAfter) await syPull();
+  if(S.view === "kurulum") render();
+}
+/* al: bulutta yeni bir şey varsa uygula (yerel kopya yedeklenir) */
+async function syPull(){
+  if(!SY.user || SY.busy) return;
+  SY.busy = true; let pushAfter = null;
+  try{
+    const {fs} = SY.mods; const m = syMeta();
+    const rm = await fs.getDoc(syRef("_meta"));
+    if(!rm.exists()){ pushAfter = "first"; }
+    else {
+      const R = rm.data(); syStoreUse(R.use);
+      if(R.ts <= (m.ts || 0)){ if(SY.dirty) pushAfter = "normal"; }
+      else if(m.ts && SY.dirty && SY.dirtyAt > R.ts){ pushAfter = "force"; }
+      else {
+        const local = syParts(); const known = m.h || {}; const parts = {};
+        const all = !m.ts || SY.dirty;
+        for(const k of Object.keys(R.h || {})){
+          if(!all && known[k] === R.h[k]){ parts[k] = local[k]; continue; }
+          const d = await fs.getDoc(syRef(k)); parts[k] = d.exists() ? JSON.parse(await syUngz(d.data().z)) : local[k];
+        }
+        if(S.words.length || S.state.setupDone){ try { await IDB.set("sync-backup", {t:Date.now(), data: JSON.parse(JSON.stringify(dataSnapshot()))}); } catch(e){} }
+        const words = Object.keys(parts).filter(k=>/^w\d+$/.test(k)).flatMap(k=>parts[k] || []);
+        SY.applying = true;
+        try { importData({words, mistakes: parts.mistakes || [], writings: parts.writings || [], state: parts.state || {}}); } finally { SY.applying = false; }
+        sySetMeta({ts:R.ts, h:R.h}); SY.dirty = false; SY.err = ""; SY.last = Date.now();
+        S.flash = "☁️ Diğer cihazdaki ilerlemen alındı."; render();
+      }
+    }
+  }catch(e){ SY.err = syErrMsg(e); }
+  SY.busy = false;
+  if(pushAfter) await syPush(pushAfter !== "normal");
+}
+function sySchedule(){ if(SY.t || !SY.user) return; SY.t = setTimeout(()=>{ SY.t = null; syPush(); }, 3*60000); }
+const _saveLocalSY = saveLocal;
+saveLocal = function(){ const r = _saveLocalSY.apply(this, arguments); if(!SY.applying){ SY.dirty = true; SY.dirtyAt = Date.now(); sySchedule(); } return r; };
+document.addEventListener("visibilitychange", ()=>{ if(!SY.user) return; if(document.visibilityState === "hidden"){ if(SY.dirty){ clearTimeout(SY.t); SY.t = null; syPush(); } } else syPull(); });
+window.addEventListener("pagehide", ()=>{ if(SY.user && SY.dirty) syPush(); });
+/* anahtarlar: sadece kullanıcının şifresiyle kilitlenmiş olarak */
+async function syKdf(pass, salt){ const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pass), "PBKDF2", false, ["deriveKey"]); return crypto.subtle.deriveKey({name:"PBKDF2", salt, iterations:310000, hash:"SHA-256"}, base, {name:"AES-GCM", length:256}, false, ["encrypt", "decrypt"]); }
+async function syKeysSave(){
+  const pass = ($("#syPass") || {}).value || "";
+  if(pass.length < 8){ SY.kmsg = {ok:false, msg:"Şifre en az 8 karakter olmalı."}; render(); return; }
+  try{
+    const keys = {gem:KEYS.gem, pix:KEYS.pix, pex:KEYS.pex, tts:KEYS.tts};
+    const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+    const k = await syKdf(pass, salt);
+    const ct = new Uint8Array(await crypto.subtle.encrypt({name:"AES-GCM", iv}, k, new TextEncoder().encode(JSON.stringify(keys))));
+    await SY.mods.fs.setDoc(syRef("_keys"), {salt:syB64(salt), iv:syB64(iv), ct:syB64(ct), ts:Date.now(), n:Object.values(keys).filter(Boolean).length});
+    SY.kmsg = {ok:true, msg:`🔐 ${Object.values(keys).filter(Boolean).length} anahtar şifrelenip hesabına kaydedildi. Diğer cihazda aynı şifreyle getirebilirsin.`};
+  }catch(e){ SY.kmsg = {ok:false, msg: syErrMsg(e)}; }
+  const el = $("#syPass"); if(el) el.value = ""; render();
+}
+async function syKeysLoad(){
+  const pass = ($("#syPass") || {}).value || "";
+  try{
+    const d = await SY.mods.fs.getDoc(syRef("_keys"));
+    if(!d.exists()){ SY.kmsg = {ok:false, msg:"Hesabında kayıtlı anahtar yok. Önce diğer cihazda \"şifreleyip kaydet\"i kullan."}; render(); return; }
+    const x = d.data(); const k = await syKdf(pass, syUnB64(x.salt));
+    let txt; try { txt = new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM", iv:syUnB64(x.iv)}, k, syUnB64(x.ct))); } catch(e){ throw {code:"bad_pass"}; }
+    const keys = JSON.parse(txt); const map = {gem:"dw-gemini", pix:"dw-pixabay", pex:"dw-pexels", tts:"dw-gtts"}; let n = 0;
+    for(const kk in map){ if(keys[kk]){ localStorage.setItem(map[kk], keys[kk]); n++; } }
+    localStorage.removeItem("dw-gtts-voices"); NEU.list = null; NEU.off = false;
+    GEM.models = null; AI = KEYS.gem ? GeminiAI : null; AI_OFF = false; CAN_IMG = !!AI;
+    SY.kmsg = {ok:true, msg:`🔑 ${n} anahtar bu cihaza yüklendi.`};
+  }catch(e){ SY.kmsg = {ok:false, msg: syErrMsg(e)}; }
+  const el = $("#syPass"); if(el) el.value = ""; render();
+}
+async function syCfgSave(){
+  const c = syParseCfg(($("#fbCfg") || {}).value || "");
+  if(!c){ SY.err = "Ayarlar okunamadı. Firebase'in verdiği firebaseConfig bloğunun tamamını yapıştır (apiKey, authDomain, projectId, appId içermeli)."; render(); return; }
+  localStorage.setItem("dw-fbcfg", JSON.stringify(c)); SY.err = ""; SY.app = null; SY.loading = null; render();
+  await syInit(); render();
+}
+function syAgo(t){ if(!t) return "henüz yok"; const s = Math.round((Date.now() - t)/1000); return s < 60 ? "az önce" : s < 3600 ? Math.round(s/60) + " dk önce" : new Date(t).toLocaleString("tr-TR"); }
+const SY_RULES = `rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}`;
+function sySetupHtml(){
+  if(!STANDALONE) return "";
+  const cfg = syCfg();
+  const head = `<h3>☁️ Hesap ve eşitleme (telefon + bilgisayar)</h3><p class="small">Google hesabınla giriş yap; ilerlemen bütün cihazlarda aynı olur. Bir cihazda üretilen hikâye ve dersler diğerinde yeniden üretilmez.</p>`;
+  if(!cfg) return `<section class="card">${head}
+    <details><summary class="small"><b>Bir kerelik kurulum (10 dk, ücretsiz, kart istemez)</b></summary>
+    <ol class="rule small">
+      <li><a href="https://console.firebase.google.com/" target="_blank" rel="noopener">console.firebase.google.com</a> → <b>Create a project</b> → ad: <code>deutsch-sync</code>. Var olan bir Google Cloud projesini <b>seçme</b> (faturalandırma bağlı olmasın). Google Analytics: kapalı.</li>
+      <li>Proje sayfasında <b>&lt;/&gt;</b> (Web) simgesi → takma ad <code>web</code> → <b>Register app</b>. Çıkan <code>firebaseConfig = { … }</code> bloğunun tamamını kopyala, aşağıya yapıştır.</li>
+      <li><b>Build → Authentication → Get started → Sign-in method → Google → Enable</b> → destek e-postası seç → Save. Sonra <b>Settings → Authorized domains → Add domain</b>: <code>mutemadiyennn.github.io</code></li>
+      <li><b>Build → Firestore Database → Create database</b> → konum <b>eur3 (Europe)</b> → <b>production mode</b>. Sonra <b>Rules</b> sekmesine aşağıdaki kuralları yapıştır → <b>Publish</b>.</li></ol>
+    <pre class="small" style="white-space:pre-wrap;user-select:all">${esc(SY_RULES)}</pre>
+    <button class="btn small" data-act="syCopyRules">📋 Kuralları kopyala</button></details>
+    <textarea id="fbCfg" style="min-height:90px" placeholder="const firebaseConfig = { apiKey: …, authDomain: …, projectId: …, appId: … };" autocomplete="off" spellcheck="false"></textarea>
+    <button class="btn block" data-act="syCfgSave">Kaydet</button>
+    ${SY.err ? `<div class="fb no">${esc(SY.err)}</div>` : ""}</section>`;
+  if(!SY.user) return `<section class="card hl">${head}
+    <button class="btn primary block" data-act="sySignIn" ${SY.app ? "" : "disabled"}>${SY.app ? "Google ile giriş yap" : "Hazırlanıyor…"}</button>
+    ${SY.err ? `<div class="fb no">${esc(SY.err)}</div>` : ""}
+    <p class="small muted">Yeni bir cihazdaysan: giriş yap, ilerlemen birkaç saniyede gelir; sonra aşağıda anahtarlarını şifrenle getir.</p>
+    <details><summary class="small">Firebase ayarlarını değiştir</summary><button class="btn small" data-act="syCfgReset">Ayarları sil</button></details></section>`;
+  return `<section class="card">${head}
+    <div class="fb ok small">✓ Giriş: <b>${esc(SY.user.email || "")}</b> · Son eşitleme: ${esc(syAgo(SY.last || syMeta().ts))}${SY.busy ? " · eşitleniyor…" : ""}</div>
+    ${SY.err ? `<div class="fb no small">${esc(SY.err)}</div>` : ""}
+    <div class="grid2"><button class="btn" data-act="syNow" ${SY.busy ? "disabled" : ""}>☁️ Şimdi eşitle</button><button class="btn ghost" data-act="sySignOut">Çıkış</button></div>
+    <h4 style="margin-top:12px">🔐 API anahtarlarım</h4>
+    <p class="small">Anahtarların sadece senin bildiğin bir şifreyle bu cihazda kilitlenip hesabına öyle gider. Şifreyi kimse göremez, ben de. Unutursan anahtarları yeniden girersin; ilerlemen kaybolmaz.</p>
+    <input type="text" id="syPass" placeholder="Anahtar şifren (en az 8 karakter)" autocomplete="off" autocapitalize="off" spellcheck="false" style="-webkit-text-security:disc" data-1p-ignore data-lpignore="true">
+    <div class="grid2"><button class="btn" data-act="syKeysSave">🔐 Şifrele ve kaydet</button><button class="btn" data-act="syKeysLoad">🔑 Bu cihaza getir</button></div>
+    ${SY.kmsg ? `<div class="fb ${SY.kmsg.ok ? "ok" : "no"} small">${esc(SY.kmsg.msg)}</div>` : ""}</section>`;
+}
+if(STANDALONE && syCfg()) setTimeout(()=>{ syInit().then(()=>{ if(S.view === "kurulum") render(); }); }, 300);
+
+/* doğal ses kotası: bütün cihazların bu ayki kullanımı birlikte sayılır */
+function neuUseTotal(){ const m = dayKey().slice(0,7); let o = {}; try { o = JSON.parse(localStorage.getItem("dw-gtts-others") || "{}"); } catch(e){} return neuUsage().n + (o.m === m ? (+o.n || 0) : 0); }
 
 /* ================= events ================= */
 const ACT = {
@@ -5869,6 +6094,14 @@ Object.assign(ACT, {
   storyRA(){ if(S.story){ stopReading(); stopSpeech(); S.story.ra = 0; render(); } },
   storyRANext(){ const H = S.story; if(!H || H.ra == null) return; H.ra++; addXP(1); if(H.ra >= H.data.sentences.length){ daily().readAloud = true; addXP(5); Store.saveState(); } render(); },
   paStop(){ paStop(); },
+  sySignIn(){ sySignIn(); },
+  sySignOut(){ sySignOut(); },
+  syCfgSave(){ syCfgSave(); },
+  syCfgReset(){ localStorage.removeItem("dw-fbcfg"); SY.app = null; SY.loading = null; SY.err = ""; render(); },
+  syCopyRules(){ copyText(SY_RULES).then(ok=>toast(ok ? "📋 Kurallar kopyalandı." : "Kopyalanamadı.", 2000)); },
+  syNow(){ SY.dirty = true; SY.dirtyAt = Date.now(); syPull().then(()=>render()); },
+  syKeysSave(){ syKeysSave(); },
+  syKeysLoad(){ syKeysLoad(); },
   paCancel(){ paCancel(); }
 });
 route();
