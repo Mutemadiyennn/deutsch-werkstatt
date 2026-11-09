@@ -5166,7 +5166,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09v";
+const APP_VER = "2026-11-09w";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -7930,7 +7930,7 @@ async function syEmailIn(){
   if(!em || pw.length < 8){ SY.err = "E-posta ve en az 8 karakterlik uygulama şifresi gir."; render(); return; }
   SY.err = ""; SY.signing = true; render();
   try { await SY.mods.au.signInWithEmailAndPassword(SY.auth, em, pw); }
-  catch(e){ SY.err = syNativeMsg(e); }
+  catch(e){ SY.err = syNativeMsg(e) + " [" + String((e && e.code) || (e && e.message) || e).replace(/^auth\//, "").slice(0, 40) + "]"; }
   SY.signing = false; render();
 }
 /* giriş düğmesi: tarayıcıda Google, iPhone uygulamasında e-posta + uygulama şifresi (iOS anahtar zinciri hatırlar) */
@@ -7938,7 +7938,8 @@ function syLoginHtml(big){
   if(!NATIVE) return `<button class="btn primary block" ${big ? 'style="min-height:56px"' : ""} data-act="sySignIn" ${SY.app ? "" : "disabled"}>${SY.app ? "Google ile giriş yap" : "Hazırlanıyor…"}</button>`;
   return `<form class="stack" style="text-align:left" onsubmit="event.preventDefault(); ACT.syEmailIn();">
     <input type="email" id="syEm" placeholder="Google e-posta adresin" autocomplete="username" autocapitalize="off" spellcheck="false">
-    <input type="password" id="syPw" placeholder="Uygulama şifren" autocomplete="current-password">
+    <input type="password" id="syPw" placeholder="Uygulama şifren" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false">
+    <label class="small" style="display:flex;gap:8px;align-items:center"><input type="checkbox" onchange="var p=document.getElementById('syPw'); if(p) p.type=this.checked?'text':'password'"> Şifreyi göster</label>
     <button class="btn primary block" ${big ? 'style="min-height:56px"' : ""} type="submit" ${SY.app && !SY.signing ? "" : "disabled"}>${!SY.app ? "Hazırlanıyor…" : SY.signing ? "Giriş yapılıyor…" : "Giriş yap"}</button></form>
     <details class="small" style="text-align:left;margin-top:6px"><summary>Uygulama şifrem yok</summary>
       <p class="small">Google'ın giriş penceresi uygulamaların içinde açılmıyor. Bu yüzden iPhone uygulaması aynı hesaba bağlı bir şifreyle girer (bir kerelik):</p>
