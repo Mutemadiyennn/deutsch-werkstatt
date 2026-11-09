@@ -61,7 +61,7 @@ jobs:
               "errorPath": "offline.html"
             },
             "backgroundColor": "#F1F6FB",
-            "ios": { "contentInset": "never", "allowsLinkPreview": false, "backgroundColor": "#F1F6FB" }
+            "ios": { "contentInset": "never", "allowsLinkPreview": false, "backgroundColor": "#F1F6FB", "limitsNavigationsToAppBoundDomains": true }
           }
           JSON
 
@@ -89,6 +89,10 @@ jobs:
       - name: Native Tweaks
         run: |
           P=ios/App/App/Info.plist
+          # Uygulamaya bağlı alan adı: iOS ancak böyle service worker'a (internetsiz açılış) izin veriyor
+          /usr/libexec/PlistBuddy -c "Delete :WKAppBoundDomains" $P || true
+          /usr/libexec/PlistBuddy -c "Add :WKAppBoundDomains array" $P
+          /usr/libexec/PlistBuddy -c "Add :WKAppBoundDomains:0 string mutemadiyennn.github.io" $P
           # Sadece dikey (araçta tutucuda dönmesin)
           /usr/libexec/PlistBuddy -c "Delete :UISupportedInterfaceOrientations" $P || true
           /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations array" $P
