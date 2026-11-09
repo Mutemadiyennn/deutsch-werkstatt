@@ -1959,7 +1959,7 @@ function renderSeviye(){
     <label class="lbl" for="themeSel">Ekran (göz dostu)</label>
     <select id="themeSel" data-change="themeSel"><option value="auto" ${(S.state.theme||"auto")==="auto"&&S.state.themeNight===false?"selected":""}>Telefonun ayarına göre</option><option value="night" ${(S.state.theme||"auto")==="auto"&&(S.state.themeNight ?? true)?"selected":""}>Gündüz krem, 20:00'den sonra koyu</option><option value="light" ${S.state.theme==="light"?"selected":""}>Hep krem (kâğıt)</option><option value="dark" ${S.state.theme==="dark"?"selected":""}>Hep koyu (sıcak)</option></select>
     ${STANDALONE ? `<button class="btn block" data-act="goSetup">⚙️ Kurulum: anahtarlar, mikrofon, yedek</button>` : `<button class="btn block" data-act="exportAll">📦 Verilerimi yeni uygulamaya taşı (kopyala)</button>`}
-    <p class="small muted">${esc(LEX.src || "")}${STANDALONE && KEYS.pex ? " · Fotoğraflar: Pexels" : ""}</p>
+    <p class="small muted">${esc(LEX.src || "")}${hasPhotos() ? " · Fotoğraflar: " + (KEYS.pex ? "Pexels" : "Pixabay") : ""}</p>
     <label class="lbl" for="sfxSel">Ses efektleri</label>
     <select id="sfxSel" data-change="sfxSel"><option value="on" ${S.state.sfxOff?"":"selected"}>Açık</option><option value="off" ${S.state.sfxOff?"selected":""}>Kapalı</option></select>
     <label class="lbl" for="immSel">Kelime kartlarında Türkçe</label>
@@ -4443,7 +4443,7 @@ async function prefetchToday(){
     const due = S.words.filter(w=>vIsCard(w) && vDue(w) && !w._fresh).slice(0, 8);
     if(due.length) await vFreshSents(due);
     const sc = S.state.storyCache;
-    if(!(sc && sc.date === t) && !daily().story){ const d = await genStoryData(); if(d){ S.state.storyCache = {date:t, data:d}; Store.saveState(); if(STANDALONE && KEYS.pex) photoFor(d); else genStoryArt(d); } }
+    if(!(sc && sc.date === t) && !daily().story){ const d = await genStoryData(); if(d){ S.state.storyCache = {date:t, data:d}; Store.saveState(); if(hasPhotos()) photoFor(d); else genStoryArt(d); } }
     const scn = todayScen(); const xc = S.state.scenCache;
     if(!(xc && xc.date === t && xc.id === scn.id) && !daily().scen){ const d = await genScenData(scn); if(d){ S.state.scenCache = {date:t, id:scn.id, data:d}; Store.saveState(); } }
   }catch(e){}
@@ -4486,7 +4486,7 @@ startStory = async function(){
   go("hikaye"); render();
   try{
     let d = (c && c.date === t && !daily().story) ? c.data : null;
-    if(!d){ d = await genStoryData(); if(!d) throw {code:"invalid_json"}; S.state.storyCache = {date:t, data:d}; if(!(STANDALONE && KEYS.pex)) genStoryArt(d); }
+    if(!d){ d = await genStoryData(); if(!d) throw {code:"invalid_json"}; S.state.storyCache = {date:t, data:d}; if(!hasPhotos()) genStoryArt(d); }
     S.story.data = d; const h = S.state.home || (S.state.home = {}); h[t] = {lines:(d.home||[]).slice(0,3), ask_de:d.ask_de||"", ask_tr:d.ask_tr||""}; Store.saveState();
   }catch(e){ S.story.err = aiMsg(e); }
   S.story.busy = false; render();
@@ -4509,7 +4509,8 @@ const IS_IOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
 const KEYS = {
   get gem(){ try { return localStorage.getItem("dw-gemini") || ""; } catch(e){ return ""; } },
   get pex(){ try { return localStorage.getItem("dw-pexels") || ""; } catch(e){ return ""; } },
-  set(k, v){ try { localStorage.setItem(k === "gem" ? "dw-gemini" : "dw-pexels", String(v||"").trim()); } catch(e){} }
+  get pix(){ try { return localStorage.getItem("dw-pixabay") || ""; } catch(e){ return ""; } },
+  set(k, v){ try { localStorage.setItem(k === "gem" ? "dw-gemini" : k === "pix" ? "dw-pixabay" : "dw-pexels", String(v||"").trim()); } catch(e){} }
 };
 Object.assign(AI_MSG, {bad_key:"Gemini anahtarı geçersiz görünüyor. Kurulum ekranından kontrol et.", http:"Bağlantı sorunu. İnternetini kontrol edip tekrar dene."});
 
@@ -4590,28 +4591,39 @@ const PHOTO = { cache:{}, loaded:false };
 async function photoCacheLoad(){ if(PHOTO.loaded) return; PHOTO.loaded = true; try { const c = await IDB.get("photos"); if(c) PHOTO.cache = c; } catch(e){} }
 let _phT = null;
 function photoCacheSave(){ clearTimeout(_phT); _phT = setTimeout(()=>{ const keys = Object.keys(PHOTO.cache); if(keys.length > 1500) keys.slice(0, keys.length-1500).forEach(k=>delete PHOTO.cache[k]); IDB.set("photos", PHOTO.cache).catch(()=>{}); }, 800); }
+const hasPhotos = () => STANDALONE && !!(KEYS.pex || KEYS.pix);
+const PIX_TTL = 20*3600*1000;
 async function pexelsSearch(q){
-  if(!STANDALONE || !KEYS.pex || !q) return [];
+  if(!hasPhotos() || !q) return [];
   await photoCacheLoad();
-  const k = String(q).toLowerCase().trim(); if(PHOTO.cache[k]) return PHOTO.cache[k];
+  const k = String(q).toLowerCase().trim(); const c = PHOTO.cache[k];
+  if(c && (!c.t || Date.now() - c.t < PIX_TTL)) return c.list || c;
   try{
-    const r = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(k)}&per_page=12&orientation=landscape`, {headers:{Authorization: KEYS.pex}});
-    if(!r.ok) return [];
-    const j = await r.json();
-    const res = (j.photos||[]).map(p=>({src:(p.src||{}).medium || (p.src||{}).large, by:p.photographer || "", url:p.url || "https://www.pexels.com"})).filter(x=>x.src);
-    PHOTO.cache[k] = res; photoCacheSave(); return res;
+    let res = [];
+    if(KEYS.pex){
+      const r = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(k)}&per_page=12&orientation=landscape`, {headers:{Authorization: KEYS.pex}});
+      if(r.ok){ const j = await r.json(); res = (j.photos||[]).map(p=>({src:(p.src||{}).medium || (p.src||{}).large, by:p.photographer || "", url:p.url || "https://www.pexels.com", site:"Pexels"})).filter(x=>x.src); }
+      if(res.length){ PHOTO.cache[k] = res; photoCacheSave(); return res; }
+    }
+    if(KEYS.pix){
+      const r = await fetch(`https://pixabay.com/api/?key=${encodeURIComponent(KEYS.pix)}&q=${encodeURIComponent(k)}&image_type=photo&orientation=horizontal&safesearch=true&per_page=12`);
+      if(r.ok){ const j = await r.json(); res = (j.hits||[]).map(p=>({src:p.webformatURL, by:p.user || "", url:p.pageURL || "https://pixabay.com", site:"Pixabay", t:Date.now()})).filter(x=>x.src); }
+      PHOTO.cache[k] = {t:Date.now(), list:res}; photoCacheSave(); return res;
+    }
+    return [];
   }catch(e){ return []; }
 }
 async function photoFor(s){
+  if(s && s.photo && s.photo.t && Date.now() - s.photo.t > PIX_TTL) s.photo = null;
   if(!s || s.photo || !s.img) return null;
   const list = await pexelsSearch(s.img); if(!list.length){ s.photo = {none:true}; return null; }
   s.photo = list[Math.floor(Math.random() * Math.min(8, list.length))]; return s.photo;
 }
 function photoHtml(s, h){
   const p = s && s.photo; if(!p || p.none || !p.src) return "";
-  return `<div class="vphoto" style="height:${h||170}px"><img src="${esc(p.src)}" alt="" loading="eager"><a class="credit" href="${esc(p.url)}" target="_blank" rel="noopener">📷 ${esc(p.by)} · Pexels</a></div>`;
+  return `<div class="vphoto" style="height:${h||170}px"><img src="${esc(p.src)}" alt="" loading="eager"><a class="credit" href="${esc(p.url)}" target="_blank" rel="noopener">📷 ${esc(p.by)} · ${esc(p.site || "Pexels")}</a></div>`;
 }
-function wantsPhoto(s){ return STANDALONE && KEYS.pex && s && s.img && !s.photo; }
+function wantsPhoto(s){ if(s && s.photo && s.photo.t && Date.now() - s.photo.t > PIX_TTL) s.photo = null; return hasPhotos() && s && s.img && !s.photo; }
 
 /* --- mikrofon --- */
 useSR = function(){ return STANDALONE ? !!(SRC && S.state.srOK !== false) : !!(SRC && S.state.srOK); };
@@ -4630,10 +4642,13 @@ function renderKurulum(){
     <label class="lbl" for="gemMode">Model</label>
     <select id="gemMode" data-change="gemMode"><option value="auto" ${!S.state.gemMode||S.state.gemMode==="auto"?"selected":""}>Otomatik (hızlı işler hafif modelle; önerilen)</option><option value="lite" ${S.state.gemMode==="lite"?"selected":""}>Hep hafif model (en fazla ücretsiz istek)</option><option value="full" ${S.state.gemMode==="full"?"selected":""}>Hep güçlü model (ücretsiz sınır daha düşük)</option></select>
     <p class="small muted">Not: Google'ın ücretsiz katmanında günlük istek sınırı var ve gönderilen metinler modellerini geliştirmek için kullanılabilir. Uygulama kişisel bilgi göndermez; "Hakkımda" kısmına ne yazdığına dikkat et.</p></section>
-  <section class="card"><h3>2 · Fotoğraflar: Pexels (ücretsiz)</h3>
-    <ol class="rule small"><li><a href="https://www.pexels.com/api/" target="_blank" rel="noopener">pexels.com/api</a> → ücretsiz hesap aç → "Your API Key".</li><li>Anahtarı aşağıya yapıştır ve test et.</li></ol>
+  <section class="card"><h3>2 · Fotoğraflar: Pixabay (ücretsiz)</h3>
+    <ol class="rule small"><li><a href="https://pixabay.com/accounts/register/" target="_blank" rel="noopener">pixabay.com</a>'da ücretsiz hesap aç ve giriş yap.</li><li><a href="https://pixabay.com/api/docs/" target="_blank" rel="noopener">pixabay.com/api/docs</a> sayfasını aç. Giriş yaptıysan "Parameters" bölümünde <b>key</b> satırında anahtarın yazar (yeşil). Kopyala.</li><li>Aşağıya yapıştır ve test et.</li></ol>
+    <input type="password" id="pixKey" placeholder="Pixabay API key" value="${esc(KEYS.pix)}" autocomplete="off">
+    <button class="btn ${KEYS.pix?"":"primary"} block" data-act="pixTest">Kaydet ve test et</button>
+    <details style="margin-top:8px"><summary class="small">Pexels anahtarın varsa (isteğe bağlı)</summary>
     <input type="password" id="pexKey" placeholder="Pexels API key" value="${esc(KEYS.pex)}" autocomplete="off">
-    <button class="btn ${pexOK?"":"primary"} block" data-act="pexTest">Kaydet ve test et</button>
+    <button class="btn block" data-act="pexTest">Kaydet ve test et</button></details>
     ${K.pex ? `<div class="fb ${K.pex.ok?"ok":"no"}">${K.pex.ok && K.pex.src ? `<img src="${esc(K.pex.src)}" alt="" style="width:100%;border-radius:10px;margin-bottom:6px">` : ""}${esc(K.pex.msg)}</div>` : ""}</section>
   <section class="card"><h3>3 · Mikrofon</h3>
     <p class="small">iPhone'da <b>Safari'de</b> açık olmalı (ana ekrana eklenmiş sürümde Apple mikrofonu kapatıyor). Ayarlar → Siri'nin açık olması ve Ayarlar → Safari → Mikrofon izni gerekir.</p>
@@ -4653,6 +4668,13 @@ async function gemTest(){
   S.setup.gem = {ok:true, msg:"Test ediliyor…"}; render();
   try{ const r = await GeminiAI.json(`Antworte NUR mit JSON: {"ok":true,"satz":"ein kurzer freundlicher deutscher Satz"}`, {modelTier:"quick"}); const list = await gemModels(); S.setup.gem = {ok:true, msg:`Çalışıyor ✓ „${(r && r.satz) || "OK"}“ · Model: ${rankModel(list,true)} / ${rankModel(list,false)}`}; }
   catch(e){ S.setup.gem = {ok:false, msg: aiMsg(e) + (e.message ? " ("+String(e.message).slice(0,120)+")" : "")}; if(e.code === "bad_key") AI = null; }
+  render();
+}
+async function pixTest(){
+  const v = ($("#pixKey")||{}).value || ""; KEYS.set("pix", v); S.setup.pex = {ok:true, msg:"Test ediliyor…"}; render();
+  delete PHOTO.cache["coffee cup morning"];
+  const list = await pexelsSearch("coffee cup morning");
+  S.setup.pex = list.length ? {ok:true, msg:`Çalışıyor ✓ Fotoğraflar ${list[0].site}'dan.`, src:list[0].src} : {ok:false, msg:"Fotoğraf gelmedi. Anahtarı kontrol et (giriş yaptıktan sonra API sayfasında yazan 'key')."};
   render();
 }
 async function pexTest(){
@@ -4925,6 +4947,7 @@ const ACT = {
   exportAll(){ exportAll(); },
   gemTest(){ gemTest(); },
   pexTest(){ pexTest(); },
+  pixTest(){ pixTest(); },
   micTest2(){ micTest2(); },
   importAll(){ const v = ($("#impAll")||{}).value || ""; try { importData(JSON.parse(v)); S.setup.imp = {ok:true, msg:`✓ ${S.words.length} kelime, ${S.mistakes.length} hata ve bütün ilerlemen taşındı.`}; } catch(e){ S.setup.imp = {ok:false, msg:"Metin okunamadı. Eski uygulamada 'Verilerimi yeni uygulamaya taşı' düğmesine basıp tamamını yapıştır."}; } render(); },
   async backupCopy(){ const ok = await copyText(JSON.stringify(dataSnapshot())); toast(ok ? "📋 Yedek kopyalandı. Notlar'a ya da kendine e-postayla gönder." : "Kopyalanamadı.", 3000); },
