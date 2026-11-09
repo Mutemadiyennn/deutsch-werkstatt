@@ -5314,9 +5314,12 @@ function renderA12Card(){
     return `<div style="margin-top:8px"><div class="small"><b>${T.lvl}</b> <span class="muted">· ${esc(T.book)} · ${nDone}/7${!open && nDone < 7 ? " · 🔒 " + gpWhyLocked(T.id) : ""}</span></div><div class="row" style="margin-top:4px">${chips}</div></div>`;
   });
   rows.splice(1, 0, `<div style="margin-top:8px"><div class="small"><b>A2.1</b> <span class="muted">· Schritte plus Neu 3 · VHS kursunda ve günlük planda${vhsLek() ? " · şu an Lektion " + vhsLek() : ""}</span></div></div>`);
+  const media = nx ? `${nx.L.book}, Lektion ${nx.L.n}` : "";
+  const mediaVhs = vhsLek() ? `Schritte plus Neu 3, Lektion ${vhsLek()}` : "";
   return `<section class="card"><div class="kicker">Gramer yolu · Schritte plus Neu</div>
     <p class="small" style="margin:4px 0">A1.2 temeli kurs dersleriyle paralel gelir; A2.2, B1.1 ve B1.2 sırası gelince açılır. Her ders önce kısa kontrolle başlar: biliyorsan atlarız. Takıldığın konular ayrıca "Takviye" olarak farklı anlatımla tekrar gelir ve 3 ve 14 gün sonra yeniden kontrol edilir.</p>
     ${rows.join("")}
+    ${media || mediaVhs ? `<div class="ex small" style="margin-top:8px">📀 <b>Kitabın kendi sesleri (ücretsiz):</b> Hueber Media uygulamasında${media ? ` <b>${esc(media)}</b>` : ""}${media && mediaVhs ? " ve" : ""}${mediaVhs ? ` <b>${esc(mediaVhs)}</b> (VHS'den önce)` : ""} → Foto-Hörgeschichte'yi dinle. Önce sadece dinle, sonra kitaptaki resimlere bakarak bir daha dinle. <a href="https://apps.apple.com/app/id1597468436" target="_blank" rel="noopener">Hueber Media'yı aç</a></div>` : ""}
     <p class="small muted" style="margin-top:8px">${nx ? `Sıradaki: <b>${esc(gpShort(nx.L))}</b> → ${esc(nx.part.t)}${nx.L.track === "a12" && a12For(nx.L.n).length ? ` <span class="muted">(A2.1 Lektion ${a12For(nx.L.n).join(", ")} için temel)</span>` : ""}` : GP_TRACKS.every(T=>gpTrackDone(T.id)) ? "Gramer yolu bitti 🎉 Sırada B1 sınav provaları." : "Sıradaki seviye kilitli; o zamana kadar günlük plan ve VHS dersleri devam ediyor."}</p>
   </section>`;
 }
