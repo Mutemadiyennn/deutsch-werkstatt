@@ -397,6 +397,11 @@ body.study main{gap:10px;padding-top:10px}
 .vcard .btn{min-height:40px}
 .vcard .btn.primary.block{min-height:54px!important;font-size:1.05rem!important}
 .vcard .btn.small{min-height:34px}
+
+/* durum çubuğunun (saat/pil) altı: kayan içerik altına girip silik görünmesin */
+body::before{content:"";position:fixed;left:0;right:0;top:0;height:env(safe-area-inset-top);background:var(--paper);z-index:40;pointer-events:none}
+.sbar{top:env(safe-area-inset-top);background:var(--paper);backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 6px 10px -8px rgba(19,52,92,.25)}
+body.insess main{padding-top:calc(8px + env(safe-area-inset-top))}
 #micPill{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));z-index:9999;padding:10px 18px;border-radius:999px;font-weight:700;font-size:1.05rem;box-shadow:0 4px 16px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}#micPill .x{margin-left:12px;font-weight:600;font-size:.9rem;opacity:.85}#micPill.busy{background:#dde7ef;color:#23415a}#micPill .lv{display:block;height:4px;margin-top:6px;border-radius:2px;background:rgba(255,255,255,.9);transform:scaleX(0);transform-origin:left;transition:transform .08s}#micPill.wait{background:#f4e3b5;color:#5a4410}#micPill.go{background:#2f7d4f;color:#fff}
 body.kb .nav{display:none}
 #updBar{position:fixed;left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:9998;background:#23415a;color:#fff;padding:12px 14px;border-radius:14px;font-weight:700;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.2);cursor:pointer}
@@ -4251,7 +4256,7 @@ function renderKelime(){
       <div class="seg" style="width:auto">${useSR() ? `<button aria-pressed="${V.mode==="mic"}" data-act="vMode" data-m="mic">🎤 Söyle</button>` : ""}<button aria-pressed="${V.mode==="type"}" data-act="vMode" data-m="type">⌨️ Yaz</button><button aria-pressed="${V.mode==="tap"}" data-act="vMode" data-m="tap">👆 Seç</button></div>
     </div></div>`;
   const imm = vImm() && !V.trShown && !V.res;
-  const label = imm ? `<p class="vword">${esc(w.emoji||"🇩🇪")} <span class="small muted">(${esc(w.kind==="nomen" ? "isim" : w.kind==="verb" ? "fiil" : w.kind==="adj" ? "sıfat" : "kelime")})</span></p>` : `<p class="vword">${esc(w.tr)} <span class="small muted">(${esc(w.kind==="nomen" ? "isim" : w.kind==="verb" ? "fiil" : w.kind==="adj" ? "sıfat" : "kelime")})</span></p>`;
+  const label = imm ? `<p class="vword">${esc(w.emoji||"❔")} <span class="small muted">(${esc(w.kind==="nomen" ? "isim" : w.kind==="verb" ? "fiil" : w.kind==="adj" ? "sıfat" : "kelime")})</span></p>` : `<p class="vword">${esc(w.tr)} <span class="small muted">(${esc(w.kind==="nomen" ? "isim" : w.kind==="verb" ? "fiil" : w.kind==="adj" ? "sıfat" : "kelime")})</span></p>`;
   if(V.phase === "intro") return `${top}<section class="card vcard">
     <div class="kicker">Yeni kelime · önce öğren</div>
     ${sceneHtml(s, w, true)}
@@ -4994,7 +4999,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09l";
+const APP_VER = "2026-11-09m";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
