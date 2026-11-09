@@ -545,6 +545,7 @@ function subscribe(){
 
 /* ================= AI ================= */
 const AI_MSG = {
+  timeout:"Yapay zekâ çok uzun sürdü, durdurdum. Bir kez daha dene.",
   server:"Yapay zekâ sunucusu şu an yanıt vermedi. Biraz sonra tekrar dene.",
   not_granted:"Yapay zekâya izin verilmedi. Sayfayı yeniden açıp izin verirsen bu özellikler açılır.",
   sampling_disabled:"Bu hesapta yapay zekâ kullanılamıyor.",
@@ -2150,7 +2151,7 @@ function remedResult(e, okN){
 /* ================= view: Daha fazla ================= */
 function renderMore(){
   return `
-  <section class="card"><h2>Daha fazla</h2><p class="small muted">Günlük akış "Bugün" ekranında. Burası canın isterse serbest çalışmak için.</p></section>
+  <section class="card"><h2>Daha fazla</h2><p class="small muted">Günlük akış "Bugün" ekranında. Burası canın isterse serbest çalışmak için.</p><p class="small muted">Sürüm: ${typeof APP_VER !== "undefined" ? APP_VER : "?"}</p></section>
   <section class="grid2">
     <a class="tile" href="#lernen" style="text-decoration:none"><b>Öğren</b><span>Herhangi bir konunun dersi, okuma parçası, hatalarım.</span></a>
     <a class="tile" href="#schreiben" style="text-decoration:none"><b>Yaz</b><span>Kendi seçtiğin bir yazma görevi.</span></a>
@@ -3911,13 +3912,20 @@ function startVocab(opts){
 async function vPrepare(){
   const V = S.voc; if(!V) return;
   if(V.needMore > 0 && aiReady()){
-    V.busy = true; V.busyTxt = "Yeni kelimeler hazırlanıyor…"; render();
-    try{ const n = await vFill(Math.min(12, V.needMore + 2));
+    const insert = () => {
       const fresh = S.words.filter(w=>vIsCard(w) && vIsNew(w) && !V.q.some(x=>x.id===w.id)).slice(0, V.needMore);
       fresh.forEach((w,k)=>V.q.splice(Math.min(V.q.length, V.i + 1 + k*3), 0, {id:w.id, step:"intro"}));
-      V.needMore = 0; if(!n && !fresh.length) V.err = "";
-    }catch(e){ V.err = aiMsg(e); daily().vocab = true; Store.saveState(); }
-    V.busy = false;
+      V.needMore = Math.max(0, V.needMore - fresh.length); return fresh.length;
+    };
+    const bgFill = () => { if(V.needMore <= 0) return; V.bg = vFill(Math.min(12, V.needMore + 2)).then(()=>{ if(S.voc === V) insert(); }).catch(()=>{}).finally(()=>{ V.bg = null; V.needMore = 0; if(S.voc === V && V.waitBg){ V.waitBg = false; V.busy = false; if(V.i < V.q.length) vCardStart(); else vFinish(); } }); };
+    if(!V.q.length){
+      /* gösterecek kart yok: önce 4 kelime hızlıca, kalanı sen çalışırken */
+      V.busy = true; V.busyTxt = "Yeni kelimeler hazırlanıyor…"; render();
+      try{ await vFill(Math.min(4, V.needMore + 1)); insert(); }
+      catch(e){ V.err = aiMsg(e); V.needMore = 0; daily().vocab = true; Store.saveState(); }
+      V.busy = false;
+    }
+    bgFill();
   }
   if(!V.q.length){ vFinish(); return; }
   vCardStart(); vPrefetch();
@@ -4000,7 +4008,7 @@ async function vGradeNow(){
 function vNext(){
   const V = S.voc; if(!V) return; if(V.res && V.needArt) return; if(V.res && !V.graded) vGradeNow(); stopSpeech();
   V.i++;
-  if(V.i >= V.q.length){ vFinish(); return; }
+  if(V.i >= V.q.length){ if(V.bg){ V.waitBg = true; V.busy = true; V.busyTxt = "Kalan yeni kelimeler geliyor…"; render(); return; } vFinish(); return; }
   vCardStart();
 }
 function vIntroDone(){ const V = S.voc; const x = V.q[V.i]; x.step = "test1"; V.newN++; const w = vWord(); if(w && V.sent){ w.lastSent = V.sent.de; if(w._fresh && V.sent === w._fresh){ (w.sents = w.sents||[]).push(w._fresh); delete w._fresh; } } vCardStart(true); vPrefetch(); }
@@ -4066,7 +4074,7 @@ function renderKelime(){
     ${label}
     ${s ? `<p class="vsent de">${vClozeHtml(s, V)}</p>${imm ? `<p style="text-align:center"><button class="btn small ghost" data-act="vTr">🇹🇷 Türkçe ipucu</button></p>` : `<p class="tr" style="text-align:center">${vTrHtml(s)}</p>`}` : `<p class="vsent de">${V.res ? `<b>${esc((w.artikel && !V.needArt ? w.artikel+" " : "")+w.de)}</b>` : V.mode==="type" ? `<input id="vIn" class="vin" style="width:12ch" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(V.user)}" data-model="vUser">` : "?"}</p>`}
     ${!V.res && V.mode === "tap" && V.opts ? `<div class="grid2">${V.opts.map(o=>`<button class="btn" style="min-height:56px" data-act="vTap" data-o="${esc(o)}">${esc(o)}</button>`).join("")}</div>` : ""}
-    ${V.res ? `<div class="fb ${V.res.ok?"ok":V.res.close?"ok":"no"}"><b>${V.res.ok ? "Doğru!" : V.res.close ? "Neredeyse: yazımına dikkat" : "Doğrusu: "+esc((w.artikel ? w.artikel+" " : "")+V.res.ans)}</b>
+    ${V.res ? `<div class="fb ${V.res.ok?"ok":V.res.close?"ok":"no"}"><b>${V.res.ok ? "Doğru!" : V.res.close ? "Neredeyse: yazımına dikkat" : "Doğrusu: "+esc((w.artikel ? w.artikel+" " : "")+V.res.ans)}</b>${V.mode === "mic" && V.heard ? `<div class="small muted">Duyduğum: „${esc(V.heard)}“</div>` : ""}
       ${!V.needArt && w.plural && w.plural!=="-" ? `<div class="small">${esc(w.artikel||"")} ${esc(w.de)} · die ${esc(w.plural)}</div>` : ""}${w.chunk ? `<div class="small">Kalıp: <b>${esc(w.chunk)}</b></div>` : ""}${V.mode !== "mic" && !V.needArt ? `<div class="small">🗣️ Geçmeden önce cümleyi bir kez yüksek sesle söyle.</div>` : ""}${w.used ? `<div class="small">Kendi cümlelerinde ${w.used} kez kullandın ✓</div>` : `<div class="small muted">Henüz kendi cümlende kullanmadın: bugün bir sohbette dene.</div>`}</div>` : ""}
     ${V.needArt ? `<p style="text-align:center"><b>Artikeli?</b></p><div class="row" style="justify-content:center">${["der","die","das"].map(a=>`<button class="btn" style="min-width:80px;min-height:52px" data-act="vArt" data-a="${a}"><span class="pill-${a}">${a}</span></button>`).join("")}</div>` : ""}
     ${V.art ? `<div class="fb ${V.art.ok?"ok":"no"}">${V.art.ok ? "Artikel doğru ✓" : "Artikel yanlış. Doğrusu:"} <b>${esc(w.artikel)} ${esc(w.de)}</b>${w.plural && w.plural!=="-" ? ` · die ${esc(w.plural)}` : ""}${V.art.ok ? "" : `<div class="small">Bu kelime 1–2 gün içinde tekrar gelecek.</div>`}</div>` : ""}
@@ -4754,13 +4762,13 @@ const blobToB64 = b => new Promise((res, rej)=>{ const r = new FileReader(); r.o
 async function gemCall(model, body, signal){
   let r;
   try { r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(KEYS.gem)}`, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body), signal}); }
-  catch(e){ if(e && e.name === "AbortError") throw {code:"cancelled"}; throw {code:"http"}; }
+  catch(e){ if(e && e.name === "AbortError") throw {code:"cancelled"}; throw {code:"http", detail:"ağ: " + String((e && e.message) || e).slice(0,40)}; }
   if(r.status === 429 || r.status === 503) throw {code:"rate_limited"};
   if(r.status === 400 || r.status === 403){ const t = await r.text(); if(/api key|API_KEY|permission/i.test(t)) throw {code:"bad_key"};
     if(r.status === 400 && /thinking/i.test(t) && body.generationConfig && body.generationConfig.thinkingConfig){ const b2 = JSON.parse(JSON.stringify(body)); delete b2.generationConfig.thinkingConfig; return gemCall(model, b2, signal); }
     throw {code:"refused", message:t}; }
-  if(r.status >= 500) throw {code:"server"};
-  if(!r.ok) throw {code:"http"};
+  if(r.status >= 500) throw {code:"server", detail:"HTTP " + r.status};
+  if(!r.ok) throw {code:"http", detail:"HTTP " + r.status};
   const j = await r.json();
   const txt = ((((j.candidates||[])[0]||{}).content||{}).parts||[]).map(p=>p.text||"").join("");
   if(!txt) throw {code: (j.promptFeedback && j.promptFeedback.blockReason) ? "refused" : "empty_completion"};
@@ -4775,20 +4783,31 @@ const GeminiAI = {
     const list = await gemModels();
     const wantLite = S.state.gemMode === "lite" || (S.state.gemMode !== "full" && o.modelTier === "quick");
     const m1 = rankModel(list, wantLite), m2 = rankModel(list, !wantLite);
-    const body = m => { const b = {contents, generationConfig:{responseMimeType:"application/json", temperature:0.8}}; const t = thinkCfg(m); if(t) b.generationConfig.thinkingConfig = t; return b; };
-    try { return await gemCall(m1, body(m1), o.signal); }
-    catch(e){ if(["rate_limited","empty_completion","invalid_json","server","http"].includes(e.code) && m2 && m2 !== m1) return await gemCall(m2, body(m2), o.signal); throw e; }
+    const body = m => { const b = {contents, generationConfig:{responseMimeType:"application/json", temperature:0.8, maxOutputTokens:8192}}; const t = thinkCfg(m); if(t) b.generationConfig.thinkingConfig = t; return b; };
+    const attempt = async m => {
+      const c = new AbortController(); let late = false; const tm = setTimeout(()=>{ late = true; c.abort(); }, 45000);
+      const off = () => c.abort(); if(o.signal){ if(o.signal.aborted) c.abort(); else o.signal.addEventListener("abort", off); }
+      try { return await gemCall(m, body(m), c.signal); }
+      catch(e){ if(late && e && e.code === "cancelled") throw {code:"timeout"}; throw e; }
+      finally { clearTimeout(tm); if(o.signal) o.signal.removeEventListener("abort", off); }
+    };
+    try { return await attempt(m1); }
+    catch(e){ if(["rate_limited","empty_completion","invalid_json","server","http","timeout"].includes(e.code) && m2 && m2 !== m1) return await attempt(m2); throw e; }
   },
   async limits(){ return {images:true}; }
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-09d";
+const APP_VER = "2026-11-09f";
 const _gemCall0 = gemCall;
+const GEMQ = {n:0, w:[]};
+function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
 gemCall = async function(model, body, signal){
   const t0 = Date.now(); const audio = JSON.stringify(body.contents || []).includes("audio/wav");
   const log = e => { try { const L = JSON.parse(localStorage.getItem("dw-ailog") || "[]"); L.push({t:t0, m:model, s:Math.round((Date.now()-t0)/100)/10, r:e, a:audio ? 1 : 0}); localStorage.setItem("dw-ailog", JSON.stringify(L.slice(-12))); } catch(x){} };
-  try { const r = await _gemCall0(model, body, signal); log("ok"); return r; } catch(e){ log((e && e.code) || "err"); throw e; }
+  await gemSlot();
+  try { const r = await _gemCall0(model, body, signal); log("ok"); return r; } catch(e){ log(((e && e.code) || "err") + (e && e.detail ? " · " + e.detail : "")); throw e; }
+  finally { GEMQ.n--; const nx = GEMQ.w.shift(); if(nx) nx(); }
 };
 function aiLogHtml(){
   let L = []; try { L = JSON.parse(localStorage.getItem("dw-ailog") || "[]"); } catch(e){}
@@ -6058,74 +6077,100 @@ Antworte NUR mit JSON: {"text":"..."}`;
   const d = dayKey(); if(MIC2.day !== d){ MIC2.day = d; MIC2.n = 0; } MIC2.n++; mic2Save();
   return String((r && r.text) || "").replace(/\s+/g, " ").trim();
 }
+/* Kayıt: MediaRecorder (telaffuz analizinde iPhone'da sorunsuz çalışan yol). Sessizlik takibi: kayıttan ayrı, kendi küçük ses motoruyla.
+   Sessizlik takibi çalışmazsa kayıt yine sürer; konuşup şeride dokunarak ya da 6 sn sonra kendiliğinden biter. */
+const MIC_STREAMS = new Set();
+function micStopAll(){ for(const st of MIC_STREAMS){ try { st.getTracks().forEach(t=>t.stop()); } catch(e){} } MIC_STREAMS.clear(); }
+/* güvenlik: dinleme yokken açık mikrofon kalmasın */
+setInterval(()=>{ if(!REC_CUR && MIC_STREAMS.size) micStopAll(); }, 3000);
+document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState === "hidden"){ if(REC_CUR){ try { REC_CUR._cancel = true; REC_CUR.abort(); } catch(e){} } micStopAll(); } });
+function micLog(r, ms){ try { const L = JSON.parse(localStorage.getItem("dw-ailog") || "[]"); L.push({t:Date.now(), m:"mikrofon açılışı", s:Math.round(ms/100)/10, r, a:1}); localStorage.setItem("dw-ailog", JSON.stringify(L.slice(-12))); } catch(e){} }
 function mic2Listen(onLive){
+  try { stopSpeech(); if(typeof neuStop === "function") neuStop(); } catch(e){}
   return new Promise((res, rej)=>{
     const h = { _cancel:false, onend:null };
-    let stream = null, src = null, proc = null, ac = null, chunks = [], rate = 48000, settled = false, ended = false;
-    let t0 = 0, firstFrame = 0, floor = 1, calib = 0, speechMs = 0, speech = false, lastVoice = 0, speechAt = 0, ctl = null;
+    let stream = null, rec = null, vac = null, an = null, iv = null, chunks = [], settled = false, ended = false, ctl = null;
+    let t0 = performance.now(), tOpen = 0, floor = 1, calib = 0, speechMs = 0, speech = false, lastVoice = 0, vadOk = false;
     const timers = [];
     const release = () => {
-      timers.forEach(clearTimeout);
-      try { if(proc){ proc.onaudioprocess = null; proc.disconnect(); } if(src) src.disconnect(); } catch(e){}
-      try { if(stream) stream.getTracks().forEach(t=>t.stop()); } catch(e){}
-      stream = null; audioSess("playback"); setTimeout(()=>audioSess("auto"), 0);
+      timers.forEach(clearTimeout); clearInterval(iv); iv = null;
+      try { if(rec && rec.state !== "inactive"){ rec.ondataavailable = null; rec.onstop = null; rec.stop(); } } catch(e){}
+      try { if(stream){ stream.getTracks().forEach(t=>t.stop()); MIC_STREAMS.delete(stream); } } catch(e){}
+      try { if(vac) vac.close(); } catch(e){}
+      stream = null; vac = null; an = null;
+      audioSess("playback"); setTimeout(()=>audioSess("auto"), 0);
     };
     const done = (ok, val) => { if(settled) return; settled = true; release(); micPill(null);
       if(REC_CUR === h) REC_CUR = null; if(S.sh && S.sh.rec === h) S.sh.rec = null;
       ok ? res(val) : rej(val); };
     h.abort = () => { h._cancel = true; if(ctl) try { ctl.abort(); } catch(e){} done(false, {code:"cancel"}); };
     h.stop = () => finishRec();
-    const finishRec = async () => {
-      if(ended || settled) return; ended = true; release();
-      if(!speech){ done(false, {code:"no-speech"}); return; }
-      /* konuşmadan 0,4 sn öncesinden, bittikten 0,5 sn sonrasına kadar */
-      const per = chunks.length ? chunks[0].length / rate : 0.085;
-      const from = Math.max(0, Math.floor((speechAt - t0) / 1000 / per) - 5), to = Math.min(chunks.length, Math.ceil((lastVoice - t0) / 1000 / per) + 6);
-      const wav = mic2Wav(chunks.slice(from, to), rate); chunks = [];
-      micPill("busy");
-      ctl = new AbortController(); const tm = setTimeout(()=>{ try { ctl.abort(); } catch(e){} }, 12000);
-      try{
-        const txt = await mic2Transcribe(wav, ctl.signal); clearTimeout(tm);
+    const finishRec = () => {
+      if(ended || settled) return; ended = true; clearInterval(iv);
+      if(vadOk && !speech){ done(false, {code:"no-speech"}); return; }
+      if(!rec || rec.state === "inactive"){ done(false, {code:"no-speech"}); return; }
+      rec.onstop = async () => {
+        const type = (chunks[0] && chunks[0].type) || rec.mimeType || "audio/mp4"; const blob = new Blob(chunks, {type});
+        try { if(stream){ stream.getTracks().forEach(t=>t.stop()); MIC_STREAMS.delete(stream); } } catch(e){}
         if(settled) return;
-        if(txt){ onLive && onLive(txt); if(!S.state.srOK){ S.state.srOK = true; Store.saveState(); } done(true, [txt]); }
-        else done(false, {code:"no-speech"});
-      }catch(e){
-        clearTimeout(tm); if(settled) return;
-        if(e && e.code === "rate_limited"){ MIC2.off = dayKey(); mic2Save(); done(false, {code:"quota"}); }
-        else if(e && e.code === "cancelled") done(false, {code: h._cancel ? "cancel" : "network"});
-        else done(false, {code:"network"});
-      }
+        micPill("busy");
+        try{
+          const w = await paToWav(blob);
+          if(settled) return;
+          if(w.sec < 0.4 || w.peak < 0.015){ done(false, {code:"no-speech"}); return; }
+          ctl = new AbortController(); const tm = setTimeout(()=>{ try { ctl.abort(); } catch(e){} }, 15000);
+          const txt = await mic2Transcribe(w.wav, ctl.signal); clearTimeout(tm);
+          if(settled) return;
+          if(txt){ onLive && onLive(txt); if(!S.state.srOK){ S.state.srOK = true; Store.saveState(); } done(true, [txt]); }
+          else done(false, {code:"no-speech"});
+        }catch(e){
+          if(settled) return;
+          if(e && e.code === "rate_limited"){ MIC2.off = dayKey(); mic2Save(); done(false, {code:"quota"}); }
+          else if(e && e.code === "cancelled") done(false, {code: h._cancel ? "cancel" : "network"});
+          else done(false, {code:"network"});
+        }
+      };
+      try { rec.stop(); } catch(e){ done(false, {code:"network"}); }
     };
     REC_CUR = h; if(S.sh) S.sh.rec = h;
     micPill("wait");
     (async ()=>{
       try{
-        audioSess("play-and-record");
         stream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true, noiseSuppression:true, autoGainControl:true}});
+        MIC_STREAMS.add(stream);
         if(settled){ release(); return; }
-        ac = ACX = ACX || new (window.AudioContext || window.webkitAudioContext)();
-        if(ac.state === "suspended"){ try { await ac.resume(); } catch(e){} }
-        rate = ac.sampleRate; src = ac.createMediaStreamSource(stream); proc = ac.createScriptProcessor(2048, 1, 1);
-        t0 = performance.now();
-        proc.onaudioprocess = e => {
-          if(ended || settled) return;
-          const d = e.inputBuffer.getChannelData(0); chunks.push(new Float32Array(d));
-          const now = performance.now(), dur = d.length / rate * 1000;
-          if(!firstFrame){ firstFrame = now; micPill("go"); }
-          let s = 0; for(let i = 0; i < d.length; i++) s += d[i]*d[i]; const rms = Math.sqrt(s / d.length);
-          micLevel(rms);
-          if(calib < 6){ calib++; floor = Math.min(floor, rms); }
-          const thr = Math.min(0.06, Math.max(0.012, floor * 3));
-          if(rms > thr){ speechMs += dur; lastVoice = now; if(!speech && speechMs > 140){ speech = true; speechAt = now - speechMs; onLive && onLive("…"); } }
-          else if(!speech) speechMs = Math.max(0, speechMs - dur);
-          if(speech && now - lastVoice > (S.view === "sprechen" ? 1500 : 1100)) finishRec();
-          else if(!speech && now - t0 > 7000) finishRec();
-          else if(now - t0 > 15000) finishRec();
-        };
-        src.connect(proc); proc.connect(ac.destination);
-        /* ses akmıyorsa (ses motoru uyanmadı) telefonun kendi tanımasına geç */
-        timers.push(setTimeout(()=>{ if(!firstFrame && !settled){ settled = true; release(); micPill(null); if(REC_CUR === h) REC_CUR = null; _recognize0(onLive).then(res, rej); } }, 2500));
+        rec = new MediaRecorder(stream);
+        rec.ondataavailable = e => { if(e.data && e.data.size) chunks.push(e.data); };
+        rec.start(250);
+        tOpen = performance.now(); micLog("ok", tOpen - t0);
+        micPill("go");
+        /* sessizlik takibi */
+        try{
+          const AC = window.AudioContext || window.webkitAudioContext; vac = new AC();
+          if(vac.state !== "running"){ try { await vac.resume(); } catch(e){} }
+          an = vac.createAnalyser(); an.fftSize = 1024; vac.createMediaStreamSource(stream).connect(an);
+          const buf = new Float32Array(an.fftSize); let last = performance.now();
+          iv = setInterval(()=>{
+            if(ended || settled || !an) return;
+            const now = performance.now(), dur = now - last; last = now;
+            an.getFloatTimeDomainData(buf); let s = 0; for(let i = 0; i < buf.length; i++) s += buf[i]*buf[i]; const rms = Math.sqrt(s / buf.length);
+            if(vac.state === "running" && rms > 0) vadOk = true;
+            if(!vadOk) return;
+            micLevel(rms);
+            if(calib < 5){ calib++; floor = Math.min(floor, rms); }
+            const thr = Math.min(0.06, Math.max(0.012, floor * 3));
+            if(rms > thr){ speechMs += dur; lastVoice = now; if(!speech && speechMs > 140){ speech = true; onLive && onLive("…"); } }
+            else if(!speech) speechMs = Math.max(0, speechMs - dur);
+            if(speech && now - lastVoice > (S.view === "sprechen" ? 1500 : 1100)) finishRec();
+            else if(!speech && now - tOpen > 7000) finishRec();
+          }, 60);
+        }catch(e){ vadOk = false; }
+        /* sessizlik takibi hiç çalışmadıysa: 6 sn kayıt (şeride dokunarak erken bitirebilirsin) */
+        timers.push(setTimeout(()=>{ if(!vadOk && !ended && !settled){ const el = document.getElementById("micPill"); if(el && !el.dataset.manual){ el.dataset.manual = "1"; el.onclick = () => finishRec(); const x = el.querySelector(".x"); if(x) x.textContent = "bitti ✓"; } } }, 900));
+        timers.push(setTimeout(()=>{ if(!vadOk) finishRec(); }, 6500));
+        timers.push(setTimeout(()=>finishRec(), 15000));
       }catch(e){
+        micLog((e && e.name) || "err", performance.now() - t0);
         if(settled) return;
         if(e && (e.name === "NotAllowedError" || e.name === "SecurityError")){ MIC2.denied = true; done(false, {code:"not-allowed"}); }
         else { settled = true; release(); micPill(null); if(REC_CUR === h) REC_CUR = null; _recognize0(onLive).then(res, rej); }
@@ -6133,6 +6178,7 @@ function mic2Listen(onLive){
     })();
   });
 }
+
 const _recognize0 = recognize;
 recognize = function(onLive, _again){ return mic2Ok() ? mic2Listen(onLive) : _recognize0(onLive, _again); };
 const _useSR0 = useSR;
