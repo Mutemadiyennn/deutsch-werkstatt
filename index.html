@@ -4782,6 +4782,19 @@ const GeminiAI = {
   async limits(){ return {images:true}; }
 };
 
+/* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
+const APP_VER = "2026-11-09d";
+const _gemCall0 = gemCall;
+gemCall = async function(model, body, signal){
+  const t0 = Date.now(); const audio = JSON.stringify(body.contents || []).includes("audio/wav");
+  const log = e => { try { const L = JSON.parse(localStorage.getItem("dw-ailog") || "[]"); L.push({t:t0, m:model, s:Math.round((Date.now()-t0)/100)/10, r:e, a:audio ? 1 : 0}); localStorage.setItem("dw-ailog", JSON.stringify(L.slice(-12))); } catch(x){} };
+  try { const r = await _gemCall0(model, body, signal); log("ok"); return r; } catch(e){ log((e && e.code) || "err"); throw e; }
+};
+function aiLogHtml(){
+  let L = []; try { L = JSON.parse(localStorage.getItem("dw-ailog") || "[]"); } catch(e){}
+  const rows = L.slice(-8).reverse().map(x=>`<div>${new Date(x.t).toLocaleTimeString("tr-TR",{hour:"2-digit",minute:"2-digit"})} · ${x.a ? "🎤 " : ""}${esc(String(x.m).replace(/^gemini-/,""))} · <b>${x.s} sn</b> · ${x.r === "ok" ? "✓" : esc(x.r)}</div>`).join("");
+  return `<details class="small muted" style="margin-top:8px"><summary>Son yapay zekâ istekleri (süre) · sürüm ${APP_VER}</summary>${rows || "<div>Henüz yok.</div>"}</details>`;
+}
 /* --- Pexels fotoğrafları --- */
 const PHOTO = { cache:{}, loaded:false };
 async function photoCacheLoad(){ if(PHOTO.loaded) return; PHOTO.loaded = true; try { const c = await IDB.get("photos"); if(c) PHOTO.cache = c; } catch(e){} }
@@ -4859,6 +4872,7 @@ function renderKurulum(){
     <p class="small">Safari'de de, ana ekrandaki tam ekran sürümde de çalışır. Mikrofon izni gerekir; „Telefonun kendi tanıması“ seçiliyse ayrıca Siri açık olmalı.</p>
     ${typeof mic2SetupHtml === "function" ? mic2SetupHtml() : ""}
     <button class="btn block" data-act="micTest2">🎤 Mikrofonu dene: „Guten Morgen“ de</button>
+    ${typeof aiLogHtml === "function" ? aiLogHtml() : ""}
     ${S.micTest ? `<div class="fb ${S.micTest.ok?"ok":"no"}">${esc(S.micTest.msg)}</div>` : ""}</section>
   <section class="card"><h3>4 · Verilerini taşı</h3>
     <p class="small">Claude'daki eski uygulamada: Seviyem → Ayarlar → <b>"Verilerimi yeni uygulamaya taşı"</b> düğmesine bas (kopyalar). Sonra buraya yapıştır.</p>
