@@ -3139,7 +3139,17 @@ function wordsOK(){ return S.words.filter(w=>w.tr).length >= 4; }
 /* ---------- zaman sayacı ---------- */
 const CLK = { last: Date.now(), input: Date.now(), seen: Date.now(), saved: Date.now(), dirty:false };
 ["click","keydown","touchstart","scroll","input"].forEach(ev => document.addEventListener(ev, ()=>{ CLK.input = Date.now(); }, {passive:true, capture:true}));
-function audioOn(){ return !!((S.audio && S.audio.playing) || (S.listen && S.listen.playing) || (S.sh && S.sh.busy)); }
+/* ekrana dokunmadan da çalışılan anlar: ses çalıyor, mikrofon dinliyor, canlı sohbet, eller serbest Düşün ve kur, konuşma turu */
+function audioOn(){
+  return !!((S.audio && S.audio.playing) || (S.listen && S.listen.playing) || (S.sh && S.sh.busy)
+    || (S.live && ["live","connecting"].includes(S.live.phase))
+    || (S.denk && S.denk.data && !S.denk.finished && (S.denk.playing || S.denk.auto))
+    || (typeof REC_CUR !== "undefined" && REC_CUR)
+    || (S.flu && S.flu.phase === "run")
+    || (S.talk && (S.talk.speaking || S.talk.listening || S.talk.busy))
+    || (typeof NEU !== "undefined" && NEU.audio && !NEU.audio.paused && !NEU.audio.ended)
+    || (window.speechSynthesis && speechSynthesis.speaking));
+}
 function addSec(n){
   const m = S.state.mins || (S.state.mins = {}); const t = dayKey();
   const before = Math.floor((m[t]||0)/60);
@@ -3153,14 +3163,17 @@ function clock(){
   if(S._boot && now - (S._lastPre||0) > 3600000 && document.visibilityState === "visible"){ S._lastPre = now; prefetchToday(); } const dt = Math.min(5, (now - CLK.last)/1000); CLK.last = now;
   const vis = document.visibilityState === "visible"; const aud = audioOn();
   const paused = S.sess && S.sess.paused;
-  if((vis || aud) && !paused){ if(now - CLK.seen > POMO_BREAK*60000){ pomo().work = 0; } CLK.seen = now; }
+  /* mola: 5 dakika boyunca hiç çalışma sayılmadıysa (uygulama kapalı, duraklatılmış ya da boşta) pomodoro sıfırlanır */
+  if(!CLK.lastCount) CLK.lastCount = now;
+  if(pomo().work > 0 && now - CLK.lastCount > POMO_BREAK*60000){ pomo().work = 0; CLK.dirty = true; }
+  if((vis || aud) && !paused) CLK.seen = now;
   if(S.brk){
     const left = Math.max(0, Math.round((S.brk.end - now)/1000));
     const el = $("#brkTime"); if(el) el.textContent = pad(Math.floor(left/60))+":"+pad(left%60);
     if(left === 0) endBreak();
   } else {
     const learning = !["plan","seviye","more","seans"].includes(S.view);
-    if(aud || (vis && learning && now - CLK.input < 120000)) addSec(dt);
+    if(!paused && (aud || (vis && learning && now - CLK.input < 120000))){ addSec(dt); CLK.lastCount = now; }
   }
   const a = $("#sbMin"); if(a) a.textContent = `${minsToday()}/${DAILY_GOAL} dk`;
   const b = $("#sbPomo"); if(b) b.textContent = needBreak() ? "sonra mola" : `☕ ${pomoLeft()} dk`;
@@ -5654,7 +5667,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-12i";
+const APP_VER = "2026-11-12j";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
