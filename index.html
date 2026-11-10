@@ -919,6 +919,23 @@ body.insess .k-top .k-x{display:none}
 .seg.lvcorr button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:10px 6px!important;min-height:72px;min-width:0;text-align:center;white-space:normal!important;border:2px solid var(--line)!important;border-radius:14px!important;background:var(--card)!important;color:var(--ink)!important}
 .seg.lvcorr button[aria-pressed="true"]{border-color:var(--accent)!important;background:color-mix(in srgb,var(--accent) 16%,var(--card))!important;color:var(--ink)!important}
 .seg.lvcorr button b{font-size:.95rem}.seg.lvcorr button span{font-size:.7rem;line-height:1.2;opacity:.75;font-weight:500}
+
+.vscene.vsc-k{height:120px!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#fff}
+.vscene.vsc-k .m{position:static!important;font-size:2.6rem!important;transform:none!important}
+.vsc-l{font-size:.85rem;font-weight:800;letter-spacing:.02em;background:rgba(255,255,255,.18);padding:4px 12px;border-radius:99px}
+
+/* ikonsuz kutucuklarda boş üst alan olmasın */
+.tile:not(:has(> .ti)){padding-top:14px!important;min-height:0!important;justify-content:flex-start}
+.tgrid .tile:not(:has(> .ti)){padding-top:14px!important}
+
+.avatar{color:#fff!important;font-weight:800;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+
+/* sohbet balonlarında 🔊 küçük yuvarlak buton, çeviri okunaklı */
+.bub .trb{display:inline-flex!important;width:30px!important;height:30px;min-height:0!important;padding:0!important;margin:0 0 0 6px!important;align-items:center;justify-content:center;border-radius:50%!important;border:0!important;background:rgba(127,127,127,.18)!important;vertical-align:middle;font-size:.85rem}
+.bub.a .trb{background:rgba(255,255,255,.22)!important}
+.bub .tr{display:block;margin-top:6px}
+.bub.a .tr, .bub.a .small{color:rgba(255,255,255,.86)!important}
+.bub br + .tr{margin-top:2px}
 </style>
 </head>
 <body>
@@ -2498,10 +2515,10 @@ function renderSpielen(){
     <p class="small muted">Bugünün konusu: <b>${esc(cur.d.title)}</b>. Konu oyunları sadece öğrendiğin kelimeleri kullanır; önce bugünün dersini yapman iyi olur.</p>
     ${S.gameErr ? `<div class="fb no">${esc(S.gameErr)}</div>` : ""}</section>
   <section class="grid2">
-    <button class="tile" data-act="game" data-g="memory"><b>Memory</b><span>Almanca ↔ Türkçe kartları eşleştir.${g.memory?` Rekor: ${g.memory}`:""}</span></button>
-    <button class="tile" data-act="game" data-g="blitz"><b>60 saniye Blitz</b><span>Artikel ve anlam; ne kadar hızlısın?${g.blitz?` Rekor: ${g.blitz}`:""}</span></button>
-    <button class="tile" data-act="game" data-g="builder" ${noAI?"disabled":""}><b>Satz-Baumeister</b><span>Bugünün konusuyla cümle kur, zamana karşı.${g.builder?` Rekor: ${g.builder}`:""}</span></button>
-    <button class="tile" data-act="game" data-g="hunt" ${noAI?"disabled":""}><b>Fehlerjagd</b><span>Doğru mu, yanlış mı? Hataları avla.${g.hunt?` Rekor: ${g.hunt}`:""}</span></button>
+    <button class="tile" data-act="game" data-g="memory"><i class="ti" style="--c:#7C5CFA">🧠</i><b>Memory</b><span>Almanca ↔ Türkçe kartları eşleştir.${g.memory?` Rekor: ${g.memory}`:""}</span></button>
+    <button class="tile" data-act="game" data-g="blitz"><i class="ti" style="--c:#F59E0B">⚡</i><b>60 saniye Blitz</b><span>Artikel ve anlam; ne kadar hızlısın?${g.blitz?` Rekor: ${g.blitz}`:""}</span></button>
+    <button class="tile" data-act="game" data-g="builder" ${noAI?"disabled":""}><i class="ti" style="--c:#2F7BF6">🧱</i><b>Satz-Baumeister</b><span>Bugünün konusuyla cümle kur, zamana karşı.${g.builder?` Rekor: ${g.builder}`:""}</span></button>
+    <button class="tile" data-act="game" data-g="hunt" ${noAI?"disabled":""}><i class="ti" style="--c:#EF4A82">🔎</i><b>Fehlerjagd</b><span>Doğru mu, yanlış mı? Hataları avla.${g.hunt?` Rekor: ${g.hunt}`:""}</span></button>
   </section>`;
 }
 function gameWords(n){
@@ -2531,7 +2548,7 @@ async function aiGame(kind, topic){
 Spiel "Satz-Baumeister" zum Thema: ${topic}. Erstelle 8 korrekte, natürliche Sätze (5-9 Wörter) aus dem Leben des Lerners, die genau dieses Thema zeigen. Nur Wörter, die der Lerner kennt.
 Antworte NUR mit JSON: {"items":[{"kind":"order","answer":"Am Samstag besuchen wir meine Oma.","tr":"türkisch","explain":"1 kurzer Satz Türkisch zur Regel","topic":"eine von: ${MTOPICS.join(", ")}"}]}`, {tier:"quick"})
       : await askJSON(`Du bist ein persönlicher Deutschlehrer. ${profile()}
-Spiel "Fehlerjagd" zum Thema: ${topic}. Erstelle 10 kurze Sätze aus dem Leben des Lerners: 5 korrekt, 5 mit genau einem typischen Fehler zum Thema (wie ihn Türkischsprecher machen). Nur bekannte Wörter.
+Spiel "Fehlerjagd" zum Thema: ${topic}. Erstelle 10 kurze Sätze aus verschiedenen Alltagssituationen: 5 korrekt, 5 mit genau einem typischen Fehler zum Thema (wie ihn Türkischsprecher machen). Nur bekannte Wörter.
 Antworte NUR mit JSON: {"items":[{"kind":"tf","prompt":"der Satz","correct":true,"answer":"der korrekte Satz (bei korrekten Sätzen identisch)","tr":"türkisch (korrekter Satz)","explain":"1 kurzer Satz Türkisch: was ist falsch / warum richtig","topic":"eine von: ${MTOPICS.join(", ")}"}]}`, {tier:"quick"});
     S.gameBusy = false;
     let items = (r && r.items) || [];
@@ -4651,7 +4668,8 @@ function startVocab(opts){
   const ctx = S.sess ? S.sess.ctx : null;
   const cap = opts.cap || (ctx === "gym" ? 8 : ctx === "pause" ? 12 : 20);
   const t = dayKey();
-  const due = S.words.filter(w=>vIsCard(w) && vDue(w)).sort((a,b)=>String(a.due||"").localeCompare(String(b.due||"")));
+  const weak = w => (w.lapses||0)*2 + (w.wrong||0) - (w.right||0);
+  const due = S.words.filter(w=>vIsCard(w) && vDue(w)).sort((a,b)=>(weak(b) > 1) - (weak(a) > 1) || String(a.due||"").localeCompare(String(b.due||"")));
   const fresh = S.words.filter(w=>vIsCard(w) && vIsNew(w)).sort((a,b)=>((b.src==="tap")-(a.src==="tap")) || String(a.added||"").localeCompare(String(b.added||"")));
   const nNew = Math.min(newQuota(), Math.max(0, cap - Math.min(due.length, cap)), Math.ceil(cap/2));
   const q = [];
@@ -5366,8 +5384,8 @@ function renderRehber(){
   const st = stage(); const P = stageProgress(); const v = vStats(); const dx = daysToExam();
   const C = S.coach || (S.coach = {msgs:[], busy:false, err:""});
   const phases = [
-    {n:1, t:"Çırak (Junior) · A1-A2 temeli", m:"İlk 4-8 hafta", d:"Günde 10 yeni kelime, kısa hikâyeler, 'Düşün ve kur' ile cümle mantığı, hazırlıklı sesli konuşma. Dışarıda: fırın, kasa, komşuya selam. Evde: akşam yemeğinde 10 dk Almanca. Video: Nicos Weg A1/A2 (öğrenme dizisi)."},
-    {n:2, t:"Kalfa · A2 sağlam", m:"2-4. ay", d:"Günde 14 kelime, Türkçesiz kartlar, ipuçlu konuşmalar, dikte, yutulan sesler (hab's, gibt's). Dışarıda: doktor randevusu, Kita, iş arkadaşıyla kahve sohbeti. Video: Easy German sokak röportajları (Almanca altyazıyla)."},
+    {n:1, t:"Çırak (Junior) · A1-A2 temeli", m:"İlk 4-8 hafta", d:"1500 kelime listesinden günde 6–30 yeni kelime (senin hızına göre), kısa hikâyeler, 'Düşün ve kur' ile cümle mantığı, hazırlıklı sesli konuşma. Dışarıda: fırın, kasa, komşuya selam. Evde: akşam yemeğinde 10 dk Almanca. Video: Nicos Weg A1/A2 (öğrenme dizisi)."},
+    {n:2, t:"Kalfa · A2 sağlam", m:"2-4. ay", d:"1500 listesine devam (günlük miktar kendini ayarlar), Türkçesiz kartlar, ipuçlu konuşmalar, dikte, yutulan sesler (hab's, gibt's). Dışarıda: doktor randevusu, Kita, iş arkadaşıyla kahve sohbeti. Video: Easy German sokak röportajları (Almanca altyazıyla)."},
     {n:3, t:"Usta · B1'e geçiş", m:"4-6. ay", d:"Sürpriz konuşmalar, Bavyera ağzı, 3-2-1 akıcılık, gerçek diziler (Dahoam is Dahoam, Almanca altyazılı). Evde: tüm akşam yemeği Almanca. İşte: kısa Almanca toplantı cümleleri."},
     {n:4, t:"Uzman · B1 sınavı ve ötesi", m:"6. ay ve sonrası", d:"B1 sınav formatı (dinleme, okuma, yazma, konuşma), uzun hazırlıksız konuşmalar, altyazısız dizi. Hedef: B2 yolunda iş toplantıları."}
   ];
@@ -5576,7 +5594,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-12a";
+const APP_VER = "2026-11-12b";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -5622,7 +5640,12 @@ async function pexelsSearch(q){
 async function photoFor(s){
   if(s && s.photo && s.photo.t && Date.now() - s.photo.t > PIX_TTL) s.photo = null;
   if(!s || s.photo || !s.img) return null;
-  const list = await pexelsSearch(s.img); if(!list.length){ s.photo = {none:true}; return null; }
+  if(s._pfetch) return null; s._pfetch = true;
+  let list = [];
+  try{ list = await Promise.race([pexelsSearch(s.img), new Promise((_, rej)=>setTimeout(()=>rej(new Error("timeout")), 7000))]); }
+  catch(e){ list = []; }
+  finally{ s._pfetch = false; }
+  if(!list || !list.length){ s.photo = {none:true, t:Date.now()}; render(); return null; }
   s.photo = list[Math.floor(Math.random() * Math.min(8, list.length))]; return s.photo;
 }
 function photoHtml(s, h){
@@ -7959,7 +7982,7 @@ function focusBar(){
 /* ================= Daha fazla: gruplu, sade menü (bulamaç değil) ================= */
 const MORE_GROUPS = [
   ["Konuş", [["🥨","Senaryolar","goScenList"],["⚡","Akıcılık 3-2-1","fluStart"],["🗣️","Shadowing","goShadow"],["🛟","Donma ilacı","repairStart"],["💬","Sohbet ve dinleme","#sprechen"],["✍️","Yaz","#schreiben"]]],
-  ["Öğren", [["📘","Dersler","#lernen"],["🃏","Kelime kartları","vocabStart"],["📖","Hikâye","storyStart"],["🧠","Düşün ve kur","denkStart"],["🎬","Video","mediaStart"],["🎧","Dikte","dictStart"],["🏔️","Bavyera ağzı","reducedStart"],["🚗","Sesli tekrar","goAudio"],["🎮","Oyunlar","#spielen"]]],
+  ["Öğren", [["🧱","1500 kelime","coreOpen"],["📘","Dersler","#lernen"],["🃏","Kelime kartları","vocabStart"],["📖","Hikâye","storyStart"],["🧠","Düşün ve kur","denkStart"],["🎬","Video","mediaStart"],["🎧","Dikte","dictStart"],["🏔️","Bavyera ağzı","reducedStart"],["🚗","Sesli tekrar","goAudio"],["🎮","Oyunlar","#spielen"]]],
   ["Sınav ve ilerleme", [["🎓","B1 atölyesi","goExam"],["📈","Aylık ölçüm","checkStart"],["📝","Resmî deneme","#sinav"]]],
   ["Araçlar", [["🗂️","Kartlarım","#kartei"],["🏫","VHS ödev","odevStart"],["🧭","Koçun","goRehber"],["⚙️","Kurulum","#kurulum"]]]
 ];
@@ -9563,7 +9586,10 @@ function liveIsDe(t){
 Object.assign(ACT, { liveCorrSet(b){ S.state.liveCorr = b.dataset.k; Store.saveState(); render(); } });
 
 /* ===== içerik kalite kapısı: her yapay zekâ cevabı ekrana gelmeden denetlenir ===== */
-const QG_TRKEY = /^(tr|why|explain|explain_tr|rule|rule_tr|hint_tr|tip|tip_tr|feedback_tr|praise_tr|next_tr|summary_tr|desc_tr|meaning|bedeutung_tr|note_tr|question_tr|q_tr|title_tr|trw)$/i;
+const QG_TRKEY = /(^|_)tr$|^(why|explain|say|rule|tip|meaning|q)$/i;
+const QG_TRW = /[çğışİ]|\b(ben|sen|biz|siz|onlar|bir|ve|bu|şu|mı|mi|mu|mü|değil|var|yok|için|ile|çok|ama|ne|nasıl|neden|bugün|yarın|dün|olarak|gibi|daha|sonra|önce|kelime|cümle|fiil|isim|burada|doğru|yanlış)\b/i;
+const QG_DEW = /\b(ich|du|wir|ihr|sie|er|es|ist|bin|bist|sind|habe|hast|hat|der|die|das|und|nicht|kein|auf|mit|ein|eine|zu|von|den|dem|wie|was|warum|worum|geht|wird|werden|man|sich|auch|oder|aber|wenn|dass|weil|sehr|kurz|kurze|kurzer|Satz|Sätze|Regel|Beispiel|Erklärung)\b/gi;
+const qgIsDe = t => (t.match(QG_DEW)||[]).length >= 3 && !QG_TRW.test(t);
 const QG_DEKEY = /^(de|answer|better|right|ans|sentence|satz|text_de|example|beispiel)$/i;
 function qgLint(v, path, out){
   out = out || []; path = path || "";
@@ -9572,9 +9598,11 @@ function qgLint(v, path, out){
   for(const [k, x] of Object.entries(v)){
     if(typeof x === "string"){
       const t = x.trim(); if(!t) continue;
-      if(QG_TRKEY.test(k) && k !== "trw" && t.length > 14 && DK_DE.test(t) && !DK_TR.test(t) && !/[çğışİ]/.test(t)) out.push(`${path}.${k} muss TÜRKISCH sein, ist aber Deutsch: "${t.slice(0,60)}"`);
+      const tt = t.replace(/⟦[^⟧]*⟧|\([^)]*\)|„[^“]*“|"[^"]*"|'[^']*'/g, " ");
+      if(QG_TRKEY.test(k) && tt.length > 14 && qgIsDe(tt)) out.push(`${path}.${k} muss TÜRKISCH sein, ist aber Deutsch: "${t.slice(0,60)}"`);
       if(QG_DEKEY.test(k) && /[çğışİ]/.test(t) && !/[äöüß]/i.test(t) && !DK_DE.test(t)) out.push(`${path}.${k} muss DEUTSCH sein, ist aber Türkisch: "${t.slice(0,60)}"`);
-    } else qgLint(x, path+"."+k, out);
+    } else if(Array.isArray(x) && QG_TRKEY.test(k) && x.every(y=>typeof y === "string")){ x.forEach((y,i)=>{ const tt = y.replace(/⟦[^⟧]*⟧|\([^)]*\)|„[^“]*“|"[^"]*"|'[^']*'/g, " "); if(tt.length > 14 && qgIsDe(tt)) out.push(`${path}.${k}[${i}] muss TÜRKISCH sein: "${y.slice(0,60)}"`); }); }
+    else qgLint(x, path+"."+k, out);
   }
   if(typeof v.de === "string" && typeof v.tr === "string" && v.de.trim().length > 3 && norm(v.de) === norm(v.tr)) out.push(`${path}.tr ist keine türkische Übersetzung von "${v.de.slice(0,40)}"`);
   return out;
@@ -9600,6 +9628,65 @@ function qgFix(v){
     }
     return r;
   };
+}
+
+/* cümlesi henüz gelmemiş kelimede boş gri kutu yerine kelime türüne göre renkli şerit */
+{
+  const _sc2 = sceneHtml;
+  sceneHtml = function(s, w, big){
+    if(!s && w){
+      const K = {verb:["⚡","fiil","#7C5CFA","#2F7BF6"], nomen:["🏷️","isim","#F97316","#EF4A82"], adj:["🎨","sıfat","#14B8A6","#22C55E"], andere:["🔗","küçük ama önemli kelime","#2F7BF6","#14B8A6"]}[w.kind] || ["💬","kelime","#2F7BF6","#7C5CFA"];
+      const th = w.core && CORE.ready ? (CORE.byId.get(w.core)||{}).th : ""; const thn = th ? coreThemeName(th) : "";
+      return `<div class="vscene vsc-k" style="background:linear-gradient(135deg,${K[2]},${K[3]})" aria-hidden="true"><span class="m">${K[0]}</span><span class="vsc-l">${esc(K[1])}${thn ? " · " + esc(thn) : ""}</span></div>`;
+    }
+    return _sc2.apply(this, arguments);
+  };
+}
+
+/* Düşün ve kur: iki yeni ders + VHS'te o hafta işlenen konuya göre ders seçimi */
+DENK_L.push(
+{title:"Kendine dönük fiiller: sich", summary:"Reflexive Verben: mich, dich, sich, uns.", steps:[
+ {say:"Bazı fiiller kişinin kendisine döner: ⟦sich waschen⟧ = yıkanmak. ⟦sich⟧ kişiye göre değişir: ⟦ich wasche mich⟧, ⟦du wäschst dich⟧. ⟦sich freuen⟧ = sevinmek, ⟦sehr⟧ = çok.", ask:"Çok seviniyorum.", ans:"Ich freue mich sehr.", why:"ich → mich."},
+ {say:"⟦sich ausruhen⟧ = dinlenmek; ayrılan fiil: ⟦ruhe … aus⟧. ⟦mich⟧ fiilin hemen arkasına gelir.", ask:"Hafta sonu dinleniyorum.", ans:"Am Wochenende ruhe ich mich aus.", alt:["Ich ruhe mich am Wochenende aus."], why:"ruhe … mich … aus."},
+ {say:"⟦er/sie⟧ ile ⟦sich⟧: ⟦er wäscht sich⟧. ⟦sich anziehen⟧ = giyinmek, ⟦allein⟧ = kendi başına.", ask:"Kızım kendi başına giyiniyor.", ans:"Meine Tochter zieht sich allein an.", alt:["Meine Tochter zieht sich selbst an."], why:"sie → sich; an sonda."},
+ {say:"⟦wir⟧ ile ⟦uns⟧: ⟦wir setzen uns⟧ = oturuyoruz. ⟦sich treffen⟧ = buluşmak.", ask:"Yarın buluşuyoruz.", ans:"Morgen treffen wir uns.", alt:["Wir treffen uns morgen."], why:"wir → uns."},
+ {say:"⟦sich freuen auf⟧ = dört gözle beklemek; ⟦auf⟧ + nesne hali: ⟦Ich freue mich auf das Konzert.⟧ ⟦der Urlaub⟧ = tatil.", ask:"Tatili dört gözle bekliyorum.", ans:"Ich freue mich auf den Urlaub.", why:"auf + den Urlaub."},
+ {say:"⟦sich interessieren für⟧ = ilgilenmek. du ile ⟦dich⟧.", ask:"Futbolla ilgileniyor musun?", ans:"Interessierst du dich für Fußball?", why:"du → dich; für + Fußball."},
+ {say:"⟦sich fühlen⟧ = kendini hissetmek: ⟦Wie fühlst du dich?⟧ ⟦müde⟧ = yorgun.", ask:"Kendimi yorgun hissediyorum.", ans:"Ich fühle mich müde.", why:"fühle mich + sıfat."},
+ {say:"Modal fiil varsa ⟦mich⟧ öne gelir, mastar sona: ⟦Ich muss mich beeilen.⟧", ask:"Dinlenmem lazım.", ans:"Ich muss mich ausruhen.", why:"muss mich … ausruhen."},
+ {say:"Geçmişte ⟦habe⟧ + ⟦mich⟧ + fiil sonda: ⟦Ich habe mich gefreut.⟧ ⟦sich erkälten⟧ = üşütmek → ⟦erkältet⟧.", ask:"Üşüttüm.", ans:"Ich habe mich erkältet.", why:"habe mich … erkältet."},
+ {say:"⟦sich kümmern um⟧ = ilgilenmek, bakmak; ⟦um⟧ + nesne hali. ⟦abends⟧ = akşamları.", ask:"Akşamları kızımla ben ilgileniyorum.", ans:"Abends kümmere ich mich um meine Tochter.", alt:["Ich kümmere mich abends um meine Tochter."], why:"kümmere mich um …"},
+ {say:"Birleştir. ⟦sich duschen⟧ = duş almak, ⟦sich beeilen⟧ = acele etmek.", ask:"Duş alıyorum, giyiniyorum ve acele ediyorum.", ans:"Ich dusche mich, ziehe mich an und beeile mich.", alt:["Ich dusche, ziehe mich an und beeile mich."], why:"Her fiilde mich."}
+]},
+{title:"Kısa geçmiş: war, hatte, konnte", summary:"Präteritum von sein, haben und den Modalverben.", steps:[
+ {say:"Konuşmada ⟦sein⟧ ve ⟦haben⟧ geçmişte çoğunlukla kısa formla söylenir: ⟦ich war⟧ = idim, ⟦ich hatte⟧ = (bende) vardı. ⟦gestern⟧ = dün.", ask:"Dün yorgundum.", ans:"Gestern war ich müde.", alt:["Ich war gestern müde."], why:"Gestern (1) · war (2) · ich."},
+ {say:"⟦du warst⟧, ⟦er/sie war⟧, ⟦wir waren⟧.", ask:"Neredeydin?", ans:"Wo warst du?", why:"du → warst."},
+ {say:"⟦ich hatte⟧, ⟦du hattest⟧, ⟦wir hatten⟧. ⟦keine Zeit⟧ = hiç vakit yok.", ask:"Dün hiç vaktim yoktu.", ans:"Gestern hatte ich keine Zeit.", alt:["Ich hatte gestern keine Zeit."], why:"hatte + keine Zeit."},
+ {say:"⟦wir hatten⟧; ⟦ein Problem⟧ = bir sorun.", ask:"Bir sorunumuz vardı.", ans:"Wir hatten ein Problem.", why:"wir → hatten."},
+ {say:"Modal fiiller de geçmişte kısa formla söylenir ve noktaları (umlaut) düşer: ⟦können⟧ → ⟦konnte⟧. Mastar yine sonda.", ask:"Gelemedim.", ans:"Ich konnte nicht kommen.", why:"konnte … kommen."},
+ {say:"⟦müssen⟧ → ⟦musste⟧.", ask:"Dün çok çalışmak zorundaydım.", ans:"Gestern musste ich viel arbeiten.", alt:["Ich musste gestern viel arbeiten."], why:"musste … arbeiten."},
+ {say:"⟦wollen⟧ → ⟦wollte⟧ = istedim. ⟦dich anrufen⟧ = seni aramak.", ask:"Seni aramak istedim.", ans:"Ich wollte dich anrufen.", why:"wollte … anrufen."},
+ {say:"⟦dürfen⟧ → ⟦durfte⟧ = izni vardı. ⟦als Kind⟧ = çocukken, ⟦fernsehen⟧ = televizyon izlemek.", ask:"Çocukken televizyon izleyemezdim.", ans:"Als Kind durfte ich nicht fernsehen.", why:"Als Kind (1) · durfte (2) · ich … fernsehen."},
+ {say:"⟦es gibt⟧'in geçmişi ⟦es gab⟧ = vardı. ⟦auf der Party⟧ = partide.", ask:"Partide çok insan vardı.", ans:"Auf der Party gab es viele Leute.", alt:["Es gab viele Leute auf der Party."], why:"gab es = vardı."},
+ {say:"Soru: ⟦Wie war …?⟧ = … nasıldı? ⟦der Urlaub⟧ = tatil.", ask:"Tatilin nasıldı?", ans:"Wie war dein Urlaub?", why:"Wie · war · dein Urlaub."},
+ {say:"Birleştir. ⟦krank⟧ = hasta, ⟦deshalb⟧ = bu yüzden (fiil hemen arkasında).", ask:"Dün hastaydım, bu yüzden işe gidemedim.", ans:"Gestern war ich krank, deshalb konnte ich nicht zur Arbeit gehen.", alt:["Ich war gestern krank, deshalb konnte ich nicht arbeiten.","Gestern war ich krank, deshalb konnte ich nicht arbeiten."], why:"war; deshalb · konnte · ich … gehen."}
+]});
+const DENK_LEK = {1:[8,4,5], 2:[9], 3:[3], 4:[8,10], 5:[12], 6:[13], 7:[7]};
+denkCurated = function(){
+  const st = S.state.denk || {}; const n = st.n || 0; const done = st.doneL || {};
+  const lek = typeof vhsLek === "function" ? vhsLek() : 0;
+  const recent = d => d && d >= addDays(dayKey(), -10);
+  let idx = (DENK_LEK[lek] || []).find(i=>DENK_L[i] && !recent(done[i]));
+  if(idx === undefined) idx = DENK_L.findIndex((_, i)=>!done[i]);
+  if(idx < 0 || idx === undefined){ idx = DENK_L.map((_, i)=>i).sort((a,b)=>String(done[a]).localeCompare(String(done[b])))[0]; }
+  const round = Object.keys(done).length >= DENK_L.length && done[idx] ? 1 : 0;
+  return {n, idx, lesson: DENK_L[idx], round};
+};
+{
+  const _sd = startDenk;
+  startDenk = async function(){ const c = denkCurated(); const r = await _sd.apply(this, arguments); if(S.denk) S.denk._idx = c.idx; return r; };
+  const _df = denkFinish;
+  denkFinish = function(){ try{ const st = S.state.denk || (S.state.denk = {n:0, sum:[]}); const i = S.denk && S.denk._idx; if(i !== undefined && i !== null){ (st.doneL || (st.doneL = {}))[i] = dayKey(); } }catch(e){} return _df.apply(this, arguments); };
 }
 </script>
 </body>
