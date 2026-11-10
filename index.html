@@ -991,6 +991,12 @@ body.lesson main, body.lesson.insess main, body.lesson.focus main{padding-top:ca
 @keyframes pgSpark{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.3)}}
 .lh-btn svg{display:block}
 .lh-btn{color:var(--ink)!important;background:color-mix(in srgb,var(--ink) 7%,transparent)!important}
+
+#micPill .tip{display:block;font-size:.78rem;font-weight:600;opacity:.85;margin-top:2px}
+.lbtn.mic.live{background:linear-gradient(135deg,#2563EB,#7C3AED)!important;color:#fff!important;animation:micLive 1.2s ease-in-out infinite}
+@keyframes micLive{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.45)}50%{box-shadow:0 0 0 10px rgba(37,99,235,0)}}
+
+.lopt.art-der{background:#2F7BF6!important;color:#fff!important}.lopt.art-die{background:#EF4A82!important;color:#fff!important}.lopt.art-das{background:#16A34A!important;color:#fff!important}
 </style>
 </head>
 <body>
@@ -3623,7 +3629,7 @@ const NATIVE_SR = (()=>{ try{
         try { window.stopSpeech && stopSpeech(); window.neuStop && neuStop(); window.audioStop && audioStop(); } catch(e){}
         try { await P.stop(); } catch(e){}
         await new Promise(r=>setTimeout(r, 180));
-        const opts = {language: self.lang || "de-DE", maxResults:1, partialResults:true, popup:false};
+        const opts = {language: self.lang || "de-DE", maxResults:5, partialResults:true, popup:false};
         try { await P.start(opts); }
         catch(e1){ try { diagAdd("mikrofon", "telefon tanıması ilk denemede açılmadı, yeniden deneniyor", String(e1 && (e1.message||e1))); } catch(_){} try { await P.stop(); } catch(_){} await new Promise(r=>setTimeout(r, 450)); if(self._cancel) return self._end(); await P.start(opts); }
         self.onstart && self.onstart(); self.onaudiostart && self.onaudiostart();
@@ -4929,7 +4935,7 @@ function renderKelime(){
       <button class="btn small" data-act="vSay" title="Cümleyi dinle">🔊</button><button class="btn small" data-act="vSaySlow" title="Yavaş">🐢</button>
       ${!V.res ? `<button class="btn small" data-act="vHint">💡 İpucu</button>` : ""}
     </div>
-    ${!V.res && V.mode==="mic" ? `<button class="btn primary block" style="min-height:64px;font-size:1.15rem" data-act="vMic">${V.listening ? "✋ Dinliyorum… (iptal için dokun)" : "🎤 " + "Söyle (cümlenin tamamını)"}</button>${V.heard ? `<p class="small muted" style="text-align:center">Duyduğum: „${esc(V.heard)}“</p>` : ""}<button class="btn small ghost block" data-act="vReveal">Bilmiyorum, göster</button>` : ""}
+    ${!V.res && V.mode==="mic" ? `<button class="btn primary block" style="min-height:64px;font-size:1.15rem" data-act="vMic">${V.listening ? "⏹ Bitti, gönder" : "🎤 " + "Söyle (cümlenin tamamını)"}</button>${V.heard ? `<p class="small muted" style="text-align:center">Duyduğum: „${esc(V.heard)}“</p>` : ""}<button class="btn small ghost block" data-act="vReveal">Bilmiyorum, göster</button>` : ""}
     ${!V.res && V.mode!=="mic" ? (V.mode==="type" ? `<div class="grid2"><button class="btn" data-act="vReveal">Göster</button><button class="btn primary" data-act="vCheck">Kontrol</button></div>` : `<button class="btn block" data-act="vReveal">Bilmiyorum, göster</button>`) : ""}
     ${V.res ? (V.needArt ? "" : `<button class="btn primary block" style="min-height:56px" data-act="vNext">Sonraki →</button>`) : ""}
   </section>
@@ -5667,7 +5673,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-12j";
+const APP_VER = "2026-11-12k";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -6915,7 +6921,7 @@ function gateLockHtml(){
 const MIC2 = { day:"", n:0, off:"", denied:false };
 try { Object.assign(MIC2, JSON.parse(localStorage.getItem("dw-mic2") || "{}")); } catch(e){}
 function mic2Save(){ try { localStorage.setItem("dw-mic2", JSON.stringify({day:MIC2.day, n:MIC2.n, off:MIC2.off})); } catch(e){} }
-function mic2Pref(){ return (typeof NATIVE !== "undefined" && NATIVE && NATIVE_SR) ? S.state.micEngine === "ai" : S.state.mic2 !== false; }
+function mic2Pref(){ return (typeof NATIVE !== "undefined" && NATIVE) ? S.state.micEngine !== "os" : S.state.mic2 !== false; }
 function mic2Ok(){
   if(MIC2.offUntil && Date.now() < MIC2.offUntil && (SRC0 || NATIVE_SR)) return false;
   return STANDALONE && mic2Pref() && !MIC2.denied && aiReady() && MIC2.off !== dayKey()
@@ -7094,7 +7100,7 @@ micMsg = function(code){
 function mic2SetupHtml(){
   const on = mic2Pref(); const n = MIC2.day === dayKey() ? MIC2.n : 0;
   return `<div class="field"><label>Konuşma tanıma</label>
-    <select data-change="mic2Mode"><option value="os" ${!on?"selected":""}>Telefonun kendi tanıması (önerilen: hızlı, sen susunca kendisi biter)</option><option value="ai" ${on?"selected":""}>Yapay zekâ ile (hatalarını kelimesi kelimesine yazar; bitince "Bitti"ye basarsın)</option></select>
+    <select data-change="mic2Mode"><option value="ai" ${on?"selected":""}>Yapay zekâ ile (önerilen: söylediğini kelimesi kelimesine yazar)</option><option value="os" ${!on?"selected":""}>Telefonun kendi tanıması (internetsiz)</option></select>
     <p class="small muted">Yapay zekâ modunda sesin kaydedilip Gemini'ye yazdırılır (telaffuz analizinde olduğu gibi); hatalarını düzeltmeden yazar. Bugün: ${n} kayıt${MIC2.off === dayKey() ? " · bugünkü ücretsiz hak doldu, telefonun tanıması kullanılıyor" : ""}.</p></div>`;
 }
 
@@ -7336,7 +7342,7 @@ renderKelime = function(){
   const taps = !V.res && V.mode === "tap" && V.opts ? `<div class="lopts">${V.opts.map(o=>`<button class="lopt" data-act="vTap" data-o="${esc(o)}">${esc(o)}</button>`).join("")}</div>` : "";
   let foot = "";
   if(V.res || V.needArt) foot = lessonFeedback(V, w);
-  else if(V.mode === "mic") foot = `<div class="lfoot"><button class="lbtn go mic ${V.listening ? "live" : ""}" data-act="vMic">${V.listening ? "✋ Dinliyorum… dokun: iptal" : "🎤 Cümleyi söyle"}</button><button class="ltext" data-act="vReveal">Bilmiyorum, göster</button></div>`;
+  else if(V.mode === "mic") foot = `<div class="lfoot"><button class="lbtn go mic ${V.listening ? "live" : ""}" data-act="vMic">${V.listening ? "⏹ Bitti, gönder" : "🎤 Cümleyi söyle"}</button><button class="ltext" data-act="vReveal">Bilmiyorum, göster</button></div>`;
   else if(V.mode === "type") foot = `<div class="lfoot two"><button class="lbtn ghost" data-act="vReveal">Göster</button><button class="lbtn go" data-act="vCheck">Kontrol</button></div>`;
   else foot = `<div class="lfoot"><button class="ltext" data-act="vReveal">Bilmiyorum, göster</button></div>`;
   return `<div class="lshell">${head}
@@ -8105,6 +8111,17 @@ const ACT = {
   async vMic(){ const V = S.voc; if(!V) return; if(V.listening){ micCancel(); return; } primeTTS(); V.listening = true; V.heard = ""; render();
     try{ const alts = await recognize(t=>{ V.heard = t; }); V.listening = false; const ans = V.sent ? V.sent.answer : (vWord()||{}).de || ""; const a = vNorm(ans);
       const hit = alts.find(x=>vNorm(x).split(/\s+/).some(tok=>tok === a || (a.length >= 5 && lev(tok, a) <= 1)) || vNorm(x).includes(a));
+      /* artikel: telefon tanıması vurgusuz der/die/das'ı sık yutar. İsim duyulduysa ama artikel duyulmadıysa yanlış sayma, sor. */
+      const ARTS = ["der","die","das","den","dem","des"]; const ap = a.split(/\s+/);
+      if(!hit && ap.length >= 2 && ARTS.includes(ap[0])){
+        const noun = ap.slice(1).join(" "); let found = null;
+        for(const x of alts){ const toks = vNorm(x).split(/\s+/); const i = toks.findIndex(t=>t === noun || (noun.length >= 5 && lev(t, noun) <= 1)); if(i >= 0){ found = {prev: toks[i-1], x}; if(ARTS.includes(toks[i-1])) break; } }
+        if(found){
+          V.heard = alts[0] || "";
+          if(ARTS.includes(found.prev) && found.prev !== ap[0]){ vCheck(found.prev + " " + noun); return; }
+          if(!ARTS.includes(found.prev)){ V.artAsk = {art: ap[0], noun, ans}; render(); return; }
+        }
+      }
       V.heard = alts[0] || ""; vCheck(hit ? ans : (alts[0]||"").split(/\s+/).find(tok=>lev(vNorm(tok), a) <= 2) || alts[0] || ""); }
     catch(e){ V.listening = false; V.heard = ""; if(e.code === "cancel"){ render(); return; } srFail(e.code); S.flash = micMsg(e.code); if(!useSR()){ V.mode = "type"; } render(); } },
   denkStart(){ primeTTS(); startDenk(S.sess ? CTXS[S.sess.ctx].audio : false); },
@@ -10049,6 +10066,42 @@ let _pgLast = {key:"", w:0, combo:0};
     return x;
   };
 }
+
+/* ===== mikrofon: WhatsApp sesli mesajı gibi — bas konuş; bırakınca ya da tekrar dokununca gönderilir ===== */
+function micFinish(){ const r = REC_CUR; if(!r) return; try { if(typeof r.stop === "function"){ r.stop(); return; } } catch(e){} micCancel(); }
+{
+  const _mcF = micCancel;
+  window.micAbortNow = _mcF;
+  micCancel = function(){ micFinish(); };
+  const _mpF = micPill;
+  micPill = function(st){
+    const r = _mpF.apply(this, arguments); const el = document.getElementById("micPill");
+    if(el && st === "go"){
+      el.onclick = () => micFinish();
+      const x = el.querySelector(".x"); if(x){ x.textContent = "✕ iptal"; x.onclick = ev => { ev.stopPropagation(); _mcF(); }; }
+      if(!el.querySelector(".tip")){ const t = document.createElement("span"); t.className = "tip"; t.textContent = "Bitince dokun → gönder"; el.insertBefore(t, el.querySelector(".lv")); }
+    }
+    return r;
+  };
+}
+
+/* artikel duyulamadıysa: der/die/das ile sor */
+{
+  const _rkA = renderKelime;
+  renderKelime = function(){
+    const h = _rkA.apply(this, arguments); const V = S.voc;
+    if(!V || !V.artAsk || V.res) return h;
+    const A = V.artAsk;
+    const foot = `<div class="lfoot"><p class="small" style="text-align:center;margin:0 0 6px">Kelimeyi doğru söyledin ✓ Artikeli duyamadım; hangisiydi?</p><div class="lopts" style="grid-template-columns:repeat(3,1fr)">${["der","die","das"].map(x=>`<button class="lopt art-${x}" data-act="vArtPick" data-a="${x}">${x}</button>`).join("")}</div></div>`;
+    return h.replace(/<div class="lfoot[\s\S]*?<\/div>(\s*<\/div>\s*)$/, foot + "$1");
+  };
+  VIEWS.kelime = () => renderKelime();
+}
+Object.assign(ACT, {
+  vArtPick(b){ const V = S.voc; if(!V || !V.artAsk) return; const A = V.artAsk; V.artAsk = null; const pick = b.dataset.a;
+    const ok = pick === A.art || (A.art === "den" && pick === "der") || (A.art === "dem" && (pick === "der" || pick === "das"));
+    vCheck(ok ? A.ans : pick + " " + A.noun); }
+});
 </script>
 </body>
 </html>
