@@ -874,7 +874,7 @@ body.insess::before,body.focus::before{height:calc(env(safe-area-inset-top) + 14
 /* ===== üst çubuk: tek parça, tam genişlik, durum çubuğuyla bütünleşik ===== */
 body.insess::before, body.focus::before{height:0!important}
 body.insess main, body.focus main{padding-top:0!important}
-body.lesson main{padding-top:0!important}
+
 body.owntop main{padding-top:calc(env(safe-area-inset-top) + 10px)!important}
 .sbar, .fbar{position:sticky!important;top:0!important;z-index:30!important;margin:0 -16px 4px!important;padding:calc(env(safe-area-inset-top) + 8px) 16px 10px!important;background:var(--paper)!important;box-shadow:0 0 0 100vmax var(--paper)!important;clip-path:inset(0 -100vmax)!important;border:0!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;display:flex!important;align-items:center!important;flex-wrap:nowrap!important;gap:8px!important;min-height:0}
 .sbar, .fbar{border-bottom:1px solid transparent!important;border-image:linear-gradient(var(--line),var(--line)) 0 0 1 0 / 0 0 1px 0 / 0 100vmax 0 100vmax!important}
@@ -956,6 +956,13 @@ body.insess .k-top .k-x{display:none}
 .card.hl p.de b{font-size:1.6rem}
 .card.hl .row:has(> [data-act="blitzAns"]){display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 [data-act="blitzAns"]{min-height:58px;font-size:1.1rem}
+
+#micPill.go .lv{transform:scaleX(.18);animation:micIdle 1.4s ease-in-out infinite}
+#micPill.go .lv.hot{animation:none;transition:transform .12s}
+@keyframes micIdle{0%,100%{transform:scaleX(.12);opacity:.6}50%{transform:scaleX(.32);opacity:1}}
+#micPill .heard{display:block;font-size:.85rem;font-weight:600;opacity:.9;margin-top:4px;max-width:78vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+#micPill{top:calc(env(safe-area-inset-top) + 58px)!important}
 </style>
 </head>
 <body>
@@ -3566,7 +3573,7 @@ const NATIVE_SR = (()=>{ try{
   const C = window.Capacitor; const P = C && C.Plugins && C.Plugins.SpeechRecognition; if(!P || !P.start) return null;
   return class {
     constructor(){ this.lang = "de-DE"; this.interimResults = true; this.continuous = false; this.maxAlternatives = 1; this._subs = []; this._last = ""; this._ended = false; }
-    _emit(t, final){ const alt = {transcript:t, confidence:0.9}; const res = [alt]; res.isFinal = !!final; this.onresult && this.onresult({results:[res], resultIndex:0}); }
+    _emit(t, final){ try{ window.micHeard && window.micHeard(t); }catch(e){} const alt = {transcript:t, confidence:0.9}; const res = [alt]; res.isFinal = !!final; this.onresult && this.onresult({results:[res], resultIndex:0}); }
     async start(){ const self = this;
       try{
         let pm = await P.checkPermissions(); if(pm.speechRecognition !== "granted"){ pm = await P.requestPermissions(); if(pm.speechRecognition !== "granted"){ self.onerror && self.onerror({error:"not-allowed"}); self._end(); return; } }
@@ -5614,7 +5621,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-12c";
+const APP_VER = "2026-11-12d";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -6867,7 +6874,7 @@ function mic2Ok(){
     && !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) && !!(window.AudioContext || window.webkitAudioContext);
 }
 function audioSess(t){ try { if(navigator.audioSession) navigator.audioSession.type = t; } catch(e){} }
-function micLevel(v){ const i = document.querySelector("#micPill .lv"); if(i) i.style.transform = "scaleX(" + Math.min(1, v*14).toFixed(2) + ")"; }
+function micLevel(v){ const i = document.querySelector("#micPill .lv"); if(i){ i.classList.add("hot"); i.style.transform = "scaleX(" + Math.max(0.06, Math.min(1, v*14)).toFixed(2) + ")"; } }
 micPill = function(st){
   let el = document.getElementById("micPill");
   if(!st){ if(el) el.remove(); return; }
@@ -9754,6 +9761,21 @@ function addSpeakers(root){
 {
   const _rSpk = render;
   render = function(){ const x = _rSpk.apply(this, arguments); try{ addSpeakers(document.querySelector("#view")); }catch(e){} return x; };
+}
+
+/* mikrofon çubuğu: telefonun kendi tanımasında ses seviyesi gelmez; duyulan her kelimede çubuk dolar ve duyulanlar görünür */
+let _mhT = 0;
+window.micHeard = function(t){
+  const el = document.getElementById("micPill"); if(!el || el.className !== "go") return;
+  let lv = el.querySelector(".lv"); if(!lv){ lv = document.createElement("i"); lv.className = "lv"; el.appendChild(lv); }
+  lv.classList.add("hot"); lv.style.transform = "scaleX(" + (0.65 + Math.random()*0.35).toFixed(2) + ")";
+  clearTimeout(_mhT); _mhT = setTimeout(()=>{ lv.classList.remove("hot"); lv.style.transform = ""; }, 450);
+  let sp = el.querySelector(".heard"); if(!sp){ sp = document.createElement("span"); sp.className = "heard"; el.insertBefore(sp, lv); }
+  const w = String(t||"").trim().split(/\s+/).slice(-5).join(" "); sp.textContent = w ? "„" + w + "“" : "";
+};
+{
+  const _mp = micPill;
+  micPill = function(st){ const r = _mp.apply(this, arguments); const el = document.getElementById("micPill"); if(el && st === "go" && !el.querySelector(".lv")){ const lv = document.createElement("i"); lv.className = "lv"; el.appendChild(lv); } return r; };
 }
 </script>
 </body>
