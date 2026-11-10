@@ -974,6 +974,23 @@ body.insess .k-top .k-x{display:none}
 
 /* ders modu (kelime kartı, ders): seans açık olsa da üst boşluk saatin altında kalır */
 body.lesson main, body.lesson.insess main, body.lesson.focus main{padding-top:calc(env(safe-area-inset-top) + 12px)!important}
+
+#micPill.manual{background:#2563EB!important;color:#fff}
+#micPill.manual .x{font-weight:800;opacity:1;background:rgba(255,255,255,.22);padding:4px 10px;border-radius:99px;margin-left:10px}
+
+/* ===== ilerleme çubukları: görünür iz, canlı dolgu, her adımda ödül hissi ===== */
+.lprog, .k-prog{height:16px!important;background:color-mix(in srgb,var(--c-green,#22C55E) 16%,color-mix(in srgb,var(--ink) 8%,transparent))!important;box-shadow:inset 0 2px 3px rgba(0,0,0,.10)!important;position:relative;overflow:hidden}
+.lprog i, .k-prog i{position:relative;background:linear-gradient(90deg,#22C55E,#14B8A6 60%,#3B82F6)!important;box-shadow:inset 0 -4px 0 rgba(0,0,0,.14),0 0 12px rgba(34,197,94,.45)!important;transition:width .55s cubic-bezier(.34,1.56,.64,1)!important;min-width:16px}
+.lprog i::after, .k-prog i::after{content:"";position:absolute;left:8px;right:8px;top:3px;height:4px;border-radius:99px;background:rgba(255,255,255,.45)}
+.lprog.hot i, .k-prog.hot i{background:linear-gradient(90deg,#F59E0B,#F97316 55%,#EF4444)!important;box-shadow:inset 0 -4px 0 rgba(0,0,0,.14),0 0 14px rgba(249,115,22,.55)!important}
+.lprog.grow, .k-prog.grow{animation:pgPulse .5s ease}
+@keyframes pgPulse{0%{transform:scaleY(1)}35%{transform:scaleY(1.35)}100%{transform:scaleY(1)}}
+.pg-plus{position:fixed;z-index:120;font-weight:900;font-size:.95rem;color:#16A34A;pointer-events:none;animation:pgPlus .9s ease-out forwards;text-shadow:0 1px 0 #fff}
+@keyframes pgPlus{0%{opacity:0;transform:translate(-50%,6px) scale(.7)}25%{opacity:1;transform:translate(-50%,-6px) scale(1.15)}100%{opacity:0;transform:translate(-50%,-26px) scale(1)}}
+.pg-spark{position:fixed;z-index:119;width:7px;height:7px;border-radius:50%;pointer-events:none;animation:pgSpark .7s ease-out forwards}
+@keyframes pgSpark{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.3)}}
+.lh-btn svg{display:block}
+.lh-btn{color:var(--ink)!important;background:color-mix(in srgb,var(--ink) 7%,transparent)!important}
 </style>
 </head>
 <body>
@@ -3590,9 +3607,14 @@ const NATIVE_SR = (()=>{ try{
         let pm = await P.checkPermissions(); if(pm.speechRecognition !== "granted"){ pm = await P.requestPermissions(); if(pm.speechRecognition !== "granted"){ self.onerror && self.onerror({error:"not-allowed"}); self._end(); return; } }
         self._subs.push(await P.addListener("partialResults", d => { const m = (d && d.matches) || []; if(m[0]){ self._last = m[0]; self._emit(m[0], false); } }));
         self._subs.push(await P.addListener("listeningState", d => { if(d && d.status === "stopped") setTimeout(()=>self._end(), 150); }));
-        await P.start({language: self.lang || "de-DE", maxResults:1, partialResults:true, popup:false});
+        try { window.stopSpeech && stopSpeech(); window.neuStop && neuStop(); window.audioStop && audioStop(); } catch(e){}
+        try { await P.stop(); } catch(e){}
+        await new Promise(r=>setTimeout(r, 180));
+        const opts = {language: self.lang || "de-DE", maxResults:1, partialResults:true, popup:false};
+        try { await P.start(opts); }
+        catch(e1){ try { diagAdd("mikrofon", "telefon tanıması ilk denemede açılmadı, yeniden deneniyor", String(e1 && (e1.message||e1))); } catch(_){} try { await P.stop(); } catch(_){} await new Promise(r=>setTimeout(r, 450)); if(self._cancel) return self._end(); await P.start(opts); }
         self.onstart && self.onstart(); self.onaudiostart && self.onaudiostart();
-      }catch(e){ self.onerror && self.onerror({error:"start"}); self._end(); }
+      }catch(e){ try { diagAdd("mikrofon", "telefon tanıması açılamadı", String(e && (e.message||e))); } catch(_){} self.onerror && self.onerror({error:"start"}); self._end(); }
     }
     stop(){ try { P.stop(); } catch(e){} setTimeout(()=>this._end(), 400); }
     abort(){ this._cancel = true; try { P.stop(); } catch(e){} this._end(); }
@@ -5632,7 +5654,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-12h";
+const APP_VER = "2026-11-12i";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -6880,7 +6902,7 @@ function gateLockHtml(){
 const MIC2 = { day:"", n:0, off:"", denied:false };
 try { Object.assign(MIC2, JSON.parse(localStorage.getItem("dw-mic2") || "{}")); } catch(e){}
 function mic2Save(){ try { localStorage.setItem("dw-mic2", JSON.stringify({day:MIC2.day, n:MIC2.n, off:MIC2.off})); } catch(e){} }
-function mic2Pref(){ return S.state.mic2 !== false; }
+function mic2Pref(){ return (typeof NATIVE !== "undefined" && NATIVE && NATIVE_SR) ? S.state.micEngine === "ai" : S.state.mic2 !== false; }
 function mic2Ok(){
   if(MIC2.offUntil && Date.now() < MIC2.offUntil && (SRC0 || NATIVE_SR)) return false;
   return STANDALONE && mic2Pref() && !MIC2.denied && aiReady() && MIC2.off !== dayKey()
@@ -6971,7 +6993,7 @@ function mic2Listen(onLive){
         if(settled) return;
         micPill("busy");
         try{
-          const w = await paToWav(blob);
+          let w; try { w = await paToWav(blob); } catch(de){ try { diagAdd("mikrofon", "kayıt çözülemedi", String(de && (de.message||de)) + " · " + type + " · " + blob.size + " bayt"); } catch(_){} done(false, {code:"no-speech"}); return; }
           if(settled) return;
           if(w.sec < 0.4 || w.peak < (speech ? 0.015 : 0.03)){ done(false, {code:"no-speech"}); return; }
           ctl = new AbortController(); const tm = setTimeout(()=>{ try { ctl.abort(); } catch(e){} }, 15000);
@@ -7013,7 +7035,7 @@ function mic2Listen(onLive){
         try{
           if(!vac || vac.state !== "running"){ try { if(vac) await Promise.race([vac.resume(), sleep(350)]); } catch(e){} }
           if((!vac || vac.state !== "running") && ACX && ACX.state === "running"){ try { if(vac) vac.close(); } catch(e){} vac = ACX; vacOwn = false; }
-          if(!vac) throw 0;
+          if(!vac || (typeof NATIVE !== "undefined" && NATIVE)) throw 0;
           an = vac.createAnalyser(); an.fftSize = 1024; vac.createMediaStreamSource(stream).connect(an);
           const buf = new Float32Array(an.fftSize); let last = performance.now();
           iv = setInterval(()=>{
@@ -7032,8 +7054,9 @@ function mic2Listen(onLive){
           }, 60);
         }catch(e){ vadOk = false; }
         /* sessizlik takibi hiç çalışmadıysa: 6 sn kayıt (şeride dokunarak erken bitirebilirsin) */
-        timers.push(setTimeout(()=>{ if(!vadOk && !ended && !settled){ const el = document.getElementById("micPill"); if(el && !el.dataset.manual){ el.dataset.manual = "1"; el.onclick = () => finishRec(); const x = el.querySelector(".x"); if(x) x.textContent = "bitti ✓"; } } }, 900));
-        timers.push(setTimeout(()=>{ if(!vadOk) finishRec(); }, 6500));
+        const manualMs = (typeof NATIVE !== "undefined" && NATIVE) ? 0 : 900;
+        timers.push(setTimeout(()=>{ if(!vadOk && !ended && !settled){ const el = document.getElementById("micPill"); if(el && !el.dataset.manual){ el.dataset.manual = "1"; el.classList.add("manual"); el.onclick = () => finishRec(); const x = el.querySelector(".x"); if(x) x.textContent = "Bitince dokun ✓"; } } }, manualMs));
+        timers.push(setTimeout(()=>{ if(!vadOk) finishRec(); }, (typeof NATIVE !== "undefined" && NATIVE) ? 15000 : 6500));
         timers.push(setTimeout(()=>finishRec(), 15000));
       }catch(e){
         micLog((e && e.name) || "err", performance.now() - t0);
@@ -7058,7 +7081,7 @@ micMsg = function(code){
 function mic2SetupHtml(){
   const on = mic2Pref(); const n = MIC2.day === dayKey() ? MIC2.n : 0;
   return `<div class="field"><label>Konuşma tanıma</label>
-    <select data-change="mic2Mode"><option value="ai" ${on?"selected":""}>Yapay zekâ ile (önerilen: hatalarını kelimesi kelimesine yazar)</option><option value="os" ${!on?"selected":""}>Telefonun kendi tanıması (internetsiz de çalışır)</option></select>
+    <select data-change="mic2Mode"><option value="os" ${!on?"selected":""}>Telefonun kendi tanıması (önerilen: hızlı, sen susunca kendisi biter)</option><option value="ai" ${on?"selected":""}>Yapay zekâ ile (hatalarını kelimesi kelimesine yazar; bitince "Bitti"ye basarsın)</option></select>
     <p class="small muted">Yapay zekâ modunda sesin kaydedilip Gemini'ye yazdırılır (telaffuz analizinde olduğu gibi); hatalarını düzeltmeden yazar. Bugün: ${n} kayıt${MIC2.off === dayKey() ? " · bugünkü ücretsiz hak doldu, telefonun tanıması kullanılıyor" : ""}.</p></div>`;
 }
 
@@ -7235,7 +7258,7 @@ function lessonOn(){ const V = S.voc; return S.view === "kelime" && V && !V.busy
 const KIND_TR = k => k === "nomen" ? "isim" : k === "verb" ? "fiil" : k === "adj" ? "sıfat" : "kelime";
 function lessonHead(V){
   const pct = Math.max(3, V.i / Math.max(1, V.q.length) * 100);
-  const left = S.sess ? `<button class="lh-btn" data-act="sessPause" aria-label="Durdur" title="Durdur">⏸</button>` : `<a class="lh-btn" href="#plan" aria-label="Kapat" title="Kapat">✕</a>`;
+  const left = S.sess ? `<button class="lh-btn" data-act="sessPause" aria-label="Durdur" title="Durdur"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor"/></svg></button>` : `<a class="lh-btn" href="#plan" aria-label="Kapat" title="Kapat"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></a>`;
   return `<div class="lhead">
     ${left}
     <div class="lprog" role="progressbar" aria-valuemin="0" aria-valuemax="${V.q.length}" aria-valuenow="${V.i}" aria-label="Kart ${V.i+1} / ${V.q.length}"><i style="width:${pct}%"></i></div>
@@ -8291,7 +8314,7 @@ document.addEventListener("change", e => {
   else if(c === "about"){ S.state.about = e.target.value.trim(); Store.saveState(); }
   else if(c === "gemMode"){ S.state.gemMode = e.target.value; Store.saveState(); }
   else if(c === "remindT"){ S.state.remind = e.target.value; Store.saveState(); if(typeof remindSchedule === "function") remindSchedule(); }
-  else if(c === "mic2Mode"){ S.state.mic2 = e.target.value === "ai"; if(S.state.mic2){ MIC2.off = ""; MIC2.denied = false; mic2Save(); } Store.saveState(); render(); }
+  else if(c === "mic2Mode"){ S.state.mic2 = e.target.value === "ai"; S.state.micEngine = e.target.value; if(S.state.mic2){ MIC2.off = ""; MIC2.denied = false; mic2Save(); } Store.saveState(); render(); }
   else if(c === "sfxSel"){ S.state.sfxOff = e.target.value === "off"; Store.saveState(); }
   else if(c === "immSel"){ const v = e.target.value; if(v === "auto") delete S.state.vimm; else S.state.vimm = v === "1"; Store.saveState(); }
   else if(c === "themeSel"){ const v = e.target.value; S.state.themeNight = v === "night"; S.state.theme = v === "night" ? "auto" : v; Store.saveState(); render(); }
@@ -9887,6 +9910,131 @@ Object.assign(ACT, {
     }catch(e){ return h; }
   };
   VIEWS.plan = () => renderPlan();
+}
+
+/* ===== Bölüm paketi: altyazı dosyası/metin → bildiklerin ayıklanır → en fazla 12 yeni kelime ===== */
+function subToText(raw){
+  return String(raw||"").replace(/\r/g, "")
+    .replace(/^WEBVTT.*$/m, "")
+    .replace(/^\d+\s*$/gm, "")
+    .replace(/^\d{1,2}:\d{2}(:\d{2})?[.,]\d{3}\s*-->\s*.*$/gm, "")
+    .replace(/<[^>]+>/g, "").replace(/\{[^}]*\}/g, "").replace(/^(NOTE|STYLE|REGION).*$/gm, "")
+    .replace(/\[[^\]]*\]|\([A-ZÄÖÜ ]+\)/g, "")
+    .split("\n").map(x=>x.trim()).filter(Boolean)
+    .filter((x,i,a)=>x !== a[i-1]).join("\n");
+}
+let _mKnown = null, _mKnownN = -1;
+function mediaKnownSet(){
+  if(_mKnown && _mKnownN === S.words.length) return _mKnown;
+  const k = new Set(); const stems = [];
+  for(const w of S.words){ const l = String(w.de||"").toLowerCase().replace(/^(der|die|das|sich)\s+/,"").split(/[\s/(]/)[0]; if(l.length >= 2){ k.add(l); if(l.length >= 5) stems.push(l.slice(0, l.length - 2)); } }
+  (LEX.forms||[]).slice(0, 250).forEach(f=>k.add(f));
+  _mKnown = {k, stems}; _mKnownN = S.words.length; return _mKnown;
+}
+function mediaCandidates(text, n){
+  const K = mediaKnownSet(); const cnt = new Map(); const firstCap = new Map();
+  const lines = String(text||"").split(/\n|(?<=[.!?])\s+/);
+  for(const ln of lines){
+    const toks = ln.match(/[A-Za-zÄÖÜäöüß]+/g) || [];
+    toks.forEach((t, i)=>{
+      if(t.length < 3) return; const l = t.toLowerCase();
+      if(K.k.has(l) || K.stems.some(s=>l.startsWith(s))) return;
+      const cap = /^[A-ZÄÖÜ]/.test(t);
+      if(cap && i > 0 && !(LEX.noun && LEX.noun.has && LEX.noun.has(t)) && !(LEX.forms||[]).includes(l)) return; /* büyük harfle ve sözlükte yok: büyük ihtimalle isim */
+      cnt.set(l, (cnt.get(l)||0) + 1); if(cap) firstCap.set(l, t);
+    });
+  }
+  const rank = new Map((LEX.forms||[]).map((f,i)=>[f,i]));
+  return [...cnt.entries()].sort((a,b)=>b[1]-a[1] || (rank.get(a[0]) ?? 99999) - (rank.get(b[0]) ?? 99999)).slice(0, n||40).map(([l,c])=>(firstCap.get(l)||l) + (c > 1 ? " ×" + c : ""));
+}
+{
+  const _ma = mediaAnalyze;
+  mediaAnalyze = async function(){
+    const M = S.media; const ta = $("#mText"); if(ta) M.text = ta.value;
+    M.text = subToText(M.text);
+    const full = M.text;
+    /* uzun bölüm: kelimeler bütün bölümden; sorular ve gölge konuşma seçilen sahneden */
+    if(full.length > 7000){ const segs = Math.ceil(full.length / 6500); M.segN = segs; M.seg = Math.min(M.seg||0, segs-1); }
+    M._cand = mediaCandidates(full, 40);
+    M._full = full;
+    if(full.length > 7000){ M.text = full.slice((M.seg||0)*6500, (M.seg||0)*6500 + 7000); }
+    const r = await _ma.apply(this, arguments);
+    M.text = M._full;
+    if(M.data && Array.isArray(M.data.words)) M.data.words = M.data.words.slice(0, 12);
+    return r;
+  };
+}
+/* yapay zekâya: en sık geçen bilinmeyen kelimelerden en fazla 12 seç */
+{
+  const _ajM = askJSON;
+  askJSON = function(prompt, o){
+    if(typeof prompt === "string" && prompt.includes("Finde die 8-14 unbekannten Wörter/Chunks") && S.media && S.media._cand){
+      prompt = prompt.replace("1) Finde die 8-14 unbekannten Wörter/Chunks, die er für das Verständnis braucht", "1) Wähle HÖCHSTENS 12 Wörter/Chunks, die er für das Verständnis braucht UND die im Alltag häufig sind – bevorzugt aus dieser Liste der häufigsten unbekannten Formen der ganzen Folge (×n = Häufigkeit): " + S.media._cand.join(", ") + ". Gib die Grundform an (Verb im Infinitiv, Nomen im Singular mit Artikel). Keine Eigennamen, keine seltenen Wörter");
+    }
+    return _ajM.apply(this, [prompt, o]);
+  };
+}
+Object.assign(ACT, {
+  async mediaWatch(){ const M = S.media; const tag = M.ep || (M.data && M.data.title) || "video"; const n = await addWords((M.data.words||[]).slice(0,12).map(w=>({...w, note:(w.note ? w.note + " · " : "") + "📺 " + tag, src:"media"}))); M.added = n; M.phase = "watch"; render(); },
+  mediaSeg(b){ const M = S.media; M.seg = +b.dataset.s || 0; M.data = null; M.phase = "pick"; render(); }
+});
+document.addEventListener("change", async e => {
+  const el = e.target; if(!el || el.id !== "mFile" || !el.files || !el.files[0]) return;
+  const f = el.files[0]; if(f.size > 3e6){ toast("Dosya çok büyük (en fazla 3 MB)."); return; }
+  try{ const raw = await f.text(); const t = subToText(raw); if(S.media){ S.media.text = t; if(!S.media.ep) S.media.ep = f.name.replace(/\.(srt|vtt|txt)$/i, "").replace(/[._]/g, " "); S.media.err = ""; } render(); toast(`📄 ${t.split(/\s+/).length} kelimelik metin yüklendi`); }
+  catch(err){ toast("Dosya okunamadı."); }
+});
+{
+  const _rmM = renderMedia;
+  renderMedia = function(){
+    let h = _rmM.apply(this, arguments); const M = S.media;
+    if(M && M.phase === "pick"){
+      const words = (M.text||"").trim() ? (M.text||"").trim().split(/\s+/).length : 0;
+      const file = `<label class="lbl" for="mFile">Altyazı dosyası yükle (.srt, .vtt, .txt)</label><input type="file" id="mFile" accept=".srt,.vtt,.txt,text/plain,text/vtt">
+        <p class="small muted">Bütün bir bölümü yükleyebilirsin. Bildiğin kelimeler ayıklanır; bölüm başına en fazla <b>12 yeni kelime</b> seçilir. Kelimeler bölümün tamamından seçilir, sorular ise seçtiğin sahneden gelir.${words ? ` Şu an: <b>${words}</b> kelime.` : ""}</p>`;
+      h = h.replace('<label class="lbl" for="mText">', file + '<label class="lbl" for="mText">');
+      if(M.segN > 1) h = h.replace('<label class="lbl" for="mText">', `<div class="lbl">Sahne (sorular bu kısımdan)</div><div class="row">${Array.from({length:M.segN}, (_, i)=>`<button class="btn small ${i===(M.seg||0)?"primary":""}" data-act="mediaSeg" data-s="${i}">${i+1}</button>`).join("")}</div><label class="lbl" for="mText">`);
+    }
+    if(M && M.phase === "pre" && M._cand && M._cand.length) h = h.replace('<div class="kicker">1. adım: önce öğren</div>', `<div class="kicker">1. adım: önce öğren · ${Math.min(12,(M.data.words||[]).length)} kelime</div>`);
+    return h;
+  };
+  VIEWS.media = () => renderMedia();
+}
+
+{
+  const _recD = recognize;
+  recognize = function(onLive, again){ const eng = mic2Ok() ? "yapay zekâ" : (NATIVE_SR && SRC === NATIVE_SR ? "telefon" : "tarayıcı"); return _recD.apply(this, arguments).catch(e=>{ try{ if(e && e.code !== "cancel") diagAdd("mikrofon", (e && e.code) || "hata", eng + " · " + S.view); }catch(_){} throw e; }); };
+}
+
+/* ilerleme çubuğu: önceki yerinden yeni yerine kayarak dolar; ilerleyince parıltı ve +1 */
+let _pgLast = {key:"", w:0, combo:0};
+{
+  const _rPg = render;
+  render = function(){
+    const x = _rPg.apply(this, arguments);
+    try{
+      const bar = document.querySelector("#view .lprog, #view .k-prog"); if(!bar){ _pgLast = {key:"", w:0, combo:0}; return x; }
+      const fill = bar.querySelector("i"); if(!fill) return x;
+      const target = parseFloat(fill.style.width) || 0;
+      const key = S.view + "|" + (S.voc ? "v" : S.ex ? "e" + (S.ex.title||"") : S.denk ? "d" : "");
+      if(_pgLast.key === key && target > _pgLast.w + 0.5){
+        _pgLast.combo++;
+        if(_pgLast.combo >= 3) bar.classList.add("hot");
+        fill.style.transition = "none"; fill.style.width = _pgLast.w + "%";
+        void fill.offsetWidth;
+        requestAnimationFrame(()=>{ fill.style.transition = ""; fill.style.width = target + "%"; bar.classList.remove("grow"); void bar.offsetWidth; bar.classList.add("grow");
+          setTimeout(()=>{ try{ const r = bar.getBoundingClientRect(); const px = r.left + r.width * target / 100; const py = r.top + r.height / 2;
+            const plus = document.createElement("div"); plus.className = "pg-plus"; plus.textContent = _pgLast.combo >= 3 ? "🔥 +1" : "+1"; plus.style.left = px + "px"; plus.style.top = (py - 22) + "px"; document.body.appendChild(plus); setTimeout(()=>plus.remove(), 950);
+            const cols = ["#22C55E","#14B8A6","#3B82F6","#F59E0B","#EF4A82"];
+            for(let k = 0; k < 7; k++){ const sp = document.createElement("i"); sp.className = "pg-spark"; sp.style.left = px + "px"; sp.style.top = py + "px"; sp.style.background = cols[k % cols.length]; const a = Math.PI * 2 * k / 7; sp.style.setProperty("--dx", Math.cos(a) * 26 + "px"); sp.style.setProperty("--dy", Math.sin(a) * 18 + "px"); document.body.appendChild(sp); setTimeout(()=>sp.remove(), 750); }
+          }catch(e){} }, 380);
+        });
+      } else if(_pgLast.key !== key || target < _pgLast.w){ _pgLast.combo = 0; }
+      else if(_pgLast.combo >= 3) bar.classList.add("hot");
+      _pgLast.key = key; _pgLast.w = target;
+    }catch(e){}
+    return x;
+  };
 }
 </script>
 </body>
