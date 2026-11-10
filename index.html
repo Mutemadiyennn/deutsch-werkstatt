@@ -5621,7 +5621,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-12e";
+const APP_VER = "2026-11-12f";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -6869,14 +6869,14 @@ function gateLockHtml(){
 const MIC2 = { day:"", n:0, off:"", denied:false };
 try { Object.assign(MIC2, JSON.parse(localStorage.getItem("dw-mic2") || "{}")); } catch(e){}
 function mic2Save(){ try { localStorage.setItem("dw-mic2", JSON.stringify({day:MIC2.day, n:MIC2.n, off:MIC2.off})); } catch(e){} }
-function mic2Pref(){ return (typeof NATIVE !== "undefined" && NATIVE) ? S.state.mic2 === true : S.state.mic2 !== false; }
+function mic2Pref(){ return S.state.mic2 !== false; }
 function mic2Ok(){
   if(MIC2.offUntil && Date.now() < MIC2.offUntil && (SRC0 || NATIVE_SR)) return false;
   return STANDALONE && mic2Pref() && !MIC2.denied && aiReady() && MIC2.off !== dayKey()
     && !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) && !!(window.AudioContext || window.webkitAudioContext);
 }
 function audioSess(t){ try { if(navigator.audioSession) navigator.audioSession.type = t; } catch(e){} }
-function micLevel(v){ const i = document.querySelector("#micPill .lv"); if(i){ i.classList.add("hot"); i.style.transform = "scaleX(" + Math.max(0.06, Math.min(1, v*14)).toFixed(2) + ")"; } }
+function micLevel(v){ const i = document.querySelector("#micPill .lv"); if(!i) return; const x = Math.min(1, v*14); if(x < 0.1){ if(i.classList.contains("hot") && !i._t){ i._t = setTimeout(()=>{ i.classList.remove("hot"); i.style.transform = ""; i._t = 0; }, 500); } return; } if(i._t){ clearTimeout(i._t); i._t = 0; } i.classList.add("hot"); i.style.transform = "scaleX(" + x.toFixed(2) + ")"; }
 micPill = function(st){
   let el = document.getElementById("micPill");
   if(!st){ if(el) el.remove(); return; }
@@ -6964,7 +6964,10 @@ function mic2Listen(onLive){
           if(settled) return;
           if(w.sec < 0.4 || w.peak < (speech ? 0.015 : 0.03)){ done(false, {code:"no-speech"}); return; }
           ctl = new AbortController(); const tm = setTimeout(()=>{ try { ctl.abort(); } catch(e){} }, 15000);
-          const txt = await mic2Transcribe(w.wav, ctl.signal); clearTimeout(tm);
+          let txt;
+          try{ txt = await mic2Transcribe(w.wav, ctl.signal); }
+          catch(e1){ if(h._cancel || (e1 && e1.code === "rate_limited")) throw e1; clearTimeout(tm); ctl = new AbortController(); const tm2 = setTimeout(()=>{ try { ctl.abort(); } catch(e){} }, 20000); try{ txt = await mic2Transcribe(w.wav, ctl.signal); } finally { clearTimeout(tm2); } }
+          clearTimeout(tm);
           if(settled) return;
           if(txt){ onLive && onLive(txt); if(!S.state.srOK){ S.state.srOK = true; Store.saveState(); } done(true, [txt]); }
           else done(false, {code:"no-speech"});
@@ -7044,7 +7047,7 @@ micMsg = function(code){
 function mic2SetupHtml(){
   const on = mic2Pref(); const n = MIC2.day === dayKey() ? MIC2.n : 0;
   return `<div class="field"><label>Konuşma tanıma</label>
-    <select data-change="mic2Mode"><option value="ai" ${on?"selected":""}>Yapay zekâ ile (hatalarını kelimesi kelimesine yazar; internet ister)</option><option value="os" ${!on?"selected":""}>Telefonun kendi tanıması (hızlı; uygulamada önerilen)</option></select>
+    <select data-change="mic2Mode"><option value="ai" ${on?"selected":""}>Yapay zekâ ile (önerilen: hatalarını kelimesi kelimesine yazar)</option><option value="os" ${!on?"selected":""}>Telefonun kendi tanıması (internetsiz de çalışır)</option></select>
     <p class="small muted">Yapay zekâ modunda sesin kaydedilip Gemini'ye yazdırılır (telaffuz analizinde olduğu gibi); hatalarını düzeltmeden yazar. Bugün: ${n} kayıt${MIC2.off === dayKey() ? " · bugünkü ücretsiz hak doldu, telefonun tanıması kullanılıyor" : ""}.</p></div>`;
 }
 
