@@ -29,6 +29,8 @@ jobs:
           npm install @capacitor/keyboard @capacitor/haptics @capacitor/status-bar @capacitor/local-notifications @capacitor/app @capawesome/capacitor-badge @capacitor/share
           # İnternetsiz/kota dolunca yedek: Apple'ın cihaz üstü konuşma tanıma (topluluk eklentisi; derlenmezse aşağıda otomatik çıkarılır)
           npm install @capacitor-community/speech-recognition || true
+          # Mikrofon kaydı uygulamanın içinde (iPhone'un kendi kaydedicisi; web görünümünün mikrofon hatalarına takılmaz)
+          npm install @independo/capacitor-voice-recorder@^8 || true
 
       - name: Prepare Web Directory
         run: |
@@ -126,7 +128,7 @@ jobs:
             fi
           }
           # Topluluk eklentisi derlemeyi bozarsa onu çıkarıp yeniden dene; uygulama yine kurulabilir olsun
-          build || { echo "::warning::Derleme başarısız; konuşma tanıma eklentisi çıkarılıp yeniden deneniyor"; npm uninstall @capacitor-community/speech-recognition; npx cap sync ios; rm -rf build; build; }
+          build || { echo "::warning::Derleme başarısız; konuşma tanıma eklentisi çıkarılıp yeniden deneniyor"; npm uninstall @capacitor-community/speech-recognition; npx cap sync ios; rm -rf build; build; } || { echo "::warning::Hâlâ başarısız; ses kaydedici eklentisi de çıkarılıp yeniden deneniyor"; npm uninstall @independo/capacitor-voice-recorder; npx cap sync ios; rm -rf build; build; }
 
       - name: Package into IPA
         run: |
