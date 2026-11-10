@@ -971,6 +971,9 @@ body.insess .k-top .k-x{display:none}
 .dis-row:last-child{border-bottom:0}
 .dis-mini{padding:14px 16px!important;border-left:4px solid #F97316!important}
 .dis-mini.done{opacity:.75}
+
+/* ders modu (kelime kartı, ders): seans açık olsa da üst boşluk saatin altında kalır */
+body.lesson main, body.lesson.insess main, body.lesson.focus main{padding-top:calc(env(safe-area-inset-top) + 12px)!important}
 </style>
 </head>
 <body>
@@ -5629,7 +5632,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-12g";
+const APP_VER = "2026-11-12h";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
