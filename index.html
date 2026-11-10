@@ -963,6 +963,14 @@ body.insess .k-top .k-x{display:none}
 #micPill .heard{display:block;font-size:.85rem;font-weight:600;opacity:.9;margin-top:4px;max-width:78vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 #micPill{top:calc(env(safe-area-inset-top) + 58px)!important}
+
+.dis-hero{background:linear-gradient(135deg,color-mix(in srgb,#F97316 22%,var(--card)),color-mix(in srgb,#EF4A82 18%,var(--card)))!important}
+.dis-hero .kicker{color:#EA580C!important}
+.dis-list{display:flex;flex-direction:column;gap:10px}
+.dis-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.dis-row:last-child{border-bottom:0}
+.dis-mini{padding:14px 16px!important;border-left:4px solid #F97316!important}
+.dis-mini.done{opacity:.75}
 </style>
 </head>
 <body>
@@ -5621,7 +5629,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-12f";
+const APP_VER = "2026-11-12g";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -8014,7 +8022,7 @@ function focusBar(){
 /* ================= Daha fazla: gruplu, sade menü (bulamaç değil) ================= */
 const MORE_GROUPS = [
   ["Konuş", [["🥨","Senaryolar","goScenList"],["⚡","Akıcılık 3-2-1","fluStart"],["🗣️","Shadowing","goShadow"],["🛟","Donma ilacı","repairStart"],["💬","Sohbet ve dinleme","#sprechen"],["✍️","Yaz","#schreiben"]]],
-  ["Öğren", [["🧱","1500 kelime","coreOpen"],["📘","Dersler","#lernen"],["🃏","Kelime kartları","vocabStart"],["📖","Hikâye","storyStart"],["🧠","Düşün ve kur","denkStart"],["🎬","Video","mediaStart"],["🎧","Dikte","dictStart"],["🏔️","Bavyera ağzı","reducedStart"],["🚗","Sesli tekrar","goAudio"],["🎮","Oyunlar","#spielen"]]],
+  ["Öğren", [["🧱","1500 kelime","coreOpen"],["🎧","Dış kaynaklar","disOpen"],["📘","Dersler","#lernen"],["🃏","Kelime kartları","vocabStart"],["📖","Hikâye","storyStart"],["🧠","Düşün ve kur","denkStart"],["🎬","Video","mediaStart"],["🎧","Dikte","dictStart"],["🏔️","Bavyera ağzı","reducedStart"],["🚗","Sesli tekrar","goAudio"],["🎮","Oyunlar","#spielen"]]],
   ["Sınav ve ilerleme", [["🎓","B1 atölyesi","goExam"],["📈","Aylık ölçüm","checkStart"],["📝","Resmî deneme","#sinav"]]],
   ["Araçlar", [["🗂️","Kartlarım","#kartei"],["🏫","VHS ödev","odevStart"],["🧭","Koçun","goRehber"],["⚙️","Kurulum","#kurulum"]]]
 ];
@@ -9787,6 +9795,95 @@ window.micHeard = function(t){
 {
   const _rFl = render;
   render = function(){ try{ if(S.flash && typeof lessonOn === "function" && lessonOn()){ toast(esc(S.flash), 3800); S.flash = ""; } }catch(e){} return _rFl.apply(this, arguments); };
+}
+
+/* ===== Dış kaynaklar: her gün bir görev (Nicos Weg, podcast, Rosetta Stone…), kaldığın yer takip edilir ===== */
+const DIS = {
+  nico:    {icon:"🎬", name:"Nicos Weg (DW)", type:"Video dizisi", ctx:"Masada / iş arası", min:15, link:"https://learngerman.dw.com/de/nicos-weg/c-36519687"},
+  easyp:   {icon:"🎧", name:"Easy German Podcast", type:"Podcast", ctx:"Arabada / sporda / yürürken", min:25, link:"https://www.easygerman.fm/"},
+  slowg:   {icon:"🐢", name:"Slow German", type:"Podcast", ctx:"Arabada / yürürken", min:10, link:"https://slowgerman.com/"},
+  easyyt:  {icon:"📺", name:"Easy German (YouTube)", type:"Sokak röportajı", ctx:"Masada / iş arası", min:10, link:EASY},
+  rosetta: {icon:"🗣️", name:"Rosetta Stone", type:"Telaffuz", ctx:"Masada", min:10, link:""},
+  topthema:{icon:"📰", name:"DW Top-Thema (B1)", type:"Metin + ses", ctx:"Masada", min:15, link:"https://www.dw.com/de/deutsch-lernen/top-thema/s-8031", minStage:3},
+  lgn:     {icon:"📻", name:"Langsam gesprochene Nachrichten (DW)", type:"Haber (zorlayıcı)", ctx:"Arabada / masada", min:10, link:"https://learngerman.dw.com/de/deutsch-lernen/s-9095", minStage:4}
+};
+function disState(){ return S.state.dis || (S.state.dis = {nico:{lvl:"A2", ep:1}, log:{}}); }
+function disNicoLvl(){ const d = disState(); if(stage().n >= 3 && d.nico.lvl === "A2" && d.nico.ep < 30){ d.nico = {lvl:"B1", ep:1}; } return d.nico; }
+function disToday(){
+  const n = stage().n; const wd = new Date().getDay();
+  const plan = [n >= 3 ? "topthema" : "easyp", "nico", n >= 4 ? "lgn" : "slowg", n >= 3 && (dayIndex()%2) ? "topthema" : "rosetta", "easyyt", "nico", n >= 3 ? "topthema" : "easyp"];
+  const id = plan[wd]; const R = DIS[id];
+  return (R.minStage && n < R.minStage) ? "easyp" : id;
+}
+function dayIndex(){ return Math.floor(new Date(dayKey()).getTime() / 864e5); }
+function disTask(id){
+  const R = DIS[id];
+  if(id === "nico"){ const N = disNicoLvl(); return `Nicos Weg ${N.lvl}, bölüm ${N.ep}–${N.ep+3}: her bölümü önce altyazısız, sonra Almanca altyazıyla izle ve bölümün alıştırmalarını yap. Bilmediğin 3 kelimeyi Kartlarım → "Doldur ve ekle" ile ekle.`; }
+  if(id === "easyp") return "Bir bölüm dinle (yaklaşık 25 dk). Arabada ya da sporda dinleyebilirsin. Anladığın bir konuyu bugün canlı sohbette 3 cümleyle anlat.";
+  if(id === "slowg") return "1–2 bölüm dinle (her biri 10 dk civarı). Sonra sitede metnini oku ve bir cümleyi 3 kez yüksek sesle tekrar et.";
+  if(id === "easyyt") return "Bir sokak röportajı videosu izle (Almanca altyazıyla). Duyduğun 5 ifadeyi not al; birini bugün canlı sohbette kullan.";
+  if(id === "rosetta") return "Almanca → sıradaki dersin konuşma bölümleri. Konuşma tanımayı en sıkı seviyeye al; kırmızı çıkan kelimeyi 3 kez tekrar et.";
+  if(id === "topthema") return "Günün metni: önce sesini dinle, sonra metni oku ve kelime listesine bak. Ardından Yazma'da metni 3 cümleyle özetle.";
+  if(id === "lgn") return "Günün haberlerini dinle (zorlayıcı, B2'ye yakın). Her şeyi anlamaya çalışma; sadece ana konuları yakala.";
+  return R.name;
+}
+{
+  const _tqD = todayQueue;
+  todayQueue = function(){
+    const r = _tqD.apply(this, arguments);
+    try{
+      const dd = (S.state.daily||{})[dayKey()] || {};
+      if(!dd.skipExtras || dd.dis){
+        const id = dd.dis || disToday(); const R = DIS[id];
+        r.q.push({key:"dis", kind:"external", title:`${R.icon} ${R.name} · ${R.min} dk`, min:R.min, dis:id, step:{text: disTask(id) + ` (${R.ctx})`, link:R.link}, done: !!dd.dis, extra:true});
+      }
+    }catch(e){}
+    return r;
+  };
+  const _tdD = taskDone;
+  taskDone = function(key, skip){
+    if(key !== "dis") return _tdD.apply(this, arguments);
+    const dd = daily(); const id = disToday(); if(dd.dis) return;
+    dd.dis = id; const R = DIS[id];
+    if(!skip){ addSec(R.min*60); const st = disState(); st.log[dayKey()] = id; if(id === "nico"){ const N = disNicoLvl(); N.ep += 4; if(N.ep > 76){ if(N.lvl === "A2"){ st.nico = {lvl:"B1", ep:1}; } else N.ep = 76; } } }
+    Store.saveState(); if(!S.sess) render();
+  };
+}
+function renderDis(){
+  const today = disToday(); const st = disState(); const N = disNicoLvl(); const dd = daily();
+  const days = Object.values(st.log||{}); const cnt = id => days.filter(x=>x===id).length;
+  return `<section class="card dis-hero"><div class="kicker">Dış kaynaklar</div><h2>Gerçek Almanca, her gün bir tane</h2>
+    <p class="small">Uygulama her gün bir dış kaynak seçer: video, podcast ya da telaffuz. Sırayı seviyene göre değiştirir; Nicos Weg'de kaldığın bölümü hatırlar. Yaptığın süre günlük 100 dakikana eklenir.</p></section>
+    <section class="card hl"><div class="kicker">Bugün${dd.dis ? " · ✓ yapıldı" : ""}</div><h3>${DIS[today].icon} ${esc(DIS[today].name)} · ${DIS[today].min} dk</h3><p>${esc(disTask(today))}</p><p class="small muted">${esc(DIS[today].ctx)}</p>
+      <div class="grid2">${DIS[today].link ? `<a class="btn" href="${esc(DIS[today].link)}" target="_blank" rel="noopener">Kaynağı aç</a>` : `<span></span>`}${dd.dis ? `<button class="btn" disabled>✓ Yaptın</button>` : `<button class="btn primary" data-act="disDone">Yaptım (+${DIS[today].min} dk)</button>`}</div></section>
+    <section class="card"><h3>Tüm kaynaklar</h3><div class="dis-list">${Object.entries(DIS).filter(([k,R])=>!R.minStage || stage().n >= R.minStage).map(([k,R])=>`<div class="dis-row"><div class="main"><b>${R.icon} ${esc(R.name)}</b><div class="small muted">${esc(R.type)} · ${esc(R.ctx)} · ${R.min} dk${k === "nico" ? ` · sıradaki: ${N.lvl} bölüm ${N.ep}` : ""}${cnt(k) ? ` · ${cnt(k)} kez yaptın` : ""}</div></div>${R.link ? `<a class="btn small" href="${esc(R.link)}" target="_blank" rel="noopener">Aç</a>` : ""}</div>`).join("")}</div>
+      <p class="small muted">Gelecek seviyede eklenecekler: DW Top-Thema (B1 aşamasında), Langsam gesprochene Nachrichten (sınava yakın).</p></section>
+    <section class="card"><h3>Nicos Weg'de kaldığın yer</h3><div class="row"><span class="chip">${N.lvl} · bölüm ${N.ep}</span><button class="btn small" data-act="disNico" data-d="-4">−4</button><button class="btn small" data-act="disNico" data-d="4">+4</button></div><p class="small muted">Yanlışsa buradan düzelt. İzledikten sonra bölümün metnini Medya atölyesine yapıştırırsan kelimelerini ve sorularını hazırlarım.</p><a class="btn small" href="#media">Medya atölyesi</a></section>`;
+}
+VIEWS.dis = () => renderDis();
+if(typeof VIEW_TITLE === "object") VIEW_TITLE.dis = "Dış kaynaklar";
+Object.assign(ACT, {
+  disOpen(){ go("dis"); render(); },
+  disDone(){ taskDone("dis"); toast(`✓ Eklendi: +${DIS[disToday()].min} dk`); render(); },
+  disNico(b){ const N = disNicoLvl(); N.ep = Math.max(1, Math.min(76, N.ep + (+b.dataset.d||0))); Store.saveState(); render(); }
+});
+
+{ const _slD = sessLight; sessLight = function(){ const p = _slD.apply(this, arguments); try{ if(disToday() === "rosetta") delete p.ext; }catch(e){} return p; }; }
+
+/* ana sayfada bugünün dış kaynağı */
+{
+  const _rpD = renderPlan;
+  renderPlan = function(){
+    const h = _rpD.apply(this, arguments);
+    try{
+      const id = disToday(); const R = DIS[id]; const done = !!daily().dis;
+      const card = `<section class="card dis-mini ${done ? "done" : ""}"><div class="row between" style="flex-wrap:nowrap;gap:10px"><div style="min-width:0"><div class="kicker">Bugünün dış kaynağı</div><b>${R.icon} ${esc(R.name)} · ${R.min} dk</b><div class="small muted">${esc(R.ctx)}</div></div>${done ? `<span class="chip">✓ Yapıldı</span>` : `<button class="btn small primary" data-act="disOpen">Aç</button>`}</div></section>`;
+      const i = h.indexOf("Günlük görevler"); if(i < 0) return h + card;
+      const j = h.indexOf("</section>", i); if(j < 0) return h + card;
+      return h.slice(0, j + 10) + card + h.slice(j + 10);
+    }catch(e){ return h; }
+  };
+  VIEWS.plan = () => renderPlan();
 }
 </script>
 </body>
