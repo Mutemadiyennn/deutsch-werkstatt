@@ -936,6 +936,26 @@ body.insess .k-top .k-x{display:none}
 .bub .tr{display:block;margin-top:6px}
 .bub.a .tr, .bub.a .small{color:rgba(255,255,255,.86)!important}
 .bub br + .tr{margin-top:2px}
+
+.dk-card .dkq{background:color-mix(in srgb,var(--accent) 8%,var(--soft));border-left:4px solid var(--accent);border-radius:14px;padding:12px 14px}
+.dk-card .dkask{font-size:1.4rem;font-weight:800;margin:4px 0 0}
+.dk-shell .k-foot .grid2{margin:0!important}
+.dk-shell .k-foot .btn.small{align-self:center}
+.k-prog i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--c-green,#22C55E),var(--accent));transition:width .4s}
+
+.k-foot .grid2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+.k-foot .grid2 > span:empty{display:none}
+.k-foot .grid2:has(> span:empty){grid-template-columns:1fr!important}
+
+.spk{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;margin:0 0 0 6px;padding:0;border:0;border-radius:50%;background:color-mix(in srgb,var(--accent) 14%,var(--soft));font-size:.8rem;vertical-align:middle;cursor:pointer;flex:none;-webkit-tap-highlight-color:transparent}
+.spk:active{transform:scale(.92)}
+
+.mem button.back{font-size:1.6rem;font-weight:900;color:color-mix(in srgb,var(--accent) 70%,var(--ink))!important;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 22%,var(--card)),color-mix(in srgb,var(--c-purple,#7C5CFA) 18%,var(--card)))!important}
+.mem button.open{border-color:var(--accent)!important}
+.mem button.done{opacity:.55}
+.card.hl p.de b{font-size:1.6rem}
+.card.hl .row:has(> [data-act="blitzAns"]){display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+[data-act="blitzAns"]{min-height:58px;font-size:1.1rem}
 </style>
 </head>
 <body>
@@ -4828,7 +4848,7 @@ function renderKelime(){
       <button class="tog ${vImm()?"on":""}" data-act="vImmToggle" aria-pressed="${vImm()}" title="Açıkken Türkçe anlam gizlenir; resimden ve cümleden tahmin edersin">🇩🇪 Türkçesiz</button>
       <div class="seg" style="width:auto">${useSR() ? `<button aria-pressed="${V.mode==="mic"}" data-act="vMode" data-m="mic">🎤 Söyle</button>` : ""}<button aria-pressed="${V.mode==="type"}" data-act="vMode" data-m="type">⌨️ Yaz</button><button aria-pressed="${V.mode==="tap"}" data-act="vMode" data-m="tap">👆 Seç</button></div>
     </div></div>`;
-  const imm = vImm() && !V.trShown && !V.res;
+  const imm = vImm() && !V.trShown && !V.res && !!(V.sent && V.sent.de);
   const label = imm ? `<p class="vword">${esc(w.emoji||"❔")} <span class="small muted">(${esc(w.kind==="nomen" ? "isim" : w.kind==="verb" ? "fiil" : w.kind==="adj" ? "sıfat" : "kelime")})</span></p>` : `<p class="vword">${esc(w.tr)} <span class="small muted">(${esc(w.kind==="nomen" ? "isim" : w.kind==="verb" ? "fiil" : w.kind==="adj" ? "sıfat" : "kelime")})</span></p>`;
   if(V.phase === "intro") return `${top}<section class="card vcard">
     <div class="kicker">Yeni kelime · önce öğren</div>
@@ -5594,7 +5614,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-12b";
+const APP_VER = "2026-11-12c";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -7248,7 +7268,7 @@ renderKelime = function(){
       <div class="lfoot"><button class="lbtn go" data-act="vIntroDone">Öğrendim, dene</button></div>
       ${lessonMenu(V)}</div>`;
   }
-  const imm = vImm() && !V.trShown && !V.res;
+  const imm = vImm() && !V.trShown && !V.res && !!(V.sent && V.sent.de);
   const tag = x.step === "rev" ? "Tekrar" : x.step === "again" ? "Bir daha" : "Yeni kelime testi";
   const meaning = imm ? `<p class="lmean q">${esc(w.emoji || "❔")} <span>${KIND_TR(w.kind)}</span></p>` : `<p class="lmean q">${esc(w.tr)} <span>${KIND_TR(w.kind)}</span></p>`;
   const sentence = s ? `<p class="lsent de">${vClozeHtml(s, V)}</p>${imm ? `<button class="ltext" data-act="vTr">🇹🇷 Türkçe ipucu</button>` : `<p class="ltr">${vTrHtml(s)}</p>`}`
@@ -8891,7 +8911,7 @@ function plClean(x){ return String(x||"").trim().replace(/^(die|der|das)\s+/i, "
 {
   let _wseen = null;
   const _rnd = render;
-  render = function(){ try{ if(S.words && S.words !== _wseen){ _wseen = S.words; for(const w of S.words){ if(w && typeof w.plural === "string" && /^(die|der|das)\s/i.test(w.plural.trim())) w.plural = plClean(w.plural); } } }catch(e){} return _rnd.apply(this, arguments); };
+  render = function(){ try{ if(S.words && S.words !== _wseen){ _wseen = S.words; for(const w of S.words){ if(w && typeof w.plural === "string" && /^(die|der|das)\s/i.test(w.plural.trim())) w.plural = plClean(w.plural); if(w && w.src === "core" && w.note === "yalnız çoğul" && w.artikel){ w.artikel = ""; if(!/^die /.test(w.de)) w.de = "die " + w.de; } } } }catch(e){} return _rnd.apply(this, arguments); };
 }
 /* yapay zekânın sık Türkçe yazım hataları (ör. "fiir" → "fiil") cevaplarda kendiliğinden düzelir */
 {
@@ -9442,7 +9462,7 @@ function coreNext(n, skip){
 }
 function coreWord(x, extra){
   const kind = x.t === "n" ? "nomen" : x.t === "v" ? "verb" : x.t === "a" ? "adj" : "andere";
-  return Object.assign({id:uid("w"), de:x.de, artikel: x.t === "n" ? (x.art||"") : "", plural: x.plo ? "" : (x.pl||""), tr:x.tr, note: x.plo ? "yalnız çoğul" : (x.note||""), kind, chunk:"", emoji:"", band:"core", src:"core", core:x.i, right:0, wrong:0, box:0, due:dayKey(), added:new Date().toISOString(), sents:[]}, extra||{});
+  return Object.assign({id:uid("w"), de: x.plo ? "die " + x.de : x.de, artikel: x.t === "n" && !x.plo ? (x.art||"") : "", plural: x.plo ? "" : (x.pl||""), tr:x.tr, note: x.plo ? "yalnız çoğul" : (x.note||""), kind, chunk:"", emoji:"", band:"core", src:"core", core:x.i, right:0, wrong:0, box:0, due:dayKey(), added:new Date().toISOString(), sents:[]}, extra||{});
 }
 async function coreTopUp(){
   if(!CORE.ready) await loadCore(); if(!CORE.ready) return 0;
@@ -9687,6 +9707,53 @@ denkCurated = function(){
   startDenk = async function(){ const c = denkCurated(); const r = await _sd.apply(this, arguments); if(S.denk) S.denk._idx = c.idx; return r; };
   const _df = denkFinish;
   denkFinish = function(){ try{ const st = S.state.denk || (S.state.denk = {n:0, sum:[]}); const i = S.denk && S.denk._idx; if(i !== undefined && i !== null){ (st.doneL || (st.doneL = {}))[i] = dayKey(); } }catch(e){} return _df.apply(this, arguments); };
+}
+
+/* ===== Düşün ve kur: ders kiti düzeni (üstte ✕ + ilerleme, ortada kart, altta sabit butonlar) ===== */
+{
+  const _rdK = renderDenk;
+  renderDenk = function(){
+    const h = _rdK.apply(this, arguments); const D = S.denk;
+    if(!D || !D.data || D.busy || D.err || D.finished) return h;
+    const n = D.data.steps.length;
+    const m = h.match(/^<section class="card hl"><div class="row between"><div class="kicker">([\s\S]*?)<\/div><span class="small muted">[^<]*<\/span><\/div>\s*<div class="progress"><i style="width:[^"]*"><\/i><\/div>/);
+    if(!m) return h;
+    let body = h.slice(m[0].length).replace(/<\/section>\s*$/, "");
+    /* son buton grubunu alta sabitle */
+    let foot = "";
+    const cut = [/((?:<input type="text" id="dkIn"[\s\S]*?)?(?:<button class="btn primary block" data-act="denkTyped">[\s\S]*?<\/button>|<button class="lbtn[^"]*"[^>]*>[\s\S]*?<\/button>)\s*<div class="grid2">(?:(?!<div class="grid2">)[\s\S])*<\/div>\s*<button class="btn small ghost" data-act="denkAuto">[\s\S]*?<\/button>)\s*$/, /(<div class="grid2">(?:(?!<div class="grid2">)[\s\S])*<\/div>\s*<button class="btn small ghost" data-act="denkAuto">[\s\S]*?<\/button>)\s*$/, /(<div class="grid2">(?:(?!<div class="grid2">)[\s\S])*?data-act="denkNext"[\s\S]*?<\/div>)\s*$/, /(<button class="btn primary block"[^>]*data-act="denkPlay">[\s\S]*?<\/button>)\s*$/, /(<button class="btn block" data-act="denkPlay">[\s\S]*?<\/button>)\s*$/];
+    for(const re of cut){ const mm = body.match(re); if(mm){ foot = mm[1]; body = body.slice(0, mm.index); break; } }
+    const pct = Math.round(D.i / n * 100);
+    return `<div class="k-shell dk-shell">
+      <div class="k-top"><button class="licon k-x" data-act="denkExit" aria-label="Kapat">✕</button><div class="k-prog"><i style="width:${Math.max(3, pct)}%"></i></div><span class="chip">${D.i+1}/${n}</span></div>
+      <section class="k-card dk-card"><div class="kicker">${m[1]}</div>${body}</section>
+      ${foot ? `<div class="k-foot">${foot}</div>` : ""}</div>`;
+  };
+  VIEWS.denk = () => renderDenk();
+  Object.assign(ACT, { denkExit(){ try{ stopAll && stopAll(); }catch(e){} if(S.denk){ S.denk.playing = false; S.denk.run = (S.denk.run||0) + 1; } S.denk = null; go("plan"); render(); } });
+}
+
+/* ===== her Almanca satıra 🔊: kendi başına duran Almanca metinlerin yanına küçük dinleme butonu ===== */
+function addSpeakers(root){
+  if(!root) return;
+  const SKIP = 'button, a, input, textarea, select, .bub, .k-ex, .k-word, .xopt, .k-opts, .lvcap, .dklive, .dkans, .vcard, .vhead, .c-chip, .k-say, .tok, .k-tok, .chip, .lvstage, .gm, .memory, .blitz, [contenteditable]';
+  root.querySelectorAll('.de, .k-de').forEach(el=>{
+    if(el.dataset.spk) return; el.dataset.spk = "1";
+    if(el.closest(SKIP)) return;
+    const t = (el.textContent || "").trim();
+    if(t.length < 2 || !/[a-zäöüß]{2,}/i.test(t) || /^[\d\s.,:;!?–-]+$/.test(t)) return;
+    const host = el.parentElement; if(!host) return;
+    const block = getComputedStyle(el).display !== "inline";
+    const all = (host.textContent || "").trim();
+    if(!block && t.length < all.length * 0.6) return;
+    let a = el; for(let k = 0; k < 3 && a; k++, a = a.parentElement){ if(a.querySelector && a.querySelector('[data-act="sayDe"], [data-act^="say"], [data-act="kSayAll"], [data-act="denkHear"], [data-act="vSay"]')) return; }
+    const b = document.createElement("button"); b.className = "spk"; b.type = "button"; b.dataset.act = "sayDe"; b.dataset.t = t.replace(/^„|“$/g, "").replace(/_{2,}/g, "").trim(); b.setAttribute("aria-label", "Dinle"); b.textContent = "🔊";
+    if(block) el.appendChild(b); else el.insertAdjacentElement("afterend", b);
+  });
+}
+{
+  const _rSpk = render;
+  render = function(){ const x = _rSpk.apply(this, arguments); try{ addSpeakers(document.querySelector("#view")); }catch(e){} return x; };
 }
 </script>
 </body>
