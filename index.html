@@ -5673,7 +5673,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-12k";
+const APP_VER = "2026-11-12l";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -10102,6 +10102,54 @@ Object.assign(ACT, {
     const ok = pick === A.art || (A.art === "den" && pick === "der") || (A.art === "dem" && (pick === "der" || pick === "das"));
     vCheck(ok ? A.ans : pick + " " + A.noun); }
 });
+
+/* ===== uygulamaya gömülü kayıt: iPhone'un kendi ses kaydedicisi (WhatsApp sesli mesajı gibi) → yapay zekâ yazıya döker ===== */
+function b64ToBlob(b64, mime){ const bin = atob(b64); const u = new Uint8Array(bin.length); for(let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return new Blob([u], {type: mime || "audio/aac"}); }
+function mic3Ok(){ try{ return typeof NATIVE !== "undefined" && NATIVE && !!capPlug("VoiceRecorder") && mic2Ok(); }catch(e){ return false; } }
+function mic3Listen(onLive){
+  try { stopSpeech(); if(typeof neuStop === "function") neuStop(); audioStop && audioStop(); } catch(e){}
+  const P = capPlug("VoiceRecorder");
+  return new Promise((res, rej)=>{
+    const h = {_cancel:false}; let settled = false, started = false, timer = null;
+    const done = (ok, val) => { if(settled) return; settled = true; clearTimeout(timer); micPill(null); if(REC_CUR === h) REC_CUR = null; if(S.sh && S.sh.rec === h) S.sh.rec = null; ok ? res(val) : rej(val); };
+    h.abort = async () => { h._cancel = true; try { if(started) await P.stopRecording(); } catch(e){} done(false, {code:"cancel"}); };
+    h.stop = async () => {
+      if(!started || h._stopping || settled) return; h._stopping = true; clearTimeout(timer); micPill("busy");
+      let r; try { r = await P.stopRecording(); } catch(e){ try{ diagAdd("mikrofon", "kayıt durdurulamadı", String(e && (e.message||e))); }catch(_){} return done(false, {code:"no-speech"}); }
+      const v = (r && (r.value || r)) || {}; const b64 = v.recordDataBase64 || v.base64 || ""; const mime = v.mimeType || "audio/aac";
+      if(!b64){ return done(false, {code:"no-speech"}); }
+      let w; try { w = await paToWav(b64ToBlob(b64, mime)); } catch(e){ try{ diagAdd("mikrofon", "kayıt çözülemedi (yerel)", mime + " · " + String(e && (e.message||e))); }catch(_){} return done(false, {code:"no-speech"}); }
+      if(w.sec < 0.4 || w.peak < 0.012) return done(false, {code:"no-speech"});
+      let txt = "";
+      for(let k = 0; k < 2 && !settled; k++){
+        const ctl = new AbortController(); const tm = setTimeout(()=>{ try { ctl.abort(); } catch(e){} }, k ? 20000 : 15000);
+        try { txt = await mic2Transcribe(w.wav, ctl.signal); clearTimeout(tm); break; }
+        catch(e){ clearTimeout(tm); if(h._cancel) return; if(e && e.code === "rate_limited"){ MIC2.off = dayKey(); mic2Save(); return done(false, {code:"quota"}); } if(k){ try{ diagAdd("mikrofon", "yazıya dökülemedi (yerel kayıt)", String(e && (e.code||e.message||e))); }catch(_){} if(SRC0 || NATIVE_SR){ MIC2.offUntil = Date.now() + 30*60*1000; } return done(false, {code:"network"}); } }
+      }
+      if(txt){ onLive && onLive(txt); if(!S.state.srOK){ S.state.srOK = true; Store.saveState(); } done(true, [txt]); } else done(false, {code:"no-speech"});
+    };
+    REC_CUR = h; if(S.sh) S.sh.rec = h; micPill("wait");
+    (async ()=>{
+      try{
+        let pm = await P.hasAudioRecordingPermission().catch(()=>({value:false}));
+        if(!(pm && pm.value)){ pm = await P.requestAudioRecordingPermission(); if(!(pm && pm.value)){ MIC2.denied = true; return done(false, {code:"not-allowed"}); } }
+        try { const st = await P.getCurrentStatus(); if(st && (st.status === "RECORDING" || st.status === "PAUSED")) await P.stopRecording(); } catch(e){}
+        await P.startRecording(); started = true;
+        if(settled || h._cancel){ try { await P.stopRecording(); } catch(e){} return; }
+        if(S.sess && CTXS[S.sess.ctx] && CTXS[S.sess.ctx].audio){ try { micBeep(); } catch(e){} }
+        micPill("go"); timer = setTimeout(()=>h.stop(), 15000);
+      }catch(e){
+        try{ diagAdd("mikrofon", "yerel kayıt başlatılamadı", String(e && (e.message||e))); }catch(_){}
+        if(settled) return; settled = true; micPill(null); if(REC_CUR === h) REC_CUR = null;
+        mic2Listen(onLive).then(res, rej);
+      }
+    })();
+  });
+}
+{
+  const _recN = recognize;
+  recognize = function(onLive, again){ return mic3Ok() ? mic3Listen(onLive) : _recN.apply(this, arguments); };
+}
 </script>
 </body>
 </html>
