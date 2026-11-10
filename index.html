@@ -5621,7 +5621,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-12d";
+const APP_VER = "2026-11-12e";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -6869,8 +6869,10 @@ function gateLockHtml(){
 const MIC2 = { day:"", n:0, off:"", denied:false };
 try { Object.assign(MIC2, JSON.parse(localStorage.getItem("dw-mic2") || "{}")); } catch(e){}
 function mic2Save(){ try { localStorage.setItem("dw-mic2", JSON.stringify({day:MIC2.day, n:MIC2.n, off:MIC2.off})); } catch(e){} }
+function mic2Pref(){ return (typeof NATIVE !== "undefined" && NATIVE) ? S.state.mic2 === true : S.state.mic2 !== false; }
 function mic2Ok(){
-  return STANDALONE && S.state.mic2 !== false && !MIC2.denied && aiReady() && MIC2.off !== dayKey()
+  if(MIC2.offUntil && Date.now() < MIC2.offUntil && (SRC0 || NATIVE_SR)) return false;
+  return STANDALONE && mic2Pref() && !MIC2.denied && aiReady() && MIC2.off !== dayKey()
     && !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) && !!(window.AudioContext || window.webkitAudioContext);
 }
 function audioSess(t){ try { if(navigator.audioSession) navigator.audioSession.type = t; } catch(e){} }
@@ -6970,7 +6972,7 @@ function mic2Listen(onLive){
           if(settled) return;
           if(e && e.code === "rate_limited"){ MIC2.off = dayKey(); mic2Save(); done(false, {code:"quota"}); }
           else if(e && e.code === "cancelled") done(false, {code: h._cancel ? "cancel" : "network"});
-          else done(false, {code:"network"});
+          else { if(SRC0 || NATIVE_SR){ MIC2.offUntil = Date.now() + 30*60*1000; } done(false, {code:"network"}); }
         }
       };
       try { rec.stop(); } catch(e){ done(false, {code:"network"}); }
@@ -7036,13 +7038,13 @@ useSR = function(){ return mic2Ok() || _useSR0(); };
 const _micMsg0 = micMsg;
 micMsg = function(code){
   if(code === "quota") return "Yapay zekânın bugünkü ücretsiz dinleme hakkı doldu; yarına kadar telefonun kendi tanımasını kullanıyorum. 🎤'a tekrar bas.";
-  if(code === "network") return "Kayıt yazıya dökülemedi (internet?). 🎤'a tekrar bas.";
+  if(code === "network") return (SRC0 || NATIVE_SR) ? "Bağlantı yavaş olduğu için şimdilik telefonun kendi ses tanımasına geçtim. 🎤'a tekrar bas." : "Kayıt yazıya dökülemedi (internet?). 🎤'a tekrar bas.";
   return _micMsg0(code);
 };
 function mic2SetupHtml(){
-  const on = S.state.mic2 !== false; const n = MIC2.day === dayKey() ? MIC2.n : 0;
+  const on = mic2Pref(); const n = MIC2.day === dayKey() ? MIC2.n : 0;
   return `<div class="field"><label>Konuşma tanıma</label>
-    <select data-change="mic2Mode"><option value="ai" ${on?"selected":""}>Yapay zekâ ile (önerilen, iPhone'da en güvenilir)</option><option value="os" ${!on?"selected":""}>Telefonun kendi tanıması</option></select>
+    <select data-change="mic2Mode"><option value="ai" ${on?"selected":""}>Yapay zekâ ile (hatalarını kelimesi kelimesine yazar; internet ister)</option><option value="os" ${!on?"selected":""}>Telefonun kendi tanıması (hızlı; uygulamada önerilen)</option></select>
     <p class="small muted">Yapay zekâ modunda sesin kaydedilip Gemini'ye yazdırılır (telaffuz analizinde olduğu gibi); hatalarını düzeltmeden yazar. Bugün: ${n} kayıt${MIC2.off === dayKey() ? " · bugünkü ücretsiz hak doldu, telefonun tanıması kullanılıyor" : ""}.</p></div>`;
 }
 
@@ -9776,6 +9778,12 @@ window.micHeard = function(t){
 {
   const _mp = micPill;
   micPill = function(st){ const r = _mp.apply(this, arguments); const el = document.getElementById("micPill"); if(el && st === "go" && !el.querySelector(".lv")){ const lv = document.createElement("i"); lv.className = "lv"; el.appendChild(lv); } return r; };
+}
+
+/* ders modunda (kelime kartı vb.) bilgi mesajı sayfanın üstüne değil, saatin altındaki bildirime */
+{
+  const _rFl = render;
+  render = function(){ try{ if(S.flash && typeof lessonOn === "function" && lessonOn()){ toast(esc(S.flash), 3800); S.flash = ""; } }catch(e){} return _rFl.apply(this, arguments); };
 }
 </script>
 </body>
