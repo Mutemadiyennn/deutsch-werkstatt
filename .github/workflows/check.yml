@@ -1,0 +1,28 @@
+name: Kurs içeriği ve derleme kontrolü
+on:
+  push:
+    branches: [main]
+    paths: ["app/**"]
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - name: İçerik doğrulama (bütün üniteler)
+        working-directory: app/content/kurs
+        run: python3 validate.py
+      - name: Derleme ve sözdizimi
+        working-directory: app
+        run: |
+          python3 - <<'PY'
+          import re, glob, subprocess
+          html = open("legacy.html", encoding="utf-8").read()
+          js = "\n".join(open(f, encoding="utf-8").read() for f in sorted(glob.glob("src/js/*.js")))
+          i = html.rindex("</script>"); html = html[:i] + js + html[i:]
+          src = re.findall(r"<script(?![^>]*src)[^>]*>([\s\S]*?)</script>", html)
+          open("/tmp/c.js", "w").write("\n;\n".join(f"(function(){{{s}\n}})" for s in src))
+          r = subprocess.run(["node", "--check", "/tmp/c.js"]); exit(r.returncode)
+          PY
