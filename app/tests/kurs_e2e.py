@@ -20,7 +20,8 @@ async def answer_drills(pg, k, shots, wrong_at=-1):
       await pg.evaluate(f"window.__heard = {json.dumps(ans)}; 0"); await pg.click("[data-act=kuMic]")
     elif kind == "order":
       await pg.evaluate("render()"); pool = await pg.evaluate("S.ku.D.pool"); used = set()
-      for w in it["de"].split():
+      toks = await pg.evaluate("kuOrderTokens(kuCur().de, S.ku.u).w")
+      for w in toks:
         j = next(i for i, x in enumerate(pool) if x == w and i not in used); used.add(j); await pg.click(f'[data-act=kuChip][data-j="{j}"]')
       await pg.click("[data-act=kuOrderCheck]")
     await pg.wait_for_timeout(60)
@@ -51,6 +52,7 @@ async def main():
           if(n<4) return {{ok:true, hit:[n-2], reply:'Aha! Und weiter?', reply_tr:'Öyle mi? Sonra?'}};
           return {{ok:true, hit:[...Array(tg).keys()], reply:'Auf Wiedersehen!', reply_tr:'Hoşça kal!', end:true}}; }}
         if(p.includes('Sein Text')) return {{corrected:'Ich heiße Can. Ich komme aus der Türkei.', mistakes:[{{wrong:'Ich heißt', right:'Ich heiße', why_tr:'ich ile -e.'}}], praise_tr:'Güzel bir başlangıç.'}};
+        if(p.includes('strenger Deutschlehrer')) return {{ok:false}};
         return {{ok:true}}; }}}}; go('plan'); render(); 0""")
     await pg.wait_for_timeout(1200); await pg.screenshot(path=f"{SHOT}home.png")
     await pg.evaluate(f"kuOpenUnit('{UNIT}'); 0"); await pg.wait_for_timeout(800); await pg.screenshot(path=f"{SHOT}path0.png", full_page=True)

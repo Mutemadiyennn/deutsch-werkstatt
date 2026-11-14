@@ -4,7 +4,12 @@ TRBAD=[r"\bfiir\b", r"\bses ses\b", r"\b[A-ZÇĞİÖŞÜ][a-zçğıöşüäöß]
 def words(s): return re.findall(r"[A-Za-zÄÖÜäöüßİıçğşÇĞŞ]+", s)
 def n(s): return re.sub(r"[^a-zäöüß ]","",s.lower().replace("ß","ss")).strip()
 def dup(s):
-    w=[x.lower() for x in words(s)]
+    w=[]
+    for tok in s.split():
+        core=re.sub(r"[^A-Za-zÄÖÜäöüßİıçğşÇĞŞ]","",tok).lower()
+        if tok[-1:] in ",;:.!?–-": core=core+"#"   # virgülle ayrılan tekrar ("hat, hat") geçerli olabilir
+        if core: w.append(core)
+    w=[x.rstrip("#") if i==len(w)-1 else x for i,x in enumerate(w)]
     return any(w[i]==w[i+1] and w[i] not in ("die","das","der") for i in range(len(w)-1)) or re.search(r"\b(der|die|das) (der|die|das)\b", s, re.I) and not re.search(r"\bdas,? (das|die|der)\b", s)
 def check(u, errs, warn):
     for k in ["id","lvl","title_de","title_tr","goal_tr","intro_tr","teach","words","dialog","drills","read","speak","test"]:

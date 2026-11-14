@@ -1,6 +1,7 @@
 /* ===== Yenilikler: her önemli sürümde bir kez gösterilir ===== */
-const WHATSNEW = {id:"2026-11-13-kurs", title:"Yeni: Kurs A1 → B1", items:[
-  "📚 Uygulama artık hazır bir kursla ilerliyor: 14 A1 ünitesi hazır, A2 ve B1 sırada. Her ünite kelimeler → kural → dinleme → okuma → oyunlar → yazma → rol oyunu → sınav basamaklarından oluşuyor.",
+const WHATSNEW = {id:"2026-11-14-kurs", title:"Yeni: Kurs A1 → B1", items:[
+  "📚 Uygulama artık hazır bir kursla ilerliyor: A1'den B1'e 42 ünite, Schritte plus Neu sırasıyla. Her ünite kelimeler → kural → dinleme → okuma → oyunlar → yazma → rol oyunu → sınav basamaklarından oluşuyor.",
+  "✅ Bütün üniteler yazarından bağımsız bir dilbilimci tarafından madde madde incelendi; doğru söylediğin farklı bir cümle de (sıkı bir öğretmen kontrolüyle) doğru sayılır.",
   "⚡ Dersler önceden yazılmış ve kontrol edilmiş: bekleme yok, hata verip menüye atma yok, internet olmadan da çalışıyor.",
   "🧠 Kelimeler, Türkçesinden Almancasını iki ayrı oturumda kendin söyleyince kalıcı sayılıyor; ünite sınavı ancak o zaman açılıyor.",
   "🎭 Her ünitenin sonunda, seni düzelte düzelte konuşturan kısa bir rol oyunu var.",

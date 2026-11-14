@@ -4,7 +4,7 @@ from playwright.async_api import async_playwright
 async def main():
   async with async_playwright() as p:
     b = await p.chromium.launch(); ctx = await b.new_context(viewport={"width":390,"height":844}, is_mobile=True, device_scale_factor=2); pg = await ctx.new_page(); errs=[]
-    pg.on("pageerror", lambda e: errs.append(str(e)))
+    pg.on("pageerror", lambda e: errs.append(str(e) + " @ " + (e.stack or "")[:400]))
     await pg.add_init_script("localStorage.setItem('dw-gate', JSON.stringify({h:'2a4fd738768c5609c205edf6dcd7dd72c2da1add10f40b3d013ffa70660e0135', t:Date.now()})); setInterval(()=>document.querySelectorAll('.celebrate').forEach(x=>x.remove()), 50);")
     await pg.goto("http://localhost:8765/index.html"); await pg.wait_for_timeout(1500)
     await pg.evaluate("S.state.setupDone=true; S.state.theme='dark'; window.__said=[]; say = async (t, l)=>{ window.__said.push([l, t]); await sleep(5); }; 0")

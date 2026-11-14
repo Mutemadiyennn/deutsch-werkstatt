@@ -2,6 +2,7 @@
 BLK.kurs = {min:10, ai:false, heavy:true, label:"Kurs"};
 BLK.kursrv = {min:6, ai:false, heavy:true, label:"Kurs tekrarı"};
 BLK.kursses = {min:8, ai:false, label:"Kurs: sesli tekrar"};
+BLK.kursgame = {min:4, ai:false, label:"Kurs: oyun arası"};
 {
   const _spK = sessPick;
   sessPick = function(){
@@ -15,7 +16,8 @@ BLK.kursses = {min:8, ai:false, label:"Kurs: sesli tekrar"};
     /* her 3 kurs basamağından sonra kısa bir ara: önce günün diğer görevleri (kelime kartları, dış kaynak), yoksa yapay zekâsız hızlı bir oyun */
     if(nK && nK % 3 === 0 && last === "kurs"){
       const remain = C.len ? C.len - s.sec/60 : 99;
-      const must = (typeof sessMust === "function" ? sessMust(remain) : []).filter(b=>b.x && !["kurs","kursrv","canli"].includes(b.x.key) && !s.hist.includes(b.type));
+      if(!s.hist.includes("kursgame") || nK % 6 === 0) return {type:"kursgame"};
+      const must = (typeof sessMust === "function" ? sessMust(remain) : []).filter(b=>b.x && b.x.kind === "external" && !s.hist.includes(b.type));
       if(must.length) return must[0];
       const light = Object.keys(sessLight(remain)).filter(k=>BLK[k] && !BLK[k].ai && k !== "ext");
       const fresh = light.filter(k=>!s.hist.slice(-6).includes(k));
@@ -26,16 +28,17 @@ BLK.kursses = {min:8, ai:false, label:"Kurs: sesli tekrar"};
   };
   const _srK = sessRun;
   sessRun = function(b){
-    if(b && ["kurs","kursrv","kursses"].includes(b.type)){
+    if(b && ["kurs","kursrv","kursses","kursgame"].includes(b.type)){
       const s = S.sess; s.cur = b; s.hist.push(b.type); s.blockStart = Date.now();
-      if(b.type === "kursrv") kuReviewStart(); else if(b.type === "kursses") kuAudioStart(); else kuStart(kSt().cur);
+      if(b.type === "kursrv") kuReviewStart(); else if(b.type === "kursses") kuAudioStart(); else if(b.type === "kursgame") kuGameBreak(); else kuStart(kSt().cur);
       return;
     }
     return _srK.apply(this, arguments);
   };
   /* basamak bitince oturumda sıradakine geç */
   const _nf = kuNodeFinish;
-  kuNodeFinish = function(){ const inSess = !!S.sess; _nf.apply(this, arguments); if(inSess && S.sess){ toast(S.kuDoneMsg ? "✓ " + esc(S.kuDoneMsg) : "✓ Basamak tamam", 1600); setTimeout(()=>{ if(S.sess && !S.ku && !S.brk) sessNext(); }, 1500); } };
+  kuNodeFinish = function(){ const inSess = !!S.sess; const K = S.ku; const lab = K && K.node ? K.node.t : ""; _nf.apply(this, arguments);
+    if(inSess && S.sess){ toast("✓ " + esc(lab ? lab + " tamamlandı" : "Basamak tamamlandı"), 1600); setTimeout(()=>{ if(S.sess && !S.ku && !S.brk) sessNext(); }, 1500); } };
   const _de = kuDrillEnd;
   kuDrillEnd = function(){ _de.apply(this, arguments); const D = S.ku && S.ku.D; if(S.sess && D && D.mode === "review"){ setTimeout(()=>{ if(S.sess && S.ku && S.ku.D === D){ S.ku = null; sessNext(); } }, 1800); } };
   const _ex = ACT.kuExit;
@@ -51,7 +54,7 @@ async function kuAudioStart(){
     if(!started) continue;
     for(const t of (u.teach||[])) for(const e of (t.ex||[])) pool.push({de:e.de, tr:e.tr, u:uid});
     for(const d of (u.drills||[])) if(d.k === "say") pool.push({de:d.de, tr:d.tr, u:uid});
-    for(const w of (u.words||[])) if(kuWSt(kuWKey(u, w)).c) pool.push({de:kuWFull(w), tr:w.tr, u:uid}); }catch(e){} }
+    for(const w of (u.words||[])) if(kuWSt(kuWKey(u, w)).c) pool.push({de:kuWFull(w), tr:kuTrShort(w.tr), u:uid}); }catch(e){} }
   if(!pool.length){ try{ const u = await kursUnit(id); for(const t of (u.teach||[])) for(const e of (t.ex||[])) pool.push({de:e.de, tr:e.tr, u:id}); }catch(e){} }
   const items = shuffle(pool).slice(0, 14);
   S.kaud = {items, i:0, run:(S.kaud && S.kaud.run || 0) + 1, phase:"run"}; go("kurs"); S.ku = {audio:true}; render();
@@ -93,3 +96,17 @@ function kuAudioView(){
 
 /* kurs varken 1500 kelimeden günlük yeni kelime sınırı: kurs zaten her ünitede 16 kelime öğretiyor */
 { const _ctK = coreTarget; coreTarget = function(){ const n = _ctK.apply(this, arguments); return KURS.idx ? Math.min(n, 10) : n; }; }
+
+/* ===== Oyun arası: başlanmış ünitelerin kelimeleriyle eşleştir + hızlı tur (yapay zekâsız, 3-4 dk) ===== */
+async function kuGameBreak(){
+  await kursIndex(); const L = kuList(); const ids = L.filter(x=>x.ready !== false && (kuDone(x.id) || ((kSt().u[x.id]||{}).nd && Object.keys(kSt().u[x.id].nd).length))).map(x=>x.id).slice(-3);
+  if(!ids.length) ids.push(kSt().cur);
+  const words = []; for(const id of ids){ try{ const u = await kursUnit(id); (u.words||[]).forEach(w=>{ if(kuWSt(kuWKey(u, w)).c || ids.length === 1) words.push({...w, _uid:id}); }); }catch(e){} }
+  const pu = {id:"mix", title_tr:"Oyun arası", words: shuffle(words).slice(0, 15)};
+  if(pu.words.length < 6){ sessNext(); return; }
+  S.ku = {id:"mix", u:pu, free:true, node:{id:"game", ic:"🎮", t:"Oyun arası"}, steps:[{k:"match"},{k:"speed"}], si:0}; S.kuU = kSt().cur; kuEnter(); go("kurs"); render();
+}
+{
+  const _nfG = kuNodeFinish;
+  kuNodeFinish = function(){ const K = S.ku; if(K && K.free){ stopAll && stopAll(); S.ku = null; if(S.sess){ toast("✓ Oyun arası bitti", 1200); setTimeout(()=>{ if(S.sess && !S.ku) sessNext(); }, 900); } else { go("kurs"); render(); } return; } return _nfG.apply(this, arguments); };
+}

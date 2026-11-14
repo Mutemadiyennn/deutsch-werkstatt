@@ -4473,7 +4473,7 @@ readiness = function(){
 function qfix(de, tr){
   tr = String(tr||""); if(!tr) return tr;
   const isQde = /\?\s*$/.test(String(de||""));
-  const isQtr = /(\s|^)m[ıiuü](\w*)\s*[.!]?\s*$/i.test(tr) || /\b(ne|nasıl|neden|nerede|nereye|kim|hangi|kaç|ne zaman)\b[^.?!]*[.]?\s*$/i.test(tr) && isQde;
+  const isQtr = /(\s|^)m[ıiuü](yım|yim|yum|yüm|sın|sin|sun|sün|yız|yiz|yuz|yüz|sınız|siniz|sunuz|sünüz|dır|dir|dur|dür|ydı|ydi|ydu|ydü|ymış|ymiş|ymuş|ymüş)?\s*[.!]?\s*$/i.test(tr) || /\b(ne|nasıl|neden|nerede|nereye|kim|hangi|kaç|ne zaman)\b[^.?!]*[.]?\s*$/i.test(tr) && isQde;
   if((isQde || isQtr) && !/\?\s*$/.test(tr)) tr = tr.replace(/[.!\s]+$/,"") + "?";
   return tr;
 }

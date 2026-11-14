@@ -10,7 +10,7 @@
   {
    "id": "t1",
    "h_tr": "obwohl: -masına rağmen",
-   "tr": "'obwohl' (-masına rağmen, İngilizcedeki 'although') beklenenin tersi olan bir durumu bağlar: 'Die Wohnung ist teuer, obwohl sie klein ist.' (Küçük olmasına rağmen daire pahalı.) 'weil' gibi bir yan cümle bağlacıdır: çekimli fiil EN SONA gider. Yan cümle başa gelirse ana cümle fiille başlar: 'Obwohl die Wohnung klein ist, ist sie teuer.' b1-03'teki 'trotzdem' aynı anlamı verir, ama ana cümlede durur ve fiil hemen arkasından gelir: 'Die Wohnung ist klein. Trotzdem ist sie teuer.'",
+   "tr": "'obwohl' (-masına rağmen, İngilizcedeki “although”) beklenenin tersi olan bir durumu bağlar: 'Die Wohnung ist teuer, obwohl sie klein ist.' (Küçük olmasına rağmen daire pahalı.) 'weil' gibi bir yan cümle bağlacıdır: çekimli fiil EN SONA gider. Yan cümle başa gelirse ana cümle fiille başlar: 'Obwohl die Wohnung klein ist, ist sie teuer.' b1-03'teki 'trotzdem' aynı anlamı verir, ama ana cümlede durur ve fiil hemen arkasından gelir: 'Die Wohnung ist klein. Trotzdem ist sie teuer.'",
    "table": {
     "head": [
      "bağlaç",
@@ -62,7 +62,7 @@
   {
    "id": "t2",
    "h_tr": "falls: eğer, … olursa",
-   "tr": "'falls' (eğer, … olursa; İngilizcedeki 'in case / if') bir olasılığı anlatır. 'wenn' gibi kullanılır ve çekimli fiil yine EN SONA gider: 'Falls die Heizung ausfällt, rufen Sie den Hausmeister an.' Farkı şu: 'wenn' hem “-dığında” (zaman) hem “eğer” (koşul) olabilir; 'falls' ise SADECE koşuldur ve “belki olur, belki olmaz” vurgusu taşır. Bu yüzden tekrar eden olaylarda ('immer wenn …') 'falls' kullanılmaz. Ev ararken, sözleşmelerde ve resmi yazılarda çok sık geçer.",
+   "tr": "'falls' (eğer, … olursa; İngilizcedeki “in case / if”) bir olasılığı anlatır. 'wenn' gibi kullanılır ve çekimli fiil yine EN SONA gider: 'Falls die Heizung ausfällt, rufen Sie den Hausmeister an.' Farkı şu: 'wenn' hem “-dığında” (zaman) hem “eğer” (koşul) olabilir; 'falls' ise SADECE koşuldur ve “belki olur, belki olmaz” vurgusu taşır. Bu yüzden tekrar eden olaylarda ('immer wenn …') 'falls' kullanılmaz. Ev ararken, sözleşmelerde ve resmi yazılarda çok sık geçer.",
    "table": {
     "head": [
      "cümle",
@@ -211,6 +211,10 @@
     {
      "de": "Wir haben unsere alte Wohnung zum 31. März gekündigt.",
      "tr": "Eski dairemizin sözleşmesini 31 Mart itibarıyla feshettik."
+    },
+    {
+     "de": "Das Wasser ist in den Nebenkosten enthalten.",
+     "tr": "Su yan giderlere dahil."
     }
    ]
   },
@@ -362,21 +366,21 @@
    "de": "kündigen",
    "art": "",
    "pl": "",
-   "tr": "(sözleşmeyi) feshetmek",
+   "tr": "feshetmek (sözleşmeyi)",
    "t": "v"
   },
   {
    "de": "einziehen",
    "art": "",
    "pl": "",
-   "tr": "(yeni eve) taşınmak",
+   "tr": "yeni eve taşınmak",
    "t": "v"
   },
   {
    "de": "ausziehen",
    "art": "",
    "pl": "",
-   "tr": "(evden) çıkmak, taşınmak",
+   "tr": "evden çıkmak, taşınıp gitmek",
    "t": "v"
   },
   {
@@ -392,6 +396,13 @@
    "pl": "",
    "tr": "eğer, … olursa",
    "t": "x"
+  },
+  {
+   "de": "enthalten sein",
+   "art": "",
+   "pl": "",
+   "tr": "dahil olmak (in + Dativ)",
+   "t": "v"
   }
  ],
  "dialog": {
@@ -434,7 +445,7 @@
    {
     "r": "A",
     "de": "Sehr ruhig. Über Ihnen wohnt ein älteres Ehepaar, und nebenan wohnt ein Student. Den Studenten sieht man kaum, er ist fast immer an der Uni.",
-    "tr": "Çok sessiz. Üst katınızda yaşlı bir çift oturuyor, yan dairede de bir öğrenci. Öğrenciyi neredeyse hiç görmezsiniz, hemen hep üniversitede."
+    "tr": "Çok sessiz. Üst katınızda yaşlı bir çift oturuyor, yan dairede de bir öğrenci. Öğrenciyi pek görmezsiniz, neredeyse her zaman üniversitede."
    },
    {
     "r": "B",
@@ -475,11 +486,11 @@
    ],
    "opts": [
     "obwohl",
-    "weil",
-    "trotzdem"
+    "trotzdem",
+    "deshalb"
    ],
    "tr": "Bay Huber, yeterince parası olmasına rağmen kirayı hiç zamanında ödemiyor.",
-   "why_tr": "Beklenenin tersi + fiil sonda: obwohl."
+   "why_tr": "Beklenenin tersi + fiil sonda: obwohl; trotzdem/deshalb fiili sona atmaz."
   },
   {
    "k": "pick",
@@ -556,11 +567,11 @@
    ],
    "opts": [
     "Falls",
-    "Obwohl",
-    "Ob"
+    "Ob",
+    "Deshalb"
    ],
    "tr": "Kalorifer çalışmazsa lütfen hemen arayın.",
-   "why_tr": "Olasılık/koşul: falls (eğer … olursa)."
+   "why_tr": "Koşul: falls + fiil sonda; 'ob' dolaylı soru bağlacıdır."
   },
   {
    "k": "pick",
@@ -743,8 +754,8 @@
    ],
    "opts": [
     "Kaution",
-    "Nebenkosten",
-    "Kündigung"
+    "Kündigung",
+    "Hausordnung"
    ],
    "tr": "Taşınırken depozito olarak üç aylık kira ödüyoruz.",
    "why_tr": "Taşınırken bir kez ödenen güvence parası: die Kaution."
@@ -881,7 +892,8 @@
    "why_tr": "Modal fiil 2. sırada, dönüşlü zamir öne, mastar sonda.",
    "alt": [
     "Leider muss ich mich beim Vermieter beschweren.",
-    "Beim Vermieter muss ich mich leider beschweren."
+    "Beim Vermieter muss ich mich leider beschweren.",
+    "Ich muss mich beim Vermieter leider beschweren."
    ]
   }
  ],
@@ -960,7 +972,7 @@
  "roleplay": {
   "scene_tr": "Nürnberg'deki apartmanında üst kat komşun geceleri gürültü yapıyor; onunla merdiven boşluğunda karşılaşıyorsun.",
   "partner_de": "Jonas Weber, neuer Nachbar im dritten Stock, ca. 25, Student, etwas chaotisch, aber nett, merkt zuerst nicht, dass er zu laut ist, verteidigt sich ein bisschen, entschuldigt sich aber, wenn man höflich bleibt, und schlägt am Ende einen Kompromiss vor; siezt, spricht locker und eher schnell",
-  "opener_de": "Ach, hallo! Wir haben uns noch gar nicht richtig kennengelernt, oder? Ich bin Jonas, ich wohne seit drei Wochen hier oben.",
+  "opener_de": "Ach, hallo! Wir haben uns noch gar nicht richtig kennengelernt, oder? Ich bin Jonas Weber, ich wohne seit drei Wochen hier oben.",
   "targets": [
    {
     "tr": "Kibarca konuya gir ve nerede oturduğunu söyle",
@@ -994,11 +1006,11 @@
    ],
    "opts": [
     "obwohl",
-    "weil",
-    "damit"
+    "trotzdem",
+    "denn"
    ],
    "tr": "Jonas, Münih'te iyi bir işi olmasına rağmen Regensburg'a taşınıyor.",
-   "why_tr": "Beklenenin tersi: obwohl + fiil sonda."
+   "why_tr": "Beklenenin tersi: obwohl + fiil sonda; trotzdem/denn fiili sona atmaz."
   },
   {
    "k": "gap",
@@ -1009,11 +1021,11 @@
    ],
    "opts": [
     "Falls",
-    "Obwohl",
-    "Ob"
+    "Ob",
+    "Denn"
    ],
    "tr": "Asansör bozuksa lütfen merdiveni kullanın.",
-   "why_tr": "Olasılık/koşul: falls; fiil yan cümlenin sonunda."
+   "why_tr": "Koşul: falls; fiil yan cümlenin sonunda."
   },
   {
    "k": "gap",
@@ -1039,7 +1051,7 @@
    ],
    "opts": [
     "Kaltmiete",
-    "Warmmiete",
+    "Hausordnung",
     "Kündigung"
    ],
    "tr": "Soğuk kira 650 avro, yan giderler bunun üstüne geliyor.",
@@ -1141,7 +1153,9 @@
    "tr": "Kimse yoksa Bauer Hanım'ın zilini çalın.",
    "why_tr": "Yan cümlede fiil sonda; ardından fiille başlayan emir.",
    "alt": [
-    "Klingeln Sie bei Frau Bauer, falls niemand da ist."
+    "Klingeln Sie bei Frau Bauer, falls niemand da ist.",
+    "Falls da niemand ist, klingeln Sie bei Frau Bauer.",
+    "Klingeln Sie bei Frau Bauer, falls da niemand ist."
    ]
   },
   {

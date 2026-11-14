@@ -14,7 +14,7 @@ function kuDay(){ const k = kSt(); const d = k.day || (k.day = {}); return d[day
     const m = kuMeta(kSt().cur); if(!m || m.ready === false) return R;
     const u = KURS.units[m.id]; if(!u) kursUnit(m.id).then(()=>{ if(S.view === "plan") render(); }).catch(()=>{});
     const nx = u ? kuNextNode(u) : null; const dd = kuDay(); const due = kuDueCount() + kuWordsDue().length;
-    const q = [{key:"kurs", kind:"kurs", title:`Kurs · ${m.title_tr}${nx ? " · " + nx.ic + " " + nx.t : ""}`, min:40, done: dd.n >= 3}];
+    const q = [{key:"kurs", kind:"kurs", title: dd.n >= 3 ? `Kurs · bugün ${dd.n} basamak tamamlandı · sıradaki: ${nx ? nx.t : m.title_tr}` : `Kurs · ${m.title_tr}${nx ? " · " + nx.ic + " " + nx.t : ""}${dd.n ? " (" + dd.n + "/3)" : ""}`, min:40, done: dd.n >= 3}];
     if(due || dd.rv) q.push({key:"kursrv", kind:"kursrv", title:`Kurs tekrarı${due ? " · " + due + " madde" : ""}`, min:8, done: !!dd.rv && !due});
     for(const x of R.q) if(KU_KEEP.has(x.kind)) q.push(x);
     q.push({key:"canli", kind:"canli", title:"Canlı sohbet: öğrendiklerinle 10 dk konuş", min:10, extra:true, done: !!(daily().live || daily().canli)});

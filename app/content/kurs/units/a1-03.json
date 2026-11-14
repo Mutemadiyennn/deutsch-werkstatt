@@ -56,13 +56,17 @@
     {
      "de": "Hier ist ein Supermarkt.",
      "tr": "Burada bir süpermarket var."
+    },
+    {
+     "de": "Dort ist eine Bäckerei.",
+     "tr": "Orada bir fırın var."
     }
    ]
   },
   {
    "id": "t2",
    "h_tr": "kein/keine: isim olumsuzu",
-   "tr": "Bir ismi olumsuz yapmak için 'nicht ein' denmez, 'kein/keine' kullanılır: 'Das ist kein Apfel.' (Bu elma değil.) 'kein' tıpkı 'ein' gibi davranır: 'der/das' isimlerde 'kein', 'die' isimlerde ve çoğulda 'keine'. Artikelsiz isimler de ('Milch', 'Fleisch', 'Äpfel') 'kein' ile olumsuz olur. Türkçedeki “yok” çoğu zaman 'kein' ile söylenir: 'Wir haben keine Eier.' = “Yumurtamız yok.” Dikkat: 'haben' gibi fiillerden sonra 'der' isimlerde 'keinen' olur ('Ich habe keinen Apfel.'); bunu 6. ünitede göreceksin.",
+   "tr": "Bir ismi olumsuz yapmak için 'nicht ein' denmez, 'kein/keine' kullanılır: 'Das ist kein Apfel.' (Bu elma değil.) 'kein' tıpkı 'ein' gibi davranır: 'der/das' isimlerde 'kein', 'die' isimlerde ve çoğulda 'keine'. Artikelsiz isimler de ('Milch', 'Fleisch', 'Äpfel') 'kein' ile olumsuz olur. Türkçedeki “yok” çoğu zaman 'kein' ile söylenir: 'Wir haben keine Eier.' = “Yumurtamız yok.” “X değil, Y” demek için 'kein …, sondern …' kullanılır. Dikkat: 'haben' gibi fiillerden sonra 'der' isimlerde 'keinen' olur ('Ich habe keinen Apfel.'); bunu 6. ünitede göreceksin.",
    "table": {
     "head": [
      "olumlu",
@@ -170,7 +174,7 @@
   {
    "id": "t4",
    "h_tr": "mögen ve möchten: sevmek ve istemek",
-   "tr": "'mögen' bir şeyi genel olarak sevmek demek (İngilizce “like”): 'Ich mag Käse.' 'möchten' ise şu an bir şey istemek, kibar rica (İngilizce “would like”): 'Ich möchte ein Wasser.' Fırında ve kafede 'Ich will' yerine her zaman 'Ich möchte' de. İki fiilde de 'ich' ve 'er/sie/es' biçimi aynıdır, sonda '-t' yoktur. Dikkat: 'der' isimler bu fiillerden sonra 'einen/keinen' olur ('Ich möchte einen Kaffee.'); bunu 6. ünitede göreceğiz.",
+   "tr": "'mögen' bir şeyi genel olarak sevmek demek (İngilizce “like”): 'Ich mag Käse.' 'möchten' ise şu an bir şey istemek, kibar rica (İngilizce “would like”): 'Ich möchte ein Wasser.' Kibar istek için 'möchte' kullan: fırında ve kafede 'Ich will …' kaba duyulur, 'Ich möchte …' de. Bir arkadaşa 'Willst du …?' diye sormak ise normaldir. İki fiilde de 'ich' ve 'er/sie/es' biçimi aynıdır, sonda '-t' yoktur. Dikkat: 'der' isimler bu fiillerden sonra 'einen/keinen' olur ('Ich möchte einen Kaffee.'); bunu 6. ünitede göreceksin.",
    "table": {
     "head": [
      "kişi",
@@ -370,7 +374,7 @@
    "de": "kosten",
    "art": "",
    "pl": "",
-   "tr": "(fiyatı) … olmak, tutmak",
+   "tr": "tutmak, fiyatı … olmak",
    "t": "v"
   },
   {
@@ -393,6 +397,20 @@
    "pl": "",
    "tr": "pahalı",
    "t": "a"
+  },
+  {
+   "de": "Bäckerei",
+   "art": "die",
+   "pl": "Bäckereien",
+   "tr": "fırın (dükkân)",
+   "t": "n"
+  },
+  {
+   "de": "Banane",
+   "art": "die",
+   "pl": "Bananen",
+   "tr": "muz",
+   "t": "n"
   }
  ],
  "dialog": {
@@ -530,7 +548,7 @@
   {
    "k": "gap",
    "t": "t2",
-   "de": "Das ist ___ Kartoffel, das ist eine Zwiebel.",
+   "de": "Das ist ___ Kartoffel, sondern eine Zwiebel.",
    "ans": [
     "keine"
    ],
@@ -540,7 +558,10 @@
     "nicht"
    ],
    "tr": "Bu patates değil, soğan.",
-   "why_tr": "İsim olumsuzu 'kein'; dişil isimde 'keine'."
+   "why_tr": "İsim olumsuzu 'kein'; dişil isimde 'keine'. “X değil, Y”: 'kein …, sondern …'.",
+   "alt": [
+    "Das ist keine Kartoffel, das ist eine Zwiebel."
+   ]
   },
   {
    "k": "gap",
