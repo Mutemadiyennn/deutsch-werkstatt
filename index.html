@@ -997,6 +997,141 @@ body.lesson main, body.lesson.insess main, body.lesson.focus main{padding-top:ca
 @keyframes micLive{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.45)}50%{box-shadow:0 0 0 10px rgba(37,99,235,0)}}
 
 .lopt.art-der{background:#2F7BF6!important;color:#fff!important}.lopt.art-die{background:#EF4A82!important;color:#fff!important}.lopt.art-das{background:#16A34A!important;color:#fff!important}
+
+.ml-tabs{gap:6px;margin:0 0 12px;flex-wrap:wrap}
+.ml-card h3{font-size:1.1rem}
+.chip.ok{background:color-mix(in srgb,var(--c-green,#22C55E) 18%,var(--card));color:#15803D}
+
+/* ===== MODULE CSS ===== */
+
+/* ================= Kurs ================= */
+.ku-hero{color:#fff!important;border:0!important;background:radial-gradient(420px 220px at 110% -10%,rgba(255,206,84,.35),transparent 60%),linear-gradient(140deg,#0EA5E9,#2563EB 55%,#7C3AED 120%)!important;box-shadow:0 14px 34px rgba(37,99,235,.32)!important;gap:10px}
+.ku-hero .kicker,.ku-hero .small{color:rgba(255,255,255,.92)!important}
+.ku-hero h2{color:#fff;margin:6px 0 0;font-size:1.5rem}
+.ku-hero .chip{background:rgba(255,255,255,.22);color:#fff;border:0}
+.ku-hero .ku-de-t{color:rgba(255,255,255,.85)}
+.ku-hero .k-prog{background:rgba(255,255,255,.25)}
+.ku-go{background:#fff!important;color:#1D4ED8!important;font-size:1.08rem;box-shadow:0 4px 0 rgba(0,0,0,.18)!important}
+.ku-de-t{font-weight:700;opacity:.8;font-size:.95rem}
+.ku-rv{border:1px solid color-mix(in srgb,#F59E0B 40%,transparent)!important;background:linear-gradient(160deg,color-mix(in srgb,#F59E0B 14%,var(--card)),var(--card))!important}
+.ku-lv h3{margin:0}
+.ku-units{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.ku-unit{display:flex;align-items:center;gap:12px;text-align:left;padding:10px 12px;border-radius:16px;border:1px solid var(--card-edge);background:var(--soft);color:var(--ink);font:inherit;cursor:pointer;min-height:56px}
+.ku-unit i{font-style:normal;flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:var(--card);border:2px solid var(--card-edge);color:var(--muted)}
+.ku-unit span{display:flex;flex-direction:column;min-width:0}.ku-unit b{font-size:.98rem}.ku-unit small{color:var(--muted);font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ku-unit.done i{background:#16A34A;border-color:#16A34A;color:#fff}
+.ku-unit.cur{border:2px solid #2563EB;background:color-mix(in srgb,#2563EB 10%,var(--card))}
+.ku-unit.cur i{background:#2563EB;border-color:#2563EB;color:#fff}
+.ku-unit.soon{opacity:.55}
+.ku-card{gap:14px}
+.ku-mode{font-size:.8rem;font-weight:800;letter-spacing:.02em;color:var(--accent);text-transform:none}
+.ku-kick{display:flex;align-items:center;gap:8px;font-size:.95rem!important;color:var(--ink)!important;font-weight:800}
+.ku-kick span{font-size:1.2rem}
+.ku-h{margin:0;font-size:1.6rem}.ku-h3{margin:0;font-size:1.2rem}
+.ku-goal{padding:12px 14px;border-radius:16px;background:color-mix(in srgb,#16A34A 12%,var(--card));border:1px solid color-mix(in srgb,#16A34A 30%,transparent)}
+.ku-goal p{margin:4px 0 0}
+.ku-plan{display:flex;flex-wrap:wrap;gap:8px}.ku-plan span{padding:6px 10px;border-radius:999px;background:var(--soft);font-size:.86rem;font-weight:600}
+.ku-expl{font-size:1.05rem;line-height:1.6;margin:0}
+.ku-prompt{font-size:1.45rem;font-weight:800;line-height:1.35;padding:16px;border-radius:18px;background:color-mix(in srgb,var(--accent) 10%,var(--card));border-left:5px solid var(--accent)}
+.ku-prompt.sm{font-size:1.1rem;padding:12px}
+.ku-sent{font-size:1.45rem;font-weight:700;line-height:1.5}
+.ku-sent.sm{font-size:1.15rem}
+.ku-blank{display:inline-block;min-width:90px;border-bottom:3px solid var(--accent);margin:0 4px}
+.ku-fill{padding:0 8px;border-radius:8px;margin:0 2px}.ku-fill.ok{background:color-mix(in srgb,#16A34A 18%,transparent);color:#16A34A}.ku-fill.bad{background:color-mix(in srgb,#DC2626 16%,transparent);color:#DC2626;text-decoration:line-through}
+.ku-tr{margin:0;color:var(--muted);font-size:.95rem}
+.ku-q{font-size:1.2rem;font-weight:700}
+.ku-opts{display:flex;flex-wrap:wrap;gap:10px}.ku-opts.col{flex-direction:column}
+.ku-opt{flex:1 1 auto;min-height:54px;padding:12px 16px;border-radius:16px;border:2px solid var(--card-edge);background:var(--card);color:var(--ink);font:inherit;font-size:1.08rem;font-weight:700;text-align:left;cursor:pointer;box-shadow:0 3px 0 var(--card-edge);transition:transform .06s}
+.ku-opt:active{transform:translateY(2px);box-shadow:none}
+.ku-opt.ok{border-color:#16A34A;background:color-mix(in srgb,#16A34A 14%,var(--card));color:#15803D}
+.ku-opt.bad{border-color:#DC2626;background:color-mix(in srgb,#DC2626 12%,var(--card));color:#B91C1C}
+.ku-opt.dim{opacity:.45}
+.ku-listen{display:flex;gap:14px;justify-content:center;padding:6px 0}
+.ku-big{width:84px;height:84px;border-radius:50%;border:0;font-size:2rem;background:linear-gradient(145deg,#4F9BFF,#2563EB);color:#fff;box-shadow:0 5px 0 #1D4ED8;cursor:pointer}
+.ku-big.slow{width:64px;height:64px;font-size:1.5rem;align-self:center;background:linear-gradient(145deg,#34D399,#059669);box-shadow:0 4px 0 #047857}
+.ku-built{min-height:58px;display:flex;flex-wrap:wrap;gap:8px;padding:10px;border-radius:16px;border:2px dashed var(--card-edge);align-items:center}
+.ku-pool{display:flex;flex-wrap:wrap;gap:8px}
+.ku-chip{padding:10px 14px;border-radius:14px;border:2px solid var(--card-edge);background:var(--card);color:var(--ink);font:inherit;font-size:1.05rem;font-weight:700;box-shadow:0 3px 0 var(--card-edge);cursor:pointer}
+.ku-chip.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--card))}
+.ku-chip.used{opacity:.25}
+.ku-wrong{font-size:1.35rem;font-weight:700;padding:14px;border-radius:16px;background:color-mix(in srgb,#DC2626 10%,var(--card));border-left:5px solid #DC2626}
+.ku-live{padding:12px 14px;border-radius:14px;background:var(--soft);font-size:1.1rem;font-style:italic;min-height:48px}
+.ku-in{width:100%;font-size:1.15rem;padding:14px;border-radius:14px;border:2px solid var(--card-edge);background:var(--card);color:var(--ink)}
+.ku-mic.live{background:linear-gradient(135deg,#EF4444,#DB2777)!important;box-shadow:0 0 0 6px color-mix(in srgb,#EF4444 25%,transparent)!important;animation:kuPulse 1.2s ease-in-out infinite}
+@keyframes kuPulse{50%{box-shadow:0 0 0 12px color-mix(in srgb,#EF4444 10%,transparent)}}
+.ku-res{padding:14px;border-radius:18px;display:flex;flex-direction:column;gap:8px}
+.ku-res.ok{background:color-mix(in srgb,#16A34A 14%,var(--card));border:1px solid color-mix(in srgb,#16A34A 35%,transparent)}
+.ku-res.bad{background:color-mix(in srgb,#F59E0B 14%,var(--card));border:1px solid color-mix(in srgb,#F59E0B 40%,transparent)}
+.ku-res-h{font-weight:800;font-size:1.1rem}.ku-res.ok .ku-res-h{color:#15803D}.ku-res.bad .ku-res-h{color:#B45309}
+.ku-full{display:flex;align-items:center;gap:10px;font-size:1.15rem}
+.ku-why{margin:0;font-size:.95rem}
+.ku-heard{font-size:.95rem}
+.ku-diff{font-size:1.05rem;line-height:1.7}
+.ku-w.miss{color:#DC2626;font-weight:800;text-decoration:underline wavy}.ku-w.near{color:#B45309;font-weight:800}.ku-w.ok{color:var(--ink)}
+.ku-card.is-ok{box-shadow:0 0 0 2px color-mix(in srgb,#16A34A 45%,transparent),var(--shadow)}
+.ku-card.is-bad{box-shadow:0 0 0 2px color-mix(in srgb,#F59E0B 50%,transparent),var(--shadow)}
+.ku-dlg{display:flex;flex-direction:column;gap:8px}
+.ku-bub{max-width:88%;align-self:flex-start;padding:10px 12px;border-radius:18px 18px 18px 6px;background:var(--soft)}
+.ku-bub.me{align-self:flex-end;border-radius:18px 18px 6px 18px;background:color-mix(in srgb,var(--accent) 14%,var(--card))}
+.ku-bub small{display:block;font-size:.72rem;font-weight:800;color:var(--muted);margin-bottom:2px}
+.ku-bub .de{font-weight:700;font-size:1.04rem}.ku-bub .tr{font-size:.85rem;color:var(--muted)}
+.ku-bub.typing{display:flex;gap:5px;padding:14px}.ku-bub.typing span{width:8px;height:8px;border-radius:50%;background:var(--muted);animation:kuDot 1s infinite}.ku-bub.typing span:nth-child(2){animation-delay:.15s}.ku-bub.typing span:nth-child(3){animation-delay:.3s}
+@keyframes kuDot{50%{opacity:.25;transform:translateY(-3px)}}
+.rp-tg{display:flex;flex-wrap:wrap;gap:6px}
+.rp-tg span{font-size:.82rem;padding:5px 10px;border-radius:999px;background:var(--soft);color:var(--muted);font-weight:600}
+.rp-tg span.on{background:color-mix(in srgb,#16A34A 16%,var(--card));color:#15803D}
+.rp-fix{padding:12px;border-radius:16px;background:color-mix(in srgb,#F59E0B 14%,var(--card));border:1px solid color-mix(in srgb,#F59E0B 40%,transparent)}
+.rp-fix p{margin:4px 0 0}
+.rp-sys{align-self:center;font-size:.82rem;color:var(--muted);padding:4px 10px;border-radius:999px;background:var(--soft)}.rp-sys.ok{color:#15803D}
+.ku-read{font-size:1.12rem;line-height:1.75}
+.ku-rs{cursor:pointer;border-radius:6px;padding:1px 2px}.ku-rs:active{background:color-mix(in srgb,var(--accent) 18%,transparent)}
+.ku-rq{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.ku-sum{align-items:center;text-align:center;gap:10px}
+.ku-score{font-size:3.2rem;font-weight:900;font-family:var(--font-display);line-height:1}
+.ku-sum.pass .ku-score{color:#16A34A}.ku-sum.fail .ku-score{color:#D97706}
+.k-words{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+.ku-card .k-table{font-size:.88rem}.ku-card .k-table th,.ku-card .k-table td{word-break:normal;overflow-wrap:normal;hyphens:manual;padding:8px 6px}
+.ku-card .k-table th{white-space:nowrap}
+/* basamaklar, kelime kartı, oyunlar */
+.ku-stats{display:flex;flex-wrap:wrap;gap:8px}.ku-stats span{font-size:.82rem;font-weight:700;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.2)}
+.ku-dots{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0}.ku-dots i{font-style:normal;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:.9rem;background:rgba(255,255,255,.16)}
+.ku-dots i.on{background:#22C55E;box-shadow:inset 0 0 0 2px rgba(255,255,255,.6)}.ku-dots i.on::after{content:"✓";color:#fff;font-weight:900}
+.ku-dots i.cur{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.45)}
+.ku-path{display:flex;flex-direction:column;gap:6px;padding:8px 0 24px}
+.ku-pn{display:flex;align-items:center;gap:14px}.ku-pn.l{padding-left:12%}.ku-pn.r{padding-left:42%}
+.ku-node{flex:none;width:74px;height:74px;border-radius:50%;border:0;display:grid;place-items:center;font-size:1.9rem;cursor:pointer;background:linear-gradient(150deg,#60A5FA,#2563EB);color:#fff;box-shadow:0 6px 0 #1E40AF,0 10px 20px rgba(37,99,235,.25);transition:transform .08s}
+.ku-node:active{transform:translateY(4px);box-shadow:0 2px 0 #1E40AF}
+.ku-node.done{background:linear-gradient(150deg,#4ADE80,#16A34A);box-shadow:0 6px 0 #15803D;font-weight:900}
+.ku-node.cur{animation:kuNode 1.6s ease-in-out infinite;outline:4px solid color-mix(in srgb,#2563EB 35%,transparent);outline-offset:4px}
+.ku-node.lock{background:var(--soft);color:var(--muted);box-shadow:0 6px 0 var(--card-edge);filter:grayscale(1);opacity:.7}
+.ku-node.k-test:not(.lock):not(.done){background:linear-gradient(150deg,#FBBF24,#D97706);box-shadow:0 6px 0 #B45309}
+@keyframes kuNode{50%{transform:scale(1.06)}}
+.ku-pl{display:flex;flex-direction:column;min-width:0}.ku-pl b{font-size:.95rem;line-height:1.2}.ku-pl small{color:var(--muted);font-size:.78rem}
+.ku-wcard{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:22px 16px;border-radius:24px;background:var(--soft);border:2px solid var(--card-edge);text-align:center}
+.ku-wcard.a-der{border-color:#3B82F6;background:color-mix(in srgb,#3B82F6 10%,var(--card))}.ku-wcard.a-die{border-color:#EF4444;background:color-mix(in srgb,#EF4444 9%,var(--card))}.ku-wcard.a-das{border-color:#10B981;background:color-mix(in srgb,#10B981 10%,var(--card))}
+.ku-wart{font-weight:900;font-size:1.05rem;text-transform:lowercase;color:var(--muted)}.a-der .ku-wart{color:#2563EB}.a-die .ku-wart{color:#DC2626}.a-das .ku-wart{color:#059669}
+.ku-wde{font-size:2.2rem;font-weight:900;line-height:1.1;font-family:var(--font-display)}.ku-wpl{font-size:.9rem;color:var(--muted)}.ku-wtr{font-size:1.15rem;font-weight:700}
+.ku-match{display:grid;grid-template-columns:1fr 1fr;gap:10px}.ku-match>div{display:flex;flex-direction:column;gap:8px}
+.ku-mt{min-height:54px;padding:10px;border-radius:14px;border:2px solid var(--card-edge);background:var(--card);color:var(--ink);font:inherit;font-weight:700;font-size:.98rem;box-shadow:0 3px 0 var(--card-edge);cursor:pointer;transition:all .15s}
+.ku-mt.de{font-weight:800}.ku-mt.sel{border-color:#2563EB;background:color-mix(in srgb,#2563EB 14%,var(--card))}
+.ku-mt.done{opacity:0;transform:scale(.9);pointer-events:none}.ku-mt.bad{border-color:#DC2626;background:color-mix(in srgb,#DC2626 14%,var(--card));animation:kuShake .3s}
+@keyframes kuShake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.ku-timer{font-weight:900;color:#D97706}
+.ku-old{font-size:.72rem;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,#8B5CF6 18%,var(--card));color:#7C3AED;font-weight:800}
+.ku-hints{display:flex;flex-wrap:wrap;gap:6px}.ku-hints span{font-size:.85rem;padding:5px 10px;border-radius:10px;background:var(--soft);font-weight:600}
+.ku-ta{min-height:130px;resize:vertical;font-family:inherit}
+.ku-wr-you{padding:12px;border-radius:14px;background:var(--soft)}.ku-wr-you small{color:var(--muted);font-weight:700}.ku-wr-you p{margin:4px 0 0}
+.ku-gw{display:flex;flex-wrap:wrap;gap:6px}.ku-gw span{padding:6px 10px;border-radius:12px;background:var(--soft);font-weight:700;font-size:.9rem}.ku-gw span.wait{opacity:.55}.ku-gw small{color:var(--muted)}
+.wn-card{border:2px solid color-mix(in srgb,#F59E0B 50%,transparent)!important;background:linear-gradient(160deg,color-mix(in srgb,#F59E0B 14%,var(--card)),var(--card))!important}
+.wn-list{margin:4px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:.95rem;line-height:1.45}
+
+.lvfix{width:100%;max-width:460px;margin:0 auto}
+.lvfix-c{padding:10px 14px;border-radius:16px;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.5);color:#fff;display:flex;flex-direction:column;gap:4px}
+.lvfix-c s{opacity:.75}.lvfix-r{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:1.05rem}
+.lvfix.pop .lvfix-c{animation:lvPop .35s ease}
+@keyframes lvPop{0%{transform:scale(.92);opacity:0}100%{transform:scale(1);opacity:1}}
+
 </style>
 </head>
 <body>
@@ -3488,7 +3623,7 @@ function renderSeans(){
   if(b.type === "ext") return `<section class="card hl">
       <div class="kicker">Dış uygulama · 10 dk</div>
       <h2>Rosetta Stone: telaffuz</h2>
-      <p>Rosetta Stone'un konuşma alıştırmaları sesini <b>ses ses</b> (fonem düzeyinde) değerlendirir. Benim uygulamam kelime düzeyinde kontrol ediyor; ikisi birbirini tamamlıyor.</p>
+      <p>Rosetta Stone'un konuşma alıştırmaları sesini <b>tek tek sesler</b> (fonem) düzeyinde değerlendirir. Benim uygulamam kelime düzeyinde kontrol ediyor; ikisi birbirini tamamlıyor.</p>
       <ol class="rule"><li>Rosetta Stone'u aç → Almanca → sıradaki dersin konuşma bölümleri.</li><li>Ayarlardan konuşma tanımayı en sıkı seviyeye al.</li><li>10 dakika; kırmızı çıkan kelimeyi 3 kez tekrar et.</li></ol>
       <button class="btn primary block" data-act="extDone">Yaptım (+10 dk)</button>
     </section>`;
@@ -5673,7 +5808,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-12l";
+const APP_VER = "2026-11-14a";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -6401,7 +6536,7 @@ function paWeakSounds(){ const st = S.state.pronSnd || {}; return Object.entries
 function paHtml(text){
   if(!paOK()) return "";
   const P = S.pa && S.pa.text === text ? S.pa : null;
-  if(!P || P.phase === "idle") return `${P && P.err ? `<div class="note">${esc(P.err)}</div>` : ""}<button class="btn block" data-act="paStart" data-t="${esc(text)}" style="margin-top:8px">🔬 Telaffuzumu ses ses analiz et</button>`;
+  if(!P || P.phase === "idle") return `${P && P.err ? `<div class="note">${esc(P.err)}</div>` : ""}<button class="btn block" data-act="paStart" data-t="${esc(text)}" style="margin-top:8px">🔬 Telaffuzumu ayrıntılı analiz et</button>`;
   if(P.phase === "rec") return `<div class="fb ok" style="text-align:center;margin-top:8px"><b>🔴 Kaydediyorum: cümleyi söyle</b><div class="small">Bitince aşağıya dokun (en fazla 12 saniye).</div></div><div class="grid2"><button class="btn primary" style="min-height:56px" data-act="paStop">■ Bitti</button><button class="btn ghost" data-act="paCancel">Vazgeç</button></div>`;
   if(P.phase === "busy") return `<div class="thinking" style="margin-top:8px"><span class="spin"></span>Sesini dinliyorum… (5–15 sn)</div>`;
   const R = P.res; const weak = paWeakSounds().filter(([k])=>!R.sounds.some(x=>x.s.toLowerCase()===k));
@@ -7938,7 +8073,7 @@ function liveMsg(m, to){
   const sc = m.serverContent; if(!sc) return;
   if(sc.interrupted){ for(const s of L.srcs){ try { s.stop(); } catch(e){} } L.srcs.clear(); L.nextT = 0; L.speaking = "user"; }
   if(sc.inputTranscription && sc.inputTranscription.text){ if(L.cur.m){ L.turns.push({who:"m", t:L.cur.m.trim()}); L.cur.m = ""; } L.cur.u += sc.inputTranscription.text; L.speaking = "user"; liveCap(); }
-  if(sc.outputTranscription && sc.outputTranscription.text){ if(L.cur.u){ L.turns.push({who:"u", t:L.cur.u.trim()}); L.cur.u = ""; } L.cur.m += sc.outputTranscription.text; liveCap(); }
+  if(sc.outputTranscription && sc.outputTranscription.text){ if(L.cur.u){ L.turns.push({who:"u", t:L.cur.u.trim()}); L.cur.u = ""; try { typeof liveCheck === "function" && liveCheck(L, L.turns[L.turns.length-1].t); } catch(e){} } L.cur.m += sc.outputTranscription.text; liveCap(); }
   for(const p of ((sc.modelTurn && sc.modelTurn.parts) || [])){
     const id = p.inlineData; if(!id || !/audio/.test(id.mimeType||"")) continue;
     const rate = +((id.mimeType.match(/rate=(\d+)/)||[])[1] || 24000);
@@ -8067,7 +8202,7 @@ function focusBar(){
 /* ================= Daha fazla: gruplu, sade menü (bulamaç değil) ================= */
 const MORE_GROUPS = [
   ["Konuş", [["🥨","Senaryolar","goScenList"],["⚡","Akıcılık 3-2-1","fluStart"],["🗣️","Shadowing","goShadow"],["🛟","Donma ilacı","repairStart"],["💬","Sohbet ve dinleme","#sprechen"],["✍️","Yaz","#schreiben"]]],
-  ["Öğren", [["🧱","1500 kelime","coreOpen"],["🎧","Dış kaynaklar","disOpen"],["📘","Dersler","#lernen"],["🃏","Kelime kartları","vocabStart"],["📖","Hikâye","storyStart"],["🧠","Düşün ve kur","denkStart"],["🎬","Video","mediaStart"],["🎧","Dikte","dictStart"],["🏔️","Bavyera ağzı","reducedStart"],["🚗","Sesli tekrar","goAudio"],["🎮","Oyunlar","#spielen"]]],
+  ["Öğren", [["🧱","1500 kelime","coreOpen"],["🎧","Dış kaynaklar","disOpen"],["🎞️","Medya kütüphanesi","mlOpen"],["📘","Dersler","#lernen"],["🃏","Kelime kartları","vocabStart"],["📖","Hikâye","storyStart"],["🧠","Düşün ve kur","denkStart"],["🎬","Video","mediaStart"],["🎧","Dikte","dictStart"],["🏔️","Bavyera ağzı","reducedStart"],["🚗","Sesli tekrar","goAudio"],["🎮","Oyunlar","#spielen"]]],
   ["Sınav ve ilerleme", [["🎓","B1 atölyesi","goExam"],["📈","Aylık ölçüm","checkStart"],["📝","Resmî deneme","#sinav"]]],
   ["Araçlar", [["🗂️","Kartlarım","#kartei"],["🏫","VHS ödev","odevStart"],["🧭","Koçun","goRehber"],["⚙️","Kurulum","#kurulum"]]]
 ];
@@ -8250,7 +8385,7 @@ const ACT = {
   listenNext(){ const L = S.listen; if(!L.script) return; const was = L.playing; stopSpeech(); L.i = Math.min(L.script.segments.length-1, L.i+1); L.playing = was; render(); if(was) speakCurrent(); },
   listenPrev(){ const L = S.listen; if(!L.script) return; const was = L.playing; stopSpeech(); L.i = Math.max(0, L.i-1); L.playing = was; render(); if(was) speakCurrent(); },
   async listenCopy(){ const ok = await copyText(listenVoicePrompt()); S.listen.copied = ok; if(!ok) S.listen.err = "Kopyalanamadı. 'Bütün metin' bölümünden elle seçebilirsin."; render(); },
-  async savePhrase(b){ const n = await addWords([{de:b.dataset.de, tr:b.dataset.tr, kind:"satz"}]); b.textContent = n ? "✓ Eklendi" : "Zaten var"; b.disabled = true; },
+  async savePhrase(b){ const n = await addWords([{de:b.dataset.de, tr:b.dataset.tr, kind:"satz"}]); b.textContent = b.classList.contains("k-add") ? "✓" : n ? "✓ Eklendi" : "Zaten var"; b.disabled = true; },
   timerToggle(){ const t = S.timer; t.msg = "";
     if(t.running){ t.running = false; clearInterval(t.iv); t.left = Math.max(0, Math.round((t.end-Date.now())/1000)); }
     else { if(t.left <= 0){ t.left = 25*60; t.isBreak = false; } t.end = Date.now() + t.left*1000; t.running = true; clearInterval(t.iv); t.iv = setInterval(tick, 500); }
@@ -8992,7 +9127,7 @@ function plClean(x){ return String(x||"").trim().replace(/^(die|der|das)\s+/i, "
 /* yapay zekânın sık Türkçe yazım hataları (ör. "fiir" → "fiil") cevaplarda kendiliğinden düzelir */
 {
   const TRFIX = [[/\bfiir(?=\b|[a-zçğıöşü])/g, "fiil"], [/\bFiir(?=\b|[a-zçğıöşü])/g, "Fiil"]];
-  const fixDeep = v => typeof v === "string" ? TRFIX.reduce((t,[re,to])=>t.replace(re,to), v) : Array.isArray(v) ? v.map(fixDeep) : (v && typeof v === "object") ? Object.fromEntries(Object.entries(v).map(([k,x])=>[k, k === "plural" && typeof x === "string" ? plClean(x) : k === "artikel" && typeof x === "string" ? x.trim().toLowerCase() : fixDeep(x)])) : v;
+  const fixDeep = v => typeof v === "string" ? TRFIX.reduce((t,[re,to])=>t.replace(re,to), v) : Array.isArray(v) ? v.map(fixDeep) : (v && typeof v === "object") ? artDedup(Object.fromEntries(Object.entries(v).map(([k,x])=>[k, k === "plural" && typeof x === "string" ? plClean(x) : k === "artikel" && typeof x === "string" ? x.trim().toLowerCase() : fixDeep(x)]))) : v;
   const _aj = askJSON; askJSON = async function(){ return fixDeep(await _aj.apply(this, arguments)); };
   if(typeof GeminiAI === "object" && GeminiAI && GeminiAI.json){ const _aij = GeminiAI.json.bind(GeminiAI); GeminiAI.json = async function(){ return fixDeep(await _aij.apply(null, arguments)); }; }
 }
@@ -9914,7 +10049,7 @@ function renderDis(){
       <div class="grid2">${DIS[today].link ? `<a class="btn" href="${esc(DIS[today].link)}" target="_blank" rel="noopener">Kaynağı aç</a>` : `<span></span>`}${dd.dis ? `<button class="btn" disabled>✓ Yaptın</button>` : `<button class="btn primary" data-act="disDone">Yaptım (+${DIS[today].min} dk)</button>`}</div></section>
     <section class="card"><h3>Tüm kaynaklar</h3><div class="dis-list">${Object.entries(DIS).filter(([k,R])=>!R.minStage || stage().n >= R.minStage).map(([k,R])=>`<div class="dis-row"><div class="main"><b>${R.icon} ${esc(R.name)}</b><div class="small muted">${esc(R.type)} · ${esc(R.ctx)} · ${R.min} dk${k === "nico" ? ` · sıradaki: ${N.lvl} bölüm ${N.ep}` : ""}${cnt(k) ? ` · ${cnt(k)} kez yaptın` : ""}</div></div>${R.link ? `<a class="btn small" href="${esc(R.link)}" target="_blank" rel="noopener">Aç</a>` : ""}</div>`).join("")}</div>
       <p class="small muted">Gelecek seviyede eklenecekler: DW Top-Thema (B1 aşamasında), Langsam gesprochene Nachrichten (sınava yakın).</p></section>
-    <section class="card"><h3>Nicos Weg'de kaldığın yer</h3><div class="row"><span class="chip">${N.lvl} · bölüm ${N.ep}</span><button class="btn small" data-act="disNico" data-d="-4">−4</button><button class="btn small" data-act="disNico" data-d="4">+4</button></div><p class="small muted">Yanlışsa buradan düzelt. İzledikten sonra bölümün metnini Medya atölyesine yapıştırırsan kelimelerini ve sorularını hazırlarım.</p><a class="btn small" href="#media">Medya atölyesi</a></section>`;
+    <section class="card"><h3>Nicos Weg'de kaldığın yer</h3><div class="row"><span class="chip">${N.lvl} · bölüm ${N.ep}</span><button class="btn small" data-act="disNico" data-d="-4">−4</button><button class="btn small" data-act="disNico" data-d="4">+4</button></div><p class="small muted">Yanlışsa buradan düzelt. İzledikten sonra bölümün metnini Medya atölyesine yapıştırırsan kelimelerini ve sorularını hazırlarım.</p><div class="grid2"><a class="btn small" href="#media">Medya atölyesi</a><button class="btn small" data-act="mlOpen">Medya kütüphanesi</button></div></section>`;
 }
 VIEWS.dis = () => renderDis();
 if(typeof VIEW_TITLE === "object") VIEW_TITLE.dis = "Dış kaynaklar";
@@ -10150,6 +10285,1059 @@ function mic3Listen(onLive){
   const _recN = recognize;
   recognize = function(onLive, again){ return mic3Ok() ? mic3Listen(onLive) : _recN.apply(this, arguments); };
 }
+
+/* ===== Medya kütüphanesi: seviyene göre diziler, filmler, kanallar, podcast'ler ===== */
+const MEDLIB = {ready:false, items:[], guide:[]};
+function loadMedLib(){ if(MEDLIB.ready || MEDLIB.loading) return MEDLIB.loading; MEDLIB.loading = fetch("data/media.json").then(r=>r.json()).then(j=>{ MEDLIB.items = j.items||[]; MEDLIB.guide = j.guide_tr||[]; MEDLIB.ready = true; if(S.view === "medyakut") render(); }).catch(()=>{ MEDLIB.loading = null; }); return MEDLIB.loading; }
+const MK_ICON = {series:"📺", film:"🎬", youtube:"▶️", podcast:"🎧", news:"📰", kids:"🧸", course:"🎓", reading:"📚"};
+const MK_TR = {series:"Dizi", film:"Film", youtube:"YouTube", podcast:"Podcast", news:"Haber", kids:"Çocuk programı", course:"Kurs", reading:"Okuma"};
+const MPH = [[1,"Şimdi"],[2,"Ocak–Mart"],[3,"B1 hazırlık"],[4,"B1 sonrası"],[5,"B2"]];
+function renderMedLib(){
+  if(!MEDLIB.ready){ loadMedLib(); return thinkingCard("Kütüphane yükleniyor…"); }
+  const ph = S.mlPh || 1; const fav = S.state.mlFav || {};
+  const list = MEDLIB.items.filter(x=>x.phase === ph);
+  const card = x => { const url = x.url || ("https://www.google.com/search?q=" + encodeURIComponent(x.title + " " + (x.kind === "youtube" ? "YouTube" : x.kind === "podcast" ? "Podcast" : "Mediathek")));
+    return `<section class="card ml-card"><div class="row between" style="flex-wrap:nowrap;gap:10px;align-items:flex-start"><div style="min-width:0"><div class="kicker">${MK_ICON[x.kind]||"🎞️"} ${esc(MK_TR[x.kind]||x.kind)} · <span class="chip">${esc(x.level)}</span>${x.free_in_germany ? ` <span class="chip ok">ücretsiz</span>` : ""}</div><h3 style="margin:4px 0">${esc(x.title)}</h3></div><button class="licon" data-act="mlFav" data-id="${esc(x.id)}" aria-label="Listeme ekle">${fav[x.id] ? "⭐" : "☆"}</button></div>
+      <p class="small">${esc(x.why_tr||"")}</p>
+      <details><summary class="small"><b>Nasıl izlemeli?</b></summary><p class="small">${esc(x.how_tr||"")}</p>${x.start ? `<p class="small"><b>Başlangıç:</b> ${esc(x.start)}</p>` : ""}${x.subtitles ? `<p class="small"><b>Altyazı/metin:</b> ${esc(x.subtitles)}</p>` : ""}${x.where ? `<p class="small muted">${esc(x.where)}${x.episode_length ? " · " + esc(x.episode_length) : ""}</p>` : ""}${x.content_warning ? `<p class="small muted">⚠️ ${esc(x.content_warning)}</p>` : ""}</details>
+      <div class="grid2"><a class="btn small" href="${esc(url)}" target="_blank" rel="noopener">${x.url ? "Aç" : "Ara"}</a><button class="btn small primary" data-act="mlPack" data-id="${esc(x.id)}">Bölüm paketi</button></div></section>`; };
+  const favs = MEDLIB.items.filter(x=>fav[x.id]);
+  return `<section class="card dis-hero"><div class="kicker">Medya kütüphanesi</div><h2>Seviyene göre gerçek Almanca</h2><p class="small">Diziler, filmler, YouTube kanalları, podcast'ler ve haberler. Bir bölüm izlemeden önce altyazısını <b>Bölüm paketi</b>ne yükle: bildiklerin ayıklanır, en fazla 12 yeni kelime önceden öğretilir.</p></section>
+    <div class="row ml-tabs">${MPH.map(([n,t])=>`<button class="btn small ${n===ph?"primary":""}" data-act="mlPh" data-p="${n}">${t}</button>`).join("")}</div>
+    ${favs.length && ph === 1 ? `<section class="card"><h3>⭐ Listem</h3><div class="row">${favs.map(x=>`<span class="chip">${MK_ICON[x.kind]||""} ${esc(x.title)}</span>`).join("")}</div></section>` : ""}
+    ${list.map(card).join("")}
+    <section class="card"><details><summary><b>Altyazı ya da metin nasıl alınır?</b></summary><ul class="small">${MEDLIB.guide.map(g=>`<li>${esc(g)}</li>`).join("")}</ul></details></section>`;
+}
+VIEWS.medyakut = () => renderMedLib();
+if(typeof VIEW_TITLE === "object") VIEW_TITLE.medyakut = "Medya kütüphanesi";
+Object.assign(ACT, {
+  mlOpen(){ loadMedLib(); go("medyakut"); render(); },
+  mlPh(b){ S.mlPh = +b.dataset.p || 1; render(); window.scrollTo(0,0); },
+  mlFav(b){ const f = S.state.mlFav || (S.state.mlFav = {}); const id = b.dataset.id; if(f[id]) delete f[id]; else f[id] = dayKey(); Store.saveState(); render(); },
+  mlPack(b){ const x = MEDLIB.items.find(y=>y.id === b.dataset.id); startMedia(); if(x && S.media){ S.media.ep = x.title + (x.start ? " · " : ""); } render(); }
+});
+
+{
+  const _rl2 = renderLernen;
+  renderLernen = function(){
+    const h = _rl2.apply(this, arguments);
+    if(!h.includes('class="k-tiles"')) return h;
+    const tile = `<button class="k-tile" style="--tc:#DB2777" data-act="mlOpen"><i aria-hidden="true">🎞️</i><b>Medya kütüphanesi</b><span>Seviyene göre dizi, film, podcast</span></button>`;
+    return h.replace(/(<section class="k-tiles">[\s\S]*?<\/button>)/, '$1' + tile);
+  };
+}
+
+/* ===== MODULES (build.py) ===== */
+/* ---- src/js/00-tts-clean.js ---- */
+/* ===== Seslendirme temizliği: noktalama ve işaretler asla sesli okunmaz ("eksi", "nokta", "bölü" yok) ===== */
+function ttsClean(t){
+  return String(t == null ? "" : t)
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s*(?:->|=>|→|←|⇒|➜|➔)\s*/g, ", ")
+    .replace(/(^|\s)[–—-]+(?=\s|$)/g, ",")
+    .replace(/(\p{L})\s*\/\s*(\p{L})/gu, "$1, $2")
+    .replace(/(^|[\s(])['‘’]([^'‘’]{1,60})['‘’](?=[\s.,;:!?)]|$)/g, "$1$2")
+    .replace(/[()\[\]{}„“”"«»‹›*_#~=+|<>^`]/g, " ")
+    .replace(/(^|\s)[.,;:!?…]+(?=\s|$)/g, " ")
+    .replace(/\s*,\s*(,\s*)+/g, ", ")
+    .replace(/\s+([.,;:!?])/g, "$1")
+    .replace(/([.!?…])\s*,+/g, "$1")
+    .replace(/^[\s,.;:]+/, "")
+    .replace(/\s{2,}/g, " ").trim();
+}
+/* "Ich arbeite – Ben çalışıyorum" gibi karışık satırlar: her parça kendi dilinin sesiyle okunur */
+const TTS_DE = /\b(ich|du|er|es|wir|ihr|sie|ist|bin|bist|sind|hat|habe|der|die|das|den|dem|ein|eine|einen|nicht|kein|keine|und|oder|mit|zu|auf|im|am|um|mein|meine|dein|wie|wo|was|woher|heute|morgen|gern|sehr|auch)\b/i;
+function ttsLang(seg){ if(/[çğış]|\b(ve|bir|bu|ne|için|değil|mı|mi|mu|mü|ben|sen|o|biz|siz|onlar|evet|hayır)\b/i.test(seg)) return "tr"; if(/[äß]/i.test(seg) || TTS_DE.test(seg)) return "de"; return null; }
+{
+  const _sayC = say;
+  say = function(text, lang, rate, vo){
+    const raw = String(text == null ? "" : text);
+    if(lang === "tr" && /\s[–—-]\s|:\s/.test(raw)){
+      const parts = raw.split(/\s[–—-]\s|:\s/).map(x=>x.trim()).filter(Boolean);
+      const langs = parts.map(ttsLang);
+      if(parts.length > 1 && langs.includes("de")){
+        return parts.reduce((p, seg, i)=>p.then(()=>{ const c = ttsClean(seg); return /[\p{L}\p{N}]/u.test(c) ? _sayC.call(this, c, langs[i] || lang, rate, vo) : null; }), Promise.resolve());
+      }
+    }
+    const c = ttsClean(raw); if(!/[\p{L}\p{N}]/u.test(c)) return Promise.resolve(); return _sayC.call(this, c, lang, rate, vo);
+  };
+}
+
+/* ---- src/js/20-kurs.js ---- */
+
+/* ================= KURS: hazır müfredat (A1 → B1) =================
+   İçerik uygulamanın içinde (data/kurs/*.json). Dersin akışı yapay zekâya bağlı değil;
+   yapay zekâ sadece ünite sonundaki rol oyununda partner olur, o da yoksa hazır diyalogla çevrimdışı oynanır. */
+const KURS = {idx:null, units:{}, wait:{}};
+function kSt(){ const k = S.state.kurs || (S.state.kurs = {}); k.u = k.u || {}; k.it = k.it || {}; if(!k.cur) k.cur = "a1-01"; return k; }
+let _kuSaveT = null;
+function kuSave(now){ clearTimeout(_kuSaveT); if(now) return Store.saveState(); _kuSaveT = setTimeout(()=>Store.saveState(), 2500); }
+async function kursIndex(){
+  if(KURS.idx) return KURS.idx;
+  if(KURS.wait.idx) return KURS.wait.idx;
+  KURS.wait.idx = (async()=>{
+    try{ const r = await fetch("data/kurs/index.json?v=" + APP_VER); if(!r.ok) throw 0; KURS.idx = await r.json(); try{ localStorage.setItem("dw-kurs-idx", JSON.stringify(KURS.idx)); }catch(_){} }
+    catch(e){ try{ KURS.idx = JSON.parse(localStorage.getItem("dw-kurs-idx") || "null"); }catch(_){} }
+    KURS.wait.idx = null; return KURS.idx;
+  })();
+  return KURS.wait.idx;
+}
+async function kursUnit(id){
+  if(KURS.units[id]) return KURS.units[id];
+  try{ const r = await fetch("data/kurs/" + id + ".json?v=" + APP_VER); if(!r.ok) throw 0; const u = await r.json(); KURS.units[id] = u; try{ localStorage.setItem("dw-ku-" + id, JSON.stringify(u)); }catch(_){} return u; }
+  catch(e){ const c = localStorage.getItem("dw-ku-" + id); if(c) return (KURS.units[id] = JSON.parse(c)); throw {code:"offline"}; }
+}
+function kuList(){ return ((KURS.idx || {}).units || []); }
+function kuMeta(id){ return kuList().find(x=>x.id === id); }
+function kuNextId(id){ const L = kuList(); const i = L.findIndex(x=>x.id === id); return i >= 0 && L[i+1] ? L[i+1].id : null; }
+function kuDone(id){ return !!(kSt().u[id] && kSt().u[id].done); }
+
+/* ---------- cevap karşılaştırma ---------- */
+const KU_NUM = ["null","eins","zwei","drei","vier","fünf","sechs","sieben","acht","neun","zehn","elf","zwölf","dreizehn","vierzehn","fünfzehn","sechzehn","siebzehn","achtzehn","neunzehn","zwanzig"];
+function kuNumWord(n){ n = +n; if(n <= 20) return KU_NUM[n]; const t = ["","","zwanzig","dreißig","vierzig","fünfzig","sechzig","siebzig","achtzig","neunzig"]; if(n < 100){ const e = n % 10, z = Math.floor(n/10); return e ? (e === 1 ? "ein" : KU_NUM[e]) + "und" + t[z] : t[z]; } return String(n); }
+function kuNorm(s){
+  return String(s||"").toLowerCase().replace(/[’'`´]/g, "").replace(/\b(\d{1,2})\b/g, (m, d)=>kuNumWord(d))
+    .replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss")
+    .replace(/[^a-z0-9 ]+/g, " ").replace(/\b(aeh|aehm|hm|ehm)\b/g, " ").replace(/\s+/g, " ").trim();
+}
+function kuVariants(it){ if(it.k === "say") return [it.de, ...(it.alt||[])]; if(it.k === "fix") return [it.right, ...(it.alt||[])]; if(it.k === "order") return [it.de, ...(it.alt||[])]; return []; }
+function kuJudge(variants, inputs){
+  const V = variants.filter(Boolean); const I = (inputs||[]).filter(Boolean);
+  for(const i of I){ const ni = kuNorm(i); if(V.some(v=>kuNorm(v) === ni)) return {ok:true, heard:i, best:V.find(v=>kuNorm(v) === ni)}; }
+  let best = null;
+  for(const v of V) for(const i of I){ const sc = scoreHeard(v, i); if(!best || sc.score > best.sc.score) best = {v, i, sc}; }
+  return {ok:false, heard: best ? best.i : (I[0]||""), best: best ? best.v : V[0], words: best ? best.sc.words : null, score: best ? best.sc.score : 0};
+}
+function kuDiffHtml(words){ if(!words) return ""; return words.map(x=>`<span class="ku-w ${x.st}">${esc(x.w)}</span>`).join(" "); }
+
+/* ---------- tekrar (SRS) ---------- */
+const KU_IV = [0, 1, 3, 7, 16, 35, 90];
+function kuMark(it, ok){
+  if(!it || !it._id) return; const R = kSt().it; const r = R[it._id] || (R[it._id] = {b:0, w:0});
+  r.s = dayKey(); r.t = it._u + ":" + it.t;
+  if(ok){ r.b = Math.min(6, (r.b||0) + 1); r.d = addDays(dayKey(), KU_IV[r.b]); }
+  else { r.b = 0; r.w = (r.w||0) + 1; r.d = addDays(dayKey(), 1); }
+  kuSave();
+}
+function kuDueCount(){ const R = kSt().it, t = dayKey(); return Object.values(R).filter(r=>r.d && r.d <= t).length; }
+
+/* ---------- ünite akışı ---------- */
+function kuExpl(t){ return esc(t).replace(/(^|[\s(\/])&#39;([^&]{1,70}?)&#39;(?=[\s.,;:!?)\/]|$)/g, (m, pre, a)=>`${pre}<span class="k-de">${a}</span>`); }
+/* ---------- ünite = basamaklar (yol haritası) ---------- */
+function kuNodes(u){
+  const T = u.teach || []; const n = T.length; const cut = n <= 2 ? n : n === 3 ? 2 : n === 4 ? 2 : 3;
+  const W = u.words || []; const h = Math.ceil(W.length / 2);
+  const nodes = [
+    {id:"w1", ic:"🧠", t:"Kelimeler 1", k:"vocab", words:W.slice(0, h)},
+    {id:"g1", ic:"📘", t:(T[0]||{}).h_tr || "Kural", k:"gram", teach:T.slice(0, cut).map((_, i)=>i)},
+    {id:"w2", ic:"🧠", t:"Kelimeler 2", k:"vocab", words:W.slice(h), recall:W.slice(0, h)},
+    {id:"g2", ic:"📘", t:(T[cut]||{}).h_tr || "Kural 2", k:"gram", teach:T.slice(cut).map((_, i)=>cut + i)},
+    {id:"li", ic:"🎧", t:"Dinleme ve diyalog", k:"dialog"},
+    {id:"re", ic:"📖", t:"Okuma", k:"read"},
+    {id:"ga", ic:"🎮", t:"Oyunlar", k:"games"},
+    {id:"wr", ic:"✍️", t:"Yazma", k:"write"},
+    {id:"rp", ic:"🎭", t:"Rol oyunu", k:"role"},
+    {id:"ex", ic:"🏆", t:"Ünite sınavı", k:"test"}];
+  return nodes.filter(x=> x.k === "gram" ? x.teach.length : x.k === "vocab" ? x.words.length : x.k === "dialog" ? u.dialog && (u.dialog.lines||[]).length : x.k === "read" ? u.read && u.read.de : x.k === "write" ? (u.speak||[]).length : x.k === "role" ? !!u.roleplay : true);
+}
+function kuRec(id){ const U = kSt().u; return U[id] || (U[id] = {start: dayKey(), nd:{}}); }
+function kuNodeDone(id, nid){ const r = kSt().u[id]; return !!(r && r.nd && r.nd[nid]); }
+function kuNextNode(u){ const ns = kuNodes(u); return ns.find(x=>!kuNodeDone(u.id, x.id)) || null; }
+function kuAllButTest(u){ return kuNodes(u).filter(x=>x.k !== "test").every(x=>kuNodeDone(u.id, x.id)); }
+function kuTag(u, list, pre){ return (list||[]).map((it, i)=>({...it, _id: u.id + ":" + pre + i, _u: u.id})); }
+function kuTeachIds(u, idx){ return idx.map(i=>(u.teach[i]||{}).id); }
+
+/* kelimeler: Vocabuo mantığı — tanıt → tanı → kendin üret (TR→DE, isimler artikeliyle) */
+function kuWFull(w){ return (w.art ? w.art + " " : "") + w.de; }
+function kuWKey(u, w){ return u.id + ":w:" + w.de; }
+function kuSentFor(u, w){
+  if(w.t === "x") return null; const re = new RegExp("(^|[^A-Za-zÄÖÜäöüß])(" + w.de.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")(?=[^A-Za-zÄÖÜäöüß]|$)");
+  const pool = [...(u.teach||[]).flatMap(t=>t.ex||[]), ...((u.dialog||{}).lines||[])].map(x=>x.de).filter(s=>s && s.split(/\s+/).length <= 12);
+  const s = pool.find(x=>re.test(x)); if(!s) return null;
+  return s.replace(re, (m, a)=>a + "___");
+}
+function kuWordItems(u, words, stage){
+  const all = u.words || []; const out = [];
+  for(const w of words){
+    const key = kuWKey(u, w); const base = {_u:u.id, _w:key, t:"w"};
+    const others = shuffle(all.filter(x=>x !== w && x.tr !== w.tr)).slice(0, 2).map(x=>x.tr);
+    if(stage === "rec"){
+      const opts = shuffle([w.tr, ...others]); out.push({...base, _id:key + ":l", k:"listen", de:kuWFull(w), opts_tr:opts, ans:opts.indexOf(w.tr), why_tr: w.t === "n" ? "Artikeliyle birlikte dinle." : ""});
+      if(w.t === "n" && w.art){ const o = ["der","die","das"]; out.push({...base, _id:key + ":a", k:"pick", q_tr:`„${w.de}“ (${w.tr}) — artikeli hangisi?`, opts:o, ans:o.indexOf(w.art), why_tr:`${w.art} ${w.de}${w.pl && w.pl !== "-" ? " · çoğulu: die " + w.pl : ""}`}); }
+    }
+    if(stage === "prod"){
+      out.push({...base, _id:key + ":s", k:"say", tr:w.tr, de:kuWFull(w), alt:[], word:true, why_tr: w.t === "n" ? "İsimleri hep artikeliyle söyle." : ""});
+    }
+    if(stage === "ctx"){
+      const g = kuSentFor(u, w);
+      if(g){ const distract = shuffle(all.filter(x=>x !== w && x.t === w.t && x.de !== w.de)).slice(0, 2).map(x=>x.de);
+        if(distract.length === 2) out.push({...base, _id:key + ":g", k:"gap", de:g, ans:[w.de], opts:[w.de, ...distract], tr:"", why_tr:`${kuWFull(w)} = ${w.tr}`}); }
+    }
+  }
+  return out;
+}
+/* kalıcı öğrenme: TR→DE üretimi en az iki AYRI oturumda (aralarında en az 3 saat) doğru olmalı */
+const KU_GAP = 3 * 3600 * 1000;
+function kuWSt(key){ const W = kSt().w || (kSt().w = {}); return W[key] || (W[key] = {c:0, last:0}); }
+function kuWordMark(key, ok){
+  const r = kuWSt(key); const now = Date.now();
+  if(ok){ if(!r.last || now - r.last >= KU_GAP || r.c === 0){ r.c = Math.min(5, (r.c||0) + 1); r.last = now; } r.d = addDays(dayKey(), [0,1,2,4,8,16][Math.min(5, r.c)]); }
+  else { r.c = Math.max(0, (r.c||0) - 1); r.last = r.c ? r.last : 0; r.d = dayKey(); }
+  kuSave();
+}
+function kuWLearned(u, w){ return (kuWSt(kuWKey(u, w)).c || 0) >= 2; }
+function kuWReadyAgain(u, w){ const r = kuWSt(kuWKey(u, w)); return !r.last || Date.now() - r.last >= KU_GAP || !r.c; }
+
+function kuPrevItems(u, n){
+  /* önceki ünitelerden: en zayıf ve en eski maddeler */
+  const L = kuList(); const i = L.findIndex(x=>x.id === u.id); const prev = L.slice(0, Math.max(0, i)).filter(x=>KURS.units[x.id]);
+  const R = kSt().it; const out = [];
+  for(const m of prev.slice(-3)){ const pu = KURS.units[m.id]; const all = [...kuTag(pu, pu.drills, "d"), ...kuTag(pu, pu.test, "x")].filter(x=>["say","gap","fix","order"].includes(x.k));
+    all.sort((a, b)=>((R[a._id]||{}).b||0) - ((R[b._id]||{}).b||0) || String((R[a._id]||{}).s||"").localeCompare(String((R[b._id]||{}).s||"")));
+    out.push(...all.slice(0, 6)); }
+  return shuffle(out).slice(0, n).map(x=>({...x, old:true}));
+}
+function kuNodeSteps(u, node){
+  const st = [];
+  if(node.k === "vocab"){
+    if(node.id === "w1"){ const prev = kuPrevItems(u, 5); if(prev.length) st.push({k:"drills", lab:"Isınma: önceki üniteden", items: prev}); }
+    const W = node.words;
+    for(let i = 0; i < W.length; i += 4){ const ch = W.slice(i, i + 4); st.push({k:"wintro", words:ch}); st.push({k:"drills", lab:"Tanı", items:shuffle(kuWordItems(u, ch, "rec"))}); st.push({k:"drills", lab:"Kendin söyle", items:shuffle(kuWordItems(u, ch, "prod"))}); }
+    const mix = [...kuWordItems(u, W, "ctx"), ...kuWordItems(u, shuffle(W.concat(node.recall || [])).slice(0, 10), "prod")];
+    st.push({k:"drills", lab:"Hepsi bir arada", items:shuffle(mix)});
+  }
+  if(node.k === "gram"){ node.teach.forEach(i=>st.push({k:"teach", i})); const ids = kuTeachIds(u, node.teach); st.push({k:"drills", lab:"Alıştırma", items:kuTag(u, u.drills, "d").filter(x=>ids.includes(x.t))}); }
+  if(node.k === "dialog") st.push({k:"dialog"});
+  if(node.k === "read") st.push({k:"read"});
+  if(node.k === "games"){ st.push({k:"match"}); st.push({k:"speed"}); }
+  if(node.k === "write") (u.speak||[]).slice(0, 2).forEach((_, i)=>st.push({k:"write", i}));
+  if(node.k === "role") st.push({k:"role"});
+  if(node.k === "test") st.push({k:"gate"});
+  return st;
+}
+async function kuEnsurePrev(id){ const L = kuList(); const i = L.findIndex(x=>x.id === id); for(const m of L.slice(Math.max(0, i - 3), i)) if(m.ready !== false && kuRec(m.id)) { try{ await kursUnit(m.id); }catch(e){} } }
+async function kuOpenUnit(id){ stopAll && stopAll(); S.ku = null; S.kuU = id; go("kurs"); render(); try{ await kursIndex(); await kursUnit(id); }catch(e){} if(S.view === "kurs") render(); window.scrollTo(0,0); }
+async function kuStartNode(id, nid){
+  stopAll && stopAll();
+  S.ku = {id, busy:true}; S.kuU = id; go("kurs"); render();
+  try{
+    await kursIndex(); const u = await kursUnit(id); await kuEnsurePrev(id);
+    const node = kuNodes(u).find(x=>x.id === nid) || kuNextNode(u) || kuNodes(u)[0];
+    S.ku = {id, u, node, steps: kuNodeSteps(u, node), si:0, t0: Date.now()};
+    kSt().cur = id; kuRec(id); kuSave();
+    kuEnter();
+    const nx = kuNextId(id); if(nx) kursUnit(nx).catch(()=>{});
+  }catch(e){ S.ku = {id, err:"Bu ünite yüklenemedi. İnternet bağlantını kontrol edip tekrar dene."}; }
+  render(); window.scrollTo(0,0);
+}
+async function kuStart(id){ await kursIndex(); let u; try{ u = await kursUnit(id); }catch(e){ return kuOpenUnit(id); } const nx = kuNextNode(u); return nx ? kuStartNode(id, nx.id) : kuOpenUnit(id); }
+function kuStep(){ const K = S.ku; return K && K.steps ? K.steps[K.si] : null; }
+function kuEnter(){
+  const K = S.ku, s = kuStep(); if(!s) return;
+  K.D = null; K.G = null; K.R = null; K.RP = null; K.M = null; K.Wr = null;
+  if(s.k === "drills") K.D = kuDrillRun(s.items, "drill", s.lab);
+  if(s.k === "test") K.D = kuDrillRun(s.items, "test", "Ünite sınavı");
+  if(s.k === "speed") K.D = kuSpeedRun(K.u, K.node);
+  if(s.k === "dialog") K.G = {mode:"listen", i:0};
+  if(s.k === "read") K.R = {ans:{}, tr:false};
+  if(s.k === "role") K.RP = rpNew(K.u);
+  if(s.k === "match") K.M = kuMatchNew(K.u);
+  if(s.k === "write") K.Wr = {i:s.i, text:"", phase:"edit"};
+  if(s.k === "wintro") K.wi = 0;
+  if(K.D && K.D.items.length) setTimeout(()=>kuAuto(), 250);
+  if(s.k === "drills" && !s.items.length) return kuGoNext();
+}
+function kuGoNext(){
+  const K = S.ku; if(!K) return; stopAll && stopAll();
+  if(K.si < K.steps.length - 1){ K.si++; kuEnter(); render(); window.scrollTo(0,0); return; }
+  kuNodeFinish();
+}
+function kuNodeFinish(){
+  const K = S.ku; const rec = kuRec(K.id); rec.nd = rec.nd || {};
+  const first = !rec.nd[K.node.id]; rec.nd[K.node.id] = dayKey();
+  const nodes = kuNodes(K.u); const done = nodes.filter(x=>rec.nd[x.id]).length;
+  if(first){ addXP(10, "basamak"); sfx("up"); confetti(60); }
+  /* sınav dışındaki her şey bitince sıradaki ünite açılır; ünite, sınav geçilince "tamam" olur */
+  if(kuAllButTest(K.u)){ const nx = kuNextId(K.id); rec.open = true; if(nx && kSt().cur === K.id && !kuDone(K.id)) {} }
+  kuSave(true);
+  S.ku = null; S.kuDoneMsg = first ? `${K.node.ic} ${K.node.t} tamam · ${done}/${nodes.length}` : ""; render(); window.scrollTo(0,0);
+}
+
+/* ---------- alıştırma motoru (ünite, test ve tekrar için ortak) ---------- */
+function kuDrillRun(items, mode, lab){
+  return {items, mode, lab, q: items.map((_, i)=>i), pos:0, done:0, first:{}, ok:0, bad:0, combo:0, retries:{}, res:null, typed:false, built:[], live:"", listening:false};
+}
+function kuCur(){ const D = S.ku && S.ku.D; return D && D.items[D.q[D.pos]]; }
+function kuAuto(){ const it = kuCur(); if(it && it.k === "listen" && !(S.ku.D.res)) say(it.de, "de"); }
+function kuShuffleWords(de){ const w = String(de).split(/\s+/).filter(Boolean); let s = shuffle(w.slice()); for(let k = 0; k < 5 && s.join(" ") === w.join(" ") && w.length > 2; k++) s = shuffle(w.slice()); return s; }
+function kuAnswer(ok, extra){
+  const K = S.ku, D = K.D, it = kuCur(); if(!it || D.res) return;
+  const idx = D.q[D.pos]; const firstTry = D.first[idx] === undefined;
+  if(firstTry) D.first[idx] = ok;
+  if(ok){ D.combo++; if(firstTry){ D.ok++; addXP(D.mode === "test" ? 3 : 2, "kurs"); } sfx(D.combo >= 3 ? "combo" : "ok"); }
+  else { D.combo = 0; if(firstTry) D.bad++; sfx("no"); }
+  if(it._w){ if(it.k === "say" && firstTry) kuWordMark(it._w, ok); }
+  else if(D.mode !== "speed" && (firstTry || D.mode === "test")) kuMark(it, ok);
+  D.res = {ok, ...(extra||{})};
+  /* yanlışta: aynı kuralı başka bir cümleyle ve bu maddeyi biraz sonra tekrar sor */
+  if(!ok && D.mode !== "test"){
+    const r = D.retries[idx] || 0;
+    if(r < 1){ D.retries[idx] = r + 1; D.q.splice(Math.min(D.q.length, D.pos + 4), 0, idx); }
+    const ahead = new Set(D.q.slice(D.pos + 1));
+    const sib = D.items.findIndex((x, j)=>j !== idx && x.t === it.t && !ahead.has(j) && D.first[j] === undefined && x.k !== it.k);
+    if(sib >= 0 && D.mode === "review") D.q.splice(Math.min(D.q.length, D.pos + 2), 0, sib);
+  }
+  if(D.mode === "speed"){ render(); setTimeout(()=>{ if(S.ku && S.ku.D === D && D.res) kuAdvance(); }, ok ? 350 : 900); return; }
+  const full = kuFull(it); if(full && (ok || it.k !== "say")) setTimeout(()=>{ if(S.ku && S.ku.D === D) say(full, "de"); }, 250);
+  render();
+}
+function kuFull(it){ return it.k === "gap" ? it.de.replace("___", it.ans[0]) : it.k === "say" || it.k === "order" || it.k === "listen" ? it.de : it.k === "fix" ? it.right : ""; }
+function kuAdvance(){
+  const K = S.ku, D = K.D; if(!D) return; stopAll && stopAll();
+  D.pos++; D.res = null; D.typed = false; D.built = []; D.live = ""; D.listening = false; D.chosen = null; D.shuf = null; D.pool = null;
+  if(D.pos >= D.q.length){ kuDrillEnd(); return; }
+  render(); setTimeout(()=>kuAuto(), 200);
+}
+function kuDrillEnd(){
+  const K = S.ku, D = K.D; D.finished = true; clearInterval(D.tick);
+  const n = D.items.length; const pct = Math.round(D.ok / Math.max(1, n) * 100); D.pct = pct;
+  if(D.mode === "test"){
+    const rec = kuRec(K.id);
+    rec.tests = (rec.tests||0) + 1; rec.best = Math.max(rec.best||0, pct);
+    if(pct >= 80){ const first = !rec.done; rec.done = true; rec.fin = rec.fin || dayKey(); rec.nd = rec.nd || {}; rec.nd.ex = rec.nd.ex || dayKey();
+      const nx = kuNextId(K.id); if(nx && kSt().cur === K.id) kSt().cur = nx;
+      if(first){ addXP(30, "ünite"); setTimeout(()=>bigCelebrate("Ünite tamam! 🎉", `${esc(K.u.title_tr)} · %${pct}. Sıradaki ünite açıldı.`, "party"), 300); }
+      try { planDone && planDone("kurs"); } catch(e){}
+    }
+    const weak = {}; D.items.forEach((it, j)=>{ if(D.first[j] === false && !it.old) weak[it.t] = (weak[it.t]||0) + 1; }); D.weak = Object.keys(weak);
+  }
+  if(D.mode === "speed"){ const rec = kuRec(K.id); const prev = rec.speed || 0; D.best = Math.max(prev, D.ok); D.newBest = D.ok > prev; rec.speed = D.best; }
+  if(D.mode === "review"){ const rv = kSt().rv || (kSt().rv = {}); rv[dayKey()] = (rv[dayKey()]||0) + n; }
+  kuSave(true); render(); window.scrollTo(0,0);
+}
+function kuItemHead(it){
+  const lab = {say:["🗣️","Almanca söyle"], gap:["🧩","Boşluğu doldur"], pick:["🎯","Doğru olanı seç"], order:["🔀","Cümleyi kur"], listen:["👂","Dinle ve anlamını seç"], fix:["🛠️","Hatayı düzelt ve söyle"]}[it.k] || ["",""];
+  return `<div class="kicker ku-kick"><span>${lab[0]}</span>${lab[1]}</div>`;
+}
+function kuMicBtn(label){ const D = S.ku.D; return `<button class="btn primary block ku-mic ${D && D.listening ? "live" : ""}" data-act="kuMic">${D && D.listening ? "⏹ Bitti, kontrol et" : "🎤 " + (label || "Söyle")}</button>`; }
+function kuItemBody(it){
+  const D = S.ku.D, R = D.res;
+  const tr = it.tr ? `<p class="ku-tr">${esc(it.tr)}</p>` : "";
+  if(it.k === "say") return `${kuItemHead(it)}<div class="ku-prompt">${esc(it.tr)}</div>${D.listening || D.live ? `<div class="ku-live">${esc(D.live || "Dinliyorum…")}</div>` : ""}`;
+  if(it.k === "gap"){ const parts = it.de.split("___");
+    const fill = R ? `<b class="ku-fill ${R.ok ? "ok" : "bad"}">${esc(D.chosen || it.ans[0])}</b>` : `<span class="ku-blank">&nbsp;</span>`;
+    return `${kuItemHead(it)}<div class="ku-sent">${esc(parts[0])}${fill}${esc(parts[1]||"")}</div>${tr}
+      <div class="ku-opts">${(D.shuf || (D.shuf = shuffle(it.opts.slice()))).map(o=>`<button class="ku-opt ${R ? (o === it.ans[0] ? "ok" : o === D.chosen ? "bad" : "dim") : ""}" data-act="kuPick" data-v="${esc(o)}" ${R ? "disabled" : ""}>${esc(o)}</button>`).join("")}</div>`; }
+  if(it.k === "pick") return `${kuItemHead(it)}<div class="ku-q">${esc(it.q_tr)}</div><div class="ku-opts col">${it.opts.map((o, j)=>`<button class="ku-opt ${R ? (j === it.ans ? "ok" : String(j) === String(D.chosen) ? "bad" : "dim") : ""}" data-act="kuPick" data-v="${j}" ${R ? "disabled" : ""}>${esc(o)}</button>`).join("")}</div>`;
+  if(it.k === "listen") return `${kuItemHead(it)}<div class="ku-listen"><button class="ku-big" data-act="sayDe" data-t="${esc(it.de)}" aria-label="Dinle">🔊</button><button class="ku-big slow" data-act="kuSlow" aria-label="Yavaş dinle">🐢</button></div>${R ? `<div class="ku-sent sm">${esc(it.de)}</div>` : ""}<div class="ku-opts col">${it.opts_tr.map((o, j)=>`<button class="ku-opt ${R ? (j === it.ans ? "ok" : String(j) === String(D.chosen) ? "bad" : "dim") : ""}" data-act="kuPick" data-v="${j}" ${R ? "disabled" : ""}>${esc(o)}</button>`).join("")}</div>`;
+  if(it.k === "order"){ const pool = D.pool || (D.pool = kuShuffleWords(it.de)); const used = new Set(D.built);
+    return `${kuItemHead(it)}${tr ? `<div class="ku-prompt sm">${esc(it.tr)}</div>` : ""}<div class="ku-built">${D.built.map((j, n)=>`<button class="ku-chip on" data-act="kuUnchip" data-n="${n}" ${R ? "disabled" : ""}>${esc(pool[j])}</button>`).join("") || `<span class="muted small">Kelimelere sırayla dokun ya da cümleyi söyle</span>`}</div>
+      <div class="ku-pool">${pool.map((w, j)=>`<button class="ku-chip ${used.has(j) ? "used" : ""}" data-act="kuChip" data-j="${j}" ${used.has(j) || R ? "disabled" : ""}>${esc(w)}</button>`).join("")}</div>${D.listening || D.live ? `<div class="ku-live">${esc(D.live || "Dinliyorum…")}</div>` : ""}`; }
+  if(it.k === "fix") return `${kuItemHead(it)}<div class="ku-wrong">${esc(it.wrong)}</div><p class="small muted">Bu cümlede bir hata var. Doğrusunu söyle.</p>${D.listening || D.live ? `<div class="ku-live">${esc(D.live || "Dinliyorum…")}</div>` : ""}`;
+  return "";
+}
+function kuFoot(it){
+  const D = S.ku.D, R = D.res;
+  if(R){
+    const full = kuFull(it);
+    const heard = R.heard && !R.ok ? `<div class="ku-heard"><span class="muted small">Duyduğum:</span> ${esc(R.heard)}</div>` : "";
+    const diff = !R.ok && R.words ? `<div class="ku-diff">${kuDiffHtml(R.words)}</div>` : "";
+    return `<div class="ku-res ${R.ok ? "ok" : "bad"}"><div class="ku-res-h">${R.ok ? (D.combo >= 3 ? "🔥 Harika, " + D.combo + " doğru üst üste!" : "✓ Doğru!") : R.skip ? "Doğrusu bu:" : "✗ Tam olmadı"}</div>
+      ${full ? `<div class="ku-full"><button class="k-say" data-act="sayDe" data-t="${esc(full)}" aria-label="Dinle">🔊</button><b>${esc(full)}</b></div>` : ""}${diff}${heard}
+      ${it.why_tr ? `<p class="ku-why">${esc(it.why_tr)}</p>` : ""}</div>
+      ${!R.ok && R.spoken ? `<button class="btn small ghost" data-act="kuOverride">Aslında doğru söyledim</button>` : ""}${!R.ok && it.k === "order" && !R.skip && R.heard ? `<button class="btn small ghost" data-act="kuOverride">Benim sıram da doğru</button>` : ""}
+      ${!R.ok && ["say","fix","order"].includes(it.k) && D.mode !== "test" ? `<button class="btn block" data-act="kuRepeat">🎤 Doğrusunu bir kez söyle</button>` : ""}
+      ${R.rep ? `<div class="small ${R.rep === "ok" ? "good" : "muted"}">${R.rep === "ok" ? "✓ Güzel, şimdi doğru söyledin." : "Bir daha dene ya da devam et."}</div>` : ""}
+      <button class="btn primary block" data-act="kuAdv">Devam →</button>`;
+  }
+  if(["say","fix"].includes(it.k)){
+    if(D.typed) return `<input id="kuIn" class="ku-in" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Almanca yaz…" enterkeyhint="done"><div class="grid2"><button class="btn primary" data-act="kuCheckTyped">Kontrol et</button><button class="btn" data-act="kuTypeOff">🎤 Sesle</button></div><button class="btn small ghost" data-act="kuSkip">Bilmiyorum, göster</button>`;
+    return `${kuMicBtn()}<div class="grid2"><button class="btn" data-act="kuTypeOn">⌨️ Yazarak</button><button class="btn ghost" data-act="kuSkip">Bilmiyorum, göster</button></div>`;
+  }
+  if(it.k === "order") return `<div class="grid2"><button class="btn primary" data-act="kuOrderCheck" ${D.built.length ? "" : "disabled"}>Kontrol et</button>${kuMicBtn().replace("btn primary block", "btn")}</div><button class="btn small ghost" data-act="kuSkip">Bilmiyorum, göster</button>`;
+  return `<button class="btn small ghost" data-act="kuSkip">Bilmiyorum, göster</button>`;
+}
+function kuDrillView(){
+  const K = S.ku, D = K.D;
+  if(D.finished) return kuDrillSummary();
+  const it = kuCur(); const total = D.q.length; const pct = Math.round(D.pos / Math.max(1, total) * 100);
+  const title = D.lab || (D.mode === "test" ? "Ünite sınavı" : D.mode === "review" ? "Kurs tekrarı" : "Alıştırma");
+  const left = D.mode === "speed" ? Math.max(0, Math.ceil((D.deadline - Date.now())/1000)) : null;
+  return `<div class="k-shell ku-shell">
+    <div class="k-top"><button class="licon k-x" data-act="kuExit" aria-label="Kapat">✕</button><div class="k-prog ${D.combo >= 3 ? "hot" : ""}"><i style="width:${Math.max(3, pct)}%"></i></div><span class="chip ${left !== null ? "ku-timer" : ""}" id="kuTimer">${left !== null ? "⏱ " + left + " sn" : (D.pos + 1) + "/" + total}</span></div>
+    <section class="k-card ku-card ${D.res ? (D.res.ok ? "is-ok" : "is-bad") : ""}"><div class="ku-mode">${esc(title)}${it.old ? ` <span class="ku-old">önceki üniteden</span>` : ""}${D.mode === "speed" ? ` · <b>${D.ok}</b> doğru` : ""}</div>${kuItemBody(it)}</section>
+    ${D.mode === "speed" ? "" : `<div class="k-foot">${kuFoot(it)}</div>`}</div>`;
+}
+function kuDrillSummary(){
+  const K = S.ku, D = K.D; const pct = D.pct;
+  if(D.mode === "test"){
+    const pass = pct >= 80; const nx = kuNextId(K.id); const tnames = (D.weak||[]).map(t=>((K.u.teach||[]).find(x=>x.id === t)||{}).h_tr).filter(Boolean);
+    return `<section class="card ku-sum ${pass ? "pass" : "fail"}"><div class="kicker">Ünite sınavı · ${esc(K.u.title_tr)}</div><div class="ku-score">%${pct}</div>
+      <p>${pass ? "Geçtin! Bu ünitenin hedefini artık yapabiliyorsun." : "Geçmek için %80 lazım. Zayıf kalan kısımları kısa bir tekrarla güçlendirelim, sonra sınavı yeniden dene."}</p>
+      ${tnames.length ? `<p class="small"><b>Zayıf kalan:</b> ${tnames.map(esc).join(" · ")}</p>` : ""}
+      ${pass ? (nx ? `<button class="btn primary block" data-act="kuStartId" data-id="${nx}">Sıradaki ünite →</button>` : "") : `${tnames.length ? `<button class="btn primary block" data-act="kuWeak">Zayıf kısımları çalış</button>` : ""}<button class="btn block" data-act="kuRetest">Sınavı yeniden yap</button>`}
+      <button class="btn ghost block" data-act="kuBack">Ünite yoluna dön</button></section>`;
+  }
+  if(D.mode === "review") return `<section class="card ku-sum pass"><div class="kicker">Kurs tekrarı</div><div class="ku-score">${D.ok}/${D.items.length}</div><p>Tekrar bitti. Yanlış yaptıkların başka bir cümleyle yine gelecek.</p><button class="btn primary block" data-act="kuMap">Tamam</button></section>`;
+  if(D.mode === "speed") return `<section class="card ku-sum pass"><div class="kicker">⚡ Hızlı tur</div><div class="ku-score">${D.ok}</div><p>${D.newBest ? "Yeni rekor! 🏆" : "Rekorun: " + D.best}</p><button class="btn primary block" data-act="kuNext">Devam →</button><button class="btn block" data-act="kuSpeedAgain">Bir tur daha</button></section>`;
+  if(D.after === "test") return `<section class="card ku-sum pass"><div class="kicker">Zayıf kısımlar çalışıldı</div><div class="ku-score">${D.ok}/${D.items.length}</div><p>Şimdi sınavı yeniden dene.</p><button class="btn primary block" data-act="kuRetest">Sınavı yeniden yap</button></section>`;
+  const msg = D.ok === D.items.length ? "Hepsi ilk denemede doğru! 🔥" : `${D.items.length - D.ok} madde ikinci denemede oldu. Bunlar tekrarda yine gelecek.`;
+  return `<section class="card ku-sum pass"><div class="kicker">${esc(D.lab || "Alıştırma")} bitti</div><div class="ku-score">${D.ok}/${D.items.length}</div><p>${msg}</p><button class="btn primary block" data-act="kuNext">Devam →</button></section>`;
+}
+/* ---------- ünite adımları ---------- */
+function kuShell(inner, foot, label){
+  const K = S.ku; const n = K.steps.length; const pct = Math.round(K.si / Math.max(1, n - 1) * 100);
+  return `<div class="k-shell ku-shell"><div class="k-top"><button class="licon k-x" data-act="kuExit" aria-label="Kapat">✕</button><div class="k-prog"><i style="width:${Math.max(3, pct)}%"></i></div><span class="chip">${esc(label || (K.node ? K.node.ic + " " : "") + (K.si + 1) + "/" + n)}</span></div>
+    <section class="k-card ku-card">${inner}</section>${foot ? `<div class="k-foot">${foot}</div>` : ""}</div>`;
+}
+function kuWintroView(){
+  const K = S.ku, s = kuStep(), W = s.words; const w = W[K.wi] || W[0]; const full = kuWFull(w);
+  const plOnly = w.pl === "Pl"; const pl = w.pl && w.pl !== "-" && !plOnly ? w.pl : "";
+  const ex = kuSentFor(K.u, w); const exFull = ex ? ex.replace("___", w.de) : "";
+  const exTr = ex ? (([...(K.u.teach||[]).flatMap(t=>t.ex||[]), ...((K.u.dialog||{}).lines||[])].find(x=>x.de === exFull)||{}).tr || "") : "";
+  setTimeout(()=>{ if(S.ku === K && kuStep() === s && K._said !== s.words[K.wi]){ K._said = s.words[K.wi]; say(full, "de"); } }, 200);
+  const R = K.wres;
+  return kuShell(`<div class="ku-mode">🧠 Yeni kelime ${K.wi + 1}/${W.length}</div>
+    <div class="ku-wcard ${w.art ? "a-" + w.art : ""}"><div class="ku-wart">${w.art ? esc(w.art) : w.t === "v" ? "fiil" : w.t === "a" ? "sıfat / zarf" : "kalıp"}</div>
+      <div class="ku-wde">${esc(w.de)}</div>${pl ? `<div class="ku-wpl">çoğul: die ${esc(pl)}</div>` : plOnly ? `<div class="ku-wpl">sadece çoğul</div>` : ""}
+      <div class="ku-wtr">${esc(w.tr)}</div><button class="ku-big" data-act="sayDe" data-t="${esc(full)}" aria-label="Dinle">🔊</button></div>
+    ${exFull ? `<div class="k-ex">${kSay(exFull)}<div class="k-ext"><div class="de">${esc(exFull)}</div>${exTr ? `<div class="tr">${esc(exTr)}</div>` : ""}</div></div>` : ""}
+    ${R ? `<div class="small ${R === "ok" ? "good" : "muted"}">${R === "ok" ? "✓ Güzel telaffuz." : "Bir daha dinle ve söyle."}</div>` : ""}
+    ${K.wlisten ? `<div class="ku-live">Dinliyorum…</div>` : ""}`,
+    `<button class="btn ${K.wlisten ? "primary ku-mic live" : ""}" data-act="kuWSay">${K.wlisten ? "⏹ Bitti" : "🎤 Sesli tekrar et"}</button><button class="btn primary block" data-act="kuWNext">${K.wi < W.length - 1 ? "Sonraki kelime →" : "Şimdi tanıyalım →"}</button>`);
+}
+function kuTeachView(){
+  const K = S.ku, s = kuStep(), t = K.u.teach[s.i];
+  const tbl = t.table && t.table.rows ? `<div class="tablewrap"><table class="t k-table"><thead><tr>${(t.table.head||[]).map(h=>`<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${t.table.rows.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>` : "";
+  const ex = (t.ex||[]); const ti = K.node && K.node.teach ? K.node.teach.indexOf(s.i) : 0; const tn = K.node && K.node.teach ? K.node.teach.length : 1;
+  return kuShell(`<div class="ku-mode">📘 Anlatım ${ti + 1}/${tn}</div><h3 class="ku-h3">${esc(t.h_tr)}</h3><p class="ku-expl">${kuExpl(t.tr)}</p>${tbl}
+    <div class="row between"><b class="small">Dinle ve yüksek sesle tekrar et</b><button class="btn small" data-act="kuSayAll">${S.kAll ? "⏹ Durdur" : "▶ Hepsini dinle"}</button></div>
+    <div class="k-exs">${ex.map(e=>kExRow(e.de, e.tr)).join("")}</div>`, `<button class="btn primary block" data-act="kuNext">Anladım →</button>`);
+}
+function kuDialogView(){
+  const K = S.ku, d = K.u.dialog, G = K.G; const roles = d.roles || {};
+  if(G.mode === "listen"){
+    return kuShell(`<div class="ku-mode">🎧 Diyalog · ${esc(d.title_tr||"")}</div><p class="small muted">Önce dinle. Sonra rolü sen üstleneceksin: <b>${esc(roles.B||"B")}</b>.</p>
+      <div class="ku-dlg">${d.lines.map(l=>`<div class="ku-bub ${l.r === "B" ? "me" : ""}"><small>${esc(roles[l.r]||l.r)}</small><div class="row" style="gap:8px;flex-wrap:nowrap;align-items:flex-start">${kSay(l.de)}<div><div class="de">${esc(l.de)}</div><div class="tr">${esc(l.tr)}</div></div></div></div>`).join("")}</div>`,
+      `<button class="btn" data-act="kuDlgAll">${S.kAll ? "⏹ Durdur" : "▶ Hepsini dinle"}</button><button class="btn primary block" data-act="kuDlgRole">🎭 Şimdi sen konuş</button><button class="btn ghost small" data-act="kuNext">Geç</button>`);
+  }
+  const L = d.lines; const i = G.i;
+  if(i >= L.length) return kuShell(`<div class="ku-mode">🎭 Diyalog tamam</div><p>Bütün satırları söyledin${G.ok != null ? ` (${G.ok}/${L.filter(l=>l.r === "B").length} ilk denemede)` : ""}.</p>`, `<button class="btn primary block" data-act="kuNext">Devam →</button><button class="btn block" data-act="kuDlgRole">Bir daha oyna</button>`);
+  const l = L[i]; const past = L.slice(0, i);
+  const hist = past.map(x=>`<div class="ku-bub ${x.r === "B" ? "me" : ""}"><small>${esc(roles[x.r]||x.r)}</small><div class="de">${esc(x.de)}</div></div>`).join("");
+  if(l.r !== "B") return kuShell(`<div class="ku-mode">🎭 Rol: ${esc(roles.B||"B")}</div><div class="ku-dlg">${hist}<div class="ku-bub"><small>${esc(roles[l.r]||l.r)}</small><div class="de">${esc(l.de)}</div><div class="tr">${esc(l.tr)}</div></div></div>`, `<button class="btn primary block" data-act="kuDlgNext">Devam →</button>`);
+  const R = G.res;
+  return kuShell(`<div class="ku-mode">🎭 Sıra sende · ${esc(roles.B||"B")}</div><div class="ku-dlg">${hist}</div>
+    <div class="ku-prompt">${esc(l.tr)}</div>${G.listening || G.live ? `<div class="ku-live">${esc(G.live || "Dinliyorum…")}</div>` : ""}
+    ${R ? `<div class="ku-res ${R.ok ? "ok" : "bad"}"><div class="ku-res-h">${R.ok ? "✓ Doğru!" : "Doğrusu:"}</div><div class="ku-full">${kSay(l.de)}<b>${esc(l.de)}</b></div>${!R.ok && R.words ? `<div class="ku-diff">${kuDiffHtml(R.words)}</div>` : ""}</div>` : ""}`,
+    R ? `${!R.ok ? `<button class="btn" data-act="kuDlgMic">🎤 Bir daha söyle</button>` : ""}<button class="btn primary block" data-act="kuDlgNext">Devam →</button>`
+      : `<button class="btn primary block ku-mic ${G.listening ? "live" : ""}" data-act="kuDlgMic">${G.listening ? "⏹ Bitti, kontrol et" : "🎤 Söyle"}</button><button class="btn ghost small" data-act="kuDlgShow">Bilmiyorum, göster</button>`);
+}
+function kuReadView(){
+  const K = S.ku, r = K.u.read, R = K.R;
+  const sents = String(r.de).match(/[^.!?]+[.!?]+["“”]?/g) || [r.de];
+  const answered = Object.keys(R.ans).length; const all = answered >= r.qs.length;
+  return kuShell(`<div class="ku-mode">📖 Okuma · ${esc(r.title_de||"")}</div>
+    <div class="ku-read">${sents.map(s=>`<span class="ku-rs" data-act="sayDe" data-t="${esc(s.trim())}">${esc(s.trim())}</span>`).join(" ")}</div>
+    <div class="row"><button class="btn small" data-act="kuReadAll">${S.kAll ? "⏹ Durdur" : "▶ Metni dinle"}</button><button class="btn small ghost" data-act="kuReadTr">${R.tr ? "Çeviriyi gizle" : "Türkçesini göster"}</button></div>
+    ${R.tr ? `<p class="small muted">${esc(r.tr)}</p>` : ""}
+    <h3 class="ku-h3">Sorular</h3>${r.qs.map((q, qi)=>`<div class="ku-rq"><b>${esc(q.q_tr)}</b><div class="ku-opts col">${q.opts.map((o, j)=>{ const a = R.ans[qi]; const st = a == null ? "" : j === q.ans ? "ok" : j === a ? "bad" : "dim"; return `<button class="ku-opt ${st}" data-act="kuReadAns" data-q="${qi}" data-j="${j}" ${a != null ? "disabled" : ""}>${esc(o)}</button>`; }).join("")}</div></div>`).join("")}`,
+    `<button class="btn primary block" data-act="kuNext" ${all ? "" : "disabled"}>Devam →</button>`);
+}
+
+/* ---------- rol oyunu: ünitenin hedeflerini öğreten kısa sohbet ---------- */
+function rpNew(u){ const rp = u.roleplay; return {targets: rp.targets.map(t=>({...t, done:false})), msgs:[], phase:"start", fix:null, fixTries:0, corr:[], offline: !aiReady(), turns:0, live:""}; }
+function rpSys(u, P){
+  const rp = u.roleplay; const open = P.targets.map((t, i)=>`${i}. ${t.done ? "[ERLEDIGT] " : ""}${t.tr} (z. B. „${t.de}“)`).join("\n");
+  return `Du spielst in einem kurzen Rollenspiel für einen türkischen Deutschlerner (Niveau ${u.lvl}).
+ROLLE: ${rp.partner_de}
+SZENE: ${rp.scene_tr}
+LERNZIELE (der Lerner soll jedes Ziel selbst richtig sagen):
+${open}
+Gelernte Grammatik dieser Einheit: ${(u.teach||[]).map(t=>t.h_tr).join("; ")}
+GESPRÄCH BISHER:
+${P.msgs.slice(-10).map(m=>(m.who === "p" ? "DU: " : "LERNER: ") + m.de).join("\n")}
+
+Die letzte Äußerung des Lerners (aus Spracherkennung, Satzzeichen und Großschreibung fehlen evtl.): „${P.last}“
+
+Aufgabe:
+1. Prüfe NUR echte Fehler (Grammatik, Wortstellung, Verbform, Artikel/Fall, falsches Wort, Englisch/Türkisch statt Deutsch). Ignoriere Satzzeichen, Groß/Klein und offensichtliche Hörfehler der Spracherkennung, wenn der Satz sonst richtig ist.
+2. Bei einem echten Fehler: "ok": false, "right": sein Satz korrigiert (so nah wie möglich an seinem Satz, natürlich), "why_tr": kurzer Grund auf Türkisch (max. 12 Wörter, fehlerfreies Türkisch), "reply": "".
+3. Wenn der Satz richtig ist: "ok": true, "hit": Liste der Ziel-Nummern, die er mit diesem Satz erfüllt hat, "reply": deine nächste Antwort in deiner Rolle (1-2 kurze, einfache Sätze auf Niveau ${u.lvl}, natürlich wie im echten Leben in Bayern); führe das Gespräch so, dass er ein noch offenes Ziel erfüllen muss (stell eine passende Frage). "reply_tr": Türkische Übersetzung von reply.
+4. Wenn danach ALLE Ziele erledigt sind: verabschiede dich freundlich in reply und setze "end": true.
+Antworte NUR mit JSON: {"ok":true,"right":"","why_tr":"","hit":[],"reply":"","reply_tr":"","end":false}`;
+}
+async function rpSayP(de){ const P = S.ku && S.ku.RP; if(!P) return; P.speaking = true; render(); await say(de, "de"); if(S.ku && S.ku.RP === P){ P.speaking = false; render(); } }
+async function rpStart(){
+  const K = S.ku, P = K.RP, rp = K.u.roleplay;
+  P.phase = "talk"; P.msgs.push({who:"p", de: rp.opener_de}); render(); await rpSayP(rp.opener_de);
+}
+async function rpHeard(text){
+  const K = S.ku, P = K.RP; if(!P || !text) return;
+  if(P.fix){
+    const j = kuJudge([P.fix.right], [text]); const sc = j.ok ? 1 : (j.score || 0);
+    P.msgs.push({who:"u", de:text, fixTry:true});
+    if(sc >= 0.85){ P.msgs.push({who:"sys", ok:true, de:"✓ Doğru!"}); const right = P.fix.right; P.fix = null; P.fixTries = 0; sfx("ok"); addXP(2, "rol"); await rpSend(right); }
+    else { P.fixTries++; sfx("no"); if(P.fixTries >= 2){ const right = P.fix.right; P.fix = null; P.fixTries = 0; P.msgs.push({who:"sys", de:"Sorun değil, devam ediyoruz."}); await rpSend(right); } else { render(); await rpSayP("Noch einmal, bitte: " + P.fix.right); } }
+    return;
+  }
+  P.msgs.push({who:"u", de:text}); await rpSend(text);
+}
+async function rpSend(text){
+  const K = S.ku, P = K.RP, u = K.u; P.last = text; P.turns++;
+  if(P.offline){ rpOffline(text); return; }
+  P.thinking = true; render();
+  let r = null;
+  try{ if(!aiReady()) throw {code:"not_granted"}; r = await Promise.race([AI.json(rpSys(u, P), {modelTier:"default"}), sleep(25000).then(()=>{ throw {code:"timeout"}; })]); }
+  catch(e){ r = null; }
+  if(!S.ku || S.ku.RP !== P) return;
+  P.thinking = false;
+  if(!r || typeof r !== "object"){ P.offline = true; P.msgs.push({who:"sys", de:"Bağlantı zayıf: hazır diyalogla devam ediyoruz."}); rpOffline(text); return; }
+  if(r.ok === false && r.right && kuNorm(r.right) !== kuNorm(text)){
+    P.fix = {right: String(r.right), why: String(r.why_tr||""), wrong: text}; P.corr.push({wrong:text, right:String(r.right), rule_tr:String(r.why_tr||""), topic:"Sonstiges"});
+    P.msgs.push({who:"fix", de:String(r.right), why:String(r.why_tr||""), wrong:text}); sfx("no"); render();
+    await rpSayP("Fast! Richtig ist: " + r.right + " Sag es bitte noch einmal."); return;
+  }
+  for(const h of (r.hit||[])){ const t = P.targets[+h]; if(t && !t.done){ t.done = true; sfx("combo"); } }
+  if(r.reply) P.msgs.push({who:"p", de:String(r.reply), tr:String(r.reply_tr||"")});
+  if(r.end || P.targets.every(t=>t.done)){ P.phase = "end"; render(); if(r.reply) await rpSayP(r.reply); rpFinish(); return; }
+  render(); if(r.reply) await rpSayP(r.reply);
+}
+function rpScroll(){ const el = document.querySelector(".rp-chat > :last-child, .ku-dlg > :last-child"); if(el && S.ku && (S.ku.RP || (S.ku.G && S.ku.G.mode === "role"))) el.scrollIntoView({block:"center", behavior:"smooth"}); }
+/* yapay zekâ yoksa: ünitenin hazır diyaloğuyla aynı sahne */
+function rpOffline(text){
+  const K = S.ku, P = K.RP, d = K.u.dialog; const B = d.lines.filter(l=>l.r === "B");
+  P.oi = P.oi || 0;
+  const want = B[Math.min(P.oi, B.length - 1)];
+  if(want){ const j = kuJudge([want.de], [text]); if(!j.ok && (j.score||0) < 0.8){ P.fix = {right: want.de, why:"Hazır diyalogdaki doğru cümle."}; P.msgs.push({who:"fix", de:want.de, why:"", wrong:text}); render(); rpSayP("Sag mal: " + want.de); return; } }
+  const idx = d.lines.indexOf(want); P.oi++;
+  const nextA = d.lines.slice(idx + 1).find(l=>l.r !== "B");
+  P.targets.forEach((t, i)=>{ if(!t.done && i < Math.ceil(P.oi / B.length * P.targets.length)) t.done = true; });
+  if(!nextA || P.oi >= B.length){ P.phase = "end"; P.targets.forEach(t=>t.done = true); render(); rpFinish(); return; }
+  P.msgs.push({who:"p", de: nextA.de, tr: nextA.tr}); render(); rpSayP(nextA.de);
+}
+function rpFinish(){ const P = S.ku.RP; P.phase = "end"; if(P.corr.length) addMistakes(P.corr, "kurs-rol"); confetti(70); sfx("up"); addXP(10, "rol"); render(); }
+function kuRoleView(){
+  const K = S.ku, P = K.RP, rp = K.u.roleplay;
+  const tg = `<div class="rp-tg">${P.targets.map(t=>`<span class="${t.done ? "on" : ""}">${t.done ? "✓" : "○"} ${esc(t.tr)}</span>`).join("")}</div>`;
+  if(P.phase === "start") return kuShell(`<div class="ku-mode">🎭 Rol oyunu</div><h3 class="ku-h3">${esc(rp.scene_tr)}</h3><p class="small muted">Karşındaki: <b>${esc((rp.partner_de||"").split(",")[0])}</b></p><p>Bu kısa sohbette şunları söyleyeceksin. Her hatanda partnerin doğrusunu söyleyecek ve tekrar ettirecek.</p>${tg}${P.offline ? `<div class="note">Yapay zekâ şu an yok: hazır diyalogla oynanacak.</div>` : ""}`,
+    `<button class="btn primary block" data-act="rpGo">▶ Başla</button><button class="btn ghost small" data-act="kuNext">Şimdi değil, geç</button>`);
+  const chat = P.msgs.map(m=> m.who === "p" ? `<div class="ku-bub"><small>${esc((rp.partner_de||"").split(",")[0])}</small><div class="row" style="gap:8px;flex-wrap:nowrap;align-items:flex-start">${kSay(m.de)}<div><div class="de">${esc(m.de)}</div>${m.tr ? `<details class="tr"><summary>Türkçesi</summary>${esc(m.tr)}</details>` : ""}</div></div></div>`
+    : m.who === "u" ? `<div class="ku-bub me"><small>Sen</small><div class="de">${esc(m.de)}</div></div>`
+    : m.who === "fix" ? `<div class="rp-fix"><b>Richtig ist:</b><div class="ku-full">${kSay(m.de)}<b>${esc(m.de)}</b></div>${m.why ? `<p class="small">${esc(m.why)}</p>` : ""}<p class="small muted">Şimdi bu cümleyi söyle.</p></div>`
+    : `<div class="rp-sys ${m.ok ? "ok" : ""}">${esc(m.de)}</div>`).join("");
+  if(P.phase === "end") return kuShell(`<div class="ku-mode">🎭 Rol oyunu bitti</div>${tg}<p>${P.corr.length ? `${P.corr.length} düzeltme hata defterine eklendi; tekrarlarda karşına çıkacak.` : "Hatasız! 👏"}</p><div class="ku-dlg">${chat}</div>`, `<button class="btn primary block" data-act="kuNext">Ünite testine geç →</button>`);
+  const busy = P.thinking || P.speaking;
+  return kuShell(`<div class="ku-mode">🎭 ${esc(rp.scene_tr)}</div>${tg}<div class="ku-dlg rp-chat">${chat}${P.thinking ? `<div class="ku-bub typing"><span></span><span></span><span></span></div>` : ""}</div>${P.listening || P.live ? `<div class="ku-live">${esc(P.live || "Dinliyorum…")}</div>` : ""}`,
+    P.typed ? `<input id="rpIn" class="ku-in" autocomplete="off" spellcheck="false" placeholder="Almanca yaz…" enterkeyhint="send"><div class="grid2"><button class="btn primary" data-act="rpSendTyped">Gönder</button><button class="btn" data-act="rpTypeOff">🎤 Sesle</button></div>`
+      : `<button class="btn primary block ku-mic ${P.listening ? "live" : ""}" data-act="rpMic" ${busy && !P.listening ? "disabled" : ""}>${P.listening ? "⏹ Bitti, gönder" : busy ? (P.thinking ? "…" : "🔊 dinle") : P.fix ? "🎤 Doğrusunu söyle" : "🎤 Konuş"}</button><div class="grid2"><button class="btn small" data-act="rpTypeOn">⌨️ Yazarak</button><button class="btn small ghost" data-act="rpEnd">Bitir</button></div>`);
+}
+
+/* ---------- harita ---------- */
+/* ---------- oyunlar: eşleştir + hızlı tur (ünitenin kelimeleriyle) ---------- */
+function kuMatchNew(u){
+  const W = shuffle((u.words||[]).filter(w=>w.tr)); const rounds = []; for(let i = 0; i < W.length && rounds.length < 3; i += 5){ const r = W.slice(i, i + 5); if(r.length >= 3) rounds.push(r); }
+  return {rounds, r:0, sel:null, ok:{}, bad:null, wrong:0, t0:Date.now(), L:null, R:null};
+}
+function kuMatchView(){
+  const K = S.ku, M = K.M;
+  if(M.r >= M.rounds.length){ const sec = Math.round((M.t1 - M.t0)/1000); const rec = kuRec(K.id); const best = rec.match || 0; const nb = !best || sec < best; if(nb && !M.saved){ rec.match = sec; M.saved = true; kuSave(); }
+    return kuShell(`<div class="ku-mode">🎮 Eşleştir</div><div class="ku-sum pass"><div class="ku-score">${sec} sn</div><p>${M.wrong ? M.wrong + " yanlış eşleştirme" : "Hatasız!"} ${nb ? "· Yeni rekor 🏆" : "· Rekor: " + best + " sn"}</p></div>`, `<button class="btn primary block" data-act="kuNext">Hızlı tura geç →</button><button class="btn block" data-act="kuMatchAgain">Bir daha oyna</button>`); }
+  const R = M.rounds[M.r]; if(!M.L){ M.L = shuffle(R.map((w, i)=>i)); M.R = shuffle(R.map((w, i)=>i)); }
+  const cell = (side, i) => { const w = R[i]; const id = side + i; const done = M.ok[i]; const sel = M.sel === id; const bad = M.bad && M.bad.includes(id);
+    return `<button class="ku-mt ${done ? "done" : ""} ${sel ? "sel" : ""} ${bad ? "bad" : ""} ${side === "L" ? "de" : ""}" data-act="kuMatchTap" data-id="${id}" ${done ? "disabled" : ""}>${esc(side === "L" ? kuWFull(w) : w.tr)}</button>`; };
+  return kuShell(`<div class="ku-mode">🎮 Eşleştir · tur ${M.r + 1}/${M.rounds.length}</div><p class="small muted">Almancayı Türkçesiyle eşleştir. Hızlı ol!</p>
+    <div class="ku-match"><div>${M.L.map(i=>cell("L", i)).join("")}</div><div>${M.R.map(i=>cell("R", i)).join("")}</div></div>`, "");
+}
+function kuSpeedRun(u){
+  const W = (u.words||[]); const items = [];
+  for(const w of shuffle(W)){ const key = kuWKey(u, w);
+    if(w.t === "n" && w.art){ const o = ["der","die","das"]; items.push({_id:key + ":sa", _w:key, k:"pick", q_tr:`${w.de}`, opts:o, ans:o.indexOf(w.art), t:"w"}); }
+    const others = shuffle(W.filter(x=>x !== w && x.tr !== w.tr)).slice(0, 2).map(x=>x.tr); const opts = shuffle([w.tr, ...others]);
+    items.push({_id:key + ":sm", _w:key, k:"pick", q_tr: kuWFull(w), opts, ans:opts.indexOf(w.tr), t:"w"}); }
+  const D = kuDrillRun(shuffle(items), "speed", "⚡ Hızlı tur · 60 saniye");
+  D.deadline = Date.now() + 60000;
+  D.tick = setInterval(()=>{ if(!S.ku || S.ku.D !== D || D.finished){ clearInterval(D.tick); return; } const left = Math.ceil((D.deadline - Date.now())/1000); const el = document.getElementById("kuTimer"); if(el) el.textContent = "⏱ " + Math.max(0, left) + " sn"; if(left <= 0){ clearInterval(D.tick); kuDrillEnd(); } }, 250);
+  return D;
+}
+/* ---------- yazma ---------- */
+function kuWriteView(){
+  const K = S.ku, Wr = K.Wr, t = K.u.speak[Wr.i]; const n = Math.min(2, K.u.speak.length);
+  const head = `<div class="ku-mode">✍️ Yazma ${Wr.i + 1}/${n}</div><div class="ku-prompt sm">${esc(t.tr)}</div>${(t.hint_de||[]).length ? `<div class="ku-hints">${t.hint_de.map(h=>`<span>${esc(h)}</span>`).join("")}</div>` : ""}`;
+  if(Wr.phase === "edit") return kuShell(`${head}<textarea id="kuWr" class="ku-in ku-ta" rows="5" placeholder="Almanca yaz… (3-5 cümle)" spellcheck="false" autocapitalize="sentences">${esc(Wr.text||"")}</textarea>`,
+    `<button class="btn primary block" data-act="kuWrCheck">Kontrol et</button><button class="btn ghost small" data-act="kuWrShow">Örnek cevabı göster</button>`);
+  const r = Wr.res || {};
+  const corrected = r.corrected || "";
+  return kuShell(`${head}<div class="ku-wr-you"><small>Senin metnin</small><p>${esc(Wr.text)}</p></div>
+    ${Wr.busy ? thinkingCard("Düzeltiliyor…") : ""}
+    ${corrected && kuNorm(corrected) !== kuNorm(Wr.text) ? `<div class="ku-res bad"><div class="ku-res-h">Düzeltilmiş hali</div><div class="ku-full">${kSay(corrected)}<b>${esc(corrected)}</b></div>${(r.mistakes||[]).map(m=>`<div class="small"><s>${esc(m.wrong)}</s> → <b>${esc(m.right)}</b>${m.why_tr ? " · " + esc(m.why_tr) : ""}</div>`).join("")}</div>` : corrected ? `<div class="ku-res ok"><div class="ku-res-h">✓ Hatasız! 👏</div></div>` : ""}
+    ${r.praise_tr ? `<p class="small">${esc(r.praise_tr)}</p>` : ""}${Wr.err ? `<div class="note">${esc(Wr.err)}</div>` : ""}
+    <div class="ku-res ok" style="opacity:.95"><div class="ku-res-h">Örnek cevap</div><div class="ku-full">${kSay(t.model_de)}<b>${esc(t.model_de)}</b></div></div>`,
+    Wr.busy ? "" : `<button class="btn primary block" data-act="kuNext">Devam →</button><button class="btn block" data-act="kuWrAgain">Yeniden yaz</button>`);
+}
+async function kuWrCheck(){
+  const K = S.ku, Wr = K.Wr, t = K.u.speak[Wr.i]; const el = $("#kuWr"); Wr.text = el ? el.value.trim() : Wr.text; if(!Wr.text) return;
+  Wr.phase = "res"; Wr.res = null; Wr.err = "";
+  if(!aiReady()){ Wr.err = "Yapay zekâ şu an yok: örnek cevapla karşılaştır."; render(); return; }
+  Wr.busy = true; render();
+  const prompt = `Ein türkischer Deutschlerner (Niveau ${K.u.lvl}) hat diese Aufgabe bekommen: ${t.tr} (Beispiel: „${t.model_de}“).
+Sein Text: „${Wr.text}“
+Korrigiere NUR echte Fehler, ändere so wenig wie möglich, behalte seinen Inhalt. Antworte NUR mit JSON:
+{"corrected":"sein ganzer Text, korrigiert","mistakes":[{"wrong":"falscher Teil","right":"richtig","why_tr":"kurzer Grund auf Türkisch, max. 10 Wörter"}],"praise_tr":"ein kurzer, ehrlicher Satz auf Türkisch"}`;
+  let r = null; try{ r = await Promise.race([AI.json(prompt, {modelTier:"default"}), sleep(25000).then(()=>null)]); }catch(e){ r = null; }
+  if(!S.ku || S.ku.Wr !== Wr) return;
+  Wr.busy = false;
+  if(!r || !r.corrected){ Wr.err = "Düzeltme şu an alınamadı; örnek cevapla karşılaştır."; render(); return; }
+  Wr.res = r; if((r.mistakes||[]).length){ addMistakes(r.mistakes.map(m=>({wrong:m.wrong, right:m.right, rule_tr:m.why_tr, topic:"Sonstiges"})), "kurs-yazma"); sfx("no"); } else { sfx("ok"); addXP(5, "yazma"); }
+  render();
+}
+/* ---------- sınav kapısı: kelimeler kalıcı öğrenilmeden sınav yok ---------- */
+function kuGateView(){
+  const K = S.ku, u = K.u; const W = u.words || [];
+  const notYet = W.filter(w=>!kuWLearned(u, w)); const ready = notYet.filter(w=>kuWReadyAgain(u, w));
+  if(!notYet.length) return kuShell(`<div class="ku-mode">🏆 Ünite sınavı</div><h3 class="ku-h3">Hazırsın</h3><p>Bu ünitenin bütün kelimelerini iki ayrı oturumda kendin söyledin. Sınavda ${(u.test||[]).length} yeni cümle ve önceki ünitelerden birkaç soru var. Geçmek için %80.</p>`,
+    `<button class="btn primary block" data-act="kuTestGo">Sınava başla</button>`);
+  const waitMin = notYet.length && !ready.length ? Math.ceil(Math.min(...notYet.map(w=>KU_GAP - (Date.now() - (kuWSt(kuWKey(u, w)).last||0)))) / 60000) : 0;
+  return kuShell(`<div class="ku-mode">🏆 Ünite sınavı · kapı</div><h3 class="ku-h3">Önce kelimeler kalıcı olmalı</h3>
+    <p class="small">Bir kelime, Türkçesinden Almancasını <b>iki ayrı oturumda</b> (arada en az 3 saat) doğru söyleyince kalıcı sayılır. ${W.length - notYet.length}/${W.length} hazır.</p>
+    <div class="ku-gw">${notYet.map(w=>{ const c = kuWSt(kuWKey(u, w)).c || 0; return `<span class="${kuWReadyAgain(u, w) ? "" : "wait"}">${esc(kuWFull(w))} <small>${c}/2</small></span>`; }).join("")}</div>
+    ${!ready.length ? `<div class="note">Kalan kelimelerin ikinci turu yaklaşık ${waitMin < 60 ? waitMin + " dakika" : Math.round(waitMin/60) + " saat"} sonra açılacak. Bu arada sıradaki ünitenin ilk basamaklarına başlayabilirsin.</div>` : ""}`,
+    ready.length ? `<button class="btn primary block" data-act="kuGateDrill">Kelimeleri pekiştir (${ready.length})</button>` : `${kuNextId(u.id) ? `<button class="btn primary block" data-act="kuStartId" data-id="${kuNextId(u.id)}">Sıradaki üniteye başla</button>` : ""}<button class="btn block" data-act="kuBack">Ünite yoluna dön</button>`);
+}
+/* ---------- ünite yolu (Duolingo/Busuu gibi basamaklar) ---------- */
+function kuPathView(id){
+  const u = KURS.units[id]; const m = kuMeta(id) || {};
+  if(!u) return thinkingCard("Ünite açılıyor…");
+  const ns = kuNodes(u); const rec = kSt().u[id] || {}; const nd = rec.nd || {};
+  const nextN = ns.find(x=>!nd[x.id]); const doneN = ns.filter(x=>nd[x.id]).length;
+  const W = u.words || []; const learned = W.filter(w=>kuWLearned(u, w)).length;
+  const msg = S.kuDoneMsg; S.kuDoneMsg = "";
+  return `<section class="card ku-hero"><div class="row between"><div class="kicker">${esc(u.lvl)} · Ünite ${kuList().findIndex(x=>x.id === id) + 1}</div><button class="btn small" style="background:rgba(255,255,255,.2);color:#fff;border:0" data-act="kuMap">Harita</button></div>
+      <h2>${esc(u.title_tr)}</h2><div class="ku-de-t">${esc(u.title_de)}</div><p class="small">🎯 ${esc(u.goal_tr)}</p>
+      <div class="ku-stats"><span>${doneN}/${ns.length} basamak</span><span>🧠 ${learned}/${W.length} kelime kalıcı</span>${rec.done ? `<span>✓ %${rec.best}</span>` : ""}</div>
+      ${nextN ? `<button class="btn primary block ku-go" data-act="kuNode" data-u="${esc(id)}" data-n="${nextN.id}">▶ ${esc(nextN.ic + " " + nextN.t)}</button>` : rec.done && kuNextId(id) ? `<button class="btn primary block ku-go" data-act="kuStartId" data-id="${kuNextId(id)}">Sıradaki ünite →</button>` : ""}
+    </section>
+    ${msg ? `<div class="fb ok">${esc(msg)}</div>` : ""}
+    <div class="ku-path">${ns.map((x, i)=>{ const dn = !!nd[x.id]; const cur = nextN && x.id === nextN.id; const locked = !dn && !cur;
+      return `<div class="ku-pn ${i % 2 ? "r" : "l"}"><button class="ku-node ${dn ? "done" : ""} ${cur ? "cur" : ""} ${locked ? "lock" : ""} k-${x.k}" data-act="kuNode" data-u="${esc(id)}" data-n="${x.id}" ${locked ? "disabled" : ""} aria-label="${esc(x.t)}"><span>${dn ? "✓" : x.ic}</span></button><div class="ku-pl"><b>${esc(x.t)}</b>${dn ? `<small>tamam</small>` : cur ? `<small>sıradaki</small>` : ""}</div></div>`; }).join("")}</div>`;
+}
+
+function renderKurs(){
+  const K = S.ku;
+  if(K && K.err) return `<section class="card k-errc"><b>Bir aksilik oldu</b><p class="small">${esc(K.err)}</p><button class="btn primary" data-act="kuStartId" data-id="${esc(K.id)}">Tekrar dene</button><button class="btn ghost" data-act="kuMap">Kurs haritası</button></section>`;
+  if(K && K.busy) return thinkingCard("Açılıyor…");
+  if(K && K.D && (K.D.mode === "review" || ["drills","test","speed"].includes((kuStep()||{}).k))) return kuDrillView();
+  if(K && K.steps){ const s = kuStep();
+    if(s.k === "wintro") return kuWintroView(); if(s.k === "teach") return kuTeachView(); if(s.k === "match") return kuMatchView();
+    if(s.k === "dialog") return kuDialogView(); if(s.k === "read") return kuReadView(); if(s.k === "role") return kuRoleView();
+    if(s.k === "write") return kuWriteView(); if(s.k === "gate") return kuGateView(); }
+  if(!KURS.idx){ kursIndex().then(()=>{ if(S.view === "kurs") render(); }); return thinkingCard("Kurs yükleniyor…"); }
+  if(S.kuU){ if(!KURS.units[S.kuU]) kursUnit(S.kuU).then(()=>{ if(S.view === "kurs") render(); }).catch(()=>{}); return kuPathView(S.kuU); }
+  return kuMapView();
+}
+function kuMapView(){
+  const st = kSt(); const L = kuList(); const cur = kuMeta(st.cur) || L[0];
+  const doneN = L.filter(x=>kuDone(x.id)).length; const due = kuDueCount() + kuWordsDue().length;
+  const lv = {}; L.forEach(x=>{ (lv[x.lvl] = lv[x.lvl] || []).push(x); });
+  const open = id => { const r = st.u[id]; return kuDone(id) || id === cur.id || (r && r.nd && Object.keys(r.nd).length) || L.slice(0, L.findIndex(x=>x.id === id)).every(x=>kuDone(x.id) || (st.u[x.id] && st.u[x.id].open)); };
+  return `<section class="card ku-hero"><div class="kicker">Kursum · ${doneN}/${L.length} ünite tamam</div>
+      <div class="ku-cur"><span class="chip">${esc(cur.lvl)}</span><h2>${esc(cur.title_tr)}</h2><div class="ku-de-t">${esc(cur.title_de)}</div><p class="small">${esc(cur.goal_tr)}</p></div>
+      ${cur.ready === false ? `<div class="note">Bu ünitenin içeriği hazırlanıyor.</div>` : `<button class="btn primary block ku-go" data-act="kuUnit" data-id="${esc(cur.id)}">▶ Üniteye git</button>`}
+    </section>
+    ${due ? `<section class="card ku-rv"><div class="row between"><div><b>🔁 Kurs tekrarı</b><div class="small muted">${due} madde zamanı geldi</div></div><button class="btn primary" data-act="kuReview">Başla</button></div></section>` : ""}
+    ${Object.entries(lv).map(([l, us])=>{ const d = us.filter(x=>kuDone(x.id)).length; return `<section class="card ku-lv"><div class="row between"><h3>${esc(l)}</h3><span class="small muted">${d}/${us.length}</span></div><div class="c-bar"><i style="width:${Math.round(d/us.length*100)}%"></i></div>
+      <div class="ku-units">${us.map(x=>{ const dn = kuDone(x.id), isCur = x.id === cur.id, r = st.u[x.id] || {}; const op = x.ready !== false && open(x.id); const nd = r.nd ? Object.keys(r.nd).length : 0;
+        return `<button class="ku-unit ${dn ? "done" : ""} ${isCur ? "cur" : ""} ${op ? "" : "soon"}" data-act="kuUnit" data-id="${esc(x.id)}" ${op ? "" : "disabled"}><i>${dn ? "✓" : isCur ? "▶" : x.ready === false ? "…" : op ? "○" : "🔒"}</i><span><b>${esc(x.title_tr)}</b><small>${esc(x.title_de)}${dn ? " · %" + (r.best||0) : nd ? " · " + nd + " basamak" : r.open ? " · sınav bekliyor" : ""}</small></span></button>`; }).join("")}</div></section>`; }).join("")}`;
+}
+function kuWordsDue(){ const W = kSt().w || {}; const t = dayKey(); return Object.entries(W).filter(([, r])=>r.c && r.d && r.d <= t).map(([k])=>k); }
+/* tekrar: vadesi gelen kuralları, en son görülmeyen cümleyle sor */
+async function kuReviewStart(){
+  stopAll && stopAll(); S.ku = {busy:true}; go("kurs"); render();
+  const st = kSt(); const t = dayKey(); const due = Object.entries(st.it).filter(([, r])=>r.d && r.d <= t).sort((a, b)=>(a[1].b - b[1].b) || (b[1].w - a[1].w));
+  const units = [...new Set(due.map(([id])=>id.split(":")[0]))];
+  const items = []; const usedRule = {};
+  for(const uid of units){ try{ const u = await kursUnit(uid); const all = [...kuTag(u, u.drills, "d"), ...kuTag(u, u.test, "x")];
+    for(const [id, r] of due.filter(([id])=>id.startsWith(uid + ":"))){
+      const orig = all.find(x=>x._id === id); if(!orig) continue;
+      const rk = uid + ":" + orig.t; usedRule[rk] = (usedRule[rk]||0) + 1; if(usedRule[rk] > 3) continue;
+      /* aynı kuraldan, son 5 günde görülmemiş başka bir cümle varsa onu sor */
+      const alt = all.filter(x=>x.t === orig.t && x._id !== id && !(st.it[x._id] && st.it[x._id].s && st.it[x._id].s >= addDays(t, -5)) && !items.includes(x));
+      const pick = (r.w && alt.length) ? alt[Math.floor(Math.random() * alt.length)] : orig;
+      if(!items.includes(pick)) items.push(pick);
+      if(pick !== orig){ st.it[id].d = addDays(t, 2); }
+      if(items.length >= 14) break; } }catch(e){} if(items.length >= 14) break; }
+  /* vadesi gelen kelimeler: Türkçesinden Almancasını kendin söyle */
+  for(const key of shuffle(kuWordsDue()).slice(0, 8)){ const uid = key.split(":w:")[0]; try{ const u = await kursUnit(uid); const w = (u.words||[]).find(x=>kuWKey(u, x) === key); if(w) items.push(...kuWordItems(u, [w], "prod")); }catch(e){} }
+  if(!items.length){ S.ku = null; toast("Bugün tekrar edilecek madde yok 👍"); go("kurs"); render(); return; }
+  S.ku = {review:true, u:{title_tr:"Tekrar"}, D: kuDrillRun(shuffle(items), "review")}; render(); setTimeout(()=>kuAuto(), 250);
+}
+
+VIEWS.kurs = () => { setTimeout(rpScroll, 30); return renderKurs(); };
+if(typeof VIEW_TITLE === "object") VIEW_TITLE.kurs = "Kurs";
+
+async function kuListen(target, onText){
+  /* ortak mikrofon: dokun → dinle, tekrar dokun → bitir */
+  if(typeof REC_CUR !== "undefined" && REC_CUR){ try { micFinish(); } catch(e){} return null; }
+  stopSpeech && stopSpeech();
+  try{ const alts = await recognize(onText); return alts || []; }
+  catch(e){ if(e && e.code === "cancel") return null; toast(e && e.code === "no-speech" ? "Ses duyamadım. 🎤'a dokunup tekrar söyle." : "Mikrofon şu an açılamadı. Yazarak da cevap verebilirsin."); return null; }
+}
+Object.assign(ACT, {
+  kursOpen(){ S.ku = null; go("kurs"); render(); },
+  kuMap(){ stopAll && stopAll(); S.ku = null; S.kuU = null; go("kurs"); render(); window.scrollTo(0,0); },
+  kuBack(){ stopAll && stopAll(); const id = (S.ku && S.ku.id) || S.kuU; S.ku = null; S.kuU = id || null; go("kurs"); render(); window.scrollTo(0,0); },
+  kuExit(){ stopAll && stopAll(); const K = S.ku; if(K && K.D) clearInterval(K.D.tick); S.ku = null; S.kuU = (K && K.id) || S.kuU || null; kuSave(true); go("kurs"); render(); window.scrollTo(0,0); },
+  kuStartId(b){ kuStart(b.dataset.id); },
+  kuUnit(b){ kuOpenUnit(b.dataset.id); },
+  kuNode(b){ kuStartNode(b.dataset.u, b.dataset.n); },
+  kuWNext(){ const K = S.ku, s = kuStep(); K.wres = null; K._said = null;
+    if(K.wi === 0 && !K._wAdded){ K._wAdded = true; }
+    if(K.wi < s.words.length - 1){ K.wi++; render(); return; }
+    const u = K.u; addWords(s.words.filter(w=>w.t !== "x").map(w=>({de:w.de, artikel:w.art, plural: w.pl === "-" || w.pl === "Pl" ? "" : w.pl, tr:w.tr, note:"Kurs " + u.lvl + ": " + u.title_tr, kind: w.t === "v" ? "verb" : w.t === "n" ? "nomen" : "andere", src:"kurs"})));
+    kuGoNext(); },
+  async kuWSay(){ const K = S.ku, s = kuStep(); const w = s.words[K.wi]; if(K.wlisten){ try { micFinish(); } catch(e){} return; }
+    K.wlisten = true; K.wres = null; render(); const alts = await kuListen(null, ()=>{}); if(S.ku !== K) return; K.wlisten = false;
+    if(alts && alts.length){ const j = kuJudge([kuWFull(w), w.de], alts); K.wres = j.ok || (j.score||0) >= 0.75 ? "ok" : "no"; sfx(K.wres === "ok" ? "ok" : "no"); } render(); },
+  kuMatchTap(b){ const M = S.ku.M; const id = b.dataset.id; const side = id[0], i = +id.slice(1); M.bad = null;
+    if(!M.sel || M.sel[0] === side){ M.sel = id; if(side === "L") say(kuWFull(M.rounds[M.r][i]), "de"); render(); return; }
+    const j = +M.sel.slice(1); if(i === j){ M.ok[i] = true; M.sel = null; sfx("ok");
+      if(Object.keys(M.ok).length >= M.rounds[M.r].length){ M.r++; M.ok = {}; M.L = null; M.R = null; if(M.r >= M.rounds.length){ M.t1 = Date.now(); addXP(5, "oyun"); confetti(40); } } }
+    else { M.wrong++; M.bad = [M.sel, id]; M.sel = null; sfx("no"); setTimeout(()=>{ if(S.ku && S.ku.M === M){ M.bad = null; render(); } }, 600); }
+    render(); },
+  kuMatchAgain(){ S.ku.M = kuMatchNew(S.ku.u); render(); },
+  kuSpeedAgain(){ S.ku.D = kuSpeedRun(S.ku.u); render(); },
+  kuWrCheck(){ kuWrCheck(); },
+  kuWrShow(){ const Wr = S.ku.Wr; const el = $("#kuWr"); Wr.text = (el && el.value.trim()) || "—"; Wr.phase = "res"; Wr.err = ""; render(); },
+  kuWrAgain(){ const Wr = S.ku.Wr; Wr.phase = "edit"; Wr.res = null; render(); },
+  kuGateDrill(){ const K = S.ku, u = K.u; const ready = (u.words||[]).filter(w=>!kuWLearned(u, w) && kuWReadyAgain(u, w));
+    K.steps.splice(K.si, 0, {k:"drills", lab:"Kelime pekiştirme", items: shuffle([...kuWordItems(u, ready, "rec"), ...kuWordItems(u, ready, "prod"), ...kuWordItems(u, ready, "prod")]).filter((x, i, a)=>a.findIndex(y=>y._id === x._id) === i)}); kuEnter(); render(); },
+  kuTestGo(){ const K = S.ku, u = K.u; const items = shuffle([...kuTag(u, u.test, "x"), ...kuPrevItems(u, 4)]);
+    K.steps.splice(K.si + 1, 0, {k:"test", items}); kuGoNext(); },
+  kuNext(){ kuGoNext(); },
+  kuRetest(){ const K = S.ku, u = K.u; K.D = kuDrillRun(shuffle([...kuTag(u, u.test, "x"), ...kuPrevItems(u, 4)]), "test", "Ünite sınavı"); render(); setTimeout(()=>kuAuto(), 250); },
+  kuWeak(){ const K = S.ku; const w = new Set(K.D.weak || []); const items = kuTag(K.u, K.u.drills, "d").filter(x=>w.has(x.t));
+    K.D = kuDrillRun(shuffle(items).slice(0, 12), "drill", "Zayıf kısımlar"); K.D.after = "test"; render(); setTimeout(()=>kuAuto(), 250); },
+  kuReview(){ kuReviewStart(); },
+  kuSayAll(){ if(S.kAll){ S.kAllRun = (S.kAllRun||0) + 1; S.kAll = false; stopSpeech(); render(); return; } const t = S.ku.u.teach[kuStep().i]; kSaySeq((t.ex||[]).map(e=>e.de)); },
+  kuDlgAll(){ if(S.kAll){ S.kAllRun = (S.kAllRun||0) + 1; S.kAll = false; stopSpeech(); render(); return; } kSaySeq(S.ku.u.dialog.lines.map(l=>l.de)); },
+  kuReadAll(){ if(S.kAll){ S.kAllRun = (S.kAllRun||0) + 1; S.kAll = false; stopSpeech(); render(); return; } const r = S.ku.u.read; kSaySeq(String(r.de).match(/[^.!?]+[.!?]+/g) || [r.de]); },
+  kuReadTr(){ S.ku.R.tr = !S.ku.R.tr; render(); },
+  kuReadAns(b){ const q = +b.dataset.q, j = +b.dataset.j; const R = S.ku.R; if(R.ans[q] != null) return; R.ans[q] = j; const ok = S.ku.u.read.qs[q].ans === j; sfx(ok ? "ok" : "no"); if(ok) addXP(2, "okuma"); render(); },
+  kuSlow(){ const it = kuCur(); if(it) say(it.de, "de", 0.7); },
+  kuPick(b){ const D = S.ku.D, it = kuCur(); if(!it || D.res) return; const v = b.dataset.v; D.chosen = v;
+    const ok = it.k === "gap" ? it.ans.includes(v) : +v === it.ans; kuAnswer(ok); },
+  kuChip(b){ const D = S.ku.D; const j = +b.dataset.j; if(!D.built.includes(j)) D.built.push(j); render(); },
+  kuUnchip(b){ const D = S.ku.D; D.built.splice(+b.dataset.n, 1); render(); },
+  kuOrderCheck(){ const D = S.ku.D, it = kuCur(); const s = D.built.map(j=>D.pool[j]).join(" "); const j = kuJudge(kuVariants(it), [s]); kuAnswer(j.ok, {heard: j.ok ? "" : s, words: j.ok ? null : j.words}); },
+  kuTypeOn(){ S.ku.D.typed = true; render(); setTimeout(()=>{ const el = $("#kuIn"); if(el) el.focus(); }, 50); },
+  kuTypeOff(){ S.ku.D.typed = false; render(); },
+  kuCheckTyped(){ const el = $("#kuIn"); const v = el ? el.value.trim() : ""; if(!v) return; const it = kuCur(); const j = kuJudge(kuVariants(it), [v]); kuAnswer(j.ok, {heard: j.ok ? "" : v, words: j.words}); },
+  kuSkip(){ const D = S.ku.D; D.chosen = null; kuAnswer(false, {skip:true}); },
+  async kuMic(){ const K = S.ku, D = K.D, it = kuCur(); if(!it || D.res && !D.repeating) return;
+    if(D.listening){ try { micFinish(); } catch(e){} return; }
+    D.listening = true; D.live = ""; render();
+    const alts = await kuListen(null, t=>{ D.live = t; const el = document.querySelector(".ku-live"); if(el) el.textContent = t; });
+    if(S.ku !== K) return; D.listening = false;
+    if(!alts || !alts.length){ D.live = ""; render(); return; }
+    const j = kuJudge(kuVariants(it), alts); kuAnswer(j.ok, {heard:j.heard, words:j.words, spoken:true}); },
+  kuOverride(){ const D = S.ku.D; const idx = D.q[D.pos]; if(D.first[idx] === false){ D.first[idx] = true; D.ok++; D.bad = Math.max(0, D.bad - 1); const it = kuCur(); kuMark(it, true); }
+    D.q = D.q.filter((x, k)=>k <= D.pos || x !== idx); D.res.ok = true; D.res.over = true; sfx("ok"); render(); },
+  async kuRepeat(){ const K = S.ku, D = K.D, it = kuCur(); if(!it || !D.res) return;
+    if(D.listening){ try { micFinish(); } catch(e){} return; }
+    D.listening = true; render();
+    const alts = await kuListen(null, ()=>{}); if(S.ku !== K) return; D.listening = false;
+    if(!alts || !alts.length){ render(); return; }
+    const j = kuJudge(kuVariants(it), alts); D.res.rep = j.ok || (j.score||0) >= 0.85 ? "ok" : "no"; sfx(D.res.rep === "ok" ? "ok" : "no"); render(); },
+  kuAdv(){ kuAdvance(); },
+  kuDlgRole(){ stopAll && stopAll(); S.ku.G = {mode:"role", i:0, ok:0}; kuDlgAdvanceA(); },
+  kuDlgNext(){ const G = S.ku.G; G.i++; G.res = null; G.live = ""; kuDlgAdvanceA(); },
+  kuDlgShow(){ const G = S.ku.G; G.res = {ok:false}; render(); say(S.ku.u.dialog.lines[G.i].de, "de"); },
+  async kuDlgMic(){ const K = S.ku, G = K.G; const l = K.u.dialog.lines[G.i]; if(!l) return;
+    if(G.listening){ try { micFinish(); } catch(e){} return; }
+    const retry = !!G.res; G.res = null; G.listening = true; G.live = ""; render();
+    const alts = await kuListen(null, t=>{ G.live = t; const el = document.querySelector(".ku-live"); if(el) el.textContent = t; });
+    if(S.ku !== K) return; G.listening = false; if(!alts || !alts.length){ render(); return; }
+    const j = kuJudge([l.de], alts); const ok = j.ok || (j.score||0) >= 0.85; if(ok && !retry) G.ok++;
+    G.res = {ok, words:j.words}; sfx(ok ? "ok" : "no"); if(ok) addXP(2, "diyalog"); render(); if(!ok) say(l.de, "de"); },
+  rpGo(){ rpStart(); },
+  async rpMic(){ const K = S.ku, P = K.RP; if(!P) return;
+    if(P.listening){ try { micFinish(); } catch(e){} return; }
+    stopSpeech && stopSpeech(); P.speaking = false; P.listening = true; P.live = ""; render();
+    const alts = await kuListen(null, t=>{ P.live = t; const el = document.querySelector(".ku-live"); if(el) el.textContent = t; });
+    if(!S.ku || S.ku.RP !== P) return; P.listening = false; P.live = "";
+    if(!alts || !alts.length){ render(); return; }
+    await rpHeard(alts[0]); },
+  rpTypeOn(){ S.ku.RP.typed = true; render(); setTimeout(()=>{ const el = $("#rpIn"); if(el) el.focus(); }, 50); },
+  rpTypeOff(){ S.ku.RP.typed = false; render(); },
+  rpSendTyped(){ const el = $("#rpIn"); const v = el ? el.value.trim() : ""; if(v) rpHeard(v); },
+  rpEnd(){ const P = S.ku.RP; P.phase = "end"; if(P.corr.length) addMistakes(P.corr, "kurs-rol"); render(); }
+});
+function kuDlgAdvanceA(){
+  const K = S.ku, G = K.G, L = K.u.dialog.lines;
+  render();
+  if(G.i < L.length && L[G.i].r !== "B"){ const l = L[G.i]; say(l.de, "de").then(()=>{ if(S.ku === K && K.G === G && G.i < L.length && L[G.i] === l){ G.i++; kuDlgAdvanceA(); } }); }
+}
+document.addEventListener("keydown", e => {
+  if(e.key !== "Enter") return; const id = e.target && e.target.id;
+  if(id === "kuIn"){ e.preventDefault(); ACT.kuCheckTyped(); }
+  if(id === "rpIn"){ e.preventDefault(); ACT.rpSendTyped(); }
+});
+/* giriş noktaları: ana sayfa kartı, Öğren menüsü, Ne çalışalım? */
+{
+  const _rpK = renderPlan;
+  renderPlan = function(){
+    const h = _rpK.apply(this, arguments);
+    try{
+      if(!KURS.idx){ kursIndex().then(()=>{ if(S.view === "plan") render(); }); return h; }
+      const st = kSt(); const L = kuList(); const m = kuMeta(st.cur) || L[0]; if(!m) return h;
+      const doneN = L.filter(x=>kuDone(x.id)).length; const due = kuDueCount() + kuWordsDue().length;
+      const u = KURS.units[m.id]; if(!u && m.ready !== false) kursUnit(m.id).then(()=>{ if(S.view === "plan") render(); }).catch(()=>{});
+      const ns = u ? kuNodes(u) : []; const nd = (st.u[m.id] || {}).nd || {}; const nx = ns.find(x=>!nd[x.id]); const dn = ns.filter(x=>nd[x.id]).length;
+      const card = `<section class="card ku-hero ku-home"><div class="row between"><div class="kicker">📚 Kursum · ${esc(m.lvl)} · Ünite ${L.indexOf(m) + 1}/${L.length}</div><button class="btn small" style="background:rgba(255,255,255,.2);color:#fff;border:0" data-act="kursOpen">Harita</button></div>
+        <h2>${esc(m.title_tr)}</h2><div class="ku-de-t">${esc(m.title_de)}</div>
+        ${ns.length ? `<div class="ku-dots">${ns.map(x=>`<i class="${nd[x.id] ? "on" : nx && x.id === nx.id ? "cur" : ""}" title="${esc(x.t)}">${nd[x.id] ? "" : x.ic}</i>`).join("")}</div>` : `<p class="small">${esc(m.goal_tr)}</p>`}
+        ${m.ready === false ? `<div class="small">Bu ünite hazırlanıyor.</div>` : `<button class="btn primary block ku-go" data-act="kuStartId" data-id="${esc(m.id)}">${nx ? "▶ " + esc(nx.ic + " " + nx.t) : "▶ Üniteye devam"}</button>`}
+        ${due ? `<button class="btn block" style="background:rgba(255,255,255,.18);color:#fff;border:0" data-act="kuReview">🔁 Kurs tekrarı · ${due} madde</button>` : ""}</section>`;
+      const j = h.indexOf("</section>"); return j < 0 ? card + h : h.slice(0, j + 10) + card + h.slice(j + 10);
+    }catch(e){ return h; }
+  };
+  VIEWS.plan = () => renderPlan();
+  const _rlK = renderLernen;
+  renderLernen = function(){
+    const h = _rlK.apply(this, arguments);
+    if(!h.includes('class="k-tiles"')) return h;
+    const tile = `<button class="k-tile" style="--tc:#2563EB" data-act="kursOpen"><i aria-hidden="true">📚</i><b>Kurs A1 → B1</b><span>Hazır üniteler, sırayla</span></button>`;
+    return h.replace('<section class="k-tiles">', '<section class="k-tiles">' + tile);
+  };
+  VIEWS.lernen = () => renderLernen();
+}
+
+/* ---- src/js/30-livefix.js ---- */
+
+/* ===== Canlı sohbet: gerçek düzeltme. Sesli model talimatı unutabildiği için her cümleni ayrı bir metin modeli kontrol eder;
+   hata varsa ekranda kart çıkar ve (ayara göre) partnere "şimdi düzelt" notu gönderilir, o da sesli düzeltip tekrar ettirir. ===== */
+function liveFixEl(){ let el = document.getElementById("lvFix"); const st = document.querySelector(".lvstage"); if(!st) return null; if(!el){ el = document.createElement("div"); el.id = "lvFix"; el.className = "lvfix"; st.insertBefore(el, st.querySelector(".lvfoot")); } return el; }
+function liveFixShow(L){ const el = liveFixEl(); if(!el) return; const f = (L.fixes||[]).slice(-1)[0]; if(!f){ el.innerHTML = ""; return; }
+  el.innerHTML = `<div class="lvfix-c"><div class="small"><s>${esc(f.wrong)}</s></div><div class="lvfix-r"><b>✓ ${esc(f.right)}</b><button class="k-say" data-act="sayDe" data-t="${esc(f.right)}" aria-label="Dinle">🔊</button></div>${f.why ? `<div class="small">${esc(f.why)}</div>` : ""}</div>`; el.classList.remove("pop"); void el.offsetWidth; el.classList.add("pop"); }
+async function liveCheck(L, text){
+  try{
+    if(!L || !text || !aiReady() || !liveIsDe(text) || ntok(text).length < 3) return;
+    L.chk = (L.chk || 0) + 1; if(L.chk > 2){ L.chk--; return; }
+    const prev = ((L.turns.filter(t=>t.who === "m").slice(-1)[0]) || {}).t || "";
+    const prompt = `Ein türkischer Deutschlerner (Niveau A1-A2) hat in einem Gespräch gesagt (Spracherkennung, Satzzeichen und Großschreibung fehlen evtl.): „${text}“
+Letzte Äußerung des Gesprächspartners davor: „${prev}“
+Prüfe nur ECHTE Fehler (Verbform, Wortstellung, Artikel/Fall, falsches oder englisches/türkisches Wort, Satzbau). Ignoriere Satzzeichen, Groß/Klein, Füllwörter und offensichtliche Hörfehler der Spracherkennung. Umgangssprache ist erlaubt.
+Antworte NUR mit JSON: {"ok":true,"right":"","why_tr":"","major":false}
+- ok=false nur bei echtem Fehler; dann "right" = sein Satz korrigiert, so nah wie möglich am Original; "why_tr" = Grund auf Türkisch, max. 10 Wörter, fehlerfreies Türkisch; "major" = true bei Verbform, Verbposition, Artikel/Fall oder falschem Wort.`;
+    const r = await Promise.race([AI.json(prompt, {modelTier:"quick"}), sleep(15000).then(()=>null)]);
+    L.chk--;
+    if(!r || r.ok !== false || !r.right || S.live !== L) return;
+    if(kuNorm(r.right) === kuNorm(text)) return;
+    const f = {wrong:text, right:String(r.right), why:String(r.why_tr||""), major:!!r.major};
+    (L.fixes = L.fixes || []).push(f); liveFixShow(L); try { sfx("no"); } catch(e){}
+    const mode = liveCorr();
+    if(mode === "light" || (mode === "normal" && !f.major)) return;
+    /* partner konuşuyorsa sözünü bitirmesini bekle, sonra düzeltme notunu gönder */
+    for(let k = 0; k < 40 && S.live === L && L.speaking === "model"; k++) await sleep(250);
+    if(S.live !== L || L.phase !== "live" || !L.ws) return;
+    L.ws.send(JSON.stringify({realtimeInput:{text:`(Hinweis vom Lernsystem, NICHT vorlesen: Der Lerner hat gerade gesagt: „${f.wrong}“. Richtig ist: „${f.right}“. Sag ihm jetzt ZUERST kurz und freundlich: „Kleine Korrektur: ${f.right}“, bitte ihn, den Satz einmal zu wiederholen, warte auf seine Wiederholung, lob kurz und mach dann ganz normal mit dem Gespräch weiter.)`}}));
+  }catch(e){ if(L) L.chk = Math.max(0, (L.chk||1) - 1); }
+}
+{
+  const _lv = renderLive;
+  renderLive = function(){
+    let h = _lv.apply(this, arguments); const L = S.live;
+    if(L && L.phase === "live") setTimeout(()=>liveFixShow(L), 0);
+    if(L && ["done","fb"].includes(L.phase) && (L.fixes||[]).length && !L._fixSaved){ L._fixSaved = true; addMistakes(L.fixes.map(f=>({wrong:f.wrong, right:f.right, rule_tr:f.why, topic:"Sonstiges"})), "canlı"); }
+    if(L && (L.fixes||[]).length && /dk canlı konuştun/.test(h)){
+      const box = `<h3>Sohbet sırasında düzeltilenler</h3><div class="stack">${L.fixes.slice(0, 8).map(f=>`<div class="ex"><s class="small">${esc(f.wrong)}</s><div class="row between" style="flex-wrap:nowrap"><b class="de">${esc(f.right)}</b><button class="btn small ghost" data-act="sayDe" data-t="${esc(f.right)}" aria-label="Dinle">🔊</button></div>${f.why ? `<div class="tr">${esc(f.why)}</div>` : ""}</div>`).join("")}</div>`;
+      if(h.includes("<h3>Böyle de diyebilirdin</h3>")) h = h.replace("<h3>Böyle de diyebilirdin</h3>", box + "<h3>Böyle de diyebilirdin</h3>");
+      else { const i = h.indexOf("<details"); h = i > 0 ? h.slice(0, i) + box + h.slice(i) : h.replace(/<\/section>\s*$/, box + "</section>"); }
+    }
+    return h;
+  };
+  VIEWS.canli = () => renderLive();
+}
+
+/* ---- src/js/40-kurs-session.js ---- */
+/* ===== Günlük oturum kursla çalışır: masada/iş arasında bloklar kurs basamaklarıdır; ellerin serbestken kursun cümleleri sesli çalışılır ===== */
+BLK.kurs = {min:10, ai:false, heavy:true, label:"Kurs"};
+BLK.kursrv = {min:6, ai:false, heavy:true, label:"Kurs tekrarı"};
+BLK.kursses = {min:8, ai:false, label:"Kurs: sesli tekrar"};
+{
+  const _spK = sessPick;
+  sessPick = function(){
+    const s = S.sess, C = CTXS[s.ctx];
+    if(!KURS.idx) { kursIndex(); return _spK.apply(this, arguments); }
+    const cur = kuMeta(kSt().cur); const ok = cur && cur.ready !== false;
+    if(C.audio){ if(ok && !s.hist.slice(-1).includes("kursses")) return {type:"kursses"}; return _spK.apply(this, arguments); }
+    if(!ok) return _spK.apply(this, arguments);
+    const nK = s.hist.filter(x=>x === "kurs").length; const last = s.hist[s.hist.length - 1];
+    if((kuDueCount() + kuWordsDue().length) >= 5 && !s.hist.includes("kursrv")) return {type:"kursrv"};
+    /* her 3 kurs basamağından sonra kısa bir ara: önce günün diğer görevleri (kelime kartları, dış kaynak), yoksa yapay zekâsız hızlı bir oyun */
+    if(nK && nK % 3 === 0 && last === "kurs"){
+      const remain = C.len ? C.len - s.sec/60 : 99;
+      const must = (typeof sessMust === "function" ? sessMust(remain) : []).filter(b=>b.x && !["kurs","kursrv","canli"].includes(b.x.key) && !s.hist.includes(b.type));
+      if(must.length) return must[0];
+      const light = Object.keys(sessLight(remain)).filter(k=>BLK[k] && !BLK[k].ai && k !== "ext");
+      const fresh = light.filter(k=>!s.hist.slice(-6).includes(k));
+      const pick = (fresh.length ? fresh : light)[Math.floor(Math.random() * (fresh.length || light.length))];
+      if(pick) return {type:pick};
+    }
+    return {type:"kurs"};
+  };
+  const _srK = sessRun;
+  sessRun = function(b){
+    if(b && ["kurs","kursrv","kursses"].includes(b.type)){
+      const s = S.sess; s.cur = b; s.hist.push(b.type); s.blockStart = Date.now();
+      if(b.type === "kursrv") kuReviewStart(); else if(b.type === "kursses") kuAudioStart(); else kuStart(kSt().cur);
+      return;
+    }
+    return _srK.apply(this, arguments);
+  };
+  /* basamak bitince oturumda sıradakine geç */
+  const _nf = kuNodeFinish;
+  kuNodeFinish = function(){ const inSess = !!S.sess; _nf.apply(this, arguments); if(inSess && S.sess){ toast(S.kuDoneMsg ? "✓ " + esc(S.kuDoneMsg) : "✓ Basamak tamam", 1600); setTimeout(()=>{ if(S.sess && !S.ku && !S.brk) sessNext(); }, 1500); } };
+  const _de = kuDrillEnd;
+  kuDrillEnd = function(){ _de.apply(this, arguments); const D = S.ku && S.ku.D; if(S.sess && D && D.mode === "review"){ setTimeout(()=>{ if(S.sess && S.ku && S.ku.D === D){ S.ku = null; sessNext(); } }, 1800); } };
+  const _ex = ACT.kuExit;
+  ACT.kuExit = function(){ if(S.sess){ stopAll && stopAll(); const K = S.ku; if(K && K.D) clearInterval(K.D.tick); S.ku = null; kuSave(true); sessNext(); return; } return _ex.apply(this, arguments); };
+}
+
+/* ===== Eller serbest kurs: Türkçesi → düşün → Almancası → tekrar et (ekrana bakmadan) ===== */
+async function kuAudioStart(){
+  await kursIndex(); const L = kuList(); const id = kSt().cur; const i = L.findIndex(x=>x.id === id);
+  const ids = L.slice(Math.max(0, i - 2), i + 1).map(x=>x.id).filter(x=>(kuMeta(x)||{}).ready !== false);
+  const pool = [];
+  for(const uid of ids){ try{ const u = await kursUnit(uid); const started = kuDone(uid) || ((kSt().u[uid]||{}).nd && Object.keys(kSt().u[uid].nd).length);
+    if(!started) continue;
+    for(const t of (u.teach||[])) for(const e of (t.ex||[])) pool.push({de:e.de, tr:e.tr, u:uid});
+    for(const d of (u.drills||[])) if(d.k === "say") pool.push({de:d.de, tr:d.tr, u:uid});
+    for(const w of (u.words||[])) if(kuWSt(kuWKey(u, w)).c) pool.push({de:kuWFull(w), tr:w.tr, u:uid}); }catch(e){} }
+  if(!pool.length){ try{ const u = await kursUnit(id); for(const t of (u.teach||[])) for(const e of (t.ex||[])) pool.push({de:e.de, tr:e.tr, u:id}); }catch(e){} }
+  const items = shuffle(pool).slice(0, 14);
+  S.kaud = {items, i:0, run:(S.kaud && S.kaud.run || 0) + 1, phase:"run"}; go("kurs"); S.ku = {audio:true}; render();
+  kuAudioLoop(S.kaud.run);
+}
+async function kuAudioLoop(run){
+  const A = S.kaud; const slow = S.sess && CTXS[S.sess.ctx] && CTXS[S.sess.ctx].slow ? 1.4 : 1;
+  const alive = () => S.kaud === A && A.run === run && !A.paused;
+  if(!A.introDone){ A.introDone = true; await say("Kurs tekrarı. Türkçesini duyunca Almancasını söyle.", "tr"); }
+  while(alive() && A.i < A.items.length){
+    const it = A.items[A.i]; A.showDe = false; render();
+    await say(it.tr, "tr"); if(!alive()) return;
+    await sleep(Math.min(6000, 1800 + it.de.split(/\s+/).length * 450) * slow); if(!alive()) return;
+    A.showDe = true; render(); await say(it.de, "de"); if(!alive()) return;
+    await sleep(Math.min(5000, 1200 + it.de.split(/\s+/).length * 380) * slow); if(!alive()) return;
+    await say(it.de, "de", 0.85); if(!alive()) return;
+    await sleep(900);
+    A.i++;
+  }
+  if(alive()){ A.phase = "done"; addXP(8, "sesli kurs"); render(); await say("Gut gemacht!", "de"); if(S.sess && S.kaud === A){ setTimeout(()=>{ if(S.sess && S.kaud === A){ S.kaud = null; S.ku = null; sessNext(); } }, 1200); } }
+}
+function kuAudioView(){
+  const A = S.kaud; if(!A) return "";
+  const it = A.items[Math.min(A.i, A.items.length - 1)] || {};
+  if(A.phase === "done") return `<section class="card ku-sum pass"><div class="kicker">🎧 Sesli kurs tekrarı</div><div class="ku-score">${A.items.length}</div><p>cümle tekrar edildi.</p><button class="btn primary block" data-act="kuAudEnd">Tamam</button></section>`;
+  return `<div class="k-shell ku-shell"><div class="k-top"><button class="licon k-x" data-act="kuAudEnd" aria-label="Kapat">✕</button><div class="k-prog"><i style="width:${Math.max(3, Math.round(A.i / Math.max(1, A.items.length) * 100))}%"></i></div><span class="chip">${A.i + 1}/${A.items.length}</span></div>
+    <section class="k-card ku-card ku-aud"><div class="ku-mode">🎧 Eller serbest · Türkçesini duy, Almancasını söyle</div><div class="ku-prompt">${esc(it.tr||"")}</div><div class="ku-sent sm">${A.showDe ? esc(it.de||"") : "<span class=\"muted\">… Almancasını söyle</span>"}</div></section>
+    <div class="k-foot"><div class="grid2"><button class="btn" data-act="kuAudPause">${A.paused ? "▶ Devam" : "⏸ Duraklat"}</button><button class="btn" data-act="kuAudSkip">⏭ Geç</button></div></div></div>`;
+}
+{
+  const _rk = renderKurs;
+  renderKurs = function(){ if(S.ku && S.ku.audio) return kuAudioView(); return _rk.apply(this, arguments); };
+  Object.assign(ACT, {
+    kuAudPause(){ const A = S.kaud; if(!A) return; A.paused = !A.paused; if(A.paused){ stopSpeech(); render(); } else { A.run++; render(); kuAudioLoop(A.run); } },
+    kuAudSkip(){ const A = S.kaud; if(!A) return; stopSpeech(); A.i++; A.run++; A.paused = false; render(); kuAudioLoop(A.run); },
+    kuAudEnd(){ const A = S.kaud; if(A){ A.run++; } stopSpeech(); S.kaud = null; S.ku = null; if(S.sess) sessNext(); else { go("kurs"); render(); } }
+  });
+}
+
+/* kurs varken 1500 kelimeden günlük yeni kelime sınırı: kurs zaten her ünitede 16 kelime öğretiyor */
+{ const _ctK = coreTarget; coreTarget = function(){ const n = _ctK.apply(this, arguments); return KURS.idx ? Math.min(n, 10) : n; }; }
+
+/* ---- src/js/45-kurs-today.js ---- */
+/* ===== Bugün = kurs. Eski haftalık plan, yapay zekâya anlık yazdırılan ders/senaryo/hikâye görevleri günlük listeden çıkarıldı
+   (yavaş, tekrar eden ve hata verip menüye atan kısım buydu). Hepsi "Daha fazla" altında isteğe bağlı durmaya devam eder. ===== */
+const KU_KEEP = new Set(["vocab", "external", "real", "vhspost", "mock", "exam"]);
+function kuDay(){ const k = kSt(); const d = k.day || (k.day = {}); return d[dayKey()] || (d[dayKey()] = {n:0}); }
+{
+  const _nfD = kuNodeFinish;
+  kuNodeFinish = function(){ try { kuDay().n++; } catch(e){} return _nfD.apply(this, arguments); };
+  const _deD = kuDrillEnd;
+  kuDrillEnd = function(){ const D = S.ku && S.ku.D; const r = _deD.apply(this, arguments); try { if(D && D.mode === "review") kuDay().rv = true; } catch(e){} return r; };
+  const _tq = todayQueue;
+  todayQueue = function(){
+    const R = _tq.apply(this, arguments);
+    if(!KURS.idx){ kursIndex().then(()=>{ if(S.view === "plan") render(); }); return R; }
+    const m = kuMeta(kSt().cur); if(!m || m.ready === false) return R;
+    const u = KURS.units[m.id]; if(!u) kursUnit(m.id).then(()=>{ if(S.view === "plan") render(); }).catch(()=>{});
+    const nx = u ? kuNextNode(u) : null; const dd = kuDay(); const due = kuDueCount() + kuWordsDue().length;
+    const q = [{key:"kurs", kind:"kurs", title:`Kurs · ${m.title_tr}${nx ? " · " + nx.ic + " " + nx.t : ""}`, min:40, done: dd.n >= 3}];
+    if(due || dd.rv) q.push({key:"kursrv", kind:"kursrv", title:`Kurs tekrarı${due ? " · " + due + " madde" : ""}`, min:8, done: !!dd.rv && !due});
+    for(const x of R.q) if(KU_KEEP.has(x.kind)) q.push(x);
+    q.push({key:"canli", kind:"canli", title:"Canlı sohbet: öğrendiklerinle 10 dk konuş", min:10, extra:true, done: !!(daily().live || daily().canli)});
+    return {...R, q};
+  };
+  const _tg = taskGo;
+  taskGo = function(key){
+    if(key === "kurs"){ kuStart(kSt().cur); return; }
+    if(key === "kursrv"){ kuReviewStart(); return; }
+    if(key === "canli"){ go("canli"); render(); return; }
+    return _tg.apply(this, arguments);
+  };
+  const _rpT = renderPlan;
+  renderPlan = function(){
+    let h = _rpT.apply(this, arguments);
+    const m = KURS.idx && kuMeta(kSt().cur);
+    if(m) h = h.replace(/<div class="h3sub">[\s\S]*?<\/div>/, `<div class="h3sub">${esc(m.lvl)} · ${esc(m.title_tr)}</div>`);
+    return h;
+  };
+  VIEWS.plan = () => renderPlan();
+}
+
+/* ---- src/js/50-ai-context.js ---- */
+/* ===== Yapay zekâya giden bağlam: kişisel ayrıntı yok, odak = kurstaki ünite ===== */
+function artDedup(o){
+  try{ if(o && typeof o.de === "string" && ["der","die","das"].includes(o.artikel) && new RegExp("^" + o.artikel + "\\s+", "i").test(o.de)) o.de = o.de.replace(/^(der|die|das)\s+/i, ""); }catch(e){}
+  return o;
+}
+{
+  const _pfK = profile;
+  profile = function(){
+    let s = _pfK.apply(this, arguments);
+    s = s.replace(/^LERNER[^\n]*\n/, "LERNER: türkischer Muttersprachler (Englisch B2), lebt in Bayern, Deutsch real Niveau A1 auf dem Weg zu B1. Verwende KEINE persönlichen Details über ihn (Beruf, Sport, Familie, Name). Themen: Alltag in Bayern mit wechselnden Personen.\n");
+    try{
+      const m = KURS.idx && kuMeta(kSt().cur); const u = m && KURS.units[m.id];
+      if(m){ const gram = u ? (u.teach||[]).map(t=>t.h_tr).join("; ") : ""; const ws = u ? (u.words||[]).map(w=>kuWFull(w)).join(", ") : "";
+        s = s.replace(/HEUTIGES THEMA: [^\n]*/, `AKTUELLE KURSEINHEIT: ${m.lvl} „${m.title_de}“ (${m.title_tr}). Ziel: ${m.goal_tr}${gram ? "\nGRAMMATIK DIESER EINHEIT: " + gram : ""}${ws ? "\nWÖRTER DIESER EINHEIT: " + ws : ""}\nÜbungen, Geschichten und Gespräche sollen diese Einheit üben und nichts verwenden, was weit über ihr Niveau geht.`); }
+    }catch(e){}
+    return s;
+  };
+}
+
+/* ---- src/js/90-whatsnew.js ---- */
+/* ===== Yenilikler: her önemli sürümde bir kez gösterilir ===== */
+const WHATSNEW = {id:"2026-11-13-kurs", title:"Yeni: Kurs A1 → B1", items:[
+  "📚 Uygulama artık hazır bir kursla ilerliyor: 14 A1 ünitesi hazır, A2 ve B1 sırada. Her ünite kelimeler → kural → dinleme → okuma → oyunlar → yazma → rol oyunu → sınav basamaklarından oluşuyor.",
+  "⚡ Dersler önceden yazılmış ve kontrol edilmiş: bekleme yok, hata verip menüye atma yok, internet olmadan da çalışıyor.",
+  "🧠 Kelimeler, Türkçesinden Almancasını iki ayrı oturumda kendin söyleyince kalıcı sayılıyor; ünite sınavı ancak o zaman açılıyor.",
+  "🎭 Her ünitenin sonunda, seni düzelte düzelte konuşturan kısa bir rol oyunu var.",
+  "💬 Canlı sohbette her cümlen arka planda kontrol ediliyor: hatada ekranda kart çıkıyor, partnerin de sesli düzeltip tekrar ettiriyor.",
+  "🚗 Eller serbest modda kursun cümleleri çalışılıyor: Türkçesini duy, Almancasını söyle.",
+  "🔇 Sesli okumada tire, nokta, eğik çizgi gibi işaretler artık okunmuyor; Almanca ve Türkçe kısımlar kendi sesleriyle okunuyor."]};
+{
+  const _rpW = renderPlan;
+  renderPlan = function(){
+    const h = _rpW.apply(this, arguments);
+    if((S.state.seenNew || "") === WHATSNEW.id) return h;
+    const card = `<section class="card wn-card"><div class="row between"><b>🎉 ${esc(WHATSNEW.title)}</b><button class="licon" data-act="wnClose" aria-label="Kapat">✕</button></div><ul class="wn-list">${WHATSNEW.items.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><button class="btn primary block" data-act="wnClose">Anladım, başlayalım</button></section>`;
+    const j = h.indexOf("</section>"); return j < 0 ? card + h : h.slice(0, j + 10) + card + h.slice(j + 10);
+  };
+  VIEWS.plan = () => renderPlan();
+  ACT.wnClose = function(){ S.state.seenNew = WHATSNEW.id; Store.saveState(); render(); };
+}
+
 </script>
 </body>
 </html>
