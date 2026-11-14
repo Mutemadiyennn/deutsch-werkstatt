@@ -1129,6 +1129,10 @@ body.lesson main, body.lesson.insess main, body.lesson.focus main{padding-top:ca
 .ku-pn.r{padding-left:30%}.ku-pl small{white-space:nowrap}.ku-pl b{display:block;max-width:190px}
 .ku-end{font-weight:900;font-size:1.2rem;align-self:center}
 .ku-expl .k-de{background:none!important;padding:0!important;border:0!important;box-shadow:none!important;color:var(--accent);font-weight:800}
+.ku-card .vphoto{border-radius:18px;overflow:hidden;position:relative;margin:0}
+.ku-card .vphoto img{width:100%;height:100%;object-fit:cover;display:block}
+.ku-phload{background:linear-gradient(100deg,var(--soft) 30%,color-mix(in srgb,var(--soft) 60%,var(--card)) 50%,var(--soft) 70%);background-size:200% 100%;animation:kuShim 1.2s linear infinite}
+@keyframes kuShim{to{background-position:-200% 0}}
 
 .lvfix{width:100%;max-width:460px;margin:0 auto}
 .lvfix-c{padding:10px 14px;border-radius:16px;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.5);color:#fff;display:flex;flex-direction:column;gap:4px}
@@ -5812,7 +5816,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-14d";
+const APP_VER = "2026-11-14e";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -10484,6 +10488,16 @@ function kuWKey(u, w){ return u.id + ":w:" + w.de; }
 function kuTrShort(tr){ let t = String(tr||"").split(/[;(]/)[0].replace(/\s+/g, " ").trim().replace(/[,:\-–]+$/, "").trim(); return t || String(tr||""); }
 /* "kuzeyde: das Brötchen" gibi Türkçe notlardaki Almanca eş anlamlılar kabul edilir */
 function kuTrAlts(w){ const out = []; const re = /\b(der|die|das)\s+([A-ZÄÖÜ][a-zäöüß]+)/g; let m; while((m = re.exec(String(w.tr||"")))) out.push(m[1] + " " + m[2]); return out.filter(x=>x !== kuWFull(w)); }
+/* fotoğraf: kelimenin İngilizce arama sorgusu (img) ile Pexels/Pixabay; yüklenince ekran yenilenir */
+const KU_PH = {};
+function kuPhotoHtml(img, h){
+  if(!img || !((typeof hasPhotos === "function" && hasPhotos()) || window.__dwPhotoTest)) return "";
+  const o = KU_PH[img] || (KU_PH[img] = {img});
+  if(!o.photo && !o._req){ o._req = true; photoFor(o).then(()=>{ if(S.view === "kurs") render(); }).catch(()=>{}); }
+  if(o.photo && o.photo.src) return photoHtml(o, h || 180);
+  if(o.photo && o.photo.none) return "";
+  return `<div class="vphoto ku-phload" style="height:${h || 180}px"></div>`;
+}
 function kuSentFor(u, w){
   if(w.t === "x") return null; const re = new RegExp("(^|[^A-Za-zÄÖÜäöüß])(" + w.de.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")(?=[^A-Za-zÄÖÜäöüß]|$)");
   const pool = [...(u.teach||[]).flatMap(t=>t.ex||[]), ...((u.dialog||{}).lines||[])].filter(x=>x.de && x.tr && x.de.split(/\s+/).length <= 12);
@@ -10502,6 +10516,11 @@ function kuWordItems(u, words, stage){
     }
     if(stage === "prod"){
       out.push({...base, _id:key + ":s", k:"say", tr:short, de:kuWFull(w), alt:kuTrAlts(w), word:true, why_tr: w.t === "n" ? "İsimleri hep artikeliyle söyle." : (w.tr !== short ? w.tr : "")});
+    }
+    if(stage === "ctxsay"){
+      const g = kuSentFor(u, w);
+      if(g) out.push({...base, _id:key + ":cs", k:"say", tr:g.tr, de:g.de, alt:[], gapde:g.g, fill:w.de, img:w.img || "", word:true, why_tr:`${kuWFull(w)} = ${short}`});
+      else out.push({...base, _id:key + ":s", k:"say", tr:short, de:kuWFull(w), alt:kuTrAlts(w), word:true, img:w.img || "", why_tr: w.t === "n" ? "İsimleri hep artikeliyle söyle." : (w.tr !== short ? w.tr : "")});
     }
     if(stage === "ctx"){
       const g = kuSentFor(u, w);
@@ -10537,7 +10556,7 @@ function kuNodeSteps(u, node){
   if(node.k === "vocab"){
     if(node.id === "w1"){ const prev = kuPrevItems(u, 5); if(prev.length) st.push({k:"drills", lab:"Isınma: önceki üniteden", items: prev}); }
     const W = node.words;
-    for(let i = 0; i < W.length; i += 4){ const ch = W.slice(i, i + 4); st.push({k:"wintro", words:ch}); st.push({k:"drills", lab:"Tanı", items:shuffle(kuWordItems(u, ch, "rec"))}); st.push({k:"drills", lab:"Kendin söyle", items:shuffle(kuWordItems(u, ch, "prod"))}); }
+    for(let i = 0; i < W.length; i += 4){ const ch = W.slice(i, i + 4); st.push({k:"wintro", words:ch}); st.push({k:"drills", lab:"Tanı", items:shuffle(kuWordItems(u, ch, "rec"))}); st.push({k:"drills", lab:"Cümlede kullan", items:shuffle(kuWordItems(u, ch, "ctxsay"))}); }
     const mix = [...kuWordItems(u, W, "ctx"), ...kuWordItems(u, shuffle(W.concat(node.recall || [])).slice(0, 10), "prod")];
     st.push({k:"drills", lab:"Hepsi bir arada", items:shuffle(mix)});
   }
@@ -10661,6 +10680,7 @@ function kuDrillEnd(){
   kuSave(true); render(); window.scrollTo(0,0);
 }
 function kuItemHead(it){
+  if(it.k === "say" && it.gapde) return `<div class="kicker ku-kick"><span>🗣️</span>Cümleyi tamamla, bütün cümleyi söyle</div>`;
   const lab = {say:["🗣️","Almanca söyle"], gap:["🧩","Boşluğu doldur"], pick:["🎯","Doğru olanı seç"], order:["🔀","Cümleyi kur"], listen:["👂","Dinle ve anlamını seç"], fix:["🛠️","Hatayı düzelt ve söyle"]}[it.k] || ["",""];
   return `<div class="kicker ku-kick"><span>${lab[0]}</span>${lab[1]}</div>`;
 }
@@ -10668,7 +10688,9 @@ function kuMicBtn(label){ const D = S.ku.D; return `<button class="btn primary b
 function kuItemBody(it){
   const D = S.ku.D, R = D.res;
   const tr = it.tr ? `<p class="ku-tr">${esc(it.tr)}</p>` : "";
-  if(it.k === "say") return `${kuItemHead(it)}<div class="ku-prompt">${esc(it.tr)}</div>${D.listening || D.live ? `<div class="ku-live">${esc(D.live || "Dinliyorum…")}</div>` : ""}`;
+  if(it.k === "say"){ const ph = it.img ? kuPhotoHtml(it.img, it.gapde ? 170 : 190) : "";
+    if(it.gapde){ const parts = it.gapde.split("___"); return `${kuItemHead(it)}${ph}<div class="ku-sent">${esc(parts[0])}${R && R.ok ? `<b class="ku-fill ok">${esc(it.fill || "")}</b>` : `<span class="ku-blank">&nbsp;</span>`}${esc(parts[1]||"")}</div><div class="ku-prompt sm">${esc(it.tr)}</div>${D.listening || D.live ? `<div class="ku-live">${esc(D.live || "Dinliyorum…")}</div>` : ""}`; }
+    return `${kuItemHead(it)}${ph}<div class="ku-prompt">${esc(it.tr)}</div>${D.listening || D.live ? `<div class="ku-live">${esc(D.live || "Dinliyorum…")}</div>` : ""}`; }
   if(it.k === "gap"){ const parts = it.de.split("___");
     const fill = R ? `<b class="ku-fill ${R.ok ? "ok" : "bad"}">${esc(D.chosen || it.ans[0])}</b>` : `<span class="ku-blank">&nbsp;</span>`;
     return `${kuItemHead(it)}<div class="ku-sent">${esc(parts[0])}${fill}${esc(parts[1]||"")}</div>${tr}
@@ -10744,7 +10766,7 @@ function kuWintroView(){
   const ex = kuSentFor(K.u, w); const exFull = ex ? ex.de : ""; const exTr = ex ? ex.tr : "";
   setTimeout(()=>{ if(S.ku === K && kuStep() === s && K._said !== s.words[K.wi]){ K._said = s.words[K.wi]; say(full, "de"); } }, 200);
   const R = K.wres;
-  return kuShell(`<div class="ku-mode">🧠 Yeni kelime ${K.wi + 1}/${W.length}</div>
+  return kuShell(`<div class="ku-mode">🧠 Yeni kelime ${K.wi + 1}/${W.length}</div>${kuPhotoHtml(w.img, 200)}
     <div class="ku-wcard ${w.art ? "a-" + w.art : ""}"><div class="ku-wart">${w.art ? esc(w.art) : w.t === "v" ? "fiil" : w.t === "a" ? "sıfat / zarf" : /^(wer|wie|wo|woher|wohin|was|wann|warum|welche?r?s?|wie viel)$/i.test(w.de) ? "soru kelimesi" : /\s/.test(w.de) ? "kalıp" : "kelime"}</div>
       <div class="ku-wde">${esc(w.de)}</div>${pl ? `<div class="ku-wpl">çoğul: die ${esc(pl)}</div>` : plOnly ? `<div class="ku-wpl">sadece çoğul</div>` : ""}
       <div class="ku-wtr">${esc(w.tr)}</div><button class="ku-big" data-act="sayDe" data-t="${esc(full)}" aria-label="Dinle">🔊</button></div>
@@ -11385,10 +11407,11 @@ function artDedup(o){
 
 /* ---- src/js/90-whatsnew.js ---- */
 /* ===== Yenilikler: her önemli sürümde bir kez gösterilir ===== */
-const WHATSNEW = {id:"2026-11-14-kurs", title:"Yeni: Kurs A1 → B1", items:[
+const WHATSNEW = {id:"2026-11-14-kurs2", title:"Yeni: Kurs A1 → B1", items:[
   "📚 Uygulama artık hazır bir kursla ilerliyor: A1'den B1'e 42 ünite, Schritte plus Neu sırasıyla. Her ünite kelimeler → kural → dinleme → okuma → oyunlar → yazma → rol oyunu → sınav basamaklarından oluşuyor.",
   "✅ Bütün üniteler yazarından bağımsız bir dilbilimci tarafından madde madde incelendi; doğru söylediğin farklı bir cümle de (sıkı bir öğretmen kontrolüyle) doğru sayılır.",
   "⚡ Dersler önceden yazılmış ve kontrol edilmiş: bekleme yok, hata verip menüye atma yok, internet olmadan da çalışıyor.",
+  "📸 Kelimeler fotoğrafla tanıtılıyor ve ünitenin gerçek cümleleri içinde çalışılıyor: cümleyi tamamlayıp bütün cümleyi sesli söylüyorsun.",
   "🧠 Kelimeler, Türkçesinden Almancasını iki ayrı oturumda kendin söyleyince kalıcı sayılıyor; ünite sınavı ancak o zaman açılıyor.",
   "🎭 Her ünitenin sonunda, seni düzelte düzelte konuşturan kısa bir rol oyunu var.",
   "💬 Canlı sohbette her cümlen arka planda kontrol ediliyor: hatada ekranda kart çıkıyor, partnerin de sesli düzeltip tekrar ettiriyor.",
