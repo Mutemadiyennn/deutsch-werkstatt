@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8"><title>Deutsch Werkstatt 2.0 — Hedef ekranlar 2</title>
+<style>
+:root{--himmel:#1C6FD6;--himmel2:#E3EEFB;--tinte:#14233B;--tinte2:#5A6B82;--papier:#F5F8FC;--brezel:#C27A2C;--wiese:#2F9E6B;--minze:#2BA89A;--rot:#D6453D;
+--praxis:#2BA89A;--cafe:#C27A2C;--arbeit:#4F6683;--amt:#6E5BC7;--bank:#1F8A9E;--wohnung:#B5577A;--friseur:#9A5BB0;--fitness:#D39A1B;--verkehr:#3E7CB1;--frei:#2F9E6B;
+--line:#DCE5F0;--card:#FFFFFF}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Inter","SF Pro Text",system-ui,sans-serif;background:#DCE3EC;color:var(--tinte);padding:36px;display:flex;gap:36px;align-items:flex-start;width:max-content}
+.col{display:flex;flex-direction:column;gap:14px;align-items:center}
+.cap{font:600 22px/1.3 "Inter";color:#33445C}
+.phone{width:430px;height:932px;border-radius:54px;background:var(--papier);position:relative;overflow:hidden;box-shadow:0 0 0 10px #0E1622,0 30px 60px rgba(14,22,34,.35)}
+.status{height:54px;display:flex;justify-content:space-between;align-items:flex-end;padding:0 34px 6px;font:600 16px "Inter"}
+.de{font-family:"Inter Display","SF Pro Rounded",sans-serif;letter-spacing:-.01em}
+svg.i{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* Raute */
+.r{width:22px;height:22px;transform:rotate(45deg) scaleY(.82);border-radius:3px;background:var(--himmel2);display:inline-block}
+.r.on{background:var(--himmel)} .r.half{background:linear-gradient(90deg,var(--himmel) 50%,var(--himmel2) 50%)}
+.rrow{display:flex;gap:14px;align-items:center}
+.btn{height:62px;border-radius:20px;background:var(--himmel);color:#fff;font:700 19px "Inter";display:flex;align-items:center;justify-content:center;gap:10px;border:0;width:100%}
+.ghost{background:none;color:var(--himmel);font:600 17px "Inter";border:0}
+.tabs{position:absolute;bottom:0;left:0;right:0;height:96px;background:rgba(255,255,255,.96);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding-top:12px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:5px;font:600 13px "Inter";color:#8696AB}
+.tab.on{color:var(--himmel)}
+.av{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font:700 18px "Inter";flex:none}
+/* Bugün */
+.sky{height:290px;background:linear-gradient(180deg,#9CC6F2 0%,#CFE3F8 58%,#F5F8FC 100%);position:relative}
+.sky svg.town{position:absolute;bottom:0;left:0;width:430px;height:150px}
+.hello{position:absolute;top:70px;left:28px}
+.hello h1{font-size:40px;font-weight:800;line-height:1.05}
+.hello p{font-size:17px;color:#35506F;margin-top:6px}
+.inbox{position:absolute;top:66px;right:24px;width:52px;height:52px;border-radius:18px;background:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;color:var(--tinte)}
+.badge{position:absolute;top:-4px;right:-4px;min-width:22px;height:22px;border-radius:11px;background:var(--brezel);color:#fff;font:700 13px/22px "Inter";text-align:center;padding:0 6px}
+.next{margin:-28px 20px 0;position:relative;background:#fff;border-radius:28px;padding:22px;box-shadow:0 10px 30px rgba(20,35,59,.10)}
+.next .scene{height:118px;border-radius:20px;background:#F6EBDD;position:relative;overflow:hidden;margin-bottom:18px}
+.kicker{font:600 15px "Inter";color:var(--brezel)}
+.next h2{font-size:25px;line-height:1.2;margin:4px 0 6px}
+.next p{color:var(--tinte2);font-size:16px;line-height:1.45}
+.line{margin:18px 24px 0;font-size:16px;color:var(--tinte2);line-height:1.45;display:flex;gap:12px;align-items:flex-start}
+/* Yol */
+.head{padding:8px 26px 0}
+.head h1{font-size:32px;font-weight:800}
+.head p{color:var(--tinte2);font-size:16px;margin-top:4px}
+.path{position:relative;margin:14px 0 0;height:640px}
+.node{position:absolute;display:flex;align-items:center;gap:16px;width:330px}
+.big{width:66px;height:66px;transform:rotate(45deg) scaleY(.82);border-radius:10px;background:var(--himmel);flex:none;box-shadow:0 8px 18px rgba(28,111,214,.35)}
+.big.done{background:var(--wiese);box-shadow:none}
+.big.lock{background:#fff;border:3px dashed #B9C7D8;box-shadow:none}
+.node h3{font-size:18px;line-height:1.25}
+.node small{display:block;color:var(--tinte2);font-size:14px;margin-top:3px;font-weight:500}
+.cur{background:#fff;border-radius:24px;padding:18px;box-shadow:0 10px 30px rgba(20,35,59,.12);width:300px}
+/* Köy */
+.map{margin:16px 18px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.place{background:#fff;border-radius:22px;height:132px;padding:14px 12px;display:flex;flex-direction:column;justify-content:space-between;position:relative;border:1px solid var(--line)}
+.place .ic{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff}
+.place b{font-size:15px;line-height:1.2}
+.place span{font-size:12.5px;color:var(--tinte2);font-weight:500}
+.place.lock{opacity:.55;background:#F0F3F7}
+.place .glow{position:absolute;top:14px;right:14px;width:12px;height:12px;border-radius:50%;background:#F2B544;box-shadow:0 0 0 6px rgba(242,181,68,.25)}
+.wide{grid-column:span 3;height:96px;flex-direction:row;align-items:center;justify-content:flex-start;gap:14px}
+/* Telefon */
+.top{display:flex;align-items:center;gap:14px;padding:8px 22px 14px;border-bottom:1px solid var(--line)}
+.top h2{font-size:20px}
+.top small{display:block;color:var(--tinte2);font-size:14px;font-weight:500}
+.msgs{padding:22px 20px;display:flex;flex-direction:column;gap:16px}
+.vb{background:#fff;border-radius:22px 22px 22px 6px;padding:14px 16px;width:330px;border:1px solid var(--line)}
+.vb .row{display:flex;align-items:center;gap:12px}
+.play{width:46px;height:46px;border-radius:50%;background:var(--himmel);color:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+.wave{display:flex;align-items:center;gap:3px;height:34px;flex:1}
+.wave i{display:block;width:4px;border-radius:2px;background:#9DB9DE}
+.wave i.p{background:var(--himmel)}
+.vb .meta{display:flex;justify-content:space-between;margin-top:10px;font:600 14px "Inter";color:var(--himmel)}
+.tr{background:var(--himmel2);border-radius:16px;padding:12px 14px;font-size:16px;line-height:1.45;margin-top:12px}
+.me{align-self:flex-end;background:var(--himmel);color:#fff;border-radius:22px 22px 6px 22px;padding:14px 16px;width:250px}
+.bottom{position:absolute;left:20px;right:20px;bottom:40px;display:flex;flex-direction:column;gap:12px;align-items:center}
+/* Posta */
+.letter{margin:18px 20px 0;background:#FFFDF8;border-radius:10px;padding:24px 22px;box-shadow:0 2px 0 #E9E2D2,0 12px 28px rgba(20,35,59,.12);position:relative;font-size:15.5px;line-height:1.5}
+.letter .from{display:flex;justify-content:space-between;font-size:13px;color:#6B6455;margin-bottom:16px}
+.letter h3{font-size:18px;margin-bottom:10px}
+.mark{background:#FCE7B5;border-radius:4px;padding:0 3px}
+.q{margin:20px 20px 0}
+.q h3{font-size:19px;margin-bottom:12px}
+.opt{background:#fff;border:2px solid var(--line);border-radius:18px;padding:14px 16px;font-size:16px;margin-bottom:10px;line-height:1.35}
+.opt.sel{border-color:var(--himmel);background:var(--himmel2)}
+/* Oynatıcı */
+.ptop{display:flex;align-items:center;gap:18px;padding:10px 22px}
+.phrase{margin:30px 26px 0}
+.phrase .de{font-size:34px;font-weight:800;line-height:1.18}
+.phrase .tr2{font-size:18px;color:var(--tinte2);margin-top:14px}
+.listen{display:flex;align-items:center;gap:18px;margin:30px 26px 0}
+.lbtn{width:64px;height:64px;border-radius:50%;background:var(--himmel2);color:var(--himmel);display:flex;align-items:center;justify-content:center}
+.alltag{margin:26px 20px 0;background:#FBF1E4;border-radius:22px;padding:18px}
+.alltag .kicker{margin-bottom:6px}
+.alltag .de{font-size:21px;font-weight:700}
+.alltag p{color:#7A5B36;font-size:15px;margin-top:6px}
+.sec{display:flex;gap:34px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chips span{background:#fff;border-radius:12px;padding:7px 11px;font-size:13.5px;color:#7A5B36;display:flex;flex-direction:column;line-height:1.25}
+.chips b{font-size:16px;color:var(--tinte)}
+</style></head><body>
+
+<!-- 1 BUGÜN -->
+<div class="col"><div class="cap">Bugün</div><div class="phone">
+ <div class="sky">
+  <div class="status" style="position:absolute;top:0;left:0;right:0"><span>8:12</span><span>100%</span></div>
+  <div class="hello"><h1 class="de" lang="de">Guten Morgen!</h1><p>Köyde güzel bir sabah.</p></div>
+  <div class="inbox"><svg class="i" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span class="badge">3</span></div>
+  <svg class="town" viewBox="0 0 430 150"><path d="M0 120 Q80 70 160 105 T320 90 T430 100 V150 H0Z" fill="#B9D5EE"/>
+   <g fill="#fff"><rect x="40" y="88" width="46" height="40"/><path d="M36 90 L63 66 L90 90Z" fill="#E6EEF7"/>
+   <rect x="196" y="56" width="22" height="72"/><circle cx="207" cy="50" r="12"/><rect x="205" y="22" width="4" height="18"/>
+   <rect x="232" y="92" width="58" height="36"/><path d="M228 94 L261 70 L294 94Z" fill="#E6EEF7"/>
+   <rect x="320" y="96" width="44" height="32"/><path d="M316 98 L342 78 L368 98Z" fill="#E6EEF7"/></g>
+   <g fill="#F2B544"><rect x="50" y="98" width="10" height="10"/><rect x="246" y="102" width="10" height="10"/><rect x="334" y="106" width="9" height="9"/></g>
+   <path d="M0 150 H430 V128 H0Z" fill="#F5F8FC"/></svg>
+ </div>
+ <div style="display:flex;justify-content:space-between;align-items:center;margin:0 26px 0;position:relative;top:-6px">
+  <div class="rrow"><span class="r on"></span><span class="r half"></span><span class="r"></span><span class="r"></span></div>
+  <span style="font:600 15px Inter;color:var(--tinte2)">2. seanstasın</span></div>
+ <div class="next" style="margin-top:16px">
+  <div class="scene" style="background:#E6ECF3"><svg viewBox="0 0 390 150" width="100%" height="118" preserveAspectRatio="xMidYMid slice"><rect width="390" height="150" fill="#E6ECF3"/><rect x="0" y="108" width="390" height="42" fill="#D3DCE7"/>
+   <rect x="40" y="30" width="120" height="70" rx="8" fill="#fff" opacity=".7"/><path d="M40 52 H160 M100 30 V100" stroke="#D3DCE7" stroke-width="4"/>
+   <circle cx="250" cy="70" r="26" fill="#4F6683"/><text x="250" y="78" text-anchor="middle" font-family="Inter" font-weight="700" font-size="22" fill="#fff">T</text>
+   <rect x="222" y="98" width="56" height="30" rx="12" fill="#4F6683" opacity=".85"/>
+   <rect x="300" y="96" width="60" height="10" rx="5" fill="#B48A5E"/><rect x="316" y="78" width="16" height="18" rx="4" fill="#fff"/></svg></div>
+  <div class="kicker" style="color:var(--arbeit)">Öğle molasında Tobi ile</div>
+  <h2>"Wie war dein Wochenende?"</h2>
+  <p>Hafta sonunu anlatacaksın. Gereken üç kalıbı biliyorsun.</p>
+  <div style="margin-top:18px"><button class="btn"><svg class="i" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg>Devam et</button></div>
+ </div>
+ <div class="line"><svg class="i" viewBox="0 0 24 24" style="flex:none;color:var(--brezel)"><path d="M3 7l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg><span>Telefonunda 2 sesli mesaj, posta kutunda 1 mektup var.</span></div>
+ <div class="tabs"><div class="tab on"><svg class="i" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3 2"/></svg>Bugün</div><div class="tab"><svg class="i" viewBox="0 0 24 24"><path d="M5 20c4-1 2-7 7-8s4-6 7-8"/><circle cx="5" cy="20" r="1.5"/><circle cx="19" cy="4" r="1.5"/></svg>Yol</div><div class="tab"><svg class="i" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M10 21v-6h4v6"/></svg>Köy</div><div class="tab"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>Ben</div></div>
+</div></div>
+
+<!-- 2 YOL -->
+<div class="col"><div class="cap">Yol</div><div class="phone">
+ <div class="status"><span>8:13</span><span>100%</span></div>
+ <div class="head"><p style="font-weight:600;color:var(--himmel)">A2.1</p><h1>Telefonu açan</h1><p>Bu seviyede 6 ünite var. Üçünü bitirdin.</p></div>
+ <div class="path">
+  <svg width="430" height="700" style="position:absolute;top:0;left:0"><path d="M86 40 C 86 110, 360 100, 360 150 S 86 230, 86 260 S 90 330, 86 360 S 290 440, 282 510" stroke="#C9D7E8" stroke-width="5" fill="none" stroke-dasharray="2 12" stroke-linecap="round"/></svg>
+  <div class="node" style="left:52px;top:8px"><span class="big done"></span><div><h3>Kendimi tanıtırım</h3><small>Gerçek hayatta yapıldı</small></div></div>
+  <div class="node" style="left:176px;top:112px;width:226px;flex-direction:row-reverse;text-align:right"><span class="big done"></span><div><h3>Randevu alırım</h3><small>Tamamlandı</small></div></div>
+  <div class="node" style="left:52px;top:222px"><span class="big done"></span><div><h3>Anlamadığımı söylerim</h3><small>Tamamlandı</small></div></div>
+  <div class="node" style="left:52px;top:326px;width:360px"><span class="big"></span><div class="cur"><h3>Hafta sonumu anlatırım</h3><small>Perfekt ile anlatı. Bugün 3. gün.</small><div style="margin-top:14px"><button class="btn" style="height:54px;font-size:17px">Devam</button></div></div></div>
+  <div class="node" style="left:248px;top:478px;width:170px;flex-direction:column;align-items:flex-start"><span class="big lock"></span><div style="margin-top:12px"><h3 style="color:var(--tinte2)">Şikâyet ederim</h3><small>Bir önceki üniteden sonra açılır</small></div></div>
+ </div>
+ <div class="tabs"><div class="tab"><svg class="i" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3 2"/></svg>Bugün</div><div class="tab on"><svg class="i" viewBox="0 0 24 24"><path d="M5 20c4-1 2-7 7-8s4-6 7-8"/><circle cx="5" cy="20" r="1.5"/><circle cx="19" cy="4" r="1.5"/></svg>Yol</div><div class="tab"><svg class="i" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M10 21v-6h4v6"/></svg>Köy</div><div class="tab"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>Ben</div></div>
+</div></div>
+
+<!-- 3 KÖY -->
+<div class="col"><div class="cap">Köy</div><div class="phone">
+ <div class="status"><span>8:14</span><span>100%</span></div>
+ <div class="head"><h1>Wendlfing</h1><p>Canın neyi istiyorsa oraya git.</p></div>
+ <div class="map">
+  <div class="place wide" style="background:#EEF4FC"><div class="ic" style="background:var(--himmel)"><svg class="i" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div><div><b>Telefonun</b><br><span>2 sesli mesaj, 1 grup yazışması</span></div><div class="ic" style="background:var(--brezel);margin-left:auto"><svg class="i" viewBox="0 0 24 24"><path d="M3 7l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg></div></div>
+  <div class="place"><div class="ic" style="background:var(--cafe)"><svg class="i" viewBox="0 0 24 24"><path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 11h2a2 2 0 0 1 0 4h-2"/></svg></div><span class="glow"></span><div><b>Kafe</b><br><span>Sohbet saati</span></div></div>
+  <div class="place"><div class="ic" style="background:var(--verkehr)"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="14" r="5"/><path d="M5 7l14-4M12 14h.01"/></svg></div><div><b>Radyo</b><br><span>Kulak salonu</span></div></div>
+  <div class="place"><div class="ic" style="background:var(--frei)"><svg class="i" viewBox="0 0 24 24"><path d="M12 22V12"/><path d="M12 12c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/></svg></div><div><b>Bahçe</b><br><span>Kelimeler</span></div></div>
+  <div class="place"><div class="ic" style="background:var(--arbeit)"><svg class="i" viewBox="0 0 24 24"><path d="M14 6l4 4-9 9H5v-4z"/></svg></div><div><b>Atölye</b><br><span>Gramer</span></div></div>
+  <div class="place"><div class="ic" style="background:var(--amt)"><svg class="i" viewBox="0 0 24 24"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg></div><span class="glow"></span><div><b>Kütüphane</b><br><span>Okuma salonu</span></div></div>
+  <div class="place"><div class="ic" style="background:var(--wohnung)"><svg class="i" viewBox="0 0 24 24"><path d="M4 4h16v6H4zM6 10v10M18 10v10M4 20h16"/></svg></div><div><b>Tiyatro</b><br><span>Dedektif dizisi</span></div></div>
+  <div class="place"><div class="ic" style="background:var(--fitness)"><svg class="i" viewBox="0 0 24 24"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 13h6M9 17h6"/></svg></div><div><b>Pazar meydanı</b><br><span>Gerçek görevler</span></div></div>
+  <div class="place lock"><div class="ic" style="background:#8FA0B5"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></div><div><b>Gazete bayisi</b><br><span>A2.2'de açılır</span></div></div>
+  <div class="place lock"><div class="ic" style="background:#8FA0B5"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg></div><div><b>Sinema</b><br><span>B1'de açılır</span></div></div>
+ </div>
+ <div class="tabs"><div class="tab"><svg class="i" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3 2"/></svg>Bugün</div><div class="tab"><svg class="i" viewBox="0 0 24 24"><path d="M5 20c4-1 2-7 7-8s4-6 7-8"/><circle cx="5" cy="20" r="1.5"/><circle cx="19" cy="4" r="1.5"/></svg>Yol</div><div class="tab on"><svg class="i" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M10 21v-6h4v6"/></svg>Köy</div><div class="tab"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>Ben</div></div>
+</div></div>
+
+<!-- 4 TELEFON -->
+<div class="col"><div class="cap">Sesli mesaj</div><div class="phone">
+ <div class="status"><span>8:15</span><span>100%</span></div>
+ <div class="top"><svg class="i" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg><div class="av" style="background:var(--arbeit)">T</div><div><h2>Tobias</h2><small>İş arkadaşın</small></div></div>
+ <div class="msgs">
+  <div class="vb"><div class="row"><div class="play"><svg class="i" viewBox="0 0 24 24" style="fill:#fff;stroke:none"><path d="M7 4l13 8-13 8z"/></svg></div>
+   <div class="wave"><i class="p" style="height:12px"></i><i class="p" style="height:22px"></i><i class="p" style="height:30px"></i><i class="p" style="height:18px"></i><i class="p" style="height:26px"></i><i class="p" style="height:10px"></i><i class="p" style="height:20px"></i><i style="height:28px"></i><i style="height:14px"></i><i style="height:24px"></i><i style="height:30px"></i><i style="height:12px"></i><i style="height:22px"></i><i style="height:16px"></i><i style="height:26px"></i><i style="height:10px"></i><i style="height:20px"></i><i style="height:14px"></i><i style="height:24px"></i><i style="height:8px"></i></div></div>
+   <div class="meta"><span>Yavaş dinle</span><span>Metni göster</span></div></div>
+  <div class="vb"><div class="row"><div class="play"><svg class="i" viewBox="0 0 24 24" style="fill:#fff;stroke:none"><path d="M7 4l13 8-13 8z"/></svg></div>
+   <div class="wave"><i style="height:16px"></i><i style="height:26px"></i><i style="height:12px"></i><i style="height:30px"></i><i style="height:20px"></i><i style="height:24px"></i><i style="height:10px"></i><i style="height:18px"></i><i style="height:28px"></i><i style="height:14px"></i><i style="height:22px"></i><i style="height:12px"></i></div></div>
+   <div class="tr" lang="de">Du, kannst du am Samstag meine Schicht übernehmen? Ich muss meiner Schwester beim Umzug helfen.</div>
+   <div class="meta"><span>Yavaş dinle</span><span>Türkçesi</span></div></div>
+ </div>
+ <div class="bottom">
+  <p style="font-size:16px;color:var(--tinte2);text-align:center;line-height:1.45">Tobias cumartesi vardiyasını devralmanı istiyor.<br>Kabul et ya da kibarca reddet.</p>
+  <button class="btn"><svg class="i" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Sesli cevap ver</button>
+  <button class="ghost">Yazarak cevap ver</button>
+ </div>
+</div></div>
+
+<!-- 5 POSTA -->
+<div class="col"><div class="cap">Posta kutusu</div><div class="phone">
+ <div class="status"><span>8:16</span><span>100%</span></div>
+ <div class="top"><svg class="i" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg><div><h2>Posta kutun</h2><small>Bugün 1 mektup</small></div></div>
+ <div class="letter" lang="de">
+  <div class="from"><span>Gemeindewerke Wendlfing<br>Am Brunnen 4</span><span>14.11.2026</span></div>
+  <h3>Ablesung Ihres Wasserzählers</h3>
+  <p>Sehr geehrte Damen und Herren,</p>
+  <p style="margin-top:8px">am <span class="mark">Dienstag, 24.11., zwischen 8 und 12 Uhr</span> lesen wir Ihren Wasserzähler ab. Bitte sorgen Sie dafür, dass der Zähler im Keller zugänglich ist.</p>
+  <p style="margin-top:8px">Falls Sie den Termin nicht wahrnehmen können, melden Sie sich bitte <span class="mark">bis zum 20.11.</span> telefonisch.</p>
+  <p style="margin-top:10px">Mit freundlichen Grüßen</p>
+ </div>
+ <div class="q"><h3>Ne istiyorlar?</h3>
+  <div class="opt">Su faturasını ödemeni</div>
+  <div class="opt sel">Sayacı okuyabilmeleri için bodrumu açık tutmanı</div>
+  <div class="opt">Sayacı kendin okuyup bildirmeni</div>
+ </div>
+ <div class="bottom"><button class="btn">Kontrol et</button></div>
+</div></div>
+
+<!-- 6 OYNATICI -->
+<div class="col"><div class="cap">Ders</div><div class="phone">
+ <div class="status"><span>8:18</span><span>100%</span></div>
+ <div class="ptop"><svg class="i" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  <div class="rrow" style="gap:9px"><span class="r on" style="width:15px;height:15px"></span><span class="r on" style="width:15px;height:15px"></span><span class="r on" style="width:15px;height:15px"></span><span class="r on" style="width:15px;height:15px"></span><span class="r on" style="width:15px;height:15px"></span><span class="r" style="width:15px;height:15px"></span><span class="r" style="width:15px;height:15px"></span><span class="r" style="width:15px;height:15px"></span><span class="r" style="width:15px;height:15px"></span><span class="r" style="width:15px;height:15px"></span><span class="r" style="width:15px;height:15px"></span><span class="r" style="width:15px;height:15px"></span></div></div>
+ <div class="phrase"><div class="kicker" style="color:var(--himmel)">Birlikte kuralım</div>
+  <div class="de" lang="de" style="margin-top:10px">Am Samstag <u style="text-decoration-color:var(--brezel);text-decoration-thickness:4px;text-underline-offset:6px">bin</u> ich in die Stadt <u style="text-decoration-color:var(--brezel);text-decoration-thickness:4px;text-underline-offset:6px">gefahren</u>.</div>
+  <div class="tr2">Cumartesi şehre gittim.</div></div>
+ <div class="listen"><div class="lbtn"><svg class="i" viewBox="0 0 24 24" style="width:30px;height:30px"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></div><button class="ghost">Yavaş</button></div>
+ <div class="alltag"><div class="kicker">Gündelikte böyle de duyarsın</div><div class="de" lang="de">Samstag war ich in der Stadt.</div>
+ <div class="chips"><span><b lang="de">Samstag</b>cumartesi</span><span><b lang="de">war</b>idim</span><span><b lang="de">ich</b>ben</span><span><b lang="de">in der Stadt</b>şehirde</span></div>
+ <p>Aynı anlam: Cumartesi şehirdeydim. Arkadaşla konuşurken çok kısa ve doğal.</p></div>
+ <div class="bottom">
+  <button class="btn"><svg class="i" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Sesli söyle</button>
+  <div class="sec"><button class="ghost">Yazarak</button><button class="ghost">Bilmiyorum</button></div>
+ </div>
+</div></div>
+
+</body></html>
+

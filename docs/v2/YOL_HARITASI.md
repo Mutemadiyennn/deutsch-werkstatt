@@ -38,6 +38,14 @@ Tarihler hedeftir; kayarsa PM yeniden planlar ve öğrenciye açıkça söyler. 
 | **R7 "Doğal" (ay 12–24)** | Register geçişleri, uzun anlatı, doğal tepkiler | PM-009 R7 | Aylık kayıt karşılaştırması |
 | **R8 "Gerçek dünya"** (R6 ile paralel) | Dizi, film, podcast ile kendi kendine öğrenir | PM-009 R8 | "Duyduğum kelime" akışı |
 
+### 2.1 Kütüphane üretim takvimi (KUTUPHANE §10, PM-011; içerik hattı PM-015)
+| Sürüm | Kütüphane |
+|---|---|
+| R1 | K2 üretici alıştırma motoru (yapım gereği doğru cümle; kabul: 1.000 rastgele cümlede dilbilimci hata oranı ≤ %0,5) · 20 kalıp onaylı · A1–A2 gramer omurgası · içerik etiketleri (seviye/alan/gramer/bant/katman) · üretim/öğrenme oranı ölçümü (KT-3.1) |
+| R2 | İlk K3 paketi · Okuma Salonu ilk 40 metin · hikâye 1–4 |
+| R3–R5 | KUTUPHANE §10 tablosu |
+İçerik hattı R1'i beklemez: altı seviye, günlük üretim, her yayında cihaza (KUTUPHANE §10.1).
+
 ## 3. Günlük ilerleme güvencesi (ürün içinde, R1'den itibaren)
 
 - Bugün ekranının en üstünde "Bugünün adımı": bugün yapabilir hale geleceğin tek şey (ör. "Randevuyu telefonda ertelemek"). Gün sonunda başarıldıysa Raute dolar.
