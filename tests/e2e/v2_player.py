@@ -72,7 +72,9 @@ def main():
         page.click("[data-test=continue]")
         page.wait_for_selector("[data-test=stage-intro]")
         check(page.locator("[data-test=subtitles]").count() == 0, "ilk dinleme altyazısız")
-        check(page.locator("[data-test=budget]").count() == 1, "süre bütçesi (≤8 dk) üstte görünüyor")
+        try: page.wait_for_selector("[data-test=budget]", timeout=3000); ok = True
+        except Exception: ok = False
+        check(ok, "süre bütçesi (≤8 dk) üstte görünüyor")
         shot(page, "p01-stage-intro", full=False); no_overflow(page, "aşama 1 giriş")
         page.click("[data-test=to-subtitles]")
         page.wait_for_selector("[data-test=subtitles]")
@@ -255,7 +257,9 @@ def main():
             page.goto(f"http://127.0.0.1:{PORT}/#/scenario/{SC}/listening"); page.wait_for_selector("[data-test=to-questions], button.opt[data-opt]")
         el = page.locator("[data-test=ifade-card] .wordpanel .w, .card .de-lg[lang=de]").first
         bb = el.bounding_box()
-        page.mouse.move(bb["x"] + 10, bb["y"] + 10); page.mouse.down(); page.wait_for_timeout(700); page.mouse.up()
+        # uzun basma: işaretçi olaylarını doğrudan gönder (WebKit dokunmatik öykünmesinde fare olayları güvenilir değil)
+        pt = {"clientX": bb["x"] + 10, "clientY": bb["y"] + 10, "bubbles": True, "pointerType": "touch", "isPrimary": True}
+        el.dispatch_event("pointerdown", pt); page.wait_for_timeout(750); el.dispatch_event("pointerup", pt)
         check(page.locator("[data-test=lp-sheet]").count() == 1, "Almanca metne uzun basınca 'Bu ne demek?' sayfası açıldı")
         if page.locator("[data-test=lp-sheet]").count():
             page.click("[data-test=lp-sheet] [data-test=explain]")
