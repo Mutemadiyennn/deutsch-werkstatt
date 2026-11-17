@@ -278,13 +278,18 @@ def main():
         bb = el.bounding_box()
         # uzun basma: işaretçi olaylarını doğrudan gönder (WebKit dokunmatik öykünmesinde fare olayları güvenilir değil)
         pt = {"clientX": bb["x"] + 10, "clientY": bb["y"] + 10, "bubbles": True, "pointerType": "touch", "isPrimary": True, "pointerId": 7}
+        page.evaluate("""() => { window.__lpdbg = []; for (const k of ['pointerdown','pointerup','pointercancel','pointermove','contextmenu']) document.addEventListener(k, (e) => window.__lpdbg.push(k + ':' + (e.target && e.target.tagName) + ':' + Math.round(performance.now())), true); }""")
         el.dispatch_event("pointerdown", pt)
+        # PM-013 kök neden: WebKit iPhone 15 öykünmesi basış sırasında farenin eski konumundan (bir düğmenin üstü) pointermove gönderiyordu
+        # ve uzun basmayı iptal ediyordu. Aynı durumu her tarayıcıda bilerek üret: başka işaretçinin uzak hareketi basışı bozmamalı.
+        page.dispatch_event("body", "pointermove", {"clientX": 5, "clientY": 5, "bubbles": True, "pointerType": "mouse", "isPrimary": True, "pointerId": 1})
         opened = False
         for _ in range(16):
             page.wait_for_timeout(250)
             if page.locator("[data-test=lp-sheet]").count(): opened = True; break
         el.dispatch_event("pointerup", pt)
-        check(opened, f"Almanca metne uzun basınca 'Bu ne demek?' sayfası açıldı (hedef: {desc})")
+        dbg = "" if opened else page.evaluate("() => JSON.stringify({ev: window.__lpdbg, url: location.hash, tgt: !!document.querySelector('[data-lp-target]')})")
+        check(opened, f"Almanca metne uzun basınca 'Bu ne demek?' sayfası açıldı (hedef: {desc}) {dbg}")
         if page.locator("[data-test=lp-sheet]").count():
             page.click("[data-test=lp-sheet] [data-test=explain]")
             page.wait_for_selector("[data-test=lp-sheet] .fb.info b")
@@ -322,7 +327,11 @@ def main():
                     r, task, out = HELD.pop()
                     r.fulfill(status=200, headers={"Access-Control-Allow-Origin": "*", "Content-Type": "application/json"}, body=json.dumps({"task": task, "output": out, "model": "m", "ms": 15000}))
                     pg.locator("[data-test=rp-chat] .bubble.them").nth(1).wait_for(timeout=5000)
-                    check("Leitung war schlecht" in pg.inner_text("[data-test=rp-chat]"), f"{name}: geç gelen yanıt kullanıldı")
+                    late = False
+                    for _ in range(20):  # metin bir sonraki çizimde gelebilir
+                        if "Leitung war schlecht" in (pg.text_content("[data-test=rp-chat]") or ""): late = True; break
+                        pg.wait_for_timeout(250)
+                    check(late, f"{name}: geç gelen yanıt kullanıldı (görev: {task})")
                 else:
                     pg.click("[data-test=rp-offline]")
                     pg.locator("[data-test=rp-chat] .bubble.them").nth(1).wait_for(timeout=5000)
