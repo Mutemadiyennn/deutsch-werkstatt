@@ -17,6 +17,7 @@ export function Progress() {
   const [days, setDays] = useState<FocusDay[]>([]);
   const [stats, setStats] = useState<Awaited<ReturnType<typeof itemStats>> | null>(null);
   const [assessments, setAssessments] = useState<Assessment[]>([]);
+  const [scen, setScen] = useState<{ started: number; done: number }>({ started: 0, done: 0 });
   const today = new Date();
   const monday = addDays(today, -((today.getDay() + 6) % 7));
   const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
@@ -26,6 +27,8 @@ export function Progress() {
       const from = localDate(Math.min(monday.getTime(), monthStart.getTime()));
       setDays(await focusRange(from, localDate(today.getTime())));
       setStats(await itemStats());
+      const sp = await db.scenarios.toArray();
+      setScen({ started: sp.filter((x) => x.done.length > 0).length, done: sp.filter((x) => x.completedIndependentAt).length });
       setAssessments((await db.assess.toArray()).filter((a) => a.finishedAt).sort((a, b) => (a.finishedAt! < b.finishedAt! ? -1 : 1)));
     })();
   }, []);
@@ -42,6 +45,7 @@ export function Progress() {
   const sAll = month.flatMap((d) => d.sessions);
   const cnt = (st: string) => sAll.filter((s) => s.status === st).length;
   const todayDay = e?.day;
+  const exam = profile.goals.examB1.enabled && profile.goals.examB1.date ? Math.max(0, Math.ceil((Date.parse(profile.goals.examB1.date) - Date.now()) / 86400_000)) : null;
   const seg = new Map<string, number>();
   for (const s of todayDay?.sessions || []) for (const g of s.segments) seg.set(g.activity, (seg.get(g.activity) || 0) + g.sec);
 
@@ -49,8 +53,20 @@ export function Progress() {
     <div class="stack">
       <TopBar title="İlerlemem" />
 
-      <section class="card stack" data-test="panel-focus">
-        <div><div class="kicker">Panel 1 · Çalışma düzeni (süre)</div><p class="tiny muted">Ne kadar düzenli çalıştığını gösterir; dil seviyeni değil.</p></div>
+      <section class="card hero purple stack" data-test="hero">
+        <div class="kicker">İlerlemem · {today.toLocaleDateString("tr-TR", { day: "numeric", month: "short" })}</div>
+        <h1 class="hero-title">{placement ? (placement.overall === "below-A1" ? "A1 öncesi" : placement.overall) : "Seviye henüz ölçülmedi"}</h1>
+        <div class="tiles">
+          <div><b>{stats?.passiveKnown ?? 0}</b><span>pasif kelime</span></div>
+          <div><b>{stats?.activeKnown ?? 0}</b><span>aktif kelime</span></div>
+          <div><b>{stats?.durable ?? 0}</b><span>kalıcı kelime</span></div>
+          <div><b>{scen.done}</b><span>bitmiş senaryo</span></div>
+        </div>
+        <p class="small" style={{ margin: 0 }}>{exam !== null ? <>B1 hedefine <b>{exam} gün</b> var. Son 6 hafta sınav odaklı çalışacağız.</> : "Süre ve dil kazanımı ayrı izlenir: çok çalışmak tek başına seviye demek değildir."}</p>
+      </section>
+
+      <section class="card tint stack" data-test="panel-focus">
+        <div class="sechead"><span class="ic" aria-hidden="true">⏱</span><div><h2>Çalışma düzeni</h2><div class="tiny muted">Panel 1 · süre: ne kadar düzenli çalıştığın, dil seviyen değil</div></div></div>
         <div class="row between"><span>Bugün</span><b>{todayDay ? Math.floor(todayDay.focusSec / 60) : 0} / {goal} dk · {e?.completedCount || 0}/4 seans</b></div>
         <div class="row between small muted"><span>Bugünkü mola</span><span>{Math.round(((todayDay?.breakSec || 0) + (todayDay?.longBreakSec || 0)) / 60)} dk (odak süresine eklenmez)</span></div>
         {seg.size > 0 && <div class="small">Bugün: {[...seg.entries()].map(([a, s]) => `${ACTIVITY_TR[a as keyof typeof ACTIVITY_TR]} ${Math.round(s / 60)} dk`).join(" · ")}</div>}
@@ -65,8 +81,8 @@ export function Progress() {
         <div class="row between small"><span>Bu ay</span><span>{monthMin} dk · {cnt("completed")} seans tamamlandı · {cnt("interrupted") + cnt("abandoned")} yarıda kaldı</span></div>
       </section>
 
-      <section class="card stack" data-test="panel-language">
-        <div><div class="kicker">Panel 2 · Dil kazanımı</div><p class="tiny muted">Ne öğrendiğini ve kullanabildiğini gösterir.</p></div>
+      <section class="card tint green stack" data-test="panel-language">
+        <div class="sechead"><span class="ic" aria-hidden="true">🧠</span><div><h2>Dil kazanımı</h2><div class="tiny muted">Panel 2 · ne öğrendiğin ve kullanabildiğin</div></div></div>
         {placement ? (
           <>
             <div class="row between"><span>Tahmini başlangıç seviyesi</span><b>{placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</b></div>
@@ -80,10 +96,10 @@ export function Progress() {
             <div class="row between"><span>Kendin üretebildiğin kelimeler (aktif)</span><b>{stats.activeKnown}</b></div>
             <div class="row between"><span>Kalıcı kelimeler (iki ayrı oturumda üretilmiş)</span><b>{stats.durable}</b></div>
             <div class="row between"><span>Tekrar listende</span><b>{stats.bank}</b></div>
-            <div class="row between"><span>Tamamlanan gerçek hayat senaryoları</span><b>0</b></div>
+            <div class="row between"><span>Gerçek hayat senaryoları (başlanan / bağımsız tamamlanan)</span><b>{scen.started} / {scen.done}</b></div>
           </div>
         )}
-        <p class="tiny muted">Cümle kurma, dinleme ve konuşma ölçütleri, senaryo alıştırmalarıyla (sonraki faz) birlikte burada izlenecek. Şimdilik kaynakları seviye tespiti.</p>
+        <p class="tiny muted">Pasif = tanıma; aktif = kendin üretme. Kalıcı: en az 3 saat arayla iki ayrı oturumda doğru üretilmiş.</p>
       </section>
     </div>
   );

@@ -1,7 +1,7 @@
 /** İlk kurulum: zorlandığın durumlar → alan önceliği → günlük hedef ve Pomodoro → dinleme ve hedefler → seviye tespiti */
 import { useState } from "preact/hooks";
 import type { Profile } from "@dw/shared";
-import { DOMAIN_IDS } from "@dw/shared";
+import { migrateDomainPriority } from "@dw/shared";
 import { useApp, go } from "../state.ts";
 import { ACTIVITY_TR } from "../core/planner.ts";
 
@@ -20,10 +20,10 @@ export function derivePriority(struggles: Struggle[]): string[] {
   const first: string[] = [];
   if (struggles.includes("phone")) first.push("telefon");
   if (struggles.includes("work")) first.push("arbeit");
-  if (struggles.includes("spontaneous") || struggles.includes("switch_english")) first.push("nachbarn");
+  if (struggles.includes("spontaneous") || struggles.includes("switch_english")) first.push("smalltalk");
   first.push("arzt", "amt");
-  const seen = new Set<string>();
-  return [...first, ...DOMAIN_IDS].filter((d) => (seen.has(d) ? false : (seen.add(d), true)));
+  // strateji (anlamadığımda ne derim?) her zaman ilk sırada
+  return migrateDomainPriority(first);
 }
 
 export function Onboarding() {

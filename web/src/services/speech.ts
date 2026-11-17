@@ -43,10 +43,24 @@ export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed
 export function stopSpeaking() { if (ttsAvailable()) speechSynthesis.cancel(); speakingN = 0; }
 
 const SR: any = typeof window !== "undefined" ? (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition : undefined;
-export const sttAvailable = () => !!SR;
+/** iPhone kabuğu: WKWebView'de tarayıcı tanıması yoksa v1'deki yerel eklenti (cihaz üstü tanıma) */
+const NATIVE_SR = () => (globalThis as any).Capacitor?.Plugins?.SpeechRecognition;
+export const sttAvailable = () => !!SR || !!NATIVE_SR();
 
 /** Almanca konuşma tanıma: olası metinleri döndürür (en iyi ilk). Desteklenmiyorsa hata fırlatır; arayüz yazarak cevaba geçer. */
 export function listenOnce(lang = "de-DE", maxMs = 9000): { result: Promise<string[]>; stop: () => void } {
+  if (!SR && NATIVE_SR()) {
+    const N = NATIVE_SR();
+    listening = true;
+    const result = (async () => {
+      try {
+        try { await N.requestPermissions?.(); } catch {}
+        const r = await N.start({ language: lang, maxResults: 4, partialResults: false, popup: false });
+        return ((r && r.matches) || []) as string[];
+      } finally { listening = false; }
+    })();
+    return { result, stop: () => { try { N.stop?.(); } catch {} } };
+  }
   if (!SR) return { result: Promise.reject(new Error("stt_unavailable")), stop: () => {} };
   const rec = new SR();
   rec.lang = lang; rec.interimResults = false; rec.maxAlternatives = 4; rec.continuous = false;

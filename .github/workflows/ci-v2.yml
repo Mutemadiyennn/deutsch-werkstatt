@@ -1,7 +1,8 @@
-name: v2 — kontrol (tip, birim, içerik, derleme, uçtan uca)
+name: v2 — kontrol (tip, birim, içerik, derleme, WebKit uçtan uca, görsel)
 
 on:
   push:
+    branches: [main]
     paths: ["web/**", "worker/**", "packages/**", "content/**", "tests/e2e/**", "package.json", "package-lock.json", ".github/workflows/ci-v2.yml"]
   pull_request:
   workflow_dispatch:
@@ -23,16 +24,42 @@ jobs:
       - name: Gizli anahtar taraması (Firebase web yapılandırması hariç)
         run: |
           if git grep -nE 'AIza[0-9A-Za-z_-]{35}' -- ':!app/legacy.html' ':!web/src/services/auth.ts' ':!app/tests/*' | grep -v 'AIzaSyDU2GSwCowKMKWBOvTZdKQjCtxLsQFTlDg'; then echo "Anahtar bulundu"; exit 1; fi
-      - name: Derleme (içerik paketi + web + e2e sürümü)
+      - name: Derleme + paket bütçesi (JS ≤ 250 KB gzip)
         run: |
           npm run content:build
           npm run build -w web
           (cd web && npx vite build --mode e2e --outDir dist-e2e)
+          T=0; for f in web/dist/assets/*.js; do T=$((T + $(gzip -9c "$f" | wc -c))); done
+          echo "JS toplam (gzip): $((T/1024)) KB" | tee -a "$GITHUB_STEP_SUMMARY"
+          [ "$T" -le 256000 ] || { echo "JS bütçesi aşıldı"; exit 1; }
       - name: Worker paketlenebilir mi
         run: (cd worker && npx wrangler deploy --dry-run --outdir /tmp/wb)
+      - uses: actions/upload-artifact@v4
+        with: { name: dist-e2e, path: web/dist-e2e, retention-days: 3 }
+
+  webkit:
+    # Kabul ölçütü (DECISIONS D-040): iPhone profilleriyle WebKit
+    needs: check
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        device: ["iPhone 15", "iPhone 16 Pro Max"]
+    env: { E2E_BROWSER: webkit, E2E_DEVICE: "${{ matrix.device }}" }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: dist-e2e, path: web/dist-e2e }
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - name: Uçtan uca test (Playwright)
-        run: |
-          pip install playwright==1.* && python -m playwright install --with-deps chromium
-          python tests/e2e/v2_core.py
+      - name: Playwright + WebKit
+        run: pip install playwright==1.* pillow && python -m playwright install --with-deps webkit
+      - name: Çekirdek akış (giriş, kurulum, tespit, Bugün, odak, İlerlemem, Profil)
+        run: cd tests/e2e && python v2_core.py
+      - name: Oynatıcı (aşama 1–6, dinleme, klavye, uzun basma, dayanıklılık, taşma, %130)
+        run: cd tests/e2e && python v2_player.py --shots /tmp/shots
+      - name: Görsel regresyon (açık + koyu)
+        run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: "webkit-${{ matrix.device }}", path: "/tmp/visual\n/tmp/shots", retention-days: 14 }

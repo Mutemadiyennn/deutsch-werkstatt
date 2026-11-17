@@ -107,17 +107,33 @@ export interface FocusDay {
 }
 
 /* ---------- Öğrenci modeli ---------- */
-export interface Strength { s: number; n: number; ok: number; last?: string; due?: string }
+/** FSRS kart durumu (ts-fsrs Card, tarihler ISO) */
+export interface FsrsState { due: string; stability: number; difficulty: number; scheduled_days: number; reps: number; lapses: number; learning_steps: number; state: number; last_review?: string }
+export interface Strength { s: number; n: number; ok: number; last?: string; due?: string; fsrs?: FsrsState }
 export interface LearnerItem {
   itemId: string;
   kind: "lexeme" | "chunk" | "pattern";
   passive: Strength;
   active: Strength & { sessions: string[] };
   durable: boolean;
-  gaps: { type: "passive" | "active" | "structure"; source: "drill" | "tap" | "convo" | "assess"; at: string; ctx?: string }[];
+  gaps: { type: "passive" | "active" | "structure"; source: "drill" | "tap" | "convo" | "assess" | "sayit"; at: string; ctx?: string }[];
   inBank: boolean;
   u: number;
 }
+
+export interface ScenarioProgress {
+  scenarioId: string;
+  /** Tamamlanan bölümler: words, chunks, build, drills, listening, dialogue, roleplay */
+  done: string[];
+  support: 0 | 1 | 2 | 3;
+  runs: { at: string; section: string; score: number; total: number; level?: number; goalsDone?: number; goalsTotal?: number; englishFallbacks?: number; mode?: "ai" | "offline" }[];
+  completedIndependentAt?: string;
+  u: number;
+}
+/** "Benim cevabım da doğru" kayıtları → içerik iyileştirme kuyruğu */
+export interface AnswerClaim { id?: number; at: string; scenarioId?: string; itemId: string; prompt: string; answer: string; expected: string[] }
+/** K3: öğrencinin dışarıda duyup eklediği kelime */
+export interface PersonalWord { id: string; de: string; tr?: string; note?: string; at: string; source: "heard" | "tap" | "sayit" }
 
 /* ---------- Seviye tespiti ---------- */
 export interface AssessAnswer {

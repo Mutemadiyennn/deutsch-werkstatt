@@ -3,7 +3,7 @@
  * Firestore eşitlemesi sonraki fazda (BLUEPRINT T11); her kayıtta `u` (değişiklik zamanı) bunun için tutulur.
  */
 import Dexie, { type Table } from "dexie";
-import { Profile, defaultProfile, type Assessment, type FocusDay, type LearnerItem } from "@dw/shared";
+import { Profile, defaultProfile, migrateDomainPriority, type AnswerClaim, type Assessment, type FocusDay, type LearnerItem, type PersonalWord, type ScenarioProgress } from "@dw/shared";
 import type { Runtime } from "../core/focus.ts";
 
 interface Meta { key: string; value: unknown }
@@ -14,6 +14,10 @@ export class DwDB extends Dexie {
   items!: Table<LearnerItem, string>;
   focusDays!: Table<FocusDay, string>;
   assess!: Table<Assessment, string>;
+  scenarios!: Table<ScenarioProgress, string>;
+  claims!: Table<AnswerClaim, number>;
+  personal!: Table<PersonalWord, string>;
+  aicache!: Table<{ key: string; value: unknown; at: number }, string>;
   constructor(name = "dw2") {
     super(name);
     this.version(1).stores({
@@ -22,6 +26,13 @@ export class DwDB extends Dexie {
       items: "&itemId, kind, inBank, u",
       focusDays: "&date, u",
       assess: "&id, startedAt, type"
+    });
+    // v2: oynatıcı (senaryo ilerlemesi), "benim cevabım da doğru" kuyruğu, kişisel kelimeler (K3), yapay zekâ önbelleği
+    this.version(2).stores({
+      scenarios: "&scenarioId, u",
+      claims: "++id, at, scenarioId",
+      personal: "&id, at",
+      aicache: "&key, at"
     });
   }
 }
@@ -34,7 +45,12 @@ export async function getProfile(): Promise<Profile> {
   const p = await db.profile.get("me");
   if (p) {
     const r = Profile.safeParse(p);
-    if (r.success) return r.data;
+    if (r.success) {
+      // 13 → 20 alan geçişi (PEDAGOGY §4)
+      const pr = migrateDomainPriority(r.data.domains.priority);
+      if (pr.join() !== r.data.domains.priority.join()) { r.data.domains.priority = pr; await db.profile.put(r.data); }
+      return r.data;
+    }
     // şema bozulmuşsa bilinen alanları koruyarak varsayılanla birleştir
     const merged = Profile.safeParse({ ...defaultProfile(), ...p, focus: { ...defaultProfile().focus, ...(p as any).focus } });
     if (merged.success) { await db.profile.put(merged.data); return merged.data; }
@@ -104,6 +120,29 @@ export async function exportAll() {
     profile: await db.profile.toArray(),
     items: await db.items.toArray(),
     focusDays: await db.focusDays.toArray(),
-    assess: await db.assess.toArray()
+    assess: await db.assess.toArray(),
+    scenarios: await db.scenarios.toArray(),
+    personal: await db.personal.toArray(),
+    claims: await db.claims.toArray()
   };
 }
+
+/* ---------- oynatıcı ---------- */
+export async function getScenarioProgress(id: string): Promise<ScenarioProgress> {
+  return (await db.scenarios.get(id)) || { scenarioId: id, done: [], support: 3, runs: [], u: 0 };
+}
+export async function saveScenarioProgress(p: ScenarioProgress) { await db.scenarios.put(structuredClone({ ...p, u: Date.now() })); }
+export async function getItem(id: string) { return db.items.get(id); }
+export async function putItem(it: LearnerItem) { await db.items.put(structuredClone(it)); }
+export async function addClaim(c: AnswerClaim) { await db.claims.add(c); }
+export async function addPersonal(w: PersonalWord) { await db.personal.put(w); }
+export async function personalWords() { return (await db.personal.toArray()).sort((a, b) => (a.at < b.at ? 1 : -1)); }
+export async function dueItems(path: "passive" | "active", now = new Date(), limit = 50): Promise<LearnerItem[]> {
+  const all = await db.items.toArray();
+  return all.filter((i) => { const s = path === "passive" ? i.passive : i.active; return s.fsrs && new Date(s.fsrs.due) <= now; }).slice(0, limit);
+}
+export async function cacheGet<T>(key: string, maxAgeMs = 30 * 86400_000): Promise<T | undefined> {
+  const r = await db.aicache.get(key);
+  return r && Date.now() - r.at < maxAgeMs ? (r.value as T) : undefined;
+}
+export async function cachePut(key: string, value: unknown) { await db.aicache.put({ key, value, at: Date.now() }); }

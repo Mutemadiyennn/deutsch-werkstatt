@@ -10,6 +10,7 @@ export type Route =
   | { name: "learn" }
   | { name: "domain"; id: string }
   | { name: "scenario"; id: string }
+  | { name: "section"; id: string; section: string }
   | { name: "progress" }
   | { name: "profile" }
   | { name: "assess" }
@@ -20,7 +21,7 @@ export function parseHash(h: string): Route {
   const p = h.replace(/^#\/?/, "").split("/").map(decodeURIComponent);
   switch (p[0]) {
     case "learn": return p[1] ? { name: "domain", id: p[1] } : { name: "learn" };
-    case "scenario": return { name: "scenario", id: p.slice(1).join("/") };
+    case "scenario": return p[2] ? { name: "section", id: p[1]!, section: p[2] } : { name: "scenario", id: p[1] || "" };
     case "progress": return { name: "progress" };
     case "profile": return { name: "profile" };
     case "assess": return p[1] === "result" ? { name: "assessResult", id: p[2] } : { name: "assess" };
@@ -31,7 +32,7 @@ export function parseHash(h: string): Route {
 export const go = (path: string) => { location.hash = "#/" + path.replace(/^#?\/?/, ""); };
 
 /** Öğrenme ekranları: odak süresi yalnızca bunlarda sayılır (v1: menü ekranları sayılmaz) */
-export const LEARNING_ROUTES = new Set<Route["name"]>(["assess", "scenario"]);
+export const LEARNING_ROUTES = new Set<Route["name"]>(["assess", "section"]);
 
 export interface AppCtx {
   user: AuthUser | null;
