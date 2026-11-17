@@ -1,0 +1,28 @@
+{
+  "name": "deutsch-werkstatt",
+  "private": true,
+  "type": "module",
+  "description": "Deutsch Werkstatt 2.0 — monorepo (v1: app/, v2: web/ + worker/ + packages/shared + content/v2)",
+  "workspaces": [
+    "packages/*",
+    "web",
+    "worker"
+  ],
+  "scripts": {
+    "typecheck": "npm run typecheck -ws --if-present",
+    "test": "vitest run",
+    "content:import": "node --experimental-strip-types content/tools/import-v1.ts",
+    "content:validate": "node --experimental-strip-types content/tools/validate.ts",
+    "content:build": "node --experimental-strip-types content/tools/build.ts",
+    "build": "npm run content:validate && npm run content:build && npm run build -w web",
+    "check": "npm run typecheck && npm test && npm run content:validate"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "vitest": "^5.1.0",
+    "@types/node": "^24.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
