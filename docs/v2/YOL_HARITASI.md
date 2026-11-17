@@ -26,7 +26,7 @@ Tarihler hedeftir; kayarsa PM yeniden planlar ve öğrenciye açıkça söyler. 
 
 | Dönem | Öğrenci bu dönemin sonunda… | Ürün o tarihe kadar… | Kapı kanıtı |
 |---|---|---|---|
-| **Hafta 0** (şimdi → R1) | Hayatta kalma cümlelerini ipucusuz söyler; kendini 30 sn tanıtır; 3 gerçek mini görev dener | v1 + kurs + "Hafta 0 planı" (§3) ile ilerler; ürün R1'i hazırlar. 17a yayında. Birleştirme turu (PM-007) biter, /v2/ yayına çıkar | Öğrenci her gün 1 mini görev yaptı |
+| **Şimdi → R1** | Öğrenci uygulamanın hazır olmasını bekler (kendi tercihi); kursuna devam eder | Birleştirme turu (PM-007) biter, /v2/ yayına çıkar, R1 hazırlanır | Açık PR ≤ 3, /v2/ yayında |
 | **27.11.2026** | Weihnachtsmarkt'ta sipariş verebilir | Advent/Weihnachtsmarkt mini senaryoları (LS-17.0) | 3 senaryo, dilbilimci onaylı |
 | **R1 "İlk telefon"** — hedef: 1. Aralık haftası | Telefonla randevu alır; anlamadığında kontrolü elinde tutar; arabada ders yapar | LS-17 R1 kapsamı + PM-003…PM-008'in R1 maddeleri + DESIGN.md (Bugün, ifade kartı, gelen arama) | 6 kapının tamamı; ilk 10 dakika ölçütü (LS-2.2) |
 | **R2 "Molada konuşan"** — hedef: 20.12.2026 | Molada 2 dk sohbete katılır; hafta sonunu anlatır; Weihnachtsfeier'de küçük sohbet yapar | Mola sohbetleri, smalltalk, Benim cümlelerim, spor + toplu taşıma modu, hikâye 1–4, şehir haritası, haftalık koç, ödev yardımcısı, telefon 03–04, arzt 02–04 | 6 kapı; 4 bağlam modu simülasyonu |
@@ -38,37 +38,14 @@ Tarihler hedeftir; kayarsa PM yeniden planlar ve öğrenciye açıkça söyler. 
 | **R7 "Doğal" (ay 12–24)** | Register geçişleri, uzun anlatı, doğal tepkiler | PM-009 R7 | Aylık kayıt karşılaştırması |
 | **R8 "Gerçek dünya"** (R6 ile paralel) | Dizi, film, podcast ile kendi kendine öğrenir | PM-009 R8 | "Duyduğum kelime" akışı |
 
-## 3. Hafta 0 planı (R1 yayına çıkana kadar her gün)
-
-Amaç: Uygulama hazırlanırken tek bir gün boşa gitmesin. Günlük 100 dk (4 × 25):
-1. **25 dk — kurs paraleli:** v1'deki kurs üniteleri; o hafta kursta işlenen konuya en yakın ünite.
-2. **25 dk — sesli hayatta kalma seti:** aşağıdaki 12 cümle; her biri 5 kez sesli, sonra Türkçesinden Almancasını söyleme. Sonra 60 sn "kendini anlat".
-3. **25 dk — kulak:** seviyeye uygun dış kaynak (ör. DW Nicos Weg A2 ya da Easy German sokak röportajı, Almanca altyazıyla).
-4. **25 dk — kurs ödevi ve tekrar.**
-5. **Her gün 1 gerçek mini görev** (sırayla): fırında „Ich hätte gern …" · markette „Wo finde ich …?" · kurstan birine „Woher kommst du?" · iş arkadaşına „Was machst du am Wochenende?" · bir dükkânı arayıp „Wie lange haben Sie heute geöffnet?" · evde 10 dk yalnızca Almanca · tekrar günü.
-
-Hayatta kalma seti:
-- Entschuldigung, wie bitte?
-- Können Sie das bitte wiederholen?
-- Etwas langsamer, bitte.
-- Ich lerne noch Deutsch.
-- Was heißt … auf Deutsch?
-- Wie sagt man … auf Deutsch?
-- Ich hätte gern …
-- Haben Sie …?
-- Wo finde ich …?
-- Ich habe am … einen Termin, aber ich kann leider nicht kommen.
-- Haben Sie noch einen anderen Termin?
-- Also … , richtig?
-
-## 4. Günlük ilerleme güvencesi (ürün içinde, R1'den itibaren)
+## 3. Günlük ilerleme güvencesi (ürün içinde, R1'den itibaren)
 
 - Bugün ekranının en üstünde "Bugünün adımı": bugün yapabilir hale geleceğin tek şey (ör. "Randevuyu telefonda ertelemek"). Gün sonunda başarıldıysa Raute dolar.
 - Haftalık "yapabiliyorum" hedefi: her hafta en az 1 yeni gerçek hayat becerisi.
 - 3 gün üst üste adım yoksa: koç planı sadeleştirir, bir önceki aşamaya döner, başarı bandını (%80–85) yeniden kurar.
 - **Haftalık özet paylaşımı:** Öğrencinin ilerleme verisi cihazındadır; PM bunu göremez. Bugün ekranında tek dokunuşla "Haftalık özeti paylaş" (kişisel bilgi içermeyen sayılar: odak dakikası, sesli cümle, yeni kalıcı öğe, gerçek görev, İngilizceye kaçma, takıldığı ekranlar). Öğrenci isterse PM'ye iletir; PM planı buna göre ayarlar.
 
-## 5. İş seçme kuralı (ana oturum için)
+## 4. İş seçme kuralı (ana oturum için)
 
 1. Önce açık PM talimatları (#12), P0 → P1 → P2.
 2. Sonra bu haritadaki bir sonraki sürümün kapsamı, REQUIREMENTS.md'deki o sürüme işaretli maddelerle birlikte.
