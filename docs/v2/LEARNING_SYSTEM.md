@@ -99,7 +99,7 @@ Her ilke bir ya da daha fazla ürün özelliğine dönüşür. Özelliği olmaya
 | Ay 4 | Hızlı Almanca + Bavyera kulağı | Hızlı konuşanı takip etmek · yaygın Bavyera ifadelerini anlamak · telefonda habersiz aramayı karşılamak |
 | Ay 5 | Spontane sohbet ve fikir söylemek | Molada 5 dk sohbet · fikir söylemek, katılmamak · plan yapmak, davet |
 | Ay 6 | Bağımsızlık + B1 hazırlığı başlangıcı | Beklenmedik durumları çözmek · B1 konuşma bölümü formatları |
-| 15.05.2027'ye kadar | Son 6 hafta B1 ağırlıklı | Sınav formatları, yazma görevleri, deneme sınavları (LS-15) |
+| Sınav tarihine kadar (tarih yalnızca cihaz ayarında, PM-001) | Son 6 hafta B1 ağırlıklı | Sınav formatları, yazma görevleri, deneme sınavları (LS-15) |
 
 ---
 

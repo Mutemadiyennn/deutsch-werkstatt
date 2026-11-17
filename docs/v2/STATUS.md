@@ -16,8 +16,18 @@ Yeni oturum: `CLAUDE.md` → `LEARNING_SYSTEM.md` → `LEARNER.md` → bu dosya 
 | #9 | `v2/h4-a-ogrenci` | H4-a: LEARNER.md, CLAUDE.md, PM kararları | — |
 | #10 | `v2/pm-kimlik-kurallar` | PM P1/P2: kimlik yer tutucuları, kalıp kapısı, accepted ≥3, hızlar | — |
 | #11 | `v2/ls-belge` | Faz R a–c: LEARNING_SYSTEM.md, CLAUDE.md okuma listesi, bu tablo | — |
+| (yeni) | `v2/pm-kanal` | PM kanalı kuralı (D-080), PM-001 sınav tarihi/kurum adı (D-075), sahte tarihli test | — |
+| (yeni) | `v2/h4-b-dunya` | H4-b: WORLD.md + world.json (12 karakter, 26 hafta, takvim) + şema/doğrulayıcı | — |
 
 Bağımsız inceleme (inceleme ajanı) #2–#7'ye yorum yazdı. #4 ve #7 bulguları düzeltildi: PEDAGOGY'deki kurum adı; rol oyunu sınırları, destek düzeyi, "Benim cevabım da doğru", bitir/geç yanıt, ≥44 pt, WebKit yarışı.
+
+## PM kanalı (D-080)
+- Genel talimatlar: issue #12; PR'a özgü: PR altında `[PM]` yorumları. Her anlamlı adımda ve her birleştirmeden önce okunur; her talimata ✓/✗ yanıtı.
+- Bekleme gerekirse send_later ile 60 dk'da bir #12 kontrolü (araç bu ortamda var).
+- Son okuma: 2026-11-17 · PM-001 ✓ (v2 kısmı; v1 kalıntıları T05'te onay bekliyor) · PM-002 → R1 dökümüne eklendi.
+
+## R1 görev dökümü (başlangıç; LS kimlikleriyle tamamlanacak)
+- **R1-01 · LS-2.1 / LS-2.2 / PM-002:** İlk ekran "İlk cümlen": doğrudan konuşma. Giriş zorunlu değil; veri önce cihazda. Giriş ve eşitleme ilk oturumdan sonra tek ekranlı öneriyle ("İlerlemeni yedeklemek için giriş yap"). Yapay zekâ gerektiren özellikler girişe kadar yapay zekâsız yedekle çalışır. Kısa profil tek ekran, hepsi isteğe bağlı; oyun gibi seviye tespiti (≤5 dk, atlanabilir); 60 sn "kendini anlat".
 
 ## Çalışan ajanlar
 - yazar: 61 kalıbı H3 §3 standardına getiriyor (önce pilotun 14 kalıbı) → sonra dilbilimci.

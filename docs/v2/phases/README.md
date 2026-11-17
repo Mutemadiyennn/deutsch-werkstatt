@@ -21,3 +21,7 @@ Bağlam sıkıştırmasından sonra eksik hatırlanan bir kural varsa buradan ok
 | 11-PM-INCELEME-PR4-6.md | Proje yöneticisi incelemesi: kalıplar P0, öğrenci kimliği, harf kodlama, küçük eksikler, İngilizce kararı | birebir |
 
 Faz 1–3 (denetim, plan, çekirdek uygulama) talimatlarının sonuçları: ../AUDIT.md, ../BLUEPRINT.md.
+
+| Ek | Metin | Durum |
+|---|---|---|
+| 13-PM-KANALI.md | PM talimat kanalı (issue #12, PR'larda [PM] yorumları) | birebir |

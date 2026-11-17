@@ -214,6 +214,15 @@ def main():
         page.wait_for_selector("[data-test=today-min]")
         check("/ 120 dk" in page.inner_text("[data-test=today-min]"), "yeni hedef (120 dk) yeniden yüklemeden sonra korunuyor")
 
+        print("7b) B1 hedefi: SAHTE tarihle (PM-001: gerçek tarih depoda yok)")
+        page.click("[data-tab=profile]")
+        page.check("text=B1 sınavına hazırlık")
+        page.fill("input[aria-label='Sınav tarihi']", "2099-01-01"); page.press("input[aria-label='Sınav tarihi']", "Tab")
+        page.wait_for_timeout(300)
+        page.click("[data-tab=today]")
+        page.wait_for_selector("[data-test=exam-badge]")
+        check("gün" in page.inner_text("[data-test=exam-badge]"), "B1 açıkken Bugün'de sınav rozeti (kalan gün)")
+
         print("8) Öğren")
         page.click("[data-tab=learn]")
         page.wait_for_selector("[data-domain=telefon]")

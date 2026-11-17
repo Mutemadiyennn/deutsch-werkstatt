@@ -30,6 +30,8 @@ Her ajan ve oturum işe `docs/v2/LEARNER.md`'yi okuyarak başlar. Her kararda te
 - **Arayüz çıtası:** v2 hiçbir ekranda v1'den görsel olarak zayıf olamaz (phases/04); iPhone standardı (phases/05).
 - **Rol oyunu:** güçlü model; 12 sn'de yanıt yoksa "Biraz uzun sürüyor" + Bekle / Tekrar dene / Yapay zekâsız devam; istek kesilmez (D-RP1).
 - **PR'lar LS kimliklerini listeler** (LS-16.4). Her sürümde LS-16.3 öğrenci simülasyonu zorunlu; QA ajanı bilgi kısıtlı oynar (öğretilmeyen öğeyi üretmesi istenirse P0).
+- **PM kanalı (D-080):** her anlamlı adımın sonunda ve her birleştirmeden önce issue #12 ve açık PR'lardaki yeni `[PM]` yorumlarını oku (`gh api repos/Mutemadiyennn/deutsch-werkstatt/issues/12/comments`, `issues/<PR>/comments`). Her talimata yanıt: `✓ PM-00x — <commit/PR>` ya da `✗ PM-00x — <gerekçe>`. Beklerken send_later ile 60 dk'da bir #12'yi kontrol et.
+- **Sınav tarihi ve kurum adı depoya girmez (D-075, PM-001):** yalnızca cihaz profilinde; testler sahte tarihle.
 - **Durma kuralı (D-072):** kontrol noktası raporundan sonra durulmaz. Yalnızca geri alınamaz işlem, para gerektirebilecek karar ya da LS ile çelişen zorunlulukta durup sor. Büyük değişiklik ve git geçmişi yeniden yazımı onayla.
 
 ## Komutlar
