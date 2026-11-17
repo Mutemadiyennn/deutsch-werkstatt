@@ -7,9 +7,9 @@ describe("içerik v2", () => {
   it("bütün dosyalar şemaya uyuyor ve kurallar 0 hata veriyor", () => {
     expect(c.errors).toEqual([]);
   });
-  it("13 alan var ve her biri v1 ünitelerine bağlı", () => {
-    expect(c.domains).toHaveLength(13);
-    expect(c.domains.every((d) => d.legacyUnits.length > 0)).toBe(true);
+  it("20 alan var (PEDAGOGY §4), strateji ilk sırada", () => {
+    expect(c.domains).toHaveLength(20);
+    expect(c.domains[0]!.id).toBe("strategie");
   });
   it("v1'in 715 kelime kaydının hepsi aktarılmış (aynı anlamdakiler birleşmiş)", () => {
     const keys = c.lexemes.flatMap((l) => l.legacy.map((x) => x.key));

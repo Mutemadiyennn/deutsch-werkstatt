@@ -16,7 +16,17 @@ export const DEFAULT_SESSION_PLAN: Activity[][] = [
   ["dialogue", "roleplay", "review"]
 ];
 
-export const DOMAIN_IDS = ["telefon", "arbeit", "arzt", "amt", "einkauf", "friseur", "sport", "wohnen", "bank", "verkehr", "essen", "nachbarn", "notfall"] as const;
+/** 20 alan, PEDAGOGY.md §4 öncelik sırasıyla */
+export const DOMAIN_IDS = ["strategie", "telefon", "arzt", "arbeit", "smalltalk", "einkaufen", "essen", "amt", "bank", "wohnen", "friseur", "sport", "verkehr", "post", "werkstatt", "notfall", "freizeit", "gefuehle", "medien", "bairisch"] as const;
+/** Faz 3'teki 13 alanlık kimliklerden yenilerine geçiş (kayıtlı profiller için) */
+export const DOMAIN_RENAMES: Record<string, string> = { einkauf: "einkaufen", nachbarn: "smalltalk" };
+export function migrateDomainPriority(list: string[]): string[] {
+  const mapped = list.map((d) => DOMAIN_RENAMES[d] || d).filter((d) => (DOMAIN_IDS as readonly string[]).includes(d));
+  const seen = new Set<string>();
+  const out = [...mapped, ...DOMAIN_IDS].filter((d) => (seen.has(d) ? false : (seen.add(d), true)));
+  // strateji her zaman ilk sırada (PEDAGOGY §4)
+  return ["strategie", ...out.filter((d) => d !== "strategie")];
+}
 
 export const Profile = z.object({
   id: z.literal("me"),

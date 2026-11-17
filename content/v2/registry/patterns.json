@@ -1,14 +1,1222 @@
 [
-  { "id": "pt:ich-moechte", "frame": "Ich möchte (gern) + Akkusativ / + Infinitiv (sonda)",
-    "grammar_tr": "Kibarca istek bildirir. 'möchte' ikinci sıradadır; asıl fiil varsa mastar hâlinde cümlenin sonuna gider: 'Ich möchte einen Termin machen.' İsimle kullanınca isim Akkusativ olur: 'einen Termin'.",
-    "examples": [ { "de": "Ich möchte gern einen Termin machen.", "tr": "Randevu almak istiyorum." }, { "de": "Ich möchte einen Termin, bitte.", "tr": "Bir randevu istiyorum, lütfen." } ] },
-  { "id": "pt:koennten-sie", "frame": "Könnten Sie bitte … + Infinitiv?",
-    "grammar_tr": "Konjunktiv II ile çok kibar rica. 'Könnten' başa gelir, asıl fiil mastar hâlinde sonda durur. Telefonda anlamadığında en çok işine yarayacak kalıp.",
-    "examples": [ { "de": "Könnten Sie das bitte wiederholen?", "tr": "Bunu tekrar edebilir misiniz?" }, { "de": "Könnten Sie bitte etwas langsamer sprechen?", "tr": "Biraz daha yavaş konuşabilir misiniz?" } ] },
-  { "id": "pt:passt-ihnen", "frame": "Passt Ihnen/dir + zaman? · Das passt mir (gut/nicht).",
-    "grammar_tr": "'passen' burada 'uygun olmak' demek ve kime uygun olduğu Dativ ile söylenir: mir, dir, Ihnen. Soru cümlesinde fiil başa gelir.",
-    "examples": [ { "de": "Passt Ihnen Donnerstag um 15 Uhr?", "tr": "Perşembe saat 15 size uygun mu?" }, { "de": "Ja, das passt mir gut.", "tr": "Evet, bu bana uyar." } ] },
-  { "id": "pt:geht-es-auch", "frame": "Geht es auch + zaman?",
-    "grammar_tr": "Alternatif önermenin kısa yolu. 'es geht' = 'olur, mümkün'. Soru için fiil başa gelir: 'Geht es auch am Freitag?'",
-    "examples": [ { "de": "Geht es auch am Nachmittag?", "tr": "Öğleden sonra da olur mu?" }, { "de": "Geht es auch nächste Woche?", "tr": "Gelecek hafta da olur mu?" } ] }
+ {
+  "id": "pt:ich-bin",
+  "frame": "Ich bin + sıfat / isim / yer",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "'sein' fiili kim ve nasıl olduğunu söyler. Özne 'ich' ise fiil 'bin'; 'Sie/wir/sie' ile 'sind'.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich bin heute müde.",
+    "tr": "Bugün yorgunum.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:ich-habe",
+  "frame": "Ich habe + Akkusativ",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Sahip olmayı ve durumu söyler ('Hunger, Zeit, Fieber haben'). Eril isimde artikel Akkusativ olur: einen Termin.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich habe heute keine Zeit.",
+    "tr": "Bugün vaktim yok.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:verb-zweite-stelle",
+  "frame": "[Zaman/yer] + FİİL + özne + …",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Ana cümlede çekimli fiil her zaman ikinci sıradadır. Cümle zamanla başlarsa özne fiilden sonra gelir: 'Morgen gehe ich'. Türkçedeki gibi fiili sona koymak en sık hatadır.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Morgen ruf ich nochmal an.",
+    "tr": "Yarın tekrar ararım.",
+    "layer": "alltag"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:w-frage",
+  "frame": "W-sözcüğü + FİİL + özne …?",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Soru sözcüğü başa, çekimli fiil ikinci sıraya gelir: Wann, Wo, Wie, Was, Wer, Warum, Wie viel.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Wann haben Sie Zeit?",
+    "tr": "Ne zaman vaktiniz var?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:ja-nein-frage",
+  "frame": "FİİL + özne + …?",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Evet/hayır sorusunda çekimli fiil başa gelir. Türkçedeki soru eki yerine fiil öne alınır.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Haben Sie heute noch was frei?",
+    "tr": "Bugün hâlâ boş yeriniz var mı?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:ich-moechte",
+  "frame": "Ich möchte (gern) + Akkusativ / + Infinitiv (sonda)",
+  "grammar_tr": "Kibarca istek bildirir. 'möchte' ikinci sıradadır; asıl fiil varsa mastar hâlinde cümlenin sonuna gider: 'Ich möchte einen Termin machen.' İsimle kullanınca isim Akkusativ olur: 'einen Termin'.",
+  "examples": [
+   {
+    "de": "Ich möchte gern einen Termin machen.",
+    "tr": "Randevu almak istiyorum."
+   },
+   {
+    "de": "Ich möchte einen Termin, bitte.",
+    "tr": "Bir randevu istiyorum, lütfen."
+   }
+  ],
+  "level": "A1",
+  "core": false,
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:koennten-sie",
+  "frame": "Könnten Sie bitte … + Infinitiv?",
+  "grammar_tr": "Konjunktiv II ile çok kibar rica. 'Könnten' başa gelir, asıl fiil mastar hâlinde sonda durur. Telefonda anlamadığında en çok işine yarayacak kalıp.",
+  "examples": [
+   {
+    "de": "Könnten Sie das bitte wiederholen?",
+    "tr": "Bunu tekrar edebilir misiniz?"
+   },
+   {
+    "de": "Könnten Sie bitte etwas langsamer sprechen?",
+    "tr": "Biraz daha yavaş konuşabilir misiniz?"
+   }
+  ],
+  "level": "A1",
+  "core": false,
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:kann-ich",
+  "frame": "Kann ich + … + mastar?",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "İzin ya da olanak sorar. 'kann' ikinci sırada değil, soruda başta; asıl fiil mastar hâlinde sonda.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Kann ich mit Karte zahlen?",
+    "tr": "Kartla ödeyebilir miyim?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:darf-ich",
+  "frame": "Darf ich + … + mastar?",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "'Kann ich'ten daha kibar izin isteme. Asıl fiil sonda.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Darf ich kurz was fragen?",
+    "tr": "Kısaca bir şey sorabilir miyim?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:ich-muss",
+  "frame": "Ich muss + … + mastar",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Zorunluluk. 'muss' ikinci sırada, asıl fiil sonda. 'Ich muss nicht' = gerek yok (yasak değil).",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich muss morgen früh arbeiten.",
+    "tr": "Yarın sabah çalışmam lazım.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:nicht",
+  "frame": "… nicht …",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Fiili ya da cümleyi olumsuz yapar; genelde cümlenin sonuna doğru ya da olumsuzlanan kelimenin önüne gelir.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Das passt mir leider nicht.",
+    "tr": "Bu maalesef bana uymuyor.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:kein",
+  "frame": "kein / keine / keinen + isim",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Artikelsiz ya da 'ein'li ismi olumsuzlar. Eril Akkusativ'de 'keinen'.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich hab keinen Termin.",
+    "tr": "Randevum yok.",
+    "layer": "alltag"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:es-gibt",
+  "frame": "Es gibt + Akkusativ · Gibt es …?",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "'Var' demenin genel yolu. Nesne Akkusativ'dir: 'Gibt es hier einen Bäcker?'",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Gibt's hier in der Nähe eine Apotheke?",
+    "tr": "Yakınlarda eczane var mı?",
+    "layer": "alltag"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:wo-ist",
+  "frame": "Wo ist / sind …? · Wo finde ich …?",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Yer sorar. Tekil 'ist', çoğul 'sind'. 'Wo finde ich …' mağazada çok kullanılır.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Wo finde ich die Milch?",
+    "tr": "Sütü nerede bulabilirim?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:wie-viel-kostet",
+  "frame": "Was kostet …? · Wie viel kostet …?",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Fiyat sorar. Çoğulda 'kosten'.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Was kostet das?",
+    "tr": "Bu ne kadar?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:ich-haette-gern",
+  "frame": "Ich hätte gern + Akkusativ",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Sipariş ve istek için kibar, çok gündelik kalıp (fırın, kafe, eczane).",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich hätte gern zwei Brezen.",
+    "tr": "İki bretzel alabilir miyim?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:passt-ihnen",
+  "frame": "Passt Ihnen/dir + zaman? · Das passt mir (gut/nicht).",
+  "grammar_tr": "'passen' burada 'uygun olmak' demek ve kime uygun olduğu Dativ ile söylenir: mir, dir, Ihnen. Soru cümlesinde fiil başa gelir.",
+  "examples": [
+   {
+    "de": "Passt Ihnen Donnerstag um 15 Uhr?",
+    "tr": "Perşembe saat 15 size uygun mu?"
+   },
+   {
+    "de": "Ja, das passt mir gut.",
+    "tr": "Evet, bu bana uyar."
+   }
+  ],
+  "level": "A1",
+  "core": false,
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:geht-es-auch",
+  "frame": "Geht es auch + zaman?",
+  "grammar_tr": "Alternatif önermenin kısa yolu. 'es geht' = 'olur, mümkün'. Soru için fiil başa gelir: 'Geht es auch am Freitag?'",
+  "examples": [
+   {
+    "de": "Geht es auch am Nachmittag?",
+    "tr": "Öğleden sonra da olur mu?"
+   },
+   {
+    "de": "Geht es auch nächste Woche?",
+    "tr": "Gelecek hafta da olur mu?"
+   }
+  ],
+  "level": "A1",
+  "core": false,
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:um-uhr",
+  "frame": "um + saat · am + gün · halb / Viertel",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Saat için 'um', gün için 'am'. Dikkat: 'halb zehn' = 9:30 (onun yarısı değil, ona yarım var). 'Viertel nach neun' = 9:15, 'Viertel vor zehn' = 9:45.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Geht's am Donnerstag um halb zehn?",
+    "tr": "Perşembe dokuz buçukta olur mu?",
+    "layer": "alltag"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:seit",
+  "frame": "seit + Dativ + şimdiki zaman",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Hâlâ süren durum: Almancada şimdiki zaman kullanılır ('seit drei Tagen habe ich …'), Türkçedeki '-dır' gibi.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich hab seit gestern Fieber.",
+    "tr": "Dünden beri ateşim var.",
+    "layer": "alltag"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:mir-tut-weh",
+  "frame": "Mir tut + organ + weh · Ich habe …schmerzen",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Ağrıyı söyler. Ağrıyan organ öznedir; çoğulsa 'tun'. Kime: Dativ (mir).",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Mir tut der Rücken weh.",
+    "tr": "Sırtım ağrıyor.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:trennbar",
+  "frame": "Ich rufe … an · Ich komme … mit",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Ayrılabilen fiilde ön ek cümlenin sonuna gider: 'anrufen' → 'Ich rufe morgen an'. Modal fiille birleşik kalır: 'Ich muss anrufen'.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich ruf Sie morgen zurück.",
+    "tr": "Sizi yarın geri ararım.",
+    "layer": "alltag"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:perfekt-haben",
+  "frame": "Ich habe … + Partizip II",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Konuşmada geçmiş zaman çoğunlukla Perfekt'tir. 'haben' ikinci sırada, Partizip sonda.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich hab gestern angerufen.",
+    "tr": "Dün aradım.",
+    "layer": "alltag"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:perfekt-sein",
+  "frame": "Ich bin … + Partizip II (hareket/değişim)",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Yer değiştirme ve durum değişimi bildiren fiillerde 'sein': gehen, fahren, kommen, aufstehen, passieren.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich bin mit dem Bus gekommen.",
+    "tr": "Otobüsle geldim.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:mit-dativ",
+  "frame": "mit + Dativ",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "'mit' her zaman Dativ ister: mit dem Bus, mit der Karte, mit meinem Chef.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Kann ich mit der Ärztin sprechen?",
+    "tr": "Doktor hanımla konuşabilir miyim?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:fuer-akk",
+  "frame": "für + Akkusativ",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "'für' her zaman Akkusativ ister: für meinen Sohn, für morgen.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Haben Sie was gegen Halsschmerzen für Kinder?",
+    "tr": "Çocuklar için boğaz ağrısına karşı bir şeyiniz var mı?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:ich-brauche",
+  "frame": "Ich brauche + Akkusativ",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "İhtiyaç bildirir; nesne Akkusativ'dir.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich brauche eine Krankschreibung.",
+    "tr": "Rapor (iş göremezlik belgesi) lazım.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:was-heisst",
+  "frame": "Was heißt … (auf Deutsch / auf Türkisch)?",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Anlamını sorma stratejisi. Konuşmayı bırakmadan sorulur.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Entschuldigung, was heißt „Überweisung“?",
+    "tr": "Pardon, „Überweisung“ ne demek?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:wie-sagt-man",
+  "frame": "Wie sagt man … auf Deutsch?",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Kelimeyi bilmediğinde İngilizceye geçmek yerine kullanılır; çoğu zaman tarif etmeyle birlikte.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Wie sagt man das auf Deutsch – das Ding für die Haare?",
+    "tr": "Bu Almanca nasıl denir – saç için olan şey?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:meinen-sie",
+  "frame": "Meinen Sie …? · Sie meinen …?",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Anladığını kontrol etme stratejisi: duyduğunu kendi sözlerinle tekrar et.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Meinen Sie Donnerstag oder Dienstag?",
+    "tr": "Perşembeyi mi kastediyorsunuz, salıyı mı?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:imperativ-sie",
+  "frame": "FİİL + Sie + … (bitte)",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Sie ile emir/rica: fiil başa, 'Sie' arkasına. Talimatlarda çok duyulur.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Nehmen Sie die Tabletten nach dem Essen.",
+    "tr": "Tabletleri yemekten sonra alın.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:sollen-wir",
+  "frame": "Sollen wir … ? · Wollen wir … ? · Lass uns …",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Öneri yapma. 'Lass uns' samimi; 'Sollen wir' her durumda olur.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Sollen wir nächste Woche telefonieren?",
+    "tr": "Gelecek hafta telefonlaşalım mı?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:ich-finde",
+  "frame": "Ich finde + nesne + sıfat · Ich finde das …",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Fikir söyleme. 'Ich finde das gut/blöd/okay.'",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich find das echt gut.",
+    "tr": "Bence bu gerçekten iyi.",
+    "layer": "alltag"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:gefaellt-mir",
+  "frame": "… gefällt mir (nicht)",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Beğenmek: beğenilen şey öznedir, beğenen Dativ (mir, dir, Ihnen).",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Die Farbe gefällt mir nicht so.",
+    "tr": "Renk pek hoşuma gitmiyor.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:haben-sie",
+  "frame": "Haben Sie …?",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Mağazada, eczanede, randevuda en sık soru. Nesne Akkusativ.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Haben Sie das auch in Größe M?",
+    "tr": "Bunun M bedeni de var mı?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:ich-war",
+  "frame": "Ich war … · Ich hatte …",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "'sein' ve 'haben' geçmişte konuşmada da Präteritum ile söylenir.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich war letzte Woche krank.",
+    "tr": "Geçen hafta hastaydım.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:lieber",
+  "frame": "lieber · besser · mehr … als",
+  "level": "A2",
+  "core": false,
+  "grammar_tr": "Tercih ve karşılaştırma: 'Ich hätte lieber den Nachmittag'. Karşılaştırmada 'als'.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Lieber am Nachmittag, wenn's geht.",
+    "tr": "Mümkünse öğleden sonra olsun.",
+    "layer": "alltag"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:zu-adj",
+  "frame": "Das ist (mir) zu + sıfat",
+  "level": "A2",
+  "core": false,
+  "grammar_tr": "Fazlalık bildirir: zu teuer, zu früh, zu laut.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Acht Uhr ist mir zu früh.",
+    "tr": "Sekiz bana çok erken.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:es-tut-mir-leid",
+  "frame": "Es tut mir leid, (dass) … · Entschuldigung, …",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Özür. 'dass' ile yan cümle kurulursa fiil sona gider.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Tut mir leid, dass ich zu spät bin.",
+    "tr": "Geç kaldığım için üzgünüm.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:weil",
+  "frame": "…, weil + … + FİİL (sonda)",
+  "level": "A2",
+  "core": false,
+  "grammar_tr": "Sebep. 'weil'den sonra çekimli fiil cümlenin en sonuna gider. Konuşmada 'weil' sonrası düz sıra da duyulur ama yazıda yanlış sayılır.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich kann nicht kommen, weil ich krank bin.",
+    "tr": "Gelemiyorum çünkü hastayım.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:dass",
+  "frame": "Ich glaube / denke / hoffe, dass … + FİİL",
+  "level": "A2",
+  "core": false,
+  "grammar_tr": "Düşünce ve bilgi aktarır; yan cümlede fiil sonda.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich glaub, dass das morgen klappt.",
+    "tr": "Bence bu yarın olur.",
+    "layer": "alltag"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:wenn",
+  "frame": "Wenn …, (dann) + FİİL + özne …",
+  "level": "A2",
+  "core": false,
+  "grammar_tr": "Koşul. Yan cümle başta ise ana cümle fiille başlar: 'Wenn es geht, komme ich'.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Wenn's heute nicht geht, komm ich morgen.",
+    "tr": "Bugün olmazsa yarın gelirim.",
+    "layer": "alltag"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:ob",
+  "frame": "…, ob … + FİİL",
+  "level": "B1",
+  "core": false,
+  "grammar_tr": "Evet/hayır sorusunu dolaylı sorar: 'Ich weiß nicht, ob …', 'Können Sie mir sagen, ob …'.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Wissen Sie, ob die Praxis heute offen ist?",
+    "tr": "Muayenehanenin bugün açık olup olmadığını biliyor musunuz?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:indirekte-frage",
+  "frame": "Können Sie mir sagen, wann/wo/wie … + FİİL?",
+  "level": "B1",
+  "core": false,
+  "grammar_tr": "Kibar soru: soru sözcüğünden sonra fiil sona gider.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Können Sie mir sagen, wo ich das Formular bekomme?",
+    "tr": "Formu nereden alacağımı söyleyebilir misiniz?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:wuerden-sie",
+  "frame": "Würden Sie bitte … + mastar?",
+  "level": "A2",
+  "core": false,
+  "grammar_tr": "Çok kibar rica; 'Könnten Sie' ile aynı yapıda.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Würden Sie das bitte buchstabieren?",
+    "tr": "Bunu harf harf söyler misiniz?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:ich-wuerde-gern",
+  "frame": "Ich würde gern + … + mastar",
+  "level": "A2",
+  "core": false,
+  "grammar_tr": "Kibar istek ve plan: 'Ich würde gern einen Termin vereinbaren.'",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich würde gern den Termin verschieben.",
+    "tr": "Randevuyu ertelemek istiyorum.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:ich-haette-eine-frage",
+  "frame": "Ich hätte eine Frage / eine Bitte · Hätten Sie …?",
+  "level": "A2",
+  "core": false,
+  "grammar_tr": "Konuşmaya kibarca girmek ve bir şey istemek.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich hätte noch eine Frage zum Rezept.",
+    "tr": "Reçeteyle ilgili bir sorum daha var.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:um-zu",
+  "frame": "…, um … zu + mastar",
+  "level": "B1",
+  "core": false,
+  "grammar_tr": "Amaç: özneler aynıysa 'um … zu'. Mastar en sonda.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich ruf an, um den Termin abzusagen.",
+    "tr": "Randevuyu iptal etmek için arıyorum.",
+    "layer": "alltag"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:obwohl",
+  "frame": "…, obwohl … + FİİL",
+  "level": "B1",
+  "core": false,
+  "grammar_tr": "Karşıtlık: '-e rağmen'. Yan cümlede fiil sonda.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich geh arbeiten, obwohl ich erkältet bin.",
+    "tr": "Soğuk algınlığıma rağmen işe gidiyorum.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:deshalb",
+  "frame": "… Deshalb / Trotzdem / Dann + FİİL + özne …",
+  "level": "A2",
+  "core": false,
+  "grammar_tr": "Bağlaç zarfı başa gelince fiil hemen ardından gelir (ikinci sıra kuralı).",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich hab Fieber. Deshalb bleib ich heute zu Hause.",
+    "tr": "Ateşim var. Bu yüzden bugün evde kalıyorum.",
+    "layer": "alltag"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:reflexiv",
+  "frame": "Ich + fiil + mich … · sich freuen, sich beeilen, sich anmelden",
+  "level": "A2",
+  "core": false,
+  "grammar_tr": "Dönüşlü fiil: zamir özneyle uyumlu (ich → mich, du → dich, Sie → sich).",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich muss mich beeilen.",
+    "tr": "Acele etmem lazım.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:verb-praep",
+  "frame": "warten auf · sich kümmern um · sich beschweren über · denken an",
+  "level": "B1",
+  "core": false,
+  "grammar_tr": "Edatlı fiillerde edat sabittir ve hâl ister; birlikte ezberlenir. Soru: 'Worauf warten Sie?'",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Ich warte noch auf den Befund.",
+    "tr": "Hâlâ tahlil sonucunu bekliyorum.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:passiv",
+  "frame": "Das wird … + Partizip II · Wird das … ?",
+  "level": "B1",
+  "core": false,
+  "grammar_tr": "Kimin yaptığı önemli değilse edilgen: 'Das wird von der Kasse bezahlt.'",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Wird das von der Krankenkasse bezahlt?",
+    "tr": "Bunu sağlık sigortası ödüyor mu?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:relativsatz",
+  "frame": "der/die/das …, den/die/das ich … + FİİL",
+  "level": "B1",
+  "core": false,
+  "grammar_tr": "Bir ismi cümleyle tanımlar; ilgi zamiri ismin cinsine, hâli yan cümledeki görevine göre seçilir.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Das ist das Medikament, das ich immer nehme.",
+    "tr": "Bu hep aldığım ilaç.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:es-waere-nett",
+  "frame": "Es wäre nett / gut, wenn … + FİİL",
+  "level": "B1",
+  "core": false,
+  "grammar_tr": "Çok kibar rica ya da öneri; Konjunktiv II.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Es wär nett, wenn Sie mich zurückrufen.",
+    "tr": "Beni geri ararsanız sevinirim.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:sollte",
+  "frame": "Sie sollten … · Soll ich …?",
+  "level": "B1",
+  "core": false,
+  "grammar_tr": "Tavsiye ('sollten') ve talimat sorma ('Soll ich …?').",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Soll ich nüchtern kommen?",
+    "tr": "Aç karnına mı geleyim?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:bevor-nachdem",
+  "frame": "bevor / nachdem … + FİİL, …",
+  "level": "B1",
+  "core": false,
+  "grammar_tr": "Zaman sırası; talimatlarda çok duyulur. Yan cümle başta ise ana cümle fiille başlar.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Bevor Sie kommen, rufen Sie bitte kurz an.",
+    "tr": "Gelmeden önce lütfen kısaca arayın.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:als-wenn-zeit",
+  "frame": "Als … (geçmişte bir kez) · Wenn … (her seferinde)",
+  "level": "B1",
+  "core": false,
+  "grammar_tr": "Geçmişteki tek olay 'als', tekrarlanan ya da gelecek 'wenn'.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Als ich angerufen hab, war besetzt.",
+    "tr": "Aradığımda meşguldü.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:noch-mal",
+  "frame": "Noch mal, bitte · Wie war das nochmal?",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Tekrar ettirme stratejisi; çok gündelik ve kibar.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Wie war das nochmal mit der Uhrzeit?",
+    "tr": "Saat neydi, tekrar söyler misiniz?",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:ich-verstehe-nicht",
+  "frame": "Ich hab … nicht verstanden · Das hab ich nicht ganz verstanden",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Anlamadığını İngilizceye geçmeden söylemek; neyi anlamadığını belirtmek konuşmayı kurtarır.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Den Namen hab ich nicht verstanden.",
+    "tr": "Adı anlamadım.",
+    "layer": "alltag"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ },
+ {
+  "id": "pt:moment",
+  "frame": "Moment (mal) · Einen Moment, bitte · Lassen Sie mich kurz überlegen",
+  "level": "A1",
+  "core": false,
+  "grammar_tr": "Zaman kazanma stratejisi; düşünürken sessiz kalmak yerine.",
+  "slots": [],
+  "examples": [
+   {
+    "de": "Moment, ich schau kurz nach.",
+    "tr": "Bir saniye, hemen bakıyorum.",
+    "layer": "hd"
+   }
+  ],
+  "transforms": {},
+  "mistakes_tr": [],
+  "review": {
+   "status": "draft"
+  }
+ }
 ]
