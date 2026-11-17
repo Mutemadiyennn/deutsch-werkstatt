@@ -26,8 +26,34 @@ Bağımsız inceleme (inceleme ajanı) #2–#7'ye yorum yazdı. #4 ve #7 bulgula
 - Bekleme gerekirse send_later ile 60 dk'da bir #12 kontrolü (araç bu ortamda var).
 - Son okuma: 2026-11-17 · PM-001 ✓ (v2 kısmı; v1 kalıntıları T05'te onay bekliyor) · PM-002 → R1 dökümüne eklendi.
 
-## R1 görev dökümü (başlangıç; LS kimlikleriyle tamamlanacak)
-- **R1-01 · LS-2.1 / LS-2.2 / PM-002:** İlk ekran "İlk cümlen": doğrudan konuşma. Giriş zorunlu değil; veri önce cihazda. Giriş ve eşitleme ilk oturumdan sonra tek ekranlı öneriyle ("İlerlemeni yedeklemek için giriş yap"). Yapay zekâ gerektiren özellikler girişe kadar yapay zekâsız yedekle çalışır. Kısa profil tek ekran, hepsi isteğe bağlı; oyun gibi seviye tespiti (≤5 dk, atlanabilir); 60 sn "kendini anlat".
+## R1 görev dökümü — "İlk telefon" (LS-17 R1; kabul: LS-16.3 simülasyonu ilk hafta senaryosunu baştan sona tamamlar + yapay zekâsız gün geçer)
+| # | Görev | LS / kaynak | Durum |
+|---|---|---|---|
+| R1-01 | İlk ekran "İlk cümlen": doğrudan konuşma, ilk başarı ≤60 sn; giriş zorunlu değil, veri önce cihazda | LS-2.1, LS-2.2, PM-002 | yapılacak |
+| R1-02 | Kısa profil tek ekran (ad, hitap, zorlanılan durumlar, günlük süre, bağlam soruları), hepsi isteğe bağlı | LS-2.1 (1:40), D-061 | kısmen (ad+hitap var) |
+| R1-03 | Oyun gibi seviye tespiti ≤5 dk (3 hızda dinleme, 5 kurma, mini telefon), atlanabilir, "sınav" kelimesi yok | LS-2.1 (3:00) | yapılacak (mevcut tespit 12–15 dk) |
+| R1-04 | 60 sn "kendini anlat" kaydı (yalnızca cihazda), aylık karşılaştırma | LS-2.1 (8:00), LS-16.1, H4 §9 | yapılacak |
+| R1-05 | "Nasıl öğreneceksin" 3 kart + bugünün planı, ilk seans hemen | LS-2.1 (9:00–9:30) | yapılacak |
+| R1-06 | Giriş/eşitleme önerisi ilk oturumdan sonra; YZ özellikleri girişe kadar YZ'siz yedekle | PM-002, LS-14.2 | yapılacak |
+| R1-07 | Pilotta kullanılan kalıplar reviewed | LS-17 R1, D-063 | sürüyor (yazar 55/61, sonra dilbilimci) |
+| R1-08 | İçerik: strateji 01–03, telefon 01–02, arzt 01 — yer tutucular, iki heceleme, dünyaya bağlama, reviewed | LS-2.3, H4-c, PM P1/P2 | sürüyor (01'ler dil incelemesinden geçti; 02–03 beklemede) |
+| R1-09 | Kurma merdiveni 10 basamak; basamak 3–5 kalıp verisinden üretilir | LS-6.2 | kısmen |
+| R1-10 | Hız turu (4 sn, kişisel rekor; yalnızca doğru üretilmiş öğeler) | LS-6.4 | yapılacak |
+| R1-11 | Önce konuşma: mikrofon varsayılan, yazma isteğe bağlı | LS-6.5 | kısmen |
+| R1-12 | Kulak Salonu basamak 1–2 + "sonraki cümleyi tahmin et" + sayı/saat/heceleme 2 dk akışı | LS-8.1, 8.2, 8.4 | kısmen (senaryo dinlemesi) |
+| R1-13 | Bağlam modları: Masa + **Araba** (ekransız beklemeli hatırlama, sesli komutlar, otomatik ilerleme, güvenlik notu) | LS-5.5 | yapılacak |
+| R1-14 | Günlük motor: 4 seans = 4 kol, "Bugün nasılsın?", etkinlik türü değişimi, ≥4 gün şablonu | LS-5.1–5.4 | yapılacak |
+| R1-15 | Döngüsüzlük çekirdeği: 14 gün kuralı, aynı tip ≤2 art arda, yenilik oranı ölçümü | LS-12.3, H4-d | yapılacak |
+| R1-16 | Tekrar ekranı: FSRS kuyruğu, günlük yük 12 aktif / 25 pasif, 25 dk üstünde otomatik azaltma | LS-7.3, 7.4 | yapılacak |
+| R1-17 | Oyunlaştırma: XP tablosu, seri (+dondurucu), günlük 3 küçük hedef, kombo | LS-13.2, 13.5, 13.6, 13.8 | yapılacak |
+| R1-18 | Gelen arama kademe 1 (yerel bildirim + tam ekran zil + arama kartı); pilot: Dr. Weber'in muayenehanesinden randevu hatırlatma | LS-9.2, H4-e | yapılacak |
+| R1-19 | Gerçek konuşma öncesi (2 dk prova + arama kartı) / sonrası (hatırlananı anlat → koç) + hukuki uyarı | LS-10.5 | yapılacak |
+| R1-20 | Kurtarma modu (10 dk; seri bozulmaz; 2 gün açılmazsa öneri) | LS-10.6, H4 §10 | yapılacak |
+| R1-21 | Hatadan mini ders (aynı D1/D2 hatası 2 kez → ertesi gün S1'de 3 dk) | LS-10.3 | yapılacak |
+| R1-22 | Yerel ölçüm: açılış, tamamlama/bırakma, ekran bazında bırakma noktası, yenilik oranı | LS-16.2 | kısmen (aşama 1–2, rol oyunu süresi) |
+| R1-23 | /v2/ yayını + v1 Bugün'e "Yeni: Gerçek hayat dersleri" kartı (v1 17b, tam v1 kapısı) | H2 hızlı hat | yapılacak |
+| R1-24 | LS-16.3 öğrenci simülasyonu (qa, bilgi kısıtlı): 6 madde, ekran görüntüleriyle | LS-16.3 | yapılacak |
+| — | Advent / Weihnachtsmarkt mini senaryoları (2–3), R1'den bağımsız, 27.11.2026'ya kadar | LS-17.0, D-073 | sıradaki içerik işi |
 
 ## Çalışan ajanlar
 - yazar: 61 kalıbı H3 §3 standardına getiriyor (önce pilotun 14 kalıbı) → sonra dilbilimci.
