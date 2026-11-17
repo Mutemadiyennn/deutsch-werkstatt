@@ -2,9 +2,11 @@ import asyncio, json, sys, re
 sys.path.insert(0,'/tmp'); from mockai import fill
 from playwright.async_api import async_playwright
 # iPhone benzeri: üstte 59px, altta 34px güvenli alan
-src = open('/home/claude/werkstatt/index.html').read()
+import os
+SITE = os.environ.get('DW_SITE', os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.site'))
+src = open(os.path.join(SITE, 'index.html')).read()
 src = src.replace('env(safe-area-inset-top)','59px').replace('env(safe-area-inset-bottom)','34px')
-open('/home/claude/werkstatt/_sa.html','w').write(src)
+open(os.path.join(SITE, '_sa.html'),'w').write(src)
 JS = """()=>{ const bad=[]; for(const e of document.querySelectorAll('body *')){ const cs=getComputedStyle(e); if(cs.visibility==='hidden'||cs.display==='none') continue; const r=e.getBoundingClientRect(); if(r.width<4||r.height<4) continue; if(r.bottom<=0) continue; if(r.top < 55 && r.bottom > 4 && (e.matches('button,a,.chip,.lcount,.lprog,h1,h2,h3,p,span,b') ) && !e.closest('#micPill,.toast')){ bad.push((e.className||e.tagName).toString().slice(0,30)+'@'+Math.round(r.top)); } } return [...new Set(bad)].slice(0,6); }"""
 async def main():
   async with async_playwright() as p:

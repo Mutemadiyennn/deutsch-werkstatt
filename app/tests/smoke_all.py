@@ -1,6 +1,7 @@
 import asyncio, json
 from playwright.async_api import async_playwright
-FAKE = open('/tmp/voice_test.py').read().split('FAKE = r"""')[1].split('"""')[0]
+import os
+FAKE = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fixtures', 'voice_fake.js')).read()
 async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch(); pg = await b.new_page(); errs=[]

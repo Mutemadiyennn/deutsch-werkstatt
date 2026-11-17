@@ -1,10 +1,4 @@
 #!/bin/bash
-# Kaynağı GitHub deposunun main dalındaki app/ klasörüne eşitler (içerik dahil, sembolik bağlar takip edilir).
-set -e
-D=/home/claude/wf/app
-rm -rf "$D"; mkdir -p "$D"
-cp -rL legacy.html build.py sync_repo.sh ARCHITECTURE.md CHANGES_LEGACY.md RELEASE.md HANDOFF.md src tests "$D"/
-mkdir -p "$D/content/kurs"
-cp -r content/kurs/units content/kurs/plan.json content/kurs/SCHEMA.md content/kurs/AGENT_BRIEF.md content/kurs/REVIEW_BRIEF.md content/kurs/validate.py content/kurs/build_index.py content/kurs/release.txt content/kurs/release_plus.txt content/kurs/EX_BRIEF.md content/kurs/PLUS_BRIEF.md content/kurs/FIX_BRIEF.md content/kurs/plus_check.py content/kurs/plus_assign.py content/kurs/vocabscan.py content/kurs/plus "$D/content/kurs/"
-find "$D" -name '__pycache__' -prune -exec rm -rf {} +
-echo "synced → $D"
+# Artık gerekmiyor: kaynak doğrudan main dalındaki app/ klasörü (v2 tek depo düzeni, 17.11.2026).
+# Eskiden /home/claude/dw → /home/claude/wf/app kopyalıyordu.
+echo "sync_repo.sh: kaynak zaten main/app/ içinde; eşitleme gerekmiyor."

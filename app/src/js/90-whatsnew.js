@@ -1,14 +1,10 @@
 /* ===== Yenilikler: her önemli sürümde bir kez gösterilir ===== */
-const WHATSNEW = {id:"2026-11-14-kurs2", title:"Yeni: Kurs A1 → B1", items:[
-  "📚 Uygulama artık hazır bir kursla ilerliyor: A1'den B1'e 42 ünite, Schritte plus Neu sırasıyla. Her ünite kelimeler → kural → dinleme → okuma → oyunlar → yazma → rol oyunu → sınav basamaklarından oluşuyor.",
-  "✅ Bütün üniteler yazarından bağımsız bir dilbilimci tarafından madde madde incelendi; doğru söylediğin farklı bir cümle de (sıkı bir öğretmen kontrolüyle) doğru sayılır.",
-  "⚡ Dersler önceden yazılmış ve kontrol edilmiş: bekleme yok, hata verip menüye atma yok, internet olmadan da çalışıyor.",
-  "📸 Kelimeler fotoğrafla tanıtılıyor ve ünitenin gerçek cümleleri içinde çalışılıyor: cümleyi tamamlayıp bütün cümleyi sesli söylüyorsun.",
-  "🧠 Kelimeler, Türkçesinden Almancasını iki ayrı oturumda kendin söyleyince kalıcı sayılıyor; ünite sınavı ancak o zaman açılıyor.",
-  "🎭 Her ünitenin sonunda, seni düzelte düzelte konuşturan kısa bir rol oyunu var.",
-  "💬 Canlı sohbette her cümlen arka planda kontrol ediliyor: hatada ekranda kart çıkıyor, partnerin de sesli düzeltip tekrar ettiriyor.",
-  "🚗 Eller serbest modda kursun cümleleri çalışılıyor: Türkçesini duy, Almancasını söyle.",
-  "🔇 Sesli okumada tire, nokta, eğik çizgi gibi işaretler artık okunmuyor; Almanca ve Türkçe kısımlar kendi sesleriyle okunuyor."]};
+const WHATSNEW = {id:"2026-11-17a", title:"Yenilikler", items:[
+  "🔁 Yanlış yaptığın kelime aynı turda başka bir cümle ve başka bir fotoğrafla geri geliyor: ezber değil, kalıcı öğrenme.",
+  "📝 Her kelimenin 4 örnek cümlesi var; tekrarlarda hep farklı bir cümle görürsün.",
+  "📈 Seviyem yenilendi: ünite ilerlemesi, kalıcı kelimeler, zayıf kurallar ve tek dokunuşla o kurala özel alıştırma.",
+  "🛟 Daha sağlam: açılışta arka planda üretim yok; dikte ve aylık ölçüm yapay zekâ olmadan da çalışıyor.",
+  "📱 Canlı sohbette iPhone'un üst alanıyla çakışma giderildi."]};
 {
   const _rpW = renderPlan;
   renderPlan = function(){
