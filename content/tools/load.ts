@@ -133,29 +133,31 @@ export function checkScenario(s: Scenario): string[] {
   const e: string[] = [];
   const n = (a: unknown[]) => a.length;
   const rng = (v: number, lo: number, hi: number, what: string) => { if (v < lo || v > hi) e.push(`${what}: ${v} (beklenen ${lo}–${hi})`); };
-  rng(n(s.essentials.lexemes), 12, 20, "temel kelime");
-  rng(n(s.essentials.chunks), 8, 15, "temel ifade");
-  rng(n(s.essentials.patterns), 3, 6, "temel kalıp");
-  if (n(s.build) < 25) e.push(`aşama 3 cümle kurma en az 25 (${n(s.build)})`);
-  if (n(s.drills) < 35) e.push(`aşama 4 alıştırma en az 35 (${n(s.drills)})`);
-  for (const k of ["gap", "order", "transform", "guided_response", "listen_and_respond", "tr_de"]) if (!s.drills.some((d) => d.k === k)) e.push(`alıştırma türü eksik: ${k}`);
-  if (n(s.dialogues) < 3) e.push(`en az 3 diyalog çeşidi (${n(s.dialogues)})`);
+  // LS-17.0: mini (mevsim) senaryoları azaltılmış asgari sayılarla; oynatıcının 7 bölümü yine dolu olmalı
+  const M = s.format === "mini";
+  rng(n(s.essentials.lexemes), M ? 6 : 12, M ? 12 : 20, "temel kelime");
+  rng(n(s.essentials.chunks), M ? 5 : 8, M ? 10 : 15, "temel ifade");
+  rng(n(s.essentials.patterns), M ? 2 : 3, M ? 4 : 6, "temel kalıp");
+  if (n(s.build) < (M ? 10 : 25)) e.push(`aşama 3 cümle kurma en az ${M ? 10 : 25} (${n(s.build)})`);
+  if (n(s.drills) < (M ? 12 : 35)) e.push(`aşama 4 alıştırma en az ${M ? 12 : 35} (${n(s.drills)})`);
+  for (const k of M ? ["gap", "order", "guided_response", "tr_de"] : ["gap", "order", "transform", "guided_response", "listen_and_respond", "tr_de"]) if (!s.drills.some((d) => d.k === k)) e.push(`alıştırma türü eksik: ${k}`);
+  if (n(s.dialogues) < (M ? 1 : 3)) e.push(`en az ${M ? 1 : 3} diyalog çeşidi (${n(s.dialogues)})`);
   for (const d of s.dialogues) for (const l of d.lines.filter((x) => x.r === "B")) {
     if (!l.starter || !l.keywords?.length || !l.hint_tr) e.push(`${d.id}: öğrenci satırında 4 destek düzeyi eksik: "${l.de}"`);
     if ((l.accepted?.length || 0) < 3) e.push(`${d.id}: öğrenci satırında accepted ≥3 değil: "${l.de}"`);
   }
-  if (s.roleplay.levels.length < 3) e.push("rol oyunu: 3 zorluk düzeyi");
-  if (s.roleplay.surprises.length < 3) e.push("rol oyunu: en az 3 sürpriz");
+  if (s.roleplay.levels.length < (M ? 1 : 3)) e.push(`rol oyunu: ${M ? 1 : 3} zorluk düzeyi`);
+  if (s.roleplay.surprises.length < (M ? 1 : 3)) e.push(`rol oyunu: en az ${M ? 1 : 3} sürpriz`);
   const os = s.otherSide;
-  if (n(os) < 12) e.push(`otherSide en az 12 (${n(os)})`);
+  if (n(os) < (M ? 6 : 12)) e.push(`otherSide en az ${M ? 6 : 12} (${n(os)})`);
   if (os.filter((o) => o.layer === "alltag").length * 2 < n(os)) e.push(`otherSide'ın en az yarısı alltag (${os.filter((o) => o.layer === "alltag").length}/${n(os)})`);
   const qs = s.listening.reduce((a, l) => a + l.qs.length, 0);
-  if (qs < 6) e.push(`dinleme sorusu en az 6 (${qs})`);
+  if (qs < (M ? 2 : 6)) e.push(`dinleme sorusu en az ${M ? 2 : 6} (${qs})`);
   for (const l of s.listening) { if (l.qs[0]?.kind !== "gist") e.push(`${l.id}: ilk soru ana fikir (gist) olmalı`); for (const q of l.qs) if (q.ans >= q.opts.length) e.push(`${l.id}: doğru şık dizinin dışında`); }
-  if (n(s.speaking) < 3) e.push(`konuşma görevi en az 3 (${n(s.speaking)})`);
+  if (n(s.speaking) < (M ? 1 : 3)) e.push(`konuşma görevi en az ${M ? 1 : 3} (${n(s.speaking)})`);
   if (n(s.missions) < 1) e.push("en az 1 dış görev (mission)");
   const prod = productionCount(s);
-  if (prod < 80) e.push(`üretim maddesi en az 80 (${prod})`);
+  if (prod < (M ? 30 : 80)) e.push(`üretim maddesi en az ${M ? 30 : 80} (${prod})`);
   for (const b of s.build) if (b.accepted.length < 3) e.push(`build ${b.id}: accepted ≥3 değil`);
   // D-064: üretim maddelerinde (build + tr_de, guided_response, transform, listen_and_respond) en az 3 kabul edilen cevap
   for (const d of s.drills) if (["tr_de", "guided_response", "transform", "listen_and_respond"].includes(d.k) && "accepted" in d && d.accepted.length < 3) e.push(`drill ${d.id} (${d.k}): accepted ≥3 değil (${d.accepted.length})`);

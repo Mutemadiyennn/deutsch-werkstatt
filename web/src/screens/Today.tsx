@@ -3,6 +3,7 @@ import { useEffect, useState } from "preact/hooks";
 import type { LearnerItem, Lexeme, Scenario } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { recommend, ACTIVITY_TR } from "../core/planner.ts";
+import { seasonal } from "../core/season.ts";
 import { bankItems } from "../data/db.ts";
 import { loadLexicon, loadScenario } from "../services/content.ts";
 import { focusPause, focusResume, focusSkipBreak, focusStart } from "../services/focusRuntime.ts";
@@ -42,6 +43,8 @@ export function Today() {
   const exam = profile.goals.examB1.enabled && profile.goals.examB1.date ? Math.max(0, Math.ceil((Date.parse(profile.goals.examB1.date) - now) / 86400_000)) : null;
   const examOn = profile.goals.examB1.enabled;
   const breakOn = e?.rt.phase === "break";
+  // LS-17.0 / WORLD §6: gerçek takvime bağlı mevsim senaryoları (AA-GG aralığı; yıl dönümü sarar)
+  const inSeasonNow = seasonal(index?.scenarios || [], now);
 
   return (
     <div class="stack">
@@ -86,6 +89,13 @@ export function Today() {
         {rec.kind === "v1" && <a class="btn block" href={rec.url} target="_blank" rel="noopener">v1'de aç ↗</a>}
         {placement && <a class="small" style={{ color: "#fff" }} href={`#/assess/result/${placement.id}`}>Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>}
       </section>
+
+      {inSeasonNow.length > 0 && (
+        <section class="card tint orange" data-test="season">
+          <div class="sechead"><span class="ic" aria-hidden="true">✶</span><div><h2>Mevsimin dersi</h2><div class="tiny muted">{inSeasonNow[0]!.season!.title_tr}</div></div></div>
+          <ul class="list">{inSeasonNow.map((x) => <li><a href={`#/scenario/${encodeURIComponent(x.id)}`} class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }}><span class="grow"><b>{x.title_tr}</b><br /><span class="small muted" lang="de">{x.title_de}</span></span>{x.review !== "reviewed" && <span class="chip">inceleme bekliyor</span>}<span aria-hidden="true">›</span></a></li>)}</ul>
+        </section>
+      )}
 
       {scen && (
         <section class="card tint green">
