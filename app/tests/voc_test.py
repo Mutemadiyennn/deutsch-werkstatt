@@ -1,6 +1,7 @@
 import asyncio, json
 from playwright.async_api import async_playwright
-FAKE = open('/tmp/voice_test.py').read().split('FAKE = r"""')[1].split('"""')[0]
+import os
+FAKE = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fixtures', 'voice_fake.js')).read()
 W = {"id":"w1","de":"Termin","artikel":"der","plural":"Termine","tr":"randevu","kind":"nomen","sents":[{"de":"Ich habe morgen einen Termin beim Arzt.","answer":"Termin","tr":"Yarın doktorda randevum var.","trw":"randevu"}],"reps":2,"box":2,"due":"2026-11-01","fs":{"s":5,"d":5,"last":"2026-11-01"},"intro":"2026-10-20"}
 async def main():
     async with async_playwright() as p:

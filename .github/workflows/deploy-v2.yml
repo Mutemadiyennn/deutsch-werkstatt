@@ -1,0 +1,55 @@
+name: v2 — web yayını (GitHub Pages /v2/)
+# main'e birleşen her değişiklik /v2/'ye yayınlanır (birleştirme CI + WebKit yeşilken yapılır).
+# Her yayın etiketlenir: v2-YYYYMMDD-n (gh-pages'teki yayın commit'ine). v1 kökte aynen kalır.
+# Geri alma (tek komut):  gh workflow run deploy-v2.yml -f rollback_to=v2-20261117-1
+#   ya da yerelde:         scripts/v2-rollback.sh v2-20261117-1
+# Sunucu adresi: depo değişkeni V2_API_BASE. Yoksa uygulama yapay zekâsız çalışır.
+on:
+  push:
+    branches: [main]
+    paths: ["web/**", "content/**", "packages/**", ".github/workflows/deploy-v2.yml"]
+  workflow_dispatch:
+    inputs:
+      rollback_to:
+        description: "Geri dönülecek yayın etiketi (ör. v2-20261117-1). Boşsa main yeniden yayınlanır."
+        required: false
+concurrency: { group: gh-pages, cancel-in-progress: false }
+permissions: { contents: write }
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        if: ${{ !inputs.rollback_to }}
+        with: { node-version: 22, cache: npm }
+      - name: Derle
+        if: ${{ !inputs.rollback_to }}
+        env: { VITE_API_BASE: "${{ vars.V2_API_BASE }}" }
+        run: |
+          npm ci
+          npm run content:validate && npm test
+          npm run content:build && npm run build -w web
+      - name: gh-pages/v2/ klasörüne yaz ve etiketle
+        env: { ROLLBACK: "${{ inputs.rollback_to }}" }
+        run: |
+          git config --global user.name "github-actions[bot]"; git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages --tags
+          git worktree add /tmp/ghp origin/gh-pages
+          cd /tmp/ghp
+          if [ -n "$ROLLBACK" ]; then
+            git rev-parse -q --verify "refs/tags/$ROLLBACK" >/dev/null || { echo "Etiket yok: $ROLLBACK"; exit 1; }
+            rm -rf v2 && git checkout "$ROLLBACK" -- v2
+            MSG="v2 geri alındı → $ROLLBACK"
+          else
+            rm -rf v2 && mkdir -p v2 && cp -r "$GITHUB_WORKSPACE/web/dist/." v2/
+            MSG="v2 yayın: ${GITHUB_SHA::7}"
+          fi
+          git add -A v2
+          if git diff --cached --quiet; then echo "Değişiklik yok"; exit 0; fi
+          git commit -m "$MSG"
+          D=$(date -u +%Y%m%d); N=1; while git rev-parse -q --verify "refs/tags/v2-$D-$N" >/dev/null; do N=$((N+1)); done
+          git tag -a "v2-$D-$N" -m "$MSG (kaynak ${GITHUB_SHA::7})"
+          git push origin HEAD:gh-pages "v2-$D-$N"
+          echo "### Yayın etiketi: v2-$D-$N" >> "$GITHUB_STEP_SUMMARY"

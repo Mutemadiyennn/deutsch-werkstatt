@@ -1,6 +1,9 @@
 """Üretim (say/fix/order) maddelerinde öğretilmemiş kelime taraması → rapor."""
 import json, re, glob
-core = json.load(open('/home/claude/deutsch-werkstatt/data/core1500.json'))
+import os as _os
+_app = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", ".."))
+_cands = [_os.path.join(_os.environ.get("DW_SITE", _os.path.join(_app, ".site")), "data/core1500.json"), _os.path.join(_os.environ.get("DW_GHPAGES", _os.path.join(_app, "..", ".ghpages")), "data/core1500.json")]
+core = json.load(open(next(c for c in _cands if _os.path.exists(c))))
 items = core if isinstance(core, list) else core.get("items", core.get("words", []))
 top = set()
 for x in sorted(items, key=lambda x: x.get("r", 9999))[:400]:
