@@ -4,7 +4,7 @@ v2 çekirdek uygulama uçtan uca testi (Playwright, gerçek Chromium).
 Önkoşul: npm run content:build && (cd web && npx vite build --mode e2e --outDir dist-e2e)
 Sunucu (Worker) Playwright ile taklit edilir: https://api.e2e.test/v1/*
 """
-import json, os, sys, threading, functools, http.server, socketserver
+import json, os, sys, threading, functools, http.server, socketserver, datetime
 from playwright.sync_api import sync_playwright
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -154,7 +154,9 @@ def main():
         no_overflow(page, "Bugün")
 
         print("5) senaryo çalışma sayfası ve odak sayacı (sahte saat)")
-        page.clock.install()
+        # sabit saat (yarın 10:00): 26 dk ileri sarma gece yarısını geçerse gün değişir ve seans sıfırlanır.
+        # Test gerçek saate bağlı olmamalı (PM-013: 23:3x'te başlayan koşu kırmızıydı).
+        page.clock.install(time=datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days=1), datetime.time(10, 0)))
         # hash ile git, ekran yüklensin, SONRA yeniden yükle (goto + hemen reload yarışı WebKit'te içerik isteğini iptal ediyordu)
         page.evaluate("location.hash = '#/scenario/sc%3Atelefon%3A01-arzttermin'")
         page.wait_for_selector("[data-test=continue]")
