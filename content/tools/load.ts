@@ -11,7 +11,7 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
-import { Domain, Lexeme, LexiconBatch, Pattern, GrammarNote, Scenario, AssessItem, PRODUCTION_DRILLS, productionCount } from "../../packages/shared/src/content.ts";
+import { Domain, Lexeme, LexiconBatch, Pattern, GrammarNote, Scenario, AssessItem, World, PRODUCTION_DRILLS, productionCount } from "../../packages/shared/src/content.ts";
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const CDIR = join(ROOT, "content/v2");
@@ -24,6 +24,7 @@ export interface Loaded {
   grammar: GrammarNote[];
   scenarios: { file: string; data: Scenario }[];
   assess: AssessItem[];
+  world?: World | null;
   errors: string[];
   warnings: string[];
 }
@@ -82,7 +83,9 @@ export function loadContent(dir = CDIR): Loaded {
     .filter((f) => f.includes("/scenarios/"))
     .map((f) => ({ file: rel(f), data: parseFile(f, Scenario, errors) }))
     .filter((x): x is { file: string; data: Scenario } => !!x.data);
-  return { domains, lexemes: [...byId.values()], lexiconBatches, patterns, grammar, scenarios, assess, errors, warnings };
+  const worldFile = join(dir, "world/world.json");
+  const world = existsSync(worldFile) ? parseFile(worldFile, World, errors) : undefined;
+  return { domains, lexemes: [...byId.values()], lexiconBatches, patterns, grammar, scenarios, assess, world, errors, warnings };
 }
 
 /** PEDAGOGY.md §2: derin (K1) ve hafif (K2) kart zorunlu alanları */
@@ -204,6 +207,16 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean } = {}): 
     for (const d of s.drills) if (d.k === "pick" && d.ans >= d.opts.length) errors.push(`${file}: ${d.id} doğru şık dizinin dışında`);
     for (const x of checkScenario(s)) errors.push(`${file}: ${x}`);
     if (s.review.status === "draft") warnings.push(`${file}: inceleme bekliyor (draft)`);
+  }
+  // H4: dünya — karakter ve alan kimlikleri tutarlı, hafta sırası 1..26
+  if (c.world) {
+    const w = c.world, chars = new Set(w.characters.map((x) => x.id));
+    dupes(w.characters.map((x) => x.id), "karakter");
+    w.story.forEach((s, i) => { if (s.week !== i + 1) errors.push(`dünya: hafta sırası bozuk (${s.week})`); });
+    for (const s of [...w.story, ...w.reserves]) { for (const ch of s.characters) if (!chars.has(ch)) errors.push(`dünya: ${s.title_de} → karakter ${ch} yok`); for (const d of s.domains) if (!dom.has(d)) errors.push(`dünya: ${s.title_de} → alan ${d} yok`); }
+    for (const ch of w.characters) { for (const d of ch.domains) if (!dom.has(d)) errors.push(`dünya: ${ch.id} → alan ${d} yok`); const t = ch.mix.hd + ch.mix.alltag + ch.mix.bair; if (t !== 100) errors.push(`dünya: ${ch.id} katman yüzdeleri toplamı ${t}`); }
+    for (const p of w.town.places) if (!dom.has(p.domain)) errors.push(`dünya: mekân ${p.id} → alan ${p.domain} yok`);
+    if (w.review.status === "draft") warnings.push("dünya: inceleme bekliyor (Bairisch kaynak doğrulaması)");
   }
   // §3: her temel kalıp en az N farklı alanda (pilotta 2)
   for (const p of c.patterns.filter((p) => p.core)) {

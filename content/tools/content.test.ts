@@ -8,6 +8,15 @@ describe("içerik v2", () => {
   it("bütün dosyalar şemaya uyuyor ve kurallar 0 hata veriyor", () => {
     expect(c.errors).toEqual([]);
   });
+  it("dünya (H4 §2): 10–12 kalıcı karakter, 26 haftalık hikâye, takvim; kimlikler tutarlı", () => {
+    expect(c.world).toBeTruthy();
+    expect(c.world!.characters.length).toBeGreaterThanOrEqual(10);
+    expect(c.world!.characters.length).toBeLessThanOrEqual(12);
+    expect(c.world!.story).toHaveLength(26);
+    expect(c.world!.calendar.some((x) => x.id === "cal:advent")).toBe(true);
+    // öğrenci karakteri adsız: hikâye metinlerinde öğrenciye ad verilmez
+    for (const s of c.world!.story) expect(s.plot_tr).not.toMatch(/\{name\}/);
+  });
   it("20 alan var (PEDAGOGY §4), strateji ilk sırada", () => {
     expect(c.domains).toHaveLength(20);
     expect(c.domains[0]!.id).toBe("strategie");
