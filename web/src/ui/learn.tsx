@@ -138,8 +138,11 @@ export function LongPressExplain() {
     const down = (e: PointerEvent) => {
       const el = (e.target as Element | null)?.closest?.('[lang="de"]') as HTMLElement | null;
       if (!el || el.closest("input,textarea,button,a,.wchip,.opt") || el.tagName === "INPUT") return;
-      x0 = e.clientX; y0 = e.clientY;
-      t = window.setTimeout(() => { const txt = (el.innerText || "").trim().replace(/\s+/g, " ").slice(0, 120); if (txt) { haptic("selection"); setDe(txt); } }, 550);
+      x0 = e.clientX; y0 = e.clientY; cancel();
+      // metin basış anında alınır: zamanlayıcı dolarken öğe yeniden çizilse ya da ayrılsa bile sayfa açılır (WebKit)
+      const txt = (el.innerText || el.textContent || "").trim().replace(/\s+/g, " ").slice(0, 120);
+      if (!txt) return;
+      t = window.setTimeout(() => { t = undefined; try { haptic("selection"); } catch { /* yok say */ } setDe(txt); }, 550);
     };
     const cancel = () => { if (t) { clearTimeout(t); t = undefined; } };
     const move = (e: PointerEvent) => { if (Math.abs(e.clientX - x0) > 8 || Math.abs(e.clientY - y0) > 8) cancel(); };
