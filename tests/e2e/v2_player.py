@@ -266,12 +266,25 @@ def main():
         page.wait_for_selector("[data-test=ifade-card] .wordpanel .w, [data-test=say-q], [data-test=meaning-q], [data-test=section-done], .empty")
         if not page.locator("[data-test=ifade-card]").count():
             page.goto(f"http://127.0.0.1:{PORT}/#/scenario/{SC}/listening"); page.wait_for_selector("[data-test=to-questions], button.opt[data-opt]")
-        el = page.locator("[data-test=ifade-card] .wordpanel .w, .card .de-lg[lang=de]").first
+        # hedef: dışlanmayan (düğme/seçenek/giriş içinde olmayan), görünür ilk Almanca öğe — JS ile işaretlenir (WebKit'te deterministik)
+        desc = ""
+        for _ in range(20):
+            desc = page.evaluate("""() => { document.querySelectorAll('[data-lp-target]').forEach(e => e.removeAttribute('data-lp-target'));
+              const ok = [...document.querySelectorAll('main [lang="de"]')].find(e => !e.closest('input,textarea,button,a,.wchip,.opt,[data-test=lp-sheet]') && e.getBoundingClientRect().height > 0 && (e.innerText||'').trim());
+              if (!ok) return ''; ok.setAttribute('data-lp-target', '1'); return ok.tagName + '.' + ok.className + ': ' + ok.innerText.trim().slice(0, 40); }""")
+            if desc: break
+            page.wait_for_timeout(250)
+        el = page.locator("[data-lp-target]")
         bb = el.bounding_box()
         # uzun basma: işaretçi olaylarını doğrudan gönder (WebKit dokunmatik öykünmesinde fare olayları güvenilir değil)
-        pt = {"clientX": bb["x"] + 10, "clientY": bb["y"] + 10, "bubbles": True, "pointerType": "touch", "isPrimary": True}
-        el.dispatch_event("pointerdown", pt); page.wait_for_timeout(1300); el.dispatch_event("pointerup", pt)
-        check(page.locator("[data-test=lp-sheet]").count() == 1, "Almanca metne uzun basınca 'Bu ne demek?' sayfası açıldı")
+        pt = {"clientX": bb["x"] + 10, "clientY": bb["y"] + 10, "bubbles": True, "pointerType": "touch", "isPrimary": True, "pointerId": 7}
+        el.dispatch_event("pointerdown", pt)
+        opened = False
+        for _ in range(16):
+            page.wait_for_timeout(250)
+            if page.locator("[data-test=lp-sheet]").count(): opened = True; break
+        el.dispatch_event("pointerup", pt)
+        check(opened, f"Almanca metne uzun basınca 'Bu ne demek?' sayfası açıldı (hedef: {desc})")
         if page.locator("[data-test=lp-sheet]").count():
             page.click("[data-test=lp-sheet] [data-test=explain]")
             page.wait_for_selector("[data-test=lp-sheet] .fb.info b")
