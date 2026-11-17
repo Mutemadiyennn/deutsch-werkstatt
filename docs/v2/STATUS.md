@@ -13,7 +13,7 @@ Yeni oturum: önce `CLAUDE.md`, sonra bu dosya, `DECISIONS.md`, `PEDAGOGY.md`, `
 | `v2/h3-5-lex` | H3 5: derin kartlar parti 001–008 (800 K1, taslak) | yığın; dilbilimci incelemesi bekliyor |
 | `v2/h3-6-pilot01` | H3 6 (ilk dilim): strategie/01, telefon/01, arzt/01 taslakları + alan önerileri | yığın; dilbilimci bekliyor |
 | `v2/h3-7-oynatici` | H3 7 + EK1 + EK2: oynatıcı (aşama 1–6 + dinleme), yapay zekâ katmanı, rol oyunu yumuşak bekleme, v1 görünüm dili, WebKit CI + görsel regresyon | yığın; kabul = WebKit CI |
-| `v2/asama-1-2` | D-050: aşama 1–2 yeniden tasarım + küçük arayüz düzeltmeleri | yapılacak |
+| `v2/asama-1-2` | D-050: aşama 1–2 yeniden tasarım + küçük arayüz düzeltmeleri | PR açık; yığının tepesi |
 
 ## H3 teslimleri (PEDAGOGY §10)
 | # | Teslim | Durum | Not |
@@ -24,7 +24,7 @@ Yeni oturum: önce `CLAUDE.md`, sonra bu dosya, `DECISIONS.md`, `PEDAGOGY.md`, `
 | 4 | ~60 çekirdek kalıp → dilbilimci | kısmen | 61 iskelet (`core:false`, draft); tamamlanıp dilbilimciye verilecek |
 | 5 | İlk 1.000 K1 derin kart | kısmen | 800 kart (001–008) ✓ taslak; 009–010 pilot listesi LEX'e verilecek; "ficken" kararı PS'de |
 | 6 | 11 pilot senaryo | kısmen | YAZAR çalışıyor: 9 dosya yazıldı (strategie 01–03, telefon 01–03, arzt 01–03); telefon/04, arzt/04 kaldı; hiçbiri dilbilimciden geçmedi |
-| 7 | Oynatıcı | kısmen | aşama 1–6 + dinleme + say_it/explain + "Duyduğum kelime" (dokun → listeye) ✓; FSRS çift yol kayıt ✓; tekrar ekranı ve Dinleme salonu 1–2 basamak ayrı ekran olarak yok; aşama 1–2 D-050'ye göre yeniden yapılacak |
+| 7 | Oynatıcı | kısmen | aşama 1–6 + dinleme + say_it/explain + "Duyduğum kelime" ✓; aşama 1–2 D-050 akışı ✓ (dinle → tarama → ≤12 ifade kartı → 4 kartta bir hatırlama, süre bütçesi üstte, ölçüm); FSRS çift yol kayıt ✓; tekrar ekranı ve Dinleme salonu 1–2 basamak ayrı ekran olarak yok |
 | 8 | Yapay zekâ katmanı + altın setler + dayanıklılık | kısmen | görevler + devre kesici + önbellek + yumuşak bekleme ✓; dayanıklılık e2e ✓ (429/503/bozuk/ağ/yanıtsız/geç yanıt); altın setler (equiv ≥200, roleplay ≥30) yok; gerçek model ölçümü Worker kurulunca |
 
 ## H2 görevleri
@@ -47,7 +47,7 @@ Yeni oturum: önce `CLAUDE.md`, sonra bu dosya, `DECISIONS.md`, `PEDAGOGY.md`, `
 
 ## Sıradaki adım
 1. Yığını it (push), PR'ları aç, CI'da WebKit sonucunu al; `inceleme` ajanını PR'lara çalıştır.
-2. `v2/asama-1-2`: D-050 akışı (dinle → tarama ızgarası → ≤12 ifade kartı → 3–4 kartta bir hatırlama; süre bütçesi üstte) + küçük düzeltmeler; WebKit testleri buna göre.
+2. H4 a–c: LEARNER.md + CLAUDE.md, WORLD.md (karakterler, 26 haftalık hikâye, takvim), pilot senaryoları dünyaya bağlama (phases/10-H4.md).
 3. YAZAR bitince: dilbilimci (pilot senaryolar + parti 001–008), sonra örneklem kontrolü (qa).
 4. Kalıpları çekirdek standarda tamamla → dilbilimci. CONTENT_PLAN.md. Altın setler.
 5. Kontrol noktası raporu (H3 + EK1 + EK2 + çalışma düzeni 9 madde + BAŞLANGIÇ metni) ve DUR.

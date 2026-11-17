@@ -40,6 +40,7 @@ export function Today() {
 
   const greetDe = hour < 11 ? "Guten Morgen!" : hour < 18 ? "Guten Tag!" : "Guten Abend!";
   const exam = profile.goals.examB1.enabled && profile.goals.examB1.date ? Math.max(0, Math.ceil((Date.parse(profile.goals.examB1.date) - now) / 86400_000)) : null;
+  const examOn = profile.goals.examB1.enabled;
   const breakOn = e?.rt.phase === "break";
 
   return (
@@ -47,7 +48,7 @@ export function Today() {
       <div class="chiprow" aria-label="Özet">
         <span class="pill">⏱ {min}/{goal}</span>
         <span class="pill warm">☕ {e?.completedCount || 0}/4 seans</span>
-        {exam !== null && <span class="pill pink">🎯 B1: {exam} gün</span>}
+        {examOn && <span class="pill pink" data-test="exam-badge">🎯 B1{exam !== null ? `: ${exam} gün` : ""}</span>}
       </div>
       {breakOn && <BreakCard />}
       <section class="card hero stack">

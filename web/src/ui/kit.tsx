@@ -129,7 +129,7 @@ export function FeedbackBand({ kind, title, children }: { kind: "ok" | "bad" | "
 }
 
 /* ---------- Üst ilerleme: aşama x/6 · seans x/4 · kalan süre ---------- */
-export function ProgressHeader({ title, back, step, steps = 7, doneSteps = [], right }: { title: string; back: string; step?: number; steps?: number; doneSteps?: number[]; right?: ComponentChildren }) {
+export function ProgressHeader({ title, back, step, steps = 7, doneSteps = [], right, sub }: { title: string; back: string; step?: number; steps?: number; doneSteps?: number[]; right?: ComponentChildren; sub?: ComponentChildren }) {
   return (
     <header class="pbar">
       <div class="row" style={{ gap: 8 }}>
@@ -137,6 +137,7 @@ export function ProgressHeader({ title, back, step, steps = 7, doneSteps = [], r
         <h1>{title}</h1>
         {right}
       </div>
+      {sub && <div class="sub">{sub}</div>}
       {step !== undefined && <div class="steps" aria-label={`Aşama ${Math.min(step, 6)}/6`}>{Array.from({ length: steps }, (_, i) => <i class={doneSteps.includes(i) ? "done" : i === step ? "cur" : ""} />)}</div>}
     </header>
   );

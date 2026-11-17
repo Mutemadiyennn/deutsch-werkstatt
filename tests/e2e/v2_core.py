@@ -164,7 +164,7 @@ def main():
         shot(page, "05-scenario")
         no_overflow(page, "senaryo")
         page.click("[data-test=continue]")
-        page.wait_for_selector("[data-test=word-card]")
+        page.wait_for_selector("[data-test=stage-intro]")
         for m in range(26):
             page.dispatch_event("body", "pointerdown")
             page.clock.run_for(60_000)

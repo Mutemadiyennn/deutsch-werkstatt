@@ -68,47 +68,74 @@ def main():
         check(page.locator("a[data-section]").count() == 1, "yalnızca ilk bölüm açık (sıralı kilit)")
         shot(page, "p00-scenario-home"); no_overflow(page, "senaryo ana sayfası")
 
-        print("1) Aşama 1 · Kelimeler")
+        print("1) Aşama 1 · Dinle ve tara (D-050: önce duy → tarama → biliyorum doğrulanır)")
         page.click("[data-test=continue]")
-        page.wait_for_selector("[data-test=word-card]")
-        shot(page, "p01-word-card", full=False); no_overflow(page, "kelime kartı")
-        # dokunma hedefleri ≥44 pt
+        page.wait_for_selector("[data-test=stage-intro]")
+        check(page.locator("[data-test=subtitles]").count() == 0, "ilk dinleme altyazısız")
+        check(page.locator("[data-test=budget]").count() == 1, "süre bütçesi (≤8 dk) üstte görünüyor")
+        shot(page, "p01-stage-intro", full=False); no_overflow(page, "aşama 1 giriş")
+        page.click("[data-test=to-subtitles]")
+        page.wait_for_selector("[data-test=subtitles]")
+        check(page.locator("[data-test=subtitles] [lang=de]").count() >= 4, "ikinci dinleme altyazılı (diyalog satırları + Türkçe)")
+        page.click("[data-test=to-scan]")
+        page.wait_for_selector("[data-test=scan]")
+        rows = page.locator(".scanrow")
+        nrows = rows.count()
+        texts = [rows.nth(k).inner_text().split("\n")[0].strip() for k in range(nrows)]
+        FUNC = {"ich", "und", "bitte", "ein", "eine", "der", "die", "das", "nicht", "ja", "nein"}
+        check(nrows > 0 and not any(t.lower() in FUNC for t in texts), f"tarama: {nrows} ifade, işlev kelimesi yok")
+        check(sum(1 for t in texts if " " in t) >= nrows * 0.6, "tarama birimi ifade (çoğu çok kelimeli)")
+        # dokunma hedefleri ≥44 px
         small = page.evaluate("""[...document.querySelectorAll('button, a.btn, a.iconbtn, .opt')].filter(e => { const r = e.getBoundingClientRect(); return r.width && r.height && (r.height < 44 || r.width < 44); }).map(e => (e.getAttribute('aria-label') || e.innerText || e.className).slice(0, 30))""")
         check(not small, f"dokunma hedefleri ≥44 px ({small[:5]})")
-        words = [lx[i] for i in s["essentials"]["lexemes"] if i in lx]
-        guard = 0
-        while not page.locator("[data-test=section-done]").count() and guard < 200:
-            guard += 1
-            page.wait_for_selector("[data-test=word-card], button.opt[data-opt], [data-test=section-done]")
-            if page.locator("[data-test=section-done]").count(): break
-            if page.locator("[data-test=word-card]").count():
-                page.click("[data-test=next]"); continue
-            q = page.locator(".card .de-xl").inner_text()
-            w = next((x for x in words if q.endswith(x["de"])), None)
-            pick_text(page, w["tr"] if w else "")
-            page.wait_for_selector("button.opt.right")
-            page.click("[data-test=next]")
+        shot(page, "p01-scan", full=False); no_overflow(page, "tarama")
+        rows.nth(0).locator("[data-mark=known]").click(); rows.nth(1).locator("[data-mark=known]").click()
+        if nrows > 2: rows.nth(2).locator("[data-mark=unsure]").click()
+        page.click("[data-test=rest-unknown]")
+        check("doğrula" in page.inner_text("[data-test=scan-done]"), "'biliyorum' denenler doğrulanacak")
+        page.click("[data-test=scan-done]")
+        page.wait_for_selector("[data-test=meaning-q]"); page.click("button.opt[data-right='1']"); page.click("[data-test=next]")
+        page.wait_for_selector("[data-test=meaning-q] button.opt:not([disabled])"); page.click("[data-test=meaning-q] button.opt:not([data-right]) >> nth=0"); page.click("[data-test=next]")
         t = done(page)
-        check("Bu bölüm tamam" in t, "kelimeler bölümü tamamlandı")
-        check(page.locator("a[data-section=chunks]").count() == 1, "ifadeler bölümü açıldı")
+        check("Bu bölüm tamam" in t or "Yeni öğrenilecek" in t, "aşama 1 bitti; yanlış doğrulanan 'bilmiyorum'a döndü")
+        check(page.locator("a[data-section=chunks]").count() == 1, "aşama 2 açıldı")
 
-        print("2) Aşama 2 · İfadeler")
+        print("2) Aşama 2 · İfadeler (≤12 yeni öğe, ifade kartı, her 4 kartta hatırlama, 'Anladım' yok)")
         open_section(page, "chunks")
-        chunks = {c["tr"]: c for c in s["chunks"]}
-        guard = 0
+        tr2de = {}
+        guard = 0; cards_seen = 0; recall_seen = 0
         while guard < 120:
             guard += 1
-            page.wait_for_selector("[data-test=chunk-card], button.opt[data-opt], [data-test=section-done]")
+            page.wait_for_selector("[data-test=ifade-card], [data-test=meaning-q], [data-test=say-q], [data-test=section-done]")
             if page.locator("[data-test=section-done]").count(): break
-            if page.locator("[data-test=chunk-card]").count():
-                if guard == 1:
-                    check(page.locator("[data-test=chunk-card] .badge.hd").count() == 1, "Hochdeutsch katman rozeti")
-                    shot(page, "p02-chunk-card", full=False)
-                page.click("[data-test=next]"); continue
-            # dinleme sorusu (tanıma; üretim değil → puan bölümün açılmasını engellemez)
-            page.locator("button.opt[data-opt]").first.click()
-            page.click("[data-test=next]")
-        done(page)
+            check(page.locator("button:has-text('Anladım')").count() == 0, "pasif 'Anladım' düğmesi yok") if guard == 1 else None
+            if page.locator("[data-test=ifade-card]").count():
+                de = page.locator("[data-test=ifade-card] .wordpanel .w").inner_text().strip()
+                tr = page.locator("[data-test=ifade-card] .wordpanel .tr").inner_text().strip()
+                tr2de[tr] = de; cards_seen += 1
+                if cards_seen == 1:
+                    shot(page, "p02-ifade-card", full=False); no_overflow(page, "ifade kartı")
+                    check(page.locator("[data-test=known-skip]").count() == 1, "tanıtım kartında yalnızca 'Biliyorum, geç' seçeneği")
+                if cards_seen == 2:
+                    page.click("[data-test=known-skip]"); continue
+                page.click("[data-test=type-repeat]")
+                page.fill("[data-test=answer]", de); page.click("[data-test=submit]")
+                for _ in range(50):  # otomatik geçiş (≈0,7 sn): kart değişene ya da hatırlama gelene kadar
+                    page.wait_for_timeout(100)
+                    if not page.locator("[data-test=ifade-card]").count() or page.locator("[data-test=ifade-card] .wordpanel .w").inner_text().strip() != de: break
+                else: check(False, f"doğru tekrar kartı geçirmedi: {de}")
+                continue
+            if page.locator("[data-test=meaning-q]").count():
+                recall_seen += 1
+                if cards_seen != 4 and recall_seen == 1: check(False, f"hatırlama turu 4 karttan sonra gelmeli ({cards_seen})")
+                page.click("[data-test=meaning-q] button.opt[data-right='1']"); page.click("[data-test=next]"); continue
+            prompt = page.locator("[data-test=say-q] .de-lg").inner_text().strip()
+            submit_text(page, tr2de.get(prompt, "x"))
+            page.click("[data-test=verdict] [data-test=next]")
+        check(0 < cards_seen <= 12, f"yeni öğe sayısı ≤12 ({cards_seen})")
+        t = page.inner_text("[data-test=section-done]")
+        check("Aşama 1–2 süresi" in t and "kart başına" in t and "hatırlama" in t, f"ölçüm: süre, kart başına süre, hatırlama ({t.splitlines()[-1][:80] if t else ''})")
+        page.click("[data-test=back-to-scenario]"); page.wait_for_selector("[data-section]")
 
         print("3) Aşama 3 · Cümle kurma (yazı + kelime çipleri)")
         open_section(page, "build")
@@ -222,9 +249,11 @@ def main():
         check(page.locator("[data-section].done").count() == 7, "7/7 bölüm tamam")
 
         print("8) uzun basma = 'Bu ne demek?'")
-        open_section(page, "words")
-        page.wait_for_selector("[data-test=word-card] .wordpanel .w")
-        el = page.locator("[data-test=word-card] .wordpanel .w")
+        open_section(page, "chunks")
+        page.wait_for_selector("[data-test=ifade-card] .wordpanel .w, [data-test=say-q], [data-test=meaning-q], [data-test=section-done], .empty")
+        if not page.locator("[data-test=ifade-card]").count():
+            page.goto(f"http://127.0.0.1:{PORT}/#/scenario/{SC}/listening"); page.wait_for_selector("[data-test=to-questions], button.opt[data-opt]")
+        el = page.locator("[data-test=ifade-card] .wordpanel .w, .card .de-lg[lang=de]").first
         bb = el.bounding_box()
         page.mouse.move(bb["x"] + 10, bb["y"] + 10); page.mouse.down(); page.wait_for_timeout(700); page.mouse.up()
         check(page.locator("[data-test=lp-sheet]").count() == 1, "Almanca metne uzun basınca 'Bu ne demek?' sayfası açıldı")
@@ -292,7 +321,7 @@ def main():
         login_onboard(pg, PORT)
         pg.wait_for_selector("[data-tab=today]")
         pg.evaluate("document.documentElement.classList.remove('dyn'); document.documentElement.style.setProperty('--ts','1.3')")
-        for hsh in ["#/today", f"#/scenario/{SC}", f"#/scenario/{SC}/words", "#/progress", "#/profile"]:
+        for hsh in ["#/today", f"#/scenario/{SC}", f"#/scenario/{SC}/words", f"#/scenario/{SC}/chunks", "#/progress", "#/profile"]:
             pg.goto(f"http://127.0.0.1:{PORT}/{hsh}"); pg.wait_for_timeout(500)
             pg.evaluate("document.documentElement.classList.remove('dyn'); document.documentElement.style.setProperty('--ts','1.3')"); pg.wait_for_timeout(100)
             no_overflow(pg, f"%130 yazı {hsh}")

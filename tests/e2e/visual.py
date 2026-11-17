@@ -26,13 +26,13 @@ def v2_shots(p, theme, out, viewport=None):
         pg.screenshot(path=os.path.join(out, f"v2-{name}-{theme}.png"))
     base = f"http://127.0.0.1:{PORT}/#"
     pg.goto(base + "/today"); pg.wait_for_selector("[data-test=next-activity]"); snap("bugun")
-    pg.goto(base + f"/scenario/{SC}/words"); pg.wait_for_selector("[data-test=word-card], [data-test=stage-intro]"); snap("kelime")
+    pg.goto(base + f"/scenario/{SC}/chunks"); pg.wait_for_selector("[data-test=ifade-card]"); snap("kelime")
     pg.goto(base + f"/scenario/{SC}/drills"); pg.wait_for_selector("[data-test=answer], [data-chip], button.opt"); snap("alistirma")
     pg.goto(base + f"/scenario/{SC}/dialogue"); pg.wait_for_selector("[data-test=next]"); pg.click("[data-test=next]"); pg.wait_for_selector("[data-test=your-turn]"); snap("diyalog")
     pg.goto(base + f"/scenario/{SC}/roleplay"); pg.wait_for_selector("[data-test=rp-start]"); pg.click("[data-test=rp-start]")
     pg.fill("[data-test=answer]", "Guten Tag, ich brauche einen Termin."); pg.click("[data-test=submit]")
     pg.locator("[data-test=rp-chat] .bubble.them").nth(1).wait_for(); snap("roloyunu")
-    pg.goto(base + f"/scenario/{SC}/words"); pg.reload(); pg.wait_for_selector("[data-test=word-card], [data-test=stage-intro]")
+    pg.goto(base + f"/scenario/{SC}/words"); pg.reload(); pg.wait_for_selector("[data-test=stage-intro]")
     for _ in range(26):
         pg.dispatch_event("body", "pointerdown"); pg.clock.run_for(60_000)
     pg.goto(base + "/today"); pg.wait_for_selector("[data-test=break]"); pg.clock.pause_at(FIXED + datetime.timedelta(minutes=26, seconds=30)); snap("mola")

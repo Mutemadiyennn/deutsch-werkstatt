@@ -126,7 +126,7 @@ export interface ScenarioProgress {
   /** Tamamlanan bölümler: words, chunks, build, drills, listening, dialogue, roleplay */
   done: string[];
   support: 0 | 1 | 2 | 3;
-  runs: { at: string; section: string; score: number; total: number; level?: number; goalsDone?: number; goalsTotal?: number; englishFallbacks?: number; mode?: "ai" | "offline" }[];
+  runs: { at: string; section: string; score: number; total: number; level?: number; goalsDone?: number; goalsTotal?: number; englishFallbacks?: number; mode?: "ai" | "offline"; ms?: number; msPerCard?: number; recallOk?: number; recallTotal?: number }[];
   completedIndependentAt?: string;
   u: number;
 }

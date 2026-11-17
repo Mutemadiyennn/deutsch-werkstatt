@@ -20,22 +20,23 @@ import { speak, stopSpeaking } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { FocusChip } from "../ui/components.tsx";
 import { ActionBar, AnswerField, DeLine, Empty, FeedbackBand, ListenButton, LoadingCard, MicButton, ProgressHeader } from "../ui/kit.tsx";
-import { ExplainBtn, Photo, SayItBox, VerdictView, useGrader } from "../ui/learn.tsx";
+import { ExplainBtn, SayItBox, VerdictView, useGrader } from "../ui/learn.tsx";
+import { HearSection, LearnSection } from "./Stage12.tsx";
 
 export const SECTIONS = [
-  { k: "words", n: "1", title: "Kelimeler", act: "vocab" },
+  { k: "words", n: "1", title: "Dinle ve tara", act: "vocab" },
   { k: "chunks", n: "2", title: "İfadeler", act: "chunks" },
-  { k: "build", n: "3", title: "Cümle kurma", act: "build" },
+  { k: "build", n: "3", title: "Cümle kur", act: "build" },
   { k: "drills", n: "4", title: "Alıştırma", act: "drills" },
   { k: "listening", n: "🎧", title: "Dinleme", act: "listening" },
-  { k: "dialogue", n: "5", title: "Destekli diyalog", act: "dialogue" },
+  { k: "dialogue", n: "5", title: "Diyalog", act: "dialogue" },
   { k: "roleplay", n: "6", title: "Rol oyunu", act: "roleplay" }
 ] as const;
 type SectionKey = (typeof SECTIONS)[number]["k"];
 const idx = (k: string) => SECTIONS.findIndex((s) => s.k === k);
 const stageOf = (k: string) => { const s = SECTIONS[idx(k)]; return s && /\d/.test(s.n) ? Number(s.n) : 4; };
 
-interface Ctx { s: Scenario; lx: Map<string, Lexeme>; pt: Map<string, Pattern>; prog: ScenarioProgress; setProg: (p: ScenarioProgress) => Promise<void> }
+export interface Ctx { s: Scenario; lx: Map<string, Lexeme>; pt: Map<string, Pattern>; prog: ScenarioProgress; setProg: (p: ScenarioProgress) => Promise<void> }
 
 function useScenario(id: string) {
   const [st, setSt] = useState<{ ctx?: Ctx; err?: string }>({});
@@ -54,7 +55,7 @@ function useScenario(id: string) {
 }
 
 /** Öğrenci modeline kayıt (FSRS çift yol) */
-async function rec(itemId: string, kind: "lexeme" | "chunk" | "pattern", path: "passive" | "active", outcome: Outcome, source: "drill" | "tap" | "convo" = "drill") {
+export async function rec(itemId: string, kind: "lexeme" | "chunk" | "pattern", path: "passive" | "active", outcome: Outcome, source: "drill" | "tap" | "convo" = "drill") {
   const e = focus(); const s = e?.current;
   const session = s ? sessionKey(s.id, Date.parse(s.startedAt)) : sessionKey("free", Math.floor(Date.now() / 3600_000) * 3600_000);
   await putItem(review(await getItem(itemId), { itemId, kind, path, outcome, session, source }));
@@ -110,10 +111,12 @@ export function PlayerHome({ id }: { id: string }) {
 export function PlayerSection({ id, section }: { id: string; section: string }) {
   const { ctx, err, reload } = useScenario(id);
   const sec = SECTIONS[idx(section)];
+  const [sub, setSub] = useState<preact.ComponentChildren>(null);
+  useEffect(() => setSub(null), [section]);
   useEffect(() => { if (sec) setLearning(true, sec.act as any, id); return () => setLearning(false); }, [id, section]);
   if (!sec) return <Empty title="Bölüm bulunamadı" action={<a class="btn sm" href={`#/scenario/${encodeURIComponent(id)}`}>Senaryoya dön</a>} />;
   const back = `#/scenario/${encodeURIComponent(id)}`;
-  const header = (step: number) => <ProgressHeader title={`${/\d/.test(sec.n) ? `Aşama ${sec.n}/6 · ` : ""}${sec.title}`} back={back} step={step} doneSteps={ctx ? SECTIONS.map((x, i) => (ctx.prog.done.includes(x.k) ? i : -1)).filter((i) => i >= 0) : []} right={<FocusChip />} />;
+  const header = (step: number) => <ProgressHeader sub={sub} title={`${/\d/.test(sec.n) ? `${sec.n}/6 · ` : ""}${sec.title}`} back={back} step={step} doneSteps={ctx ? SECTIONS.map((x, i) => (ctx.prog.done.includes(x.k) ? i : -1)).filter((i) => i >= 0) : []} right={<FocusChip />} />;
   if (err) return <div class="stack">{header(idx(section))}<div class="card err"><p><b>Yüklenemedi.</b> {err}</p><button class="btn sm" onClick={reload}>Tekrar dene</button></div></div>;
   if (!ctx) return <div class="stack">{header(idx(section))}<LoadingCard lines={4} /></div>;
   const finish = async (score: number, total: number, extra: Partial<ScenarioProgress["runs"][number]> = {}, mut?: (p: ScenarioProgress) => void) => {
@@ -130,12 +133,12 @@ export function PlayerSection({ id, section }: { id: string; section: string }) 
     if (sec.k === "roleplay" && ratio >= 0.6) p.completedIndependentAt = new Date().toISOString();
     await ctx.setProg(p);
   };
-  const props = { ctx, finish, back };
+  const props = { ctx, finish, back, setSub };
   return (
     <div class="stack">
       {header(idx(section))}
-      {sec.k === "words" && <WordsSection {...props} />}
-      {sec.k === "chunks" && <ChunksSection {...props} />}
+      {sec.k === "words" && <HearSection {...props} setSub={setSub} />}
+      {sec.k === "chunks" && <LearnSection {...props} setSub={setSub} />}
       {sec.k === "build" && <BuildSection {...props} />}
       {sec.k === "drills" && <DrillsSection {...props} />}
       {sec.k === "listening" && <ListeningSection {...props} />}
@@ -144,9 +147,9 @@ export function PlayerSection({ id, section }: { id: string; section: string }) 
     </div>
   );
 }
-type SP = { ctx: Ctx; finish: (score: number, total: number, extra?: Partial<ScenarioProgress["runs"][number]>, mut?: (p: ScenarioProgress) => void) => Promise<void>; back: string };
+export type SP = { ctx: Ctx; finish: (score: number, total: number, extra?: Partial<ScenarioProgress["runs"][number]>, mut?: (p: ScenarioProgress) => void) => Promise<void>; back: string; setSub?: (n: preact.ComponentChildren) => void };
 
-function Done({ score, total, back, ctx, title, note }: { score: number; total: number; back: string; ctx: Ctx; title: string; note?: string }) {
+export function Done({ score, total, back, ctx, title, note }: { score: number; total: number; back: string; ctx: Ctx; title: string; note?: string }) {
   const ratio = total ? score / total : 1;
   useEffect(() => { haptic(ratio >= 0.7 ? "success" : "error"); }, []);
   return (
@@ -167,116 +170,6 @@ function useRun<T>(items: T[]) {
   const [i, setI] = useState(0);
   const [score, setScore] = useState(0);
   return { i, item: items[i], total: items.length, score, next: (ok: boolean) => { if (ok) setScore((x) => x + 1); setI((x) => x + 1); }, done: i >= items.length };
-}
-
-/* ============================ 1 Kelimeler ============================ */
-function WordsSection({ ctx, finish, back }: SP) {
-  const words = useMemo(() => ctx.s.essentials.lexemes.map((id) => ctx.lx.get(id)).filter((x): x is Lexeme => !!x), [ctx.s.id]);
-  // 4'lü gruplar: tanıtım kartları → tanıma kontrolü (v1 düzeni)
-  const steps = useMemo(() => {
-    const out: ({ t: "card"; w: Lexeme } | { t: "check"; w: Lexeme; opts: string[]; ans: number })[] = [];
-    for (let g = 0; g < words.length; g += 4) {
-      const grp = words.slice(g, g + 4);
-      grp.forEach((w) => out.push({ t: "card", w }));
-      grp.forEach((w, k) => {
-        const others = words.filter((x) => x !== w && x.tr !== w.tr).map((x) => x.tr);
-        const opts = [w.tr, ...others.slice((k * 3) % Math.max(1, others.length), (k * 3) % Math.max(1, others.length) + 3)].slice(0, Math.min(4, others.length + 1));
-        const rot = (g + k) % opts.length; const shuffled = [...opts.slice(rot), ...opts.slice(0, rot)];
-        out.push({ t: "check", w, opts: shuffled, ans: shuffled.indexOf(w.tr) });
-      });
-    }
-    return out;
-  }, [words]);
-  const [i, setI] = useState(0);
-  const [score, setScore] = useState(0);
-  const [picked, setPicked] = useState<number | null>(null);
-  const checks = steps.filter((x) => x.t === "check").length;
-  useEffect(() => { if (i >= steps.length && steps.length) void finish(score, checks); }, [i]);
-  if (!words.length) return <Empty title="Bu senaryoda temel kelime yok" />;
-  if (i >= steps.length) return <Done score={score} total={checks} back={back} ctx={ctx} title="Aşama 1 · Kelimeler" />;
-  const st = steps[i]!;
-  const progress = <div class="progress" aria-label={`${i + 1}/${steps.length}`}><i style={{ width: `${(i / steps.length) * 100}%` }} /></div>;
-  if (st.t === "card") {
-    const w = st.w; const ex = w.examples.find((x) => x.layer === "hd") || w.examples[0]; const exA = w.examples.find((x) => x.layer === "alltag");
-    return (
-      <div class="stack fade" key={`c${i}`}>
-        {progress}
-        <section class="card stack" data-test="word-card">
-          <div class="kicker" style={{ color: "var(--accent)", textTransform: "none", letterSpacing: 0, fontSize: "0.95rem" }}>🧠 Yeni kelime {words.indexOf(w) + 1}/{words.length}</div>
-          <Photo q={w.img} />
-          <div class={`wordpanel${w.art ? " " + w.art : ""}`}>
-            {w.art && <div class="artl" lang="de">{w.art}</div>}
-            <div class="w" lang="de">{w.de}</div>
-            {(w.pl && w.pl !== "-") && <div class="pl">çoğul: <span lang="de">die {w.pl}</span></div>}
-            {w.verb?.perfekt && <div class="pl" lang="de">{w.verb.praesens3 ? `er ${w.verb.praesens3} · ` : ""}{w.verb.perfekt}</div>}
-            <div class="tr">{w.tr}</div>
-            <BigPlay text={(w.art ? w.art + " " : "") + w.de} />
-          </div>
-          <div class="row" style={{ justifyContent: "center" }}><ShadowBtn de={(w.art ? w.art + " " : "") + w.de} label /></div>
-          {w.collocations.slice(0, 2).map((c) => <DeLine de={c.de} tr={c.tr} size="md" />)}
-          {ex && <DeLine de={ex.de} tr={ex.tr} layer="hd" size="md" />}
-          {exA && <DeLine de={exA.de} tr={exA.tr} layer="alltag" size="md" speed="natural" />}
-          {w.mistakes_tr[0] && <div class="support small">⚠ {w.mistakes_tr[0]}</div>}
-        </section>
-        <ActionBar><button class="btn primary block" onClick={() => { void rec(w.id, "lexeme", "passive", "hinted"); setI(i + 1); }} data-test="next">Anladım</button></ActionBar>
-      </div>
-    );
-  }
-  const { w, opts, ans } = st;
-  return (
-    <div class="stack fade" key={`k${i}`}>
-      {progress}
-      <section class="card"><div class="kicker">Anlamı ne?</div><DeLine de={(w.art ? w.art + " " : "") + w.de} size="xl" /></section>
-      <div role="group">{opts.map((o, k) => <button class={`opt${picked === null ? "" : k === ans ? " right" : k === picked ? " wrong" : ""}`} disabled={picked !== null} data-opt={k}
-        onClick={() => { setPicked(k); const ok = k === ans; haptic(ok ? "success" : "error"); if (ok) setScore(score + 1); void rec(w.id, "lexeme", "passive", ok ? "correct" : "wrong"); }}>{o}</button>)}</div>
-      {picked !== null && <ActionBar><button class="btn primary block" onClick={() => { setPicked(null); setI(i + 1); }} data-test="next">Devam</button></ActionBar>}
-    </div>
-  );
-}
-
-/* ============================ 2 İfadeler ============================ */
-function ChunksSection({ ctx, finish, back }: SP) {
-  const chunks = useMemo(() => ctx.s.chunks.filter((c) => ctx.s.essentials.chunks.includes(c.id)), [ctx.s.id]);
-  const steps = useMemo(() => [...chunks.map((c) => ({ t: "card" as const, c })), ...chunks.map((c, k) => {
-    const others = chunks.filter((x) => x !== c).map((x) => x.tr);
-    const opts = [c.tr, others[k % others.length], others[(k + 2) % others.length]].filter((x, j, a): x is string => !!x && a.indexOf(x) === j);
-    const rot = k % opts.length; const sh = [...opts.slice(rot), ...opts.slice(0, rot)];
-    return { t: "check" as const, c, opts: sh, ans: sh.indexOf(c.tr), say: (k % 2 && c.layers.alltag) || c.layers.hd };
-  })], [chunks]);
-  const [i, setI] = useState(0); const [score, setScore] = useState(0); const [picked, setPicked] = useState<number | null>(null);
-  const checks = chunks.length;
-  useEffect(() => { if (i >= steps.length && steps.length) void finish(score, checks); }, [i]);
-  if (!chunks.length) return <Empty title="Bu senaryoda temel ifade yok" />;
-  if (i >= steps.length) return <Done score={score} total={checks} back={back} ctx={ctx} title="Aşama 2 · İfadeler" />;
-  const st = steps[i]!;
-  const progress = <div class="progress"><i style={{ width: `${(i / steps.length) * 100}%` }} /></div>;
-  if (st.t === "card") {
-    const c = st.c;
-    return (
-      <div class="stack fade" key={`c${i}`}>
-        {progress}
-        <section class="card stack" data-test="chunk-card">
-          <div class="kicker">{c.tr}</div>
-          <DeLine de={c.layers.hd} layer="hd" size="lg" />
-          {c.layers.alltag && <DeLine de={c.layers.alltag} layer="alltag" size="lg" speed="natural" />}
-          {c.layers.bair && <div><span class="badge bair">Bairisch</span> {c.layers.bair.status === "uncertain" && <span class="badge">bölgeye göre değişebilir</span>}<DeLine de={c.layers.bair.text} size="md" />{c.layers.bair.source && <div class="tiny muted">Kaynak: {c.layers.bair.source}</div>}</div>}
-          {c.use_tr && <p class="small">{c.use_tr}</p>}
-          {c.mistakes_tr.map((m) => <div class="support small">⚠ {m}</div>)}
-        </section>
-        <ActionBar><button class="btn primary block" onClick={() => { void rec(c.id, "chunk", "passive", "hinted"); setI(i + 1); }} data-test="next">Anladım</button></ActionBar>
-      </div>
-    );
-  }
-  return (
-    <div class="stack fade" key={`k${i}`}>
-      {progress}
-      <section class="card"><div class="kicker">Dinle: ne demek?</div><div class="row"><ListenButton text={st.say} speed={st.say === st.c.layers.alltag ? "natural" : "normal"} /><span class="small muted">Önce yalnızca dinle</span></div>
-        {picked !== null && <div class="de-lg" lang="de" style={{ marginTop: 8 }}>{st.say}</div>}</section>
-      <div role="group">{st.opts.map((o, k) => <button class={`opt${picked === null ? "" : k === st.ans ? " right" : k === picked ? " wrong" : ""}`} disabled={picked !== null} data-opt={k}
-        onClick={() => { setPicked(k); const ok = k === st.ans; haptic(ok ? "success" : "error"); if (ok) setScore(score + 1); void rec(st.c.id, "chunk", "passive", ok ? "correct" : "wrong"); }}>{o}</button>)}</div>
-      {picked !== null && <ActionBar><button class="btn primary block" onClick={() => { setPicked(null); setI(i + 1); }} data-test="next">Devam</button></ActionBar>}
-    </div>
-  );
 }
 
 /* ============================ Üretim maddesi (3–4–5 ortak) ============================ */
@@ -334,8 +227,10 @@ function ChipBuilder({ target, onSubmit }: { target: string; onSubmit: (s: strin
 }
 
 /* ============================ 3 Cümle kurma ============================ */
-function BuildSection({ ctx, finish, back }: SP) {
+const Count = ({ i, n }: { i: number; n: number }) => <span class="tiny" data-test="item-count">{Math.min(i + 1, n)}/{n}</span>;
+function BuildSection({ ctx, finish, back, setSub }: SP) {
   const r = useRun(ctx.s.build);
+  useEffect(() => { setSub?.(<Count i={r.i} n={r.total} />); }, [r.i]);
   useEffect(() => { if (r.done && r.total) void finish(r.score, r.total); }, [r.done]);
   if (!r.total) return <Empty title="Bu senaryoda cümle kurma maddesi yok" />;
   if (r.done) return <Done score={r.score} total={r.total} back={back} ctx={ctx} title="Aşama 3 · Cümle kurma" />;
@@ -343,7 +238,6 @@ function BuildSection({ ctx, finish, back }: SP) {
   const p = b.pattern ? ctx.pt.get(b.pattern) : undefined;
   return (
     <div class="stack" key={b.id}>
-      <div class="progress"><i style={{ width: `${(r.i / r.total) * 100}%` }} /></div>
       <ProduceItem ctx={ctx} itemId={b.id} accepted={b.accepted} chips={r.i % 3 === 0}
         prompt={<><div class="kicker">Almanca kur · {r.i + 1}/{r.total}</div><div class="de-lg">{b.prompt_tr}</div>{p && <div class="tiny muted" lang="de">Kalıp: {p.frame}</div>}</>}
         onDone={(ok) => { if (p) void rec(p.id, "pattern", "active", ok ? "correct" : "wrong"); r.next(ok); }} />
@@ -352,15 +246,15 @@ function BuildSection({ ctx, finish, back }: SP) {
 }
 
 /* ============================ 4 Alıştırma ============================ */
-function DrillsSection({ ctx, finish, back }: SP) {
+function DrillsSection({ ctx, finish, back, setSub }: SP) {
   const r = useRun(ctx.s.drills);
+  useEffect(() => { setSub?.(<Count i={r.i} n={r.total} />); }, [r.i]);
   useEffect(() => { if (r.done && r.total) void finish(r.score, r.total); }, [r.done]);
   if (!r.total) return <Empty title="Bu senaryoda alıştırma yok" />;
   if (r.done) return <Done score={r.score} total={r.total} back={back} ctx={ctx} title="Aşama 4 · Alıştırma" />;
   const d = r.item!;
   return (
     <div class="stack" key={d.id}>
-      <div class="progress"><i style={{ width: `${(r.i / r.total) * 100}%` }} /></div>
       <DrillView ctx={ctx} d={d} n={r.i + 1} total={r.total} onDone={r.next} />
     </div>
   );
@@ -393,7 +287,7 @@ function DrillView({ ctx, d, n, total, onDone }: { ctx: Ctx; d: Drill; n: number
 }
 
 /* ============================ Dinleme (altyazısız → sorular → transkript) ============================ */
-function ListeningSection({ ctx, finish, back }: SP) {
+function ListeningSection({ ctx, finish, back, setSub }: SP) {
   const s = ctx.s;
   type Step = { t: "os"; o: Scenario["otherSide"][number]; opts: string[]; ans: number } | { t: "item"; li: Scenario["listening"][number] };
   const steps: Step[] = useMemo(() => {
@@ -411,7 +305,8 @@ function ListeningSection({ ctx, finish, back }: SP) {
   if (!steps.length) return <Empty title="Bu senaryoda dinleme yok" />;
   if (i >= steps.length) return <Done score={score} total={total} back={back} ctx={ctx} title="Dinleme" note="İlk dinlemede anlama oranı İlerlemem'de hıza göre izlenir." />;
   const st = steps[i]!;
-  const progress = <div class="progress"><i style={{ width: `${(i / steps.length) * 100}%` }} /></div>;
+  useEffect(() => { setSub?.(<Count i={i} n={steps.length} />); }, [i]);
+  const progress = null;
   if (st.t === "os") {
     const o = st.o;
     return (
