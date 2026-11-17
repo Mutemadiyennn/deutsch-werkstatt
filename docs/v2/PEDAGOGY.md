@@ -8,7 +8,7 @@ Hedef: Öğrenci doktorda, resmî dairede, bankada, işte, evde, sokakta, fırı
 Dayanak (konuşma dili kapsama araştırmaları; çoğu İngilizce verisiyle, Almancada büyüklük sırası benzer):
 - ~2.000–3.000 sözcük ailesi gündelik konuşmanın büyük kısmını kapsar.
 - Dizi/filmi rahat anlamak için ~6.000–7.000 gerekir.
-Zaman bütçesi: Günde 100 dk odak (4×25) + VHS kursu. 6 ayda yaklaşık 150 çalışma günü.
+Zaman bütçesi: Günde 100 dk odak (4×25) + dil kursu. 6 ayda yaklaşık 150 çalışma günü.
 Sayısal hedefler (hepsi ölçülür ve İlerlemem'de görünür):
 - Aktif kelime + ifade (söyleyebildiği): Ay 2: 600 · Ay 4: 1.200 · Ay 6: 1.800 · Ay 12: 3.000
 - Pasif lemma (anladığı): Ay 2: 1.500 · Ay 4: 3.000 · Ay 6: 4.500 · Ay 12: 7.000
@@ -174,7 +174,7 @@ Kabul ölçütleri (ölçülür ve raporlanır):
 - S3 Dinleme salonu: seviyeye uygun hız, yutulan ses mikro alıştırmaları, shadowing
 - S4 Konuşma: aşama 5–6 + dış görev hazırlığı (hazırlık kartında kalıplar ve 5 kaçış cümlesi)
 - Gün sonu: dış görevin sonucu, "Bugün kendi kurduğun cümle", "yeni anladığın kelime", "İngilizceye kaçma sayısı"
-- VHS ayarı: "bu hafta kursta işlenen dilbilgisi konusu" seçilirse S2'deki dönüşümler o konuya ağırlık verir. Kurs ve kitap adı hiçbir yerde geçmez.
+- Kurs ayarı: "bu hafta kursta işlenen dilbilgisi konusu" seçilirse S2'deki dönüşümler o konuya ağırlık verir. Kurs ve kitap adı hiçbir yerde geçmez.
 - Ölçüm:
   - başlangıç seviye tespiti (mevcut)
   - aylık ölçüm, aynı görevlerle
