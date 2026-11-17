@@ -23,6 +23,8 @@
 | Konuşma hızı (aylık 60 sn kaydı, dakikadaki kelime) | Her ay artar |
 | "Yapabiliyorum" listesi | Ay 2: 6 durum · Ay 4: 14 · Ay 6: 24 |
 
+**LS-0.4 Nihai hedef (PM-009, RQ-S28):** Uygulama sayesinde günlük hayatta Almancayı **neredeyse ana dil rahatlığıyla** konuşmak. 6 ay ve B1 yolun ilk büyük durağıdır, sonu değildir; ürün B1'den sonra da öğrenciyle büyür (§17 R6–R8). "Bitti" denmez: kütüphane hiçbir zaman tamam değildir (LS-17.2).
+
 **LS-0.3 Anti-hedefler (asla):**
 - Gramer kitabına dönüşmek. Uzun kural listeleri, bağlamsız tablolar.
 - Kısır döngü: aynı konu, aynı ritim, aynı alıştırma.
@@ -176,7 +178,7 @@ Her ilke bir ya da daha fazla ürün özelliğine dönüşür. Özelliği olmaya
 | **İş molası (5–15 dk)** | Tam | Duruma göre | Mola sohbeti, hızlı tekrar, tek hız turu | Mola bitince otomatik kapanış. |
 | **Yatmadan önce** | Kısık | Dinle | Hikâye, hafif tekrar | Yeni öğe yok. |
 
-**LS-5.6** Hikâyenin her bölümü (H4 dünyası) **çok sesli sesli drama** olarak da üretilir. Her karakterin kendine özgü sesi (cihaz sesi ya da hazır ses) ve konuşma hızı vardır. Araba ve spor salonunda ana içerik budur.
+**LS-5.6** Hikâyenin her bölümü (H4 dünyası) **çok sesli sesli drama** olarak da üretilir. Her karakterin kendine özgü sesi (önce hazır doğal ses, yedek cihaz sesi; LS-8.6) ve konuşma hızı vardır. Araba ve spor salonunda ana içerik budur.
 
 ### 5.3 Kurs senkronu
 
@@ -205,7 +207,7 @@ Her ilke bir ya da daha fazla ürün özelliğine dönüşür. Özelliği olmaya
 
 **LS-6.3 "Almanca nasıl derim?"** (TR → DE) her konuşma ve kurma ekranında. Önce yerel kayıtta aranır; bulunamazsa yapay zekâ (say_it_de). Cevap üç katmandır: en basit söyleyiş · kullanılacak kalıp · "kelimeyi bilmiyorsan böyle anlat" (başka sözle). Puan düşmez; öğe aktif eksik olarak bankaya girer.
 
-**LS-6.4 Hız turu (otomatiklik):** 60–90 saniyelik turlar. Türkçe istem gelir, öğrenci **4 saniye içinde sesli** söyler; doğrusu hemen çalınır. Yalnızca daha önce doğru üretilmiş öğelerle yapılır (yeni öğe yok). Hedef: düşünmeden söylemek. Tur sonunda "ortalama cevap süren 3,1 sn → dün 3,8 sn" gibi kişisel rekor gösterilir.
+**LS-6.4 Hız turu (otomatiklik):** 60–90 saniyelik turlar. Türkçe istem gelir, öğrenci **4 saniye içinde sesli** söyler; doğrusu hemen çalınır. Yalnızca daha önce doğru üretilmiş öğelerle yapılır (yeni öğe yok). Hedef: düşünmeden söylemek. Süre **ekranda saniye olarak gösterilmez** (PM-008 §4, RQ-Ş16): kazanım Raute dolmasıyla ve "düşünmeden söyledin" gibi nitel geri bildirimle gösterilir; süre ölçümü yalnızca uyarlama için arka planda tutulur.
 
 **LS-6.5 Yazarak ve konuşarak:** Her üretim maddesi önce konuşma ile istenir (mikrofon hazır); yazma isteğe bağlı ve sessiz modlarda zorunlu. Konuşma tanıma hoşgörülüdür: anlam doğruysa kabul; eşik ve kabul edilen varyantlar accepted[] + kural tabanlı normalizasyon (PEDAGOGY §7).
 
@@ -240,6 +242,8 @@ Her ilke bir ya da daha fazla ürün özelliğine dönüşür. Özelliği olmaya
 **LS-8.4 Sayı, tarih, saat, isim:** Telefonun en zor kısmı. Ayrı ve sürekli bir mini akış: hızlı söylenen doğum tarihleri, telefon numaraları, saatler (halb, Viertel), heceleme (DIN 5009 + geleneksel). Her gün 2 dakika.
 
 **LS-8.5 Gerçek medya köprüsü:** Seviyeye göre etiketli bağlantı listesi (yalnızca bağlantı). Ay 3'ten itibaren haftada bir "gerçek medya görevi": kısa bir sokak röportajı ya da dizi sahnesi; önce o videonun sık kelimeleri ön öğretilir, sonra izlenir, sonra 3 soru.
+
+**LS-8.6 Ses kaynağı (PM-008 §2–3, §8; RQ-Ş14, Ş15, Ş20):** İçerik sesleri **doğal ses öncelikli**: önceden üretilmiş doğal ses dosyaları (yalnızca ücretsiz katman, faturasız; kaynak ve şartlar DECISIONS'a). Cihaz sesi yalnızca yedektir. "Yavaş" ≈ 0,7× gerçekten yavaşlatır. Diyalog ve hikâyede her karakterin ayrı sesi vardır. Duraklat/devam her yerde çalışır; devamda 1–2 sn geri sarılır (RQ-Ş19).
 
 ---
 
@@ -403,8 +407,15 @@ Her sürüm kendi başına kullanılabilir ve /v2/'de yayınlanır. Her sürüm�
 | **R3** | Şehirde | einkaufen · bäckerei/café · amt · bank · wohnung · Kulak Salonu 3–4 · gelen arama kademe 2–3 · gerçek medya köprüsü | Ay 3 "yapabiliyorum" hedefleri için içerik tam |
 | **R4** | Rahat | friseur · fitness · verkehr · post · werkstatt · notfall · freizeit · gefühle · Kulak Salonu 5 (kaynaklı Bairisch) · aylık konuşma karşılaştırması · Silvester/Fasching/Starkbierzeit içerikleri | 20 alanın 19'u yayında |
 | **R5** | B1 ve ötesi | medien · B1 yolu (LS-15) · v1'in emekliye ayrılması (liste onayla) | Sınav tarihine 6 hafta kala B1 yolu açık |
+| **R6** | Akıcı günlük konuşma (≈ B2, ay 7–12) | Hızlı, kesintili, çok kişili konuşmaları takip · mizah, ironi, deyimler · tartışma, ikna, şikâyet, pazarlık · telefonda her durum · Bairisch'i rahat anlama · pasif 7.000+, aktif 3.000+ | Gerçek görev kanıtları (yalnızca puan değil) |
+| **R7** | Doğallık (≈ C1 konuşma, ay 12–24) | Konuşma dolguları ve doğal tepkiler (na ja, sag mal, weißt du, ach komm) · register geçişleri (resmî ↔ samimi ↔ bölgesel) · uzun anlatı (anılar, hayat hikâyesi) · hızlı espri ve laf sokma anlama · prosodi ve tonlama · pasif 10.000+ | Aylık 60 sn kayıt karşılaştırması |
+| **R8** | Gerçek dünya dalışı (R6 ile paralel) | Dizi/film/podcast/haber ile kapsamlı dinleme planı (yalnızca bağlantı + ön öğretim + sonrası tekrar) · "Duyduğum kelime" akışı merkezde · haftalık serbest sohbet saatleri (yapay zekâ partneriyle) · gerçek görev merdiveninin sonuna kadar | "Duyduğum kelime" akışı ve gerçek görevler |
+
+R6–R8 için şimdilik yalnızca hedefler vardır (PM-009); ayrıntılı döküm R5'ten sonra. Sıra ve tarih: YOL_HARITASI.md §2.
 
 **LS-17.0 Mevsim istisnası:** 1. Advent 29.11.2026'da; Weihnachtsmärkte genelde Kasım'ın son haftasında açılır. Bu yüzden **Advent / Weihnachtsmarkt mini senaryoları (2–3 adet) R1'den bağımsız, yalnızca içerik olarak, mevcut oynatıcıyla 27.11.2026'ya kadar yayınlanır.** Kapsam küçük tutulur: fırında/stantta sipariş, Glühwein, fiyat sorma, iş yerindeki Weihnachtsfeier daveti.
+
+**LS-17.2 Büyüyen müfredat (PM-009 §3–4):** Kütüphane hiçbir zaman "tamam" değildir. Öğrencinin bıraktığı yerler, kaçtığı konular ve "Duyduğum kelime" kayıtları her ay yeni içerik üretiminin girdisidir. Aylık 60 sn kayıt ve "yapabiliyorum" listesi R6–R8 boyunca sürer; her seviye geçişi gerçek dünya kanıtıyla (gerçek görev) doğrulanır.
 
 **LS-17.1 Takvim gerçekçiliği:** R1 öncelikli ve küçük tutulur ki öğrenci en kısa sürede kullanmaya başlasın. Sonraki sürümler öğrenci kullanırken arkadan gelir. Mevsim içerikleri (Advent, Silvester, Fasching…) ilgili tarihten en az 1 hafta önce yayında olur.
 

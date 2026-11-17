@@ -1,30 +1,32 @@
 # STATUS — Deutsch Werkstatt 2.0
 
-Son güncelleme: 2026-11-17 · Faz: **H3 kontrol noktası → R1** · Ana dal: `main` (`1852bf4`)
-Yeni oturum: `CLAUDE.md` → `LEARNING_SYSTEM.md` → `LEARNER.md` → bu dosya → `DECISIONS.md`. "Sıradaki adım"dan devam et.
+Son güncelleme: 2026-11-17 23:15 UTC · Faz: **R1 hazırlığı** · Ana dal: `main` (`fff3948`) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (etiket `v2-20261117-2`)
+Yeni oturum: `CLAUDE.md` → `YOL_HARITASI.md` → `LEARNING_SYSTEM.md` → `LEARNER.md` → bu dosya → `DECISIONS.md`. "Sıradaki adım"dan devam et; hiçbir iş baştan başlatılmaz (PM-007 §4).
 
-## Açık PR'lar (yığın, alttan üste; D-041: kabul = tepedeki PR'ın WebKit CI'ı, yığın tek seferde birleşir)
+## Sıradaki adım (YOL_HARITASI §4 sırası)
+1. Açık PR'ları yeşil olunca birleştir (≤3 açık, yeşilden sonra ≤24 saat): v1 17b, bu belge PR'ı, mini/mevsim şeması.
+2. PM-006 (P1, tasarım): DESIGN.md jetonları `web/src/ui`'ye; Bugün, ifade kartı, gelen arama TARGET.png'ye göre (açık + koyu, iPhone 15); sıfır emoji simge; ekran başına tek ilerleme; tam genişlik "Sesli söyle"; görsel tabanlar.
+3. LS-17.0 Advent / Weihnachtsmarkt mini senaryoları (son tarih 27.11.2026): kalıplar reviewed → yazar (3 mini senaryo, `format: "mini"`, `season`) → dilbilimci → örneklem.
+4. R1 görevleri (aşağıdaki döküm; hedef: Aralık'ın 1. haftası, 6 kapı).
+
+## Açık PR'lar
 | PR | Dal | Teslim | CI |
 |---|---|---|---|
-| #2 | `v2/t04` | H2-c: v1 taşınabilir derleme + 17a (yayında), ayrı | ✓ |
-| #3 | `v2/calisma-duzeni` | Çalışma düzeni (CLAUDE.md, ajanlar, phases, STATUS, DECISIONS, etiket + geri alma) | ✓ |
-| #4 | `v2/h3-1-4` | H3 1–4: PEDAGOGY, şema, doğrulayıcı, sıklık, kalıp iskeleti | ara katman |
-| #5 | `v2/h3-5-lex` | H3 5: K1 kartları 001–008 (taslak) | ara katman |
-| #6 | `v2/h3-6-pilot01` | H3 6: strategie/telefon/arzt 01 + dilbilimci incelemesi | ara katman |
-| #7 | `v2/h3-7-oynatici` | H3 7 + EK1 + EK2 + inceleme düzeltmeleri | ✓ WebKit iPhone 15 + 16 Pro Max |
-| #8 | `v2/asama-1-2` | D-050 aşama 1–2 yeniden tasarım | koşuyor |
-| #9 | `v2/h4-a-ogrenci` | H4-a: LEARNER.md, CLAUDE.md, PM kararları | — |
-| #10 | `v2/pm-kimlik-kurallar` | PM P1/P2: kimlik yer tutucuları, kalıp kapısı, accepted ≥3, hızlar | — |
-| #11 | `v2/ls-belge` | Faz R a–c: LEARNING_SYSTEM.md, CLAUDE.md okuma listesi, bu tablo | — |
-| (yeni) | `v2/pm-kanal` | PM kanalı kuralı (D-080), PM-001 sınav tarihi/kurum adı (D-075), sahte tarihli test | — |
-| (yeni) | `v2/h4-b-dunya` | H4-b: WORLD.md + world.json (12 karakter, 26 hafta, takvim) + şema/doğrulayıcı | — |
+| (açılıyor) | `v1/17b-v2-kart` | v1 17b: Bugün'de "Yeni: Gerçek hayat dersleri" kartı → ./v2/; v1 servis işçisi /v2/'ye karışmaz | v1 kapısı yerelde |
+| (açılıyor) | `pm/yol-haritasi-uygula` | PM-008/009/010 belgeleri, birleştirme turu kaydı | — |
 
-Bağımsız inceleme (inceleme ajanı) #2–#7'ye yorum yazdı. #4 ve #7 bulguları düzeltildi: PEDAGOGY'deki kurum adı; rol oyunu sınırları, destek düzeyi, "Benim cevabım da doğru", bitir/geç yanıt, ≥44 pt, WebKit yarışı.
+### Birleştirme turu (PM-007, 2026-11-17)
+- `main`'e birleşti: #2 (T04), #3 (çalışma düzeni), #18 (v2_core bekleme düzeltmesi), #20 (PM tasarım dili), #16 (PM gereksinim kaydı), #19 (yığının tepesi: #4–#17'nin bütün commit'leri, merge commit ile SHA'lar korunarak), #21 (PM yol haritası).
+- Kapatıldı (gerekçe PR'da: "#19 ile main'e birleşti"): #4, #5, #6, #7, #8, #9, #10, #11, #13, #14, #15, #17.
+- #19 kabulü: check + WebKit iPhone 15 + iPhone 16 Pro Max yeşil (`ecf5fa0`). iPhone 15'teki uzun basma testi hedefi JS ile seçecek şekilde sağlamlaştırıldı.
+- /v2/ yayını: deploy-v2 → gh-pages `v2/` (etiketler `v2-20261117-1`, `v2-20261117-2`).
 
 ## PM kanalı (D-080)
 - Genel talimatlar: issue #12; PR'a özgü: PR altında `[PM]` yorumları. Her anlamlı adımda ve her birleştirmeden önce okunur; her talimata ✓/✗ yanıtı.
-- Bekleme gerekirse send_later ile 60 dk'da bir #12 kontrolü (araç bu ortamda var).
-- Son okuma: 2026-11-17 · PM-001 ✓ (v2 kısmı; v1 kalıntıları T05'te onay bekliyor) · PM-002 → R1 dökümüne eklendi.
+- Bekleme gerekirse send_later ile 60 dk'da bir #12 kontrolü.
+- Son okuma: 2026-11-17 23:10 UTC.
+- PM-001 ✓ (v2; v1 kalıntıları T05'te onay bekliyor) · PM-002 → R1 · PM-003/004/005 ✓ · PM-005.1 ✓ (#16 birleşti) · PM-006 sırada (#20 birleşti) · PM-007 ✓ (birleştirme turu; v1 17b kapıdan sonra yayın) · PM-008 ✓ (RQ-Ş13…Ş32) · PM-009 ✓ (RQ-S28, LS-0.4, LS-17 R6–R8, LS-17.2) · PM-010 ✓ (#21 birleşti, CLAUDE.md okuma listesinde ilk sıra, R1-44/45).
+- Not: YOL_HARITASI.md'deki sınav günü ve ondan türeyen R5 tarihi D-075/PM-001 gereği nötrleştirildi (yalnızca cihaz profilinde); #12'de bildirildi.
 
 ## R1 görev dökümü — "İlk telefon" (LS-17 R1; kabul: LS-16.3 simülasyonu ilk hafta senaryosunu baştan sona tamamlar + yapay zekâsız gün geçer)
 | # | Görev | LS / kaynak | Durum |
@@ -35,7 +37,7 @@ Bağımsız inceleme (inceleme ajanı) #2–#7'ye yorum yazdı. #4 ve #7 bulgula
 | R1-04 | 60 sn "kendini anlat" kaydı (yalnızca cihazda), aylık karşılaştırma | LS-2.1 (8:00), LS-16.1, H4 §9 | yapılacak |
 | R1-05 | "Nasıl öğreneceksin" 3 kart + bugünün planı, ilk seans hemen | LS-2.1 (9:00–9:30) | yapılacak |
 | R1-06 | Giriş/eşitleme önerisi ilk oturumdan sonra; YZ özellikleri girişe kadar YZ'siz yedekle | PM-002, LS-14.2 | yapılacak |
-| R1-07 | Pilotta kullanılan kalıplar reviewed | LS-17 R1, D-063 | sürüyor (yazar 55/61, sonra dilbilimci) |
+| R1-07 | Pilotta kullanılan kalıplar reviewed | LS-17 R1, D-063 | sürüyor (yazar 61/61 bitti; dilbilimci: pilotun 14'ü kapandı, kalan 47 inceleniyor) |
 | R1-08 | İçerik: strateji 01–03, telefon 01–02, arzt 01 — yer tutucular, iki heceleme, dünyaya bağlama, reviewed | LS-2.3, H4-c, PM P1/P2 | sürüyor (01'ler dil incelemesinden geçti; 02–03 beklemede) |
 | R1-09 | Kurma merdiveni 10 basamak; basamak 3–5 kalıp verisinden üretilir | LS-6.2 | kısmen |
 | R1-10 | Hız turu (4 sn, kişisel rekor; yalnızca doğru üretilmiş öğeler) | LS-6.4 | yapılacak |
@@ -51,7 +53,7 @@ Bağımsız inceleme (inceleme ajanı) #2–#7'ye yorum yazdı. #4 ve #7 bulgula
 | R1-20 | Kurtarma modu (10 dk; seri bozulmaz; 2 gün açılmazsa öneri) | LS-10.6, H4 §10 | yapılacak |
 | R1-21 | Hatadan mini ders (aynı D1/D2 hatası 2 kez → ertesi gün S1'de 3 dk) | LS-10.3 | yapılacak |
 | R1-22 | Yerel ölçüm: açılış, tamamlama/bırakma, ekran bazında bırakma noktası, yenilik oranı | LS-16.2 | kısmen (aşama 1–2, rol oyunu süresi) |
-| R1-23 | /v2/ yayını + v1 Bugün'e "Yeni: Gerçek hayat dersleri" kartı (v1 17b, tam v1 kapısı) | H2 hızlı hat | yapılacak |
+| R1-23 | /v2/ yayını + v1 Bugün'e "Yeni: Gerçek hayat dersleri" kartı (v1 17b, tam v1 kapısı) | H2 hızlı hat, PM-007 | sürüyor (/v2/ yayında; v1 17b PR'da) |
 | R1-24 | LS-16.3 öğrenci simülasyonu (qa, bilgi kısıtlı): 6 madde, ekran görüntüleriyle | LS-16.3 | yapılacak |
 | R1-25 | Kelime çeşitliliği: yanlış öğe ~4 madde sonra başka cümle + başka fotoğrafla (en çok 3 kez), sonraki oturumlarda da farklı; son 3 cümle ve son fotoğraf tekrar etmez; kart yüzleri döner (tanıma / üretme / dinleme); birim + e2e (v1 vartest eşdeğeri) | PM-003, RQ-S10, RQ-Ş07 | yapılacak |
 | R1-26 | Fotoğraf: Worker /photos Pixabay → Pexels → fotoğrafsız; PIXABAY_KEY yalnızca Worker'da; kullanım şartları + atıf DECISIONS'a; somut kelime = kelimenin kendisi, soyut = cümlenin sahnesi; düşük güvende fotoğraf yok | PM-003, RQ-S11 | yapılacak |
@@ -65,7 +67,19 @@ Bağımsız inceleme (inceleme ajanı) #2–#7'ye yorum yazdı. #4 ve #7 bulgula
 | R1-34 | Bildirimler: sessiz saatler, günde en çok 2 (hatırlatma + gelen arama) | RQ-P07 | yapılacak |
 | R1-35 | Güncelleme yalnızca oturum aralarında uygulanır | RQ-P20 | yapılacak |
 | R1-36 | Güvenli alan 59 px testi; seslendirme filtresi (noktalama okunmaz, karışık dilli satır bölünür) testi | RQ-K07, RQ-K08, RQ-V26 | kısmen (ttsClean taşındı) |
-| — | Advent / Weihnachtsmarkt mini senaryoları (2–3), R1'den bağımsız, 27.11.2026'ya kadar | LS-17.0, D-073 | sıradaki içerik işi |
+| R1-37 | Mikrofon güvenilirliği: 50 denemede ≥49; düğmeden kayda ≤300 ms; ikinci dokunuş iptal; oturum sonunda mikrofon tamamen kapalı; izin sonrası ilk kart çalışır; seviye göstergesi | PM-008 §1, RQ-Ş13 | yapılacak |
+| R1-38 | Doğal ses öncelikli: ücretsiz katmanda önceden üretilmiş içerik sesleri (pilot senaryolar), cihaz sesi yedek; "yavaş" ≈0,7×; diyalogda karakter başına ayrı ses. Sağlayıcı yalnızca faturasız doğrulanırsa (PM-004 kuralı) | PM-008 §2/3/8, RQ-Ş14/15/20, LS-8.6 | yapılacak (önce sağlayıcı araştırması, DECISIONS) |
+| R1-39 | Geçiş ve gösterim kuralları: doğru cevaptan sonra ses + açıklama bitmeden otomatik geçiş yok; cevap sorudan önce görünmez; duraklat/devam (1–2 sn geri sarma) | PM-008 §5/6/7, RQ-Ş17/18/19 | yapılacak |
+| R1-40 | Çalışma ekranı kaydırmasız tek ekran (iPhone 15 + SE) — görsel test | PM-008 §10, RQ-Ş22 | yapılacak |
+| R1-41 | DESIGN.md uygulaması (PM-006) + sayaçlar taşmaz (üst sınır/biçim testi) | PM-006, PM-008 §12, RQ-Ş24 | sıradaki |
+| R1-42 | Kesintili kullanım: oturum madde düzeyinde kaydedilir, her an bırakılıp kaldığı yerden sürer | PM-008 §20, RQ-Ş32 | kısmen (bölüm düzeyi) |
+| R1-43 | (PM-008 §19'un R1 parçası) haftalık özetin paylaşım menüsüyle gönderilmesi → R1-45 ile birlikte | RQ-Ş31 | yapılacak |
+| R1-44 | Bugün'ün en üstünde "Bugünün adımı": bugün yapabilir hale gelinecek tek şey; gün sonunda başarıldıysa Raute dolar; 3 gün adımsızsa koç planı sadeleştirir | PM-010 §5, YOL_HARITASI §3 | yapılacak |
+| R1-45 | "Haftalık özeti paylaş": tek dokunuşla kişisel bilgi içermeyen sayılar (odak dk, sesli cümle, yeni kalıcı öğe, gerçek görev, İngilizceye kaçma, takılınan ekranlar) iOS paylaşım menüsüyle | PM-010 §5, YOL_HARITASI §3 | yapılacak |
+| R1-46 | R1 raporu: altı kapı (öğrenci, öğretmen, dilbilimci, test uzmanı, tüketici, CEO) için ayrı kanıt | PM-010 §3, YOL_HARITASI §1 | yapılacak |
+| — | Advent / Weihnachtsmarkt mini senaryoları (3), R1'den bağımsız, 27.11.2026'ya kadar | LS-17.0, D-073, YOL_HARITASI §2 | sıradaki içerik işi (şema hazır: `format: "mini"`, `season`) |
+
+R2'ye işlenenler (PM-008): RQ-Ş27 dış kaynak görevleri · RQ-Ş28 evde Almanca · RQ-Ş30 geçmişi anlatma · RQ-Ş31 kart paylaşımı. R3: RQ-Ş29 iş arama/iş görüşmesi alanı (21. alan). R6–R8: PM-009 (LS-17).
 
 ### REQUIREMENTS.md → R1 eşlemesi (PM-005.4)
 R1 işaretli bütün maddeler yukarıdaki görevlere bağlı. Yer almayanların gerekçesi:
@@ -75,7 +89,8 @@ R1 işaretli bütün maddeler yukarıdaki görevlere bağlı. Yer almayanların 
 - **E (RQ-P):** P01 R1-28 · P02 R1-29 · P03 R1-30 · P04 R1-31 · P05 R1-32 · P06 R1-33 · P07 R1-34 · P08 R1-04 (+R2 koç) · P09 R1-13 (araba) · P11 R1-12 · P13 R1-19 · P14 R1-20 + R1-17 · P15 otomatik koyu tema ✓, yatmadan önce modu R2 · P16 R1-13 (ekran kapalıyken ses; pil ölçümü gerçek cihazda) · P17 ✓ (EK2 §1) · P20 R1-35. P10, P12, P18 R2; P19 her sürüm (dilbilimci).
 
 ## Çalışan ajanlar
-- yazar: 61 kalıbı H3 §3 standardına getiriyor (önce pilotun 14 kalıbı) → sonra dilbilimci.
+- dilbilimci: 61 kalıbın incelemesi (pilotun 14'ü kapandı; çalışma kopyası ana dizinde, bitince ayrı PR).
+- inceleme: #8–#19 bağımsız inceleme yorumları (PR'lar birleşti; bulgular yeni PR'larda düzeltilir).
 
 ## Bekleyenler (depo dışında)
 - YAZAR'ın strategie/telefon/arzt 02–04 dosyaları `/home/claude/hold/` altında (D-063: kalıplar incelenene kadar). Oturum kapanırsa kaybolabilir; yeniden üretilebilir.

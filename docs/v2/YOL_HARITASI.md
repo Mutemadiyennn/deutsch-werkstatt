@@ -32,8 +32,8 @@ Tarihler hedeftir; kayarsa PM yeniden planlar ve öğrenciye açıkça söyler. 
 | **R2 "Molada konuşan"** — hedef: 20.12.2026 | Molada 2 dk sohbete katılır; hafta sonunu anlatır; Weihnachtsfeier'de küçük sohbet yapar | Mola sohbetleri, smalltalk, Benim cümlelerim, spor + toplu taşıma modu, hikâye 1–4, şehir haritası, haftalık koç, ödev yardımcısı, telefon 03–04, arzt 02–04 | 6 kapı; 4 bağlam modu simülasyonu |
 | **R3 "Şehirde"** — hedef: 20.01.2027 | Bürgeramt, banka, ev sahibi, market iadesi; habersiz aramaya cevap verir | einkaufen, bäckerei, amt, bank, wohnung, iş arama/iş görüşmesi; Kulak Salonu 3–4; gelen arama kademe 2–3; gerçek medya köprüsü | 6 kapı; Ay 3 "yapabiliyorum" hedefleri |
 | **R4 "Rahat"** — hedef: 01.02.2027 (Fasching'den önce) | Hızlı konuşanı takip eder; Bavyera ifadelerini anlar; 5 dk sohbet eder | Kalan alanlar; Kulak Salonu 5 (kaynaklı Bairisch); aylık konuşma karşılaştırması; Fasching/Starkbierzeit | 6 kapı; 19+ alan yayında |
-| **R5 "B1"** — hedef: 03.04.2027 (sınava 6 hafta) | B1 sınav formatlarına hazır | B1 yolu (LS-15); medien alanı; v1'in emekliye ayrılması (onaylı liste) | Deneme sınavı sonuçları |
-| **15.05.2027** | B1 sınavı | — | — |
+| **R5 "B1"** — hedef: sınav gününden 6 hafta önce (tarih yalnızca cihaz profilinde; D-075) | B1 sınav formatlarına hazır | B1 yolu (LS-15); medien alanı; v1'in emekliye ayrılması (onaylı liste) | Deneme sınavı sonuçları |
+| **Sınav günü** (yalnızca cihaz profilinde) | B1 sınavı | — | — |
 | **R6 "Akıcı" (ay 7–12)** | Çok kişili hızlı sohbeti takip eder, tartışır, espri anlar | PM-009 R6 | Gerçek görev kanıtları |
 | **R7 "Doğal" (ay 12–24)** | Register geçişleri, uzun anlatı, doğal tepkiler | PM-009 R7 | Aylık kayıt karşılaştırması |
 | **R8 "Gerçek dünya"** (R6 ile paralel) | Dizi, film, podcast ile kendi kendine öğrenir | PM-009 R8 | "Duyduğum kelime" akışı |

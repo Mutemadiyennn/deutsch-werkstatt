@@ -5,14 +5,15 @@ Türkçe konuşan bir yetişkinin Almancayı gerçek hayatta (telefon, doktor, i
 
 ## Her oturumda önce oku
 Her ajan ve oturum işe `docs/v2/LEARNER.md`'yi okuyarak başlar. Her kararda tek soru: **"Bu, bu öğrenciyi dışarıda konuşmaya yaklaştırıyor mu, ve yarın uygulamayı yeniden açmak istemesini sağlıyor mu?"**
-1. `docs/v2/LEARNING_SYSTEM.md` — **en üst belge** (LS-x.y kimlikleri). Öncelik: LEARNING_SYSTEM > PEDAGOGY > phases/ > BLUEPRINT (D-070)
-2. `docs/v2/LEARNER.md` — öğrenci kartı (kimlik bilgisi yok); ürün bir öğretmendir
-3. `docs/v2/REQUIREMENTS.md` — gereksinim kaydı (RQ-x); her PR karşıladığı RQ ve LS kimliklerini listeler (PM-005)
-4. `docs/v2/WORLD.md` — kurgusal şehir, kalıcı karakterler, 26 haftalık hikâye, gerçek takvim
-5. `docs/v2/STATUS.md` — görevlerin durumu, son commit, açık sorunlar, sıradaki adım
-6. `docs/v2/DECISIONS.md` — alınmış kararlar ve gerekçeleri (yeniden tartışma)
-7. `docs/v2/PEDAGOGY.md` — içerik standardı, şema ve doğrulayıcı kuralları
-8. `docs/v2/phases/` — proje sahibinin faz metinleri; hatırlamadığın kural buradadır
+1. `docs/v2/YOL_HARITASI.md` — **tek yol haritası** (PM-010): iş seçimi yalnızca §4'e göre (önce #12 P0→P2, sonra haritadaki sıradaki sürüm; haritada olmayan iş yapılmaz); her sürüm §1'in altı kapısından geçer
+2. `docs/v2/LEARNING_SYSTEM.md` — **en üst belge** (LS-x.y kimlikleri). Öncelik: LEARNING_SYSTEM > PEDAGOGY > phases/ > BLUEPRINT (D-070)
+3. `docs/v2/LEARNER.md` — öğrenci kartı (kimlik bilgisi yok); ürün bir öğretmendir
+4. `docs/v2/REQUIREMENTS.md` — gereksinim kaydı (RQ-x); her PR karşıladığı RQ ve LS kimliklerini listeler (PM-005)
+5. `docs/v2/WORLD.md` — kurgusal şehir, kalıcı karakterler, 26 haftalık hikâye, gerçek takvim
+6. `docs/v2/STATUS.md` — görevlerin durumu, son commit, açık sorunlar, sıradaki adım
+7. `docs/v2/DECISIONS.md` — alınmış kararlar ve gerekçeleri (yeniden tartışma)
+8. `docs/v2/PEDAGOGY.md` — içerik standardı, şema ve doğrulayıcı kuralları
+9. `docs/v2/phases/` — proje sahibinin faz metinleri; hatırlamadığın kural buradadır
 
 ## Değişmez kurallar
 - **Kişisel bilgi yok.** Depoda, kodda, testte, prompt'ta öğrencinin hayatına dair ayrıntı, kurs ya da kitap adı yazılmaz (istisna: kimliksiz `LEARNER.md`, D-066). Öğrencinin adı/cinsiyeti içerikte sabit yazılmaz: `{name}`, `{Herr|Frau}` yer tutucuları; yapay zekâya ad gitmez (D-061). Diğer karakterlerin adları çeşitli.
