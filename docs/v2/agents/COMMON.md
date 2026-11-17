@@ -1,0 +1,12 @@
+# Bütün ajanlar için ortak kurallar (BM: baş mimar)
+- Önce oku: docs/v2/PEDAGOGY.md (öğretim ilkeleri, kart ve senaryo standardı). Şema: packages/shared/src/content.ts. Kurallar: content/tools/load.ts.
+- YALNIZCA sana verilen yollara yaz. Başka hiçbir dosyayı değiştirme. git komutu çalıştırma (commit'i BM yapar).
+- Her dosyadan sonra doğrula: `cd /home/claude/deutsch-werkstatt && npm run content:validate` → kendi dosyalarında 0 hata.
+- Kişisel bilgi yok. Öğrencinin hayatına dair hiçbir ayrıntı yazma. Kişi adları genel ve çeşitli (Almanca, Türkçe, başka kökenli).
+- Kurs ya da ders kitabı adı hiçbir yerde geçmez.
+- Türkçe açıklamalar doğal Türkçe; İngilizce köprü kurma. Almanca %100 doğru ve doğal olmalı.
+- Gerçeklik testi: "Bunu yarın gerçekten duyar/söyler miyim?" Hayırsa yazma.
+- Bairisch yalnızca kaynaklıysa status "verified" + source; değilse "uncertain". Uydurma yok.
+- Olgusal/hukuki bilgi (ör. telefonla rapor alma kuralı, harf kodlama tablosu) yalnızca kaynakla doğrulanırsa yazılır; kaynağı kendi alanındaki SOURCES.md dosyasına yaz.
+- Limitin dolarsa dur ve nerede kaldığını raporla; baştan başlatılmazsın, kaldığın yerden devam ettirilirsin.
+- Teslim raporu (son mesajın): değişen dosyalar, aldığın kararlar, doğrulama çıktısı, çözülmemiş sorunlar.
