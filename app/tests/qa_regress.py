@@ -19,6 +19,9 @@ async def main():
       /* kelime maddesi kural SRS'ine yazılmaz */
       const w = kuWordItems(u, [u.words[0]], 'prod')[0]; kuMark(w, true); out.phantom = Object.keys(kSt().it).filter(k=>k.includes(':w:')).length;
       out.core = [kuCore('Ach so, sprechen ihr zu Hause Türkisch?'), kuJudge(['Ach so, sprecht ihr zu Hause Türkisch?'], ['sprecht ihr zu Hause Türkisch']).ok, kuJudge(['Ach so, sprecht ihr zu Hause Türkisch?'], ['ach so sprechen ihr zu Hause Türkisch']).ok];
+      /* v2 köprüsü (PM-007): Bugün'de tek kart → ./v2/ */
+      const ph = renderPlan(); out.v2card = (ph.match(/data-test="v2-card"/g)||[]).length === 1 && /href="\.\/v2\/" data-test="v2-open"/.test(ph);
       return out; })()""")
     print(json.dumps(r, ensure_ascii=False, indent=1)); print("errors", errs[:4])
+    print("v2 kartı:", "✓" if r.get("v2card") else "✗ HATA (Bugün'de ./v2/ kartı yok)")
 asyncio.run(main())
