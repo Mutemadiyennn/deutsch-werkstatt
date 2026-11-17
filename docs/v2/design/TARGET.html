@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deutsch Werkstatt v2 — hedef tasarım</title>
+<style>
+/* Belirteçler (token) */
+:root{
+  --himmel:#1C6FD6;      /* ana mavi: v1 mavisinin koyulaştırılmışı, Bavyera mavisi */
+  --himmel-2:#E3EEFB;    /* mavi yüzey */
+  --tinte:#14233B;       /* metin */
+  --tinte-2:#5A6B82;     /* ikincil metin */
+  --papier:#F5F8FC;      /* zemin */
+  --kalk:#FFFFFF;        /* kart */
+  --brezel:#C27A2C;      /* ödül, XP */
+  --wiese:#2F9E6B;       /* doğru, başarı */
+  --minze:#2BA89A;       /* mekân rengi: muayenehane */
+  --rot:#D6453D;         /* reddet */
+  --r-lg:28px; --r-md:18px; --r-sm:12px;
+  --display: ui-rounded, "SF Pro Rounded", "Inter Display", -apple-system, system-ui, sans-serif;
+  --text: -apple-system, "SF Pro Text", Inter, system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#DCE3EC;font-family:var(--text);color:var(--tinte);padding:40px;display:flex;gap:40px;align-items:flex-start;justify-content:center;flex-wrap:wrap}
+.cap{width:390px;font:600 13px/1.4 var(--text);color:#53627A;margin-bottom:10px}
+.phone{width:390px;height:844px;border-radius:48px;overflow:hidden;position:relative;background:var(--papier);box-shadow:0 30px 60px -20px rgba(20,35,59,.35),0 0 0 10px #0E1622}
+.status{height:54px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 30px 8px;font:600 15px var(--text)}
+.status .isl{position:absolute;left:50%;top:11px;transform:translateX(-50%);width:122px;height:36px;border-radius:20px;background:#000}
+.home-ind{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:var(--tinte);opacity:.85}
+
+/* Raute: kimliğin tek cesur öğesi */
+.rauten{display:flex;gap:5px;align-items:center}
+.raute{width:11px;height:11px;transform:rotate(45deg);border-radius:2px;background:var(--himmel-2);border:1.5px solid #C9DAF2}
+.raute.on{background:var(--himmel);border-color:var(--himmel)}
+.raute.half{background:linear-gradient(135deg,var(--himmel) 50%,var(--himmel-2) 50%);border-color:var(--himmel)}
+.raute.lg{width:16px;height:16px;border-radius:3px}
+.raute.gold.on{background:var(--brezel);border-color:var(--brezel)}
+
+/* EKRAN 1 — Bugün */
+.sky{background:var(--himmel-2);position:relative;padding:10px 24px 22px;overflow:hidden}
+.sky .pattern{position:absolute;inset:0;background-image:repeating-linear-gradient(45deg, rgba(28,111,214,.10) 0 1.5px, transparent 1.5px 22px),repeating-linear-gradient(-45deg, rgba(28,111,214,.10) 0 1.5px, transparent 1.5px 22px)}
+.sky svg{display:block;margin:6px 0 4px;position:relative}
+.hello{position:relative;font:800 40px/1 var(--display);letter-spacing:-.02em}
+.hello-sub{position:relative;margin-top:8px;font-size:16px;line-height:1.45;color:var(--tinte-2);max-width:30ch}
+.body{padding:18px 20px 0}
+.dayrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.dayrow b{font:700 15px var(--text)} .dayrow span{font-size:14px;color:var(--tinte-2)}
+.next{background:var(--kalk);border-radius:var(--r-lg);padding:20px;box-shadow:0 1px 0 #E3E9F1, 0 12px 28px -18px rgba(20,35,59,.35)}
+.next .who{display:flex;gap:12px;align-items:center}
+.avatar{width:48px;height:48px;border-radius:50%;background:var(--minze);color:#fff;display:grid;place-items:center;font:800 18px var(--display);flex:none}
+.next h2{font:800 23px/1.15 var(--display);letter-spacing:-.01em}
+.next p{font-size:14px;color:var(--tinte-2);margin-top:3px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;height:56px;border-radius:999px;background:var(--himmel);color:#fff;font:700 17px var(--text);border:0;width:100%;margin-top:16px;box-shadow:0 4px 0 #1457A8}
+.goals{margin-top:18px}
+.goals h3{font:700 15px var(--text);margin-bottom:8px}
+.goal{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid #E3E9F1;font-size:15px}
+.goal:last-child{border-bottom:0}
+.tick{width:24px;height:24px;border-radius:50%;border:2px solid #C9D4E2;display:grid;place-items:center;flex:none}
+.tick.done{background:var(--wiese);border-color:var(--wiese)}
+.goal em{font-style:normal;margin-left:auto;color:var(--tinte-2);font-size:14px}
+.goal .xp{color:var(--brezel);font-weight:700}
+.tabs{position:absolute;bottom:0;left:0;right:0;height:84px;background:rgba(255,255,255,.94);border-top:1px solid #E3E9F1;display:flex;justify-content:space-around;padding-top:9px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;font:600 11px var(--text);color:#8796AA}
+.tab.on{color:var(--himmel)}
+
+/* EKRAN 2 — İfade kartı */
+.top{display:flex;align-items:center;gap:10px;padding:4px 16px 0}
+.back{width:44px;height:44px;border-radius:50%;display:grid;place-items:center}
+.top h1{font:700 17px var(--text)}
+.prog{display:flex;justify-content:space-between;align-items:center;padding:10px 20px 14px}
+.prog span{font-size:13px;color:var(--tinte-2)}
+.scene{margin:0 16px;height:128px;border-radius:var(--r-lg);overflow:hidden;background:#DDF2EF;position:relative}
+.phrase{padding:16px 22px 0}
+.phrase .de{font:800 31px/1.12 var(--display);letter-spacing:-.015em;hyphens:auto}
+.phrase .tr{margin-top:8px;font-size:17px;color:var(--tinte-2)}
+.audio{display:flex;gap:12px;align-items:center;margin-top:16px}
+.play{width:60px;height:60px;border-radius:50%;background:var(--himmel);display:grid;place-items:center;box-shadow:0 4px 0 #1457A8}
+.slow{height:44px;padding:0 16px;border-radius:999px;border:1.5px solid #C9DAF2;color:var(--himmel);font:700 15px var(--text);display:flex;align-items:center}
+.alltag{margin:14px 16px 0;background:#FFF6EC;border-radius:var(--r-md);padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.alltag .lbl{font:700 13px var(--text);color:var(--brezel)}
+.alltag .de2{font:700 17px/1.3 var(--text);margin-top:2px}
+.alltag .n{font-size:14px;color:var(--tinte-2);margin-top:4px;line-height:1.4}
+.minip{width:36px;height:36px;border-radius:50%;background:#F4DFC6;display:grid;place-items:center;flex:none;margin-left:auto}
+.family{padding:12px 22px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.family .k{font-size:13px;color:var(--tinte-2);width:100%}
+.chip{height:32px;padding:0 12px;border-radius:999px;background:var(--kalk);border:1px solid #DCE5F0;font:600 14px var(--text);display:flex;align-items:center}
+.chip.cur{background:var(--himmel-2);border-color:#C9DAF2;color:var(--himmel)}
+.dock{position:absolute;bottom:0;left:0;right:0;padding:12px 20px 34px;background:linear-gradient(to top,var(--papier) 70%,rgba(245,248,252,0))}
+.mic{display:flex;align-items:center;justify-content:center;gap:12px;height:64px;border-radius:999px;background:var(--himmel);color:#fff;font:700 18px var(--text);box-shadow:0 5px 0 #1457A8}
+.dock .sub{display:flex;justify-content:space-between;margin-top:14px;padding:0 6px;font:600 15px var(--text);color:var(--himmel)}
+.dock .sub span:last-child{color:var(--tinte-2)}
+
+/* EKRAN 3 — Gelen arama */
+.call{background:#0F1C2E;color:#fff}
+.call .status{color:#fff}
+.call .pattern{position:absolute;inset:0;background-image:repeating-linear-gradient(45deg, rgba(140,180,240,.07) 0 1.5px, transparent 1.5px 26px),repeating-linear-gradient(-45deg, rgba(140,180,240,.07) 0 1.5px, transparent 1.5px 26px)}
+.call .wrap{position:relative;display:flex;flex-direction:column;align-items:center;padding-top:56px;text-align:center}
+.call .kind{font:600 14px var(--text);color:#9FB3CD}
+.ring{margin-top:28px;width:132px;height:132px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,rgba(43,168,154,.35) 0 58%,rgba(43,168,154,.12) 59% 72%,transparent 73%)}
+.ring .avatar{width:96px;height:96px;font-size:34px}
+.call h2{margin-top:22px;font:800 30px/1.1 var(--display)}
+.call .who2{margin-top:6px;font-size:17px;color:#B9C7DA}
+.surprise{margin-top:18px;height:32px;padding:0 14px;border-radius:999px;background:rgba(255,255,255,.08);font:600 13px var(--text);color:#D9E3F0;display:flex;align-items:center;gap:8px}
+.prep{position:relative;margin:34px 20px 0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:var(--r-md);padding:14px 16px}
+.prep .t{font:600 13px var(--text);color:#9FB3CD;margin-bottom:8px}
+.prep .l{font:600 16px/1.6 var(--text);color:#fff}
+.actions{position:absolute;bottom:58px;left:0;right:0;display:flex;justify-content:space-around}
+.act{display:flex;flex-direction:column;align-items:center;gap:10px;font:600 14px var(--text);color:#D9E3F0}
+.act .b{width:76px;height:76px;border-radius:50%;display:grid;place-items:center}
+.act .no{background:var(--rot)} .act .yes{background:var(--wiese)}
+.call .home-ind{background:#fff}
+</style>
+</head>
+<body>
+
+<!-- EKRAN 1 -->
+<div>
+<div class="cap">1. Bugün: tek bir sıradaki adım, şehir ve hikâye</div>
+<div class="phone">
+  <div class="sky">
+    <div class="pattern"></div>
+    <div class="status" style="padding:0 6px 8px;position:relative"><span>07:42</span><div class="isl"></div><span>●●●</span></div>
+    <!-- kurgusal kasaba silueti: çatılar + soğan kubbeli kilise kulesi -->
+    <svg width="342" height="64" viewBox="0 0 342 64" aria-hidden="true">
+      <g fill="#1C6FD6" opacity=".9">
+        <path d="M0 64V40l18-14 18 14v24z"/><path d="M40 64V34l24-18 24 18v30z"/>
+        <path d="M150 64V30h22v34z"/><path d="M150 30c0-9 5-14 11-17 6 3 11 8 11 17z"/><rect x="159" y="2" width="4" height="12" rx="2"/><circle cx="161" cy="12" r="5"/>
+        <path d="M92 64V44l16-12 16 12v20z"/><path d="M176 64V42l20-15 20 15v22z"/><path d="M220 64V36l26-19 26 19v28z"/><path d="M276 64V46l14-10 14 10v18z"/><path d="M308 64V40l17-12 17 12v24z"/>
+      </g>
+      <g fill="#E3EEFB"><rect x="52" y="44" width="7" height="9" rx="1"/><rect x="69" y="44" width="7" height="9" rx="1"/><rect x="232" y="42" width="7" height="9" rx="1"/><rect x="250" y="42" width="7" height="9" rx="1"/><rect x="190" y="48" width="7" height="8" rx="1"/></g>
+    </svg>
+    <div class="hello">Servus.</div>
+    <div class="hello-sub">Bugün telefon günü. Frau Huber muayenehanede seni bekliyor.</div>
+  </div>
+  <div class="body">
+    <div class="dayrow">
+      <div class="rauten"><i class="raute lg on"></i><i class="raute lg on"></i><i class="raute lg half"></i><i class="raute lg"></i></div>
+      <div><b>48</b> <span>/ 100 dk</span></div>
+    </div>
+    <div class="next">
+      <div class="who">
+        <div class="avatar">FH</div>
+        <div><p style="margin:0">Sıradaki</p><h2>Muayenehaneyi ara</h2></div>
+      </div>
+      <p style="margin-top:10px">Randevu al, saati doğru anla. Yaklaşık 9 dakika.</p>
+      <div class="btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg>
+        Devam et
+      </div>
+    </div>
+    <div class="goals">
+      <h3>Bugünün üç hedefi</h3>
+      <div class="goal"><span class="tick done"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Hikâyenin 3. bölümünü dinle<em class="xp">+20</em></div>
+      <div class="goal"><span class="tick"></span>10 cümleyi sesli kur<em>6 / 10</em></div>
+      <div class="goal"><span class="tick"></span>Fırında „Ich hätte gern …" de<em class="xp">+100</em></div>
+    </div>
+  </div>
+  <div class="tabs">
+    <div class="tab on"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l8 9-8 9-8-9z"/></svg>Bugün</div>
+    <div class="tab"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg>Öğren</div>
+    <div class="tab"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 20h18M5 20V10l4-3 4 3v10M15 20v-7h4v7"/></svg>Şehir</div>
+    <div class="tab"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" stroke-linecap="round"/></svg>Ben</div>
+  </div>
+  <div class="home-ind"></div>
+</div>
+</div>
+
+<!-- EKRAN 2 -->
+<div>
+<div class="cap">2. İfade kartı: sahne, ifade, gündelik hâli, tek ana eylem</div>
+<div class="phone">
+  <div class="status"><span>07:51</span><div class="isl"></div><span>●●●</span></div>
+  <div class="top">
+    <div class="back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1C6FD6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <h1>Muayenehaneyi ara</h1>
+  </div>
+  <div class="prog">
+    <div class="rauten"><i class="raute on"></i><i class="raute on"></i><i class="raute half"></i><i class="raute"></i><i class="raute"></i><i class="raute"></i><i class="raute"></i><i class="raute"></i><i class="raute"></i><i class="raute"></i><i class="raute"></i><i class="raute"></i></div>
+    <span>6 dk kaldı</span>
+  </div>
+  <div class="scene">
+    <!-- illüstrasyon: muayenehane resepsiyonu -->
+    <svg width="358" height="128" viewBox="0 20 358 128" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect width="358" height="168" fill="#DDF2EF"/>
+      <rect x="0" y="118" width="358" height="50" fill="#BFE6E0"/>
+      <rect x="40" y="76" width="200" height="56" rx="10" fill="#2BA89A"/>
+      <rect x="40" y="70" width="200" height="12" rx="6" fill="#23907F"/>
+      <circle cx="120" cy="48" r="16" fill="#14233B"/><path d="M96 74c4-13 14-20 24-20s20 7 24 20z" fill="#14233B"/>
+      <rect x="160" y="54" width="34" height="22" rx="3" fill="#F5F8FC"/><rect x="172" y="76" width="10" height="4" fill="#F5F8FC"/>
+      <path d="M262 92c0-12 9-20 20-20s20 8 20 20v6h-40z" fill="#1C6FD6" opacity=".18"/>
+      <rect x="262" y="36" width="64" height="40" rx="6" fill="#fff"/><path d="M280 52h28M280 60h18" stroke="#2BA89A" stroke-width="4" stroke-linecap="round"/>
+      <g transform="translate(76 96)"><rect width="34" height="24" rx="5" fill="#F5F8FC"/><path d="M8 8h18M8 15h12" stroke="#2BA89A" stroke-width="3" stroke-linecap="round"/></g>
+    </svg>
+  </div>
+  <div class="phrase">
+    <div class="de" lang="de">Ich hätte gern einen Termin.</div>
+    <div class="tr">Bir randevu almak istiyorum.</div>
+    <div class="audio">
+      <div class="play"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="slow">Yavaş</div>
+    </div>
+  </div>
+  <div class="alltag">
+    <div>
+      <div class="lbl">Gündelikte böyle duyarsın</div>
+      <div class="de2" lang="de">Ich bräuchte mal 'nen Termin.</div>
+      <div class="n">'nen = einen. Telefonda çok sık.</div>
+    </div>
+    <div class="minip"><svg width="16" height="16" viewBox="0 0 24 24" fill="#C27A2C"><path d="M7 4.5v15l13-7.5z"/></svg></div>
+  </div>
+  <div class="family">
+    <div class="k">Aynı aileden</div>
+    <span class="chip cur" lang="de">einen Termin machen</span><span class="chip" lang="de">verschieben</span><span class="chip" lang="de">absagen</span>
+  </div>
+  <div class="dock">
+    <div class="mic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3" fill="#fff"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg>Sesli söyle</div>
+    <div class="sub"><span>Biliyorum, geç</span><span>Yazarak</span></div>
+  </div>
+  <div class="home-ind"></div>
+</div>
+</div>
+
+<!-- EKRAN 3 -->
+<div>
+<div class="cap">3. Gelen arama: korkuyla güvenli ortamda yüzleşmek</div>
+<div class="phone call">
+  <div class="pattern"></div>
+  <div class="status" style="position:relative"><span>12:18</span><div class="isl"></div><span>●●●</span></div>
+  <div class="wrap">
+    <div class="kind">Gelen arama alıştırması</div>
+    <div class="ring"><div class="avatar">FH</div></div>
+    <h2>Praxis Dr. Weber</h2>
+    <div class="who2">Frau Huber arıyor</div>
+    <div class="surprise"><i class="raute gold on" style="width:9px;height:9px"></i>Konusu sürpriz</div>
+  </div>
+  <div class="prep">
+    <div class="t">Takılırsan</div>
+    <div class="l" lang="de">Wie bitte?<br>Etwas langsamer, bitte.<br>Können Sie das buchstabieren?</div>
+  </div>
+  <div class="actions">
+    <div class="act"><div class="b no"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M3 14.5c5-4.7 13-4.7 18 0l-2.4 2.4c-.4.4-1 .4-1.4.1l-2-1.6c-.3-.2-.4-.6-.4-1v-1.6a10 10 0 00-5.6 0v1.6c0 .4-.1.8-.4 1l-2 1.6c-.4.3-1 .3-1.4-.1z"/></svg></div>Sonra</div>
+    <div class="act"><div class="b yes"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 3.5l2.5-.6c.5-.1 1 .2 1.2.7l1.2 3c.2.4 0 .9-.3 1.2l-1.6 1.3a12 12 0 005.3 5.3l1.3-1.6c.3-.3.8-.5 1.2-.3l3 1.2c.5.2.8.7.7 1.2l-.6 2.5c-.1.5-.6.9-1.1.9C11 18.3 5.7 13 5.7 4.6c0-.5.4-1 .9-1.1z"/></svg></div>Aç</div>
+  </div>
+  <div class="home-ind"></div>
+</div>
+</div>
+
+</body>
+</html>

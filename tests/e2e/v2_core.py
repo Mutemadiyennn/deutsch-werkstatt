@@ -185,7 +185,7 @@ def main():
         pf = page.inner_text("[data-test=panel-focus]")
         check("25 / 100 dk" in pf or "26 / 100 dk" in pf, "odak paneli bugünkü süreyi gösteriyor")
         check("mola" in pf.lower() and "eklenmez" in pf, "mola süresi ayrı gösteriliyor")
-        page.wait_for_selector("[data-test=panel-language] >> text=Tanıdığın kelimeler")
+        page.wait_for_selector("[data-test=panel-language] >> text=Tanıdığın kelimeler")  # istatistikler eşzamansız yüklenir
         pl = page.inner_text("[data-test=panel-language]")
         check("Tahmini başlangıç seviyesi" in pl and "Tanıdığın kelimeler" in pl, "dil paneli ayrı ve seviye tespitine dayanıyor")
         shot(page, "07-progress")

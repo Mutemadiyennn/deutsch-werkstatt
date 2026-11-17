@@ -12,7 +12,11 @@ for u in plan["units"]:
     m["ready"]=ready; out.append(m)
 idx={"v":1,"units":out}
 import glob as _g
-for root in ("/home/claude/werkstatt/data/kurs","/home/claude/deutsch-werkstatt/data/kurs"):
+_app = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+_site = os.environ.get("DW_SITE", os.path.join(_app, ".site")); _ghp = os.environ.get("DW_GHPAGES", os.path.join(_app, "..", ".ghpages"))
+_roots = [os.path.join(_site, "data/kurs")] + ([os.path.join(_ghp, "data/kurs")] if os.path.isdir(_ghp) else [])
+for root in _roots:
+    os.makedirs(root, exist_ok=True)
     os.makedirs(root,exist_ok=True)
     json.dump(idx,open(root+"/index.json","w"),ensure_ascii=False,separators=(",",":"))
     for f in glob.glob("units/*.json"):

@@ -5,6 +5,13 @@ Kullanım: python3 build.py [--ver 2026-11-13a] [--deploy]
  - --deploy: gh-pages çalışma kopyasına (../deutsch-werkstatt) kopyalar (commit/push ayrı adım)."""
 import sys, os, re, glob, json, subprocess, shutil, datetime
 ROOT = os.path.dirname(os.path.abspath(__file__))
+# Yollar (taşınabilir): DW_SITE = yerel test sunucusunun kökü, DW_GHPAGES = gh-pages çalışma kopyası (git worktree)
+SITE = os.environ.get("DW_SITE", os.path.join(ROOT, ".site"))
+GHP = os.environ.get("DW_GHPAGES", os.path.join(ROOT, "..", ".ghpages"))
+os.makedirs(os.path.join(SITE, "data", "kurs"), exist_ok=True)
+for f in ("core1500.json", "lexicon.json", "media.json"):
+    if not os.path.exists(os.path.join(SITE, "data", f)) and os.path.exists(os.path.join(GHP, "data", f)):
+        shutil.copy(os.path.join(GHP, "data", f), os.path.join(SITE, "data", f))
 args = sys.argv[1:]
 ver = args[args.index("--ver")+1] if "--ver" in args else datetime.datetime.now().strftime("%Y-%m-%d%H%M")
 html = open(os.path.join(ROOT, "legacy.html"), encoding="utf-8").read()
@@ -23,12 +30,13 @@ if r.returncode: print(r.stderr[:2000]); sys.exit("SÖZDİZİMİ HATASI")
 # içerik
 kdir = os.path.join(ROOT, "content/kurs")
 sys.path.insert(0, kdir)
-r = subprocess.run(["python3", "build_index.py"], cwd=kdir, capture_output=True, text=True); print(r.stdout.strip())
+r = subprocess.run(["python3", "build_index.py"], cwd=kdir, capture_output=True, text=True, env={**os.environ, "DW_SITE": SITE, "DW_GHPAGES": GHP}); print(r.stdout.strip()); assert r.returncode == 0, r.stderr
 os.makedirs(os.path.join(dist, "data/kurs"), exist_ok=True)
-for f in glob.glob("/home/claude/werkstatt/data/kurs/*.json"): shutil.copy(f, os.path.join(dist, "data/kurs"))
+for f in glob.glob(os.path.join(SITE, "data/kurs/*.json")): shutil.copy(f, os.path.join(dist, "data/kurs"))
 # yerel test sunucusunun kökü
-shutil.copy(os.path.join(dist, "index.html"), "/home/claude/werkstatt/index.html")
+shutil.copy(os.path.join(dist, "index.html"), os.path.join(SITE, "index.html"))
 print("build ok", ver, len(html)//1024, "KB")
 if "--deploy" in args:
-    shutil.copy(os.path.join(dist, "index.html"), "/home/claude/deutsch-werkstatt/index.html")
-    print("deploy kopyası hazır → /home/claude/deutsch-werkstatt")
+    if not os.path.isdir(GHP): sys.exit(f"gh-pages çalışma kopyası yok: {GHP} (git worktree add {GHP} gh-pages)")
+    shutil.copy(os.path.join(dist, "index.html"), os.path.join(GHP, "index.html"))
+    print("deploy kopyası hazır →", GHP)
