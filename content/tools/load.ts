@@ -12,6 +12,7 @@ import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import { Domain, Lexeme, LexiconBatch, Pattern, GrammarNote, Scenario, AssessItem, World, PRODUCTION_DRILLS, productionCount } from "../../packages/shared/src/content.ts";
+import { explanationIssues, textIssues } from "../../packages/shared/src/explain.ts";
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const CDIR = join(ROOT, "content/v2");
@@ -166,6 +167,21 @@ export function checkScenario(s: Scenario): string[] {
   return e;
 }
 
+/** OD-9 (PM-017): öğrenciye görünen serbest açıklama alanları. Yapılandırılmış `exp` alanları her zaman denetlenir (hata). */
+export function explainTexts(s: Scenario): { where: string; text: string }[] {
+  const out: { where: string; text: string }[] = [];
+  const add = (where: string, t?: string) => { if (t && t.trim()) out.push({ where, text: t }); };
+  for (const k of s.chunks) { add(`${k.id}.use_tr`, k.use_tr); k.mistakes_tr.forEach((m, i) => add(`${k.id}.mistakes_tr[${i}]`, m)); add(`${k.id}.bair.note_tr`, k.layers.bair?.note_tr); }
+  for (const d of s.drills) { add(`${d.id}.why_tr`, (d as { why_tr?: string }).why_tr); add(`${d.id}.hint_tr`, (d as { hint_tr?: string }).hint_tr); }
+  s.mistakes_tr.forEach((m, i) => add(`mistakes_tr[${i}]`, m));
+  return out;
+}
+export function patternExplainTexts(p: Pattern): { where: string; text: string }[] {
+  const out = [{ where: `${p.id}.grammar_tr`, text: p.grammar_tr }];
+  p.mistakes_tr.forEach((m, i) => out.push({ where: `${p.id}.mistakes_tr[${i}]`, text: m }));
+  return out;
+}
+
 export function checkRules(c: Loaded, opts: { strictPatterns?: boolean } = {}): Loaded {
   const { errors, warnings } = c;
   const dupes = (ids: string[], what: string) => { const seen = new Set<string>(); for (const id of ids) { if (seen.has(id)) errors.push(`${what}: tekrar eden kimlik ${id}`); seen.add(id); } return seen; };
@@ -184,6 +200,12 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean } = {}): 
     for (const x of checkLexeme(l)) errors.push(`${l.id} (${l.tier}): ${x}`);
   }
   for (const p of c.patterns) for (const x of checkPattern(p)) errors.push(`${p.id}: ${x}`);
+  // OD-9.4 (PM-017): "reviewed" ancak okur kapısından geçtiyse; incelenmiş kalıbın açıklamaları OD-9.2'ye uymalı
+  for (const p of c.patterns) {
+    if (p.review?.status !== "reviewed") continue;
+    if (p.review.okur !== "passed") errors.push(`${p.id}: "reviewed" ama okur kontrolü geçmemiş (OD-9.4)`);
+    for (const { where, text } of patternExplainTexts(p)) for (const x of textIssues(text)) errors.push(`${where}: OD-9 ${x}`);
+  }
   for (const a of c.assess) if ((a.skill === "vocab_passive" || a.skill === "listening") && (a.ans < 0 || a.ans >= a.opts_tr.length)) errors.push(`${a.id}: doğru şık dizinin dışında`);
   const patternDomains = new Map<string, Set<string>>();
   for (const { file, data: s } of c.scenarios) {
@@ -196,6 +218,11 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean } = {}): 
     // D-063: kalıp kapısı — incelenmiş senaryonun bütün temel kalıpları incelenmiş olmalı; taslakta uyarı
     const unrev = s.essentials.patterns.filter((id) => ptById.get(id)?.review?.status !== "reviewed");
     if (unrev.length) (s.review.status === "reviewed" || opts.strictPatterns ? errors : warnings).push(`${file}: temel kalıplar incelenmemiş (${unrev.length}/${s.essentials.patterns.length}): ${unrev.join(", ")}`);
+    // OD-9: yapılandırılmış açıklamalar her zaman; serbest açıklamalar incelenmiş senaryoda hata, taslakta uyarı
+    for (const k of s.chunks) for (const [f, e] of [["exp", k.exp], ["alltag_exp", k.alltag_exp]] as const) if (e) for (const x of explanationIssues(e, k.requires)) errors.push(`${file}: ${k.id}.${f}.${x}`);
+    if (s.review.status === "reviewed" && s.review.okur !== "passed") errors.push(`${file}: "reviewed" ama okur kontrolü geçmemiş (OD-9.4)`);
+    { const bad = explainTexts(s).flatMap(({ where, text }) => textIssues(text).map((x) => `${where}: ${x}`));
+      if (bad.length) (s.review.status === "reviewed" ? errors : warnings).push(...(s.review.status === "reviewed" ? bad.map((b) => `${file}: OD-9 ${b}`) : [`${file}: OD-9 açıklama standardına uymayan ${bad.length} madde (ilk: ${bad[0]})`])); }
     for (const k of s.chunks) {
       if (!k.id.startsWith(`ch:${s.domain}:`)) errors.push(`${file}: ifade ${k.id} alan önekiyle başlamalı`);
       for (const l of k.lexemes) if (!lx.has(l)) errors.push(`${file}: ${k.id} → kelime ${l} yok`);
