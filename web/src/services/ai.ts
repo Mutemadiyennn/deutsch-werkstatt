@@ -11,7 +11,7 @@ import { cacheGet, cachePut } from "../data/db.ts";
 const CACHED: AiTaskName[] = ["equiv_check", "explain_tr", "say_it_de"];
 /** Kalite gerektiren görevler: güçlü model; istemci 12 sn'de "Biraz uzun sürüyor" seçeneklerini gösterir, isteği kesmez */
 export const SLOW: AiTaskName[] = ["roleplay_turn", "feedback_tr"];
-export const SOFT_WAIT_MS = 11_500; // "en geç 12 sn": çizim payıyla
+export const SOFT_WAIT_MS = 10_000; // "en geç 12 sn": yavaş cihazda çizim payıyla (CI WebKit 11,5 sn → 12,1 sn ölçtü)
 
 /* Süre ölçümü (rapor için p50/p95): görev başına son 200 cevap süresi, bu cihazda */
 const LAT_KEY = "dw2-ai-latency";

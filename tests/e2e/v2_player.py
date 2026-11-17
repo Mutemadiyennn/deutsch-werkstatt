@@ -259,7 +259,7 @@ def main():
         bb = el.bounding_box()
         # uzun basma: işaretçi olaylarını doğrudan gönder (WebKit dokunmatik öykünmesinde fare olayları güvenilir değil)
         pt = {"clientX": bb["x"] + 10, "clientY": bb["y"] + 10, "bubbles": True, "pointerType": "touch", "isPrimary": True}
-        el.dispatch_event("pointerdown", pt); page.wait_for_timeout(750); el.dispatch_event("pointerup", pt)
+        el.dispatch_event("pointerdown", pt); page.wait_for_timeout(1300); el.dispatch_event("pointerup", pt)
         check(page.locator("[data-test=lp-sheet]").count() == 1, "Almanca metne uzun basınca 'Bu ne demek?' sayfası açıldı")
         if page.locator("[data-test=lp-sheet]").count():
             page.click("[data-test=lp-sheet] [data-test=explain]")
