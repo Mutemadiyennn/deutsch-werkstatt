@@ -4,3 +4,5 @@
 - savePhrase: dar ikon düğmesinde "✓ Eklendi" taşıyordu → "✓"
 - fixDeep: nesnede artikel varsa "de" alanındaki tekrar eden artikel silinir (artDedup, src/js/50-ai-context.js) → "der der Kaffee" bitti
 - qfix: Türkçe soru eki sezgisi "muz", "mutluydum" gibi kelimeleri soru sanıyordu ("Bunlar muz?"); artık sadece gerçek soru eki biçimleri (mı/mi/mu/mü + kişi/zaman ekleri)
+
+- render(): canlı sohbetin "connecting"/"live" ekranlarında üst çubuk olmadığı için body.owntop ekleniyor → iPhone saat/çentik alanıyla çakışma giderildi (QA2 P0).

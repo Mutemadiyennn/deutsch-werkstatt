@@ -97,6 +97,13 @@ function kuNodes(u){
     {id:"wr", ic:"✍️", t:"Yazma", k:"write"},
     {id:"rp", ic:"🎭", t:"Rol oyunu", k:"role"},
     {id:"ex", ic:"🏆", t:"Ünite sınavı", k:"test"}];
+  /* Kelime+ : sınav listesine ulaştıran ek kelimeler, 12'şerli basamaklar halinde yola serpiştirilir */
+  const P = u.plus || []; const pn = Math.ceil(P.length / 12);
+  if(pn){ const after = ["w2","g2","li","re","ga","wr","rp"]; const per = Math.ceil(P.length / pn);
+    for(let k = pn - 1; k >= 0; k--){ const words = P.slice(k * per, (k + 1) * per); if(!words.length) continue;
+      const anchor = after[Math.min(k, after.length - 1)]; const at = nodes.findIndex(x=>x.id === anchor);
+      const pnode = {id:"p" + (k + 1), ic:"🧠", t:"Kelime+ " + (k + 1), k:"vocab", plus:true, words, recall:k ? P.slice(Math.max(0, (k - 1) * per), k * per) : W.slice(0, 4)};
+      let pos = at + 1; while(nodes[pos] && nodes[pos].plus) pos++; nodes.splice(pos, 0, pnode); } }
   return nodes.filter(x=> x.k === "gram" ? x.teach.length : x.k === "vocab" ? x.words.length : x.k === "dialog" ? u.dialog && (u.dialog.lines||[]).length : x.k === "read" ? u.read && u.read.de : x.k === "write" ? (u.speak||[]).length : x.k === "role" ? !!u.roleplay : true);
 }
 function kuFmtDay(d){ try{ const [y, m, dd] = String(d).split("-").map(Number); return dd + " " + ["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"][m - 1]; }catch(e){ return ""; } }
@@ -109,11 +116,47 @@ function kuTeachIds(u, idx){ return idx.map(i=>(u.teach[i]||{}).id); }
 
 /* kelimeler: Vocabuo mantığı — tanıt → tanı → kendin üret (TR→DE, isimler artikeliyle) */
 function kuWFull(w){ return (w.art ? w.art + " " : "") + w.de; }
+function kuAllW(u){ return u._allw || (u._allw = (u.words || []).concat(u.plus || [])); }
 function kuWKey(u, w){ return u.id + ":w:" + w.de; }
 /* soru olarak gösterilecek kısa Türkçe: açıklama, parantez ve ';' sonrası yok (cevap sızmasın) */
 function kuTrShort(tr){ let t = String(tr||"").split(/[;(]/)[0].replace(/\s+/g, " ").trim().replace(/[,:\-–]+$/, "").trim(); return t || String(tr||""); }
 /* "kuzeyde: das Brötchen" gibi Türkçe notlardaki Almanca eş anlamlılar kabul edilir */
 function kuTrAlts(w){ const out = []; const re = /\b(der|die|das)\s+([A-ZÄÖÜ][a-zäöüß]+)/g; let m; while((m = re.exec(String(w.tr||"")))) out.push(m[1] + " " + m[2]); return out.filter(x=>x !== kuWFull(w)); }
+/* fotoğraf: kelimenin İngilizce arama sorgusu (img) ile Pexels/Pixabay; yüklenince ekran yenilenir */
+const KU_PH = {};
+const KU_PHLAST = {};
+/* aynı kelime her yeni maddede (mümkünse) son gösterilenden farklı bir fotoğrafla gelir; holder = maddenin kendisi (seçim o madde boyunca sabit kalır) */
+function kuPhotoHtml(img, h, holder){
+  if(!img || !((typeof hasPhotos === "function" && hasPhotos()) || window.__dwPhotoTest)) return "";
+  const o = KU_PH[img] || (KU_PH[img] = {img});
+  if(!o.list && !o._req){ o._req = true;
+    const q = (window.__dwPhotoTest && o.photo) ? Promise.resolve([o.photo]) : Promise.race([pexelsSearch(img), new Promise((_, rej)=>setTimeout(()=>rej(0), 8000))]);
+    q.then(list=>{ o.list = (list && list.length) ? list.slice(0, 10) : []; if(S.view === "kurs") render(); }).catch(()=>{ o.list = []; if(S.view === "kurs") render(); }); }
+  if(!o.list) return `<div class="vphoto ku-phload" style="height:${h || 180}px"></div>`;
+  if(!o.list.length) return "";
+  const n = o.list.length; let i;
+  if(holder && holder._phi != null && holder._phimg === img) i = holder._phi % n;
+  else { const last = KU_PHLAST[img]; i = Math.floor(Math.random() * n); if(n > 1 && i === last) i = (i + 1 + Math.floor(Math.random() * (n - 1))) % n;
+    if(holder){ holder._phi = i; holder._phimg = img; } KU_PHLAST[img] = i; }
+  return photoHtml({photo:o.list[i]}, h || 180);
+}
+/* kelimenin cümle havuzu: kelimeye özel örnekler (ex) + ünitenin kendi cümleleri; son kullanılanlar tekrar seçilmez */
+function kuWordSents(u, w){
+  if(w._pool) return w._pool; const out = [];
+  for(const x of (w.ex || [])) if(x.de && x.form && x.de.includes(x.form)) out.push({de:x.de, tr:x.tr, form:x.form, img:x.img || ""});
+  const one = kuSentFor(u, w); if(one && !out.some(x=>x.de === one.de)) out.push({de:one.de, tr:one.tr, form:w.de});
+  return (w._pool = out);
+}
+function kuPickSent(u, w){
+  const pool = kuWordSents(u, w); if(!pool.length) return null;
+  const R = kSt().wsr || (kSt().wsr = {}); const key = kuWKey(u, w); const recent = R[key] || [];
+  const fresh = pool.filter(x=>!recent.includes(x.de)); const pick = (fresh.length ? fresh : pool)[Math.floor(Math.random() * (fresh.length || pool.length))];
+  R[key] = [pick.de, ...recent.filter(d=>d !== pick.de)].slice(0, Math.max(1, Math.min(3, pool.length - 1)));
+  const esc2 = pick.form.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const g = pick.de.replace(new RegExp("(^|[^A-Za-zÄÖÜäöüß])" + esc2 + "(?=[^A-Za-zÄÖÜäöüß]|$)"), (m, a)=>a + "___");
+  if(!g.includes("___")) return null;
+  return {g, de:pick.de, tr:pick.tr, form:pick.form, img:pick.img || ""};
+}
 function kuSentFor(u, w){
   if(w.t === "x") return null; const re = new RegExp("(^|[^A-Za-zÄÖÜäöüß])(" + w.de.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")(?=[^A-Za-zÄÖÜäöüß]|$)");
   const pool = [...(u.teach||[]).flatMap(t=>t.ex||[]), ...((u.dialog||{}).lines||[])].filter(x=>x.de && x.tr && x.de.split(/\s+/).length <= 12);
@@ -121,7 +164,7 @@ function kuSentFor(u, w){
   return {g: s.de.replace(re, (m, a)=>a + "___"), de: s.de, tr: s.tr};
 }
 function kuWordItems(u, words, stage){
-  const all = u.words || []; const out = [];
+  const all = kuAllW(u); const out = [];
   for(const w of words){
     const key = kuWKey(u, w); const base = {_u:u.id, _w:key, t:"w"};
     const short = kuTrShort(w.tr);
@@ -133,9 +176,14 @@ function kuWordItems(u, words, stage){
     if(stage === "prod"){
       out.push({...base, _id:key + ":s", k:"say", tr:short, de:kuWFull(w), alt:kuTrAlts(w), word:true, why_tr: w.t === "n" ? "İsimleri hep artikeliyle söyle." : (w.tr !== short ? w.tr : "")});
     }
+    if(stage === "ctxsay"){
+      const g = kuPickSent(u, w);
+      if(g) out.push({...base, _id:key + ":cs:" + Math.random().toString(36).slice(2, 7), k:"say", tr:g.tr, de:g.de, alt:[], gapde:g.g, fill:g.form, img:g.img || w.img || "", word:true, why_tr:`${kuWFull(w)} = ${short}`});
+      else out.push({...base, _id:key + ":s", k:"say", tr:short, de:kuWFull(w), alt:kuTrAlts(w), word:true, img:w.img || "", why_tr: w.t === "n" ? "İsimleri hep artikeliyle söyle." : (w.tr !== short ? w.tr : "")});
+    }
     if(stage === "ctx"){
-      const g = kuSentFor(u, w);
-      if(g){ const distract = shuffle(all.filter(x=>x !== w && x.t === w.t && x.de !== w.de && !new RegExp("\\b" + x.de + "\\b").test(g.de))).slice(0, 2).map(x=>x.de);
+      const g = kuPickSent(u, w);
+      if(g && g.form === w.de){ const distract = shuffle(all.filter(x=>x !== w && x.t === w.t && x.de !== w.de && !new RegExp("\\b" + x.de + "\\b").test(g.de))).slice(0, 2).map(x=>x.de);
         if(distract.length === 2) out.push({...base, _id:key + ":g", k:"gap", de:g.g, ans:[w.de], opts:[w.de, ...distract], tr:g.tr, why_tr:`${kuWFull(w)} = ${short}`}); }
     }
   }
@@ -167,7 +215,7 @@ function kuNodeSteps(u, node){
   if(node.k === "vocab"){
     if(node.id === "w1"){ const prev = kuPrevItems(u, 5); if(prev.length) st.push({k:"drills", lab:"Isınma: önceki üniteden", items: prev}); }
     const W = node.words;
-    for(let i = 0; i < W.length; i += 4){ const ch = W.slice(i, i + 4); st.push({k:"wintro", words:ch}); st.push({k:"drills", lab:"Tanı", items:shuffle(kuWordItems(u, ch, "rec"))}); st.push({k:"drills", lab:"Kendin söyle", items:shuffle(kuWordItems(u, ch, "prod"))}); }
+    for(let i = 0; i < W.length; i += 4){ const ch = W.slice(i, i + 4); st.push({k:"wintro", words:ch}); st.push({k:"drills", lab:"Tanı", items:shuffle(kuWordItems(u, ch, "rec"))}); st.push({k:"drills", lab:"Cümlede kullan", items:shuffle(kuWordItems(u, ch, "ctxsay"))}); }
     const mix = [...kuWordItems(u, W, "ctx"), ...kuWordItems(u, shuffle(W.concat(node.recall || [])).slice(0, 10), "prod")];
     st.push({k:"drills", lab:"Hepsi bir arada", items:shuffle(mix)});
   }
@@ -239,7 +287,7 @@ function kuCur(){ const D = S.ku && S.ku.D; return D && D.items[D.q[D.pos]]; }
 function kuAuto(){ const it = kuCur(); if(it && it.k === "listen" && !(S.ku.D.res)) say(it.de, "de"); }
 function kuCapSet(u){ if(u._caps) return u._caps; const set = new Set(); const txt = []; (u.teach||[]).forEach(t=>(t.ex||[]).forEach(e=>txt.push(e.de))); ((u.dialog||{}).lines||[]).forEach(l=>txt.push(l.de)); (u.drills||[]).concat(u.test||[]).forEach(d=>txt.push(d.de || d.right || "")); if(u.read) txt.push(u.read.de);
   for(const t of txt) for(const sent of String(t).split(/[.!?]\s+/)) sent.split(/\s+/).slice(1).forEach(w=>{ const c = w.replace(/[^A-Za-zÄÖÜäöüß]/g, ""); if(/^[A-ZÄÖÜ]/.test(c)) set.add(c); });
-  (u.words||[]).forEach(w=>{ if(w.t === "n") set.add(w.de); }); return (u._caps = set); }
+  kuAllW(u).forEach(w=>{ if(w.t === "n") set.add(w.de); }); return (u._caps = set); }
 function kuOrderTokens(de, u){ let t = String(de).trim(); const end = (t.match(/[.!?…]+$/)||[""])[0]; t = t.slice(0, t.length - end.length);
   const w = t.split(/\s+/).filter(Boolean); if(w.length){ const c = w[0].replace(/[^A-Za-zÄÖÜäöüß]/g, ""); if(!(u && kuCapSet(u).has(c)) && w[0] !== "Sie") w[0] = w[0].charAt(0).toLowerCase() + w[0].slice(1); } return {w, end}; }
 function kuShuffleWords(de){ const w = String(de).split(/\s+/).filter(Boolean); let s = shuffle(w.slice()); for(let k = 0; k < 5 && s.join(" ") === w.join(" ") && w.length > 2; k++) s = shuffle(w.slice()); return s; }
@@ -253,7 +301,17 @@ function kuAnswer(ok, extra){
   else if(D.mode !== "speed" && (firstTry || D.mode === "test")) kuMark(it, ok);
   D.res = {ok, ...(extra||{})};
   /* yanlışta: aynı kuralı başka bir cümleyle ve bu maddeyi biraz sonra tekrar sor */
-  if(!ok && !["test","speed"].includes(D.mode)){
+  /* kelimede yanlış: bitirmeden önce aynı kelime BAŞKA bir cümle ve BAŞKA bir fotoğrafla tekrar gelir (en fazla 3 kez) */
+  const wf = D.wfail || (D.wfail = {});
+  if(!ok && it._w && it.k === "say" && !["test","speed"].includes(D.mode) && (wf[it._w] || 0) < 3){
+    wf[it._w] = (wf[it._w] || 0) + 1; D.retries[idx] = 9;
+    try{ const uu = KURS.units[it._u]; const ww = uu && kuAllW(uu).find(x=>kuWKey(uu, x) === it._w);
+      const fresh = ww && kuWordItems(uu, [ww], "ctxsay")[0];
+      if(fresh){ fresh.retry = true; D.items.push(fresh); D.q.splice(Math.min(D.q.length, D.pos + 4), 0, D.items.length - 1); }
+      else D.q.splice(Math.min(D.q.length, D.pos + 5), 0, idx);
+    }catch(e){}
+  }
+  else if(!ok && !["test","speed"].includes(D.mode)){
     const r = D.retries[idx] || 0;
     /* aynı kuraldan henüz sorulmamış başka bir cümleyi öne al (tercihen başka tipte) */
     const later = D.q.map((j, p)=>({j, p})).filter(x=>x.p > D.pos + 1 && D.items[x.j] !== it && D.items[x.j].t === it.t && D.first[x.j] === undefined && (it.t !== "w" || D.items[x.j]._w === it._w || true));
@@ -291,14 +349,18 @@ function kuDrillEnd(){
   kuSave(true); render(); window.scrollTo(0,0);
 }
 function kuItemHead(it){
+  const rt = it.retry ? `<div class="ku-retry">🔁 Az önce zorlandığın kelime, bu kez başka bir cümlede</div>` : "";
+  if(it.k === "say" && it.gapde) return `<div class="kicker ku-kick"><span>🗣️</span>Cümleyi tamamla, bütün cümleyi söyle</div>${rt}`;
   const lab = {say:["🗣️","Almanca söyle"], gap:["🧩","Boşluğu doldur"], pick:["🎯","Doğru olanı seç"], order:["🔀","Cümleyi kur"], listen:["👂","Dinle ve anlamını seç"], fix:["🛠️","Hatayı düzelt ve söyle"]}[it.k] || ["",""];
-  return `<div class="kicker ku-kick"><span>${lab[0]}</span>${lab[1]}</div>`;
+  return `<div class="kicker ku-kick"><span>${lab[0]}</span>${lab[1]}</div>${rt}`;
 }
 function kuMicBtn(label){ const D = S.ku.D; return `<button class="btn primary block ku-mic ${D && D.listening ? "live" : ""}" data-act="kuMic">${D && D.listening ? "⏹ Bitti, kontrol et" : "🎤 " + (label || "Söyle")}</button>`; }
 function kuItemBody(it){
   const D = S.ku.D, R = D.res;
   const tr = it.tr ? `<p class="ku-tr">${esc(it.tr)}</p>` : "";
-  if(it.k === "say") return `${kuItemHead(it)}<div class="ku-prompt">${esc(it.tr)}</div>${D.listening || D.live ? `<div class="ku-live">${esc(D.live || "Dinliyorum…")}</div>` : ""}`;
+  if(it.k === "say"){ const ph = it.img ? kuPhotoHtml(it.img, it.gapde ? 170 : 190, it) : "";
+    if(it.gapde){ const parts = it.gapde.split("___"); return `${kuItemHead(it)}${ph}<div class="ku-sent">${esc(parts[0])}${R && R.ok ? `<b class="ku-fill ok">${esc(it.fill || "")}</b>` : `<span class="ku-blank">&nbsp;</span>`}${esc(parts[1]||"")}</div><div class="ku-prompt sm">${esc(it.tr)}</div>${D.listening || D.live ? `<div class="ku-live">${esc(D.live || "Dinliyorum…")}</div>` : ""}`; }
+    return `${kuItemHead(it)}${ph}<div class="ku-prompt">${esc(it.tr)}</div>${D.listening || D.live ? `<div class="ku-live">${esc(D.live || "Dinliyorum…")}</div>` : ""}`; }
   if(it.k === "gap"){ const parts = it.de.split("___");
     const fill = R ? `<b class="ku-fill ${R.ok ? "ok" : "bad"}">${esc(D.chosen || it.ans[0])}</b>` : `<span class="ku-blank">&nbsp;</span>`;
     return `${kuItemHead(it)}<div class="ku-sent">${esc(parts[0])}${fill}${esc(parts[1]||"")}</div>${tr}
@@ -374,7 +436,7 @@ function kuWintroView(){
   const ex = kuSentFor(K.u, w); const exFull = ex ? ex.de : ""; const exTr = ex ? ex.tr : "";
   setTimeout(()=>{ if(S.ku === K && kuStep() === s && K._said !== s.words[K.wi]){ K._said = s.words[K.wi]; say(full, "de"); } }, 200);
   const R = K.wres;
-  return kuShell(`<div class="ku-mode">🧠 Yeni kelime ${K.wi + 1}/${W.length}</div>
+  return kuShell(`<div class="ku-mode">🧠 Yeni kelime ${K.wi + 1}/${W.length}</div>${kuPhotoHtml(w.img, 200, w)}
     <div class="ku-wcard ${w.art ? "a-" + w.art : ""}"><div class="ku-wart">${w.art ? esc(w.art) : w.t === "v" ? "fiil" : w.t === "a" ? "sıfat / zarf" : /^(wer|wie|wo|woher|wohin|was|wann|warum|welche?r?s?|wie viel)$/i.test(w.de) ? "soru kelimesi" : /\s/.test(w.de) ? "kalıp" : "kelime"}</div>
       <div class="ku-wde">${esc(w.de)}</div>${pl ? `<div class="ku-wpl">çoğul: die ${esc(pl)}</div>` : plOnly ? `<div class="ku-wpl">sadece çoğul</div>` : ""}
       <div class="ku-wtr">${esc(w.tr)}</div><button class="ku-big" data-act="sayDe" data-t="${esc(full)}" aria-label="Dinle">🔊</button></div>
@@ -570,7 +632,7 @@ Korrigiere NUR echte Fehler, ändere so wenig wie möglich, behalte seinen Inhal
 }
 /* ---------- sınav kapısı: kelimeler kalıcı öğrenilmeden sınav yok ---------- */
 function kuGateView(){
-  const K = S.ku, u = K.u; const W = u.words || [];
+  const K = S.ku, u = K.u; const W = kuAllW(u);
   const notYet = W.filter(w=>!kuWLearned(u, w)); const ready = notYet.filter(w=>kuWReadyAgain(u, w));
   if(!notYet.length) return kuShell(`<div class="ku-mode">🏆 Ünite sınavı</div><h3 class="ku-h3">Hazırsın</h3><p>Bu ünitenin bütün kelimelerini iki ayrı oturumda kendin söyledin. Sınavda ${(u.test||[]).length} yeni cümle ve önceki ünitelerden birkaç soru var. Geçmek için %80.</p>`,
     `<button class="btn primary block" data-act="kuTestGo">Sınava başla</button>`);
@@ -587,7 +649,7 @@ function kuPathView(id){
   if(!u) return thinkingCard("Ünite açılıyor…");
   const ns = kuNodes(u); const rec = kSt().u[id] || {}; const nd = rec.nd || {};
   const nextN = ns.find(x=>!nd[x.id]); const doneN = ns.filter(x=>nd[x.id]).length;
-  const W = u.words || []; const learned = W.filter(w=>kuWLearned(u, w)).length;
+  const W = kuAllW(u); const learned = W.filter(w=>kuWLearned(u, w)).length;
   const msg = S.kuDoneMsg; S.kuDoneMsg = "";
   return `<section class="card ku-hero"><div class="row between"><div class="kicker">${esc(u.lvl)} · Ünite ${kuList().findIndex(x=>x.id === id) + 1}</div><button class="btn small" style="background:rgba(255,255,255,.2);color:#fff;border:0" data-act="kuMap">Harita</button></div>
       <h2>${esc(u.title_tr)}</h2><div class="ku-de-t">${esc(u.title_de)}</div><p class="small">🎯 ${esc(u.goal_tr)}</p>
@@ -644,7 +706,7 @@ async function kuReviewStart(){
       if(pick !== orig){ st.it[id].d = addDays(t, 2); }
       if(items.length >= 14) break; } }catch(e){} if(items.length >= 14) break; }
   /* vadesi gelen kelimeler: Türkçesinden Almancasını kendin söyle */
-  for(const key of shuffle(kuWordsDue()).slice(0, 8)){ const uid = key.split(":w:")[0]; try{ const u = await kursUnit(uid); const w = (u.words||[]).find(x=>kuWKey(u, x) === key); if(w) items.push(...kuWordItems(u, [w], "prod")); }catch(e){} }
+  for(const key of shuffle(kuWordsDue()).slice(0, 8)){ const uid = key.split(":w:")[0]; try{ const u = await kursUnit(uid); const w = kuAllW(u).find(x=>kuWKey(u, x) === key); if(w) items.push(...kuWordItems(u, [w], kuWordSents(u, w).length ? "ctxsay" : "prod")); }catch(e){} }
   if(!items.length){ S.ku = null; toast("Bugün tekrar edilecek madde yok 👍"); go("kurs"); render(); return; }
   S.ku = {review:true, u:{title_tr:"Tekrar"}, D: kuDrillRun(shuffle(items), "review")}; render(); setTimeout(()=>kuAuto(), 250);
 }
@@ -686,7 +748,7 @@ Object.assign(ACT, {
   kuWrCheck(){ kuWrCheck(); },
   kuWrShow(){ const Wr = S.ku.Wr; const el = $("#kuWr"); Wr.text = (el && el.value.trim()) || ""; Wr.phase = "res"; Wr.err = ""; render(); },
   kuWrAgain(){ const Wr = S.ku.Wr; Wr.phase = "edit"; Wr.res = null; render(); },
-  kuGateDrill(){ const K = S.ku, u = K.u; const ready = (u.words||[]).filter(w=>!kuWLearned(u, w) && kuWReadyAgain(u, w));
+  kuGateDrill(){ const K = S.ku, u = K.u; const ready = kuAllW(u).filter(w=>!kuWLearned(u, w) && kuWReadyAgain(u, w));
     K.steps.splice(K.si, 0, {k:"drills", lab:"Kelime pekiştirme · Türkçesinden söyle", items: shuffle(kuWordItems(u, ready, "prod"))}); kuEnter(); render(); },
   kuTestGo(){ const K = S.ku, u = K.u; const items = shuffle([...kuTag(u, u.test, "x"), ...kuPrevItems(u, 4)]);
     K.steps.splice(K.si + 1, 0, {k:"test", items}); kuGoNext(); },

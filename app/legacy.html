@@ -1439,7 +1439,8 @@ function render(){
   let body = VIEWS[S.view](); if(typeof entryHero === "function" && body.replace(/<[^>]+>/g, "").trim().length < 60) body = entryHero(S.view) + body;
   const ownTop = body.includes('class="k-shell');
   const back = (typeof lessonOn === "function" && lessonOn()) ? "" : S.sess && S.view !== "plan" ? sessBar() : ownTop || ["plan","seviye","more","kilit"].includes(S.view) || (S.view === "canli" && S.live && ["live","connecting"].includes(S.live.phase)) ? "" : focusBar();
-  document.body.classList.toggle("owntop", ownTop && !S.sess);
+  const liveNoBar = S.view === "canli" && S.live && ["live","connecting"].includes(S.live.phase);
+  document.body.classList.toggle("owntop", (ownTop || liveNoBar) && !S.sess);
   $("#view").innerHTML = back + (S.loadNote ? `<div class="note">${esc(S.loadNote)}</div>` : "") + flash + body;
 }
 function refresh(force){

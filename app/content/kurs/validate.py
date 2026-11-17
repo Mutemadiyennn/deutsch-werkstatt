@@ -19,7 +19,20 @@ def check(u, errs, warn):
     for t in u.get("teach",[]):
         if not 2<=len(t.get("ex",[]))<=6: warn.append(f"{t['id']} ex count")
     if not 8<=len(u.get("words",[]))<=20: warn.append("words count %d"%len(u["words"]))
-    for w in u.get("words",[]):
+    if "plus" in u and not 5<=len(u["plus"])<=90: warn.append("plus count %d"%len(u["plus"]))
+    for w in u.get("plus",[]):
+        if len(w.get("ex",[]))<3: errs.append("plus word needs >=3 ex: "+w.get("de","?"))
+        if w.get("t") not in ("n","v","a","x"): errs.append("plus bad t: "+w.get("de","?"))
+        if not w.get("tr"): errs.append("plus no tr: "+w.get("de","?"))
+        if not w.get("img") and not all(x.get("img") for x in w.get("ex",[])): warn.append("plus abstract word without scene img: "+w.get("de","?"))
+    for w in u.get("words",[]) + u.get("plus",[]):
+        for x in w.get("ex",[]) or []:
+            if not x.get("de") or not x.get("tr") or not x.get("form"): errs.append("word ex fields "+w["de"]); continue
+            if x["form"] not in x["de"]: errs.append(f"word ex form not in sentence: {w['de']} / {x['form']} / {x['de']}")
+            if not re.search(r"[.!?…]$", x["de"].strip()): warn.append("word ex no punct: "+x["de"])
+            if dup(x["de"]): errs.append("word ex dup word: "+x["de"])
+            for bpat in TRBAD:
+                if re.search(bpat, x["tr"]): errs.append("TR typo in word ex: "+x["tr"])
         if w.get("art") not in ("der","die","das",""): errs.append("bad art "+w["de"])
         if w.get("t")=="n" and not w.get("art") and not w.get("pl")=="Pl": warn.append("noun w/o art "+w["de"])
         if re.match(r"^(der|die|das) ", w.get("pl","")) or re.match(r"^(der|die|das) ", w.get("de","")): errs.append("article in de/pl "+w["de"])
@@ -90,16 +103,17 @@ def check(u, errs, warn):
     blob=json.dumps(u, ensure_ascii=False)
     for b in TRBAD:
         for m in re.finditer(b, blob): errs.append("TR typo in blob: "+blob[max(0,m.start()-30):m.end()+10])
-files=sys.argv[1:] or sorted(glob.glob("units/*.json"))
-bad=0
-for f in files:
-    try: u=json.load(open(f))
-    except Exception as e: print(f,"JSON ERROR",e); bad+=1; continue
-    errs=[];warn=[]
-    try: check(u,errs,warn)
-    except Exception as e: errs.append("EXC "+repr(e))
-    print(f"{f}: {len(errs)} errors, {len(warn)} warnings")
-    for e in errs: print("  E", e)
-    for w in warn: print("  w", w)
-    bad+=bool(errs)
-sys.exit(1 if bad else 0)
+if __name__ == "__main__":
+    files=sys.argv[1:] or sorted(glob.glob("units/*.json"))
+    bad=0
+    for f in files:
+        try: u=json.load(open(f))
+        except Exception as e: print(f,"JSON ERROR",e); bad+=1; continue
+        errs=[];warn=[]
+        try: check(u,errs,warn)
+        except Exception as e: errs.append("EXC "+repr(e))
+        print(f"{f}: {len(errs)} errors, {len(warn)} warnings")
+        for e in errs: print("  E", e)
+        for w in warn: print("  w", w)
+        bad+=bool(errs)
+    sys.exit(1 if bad else 0)

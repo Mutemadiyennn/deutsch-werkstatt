@@ -54,7 +54,7 @@ async function kuAudioStart(){
     if(!started) continue;
     for(const t of (u.teach||[])) for(const e of (t.ex||[])) pool.push({de:e.de, tr:e.tr, u:uid});
     for(const d of (u.drills||[])) if(d.k === "say") pool.push({de:d.de, tr:d.tr, u:uid});
-    for(const w of (u.words||[])) if(kuWSt(kuWKey(u, w)).c) pool.push({de:kuWFull(w), tr:kuTrShort(w.tr), u:uid}); }catch(e){} }
+    for(const w of kuAllW(u)) if(kuWSt(kuWKey(u, w)).c) pool.push({de:kuWFull(w), tr:kuTrShort(w.tr), u:uid}); }catch(e){} }
   if(!pool.length){ try{ const u = await kursUnit(id); for(const t of (u.teach||[])) for(const e of (t.ex||[])) pool.push({de:e.de, tr:e.tr, u:id}); }catch(e){} }
   const items = shuffle(pool).slice(0, 14);
   S.kaud = {items, i:0, run:(S.kaud && S.kaud.run || 0) + 1, phase:"run"}; go("kurs"); S.ku = {audio:true}; render();
@@ -101,7 +101,7 @@ function kuAudioView(){
 async function kuGameBreak(){
   await kursIndex(); const L = kuList(); const ids = L.filter(x=>x.ready !== false && (kuDone(x.id) || ((kSt().u[x.id]||{}).nd && Object.keys(kSt().u[x.id].nd).length))).map(x=>x.id).slice(-3);
   if(!ids.length) ids.push(kSt().cur);
-  const words = []; for(const id of ids){ try{ const u = await kursUnit(id); (u.words||[]).forEach(w=>{ if(kuWSt(kuWKey(u, w)).c || ids.length === 1) words.push({...w, _uid:id}); }); }catch(e){} }
+  const words = []; for(const id of ids){ try{ const u = await kursUnit(id); kuAllW(u).forEach(w=>{ if(kuWSt(kuWKey(u, w)).c || ids.length === 1) words.push({...w, _uid:id}); }); }catch(e){} }
   const pu = {id:"mix", title_tr:"Oyun arası", words: shuffle(words).slice(0, 15)};
   if(pu.words.length < 6){ sessNext(); return; }
   S.ku = {id:"mix", u:pu, free:true, node:{id:"game", ic:"🎮", t:"Oyun arası"}, steps:[{k:"match"},{k:"speed"}], si:0}; S.kuU = kSt().cur; kuEnter(); go("kurs"); render();

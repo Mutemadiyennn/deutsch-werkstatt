@@ -17,6 +17,8 @@
 - `40-kurs-session.js` — günlük oturumun kursla çalışması, eller serbest kurs
 - `45-kurs-today.js` — "Bugün" listesi = kurs; yapay zekâya bağlı eski günlük görevler listeden çıkarıldı
 - `50-ai-context.js` — yapay zekâ bağlamı: kişisel ayrıntı yok, odak = ünite
+- `60-seviyem.js` — Seviyem ekranı kurs verisiyle (ünite, kalıcı kelime, zayıf kurallar + tek dokunuşla tekrar, B1 tempo hesabı, kurs verisiyle öğretmen raporu)
+- `65-robust.js` — açılışta arka plan üretimi yok, bekleme metni + Durdur, dikte/ölçüm kursun cümleleriyle (yapay zekâsız)
 - `90-whatsnew.js` — sürüm notu
 
 ## İçerik üretim hattı
