@@ -1,0 +1,122 @@
+/** Profil ve ayarlar: odak/Pomodoro, seans planı, alan önceliği, dinleme, hedefler, görünüm, sunucu durumu, yedek, v1 arşivi */
+import { useState } from "preact/hooks";
+import { Activity, type Profile } from "@dw/shared";
+import { useApp } from "../state.ts";
+import { auth } from "../services/auth.ts";
+import { exportAll } from "../data/db.ts";
+import { ACTIVITY_TR, V1_URL } from "../core/planner.ts";
+import { ApiError } from "../services/api.ts";
+import { TopBar } from "../ui/components.tsx";
+
+const ACTS = Activity.options.filter((a) => a !== "assess" && a !== "other");
+
+export function ProfileView() {
+  const { profile, setProfile, index, api, toast, user } = useApp();
+  const [srv, setSrv] = useState<string | null>(null);
+  const save = async (f: (p: Profile) => void) => { const n = structuredClone(profile); f(n); try { await setProfile(n); toast("✓ Kaydedildi"); } catch { toast("Geçersiz değer; kaydedilmedi."); } };
+  const dTitle = (id: string) => index?.domains.find((d) => d.id === id)?.title_tr || id;
+  const num = (e: Event) => Number((e.target as HTMLSelectElement).value);
+
+  const checkServer = async () => {
+    setSrv("Kontrol ediliyor…");
+    try {
+      const h = await api.health();
+      let line = `Sunucu çalışıyor (sürüm ${h.version}). Gemini anahtarı: ${h.configured.gemini ? "var" : "YOK"} · izin listesi: ${h.configured.allowlist ? "var" : "YOK"}.`;
+      try { const u = await api.usage(); line += ` Bugünkü yapay zekâ kullanımı: ${u.ai.used}/${u.ai.limit}.`; } catch (e) { line += ` Hesap erişimi: ${e instanceof ApiError ? e.message_tr : "hata"}`; }
+      setSrv(line);
+    } catch (e) { setSrv(e instanceof ApiError ? e.message_tr : "Sunucuya ulaşılamadı."); }
+  };
+  const download = async () => {
+    const data = await exportAll();
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 1)], { type: "application/json" }));
+    a.download = `deutsch-werkstatt-yedek-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  };
+
+  return (
+    <div class="stack">
+      <TopBar title="Profil ve ayarlar" />
+
+      <section class="card">
+        <h2>Odak ve Pomodoro</h2>
+        <label class="lbl" for="goal">Günlük odak hedefi</label>
+        <select id="goal" class="input" value={profile.focus.dailyGoalMin} onChange={(e) => save((p) => { p.focus.dailyGoalMin = num(e); })} data-test="goal">
+          {[45, 60, 80, 100, 120, 150].map((g) => <option value={g}>{g} dk</option>)}
+        </select>
+        <div class="row" style={{ gap: 12 }}>
+          <div class="grow"><label class="lbl" for="work">Odak</label><select id="work" class="input" value={profile.focus.workMin} onChange={(e) => save((p) => { p.focus.workMin = num(e); })}>{[20, 25, 30, 45, 50].map((x) => <option value={x}>{x} dk</option>)}</select></div>
+          <div class="grow"><label class="lbl" for="brk">Mola</label><select id="brk" class="input" value={profile.focus.breakMin} onChange={(e) => save((p) => { p.focus.breakMin = num(e); })}>{[3, 5, 10].map((x) => <option value={x}>{x} dk</option>)}</select></div>
+          <div class="grow"><label class="lbl" for="lbrk">Uzun mola</label><select id="lbrk" class="input" value={profile.focus.longBreakMin} onChange={(e) => save((p) => { p.focus.longBreakMin = num(e); })}>{[15, 20, 30].map((x) => <option value={x}>{x} dk</option>)}</select></div>
+        </div>
+        <label class="lbl">Seans planı (öneri; istediğin zaman değiştirebilirsin)</label>
+        {profile.focus.sessionPlan.map((acts, i) => (
+          <div class="row" style={{ marginBottom: 6, flexWrap: "nowrap" }}>
+            <span style={{ width: 70 }} class="small"><b>Seans {i + 1}</b></span>
+            <select class="input" aria-label={`Seans ${i + 1} etkinliği`} value={acts[0]} onChange={(e) => save((p) => { const v = (e.target as HTMLSelectElement).value as Activity; p.focus.sessionPlan[i] = [v, ...p.focus.sessionPlan[i]!.filter((a) => a !== v)].slice(0, 3); })}>
+              {ACTS.map((a) => <option value={a}>{ACTIVITY_TR[a]}</option>)}
+            </select>
+          </div>
+        ))}
+        <label class="lbl" for="wk">Haftalık hedef</label>
+        <select id="wk" class="input" value={profile.focus.weekly.days} onChange={(e) => save((p) => { p.focus.weekly.days = num(e); p.focus.weekly.minPerDay = p.focus.dailyGoalMin; })}>{[3, 4, 5, 6, 7].map((d) => <option value={d}>Haftada {d} gün × {profile.focus.dailyGoalMin} dk</option>)}</select>
+      </section>
+
+      <section class="card">
+        <h2>Alan önceliği</h2>
+        <ol class="list" style={{ paddingLeft: 0 }}>
+          {profile.domains.priority.map((d, i) => {
+            const paused = profile.domains.paused.includes(d);
+            return (
+              <li class="row" style={{ flexWrap: "nowrap" }}>
+                <span class="grow small" style={{ opacity: paused ? 0.5 : 1 }}><b>{i + 1}.</b> {dTitle(d)}</span>
+                <button class="iconbtn" aria-label={`${dTitle(d)} yukarı`} disabled={i === 0} onClick={() => save((p) => { const a = p.domains.priority; [a[i - 1], a[i]] = [a[i]!, a[i - 1]!]; })}>↑</button>
+                <button class="iconbtn" aria-label={paused ? `${dTitle(d)} devam` : `${dTitle(d)} duraklat`} onClick={() => save((p) => { p.domains.paused = paused ? p.domains.paused.filter((x) => x !== d) : [...p.domains.paused, d]; })}>{paused ? "▶" : "⏸"}</button>
+              </li>
+            );
+          })}
+        </ol>
+      </section>
+
+      <section class="card">
+        <h2>Dinleme ve hedefler</h2>
+        <label class="lbl">Dinlemeye başlangıç hızı</label>
+        <div class="seg" role="group">{(["slow", "normal"] as const).map((s) => <button aria-pressed={profile.listening.startSpeed === s} onClick={() => save((p) => { p.listening.startSpeed = s; })}>{s === "slow" ? "Yavaş" : "Normal"}</button>)}</div>
+        <label class="row" style={{ marginTop: 12 }}><input type="checkbox" checked={profile.goals.examB1.enabled} onChange={(e) => save((p) => { p.goals.examB1.enabled = (e.target as HTMLInputElement).checked; })} /><span>B1 sınavına hazırlık (isteğe bağlı)</span></label>
+        {profile.goals.examB1.enabled && <input class="input" type="date" aria-label="Sınav tarihi" value={profile.goals.examB1.date || ""} onChange={(e) => save((p) => { p.goals.examB1.date = (e.target as HTMLInputElement).value || undefined; })} />}
+        <p class="small" style={{ marginTop: 12 }}><a href="#/assess">Yeniden ölç (aylık ölçüm)</a></p>
+      </section>
+
+      <section class="card">
+        <h2>Görünüm</h2>
+        <label class="lbl">Tema</label>
+        <div class="seg" role="group">{([["auto", "Otomatik"], ["light", "Açık"], ["dark", "Koyu"]] as const).map(([k, l]) => <button aria-pressed={profile.ui.theme === k} onClick={() => save((p) => { p.ui.theme = k; })}>{l}</button>)}</div>
+        <label class="lbl" for="ts">Yazı boyutu</label>
+        <select id="ts" class="input" value={profile.ui.textScale} onChange={(e) => save((p) => { p.ui.textScale = num(e); })}>{[[0.9, "Küçük"], [1, "Normal"], [1.15, "Büyük"], [1.3, "Çok büyük"]].map(([v, l]) => <option value={v}>{l}</option>)}</select>
+        <label class="row" style={{ marginTop: 12 }}><input type="checkbox" checked={profile.ui.sfx} onChange={(e) => save((p) => { p.ui.sfx = (e.target as HTMLInputElement).checked; })} /><span>Mola zili ve sesler</span></label>
+        <label class="lbl" for="nm">Hitap (isteğe bağlı, yalnızca bu cihazda)</label>
+        <input id="nm" class="input" maxLength={40} value={profile.displayName || ""} onChange={(e) => save((p) => { p.displayName = (e.target as HTMLInputElement).value.trim() || undefined; })} />
+      </section>
+
+      <section class="card">
+        <h2>Sunucu ve veriler</h2>
+        <p class="small muted">Yapay zekâ özellikleri anahtarları güvenle tutan sunucu üzerinden çalışır. Anahtar bu uygulamada bulunmaz.</p>
+        <button class="btn sm" onClick={checkServer} disabled={!api.configured}>{api.configured ? "Sunucu bağlantısını kontrol et" : "Sunucu adresi henüz ayarlanmadı"}</button>
+        {srv && <p class="small" style={{ marginTop: 8 }} data-test="server">{srv}</p>}
+        <div class="row" style={{ marginTop: 12 }}>
+          <button class="btn sm" onClick={download}>Yedeği indir (JSON)</button>
+          <a class="btn sm" href={V1_URL} target="_blank" rel="noopener">Arşiv: v1 uygulaması ↗</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <p class="small muted">Giriş yapılan hesap: {user?.email || "Google hesabı"}</p>
+        <div class="row">
+          <a class="btn sm" href="#/onboarding">Kurulumu yeniden yap</a>
+          <button class="btn sm" onClick={() => auth.signOut()}>Çıkış yap</button>
+        </div>
+      </section>
+    </div>
+  );
+}

@@ -1,0 +1,17 @@
+# Deutsch Werkstatt API — Cloudflare Worker (ücretsiz plan).
+# Gizli değerler depoya YAZILMAZ; şu komutlarla girilir:
+#   npx wrangler secret put GEMINI_KEY
+#   npx wrangler secret put ALLOWED_UIDS      # Firebase uid (virgülle)
+# KV: npx wrangler kv namespace create QUOTA  → çıkan id'yi aşağıya yaz.
+name = "deutsch-werkstatt-api"
+main = "src/index.ts"
+compatibility_date = "2026-11-01"
+
+[vars]
+FIREBASE_PROJECT_ID = "deutsch-sync"
+ALLOWED_ORIGINS = "https://mutemadiyennn.github.io,capacitor://localhost,http://localhost:5173,http://localhost:4173"
+AI_DAILY_LIMIT = "300"
+
+[[kv_namespaces]]
+binding = "QUOTA"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"

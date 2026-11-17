@@ -1,0 +1,83 @@
+/**
+ * Ses: cihaz sesi (speechSynthesis) ve konuşma tanıma (webkitSpeechRecognition).
+ * Hazır doğal ses dosyaları ve bulut seslendirme sonraki fazda (BLUEPRINT §7). Bu dosya cihaz sesini kullanır
+ * ve arayüzde "cihaz sesi" olarak belirtilir.
+ * Odak motoru için: konuşurken/dinlerken `audioActive()` true döner (v1 kuralı: ses açıkken süre sayılır).
+ */
+import type { Speed } from "@dw/shared";
+import { splitForSpeech } from "../core/ttsClean.ts";
+
+export const RATE: Record<Speed, number> = { slow: 0.72, normal: 0.95, natural: 1.05, fast: 1.2 };
+let speakingN = 0;
+let listening = false;
+export const audioActive = () => speakingN > 0 || listening || (typeof speechSynthesis !== "undefined" && speechSynthesis.speaking);
+
+export const ttsAvailable = () => typeof window !== "undefined" && "speechSynthesis" in window;
+
+function voiceFor(lang: "de" | "tr"): SpeechSynthesisVoice | undefined {
+  const vs = speechSynthesis.getVoices();
+  const pref = lang === "de" ? ["de-DE", "de-AT", "de"] : ["tr-TR", "tr"];
+  for (const p of pref) { const v = vs.find((x) => x.lang.replace("_", "-").startsWith(p)); if (v) return v; }
+  return undefined;
+}
+
+export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed = "normal"): Promise<void> {
+  if (!ttsAvailable()) return;
+  speechSynthesis.cancel();
+  for (const seg of splitForSpeech(text, lang)) {
+    await new Promise<void>((res) => {
+      const u = new SpeechSynthesisUtterance(seg.text);
+      u.lang = seg.lang === "de" ? "de-DE" : "tr-TR";
+      const v = voiceFor(seg.lang); if (v) u.voice = v;
+      u.rate = seg.lang === "de" ? RATE[speed] : 1;
+      speakingN++;
+      let fin = false;
+      const done = () => { if (fin) return; fin = true; speakingN = Math.max(0, speakingN - 1); res(); };
+      u.onend = done; u.onerror = done;
+      speechSynthesis.speak(u);
+      // bazı tarayıcılar onend göndermez: güvenlik zaman aşımı
+      setTimeout(done, Math.min(20000, 1500 + seg.text.length * 120));
+    });
+  }
+}
+export function stopSpeaking() { if (ttsAvailable()) speechSynthesis.cancel(); speakingN = 0; }
+
+const SR: any = typeof window !== "undefined" ? (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition : undefined;
+export const sttAvailable = () => !!SR;
+
+/** Almanca konuşma tanıma: olası metinleri döndürür (en iyi ilk). Desteklenmiyorsa hata fırlatır; arayüz yazarak cevaba geçer. */
+export function listenOnce(lang = "de-DE", maxMs = 9000): { result: Promise<string[]>; stop: () => void } {
+  if (!SR) return { result: Promise.reject(new Error("stt_unavailable")), stop: () => {} };
+  const rec = new SR();
+  rec.lang = lang; rec.interimResults = false; rec.maxAlternatives = 4; rec.continuous = false;
+  let to: ReturnType<typeof setTimeout>;
+  const result = new Promise<string[]>((res, rej) => {
+    let got: string[] = [];
+    rec.onresult = (e: any) => { const r = e.results[0]; got = Array.from({ length: r.length }, (_, i) => r[i].transcript as string); };
+    rec.onerror = (e: any) => { listening = false; clearTimeout(to); e.error === "no-speech" ? res([]) : rej(new Error(e.error || "stt_error")); };
+    rec.onend = () => { listening = false; clearTimeout(to); res(got); };
+  });
+  listening = true;
+  try { rec.start(); } catch (e) { listening = false; return { result: Promise.reject(e), stop: () => {} }; }
+  to = setTimeout(() => { try { rec.stop(); } catch {} }, maxMs);
+  return { result, stop: () => { try { rec.stop(); } catch {} } };
+}
+
+/** Kısa zil (mola başı/sonu); harici ses dosyası gerektirmez */
+export function chime(kind: "start" | "end" = "end") {
+  try {
+    const AC = (window as any).AudioContext || (window as any).webkitAudioContext;
+    if (!AC) return;
+    const ac = new AC();
+    const notes = kind === "end" ? [659.25, 880] : [880, 659.25];
+    notes.forEach((f, i) => {
+      const o = ac.createOscillator(), g = ac.createGain();
+      o.frequency.value = f; o.type = "sine";
+      g.gain.setValueAtTime(0.0001, ac.currentTime + i * 0.18);
+      g.gain.exponentialRampToValueAtTime(0.25, ac.currentTime + i * 0.18 + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + i * 0.18 + 0.5);
+      o.connect(g).connect(ac.destination); o.start(ac.currentTime + i * 0.18); o.stop(ac.currentTime + i * 0.18 + 0.55);
+    });
+    setTimeout(() => ac.close(), 1500);
+  } catch {}
+}

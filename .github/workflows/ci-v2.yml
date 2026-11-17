@@ -1,0 +1,38 @@
+name: v2 — kontrol (tip, birim, içerik, derleme, uçtan uca)
+
+on:
+  push:
+    paths: ["web/**", "worker/**", "packages/**", "content/**", "tests/e2e/**", "package.json", "package-lock.json", ".github/workflows/ci-v2.yml"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - name: Tip denetimi
+        run: npm run typecheck
+      - name: Birim testleri (çekirdek, veri, servisler, Worker, içerik)
+        run: npm test
+      - name: İçerik kapısı (0 hata)
+        run: npm run content:validate
+      - name: Gizli anahtar taraması (Firebase web yapılandırması hariç)
+        run: |
+          if git grep -nE 'AIza[0-9A-Za-z_-]{35}' -- ':!app/legacy.html' ':!web/src/services/auth.ts' ':!app/tests/*' | grep -v 'AIzaSyDU2GSwCowKMKWBOvTZdKQjCtxLsQFTlDg'; then echo "Anahtar bulundu"; exit 1; fi
+      - name: Derleme (içerik paketi + web + e2e sürümü)
+        run: |
+          npm run content:build
+          npm run build -w web
+          (cd web && npx vite build --mode e2e --outDir dist-e2e)
+      - name: Worker paketlenebilir mi
+        run: (cd worker && npx wrangler deploy --dry-run --outdir /tmp/wb)
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Uçtan uca test (Playwright)
+        run: |
+          pip install playwright==1.* && python -m playwright install --with-deps chromium
+          python tests/e2e/v2_core.py
