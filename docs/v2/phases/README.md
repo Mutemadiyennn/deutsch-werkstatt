@@ -1,5 +1,7 @@
 # phases/ — proje sahibinin faz metinleri
 
+Öncelik: **../LEARNING_SYSTEM.md > ../PEDAGOGY.md > phases/ > ../BLUEPRINT.md** (D-070).
+
 Bağlam sıkıştırmasından sonra eksik hatırlanan bir kural varsa buradan okunur. Kişisel satırlar çıkarılmıştır.
 
 | Dosya | Metin | Durum |
@@ -15,6 +17,7 @@ Bağlam sıkıştırmasından sonra eksik hatırlanan bir kural varsa buradan ok
 | 08-EK-AJAN-MODELLERI.md | Ajan modelleri | birebir |
 | 09-DUZELTME-ASAMA-1-2.md | Aşama 1–2 yeniden tasarım + küçük arayüz düzeltmeleri | birebir |
 | 10-H4.md | Faz H4: öğretmen ve deneyim (öğrenci kartı, dünya, takvim, döngüsüzlük, telefon korkusu, mola sohbeti, koç…) | birebir |
+| 12-FAZ-R.md | Faz R: öğrenme sistemi ve sürüm planı (LEARNING_SYSTEM.md en üst belge) | birebir |
 | 11-PM-INCELEME-PR4-6.md | Proje yöneticisi incelemesi: kalıplar P0, öğrenci kimliği, harf kodlama, küçük eksikler, İngilizce kararı | birebir |
 
 Faz 1–3 (denetim, plan, çekirdek uygulama) talimatlarının sonuçları: ../AUDIT.md, ../BLUEPRINT.md.

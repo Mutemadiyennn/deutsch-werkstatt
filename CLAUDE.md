@@ -5,12 +5,13 @@ Türkçe konuşan bir yetişkinin Almancayı gerçek hayatta (telefon, doktor, i
 
 ## Her oturumda önce oku
 Her ajan ve oturum işe `docs/v2/LEARNER.md`'yi okuyarak başlar. Her kararda tek soru: **"Bu, bu öğrenciyi dışarıda konuşmaya yaklaştırıyor mu, ve yarın uygulamayı yeniden açmak istemesini sağlıyor mu?"**
-0. `docs/v2/LEARNER.md` — öğrenci kartı (kimlik bilgisi yok); ürün bir öğretmendir
-1. `docs/v2/STATUS.md` — görevlerin durumu, son commit, açık sorunlar, sıradaki adım
-2. `docs/v2/DECISIONS.md` — alınmış kararlar ve gerekçeleri (yeniden tartışma)
-3. `docs/v2/PEDAGOGY.md` — öğretim motoru ve içerik standardı (bütün kararların dayanağı)
-4. `docs/v2/phases/` — proje sahibinin faz metinleri; hatırlamadığın kural buradadır
-5. `docs/v2/WORLD.md` — kurgusal şehir, kalıcı karakterler, 26 haftalık hikâye, gerçek takvim (içerik yazarken)
+1. `docs/v2/LEARNING_SYSTEM.md` — **en üst belge** (LS-x.y kimlikleri). Öncelik: LEARNING_SYSTEM > PEDAGOGY > phases/ > BLUEPRINT (D-070)
+2. `docs/v2/LEARNER.md` — öğrenci kartı (kimlik bilgisi yok); ürün bir öğretmendir
+3. `docs/v2/WORLD.md` — kurgusal şehir, kalıcı karakterler, 26 haftalık hikâye, gerçek takvim
+4. `docs/v2/STATUS.md` — görevlerin durumu, son commit, açık sorunlar, sıradaki adım
+5. `docs/v2/DECISIONS.md` — alınmış kararlar ve gerekçeleri (yeniden tartışma)
+6. `docs/v2/PEDAGOGY.md` — içerik standardı, şema ve doğrulayıcı kuralları
+7. `docs/v2/phases/` — proje sahibinin faz metinleri; hatırlamadığın kural buradadır
 
 ## Değişmez kurallar
 - **Kişisel bilgi yok.** Depoda, kodda, testte, prompt'ta öğrencinin hayatına dair ayrıntı, kurs ya da kitap adı yazılmaz (istisna: kimliksiz `LEARNER.md`, D-066). Öğrencinin adı/cinsiyeti içerikte sabit yazılmaz: `{name}`, `{Herr|Frau}` yer tutucuları; yapay zekâya ad gitmez (D-061). Diğer karakterlerin adları çeşitli.
@@ -28,7 +29,8 @@ Her ajan ve oturum işe `docs/v2/LEARNER.md`'yi okuyarak başlar. Her kararda te
 - **En fazla 3 ajan aynı anda.** Ajanlar yalnızca `.claude/agents/` tanımlarıyla başlatılır (lex, yazar, dilbilimci, inceleme, qa).
 - **Arayüz çıtası:** v2 hiçbir ekranda v1'den görsel olarak zayıf olamaz (phases/04); iPhone standardı (phases/05).
 - **Rol oyunu:** güçlü model; 12 sn'de yanıt yoksa "Biraz uzun sürüyor" + Bekle / Tekrar dene / Yapay zekâsız devam; istek kesilmez (D-RP1).
-- Büyük değişiklikten ve git geçmişini yeniden yazmaktan önce proje sahibinin onayı alınır.
+- **PR'lar LS kimliklerini listeler** (LS-16.4). Her sürümde LS-16.3 öğrenci simülasyonu zorunlu; QA ajanı bilgi kısıtlı oynar (öğretilmeyen öğeyi üretmesi istenirse P0).
+- **Durma kuralı (D-072):** kontrol noktası raporundan sonra durulmaz. Yalnızca geri alınamaz işlem, para gerektirebilecek karar ya da LS ile çelişen zorunlulukta durup sor. Büyük değişiklik ve git geçmişi yeniden yazımı onayla.
 
 ## Komutlar
 ```sh
