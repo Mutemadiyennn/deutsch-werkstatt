@@ -16,7 +16,17 @@ export const DEFAULT_SESSION_PLAN: Activity[][] = [
   ["dialogue", "roleplay", "review"]
 ];
 
-export const DOMAIN_IDS = ["telefon", "arbeit", "arzt", "amt", "einkauf", "friseur", "sport", "wohnen", "bank", "verkehr", "essen", "nachbarn", "notfall"] as const;
+/** 20 alan, PEDAGOGY.md §4 öncelik sırasıyla */
+export const DOMAIN_IDS = ["strategie", "telefon", "arzt", "arbeit", "smalltalk", "einkaufen", "essen", "amt", "bank", "wohnen", "friseur", "sport", "verkehr", "post", "werkstatt", "notfall", "freizeit", "gefuehle", "medien", "bairisch"] as const;
+/** Faz 3'teki 13 alanlık kimliklerden yenilerine geçiş (kayıtlı profiller için) */
+export const DOMAIN_RENAMES: Record<string, string> = { einkauf: "einkaufen", nachbarn: "smalltalk" };
+export function migrateDomainPriority(list: string[]): string[] {
+  const mapped = list.map((d) => DOMAIN_RENAMES[d] || d).filter((d) => (DOMAIN_IDS as readonly string[]).includes(d));
+  const seen = new Set<string>();
+  const out = [...mapped, ...DOMAIN_IDS].filter((d) => (seen.has(d) ? false : (seen.add(d), true)));
+  // strateji her zaman ilk sırada (PEDAGOGY §4)
+  return ["strategie", ...out.filter((d) => d !== "strategie")];
+}
 
 export const Profile = z.object({
   id: z.literal("me"),
@@ -25,6 +35,8 @@ export const Profile = z.object({
   onboardedAt: z.string().optional(),
   /** Yalnızca bu cihazda gösterilen isteğe bağlı hitap; eşitlenmez */
   displayName: z.string().max(40).optional(),
+  /** D-061: hitap (yalnızca cihazda; yapay zekâya yalnızca bu gider) */
+  address: z.enum(["Herr", "Frau"]).optional(),
   ui: z.object({
     theme: z.enum(["auto", "light", "dark"]).default("auto"),
     sfx: z.boolean().default(true),
@@ -97,17 +109,33 @@ export interface FocusDay {
 }
 
 /* ---------- Öğrenci modeli ---------- */
-export interface Strength { s: number; n: number; ok: number; last?: string; due?: string }
+/** FSRS kart durumu (ts-fsrs Card, tarihler ISO) */
+export interface FsrsState { due: string; stability: number; difficulty: number; scheduled_days: number; reps: number; lapses: number; learning_steps: number; state: number; last_review?: string }
+export interface Strength { s: number; n: number; ok: number; last?: string; due?: string; fsrs?: FsrsState }
 export interface LearnerItem {
   itemId: string;
   kind: "lexeme" | "chunk" | "pattern";
   passive: Strength;
   active: Strength & { sessions: string[] };
   durable: boolean;
-  gaps: { type: "passive" | "active" | "structure"; source: "drill" | "tap" | "convo" | "assess"; at: string; ctx?: string }[];
+  gaps: { type: "passive" | "active" | "structure"; source: "drill" | "tap" | "convo" | "assess" | "sayit"; at: string; ctx?: string }[];
   inBank: boolean;
   u: number;
 }
+
+export interface ScenarioProgress {
+  scenarioId: string;
+  /** Tamamlanan bölümler: words, chunks, build, drills, listening, dialogue, roleplay */
+  done: string[];
+  support: 0 | 1 | 2 | 3;
+  runs: { at: string; section: string; score: number; total: number; level?: number; goalsDone?: number; goalsTotal?: number; englishFallbacks?: number; mode?: "ai" | "offline"; ms?: number; msPerCard?: number; recallOk?: number; recallTotal?: number }[];
+  completedIndependentAt?: string;
+  u: number;
+}
+/** "Benim cevabım da doğru" kayıtları → içerik iyileştirme kuyruğu */
+export interface AnswerClaim { id?: number; at: string; scenarioId?: string; itemId: string; prompt: string; answer: string; expected: string[] }
+/** K3: öğrencinin dışarıda duyup eklediği kelime */
+export interface PersonalWord { id: string; de: string; tr?: string; note?: string; at: string; source: "heard" | "tap" | "sayit" }
 
 /* ---------- Seviye tespiti ---------- */
 export interface AssessAnswer {

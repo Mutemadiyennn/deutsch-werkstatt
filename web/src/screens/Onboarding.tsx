@@ -1,7 +1,7 @@
 /** İlk kurulum: zorlandığın durumlar → alan önceliği → günlük hedef ve Pomodoro → dinleme ve hedefler → seviye tespiti */
 import { useState } from "preact/hooks";
 import type { Profile } from "@dw/shared";
-import { DOMAIN_IDS } from "@dw/shared";
+import { migrateDomainPriority } from "@dw/shared";
 import { useApp, go } from "../state.ts";
 import { ACTIVITY_TR } from "../core/planner.ts";
 
@@ -20,10 +20,10 @@ export function derivePriority(struggles: Struggle[]): string[] {
   const first: string[] = [];
   if (struggles.includes("phone")) first.push("telefon");
   if (struggles.includes("work")) first.push("arbeit");
-  if (struggles.includes("spontaneous") || struggles.includes("switch_english")) first.push("nachbarn");
+  if (struggles.includes("spontaneous") || struggles.includes("switch_english")) first.push("smalltalk");
   first.push("arzt", "amt");
-  const seen = new Set<string>();
-  return [...first, ...DOMAIN_IDS].filter((d) => (seen.has(d) ? false : (seen.add(d), true)));
+  // strateji (anlamadığımda ne derim?) her zaman ilk sırada
+  return migrateDomainPriority(first);
 }
 
 export function Onboarding() {
@@ -51,6 +51,13 @@ export function Onboarding() {
           <div class="card small">
             <b>Gizlilik.</b> Senden kişisel bilgi istemiyoruz. İlerlemen bu cihazda saklanır. Açıklamalar Türkçe, örnekler ve sesler Almanca.
           </div>
+          <section class="card stack" style={{ gap: 6 }}>
+            <b>Diyaloglarda sana nasıl hitap edilsin? (isteğe bağlı)</b>
+            <label class="lbl" for="onm" style={{ margin: 0 }}>Adın</label>
+            <input id="onm" class="input" maxLength={40} autoComplete="off" placeholder="Boş bırakabilirsin" value={p.displayName || ""} onInput={(e) => set((x) => { x.displayName = (e.target as HTMLInputElement).value.trim() || undefined; })} />
+            <div class="seg" role="group" aria-label="Hitap">{([[undefined, "Seçme"], ["Herr", "Herr"], ["Frau", "Frau"]] as const).map(([k, l]) => <button aria-pressed={p.address === k} onClick={() => set((x) => { x.address = k; })}>{l}</button>)}</div>
+            <p class="tiny muted" style={{ margin: 0 }}>Yalnızca bu cihazda kalır; sunucuya ve yapay zekâya ad gönderilmez.</p>
+          </section>
           <button class="btn primary block" onClick={() => setStep(1)}>Başlayalım</button>
         </section>
       )}

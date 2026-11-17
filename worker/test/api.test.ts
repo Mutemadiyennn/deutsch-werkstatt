@@ -64,7 +64,7 @@ describe("health ve CORS", () => {
     const r = await handle(req("/v1/health"), env());
     expect(r.status).toBe(200);
     const t = await r.text();
-    expect(JSON.parse(t).configured).toEqual({ gemini: true, allowlist: true });
+    expect(JSON.parse(t).configured).toEqual({ gemini: true, pexels: false, allowlist: true });
     expect(t).not.toContain("test-gemini-key");
     expect(r.headers.get("Access-Control-Allow-Origin")).toBe("https://app.test");
   });
@@ -138,7 +138,7 @@ describe("/v1/ai/run", () => {
     expect((await r2.json()).error.message_tr).toContain("senin sınırın değil");
   });
   it("geçersiz model çıktısı → yedek; ikisi de geçersizse bad_output (502)", async () => {
-    mockGemini([{ text: "kein json" }, { text: '{"ok": "yes"}' }]);
+    mockGemini([{ text: "kein json" }, { text: "hâlâ değil" }, { text: '{"ok": "yes"}' }, { text: '{"ok": "yes"}' }]);
     const r = await handle(run(await token(), "equiv_check", EQ), env());
     expect(r.status).toBe(502);
     expect((await r.json()).error.code).toBe("bad_output");
@@ -161,6 +161,58 @@ describe("/v1/ai/run", () => {
     mockGemini([{ text: '{"tr":"(telefonda) hoşça kalın","note_tr":"Yalnızca telefonda kullanılır.","examples":[{"de":"Danke, auf Wiederhören!","tr":"Teşekkürler, hoşça kalın!"}]}' }]);
     const j = await (await handle(run(await token(), "explain_tr", { de: "Auf Wiederhören" }), env())).json();
     expect(j.output.examples).toHaveLength(1);
+  });
+});
+
+describe("yapılandırılmış çıktı, onarım ve yeni görevler", () => {
+  it("istekte responseJsonSchema gider; model 400 verirse bir kez şemasız denenir", async () => {
+    const calls = mockGemini([{ status: 400 }, { text: '{"ok": true, "reason_tr": "Doğru."}' }]);
+    const r = await handle(run(await token(), "equiv_check", EQ), env());
+    expect(r.status).toBe(200);
+    expect(calls[1]!.body.generationConfig.responseJsonSchema.properties.ok.type).toBe("boolean");
+    expect(calls[2]!.body.generationConfig.responseJsonSchema).toBeUndefined();
+  });
+  it("bozuk çıktı bir kez onarılır (aynı model)", async () => {
+    const calls = mockGemini([{ text: '{"ok": "evet"}' }, { text: '{"ok": true, "reason_tr": "Doğru."}' }]);
+    const j = await (await handle(run(await token(), "equiv_check", EQ), env())).json();
+    expect(j.output.ok).toBe(true);
+    expect(j.model).toBe("gemini-3.5-flash-lite");
+    expect(calls[2]!.body.systemInstruction.parts[0].text).toContain("Repariere");
+  });
+  it("roleplay_turn: partner prompt'u öğretmenliği ve cümle söyletmeyi yasaklar; takılma sayısı iletilir", async () => {
+    const calls = mockGemini([{ text: '{"reply_de": "Gerne. Passt Ihnen Donnerstag?", "end": false}' }]);
+    const vars = { partner_de: "Medizinische Fachangestellte", scene_tr: "Randevu", goals_de: ["Termin vereinbart"], level: 2, history: [{ r: "partner", de: "Praxis Weber, grüß Gott?" }, { r: "learner", de: "Ich brauche Termin" }], stuck: 2 };
+    const j = await (await handle(run(await token(), "roleplay_turn", vars), env())).json();
+    expect(j.output.reply_de).toContain("Donnerstag");
+    expect(j.model).toBe("gemini-3.5-flash");
+    const sys = calls[1]!.body.systemInstruction.parts[0].text as string;
+    expect(sys).toContain("KEIN Lehrer");
+    expect(sys).toContain("NIE darum, einen bestimmten Satz");
+    expect(sys).toContain("2 Mal in Folge");
+    expect(sys).toContain("Höchstens 2 kurze Sätze");
+  });
+  it("feedback_tr ve say_it_de şemaya uyan çıktı verir", async () => {
+    mockGemini([{ text: '{"goals":[{"id":"g1","done":true}],"strengths_tr":["Kibar başladın."],"fixes":[{"said":"Ich brauche Termin","better":"Ich brauche einen Termin.","why_tr":"Akkusativ: einen"}],"english_fallbacks":0,"gaps_de":["vereinbaren"],"summary_tr":"İyi."}' }, { text: '{"de_simple":"Ich habe Halsschmerzen."}' }]);
+    const t = await token();
+    const f = await (await handle(run(t, "feedback_tr", { scene_tr: "x", goals: [{ id: "g1", de: "Termin" }], transcript: [{ r: "learner", de: "Ich brauche Termin" }] }), env())).json();
+    expect(f.output.fixes[0].better).toBe("Ich brauche einen Termin.");
+    const s = await (await handle(run(t, "say_it_de", { tr: "Boğazım ağrıyor", level: "A1" }), env())).json();
+    expect(s.output.de_simple).toBe("Ich habe Halsschmerzen.");
+  });
+});
+
+describe("/v1/photos", () => {
+  it("kimlik ister; anahtar yoksa not_configured; sonuç KV'de önbelleğe alınır", async () => {
+    expect((await handle(req("/v1/photos?q=apple"), env())).status).toBe(401);
+    expect((await (await handle(req("/v1/photos?q=apple", { tok: await token() }), env())).json()).error.code).toBe("not_configured");
+    let n = 0;
+    vi.stubGlobal("fetch", vi.fn(async (url: string, init: RequestInit) => { n++; expect(new Headers(init.headers).get("Authorization")).toBe("px"); return new Response(JSON.stringify({ photos: [{ id: 1, width: 10, height: 5, alt: "Apfel", photographer: "A", url: "u", src: { medium: "m.jpg" } }] })); }));
+    const e = env({ PEXELS_KEY: "px" });
+    const a = await (await handle(req("/v1/photos?q=Apple", { tok: await token() }), e)).json();
+    const b = await (await handle(req("/v1/photos?q=apple", { tok: await token() }), e)).json();
+    expect(a.photos[0].src).toBe("m.jpg");
+    expect(b.photos).toEqual(a.photos);
+    expect(n).toBe(1);
   });
 });
 

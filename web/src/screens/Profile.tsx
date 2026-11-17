@@ -95,8 +95,11 @@ export function ProfileView() {
         <label class="lbl" for="ts">Yazı boyutu</label>
         <select id="ts" class="input" value={profile.ui.textScale} onChange={(e) => save((p) => { p.ui.textScale = num(e); })}>{[[0.9, "Küçük"], [1, "Normal"], [1.15, "Büyük"], [1.3, "Çok büyük"]].map(([v, l]) => <option value={v}>{l}</option>)}</select>
         <label class="row" style={{ marginTop: 12 }}><input type="checkbox" checked={profile.ui.sfx} onChange={(e) => save((p) => { p.ui.sfx = (e.target as HTMLInputElement).checked; })} /><span>Mola zili ve sesler</span></label>
-        <label class="lbl" for="nm">Hitap (isteğe bağlı, yalnızca bu cihazda)</label>
-        <input id="nm" class="input" maxLength={40} value={profile.displayName || ""} onChange={(e) => save((p) => { p.displayName = (e.target as HTMLInputElement).value.trim() || undefined; })} />
+        <label class="lbl" for="nm">Adın (isteğe bağlı)</label>
+        <input id="nm" class="input" maxLength={40} autoComplete="off" value={profile.displayName || ""} onChange={(e) => save((p) => { p.displayName = (e.target as HTMLInputElement).value.trim() || undefined; })} />
+        <label class="lbl">Almancada hitap (isteğe bağlı)</label>
+        <div class="seg" role="group" aria-label="Hitap">{([[undefined, "Seçme"], ["Herr", "Herr"], ["Frau", "Frau"]] as const).map(([k, l]) => <button aria-pressed={profile.address === k} onClick={() => save((p) => { p.address = k; })} data-address={k || "none"}>{l}</button>)}</div>
+        <p class="tiny muted">Ad ve hitap yalnızca bu cihazda kalır; diyaloglarda senin satırlarına yerleşir. Sunucuya ve yapay zekâya ad gönderilmez, yalnızca hitap gider.</p>
       </section>
 
       <section class="card">

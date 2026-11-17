@@ -13,7 +13,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 YALNIZCA `content/v2/registry/lexicon/**` (partiler + `SOURCES.md`). git komutu çalıştırmaz; commit'i baş geliştirici yapar.
 
 ## Okuyacağı belgeler
-`CLAUDE.md` · `docs/v2/PEDAGOGY.md` (§2 kelime derinliği) · `docs/v2/agents/COMMON.md` · `docs/v2/agents/LEX.md` · şema `packages/shared/src/content.ts` · kurallar `content/tools/load.ts`.
+`docs/v2/LEARNER.md` (önce) · `CLAUDE.md` · `docs/v2/PEDAGOGY.md` (§2 kelime derinliği) · `docs/v2/agents/COMMON.md` · `docs/v2/agents/LEX.md` · şema `packages/shared/src/content.ts` · kurallar `content/tools/load.ts`.
 
 ## Kalite ölçütleri
 - Almanca %100 doğru ve doğal, Türkçe doğal; İngilizce köprü yok. Kişisel bilgi, kurs/kitap adı yok.

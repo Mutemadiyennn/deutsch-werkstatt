@@ -11,6 +11,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 DIST = os.path.join(ROOT, "web", "dist-e2e")
 SHOTS = sys.argv[sys.argv.index("--shots") + 1] if "--shots" in sys.argv else None
 PORT = 4180
+_STRAT = json.load(open(os.path.join(ROOT, "content/v2/domains/strategie/scenarios/01-nicht-verstanden.json")))
+STRAT_TITLE, STRAT_REVIEW = _STRAT["title_tr"], _STRAT["review"]["status"]
 ERR = []
 API_CALLS = []
 
@@ -46,8 +48,8 @@ def shot(page, name):
         page.screenshot(path=os.path.join(SHOTS, name + ".png"), full_page=True)
 
 def no_overflow(page, where):
-    sw = page.evaluate("document.documentElement.scrollWidth")
-    check(sw <= 390, f"{where}: yatay taşma yok (scrollWidth {sw})")
+    sw, iw = page.evaluate("[document.documentElement.scrollWidth, innerWidth]")
+    check(sw <= iw, f"{where}: yatay taşma yok (scrollWidth {sw})")
 
 def answer_current(page, i):
     """Görünen maddeyi cevapla: her 3 maddeden biri 'Bilmiyorum', diğerleri bir cevap"""
@@ -70,8 +72,9 @@ def answer_current(page, i):
 def main():
     srv = serve()
     with sync_playwright() as p:
-        b = p.chromium.launch()
-        ctx = b.new_context(viewport={"width": 390, "height": 844}, device_scale_factor=2, locale="tr-TR")
+        from common import launch, BROWSER, DEVICE
+        b, ctx = launch(p)
+        print(f"tarayıcı={BROWSER} cihaz={DEVICE or '390×844'}")
         page = ctx.new_page()
         page.on("pageerror", lambda e: ERR.append("sayfa hatası: " + str(e)))
         page.route("https://api.e2e.test/**", api_route)
@@ -93,8 +96,8 @@ def main():
         page.click("[data-struggle=phone]"); page.click("[data-struggle=fast]")
         page.click("text=Devam")
         page.wait_for_selector("text=Öncelik sırası")
-        first = page.locator("ol.list li").first.inner_text()
-        check("Telefon" in first, f"telefonda zorlanan için ilk alan telefon ({first.strip()[:30]})")
+        first = page.locator("ol.list li").nth(0).inner_text(); second = page.locator("ol.list li").nth(1).inner_text()
+        check("strateji" in first.lower() and "Telefon" in second, f"önce iletişim stratejileri, sonra telefon (zorlanılan alan) ({first.strip()[:24]} / {second.strip()[:20]})")
         page.click("text=Devam")
         check(page.input_value("#goal") == "100", "varsayılan günlük hedef 100 dk")
         page.click("text=Devam")
@@ -140,8 +143,9 @@ def main():
         page.click("text=Bugün'e git")
         page.wait_for_selector("[data-test=next-activity]")
         na = page.inner_text("[data-test=next-activity]")
-        check("Seans 1" in na and "Doktordan telefonla randevu almak" in na, "sıradaki etkinlik: seans 1 → telefon senaryosu")
-        check("İçerik inceleme bekliyor" in na, "inceleme bekleyen içerik etiketli")
+        check("Seans 1" in na and STRAT_TITLE in na, f"sıradaki etkinlik: seans 1 → strateji senaryosu ({na[:60]!r})")
+        draft = STRAT_REVIEW != "reviewed"
+        check(("İçerik inceleme bekliyor" in na) == draft, f"inceleme etiketi içerik durumuna uygun ({STRAT_REVIEW})")
         page.wait_for_selector("[data-test=weak] li")
         weak = page.inner_text("[data-test=weak]")
         check("Seviye tespitinde" not in weak and "Şu an listede kelime yok" not in weak, "bilinmeyen kelimeler zayıflık listesinde")
@@ -151,17 +155,22 @@ def main():
 
         print("5) senaryo çalışma sayfası ve odak sayacı (sahte saat)")
         page.clock.install()
-        page.goto(f"http://127.0.0.1:{PORT}/#/scenario/" + "sc%3Atelefon%3A01-arzttermin")
+        # hash ile git, ekran yüklensin, SONRA yeniden yükle (goto + hemen reload yarışı WebKit'te içerik isteğini iptal ediyordu)
+        page.evaluate("location.hash = '#/scenario/sc%3Atelefon%3A01-arzttermin'")
+        page.wait_for_selector("[data-test=continue]")
         page.reload()
-        page.wait_for_selector("[data-test=chunks]")
-        check("Könnten Sie das bitte wiederholen?" in page.inner_text("[data-test=chunks]"), "temel ifadeler Hochdeutsch katmanıyla")
-        check("Wie bitte?" in page.inner_text("[data-test=chunks]"), "gündelik (Alltagsdeutsch) katmanı görünüyor")
+        page.wait_for_selector("[data-test=continue]")
+        check(page.locator("[data-section]").count() == 7, "senaryo sayfası: 7 bölüm")
         shot(page, "05-scenario")
         no_overflow(page, "senaryo")
+        page.click("[data-test=continue]")
+        page.wait_for_selector("[data-test=stage-intro]")
         for m in range(26):
             page.dispatch_event("body", "pointerdown")
             page.clock.run_for(60_000)
-        page.click("[data-tab=today]")
+        page.wait_for_selector(".breakov [data-test=break]")
+        check(True, "öğrenme ekranında mola başlayınca mola kartı ekranı kapladı (v1 gibi)")
+        page.goto(f"http://127.0.0.1:{PORT}/#/today")
         page.wait_for_selector("[data-test=break]")
         check("1. seans tamam" in page.inner_text("[data-test=break]").lower(), "25 dk aktif çalışmadan sonra mola başladı")
         check("1/4 seans" in page.inner_text("[data-test=sessions-done]"), "tamamlanan seans 1/4")
@@ -205,11 +214,20 @@ def main():
         page.wait_for_selector("[data-test=today-min]")
         check("/ 120 dk" in page.inner_text("[data-test=today-min]"), "yeni hedef (120 dk) yeniden yüklemeden sonra korunuyor")
 
+        print("7b) B1 hedefi: SAHTE tarihle (PM-001: gerçek tarih depoda yok)")
+        page.click("[data-tab=profile]")
+        page.check("text=B1 sınavına hazırlık")
+        page.fill("input[aria-label='Sınav tarihi']", "2099-01-01"); page.press("input[aria-label='Sınav tarihi']", "Tab")
+        page.wait_for_timeout(300)
+        page.click("[data-tab=today]")
+        page.wait_for_selector("[data-test=exam-badge]")
+        check("gün" in page.inner_text("[data-test=exam-badge]"), "B1 açıkken Bugün'de sınav rozeti (kalan gün)")
+
         print("8) Öğren")
         page.click("[data-tab=learn]")
         page.wait_for_selector("[data-domain=telefon]")
-        check(page.locator("[data-domain]").count() == 13, "13 gerçek hayat alanı listeleniyor")
-        check(page.locator("[data-domain]").first.get_attribute("data-domain") == "telefon", "alanlar öncelik sırasına göre")
+        check(page.locator("[data-domain]").count() == 20, "20 gerçek hayat alanı listeleniyor")
+        check(page.locator("[data-domain]").first.get_attribute("data-domain") == "strategie" and page.locator("[data-domain]").nth(1).get_attribute("data-domain") == "telefon", "alanlar öncelik sırasına göre (strateji, telefon)")
         page.click("[data-domain=amt]")
         page.wait_for_selector("text=İlgili v1 kurs üniteleri")
         check("A1-09" in page.inner_text("main"), "v2 içeriği olmayan alanda v1 üniteleri bağlantısı")

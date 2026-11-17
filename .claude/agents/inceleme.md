@@ -13,7 +13,7 @@ Verilen PR numarasını temiz bağlamla incelemek (bu ortamda GitHub GraphQL kap
 Depoya hiçbir şey yazmaz. Tek çıktısı PR yorumu: `gh api repos/Mutemadiyennn/deutsch-werkstatt/issues/N/comments -F body=@/tmp/inceleme-N.md`. Depoyu yerelde okumak için ayrı bir çalışma ağacı kullanır (`git worktree add /tmp/inc-N <dal>`); ana çalışma dizinine dokunmaz.
 
 ## Okuyacağı belgeler
-`CLAUDE.md` · `docs/v2/STATUS.md` · `docs/v2/DECISIONS.md` · `docs/v2/PEDAGOGY.md` · `docs/v2/phases/*` · PR diff'i ve CI çıktısı (yukarıdaki REST çağrıları).
+`docs/v2/LEARNER.md` (önce) · `CLAUDE.md` · `docs/v2/STATUS.md` · `docs/v2/DECISIONS.md` · `docs/v2/PEDAGOGY.md` · `docs/v2/phases/*` · PR diff'i ve CI çıktısı (yukarıdaki REST çağrıları).
 
 ## Kalite ölçütleri (kontrol listesi)
 1. Doğruluk: mantık hatası, kenar durum, yarış durumu, hata yolunda kullanıcı ekranda kalıyor mu.

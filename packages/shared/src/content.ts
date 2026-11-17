@@ -31,19 +31,22 @@ export const Domain = z.object({
 });
 export type Domain = z.infer<typeof Domain>;
 
+export const Tier = z.enum(["K1", "K2", "K3"]);
 export const Example = z.object({
   id: z.string(),
   de: z.string().min(1),
   tr: z.string().min(1),
   img: z.string().optional(),
-  layer: z.enum(["hd", "alltag"]).default("hd")
+  layer: z.enum(["hd", "alltag"]).default("hd"),
+  /** Diyalog içinden örnek ("– … – …" biçiminde iki konuşmacı) */
+  dialog: z.boolean().optional()
 });
 
 export const Lexeme = z.object({
   id: LexemeId,
   de: z.string().min(1),
   tr: z.string().min(1),
-  pos: z.enum(["noun", "verb", "adj", "phrase", "other"]),
+  pos: z.enum(["noun", "verb", "adj", "adv", "prep", "conj", "pron", "det", "num", "particle", "phrase", "other"]),
   art: z.enum(["der", "die", "das"]).optional(),
   pl: z.string().optional(),
   verb: z
@@ -51,10 +54,10 @@ export const Lexeme = z.object({
       praesens3: z.string().optional(),
       praeteritum: z.string().optional(),
       perfekt: z.string().optional(),
-      aux: z.enum(["haben", "sein"]).optional(),
+      aux: z.enum(["haben", "sein", "haben/sein"]).optional(),
       separable: z.string().optional(),
       reflexive: z.boolean().optional(),
-      case: z.array(z.enum(["akk", "dat"])).optional(),
+      case: z.array(z.enum(["akk", "dat", "gen"])).optional(),
       prep: z.array(z.string()).optional()
     })
     .optional(),
@@ -67,10 +70,19 @@ export const Lexeme = z.object({
   mistakes_tr: z.array(z.string()).default([]),
   examples: z.array(Example).default([]),
   level: Level.optional(),
+  /** Katman: K1 derin kart, K2 hafif kart, K3 kişisel */
+  tier: Tier.optional(),
+  /** Altyazı sıklık sırası (lemma), FrequencyWords/OpenSubtitles */
+  freqRank: z.number().int().positive().optional(),
+  domains: z.array(z.string()).default([]),
   /** v1 kaynakları: ünite + kurs motorundaki kelime anahtarı (kuWKey = "<ünite>:w:<de>"); ilerleme taşıma için */
   legacy: z.array(z.object({ unit: z.string(), key: z.string() })).default([])
 });
 export type Lexeme = z.infer<typeof Lexeme>;
+
+export const ReviewState = z.object({ status: z.enum(["draft", "reviewed"]), by: z.string().optional(), at: z.string().optional(), notes: z.string().optional() });
+/** Sözlük partisi dosyası: content/v2/registry/lexicon/batch-NNN.json */
+export const LexiconBatch = z.object({ batch: z.string(), review: ReviewState, items: z.array(Lexeme).min(1) });
 
 export const BairLayer = z.object({
   text: z.string().min(1),
@@ -79,6 +91,9 @@ export const BairLayer = z.object({
   note_tr: z.string().optional()
 });
 
+/** Yutulan sesler: duyulan biçim → tam biçim (ör. "haste" → "hast du") */
+export const Reduction = z.object({ heard: z.string(), full: z.string() });
+
 export const Chunk = z.object({
   id: ChunkId,
   tr: z.string().min(1),
@@ -86,6 +101,8 @@ export const Chunk = z.object({
   pattern: PatternId.optional(),
   register: Register.default("neutral"),
   layers: z.object({ hd: z.string().min(1), alltag: z.string().optional(), bair: BairLayer.optional() }),
+  /** İşlev: ne zaman, hangi tonla (özellikle Alltag işaretleri için) */
+  use_tr: z.string().optional(),
   mistakes_tr: z.array(z.string()).default([])
 });
 export type Chunk = z.infer<typeof Chunk>;
@@ -93,9 +110,19 @@ export type Chunk = z.infer<typeof Chunk>;
 export const Pattern = z.object({
   id: PatternId,
   frame: z.string().min(1),
+  level: Level.default("A1"),
+  core: z.boolean().default(false),
+  /** 2–4 satır Türkçe not */
   grammar_tr: z.string().min(5),
-  examples: z.array(z.object({ de: z.string(), tr: z.string() })).min(1),
-  grammarRef: z.string().optional()
+  slots: z.array(z.object({ name: z.string(), fills: z.array(z.string()) })).default([]),
+  examples: z.array(z.object({ de: z.string(), tr: z.string(), layer: z.enum(["hd", "alltag"]).default("hd") })).min(1),
+  transforms: z
+    .object({ question: z.string(), negative: z.string(), polite: z.string(), perfekt: z.string(), weil: z.string(), dass: z.string(), wenn: z.string() })
+    .partial()
+    .default({}),
+  mistakes_tr: z.array(z.string()).default([]),
+  grammarRef: z.string().optional(),
+  review: ReviewState.optional()
 });
 export type Pattern = z.infer<typeof Pattern>;
 
@@ -110,14 +137,38 @@ export const GrammarNote = z.object({
 });
 export type GrammarNote = z.infer<typeof GrammarNote>;
 
+/** Üretim maddesi: accepted[0] kanonik cevap; diğerleri kabul edilen varyantlar (kelime sırası alternatifleri dahil) */
+const Accepted = z.array(z.string().min(1)).min(1);
+
 export const DialogueLine = z.object({
   r: z.enum(["A", "B"]),
   de: z.string().min(1),
   tr: z.string().min(1),
   starter: z.string().optional(),
   keywords: z.array(z.string()).optional(),
-  hint_tr: z.string().optional()
+  hint_tr: z.string().optional(),
+  accepted: z.array(z.string()).optional(),
+  speed: Speed.optional()
 });
+export const Dialogue = z.object({
+  id: z.string(),
+  title_tr: z.string(),
+  roles: z.object({ A: z.string(), B: z.string() }),
+  lines: z.array(DialogueLine).min(4)
+});
+
+export const Drill = z.discriminatedUnion("k", [
+  z.object({ id: z.string(), k: z.literal("gap"), de: z.string().includes("___"), tr: z.string(), accepted: Accepted, opts: z.array(z.string()).optional(), why_tr: z.string().optional() }),
+  z.object({ id: z.string(), k: z.literal("order"), de: z.string(), tr: z.string(), accepted: Accepted, why_tr: z.string().optional() }),
+  z.object({ id: z.string(), k: z.literal("pick"), q_tr: z.string(), opts: z.array(z.string()).min(2), ans: z.number().int().min(0), why_tr: z.string().optional() }),
+  z.object({ id: z.string(), k: z.literal("transform"), instr_tr: z.string(), from_de: z.string(), accepted: Accepted, why_tr: z.string().optional() }),
+  z.object({ id: z.string(), k: z.literal("guided_response"), situation_tr: z.string(), prompt_de: z.string(), accepted: Accepted, why_tr: z.string().optional() }),
+  z.object({ id: z.string(), k: z.literal("listen_and_respond"), audio_de: z.string(), speed: Speed, situation_tr: z.string().optional(), accepted: Accepted, why_tr: z.string().optional() }),
+  z.object({ id: z.string(), k: z.literal("tr_de"), tr: z.string(), accepted: Accepted, why_tr: z.string().optional() })
+]);
+export type Drill = z.infer<typeof Drill>;
+/** Üretim türleri (accepted ≥ 3 kuralı bunlara uygulanır; gap ve order tek kelime/tek dizilim olabildiği için ≥1) */
+export const PRODUCTION_DRILLS = ["gap", "order", "transform", "guided_response", "listen_and_respond", "tr_de"] as const;
 
 export const Scenario = z.object({
   id: ScenarioId,
@@ -128,29 +179,52 @@ export const Scenario = z.object({
   title_de: z.string(),
   goal_tr: z.string(),
   /** İnceleme durumu: "draft" içerik arayüzde "inceleme bekliyor" etiketiyle gösterilir */
-  review: z.object({ status: z.enum(["draft", "reviewed"]), by: z.string().optional(), at: z.string().optional() }),
+  review: ReviewState,
   essentials: z.object({ lexemes: z.array(LexemeId), chunks: z.array(ChunkId), patterns: z.array(PatternId) }),
   extras: z.object({ lexemes: z.array(LexemeId).default([]), chunks: z.array(ChunkId).default([]) }).default({ lexemes: [], chunks: [] }),
   chunks: z.array(Chunk).default([]),
-  otherSide: z.array(z.object({ id: z.string(), de: z.string(), tr: z.string(), layer: LayerKey.default("hd") })).default([]),
+  otherSide: z.array(z.object({ id: z.string(), de: z.string(), tr: z.string(), layer: LayerKey, speed: Speed, reductions: z.array(Reduction).optional() })).default([]),
   responses: z
     .array(z.object({ to: z.string(), options: z.array(z.object({ de: z.string(), tr: z.string(), register: Register.default("neutral") })).min(1) }))
     .default([]),
-  dialogue: z.object({
-    title_tr: z.string(),
-    roles: z.object({ A: z.string(), B: z.string() }),
-    lines: z.array(DialogueLine).min(4)
-  }),
+  /** Aşama 3: cümle kurma */
+  build: z.array(z.object({ id: z.string(), prompt_tr: z.string(), accepted: Accepted, pattern: PatternId.optional(), chunk: ChunkId.optional() })).default([]),
+  /** Aşama 4: kontrollü alıştırma */
+  drills: z.array(Drill).default([]),
+  /** Aşama 5: en az 3 diyalog çeşidi (karşı taraf farklı tepki verir) */
+  dialogues: z.array(Dialogue).default([]),
+  /** Aşama 6: rol oyunu. Ölçülen: görevin başarılması (goals), hedef cümle eşleşmesi değil */
   roleplay: z.object({
     scene_tr: z.string(),
     partner_de: z.string(),
     opener_de: z.string(),
-    targets: z.array(z.string()).min(1)
+    goals: z.array(z.object({ id: z.string(), tr: z.string(), de: z.string() })).min(1),
+    targets: z.array(z.string()).default([]),
+    levels: z.array(z.object({ level: z.number().int().min(1).max(3), style_de: z.string(), speed: Speed })).default([]),
+    surprises: z.array(z.object({ de: z.string(), tr: z.string() })).default([])
   }),
+  listening: z
+    .array(z.object({
+      id: z.string(), title_tr: z.string(), speed: Speed, layer: LayerKey,
+      /** D-065: hazır ses gelene kadar cihaz sesinin sunulacağı hızlar (en az 1); speed = başlangıç */
+      speeds: z.array(Speed).min(1),
+      script: z.array(z.object({ r: z.string(), de: z.string(), tr: z.string().optional(), reductions: z.array(Reduction).optional() })).min(1),
+      qs: z.array(z.object({ kind: z.enum(["gist", "detail"]), q_tr: z.string(), opts: z.array(z.string()).min(2), ans: z.number().int().min(0) })).min(1)
+    }))
+    .default([]),
+  speaking: z.array(z.object({ task_tr: z.string(), model_de: z.string(), hints_de: z.array(z.string()).default([]) })).default([]),
+  missions: z.array(z.object({ id: z.string(), task_tr: z.string(), prep: z.array(ChunkId).default([]), escape_de: z.array(z.string()).default([]) })).default([]),
   mistakes_tr: z.array(z.string()).default([]),
-  source: z.object({ legacyUnit: z.string().optional() }).default({})
+  source: z.object({ legacyUnit: z.string().optional(), notes: z.string().optional() }).default({})
 });
 export type Scenario = z.infer<typeof Scenario>;
+
+/** Senaryodaki üretim maddesi sayısı (≥80 kuralı) */
+export function productionCount(s: Scenario): number {
+  const drills = s.drills.filter((d) => (PRODUCTION_DRILLS as readonly string[]).includes(d.k)).length;
+  const lines = s.dialogues.reduce((n, d) => n + d.lines.filter((l) => l.r === "B").length, 0);
+  return s.build.length + drills + lines + s.speaking.length;
+}
 
 /* ---------- Seviye tespiti bankası ---------- */
 const AssessBase = { id: z.string(), level: Level, source: z.string() };
@@ -171,6 +245,21 @@ export const AssessSkill = z.enum(["vocab_passive", "vocab_active", "listening",
 export type AssessSkill = z.infer<typeof AssessSkill>;
 
 /** Derlenmiş içerik paketinin indeksi (site/content/<ver>/index.json) */
+/** H4 §2–§3: dünya (kurgusal şehir, kalıcı karakterler, 26 haftalık hikâye, gerçek takvim) — content/v2/world/world.json */
+export const CharacterId = z.string().regex(/^ch:[a-z0-9-]+$/);
+export const World = z.object({
+  town: z.object({ id: z.string(), name: z.string(), kind: z.string(), desc_tr: z.string(), neighbourhood: z.string(), places: z.array(z.object({ id: z.string(), name: z.string(), domain: z.string(), tr: z.string() })).min(5) }),
+  characters: z.array(z.object({
+    id: CharacterId, name: z.string(), age: z.number().int(), role_tr: z.string(), rel_tr: z.string(), personality_tr: z.string(),
+    mix: z.object({ hd: z.number(), alltag: z.number(), bair: z.number() }), speed: Speed, phrases: z.array(z.string()).min(2), bair_note: z.string().optional(), domains: z.array(z.string()).min(1)
+  })).min(10).max(12),
+  story: z.array(z.object({ week: z.number().int(), from: z.string(), title_de: z.string(), title_tr: z.string(), plot_tr: z.string(), characters: z.array(CharacterId).min(1), domains: z.array(z.string()).min(1), real_task_tr: z.string(), calendar: z.string().nullable() })).length(26),
+  reserves: z.array(z.object({ id: z.string(), title_de: z.string(), title_tr: z.string(), plot_tr: z.string(), characters: z.array(CharacterId), domains: z.array(z.string()) })).default([]),
+  calendar: z.array(z.object({ id: z.string(), when: z.string(), tr: z.string(), content: z.array(z.string()), source: z.string() })).min(1),
+  review: ReviewState
+});
+export type World = z.infer<typeof World>;
+
 export const ContentIndex = z.object({
   version: z.string(),
   builtAt: z.string(),

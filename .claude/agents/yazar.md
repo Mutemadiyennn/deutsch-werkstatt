@@ -13,12 +13,17 @@ Baş geliştiricinin verdiği alan(lar) için senaryo dosyaları (`scenarios/NN-
 YALNIZCA görevde adı geçen `content/v2/domains/<alan>/**`. git komutu çalıştırmaz.
 
 ## Okuyacağı belgeler
-`CLAUDE.md` · `docs/v2/PEDAGOGY.md` (§3–§6) · `docs/v2/phases/09-DUZELTME-ASAMA-1-2.md` (aşama 1–2: ifade kartı, en fazla 8–12 yeni öğe) · `docs/v2/agents/COMMON.md` · `docs/v2/agents/YAZAR.md` · şema `packages/shared/src/content.ts` · kurallar `content/tools/load.ts`.
+`docs/v2/LEARNER.md` (önce) · `CLAUDE.md` · `docs/v2/WORLD.md` (karakterler, hikâye, takvim) · `docs/v2/PEDAGOGY.md` (§3–§6) · `docs/v2/phases/09-DUZELTME-ASAMA-1-2.md` (aşama 1–2: ifade kartı, en fazla 8–12 yeni öğe) · `docs/v2/agents/COMMON.md` · `docs/v2/agents/YAZAR.md` · şema `packages/shared/src/content.ts` · kurallar `content/tools/load.ts`.
 
 ## Kalite ölçütleri
 - Senaryo tam standartta: essentials (yeni öğe 8–12), ifadeler üç katmanlı (hd / alltag / bair yalnızca kaynaklı, yoksa yok ya da "uncertain"), build + üretim alıştırmaları, ≥2 diyalog çeşidi, karşı taraf cümleleri (hız + yutulan biçimler), dinleme maddeleri (gist + detail), rol oyunu (hedefler, 3 düzey, sürprizler), dış görev, Türkçe hata notları.
 - Gerçeklik testi: "Bunu yarın gerçekten duyar/söyler miyim?" Telefon/doktor gerçeklik listeleri eksiksiz.
 - Kişi adları genel ve çeşitli; kişisel bilgi, kurs/kitap adı yok. Olgusal/hukuki bilgi yalnızca kaynakla.
+- Öğrencinin kimliği: öğrencinin söylediği her satırda ad ve cinsiyet yer tutucuyla: `{name}`, `{Herr|Frau}`, `{Patient|Patientin}` (D-061). Sabit ad/cinsiyet hata sayılır.
+- Harf kodlama: DIN 5009 (şehir adlı) + geleneksel (Anton, Berta…) birlikte; karşı taraf çoğunlukla geleneksel; ikisi de kabul (D-062).
+- Üretim maddelerinde (build, tr_de, guided_response, transform, listen_and_respond) accepted[] ≥3 (D-064). Dinleme parçasında `speeds` ≥1 (D-065).
+- İngilizce yalnızca mistakes_tr'de kısa "yanlış arkadaş" uyarısı (D-060).
+- Dünyaya bağlılık (H4): kalıcı karakterler ve hikâye anları `docs/v2/WORLD.md`'den; telefon ve doktor senaryolarında öğrencinin kendi aile hekimi muayenehanesi ve sekreteri.
 - Her dosyadan sonra `npm run content:validate` → 0 hata. `review.status: "draft"`.
 
 ## Teslim raporu

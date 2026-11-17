@@ -3,7 +3,7 @@
  * Sunucu adresi derleme ayarıdır (VITE_API_BASE). Tanımlı değilse yapay zekâ özellikleri "sunucu bağlı değil" der
  * ve uygulama yapay zekâsız akışla devam eder.
  */
-import { ApiError as ApiErrorSchema, ERROR_TR, type AiInput, type AiOutput, type AiTaskName, type ErrorCode, type HealthResponse, type UsageResponse } from "@dw/shared";
+import { ApiError as ApiErrorSchema, ERROR_TR, type AiInput, type AiOutput, type AiTaskName, type ErrorCode, type HealthResponse, type PhotoResult, type UsageResponse } from "@dw/shared";
 
 export class ApiError extends Error {
   constructor(public code: ErrorCode, public message_tr: string, public retryable: boolean) { super(code); }
@@ -34,7 +34,7 @@ export function createApi(d: ApiDeps) {
       if (!r.ok) {
         const p = ApiErrorSchema.safeParse(body);
         if (p.success) throw new ApiError(p.data.error.code, p.data.error.message_tr, p.data.error.retryable);
-        throw err(r.status === 503 ? "upstream_busy" : "internal");
+        throw err(r.status === 503 ? "upstream_busy" : r.status === 429 ? "quota_upstream" : r.status === 502 ? "bad_output" : r.status === 504 ? "timeout" : "internal");
       }
       return body as T;
     } catch (e) {
@@ -49,6 +49,7 @@ export function createApi(d: ApiDeps) {
     configured: !!d.base,
     health: () => call<HealthResponse>("/v1/health", { auth: false, timeoutMs: 8000 }),
     usage: () => call<UsageResponse>("/v1/usage"),
+    photos: async (q: string) => (await call<{ photos: PhotoResult[] }>(`/v1/photos?q=${encodeURIComponent(q)}&n=6`, { timeoutMs: 9000 })).photos,
     ai: async <T extends AiTaskName>(task: T, vars: AiInput<T>, timeoutMs = 15_000) =>
       (await call<{ output: AiOutput<T> }>("/v1/ai/run", { method: "POST", body: JSON.stringify({ task, vars }), timeoutMs })).output
   };

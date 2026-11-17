@@ -1,15 +1,25 @@
 import { describe, it, expect } from "vitest";
 import { loadContent, checkRules } from "./load.ts";
 import { importV1, sameSense } from "./import-v1.ts";
+import { AiTasks } from "../../packages/shared/src/api.ts";
 
 describe("içerik v2", () => {
   const c = checkRules(loadContent());
   it("bütün dosyalar şemaya uyuyor ve kurallar 0 hata veriyor", () => {
     expect(c.errors).toEqual([]);
   });
-  it("13 alan var ve her biri v1 ünitelerine bağlı", () => {
-    expect(c.domains).toHaveLength(13);
-    expect(c.domains.every((d) => d.legacyUnits.length > 0)).toBe(true);
+  it("dünya (H4 §2): 10–12 kalıcı karakter, 26 haftalık hikâye, takvim; kimlikler tutarlı", () => {
+    expect(c.world).toBeTruthy();
+    expect(c.world!.characters.length).toBeGreaterThanOrEqual(10);
+    expect(c.world!.characters.length).toBeLessThanOrEqual(12);
+    expect(c.world!.story).toHaveLength(26);
+    expect(c.world!.calendar.some((x) => x.id === "cal:advent")).toBe(true);
+    // öğrenci karakteri adsız: hikâye metinlerinde öğrenciye ad verilmez
+    for (const s of c.world!.story) expect(s.plot_tr).not.toMatch(/\{name\}/);
+  });
+  it("20 alan var (PEDAGOGY §4), strateji ilk sırada", () => {
+    expect(c.domains).toHaveLength(20);
+    expect(c.domains[0]!.id).toBe("strategie");
   });
   it("v1'in 715 kelime kaydının hepsi aktarılmış (aynı anlamdakiler birleşmiş)", () => {
     const keys = c.lexemes.flatMap((l) => l.legacy.map((x) => x.key));
@@ -37,5 +47,17 @@ describe("v1 aktarımı", () => {
   it("deterministik: iki çalıştırma aynı sonucu verir", () => {
     const u = [{ id: "a1-01", lvl: "A1.1", teach: [], drills: [], test: [], words: ["Haus:ev", "Baum:ağaç", "Auto:araba", "Tür:kapı", "Tisch:masa"].map((x) => ({ de: x.split(":")[0]!, tr: x.split(":")[1]!, art: "das", pl: "", t: "n" as const })) }];
     expect(JSON.stringify(importV1(u))).toBe(JSON.stringify(importV1(u)));
+  });
+  it("her senaryonun rol oyunu verisi sunucu görev sınırlarına sığıyor (roleplay_turn / feedback_tr)", () => {
+    for (const { data: s } of checkRules(loadContent()).scenarios) {
+      const rp = s.roleplay;
+      const levels = rp.levels.length ? rp.levels : [{ level: 1, style_de: undefined }];
+      for (const lv of levels) for (const sur of [undefined, ...rp.surprises.map((x) => x.de)]) {
+        const r = AiTasks.roleplay_turn.input.safeParse({ partner_de: rp.partner_de, scene_tr: rp.scene_tr, goals_de: rp.goals.map((g) => g.de), level: lv.level, style_de: lv.style_de, surprise_de: sur, history: [{ r: "partner", de: rp.opener_de }], stuck: 0 });
+        expect(r.success, `${s.id} roleplay_turn: ${r.success ? "" : r.error.issues[0]?.path.join(".") + " " + r.error.issues[0]?.message}`).toBe(true);
+      }
+      const f = AiTasks.feedback_tr.input.safeParse({ scene_tr: rp.scene_tr, goals: rp.goals.map((g) => ({ id: g.id, de: g.de })), transcript: [{ r: "partner", de: rp.opener_de }] });
+      expect(f.success, `${s.id} feedback_tr`).toBe(true);
+    }
   });
 });

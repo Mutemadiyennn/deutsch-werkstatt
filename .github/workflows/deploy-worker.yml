@@ -1,0 +1,62 @@
+name: v2 — Worker dağıtımı (Cloudflare)
+# Gizli değerler YALNIZCA GitHub şifreli secret'larında: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID,
+# GEMINI_KEY, PEXELS_KEY, ALLOWED_UIDS. Bu iş onları Worker'a "secret" olarak aktarır; loglara yazılmaz.
+on:
+  push:
+    branches: [main]
+    paths: ["worker/**", "packages/shared/**", ".github/workflows/deploy-worker.yml"]
+  workflow_dispatch:
+concurrency: { group: deploy-worker, cancel-in-progress: false }
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Cloudflare secret'ları tanımlı mı
+        id: chk
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "skip=1" >> "$GITHUB_OUTPUT"; echo "::notice::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID yok; dağıtım atlandı (docs/v2/CLOUDFLARE_TELEFON.md)."
+          fi
+      - uses: actions/checkout@v4
+        if: steps.chk.outputs.skip != '1'
+      - uses: actions/setup-node@v4
+        if: steps.chk.outputs.skip != '1'
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+        if: steps.chk.outputs.skip != '1'
+      - name: Testler (Worker + sözleşmeler)
+        if: steps.chk.outputs.skip != '1'
+        run: npx vitest run worker packages
+      - name: KV ad alanı (yoksa oluştur) ve wrangler.toml'a yaz
+        if: steps.chk.outputs.skip != '1'
+        working-directory: worker
+        run: |
+          find_id() { npx wrangler kv namespace list 2>/dev/null | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{const a=JSON.parse(s.slice(s.indexOf("[")));const n=a.find(x=>x.title==="QUOTA"||x.title.endsWith("-QUOTA"));process.stdout.write(n?n.id:"")}catch(e){}})'; }
+          ID=$(find_id)
+          if [ -z "$ID" ]; then npx wrangler kv namespace create QUOTA >/dev/null; ID=$(find_id); fi
+          [ -n "$ID" ] || { echo "::error::KV ad alanı bulunamadı/oluşturulamadı"; exit 1; }
+          sed -i "s/REPLACE_WITH_KV_NAMESPACE_ID/$ID/" wrangler.toml
+      - name: Dağıt
+        if: steps.chk.outputs.skip != '1'
+        working-directory: worker
+        run: npx wrangler deploy | tee /tmp/deploy.log
+      - name: Gizli değerleri Worker'a aktar (yalnızca tanımlı olanlar)
+        if: steps.chk.outputs.skip != '1'
+        working-directory: worker
+        env:
+          GEMINI_KEY: ${{ secrets.GEMINI_KEY }}
+          PEXELS_KEY: ${{ secrets.PEXELS_KEY }}
+          ALLOWED_UIDS: ${{ secrets.ALLOWED_UIDS }}
+        run: |
+          for k in GEMINI_KEY PEXELS_KEY ALLOWED_UIDS; do
+            v="${!k}"; if [ -n "$v" ]; then printf '%s' "$v" | npx wrangler secret put "$k" >/dev/null && echo "✓ $k aktarıldı"; else echo "– $k tanımlı değil"; fi
+          done
+      - name: Adres ve sağlık kontrolü
+        if: steps.chk.outputs.skip != '1'
+        run: |
+          URL=$(grep -oE 'https://[a-z0-9.-]+\.workers\.dev' /tmp/deploy.log | head -1)
+          echo "Worker adresi: $URL  → GitHub'da Variables: V2_API_BASE=$URL"
+          [ -n "$URL" ] && curl -s "$URL/v1/health" && echo

@@ -15,7 +15,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 `tests/e2e/**` · `docs/v2/qa/**`. Uygulama koduna yazmaz (bulguyu rapor eder). git komutu çalıştırmaz.
 
 ## Okuyacağı belgeler
-`CLAUDE.md` · `docs/v2/STATUS.md` · `docs/v2/phases/05-EK2-IPHONE-ON-YUZ-STANDARDI.md` · `docs/v2/phases/04-EK1-ARAYUZ-KALITE-CITASI.md` · `docs/v2/PEDAGOGY.md` · `tests/e2e/common.py`.
+`docs/v2/LEARNER.md` (önce) · `CLAUDE.md` · `docs/v2/STATUS.md` · `docs/v2/phases/05-EK2-IPHONE-ON-YUZ-STANDARDI.md` · `docs/v2/phases/04-EK1-ARAYUZ-KALITE-CITASI.md` · `docs/v2/PEDAGOGY.md` · `tests/e2e/common.py`.
 
 ## Kalite ölçütleri
 - Testler davranışı kanıtlar (yalnızca ekranın açıldığını değil); sabit beklemeler yerine seçici beklemeler; CSP nedeniyle `wait_for_function` metni kullanılmaz.

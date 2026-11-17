@@ -1,53 +1,164 @@
 # STATUS — Deutsch Werkstatt 2.0
 
-Son güncelleme: 2026-11-17 · Faz: **H3** (kontrol noktasına doğru) · Ana dal: `main` (`1852bf4`, Faz 3 birleşti)
+Son güncelleme: 2026-11-17 · Faz: **H3 kontrol noktası → R1** · Ana dal: `main` (`1852bf4`)
+Yeni oturum: `CLAUDE.md` → `LEARNING_SYSTEM.md` → `LEARNER.md` → bu dosya → `DECISIONS.md`. "Sıradaki adım"dan devam et.
 
-Yeni oturum: önce `CLAUDE.md`, sonra bu dosya, `DECISIONS.md`, `PEDAGOGY.md`, `phases/`. "Sıradaki adım" bölümünden devam et.
+## Açık PR'lar (yığın, alttan üste; D-041: kabul = tepedeki PR'ın WebKit CI'ı, yığın tek seferde birleşir)
+| PR | Dal | Teslim | CI |
+|---|---|---|---|
+| #2 | `v2/t04` | H2-c: v1 taşınabilir derleme + 17a (yayında), ayrı | ✓ |
+| #3 | `v2/calisma-duzeni` | Çalışma düzeni (CLAUDE.md, ajanlar, phases, STATUS, DECISIONS, etiket + geri alma) | ✓ |
+| #4 | `v2/h3-1-4` | H3 1–4: PEDAGOGY, şema, doğrulayıcı, sıklık, kalıp iskeleti | ara katman |
+| #5 | `v2/h3-5-lex` | H3 5: K1 kartları 001–008 (taslak) | ara katman |
+| #6 | `v2/h3-6-pilot01` | H3 6: strategie/telefon/arzt 01 + dilbilimci incelemesi | ara katman |
+| #7 | `v2/h3-7-oynatici` | H3 7 + EK1 + EK2 + inceleme düzeltmeleri | ✓ WebKit iPhone 15 + 16 Pro Max |
+| #8 | `v2/asama-1-2` | D-050 aşama 1–2 yeniden tasarım | koşuyor |
+| #9 | `v2/h4-a-ogrenci` | H4-a: LEARNER.md, CLAUDE.md, PM kararları | — |
+| #10 | `v2/pm-kimlik-kurallar` | PM P1/P2: kimlik yer tutucuları, kalıp kapısı, accepted ≥3, hızlar | — |
+| #11 | `v2/ls-belge` | Faz R a–c: LEARNING_SYSTEM.md, CLAUDE.md okuma listesi, bu tablo | — |
+| (yeni) | `v2/pm-kanal` | PM kanalı kuralı (D-080), PM-001 sınav tarihi/kurum adı (D-075), sahte tarihli test | — |
+| (yeni) | `v2/h4-b-dunya` | H4-b: WORLD.md + world.json (12 karakter, 26 hafta, takvim) + şema/doğrulayıcı | — |
 
-## Açık PR'lar (yığın: alttan üste sırayla birleşir, D-041)
-| Dal | Teslim | Durum |
-|---|---|---|
-| `v2/t04` | H2-c: v1 taşınabilir derleme + 2026-11-17a (yayında) | PR açık, ayrı (v1) |
-| `v2/calisma-duzeni` | Çalışma düzeni: CLAUDE.md, ajan tanımları, phases/, STATUS, DECISIONS, yayın etiketi + geri alma | yığının altı |
-| `v2/h3-1-4` | H3 1–4: PEDAGOGY, şema v2.1 + doğrulayıcı, sıklık hattı (5.000 lemma), 61 kalıp iskeleti | yığın |
-| `v2/h3-5-lex` | H3 5: derin kartlar parti 001–008 (800 K1, taslak) | yığın; dilbilimci incelemesi bekliyor |
-| `v2/h3-6-pilot01` | H3 6 (ilk dilim): strategie/01, telefon/01, arzt/01 taslakları + alan önerileri | yığın; dilbilimci bekliyor |
-| `v2/h3-7-oynatici` | H3 7 + EK1 + EK2: oynatıcı (aşama 1–6 + dinleme), yapay zekâ katmanı, rol oyunu yumuşak bekleme, v1 görünüm dili, WebKit CI + görsel regresyon | yığın; kabul = WebKit CI |
-| `v2/asama-1-2` | D-050: aşama 1–2 yeniden tasarım + küçük arayüz düzeltmeleri | yapılacak |
+Bağımsız inceleme (inceleme ajanı) #2–#7'ye yorum yazdı. #4 ve #7 bulguları düzeltildi: PEDAGOGY'deki kurum adı; rol oyunu sınırları, destek düzeyi, "Benim cevabım da doğru", bitir/geç yanıt, ≥44 pt, WebKit yarışı.
+
+## PM kanalı (D-080)
+- Genel talimatlar: issue #12; PR'a özgü: PR altında `[PM]` yorumları. Her anlamlı adımda ve her birleştirmeden önce okunur; her talimata ✓/✗ yanıtı.
+- Bekleme gerekirse send_later ile 60 dk'da bir #12 kontrolü (araç bu ortamda var).
+- Son okuma: 2026-11-17 · PM-001 ✓ (v2 kısmı; v1 kalıntıları T05'te onay bekliyor) · PM-002 → R1 dökümüne eklendi.
+
+## R1 görev dökümü — "İlk telefon" (LS-17 R1; kabul: LS-16.3 simülasyonu ilk hafta senaryosunu baştan sona tamamlar + yapay zekâsız gün geçer)
+| # | Görev | LS / kaynak | Durum |
+|---|---|---|---|
+| R1-01 | İlk ekran "İlk cümlen": doğrudan konuşma, ilk başarı ≤60 sn; giriş zorunlu değil, veri önce cihazda | LS-2.1, LS-2.2, PM-002 | yapılacak |
+| R1-02 | Kısa profil tek ekran (ad, hitap, zorlanılan durumlar, günlük süre, bağlam soruları), hepsi isteğe bağlı | LS-2.1 (1:40), D-061 | kısmen (ad+hitap var) |
+| R1-03 | Oyun gibi seviye tespiti ≤5 dk (3 hızda dinleme, 5 kurma, mini telefon), atlanabilir, "sınav" kelimesi yok | LS-2.1 (3:00) | yapılacak (mevcut tespit 12–15 dk) |
+| R1-04 | 60 sn "kendini anlat" kaydı (yalnızca cihazda), aylık karşılaştırma | LS-2.1 (8:00), LS-16.1, H4 §9 | yapılacak |
+| R1-05 | "Nasıl öğreneceksin" 3 kart + bugünün planı, ilk seans hemen | LS-2.1 (9:00–9:30) | yapılacak |
+| R1-06 | Giriş/eşitleme önerisi ilk oturumdan sonra; YZ özellikleri girişe kadar YZ'siz yedekle | PM-002, LS-14.2 | yapılacak |
+| R1-07 | Pilotta kullanılan kalıplar reviewed | LS-17 R1, D-063 | sürüyor (yazar 55/61, sonra dilbilimci) |
+| R1-08 | İçerik: strateji 01–03, telefon 01–02, arzt 01 — yer tutucular, iki heceleme, dünyaya bağlama, reviewed | LS-2.3, H4-c, PM P1/P2 | sürüyor (01'ler dil incelemesinden geçti; 02–03 beklemede) |
+| R1-09 | Kurma merdiveni 10 basamak; basamak 3–5 kalıp verisinden üretilir | LS-6.2 | kısmen |
+| R1-10 | Hız turu (4 sn, kişisel rekor; yalnızca doğru üretilmiş öğeler) | LS-6.4 | yapılacak |
+| R1-11 | Önce konuşma: mikrofon varsayılan, yazma isteğe bağlı | LS-6.5 | kısmen |
+| R1-12 | Kulak Salonu basamak 1–2 + "sonraki cümleyi tahmin et" + sayı/saat/heceleme 2 dk akışı | LS-8.1, 8.2, 8.4 | kısmen (senaryo dinlemesi) |
+| R1-13 | Bağlam modları: Masa + **Araba** (ekransız beklemeli hatırlama, sesli komutlar, otomatik ilerleme, güvenlik notu) | LS-5.5 | yapılacak |
+| R1-14 | Günlük motor: 4 seans = 4 kol, "Bugün nasılsın?", etkinlik türü değişimi, ≥4 gün şablonu | LS-5.1–5.4 | yapılacak |
+| R1-15 | Döngüsüzlük çekirdeği: 14 gün kuralı, aynı tip ≤2 art arda, yenilik oranı ölçümü | LS-12.3, H4-d | yapılacak |
+| R1-16 | Tekrar ekranı: FSRS kuyruğu, günlük yük 12 aktif / 25 pasif, 25 dk üstünde otomatik azaltma | LS-7.3, 7.4 | yapılacak |
+| R1-17 | Oyunlaştırma: XP tablosu, seri (+dondurucu), günlük 3 küçük hedef, kombo | LS-13.2, 13.5, 13.6, 13.8 | yapılacak |
+| R1-18 | Gelen arama kademe 1 (yerel bildirim + tam ekran zil + arama kartı); pilot: Dr. Weber'in muayenehanesinden randevu hatırlatma | LS-9.2, H4-e | yapılacak |
+| R1-19 | Gerçek konuşma öncesi (2 dk prova + arama kartı) / sonrası (hatırlananı anlat → koç) + hukuki uyarı | LS-10.5 | yapılacak |
+| R1-20 | Kurtarma modu (10 dk; seri bozulmaz; 2 gün açılmazsa öneri) | LS-10.6, H4 §10 | yapılacak |
+| R1-21 | Hatadan mini ders (aynı D1/D2 hatası 2 kez → ertesi gün S1'de 3 dk) | LS-10.3 | yapılacak |
+| R1-22 | Yerel ölçüm: açılış, tamamlama/bırakma, ekran bazında bırakma noktası, yenilik oranı | LS-16.2 | kısmen (aşama 1–2, rol oyunu süresi) |
+| R1-23 | /v2/ yayını + v1 Bugün'e "Yeni: Gerçek hayat dersleri" kartı (v1 17b, tam v1 kapısı) | H2 hızlı hat | yapılacak |
+| R1-24 | LS-16.3 öğrenci simülasyonu (qa, bilgi kısıtlı): 6 madde, ekran görüntüleriyle | LS-16.3 | yapılacak |
+| R1-25 | Kelime çeşitliliği: yanlış öğe ~4 madde sonra başka cümle + başka fotoğrafla (en çok 3 kez), sonraki oturumlarda da farklı; son 3 cümle ve son fotoğraf tekrar etmez; kart yüzleri döner (tanıma / üretme / dinleme); birim + e2e (v1 vartest eşdeğeri) | PM-003, RQ-S10, RQ-Ş07 | yapılacak |
+| R1-26 | Fotoğraf: Worker /photos Pixabay → Pexels → fotoğrafsız; PIXABAY_KEY yalnızca Worker'da; kullanım şartları + atıf DECISIONS'a; somut kelime = kelimenin kendisi, soyut = cümlenin sahnesi; düşük güvende fotoğraf yok | PM-003, RQ-S11 | yapılacak |
+| R1-27 | YZ dayanıklılığı: Cloudflare Workers AI ikincil sağlayıcı (yalnızca ücretsiz pay aşımında **reddettiği** doğrulanırsa; yalnızca equiv/explain/say_it); sıra kural → Gemini → (Workers AI) → YZ'siz; Profil'de "yapay zekâ durumu" satırı; iki sağlayıcı için dayanıklılık testleri | PM-004, RQ-S19, RQ-S20, LS-14 | yapılacak |
+| R1-28 | iOS yerel veri kalıcılığı: gerçek iPhone'da doğrula; eşitleme + haftalık otomatik yedek; veri kaybı testi | RQ-P01, RQ-V23 | yapılacak |
+| R1-29 | Mikrofon izninin tekrar sorulması (WKWebView): gerçek iPhone'da doğrula; gerekirse kabukta kalıcı izin | RQ-P02 | yapılacak |
+| R1-30 | Premium Almanca ses rehberi (iOS ayarları, isteğe bağlı) + en iyi Almanca sesin otomatik seçimi | RQ-P03, RQ-V27 | yapılacak |
+| R1-31 | Konuşma tanıma hatası cezasız: hoşgörülü eşleme, "Doğru söyledim", yazarak yedek | RQ-P04, RQ-V24 | kısmen ("Benim cevabım da doğru" var) |
+| R1-32 | Gün sınırı 04:00 Europe/Berlin (seri, günlük hedef, Pomodoro günü) | RQ-P05 | yapılacak |
+| R1-33 | Çevrimdışı: bugünün içeriği ve sesleri önceden önbellekte | RQ-P06 | yapılacak |
+| R1-34 | Bildirimler: sessiz saatler, günde en çok 2 (hatırlatma + gelen arama) | RQ-P07 | yapılacak |
+| R1-35 | Güncelleme yalnızca oturum aralarında uygulanır | RQ-P20 | yapılacak |
+| R1-36 | Güvenli alan 59 px testi; seslendirme filtresi (noktalama okunmaz, karışık dilli satır bölünür) testi | RQ-K07, RQ-K08, RQ-V26 | kısmen (ttsClean taşındı) |
+| — | Advent / Weihnachtsmarkt mini senaryoları (2–3), R1'den bağımsız, 27.11.2026'ya kadar | LS-17.0, D-073 | sıradaki içerik işi |
+
+### REQUIREMENTS.md → R1 eşlemesi (PM-005.4)
+R1 işaretli bütün maddeler yukarıdaki görevlere bağlı. Yer almayanların gerekçesi:
+- **A (RQ-S):** S01, S02, S05, S09 R1'de yalnızca ilk dilimle (R1-08, R1-12, R1-18); kalanı R2–R4. S03 mola sohbeti → R2 (kayıtta da R2). S04 → R1-08 (strateji) + R1-22 ölçüm. S06/S07/S14 → içerik standardı ve D-060 (her PR). S08 → R1-09, R1-10, LS-6.3. S10/S11 → R1-25/26. S12/S13 → R1-14 (+ek seans). S15 → R1-15. S16 → R1-13 (araba; spor R2). S17 → R1-17. S18 → R1-19. S19/S20/S21 → R1-27 + değişmez kurallar. S22 → ayar ✓ (yol R5). S24 → EK1/EK2 (her PR). S25 → R1-23, R1-28/29. S26 → R1-24. S27 → R1-04, R1-22.
+- **C (RQ-Ş):** Ş01 → yumuşak bekleme + hazır içerik ✓, R1-27. Ş02 → R1-15 + WORLD. Ş03 → R1-21 (LS-10.2). Ş04 → R1-14 (tek Bugün yolu). Ş05 → aşama 5–6 ✓. Ş06 → R1-04, R1-17. Ş07 → R1-25. Ş08 → K1/K2 kartları (sürüyor). Ş09 → partner/gözlemci ✓, altın set (H3-8). Ş10 → ✓ (kural + "kontrol edilemedi" cezasız). Ş11 → R1-27. Ş12 → senaryo standardı + kalıplar (#15).
+- **D (RQ-V):** R1'de V01 (Bugün ✓), V04 (araba: R1-13; spor/mutfak R2), V05 (Pomodoro ✓; 14 günlük grafik, seri, dondurucu, 100 dk kutlaması → R1-17), V06 (R1-13), V07 (hız turu R1-10), V11 (R1-09), V24 (R1-31), V25 ✓, V26 (R1-36), V27 (R1-30). Diğerleri R2+ (kayıttaki kararlarıyla): V02 koç R2, V03 B1 yolu R5, V08 "Duyduğum kelime" kısmen ✓, V09 canlı sohbet R2, V10 R1-08 ilk dilim, V12 4/3/2 → **R1'e alınmadı** (LS-17 R1 kapsamında yok; araba modunun akıcılık etkinliği beklemeli hatırlama ile başlar), V13 shadowing kısmen ✓, V14–V16 R2–R4, V17 ödev yardımcısı R2 (PM-005.6), V18 aylık ölçüm R1-04 ilk adım, V19 koç R2, V20 R2, V21 R3, V22 rozet/maskot R1-17 (kapatılabilir), V23 R1-28, V28 arşiv (sahip onayı).
+- **E (RQ-P):** P01 R1-28 · P02 R1-29 · P03 R1-30 · P04 R1-31 · P05 R1-32 · P06 R1-33 · P07 R1-34 · P08 R1-04 (+R2 koç) · P09 R1-13 (araba) · P11 R1-12 · P13 R1-19 · P14 R1-20 + R1-17 · P15 otomatik koyu tema ✓, yatmadan önce modu R2 · P16 R1-13 (ekran kapalıyken ses; pil ölçümü gerçek cihazda) · P17 ✓ (EK2 §1) · P20 R1-35. P10, P12, P18 R2; P19 her sürüm (dilbilimci).
+
+## Çalışan ajanlar
+- yazar: 61 kalıbı H3 §3 standardına getiriyor (önce pilotun 14 kalıbı) → sonra dilbilimci.
+
+## Bekleyenler (depo dışında)
+- YAZAR'ın strategie/telefon/arzt 02–04 dosyaları `/home/claude/hold/` altında (D-063: kalıplar incelenene kadar). Oturum kapanırsa kaybolabilir; yeniden üretilebilir.
+- T05 listesi (`/home/claude/private/T05_LISTE.md`) proje sahibinin onayını bekliyor.
+
+## LS durum tablosu (yapılacak / sürüyor / bitti / ertelendi)
+| LS | Konu | Durum | Not |
+|---|---|---|---|
+| 0.1–0.3 | Kuzey yıldızı, ölçütler, anti-hedefler | sürüyor | ölçütlerin ölçümü LS-16 ile |
+| 2.1 | İlk açılış, ilk 10 dk | yapılacak | R1; bugünkü ilk kurulum form tabanlı (LS-2.1'e aykırı) → yeniden yapılacak |
+| 2.2 | İlk başarı ≤60 sn | yapılacak | R1 |
+| 2.3 | İlk hafta seti | sürüyor | strateji/telefon/arzt 01 var (taslak); mola sohbeti, hikâye 1, gerçek görev yok |
+| 2.4 | İlk hafta sonu ölçütü | yapılacak | R1 simülasyonu |
+| 3.1 | 7 bileşen ayrı ölçüm | yapılacak | şu an yalnızca A (dinleme) ve B (kurma) kısmen |
+| 4.1–4.2 | Türkçe konuşana özel notlar | sürüyor | mistakes_tr var; ipucu kartları, artikel oyunu, telaffuz yok |
+| 5.1 | 4 seans = 4 kol | yapılacak | planlayıcının seans → etkinlik eşlemesi basit |
+| 5.2–5.3 | Etkinlik değişimi, 4 gün şablonu | yapılacak | H4 §4 ile |
+| 5.4 | "Bugün nasılsın?" seçimi | yapılacak | |
+| 5.5 | Bağlam modları | yapılacak | R1: Masa + Araba; R2: spor, toplu taşıma |
+| 5.6 | Sesli drama | yapılacak | R2 |
+| 5.7 | Kurs senkronu | yapılacak | |
+| 6.1 | Birim ifade/kalıp | bitti | D-050 ifade kartları |
+| 6.2 | Kurma merdiveni 10 basamak | sürüyor | aşama 3–6 var; basamak 3–5 ve 8 kalıp verisine bağlı (kalıplar yazılıyor) |
+| 6.3 | "Almanca nasıl derim?" | sürüyor | yerel + say_it_de var; 3 katmanlı cevap (kalıp + başka sözle) eksik |
+| 6.4 | Hız turu | yapılacak | R1 |
+| 6.5 | Önce konuşma, yazma isteğe bağlı | sürüyor | mikrofon her alanda; varsayılan hâlâ yazma alanı |
+| 6.6 | ≥80 üretim, ≥%50 sesli | sürüyor | ≥80 doğrulayıcıda; %50 sesli kuralı yok |
+| 7.1–7.2 | Kelime seçimi, aile, bileşik ayırıcı | sürüyor | aile ✓ (ifade kartı); bileşik ayırıcı yok |
+| 7.3 | Pasif/aktif FSRS | bitti | srs.ts; kalıcılık kuralı |
+| 7.4 | Günlük yük 12/25, otomatik azaltma | yapılacak | tekrar ekranı yok |
+| 7.5 | "Duyduğum kelime" | sürüyor | dokun → listeye ✓; 5 sn ekleme ekranı ve öncelik yok |
+| 7.6 | "Şunları anlayabilirsin" | yapılacak | |
+| 8.1–8.5 | Kulak Salonu | sürüyor | senaryo dinlemesi var; basamaklı salon, tahmin sorusu, yutulan ses dersleri, sayı/saat akışı yok |
+| 9.1 | Destekli → bağımsız | bitti | partner/gözlemci ayrımı, 4 destek düzeyi |
+| 9.2 | Gelen arama | yapılacak | R1 kademe 1 |
+| 9.3 | Mola sohbeti | yapılacak | R2 |
+| 9.4 | 4/3/2 monoloğu | yapılacak | |
+| 9.5 | Telaffuz öncelikleri | yapılacak | temel shadowing var |
+| 9.6 | Benim cümlelerim | yapılacak | R2 |
+| 10.1–10.4 | Koç, düzeltme önceliği, mini ders, haftalık | yapılacak | rapor en çok 3 düzeltme ✓ (feedback_tr) |
+| 10.5 | Gerçek konuşma öncesi/sonrası | yapılacak | R1 |
+| 10.6 | Kurtarma modu | yapılacak | R1 |
+| 11.1–11.3 | Görev merdiveni, telefon maruz kalma, günlük | yapılacak | senaryolarda dış görev (mission) var |
+| 12.1 | Başarı bandı %80–85 | sürüyor | %70 kapısı + %50 geri dönüş var; bant ayarı yok |
+| 12.2 | Aşama geçişleri | bitti | BLUEPRINT §9 |
+| 12.3 | Döngüsüzlük | yapılacak | H4-d |
+| 12.4 | Planlayıcı girdileri | yapılacak | |
+| 13.1–13.9 | Oyunlaştırma | yapılacak | R1: XP, seri, 3 günlük hedef |
+| 14.1–14.2 | YZ içerik uydurmaz; YZ'siz ders | bitti | yapay zekâsız mod her ekranda |
+| 14.3 | Gizlilik | bitti | D-061: ad gitmez, yalnızca hitap |
+| 14.4 | Kota %80 önceliklendirme | yapılacak | |
+| 15.1–15.2 | B1 yolu | ertelendi | R5 |
+| 16.1–16.2 | Öğrenme/deneyim ölçütleri | sürüyor | aşama 1–2 süresi ve rol oyunu süresi (p50/p95) ölçülüyor |
+| 16.3 | Öğrenci simülasyonu | yapılacak | qa ajanı, her sürümde |
+| 16.4 | PR'larda LS kimlikleri | sürüyor | #9'dan itibaren |
+| 17.0 | Advent / Weihnachtsmarkt (27.11.2026) | yapılacak | D-073: yalnızca incelenmiş kalıplarla |
+| 17.1 | Takvim gerçekçiliği | sürüyor | |
 
 ## H3 teslimleri (PEDAGOGY §10)
-| # | Teslim | Durum | Not |
-|---|---|---|---|
-| 1 | PEDAGOGY.md + CONTENT_PLAN.md | kısmen | PEDAGOGY ✓; CONTENT_PLAN yazılmadı |
-| 2 | Şema/doğrulayıcı (accepted[], freqRank, tier, reductions, mission, üretim sayısı, kapsam kuralları) | yapıldı | 0 hata |
-| 3 | Sıklık hattı ~5.000 lemma + kapsam raporu | kısmen | lemmalar ✓; B1 referans karşılaştırması için PDF proje sahibinden bekleniyor (depoya girmez) |
-| 4 | ~60 çekirdek kalıp → dilbilimci | kısmen | 61 iskelet (`core:false`, draft); tamamlanıp dilbilimciye verilecek |
-| 5 | İlk 1.000 K1 derin kart | kısmen | 800 kart (001–008) ✓ taslak; 009–010 pilot listesi LEX'e verilecek; "ficken" kararı PS'de |
-| 6 | 11 pilot senaryo | kısmen | YAZAR çalışıyor: 9 dosya yazıldı (strategie 01–03, telefon 01–03, arzt 01–03); telefon/04, arzt/04 kaldı; hiçbiri dilbilimciden geçmedi |
-| 7 | Oynatıcı | kısmen | aşama 1–6 + dinleme + say_it/explain + "Duyduğum kelime" (dokun → listeye) ✓; FSRS çift yol kayıt ✓; tekrar ekranı ve Dinleme salonu 1–2 basamak ayrı ekran olarak yok; aşama 1–2 D-050'ye göre yeniden yapılacak |
-| 8 | Yapay zekâ katmanı + altın setler + dayanıklılık | kısmen | görevler + devre kesici + önbellek + yumuşak bekleme ✓; dayanıklılık e2e ✓ (429/503/bozuk/ağ/yanıtsız/geç yanıt); altın setler (equiv ≥200, roleplay ≥30) yok; gerçek model ölçümü Worker kurulunca |
+| # | Teslim | Durum |
+|---|---|---|
+| 1 | PEDAGOGY / CONTENT_PLAN | PEDAGOGY ✓ · CONTENT_PLAN ✗ |
+| 2 | Şema ve doğrulayıcı | ✓ |
+| 3 | Sıklık listesi / kapsam raporu | sıklık ✓ · kapsam raporu ✗ (B1 referans PDF'i bekleniyor) |
+| 4 | Kalıplar | sürüyor (P0) |
+| 5 | K1 kelime | 800/1.000 (taslak) |
+| 6 | Pilot senaryolar | 3/11 depoda (taslak), 8'i beklemede |
+| 7 | Oynatıcı | kısmen |
+| 8 | YZ katmanı | kısmen (altın setler yok) |
 
-## H2 görevleri
-- a) bundle yedeği ✓ (verildi) · b) PR #1 birleşti ✓ · c) T04 ✓, v1 2026-11-17a yayında (gh-pages `514224b`) · d) T05 listesi ✓ (depo dışında, onay bekliyor) · f) Cloudflare telefon adımları ✓ (`docs/v2/CLOUDFLARE_TELEFON.md`; proje sahibi yapacak)
-- Hızlı hat: v1 Bugün'e "Yeni: Gerçek hayat dersleri" kartı **yapılmadı** (v1 17b sürümü, tam v1 kapısıyla) · `/v2/` yayını: deploy iş akışı hazır, ilk yayın yığın birleşince
+## Ölçümler
+- JS ≈157 KB gzip (bütçe 250) · birim testleri 88/88 · içerik 0 hata
+- WebKit (CI, #7): iPhone 15 ✓, iPhone 16 Pro Max ✓
+- Rol oyunu p50/p95: gerçek model yok (Worker anahtarı bekleniyor); istemci ölçümü hazır
 
-## Ölçümler (yerel Chromium; kabul değeri CI WebKit'ten alınacak)
-- JS paketi: ≈160 KB gzip (bütçe 250) · birim testleri: 83/83 · içerik: 0 hata
-- e2e (Chromium, iPhone 15 profili): v2_core ✓, v2_player ✓ (dayanıklılık: hata → ≤0,1 sn seçenek; yanıtsız/geç yanıt → 12,4 sn'de "Biraz uzun sürüyor"; geç yanıt kullanıldı)
-- WebKit: **henüz koşmadı** (yerelde indirilemiyor; CI'da `webkit` işi)
-- Rol oyunu süresi p50/p95: gerçek model yok → ölçülemedi (istemci ölçüm altyapısı hazır)
-
-## Açık sorunlar / proje sahibine sorular
-- Cloudflare hesabı + secret'lar (adımlar hazır) — yapay zekâ bunlar olmadan kapalı
-- B1 kelime listesi PDF'i (yalnızca kapsam karşılaştırması için; depoya girmez)
-- LEX: "ficken" kartı (çıkar / yalnızca pasif); lx:Deutsch ↔ lx:deutsch birleştirme
-- T05 nötrleştirme onayı; ardından git geçmişi (son onayla)
-- `app/HANDOFF.md` depoda kişisel satır içeriyor → T05 kapsamına eklendi
-- EK1/EK2 metinleri özetten yeniden kuruldu (phases/04–05); tam metin gönderilirse değiştirilir
+## Açık sorular (proje sahibi)
+- Cloudflare + secret'lar (adımlar `docs/v2/CLOUDFLARE_TELEFON.md`; Gemini anahtarında faturalandırma kontrolü eklendi)
+- B1 referans listesi PDF'i (depoya girmez)
+- LEX: kaba kelime 809 · lx:Deutsch/deutsch
+- T05 onayı
 
 ## Sıradaki adım
-1. Yığını it (push), PR'ları aç, CI'da WebKit sonucunu al; `inceleme` ajanını PR'lara çalıştır.
-2. `v2/asama-1-2`: D-050 akışı (dinle → tarama ızgarası → ≤12 ifade kartı → 3–4 kartta bir hatırlama; süre bütçesi üstte) + küçük düzeltmeler; WebKit testleri buna göre.
-3. YAZAR bitince: dilbilimci (pilot senaryolar + parti 001–008), sonra örneklem kontrolü (qa).
-4. Kalıpları çekirdek standarda tamamla → dilbilimci. CONTENT_PLAN.md. Altın setler.
-5. Kontrol noktası raporu (H3 + EK1 + EK2 + çalışma düzeni 9 madde + BAŞLANGIÇ metni) ve DUR.
+1. H4-b: WORLD.md (karakterler, 26 hafta, takvim) → PR.
+2. Kalıplar biter bitmez dilbilimci (önce pilotun 14'ü) → H4-c: 01'lere yer tutucu, iki heceleme biçimi, dünyaya bağlama → dilbilimci.
+3. LS-17.0 Advent mini senaryoları (2–3), 27.11'e kadar yayında.
+4. H3 kontrol noktası raporu (durmadan) → R1 görev dökümü (LS kimlikleriyle) ve uygulama.

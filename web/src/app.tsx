@@ -11,7 +11,10 @@ import { TabBar, Loading } from "./ui/components.tsx";
 import { Login } from "./screens/Login.tsx";
 import { Onboarding } from "./screens/Onboarding.tsx";
 import { Today } from "./screens/Today.tsx";
-import { Learn, DomainView, ScenarioView } from "./screens/Learn.tsx";
+import { Learn, DomainView } from "./screens/Learn.tsx";
+import { PlayerHome, PlayerSection } from "./screens/Player.tsx";
+import { LongPressExplain } from "./ui/learn.tsx";
+import { BreakOverlay } from "./screens/Today.tsx";
 import { AssessRun, AssessResult } from "./screens/Assess.tsx";
 import { Progress } from "./screens/Progress.tsx";
 import { ProfileView } from "./screens/Profile.tsx";
@@ -21,7 +24,11 @@ const API_BASE = (import.meta.env.VITE_API_BASE as string | undefined) || "";
 function applyTheme(p: Profile) {
   const t = p.ui.theme;
   if (t === "auto") document.documentElement.removeAttribute("data-theme"); else document.documentElement.setAttribute("data-theme", t);
-  document.documentElement.style.fontSize = `${Math.round(16 * p.ui.textScale)}px`;
+  // Normal → iOS sistem metin boyutu (Dynamic Type); diğerleri uygulama içi ölçek (en çok %130)
+  const de = document.documentElement;
+  de.style.removeProperty("font-size");
+  de.style.setProperty("--ts", String(p.ui.textScale));
+  de.classList.toggle("dyn", p.ui.textScale === 1);
 }
 
 export function App() {
@@ -54,7 +61,7 @@ export function App() {
     loadIndex().then(setIndex).catch((e) => setIndexError(String(e.message || e)));
   }, [user?.uid]);
 
-  useEffect(() => { setLearning(LEARNING_ROUTES.has(route.name), route.name === "assess" ? "assess" : "vocab", route.name === "scenario" ? route.id : undefined); window.scrollTo(0, 0); }, [route]);
+  useEffect(() => { if (route.name !== "section") setLearning(LEARNING_ROUTES.has(route.name), route.name === "assess" ? "assess" : "vocab"); window.scrollTo(0, 0); }, [route]);
 
   const api = useMemo(() => createApi({ base: API_BASE, token: (f) => auth.idToken(f) }), []);
   const toast = (m: string) => { setToast(m); setTimeout(() => setToast(null), 2600); };
@@ -74,18 +81,21 @@ export function App() {
   else switch (route.name) {
     case "learn": screen = <Learn />; break;
     case "domain": screen = <DomainView id={route.id} />; break;
-    case "scenario": screen = <ScenarioView id={route.id} />; break;
+    case "scenario": screen = <PlayerHome id={route.id} />; break;
+    case "section": screen = <PlayerSection id={route.id} section={route.section} />; break;
     case "progress": screen = <Progress />; break;
     case "profile": screen = <ProfileView />; break;
     case "assess": screen = <AssessRun />; break;
     case "assessResult": screen = <AssessResult id={route.id} />; break;
     default: screen = <Today />;
   }
-  const tabs = !!profile.onboardedAt && route.name !== "onboarding" && route.name !== "assess";
+  const tabs = !!profile.onboardedAt && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section";
   return (
     <Ctx.Provider value={ctx}>
       <main class={`app${tabs ? "" : " notabs"}`}>{screen}</main>
       {tabs && <TabBar route={route} />}
+      <LongPressExplain />
+      {(route.name === "section" || route.name === "assess") && <BreakOverlay />}
       {toastMsg && <div class="toast" role="status">{toastMsg}</div>}
     </Ctx.Provider>
   );

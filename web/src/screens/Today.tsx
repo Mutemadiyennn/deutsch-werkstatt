@@ -38,45 +38,59 @@ export function Today() {
   const hour = new Date().getHours();
   const greet = hour < 11 ? "Günaydın" : hour < 18 ? "İyi günler" : "İyi akşamlar";
 
+  const greetDe = hour < 11 ? "Guten Morgen!" : hour < 18 ? "Guten Tag!" : "Guten Abend!";
+  const exam = profile.goals.examB1.enabled && profile.goals.examB1.date ? Math.max(0, Math.ceil((Date.parse(profile.goals.examB1.date) - now) / 86400_000)) : null;
+  const examOn = profile.goals.examB1.enabled;
+  const breakOn = e?.rt.phase === "break";
+
   return (
     <div class="stack">
-      <section class="card hl">
-        <div class="row" style={{ flexWrap: "nowrap", gap: 14 }}>
-          <Ring value={min} max={goal} label={`Bugün ${min} / ${goal} dakika`} />
-          <div class="grow">
-            <h1 style={{ fontSize: "1.25rem" }}>{greet}{profile.displayName ? `, ${profile.displayName}` : ""}</h1>
-            <p class="small muted">Bugün <b data-test="today-min">{min} / {goal} dk</b> odak · {profile.focus.workMin} dk çalışma, {profile.focus.breakMin} dk mola</p>
-            <div class="row small" aria-label="Seanslar">
+      <div class="chiprow" aria-label="Özet">
+        <span class="pill">⏱ {min}/{goal}</span>
+        <span class="pill warm">☕ {e?.completedCount || 0}/4 seans</span>
+        {examOn && <span class="pill pink" data-test="exam-badge">🎯 B1{exam !== null ? `: ${exam} gün` : ""}</span>}
+      </div>
+      {breakOn && <BreakCard />}
+      <section class="card hero stack">
+        <div class="row" style={{ flexWrap: "nowrap", gap: 16 }}>
+          <Ring value={min} max={goal} label={`Bugün ${min} / ${goal} dakika`} size={104} />
+          <div class="grow" style={{ minWidth: 0 }}>
+            <h1 class="hero-title" lang="de">{greetDe}</h1>
+            <div class="small" style={{ opacity: 0.85 }}>{greet}{profile.displayName ? `, ${profile.displayName}` : ""}</div>
+            <p class="small" style={{ margin: "6px 0 4px" }}>Bugün <b data-test="today-min">{min} / {goal} dk</b> odak</p>
+            <div class="row small" aria-label="Seanslar" style={{ gap: 8 }}>
               <span class="dots" aria-hidden="true">
                 {[1, 2, 3, 4].map((k) => { const s = sessions.find((x) => x.n === k && x.status !== "abandoned"); return <i class={s?.status === "completed" ? "done" : s?.status === "interrupted" ? "int" : s?.status === "running" ? "cur" : ""} />; })}
               </span>
               <span data-test="sessions-done">{e?.completedCount || 0}/4 seans</span>
-              {e?.day.goalHitAt && <span class="chip ok">✓ Hedef tamam</span>}
             </div>
           </div>
         </div>
+        {e?.day.goalHitAt && <span class="pill">✓ Bugünkü hedef tamam</span>}
+        {e && !breakOn && <FocusPanel />}
+        <p class="tiny" style={{ margin: 0, opacity: 0.8 }}>{profile.focus.workMin} dk çalışma · {profile.focus.breakMin} dk mola · süre yalnızca öğrenirken sayılır</p>
       </section>
 
-      {e && <FocusPanel />}
 
       {indexError && <ErrorPanel message={`İçerik yüklenemedi: ${indexError}`} onRetry={() => location.reload()} />}
 
-      <section class="card" data-test="next-activity">
+      <section class="card hero teal stack" data-test="next-activity">
         <div class="kicker">Sıradaki · Seans {n}: {rec.kind === "assess" ? "Seviye tespiti" : rec.kind === "none" ? rec.title_tr : ACTIVITY_TR[rec.activity]}</div>
-        <h2>{rec.title_tr}</h2>
-        <p class="small muted">{rec.why_tr}</p>
-        {rec.kind === "assess" && <a class="btn primary block" href="#/assess">Seviye tespitine başla</a>}
+        <h2 style={{ fontSize: "1.55rem", margin: 0 }}>{rec.title_tr}</h2>
+        <p class="small muted" style={{ margin: 0 }}>{rec.why_tr}</p>
+        {rec.kind === "assess" && <a class="btn block" href="#/assess">▶ Seviye tespitine başla</a>}
         {rec.kind === "scenario" && <>
-          {rec.draft && <p class="tiny"><span class="chip warn">İçerik inceleme bekliyor</span></p>}
-          <a class="btn primary block" href={`#/scenario/${encodeURIComponent(rec.scenarioId)}`}>Çalışma sayfasını aç</a>
+          {rec.draft && <p class="tiny" style={{ margin: 0 }}><span class="chip">İçerik inceleme bekliyor</span></p>}
+          <a class="btn block" href={`#/scenario/${encodeURIComponent(rec.scenarioId)}`}>▶ Senaryoyu aç</a>
         </>}
         {rec.kind === "v1" && <a class="btn block" href={rec.url} target="_blank" rel="noopener">v1'de aç ↗</a>}
-        {placement && <a class="small" href={`#/assess/result/${placement.id}`}>Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>}
+        {placement && <a class="small" style={{ color: "#fff" }} href={`#/assess/result/${placement.id}`}>Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>}
       </section>
 
       {scen && (
-        <section class="card">
-          <div class="kicker">Şu an öğrendiklerin · {scen.title_tr}</div>
+        <section class="card tint green">
+          <div class="sechead"><span class="ic" aria-hidden="true">💬</span><h2>Şu an öğrendiklerin</h2></div>
+          <div class="tiny muted">{scen.title_tr}</div>
           <ul class="list">
             {scen.chunks.filter((c) => scen.essentials.chunks.includes(c.id)).slice(0, 5).map((c) => (
               <li class="row" style={{ flexWrap: "nowrap" }}><span class="grow"><span class="de">{c.layers.hd}</span><br /><span class="small muted">{c.tr}</span></span><SpeakBtn text={c.layers.hd} /></li>
@@ -85,8 +99,8 @@ export function Today() {
         </section>
       )}
 
-      <section class="card" data-test="weak">
-        <div class="kicker">Tekrar edilecek zayıflıkların</div>
+      <section class="card tint orange" data-test="weak">
+        <div class="sechead"><span class="ic" aria-hidden="true">🎯</span><h2>Tekrar edilecek zayıflıkların</h2></div>
         {bank.length ? (
           <ul class="list">
             {bank.map(({ it, lx }) => (
@@ -103,51 +117,59 @@ export function Today() {
   );
 }
 
+/** Mola kartı (v1 düzeni): ortalanmış büyük sayaç, öneri, Almanca cümle, atla */
+export function BreakCard() {
+  const e = useFocusTick();
+  const [idea] = useState(() => BREAK_IDEAS[Math.floor(Math.random() * BREAK_IDEAS.length)]!);
+  if (!e || e.rt.phase !== "break") return null;
+  const long = e.rt.breakKind === "long";
+  return (
+    <section class="card breakcard fade" data-test="break">
+      <div class="kicker">{long ? "Uzun mola (isteğe bağlı)" : "Mola"} · {e.completedCount}. seans tamam</div>
+      <div class="timer" role="timer" aria-live="off">{mmss(e.breakLeftSec(Date.now()))}</div>
+      <p style={{ margin: 0 }}>{long ? "Dört seansı bitirdin. İstersen uzun bir mola ver; istersen atla." : idea}</p>
+      <p class="small muted" style={{ marginTop: 6 }}>Mola bitince zil çalar; sıradaki seans öğrenmeye döndüğünde kendiliğinden başlar.</p>
+      <div class="row" style={{ justifyContent: "center", flexWrap: "nowrap" }}><span class="de-lg" lang="de">Ich mache kurz Pause.</span><SpeakBtn text="Ich mache kurz Pause." /></div>
+      <div class="tr2">Kısa bir mola veriyorum.</div>
+      <button class="btn block" style={{ marginTop: 16 }} onClick={focusSkipBreak}>Molayı atla</button>
+    </section>
+  );
+}
+
 function FocusPanel() {
   const { profile } = useApp();
   const e = useFocusTick()!;
-  const now = Date.now();
-  const [idea] = useState(() => BREAK_IDEAS[Math.floor(Math.random() * BREAK_IDEAS.length)]!);
-  if (e.rt.phase === "break") {
-    const long = e.rt.breakKind === "long";
-    return (
-      <section class="card" data-test="break">
-        <div class="kicker">{long ? "Uzun mola (isteğe bağlı)" : "Mola"} · {e.completedCount}. seans tamam</div>
-        <div class="big">{mmss(e.breakLeftSec(now))}</div>
-        <p class="small">{long ? "Dört seansı bitirdin. İstersen uzun bir mola ver; istersen atla." : idea}</p>
-        <p class="small muted"><span class="de">Ich mache kurz Pause.</span> = Kısa bir mola veriyorum.</p>
-        <button class="btn block" onClick={focusSkipBreak}>Molayı atla</button>
-      </section>
-    );
-  }
   if (e.rt.phase === "focus" && e.current) {
     const s = e.current;
     return (
-      <section class="card" data-test="focus-running">
-        <div class="kicker">Seans {s.n}/4 · {ACTIVITY_TR[s.plannedActivity]}</div>
-        <div class="row between"><div class="big">{mmss(e.focusLeftSec())}</div><span class="small muted">kalan odak süresi</span></div>
-        <p class="tiny muted">Süre yalnızca öğrenme ekranlarında ve aktif çalışırken sayılır.</p>
-        <button class="btn block" onClick={() => focusPause(!e.rt.paused)}>{e.rt.paused ? "Devam et" : "Duraklat"}</button>
-        {e.rt.paused && <p class="small muted">Duraklatıldı.</p>}
-      </section>
+      <div class="stack" data-test="focus-running" style={{ gap: 8 }}>
+        <div class="row between"><span class="small"><b>Seans {s.n}/4</b> · {ACTIVITY_TR[s.plannedActivity]}</span><span class="big" style={{ fontSize: "1.9rem" }}>{mmss(e.focusLeftSec())}</span></div>
+        <button class="btn ghost block" onClick={() => focusPause(!e.rt.paused)}>{e.rt.paused ? "Devam et" : "Duraklat"}</button>
+        {e.rt.paused && <p class="small" style={{ margin: 0 }}>Duraklatıldı.</p>}
+      </div>
     );
   }
   if (e.rt.resumableId) {
     const s = e.day.sessions.find((x) => x.id === e.rt.resumableId);
     return (
-      <section class="card" data-test="interrupted">
-        <div class="kicker">Seans {s?.n} yarıda kaldı</div>
-        <p class="small">{Math.floor((s?.focusSec || 0) / 60)} dk çalışmıştın. Kaldığın yerden devam edebilir ya da yeni seans başlatabilirsin.</p>
-        <div class="row"><button class="btn primary grow" onClick={focusResume}>Devam et</button><button class="btn grow" onClick={() => focusStart()}>Yeni seans</button></div>
-      </section>
+      <div class="stack" data-test="interrupted" style={{ gap: 8 }}>
+        <div class="small"><b>Seans {s?.n} yarıda kaldı</b> · {Math.floor((s?.focusSec || 0) / 60)} dk çalışmıştın.</div>
+        <div class="row"><button class="btn grow" onClick={focusResume}>Devam et</button><button class="btn ghost grow" onClick={() => focusStart()}>Yeni seans</button></div>
+      </div>
     );
   }
   const next = e.nextN;
   return (
-    <section class="card" data-test="focus-idle">
-      <div class="kicker">Seans {next}{next > 4 ? " (bonus)" : "/4"} · önerilen: {(profile.focus.sessionPlan[(next - 1) % 4] || []).map((a) => ACTIVITY_TR[a]).join(", ")}</div>
-      <p class="small muted">Öğrenmeye başladığında seans kendiliğinden başlar. İstersen şimdi başlatabilirsin.</p>
-      <button class="btn block" onClick={() => focusStart()} data-test="focus-start">Seans {next}'i başlat</button>
-    </section>
+    <div class="stack" data-test="focus-idle" style={{ gap: 8 }}>
+      <div class="small"><b>Seans {next}{next > 4 ? " (bonus)" : "/4"}</b> · önerilen: {(profile.focus.sessionPlan[(next - 1) % 4] || []).map((a) => ACTIVITY_TR[a]).join(", ")}</div>
+      <button class="btn ghost block" onClick={() => focusStart()} data-test="focus-start">Seans {next}'i şimdi başlat</button>
+    </div>
   );
+}
+
+/** Öğrenme ekranındayken mola başlarsa (v1'deki gibi) ekranı mola kartı kaplar; atlanınca kaldığı yerden sürer */
+export function BreakOverlay() {
+  const e = useFocusTick();
+  if (!e || e.rt.phase !== "break") return null;
+  return <div class="breakov" role="dialog" aria-label="Mola"><div><BreakCard /></div></div>;
 }

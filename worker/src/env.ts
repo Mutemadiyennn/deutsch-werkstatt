@@ -6,6 +6,8 @@ export interface KV {
 export interface Env {
   /** Gizli: Gemini API anahtarı */
   GEMINI_KEY?: string;
+  /** Gizli: Pexels API anahtarı (fotoğraflar) */
+  PEXELS_KEY?: string;
   /** Gizli: izinli Firebase uid listesi (virgülle) */
   ALLOWED_UIDS?: string;
   /** Firebase proje kimliği (gizli değil) */

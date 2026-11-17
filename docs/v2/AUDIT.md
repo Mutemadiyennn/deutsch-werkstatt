@@ -449,7 +449,7 @@ Karmaşıklık ölçeği: **S** (1–2 çalışma oturumu) · **M** (3–5) · *
 | 8 | Uzun mola süresi | 20 dk, atlanabilir |
 | 9 | Odak süresi aktif çalışmayı mı saysın, duvar saatini mi? | Aktif çalışmayı (bugünkü gibi) |
 | 10 | Haftalık hedef | 5 gün × 100 dk |
-| 11 | B1 sınav tarihi (15.05.2027) hâlâ geçerli mi? | Bilgi gerekiyor. 6 aylık planın son ayını belirler. |
+| 11 | B1 sınav tarihi hâlâ geçerli mi? (tarih yalnızca cihaz ayarında, PM-001) | Bilgi gerekiyor. 6 aylık planın son ayını belirler. |
 | 12 | Senaryo kapısı yalnızca temel öğelere mi bağlı olsun? | Evet |
 | 13 | VHS kursu sürüyor mu? | Bilgi gerekiyor |
 | 14 | v1'in günlük kullanımı aksatan hataları Faz 3'te düzeltilsin mi? | Evet |

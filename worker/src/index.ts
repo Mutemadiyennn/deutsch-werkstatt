@@ -9,6 +9,7 @@ import { authenticate } from "./auth.ts";
 import { HttpError, corsHeaders, errorResponse, json } from "./http.ts";
 import { aiUsage, takeAi } from "./quota.ts";
 import { runTask } from "./ai/tasks.ts";
+import { searchPhotos } from "./photos.ts";
 import { VERSION, type Env } from "./env.ts";
 
 export async function handle(req: Request, env: Env): Promise<Response> {
@@ -17,13 +18,18 @@ export async function handle(req: Request, env: Env): Promise<Response> {
   if (req.method === "OPTIONS") return new Response(null, { status: Object.keys(cors).length ? 204 : 403, headers: cors });
   try {
     if (url.pathname === "/v1/health" && req.method === "GET") {
-      const body: HealthResponse = { ok: true, version: VERSION, time: new Date().toISOString(), configured: { gemini: !!env.GEMINI_KEY, allowlist: !!(env.ALLOWED_UIDS || "").trim() } };
+      const body: HealthResponse = { ok: true, version: VERSION, time: new Date().toISOString(), configured: { gemini: !!env.GEMINI_KEY, pexels: !!env.PEXELS_KEY, allowlist: !!(env.ALLOWED_UIDS || "").trim() } };
       return json(body, 200, cors);
     }
     if (url.pathname === "/v1/usage" && req.method === "GET") {
       const u = await authenticate(req, env);
       const a = await aiUsage(env, u.uid);
       return json({ day: a.day, ai: { used: a.used, limit: a.limit } }, 200, cors);
+    }
+    if (url.pathname === "/v1/photos" && req.method === "GET") {
+      await authenticate(req, env);
+      const photos = await searchPhotos(env, url.searchParams.get("q") || "", Math.min(8, Number(url.searchParams.get("n") || 8)));
+      return json({ photos }, 200, { ...cors, "Cache-Control": "private, max-age=86400" });
     }
     if (url.pathname === "/v1/ai/run" && req.method === "POST") {
       const u = await authenticate(req, env);

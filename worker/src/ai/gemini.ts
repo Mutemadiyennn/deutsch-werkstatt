@@ -45,7 +45,17 @@ export function mapStatus(status: number): HttpError {
 }
 
 /** Tek çağrı: JSON çıktı ister; metni döndürür */
-export async function generateJSON(env: Env, model: string, system: string, user: string, timeoutMs: number): Promise<string> {
+export async function generateJSON(env: Env, model: string, system: string, user: string, timeoutMs: number, schema?: object): Promise<string> {
+  try {
+    return await generateOnce(env, model, system, user, timeoutMs, schema);
+  } catch (e) {
+    // Yapılandırılmış çıktı şeması bu modelde desteklenmiyorsa (400) bir kez şemasız dene
+    if (schema && e instanceof HttpError && e.code === "invalid_request") return generateOnce(env, model, system, user, timeoutMs);
+    throw e;
+  }
+}
+
+async function generateOnce(env: Env, model: string, system: string, user: string, timeoutMs: number, schema?: object): Promise<string> {
   const ac = new AbortController();
   const t = setTimeout(() => ac.abort(), timeoutMs);
   try {
@@ -56,7 +66,7 @@ export async function generateJSON(env: Env, model: string, system: string, user
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: system }] },
         contents: [{ role: "user", parts: [{ text: user }] }],
-        generationConfig: { responseMimeType: "application/json", temperature: 0.2, maxOutputTokens: 800 }
+        generationConfig: { responseMimeType: "application/json", ...(schema ? { responseJsonSchema: schema } : {}), temperature: 0.4, maxOutputTokens: 900 }
       })
     });
     if (!r.ok) throw mapStatus(r.status);
