@@ -1,6 +1,9 @@
 """core1500 listesinden kursta olmayan kelimeleri ünitelere (tema + sıklık) dağıtır → plus/<id>.todo.json (ajan girdisi)."""
 import json, glob, collections
-core = json.load(open('/home/claude/werkstatt/data/core1500.json'))['items']
+import os as _os
+_app = _os.path.abspath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", ".."))
+_cands = [_os.path.join(_os.environ.get("DW_SITE", _os.path.join(_app, ".site")), "data/core1500.json"), _os.path.join(_os.environ.get("DW_GHPAGES", _os.path.join(_app, "..", ".ghpages")), "data/core1500.json")]
+core = json.load(open(next(c for c in _cands if _os.path.exists(c))))['items']
 units = {json.load(open(f))['id']: json.load(open(f)) for f in sorted(glob.glob('units/*.json'))}
 ids = list(units)
 have = set(w['de'].lower() for u in units.values() for w in u['words'])
