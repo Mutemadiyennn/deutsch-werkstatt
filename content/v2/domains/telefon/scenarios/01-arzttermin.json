@@ -6,7 +6,7 @@
   "title_tr": "Doktordan telefonla randevu almak",
   "title_de": "Einen Arzttermin am Telefon vereinbaren",
   "goal_tr": "Muayenehaneyi arayıp hızlı konuşan sekreteri anlamak, gerçek soruları (hasta mısınız, doğum tarihi, sigorta, şikâyet) cevaplamak, engellere (üç hafta sonra, akut muayene, yarın tekrar ara) tepki vermek ve saati doğru anlayarak randevuyu kapatmak.",
-  "review": {"status":"draft"},
+  "review": {"status":"reviewed","by":"dilbilimci-ajan","at":"2026-11-17"},
   "essentials": {
     "lexemes": [
       "lx:Termin",
@@ -98,12 +98,12 @@
       "register": "neutral",
       "layers": {"hd":"Das passt mir gut.","alltag":"Passt."},
       "use_tr": "Teklifi kabul etmek. Tek kelime 'Passt.' gündelikte 'olur, tamam' demektir; nötr-samimi tonda, telefonda da kibar sayılır.",
-      "mistakes_tr": ["Kime uyduğu Dativ: 'Das passt mir.' ('Das passt ich' yanlış)."]
+      "mistakes_tr": ["Kime uyduğu Dativ'dir: 'Das passt mir.' ('Das passt mich' yanlış)."]
     },
     {
       "id": "ch:telefon:wie-war-das",
-      "tr": "Nasıldı tekrar?",
-      "lexemes": ["lx:wiederholen"],
+      "tr": "Nasıl demiştiniz?",
+      "lexemes": ["lx:nochmal"],
       "pattern": "pt:noch-mal",
       "register": "neutral",
       "layers": {"hd":"Entschuldigung, wie war das nochmal?","alltag":"Wie war das nochmal?"},
@@ -165,7 +165,7 @@
       "pattern": "pt:ich-brauche",
       "register": "neutral",
       "layers": {"hd":"Ich brauche auch eine Krankschreibung.","alltag":"Und ich bräuchte noch 'ne Krankschreibung."},
-      "use_tr": "İşe gidemiyorsan randevu isterken söylenir. Resmî adı Arbeitsunfähigkeitsbescheinigung (AU); günlük dilde 'Krankschreibung' ya da 'gelber Schein'.",
+      "use_tr": "İşe gidemiyorsan randevu isterken söylenir. Resmî adı Arbeitsunfähigkeitsbescheinigung (AU); günlük dilde 'Krankschreibung' ya da 'gelber Schein' (eski sarı kâğıt formdan kalma ad).",
       "mistakes_tr": []
     },
     {
@@ -211,7 +211,7 @@
       "layer": "hd",
       "speed": "normal"
     },
-    {"id":"o03","de":"Sind Sie schon Patient bei uns?","tr":"Zaten bizim hastamız mısınız?","layer":"hd","speed":"normal"},
+    {"id":"o03","de":"Sind Sie schon Patient bei uns?","tr":"Bizim hastamız mısınız? (daha önce kaydınız var mı)","layer":"hd","speed":"normal"},
     {
       "id": "o04",
       "de": "Waren Sie schon mal bei uns?",
@@ -222,7 +222,7 @@
     },
     {"id":"o05","de":"Ihr Geburtsdatum, bitte?","tr":"Doğum tarihiniz, lütfen?","layer":"hd","speed":"normal"},
     {"id":"o06","de":"Sind Sie gesetzlich oder privat versichert?","tr":"Yasal mı özel mi sigortalısınız?","layer":"hd","speed":"normal"},
-    {"id":"o07","de":"Welche Kasse?","tr":"Hangi sağlık sigortası?","layer":"alltag","speed":"natural"},
+    {"id":"o07","de":"Welche Kasse?","tr":"Hangi sağlık sigortası? ('Kasse' = Krankenkasse)","layer":"alltag","speed":"natural"},
     {
       "id": "o08",
       "de": "Worum geht's denn?",
@@ -316,172 +316,116 @@
     {
       "id": "b01",
       "prompt_tr": "Randevu almak istiyorum (kibar).",
-      "accepted": [
-        "Ich möchte gern einen Termin machen.",
-        "Ich möchte einen Termin machen.",
-        "Ich hätte gern einen Termin.",
-        "Ich möchte gern einen Termin vereinbaren."
-      ],
+      "accepted": ["Ich möchte gern einen Termin machen.","Ich möchte einen Termin machen.","Ich hätte gern einen Termin.","Ich möchte gern einen Termin vereinbaren.","Ich möchte gerne einen Termin machen.","Ich hätte gerne einen Termin.","Ich möchte einen Termin vereinbaren.","Ich möchte gerne einen Termin vereinbaren.","Ich würde gern einen Termin machen.","Ich würde gerne einen Termin machen.","Ich bräuchte einen Termin.","Ich bräuchte mal 'nen Termin."],
       "pattern": "pt:ich-moechte",
       "chunk": "ch:telefon:termin-machen"
     },
     {
       "id": "b02",
       "prompt_tr": "Dr. Weber'den bir randevu istiyorum.",
-      "accepted": [
-        "Ich möchte gern einen Termin bei Dr. Weber.",
-        "Ich möchte einen Termin bei Dr. Weber.",
-        "Ich hätte gern einen Termin bei Dr. Weber.",
-        "Ich möchte gern einen Termin bei Doktor Weber machen."
-      ],
+      "accepted": ["Ich möchte gern einen Termin bei Dr. Weber.","Ich möchte einen Termin bei Dr. Weber.","Ich hätte gern einen Termin bei Dr. Weber.","Ich möchte gern einen Termin bei Doktor Weber machen.","Ich möchte gerne einen Termin bei Dr. Weber.","Ich hätte gerne einen Termin bei Dr. Weber.","Ich möchte einen Termin bei Dr. Weber machen.","Ich möchte gern einen Termin bei Dr. Weber machen.","Ich möchte einen Termin bei Doktor Weber.","Ich hätte gern einen Termin bei Doktor Weber.","Ich bräuchte einen Termin bei Dr. Weber."],
       "pattern": "pt:ich-moechte"
     },
     {
       "id": "b03",
       "prompt_tr": "Evet, zaten sizin hastanızım (kadın olarak).",
-      "accepted": [
-        "Ja, ich bin schon Patientin bei Ihnen.",
-        "Ja, ich bin schon bei Ihnen Patientin.",
-        "Ja, ich war schon mal bei Ihnen.",
-        "Ja, ich bin schon Patient bei Ihnen."
-      ],
+      "accepted": ["Ja, ich bin schon Patientin bei Ihnen.","Ja, ich bin schon bei Ihnen Patientin.","Ja, ich war schon mal bei Ihnen.","Ja, ich bin schon Patient bei Ihnen.","Ja, ich bin Patientin bei Ihnen.","Ja, ich bin schon Patientin."],
       "pattern": "pt:ich-bin",
       "chunk": "ch:telefon:schon-patient"
     },
     {
       "id": "b04",
       "prompt_tr": "Hayır, ilk kez geliyorum.",
-      "accepted": ["Nein, ich komme zum ersten Mal.","Nein, ich bin neu bei Ihnen.","Nein, ich war noch nie bei Ihnen.","Nein, ich bin zum ersten Mal bei Ihnen."]
+      "accepted": ["Nein, ich komme zum ersten Mal.","Nein, ich bin neu bei Ihnen.","Nein, ich war noch nie bei Ihnen.","Nein, ich bin zum ersten Mal bei Ihnen.","Nein, das ist das erste Mal.","Nein, ich bin neu.","Nein, noch nicht."]
     },
     {
       "id": "b05",
       "prompt_tr": "Yasal sigortalıyım, AOK'deyim.",
-      "accepted": [
-        "Ich bin gesetzlich versichert, bei der AOK.",
-        "Gesetzlich, bei der AOK.",
-        "Ich bin bei der AOK, gesetzlich versichert.",
-        "Ich bin gesetzlich bei der AOK versichert."
-      ],
+      "accepted": ["Ich bin gesetzlich versichert, bei der AOK.","Gesetzlich, bei der AOK.","Ich bin bei der AOK, gesetzlich versichert.","Ich bin gesetzlich bei der AOK versichert.","Gesetzlich, AOK.","Ich bin gesetzlich versichert, AOK.","Ich bin bei der AOK versichert.","Ich bin bei der AOK."],
       "pattern": "pt:ich-bin",
       "chunk": "ch:telefon:gesetzlich"
     },
     {
       "id": "b06",
       "prompt_tr": "Özel sigortalıyım.",
-      "accepted": ["Ich bin privat versichert.","Privat.","Ich bin privat krankenversichert."],
+      "accepted": ["Ich bin privat versichert.","Privat.","Ich bin privat krankenversichert.","Privat versichert.","Ich bin privat."],
       "pattern": "pt:ich-bin"
     },
     {
       "id": "b07",
       "prompt_tr": "Doğum tarihim 12 Mart 1988.",
-      "accepted": [
-        "Mein Geburtsdatum ist der zwölfte März neunzehnhundertachtundachtzig.",
-        "Mein Geburtsdatum ist der 12. März 1988.",
-        "Der zwölfte März neunzehnhundertachtundachtzig.",
-        "Zwölfter Dritter achtundachtzig.",
-        "12.03.1988"
-      ],
+      "accepted": ["Mein Geburtsdatum ist der zwölfte März neunzehnhundertachtundachtzig.","Mein Geburtsdatum ist der 12. März 1988.","Der zwölfte März neunzehnhundertachtundachtzig.","Zwölfter Dritter achtundachtzig.","12.03.1988","Der 12. März 1988.","Ich bin am 12. März 1988 geboren.","Ich bin am zwölften März neunzehnhundertachtundachtzig geboren.","Am 12. März 1988.","Zwölfter März neunzehnhundertachtundachtzig.","Zwölfter Dritter neunzehnhundertachtundachtzig.","Zwölfter März achtundachtzig.","12.3.1988","Mein Geburtsdatum ist der 12.03.1988."],
       "chunk": "ch:telefon:geburtsdatum"
     },
     {
       "id": "b08",
       "prompt_tr": "Daha erken olur mu?",
-      "accepted": ["Geht es auch früher?","Geht's auch früher?","Ginge es auch früher?","Haben Sie vielleicht etwas früher?","Geht's auch eher?"],
+      "accepted": ["Geht es auch früher?","Geht's auch früher?","Ginge es auch früher?","Haben Sie vielleicht etwas früher?","Geht's auch eher?","Geht es nicht früher?","Haben Sie auch etwas früher?","Haben Sie nichts früher?","Geht es auch eher?"],
       "pattern": "pt:geht-es-auch",
       "chunk": "ch:telefon:geht-frueher"
     },
     {
       "id": "b09",
       "prompt_tr": "Öğleden sonra da olur mu?",
-      "accepted": ["Geht es auch am Nachmittag?","Geht es auch nachmittags?","Geht's auch nachmittags?","Ginge es auch am Nachmittag?"],
+      "accepted": ["Geht es auch am Nachmittag?","Geht es auch nachmittags?","Geht's auch nachmittags?","Ginge es auch am Nachmittag?","Geht's auch am Nachmittag?","Geht es am Nachmittag auch?"],
       "pattern": "pt:geht-es-auch"
     },
     {
       "id": "b10",
       "prompt_tr": "Perşembe saat 9:30 bana uyar ('halb' ile).",
-      "accepted": [
-        "Donnerstag um halb zehn passt mir gut.",
-        "Donnerstag um halb zehn passt mir.",
-        "Am Donnerstag um halb zehn passt mir gut.",
-        "Donnerstag halb zehn passt."
-      ],
+      "accepted": ["Donnerstag um halb zehn passt mir gut.","Donnerstag um halb zehn passt mir.","Am Donnerstag um halb zehn passt mir gut.","Donnerstag halb zehn passt.","Donnerstag um halb zehn passt.","Am Donnerstag um halb zehn passt mir.","Donnerstag um halb zehn passt mir sehr gut.","Am Donnerstag um halb zehn passt es mir."],
       "pattern": "pt:um-uhr",
       "chunk": "ch:telefon:halb-zehn"
     },
     {
       "id": "b11",
       "prompt_tr": "Saat 10:45'te mi? ('Viertel' ile sor)",
-      "accepted": ["Um Viertel vor elf?","Viertel vor elf?","Also um Viertel vor elf?","Um dreiviertel elf?"],
+      "accepted": ["Um Viertel vor elf?","Viertel vor elf?","Also um Viertel vor elf?","Um dreiviertel elf?","Um Viertel vor elf, oder?"],
       "pattern": "pt:um-uhr"
     },
     {
       "id": "b12",
       "prompt_tr": "Saat 11:15'te, değil mi? ('Viertel' ile)",
-      "accepted": ["Um Viertel nach elf, oder?","Um Viertel nach elf, richtig?","Viertel nach elf, oder?","Also um Viertel nach elf?"],
+      "accepted": ["Um Viertel nach elf, oder?","Um Viertel nach elf, richtig?","Viertel nach elf, oder?","Also um Viertel nach elf?","Viertel nach elf, richtig?","Um Viertel nach elf, stimmt's?","Um Viertel nach elf, ja?"],
       "pattern": "pt:um-uhr"
     },
     {
       "id": "b13",
       "prompt_tr": "Bu bana maalesef uymuyor; o saatte çalışıyorum.",
-      "accepted": [
-        "Das passt mir leider nicht, da arbeite ich.",
-        "Das passt mir leider nicht, da muss ich arbeiten.",
-        "Da arbeite ich leider, das passt mir nicht.",
-        "Das geht leider nicht, da muss ich arbeiten."
-      ],
+      "accepted": ["Das passt mir leider nicht, da arbeite ich.","Das passt mir leider nicht, da muss ich arbeiten.","Da arbeite ich leider, das passt mir nicht.","Das geht leider nicht, da muss ich arbeiten.","Das passt mir leider nicht, ich arbeite da.","Das passt mir leider nicht, da bin ich in der Arbeit.","Das passt leider nicht, da arbeite ich."],
       "pattern": "pt:passt-ihnen"
     },
     {
       "id": "b14",
       "prompt_tr": "Acil. Bugün gelebilir miyim?",
-      "accepted": [
-        "Es ist dringend. Kann ich heute noch kommen?",
-        "Es ist dringend, kann ich heute noch kommen?",
-        "Es ist dringend. Kann ich heute kommen?",
-        "Es ist leider dringend – geht heute noch was?"
-      ],
+      "accepted": ["Es ist dringend. Kann ich heute noch kommen?","Es ist dringend, kann ich heute noch kommen?","Es ist dringend. Kann ich heute kommen?","Es ist leider dringend – geht heute noch was?","Es ist dringend. Kann ich heute noch vorbeikommen?","Es ist dringend. Kann ich heute vorbeikommen?","Es ist dringend. Könnte ich heute noch kommen?"],
       "pattern": "pt:kann-ich",
       "chunk": "ch:telefon:dringend"
     },
     {
       "id": "b15",
       "prompt_tr": "Üç gündür ateşim ve boğaz ağrım var.",
-      "accepted": [
-        "Ich habe seit drei Tagen Fieber und Halsschmerzen.",
-        "Ich hab seit drei Tagen Fieber und Halsschmerzen.",
-        "Seit drei Tagen habe ich Fieber und Halsschmerzen.",
-        "Ich habe seit drei Tagen Halsschmerzen und Fieber."
-      ],
+      "accepted": ["Ich habe seit drei Tagen Fieber und Halsschmerzen.","Ich hab seit drei Tagen Fieber und Halsschmerzen.","Seit drei Tagen habe ich Fieber und Halsschmerzen.","Ich habe seit drei Tagen Halsschmerzen und Fieber.","Seit drei Tagen hab ich Fieber und Halsschmerzen.","Ich habe seit drei Tagen Fieber und Halsweh."],
       "pattern": "pt:seit"
     },
     {
       "id": "b16",
-      "prompt_tr": "Pardon, nasıldı tekrar?",
-      "accepted": ["Entschuldigung, wie war das nochmal?","Wie war das nochmal?","Entschuldigung, wie war das noch mal?","Wie bitte? Noch mal, bitte."],
+      "prompt_tr": "Pardon, nasıl demiştiniz?",
+      "accepted": ["Entschuldigung, wie war das nochmal?","Wie war das nochmal?","Entschuldigung, wie war das noch mal?","Wie bitte? Noch mal, bitte.","Wie war das noch mal?","Entschuldigung, wie war das?","Wie bitte? Nochmal, bitte."],
       "pattern": "pt:noch-mal",
       "chunk": "ch:telefon:wie-war-das"
     },
     {
       "id": "b17",
       "prompt_tr": "Biraz daha yavaş konuşabilir misiniz?",
-      "accepted": [
-        "Könnten Sie bitte etwas langsamer sprechen?",
-        "Können Sie bitte etwas langsamer sprechen?",
-        "Könnten Sie etwas langsamer sprechen, bitte?",
-        "Etwas langsamer, bitte."
-      ],
+      "accepted": ["Könnten Sie bitte etwas langsamer sprechen?","Können Sie bitte etwas langsamer sprechen?","Könnten Sie etwas langsamer sprechen, bitte?","Etwas langsamer, bitte.","Könnten Sie bitte ein bisschen langsamer sprechen?","Können Sie bitte ein bisschen langsamer sprechen?","Könnten Sie bitte langsamer sprechen?","Können Sie bitte langsamer sprechen?","Würden Sie bitte etwas langsamer sprechen?","Ein bisschen langsamer, bitte."],
       "pattern": "pt:koennten-sie",
       "chunk": "ch:telefon:langsamer"
     },
     {
       "id": "b18",
       "prompt_tr": "Saati tekrar edebilir misiniz?",
-      "accepted": [
-        "Könnten Sie die Uhrzeit bitte wiederholen?",
-        "Können Sie die Uhrzeit bitte wiederholen?",
-        "Könnten Sie bitte die Uhrzeit wiederholen?",
-        "Wie war die Uhrzeit nochmal?"
-      ],
+      "accepted": ["Könnten Sie die Uhrzeit bitte wiederholen?","Können Sie die Uhrzeit bitte wiederholen?","Könnten Sie bitte die Uhrzeit wiederholen?","Wie war die Uhrzeit nochmal?","Können Sie die Uhrzeit wiederholen?","Könnten Sie die Uhrzeit bitte noch einmal sagen?","Können Sie die Uhrzeit bitte noch einmal sagen?","Können Sie die Uhrzeit bitte nochmal sagen?","Wie war die Uhrzeit noch mal?"],
       "pattern": "pt:koennten-sie"
     },
     {
@@ -509,76 +453,51 @@
     {
       "id": "b21",
       "prompt_tr": "Sigorta kartımı getirmem gerekiyor mu?",
-      "accepted": [
-        "Muss ich meine Versichertenkarte mitbringen?",
-        "Soll ich meine Versichertenkarte mitbringen?",
-        "Muss ich die Versichertenkarte mitbringen?",
-        "Brauchen Sie meine Versichertenkarte?"
-      ],
+      "accepted": ["Muss ich meine Versichertenkarte mitbringen?","Soll ich meine Versichertenkarte mitbringen?","Muss ich die Versichertenkarte mitbringen?","Brauchen Sie meine Versichertenkarte?","Muss ich die Karte mitbringen?","Muss ich meine Karte mitbringen?","Soll ich die Versichertenkarte mitbringen?"],
       "pattern": "pt:ja-nein-frage"
     },
     {
       "id": "b22",
       "prompt_tr": "Ayrıca rapora ihtiyacım var.",
-      "accepted": [
-        "Ich brauche auch eine Krankschreibung.",
-        "Ich bräuchte auch eine Krankschreibung.",
-        "Und ich brauche noch eine Krankschreibung.",
-        "Ich brauche auch eine AU."
-      ],
+      "accepted": ["Ich brauche auch eine Krankschreibung.","Ich bräuchte auch eine Krankschreibung.","Und ich brauche noch eine Krankschreibung.","Ich brauche auch eine AU.","Ich brauche auch noch eine Krankschreibung.","Ich brauche außerdem eine Krankschreibung.","Und ich bräuchte noch eine Krankschreibung.","Ich brauche noch eine Krankschreibung.","Außerdem brauche ich eine Krankschreibung."],
       "pattern": "pt:ich-brauche",
       "chunk": "ch:telefon:krankschreibung"
     },
     {
       "id": "b23",
       "prompt_tr": "Tamam, o zaman perşembe 9:30. (onayla)",
-      "accepted": [
-        "Gut, dann Donnerstag um halb zehn.",
-        "Okay, also Donnerstag um halb zehn.",
-        "Alles klar, dann Donnerstag um halb zehn.",
-        "Gut, also Donnerstag, halb zehn."
-      ],
+      "accepted": ["Gut, dann Donnerstag um halb zehn.","Okay, also Donnerstag um halb zehn.","Alles klar, dann Donnerstag um halb zehn.","Gut, also Donnerstag, halb zehn.","Okay, dann Donnerstag um halb zehn.","Gut, dann am Donnerstag um halb zehn.","Alles klar, Donnerstag um halb zehn."],
       "pattern": "pt:um-uhr",
       "chunk": "ch:telefon:halb-zehn"
     },
     {
       "id": "b24",
       "prompt_tr": "Bu bana çok geç.",
-      "accepted": ["Das ist mir zu spät.","Das ist mir leider zu spät.","Das ist zu spät für mich.","Drei Wochen ist mir zu spät."],
+      "accepted": ["Das ist mir zu spät.","Das ist mir leider zu spät.","Das ist zu spät für mich.","Drei Wochen ist mir zu spät.","Das ist zu spät."],
       "pattern": "pt:zu-adj"
     },
     {
       "id": "b25",
       "prompt_tr": "Tamam, o zaman yarın sabah sekizde tekrar ararım.",
-      "accepted": [
-        "Gut, dann rufe ich morgen früh um acht nochmal an.",
-        "Okay, ich rufe morgen um acht nochmal an.",
-        "Alles klar, dann ruf ich morgen früh um acht nochmal an.",
-        "Gut, ich rufe morgen früh um acht wieder an."
-      ],
+      "accepted": ["Gut, dann rufe ich morgen früh um acht nochmal an.","Okay, ich rufe morgen um acht nochmal an.","Alles klar, dann ruf ich morgen früh um acht nochmal an.","Gut, ich rufe morgen früh um acht wieder an.","Gut, dann rufe ich morgen früh um acht noch mal an.","Okay, dann rufe ich morgen früh um acht nochmal an.","Okay, dann rufe ich morgen früh um acht wieder an.","Gut, dann rufe ich morgen um acht nochmal an.","Alles klar, ich rufe morgen früh um acht nochmal an.","Gut, dann rufe ich morgen früh um acht wieder an."],
       "pattern": "pt:trennbar"
     },
     {
       "id": "b26",
       "prompt_tr": "Randevusuz gelebilir miyim?",
-      "accepted": ["Kann ich auch ohne Termin kommen?","Kann ich ohne Termin kommen?","Geht das auch ohne Termin?","Kann ich einfach ohne Termin vorbeikommen?"],
+      "accepted": ["Kann ich auch ohne Termin kommen?","Kann ich ohne Termin kommen?","Geht das auch ohne Termin?","Kann ich einfach ohne Termin vorbeikommen?","Kann ich auch ohne Termin vorbeikommen?","Kann ich ohne Termin vorbeikommen?","Geht es auch ohne Termin?"],
       "pattern": "pt:kann-ich"
     },
     {
       "id": "b27",
       "prompt_tr": "Çok teşekkürler, görüşmek üzere! (telefonda)",
-      "accepted": ["Vielen Dank, auf Wiederhören!","Danke, auf Wiederhören!","Vielen Dank, Wiederhören!","Danke schön, auf Wiederhören."],
+      "accepted": ["Vielen Dank, auf Wiederhören!","Danke, auf Wiederhören!","Vielen Dank, Wiederhören!","Danke schön, auf Wiederhören.","Danke, Wiederhören!","Vielen Dank und auf Wiederhören!"],
       "chunk": "ch:telefon:wiederhoeren"
     },
     {
       "id": "b28",
       "prompt_tr": "Akut muayene saati ne zaman?",
-      "accepted": [
-        "Wann ist die Akutsprechstunde?",
-        "Wann ist denn die Akutsprechstunde?",
-        "Um wie viel Uhr ist die Akutsprechstunde?",
-        "Von wann bis wann ist die Akutsprechstunde?"
-      ],
+      "accepted": ["Wann ist die Akutsprechstunde?","Wann ist denn die Akutsprechstunde?","Um wie viel Uhr ist die Akutsprechstunde?","Von wann bis wann ist die Akutsprechstunde?","Wann ist die Akutsprechstunde, bitte?","Wann haben Sie Akutsprechstunde?"],
       "pattern": "pt:w-frage"
     }
   ],
@@ -606,7 +525,7 @@
       "tr": "Perşembe 9:30'da.",
       "accepted": ["halb"],
       "opts": ["halb","Viertel","nach"],
-      "why_tr": "halb zehn = 9:30: 'onun yarısı' diye düşün, 10:30 değil."
+      "why_tr": "halb zehn = 9:30: 'ona yarım saat var' diye düşün; 10:30 değil."
     },
     {
       "id": "d04",
@@ -632,7 +551,7 @@
       "tr": "Bu bana uyar.",
       "accepted": ["passt"],
       "opts": ["passt","geht","ist"],
-      "why_tr": "'Das geht' de doğru olurdu ama 'mir' ile kalıp 'Das passt mir'dır."
+      "why_tr": "'mir' ile kalıp 'Das passt mir'dir. 'Das geht.' de 'olur' demektir ama 'Das geht mir gut' denmez."
     },
     {
       "id": "d07",
@@ -685,19 +604,14 @@
       "k": "transform",
       "instr_tr": "Kibar rica cümlesine çevir (Könnten Sie …?).",
       "from_de": "Wiederholen Sie das.",
-      "accepted": [
-        "Könnten Sie das bitte wiederholen?",
-        "Könnten Sie das wiederholen, bitte?",
-        "Können Sie das bitte wiederholen?",
-        "Würden Sie das bitte wiederholen?"
-      ]
+      "accepted": ["Könnten Sie das bitte wiederholen?","Könnten Sie das wiederholen, bitte?","Können Sie das bitte wiederholen?","Würden Sie das bitte wiederholen?","Könnten Sie das bitte noch einmal sagen?","Könnten Sie das wiederholen?"]
     },
     {
       "id": "d15",
       "k": "transform",
       "instr_tr": "Zamanı başa al; fiil 2. sırada kalsın.",
       "from_de": "Ich rufe morgen früh nochmal an.",
-      "accepted": ["Morgen früh rufe ich nochmal an.","Morgen früh rufe ich noch mal an.","Morgen früh ruf ich nochmal an."]
+      "accepted": ["Morgen früh rufe ich nochmal an.","Morgen früh rufe ich noch mal an.","Morgen früh ruf ich nochmal an.","Morgen früh rufe ich wieder an."]
     },
     {
       "id": "d16",
@@ -711,7 +625,7 @@
       "k": "transform",
       "instr_tr": "Gündelik (Alltag) biçimde söyle.",
       "from_de": "Geht es auch früher?",
-      "accepted": ["Geht's auch früher?","Geht's auch eher?","Geht's vielleicht auch früher?"]
+      "accepted": ["Geht's auch früher?","Geht's auch eher?","Geht's vielleicht auch früher?","Geht's auch früher, vielleicht?","Geht's nicht früher?"]
     },
     {
       "id": "d18",
@@ -719,14 +633,14 @@
       "instr_tr": "Saati 'halb' ile söyle.",
       "from_de": "Um neun Uhr dreißig.",
       "accepted": ["Um halb zehn.","Halb zehn.","Also um halb zehn."],
-      "why_tr": "9:30 → halb zehn (sonraki saatin yarısı)."
+      "why_tr": "9:30 → halb zehn (bir sonraki saate yarım saat kala)."
     },
     {
       "id": "d19",
       "k": "transform",
       "instr_tr": "Saati 'Viertel' ile söyle.",
       "from_de": "Um zehn Uhr fünfundvierzig.",
-      "accepted": ["Um Viertel vor elf.","Viertel vor elf.","Um dreiviertel elf."],
+      "accepted": ["Um Viertel vor elf.","Viertel vor elf.","Um dreiviertel elf.","Also um Viertel vor elf."],
       "why_tr": "Güney ve doğuda 'dreiviertel elf' de 10:45 demektir."
     },
     {
@@ -734,45 +648,35 @@
       "k": "guided_response",
       "situation_tr": "Sekreter soruyor; daha önce bu muayenehaneye geldin.",
       "prompt_de": "Sind Sie schon Patient bei uns?",
-      "accepted": ["Ja, ich bin schon Patient bei Ihnen.","Ja, ich bin schon Patientin bei Ihnen.","Ja, ich war schon mal bei Ihnen.","Ja, ich war schon da."]
+      "accepted": ["Ja, ich bin schon Patient bei Ihnen.","Ja, ich bin schon Patientin bei Ihnen.","Ja, ich war schon mal bei Ihnen.","Ja, ich war schon da.","Ja.","Ja, bin ich.","Ja, ich bin schon Patient.","Ja, ich bin Patient bei Ihnen."]
     },
     {
       "id": "d21",
       "k": "guided_response",
       "situation_tr": "Yasal sigortalısın, TK'desin.",
       "prompt_de": "Gesetzlich oder privat?",
-      "accepted": ["Gesetzlich, bei der TK.","Ich bin gesetzlich versichert, bei der TK.","Gesetzlich. Ich bin bei der TK."]
+      "accepted": ["Gesetzlich, bei der TK.","Ich bin gesetzlich versichert, bei der TK.","Gesetzlich. Ich bin bei der TK.","Gesetzlich, TK.","Gesetzlich versichert, bei der TK.","Ich bin gesetzlich versichert, TK.","Ich bin bei der TK."]
     },
     {
       "id": "d22",
       "k": "guided_response",
       "situation_tr": "Boğazın ağrıyor ve ateşin var.",
       "prompt_de": "Worum geht's denn?",
-      "accepted": [
-        "Ich habe Halsschmerzen und Fieber.",
-        "Ich hab Halsschmerzen und Fieber.",
-        "Mir tut der Hals weh und ich habe Fieber.",
-        "Ich habe Fieber und Halsschmerzen."
-      ]
+      "accepted": ["Ich habe Halsschmerzen und Fieber.","Ich hab Halsschmerzen und Fieber.","Mir tut der Hals weh und ich habe Fieber.","Ich habe Fieber und Halsschmerzen.","Ich hab Fieber und Halsschmerzen.","Ich habe Halsweh und Fieber.","Ich habe Halsschmerzen und Fieber und brauche einen Termin."]
     },
     {
       "id": "d23",
       "k": "guided_response",
       "situation_tr": "Üç hafta sonrası sana çok geç; daha erken iste.",
       "prompt_de": "Da hab ich erst was in drei Wochen.",
-      "accepted": [
-        "Geht es nicht früher? Es ist dringend.",
-        "Geht's auch früher? Es ist dringend.",
-        "Das ist mir zu spät. Haben Sie nichts früher?",
-        "Drei Wochen ist mir zu spät, es ist dringend."
-      ]
+      "accepted": ["Geht es nicht früher? Es ist dringend.","Geht's auch früher? Es ist dringend.","Das ist mir zu spät. Haben Sie nichts früher?","Drei Wochen ist mir zu spät, es ist dringend.","Geht es auch früher? Es ist dringend.","Geht es nicht früher?","Geht es auch früher?","Das ist mir zu spät. Geht es auch früher?","Das ist mir zu spät. Geht es nicht früher?"]
     },
     {
       "id": "d24",
       "k": "guided_response",
       "situation_tr": "Saat sana uyuyor; kabul et.",
       "prompt_de": "Donnerstag um Viertel nach elf, passt's Ihnen?",
-      "accepted": ["Ja, das passt mir gut.","Ja, passt.","Ja, das passt.","Ja, Donnerstag um Viertel nach elf passt mir."]
+      "accepted": ["Ja, das passt mir gut.","Ja, passt.","Ja, das passt.","Ja, Donnerstag um Viertel nach elf passt mir.","Ja, das passt mir.","Passt.","Ja, das passt gut.","Ja, passt mir gut."]
     },
     {
       "id": "d25",
@@ -790,7 +694,7 @@
       "k": "guided_response",
       "situation_tr": "Bugün yer yok; yarın sabah tekrar arayacağını söyle.",
       "prompt_de": "Heute ist leider alles voll. Rufen Sie morgen früh um acht nochmal an.",
-      "accepted": ["Gut, dann rufe ich morgen um acht nochmal an.","Okay, ich rufe morgen früh nochmal an.","Alles klar, dann ruf ich morgen um acht an."]
+      "accepted": ["Gut, dann rufe ich morgen um acht nochmal an.","Okay, ich rufe morgen früh nochmal an.","Alles klar, dann ruf ich morgen um acht an.","Gut, dann rufe ich morgen früh um acht nochmal an.","Gut, dann rufe ich morgen früh um acht noch mal an.","Okay, dann rufe ich morgen früh um acht wieder an.","Gut, dann rufe ich morgen um acht noch mal an.","Okay, ich rufe morgen um acht nochmal an.","Alles klar, ich rufe morgen früh um acht nochmal an."]
     },
     {
       "id": "d27",
@@ -798,12 +702,7 @@
       "audio_de": "Praxis Dr. Weber, Huber, grüß Gott?",
       "speed": "fast",
       "situation_tr": "Randevu istiyorsun. ('Huber' sekreterin adı.)",
-      "accepted": [
-        "Grüß Gott, ich möchte gern einen Termin machen.",
-        "Guten Tag, ich möchte einen Termin machen.",
-        "Grüß Gott, ich hätte gern einen Termin.",
-        "Hallo, ich bräuchte einen Termin."
-      ]
+      "accepted": ["Grüß Gott, ich möchte gern einen Termin machen.","Guten Tag, ich möchte einen Termin machen.","Grüß Gott, ich hätte gern einen Termin.","Hallo, ich bräuchte einen Termin.","Grüß Gott, ich möchte gerne einen Termin machen.","Guten Tag, ich möchte gern einen Termin machen.","Guten Tag, ich hätte gern einen Termin.","Grüß Gott, ich hätte gerne einen Termin.","Grüß Gott, ich bräuchte einen Termin.","Grüß Gott, ich möchte einen Termin machen."]
     },
     {
       "id": "d28",
@@ -811,7 +710,7 @@
       "audio_de": "Ihr Geburtsdatum, bitte?",
       "speed": "normal",
       "situation_tr": "5 Mayıs 1990 doğumlusun (örnek tarih).",
-      "accepted": ["Der fünfte Mai neunzehnhundertneunzig.","Mein Geburtsdatum ist der 5. Mai 1990.","Fünfter Fünfter neunzig.","05.05.1990"]
+      "accepted": ["Der fünfte Mai neunzehnhundertneunzig.","Mein Geburtsdatum ist der 5. Mai 1990.","Fünfter Fünfter neunzig.","05.05.1990","Fünfter Mai neunzehnhundertneunzig.","Der 5. Mai 1990.","Ich bin am 5. Mai 1990 geboren.","Ich bin am fünften Mai neunzehnhundertneunzig geboren.","Fünfter Fünfter neunzehnhundertneunzig.","Am 5. Mai 1990.","5.5.1990","Mein Geburtsdatum ist der fünfte Mai neunzehnhundertneunzig."]
     },
     {
       "id": "d29",
@@ -819,7 +718,7 @@
       "audio_de": "Waren Sie schon mal bei uns?",
       "speed": "natural",
       "situation_tr": "İlk kez arıyorsun.",
-      "accepted": ["Nein, ich bin neu.","Nein, noch nie.","Nein, ich komme zum ersten Mal.","Nein, ich war noch nie bei Ihnen."]
+      "accepted": ["Nein, ich bin neu.","Nein, noch nie.","Nein, ich komme zum ersten Mal.","Nein, ich war noch nie bei Ihnen.","Nein.","Nein, noch nicht.","Nein, das ist das erste Mal.","Nein, ich bin neu bei Ihnen."]
     },
     {
       "id": "d30",
@@ -827,7 +726,7 @@
       "audio_de": "Ich hätte Dienstag um halb neun.",
       "speed": "fast",
       "situation_tr": "Saati doğru anladığını kontrol et (8:30).",
-      "accepted": ["Um halb neun, also acht Uhr dreißig?","Halb neun, also 8:30?","Also um acht Uhr dreißig?","Dienstag um 8:30, richtig?"]
+      "accepted": ["Um halb neun, also acht Uhr dreißig?","Halb neun, also 8:30?","Also um acht Uhr dreißig?","Dienstag um 8:30, richtig?","Halb neun, also acht Uhr dreißig?","Um halb neun?","Halb neun, also acht Uhr dreißig, richtig?","Dienstag um halb neun, also acht Uhr dreißig?","Acht Uhr dreißig, richtig?"]
     },
     {
       "id": "d31",
@@ -835,7 +734,7 @@
       "audio_de": "Welche Kasse?",
       "speed": "natural",
       "situation_tr": "AOK'desin.",
-      "accepted": ["Bei der AOK.","AOK.","Ich bin bei der AOK."]
+      "accepted": ["Bei der AOK.","AOK.","Ich bin bei der AOK.","Ich bin bei der AOK versichert.","Die AOK."]
     },
     {
       "id": "d32",
@@ -843,7 +742,7 @@
       "audio_de": "Bringen Sie bitte Ihre Versichertenkarte mit.",
       "speed": "normal",
       "situation_tr": "Tamam de, teşekkür et.",
-      "accepted": ["Ja, mach ich. Danke.","Okay, mache ich. Vielen Dank.","Alles klar, danke.","Ja, gerne. Danke schön."]
+      "accepted": ["Ja, mach ich. Danke.","Okay, mache ich. Vielen Dank.","Alles klar, danke.","Ja, gerne. Danke schön.","Mach ich, danke.","Ja, mache ich. Danke.","Okay, danke.","In Ordnung, danke."]
     },
     {
       "id": "d33",
@@ -851,41 +750,32 @@
       "audio_de": "Kommen Sie einfach in die Akutsprechstunde, ohne Termin.",
       "speed": "fast",
       "situation_tr": "Saatini sor.",
-      "accepted": ["Wann ist die Akutsprechstunde?","Wann ist denn die Akutsprechstunde?","Um wie viel Uhr ist die Akutsprechstunde?"]
+      "accepted": ["Wann ist die Akutsprechstunde?","Wann ist denn die Akutsprechstunde?","Um wie viel Uhr ist die Akutsprechstunde?","Von wann bis wann ist die Akutsprechstunde?","Wann ist die?","Und wann ist die Akutsprechstunde?"]
     },
     {
       "id": "d34",
       "k": "tr_de",
       "tr": "Perşembe öğleden önce olur mu?",
-      "accepted": ["Geht es am Donnerstagvormittag?","Geht es Donnerstag am Vormittag?","Geht's am Donnerstagvormittag?","Geht es am Donnerstag vormittags?"]
+      "accepted": ["Geht es am Donnerstagvormittag?","Geht es Donnerstag am Vormittag?","Geht's am Donnerstagvormittag?","Geht es am Donnerstag vormittags?","Geht es am Donnerstag Vormittag?","Geht es Donnerstagvormittag?","Geht es auch am Donnerstagvormittag?","Geht's am Donnerstag Vormittag?","Passt es am Donnerstagvormittag?"]
     },
-    {"id":"d35","k":"tr_de","tr":"Bu bana çok erken.","accepted":["Das ist mir zu früh.","Das ist mir leider zu früh.","Das ist zu früh für mich."]},
+    {"id":"d35","k":"tr_de","tr":"Bu bana çok erken.","accepted":["Das ist mir zu früh.","Das ist mir leider zu früh.","Das ist zu früh für mich.","Das ist zu früh."]},
     {
       "id": "d36",
       "k": "tr_de",
       "tr": "Adımı harf harf söyleyeyim mi?",
-      "accepted": ["Soll ich meinen Namen buchstabieren?","Soll ich den Namen buchstabieren?","Soll ich buchstabieren?"]
+      "accepted": ["Soll ich meinen Namen buchstabieren?","Soll ich den Namen buchstabieren?","Soll ich buchstabieren?","Soll ich meinen Namen mal buchstabieren?","Soll ich das buchstabieren?"]
     },
     {
       "id": "d37",
       "k": "tr_de",
       "tr": "Yarın öğleden sonra boş bir yer var mı?",
-      "accepted": [
-        "Haben Sie morgen Nachmittag etwas frei?",
-        "Haben Sie morgen Nachmittag was frei?",
-        "Ist morgen Nachmittag etwas frei?",
-        "Geht es morgen Nachmittag?"
-      ]
+      "accepted": ["Haben Sie morgen Nachmittag etwas frei?","Haben Sie morgen Nachmittag was frei?","Ist morgen Nachmittag etwas frei?","Geht es morgen Nachmittag?","Haben Sie morgen Nachmittag noch etwas frei?","Haben Sie morgen Nachmittag einen Termin frei?","Haben Sie morgen Nachmittag noch einen Termin frei?","Ist morgen Nachmittag noch etwas frei?","Haben Sie morgen am Nachmittag etwas frei?"]
     },
     {
       "id": "d38",
       "k": "tr_de",
       "tr": "Yavaş lütfen, Almancam o kadar iyi değil.",
-      "accepted": [
-        "Langsam, bitte. Mein Deutsch ist nicht so gut.",
-        "Bitte langsam, mein Deutsch ist nicht so gut.",
-        "Etwas langsamer, bitte, mein Deutsch ist noch nicht so gut."
-      ]
+      "accepted": ["Langsam, bitte. Mein Deutsch ist nicht so gut.","Bitte langsam, mein Deutsch ist nicht so gut.","Etwas langsamer, bitte, mein Deutsch ist noch nicht so gut.","Langsamer, bitte. Mein Deutsch ist nicht so gut.","Bitte langsam, mein Deutsch ist noch nicht so gut.","Langsam, bitte, ich spreche nicht so gut Deutsch.","Etwas langsamer, bitte. Mein Deutsch ist nicht so gut."]
     },
     {
       "id": "d39",
@@ -893,7 +783,7 @@
       "q_tr": "'halb zehn' saat kaçtır?",
       "opts": ["9:30","10:30","10:00","9:50"],
       "ans": 0,
-      "why_tr": "halb zehn = onun yarısı = 9:30."
+      "why_tr": "halb zehn = ona yarım saat kala = 9:30."
     }
   ],
   "dialogues": [
@@ -917,7 +807,7 @@
             "Hallo, hier ist Demir, ich bräuchte einen Termin."
           ]
         },
-        {"r":"A","de":"Sind Sie schon Patientin bei uns?","tr":"Zaten hastamız mısınız?","speed":"normal"},
+        {"r":"A","de":"Sind Sie schon Patientin bei uns?","tr":"Bizim hastamız mısınız?","speed":"normal"},
         {
           "r": "B",
           "de": "Ja, ich war schon mal bei Ihnen.",
@@ -1063,7 +953,7 @@
         {
           "r": "B",
           "de": "Entschuldigung, wie war das nochmal? Von wann bis wann?",
-          "tr": "Pardon, nasıldı? Saat kaçtan kaça?",
+          "tr": "Pardon, nasıl demiştiniz? Saat kaçtan kaça?",
           "starter": "Entschuldigung, wie war …",
           "keywords": ["nochmal","von wann bis wann"],
           "hint_tr": "Saati kaçırdın; tekrar ettir.",
@@ -1253,7 +1143,7 @@
           "r": "Patient",
           "de": "Grüß Gott, Petrović hier. Ich bräuchte einen Termin, ich hab seit Montag Ohrenschmerzen.",
           "tr": "Merhaba, ben Petrović. Bir randevuya ihtiyacım var, pazartesiden beri kulağım ağrıyor.",
-          "reductions": [{"heard":"hab ich","full":"habe ich"}]
+          "reductions": [{"heard":"hab","full":"habe"}]
         },
         {"r":"Sekretärin","de":"Waren Sie schon mal bei uns?","tr":"Daha önce bize geldiniz mi?"},
         {"r":"Patient","de":"Ja, letztes Jahr.","tr":"Evet, geçen yıl."},
@@ -1269,10 +1159,10 @@
         {"r":"Sekretärin","de":"Gut, dann bis morgen. Wiederhören!","tr":"Tamam, yarın görüşürüz. Görüşmek üzere!"}
       ],
       "qs": [
-        {"kind":"gist","q_tr":"Arayan kişi ne istiyor?","opts":["Randevu","Reçete","Rapor","Muayenehanenin adresi"],"ans":0},
-        {"kind":"detail","q_tr":"Randevu ne zaman?","opts":["Yarın 10:30","Yarın 11:30","Yarın 10:00","Bugün 10:30"],"ans":0},
+        {"kind":"gist","q_tr":"Arayan kişi ne istiyor?","opts":["Reçete","Randevu","Rapor","Muayenehanenin adresi"],"ans":1},
+        {"kind":"detail","q_tr":"Randevu ne zaman?","opts":["Yarın 11:30","Yarın 10:00","Yarın 10:30","Bugün 10:30"],"ans":2},
         {"kind":"detail","q_tr":"Arayan bu muayenehaneye daha önce gelmiş mi?","opts":["Evet, geçen yıl","Hayır, ilk kez","Bunu söylemiyor"],"ans":0},
-        {"kind":"detail","q_tr":"'Huber' kimin adı?","opts":["Sekreterin","Doktorun","Arayanın"],"ans":0}
+        {"kind":"detail","q_tr":"'Huber' kimin adı?","opts":["Doktorun","Sekreterin","Arayanın"],"ans":1}
       ]
     },
     {
@@ -1286,7 +1176,7 @@
           "r": "Patientin",
           "de": "Guten Morgen, ich hab hohes Fieber. Kann ich heut noch kommen?",
           "tr": "Günaydın, yüksek ateşim var. Bugün gelebilir miyim?",
-          "reductions": [{"heard":"heut","full":"heute"}]
+          "reductions": [{"heard":"hab","full":"habe"},{"heard":"heut","full":"heute"}]
         },
         {
           "r": "Sekretärin",
@@ -1306,15 +1196,15 @@
         {
           "kind": "gist",
           "q_tr": "Görüşmenin sonucu ne?",
-          "opts": ["Randevusuz akut muayeneye gidebilir","Üç hafta sonraya randevu aldı","Doktor onu geri arayacak"],
-          "ans": 0
+          "opts": ["Üç hafta sonraya randevu aldı","Doktor onu geri arayacak","Randevusuz akut muayeneye gidebilir"],
+          "ans": 2
         },
         {"kind":"detail","q_tr":"Akut muayene saatleri ne?","opts":["8–10","10–12","14–16"],"ans":0},
         {
           "kind": "detail",
           "q_tr": "Öğleden sonra durum ne?",
-          "opts": ["Akut muayene yok","Akut muayene var","Muayenehane kapalı ama doktor geri arar"],
-          "ans": 0
+          "opts": ["Akut muayene var","Akut muayene yok","Muayenehane kapalı ama doktor geri arar"],
+          "ans": 1
         }
       ]
     }
@@ -1363,14 +1253,7 @@
       ]
     }
   ],
-  "mistakes_tr": [
-    "halb zehn = 9:30 (onun yarısı). Türkçedeki 'on buçuk' alışkanlığıyla 10:30 anlamak en tipik hatadır.",
-    "Viertel nach elf = 11:15, Viertel vor elf = 10:45. Güneyde 'dreiviertel elf' de 10:45 demektir.",
-    "Sekreterin açılıştaki ikinci kelimesi (ör. 'Huber') onun soyadıdır, soru değildir. Kaçırırsan sorun yok: kendini tanıtıp devam et.",
-    "Telefonda vedalaşma 'Auf Wiederhören'dir; 'Auf Wiedersehen' yanlış değil ama telefona özgü değildir.",
-    "Modal fiilde mastar sona gider: 'Ich möchte einen Termin machen.'",
-    "Kime uyduğu Dativ'dir: 'Das passt mir', 'Passt Ihnen …?'"
-  ],
+  "mistakes_tr": ["halb zehn = 9:30 (ona yarım saat kala). Türkçedeki 'on buçuk' alışkanlığıyla 10:30 anlamak en tipik hatadır.","Viertel nach elf = 11:15, Viertel vor elf = 10:45. Güneyde 'dreiviertel elf' de 10:45 demektir.","Sekreterin açılıştaki ikinci kelimesi (ör. 'Huber') onun soyadıdır, soru değildir. Kaçırırsan sorun yok: kendini tanıtıp devam et.","Telefonda vedalaşma 'Auf Wiederhören'dir; 'Auf Wiedersehen' yanlış değil ama telefona özgü değildir.","Modal fiilde mastar sona gider: 'Ich möchte einen Termin machen.'","Kime uyduğu Dativ'dir: 'Das passt mir', 'Passt Ihnen …?'"],
   "source": {
     "notes": "Harf kodlama tablosu (DIN 5009:2022 ve eski isimli biçim) ile rapor bilgileri için: content/v2/domains/telefon/SOURCES.md. Muayenehane adları, saatler ve kişi adları kurgusaldır; örnek doğum tarihleri kişisel bilgi değildir."
   }

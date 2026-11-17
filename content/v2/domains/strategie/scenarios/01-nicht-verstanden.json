@@ -4,9 +4,9 @@
   "order": 1,
   "level": "A1",
   "title_tr": "Anlamadığını söylemek, tekrar ettirmek, yavaşlatmak",
-  "title_de": "Sagen, dass man nicht verstanden hat",
+  "title_de": "Sagen, dass man etwas nicht verstanden hat",
   "goal_tr": "Anlamadığında konuşmayı bırakmadan ve İngilizceye kaçmadan Almanca tepki vermek: tekrar ettirmek, yavaşlatmak, bir kelimenin anlamını sormak, anladığın parçayı söylemek ve sonunda anladığını göstermek.",
-  "review": {"status":"draft"},
+  "review": {"status":"reviewed","by":"dilbilimci-ajan","at":"2026-11-17"},
   "essentials": {
     "lexemes": [
       "lx:verstehen",
@@ -55,7 +55,7 @@
       "pattern": "pt:ich-verstehe-nicht",
       "register": "neutral",
       "layers": {"hd":"Entschuldigung, das habe ich nicht verstanden.","alltag":"Hab ich jetzt nicht verstanden."},
-      "use_tr": "Az önce söyleneni anlamadığında. Perfekt kullanılır, çünkü söz az önce bitti. Gündelikte özne düşer: 'Hab ich …'.",
+      "use_tr": "Az önce söyleneni anlamadığında. Perfekt kullanılır, çünkü söz az önce bitti. Gündelikte baştaki 'das' düşer, özne 'ich' kalır: '(Das) hab ich …'.",
       "mistakes_tr": ["Az önceki cümle için 'Ich verstehe nicht' yerine 'Das habe ich nicht verstanden' daha doğal."]
     },
     {
@@ -71,7 +71,7 @@
     {
       "id": "ch:strategie:wie-bitte",
       "tr": "Efendim? / Pardon?",
-      "lexemes": ["lx:Entschuldigung"],
+      "lexemes": ["lx:bitte"],
       "pattern": "pt:noch-mal",
       "register": "neutral",
       "layers": {"hd":"Wie bitte?","alltag":"Bitte?"},
@@ -103,8 +103,8 @@
       "tr": "Hâlâ Almanca öğreniyorum.",
       "lexemes": ["lx:lernen","lx:Deutsch"],
       "register": "neutral",
-      "layers": {"hd":"Ich lerne noch Deutsch.","alltag":"Mein Deutsch ist noch nicht so gut."},
-      "use_tr": "Karşı tarafın yavaşlaması ve sabretmesi için kısa açıklama. Özür dilemene gerek yok.",
+      "layers": {"hd":"Ich lerne noch Deutsch.","alltag":"Ich lern noch Deutsch."},
+      "use_tr": "Karşı tarafın yavaşlaması ve sabretmesi için kısa açıklama. Özür dilemene gerek yok. Aynı işi gören başka bir cümle: 'Mein Deutsch ist noch nicht so gut.'",
       "mistakes_tr": []
     },
     {
@@ -277,7 +277,7 @@
       "to": "o11",
       "options": [
         {"de":"Nein, lieber auf Deutsch, bitte. Ich möchte üben.","tr":"Hayır, Almanca olsun lütfen. Pratik yapmak istiyorum.","register":"neutral"},
-        {"de":"Danke, aber Deutsch ist okay – bitte nur langsam.","tr":"Teşekkürler ama Almanca olur, yeter ki yavaş.","register":"neutral"}
+        {"de":"Danke, aber Deutsch ist okay – nur bitte etwas langsamer.","tr":"Teşekkürler ama Almanca olur; yalnız biraz daha yavaş lütfen.","register":"neutral"}
       ]
     },
     {
@@ -299,240 +299,180 @@
     {
       "id": "b01",
       "prompt_tr": "Pardon, bunu anlamadım.",
-      "accepted": [
-        "Entschuldigung, das habe ich nicht verstanden.",
-        "Entschuldigung, das hab ich nicht verstanden.",
-        "Tut mir leid, das habe ich nicht verstanden.",
-        "Entschuldigung, ich habe das nicht verstanden."
-      ],
+      "accepted": ["Entschuldigung, das habe ich nicht verstanden.","Entschuldigung, das hab ich nicht verstanden.","Tut mir leid, das habe ich nicht verstanden.","Entschuldigung, ich habe das nicht verstanden.","Das habe ich nicht verstanden.","Entschuldigung, ich hab das nicht verstanden.","Tut mir leid, ich habe das nicht verstanden.","Entschuldigung, das habe ich jetzt nicht verstanden."],
       "pattern": "pt:ich-verstehe-nicht",
       "chunk": "ch:strategie:nicht-verstanden"
     },
     {
       "id": "b02",
       "prompt_tr": "Tam anlayamadım.",
-      "accepted": [
-        "Das habe ich nicht ganz verstanden.",
-        "Ich habe das nicht ganz verstanden.",
-        "Das hab ich nicht ganz verstanden.",
-        "Ich hab's nicht ganz mitgekriegt."
-      ],
+      "accepted": ["Das habe ich nicht ganz verstanden.","Ich habe das nicht ganz verstanden.","Das hab ich nicht ganz verstanden.","Ich hab's nicht ganz mitgekriegt.","Ich hab das nicht ganz verstanden.","Das habe ich nicht ganz mitbekommen.","Ich habe es nicht ganz verstanden."],
       "pattern": "pt:ich-verstehe-nicht",
       "chunk": "ch:strategie:nicht-ganz"
     },
     {
       "id": "b03",
       "prompt_tr": "Efendim? (anlamadın)",
-      "accepted": ["Wie bitte?","Bitte?","Entschuldigung, wie bitte?"],
+      "accepted": ["Wie bitte?","Bitte?","Entschuldigung, wie bitte?","Entschuldigung?","Wie bitte? Noch mal, bitte."],
       "pattern": "pt:noch-mal",
       "chunk": "ch:strategie:wie-bitte"
     },
     {
       "id": "b04",
       "prompt_tr": "Bir kez daha söyler misiniz, lütfen?",
-      "accepted": ["Können Sie das bitte noch einmal sagen?","Können Sie das bitte nochmal sagen?","Könnten Sie das noch einmal sagen?","Noch mal, bitte."],
+      "accepted": ["Können Sie das bitte noch einmal sagen?","Können Sie das bitte nochmal sagen?","Könnten Sie das noch einmal sagen?","Noch mal, bitte.","Können Sie das bitte noch mal sagen?","Könnten Sie das bitte noch einmal sagen?","Können Sie das noch einmal sagen?","Können Sie das bitte wiederholen?","Könnten Sie das bitte wiederholen?","Sagen Sie das bitte noch einmal.","Nochmal, bitte.","Noch einmal, bitte."],
       "pattern": "pt:noch-mal",
       "chunk": "ch:strategie:noch-einmal"
     },
     {
       "id": "b05",
       "prompt_tr": "Biraz daha yavaş konuşur musunuz? (çok kibar)",
-      "accepted": [
-        "Würden Sie bitte etwas langsamer sprechen?",
-        "Könnten Sie bitte etwas langsamer sprechen?",
-        "Würden Sie etwas langsamer sprechen, bitte?",
-        "Ein bisschen langsamer, bitte."
-      ],
+      "accepted": ["Würden Sie bitte etwas langsamer sprechen?","Könnten Sie bitte etwas langsamer sprechen?","Würden Sie etwas langsamer sprechen, bitte?","Ein bisschen langsamer, bitte.","Würden Sie bitte ein bisschen langsamer sprechen?","Könnten Sie bitte ein bisschen langsamer sprechen?","Können Sie bitte etwas langsamer sprechen?","Würden Sie bitte langsamer sprechen?","Etwas langsamer, bitte."],
       "pattern": "pt:wuerden-sie",
       "chunk": "ch:strategie:langsamer"
     },
     {
       "id": "b06",
       "prompt_tr": "Hâlâ Almanca öğreniyorum.",
-      "accepted": ["Ich lerne noch Deutsch.","Ich lerne gerade Deutsch.","Ich bin noch am Deutschlernen."],
+      "accepted": ["Ich lerne noch Deutsch.","Ich lerne gerade Deutsch.","Ich bin noch am Deutschlernen.","Ich lerne immer noch Deutsch.","Ich lern noch Deutsch.","Ich lerne noch."],
       "chunk": "ch:strategie:lerne-deutsch"
     },
     {
       "id": "b07",
       "prompt_tr": "Almancam henüz o kadar iyi değil.",
-      "accepted": ["Mein Deutsch ist noch nicht so gut.","Ich spreche noch nicht so gut Deutsch.","So gut ist mein Deutsch noch nicht."],
+      "accepted": ["Mein Deutsch ist noch nicht so gut.","Ich spreche noch nicht so gut Deutsch.","So gut ist mein Deutsch noch nicht.","Ich kann noch nicht so gut Deutsch.","Mein Deutsch ist noch nicht gut.","Mein Deutsch ist nicht so gut.","Ich spreche noch nicht so gut."],
       "pattern": "pt:nicht",
       "chunk": "ch:strategie:lerne-deutsch"
     },
     {
       "id": "b08",
       "prompt_tr": "'Kaution' ne demek?",
-      "accepted": ["Was heißt „Kaution“?","Was bedeutet „Kaution“?","Entschuldigung, was heißt „Kaution“?","Was ist eine Kaution?"],
+      "accepted": ["Was heißt „Kaution“?","Was bedeutet „Kaution“?","Entschuldigung, was heißt „Kaution“?","Was ist eine Kaution?","Was heißt das Wort „Kaution“?","Was bedeutet das Wort „Kaution“?","Entschuldigung, was bedeutet „Kaution“?"],
       "pattern": "pt:was-heisst",
       "chunk": "ch:strategie:was-heisst"
     },
     {
       "id": "b09",
       "prompt_tr": "Bu kelime ne demek?",
-      "accepted": ["Was bedeutet dieses Wort?","Was heißt dieses Wort?","Was bedeutet das Wort?","Was heißt das Wort?"],
+      "accepted": ["Was bedeutet dieses Wort?","Was heißt dieses Wort?","Was bedeutet das Wort?","Was heißt das Wort?","Was bedeutet das?","Was heißt das?"],
       "pattern": "pt:was-heisst"
     },
     {
       "id": "b10",
       "prompt_tr": "'Kaminkehrer' derken neyi kastediyorsunuz?",
-      "accepted": ["Was meinen Sie mit „Kaminkehrer“?","Was meinen Sie mit Kaminkehrer?","Was ist ein Kaminkehrer?","Was heißt „Kaminkehrer“?"],
+      "accepted": ["Was meinen Sie mit „Kaminkehrer“?","Was meinen Sie mit Kaminkehrer?","Was ist ein Kaminkehrer?","Was heißt „Kaminkehrer“?","Was bedeutet „Kaminkehrer“?","Was meinen Sie mit dem Wort „Kaminkehrer“?"],
       "pattern": "pt:meinen-sie",
       "chunk": "ch:strategie:was-meinen"
     },
     {
       "id": "b11",
       "prompt_tr": "Bunu bana yazabilir misiniz?",
-      "accepted": [
-        "Könnten Sie mir das bitte aufschreiben?",
-        "Können Sie mir das bitte aufschreiben?",
-        "Können Sie das bitte aufschreiben?",
-        "Würden Sie mir das bitte aufschreiben?"
-      ],
+      "accepted": ["Könnten Sie mir das bitte aufschreiben?","Können Sie mir das bitte aufschreiben?","Können Sie das bitte aufschreiben?","Würden Sie mir das bitte aufschreiben?","Könnten Sie das bitte aufschreiben?","Können Sie mir das aufschreiben?","Könnten Sie mir das aufschreiben?","Schreiben Sie mir das bitte auf?","Können Sie es mir bitte aufschreiben?"],
       "pattern": "pt:koennten-sie",
       "chunk": "ch:strategie:aufschreiben"
     },
     {
       "id": "b12",
       "prompt_tr": "Bunu daha basit söyleyebilir misiniz?",
-      "accepted": [
-        "Können Sie das bitte einfacher sagen?",
-        "Könnten Sie das einfacher sagen?",
-        "Können Sie das mit einfachen Worten sagen?",
-        "Geht das auch einfacher?"
-      ],
+      "accepted": ["Können Sie das bitte einfacher sagen?","Könnten Sie das einfacher sagen?","Können Sie das mit einfachen Worten sagen?","Geht das auch einfacher?","Könnten Sie das bitte einfacher sagen?","Können Sie das einfacher sagen?","Können Sie das bitte einfacher erklären?"],
       "pattern": "pt:kann-ich",
       "chunk": "ch:strategie:einfacher"
     },
     {
       "id": "b13",
       "prompt_tr": "Sadece 'pazartesi'yi anladım.",
-      "accepted": ["Ich habe nur „Montag“ verstanden.","Ich hab nur „Montag“ verstanden.","Nur „Montag“ habe ich verstanden.","Ich habe nur Montag verstanden."],
+      "accepted": ["Ich habe nur „Montag“ verstanden.","Ich hab nur „Montag“ verstanden.","Nur „Montag“ habe ich verstanden.","Ich habe nur Montag verstanden.","Ich habe nur das Wort „Montag“ verstanden."],
       "pattern": "pt:perfekt-haben",
       "chunk": "ch:strategie:nur-verstanden"
     },
     {
       "id": "b14",
       "prompt_tr": "Lehçeyi henüz pek anlamıyorum.",
-      "accepted": [
-        "Den Dialekt verstehe ich noch nicht so gut.",
-        "Ich verstehe den Dialekt noch nicht so gut.",
-        "Mit dem Dialekt tu ich mich noch schwer.",
-        "Dialekt verstehe ich noch nicht so gut."
-      ],
+      "accepted": ["Den Dialekt verstehe ich noch nicht so gut.","Ich verstehe den Dialekt noch nicht so gut.","Mit dem Dialekt tu ich mich noch schwer.","Dialekt verstehe ich noch nicht so gut.","Ich verstehe den Dialekt noch nicht gut.","Ich verstehe Dialekt noch nicht so gut."],
       "pattern": "pt:ich-verstehe-nicht",
       "chunk": "ch:strategie:dialekt"
     },
     {
       "id": "b15",
       "prompt_tr": "Haa, şimdi anladım.",
-      "accepted": ["Ach so, jetzt verstehe ich.","Ach so, jetzt hab ich's verstanden.","Ach so! Jetzt verstehe ich das.","Ah, jetzt verstehe ich."],
+      "accepted": ["Ach so, jetzt verstehe ich.","Ach so, jetzt hab ich's verstanden.","Ach so! Jetzt verstehe ich das.","Ah, jetzt verstehe ich.","Ach so, jetzt verstehe ich es.","Ach so, jetzt habe ich es verstanden.","Ah, jetzt habe ich es verstanden.","Jetzt verstehe ich."],
       "chunk": "ch:strategie:ach-so"
     },
     {
       "id": "b16",
       "prompt_tr": "Hayır, lütfen Almanca konuşalım — pratik yapmak istiyorum.",
-      "accepted": [
-        "Nein, lieber auf Deutsch, bitte. Ich möchte üben.",
-        "Lieber auf Deutsch, bitte – ich möchte üben.",
-        "Nein, bitte Deutsch. Ich will üben.",
-        "Bitte weiter auf Deutsch, ich möchte üben."
-      ],
+      "accepted": ["Nein, lieber auf Deutsch, bitte. Ich möchte üben.","Lieber auf Deutsch, bitte – ich möchte üben.","Nein, bitte Deutsch. Ich will üben.","Bitte weiter auf Deutsch, ich möchte üben.","Nein, bitte auf Deutsch. Ich möchte üben.","Nein, lieber Deutsch, bitte. Ich möchte üben.","Nein, bitte auf Deutsch, ich will üben.","Lieber Deutsch, bitte – ich will üben."],
       "pattern": "pt:lieber",
       "chunk": "ch:strategie:lieber-deutsch"
     },
     {
       "id": "b17",
       "prompt_tr": "Çok hızlı konuşuyorsunuz.",
-      "accepted": ["Sie sprechen sehr schnell.","Sie sprechen zu schnell für mich.","Sie sprechen sehr schnell für mich."]
+      "accepted": ["Sie sprechen sehr schnell.","Sie sprechen zu schnell für mich.","Sie sprechen sehr schnell für mich.","Sie sprechen zu schnell.","Sie reden sehr schnell.","Sie sprechen so schnell."]
     },
     {
       "id": "b18",
       "prompt_tr": "Bu benim için fazla hızlıydı.",
-      "accepted": ["Das war mir zu schnell.","Das war zu schnell für mich.","Das ging mir zu schnell."],
+      "accepted": ["Das war mir zu schnell.","Das war zu schnell für mich.","Das ging mir zu schnell.","Das war zu schnell.","Das war mir ein bisschen zu schnell."],
       "pattern": "pt:zu-adj"
     },
     {
       "id": "b19",
       "prompt_tr": "Nasıl yazılıyor?",
-      "accepted": ["Wie schreibt man das?","Wie wird das geschrieben?","Wie schreibt man das Wort?"],
+      "accepted": ["Wie schreibt man das?","Wie wird das geschrieben?","Wie schreibt man das Wort?","Wie schreibt man das, bitte?","Wie schreibt sich das?"],
       "pattern": "pt:w-frage"
     },
     {
       "id": "b20",
       "prompt_tr": "Tekrar eder misiniz? (Würden Sie …)",
-      "accepted": [
-        "Würden Sie das bitte wiederholen?",
-        "Könnten Sie das bitte wiederholen?",
-        "Können Sie das bitte wiederholen?",
-        "Würden Sie das wiederholen, bitte?"
-      ],
+      "accepted": ["Würden Sie das bitte wiederholen?","Könnten Sie das bitte wiederholen?","Können Sie das bitte wiederholen?","Würden Sie das wiederholen, bitte?","Würden Sie das bitte noch einmal sagen?","Würden Sie das bitte nochmal sagen?"],
       "pattern": "pt:wuerden-sie"
     },
     {
       "id": "b21",
       "prompt_tr": "'bis' mi dediniz, 'ab' mı?",
-      "accepted": ["Haben Sie „bis“ oder „ab“ gesagt?","Haben Sie „bis“ gesagt oder „ab“?","Meinen Sie „bis“ oder „ab“?","„Bis“ oder „ab“?"],
+      "accepted": ["Haben Sie „bis“ oder „ab“ gesagt?","Haben Sie „bis“ gesagt oder „ab“?","Meinen Sie „bis“ oder „ab“?","„Bis“ oder „ab“?","Sagten Sie „bis“ oder „ab“?","War das „bis“ oder „ab“?"],
       "pattern": "pt:meinen-sie"
     },
     {
       "id": "b22",
       "prompt_tr": "Son kısmı anlamadım.",
-      "accepted": [
-        "Den letzten Teil habe ich nicht verstanden.",
-        "Das Letzte habe ich nicht verstanden.",
-        "Den letzten Teil hab ich nicht verstanden.",
-        "Ich habe den letzten Teil nicht verstanden."
-      ],
+      "accepted": ["Den letzten Teil habe ich nicht verstanden.","Das Letzte habe ich nicht verstanden.","Den letzten Teil hab ich nicht verstanden.","Ich habe den letzten Teil nicht verstanden.","Das Ende habe ich nicht verstanden.","Ich hab den letzten Teil nicht verstanden."],
       "pattern": "pt:ich-verstehe-nicht"
     },
     {
       "id": "b23",
       "prompt_tr": "Rakamı anlamadım. On üç mü, otuz mu?",
-      "accepted": [
-        "Die Zahl habe ich nicht verstanden. Dreizehn oder dreißig?",
-        "Die Zahl hab ich nicht verstanden – dreizehn oder dreißig?",
-        "Ich habe die Zahl nicht verstanden. Dreizehn oder dreißig?",
-        "Welche Zahl war das? Dreizehn oder dreißig?"
-      ],
+      "accepted": ["Die Zahl habe ich nicht verstanden. Dreizehn oder dreißig?","Die Zahl hab ich nicht verstanden – dreizehn oder dreißig?","Ich habe die Zahl nicht verstanden. Dreizehn oder dreißig?","Welche Zahl war das? Dreizehn oder dreißig?","Ich hab die Zahl nicht verstanden. Dreizehn oder dreißig?","Die Zahl habe ich nicht verstanden. War das dreizehn oder dreißig?"],
       "pattern": "pt:ich-verstehe-nicht"
     },
     {
       "id": "b24",
       "prompt_tr": "Bir saniye, not alıyorum.",
-      "accepted": ["Moment, ich schreibe mit.","Einen Moment, ich schreibe das mit.","Moment, ich schreib das auf.","Moment bitte, ich schreibe mit."],
+      "accepted": ["Moment, ich schreibe mit.","Einen Moment, ich schreibe das mit.","Moment, ich schreib das auf.","Moment bitte, ich schreibe mit.","Moment, ich schreibe das auf.","Einen Moment, ich schreibe mit.","Moment, ich notiere das.","Moment, ich schreib mit."],
       "pattern": "pt:moment"
     },
     {
       "id": "b25",
       "prompt_tr": "(Arkadaşına) Anlamadım, bir daha söyler misin?",
-      "accepted": [
-        "Hab ich nicht verstanden – kannst du das nochmal sagen?",
-        "Ich habe das nicht verstanden. Kannst du es noch einmal sagen?",
-        "Kannst du das nochmal sagen? Ich hab's nicht verstanden.",
-        "Das hab ich nicht verstanden. Sagst du's nochmal?"
-      ],
+      "accepted": ["Hab ich nicht verstanden – kannst du das nochmal sagen?","Ich habe das nicht verstanden. Kannst du es noch einmal sagen?","Kannst du das nochmal sagen? Ich hab's nicht verstanden.","Das hab ich nicht verstanden. Sagst du's nochmal?","Ich hab's nicht verstanden. Kannst du das nochmal sagen?","Das habe ich nicht verstanden. Kannst du das noch einmal sagen?","Ich habe das nicht verstanden. Kannst du das nochmal sagen?","Hab ich nicht verstanden. Sag nochmal, bitte."],
       "pattern": "pt:noch-mal"
     },
     {
       "id": "b26",
-      "prompt_tr": "(Arkadaşına) Yavaş, yavaş! Bu kadar hızlı değil!",
-      "accepted": ["Langsam, langsam! Nicht so schnell!","Nicht so schnell!","Mach mal langsam!","Nicht so schnell, bitte!"]
+      "prompt_tr": "(Arkadaşına) Yavaş, yavaş! O kadar hızlı gitme!",
+      "accepted": ["Langsam, langsam! Nicht so schnell!","Nicht so schnell!","Mach mal langsam!","Nicht so schnell, bitte!","Langsam, langsam!","Langsam! Nicht so schnell!"]
     },
     {
       "id": "b27",
       "prompt_tr": "Teşekkürler, şimdi anlaşıldı.",
-      "accepted": ["Danke, jetzt ist es klar.","Danke, jetzt ist alles klar.","Danke, jetzt verstehe ich es.","Danke, jetzt hab ich's."],
+      "accepted": ["Danke, jetzt ist es klar.","Danke, jetzt ist alles klar.","Danke, jetzt verstehe ich es.","Danke, jetzt hab ich's.","Danke, jetzt habe ich es verstanden.","Danke, jetzt verstehe ich.","Danke, jetzt ist das klar.","Danke, jetzt habe ich verstanden."],
       "chunk": "ch:strategie:ach-so"
     },
     {
       "id": "b28",
       "prompt_tr": "Bir kelimeyi anlamadım: 'Frist'.",
-      "accepted": [
-        "Ein Wort habe ich nicht verstanden: „Frist“.",
-        "Ich habe ein Wort nicht verstanden: „Frist“.",
-        "Das Wort „Frist“ habe ich nicht verstanden.",
-        "Ein Wort hab ich nicht verstanden – „Frist“."
-      ],
+      "accepted": ["Ein Wort habe ich nicht verstanden: „Frist“.","Ich habe ein Wort nicht verstanden: „Frist“.","Das Wort „Frist“ habe ich nicht verstanden.","Ein Wort hab ich nicht verstanden – „Frist“.","Das Wort „Frist“ hab ich nicht verstanden."],
       "pattern": "pt:ich-verstehe-nicht"
     }
   ],
@@ -607,7 +547,7 @@
       "k": "order",
       "de": "Deutsch / ist / noch / Mein / so gut / nicht",
       "tr": "Almancam henüz o kadar iyi değil.",
-      "accepted": ["Mein Deutsch ist noch nicht so gut."]
+      "accepted": ["Mein Deutsch ist noch nicht so gut.","So gut ist mein Deutsch noch nicht."]
     },
     {
       "id": "d11",
@@ -629,28 +569,28 @@
       "k": "transform",
       "instr_tr": "Kibar rica yap (Würden Sie …?).",
       "from_de": "Sprechen Sie langsamer!",
-      "accepted": ["Würden Sie bitte langsamer sprechen?","Würden Sie bitte etwas langsamer sprechen?","Würden Sie langsamer sprechen, bitte?"]
+      "accepted": ["Würden Sie bitte langsamer sprechen?","Würden Sie bitte etwas langsamer sprechen?","Würden Sie langsamer sprechen, bitte?","Würden Sie bitte ein bisschen langsamer sprechen?","Würden Sie etwas langsamer sprechen, bitte?"]
     },
     {
       "id": "d15",
       "k": "transform",
       "instr_tr": "Gündelik (Alltag) biçimde söyle.",
       "from_de": "Das habe ich nicht verstanden.",
-      "accepted": ["Hab ich nicht verstanden.","Das hab ich nicht verstanden.","Hab ich jetzt nicht verstanden."]
+      "accepted": ["Hab ich nicht verstanden.","Das hab ich nicht verstanden.","Hab ich jetzt nicht verstanden.","Hab's nicht verstanden.","Ich hab das nicht verstanden.","Ich hab's nicht verstanden."]
     },
     {
       "id": "d16",
       "k": "transform",
       "instr_tr": "Arkadaşına söyle (du).",
       "from_de": "Können Sie das bitte wiederholen?",
-      "accepted": ["Kannst du das bitte wiederholen?","Kannst du das nochmal sagen?","Kannst du das bitte nochmal sagen?"]
+      "accepted": ["Kannst du das bitte wiederholen?","Kannst du das nochmal sagen?","Kannst du das bitte nochmal sagen?","Kannst du das wiederholen?","Kannst du das noch einmal sagen?","Kannst du das bitte noch einmal sagen?","Kannst du das bitte noch mal sagen?","Kannst du das noch mal sagen?"]
     },
     {
       "id": "d17",
       "k": "transform",
       "instr_tr": "Az önce söyleneni kastet: Perfekt'e çevir.",
       "from_de": "Ich verstehe das nicht.",
-      "accepted": ["Ich habe das nicht verstanden.","Das habe ich nicht verstanden.","Ich hab das nicht verstanden."]
+      "accepted": ["Ich habe das nicht verstanden.","Das habe ich nicht verstanden.","Ich hab das nicht verstanden.","Das hab ich nicht verstanden.","Ich habe es nicht verstanden."]
     },
     {
       "id": "d18",
@@ -664,73 +604,56 @@
       "k": "transform",
       "instr_tr": "'nicht ganz' ile söyle (kısmen anladın).",
       "from_de": "Ich habe das verstanden.",
-      "accepted": ["Ich habe das nicht ganz verstanden.","Das habe ich nicht ganz verstanden.","Ich hab das nicht ganz verstanden."]
+      "accepted": ["Ich habe das nicht ganz verstanden.","Das habe ich nicht ganz verstanden.","Ich hab das nicht ganz verstanden.","Das hab ich nicht ganz verstanden.","Ich habe es nicht ganz verstanden."]
     },
     {
       "id": "d20",
       "k": "guided_response",
       "situation_tr": "Kasiyer hızlı bir şey sordu; anlamadın.",
       "prompt_de": "Sammeln Sie Punkte?",
-      "accepted": ["Entschuldigung, wie bitte?","Wie bitte?","Entschuldigung, das habe ich nicht verstanden.","Bitte? Noch mal, bitte."]
+      "accepted": ["Entschuldigung, wie bitte?","Wie bitte?","Entschuldigung, das habe ich nicht verstanden.","Bitte? Noch mal, bitte.","Noch mal, bitte.","Nochmal, bitte.","Wie bitte? Das habe ich nicht verstanden.","Können Sie das bitte wiederholen?","Bitte?"]
     },
     {
       "id": "d21",
       "k": "guided_response",
       "situation_tr": "Memur çok hızlı konuştu: yavaşlamasını iste ve Almanca öğrendiğini söyle.",
       "prompt_de": "Füllen Sie bitte das Formular aus und unterschreiben Sie unten rechts.",
-      "accepted": [
-        "Etwas langsamer, bitte. Ich lerne noch Deutsch.",
-        "Könnten Sie bitte langsamer sprechen? Ich lerne noch Deutsch.",
-        "Entschuldigung, langsamer bitte – mein Deutsch ist noch nicht so gut."
-      ]
+      "accepted": ["Etwas langsamer, bitte. Ich lerne noch Deutsch.","Könnten Sie bitte langsamer sprechen? Ich lerne noch Deutsch.","Entschuldigung, langsamer bitte – mein Deutsch ist noch nicht so gut.","Würden Sie bitte etwas langsamer sprechen? Ich lerne noch Deutsch.","Können Sie bitte langsamer sprechen? Ich lerne noch Deutsch.","Ein bisschen langsamer, bitte. Ich lerne noch Deutsch.","Langsamer, bitte. Ich lerne noch Deutsch.","Etwas langsamer, bitte. Mein Deutsch ist noch nicht so gut."]
     },
     {
       "id": "d22",
       "k": "guided_response",
       "situation_tr": "Karşı taraf İngilizceye geçmek istiyor; kibarca Almanca devam et.",
       "prompt_de": "Sollen wir lieber Englisch sprechen?",
-      "accepted": [
-        "Nein, lieber auf Deutsch, bitte. Ich möchte üben.",
-        "Lieber auf Deutsch, bitte – ich möchte üben.",
-        "Nein danke, bitte auf Deutsch. Ich will üben.",
-        "Bitte weiter auf Deutsch, ich möchte üben."
-      ]
+      "accepted": ["Nein, lieber auf Deutsch, bitte. Ich möchte üben.","Lieber auf Deutsch, bitte – ich möchte üben.","Nein danke, bitte auf Deutsch. Ich will üben.","Bitte weiter auf Deutsch, ich möchte üben.","Nein, lieber Deutsch, bitte. Ich möchte üben.","Nein, bitte Deutsch. Ich will üben.","Nein, lieber auf Deutsch.","Lieber Deutsch, bitte – ich will üben."]
     },
     {
       "id": "d23",
       "k": "guided_response",
       "situation_tr": "'Kaution' kelimesini bilmiyorsun.",
       "prompt_de": "Die Kaution überweisen Sie bitte bis Ende des Monats.",
-      "accepted": ["Entschuldigung, was heißt „Kaution“?","Was bedeutet „Kaution“?","Was ist eine Kaution?"]
+      "accepted": ["Entschuldigung, was heißt „Kaution“?","Was bedeutet „Kaution“?","Was ist eine Kaution?","Was heißt „Kaution“?","Entschuldigung, was bedeutet „Kaution“?","Was meinen Sie mit „Kaution“?","Das Wort „Kaution“ kenne ich nicht."]
     },
     {
       "id": "d24",
       "k": "guided_response",
       "situation_tr": "Sadece 'Montag'ı anladın.",
       "prompt_de": "Der Kaminkehrer kommt am Montag zwischen acht und zwölf, da müssen Sie daheim sein.",
-      "accepted": [
-        "Ich habe nur „Montag“ verstanden. Können Sie das wiederholen?",
-        "Ich hab nur Montag verstanden – nochmal, bitte?",
-        "Nur „Montag“ habe ich verstanden. Bitte nochmal langsam."
-      ]
+      "accepted": ["Ich habe nur „Montag“ verstanden. Können Sie das wiederholen?","Ich hab nur Montag verstanden – nochmal, bitte?","Nur „Montag“ habe ich verstanden. Bitte nochmal langsam.","Ich habe nur „Montag“ verstanden.","Ich habe nur „Montag“ verstanden. Können Sie das bitte wiederholen?","Ich hab nur Montag verstanden. Noch mal, bitte."]
     },
     {
       "id": "d25",
       "k": "guided_response",
       "situation_tr": "Komşu güney ağzıyla konuştu; lehçeyi anlamadığını söyle.",
       "prompt_de": "Haben S' schon gehört? Morgen kommt der Kaminkehrer.",
-      "accepted": [
-        "Entschuldigung, den Dialekt verstehe ich noch nicht so gut. Noch mal, bitte?",
-        "Tut mir leid, ich verstehe den Dialekt noch nicht so gut.",
-        "Den Dialekt verstehe ich noch nicht gut – können Sie das nochmal sagen?"
-      ]
+      "accepted": ["Entschuldigung, den Dialekt verstehe ich noch nicht so gut. Noch mal, bitte?","Tut mir leid, ich verstehe den Dialekt noch nicht so gut.","Den Dialekt verstehe ich noch nicht gut – können Sie das nochmal sagen?","Entschuldigung, den Dialekt verstehe ich noch nicht so gut.","Den Dialekt verstehe ich noch nicht so gut.","Mit dem Dialekt tu ich mich noch schwer.","Ich verstehe den Dialekt noch nicht so gut. Können Sie das bitte wiederholen?"]
     },
     {
       "id": "d26",
       "k": "guided_response",
       "situation_tr": "Fiyatı tam duyamadın: 13,50 mi 30,50 mi?",
       "prompt_de": "Das macht dann dreizehn fünfzig.",
-      "accepted": ["Dreizehn fünfzig oder dreißig fünfzig?","Entschuldigung, dreizehn oder dreißig?","Wie viel? Dreizehn fünfzig?","Dreizehn fünfzig, richtig?"]
+      "accepted": ["Dreizehn fünfzig oder dreißig fünfzig?","Entschuldigung, dreizehn oder dreißig?","Wie viel? Dreizehn fünfzig?","Dreizehn fünfzig, richtig?","Dreizehn oder dreißig?","Wie viel, bitte?","Entschuldigung, wie viel?"]
     },
     {
       "id": "d27",
@@ -738,7 +661,7 @@
       "audio_de": "Brauchen Sie 'ne Tüte?",
       "speed": "fast",
       "situation_tr": "Anlamadın; tekrar iste.",
-      "accepted": ["Wie bitte?","Entschuldigung, wie bitte?","Bitte? Noch mal, bitte.","Das habe ich nicht verstanden."]
+      "accepted": ["Wie bitte?","Entschuldigung, wie bitte?","Bitte? Noch mal, bitte.","Das habe ich nicht verstanden.","Bitte?","Noch mal, bitte.","Entschuldigung, das habe ich nicht verstanden.","Wie bitte? Noch mal, bitte."]
     },
     {
       "id": "d28",
@@ -746,7 +669,7 @@
       "audio_de": "Haste mal kurz Zeit?",
       "speed": "fast",
       "situation_tr": "İş arkadaşın soruyor; anladın, evet de.",
-      "accepted": ["Ja, klar. Was gibt's?","Ja, was ist denn?","Ja, klar."]
+      "accepted": ["Ja, klar. Was gibt's?","Ja, was ist denn?","Ja, klar.","Ja.","Klar.","Ja, sicher.","Ja, hab ich.","Ja, was gibt's?"]
     },
     {
       "id": "d29",
@@ -754,7 +677,7 @@
       "audio_de": "Wie bitte? Ich hab Sie nicht verstanden.",
       "speed": "natural",
       "situation_tr": "Seni anlamadılar. 'Bir randevum var.' cümlesini yavaş ve net tekrarla.",
-      "accepted": ["Ich habe einen Termin.","Ich sagte: Ich habe einen Termin.","Ich hab einen Termin."]
+      "accepted": ["Ich habe einen Termin.","Ich sagte: Ich habe einen Termin.","Ich hab einen Termin.","Ich habe gesagt: Ich habe einen Termin.","Ich habe einen Termin, habe ich gesagt."]
     },
     {
       "id": "d30",
@@ -762,7 +685,7 @@
       "audio_de": "Was genau verstehen Sie nicht?",
       "speed": "normal",
       "situation_tr": "Son cümleyi anlamadın.",
-      "accepted": ["Den letzten Satz.","Den letzten Satz habe ich nicht verstanden.","Das Letzte habe ich nicht verstanden."]
+      "accepted": ["Den letzten Satz.","Den letzten Satz habe ich nicht verstanden.","Das Letzte habe ich nicht verstanden.","Den letzten Satz hab ich nicht verstanden.","Ich habe den letzten Satz nicht verstanden.","Den letzten Teil."]
     },
     {
       "id": "d31",
@@ -770,7 +693,7 @@
       "audio_de": "Ich sag's nochmal ganz langsam: Sie müssen sich vorher online anmelden.",
       "speed": "natural",
       "situation_tr": "Şimdi anladın; teşekkür et.",
-      "accepted": ["Ach so, jetzt verstehe ich. Danke!","Ah, okay, jetzt ist es klar. Danke.","Ach so! Danke schön."]
+      "accepted": ["Ach so, jetzt verstehe ich. Danke!","Ah, okay, jetzt ist es klar. Danke.","Ach so! Danke schön.","Ach so, jetzt habe ich es verstanden. Danke!","Ach so, danke!","Jetzt verstehe ich. Danke!","Ach so, jetzt verstehe ich. Vielen Dank!"]
     },
     {
       "id": "d32",
@@ -778,7 +701,7 @@
       "audio_de": "Kein Problem, ich schreib's Ihnen auf.",
       "speed": "natural",
       "situation_tr": "Teşekkür et.",
-      "accepted": ["Danke, das ist sehr nett.","Vielen Dank, das hilft mir.","Super, danke schön!"]
+      "accepted": ["Danke, das ist sehr nett.","Vielen Dank, das hilft mir.","Super, danke schön!","Danke!","Danke schön!","Vielen Dank!","Danke, sehr nett."]
     },
     {
       "id": "d33",
@@ -786,32 +709,32 @@
       "audio_de": "Gibt's sonst noch was?",
       "speed": "fast",
       "situation_tr": "Anlamadın; tekrar iste.",
-      "accepted": ["Wie bitte? Noch mal, bitte.","Entschuldigung, wie bitte?","Bitte? Das habe ich nicht verstanden."]
+      "accepted": ["Wie bitte? Noch mal, bitte.","Entschuldigung, wie bitte?","Bitte? Das habe ich nicht verstanden.","Wie bitte?","Bitte?","Noch mal, bitte.","Das habe ich nicht verstanden."]
     },
     {
       "id": "d34",
       "k": "tr_de",
       "tr": "Yavaş konuşursanız anlıyorum.",
-      "accepted": ["Wenn Sie langsam sprechen, verstehe ich das.","Wenn Sie langsam sprechen, verstehe ich Sie.","Ich verstehe Sie, wenn Sie langsam sprechen."]
+      "accepted": ["Wenn Sie langsam sprechen, verstehe ich das.","Wenn Sie langsam sprechen, verstehe ich Sie.","Ich verstehe Sie, wenn Sie langsam sprechen.","Wenn Sie langsam sprechen, verstehe ich es.","Wenn Sie langsam sprechen, verstehe ich.","Ich verstehe, wenn Sie langsam sprechen.","Ich verstehe es, wenn Sie langsam sprechen.","Ich verstehe das, wenn Sie langsam sprechen."]
     },
     {
       "id": "d35",
       "k": "tr_de",
       "tr": "Bu kelimeyi bilmiyorum (tanımıyorum).",
-      "accepted": ["Dieses Wort kenne ich nicht.","Das Wort kenne ich nicht.","Ich kenne dieses Wort nicht."],
+      "accepted": ["Dieses Wort kenne ich nicht.","Das Wort kenne ich nicht.","Ich kenne dieses Wort nicht.","Ich kenne das Wort nicht."],
       "why_tr": "Bir kelimeyi tanımamak: kennen."
     },
     {
       "id": "d36",
       "k": "tr_de",
       "tr": "Bir daha, ama lütfen yavaş.",
-      "accepted": ["Noch einmal, aber bitte langsam.","Nochmal, aber langsam, bitte.","Bitte noch einmal, aber langsamer."]
+      "accepted": ["Noch einmal, aber bitte langsam.","Nochmal, aber langsam, bitte.","Bitte noch einmal, aber langsamer.","Noch einmal, aber langsam, bitte.","Nochmal, aber bitte langsam.","Noch mal, aber bitte langsam.","Noch mal, aber langsam, bitte.","Noch einmal, bitte, aber langsam."]
     },
     {
       "id": "d37",
       "k": "tr_de",
       "tr": "Lütfen İngilizce değil, Almanca.",
-      "accepted": ["Bitte nicht auf Englisch, auf Deutsch.","Bitte auf Deutsch, nicht auf Englisch.","Lieber auf Deutsch, nicht auf Englisch."]
+      "accepted": ["Bitte nicht auf Englisch, auf Deutsch.","Bitte auf Deutsch, nicht auf Englisch.","Lieber auf Deutsch, nicht auf Englisch.","Bitte nicht auf Englisch, sondern auf Deutsch.","Bitte Deutsch, nicht Englisch.","Bitte nicht Englisch, sondern Deutsch.","Bitte kein Englisch, lieber Deutsch."]
     },
     {
       "id": "d38",
@@ -979,7 +902,7 @@
           "starter": "Okay, danke …",
           "keywords": ["danke"],
           "hint_tr": "Bilgi için teşekkür et.",
-          "accepted": ["Okay, danke für die Info!","Alles klar, vielen Dank!","Gut, danke schön!","Okay, danke, dass Sie mir Bescheid sagen."]
+          "accepted": ["Okay, danke für die Info!","Alles klar, vielen Dank!","Gut, danke schön!","Okay, danke, dass Sie mir Bescheid gesagt haben."]
         }
       ]
     },
@@ -1063,7 +986,7 @@
             "Okay, der Mietvertrag. Danke schön, alles klar."
           ]
         },
-        {"r":"A","de":"Gut. Dann bis nächste Woche.","tr":"Güzel. O zaman haftaya görüşürüz.","speed":"normal"},
+        {"r":"A","de":"Gut. Dann bringen Sie nächste Woche alles mit.","tr":"Güzel. O zaman haftaya hepsini getirin.","speed":"normal"},
         {
           "r": "B",
           "de": "Danke für Ihre Geduld. Auf Wiedersehen!",
@@ -1118,10 +1041,10 @@
       }
     ],
     "surprises": [
-      {"de":"Wissen S' überhaupt, was ein Kaminkehrer is'?","tr":"Kaminkehrer ne demek, biliyor musunuz bari?"},
+      {"de":"Wissen S' überhaupt, was ein Kaminkehrer is'?","tr":"Kaminkehrer ne demek, biliyor musunuz ki?"},
       {"de":"Oh, mein Telefon … Moment … So, wo war ich?","tr":"Aa, telefonum… bir saniye… Evet, nerede kalmıştım?"},
       {"de":"Ach, und der Hausmeister ist ab Montag zwei Wochen im Urlaub.","tr":"Ha, bir de kapıcı pazartesiden itibaren iki hafta izinde."},
-      {"de":"Sie sprechen aber schon gut Deutsch! Wie lang sind S' denn schon da?","tr":"Ama Almancanız iyi! Ne zamandır buradasınız?"}
+      {"de":"Sie sprechen aber schon gut Deutsch! Wie lang sind S' denn schon da?","tr":"Ama Almancanız şimdiden iyi! Ne zamandır buradasınız?"}
     ]
   },
   "listening": [
@@ -1152,8 +1075,8 @@
         {"r":"Kassiererin","de":"Genau.","tr":"Aynen."}
       ],
       "qs": [
-        {"kind":"gist","q_tr":"Müşteri ilk soruyu duyunca ne yapıyor?","opts":["Tekrar ettiriyor","İngilizce konuşuyor","Kartını veriyor"],"ans":0},
-        {"kind":"detail","q_tr":"Müşterinin müşteri kartı var mı?","opts":["Hayır","Evet","Belli değil"],"ans":0},
+        {"kind":"gist","q_tr":"Müşteri ilk soruyu duyunca ne yapıyor?","opts":["İngilizce konuşuyor","Tekrar ettiriyor","Kartını veriyor"],"ans":1},
+        {"kind":"detail","q_tr":"Müşterinin müşteri kartı var mı?","opts":["Evet","Belli değil","Hayır"],"ans":2},
         {"kind":"detail","q_tr":"Ne kadar ödüyor?","opts":["7,80 €","7,18 €","17,80 €"],"ans":0}
       ]
     },
@@ -1168,7 +1091,7 @@
           "de": "Du, kurz: Die Besprechung ist nicht um zehn, sondern um halb elf, im großen Raum.",
           "tr": "Bak, kısaca: Toplantı onda değil, on buçukta, büyük odada."
         },
-        {"r":"Kollege","de":"Moment, nicht so schnell. Um halb elf?","tr":"Dur, o kadar hızlı değil. On buçukta mı?"},
+        {"r":"Kollege","de":"Moment, nicht so schnell. Um halb elf?","tr":"Dur, yavaş ol. On buçukta mı?"},
         {"r":"Kollegin","de":"Genau, halb elf. Und bring bitte die Liste mit.","tr":"Evet, on buçuk. Bir de listeyi getir lütfen."},
         {
           "r": "Kollege",
@@ -1180,10 +1103,10 @@
         {"r":"Kollege","de":"Ach so, okay. Danke!","tr":"Haa, tamam. Teşekkürler!"}
       ],
       "qs": [
-        {"kind":"gist","q_tr":"Konuşmanın konusu ne?","opts":["Toplantının saati değişti","Toplantı iptal edildi","İzinler iptal edildi"],"ans":0},
-        {"kind":"detail","q_tr":"Toplantı saat kaçta?","opts":["10:30","10:00","11:30"],"ans":0},
+        {"kind":"gist","q_tr":"Konuşmanın konusu ne?","opts":["Toplantı iptal edildi","Toplantının saati değişti","İzinler iptal edildi"],"ans":1},
+        {"kind":"detail","q_tr":"Toplantı saat kaçta?","opts":["10:00","11:30","10:30"],"ans":2},
         {"kind":"detail","q_tr":"Ne getirmesi gerekiyor?","opts":["İzin tarihleri listesini","Bilgisayarını","Sözleşmeyi"],"ans":0},
-        {"kind":"detail","q_tr":"Neyi anlamadığını söylüyor?","opts":["Hangi listenin kastedildiğini","Saati","Odayı"],"ans":0}
+        {"kind":"detail","q_tr":"Neyi anlamadığını söylüyor?","opts":["Saati","Hangi listenin kastedildiğini","Odayı"],"ans":1}
       ]
     }
   ],
