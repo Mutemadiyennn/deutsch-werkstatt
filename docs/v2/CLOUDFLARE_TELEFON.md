@@ -24,7 +24,7 @@ Toplam 15–20 dakika sürer. Hiçbir yerde kredi kartı ya da ücretli plan ger
 12. Gösterilen token'ı **kopyala**. Yalnızca bir kez gösterilir; not uygulamasına geçici yapıştır.
 
 ## D. Diğer anahtarlar (3 dk)
-13. **Gemini anahtarı:** v1'de kullandığın anahtar olabilir. Yenisi için: **aistudio.google.com/apikey** → **Create API key**. **Faturalandırma (billing) açma.**
+13. **Gemini anahtarı:** **aistudio.google.com/apikey** → **Create API key**. Anahtarın bağlı olduğu Google Cloud projesinde **faturalandırma (billing) KAPALI olmalı**: aynı sayfada anahtarın yanında "Free" (ücretsiz katman) yazdığını gör. "Paid" ya da faturalandırma hesabı bağlı bir proje görürsen o anahtarı kullanma; yeni proje ile yeni anahtar oluştur. v1'in anahtarını yalnızca bu kontrolden geçerse kullan.
 14. **Pexels anahtarı (fotoğraflar):** v1'deki anahtarın. Yoksa **pexels.com/api** → ücretsiz kayıt → anahtarı kopyala.
 15. **Hesap kimliğin (UID):** v2 uygulamasında **Profil → Hesap kimliği (UID) → Kopyala**.
 

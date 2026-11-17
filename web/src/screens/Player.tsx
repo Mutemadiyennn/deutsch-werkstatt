@@ -116,8 +116,9 @@ export function PlayerSection({ id, section }: { id: string; section: string }) 
   const header = (step: number) => <ProgressHeader title={`${/\d/.test(sec.n) ? `Aşama ${sec.n}/6 · ` : ""}${sec.title}`} back={back} step={step} doneSteps={ctx ? SECTIONS.map((x, i) => (ctx.prog.done.includes(x.k) ? i : -1)).filter((i) => i >= 0) : []} right={<FocusChip />} />;
   if (err) return <div class="stack">{header(idx(section))}<div class="card err"><p><b>Yüklenemedi.</b> {err}</p><button class="btn sm" onClick={reload}>Tekrar dene</button></div></div>;
   if (!ctx) return <div class="stack">{header(idx(section))}<LoadingCard lines={4} /></div>;
-  const finish = async (score: number, total: number, extra: Partial<ScenarioProgress["runs"][number]> = {}) => {
+  const finish = async (score: number, total: number, extra: Partial<ScenarioProgress["runs"][number]> = {}, mut?: (p: ScenarioProgress) => void) => {
     const p = structuredClone(ctx.prog);
+    mut?.(p); // aynı kayıtta ek değişiklik (ör. destek düzeyi) — ayrı yazım eski durumu ezmesin
     const ratio = total ? score / total : 1;
     p.runs.push({ at: new Date().toISOString(), section: sec.k, score, total, ...extra });
     const production = ["build", "drills", "dialogue"].includes(sec.k);
@@ -143,7 +144,7 @@ export function PlayerSection({ id, section }: { id: string; section: string }) 
     </div>
   );
 }
-type SP = { ctx: Ctx; finish: (score: number, total: number, extra?: Partial<ScenarioProgress["runs"][number]>) => Promise<void>; back: string };
+type SP = { ctx: Ctx; finish: (score: number, total: number, extra?: Partial<ScenarioProgress["runs"][number]>, mut?: (p: ScenarioProgress) => void) => Promise<void>; back: string };
 
 function Done({ score, total, back, ctx, title, note }: { score: number; total: number; back: string; ctx: Ctx; title: string; note?: string }) {
   const ratio = total ? score / total : 1;
@@ -288,9 +289,15 @@ function ProduceItem({ ctx, prompt, accepted, itemId, onDone, audio, audioSpeed,
   const submit = async (a: string) => {
     setBusy(true);
     const res = await grade(accepted, a, promptTxt);
-    setBusy(false); setV({ v: res, a });
+    setBusy(false); setV({ v: res, a }); setClaimed(false);
+  };
+  const [claimed, setClaimed] = useState(false);
+  // "Benim cevabım da doğru": doğru sayılır (puan + öğrenci modeli); kayıt içerik kuyruğuna da gider
+  const next = () => {
+    const ok = v!.v.kind !== "wrong" || claimed;
     const ch = chunkFor(ctx.s, accepted[0]!);
-    if (ch) void rec(ch.id, "chunk", "active", outcomeOf(res));
+    if (ch) void rec(ch.id, "chunk", "active", claimed ? "correct" : outcomeOf(v!.v));
+    setV(null); onDone(ok);
   };
   return (
     <div class="stack fade">
@@ -302,7 +309,7 @@ function ProduceItem({ ctx, prompt, accepted, itemId, onDone, audio, audioSpeed,
           {busy && <p class="small muted" aria-live="polite">Öğretmen kontrol ediyor…</p>}
         </>
       )}
-      {v && <VerdictView v={v.v} answer={v.a} itemId={itemId} scenarioId={ctx.s.id} prompt={promptTxt} accepted={accepted} onClaim={() => {}} onNext={() => { const ok = v.v.kind !== "wrong"; setV(null); onDone(ok); }} />}
+      {v && <VerdictView v={v.v} answer={v.a} itemId={itemId} scenarioId={ctx.s.id} prompt={promptTxt} accepted={accepted} onClaim={() => setClaimed(true)} onNext={next} />}
     </div>
   );
 }
@@ -485,15 +492,14 @@ function DialogueSection({ ctx, finish, back }: SP) {
   const [v, setV] = useState<{ v: Verdict; a: string } | null>(null);
   const [busy, setBusy] = useState(false);
   const grade = useGrader();
+  const [claimedD, setClaimedD] = useState(false);
   const d = s.dialogues[variant];
   useEffect(() => { const l = d?.lines[li]; if (l && l.r === "A") void speak(l.de, "de", l.speed || "normal"); }, [variant, li]);
   if (!d) return <Empty title="Bu senaryoda diyalog yok" />;
   if (li >= d.lines.length) {
     const ratio = total ? score / total : 1;
     return <DialogueDone score={score} total={total} back={back} ctx={ctx} onFinish={async () => {
-      const p = structuredClone(ctx.prog);
-      if (ratio >= 0.8 && p.support > 0) p.support = (p.support - 1) as 0 | 1 | 2 | 3;
-      await ctx.setProg(p); await finish(score, total, { level: support });
+      await finish(score, total, { level: support }, (p) => { if (ratio >= 0.8 && p.support > 0) p.support = (p.support - 1) as 0 | 1 | 2 | 3; });
     }} />;
   }
   const line = d.lines[li]!;
@@ -524,11 +530,12 @@ function DialogueSection({ ctx, finish, back }: SP) {
           <ActionBar><AnswerField onSubmit={async (a) => {
             setBusy(true); const res = await grade(line.accepted?.length ? line.accepted : [line.de], a, line.tr); setBusy(false);
             setV({ v: res, a }); setTotal(total + 1); if (res.kind !== "wrong") setScore(score + 1);
-            const ch = chunkFor(s, line.de); if (ch) void rec(ch.id, "chunk", "active", outcomeOf(res, support >= 2));
           }} disabled={busy} submitLabel="Söyle" /></ActionBar>
         </section>
       )}
-      {line.r === "B" && v && <VerdictView v={v.v} answer={v.a} itemId={`${d.id}:${li}`} scenarioId={s.id} prompt={line.tr} accepted={line.accepted?.length ? line.accepted : [line.de]} onNext={() => { setV(null); setLi(li + 1); }} nextLabel="Devam" />}
+      {line.r === "B" && v && <VerdictView v={v.v} answer={v.a} itemId={`${d.id}:${li}`} scenarioId={s.id} prompt={line.tr} accepted={line.accepted?.length ? line.accepted : [line.de]}
+        onClaim={() => { if (v.v.kind === "wrong") setScore(score + 1); setClaimedD(true); }}
+        onNext={() => { const ch = chunkFor(s, line.de); if (ch) void rec(ch.id, "chunk", "active", claimedD ? "correct" : outcomeOf(v.v, support >= 2)); setClaimedD(false); setV(null); setLi(li + 1); }} nextLabel="Devam" />}
     </div>
   );
 }
@@ -573,6 +580,9 @@ function RoleplaySection({ ctx, finish, back }: SP) {
 
   // Yumuşak bekleme (DECISIONS D-RP1): 12 sn'de yanıt yoksa seçenekler çıkar; istek kesilmez, gelirse kullanılır.
   const modeRef = useRef(mode); modeRef.current = mode;
+  const phaseRef = useRef<"intro" | "talk" | "report">("intro");
+  const reportRef = useRef(false);
+  const reportDoneRef = useRef(false);
   const offRef = useRef(0);
   const pendingRef = useRef<number | null>(null);   // yanıt beklenen tur (geçmiş uzunluğu)
   const inflightRef = useRef(0);
@@ -584,7 +594,7 @@ function RoleplaySection({ ctx, finish, back }: SP) {
     if (!nx) { void endTalk(hist); return; }
     offRef.current++; const nt = [...hist, { r: "partner" as const, de: nx.de }]; setTurns(nt); histRef.current = nt; say(nx.de);
   };
-  const start = () => { const first = mode === "ai" ? s.roleplay.opener_de : offLines[0]?.de || s.roleplay.opener_de; setTurns([{ r: "partner", de: first }]); histRef.current = [{ r: "partner", de: first }]; offRef.current = 1; setPhase("talk"); say(first); };
+  const start = () => { const first = mode === "ai" ? s.roleplay.opener_de : offLines[0]?.de || s.roleplay.opener_de; setTurns([{ r: "partner", de: first }]); histRef.current = [{ r: "partner", de: first }]; offRef.current = 1; phaseRef.current = "talk"; reportRef.current = false; setPhase("talk"); say(first); };
   const partnerTurn = async (hist: Turn[], st: number) => {
     histRef.current = hist; stuckRef.current = st;
     if (modeRef.current === "offline") { nextOffline(hist); return; }
@@ -593,7 +603,7 @@ function RoleplaySection({ ctx, finish, back }: SP) {
     const timer = window.setTimeout(() => { if (pendingRef.current === turn) setSlow("turn"); }, SOFT_WAIT_MS);
     try {
       const o = await ai(api, "roleplay_turn", { partner_de: s.roleplay.partner_de, scene_tr: s.roleplay.scene_tr, goals_de: s.roleplay.goals.map((g) => g.de), level, style_de: lv?.style_de, surprise_de: surprise, history: hist.slice(-30), stuck: st });
-      if (pendingRef.current !== turn || (modeRef.current as string) === "offline") return; // eski tur ya da öğrenci yapay zekâsız devam etti
+      if (pendingRef.current !== turn || (modeRef.current as string) === "offline" || phaseRef.current !== "talk") return; // eski tur ya da öğrenci yapay zekâsız devam etti
       pendingRef.current = null; setSlow(null); setWaiting(false);
       const nt = [...hist, { r: "partner" as const, de: o.reply_de }]; setTurns(nt); histRef.current = nt; say(o.reply_de);
       if (o.end) setTimeout(() => void endTalk(nt), 600);
@@ -609,17 +619,23 @@ function RoleplaySection({ ctx, finish, back }: SP) {
     await partnerTurn(hist, st);
   };
   const endTalk = async (t: Turn[] = turns) => {
-    stopSpeaking(); setPhase("report");
+    if (reportRef.current) return;           // rapor isteği tek
+    pendingRef.current = null;               // bekleyen tur: geç gelirse yok sayılır
+    phaseRef.current = "report";
+    stopSpeaking(); setPhase("report"); setSlow(null); setWaiting(false); setBusy(false);
     if (modeRef.current === "ai" && t.some((x) => x.r === "learner")) {
+      reportRef.current = true;
       setBusy(true); setErr(null); setSlow(null); setWaiting(false);
       const timer = window.setTimeout(() => setSlow("report"), SOFT_WAIT_MS);
       try {
         const f = await ai(api, "feedback_tr", { scene_tr: s.roleplay.scene_tr, goals: s.roleplay.goals.map((g) => ({ id: g.id, de: g.de })), transcript: t.slice(-60) });
+        if (reportDoneRef.current) return;   // "Tekrar dene" ile iki istek: önce gelen kullanılır
+        reportDoneRef.current = true;
         setReport(f);
         for (const g of f.gaps_de) await addPersonal({ id: `convo:${g}`, de: g, at: new Date().toISOString(), source: "sayit" });
         const done = f.goals.filter((x) => x.done).length;
         await finish(done, s.roleplay.goals.length, { level, goalsDone: done, goalsTotal: s.roleplay.goals.length, englishFallbacks: f.english_fallbacks, mode: "ai" });
-      } catch (e) { setErr(e instanceof ApiError ? e.message_tr : "Rapor alınamadı."); }
+      } catch (e) { if (reportDoneRef.current) return; reportRef.current = false; setErr(e instanceof ApiError ? e.message_tr : "Rapor alınamadı."); }
       finally { clearTimeout(timer); setBusy(false); setSlow(null); setWaiting(false); }
     }
   };
@@ -674,7 +690,7 @@ function RoleplaySection({ ctx, finish, back }: SP) {
   return (
     <div class="stack fade" data-test="rp-report">
       {busy && <LoadingCard lines={4} />}
-      {slow === "report" && !waiting && <div class="card stack" role="status" data-test="rp-slow"><p style={{ margin: 0 }}><b>Rapor biraz uzun sürüyor.</b> <span class="small muted">Gelirse hemen gösterilir.</span></p><div class="row"><button class="btn sm" onClick={() => setWaiting(true)} data-test="rp-wait">Bekle</button><button class="btn sm" onClick={() => void endTalk(histRef.current)} data-test="rp-retry">Tekrar dene</button><a class="btn sm" href={back}>Rapor olmadan bitir</a></div></div>}
+      {slow === "report" && !waiting && <div class="card stack" role="status" data-test="rp-slow"><p style={{ margin: 0 }}><b>Rapor biraz uzun sürüyor.</b> <span class="small muted">Gelirse hemen gösterilir.</span></p><div class="row"><button class="btn sm" onClick={() => setWaiting(true)} data-test="rp-wait">Bekle</button><button class="btn sm" onClick={() => { reportRef.current = false; void endTalk(histRef.current); }} data-test="rp-retry">Tekrar dene</button><a class="btn sm" href={back}>Rapor olmadan bitir</a></div></div>}
       {err && <div class="card err" role="alert"><p><b>Rapor alınamadı.</b> {err}</p><div class="row"><button class="btn sm" onClick={() => void endTalk()}>Tekrar dene</button><a class="btn sm" href={back}>Rapor olmadan bitir</a></div></div>}
       {report && <>
         <section class="card hero"><div class="kicker">Görev</div><div class="big">{report.goals.filter((g: any) => g.done).length}/{s.roleplay.goals.length}</div><p class="small">{report.summary_tr}</p></section>

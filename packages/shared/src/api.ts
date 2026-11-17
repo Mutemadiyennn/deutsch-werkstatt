@@ -69,12 +69,12 @@ export const AiTasks = {
   /** PARTNER: yalnızca karakter olarak konuşur; öğretmenlik yapmaz, cümle söyletmez; takılınca sadeleşir */
   roleplay_turn: {
     input: z.object({
-      partner_de: z.string().max(400),
-      scene_tr: z.string().max(400),
+      partner_de: z.string().max(1500),
+      scene_tr: z.string().max(800),
       goals_de: z.array(z.string().max(200)).max(8),
       level: z.number().int().min(1).max(3),
-      style_de: z.string().max(300).optional(),
-      surprise_de: z.string().max(300).optional(),
+      style_de: z.string().max(600).optional(),
+      surprise_de: z.string().max(400).optional(),
       history: z.array(z.object({ r: z.enum(["partner", "learner"]), de: z.string().max(600) })).max(40),
       stuck: z.number().int().min(0).max(10).default(0)
     }),
@@ -84,7 +84,7 @@ export const AiTasks = {
   /** GÖZLEMCİ: konuşma bittikten sonra; görev başarısı, en önemli 3 hata (Türkçe), eksikler */
   feedback_tr: {
     input: z.object({
-      scene_tr: z.string().max(400),
+      scene_tr: z.string().max(800),
       goals: z.array(z.object({ id: z.string(), de: z.string().max(200) })).max(8),
       transcript: z.array(z.object({ r: z.enum(["partner", "learner"]), de: z.string().max(600) })).min(1).max(60)
     }),

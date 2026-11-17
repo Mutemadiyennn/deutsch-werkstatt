@@ -255,7 +255,7 @@ def main():
                 pg.wait_for_selector("[data-test=rp-offline]", timeout=15000); dt = time.time() - t0
                 slow = pg.locator("[data-test=rp-slow]").count() == 1
                 msg = pg.inner_text("[data-test=rp-slow]" if slow else "[role=alert]")
-                check(dt <= 12.6 and pg.url.endswith("/roleplay"), f"{name}: aynı ekranda {dt:.1f} sn içinde seçenek")
+                check(dt <= 12.0 and pg.url.endswith("/roleplay"), f"{name}: aynı ekranda {dt:.1f} sn içinde seçenek")
                 check(bool(re.search(r"[çğıöşüÇĞİÖŞÜ]", msg)), f"{name}: Türkçe mesaj ({msg.splitlines()[0][:60]!r})")
                 if resp[0] in ("hang", "hold"):
                     check(slow and pg.locator("[data-test=rp-wait]").count() == 1 and pg.locator("[data-test=rp-retry]").count() == 1, f"{name}: 'Biraz uzun sürüyor' + Bekle / Tekrar dene / Yapay zekâsız devam")

@@ -11,7 +11,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 DIST = os.path.join(ROOT, "web", "dist-e2e")
 SHOTS = sys.argv[sys.argv.index("--shots") + 1] if "--shots" in sys.argv else None
 PORT = 4180
-STRAT_TITLE = json.load(open(os.path.join(ROOT, "content/v2/domains/strategie/scenarios/01-nicht-verstanden.json")))["title_tr"]
+_STRAT = json.load(open(os.path.join(ROOT, "content/v2/domains/strategie/scenarios/01-nicht-verstanden.json")))
+STRAT_TITLE, STRAT_REVIEW = _STRAT["title_tr"], _STRAT["review"]["status"]
 ERR = []
 API_CALLS = []
 
@@ -143,7 +144,8 @@ def main():
         page.wait_for_selector("[data-test=next-activity]")
         na = page.inner_text("[data-test=next-activity]")
         check("Seans 1" in na and STRAT_TITLE in na, f"sıradaki etkinlik: seans 1 → strateji senaryosu ({na[:60]!r})")
-        check("İçerik inceleme bekliyor" in na, "inceleme bekleyen içerik etiketli")
+        draft = STRAT_REVIEW != "reviewed"
+        check(("İçerik inceleme bekliyor" in na) == draft, f"inceleme etiketi içerik durumuna uygun ({STRAT_REVIEW})")
         page.wait_for_selector("[data-test=weak] li")
         weak = page.inner_text("[data-test=weak]")
         check("Seviye tespitinde" not in weak and "Şu an listede kelime yok" not in weak, "bilinmeyen kelimeler zayıflık listesinde")
@@ -153,7 +155,9 @@ def main():
 
         print("5) senaryo çalışma sayfası ve odak sayacı (sahte saat)")
         page.clock.install()
-        page.goto(f"http://127.0.0.1:{PORT}/#/scenario/" + "sc%3Atelefon%3A01-arzttermin")
+        # hash ile git, ekran yüklensin, SONRA yeniden yükle (goto + hemen reload yarışı WebKit'te içerik isteğini iptal ediyordu)
+        page.evaluate("location.hash = '#/scenario/sc%3Atelefon%3A01-arzttermin'")
+        page.wait_for_selector("[data-test=continue]")
         page.reload()
         page.wait_for_selector("[data-test=continue]")
         check(page.locator("[data-section]").count() == 7, "senaryo sayfası: 7 bölüm")
