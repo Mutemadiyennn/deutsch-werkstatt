@@ -53,7 +53,26 @@ Bağımsız inceleme (inceleme ajanı) #2–#7'ye yorum yazdı. #4 ve #7 bulgula
 | R1-22 | Yerel ölçüm: açılış, tamamlama/bırakma, ekran bazında bırakma noktası, yenilik oranı | LS-16.2 | kısmen (aşama 1–2, rol oyunu süresi) |
 | R1-23 | /v2/ yayını + v1 Bugün'e "Yeni: Gerçek hayat dersleri" kartı (v1 17b, tam v1 kapısı) | H2 hızlı hat | yapılacak |
 | R1-24 | LS-16.3 öğrenci simülasyonu (qa, bilgi kısıtlı): 6 madde, ekran görüntüleriyle | LS-16.3 | yapılacak |
+| R1-25 | Kelime çeşitliliği: yanlış öğe ~4 madde sonra başka cümle + başka fotoğrafla (en çok 3 kez), sonraki oturumlarda da farklı; son 3 cümle ve son fotoğraf tekrar etmez; kart yüzleri döner (tanıma / üretme / dinleme); birim + e2e (v1 vartest eşdeğeri) | PM-003, RQ-S10, RQ-Ş07 | yapılacak |
+| R1-26 | Fotoğraf: Worker /photos Pixabay → Pexels → fotoğrafsız; PIXABAY_KEY yalnızca Worker'da; kullanım şartları + atıf DECISIONS'a; somut kelime = kelimenin kendisi, soyut = cümlenin sahnesi; düşük güvende fotoğraf yok | PM-003, RQ-S11 | yapılacak |
+| R1-27 | YZ dayanıklılığı: Cloudflare Workers AI ikincil sağlayıcı (yalnızca ücretsiz pay aşımında **reddettiği** doğrulanırsa; yalnızca equiv/explain/say_it); sıra kural → Gemini → (Workers AI) → YZ'siz; Profil'de "yapay zekâ durumu" satırı; iki sağlayıcı için dayanıklılık testleri | PM-004, RQ-S19, RQ-S20, LS-14 | yapılacak |
+| R1-28 | iOS yerel veri kalıcılığı: gerçek iPhone'da doğrula; eşitleme + haftalık otomatik yedek; veri kaybı testi | RQ-P01, RQ-V23 | yapılacak |
+| R1-29 | Mikrofon izninin tekrar sorulması (WKWebView): gerçek iPhone'da doğrula; gerekirse kabukta kalıcı izin | RQ-P02 | yapılacak |
+| R1-30 | Premium Almanca ses rehberi (iOS ayarları, isteğe bağlı) + en iyi Almanca sesin otomatik seçimi | RQ-P03, RQ-V27 | yapılacak |
+| R1-31 | Konuşma tanıma hatası cezasız: hoşgörülü eşleme, "Doğru söyledim", yazarak yedek | RQ-P04, RQ-V24 | kısmen ("Benim cevabım da doğru" var) |
+| R1-32 | Gün sınırı 04:00 Europe/Berlin (seri, günlük hedef, Pomodoro günü) | RQ-P05 | yapılacak |
+| R1-33 | Çevrimdışı: bugünün içeriği ve sesleri önceden önbellekte | RQ-P06 | yapılacak |
+| R1-34 | Bildirimler: sessiz saatler, günde en çok 2 (hatırlatma + gelen arama) | RQ-P07 | yapılacak |
+| R1-35 | Güncelleme yalnızca oturum aralarında uygulanır | RQ-P20 | yapılacak |
+| R1-36 | Güvenli alan 59 px testi; seslendirme filtresi (noktalama okunmaz, karışık dilli satır bölünür) testi | RQ-K07, RQ-K08, RQ-V26 | kısmen (ttsClean taşındı) |
 | — | Advent / Weihnachtsmarkt mini senaryoları (2–3), R1'den bağımsız, 27.11.2026'ya kadar | LS-17.0, D-073 | sıradaki içerik işi |
+
+### REQUIREMENTS.md → R1 eşlemesi (PM-005.4)
+R1 işaretli bütün maddeler yukarıdaki görevlere bağlı. Yer almayanların gerekçesi:
+- **A (RQ-S):** S01, S02, S05, S09 R1'de yalnızca ilk dilimle (R1-08, R1-12, R1-18); kalanı R2–R4. S03 mola sohbeti → R2 (kayıtta da R2). S04 → R1-08 (strateji) + R1-22 ölçüm. S06/S07/S14 → içerik standardı ve D-060 (her PR). S08 → R1-09, R1-10, LS-6.3. S10/S11 → R1-25/26. S12/S13 → R1-14 (+ek seans). S15 → R1-15. S16 → R1-13 (araba; spor R2). S17 → R1-17. S18 → R1-19. S19/S20/S21 → R1-27 + değişmez kurallar. S22 → ayar ✓ (yol R5). S24 → EK1/EK2 (her PR). S25 → R1-23, R1-28/29. S26 → R1-24. S27 → R1-04, R1-22.
+- **C (RQ-Ş):** Ş01 → yumuşak bekleme + hazır içerik ✓, R1-27. Ş02 → R1-15 + WORLD. Ş03 → R1-21 (LS-10.2). Ş04 → R1-14 (tek Bugün yolu). Ş05 → aşama 5–6 ✓. Ş06 → R1-04, R1-17. Ş07 → R1-25. Ş08 → K1/K2 kartları (sürüyor). Ş09 → partner/gözlemci ✓, altın set (H3-8). Ş10 → ✓ (kural + "kontrol edilemedi" cezasız). Ş11 → R1-27. Ş12 → senaryo standardı + kalıplar (#15).
+- **D (RQ-V):** R1'de V01 (Bugün ✓), V04 (araba: R1-13; spor/mutfak R2), V05 (Pomodoro ✓; 14 günlük grafik, seri, dondurucu, 100 dk kutlaması → R1-17), V06 (R1-13), V07 (hız turu R1-10), V11 (R1-09), V24 (R1-31), V25 ✓, V26 (R1-36), V27 (R1-30). Diğerleri R2+ (kayıttaki kararlarıyla): V02 koç R2, V03 B1 yolu R5, V08 "Duyduğum kelime" kısmen ✓, V09 canlı sohbet R2, V10 R1-08 ilk dilim, V12 4/3/2 → **R1'e alınmadı** (LS-17 R1 kapsamında yok; araba modunun akıcılık etkinliği beklemeli hatırlama ile başlar), V13 shadowing kısmen ✓, V14–V16 R2–R4, V17 ödev yardımcısı R2 (PM-005.6), V18 aylık ölçüm R1-04 ilk adım, V19 koç R2, V20 R2, V21 R3, V22 rozet/maskot R1-17 (kapatılabilir), V23 R1-28, V28 arşiv (sahip onayı).
+- **E (RQ-P):** P01 R1-28 · P02 R1-29 · P03 R1-30 · P04 R1-31 · P05 R1-32 · P06 R1-33 · P07 R1-34 · P08 R1-04 (+R2 koç) · P09 R1-13 (araba) · P11 R1-12 · P13 R1-19 · P14 R1-20 + R1-17 · P15 otomatik koyu tema ✓, yatmadan önce modu R2 · P16 R1-13 (ekran kapalıyken ses; pil ölçümü gerçek cihazda) · P17 ✓ (EK2 §1) · P20 R1-35. P10, P12, P18 R2; P19 her sürüm (dilbilimci).
 
 ## Çalışan ajanlar
 - yazar: 61 kalıbı H3 §3 standardına getiriyor (önce pilotun 14 kalıbı) → sonra dilbilimci.
