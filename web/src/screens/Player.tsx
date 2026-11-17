@@ -15,6 +15,7 @@ import { norm, scoreHeard } from "../core/grading.ts";
 import type { Verdict } from "../core/answer.ts";
 import type { LocalEntry } from "../core/sayit.ts";
 import { ai, aiState, SOFT_WAIT_MS } from "../services/ai.ts";
+import { personalizeDeep, redact, unredact, type Persona } from "../core/persona.ts";
 import { ApiError } from "../services/api.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
@@ -39,13 +40,15 @@ const stageOf = (k: string) => { const s = SECTIONS[idx(k)]; return s && /\d/.te
 export interface Ctx { s: Scenario; lx: Map<string, Lexeme>; pt: Map<string, Pattern>; prog: ScenarioProgress; setProg: (p: ScenarioProgress) => Promise<void> }
 
 function useScenario(id: string) {
+  const { profile } = useApp();
+  const persona: Persona = { name: profile.displayName, address: profile.address };
   const [st, setSt] = useState<{ ctx?: Ctx; err?: string }>({});
   const load = () => {
     setSt({});
     Promise.all([loadScenario(id), loadLexicon(), getScenarioProgress(id)])
       .then(([s, l, p]) => {
         const holder: { p: ScenarioProgress } = { p };
-        const ctx: Ctx = { s, lx: new Map(l.lexemes.map((x) => [x.id, x])), pt: new Map(l.patterns.map((x) => [x.id, x])), prog: p, setProg: async (np) => { holder.p = np; await saveScenarioProgress(np); setSt((o) => (o.ctx ? { ctx: { ...o.ctx, prog: np } } : o)); } };
+        const ctx: Ctx = { s: personalizeDeep(s, persona), lx: new Map(l.lexemes.map((x) => [x.id, x])), pt: new Map(l.patterns.map((x) => [x.id, x])), prog: p, setProg: async (np) => { holder.p = np; await saveScenarioProgress(np); setSt((o) => (o.ctx ? { ctx: { ...o.ctx, prog: np } } : o)); } };
         setSt({ ctx });
       })
       .catch((e) => setSt({ err: String(e.message || e) }));
@@ -238,7 +241,7 @@ function BuildSection({ ctx, finish, back, setSub }: SP) {
   const p = b.pattern ? ctx.pt.get(b.pattern) : undefined;
   return (
     <div class="stack" key={b.id}>
-      <ProduceItem ctx={ctx} itemId={b.id} accepted={b.accepted} chips={r.i % 3 === 0}
+      <ProduceItem ctx={ctx} itemId={b.id} accepted={b.accepted} chips={r.i % 3 === 0 && !b.accepted[0]!.includes("{name}")}
         prompt={<><div class="kicker">Almanca kur · {r.i + 1}/{r.total}</div><div class="de-lg">{b.prompt_tr}</div>{p && <div class="tiny muted" lang="de">Kalıp: {p.frame}</div>}</>}
         onDone={(ok) => { if (p) void rec(p.id, "pattern", "active", ok ? "correct" : "wrong"); r.next(ok); }} />
     </div>
@@ -324,6 +327,7 @@ function ListeningSection({ ctx, finish, back, setSub }: SP) {
   }
   return <ListeningItem key={`l${i}`} li={st.li} progress={progress} onDone={(ok, n) => { setScore(score + ok); setTotal(total + n); setI(i + 1); }} />;
 }
+const SPEED_TR: Record<Speed, string> = { slow: "🐢 Yavaş", normal: "Normal", natural: "Doğal hız", fast: "⚡ Hızlı" };
 function ListeningItem({ li, progress, onDone }: { li: Scenario["listening"][number]; progress: preact.ComponentChildren; onDone: (ok: number, n: number) => void }) {
   const [phase, setPhase] = useState<"listen" | "qs" | "script">("listen");
   const [q, setQ] = useState(0); const [ok, setOk] = useState(0); const [picked, setPicked] = useState<number | null>(null);
@@ -333,7 +337,8 @@ function ListeningItem({ li, progress, onDone }: { li: Scenario["listening"][num
   if (phase === "listen") return (
     <div class="stack fade">{progress}
       <section class="card stack"><div class="kicker">Dinle · {li.title_tr}</div><p class="small">Önce metni görmeden dinle. İstediğin kadar tekrar dinleyebilirsin.</p>
-        <div class="row"><button class="btn primary" onClick={() => playAll(li.speed)} disabled={playing} data-test="play-all">{playing ? "Çalıyor…" : "▶ Dinle"}</button><button class="btn" onClick={() => playAll("slow")} disabled={playing}>🐢 Yavaş</button></div>
+        <div class="row"><button class="btn primary" onClick={() => playAll(li.speed)} disabled={playing} data-test="play-all">{playing ? "Çalıyor…" : "▶ Dinle"}</button>
+          {li.speeds.filter((x) => x !== li.speed).map((sp) => <button class="btn" onClick={() => playAll(sp)} disabled={playing} data-speed={sp}>{SPEED_TR[sp]}</button>)}</div>
         <p class="tiny muted">Cihaz sesi · {li.speed === "fast" ? "hızlı" : li.speed === "natural" ? "doğal hız" : li.speed === "slow" ? "yavaş" : "normal"}</p></section>
       <ActionBar><button class="btn primary block" onClick={() => { stopSpeaking(); setPhase("qs"); }} data-test="to-questions">Sorulara geç</button></ActionBar>
     </div>
@@ -456,7 +461,8 @@ function ChatEnd({ dep }: { dep: number }) {
 const NON_GERMAN = /\b(the|and|you|please|sorry|yes|what|i'm|can|evet|hayır|lütfen|tamam|anlamadım|ne)\b/i;
 type Turn = { r: "partner" | "learner"; de: string };
 function RoleplaySection({ ctx, finish, back }: SP) {
-  const { api } = useApp();
+  const { api, profile } = useApp();
+  const persona: Persona = { name: profile.displayName, address: profile.address };
   const s = ctx.s;
   const runs = ctx.prog.runs.filter((x) => x.section === "roleplay").length;
   const [level, setLevel] = useState<1 | 2 | 3>(Math.min(3, 1 + Math.floor(runs / 2)) as 1 | 2 | 3);
@@ -497,10 +503,11 @@ function RoleplaySection({ ctx, finish, back }: SP) {
     setBusy(true); setErr(null); setSlow(null); setWaiting(false);
     const timer = window.setTimeout(() => { if (pendingRef.current === turn) setSlow("turn"); }, SOFT_WAIT_MS);
     try {
-      const o = await ai(api, "roleplay_turn", { partner_de: s.roleplay.partner_de, scene_tr: s.roleplay.scene_tr, goals_de: s.roleplay.goals.map((g) => g.de), level, style_de: lv?.style_de, surprise_de: surprise, history: hist.slice(-30), stuck: st });
+      const o = await ai(api, "roleplay_turn", { partner_de: s.roleplay.partner_de, scene_tr: s.roleplay.scene_tr, goals_de: s.roleplay.goals.map((g) => g.de), level, style_de: lv?.style_de, surprise_de: surprise, history: hist.slice(-30).map((h) => ({ r: h.r, de: redact(h.de, persona) })), stuck: st, address_de: profile.address });
       if (pendingRef.current !== turn || (modeRef.current as string) === "offline" || phaseRef.current !== "talk") return; // eski tur ya da öğrenci yapay zekâsız devam etti
       pendingRef.current = null; setSlow(null); setWaiting(false);
-      const nt = [...hist, { r: "partner" as const, de: o.reply_de }]; setTurns(nt); histRef.current = nt; say(o.reply_de);
+      const reply = unredact(o.reply_de, persona);
+      const nt = [...hist, { r: "partner" as const, de: reply }]; setTurns(nt); histRef.current = nt; say(reply);
       if (o.end) setTimeout(() => void endTalk(nt), 600);
     } catch (e) {
       if (pendingRef.current === turn && inflightRef.current <= 1) { pendingRef.current = null; setSlow(null); setWaiting(false); setErr(e instanceof ApiError ? e.message_tr : "Yanıt alınamadı."); }
@@ -523,7 +530,7 @@ function RoleplaySection({ ctx, finish, back }: SP) {
       setBusy(true); setErr(null); setSlow(null); setWaiting(false);
       const timer = window.setTimeout(() => setSlow("report"), SOFT_WAIT_MS);
       try {
-        const f = await ai(api, "feedback_tr", { scene_tr: s.roleplay.scene_tr, goals: s.roleplay.goals.map((g) => ({ id: g.id, de: g.de })), transcript: t.slice(-60) });
+        const f = await ai(api, "feedback_tr", { scene_tr: s.roleplay.scene_tr, goals: s.roleplay.goals.map((g) => ({ id: g.id, de: g.de })), transcript: t.slice(-60).map((h) => ({ r: h.r, de: redact(h.de, persona) })) });
         if (reportDoneRef.current) return;   // "Tekrar dene" ile iki istek: önce gelen kullanılır
         reportDoneRef.current = true;
         setReport(f);

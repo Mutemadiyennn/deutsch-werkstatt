@@ -154,7 +154,10 @@ export function checkScenario(s: Scenario): string[] {
   const prod = productionCount(s);
   if (prod < 80) e.push(`üretim maddesi en az 80 (${prod})`);
   for (const b of s.build) if (b.accepted.length < 3) e.push(`build ${b.id}: accepted ≥3 değil`);
-  for (const d of s.drills) if ((PRODUCTION_DRILLS as readonly string[]).includes(d.k) && d.k !== "gap" && d.k !== "order" && "accepted" in d && d.accepted.length < 3) e.push(`drill ${d.id}: accepted ≥3 değil`);
+  // D-064: üretim maddelerinde (build + tr_de, guided_response, transform, listen_and_respond) en az 3 kabul edilen cevap
+  for (const d of s.drills) if (["tr_de", "guided_response", "transform", "listen_and_respond"].includes(d.k) && "accepted" in d && d.accepted.length < 3) e.push(`drill ${d.id} (${d.k}): accepted ≥3 değil (${d.accepted.length})`);
+  // D-065: her dinleme parçası en az bir hızda
+  for (const l of s.listening) if (!l.speeds.length) e.push(`${l.id}: speeds boş`);
   return e;
 }
 
@@ -164,6 +167,7 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean } = {}): 
   const dom = dupes(c.domains.map((d) => d.id), "alan");
   const lx = new Set(c.lexemes.map((l) => l.id));
   const pt = dupes(c.patterns.map((p) => p.id), "kalıp");
+  const ptById = new Map(c.patterns.map((p) => [p.id, p]));
   dupes(c.grammar.map((g) => g.id), "dilbilgisi");
   dupes(c.assess.map((a) => a.id), "seviye tespiti");
   dupes(c.scenarios.map((s) => s.data.id), "senaryo");
@@ -184,6 +188,9 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean } = {}): 
     for (const id of [...s.essentials.lexemes, ...s.extras.lexemes]) if (!lx.has(id)) errors.push(`${file}: kelime ${id} kayıtta yok`);
     for (const id of [...s.essentials.chunks, ...s.extras.chunks]) if (!ch.has(id)) errors.push(`${file}: ifade ${id} senaryoda tanımlı değil`);
     for (const id of s.essentials.patterns) { if (!pt.has(id)) errors.push(`${file}: kalıp ${id} kayıtta yok`); (patternDomains.get(id) || patternDomains.set(id, new Set()).get(id)!).add(s.domain); }
+    // D-063: kalıp kapısı — incelenmiş senaryonun bütün temel kalıpları incelenmiş olmalı; taslakta uyarı
+    const unrev = s.essentials.patterns.filter((id) => ptById.get(id)?.review?.status !== "reviewed");
+    if (unrev.length) (s.review.status === "reviewed" || opts.strictPatterns ? errors : warnings).push(`${file}: temel kalıplar incelenmemiş (${unrev.length}/${s.essentials.patterns.length}): ${unrev.join(", ")}`);
     for (const k of s.chunks) {
       if (!k.id.startsWith(`ch:${s.domain}:`)) errors.push(`${file}: ifade ${k.id} alan önekiyle başlamalı`);
       for (const l of k.lexemes) if (!lx.has(l)) errors.push(`${file}: ${k.id} → kelime ${l} yok`);

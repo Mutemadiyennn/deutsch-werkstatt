@@ -35,6 +35,8 @@ export const Profile = z.object({
   onboardedAt: z.string().optional(),
   /** Yalnızca bu cihazda gösterilen isteğe bağlı hitap; eşitlenmez */
   displayName: z.string().max(40).optional(),
+  /** D-061: hitap (yalnızca cihazda; yapay zekâya yalnızca bu gider) */
+  address: z.enum(["Herr", "Frau"]).optional(),
   ui: z.object({
     theme: z.enum(["auto", "light", "dark"]).default("auto"),
     sfx: z.boolean().default(true),

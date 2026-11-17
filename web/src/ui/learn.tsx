@@ -6,6 +6,7 @@ import { ai, aiState } from "../services/ai.ts";
 import { ApiError } from "../services/api.ts";
 import { AnswerField, FeedbackBand } from "./kit.tsx";
 import { haptic } from "../services/haptics.ts";
+import { fillName, redact } from "../core/persona.ts";
 import { verdict, type Verdict } from "../core/answer.ts";
 import { localSayIt, type LocalEntry } from "../core/sayit.ts";
 import { addClaim, addPersonal, cacheGet, cachePut } from "../data/db.ts";
@@ -17,9 +18,10 @@ export function AnswerBox({ onSubmit, placeholder, disabled }: { onSubmit: (s: s
 
 /** Değerlendirici: kurallar → (gerekirse) sunucudaki öğretmen; hata = "kontrol edilemedi" */
 export function useGrader() {
-  const { api } = useApp();
-  return (accepted: string[], answer: string, prompt_tr: string) =>
-    verdict(accepted, answer, prompt_tr, aiState(api).available ? async (exp, ans, p) => ai(api, "equiv_check", { prompt_tr: p.slice(0, 300), expected: exp.slice(0, 6), answer: ans.slice(0, 300) }) : undefined);
+  const { api, profile } = useApp();
+  const persona = { name: profile.displayName, address: profile.address };
+  // D-061: ad girilmemişse {name} yuvası cevaptan doldurulur
+  return (accepted0: string[], answer: string, prompt_tr: string) => { const accepted = accepted0.map((a) => fillName(a, answer)); return verdict(accepted, answer, prompt_tr, aiState(api).available ? async (exp, ans, p) => ai(api, "equiv_check", { prompt_tr: p.slice(0, 300), expected: exp.slice(0, 6).map((x) => redact(x, persona)), answer: redact(ans, persona).slice(0, 300) }) : undefined); };
 }
 
 export function VerdictView({ v, answer, onNext, onClaim, itemId, scenarioId, prompt, accepted, nextLabel = "Devam" }: { v: Verdict; answer: string; onNext: () => void; onClaim?: () => void; itemId: string; scenarioId?: string; prompt: string; accepted: string[]; nextLabel?: string }) {

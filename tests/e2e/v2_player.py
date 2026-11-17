@@ -250,6 +250,17 @@ def main():
         page.wait_for_selector("[data-section]")
         check(page.locator("[data-section].done").count() == 7, "7/7 bölüm tamam")
 
+        print("7b) öğrenci kimliği (D-061): ad yalnızca cihazda; yapay zekâya '[Name]' + hitap")
+        page.goto(f"http://127.0.0.1:{PORT}/#/profile"); page.wait_for_selector("#nm")
+        page.fill("#nm", "Novak"); page.press("#nm", "Tab"); page.click("[data-address=Frau]"); page.wait_for_timeout(300)
+        n0 = len(API_CALLS)
+        open_section(page, "roleplay"); page.wait_for_selector("[data-test=rp-start]"); page.click("[data-test=rp-start]")
+        page.fill("[data-test=answer]", "Guten Tag, hier ist Frau Novak."); page.click("[data-test=submit]")
+        page.locator("[data-test=rp-chat] .bubble.them").nth(1).wait_for()
+        bodies = [c["body"] or "" for c in API_CALLS[n0:] if c["url"].endswith("/v1/ai/run")]
+        check(bodies and all("Novak" not in b for b in bodies), "yapay zekâ isteklerinde ad yok")
+        check(any('"address_de": "Frau"' in b or '"address_de":"Frau"' in b for b in bodies) and any("[Name]" in b for b in bodies), "yapay zekâya yalnızca hitap + [Name] gidiyor")
+
         print("8) uzun basma = 'Bu ne demek?'")
         open_section(page, "chunks")
         page.wait_for_selector("[data-test=ifade-card] .wordpanel .w, [data-test=say-q], [data-test=meaning-q], [data-test=section-done], .empty")

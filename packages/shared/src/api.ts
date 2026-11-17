@@ -76,7 +76,9 @@ export const AiTasks = {
       style_de: z.string().max(600).optional(),
       surprise_de: z.string().max(400).optional(),
       history: z.array(z.object({ r: z.enum(["partner", "learner"]), de: z.string().max(600) })).max(40),
-      stuck: z.number().int().min(0).max(10).default(0)
+      stuck: z.number().int().min(0).max(10).default(0),
+      /** D-061: öğrencinin hitabı; ad asla gönderilmez (istemci adı "[Name]" ile değiştirir) */
+      address_de: z.enum(["Herr", "Frau"]).optional()
     }),
     output: z.object({ reply_de: z.string().min(1).max(400), end: z.boolean() }),
     tier: "default" as const // kalite gerekir (DECISIONS D-RP1); 12 sn kuralı istemcide yumuşak uyarıdır, çağrı kesilmez

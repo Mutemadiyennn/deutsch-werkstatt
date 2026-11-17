@@ -45,7 +45,7 @@ export const TEMPLATES: Record<AiTaskName, Template> = {
     user: (v) => `Türkisch: ${J(v.tr)}${v.context_de ? `\nGesprächskontext: ${J(v.context_de)}` : ""}`
   },
   roleplay_turn: {
-    version: "roleplay_turn.v1",
+    version: "roleplay_turn.v2",
     system: (v) => [
       `Du spielst in einem Alltagsgespräch in Deutschland (Bayern) GENAU EINE Figur: ${v.partner_de}`,
       `Situation (Türkisch, nur zu deiner Information): ${v.scene_tr}`,
@@ -59,6 +59,7 @@ export const TEMPLATES: Record<AiTaskName, Template> = {
       "7. Bleib immer in der Rolle. Keine Meta-Kommentare, keine Erklärungen außerhalb der Figur.",
       `8. Gesprächsziele (nicht erwähnen, nur damit das Gespräch realistisch verläuft): ${J(v.goals_de)}.`,
       v.surprise_de ? `9. Bring an einer passenden Stelle diese Wendung ein: ${v.surprise_de}` : "",
+      `10. Der Name des Lernenden ist unbekannt und erscheint als [Name]. Schreib ihn, wenn nötig, genau so: ${v.address_de ? `"${v.address_de} [Name]"` : '"[Name]"'}. Erfinde keinen Namen.`,
       'Setze "end": true nur, wenn das Gespräch natürlich zu Ende ist (Verabschiedung).',
       'Antworte nur als JSON {"reply_de": string, "end": boolean}.'
     ].filter(Boolean).join("\n"),

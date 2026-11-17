@@ -84,3 +84,28 @@ describe("iOS klavye davranışı notu etkilemez (EK2 §1)", () => {
     expect(v.kind).toBe("correct");
   });
 });
+
+import { expandAccepted, fillName, showText, redact, unredact, personalizeDeep } from "./persona.ts";
+describe("öğrenci kimliği yer tutucuları (D-061)", () => {
+  it("hitap yoksa iki biçim de kabul, gösterimde A/B", () => {
+    expect(expandAccepted(["Ich bin schon {Patient|Patientin} bei Ihnen."], {})).toEqual(["Ich bin schon Patient bei Ihnen.", "Ich bin schon Patientin bei Ihnen."]);
+    expect(showText("Ich bin {Patient|Patientin}.", {})).toBe("Ich bin Patient/Patientin.");
+    expect(showText("Ich bin {Patient|Patientin}.", { address: "Frau" })).toBe("Ich bin Patientin.");
+  });
+  it("ad yoksa cevaptaki ad yuvası serbest", async () => {
+    expect(fillName("Guten Tag, hier ist {name}.", "guten tag hier ist Ayşe Kaya")).toBe("Guten Tag, hier ist Ayşe Kaya.");
+    expect(fillName("Mein Name ist {name}, ich habe einen Termin.", "Mein Name ist Novak, ich habe einen Termin")).toBe("Mein Name ist Novak, ich habe einen Termin.");
+    const { ruleVerdict } = await import("./answer.ts");
+    const exp = fillName("Guten Tag, hier ist {name}.", "Guten Tag, hier ist Novak.");
+    expect(ruleVerdict([exp], "Guten Tag, hier ist Novak.").kind).toBe("correct");
+  });
+  it("yapay zekâya ad gitmez", () => {
+    expect(redact("Ich heiße Novak.", { name: "Novak" })).toBe("Ich heiße [Name].");
+    expect(unredact("Danke, Frau [Name]!", { name: "Novak" })).toBe("Danke, Frau Novak!");
+  });
+  it("senaryo metinleri derinlemesine hazırlanır", () => {
+    const s = personalizeDeep({ build: [{ prompt_tr: "x", accepted: ["Hier ist {name}.", "{Herr|Frau} {name} hier."] }], de: "{Patient|Patientin}" }, { address: "Herr", name: "Novak" });
+    expect(s.build[0]!.accepted).toEqual(["Hier ist Novak.", "Herr Novak hier."]);
+    expect(s.de).toBe("Patient");
+  });
+});

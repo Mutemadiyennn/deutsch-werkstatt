@@ -206,6 +206,8 @@ export const Scenario = z.object({
   listening: z
     .array(z.object({
       id: z.string(), title_tr: z.string(), speed: Speed, layer: LayerKey,
+      /** D-065: hazır ses gelene kadar cihaz sesinin sunulacağı hızlar (en az 1); speed = başlangıç */
+      speeds: z.array(Speed).min(1),
       script: z.array(z.object({ r: z.string(), de: z.string(), tr: z.string().optional(), reductions: z.array(Reduction).optional() })).min(1),
       qs: z.array(z.object({ kind: z.enum(["gist", "detail"]), q_tr: z.string(), opts: z.array(z.string()).min(2), ans: z.number().int().min(0) })).min(1)
     }))
