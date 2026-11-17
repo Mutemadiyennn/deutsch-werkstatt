@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
 import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
+import { Icon } from "./icons.tsx";
 
 /* ---------- Ses düğmesi: büyük, tek dokunuşla yavaş/normal ---------- */
 export function ListenButton({ text, speed = "normal", label = "Dinle", slowToggle = true, small = false }: { text: string; speed?: Speed; label?: string; slowToggle?: boolean; small?: boolean }) {
@@ -14,8 +15,8 @@ export function ListenButton({ text, speed = "normal", label = "Dinle", slowTogg
   const play = async (s: Speed, k: "n" | "s") => { if (busy) { stopSpeaking(); setBusy(false); return; } setBusy(k); try { await speak(text, "de", s); } finally { setBusy(false); } };
   return (
     <span class={`listen${small ? " sm" : ""}`} role="group" aria-label={label}>
-      <button type="button" onClick={() => play(speed, "n")} aria-label={`${label}: ${text}`} data-test="listen">{busy === "n" ? "■" : "🔊"}</button>
-      {slowToggle && <button type="button" class="spd" onClick={() => play("slow", "s")} aria-label={`Yavaş dinle: ${text}`} data-test="listen-slow">{busy === "s" ? "■" : "🐢"}</button>}
+      <button type="button" onClick={() => play(speed, "n")} aria-label={`${label}: ${text}`} data-test="listen">{busy === "n" ? <Icon name="stop" /> : <Icon name="volume" />}</button>
+      {slowToggle && <button type="button" class="spd" onClick={() => play("slow", "s")} aria-label={`Yavaş dinle: ${text}`} data-test="listen-slow">{busy === "s" ? <Icon name="stop" /> : "Yavaş"}</button>}
     </span>
   );
 }
@@ -82,7 +83,7 @@ export function useKeyboardSafe(ref: { current: HTMLElement | null }) {
 
 /* ---------- Mikrofon: önce Türkçe açıklama, görünür kayıt göstergesi, bas-konuş ya da dokun-başlat/bitir, kesinti yönetimi ---------- */
 const MIC_OK_KEY = "dw2-mic-explained";
-export function MicButton({ onText, disabled }: { onText: (t: string) => void; disabled?: boolean }) {
+export function MicButton({ onText, disabled, wide = false, label = "Sesli söyle" }: { onText: (t: string) => void; disabled?: boolean; wide?: boolean; label?: string }) {
   const [state, setState] = useState<"idle" | "explain" | "rec">("idle");
   const [err, setErr] = useState<string | null>(null);
   const stopRef = useRef<() => void>(() => {});
@@ -103,11 +104,11 @@ export function MicButton({ onText, disabled }: { onText: (t: string) => void; d
   };
   return (
     <>
-      <button type="button" class={`micbtn${state === "rec" ? " on" : ""}`} disabled={disabled} aria-label={state === "rec" ? "Kaydı bitir" : "Konuşarak cevapla (basılı tut ya da dokun)"} aria-pressed={state === "rec"} data-test="mic"
+      <button type="button" class={wide ? `btn primary block micwide${state === "rec" ? " on" : ""}` : `micbtn${state === "rec" ? " on" : ""}`} disabled={disabled} aria-label={state === "rec" ? "Kaydı bitir" : "Konuşarak cevapla (basılı tut ya da dokun)"} aria-pressed={state === "rec"} data-test="mic"
         onPointerDown={() => { holdRef.current = false; setTimeout(() => { holdRef.current = true; }, 350); if (state !== "rec") void start(); }}
         onPointerUp={() => { if (state === "rec" && holdRef.current) stopRef.current(); }}
         onClick={() => { if (state === "rec" && !holdRef.current) stopRef.current(); }}>
-        {state === "rec" ? <span class="recdot" aria-hidden="true" /> : "🎤"}
+        {state === "rec" ? <><span class="recdot" aria-hidden="true" />{wide && <span>Dinliyorum · bitince dokun</span>}</> : <><Icon name="mic" />{wide && <span>{label}</span>}</>}
       </button>
       {state === "explain" && (
         <div class="card fade" role="dialog" aria-label="Mikrofon izni" style={{ position: "fixed", left: 16, right: 16, bottom: "calc(16px + var(--safe-bottom))", zIndex: 60 }}>
@@ -133,12 +134,13 @@ export function ProgressHeader({ title, back, step, steps = 7, doneSteps = [], r
   return (
     <header class="pbar">
       <div class="row" style={{ gap: 8 }}>
-        <a class="iconbtn" href={back} aria-label="Geri">‹</a>
+        <a class="iconbtn plain" href={back} aria-label="Geri"><Icon name="back" /></a>
         <h1>{title}</h1>
-        {right}
+        {!sub && right}
       </div>
+      {/* DESIGN §1: ekran başına tek ilerleme göstergesi — ekranın kendi göstergesi (sub) varsa bölüm noktaları ve sayaç gizlenir */}
       {sub && <div class="sub">{sub}</div>}
-      {step !== undefined && <div class="steps" aria-label={`Aşama ${Math.min(step, 6)}/6`}>{Array.from({ length: steps }, (_, i) => <i class={doneSteps.includes(i) ? "done" : i === step ? "cur" : ""} />)}</div>}
+      {!sub && step !== undefined && <div class="steps" data-progress="" aria-label={`Aşama ${Math.min(step, 6)}/6`}>{Array.from({ length: steps }, (_, i) => <i class={doneSteps.includes(i) ? "done" : i === step ? "cur" : ""} />)}</div>}
     </header>
   );
 }

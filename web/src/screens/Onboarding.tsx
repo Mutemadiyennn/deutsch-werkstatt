@@ -42,7 +42,7 @@ export function Onboarding() {
   return (
     <div class="stack">
       <div class="row between"><div class="kicker">Kurulum · {step + 1}/{steps}</div>{step > 0 && <button class="btn ghost sm" onClick={() => setStep(step - 1)}>‹ Geri</button>}</div>
-      <div class="progress" aria-hidden="true"><i style={{ width: `${((step + 1) / steps) * 100}%` }} /></div>
+      <div class="progress" aria-hidden="true" data-progress=""><i style={{ width: `${((step + 1) / steps) * 100}%` }} /></div>
 
       {step === 0 && (
         <section class="stack">

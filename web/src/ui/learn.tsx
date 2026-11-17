@@ -100,7 +100,7 @@ export function HeardWordBox() {
   const [de, setDe] = useState(""); const [tr, setTr] = useState("");
   if (!open) return <button class="btn sm" onClick={() => setOpen(true)} data-test="heard">+ Duyduğum kelime</button>;
   return (
-    <form class="card stack" style={{ padding: 12 }} onSubmit={async (e) => { e.preventDefault(); if (!de.trim()) return; await addPersonal({ id: `k3:${de.trim()}`, de: de.trim(), tr: tr.trim() || undefined, at: new Date().toISOString(), source: "heard" }); toast("✓ Listene eklendi"); setDe(""); setTr(""); setOpen(false); }}>
+    <form class="card stack" style={{ padding: 12 }} onSubmit={async (e) => { e.preventDefault(); if (!de.trim()) return; await addPersonal({ id: `k3:${de.trim()}`, de: de.trim(), tr: tr.trim() || undefined, at: new Date().toISOString(), source: "heard" }); toast("Listene eklendi"); setDe(""); setTr(""); setOpen(false); }}>
       <input class="input" lang="de" placeholder="Duyduğun Almanca kelime/ifade" value={de} onInput={(e) => setDe((e.target as HTMLInputElement).value)} aria-label="Almanca" data-test="heard-de" />
       <input class="input" placeholder="Anlamı (biliyorsan, isteğe bağlı)" value={tr} onInput={(e) => setTr((e.target as HTMLInputElement).value)} aria-label="Türkçe" />
       <div class="row"><button class="btn primary sm" type="submit">Ekle</button><button type="button" class="btn ghost sm" onClick={() => setOpen(false)}>Vazgeç</button></div>

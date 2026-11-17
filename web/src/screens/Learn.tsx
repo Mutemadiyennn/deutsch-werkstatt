@@ -1,4 +1,5 @@
 /** Öğren: 20 alan → alan sayfası (v2 senaryoları + ilgili v1 üniteleri) → senaryo çalışma sayfası */
+import { Icon } from "../ui/icons.tsx";
 import { useApp } from "../state.ts";
 import { V1_URL } from "../core/planner.ts";
 import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
@@ -58,7 +59,7 @@ export function DomainView({ id }: { id: string }) {
       <section class="card">
         <div class="kicker">İlgili v1 kurs üniteleri</div>
         <p class="small muted">v1 uygulamasında açılır (kurs yolu: kelime, kural, dinleme, okuma, oyun, yazma, rol oyunu, sınav).</p>
-        <div class="row">{d.legacyUnits.map((u) => <a class="chip" href={`${V1_URL}#kurs`} target="_blank" rel="noopener">{u.toUpperCase()} ↗</a>)}</div>
+        <div class="row">{d.legacyUnits.map((u) => <a class="chip" href={`${V1_URL}#kurs`} target="_blank" rel="noopener">{u.toUpperCase()} <Icon name="out" size={14} /></a>)}</div>
       </section>
     </div>
   );

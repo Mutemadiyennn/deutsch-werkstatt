@@ -8,10 +8,13 @@
   --font-body: -apple-system, "SF Pro Text", BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
   /* 4/8 boşluk ızgarası */
   --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px;
-  --paper: #f3f6fc; --card: #ffffff; --ink: #101c30; --muted: #5b6b82; --line: #e3eaf4; --soft: #eef4fd;
-  --accent: #1784d6; --accent2: #3ba3f0; --accent-edge: #0e5e9e; --accent-ink: #ffffff;
+  /* DESIGN.md §2 belirteçleri (PM-006): bütün ekranlar bunlardan beslenir */
+  --himmel: #1C6FD6; --himmel-2: #E3EEFB; --tinte: #14233B; --tinte-2: #5A6B82; --papier: #F5F8FC; --brezel: #C27A2C; --wiese: #2F9E6B; --rot: #D6453D;
+  --brezel-soft: #FCF1E4; --sky-a: #DCEAFB; --sky-b: #EEF4FC; --sky-ink: #1C6FD6; --sky-win: #E3EEFB; --sky-grid: rgba(28, 111, 214, 0.10);
+  --paper: var(--papier); --card: #ffffff; --ink: var(--tinte); --muted: var(--tinte-2); --line: #e3eaf4; --soft: #eef4fd;
+  --accent: var(--himmel); --accent2: #3C86E3; --accent-edge: #1257AE; --accent-ink: #ffffff;
   --c-blue: #2f7bf6; --c-blue2: #1d5fd6; --c-orange: #ff8a1f; --c-green: #16b37a; --c-green2: #0e8f60; --c-purple: #7c5cfa; --c-pink: #ef4a82; --c-amber: #f5a623;
-  --ok: #0e8f60; --ok-soft: #e3f7ee; --bad: #d02d65; --bad-soft: #fde8ef; --warn: #b26a00; --warn-soft: #fff3dc;
+  --ok: var(--wiese); --ok-soft: #e3f5ec; --bad: #d02d65; --bad-soft: #fde8ef; --warn: #b26a00; --warn-soft: #fff3dc;
   --der: #2f7bf6; --die: #ef4a82; --das: #16a34a;
   --glow1: #d9e8ff; --glow2: #efe4ff; --glow3: #ffe9d6;
   --card-edge: rgba(16, 28, 48, 0.06);
@@ -27,9 +30,11 @@
   color-scheme: light;
 }
 :root[data-theme="dark"] {
-  --paper: #0a1222; --card: #121b2e; --ink: #eef3fb; --muted: #9aa9bf; --line: #1f2b42; --soft: #1a2540;
-  --accent: #3d8bff; --accent-ink: #ffffff; --accent-edge: #1d5fd6; --accent2: #6aa8ff;
-  --ok: #4ed6a0; --ok-soft: #10392b; --bad: #ff7aa6; --bad-soft: #3d1626; --warn: #ffc566; --warn-soft: #3a2c12;
+  --himmel: #4C93F0; --himmel-2: #1B2C47; --tinte: #EEF3FB; --tinte-2: #9AABC2; --papier: #0B1424; --brezel: #E0A15A; --wiese: #4CC48F; --rot: #EF6A62;
+  --brezel-soft: #2E2416; --sky-a: #13213A; --sky-b: #0E192C; --sky-ink: #2F5FA6; --sky-win: #F2C46B; --sky-grid: rgba(120, 170, 255, 0.08);
+  --paper: var(--papier); --card: #121d31; --ink: var(--tinte); --muted: var(--tinte-2); --line: #1f2b42; --soft: #1a2540;
+  --accent: var(--himmel); --accent-ink: #ffffff; --accent-edge: #1d5fd6; --accent2: #6aa8ff;
+  --ok: var(--wiese); --ok-soft: #10392b; --bad: #ff7aa6; --bad-soft: #3d1626; --warn: #ffc566; --warn-soft: #3a2c12;
   --der: #6aa8ff; --die: #ff7aa6; --das: #4ed67f;
   --glow1: rgba(47, 123, 246, 0.28); --glow2: rgba(124, 92, 250, 0.22); --glow3: rgba(255, 138, 31, 0.1);
   --card-edge: rgba(255, 255, 255, 0.07);
@@ -38,9 +43,11 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #0a1222; --card: #121b2e; --ink: #eef3fb; --muted: #9aa9bf; --line: #1f2b42; --soft: #1a2540;
-    --accent: #3d8bff; --accent-ink: #ffffff; --accent-edge: #1d5fd6; --accent2: #6aa8ff;
-    --ok: #4ed6a0; --ok-soft: #10392b; --bad: #ff7aa6; --bad-soft: #3d1626; --warn: #ffc566; --warn-soft: #3a2c12;
+    --himmel: #4C93F0; --himmel-2: #1B2C47; --tinte: #EEF3FB; --tinte-2: #9AABC2; --papier: #0B1424; --brezel: #E0A15A; --wiese: #4CC48F; --rot: #EF6A62;
+    --brezel-soft: #2E2416; --sky-a: #13213A; --sky-b: #0E192C; --sky-ink: #2F5FA6; --sky-win: #F2C46B; --sky-grid: rgba(120, 170, 255, 0.08);
+    --paper: var(--papier); --card: #121d31; --ink: var(--tinte); --muted: var(--tinte-2); --line: #1f2b42; --soft: #1a2540;
+    --accent: var(--himmel); --accent-ink: #ffffff; --accent-edge: #1d5fd6; --accent2: #6aa8ff;
+    --ok: var(--wiese); --ok-soft: #10392b; --bad: #ff7aa6; --bad-soft: #3d1626; --warn: #ffc566; --warn-soft: #3a2c12;
     --der: #6aa8ff; --die: #ff7aa6; --das: #4ed67f;
     --glow1: rgba(47, 123, 246, 0.28); --glow2: rgba(124, 92, 250, 0.22); --glow3: rgba(255, 138, 31, 0.1);
     --card-edge: rgba(255, 255, 255, 0.07);
@@ -311,3 +318,99 @@ body.kb .app.hasbar { --actionbar-h: 0px !important; }
 .wordinfo { font-size: 0.86rem; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 8px; display: flex; flex-direction: column; gap: 2px; }
 .linkbtn { border: 0; background: none; color: var(--accent); font: inherit; font-weight: 700; padding: 0; cursor: pointer; text-decoration: underline; min-height: 0; }
 .scanrow [lang="de"] { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: break-word; }
+
+/* ====================== DESIGN.md (PM-006): Raute kimliği, Bugün, ifade kartı, gelen arama ====================== */
+.ico { display: block; flex: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.iconbtn.plain { background: transparent; color: var(--himmel); min-width: 44px; }
+.rauten { display: block; flex: none; overflow: visible; }
+.rauten .r-bg { fill: var(--himmel-2); stroke: color-mix(in srgb, var(--himmel) 45%, transparent); stroke-width: 1; }
+.rauten .r-fill { fill: var(--himmel); }
+.rauten .on .r-bg { stroke: var(--himmel); }
+.avatar { display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: #fff; font-weight: 800; font-family: var(--font-display); letter-spacing: 0.02em; flex: none; }
+.btn .ico { margin-right: 2px; }
+.secondary .linkbtn { padding: 10px 4px; text-decoration: none; min-height: 44px; color: var(--himmel); font-size: 1rem; }
+.secondary .linkbtn.muted { color: var(--tinte-2); }
+.row.between.secondary { margin-top: 4px; }
+.emptybox { display: inline-block; width: 16px; height: 16px; border-radius: 4px; box-shadow: 0 0 0 1.5px var(--line) inset; vertical-align: -2px; }
+.pbar .sub { justify-content: space-between; }
+.pbar .sub .budget { white-space: nowrap; }
+
+/* Bugün: gök şeridi (günün saatine göre) + Raute ağı + siluet */
+.today { gap: 14px; }
+.sky { position: relative; margin: calc(-1 * var(--safe-top) - 12px) -16px 0; padding: calc(var(--safe-top) + 28px) 20px 18px; color: var(--ink); overflow: hidden;
+  background:
+    repeating-linear-gradient(45deg, var(--sky-grid) 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(-45deg, var(--sky-grid) 0 1px, transparent 1px 22px),
+    linear-gradient(180deg, var(--sky-a), var(--sky-b)); }
+.sky.morning { --sky-a: #E6F1FE; --sky-b: #F3F8FE; }
+.sky.evening { --sky-a: #C9D3F2; --sky-b: #E7E5F6; }
+:root[data-theme="dark"] .sky.evening, :root[data-theme="dark"] .sky.night { --sky-a: #1A1E44; --sky-b: #0E1430; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sky.evening, :root:not([data-theme="light"]) .sky.night { --sky-a: #1A1E44; --sky-b: #0E1430; } }
+.sky .skyline { display: block; width: 100%; height: 64px; color: var(--sky-ink); margin-bottom: 6px; }
+.sky .greet { font-family: var(--font-display); font-size: 2.6rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; margin: 0 0 6px; color: var(--tinte); }
+.sky .skyline-tr { color: var(--tinte-2); font-size: 1rem; margin: 0; max-width: 34ch; }
+.skychip { position: absolute; top: calc(var(--safe-top) + 10px); right: 16px; background: color-mix(in srgb, var(--card) 80%, transparent); color: var(--tinte); border-radius: 999px; padding: 4px 10px; font-size: 0.8rem; font-weight: 700; }
+.dayrow { display: flex; align-items: center; gap: 12px; padding: 2px 4px; }
+.daymin { margin-left: auto; color: var(--tinte-2); font-variant-numeric: tabular-nums; }
+.daymin b { color: var(--tinte); font-size: 1.1rem; }
+.goalhit { display: flex; gap: 6px; align-items: center; color: var(--wiese); font-weight: 700; margin: 0; }
+.card.nextcard { border-radius: 26px; padding: 20px; box-shadow: 0 1px 2px rgba(20, 35, 59, 0.05), 0 12px 32px rgba(20, 35, 59, 0.08); }
+.nexttitle { font-size: 1.45rem; margin: 2px 0 0; line-height: 1.15; }
+.nextcard .btn.primary { min-height: 58px; font-size: 1.1rem; border-radius: 20px; }
+.focusrow { display: flex; align-items: center; gap: 8px; padding-top: 10px; border-top: 1px solid var(--line); }
+.focusrow .num { font-variant-numeric: tabular-nums; }
+.plainsec { padding: 4px 4px 0; }
+.sectitle { font-size: 1.1rem; margin: 0 0 2px; }
+.plainsec .list li { border-bottom: 1px solid var(--line); padding: 10px 0; }
+
+/* İfade kartı (TARGET 2) */
+.ifade { gap: 14px; }
+.ifade-card { gap: 14px; }
+.scenebox { border-radius: 24px; overflow: hidden; height: 128px; }
+.scenebox .scene { display: block; width: 100%; height: 100%; }
+.wordpanel.plain { text-align: left; background: none; box-shadow: none; padding: 0; border-radius: 0; }
+.wordpanel.plain .w { font-family: var(--font-display); font-size: 1.85rem; font-weight: 800; line-height: 1.12; letter-spacing: -0.015em; margin: 0; color: var(--tinte); }
+.wordpanel.plain .tr { font-weight: 400; font-size: 1.05rem; color: var(--tinte-2); margin-top: 6px; }
+.playrow { display: flex; align-items: center; gap: 14px; }
+.bigspk { width: 64px; height: 64px; border-radius: 50%; border: 0; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; background: var(--himmel); box-shadow: 0 4px 0 color-mix(in srgb, var(--himmel) 70%, #000), 0 8px 18px color-mix(in srgb, var(--himmel) 30%, transparent); flex: none; }
+.bigspk:active { transform: translateY(2px); box-shadow: 0 1px 0 color-mix(in srgb, var(--himmel) 70%, #000); }
+.pillbtn { min-height: 48px; padding: 0 22px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--card); color: var(--himmel); font-weight: 700; cursor: pointer; }
+.alltagpanel { background: var(--brezel-soft); border-radius: 18px; padding: 14px 14px 14px 16px; }
+.alltagpanel .lbl { color: var(--brezel); font-weight: 700; font-size: 0.9rem; }
+.alltagpanel .de { font-size: 1.1rem; margin-top: 2px; }
+.alltagpanel .note { color: var(--tinte-2); margin-top: 4px; }
+.miniplay { width: 44px; height: 44px; border-radius: 50%; border: 0; background: color-mix(in srgb, var(--brezel) 22%, var(--card)); color: var(--brezel); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex: none; }
+.bairline { gap: 8px; }
+.famlbl { color: var(--tinte-2); font-size: 0.92rem; margin-bottom: 6px; }
+.famchips { display: flex; flex-wrap: wrap; gap: 8px; }
+.famchips .chip { background: var(--card); box-shadow: 0 0 0 1.5px var(--line) inset; font-weight: 700; padding: 8px 14px; font-size: 0.95rem; }
+.famchips .chip.cur { background: var(--himmel-2); color: var(--himmel); box-shadow: none; }
+.ifade .wordinfo { font-size: 0.85rem; color: var(--tinte-2); }
+.btn.micwide { min-height: 60px; font-size: 1.12rem; border-radius: 20px; }
+.btn.micwide.on { background: var(--rot); box-shadow: 0 4px 0 color-mix(in srgb, var(--rot) 70%, #000); }
+
+/* Gelen arama (TARGET 3): her zaman koyu */
+.callscreen { position: fixed; inset: 0; z-index: 40; display: flex; flex-direction: column; justify-content: space-between; color: #EEF3FB;
+  padding: calc(var(--safe-top) + 48px) 22px calc(var(--safe-bottom) + 34px);
+  background: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 30px), repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 30px), #121C30; }
+.callhead { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.callkicker { color: #9AABC2; margin-bottom: 26px; }
+.ringwrap { padding: 14px; border-radius: 50%; background: rgba(43, 168, 154, 0.12); box-shadow: 0 0 0 14px rgba(43, 168, 154, 0.06); margin-bottom: 26px; animation: callpulse 1.6s ease-in-out infinite; }
+@keyframes callpulse { 50% { box-shadow: 0 0 0 22px rgba(43, 168, 154, 0.02); } }
+@media (prefers-reduced-motion: reduce) { .ringwrap { animation: none; } }
+.callorg { font-size: 2rem; font-weight: 800; margin: 0; color: #fff; }
+.callwho { color: #C7D2E2; font-size: 1.1rem; margin: 4px 0 14px; }
+.calltopic { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.08); border-radius: 999px; padding: 6px 14px; font-weight: 700; font-size: 0.92rem; }
+.stuckcard { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 16px 20px; }
+.stucklbl { color: #9AABC2; margin-bottom: 6px; }
+.stuckline { font-weight: 700; font-size: 1.1rem; line-height: 1.7; color: #fff; }
+.callbtns { display: flex; justify-content: space-around; }
+.callbtn { display: flex; flex-direction: column; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-weight: 600; }
+.callbtn > span { width: 76px; height: 76px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+.callbtn.decline > span { background: #D6453D; } .callbtn.decline .ico { transform: rotate(135deg); }
+.callbtn.accept > span { background: #2F9E6B; }
+html.callmode body { background: #121C30; }
+
+/* TS-4: ana eylem ≥ 56 px */
+.btn.primary { min-height: 56px; }

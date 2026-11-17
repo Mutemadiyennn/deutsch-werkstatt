@@ -197,7 +197,7 @@ def main():
         page.clock.resume()
         page.click("[data-tab=profile]")
         page.select_option("[data-test=goal]", "120")
-        page.wait_for_selector("text=✓ Kaydedildi")
+        page.wait_for_selector("text=Kaydedildi")
         page.click("text=Sunucu bağlantısını kontrol et")
         try:
             page.wait_for_selector("[data-test=server]:has-text('Bugünkü')", timeout=10000)

@@ -15,7 +15,8 @@ export type Route =
   | { name: "profile" }
   | { name: "assess" }
   | { name: "assessResult"; id?: string }
-  | { name: "onboarding" };
+  | { name: "onboarding" }
+  | { name: "call"; id: string };
 
 export function parseHash(h: string): Route {
   const p = h.replace(/^#\/?/, "").split("/").map(decodeURIComponent);
@@ -26,6 +27,7 @@ export function parseHash(h: string): Route {
     case "profile": return { name: "profile" };
     case "assess": return p[1] === "result" ? { name: "assessResult", id: p[2] } : { name: "assess" };
     case "onboarding": return { name: "onboarding" };
+    case "call": return { name: "call", id: p[1] || "" };
     default: return { name: "today" };
   }
 }
