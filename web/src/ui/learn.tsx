@@ -134,21 +134,23 @@ export function Photo({ q }: { q?: string }) {
 export function LongPressExplain() {
   const [de, setDe] = useState<string | null>(null);
   useEffect(() => {
-    let t: number | undefined; let x0 = 0, y0 = 0;
+    let t: number | undefined; let x0 = 0, y0 = 0, pid = -1;
     const down = (e: PointerEvent) => {
       const el = (e.target as Element | null)?.closest?.('[lang="de"]') as HTMLElement | null;
       if (!el || el.closest("input,textarea,button,a,.wchip,.opt") || el.tagName === "INPUT") return;
-      x0 = e.clientX; y0 = e.clientY; cancel();
+      cancel(); x0 = e.clientX; y0 = e.clientY; pid = e.pointerId;
       // metin basış anında alınır: zamanlayıcı dolarken öğe yeniden çizilse ya da ayrılsa bile sayfa açılır (WebKit)
       const txt = (el.innerText || el.textContent || "").trim().replace(/\s+/g, " ").slice(0, 120);
       if (!txt) return;
       t = window.setTimeout(() => { t = undefined; try { haptic("selection"); } catch { /* yok say */ } setDe(txt); }, 550);
     };
     const cancel = () => { if (t) { clearTimeout(t); t = undefined; } };
-    const move = (e: PointerEvent) => { if (Math.abs(e.clientX - x0) > 8 || Math.abs(e.clientY - y0) > 8) cancel(); };
+    // yalnızca basışı başlatan işaretçi iptal eder: başka bir işaretçinin (fare/üzerinde gezinme, ikinci parmak) hareketi basışı bozmaz
+    const up = (e: PointerEvent) => { if (e.pointerId === pid) cancel(); };
+    const move = (e: PointerEvent) => { if (e.pointerId === pid && (Math.abs(e.clientX - x0) > 8 || Math.abs(e.clientY - y0) > 8)) cancel(); };
     const ctx = (e: Event) => { if ((e.target as Element | null)?.closest?.('[lang="de"]') && !(e.target as Element).closest("input,textarea")) e.preventDefault(); };
-    document.addEventListener("pointerdown", down); document.addEventListener("pointerup", cancel); document.addEventListener("pointercancel", cancel); document.addEventListener("pointermove", move); document.addEventListener("contextmenu", ctx);
-    return () => { cancel(); document.removeEventListener("pointerdown", down); document.removeEventListener("pointerup", cancel); document.removeEventListener("pointercancel", cancel); document.removeEventListener("pointermove", move); document.removeEventListener("contextmenu", ctx); };
+    document.addEventListener("pointerdown", down); document.addEventListener("pointerup", up); document.addEventListener("pointercancel", up); document.addEventListener("pointermove", move); document.addEventListener("contextmenu", ctx);
+    return () => { cancel(); document.removeEventListener("pointerdown", down); document.removeEventListener("pointerup", up); document.removeEventListener("pointercancel", up); document.removeEventListener("pointermove", move); document.removeEventListener("contextmenu", ctx); };
   }, []);
   if (!de) return null;
   return (

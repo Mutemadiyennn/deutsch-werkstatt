@@ -280,6 +280,9 @@ def main():
         pt = {"clientX": bb["x"] + 10, "clientY": bb["y"] + 10, "bubbles": True, "pointerType": "touch", "isPrimary": True, "pointerId": 7}
         page.evaluate("""() => { window.__lpdbg = []; for (const k of ['pointerdown','pointerup','pointercancel','pointermove','contextmenu']) document.addEventListener(k, (e) => window.__lpdbg.push(k + ':' + (e.target && e.target.tagName) + ':' + Math.round(performance.now())), true); }""")
         el.dispatch_event("pointerdown", pt)
+        # PM-013 kök neden: WebKit iPhone 15 öykünmesi basış sırasında farenin eski konumundan (bir düğmenin üstü) pointermove gönderiyordu
+        # ve uzun basmayı iptal ediyordu. Aynı durumu her tarayıcıda bilerek üret: başka işaretçinin uzak hareketi basışı bozmamalı.
+        page.dispatch_event("body", "pointermove", {"clientX": 5, "clientY": 5, "bubbles": True, "pointerType": "mouse", "isPrimary": True, "pointerId": 1})
         opened = False
         for _ in range(16):
             page.wait_for_timeout(250)
