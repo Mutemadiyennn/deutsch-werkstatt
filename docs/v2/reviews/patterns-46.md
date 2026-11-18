@@ -1,12 +1,12 @@
 # İnceleme: patterns.json — draft 46 kalıp (dil incelemesi + OD-9 çevrimi)
-İnceleyen: dilbilimci-ajan · 2026-11-18 · Dal: v2/kaliplar-46 · Sonuç: **KAPANDI (dilbilimci), okur bekliyor**
+İnceleyen: dilbilimci-ajan · 2026-11-18 · Dal: v2/kaliplar-46 · Sonuç: **KAPANDI (dilbilimci)** · okur tur 1 + tur 2 GEÇTİ, kalıplar `reviewed` · inceleme #48 düzeltmeleri (belge sonu) okur bekliyor
 
 İLERLEME: 46/46 bitti — pt:ich-bin, pt:verb-zweite-stelle, pt:w-frage, pt:ja-nein-frage, pt:kann-ich, pt:darf-ich, pt:ich-muss, pt:nicht, pt:kein, pt:es-gibt, pt:wo-ist, pt:ich-haette-gern, pt:trennbar, pt:perfekt-sein, pt:mit-dativ, pt:fuer-akk, pt:ich-brauche, pt:wie-sagt-man, pt:meinen-sie, pt:imperativ-sie, pt:sollen-wir, pt:ich-finde, pt:gefaellt-mir, pt:haben-sie, pt:ich-war, pt:lieber, pt:zu-adj, pt:es-tut-mir-leid, pt:weil, pt:dass, pt:ob, pt:indirekte-frage, pt:ich-wuerde-gern, pt:ich-haette-eine-frage, pt:um-zu, pt:obwohl, pt:deshalb, pt:reflexiv, pt:verb-praep, pt:passiv, pt:relativsatz, pt:es-waere-nett, pt:sollte, pt:bevor-nachdem, pt:als-wenn-zeit, pt:moment
 
 ## Özet
 - 46 kalıbın hepsi baştan incelendi (önceki yarım düzeltmelere güvenilmedi): çerçeve, slot doldurmaları, örnekler, dönüşümler, mistakes_tr iddiaları.
 - 46 kalıbın hepsine `kurallar_tr[]` ve `frame_tr` eklendi; `mistakes_tr[]` baştan yazıldı (her madde tek yanlış ve doğrusu).
-- `review`: `status: "draft"`, `by: "dilbilimci-ajan"`, `at: "2026-11-18"`, `notes: "dilbilimci: KAPANDI (2026-11-18), okur bekliyor"`. Durumu okur turundan sonra baş geliştirici değiştirir.
+- `review`: okur tur 2'den sonra baş geliştirici `status: "reviewed"`, `okur: "passed"` yaptı (inceleme sırasında `draft` idi). İnceleme #48 düzeltmelerinde `review` alanlarına dokunulmadı.
 - Madde: **1796** · Hata: **7** · İyileştirme: **9** · Hata oranı: 7/1796 = **%0.4**
 - `kurallar_tr` toplam **242** öğe (kalıp başına 4–7) · `frame_tr` 46 · `mistakes_tr` 172 → 193 madde. Okurun okuyacağı yeni metin: 242 + 46 + 193 = **481**.
 - `npm run content:validate` → 0 hata, 58 uyarı (uyarılar alan kapsamı ve incelenmemiş kalıp uyarıları; bu işle ilgili değil).
@@ -248,3 +248,27 @@ Eklenen öğeler (pt:ich-haette-eine-frage, eski `kurallar_tr[3]` üçe bölünd
 - `textIssues` (explain.ts) 46 kalıbın bütün `kurallar_tr`, `frame_tr`, `mistakes_tr` metinlerinde: 0 ihlal.
 - `npm run content:validate` → 0 hata, 58 uyarı.
 - Okur ikinci turda yalnızca bu 32 metni + 2 yeni öğeyi okumalı (34 metin).
+
+## İnceleme #48 düzeltmeleri (2026-11-18)
+
+Okur yalnızca bu tablodaki "Sonra" metinlerini okur. `review` alanları değişmedi. `npm run content:validate` → 0 hata.
+
+- P1 `pt:kein`: **keinen** kuralı artık **Ich habe** bağlamına bağlı (koşulsuz kural **Das ist keinen Termin** ürettiriyordu).
+- P2 `pt:perfekt-sein`: çerçevedeki "nereye" kalktı; örneklerden biri **aufgestanden** oldu.
+- P2 `mistakes_tr`: hata olmayan bilgi maddeleri ya "denmez. Doğrusu" biçimine çevrildi ya da `kurallar_tr` içine taşındı. Listede olmayan `pt:perfekt-sein.mistakes_tr[2]` de aynı türdendi, o da çevrildi.
+
+| Kimlik | Önce | Sonra |
+|---|---|---|
+| `pt:kein.kurallar_tr[2]` | **der** ile söylenen kelimede **keinen** olur: **Ich habe keinen Termin**. | **Ich habe** dedikten sonra **der** kelimesinde **keinen** olur: **Ich habe keinen Termin**. |
+| `pt:perfekt-sein.frame_tr` | **Ich bin** + nereye + bitmiş iş, örneğin **gegangen** ya da **gekommen** | **Ich bin** + gerisi + bitmiş iş, örneğin **gegangen** ya da **aufgestanden** |
+| `pt:perfekt-sein.mistakes_tr[2]` | **weil** yani çünkü gelince **bin** en sona gider: **weil ich früh aufgestanden bin**. | **weil ich bin früh aufgestanden** denmez. Doğrusu **weil ich früh aufgestanden bin**. |
+| `pt:weil.mistakes_tr[1]` | **denn** de çünkü demektir ama sıra değişmez: **denn ich bin krank**. | Çünkü anlamındaki **denn** ile **denn ich krank bin** denmez. Doğrusu **denn ich bin krank**. |
+| `pt:weil.mistakes_tr[2]` | **deshalb** yani bu yüzden sonucu söyler: **Ich bin krank, deshalb komme ich nicht**. | Bu yüzden anlamındaki **deshalb** ile **Deshalb ich komme nicht** denmez. Doğrusu **Deshalb komme ich nicht**. |
+| `pt:obwohl.mistakes_tr[2]` | **trotz** yağmura rağmen gibi kısa sözlerde kullanılır: **trotz des Regens**. | **trotz ich krank bin** denmez. Doğrusu **obwohl ich krank bin**. |
+| `pt:passiv.mistakes_tr[0]` | **Das wird bezahlt** ödenir demektir. **Das ist bezahlt** ödenmiş, bitti demektir. | Ödenir demek için **Das ist bezahlt** denmez. Doğrusu **Das wird bezahlt**. |
+| `pt:passiv.mistakes_tr[3]` | **Ich werde zahlen** ödeyeceğim demektir. **Es wird gezahlt** ödenir demektir. | Ödeyeceğim demek için **Ich werde gezahlt** denmez. Doğrusu **Ich werde zahlen**. |
+| `pt:fuer-akk.mistakes_tr[3]` | **für zwei Tage** iki günlüğüne demektir. **seit zwei Tagen** iki gündür demektir. | İki gündür hastayım derken **für zwei Tage** denmez. Doğrusu **seit zwei Tagen**. |
+| `pt:fuer-akk.mistakes_tr[4]` → `pt:fuer-akk.kurallar_tr[6]` | İlaç isterken **gegen** de duyarsın: **etwas gegen Husten** öksürüğe karşı bir şey demektir. | İlaç isterken **gegen** de duyarsın: **etwas gegen Husten** öksürüğe karşı bir şey demektir. (taşındı) |
+| `pt:als-wenn-zeit.mistakes_tr[2]` → `pt:als-wenn-zeit.kurallar_tr[5]` | **als** karşılaştırmada da geçer: **größer als** daha büyük demektir. | **als** karşılaştırmada da geçer: **größer als** daha büyük demektir. (taşındı) |
+| `pt:verb-praep.kurallar_tr[5]` | Konuşmada **darum** ve **daran** çok duyarsın: **Ich kümmere mich darum**. | Konuşmada **darum** çok duyarsın: **Ich kümmere mich darum** onu ben hallederim demektir. |
+| `pt:verb-praep.mistakes_tr[4]` | **Ich kümmere mich darum** onu ben hallederim demektir. | (silindi; anlam `kurallar_tr[5]` içine alındı) |

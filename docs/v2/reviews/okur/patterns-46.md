@@ -1,6 +1,6 @@
 # Okur kontrolü — 46 kalıp (`content/v2/registry/patterns.json`, `review.status == "draft"`)
 
-**İLERLEME: Tur 1 46/46 kalıp bitti; Tur 2 (34 metin) bitti, açık GERİ yok.** Biten kalıp kimlikleri: `pt:ich-bin`, `pt:verb-zweite-stelle`, `pt:w-frage`, `pt:ja-nein-frage`, `pt:kann-ich`, `pt:darf-ich`, `pt:ich-muss`, `pt:nicht`, `pt:kein`, `pt:es-gibt`, `pt:wo-ist`, `pt:ich-haette-gern`, `pt:trennbar`, `pt:perfekt-sein`, `pt:mit-dativ`, `pt:fuer-akk`, `pt:ich-brauche`, `pt:wie-sagt-man`, `pt:meinen-sie`, `pt:imperativ-sie`, `pt:sollen-wir`, `pt:ich-finde`, `pt:gefaellt-mir`, `pt:haben-sie`, `pt:ich-war`, `pt:lieber`, `pt:zu-adj`, `pt:es-tut-mir-leid`, `pt:weil`, `pt:dass`, `pt:ob`, `pt:indirekte-frage`, `pt:ich-wuerde-gern`, `pt:ich-haette-eine-frage`, `pt:um-zu`, `pt:obwohl`, `pt:deshalb`, `pt:reflexiv`, `pt:verb-praep`, `pt:passiv`, `pt:relativsatz`, `pt:es-waere-nett`, `pt:sollte`, `pt:bevor-nachdem`, `pt:als-wenn-zeit`, `pt:moment`
+**İLERLEME: Tur 1 46/46 kalıp bitti; Tur 2 (34 metin) bitti; Tur 3 (#48 düzeltmeleri, 12 metin) bitti, hepsi GEÇTİ, açık GERİ yok.** Biten kalıp kimlikleri: `pt:ich-bin`, `pt:verb-zweite-stelle`, `pt:w-frage`, `pt:ja-nein-frage`, `pt:kann-ich`, `pt:darf-ich`, `pt:ich-muss`, `pt:nicht`, `pt:kein`, `pt:es-gibt`, `pt:wo-ist`, `pt:ich-haette-gern`, `pt:trennbar`, `pt:perfekt-sein`, `pt:mit-dativ`, `pt:fuer-akk`, `pt:ich-brauche`, `pt:wie-sagt-man`, `pt:meinen-sie`, `pt:imperativ-sie`, `pt:sollen-wir`, `pt:ich-finde`, `pt:gefaellt-mir`, `pt:haben-sie`, `pt:ich-war`, `pt:lieber`, `pt:zu-adj`, `pt:es-tut-mir-leid`, `pt:weil`, `pt:dass`, `pt:ob`, `pt:indirekte-frage`, `pt:ich-wuerde-gern`, `pt:ich-haette-eine-frage`, `pt:um-zu`, `pt:obwohl`, `pt:deshalb`, `pt:reflexiv`, `pt:verb-praep`, `pt:passiv`, `pt:relativsatz`, `pt:es-waere-nett`, `pt:sollte`, `pt:bevor-nachdem`, `pt:als-wenn-zeit`, `pt:moment`
 
 Tarih: 2026-11-18 · Rol: okur (OD-9.3) · Okuyan kimlik: yalnızca Türkçe, Almanca A2, dilbilgisi terimi bilmez, İngilizce bilmez, yorgun bir akşam telefondan okur.
 
@@ -765,3 +765,39 @@ Okur açısından 46 kalıbın hiçbirinde açık GERİ kalmadı (OD-9.4 okur ko
 2. `pt:reflexiv` `kurallar_tr[1]`: sözlükteki biçim sich ile veriliyor; cümlede mich olduğunu aynı kalıbın öbür öğeleri söylüyor. Bu öğe tek başına okununca Ich ile de sich mi denir sorusu bir an aklıma geldi.
 3. `pt:weil` `kurallar_tr[2]` ve `pt:dass` `kurallar_tr[3]` aynı cümleyle başlıyor; kalıbın kelimesi (weil, dass) yalnızca örnekte görünüyor.
 4. Tur 1'deki "Görünen ama çevrilmemiş" listesi (terimli `frame`, slot adları, terimli doldurmalar, `transforms` etiketleri) bu turda yeniden okunmadı.
+
+## Tur 3 (#48 düzeltmeleri) — 2026-11-18
+
+Kapsam: dilbilimci raporundaki "İnceleme #48 düzeltmeleri" tablosu (13 satır; `pt:perfekt-sein.mistakes_tr[2]` tablonun içinde). 12 satırın "Sonra" metni `content/v2/registry/patterns.json` dosyasının bugünkü hâlinden okundu; 13. satır bir silme. Ölçütler aynı (OD-9.2). Ekran: kalıp kartında `frame_tr` ve `kurallar_tr` görünür; `mistakes_tr` henüz çizilmiyor, yine de okundu.
+
+Dosyayla karşılaştırma: 12 metin tablodaki "Sonra" sütunuyla birebir aynı. Taşınan iki öğe yeni yerinde (`pt:fuer-akk.kurallar_tr[6]`, `pt:als-wenn-zeit.kurallar_tr[5]`) ve eski yerinde yok. `pt:verb-praep.mistakes_tr[4]` silinmiş; kalıpta dört hata maddesi kaldı. Uzunluk ve sembol taraması betikle de yapıldı: aykırı yok.
+
+| Kalıp | Alan | Bugünkü metin | Kendi sözlerimle | Karar | Neden |
+|---|---|---|---|---|---|
+| `pt:kein` | `kurallar_tr[2]` | **Ich habe** dedikten sonra **der** kelimesinde **keinen** olur: **Ich habe keinen Termin**. | Ich habe dedikten sonra, der ile söylenen kelimelerde keinen derim. | GEÇTİ | der kelimesinde sözünü bir an der kelimesinin kendisi diye okudum; örnek (keinen Termin) düzeltti. |
+| `pt:perfekt-sein` | `frame_tr` | **Ich bin** + gerisi + bitmiş iş, örneğin **gegangen** ya da **aufgestanden** | Ich bin ile başlarım, araya gerisini koyarım, sona gegangen ya da aufgestanden gibi bitmiş işi koyarım. | GEÇTİ |  |
+| `pt:perfekt-sein` | `mistakes_tr[2]` | **weil ich bin früh aufgestanden** denmez. Doğrusu **weil ich früh aufgestanden bin**. | weil olan kısımda bin ortada kalmaz, en sona gider. | GEÇTİ |  |
+| `pt:weil` | `mistakes_tr[1]` | Çünkü anlamındaki **denn** ile **denn ich krank bin** denmez. Doğrusu **denn ich bin krank**. | denn de çünkü demek. Onunla bin sona gitmez, denn ich bin krank derim. | GEÇTİ |  |
+| `pt:weil` | `mistakes_tr[2]` | Bu yüzden anlamındaki **deshalb** ile **Deshalb ich komme nicht** denmez. Doğrusu **Deshalb komme ich nicht**. | deshalb bu yüzden demek. Ondan hemen sonra komme gelir, ich değil. | GEÇTİ |  |
+| `pt:obwohl` | `mistakes_tr[2]` | **trotz ich krank bin** denmez. Doğrusu **obwohl ich krank bin**. | trotz ile böyle bir cümle kurmam, obwohl ile kurarım. | GEÇTİ | trotz kelimesinin ne demek olduğu kutuda yazmıyor; ne yapmamam gerektiğini yine de anladım. |
+| `pt:passiv` | `mistakes_tr[0]` | Ödenir demek için **Das ist bezahlt** denmez. Doğrusu **Das wird bezahlt**. | Ödenir demek istiyorsam Das ist bezahlt demem, Das wird bezahlt derim. | GEÇTİ |  |
+| `pt:passiv` | `mistakes_tr[3]` | Ödeyeceğim demek için **Ich werde gezahlt** denmez. Doğrusu **Ich werde zahlen**. | Ödeyeceğim demek istiyorsam Ich werde gezahlt demem, Ich werde zahlen derim. | GEÇTİ |  |
+| `pt:fuer-akk` | `mistakes_tr[3]` | İki gündür hastayım derken **für zwei Tage** denmez. Doğrusu **seit zwei Tagen**. | İki gündür hastayım derken für zwei Tage demem, seit zwei Tagen derim. | GEÇTİ |  |
+| `pt:fuer-akk` | `kurallar_tr[6]` | İlaç isterken **gegen** de duyarsın: **etwas gegen Husten** öksürüğe karşı bir şey demektir. | İlaç isterken gegen de duyarım. etwas gegen Husten öksürüğe karşı bir şey demek. | GEÇTİ | für kartında başka bir kelimeyi (gegen) anlatıyor; de sözü sayesinde für ile yan yana duyulan kelime diye okudum. |
+| `pt:als-wenn-zeit` | `kurallar_tr[5]` | **als** karşılaştırmada da geçer: **größer als** daha büyük demektir. | als bir şeyi başka şeyle karşılaştırırken de kullanılır, größer als gibi. | GEÇTİ |  |
+| `pt:verb-praep` | `kurallar_tr[5]` | Konuşmada **darum** çok duyarsın: **Ich kümmere mich darum** onu ben hallederim demektir. | Konuşmada darum çok duyulur. Ich kümmere mich darum, onu ben hallederim demek. | GEÇTİ | Anlam artık aynı kutuda; tek okumada anladım. |
+| `pt:verb-praep` | `mistakes_tr[4]` | (silindi) | Okunacak metin yok; anlamı `kurallar_tr[5]` içinde okudum. | — | Silme dosyada doğrulandı. |
+
+### Tur 3 toplam
+
+Okunan 12 metin · GEÇTİ 12 · GERİ 0.
+
+### Açık GERİ listesi
+
+Yok. Okur açısından 46 kalıpta açık GERİ kalmadı.
+
+### Tur 3 gözlemleri (karar dışı, düzeltme önerisi değil)
+
+1. `pt:kein.kurallar_tr[2]`: komşu öğeler "**die** ile söylenen kelimede" diyor, bu öğe "**der** kelimesinde" diyor. Aynı şeyin iki ayrı söylenişi bir an durdurdu.
+2. `pt:obwohl.mistakes_tr[2]`: **trotz** kalıbın görünen kurallarında geçmiyor (orada **trotzdem** var). Madde tek başına anlaşılıyor; kelimenin anlamı verilmiyor.
+3. `pt:passiv.mistakes_tr[3]` ve `pt:fuer-akk.kurallar_tr[6]` kartın kendi kelimesinin komşusunu anlatıyor (**werde zahlen**, **gegen**). İkisi de tek okumada anlaşıldı.

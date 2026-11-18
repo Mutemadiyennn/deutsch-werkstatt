@@ -1328,7 +1328,7 @@
     "kurallar_tr": [
       "**kein** Türkçedeki yok gibi çalışır: **Ich habe keine Zeit**.",
       "**ein** dediğin yerde olumsuz için **kein** dersin: **ein Problem**, **kein Problem**.",
-      "**der** ile söylenen kelimede **keinen** olur: **Ich habe keinen Termin**.",
+      "**Ich habe** dedikten sonra **der** kelimesinde **keinen** olur: **Ich habe keinen Termin**.",
       "**die** ile söylenen kelimede ve birden fazla şeyde **keine** olur: **keine Zeit**, **keine Fragen**.",
       "**das** ile söylenen kelimede **kein** kalır: **kein Geld**.",
       "**der**, **die**, **das** ya da **mein** varsa **nicht** gelir: **Das ist nicht mein Termin**."
@@ -2799,7 +2799,7 @@
   {
     "id": "pt:perfekt-sein",
     "frame": "Ich bin + … + Partizip II (yer değiştirme / durum değişimi)",
-    "frame_tr": "**Ich bin** + nereye + bitmiş iş, örneğin **gegangen** ya da **gekommen**",
+    "frame_tr": "**Ich bin** + gerisi + bitmiş iş, örneğin **gegangen** ya da **aufgestanden**",
     "level": "A1",
     "core": true,
     "grammar_tr": "Yer değiştirme (gehen, fahren, kommen) ve durum değişimi (aufstehen, einschlafen, passieren) bildiren fiiller Perfekt'te 'haben' değil 'sein' alır: 'Ich bin gestern zum Arzt gegangen.' 'sein' ve 'bleiben' de 'sein' alır: 'Ich bin zu Hause geblieben.' Sıra aynıdır: 'bin' ikinci sırada, Partizip en sonda.",
@@ -2910,7 +2910,7 @@
     "mistakes_tr": [
       "**Ich habe gegangen** denmez. Doğrusu **Ich bin gegangen**.",
       "**Ich bin gearbeitet** denmez. Doğrusu **Ich habe gearbeitet**.",
-      "**weil** yani çünkü gelince **bin** en sona gider: **weil ich früh aufgestanden bin**."
+      "**weil ich bin früh aufgestanden** denmez. Doğrusu **weil ich früh aufgestanden bin**."
     ],
     "review": {
       "status": "reviewed",
@@ -3049,7 +3049,8 @@
       "**der** ile söylenen kelimede **mein**, **meinen** olur: **für meinen Sohn**.",
       "**die** ve **das** ile söylenen kelimeler değişmez: **für die Wohnung**, **für das Formular**.",
       "Kişilerde **für mich**, **für dich**, **für Sie** dersin.",
-      "Süre için de kullanılır: **für zwei Tage** iki günlüğüne demektir."
+      "Süre için de kullanılır: **für zwei Tage** iki günlüğüne demektir.",
+      "İlaç isterken **gegen** de duyarsın: **etwas gegen Husten** öksürüğe karşı bir şey demektir."
     ],
     "slots": [
       {
@@ -3150,8 +3151,7 @@
       "**für meinem Sohn** denmez. Doğrusu **für meinen Sohn**.",
       "**für ich** denmez. Doğrusu **für mich**.",
       "Randevu almak için derken **für einen Termin machen** denmez. Doğrusu **um einen Termin zu machen**.",
-      "**für zwei Tage** iki günlüğüne demektir. **seit zwei Tagen** iki gündür demektir.",
-      "İlaç isterken **gegen** de duyarsın: **etwas gegen Husten** öksürüğe karşı bir şey demektir."
+      "İki gündür hastayım derken **für zwei Tage** denmez. Doğrusu **seit zwei Tagen**."
     ],
     "review": {
       "status": "reviewed",
@@ -4871,8 +4871,8 @@
     },
     "mistakes_tr": [
       "**weil ich bin krank** yazıda yanlış sayılır. Doğrusu **weil ich krank bin**.",
-      "**denn** de çünkü demektir ama sıra değişmez: **denn ich bin krank**.",
-      "**deshalb** yani bu yüzden sonucu söyler: **Ich bin krank, deshalb komme ich nicht**.",
+      "Çünkü anlamındaki **denn** ile **denn ich krank bin** denmez. Doğrusu **denn ich bin krank**.",
+      "Bu yüzden anlamındaki **deshalb** ile **Deshalb ich komme nicht** denmez. Doğrusu **Deshalb komme ich nicht**.",
       "**Weil ich krank bin, ich komme nicht** denmez. Doğrusu **Weil ich krank bin, komme ich nicht**."
     ],
     "review": {
@@ -5933,7 +5933,7 @@
     "mistakes_tr": [
       "**obwohl ich bin krank** denmez. Doğrusu **obwohl ich krank bin**.",
       "**Trotzdem ich arbeite** denmez. Doğrusu **Trotzdem arbeite ich**.",
-      "**trotz** yağmura rağmen gibi kısa sözlerde kullanılır: **trotz des Regens**."
+      "**trotz ich krank bin** denmez. Doğrusu **obwohl ich krank bin**."
     ],
     "review": {
       "status": "reviewed",
@@ -6208,7 +6208,7 @@
       "Türkçede gürültüden şikâyet edersin, Almancada **über** gelir: **Ich beschwere mich über den Lärm**.",
       "Neyi beklediğini sorarken **wo** ile **auf** birleşir: **Worauf warten Sie?**",
       "Kimi beklediğini sorarken **auf** ile **wen** ayrı kalır: **Auf wen warten Sie?**",
-      "Konuşmada **darum** ve **daran** çok duyarsın: **Ich kümmere mich darum**."
+      "Konuşmada **darum** çok duyarsın: **Ich kümmere mich darum** onu ben hallederim demektir."
     ],
     "slots": [
       {
@@ -6310,8 +6310,7 @@
       "**Ich warte den Bus** denmez. Doğrusu **Ich warte auf den Bus**.",
       "**Ich denke dich** denmez. Doğrusu **Ich denke an dich**.",
       "**Angst vor den Hund** denmez. Doğrusu **Angst vor dem Hund**.",
-      "**Auf was warten Sie?** konuşmada duyulur. Doğru biçim **Worauf warten Sie?**",
-      "**Ich kümmere mich darum** onu ben hallederim demektir."
+      "**Auf was warten Sie?** konuşmada duyulur. Doğru biçim **Worauf warten Sie?**"
     ],
     "review": {
       "status": "reviewed",
@@ -6434,10 +6433,10 @@
       "wenn": "Wenn die Rechnung nicht bezahlt wird, kommt eine Mahnung."
     },
     "mistakes_tr": [
-      "**Das wird bezahlt** ödenir demektir. **Das ist bezahlt** ödenmiş, bitti demektir.",
+      "Ödenir demek için **Das ist bezahlt** denmez. Doğrusu **Das wird bezahlt**.",
       "**Das ist repariert geworden** denmez. Doğrusu **Das ist repariert worden**.",
       "**von die Kasse** denmez. Doğrusu **von der Kasse**.",
-      "**Ich werde zahlen** ödeyeceğim demektir. **Es wird gezahlt** ödenir demektir."
+      "Ödeyeceğim demek için **Ich werde gezahlt** denmez. Doğrusu **Ich werde zahlen**."
     ],
     "review": {
       "status": "reviewed",
@@ -6958,7 +6957,8 @@
       "Geçmişte bir kez olan şey için **als** dersin: **Als ich ankam, war niemand da**.",
       "İleride olacak şey için **wenn** dersin: **Wenn ich Zeit habe, rufe ich an**.",
       "Her seferinde olan şeyde de **wenn** gelir: **Immer wenn ich anrufe, ist besetzt**.",
-      "**als** ve **wenn** gelince **war** gibi kelime sona gider. Örnek: **Als ich krank war**."
+      "**als** ve **wenn** gelince **war** gibi kelime sona gider. Örnek: **Als ich krank war**.",
+      "**als** karşılaştırmada da geçer: **größer als** daha büyük demektir."
     ],
     "slots": [
       {
@@ -7057,7 +7057,6 @@
     "mistakes_tr": [
       "**Wenn ich gestern angerufen habe** denmez. Doğrusu **Als ich gestern angerufen habe**.",
       "Geçmişte hep olan şey için **als** denmez. Doğrusu **Immer wenn ich anrief, war besetzt**.",
-      "**als** karşılaştırmada da geçer: **größer als** daha büyük demektir.",
       "**Als ich ankam, die Praxis war zu** denmez. Doğrusu **Als ich ankam, war die Praxis zu**."
     ],
     "review": {
