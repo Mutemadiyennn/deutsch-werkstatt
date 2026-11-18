@@ -14,7 +14,7 @@ function memKV(): KV & { data: Map<string, string> } {
   return { data, async get(k) { return data.get(k) ?? null; }, async put(k, v) { data.set(k, v); } };
 }
 function env(over: Partial<Env> = {}): Env {
-  return { GEMINI_KEY: "test-gemini-key", ALLOWED_UIDS: "uid-ok", FIREBASE_PROJECT_ID: PROJECT, ALLOWED_ORIGINS: "https://app.test", AI_DAILY_LIMIT: "300", QUOTA: memKV(), ...over };
+  return { GEMINI_KEY: "test-gemini-key", AI_PROVIDER: "gemini", ALLOWED_UIDS: "uid-ok", FIREBASE_PROJECT_ID: PROJECT, ALLOWED_ORIGINS: "https://app.test", AI_DAILY_LIMIT: "300", QUOTA: memKV(), ...over };
 }
 async function token(o: { sub?: string; aud?: string; iss?: string; exp?: number; key?: CryptoKey } = {}) {
   const now = Math.floor(Date.now() / 1000);
@@ -116,6 +116,16 @@ describe("/v1/ai/run", () => {
     mockGemini([]);
     expect((await handle(run(await token(), "nope", {}), env())).status).toBe(400);
     expect((await handle(run(await token(), "equiv_check", { answer: "" }), env())).status).toBe(400);
+  });
+  it("PM-019: sağlayıcı kapalıysa (varsayılan) not_configured ve Google'a hiç istek gitmez", async () => {
+    const f = vi.fn(); vi.stubGlobal("fetch", f);
+    for (const p of [undefined, "none", "", "workers-ai"]) {
+      const r = await handle(run(await token(), "equiv_check", EQ), env({ AI_PROVIDER: p }));
+      const j = await r.json();
+      expect(j.error.code).toBe("not_configured");
+    }
+    expect(f).not.toHaveBeenCalled();
+    vi.unstubAllGlobals();
   });
   it("anahtar yoksa not_configured", async () => {
     const r = await handle(run(await token(), "equiv_check", EQ), env({ GEMINI_KEY: undefined }));

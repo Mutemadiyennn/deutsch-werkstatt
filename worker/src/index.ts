@@ -18,7 +18,7 @@ export async function handle(req: Request, env: Env): Promise<Response> {
   if (req.method === "OPTIONS") return new Response(null, { status: Object.keys(cors).length ? 204 : 403, headers: cors });
   try {
     if (url.pathname === "/v1/health" && req.method === "GET") {
-      const body: HealthResponse = { ok: true, version: VERSION, time: new Date().toISOString(), configured: { gemini: !!env.GEMINI_KEY, pexels: !!env.PEXELS_KEY, allowlist: !!(env.ALLOWED_UIDS || "").trim() } };
+      const body: HealthResponse = { ok: true, version: VERSION, time: new Date().toISOString(), provider: (env.AI_PROVIDER || "none").trim(), configured: { gemini: !!env.GEMINI_KEY && (env.AI_PROVIDER || "").trim() === "gemini", pexels: !!env.PEXELS_KEY, allowlist: !!(env.ALLOWED_UIDS || "").trim() } };
       return json(body, 200, cors);
     }
     if (url.pathname === "/v1/usage" && req.method === "GET") {
