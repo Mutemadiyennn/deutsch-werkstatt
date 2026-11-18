@@ -41,6 +41,7 @@ jobs:
     # Kabul ölçütü (DECISIONS D-040): iPhone profilleriyle WebKit
     needs: check
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
@@ -53,6 +54,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - name: Playwright + WebKit
+        timeout-minutes: 8
         run: pip install playwright==1.* pillow && python -m playwright install --with-deps webkit
       - name: Çekirdek akış (giriş, kurulum, tespit, Bugün, odak, İlerlemem, Profil)
         run: cd tests/e2e && python v2_core.py
