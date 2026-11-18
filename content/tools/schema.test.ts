@@ -30,3 +30,34 @@ describe("şema sözleşmesi", () => {
     expect(checkRules(c).errors).toContain('test.json: "reviewed" ama okur kontrolü geçmemiş (OD-9.4)');
   });
 });
+
+// İnceleme #55 P0-1: R0 kimlik biçimi gerçek dosyayla (İçerik Motoru biçimi, r0:NN-slug)
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { TemelDers } from "../../packages/shared/src/content.ts";
+describe("TemelDers (R0)", () => {
+  const raw = JSON.parse(readFileSync(join(__dirname, "fixtures/r0-01-tage.json"), "utf8"));
+  it("gerçek R0 dosyası şemadan ve bilinmeyen alan denetiminden geçer", () => {
+    const r = TemelDers.safeParse(raw);
+    expect(r.success).toBe(true);
+    if (r.success) expect(unknownKeys(raw, r.data)).toEqual([]);
+  });
+  it("kimlik dosya adıyla uyuşmazsa hata", () => {
+    const c = loadContent();
+    c.temel.push({ file: "temel/r0-01-tage.json", data: TemelDers.parse({ ...raw, id: "r0:01-gunler" }) });
+    expect(checkRules(c).errors.some((e) => e.includes("dosya adıyla uyuşmuyor"))).toBe(true);
+  });
+  it("kimlik r0:NN biçimi reddedilir", () => {
+    expect(TemelDers.safeParse({ ...raw, id: "r0:01" }).success).toBe(false);
+  });
+});
+
+describe("pasif kart", () => {
+  it("senaryonun temel öğesi olamaz", () => {
+    const c = loadContent();
+    const sc = c.scenarios[0]!; const id = sc.data.essentials.lexemes[0];
+    if (!id) return;
+    const l = c.lexemes.find((x) => x.id === id)!; l.tier = "passive";
+    expect(checkRules(c).errors.some((e) => e.includes("pasif kart") && e.includes(id))).toBe(true);
+  });
+});

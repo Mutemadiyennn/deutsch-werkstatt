@@ -64,7 +64,10 @@ describe("seslendirme filtresi (v1 + bitişik tire düzeltmesi)", () => {
 describe("strictNumberWords (PM-045 §4.2)", () => {
   it("rakam varsa kelimeyle yazma ipucu, yoksa null", () => {
     expect(numberWordHint("34")).toBe("Rakamla değil, kelimeyle yaz: vierunddreißig");
-    expect(numberWordHint("Es ist 7 Uhr")).toBe("Rakamla değil, kelimeyle yaz: sieben");
+    expect(numberWordHint("Er ist 7 Jahre alt")).toBe("Rakamla değil, kelimeyle yaz: sieben");
+    expect(numberWordHint("Es ist 1 Uhr")).toBe("Rakamla değil, kelimeyle yaz.");
+    expect(numberWordHint("Am 3. Mai")).toBe("Rakamla değil, kelimeyle yaz.");
+    expect(numberWordHint("um 14:30")).toBe("Rakamla değil, kelimeyle yaz.");
     expect(numberWordHint("vierunddreißig")).toBeNull();
   });
 });

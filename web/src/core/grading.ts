@@ -100,8 +100,9 @@ export function judgeWord(answer: string, de: string, art?: string): { ok: boole
  * bu denetim norm'dan ÖNCE yapılır. Rakam varsa öğrenciye kelimeyle yazma ipucu döner, yoksa null.
  */
 export function numberWordHint(answer: string): string | null {
-  const m = /\d+/.exec(answer);
-  if (!m) return null;
-  const n = Number(m[0]);
-  return n <= 99 ? `Rakamla değil, kelimeyle yaz: ${numWord(n)}` : "Rakamla değil, kelimeyle yaz.";
+  if (!/\d/.test(answer)) return null;
+  // yalnızca tek başına duran tam sayı için örnek ver; sıra sayısı (3.), saat (14:30), tarih gibi biçimlerde genel ipucu (inceleme #55)
+  const m = /^\D*?(?<![\d.:])(\d{1,2})(?![\d.:])\D*$/.exec(answer);
+  const plain = m && !/\bUhr\b/i.test(answer) ? Number(m[1]) : null;
+  return plain !== null ? `Rakamla değil, kelimeyle yaz: ${numWord(plain)}` : "Rakamla değil, kelimeyle yaz.";
 }

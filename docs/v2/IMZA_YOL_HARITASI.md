@@ -6,6 +6,10 @@ FINAL imza listesindeki (#54) her satırın ekran tarifi ve sırası bu belgede.
 
 Her PR açıklaması ilerlettiği satırları yazar, ör. `İmza: A4, D14`.
 
+## Önce: "İlk Hafta" dikey dilimi (PM-050)
+
+Aşağıdaki dalgalardan önce A1'in ilk 7 günü baştan sona çalışır hâle getirilir. Ekranlar: Kelime Bahçesi (A13, PM-049), video ve ses soru oynatıcısı ile dikte (A14, A34 ve A8'in ilk hâli), ders yolu ve XP (A6), yeni Bugün ve Pomodoro (A4, A23, D14), konuşma provası (A11, A24). Mühendislikten yalnızca bu dilimin ihtiyacı öne alınır: çevrimdışı (D7), veri güvenliği (D6), hata sınırı (A41). Kabul: sıfır Almancayla 7 günlük simülasyon, iPhone 15 Pro Max ekran kaydı, bağımsız arayüz uzmanı. Sonra 2. hafta, 3. hafta… aynı kalıpla.
+
 ## Dalga sırası
 
 Her dalga bir öncekinin üstüne kurulur. Dalga içindeki sıra, satırların listelendiği sıradır.
@@ -101,6 +105,7 @@ Her dalga bir öncekinin üstüne kurulur. Dalga içindeki sıra, satırların l
 | Konuşma | A11, A24, A26 |
 | Öğrenme | A12, A13, A21 |
 | Görsel ve video | A14 |
+| Sekiz "yapabiliyorum" ailesi | Yol (A6) ünite hedefleri ve Ben (A30) kanıtları; her ailenin senaryoları B4 |
 
 ## D. Sistemler
 

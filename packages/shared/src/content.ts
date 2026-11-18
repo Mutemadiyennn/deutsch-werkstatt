@@ -288,7 +288,8 @@ export type Scenario = z.infer<typeof Scenario>;
  */
 export const TemelDers = z.object({
   schema: z.literal(1),
-  id: z.string().regex(/^r0:\d{2}$/),
+  /** r0:NN-slug (dosya adı r0-NN-slug.json ile birebir) */
+  id: z.string().regex(/^r0:\d{2}-[a-z0-9-]+$/),
   order: z.number().int().min(1),
   level: Level,
   format: z.literal("temel"),

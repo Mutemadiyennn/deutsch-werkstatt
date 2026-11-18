@@ -1,19 +1,20 @@
 # STATUS — Deutsch Werkstatt 2.0
 
-Son güncelleme: 2026-11-18 23:00 UTC · Faz: **R1 hazırlığı** · Ana dal: `main` (`d751b19`) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (etiket `v2-20261117-2`)
+Son güncelleme: 2026-11-18 23:45 UTC · Faz: **R1 hazırlığı** · Ana dal: `main` (`d751b19`) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (etiket `v2-20261117-2`)
 Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DONGUSU → BEYIN → MIMARI → TASARIM …) → bu dosya → `DECISIONS.md`. "Sıradaki adım"dan devam et; hiçbir iş baştan başlatılmaz (PM-007 §4).
 
-## Sıradaki adım (PM-046 sırası, 2026-11-18 23:00 UTC)
-1. **Birleştirme sırası (PM-046 B):** #52 gizlilik (P0) → #48 46 kalıp → #50 ilk 300 kelime kartı → #51 R0 temel paket → #49 PM-032 + PM-044 → #43 DN-2. En fazla 4 açık PR; inceleme ve yeşil CI olmadan birleşme yok.
-2. **Şema PR'ı** (dal `v2/sema`, hazır): içerik evreni alanları, ses, `sued`, `speaker`, bilinmeyen alan hatası, artikel tek kaynak, sözlükte okur, `TemelDers`, `Tier: passive`, K1 pasif≠çekirdek, `strictNumberWords`, ajan modelleri (PM-046 A). Açık PR sayısı 4'ün altına inince açılır.
-3. **#43 yükleme sınırı:** Bugün ekranının ilk karesi CI WebKit'te 170–630 ms (DOM 2–12 ms). Bir neden (saat dilimli `Intl` her çizimde) düzeltildi; kalan maliyetin tanısı CI'da.
-4. Sonra: PM-039.1 (deploy-v2 CI'a bağlı; deploy-worker "Dağıtılmadı: secret yok"), PM-039.2–4 (dayanıklılık, olay günlüğü, veri güvenliği), #45 arayüz P0'ları + PM-044.5, #46 P0-1, heceleme yuvaları (İçerik Motoru isteği).
+## Sıradaki adım (PM-050: "İlk Hafta" dikey dilimi önce; 2026-11-18 23:45 UTC)
+**İmza yol haritası:** [`docs/v2/IMZA_YOL_HARITASI.md`](IMZA_YOL_HARITASI.md) — #54'ün her satırı için ekran tarifi ve sıra (PM-048).
+1. Birleştirme: #51 (R0) → #49 (PM-032, PM-044) → #55 (bu PR: şema) → #43 (DN-2). Birleşenler: #52, #48 (23:07), #50 (23:34).
+2. **PM-049 Kelime Bahçesi** (dal `v2/bahce`): sekiz soru türü, FSRS vadesi, yanlışta başka örnek ve fotoğraf, kalıcılık kuralı; `strictNumberWords` oynatıcıya burada bağlanır.
+3. PM-050 sırası: video ve ses soru oynatıcısı + dikte → ders yolu ve XP → yeni Bugün + Pomodoro (PM-047) → konuşma provası. Öne alınan mühendislik: çevrimdışı, veri güvenliği, hata sınırı.
+4. Sonra: heceleme yuvaları (İçerik Motoru isteği), PM-039.1 (deploy-v2 CI'a bağlı), #45 arayüz P0'ları.
 
 ## Yarım işler (PM-042 C)
 | İş | Dal | Durum |
 |---|---|---|
-| Şema PR'ı | `v2/sema` | itildi, PR açılmadı (PR sınırı) |
-| #43 Bugün ilk kare tanısı | `v2/denetim` | CI'da tanı koşusu |
+| Kelime Bahçesi (PM-049) | `v2/bahce` | başlıyor |
+| #43 Bugün ilk kare | `v2/denetim` | kök neden: 32 px bulanık gölge; düzeltme CI doğrulaması bekliyor |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
 
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-18
@@ -28,12 +29,10 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 ## Açık PR'lar
 | PR | Dal | Teslim | İnceleme |
 |---|---|---|---|
-| #52 | `v1/gizlilik` | PM-036 A: kurum/kitap adları ve sınav tarihi depodan çıktı, `kursMig` | P1'ler düzeltildi |
-| #48 | `v2/kaliplar-46` | 46 kalıp onaylı + PM-044.3a | ONAY |
-| #50 | `content/kelime-001-003` | İçerik Motoru: 300 kelime kartı | ONAY |
-| #51 | `content/r0-temel` | İçerik Motoru: R0 temel paket | değişiklik gerekli (İçerik Motoru) |
-| #49 | `v2/telefon01-ogretim` | PM-032, PM-044.1–3 | P1'ler düzeltildi |
-| #43 | `v2/denetim` | PM-030 DN-2 | yükleme sınırı kırmızı |
+| #51 | `content/r0-temel` | İçerik Motoru: R0 temel paket | 2. tur bulguları kapandı (İçerik Motoru) |
+| #49 | `v2/telefon01-ogretim` | PM-032, PM-044.1–3 | ONAY (3. tur, Opus) |
+| #55 | `v2/sema` | Şema sözleşmesi (D-098), ajan modelleri, imza yol haritası | 1. tur bulguları düzeltildi |
+| #43 | `v2/denetim` | PM-030 DN-2 | yükleme sınırı: kök neden bulundu |
 
 ### Birleştirme turu (PM-007, 2026-11-17)
 - `main`'e birleşti: #2 (T04), #3 (çalışma düzeni), #18 (v2_core bekleme düzeltmesi), #20 (PM tasarım dili), #16 (PM gereksinim kaydı), #19 (yığının tepesi: #4–#17'nin bütün commit'leri, merge commit ile SHA'lar korunarak), #21 (PM yol haritası).

@@ -312,11 +312,14 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean } = {}): 
     const n = patternDomains.get(p.id)?.size || 0;
     if (n < 2) (opts.strictPatterns ? errors : warnings).push(`kalıp ${p.id}: yalnızca ${n} alanda kullanılıyor (pilotta en az 2)`);
   }
+  // PM-045 §3a / inceleme #55: pasif kart (yalnızca tanıma) üretim istenen yere temel öğe olarak giremez
+  { const passive = new Set(c.lexemes.filter((l) => l.tier === "passive").map((l) => l.id));
+    for (const { file, data: s } of c.scenarios) for (const id of s.essentials.lexemes) if (passive.has(id)) errors.push(`${file}: pasif kart ${id} temel öğe olamaz (yalnızca tanıma)`); }
   // R0 temel paket (PM-045 §4.1): sıra ve kimlik, incelenmiş ⇒ okur, OD-9 açıklamalar
   { const ids = new Set<string>(), orders = new Set<number>();
     for (const { file, data: t } of c.temel) {
-      const nn = /r0-(\d{2})-/.exec(file)?.[1];
-      if (nn && t.id !== `r0:${nn}`) errors.push(`${file}: kimlik ${t.id} dosya adıyla uyuşmuyor (r0:${nn})`);
+      const stem = /r0-(\d{2}-[a-z0-9-]+)\.json$/.exec(file)?.[1];
+      if (stem && t.id !== `r0:${stem}`) errors.push(`${file}: kimlik ${t.id} dosya adıyla uyuşmuyor (r0:${stem})`);
       if (ids.has(t.id)) errors.push(`${file}: tekrar eden temel ders ${t.id}`); ids.add(t.id);
       if (orders.has(t.order)) errors.push(`${file}: tekrar eden sıra ${t.order}`); orders.add(t.order);
       if (t.review.status === "reviewed" && t.review.okur !== "passed") errors.push(`${file}: "reviewed" ama okur kontrolü geçmemiş (OD-9.4)`);
