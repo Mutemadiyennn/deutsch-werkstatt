@@ -7,7 +7,8 @@
  *  Süre bütçesi ≤ 8 dk, üstte görünür. Ölçüm: aşama 1–2 süresi, kart başına süre, hatırlama başarısı.
  */
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
-import type { Lexeme, Scenario } from "@dw/shared";
+import type { Explanation, Lexeme, Scenario } from "@dw/shared";
+import { Chips, Rich, WhySheet } from "../ui/rich.tsx";
 import { getItem } from "../data/db.ts";
 import { scoreHeard } from "../core/grading.ts";
 import { speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
@@ -35,6 +36,7 @@ export interface Card {
   words: string[];   // "der Termin, -e" gibi küçük kelime bilgisi
   family: string[];  // aynı kökün ailesi
   use?: string;
+  exp?: Explanation; alltagExp?: Explanation;
 }
 const norm = (s: string) => s.toLowerCase().replace(/[^a-zäöüß ]/g, " ");
 const stem = (w: string) => norm(w).trim().slice(0, Math.max(4, Math.min(6, w.length - 1)));
@@ -53,7 +55,7 @@ export function buildCards(s: Scenario, lx: Map<string, Lexeme>): Card[] {
     inside.forEach((l) => used.add(l.id));
     const fam = new Set<string>();
     for (const l of inside) for (const r of l.related) { const x = lx.get(r); if (x && !isFunctionWord(x)) fam.add(x.de); }
-    cards.push({ id: c.id, kind: "chunk", de: c.layers.hd, tr: c.tr, alltag: c.layers.alltag, bair: c.layers.bair, words: inside.map(wordInfo), family: [...fam].slice(0, 4), use: c.use_tr });
+    cards.push({ id: c.id, kind: "chunk", de: c.layers.hd, tr: c.tr, alltag: c.layers.alltag, bair: c.layers.bair, words: inside.map(wordInfo), family: [...fam].slice(0, 4), use: c.use_tr, exp: c.exp, alltagExp: c.alltag_exp });
   }
   // ifadeye girmeyen temel kelimeler: kullanım biçimiyle (ilk birleşim) tek kart; aynı aile tek kartta
   for (const l of lexs) {
@@ -245,6 +247,9 @@ function IfadeCard({ c, accent, onPass }: { c: Card; accent: string; onPass: (ho
   const [res, setRes] = useState<number | null>(null);
   const [typing, setTyping] = useState(false);
   const [busy, setBusy] = useState<false | "n" | "s" | "a">(false);
+  const [why, setWhy] = useState(false);
+  // "Neden böyle?" satırları: her biri tek fikir (OD-9.1 ipucu + ne zaman)
+  const tips = [c.exp?.ipucu_tr && { text: c.exp.ipucu_tr }, c.alltagExp?.ipucu_tr && { text: c.alltagExp.ipucu_tr }, !c.alltag && c.exp?.ne_zaman_tr && { text: c.exp.ne_zaman_tr }].filter(Boolean) as { text: string }[];
   useEffect(() => { void speak(c.de, "de", "normal"); return () => stopSpeaking(); }, [c.id]);
   const play = async (t: string, sp: "normal" | "slow" | "natural", k: "n" | "s" | "a") => { if (busy) { stopSpeaking(); setBusy(false); return; } setBusy(k); try { await speak(t, "de", sp); } finally { setBusy(false); } };
   const check = (t: string) => {
@@ -266,12 +271,15 @@ function IfadeCard({ c, accent, onPass }: { c: Card; accent: string; onPass: (ho
           <button class="bigspk" onClick={() => play(c.de, "normal", "n")} aria-label={`Dinle: ${c.de}`} data-test="listen">{busy === "n" ? <Icon name="stop" size={26} /> : <Icon name="volume" size={28} />}</button>
           <button class="pillbtn" onClick={() => play(c.de, "slow", "s")} aria-label={`Yavaş dinle: ${c.de}`} data-test="listen-slow">{busy === "s" ? "Durdur" : "Yavaş"}</button>
         </div>
-        {c.alltag && <AlltagPanel de={c.alltag} note={c.use} playing={busy === "a"} onPlay={() => play(c.alltag!, "natural", "a")} />}
+        {!c.alltag && c.exp && <Chips parts={c.exp.parcalar} />}
+        {c.alltag && <AlltagPanel de={c.alltag} note={c.use} exp={c.alltagExp} playing={busy === "a"} onPlay={() => play(c.alltag!, "natural", "a")} onWhy={tips.length ? () => setWhy(true) : undefined} />}
+        {!c.alltag && tips.length > 0 && <button class="whylink" onClick={() => setWhy(true)} data-test="why-open">Neden böyle?</button>}
         {c.bair && <div class="row bairline" style={{ flexWrap: "nowrap" }}><span class="badge bair">Bairisch</span><span class="grow de" lang="de">{c.bair.text}</span>{c.bair.status === "uncertain" && <span class="tiny muted">bölgeye göre değişebilir</span>}</div>}
-        {!c.alltag && c.use && <p class="small muted" style={{ margin: 0 }}>{c.use}</p>}
+        {!c.alltag && !c.exp && c.use && <p class="small muted" style={{ margin: 0 }}><Rich text={c.use} /></p>}
         {c.family.length > 0 && <div><div class="famlbl">Aynı aileden</div><div class="famchips">{c.family.map((f, k) => <span class={`chip${k === 0 ? " cur" : ""}`} lang="de">{f}</span>)}</div></div>}
         {c.words.length > 0 && <div class="wordinfo" data-test="word-info">{c.words.map((w) => <div lang="de">{w}</div>)}</div>}
       </section>
+      {why && <WhySheet tips={tips} onClose={() => setWhy(false)} />}
       {res !== null && <FeedbackBand kind={res >= 60 ? "ok" : "warn"} title={res >= 60 ? `Anlaşıldı · %${res}` : `%${res} · bir daha dene`} />}
       <ActionBar>
         {typing ? <AnswerField onSubmit={(t) => check(t)} placeholder="İfadeyi yaz…" submitLabel="Tekrar et" voice={false} />

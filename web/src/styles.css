@@ -414,3 +414,19 @@ html.callmode body { background: #121C30; }
 
 /* TS-4: ana eylem ≥ 56 px */
 .btn.primary { min-height: 56px; }
+
+/* OD-9 açıklama: kelime çipleri, "Neden böyle?" alt sayfası (IFADE_ORNEK) */
+.expchips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+.expchips span { display: flex; flex-direction: column; line-height: 1.2; background: var(--card); border-radius: 12px; padding: 6px 10px; font-size: 0.8rem; color: color-mix(in srgb, var(--brezel) 70%, var(--tinte)); }
+.expchips span b { font-size: 0.98rem; color: var(--tinte); }
+.ifade-card > .expchips span { background: var(--himmel-2); color: var(--tinte-2); }
+.alltagpanel .note { color: color-mix(in srgb, var(--brezel) 55%, var(--tinte)); margin: 10px 0 0; line-height: 1.4; }
+.whylink { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; min-height: 44px; padding: 0; background: none; border: 0; color: var(--brezel); font-weight: 700; font-size: 0.95rem; cursor: pointer; }
+.whydim { position: fixed; inset: 0; z-index: 80; background: rgba(14, 22, 34, 0.38); display: flex; align-items: flex-end; }
+.whysheet { width: 100%; max-width: 640px; margin: 0 auto; background: var(--card); border-radius: 30px 30px 0 0; padding: 14px 24px calc(28px + var(--safe-bottom)); }
+.whysheet .grab { width: 44px; height: 5px; border-radius: 3px; background: var(--line); margin: 0 auto 16px; }
+.whysheet h3 { font-size: 1.2rem; margin-bottom: 10px; }
+.whysheet .tip { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; border-top: 1px solid var(--line); }
+.whysheet .tip b.de { min-width: 72px; font-size: 1.05rem; }
+.whysheet .tip p { margin: 0; line-height: 1.45; }
+.whysheet .btn { margin-top: 14px; }

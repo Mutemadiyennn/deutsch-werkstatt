@@ -177,7 +177,9 @@ export function explainTexts(s: Scenario): { where: string; text: string }[] {
   return out;
 }
 export function patternExplainTexts(p: Pattern): { where: string; text: string }[] {
-  const out = [{ where: `${p.id}.grammar_tr`, text: p.grammar_tr }];
+  // grammar_tr öğretmen notudur, öğrenciye gösterilmez; öğrenciye görünenler kurallar_tr, frame_tr, mistakes_tr
+  const out: { where: string; text: string }[] = p.kurallar_tr.map((k, i) => ({ where: `${p.id}.kurallar_tr[${i}]`, text: k }));
+  if (p.frame_tr) out.push({ where: `${p.id}.frame_tr`, text: p.frame_tr });
   p.mistakes_tr.forEach((m, i) => out.push({ where: `${p.id}.mistakes_tr[${i}]`, text: m }));
   return out;
 }
@@ -204,6 +206,7 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean } = {}): 
   for (const p of c.patterns) {
     if (p.review?.status !== "reviewed") continue;
     if (p.review.okur !== "passed") errors.push(`${p.id}: "reviewed" ama okur kontrolü geçmemiş (OD-9.4)`);
+    if (!p.kurallar_tr.length) errors.push(`${p.id}: "reviewed" ama öğrenciye görünen kural yok (kurallar_tr, OD-9)`);
     for (const { where, text } of patternExplainTexts(p)) for (const x of textIssues(text)) errors.push(`${where}: OD-9 ${x}`);
   }
   for (const a of c.assess) if ((a.skill === "vocab_passive" || a.skill === "listening") && (a.ans < 0 || a.ans >= a.opts_tr.length)) errors.push(`${a.id}: doğru şık dizinin dışında`);

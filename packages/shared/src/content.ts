@@ -123,8 +123,12 @@ export const Pattern = z.object({
   frame: z.string().min(1),
   level: Level.default("A1"),
   core: z.boolean().default(false),
-  /** 2–4 satır Türkçe not */
+  /** 2–4 satır Türkçe not — öğretmen/yazar notu; öğrenciye GÖSTERİLMEZ (OD-9: öğrenciye görünen kurallar `kurallar_tr`) */
   grammar_tr: z.string().min(5),
+  /** OD-9: öğrenciye görünen kurallar, her biri tek fikir (≤14 kelime); Gramer Atölyesi ve kur ekranı bunları tek tek gösterir */
+  kurallar_tr: z.array(z.string()).default([]),
+  /** OD-9: öğrenciye görünen çerçeve, terimsiz (ör. "**Ich habe** + bir şey"); yoksa çerçeve gösterilmez */
+  frame_tr: z.string().optional(),
   slots: z.array(z.object({ name: z.string(), fills: z.array(z.string()) })).default([]),
   examples: z.array(z.object({ de: z.string(), tr: z.string(), layer: z.enum(["hd", "alltag"]).default("hd") })).min(1),
   transforms: z

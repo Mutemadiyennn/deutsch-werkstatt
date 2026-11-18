@@ -3,7 +3,9 @@
  * Ayrıca: Bugün'ün gök şeridindeki şehir silueti ve ifade kartının sahne çizimi (özgün, düz, geometrik SVG).
  */
 import type { ComponentChildren } from "preact";
+import type { Explanation } from "@dw/shared";
 import { Icon } from "./icons.tsx";
+import { Chips, Rich, WhyLink } from "./rich.tsx";
 
 export type RState = 0 | 0.5 | 1;
 
@@ -96,13 +98,19 @@ export function SkyBand({ hour, children }: { hour: number; children?: Component
 }
 
 /** Gündelik dil paneli (DESIGN §4): "Gündelikte böyle duyarsın" + ifade + tek satır not + küçük dinle */
-export function AlltagPanel({ de, note, onPlay, playing }: { de: string; note?: string; onPlay: () => void; playing?: boolean }) {
+export function AlltagPanel({ de, note, exp, onPlay, playing, onWhy }: { de: string; note?: string; exp?: Explanation; onPlay: () => void; playing?: boolean; onWhy?: () => void }) {
+  // IFADE_ORNEK (PM-017 eki): ifade + kelime kelime çipler + "Aynı anlam" + ne zaman; ayrıntı "Neden böyle?" alt sayfasında
   return (
-    <div class="alltagpanel">
+    <div class="alltagpanel" data-test="alltag-panel">
       <div class="row" style={{ flexWrap: "nowrap", alignItems: "flex-start" }}>
-        <div class="grow"><div class="lbl">Gündelikte böyle duyarsın</div><div class="de" lang="de">{de}</div>{note && <div class="small note">{note}</div>}</div>
+        <div class="grow"><div class="lbl">Gündelikte böyle de duyarsın</div><div class="de" lang="de">{de}</div></div>
         <button class="miniplay" onClick={onPlay} aria-label={`Dinle: ${de}`}>{playing ? <Icon name="stop" size={16} /> : <Icon name="play" size={16} />}</button>
       </div>
+      {exp ? <>
+        <Chips parts={exp.parcalar} />
+        <p class="small note">Aynı anlam: <Rich text={exp.anlam_tr} />{exp.ne_zaman_tr && <><br /><Rich text={exp.ne_zaman_tr} /></>}</p>
+      </> : note && <div class="small note"><Rich text={note} /></div>}
+      {onWhy && <WhyLink onClick={onWhy} />}
     </div>
   );
 }
