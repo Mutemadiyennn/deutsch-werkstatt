@@ -19,8 +19,8 @@ describe("şema sözleşmesi", () => {
     c.lexemes.push(Lexeme.parse({ id: "lx:testA", de: "der Test", tr: "deneme", pos: "noun", art: "der", pl: "Tests" }));
     c.lexemes.push(Lexeme.parse({ id: "lx:testB", de: "Probe", tr: "prova", pos: "noun", pl: "Proben" }));
     const n = (errs: string[]) => Number(/artikelle başlayan (\d+)/.exec(errs.find((e) => e.includes("artikelle başlayan")) || "")?.[1] || 0);
-    const before = n(checkRules(loadContent(), { strictPatterns: true }).errors);
-    const r = checkRules(c, { strictPatterns: true });
+    const before = n(checkRules(loadContent()).errors);
+    const r = checkRules(c);
     expect(n(r.errors)).toBe(before + 1);
     expect(r.errors.some((e) => e.includes("lx:testB") && e.includes("art zorunlu"))).toBe(true);
   });

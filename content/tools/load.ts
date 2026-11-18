@@ -244,11 +244,11 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean } = {}): 
     for (const x of checkLexeme(l)) errors.push(`${l.id} (${l.tier}): ${x}`);
     // PM-042 B.9 (PM-035.3): artikel tek kaynak `art`; `de` artikelsiz isim, arayüz "der Termin" biçimini kendisi kurar
     if (l.pos === "noun" && !l.art) errors.push(`${l.id}: isimde art zorunlu`);
-    // geçiş: İçerik Motoru 218 kartı tek partide çevirene kadar uyarı (D-098); --strict ve incelenmiş partide hata
+    // D-098: 218 kart #50'de çevrildi; artık hata (yalnızca isimler: lx:der gibi belirteç kartı etkilenmez)
     if (l.pos === "noun" && /^(der|die|das)\s/i.test(l.de)) artInDe.push(l.id);
     if (l.exp) for (const x of explanationIssues(l.exp)) errors.push(`${l.id}.exp.${x}`);
   }
-  if (artInDe.length) (opts.strictPatterns ? errors : warnings).push(`de alanı artikelle başlayan ${artInDe.length} isim (artikel yalnızca art alanında, D-098): ${artInDe.slice(0, 5).join(", ")}${artInDe.length > 5 ? " …" : ""}`);
+  if (artInDe.length) errors.push(`de alanı artikelle başlayan ${artInDe.length} isim (artikel yalnızca art alanında, D-098): ${artInDe.slice(0, 5).join(", ")}${artInDe.length > 5 ? " …" : ""}`);
   // PM-040.3 / PM-042 A.3: sözlük partisi — "reviewed" ise okur zorunlu; tr ve mistakes_tr OD-9.2 (incelenmişte hata, taslakta sayı uyarısı)
   { const byId = new Map(c.lexemes.map((l) => [l.id, l]));
     for (const b of c.lexiconBatches) {
