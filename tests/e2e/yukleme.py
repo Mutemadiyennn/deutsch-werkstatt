@@ -47,6 +47,12 @@ def main():
         pg.add_style_tag(content="*{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}")
         diag = measure()
         print("    tanı, bulanık cam kapalı (dom/kare ms):", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in diag))
+        # tanı 2–3 (yalnızca günlük; kapıyı etkilemez): animasyonlar kapalı; Bugün'de yalnızca sıradaki ders kartı
+        pg.add_style_tag(content="*,*::before,*::after{animation:none!important;transition:none!important}")
+        d2 = measure(); print("    tanı, animasyon kapalı:", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in d2 if t == "today"))
+        pg.add_style_tag(content=".today > *:not([data-test=next-activity]){display:none!important}")
+        d3 = measure(); print("    tanı, Bugün yalnız ders kartı:", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in d3 if t == "today"))
+        print("    Bugün ekranının bölümleri:", pg.evaluate("() => [...document.querySelectorAll('.today > *')].map(e => (e.className||e.tagName) + ':' + e.querySelectorAll('*').length).join(' | ')"))
         check(worst <= 300, f"en yavaş ekran geçişi {worst:.0f} ms (≤ 300)")
         b.close()
         # 3) içerik isteği takılırsa: ≤ 10 sn içinde hata + "Tekrar dene" (servis işçisi kapalı: önbellek olmayan ilk kullanım)
