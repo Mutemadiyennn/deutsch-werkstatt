@@ -52,9 +52,10 @@ export function textIssues(text: string, o: { maxWords?: number; oneSentence?: b
   if (o.oneSentence && ss.length > 1) out.push(`tek cümle olmalı (${ss.length})`);
   const max = o.maxWords ?? LIMITS.sentenceWords;
   for (const s of ss) if (words(s) > max) out.push(`cümle ${words(s)} kelime (en çok ${max})`);
-  const low = t.toLocaleLowerCase("tr");
+  // İnceleme #39 P1-1: Türkçe yerelde "I" → "ı" olur (Infinitiv kaçar); iki küçük harf biçimi de denetlenir
+  const lows = [t.toLocaleLowerCase("tr"), t.toLowerCase()];
   for (const [term, req] of Object.entries(TERMS)) {
-    if (new RegExp(`(^|[^\\p{L}])${term}`, "u").test(low) && !(o.requires || []).includes(req)) out.push(`öğretilmemiş terim: ${term}`);
+    if (lows.some((low) => new RegExp(`(^|[^\\p{L}])${term}`, "u").test(low)) && !(o.requires || []).includes(req)) out.push(`öğretilmemiş terim: ${term}`);
   }
   return out;
 }

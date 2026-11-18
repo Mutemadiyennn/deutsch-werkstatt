@@ -172,7 +172,11 @@ export function explainTexts(s: Scenario): { where: string; text: string }[] {
   const out: { where: string; text: string }[] = [];
   const add = (where: string, t?: string) => { if (t && t.trim()) out.push({ where, text: t }); };
   for (const k of s.chunks) { add(`${k.id}.use_tr`, k.use_tr); k.mistakes_tr.forEach((m, i) => add(`${k.id}.mistakes_tr[${i}]`, m)); add(`${k.id}.bair.note_tr`, k.layers.bair?.note_tr); }
-  for (const d of s.drills) { add(`${d.id}.why_tr`, (d as { why_tr?: string }).why_tr); add(`${d.id}.hint_tr`, (d as { hint_tr?: string }).hint_tr); }
+  // İnceleme #39 P1-2: ekranda görünen bütün Türkçe yönerge ve soru metinleri
+  for (const d of s.drills) for (const f of ["why_tr", "hint_tr", "instr_tr", "situation_tr", "q_tr"] as const) add(`${d.id}.${f}`, (d as Record<string, unknown>)[f] as string | undefined);
+  for (const b of s.build) add(`${b.id}.prompt_tr`, b.prompt_tr);
+  s.dialogues.forEach((dl, i) => dl.lines.forEach((l, j) => add(`dialog${i}#${j}.hint_tr`, (l as { hint_tr?: string }).hint_tr)));
+  s.listening.forEach((li, i) => li.qs.forEach((q, j) => add(`dinleme${i}.q${j}.q_tr`, q.q_tr)));
   s.mistakes_tr.forEach((m, i) => add(`mistakes_tr[${i}]`, m));
   return out;
 }

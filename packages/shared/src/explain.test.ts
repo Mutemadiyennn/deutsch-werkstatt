@@ -29,6 +29,8 @@ describe("OD-9 açıklama standardı (PM-017)", () => {
     expect(textIssues("Burada Dativ kullanılır.")).toContain("öğretilmemiş terim: dativ");
     expect(textIssues("Burada -e hâli (Dativ) kullanılır.", { requires: ["gr:dativ"] })).toEqual([]);
     expect(textIssues("Fiilin özne ile uyumu.")).toContain("öğretilmemiş terim: özne");
+    expect(textIssues("Burada Infinitiv gelir.")).toContain("öğretilmemiş terim: infinitiv");
+    expect(textIssues("Imperativ kullanılır.")).toContain("öğretilmemiş terim: imperativ");
   });
   it("kesme işareti kelime içinde tırnak sayılmaz; Almanca kalın işaretle yazılır", () => {
     expect(textIssues("Almanya'da çok duyarsın.")).toEqual([]);
