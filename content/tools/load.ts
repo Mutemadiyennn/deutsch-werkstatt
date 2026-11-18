@@ -13,6 +13,7 @@ import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import { Domain, Lexeme, LexiconBatch, Pattern, GrammarNote, Scenario, AssessItem, World, PRODUCTION_DRILLS, productionCount } from "../../packages/shared/src/content.ts";
 import { explanationIssues, textIssues } from "../../packages/shared/src/explain.ts";
+import { untaught } from "./teach.ts";
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const CDIR = join(ROOT, "content/v2");
@@ -184,7 +185,7 @@ export function patternExplainTexts(p: Pattern): { where: string; text: string }
   return out;
 }
 
-export function checkRules(c: Loaded, opts: { strictPatterns?: boolean } = {}): Loaded {
+export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTeach?: boolean } = {}): Loaded {
   const { errors, warnings } = c;
   const dupes = (ids: string[], what: string) => { const seen = new Set<string>(); for (const id of ids) { if (seen.has(id)) errors.push(`${what}: tekrar eden kimlik ${id}`); seen.add(id); } return seen; };
   const dom = dupes(c.domains.map((d) => d.id), "alan");
@@ -224,6 +225,10 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean } = {}): 
     // OD-9: yapılandırılmış açıklamalar her zaman; serbest açıklamalar incelenmiş senaryoda hata, taslakta uyarı
     for (const k of s.chunks) for (const [f, e] of [["exp", k.exp], ["alltag_exp", k.alltag_exp]] as const) if (e) for (const x of explanationIssues(e, k.requires)) errors.push(`${file}: ${k.id}.${f}.${x}`);
     if (s.review.status === "reviewed" && s.review.okur !== "passed") errors.push(`${file}: "reviewed" ama okur kontrolü geçmemiş (OD-9.4)`);
+    // OD-0/OD-7 öğretmeden isteme (PM-032): incelenmiş senaryoda hata, taslakta uyarı (ilk 3 madde örnek)
+    { const lxm = new Map(c.lexemes.map((l) => [l.id, l])); const u = untaught(s, lxm, c.scenarios.map((x) => x.data), ptById);
+      if (u.length) { if (s.review.status === "reviewed" || opts.strictTeach) for (const x of u) errors.push(`${file}: öğretmeden isteme ${x.item}: ${x.words.join(", ")}`);
+        else warnings.push(`${file}: öğretmeden isteme ${u.length} madde (ilk: ${u.slice(0, 3).map((x) => `${x.item}: ${x.words.join(", ")}`).join(" | ")})`); } }
     { const bad = explainTexts(s).flatMap(({ where, text }) => textIssues(text).map((x) => `${where}: ${x}`));
       if (bad.length) (s.review.status === "reviewed" ? errors : warnings).push(...(s.review.status === "reviewed" ? bad.map((b) => `${file}: OD-9 ${b}`) : [`${file}: OD-9 açıklama standardına uymayan ${bad.length} madde (ilk: ${bad[0]})`])); }
     for (const k of s.chunks) {

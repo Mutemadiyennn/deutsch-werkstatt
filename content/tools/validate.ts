@@ -1,7 +1,7 @@
 /** İçerik kapısı: 0 hata olmadan derleme yapılmaz. Kullanım: npm run content:validate */
 import { loadContent, checkRules } from "./load.ts";
 
-const c = checkRules(loadContent(), { strictPatterns: process.argv.includes("--strict") });
+const c = checkRules(loadContent(), { strictPatterns: process.argv.includes("--strict"), strictTeach: process.argv.includes("--strict") });
 for (const w of c.warnings) console.log("  uyarı:", w);
 for (const e of c.errors) console.log("  HATA:", e);
 console.log(
