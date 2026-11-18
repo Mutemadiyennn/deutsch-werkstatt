@@ -136,7 +136,7 @@ def main():
             page.click("[data-test=verdict] [data-test=next]")
         check(0 < cards_seen <= 12, f"yeni öğe sayısı ≤12 ({cards_seen})")
         t = page.inner_text("[data-test=section-done]")
-        check("Aşama 1–2 süresi" in t and "kart başına" in t and "hatırlama" in t, f"ölçüm: süre, kart başına süre, hatırlama ({t.splitlines()[-1][:80] if t else ''})")
+        check("Aşama 1–2 yaklaşık" in t and "kart başına" in t and "hatırlama" in t, f"ölçüm: süre, kart başına süre, hatırlama ({t.splitlines()[-1][:80] if t else ''})")
         page.click("[data-test=back-to-scenario]"); page.wait_for_selector("[data-section]")
 
         print("3) Aşama 3 · Cümle kurma (yazı + kelime çipleri)")
@@ -339,6 +339,30 @@ def main():
             except Exception as e:
                 check(False, f"{name}: seçenek görünmedi ({str(e)[:80]})")
             b2.close()
+
+        print("9b) tasarım kabulü (PM-006/PM-016, TS-4): emoji 0, gösterge ≤1, saniye sayacı yok, ana eylem ≥56 px")
+        EMOJI = r"""() => { const t = document.body.innerText; const m = t.match(/\p{Extended_Pictographic}/gu) || []; return m.filter((c) => !"©®™".includes(c)); }"""
+        IND = "[data-progress]"  # TS-4: görünür ilerleme göstergeleri data-progress ile işaretlenir
+        SECS = r"""() => { const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); const out = [];
+            while (w.nextNode()) { const n = w.currentNode, el = n.parentElement; if (!el || !el.offsetParent && getComputedStyle(el).position !== 'fixed') continue;
+              if (/\b\d{1,2}:\d{2}\b/.test(n.textContent || '')) out.push(n.textContent.trim().slice(0, 30)); } return out; }"""
+        PRIM = r"""() => [...document.querySelectorAll('.btn.primary, .micwide')].filter((b) => b.offsetParent).map((b) => { const r = b.getBoundingClientRect(); return [Math.round(r.height), Math.round(r.bottom), innerHeight]; })"""
+        b5, c5 = launch(p); page = new_page(c5); login_onboard(page, PORT); page.wait_for_selector("[data-tab=today]")
+        for name, hsh, sel in [("Bugün", "#/today", "[data-test=next-activity]"), ("ifade kartı", f"#/scenario/{SC}/chunks", "[data-test=ifade-card], [data-test=say-q], [data-test=meaning-q], [data-test=section-done], .empty"), ("gelen arama", f"#/call/{SC}", "[data-test=call]")]:
+            page.goto(f"http://127.0.0.1:{PORT}/{hsh}"); page.wait_for_selector(sel); page.wait_for_timeout(300)
+            em = page.evaluate(EMOJI)
+            check(not em, f"{name}: emoji ikon yok ({''.join(em[:5])})")
+            ind = page.locator(IND).count()
+            check(ind <= 1, f"{name}: ilerleme göstergesi {ind} (≤1)")
+            secs = page.evaluate(SECS)
+            check(not secs, f"{name}: saniyeli sayaç yok ({secs[:2]})")
+            prim = page.evaluate(PRIM)
+            check(all(h >= 56 for h, _, _ in prim), f"{name}: ana eylem ≥ 56 px ({[p[0] for p in prim]})")
+            if name == "ifade kartı" and prim: check(prim[0][1] > prim[0][2] * 0.6, f"{name}: ana eylem başparmak bölgesinde (alt %40)")
+        check(page.locator("[data-test=call-accept]").count() == 1 and page.locator("[data-test=call-later]").count() == 1, "gelen arama: Aç + Sonra")
+        page.click("[data-test=call-accept]"); page.wait_for_selector("[data-test=rp-start]")
+        check(True, "gelen arama → Aç → rol oyunu")
+        b5.close()
 
         print("10) uzun Almanca kelimeler 320/390 px'te taşmıyor; %130 yazı boyutu")
         allw = sorted({w["de"] for w in lx.values()} | {c["layers"]["hd"] for c in s["chunks"]}, key=lambda x: -max(len(t) for t in x.split()))[:50]

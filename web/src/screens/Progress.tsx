@@ -1,4 +1,5 @@
 /** İlerlemem: iki ayrı panel. Süre (odak düzeni) ≠ dil kazanımı; süre hiçbir zaman seviye gibi gösterilmez. */
+import { Icon } from "../ui/icons.tsx";
 import { useEffect, useState } from "preact/hooks";
 import type { Assessment, FocusDay } from "@dw/shared";
 import { useApp } from "../state.ts";
@@ -66,7 +67,7 @@ export function Progress() {
       </section>
 
       <section class="card tint stack" data-test="panel-focus">
-        <div class="sechead"><span class="ic" aria-hidden="true">⏱</span><div><h2>Çalışma düzeni</h2><div class="tiny muted">Panel 1 · süre: ne kadar düzenli çalıştığın, dil seviyen değil</div></div></div>
+        <div class="sechead"><span class="ic" aria-hidden="true"><Icon name="clock" /></span><div><h2>Çalışma düzeni</h2><div class="tiny muted">Panel 1 · süre: ne kadar düzenli çalıştığın, dil seviyen değil</div></div></div>
         <div class="row between"><span>Bugün</span><b>{todayDay ? Math.floor(todayDay.focusSec / 60) : 0} / {goal} dk · {e?.completedCount || 0}/4 seans</b></div>
         <div class="row between small muted"><span>Bugünkü mola</span><span>{Math.round(((todayDay?.breakSec || 0) + (todayDay?.longBreakSec || 0)) / 60)} dk (odak süresine eklenmez)</span></div>
         {seg.size > 0 && <div class="small">Bugün: {[...seg.entries()].map(([a, s]) => `${ACTIVITY_TR[a as keyof typeof ACTIVITY_TR]} ${Math.round(s / 60)} dk`).join(" · ")}</div>}
@@ -82,7 +83,7 @@ export function Progress() {
       </section>
 
       <section class="card tint green stack" data-test="panel-language">
-        <div class="sechead"><span class="ic" aria-hidden="true">🧠</span><div><h2>Dil kazanımı</h2><div class="tiny muted">Panel 2 · ne öğrendiğin ve kullanabildiğin</div></div></div>
+        <div class="sechead"><span class="ic" aria-hidden="true"><Icon name="chat" /></span><div><h2>Dil kazanımı</h2><div class="tiny muted">Panel 2 · ne öğrendiğin ve kullanabildiğin</div></div></div>
         {placement ? (
           <>
             <div class="row between"><span>Tahmini başlangıç seviyesi</span><b>{placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</b></div>

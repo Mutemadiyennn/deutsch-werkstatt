@@ -44,7 +44,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        device: ["iPhone 15", "iPhone 16 Pro Max"]
+        device: ["iPhone 15", "iPhone 15 Pro Max", "iPhone 16 Pro Max"]
     env: { E2E_BROWSER: webkit, E2E_DEVICE: "${{ matrix.device }}" }
     steps:
       - uses: actions/checkout@v4

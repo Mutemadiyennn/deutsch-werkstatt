@@ -10,12 +10,14 @@ import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Lexeme, Scenario } from "@dw/shared";
 import { getItem } from "../data/db.ts";
 import { scoreHeard } from "../core/grading.ts";
-import { speak, stopSpeaking } from "../services/speech.ts";
+import { speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { ActionBar, AnswerField, Empty, FeedbackBand, ListenButton, MicButton } from "../ui/kit.tsx";
 import { VerdictView, useGrader } from "../ui/learn.tsx";
 import type { Verdict } from "../core/answer.ts";
 import { Done, rec, type SP } from "./Player.tsx";
+import { Icon } from "../ui/icons.tsx";
+import { AlltagPanel, RauteRow as Rauten, Scene, accentOf, type RState } from "../ui/raute.tsx";
 
 export const BUDGET_MS = 8 * 60_000;
 export const MAX_NEW = 12;
@@ -77,7 +79,9 @@ export function BudgetChip({ t0 }: { t0: number }) {
   const [, tick] = useState(0);
   useEffect(() => { const h = window.setInterval(() => tick((x) => x + 1), 1000); return () => clearInterval(h); }, []);
   const used = Date.now() - t0;
-  return <span class={`chip${used > BUDGET_MS ? " warn" : ""}`} data-test="budget" aria-label={`Aşama 1–2 süresi ${mmss(used)}, bütçe 8 dakika`}>⏱ {mmss(used)} / 8:00</span>;
+  const left = Math.ceil((BUDGET_MS - used) / 60_000);
+  // DESIGN §1: kronometre yok; tek kısa metin ("6 dk kaldı")
+  return <span class="tiny muted budget" data-test="budget" aria-label={`Aşama 1–2 süresi ${mmss(used)}, bütçe 8 dakika`}>{left > 0 ? `${left} dk kaldı` : "Süre doldu, acele yok"}</span>;
 }
 
 /** 3–4 seçenekli anlam sorusu (dinle → anlamını seç) */
@@ -221,59 +225,65 @@ export function LearnSection({ ctx, finish, back, setSub }: SP & { setSub: (n: p
     for (const c of plan.later) void rec(c.id, c.kind, "passive", "skipped");
   }, [s.id]);
   const st = steps[i];
-  useEffect(() => { setSub(<><span class="tiny" data-test="item-count">{Math.min(i + 1, steps.length)}/{steps.length}</span> <BudgetChip t0={t0.current} /></>); stepT.current = Date.now(); }, [i]);
+  // tek ilerleme göstergesi: ifade başına bir Raute (kart görüldü = yarım, söylendi = dolu) + kalan süre metni
+  const states: RState[] = plan.now.map((c) => { const ci = steps.findIndex((x) => x.c === c && x.t === "card"), si = steps.findIndex((x) => x.c === c && x.t === "say"); return (i > si ? 1 : i >= ci ? 0.5 : 0) as RState; });
+  useEffect(() => { setSub(<><Rauten states={states} label={`${states.filter((x) => x === 1).length}/${states.length} ifade`} size={16} test="item-count" /><span class="grow" /><BudgetChip t0={t0.current} /></>); stepT.current = Date.now(); }, [i]);
   useEffect(() => { if (i >= steps.length && steps.length) void finish(recall.ok, recall.n, { ms: Date.now() - t0.current, msPerCard: Math.round(cardMs.current.reduce((a, b) => a + b, 0) / Math.max(1, cardMs.current.length)), recallOk: recall.ok, recallTotal: recall.n }); }, [i]);
   if (!steps.length) return <Empty title="Yeni ifade kalmadı" text="Bu senaryonun ifadelerini zaten biliyorsun." action={<a class="btn sm" href={back}>Senaryoya dön</a>} />;
   if (!st) {
     const ms = Date.now() - t0.current;
-    return <Done score={recall.ok} total={recall.n} back={back} ctx={ctx} title="Aşama 2 · İfadeler" note={`Aşama 1–2 süresi ${mmss(ms)} (bütçe 8:00) · kart başına ${Math.round(cardMs.current.reduce((a, b) => a + b, 0) / Math.max(1, cardMs.current.length) / 1000)} sn · hatırlama ${recall.ok}/${recall.n}${plan.later.length ? ` · ${plan.later.length} ifade sonraki tekrarlara bırakıldı` : ""}`} />;
+    return <Done score={recall.ok} total={recall.n} back={back} ctx={ctx} title="Aşama 2 · İfadeler" note={`Aşama 1–2 yaklaşık ${Math.max(1, Math.round(ms / 60000))} dakika sürdü (hedef 8 dakika) · kart başına ${Math.round(cardMs.current.reduce((a, b) => a + b, 0) / Math.max(1, cardMs.current.length) / 1000)} sn · hatırlama ${recall.ok}/${recall.n}${plan.later.length ? ` · ${plan.later.length} ifade sonraki tekrarlara bırakıldı` : ""}`} />;
   }
   const next = () => setI(i + 1);
-  if (st.t === "card") return <IfadeCard key={`c${i}`} c={st.c} onPass={(how) => { cardMs.current.push(Date.now() - stepT.current); void rec(st.c.id, st.c.kind, "passive", how === "known" ? "correct" : "hinted"); next(); }} />;
+  if (st.t === "card") return <IfadeCard key={`c${i}`} c={st.c} accent={accentOf(s.domain)} onPass={(how) => { cardMs.current.push(Date.now() - stepT.current); void rec(st.c.id, st.c.kind, "passive", how === "known" ? "correct" : "hinted"); next(); }} />;
   if (st.t === "mean") return <MeaningQ key={`m${i}`} card={st.c} pool={cards} onDone={(r) => { setRecall((x) => ({ ok: x.ok + (r ? 1 : 0), n: x.n + 1 })); void rec(st.c.id, st.c.kind, "passive", r ? "correct" : "wrong"); next(); }} />;
   return <SayQ key={`s${i}`} card={st.c} onDone={(r) => { setRecall((x) => ({ ok: x.ok + (r ? 1 : 0), n: x.n + 1 })); void rec(st.c.id, st.c.kind, "active", r ? "correct" : "wrong"); next(); }} />;
 }
 
-/** İfade kartı: başlık kullanılacak ifade; kelime bilgisi ve aile küçük. Geçiş: sesli/yazılı tekrar ya da "Biliyorum, geç". */
-function IfadeCard({ c, onPass }: { c: Card; onPass: (how: "repeat" | "known") => void }) {
+/** İfade kartı (DESIGN §4, TARGET 2): sahne, büyük Almanca ifade, Türkçesi, büyük yuvarlak dinle + "Yavaş", gündelik dil paneli, aile çipleri; tek ana eylem "Sesli söyle". */
+function IfadeCard({ c, accent, onPass }: { c: Card; accent: string; onPass: (how: "repeat" | "known") => void }) {
   const [res, setRes] = useState<number | null>(null);
   const [typing, setTyping] = useState(false);
+  const [busy, setBusy] = useState<false | "n" | "s" | "a">(false);
   useEffect(() => { void speak(c.de, "de", "normal"); return () => stopSpeaking(); }, [c.id]);
+  const play = async (t: string, sp: "normal" | "slow" | "natural", k: "n" | "s" | "a") => { if (busy) { stopSpeaking(); setBusy(false); return; } setBusy(k); try { await speak(t, "de", sp); } finally { setBusy(false); } };
   const check = (t: string) => {
     const sc = Math.round(scoreHeard(c.de, t).score * 100); setRes(sc);
     const ok = sc >= 60 || (c.alltag ? scoreHeard(c.alltag, t).score >= 0.6 : false);
     haptic(ok ? "success" : "error");
     if (ok) window.setTimeout(() => onPass("repeat"), 700);
   };
+  const stt = sttAvailable();
   return (
-    <div class="stack fade">
-      <section class="card stack" data-test="ifade-card">
-        <div class="wordpanel">
-          <div class="w" lang="de" style={{ fontSize: "1.9rem" }}>{c.de}</div>
+    <div class="stack fade ifade">
+      <section class="ifade-card stack" data-test="ifade-card">
+        <div class="scenebox"><Scene accent={accent} /></div>
+        <div class="wordpanel plain">
+          <div class="w" lang="de">{c.de}</div>
           <div class="tr">{c.tr}</div>
-          <div class="bigplay" style={{ justifyContent: "center" }}><ListenBig text={c.de} /></div>
         </div>
-        {c.alltag && <div class="row" style={{ flexWrap: "nowrap" }}><span class="badge alltag">Alltag</span><span class="grow de" lang="de">{c.alltag}</span><ListenButton text={c.alltag} speed="natural" small slowToggle={false} /></div>}
-        {c.bair && <div class="row" style={{ flexWrap: "nowrap" }}><span class="badge bair">Bairisch</span><span class="grow de" lang="de">{c.bair.text}</span>{c.bair.status === "uncertain" && <span class="badge">bölgeye göre değişebilir</span>}</div>}
-        {c.use && <p class="small" style={{ margin: 0 }}>{c.use}</p>}
-        {(c.words.length > 0 || c.family.length > 0) && <div class="wordinfo" data-test="word-info">
-          {c.words.map((w) => <div lang="de">{w}</div>)}
-          {c.family.length > 0 && <div><span class="muted">Aile:</span> <span lang="de">{c.family.join(" · ")}</span></div>}
-        </div>}
+        <div class="playrow">
+          <button class="bigspk" onClick={() => play(c.de, "normal", "n")} aria-label={`Dinle: ${c.de}`} data-test="listen">{busy === "n" ? <Icon name="stop" size={26} /> : <Icon name="volume" size={28} />}</button>
+          <button class="pillbtn" onClick={() => play(c.de, "slow", "s")} aria-label={`Yavaş dinle: ${c.de}`} data-test="listen-slow">{busy === "s" ? "Durdur" : "Yavaş"}</button>
+        </div>
+        {c.alltag && <AlltagPanel de={c.alltag} note={c.use} playing={busy === "a"} onPlay={() => play(c.alltag!, "natural", "a")} />}
+        {c.bair && <div class="row bairline" style={{ flexWrap: "nowrap" }}><span class="badge bair">Bairisch</span><span class="grow de" lang="de">{c.bair.text}</span>{c.bair.status === "uncertain" && <span class="tiny muted">bölgeye göre değişebilir</span>}</div>}
+        {!c.alltag && c.use && <p class="small muted" style={{ margin: 0 }}>{c.use}</p>}
+        {c.family.length > 0 && <div><div class="famlbl">Aynı aileden</div><div class="famchips">{c.family.map((f, k) => <span class={`chip${k === 0 ? " cur" : ""}`} lang="de">{f}</span>)}</div></div>}
+        {c.words.length > 0 && <div class="wordinfo" data-test="word-info">{c.words.map((w) => <div lang="de">{w}</div>)}</div>}
       </section>
-      {res !== null && <FeedbackBand kind={res >= 60 ? "ok" : "warn"} title={res >= 60 ? `✓ %${res}` : `%${res} · bir daha dene`} />}
+      {res !== null && <FeedbackBand kind={res >= 60 ? "ok" : "warn"} title={res >= 60 ? `Anlaşıldı · %${res}` : `%${res} · bir daha dene`} />}
       <ActionBar>
         {typing ? <AnswerField onSubmit={(t) => check(t)} placeholder="İfadeyi yaz…" submitLabel="Tekrar et" voice={false} />
-          : <div class="row" style={{ flexWrap: "nowrap" }}><span class="grow"><b>Sesli tekrar et</b><br /><span class="tiny muted">ya da <button class="linkbtn" onClick={() => setTyping(true)} data-test="type-repeat">yazarak</button></span></span><MicButton onText={check} /></div>}
-        <button class="btn ghost block" style={{ marginTop: 8 }} onClick={() => onPass("known")} data-test="known-skip">Biliyorum, geç</button>
+          : stt ? <MicButton wide onText={check} />
+          : <button class="btn primary block" onClick={() => setTyping(true)} data-test="type-repeat"><Icon name="keyboard" /> Yazarak tekrar et</button>}
+        <div class="row between secondary">
+          <button class="linkbtn" onClick={() => onPass("known")} data-test="known-skip">Biliyorum, geç</button>
+          {stt && !typing && <button class="linkbtn muted" onClick={() => setTyping(true)} data-test="type-repeat">Yazarak</button>}
+        </div>
       </ActionBar>
     </div>
   );
-}
-function ListenBig({ text }: { text: string }) {
-  const [busy, setBusy] = useState(false);
-  const play = async (sp: "normal" | "slow") => { if (busy) { stopSpeaking(); setBusy(false); return; } setBusy(true); try { await speak(text, "de", sp); } finally { setBusy(false); } };
-  return <><button onClick={() => play("normal")} aria-label={`Dinle: ${text}`} data-test="listen">{busy ? "■" : "🔊"}</button><button class="spd" onClick={() => play("slow")} aria-label={`Yavaş dinle: ${text}`}>🐢</button></>;
 }
 
 /** Türkçe → Almanca söyle ya da yaz */

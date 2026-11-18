@@ -5,14 +5,9 @@ import type { Route } from "../state.ts";
 import { focus, subscribeFocus } from "../services/focusRuntime.ts";
 import { speak } from "../services/speech.ts";
 import type { Speed } from "@dw/shared";
+import { Icon } from "./icons.tsx";
 
-const svg = (d: string) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{d.split("|").map((p) => <path d={p} />)}</svg>;
-const ICONS = {
-  today: svg("M12 3a9 9 0 1 0 9 9|M12 7v5l3 2|M17 3.5a9 9 0 0 1 3.5 3.5"),
-  learn: svg("M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z|M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z"),
-  progress: svg("M4 20V10|M10 20V4|M16 20v-7|M22 20H2"),
-  profile: svg("M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z|M4 21a8 8 0 0 1 16 0")
-};
+const ICONS = { today: <Icon name="raute" size={24} />, learn: <Icon name="list" size={24} />, progress: <Icon name="chart" size={24} />, profile: <Icon name="user" size={24} /> };
 
 export function TabBar({ route }: { route: Route }) {
   const tab = route.name === "learn" || route.name === "domain" || route.name === "scenario" ? "learn" : route.name === "progress" ? "progress" : route.name === "profile" ? "profile" : "today";
@@ -39,7 +34,7 @@ export function TabBar({ route }: { route: Route }) {
 export function TopBar({ title, back, children }: { title: string; back?: string; children?: ComponentChildren }) {
   return (
     <header class="topbar">
-      {back && <a class="iconbtn" href={back} aria-label="Geri">‹</a>}
+      {back && <a class="iconbtn plain" href={back} aria-label="Geri"><Icon name="back" /></a>}
       <h1>{title}</h1>
       {children}
     </header>
@@ -53,6 +48,8 @@ export function useFocusTick() {
   return focus();
 }
 
+/** TS-4: ekranda saniyeli sayaç yok; kalan süre dakika olarak ("4 dk") */
+export const minLeft = (sec: number) => `${Math.max(1, Math.ceil(sec / 60))} dk`;
 export const mmss = (sec: number) => `${String(Math.floor(sec / 60)).padStart(2, "0")}:${String(Math.floor(sec % 60)).padStart(2, "0")}`;
 
 /** Öğrenme ekranlarındaki küçük odak göstergesi: seans x/4 ve kalan süre */
@@ -60,8 +57,8 @@ export function FocusChip() {
   const e = useFocusTick();
   if (!e) return null;
   const now = Date.now();
-  if (e.rt.phase === "break") return <span class="focuschip" title="Mola">☕ {mmss(e.breakLeftSec(now))}</span>;
-  if (e.rt.phase === "focus" && e.current) return <span class="focuschip" title={`Seans ${e.current.n}`}>{e.current.n}/4 · {mmss(e.focusLeftSec())}</span>;
+  if (e.rt.phase === "break") return <span class="focuschip" title="Mola">Mola · {minLeft(e.breakLeftSec(now))}</span>;
+  if (e.rt.phase === "focus" && e.current) return <span class="focuschip" title={`Seans ${e.current.n}`}>Seans {e.current.n} · {minLeft(e.focusLeftSec())} kaldı</span>;
   return <span class="focuschip">{e.focusMin()}/{e.cfg.dailyGoalMin} dk</span>;
 }
 
@@ -93,7 +90,7 @@ export function SpeakBtn({ text, speed = "normal", label = "Dinle" }: { text: st
   return (
     <button class="iconbtn" aria-label={`${label}: ${text}`} disabled={busy}
       onClick={async () => { setBusy(true); try { await speak(text, "de", speed); } finally { setBusy(false); } }}>
-      {busy ? "…" : "🔊"}
+      {busy ? <Icon name="stop" /> : <Icon name="volume" />}
     </button>
   );
 }

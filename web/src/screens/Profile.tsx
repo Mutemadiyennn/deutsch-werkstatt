@@ -1,4 +1,5 @@
 /** Profil ve ayarlar: odak/Pomodoro, seans planı, alan önceliği, dinleme, hedefler, görünüm, sunucu durumu, yedek, v1 arşivi */
+import { Icon } from "../ui/icons.tsx";
 import { useState } from "preact/hooks";
 import { Activity, type Profile } from "@dw/shared";
 import { useApp } from "../state.ts";
@@ -13,7 +14,7 @@ const ACTS = Activity.options.filter((a) => a !== "assess" && a !== "other");
 export function ProfileView() {
   const { profile, setProfile, index, api, toast, user } = useApp();
   const [srv, setSrv] = useState<string | null>(null);
-  const save = async (f: (p: Profile) => void) => { const n = structuredClone(profile); f(n); try { await setProfile(n); toast("✓ Kaydedildi"); } catch { toast("Geçersiz değer; kaydedilmedi."); } };
+  const save = async (f: (p: Profile) => void) => { const n = structuredClone(profile); f(n); try { await setProfile(n); toast("Kaydedildi"); } catch { toast("Geçersiz değer; kaydedilmedi."); } };
   const dTitle = (id: string) => index?.domains.find((d) => d.id === id)?.title_tr || id;
   const num = (e: Event) => Number((e.target as HTMLSelectElement).value);
 
@@ -109,7 +110,7 @@ export function ProfileView() {
         {srv && <p class="small" style={{ marginTop: 8 }} data-test="server">{srv}</p>}
         <div class="row" style={{ marginTop: 12 }}>
           <button class="btn sm" onClick={download}>Yedeği indir (JSON)</button>
-          <a class="btn sm" href={V1_URL} target="_blank" rel="noopener">Arşiv: v1 uygulaması ↗</a>
+          <a class="btn sm" href={V1_URL} target="_blank" rel="noopener">Arşiv: v1 uygulaması <Icon name="out" size={16} /></a>
         </div>
       </section>
 

@@ -1,5 +1,5 @@
 """
-Görsel regresyon (EK2 §8): 7 ekran × açık/koyu, sabit saat ve sahte sunucuyla.
+Görsel regresyon (EK2 §8, DESIGN §8): 8 ekran × açık/koyu, sabit saat ve sahte sunucuyla.
   python3 tests/e2e/visual.py --browser webkit --device "iPhone 15" --out OUT [--baseline DIR] [--update]
 Taban (baseline) yalnızca CI'daki WebKit çıktısından alınır (yazı tipi işleme tarayıcıya/OS'a bağlıdır).
 Taban yoksa ekran görüntüleri yapıt olarak yüklenir ve test geçer (uyarıyla); taban varsa piksel farkı > %0,6 ise başarısız.
@@ -10,7 +10,7 @@ from common import serve, launch, new_page, login_onboard, ERR, arg, DEVICE, BRO
 
 PORT = 4183
 SC = "sc:telefon:01-arzttermin"
-SCREENS = ["bugun", "kelime", "alistirma", "diyalog", "roloyunu", "mola", "ilerlemem"]
+SCREENS = ["bugun", "kelime", "alistirma", "diyalog", "roloyunu", "arama", "mola", "ilerlemem"]
 FIXED = datetime.datetime(2026, 11, 17, 19, 0, 0)
 THRESH = 0.006
 
@@ -32,6 +32,7 @@ def v2_shots(p, theme, out, viewport=None):
     pg.goto(base + f"/scenario/{SC}/roleplay"); pg.wait_for_selector("[data-test=rp-start]"); pg.click("[data-test=rp-start]")
     pg.fill("[data-test=answer]", "Guten Tag, ich brauche einen Termin."); pg.click("[data-test=submit]")
     pg.locator("[data-test=rp-chat] .bubble.them").nth(1).wait_for(); snap("roloyunu")
+    pg.goto(base + f"/call/{SC}"); pg.wait_for_selector("[data-test=call]"); snap("arama")
     pg.goto(base + f"/scenario/{SC}/words"); pg.reload(); pg.wait_for_selector("[data-test=stage-intro]")
     for _ in range(26):
         pg.dispatch_event("body", "pointerdown"); pg.clock.run_for(60_000)

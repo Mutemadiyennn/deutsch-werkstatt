@@ -1,4 +1,5 @@
 /** Seviye tespiti: pratik görevler, uyarlamalı, her cevaptan sonra kaydedilir (yarıda bırakılırsa kaldığı yerden devam) */
+import { Icon } from "../ui/icons.tsx";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { AssessAnswer, AssessItem, Assessment, Level } from "@dw/shared";
 import { useApp, go } from "../state.ts";
@@ -85,9 +86,9 @@ export function AssessRun() {
 
   return (
     <div class="stack">
-      <TopBar title={cur ? SKILL_TR[cur.skill] : "Bitti"} back="#/today"><FocusChip /></TopBar>
+      <TopBar title={cur ? SKILL_TR[cur.skill] : "Bitti"} back="#/today" />
       <div class="row between small muted"><span>{pr.done} / {pr.total}</span>{cur && <span class="chip">{cur.level}</span>}</div>
-      <div class="progress" aria-hidden="true"><i style={{ width: `${(pr.done / Math.max(1, pr.total)) * 100}%` }} /></div>
+      <div class="progress" aria-hidden="true" data-progress=""><i style={{ width: `${(pr.done / Math.max(1, pr.total)) * 100}%` }} /></div>
       {fb ? <Feedback fb={fb} onNext={cont} last={!nextItem(items, a.answers)} /> : cur ? <ItemView key={cur.id} it={cur} onAnswer={record} /> : <button class="btn primary block" onClick={cont}>Sonuçları gör</button>}
       <p class="tiny muted center">İlerlemen her cevaptan sonra kaydedilir. İstediğin zaman çıkıp sonra devam edebilirsin.</p>
     </div>
@@ -146,7 +147,7 @@ function Listening({ it, onAnswer }: { it: Extract<AssessItem, { skill: "listeni
       extra={{ mode: speed, tr: `Duyduğun: „${it.de}“` }}
       prompt={<>
         <div class="kicker">Dinle ve anlamını seç</div>
-        <div class="row"><button class="btn" onClick={play} data-test="play">🔊 {plays ? "Tekrar dinle" : "Dinle"}</button><span class="small muted">{speed === "slow" ? "yavaş" : speed === "normal" ? "normal hız" : "hızlı"} · cihaz sesi</span></div>
+        <div class="row"><button class="btn" onClick={play} data-test="play"><Icon name="volume" size={20} /> {plays ? "Tekrar dinle" : "Dinle"}</button><span class="small muted">{speed === "slow" ? "yavaş" : speed === "normal" ? "normal hız" : "hızlı"} · cihaz sesi</span></div>
       </>} />
   );
 }
@@ -243,7 +244,7 @@ function Speak({ it, onAnswer }: { it: Extract<AssessItem, { skill: "speaking" }
   return (
     <div class="stack">
       <div class="card"><div class="kicker">Almanca söyle</div><div style={{ fontSize: "1.2rem", fontWeight: 600 }}>{it.tr}</div></div>
-      {canTalk && <button class="btn primary block" onClick={talk} disabled={state !== "idle"} data-test="mic">{state === "listening" ? "🎤 Dinliyorum…" : "🎤 Konuş"}</button>}
+      {canTalk && <button class="btn primary block" onClick={talk} disabled={state !== "idle"} data-test="mic"><Icon name="mic" /> {state === "listening" ? "Dinliyorum…" : "Konuş"}</button>}
       {state === "checking" && <p class="small muted" aria-live="polite">Öğretmen kontrol ediyor…</p>}
       {note && <div class="fb warn small">{note}</div>}
       <form class="stack" onSubmit={(e) => { e.preventDefault(); if (typed.trim()) void decide([typed], "typed"); }}>
