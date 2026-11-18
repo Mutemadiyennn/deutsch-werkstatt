@@ -372,6 +372,23 @@ def main():
         check(True, "gelen arama → Aç → rol oyunu")
         b5.close()
 
+        print("9c) LS-17.0 mevsim: 30 Kasım'da Bugün'de 'Mevsimin dersi' (3 mini senaryo), mini senaryo 7 bölümle açılıyor")
+        import datetime as _dt
+        b6, c6 = launch(p); page = new_page(c6); page.clock.install(time=_dt.datetime(2026, 11, 30, 10, 0)); login_onboard(page, PORT); page.wait_for_selector("[data-tab=today]")
+        page.goto(f"http://127.0.0.1:{PORT}/#/today"); page.wait_for_selector("[data-test=season]")
+        n_season = page.locator("[data-test=season] li a").count()
+        check(n_season == 3, f"30 Kasım: mevsim kartında 3 mini senaryo ({n_season})")
+        page.locator("[data-test=season] li a").first.click(); page.wait_for_selector("[data-section]")
+        check(page.locator("[data-section]").count() == 7, "mini senaryo: 7 bölüm")
+        shot(page, "p10-mini-scenario", full=False)
+        for mid in ["sc:essen:m1-weihnachtsmarkt", "sc:freizeit:m1-gluehwein-einladung", "sc:arbeit:m1-weihnachtsfeier"]:
+            for sec in ["words", "chunks", "build", "drills", "listening", "dialogue", "roleplay"]:
+                page.goto(f"http://127.0.0.1:{PORT}/#/scenario/{mid}/{sec}"); page.wait_for_selector(".pbar h1"); page.wait_for_timeout(250)
+                check(page.locator(".card.err, [role=alert]").count() == 0, f"{mid} · {sec}: hata paneli yok") if sec in ("build", "drills") else None
+        page.clock.set_system_time(_dt.datetime(2026, 7, 1, 10, 0)); page.goto(f"http://127.0.0.1:{PORT}/#/today"); page.wait_for_selector("[data-test=next-activity]")
+        check(page.locator("[data-test=season]").count() == 0, "Temmuz'da mevsim kartı yok")
+        b6.close()
+
         print("10) uzun Almanca kelimeler 320/390 px'te taşmıyor; %130 yazı boyutu")
         allw = sorted({w["de"] for w in lx.values()} | {c["layers"]["hd"] for c in s["chunks"]}, key=lambda x: -max(len(t) for t in x.split()))[:50]
         for width in (320, 390):
