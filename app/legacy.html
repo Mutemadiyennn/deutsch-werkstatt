@@ -3994,7 +3994,7 @@ profile = function(){
 };
 function renderSinifCheck(){
   const v = S.state.sinif || {}; const t = dayKey();
-  if(v.from && t < v.from) return `<section class="card"><div class="kicker">Dil kursu</div><p>Kurs ${esc(v.from.split("-").reverse().join("."))}'da başlıyor (${(v.days||[]).map(d=>["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"][d]).join(" ve ")}, ${esc(v.start||"")}–${esc(v.end||"")}). O zamana kadar 1. hafta planıyla temeli sağlamlaştırıyoruz.</p></section>`;
+  if(v.from && t < v.from) return `<section class="card"><div class="kicker">Kurs</div><p>Kurs ${esc(v.from.split("-").reverse().join("."))}'da başlıyor (${(v.days||[]).map(d=>["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"][d]).join(" ve ")}, ${esc(v.start||"")}–${esc(v.end||"")}). O zamana kadar 1. hafta planıyla temeli sağlamlaştırıyoruz.</p></section>`;
   if(v.asked && addDays(v.asked, 7) > t) return "";
   return `<section class="card hl"><div class="kicker">Kurs ile senkron</div>
     <p>Kursta şu an hangi Lektion'dasınız? Uygulama sırayı kursa göre ayarlar.${sinifEstimate() ? ` <b>Tahminim: Lektion ${sinifEstimate()}</b> (${sinifSessions()}. dersten sonra).` : ""}</p>
@@ -8716,7 +8716,7 @@ VIEWS.kilit = () => renderKilit();
 
 /* Bugün ekranındaki kartlar da kendi renkleriyle */
 {
-  const PMAP = [["Günlük görevler","sv-amber","🎯"],["🎁 Haftalık","sv-pink",""],["Haftalık","sv-pink","🎁"],["Dil kursu","sv-teal","🏫"],["Bugün gerçek hayatta","sv-green","🌍"],["Günün Bavyera sözü","sv-blue",""],["Moladasın","sv-teal",""],["Seans sürüyor","sv-blue","▶️"]];
+  const PMAP = [["Günlük görevler","sv-amber","🎯"],["🎁 Haftalık","sv-pink",""],["Haftalık","sv-pink","🎁"],["Kurs","sv-teal","🏫"],["Bugün gerçek hayatta","sv-green","🌍"],["Günün Bavyera sözü","sv-blue",""],["Moladasın","sv-teal",""],["Seans sürüyor","sv-blue","▶️"]];
   const colorize = (h, map) => h.replace(/<section class="card([^"]*)">(\s*(?:<div[^>]*>\s*)?)(<h3>|<h2>|<div class="kicker">)([^<]+)/g, (m0, cls, mid, tag, title) => {
     if(/hero|svc/.test(cls)) return m0;
     let hit = map.find(([k]) => title.trim().startsWith(k));

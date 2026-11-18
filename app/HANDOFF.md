@@ -15,7 +15,7 @@
 **Öğrenci:**
 - Anadili Türkçe, İngilizcesi B2, Almancası gerçek A1.
 - Bavyera'da yaşıyor. Bir dil kursuna gidiyor.
-- Hedef: Goethe/telc **B1 sınavı, 15.05.2027**, ve gerçek hayatta konuşabilmek.
+- Hedef: **B1 sınavı** (tarih yalnızca cihazdaki profilde, D-075) ve gerçek hayatta konuşabilmek.
 - Günlük kullanım hedefi 60–90 dk.
 
 **Kullanıcının v1'deki şikâyetleri (v2'nin çözmesi gereken asıl sorunlar):**
