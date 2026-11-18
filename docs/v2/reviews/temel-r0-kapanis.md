@@ -57,7 +57,7 @@ Bugünkü içerik: 189 öğretim öğesi, 353 alıştırma, 50 yerleştirme madd
 | **P1-3** reddedilen doğru cevaplar | Tablodaki bütün cevaplar eklendi. Selamlı açılışlar `r0:09:d29` ve `p05` için bütün kalıplarla kuruldu. |
 | **P1-3** sıralama | 3 maddeye ek olarak bütün sıralama maddeleri tarandı. İkinci doğru sıra şu maddelere eklendi: `02:d11`, `03:d12`, `04:d12`, `04:d14`, `05:d17`, `05:d19`, `06:d11`, `09:d13`, `09:d14`, `09:d16`, `10:d13`. |
 | **P1-4** telefon ve saat | `r0:10:d20` gruplu okuma, **siebenundvierzig**, bitişik ve aralıklı rakam biçimlerini kabul ediyor. Ders 03 telefon maddeleri **0171**, **089**, **016** biçimlerini kabul ediyor. Ders 05 üretim maddeleri, `06:d14` ve `08:d33` **8:30**, **8:30 Uhr**, **10:00 Uhr** biçimlerini kabul ediyor. |
-| **P1-5** (içerik kısmı) | Denetim çıktısı depoda. Okur düzeltmesinden sonra betik yeniden çalıştırılmalı. Dosyalar `draft` durumuna alındı. |
+| **P1-5** (içerik kısmı) | Denetim çıktısı depoda. Son okur düzeltmesinden sonra betik yeniden çalıştırıldı: 0 ihlal. |
 | **P2** öğrenci diyalog satırları | Denetime girdi, 0 ihlal. Satırlar öğretilen kelimelerle yeniden yazıldı (01–05). Yeni öğe `r0:01:a:guten-tag` (**Guten Tag, hier ist {name}.**) ve alıştırması `r0:01:d35` eklendi. Bu yüzden ayrı bir ürün kararı gerekmiyor. |
 | **P2** Noel pazarı | `r0:02:h2` artık **Ende November** diyor, `r0:06:h2` ile uyumlu. |
 | **P2** Frau Brandl sırası | Ders 01 ve 02'deki üç geçiş Ioana, Frau Huber ve Derya'ya verildi. İlk karşılaşma ders 07'de. |
@@ -74,10 +74,7 @@ Bugünkü içerik: 189 öğretim öğesi, 353 alıştırma, 50 yerleştirme madd
 | Karışık heceleme, ad ve soyad yuvası, adın harf harf okunması | ürün ve şema (#12) |
 | Doğrulayıcı `temel/` klasörünü okumuyor. Denetim betiği depo dışında. `u:r0:NN` kimlikleri tanımsız. | `TemelDers` (PM-045 §4) |
 | WORLD §4 hafta 2 (30.11) pazarın açıldığını söylüyor, §6 ve dersler 27 Kasım diyor. | baş geliştirici |
-| PR açıklamasındaki 848, 63 ve 65 sayıları bu belgeye göre düzeltilmeli. | baş geliştirici |
-| **P1-6** `STATUS.md` ve iPhone 15 WebKit sonucu | baş geliştirici |
 | Ders 10 yükü (iki bölümde 24 öğe): kurala uyuyor, öğrenci verisiyle yeniden bakılacak. | baş geliştirici |
-| Okurun 72 alanı yeniden okuması. Geri dönen olursa düzeltmeden sonra denetim yeniden çalıştırılacak. | okur, dilbilimci |
 
 ### Not
 Ders 05 diyaloğunda öğrenci artık **Auf Wiederhören** demiyor, **Bis Donnerstag!** diyor. İfade öğretilmediği için öğrenci satırından çıktı. Frau Huber söylemeye devam ediyor.
@@ -87,7 +84,8 @@ Ders 05 diyaloğunda öğrenci artık **Auf Wiederhören** demiyor, **Bis Donner
 |---|---|---|---|
 | `r0re4` | İnceleme düzeltmesinde değişen açıklamalar ve parti 009'dan 5 alan | 43 | 5 (hepsi çip) |
 | `r0chips` | Bütün çipler, soldan sağa okuma | 76 | 2 |
+| `r0re7` | Kalan 34 diyalog, dinleme ve seçenek satırı, yeni tanıma maddeleri, parti 010'dan 7 alan | 47 | 1 |
 
-`r0re4` turunda **ist → -dir** çipinin cümleyi bozduğu görüldü. Sorun tek alanla sınırlı olmadığı için 43 öğenin çipleri yeniden kuruldu ve hepsi `r0chips` turunda okundu. Son iki öğede (`r0:07:a:woher`, `r0:07:a:warum`) çipler silindi; silinen metin yeni okur turu gerektirmez. Son denetim: **0 ihlal**.
+`r0re4` turunda **ist → -dir** çipinin cümleyi bozduğu görüldü. Sorun tek alanla sınırlı olmadığı için 43 öğenin çipleri yeniden kuruldu ve hepsi `r0chips` turunda okundu. Son iki öğede (`r0:07:a:woher`, `r0:07:a:warum`) çipler silindi; silinen metin yeni okur turu gerektirmez. `r0re7` turunda geri dönen tek satır (`r0-06` diyaloğu, 5. satır) sadeleştirildi: **7 Ağustos 1990.** Son denetim: **0 ihlal**.
 
-R0 toplam okur turu: 5 (`r0a` + `r0b`, `r0re2`, `r0re3`, `r0re4`, `r0chips`).
+R0 toplam okur turu: 6 (`r0a` + `r0b`, `r0re2`, `r0re3`, `r0re4`, `r0chips`, `r0re7`).
