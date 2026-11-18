@@ -10,7 +10,7 @@
     "status": "reviewed",
     "by": "dilbilimci-ajan",
     "at": "2026-11-18",
-    "notes": "LS-17.0 mini senaryo (Advent), hikâye hafta 2. Dil incelemesi 2026-11-18 KAPANDI (docs/v2/reviews/advent-mini.md); içerik onaylı. Durum yalnızca kalıp kapısı (D-063) yüzünden draft: bu dalda patterns.json'daki temel kalıplar henüz draft. Kalıplar reviewed olunca status reviewed yapılır. Bairisch yalnızca kaynaklı: Servus, Passt scho, Pfiat di (freizeit/SOURCES.md).",
+    "notes": "PM-032 + PM-044.3: yazar → dilbilimci KAPANDI (docs/v2/reviews/pm032-dilbilimci.md) → okur tur 1–5 açık GERİ 0 (docs/v2/reviews/okur/pm032.md)",
     "okur": "passed",
     "okur_at": "2026-11-18"
   },
@@ -30,7 +30,8 @@
       "lx:Rathaus",
       "lx:sich_treffen",
       "lx:Adventskranz",
-      "lx:Plätzchen"
+      "lx:Plätzchen",
+      "lx:noch"
     ],
     "chunks": [
       "ch:freizeit:bin-dabei",
@@ -40,7 +41,9 @@
       "ch:freizeit:halb-sechs-rathaus",
       "ch:freizeit:passt-mir",
       "ch:freizeit:plaetzchen-gebracht",
-      "ch:freizeit:adventskranz"
+      "ch:freizeit:adventskranz",
+      "ch:freizeit:kommst-du-mit",
+      "ch:freizeit:bis-gleich"
     ],
     "patterns": [
       "pt:passt-ihnen",
@@ -62,9 +65,7 @@
     ],
     "chunks": [
       "ch:freizeit:komme-nach",
-      "ch:freizeit:erster-advent",
-      "ch:freizeit:bis-gleich",
-      "ch:freizeit:kommst-du-mit"
+      "ch:freizeit:erster-advent"
     ]
   },
   "chunks": [
@@ -82,7 +83,41 @@
       "use_tr": "Bir daveti sıcak ve samimi biçimde kabul ederken söylersin.",
       "mistakes_tr": [
         "Mit cümlenin sonuna gider: Ich komme mit."
-      ]
+      ],
+      "alltag_exp": {
+        "anlam_tr": "Tabii, varım!",
+        "ne_zaman_tr": "Arkadaşın ya da iş arkadaşın seni çağırınca.",
+        "parcalar": [
+          {
+            "de": "Klar",
+            "tr": "tabii"
+          },
+          {
+            "de": "bin dabei",
+            "tr": "varım, katılıyorum"
+          }
+        ],
+        "ipucu_tr": "Gündelikte baştaki **ich** düşer, **bin dabei** yeter."
+      },
+      "exp": {
+        "anlam_tr": "Evet, memnuniyetle, ben de geliyorum.",
+        "ne_zaman_tr": "Bir daveti sıcak biçimde kabul ederken.",
+        "parcalar": [
+          {
+            "de": "Ja",
+            "tr": "evet"
+          },
+          {
+            "de": "gern",
+            "tr": "memnuniyetle"
+          },
+          {
+            "de": "Ich komme mit",
+            "tr": "ben de geliyorum"
+          }
+        ],
+        "ipucu_tr": "**mit** cümlenin en sonuna gider."
+      }
     },
     {
       "id": "ch:freizeit:heute-nicht",
@@ -99,7 +134,45 @@
       "use_tr": "Bir daveti bugün için kibarca geri çevirirken söylersin.",
       "mistakes_tr": [
         "Heute başta olunca kann hemen ardından gelir: Heute kann ich nicht."
-      ]
+      ],
+      "alltag_exp": {
+        "anlam_tr": "Bugün maalesef olmuyor.",
+        "ne_zaman_tr": "Arkadaşına rahat bir dille hayır derken.",
+        "parcalar": [
+          {
+            "de": "Heut",
+            "tr": "bugün (**heute**)"
+          },
+          {
+            "de": "geht's … nicht",
+            "tr": "olmuyor (**geht es nicht**)"
+          },
+          {
+            "de": "leider",
+            "tr": "maalesef"
+          }
+        ],
+        "ipucu_tr": "Konuşmada **heute** kısalır ve **heut** olur."
+      },
+      "exp": {
+        "anlam_tr": "Bugün maalesef olmuyor.",
+        "ne_zaman_tr": "Bir daveti bugün için kibarca geri çevirirken.",
+        "parcalar": [
+          {
+            "de": "Heute",
+            "tr": "bugün"
+          },
+          {
+            "de": "kann … nicht",
+            "tr": "gelemiyorum"
+          },
+          {
+            "de": "leider",
+            "tr": "maalesef"
+          }
+        ],
+        "ipucu_tr": "**Heute** başta olunca **kann** hemen ardından gelir."
+      }
     },
     {
       "id": "ch:freizeit:geht-auch-morgen",
@@ -114,7 +187,45 @@
         "alltag": "Geht's auch morgen?"
       },
       "use_tr": "Bugün gelemeyince başka bir gün önermek için sorarsın.",
-      "mistakes_tr": []
+      "mistakes_tr": [],
+      "alltag_exp": {
+        "anlam_tr": "Yarın da olur mu?",
+        "ne_zaman_tr": "Bugün olmayınca başka gün önerirken.",
+        "parcalar": [
+          {
+            "de": "Geht's",
+            "tr": "olur mu (**geht es**)"
+          },
+          {
+            "de": "auch",
+            "tr": "de, da"
+          },
+          {
+            "de": "morgen",
+            "tr": "yarın"
+          }
+        ],
+        "ipucu_tr": "Konuşmada **es** kısalır ve **'s** olur: **Geht's**."
+      },
+      "exp": {
+        "anlam_tr": "Yarın da olur mu?",
+        "ne_zaman_tr": "Bugün gelemeyince başka bir gün önerirken.",
+        "parcalar": [
+          {
+            "de": "Geht es",
+            "tr": "olur mu"
+          },
+          {
+            "de": "auch",
+            "tr": "de, da"
+          },
+          {
+            "de": "morgen",
+            "tr": "yarın"
+          }
+        ],
+        "ipucu_tr": "**morgen** yerine başka bir gün koyabilirsin."
+      }
     },
     {
       "id": "ch:freizeit:wann-wo",
@@ -130,7 +241,30 @@
       "use_tr": "Daveti kabul ettikten sonra saati ve yeri öğrenmek için sorarsın.",
       "mistakes_tr": [
         "Soruda treffen, wir kelimesinden önce gelir: Wann und wo treffen wir uns?"
-      ]
+      ],
+      "exp": {
+        "anlam_tr": "Ne zaman ve nerede buluşuyoruz?",
+        "ne_zaman_tr": "Daveti kabul edince saati ve yeri öğrenmek için.",
+        "parcalar": [
+          {
+            "de": "Wann",
+            "tr": "ne zaman"
+          },
+          {
+            "de": "und",
+            "tr": "ve"
+          },
+          {
+            "de": "wo",
+            "tr": "nerede"
+          },
+          {
+            "de": "treffen wir uns",
+            "tr": "buluşuyoruz"
+          }
+        ],
+        "ipucu_tr": "Soruda **treffen** kelimesi **wir** kelimesinden önce gelir."
+      }
     },
     {
       "id": "ch:freizeit:halb-sechs-rathaus",
@@ -150,7 +284,30 @@
       "mistakes_tr": [
         "Halb sechs 17:30 demektir, 18:30 değil. Altıya yarım saat var diye düşün.",
         "Beim Rathaus, belediye binasının yanında demektir."
-      ]
+      ],
+      "exp": {
+        "anlam_tr": "Beş buçukta, belediye binasının yanındaki stantta.",
+        "ne_zaman_tr": "Buluşma saatini ve yerini tekrar ederek doğrularken.",
+        "parcalar": [
+          {
+            "de": "Um",
+            "tr": "saat"
+          },
+          {
+            "de": "halb sechs",
+            "tr": "beş buçuk"
+          },
+          {
+            "de": "am Stand",
+            "tr": "stantta"
+          },
+          {
+            "de": "beim Rathaus",
+            "tr": "belediye binasının yanında"
+          }
+        ],
+        "ipucu_tr": "**halb sechs** altıya yarım saat var demektir, yani 17:30."
+      }
     },
     {
       "id": "ch:freizeit:passt-mir",
@@ -173,7 +330,30 @@
       "use_tr": "Önerilen saat ya da yer sana uyuyorsa söylersin.",
       "mistakes_tr": [
         "Das passt mir denir, das passt mich denmez."
-      ]
+      ],
+      "exp": {
+        "anlam_tr": "Bu bana uyar.",
+        "ne_zaman_tr": "Önerilen saat ya da yer sana uyunca.",
+        "parcalar": [
+          {
+            "de": "Das",
+            "tr": "bu"
+          },
+          {
+            "de": "passt",
+            "tr": "uyar"
+          },
+          {
+            "de": "mir",
+            "tr": "bana"
+          },
+          {
+            "de": "gut",
+            "tr": "iyi"
+          }
+        ],
+        "ipucu_tr": "**Das passt mir** dersin, **Das passt mich** demezsin."
+      }
     },
     {
       "id": "ch:freizeit:plaetzchen-gebracht",
@@ -192,7 +372,30 @@
       "mistakes_tr": [
         "Gebracht cümlenin sonuna gider: Sie hat mir Plätzchen gebracht.",
         "Bringen geçmişte gebracht olur, gebringt değil."
-      ]
+      ],
+      "exp": {
+        "anlam_tr": "Komşum bana kurabiye getirdi.",
+        "ne_zaman_tr": "Advent sohbetinde küçük bir haber anlatırken.",
+        "parcalar": [
+          {
+            "de": "Meine Nachbarin",
+            "tr": "(kadın) komşum"
+          },
+          {
+            "de": "mir",
+            "tr": "bana"
+          },
+          {
+            "de": "Plätzchen",
+            "tr": "kurabiye"
+          },
+          {
+            "de": "gebracht",
+            "tr": "getirdi"
+          }
+        ],
+        "ipucu_tr": "**hat** ikinci sırada durur, **gebracht** en sona gider."
+      }
     },
     {
       "id": "ch:freizeit:adventskranz",
@@ -209,7 +412,30 @@
       "mistakes_tr": [
         "Tek kişiye Hast du diye sorarsın. İki ya da daha fazla kişiye Habt ihr dersin.",
         "Adventskranz dört mumlu bir çelenktir. Her Advent pazarı bir mum daha yakılır."
-      ]
+      ],
+      "exp": {
+        "anlam_tr": "Evde Advent çelengin var mı?",
+        "ne_zaman_tr": "Advent haftalarında sohbet açarken.",
+        "parcalar": [
+          {
+            "de": "Hast du",
+            "tr": "sende var mı"
+          },
+          {
+            "de": "zu Hause",
+            "tr": "evde"
+          },
+          {
+            "de": "schon",
+            "tr": "şimdiden"
+          },
+          {
+            "de": "einen Adventskranz",
+            "tr": "bir Advent çelengi"
+          }
+        ],
+        "ipucu_tr": "**Adventskranz** dört mumlu bir çelenktir, her pazar bir mum yakılır."
+      }
     },
     {
       "id": "ch:freizeit:komme-nach",
@@ -248,18 +474,27 @@
       "lexemes": [],
       "register": "informal",
       "layers": {
-        "hd": "Bis gleich!",
-        "bair": {
-          "text": "Servus!",
-          "status": "verified",
-          "source": "https://www.thelocal.de/20190927/bavarian-words-you-need-to-survive-down-south-language-bayerisch-bairisch-german-munich",
-          "note_tr": "Samimi selam ve veda sözü. Yalnızca du dediğin kişilere söylenir."
-        }
+        "hd": "Bis gleich!"
       },
       "use_tr": "Birazdan tekrar görüşeceğin biriyle vedalaşırken söylersin.",
       "mistakes_tr": [
         "Bis gleich birazdan, bis morgen yarın görüşürüz demektir."
-      ]
+      ],
+      "exp": {
+        "anlam_tr": "Birazdan görüşürüz!",
+        "ne_zaman_tr": "Az sonra yine buluşacağın biriyle vedalaşırken.",
+        "parcalar": [
+          {
+            "de": "Bis",
+            "tr": "-e kadar"
+          },
+          {
+            "de": "gleich",
+            "tr": "birazdan"
+          }
+        ],
+        "ipucu_tr": "Yarın görüşecekseniz **Bis morgen!** dersin."
+      }
     },
     {
       "id": "ch:freizeit:kommst-du-mit",
@@ -276,7 +511,49 @@
       "use_tr": "Birini seninle bir şey içmeye çağırırken sorarsın.",
       "mistakes_tr": [
         "Kahve için aynı cümleyi auf einen Kaffee ile kurarsın."
-      ]
+      ],
+      "exp": {
+        "anlam_tr": "Bir Glühwein içmeye geliyor musun?",
+        "ne_zaman_tr": "Birini seninle bir şey içmeye çağırırken.",
+        "parcalar": [
+          {
+            "de": "Kommst du mit",
+            "tr": "geliyor musun"
+          },
+          {
+            "de": "auf einen",
+            "tr": "bir (içmeye)"
+          },
+          {
+            "de": "Glühwein",
+            "tr": "sıcak şarap"
+          }
+        ],
+        "ipucu_tr": "Kahve için de aynı cümle olur: **auf einen Kaffee**."
+      },
+      "alltag_exp": {
+        "anlam_tr": "Bir Glühwein'e geliyor musun?",
+        "ne_zaman_tr": "İş çıkışı arkadaşlar arasında çok sık duyarsın.",
+        "parcalar": [
+          {
+            "de": "Kommste",
+            "tr": "geliyor musun (**kommst du**)"
+          },
+          {
+            "de": "mit",
+            "tr": "birlikte"
+          },
+          {
+            "de": "auf 'nen",
+            "tr": "bir (**auf einen**)"
+          },
+          {
+            "de": "Glühwein",
+            "tr": "sıcak şarap"
+          }
+        ],
+        "ipucu_tr": "Hızlı konuşmada **kommst du** birleşir ve **kommste** olur."
+      }
     }
   ],
   "otherSide": [
@@ -427,14 +704,14 @@
       "to": "o04",
       "options": [
         {
-          "de": "Passt! Also halb sechs beim Rathaus.",
+          "de": "Passt! Halb sechs beim Rathaus.",
           "tr": "Uyar! Yani 17:30'da belediye binasının yanında.",
           "register": "informal"
         },
         {
-          "de": "Ich komme nach, wenn ich fertig bin.",
-          "tr": "İşimi bitirince arkanızdan gelirim.",
-          "register": "informal"
+          "de": "Das passt mir gut. Bis gleich!",
+          "tr": "Bana uyar. Birazdan görüşürüz!",
+          "register": "neutral"
         }
       ]
     },
@@ -447,9 +724,9 @@
           "register": "neutral"
         },
         {
-          "de": "Ja, seit gestern. Habt ihr auch einen?",
-          "tr": "Evet, dünden beri. Sizde de var mı?",
-          "register": "informal"
+          "de": "Ja. Habt ihr auch einen Adventskranz?",
+          "tr": "Evet. Sizde de Advent çelengi var mı?",
+          "register": "neutral"
         }
       ]
     },
@@ -457,14 +734,14 @@
       "to": "o14",
       "options": [
         {
-          "de": "Danke, das ist nett! Einen Glühwein, bitte.",
-          "tr": "Teşekkürler, çok naziksin! Bir Glühwein, lütfen.",
-          "register": "informal"
+          "de": "Danke! Einen Glühwein, bitte.",
+          "tr": "Teşekkürler! Bir Glühwein, lütfen.",
+          "register": "neutral"
         },
         {
-          "de": "Danke! Für mich einen Kinderpunsch.",
-          "tr": "Teşekkürler! Bana bir Kinderpunsch.",
-          "register": "informal"
+          "de": "Danke! Einen Kinderpunsch, bitte.",
+          "tr": "Teşekkürler! Bir Kinderpunsch, lütfen.",
+          "register": "neutral"
         }
       ]
     }
@@ -568,32 +845,27 @@
     },
     {
       "id": "b08",
-      "prompt_tr": "Saat altı sana uyar mı?",
+      "prompt_tr": "17:30 sana uyar mı? (du ile)",
       "accepted": [
-        "Passt dir sechs Uhr?",
-        "Passt es dir um sechs?",
-        "Passt dir sechs?",
-        "Passt dir das um sechs Uhr?",
-        "Passt dir sechs Uhr auch?",
-        "Passt dir um sechs?",
-        "Passt es dir um sechs Uhr?",
-        "Passt dir 18 Uhr?"
+        "Passt dir halb sechs?",
+        "Passt es dir um halb sechs?",
+        "Passt dir das um halb sechs?",
+        "Passt dir um halb sechs?",
+        "Halb sechs, passt dir das?"
       ],
       "pattern": "pt:passt-ihnen"
     },
     {
       "id": "b09",
-      "prompt_tr": "İşimi bitirince arkanızdan gelirim.",
+      "prompt_tr": "Daveti kabul et ve saati, yeri sor.",
       "accepted": [
-        "Ich komme nach, wenn ich fertig bin.",
-        "Wenn ich fertig bin, komme ich nach.",
-        "Ich komme später nach.",
-        "Ich komm später nach.",
-        "Wenn ich fertig bin, komm ich nach.",
-        "Ich komme nach, wenn ich mit der Arbeit fertig bin."
+        "Ja, gern! Wann und wo treffen wir uns?",
+        "Klar, bin dabei! Wann und wo?",
+        "Ja, gerne! Wann und wo treffen wir uns?",
+        "Ja, gern! Wann und wo?",
+        "Klar, ich komme mit! Wann und wo treffen wir uns?"
       ],
-      "pattern": "pt:wenn",
-      "chunk": "ch:freizeit:komme-nach"
+      "chunk": "ch:freizeit:wann-wo"
     },
     {
       "id": "b10",
@@ -611,16 +883,17 @@
     },
     {
       "id": "b11",
-      "prompt_tr": "Hiç Glühwein içmedim.",
+      "prompt_tr": "Sana kurabiye getirdim. (du ile)",
       "accepted": [
-        "Ich habe noch nie Glühwein getrunken.",
-        "Ich hab noch nie Glühwein getrunken.",
-        "Glühwein habe ich noch nie getrunken.",
-        "Ich habe noch keinen Glühwein getrunken.",
-        "Ich hab noch keinen Glühwein getrunken.",
-        "Ich habe Glühwein noch nie getrunken."
+        "Ich habe dir Plätzchen gebracht.",
+        "Ich hab dir Plätzchen gebracht.",
+        "Ich habe dir Plätzchen mitgebracht.",
+        "Ich hab dir Plätzchen mitgebracht.",
+        "Ich habe Plätzchen für dich gebracht.",
+        "Ich habe dir Plätzchen vorbeigebracht."
       ],
-      "pattern": "pt:perfekt-haben"
+      "pattern": "pt:perfekt-haben",
+      "chunk": "ch:freizeit:plaetzchen-gebracht"
     },
     {
       "id": "b12",
@@ -638,39 +911,42 @@
     },
     {
       "id": "b13",
-      "prompt_tr": "Davet için teşekkürler!",
+      "prompt_tr": "Tabii, varım! (gündelik)",
       "accepted": [
-        "Danke für die Einladung!",
-        "Vielen Dank für die Einladung!",
-        "Danke schön für die Einladung!",
-        "Danke, dass ihr mich einladet!",
-        "Danke für eure Einladung!"
-      ]
+        "Klar, bin dabei!",
+        "Klar, ich bin dabei!",
+        "Ja, ich bin dabei!",
+        "Klar, ich komme mit!",
+        "Ja, gern! Ich komme mit."
+      ],
+      "chunk": "ch:freizeit:bin-dabei"
     },
     {
       "id": "b14",
-      "prompt_tr": "Pazar günü ilk Advent.",
+      "prompt_tr": "Bugün olmuyor de ve yarını öner (gündelik soru).",
       "accepted": [
-        "Am Sonntag ist der erste Advent.",
-        "Sonntag ist erster Advent.",
-        "Am Sonntag ist schon der erste Advent.",
-        "Sonntag ist ja schon erster Advent.",
-        "Am Sonntag ist erster Advent.",
-        "Am Sonntag ist ja schon der erste Advent."
+        "Heute kann ich leider nicht. Geht's auch morgen?",
+        "Heute kann ich leider nicht. Geht es auch morgen?",
+        "Heut geht's leider nicht. Geht's auch morgen?",
+        "Danke, aber heute kann ich leider nicht. Geht's auch morgen?",
+        "Leider kann ich heute nicht. Geht es auch morgen?"
       ],
-      "chunk": "ch:freizeit:erster-advent"
+      "pattern": "pt:geht-es-auch",
+      "chunk": "ch:freizeit:heute-nicht"
     },
     {
       "id": "b15",
-      "prompt_tr": "Hiç Noel kurabiyesi pişirdin mi?",
+      "prompt_tr": "Komşun sana kurabiye getirdi mi? (du ile)",
       "accepted": [
-        "Hast du schon mal Plätzchen gebacken?",
-        "Hast du schon Plätzchen gebacken?",
-        "Hast du schon einmal Plätzchen gebacken?",
-        "Hast du mal Plätzchen gebacken?",
-        "Hast du jemals Plätzchen gebacken?"
+        "Hat deine Nachbarin dir Plätzchen gebracht?",
+        "Hat dir deine Nachbarin Plätzchen gebracht?",
+        "Hat deine Nachbarin dir Plätzchen mitgebracht?",
+        "Hat dir deine Nachbarin Plätzchen mitgebracht?",
+        "Hat deine Nachbarin Plätzchen gebracht?",
+        "Hat deine Nachbarin dir Plätzchen vorbeigebracht?"
       ],
-      "pattern": "pt:perfekt-haben"
+      "pattern": "pt:perfekt-haben",
+      "chunk": "ch:freizeit:plaetzchen-gebracht"
     },
     {
       "id": "b16",
@@ -761,17 +1037,17 @@
     {
       "id": "d05",
       "k": "gap",
-      "de": "Ich komme nach, wenn ich fertig ___.",
-      "tr": "İşimi bitirince arkanızdan gelirim.",
+      "de": "Ja, gern! Ich komme ___.",
+      "tr": "Evet, memnuniyetle! Ben de geliyorum.",
       "accepted": [
-        "bin"
+        "mit"
       ],
       "opts": [
-        "bin",
-        "habe",
-        "ist"
+        "mit",
+        "bei",
+        "zu"
       ],
-      "why_tr": "Wenn ile başlayan kısımda bin en sona gider."
+      "why_tr": "**mit** cümlenin en sonuna gider: **Ich komme mit.**"
     },
     {
       "id": "d06",
@@ -795,13 +1071,13 @@
     {
       "id": "d08",
       "k": "order",
-      "de": "noch nie / Ich / Glühwein / habe / getrunken",
-      "tr": "Hiç Glühwein içmedim.",
+      "de": "Plätzchen / Ich / habe / gegessen",
+      "tr": "Kurabiye yedim.",
       "accepted": [
-        "Ich habe noch nie Glühwein getrunken.",
-        "Glühwein habe ich noch nie getrunken."
+        "Ich habe Plätzchen gegessen.",
+        "Plätzchen habe ich gegessen."
       ],
-      "why_tr": "Habe ikinci sırada durur, getrunken en sona gider."
+      "why_tr": "**habe** ikinci sırada durur, **gegessen** en sona gider."
     },
     {
       "id": "d09",
@@ -863,16 +1139,13 @@
     {
       "id": "d13",
       "k": "tr_de",
-      "tr": "Saat altı sana uyar mı?",
+      "tr": "Bu sana uyar mı? (du ile)",
       "accepted": [
-        "Passt dir sechs Uhr?",
-        "Passt es dir um sechs?",
-        "Passt dir sechs?",
-        "Passt dir das um sechs Uhr?",
-        "Passt dir um sechs?",
-        "Passt es dir um sechs Uhr?",
-        "Passt dir 18 Uhr?",
-        "Passt dir sechs Uhr auch?"
+        "Passt dir das?",
+        "Passt es dir?",
+        "Passt dir das gut?",
+        "Passt das für dich?",
+        "Passt das?"
       ]
     },
     {
@@ -892,27 +1165,25 @@
     {
       "id": "d15",
       "k": "tr_de",
-      "tr": "Biraz geç gelirim.",
+      "tr": "Tabii, varım! Ne zaman, nerede?",
       "accepted": [
-        "Ich komme etwas später.",
-        "Ich komme ein bisschen später.",
-        "Ich komme später nach.",
-        "Ich komm ein bisschen später.",
-        "Ich komme etwas später nach.",
-        "Ich komm etwas später.",
-        "Ich komme ein bisschen später nach.",
-        "Ich komme ein wenig später."
+        "Klar, bin dabei! Wann und wo?",
+        "Klar, ich bin dabei! Wann und wo?",
+        "Ja, gern! Wann und wo treffen wir uns?",
+        "Klar, bin dabei! Wann und wo treffen wir uns?",
+        "Klar, ich komme mit! Wann und wo?"
       ]
     },
     {
       "id": "d16",
       "k": "transform",
-      "instr_tr": "Cümleyi geçmişte olmuş gibi söyle. Örnek: Ich kaufe yerine Ich habe gekauft.",
-      "from_de": "Ich trinke Glühwein.",
+      "instr_tr": "Cümleyi geçmişte olmuş gibi söyle.",
+      "from_de": "Meine Nachbarin bringt mir Plätzchen.",
       "accepted": [
-        "Ich habe Glühwein getrunken.",
-        "Ich hab Glühwein getrunken.",
-        "Glühwein habe ich getrunken."
+        "Meine Nachbarin hat mir Plätzchen gebracht.",
+        "Meine Nachbarin hat mir Plätzchen mitgebracht.",
+        "Meine Nachbarin hat mir Plätzchen vorbeigebracht.",
+        "Plätzchen hat mir meine Nachbarin gebracht."
       ]
     },
     {
@@ -922,13 +1193,12 @@
       "speed": "fast",
       "situation_tr": "Kabul et ve saati tekrar ederek doğrula.",
       "accepted": [
-        "Ja, passt! Also um halb sechs.",
+        "Ja, passt! Halb sechs am Stand beim Rathaus.",
         "Passt! Halb sechs beim Rathaus.",
         "Ja, das passt mir. Um halb sechs am Stand beim Rathaus.",
-        "Passt, also halb sechs.",
+        "Ja, passt! Also um halb sechs.",
         "Ja, halb sechs passt mir gut.",
-        "Ja, das passt. Also halb sechs.",
-        "Ja, passt. Halb sechs beim Rathaus."
+        "Passt, also halb sechs."
       ]
     },
     {
@@ -936,15 +1206,13 @@
       "k": "listen_and_respond",
       "audio_de": "Wir stehen am Stand beim Rathaus. Ruf an, wenn du uns nicht findest.",
       "speed": "natural",
-      "situation_tr": "Tamam de ve biraz geç geleceğini söyle.",
+      "situation_tr": "Tamam de ve birazdan görüşürüz de.",
       "accepted": [
-        "Alles klar, ich komme etwas später.",
-        "Okay, ich komme ein bisschen später.",
-        "Alles klar! Ich komme später nach.",
-        "Okay, bis gleich! Ich komme etwas später.",
-        "Gut, ich komme etwas später nach.",
-        "Alles klar, ich komme ein bisschen später.",
-        "Okay, ich komme etwas später."
+        "Passt! Bis gleich!",
+        "Alles klar, bis gleich!",
+        "Okay, bis gleich!",
+        "Passt, bis gleich!",
+        "Gut, bis gleich!"
       ]
     },
     {
@@ -963,7 +1231,7 @@
     {
       "id": "d20",
       "k": "pick",
-      "q_tr": "Tobi ayrılırken Pfiat di diyor. Ne demek?",
+      "q_tr": "Tobi **Pfiat di** diyor. Ne demek?",
       "opts": [
         "Şerefe",
         "Afiyet olsun",
@@ -1018,22 +1286,20 @@
         },
         {
           "r": "B",
-          "de": "Passt! Also halb sechs beim Rathaus.",
-          "tr": "Uyar! Yani 17:30'da belediye binasının yanında.",
-          "starter": "Passt! Also …",
+          "de": "Passt! Halb sechs beim Rathaus.",
+          "tr": "Uyar! 17:30'da belediye binasının yanında.",
+          "starter": "Passt! Halb …",
           "keywords": [
             "halb sechs",
             "Rathaus"
           ],
           "hint_tr": "Kabul et. Saati ve yeri tekrar ederek doğrula.",
           "accepted": [
+            "Passt! Halb sechs beim Rathaus.",
             "Passt! Also halb sechs beim Rathaus.",
             "Ja, das passt mir. Um halb sechs am Stand beim Rathaus.",
-            "Passt, also um halb sechs am Rathaus.",
-            "Gut, halb sechs beim Rathaus.",
-            "Ja, passt mir gut. Halb sechs am Stand beim Rathaus.",
-            "Passt! Also um halb sechs beim Rathaus.",
-            "Ja, passt. Halb sechs beim Rathaus."
+            "Ja, passt. Halb sechs beim Rathaus.",
+            "Gut, halb sechs beim Rathaus."
           ]
         },
         {
@@ -1070,68 +1336,50 @@
         },
         {
           "r": "B",
-          "de": "Ja, selbst gebacken. Habt ihr schon Plätzchen gebacken?",
-          "tr": "Evet, kendisi pişirmiş. Siz kurabiye pişirdiniz mi?",
-          "starter": "Ja, selbst gebacken. Habt ihr …",
+          "de": "Ja! Habt ihr schon Plätzchen gemacht?",
+          "tr": "Evet! Siz kurabiye yaptınız mı?",
+          "starter": "Ja! Habt ihr …",
           "keywords": [
             "habt ihr",
-            "gebacken"
+            "Plätzchen"
           ],
-          "hint_tr": "Evet de. İkisine de kurabiye pişirip pişirmediklerini sor.",
+          "hint_tr": "Evet de. İkisine de kurabiye yapıp yapmadıklarını sor.",
           "accepted": [
+            "Ja! Habt ihr schon Plätzchen gemacht?",
             "Ja, selbst gebacken. Habt ihr schon Plätzchen gebacken?",
             "Ja! Und habt ihr schon Plätzchen gebacken?",
-            "Ja, selbst gemacht. Habt ihr auch schon Plätzchen gebacken?",
             "Ja. Habt ihr schon mal Plätzchen gebacken?",
-            "Ja, selbst gebacken. Und ihr? Habt ihr schon gebacken?",
-            "Ja, selbst gebacken. Habt ihr auch schon Plätzchen gebacken?"
+            "Ja, selbst gebacken. Und ihr?"
           ]
         },
         {
           "r": "A",
           "de": "Ich schon, der Tobi nie. Am Sonntag ist ja schon erster Advent.",
-          "tr": "Ben pişirdim, Tobi hiç pişirmez. Pazar günü malum ilk Advent.",
+          "tr": "Ben yaptım, Tobi hiç yapmaz. Pazar günü malum ilk Advent.",
           "speed": "natural"
         },
         {
           "r": "B",
-          "de": "Am Sonntag schon? Zündet ihr dann die erste Kerze an?",
-          "tr": "Pazar mı? O zaman ilk mumu yakıyor musunuz?",
-          "starter": "Am Sonntag schon? Zündet ihr …",
+          "de": "Und du? Hast du zu Hause schon einen Adventskranz?",
+          "tr": "Ya sen? Evde Advent çelengin var mı?",
+          "starter": "Und du? Hast du …",
           "keywords": [
-            "Kerze",
-            "anzünden"
+            "Adventskranz"
           ],
-          "hint_tr": "Şaşır. İlk mumu yakıp yakmayacaklarını sor.",
+          "hint_tr": "Tobi'ye evde Advent çelengi var mı diye sor.",
           "accepted": [
-            "Am Sonntag schon? Zündet ihr dann die erste Kerze an?",
-            "Schon am Sonntag? Zündet ihr die erste Kerze an?",
-            "Wirklich? Und dann zündet ihr die erste Kerze an?",
-            "Am Sonntag schon? Macht ihr dann die erste Kerze an?",
-            "Schon? Zündet ihr am Sonntag die erste Kerze an?"
+            "Und du? Hast du zu Hause schon einen Adventskranz?",
+            "Und du, Tobi? Hast du zu Hause schon einen Adventskranz?",
+            "Hast du daheim schon 'nen Adventskranz?",
+            "Und du? Hast du schon einen Adventskranz?",
+            "Und du, hast du einen Adventskranz?"
           ]
         },
         {
           "r": "A",
-          "de": "Genau. Jeden Sonntag eine Kerze mehr, bis Weihnachten. Prost!",
-          "tr": "Aynen. Her pazar bir mum daha, Noel'e kadar. Şerefe!",
+          "de": "Ich? Nee, nur 'nen Adventskalender mit Schokolade. Prost!",
+          "tr": "Ben mi? Yok, sadece çikolatalı bir Advent takvimi. Şerefe!",
           "speed": "natural"
-        },
-        {
-          "r": "B",
-          "de": "Schön! Prost!",
-          "tr": "Güzel! Şerefe!",
-          "starter": "Schön! …",
-          "keywords": [
-            "Prost"
-          ],
-          "hint_tr": "Güzel olduğunu söyle ve kadeh kaldır.",
-          "accepted": [
-            "Schön! Prost!",
-            "Das ist schön. Prost!",
-            "Prost!",
-            "Wie schön! Prost!"
-          ]
         }
       ]
     },
@@ -1178,23 +1426,19 @@
         },
         {
           "r": "B",
-          "de": "Geht's auch morgen? Morgen hätte ich Zeit.",
-          "tr": "Yarın da olur mu? Yarın vaktim var.",
+          "de": "Geht's auch morgen?",
+          "tr": "Yarın da olur mu?",
           "starter": "Geht's auch …",
           "keywords": [
-            "morgen",
-            "Zeit"
+            "morgen"
           ],
-          "hint_tr": "Yarını öner. Yarın vaktin olduğunu söyle.",
+          "hint_tr": "Yarını öner.",
           "accepted": [
+            "Geht's auch morgen?",
+            "Geht es auch morgen?",
             "Geht's auch morgen? Morgen hätte ich Zeit.",
-            "Geht es auch morgen? Morgen habe ich Zeit.",
-            "Wie wäre es mit morgen? Da hätte ich Zeit.",
-            "Geht's auch morgen? Da hätt ich Zeit.",
             "Und morgen? Morgen habe ich Zeit.",
-            "Geht's auch morgen? Morgen habe ich Zeit.",
-            "Geht es auch morgen? Morgen hätte ich Zeit.",
-            "Geht's auch morgen?"
+            "Geht es auch morgen? Morgen hätte ich Zeit."
           ]
         },
         {
@@ -1231,22 +1475,19 @@
         },
         {
           "r": "B",
-          "de": "Alles klar. Danke für die Einladung, bis morgen!",
-          "tr": "Tamam. Davet için teşekkürler, yarın görüşürüz!",
-          "starter": "Alles klar. Danke für …",
+          "de": "Passt! Danke, bis morgen!",
+          "tr": "Uyar! Teşekkürler, yarın görüşürüz!",
+          "starter": "Passt! Danke, bis …",
           "keywords": [
-            "Einladung",
             "bis morgen"
           ],
-          "hint_tr": "Onayla, davet için teşekkür et ve vedalaş.",
+          "hint_tr": "Onayla, teşekkür et ve vedalaş.",
           "accepted": [
+            "Passt! Danke, bis morgen!",
             "Alles klar. Danke für die Einladung, bis morgen!",
             "Okay, danke! Bis morgen!",
-            "Alles klar, bis morgen beim Rathaus!",
-            "Super, danke für die Einladung. Bis morgen!",
-            "Gut, dann bis morgen!",
-            "Alles klar, bis morgen!",
-            "Okay, bis morgen!"
+            "Passt, bis morgen!",
+            "Alles klar, bis morgen!"
           ]
         },
         {
@@ -1495,19 +1736,18 @@
   "speaking": [
     {
       "task_tr": "Tobi'nin davetini kabul et. Saati ve yeri tekrar ederek doğrula.",
-      "model_de": "Klar, bin dabei! Also um halb sechs am Stand beim Rathaus. Passt!",
+      "model_de": "Klar, bin dabei! Um halb sechs am Stand beim Rathaus. Passt!",
       "hints_de": [
         "Klar, bin dabei!",
-        "Also um …",
+        "Um halb …",
         "Passt!"
       ]
     },
     {
-      "task_tr": "Daveti kibarca ertele, kısa bir sebep söyle ve başka gün öner.",
-      "model_de": "Danke, aber heute kann ich leider nicht, ich habe noch einen Termin. Geht's auch morgen?",
+      "task_tr": "Daveti kibarca ertele ve başka gün öner.",
+      "model_de": "Danke, aber heute kann ich leider nicht. Geht's auch morgen?",
       "hints_de": [
         "Danke, aber heute …",
-        "ich habe noch …",
         "Geht's auch …?"
       ]
     }
@@ -1526,11 +1766,9 @@
         "ch:freizeit:passt-mir"
       ],
       "escape_de": [
-        "Wie war das noch mal?",
-        "Halb sechs – also siebzehn Uhr dreißig?",
-        "Etwas langsamer, bitte.",
-        "Sag's bitte noch mal.",
-        "Wo genau?"
+        "Wann und wo?",
+        "Um halb sechs?",
+        "Passt dir das?"
       ]
     }
   ],
@@ -1539,7 +1777,7 @@
     "Passt dir das denir, passt dich das denmez.",
     "Hızlı konuşmada Kommste, Kommst du demektir. Haste de Hast du demektir.",
     "Heute başta olunca kann hemen ardından gelir: Heute kann ich leider nicht.",
-    "Geçmişi anlatırken gebacken gibi kelimeler sona gider: Ich habe Plätzchen gebacken.",
+    "Geçmişi anlatırken gebracht gibi kelimeler sona gider: Sie hat mir Plätzchen gebracht.",
     "Tek kişiye Hast du diye sorarsın. İki ya da daha fazla kişiye Habt ihr dersin.",
     "Servus ve Pfiat di yalnızca du dediğin kişilere söylenir."
   ],

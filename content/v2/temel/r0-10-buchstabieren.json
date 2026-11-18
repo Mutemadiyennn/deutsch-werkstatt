@@ -1,0 +1,1342 @@
+{
+ "schema": 1,
+ "id": "r0:10-buchstabieren",
+ "order": 10,
+ "level": "A1",
+ "format": "temel",
+ "title_tr": "Heceleme: adını harf harf söyle",
+ "title_de": "Buchstabieren",
+ "goal_tr": "Adını, soyadını ve adresini telefonda harf harf söylemek.",
+ "can_do": {
+  "id": "cd:r0:10",
+  "tr": "Adımı ve adresimi harf harf söyleyebilirim."
+ },
+ "unit": "u:r0:10",
+ "arm": "atolye",
+ "place": "pl:buergerbuero",
+ "characters": [
+  "ch:schneider",
+  "ch:huber",
+  "ch:kraus",
+  "ch:brandl",
+  "ch:aksoy"
+ ],
+ "requires": {
+  "kelimeler": [
+   "lx:wie",
+   "lx:können",
+   "lx:sein",
+   "lx:sieben"
+  ],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "reviewed",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-18",
+  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-06-10.md. Denetim: docs/v2/reviews/temel-r0-denetim.txt. Kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
+  "okur": "passed",
+  "okur_at": "2026-11-18"
+ },
+ "teach": [
+  {
+   "id": "r0:10:a:name",
+   "de": "Mein Name ist {name}.",
+   "tr": "Benim adım {name}.",
+   "lexeme": "lx:Name",
+   "exp": {
+    "anlam_tr": "Kendini tanıtır.",
+    "ne_zaman_tr": "Telefonun başında ve resmî yerlerde.",
+    "parcalar": [
+     {
+      "de": "Mein Name ist",
+      "tr": "benim adım"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r0:10:a:vorname",
+   "de": "Mein Vorname ist {name}.",
+   "tr": "Benim ön adım {name}.",
+   "lexeme": "lx:Vorname",
+   "exp": {
+    "anlam_tr": "Soyadın dışındaki adını söyler.",
+    "ne_zaman_tr": "Form doldururken sorulur.",
+    "parcalar": [
+     {
+      "de": "Mein Vorname ist",
+      "tr": "benim ön adım"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r0:10:a:nachname",
+   "de": "Mein Nachname ist {name}.",
+   "tr": "Benim soyadım {name}.",
+   "lexeme": "lx:Nachname",
+   "exp": {
+    "anlam_tr": "Soyadını söyler.",
+    "ne_zaman_tr": "Muayenehanede ilk sorulan şeydir.",
+    "parcalar": [
+     {
+      "de": "Mein Nachname ist",
+      "tr": "benim soyadım"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r0:10:a:adresse",
+   "de": "Meine Adresse ist Brunnengasse 7.",
+   "tr": "Adresim Brunnengasse 7.",
+   "lexeme": "lx:Adresse",
+   "exp": {
+    "anlam_tr": "Nerede oturduğunu söyler.",
+    "ne_zaman_tr": "Resmî dairede ve kargoda.",
+    "parcalar": [
+     {
+      "de": "Meine Adresse ist",
+      "tr": "adresim"
+     }
+    ],
+    "ipucu_tr": "**Adresse** kelimesinde bir **d** ve iki **s** vardır."
+   }
+  },
+  {
+   "id": "r0:10:a:telefon",
+   "de": "Meine Telefonnummer ist 0171 39200 47.",
+   "tr": "Telefon numaram 0171 39200 47.",
+   "lexeme": "lx:Telefonnummer",
+   "exp": {
+    "anlam_tr": "Telefon numaranı söyler.",
+    "ne_zaman_tr": "Sekreter geri arayacağı zaman.",
+    "parcalar": [
+     {
+      "de": "Meine Telefonnummer ist",
+      "tr": "telefon numaram"
+     }
+    ],
+    "ipucu_tr": "Numarayı rakam rakam ya da küçük gruplarla söyleyebilirsin."
+   }
+  },
+  {
+   "id": "r0:10:a:buchstabe",
+   "de": "Buchstabe",
+   "art": "der",
+   "tr": "harf",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "Alfabedeki bir işaret.",
+    "ne_zaman_tr": "Heceleme sırasında duyarsın.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "r0:10:a:buchstabieren-sie",
+   "de": "Können Sie das bitte buchstabieren?",
+   "tr": "Bunu harf harf söyleyebilir misiniz?",
+   "lexeme": "lx:buchstabieren",
+   "exp": {
+    "anlam_tr": "Bir adın harf harf söylenmesini ister.",
+    "ne_zaman_tr": "Sekreterden çok duyarsın, sen de sorabilirsin.",
+    "parcalar": [
+     {
+      "de": "das",
+      "tr": "bunu"
+     },
+     {
+      "de": "bitte",
+      "tr": "lütfen"
+     },
+     {
+      "de": "Können … buchstabieren",
+      "tr": "harf harf söyleyebilir misiniz"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r0:10:a:ich-buchstabiere",
+   "de": "Ich buchstabiere.",
+   "tr": "Harf harf söylüyorum.",
+   "lexeme": "lx:buchstabieren",
+   "exp": {
+    "anlam_tr": "Harfleri söylemeye başladığını bildirir.",
+    "ne_zaman_tr": "Adın anlaşılmayınca kendin başlat.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "r0:10:a:anton",
+   "de": "A wie Anton",
+   "tr": "A, Anton gibi",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "Harfi bir kişi adıyla netleştirir.",
+    "ne_zaman_tr": "Bu eski biçimi telefonda hâlâ çok duyarsın.",
+    "parcalar": [],
+    "ipucu_tr": "**wie** burada gibi demektir."
+   }
+  },
+  {
+   "id": "r0:10:a:aachen",
+   "de": "A wie Aachen",
+   "tr": "A, Aachen gibi",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "Harfi bir şehir adıyla netleştirir.",
+    "ne_zaman_tr": "Yeni resmî biçim budur, ikisi de doğrudur.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "r0:10:a:wie-schreibt",
+   "de": "Wie schreibt man das?",
+   "tr": "Bu nasıl yazılıyor?",
+   "lexeme": "lx:wie",
+   "exp": {
+    "anlam_tr": "Bir kelimenin yazılışını sorar.",
+    "ne_zaman_tr": "Adı ya da sokağı not ederken.",
+    "parcalar": [],
+    "ipucu_tr": "**man** burada belirli bir kişiyi göstermez."
+   }
+  },
+  {
+   "id": "r0:10:a:doppel",
+   "de": "mit Doppel-L",
+   "tr": "iki L ile",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "Aynı harfin iki kez geldiğini söyler.",
+    "ne_zaman_tr": "**Müller** gibi adlarda işe yarar.",
+    "parcalar": [],
+    "ipucu_tr": "Aynı şey **Doppel-N** ve **Doppel-S** için de geçerlidir."
+   }
+  },
+  {
+   "id": "r0:10:b:b-p",
+   "de": "B wie Berta, P wie Paula",
+   "tr": "B, Berta gibi. P, Paula gibi.",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "**B** ile **P** karışmasın diye harfleri bir kelimeyle söylersin.",
+    "ne_zaman_tr": "Telefonda **B** ile **P** çok karışır.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "r0:10:b:d-t",
+   "de": "D wie Dora, T wie Theodor",
+   "tr": "D, Dora gibi. T, Theodor gibi.",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "**D** ile **T** karışmasın diye harfleri bir kelimeyle söylersin.",
+    "ne_zaman_tr": "Telefonda **D** ile **T** çok karışır.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "r0:10:b:m-n",
+   "de": "M wie Martha, N wie Nordpol",
+   "tr": "M, Martha gibi. N, Nordpol gibi.",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "**M** ile **N** karışmasın diye harfleri bir kelimeyle söylersin.",
+    "ne_zaman_tr": "Telefonda **M** ile **N** çok karışır.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "r0:10:b:f-v",
+   "de": "F wie Friedrich, V wie Viktor",
+   "tr": "F, Friedrich gibi. V, Viktor gibi.",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "**F** ile **V** karışmasın diye harfleri bir kelimeyle söylersin.",
+    "ne_zaman_tr": "Telefonda **F** ile **V** çok karışır.",
+    "parcalar": [],
+    "ipucu_tr": "**V** harfi **fau** diye okunur."
+   }
+  },
+  {
+   "id": "r0:10:b:w",
+   "de": "W wie Wilhelm",
+   "tr": "W, Wilhelm gibi",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "**W** anlaşılsın diye harfi bir kelimeyle söylersin.",
+    "ne_zaman_tr": "Adında **W** varsa.",
+    "parcalar": [],
+    "ipucu_tr": "**W** harfi **ve** diye okunur."
+   }
+  },
+  {
+   "id": "r0:10:b:e-i",
+   "de": "E wie Emil, I wie Ida",
+   "tr": "E, Emil gibi. I, Ida gibi.",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "**E** ile **I** karışmasın diye harfleri bir kelimeyle söylersin.",
+    "ne_zaman_tr": "Adında **E** ya da **I** varsa.",
+    "parcalar": [],
+    "ipucu_tr": "Almancada **E** harfi e, **I** harfi i diye okunur."
+   }
+  },
+  {
+   "id": "r0:10:b:l-r",
+   "de": "L wie Ludwig, R wie Richard",
+   "tr": "L, Ludwig gibi. R, Richard gibi.",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "**L** ve **R** anlaşılsın diye harfleri bir kelimeyle söylersin.",
+    "ne_zaman_tr": "Soyadlarında çok geçen iki harf.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "r0:10:b:g-k",
+   "de": "G wie Gustav, K wie Kaufmann",
+   "tr": "G, Gustav gibi. K, Kaufmann gibi.",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "**G** ile **K** karışmasın diye harfleri bir kelimeyle söylersin.",
+    "ne_zaman_tr": "Telefonda **G** ile **K** karışabilir.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "r0:10:b:s-z",
+   "de": "S wie Samuel, Z wie Zacharias",
+   "tr": "S, Samuel gibi. Z, Zacharias gibi.",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "**S** ile **Z** karışmasın diye harfleri bir kelimeyle söylersin.",
+    "ne_zaman_tr": "Adında **S** ya da **Z** varsa.",
+    "parcalar": [],
+    "ipucu_tr": "**Z** harfi **tset** diye okunur, **S** ile karıştırma."
+   }
+  },
+  {
+   "id": "r0:10:b:u-ue",
+   "de": "U wie Ulrich, Ü wie Übermut",
+   "tr": "U, Ulrich gibi. Ü, Übermut gibi.",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "**U** ile **Ü** karışmasın diye harfleri bir kelimeyle söylersin.",
+    "ne_zaman_tr": "Adında **U** ya da **Ü** varsa.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "r0:10:b:h-o",
+   "de": "H wie Heinrich, O wie Otto",
+   "tr": "H, Heinrich gibi. O, Otto gibi.",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "**H** ve **O** anlaşılsın diye harfleri bir kelimeyle söylersin.",
+    "ne_zaman_tr": "Adında **H** ya da **O** varsa.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "r0:10:b:y",
+   "de": "Y wie Ypsilon",
+   "tr": "Y, Ypsilon",
+   "lexeme": "lx:Buchstabe",
+   "exp": {
+    "anlam_tr": "**Y** harfinin adı **Ypsilon** olur.",
+    "ne_zaman_tr": "Türkçe adlarda **Y** çok geçer.",
+    "parcalar": [],
+    "ipucu_tr": "Okunuşu **üpsilon** olur."
+   }
+  }
+ ],
+ "table": {
+  "baslik_tr": "Harf harf söyleme tablosu",
+  "sutunlar": [
+   "Harf",
+   "Okunuşu",
+   "Şehir adı (yeni)",
+   "Kişi adı (eski)"
+  ],
+  "satirlar": [
+   [
+    "A",
+    "a",
+    "Aachen",
+    "Anton"
+   ],
+   [
+    "B",
+    "be",
+    "Berlin",
+    "Berta"
+   ],
+   [
+    "C",
+    "tse",
+    "Chemnitz",
+    "Cäsar"
+   ],
+   [
+    "D",
+    "de",
+    "Düsseldorf",
+    "Dora"
+   ],
+   [
+    "E",
+    "e",
+    "Essen",
+    "Emil"
+   ],
+   [
+    "F",
+    "ef",
+    "Frankfurt",
+    "Friedrich"
+   ],
+   [
+    "G",
+    "ge",
+    "Goslar",
+    "Gustav"
+   ],
+   [
+    "H",
+    "ha",
+    "Hamburg",
+    "Heinrich"
+   ],
+   [
+    "I",
+    "i",
+    "Ingelheim",
+    "Ida"
+   ],
+   [
+    "J",
+    "yot",
+    "Jena",
+    "Julius"
+   ],
+   [
+    "K",
+    "ka",
+    "Köln",
+    "Kaufmann"
+   ],
+   [
+    "L",
+    "el",
+    "Leipzig",
+    "Ludwig"
+   ],
+   [
+    "M",
+    "em",
+    "München",
+    "Martha"
+   ],
+   [
+    "N",
+    "en",
+    "Nürnberg",
+    "Nordpol"
+   ],
+   [
+    "O",
+    "o",
+    "Offenbach",
+    "Otto"
+   ],
+   [
+    "P",
+    "pe",
+    "Potsdam",
+    "Paula"
+   ],
+   [
+    "Q",
+    "ku",
+    "Quickborn",
+    "Quelle"
+   ],
+   [
+    "R",
+    "er",
+    "Rostock",
+    "Richard"
+   ],
+   [
+    "S",
+    "es",
+    "Salzwedel",
+    "Samuel"
+   ],
+   [
+    "T",
+    "te",
+    "Tübingen",
+    "Theodor"
+   ],
+   [
+    "U",
+    "u",
+    "Unna",
+    "Ulrich"
+   ],
+   [
+    "V",
+    "fau",
+    "Völklingen",
+    "Viktor"
+   ],
+   [
+    "W",
+    "ve",
+    "Wuppertal",
+    "Wilhelm"
+   ],
+   [
+    "X",
+    "iks",
+    "Xanten",
+    "Xanthippe"
+   ],
+   [
+    "Y",
+    "üpsilon",
+    "Ypsilon",
+    "Ypsilon"
+   ],
+   [
+    "Z",
+    "tset",
+    "Zwickau",
+    "Zacharias"
+   ],
+   [
+    "Ä",
+    "açık e",
+    "Umlaut Aachen",
+    "Ärger"
+   ],
+   [
+    "Ö",
+    "ö",
+    "Umlaut Offenbach",
+    "Ökonom"
+   ],
+   [
+    "Ü",
+    "ü",
+    "Umlaut Unna",
+    "Übermut"
+   ],
+   [
+    "ß",
+    "es-tset",
+    "Eszett",
+    "Eszett"
+   ],
+   [
+    "Ch",
+    "tse-ha",
+    "yok, C ve H ayrı",
+    "Charlotte"
+   ],
+   [
+    "Sch",
+    "es-tse-ha",
+    "yok, S, C ve H ayrı",
+    "Schule"
+   ]
+  ]
+ },
+ "drills": [
+  {
+   "id": "r0:10:d01",
+   "k": "gap",
+   "de": "B wie ___",
+   "tr": "B, Berta gibi",
+   "accepted": [
+    "Berta",
+    "Berlin"
+   ],
+   "opts": [
+    "Berta",
+    "Dora",
+    "Paula"
+   ],
+   "why_tr": "**B** ile **P** telefonda karışır, adı söylemek bunu önler."
+  },
+  {
+   "id": "r0:10:d02",
+   "k": "gap",
+   "de": "D wie ___",
+   "tr": "D, Dora gibi",
+   "accepted": [
+    "Dora",
+    "Düsseldorf"
+   ],
+   "opts": [
+    "Dora",
+    "Theodor",
+    "Berta"
+   ],
+   "why_tr": "**D** ile **T** telefonda karışır."
+  },
+  {
+   "id": "r0:10:d03",
+   "k": "gap",
+   "de": "M wie ___",
+   "tr": "M, Martha gibi",
+   "accepted": [
+    "Martha",
+    "München"
+   ],
+   "opts": [
+    "Martha",
+    "Nordpol",
+    "Ludwig"
+   ],
+   "why_tr": "**M** ile **N** telefonda karışır."
+  },
+  {
+   "id": "r0:10:d04",
+   "k": "gap",
+   "de": "F wie ___",
+   "tr": "F, Friedrich gibi",
+   "accepted": [
+    "Friedrich",
+    "Frankfurt"
+   ],
+   "opts": [
+    "Friedrich",
+    "Viktor",
+    "Wilhelm"
+   ],
+   "why_tr": "**V** harfi **fau** okunur, bu yüzden **F** ile karışır."
+  },
+  {
+   "id": "r0:10:d05",
+   "k": "gap",
+   "de": "___ wie Wilhelm",
+   "tr": "W, Wilhelm gibi",
+   "accepted": [
+    "W"
+   ],
+   "opts": [
+    "W",
+    "V",
+    "F"
+   ],
+   "why_tr": "**W** harfi **ve** diye okunur."
+  },
+  {
+   "id": "r0:10:d06",
+   "k": "gap",
+   "de": "Können Sie das bitte ___?",
+   "tr": "Bunu harf harf söyleyebilir misiniz?",
+   "accepted": [
+    "buchstabieren"
+   ],
+   "opts": [
+    "buchstabieren",
+    "wiederholen",
+    "machen"
+   ]
+  },
+  {
+   "id": "r0:10:d07",
+   "k": "gap",
+   "de": "Wie ___ man das?",
+   "tr": "Bu nasıl yazılıyor?",
+   "accepted": [
+    "schreibt"
+   ],
+   "opts": [
+    "schreibt",
+    "kostet",
+    "ist"
+   ]
+  },
+  {
+   "id": "r0:10:d08",
+   "k": "pick",
+   "q_tr": "**V** harfi nasıl okunur?",
+   "opts": [
+    "fau",
+    "ve",
+    "ef"
+   ],
+   "ans": 0
+  },
+  {
+   "id": "r0:10:d09",
+   "k": "pick",
+   "q_tr": "**J** harfi nasıl okunur?",
+   "opts": [
+    "yot",
+    "je",
+    "ce"
+   ],
+   "ans": 0
+  },
+  {
+   "id": "r0:10:d10",
+   "k": "pick",
+   "q_tr": "**Z** harfi nasıl okunur?",
+   "opts": [
+    "tset",
+    "ze",
+    "es"
+   ],
+   "ans": 0
+  },
+  {
+   "id": "r0:10:d11",
+   "k": "pick",
+   "q_tr": "Telefonda **i** duydun. Hangi harf?",
+   "opts": [
+    "I",
+    "E",
+    "Ü"
+   ],
+   "ans": 0,
+   "why_tr": "Almancada **E** harfi e, **I** harfi i diye okunur."
+  },
+  {
+   "id": "r0:10:d33",
+   "k": "pick",
+   "q_tr": "Telefonda **K wie Köln** duydun. Hangi harf?",
+   "opts": [
+    "K",
+    "G",
+    "C"
+   ],
+   "ans": 0,
+   "why_tr": "**Köln** adı **K** ile başlar."
+  },
+  {
+   "id": "r0:10:d34",
+   "k": "pick",
+   "q_tr": "Telefonda **S wie Salzwedel** duydun. Hangi harf?",
+   "opts": [
+    "Z",
+    "S",
+    "C"
+   ],
+   "ans": 1,
+   "why_tr": "**Salzwedel** adı **S** ile başlar."
+  },
+  {
+   "id": "r0:10:d35",
+   "k": "pick",
+   "q_tr": "Telefonda **M wie München** duydun. Hangi harf?",
+   "opts": [
+    "N",
+    "W",
+    "M"
+   ],
+   "ans": 2,
+   "why_tr": "**München** adı **M** ile başlar."
+  },
+  {
+   "id": "r0:10:d12",
+   "k": "order",
+   "de": "das / Wie / man / schreibt",
+   "tr": "Bu nasıl yazılıyor?",
+   "accepted": [
+    "Wie schreibt man das?"
+   ]
+  },
+  {
+   "id": "r0:10:d13",
+   "k": "order",
+   "de": "bitte / Können / buchstabieren / das / Sie",
+   "tr": "Bunu harf harf söyleyebilir misiniz?",
+   "accepted": [
+    "Können Sie das bitte buchstabieren?",
+    "Können Sie bitte das buchstabieren?"
+   ]
+  },
+  {
+   "id": "r0:10:d14",
+   "k": "tr_de",
+   "tr": "Benim adım {name}.",
+   "accepted": [
+    "Mein Name ist {name}.",
+    "Ich heiße {name}.",
+    "Ich bin {name}.",
+    "{name} ist mein Name."
+   ]
+  },
+  {
+   "id": "r0:10:d15",
+   "k": "tr_de",
+   "tr": "Benim soyadım {name}.",
+   "accepted": [
+    "Mein Nachname ist {name}.",
+    "Mein Familienname ist {name}.",
+    "{name} ist mein Nachname.",
+    "Mein Name ist {name}.",
+    "Ich heiße {name}."
+   ]
+  },
+  {
+   "id": "r0:10:d16",
+   "k": "tr_de",
+   "tr": "Bunu harf harf söyleyebilir misiniz?",
+   "accepted": [
+    "Können Sie das bitte buchstabieren?",
+    "Können Sie das buchstabieren?",
+    "Könnten Sie das bitte buchstabieren?",
+    "Bitte buchstabieren Sie das."
+   ]
+  },
+  {
+   "id": "r0:10:d17",
+   "k": "tr_de",
+   "tr": "Bu nasıl yazılıyor?",
+   "accepted": [
+    "Wie schreibt man das?",
+    "Wie schreibt man das denn?",
+    "Wie wird das geschrieben?"
+   ]
+  },
+  {
+   "id": "r0:10:d18",
+   "k": "tr_de",
+   "tr": "Harf harf söylüyorum.",
+   "accepted": [
+    "Ich buchstabiere.",
+    "Ich buchstabiere mal.",
+    "Ich buchstabiere das."
+   ]
+  },
+  {
+   "id": "r0:10:d19",
+   "k": "tr_de",
+   "tr": "Adresim Brunnengasse 7.",
+   "accepted": [
+    "Meine Adresse ist Brunnengasse 7.",
+    "Ich wohne in der Brunnengasse 7.",
+    "Brunnengasse 7."
+   ]
+  },
+  {
+   "id": "r0:10:d20",
+   "k": "tr_de",
+   "tr": "Telefon numaram 0171 39200 47.",
+   "accepted": [
+    "Meine Telefonnummer ist 0171 39200 47.",
+    "Meine Nummer ist 0171 39200 47.",
+    "0171 39200 47.",
+    "Null eins sieben eins, drei neun zwei null null, vier sieben.",
+    "Null eins sieben eins, drei neun zwo null null, vier sieben.",
+    "Meine Telefonnummer ist null eins sieben eins, drei neun zwei null null, vier sieben.",
+    "Meine Nummer ist null eins sieben eins, drei neun zwei null null, vier sieben.",
+    "0171 3920047.",
+    "01713920047.",
+    "0171 392 00 47.",
+    "Null eins sieben eins, drei neun zwei null null, siebenundvierzig.",
+    "Null eins sieben eins, drei neun zwo null null, siebenundvierzig.",
+    "Null eins sieben eins, neununddreißig zweihundert, siebenundvierzig.",
+    "Null eins sieben eins, neununddreißig, zwei null null, siebenundvierzig.",
+    "Null eins sieben eins, neununddreißig, zwo null null, siebenundvierzig.",
+    "Null eins sieben eins, neununddreißig zwanzig null vier sieben.",
+    "Null hunderteinundsiebzig, drei neun zwei null null, vier sieben.",
+    "Null hunderteinundsiebzig, drei neun zwei null null, siebenundvierzig.",
+    "Meine Telefonnummer ist 0171 3920047.",
+    "Meine Telefonnummer ist 01713920047.",
+    "Meine Telefonnummer ist 0171 392 00 47.",
+    "Meine Telefonnummer ist null eins sieben eins, drei neun zwo null null, vier sieben.",
+    "Meine Telefonnummer ist null eins sieben eins, drei neun zwei null null, siebenundvierzig.",
+    "Meine Telefonnummer ist null eins sieben eins, drei neun zwo null null, siebenundvierzig.",
+    "Meine Telefonnummer ist null eins sieben eins, neununddreißig zweihundert, siebenundvierzig.",
+    "Meine Telefonnummer ist null eins sieben eins, neununddreißig, zwei null null, siebenundvierzig.",
+    "Meine Telefonnummer ist null eins sieben eins, neununddreißig, zwo null null, siebenundvierzig.",
+    "Meine Telefonnummer ist null eins sieben eins, neununddreißig zwanzig null vier sieben.",
+    "Meine Telefonnummer ist null hunderteinundsiebzig, drei neun zwei null null, vier sieben.",
+    "Meine Telefonnummer ist null hunderteinundsiebzig, drei neun zwei null null, siebenundvierzig.",
+    "Meine Nummer ist 0171 3920047.",
+    "Meine Nummer ist 01713920047.",
+    "Meine Nummer ist 0171 392 00 47.",
+    "Meine Nummer ist null eins sieben eins, drei neun zwo null null, vier sieben.",
+    "Meine Nummer ist null eins sieben eins, drei neun zwei null null, siebenundvierzig.",
+    "Meine Nummer ist null eins sieben eins, drei neun zwo null null, siebenundvierzig.",
+    "Meine Nummer ist null eins sieben eins, neununddreißig zweihundert, siebenundvierzig.",
+    "Meine Nummer ist null eins sieben eins, neununddreißig, zwei null null, siebenundvierzig.",
+    "Meine Nummer ist null eins sieben eins, neununddreißig, zwo null null, siebenundvierzig.",
+    "Meine Nummer ist null eins sieben eins, neununddreißig zwanzig null vier sieben.",
+    "Meine Nummer ist null hunderteinundsiebzig, drei neun zwei null null, vier sieben.",
+    "Meine Nummer ist null hunderteinundsiebzig, drei neun zwei null null, siebenundvierzig.",
+    "Die Nummer ist 0171 39200 47.",
+    "Die Nummer ist 0171 3920047.",
+    "Die Nummer ist 01713920047.",
+    "Die Nummer ist 0171 392 00 47.",
+    "Die Nummer ist null eins sieben eins, drei neun zwei null null, vier sieben.",
+    "Die Nummer ist null eins sieben eins, drei neun zwo null null, vier sieben.",
+    "Die Nummer ist null eins sieben eins, drei neun zwei null null, siebenundvierzig.",
+    "Die Nummer ist null eins sieben eins, drei neun zwo null null, siebenundvierzig.",
+    "Die Nummer ist null eins sieben eins, neununddreißig zweihundert, siebenundvierzig.",
+    "Die Nummer ist null eins sieben eins, neununddreißig, zwei null null, siebenundvierzig.",
+    "Die Nummer ist null eins sieben eins, neununddreißig, zwo null null, siebenundvierzig.",
+    "Die Nummer ist null eins sieben eins, neununddreißig zwanzig null vier sieben.",
+    "Die Nummer ist null hunderteinundsiebzig, drei neun zwei null null, vier sieben.",
+    "Die Nummer ist null hunderteinundsiebzig, drei neun zwei null null, siebenundvierzig."
+   ]
+  },
+  {
+   "id": "r0:10:d21",
+   "k": "transform",
+   "instr_tr": "Aynı harfi şehir adıyla söyle.",
+   "from_de": "A wie Anton",
+   "accepted": [
+    "A wie Aachen",
+    "Aachen",
+    "A Aachen"
+   ]
+  },
+  {
+   "id": "r0:10:d22",
+   "k": "transform",
+   "instr_tr": "**K** harfini **wie** ile bir adla söyle.",
+   "from_de": "K",
+   "accepted": [
+    "K wie Kaufmann",
+    "Kaufmann",
+    "K Kaufmann",
+    "K wie Köln",
+    "Köln",
+    "K Köln"
+   ],
+   "why_tr": "Şehir adıyla **K wie Köln** de doğrudur."
+  },
+  {
+   "id": "r0:10:d23",
+   "k": "transform",
+   "instr_tr": "**S** harfini **wie** ile bir adla söyle.",
+   "from_de": "S",
+   "accepted": [
+    "S wie Samuel",
+    "Samuel",
+    "S Samuel",
+    "S wie Salzwedel",
+    "Salzwedel",
+    "S Salzwedel"
+   ],
+   "why_tr": "Şehir adıyla **S wie Salzwedel** de doğrudur."
+  },
+  {
+   "id": "r0:10:d24",
+   "k": "transform",
+   "instr_tr": "Aynı harfi kişi adıyla söyle.",
+   "from_de": "D wie Düsseldorf",
+   "accepted": [
+    "D wie Dora",
+    "Dora",
+    "D Dora"
+   ]
+  },
+  {
+   "id": "r0:10:d25",
+   "k": "transform",
+   "instr_tr": "Aynı harfi kişi adıyla söyle.",
+   "from_de": "H wie Hamburg",
+   "accepted": [
+    "H wie Heinrich",
+    "Heinrich",
+    "H Heinrich"
+   ]
+  },
+  {
+   "id": "r0:10:d26",
+   "k": "guided_response",
+   "situation_tr": "Komşunun paketi için kurye soyadını soruyor. Soyadı **Brandl**. Harf harf söyle.",
+   "prompt_de": "Können Sie das bitte buchstabieren?",
+   "accepted": [
+    "B wie Berta, R wie Richard, A wie Anton, N wie Nordpol, D wie Dora, L wie Ludwig",
+    "B wie Berlin, R wie Rostock, A wie Aachen, N wie Nürnberg, D wie Düsseldorf, L wie Leipzig",
+    "Berta, Richard, Anton, Nordpol, Dora, Ludwig",
+    "Berlin, Rostock, Aachen, Nürnberg, Düsseldorf, Leipzig",
+    "B, R, A, N, D, L"
+   ],
+   "why_tr": "Kişi adı ya da şehir adı, ikisi de doğrudur."
+  },
+  {
+   "id": "r0:10:d27",
+   "k": "guided_response",
+   "situation_tr": "Eczacıya doktorunun soyadını söylüyorsun: **Weber**.",
+   "prompt_de": "Wie schreibt man das?",
+   "accepted": [
+    "W wie Wilhelm, E wie Emil, B wie Berta, E wie Emil, R wie Richard",
+    "W wie Wuppertal, E wie Essen, B wie Berlin, E wie Essen, R wie Rostock",
+    "Wilhelm, Emil, Berta, Emil, Richard",
+    "Wuppertal, Essen, Berlin, Essen, Rostock",
+    "W, E, B, E, R"
+   ]
+  },
+  {
+   "id": "r0:10:d28",
+   "k": "guided_response",
+   "situation_tr": "İş arkadaşın için form dolduruyorsun. Soyadı **Aksoy**.",
+   "prompt_de": "Können Sie das bitte buchstabieren?",
+   "accepted": [
+    "A wie Anton, K wie Kaufmann, S wie Samuel, O wie Otto, Y wie Ypsilon",
+    "A wie Aachen, K wie Köln, S wie Salzwedel, O wie Offenbach, Y wie Ypsilon",
+    "Anton, Kaufmann, Samuel, Otto, Ypsilon",
+    "Aachen, Köln, Salzwedel, Offenbach, Ypsilon",
+    "A, K, S, O, Y"
+   ]
+  },
+  {
+   "id": "r0:10:d29",
+   "k": "guided_response",
+   "situation_tr": "Şehirdeki ırmağın adını soruyorlar: **Vils**.",
+   "prompt_de": "Wie schreibt man das?",
+   "accepted": [
+    "V wie Viktor, I wie Ida, L wie Ludwig, S wie Samuel",
+    "V wie Völklingen, I wie Ingelheim, L wie Leipzig, S wie Salzwedel",
+    "Viktor, Ida, Ludwig, Samuel",
+    "Völklingen, Ingelheim, Leipzig, Salzwedel",
+    "V, I, L, S"
+   ],
+   "why_tr": "**V** harfi **fau** okunur."
+  },
+  {
+   "id": "r0:10:d30",
+   "k": "listen_and_respond",
+   "audio_de": "Wie war der Name? Buchstabieren Sie bitte.",
+   "speed": "fast",
+   "situation_tr": "Sekreterin soyadını soruyorlar: **Huber**.",
+   "accepted": [
+    "H wie Heinrich, U wie Ulrich, B wie Berta, E wie Emil, R wie Richard",
+    "H wie Hamburg, U wie Unna, B wie Berlin, E wie Essen, R wie Rostock",
+    "Heinrich, Ulrich, Berta, Emil, Richard",
+    "Hamburg, Unna, Berlin, Essen, Rostock",
+    "H, U, B, E, R"
+   ]
+  },
+  {
+   "id": "r0:10:d31",
+   "k": "listen_and_respond",
+   "audio_de": "Wie schreibt man Müller?",
+   "speed": "normal",
+   "situation_tr": "Telefonda bir soyadını soruyorlar: **Müller**. İki **L** var.",
+   "accepted": [
+    "M wie Martha, Ü wie Übermut, L wie Ludwig, L wie Ludwig, E wie Emil, R wie Richard",
+    "M wie Martha, Ü wie Übermut, Doppel-L wie Ludwig, E wie Emil, R wie Richard",
+    "M wie München, Umlaut Unna, Doppel-L wie Leipzig, E wie Essen, R wie Rostock",
+    "M wie München, Umlaut Unna, L wie Leipzig, L wie Leipzig, E wie Essen, R wie Rostock",
+    "Martha, Übermut, Ludwig, Ludwig, Emil, Richard",
+    "München, Umlaut Unna, Leipzig, Leipzig, Essen, Rostock",
+    "M, Ü, L, L, E, R",
+    "M, Ü, Doppel-L, E, R",
+    "Martha, Übermut, Doppel-L wie Ludwig, Emil, Richard",
+    "M wie Martha, Ü wie Übermut, Doppel-L, E wie Emil, R wie Richard",
+    "M wie München, Umlaut Unna, Doppel-L, E wie Essen, R wie Rostock"
+   ],
+   "why_tr": "**Doppel-L** demek de doğrudur."
+  },
+  {
+   "id": "r0:10:d32",
+   "k": "listen_and_respond",
+   "audio_de": "Können Sie mir den Namen buchstabieren?",
+   "speed": "natural",
+   "situation_tr": "Spor salonundaki arkadaşının soyadı **Kraus**.",
+   "accepted": [
+    "K wie Kaufmann, R wie Richard, A wie Anton, U wie Ulrich, S wie Samuel",
+    "K wie Köln, R wie Rostock, A wie Aachen, U wie Unna, S wie Salzwedel",
+    "Kaufmann, Richard, Anton, Ulrich, Samuel",
+    "Köln, Rostock, Aachen, Unna, Salzwedel",
+    "K, R, A, U, S"
+   ]
+  }
+ ],
+ "dialogue": {
+  "title_tr": "Vatandaş bürosunda",
+  "lines": [
+   {
+    "speaker": "ch:schneider",
+    "r": "A",
+    "de": "Guten Tag. Wie ist Ihr Name, bitte?",
+    "tr": "İyi günler. Adınız nedir lütfen?"
+   },
+   {
+    "speaker": "ogrenci",
+    "r": "B",
+    "de": "Mein Name ist {name}.",
+    "tr": "Benim adım {name}."
+   },
+   {
+    "speaker": "ch:schneider",
+    "r": "A",
+    "de": "Können Sie das bitte buchstabieren?",
+    "tr": "Bunu harf harf söyleyebilir misiniz?"
+   },
+   {
+    "speaker": "ogrenci",
+    "r": "B",
+    "de": "Ich buchstabiere.",
+    "tr": "Harf harf söylüyorum."
+   },
+   {
+    "speaker": "ch:schneider",
+    "r": "A",
+    "de": "Danke, {Herr|Frau} {name}. Und Ihre Adresse?",
+    "tr": "Teşekkürler, {Herr|Frau} {name}. Adresiniz?"
+   },
+   {
+    "speaker": "ogrenci",
+    "r": "B",
+    "de": "Meine Adresse ist Brunnengasse 7.",
+    "tr": "Adresim Brunnengasse 7."
+   },
+   {
+    "speaker": "ch:schneider",
+    "r": "A",
+    "de": "Wie schreibt man das?",
+    "tr": "Bu nasıl yazılıyor?"
+   },
+   {
+    "speaker": "ogrenci",
+    "r": "B",
+    "de": "B wie Berta, R wie Richard, U wie Ulrich, Doppel-N wie Nordpol, E wie Emil, N wie Nordpol, G wie Gustav, A wie Anton, Doppel-S wie Samuel, E wie Emil.",
+    "tr": "Harf harf: B, R, U, iki N, E, N, G, A, iki S, E."
+   },
+   {
+    "speaker": "ch:schneider",
+    "r": "A",
+    "de": "Danke, das habe ich.",
+    "tr": "Teşekkürler, yazdım."
+   }
+  ]
+ },
+ "listening": [
+  {
+   "id": "r0:10:h1",
+   "title_tr": "Sekreter adı yazıyor",
+   "speed": "normal",
+   "speeds": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "r": "Frau Huber",
+     "de": "Wie ist Ihr Nachname, bitte?",
+     "tr": "Soyadınız nedir lütfen?"
+    },
+    {
+     "r": "Patient",
+     "de": "Demir.",
+     "tr": "Demir."
+    },
+    {
+     "r": "Frau Huber",
+     "de": "Können Sie das bitte buchstabieren?",
+     "tr": "Bunu harf harf söyleyebilir misiniz?"
+    },
+    {
+     "r": "Patient",
+     "de": "D wie Dora, E wie Emil, M wie Martha, I wie Ida, R wie Richard.",
+     "tr": "D, E, M, I, R."
+    },
+    {
+     "r": "Frau Huber",
+     "de": "Danke. Und Ihre Telefonnummer?",
+     "tr": "Teşekkürler. Telefon numaranız?"
+    },
+    {
+     "r": "Patient",
+     "de": "Null acht neun, neun neun neun neun acht, zwei eins vier.",
+     "tr": "089 99998 214."
+    },
+    {
+     "r": "Frau Huber",
+     "de": "Gut, wir rufen Sie zurück.",
+     "tr": "Tamam, sizi geri ararız."
+    }
+   ],
+   "qs": [
+    {
+     "kind": "gist",
+     "q_tr": "Sekreter ne yapıyor?",
+     "opts": [
+      "Hastanın bilgilerini yazıyor",
+      "Randevu iptal ediyor",
+      "Fiyat söylüyor"
+     ],
+     "ans": 0
+    },
+    {
+     "kind": "detail",
+     "q_tr": "Hastanın soyadı ne?",
+     "opts": [
+      "Demir",
+      "Temir",
+      "Demer"
+     ],
+     "ans": 0
+    },
+    {
+     "kind": "detail",
+     "q_tr": "Telefon numarası hangisi?",
+     "opts": [
+      "089 99998 214",
+      "089 99988 214",
+      "098 99998 214"
+     ],
+     "ans": 0
+    }
+   ]
+  },
+  {
+   "id": "r0:10:h2",
+   "title_tr": "Kurye adı yanlış okuyor",
+   "speed": "natural",
+   "speeds": [
+    "normal",
+    "natural"
+   ],
+   "script": [
+    {
+     "r": "Kurier",
+     "de": "Grüß Gott, ich habe ein Paket für Herrn Krause.",
+     "tr": "Merhaba, Herr Krause için bir paketim var."
+    },
+    {
+     "r": "Herr Kraus",
+     "de": "Ich heiße Kraus, nicht Krause.",
+     "tr": "Benim adım Kraus, Krause değil."
+    },
+    {
+     "r": "Kurier",
+     "de": "Wie schreibt man das?",
+     "tr": "Bu nasıl yazılıyor?"
+    },
+    {
+     "r": "Herr Kraus",
+     "de": "K wie Köln, R wie Rostock, A wie Aachen, U wie Unna, S wie Salzwedel.",
+     "tr": "K, R, A, U, S."
+    },
+    {
+     "r": "Kurier",
+     "de": "Ah, Kraus! Das passt. Alles klar, danke!",
+     "tr": "Ha, Kraus! Tamam, uyuyor. Teşekkürler!"
+    }
+   ],
+   "qs": [
+    {
+     "kind": "gist",
+     "q_tr": "Kurye neden soruyor?",
+     "opts": [
+      "Paketi doğru kişiye vermek için",
+      "Para istemek için",
+      "Yol sormak için"
+     ],
+     "ans": 0
+    },
+    {
+     "kind": "detail",
+     "q_tr": "Soyadı hangisi?",
+     "opts": [
+      "Kraus",
+      "Graus",
+      "Krause"
+     ],
+     "ans": 0
+    },
+    {
+     "kind": "detail",
+     "q_tr": "Herr Kraus harfleri nasıl söylüyor?",
+     "opts": [
+      "Şehir adlarıyla",
+      "Kişi adlarıyla",
+      "Yalnızca harflerle"
+     ],
+     "ans": 0
+    }
+   ]
+  }
+ ],
+ "placement": [
+  {
+   "id": "r0:10:p01",
+   "k": "gap",
+   "de": "D wie ___",
+   "tr": "D, Dora gibi",
+   "accepted": [
+    "Dora",
+    "Düsseldorf"
+   ],
+   "opts": [
+    "Dora",
+    "Theodor",
+    "Berta"
+   ]
+  },
+  {
+   "id": "r0:10:p02",
+   "k": "pick",
+   "q_tr": "**W** harfi nasıl okunur?",
+   "opts": [
+    "ve",
+    "fau",
+    "vu"
+   ],
+   "ans": 0
+  },
+  {
+   "id": "r0:10:p03",
+   "k": "tr_de",
+   "tr": "Bunu harf harf söyleyebilir misiniz?",
+   "accepted": [
+    "Können Sie das bitte buchstabieren?",
+    "Können Sie das buchstabieren?",
+    "Könnten Sie das bitte buchstabieren?",
+    "Bitte buchstabieren Sie das."
+   ]
+  },
+  {
+   "id": "r0:10:p04",
+   "k": "transform",
+   "instr_tr": "**M** harfini **wie** ile bir adla söyle.",
+   "from_de": "M",
+   "accepted": [
+    "M wie Martha",
+    "Martha",
+    "M Martha",
+    "M wie München",
+    "München",
+    "M München"
+   ],
+   "why_tr": "Şehir adıyla **M wie München** de doğrudur."
+  },
+  {
+   "id": "r0:10:p05",
+   "k": "guided_response",
+   "situation_tr": "Eczacı doktorunun soyadını soruyor: **Weber**.",
+   "prompt_de": "Können Sie das bitte buchstabieren?",
+   "accepted": [
+    "W wie Wilhelm, E wie Emil, B wie Berta, E wie Emil, R wie Richard",
+    "W wie Wuppertal, E wie Essen, B wie Berlin, E wie Essen, R wie Rostock",
+    "Wilhelm, Emil, Berta, Emil, Richard",
+    "Wuppertal, Essen, Berlin, Essen, Rostock",
+    "W, E, B, E, R"
+   ]
+  }
+ ],
+ "mission": {
+  "task_tr": "Kendi adını ve soyadını harf harf söyle. Tablodaki kişi adlarını kullan. İstersen şehir adlarıyla da dene. Sesini kaydet ve dinle."
+ }
+}

@@ -1,14 +1,20 @@
 # STATUS — Deutsch Werkstatt 2.0
 
-Son güncelleme: 2026-11-18 23:45 UTC · Faz: **R1 hazırlığı** · Ana dal: `main` (`d751b19`) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (etiket `v2-20261117-2`)
+Son güncelleme: 2026-11-18 23:45 UTC · Faz: **R1 hazırlığı** · Ana dal: `main` (`64b5024`) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (etiket `v2-20261117-2`)
 Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DONGUSU → BEYIN → MIMARI → TASARIM …) → bu dosya → `DECISIONS.md`. "Sıradaki adım"dan devam et; hiçbir iş baştan başlatılmaz (PM-007 §4).
 
 ## Sıradaki adım (PM-050: "İlk Hafta" dikey dilimi önce; 2026-11-18 23:45 UTC)
 **İmza yol haritası:** [`docs/v2/IMZA_YOL_HARITASI.md`](IMZA_YOL_HARITASI.md) — #54'ün her satırı için ekran tarifi ve sıra (PM-048).
-1. Birleştirme: #51 (R0) → #49 (PM-032, PM-044) → #55 (bu PR: şema) → #43 (DN-2). Birleşenler: #52, #48 (23:07), #50 (23:34).
+1. Birleştirme: #55 (bu PR: şema) → #43 (DN-2) → Kelime Bahçesi PR'ı. Birleşenler: #52 (23:05), #48 (23:07), #50 (23:34), #51 (23:54), #49 (23:54).
 2. **PM-049 Kelime Bahçesi** (dal `v2/bahce`): sekiz soru türü, FSRS vadesi, yanlışta başka örnek ve fotoğraf, kalıcılık kuralı; `strictNumberWords` oynatıcıya burada bağlanır.
 3. PM-050 sırası: video ve ses soru oynatıcısı + dikte → ders yolu ve XP → yeni Bugün + Pomodoro (PM-047) → konuşma provası. Öne alınan mühendislik: çevrimdışı, veri güvenliği, hata sınırı.
 4. Sonra: heceleme yuvaları (İçerik Motoru isteği), PM-039.1 (deploy-v2 CI'a bağlı), #45 arayüz P0'ları.
+
+## Birleşenler (2026-11-18)
+- #52 gizlilik (23:05) → v1 **2026-11-18c** yayında · #48 46 kalıp (23:07): kayıttaki 61 kalıbın hepsi onaylı.
+
+## Ölçümler (PM-046 A)
+- Okur turu ortalaması: PM-032 partisi 5 tur (çip ölçütü tur 4'te eklendi), 46 kalıp 3 tur. Hedef ≤ 1,5. Geri dönen hata türleri (tırnak, noktalı virgül, "aynı durumda" göndermesi, olumsuzluğu kaybeden çip) yazar talimatına eklendi.
 
 ## Yarım işler (PM-042 C)
 | İş | Dal | Durum |
@@ -25,14 +31,14 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | B1 | — / 208 / 18 / 0 | — / 11 / 0 / 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | B2, C1, C2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 \* Pilotun 14 kalıbı dilbilimciden geçti (çalışma kopyasında, Advent PR'ıyla depoya girecek); OD-9.4 okur kapısı henüz yok, bu yüzden "yayında" sayılmaz. Kalan 47 kalıbın incelemesi yapıldı (35'inde düzeltme) ama ajan son raporu yazmadan durduruldu: bu 47'si onay bekliyor (taslak). Hedef sütunu (günlük: yazar ≥2 ünite parçası, lex 150–200 kart, dilbilimci aynı gün) hat başlayınca günlük doldurulur. BY-8 tükenme tahmini: K2 motoru (R1) gelene kadar hesaplanamaz.
+R0 temel paket: 10 ders, 189 öğretim öğesi, 353 alıştırma; PR #51 (`TemelDers` türü gelene kadar uygulamada görünmez).
+Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur. Hata türleri yazar görevine eklendi; 009 ve sonrası ölçülüyor.
 
 ## Açık PR'lar
 | PR | Dal | Teslim | İnceleme |
 |---|---|---|---|
-| #51 | `content/r0-temel` | İçerik Motoru: R0 temel paket | 2. tur bulguları kapandı (İçerik Motoru) |
-| #49 | `v2/telefon01-ogretim` | PM-032, PM-044.1–3 | ONAY (3. tur, Opus) |
-| #55 | `v2/sema` | Şema sözleşmesi (D-098), ajan modelleri, imza yol haritası | 1. tur bulguları düzeltildi |
-| #43 | `v2/denetim` | PM-030 DN-2 | yükleme sınırı: kök neden bulundu |
+| #55 | `v2/sema` | Şema sözleşmesi (D-098), ajan modelleri, imza yol haritası | ONAY (2. tur, Opus) |
+| #43 | `v2/denetim` | PM-030 DN-2 | yükleme sınırı: kök neden (bulanık gölge) düzeltildi |
 
 ### Birleştirme turu (PM-007, 2026-11-17)
 - `main`'e birleşti: #2 (T04), #3 (çalışma düzeni), #18 (v2_core bekleme düzeltmesi), #20 (PM tasarım dili), #16 (PM gereksinim kaydı), #19 (yığının tepesi: #4–#17'nin bütün commit'leri, merge commit ile SHA'lar korunarak), #21 (PM yol haritası).
