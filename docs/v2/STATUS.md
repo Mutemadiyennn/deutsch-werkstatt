@@ -24,6 +24,8 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | B1 | — / 208 / 18 / 0 | — / 11 / 0 / 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | B2, C1, C2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 \* Pilotun 14 kalıbı dilbilimciden geçti (çalışma kopyasında, Advent PR'ıyla depoya girecek); OD-9.4 okur kapısı henüz yok, bu yüzden "yayında" sayılmaz. Kalan 47 kalıbın incelemesi yapıldı (35'inde düzeltme) ama ajan son raporu yazmadan durduruldu: bu 47'si onay bekliyor (taslak). Hedef sütunu (günlük: yazar ≥2 ünite parçası, lex 150–200 kart, dilbilimci aynı gün) hat başlayınca günlük doldurulur. BY-8 tükenme tahmini: K2 motoru (R1) gelene kadar hesaplanamaz.
+R0 temel paket: 10 ders, 189 öğretim öğesi, 353 alıştırma; PR #51 (`TemelDers` türü gelene kadar uygulamada görünmez).
+Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur. Hata türleri yazar görevine eklendi; 009 ve sonrası ölçülüyor.
 
 ## Açık PR'lar
 | PR | Dal | Teslim | İnceleme |
