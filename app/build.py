@@ -39,4 +39,5 @@ print("build ok", ver, len(html)//1024, "KB")
 if "--deploy" in args:
     if not os.path.isdir(GHP): sys.exit(f"gh-pages çalışma kopyası yok: {GHP} (git worktree add {GHP} gh-pages)")
     shutil.copy(os.path.join(dist, "index.html"), os.path.join(GHP, "index.html"))
+    shutil.copy(os.path.join(ROOT, "sw.js"), os.path.join(GHP, "sw.js"))   # v1 servis işçisi (v2'ye karışmaz)
     print("deploy kopyası hazır →", GHP)
