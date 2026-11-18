@@ -20,13 +20,21 @@ def main():
         check(first <= 2000, f"ilk açılış {first:.0f} ms (≤ 2000)")
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         # 2) ekran geçişi (sekmeler, içerik önbellekte)
-        worst = 0
+        worst = 0; times = []
         # her hedefin seçicisi yalnızca o ekranda var (önceki ekranda eşleşip sahte geçiş vermesin); süre tıklamadan önce başlar
         for tab, sel in [("learn", "[data-domain]"), ("progress", "[data-test=panel-focus]"), ("profile", "[data-test=goal]"), ("today", "[data-test=next-activity]")]:
             other = "learn" if tab == "today" else "today"
             for _ in range(2):
                 pg.click(f"[data-tab={other}]"); pg.wait_for_selector(sel, state="detached"); pg.wait_for_timeout(150)
-                t0 = time.time(); pg.click(f"[data-tab={tab}]"); pg.wait_for_selector(sel); worst = max(worst, (time.time() - t0) * 1000)
+                # süre sayfanın içinde ölçülür: dokunuştan hedef içeriğin çizildiği ilk kareye kadar (Playwright'ın tıklama
+                # hazırlığı ve süreçler arası gecikme sayılmaz; gerçek cihazdaki algıya en yakın ölçüm)
+                ms = pg.evaluate("""async ([tab, sel]) => {
+                  const t0 = performance.now(); document.querySelector(`[data-tab=${tab}]`).click();
+                  await new Promise((r) => { const ch = () => document.querySelector(sel) ? r() : requestAnimationFrame(ch); ch(); });
+                  await new Promise((r) => requestAnimationFrame(() => r()));
+                  return performance.now() - t0; }""", [tab, sel])
+                times.append(f"{tab} {ms:.0f}"); worst = max(worst, ms)
+        print("    geçişler (ms):", ", ".join(times))
         check(worst <= 300, f"en yavaş ekran geçişi {worst:.0f} ms (≤ 300)")
         b.close()
         # 3) içerik isteği takılırsa: ≤ 10 sn içinde hata + "Tekrar dene" (servis işçisi kapalı: önbellek olmayan ilk kullanım)
