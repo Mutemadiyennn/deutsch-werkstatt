@@ -1,6 +1,7 @@
 /* Deutsch-Werkstatt service worker: internetsiz açılış + hızlı yükleme.
    Sayfa: önce ağ (4 sn), yoksa önbellek. Yazı tipleri ve Firebase kütüphaneleri: önbellek önce.
-   Güncelleme kontrolü (?u=) ve bütün API çağrıları hiç önbelleğe girmez. */
+   Güncelleme kontrolü (?u=) ve bütün API çağrıları hiç önbelleğe girmez.
+   /v2/ altı ayrı uygulamadır: bu işçi ona hiç karışmaz (v2 sayfası v1'in "./" önbelleğinin üstüne yazılmasın). */
 const STATIC = "dw-static-v1", RUNTIME = "dw-runtime-v1";
 const CORE = ["./", "manifest.webmanifest", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "favicon.png"];
 self.addEventListener("install", e => {
@@ -34,6 +35,7 @@ self.addEventListener("fetch", e => {
   const req = e.request; if(req.method !== "GET") return;
   const u = new URL(req.url);
   if(u.origin === location.origin){
+    if(u.pathname.indexOf("/v2/") >= 0) return;               /* v2: doğrudan ağ, v1 önbelleğine dokunma */
     if(u.searchParams.has("u")) return;                       /* güncelleme kontrolü: her zaman ağ */
     if(req.mode === "navigate" || u.pathname.endsWith("/") || u.pathname.endsWith("/index.html")) { e.respondWith(pageFirst(req)); return; }
     if(u.pathname.endsWith("sw.js")) return;
