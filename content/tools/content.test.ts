@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { loadContent, checkRules } from "./load.ts";
+import { loadContent, checkRules, checkScenario } from "./load.ts";
 import { importV1, sameSense } from "./import-v1.ts";
 import { AiTasks } from "../../packages/shared/src/api.ts";
 
@@ -59,5 +59,15 @@ describe("v1 aktarımı", () => {
       const f = AiTasks.feedback_tr.input.safeParse({ scene_tr: rp.scene_tr, goals: rp.goals.map((g) => ({ id: g.id, de: g.de })), transcript: [{ r: "partner", de: rp.opener_de }] });
       expect(f.success, `${s.id} feedback_tr`).toBe(true);
     }
+  });
+  it("LS-17.0: 'mini' biçim azaltılmış asgari sayılarla geçer, 'full' aynı veride hata verir", () => {
+    const base = checkRules(loadContent()).scenarios[0]!.data;
+    const keep = (k: string) => base.drills.filter((d) => d.k === k).slice(0, 3);
+    const small = { ...structuredClone(base), build: base.build.slice(0, 10), drills: [...keep("gap"), ...keep("order"), ...keep("guided_response"), ...keep("tr_de")], dialogues: base.dialogues.slice(0, 1) };
+    const full = checkScenario({ ...small, format: "full" });
+    const mini = checkScenario({ ...small, format: "mini" });
+    expect(full.some((e) => e.includes("cümle kurma en az 25"))).toBe(true);
+    expect(full.some((e) => e.includes("alıştırma en az 35"))).toBe(true);
+    expect(mini.filter((e) => /en az (10|12|1) |alıştırma türü eksik/.test(e))).toEqual([]);
   });
 });

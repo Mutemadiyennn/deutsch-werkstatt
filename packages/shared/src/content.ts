@@ -180,6 +180,10 @@ export const Scenario = z.object({
   goal_tr: z.string(),
   /** İnceleme durumu: "draft" içerik arayüzde "inceleme bekliyor" etiketiyle gösterilir */
   review: ReviewState,
+  /** LS-17.0: "mini" = mevsim/küçük kapsamlı senaryo (azaltılmış asgari sayılar, aynı oynatıcı) */
+  format: z.enum(["full", "mini"]).default("full"),
+  /** Gerçek takvim (WORLD.md §6): bu tarihler arasında Bugün'de öne çıkar; AA-GG */
+  season: z.object({ id: z.string(), from: z.string().regex(/^\d\d-\d\d$/), to: z.string().regex(/^\d\d-\d\d$/), title_tr: z.string() }).optional(),
   essentials: z.object({ lexemes: z.array(LexemeId), chunks: z.array(ChunkId), patterns: z.array(PatternId) }),
   extras: z.object({ lexemes: z.array(LexemeId).default([]), chunks: z.array(ChunkId).default([]) }).default({ lexemes: [], chunks: [] }),
   chunks: z.array(Chunk).default([]),
@@ -264,7 +268,7 @@ export const ContentIndex = z.object({
   version: z.string(),
   builtAt: z.string(),
   domains: z.array(Domain),
-  scenarios: z.array(z.object({ id: ScenarioId, domain: z.string(), order: z.number(), level: Level, title_tr: z.string(), title_de: z.string(), review: z.string() })),
+  scenarios: z.array(z.object({ id: ScenarioId, domain: z.string(), order: z.number(), level: Level, title_tr: z.string(), title_de: z.string(), review: z.string(), format: z.enum(["full", "mini"]).default("full"), season: z.object({ id: z.string(), from: z.string(), to: z.string(), title_tr: z.string() }).optional() })),
   counts: z.object({ lexemes: z.number(), grammar: z.number(), assess: z.number(), scenarios: z.number() }),
   files: z.object({ lexemes: z.string(), grammar: z.string(), assess: z.string(), scenarios: z.record(z.string(), z.string()) })
 });
