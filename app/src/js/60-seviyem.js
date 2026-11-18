@@ -105,7 +105,7 @@ KURSDATEN DES LERNERS (echte Daten, nichts erfinden):
 Aktuelle Einheit: ${K.cur.lvl} "${K.cur.title_de || ""}". Bestandene Einheiten (${K.done.length}/${K.L.length}): ${JSON.stringify(units)}
 Schwache Grammatikregeln: ${JSON.stringify(weak)}
 Wörter: ${K.perm} dauerhaft gelernt, ${K.learning} im Lernen, ${K.dueW} heute fällig.
-Tempo: ${K.perWeek.toFixed(1)} Einheiten/Woche; nötig bis zur B1-Prüfung: ${K.needWeek === null ? "unbekannt" : K.needWeek.toFixed(1)} Einheiten/Woche (${K.dx} Tage).
+Tempo: ${K.perWeek.toFixed(1)} Einheiten/Woche; nötig bis zur B1-Prüfung: ${K.needWeek === null ? "unbekannt" : K.needWeek.toFixed(1)} Einheiten/Woche${K.dx == null ? "" : ` (${K.dx} Tage)`}.
 Offene Fehler: ${JSON.stringify(mist)}
 Aktive Tage (Datum, Aktivitäten): ${JSON.stringify(days)}
 AUFGABE: Schreib einen ehrlichen, motivierenden Lernbericht auf Türkisch, passend zu seinem Niveau. Erkläre bei wiederkehrenden Fehlern WARUM er sie macht (oft türkische Satzlogik oder englische Gewohnheiten). Wenn es noch wenige Daten gibt, sag das ehrlich und gib trotzdem 3 konkrete Schritte.

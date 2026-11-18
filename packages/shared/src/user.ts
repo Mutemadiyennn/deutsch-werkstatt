@@ -60,7 +60,8 @@ export const Profile = z.object({
   listening: z.object({ startSpeed: z.enum(["slow", "normal"]).default("slow") }),
   goals: z.object({
     examB1: z.object({ enabled: z.boolean(), date: z.string().optional() }).default({ enabled: false }),
-    vhs: z.object({ enabled: z.boolean() }).default({ enabled: false })
+    /** dil kursuna gidiyor mu (kurum adı tutulmaz, PM-036 A) */
+    kurs: z.object({ enabled: z.boolean() }).default({ enabled: false })
   }),
   /** Kendi beyanı: zor bulunan durumlar (planlayıcının alan önceliğini besler) */
   struggles: z.array(z.enum(["phone", "spontaneous", "fast", "work", "bavarian", "switch_english"])).default([])
