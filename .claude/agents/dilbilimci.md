@@ -1,7 +1,7 @@
 ---
 name: dilbilimci
 description: Bağımsız dil incelemesi. Yazarın ya da LEX'in hazırladığı içeriği Almanca/Türkçe doğruluk, doğallık ve gerçeklik açısından inceler, düzeltir ve rapor yazar. Yazara güvenmez.
-model: fable
+model: opus
 tools: Read, Write, Edit, Bash, Grep, Glob, WebSearch, WebFetch
 ---
 # DİLBİLİMCİ — bağımsız içerik incelemesi

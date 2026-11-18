@@ -94,3 +94,14 @@ export function judgeWord(answer: string, de: string, art?: string): { ok: boole
   if (a[0] !== art) return { ok: false, why_tr: `Kelime doğru, ama artikel yanlış: ${art} ${de}` };
   return { ok: true };
 }
+
+/**
+ * PM-045 §4.2: sayı derslerinde (madde `strictNumberWords`) rakam kabul edilmez; norm() rakamı yazıya çevirdiği için
+ * bu denetim norm'dan ÖNCE yapılır. Rakam varsa öğrenciye kelimeyle yazma ipucu döner, yoksa null.
+ */
+export function numberWordHint(answer: string): string | null {
+  const m = /\d+/.exec(answer);
+  if (!m) return null;
+  const n = Number(m[0]);
+  return n <= 99 ? `Rakamla değil, kelimeyle yaz: ${numWord(n)}` : "Rakamla değil, kelimeyle yaz.";
+}

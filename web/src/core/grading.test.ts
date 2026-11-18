@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { norm, core, judge, judgeWord, scoreHeard, numWord } from "./grading.ts";
+import { norm, core, judge, judgeWord, scoreHeard, numWord, numberWordHint } from "./grading.ts";
 import { ttsClean, splitForSpeech } from "./ttsClean.ts";
 
 describe("cevap değerlendirme (v1 kuJudge eşdeğeri)", () => {
@@ -58,5 +58,13 @@ describe("seslendirme filtresi (v1 + bitişik tire düzeltmesi)", () => {
       { text: "Ich arbeite", lang: "de" },
       { text: "Ben çalışıyorum", lang: "tr" }
     ]);
+  });
+});
+
+describe("strictNumberWords (PM-045 §4.2)", () => {
+  it("rakam varsa kelimeyle yazma ipucu, yoksa null", () => {
+    expect(numberWordHint("34")).toBe("Rakamla değil, kelimeyle yaz: vierunddreißig");
+    expect(numberWordHint("Es ist 7 Uhr")).toBe("Rakamla değil, kelimeyle yaz: sieben");
+    expect(numberWordHint("vierunddreißig")).toBeNull();
   });
 });
