@@ -19,15 +19,16 @@ Sorular mevcut şema türlerini kullanır (`Drill`, `ListenQ`). Yeni olan yalnı
     "id": "m1:01:v1", "tur": "sokak-roportaji",   // sokak-roportaji | bir-gunum | nasil-yapilir | bunu-nasil-soylersin | koy-dizisi
     "title_tr": "", "sure_sn": 60, "gercek_insan": false,
     "sahneler": [ { "id": "s1", "speaker": "ch:...", "sahne_tr": "çizim tarifi", "de": "", "tr": "" } ],
-    "sorular": []                     // aşağıdaki soru biçimi; en az 1 yaz, 1 anlama, 1 söyle
+    "bolumler": [ { /* aşağıdaki BÖLÜM biçimi; 1–2 dakikada bir bölüm */ } ]
   },
 
   "sesler": [                         // en az 2
     { "id": "m1:01:a1", "tur": "anons",           // anons | sesli-mesaj | radyo | bekleme-anonsu
       "title_tr": "", "ortam_tr": "nerede duyuyorsun", "speaker": "",
       "hizlar": ["slow", "normal"],
-      "script": [ { "de": "", "tr": "" } ],
-      "sorular": [] }                 // en az 1 anlama, 1 dikte, 1 eylem
+      "script": [ { "id": "c1", "de": "", "tr": "" } ],
+      "bolumler": [ { /* tek bölüm */ } ],
+      "eylem": { /* Drill pick: Ne yapmalısın? */ } }
   ],
 
   "gorsel": [                         // çeviri yok: ses + 4 resim
@@ -47,21 +48,34 @@ Sorular mevcut şema türlerini kullanır (`Drill`, `ListenQ`). Yeni olan yalnı
   "okuma_yazma": {
     "tur": "okuma",                   // okuma | yazma
     "title_tr": "", "metin_de": "", "metin_tr": "", "sorular": [],
-    "yazma": { "gorev_tr": "", "ornek_de": "", "zorunlu": ["**Montag**"], "accepted_kaliplar": [] }
+    "yazma": { "gorev_tr": "", "ornek_de": "", "zorunlu": ["Montag"], "accepted_kaliplar": [], "kontrol_tr": ["", "", ""] }
   }
 }
 ```
 
-## Soru biçimi (`sorular[]`)
-| `tip` | Öğrenciye | Alanlar |
-|---|---|---|
-| `anlama` | Duydun mu, anladın mı? | `ListenQ`: `kind`, `q_tr`, `opts`, `ans` |
-| `dikte` | Aynısını yaz | `id`, `de`, `tr`, `accepted` (en az 3) |
-| `ne-dedi` | Ne dedi? Yaz | `id`, `q_tr`, `accepted` (en az 3) |
-| `cevapla` | Sen ne derdin? Söyle | `Drill` `guided_response` |
-| `eylem` | Ne yapmalısın? | `Drill` `pick` |
+## Bölüm biçimi (PM-053)
+Uzun kayıt yazdırılmaz. Her bölüm 1–2 dakika, bir oturum en çok 10 dakika. Video üstte durur, sorular altta akar; cümleye dokununca o cümleye gidilir.
+
+```jsonc
+{
+  "id": "b1", "cumleler": ["s1", "s2"],        // sahne ya da script kimlikleri, sırayla
+  "ana_fikir": { "kind": "gist", "q_tr": "", "opts": [], "ans": 0 },   // (a) altyazısız dinleme sonrası
+  "ayrinti": [ { "kind": "detail", "q_tr": "", "opts": [], "ans": 0 } ], // (b) kim, ne, ne zaman, nerede
+  "dikte": [                                    // (d) seçilen 3–6 cümle, merdivenle
+    { "id": "d1", "cumle": "s2", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": [], "ans": 0 },
+    { "id": "d2", "cumle": "s2", "seviye": "orta", "de": "Heute ist ___.", "accepted": [] },
+    { "id": "d3", "cumle": "s3", "seviye": "zor", "banka": [], "accepted": [] },
+    { "id": "d4", "cumle": "s3", "seviye": "usta", "accepted": [] },
+    { "id": "d5", "seviye": "gercek", "gorev_tr": "İki cümleyle özetle.", "ornek_de": "", "zorunlu": [] }
+  ],
+  "golge": ["s2"],                              // (f) dinle, aynısını söyle
+  "cevapla": { /* Drill guided_response */ }    // (g) Sen ne derdin? Söyle
+}
+```
+Cümle cümle çalışma (c), 0,75× hız ve dokununca kart (e) oynatıcının işidir; içerikten yalnızca `cumleler` gerekir.
 
 ## Kurallar
 - **Öğretmeden isteme yok:** öğrenciden istenen her kelime o güne kadarki `dersler` ve `yeni_kartlar` içinde olmalı.
 - Dinlenen metinde en çok %10 bilinmeyen kelime olabilir; anlama sorusu bilinmeyene dayanmaz.
+- Yazma görevi çevrimdışı denetlenir: zorunlu kelime ve kalıp kontrolü, ardından `ornek_de` ve 3 maddelik `kontrol_tr` (PM-054.5).
 - Türkçe metinler OD-9 kurallarına uyar. Öğrenci adı ve cinsiyeti yer tutucudur.
