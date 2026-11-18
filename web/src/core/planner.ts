@@ -36,7 +36,8 @@ export function recommend(o: { profile: Profile; index: ContentIndex | null; has
   if (activity === "vocab" || activity === "chunks") {
     const order = o.profile.domains.priority.filter((d) => !o.profile.domains.paused.includes(d));
     for (const d of order) {
-      const sc = (o.index?.scenarios || []).filter((s) => s.domain === d).sort((a, b) => a.order - b.order)[0];
+      // PM-044.1: mevsim dersi (`season`) ana yola hiç girmez; yalnızca Bugün'deki mevsim kartından açılır
+      const sc = (o.index?.scenarios || []).filter((s) => s.domain === d && !s.season).sort((a, b) => a.order - b.order)[0];
       if (sc) return { kind: "scenario", activity, scenarioId: sc.id, title_tr: sc.title_tr, why_tr: `Seans ${o.sessionN}: ${ACTIVITY_TR[activity]}. Öncelikli alanından senaryonun kelime ve ifadelerini çalış.`, draft: sc.review !== "reviewed" };
     }
     return { kind: "none", title_tr: "Bu alanlarda henüz v2 içeriği yok", why_tr: "Öncelik listendeki alanlar için senaryolar bir sonraki fazda eklenecek." };

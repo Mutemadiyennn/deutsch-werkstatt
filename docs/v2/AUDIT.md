@@ -81,7 +81,7 @@ Toplam 32 ekran var (robot testi 32'sini de dolaşıyor: 244 tıklama, 0 hata).
 | Kelime | `kelime`, `kartei` (Kartlarım), `c1500` (1.500 sık kelime), `lernen` (tekrar) |
 | Konuşma | `canli` (Gemini Live), `sprechen`, `senaryo`, `gercek` (gerçek hayat), `denk` (Düşün ve kur), `akici` (Akıcılık 3-2-1) |
 | Dinleme ve telaffuz | `ses` (sesli tekrar), `shadow`, `dis` (Yutulan sesler ve Bavyera) |
-| Okuma ve yazma | `hikaye`, `schreiben`, `odev` (VHS ödev yardımcısı) |
+| Okuma ve yazma | `hikaye`, `schreiben`, `odev` (kurs ödevi yardımcısı) |
 | Oyun | `spielen` |
 | Ölçüm ve sınav | `olcum` (aylık ölçüm), `sinav`, `sinavatolye` (B1 atölyesi) |
 | Koç ve plan | `koc`, `rehber`, `hayat` (Hayat hikâyem) |
@@ -121,7 +121,7 @@ Bunlara ek olarak:
 
 | Katman | Yapı |
 |---|---|
-| **localStorage** | Ana kayıt `dw-werkstatt-v2`: tek bir JSON nesnesi `{words, mistakes, writings, state}`. `state` içinde **81 alan** var (en çok kullanılanlar: `vhs`, `srOK`, `freezes`, `days`, `mins`, `daily`, `storyCache`, `denk`, `scen`, `kurs`, `pomo` …). Ayrıca 17 adet `dw-*` anahtarı: API anahtarları, ayarlar, yapay zekâ günlüğü, TTS kullanım sayacı, `dw-ku-*` kurs durumu. |
+| **localStorage** | Ana kayıt `dw-werkstatt-v2`: tek bir JSON nesnesi `{words, mistakes, writings, state}`. `state` içinde **81 alan** var (en çok kullanılanlar: `sinif` (eski adıyla taşınır), `srOK`, `freezes`, `days`, `mins`, `daily`, `storyCache`, `denk`, `scen`, `kurs`, `pomo` …). Ayrıca 17 adet `dw-*` anahtarı: API anahtarları, ayarlar, yapay zekâ günlüğü, TTS kullanım sayacı, `dw-ku-*` kurs durumu. |
 | **IndexedDB** | `deutsch-werkstatt` v1: `photos` (fotoğraf önbelleği), `pre` (önceden üretilmiş içerik), `data`, `sync-backup` |
 | **Firestore** | `users/{uid}/sync/{parça}`. Parçalar: `state`, `mistakes`, `writings`, kelimeler için `w0…wN`, `_meta` (zaman damgası ve özetler), `_keys` / `_keysA` (şifreli anahtarlar). Her parça gzip ile sıkıştırılmış tek bir metin; sınır 900 KB. Çakışma çözümü "son yazan kazanır". |
 | **Eski Firestore modu** | `S.mode === "db"`: `DB.collection(...)` ve `app/state`. Eski bir yol; hâlâ kodda. |
@@ -451,7 +451,7 @@ Karmaşıklık ölçeği: **S** (1–2 çalışma oturumu) · **M** (3–5) · *
 | 10 | Haftalık hedef | 5 gün × 100 dk |
 | 11 | B1 sınav tarihi hâlâ geçerli mi? (tarih yalnızca cihaz ayarında, PM-001) | Bilgi gerekiyor. 6 aylık planın son ayını belirler. |
 | 12 | Senaryo kapısı yalnızca temel öğelere mi bağlı olsun? | Evet |
-| 13 | VHS kursu sürüyor mu? | Bilgi gerekiyor |
+| 13 | Dil kursu sürüyor mu? | Bilgi gerekiyor |
 | 14 | v1'in günlük kullanımı aksatan hataları Faz 3'te düzeltilsin mi? | Evet |
 
 **Not:** Bu yol haritasında Faz 1 denetim. Önceki taslaktaki "Faz 0 temizlik", burada Faz 3 (v1'i sabitleme) oldu. Gönderdiğin "aşama 4" fazının kapsamına göre numaraları uyarlarım.

@@ -24,3 +24,9 @@ export function seasonal<T extends { season?: Season; order: number }>(list: T[]
   const md = monthDay(now);
   return list.filter((x) => x.season && inSeason(md, x.season)).sort((a, b) => a.order - b.order);
 }
+
+/** Öğren listesi (PM-044.1): mevsim dersleri yalnızca kendi mevsimlerinde görünür ve sayılır */
+export function visibleScenarios<T extends { season?: Season }>(list: T[], now: number): T[] {
+  const md = monthDay(now);
+  return list.filter((x) => !x.season || inSeason(md, x.season));
+}

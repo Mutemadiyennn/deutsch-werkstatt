@@ -1,0 +1,88 @@
+R0 temel paket denetimi · 2026-11-18 · betik: /home/claude/cm/r0audit.ts
+Kaynak: /home/claude/wt-r0/content/v2/temel
+
+===== r0:01-tage  (r0-01-tage.json)
+  öğretim 23 · alıştırma 35 · yerleştirme 5 · üretim 25 · ihlal 0
+===== r0:02-monate  (r0-02-monate.json)
+  öğretim 24 · alıştırma 34 · yerleştirme 5 · üretim 24 · ihlal 0
+===== r0:03-zahlen-0-20  (r0-03-zahlen-0-20.json)
+  öğretim 24 · alıştırma 35 · yerleştirme 5 · üretim 25 · ihlal 0
+===== r0:04-zahlen-21-100  (r0-04-zahlen-21-100.json)
+  öğretim 18 · alıştırma 39 · yerleştirme 5 · üretim 28 · ihlal 0
+===== r0:05-uhrzeit  (r0-05-uhrzeit.json)
+  öğretim 24 · alıştırma 45 · yerleştirme 5 · üretim 30 · ihlal 0
+===== r0:06-datum  (r0-06-datum.json)
+  öğretim 14 · alıştırma 28 · yerleştirme 5 · üretim 18 · ihlal 0
+===== r0:07-fragewoerter  (r0-07-fragewoerter.json)
+  öğretim 12 · alıştırma 34 · yerleştirme 5 · üretim 22 · ihlal 0
+===== r0:08-sein-haben  (r0-08-sein-haben.json)
+  öğretim 12 · alıştırma 33 · yerleştirme 5 · üretim 22 · ihlal 0
+===== r0:09-modalverben  (r0-09-modalverben.json)
+  öğretim 14 · alıştırma 35 · yerleştirme 5 · üretim 22 · ihlal 0
+===== r0:10-buchstabieren  (r0-10-buchstabieren.json)
+  öğretim 24 · alıştırma 35 · yerleştirme 5 · üretim 22 · ihlal 0
+
+===== İNCELEME (PR #51) regresyon listesi: reddedilen doğru cevaplar
+  kabul  r0:07:d27: Können Sie das bitte wiederholen?
+  kabul  r0:07:d27: Noch einmal, bitte.
+  kabul  r0:07:p05: Können Sie das bitte wiederholen?
+  kabul  r0:07:p05: Noch einmal, bitte.
+  kabul  r0:09:d29: Guten Tag, hier ist {name}. Ich möchte einen Termin machen.
+  kabul  r0:09:d29: Hallo, ich möchte einen Termin machen.
+  kabul  r0:09:d29: Grüß Gott, ich hätte gern einen Termin.
+  kabul  r0:09:p05: Guten Tag, hier ist {name}. Ich möchte einen Termin machen.
+  kabul  r0:09:p05: Hallo, ich möchte einen Termin machen.
+  kabul  r0:09:p05: Grüß Gott, ich hätte gern einen Termin.
+  kabul  r0:08:d18: Ich habe einen Termin am Dienstag.
+  kabul  r0:08:d18: Dienstag habe ich einen Termin.
+  kabul  r0:08:d33: Freitag um drei.
+  kabul  r0:08:d33: Am Freitag um fünfzehn Uhr.
+  kabul  r0:09:d18: Dienstag kann ich nicht kommen.
+  kabul  r0:09:d18: Ich kann Dienstag nicht kommen.
+  kabul  r0:09:d34: Ich komme am Montag.
+  kabul  r0:09:d34: Montag, bitte.
+  kabul  r0:06:d19: Dienstag, der 1. Dezember.
+  kabul  r0:05:d21: Es ist zwei Uhr dreißig.
+  kabul  r0:05:p02: Es ist drei Uhr fünfundvierzig.
+  kabul  r0:08:d13: Ich bin morgen nicht da
+  kabul  r0:08:d14: Ich habe am Dienstag Zeit
+  kabul  r0:06:d13: Um zehn am Dienstag
+  kabul  r0:10:d20: Null eins sieben eins, drei neun zwei null null, siebenundvierzig.
+  kabul  r0:10:d20: 0171 3920047
+  kabul  r0:10:d20: 01713920047
+  kabul  r0:05:d30: Heute Abend um zwanzig Uhr.
+  kabul  r0:05:d38: Um zweiundzwanzig Uhr dreißig.
+  kabul  r0:04:d23: 100 Euro
+  kabul  r0:06:d24: Siebter Achter neunzig
+  kabul  r0:01:d20: Geht am Freitag?
+  kabul  r0:10:d22: K wie Köln
+  kabul  r0:10:d23: S wie Salzwedel
+  kabul  r0:10:p04: M wie München
+  kabul  r0:03:d22: Meine Nummer ist 0171.
+  kabul  r0:03:d23: 089
+  kabul  r0:03:d31: 0171
+  kabul  r0:03:d34: Meine Nummer ist 089.
+  kabul  r0:03:p02: 016
+  kabul  r0:05:d20: 8:30
+  kabul  r0:05:d20: Es ist 8:30 Uhr.
+  kabul  r0:05:d33: Dienstag um 9:30 Uhr.
+  kabul  r0:05:d39: 8:30 Uhr
+  kabul  r0:05:d44: 11:45 Uhr
+  kabul  r0:05:d44: Um 11:45 Uhr.
+
+===== P0-1 ve P1-2
+  tamam  r0:10:d22: ilk cevap "K wie Kaufmann"
+  tamam  r0:10:d23: ilk cevap "S wie Samuel"
+  tamam  r0:10:p04: ilk cevap "M wie Martha"
+  tamam  r0:10 görev metni şehir adını zorunlu istemiyor
+  tamam  r0:09:a:sie-duerfen parçaları: Sie → siz | dürfen nichts essen → hiçbir şey yememelisiniz
+  tamam  essen ayrı bir öğede parça olarak öğretiliyor
+
+===== OD-0: ilk cevapta yalnızca TABLODAN gelen kelimeler (0 kelime, 0 madde)
+
+===== OD-0: ilk cevapta yalnızca öğe açıklamasındaki **kalın** kelimeden gelenler (0 kelime, 0 madde)
+
+===== TOPLAM
+ders 10 · öğretim öğesi 189 · alıştırma 353 · yerleştirme 50 · üretim maddesi 238
+denetlenen exp 189 · öbür *_tr alanı 411 · kabul cevabı 1653 · öğrenci diyalog satırı 42
+İHLAL: 0

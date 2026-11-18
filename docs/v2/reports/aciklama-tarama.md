@@ -2,24 +2,27 @@
 
 Otomatik kural taraması (OD-9.3 katman 1). Okur kontrolü (katman 2) ayrıca her açıklamayı okur.
 
-**Toplam 506 açıklama · kurala aykırı 306 (%60)**
+**Toplam 832 açıklama · kurala aykırı 211 (%25)**
 
 | Dosya | Açıklama | Aykırı |
 |---|---|---|
+| content/v2/domains/arbeit/scenarios/m1-weihnachtsfeier.json | 80 | 0 |
 | content/v2/domains/arzt/scenarios/01-beschwerden.json | 103 | 39 |
-| content/v2/domains/strategie/scenarios/01-nicht-verstanden.json | 98 | 47 |
-| content/v2/domains/telefon/scenarios/01-arzttermin.json | 94 | 9 |
-| registry/patterns.json | 211 | 211 |
+| content/v2/domains/essen/scenarios/m1-weihnachtsmarkt.json | 78 | 0 |
+| content/v2/domains/freizeit/scenarios/m1-gluehwein-einladung.json | 81 | 0 |
+| content/v2/domains/strategie/scenarios/01-nicht-verstanden.json | 84 | 0 |
+| content/v2/domains/telefon/scenarios/01-arzttermin.json | 95 | 0 |
+| registry/patterns.json | 311 | 172 |
 
 ## İhlal türleri
 | Tür | Sayı |
 |---|---|
-| tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) | 282 |
-| cümle N kelime (en çok N) | 115 |
-| öğretilmemiş terim | 109 |
-| ';' işareti | 103 |
-| '…' işareti | 62 |
-| '=' işareti | 26 |
+| tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) | 206 |
+| öğretilmemiş terim | 93 |
+| cümle N kelime (en çok N) | 90 |
+| ';' işareti | 66 |
+| '…' işareti | 47 |
+| '=' işareti | 21 |
 
 ## Aykırı açıklamalar (çevrim sırası: bu liste önce)
 
@@ -66,99 +69,25 @@ Otomatik kural taraması (OD-9.3 katman 1). Okur kontrolü (katman 2) ayrıca he
 | mistakes_tr[4] | 'Mir ist schlecht' = midem bulanıyor; 'Ich bin schlecht' bambaşka bir anlamdır. | '=' işareti; ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | mistakes_tr[5] | 'wenn' yan cümlesinden sonra ana cümle fiille başlar: 'Wenn ich schlucke, tut es weh.' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: yan cümle |
 
-### content/v2/domains/strategie/scenarios/01-nicht-verstanden.json
-| Yer | Metin | Sorun |
-|---|---|---|
-| ch:strategie:nicht-verstanden.use_tr | Az önce söyleneni anlamadığında. Perfekt kullanılır, çünkü söz az önce bitti. Gündelikte baştaki 'das' düşer, özne 'ich' kalır: '(Das) hab ich …'. | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: özne |
-| ch:strategie:nicht-verstanden.mistakes_tr[0] | Az önceki cümle için 'Ich verstehe nicht' yerine 'Das habe ich nicht verstanden' daha doğal. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14) |
-| ch:strategie:nicht-ganz.use_tr | Bir kısmını anladıysan. 'mitkriegen' gündelikte 'yakalamak, duymak' demektir; samimi ama kaba değil. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:wie-bitte.use_tr | En kısa ve en kibar 'anlamadım'. Soru tonuyla 'Bitte?' de aynı işi görür. 'Hä?' yalnızca yakın arkadaşlar arasında; yabancıya kaba gelir. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:wie-bitte.mistakes_tr[0] | 'Was?' tek başına sert gelebilir; 'Wie bitte?' güvenlidir. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:noch-einmal.use_tr | Tekrar ettirmek. 'nochmal' gündelik yazım; resmî: 'noch einmal'. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:langsamer.use_tr | Yavaşlatmak. 'Würden Sie …' çok kibar; kısa biçim de 'bitte' ile kibardır. | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:lerne-deutsch.use_tr | Karşı tarafın yavaşlaması ve sabretmesi için kısa açıklama. Özür dilemene gerek yok. Aynı işi gören başka bir cümle: 'Mein Deutsch ist noch nicht so gut.' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:was-heisst.use_tr | Bilmediğin kelimeyi hemen sor; kelimeyi tekrar etmek karşı tarafa neyi sorduğunu gösterir. ''n' = 'denn' (merak tonu). | '=' işareti; ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:aufschreiben.mistakes_tr[0] | Ayrılabilen fiil: 'Schreiben Sie das auf' ama 'Könnten Sie das aufschreiben?' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: ayrılabilen fiil |
-| ch:strategie:dialekt.use_tr | Bavyera'da sık gerekir. 'sich schwertun mit' = '-de zorlanmak'. | '=' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:ach-so.use_tr | Bir şey sonunda anlaşılınca. Konuşmayı kapatır ve karşı tarafa 'devam edebilirsin' der. Tonu: rahatlamış, olumlu. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:lieber-deutsch.use_tr | Karşı taraf İngilizceye geçmek isterse. Kibar ve net; çoğu kişi memnun olur ve yavaşlar. | ';' işareti |
-| d01.why_tr | Perfekt: haben + Partizip II (verstanden). | öğretilmemiş terim: partizip |
-| d07.why_tr | Modal fiille ayrılabilen fiil bitişik ve sonda: aufschreiben. | öğretilmemiş terim: modal fiil; öğretilmemiş terim: ayrılabilen fiil |
-| d14.instr_tr | Kibar rica yap (Würden Sie …?). | '…' işareti |
-| d18.instr_tr | 'bedeuten' fiiliyle sor. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d19.instr_tr | 'nicht ganz' ile söyle (kısmen anladın). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d20.situation_tr | Kasiyer hızlı bir şey sordu; anlamadın. | ';' işareti |
-| d22.situation_tr | Karşı taraf İngilizceye geçmek istiyor; kibarca Almanca devam et. | ';' işareti |
-| d23.situation_tr | 'Kaution' kelimesini bilmiyorsun. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d24.situation_tr | Sadece 'Montag'ı anladın. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d25.situation_tr | Komşu güney ağzıyla konuştu; lehçeyi anlamadığını söyle. | ';' işareti |
-| d27.situation_tr | Anlamadın; tekrar iste. | ';' işareti |
-| d28.situation_tr | İş arkadaşın soruyor; anladın, evet de. | ';' işareti |
-| d29.situation_tr | Seni anlamadılar. 'Bir randevum var.' cümlesini yavaş ve net tekrarla. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d31.situation_tr | Şimdi anladın; teşekkür et. | ';' işareti |
-| d33.situation_tr | Anlamadın; tekrar iste. | ';' işareti |
-| d38.why_tr | Tek kelimelik Almanca tepki konuşmayı sürdürür; İngilizce ya da tahmini 'Nein' sorunu büyütebilir. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d38.q_tr | Kasada 'Sammeln Sie Punkte?' sorusunu anlamadın. En iyi tepki hangisi? | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b08.prompt_tr | 'Kaution' ne demek? | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b10.prompt_tr | 'Kaminkehrer' derken neyi kastediyorsunuz? | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b13.prompt_tr | Sadece 'pazartesi'yi anladım. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b20.prompt_tr | Tekrar eder misiniz? (Würden Sie …) | '…' işareti |
-| b21.prompt_tr | 'bis' mi dediniz, 'ab' mı? | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b28.prompt_tr | Bir kelimeyi anlamadım: 'Frist'. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| dialog0#3.hint_tr | Anladığını göster; kartın olmadığını söyle. | ';' işareti |
-| dialog0#5.hint_tr | Hayır de; çantanın yanında olduğunu söyle. | ';' işareti |
-| dialog1#7.hint_tr | Anladığını söyle; saati tekrar ederek doğrula. | ';' işareti |
-| dialog2#1.hint_tr | Çok hızlı olduğunu söyle; yavaşlamasını rica et. | ';' işareti |
-| dialog2#5.hint_tr | Kelimeyi anlamadığını söyle; yazmasını iste. | ';' işareti |
-| mistakes_tr[0] | Anlamayınca İngilizceye geçmek konuşmayı bitirir; 'Wie bitte?' konuşmayı sürdürür ve karşı taraf genelde yavaşlar. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| mistakes_tr[1] | Az önce söyleneni anlamadıysan Perfekt: 'Das habe ich nicht verstanden.' 'Ich verstehe nicht' daha genel ve sert duyulabilir. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 18 kelime (en çok 14) |
-| mistakes_tr[2] | 'Hä?' yalnızca yakın arkadaşlar arasında; yabancıya kaba gelir. Güvenli olanı 'Wie bitte?' ya da soru tonuyla 'Bitte?'. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| mistakes_tr[3] | Bir kelimeyi hiç tanımıyorsan 'Das Wort kenne ich nicht'; aklına gelmiyorsa 'Mir fällt das Wort nicht ein'. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 17 kelime (en çok 14) |
-| mistakes_tr[4] | dreizehn (13) ve dreißig (30) sık karışır; emin değilsen sor. | ';' işareti |
-| mistakes_tr[5] | 'nochmal' gündelik yazımdır; resmî metinde 'noch einmal'. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-
-### content/v2/domains/telefon/scenarios/01-arzttermin.json
-| Yer | Metin | Sorun |
-|---|---|---|
-| d18.instr_tr | Saati 'halb' ile söyle. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d19.instr_tr | Saati 'Viertel' ile söyle. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d27.situation_tr | Randevu istiyorsun. ('Huber' sekreterin adı.) | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d39.q_tr | 'halb zehn' saat kaçtır? | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b10.prompt_tr | Perşembe saat 9:30 bana uyar ('halb' ile). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b11.prompt_tr | Saat 10:45'te mi? ('Viertel' ile sor) | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b12.prompt_tr | Saat 11:15'te, değil mi? ('Viertel' ile) | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b13.prompt_tr | Bu bana maalesef uymuyor; o saatte çalışıyorum. | ';' işareti |
-| dinleme0.q3.q_tr | 'Huber' kimin adı? | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-
 ### registry/patterns.json
 | Yer | Metin | Sorun |
 |---|---|---|
 | pt:ich-bin.mistakes_tr[0] | 'sein'i unutma: 'Ich müde' yanlış; Türkçedeki ekin karşılığı ayrı bir fiildir: 'Ich bin müde.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:ich-bin.mistakes_tr[1] | Meslekte artikel kullanılmaz: 'Ich bin Lehrerin' ('Ich bin eine Lehrerin' genelde denmez). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
+| pt:ich-bin.mistakes_tr[1] | Meslekte artikel kullanılmaz: 'Ich bin Lehrer / Lehrerin' ('Ich bin ein Lehrer' genelde denmez). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:ich-bin.mistakes_tr[2] | Üşüyorsan 'Ich bin kalt' deme (soğuk biriyim gibi anlaşılır); 'Mir ist kalt' denir. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:ich-bin.mistakes_tr[3] | Yaşta 'haben' değil 'sein': 'Ich bin 30' ('Ich habe 30 Jahre' yanlış). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:ich-habe.mistakes_tr[0] | Türkçedeki 'var' yüzünden 'Es gibt Fieber' denmez; durumu yaşayan kişiyle söylenir: 'Ich habe Fieber.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:ich-habe.mistakes_tr[1] | Eril isimde 'ein' → 'einen' olur: 'Ich habe einen Termin' ('ein Termin' değil). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:ich-habe.mistakes_tr[2] | Artikelsiz isim 'nicht' ile değil 'kein' ile olumsuzlanır: 'Ich habe keine Zeit' ('Ich habe nicht Zeit' yanlış). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 17 kelime (en çok 14) |
-| pt:ich-habe.mistakes_tr[3] | Geçmişte konuşmada genelde 'Ich hatte keine Zeit' denir; 'Ich habe … gehabt' da doğrudur ama daha az duyulur. | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 18 kelime (en çok 14) |
+| pt:ich-bin.mistakes_tr[3] | Yaş söylerken 'alt'ı unutma: 'Ich bin 30 Jahre alt' ya da kısaca 'Ich bin 30' ('Ich bin 30 Jahre' eksik kalır). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 21 kelime (en çok 14) |
+| pt:ich-bin.mistakes_tr[4] | Geçmişte konuşmada çoğu zaman 'Ich war krank' denir; 'Ich bin krank gewesen' de doğrudur. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:verb-zweite-stelle.mistakes_tr[0] | 'Morgen ich gehe zum Arzt' yanlış: birinci yerde 'Morgen' varsa fiil ikinci sıraya, özne arkasına geçer: 'Morgen gehe ich zum Arzt.' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 21 kelime (en çok 14); öğretilmemiş terim: özne |
 | pt:verb-zweite-stelle.mistakes_tr[1] | Fiili Türkçedeki gibi sona koyma: 'Ich morgen zum Arzt gehe' yalnızca yan cümlede doğrudur. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: yan cümle |
 | pt:verb-zweite-stelle.mistakes_tr[2] | 'Leider', 'Zum Glück', 'Dann' gibi kelimeler de bir yer kaplar: 'Leider kann ich nicht' ('Leider ich kann nicht' yanlış). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 19 kelime (en çok 14) |
 | pt:verb-zweite-stelle.mistakes_tr[3] | 'Ja', 'Nein' ve 'aber, und, oder' sıra saymaz: 'Aber ich komme morgen.' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:w-frage.mistakes_tr[0] | Fiili sona koyma: 'Wann Sie Zeit haben?' yanlış; 'Wann haben Sie Zeit?' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:w-frage.mistakes_tr[1] | Soru sözcüğünü Türkçedeki gibi ortada bırakma: 'Sie kommen wann?' yalnızca şaşırınca, yeniden sorarken duyulur. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:w-frage.mistakes_tr[2] | 'wer' = kim, 'wo' = nerede, 'wohin' = nereye, 'woher' = nereden; 'wer' ile 'wo' sık karışır. | '=' işareti; ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 17 kelime (en çok 14) |
+| pt:w-frage.mistakes_tr[2] | 'wer' = kim, 'wo' = nerede, 'wohin' = nereye, 'woher' = nereden. Yanlış arkadaş: 'wer' İngilizcedeki 'where' değil, 'wo' da 'who' değildir. | '=' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:w-frage.mistakes_tr[3] | 'Wie viel' fiyat ve sayılamayan için, 'Wie viele' sayılan çoğul için: 'Wie viele Tabletten?' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:ja-nein-frage.mistakes_tr[0] | Soru ekini çevirmeye çalışma; fiili başa al: 'Haben Sie Zeit?' ('Sie haben Zeit, ja?' yalnızca onay ister). | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 17 kelime (en çok 14) |
 | pt:ja-nein-frage.mistakes_tr[1] | Olumsuz soruya 'evet' derken 'Ja' değil 'Doch' denir: 'Kommen Sie nicht? – Doch!' (Geliyorum). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:ja-nein-frage.mistakes_tr[2] | Asıl fiili başa getirme: 'Zahlen kann ich mit Karte?' yanlış; 'Kann ich mit Karte zahlen?' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14) |
-| pt:ich-moechte.mistakes_tr[0] | Mastarı ortada bırakma: 'Ich möchte machen einen Termin' yanlış; 'Ich möchte einen Termin machen.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:ich-moechte.mistakes_tr[1] | 'möchte'yi Türkçe gibi sona koymak yalnızca yan cümlede doğrudur: '…, weil ich einen Termin machen möchte.' Ana cümlede ikinci sırada kalır. | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 21 kelime (en çok 14); öğretilmemiş terim: yan cümle |
-| pt:ich-moechte.mistakes_tr[2] | 'möchte'nin Perfekt'i kurulmaz; geçmişte 'wollte' denir: 'Ich wollte anrufen.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:ich-moechte.mistakes_tr[3] | Eril isimde 'einen': 'Ich möchte einen Kaffee' ('ein Kaffee' değil). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:koennten-sie.mistakes_tr[0] | Mastarı ortada bırakma: 'Könnten Sie wiederholen das?' yanlış; 'Könnten Sie das wiederholen?' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:koennten-sie.mistakes_tr[1] | 'Können Sie …?' de doğrudur ama daha düz; 'Könnten' daha kibar. Telaffuzda 'können' ile 'könnten'i karıştırma. | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:koennten-sie.mistakes_tr[2] | 'bitte'yi Türkçedeki gibi en başa koymak ('Bitte, Sie können …') doğal değildir; 'Könnten Sie bitte …?' denir. | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 17 kelime (en çok 14) |
 | pt:kann-ich.mistakes_tr[0] | Mastar en sona gider: 'Kann ich zahlen mit Karte?' yanlış; 'Kann ich mit Karte zahlen?' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14) |
 | pt:kann-ich.mistakes_tr[1] | Asıl fiile 'zu' eklenmez: 'Ich kann zu kommen' yanlış; 'Ich kann kommen.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:kann-ich.mistakes_tr[2] | Yan cümlede 'kann' en sona gider: '…, weil ich nicht kommen kann' ('…, weil ich kann nicht kommen' yanlış). | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 19 kelime (en çok 14); öğretilmemiş terim: yan cümle |
@@ -170,6 +99,7 @@ Otomatik kural taraması (OD-9.3 katman 1). Okur kontrolü (katman 2) ayrıca he
 | pt:ich-muss.mistakes_tr[0] | 'nicht müssen' = gerek yok; 'nicht dürfen' = yasak: 'Sie müssen nicht kommen' (gelmeniz gerekmiyor) ≠ 'Sie dürfen nicht kommen' (gelmeniz yasak). | '=' işareti; ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 22 kelime (en çok 14) |
 | pt:ich-muss.mistakes_tr[1] | Mastar en sona gider: 'Ich muss arbeiten morgen' yanlış; 'Ich muss morgen arbeiten.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:ich-muss.mistakes_tr[2] | 'ich muss, er muss': üçüncü tekil şahısta -t eklenmez ('er musst' yanlış). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
+| pt:ich-muss.mistakes_tr[3] | Geçmişte modal fiil konuşmada da Präteritum ile söylenir: 'Ich musste gestern lange arbeiten.' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: präteritum; öğretilmemiş terim: modal fiil |
 | pt:nicht.mistakes_tr[0] | 'nicht'i fiilin önüne koyma: 'Ich nicht komme' yanlış; 'Ich komme nicht.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:nicht.mistakes_tr[1] | Perfekt'te 'nicht' Partizip'in önünde durur: 'Ich habe nicht geschlafen' ('Ich habe geschlafen nicht' yanlış). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: partizip |
 | pt:nicht.mistakes_tr[2] | İsimle 'kein' kullanılır: 'Ich habe keine Zeit' ('nicht Zeit' yanlış). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
@@ -184,41 +114,19 @@ Otomatik kural taraması (OD-9.3 katman 1). Okur kontrolü (katman 2) ayrıca he
 | pt:wo-ist.mistakes_tr[0] | 'wo' (nerede) ile 'wohin' (nereye) farklıdır: 'Wohin gehen Sie?' ya da 'Wo gehen Sie hin?' ('Wo gehen Sie?' yanlış). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 19 kelime (en çok 14) |
 | pt:wo-ist.mistakes_tr[1] | Çoğulda 'sind': 'Wo sind die Toiletten?' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:wo-ist.mistakes_tr[2] | Yan cümlede fiil sona gider: '…, wo die Toilette ist' ('…, wo ist die Toilette' yanlış). | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 16 kelime (en çok 14); öğretilmemiş terim: yan cümle |
-| pt:wie-viel-kostet.mistakes_tr[0] | Çoğulda 'kosten': 'Was kosten die Schuhe?' ('kostet' değil). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:wie-viel-kostet.mistakes_tr[1] | 'Euro' fiyatta tekil kalır: 'drei Euro' ('drei Euros' yanlış); 'Cent' de öyle. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:wie-viel-kostet.mistakes_tr[2] | Yan cümlede 'kostet' sona gider: '…, wie viel das kostet' ('…, wie viel kostet das' yanlış). | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 16 kelime (en çok 14); öğretilmemiş terim: yan cümle |
 | pt:ich-haette-gern.mistakes_tr[0] | 'Ich hätte gern ein Kaffee' yanlış: eril isim Akkusativ olur: 'einen Kaffee'. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: akkusativ |
 | pt:ich-haette-gern.mistakes_tr[1] | Türkçedeki 'bir kahve alabilir miyim?' sözünü 'Kann ich einen Kaffee nehmen?' diye çevirme; bu 'kendim alayım mı?' gibi duyulur. Siparişte 'Ich hätte gern …' ya da 'Ich nehme …' denir. | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 19 kelime (en çok 14) |
 | pt:ich-haette-gern.mistakes_tr[2] | 'hätte' ile 'hatte'yi karıştırma: 'Ich hatte einen Kaffee' = bir kahvem vardı / kahve içmiştim. | '=' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14) |
-| pt:passt-ihnen.mistakes_tr[0] | 'Ich passe Montag' yanlış: uyan şey öznedir, kişi Dativ: 'Montag passt mir.' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: dativ; öğretilmemiş terim: özne |
-| pt:passt-ihnen.mistakes_tr[1] | 'Mich passt' değil 'mir passt': 'passen' Dativ ister. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: dativ |
-| pt:passt-ihnen.mistakes_tr[2] | Tek başına 'Passt!' 'tamam, olur' demektir; kıyafet için 'Die Hose passt mir' 'pantolon bana oluyor' anlamına gelir, bağlamdan anlaşılır. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 19 kelime (en çok 14) |
-| pt:geht-es-auch.mistakes_tr[0] | 'Es geht auch am Freitag?' diye fiili yerinde bırakıp yalnızca sesi yükseltmek konuşmada duyulur ama doğru soru fiille başlar: 'Geht es auch am Freitag?' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 24 kelime (en çok 14) |
-| pt:geht-es-auch.mistakes_tr[1] | 'gehen' burada 'gitmek' değil 'olmak, mümkün olmak' demektir; 'Wie geht's?' (nasılsın) ile de karıştırma. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:geht-es-auch.mistakes_tr[2] | Yan cümlede 'geht' sona gider: '…, ob es auch am Freitag geht.' | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: yan cümle |
-| pt:um-uhr.mistakes_tr[0] | 'halb zehn' 10:30 değil 9:30'dur: Almanca yarımı bir sonraki saate göre söyler. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:um-uhr.mistakes_tr[1] | Saatte 'in' kullanılmaz: 'in neun Uhr' yanlış, 'um neun Uhr'; günde 'am': 'am Montag' ('in Montag' değil). | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 17 kelime (en çok 14) |
-| pt:um-uhr.mistakes_tr[2] | Saatten sonra 'Uhr' tekildir: 'um drei Uhr'. Süre için 'Stunden' denir: 'drei Stunden' = üç saat boyunca. | '=' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:seit.mistakes_tr[0] | Türkçedeki '-dır' yüzünden geçmiş zaman kullanma: süren durumda şimdiki zaman gerekir: 'Ich wohne seit zwei Jahren hier' ('Ich habe seit zwei Jahren hier gewohnt' başka anlam verir). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 27 kelime (en çok 14) |
-| pt:seit.mistakes_tr[1] | 'seit' ile 'vor'u karıştırma: 'seit drei Tagen' = üç gündür (hâlâ sürüyor), 'vor drei Tagen' = üç gün önce (olup bitti). | '=' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 21 kelime (en çok 14) |
-| pt:seit.mistakes_tr[2] | 'seit' Dativ ister: 'seit einem Monat' ('seit ein Monat' değil); çoğulda -n: 'seit zwei Jahren'. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14); öğretilmemiş terim: dativ |
-| pt:mir-tut-weh.mistakes_tr[0] | 'Ich tue weh' yanlış (bu 'ben acıtıyorum' demek olur). Ağrıyan şey öznedir, kişi Dativ: 'Mir tut der Kopf weh.' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: dativ; öğretilmemiş terim: özne |
-| pt:mir-tut-weh.mistakes_tr[1] | Çoğul organda fiil 'tun' olur: 'Mir tun die Augen weh' ('tut' değil). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:mir-tut-weh.mistakes_tr[2] | Yan cümlede 'weh' ile fiil birleşik yazılır ve sona gider: '…, weil mir der Kopf wehtut.' | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 16 kelime (en çok 14); öğretilmemiş terim: yan cümle |
-| pt:mir-tut-weh.mistakes_tr[3] | 'Mich tut weh' değil 'mir tut weh': kişi Dativ'dir. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: dativ |
+| pt:ich-haette-gern.mistakes_tr[3] | Bu kalıbın geçmişi kurulmaz; siparişi anlatırken düz Perfekt kullanılır: 'Ich habe zwei Brötchen bestellt.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:trennbar.mistakes_tr[0] | Ön eki fiilin yanında bırakma: 'Ich anrufe morgen' yanlış; 'Ich rufe morgen an.' Ön ek düşerse anlam değişir: 'Ich rufe' = sesleniyorum, bağırıyorum. | '=' işareti; ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 23 kelime (en çok 14) |
 | pt:trennbar.mistakes_tr[1] | Modal fiil ve yan cümlede fiil bitişiktir: 'Ich muss anrufen', '…, dass ich anrufe' ('…, dass ich rufe an' yanlış). | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 20 kelime (en çok 14); öğretilmemiş terim: yan cümle; öğretilmemiş terim: modal fiil |
 | pt:trennbar.mistakes_tr[2] | Perfekt'te 'ge', mastarda 'zu' ortaya girer: 'angerufen', 'anzurufen' ('geanruft' yanlış). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:trennbar.mistakes_tr[3] | 'anrufen' Akkusativ ister: 'Ich rufe Sie an' ('Ihnen' değil). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: akkusativ |
-| pt:perfekt-haben.mistakes_tr[0] | Partizip'i 'haben'in yanında bırakma: 'Ich habe angerufen gestern' yanlış; Partizip en sona: 'Ich habe gestern angerufen.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 16 kelime (en çok 14); öğretilmemiş terim: partizip |
-| pt:perfekt-haben.mistakes_tr[1] | Yan cümlede çekimli 'haben' en sona, Partizip'ten sonra gelir: '…, weil ich nicht geschlafen habe.' | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14); öğretilmemiş terim: partizip; öğretilmemiş terim: çekimli; öğretilmemiş terim: yan cümle |
-| pt:perfekt-haben.mistakes_tr[2] | Ayrılabilen fiilde 'ge' ön ekle kök arasına girer: anrufen → angerufen, ausfüllen → ausgefüllt ('geanruft' değil). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 16 kelime (en çok 14); öğretilmemiş terim: ayrılabilen fiil |
-| pt:perfekt-haben.mistakes_tr[3] | Yer değiştirme ve durum değişimi fiilleri 'sein' alır: 'Ich bin gefahren' ('Ich habe gefahren' değil). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14) |
 | pt:perfekt-sein.mistakes_tr[0] | 'Ich habe gegangen' yanlış: hareket fiilleri 'sein' alır: 'Ich bin gegangen.' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:perfekt-sein.mistakes_tr[1] | Aynı fiil nesneyle 'haben' alabilir: 'Ich bin nach Berlin gefahren' ama 'Ich habe das Auto gefahren' (arabayı ben sürdüm). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 19 kelime (en çok 14); öğretilmemiş terim: nesne |
 | pt:perfekt-sein.mistakes_tr[2] | Yan cümlede sıra Partizip + 'bin' olur: '…, weil ich früh aufgestanden bin'. | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: partizip; öğretilmemiş terim: yan cümle |
 | pt:mit-dativ.mistakes_tr[0] | 'mit' Akkusativ almaz: 'mit den Bus' yanlış; 'mit dem Bus'. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: akkusativ |
-| pt:mit-dativ.mistakes_tr[1] | Dişil isimde Dativ artikeli 'der' olur: 'mit der Bahn'; Türkçe konuşanın en çok karıştırdığı noktadır. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14); öğretilmemiş terim: dativ |
+| pt:mit-dativ.mistakes_tr[1] | Dişil isimde Dativ artikeli 'der' olur: 'mit der Bahn'. Bu 'der' eril değildir; 'die'nin Dativ biçimidir. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: dativ |
 | pt:mit-dativ.mistakes_tr[2] | Çoğul Dativ'de isme -n eklenir: 'mit den Kindern', 'mit meinen Freunden'. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: dativ |
 | pt:mit-dativ.mistakes_tr[3] | Türkçedeki '-le' her zaman 'mit' değildir: 'zu Fuß' (yürüyerek), 'auf Deutsch' (Almanca olarak). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:fuer-akk.mistakes_tr[0] | 'für' Dativ almaz: 'für meinem Sohn' yanlış, 'für meinen Sohn'. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: dativ |
@@ -228,9 +136,7 @@ Otomatik kural taraması (OD-9.3 katman 1). Okur kontrolü (katman 2) ayrıca he
 | pt:ich-brauche.mistakes_tr[0] | Türkçedeki 'bana … lazım' yapısıyla 'Mir braucht …' denmez; kişi özne olur: 'Ich brauche …' | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14); öğretilmemiş terim: özne |
 | pt:ich-brauche.mistakes_tr[1] | Eril isimde 'einen': 'Ich brauche einen Termin' ('ein Termin' değil). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:ich-brauche.mistakes_tr[2] | Olumsuzda isimle 'kein': 'Ich brauche keinen Termin'; 'nicht' ise bilinen şeyle: 'Das brauche ich nicht.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14) |
-| pt:was-heisst.mistakes_tr[0] | Yan cümlede 'heißt' sona gider: 'Ich weiß nicht, was das heißt' ('…, was heißt das' yanlış). | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 16 kelime (en çok 14); öğretilmemiş terim: yan cümle |
-| pt:was-heisst.mistakes_tr[1] | 'Was heißt …?' (ne demek?) ile 'Wie heißt …?' (adı ne, Almancası ne?) karışır: 'Wie heißt das auf Deutsch?' = Bunun Almancası ne? | '=' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 23 kelime (en çok 14) |
-| pt:was-heisst.mistakes_tr[2] | 'heißen'i yalnızca 'adı … olmak' sanma: 'Das heißt, …' = 'yani, …' anlamında da çok duyulur. | '=' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 16 kelime (en çok 14) |
+| pt:ich-brauche.mistakes_tr[3] | Kibar istekte 'Ich bräuchte …' çok duyulur ('Ich bräuchte einen Termin'); 'Ich brauche …'den yumuşaktır. | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14) |
 | pt:wie-sagt-man.mistakes_tr[0] | Yan cümlede fiil sona gider: 'Ich weiß nicht, wie man das sagt' ('…, wie sagt man das' yanlış). | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 18 kelime (en çok 14); öğretilmemiş terim: yan cümle |
 | pt:wie-sagt-man.mistakes_tr[1] | Kelimeyi bilmeyince başka dilden kelime söylemek çoğu zaman işe yaramaz; tarif etmek ('Das ist so ein Ding, mit dem man …') daha hızlı sonuç verir. | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 25 kelime (en çok 14) |
 | pt:wie-sagt-man.mistakes_tr[2] | 'mit dem man …' tarifinde fiil sona gider: '… mit dem man Wasser warm macht'. | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14) |
@@ -243,12 +149,15 @@ Otomatik kural taraması (OD-9.3 katman 1). Okur kontrolü (katman 2) ayrıca he
 | pt:imperativ-sie.mistakes_tr[1] | Ayrılabilen fiilde ön ek sona gider: 'Rufen Sie morgen an' ('Anrufen Sie' yanlış). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: ayrılabilen fiil |
 | pt:imperativ-sie.mistakes_tr[2] | Emir ile soru aynı sırayla kurulur; farkı ton yapar: düz tonla 'Nehmen Sie Platz.' talimattır, yükselen tonla soru gibi duyulur. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 20 kelime (en çok 14) |
 | pt:imperativ-sie.mistakes_tr[3] | 'sein' fiilinin emri düzensizdir: 'Seien Sie bitte pünktlich.' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
+| pt:imperativ-sie.mistakes_tr[4] | Emir kipinin geçmişi yoktur; yapılıp yapılmadığı Perfekt'le sorulur: 'Haben Sie die Tabletten genommen?' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:sollen-wir.mistakes_tr[0] | 'Sollen wir treffen uns?' yanlış: mastar en sona gider: 'Sollen wir uns treffen?' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:sollen-wir.mistakes_tr[1] | 'Lass uns' yalnızca 'du'/'ihr' denen kişilerle kullanılır; 'Sie' denen birine 'Lassen Sie uns …' ya da 'Sollen wir …?' denir. | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 20 kelime (en çok 14) |
 | pt:sollen-wir.mistakes_tr[2] | Türkçedeki '-elim mi?' sorusu 'Machen wir eine Pause?' diye de duyulur ama 'Sollen wir …?' en net ve güvenli olanıdır. | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 20 kelime (en çok 14) |
+| pt:sollen-wir.mistakes_tr[3] | Öneri sorusunun geçmişi yoktur; geçmişteki planı 'wollten' ile anlatırsın (modal fiil konuşmada da Präteritum): 'Wir wollten uns am Montag treffen.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 20 kelime (en çok 14); öğretilmemiş terim: präteritum; öğretilmemiş terim: modal fiil |
 | pt:ich-finde.mistakes_tr[0] | 'finden' hem 'bulmak' hem 'bence … olmak'tır: 'Ich finde meinen Schlüssel nicht' (bulamıyorum) / 'Ich finde das gut' (bence iyi). | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 20 kelime (en çok 14) |
 | pt:ich-finde.mistakes_tr[1] | Nesne Akkusativ'dir: 'Ich finde den Film gut' ('der Film' değil). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: akkusativ; öğretilmemiş terim: nesne |
 | pt:ich-finde.mistakes_tr[2] | 'Ich finde, dass …'tan sonra fiil sona gider; 'dass'sız biçimde düz sıra kullanılır: 'Ich finde, das ist teuer.' | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 18 kelime (en çok 14) |
+| pt:ich-finde.mistakes_tr[3] | Türkçedeki 'bence' için 'nach mir' ya da 'für mich' deme; 'Ich finde, …' ya da 'Meiner Meinung nach …' denir. | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 20 kelime (en çok 14) |
 | pt:gefaellt-mir.mistakes_tr[0] | 'Ich gefalle die Wohnung' yanlış; beğenilen şey öznedir: 'Die Wohnung gefällt mir.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: özne |
 | pt:gefaellt-mir.mistakes_tr[1] | 'Mich gefällt' değil 'mir gefällt': kişi Dativ'dir. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: dativ |
 | pt:gefaellt-mir.mistakes_tr[2] | Çoğulda 'gefallen': 'Die Schuhe gefallen mir' ('gefällt' değil). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
@@ -257,6 +166,7 @@ Otomatik kural taraması (OD-9.3 katman 1). Okur kontrolü (katman 2) ayrıca he
 | pt:haben-sie.mistakes_tr[1] | Fiil başa gelir: 'Sie haben einen Termin?' yalnızca şaşırma ya da yeniden sorma tonudur. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:haben-sie.mistakes_tr[2] | Eril isimde 'einen': 'Haben Sie einen Termin frei?' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:haben-sie.mistakes_tr[3] | Olumsuz cevapta 'kein': 'Nein, wir haben keine Brötchen mehr' ('nicht Brötchen' değil). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
+| pt:haben-sie.mistakes_tr[4] | Geçmişte 'haben' konuşmada da çoğu zaman Präteritum'dur: 'Hatten Sie schon mal einen Termin bei uns?' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14); öğretilmemiş terim: präteritum |
 | pt:ich-war.mistakes_tr[0] | 'Ich habe krank gewesen' yanlış: 'sein'in Perfekt'i 'sein' ile kurulur ('Ich bin krank gewesen'), ama konuşmada en doğalı 'Ich war krank'. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 21 kelime (en çok 14) |
 | pt:ich-war.mistakes_tr[1] | 'war' (idi) ile 'wäre' (olurdu), 'hatte' (vardı) ile 'hätte' (olurdu) farklıdır. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:ich-war.mistakes_tr[2] | 'Ich habe … gehabt' doğrudur ama günlük konuşmada daha çok 'Ich hatte …' denir. | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
@@ -277,22 +187,16 @@ Otomatik kural taraması (OD-9.3 katman 1). Okur kontrolü (katman 2) ayrıca he
 | pt:dass.mistakes_tr[1] | 'dass' (bağlaç) ile 'das' (artikel, zamir) karıştırılır: 'Ich weiß, dass das stimmt.' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: zamir |
 | pt:dass.mistakes_tr[2] | Almanca olumsuzu çoğu zaman ana fiile koyar: 'Ich glaube nicht, dass …' ('Ich glaube, dass … nicht …' da doğru ama daha az doğal). | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 24 kelime (en çok 14) |
 | pt:dass.mistakes_tr[3] | Konuşmadaki 'dass'sız biçim (Ich glaub, das klappt) doğrudur; ama 'dass' kullandıysan fiil mutlaka sonda olmalı. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14) |
-| pt:wenn.mistakes_tr[0] | Virgülden sonra Türkçedeki gibi özneyle başlama: 'Wenn es geht, ich komme' yanlış; 'Wenn es geht, komme ich.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 17 kelime (en çok 14); öğretilmemiş terim: özne |
-| pt:wenn.mistakes_tr[1] | 'wenn'den sonra çekimli fiil sona gider: 'wenn ich Zeit habe' ('wenn ich habe Zeit' yanlış). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14); öğretilmemiş terim: çekimli |
-| pt:wenn.mistakes_tr[2] | Geçmişte bir kez olan olay için 'wenn' değil 'als' kullanılır: 'Als ich krank war, …' | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14) |
-| pt:wenn.mistakes_tr[3] | 'wenn' ile 'ob'u karıştırma: 'Ich weiß nicht, ob er kommt' (gelip gelmeyeceğini bilmiyorum). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:ob.mistakes_tr[0] | 'ob' yerine 'wenn' kullanma: 'Ich weiß nicht, wenn er kommt' yanlış; doğrusu '…, ob er kommt'. | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 16 kelime (en çok 14) |
 | pt:ob.mistakes_tr[1] | 'ob'dan sonra fiil sona gider: 'ob die Praxis offen ist' ('ob ist die Praxis offen' yanlış). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 16 kelime (en çok 14) |
 | pt:ob.mistakes_tr[2] | 'ob' ile 'oder'i karıştırma: 'oder' 'veya' demektir; 'ob' dolaylı soru açar. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:indirekte-frage.mistakes_tr[0] | 'Können Sie mir sagen, wann kommt der Bus?' yanlış: yan cümlede fiil sona gider: '…, wann der Bus kommt?' | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 19 kelime (en çok 14); öğretilmemiş terim: yan cümle |
 | pt:indirekte-frage.mistakes_tr[1] | Yan cümlede özne fiilden önce gelir: '…, wo die Anmeldung ist' ('…, wo ist die Anmeldung' yanlış). | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 17 kelime (en çok 14); öğretilmemiş terim: özne; öğretilmemiş terim: yan cümle |
 | pt:indirekte-frage.mistakes_tr[2] | Evet/hayır sorusunu dolaylı yaparken 'wenn' ya da 'dass' değil 'ob' kullanılır: 'Wissen Sie, ob die Praxis offen ist?' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 18 kelime (en çok 14) |
-| pt:wuerden-sie.mistakes_tr[0] | 'Würden Sie zurückrufen mich?' yanlış: mastar en sona: 'Würden Sie mich zurückrufen?' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:wuerden-sie.mistakes_tr[1] | 'würden' ile 'werden'i karıştırma: 'Werden Sie mich zurückrufen?' (beni arayacak mısınız?) bilgi sorar, kibar rica değildir. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 16 kelime (en çok 14) |
-| pt:wuerden-sie.mistakes_tr[2] | Ricaya 'Ja, ich würde' diye cevap verilmez; 'Ja, gern' ya da 'Ja, mach ich' denir. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14) |
 | pt:ich-wuerde-gern.mistakes_tr[0] | Mastar en sona gider: 'Ich würde gern verschieben den Termin' yanlış; 'Ich würde gern den Termin verschieben.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 17 kelime (en çok 14) |
 | pt:ich-wuerde-gern.mistakes_tr[1] | 'würde' ile 'wurde'yi karıştırma: 'Ich wurde operiert' (ameliyat edildim) geçmiş zaman ve edilgendir, istek değil. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14) |
 | pt:ich-wuerde-gern.mistakes_tr[2] | Yan cümlede 'würde' en sona gider: '…, weil ich gern kommen würde'. | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: yan cümle |
+| pt:ich-wuerde-gern.mistakes_tr[3] | Geçmişteki isteği 'Ich wollte …' ile anlatırsın (modal fiil konuşmada da Präteritum). 'Ich hätte gern angerufen' (arayabilseydim keşke) ileri düzey bir yapıdır; şimdilik tanıman yeter. | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: präteritum; öğretilmemiş terim: modal fiil |
 | pt:ich-haette-eine-frage.mistakes_tr[0] | 'hätte' ile 'hatte'yi karıştırma: 'Ich hatte eine Frage' = bir sorum vardı (geçmiş). | '=' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:ich-haette-eine-frage.mistakes_tr[1] | Konu çoğu zaman 'zu' ile verilir ve 'zu' Dativ ister: 'eine Frage zu meiner Rechnung', 'zum Vertrag' (zu dem). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 19 kelime (en çok 14); öğretilmemiş terim: dativ |
 | pt:ich-haette-eine-frage.mistakes_tr[2] | Türkçedeki 'bir şey soracaktım' sözünü 'Ich wollte fragen, …' diye de söyleyebilirsin; ikisi de doğaldır. | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14) |
@@ -325,9 +229,11 @@ Otomatik kural taraması (OD-9.3 katman 1). Okur kontrolü (katman 2) ayrıca he
 | pt:es-waere-nett.mistakes_tr[0] | 'wäre' (olurdu) ile 'war' (idi) farklıdır: 'Es war nett' = hoştu; 'Es wäre nett' = iyi olur(du). | '=' işareti; ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 17 kelime (en çok 14) |
 | pt:es-waere-nett.mistakes_tr[1] | 'wenn'li yan cümlede fiil sona gider: '…, wenn Sie mich zurückrufen könnten' ('…, wenn Sie könnten mich zurückrufen' yanlış). | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 19 kelime (en çok 14); öğretilmemiş terim: yan cümle |
 | pt:es-waere-nett.mistakes_tr[2] | 'Es ist nett, wenn …' dersen rica kibarlığını kaybeder; burada Konjunktiv 'wäre' gerekir. | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: konjunktiv |
+| pt:es-waere-nett.mistakes_tr[3] | Geçmiş biçim ('Es wäre nett gewesen, wenn Sie Bescheid gesagt hätten') olmuş bitmiş bir şeye kibar sitemdir; rica değildir. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 19 kelime (en çok 14) |
 | pt:sollte.mistakes_tr[0] | 'sollen' (söylenen talimat) ile 'müssen' (zorunluluk) farklıdır: 'Ich soll anrufen' = aramam istendi; 'Ich muss anrufen' = aramak zorundayım. | '=' işareti; ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 19 kelime (en çok 14) |
 | pt:sollte.mistakes_tr[1] | Mastar en sonda: 'Sie sollten trinken viel' yanlış; 'Sie sollten viel trinken.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:sollte.mistakes_tr[2] | 'Soll ich …?' Türkçedeki '-eyim mi?' sorusudur: 'Soll ich warten?' = Bekleyeyim mi? 'Muss ich warten?' ise 'beklemek zorunda mıyım?' demektir. | '=' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
+| pt:sollte.mistakes_tr[3] | 'sollte' iki ayrı şey olabilir: tavsiye ('Sie sollten viel trinken') ya da geçmiş ('Ich sollte gestern zurückrufen' = aramam gerekiyordu). Modal fiilin geçmişi konuşmada da Präteritum'dur; hangisi olduğunu zaman sözü belli eder. | '=' işareti; ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 20 kelime (en çok 14); öğretilmemiş terim: präteritum; öğretilmemiş terim: modal fiil |
 | pt:bevor-nachdem.mistakes_tr[0] | 'bevor'/'nachdem' yan cümle açar, fiil sona gider: 'bevor Sie essen' ('bevor essen Sie' yanlış). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: yan cümle |
 | pt:bevor-nachdem.mistakes_tr[1] | 'nachdem' (bağlaç, arkasından cümle) ile 'nach' (edat, arkasından isim) karışır: 'nach dem Essen' ama 'nachdem Sie gegessen haben'. 'bevor' ile 'vor' da öyle: 'vor dem Essen', 'bevor Sie essen'. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 18 kelime (en çok 14); öğretilmemiş terim: edat |
 | pt:bevor-nachdem.mistakes_tr[2] | Yan cümle başta ise virgülden sonra fiil gelir: 'Bevor Sie gehen, nehmen Sie …' ('…, Sie nehmen' yanlış). | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 18 kelime (en çok 14); öğretilmemiş terim: yan cümle |
@@ -335,12 +241,6 @@ Otomatik kural taraması (OD-9.3 katman 1). Okur kontrolü (katman 2) ayrıca he
 | pt:als-wenn-zeit.mistakes_tr[1] | Geçmişte tekrar eden olay için 'als' değil 'wenn' (çoğu zaman 'immer wenn'): 'Immer wenn ich anrief, war besetzt.' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 18 kelime (en çok 14) |
 | pt:als-wenn-zeit.mistakes_tr[2] | 'als' karşılaştırmada da kullanılır ('größer als'); zaman bildiren 'als'tan sonra fiil sona gider. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:als-wenn-zeit.mistakes_tr[3] | Yan cümle başta ise ana cümle fiille başlar: 'Als ich ankam, war die Praxis zu' ('…, die Praxis war zu' yanlış). | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 21 kelime (en çok 14); öğretilmemiş terim: yan cümle |
-| pt:noch-mal.mistakes_tr[0] | Türkçedeki 'tekrar' yüzünden 'Sagen Sie wieder' denmez; tekrar ettirirken 'noch mal' kullanılır. 'wieder' daha çok 'yine, yeniden' (bir durumun yeniden olması) demektir: 'Es tut wieder weh.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:noch-mal.mistakes_tr[1] | 'Wie war das noch mal?' geçmiş zamanlıdır ama anlamı 'neydi?'dir; kalıp sabittir, 'Wie ist das noch mal?' denmez. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 18 kelime (en çok 14) |
-| pt:noch-mal.mistakes_tr[2] | 'noch mal'ı sona koyma: 'Können Sie sagen das noch mal?' yanlış; mastar en sonda: '… das noch mal sagen?' | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 19 kelime (en çok 14) |
-| pt:ich-verstehe-nicht.mistakes_tr[0] | 'Ich nicht verstehe' yanlış: fiil ikinci sırada, 'nicht' sonra gelir: 'Ich verstehe das nicht.' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| pt:ich-verstehe-nicht.mistakes_tr[1] | Perfekt'te 'nicht' Partizip'in önüne gelir, sona değil: 'Ich habe das nicht verstanden' ('… verstanden nicht' yanlış). | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 16 kelime (en çok 14); öğretilmemiş terim: partizip |
-| pt:ich-verstehe-nicht.mistakes_tr[2] | Anlamayınca yalnızca 'Was?' demek kaba kaçabilir; 'Wie bitte?' ya da bu kalıp kibardır. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:moment.mistakes_tr[0] | Düşünürken uzun süre susmak telefonda 'hat koptu' sanılabilir; 'Moment …' de, sonra devam et. | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | pt:moment.mistakes_tr[1] | 'Moment mal!' sert tonla itiraz anlamı taşır ('Dur bir dakika!'); kibar bekletmek için 'Einen Moment, bitte.' | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 16 kelime (en çok 14) |
 | pt:moment.mistakes_tr[2] | 'Moment' ile 'im Moment'i karıştırma: 'im Moment' = şu anda: 'Im Moment ist sie nicht da.' | '=' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 16 kelime (en çok 14) |

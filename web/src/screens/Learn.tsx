@@ -2,6 +2,7 @@
 import { Icon } from "../ui/icons.tsx";
 import { useApp } from "../state.ts";
 import { V1_URL } from "../core/planner.ts";
+import { visibleScenarios } from "../core/season.ts";
 import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
 
 export function Learn() {
@@ -16,7 +17,7 @@ export function Learn() {
       <p class="small muted">Gerçek hayattaki {domains.length} durum, senin öncelik sırana göre. Her durumda önce kelime ve ifadeler, sonra cümle kurma, en sonunda konuşma.</p>
       <ul class="list card">
         {domains.map((d) => {
-          const n = index.scenarios.filter((s) => s.domain === d.id).length;
+          const n = visibleScenarios(index.scenarios, Date.now()).filter((s) => s.domain === d.id).length;
           const paused = profile.domains.paused.includes(d.id);
           return (
             <li>
@@ -28,7 +29,7 @@ export function Learn() {
           );
         })}
       </ul>
-      <p class="tiny muted">İçerik: {index.counts.lexemes} kelime · {index.counts.grammar} dilbilgisi notu · {index.counts.scenarios} senaryo · sürüm {index.version}</p>
+      <p class="tiny muted">İçerik: {index.counts.lexemes} kelime · {index.counts.grammar} dilbilgisi notu · {visibleScenarios(index.scenarios, Date.now()).length} ders · sürüm {index.version}</p>
     </div>
   );
 }
@@ -38,7 +39,7 @@ export function DomainView({ id }: { id: string }) {
   if (!index) return <Loading />;
   const d = index.domains.find((x) => x.id === id);
   if (!d) return <ErrorPanel message="Bu alan bulunamadı." />;
-  const sc = index.scenarios.filter((s) => s.domain === id).sort((a, b) => a.order - b.order);
+  const sc = visibleScenarios(index.scenarios, Date.now()).filter((s) => s.domain === id).sort((a, b) => a.order - b.order);
   return (
     <div class="stack">
       <TopBar title={d.title_tr} back="#/learn" />

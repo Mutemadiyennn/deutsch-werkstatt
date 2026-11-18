@@ -1,29 +1,45 @@
 # STATUS — Deutsch Werkstatt 2.0
 
-Son güncelleme: 2026-11-18 10:30 UTC · Faz: **R1 hazırlığı** · Ana dal: `main` (`c81f063`) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (etiket `v2-20261117-2`)
+Son güncelleme: 2026-11-18 23:00 UTC · Faz: **R1 hazırlığı** · Ana dal: `main` (`d751b19`) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (etiket `v2-20261117-2`)
 Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DONGUSU → BEYIN → MIMARI → TASARIM …) → bu dosya → `DECISIONS.md`. "Sıradaki adım"dan devam et; hiçbir iş baştan başlatılmaz (PM-007 §4).
 
-## Sıradaki adım (PM sırası 2026-11-18: #39/#40 → PM-032 + PM-035/1–2 → PM-035/3–5 → PM-030)
-1. #39 birleşti (`c81f063`). #40 (Advent) main tabanında; WebKit yeşil olunca birleşir → deploy-v2.
-2. **PM-032** (dal `v2/telefon01-ogretim`): "öğretmeden isteme" kuralı (`content/tools/teach.ts`), cevap değerlendirmesi (öğretilmiş eşdeğer, dolgu sözcüğü, yapay zekâsız "kontrol edilmedi"); beş senaryonun içeriği yazar → dilbilimci → okur.
-3. **46 kalıp** (dal `v2/kaliplar-46`): dilbilimci KAPANDI, okur tur 2 geçti → reviewed.
-4. **PM-030 / DN-2** (bu PR, dal `v2/denetim`): gezgin, yükleme bütçesi, uçak modu CI'da; v2 servis işçisi; `DENETIM.md`. Kalan DN-2: içerik politikası testi (DN-4, `policy.json`), video doğrulama (PM-029/031), gerçek cihaz listesi (`CIHAZ_LISTESI.md`).
-5. PM-035/3–5, PM-022 "Anlamadım / Hata var", TS-5 adım 2 (4 sekme), arzt/01 OD-9 çevrimi.
+## Sıradaki adım (PM-046 sırası, 2026-11-18 23:00 UTC)
+1. **Birleştirme sırası (PM-046 B):** #52 gizlilik (P0) → #48 46 kalıp → #50 ilk 300 kelime kartı → #51 R0 temel paket → #49 PM-032 + PM-044 → #43 DN-2. En fazla 4 açık PR; inceleme ve yeşil CI olmadan birleşme yok.
+2. **Şema PR'ı** (dal `v2/sema`, hazır): içerik evreni alanları, ses, `sued`, `speaker`, bilinmeyen alan hatası, artikel tek kaynak, sözlükte okur, `TemelDers`, `Tier: passive`, K1 pasif≠çekirdek, `strictNumberWords`, ajan modelleri (PM-046 A). Açık PR sayısı 4'ün altına inince açılır.
+3. **#43 yükleme sınırı:** Bugün ekranının ilk karesi CI WebKit'te 170–630 ms (DOM 2–12 ms). Bir neden (saat dilimli `Intl` her çizimde) düzeltildi; kalan maliyetin tanısı CI'da.
+4. Sonra: PM-039.1 (deploy-v2 CI'a bağlı; deploy-worker "Dağıtılmadı: secret yok"), PM-039.2–4 (dayanıklılık, olay günlüğü, veri güvenliği), #45 arayüz P0'ları + PM-044.5, #46 P0-1, heceleme yuvaları (İçerik Motoru isteği).
+
+## Birleşenler (2026-11-18)
+- #52 gizlilik (23:05) → v1 **2026-11-18c** yayında · #48 46 kalıp (23:07): kayıttaki 61 kalıbın hepsi onaylı.
+
+## Ölçümler (PM-046 A)
+- Okur turu ortalaması: PM-032 partisi 5 tur (çip ölçütü tur 4'te eklendi), 46 kalıp 3 tur. Hedef ≤ 1,5. Geri dönen hata türleri (tırnak, noktalı virgül, "aynı durumda" göndermesi, olumsuzluğu kaybeden çip) yazar talimatına eklendi.
+
+## Yarım işler (PM-042 C)
+| İş | Dal | Durum |
+|---|---|---|
+| Şema PR'ı | `v2/sema` | itildi, PR açılmadı (PR sınırı) |
+| #43 Bugün ilk kare tanısı | `v2/denetim` | CI'da tanı koşusu |
+| Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
 
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-18
 | Seviye | Kelime kartı | Kalıp | Senaryo (tam) | Mini senaryo | Diyalog grafiği | Okuma | Dinleme | Haber | Madde bankası |
 |---|---|---|---|---|---|---|---|---|---|
-| A1 | — / 355 / 0 / 0 | — / 40 / 14* / 0 | — / 1 / 0 / 0 | — / 1 / 0 / 0 | 0 | 0 | 0 | 0 | seviye tespiti 2241 (tüm seviyeler) |
-| A2 | — / 237 / 0 / 0 | — / 10 / 0 / 0 | — / 2 / 0 / 0 | — / 2 / 0 / 0 | 0 | 0 | 0 | 0 | — |
-| B1 | — / 208 / 0 / 0 | — / 11 / 0 / 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
+| A1 | — / 355 / 227 / 0 | — / 40 / 14* / 0 | — / 1 / 0 / 0 | — / 1 / 0 / 0 | 0 | 0 | 0 | 0 | seviye tespiti 2241 (tüm seviyeler) |
+| A2 | — / 237 / 55 / 0 | — / 10 / 0 / 0 | — / 2 / 0 / 0 | — / 2 / 0 / 0 | 0 | 0 | 0 | 0 | — |
+| B1 | — / 208 / 18 / 0 | — / 11 / 0 / 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | B2, C1, C2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 \* Pilotun 14 kalıbı dilbilimciden geçti (çalışma kopyasında, Advent PR'ıyla depoya girecek); OD-9.4 okur kapısı henüz yok, bu yüzden "yayında" sayılmaz. Kalan 47 kalıbın incelemesi yapıldı (35'inde düzeltme) ama ajan son raporu yazmadan durduruldu: bu 47'si onay bekliyor (taslak). Hedef sütunu (günlük: yazar ≥2 ünite parçası, lex 150–200 kart, dilbilimci aynı gün) hat başlayınca günlük doldurulur. BY-8 tükenme tahmini: K2 motoru (R1) gelene kadar hesaplanamaz.
+R0 temel paket: 10 ders, 189 öğretim öğesi, 353 alıştırma; PR #51 (`TemelDers` türü gelene kadar uygulamada görünmez).
+Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur. Hata türleri yazar görevine eklendi; 009 ve sonrası ölçülüyor.
 
 ## Açık PR'lar
-| PR | Dal | Teslim |
-|---|---|---|
-| #40 | `v2/advent` | LS-17.0 Advent: 3 mini senaryo + 15 kalıbın OD-9 alanları |
-| (bu) | `v2/denetim` | PM-030 DN-2 makine kapısı |
+| PR | Dal | Teslim | İnceleme |
+|---|---|---|---|
+| #50 | `content/kelime-001-003` | İçerik Motoru: 300 kelime kartı | ONAY |
+| #51 | `content/r0-temel` | İçerik Motoru: R0 temel paket | değişiklik gerekli (İçerik Motoru) |
+| #49 | `v2/telefon01-ogretim` | PM-032 (öğretmeden isteme 0, cevap değerlendirme), PM-044.1 (mevsim dersi ana yolda değil), PM-044.3 (Advent + telefon/01 + strategie/01 onaylı; okur 5 tur) | 2. tur P1'leri düzeltildi |
+| #43 | `v2/denetim` | PM-030 DN-2 | yükleme sınırı kırmızı |
 
 ### Birleştirme turu (PM-007, 2026-11-17)
 - `main`'e birleşti: #2 (T04), #3 (çalışma düzeni), #18 (v2_core bekleme düzeltmesi), #20 (PM tasarım dili), #16 (PM gereksinim kaydı), #19 (yığının tepesi: #4–#17'nin bütün commit'leri, merge commit ile SHA'lar korunarak), #21 (PM yol haritası).

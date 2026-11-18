@@ -2,12 +2,20 @@
   {
     "id": "pt:ich-bin",
     "frame": "Ich bin + sıfat / isim / yer",
+    "frame_tr": "**Ich bin** + durumun, bulunduğun yer ya da mesleğin",
     "level": "A1",
     "core": true,
-    "grammar_tr": "'sein' Türkçedeki '-im, -sin, -dir' eklerinin karşılığıdır: 'Ich bin müde' (yorgunum). Türkçede ek olarak gelen şey Almancada ayrı bir fiildir ve ikinci sırada durur. Çekim: ich bin, du bist, er/sie ist, wir/Sie/sie sind. Meslekte artikel kullanılmaz: 'Ich bin Krankenpfleger.'",
+    "grammar_tr": "'sein' Türkçedeki '-im, -sin, -dir' eklerinin karşılığıdır: 'Ich bin müde' (yorgunum). Türkçede ek olarak gelen şey Almancada ayrı bir fiildir ve ikinci sırada durur. Çekim: ich bin, du bist, er/sie ist, wir/Sie/sie sind. Meslekte artikel kullanılmaz: 'Ich bin Verkäufer / Verkäuferin.'",
+    "kurallar_tr": [
+      "Türkçedeki yorgunum sözündeki ek Almancada ayrı bir kelimedir: **Ich bin müde**.",
+      "**bin** cümlede ikinci sırada durur: **Ich bin heute müde**.",
+      "Kişiye göre değişir: **ich bin**, **du bist**, **er ist**, **wir sind**, **Sie sind**.",
+      "Nerede olduğunu da böyle söylersin: **Ich bin im Büro**.",
+      "Meslek söylerken araya **ein** girmez: **Ich bin Verkäufer** ya da **Ich bin Verkäuferin**."
+    ],
     "slots": [
       {
-        "name": "sıfat",
+        "name": "sıfat / durum",
         "fills": [
           "müde",
           "krank",
@@ -26,12 +34,12 @@
           "zu Hause",
           "im Büro",
           "beim Arzt",
-          "in der Arbeit",
+          "bei der Arbeit",
           "am Bahnhof",
-          "Kunde bei Ihnen",
+          "{Kunde|Kundin} bei Ihnen",
           "neu im Team",
-          "die Nachbarin von oben",
-          "der Vater von Mia"
+          "{der Nachbar|die Nachbarin} von oben",
+          "im Urlaub"
         ]
       }
     ],
@@ -57,18 +65,18 @@
         "layer": "hd"
       },
       {
-        "de": "Ich bin Krankenpflegerin von Beruf.",
+        "de": "Ich bin {Krankenpfleger|Krankenpflegerin} von Beruf.",
         "tr": "Mesleğim hemşirelik.",
         "layer": "hd"
       },
       {
-        "de": "Sind Sie Frau Demir? – Ja, das bin ich.",
-        "tr": "Demir Hanım siz misiniz? – Evet, benim.",
+        "de": "Sind Sie {Herr|Frau} {name}? – Ja, das bin ich.",
+        "tr": "Siz {name} misiniz? – Evet, benim.",
         "layer": "hd"
       },
       {
         "de": "Ich bin gesetzlich versichert.",
-        "tr": "Devlet sağlık sigortalıyım (yasal sigorta).",
+        "tr": "Kamu sağlık sigortalıyım.",
         "layer": "hd"
       },
       {
@@ -87,8 +95,8 @@
         "layer": "alltag"
       },
       {
-        "de": "Hallo, ich bin's, Jonas.",
-        "tr": "Alo, benim, Jonas.",
+        "de": "Hallo, ich bin's, {name}.",
+        "tr": "Alo, benim, {name}.",
         "layer": "alltag"
       }
     ],
@@ -102,21 +110,33 @@
       "wenn": "Wenn ich fertig bin, rufe ich Sie an."
     },
     "mistakes_tr": [
-      "'sein'i unutma: 'Ich müde' yanlış; Türkçedeki ekin karşılığı ayrı bir fiildir: 'Ich bin müde.'",
-      "Meslekte artikel kullanılmaz: 'Ich bin Lehrerin' ('Ich bin eine Lehrerin' genelde denmez).",
-      "Üşüyorsan 'Ich bin kalt' deme (soğuk biriyim gibi anlaşılır); 'Mir ist kalt' denir.",
-      "Yaşta 'haben' değil 'sein': 'Ich bin 30' ('Ich habe 30 Jahre' yanlış)."
+      "**Ich müde** denmez. Doğrusu **Ich bin müde**.",
+      "**Ich bin ein Lehrer** genelde denmez. Doğrusu **Ich bin Lehrer**.",
+      "Üşüyorsan **Ich bin kalt** deme. Doğrusu **Mir ist kalt**.",
+      "**Ich bin 30 Jahre** eksik kalır. Doğrusu **Ich bin 30 Jahre alt** ya da **Ich bin 30**.",
+      "Geçmişi konuşmada çoğu zaman **war** ile söylersin: **Ich war krank**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:ich-habe",
     "frame": "Ich habe + Akkusativ (Zeit, Fieber, einen Termin …)",
+    "frame_tr": "**Ich habe** + bir şey",
     "level": "A1",
     "core": true,
-    "grammar_tr": "'haben' hem sahip olmayı hem de durumu anlatır: Türkçede 'ateşim var, vaktim yok' dediğimiz yerde Almanca 'Ich habe Fieber', 'Ich habe keine Zeit' der. Nesne Akkusativ'dir; yalnızca eril isimde artikel değişir: ein → einen ('einen Termin'). Konuşmada 'Ich habe' çoğu zaman 'Ich hab' olur.",
+    "grammar_tr": "Türkçede ateşim var dersin. Almancada bunu **Ich habe Fieber** diye söylersin. **der** ile söylenen kelimede **ein** yerine **einen** gelir: **einen Termin**. Konuşmada **Ich habe** çoğu zaman **Ich hab** olur.",
+    "kurallar_tr": [
+      "Türkçedeki ateşim var cümlesini **Ich habe Fieber** diye söylersin.",
+      "**der** ile söylenen kelimede **ein** yerine **einen** gelir: **einen Termin**.",
+      "Konuşmada **Ich habe** çoğu zaman **Ich hab** olur."
+    ],
     "slots": [
       {
         "name": "durum (artikelsiz)",
@@ -214,21 +234,32 @@
       "wenn": "Wenn Sie Fragen haben, rufen Sie mich an."
     },
     "mistakes_tr": [
-      "Türkçedeki 'var' yüzünden 'Es gibt Fieber' denmez; durumu yaşayan kişiyle söylenir: 'Ich habe Fieber.'",
-      "Eril isimde 'ein' → 'einen' olur: 'Ich habe einen Termin' ('ein Termin' değil).",
-      "Artikelsiz isim 'nicht' ile değil 'kein' ile olumsuzlanır: 'Ich habe keine Zeit' ('Ich habe nicht Zeit' yanlış).",
-      "Geçmişte konuşmada genelde 'Ich hatte keine Zeit' denir; 'Ich habe … gehabt' da doğrudur ama daha az duyulur."
+      "**Es gibt Fieber** denmez. Doğrusu **Ich habe Fieber**.",
+      "**Ich habe ein Termin** denmez. Doğrusu **Ich habe einen Termin**.",
+      "**Ich habe nicht Zeit** denmez. Doğrusu **Ich habe keine Zeit**.",
+      "Geçmiş için **Ich hatte keine Zeit** dersin. Bavyera'da **Ich habe keine Zeit gehabt** da sık duyulur."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-17",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:verb-zweite-stelle",
     "frame": "[Zaman / yer / nesne] + FİİL + özne + … (+ mastar / Partizip sonda)",
+    "frame_tr": "zaman ya da yer + **gehe**, **habe** gibi kelime + kişi + gerisi",
     "level": "A1",
     "core": true,
     "grammar_tr": "Ana cümlede çekimli fiil her zaman ikinci sıradadır; birinci yere ne gelirse gelsin. Cümle zamanla, yerle ya da nesneyle başlarsa özne fiilden sonraya geçer: 'Morgen gehe ich zum Arzt.' Türkçedeki gibi fiili sona koymak ya da 'Morgen ich gehe' demek en sık hatadır. Asıl fiil (mastar, Partizip, ön ek) ise en sona gider.",
+    "kurallar_tr": [
+      "**gehe** gibi iş bildiren kelime cümlede hep ikinci sırada durur.",
+      "Cümle **Morgen** ile başlarsa **ich** arkaya geçer: **Morgen gehe ich zum Arzt**.",
+      "Başa gün, saat, yer ya da başka şey gelebilir: **Heute habe ich keine Zeit**.",
+      "**kann** ikinci sıradaysa **kommen** en sona gider: **Leider kann ich nicht kommen**."
+    ],
     "slots": [
       {
         "name": "başa gelen öğe",
@@ -292,7 +323,7 @@
       },
       {
         "de": "Den Termin habe ich schon abgesagt.",
-        "tr": "Randevuyu zaten iptal ettim.",
+        "tr": "Randevuyu çoktan iptal ettim.",
         "layer": "hd"
       },
       {
@@ -326,21 +357,34 @@
       "wenn": "Wenn ich morgen Zeit habe, rufe ich Sie an."
     },
     "mistakes_tr": [
-      "'Morgen ich gehe zum Arzt' yanlış: birinci yerde 'Morgen' varsa fiil ikinci sıraya, özne arkasına geçer: 'Morgen gehe ich zum Arzt.'",
-      "Fiili Türkçedeki gibi sona koyma: 'Ich morgen zum Arzt gehe' yalnızca yan cümlede doğrudur.",
-      "'Leider', 'Zum Glück', 'Dann' gibi kelimeler de bir yer kaplar: 'Leider kann ich nicht' ('Leider ich kann nicht' yanlış).",
-      "'Ja', 'Nein' ve 'aber, und, oder' sıra saymaz: 'Aber ich komme morgen.'"
+      "**Morgen ich gehe zum Arzt** denmez. Doğrusu **Morgen gehe ich zum Arzt**.",
+      "**Ich morgen zum Arzt gehe** denmez. Doğrusu **Ich gehe morgen zum Arzt**.",
+      "**Leider ich kann nicht** denmez. Doğrusu **Leider kann ich nicht**.",
+      "**Aber** başta olsa da sıra değişmez: **Aber ich komme morgen**.",
+      "**Ja** ya da **Nein** ile başlarsan sıra değişmez: **Ja, ich komme morgen**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:w-frage",
     "frame": "W-sözcüğü + FİİL + özne …?",
+    "frame_tr": "soru kelimesi + **haben** ya da **ist** gibi kelime + kişi + gerisi?",
     "level": "A1",
     "core": true,
     "grammar_tr": "Soru sözcüğü başa, çekimli fiil hemen ikinci sıraya, özne fiilin arkasına gelir: 'Wann haben Sie Zeit?' Türkçede soru sözcüğü cümlenin ortasında durur ('Saat kaçta geliyorsunuz?'), Almancada en başa çekilir. Asıl fiil varsa (mastar, Partizip) yine en sona gider: 'Wann soll ich wiederkommen?'",
+    "kurallar_tr": [
+      "Soru kelimesi en başa gelir: **Wann haben Sie Zeit?**",
+      "İkinci sırada **haben** durur, **Sie** ondan sonra gelir: **Wann haben Sie Zeit?**",
+      "Türkçede soru kelimesi ortada durur, Almancada en başa çekilir.",
+      "**soll** ikinci sıradaysa **wiederkommen** en sona gider: **Wann soll ich wiederkommen?**"
+    ],
     "slots": [
       {
         "name": "soru sözcüğü",
@@ -353,7 +397,7 @@
           "Warum",
           "Wie viel",
           "Wie lange",
-          "Welche",
+          "Um wie viel Uhr",
           "Woher",
           "Wohin"
         ]
@@ -380,7 +424,7 @@
       },
       {
         "de": "Wo ist die Anmeldung?",
-        "tr": "Kayıt / danışma nerede?",
+        "tr": "Kayıt bankosu nerede?",
         "layer": "hd"
       },
       {
@@ -444,21 +488,37 @@
       "wenn": "Was mache ich, wenn der Bus nicht kommt?"
     },
     "mistakes_tr": [
-      "Fiili sona koyma: 'Wann Sie Zeit haben?' yanlış; 'Wann haben Sie Zeit?'",
-      "Soru sözcüğünü Türkçedeki gibi ortada bırakma: 'Sie kommen wann?' yalnızca şaşırınca, yeniden sorarken duyulur.",
-      "'wer' = kim, 'wo' = nerede, 'wohin' = nereye, 'woher' = nereden; 'wer' ile 'wo' sık karışır.",
-      "'Wie viel' fiyat ve sayılamayan için, 'Wie viele' sayılan çoğul için: 'Wie viele Tabletten?'"
+      "**Wann Sie Zeit haben?** denmez. Doğrusu **Wann haben Sie Zeit?**",
+      "**Sie kommen wann?** yalnızca şaşırınca duyulur. Normal soru **Wann kommen Sie?** olur.",
+      "**wer** kim demektir. İngilizcedeki where ile karıştırma.",
+      "**wo** nerede demektir. İngilizcedeki who ile karıştırma.",
+      "**wohin** nereye, **woher** nereden demektir.",
+      "Fiyat ve miktar için **Wie viel** dersin: **Wie viel kostet das?**",
+      "Sayabildiğin şeyler için **Wie viele** dersin: **Wie viele Tabletten?**"
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:ja-nein-frage",
     "frame": "FİİL + özne + …? (asıl fiil sonda)",
+    "frame_tr": "**Haben**, **Ist** ya da **Kann** gibi kelime + kişi + gerisi?",
     "level": "A1",
     "core": true,
     "grammar_tr": "Evet/hayır sorusunda çekimli fiil en başa gelir, özne hemen arkasından: 'Haben Sie heute Zeit?' Türkçedeki '-mı/-mi' soru ekinin yerini bu sıra alır; ses de sonda yükselir. Asıl fiil (mastar, Partizip) yine en sondadır: 'Kann ich mit Karte zahlen?'",
+    "kurallar_tr": [
+      "Cevabı evet ya da hayır olan soru **Haben**, **Ist**, **Kann** gibi kelimeyle başlar.",
+      "Baştaki kelimeden hemen sonra kişi gelir: **Haben Sie heute Zeit?**",
+      "Almancada mı ya da mi gibi soru eki yoktur, soruyu sıra gösterir.",
+      "Soruda sesin sonda yükselir.",
+      "Başta **Kann** varsa yapılan iş en sona gider: **Kann ich mit Karte zahlen?**"
+    ],
     "slots": [
       {
         "name": "fiil + özne",
@@ -472,13 +532,13 @@
           "Gibt es",
           "Muss ich",
           "Geht das",
-          "Wissen Sie"
+          "Bin ich"
         ]
       },
       {
         "name": "devam",
         "fills": [
-          "heute noch was frei",
+          "heute noch etwas frei",
           "hier richtig",
           "mit Karte zahlen",
           "morgen",
@@ -492,7 +552,7 @@
     ],
     "examples": [
       {
-        "de": "Haben Sie heute noch was frei?",
+        "de": "Haben Sie heute noch etwas frei?",
         "tr": "Bugün hâlâ boş yeriniz var mı?",
         "layer": "hd"
       },
@@ -557,20 +617,32 @@
       "wenn": "Kann ich Sie anrufen, wenn ich Fragen habe?"
     },
     "mistakes_tr": [
-      "Soru ekini çevirmeye çalışma; fiili başa al: 'Haben Sie Zeit?' ('Sie haben Zeit, ja?' yalnızca onay ister).",
-      "Olumsuz soruya 'evet' derken 'Ja' değil 'Doch' denir: 'Kommen Sie nicht? – Doch!' (Geliyorum).",
-      "Asıl fiili başa getirme: 'Zahlen kann ich mit Karte?' yanlış; 'Kann ich mit Karte zahlen?'"
+      "Soru sormak için **Sie haben Zeit?** deme. Doğrusu **Haben Sie Zeit?**",
+      "**Kommen Sie nicht?** sorusuna geliyorum demek için **Ja** değil **Doch** dersin.",
+      "**Zahlen kann ich mit Karte?** denmez. Doğrusu **Kann ich mit Karte zahlen?**"
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:ich-moechte",
     "frame": "Ich möchte (gern) + Akkusativ · Ich möchte (gern) + … + mastar (sonda)",
+    "frame_tr": "**Ich möchte** + istediğin şey · **Ich möchte** + istediğin iş sonda",
     "level": "A1",
     "core": true,
-    "grammar_tr": "'möchte' kibar istek bildirir ve 'istiyorum'un en güvenli karşılığıdır. Çekimli 'möchte' ikinci sırada durur; başka bir fiil varsa mastar hâlinde cümlenin en sonuna gider: 'Ich möchte einen Termin machen.' Türkçe alışkanlıkla 'möchte'yi sona atma, yalnızca mastar sona gider. İsimle kullanılırsa isim Akkusativ olur: 'einen Termin'.",
+    "grammar_tr": "**Ich möchte** kibarca istiyorum demektir. **möchte** ikinci sırada durur. Yapmak istediğin iş cümlenin en sonuna gider: **Ich möchte einen Termin machen**. **der** ile söylenen kelimede **einen** gelir: **einen Kaffee**.",
+    "kurallar_tr": [
+      "**Ich möchte** kibarca istiyorum demektir.",
+      "**möchte** cümlede ikinci sırada durur.",
+      "Yapmak istediğin iş en sona gider: **Ich möchte einen Termin machen**.",
+      "**der** ile söylenen kelimede **einen** gelir: **Ich möchte einen Kaffee**."
+    ],
     "slots": [
       {
         "name": "nesne (Akkusativ)",
@@ -633,7 +705,7 @@
       },
       {
         "de": "Ich möchte ein Paket abholen.",
-        "tr": "Bir paket almak istiyorum.",
+        "tr": "Bir paketi teslim almak istiyorum.",
         "layer": "hd"
       },
       {
@@ -667,21 +739,32 @@
       "wenn": "Wenn Sie möchten, können Sie den Termin auch online machen."
     },
     "mistakes_tr": [
-      "Mastarı ortada bırakma: 'Ich möchte machen einen Termin' yanlış; 'Ich möchte einen Termin machen.'",
-      "'möchte'yi Türkçe gibi sona koymak yalnızca yan cümlede doğrudur: '…, weil ich einen Termin machen möchte.' Ana cümlede ikinci sırada kalır.",
-      "'möchte'nin Perfekt'i kurulmaz; geçmişte 'wollte' denir: 'Ich wollte anrufen.'",
-      "Eril isimde 'einen': 'Ich möchte einen Kaffee' ('ein Kaffee' değil)."
+      "**Ich möchte machen einen Termin** denmez. Doğrusu **Ich möchte einen Termin machen**.",
+      "**Ich einen Termin machen möchte** denmez. Doğrusu **Ich möchte einen Termin machen**.",
+      "Geçmiş için **möchte** kullanılmaz. Onun yerine **wollte** dersin: **Ich wollte anrufen**.",
+      "**Ich möchte ein Kaffee** denmez. Doğrusu **Ich möchte einen Kaffee**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-17",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:koennten-sie",
     "frame": "Könnten Sie (bitte) + … + mastar?",
+    "frame_tr": "**Könnten Sie bitte** + istediğin iş?",
     "level": "A1",
     "core": true,
-    "grammar_tr": "'Könnten Sie …?' ricayı çok kibar yapar ('… yapabilir miydiniz?'). Çekimli 'könnten' başa gelir, asıl fiil mastar hâlinde cümlenin en sonuna gider: 'Könnten Sie das bitte wiederholen?' 'bitte' genelde 'Sie'den hemen sonra durur. Telefonda ve resmî yerlerde anlamadığında en çok işine yarayacak kalıp budur.",
+    "grammar_tr": "**Könnten Sie** çok kibar bir rica başlatır. **Könnten** başta durur, istenen iş en sona gider: **Könnten Sie das bitte wiederholen?** **bitte** en doğal olarak **Sie** kelimesinden hemen sonra gelir. Telefonda ve resmî yerlerde anlamadığında çok işine yarar.",
+    "kurallar_tr": [
+      "**Könnten Sie** ile çok kibar bir rica başlatırsın.",
+      "İstediğin iş en sona gider: **Könnten Sie das bitte wiederholen?**",
+      "**bitte** çoğu zaman **Sie** kelimesinden sonra gelir: **Könnten Sie bitte warten?**",
+      "**das** ya da **mir** varsa **bitte** onlardan sonra gelir: **Könnten Sie das bitte wiederholen?**"
+    ],
     "slots": [
       {
         "name": "mastar grubu",
@@ -765,26 +848,39 @@
       "question": "Könnten Sie mir die Nummer noch mal geben?",
       "negative": "Könnten Sie bitte nicht so schnell sprechen?",
       "polite": "Wären Sie so nett, mir kurz zu helfen?",
-      "perfekt": "(yok: rica kalıbının Perfekt'i kurulmaz; geçmişi sormak için 'Konnten Sie das Formular ausfüllen?' denir)",
-      "weil": "Könnten Sie bitte etwas langsamer sprechen, weil ich noch nicht alles verstehe?",
-      "dass": "Ich hatte gehofft, dass Sie mir helfen könnten.",
+      "perfekt": "Konnten Sie mich gestern erreichen?",
+      "weil": "Könnten Sie das bitte wiederholen? Ich frage, weil ich es nicht ganz verstanden habe.",
+      "dass": "Ich dachte, dass Sie mir vielleicht helfen könnten.",
       "wenn": "Wenn Sie mich zurückrufen könnten, wäre das sehr nett."
     },
     "mistakes_tr": [
-      "Mastarı ortada bırakma: 'Könnten Sie wiederholen das?' yanlış; 'Könnten Sie das wiederholen?'",
-      "'Können Sie …?' de doğrudur ama daha düz; 'Könnten' daha kibar. Telaffuzda 'können' ile 'könnten'i karıştırma.",
-      "'bitte'yi Türkçedeki gibi en başa koymak ('Bitte, Sie können …') doğal değildir; 'Könnten Sie bitte …?' denir."
+      "**Könnten Sie wiederholen das?** denmez. Doğrusu **Könnten Sie das wiederholen?**",
+      "**Können Sie** de doğrudur ama daha düzdür. **Könnten Sie** daha kibardır.",
+      "**können** ile **könnten** söylenişte karışır. **könnten** içindeki t sesini duyur.",
+      "**Konnten Sie** kibar rica değildir. Geçmişte başarıp başaramadığını sorar: **Konnten Sie mich erreichen?**"
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-17",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:kann-ich",
     "frame": "Kann ich + … + mastar? · Ich kann (nicht) + … + mastar",
+    "frame_tr": "**Kann ich** + istediğin iş? · **Ich kann** + yapabildiğin iş",
     "level": "A1",
     "core": true,
     "grammar_tr": "'können' hem olanak hem izin sorar ('… yapabilir miyim?'). Soruda 'kann' başa gelir, asıl fiil mastar hâlinde en sona: 'Kann ich mit Karte zahlen?' Düz cümlede 'kann' ikinci sıradadır: 'Ich kann morgen nicht kommen.' 'Darf ich …?' daha kibar izin ister; beceri için de 'können' kullanılır: 'Ich kann ein bisschen Deutsch.'",
+    "kurallar_tr": [
+      "**Kann ich** ile yapabilir miyim diye sorarsın.",
+      "Soruda **kann** başa, yapmak istediğin iş en sona gelir: **Kann ich mit Karte zahlen?**",
+      "Düz cümlede **kann** ikinci sırada durur: **Ich kann morgen nicht kommen**.",
+      "Bildiğin bir şeyi de **kann** ile söylersin: **Ich kann ein bisschen Deutsch**.",
+      "İzin isterken **Darf ich** demek **Kann ich** demekten daha kibardır."
+    ],
     "slots": [
       {
         "name": "mastar grubu",
@@ -869,21 +965,33 @@
       "wenn": "Wenn ich nicht kommen kann, sage ich rechtzeitig ab."
     },
     "mistakes_tr": [
-      "Mastar en sona gider: 'Kann ich zahlen mit Karte?' yanlış; 'Kann ich mit Karte zahlen?'",
-      "Asıl fiile 'zu' eklenmez: 'Ich kann zu kommen' yanlış; 'Ich kann kommen.'",
-      "Yan cümlede 'kann' en sona gider: '…, weil ich nicht kommen kann' ('…, weil ich kann nicht kommen' yanlış).",
-      "Geçmişte modal fiil konuşmada da genelde Präteritum ile söylenir: 'Ich konnte nicht kommen.'"
+      "**Kann ich zahlen mit Karte?** denmez. Doğrusu **Kann ich mit Karte zahlen?**",
+      "**Ich kann zu kommen** denmez. Doğrusu **Ich kann kommen**.",
+      "**weil** yani çünkü gelince **kann** en sona gider: **weil ich nicht kommen kann**.",
+      "Geçmiş için **konnte** dersin: **Ich konnte nicht kommen**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:darf-ich",
     "frame": "Darf ich + … + mastar? · Darf ich mal?",
+    "frame_tr": "**Darf ich** + istediğin iş? · **Darf ich mal?**",
     "level": "A1",
     "core": true,
     "grammar_tr": "'Darf ich …?' izin ister ('… yapabilir miyim?'); 'Kann ich …?'ten daha kibardır. 'darf' başa, 'ich' ardından, asıl fiil mastar hâlinde en sona gelir: 'Darf ich kurz etwas fragen?' Kalabalıkta geçmek için kısa biçim de çok duyulur: 'Darf ich mal?'",
+    "kurallar_tr": [
+      "**Darf ich** ile izin istersin.",
+      "**Darf ich** demek **Kann ich** demekten daha kibardır.",
+      "Yapmak istediğin iş en sona gider: **Darf ich kurz etwas fragen?**",
+      "Kalabalıkta geçmek için kısaca **Darf ich mal?** dersin."
+    ],
     "slots": [
       {
         "name": "mastar grubu",
@@ -894,7 +1002,7 @@
           "das Fenster aufmachen",
           "hier parken",
           "Ihre Toilette benutzen",
-          "mit Karte zahlen",
+          "kurz Ihren Stift haben",
           "kurz telefonieren",
           "Sie unterbrechen",
           "ein Foto machen"
@@ -928,8 +1036,8 @@
         "layer": "hd"
       },
       {
-        "de": "Darf ich mit Karte zahlen?",
-        "tr": "Kartla ödeyebilir miyim?",
+        "de": "Darf ich hier ein Foto machen?",
+        "tr": "Burada fotoğraf çekebilir miyim?",
         "layer": "hd"
       },
       {
@@ -959,7 +1067,7 @@
       },
       {
         "de": "Darf ich du sagen?",
-        "tr": "Sana 'sen' diyebilir miyim?",
+        "tr": "Sana sen diyebilir miyim?",
         "layer": "alltag"
       }
     ],
@@ -967,27 +1075,39 @@
       "question": "Darf ich hier rauchen?",
       "negative": "Hier dürfen Sie leider nicht parken.",
       "polite": "Dürfte ich Sie kurz etwas fragen?",
-      "perfekt": "Gestern durfte ich nicht mit Karte zahlen.",
-      "weil": "Darf ich kurz das Fenster aufmachen, weil es hier so warm ist?",
+      "perfekt": "Gestern durfte ich früher gehen.",
+      "weil": "Ich parke hier nicht, weil man hier nicht parken darf.",
       "dass": "Der Chef hat gesagt, dass ich heute früher gehen darf.",
       "wenn": "Wenn ich darf, würde ich gern kurz etwas sagen."
     },
     "mistakes_tr": [
-      "'Darf ich fragen kurz?' yanlış: mastar en sonda: 'Darf ich kurz fragen?'",
-      "'dürfen'in çekimi düzensizdir: ich darf, du darfst, er darf ('ich darfe' yok).",
-      "'nicht dürfen' = yasak, 'nicht müssen' = gerek yok: 'Sie dürfen nicht essen' (yemeniz yasak) ≠ 'Sie müssen nicht essen' (yemek zorunda değilsiniz).",
-      "Geçmişte modal fiil konuşmada da genelde Präteritum ile söylenir: 'Ich durfte nicht …'"
+      "**Darf ich fragen kurz?** denmez. Doğrusu **Darf ich kurz fragen?**",
+      "**ich darfe** denmez. Doğrusu **ich darf**, **du darfst**, **er darf**.",
+      "**Sie dürfen nicht essen** yemeniz yasak demektir. **Sie müssen nicht essen** yemek zorunda değilsiniz demektir.",
+      "Geçmiş için **durfte** dersin: **Gestern durfte ich früher gehen**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:ich-muss",
     "frame": "Ich muss + … + mastar · Muss ich …? · Sie müssen nicht …",
+    "frame_tr": "**Ich muss** + yapman gereken iş · **Muss ich** + iş?",
     "level": "A1",
     "core": true,
     "grammar_tr": "'müssen' zorunluluk bildirir ('-mek zorundayım, -meliyim'). 'muss' ikinci sırada, asıl fiil mastar hâlinde en sonda: 'Ich muss morgen arbeiten.' Dikkat: 'nicht müssen' yasak değil, 'gerek yok' demektir: 'Sie müssen nicht warten.' Yasak için 'nicht dürfen' kullanılır. Konuşmada 'Ich muss los' (gitmem lazım) gibi fiilsiz kısa biçimler de çok duyulur.",
+    "kurallar_tr": [
+      "**Ich muss** zorundayım ya da yapmam lazım demektir.",
+      "**muss** ikinci sırada, yapman gereken iş en sonda durur: **Ich muss morgen arbeiten**.",
+      "**Sie müssen nicht warten** beklemenize gerek yok demektir, yasak anlamı yoktur.",
+      "Konuşmada **Ich muss los** çok duyulur, gitmem lazım demektir."
+    ],
     "slots": [
       {
         "name": "mastar grubu",
@@ -1048,7 +1168,7 @@
       },
       {
         "de": "Ich muss noch schnell einkaufen.",
-        "tr": "Daha hızlıca alışveriş yapmam lazım.",
+        "tr": "Bir de çabucak alışveriş yapmam lazım.",
         "layer": "alltag"
       },
       {
@@ -1072,20 +1192,34 @@
       "wenn": "Wenn Sie länger warten müssen, sagen wir Bescheid."
     },
     "mistakes_tr": [
-      "'nicht müssen' = gerek yok; 'nicht dürfen' = yasak: 'Sie müssen nicht kommen' (gelmeniz gerekmiyor) ≠ 'Sie dürfen nicht kommen' (gelmeniz yasak).",
-      "Mastar en sona gider: 'Ich muss arbeiten morgen' yanlış; 'Ich muss morgen arbeiten.'",
-      "'ich muss, er muss': üçüncü tekil şahısta -t eklenmez ('er musst' yanlış)."
+      "**Sie müssen nicht kommen** gelmenize gerek yok demektir. Yasak için **Sie dürfen nicht kommen** dersin.",
+      "**Ich muss arbeiten morgen** denmez. Doğrusu **Ich muss morgen arbeiten**.",
+      "**er musst** denmez. Doğrusu **er muss**.",
+      "Geçmiş için **musste** dersin: **Ich musste gestern lange arbeiten**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:nicht",
     "frame": "… nicht … (Partizip / mastar / ön ekten önce) · nicht + olumsuzlanan öğe",
+    "frame_tr": "cümle + **nicht** · **nicht** + olumsuz yaptığın şey",
     "level": "A1",
     "core": true,
     "grammar_tr": "'nicht' fiili ya da tek bir öğeyi olumsuz yapar. Bütün cümleyi olumsuzlarken genelde sona doğru gelir ama Partizip, mastar ve ön ekin önünde durur: 'Ich komme heute nicht', 'Ich habe das nicht verstanden.' Tek bir öğeyi olumsuzlarken o öğenin hemen önüne gelir: 'nicht heute, sondern morgen'. Artikelsiz ya da 'ein'li isim 'nicht' ile değil 'kein' ile olumsuzlanır.",
+    "kurallar_tr": [
+      "**nicht** cümleyi olumsuz yapar: **Ich komme heute nicht**.",
+      "**nicht** çoğu zaman cümlenin sonuna doğru gelir.",
+      "Sonda **verstanden** gibi kelime varsa **nicht** onun önünde durur: **Ich habe nicht verstanden**.",
+      "Tek bir şeyi olumsuz yaparken onun hemen önüne gelir: **nicht heute, sondern morgen**.",
+      "**Zeit** gibi kelimelerde **nicht** değil **keine** dersin: **Ich habe keine Zeit**."
+    ],
     "slots": [
       {
         "name": "olumsuzlanan",
@@ -1170,21 +1304,35 @@
       "wenn": "Wenn es nicht besser wird, gehen Sie zum Arzt."
     },
     "mistakes_tr": [
-      "'nicht'i fiilin önüne koyma: 'Ich nicht komme' yanlış; 'Ich komme nicht.'",
-      "Perfekt'te 'nicht' Partizip'in önünde durur: 'Ich habe nicht geschlafen' ('Ich habe geschlafen nicht' yanlış).",
-      "İsimle 'kein' kullanılır: 'Ich habe keine Zeit' ('nicht Zeit' yanlış).",
-      "Olumsuz soruya olumlu cevap 'Doch'tur: 'Kommen Sie nicht? – Doch, ich komme.'"
+      "**Ich nicht komme** denmez. Doğrusu **Ich komme nicht**.",
+      "**Ich habe geschlafen nicht** denmez. Doğrusu **Ich habe nicht geschlafen**.",
+      "**Ich habe nicht Zeit** denmez. Doğrusu **Ich habe keine Zeit**.",
+      "**Kommen Sie nicht?** sorusuna geliyorum demek için **Doch, ich komme** dersin."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:kein",
     "frame": "kein / keine / keinen + isim",
+    "frame_tr": "**kein**, **keine** ya da **keinen** + olmayan şey",
     "level": "A1",
     "core": true,
     "grammar_tr": "'kein' artikelsiz ya da 'ein'li ismi olumsuz yapar; Türkçedeki 'yok' gibi çalışır: 'Ich habe keine Zeit' (vaktim yok). 'ein' gibi çekilir: eril Akkusativ'de 'keinen' (keinen Termin), dişil ve çoğulda 'keine', nötrde 'kein'. Belirli isimde (der/die/das, mein) 'nicht' kullanılır: 'Das ist nicht mein Termin.'",
+    "kurallar_tr": [
+      "**kein** Türkçedeki yok gibi çalışır: **Ich habe keine Zeit**.",
+      "**ein** dediğin yerde olumsuz için **kein** dersin: **ein Problem**, **kein Problem**.",
+      "**Ich habe** dedikten sonra **der** kelimesinde **keinen** olur: **Ich habe keinen Termin**.",
+      "**die** ile söylenen kelimede ve birden fazla şeyde **keine** olur: **keine Zeit**, **keine Fragen**.",
+      "**das** ile söylenen kelimede **kein** kalır: **kein Geld**.",
+      "**der**, **die**, **das** ya da **mein** varsa **nicht** gelir: **Das ist nicht mein Termin**."
+    ],
     "slots": [
       {
         "name": "isim",
@@ -1263,27 +1411,40 @@
     "transforms": {
       "question": "Haben Sie keinen Termin mehr frei?",
       "negative": "Ich habe keinen Termin.",
-      "polite": "Hätten Sie wirklich keinen Termin mehr frei?",
+      "polite": "Es tut mir leid, wir haben leider keinen Termin mehr frei.",
       "perfekt": "Ich habe keine Antwort bekommen.",
       "weil": "Ich komme nicht, weil ich keine Zeit habe.",
       "dass": "Die Praxis sagt, dass sie keinen Termin mehr frei hat.",
       "wenn": "Wenn Sie keine Fragen mehr haben, sind wir fertig."
     },
     "mistakes_tr": [
-      "Eril Akkusativ'de 'keinen': 'Ich habe keinen Termin' ('kein Termin' yanlış).",
-      "'nicht ein' denmez: 'Ich habe nicht ein Auto' yerine 'Ich habe kein Auto'.",
-      "Belirli isimde 'kein' değil 'nicht' kullanılır: 'Das ist nicht der Bus' ('kein der Bus' yanlış)."
+      "**Ich habe kein Termin** denmez. Doğrusu **Ich habe keinen Termin**.",
+      "**Ich habe nicht ein Auto** denmez. Doğrusu **Ich habe kein Auto**.",
+      "**Das ist kein der Bus** denmez. Doğrusu **Das ist nicht der Bus**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:es-gibt",
     "frame": "Es gibt + Akkusativ · Gibt es …? · Hier gibt es …",
+    "frame_tr": "**Es gibt** + var olan şey · **Gibt es** + aradığın şey?",
     "level": "A1",
     "core": true,
     "grammar_tr": "'Es gibt' 'var' demenin genel yoludur: bir şeyin bir yerde bulunduğunu ya da olduğunu söyler. 'es' hiç değişmez, fiil çoğul isimde bile 'gibt' kalır: 'Es gibt viele Ärzte.' Nesne Akkusativ'dir: 'Gibt es hier einen Bäcker?' Kişinin sahip olduğu şey için 'es gibt' değil 'haben' kullanılır.",
+    "kurallar_tr": [
+      "**Es gibt** var demenin genel yoludur: **Es gibt ein Problem**.",
+      "Birden fazla şey için de **gibt** aynı kalır: **Es gibt viele Ärzte**.",
+      "**der** ile söylenen kelimede **einen** gelir: **Gibt es hier einen Bäcker?**",
+      "Soruda **Gibt** başa geçer: **Gibt es hier eine Apotheke?**",
+      "Konuşmada **Gibt's** diye kısalır: **Gibt's ein Problem?**"
+    ],
     "slots": [
       {
         "name": "nesne (Akkusativ)",
@@ -1292,7 +1453,7 @@
           "eine Apotheke",
           "ein Problem",
           "keinen Parkplatz",
-          "viel Verkehr",
+          "viele Baustellen",
           "eine Pause",
           "lange Wartezeiten",
           "eine neue Regel",
@@ -1318,8 +1479,8 @@
         "layer": "hd"
       },
       {
-        "de": "Heute gibt es viel Verkehr.",
-        "tr": "Bugün trafik çok yoğun.",
+        "de": "Heute gibt es Stau auf der Autobahn.",
+        "tr": "Bugün otobanda trafik sıkışık.",
         "layer": "hd"
       },
       {
@@ -1363,26 +1524,39 @@
       "negative": "Hier gibt es leider keinen Geldautomaten.",
       "polite": "Entschuldigung, wissen Sie, ob es hier in der Nähe einen Geldautomaten gibt?",
       "perfekt": "Gestern hat es einen Unfall gegeben.",
-      "weil": "Ich komme zu spät, weil es viel Stau gibt.",
+      "weil": "Ich komme zu spät, weil es einen Stau gibt.",
       "dass": "Die Nachbarin sagt, dass es hier einen guten Bäcker gibt.",
       "wenn": "Wenn es Probleme gibt, rufen Sie mich an."
     },
     "mistakes_tr": [
-      "Çoğulda da 'gibt': 'Es gibt viele Probleme' ('Es geben' yanlış).",
-      "Sahiplikte 'haben' kullanılır: 'Ich habe ein Problem' ('Bei mir gibt es ein Problem' de duyulur ama 'haben' daha doğaldır).",
-      "Nesne Akkusativ'dir: 'Gibt es einen Bäcker?' ('ein Bäcker' yanlış).",
-      "Türkçedeki 'var' her zaman 'es gibt' değildir: bir şeyin belli bir yerde durduğunu söylerken 'ist / liegt / steht' denir: 'Der Schlüssel liegt auf dem Tisch.'"
+      "**Es geben viele Probleme** denmez. Doğrusu **Es gibt viele Probleme**.",
+      "**Es gibt ein Auto** ile arabam var denmez. Doğrusu **Ich habe ein Auto**.",
+      "**Gibt es ein Bäcker?** denmez. Doğrusu **Gibt es einen Bäcker?**",
+      "Bir şeyin durduğu yeri söylerken **es gibt** denmez. Doğrusu **Der Schlüssel liegt auf dem Tisch**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:wo-ist",
     "frame": "Wo ist / sind …? · Wo finde ich …? · Wo kann ich …?",
+    "frame_tr": "**Wo ist** + aradığın yer? · **Wo sind** + birden fazla şey? · **Wo finde ich** + aradığın şey?",
     "level": "A1",
     "core": true,
     "grammar_tr": "Yer sormanın en kısa yolu 'Wo ist …?' (tekil) ve 'Wo sind …?' (çoğul) sorusudur. Mağazada ürün ararken 'Wo finde ich …?' çok doğaldır. 'wo' 'nerede' demektir; 'nereye' için 'wohin', 'nereden' için 'woher' kullanılır. Yol sorarken 'Wie komme ich zum …?' de çok duyulur.",
+    "kurallar_tr": [
+      "Bir yerin nerede olduğunu **Wo ist** ile sorarsın: **Wo ist die Toilette?**",
+      "Birden fazla şey için **Wo sind** dersin: **Wo sind die Einkaufswagen?**",
+      "Mağazada ürün ararken **Wo finde ich die Milch?** çok doğaldır.",
+      "**wo** nerede, **wohin** nereye, **woher** nereden demektir.",
+      "Yol sorarken **Wie komme ich zum Bahnhof?** dersin."
+    ],
     "slots": [
       {
         "name": "yer / şey",
@@ -1408,8 +1582,8 @@
           "Wo bekomme ich …?",
           "Wo kann ich … abgeben?",
           "Wo muss ich hin?",
-          "Wo geht's zu …?",
-          "Wie komme ich zu …?"
+          "Wo geht's hier zum / zur …?",
+          "Wie komme ich zum / zur …?"
         ]
       }
     ],
@@ -1421,7 +1595,7 @@
       },
       {
         "de": "Wo ist hier die Anmeldung?",
-        "tr": "Burada danışma nerede?",
+        "tr": "Burada kayıt bankosu nerede?",
         "layer": "hd"
       },
       {
@@ -1480,20 +1654,32 @@
       "wenn": "Wenn Sie nicht wissen, wo das Zimmer ist, fragen Sie am Empfang."
     },
     "mistakes_tr": [
-      "'wo' (nerede) ile 'wohin' (nereye) farklıdır: 'Wohin gehen Sie?' ya da 'Wo gehen Sie hin?' ('Wo gehen Sie?' yanlış).",
-      "Çoğulda 'sind': 'Wo sind die Toiletten?'",
-      "Yan cümlede fiil sona gider: '…, wo die Toilette ist' ('…, wo ist die Toilette' yanlış)."
+      "Nereye gidiyorsunuz diye sorarken **Wo gehen Sie?** denmez. Doğrusu **Wohin gehen Sie?**",
+      "**Wo ist die Toiletten?** denmez. Doğrusu **Wo sind die Toiletten?**",
+      "**Ich weiß nicht, wo ist die Toilette** denmez. Doğrusu **Ich weiß nicht, wo die Toilette ist**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:wie-viel-kostet",
     "frame": "Was kostet …? · Wie viel kostet / kosten …? · Was macht das?",
+    "frame_tr": "**Was kostet** + bir şey? · **Was kosten** + birden fazla şey? · **Was macht das?**",
     "level": "A1",
     "core": true,
-    "grammar_tr": "Fiyat sormanın iki yolu var: 'Was kostet das?' ve 'Wie viel kostet das?'; ikisi aynıdır. Fiil öznenin sayısına uyar: tekilde 'kostet', çoğulda 'kosten': 'Was kosten die Tomaten?' Fiyat söylenirken 'Euro' çoğul eki almaz: 'zwei Euro fünfzig'. Toplamı sormak için kasada 'Was macht das?' denir.",
+    "grammar_tr": "Fiyatı **Was kostet das?** diye sorarsın. **Wie viel kostet das?** de aynı anlama gelir. Tek şey için **kostet**, birden fazla şey için **kosten** dersin. Toplamı kasada **Was macht das?** diye sorarsın.",
+    "kurallar_tr": [
+      "Fiyatı **Was kostet das?** diye sorarsın.",
+      "**Wie viel kostet das?** de aynı anlama gelir.",
+      "Tek şey için **kostet**, birden fazla şey için **kosten** dersin.",
+      "Toplamı kasada **Was macht das?** diye sorarsın."
+    ],
     "slots": [
       {
         "name": "tekil",
@@ -1590,20 +1776,33 @@
       "wenn": "Wenn es nicht mehr als 50 Euro kostet, nehme ich es."
     },
     "mistakes_tr": [
-      "Çoğulda 'kosten': 'Was kosten die Schuhe?' ('kostet' değil).",
-      "'Euro' fiyatta tekil kalır: 'drei Euro' ('drei Euros' yanlış); 'Cent' de öyle.",
-      "Yan cümlede 'kostet' sona gider: '…, wie viel das kostet' ('…, wie viel kostet das' yanlış)."
+      "**Was kostet die Schuhe?** denmez. Doğrusu **Was kosten die Schuhe?**",
+      "**drei Euros** denmez. Doğrusu **drei Euro**. **Cent** de aynı kalır: **fünfzig Cent**.",
+      "**Ich weiß nicht, wie viel kostet das** denmez. Doğrusu **Ich weiß nicht, wie viel das kostet**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-17",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:ich-haette-gern",
     "frame": "Ich hätte gern + Akkusativ (, bitte)",
+    "frame_tr": "**Ich hätte gern** + istediğin şey",
     "level": "A1",
     "core": true,
     "grammar_tr": "'Ich hätte gern …' fırında, kafede, eczanede sipariş vermenin en doğal ve kibar yoludur ('… alabilir miyim?'). 'hätte', 'haben'in Konjunktiv II biçimidir ve ikinci sırada durur. İstenen şey Akkusativ'dir: 'einen Kaffee'. Fiil gerekmez, isim yeter.",
+    "kurallar_tr": [
+      "**Ich hätte gern** ile fırında, kafede, eczanede kibarca sipariş verirsin.",
+      "Türkçedeki alabilir miyim ya da alayım gibi düşün: **Ich hätte gern einen Kaffee**.",
+      "**hätte** ikinci sırada durur: **Dazu hätte ich gern eine Tüte**.",
+      "**der** ile söylenen kelimede **einen** gelir: **einen Kaffee**, **einen Termin**.",
+      "**Ich hätte gern** sözünden sonra yalnızca istediğin şeyi söylersin: **Ich hätte gern einen Kaffee**.",
+      "Konuşmada **Ich hätt gern** diye kısalır."
+    ],
     "slots": [
       {
         "name": "nesne (Akkusativ)",
@@ -1683,26 +1882,40 @@
       "question": "Hätten Sie gern eine Tüte?",
       "negative": "Die Pizza hätte ich gern ohne Zwiebeln.",
       "polite": "Guten Tag, ich hätte gern zwei Brötchen, bitte.",
-      "perfekt": "(yok: 'hätte gern' Konjunktiv II'dir, Perfekt'i kurulmaz; siparişi anlatırken 'Ich habe zwei Brötchen bestellt' denir)",
+      "perfekt": "Ich habe zwei Brötchen bestellt.",
       "weil": "Ich hätte gern eine kleine Tüte, weil ich mit dem Fahrrad da bin.",
       "dass": "Ich sage der Verkäuferin, dass ich gern zwei Brötchen hätte.",
       "wenn": "Wenn Sie noch welche haben, hätte ich gern zwei Brezeln."
     },
     "mistakes_tr": [
-      "'Ich hätte gern ein Kaffee' yanlış: eril isim Akkusativ olur: 'einen Kaffee'.",
-      "Türkçedeki 'bir kahve alabilir miyim?' sözünü 'Kann ich einen Kaffee nehmen?' diye çevirme; bu 'kendim alayım mı?' gibi duyulur. Siparişte 'Ich hätte gern …' ya da 'Ich nehme …' denir.",
-      "'hätte' ile 'hatte'yi karıştırma: 'Ich hatte einen Kaffee' = bir kahvem vardı / kahve içmiştim."
+      "**Ich hätte gern ein Kaffee** denmez. Doğrusu **Ich hätte gern einen Kaffee**.",
+      "Sipariş verirken **Kann ich einen Kaffee nehmen?** deme. Doğrusu **Ich hätte gern einen Kaffee**.",
+      "**Ich hatte einen Kaffee** bir kahvem vardı demektir. Sipariş için **hätte** dersin.",
+      "Dünkü siparişi anlatırken **Ich habe zwei Brötchen bestellt** dersin.",
+      "Bavyera'da **Brötchen** yerine çoğunlukla **Semmel** duyarsın: **zwei Semmeln**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:passt-ihnen",
-    "frame": "Passt Ihnen / dir + zaman? · Das passt mir (gut / nicht).",
+    "frame": "Passt (es) Ihnen / dir + zaman? · Das passt mir (gut / nicht).",
+    "frame_tr": "**Passt Ihnen** + gün ya da saat? · **Das passt mir.**",
     "level": "A1",
     "core": true,
-    "grammar_tr": "'passen' burada 'uymak, uygun olmak' demektir. Uygun olan şey (gün, saat, randevu) öznedir; kime uygun olduğu Dativ'dir: mir, dir, Ihnen. Bu, Türkçedeki 'size uyar mı?' yapısıyla birebir aynıdır. Soru cümlesinde 'passt' başa gelir: 'Passt Ihnen Montag um neun?'",
+    "grammar_tr": "**passen** burada uymak demektir. Türkçedeki size uyar mı sorusu gibi kurulur: **Passt Ihnen Montag um neun?** Kime uyduğunu **mir**, **dir** ya da **Ihnen** ile söylersin. Zaman **am** ile başlıyorsa araya **es** girer: **Passt es Ihnen am Montag?**",
+    "kurallar_tr": [
+      "**passen** burada uymak demektir.",
+      "Türkçedeki size uyar mı sorusu gibi kurulur: **Passt Ihnen Montag um neun?**",
+      "Kime uyduğunu **mir**, **dir** ya da **Ihnen** ile söylersin.",
+      "Zaman **am** ile başlıyorsa araya **es** girer: **Passt es Ihnen am Montag?**"
+    ],
     "slots": [
       {
         "name": "kime (Dativ)",
@@ -1799,20 +2012,32 @@
       "wenn": "Wenn es Ihnen passt, kommen Sie einfach um zehn vorbei."
     },
     "mistakes_tr": [
-      "'Ich passe Montag' yanlış: uyan şey öznedir, kişi Dativ: 'Montag passt mir.'",
-      "'Mich passt' değil 'mir passt': 'passen' Dativ ister.",
-      "Tek başına 'Passt!' 'tamam, olur' demektir; kıyafet için 'Die Hose passt mir' 'pantolon bana oluyor' anlamına gelir, bağlamdan anlaşılır."
+      "**Ich passe Montag** denmez. Doğrusu **Montag passt mir**.",
+      "**Mich passt das** denmez. Doğrusu **Mir passt das**.",
+      "Tek başına **Passt!** tamam, olur demektir.",
+      "**Die Hose passt mir** ise pantolon bana oluyor demektir."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-17",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:geht-es-auch",
     "frame": "Geht es / Geht das auch + zaman / başka yol?",
+    "frame_tr": "**Geht es auch** + başka gün ya da başka yol?",
     "level": "A1",
     "core": true,
-    "grammar_tr": "'Es geht' 'olur, mümkün' demektir; soru yapınca çekimli fiil başa geçer: 'Geht es auch am Freitag?' Buradaki 'auch' 'de/da' anlamında başka bir seçeneği nazikçe önerir. Konuşmada 'es' çoğu zaman 'das' olur ya da kısalır: 'Geht das auch?', 'Geht's auch morgen?'",
+    "grammar_tr": "**Es geht** olur, mümkün demektir. Soruda **geht** başa geçer: **Geht es auch am Freitag?** **auch** burada başka bir seçeneği nazikçe önerir. Konuşmada kısalır: **Geht das auch?** ya da **Geht's auch morgen?**",
+    "kurallar_tr": [
+      "**Es geht** olur, mümkün demektir.",
+      "Soruda **geht** başa geçer: **Geht es auch am Freitag?**",
+      "**auch** burada başka bir seçeneği nazikçe önerir.",
+      "Konuşmada kısalır: **Geht's auch morgen?**"
+    ],
     "slots": [
       {
         "name": "zaman",
@@ -1837,7 +2062,7 @@
           "online",
           "telefonisch",
           "in bar",
-          "nächsten Monat",
+          "ohne Anmeldung",
           "ohne Überweisung"
         ]
       }
@@ -1899,7 +2124,7 @@
         "layer": "alltag"
       },
       {
-        "de": "Nee, das geht leider nicht.",
+        "de": "Nein, das geht leider nicht.",
         "tr": "Yok, o maalesef olmuyor.",
         "layer": "alltag"
       }
@@ -1908,26 +2133,40 @@
       "question": "Geht es auch am Donnerstag?",
       "negative": "Donnerstag geht leider nicht.",
       "polite": "Ginge es vielleicht auch am Donnerstag?",
-      "perfekt": "Am Ende ist es dann doch am Donnerstag gegangen.",
+      "perfekt": "Am Montag ist es leider nicht gegangen.",
       "weil": "Ich frage, weil es am Montag bei mir leider nicht geht.",
       "dass": "Die Praxis sagt, dass es auch am Donnerstag geht.",
       "wenn": "Wenn es auch am Donnerstag geht, nehme ich den Termin."
     },
     "mistakes_tr": [
-      "'Es geht auch am Freitag?' diye fiili yerinde bırakıp yalnızca sesi yükseltmek konuşmada duyulur ama doğru soru fiille başlar: 'Geht es auch am Freitag?'",
-      "'gehen' burada 'gitmek' değil 'olmak, mümkün olmak' demektir; 'Wie geht's?' (nasılsın) ile de karıştırma.",
-      "Yan cümlede 'geht' sona gider: '…, ob es auch am Freitag geht.'"
+      "Soruyu **Es geht auch am Freitag?** diye kurma. Doğrusu **Geht es auch am Freitag?**",
+      "**gehen** burada gitmek değil, mümkün olmak demektir.",
+      "**Wie geht's?** ise nasılsın demektir, bununla karıştırma.",
+      "**Es hat nicht gegangen** denmez. Doğrusu **Es ist nicht gegangen**.",
+      "Olmadı demek için **Es hat nicht geklappt** da çok duyulur."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-17",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:um-uhr",
     "frame": "um + saat · am + gün · halb / Viertel nach / Viertel vor",
+    "frame_tr": "**um** + saat · **am** + gün · **halb** + bir sonraki saat",
     "level": "A1",
     "core": true,
-    "grammar_tr": "Saat için 'um', gün ve tarih için 'am' kullanılır: 'am Montag um neun'. Dikkat: 'halb zehn' 9:30 demektir (ona yarım var), 10:30 değil. 'Viertel nach neun' 9:15, 'Viertel vor zehn' 9:45. Resmî yerlerde ve telefonda 24 saat de duyulur: 'um 14 Uhr' (vierzehn Uhr).",
+    "grammar_tr": "Saat için **um**, gün için **am** dersin: **am Montag um neun**. **halb zehn** 9:30 demektir, 10:30 değil. **Viertel nach neun** 9:15, **Viertel vor zehn** 9:45 demektir. Resmî yerlerde **um 14 Uhr** gibi saatler de duyarsın.",
+    "kurallar_tr": [
+      "Saat için **um** dersin: **um neun**.",
+      "Gün için **am** dersin: **am Montag**.",
+      "**halb zehn** 9:30 demektir, 10:30 değil.",
+      "**Viertel nach neun** 9:15, **Viertel vor zehn** 9:45 demektir.",
+      "Resmî yerlerde **um 14 Uhr** gibi saatler de duyarsın."
+    ],
     "slots": [
       {
         "name": "saat",
@@ -2024,20 +2263,35 @@
       "wenn": "Wenn Sie um acht kommen, müssen Sie nicht lange warten."
     },
     "mistakes_tr": [
-      "'halb zehn' 10:30 değil 9:30'dur: Almanca yarımı bir sonraki saate göre söyler.",
-      "Saatte 'in' kullanılmaz: 'in neun Uhr' yanlış, 'um neun Uhr'; günde 'am': 'am Montag' ('in Montag' değil).",
-      "Saatten sonra 'Uhr' tekildir: 'um drei Uhr'. Süre için 'Stunden' denir: 'drei Stunden' = üç saat boyunca."
+      "**halb zehn** 10:30 değil, 9:30 demektir. Almanca yarımı bir sonraki saate göre söyler.",
+      "**in neun Uhr** denmez. Doğrusu **um neun Uhr**.",
+      "**in Montag** denmez. Doğrusu **am Montag**.",
+      "**um drei Uhren** denmez. Doğrusu **um drei Uhr**.",
+      "Süre için **Uhr** değil **Stunde** dersin: **drei Stunden** üç saatlik süre demektir."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-17",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:seit",
     "frame": "seit + Dativ (zaman) + şimdiki zaman · Seit wann …?",
+    "frame_tr": "**Seit** + ne kadar zaman · **Seit wann?**",
     "level": "A1",
     "core": true,
-    "grammar_tr": "'seit' hâlâ süren bir durumun ne zamandan beri sürdüğünü söyler; Türkçedeki '-dır, -den beri' gibi fiil şimdiki zamanda kalır: 'Ich wohne seit zwei Jahren hier.' 'seit' Dativ ister: 'seit einem Monat'; çoğul Dativ'de isme -n eklenir: 'seit drei Tagen'. Soru: 'Seit wann …?'",
+    "grammar_tr": "**seit** hâlâ süren bir şeyin ne zamandan beri sürdüğünü söyler. Türkçedeki iki yıldır burada oturuyorum gibi kurulur: **Ich wohne seit zwei Jahren hier**. **seit** kelimesinden sonra **einem** ya da **einer** gelir: **seit einem Monat**. Soruyu **Seit wann?** ile sorarsın.",
+    "kurallar_tr": [
+      "**seit** hâlâ süren bir şeyin ne zamandan beri sürdüğünü söyler.",
+      "Türkçedeki iki yıldır burada oturuyorum gibi kurulur: **Ich wohne seit zwei Jahren hier**.",
+      "Tek ay ya da tek yıl için **einem** gelir: **seit einem Monat**.",
+      "Bir haftadır demek için **einer** gelir: **seit einer Woche**.",
+      "Sayı varsa kelime **n** ile biter: **seit zwei Jahren**, **seit drei Tagen**.",
+      "Soruyu **Seit wann?** ile sorarsın."
+    ],
     "slots": [
       {
         "name": "zaman (Dativ)",
@@ -2120,7 +2374,7 @@
       },
       {
         "de": "Seit Kurzem schlaf ich total schlecht.",
-        "tr": "Bir süredir çok kötü uyuyorum.",
+        "tr": "Kısa bir süredir çok kötü uyuyorum.",
         "layer": "alltag"
       }
     ],
@@ -2134,20 +2388,33 @@
       "wenn": "Wenn Sie seit mehr als drei Tagen Fieber haben, kommen Sie bitte in die Praxis."
     },
     "mistakes_tr": [
-      "Türkçedeki '-dır' yüzünden geçmiş zaman kullanma: süren durumda şimdiki zaman gerekir: 'Ich wohne seit zwei Jahren hier' ('Ich habe seit zwei Jahren hier gewohnt' başka anlam verir).",
-      "'seit' ile 'vor'u karıştırma: 'seit drei Tagen' = üç gündür (hâlâ sürüyor), 'vor drei Tagen' = üç gün önce (olup bitti).",
-      "'seit' Dativ ister: 'seit einem Monat' ('seit ein Monat' değil); çoğulda -n: 'seit zwei Jahren'."
+      "Hâlâ süren şey için **Ich habe seit zwei Jahren hier gewohnt** denmez. Doğrusu **Ich wohne seit zwei Jahren hier**.",
+      "Dünden beri bir şey yemediysen **habe** ile söylersin: **Ich habe seit gestern nichts gegessen**.",
+      "**seit drei Tagen** üç gündür demektir ve hâlâ sürer. **vor drei Tagen** üç gün önce demektir.",
+      "**seit ein Monat** denmez. Doğrusu **seit einem Monat**.",
+      "**seit zwei Jahre** denmez. Doğrusu **seit zwei Jahren**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-17",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:mir-tut-weh",
     "frame": "Mir tut + organ (tekil) + weh · Mir tun + organ (çoğul) + weh · Ich habe …schmerzen",
+    "frame_tr": "**Mir tut** + ağrıyan yer + **weh**",
     "level": "A1",
     "core": true,
-    "grammar_tr": "Türkçedeki 'başım ağrıyor' gibi Almancada da ağrıyan organ öznedir; ağrıyan kişi Dativ'dir: 'Mir tut der Kopf weh.' Organ çoğulsa fiil 'tun' olur: 'Mir tun die Füße weh.' 'weh' cümlenin en sonuna gider. Daha kısa yol: 'Ich habe Kopfschmerzen.'",
+    "grammar_tr": "Türkçedeki başım ağrıyor gibi kurulur: **Mir tut der Kopf weh**. Birden fazla yer ağrıyorsa **tut** yerine **tun** gelir: **Mir tun die Füße weh**. **weh** cümlenin en sonuna gider. Daha kısa yol: **Ich habe Kopfschmerzen**.",
+    "kurallar_tr": [
+      "Türkçedeki başım ağrıyor gibi kurulur: **Mir tut der Kopf weh**.",
+      "Birden fazla yer ağrıyorsa **tun** gelir: **Mir tun die Füße weh**.",
+      "**weh** cümlenin en sonuna gider.",
+      "Daha kısa yol: **Ich habe Kopfschmerzen**."
+    ],
     "slots": [
       {
         "name": "organ (tekil)",
@@ -2243,7 +2510,7 @@
         "layer": "alltag"
       },
       {
-        "de": "Tut's noch weh? – Nee, geht schon besser.",
+        "de": "Tut's noch weh? – Nein, geht schon besser.",
         "tr": "Hâlâ ağrıyor mu? – Yok, daha iyi.",
         "layer": "alltag"
       }
@@ -2258,21 +2525,34 @@
       "wenn": "Wenn es stärker wehtut, kommen Sie bitte sofort wieder."
     },
     "mistakes_tr": [
-      "'Ich tue weh' yanlış (bu 'ben acıtıyorum' demek olur). Ağrıyan şey öznedir, kişi Dativ: 'Mir tut der Kopf weh.'",
-      "Çoğul organda fiil 'tun' olur: 'Mir tun die Augen weh' ('tut' değil).",
-      "Yan cümlede 'weh' ile fiil birleşik yazılır ve sona gider: '…, weil mir der Kopf wehtut.'",
-      "'Mich tut weh' değil 'mir tut weh': kişi Dativ'dir."
+      "**Ich tue weh** denmez, bu ben acıtıyorum demek olur. Doğrusu **Mir tut der Kopf weh**.",
+      "**Mir tut die Augen weh** denmez. Doğrusu **Mir tun die Augen weh**.",
+      "**weil** yani çünkü gelince **weh** ile **tut** birleşir: **weil mir der Kopf wehtut**.",
+      "**Mich tut der Kopf weh** denmez. Doğrusu **Mir tut der Kopf weh**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-17",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:trennbar",
     "frame": "Ich + FİİL + … + ön ek (sonda) · anrufen → Ich rufe … an",
+    "frame_tr": "**Ich rufe** + gerisi + **an** · **Ich hole** + gerisi + **ab**",
     "level": "A1",
     "core": true,
     "grammar_tr": "Ayrılabilen fiilde (anrufen, absagen, abholen…) ön ek ana cümlede kökten ayrılır ve cümlenin en sonuna gider: 'Ich rufe morgen an.' Modal fiil ya da yan cümle varsa fiil bitişik kalır ve sondadır: 'Ich muss morgen anrufen', '…, weil ich morgen anrufe'. Perfekt'te 'ge' araya girer: angerufen, abgesagt. Vurgu her zaman ön ektedir: ANrufen.",
+    "kurallar_tr": [
+      "**anrufen** gibi kelimeler cümlede ikiye ayrılır: **Ich rufe morgen an**.",
+      "Baştaki **an** kopar ve en sona gider: **Ich rufe Sie morgen an**.",
+      "**muss** gelince kelime bitişik kalır ve sonda durur: **Ich muss morgen anrufen**.",
+      "Geçmişi anlatırken **ge** ortaya girer: **angerufen**, **abgesagt**.",
+      "Söylerken baştaki parçayı vurgula: **anrufen** derken **an** güçlü çıkar.",
+      "Sık duyacakların: **anrufen**, **absagen**, **abholen**, **ausfüllen**, **mitbringen**."
+    ],
     "slots": [
       {
         "name": "fiil",
@@ -2290,16 +2570,16 @@
         ]
       },
       {
-        "name": "çekimli (ich)",
+        "name": "çekimli örnek (ich)",
         "fills": [
-          "Ich rufe … an",
-          "Ich rufe … zurück",
-          "Ich sage … ab",
-          "Ich hole … ab",
-          "Ich fülle … aus",
-          "Ich bringe … mit",
-          "Ich komme … vorbei",
-          "Ich stehe … auf"
+          "Ich rufe morgen an",
+          "Ich rufe gleich zurück",
+          "Ich sage den Termin ab",
+          "Ich hole das Paket ab",
+          "Ich fülle das Formular aus",
+          "Ich bringe den Ausweis mit",
+          "Ich komme morgen vorbei",
+          "Ich stehe um sechs auf"
         ]
       }
     ],
@@ -2370,21 +2650,34 @@
       "wenn": "Wenn Sie ankommen, rufen Sie mich kurz an."
     },
     "mistakes_tr": [
-      "Ön eki fiilin yanında bırakma: 'Ich anrufe morgen' yanlış; 'Ich rufe morgen an.' Ön ek düşerse anlam değişir: 'Ich rufe' = sesleniyorum, bağırıyorum.",
-      "Modal fiil ve yan cümlede fiil bitişiktir: 'Ich muss anrufen', '…, dass ich anrufe' ('…, dass ich rufe an' yanlış).",
-      "Perfekt'te 'ge', mastarda 'zu' ortaya girer: 'angerufen', 'anzurufen' ('geanruft' yanlış).",
-      "'anrufen' Akkusativ ister: 'Ich rufe Sie an' ('Ihnen' değil)."
+      "**Ich anrufe morgen** denmez. Doğrusu **Ich rufe morgen an**.",
+      "**an** düşerse anlam değişir: **Ich rufe** sesleniyorum demektir.",
+      "**weil** yani çünkü gelince kelime bitişik kalır ve sona gider: **weil ich morgen anrufe**.",
+      "**geanruft** denmez. Doğrusu **angerufen**.",
+      "**Ich rufe Ihnen an** denmez. Doğrusu **Ich rufe Sie an**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:perfekt-haben",
     "frame": "Ich habe + … + Partizip II (sonda)",
+    "frame_tr": "**Ich habe** + ne + bitmiş iş, örneğin **gemacht** ya da **gegessen**",
     "level": "A1",
     "core": true,
-    "grammar_tr": "Konuşmada geçmişi çoğunlukla Perfekt ile anlatırız: 'haben' çekimli hâliyle ikinci sırada, Partizip II cümlenin en sonunda. Zaman, nesne, 'nicht' gibi her şey ikisinin arasına girer: 'Ich habe gestern den Arzt angerufen.' Partizip çoğunlukla ge-…-t (gemacht) ya da ge-…-en (genommen) olur; be-, ver-, er- ile başlayan fiillerde 'ge-' gelmez (bezahlt, vergessen).",
+    "grammar_tr": "Konuşmada geçmişi çoğunlukla **habe** ve **gemacht** gibi iki parçayla anlatırsın. **habe** ikinci sırada, öbür parça en sonda durur: **Ich habe gestern den Arzt angerufen**. Sondaki parça çoğunlukla **gemacht** ya da **genommen** gibi görünür. **be**, **ver**, **er** ile başlayanlarda **ge** gelmez: **bezahlt**, **vergessen**.",
+    "kurallar_tr": [
+      "Konuşmada geçmişi **habe** ve **gemacht** gibi iki parçayla anlatırsın.",
+      "**habe** ikinci sırada, öbür parça en sonda durur: **Ich habe gestern angerufen**.",
+      "Sondaki parça çoğunlukla **gemacht** ya da **genommen** gibi görünür.",
+      "**be**, **ver**, **er** ile başlayanlarda **ge** gelmez: **bezahlt**, **vergessen**."
+    ],
     "slots": [
       {
         "name": "Partizip II",
@@ -2426,7 +2719,7 @@
       },
       {
         "de": "Ich habe die Rechnung schon bezahlt.",
-        "tr": "Faturayı zaten ödedim.",
+        "tr": "Faturayı çoktan ödedim.",
         "layer": "hd"
       },
       {
@@ -2490,21 +2783,33 @@
       "wenn": "Wenn Sie das Formular ausgefüllt haben, geben Sie es bitte vorne ab."
     },
     "mistakes_tr": [
-      "Partizip'i 'haben'in yanında bırakma: 'Ich habe angerufen gestern' yanlış; Partizip en sona: 'Ich habe gestern angerufen.'",
-      "Yan cümlede çekimli 'haben' en sona, Partizip'ten sonra gelir: '…, weil ich nicht geschlafen habe.'",
-      "Ayrılabilen fiilde 'ge' ön ekle kök arasına girer: anrufen → angerufen, ausfüllen → ausgefüllt ('geanruft' değil).",
-      "Yer değiştirme ve durum değişimi fiilleri 'sein' alır: 'Ich bin gefahren' ('Ich habe gefahren' değil)."
+      "**Ich habe angerufen gestern** denmez. Doğrusu **Ich habe gestern angerufen**.",
+      "**weil** yani çünkü gelince **habe** en sona gider: **weil ich nicht geschlafen habe**.",
+      "**geanruft** denmez. **ge** ortaya girer: **angerufen**, **ausgefüllt**.",
+      "**Ich habe gefahren** denmez. Bir yere gidişi anlatırken **bin** gelir: **Ich bin gefahren**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-17",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:perfekt-sein",
     "frame": "Ich bin + … + Partizip II (yer değiştirme / durum değişimi)",
+    "frame_tr": "**Ich bin** + gerisi + bitmiş iş, örneğin **gegangen** ya da **aufgestanden**",
     "level": "A1",
     "core": true,
     "grammar_tr": "Yer değiştirme (gehen, fahren, kommen) ve durum değişimi (aufstehen, einschlafen, passieren) bildiren fiiller Perfekt'te 'haben' değil 'sein' alır: 'Ich bin gestern zum Arzt gegangen.' 'sein' ve 'bleiben' de 'sein' alır: 'Ich bin zu Hause geblieben.' Sıra aynıdır: 'bin' ikinci sırada, Partizip en sonda.",
+    "kurallar_tr": [
+      "Gitmek, gelmek gibi yer değiştiren işlerde geçmişi **bin** ile kurarsın: **Ich bin gegangen**.",
+      "Kalkmak, uyuyakalmak gibi durum değişince de **bin** gelir: **Ich bin aufgestanden**.",
+      "Kalmak için de geçmişi **bin** ile kurarsın: **Ich bin zu Hause geblieben**.",
+      "**bin** ikinci sırada, **gegangen** gibi parça en sonda durur.",
+      "Kişiye göre değişir: **ich bin**, **du bist**, **er ist**, **wir sind**."
+    ],
     "slots": [
       {
         "name": "Partizip II",
@@ -2516,7 +2821,6 @@
           "geflogen",
           "umgezogen",
           "eingeschlafen",
-          "passiert",
           "geblieben",
           "gewesen",
           "angekommen",
@@ -2585,7 +2889,7 @@
       },
       {
         "de": "Bist du schon mal in Hamburg gewesen?",
-        "tr": "Hiç Hamburg'a gittin mi?",
+        "tr": "Hiç Hamburg'da bulundun mu?",
         "layer": "alltag"
       },
       {
@@ -2604,20 +2908,34 @@
       "wenn": "Wenn Sie angekommen sind, melden Sie sich bitte am Empfang."
     },
     "mistakes_tr": [
-      "'Ich habe gegangen' yanlış: hareket fiilleri 'sein' alır: 'Ich bin gegangen.'",
-      "Aynı fiil nesneyle 'haben' alabilir: 'Ich bin nach Berlin gefahren' ama 'Ich habe das Auto gefahren' (arabayı ben sürdüm).",
-      "Yan cümlede sıra Partizip + 'bin' olur: '…, weil ich früh aufgestanden bin'."
+      "**Ich habe gegangen** denmez. Doğrusu **Ich bin gegangen**.",
+      "**Ich bin gearbeitet** denmez. Doğrusu **Ich habe gearbeitet**.",
+      "**weil ich bin früh aufgestanden** denmez. Doğrusu **weil ich früh aufgestanden bin**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:mit-dativ",
     "frame": "mit + Dativ (araç / kişi / şey)",
+    "frame_tr": "**mit** + araç, kişi ya da şey",
     "level": "A1",
     "core": true,
     "grammar_tr": "'mit' her zaman Dativ ister ve Türkçedeki '-le, -la' ekinin karşılığıdır: 'mit dem Bus' (otobüsle), 'mit meinem Chef' (şefimle). Artikeller değişir: der → dem, die → der, das → dem, çoğul die → den (isme -n eklenir). Zamirler: mir, dir, ihm, ihr, uns, Ihnen.",
+    "kurallar_tr": [
+      "**mit** Türkçedeki otobüsle sözündeki le ekinin karşılığıdır: **mit dem Bus**.",
+      "**der** ve **das** ile söylenen kelimede **dem** gelir: **mit dem Bus**, **mit dem Auto**.",
+      "**die** ile söylenen kelimede **der** gelir: **mit der Bahn**.",
+      "Birden fazla kişide **den** gelir ve kelime **n** alır: **mit den Kindern**.",
+      "**mein** de değişir: **mit meinem Chef**, **mit meiner Kollegin**.",
+      "Kişilerde **mit mir**, **mit dir**, **mit Ihnen** dersin."
+    ],
     "slots": [
       {
         "name": "Dativ",
@@ -2699,24 +3017,41 @@
       "perfekt": "Ich habe gestern mit der Vermieterin telefoniert.",
       "weil": "Ich komme später, weil ich mit dem Bus fahre.",
       "dass": "Ich habe gehört, dass du mit dem Rad zur Arbeit fährst.",
-      "wenn": "Wenn Sie mit Karte zahlen, brauche ich Ihre PIN."
+      "wenn": "Wenn Sie mit Karte zahlen, geben Sie bitte hier Ihre PIN ein."
     },
     "mistakes_tr": [
-      "'mit' Akkusativ almaz: 'mit den Bus' yanlış; 'mit dem Bus'.",
-      "Dişil isimde Dativ artikeli 'der' olur: 'mit der Bahn'; Türkçe konuşanın en çok karıştırdığı noktadır.",
-      "Çoğul Dativ'de isme -n eklenir: 'mit den Kindern', 'mit meinen Freunden'.",
-      "Türkçedeki '-le' her zaman 'mit' değildir: 'zu Fuß' (yürüyerek), 'auf Deutsch' (Almanca olarak)."
+      "**mit den Bus** denmez. Doğrusu **mit dem Bus**.",
+      "**mit die Bahn** denmez. Doğrusu **mit der Bahn**.",
+      "**mit den Kinder** denmez. Doğrusu **mit den Kindern**.",
+      "**mit mich** denmez. Doğrusu **mit mir**.",
+      "Yürüyerek demek için **mit Fuß** denmez. Doğrusu **zu Fuß**.",
+      "Almanca olarak demek için **mit Deutsch** denmez. Doğrusu **auf Deutsch**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:fuer-akk",
     "frame": "für + Akkusativ (kişi / zaman / şey)",
+    "frame_tr": "**für** + kişi, zaman ya da şey",
     "level": "A1",
     "core": true,
     "grammar_tr": "'für' her zaman Akkusativ ister ve Türkçedeki 'için'in çoğu kullanımını karşılar: 'für meinen Sohn' (oğlum için), 'für morgen' (yarın için). Yalnızca eril tekilde artikel değişir: der → den, mein → meinen. Zamirler: mich, dich, ihn, sie, uns, Sie. Dikkat: fiille amaç söylerken 'für' değil 'um … zu' kullanılır.",
+    "kurallar_tr": [
+      "**für** Türkçedeki için demektir: **für morgen**, **für mich**.",
+      "**der** ile söylenen kelimede **den** gelir: **für den Hals**.",
+      "**der** ile söylenen kelimede **mein**, **meinen** olur: **für meinen Sohn**.",
+      "**die** ve **das** ile söylenen kelimeler değişmez: **für die Wohnung**, **für das Formular**.",
+      "Kişilerde **für mich**, **für dich**, **für Sie** dersin.",
+      "Süre için de kullanılır: **für zwei Tage** iki günlüğüne demektir.",
+      "İlaç isterken **gegen** de duyarsın: **etwas gegen Husten** öksürüğe karşı bir şey demektir."
+    ],
     "slots": [
       {
         "name": "kişi",
@@ -2769,7 +3104,7 @@
       },
       {
         "de": "Ich bin für zwei Tage krankgeschrieben.",
-        "tr": "İki günlüğüne rapor aldım.",
+        "tr": "İki günlüğüne raporluyum.",
         "layer": "hd"
       },
       {
@@ -2813,21 +3148,34 @@
       "wenn": "Wenn Sie etwas für den Hals brauchen, nehmen Sie das hier."
     },
     "mistakes_tr": [
-      "'für' Dativ almaz: 'für meinem Sohn' yanlış, 'für meinen Sohn'.",
-      "Amaçta 'für' + fiil kullanılmaz: 'für einen Termin machen' yanlış; 'um einen Termin zu machen'.",
-      "'für' ile 'seit'i karıştırma: 'für zwei Tage' (iki günlüğüne), 'seit zwei Tagen' (iki gündür).",
-      "İlaç için 'gegen' de çok kullanılır: 'etwas gegen Husten' = öksürüğe karşı bir şey."
+      "**für meinem Sohn** denmez. Doğrusu **für meinen Sohn**.",
+      "**für ich** denmez. Doğrusu **für mich**.",
+      "Randevu almak için derken **für einen Termin machen** denmez. Doğrusu **um einen Termin zu machen**.",
+      "İki gündür hastayım derken **für zwei Tage** denmez. Doğrusu **seit zwei Tagen**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:ich-brauche",
     "frame": "Ich brauche + Akkusativ · Ich brauche kein… / … nicht",
+    "frame_tr": "**Ich brauche** + lazım olan şey",
     "level": "A1",
     "core": true,
     "grammar_tr": "'brauchen' ihtiyacı söyler ('… lazım, … gerek'). Türkçede 'bana bir randevu lazım' deriz ve ihtiyaç duyulan şey öznedir; Almancada ihtiyaç duyan kişi öznedir: 'Ich brauche einen Termin.' Nesne Akkusativ'dir: eril 'einen'. Olumsuz: 'keinen Termin brauchen'; fiille 'nicht … zu': 'Sie brauchen nicht zu warten.'",
+    "kurallar_tr": [
+      "**Ich brauche** bana lazım demektir: **Ich brauche einen Termin**.",
+      "Türkçede bana lazım dersin, Almancada cümle **Ich** ile başlar.",
+      "**der** ile söylenen kelimede **einen** gelir: **Ich brauche einen Termin**.",
+      "Gerek yoksa **kein** ile söylersin: **Ich brauche keine Tüte**.",
+      "Kibar istekte **Ich bräuchte** çok duyulur: **Ich bräuchte einen Termin**."
+    ],
     "slots": [
       {
         "name": "nesne (Akkusativ)",
@@ -2913,20 +3261,33 @@
       "wenn": "Wenn Sie Hilfe brauchen, sagen Sie Bescheid."
     },
     "mistakes_tr": [
-      "Türkçedeki 'bana … lazım' yapısıyla 'Mir braucht …' denmez; kişi özne olur: 'Ich brauche …'",
-      "Eril isimde 'einen': 'Ich brauche einen Termin' ('ein Termin' değil).",
-      "Olumsuzda isimle 'kein': 'Ich brauche keinen Termin'; 'nicht' ise bilinen şeyle: 'Das brauche ich nicht.'"
+      "**Mir braucht ein Termin** denmez. Doğrusu **Ich brauche einen Termin**.",
+      "**Ich brauche ein Termin** denmez. Doğrusu **Ich brauche einen Termin**.",
+      "**Ich brauche nicht einen Termin** denmez. Doğrusu **Ich brauche keinen Termin**.",
+      "Buna ihtiyacım yok demek için **nicht** dersin: **Das brauche ich nicht**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:was-heisst",
     "frame": "Was heißt „…“ (auf Deutsch)? · Was bedeutet „…“? · Was heißt das (genau)?",
+    "frame_tr": "**Was heißt** + anlamadığın kelime?",
     "level": "A1",
     "core": true,
-    "grammar_tr": "'Was heißt …?' bir kelimenin ya da sözün anlamını sorar; konuşmayı bırakmadan araya kısaca girersin. 'heißen' burada 'adı olmak' değil 'anlamına gelmek' demektir. Bilmediğin kelimeyi duyduğun gibi tekrar et: 'Was heißt »nüchtern«?' 'Was heißt das für mich?' ise sonucu sorar: bu benim için ne demek, ne yapmam gerek?",
+    "grammar_tr": "**Was heißt** ile bir kelimenin anlamını sorarsın. Bilmediğin kelimeyi duyduğun gibi tekrar et: **Was heißt nüchtern?** **heißen** burada adı olmak değil, anlamına gelmek demektir. **Was heißt das für mich?** ise ne yapmam gerek diye sorar.",
+    "kurallar_tr": [
+      "**Was heißt** ile bir kelimenin anlamını sorarsın.",
+      "Bilmediğin kelimeyi duyduğun gibi tekrar et: **Was heißt nüchtern?**",
+      "**heißen** burada adı olmak değil, anlamına gelmek demektir.",
+      "**Was heißt das für mich?** ne yapmam gerek diye sorar."
+    ],
     "slots": [
       {
         "name": "kelime",
@@ -3015,33 +3376,45 @@
     ],
     "transforms": {
       "question": "Was heißt „Lastschrift“?",
-      "negative": "Nein, „nüchtern“ heißt nicht „müde“, sondern ohne Essen.",
+      "negative": "Nein, „nüchtern“ heißt hier nicht „müde“, sondern „ohne Essen“.",
       "polite": "Entschuldigung, könnten Sie mir sagen, was „Lastschrift“ heißt?",
       "perfekt": "Ich habe nicht gewusst, was „nüchtern“ heißt.",
       "weil": "Ich frage nach, weil ich nicht weiß, was „Bescheid“ heißt.",
-      "dass": "Die Ärztin hat erklärt, dass „nüchtern“ ohne Frühstück heißt.",
+      "dass": "Die Ärztin hat erklärt, dass „nüchtern“ „ohne Frühstück“ heißt.",
       "wenn": "Wenn Sie nicht wissen, was ein Wort heißt, fragen Sie einfach."
     },
     "mistakes_tr": [
-      "Yan cümlede 'heißt' sona gider: 'Ich weiß nicht, was das heißt' ('…, was heißt das' yanlış).",
-      "'Was heißt …?' (ne demek?) ile 'Wie heißt …?' (adı ne, Almancası ne?) karışır: 'Wie heißt das auf Deutsch?' = Bunun Almancası ne?",
-      "'heißen'i yalnızca 'adı … olmak' sanma: 'Das heißt, …' = 'yani, …' anlamında da çok duyulur."
+      "**Ich weiß nicht, was heißt das** denmez. Doğrusu **Ich weiß nicht, was das heißt**.",
+      "**Was heißt das?** ne demek diye sorar. **Wie heißt das auf Deutsch?** Almancası ne diye sorar.",
+      "**Das heißt** cümle başında yani anlamına da gelir."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-17",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:wie-sagt-man",
     "frame": "Wie sagt man … auf Deutsch? · Das ist so ein …, mit dem man … / etwas für … / eine Person, die …",
+    "frame_tr": "**Wie sagt man das auf Deutsch?** · **Das ist so ein Ding** + tarif",
     "level": "A1",
     "core": true,
     "grammar_tr": "Kelimeyi bilmediğinde konuşmayı bırakma; 'Wie sagt man … auf Deutsch?' diye sor ya da şeyi tarif et: 'Das ist so ein Ding, mit dem man Wasser warm macht.' Tarifte en çok işe yarayanlar 'etwas für …', 'das braucht man, wenn …' ve 'eine Person, die …' kalıplarıdır. Soru sözcüğü başta, fiil ikinci sıradadır: 'Wie sagt man …?'",
+    "kurallar_tr": [
+      "Kelimeyi bilmiyorsan susma, **Wie sagt man das auf Deutsch?** diye sor.",
+      "Adını bilmediğin şeyi tarif et: **Das ist etwas für die Küche**.",
+      "Ne zaman lazım olduğunu söyle: **Das braucht man, wenn man eine Wunde hat**.",
+      "Kişiyi şöyle tarif edersin: **Das ist eine Person, die Wohnungen vermietet**.",
+      "**so ein Ding** şöyle bir şey demektir, adını bilmediğin her şeye uyar."
+    ],
     "slots": [
       {
-        "name": "soru",
+        "name": "soru (hazır cümle)",
         "fills": [
-          "Wie sagt man … auf Deutsch?",
+          "Wie sagt man das auf Deutsch?",
           "Wie heißt das auf Deutsch?",
           "Wie nennt man das?",
           "Wie heißt das Ding?",
@@ -3052,7 +3425,7 @@
         ]
       },
       {
-        "name": "tarif",
+        "name": "tarif başlangıcı (… yerine tarifin gelir)",
         "fills": [
           "Das ist so ein Ding, mit dem man …",
           "Das ist etwas für …",
@@ -3098,7 +3471,7 @@
       },
       {
         "de": "Das ist das Gegenteil von „laut“.",
-        "tr": "'laut'un (gürültülü) tersi.",
+        "tr": "Gürültülü kelimesinin tersi.",
         "layer": "hd"
       },
       {
@@ -3132,21 +3505,34 @@
       "wenn": "Wenn ich ein Wort nicht weiß, beschreibe ich es einfach."
     },
     "mistakes_tr": [
-      "Yan cümlede fiil sona gider: 'Ich weiß nicht, wie man das sagt' ('…, wie sagt man das' yanlış).",
-      "Kelimeyi bilmeyince başka dilden kelime söylemek çoğu zaman işe yaramaz; tarif etmek ('Das ist so ein Ding, mit dem man …') daha hızlı sonuç verir.",
-      "'mit dem man …' tarifinde fiil sona gider: '… mit dem man Wasser warm macht'.",
-      "'Wie sagt man …?' (nasıl denir) ile 'Was sagt man …?' (o durumda ne denir) farklıdır: 'Was sagt man, wenn jemand niest?'"
+      "**Ich weiß nicht, wie sagt man das** denmez. Doğrusu **Ich weiß nicht, wie man das sagt**.",
+      "Kelimeyi bilmeyince başka dilde söyleme. Tarif etmek daha hızlı sonuç verir.",
+      "Tarifte **macht** sona gider: **ein Ding, mit dem man Wasser warm macht**.",
+      "**Wie sagt man?** nasıl denir diye sorar. **Was sagt man?** o durumda ne denir diye sorar."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:meinen-sie",
     "frame": "Meinen Sie …? · Sie meinen …? · Also …, oder? · Meinen Sie, dass …?",
+    "frame_tr": "**Meinen Sie** + duyduğun bilgi? · **Also** + duyduğun bilgi + **oder?**",
     "level": "A1",
     "core": true,
     "grammar_tr": "Anladığını kontrol etmenin en iyi yolu duyduğunu kendi sözlerinle tekrar etmektir: 'Sie meinen den Montag, oder?' 'meinen' burada 'kastetmek, demek istemek' anlamındadır ve nesnesi Akkusativ'dir: 'Meinen Sie den Hausarzt?' Cümle sonundaki 'oder?' Türkçedeki 'değil mi?' gibi onay ister. 'Meinen Sie, dass …?' ise karşı tarafın görüşünü sorar.",
+    "kurallar_tr": [
+      "Anladığını kontrol etmek için duyduğunu soru gibi tekrar et.",
+      "**meinen** burada demek istemek anlamına gelir: **Meinen Sie den Hausarzt?**",
+      "**der** ile söylenen kelimede **den** gelir: **Sie meinen den Montag?**",
+      "Sondaki **oder?** Türkçedeki değil mi gibi onay ister: **Dienstag um zehn, oder?**",
+      "**Meinen Sie, dass das klappt?** sizce bu olur mu demektir."
+    ],
     "slots": [
       {
         "name": "kontrol edilen bilgi",
@@ -3162,7 +3548,7 @@
         ]
       },
       {
-        "name": "onay sorusu",
+        "name": "onay sorusu başlangıcı (… yerine duyduğun bilgi gelir)",
         "fills": [
           "Also …, oder?",
           "Habe ich das richtig verstanden: …?",
@@ -3242,21 +3628,34 @@
       "wenn": "Wenn Sie den Hausarzt meinen, der ist im zweiten Stock."
     },
     "mistakes_tr": [
-      "'Was meinen Sie?' hem 'Ne düşünüyorsunuz?' hem 'Ne demek istiyorsunuz?' olabilir; bağlama bak.",
-      "Yan cümlede fiil sona gider: '…, was Sie meinen' ('…, was meinen Sie' yanlış).",
-      "Cümle sonundaki 'oder?' 'veya' değil, 'değil mi?' demektir: 'Dienstag um zehn, oder?'",
-      "Yanlış arkadaş: 'meinen', İngilizcedeki 'mean' gibi bir kelimenin anlamını sormak için kullanılmaz; kelimenin anlamı için 'Was heißt …?' ya da 'Was bedeutet …?' denir."
+      "**Was meinen Sie?** ne düşünüyorsunuz da ne demek istiyorsunuz da olabilir.",
+      "**Ich weiß nicht, was meinen Sie** denmez. Doğrusu **Ich weiß nicht, was Sie meinen**.",
+      "Cümle sonundaki **oder?** burada değil mi diye sorar: **Dienstag um zehn, oder?**",
+      "Kelimenin anlamını **meinen** ile sorma. Doğrusu **Was heißt das?**"
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:imperativ-sie",
     "frame": "FİİL + Sie + … (bitte) · ayrılabilen: FİİL + Sie + … + ön ek",
+    "frame_tr": "yapılacak iş + **Sie** + gerisi · **Rufen Sie** + gerisi + **an**",
     "level": "A1",
     "core": true,
     "grammar_tr": "'Sie' ile kibar talimatta fiil başa gelir, 'Sie' hemen arkasından: 'Nehmen Sie Platz.' Türkçedeki '-in, -iniz' ekinin karşılığı budur. Ayrılabilen fiilde ön ek en sona gider: 'Rufen Sie morgen an.' 'bitte' tonu yumuşatır; doktorda, resmî dairede ve telesekreterde en çok duyulan kalıptır.",
+    "kurallar_tr": [
+      "Kibar talimatta yapılacak iş başa, **Sie** hemen arkasına gelir: **Nehmen Sie Platz**.",
+      "**Warten Sie** Türkçedeki bekleyin sözünün karşılığıdır.",
+      "**anrufen** gibi kelimelerde **an** en sona gider: **Rufen Sie morgen an**.",
+      "**bitte** tonu yumuşatır: **Warten Sie bitte kurz**.",
+      "**Nehmen Sie**, **Warten Sie** gibi talimatları en çok doktorda ve resmî dairede duyarsın."
+    ],
     "slots": [
       {
         "name": "fiil",
@@ -3315,7 +3714,7 @@
       },
       {
         "de": "Machen Sie bitte den Oberkörper frei.",
-        "tr": "Lütfen belden yukarısını soyunun.",
+        "tr": "Lütfen belden yukarınızı açın.",
         "layer": "hd"
       },
       {
@@ -3353,27 +3752,41 @@
       "question": "Soll ich die Tabletten vor oder nach dem Essen nehmen?",
       "negative": "Nehmen Sie die Tabletten nicht auf nüchternen Magen.",
       "polite": "Würden Sie bitte kurz im Wartezimmer warten?",
-      "perfekt": "(yok: emir kipinin Perfekt'i kurulmaz; yapılıp yapılmadığını sormak için 'Haben Sie die Tabletten genommen?' denir)",
+      "perfekt": "Haben Sie die Tabletten genommen?",
       "weil": "Kommen Sie bitte nüchtern, weil wir Blut abnehmen.",
       "dass": "Die Ärztin hat gesagt, dass ich die Tabletten nach dem Essen nehmen soll.",
       "wenn": "Wenn das Fieber steigt, rufen Sie bitte sofort an."
     },
     "mistakes_tr": [
-      "'Sie'yi unutma: 'Nehmen die Tabletten' yanlış; 'Nehmen Sie die Tabletten.' 'Sie'siz emir yalnızca 'du' ile olur: 'Nimm …'",
-      "Ayrılabilen fiilde ön ek sona gider: 'Rufen Sie morgen an' ('Anrufen Sie' yanlış).",
-      "Emir ile soru aynı sırayla kurulur; farkı ton yapar: düz tonla 'Nehmen Sie Platz.' talimattır, yükselen tonla soru gibi duyulur.",
-      "'sein' fiilinin emri düzensizdir: 'Seien Sie bitte pünktlich.'"
+      "**Nehmen die Tabletten** denmez. Doğrusu **Nehmen Sie die Tabletten**.",
+      "**Anrufen Sie morgen** denmez. Doğrusu **Rufen Sie morgen an**.",
+      "Talimat ile soru aynı sırayla kurulur. Sesin sonda yükselirse soru gibi duyulur.",
+      "**Sind Sie pünktlich** talimat değildir. Doğrusu **Seien Sie bitte pünktlich**.",
+      "Yapılıp yapılmadığını **Haben Sie die Tabletten genommen?** diye sorarsın."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:sollen-wir",
     "frame": "Sollen wir … + mastar? · Wollen wir …? · Lass uns … / Lassen Sie uns …",
+    "frame_tr": "**Sollen wir** + önerdiğin iş? · **Lass uns** + önerdiğin iş",
     "level": "A1",
     "core": true,
     "grammar_tr": "Öneri yapmanın üç yolu var: 'Sollen wir …?' (… yapalım mı?) her durumda olur; 'Wollen wir …?' daha samimidir; 'Lass uns …' (hadi …) arkadaşlar arasında, resmîde 'Lassen Sie uns …' kullanılır. Hepsinde asıl fiil mastar hâlinde en sondadır: 'Sollen wir morgen telefonieren?' Türkçedeki '-elim mi?' ekinin karşılığı budur.",
+    "kurallar_tr": [
+      "**Sollen wir** yapalım mı diye öneri sorar: **Sollen wir uns am Montag treffen?**",
+      "**Wollen wir** aynı şeyi daha samimi sorar: **Wollen wir los?**",
+      "Arkadaşa **Lass uns** dersin, hadi demektir: **Lass uns einen Kaffee trinken**.",
+      "**Sie** dediğin kişiye **Lassen Sie uns** dersin: **Lassen Sie uns das morgen besprechen**.",
+      "Yapılacak iş hep en sona gider: **Sollen wir morgen telefonieren?**"
+    ],
     "slots": [
       {
         "name": "öneri",
@@ -3396,10 +3809,10 @@
           "Wollen wir …?",
           "Lass uns …",
           "Lassen Sie uns …",
-          "Wie wär's mit …?",
+          "Wie wär's, wenn wir …?",
           "Was hältst du davon, wenn wir …?",
           "Wir könnten …",
-          "Hast du Lust, … zu …?"
+          "Vielleicht können wir …?"
         ]
       }
     ],
@@ -3464,26 +3877,40 @@
       "question": "Sollen wir morgen telefonieren?",
       "negative": "Lass uns heute nicht mehr darüber reden.",
       "polite": "Wäre es Ihnen recht, wenn wir das morgen besprechen?",
-      "perfekt": "(yok: öneri sorusunun Perfekt'i kurulmaz; geçmişi anlatırken 'Wir wollten uns am Montag treffen' denir)",
-      "weil": "Sollen wir das verschieben, weil du heute so müde bist?",
+      "perfekt": "Wir wollten uns am Montag treffen.",
+      "weil": "Lass uns das verschieben, weil du heute so müde bist.",
       "dass": "Ich schlage vor, dass wir uns am Montag treffen.",
       "wenn": "Wenn es regnet, sollen wir dann lieber drinnen bleiben?"
     },
     "mistakes_tr": [
-      "'Sollen wir treffen uns?' yanlış: mastar en sona gider: 'Sollen wir uns treffen?'",
-      "'Lass uns' yalnızca 'du'/'ihr' denen kişilerle kullanılır; 'Sie' denen birine 'Lassen Sie uns …' ya da 'Sollen wir …?' denir.",
-      "Türkçedeki '-elim mi?' sorusu 'Machen wir eine Pause?' diye de duyulur ama 'Sollen wir …?' en net ve güvenli olanıdır."
+      "**Sollen wir treffen uns?** denmez. Doğrusu **Sollen wir uns treffen?**",
+      "**Sie** dediğin kişiye **Lass uns** denmez. Doğrusu **Lassen Sie uns** ya da **Sollen wir**.",
+      "**Machen wir eine Pause?** da duyulur. **Sollen wir eine Pause machen?** en net olanıdır.",
+      "Geçmişteki planı **wollten** ile anlatırsın: **Wir wollten uns am Montag treffen**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:ich-finde",
     "frame": "Ich finde + nesne + sıfat · Ich finde, (dass) … · Wie finden Sie …?",
+    "frame_tr": "**Ich finde** + bir şey + nasıl bulduğun, örneğin **gut** ya da **teuer**",
     "level": "A1",
     "core": true,
     "grammar_tr": "'Ich finde …' fikir söylemenin en doğal yoludur: 'Ich finde das gut' (bence iyi). Nesne Akkusativ'dir: 'Ich finde den Film gut.' Bir cümleyle fikir söylerken 'Ich finde, dass …' ya da 'dass'sız 'Ich finde, …' denir: 'Ich finde, das ist zu teuer.' Soru: 'Wie finden Sie …?' (… hakkında ne düşünüyorsunuz?).",
+    "kurallar_tr": [
+      "**Ich finde** ile fikrini söylersin, Türkçedeki bence gibidir: **Ich finde das gut**.",
+      "**der** ile söylenen kelimede **den** gelir: **Ich finde den Film gut**.",
+      "Uzun fikirde virgülden sonra düz devam edersin: **Ich finde, das ist zu teuer**.",
+      "Karşındakine fikrini **Wie finden Sie das?** diye sorarsın.",
+      "Konuşmada **Ich find's gut** ya da **Find ich gut** diye kısalır."
+    ],
     "slots": [
       {
         "name": "sıfat",
@@ -3581,20 +4008,35 @@
       "wenn": "Wenn Sie das gut finden, machen wir es so."
     },
     "mistakes_tr": [
-      "'finden' hem 'bulmak' hem 'bence … olmak'tır: 'Ich finde meinen Schlüssel nicht' (bulamıyorum) / 'Ich finde das gut' (bence iyi).",
-      "Nesne Akkusativ'dir: 'Ich finde den Film gut' ('der Film' değil).",
-      "'Ich finde, dass …'tan sonra fiil sona gider; 'dass'sız biçimde düz sıra kullanılır: 'Ich finde, das ist teuer.'"
+      "**finden** bulmak da demektir: **Ich finde meinen Schlüssel nicht** anahtarımı bulamıyorum demektir.",
+      "**Ich finde der Film gut** denmez. Doğrusu **Ich finde den Film gut**.",
+      "**dass** yani ki gelince **ist** sona gider: **Ich finde, dass das teuer ist**.",
+      "Bence demek için **nach mir** denmez. Doğrusu **Ich finde** ya da **Meiner Meinung nach**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:gefaellt-mir",
     "frame": "… gefällt mir (nicht) · … gefallen mir · Wie gefällt Ihnen …?",
+    "frame_tr": "beğendiğin şey + **gefällt mir** · **Wie gefällt Ihnen** + bir şey?",
     "level": "A1",
     "core": true,
     "grammar_tr": "'gefallen' 'beğenmek' demektir ama yapısı Türkçedeki 'hoşuma gidiyor' gibidir: beğenilen şey özne, beğenen kişi Dativ'dir: 'Die Wohnung gefällt mir.' Özne çoğulsa fiil 'gefallen' olur: 'Die Schuhe gefallen mir.' Soru: 'Wie gefällt Ihnen …?' Yiyecek-içecekte daha çok 'schmecken' kullanılır: 'Das schmeckt mir.'",
+    "kurallar_tr": [
+      "**gefallen** beğenmek demektir ama Türkçedeki hoşuma gidiyor gibi kurulur.",
+      "Beğendiğin şey başa gelir, sonra **gefällt mir**: **Die Wohnung gefällt mir**.",
+      "Birden fazla şey beğendiysen **gefallen** dersin: **Die Schuhe gefallen mir**.",
+      "Kimin beğendiğini **mir**, **dir**, **Ihnen** ile söylersin.",
+      "Karşındakine **Wie gefällt Ihnen die Wohnung?** diye sorarsın.",
+      "Yiyecek ve içecek için **schmecken** dersin: **Das schmeckt mir**."
+    ],
     "slots": [
       {
         "name": "beğenilen (özne)",
@@ -3691,21 +4133,34 @@
       "wenn": "Wenn es Ihnen nicht gefällt, können Sie es zurückgeben."
     },
     "mistakes_tr": [
-      "'Ich gefalle die Wohnung' yanlış; beğenilen şey öznedir: 'Die Wohnung gefällt mir.'",
-      "'Mich gefällt' değil 'mir gefällt': kişi Dativ'dir.",
-      "Çoğulda 'gefallen': 'Die Schuhe gefallen mir' ('gefällt' değil).",
-      "Yemek için 'Das schmeckt mir' daha doğaldır; 'Das Essen gefällt mir' görünüşü anlatır gibi duyulur."
+      "**Ich gefalle die Wohnung** denmez. Doğrusu **Die Wohnung gefällt mir**.",
+      "**Mich gefällt das** denmez. Doğrusu **Mir gefällt das**.",
+      "**Die Schuhe gefällt mir** denmez. Doğrusu **Die Schuhe gefallen mir**.",
+      "Yemeğin tadını beğendiysen **Das Essen gefällt mir** deme. Doğrusu **Das schmeckt mir**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:haben-sie",
     "frame": "Haben Sie (noch / auch) + Akkusativ?",
+    "frame_tr": "**Haben Sie** + aradığın şey?",
     "level": "A1",
     "core": true,
     "grammar_tr": "'Haben Sie …?' mağazada, eczanede, telefonda en sık sorulan sorudur ('… var mı?'). Evet/hayır sorusu olduğu için çekimli fiil başa gelir. Türkçede 'var mı?' dediğimiz yerde Almanca 'sizde var mı' mantığıyla 'haben' kullanır; nesne Akkusativ'dir: 'Haben Sie einen Termin frei?' 'noch' (daha, hâlâ) ve 'auch' (… da) çok sık eklenir.",
+    "kurallar_tr": [
+      "**Haben Sie** ile mağazada, eczanede, telefonda bir şey var mı diye sorarsın.",
+      "Türkçede var mı dersin, Almanca sizde var mı diye sorar: **Haben Sie Zeit?**",
+      "**der** ile söylenen kelimede **einen** gelir: **Haben Sie einen Termin frei?**",
+      "**noch** hâlâ demektir: **Haben Sie noch Brötchen?**",
+      "**auch** da, de demektir: **Haben Sie das auch in Größe M?**"
+    ],
     "slots": [
       {
         "name": "nesne",
@@ -3772,13 +4227,13 @@
         "layer": "hd"
       },
       {
-        "de": "Ham Se noch Brezeln?",
-        "tr": "Hâlâ Brezel var mı?",
+        "de": "Haben Sie noch Brezen?",
+        "tr": "Hâlâ Brezen var mı?",
         "layer": "alltag"
       },
       {
         "de": "Haben Sie's passend?",
-        "tr": "Bozuk paranız tam var mı?",
+        "tr": "Tam paranız var mı?",
         "layer": "alltag"
       },
       {
@@ -3802,21 +4257,36 @@
       "wenn": "Wenn Sie noch Fragen haben, melden Sie sich."
     },
     "mistakes_tr": [
-      "Türkçedeki 'var mı?' yüzünden satıcıya 'Gibt es Brötchen?' de denebilir; ama doğrudan sorarken 'Haben Sie noch Brötchen?' daha doğaldır.",
-      "Fiil başa gelir: 'Sie haben einen Termin?' yalnızca şaşırma ya da yeniden sorma tonudur.",
-      "Eril isimde 'einen': 'Haben Sie einen Termin frei?'",
-      "Olumsuz cevapta 'kein': 'Nein, wir haben keine Brötchen mehr' ('nicht Brötchen' değil)."
+      "Satıcıya **Gibt es Brötchen?** da denir. **Haben Sie noch Brötchen?** daha doğaldır.",
+      "Soru sormak için **Sie haben einen Termin?** deme. Doğrusu **Haben Sie einen Termin?**",
+      "**Haben Sie ein Termin frei?** denmez. Doğrusu **Haben Sie einen Termin frei?**",
+      "Kalmadı derken **nicht Brötchen** denmez. Doğrusu **Wir haben keine Brötchen mehr**.",
+      "Geçmiş için **Hatten Sie** dersin: **Hatten Sie schon mal einen Termin bei uns?**",
+      "Bavyera'da **Brezel** yerine **Brezen** duyarsın: **Haben Sie noch Brezen?**"
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:ich-war",
     "frame": "Ich war … · Ich hatte … (konuşmada da Präteritum)",
+    "frame_tr": "**Ich war** + nasıl ya da nerede · **Ich hatte** + bir şey",
     "level": "A1",
     "core": true,
     "grammar_tr": "'sein' ve 'haben' geçmişi konuşmada da çoğu zaman Präteritum ile söylenir: 'Ich war krank', 'Ich hatte keine Zeit.' 'Ich bin krank gewesen' de doğrudur ama daha az duyulur. Çekim: ich war, du warst, wir/Sie waren; ich hatte, du hattest, wir/Sie hatten. 'war' ve 'hatte' ikinci sırada durur.",
+    "kurallar_tr": [
+      "Geçmişte nasıl ya da nerede olduğunu **war** ile söylersin: **Ich war krank**.",
+      "Geçmişte bir şeyin vardı demek için **hatte** dersin: **Ich hatte keine Zeit**.",
+      "**war** kişiye göre değişir: **ich war**, **du warst**, **wir waren**, **Sie waren**.",
+      "**hatte** kişiye göre değişir: **ich hatte**, **du hattest**, **wir hatten**, **Sie hatten**.",
+      "**war** ve **hatte** cümlede ikinci sırada durur: **Gestern war ich beim Arzt**."
+    ],
     "slots": [
       {
         "name": "war + …",
@@ -3828,7 +4298,7 @@
           "nicht da",
           "müde",
           "in der Stadt",
-          "beim Amt",
+          "auf dem Amt",
           "zu spät"
         ]
       },
@@ -3913,20 +4383,34 @@
       "wenn": "Wenn Sie schon mal hier waren, haben wir Ihre Daten schon."
     },
     "mistakes_tr": [
-      "'Ich habe krank gewesen' yanlış: 'sein'in Perfekt'i 'sein' ile kurulur ('Ich bin krank gewesen'), ama konuşmada en doğalı 'Ich war krank'.",
-      "'war' (idi) ile 'wäre' (olurdu), 'hatte' (vardı) ile 'hätte' (olurdu) farklıdır.",
-      "'Ich habe … gehabt' doğrudur ama günlük konuşmada daha çok 'Ich hatte …' denir."
+      "**Ich habe krank gewesen** denmez. Konuşmada en doğalı **Ich war krank**.",
+      "**war** idi demektir. **wäre** olurdu demektir, karıştırma.",
+      "**hatte** vardı demektir. **hätte** olurdu demektir, karıştırma.",
+      "**Ich hatte keine Zeit** en kolay yoldur. Bavyera'da **Ich habe keine Zeit gehabt** da sık duyarsın."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:lieber",
     "frame": "Ich hätte / möchte / … lieber … · sıfat-er + als … (besser, mehr, früher als)",
+    "frame_tr": "**lieber** + tercihin · **schneller**, **teurer** gibi kelime + **als** + karşılaştırdığın şey",
     "level": "A2",
     "core": true,
     "grammar_tr": "'lieber', 'gern'in karşılaştırma biçimidir: 'tercihen, daha çok'. Tercih bildirmek için çekimli fiilden sonra gelir: 'Ich hätte lieber einen Termin am Nachmittag.' Karşılaştırmada sıfata -er eklenir ve 'als' (-den) kullanılır: 'Der Zug ist schneller als der Bus.' Türkçedeki 'daha' için ayrı kelime kullanılmaz, sıfat değişir: teurer, besser.",
+    "kurallar_tr": [
+      "**lieber** tercih ederim anlamı katar: **Ich trinke lieber Tee**.",
+      "**lieber** kelimesi **bleibe** kelimesinden hemen sonra gelir: **Ich bleibe lieber zu Hause**.",
+      "Daha hızlı derken kelimeye **er** eklenir: **schnell**, **schneller**.",
+      "Otobüsten daha hızlı derken **als** gelir: **schneller als der Bus**.",
+      "Bazıları düzensizdir: **gut** olur **besser**, **viel** olur **mehr**, **gern** olur **lieber**."
+    ],
     "slots": [
       {
         "name": "tercih",
@@ -4022,20 +4506,34 @@
       "wenn": "Wenn es Ihnen nichts ausmacht, hätte ich lieber einen späteren Termin."
     },
     "mistakes_tr": [
-      "'mehr gut' denmez: 'besser'; 'mehr gern' denmez: 'lieber'.",
-      "Karşılaştırmada 'als' kullanılır: 'größer als'. 'wie' eşitlik içindir: 'so groß wie'. ('größer wie' konuşmada duyulur ama yanlış sayılır.)",
-      "'lieber' çekimli fiilden sonra gelir: 'Ich bleibe lieber zu Hause' ('Ich lieber bleibe' yanlış)."
+      "**mehr gut** denmez. Doğrusu **besser**.",
+      "**mehr gern** denmez. Doğrusu **lieber**.",
+      "**größer wie** konuşmada duyulur ama yanlış sayılır. Doğrusu **größer als**.",
+      "Eşitlik için **so groß wie** dersin, o kadar büyük demektir.",
+      "**Ich lieber bleibe zu Hause** denmez. Doğrusu **Ich bleibe lieber zu Hause**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:zu-adj",
     "frame": "… ist (mir) zu + sıfat",
+    "frame_tr": "**Das ist mir zu** + **teuer**, **laut** ya da **früh**",
     "level": "A2",
     "core": true,
     "grammar_tr": "'zu' sıfattan önce gelirse 'fazla, gereğinden çok' anlamı verir ve çoğu zaman bir sorun bildirir: 'Das ist zu teuer' (çok pahalı, alamam). 'sehr' (çok) ise yalnızca derece verir, sorun bildirmez: 'sehr teuer' ama yine de alınabilir. Kime fazla olduğunu Dativ ile söylersin: 'Das ist mir zu laut.'",
+    "kurallar_tr": [
+      "**zu** burada fazla demektir ve bir sorun bildirir: **Das ist zu teuer**.",
+      "**sehr** yalnızca çok demektir, sorun bildirmez: **sehr teuer**.",
+      "Kime fazla olduğunu **mir** ya da **Ihnen** ile söylersin: **Das ist mir zu laut**.",
+      "Daha da güçlüsü **viel zu** olur: **viel zu teuer**."
+    ],
     "slots": [
       {
         "name": "sıfat",
@@ -4070,17 +4568,17 @@
     "examples": [
       {
         "de": "Das ist mir zu teuer.",
-        "tr": "Bu bana çok pahalı.",
+        "tr": "Bu bana fazla pahalı.",
         "layer": "hd"
       },
       {
         "de": "Der Termin ist mir zu früh.",
-        "tr": "Randevu bana çok erken.",
+        "tr": "Randevu bana fazla erken.",
         "layer": "hd"
       },
       {
         "de": "Die Musik ist zu laut.",
-        "tr": "Müzik çok yüksek.",
+        "tr": "Müzik fazla yüksek.",
         "layer": "hd"
       },
       {
@@ -4105,7 +4603,7 @@
       },
       {
         "de": "Viel zu teuer!",
-        "tr": "Çok fazla pahalı!",
+        "tr": "Aşırı pahalı!",
         "layer": "alltag"
       },
       {
@@ -4120,7 +4618,7 @@
       },
       {
         "de": "Der Kaffee ist noch zu heiß.",
-        "tr": "Kahve daha çok sıcak.",
+        "tr": "Kahve hâlâ fazla sıcak.",
         "layer": "alltag"
       }
     ],
@@ -4134,20 +4632,35 @@
       "wenn": "Wenn es Ihnen zu laut ist, mache ich das Fenster zu."
     },
     "mistakes_tr": [
-      "'zu' ile 'sehr'i karıştırma: 'zu teuer' (fazla pahalı, sorun), 'sehr teuer' (çok pahalı, ama olabilir). 'Das Essen ist zu gut' övgü değil, garip duyulur.",
-      "Kime fazla olduğu Dativ'dir: 'Das ist mir zu laut' ('Ich bin zu laut' başka anlam: ben çok gürültücüyüm).",
-      "'zu' (fazla), 'zu' (edat: zum Arzt) ve 'zu' (kapalı: Die Tür ist zu) aynı yazılır; bağlamdan anla."
+      "**zu teuer** fazla pahalı demektir, alamam. **sehr teuer** çok pahalı ama olabilir demektir.",
+      "Övmek için **Das Essen ist zu gut** deme. Doğrusu **Das Essen ist sehr gut**.",
+      "**Ich bin zu laut** ben fazla gürültücüyüm demektir. Rahatsızsan **Das ist mir zu laut** dersin.",
+      "**zu** kapalı da demektir: **Die Tür ist zu**.",
+      "**zum Arzt** sözündeki **zu** ise doktora demektir, fazla anlamı yoktur."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:es-tut-mir-leid",
     "frame": "Es tut mir leid, (dass …) · Tut mir leid, aber … · Entschuldigung, …",
+    "frame_tr": "**Es tut mir leid, dass** + sebep · **Tut mir leid.**",
     "level": "A1",
     "core": true,
     "grammar_tr": "'Es tut mir leid' 'üzgünüm, özür dilerim' demektir; kimin üzüldüğü Dativ'dir: mir, Ihnen. Sebebi 'dass' ile eklersen fiil sona gider: 'Es tut mir leid, dass ich zu spät komme.' Konuşmada 'es' çoğu zaman düşer: 'Tut mir leid.' Karşı tarafın kötü haberine de aynı söz kullanılır: 'Oh, das tut mir leid' (çok üzüldüm).",
+    "kurallar_tr": [
+      "**Es tut mir leid** üzgünüm ya da özür dilerim demektir.",
+      "Konuşmada **Es** çoğu zaman düşer: **Tut mir leid**.",
+      "Sebebi **dass** yani ki ile eklersin: **Es tut mir leid, dass ich störe**.",
+      "**dass** yani ki gelince **komme** sona gider: **dass ich zu spät komme**.",
+      "Kötü bir haber duyunca **Oh, das tut mir leid** dersin, çok üzüldüm demektir."
+    ],
     "slots": [
       {
         "name": "giriş",
@@ -4159,7 +4672,7 @@
           "Verzeihung",
           "Es tut mir wirklich leid",
           "Es tut mir furchtbar leid",
-          "Oh, das tut mir leid"
+          "Es tut mir sehr leid"
         ]
       },
       {
@@ -4234,7 +4747,7 @@
       }
     ],
     "transforms": {
-      "question": "Tut dir das wirklich leid?",
+      "question": "Tut es dir leid, dass du nicht mitgekommen bist?",
       "negative": "Das muss Ihnen nicht leidtun.",
       "polite": "Es tut mir sehr leid, dass Sie so lange warten mussten.",
       "perfekt": "Es hat mir sehr leidgetan, dass ich nicht kommen konnte.",
@@ -4243,20 +4756,36 @@
       "wenn": "Wenn ich Sie gestört habe, tut es mir leid."
     },
     "mistakes_tr": [
-      "'Ich tue leid' ya da 'Ich bin leid' yanlış; kişi Dativ'dir: 'Es tut mir leid.'",
-      "Yan cümlede ve Perfekt'te 'leid' fiille bitişik yazılır: '…, dass es mir leidtut', 'Es hat mir leidgetan'.",
-      "'Entschuldigung' daha çok küçük şeyler ve dikkat çekmek içindir ('Entschuldigung, wo ist …?'); gerçek üzüntü ve kötü haber için 'Es tut mir leid' denir."
+      "**Ich tue leid** denmez. Doğrusu **Es tut mir leid**.",
+      "**Ich bin leid** denmez. Doğrusu **Es tut mir leid**.",
+      "**dass** yani ki gelince **leid** ile **tut** bitişik yazılır: **dass es mir leidtut**.",
+      "Küçük şeylerde ve birine seslenirken **Entschuldigung** dersin: **Entschuldigung, wo ist die Toilette?**",
+      "Gerçek üzüntü ve kötü haber için **Es tut mir leid** dersin."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:weil",
     "frame": "…, weil + … + FİİL (sonda) · Warum …? – Weil …",
+    "frame_tr": "cümle + **weil** + sebep + **bin** ya da **habe** gibi kelime sonda",
     "level": "A2",
     "core": true,
     "grammar_tr": "'weil' sebep bildirir ('çünkü, -dığı için'). 'weil'den sonra çekimli fiil yan cümlenin en sonuna gider: '…, weil ich krank bin.' Perfekt'te sıra: Partizip, sonra 'habe/bin'; modal fiilde: mastar, sonra modal ('weil ich arbeiten muss'). Konuşmada 'weil'den sonra düz sıra da duyulur ('weil ich bin krank'), ama sen fiili sona koyarak konuş.",
+    "kurallar_tr": [
+      "**weil** çünkü demektir ve sebebi söyler.",
+      "**weil** ile başlayan kısımda **bin** gibi kelime en sona gider: **weil ich krank bin**.",
+      "Geçmişi anlatırken **habe** en sona gelir: **weil ich den Bus verpasst habe**.",
+      "**muss** da en sona gider: **weil ich arbeiten muss**.",
+      "**Warum?** sorusuna kısaca **Weil** ile başlayarak cevap verirsin: **Weil ich keine Zeit habe**.",
+      "Konuşmada **weil ich bin krank** da duyarsın, sen yine de **bin** sözünü sona koy."
+    ],
     "slots": [
       {
         "name": "sebep",
@@ -4341,21 +4870,35 @@
       "wenn": "Wenn Sie nicht kommen können, weil Sie krank sind, rufen Sie bitte an."
     },
     "mistakes_tr": [
-      "'weil'den sonra fiil sona gider: 'weil ich krank bin' ('weil ich bin krank' yazıda ve sınavda yanlış sayılır).",
-      "'weil' ile 'denn'i karıştırma: 'denn'den sonra fiil sona gitmez: '…, denn ich bin krank.'",
-      "'weil' sebebi, 'deshalb' sonucu bağlar; 'deshalb'dan sonra fiil ikinci sırada kalır: 'Ich bin krank, deshalb komme ich nicht.'",
-      "'weil'li cümle başa gelirse ana cümle fiille başlar: 'Weil ich krank bin, komme ich nicht.'"
+      "**weil ich bin krank** yazıda yanlış sayılır. Doğrusu **weil ich krank bin**.",
+      "Çünkü anlamındaki **denn** ile **denn ich krank bin** denmez. Doğrusu **denn ich bin krank**.",
+      "Bu yüzden anlamındaki **deshalb** ile **Deshalb ich komme nicht** denmez. Doğrusu **Deshalb komme ich nicht**.",
+      "**Weil ich krank bin, ich komme nicht** denmez. Doğrusu **Weil ich krank bin, komme ich nicht**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:dass",
     "frame": "Ich glaube / denke / hoffe / weiß, dass + … + FİİL (sonda)",
+    "frame_tr": "**Ich glaube, dass** + düşündüğün şey + **ist** ya da **habe** gibi kelime sonda",
     "level": "A2",
     "core": true,
     "grammar_tr": "'dass' bir düşünceyi, bilgiyi ya da söylenen sözü aktarır; Türkçedeki '-dığını, -acağını' ekinin karşılığıdır. 'dass'tan sonraki yan cümlede çekimli fiil en sona gider: 'Ich glaube, dass der Termin morgen ist.' Perfekt'te sıra: önce Partizip, sonra 'habe/bin'. Konuşmada 'dass' sık sık düşer ve düz sıra kullanılır: 'Ich glaub, der Termin ist morgen.'",
+    "kurallar_tr": [
+      "**dass** bir düşünceyi ya da duyduğun bilgiyi cümleye bağlar.",
+      "Türkçedeki randevunun yarın olduğunu sanıyorum gibi: **Ich glaube, dass der Termin morgen ist**.",
+      "**dass** gelince **ist** en sona gider: **dass der Termin morgen ist**.",
+      "Geçmişi anlatırken **habe** en sona gelir: **dass ich den Termin vergessen habe**.",
+      "**dass** kelimesinden önce virgül konur.",
+      "Konuşmada **dass** sık sık düşer, o zaman düz söylersin: **Ich glaub, das klappt**."
+    ],
     "slots": [
       {
         "name": "ana cümle",
@@ -4452,21 +4995,31 @@
       "wenn": "Wenn Sie merken, dass es schlimmer wird, rufen Sie an."
     },
     "mistakes_tr": [
-      "'dass'tan sonra fiil sona gider: 'dass der Termin morgen ist' ('dass ist der Termin morgen' yanlış).",
-      "'dass' (bağlaç) ile 'das' (artikel, zamir) karıştırılır: 'Ich weiß, dass das stimmt.'",
-      "Almanca olumsuzu çoğu zaman ana fiile koyar: 'Ich glaube nicht, dass …' ('Ich glaube, dass … nicht …' da doğru ama daha az doğal).",
-      "Konuşmadaki 'dass'sız biçim (Ich glaub, das klappt) doğrudur; ama 'dass' kullandıysan fiil mutlaka sonda olmalı."
+      "**dass ist der Termin morgen** denmez. Doğrusu **dass der Termin morgen ist**.",
+      "**dass** iki s ile yazılır ve cümle bağlar. **das** tek s ile bu ya da o demektir.",
+      "Sanmıyorum derken **nicht** öne gelir: **Ich glaube nicht, dass er heute anruft**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:wenn",
     "frame": "Wenn + … + FİİL (sonda), FİİL + özne … · …, wenn … + FİİL",
+    "frame_tr": "**Wenn** + şart, + sonra ne olacağı",
     "level": "A2",
     "core": true,
-    "grammar_tr": "'wenn' koşulu ('-se/-sa') ya da her seferinde olan durumu ('-dığında') anlatır. 'wenn'li yan cümlede çekimli fiil en sona gider: 'wenn es nicht besser wird'. Yan cümle başta ise ana cümle hemen fiille başlar: 'Wenn es geht, komme ich.' Yani virgülden sonra önce fiil, sonra özne gelir.",
+    "grammar_tr": "**wenn** Türkçedeki gelirsem ya da geldiğimde anlamını verir. **wenn** ile başlayan kısımda **habe** gibi kelime sona gider: **wenn ich Zeit habe**. Cümle **wenn** ile başlıyorsa virgülden sonra **komme ich** dersin: **Wenn es geht, komme ich**.",
+    "kurallar_tr": [
+      "**wenn** Türkçedeki gelirsem ya da geldiğimde anlamını verir.",
+      "**wenn** ile başlayan kısımda **habe** gibi kelime sona gider: **wenn ich Zeit habe**.",
+      "Cümle **wenn** ile başlıyorsa virgülden sonra **komme ich** dersin: **Wenn es geht, komme ich**."
+    ],
     "slots": [
       {
         "name": "koşul",
@@ -4564,21 +5117,33 @@
       "wenn": "Wenn Sie Zeit haben, rufen Sie mich bitte zurück."
     },
     "mistakes_tr": [
-      "Virgülden sonra Türkçedeki gibi özneyle başlama: 'Wenn es geht, ich komme' yanlış; 'Wenn es geht, komme ich.'",
-      "'wenn'den sonra çekimli fiil sona gider: 'wenn ich Zeit habe' ('wenn ich habe Zeit' yanlış).",
-      "Geçmişte bir kez olan olay için 'wenn' değil 'als' kullanılır: 'Als ich krank war, …'",
-      "'wenn' ile 'ob'u karıştırma: 'Ich weiß nicht, ob er kommt' (gelip gelmeyeceğini bilmiyorum)."
+      "**Wenn es geht, ich komme** denmez. Doğrusu **Wenn es geht, komme ich**.",
+      "**wenn ich habe Zeit** denmez. Doğrusu **wenn ich Zeit habe**.",
+      "Geçmişte bir kez olan şey için **wenn** değil **als** dersin: **Als ich krank war**.",
+      "**Ich weiß nicht, wenn er kommt** denmez. Doğrusu **Ich weiß nicht, ob er kommt**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-17",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:ob",
     "frame": "…, ob + … + FİİL (sonda)",
+    "frame_tr": "**Ich weiß nicht, ob** + emin olmadığın şey + **ist** gibi kelime sonda",
     "level": "B1",
     "core": true,
     "grammar_tr": "'ob' evet/hayır sorusunu dolaylı sorar; Türkçedeki '-ip -mediğini' ekinin karşılığıdır: 'Ich weiß nicht, ob er kommt' (gelip gelmeyeceğini bilmiyorum). Yan cümlede çekimli fiil en sona gider. Kibar soru için çok kullanılır: 'Können Sie mir sagen, ob die Praxis heute offen ist?'",
+    "kurallar_tr": [
+      "**ob** bir şeyin olup olmadığını sormaya ya da söylemeye yarar.",
+      "Türkçedeki gelip gelmeyeceğini bilmiyorum gibi: **Ich weiß nicht, ob er kommt**.",
+      "**ob** gelince **ist** gibi kelime en sona gider: **ob die Praxis offen ist**.",
+      "Kibar soruda çok duyarsın: **Wissen Sie, ob die Praxis heute offen ist?**",
+      "**ob** kelimesinden önce virgül konur."
+    ],
     "slots": [
       {
         "name": "giriş",
@@ -4674,20 +5239,33 @@
       "wenn": "Wenn Sie nicht wissen, ob Sie kommen können, rufen Sie bitte an."
     },
     "mistakes_tr": [
-      "'ob' yerine 'wenn' kullanma: 'Ich weiß nicht, wenn er kommt' yanlış; doğrusu '…, ob er kommt'.",
-      "'ob'dan sonra fiil sona gider: 'ob die Praxis offen ist' ('ob ist die Praxis offen' yanlış).",
-      "'ob' ile 'oder'i karıştırma: 'oder' 'veya' demektir; 'ob' dolaylı soru açar."
+      "**Ich weiß nicht, wenn er kommt** denmez. Doğrusu **Ich weiß nicht, ob er kommt**.",
+      "**ob ist die Praxis offen** denmez. Doğrusu **ob die Praxis offen ist**.",
+      "**oder** veya demektir. **ob** ise olup olmadığını sorar, karıştırma."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:indirekte-frage",
     "frame": "Können Sie mir sagen / Wissen Sie, + W-sözcüğü + … + FİİL (sonda)?",
+    "frame_tr": "**Können Sie mir sagen,** + soru kelimesi + gerisi + **ist** gibi kelime sonda?",
     "level": "B1",
     "core": true,
     "grammar_tr": "Doğrudan soru ('Wann kommt der Bus?') bazen sert durur; başına 'Können Sie mir sagen, …' eklersen kibarlaşır. O zaman soru yan cümle olur ve çekimli fiil en sona gider: 'Können Sie mir sagen, wann der Bus kommt?' Soru sözcüğü (wann, wo, wie…) yan cümleyi bağlaç gibi açar. Evet/hayır sorularında soru sözcüğü yerine 'ob' kullanılır.",
+    "kurallar_tr": [
+      "Soruyu kibarlaştırmak için başına **Können Sie mir sagen** ya da **Wissen Sie** eklersin.",
+      "Başına **Wissen Sie** gelince **kommt** en sona gider: **Wissen Sie, wann der Bus kommt?**",
+      "**wann**, **wo**, **wie** gibi soru kelimesi virgülden hemen sonra gelir.",
+      "Bilmediğini de böyle söylersin: **Ich weiß nicht, wo er ist**.",
+      "Soru kelimesi yoksa araya **ob** girer. **Wissen Sie, ob er kommt?** geliyor mu biliyor musunuz demektir."
+    ],
     "slots": [
       {
         "name": "giriş",
@@ -4724,7 +5302,7 @@
       },
       {
         "de": "Wissen Sie, wo die Anmeldung ist?",
-        "tr": "Danışmanın nerede olduğunu biliyor musunuz?",
+        "tr": "Kayıt bankosunun nerede olduğunu biliyor musunuz?",
         "layer": "hd"
       },
       {
@@ -4783,20 +5361,32 @@
       "wenn": "Wenn Sie nicht wissen, wo das Büro ist, fragen Sie am Empfang."
     },
     "mistakes_tr": [
-      "'Können Sie mir sagen, wann kommt der Bus?' yanlış: yan cümlede fiil sona gider: '…, wann der Bus kommt?'",
-      "Yan cümlede özne fiilden önce gelir: '…, wo die Anmeldung ist' ('…, wo ist die Anmeldung' yanlış).",
-      "Evet/hayır sorusunu dolaylı yaparken 'wenn' ya da 'dass' değil 'ob' kullanılır: 'Wissen Sie, ob die Praxis offen ist?'"
+      "**Können Sie mir sagen, wann kommt der Bus?** denmez. Doğrusu **Können Sie mir sagen, wann der Bus kommt?**",
+      "**Wissen Sie, wo ist die Anmeldung?** denmez. Doğrusu **Wissen Sie, wo die Anmeldung ist?**",
+      "**Wissen Sie, wenn die Praxis offen ist?** denmez. Doğrusu **Wissen Sie, ob die Praxis offen ist?**"
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:wuerden-sie",
     "frame": "Würden Sie (bitte) + … + mastar?",
+    "frame_tr": "**Würden Sie bitte** + istediğin iş?",
     "level": "A2",
     "core": true,
-    "grammar_tr": "'Würden Sie …?' 'Könnten Sie …?' ile aynı yapıdadır ve çok kibar bir ricadır ('… eder miydiniz?'). 'Würden' başa gelir, asıl fiil mastar hâlinde en sona gider. İnce fark: 'Könnten Sie' yapıp yapamayacağını, 'Würden Sie' yapmayı kabul edip etmeyeceğini sorar; günlük hayatta ikisi de olur.",
+    "grammar_tr": "**Würden Sie** çok kibar bir rica başlatır, **Könnten Sie** gibi kurulur. **Würden** başta durur, istenen iş en sona gider: **Würden Sie mich zurückrufen?** **Könnten Sie** yapabilir misiniz, **Würden Sie** yapar mısınız diye sorar. Günlük hayatta ikisi de olur.",
+    "kurallar_tr": [
+      "**Würden Sie** ile çok kibar bir rica başlatırsın.",
+      "İstediğin iş en sona gider: **Würden Sie mich zurückrufen?**",
+      "**Könnten Sie** yapabilir misiniz, **Würden Sie** yapar mısınız diye sorar.",
+      "Günlük hayatta **Würden Sie** de **Könnten Sie** de kibar rica için olur."
+    ],
     "slots": [
       {
         "name": "mastar grubu",
@@ -4875,26 +5465,40 @@
       "question": "Würden Sie mir die Unterlagen schicken?",
       "negative": "Würden Sie hier bitte nicht parken?",
       "polite": "Würden Sie so freundlich sein und mich zurückrufen?",
-      "perfekt": "(yok: rica kalıbının Perfekt'i kurulmaz; olanı sormak için 'Haben Sie mich zurückgerufen?' denir)",
-      "weil": "Würden Sie bitte langsamer sprechen, weil ich noch nicht alles verstehe?",
-      "dass": "Ich hätte nicht gedacht, dass Sie mir so schnell helfen würden.",
+      "perfekt": "Haben Sie mich gestern zurückgerufen?",
+      "weil": "Würden Sie bitte etwas langsamer sprechen? Ich frage, weil ich noch nicht alles verstehe.",
+      "dass": "Die Praxis hat gesagt, dass sie mich zurückrufen würde.",
       "wenn": "Würden Sie mich anrufen, wenn die Ergebnisse da sind?"
     },
     "mistakes_tr": [
-      "'Würden Sie zurückrufen mich?' yanlış: mastar en sona: 'Würden Sie mich zurückrufen?'",
-      "'würden' ile 'werden'i karıştırma: 'Werden Sie mich zurückrufen?' (beni arayacak mısınız?) bilgi sorar, kibar rica değildir.",
-      "Ricaya 'Ja, ich würde' diye cevap verilmez; 'Ja, gern' ya da 'Ja, mach ich' denir."
+      "**Würden Sie zurückrufen mich?** denmez. Doğrusu **Würden Sie mich zurückrufen?**",
+      "**Werden Sie mich zurückrufen?** rica değildir. Beni arayacak mısınız diye bilgi sorar.",
+      "Ricaya **Ja, ich würde** diye cevap verilmez. Doğrusu **Ja, gern** ya da **Ja, mach ich**.",
+      "Yapılıp yapılmadığını sormak için **Würden** kullanılmaz. Doğrusu **Haben Sie mich zurückgerufen?**"
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-17",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:ich-wuerde-gern",
     "frame": "Ich würde gern + … + mastar (sonda)",
+    "frame_tr": "**Ich würde gern** + yapmak istediğin iş",
     "level": "A2",
     "core": true,
     "grammar_tr": "'Ich würde gern …' kibar istek ve plan bildirir ('… yapmak isterdim'); 'Ich möchte'den biraz daha yumuşaktır. 'würde' ikinci sırada, asıl fiil mastar hâlinde en sondadır: 'Ich würde gern den Termin verschieben.' Telefonda konuyu açmanın en iyi yollarından biridir.",
+    "kurallar_tr": [
+      "**Ich würde gern** kibarca yapmak isterim demektir.",
+      "**Ich würde gern**, **Ich möchte** sözünden biraz daha yumuşaktır.",
+      "**würde** ikinci sırada, yapmak istediğin iş en sonda durur: **Ich würde gern bar bezahlen**.",
+      "Telefonda konuyu böyle açarsın: **Ich würde gern einen Termin vereinbaren**.",
+      "**mich** varsa **gern** kelimesinden önce gelir: **Ich würde mich gern anmelden**.",
+      "Konuşmada **Ich würd gern** diye kısalır."
+    ],
     "slots": [
       {
         "name": "mastar grubu",
@@ -4903,7 +5507,7 @@
           "den Termin verschieben",
           "mit Frau Kaya sprechen",
           "etwas fragen",
-          "mich anmelden",
+          "ein Konto eröffnen",
           "bar bezahlen",
           "das umtauschen",
           "eine Nachricht hinterlassen",
@@ -4972,27 +5576,44 @@
     "transforms": {
       "question": "Würden Sie gern am Vormittag kommen?",
       "negative": "Ich würde den Termin nur ungern absagen.",
-      "polite": "Ich würde gern, wenn möglich, einen früheren Termin bekommen.",
-      "perfekt": "Ich hätte gern früher angerufen, aber ich hatte keine Zeit.",
+      "polite": "Wenn möglich, würde ich gern einen früheren Termin bekommen.",
+      "perfekt": "Ich wollte gestern schon anrufen, aber ich hatte keine Zeit.",
       "weil": "Ich rufe an, weil ich gern meinen Termin verschieben würde.",
       "dass": "Sagen Sie ihr bitte, dass ich sie gern sprechen würde.",
       "wenn": "Wenn es geht, würde ich gern schon um acht kommen."
     },
     "mistakes_tr": [
-      "Mastar en sona gider: 'Ich würde gern verschieben den Termin' yanlış; 'Ich würde gern den Termin verschieben.'",
-      "'würde' ile 'wurde'yi karıştırma: 'Ich wurde operiert' (ameliyat edildim) geçmiş zaman ve edilgendir, istek değil.",
-      "Yan cümlede 'würde' en sona gider: '…, weil ich gern kommen würde'."
+      "**Ich würde gern verschieben den Termin** denmez. Doğrusu **Ich würde gern den Termin verschieben**.",
+      "**würde** ile **wurde** farklıdır. **Ich wurde operiert** ameliyat edildim demektir, istek değildir.",
+      "**weil** yani çünkü gelince **würde** en sona gider: **weil ich gern kommen würde**.",
+      "Geçmişteki isteği **wollte** ile anlatırsın: **Ich wollte gestern anrufen**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:ich-haette-eine-frage",
     "frame": "Ich hätte eine Frage / eine Bitte (zu + Dativ) · Hätten Sie …?",
+    "frame_tr": "**Ich hätte eine Frage zu** + konu · **Hätten Sie** + bir şey?",
     "level": "A2",
     "core": true,
     "grammar_tr": "'Ich hätte eine Frage' konuşmaya kibarca girmenin en iyi yoludur ('bir sorum olacaktı'). 'hätte', 'haben'in Konjunktiv II biçimidir ve 'Ich habe eine Frage'den daha yumuşak duyulur. Konuyu 'zu + Dativ' ile eklersin: 'Ich hätte eine Frage zu meiner Rechnung.' Telefonda selamlaşıp adını söyledikten hemen sonra kullanılır.",
+    "kurallar_tr": [
+      "**Ich hätte eine Frage** bir sorum olacaktı demektir, konuşmaya kibarca girersin.",
+      "**Ich habe eine Frage** de doğrudur, **hätte** ile daha yumuşak duyulur.",
+      "Konuyu **zu** ile eklersin: **Ich hätte eine Frage zu meiner Rechnung**.",
+      "**die** ile söylenen konuda **zur** dersin: **eine Frage zur Miete**.",
+      "**der** ya da **das** ile söylenen konuda **zum** dersin: **eine Frage zum Vertrag**.",
+      "**mein** de değişir: **zu meinem Termin**, **zu meiner Rechnung**.",
+      "Telefonda adını söyledikten hemen sonra **Ich hätte eine Frage** dersin.",
+      "**Hätten Sie kurz Zeit?** bir dakikanız var mı demenin kibar yoludur."
+    ],
     "slots": [
       {
         "name": "isim",
@@ -5043,8 +5664,8 @@
         "layer": "hd"
       },
       {
-        "de": "Guten Tag, mein Name ist Özkan, ich hätte eine Frage zu meinem Termin.",
-        "tr": "İyi günler, adım Özkan, randevumla ilgili bir sorum olacaktı.",
+        "de": "Guten Tag, mein Name ist {name}, ich hätte eine Frage zu meinem Termin.",
+        "tr": "İyi günler, adım {name}, randevumla ilgili bir sorum olacaktı.",
         "layer": "hd"
       },
       {
@@ -5082,26 +5703,40 @@
       "question": "Hätten Sie kurz Zeit für eine Frage?",
       "negative": "Nein, danke, ich habe keine Fragen mehr.",
       "polite": "Entschuldigen Sie bitte die Störung, ich hätte eine kurze Frage.",
-      "perfekt": "(yok: 'hätte' Konjunktiv II'dir, Perfekt'i kurulmaz; geçmişi anlatırken 'Ich hatte eine Frage' denir)",
+      "perfekt": "Ich hatte gestern noch eine Frage.",
       "weil": "Ich rufe an, weil ich eine Frage zu meiner Rechnung hätte.",
       "dass": "Sagen Sie ihr bitte, dass ich noch eine Frage hätte.",
       "wenn": "Wenn Sie kurz Zeit hätten, hätte ich noch eine Frage."
     },
     "mistakes_tr": [
-      "'hätte' ile 'hatte'yi karıştırma: 'Ich hatte eine Frage' = bir sorum vardı (geçmiş).",
-      "Konu çoğu zaman 'zu' ile verilir ve 'zu' Dativ ister: 'eine Frage zu meiner Rechnung', 'zum Vertrag' (zu dem).",
-      "Türkçedeki 'bir şey soracaktım' sözünü 'Ich wollte fragen, …' diye de söyleyebilirsin; ikisi de doğaldır."
+      "**Ich hatte eine Frage** bir sorum vardı demektir. Şimdi sormak için **hätte** dersin.",
+      "**eine Frage zu meine Rechnung** denmez. Doğrusu **eine Frage zu meiner Rechnung**.",
+      "**eine Frage zu der Vertrag** denmez. Doğrusu **eine Frage zum Vertrag**.",
+      "Bir şey soracaktım demek için **Ich wollte fragen** de dersin."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:um-zu",
     "frame": "…, um + … + zu + mastar (sonda)",
+    "frame_tr": "cümle + **um** + gerisi + **zu** + yapılacak iş",
     "level": "B1",
     "core": true,
     "grammar_tr": "'um … zu' amacı söyler: '… için, …mek için'. Yalnızca iki cümlenin öznesi aynıysa kullanılır: 'Ich rufe an, um einen Termin zu machen.' Mastar en sona gider, 'zu' hemen önüne; ayrılabilen fiilde 'zu' araya girer: 'abzusagen', 'anzumelden'. Özneler farklıysa 'damit' kullanılır.",
+    "kurallar_tr": [
+      "**um zu** bir işi ne için yaptığını söyler, Türkçedeki için gibidir.",
+      "Türkçedeki randevu almak için arıyorum gibi: **Ich rufe an, um einen Termin zu machen**.",
+      "Yapılacak iş en sona gider, **zu** hemen önüne gelir: **zu machen**, **zu fragen**.",
+      "**absagen** gibi kelimelerde **zu** ortaya girer: **abzusagen**, **abzuholen**.",
+      "**um** kelimesinden önce virgül konur."
+    ],
     "slots": [
       {
         "name": "amaç",
@@ -5152,7 +5787,7 @@
       },
       {
         "de": "Um Geld zu sparen, fahre ich mit dem Fahrrad.",
-        "tr": "Para biriktirmek için bisikletle gidiyorum.",
+        "tr": "Para tasarruf etmek için bisikletle gidiyorum.",
         "layer": "hd"
       },
       {
@@ -5186,21 +5821,34 @@
       "wenn": "Wenn Sie anrufen, um einen Termin zu machen, drücken Sie die Eins."
     },
     "mistakes_tr": [
-      "'zu'yu unutma: 'um einen Termin machen' yanlış, 'um einen Termin zu machen'.",
-      "Ayrılabilen fiilde 'zu' ortaya girer ve bitişik yazılır: 'abzusagen' ('zu absagen' yanlış).",
-      "Özneler farklıysa 'um … zu' olmaz: 'Ich rufe an, damit Sie Bescheid wissen.'",
-      "Türkçedeki 'için' yüzünden amaçta 'für' kullanma: 'für einen Termin machen' yanlış; 'um einen Termin zu machen'."
+      "**um einen Termin machen** denmez. Doğrusu **um einen Termin zu machen**.",
+      "**zu absagen** denmez. Doğrusu **abzusagen**.",
+      "Karşındaki bilsin diye arıyorsan **damit** dersin: **Ich rufe an, damit Sie Bescheid wissen**.",
+      "Randevu almak için derken **für einen Termin machen** denmez. Doğrusu **um einen Termin zu machen**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:obwohl",
     "frame": "…, obwohl + … + FİİL (sonda) · Obwohl …, FİİL + özne …",
+    "frame_tr": "cümle + **obwohl** + engel + **bin** ya da **habe** gibi kelime sonda",
     "level": "B1",
     "core": true,
     "grammar_tr": "'obwohl' karşıtlık bildirir: '-e rağmen, -dığı hâlde'. Yan cümlede çekimli fiil en sona gider: '…, obwohl ich krank bin.' Yan cümle başa gelirse ana cümle fiille başlar: 'Obwohl es regnet, fahre ich mit dem Rad.' Aynı anlam ana cümlede 'trotzdem' ile de verilir: 'Es regnet. Trotzdem fahre ich mit dem Rad.'",
+    "kurallar_tr": [
+      "**obwohl** rağmen ya da olduğu hâlde demektir.",
+      "**obwohl** gelince **bin** gibi kelime en sona gider: **obwohl ich krank bin**.",
+      "Hasta olmama rağmen çalışıyorum demek için: **Ich arbeite, obwohl ich krank bin**.",
+      "Cümle **Obwohl** ile başlarsa virgülden sonra **fahre ich** dersin: **Obwohl es regnet, fahre ich**.",
+      "Aynı şeyi **trotzdem** yani yine de ile söyleyebilirsin: **Es regnet, trotzdem fahre ich**."
+    ],
     "slots": [
       {
         "name": "obwohl-cümlesi",
@@ -5283,20 +5931,33 @@
       "wenn": "Wenn Sie Schmerzen haben, obwohl Sie die Tabletten nehmen, kommen Sie bitte wieder."
     },
     "mistakes_tr": [
-      "'obwohl'dan sonra fiil sona gider: 'obwohl ich krank bin' ('obwohl ich bin krank' yanlış).",
-      "'obwohl' (yan cümle, fiil sonda) ile 'trotzdem' (zarf, fiil ikinci sırada) farklıdır: 'Ich bin krank. Trotzdem arbeite ich.'",
-      "'obwohl' ile 'trotz'u karıştırma: 'trotz' edattır ve isim alır: 'trotz des Regens' (konuşmada 'trotz dem Regen')."
+      "**obwohl ich bin krank** denmez. Doğrusu **obwohl ich krank bin**.",
+      "**Trotzdem ich arbeite** denmez. Doğrusu **Trotzdem arbeite ich**.",
+      "**trotz ich krank bin** denmez. Doğrusu **obwohl ich krank bin**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:deshalb",
     "frame": "… . Deshalb / Deswegen / Trotzdem / Dann + FİİL + özne …",
+    "frame_tr": "sebep + **deshalb** + **bleibe** ya da **komme** gibi kelime + kişi + gerisi",
     "level": "A2",
     "core": true,
     "grammar_tr": "'deshalb, deswegen' (bu yüzden), 'trotzdem' (yine de), 'dann' (sonra, o zaman) bağlaç değil zarftır ve cümlede bir yer kaplar. Başa gelirse çekimli fiil hemen ardından gelir, özne fiilden sonra: 'Ich habe Fieber. Deshalb bleibe ich zu Hause.' Türkçe alışkanlıkla 'Deshalb ich bleibe' demek en sık hatadır. 'weil' sebebi, 'deshalb' sonucu bağlar.",
+    "kurallar_tr": [
+      "**deshalb** ve **deswegen** bu yüzden demektir.",
+      "**trotzdem** yine de, **dann** sonra ya da o zaman demektir.",
+      "**Deshalb** başta ise hemen ardından **bleibe**, sonra **ich** gelir: **Deshalb bleibe ich zu Hause**.",
+      "Önce sebebi, sonra sonucu söylersin: **Ich habe Fieber, deshalb bleibe ich zu Hause**.",
+      "**sonst** yoksa demektir: **Kommen Sie pünktlich, sonst müssen Sie warten**."
+    ],
     "slots": [
       {
         "name": "zarf",
@@ -5393,20 +6054,35 @@
       "wenn": "Wenn es regnet, fahre ich trotzdem mit dem Rad."
     },
     "mistakes_tr": [
-      "'Deshalb ich bleibe zu Hause' yanlış: zarf başta ise fiil hemen ardından gelir: 'Deshalb bleibe ich zu Hause.'",
-      "'deshalb' ile 'weil'i karıştırma: 'weil' sebebi verir ve fiili sona atar; 'deshalb' sonucu verir ve fiil ikinci sırada kalır.",
-      "Yanlış arkadaş: 'also', İngilizcedeki 'also' (de, da) değildir; 'yani, demek ki, o hâlde' demektir: 'Also kommen Sie morgen?' 'de/da' için 'auch' kullanılır."
+      "**Deshalb ich bleibe zu Hause** denmez. Doğrusu **Deshalb bleibe ich zu Hause**.",
+      "**weil** yani çünkü sebebi söyler. **deshalb** ise sonucu söyler.",
+      "**also** o hâlde demektir: **Also kommen Sie morgen?** İngilizcedeki also ile karıştırma.",
+      "De, da demek için **also** değil **auch** dersin: **Ich komme auch**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:reflexiv",
     "frame": "Ich + FİİL + mich … · sich freuen / sich beeilen / sich anmelden / sich melden",
+    "frame_tr": "**Ich** + yaptığın iş + **mich** + gerisi",
     "level": "A2",
     "core": true,
-    "grammar_tr": "Dönüşlü fiillerde eylem özneye döner; Türkçedeki '-n, -l' eklerine benzer (dinlenmek, kaydolmak). Zamir özneyle uyumludur: ich → mich, du → dich, er/sie/Sie → sich, wir → uns. Zamir çekimli fiilden hemen sonra gelir: 'Ich melde mich morgen.' Bazı fiiller Türkçede dönüşlü değildir ama Almancada dönüşlüdür: 'sich freuen' (sevinmek), 'sich erkälten' (üşütmek).",
+    "grammar_tr": "Dönüşlü fiillerde eylem özneye döner; Türkçedeki '-n, -l' eklerine benzer (yıkanmak, hazırlanmak, dinlenmek). Zamir özneyle uyumludur: ich → mich, du → dich, er/sie/Sie → sich, wir → uns. Zamir çekimli fiilden hemen sonra gelir: 'Ich melde mich morgen.' Bazı fiiller Türkçede dönüşlü değildir ama Almancada dönüşlüdür: 'sich freuen' (sevinmek), 'sich erkälten' (üşütmek).",
+    "kurallar_tr": [
+      "Bazı işlerde **mich** gibi bir kelime de gerekir: **Ich melde mich morgen**.",
+      "**sich ausruhen** dinlenmek, **sich setzen** oturmak demektir, başındaki **sich** hep birlikte gelir.",
+      "Kişiye göre değişir: **ich mich**, **du dich**, **er sich**, **wir uns**, **Sie sich**.",
+      "**mich** hemen **melde** kelimesinden sonra gelir: **Ich melde mich morgen**.",
+      "Sevinmek ve üşütmek de **mich** ister: **Ich freue mich**, **Ich habe mich erkältet**.",
+      "Sık duyacakların: **sich melden**, **sich anmelden**, **sich setzen**, **sich beeilen**."
+    ],
     "slots": [
       {
         "name": "dönüşlü fiil",
@@ -5484,8 +6160,8 @@
         "layer": "alltag"
       },
       {
-        "de": "Freut mich!",
-        "tr": "Memnun oldum!",
+        "de": "Setz dich doch!",
+        "tr": "Otursana!",
         "layer": "alltag"
       },
       {
@@ -5504,21 +6180,36 @@
       "wenn": "Wenn Sie sich anmelden möchten, brauchen Sie Ihren Ausweis."
     },
     "mistakes_tr": [
-      "Zamiri unutma: 'Ich melde morgen' eksik; 'Ich melde mich morgen.'",
-      "Zamir özneye uymalı: 'Ich freue sich' yanlış; 'Ich freue mich'. 'Sie' (siz) için 'sich': 'Setzen Sie sich.'",
-      "Perfekt'te dönüşlü fiiller 'haben' alır: 'Ich habe mich erkältet' ('Ich bin mich erkältet' yanlış).",
-      "'sich freuen auf' (olacak şeye sevinmek) ile 'sich freuen über' (olmuş şeye sevinmek) farklıdır."
+      "**Ich melde morgen** eksik kalır. Doğrusu **Ich melde mich morgen**.",
+      "**Ich freue sich** denmez. Doğrusu **Ich freue mich**.",
+      "**Sie** dediğin kişiye **sich** dersin: **Setzen Sie sich**.",
+      "**Ich bin mich erkältet** denmez. Doğrusu **Ich habe mich erkältet**.",
+      "**Ich freue mich auf** olacak şeye sevinmektir. **Ich freue mich über** olmuş şeye sevinmektir."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:verb-praep",
     "frame": "fiil + sabit edat (warten auf, sich kümmern um, sich beschweren über, denken an) · Worauf …? / Auf wen …?",
+    "frame_tr": "**Ich warte auf** + beklediğin şey · **Worauf warten Sie?**",
     "level": "B1",
     "core": true,
     "grammar_tr": "Bazı fiiller sabit bir edatla kullanılır ve edat da belli bir hâl ister: 'warten auf + Akkusativ' (beklemek), 'Angst haben vor + Dativ' (korkmak). Türkçedeki ekler (-i beklemek, -den korkmak) Almancaya birebir geçmez; fiili edatıyla birlikte ezberle. Şeyi sorarken 'wo(r) + edat' kullanılır: 'Worauf warten Sie?'; kişiyi sorarken 'edat + wen/wem': 'Auf wen warten Sie?'",
+    "kurallar_tr": [
+      "Bazı işler hep aynı küçük kelimeyle söylenir: **warten auf**, **denken an**.",
+      "Otobüsü bekliyorum derken araya **auf** girer: **Ich warte auf den Bus**.",
+      "Türkçede gürültüden şikâyet edersin, Almancada **über** gelir: **Ich beschwere mich über den Lärm**.",
+      "Neyi beklediğini sorarken **wo** ile **auf** birleşir: **Worauf warten Sie?**",
+      "Kimi beklediğini sorarken **auf** ile **wen** ayrı kalır: **Auf wen warten Sie?**",
+      "Konuşmada **darum** çok duyarsın: **Ich kümmere mich darum** onu ben hallederim demektir."
+    ],
     "slots": [
       {
         "name": "fiil + edat",
@@ -5597,7 +6288,7 @@
       },
       {
         "de": "Daran hab ich gar nicht gedacht.",
-        "tr": "Bunu hiç düşünmemiştim.",
+        "tr": "Bu hiç aklıma gelmemişti.",
         "layer": "alltag"
       },
       {
@@ -5616,21 +6307,34 @@
       "wenn": "Wenn Sie auf den Befund warten, rufen wir Sie an."
     },
     "mistakes_tr": [
-      "Türkçedeki eki çevirme: '-i beklemek' Almancada 'auf + Akkusativ'tir: 'Ich warte auf den Bus' ('Ich warte den Bus' yanlış).",
-      "Edatın hâli sabittir: 'Angst vor dem Hund' (Dativ), 'warten auf den Bus' (Akkusativ); fiili edatıyla birlikte öğren.",
-      "Şey için 'wo(r) + edat', kişi için 'edat + wen/wem': 'Worauf warten Sie?' / 'Auf wen warten Sie?'",
-      "Konuşmada 'da(r) + edat' çok duyulur: 'Ich kümmere mich darum' (onu ben hallederim), 'Daran habe ich nicht gedacht'."
+      "**Ich warte den Bus** denmez. Doğrusu **Ich warte auf den Bus**.",
+      "**Ich denke dich** denmez. Doğrusu **Ich denke an dich**.",
+      "**Angst vor den Hund** denmez. Doğrusu **Angst vor dem Hund**.",
+      "**Auf was warten Sie?** konuşmada duyulur. Doğru biçim **Worauf warten Sie?**"
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:passiv",
     "frame": "… wird + … + Partizip II · Wird … + Partizip II? · … muss + Partizip II + werden",
+    "frame_tr": "bir şey + **wird** + gerisi + bitmiş iş, örneğin **bezahlt** ya da **repariert**",
     "level": "B1",
     "core": true,
     "grammar_tr": "Kimin yaptığı önemli değilse ya da belli değilse edilgen kullanılır: 'Das wird von der Kasse bezahlt.' 'werden' çekimli hâliyle ikinci sırada, Partizip II en sonda durur; Türkçedeki '-ilir, -ınır' ekinin karşılığıdır (ödenir, gönderilir). Yapanı söylemek istersen 'von + Dativ': 'von der Krankenkasse'. Modal fiille: 'Das muss repariert werden.'",
+    "kurallar_tr": [
+      "İşi kimin yaptığı önemli değilse **wird** ile söylersin: **Das wird bezahlt**.",
+      "**Das wird bezahlt** Türkçedeki ödenir, **Das wird geschickt** gönderilir demektir.",
+      "**wird** ikinci sırada, **bezahlt** gibi parça en sonda durur: **Der Antrag wird gerade bearbeitet**.",
+      "Yapanı söylemek istersen **von** eklersin: **Das wird von der Kasse bezahlt**.",
+      "**muss** varsa sona **werden** gelir: **Das muss repariert werden**."
+    ],
     "slots": [
       {
         "name": "özne",
@@ -5641,7 +6345,7 @@
           "Das Paket",
           "Die Heizung",
           "Der Befund",
-          "Die Kosten",
+          "Der Brief",
           "Das Formular",
           "Die Wohnung"
         ]
@@ -5705,7 +6409,7 @@
       },
       {
         "de": "Wird gemacht!",
-        "tr": "Hemen yapılıyor! / Tamamdır!",
+        "tr": "Tamamdır, hallediyorum!",
         "layer": "alltag"
       },
       {
@@ -5729,21 +6433,36 @@
       "wenn": "Wenn die Rechnung nicht bezahlt wird, kommt eine Mahnung."
     },
     "mistakes_tr": [
-      "Edilgen 'werden' ile kurulur: 'Das wird bezahlt' (ödenir) ≠ 'Das ist bezahlt' (ödenmiş durumda).",
-      "Edilgenin Perfekt'inde 'geworden' değil 'worden' kullanılır: 'Das ist repariert worden.'",
-      "Yapanı 'von' ile verirken Dativ gelir: 'von der Kasse', 'vom Vermieter'; Türkçedeki 'tarafından'ın karşılığıdır.",
-      "'werden' + mastar gelecek zamandır ('Ich werde zahlen'), 'werden' + Partizip edilgendir ('Es wird gezahlt')."
+      "Ödenir demek için **Das ist bezahlt** denmez. Doğrusu **Das wird bezahlt**.",
+      "**Das ist repariert geworden** denmez. Doğrusu **Das ist repariert worden**.",
+      "**von die Kasse** denmez. Doğrusu **von der Kasse**.",
+      "Ödeyeceğim demek için **Ich werde gezahlt** denmez. Doğrusu **Ich werde zahlen**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:relativsatz",
     "frame": "isim, der / den / dem / die / das + … + FİİL (sonda), …",
+    "frame_tr": "bir şey + **der**, **die**, **das** + tarif + **hat** gibi kelime sonda",
     "level": "B1",
     "core": true,
     "grammar_tr": "İlgi cümlesi bir ismi tanımlar; Türkçedeki '-en, -dığı' ekinin karşılığıdır ('aldığım mektup' = 'der Brief, den ich bekommen habe'). İlgi zamiri ismin cinsine uyar (der/die/das), hâli ise yan cümledeki görevine göre seçilir: özne 'der', nesne 'den', Dativ 'dem'. Yan cümlede çekimli fiil en sona gider. Türkçeden farklı olarak tanımlayan kısım ismin arkasına gelir.",
+    "kurallar_tr": [
+      "Bir şeyi tarif eden kısım Almancada o şeyden sonra gelir.",
+      "Türkçedeki aldığım mektup şöyle olur: **der Brief, den ich bekommen habe**.",
+      "Tarif çoğu zaman kelimenin **der**, **die**, **das** sözüyle başlar: **das Formular, das ich ausfülle**.",
+      "Bana yardım eden doktor demek için: **die Ärztin, die mir geholfen hat**.",
+      "Tarif eden kısımda **hat** gibi kelime en sona gider: **die mir geholfen hat**.",
+      "**der Arzt, der mich kennt** beni tanıyan doktor. **der Arzt, den ich kenne** benim tanıdığım doktor.",
+      "Tarif iki virgül arasında durur: **Der Brief, den ich habe, ist vom Amt**."
+    ],
     "slots": [
       {
         "name": "isim + zamir",
@@ -5839,21 +6558,35 @@
       "wenn": "Wenn Sie die Tabletten, die ich Ihnen gegeben habe, nicht vertragen, rufen Sie an."
     },
     "mistakes_tr": [
-      "Türkçedeki gibi tanımı ismin önüne koyma: isim önce, ilgi cümlesi arkadan gelir: 'der Brief, den ich bekommen habe'.",
-      "Yan cümlede fiil sona gider: '…, die mir geholfen hat' ('…, die hat mir geholfen' yanlış).",
-      "Zamirin hâli yan cümleye göre seçilir: 'der Arzt, den ich kenne' (nesne → den), 'der Arzt, der mich kennt' (özne → der).",
-      "İlgi cümlesi virgülle açılır ve kapanır, sonra ana cümle devam eder: 'Der Brief, den ich bekommen habe, ist vom Amt.'"
+      "Tarifi Türkçedeki gibi öne koyma. Doğrusu **der Brief, den ich bekommen habe**.",
+      "**die Ärztin, die hat mir geholfen** denmez. Doğrusu **die Ärztin, die mir geholfen hat**.",
+      "**der Arzt, der ich kenne** denmez. Doğrusu **der Arzt, den ich kenne**.",
+      "Virgülleri unutma: **Der Brief, den ich bekommen habe, ist vom Amt**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:es-waere-nett",
     "frame": "Es wäre nett / gut / super, wenn + … + FİİL (sonda)",
+    "frame_tr": "**Es wäre nett, wenn Sie** + rica ettiğin iş + **könnten**",
     "level": "B1",
     "core": true,
-    "grammar_tr": "'Es wäre nett, wenn …' ('… olsa çok iyi olur') ricayı doğrudan söylemeden, çok kibarca yapar. 'wäre' ('sein'in Konjunktiv II'si) ikinci sırada; 'wenn'li yan cümlede çekimli fiil en sona gider. Yan cümlede çoğu zaman 'könnten' ya da 'würden' kullanılır: 'Es wäre nett, wenn Sie mich zurückrufen könnten.' Telesekretere mesaj bırakırken çok işe yarar.",
+    "grammar_tr": "'Es wäre nett, wenn …' ('… olsa çok iyi olur') ricayı doğrudan söylemeden, çok kibarca yapar. 'wäre' ('sein'in Konjunktiv II'si) ikinci sırada; 'wenn'li yan cümlede çekimli fiil en sona gider. Yan cümlede çoğu zaman 'könnten' ya da 'würden' kullanılır: 'Es wäre nett, wenn Sie mich zurückrufen könnten.' Konuşmada yan cümle düz şimdiki zamanla da duyulur: 'Wär nett, wenn du Bescheid sagst.' Telesekretere mesaj bırakırken çok işe yarar.",
+    "kurallar_tr": [
+      "**Es wäre nett, wenn** olsa çok iyi olur demektir, ricayı çok kibar yapar.",
+      "Türkçedeki beni ararsanız sevinirim gibi: **Es wäre nett, wenn Sie mich zurückrufen könnten**.",
+      "Sonda çoğu zaman **könnten** ya da **würden** durur: **wenn Sie mich zurückrufen könnten**.",
+      "**nett** yerine **gut**, **super** ya da **schön** da diyebilirsin.",
+      "Konuşmada kısalır: **Wär nett, wenn du Bescheid sagst**.",
+      "**Es wäre nett, wenn** telesekretere mesaj bırakırken çok işine yarar."
+    ],
     "slots": [
       {
         "name": "sıfat",
@@ -5875,11 +6608,11 @@
           "wenn Sie mich zurückrufen könnten",
           "wenn Sie mir das schicken würden",
           "wenn wir den Termin verschieben könnten",
-          "wenn Sie kurz Bescheid geben",
-          "wenn das bis Freitag klappt",
+          "wenn Sie kurz Bescheid geben könnten",
+          "wenn das bis Freitag klappen würde",
           "wenn Sie langsamer sprechen könnten",
           "wenn Sie das Paket annehmen könnten",
-          "wenn du mir hilfst"
+          "wenn du mir helfen könntest"
         ]
       }
     ],
@@ -5900,7 +6633,7 @@
         "layer": "hd"
       },
       {
-        "de": "Es wäre schön, wenn das bis Freitag klappt.",
+        "de": "Es wäre schön, wenn das bis Freitag klappen würde.",
         "tr": "Cumaya kadar olursa güzel olur.",
         "layer": "hd"
       },
@@ -5942,28 +6675,42 @@
     ],
     "transforms": {
       "question": "Wäre es möglich, dass Sie mich morgen zurückrufen?",
-      "negative": "Es wäre nicht so gut, wenn wir das noch mal verschieben.",
+      "negative": "Es wäre nicht so gut, wenn wir das noch mal verschieben müssten.",
       "polite": "Es wäre wirklich sehr nett von Ihnen, wenn Sie mir kurz helfen könnten.",
       "perfekt": "Es wäre nett gewesen, wenn Sie mir Bescheid gesagt hätten.",
       "weil": "Ich rufe an, weil es gut wäre, wenn wir den Termin verschieben könnten.",
-      "dass": "Ich wollte nur sagen, dass es nett wäre, wenn Sie zurückrufen.",
-      "wenn": "Es wäre nett, wenn Sie mich anrufen, sobald das Paket da ist."
+      "dass": "Ich wollte nur sagen, dass es nett wäre, wenn Sie zurückrufen könnten.",
+      "wenn": "Es wäre nett, wenn Sie mich anrufen könnten, sobald das Paket da ist."
     },
     "mistakes_tr": [
-      "'wäre' (olurdu) ile 'war' (idi) farklıdır: 'Es war nett' = hoştu; 'Es wäre nett' = iyi olur(du).",
-      "'wenn'li yan cümlede fiil sona gider: '…, wenn Sie mich zurückrufen könnten' ('…, wenn Sie könnten mich zurückrufen' yanlış).",
-      "'Es ist nett, wenn …' dersen rica kibarlığını kaybeder; burada Konjunktiv 'wäre' gerekir."
+      "**Es war nett** hoştu demektir. Rica için **Es wäre nett** dersin.",
+      "**wenn Sie könnten mich zurückrufen** denmez. Doğrusu **wenn Sie mich zurückrufen könnten**.",
+      "Rica ederken **Es ist nett, wenn** deme. Doğrusu **Es wäre nett, wenn**.",
+      "**Es wäre nett gewesen** keşke yapsaydınız diye sitem eder, rica değildir."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:sollte",
     "frame": "Sie sollten + … + mastar · Soll ich + … + mastar? · Ich soll …",
+    "frame_tr": "**Sie sollten** + tavsiye · **Soll ich** + iş? · **Ich soll** + söylenen iş",
     "level": "B1",
     "core": true,
     "grammar_tr": "'Sie sollten …' tavsiye verir ('… etmelisiniz, etseniz iyi olur'); emirden yumuşaktır. 'Soll ich …?' talimat ya da öneri sorar: 'Soll ich draußen warten?' (dışarıda mı bekleyeyim?). İkisinde de asıl fiil mastar hâlinde en sondadır. 'Ich soll …' başkasının söylediğini aktarır: 'Ich soll viel trinken' (bana çok su içmemi söylediler).",
+    "kurallar_tr": [
+      "**Sie sollten** tavsiye verir, yapsanız iyi olur demektir: **Sie sollten viel trinken**.",
+      "**Sie sollten** emir gibi sert değildir, yumuşak bir öneridir.",
+      "**Soll ich** yapayım mı diye sorar: **Soll ich draußen warten?**",
+      "**Ich soll** bana böyle söylendi demektir: **Ich soll viel trinken**.",
+      "Yapılacak iş hep en sona gider: **Sie sollten zum Arzt gehen**."
+    ],
     "slots": [
       {
         "name": "tavsiye",
@@ -6045,8 +6792,8 @@
         "layer": "alltag"
       },
       {
-        "de": "Sollte was sein, ruf einfach an.",
-        "tr": "Bir şey olursa ara yeter.",
+        "de": "Soll ich dich abholen?",
+        "tr": "Seni alayım mı?",
         "layer": "alltag"
       }
     ],
@@ -6060,20 +6807,35 @@
       "wenn": "Wenn das Fieber nicht sinkt, sollten Sie wiederkommen."
     },
     "mistakes_tr": [
-      "'sollen' (söylenen talimat) ile 'müssen' (zorunluluk) farklıdır: 'Ich soll anrufen' = aramam istendi; 'Ich muss anrufen' = aramak zorundayım.",
-      "Mastar en sonda: 'Sie sollten trinken viel' yanlış; 'Sie sollten viel trinken.'",
-      "'Soll ich …?' Türkçedeki '-eyim mi?' sorusudur: 'Soll ich warten?' = Bekleyeyim mi? 'Muss ich warten?' ise 'beklemek zorunda mıyım?' demektir."
+      "**Ich soll anrufen** aramam istendi demektir. **Ich muss anrufen** aramak zorundayım demektir.",
+      "**Sie sollten trinken viel** denmez. Doğrusu **Sie sollten viel trinken**.",
+      "**Soll ich warten?** bekleyeyim mi demektir. **Muss ich warten?** beklemek zorunda mıyım demektir.",
+      "**sollte** geçmiş de olabilir: **Ich sollte gestern zurückrufen** dün aramam gerekiyordu demektir."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:bevor-nachdem",
     "frame": "bevor / nachdem + … + FİİL (sonda), FİİL + özne …",
+    "frame_tr": "**bevor** + henüz yapılmamış iş · **nachdem** + bitmiş iş",
     "level": "B1",
     "core": true,
     "grammar_tr": "'bevor' (…meden önce) ve 'nachdem' (…dikten sonra) zaman sırası verir; ikisinde de çekimli fiil yan cümlenin sonuna gider. 'nachdem'li cümlede olay bitmiş olduğu için Perfekt ya da Plusquamperfekt kullanılır: 'Nachdem Sie gegessen haben, nehmen Sie die Tablette.' Yan cümle başta ise ana cümle fiille başlar. Konuşmada çoğu zaman kısa yollar duyulur: 'nach dem Essen', 'danach'.",
+    "kurallar_tr": [
+      "**bevor** önce, **nachdem** sonra demektir ve iki işi sıraya koyar.",
+      "Gelmeden önce arayın demek için: **Rufen Sie an, bevor Sie kommen**.",
+      "Yedikten sonra demek için: **nachdem Sie gegessen haben**.",
+      "**bevor** ve **nachdem** gelince **kommen** gibi kelime en sona gider. Örnek: **bevor Sie kommen**.",
+      "**nachdem** ile biten işi anlatırsın, o yüzden **gegessen haben** dersin.",
+      "Konuşmada kısa yollar duyarsın: **nach dem Essen**, **vor dem Essen**, **danach**."
+    ],
     "slots": [
       {
         "name": "bevor-cümlesi",
@@ -6169,20 +6931,35 @@
       "wenn": "Wenn Sie Fragen haben, rufen Sie bitte an, bevor Sie das Formular abschicken."
     },
     "mistakes_tr": [
-      "'bevor'/'nachdem' yan cümle açar, fiil sona gider: 'bevor Sie essen' ('bevor essen Sie' yanlış).",
-      "'nachdem' (bağlaç, arkasından cümle) ile 'nach' (edat, arkasından isim) karışır: 'nach dem Essen' ama 'nachdem Sie gegessen haben'. 'bevor' ile 'vor' da öyle: 'vor dem Essen', 'bevor Sie essen'.",
-      "Yan cümle başta ise virgülden sonra fiil gelir: 'Bevor Sie gehen, nehmen Sie …' ('…, Sie nehmen' yanlış)."
+      "**bevor essen Sie** denmez. Doğrusu **bevor Sie essen**.",
+      "**nachdem** arkasından cümle ister: **nachdem Sie gegessen haben**. Kısa söz için **nach dem Essen** dersin.",
+      "**bevor** arkasından cümle ister: **bevor Sie essen**. Kısa söz için **vor dem Essen** dersin.",
+      "**Bevor Sie gehen, Sie nehmen die Tablette** denmez. Doğrusu **Bevor Sie gehen, nehmen Sie die Tablette**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:als-wenn-zeit",
     "frame": "Als … (geçmişte bir kez) · Wenn … (her seferinde / şimdi / gelecek) + FİİL (sonda)",
+    "frame_tr": "**Als** + geçmişte bir kez · **Wenn** + her seferinde ya da ileride",
     "level": "B1",
     "core": true,
     "grammar_tr": "Türkçedeki '-dığında, -ınca' Almancada iki ayrı kelimedir. Geçmişte bir kez olan olay için 'als': 'Als ich angerufen habe, war niemand da.' Geçmişte tekrar eden ya da şimdi/gelecekte olan için 'wenn': 'Wenn ich Zeit habe, rufe ich an.' İkisinde de çekimli fiil yan cümlenin sonuna gider; yan cümle başta ise ana cümle fiille başlar.",
+    "kurallar_tr": [
+      "Türkçedeki aradığımda ya da arayınca Almancada iki ayrı kelimedir: **als** ve **wenn**.",
+      "Geçmişte bir kez olan şey için **als** dersin: **Als ich ankam, war niemand da**.",
+      "İleride olacak şey için **wenn** dersin: **Wenn ich Zeit habe, rufe ich an**.",
+      "Her seferinde olan şeyde de **wenn** gelir: **Immer wenn ich anrufe, ist besetzt**.",
+      "**als** ve **wenn** gelince **war** gibi kelime sona gider. Örnek: **Als ich krank war**.",
+      "**als** karşılaştırmada da geçer: **größer als** daha büyük demektir."
+    ],
     "slots": [
       {
         "name": "als-cümlesi",
@@ -6278,21 +7055,32 @@
       "wenn": "Wenn ich Feierabend habe, rufe ich dich an."
     },
     "mistakes_tr": [
-      "Geçmişteki tek olay için 'wenn' kullanma: 'Wenn ich gestern angerufen habe' yanlış; 'Als ich gestern angerufen habe'.",
-      "Geçmişte tekrar eden olay için 'als' değil 'wenn' (çoğu zaman 'immer wenn'): 'Immer wenn ich anrief, war besetzt.'",
-      "'als' karşılaştırmada da kullanılır ('größer als'); zaman bildiren 'als'tan sonra fiil sona gider.",
-      "Yan cümle başta ise ana cümle fiille başlar: 'Als ich ankam, war die Praxis zu' ('…, die Praxis war zu' yanlış)."
+      "**Wenn ich gestern angerufen habe** denmez. Doğrusu **Als ich gestern angerufen habe**.",
+      "Geçmişte hep olan şey için **als** denmez. Doğrusu **Immer wenn ich anrief, war besetzt**.",
+      "**Als ich ankam, die Praxis war zu** denmez. Doğrusu **Als ich ankam, war die Praxis zu**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:noch-mal",
     "frame": "(Bitte) noch mal + … · Wie war … noch mal? · Können Sie das noch mal + mastar?",
+    "frame_tr": "**noch mal** + tekrarını istediğin şey · **Wie war** + bilgi + **noch mal?**",
     "level": "A1",
     "core": true,
-    "grammar_tr": "'noch mal' (ya da 'nochmal') 'bir kez daha' demektir ve tekrar ettirmenin en gündelik yoludur. 'Wie war Ihr Name noch mal?' gibi sorularda 'neydi?' anlamı katar: kaçırdığın ya da unuttuğun bilgiyi sorarsın. Cümlede 'noch mal' çekimli fiilden sonra, mastardan önce durur: 'Können Sie das noch mal sagen?'",
+    "grammar_tr": "**noch mal** bir kez daha demektir, **nochmal** diye de yazılır. Bir şeyi tekrar ettirmenin en gündelik yoludur. **Wie war Ihr Name noch mal?** sorusunda neydi anlamı katar. Cümlede sondaki kelimeden hemen önce durur: **Können Sie das noch mal sagen?**",
+    "kurallar_tr": [
+      "**noch mal** bir kez daha demektir.",
+      "**nochmal** diye bitişik de yazılır.",
+      "**Wie war Ihr Name noch mal?** sorusunda neydi anlamı katar.",
+      "Sonda **sagen** varsa **noch mal** ondan önce gelir: **Können Sie das noch mal sagen?**"
+    ],
     "slots": [
       {
         "name": "fiil",
@@ -6302,7 +7090,7 @@
           "erklären",
           "buchstabieren",
           "schicken",
-          "anrufen",
+          "aufschreiben",
           "versuchen",
           "nachschauen",
           "zeigen"
@@ -6315,7 +7103,7 @@
           "die Nummer",
           "die Adresse",
           "die Uhrzeit",
-          "der Termin",
+          "die Hausnummer",
           "die Straße",
           "die Postleitzahl",
           "die Durchwahl",
@@ -6381,7 +7169,7 @@
       },
       {
         "de": "Probieren Sie's einfach noch mal.",
-        "tr": "Bir daha deneyin, olur.",
+        "tr": "Bir daha deneyiverin.",
         "layer": "alltag"
       }
     ],
@@ -6395,20 +7183,33 @@
       "wenn": "Wenn Sie das noch mal brauchen, schicke ich es Ihnen gern."
     },
     "mistakes_tr": [
-      "Türkçedeki 'tekrar' yüzünden 'Sagen Sie wieder' denmez; tekrar ettirirken 'noch mal' kullanılır. 'wieder' daha çok 'yine, yeniden' (bir durumun yeniden olması) demektir: 'Es tut wieder weh.'",
-      "'Wie war das noch mal?' geçmiş zamanlıdır ama anlamı 'neydi?'dir; kalıp sabittir, 'Wie ist das noch mal?' denmez.",
-      "'noch mal'ı sona koyma: 'Können Sie sagen das noch mal?' yanlış; mastar en sonda: '… das noch mal sagen?'"
+      "Tekrar ettirirken **Sagen Sie wieder** denmez. Doğrusu **Sagen Sie das noch mal**.",
+      "**wieder** yine demektir, bir durum yeniden olunca kullanılır: **Es tut wieder weh**.",
+      "**Wie war Ihr Name noch mal?** geçmişi sormaz, adınız neydi demektir.",
+      "**Wie ist Ihr Name noch mal?** da duyulur. **war** ile daha yaygın ve yumuşaktır.",
+      "**Können Sie sagen das noch mal?** denmez. Doğrusu **Können Sie das noch mal sagen?**"
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-17",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:ich-verstehe-nicht",
     "frame": "Ich hab(e) + (das / Ihren Namen …) + nicht (ganz) verstanden · Ich verstehe … nicht",
+    "frame_tr": "**Das habe ich nicht verstanden.** · **Ich habe** + neyi + **nicht verstanden.**",
     "level": "A1",
     "core": true,
-    "grammar_tr": "Anlamadığını söylerken Almanlar çoğu zaman Perfekt kullanır: 'Das hab ich nicht verstanden' (az önce söyleneni anlamadım). 'habe' ikinci sırada, 'verstanden' en sonda; 'nicht' de 'verstanden'in hemen önüne gelir. Neyi anlamadığını eklemek ('die Adresse', 'das letzte Wort') karşı tarafın yalnızca o kısmı tekrar etmesini sağlar.",
+    "grammar_tr": "Anlamadığını söylerken Almanlar çoğu zaman **Das hab ich nicht verstanden** der. **habe** ikinci sırada, **verstanden** en sonda durur. **nicht** de **verstanden** kelimesinin hemen önüne gelir. Neyi anlamadığını eklersen karşındaki yalnızca onu tekrar eder: **die Adresse**.",
+    "kurallar_tr": [
+      "Anlamadığını çoğu zaman **Das hab ich nicht verstanden** diye söylersin.",
+      "**habe** ikinci sırada, **verstanden** en sonda durur.",
+      "**nicht**, **verstanden** kelimesinin hemen önüne gelir.",
+      "Neyi anlamadığını eklersen karşındaki yalnızca onu tekrar eder: **die Adresse**."
+    ],
     "slots": [
       {
         "name": "ne",
@@ -6421,7 +7222,7 @@
           "das letzte Wort",
           "die Uhrzeit",
           "die Frage",
-          "alles"
+          "den letzten Satz"
         ]
       },
       {
@@ -6476,7 +7277,7 @@
       },
       {
         "de": "Ich hab Sie akustisch nicht verstanden.",
-        "tr": "Sizi duyamadım (ses gelmedi).",
+        "tr": "Sizi iyi duyamadım (ses net gelmedi).",
         "layer": "alltag"
       },
       {
@@ -6505,20 +7306,35 @@
       "wenn": "Wenn ich etwas nicht verstehe, frage ich nach."
     },
     "mistakes_tr": [
-      "'Ich nicht verstehe' yanlış: fiil ikinci sırada, 'nicht' sonra gelir: 'Ich verstehe das nicht.'",
-      "Perfekt'te 'nicht' Partizip'in önüne gelir, sona değil: 'Ich habe das nicht verstanden' ('… verstanden nicht' yanlış).",
-      "Anlamayınca yalnızca 'Was?' demek kaba kaçabilir; 'Wie bitte?' ya da bu kalıp kibardır."
+      "**Ich nicht verstehe** denmez. Doğrusu **Ich verstehe das nicht**.",
+      "**Ich habe das verstanden nicht** denmez. Doğrusu **Ich habe das nicht verstanden**.",
+      "Yalnızca **Was?** demek kaba kaçabilir. **Wie bitte?** demek kibardır.",
+      "**Ich habe alles nicht verstanden** denmez. Bir kısmını kaçırdıysan **Ich habe nicht alles verstanden** dersin.",
+      "Hiçbir şey anlamadıysan **Ich habe nichts verstanden** dersin."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-17",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   },
   {
     "id": "pt:moment",
     "frame": "Moment (mal) · Einen Moment, bitte · Lassen Sie mich kurz überlegen",
+    "frame_tr": "**Moment** + ne yaptığın · **Einen Moment, bitte.**",
     "level": "A1",
     "core": true,
     "grammar_tr": "Düşünürken susmak yerine 'Moment' deyip zaman kazanırsın; karşı taraf beklemesi gerektiğini anlar. 'Moment mal!' tona göre 'bir saniye' ya da itiraz ('dur bakalım!') olabilir. Telefonda bekletirken 'Einen Moment, bitte, ich verbinde' duyulur. Ardından ne yaptığını kısa bir cümleyle söylemek iyi gelir: 'Moment, ich schreib's auf.'",
+    "kurallar_tr": [
+      "Düşünürken susma, **Moment** de ve zaman kazan.",
+      "Kibarca bekletmek için **Einen Moment, bitte** dersin.",
+      "**Moment mal** sert söylenirse dur bakalım diye itiraz olur.",
+      "Telefonda **Einen Moment, ich verbinde Sie** duyarsan seni birine bağlıyorlar demektir.",
+      "Ardından ne yaptığını kısaca söyle: **Moment, ich schreib's auf**.",
+      "Düşünmek için **Lassen Sie mich kurz überlegen** de diyebilirsin."
+    ],
     "slots": [
       {
         "name": "zaman kazanma",
@@ -6605,8 +7421,8 @@
         "layer": "alltag"
       },
       {
-        "de": "Momentchen, bin gleich da.",
-        "tr": "Bir saniyecik, hemen geliyorum.",
+        "de": "Moment, ich bin gleich bei Ihnen.",
+        "tr": "Bir saniye, hemen sizinle ilgileniyorum.",
         "layer": "alltag"
       }
     ],
@@ -6620,12 +7436,17 @@
       "wenn": "Wenn Sie einen Moment warten, hole ich die Ärztin."
     },
     "mistakes_tr": [
-      "Düşünürken uzun süre susmak telefonda 'hat koptu' sanılabilir; 'Moment …' de, sonra devam et.",
-      "'Moment mal!' sert tonla itiraz anlamı taşır ('Dur bir dakika!'); kibar bekletmek için 'Einen Moment, bitte.'",
-      "'Moment' ile 'im Moment'i karıştırma: 'im Moment' = şu anda: 'Im Moment ist sie nicht da.'"
+      "Telefonda uzun süre susarsan hat koptu sanılır. **Moment** de, sonra devam et.",
+      "Kibarca bekletirken **Moment mal!** deme. Doğrusu **Einen Moment, bitte**.",
+      "**im Moment** şu anda demektir: **Im Moment ist sie nicht da**."
     ],
     "review": {
-      "status": "draft"
+      "status": "reviewed",
+      "by": "dilbilimci-ajan",
+      "at": "2026-11-18",
+      "notes": "dilbilimci: KAPANDI (2026-11-18); okur: tur 1 + tur 2 GEÇTİ (docs/v2/reviews/okur/patterns-46.md)",
+      "okur": "passed",
+      "okur_at": "2026-11-18"
     }
   }
 ]
