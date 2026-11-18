@@ -272,3 +272,13 @@ Okur yalnızca bu tablodaki "Sonra" metinlerini okur. `review` alanları değiş
 | `pt:als-wenn-zeit.mistakes_tr[2]` → `pt:als-wenn-zeit.kurallar_tr[5]` | **als** karşılaştırmada da geçer: **größer als** daha büyük demektir. | **als** karşılaştırmada da geçer: **größer als** daha büyük demektir. (taşındı) |
 | `pt:verb-praep.kurallar_tr[5]` | Konuşmada **darum** ve **daran** çok duyarsın: **Ich kümmere mich darum**. | Konuşmada **darum** çok duyarsın: **Ich kümmere mich darum** onu ben hallederim demektir. |
 | `pt:verb-praep.mistakes_tr[4]` | **Ich kümmere mich darum** onu ben hallederim demektir. | (silindi; anlam `kurallar_tr[5]` içine alındı) |
+
+## PM-044 düzeltmeleri (2026-11-18)
+
+`pt:koennten-sie`: **bitte** kuralı kalıbın kendi örneğiyle (**Könnten Sie das bitte wiederholen?**) çelişiyordu. Okur yalnızca "Sonra" metinlerini okur. `review` alanları değişmedi. `npm run content:validate` → 0 hata.
+
+| Kimlik | Önce | Sonra |
+|---|---|---|
+| `pt:koennten-sie.kurallar_tr[2]` | **bitte** en doğal olarak **Sie** kelimesinden hemen sonra gelir. | **bitte** çoğu zaman **Sie** kelimesinden sonra gelir: **Könnten Sie bitte warten?** |
+| `pt:koennten-sie.kurallar_tr[3]` (yeni; eski [3] ve sonrası bir kayar) | — | **das** ya da **mir** varsa **bitte** onlardan sonra gelir: **Könnten Sie das bitte wiederholen?** |
+| `pt:koennten-sie.mistakes_tr[3]` | **bitte** başa da gelebilir. En doğal yeri **Sie** kelimesinden sonradır: **Könnten Sie bitte**. | (silindi; eski [4] artık [3]) |

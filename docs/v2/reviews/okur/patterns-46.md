@@ -1,6 +1,6 @@
 # Okur kontrolü — 46 kalıp (`content/v2/registry/patterns.json`, `review.status == "draft"`)
 
-**İLERLEME: Tur 1 46/46 kalıp bitti; Tur 2 (34 metin) bitti; Tur 3 (#48 düzeltmeleri, 12 metin) bitti, hepsi GEÇTİ, açık GERİ yok.** Biten kalıp kimlikleri: `pt:ich-bin`, `pt:verb-zweite-stelle`, `pt:w-frage`, `pt:ja-nein-frage`, `pt:kann-ich`, `pt:darf-ich`, `pt:ich-muss`, `pt:nicht`, `pt:kein`, `pt:es-gibt`, `pt:wo-ist`, `pt:ich-haette-gern`, `pt:trennbar`, `pt:perfekt-sein`, `pt:mit-dativ`, `pt:fuer-akk`, `pt:ich-brauche`, `pt:wie-sagt-man`, `pt:meinen-sie`, `pt:imperativ-sie`, `pt:sollen-wir`, `pt:ich-finde`, `pt:gefaellt-mir`, `pt:haben-sie`, `pt:ich-war`, `pt:lieber`, `pt:zu-adj`, `pt:es-tut-mir-leid`, `pt:weil`, `pt:dass`, `pt:ob`, `pt:indirekte-frage`, `pt:ich-wuerde-gern`, `pt:ich-haette-eine-frage`, `pt:um-zu`, `pt:obwohl`, `pt:deshalb`, `pt:reflexiv`, `pt:verb-praep`, `pt:passiv`, `pt:relativsatz`, `pt:es-waere-nett`, `pt:sollte`, `pt:bevor-nachdem`, `pt:als-wenn-zeit`, `pt:moment`
+**İLERLEME: Tur 1 46/46 kalıp bitti; Tur 2 (34 metin) bitti; Tur 3 (#48 düzeltmeleri, 12 metin) bitti; Tur 4 (PM-044, `pt:koennten-sie` 2 metin) bitti, hepsi GEÇTİ, açık GERİ yok.** Biten kalıp kimlikleri: `pt:ich-bin`, `pt:verb-zweite-stelle`, `pt:w-frage`, `pt:ja-nein-frage`, `pt:kann-ich`, `pt:darf-ich`, `pt:ich-muss`, `pt:nicht`, `pt:kein`, `pt:es-gibt`, `pt:wo-ist`, `pt:ich-haette-gern`, `pt:trennbar`, `pt:perfekt-sein`, `pt:mit-dativ`, `pt:fuer-akk`, `pt:ich-brauche`, `pt:wie-sagt-man`, `pt:meinen-sie`, `pt:imperativ-sie`, `pt:sollen-wir`, `pt:ich-finde`, `pt:gefaellt-mir`, `pt:haben-sie`, `pt:ich-war`, `pt:lieber`, `pt:zu-adj`, `pt:es-tut-mir-leid`, `pt:weil`, `pt:dass`, `pt:ob`, `pt:indirekte-frage`, `pt:ich-wuerde-gern`, `pt:ich-haette-eine-frage`, `pt:um-zu`, `pt:obwohl`, `pt:deshalb`, `pt:reflexiv`, `pt:verb-praep`, `pt:passiv`, `pt:relativsatz`, `pt:es-waere-nett`, `pt:sollte`, `pt:bevor-nachdem`, `pt:als-wenn-zeit`, `pt:moment`
 
 Tarih: 2026-11-18 · Rol: okur (OD-9.3) · Okuyan kimlik: yalnızca Türkçe, Almanca A2, dilbilgisi terimi bilmez, İngilizce bilmez, yorgun bir akşam telefondan okur.
 
@@ -801,3 +801,27 @@ Yok. Okur açısından 46 kalıpta açık GERİ kalmadı.
 1. `pt:kein.kurallar_tr[2]`: komşu öğeler "**die** ile söylenen kelimede" diyor, bu öğe "**der** kelimesinde" diyor. Aynı şeyin iki ayrı söylenişi bir an durdurdu.
 2. `pt:obwohl.mistakes_tr[2]`: **trotz** kalıbın görünen kurallarında geçmiyor (orada **trotzdem** var). Madde tek başına anlaşılıyor; kelimenin anlamı verilmiyor.
 3. `pt:passiv.mistakes_tr[3]` ve `pt:fuer-akk.kurallar_tr[6]` kartın kendi kelimesinin komşusunu anlatıyor (**werde zahlen**, **gegen**). İkisi de tek okumada anlaşıldı.
+
+## Tur 4 (PM-044 düzeltmeleri) — 2026-11-18
+
+Kapsam: dilbilimci raporundaki "PM-044 düzeltmeleri" tablosu, `pt:koennten-sie`. İki "Sonra" metni `content/v2/registry/patterns.json` dosyasının bugünkü hâlinden okundu; üçüncü satır bir silme. Ölçütler aynı (OD-9.2). `pt:koennten-sie` bu raporun 46 kalıbı arasında değil (daha önce `reviewed` olan 15 kalıptan); yalnızca değişen iki öğe okundu, kalıbın öbür metinleri bu turda karara bağlanmadı.
+
+Dosyayla karşılaştırma: iki metin tablodaki "Sonra" sütunuyla birebir aynı. Kalıpta artık dört kural var. `mistakes_tr` dört maddeye indi; silinen **bitte** maddesi yok, **Konnten Sie** maddesi `[3]` sırasında.
+
+| Kalıp | Alan | Bugünkü metin | Kendi sözlerimle | Karar | Neden |
+|---|---|---|---|---|---|
+| `pt:koennten-sie` | `kurallar_tr[2]` | **bitte** çoğu zaman **Sie** kelimesinden sonra gelir: **Könnten Sie bitte warten?** | bitte çoğunlukla Sie kelimesinden hemen sonra söylenir. | GEÇTİ | 12 kelime. Örnek kuralı gösteriyor. |
+| `pt:koennten-sie` | `kurallar_tr[3]` | **das** ya da **mir** varsa **bitte** onlardan sonra gelir: **Könnten Sie das bitte wiederholen?** | Cümlede das ya da mir varsa bitte onların arkasına geçer. | GEÇTİ | Tam 14 kelime. Tek başına okununca da anlaşılıyor. |
+| `pt:koennten-sie` | `mistakes_tr[3]` (eski) | (silindi) | Okunacak metin yok. | — | Silme dosyada doğrulandı. |
+
+Kurallar arası tutarlılık: `kurallar_tr[1]` örneği (**Könnten Sie das bitte wiederholen?**) artık `kurallar_tr[3]` ile aynı şeyi söylüyor; `[2]` ile çelişmiyor, çünkü `[2]` "çoğu zaman" diyor ve `[3]` istisnayı adıyla veriyor. Kart başlığındaki çerçeve (**Könnten Sie bitte** + istediğin iş) `[2]` ile uyumlu.
+
+Yeni kalıcı madde (PM-044, parçaları soldan sağa okuma) kalıp kartlarında parça kutusu olmadığı için bu iki metne uygulanmadı.
+
+### Tur 4 toplam
+
+Okunan 2 metin · GEÇTİ 2 · GERİ 0.
+
+### Açık GERİ listesi
+
+Yok.
