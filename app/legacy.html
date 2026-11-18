@@ -1042,7 +1042,7 @@ const A1T = ["Konjugation","Verbposition","Satzklammer","Artikel","Plural","Akku
 const A2T = ["Perfekt","Dativ","Präposition","Nebensatz","Konjunktiv II"];
 const MTOPICS = ["Konjugation","Verbposition","Satzklammer","Artikel","Plural","Akkusativ","Dativ","Perfekt","Präposition","Negation","Nebensatz","Konjunktiv II","Genitiv","Adjektivendung","Passiv","Rechtschreibung","Wortwahl","Sonstiges"];
 const DEFAULT_ABOUT = "Deutschlerner mit Türkisch als Muttersprache, lebt in Bayern.";
-const DEFAULT_STATE = { examDate: "2027-05-15", days: {}, prog: {}, games: {} };
+const DEFAULT_STATE = { examDate: "", /* sınav tarihi yalnızca cihazda (D-075, PM-001) */ days: {}, prog: {}, games: {} };
 const INTERVALS = [0,1,3,7,14,30,60];
 const DW = "https://learngerman.dw.com/";
 const EASY = "https://www.youtube.com/@EasyGerman";
@@ -1137,7 +1137,7 @@ const CONTEXTS = [
 
 /* Week 1 – built in. Later weeks can arrive from the database collection "weeks". */
 const WEEK1 = {
-  n:1, title:"1. hafta: A1 eksiklerini kapat", goal_tr:"VHS A2 kursu başlamadan önce A1 temelini sağlamlaştırmak.",
+  n:1, title:"1. hafta: A1 eksiklerini kapat", goal_tr:"A2 dil kursu başlamadan önce A1 temelini sağlamlaştırmak.",
   days:[
     {n:1, title:"Şimdiki zamanda fiil çekimi", topic:TOPICS[0], date:"2026-11-08", steps:[
       {id:"lesson", kind:"lesson", t:"Ders ve alıştırma: fiil çekimi", min:25},
@@ -1237,8 +1237,18 @@ let DB = null, AI = null, AI_OFF = false, CAN_IMG = false, CTL = null;
 /* ================= storage ================= */
 const LS_KEY = "dw-werkstatt-v2";
 try { const o = "al"+"p-werkstatt-v2"; if(!localStorage.getItem(LS_KEY) && localStorage.getItem(o)){ localStorage.setItem(LS_KEY, localStorage.getItem(o)); localStorage.removeItem(o); } } catch(e){}
+/* Eski kayıt anahtarlarını yeni adlara taşır (PM-036 A: kurum adı koddan çıkarıldı; veri kaybı olmasın).
+   Eski anahtar adları yalnızca burada, okumak için durur. */
+function kursMig(st){
+  try {
+    const mv = (o, a, b) => { if(o && o[a] !== undefined){ if(o[b] === undefined) o[b] = o[a]; delete o[a]; } };
+    mv(st, "vhs", "sinif"); mv(st, "vhsNotes", "sinifNotes");
+    const d = st.daily || {}; for(const k in d){ mv(d[k], "vhsprep", "sinifprep"); mv(d[k], "vhspost", "sinifpost"); }
+  } catch(e){}
+  return st;
+}
 function loadLocal(){
-  try { const raw = localStorage.getItem(LS_KEY); if(raw){ const d = JSON.parse(raw); S.words=d.words||[]; S.mistakes=d.mistakes||[]; S.writings=d.writings||[]; S.state={...DEFAULT_STATE,...(d.state||{})}; } } catch(e){}
+  try { const raw = localStorage.getItem(LS_KEY); if(raw){ const d = JSON.parse(raw); S.words=d.words||[]; S.mistakes=d.mistakes||[]; S.writings=d.writings||[]; S.state=kursMig({...DEFAULT_STATE,...(d.state||{})}); } } catch(e){}
 }
 function saveLocal(){
   try { localStorage.setItem(LS_KEY, JSON.stringify({words:S.words,mistakes:S.mistakes,writings:S.writings,state:S.state})); } catch(e){}
@@ -1294,7 +1304,7 @@ function subscribe(){
   DB.collection("mistakes").onSnapshot(s => { S.mistakes = s.docs.map(d=>({id:d.id, ...d.data()})); done("mistakes", s); }, err);
   DB.collection("writings").orderBy("date","desc").limit(40).onSnapshot(s => { S.writings = s.docs.map(d=>({id:d.id, ...d.data()})); done("writings", s); }, err);
   DB.collection("weeks").onSnapshot(s => { S.weeksDb = s.docs.map(d=>JSON.parse(JSON.stringify(d.data()))).filter(w=>w && w.n && Array.isArray(w.days)); done("weeks", s); }, err);
-  DB.doc("app/state").onSnapshot(s => { if(s.exists){ S.state = {...DEFAULT_STATE, ...JSON.parse(JSON.stringify(s.data()))}; } done("state", s); }, err);
+  DB.doc("app/state").onSnapshot(s => { if(s.exists){ S.state = kursMig({...DEFAULT_STATE, ...JSON.parse(JSON.stringify(s.data()))}); } done("state", s); }, err);
 }
 
 /* ================= AI ================= */
@@ -1467,8 +1477,8 @@ function renderTop(){
 function daily(){ const d = S.state.daily || (S.state.daily = {}); const t = dayKey(); return d[t] || (d[t] = {}); }
 function finishedToday(){ const t = dayKey(); return Object.values(S.state.finishedOn || {}).includes(t); }
 const KIND_WHY = {
-  vhsprep:"Bu akşamki VHS dersinin kelimelerini ve kalıplarını önceden öğren; derste anlayan ve konuşan taraf sen ol.",
-  vhspost:"Defterinin ya da tahtanın fotoğrafını çek: yeni kelimeler destene girer, konu planına ve yapay zekâ öğretmenine işlenir.",
+  sinifprep:"Bu akşamki kurs dersinin kelimelerini ve kalıplarını önceden öğren; derste anlayan ve konuşan taraf sen ol.",
+  sinifpost:"Defterinin ya da tahtanın fotoğrafını çek: yeni kelimeler destene girer, konu planına ve yapay zekâ öğretmenine işlenir.",
   real:"Gerçek insanlardan gerçek Almanca: haber, sokak röportajı, dizi. Uygulamadaki yapay sesin veremeyeceği tek şey bu; kulağını doğal hıza alıştırır.",
   mock:"Goethe-Institut'un resmî B1 deneme sınavı: gerçek seviyeni dışarıdan ölçeriz.",
   story:"Bir dizi gibi devam eden kısa bir hikâye: bugünün kelimeleri gerçek bir olayın içinde geçer. Okursun ve dinlersin; ezber yok, sadece anlamak.",
@@ -1549,7 +1559,7 @@ function renderPlan(){
   ${S.sess || typeof renderBonusCard !== "function" ? "" : renderBonusCard()}
   ${S.sess ? "" : renderPath()}
   ${S.sess ? "" : renderStageCard(false)}
-  ${S.sess ? "" : renderVhsCheck()}
+  ${S.sess ? "" : renderSinifCheck()}
   ${S.sess ? "" : renderA12Card()}
   ${renderMission()}
   <section class="card">
@@ -1590,8 +1600,8 @@ function taskGo(key){
   if(x.kind === "vocab"){ go("kelime", ()=>startVocab()); return; }
   if(x.kind === "story"){ startStory(); return; }
   if(x.kind === "real"){ startReal(); return; }
-  if(x.kind === "vhsprep"){ const L = LEK.find(l=>l.n===vhsLek()) || LEK[0]; daily().vhsprep = true; Store.saveState(); go("lernen", ()=>startLesson(`Vorbereitung auf den VHS-Kurs heute: Schritte plus Neu A2, Lektion ${L.n} "${L.t}" (${L.gram.join("; ")}). Bring ihm die wichtigsten Wörter und Wendungen dieser Lektion bei, die heute im Kurs vorkommen könnten, und 3 Sätze, die er im Kurs aktiv sagen kann (eine Frage an die Lehrkraft, eine Meinung, ein Satz über sich).`)); return; }
-  if(x.kind === "vhspost"){ S.kartei.tab = "import"; go("kartei"); render(); return; }
+  if(x.kind === "sinifprep"){ const L = LEK.find(l=>l.n===sinifLek()) || LEK[0]; daily().sinifprep = true; Store.saveState(); go("lernen", ()=>startLesson(`Vorbereitung auf den Sprachkurs heute: Kursbuch A2, Lektion ${L.n} "${L.t}" (${L.gram.join("; ")}). Bring ihm die wichtigsten Wörter und Wendungen dieser Lektion bei, die heute im Kurs vorkommen könnten, und 3 Sätze, die er im Kurs aktiv sagen kann (eine Frage an die Lehrkraft, eine Meinung, ein Satz über sich).`)); return; }
+  if(x.kind === "sinifpost"){ S.kartei.tab = "import"; go("kartei"); render(); return; }
   if(x.kind === "mock"){ go("sinav"); render(); return; }
   if(x.kind === "scen"){ startScen(todayScen().id); return; }
   S.flow = true; S._a12pending = null;
@@ -1618,8 +1628,8 @@ function taskDone(key, skip){
   if(x.kind === "vocab") dd.vocab = true;
   else if(x.kind === "story") dd.story = true;
   else if(x.kind === "real") dd.real = true;
-  else if(x.kind === "vhsprep") dd.vhsprep = true;
-  else if(x.kind === "vhspost") dd.vhspost = true;
+  else if(x.kind === "sinifprep") dd.sinifprep = true;
+  else if(x.kind === "sinifpost") dd.sinifpost = true;
   else if(x.kind === "scen") dd.scen = true;
   else if(x.kind === "a12"){ if(skip) dd.a12cnt = 99; }
   else if(x.kind === "review") dd.review = true;
@@ -2804,10 +2814,10 @@ function renderSeviye(){
     <select id="stageSel" data-change="stageSel">${[1,2,3,4].map(n=>`<option value="${n}" ${stage().n===n?"selected":""}>${n}. ${STAGES[n].name} (${STAGES[n].en})</option>`).join("")}</select>
     <label class="lbl" for="goalSel">Günlük hedef</label>
     <select id="goalSel" data-change="goalSel"><option value="0" ${!S.state.goalOverride?"selected":""}>Basamağa göre (şu an ${stage().goal} dk)</option>${[45,60,80,100,120].map(g=>`<option value="${g}" ${+S.state.goalOverride===g?"selected":""}>${g} dk</option>`).join("")}</select>
-    <label class="lbl" for="vhsLek">VHS: şu anki Lektion (Schritte plus Neu A2.1)</label>
-    <select id="vhsLek" data-change="vhsLek">${[0,...LEK.map(L=>L.n)].map(n=>`<option value="${n}" ${vhsLek()===n?"selected":""}>${n ? "Lektion "+n+": "+LEK[n-1].t : "Henüz başlamadı"}</option>`).join("")}</select>
-    <div class="lbl">VHS ders günleri</div>
-    <div class="row">${[[1,"Pzt"],[2,"Sal"],[3,"Çar"],[4,"Per"],[5,"Cum"],[6,"Cmt"]].map(([n,l])=>`<label class="chip" style="padding:6px 10px"><input type="checkbox" data-change="vhsDay" data-n="${n}" ${((S.state.vhs||{}).days||[]).includes(n)?"checked":""}> ${l}</label>`).join("")}</div>
+    <label class="lbl" for="sinifLek">Kurs: şu anki Lektion (Kursbuch A2.1)</label>
+    <select id="sinifLek" data-change="sinifLek">${[0,...LEK.map(L=>L.n)].map(n=>`<option value="${n}" ${sinifLek()===n?"selected":""}>${n ? "Lektion "+n+": "+LEK[n-1].t : "Henüz başlamadı"}</option>`).join("")}</select>
+    <div class="lbl">Kurs günleri</div>
+    <div class="row">${[[1,"Pzt"],[2,"Sal"],[3,"Çar"],[4,"Per"],[5,"Cum"],[6,"Cmt"]].map(([n,l])=>`<label class="chip" style="padding:6px 10px"><input type="checkbox" data-change="sinifDay" data-n="${n}" ${((S.state.sinif||{}).days||[]).includes(n)?"checked":""}> ${l}</label>`).join("")}</div>
     <label class="lbl" for="examDate">B1 sınav tarihi</label>
     <input type="date" id="examDate" value="${esc(S.state.examDate)}" data-change="examDate">
     <label class="lbl" for="setName">Adın (isteğe bağlı; karakterler sana böyle hitap eder)</label>
@@ -2979,11 +2989,11 @@ function renderMore(){
     <button class="tile" data-act="dictStart"><i class="ti" style="--c:var(--das)" aria-hidden="true">🎧</i><b>Dikte</b><span>Dinle ve yaz; hız giderek artar.</span></button>
     <button class="tile" data-act="reducedStart"><i class="ti" style="--c:var(--accent)" aria-hidden="true">🏔️</i><b>Yutulan sesler ve Bavyera</b><span>hab's, gibt's, ned, passt scho…</span></button>
     <button class="tile" data-act="repairStart"><i class="ti" style="--c:var(--die)" aria-hidden="true">🛟</i><b>Donma ilacı</b><span>Anlamadığında ne dersin? Kalıpları öğren ve dene.</span></button>
-    <button class="tile" data-act="odevStart"><i class="ti" style="--c:var(--accent)" aria-hidden="true">🏫</i><b>VHS ödev yardımcısı</b><span>Açıklar ve ipucu verir; cevabı vermez.</span></button>
+    <button class="tile" data-act="odevStart"><i class="ti" style="--c:var(--accent)" aria-hidden="true">🏫</i><b>Kurs ödev yardımcısı</b><span>Açıklar ve ipucu verir; cevabı vermez.</span></button>
     <button class="tile" data-act="checkStart"><i class="ti" style="--c:var(--good)" aria-hidden="true">📈</i><b>Aylık ölçüm</b><span>Dinleme ve konuşmada gerçek ilerlemen.</span></button>
     <button class="tile" data-act="goShadow"><i class="ti" style="--c:var(--das)" aria-hidden="true">🗣️</i><b>Shadowing</b><span>Dinle, aynı ritimle söyle; mikrofon telaffuzunu kontrol eder.</span></button>
     <button class="tile" data-act="goAudio"><i class="ti" style="--c:var(--pop)" aria-hidden="true">🚗</i><b>Sesli tekrar</b><span>Eller serbest: Türkçesini duy, Almancasını söyle.</span></button>
-    <a class="tile" href="#kartei" style="text-decoration:none"><i class="ti" style="--c:var(--accent)" aria-hidden="true">🗂️</i><b>Kartlarım</b><span>Kelimeler, hata defteri, VHS notlarını yükle.</span></a>
+    <a class="tile" href="#kartei" style="text-decoration:none"><i class="ti" style="--c:var(--accent)" aria-hidden="true">🗂️</i><b>Kartlarım</b><span>Kelimeler, hata defteri, Kurs notlarını yükle.</span></a>
   </section>`;
 }
 /* ================= view: Kartei ================= */
@@ -3045,7 +3055,7 @@ function renderImport(){
   const K = S.kartei, r = K.imp;
   return `
   <section class="card">
-    <h3>VHS notlarını yükle</h3>
+    <h3>Kurs notlarını yükle</h3>
     <p class="small">Defterinin ya da çalışma kâğıdının fotoğrafını yükle veya notlarını yapıştır. Kelimeler ve konular çıkarılır; istediklerini kartlarına eklersin. Ben de buradan kursta ne gördüğünü takip ederim.</p>
     ${CAN_IMG ? `<label class="lbl" for="impFile">Fotoğraf (en fazla 4)</label><input type="file" id="impFile" accept="image/jpeg,image/png,image/webp" multiple>` : `<p class="small muted">Bu görünümde fotoğraf gönderilemiyor; metni yapıştır.</p>`}
     <label class="lbl" for="impText">Not metni</label>
@@ -3083,15 +3093,15 @@ async function importRun(){
   if(!files && !(K.impText||"").trim()){ K.err = "Bir fotoğraf seç ya da notlarını yapıştır."; render(); return; }
   K.busy = true; render();
   try{
-    K.imp = await askJSON(`Das sind Notizen aus dem VHS-Deutschkurs des Lerners (A2)${files ? " (Fotos anbei)" : ""}.
+    K.imp = await askJSON(`Das sind Notizen aus dem Deutschkurs des Lerners (A2)${files ? " (Fotos anbei)" : ""}.
 ${profile()}
 NOTIZ-TEXT: """${(K.impText||"").slice(0,6000)}"""
 AUFGABE: Lies die Notizen. Finde die Grammatik-Themen und die wichtigen Wörter.
 Antworte NUR mit JSON: {"summary_tr":"2 Sätze Türkisch: Was wurde im Kurs gelernt?","topics":["deutsches Grammatik-Thema"],"words":[{"de":"…","artikel":"der|die|das|","plural":"…","tr":"…","kind":"nomen|verb|andere","note":"bei Verben er-Form · Perfekt"}]}
 Höchstens 25 Wörter, keine, die der Lerner schon kennt.`, files ? {images: files} : {});
-    const notes = S.state.vhsNotes || [];
+    const notes = S.state.sinifNotes || [];
     notes.push({date: dayKey(), summary: K.imp.summary_tr||"", topics: K.imp.topics||[]});
-    S.state.vhsNotes = notes.slice(-30); daily().vhspost = true; Store.saveState(); addXP(15);
+    S.state.sinifNotes = notes.slice(-30); daily().sinifpost = true; Store.saveState(); addXP(15);
   }catch(err){ K.err = aiMsg(err); }
   K.busy = false; render();
 }
@@ -3858,7 +3868,7 @@ function renderVoiceSettings(){
   </div></details></section>`;
 }
 
-/* ================= Koç modülü: VHS senkronu, sesli rol yapma, dinleme, akıcılık, ölçüm ================= */
+/* ================= Koç modülü: kurs senkronu, sesli rol yapma, dinleme, akıcılık, ölçüm ================= */
 
 /* ---------- ek karakterler (gerçek hayat hattı) ---------- */
 Object.assign(PERSONAS, {
@@ -3872,7 +3882,7 @@ Object.assign(PERSONAS, {
 });
 ["huber","maier"].forEach(k=>{ if(PERSONAS[k]) PERSONAS[k].sie = true; });
 
-/* ---------- Schritte plus Neu A2.1 (VHS) ---------- */
+/* ---------- Kursbuch A2.1 (kurs) ---------- */
 const LEK = [
   {n:1, t:"Ankommen", tr:"Yeni bir yere gelmek, ilk deneyimler", gram:["Nebensatz mit weil (Verb am Ende)","Perfekt: trennbare und untrennbare Verben, Verben auf -ieren"],
     r1:["frau","Abends erzählt ihr: Warum bist du nach Deutschland gekommen? Was war am Anfang schwer? Benutze weil."],
@@ -3931,11 +3941,11 @@ const LEK = [
     w2:{de:"Wem schenkst du was zu den Feiertagen und warum?", tr:"Bayramda/yılbaşında kime ne hediye ediyorsun ve neden?"},
     speak:"Erzähl von einem Fest in der Türkei und einem Fest in Bayern."}
 ];
-function lekLabel(L){ return `Schritte plus Neu A2, Lektion ${L.n}: ${L.t}`; }
+function lekLabel(L){ return `Kursbuch A2, Lektion ${L.n}: ${L.t}`; }
 function lekWeeks(){
   return LEK.map(L => {
     const tag = ` (${lekLabel(L)})`;
-    return { n: 1 + L.n, lek: L.n, title: `${1+L.n}. hafta · VHS Lektion ${L.n}: ${L.t}`, goal_tr: L.tr, days: [
+    return { n: 1 + L.n, lek: L.n, title: `${1+L.n}. hafta · Kurs, Lektion ${L.n}: ${L.t}`, goal_tr: L.tr, days: [
       {n:1, title:L.gram[0], topic:L.gram[0]+tag, steps:[
         {id:"rev", kind:"review", t:"Isınma: günlük tekrar", min:8},
         {id:"lesson", kind:"lesson", t:"Ders: "+L.gram[0], min:20},
@@ -3963,34 +3973,34 @@ function lekWeeks(){
     ]};
   });
 }
-function vhsSessions(){ const VH = S.state.vhs || {}; if(!VH.from || !(VH.days||[]).length) return 0; let n = 0; const end = VH.to && VH.to < dayKey() ? VH.to : dayKey(); for(let k = VH.from; k <= end; k = addDays(k, 1)){ const d = new Date(k+"T12:00:00").getDay(); if(VH.days.includes(d) && !(VH.off||[]).includes(k)) n++; if(n > 200) break; } return n; }
-function vhsEstimate(){ const n = vhsSessions(); return n ? Math.min(7, 1 + Math.floor((n-1) / 2)) : 0; }
-function vhsLek(){ const VH = S.state.vhs || {}; if(+VH.lek) return +VH.lek; if(VH.from && dayKey() >= VH.from) return 1; return 0; }
+function sinifSessions(){ const VH = S.state.sinif || {}; if(!VH.from || !(VH.days||[]).length) return 0; let n = 0; const end = VH.to && VH.to < dayKey() ? VH.to : dayKey(); for(let k = VH.from; k <= end; k = addDays(k, 1)){ const d = new Date(k+"T12:00:00").getDay(); if(VH.days.includes(d) && !(VH.off||[]).includes(k)) n++; if(n > 200) break; } return n; }
+function sinifEstimate(){ const n = sinifSessions(); return n ? Math.min(7, 1 + Math.floor((n-1) / 2)) : 0; }
+function sinifLek(){ const VH = S.state.sinif || {}; if(+VH.lek) return +VH.lek; if(VH.from && dayKey() >= VH.from) return 1; return 0; }
 weeks = function(){
   const map = {1: WEEK1}; for(const w of lekWeeks()) map[w.n] = w;
   for(const x of S.weeksDb) map[x.n] = x;
   return Object.values(map).sort((a,b)=>a.n-b.n);
 };
 current = function(){
-  const v = vhsLek();
+  const v = sinifLek();
   for(const w of weeks()){ if(w.lek && v && w.lek < v) continue; for(const d of w.days) if(!dayDone(w,d)) return {w,d}; }
   const ws = weeks(); const w = ws[ws.length-1]; return {w, d:w.days[w.days.length-1], allDone:true};
 };
 const _profile = profile;
 profile = function(){
-  const v = vhsLek(); const L = LEK.find(x=>x.n===v);
-  const notes = (S.state.vhsNotes||[]).slice(-3).map(n=>`- ${n.date}: ${n.summary} (${(n.topics||[]).join(", ")})`).join("\n");
-  return _profile() + `\nVHS-KURS: Schritte plus Neu A2.1, 2x pro Woche. ${L ? `Aktuell im Kurs: Lektion ${L.n} "${L.t}" (${L.gram.join("; ")}).` : "Kurs beginnt bald."}${notes ? "\nLETZTE KURSNOTIZEN:\n"+notes : ""}`;
+  const v = sinifLek(); const L = LEK.find(x=>x.n===v);
+  const notes = (S.state.sinifNotes||[]).slice(-3).map(n=>`- ${n.date}: ${n.summary} (${(n.topics||[]).join(", ")})`).join("\n");
+  return _profile() + `\nSPRACHKURS: Kursbuch A2.1, 2x pro Woche. ${L ? `Aktuell im Kurs: Lektion ${L.n} "${L.t}" (${L.gram.join("; ")}).` : "Kurs beginnt bald."}${notes ? "\nLETZTE KURSNOTIZEN:\n"+notes : ""}`;
 };
-function renderVhsCheck(){
-  const v = S.state.vhs || {}; const t = dayKey();
-  if(v.from && t < v.from) return `<section class="card"><div class="kicker">VHS</div><p>Kurs ${esc(v.from.split("-").reverse().join("."))}'da başlıyor (${(v.days||[]).map(d=>["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"][d]).join(" ve ")}, ${esc(v.start||"")}–${esc(v.end||"")}). O zamana kadar 1. hafta planıyla temeli sağlamlaştırıyoruz.</p></section>`;
+function renderSinifCheck(){
+  const v = S.state.sinif || {}; const t = dayKey();
+  if(v.from && t < v.from) return `<section class="card"><div class="kicker">Dil kursu</div><p>Kurs ${esc(v.from.split("-").reverse().join("."))}'da başlıyor (${(v.days||[]).map(d=>["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"][d]).join(" ve ")}, ${esc(v.start||"")}–${esc(v.end||"")}). O zamana kadar 1. hafta planıyla temeli sağlamlaştırıyoruz.</p></section>`;
   if(v.asked && addDays(v.asked, 7) > t) return "";
-  return `<section class="card hl"><div class="kicker">VHS ile senkron</div>
-    <p>VHS'de şu an hangi Lektion'dasınız? Uygulama sırayı kursa göre ayarlar.${vhsEstimate() ? ` <b>Tahminim: Lektion ${vhsEstimate()}</b> (${vhsSessions()}. dersten sonra).` : ""}</p>
-    <div class="row">${[0,...LEK.map(L=>L.n)].map(n=>`<button class="btn small ${vhsLek()===n?"primary":""}" data-act="vhsSet" data-n="${n}">${n ? "L"+n : "Henüz başlamadı"}</button>`).join("")}</div>
+  return `<section class="card hl"><div class="kicker">Kurs ile senkron</div>
+    <p>Kursta şu an hangi Lektion'dasınız? Uygulama sırayı kursa göre ayarlar.${sinifEstimate() ? ` <b>Tahminim: Lektion ${sinifEstimate()}</b> (${sinifSessions()}. dersten sonra).` : ""}</p>
+    <div class="row">${[0,...LEK.map(L=>L.n)].map(n=>`<button class="btn small ${sinifLek()===n?"primary":""}" data-act="sinifSet" data-n="${n}">${n ? "L"+n : "Henüz başlamadı"}</button>`).join("")}</div>
     <p class="small muted">${LEK.map(L=>`L${L.n} ${L.t}`).join(" · ")}</p>
-    ${((S.state.vhs||{}).days||[]).length ? "" : `<div class="lbl">Ders hangi günler?</div><div class="row">${[[1,"Pzt"],[2,"Sal"],[3,"Çar"],[4,"Per"],[5,"Cum"],[6,"Cmt"]].map(([n,l])=>`<label class="chip" style="padding:6px 10px"><input type="checkbox" data-change="vhsDay" data-n="${n}"> ${l}</label>`).join("")}</div>`}</section>`;
+    ${((S.state.sinif||{}).days||[]).length ? "" : `<div class="lbl">Ders hangi günler?</div><div class="row">${[[1,"Pzt"],[2,"Sal"],[3,"Çar"],[4,"Per"],[5,"Cum"],[6,"Cmt"]].map(([n,l])=>`<label class="chip" style="padding:6px 10px"><input type="checkbox" data-change="sinifDay" data-n="${n}"> ${l}</label>`).join("")}</div>`}</section>`;
 }
 
 /* ---------- egzersiz motoruna ses ve dikte desteği ---------- */
@@ -4236,7 +4246,7 @@ function startContinuous(onText){
 }
 const FLU_PHRASES = [{de:"Zuerst … dann … danach …", tr:"Önce… sonra… ondan sonra…"},{de:"Am Anfang war es schwer, weil …", tr:"Başta zordu, çünkü…"},{de:"Ich finde, dass …", tr:"Bence…"},{de:"Zum Beispiel …", tr:"Mesela…"},{de:"Am Ende …", tr:"Sonunda…"},{de:"Was ich noch sagen wollte: …", tr:"Bir de şunu söylemek istiyorum:…"}];
 function startFluency(topic, mode){
-  const L = LEK.find(x=>x.n===vhsLek()) || LEK[0];
+  const L = LEK.find(x=>x.n===sinifLek()) || LEK[0];
   S.flu = { topic: topic || L.speak, mode: mode || "321", times: mode === "mono" ? [stage().n===1 ? 60 : 120] : (stage().flu || [60,45]), round:0, phase:"teach", txt:[], wpm:[], live:"", left:0, phrases:FLU_PHRASES, fb:null, busy:false, err:"" };
   go("akici"); render();
   if(aiReady()) (async()=>{ const F = S.flu; try{ const r = await askJSON(`${profile()}\nDer Lerner soll gleich frei sprechen zum Thema: "${F.topic}". Gib ihm 6 nützliche, einfache Satzanfänge/Chunks (A2) dafür. Antworte NUR mit JSON: {"phrases":[{"de":"…","tr":"…"}]}`, {tier:"quick"}); if(S.flu===F && r && r.phrases && r.phrases.length){ F.phrases = r.phrases.slice(0,6); render(); } }catch(e){} })();
@@ -4424,7 +4434,7 @@ function renderChecksTable(){
   <p class="small muted">Hedefler (yaklaşık): 6. ayda dikte %80+, 80+ kelime/dk, ilk kelime 3 sn altı, gerginlik 2.</p>`;
 }
 
-/* ---------- VHS ödev yardımcısı ---------- */
+/* ---------- Kurs ödev yardımcısı ---------- */
 function startOdev(){ S.odev = S.odev || {text:"", mine:"", busy:false, res:null, err:""}; go("odev"); render(); }
 async function odevRun(){
   const O = S.odev; const a = $("#odText"), b = $("#odMine"); if(a) O.text = a.value; if(b) O.mine = b.value;
@@ -4432,13 +4442,13 @@ async function odevRun(){
   if(!files && !O.text.trim()){ O.err = "Ödevin fotoğrafını seç ya da metnini yapıştır."; render(); return; }
   O.busy = true; O.err = ""; render();
   try{
-    O.res = await askJSON(`Du bist der persönliche Nachhilfelehrer des Lerners für seinen VHS-Kurs. ${profile()}\nHAUSAUFGABE${files?" (Fotos anbei)":""}: """${O.text.slice(0,5000)}"""\nSEINE ANTWORTEN (falls vorhanden): """${(O.mine||"").slice(0,3000)}"""\nREGEL: Gib NIEMALS die fertigen Lösungen. Erkläre das Thema einfach auf Türkisch, gib pro Aufgabe einen Hinweis. Wenn er Antworten geschrieben hat: sag pro Antwort richtig/falsch und gib bei falschen nur einen Hinweis, nicht die Lösung.\nAntworte NUR mit JSON: {"topic_tr":"…","explain_tr":["kurze Schritte"],"examples":[{"de":"Beispiel, NICHT aus der Aufgabe","tr":"…"}],"tasks":[{"nr":"…","hint_tr":"…"}],"checks":[{"answer":"seine Antwort","ok":true,"hint_tr":"…"}]}`, files ? {images: files} : {});
+    O.res = await askJSON(`Du bist der persönliche Nachhilfelehrer des Lerners für seinen Sprachkurs. ${profile()}\nHAUSAUFGABE${files?" (Fotos anbei)":""}: """${O.text.slice(0,5000)}"""\nSEINE ANTWORTEN (falls vorhanden): """${(O.mine||"").slice(0,3000)}"""\nREGEL: Gib NIEMALS die fertigen Lösungen. Erkläre das Thema einfach auf Türkisch, gib pro Aufgabe einen Hinweis. Wenn er Antworten geschrieben hat: sag pro Antwort richtig/falsch und gib bei falschen nur einen Hinweis, nicht die Lösung.\nAntworte NUR mit JSON: {"topic_tr":"…","explain_tr":["kurze Schritte"],"examples":[{"de":"Beispiel, NICHT aus der Aufgabe","tr":"…"}],"tasks":[{"nr":"…","hint_tr":"…"}],"checks":[{"answer":"seine Antwort","ok":true,"hint_tr":"…"}]}`, files ? {images: files} : {});
   }catch(e){ O.err = aiMsg(e); }
   O.busy = false; render();
 }
 function renderOdev(){
   const O = S.odev || (S.odev = {text:"", mine:"", busy:false, res:null, err:""}); const r = O.res;
-  return `<section class="card hl"><div class="kicker">VHS ödev yardımcısı</div><h2>Açıklar, ipucu verir; cevabı vermez</h2>
+  return `<section class="card hl"><div class="kicker">Kurs ödev yardımcısı</div><h2>Açıklar, ipucu verir; cevabı vermez</h2>
     <p class="small">Ödevi kendin çözersen öğrenirsin. Burası konuyu anlatır, her görev için ipucu verir ve istersen cevaplarını kontrol eder.</p>
     ${CAN_IMG ? `<label class="lbl" for="odFile">Ödev fotoğrafı (en fazla 4)</label><input type="file" id="odFile" accept="image/jpeg,image/png,image/webp" multiple>` : ""}
     <label class="lbl" for="odText">Ödev metni (veya fotoğraf)</label><textarea id="odText" style="min-height:90px">${esc(O.text)}</textarea>
@@ -4571,13 +4581,13 @@ todayQueue = function(){
   r.q.splice(1, 0, {key:"story", kind:"story", title:"Hikâye: bugünün bölümü (okuma + dinleme)", min:10, done: !!dd.story});
   r.q.push({key:"scen", kind:"scen", title:"Senaryo: "+todayScen().t, min:15, done: !!dd.scen});
   r.q.splice(2, 0, {key:"real", kind:"real", title:"Gerçek ses: "+realToday().t, min:12, done: !!dd.real});
-  const VH = S.state.vhs || {}; const vd = VH.days || []; const now = new Date(); const wd = now.getDay(); const yd = (wd+6)%7;
+  const VH = S.state.sinif || {}; const vd = VH.days || []; const now = new Date(); const wd = now.getDay(); const yd = (wd+6)%7;
   const hm = now.getHours()*60 + now.getMinutes(); const toMin = x => { const m = String(x||"").match(/(\d+):(\d+)/); return m ? +m[1]*60 + +m[2] : null; };
   const cst = toMin(VH.start) ?? 18*60, cen = toMin(VH.end) ?? 20*60;
   const inRange = k => (!VH.from || k >= VH.from) && (!VH.to || k <= VH.to) && !(VH.off||[]).includes(k);
   const classToday = vd.includes(wd) && inRange(dayKey()), classYday = vd.includes(yd) && inRange(addDays(dayKey(),-1));
-  if(classToday && hm < cst - 15) r.q.splice(1, 0, {key:"vhsprep", kind:"vhsprep", title:`Bugün ${VH.start||""} VHS: derse hazırlık`, min:15, done: !!dd.vhsprep});
-  if((classToday && hm >= cen) || (classYday && !((S.state.daily||{})[addDays(dayKey(),-1)]||{}).vhspost)) r.q.splice(1, 0, {key:"vhspost", kind:"vhspost", title:"VHS sonrası: derste ne gördünüz? (fotoğraf)", min:5, done: !!dd.vhspost});
+  if(classToday && hm < cst - 15) r.q.splice(1, 0, {key:"sinifprep", kind:"sinifprep", title:`Bugün ${VH.start||""} kurs: derse hazırlık`, min:15, done: !!dd.sinifprep});
+  if((classToday && hm >= cen) || (classYday && !((S.state.daily||{})[addDays(dayKey(),-1)]||{}).sinifpost)) r.q.splice(1, 0, {key:"sinifpost", kind:"sinifpost", title:"Kurs sonrası: derste ne gördünüz? (fotoğraf)", min:5, done: !!dd.sinifpost});
   if(mockDue()) r.q.push({key:"mock", kind:"mock", title:"Dış ölçüm: Goethe B1 deneme sınavı", min:45, done:false});
   return r;
 };
@@ -4669,7 +4679,7 @@ const vIsCard = w => w && w.de && w.tr && w.kind !== "satz";
 const vIsNew = w => w.reps == null && !w.intro && !(w.box > 0);
 function vReps(w){ return w.reps != null ? w.reps : (w.box || 0); }
 function vDue(w){ return !vIsNew(w) && (w.due || dayKey()) <= dayKey(); }
-function vBand(){ const v = vhsLek(); const lb = LEK_BAND[v]; const done = S.state.vbandDone || {};
+function vBand(){ const v = sinifLek(); const lb = LEK_BAND[v]; const done = S.state.vbandDone || {};
   const order = [lb, ...VBANDS.filter(b=>b.lvl === (stage().n===1 ? "A1" : stage().n===2 ? "A2" : "B1")).map(b=>b.id), ...VBANDS.map(b=>b.id)].filter(Boolean);
   return VBANDS.find(b=>b.id === order.find(id=>!done[id])) || VBANDS[0]; }
 function newToday(){ const t = dayKey(); return S.words.filter(w=>w.intro === t).length; }
@@ -5004,7 +5014,7 @@ async function startStory(){
   go("hikaye"); render();
   const st = S.state.story || {ep:0, sum:[]};
   const tw = todayWords().map(wLabel);
-  const lek = LEK.find(x=>x.n===vhsLek()); const scen = todayScen();
+  const lek = LEK.find(x=>x.n===sinifLek()); const scen = todayScen();
   try{
     const r = await askJSON(`${profile()}
 Du schreibst Folge ${st.ep+1} einer fortlaufenden, warmen und manchmal lustigen Alltagsserie für den Lerner (Graded Reader). Figuren: Deniz (Türke, IT-Sicherheit, lernt Deutsch), Anna (seine deutsche Frau), Mia (ihre kleine Tochter), Frau Huber (bayerische Nachbarin), Markus (Kollege), Tobi (Freund aus dem Fitnessstudio). Ort: eine Kleinstadt in Niederbayern.
@@ -5459,7 +5469,7 @@ async function shareWife(text){
   else if(r === "fail") toast(`Paylaşılamadı; metni basılı tutup kopyala.`, 3200);
 }
 const _rwr = renderWriteResult;
-renderWriteResult = function(){ return _rwr() + `<section class="card"><button class="btn block" data-act="wifeWrite">💌 Eşine gönder: o da düzeltsin</button><p class="small muted">En iyi düzeltici evde: anadili Almanca. Onun düzeltmelerini "Kartlarım → VHS notları" bölümüne yapıştırırsan kelimelerine eklenir.</p></section>`; };
+renderWriteResult = function(){ return _rwr() + `<section class="card"><button class="btn block" data-act="wifeWrite">💌 Eşine gönder: o da düzeltsin</button><p class="small muted">En iyi düzeltici evde: anadili Almanca. Onun düzeltmelerini "Kartlarım → Kurs notları" bölümüne yapıştırırsan kelimelerine eklenir.</p></section>`; };
 const _rce = renderChatEnd;
 renderChatEnd = function(){ return _rce() + `<section class="card"><button class="btn block" data-act="wifeChat">💌 Cümlelerimi eşime gönder</button></section>`; };
 
@@ -5516,7 +5526,7 @@ async function prefetchToday(){
   S._prefetching = false;
 }
 async function genStoryData(){
-  const st = S.state.story || {ep:0, sum:[]}; const tw = todayWords().map(wLabel); const lek = LEK.find(x=>x.n===vhsLek()); const scen = todayScen();
+  const st = S.state.story || {ep:0, sum:[]}; const tw = todayWords().map(wLabel); const lek = LEK.find(x=>x.n===sinifLek()); const scen = todayScen();
   const r = await askJSON(`${profile()}
 Du schreibst Folge ${st.ep+1} einer fortlaufenden, warmen und manchmal lustigen Alltagsserie für den Lerner (Graded Reader). Figuren: Deniz (Türke, IT-Sicherheit, lernt Deutsch), Anna (seine deutsche Frau), Mia (ihre kleine Tochter), Frau Huber (bayerische Nachbarin), Markus (Kollege), Tobi (Freund aus dem Fitnessstudio). Ort: eine Kleinstadt in Niederbayern.
 BISHER: ${(st.sum||[]).slice(-6).join(" ") || "Erste Folge: Deniz beschließt, zu Hause mehr Deutsch zu sprechen."}
@@ -5606,7 +5616,7 @@ saveLocal = function(){
 };
 function importData(obj){
   if(!obj || !Array.isArray(obj.words)) throw new Error("bad");
-  S.words = obj.words; S.mistakes = obj.mistakes || []; S.writings = obj.writings || []; S.state = {...DEFAULT_STATE, ...(obj.state || {})};
+  S.words = obj.words; S.mistakes = obj.mistakes || []; S.writings = obj.writings || []; S.state = kursMig({...DEFAULT_STATE, ...(obj.state || {})});
   saveLocal();
 }
 
@@ -5823,7 +5833,7 @@ initRuntime = async function(){
   if(!STANDALONE) return _initRuntime();
   S.mode = "local";
   try { if(navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch(e){}
-  try { const d = await IDB.get("data"); if(d && Array.isArray(d.words)) { S.words = d.words; S.mistakes = d.mistakes||[]; S.writings = d.writings||[]; S.state = {...DEFAULT_STATE, ...(d.state||{})}; } else loadLocal(); }
+  try { const d = await IDB.get("data"); if(d && Array.isArray(d.words)) { S.words = d.words; S.mistakes = d.mistakes||[]; S.writings = d.writings||[]; S.state = kursMig({...DEFAULT_STATE, ...(d.state||{})}); } else loadLocal(); }
   catch(e){ loadLocal(); }
   AI = KEYS.gem ? GeminiAI : null; CAN_IMG = !!AI;
   S.loaded = true; S.loadNote = "";
@@ -6064,8 +6074,8 @@ genScenData = async function(sc){
 /* ---------- Claude'daki eski uygulamadan veri taşıma ---------- */
 async function exportAll(){ const ok = await copyText(JSON.stringify(dataSnapshot())); toast(ok ? `📦 <b>Bütün verilerin kopyalandı.</b> Yeni uygulamada Kurulum → "Verilerini taşı" kutusuna yapıştır.` : "Kopyalanamadı.", 4000); }
 
-/* ================= Gramer yolu: Schritte plus Neu A1.2 → (A2.1 = VHS) → A2.2 → B1.1 → B1.2 ================= */
-/* A2.1 VHS'de ve günlük planda işleniyor. Bu yol, onun altını (A1.2) ve devamını (A2.2, B1.1, B1.2) aynı yöntemle öğretir:
+/* ================= Gramer yolu: Kursbuch A1.2 → (A2.1 = kurs) → A2.2 → B1.1 → B1.2 ================= */
+/* A2.1 Kursta ve günlük planda işleniyor. Bu yol, onun altını (A1.2) ve devamını (A2.2, B1.1, B1.2) aynı yöntemle öğretir:
    her ders: ön kontrol (biliyorsan atlanır) → 2 kısa ders → hayatta kullan (sesli konuşma) → kapanış kontrolü.
    Yanlışlar hata defterine ve konu istatistiğine gider; sık hata yapılan konular "Takviye" ile farklı anlatımla tekrar öğretilir ve 3 ve 14 gün sonra yeniden kontrol edilir. */
 Object.assign(PERSONAS, {
@@ -6076,7 +6086,7 @@ Object.assign(PERSONAS, {
   rezeption: {name:"Hotelrezeption", color:"#0F766E", ini:"HR", sie:true, tr:"Otel resepsiyonu. Güler yüzlü; tarih, oda tipi, kahvaltı, fiyat soruyor.", desc:"Rezeptionistin in einem Familienhotel am Gardasee (spricht Deutsch). Freundlich, siezt; fragt nach Datum, Personen, Zimmerart, Kinderbett, Frühstück, Anreise."}
 });
 const GP_TRACKS = [
-  {id:"a12", lvl:"A1.2", book:"Schritte plus Neu 2", rank:"A1", lessons:[
+  {id:"a12", lvl:"A1.2", book:"Kursbuch 2", rank:"A1", lessons:[
     {n:8, t:"Beruf und Arbeit", tr:"Meslekler, iş, geçmişten kısaca bahsetmek",
       gram:["Präteritum von sein und haben (ich war, ich hatte)", "Temporale Präpositionen vor, seit, für + Dativ (seit zwei Jahren, vor einem Monat)", "bei + Firma, als + Beruf (Ich arbeite bei …, als …)"],
       words:"Berufe, Arbeitsplatz, Ausbildung, Stellenanzeige", life:{p:"chef", s:"Erster Tag in einem neuen Projekt: Herr Schmid stellt dich dem Team vor und fragt: Was sind Sie von Beruf? Seit wann arbeiten Sie bei uns? Wo waren Sie vorher? Hatten Sie schon Erfahrung mit …?"}},
@@ -6099,7 +6109,7 @@ const GP_TRACKS = [
       gram:["Ordinalzahlen und Datum (der erste Mai, am fünfzehnten Januar)", "Personalpronomen im Akkusativ (mich, dich, ihn, sie, uns, euch) und Begründen mit denn"],
       words:"Monate, Feste und Feiertage, Einladungen, Glückwünsche", life:{p:"lena", s:"Lena lädt euch zum Kindergeburtstag ihres Sohnes ein. Frag nach Datum und Uhrzeit, sag zu oder ab und nenne einen Grund mit denn."}}
   ]},
-  {id:"a22", lvl:"A2.2", book:"Schritte plus Neu 4", rank:"A2", lessons:[
+  {id:"a22", lvl:"A2.2", book:"Kursbuch 4", rank:"A2", lessons:[
     {n:8, t:"Am Wochenende", tr:"Hafta sonu, istekler, öneriler",
       gram:["Konjunktiv II: wäre, hätte, würde, könnte (Wünsche äußern und Vorschläge machen)", "Konjunktion trotzdem (Gegensätze ausdrücken)"],
       words:"Freizeit, Wochenende, Veranstaltungen, Vorschläge", life:{p:"tobi", s:"Tobi fragt, was ihr am Wochenende macht. Macht Vorschläge (Wir könnten …), sag, was du gern machen würdest, und reagiere auf seine Ideen."}},
@@ -6122,7 +6132,7 @@ const GP_TRACKS = [
       gram:["Wiederholung: Nebensätze mit wenn, weil, dass; Perfekt und Präteritum", "Wiederholung: Konjunktiv II; Wortbildung (-ig, -bar, -los, un-, -ung, -chen)"],
       words:"Lebenslauf, Familie, Erinnerungen, Wünsche und Träume", life:{p:"schwiegermutter", s:"Deine Schwiegermutter fragt nach deiner Kindheit in der Türkei, wie ihr euch kennengelernt habt und welche Träume du für die Zukunft hast."}}
   ]},
-  {id:"b11", lvl:"B1.1", book:"Schritte plus Neu 5", rank:"B1", lessons:[
+  {id:"b11", lvl:"B1.1", book:"Kursbuch 5", rank:"B1", lessons:[
     {n:1, t:"Glück im Alltag", tr:"Geçmişi anlatmak, şans ve şanssızlık",
       gram:["Präteritum (regelmäßige und unregelmäßige Verben) zum Erzählen", "Konjunktion als (damals) und Plusquamperfekt"],
       words:"Kindheit, Erinnerungen, Glück und Pech, Unfallbericht", life:{p:"markus", s:"Montag im Büro: Erzähl Markus von einem Glücks- oder Pechmoment am Wochenende. Er fragt nach."}},
@@ -6145,7 +6155,7 @@ const GP_TRACKS = [
       gram:["Zweiteilige Konjunktionen: nicht nur … sondern auch, zwar … aber, entweder … oder", "Konjunktiv II der Vergangenheit (Ich hätte … gesagt), irreale Wünsche (Hätte ich bloß …), trotz + Genitiv"],
       words:"Zusammenleben, Hausordnung, Nachbarn, Konflikte lösen", life:{p:"huber", s:"Frau Huber beschwert sich über Lärm am Abend. Reagiere höflich, erkläre die Situation und findet zusammen eine Lösung."}}
   ]},
-  {id:"b12", lvl:"B1.2", book:"Schritte plus Neu 6", rank:"B1", lessons:[
+  {id:"b12", lvl:"B1.2", book:"Kursbuch 6", rank:"B1", lessons:[
     {n:8, t:"Unter Kollegen", tr:"İş arkadaşları, kibar ret, kişileri tarif",
       gram:["falls und je … desto / umso", "Relativsatz mit Präposition (die Kollegin, mit der ich arbeite); n-Deklination; Adjektiv als Nomen (der/die Bekannte)"],
       words:"Kollegen, Büroalltag, du oder Sie", life:{p:"markus", s:"Markus bittet dich, am Freitag seinen Bereitschaftsdienst zu übernehmen. Lehne höflich ab oder findet einen Kompromiss."}},
@@ -6172,7 +6182,7 @@ const GP_TRACKS = [
 for(const T of GP_TRACKS) for(const L of T.lessons){ L.track = T.id; L.lvl = T.lvl; L.book = T.book; L.key = T.id + "-" + L.n; }
 const GP_ALL = GP_TRACKS.flatMap(T=>T.lessons);
 const LEK12 = GP_TRACKS[0].lessons;
-/* Hangi A1.2 dersi hangi A2.1 (VHS) dersinin temeli */
+/* Hangi A1.2 dersi hangi A2.1 (kurs) dersinin temeli */
 const A12_FOR = {1:[8,14], 2:[11], 3:[13], 4:[12,10], 5:[10,9], 6:[9,8], 7:[13,14]};
 const A12_PARTS = [
   {id:"pre", t:"Ön kontrol (biliyorsan atlarız)", min:8},
@@ -6184,24 +6194,24 @@ const A12_PARTS = [
 BLK.a12 = {min:15, ai:true, heavy:true, label:"Gramer yolu"};
 function gpSt(){ const s = S.state.gp || (S.state.gp = {}); s.done = s.done || {}; s.parts = s.parts || {}; s.pct = s.pct || {}; return s; }
 function a12St(){ return gpSt(); }
-function gpCourseOver(){ const VH = S.state.vhs || {}; return !!(VH.to && dayKey() > VH.to); }
+function gpCourseOver(){ const VH = S.state.sinif || {}; return !!(VH.to && dayKey() > VH.to); }
 function gpTrackDone(id){ const st = gpSt(); return GP_TRACKS.find(T=>T.id===id).lessons.every(L=>st.done[L.key]); }
-/* Bir seviye ne zaman açılır: altındaki seviye bitmiş olmalı ve VHS'deki A2.1 yeterince ilerlemiş olmalı */
+/* Bir seviye ne zaman açılır: altındaki seviye bitmiş olmalı ve kurstaki A2.1 yeterince ilerlemiş olmalı */
 function gpOpen(id){
   if(id === "a12") return true;
-  if(id === "a22") return gpTrackDone("a12") && (vhsLek() >= 4 || gpCourseOver());
-  if(id === "b11") return gpTrackDone("a22") && (vhsLek() >= 7 || gpCourseOver());
+  if(id === "a22") return gpTrackDone("a12") && (sinifLek() >= 4 || gpCourseOver());
+  if(id === "b11") return gpTrackDone("a22") && (sinifLek() >= 7 || gpCourseOver());
   if(id === "b12") return gpTrackDone("b11");
   return false;
 }
 function gpWhyLocked(id){
-  if(id === "a22") return !gpTrackDone("a12") ? "A1.2 bitince" : "VHS'de A2.1 Lektion 4'e gelince";
-  if(id === "b11") return !gpTrackDone("a22") ? "A2.2 bitince" : "VHS'de A2.1 bitince";
+  if(id === "a22") return !gpTrackDone("a12") ? "A1.2 bitince" : "Kursta A2.1 Lektion 4'e gelince";
+  if(id === "b11") return !gpTrackDone("a22") ? "A2.2 bitince" : "Kursta A2.1 bitince";
   if(id === "b12") return "B1.1 bitince";
   return "";
 }
 function a12Order(){
-  const v = Math.min(7, Math.max(1, vhsLek() || 1)); const seq = [];
+  const v = Math.min(7, Math.max(1, sinifLek() || 1)); const seq = [];
   for(const k of [...[1,2,3,4,5,6,7].filter(k=>k>=v), ...[1,2,3,4,5,6,7].filter(k=>k<v)]) for(const n of (A12_FOR[k]||[])) if(!seq.includes(n)) seq.push(n);
   for(const L of LEK12) if(!seq.includes(L.n)) seq.push(L.n);
   return seq;
@@ -6228,7 +6238,7 @@ function gpLabel(L){ return `${L.book} (${L.lvl}), Lektion ${L.n}: ${L.t}`; }
 function gpShort(L){ return `${L.lvl} · L${L.n} ${L.t}`; }
 function a12Topic(L, part){
   const g = part === "g1" ? L.gram[0] : L.gram.slice(1).join(" + ");
-  const why = L.track === "a12" ? `Grundlagenwissen (A1.2), das er für den VHS-Kurs A2.1${a12For(L.n).length ? ", Lektion " + a12For(L.n).join(" und ") : ""} sicher braucht` : `Stoff auf dem Weg zur B1-Prüfung (${L.lvl})`;
+  const why = L.track === "a12" ? `Grundlagenwissen (A1.2), das er für den Sprachkurs A2.1${a12For(L.n).length ? ", Lektion " + a12For(L.n).join(" und ") : ""} sicher braucht` : `Stoff auf dem Weg zur B1-Prüfung (${L.lvl})`;
   return `${g} (${gpLabel(L)}; Wortfeld: ${L.words}). ${why}: kurz und klar erklären, viele Beispiele aus seinem Alltag.`;
 }
 function a12PartDone(ctx){
@@ -6303,7 +6313,7 @@ todayQueue = function(){
   r.q.splice(Math.min(3, r.q.length), 0, {key:"a12", kind:"a12", title: done ? `Gramer yolu: bugün ${Math.min(cnt, per)} adım ✓` : `Gramer ${gpShort(nx.L)}: ${nx.part.t}`, min: nx.part.min, done});
   return r;
 };
-/* kelime kartları: sıradaki gramer dersinin kelime alanı, VHS dersinin alanıyla dönüşümlü gelir (ders başına en çok 25 kelime) */
+/* kelime kartları: sıradaki gramer dersinin kelime alanı, kurs dersinin alanıyla dönüşümlü gelir (ders başına en çok 25 kelime) */
 const _vBandA12 = vBand;
 vBand = function(){
   const nx = a12Next(); S._vbAlt = !S._vbAlt;
@@ -6317,7 +6327,7 @@ const _profileA12 = profile;
 profile = function(){
   const st = gpSt(); const nx = a12Next();
   const ok = GP_TRACKS.map(T=>{ const d = T.lessons.filter(L=>st.done[L.key]).map(L=>"L"+L.n); return d.length ? T.lvl + ": " + d.join(", ") : ""; }).filter(Boolean);
-  return _profileA12() + `\nGRAMMATIK-PFAD (Schritte plus Neu A1.2 → A2.1 im VHS → A2.2 → B1.1 → B1.2): ${ok.length ? "sicher: " + ok.join("; ") : "noch am Anfang"}${nx ? "; gerade: " + gpShort(nx.L) : ""}. Setze nur Grammatik voraus, die als sicher markiert ist oder im VHS-Kurs schon dran war; sonst kurz wiederholen.`;
+  return _profileA12() + `\nGRAMMATIK-PFAD (Kursbuch A1.2 → A2.1 im Kurs → A2.2 → B1.1 → B1.2): ${ok.length ? "sicher: " + ok.join("; ") : "noch am Anfang"}${nx ? "; gerade: " + gpShort(nx.L) : ""}. Setze nur Grammatik voraus, die als sicher markiert ist oder im Sprachkurs schon dran war; sonst kurz wiederholen.`;
 };
 function renderA12Card(){
   const st = gpSt(); const nx = a12Next();
@@ -6327,15 +6337,15 @@ function renderA12Card(){
     const chips = ls.map(L=>{ const d = st.done[L.key]; const cur = nx && nx.L.key === L.key; return `<span class="chip ${d?"good":""}" style="${cur?"background:var(--accent);color:var(--accent-ink)":""}${!open && !d?";opacity:.55":""}" title="${esc(L.t)}">${d ? "✓" : cur ? "▶" : "○"} L${L.n}</span>`; }).join(" ");
     return `<div style="margin-top:8px"><div class="small"><b>${T.lvl}</b> <span class="muted">· ${esc(T.book)} · ${nDone}/7${!open && nDone < 7 ? " · 🔒 " + gpWhyLocked(T.id) : ""}</span></div><div class="row" style="margin-top:4px">${chips}</div></div>`;
   });
-  rows.splice(1, 0, `<div style="margin-top:8px"><div class="small"><b>A2.1</b> <span class="muted">· Schritte plus Neu 3 · VHS kursunda ve günlük planda${vhsLek() ? " · şu an Lektion " + vhsLek() : ""}</span></div></div>`);
+  rows.splice(1, 0, `<div style="margin-top:8px"><div class="small"><b>A2.1</b> <span class="muted">· Kursbuch 3 · kursta ve günlük planda${sinifLek() ? " · şu an Lektion " + sinifLek() : ""}</span></div></div>`);
   const media = nx ? `${nx.L.book}, Lektion ${nx.L.n}` : "";
-  const mediaVhs = vhsLek() ? `Schritte plus Neu 3, Lektion ${vhsLek()}` : "";
-  return `<section class="card"><div class="kicker">Gramer yolu · Schritte plus Neu</div>
+  const mediaSinif = sinifLek() ? `Kursbuch 3, Lektion ${sinifLek()}` : "";
+  return `<section class="card"><div class="kicker">Gramer yolu · Kursbuch</div>
     <p class="small clamp2" style="margin:4px 0">A1.2 temeli kurs dersleriyle paralel gelir; A2.2, B1.1 ve B1.2 sırası gelince açılır. Her ders önce kısa kontrolle başlar: biliyorsan atlarız. Takıldığın konular ayrıca "Takviye" olarak farklı anlatımla tekrar gelir ve 3 ve 14 gün sonra yeniden kontrol edilir.</p>
     ${rows.filter(r=>!r.includes("🔒")).join("")}
     ${rows.some(r=>r.includes("🔒")) ? `<details class="more3" style="margin-top:8px"><summary>Sonraki seviyeler (${rows.filter(r=>r.includes("🔒")).length})</summary>${rows.filter(r=>r.includes("🔒")).join("")}</details>` : ""}
-    ${media || mediaVhs ? `<div class="ex small" style="margin-top:8px">📀 <b>Kitabın kendi sesleri (ücretsiz):</b> Hueber Media uygulamasında${media ? ` <b>${esc(media)}</b>` : ""}${media && mediaVhs ? " ve" : ""}${mediaVhs ? ` <b>${esc(mediaVhs)}</b> (VHS'den önce)` : ""} → Foto-Hörgeschichte'yi dinle. Önce sadece dinle, sonra kitaptaki resimlere bakarak bir daha dinle. <a href="https://apps.apple.com/app/id1597468436" target="_blank" rel="noopener">Hueber Media'yı aç</a></div>` : ""}
-    <p class="small muted" style="margin-top:8px">${nx ? `Sıradaki: <b>${esc(gpShort(nx.L))}</b> → ${esc(nx.part.t)}${nx.L.track === "a12" && a12For(nx.L.n).length ? ` <span class="muted">(A2.1 Lektion ${a12For(nx.L.n).join(", ")} için temel)</span>` : ""}` : GP_TRACKS.every(T=>gpTrackDone(T.id)) ? "Gramer yolu bitti 🎉 Sırada B1 sınav provaları." : "Sıradaki seviye kilitli; o zamana kadar günlük plan ve VHS dersleri devam ediyor."}</p>
+    ${media || mediaSinif ? `<div class="ex small" style="margin-top:8px">📀 <b>Kitabın kendi sesleri (ücretsiz):</b> kitabın ses uygulamasında${media ? ` <b>${esc(media)}</b>` : ""}${media && mediaSinif ? " ve" : ""}${mediaSinif ? ` <b>${esc(mediaSinif)}</b> (kurstan önce)` : ""} → Foto-Hörgeschichte'yi dinle. Önce sadece dinle, sonra kitaptaki resimlere bakarak bir daha dinle. <a href="https://apps.apple.com/app/id1597468436" target="_blank" rel="noopener">Kitabın ses uygulamasını aç</a></div>` : ""}
+    <p class="small muted" style="margin-top:8px">${nx ? `Sıradaki: <b>${esc(gpShort(nx.L))}</b> → ${esc(nx.part.t)}${nx.L.track === "a12" && a12For(nx.L.n).length ? ` <span class="muted">(A2.1 Lektion ${a12For(nx.L.n).join(", ")} için temel)</span>` : ""}` : GP_TRACKS.every(T=>gpTrackDone(T.id)) ? "Gramer yolu bitti 🎉 Sırada B1 sınav provaları." : "Sıradaki seviye kilitli; o zamana kadar günlük plan ve Kurs dersleri devam ediyor."}</p>
   </section>`;
 }
 
@@ -7148,7 +7158,7 @@ prefetchToday = async function(){
   S._pre2 = false;
 };
 const _todayQueueB = todayQueue;
-const PLAN_PRIO = {vhsprep:0, vhspost:0, mock:0, vocab:1, a12:1, recheck:2, review:2, lesson:2, remed:3, scen:3, roleplay:3, chat:3, story:3, real:4, fluency:4, write:5, offline:5};
+const PLAN_PRIO = {sinifprep:0, sinifpost:0, mock:0, vocab:1, a12:1, recheck:2, review:2, lesson:2, remed:3, scen:3, roleplay:3, chat:3, story:3, real:4, fluency:4, write:5, offline:5};
 todayQueue = function(){
   const r = _todayQueueB();
   for(const x of r.q){ if(x.kind === "vocab") x.min = Math.min(x.min, 20); }
@@ -8064,7 +8074,7 @@ async function lifeAudioSpeak(){
 
 BLK.lifea = {min:6, ai:true, label:"Hayat hikâyem (sesli)"};
 /* ================= Odak kabuğu: çalışma ekranlarında üst başlık ve alt menü yok; tek ince çubuk (✕ · başlık · günlük hedef) ================= */
-const VIEW_TITLE = {koc:"Koç", kelime:"Kelime kartları", lernen:"Ders", spielen:"Oyun", sprechen:"Konuşma", schreiben:"Yazma", hikaye:"Hikâye", shadow:"Shadowing", akici:"Akıcılık", ses:"Sesli tekrar", senaryo:"Senaryo", denk:"Düşün ve kur", media:"Video", olcum:"Aylık ölçüm", odev:"VHS ödev", gercek:"Gerçek ses", sinav:"Deneme sınavı", sinavatolye:"B1 sınav atölyesi", hayat:"Hayat hikâyem", canli:"Canlı sohbet", kartei:"Kartlarım", kurulum:"Kurulum", rehber:"Koçun", seans:"Seans"};
+const VIEW_TITLE = {koc:"Koç", kelime:"Kelime kartları", lernen:"Ders", spielen:"Oyun", sprechen:"Konuşma", schreiben:"Yazma", hikaye:"Hikâye", shadow:"Shadowing", akici:"Akıcılık", ses:"Sesli tekrar", senaryo:"Senaryo", denk:"Düşün ve kur", media:"Video", olcum:"Aylık ölçüm", odev:"Kurs ödevi", gercek:"Gerçek ses", sinav:"Deneme sınavı", sinavatolye:"B1 sınav atölyesi", hayat:"Hayat hikâyem", canli:"Canlı sohbet", kartei:"Kartlarım", kurulum:"Kurulum", rehber:"Koçun", seans:"Seans"};
 function focusBar(){
   const back = S.lastTab && S.lastTab !== S.view ? S.lastTab : "plan"; const g = xpGoal(), x = xpToday(); const pc = Math.min(100, Math.round(x / Math.max(1, g) * 100));
   return `<div class="fbar"><a class="licon" href="#${back}" aria-label="Kapat">✕</a><b>${esc(VIEW_TITLE[S.view] || "")}</b><span class="fxp ${x >= g ? "done" : ""}" title="Bugünkü XP"><i style="width:${pc}%"></i><em>⭐ ${x}</em></span></div>`;
@@ -8074,7 +8084,7 @@ const MORE_GROUPS = [
   ["Konuş", [["🥨","Senaryolar","goScenList"],["⚡","Akıcılık 3-2-1","fluStart"],["🗣️","Shadowing","goShadow"],["🛟","Donma ilacı","repairStart"],["💬","Sohbet ve dinleme","#sprechen"],["✍️","Yaz","#schreiben"]]],
   ["Öğren", [["🧱","1500 kelime","coreOpen"],["🎧","Dış kaynaklar","disOpen"],["🎞️","Medya kütüphanesi","mlOpen"],["📘","Dersler","#lernen"],["🃏","Kelime kartları","vocabStart"],["📖","Hikâye","storyStart"],["🧠","Düşün ve kur","denkStart"],["🎬","Video","mediaStart"],["🎧","Dikte","dictStart"],["🏔️","Bavyera ağzı","reducedStart"],["🚗","Sesli tekrar","goAudio"],["🎮","Oyunlar","#spielen"]]],
   ["Sınav ve ilerleme", [["🎓","B1 atölyesi","goExam"],["📈","Aylık ölçüm","checkStart"],["📝","Resmî deneme","#sinav"]]],
-  ["Araçlar", [["🗂️","Kartlarım","#kartei"],["🏫","VHS ödev","odevStart"],["🧭","Koçun","goRehber"],["⚙️","Kurulum","#kurulum"]]]
+  ["Araçlar", [["🗂️","Kartlarım","#kartei"],["🏫","Kurs ödevi","odevStart"],["🧭","Koçun","goRehber"],["⚙️","Kurulum","#kurulum"]]]
 ];
 renderMore = function(){
   const lb = lifeBuilt().length, ld = lifeDue().length; const live = liveOk();
@@ -8169,7 +8179,7 @@ const ACT = {
   dictTest(){ const v = ($("#dictTest")||{}).value || ""; const sc = scoreHeard("Guten Morgen, wie geht's?", v); S.micTest = {ok: sc.score >= 0.6, msg: v ? `Duyulan: „${v}“ · %${Math.round(sc.score*100)} ${sc.score>=0.6 ? "✓ Dikte çalışıyor." : "Klavye dili Deutsch mu? Tekrar dene."}` : "Önce kutuya söyle."}; render(); },
   stageUp(){ const n = Math.min(4, stage().n + 1); S.state.stage = n; Store.saveState(); S.flash = `🎓 Tebrikler! Artık ${STAGES[n].name} basamağındasın: ${STAGES[n].tr}`; render(); },
   goalMore(){ const s = S.sess; if(!s) return; s.goalScreen = false; sessNext(); },
-  vhsSet(b){ S.state.vhs = {...(S.state.vhs||{}), lek:+b.dataset.n, asked:dayKey()}; Store.saveState(); S.flash = +b.dataset.n ? `VHS: Lektion ${b.dataset.n} olarak ayarlandı. Plan buna göre ilerler.` : "Tamam; kurs başlayınca tekrar soracağım."; render(); },
+  sinifSet(b){ S.state.sinif = {...(S.state.sinif||{}), lek:+b.dataset.n, asked:dayKey()}; Store.saveState(); S.flash = +b.dataset.n ? `Kurs: Lektion ${b.dataset.n} olarak ayarlandı. Plan buna göre ilerler.` : "Tamam; kurs başlayınca tekrar soracağım."; render(); },
   sayDe(b){ primeTTS(); holdReading(); say(b.dataset.t, "de"); },
   teachGo(){ const T = S.teach; if(!T) return; startExercise(T.exTitle||T.title, T.items, T.src, "koc"); },
   exAudio(){ const it = curItem(); if(it && it.audio){ primeTTS(); holdReading(); say(it.audio, "de", it.rate||deRate()); } },
@@ -8353,10 +8363,10 @@ document.addEventListener("change", e => {
   else if(c === "sfxSel"){ S.state.sfxOff = e.target.value === "off"; Store.saveState(); }
   else if(c === "immSel"){ const v = e.target.value; if(v === "auto") delete S.state.vimm; else S.state.vimm = v === "1"; Store.saveState(); }
   else if(c === "themeSel"){ const v = e.target.value; S.state.themeNight = v === "night"; S.state.theme = v === "night" ? "auto" : v; Store.saveState(); render(); }
-  else if(c === "vhsDay"){ const v = S.state.vhs || (S.state.vhs = {}); const n = +e.target.dataset.n; v.days = (v.days||[]).filter(x=>x!==n); if(e.target.checked) v.days.push(n); Store.saveState(); }
+  else if(c === "sinifDay"){ const v = S.state.sinif || (S.state.sinif = {}); const n = +e.target.dataset.n; v.days = (v.days||[]).filter(x=>x!==n); if(e.target.checked) v.days.push(n); Store.saveState(); }
   else if(c === "stageSel"){ S.state.stage = +e.target.value; Store.saveState(); render(); }
   else if(c === "goalSel"){ S.state.goalOverride = +e.target.value || 0; Store.saveState(); render(); }
-  else if(c === "vhsLek"){ S.state.vhs = {...(S.state.vhs||{}), lek: +e.target.value, asked: dayKey()}; Store.saveState(); }
+  else if(c === "sinifLek"){ S.state.sinif = {...(S.state.sinif||{}), lek: +e.target.value, asked: dayKey()}; Store.saveState(); }
   else if(c === "voiceDe" || c === "voiceTr"){ const v = S.state.voice || (S.state.voice = {}); v[c==="voiceDe"?"de":"tr"] = e.target.value; Store.saveState(); }
   else if(c === "voiceRate"){ const v = S.state.voice || (S.state.voice = {}); v.rate = +e.target.value; Store.saveState(); }
   else if(c === "examDate"){ S.state.examDate = e.target.value; Store.saveState(); renderTop(); }
@@ -8671,7 +8681,7 @@ renderKilit = function(){
 };
 VIEWS.kilit = () => renderKilit();
 
-/* Bugün ekranı sade: gramer yolu Seviyem'e taşındı, VHS kartı kısaldı */
+/* Bugün ekranı sade: gramer yolu Seviyem'e taşındı, kurs kartı kısaldı */
 {
   const _rp = renderPlan;
   renderPlan = function(){ const a = renderA12Card; renderA12Card = () => ""; try { return _rp(); } finally { renderA12Card = a; } };
@@ -8679,12 +8689,12 @@ VIEWS.kilit = () => renderKilit();
   const _rs = renderSeviye;
   renderSeviye = function(){ const h = _rs(); const i = h.indexOf("</section>"); return i < 0 ? h : h.slice(0, i + 10) + renderA12Card() + h.slice(i + 10); };
   VIEWS.seviye = () => renderSeviye();
-  const _vhs = renderVhsCheck;
-  renderVhsCheck = function(){
-    const v = S.state.vhs || {}; const t = dayKey();
+  const _sinif = renderSinifCheck;
+  renderSinifCheck = function(){
+    const v = S.state.sinif || {}; const t = dayKey();
     if(v.from && t < v.from){ const dn = (v.days||[]).map(d=>["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"][d]).join("/");
-      return `<section class="card mini"><div class="row between" style="flex-wrap:nowrap;gap:10px"><span>🏫 <b>VHS kursu</b> <span class="small muted">${esc(v.from.split("-").reverse().slice(0,2).join("."))}'de başlıyor</span></span>${dn ? `<span class="chip">${esc(dn)} ${esc(v.start||"")}</span>` : ""}</div></section>`; }
-    return _vhs().replace(/<p class="small muted">L\d[^<]*<\/p>/, "");
+      return `<section class="card mini"><div class="row between" style="flex-wrap:nowrap;gap:10px"><span>🏫 <b>Dil kursu</b> <span class="small muted">${esc(v.from.split("-").reverse().slice(0,2).join("."))}'de başlıyor</span></span>${dn ? `<span class="chip">${esc(dn)} ${esc(v.start||"")}</span>` : ""}</div></section>`; }
+    return _sinif().replace(/<p class="small muted">L\d[^<]*<\/p>/, "");
   };
 }
 
@@ -8706,7 +8716,7 @@ VIEWS.kilit = () => renderKilit();
 
 /* Bugün ekranındaki kartlar da kendi renkleriyle */
 {
-  const PMAP = [["Günlük görevler","sv-amber","🎯"],["🎁 Haftalık","sv-pink",""],["Haftalık","sv-pink","🎁"],["VHS","sv-teal","🏫"],["Bugün gerçek hayatta","sv-green","🌍"],["Günün Bavyera sözü","sv-blue",""],["Moladasın","sv-teal",""],["Seans sürüyor","sv-blue","▶️"]];
+  const PMAP = [["Günlük görevler","sv-amber","🎯"],["🎁 Haftalık","sv-pink",""],["Haftalık","sv-pink","🎁"],["Dil kursu","sv-teal","🏫"],["Bugün gerçek hayatta","sv-green","🌍"],["Günün Bavyera sözü","sv-blue",""],["Moladasın","sv-teal",""],["Seans sürüyor","sv-blue","▶️"]];
   const colorize = (h, map) => h.replace(/<section class="card([^"]*)">(\s*(?:<div[^>]*>\s*)?)(<h3>|<h2>|<div class="kicker">)([^<]+)/g, (m0, cls, mid, tag, title) => {
     if(/hero|svc/.test(cls)) return m0;
     let hit = map.find(([k]) => title.trim().startsWith(k));
@@ -8750,7 +8760,7 @@ document.addEventListener("click", e => {
 /* ================= Günlük görevler = bugünün planından 3 adım (tek mantık) ================= */
 /* Görevler, "Masada başla"nın zaten getireceği planın en öncelikli 3 adımıdır; gün içinde sabit kalır.
    Görev satırına dokununca o adım masa oturumu içinde hemen başlar; oturum da önce görevleri getirir. */
-const QKIND_ICON = {vocab:"🃏", story:"📖", scen:"🎭", lesson:"📘", a12:"📗", review:"🔁", recheck:"🔁", remed:"🛟", repair:"🛟", life:"📜", exam:"🎓", chat:"💬", roleplay:"🎤", fluency:"⚡", write:"✍️", real:"🌍", game:"🎮", dict:"👂", media:"🎬", test:"🏁", vhsprep:"🏫", vhspost:"🏫", mock:"📝", offline:"🏠", external:"🔗"};
+const QKIND_ICON = {vocab:"🃏", story:"📖", scen:"🎭", lesson:"📘", a12:"📗", review:"🔁", recheck:"🔁", remed:"🛟", repair:"🛟", life:"📜", exam:"🎓", chat:"💬", roleplay:"🎤", fluency:"⚡", write:"✍️", real:"🌍", game:"🎮", dict:"👂", media:"🎬", test:"🏁", sinifprep:"🏫", sinifpost:"🏫", mock:"📝", offline:"🏠", external:"🔗"};
 function questKeys(){
   const d = daily(); const {q} = todayQueue();
   const core = q.filter(x=>!x.extra && !x.locked && !(needsAI(x.kind) && !aiReady()) && x.kind !== "offline" && x.kind !== "external");
@@ -9527,11 +9537,11 @@ function coreTarget(){
   return q;
 }
 newQuota = function(){ return Math.max(0, coreTarget() - newToday()); };
-/* sıradaki kelimeler: sık kullanılan önce; isimlerde o haftaki VHS dersinin konusu öne */
+/* sıradaki kelimeler: sık kullanılan önce; isimlerde o haftaki kurs dersinin konusu öne */
 function coreNext(n, skip){
   if(!CORE.ready) return [];
   skip = skip || new Set();
-  const lek = typeof vhsLek === "function" ? vhsLek() : 0;
+  const lek = typeof sinifLek === "function" ? sinifLek() : 0;
   const hot = new Set(CORE.themes.filter(t=>lek && t.lek === lek).map(t=>t.id));
   const pool = CORE.items.filter(x=>!skip.has(x.i) && coreStatus(x) === "new");
   const by = t => pool.filter(x=>x.t === t).sort((a,b)=>a.r - b.r);
@@ -9592,7 +9602,7 @@ function renderCore(){
   return `<section class="card c-hero">
       <div class="c-ring" style="--p:${pct}"><b>${st.covered}</b><span>/ ${st.total}</span></div>
       <div class="c-hx"><div class="kicker">1500 kelime yolculuğu</div><h2>Günlük konuşmanın çekirdeği</h2>
-      <p class="small">Doktorda, fırında, sokakta, işte en sık geçen kelimeler. Kursta (VHS) o hafta işlenen konunun kelimeleri öne alınır.</p></div></section>
+      <p class="small">Doktorda, fırında, sokakta, işte en sık geçen kelimeler. Kursta o hafta işlenen konunun kelimeleri öne alınır.</p></div></section>
     <section class="c-stats">
       <div style="--c:var(--c-green)"><b>${st.learned}</b><span>sağlam</span></div>
       <div style="--c:var(--c-blue)"><b>${st.learning}</b><span>öğreniliyor</span></div>
@@ -9744,7 +9754,7 @@ function qgFix(v){
   };
 }
 
-/* Düşün ve kur: iki yeni ders + VHS'te o hafta işlenen konuya göre ders seçimi */
+/* Düşün ve kur: iki yeni ders + kursta o hafta işlenen konuya göre ders seçimi */
 DENK_L.push(
 {title:"Kendine dönük fiiller: sich", summary:"Reflexive Verben: mich, dich, sich, uns.", steps:[
  {say:"Bazı fiiller kişinin kendisine döner: ⟦sich waschen⟧ = yıkanmak. ⟦sich⟧ kişiye göre değişir: ⟦ich wasche mich⟧, ⟦du wäschst dich⟧. ⟦sich freuen⟧ = sevinmek, ⟦sehr⟧ = çok.", ask:"Çok seviniyorum.", ans:"Ich freue mich sehr.", why:"ich → mich."},
@@ -9775,7 +9785,7 @@ DENK_L.push(
 const DENK_LEK = {1:[8,4,5], 2:[9], 3:[3], 4:[8,10], 5:[12], 6:[13], 7:[7]};
 denkCurated = function(){
   const st = S.state.denk || {}; const n = st.n || 0; const done = st.doneL || {};
-  const lek = typeof vhsLek === "function" ? vhsLek() : 0;
+  const lek = typeof sinifLek === "function" ? sinifLek() : 0;
   const recent = d => d && d >= addDays(dayKey(), -10);
   let idx = (DENK_LEK[lek] || []).find(i=>DENK_L[i] && !recent(done[i]));
   if(idx === undefined) idx = DENK_L.findIndex((_, i)=>!done[i]);
