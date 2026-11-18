@@ -71,7 +71,7 @@ function chunkFor(s: Scenario, text: string): Chunk | undefined {
   const t = norm(text);
   return s.chunks.find((c) => s.essentials.chunks.includes(c.id) && [c.layers.hd, c.layers.alltag].some((x) => x && norm(x.replace(/…/g, "")).length > 3 && t.includes(norm(x.replace(/…/g, "")))));
 }
-const outcomeOf = (v: Verdict, hinted = false): Outcome => (v.kind === "correct" ? (hinted ? "hinted" : "correct") : v.kind === "unchecked" ? "hinted" : "wrong");
+const outcomeOf = (v: Verdict, hinted = false): Outcome => (v.kind === "correct" ? (hinted ? "hinted" : "correct") : "wrong"); // "unchecked": öğrenci "aynı anlamda" demediyse yanlış sayılır (claim → correct)
 
 /* ============================ Senaryo ana sayfası ============================ */
 export function PlayerHome({ id }: { id: string }) {
@@ -87,7 +87,7 @@ export function PlayerHome({ id }: { id: string }) {
     <div class="stack">
       <ProgressHeader title={s.title_tr} back={`#/learn/${s.domain}`} step={next ? idx(next.k) : 7} doneSteps={doneIdx} />
       <section class="card hero fade">
-        <div class="row between"><span class="chip">{s.level}</span>{s.review.status !== "reviewed" && <span class="chip">inceleme bekliyor</span>}</div>
+        <div class="row between"><span class="chip">{s.level}</span>{s.review.status !== "reviewed" && <span class="chip">deneme dersi</span>}</div>
         <h1 style={{ marginTop: 8 }}>{s.title_tr}</h1>
         <div class="tr2" lang="de">{s.title_de}</div>
         <p class="small" style={{ marginTop: 8 }}>{s.goal_tr}</p>
@@ -154,7 +154,7 @@ export function PlayerSection({ id, section }: { id: string; section: string }) 
 }
 export type SP = { ctx: Ctx; finish: (score: number, total: number, extra?: Partial<ScenarioProgress["runs"][number]>, mut?: (p: ScenarioProgress) => void) => Promise<void>; back: string; setSub?: (n: preact.ComponentChildren) => void };
 
-export function Done({ score, total, back, ctx, title, note, plain }: { score: number; total: number; back: string; ctx: Ctx; title: string; note?: string; plain?: string }) {
+export function Done({ score, total, back, ctx, title, note, plain, production }: { score: number; total: number; back: string; ctx: Ctx; title: string; note?: string; plain?: string; production?: boolean }) {
   // PM-035 §5: tanıma aşamasında puan/oran yok; yalnızca ne öğrenileceği
   const ratio = plain ? 1 : total ? score / total : 1;
   useEffect(() => { haptic(ratio >= 0.7 ? "success" : "error"); }, []);
@@ -163,7 +163,7 @@ export function Done({ score, total, back, ctx, title, note, plain }: { score: n
       <section class={`card ${ratio >= 0.7 ? "hero" : ""}`}>
         <div class="kicker">{title}</div>
         {plain ? <p class="big" style={{ fontSize: "1.4rem" }}>{plain}</p> : <div class="big">{score}/{total}</div>}
-        <p class="small">{plain ? "Şimdi bunları tek tek öğreneceğiz." : ratio >= 0.7 ? "Bu bölüm tamam. Bir sonraki açıldı." : ratio >= 0.5 ? "Biraz daha pratik iyi olur; bu bölümü bir kez daha yapmanı öneririm." : "Bu bölümü bir kez daha yapmak iyi olur, acele yok."}</p>
+        <p class="small">{plain ? "Şimdi bunları tek tek öğreneceğiz." : ratio >= 0.7 ? "Bu bölüm tamam. Bir sonraki açıldı." : ratio >= 0.5 ? "Biraz daha pratik iyi olur; bu bölümü bir kez daha yapmanı öneririm." : production ? "Bir önceki aşamayı yeniden açtım. Önce orayı tekrar etmek iyi olur, acele yok." : "Bu bölümü bir kez daha yapmak iyi olur, acele yok."}</p>
         {note && <p class="tiny">{note}</p>}
       </section>
       <ActionBar><a class="btn primary block" href={back} data-test="back-to-scenario">Senaryoya dön</a></ActionBar>
@@ -193,7 +193,7 @@ function ProduceItem({ ctx, prompt, accepted, itemId, onDone, audio, audioSpeed,
   const [claimed, setClaimed] = useState(false);
   // "Benim cevabım da doğru": doğru sayılır (puan + öğrenci modeli); kayıt içerik kuyruğuna da gider
   const next = () => {
-    const ok = v!.v.kind !== "wrong" || claimed;
+    const ok = v!.v.kind === "correct" || claimed;
     const ch = chunkFor(ctx.s, accepted[0]!);
     if (ch) void rec(ch.id, "chunk", "active", claimed ? "correct" : outcomeOf(v!.v));
     setV(null); onDone(ok);
@@ -239,7 +239,7 @@ function BuildSection({ ctx, finish, back, setSub }: SP) {
   useEffect(() => { setSub?.(<Count i={r.i} n={r.total} />); }, [r.i]);
   useEffect(() => { if (r.done && r.total) void finish(r.score, r.total); }, [r.done]);
   if (!r.total) return <Empty title="Bu senaryoda cümle kurma maddesi yok" />;
-  if (r.done) return <Done score={r.score} total={r.total} back={back} ctx={ctx} title="Aşama 3 · Cümle kurma" />;
+  if (r.done) return <Done score={r.score} total={r.total} back={back} ctx={ctx} title="Aşama 3 · Cümle kurma" production />;
   const b = r.item!;
   const p = b.pattern ? ctx.pt.get(b.pattern) : undefined;
   return (
@@ -257,7 +257,7 @@ function DrillsSection({ ctx, finish, back, setSub }: SP) {
   useEffect(() => { setSub?.(<Count i={r.i} n={r.total} />); }, [r.i]);
   useEffect(() => { if (r.done && r.total) void finish(r.score, r.total); }, [r.done]);
   if (!r.total) return <Empty title="Bu senaryoda alıştırma yok" />;
-  if (r.done) return <Done score={r.score} total={r.total} back={back} ctx={ctx} title="Aşama 4 · Alıştırma" />;
+  if (r.done) return <Done score={r.score} total={r.total} back={back} ctx={ctx} title="Aşama 4 · Alıştırma" production />;
   const d = r.item!;
   return (
     <div class="stack" key={d.id}>
@@ -432,19 +432,19 @@ function DialogueSection({ ctx, finish, back }: SP) {
           <SayItBox entries={entriesOf(ctx)} level={s.level} context_de={line.de} />
           <ActionBar><AnswerField onSubmit={async (a) => {
             setBusy(true); const res = await grade(line.accepted?.length ? line.accepted : [line.de], a, line.tr); setBusy(false);
-            setV({ v: res, a }); setTotal(total + 1); if (res.kind !== "wrong") setScore(score + 1);
+            setV({ v: res, a }); setTotal(total + 1); if (res.kind === "correct") setScore(score + 1);
           }} disabled={busy} submitLabel="Söyle" /></ActionBar>
         </section>
       )}
       {line.r === "B" && v && <VerdictView v={v.v} answer={v.a} itemId={`${d.id}:${li}`} scenarioId={s.id} prompt={line.tr} accepted={line.accepted?.length ? line.accepted : [line.de]}
-        onClaim={() => { if (v.v.kind === "wrong") setScore(score + 1); setClaimedD(true); }}
+        onClaim={() => { if (v.v.kind !== "correct") setScore(score + 1); setClaimedD(true); }}
         onNext={() => { const ch = chunkFor(s, line.de); if (ch) void rec(ch.id, "chunk", "active", claimedD ? "correct" : outcomeOf(v.v, support >= 2)); setClaimedD(false); setV(null); setLi(li + 1); }} nextLabel="Devam" />}
     </div>
   );
 }
 function DialogueDone({ score, total, back, ctx, onFinish }: { score: number; total: number; back: string; ctx: Ctx; onFinish: () => Promise<void> }) {
   useEffect(() => { void onFinish(); }, []);
-  return <Done score={score} total={total} back={back} ctx={ctx} title="Aşama 5 · Destekli diyalog" note={score / Math.max(1, total) >= 0.8 ? "Bir dahaki sefere daha az destekle deneyeceğiz." : undefined} />;
+  return <Done score={score} total={total} back={back} ctx={ctx} title="Aşama 5 · Destekli diyalog" production note={score / Math.max(1, total) >= 0.8 ? "Bir dahaki sefere daha az destekle deneyeceğiz." : undefined} />;
 }
 function entriesOf(ctx: Ctx): LocalEntry[] {
   const out: LocalEntry[] = [];
@@ -560,7 +560,7 @@ function RoleplaySection({ ctx, finish, back }: SP) {
         <p class="tiny muted">Konuşma sırasında düzeltme yok; sonunda Türkçe rapor alırsın. "Bu ne demek?" ve "Almanca nasıl derim?" puan düşürmez.</p>
         <div class="kicker">Zorluk</div>
         <div class="seg" role="group">{([1, 2, 3] as const).map((n) => <button aria-pressed={level === n} onClick={() => setLevel(n)}>{n === 1 ? "Kolay" : n === 2 ? "Normal" : "Gerçekçi"}</button>)}</div>
-        {mode === "offline" && <FeedbackBand kind="info" title="Yapay zekâ bağlı değil: senaryodaki diyalogla rol yapılıyor.">{aiState(api).reason} Karşı taraf hazır cümlelerle konuşur; sonunda görevi kendin değerlendirirsin.</FeedbackBand>}
+        {mode === "offline" && <FeedbackBand kind="info" title="Karşındaki kişi dersin hazır cümleleriyle konuşur.">Anlamazsan <b>Noch mal, bitte</b> de; aynı cümleyi yavaşça tekrar eder. Sonunda görevi kendin değerlendirirsin.</FeedbackBand>}
       </section>
       <ActionBar><button class="btn primary block" onClick={start} data-test="rp-start">Konuşmayı başlat</button></ActionBar>
     </div>

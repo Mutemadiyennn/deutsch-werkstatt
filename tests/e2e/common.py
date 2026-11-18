@@ -78,7 +78,8 @@ def default_ai(task, v):
         return 200, {"goals": [{"id": g["id"], "done": i < len(gs) - 1} for i, g in enumerate(gs)], "strengths_tr": ["Kibar başladın."], "fixes": [{"said": "Ich will Termin", "better": "Ich hätte gern einen Termin.", "why_tr": "Kibar istek."}], "english_fallbacks": 0, "gaps_de": ["der Vormittag"], "summary_tr": "Randevuyu aldın; saat kısmında kısa kaldın."}
     return 404, {"error": {"code": "bad_request"}}
 
-def launch(p, color_scheme="light", viewport=None, service_workers="allow"):
+def launch(p, color_scheme="light", viewport=None, service_workers="block"):
+    # Servis işçisi varsayılan kapalı: WebKit'te page.route, SW denetimindeki sayfanın isteklerini görmez (inceleme #43 P0-1). Yalnızca ucak.py açar.
     bt = getattr(p, BROWSER)
     b = bt.launch()
     if DEVICE:

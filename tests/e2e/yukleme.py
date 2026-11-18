@@ -21,10 +21,12 @@ def main():
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         # 2) ekran geçişi (sekmeler, içerik önbellekte)
         worst = 0
-        for tab, sel in [("learn", "main h1, main h2"), ("progress", "[data-test=panel-focus]"), ("profile", "main h1, main h2"), ("today", "[data-test=next-activity]")]:
+        # her hedefin seçicisi yalnızca o ekranda var (önceki ekranda eşleşip sahte geçiş vermesin); süre tıklamadan önce başlar
+        for tab, sel in [("learn", "[data-domain]"), ("progress", "[data-test=panel-focus]"), ("profile", "[data-test=goal]"), ("today", "[data-test=next-activity]")]:
+            other = "learn" if tab == "today" else "today"
             for _ in range(2):
-                pg.click(f"[data-tab={tab}]"); t0 = time.time(); pg.wait_for_selector(sel); worst = max(worst, (time.time() - t0) * 1000)
-                pg.click("[data-tab=today]" if tab != "today" else "[data-tab=learn]"); pg.wait_for_timeout(150)
+                pg.click(f"[data-tab={other}]"); pg.wait_for_selector(sel, state="detached"); pg.wait_for_timeout(150)
+                t0 = time.time(); pg.click(f"[data-tab={tab}]"); pg.wait_for_selector(sel); worst = max(worst, (time.time() - t0) * 1000)
         check(worst <= 300, f"en yavaş ekran geçişi {worst:.0f} ms (≤ 300)")
         b.close()
         # 3) içerik isteği takılırsa: ≤ 10 sn içinde hata + "Tekrar dene" (servis işçisi kapalı: önbellek olmayan ilk kullanım)

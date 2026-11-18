@@ -6,7 +6,7 @@ import type { Assessment, ContentIndex, Profile } from "@dw/shared";
 import { Ctx, LEARNING_ROUTES, parseHash, type AppCtx, type Route } from "./state.ts";
 import { auth, type AuthUser } from "./services/auth.ts";
 import { createApi } from "./services/api.ts";
-import { loadIndex } from "./services/content.ts";
+import { loadIndex, within } from "./services/content.ts";
 import { getProfile, latestPlacement, saveProfile } from "./data/db.ts";
 import { setLearning, startFocus, updateFocusConfig } from "./services/focusRuntime.ts";
 import { TabBar, Loading } from "./ui/components.tsx";
@@ -60,7 +60,7 @@ export function App() {
       setPlacement(await latestPlacement());
       await startFocus(p);
     })();
-    loadIndex().then(setIndex).catch((e) => setIndexError(String(e.message || e)));
+    within(loadIndex()).then(setIndex).catch((e) => setIndexError(String(e.message || e)));
   }, [user?.uid]);
 
   useEffect(() => { if (route.name !== "section") setLearning(LEARNING_ROUTES.has(route.name), route.name === "assess" ? "assess" : "vocab"); window.scrollTo(0, 0); }, [route]);

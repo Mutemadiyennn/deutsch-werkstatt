@@ -85,7 +85,7 @@ export function Onboarding() {
       {step === 2 && (
         <section class="stack">
           <h1>Öncelik sırası</h1>
-          <p class="muted small">Gerçek hayattaki 13 durum. İstersen sırayı değiştir; ilk sıradakilerle başlarız.</p>
+          <p class="muted small">Gerçek hayattaki {p.domains.priority.length} durum. İstersen sırayı değiştir; ilk sıradakilerle başlarız.</p>
           <ol class="list card" style={{ paddingLeft: 0 }}>
             {p.domains.priority.map((d, i) => (
               <li class="row between" key={d}>

@@ -299,12 +299,13 @@ function SayQ({ card, onDone }: { card: Card; onDone: (ok: boolean) => void }) {
   const grade = useGrader();
   const [v, setV] = useState<{ v: Verdict; a: string } | null>(null);
   const [busy, setBusy] = useState(false);
+  const [claimed, setClaimed] = useState(false);
   const accepted = [card.de, ...(card.alltag ? [card.alltag] : [])].map((x) => x.replace(/…/g, "").trim());
   return (
     <div class="stack fade" data-test="say-q">
       <section class="card stack"><div class="kicker">Almancası ne? Söyle ya da yaz</div><div class="de-lg">{card.tr}</div></section>
       {!v && <ActionBar><AnswerField onSubmit={async (a) => { setBusy(true); const r = await grade(accepted, a, card.tr); setBusy(false); setV({ v: r, a }); }} disabled={busy} /></ActionBar>}
-      {v && <VerdictView v={v.v} answer={v.a} itemId={card.id} prompt={card.tr} accepted={accepted} onNext={() => onDone(v.v.kind !== "wrong")} />}
+      {v && <VerdictView v={v.v} answer={v.a} itemId={card.id} prompt={card.tr} accepted={accepted} onClaim={() => setClaimed(true)} onNext={() => onDone(v.v.kind === "correct" || claimed)} />}
     </div>
   );
 }

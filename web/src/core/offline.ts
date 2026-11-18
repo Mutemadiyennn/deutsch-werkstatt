@@ -18,5 +18,9 @@ export function offlineDialogueIndex(s: Scenario): number {
 }
 /** Öğrenci tekrar ya da yavaş söylemeyi istedi mi? (strateji dersinin işe yaradığını göstermek için aynı satır yavaş tekrarlanır) */
 export function isRepeatRequest(text: string): boolean {
-  return /\b(noch\s*(ein)?mal|nochmal|wiederholen|langsamer|wie\s+bitte|bitte\s+was|nicht\s+verstanden|verstehe\s+(ich\s+)?nicht)\b/i.test(text);
+  const t = text.toLowerCase();
+  // "noch einmal" tek başına yetmez ("Ich rufe später noch einmal an."): karşıdakine söylemesi/tekrarlaması rica edilmeli
+  if (/\b(wiederholen|langsamer|wie\s+bitte|bitte\s+was|nicht\s+verstanden|verstehe\s+(ich\s+)?(sie\s+|das\s+)?nicht)\b/.test(t)) return true;
+  if (/\b(noch\s*(ein)?mal|nochmal)\b/.test(t)) return /\b(sagen|sprechen|bitte)\b/.test(t) && !/\b(ich|wir)\s+(rufe|rufen|komme|kommen|melde|versuche)\b/.test(t);
+  return false;
 }

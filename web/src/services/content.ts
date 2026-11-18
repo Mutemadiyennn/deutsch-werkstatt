@@ -22,6 +22,13 @@ async function getJson(url: string): Promise<unknown> {
     throw e;
   } finally { clearTimeout(t); }
 }
+/** Zincirin tamamı için üst sınır (inceleme #43): current.json → index.json → dosya en çok LOAD_TIMEOUT_MS sürer */
+export function within<T>(p: Promise<T>, ms = LOAD_TIMEOUT_MS): Promise<T> {
+  return new Promise<T>((res, rej) => {
+    const t = setTimeout(() => rej(new Error("İçerik zamanında yüklenemedi. İnternet bağlantını kontrol edip tekrar dene.")), ms);
+    p.then((v) => { clearTimeout(t); res(v); }, (e) => { clearTimeout(t); rej(e); });
+  });
+}
 export function loadIndex(): Promise<ContentIndex> {
   if (!idx) idx = (async () => {
     const cur = z.object({ version: z.string() }).parse(await getJson(base() + "current.json"));
@@ -33,12 +40,14 @@ function file<T>(name: string, schema: z.ZodType<T>): Promise<T> {
   if (!cache.has(name)) cache.set(name, (async () => { const i = await loadIndex(); return schema.parse(await getJson(`${base()}${i.version}/${name}`)); })().catch((e) => { cache.delete(name); throw e; }));
   return cache.get(name) as Promise<T>;
 }
-export const loadAssessBank = () => file("assess.json", z.array(AssessItem));
-export const loadLexicon = () => file("lexemes.json", z.object({ lexemes: z.array(Lexeme), patterns: z.array(Pattern) }));
-export const loadGrammar = () => file("grammar.json", z.array(GrammarNote));
-export async function loadScenario(id: string): Promise<Scenario> {
-  const i = await loadIndex();
-  const f = i.files.scenarios[id];
-  if (!f) throw new Error("Senaryo bulunamadı");
-  return file(f, Scenario);
+export const loadAssessBank = () => within(file("assess.json", z.array(AssessItem)));
+export const loadLexicon = () => within(file("lexemes.json", z.object({ lexemes: z.array(Lexeme), patterns: z.array(Pattern) })));
+export const loadGrammar = () => within(file("grammar.json", z.array(GrammarNote)));
+export function loadScenario(id: string): Promise<Scenario> {
+  return within((async () => {
+    const i = await loadIndex();
+    const f = i.files.scenarios[id];
+    if (!f) throw new Error("Senaryo bulunamadı");
+    return file(f, Scenario);
+  })());
 }

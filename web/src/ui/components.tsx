@@ -103,5 +103,5 @@ export function Art({ art, de }: { art?: string; de: string }) {
 }
 
 export function Loading({ text = "Yükleniyor…" }: { text?: string }) {
-  return <p class="muted" aria-live="polite">{text}</p>;
+  return <p class="muted" aria-live="polite" aria-busy="true" data-loading>{text}</p>;
 }

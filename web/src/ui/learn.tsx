@@ -33,10 +33,15 @@ export function VerdictView({ v, answer, onNext, onClaim, itemId, scenarioId, pr
       {v.kind === "wrong" && <FeedbackBand kind="bad" title="Şöyle olmalı:"><span class="de" lang="de" style={{ fontSize: "1.05rem" }}>{v.best}</span>
         {v.words && <div style={{ marginTop: 4 }} lang="de">{v.words.map((w) => <span style={{ marginRight: 4, textDecoration: w.st === "miss" ? "underline wavy" : "none", opacity: w.st === "ok" ? 0.7 : 1 }}>{w.w}</span>)}</div>}
         {v.note && <div>{v.note}</div>}</FeedbackBand>}
-      {v.kind === "unchecked" && <FeedbackBand kind="info" title="Kontrol edilemedi — yanlış sayılmadı.">{v.note} Örnek cevap: <span class="de" lang="de">{v.best}</span></FeedbackBand>}
-      {v.kind !== "correct" && !claimed && <button class="btn ghost sm" onClick={claim} data-test="claim">Benim cevabım da doğru</button>}
-      {claimed && <div class="small muted">Kaydedildi: doğru sayıldı ve içerik ekibinin inceleme listesine eklendi.</div>}
-      <button class="btn primary block" onClick={onNext} autoFocus data-test="next">{nextLabel}</button>
+      {v.kind === "unchecked" && <FeedbackBand kind="info" title="Bu cevabı kendim kontrol edemedim.">Doğrusu: <span class="de" lang="de" style={{ fontSize: "1.05rem" }}>{v.best}</span><div>Seninki aynı anlama mı geliyordu?</div></FeedbackBand>}
+      {v.kind === "unchecked" && !claimed ? <>
+        <button class="btn block" onClick={claim} data-test="claim">Evet, aynı anlamda</button>
+        <button class="btn primary block" onClick={onNext} autoFocus data-test="next">Hayır, doğrusunu öğrendim</button>
+      </> : <>
+        {v.kind === "wrong" && !claimed && <button class="btn ghost sm" onClick={claim} data-test="claim">Benim cevabım da doğru</button>}
+        {claimed && <div class="small muted">Kaydedildi: doğru sayıldı ve içerik ekibinin inceleme listesine eklendi.</div>}
+        <button class="btn primary block" onClick={onNext} autoFocus data-test="next">{nextLabel}</button>
+      </>}
     </div>
   );
 }
