@@ -1,7 +1,12 @@
 {
  "batch": "003",
  "review": {
-  "status": "draft"
+  "status": "reviewed",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-18",
+  "notes": "OD-9 dönüşümü ve tam kart incelemesi: docs/v2/reviews/lexicon-batch-003.md; okur: docs/v2/reviews/okur/lexicon-batch-003.md ve re1–re3.",
+  "okur": "passed",
+  "okur_at": "2026-11-18"
  },
  "items": [
   {
@@ -24,8 +29,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"ikisi de\" = \"beide\"; \"beides\" iki şey için: \"Ich nehme beides\".",
-    "Artikelli kullanımda: \"die beiden Kinder\" (iki çocuk)."
+    "**die beide Kinder** yanlış. Doğrusu **die beiden Kinder**.",
+    "İki şeyi birden alırken **Ich nehme beides** dersin."
    ],
    "examples": [
     {
@@ -59,12 +64,18 @@
    "freqRank": 190,
    "domains": [
     "smalltalk"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "İki kişinin ya da iki şeyin ikisini birden anlatır.",
+    "ne_zaman_tr": "İki seçenekten ikisini de istediğinde.",
+    "parcalar": [],
+    "ipucu_tr": "Çay ve kahve gibi iki ayrı şey için **beides** dersin."
+   }
   },
   {
    "id": "lx:Herr",
    "de": "der Herr",
-   "tr": "bay, bey; beyefendi",
+   "tr": "bay, bey, beyefendi",
    "pos": "noun",
    "art": "der",
    "pl": "Herren",
@@ -84,15 +95,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Akkusativ ve Dativ'de \"-n\" alır: \"Ich spreche mit Herrn Weber\" (\"mit Herr Weber\" yanlış).",
-    "Soyadla kullanılır: \"Herr Kaya\", ön adla değil."
+    "**mit Herr Weber** yanlış. Doğrusu **mit Herrn Weber**.",
+    "**Herr Mehmet** yanlış. Soyadıyla söyle: **Herr Kaya**."
    ],
    "examples": [
     {
      "id": "lx:Herr:1",
      "de": "Guten Tag, Herr Schmidt!",
      "tr": "İyi günler Schmidt Bey!",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "two men shaking hands greeting office"
     },
     {
      "id": "lx:Herr:2",
@@ -108,8 +120,8 @@
     },
     {
      "id": "lx:Herr:4",
-     "de": "– Herr Yılmaz? – Ja, das bin ich.",
-     "tr": "– Yılmaz Bey? – Evet, benim.",
+     "de": "– Ist Herr Yılmaz schon da? – Ja, er wartet draußen.",
+     "tr": "– Yılmaz Bey geldi mi? – Evet, dışarıda bekliyor.",
      "layer": "alltag",
      "dialog": true
     }
@@ -121,12 +133,17 @@
     "amt",
     "arzt",
     "telefon"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir erkeğe saygıyla seslenirken soyadının önüne gelir.",
+    "ne_zaman_tr": "Resmî yerde, tanımadığın bir erkekle konuşurken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:natürlich",
    "de": "natürlich",
-   "tr": "tabii ki, elbette; doğal",
+   "tr": "tabii ki, elbette, doğal",
    "pos": "adv",
    "collocations": [
     {
@@ -143,8 +160,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Onay olarak çok kullanılır: \"Natürlich!\" = \"Tabii ki!\". Sıfat anlamı \"doğal\".",
-    "Cümle başında fiil ikinci sırada: \"Natürlich komme ich\"."
+    "**Natürlich ich komme** yanlış. Doğrusu **Natürlich komme ich**.",
+    "Tek başına **Natürlich!** tabii ki demektir."
    ],
    "examples": [
     {
@@ -170,7 +187,8 @@
      "de": "– Darf ich das Fenster aufmachen? – Natürlich.",
      "tr": "– Pencereyi açabilir miyim? – Tabii.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "person opening window at home"
     }
    ],
    "level": "A1",
@@ -179,12 +197,18 @@
    "domains": [
     "strategie",
     "smalltalk"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir isteğe ya da soruya rahatça evet demeni sağlar.",
+    "ne_zaman_tr": "Biri senden izin ya da yardım isteyince.",
+    "parcalar": [],
+    "ipucu_tr": "**Das ist ganz natürlich** bu çok doğal demektir."
+   }
   },
   {
    "id": "lx:tot",
    "de": "tot",
-   "tr": "ölü",
+   "tr": "ölü, ölmüş",
    "pos": "adj",
    "collocations": [
     {
@@ -201,8 +225,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"tot\" sıfat (ölü), \"der Tod\" isim (ölüm), \"sterben\" fiil (ölmek); karıştırma.",
-    "Abartıda: \"Ich bin todmüde\" = ölesiye yorgunum."
+    "**Er ist Tod** yanlış. Doğrusu **Er ist tot**.",
+    "**Ich bin todmüde** ölesiye yorgunum demektir."
    ],
    "examples": [
     {
@@ -214,14 +238,15 @@
     {
      "id": "lx:tot:2",
      "de": "Nach der Arbeit bin ich halb tot.",
-     "tr": "İşten sonra yarı ölüyüm.",
+     "tr": "İşten sonra yarı ölü gibiyim.",
      "layer": "hd"
     },
     {
      "id": "lx:tot:3",
      "de": "Mein Handy ist tot.",
      "tr": "Telefonum öldü (şarjı bitti/bozuldu).",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "smartphone with empty battery"
     },
     {
      "id": "lx:tot:4",
@@ -232,17 +257,22 @@
     }
    ],
    "level": "B1",
-   "tier": "K1",
+   "tier": "K2",
    "freqRank": 193,
    "domains": [
     "notfall",
     "medien"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir canlının artık yaşamadığını söyler.",
+    "parcalar": [],
+    "ipucu_tr": "Konuşmada şarjı bitmiş telefon için de kullanılır."
+   }
   },
   {
    "id": "lx:lange",
    "de": "lange",
-   "tr": "uzun süre",
+   "tr": "uzun süre, uzun zaman",
    "pos": "adv",
    "collocations": [
     {
@@ -260,15 +290,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Süre için \"lange\" (zarf), uzunluk için \"lang\" (sıfat): \"Wie lange dauert das?\" / \"Der Weg ist lang\".",
-    "\"seit langem\" = uzun zamandır."
+    "Süre sorarken **Wie lange dauert das?** dersin. Uzunlukta **Der Weg ist lang** dersin.",
+    "**seit langem** uzun zamandır demektir."
    ],
    "examples": [
     {
      "id": "lx:lange:1",
      "de": "Wie lange muss ich warten?",
      "tr": "Ne kadar beklemem gerekiyor?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "people sitting in waiting room"
     },
     {
      "id": "lx:lange:2",
@@ -296,7 +327,12 @@
    "domains": [
     "arzt",
     "amt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin çok zaman sürdüğünü söyler.",
+    "ne_zaman_tr": "Bekleme süresini sorarken: **Wie lange?**",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:treffen",
@@ -329,15 +365,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Buluşmak \"sich treffen\": \"Wir treffen uns um acht\" (\"Wir treffen um acht\" eksik).",
-    "Çekim: du triffst, er trifft (\"er treffet\" yanlış)."
+    "**Wir treffen um acht** eksik. Doğrusu **Wir treffen uns um acht**.",
+    "**er treffet** yanlış. Doğrusu **er trifft**."
    ],
    "examples": [
     {
      "id": "lx:treffen:1",
      "de": "Wir treffen uns am Bahnhof.",
      "tr": "Garda buluşuyoruz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "friends meeting at train station"
     },
     {
      "id": "lx:treffen:2",
@@ -365,12 +402,17 @@
    "domains": [
     "freizeit",
     "arbeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Biriyle bir yerde bir araya gelmeyi söyler.",
+    "ne_zaman_tr": "Arkadaşınla plan yaparken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:stellen",
    "de": "stellen",
-   "tr": "koymak (dik); kurmak",
+   "tr": "dik koymak, kurmak",
    "pos": "verb",
    "verb": {
     "praesens3": "stellt",
@@ -397,8 +439,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Dik koymak \"stellen\", yatay koymak \"legen\": \"Ich stelle die Flasche auf den Tisch\" / \"Ich lege das Buch auf den Tisch\".",
-    "Soru sormak \"eine Frage stellen\"; \"eine Frage machen\" yanlış."
+    "Dik duran şey için **stellen**, yatan şey için **legen** dersin.",
+    "**eine Frage machen** yanlış. Doğrusu **eine Frage stellen**."
    ],
    "examples": [
     {
@@ -411,12 +453,13 @@
      "id": "lx:stellen:2",
      "de": "Stell die Tasche bitte hierhin.",
      "tr": "Çantayı buraya koy lütfen.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "putting bag down on floor"
     },
     {
      "id": "lx:stellen:3",
-     "de": "Stell dich nicht so an!",
-     "tr": "Abartma! / Nazlanma!",
+     "de": "Stell's einfach auf den Tisch.",
+     "tr": "Masaya koy, yeter.",
      "layer": "alltag"
     },
     {
@@ -433,7 +476,12 @@
    "domains": [
     "wohnen",
     "arbeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyi ayakta duracak biçimde bir yere koymayı söyler.",
+    "parcalar": [],
+    "ipucu_tr": "Soru sormak da bu kelimeyle olur: **eine Frage stellen**."
+   }
   },
   {
    "id": "lx:ach",
@@ -455,8 +503,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"Ach so\" anlama bildirir, soru tonuyla değil düz tonla söylenir.",
-    "\"Ach was!\" / \"Ach Quatsch!\" = \"Yok canım, saçma\" — itiraz bildirir."
+    "**Ach so** düz tonla söylenince anladım demektir.",
+    "**Ach was!** yok canım demektir."
    ],
    "examples": [
     {
@@ -480,7 +528,7 @@
     {
      "id": "lx:ach:4",
      "de": "– Der Termin ist erst morgen. – Ach so, ich dachte heute.",
-     "tr": "– Randevu yarın. – Haa, ben bugün sanmıştım.",
+     "tr": "– Randevu ancak yarın. – Haa, ben bugün sanmıştım.",
      "layer": "alltag",
      "dialog": true
     }
@@ -491,12 +539,17 @@
    "domains": [
     "smalltalk",
     "gefuehle"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Şaşkınlığı, üzüntüyü ya da yeni anladığını gösterir.",
+    "ne_zaman_tr": "Karşındakinin sözüne hemen tepki verirken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:gar",
    "de": "gar",
-   "tr": "(gar nicht) hiç; pişmiş",
+   "tr": "hiç, pişmiş",
    "pos": "particle",
    "collocations": [
     {
@@ -514,8 +567,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"gar\" olumsuzluğu güçlendirir: \"Das ist gar nicht schlimm\" = Hiç de kötü değil.",
-    "Mutfakta \"gar\" = pişmiş: \"Ist das Fleisch gar?\""
+    "**Das ist gar nicht schlimm** hiç de kötü değil demektir.",
+    "Mutfakta **gar** pişmiş demektir: **Ist das Fleisch gar?**"
    ],
    "examples": [
     {
@@ -550,7 +603,11 @@
    "domains": [
     "gefuehle",
     "smalltalk"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "**nicht** ve **kein** kelimelerinin anlamını güçlendirir.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:spät",
@@ -573,15 +630,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"Geç kaldım\" = \"Ich bin zu spät\" ya da \"Ich komme zu spät\"; \"Ich bin spät geblieben\" yanlış.",
-    "\"später\" = sonra: \"Bis später!\""
+    "**Ich bin spät geblieben** yanlış. Doğrusu **Ich bin zu spät**.",
+    "**später** daha sonra demektir: **Bis später!**"
    ],
    "examples": [
     {
      "id": "lx:spät:1",
      "de": "Entschuldigung, ich bin zu spät.",
      "tr": "Pardon, geç kaldım.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person running late checking watch"
     },
     {
      "id": "lx:spät:2",
@@ -598,7 +656,7 @@
     {
      "id": "lx:spät:4",
      "de": "– Kommst du heute? – Ja, aber etwas später.",
-     "tr": "– Bugün geliyor musun? – Evet, ama biraz geç.",
+     "tr": "– Bugün geliyor musun? – Evet, ama biraz daha geç.",
      "layer": "alltag",
      "dialog": true
     }
@@ -609,7 +667,12 @@
    "domains": [
     "arbeit",
     "verkehr"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin beklenen zamandan sonra olduğunu söyler.",
+    "ne_zaman_tr": "Geç kaldığında ya da saati sorarken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Sache",
@@ -634,8 +697,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"Sache\" somut ve soyut \"şey\"dir; konuşmada çoğu zaman \"Ding\" de duyulur.",
-    "Çoğulda \"eşyalar\": \"Pack deine Sachen!\""
+    "**Sache** hem eşya hem de konu için kullanılır.",
+    "Birden çok olunca eşyalar demektir: **Pack deine Sachen!**"
    ],
    "examples": [
     {
@@ -661,7 +724,8 @@
      "de": "– Wo sind meine Sachen? – Im Schrank.",
      "tr": "– Eşyalarım nerede? – Dolapta.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "clothes and belongings in wardrobe"
     }
    ],
    "level": "A2",
@@ -670,12 +734,16 @@
    "domains": [
     "arbeit",
     "smalltalk"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyi, bir işi ya da konuyu genel olarak anlatır.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:rufen",
    "de": "rufen",
-   "tr": "çağırmak; seslenmek",
+   "tr": "çağırmak, seslenmek",
    "pos": "verb",
    "verb": {
     "praesens3": "ruft",
@@ -702,8 +770,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Telefonla aramak \"anrufen\" (ayrılabilen): \"Ich rufe dich an\". \"rufen\" tek başına \"seslenmek/çağırmak\"tır.",
-    "Acil durumda: \"Rufen Sie bitte einen Krankenwagen!\" (Ambulans çağırın)."
+    "Telefonla aramak **anrufen** olur: **Ich rufe dich an**.",
+    "Ambulans için **Rufen Sie bitte einen Krankenwagen!** dersin."
    ],
    "examples": [
     {
@@ -716,7 +784,8 @@
      "id": "lx:rufen:2",
      "de": "Soll ich dir ein Taxi rufen?",
      "tr": "Sana taksi çağırayım mı?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person hailing taxi on street"
     },
     {
      "id": "lx:rufen:3",
@@ -738,12 +807,17 @@
    "domains": [
     "notfall",
     "telefon"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Birine seslenmeyi ya da yardım için birini çağırmayı söyler.",
+    "ne_zaman_tr": "Acil durumda polis, ambulans ya da taksi isterken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:ins",
    "de": "ins",
-   "tr": "-e, içine (in + das)",
+   "tr": "-e, içine",
    "pos": "prep",
    "collocations": [
     {
@@ -760,8 +834,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"ins\" = \"in das\", nötr isimlerle yön bildirir: \"ins Kino\", \"ins Büro\". Konumda \"im\": \"im Kino\".",
-    "Dişil isimde \"in die\": \"in die Stadt\" (\"ins Stadt\" yanlış)."
+    "Gidiş **ins Kino**, orada olmak **im Kino**.",
+    "**ins Stadt** yanlış. Doğrusu **in die Stadt**."
    ],
    "examples": [
     {
@@ -796,7 +870,11 @@
    "domains": [
     "freizeit",
     "wohnen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "**in das** kelimelerinin kısası, bir yere gidişi söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:dort",
@@ -819,15 +897,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"dort\" ve \"da\" aynı anlamda; konuşmada \"da\" daha sık.",
-    "Yön için \"dorthin\": \"Ich gehe dorthin\" (\"Ich gehe dort\" eksik)."
+    "**Ich gehe dort** eksik. Doğrusu **Ich gehe dorthin**.",
+    "Konuşmada **dort** yerine çoğu zaman **da** duyulur."
    ],
    "examples": [
     {
      "id": "lx:dort:1",
      "de": "Dort drüben ist der Eingang.",
      "tr": "Giriş şu karşıda.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person pointing at building entrance"
     },
     {
      "id": "lx:dort:2",
@@ -854,12 +933,17 @@
    "freqRank": 203,
    "domains": [
     "verkehr"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Konuşanın uzağındaki bir yeri gösterir.",
+    "ne_zaman_tr": "Yol tarif ederken ya da bir yeri gösterirken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:weiter",
    "de": "weiter",
-   "tr": "devam, ileri; daha",
+   "tr": "devam, ileri, daha",
    "pos": "adv",
    "collocations": [
     {
@@ -876,15 +960,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Ayrılabilen fiillerin parçası: \"Machen Sie bitte weiter\" (\"weiter\" sonda).",
-    "\"Wie geht's weiter?\" = \"Şimdi ne olacak / devamı ne?\""
+    "**Machen Sie bitte weiter** derken **weiter** sona gelir.",
+    "**Wie geht's weiter?** şimdi ne olacak demektir."
    ],
    "examples": [
     {
      "id": "lx:weiter:1",
      "de": "Gehen Sie geradeaus und dann weiter bis zur Ampel.",
      "tr": "Dümdüz gidin, sonra ışıklara kadar devam edin.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "pedestrian walking toward traffic light"
     },
     {
      "id": "lx:weiter:2",
@@ -901,7 +986,7 @@
     {
      "id": "lx:weiter:4",
      "de": "– Soll ich aufhören? – Nein, mach ruhig weiter.",
-     "tr": "– Durayım mı? – Hayır, rahatça devam et.",
+     "tr": "– Durayım mı? – Hayır, sen devam et.",
      "layer": "alltag",
      "dialog": true
     }
@@ -912,7 +997,12 @@
    "domains": [
     "verkehr",
     "strategie"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir işin ya da yolun sürdüğünü söyler.",
+    "ne_zaman_tr": "Yol tarifinde ya da birine devam et derken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:fallen",
@@ -927,7 +1017,7 @@
    },
    "collocations": [
     {
-     "de": "leicht fallen",
+     "de": "leichtfallen",
      "tr": "kolay gelmek"
     },
     {
@@ -940,15 +1030,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Perfekt'i \"sein\" ile: \"Ich bin gefallen\".",
-    "\"Es fällt mir schwer\" = Bana zor geliyor; kişi Dativ."
+    "**Ich habe gefallen** yanlış. Doğrusu **Ich bin gefallen**.",
+    "Bana zor geliyor demek için **Es fällt mir schwer** dersin."
    ],
    "examples": [
     {
      "id": "lx:fallen:1",
      "de": "Das Kind ist vom Fahrrad gefallen.",
      "tr": "Çocuk bisikletten düştü.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "child fallen off bicycle"
     },
     {
      "id": "lx:fallen:2",
@@ -975,7 +1066,11 @@
    "freqRank": 205,
    "domains": [
     "notfall"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Birinin ya da bir şeyin yere düşmesini söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:niemand",
@@ -998,8 +1093,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Türkçedeki çift olumsuzluk yok: \"Niemand kommt nicht\" yanlış; \"Niemand kommt\".",
-    "Fiil tekil: \"Niemand weiß das\"."
+    "**Niemand kommt nicht** yanlış. Doğrusu **Niemand kommt**.",
+    "Kimse var mı diye sorarken **jemand** dersin: **Ist jemand da?**"
    ],
    "examples": [
     {
@@ -1034,7 +1129,12 @@
    "domains": [
     "telefon",
     "smalltalk"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir kişinin bile olmadığını söyler.",
+    "ne_zaman_tr": "Kapıyı ya da telefonu açan olmayınca.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:seit",
@@ -1056,8 +1156,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"seit\" ile şimdiki zaman kullanılır: \"Ich wohne seit zwei Jahren hier\" (\"habe gewohnt\" yanlış anlam).",
-    "\"seit\" Dativ ister: \"seit einer Woche\", \"seit drei Tagen\"."
+    "**Ich habe seit zwei Jahren hier gewohnt** yanlış. Doğrusu **Ich wohne seit zwei Jahren hier**.",
+    "**seit eine Woche** yanlış. Doğrusu **seit einer Woche**."
    ],
    "examples": [
     {
@@ -1092,12 +1192,17 @@
    "domains": [
     "smalltalk",
     "arzt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin ne zaman başlayıp hâlâ sürdüğünü söyler.",
+    "ne_zaman_tr": "Doktor ağrının ne zamandır sürdüğünü sorunca.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Ordnung",
    "de": "die Ordnung",
-   "tr": "düzen; (in Ordnung) tamam",
+   "tr": "düzen, tamam",
    "pos": "noun",
    "art": "die",
    "pl": "Ordnungen",
@@ -1116,15 +1221,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"In Ordnung\" = \"Tamam\", \"Okay\"ın kibar karşılığı; resmî yerde de kullanılır.",
-    "\"nicht in Ordnung\" = bozuk/sorunlu: \"Mit dem Auto ist etwas nicht in Ordnung\"."
+    "**In Ordnung** tamam demenin kibar yoludur.",
+    "**nicht in Ordnung** bozuk ya da sorunlu demektir."
    ],
    "examples": [
     {
      "id": "lx:Ordnung:1",
      "de": "Ist alles in Ordnung?",
      "tr": "Her şey yolunda mı?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "comforting worried friend"
     },
     {
      "id": "lx:Ordnung:2",
@@ -1152,12 +1258,17 @@
    "domains": [
     "strategie",
     "wohnen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Eşyaların ya da işlerin düzenli olma hâlini anlatır.",
+    "ne_zaman_tr": "**In Ordnung** diyerek bir teklifi kabul edersin.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:vom",
    "de": "vom",
-   "tr": "-den (von + dem)",
+   "tr": "-den",
    "pos": "prep",
    "collocations": [
     {
@@ -1174,8 +1285,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"vom\" = \"von dem\", eril ve nötr isimle: \"vom Arzt\". Dişilde \"von der\": \"von der Arbeit\".",
-    "Tarih: \"vom 1. bis zum 5.\" = 1'inden 5'ine kadar."
+    "**vom Arbeit** yanlış. Doğrusu **von der Arbeit**.",
+    "Tarihte **vom ersten bis zum fünften** ayın birinden beşine kadar demektir."
    ],
    "examples": [
     {
@@ -1210,7 +1321,11 @@
    "domains": [
     "verkehr",
     "arbeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "**von dem** kelimelerinin kısası, nereden geldiğini söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Problem",
@@ -1235,15 +1350,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Nötr isimdir: \"das Problem\"; \"der Problem\" yanlış.",
-    "\"Sorun değil\" = \"Kein Problem\"; \"Nicht Problem\" yanlış."
+    "**der Problem** yanlış. Doğrusu **das Problem**.",
+    "**Nicht Problem** yanlış. Doğrusu **Kein Problem**."
    ],
    "examples": [
     {
      "id": "lx:Problem:1",
      "de": "Ich habe ein Problem mit meinem Handy.",
      "tr": "Telefonumla ilgili bir sorunum var.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person frustrated with smartphone"
     },
     {
      "id": "lx:Problem:2",
@@ -1253,8 +1369,8 @@
     },
     {
      "id": "lx:Problem:3",
-     "de": "Null Problem!",
-     "tr": "Hiç sorun değil!",
+     "de": "Kein Problem, mach ich!",
+     "tr": "Sorun değil, yaparım!",
      "layer": "alltag"
     },
     {
@@ -1272,7 +1388,12 @@
     "strategie",
     "werkstatt",
     "arbeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Çözülmesi gereken bir zorluğu anlatır.",
+    "ne_zaman_tr": "Bir şey bozulunca ya da ters gidince.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:vergessen",
@@ -1303,15 +1424,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Perfekt'te \"ge-\" yok: \"gevergessen\" yanlış; \"Ich habe vergessen\".",
-    "Çekim: du vergisst, er vergisst."
+    "**Ich habe es gevergessen** yanlış. Doğrusu **Ich habe es vergessen**.",
+    "**du vergesst** yanlış. Doğrusu **du vergisst**."
    ],
    "examples": [
     {
      "id": "lx:vergessen:1",
      "de": "Ich habe meinen Schlüssel vergessen.",
      "tr": "Anahtarımı unuttum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person locked out searching for keys"
     },
     {
      "id": "lx:vergessen:2",
@@ -1328,7 +1450,7 @@
     {
      "id": "lx:vergessen:4",
      "de": "– Hast du an die Milch gedacht? – Oh nein, vergessen!",
-     "tr": "– Sütü aklında tuttun mu? – Ah hayır, unuttum!",
+     "tr": "– Süt aklına geldi mi? – Ah hayır, unuttum!",
      "layer": "alltag",
      "dialog": true
     }
@@ -1339,12 +1461,17 @@
    "domains": [
     "strategie",
     "arbeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyi aklından çıkarmayı ya da yanına almamayı söyler.",
+    "parcalar": [],
+    "ipucu_tr": "**Vergiss es!** boş ver demektir."
+   }
   },
   {
    "id": "lx:davon",
    "de": "davon",
-   "tr": "ondan, bundan; hakkında",
+   "tr": "ondan, bundan, hakkında",
    "pos": "adv",
    "collocations": [
     {
@@ -1361,15 +1488,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"von\" + şey için \"davon\" kullanılır: \"von das\" yanlış; \"Was hältst du davon?\".",
-    "Miktar: \"Ich nehme zwei davon\" = Ondan iki tane alıyorum."
+    "**von das** yanlış. Doğrusu **davon**.",
+    "**Ich nehme zwei davon** ondan iki tane alıyorum demektir."
    ],
    "examples": [
     {
      "id": "lx:davon:1",
      "de": "Ich nehme zwei davon.",
      "tr": "Ondan iki tane alıyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "customer buying pastries at bakery"
     },
     {
      "id": "lx:davon:2",
@@ -1397,12 +1525,26 @@
    "domains": [
     "einkaufen",
     "gefuehle"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Az önce konuşulan şeyden söz eder.",
+    "ne_zaman_tr": "Alışverişte miktar söylerken ya da fikir sorarken.",
+    "parcalar": [
+     {
+      "de": "da",
+      "tr": "bu"
+     },
+     {
+      "de": "von",
+      "tr": "-den"
+     }
+    ]
+   }
   },
   {
    "id": "lx:dafür",
    "de": "dafür",
-   "tr": "bunun için; lehinde",
+   "tr": "bunun için, lehinde",
    "pos": "adv",
    "collocations": [
     {
@@ -1420,8 +1562,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"für das\" yerine \"dafür\": \"Danke dafür\"; \"Danke für das\" konuşmada kaba kaçmaz ama \"dafür\" doğal.",
-    "\"dafür sein\" = lehinde olmak; \"dagegen sein\" = karşı olmak."
+    "**Danke für das** yerine **Danke dafür** de.",
+    "**Ich bin dafür** bu fikri destekliyorum demektir."
    ],
    "examples": [
     {
@@ -1447,7 +1589,8 @@
      "de": "– Sollen wir Pizza bestellen? – Ich bin dafür!",
      "tr": "– Pizza sipariş edelim mi? – Ben varım!",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "friends ordering pizza together"
     }
    ],
    "level": "B1",
@@ -1456,12 +1599,26 @@
    "domains": [
     "einkaufen",
     "gefuehle"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Az önce söylenen şeyi tekrar etmeden bunun için demeni sağlar.",
+    "ne_zaman_tr": "Teşekkür ederken ya da bir fikre evet derken.",
+    "parcalar": [
+     {
+      "de": "da",
+      "tr": "bu"
+     },
+     {
+      "de": "für",
+      "tr": "için"
+     }
+    ]
+   }
   },
   {
    "id": "lx:verdammt",
    "de": "verdammt",
-   "tr": "lanet; kahretsin; çok",
+   "tr": "lanet, kahretsin, çok",
    "pos": "adj",
    "collocations": [
     {
@@ -1478,20 +1635,21 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Kaba sayılır ama \"Scheiße\"den yumuşaktır; resmî yerde kullanma.",
-    "Zarf olarak \"çok\": \"verdammt teuer\" = çok pahalı (konuşma dili)."
+    "Kaba bir sözdür, resmî yerde kullanma.",
+    "**verdammt teuer** çok pahalı demektir."
    ],
    "examples": [
     {
      "id": "lx:verdammt:1",
      "de": "Verdammt, ich habe den Bus verpasst!",
      "tr": "Kahretsin, otobüsü kaçırdım!",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person missing bus at stop"
     },
     {
      "id": "lx:verdammt:2",
      "de": "Das war verdammt knapp.",
-     "tr": "Kıl payı kurtulduk.",
+     "tr": "Bu gerçekten kıl payıydı.",
      "layer": "hd"
     },
     {
@@ -1509,12 +1667,17 @@
     }
    ],
    "level": "B1",
-   "tier": "K1",
+   "tier": "K2",
    "freqRank": 214,
    "domains": [
     "gefuehle",
     "medien"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Öfkeyi gösterir, konuşmada çok anlamına da gelir.",
+    "ne_zaman_tr": "Yalnızca arkadaş arasında, resmî yerde söyleme.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:zeigen",
@@ -1547,15 +1710,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kime: Dativ. \"Zeig mich das\" yanlış; \"Zeig mir das\".",
-    "\"Können Sie mir zeigen, wo …?\" yol sormada çok doğal."
+    "**Zeig mich das** yanlış. Doğrusu **Zeig mir das**.",
+    "**Können Sie mir zeigen, wo der Bahnhof ist?** çok doğal bir sorudur."
    ],
    "examples": [
     {
      "id": "lx:zeigen:1",
      "de": "Können Sie mir das auf der Karte zeigen?",
      "tr": "Bunu bana haritada gösterebilir misiniz?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person pointing at map"
     },
     {
      "id": "lx:zeigen:2",
@@ -1584,12 +1748,17 @@
     "verkehr",
     "amt",
     "einkaufen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyi birinin görmesini sağlamayı söyler.",
+    "ne_zaman_tr": "Yol sorarken ya da kimlik istenince.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Mädchen",
    "de": "das Mädchen",
-   "tr": "kız (çocuk)",
+   "tr": "kız, kız çocuğu",
    "pos": "noun",
    "art": "das",
    "pl": "Mädchen",
@@ -1608,8 +1777,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"-chen\" ile biten her isim nötrdür: \"das Mädchen\" (\"die Mädchen\" yalnızca çoğul).",
-    "Kız evlat için \"Tochter\"; \"Mädchen\" genel olarak kız çocuğu."
+    "**die Mädchen** yalnızca birden çok kız için söylenir, tek kız **das Mädchen**.",
+    "Kendi kızın için **meine Tochter** dersin."
    ],
    "examples": [
     {
@@ -1643,7 +1812,12 @@
    "freqRank": 216,
    "domains": [
     "smalltalk"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Küçük ya da genç bir kızı anlatır.",
+    "parcalar": []
+   },
+   "img": "young girl playing outside"
   },
   {
    "id": "lx:wegen",
@@ -1665,8 +1839,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Yazıda Genitiv (\"wegen des Unfalls\"), konuşmada çoğu zaman Dativ (\"wegen dem Unfall\") duyulur.",
-    "\"wegen\" isimle, \"weil\" cümleyle: \"wegen der Arbeit\" / \"weil ich arbeite\"."
+    "Yazıda **wegen des Unfalls**, konuşmada **wegen dem Unfall** duyulur.",
+    "**wegen ich arbeite** yanlış. Doğrusu **weil ich arbeite**."
    ],
    "examples": [
     {
@@ -1701,7 +1875,12 @@
    "domains": [
     "verkehr",
     "arbeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin sebebini kısaca söyler.",
+    "ne_zaman_tr": "Telefonda arama sebebini söylerken: **wegen des Termins**.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:welcher",
@@ -1723,8 +1902,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Artikel gibi çekilir: \"welcher Bus\", \"welche Farbe\", \"welches Gleis\". \"Welche Bus\" yanlış.",
-    "Akkusativ eril: \"Welchen Bus nehme ich?\""
+    "**Welche Bus** yanlış. Doğrusu **Welcher Bus**.",
+    "Otobüs gidiyorsa **Welcher Bus fährt?** dersin. Sen biniyorsan **Welchen Bus nehme ich?** dersin."
    ],
    "examples": [
     {
@@ -1759,12 +1938,16 @@
    "domains": [
     "einkaufen",
     "verkehr"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Birkaç seçenek arasından birini sorar.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Ding",
    "de": "das Ding",
-   "tr": "şey, nesne",
+   "tr": "şey, eşya",
    "pos": "noun",
    "art": "das",
    "pl": "Dinge",
@@ -1783,14 +1966,14 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Konuşmada adını bilmediğin şey için \"das Ding\" denir: \"Wie heißt das Ding?\"",
-    "Çoğulu \"Dinge\"; konuşmada \"Dinger\" de duyulur."
+    "Adını bilmiyorsan **Wie heißt das Ding?** diye sor.",
+    "Birden çoksa **Dinge** olur, konuşmada **Dinger** de duyulur."
    ],
    "examples": [
     {
      "id": "lx:Ding:1",
      "de": "Was ist das für ein Ding?",
-     "tr": "Bu ne biçim bir şey?",
+     "tr": "Bu nasıl bir şey?",
      "layer": "hd"
     },
     {
@@ -1810,7 +1993,8 @@
      "de": "– Wie heißt das Ding auf Deutsch? – Ein Dosenöffner.",
      "tr": "– Bu şeyin Almancası ne? – Konserve açacağı.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "can opener"
     }
    ],
    "level": "A2",
@@ -1819,12 +2003,18 @@
    "domains": [
     "smalltalk",
     "einkaufen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Adını bilmediğin bir eşyayı anlatır.",
+    "ne_zaman_tr": "Kelimeyi hatırlamadığında işine yarar.",
+    "parcalar": [],
+    "ipucu_tr": "**Kein Ding!** dert değil demektir."
+   }
   },
   {
    "id": "lx:hin",
    "de": "hin",
-   "tr": "oraya (konuşandan uzağa)",
+   "tr": "oraya",
    "pos": "adv",
    "collocations": [
     {
@@ -1842,15 +2032,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"hin\" uzağa, \"her\" yakına: \"Geh hin!\" / \"Komm her!\".",
-    "Konuşmada \"wohin\" bölünür: \"Wo gehst du hin?\" çok doğal."
+    "Uzağa giderken **hin**, yaklaşırken **her** dersin: **Geh hin!** ve **Komm her!**",
+    "Konuşmada **Wo gehst du hin?** çok doğaldır."
    ],
    "examples": [
     {
      "id": "lx:hin:1",
      "de": "Einmal nach Berlin, hin und zurück.",
      "tr": "Berlin'e bir gidiş dönüş.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "buying ticket at train station counter"
     },
     {
      "id": "lx:hin:2",
@@ -1877,12 +2068,17 @@
    "freqRank": 220,
    "domains": [
     "verkehr"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Konuşandan uzağa doğru gidişi söyler.",
+    "ne_zaman_tr": "Bilet alırken: **hin und zurück**.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:sorgen",
    "de": "sorgen",
-   "tr": "(für) ilgilenmek; (sich) endişelenmek",
+   "tr": "ilgilenmek, sağlamak, endişelenmek",
    "pos": "verb",
    "verb": {
     "praesens3": "sorgt",
@@ -1897,8 +2093,8 @@
    },
    "collocations": [
     {
-     "de": "Keine Sorge!",
-     "tr": "Merak etme!"
+     "de": "für etwas sorgen",
+     "tr": "bir şeyi ayarlamak, sağlamak"
     },
     {
      "de": "sich Sorgen machen",
@@ -1911,14 +2107,14 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"Merak etme\" = \"Keine Sorge\" ya da \"Mach dir keine Sorgen\"; \"Nicht merak\" diye çevirme.",
-    "\"für etwas sorgen\" = bir şeyi sağlamak: \"Ich sorge für das Essen\"."
+    "**Ich sorge das Essen** yanlış. Doğrusu **Ich sorge für das Essen**.",
+    "Endişelenmek için çoğu zaman **sich Sorgen machen** denir: **Ich mache mir Sorgen.**"
    ],
    "examples": [
     {
      "id": "lx:sorgen:1",
-     "de": "Machen Sie sich keine Sorgen.",
-     "tr": "Endişelenmeyin.",
+     "de": "Die Nachbarin sorgt für unsere Katze.",
+     "tr": "Komşumuz kedimizle ilgileniyor.",
      "layer": "hd"
     },
     {
@@ -1929,8 +2125,8 @@
     },
     {
      "id": "lx:sorgen:3",
-     "de": "Keine Sorge, das klappt schon!",
-     "tr": "Merak etme, olur!",
+     "de": "Dafür sorg ich schon.",
+     "tr": "Onu ben hallederim.",
      "layer": "alltag"
     },
     {
@@ -1938,7 +2134,8 @@
      "de": "– Ich mache mir Sorgen um meine Mutter. – Ist sie krank?",
      "tr": "– Annem için endişeleniyorum. – Hasta mı?",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "worried daughter with elderly mother"
     }
    ],
    "level": "A2",
@@ -1947,12 +2144,17 @@
    "domains": [
     "gefuehle",
     "arbeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin olmasını sağlamayı ya da kaygılanmayı söyler.",
+    "ne_zaman_tr": "Bir işi kimin halledeceği konuşulurken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:meinen",
    "de": "meinen",
-   "tr": "kastetmek; düşünmek",
+   "tr": "kastetmek, düşünmek",
    "pos": "verb",
    "verb": {
     "praesens3": "meint",
@@ -1966,7 +2168,7 @@
    "collocations": [
     {
      "de": "Was meinst du?",
-     "tr": "Ne dersin? / Ne demek istiyorsun?"
+     "tr": "Ne dersin?"
     },
     {
      "de": "Wie meinen Sie das?",
@@ -1979,8 +2181,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"meinen\" \"fikrinde olmak\" ve \"kastetmek\"tir; \"Meinung\" ile karıştırma: \"Ich meine, …\" = Bence …",
-    "Anlamadığında kontrol: \"Meinen Sie …?\" = \"… mı demek istiyorsunuz?\""
+    "**Ich meine** bence demektir.",
+    "Kontrol için **Meinen Sie den Termin am Freitag?** diye sor."
    ],
    "examples": [
     {
@@ -2004,9 +2206,10 @@
     {
      "id": "lx:meinen:4",
      "de": "– Wie meinen Sie das? – Ich meine, wir brauchen mehr Zeit.",
-     "tr": "– Bunu nasıl kastediyorsunuz? – Yani daha fazla zamana ihtiyacımız var.",
+     "tr": "– Bunu nasıl kastediyorsunuz? – Demek istediğim, daha fazla zamana ihtiyacımız var.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "colleagues discussing in meeting"
     }
    ],
    "level": "A1",
@@ -2015,7 +2218,12 @@
    "domains": [
     "strategie",
     "gefuehle"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Ne demek istediğini ya da ne düşündüğünü söyler.",
+    "ne_zaman_tr": "Doğru anladığını kontrol ederken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Abend",
@@ -2040,8 +2248,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"akşamları\" = \"abends\"; \"am Abend\" = akşam (bir kez).",
-    "\"Guten Abend\" selamlaşma; vedada \"Schönen Abend noch!\""
+    "Her akşam için **abends**, bir akşam için **am Abend** dersin.",
+    "Ayrılırken **Schönen Abend noch!** dersin."
    ],
    "examples": [
     {
@@ -2053,8 +2261,9 @@
     {
      "id": "lx:Abend:2",
      "de": "Am Abend bin ich meistens zu Hause.",
-     "tr": "Akşamları çoğunlukla evdeyim.",
-     "layer": "hd"
+     "tr": "Akşam çoğunlukla evdeyim.",
+     "layer": "hd",
+     "img": "relaxing on sofa at home in evening"
     },
     {
      "id": "lx:Abend:3",
@@ -2065,7 +2274,7 @@
     {
      "id": "lx:Abend:4",
      "de": "– Hast du morgen Abend Zeit? – Ja, ab sieben.",
-     "tr": "– Yarın akşam vaktin var mı? – Evet, yediden sonra.",
+     "tr": "– Yarın akşam vaktin var mı? – Evet, yediden itibaren.",
      "layer": "alltag",
      "dialog": true
     }
@@ -2076,12 +2285,17 @@
    "domains": [
     "freizeit",
     "smalltalk"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Günün akşam saatlerini anlatır.",
+    "ne_zaman_tr": "Selamlaşırken ya da akşam planı yaparken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:rein",
    "de": "rein",
-   "tr": "içeri; temiz, saf",
+   "tr": "içeri, temiz, saf",
    "pos": "adv",
    "collocations": [
     {
@@ -2099,15 +2313,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"rein\" = \"herein/hinein\"in konuşma biçimi: \"Kommen Sie rein!\"",
-    "Sıfat olarak \"saf, temiz\": \"reine Baumwolle\"."
+    "**Kommen Sie rein!** içeri gelin demektir.",
+    "**reine Baumwolle** saf pamuk demektir."
    ],
    "examples": [
     {
      "id": "lx:rein:1",
      "de": "Kommen Sie doch rein!",
      "tr": "Buyurun, içeri gelin!",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "host welcoming guest at front door"
     },
     {
      "id": "lx:rein:2",
@@ -2134,7 +2349,12 @@
    "freqRank": 224,
    "domains": [
     "wohnen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Konuşmada içeri anlamına gelir, **herein** kelimesinin kısasıdır.",
+    "ne_zaman_tr": "Birini içeri davet ederken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:drei",
@@ -2157,8 +2377,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Telefonda \"zwei\" ile karışmasın diye \"zwo\" denir; \"drei\" aynı kalır.",
-    "Sıra sayısı \"dritte\" düzensiz: \"der dritte Stock\" (\"dreite\" yanlış)."
+    "Telefonda **drei** ile karışmasın diye **zwei** yerine **zwo** denir.",
+    "**der dreite Stock** yanlış. Doğrusu **der dritte Stock**."
    ],
    "examples": [
     {
@@ -2193,12 +2413,16 @@
    "domains": [
     "einkaufen",
     "arzt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Üç tane olduğunu söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Freund",
    "de": "der Freund",
-   "tr": "arkadaş; erkek arkadaş",
+   "tr": "arkadaş, erkek arkadaş",
    "pos": "noun",
    "art": "der",
    "pl": "Freunde",
@@ -2218,15 +2442,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"mein Freund\" çoğu zaman sevgili anlamına gelir; arkadaş için \"ein Freund von mir\" daha net.",
-    "Kadın için \"Freundin\"; \"meine Freundin\" de sevgili anlamına gelebilir."
+    "Arkadaşını anlatırken **ein Freund von mir** de, **mein Freund** sevgili gibi anlaşılır.",
+    "**meine Freundin** da kız sevgili anlamına gelebilir."
    ],
    "examples": [
     {
      "id": "lx:Freund:1",
      "de": "Ich gehe mit Freunden ins Kino.",
      "tr": "Arkadaşlarla sinemaya gidiyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "group of friends at cinema"
     },
     {
      "id": "lx:Freund:2",
@@ -2254,7 +2479,11 @@
    "domains": [
     "freizeit",
     "smalltalk"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Yakın bir arkadaşı ya da erkek sevgiliyi anlatır.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:fühlen",
@@ -2284,20 +2513,21 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kendini hissetmek dönüşlü: \"Ich fühle mich nicht gut\" (\"Ich fühle nicht gut\" yanlış).",
-    "Doktorda \"Wie fühlen Sie sich?\" = \"Nasıl hissediyorsunuz?\""
+    "**Ich fühle nicht gut** yanlış. Doğrusu **Ich fühle mich nicht gut**.",
+    "Doktor **Wie fühlen Sie sich?** diye sorar."
    ],
    "examples": [
     {
      "id": "lx:fühlen:1",
      "de": "Ich fühle mich heute nicht gut.",
      "tr": "Bugün kendimi iyi hissetmiyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "sick person resting on sofa"
     },
     {
      "id": "lx:fühlen:2",
      "de": "Wie fühlen Sie sich jetzt?",
-     "tr": "Şimdi nasıl hissediyorsunuz?",
+     "tr": "Şimdi kendinizi nasıl hissediyorsunuz?",
      "layer": "hd"
     },
     {
@@ -2320,7 +2550,12 @@
    "domains": [
     "gefuehle",
     "arzt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bedenindeki ya da içindeki durumu söyler.",
+    "ne_zaman_tr": "Doktorda nasıl olduğunu anlatırken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Welt",
@@ -2344,8 +2579,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"Welt\" dişil: \"auf der Welt\" (\"auf dem Welt\" yanlış).",
-    "\"Das ist nicht die Welt\" = \"Dünyanın sonu değil / Çok önemli değil\"."
+    "**auf dem Welt** yanlış. Doğrusu **auf der Welt**."
    ],
    "examples": [
     {
@@ -2362,13 +2596,13 @@
     },
     {
      "id": "lx:Welt:3",
-     "de": "Ist doch nicht die Welt!",
-     "tr": "Dünyanın sonu değil ki!",
+     "de": "Das kostet doch nicht die Welt!",
+     "tr": "Dünyanın parası değil ki!",
      "layer": "alltag"
     },
     {
      "id": "lx:Welt:4",
-     "de": "– Ich hab den Bus verpasst. – Ist doch nicht die Welt, der nächste kommt gleich.",
+     "de": "– Ich hab den Bus verpasst. – Davon geht die Welt nicht unter, der nächste kommt gleich.",
      "tr": "– Otobüsü kaçırdım. – Dünyanın sonu değil, bir sonraki birazdan gelir.",
      "layer": "alltag",
      "dialog": true
@@ -2380,7 +2614,12 @@
    "domains": [
     "medien",
     "gefuehle"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Yaşadığımız dünyayı ve içindeki her şeyi anlatır.",
+    "parcalar": []
+   },
+   "img": "planet earth from space"
   },
   {
    "id": "lx:schaffen",
@@ -2412,8 +2651,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"schaffen\" = başarmak/yetiştirmek: \"Ich schaffe das bis Freitag\" = Cumaya kadar yetiştiririm.",
-    "\"schaffen\" ile \"machen\" karıştırılır: \"Ich schaffe das\" = Bunu başarırım/yetiştiririm; \"Ich mache das\" = Bunu yaparım."
+    "**Ich schaffe das bis Freitag** cumaya kadar yetiştiririm demektir.",
+    "**Ich mache das** yaparım, **Ich schaffe das** başarırım demektir."
    ],
    "examples": [
     {
@@ -2426,7 +2665,8 @@
      "id": "lx:schaffen:2",
      "de": "Ich habe die Prüfung geschafft!",
      "tr": "Sınavı geçtim!",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "happy student after passing exam"
     },
     {
      "id": "lx:schaffen:3",
@@ -2447,12 +2687,17 @@
    "freqRank": 229,
    "domains": [
     "arbeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Zor bir işi başarmayı ya da zamanında bitirmeyi söyler.",
+    "ne_zaman_tr": "İşte, sınavdan sonra ya da birine cesaret verirken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:weit",
    "de": "weit",
-   "tr": "uzak; geniş",
+   "tr": "uzak, geniş, bol",
    "pos": "adj",
    "collocations": [
     {
@@ -2461,7 +2706,7 @@
     },
     {
      "de": "zu weit",
-     "tr": "çok uzak; çok bol"
+     "tr": "fazla uzak, fazla bol"
     }
    ],
    "patterns": [
@@ -2470,8 +2715,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Mesafe \"weit\": \"Ist es weit?\" Kıyafet için \"bol\": \"Die Hose ist zu weit\".",
-    "\"von hier\" + \"weit\": \"Ist das weit von hier?\""
+    "Mesafe sorarken **Ist das weit von hier?** dersin.",
+    "Giysi için **zu weit** çok bol demektir."
    ],
    "examples": [
     {
@@ -2484,7 +2729,8 @@
      "id": "lx:weit:2",
      "de": "Die Hose ist mir zu weit.",
      "tr": "Pantolon bana çok bol.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person wearing oversized baggy trousers"
     },
     {
      "id": "lx:weit:3",
@@ -2506,7 +2752,11 @@
    "domains": [
     "verkehr",
     "einkaufen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Mesafenin uzak ya da giysinin bol olduğunu söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Angst",
@@ -2531,15 +2781,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"korkmak\" = \"Angst haben\" (vor + Dativ): \"Ich habe Angst vor Hunden\" (\"Ich korke\" yok).",
-    "\"Ich habe Angst, dass …\" = …-den korkuyorum."
+    "**Ich bin Angst** yanlış. Doğrusu **Ich habe Angst**.",
+    "**Angst von Hunden** yanlış. Doğrusu **Angst vor Hunden**."
    ],
    "examples": [
     {
      "id": "lx:Angst:1",
      "de": "Ich habe Angst vor dem Zahnarzt.",
      "tr": "Dişçiden korkuyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "scared patient at dentist"
     },
     {
      "id": "lx:Angst:2",
@@ -2567,12 +2818,18 @@
    "domains": [
     "gefuehle",
     "arzt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Korku duygusunu anlatır.",
+    "ne_zaman_tr": "Doktorda ya da kaygılı birini sakinleştirirken.",
+    "parcalar": [],
+    "ipucu_tr": "Korkuyorum demek için **Ich habe Angst** dersin."
+   }
   },
   {
    "id": "lx:unter",
    "de": "unter",
-   "tr": "altında; arasında",
+   "tr": "altında, arasında",
    "pos": "prep",
    "collocations": [
     {
@@ -2589,8 +2846,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Konum Dativ (\"unter dem Bett\"), yön Akkusativ (\"unter das Bett\").",
-    "\"unter uns gesagt\" = aramızda kalsın."
+    "Yerinde duruyorsa **unter dem Bett**, oraya gidiyorsa **unter das Bett**.",
+    "**unter uns gesagt** aramızda kalsın demektir."
    ],
    "examples": [
     {
@@ -2624,12 +2881,16 @@
    "freqRank": 232,
    "domains": [
     "wohnen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin aşağısında olduğunu söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:zusammen",
    "de": "zusammen",
-   "tr": "birlikte",
+   "tr": "birlikte, beraber",
    "pos": "adv",
    "collocations": [
     {
@@ -2646,8 +2907,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Restoranda garson \"Zusammen oder getrennt?\" diye sorar = hesap birlikte mi ayrı mı?",
-    "\"Hallo zusammen!\" = Herkese merhaba!"
+    "Garson **Zusammen oder getrennt?** diye sorar, hesap birlikte mi ayrı mı demektir.",
+    "**Hallo zusammen!** herkese merhaba demektir."
    ],
    "examples": [
     {
@@ -2673,7 +2934,8 @@
      "de": "– Zusammen oder getrennt? – Zusammen, bitte.",
      "tr": "– Birlikte mi ayrı mı? – Birlikte, lütfen.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "couple paying bill in restaurant"
     }
    ],
    "level": "A1",
@@ -2682,12 +2944,18 @@
    "domains": [
     "essen",
     "freizeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir işi başkalarıyla birlikte yapmayı söyler.",
+    "ne_zaman_tr": "Restoranda hesap ödenirken çok duyarsın.",
+    "parcalar": [],
+    "ipucu_tr": "Fiyat söylenirken toplam demektir: **Das macht zusammen zwölf Euro.**"
+   }
   },
   {
    "id": "lx:echt",
    "de": "echt",
-   "tr": "gerçek; gerçekten",
+   "tr": "gerçek, gerçekten",
    "pos": "adj",
    "collocations": [
     {
@@ -2704,20 +2972,21 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Konuşmada \"echt\" = \"wirklich\", çok sık: \"Das ist echt teuer\".",
-    "Sıfat olarak \"gerçek, sahte değil\": \"echtes Leder\"."
+    "Konuşmada **echt** gerçekten demektir: **Das ist echt teuer**.",
+    "**echtes Leder** gerçek deri demektir."
    ],
    "examples": [
     {
      "id": "lx:echt:1",
      "de": "Ist das echtes Gold?",
      "tr": "Bu gerçek altın mı?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "gold ring closeup"
     },
     {
      "id": "lx:echt:2",
      "de": "Das war echt nett von dir.",
-     "tr": "Bu gerçekten çok naziktin.",
+     "tr": "Bu gerçekten çok ince bir davranıştı.",
      "layer": "hd"
     },
     {
@@ -2729,7 +2998,7 @@
     {
      "id": "lx:echt:4",
      "de": "– Ich hab die Wohnung bekommen! – Echt? Super!",
-     "tr": "– Evi aldım! – Cidden mi? Süper!",
+     "tr": "– Evi tuttum! – Cidden mi? Süper!",
      "layer": "alltag",
      "dialog": true
     }
@@ -2740,7 +3009,12 @@
    "domains": [
     "gefuehle",
     "smalltalk"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin sahte olmadığını ya da gerçekten öyle olduğunu söyler.",
+    "ne_zaman_tr": "Şaşırınca kısaca **Echt?** dersin.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:schlafen",
@@ -2768,8 +3042,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Çekimde umlaut: du schläfst, er schläft.",
-    "\"yatmaya gitmek\" = \"ins Bett gehen\"; \"schlafen gehen\" de olur."
+    "**du schlafst** yanlış. Doğrusu **du schläfst**.",
+    "Yatmaya gitmek **ins Bett gehen** ya da **schlafen gehen** olur."
    ],
    "examples": [
     {
@@ -2804,7 +3078,13 @@
    "domains": [
     "arzt",
     "wohnen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Gece ya da dinlenirken uyumayı söyler.",
+    "ne_zaman_tr": "İyi geceler derken: **Schlaf gut!**",
+    "parcalar": []
+   },
+   "img": "person sleeping in bed"
   },
   {
    "id": "lx:Hand",
@@ -2829,8 +3109,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"el sıkışmak\" = \"jemandem die Hand geben\"; Almanya'da tanışırken çok yaygın.",
-    "Çoğulu umlautlu \"Hände\"."
+    "El sıkışmak **jemandem die Hand geben** demektir.",
+    "**zwei Hande** yanlış. Doğrusu **zwei Hände**."
    ],
    "examples": [
     {
@@ -2847,8 +3127,8 @@
     },
     {
      "id": "lx:Hand:3",
-     "de": "Hände hoch!",
-     "tr": "Eller yukarı!",
+     "de": "Hast du mal eine Hand frei?",
+     "tr": "Bir elin boş mu?",
      "layer": "alltag"
     },
     {
@@ -2864,12 +3144,17 @@
    "freqRank": 236,
    "domains": [
     "arzt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bedenimizdeki eli anlatır.",
+    "ne_zaman_tr": "Doktorda ağrı anlatırken ya da tanışırken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:liegen",
    "de": "liegen",
-   "tr": "yatmak; bulunmak",
+   "tr": "yatmak, bulunmak",
    "pos": "verb",
    "verb": {
     "praesens3": "liegt",
@@ -2892,8 +3177,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Yatay duran şey \"liegen\", dik duran \"stehen\": \"Das Buch liegt auf dem Tisch\".",
-    "\"liegen\" (durur) ile \"legen\" (koymak) karıştırılır: \"Ich lege das Handy hin\" / \"Das Handy liegt da\"."
+    "Yatan şey **liegt**, dik duran şey **steht**.",
+    "**Das Handy liegt da** durumu, **Ich lege das Handy hin** koymayı söyler."
    ],
    "examples": [
     {
@@ -2919,7 +3204,8 @@
      "de": "– Wo liegt der Schlüssel? – Auf dem Regal.",
      "tr": "– Anahtar nerede? – Rafın üstünde.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "keys lying on shelf"
     }
    ],
    "level": "A1",
@@ -2928,12 +3214,16 @@
    "domains": [
     "wohnen",
     "arzt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin yatay durduğunu ya da bir yerde bulunduğunu söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:heißen",
    "de": "heißen",
-   "tr": "adı … olmak; demek",
+   "tr": "adı olmak, demek",
    "pos": "verb",
    "verb": {
     "praesens3": "heißt",
@@ -2957,8 +3247,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Ad sormada \"Wie heißt du?\" (\"Was heißt du?\" yanlış).",
-    "\"das heißt\" (d. h.) = yani."
+    "**Was heißt du?** yanlış. Doğrusu **Wie heißt du?**",
+    "**das heißt** yani demektir."
    ],
    "examples": [
     {
@@ -2981,10 +3271,11 @@
     },
     {
      "id": "lx:heißen:4",
-     "de": "– Ich heiße Ivana. Und du? – Selin.",
-     "tr": "– Benim adım Ivana. Ya seninki? – Selin.",
+     "de": "– Wie heißt du? – Ivana. Und du?",
+     "tr": "– Adın ne? – Ivana. Ya senin?",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "two people introducing themselves"
     }
    ],
    "level": "A1",
@@ -2993,7 +3284,12 @@
    "domains": [
     "smalltalk",
     "strategie"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Birinin adını ya da bir kelimenin anlamını söyler.",
+    "ne_zaman_tr": "Tanışırken ya da kelime sorarken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:lang",
@@ -3015,8 +3311,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "İnsan boyu için \"lang\" değil \"groß\": \"Er ist groß\".",
-    "Süre \"lange\" (zarf): \"Wie lange dauert das?\"; \"lang\" sıfat."
+    "İnsan için **Er ist lang** yanlış. Doğrusu **Er ist groß**.",
+    "Süre sorarken **Wie lange dauert das?** dersin."
    ],
    "examples": [
     {
@@ -3042,7 +3338,8 @@
      "de": "– Wie lang sollen die Haare bleiben? – Nicht zu kurz, bitte.",
      "tr": "– Saçlar ne kadar uzun kalsın? – Çok kısa olmasın, lütfen.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "hairdresser cutting long hair"
     }
    ],
    "level": "A1",
@@ -3051,7 +3348,11 @@
    "domains": [
     "einkaufen",
     "friseur"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin uzunluğunu anlatır.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:wahr",
@@ -3073,8 +3374,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"nicht wahr?\" = \"değil mi?\" kibar onay sorusu; konuşmada \"oder?\" ya da \"ne?\" daha sık.",
-    "\"wahr\" (doğru) ile \"war\" (idi) aynı okunur; yazımda karıştırma."
+    "**nicht wahr?** değil mi demektir, konuşmada **oder?** daha sıktır.",
+    "**wahr** ile **war** aynı okunur, **wahr** doğru demektir."
    ],
    "examples": [
     {
@@ -3093,7 +3394,8 @@
      "id": "lx:wahr:3",
      "de": "Das kann doch nicht wahr sein!",
      "tr": "Bu olamaz!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "surprised person reading message on phone"
     },
     {
      "id": "lx:wahr:4",
@@ -3108,12 +3410,17 @@
    "freqRank": 240,
    "domains": [
     "gefuehle"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Söylenen şeyin gerçek olduğunu söyler.",
+    "ne_zaman_tr": "Onay isterken: **nicht wahr?**",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:ziehen",
    "de": "ziehen",
-   "tr": "çekmek; taşınmak",
+   "tr": "çekmek, taşınmak",
    "pos": "verb",
    "verb": {
     "praesens3": "zieht",
@@ -3123,8 +3430,8 @@
    },
    "collocations": [
     {
-     "de": "umziehen",
-     "tr": "taşınmak"
+     "de": "nach München ziehen",
+     "tr": "Münih şehrine taşınmak"
     },
     {
      "de": "Ziehen!",
@@ -3137,20 +3444,21 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Taşınmak anlamında Perfekt \"sein\": \"Wir sind nach München gezogen\". Çekmek anlamında \"haben\".",
-    "Kapılarda \"Ziehen\" = çek, \"Drücken\" = it."
+    "Taşınınca **Wir sind nach München gezogen** dersin, **haben** olmaz.",
+    "Kapıda **Ziehen** çek, **Drücken** it demektir."
    ],
    "examples": [
     {
      "id": "lx:ziehen:1",
      "de": "Wir sind letztes Jahr nach Augsburg gezogen.",
      "tr": "Geçen yıl Augsburg'a taşındık.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "family carrying moving boxes into new home"
     },
     {
      "id": "lx:ziehen:2",
-     "de": "Ziehen Sie die Tür zu.",
-     "tr": "Kapıyı çekip kapatın.",
+     "de": "Sie müssen an der Tür ziehen.",
+     "tr": "Kapıyı çekmeniz gerekiyor.",
      "layer": "hd"
     },
     {
@@ -3161,8 +3469,8 @@
     },
     {
      "id": "lx:ziehen:4",
-     "de": "– Wohnst du noch in Köln? – Nein, ich bin umgezogen.",
-     "tr": "– Hâlâ Köln'de mi oturuyorsun? – Hayır, taşındım.",
+     "de": "– Wohnst du noch in Köln? – Nein, ich bin nach München gezogen.",
+     "tr": "– Hâlâ Köln'de mi oturuyorsun? – Hayır, Münih'e taşındım.",
      "layer": "alltag",
      "dialog": true
     }
@@ -3172,12 +3480,17 @@
    "freqRank": 241,
    "domains": [
     "wohnen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyi kendine doğru çekmeyi ya da taşınmayı söyler.",
+    "ne_zaman_tr": "Kapıda yazar, ev değiştirince de söylenir.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Moment",
    "de": "der Moment",
-   "tr": "an",
+   "tr": "an, saniye",
    "pos": "noun",
    "art": "der",
    "pl": "Momente",
@@ -3196,15 +3509,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Telefonda \"Einen Moment, bitte\" = \"Bir saniye lütfen\".",
-    "\"der Moment\" (an) eril; \"das Moment\" (etken) başka kelime."
+    "Telefonda **Einen Moment, bitte** bir saniye lütfen demektir.",
+    "An demek için **der Moment** dersin, **das Moment** başka kelimedir."
    ],
    "examples": [
     {
      "id": "lx:Moment:1",
      "de": "Einen Moment, bitte, ich verbinde.",
      "tr": "Bir saniye lütfen, bağlıyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "receptionist on telephone headset"
     },
     {
      "id": "lx:Moment:2",
@@ -3232,7 +3546,12 @@
    "domains": [
     "telefon",
     "strategie"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Çok kısa bir zamanı anlatır.",
+    "ne_zaman_tr": "Telefonda birini bekletirken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:genug",
@@ -3245,7 +3564,7 @@
      "tr": "yeterli zaman"
     },
     {
-     "de": "Jetzt reicht's, genug!",
+     "de": "Genug jetzt!",
      "tr": "Yeter artık!"
     }
    ],
@@ -3254,8 +3573,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"genug\" çoğu zaman isimden önce ya da sıfattan sonra: \"genug Geld\", \"groß genug\" (\"genug groß\" yanlış).",
-    "\"Ich habe genug\" = \"Bıktım\" da olabilir; tonuna dikkat."
+    "**genug groß** yanlış. Doğrusu **groß genug**.",
+    "**Ich habe genug** bıktım anlamına da gelebilir."
    ],
    "examples": [
     {
@@ -3281,7 +3600,8 @@
      "de": "– Möchtest du noch? – Nein, danke, ich hab genug.",
      "tr": "– Biraz daha ister misin? – Hayır, sağ ol, doydum.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "person refusing more food at table"
     }
    ],
    "level": "A2",
@@ -3290,7 +3610,11 @@
    "domains": [
     "einkaufen",
     "essen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "İhtiyaç kadar olduğunu söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:schauen",
@@ -3309,24 +3633,25 @@
      "tr": "Bak!"
     },
     {
-     "de": "fernschauen",
-     "tr": "televizyon izlemek (güney)"
+     "de": "einen Film schauen",
+     "tr": "film izlemek"
     }
    ],
    "patterns": [
     "pt:imperativ-sie"
    ],
-   "register": "informal",
+   "register": "neutral",
    "mistakes_tr": [
-    "Güney Almanya'da \"schauen\" çok sık; kuzeyde \"gucken\". Anlam aynı.",
-    "Mağazada \"Ich schaue nur\" = \"Sadece bakıyorum\"."
+    "Güneyde **schauen**, kuzeyde **gucken** daha sık duyulur.",
+    "Mağazada **Ich schaue nur** sadece bakıyorum demektir."
    ],
    "examples": [
     {
      "id": "lx:schauen:1",
      "de": "Ich schaue nur, danke.",
      "tr": "Sadece bakıyorum, teşekkürler.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "shopper browsing clothing store"
     },
     {
      "id": "lx:schauen:2",
@@ -3353,9 +3678,13 @@
    "freqRank": 244,
    "domains": [
     "einkaufen",
-    "bairisch",
     "medien"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Gözünle bir şeye bakmayı söyler.",
+    "ne_zaman_tr": "Mağazada, sadece bakıyorum derken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Familie",
@@ -3379,8 +3708,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Vurgu \"-mi-\" heceside: Fa-MI-li-e; dört hece okunur.",
-    "\"Aile\" çoğul düşünülse de tekildir: \"Meine Familie ist groß\" (\"sind\" yanlış)."
+    "Vurgu ikinci hecededir: **Fa-MI-li-e**.",
+    "**Meine Familie sind groß** yanlış. Doğrusu **Meine Familie ist groß**."
    ],
    "examples": [
     {
@@ -3414,12 +3743,17 @@
    "freqRank": 245,
    "domains": [
     "smalltalk"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Anne, baba, çocuklar gibi yakın akrabaları anlatır.",
+    "parcalar": []
+   },
+   "img": "family together at home"
   },
   {
    "id": "lx:gegen",
    "de": "gegen",
-   "tr": "karşı; -e doğru (saat)",
+   "tr": "karşı, -e doğru",
    "pos": "prep",
    "collocations": [
     {
@@ -3436,8 +3770,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"gegen\" Akkusativ ister: \"gegen den Wind\".",
-    "Saat yaklaşık: \"gegen acht\" = sekize doğru."
+    "**gegen der Wind** yanlış. Doğrusu **gegen den Wind**.",
+    "**gegen acht** sekiz gibi demektir."
    ],
    "examples": [
     {
@@ -3454,14 +3788,14 @@
     },
     {
      "id": "lx:gegen:3",
-     "de": "Ich hab nix dagegen.",
-     "tr": "Benim için sorun yok.",
+     "de": "Bin so gegen acht da.",
+     "tr": "Sekiz gibi oradayım.",
      "layer": "alltag"
     },
     {
      "id": "lx:gegen:4",
      "de": "– Wer spielt heute? – Bayern gegen Dortmund.",
-     "tr": "– Bugün kim oynuyor? – Bayern - Dortmund.",
+     "tr": "– Bugün kim oynuyor? – Bayern, Dortmund'a karşı.",
      "layer": "alltag",
      "dialog": true
     }
@@ -3472,12 +3806,16 @@
    "domains": [
     "sport",
     "arzt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Karşı olmayı ya da yaklaşık saati söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:setzen",
    "de": "setzen",
-   "tr": "koymak; (sich) oturmak",
+   "tr": "koymak, oturmak",
    "pos": "verb",
    "verb": {
     "praesens3": "setzt",
@@ -3502,15 +3840,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Oturma eylemi \"sich setzen\", oturuyor olmak \"sitzen\": \"Ich setze mich\" / \"Ich sitze\".",
-    "\"Setz dich!\" samimi, \"Setzen Sie sich bitte\" resmî."
+    "Oturmaya başlarken **Ich setze mich**, oturuyorken **Ich sitze** dersin.",
+    "Samimi **Setz dich!**, resmî **Setzen Sie sich bitte**."
    ],
    "examples": [
     {
      "id": "lx:setzen:1",
      "de": "Setzen Sie sich bitte.",
      "tr": "Oturun lütfen.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "doctor offering patient a chair"
     },
     {
      "id": "lx:setzen:2",
@@ -3538,12 +3877,17 @@
    "domains": [
     "wohnen",
     "arzt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir yere oturmayı ya da bir şeyi koymayı söyler.",
+    "ne_zaman_tr": "Doktorda ya da misafire yer gösterirken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:sonst",
    "de": "sonst",
-   "tr": "yoksa; başka; normalde",
+   "tr": "yoksa, başka, normalde",
    "pos": "adv",
    "collocations": [
     {
@@ -3551,8 +3895,8 @@
      "tr": "Başka bir şey?"
     },
     {
-     "de": "wie sonst",
-     "tr": "her zamanki gibi"
+     "de": "sonst nichts",
+     "tr": "başka bir şey yok"
     }
    ],
    "patterns": [
@@ -3560,15 +3904,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Dükkânda \"Sonst noch etwas?\" = \"Başka bir şey?\"",
-    "\"yoksa\" anlamında fiil ikinci sırada: \"Beeil dich, sonst kommst du zu spät\"."
+    "Dükkânda **Sonst noch etwas?** başka bir isteğin var mı demektir.",
+    "**sonst du kommst zu spät** yanlış. Doğrusu **sonst kommst du zu spät**."
    ],
    "examples": [
     {
      "id": "lx:sonst:1",
      "de": "Sonst noch etwas?",
      "tr": "Başka bir şey?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "cashier serving customer at bakery"
     },
     {
      "id": "lx:sonst:2",
@@ -3596,12 +3941,16 @@
    "domains": [
     "einkaufen",
     "strategie"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Başka bir şeyi ya da aksi durumda olacakları söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Bruder",
    "de": "der Bruder",
-   "tr": "erkek kardeş",
+   "tr": "erkek kardeş, ağabey",
    "pos": "noun",
    "art": "der",
    "pl": "Brüder",
@@ -3620,8 +3969,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Türkçedeki \"abi/kardeş\" ayrımı \"großer/kleiner Bruder\" ile yapılır.",
-    "\"Geschwister\" = kardeşler (kız ve erkek): \"Hast du Geschwister?\""
+    "Abi **großer Bruder**, küçük kardeş **kleiner Bruder** olur.",
+    "**Geschwister** kız ve erkek kardeşlerin hepsidir."
    ],
    "examples": [
     {
@@ -3640,7 +3989,8 @@
      "id": "lx:Bruder:3",
      "de": "Mein kleiner Bruder nervt total.",
      "tr": "Küçük kardeşim çok sinir bozucu.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "two young brothers playing"
     },
     {
      "id": "lx:Bruder:4",
@@ -3655,7 +4005,11 @@
    "freqRank": 249,
    "domains": [
     "smalltalk"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Aynı anne babadan olan erkek kardeşi anlatır.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Musik",
@@ -3681,8 +4035,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Vurgu ikinci hecede: mu-SIK.",
-    "\"Müzik dinlemek\" = \"Musik hören\"; \"Musik zuhören\" pek kullanılmaz."
+    "Vurgu son hecededir: **mu-SIK**.",
+    "**Musik zuhören** yerine **Musik hören** dersin."
    ],
    "examples": [
     {
@@ -3717,7 +4071,11 @@
    "domains": [
     "freizeit",
     "medien"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Dinlediğin ya da çaldığın müziği anlatır.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Arbeit",
@@ -3726,7 +4084,6 @@
    "pos": "noun",
    "art": "die",
    "pl": "Arbeiten",
-   "img": "people at work",
    "collocations": [
     {
      "de": "zur Arbeit gehen",
@@ -3743,15 +4100,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"işteyim\" = \"Ich bin auf der Arbeit\" ya da \"bei der Arbeit\"; \"in Arbeit\" yanlış.",
-    "\"iş\" pozisyon olarak çoğu zaman \"Job\" ya da \"Stelle\": \"Ich suche eine neue Stelle\"."
+    "**Ich bin in Arbeit** yanlış. Doğrusu **Ich bin auf der Arbeit**.",
+    "Aradığın iş için **eine neue Stelle** dersin."
    ],
    "examples": [
     {
      "id": "lx:Arbeit:1",
      "de": "Ich fahre mit dem Bus zur Arbeit.",
      "tr": "İşe otobüsle gidiyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "commuter riding city bus in morning"
     },
     {
      "id": "lx:Arbeit:2",
@@ -3778,7 +4136,11 @@
    "freqRank": 252,
    "domains": [
     "arbeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Yaptığın işi ya da çalıştığın yeri anlatır.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:wenig",
@@ -3800,8 +4162,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"wenig\" = az; \"ein wenig\" = biraz (ein bisschen). \"wenig Zeit\" ≠ \"ein wenig Zeit\".",
-    "Çoğulda \"wenige\": \"wenige Leute\"."
+    "**wenig Zeit** az zaman, **ein wenig Zeit** biraz zaman demektir.",
+    "Sayılan şeylerde sona **e** gelir: **wenige Leute**, **wenige Tage**."
    ],
    "examples": [
     {
@@ -3820,7 +4182,8 @@
      "id": "lx:wenig:3",
      "de": "Ein wenig Salz, bitte.",
      "tr": "Biraz tuz lütfen.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "pinch of salt over food"
     },
     {
      "id": "lx:wenig:4",
@@ -3836,12 +4199,16 @@
    "domains": [
     "einkaufen",
     "arbeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Miktarın az olduğunu söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:dabei",
    "de": "dabei",
-   "tr": "yanında; o sırada; dahil",
+   "tr": "yanında, o sırada, dahil",
    "pos": "adv",
    "collocations": [
     {
@@ -3850,7 +4217,7 @@
     },
     {
      "de": "etwas dabeihaben",
-     "tr": "yanında bir şey bulunmak"
+     "tr": "bir şeyi yanında bulundurmak"
     }
    ],
    "patterns": [
@@ -3858,15 +4225,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"dabeihaben\" = yanında taşımak: \"Hast du deinen Ausweis dabei?\"",
-    "\"Ich bin dabei!\" = \"Ben varım!\""
+    "**Hast du deinen Ausweis dabei?** kimliğin yanında mı demektir.",
+    "**Ich bin dabei!** ben varım demektir."
    ],
    "examples": [
     {
      "id": "lx:dabei:1",
      "de": "Haben Sie Ihre Versichertenkarte dabei?",
      "tr": "Sigorta kartınız yanınızda mı?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "patient handing insurance card at reception"
     },
     {
      "id": "lx:dabei:2",
@@ -3894,12 +4262,26 @@
    "domains": [
     "einkaufen",
     "freizeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin yanında olduğunu ya da senin de katıldığını söyler.",
+    "ne_zaman_tr": "Kart sorulunca ya da davete evet derken.",
+    "parcalar": [
+     {
+      "de": "da",
+      "tr": "bu"
+     },
+     {
+      "de": "bei",
+      "tr": "yanında"
+     }
+    ]
+   }
   },
   {
    "id": "lx:erinnern",
    "de": "erinnern",
-   "tr": "hatırlatmak; (sich) hatırlamak",
+   "tr": "hatırlatmak, hatırlamak",
    "pos": "verb",
    "verb": {
     "praesens3": "erinnert",
@@ -3927,8 +4309,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Hatırlamak dönüşlü ve \"an\" + Akkusativ: \"Ich erinnere mich an dich\" (\"Ich erinnere dich\" = seni hatırlatıyorum).",
-    "Perfekt'te \"ge-\" yok: \"erinnert\"."
+    "Seni hatırlıyorum derken **Ich erinnere dich** yanlış. Doğrusu **Ich erinnere mich an dich**.",
+    "**Ich habe dich geerinnert** yanlış. Doğrusu **Ich habe dich erinnert**."
    ],
    "examples": [
     {
@@ -3941,7 +4323,8 @@
      "id": "lx:erinnern:2",
      "de": "Erinnern Sie mich bitte morgen daran.",
      "tr": "Lütfen yarın bana bunu hatırlatın.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "sticky note reminder on desk"
     },
     {
      "id": "lx:erinnern:3",
@@ -3963,7 +4346,11 @@
    "domains": [
     "gefuehle",
     "arbeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyi hatırlamayı ya da birine hatırlatmayı söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Sohn",
@@ -3987,15 +4374,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Çoğulu umlautlu \"Söhne\".",
-    "\"Junge\" genel olarak oğlan; kendi evladın için \"Sohn\"."
+    "**zwei Sohne** yanlış. Doğrusu **zwei Söhne**.",
+    "Kendi çocuğun için **mein Sohn**, genel olarak **Junge** dersin."
    ],
    "examples": [
     {
      "id": "lx:Sohn:1",
      "de": "Mein Sohn ist zehn Jahre alt.",
      "tr": "Oğlum on yaşında.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "father with young son"
     },
     {
      "id": "lx:Sohn:2",
@@ -4022,16 +4410,19 @@
    "freqRank": 256,
    "domains": [
     "smalltalk"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir anne babanın erkek çocuğunu anlatır.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Stunde",
    "de": "die Stunde",
-   "tr": "saat (süre); ders saati",
+   "tr": "saat, ders saati",
    "pos": "noun",
    "art": "die",
    "pl": "Stunden",
-   "img": "hourglass",
    "collocations": [
     {
      "de": "eine halbe Stunde",
@@ -4048,15 +4439,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Süre \"Stunde\", saat okuma \"Uhr\": \"zwei Stunden\" (iki saat süre) ≠ \"zwei Uhr\" (saat iki).",
-    "\"eine Stunde\" sayılırken dişil: \"eine halbe Stunde\"."
+    "**zwei Stunden** iki saat sürer, **zwei Uhr** saat ikidir.",
+    "Yarım saat **eine halbe Stunde** olur."
    ],
    "examples": [
     {
      "id": "lx:Stunde:1",
      "de": "Ich warte schon eine Stunde.",
      "tr": "Bir saattir bekliyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person waiting and checking watch"
     },
     {
      "id": "lx:Stunde:2",
@@ -4084,7 +4476,11 @@
    "domains": [
     "arbeit",
     "arzt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Altmış dakikalık süreyi anlatır.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:sofort",
@@ -4094,7 +4490,7 @@
    "collocations": [
     {
      "de": "ab sofort",
-     "tr": "derhal, hemen itibaren"
+     "tr": "şu andan itibaren"
     },
     {
      "de": "Ich komme sofort!",
@@ -4106,8 +4502,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"sofort\" \"gleich\"ten daha acil: \"sofort\" = hemen şimdi, \"gleich\" = birazdan.",
-    "Garsonun \"Komme sofort!\" demesi kısa bekleme demektir."
+    "**sofort** hemen şimdi, **gleich** birazdan demektir.",
+    "Garson **Komme sofort!** derse kısa bekleyeceksin demektir."
    ],
    "examples": [
     {
@@ -4120,7 +4516,8 @@
      "id": "lx:sofort:2",
      "de": "Ich rufe sofort zurück.",
      "tr": "Hemen geri arıyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person making phone call"
     },
     {
      "id": "lx:sofort:3",
@@ -4142,7 +4539,11 @@
    "domains": [
     "notfall",
     "arbeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Beklemeden, şu anda olacağını söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:nennen",
@@ -4173,15 +4574,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "İsimlendirme iki Akkusativ ister: \"Alle nennen ihn Max\".",
-    "\"heißen\" (adı olmak) ile karıştırma: \"Ich heiße Mehmet, aber alle nennen mich Memo\"."
+    "**Alle nennen ihm Max** yanlış. Doğrusu **Alle nennen ihn Max**.",
+    "Asıl ad için **heißen**: **Er heißt Mehmet, aber alle nennen ihn Memo**."
    ],
    "examples": [
     {
      "id": "lx:nennen:1",
-     "de": "Alle nennen mich Ali.",
-     "tr": "Herkes bana Ali der.",
-     "layer": "hd"
+     "de": "Alle nennen ihn Max.",
+     "tr": "Herkes ona Max der.",
+     "layer": "hd",
+     "img": "name tag sticker on shirt"
     },
     {
      "id": "lx:nennen:2",
@@ -4208,17 +4610,21 @@
    "freqRank": 259,
    "domains": [
     "smalltalk"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Birine ya da bir şeye verilen adı söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:nah",
    "de": "nah, nächste",
-   "tr": "yakın; (nächste) bir sonraki",
+   "tr": "yakın, en yakın, sonraki",
    "pos": "adj",
    "collocations": [
     {
      "de": "in der Nähe",
-     "tr": "yakında"
+     "tr": "yakınlarda"
     },
     {
      "de": "nächste Woche",
@@ -4230,15 +4636,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"nächste\" = bir sonraki / en yakın: \"nächste Woche\" (gelecek hafta), \"die nächste Apotheke\" (en yakın eczane).",
-    "\"yakında (mekân)\" = \"in der Nähe\"; \"nah\" tek başına daha az: \"Das ist ganz nah\"."
+    "**nächste** sonraki ya da en yakın demektir: **nächste Woche**, **die nächste Apotheke**.",
+    "Yakınlarda demek için **in der Nähe** daha sık kullanılır."
    ],
    "examples": [
     {
      "id": "lx:nah:1",
      "de": "Wo ist die nächste Haltestelle?",
      "tr": "En yakın durak nerede?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "bus stop sign on city street"
     },
     {
      "id": "lx:nah:2",
@@ -4266,7 +4673,11 @@
    "domains": [
     "verkehr",
     "einkaufen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir yerin uzak olmadığını söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:bevor",
@@ -4288,8 +4699,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Yan cümlede fiil sondadır: \"bevor ich gehe\" (\"bevor gehe ich\" yanlış).",
-    "\"vor\" (isimle) ile karıştırma: \"vor dem Essen\" / \"bevor wir essen\"."
+    "**bevor gehe ich** yanlış. Doğrusu **bevor ich gehe**.",
+    "Yemekten önce **vor dem Essen** ya da **bevor wir essen** olur."
    ],
    "examples": [
     {
@@ -4306,8 +4717,8 @@
     },
     {
      "id": "lx:bevor:3",
-     "de": "Bevor ich's vergesse: …",
-     "tr": "Unutmadan söyleyeyim: …",
+     "de": "Bevor ich's vergesse: Der Chef hat angerufen.",
+     "tr": "Unutmadan söyleyeyim: Şef aradı.",
      "layer": "alltag"
     },
     {
@@ -4324,12 +4735,16 @@
    "domains": [
     "arbeit",
     "arzt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir işten önce yapılacak başka işi söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:entschuldigen",
    "de": "entschuldigen",
-   "tr": "affetmek; (sich) özür dilemek",
+   "tr": "affetmek, özür dilemek",
    "pos": "verb",
    "verb": {
     "praesens3": "entschuldigt",
@@ -4358,15 +4773,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Birine seslenirken \"Entschuldigen Sie\" ya da \"Entschuldigung\"; \"Pardon\" da olur.",
-    "Özür dilemek dönüşlü: \"Ich entschuldige mich bei Ihnen\" (\"Ich entschuldige\" eksik)."
+    "Birine seslenirken **Entschuldigen Sie** ya da **Entschuldigung** dersin.",
+    "**Ich entschuldige** eksik. Doğrusu **Ich entschuldige mich**."
    ],
    "examples": [
     {
      "id": "lx:entschuldigen:1",
      "de": "Entschuldigen Sie, wo ist der Ausgang?",
      "tr": "Affedersiniz, çıkış nerede?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person asking stranger for directions"
     },
     {
      "id": "lx:entschuldigen:2",
@@ -4393,7 +4809,12 @@
    "freqRank": 262,
    "domains": [
     "strategie"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Özür dilerken ya da birine seslenirken kullanılır.",
+    "ne_zaman_tr": "Yabancı birine bir şey sormadan önce.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:toll",
@@ -4416,8 +4837,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "İroni ile de kullanılır: \"Na toll!\" = \"Bir bu eksikti!\" Tonuna dikkat.",
-    "Sıfat isimden önce çekilir: \"ein toller Tag\"."
+    "**Na toll!** alaylıysa bir bu eksikti demektir.",
+    "**ein toll Tag** yanlış. Doğrusu **ein toller Tag**."
    ],
    "examples": [
     {
@@ -4430,7 +4851,8 @@
      "id": "lx:toll:2",
      "de": "Das Wetter ist heute toll.",
      "tr": "Bugün hava harika.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "sunny day blue sky in park"
     },
     {
      "id": "lx:toll:3",
@@ -4452,12 +4874,16 @@
    "domains": [
     "gefuehle",
     "freizeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyi çok beğendiğini söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:einmal",
    "de": "einmal",
-   "tr": "bir kez; bir zamanlar",
+   "tr": "bir kez, bir zamanlar",
    "pos": "adv",
    "collocations": [
     {
@@ -4474,8 +4900,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Konuşmada \"mal\" diye kısalır: \"Sag mal\" = \"Sag einmal\".",
-    "Bilet/sipariş: \"Einmal Döner, bitte\" = Bir döner, lütfen."
+    "Konuşmada **mal** olur: **Sag mal** ile **Sag einmal** aynıdır.",
+    "**Einmal Döner, bitte** bir döner lütfen demektir."
    ],
    "examples": [
     {
@@ -4488,7 +4914,8 @@
      "id": "lx:einmal:2",
      "de": "Einmal nach Augsburg, bitte.",
      "tr": "Augsburg'a bir bilet, lütfen.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "buying train ticket at counter"
     },
     {
      "id": "lx:einmal:3",
@@ -4510,12 +4937,26 @@
    "domains": [
     "einkaufen",
     "strategie"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin bir kez olduğunu söyler.",
+    "ne_zaman_tr": "Bilet alırken ya da sipariş verirken.",
+    "parcalar": [
+     {
+      "de": "ein",
+      "tr": "bir"
+     },
+     {
+      "de": "mal",
+      "tr": "kez"
+     }
+    ]
+   }
   },
   {
    "id": "lx:passen",
    "de": "passen",
-   "tr": "uymak; yakışmak (beden)",
+   "tr": "uymak, olmak",
    "pos": "verb",
    "verb": {
     "praesens3": "passt",
@@ -4529,7 +4970,7 @@
    "collocations": [
     {
      "de": "Das passt.",
-     "tr": "Bu uyuyor. / Tamam."
+     "tr": "Uyar, tamam."
     },
     {
      "de": "Passt schon!",
@@ -4542,15 +4983,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kime uyduğu Dativ: \"Die Hose passt mir nicht\" (\"passt mich\" yanlış).",
-    "Konuşmada tek başına \"Passt!\" = \"Tamam / Anlaştık\" çok sık."
+    "**passt mich** yanlış. Doğrusu **passt mir**.",
+    "Tek başına **Passt!** tamam, anlaştık demektir."
    ],
    "examples": [
     {
      "id": "lx:passen:1",
      "de": "Die Schuhe passen mir nicht.",
      "tr": "Ayakkabılar bana olmuyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "trying on shoes in shop"
     },
     {
      "id": "lx:passen:2",
@@ -4578,7 +5020,12 @@
    "domains": [
     "einkaufen",
     "friseur"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin bedenine ya da zamanına uygun olduğunu söyler.",
+    "ne_zaman_tr": "Mağazada ya da randevu saati konuşurken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Woche",
@@ -4603,8 +5050,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"bu hafta\" = \"diese Woche\" (Akkusativ, edatsız); \"in dieser Woche\" de olur.",
-    "\"haftada iki kez\" = \"zweimal die Woche\" ya da \"zweimal pro Woche\"."
+    "Bu hafta **diese Woche** olur, **in** gerekmez.",
+    "Haftada iki kez **zweimal die Woche** ya da **zweimal pro Woche** olur."
    ],
    "examples": [
     {
@@ -4617,7 +5064,8 @@
      "id": "lx:Woche:2",
      "de": "Kommen Sie nächste Woche wieder.",
      "tr": "Gelecek hafta tekrar gelin.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "receptionist writing appointment in calendar"
     },
     {
      "id": "lx:Woche:3",
@@ -4639,12 +5087,16 @@
    "domains": [
     "arbeit",
     "arzt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Yedi günlük süreyi anlatır.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:letzter",
    "de": "letzter, letzte, letztes",
-   "tr": "son; geçen",
+   "tr": "son, geçen",
    "pos": "adj",
    "collocations": [
     {
@@ -4662,8 +5114,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"geçen\" = \"letzte\": \"letzte Woche\", \"letztes Jahr\"; edat gerekmez (\"in letzte Woche\" yanlış).",
-    "\"das letzte Mal\" = geçen sefer / son kez."
+    "**in letzte Woche** yanlış. Doğrusu **letzte Woche**.",
+    "**das letzte Mal** geçen sefer demektir."
    ],
    "examples": [
     {
@@ -4676,7 +5128,8 @@
      "id": "lx:letzter:2",
      "de": "Das ist der letzte Bus heute.",
      "tr": "Bu bugünkü son otobüs.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "empty night bus at stop"
     },
     {
      "id": "lx:letzter:3",
@@ -4698,7 +5151,11 @@
    "domains": [
     "smalltalk",
     "arbeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Sondaki şeyi ya da bir önceki zamanı söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:wann",
@@ -4721,8 +5178,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Soru \"wann\", \"-dığında\" bağlacı \"wenn/als\": \"Wann ich Zeit habe\" yanlış; \"Wenn ich Zeit habe\".",
-    "Dolaylı soruda fiil sonda: \"Wissen Sie, wann der Zug kommt?\""
+    "**Wann ich Zeit habe, komme ich** yanlış. Doğrusu **Wenn ich Zeit habe, komme ich**. Vaktim olunca anlamında **wenn** gelir.",
+    "**Wissen Sie, wann kommt der Zug?** yanlış. Doğrusu **Wissen Sie, wann der Zug kommt?**"
    ],
    "examples": [
     {
@@ -4735,7 +5192,8 @@
      "id": "lx:wann:2",
      "de": "Bis wann ist die Praxis geöffnet?",
      "tr": "Muayenehane ne zamana kadar açık?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "opening hours sign on doctor office door"
     },
     {
      "id": "lx:wann:3",
@@ -4758,7 +5216,11 @@
     "arzt",
     "arbeit",
     "verkehr"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin zamanını sorar.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Auge",
@@ -4783,8 +5245,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Nötr: \"das Auge\"; çoğulu \"Augen\".",
-    "\"gözüm ağrıyor\" = \"Mir tun die Augen weh\" ya da \"Ich habe Augenschmerzen\"."
+    "**der Auge** yanlış. Doğrusu **das Auge**.",
+    "Gözlerim ağrıyor **Mir tun die Augen weh** olur."
    ],
    "examples": [
     {
@@ -4818,7 +5280,11 @@
    "freqRank": 269,
    "domains": [
     "arzt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Görmemizi sağlayan organı anlatır.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Minute",
@@ -4842,15 +5308,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"beş dakikaya\" = \"in fünf Minuten\"; \"nach fünf Minuten\" geçmişte \"beş dakika sonra\".",
-    "Konuşmada \"Hast du 'ne Minute?\" = Bir dakikan var mı?"
+    "Beş dakika sonra **in fünf Minuten** olur.",
+    "**Hast du 'ne Minute?** bir dakikan var mı demektir."
    ],
    "examples": [
     {
      "id": "lx:Minute:1",
      "de": "Der Bus kommt in fünf Minuten.",
      "tr": "Otobüs beş dakika sonra geliyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "bus stop display arrival time"
     },
     {
      "id": "lx:Minute:2",
@@ -4878,12 +5345,16 @@
    "domains": [
     "verkehr",
     "telefon"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Altmış saniyelik süreyi anlatır.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:fertig",
    "de": "fertig",
-   "tr": "hazır; bitmiş; bitkin",
+   "tr": "hazır, bitmiş, bitkin",
    "pos": "adj",
    "collocations": [
     {
@@ -4900,20 +5371,21 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"Bitirdim\" = \"Ich bin fertig\" (sein ile); \"Ich habe fertig\" yanlış.",
-    "\"fertig sein\" yorgunluk da olabilir: \"Ich bin total fertig\" = Çok yorgunum."
+    "**Ich habe fertig** yanlış. Doğrusu **Ich bin fertig**.",
+    "**Ich bin total fertig** çok yorgunum da demektir."
    ],
    "examples": [
     {
      "id": "lx:fertig:1",
      "de": "Ist das Essen schon fertig?",
      "tr": "Yemek hazır mı?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "dinner ready on table"
     },
     {
      "id": "lx:fertig:2",
      "de": "Wann sind Sie mit dem Auto fertig?",
-     "tr": "Arabayla ne zaman işiniz biter?",
+     "tr": "Arabanın işi ne zaman biter?",
      "layer": "hd"
     },
     {
@@ -4936,12 +5408,16 @@
    "domains": [
     "arbeit",
     "essen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir işin bittiğini ya da hazır olduğunu söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:halt",
    "de": "halt",
-   "tr": "işte, ne yapalım (kabullenme)",
+   "tr": "işte, ne yapalım",
    "pos": "particle",
    "collocations": [
     {
@@ -4958,21 +5434,21 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "\"halt\" kabullenme bildirir, çevirisi \"işte/ne yapalım\"; güneyde çok sık (\"eben\" kuzeyde).",
-    "\"Halt!\" (Dur!) ünlemiyle karıştırma."
+    "**Das ist halt so** durum bu, ne yapalım demektir.",
+    "**Halt!** ise dur demektir."
    ],
    "examples": [
     {
      "id": "lx:halt:1",
      "de": "Das ist halt so.",
      "tr": "Durum bu, ne yapalım.",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:halt:2",
      "de": "Dann nehmen wir halt den Bus.",
      "tr": "O zaman otobüse bineriz işte.",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:halt:3",
@@ -4994,7 +5470,12 @@
    "domains": [
     "smalltalk",
     "gefuehle"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Değiştiremeyeceğin bir durumu kabullendiğini gösterir.",
+    "ne_zaman_tr": "Arkadaşla konuşurken, özellikle güneyde.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:allein",
@@ -5016,15 +5497,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Konuşmada \"alleine\" da denir; anlam aynı.",
-    "\"Yalnız hissetmek\" = \"sich einsam fühlen\"; \"allein\" yalnızca durum."
+    "Konuşmada **alleine** da denir, anlam aynıdır.",
+    "Yalnızlık duygusu için **Ich fühle mich einsam** dersin."
    ],
    "examples": [
     {
      "id": "lx:allein:1",
      "de": "Ich wohne allein.",
      "tr": "Yalnız yaşıyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person alone in small apartment"
     },
     {
      "id": "lx:allein:2",
@@ -5040,8 +5522,8 @@
     },
     {
      "id": "lx:allein:4",
-     "de": "– Kommst du allein? – Nein, mit meiner Frau.",
-     "tr": "– Yalnız mı geliyorsun? – Hayır, eşimle.",
+     "de": "– Kommst du allein? – Nein, mit meiner Familie.",
+     "tr": "– Yalnız mı geliyorsun? – Hayır, ailemle.",
      "layer": "alltag",
      "dialog": true
     }
@@ -5052,12 +5534,16 @@
    "domains": [
     "wohnen",
     "gefuehle"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Yanında kimse olmadan yapılan şeyi söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:beim",
    "de": "beim",
-   "tr": "-de, -ken (bei + dem)",
+   "tr": "-de, -ken",
    "pos": "prep",
    "collocations": [
     {
@@ -5074,8 +5560,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"beim\" + büyük harfli mastar \"-rken\" anlamı verir: \"beim Essen\" = yemek yerken.",
-    "Doktorda olmak \"beim Arzt\", doktora gitmek \"zum Arzt\"."
+    "**beim Essen** yemek yerken demektir.",
+    "Doktordayken **beim Arzt**, doktora giderken **zum Arzt** dersin."
    ],
    "examples": [
     {
@@ -5110,7 +5596,11 @@
    "domains": [
     "arzt",
     "essen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "**bei dem** kelimelerinin kısası, yeri ya da o anki işi söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:einzig",
@@ -5132,8 +5622,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Artikel ve sıfat ekiyle kullanılır: \"das einzige Problem\".",
-    "\"kein einziger\" = hiç biri: \"Kein einziger Bus ist gekommen\"."
+    "**das einzig Problem** yanlış. Doğrusu **das einzige Problem**.",
+    "**kein einziger Bus** hiçbir otobüs demektir."
    ],
    "examples": [
     {
@@ -5152,12 +5642,13 @@
      "id": "lx:einzig:3",
      "de": "Kein einziges Wort hab ich verstanden!",
      "tr": "Tek kelime anlamadım!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "confused person listening"
     },
     {
      "id": "lx:einzig:4",
      "de": "– Hast du noch Fragen? – Nur eine einzige.",
-     "tr": "– Başka sorun var mı? – Sadece bir tane.",
+     "tr": "– Başka soru var mı? – Sadece bir tane.",
      "layer": "alltag",
      "dialog": true
     }
@@ -5167,7 +5658,11 @@
    "freqRank": 275,
    "domains": [
     "gefuehle"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Başka bir tane olmadığını söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:schlecht",
@@ -5190,15 +5685,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"Mir ist schlecht\" = mide bulantısı; \"Mir geht es schlecht\" = kendimi kötü hissediyorum.",
-    "\"Nicht schlecht!\" = Fena değil (övgü)."
+    "**Mir ist schlecht** midem bulanıyor demektir.",
+    "**Nicht schlecht!** fena değil demektir, bir övgüdür."
    ],
    "examples": [
     {
      "id": "lx:schlecht:1",
      "de": "Mir ist schlecht.",
      "tr": "Midem bulanıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person feeling nauseous"
     },
     {
      "id": "lx:schlecht:2",
@@ -5226,12 +5722,17 @@
    "domains": [
     "arzt",
     "gefuehle"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin iyi olmadığını söyler.",
+    "ne_zaman_tr": "Doktorda şikâyet anlatırken ya da hava konuşurken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:verschwinden",
    "de": "verschwinden",
-   "tr": "kaybolmak, ortadan kaybolmak",
+   "tr": "kaybolmak, yok olmak",
    "pos": "verb",
    "verb": {
     "praesens3": "verschwindet",
@@ -5252,17 +5753,18 @@
    "patterns": [
     "pt:perfekt-sein"
    ],
-   "register": "informal",
+   "register": "neutral",
    "mistakes_tr": [
-    "Perfekt'i \"sein\" ile: \"Mein Handy ist verschwunden\".",
-    "\"Verschwinde!\" kabadır; filmlerde sık duyulur."
+    "**Mein Handy hat verschwunden** yanlış. Doğrusu **Mein Handy ist verschwunden**.",
+    "**Verschwinde!** kaba bir sözdür, defol demektir."
    ],
    "examples": [
     {
      "id": "lx:verschwinden:1",
      "de": "Mein Fahrrad ist verschwunden.",
      "tr": "Bisikletim kayboldu.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "empty bicycle rack"
     },
     {
      "id": "lx:verschwinden:2",
@@ -5272,8 +5774,8 @@
     },
     {
      "id": "lx:verschwinden:3",
-     "de": "Verschwinde, aber schnell!",
-     "tr": "Defol, hem de hemen!",
+     "de": "Mein Schlüssel ist schon wieder verschwunden!",
+     "tr": "Anahtarım yine kayboldu!",
      "layer": "alltag"
     },
     {
@@ -5290,12 +5792,16 @@
    "domains": [
     "notfall",
     "medien"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin birden ortadan kalktığını söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Hilfe",
    "de": "die Hilfe",
-   "tr": "yardım",
+   "tr": "yardım, imdat",
    "pos": "noun",
    "art": "die",
    "pl": "Hilfen",
@@ -5315,8 +5821,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"Yardıma ihtiyacım var\" = \"Ich brauche Hilfe\"; \"Ich brauche eine Hilfe\" yanlış.",
-    "Acil durumda \"Hilfe!\" bağırılır; 112 aranır."
+    "**Ich brauche eine Hilfe** yanlış. Doğrusu **Ich brauche Hilfe**.",
+    "Acil durumda **Hilfe!** diye bağır ve 112 ara."
    ],
    "examples": [
     {
@@ -5327,7 +5833,7 @@
     },
     {
      "id": "lx:Hilfe:2",
-     "de": "Ich brauche Hilfe beim Formular.",
+     "de": "Ich brauche Hilfe mit dem Formular.",
      "tr": "Formla ilgili yardıma ihtiyacım var.",
      "layer": "hd"
     },
@@ -5342,7 +5848,8 @@
      "de": "– Brauchen Sie Hilfe? – Ja, bitte, das ist zu schwer.",
      "tr": "– Yardıma ihtiyacınız var mı? – Evet, lütfen, bu çok ağır.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "person helping carry heavy box"
     }
    ],
    "level": "A1",
@@ -5351,12 +5858,17 @@
    "domains": [
     "notfall",
     "strategie"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Birinin sana destek olmasını anlatır.",
+    "ne_zaman_tr": "Zorda kalınca ya da acil durumda.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:ne",
    "de": "ne",
-   "tr": "değil mi?; (nee) yok",
+   "tr": "değil mi",
    "pos": "particle",
    "collocations": [
     {
@@ -5365,7 +5877,7 @@
     },
     {
      "de": "Nee!",
-     "tr": "Yok! / Hayır!"
+     "tr": "Yok, hayır!"
     }
    ],
    "patterns": [
@@ -5373,21 +5885,21 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Cümle sonundaki \"ne?\" = \"nicht wahr?\", \"oder?\" (değil mi?); konuşma dili.",
-    "\"'ne\" aynı zamanda \"eine\"nin kısaltması: \"Hast du 'ne Minute?\""
+    "Cümle sonunda **ne?** ile **oder?** aynı işi görür.",
+    "**'ne** ise **eine** kelimesinin kısasıdır: **Hast du 'ne Minute?**"
    ],
    "examples": [
     {
      "id": "lx:ne:1",
      "de": "Das war gut, ne?",
      "tr": "İyiydi, değil mi?",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:ne:2",
      "de": "Du kommst doch morgen, ne?",
      "tr": "Yarın geliyorsun, değil mi?",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:ne:3",
@@ -5408,7 +5920,13 @@
    "freqRank": 279,
    "domains": [
     "smalltalk"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Cümle sonunda onay ister, değil mi demektir.",
+    "ne_zaman_tr": "Arkadaşla konuşurken.",
+    "parcalar": [],
+    "ipucu_tr": "Uzun söylenen **nee** başka kelimedir, konuşmada hayır demektir."
+   }
   },
   {
    "id": "lx:wichtig",
@@ -5431,8 +5949,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kime önemli: Dativ: \"Das ist mir wichtig\" = Bu benim için önemli.",
-    "\"önemli değil\" (özre cevap) = \"Macht nichts\" ya da \"Kein Problem\"; \"Nicht wichtig\" kaba kaçabilir."
+    "**Das ist mir wichtig** bu benim için önemli demektir.",
+    "Özre cevap olarak **Nicht wichtig** kaba kaçabilir, **Macht nichts** de."
    ],
    "examples": [
     {
@@ -5445,7 +5963,8 @@
      "id": "lx:wichtig:2",
      "de": "Bitte bringen Sie alle wichtigen Unterlagen mit.",
      "tr": "Lütfen bütün önemli belgeleri getirin.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "folder of documents on desk"
     },
     {
      "id": "lx:wichtig:3",
@@ -5467,12 +5986,16 @@
    "domains": [
     "arbeit",
     "amt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin büyük değer taşıdığını söyler.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:gern",
    "de": "gern",
-   "tr": "memnuniyetle; severek",
+   "tr": "memnuniyetle, severek",
    "pos": "adv",
    "collocations": [
     {
@@ -5480,8 +6003,8 @@
      "tr": "Rica ederim!"
     },
     {
-     "de": "gern + fiil",
-     "tr": "…-mekten hoşlanmak"
+     "de": "gern kochen",
+     "tr": "yemek yapmayı sevmek"
     }
    ],
    "patterns": [
@@ -5490,20 +6013,21 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"sevmek (yapmayı)\" = fiil + \"gern\": \"Ich koche gern\"; \"Ich mag kochen\" de olur ama \"gern\" daha doğal.",
-    "Konuşmada \"gerne\" de denir."
+    "Yapmayı sevdiğin şeyi **Ich koche gern** gibi söylersin.",
+    "Konuşmada **gerne** da denir."
    ],
    "examples": [
     {
      "id": "lx:gern:1",
      "de": "Ich spiele gern Fußball.",
      "tr": "Futbol oynamayı severim.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "people playing football in park"
     },
     {
      "id": "lx:gern:2",
      "de": "Ich hätte gern einen Tee.",
-     "tr": "Bir çay alabilir miyim?",
+     "tr": "Bir çay rica edeyim.",
      "layer": "hd"
     },
     {
@@ -5526,12 +6050,17 @@
    "domains": [
     "freizeit",
     "essen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyi severek yaptığını söyler.",
+    "ne_zaman_tr": "Bir teklifi kabul ederken ya da sipariş verirken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:darüber",
    "de": "darüber",
-   "tr": "bunun hakkında; üstünde",
+   "tr": "bunun hakkında, üstünde",
    "pos": "adv",
    "collocations": [
     {
@@ -5548,15 +6077,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"über das\" yerine \"darüber\": \"Lass uns darüber reden\".",
-    "Soru biçimi \"worüber\": \"Worüber sprecht ihr?\""
+    "**über das** yerine **darüber** dersin: **Lass uns darüber reden**.",
+    "Soru sorarken **worüber** gelir: **Worüber sprecht ihr?** Ne hakkında konuşuyorsunuz demektir."
    ],
    "examples": [
     {
      "id": "lx:darüber:1",
      "de": "Wir müssen darüber sprechen.",
      "tr": "Bunun hakkında konuşmamız lazım.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "two people having serious conversation"
     },
     {
      "id": "lx:darüber:2",
@@ -5584,7 +6114,20 @@
    "domains": [
     "gefuehle",
     "smalltalk"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Az önce konuşulan konudan söz eder.",
+    "parcalar": [
+     {
+      "de": "dar",
+      "tr": "bu"
+     },
+     {
+      "de": "über",
+      "tr": "hakkında"
+     }
+    ]
+   }
   },
   {
    "id": "lx:trinken",
@@ -5616,8 +6159,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Türkçede çorba \"içilir\"; Almancada çorba yenir: \"Suppe essen\" (\"Suppe trinken\" yanlış).",
-    "Sigara \"rauchen\"dır, \"trinken\" değil."
+    "**Suppe trinken** yanlış. Doğrusu **Suppe essen**.",
+    "Sigara için **trinken** olmaz. Doğrusu **rauchen**."
    ],
    "examples": [
     {
@@ -5652,12 +6195,17 @@
    "domains": [
     "essen",
     "arzt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Su gibi sıvıları içmeyi söyler.",
+    "parcalar": []
+   },
+   "img": "person drinking glass of water"
   },
   {
    "id": "lx:dazu",
    "de": "dazu",
-   "tr": "buna, ona; ayrıca; için",
+   "tr": "buna, yanında, ayrıca",
    "pos": "adv",
    "collocations": [
     {
@@ -5675,8 +6223,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"zu das\" yerine \"dazu\": \"Was meinst du dazu?\"",
-    "Yemekte \"dazu\" = yanında: \"Dazu gibt es Reis\" = Yanında pilav var."
+    "**zu das** yerine **dazu** dersin: **Was meinst du dazu?**",
+    "Yemekte **Dazu gibt es Reis** yanında pilav var demektir."
    ],
    "examples": [
     {
@@ -5702,7 +6250,8 @@
      "de": "– Möchten Sie Brot dazu? – Ja, gern.",
      "tr": "– Yanında ekmek ister misiniz? – Evet, lütfen.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "soup served with bread"
     }
    ],
    "level": "B1",
@@ -5711,12 +6260,26 @@
    "domains": [
     "essen",
     "gefuehle"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Az önceki şeye bir şey ekler.",
+    "ne_zaman_tr": "Yemekte ya da fikir sorarken.",
+    "parcalar": [
+     {
+      "de": "da",
+      "tr": "bu"
+     },
+     {
+      "de": "zu",
+      "tr": "-e"
+     }
+    ]
+   }
   },
   {
    "id": "lx:daran",
    "de": "daran",
-   "tr": "ona, buna (an + şey)",
+   "tr": "buna, ona",
    "pos": "adv",
    "collocations": [
     {
@@ -5733,15 +6296,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"an das\" yerine \"daran\" (konuşmada \"dran\"): \"Denk daran!\" = \"Unutma!\"",
-    "Soru biçimi \"woran\": \"Woran denkst du?\""
+    "**Denk daran!** unutma demektir, konuşmada **Denk dran!** olur.",
+    "Soru sorarken **woran** gelir: **Woran denkst du?** Ne düşünüyorsun demektir."
    ],
    "examples": [
     {
      "id": "lx:daran:1",
      "de": "Denken Sie bitte daran, den Ausweis mitzubringen.",
      "tr": "Lütfen kimliğinizi getirmeyi unutmayın.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "identity card in wallet"
     },
     {
      "id": "lx:daran:2",
@@ -5758,7 +6322,7 @@
     {
      "id": "lx:daran:4",
      "de": "– Hast du daran gedacht? – Ja, keine Sorge.",
-     "tr": "– Bunu aklında tuttun mu? – Evet, merak etme.",
+     "tr": "– Onu hatırladın mı? – Evet, merak etme.",
      "layer": "alltag",
      "dialog": true
     }
@@ -5769,7 +6333,21 @@
    "domains": [
     "gefuehle",
     "strategie"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Az önce söylenen şeye işaret eder.",
+    "ne_zaman_tr": "Birine bir şeyi unutmamasını söylerken.",
+    "parcalar": [
+     {
+      "de": "dar",
+      "tr": "bu"
+     },
+     {
+      "de": "an",
+      "tr": "-e"
+     }
+    ]
+   }
   },
   {
    "id": "lx:nett",
@@ -5792,8 +6370,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"nett\" kişiler için olumlu; ama bir şeyi \"nett\" bulmak bazen \"fena değil\" kadar zayıf.",
-    "Ricada: \"Wären Sie so nett und …?\" = \"… lütfeder misiniz?\""
+    "Bir film için **nett** dersen pek beğenmedin gibi anlaşılabilir.",
+    "**Wären Sie so nett?** rica ederken söylenir, bunu yapar mısınız demektir."
    ],
    "examples": [
     {
@@ -5817,9 +6395,10 @@
     {
      "id": "lx:nett:4",
      "de": "– Ich helfe Ihnen mit der Tasche. – Oh, wie nett!",
-     "tr": "– Çantanıza yardım edeyim. – Ay, ne kadar naziksiniz!",
+     "tr": "– Çantanızı taşımanıza yardım edeyim. – Ay, ne kadar naziksiniz!",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "young person helping elderly woman carry bag"
     }
    ],
    "level": "A1",
@@ -5828,7 +6407,12 @@
    "domains": [
     "smalltalk",
     "gefuehle"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir kişinin sıcak ve kibar olduğunu söyler.",
+    "ne_zaman_tr": "Birine teşekkür ederken.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:schreiben",
@@ -5861,8 +6445,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kime: Dativ: \"Schreib mir eine Nachricht\" (\"Schreib mich\" yanlış).",
-    "Adı sorarken \"Wie schreibt man das?\" ya da \"Können Sie das buchstabieren?\""
+    "**Schreib mich** yanlış. Doğrusu **Schreib mir**.",
+    "Adının yazılışı için **Wie schreibt man das?** diye sorulur."
    ],
    "examples": [
     {
@@ -5898,7 +6482,12 @@
     "amt",
     "arbeit",
     "post"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Kalemle ya da telefonda yazı yazmayı söyler.",
+    "parcalar": []
+   },
+   "img": "hand writing with pen on paper"
   },
   {
    "id": "lx:Baby",
@@ -5923,8 +6512,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Nötr: \"das Baby\"; çoğulu \"Babys\" (\"Babies\" yanlış).",
-    "\"Bebek bekliyorum\" = \"Ich bekomme ein Baby\" ya da \"Ich bin schwanger\"."
+    "**die Babies** yanlış. Doğrusu **die Babys**.",
+    "Oyuncak bebek **die Puppe** olur, **das Baby** yalnızca gerçek bebektir."
    ],
    "examples": [
     {
@@ -5959,7 +6548,11 @@
    "domains": [
     "smalltalk",
     "arzt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Çok küçük çocuğu anlatır.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:Dank",
@@ -5983,8 +6576,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"Vielen Dank\" kalıbında sıfat çekilir (\"Viel Dank\" yanlış).",
-    "\"dank\" küçük harfle edat da olur: \"dank deiner Hilfe\" = senin yardımın sayesinde."
+    "**Viel Dank** yanlış. Doğrusu **Vielen Dank**.",
+    "**dank deiner Hilfe** senin yardımın sayesinde demektir."
    ],
    "examples": [
     {
@@ -5997,7 +6590,8 @@
      "id": "lx:Dank:2",
      "de": "Herzlichen Dank für Ihre Hilfe.",
      "tr": "Yardımınız için içten teşekkürler.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "grateful handshake"
     },
     {
      "id": "lx:Dank:3",
@@ -6018,7 +6612,12 @@
    "freqRank": 290,
    "domains": [
     "strategie"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Birine teşekkür etmek için kullanılır.",
+    "ne_zaman_tr": "Yardım ya da hediye alınca.",
+    "parcalar": []
+   }
   },
   {
    "id": "lx:hoch",
@@ -6031,8 +6630,8 @@
      "tr": "yüksek tansiyon"
     },
     {
-     "de": "Hände hoch!",
-     "tr": "Eller yukarı!"
+     "de": "hohes Fieber",
+     "tr": "yüksek ateş"
     }
    ],
    "patterns": [
@@ -6040,8 +6639,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "İsimden önce \"c\" düşer: \"ein hoher Preis\" (\"ein hocher\" yanlış).",
-    "Konuşmada \"hoch\" = yukarı: \"Ich komme hoch\" = Yukarı çıkıyorum."
+    "**ein hocher Preis** yanlış. Doğrusu **ein hoher Preis**.",
+    "Konuşmada **Ich komme hoch** yukarı çıkıyorum demektir."
    ],
    "examples": [
     {
@@ -6054,7 +6653,8 @@
      "id": "lx:hoch:2",
      "de": "Sie haben hohes Fieber.",
      "tr": "Yüksek ateşiniz var.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "thermometer showing high fever"
     },
     {
      "id": "lx:hoch:3",
@@ -6076,7 +6676,12 @@
    "domains": [
     "arzt",
     "wohnen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin yukarıda ya da miktarının fazla olduğunu söyler.",
+    "ne_zaman_tr": "Kira, ateş ya da tansiyon konuşurken.",
+    "parcalar": []
+   }
   }
  ]
 }

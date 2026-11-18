@@ -1,0 +1,1316 @@
+{
+ "schema": 1,
+ "level": "A2",
+ "review": {
+  "status": "draft"
+ },
+ "note_tr": "A2 ana yol planı: 8 aile × 4 ünite (AH-1, PM-041). Her senaryo, metin ve kart birimini buradan alır.",
+ "families": [
+  {
+   "id": "telefon",
+   "no": 1,
+   "tr": "Telefon"
+  },
+  {
+   "id": "saglik",
+   "no": 2,
+   "tr": "Sağlık"
+  },
+  {
+   "id": "resmi",
+   "no": 3,
+   "tr": "Resmî işler ve mektuplar"
+  },
+  {
+   "id": "is",
+   "no": 4,
+   "tr": "İş"
+  },
+  {
+   "id": "hizmet",
+   "no": 5,
+   "tr": "Gündelik hizmetler"
+  },
+  {
+   "id": "bag",
+   "no": 6,
+   "tr": "İnsanlarla bağ"
+  },
+  {
+   "id": "kulak",
+   "no": 7,
+   "tr": "Kulak"
+  },
+  {
+   "id": "okuma",
+   "no": 8,
+   "tr": "Okuma ve yazma"
+  }
+ ],
+ "arms": [
+  "kafe",
+  "radyo",
+  "kutuphane",
+  "gazete",
+  "atolye",
+  "bahce",
+  "sinema",
+  "tiyatro",
+  "pazar",
+  "telefon",
+  "posta"
+ ],
+ "diegetic_places": [
+  {
+   "id": "pl:telefon",
+   "tr": "Telefon"
+  },
+  {
+   "id": "pl:posta",
+   "tr": "Posta kutusu"
+  }
+ ],
+ "units": [
+  {
+   "id": "u:a2:telefon-1",
+   "order": 1,
+   "family": "telefon",
+   "domain": "telefon",
+   "scenario": "sc:telefon:01-arzttermin",
+   "title_tr": "Doktordan telefonla randevu almak",
+   "title_de": "Einen Arzttermin ausmachen",
+   "can_do": {
+    "id": "cd:a2:telefon-1",
+    "tr": "Telefonla doktordan randevu alırım."
+   },
+   "place": "pl:telefon",
+   "arm": "pazar",
+   "characters": [
+    "ch:huber"
+   ],
+   "story_week": 3,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-moechte",
+     "pt:passt-ihnen",
+     "pt:geht-es-auch",
+     "pt:um-uhr",
+     "pt:koennten-sie",
+     "pt:noch-mal"
+    ],
+    "gramer": [
+     "gr:modal"
+    ],
+    "tur": [
+     "telefon-konusmasi"
+    ],
+    "baglayicilar": [],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:telefon-2",
+   "order": 2,
+   "family": "telefon",
+   "domain": "telefon",
+   "scenario": "sc:telefon:02-termin-verschieben",
+   "title_tr": "Randevuyu kaydırmak ve iptal etmek",
+   "title_de": "Einen Termin verschieben",
+   "can_do": {
+    "id": "cd:a2:telefon-2",
+    "tr": "Randevumu telefonla kaydırır ya da iptal ederim."
+   },
+   "place": "pl:telefon",
+   "arm": "pazar",
+   "characters": [
+    "ch:huber"
+   ],
+   "story_week": 3,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-moechte",
+     "pt:geht-es-auch",
+     "pt:passt-ihnen",
+     "pt:um-uhr",
+     "pt:wuerden-sie"
+    ],
+    "gramer": [
+     "gr:modal",
+     "gr:trennbar"
+    ],
+    "tur": [
+     "telefon-konusmasi",
+     "rica"
+    ],
+    "baglayicilar": [
+     "aber",
+     "dann"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:telefon-3",
+   "order": 3,
+   "family": "telefon",
+   "domain": "telefon",
+   "scenario": "sc:telefon:03-auskunft",
+   "title_tr": "Telefonla bilgi almak ve menüyü geçmek",
+   "title_de": "Am Telefon etwas erfragen",
+   "can_do": {
+    "id": "cd:a2:telefon-3",
+    "tr": "Telefon menüsünü geçer, saat ve fiyat sorarım."
+   },
+   "place": "pl:telefon",
+   "arm": "pazar",
+   "characters": [
+    "ch:schneider",
+    "ch:huber"
+   ],
+   "story_week": 10,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:wie-viel-kostet",
+     "pt:koennten-sie",
+     "pt:noch-mal",
+     "pt:um-uhr"
+    ],
+    "gramer": [
+     "gr:modal"
+    ],
+    "tur": [
+     "telefon-konusmasi"
+    ],
+    "baglayicilar": [
+     "und",
+     "oder"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:telefon-4",
+   "order": 4,
+   "family": "telefon",
+   "domain": "telefon",
+   "scenario": "sc:telefon:04-stoerung-melden",
+   "title_tr": "Evdeki arızayı telefonla bildirmek",
+   "title_de": "Eine Störung melden",
+   "can_do": {
+    "id": "cd:a2:telefon-4",
+    "tr": "Evdeki arızayı telefonla anlatır, gün alırım."
+   },
+   "place": "pl:telefon",
+   "arm": "pazar",
+   "characters": [
+    "ch:pichler"
+   ],
+   "story_week": 7,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:seit",
+     "pt:ich-habe",
+     "pt:koennten-sie",
+     "pt:passt-ihnen"
+    ],
+    "gramer": [
+     "gr:perfekt"
+    ],
+    "tur": [
+     "telefon-konusmasi",
+     "sikayet"
+    ],
+    "baglayicilar": [
+     "seit",
+     "aber"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:saglik-1",
+   "order": 5,
+   "family": "saglik",
+   "domain": "arzt",
+   "scenario": "sc:arzt:01-beschwerden",
+   "title_tr": "Şikâyetini anlatmak",
+   "title_de": "Beschwerden beschreiben",
+   "can_do": {
+    "id": "cd:a2:saglik-1",
+    "tr": "Doktora şikâyetimi anlatırım."
+   },
+   "place": "pl:praxis",
+   "arm": "pazar",
+   "characters": [
+    "ch:weber"
+   ],
+   "story_week": 3,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:mir-tut-weh",
+     "pt:seit",
+     "pt:ich-habe",
+     "pt:perfekt-haben",
+     "pt:wenn"
+    ],
+    "gramer": [
+     "gr:dativ",
+     "gr:perfekt"
+    ],
+    "tur": [
+     "tarif-etme"
+    ],
+    "baglayicilar": [
+     "wenn",
+     "seit"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:saglik-2",
+   "order": 6,
+   "family": "saglik",
+   "domain": "arzt",
+   "scenario": "sc:arzt:02-apotheke",
+   "title_tr": "Eczanede ilaç istemek ve kullanımı sormak",
+   "title_de": "In der Apotheke",
+   "can_do": {
+    "id": "cd:a2:saglik-2",
+    "tr": "Eczanede ilaç ister, nasıl kullanılacağını sorarım."
+   },
+   "place": "pl:apotheke",
+   "arm": "pazar",
+   "characters": [
+    "ch:brandl"
+   ],
+   "story_week": 8,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-moechte",
+     "pt:ich-habe",
+     "pt:mir-tut-weh",
+     "pt:wie-viel-kostet"
+    ],
+    "gramer": [
+     "gr:dativ"
+    ],
+    "tur": [
+     "rica"
+    ],
+    "baglayicilar": [
+     "und",
+     "oder"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:saglik-3",
+   "order": 7,
+   "family": "saglik",
+   "domain": "arzt",
+   "scenario": "sc:arzt:03-untersuchung",
+   "title_tr": "Muayenede doktorun söylediklerini anlamak",
+   "title_de": "Beim Arzt: die Untersuchung",
+   "can_do": {
+    "id": "cd:a2:saglik-3",
+    "tr": "Doktorun söylediğini anlar, anlamadığımı sorarım."
+   },
+   "place": "pl:praxis",
+   "arm": "pazar",
+   "characters": [
+    "ch:weber"
+   ],
+   "story_week": 8,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-verstehe-nicht",
+     "pt:was-heisst",
+     "pt:noch-mal",
+     "pt:wuerden-sie"
+    ],
+    "gramer": [
+     "gr:imperativ"
+    ],
+    "tur": [
+     "soru-sorma"
+    ],
+    "baglayicilar": [
+     "wenn"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:saglik-4",
+   "order": 8,
+   "family": "saglik",
+   "domain": "arzt",
+   "scenario": "sc:arzt:04-krankmeldung",
+   "title_tr": "Hasta olduğunu bildirmek, rapor almak",
+   "title_de": "Sich krankmelden",
+   "can_do": {
+    "id": "cd:a2:saglik-4",
+    "tr": "İşe hasta olduğumu bildirir, rapor isterim."
+   },
+   "place": "pl:firma",
+   "arm": "pazar",
+   "characters": [
+    "ch:huber",
+    "ch:wimmer"
+   ],
+   "story_week": 15,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-habe",
+     "pt:seit",
+     "pt:koennten-sie",
+     "pt:ich-moechte"
+    ],
+    "gramer": [
+     "gr:perfekt"
+    ],
+    "tur": [
+     "telefon-konusmasi"
+    ],
+    "baglayicilar": [
+     "deshalb"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:resmi-1",
+   "order": 9,
+   "family": "resmi",
+   "domain": "amt",
+   "scenario": "sc:amt:01-termin-unterlagen",
+   "title_tr": "Bürgerbüro'da sırayı ve evrakı anlamak",
+   "title_de": "Im Bürgerbüro",
+   "can_do": {
+    "id": "cd:a2:resmi-1",
+    "tr": "Resmî dairede ne gerektiğini sorar, anlarım."
+   },
+   "place": "pl:buergerbuero",
+   "arm": "pazar",
+   "characters": [
+    "ch:schneider"
+   ],
+   "story_week": 10,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-moechte",
+     "pt:ich-habe",
+     "pt:koennten-sie",
+     "pt:was-heisst"
+    ],
+    "gramer": [
+     "gr:modal"
+    ],
+    "tur": [
+     "soru-sorma"
+    ],
+    "baglayicilar": [
+     "und"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:resmi-2",
+   "order": 10,
+   "family": "resmi",
+   "domain": "amt",
+   "scenario": "sc:amt:02-anmeldung",
+   "title_tr": "Adres kaydı yaptırmak ve form doldurmak",
+   "title_de": "Sich anmelden",
+   "can_do": {
+    "id": "cd:a2:resmi-2",
+    "tr": "Adres kaydı için formu doldurur, soruları yanıtlarım."
+   },
+   "place": "pl:buergerbuero",
+   "arm": "pazar",
+   "characters": [
+    "ch:schneider"
+   ],
+   "story_week": 10,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-habe",
+     "pt:seit",
+     "pt:ich-moechte",
+     "pt:um-uhr"
+    ],
+    "gramer": [
+     "gr:perfekt"
+    ],
+    "tur": [
+     "form"
+    ],
+    "baglayicilar": [
+     "seit"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:resmi-3",
+   "order": 11,
+   "family": "resmi",
+   "domain": "amt",
+   "scenario": "sc:amt:03-brief-verstehen",
+   "title_tr": "Resmî mektubun ne istediğini anlamak",
+   "title_de": "Einen Brief verstehen",
+   "can_do": {
+    "id": "cd:a2:resmi-3",
+    "tr": "Mektubun ne istediğini ve son tarihi anlarım."
+   },
+   "place": "pl:posta",
+   "arm": "posta",
+   "characters": [
+    "ch:aksoy",
+    "ch:pichler"
+   ],
+   "story_week": 20,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:wenn",
+     "pt:bis-wann",
+     "pt:noch-mal"
+    ],
+    "gramer": [
+     "gr:trennbar"
+    ],
+    "tur": [
+     "mektup"
+    ],
+    "baglayicilar": [
+     "wenn",
+     "bis"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:resmi-4",
+   "order": 12,
+   "family": "resmi",
+   "domain": "amt",
+   "scenario": "sc:amt:04-frist",
+   "title_tr": "Son tarih için ek süre istemek",
+   "title_de": "Um mehr Zeit bitten",
+   "can_do": {
+    "id": "cd:a2:resmi-4",
+    "tr": "Son tarihi kaçırınca özür diler, ek süre isterim."
+   },
+   "place": "pl:telefon",
+   "arm": "posta",
+   "characters": [
+    "ch:schneider"
+   ],
+   "story_week": 20,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:es-tut-mir-leid",
+     "pt:koennten-sie",
+     "pt:wuerden-sie",
+     "pt:perfekt-haben"
+    ],
+    "gramer": [
+     "gr:perfekt"
+    ],
+    "tur": [
+     "rica",
+     "ozur"
+    ],
+    "baglayicilar": [
+     "weil"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:is-1",
+   "order": 13,
+   "family": "is",
+   "domain": "arbeit",
+   "scenario": "sc:arbeit:01-pausengespraech",
+   "title_tr": "Molada küçük sohbet etmek",
+   "title_de": "Small Talk in der Pause",
+   "can_do": {
+    "id": "cd:a2:is-1",
+    "tr": "Molada küçük sohbete katılırım."
+   },
+   "place": "pl:firma",
+   "arm": "kafe",
+   "characters": [
+    "ch:lechner",
+    "ch:aksoy"
+   ],
+   "story_week": 1,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-habe",
+     "pt:perfekt-haben",
+     "pt:ich-finde"
+    ],
+    "gramer": [
+     "gr:perfekt"
+    ],
+    "tur": [
+     "sohbet"
+    ],
+    "baglayicilar": [
+     "und",
+     "aber"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:is-2",
+   "order": 14,
+   "family": "is",
+   "domain": "arbeit",
+   "scenario": "sc:arbeit:02-anweisung",
+   "title_tr": "İş talimatını anlamak ve sormak",
+   "title_de": "Eine Anweisung verstehen",
+   "can_do": {
+    "id": "cd:a2:is-2",
+    "tr": "Şefin talimatını anlar, emin olmak için sorarım."
+   },
+   "place": "pl:firma",
+   "arm": "pazar",
+   "characters": [
+    "ch:wimmer"
+   ],
+   "story_week": 4,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-verstehe-nicht",
+     "pt:noch-mal",
+     "pt:koennten-sie",
+     "pt:bis-wann"
+    ],
+    "gramer": [
+     "gr:imperativ"
+    ],
+    "tur": [
+     "soru-sorma"
+    ],
+    "baglayicilar": [
+     "dann"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:is-3",
+   "order": 15,
+   "family": "is",
+   "domain": "arbeit",
+   "scenario": "sc:arbeit:03-urlaub-schicht",
+   "title_tr": "İzin ve vardiya değişikliği istemek",
+   "title_de": "Urlaub und Schicht",
+   "can_do": {
+    "id": "cd:a2:is-3",
+    "tr": "İzin ister, vardiya değişimini konuşurum."
+   },
+   "place": "pl:firma",
+   "arm": "pazar",
+   "characters": [
+    "ch:wimmer",
+    "ch:aksoy"
+   ],
+   "story_week": 13,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-moechte",
+     "pt:geht-es-auch",
+     "pt:wuerden-sie",
+     "pt:weil"
+    ],
+    "gramer": [
+     "gr:nebensatz"
+    ],
+    "tur": [
+     "rica"
+    ],
+    "baglayicilar": [
+     "weil",
+     "aber"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:is-4",
+   "order": 16,
+   "family": "is",
+   "domain": "arbeit",
+   "scenario": "sc:arbeit:04-problem-melden",
+   "title_tr": "Hata ya da gecikmeyi bildirmek, özür dilemek",
+   "title_de": "Ein Problem melden",
+   "can_do": {
+    "id": "cd:a2:is-4",
+    "tr": "Hatamı söyler, özür diler, çözüm öneririm."
+   },
+   "place": "pl:firma",
+   "arm": "pazar",
+   "characters": [
+    "ch:wimmer",
+    "ch:lechner"
+   ],
+   "story_week": 13,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:es-tut-mir-leid",
+     "pt:perfekt-haben",
+     "pt:weil",
+     "pt:ich-moechte"
+    ],
+    "gramer": [
+     "gr:perfekt",
+     "gr:nebensatz"
+    ],
+    "tur": [
+     "ozur"
+    ],
+    "baglayicilar": [
+     "weil",
+     "deshalb"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:hizmet-1",
+   "order": 17,
+   "family": "hizmet",
+   "domain": "essen",
+   "scenario": "sc:essen:01-baeckerei",
+   "title_tr": "Fırında ve kafede sipariş vermek",
+   "title_de": "In der Bäckerei",
+   "can_do": {
+    "id": "cd:a2:hizmet-1",
+    "tr": "Fırında istediğimi söyler, soruları yanıtlarım."
+   },
+   "place": "pl:baeckerei",
+   "arm": "pazar",
+   "characters": [
+    "ch:stadler"
+   ],
+   "story_week": 1,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-haette-gern",
+     "pt:ich-moechte",
+     "pt:wie-viel-kostet"
+    ],
+    "gramer": [
+     "gr:akkusativ"
+    ],
+    "tur": [
+     "rica"
+    ],
+    "baglayicilar": [
+     "und",
+     "oder"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:hizmet-2",
+   "order": 18,
+   "family": "hizmet",
+   "domain": "einkaufen",
+   "scenario": "sc:einkaufen:01-supermarkt",
+   "title_tr": "Markette ürün sormak, kasada konuşmak",
+   "title_de": "Im Supermarkt",
+   "can_do": {
+    "id": "cd:a2:hizmet-2",
+    "tr": "Markette ürün sorar, kasada anlaşırım."
+   },
+   "place": "pl:marktplatz",
+   "arm": "pazar",
+   "characters": [
+    "ch:brandl"
+   ],
+   "story_week": 5,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:wo-ist",
+     "pt:haben-sie",
+     "pt:wie-viel-kostet",
+     "pt:ich-brauche"
+    ],
+    "gramer": [
+     "gr:akkusativ"
+    ],
+    "tur": [
+     "soru-sorma"
+    ],
+    "baglayicilar": [
+     "und"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:hizmet-3",
+   "order": 19,
+   "family": "hizmet",
+   "domain": "friseur",
+   "scenario": "sc:friseur:01-haarschnitt",
+   "title_tr": "Kuaförde istediğini anlatmak",
+   "title_de": "Beim Friseur",
+   "can_do": {
+    "id": "cd:a2:hizmet-3",
+    "tr": "Kuaförde istediğimi anlatırım."
+   },
+   "place": "pl:friseur",
+   "arm": "pazar",
+   "characters": [
+    "ch:petrovic"
+   ],
+   "story_week": 12,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-haette-gern",
+     "pt:zu-adj",
+     "pt:ich-moechte"
+    ],
+    "gramer": [
+     "gr:vergleich"
+    ],
+    "tur": [
+     "tarif-etme"
+    ],
+    "baglayicilar": [
+     "aber"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:hizmet-4",
+   "order": 20,
+   "family": "hizmet",
+   "domain": "sport",
+   "scenario": "sc:sport:01-im-studio",
+   "title_tr": "Spor salonunda üyelik ve aletler",
+   "title_de": "Im Fitnessstudio",
+   "can_do": {
+    "id": "cd:a2:hizmet-4",
+    "tr": "Spor salonunda üyeliği ve aletleri sorarım."
+   },
+   "place": "pl:fitness",
+   "arm": "pazar",
+   "characters": [
+    "ch:kraus"
+   ],
+   "story_week": 9,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:darf-ich",
+     "pt:kann-ich",
+     "pt:wie-viel-kostet"
+    ],
+    "gramer": [
+     "gr:modal"
+    ],
+    "tur": [
+     "soru-sorma"
+    ],
+    "baglayicilar": [
+     "oder"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:bag-1",
+   "order": 21,
+   "family": "bag",
+   "domain": "smalltalk",
+   "scenario": "sc:smalltalk:01-sich-vorstellen",
+   "title_tr": "Kendini ve işini anlatmak",
+   "title_de": "Sich vorstellen",
+   "can_do": {
+    "id": "cd:a2:bag-1",
+    "tr": "Kendimi, işimi ve nereden geldiğimi anlatırım."
+   },
+   "place": "pl:haus",
+   "arm": "kafe",
+   "characters": [
+    "ch:brandl"
+   ],
+   "story_week": 1,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-bin",
+     "pt:ich-habe",
+     "pt:seit"
+    ],
+    "gramer": [
+     "gr:verbzweit"
+    ],
+    "tur": [
+     "anlati"
+    ],
+    "baglayicilar": [
+     "und",
+     "seit"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:bag-2",
+   "order": 22,
+   "family": "bag",
+   "domain": "smalltalk",
+   "scenario": "sc:smalltalk:02-wochenende",
+   "title_tr": "Hafta sonunu anlatmak",
+   "title_de": "Vom Wochenende erzählen",
+   "can_do": {
+    "id": "cd:a2:bag-2",
+    "tr": "Hafta sonumu birkaç cümleyle anlatırım."
+   },
+   "place": "pl:sprachkurs",
+   "arm": "kafe",
+   "characters": [
+    "ch:popescu",
+    "ch:aksoy"
+   ],
+   "story_week": 4,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:perfekt-haben",
+     "pt:perfekt-sein",
+     "pt:ich-war"
+    ],
+    "gramer": [
+     "gr:perfekt"
+    ],
+    "tur": [
+     "anlati"
+    ],
+    "baglayicilar": [
+     "zuerst",
+     "dann",
+     "danach",
+     "aber"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:bag-3",
+   "order": 23,
+   "family": "bag",
+   "domain": "freizeit",
+   "scenario": "sc:freizeit:01-verabredung",
+   "title_tr": "Davet etmek, kabul etmek, kibarca reddetmek",
+   "title_de": "Sich verabreden",
+   "can_do": {
+    "id": "cd:a2:bag-3",
+    "tr": "Buluşma önerir, kabul eder ya da kibarca reddederim."
+   },
+   "place": "pl:marktplatz",
+   "arm": "kafe",
+   "characters": [
+    "ch:popescu",
+    "ch:lechner"
+   ],
+   "story_week": 6,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:sollen-wir",
+     "pt:passt-ihnen",
+     "pt:lieber",
+     "pt:es-tut-mir-leid"
+    ],
+    "gramer": [
+     "gr:modal"
+    ],
+    "tur": [
+     "rica",
+     "ret"
+    ],
+    "baglayicilar": [
+     "aber",
+     "leider"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:bag-4",
+   "order": 24,
+   "family": "bag",
+   "domain": "wohnen",
+   "scenario": "sc:wohnen:01-nachbarn",
+   "title_tr": "Komşuyla rica ve küçük sorun konuşmak",
+   "title_de": "Mit den Nachbarn reden",
+   "can_do": {
+    "id": "cd:a2:bag-4",
+    "tr": "Komşudan rica eder, küçük sorunu kibarca söylerim."
+   },
+   "place": "pl:haus",
+   "arm": "kafe",
+   "characters": [
+    "ch:brandl",
+    "ch:pichler"
+   ],
+   "story_week": 5,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:koennten-sie",
+     "pt:es-tut-mir-leid",
+     "pt:wenn"
+    ],
+    "gramer": [
+     "gr:nebensatz"
+    ],
+    "tur": [
+     "rica",
+     "sikayet"
+    ],
+    "baglayicilar": [
+     "wenn",
+     "aber"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:kulak-1",
+   "order": 25,
+   "family": "kulak",
+   "domain": "verkehr",
+   "scenario": "sc:verkehr:01-durchsage",
+   "title_tr": "İstasyon anonslarını anlamak",
+   "title_de": "Durchsagen am Bahnhof",
+   "can_do": {
+    "id": "cd:a2:kulak-1",
+    "tr": "Anonsta gecikmeyi, peronu ve iptali yakalarım."
+   },
+   "place": "pl:bahnhof",
+   "arm": "radyo",
+   "characters": [
+    "ch:popescu"
+   ],
+   "story_week": 19,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:wo-ist",
+     "pt:um-uhr",
+     "pt:noch-mal"
+    ],
+    "gramer": [
+     "gr:zeit"
+    ],
+    "tur": [
+     "anons"
+    ],
+    "baglayicilar": [
+     "wegen"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:kulak-2",
+   "order": 26,
+   "family": "kulak",
+   "domain": "strategie",
+   "scenario": "sc:strategie:02-nachfragen",
+   "title_tr": "Hızlı konuşanı durdurmak, anladığını kontrol etmek",
+   "title_de": "Nachfragen und prüfen",
+   "can_do": {
+    "id": "cd:a2:kulak-2",
+    "tr": "Hızlı konuşanı yavaşlatır, anladığımı kontrol ederim."
+   },
+   "place": "pl:firma",
+   "arm": "radyo",
+   "characters": [
+    "ch:lechner",
+    "ch:aksoy"
+   ],
+   "story_week": 1,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-verstehe-nicht",
+     "pt:noch-mal",
+     "pt:meinen-sie",
+     "pt:wuerden-sie"
+    ],
+    "gramer": [
+     "gr:verbzweit"
+    ],
+    "tur": [
+     "soru-sorma"
+    ],
+    "baglayicilar": [
+     "also"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:kulak-3",
+   "order": 27,
+   "family": "kulak",
+   "domain": "strategie",
+   "scenario": "sc:strategie:03-missverstaendnis",
+   "title_tr": "Yanlış anlaşılmayı düzeltmek, kelimeyi tarif etmek",
+   "title_de": "Missverständnisse klären",
+   "can_do": {
+    "id": "cd:a2:kulak-3",
+    "tr": "Yanlış anlaşılmayı düzeltir, bilmediğim kelimeyi tarif ederim."
+   },
+   "place": "pl:sprachkurs",
+   "arm": "radyo",
+   "characters": [
+    "ch:popescu",
+    "ch:aksoy"
+   ],
+   "story_week": 13,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:meinen-sie",
+     "pt:wie-sagt-man",
+     "pt:was-heisst",
+     "pt:ich-verstehe-nicht"
+    ],
+    "gramer": [
+     "gr:relativ-basit"
+    ],
+    "tur": [
+     "tarif-etme"
+    ],
+    "baglayicilar": [
+     "also",
+     "nein"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:kulak-4",
+   "order": 28,
+   "family": "kulak",
+   "domain": "bairisch",
+   "scenario": "sc:bairisch:01-gruess-gott",
+   "title_tr": "Bavyera ağzında sık sözleri tanımak",
+   "title_de": "Bairisch verstehen",
+   "can_do": {
+    "id": "cd:a2:kulak-4",
+    "tr": "Sık duyulan Bavyera sözlerini tanırım."
+   },
+   "place": "pl:haus",
+   "arm": "radyo",
+   "characters": [
+    "ch:brandl",
+    "ch:pichler"
+   ],
+   "story_week": 22,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:noch-mal",
+     "pt:was-heisst",
+     "pt:ich-verstehe-nicht"
+    ],
+    "gramer": [],
+    "tur": [
+     "sohbet"
+    ],
+    "baglayicilar": [],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:okuma-1",
+   "order": 29,
+   "family": "okuma",
+   "domain": "smalltalk",
+   "scenario": "sc:smalltalk:03-nachrichten",
+   "title_tr": "Kısa mesaj okumak ve yazmak",
+   "title_de": "Kurznachrichten",
+   "can_do": {
+    "id": "cd:a2:okuma-1",
+    "tr": "Kısa mesajı anlar, kısa cevap yazarım."
+   },
+   "place": "pl:telefon",
+   "arm": "telefon",
+   "characters": [
+    "ch:lechner",
+    "ch:popescu"
+   ],
+   "story_week": 2,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-bin",
+     "pt:um-uhr",
+     "pt:sollen-wir"
+    ],
+    "gramer": [
+     "gr:verbzweit"
+    ],
+    "tur": [
+     "mesaj"
+    ],
+    "baglayicilar": [
+     "und",
+     "aber"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:okuma-2",
+   "order": 30,
+   "family": "okuma",
+   "domain": "wohnen",
+   "scenario": "sc:wohnen:02-aushang",
+   "title_tr": "Apartman duyurusunu ve ilanı anlamak",
+   "title_de": "Aushänge lesen",
+   "can_do": {
+    "id": "cd:a2:okuma-2",
+    "tr": "Duyurudaki kural, tarih ve isteği anlarım."
+   },
+   "place": "pl:haus",
+   "arm": "kutuphane",
+   "characters": [
+    "ch:pichler"
+   ],
+   "story_week": 7,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-muss",
+     "pt:nicht",
+     "pt:bis-wann"
+    ],
+    "gramer": [
+     "gr:modal"
+    ],
+    "tur": [
+     "ilan"
+    ],
+    "baglayicilar": [
+     "bis"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:okuma-3",
+   "order": 31,
+   "family": "okuma",
+   "domain": "post",
+   "scenario": "sc:post:01-paketkarte",
+   "title_tr": "Kargo bildirimini okumak, paketi almak",
+   "title_de": "Die Paketkarte",
+   "can_do": {
+    "id": "cd:a2:okuma-3",
+    "tr": "Kargo kartını okur, paketimi alırım."
+   },
+   "place": "pl:posta",
+   "arm": "posta",
+   "characters": [
+    "ch:brandl"
+   ],
+   "story_week": 17,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:ich-moechte",
+     "pt:ich-habe",
+     "pt:um-uhr"
+    ],
+    "gramer": [
+     "gr:perfekt"
+    ],
+    "tur": [
+     "bildirim",
+     "form"
+    ],
+    "baglayicilar": [
+     "bis"
+    ],
+    "akicilik": []
+   }
+  },
+  {
+   "id": "u:a2:okuma-4",
+   "order": 32,
+   "family": "okuma",
+   "domain": "arbeit",
+   "scenario": "sc:arbeit:05-kurze-mail",
+   "title_tr": "Kısa iş e-postası yazmak",
+   "title_de": "Eine kurze E-Mail",
+   "can_do": {
+    "id": "cd:a2:okuma-4",
+    "tr": "Kısa bir iş e-postası okur ve yazarım."
+   },
+   "place": "pl:firma",
+   "arm": "kutuphane",
+   "characters": [
+    "ch:wimmer"
+   ],
+   "story_week": 14,
+   "requires": {
+    "kelimeler": [],
+    "kaliplar": [
+     "pt:koennten-sie",
+     "pt:ich-haette-eine-frage",
+     "pt:bis-wann"
+    ],
+    "gramer": [
+     "gr:nebensatz"
+    ],
+    "tur": [
+     "e-posta"
+    ],
+    "baglayicilar": [
+     "weil",
+     "dass"
+    ],
+    "akicilik": []
+   }
+  }
+ ]
+}
