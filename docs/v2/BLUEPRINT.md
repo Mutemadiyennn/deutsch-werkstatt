@@ -17,7 +17,7 @@ Kararları henüz vermediğin için plan, önerdiğim seçenekler üzerine kurul
 | K8–K10 | Uzun mola 20 dk ve atlanabilir · odak süresi yalnızca aktif çalışmayı sayar · haftalık hedef 5 gün × 100 dk | §10, T13 |
 | K12 | Bir senaryoya geçmek için yalnızca temel öğeler şart | §8, T17 |
 | K14 | v1'in günlük kullanımı aksatan hataları düzeltilir | T06 |
-| Açık | B1 sınav tarihi, VHS kursu, IPA kurulum yöntemi, git geçmişinin temizlenmesi | Plan her iki olasılığa göre de çalışacak şekilde tasarlandı. Sınav tarihi ayarlarda tutulan bir alan olacak. |
+| Açık | B1 sınav tarihi, dil kursu, IPA kurulum yöntemi, git geçmişinin temizlenmesi | Plan her iki olasılığa göre de çalışacak şekilde tasarlandı. Sınav tarihi ayarlarda tutulan bir alan olacak. |
 
 **Ek gereksinim:** Bu oturum depoyu yalnızca okuyabiliyor. T01'den önce depoya **yazma izni** gerekiyor.
 
@@ -469,7 +469,7 @@ interface Profile {
            weekly: { days: 5; minPerDay: 100 }; countActiveOnly: true };
   domains: { priority: string[]; paused: string[] };   // varsayılan öncelik: telefon, iş, doktor, resmî daire, …
   listening: { startSpeed: "slow"|"normal"; bavarianExposure: 0|1|2 };
-  goals: { examB1?: { enabled: boolean; date?: string }; vhs?: { enabled: boolean; days?: number[] } };
+  goals: { examB1?: { enabled: boolean; date?: string }; kurs?: { enabled: boolean; days?: number[] } };
   contexts: { car: boolean; gym: boolean; kitchen: boolean };   // v1 seans bağlamları
   placement?: { at: string; summaryTr: string };
   notifications: { dailyReminder?: string };
