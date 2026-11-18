@@ -1,15 +1,14 @@
 # STATUS — Deutsch Werkstatt 2.0
 
-Son güncelleme: 2026-11-18 00:00 UTC · Faz: **R1 hazırlığı** · Ana dal: `main` (`fff3948`) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (etiket `v2-20261117-2`)
+Son güncelleme: 2026-11-18 10:30 UTC · Faz: **R1 hazırlığı** · Ana dal: `main` (`c81f063`) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (etiket `v2-20261117-2`)
 Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DONGUSU → BEYIN → MIMARI → TASARIM …) → bu dosya → `DECISIONS.md`. "Sıradaki adım"dan devam et; hiçbir iş baştan başlatılmaz (PM-007 §4).
 
-## Sıradaki adım (YOL_HARITASI §4 sırası; P0 önce)
-1. **PM-013 (P0):** main kırmızı → #34 (uzun basma, kök neden bulundu) yeşil olunca birleştir; sonra #23/#24/#25 main'e göre güncellenip birleşir.
-2. **PM-016 (P0) + PM-006:** TASARIM TS-5 adım 1 — belirteçler, bileşenler, emoji/çoklu gösterge/saniye kaldırma, TS-4 otomatik kontrolleri (dal `v2/tasarim`, hazır; PR sayısı ≤3 olunca açılır). Sonra 4 sekme (Bugün, Yol, Köy, Ben), önce-ses oynatıcı, Köy/Telefon/Posta kutusu.
-3. **PM-017 (P0):** açıklama şeması (`anlam_tr`, `ne_zaman_tr`, `parcalar`, `ipucu_tr`), doğrulayıcı kuralları, `okur` ajanı (tanım bu PR'da), 323 açıklamanın çevrimi (önce sorunlu 125).
-4. **LS-17.0 Advent** (27.11): 3 mini senaryo yazıldı → dilbilimci incelemesi sürüyor → okur → yayın.
-5. **PM-015 içerik hattı:** altı seviye, günlük sayaç (aşağıda). Ajan sınırı 3.
-6. R1 görevleri (aşağıdaki döküm).
+## Sıradaki adım (PM sırası 2026-11-18: #39/#40 → PM-032 + PM-035/1–2 → PM-035/3–5 → PM-030)
+1. #39 birleşti (`c81f063`). #40 (Advent) main tabanında; WebKit yeşil olunca birleşir → deploy-v2.
+2. **PM-032** (dal `v2/telefon01-ogretim`): "öğretmeden isteme" kuralı (`content/tools/teach.ts`), cevap değerlendirmesi (öğretilmiş eşdeğer, dolgu sözcüğü, yapay zekâsız "kontrol edilmedi"); beş senaryonun içeriği yazar → dilbilimci → okur.
+3. **46 kalıp** (dal `v2/kaliplar-46`): dilbilimci KAPANDI, okur tur 2 geçti → reviewed.
+4. **PM-030 / DN-2** (bu PR, dal `v2/denetim`): gezgin, yükleme bütçesi, uçak modu CI'da; v2 servis işçisi; `DENETIM.md`. Kalan DN-2: içerik politikası testi (DN-4, `policy.json`), video doğrulama (PM-029/031), gerçek cihaz listesi (`CIHAZ_LISTESI.md`).
+5. PM-035/3–5, PM-022 "Anlamadım / Hata var", TS-5 adım 2 (4 sekme), arzt/01 OD-9 çevrimi.
 
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-18
 | Seviye | Kelime kartı | Kalıp | Senaryo (tam) | Mini senaryo | Diyalog grafiği | Okuma | Dinleme | Haber | Madde bankası |
@@ -21,10 +20,10 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 \* Pilotun 14 kalıbı dilbilimciden geçti (çalışma kopyasında, Advent PR'ıyla depoya girecek); OD-9.4 okur kapısı henüz yok, bu yüzden "yayında" sayılmaz. Kalan 47 kalıbın incelemesi yapıldı (35'inde düzeltme) ama ajan son raporu yazmadan durduruldu: bu 47'si onay bekliyor (taslak). Hedef sütunu (günlük: yazar ≥2 ünite parçası, lex 150–200 kart, dilbilimci aynı gün) hat başlayınca günlük doldurulur. BY-8 tükenme tahmini: K2 motoru (R1) gelene kadar hesaplanamaz.
 
 ## Açık PR'lar
-| PR | Dal | Teslim | CI |
-|---|---|---|---|
-| (açılıyor) | `v1/17b-v2-kart` | v1 17b: Bugün'de "Yeni: Gerçek hayat dersleri" kartı → ./v2/; v1 servis işçisi /v2/'ye karışmaz | v1 kapısı yerelde |
-| (açılıyor) | `pm/yol-haritasi-uygula` | PM-008/009/010 belgeleri, birleştirme turu kaydı | — |
+| PR | Dal | Teslim |
+|---|---|---|
+| #40 | `v2/advent` | LS-17.0 Advent: 3 mini senaryo + 15 kalıbın OD-9 alanları |
+| (bu) | `v2/denetim` | PM-030 DN-2 makine kapısı |
 
 ### Birleştirme turu (PM-007, 2026-11-17)
 - `main`'e birleşti: #2 (T04), #3 (çalışma düzeni), #18 (v2_core bekleme düzeltmesi), #20 (PM tasarım dili), #16 (PM gereksinim kaydı), #19 (yığının tepesi: #4–#17'nin bütün commit'leri, merge commit ile SHA'lar korunarak), #21 (PM yol haritası).
