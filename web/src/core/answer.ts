@@ -18,7 +18,8 @@ export type Verdict =
  * Bir kabul cevabı bir ifadenin Hochdeutsch biçimini içeriyorsa Alltag biçimli hâli de eklenir (ve tersi).
  */
 /** Kayıt hedefli madde: yönerge belirli bir biçimi (gündelik/resmî, Sie/du) istiyorsa eşdeğer genişletme yapılmaz (inceleme #49 P1-1) */
-export const REGISTER_HINT = /gündelik|alltag|resm[iî]|kibar|\bsie ile|\bdu ile|şefe|arkadaşına|lehçe|bairisch/i;
+// İnceleme #49 P1-5: yalnızca açıkça biçim isteyen yönergeler ("kibar", "arkadaşına", "lehçe" durum anlatır, biçim istemez)
+export const REGISTER_HINT = /gündelik|alltag|resm[iî]|\bsie ile\b|\bdu ile\b/i;
 const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 /** Kelime sınırına saygılı, büyük/küçük harf duyarsız değiştirme */
 function swap(text: string, from: string, to: string): string | null {
@@ -49,7 +50,9 @@ export function expandTaught(accepted: string[], chunks: { layers: { hd: string;
  * reddedilir — değerlendirme kelimeleri (gut, super…) sona eklenemez; başa "ja/also/okay…" yalnızca beklenen cevap
  * olumsuz değilse eklenebilir ("Ja, nein." ≠ "Nein.").
  */
-const POLITE = new Set("bitte danke vielen dank sehr herzlichen schön gern gerne".split(" "));
+// norm() ümlautları açar (schön → schoen): listeler normalleştirilmiş biçimde
+const POLITE = new Set("bitte danke vielen dank sehr herzlichen schoen gern gerne".split(" "));
+const POLITE_LEAD = new Set("entschuldigung entschuldigen sie hallo".split(" "));
 const LEAD = new Set("ja also okay ok gut genau na dann super prima alles klar oder".split(" "));
 const NEG = /\b(nein|nicht|kein\w*|nie|niemals|leider)\b/;
 function containsWithFiller(variant: string, answer: string): boolean {
@@ -59,7 +62,7 @@ function containsWithFiller(variant: string, answer: string): boolean {
     if (!v.every((w, k) => a[i + k] === w)) continue;
     const pre = a.slice(0, i), post = a.slice(i + v.length);
     const neg = NEG.test(v.join(" "));
-    const preOk = pre.every((w) => POLITE.has(w) || (!neg && LEAD.has(w)));
+    const preOk = pre.every((w) => POLITE.has(w) || POLITE_LEAD.has(w) || (!neg && LEAD.has(w)) || (neg && w === "nein"));
     const postOk = post.every((w) => POLITE.has(w));
     return preOk && postOk;
   }

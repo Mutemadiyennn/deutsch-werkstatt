@@ -36,7 +36,19 @@ describe("inceleme #49 P1-1: yanlış kabul açıkları", () => {
     expect(isSameAsGiven("In Ordnung, vielen Dank.", "Geht klar, danke.")).toBe(false);
   });
   it("kayıt ipucu tanınır", () => {
-    for (const t of ["(Arkadaşına, gündelik) Biraz daha yavaş, lütfen.", "Gündelik (Alltag) biçimde söyle.", "(şefe, Sie ile) Teşekkürler"]) expect(REGISTER_HINT.test(t)).toBe(true);
+    for (const t of ["Gündelik biçimde söyle: Biraz daha yavaş.", "Gündelik (Alltag) biçimde söyle.", "(şefe, Sie ile) Teşekkürler"]) expect(REGISTER_HINT.test(t)).toBe(true);
     expect(REGISTER_HINT.test("Randevu iste.")).toBe(false);
+  });
+});
+
+describe("inceleme #49 ikinci tur (P1-5): doğru cevap reddi yok", () => {
+  it("'danke schön', 'Nein, noch nicht', 'Entschuldigung, wie bitte?' kabul", () => {
+    expect(ruleVerdict(["Vielen Dank."], "Vielen Dank, danke schön.").kind).toBe("correct");
+    expect(ruleVerdict(["Noch nicht."], "Nein, noch nicht.").kind).toBe("correct");
+    expect(ruleVerdict(["Wie bitte?"], "Entschuldigung, wie bitte?").kind).toBe("correct");
+  });
+  it("kayıt ipucu yalnızca açık biçim isteğinde", () => {
+    for (const t of ["Arkadaşına kibarca söyle.", "Lehçeyi anlamadığını söyle."]) expect(REGISTER_HINT.test(t)).toBe(false);
+    expect(REGISTER_HINT.test("Gündelik biçimde söyle.")).toBe(true);
   });
 });

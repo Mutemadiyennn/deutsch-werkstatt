@@ -29,7 +29,7 @@ export function Learn() {
           );
         })}
       </ul>
-      <p class="tiny muted">İçerik: {index.counts.lexemes} kelime · {index.counts.grammar} dilbilgisi notu · {index.counts.scenarios} senaryo · sürüm {index.version}</p>
+      <p class="tiny muted">İçerik: {index.counts.lexemes} kelime · {index.counts.grammar} dilbilgisi notu · {visibleScenarios(index.scenarios, Date.now()).length} ders · sürüm {index.version}</p>
     </div>
   );
 }
