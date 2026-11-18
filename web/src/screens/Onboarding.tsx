@@ -1,4 +1,5 @@
 /** İlk kurulum: zorlandığın durumlar → alan önceliği → günlük hedef ve Pomodoro → dinleme ve hedefler → seviye tespiti */
+import { Icon } from "../ui/icons.tsx";
 import { useState } from "preact/hooks";
 import type { Profile } from "@dw/shared";
 import { migrateDomainPriority } from "@dw/shared";
@@ -72,7 +73,7 @@ export function Onboarding() {
               return (
                 <button class={`opt${on ? " sel" : ""}`} aria-pressed={on} data-struggle={k}
                   onClick={() => set((x) => { x.struggles = on ? x.struggles.filter((s) => s !== k) : [...x.struggles, k]; })}>
-                  {on ? "✓ " : ""}{label}
+                  {on && <Icon name="check" size={16} />}{label}
                 </button>
               );
             })}

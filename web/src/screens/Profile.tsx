@@ -73,7 +73,7 @@ export function ProfileView() {
               <li class="row" style={{ flexWrap: "nowrap" }}>
                 <span class="grow small" style={{ opacity: paused ? 0.5 : 1 }}><b>{i + 1}.</b> {dTitle(d)}</span>
                 <button class="iconbtn" aria-label={`${dTitle(d)} yukarı`} disabled={i === 0} onClick={() => save((p) => { const a = p.domains.priority; [a[i - 1], a[i]] = [a[i]!, a[i - 1]!]; })}>↑</button>
-                <button class="iconbtn" aria-label={paused ? `${dTitle(d)} devam` : `${dTitle(d)} duraklat`} onClick={() => save((p) => { p.domains.paused = paused ? p.domains.paused.filter((x) => x !== d) : [...p.domains.paused, d]; })}>{paused ? "▶" : "⏸"}</button>
+                <button class="iconbtn" aria-label={paused ? `${dTitle(d)} devam` : `${dTitle(d)} duraklat`} onClick={() => save((p) => { p.domains.paused = paused ? p.domains.paused.filter((x) => x !== d) : [...p.domains.paused, d]; })}>{paused ? <Icon name="play" size={18} /> : <Icon name="pause" size={18} />}</button>
               </li>
             );
           })}

@@ -33,8 +33,8 @@ export async function verdict(accepted: string[], answer: string, prompt_tr: str
   const v = ruleVerdict(accepted, answer);
   if (v.kind !== "ask_ai") return v;
   if (!ai) {
-    const j = judge(accepted, [answer]);
-    return { kind: "wrong", best: v.best, words: j.words };
+    // yapay zekâsız: kurallarımın tanımadığı yakın cevap yanlış sayılmaz (doğru cevabın reddi 0, PM-032)
+    return { kind: "unchecked", best: v.best, note: "Bu cevabı kendi kurallarım tanımadı. Doğrusu yanda; seninki de doğruysa bildir." };
   }
   try {
     const r = await ai(accepted, answer, prompt_tr);

@@ -143,14 +143,14 @@ export function HearSection({ ctx, finish, back, setSub }: SP & { setSub: (n: pr
   };
 
   if (!cards.length) return <Empty title="Bu senaryoda yeni ifade yok" />;
-  if (phase === "done") return <Done score={ok} total={Math.max(1, knownClaims.length + (strong?.length || 0))} back={back} ctx={ctx} title="Aşama 1 · Dinle ve tara" note={`Yeni öğrenilecek: ${Math.min(MAX_NEW, cards.length - ok)} ifade. Sıradaki aşamada bunları parçalayıp hatırlayacağız.`} />;
+  if (phase === "done") return <Done score={ok} total={Math.max(1, knownClaims.length + (strong?.length || 0))} back={back} ctx={ctx} title="Aşama 1 · Dinle ve tara" plain={`${Math.max(1, Math.min(MAX_NEW, cards.length - ok))} ifade öğreneceksin`} />;
 
   if (phase === "listen") return (
     <div class="stack fade" data-test="stage-intro">
       <section class="card hero stack">
         <div class="kicker">Önce duy · {s.dialogues[0]?.title_tr || s.title_tr}</div>
         <p style={{ margin: 0 }}>{subs ? "Şimdi altyazılı dinle: kelimeleri bağlam içinde gör." : "Önce gerçek konuşmayı altyazısız dinle. Her şeyi anlaman gerekmiyor; ne olduğunu yakalamaya çalış."}</p>
-        <div class="row"><button class="btn" onClick={() => void playAll()} disabled={playing} data-test="play-dialogue">{playing ? "Çalıyor…" : "▶ Diyaloğu dinle"}</button>{playing && <button class="btn ghost sm" onClick={() => { stopSpeaking(); setPlaying(false); setHeard(true); }}>Durdur</button>}</div>
+        <div class="row"><button class="btn" onClick={() => void playAll()} disabled={playing} data-test="play-dialogue">{playing ? "Çalıyor…" : <><Icon name="play" size={18} /> Diyaloğu dinle</>}</button>{playing && <button class="btn ghost sm" onClick={() => { stopSpeaking(); setPlaying(false); setHeard(true); }}>Durdur</button>}</div>
       </section>
       {subs && <section class="card stack" data-test="subtitles">{lines.map((l) => <div class="dline"><div class="grow"><div class="who" style={{ fontSize: "0.8rem", fontWeight: 800, color: "var(--muted)" }}>{s.dialogues[0]!.roles[l.r]}</div><div lang="de" class="de">{l.de}</div><div class="tr2">{l.tr}</div></div><ListenButton text={l.de} speed={l.speed} small slowToggle={false} /></div>)}</section>}
       <ActionBar>{!subs
@@ -176,7 +176,7 @@ export function HearSection({ ctx, finish, back, setSub }: SP & { setSub: (n: pr
             <div class="scanrow" role="listitem" data-card={c.id}>
               <div class="grow"><span lang="de" class="de">{c.de}</span></div>
               <div class="seg tri" role="group" aria-label={`${c.de}: ne kadar biliyorsun?`}>
-                {([["known", "✓", "Biliyorum"], ["unsure", "?", "Emin değilim"], ["unknown", "✗", "Bilmiyorum"]] as const).map(([k, ic, lb]) =>
+                {([["known", <Icon name="check" size={20} />, "Biliyorum"], ["unsure", "?", "Emin değilim"], ["unknown", <Icon name="x" size={20} />, "Bilmiyorum"]] as const).map(([k, ic, lb]) =>
                   <button aria-pressed={mark[c.id] === k} aria-label={lb} title={lb} data-mark={k} onClick={() => { haptic("selection"); setMark({ ...mark, [c.id]: k }); }}>{ic}</button>)}
               </div>
             </div>

@@ -78,7 +78,7 @@ def default_ai(task, v):
         return 200, {"goals": [{"id": g["id"], "done": i < len(gs) - 1} for i, g in enumerate(gs)], "strengths_tr": ["Kibar başladın."], "fixes": [{"said": "Ich will Termin", "better": "Ich hätte gern einen Termin.", "why_tr": "Kibar istek."}], "english_fallbacks": 0, "gaps_de": ["der Vormittag"], "summary_tr": "Randevuyu aldın; saat kısmında kısa kaldın."}
     return 404, {"error": {"code": "bad_request"}}
 
-def launch(p, color_scheme="light", viewport=None):
+def launch(p, color_scheme="light", viewport=None, service_workers="allow"):
     bt = getattr(p, BROWSER)
     b = bt.launch()
     if DEVICE:
@@ -87,9 +87,9 @@ def launch(p, color_scheme="light", viewport=None):
         if BROWSER != "webkit":  # Chromium'da isMobile desteklenir; userAgent iPhone kalır
             pass
         if viewport: d["viewport"] = viewport
-        ctx = b.new_context(**d, locale="tr-TR", color_scheme=color_scheme)
+        ctx = b.new_context(**d, locale="tr-TR", color_scheme=color_scheme, service_workers=service_workers)
     else:
-        ctx = b.new_context(viewport=viewport or {"width": 390, "height": 844}, device_scale_factor=2, locale="tr-TR", color_scheme=color_scheme, has_touch=True)
+        ctx = b.new_context(viewport=viewport or {"width": 390, "height": 844}, device_scale_factor=2, locale="tr-TR", color_scheme=color_scheme, has_touch=True, service_workers=service_workers)
     return b, ctx
 
 def new_page(ctx, ai_handler=None):

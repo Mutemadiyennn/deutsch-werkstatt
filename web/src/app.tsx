@@ -1,4 +1,5 @@
 /** Uygulama kabuğu: giriş kapısı → profil → ilk kurulum (onboarding) → ekranlar */
+import { probeProvider } from "./services/ai.ts";
 import { CallScreen as Call } from "./screens/Call.tsx";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Assessment, ContentIndex, Profile } from "@dw/shared";
@@ -65,6 +66,7 @@ export function App() {
   useEffect(() => { if (route.name !== "section") setLearning(LEARNING_ROUTES.has(route.name), route.name === "assess" ? "assess" : "vocab"); window.scrollTo(0, 0); }, [route]);
 
   const api = useMemo(() => createApi({ base: API_BASE, token: (f) => auth.idToken(f) }), []);
+  useEffect(() => { void probeProvider(api); }, [api]);
   const toast = (m: string) => { setToast(m); setTimeout(() => setToast(null), 2600); };
 
   if (!authReady) return <main class="app notabs"><Loading /></main>;

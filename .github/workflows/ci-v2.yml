@@ -58,6 +58,12 @@ jobs:
         run: cd tests/e2e && python v2_core.py
       - name: Oynatıcı (aşama 1–6, dinleme, klavye, uzun basma, dayanıklılık, taşma, %130)
         run: cd tests/e2e && python v2_player.py --shots /tmp/shots
+      - name: DN-2 gezgin (her ekranda her düğme)
+        run: mkdir -p /tmp/shots && cd tests/e2e && python gezgin.py --out /tmp/shots/gezgin.json
+      - name: DN-2 yükleme sınırı (ilk açılış, sekme geçişi, takılan içerik)
+        run: cd tests/e2e && python yukleme.py
+      - name: DN-2 uçak modu günü (çevrimdışı)
+        run: cd tests/e2e && python ucak.py
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4

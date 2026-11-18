@@ -5,6 +5,7 @@
  * - Üretim başarısızsa (<%50) bir önceki aşama yeniden açılır (geri dönüş kuralı).
  */
 import { Rich } from "../ui/rich.tsx";
+import { isRepeatRequest, offlineDialogueIndex } from "../core/offline.ts";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Chunk, Drill, Lexeme, Pattern, Scenario, ScenarioProgress, Speed } from "@dw/shared";
 import { useApp } from "../state.ts";
@@ -95,7 +96,7 @@ export function PlayerHome({ id }: { id: string }) {
       <nav aria-label="Bölümler">
         {SECTIONS.map((x, i) => {
           const done = prog.done.includes(x.k), open = unlocked(i), cur = next?.k === x.k;
-          const body = (<><span class="num" aria-hidden="true">{done ? <Icon name="check" size={18} /> : x.k === "listening" ? <Icon name="headphones" size={18} /> : x.n}</span><span class="grow"><b>{/\d/.test(x.n) ? `Aşama ${x.n}: ` : ""}{x.title}</b><br /><span class="tiny muted">{done ? "Tamamlandı" : open ? (cur ? "Sıradaki" : "Açık") : "Önceki bölümü bitirince açılır"}</span></span><span aria-hidden="true">{open ? "›" : "🔒"}</span></>);
+          const body = (<><span class="num" aria-hidden="true">{done ? <Icon name="check" size={18} /> : x.k === "listening" ? <Icon name="headphones" size={18} /> : x.n}</span><span class="grow"><b>{/\d/.test(x.n) ? `Aşama ${x.n}: ` : ""}{x.title}</b><br /><span class="tiny muted">{done ? "Tamamlandı" : open ? (cur ? "Sıradaki" : "Açık") : "Önceki bölümü bitirince açılır"}</span></span><span aria-hidden="true">{open ? <Icon name="next" size={18} /> : <span class="lockdot" />}</span></>);
           return open ? <a class={`tile${done ? " done" : ""}${cur ? " cur" : ""}`} href={`#/scenario/${encodeURIComponent(s.id)}/${x.k}`} data-section={x.k}>{body}</a> : <div class={`tile lock`} aria-disabled="true" data-section={x.k}>{body}</div>;
         })}
       </nav>
@@ -153,15 +154,16 @@ export function PlayerSection({ id, section }: { id: string; section: string }) 
 }
 export type SP = { ctx: Ctx; finish: (score: number, total: number, extra?: Partial<ScenarioProgress["runs"][number]>, mut?: (p: ScenarioProgress) => void) => Promise<void>; back: string; setSub?: (n: preact.ComponentChildren) => void };
 
-export function Done({ score, total, back, ctx, title, note }: { score: number; total: number; back: string; ctx: Ctx; title: string; note?: string }) {
-  const ratio = total ? score / total : 1;
+export function Done({ score, total, back, ctx, title, note, plain }: { score: number; total: number; back: string; ctx: Ctx; title: string; note?: string; plain?: string }) {
+  // PM-035 §5: tanıma aşamasında puan/oran yok; yalnızca ne öğrenileceği
+  const ratio = plain ? 1 : total ? score / total : 1;
   useEffect(() => { haptic(ratio >= 0.7 ? "success" : "error"); }, []);
   return (
     <div class="stack fade" data-test="section-done">
       <section class={`card ${ratio >= 0.7 ? "hero" : ""}`}>
         <div class="kicker">{title}</div>
-        <div class="big">{score}/{total}</div>
-        <p class="small">{ratio >= 0.7 ? "Bu bölüm tamam. Bir sonraki açıldı." : ratio >= 0.5 ? "Biraz daha pratik iyi olur; bu bölümü bir kez daha yapmanı öneririm." : "Bir önceki aşamayı tekrar açtım: önce temeli sağlamlaştıralım."}</p>
+        {plain ? <p class="big" style={{ fontSize: "1.4rem" }}>{plain}</p> : <div class="big">{score}/{total}</div>}
+        <p class="small">{plain ? "Şimdi bunları tek tek öğreneceğiz." : ratio >= 0.7 ? "Bu bölüm tamam. Bir sonraki açıldı." : ratio >= 0.5 ? "Biraz daha pratik iyi olur; bu bölümü bir kez daha yapmanı öneririm." : "Bu bölümü bir kez daha yapmak iyi olur, acele yok."}</p>
         {note && <p class="tiny">{note}</p>}
       </section>
       <ActionBar><a class="btn primary block" href={back} data-test="back-to-scenario">Senaryoya dön</a></ActionBar>
@@ -338,7 +340,7 @@ function ListeningItem({ li, progress, onDone }: { li: Scenario["listening"][num
   if (phase === "listen") return (
     <div class="stack fade">{progress}
       <section class="card stack"><div class="kicker">Dinle · {li.title_tr}</div><p class="small">Önce metni görmeden dinle. İstediğin kadar tekrar dinleyebilirsin.</p>
-        <div class="row"><button class="btn primary" onClick={() => playAll(li.speed)} disabled={playing} data-test="play-all">{playing ? "Çalıyor…" : "▶ Dinle"}</button>
+        <div class="row"><button class="btn primary" onClick={() => playAll(li.speed)} disabled={playing} data-test="play-all">{playing ? "Çalıyor…" : <><Icon name="play" size={18} /> Dinle</>}</button>
           {li.speeds.filter((x) => x !== li.speed).map((sp) => <button class="btn" onClick={() => playAll(sp)} disabled={playing} data-speed={sp}>{SPEED_TR[sp]}</button>)}</div>
         <p class="tiny muted">Cihaz sesi · {li.speed === "fast" ? "hızlı" : li.speed === "natural" ? "doğal hız" : li.speed === "slow" ? "yavaş" : "normal"}</p></section>
       <ActionBar><button class="btn primary block" onClick={() => { stopSpeaking(); setPhase("qs"); }} data-test="to-questions">Sorulara geç</button></ActionBar>
@@ -477,7 +479,8 @@ function RoleplaySection({ ctx, finish, back }: SP) {
   const [selfGoals, setSelfGoals] = useState<Record<string, boolean>>({});
   const surprise = useMemo(() => (level >= 2 && s.roleplay.surprises.length ? s.roleplay.surprises[runs % s.roleplay.surprises.length]!.de : undefined), [level]);
   const lv = s.roleplay.levels.find((x) => x.level === level);
-  const offLines = (s.dialogues[0]?.lines || []).filter((l) => l.r === "A");
+  const offIdx = useMemo(() => offlineDialogueIndex(s), [s]);
+  const offLines = (s.dialogues[offIdx]?.lines || []).filter((l) => l.r === "A");
   const say = (de: string) => void speak(de, "de", lv?.speed || (level === 3 ? "fast" : level === 2 ? "natural" : "slow"));
 
   // Yumuşak bekleme (DECISIONS D-RP1): 12 sn'de yanıt yoksa seçenekler çıkar; istek kesilmez, gelirse kullanılır.
@@ -492,6 +495,10 @@ function RoleplaySection({ ctx, finish, back }: SP) {
   const [waiting, setWaiting] = useState(false);     // "Bekle" seçildi: seçenekler gizli, bekleniyor
   const histRef = useRef<Turn[]>([]); const stuckRef = useRef(0);
   const nextOffline = (hist: Turn[]) => {
+    // tekrar/yavaşlatma isteği: aynı satır yavaş söylenir (strateji işe yarar)
+    const lastMe = [...hist].reverse().find((t) => t.r === "learner")?.de || "";
+    const lastPartner = [...hist].reverse().find((t) => t.r === "partner")?.de;
+    if (lastPartner && isRepeatRequest(lastMe)) { const nt = [...hist, { r: "partner" as const, de: lastPartner }]; setTurns(nt); histRef.current = nt; void speak(lastPartner, "de", "slow"); return; }
     const nx = offLines[offRef.current];
     if (!nx) { void endTalk(hist); return; }
     offRef.current++; const nt = [...hist, { r: "partner" as const, de: nx.de }]; setTurns(nt); histRef.current = nt; say(nx.de);
@@ -577,7 +584,7 @@ function RoleplaySection({ ctx, finish, back }: SP) {
   // rapor
   if (mode === "offline") {
     const learner = turns.filter((t) => t.r === "learner").map((t) => t.de);
-    const expect = (s.dialogues[0]?.lines || []).filter((l) => l.r === "B").map((l) => l.de);
+    const expect = (s.dialogues[offIdx]?.lines || []).filter((l) => l.r === "B").map((l) => l.de);
     return (
       <div class="stack fade" data-test="rp-report">
         <section class="card stack"><div class="kicker">Rapor · yapay zekâsız mod</div>

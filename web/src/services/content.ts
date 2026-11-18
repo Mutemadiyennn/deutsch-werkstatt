@@ -6,10 +6,21 @@ const base = () => `${import.meta.env.BASE_URL}content/`;
 let idx: Promise<ContentIndex> | null = null;
 const cache = new Map<string, Promise<unknown>>();
 
+/** DN-2 §4: hiçbir yükleme 10 sn'den uzun sürmez; süre dolunca hata (ekranda "Tekrar dene") */
+export const LOAD_TIMEOUT_MS = 8_000;
 async function getJson(url: string): Promise<unknown> {
-  const r = await fetch(url, { cache: "no-cache" });
-  if (!r.ok) throw new Error(`İçerik yüklenemedi (${r.status})`);
-  return r.json();
+  const ac = typeof AbortController !== "undefined" ? new AbortController() : null;
+  const t = setTimeout(() => ac?.abort(), LOAD_TIMEOUT_MS);
+  try {
+    const r = await fetch(url, { cache: "no-cache", signal: ac?.signal });
+    if (!r.ok) throw new Error(`İçerik yüklenemedi (${r.status})`);
+    return await r.json();
+  } catch (e) {
+    if ((e as { name?: string }).name === "AbortError") throw new Error("İçerik zamanında yüklenemedi. İnternet bağlantını kontrol edip tekrar dene.");
+    // PM-035 §6: ham İngilizce tarayıcı hatası ("Failed to fetch") öğrenciye gösterilmez
+    if (e instanceof TypeError) throw new Error("İnternet bağlantısı yok ve bu içerik henüz cihazda değil. Bağlanınca tekrar dene.");
+    throw e;
+  } finally { clearTimeout(t); }
 }
 export function loadIndex(): Promise<ContentIndex> {
   if (!idx) idx = (async () => {

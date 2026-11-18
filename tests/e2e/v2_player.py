@@ -99,7 +99,7 @@ def main():
         page.wait_for_selector("[data-test=meaning-q]"); page.click("button.opt[data-right='1']"); page.click("[data-test=next]")
         page.wait_for_selector("[data-test=meaning-q] button.opt:not([disabled])"); page.click("[data-test=meaning-q] button.opt:not([data-right]) >> nth=0"); page.click("[data-test=next]")
         t = done(page)
-        check("Bu bölüm tamam" in t or "Yeni öğrenilecek" in t, "aşama 1 bitti; yanlış doğrulanan 'bilmiyorum'a döndü")
+        check("ifade öğreneceksin" in t and "0/" not in t and "tekrar açtım" not in t, "aşama 1 bitti: puan yok, yalnızca kaç ifade öğrenileceği (PM-035 §5)")
         check(page.locator("a[data-section=chunks]").count() == 1, "aşama 2 açıldı")
 
         print("2) Aşama 2 · İfadeler (≤12 yeni öğe, ifade kartı, her 4 kartta hatırlama, 'Anladım' yok)")
