@@ -1,0 +1,1163 @@
+{
+ "schema": 1,
+ "id": "r0:09-modalverben",
+ "order": 9,
+ "level": "A1",
+ "format": "temel",
+ "title_tr": "Yapabilmek, gerekmek, istemek",
+ "title_de": "Können, müssen, dürfen",
+ "goal_tr": "Yapabildiğini, gerekeni, izni ve isteğini söylemek.",
+ "can_do": {
+  "id": "cd:r0:09",
+  "tr": "Rica edebilir, izin isteyebilir ve ne yapmam gerektiğini sorabilirim."
+ },
+ "unit": "u:r0:09",
+ "arm": "atolye",
+ "place": "pl:sprachkurs",
+ "characters": [
+  "ch:popescu",
+  "ch:huber",
+  "ch:lechner",
+  "ch:aksoy"
+ ],
+ "requires": {
+  "kelimeler": [
+   "lx:sein",
+   "lx:haben",
+   "lx:wann",
+   "lx:was",
+   "lx:morgen",
+   "lx:heute",
+   "lx:nicht"
+  ],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "reviewed",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-18",
+  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-06-10.md. Okur ve kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
+  "okur": "passed",
+  "okur_at": "2026-11-18"
+ },
+ "teach": [
+  {
+   "id": "r0:09:a:ich-kann",
+   "de": "Ich kann morgen kommen.",
+   "tr": "Yarın gelebilirim.",
+   "lexeme": "lx:können",
+   "exp": {
+    "anlam_tr": "Bir şeyi yapabildiğini söyler.",
+    "ne_zaman_tr": "Randevu ve plan konuşurken.",
+    "parcalar": [
+     {
+      "de": "Ich",
+      "tr": "ben"
+     },
+     {
+      "de": "kann",
+      "tr": "-ebilirim"
+     },
+     {
+      "de": "morgen",
+      "tr": "yarın"
+     },
+     {
+      "de": "kommen",
+      "tr": "gelmek"
+     }
+    ],
+    "ipucu_tr": "**kann** ikinci sırada durur, **kommen** en sona gider."
+   }
+  },
+  {
+   "id": "r0:09:a:koennen-sie",
+   "de": "Können Sie das wiederholen?",
+   "tr": "Bunu tekrar edebilir misiniz?",
+   "lexeme": "lx:können",
+   "exp": {
+    "anlam_tr": "Birinden kibarca bir şey ister.",
+    "ne_zaman_tr": "Anlamadığında, telefonda.",
+    "parcalar": [
+     {
+      "de": "Können",
+      "tr": "-ebilir misiniz"
+     },
+     {
+      "de": "Sie",
+      "tr": "siz"
+     },
+     {
+      "de": "das",
+      "tr": "bunu"
+     },
+     {
+      "de": "wiederholen",
+      "tr": "tekrarlamak"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r0:09:a:ich-muss",
+   "de": "Ich muss arbeiten.",
+   "tr": "Çalışmam gerekiyor.",
+   "lexeme": "lx:müssen",
+   "exp": {
+    "anlam_tr": "Bir şeyi yapmak zorunda olduğunu söyler.",
+    "ne_zaman_tr": "Bir teklifi geri çevirirken.",
+    "parcalar": [
+     {
+      "de": "Ich",
+      "tr": "ben"
+     },
+     {
+      "de": "muss",
+      "tr": "zorundayım"
+     },
+     {
+      "de": "arbeiten",
+      "tr": "çalışmak"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r0:09:a:muss-ich",
+   "de": "Muss ich warten?",
+   "tr": "Beklemem gerekiyor mu?",
+   "lexeme": "lx:müssen",
+   "exp": {
+    "anlam_tr": "Bir şeyin gerekli olup olmadığını sorar.",
+    "ne_zaman_tr": "Muayenehanede ve resmî dairede.",
+    "parcalar": [
+     {
+      "de": "Muss ich",
+      "tr": "zorunda mıyım"
+     },
+     {
+      "de": "warten",
+      "tr": "beklemek"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r0:09:a:darf-ich",
+   "de": "Darf ich hier warten?",
+   "tr": "Burada bekleyebilir miyim?",
+   "lexeme": "lx:dürfen",
+   "exp": {
+    "anlam_tr": "Kibarca izin ister.",
+    "ne_zaman_tr": "Bir yere girince ya da bir şey yapmadan önce.",
+    "parcalar": [
+     {
+      "de": "Darf",
+      "tr": "izin var mı"
+     },
+     {
+      "de": "ich",
+      "tr": "ben"
+     },
+     {
+      "de": "hier",
+      "tr": "burada"
+     },
+     {
+      "de": "warten",
+      "tr": "beklemek"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r0:09:a:sie-duerfen",
+   "de": "Sie dürfen nichts essen.",
+   "tr": "Hiçbir şey yememelisiniz.",
+   "lexeme": "lx:dürfen",
+   "exp": {
+    "anlam_tr": "Bir şeyin yasak olduğunu söyler.",
+    "ne_zaman_tr": "Doktor tahlilden önce söyleyebilir.",
+    "parcalar": [],
+    "ipucu_tr": "**dürfen** ile **nicht** ya da **nichts** yasak anlamı verir."
+   }
+  },
+  {
+   "id": "r0:09:a:ich-will",
+   "de": "Ich will Deutsch sprechen.",
+   "tr": "Almanca konuşmak istiyorum.",
+   "lexeme": "lx:wollen",
+   "exp": {
+    "anlam_tr": "Kararlı bir isteği söyler.",
+    "ne_zaman_tr": "Kendi hedefini anlatırken.",
+    "parcalar": [
+     {
+      "de": "Ich",
+      "tr": "ben"
+     },
+     {
+      "de": "will",
+      "tr": "istiyorum"
+     },
+     {
+      "de": "Deutsch",
+      "tr": "Almanca"
+     },
+     {
+      "de": "sprechen",
+      "tr": "konuşmak"
+     }
+    ],
+    "ipucu_tr": "Bir şey isterken **möchte** daha kibardır."
+   }
+  },
+  {
+   "id": "r0:09:a:wollen-wir",
+   "de": "Wollen wir zusammen üben?",
+   "tr": "Birlikte pratik yapalım mı?",
+   "lexeme": "lx:wollen",
+   "exp": {
+    "anlam_tr": "Birlikte bir şey yapmayı önerir.",
+    "ne_zaman_tr": "Arkadaşına öneride bulunurken.",
+    "parcalar": [
+     {
+      "de": "Wollen wir",
+      "tr": "-elim mi"
+     },
+     {
+      "de": "zusammen",
+      "tr": "birlikte"
+     },
+     {
+      "de": "üben",
+      "tr": "pratik yapmak"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r0:09:a:ich-soll",
+   "de": "Ich soll um acht kommen.",
+   "tr": "Saat sekizde gelmem söylendi.",
+   "lexeme": "lx:sollen",
+   "exp": {
+    "anlam_tr": "Başka birinin senden istediğini aktarır.",
+    "ne_zaman_tr": "Doktorun ya da şefin söylediğini aktarırken.",
+    "parcalar": [
+     {
+      "de": "Ich",
+      "tr": "ben"
+     },
+     {
+      "de": "soll",
+      "tr": "-meliyim"
+     },
+     {
+      "de": "um acht",
+      "tr": "saat sekizde"
+     },
+     {
+      "de": "kommen",
+      "tr": "gelmek"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r0:09:a:soll-ich",
+   "de": "Soll ich morgen anrufen?",
+   "tr": "Yarın arayayım mı?",
+   "lexeme": "lx:sollen",
+   "exp": {
+    "anlam_tr": "Bunu yapayım mı diye sorar.",
+    "ne_zaman_tr": "Sekretere ya da şefine sorarken.",
+    "parcalar": [
+     {
+      "de": "Soll",
+      "tr": "-eyim mi"
+     },
+     {
+      "de": "ich",
+      "tr": "ben"
+     },
+     {
+      "de": "morgen",
+      "tr": "yarın"
+     },
+     {
+      "de": "anrufen",
+      "tr": "aramak"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r0:09:a:ich-moechte",
+   "de": "Ich möchte einen Termin machen.",
+   "tr": "Randevu almak istiyorum.",
+   "lexeme": "lx:möchten",
+   "exp": {
+    "anlam_tr": "Kibarca ne istediğini söyler.",
+    "ne_zaman_tr": "Telefonun ilk cümlesi olarak.",
+    "parcalar": [
+     {
+      "de": "Ich möchte",
+      "tr": "istiyorum"
+     },
+     {
+      "de": "einen Termin machen",
+      "tr": "randevu almak"
+     }
+    ],
+    "ipucu_tr": "Telefonda ve dükkânda **will** yerine **möchte** söyle."
+   }
+  },
+  {
+   "id": "r0:09:a:moechten-sie",
+   "de": "Möchten Sie warten?",
+   "tr": "Beklemek ister misiniz?",
+   "lexeme": "lx:möchten",
+   "exp": {
+    "anlam_tr": "Birine kibarca ne istediğini sorar.",
+    "ne_zaman_tr": "Sekreterden ve garsondan duyarsın.",
+    "parcalar": [
+     {
+      "de": "Möchten",
+      "tr": "ister misiniz"
+     },
+     {
+      "de": "Sie",
+      "tr": "siz"
+     },
+     {
+      "de": "warten",
+      "tr": "beklemek"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r0:09:b:kannst-du",
+   "de": "Kannst du morgen kommen?",
+   "tr": "Yarın gelebilir misin?",
+   "lexeme": "lx:können",
+   "exp": {
+    "anlam_tr": "Samimi olduğun birine gelip gelemeyeceğini sorar.",
+    "ne_zaman_tr": "Arkadaşınla ya da iş arkadaşınla plan yaparken.",
+    "parcalar": [
+     {
+      "de": "Kannst",
+      "tr": "-ebilir misin"
+     },
+     {
+      "de": "du",
+      "tr": "sen"
+     },
+     {
+      "de": "morgen",
+      "tr": "yarın"
+     },
+     {
+      "de": "kommen",
+      "tr": "gelmek"
+     }
+    ],
+    "ipucu_tr": "**du** ile sona **-st** gelir: **kannst**, **musst**, **willst**."
+   }
+  }
+ ],
+ "table": {
+  "baslik_tr": "Altı önemli kelime",
+  "sutunlar": [
+   "Kim",
+   "können",
+   "müssen",
+   "dürfen",
+   "wollen",
+   "sollen",
+   "möchten"
+  ],
+  "satirlar": [
+   [
+    "ich",
+    "kann",
+    "muss",
+    "darf",
+    "will",
+    "soll",
+    "möchte"
+   ],
+   [
+    "du",
+    "kannst",
+    "musst",
+    "darfst",
+    "willst",
+    "sollst",
+    "möchtest"
+   ],
+   [
+    "er, sie, es",
+    "kann",
+    "muss",
+    "darf",
+    "will",
+    "soll",
+    "möchte"
+   ],
+   [
+    "wir",
+    "können",
+    "müssen",
+    "dürfen",
+    "wollen",
+    "sollen",
+    "möchten"
+   ],
+   [
+    "ihr",
+    "könnt",
+    "müsst",
+    "dürft",
+    "wollt",
+    "sollt",
+    "möchtet"
+   ],
+   [
+    "sie, Sie",
+    "können",
+    "müssen",
+    "dürfen",
+    "wollen",
+    "sollen",
+    "möchten"
+   ]
+  ]
+ },
+ "drills": [
+  {
+   "id": "r0:09:d01",
+   "k": "gap",
+   "de": "Ich ___ morgen kommen.",
+   "tr": "Yarın gelebilirim.",
+   "accepted": [
+    "kann"
+   ],
+   "opts": [
+    "kann",
+    "kannst",
+    "können"
+   ]
+  },
+  {
+   "id": "r0:09:d02",
+   "k": "gap",
+   "de": "___ Sie das wiederholen?",
+   "tr": "Bunu tekrar edebilir misiniz?",
+   "accepted": [
+    "Können"
+   ],
+   "opts": [
+    "Können",
+    "Kann",
+    "Kannst"
+   ]
+  },
+  {
+   "id": "r0:09:d03",
+   "k": "gap",
+   "de": "Er ___ heute arbeiten.",
+   "tr": "Onun bugün çalışması gerekiyor.",
+   "accepted": [
+    "muss"
+   ],
+   "opts": [
+    "muss",
+    "musst",
+    "müssen"
+   ],
+   "why_tr": "**er** ile sona **-t** gelmez: **er muss**."
+  },
+  {
+   "id": "r0:09:d04",
+   "k": "gap",
+   "de": "___ ich hier warten?",
+   "tr": "Burada bekleyebilir miyim?",
+   "accepted": [
+    "Darf"
+   ],
+   "opts": [
+    "Darf",
+    "Muss",
+    "Will"
+   ],
+   "why_tr": "İzin isterken **Darf ich** söylenir."
+  },
+  {
+   "id": "r0:09:d05",
+   "k": "gap",
+   "de": "Sie ___ nichts essen.",
+   "tr": "Hiçbir şey yememelisiniz.",
+   "accepted": [
+    "dürfen"
+   ],
+   "opts": [
+    "dürfen",
+    "müssen",
+    "möchten"
+   ],
+   "why_tr": "Yasak anlatırken **dürfen** ile **nichts** gelir."
+  },
+  {
+   "id": "r0:09:d06",
+   "k": "gap",
+   "de": "___ wir zusammen üben?",
+   "tr": "Birlikte pratik yapalım mı?",
+   "accepted": [
+    "Wollen"
+   ],
+   "opts": [
+    "Wollen",
+    "Will",
+    "Willst"
+   ]
+  },
+  {
+   "id": "r0:09:d07",
+   "k": "gap",
+   "de": "___ ich morgen anrufen?",
+   "tr": "Yarın arayayım mı?",
+   "accepted": [
+    "Soll"
+   ],
+   "opts": [
+    "Soll",
+    "Sollen",
+    "Kann"
+   ],
+   "why_tr": "Karşındakinin isteğini sorarken **Soll ich** dersin."
+  },
+  {
+   "id": "r0:09:d08",
+   "k": "gap",
+   "de": "Ich ___ einen Termin machen.",
+   "tr": "Randevu almak istiyorum.",
+   "accepted": [
+    "möchte"
+   ],
+   "opts": [
+    "möchte",
+    "möchten",
+    "möchtest"
+   ]
+  },
+  {
+   "id": "r0:09:d09",
+   "k": "gap",
+   "de": "___ du morgen kommen?",
+   "tr": "Yarın gelebilir misin?",
+   "accepted": [
+    "Kannst"
+   ],
+   "opts": [
+    "Kannst",
+    "Kann",
+    "Können"
+   ],
+   "why_tr": "**du** ile sona **-st** gelir."
+  },
+  {
+   "id": "r0:09:d10",
+   "k": "pick",
+   "q_tr": "**Sie müssen nicht warten** ne demek?",
+   "opts": [
+    "Beklemeniz gerekmiyor.",
+    "Beklemeniz yasak.",
+    "Bekleyemezsiniz."
+   ],
+   "ans": 0,
+   "why_tr": "**müssen** ile **nicht** gerek yok demektir."
+  },
+  {
+   "id": "r0:09:d11",
+   "k": "pick",
+   "q_tr": "**Sie dürfen hier nicht warten** ne demek?",
+   "opts": [
+    "Burada beklemeniz yasak.",
+    "Burada beklemeniz gerekmiyor.",
+    "Burada bekleyebilirsiniz."
+   ],
+   "ans": 0,
+   "why_tr": "**dürfen** ile **nicht** yasak demektir."
+  },
+  {
+   "id": "r0:09:d12",
+   "k": "pick",
+   "q_tr": "Sekreterle konuşuyorsun. En kibar cümle hangisi?",
+   "opts": [
+    "Ich möchte einen Termin machen.",
+    "Ich will einen Termin machen.",
+    "Ich muss einen Termin machen."
+   ],
+   "ans": 0
+  },
+  {
+   "id": "r0:09:d13",
+   "k": "order",
+   "de": "morgen / kann / kommen / Ich",
+   "tr": "Yarın gelebilirim.",
+   "accepted": [
+    "Ich kann morgen kommen."
+   ],
+   "why_tr": "**kann** ikinci sırada durur, **kommen** en sona gider."
+  },
+  {
+   "id": "r0:09:d14",
+   "k": "order",
+   "de": "Termin / möchte / einen / machen / Ich",
+   "tr": "Randevu almak istiyorum.",
+   "accepted": [
+    "Ich möchte einen Termin machen."
+   ]
+  },
+  {
+   "id": "r0:09:d15",
+   "k": "order",
+   "de": "ich / Wann / kommen / soll",
+   "tr": "Ne zaman geleyim?",
+   "accepted": [
+    "Wann soll ich kommen?"
+   ]
+  },
+  {
+   "id": "r0:09:d16",
+   "k": "order",
+   "de": "heute / muss / Ich / arbeiten",
+   "tr": "Bugün çalışmam gerekiyor.",
+   "accepted": [
+    "Ich muss heute arbeiten."
+   ]
+  },
+  {
+   "id": "r0:09:d17",
+   "k": "tr_de",
+   "tr": "Yarın gelebilirim.",
+   "accepted": [
+    "Ich kann morgen kommen.",
+    "Morgen kann ich kommen.",
+    "Ich kann morgen."
+   ],
+   "why_tr": "**Ich kann kommen morgen** yanlış olur."
+  },
+  {
+   "id": "r0:09:d18",
+   "k": "tr_de",
+   "tr": "Salı günü gelemem.",
+   "accepted": [
+    "Ich kann am Dienstag nicht kommen.",
+    "Am Dienstag kann ich nicht kommen.",
+    "Am Dienstag kann ich nicht.",
+    "Ich kann am Dienstag nicht."
+   ],
+   "why_tr": "**nicht** en sondaki **kommen** kelimesinden önce gelir."
+  },
+  {
+   "id": "r0:09:d19",
+   "k": "tr_de",
+   "tr": "Bugün çalışmam gerekiyor.",
+   "accepted": [
+    "Ich muss heute arbeiten.",
+    "Heute muss ich arbeiten.",
+    "Ich muss heute noch arbeiten."
+   ]
+  },
+  {
+   "id": "r0:09:d20",
+   "k": "tr_de",
+   "tr": "Burada bekleyebilir miyim?",
+   "accepted": [
+    "Darf ich hier warten?",
+    "Kann ich hier warten?",
+    "Darf ich hier kurz warten?",
+    "Kann ich hier kurz warten?"
+   ],
+   "why_tr": "**Darf ich** en kibar sorudur, **Kann ich** de çok duyulur."
+  },
+  {
+   "id": "r0:09:d21",
+   "k": "tr_de",
+   "tr": "Ne zaman geleyim?",
+   "accepted": [
+    "Wann soll ich kommen?",
+    "Wann kann ich kommen?",
+    "Wann soll ich denn kommen?"
+   ]
+  },
+  {
+   "id": "r0:09:d22",
+   "k": "tr_de",
+   "tr": "Randevu almak istiyorum.",
+   "accepted": [
+    "Ich möchte einen Termin machen.",
+    "Ich möchte einen Termin.",
+    "Ich möchte gern einen Termin machen.",
+    "Ich möchte gerne einen Termin.",
+    "Ich möchte gerne einen Termin machen.",
+    "Ich hätte gern einen Termin.",
+    "Ich hätte gerne einen Termin.",
+    "Ich brauche einen Termin."
+   ]
+  },
+  {
+   "id": "r0:09:d23",
+   "k": "tr_de",
+   "tr": "Ne yapmalıyım?",
+   "accepted": [
+    "Was soll ich machen?",
+    "Was muss ich machen?",
+    "Was soll ich jetzt machen?",
+    "Was soll ich tun?",
+    "Was muss ich tun?"
+   ]
+  },
+  {
+   "id": "r0:09:d24",
+   "k": "transform",
+   "instr_tr": "Kibar soru yap. **Können Sie** ile başla.",
+   "from_de": "Wiederholen Sie das.",
+   "accepted": [
+    "Können Sie das wiederholen?",
+    "Können Sie das bitte wiederholen?",
+    "Könnten Sie das wiederholen?"
+   ]
+  },
+  {
+   "id": "r0:09:d25",
+   "k": "transform",
+   "instr_tr": "**kann** ekle.",
+   "from_de": "Ich komme morgen.",
+   "accepted": [
+    "Ich kann morgen kommen.",
+    "Morgen kann ich kommen.",
+    "Ich kann morgen."
+   ],
+   "why_tr": "**komme** en sona gider ve **kommen** olur."
+  },
+  {
+   "id": "r0:09:d26",
+   "k": "transform",
+   "instr_tr": "**muss** ekle.",
+   "from_de": "Ich arbeite heute.",
+   "accepted": [
+    "Ich muss heute arbeiten.",
+    "Heute muss ich arbeiten.",
+    "Ich muss heute noch arbeiten."
+   ]
+  },
+  {
+   "id": "r0:09:d27",
+   "k": "transform",
+   "instr_tr": "Kibarlaştır. **möchte** kullan.",
+   "from_de": "Ich will einen Termin machen.",
+   "accepted": [
+    "Ich möchte einen Termin machen.",
+    "Ich möchte gern einen Termin machen.",
+    "Ich möchte gerne einen Termin machen."
+   ]
+  },
+  {
+   "id": "r0:09:d28",
+   "k": "transform",
+   "instr_tr": "Cümleyi **du** ile söyle.",
+   "from_de": "Können Sie morgen kommen?",
+   "accepted": [
+    "Kannst du morgen kommen?",
+    "Kannst du morgen?",
+    "Kannst du denn morgen kommen?"
+   ]
+  },
+  {
+   "id": "r0:09:d29",
+   "k": "guided_response",
+   "situation_tr": "Muayenehaneyi aradın. Ne istediğini söyle.",
+   "prompt_de": "Praxis Dr. Weber, was kann ich für Sie tun?",
+   "accepted": [
+    "Ich möchte einen Termin machen.",
+    "Ich möchte einen Termin.",
+    "Ich möchte gern einen Termin machen.",
+    "Ich hätte gern einen Termin.",
+    "Ich möchte gerne einen Termin machen.",
+    "Ich hätte gerne einen Termin.",
+    "Ich brauche einen Termin.",
+    "Grüß Gott, ich möchte einen Termin machen.",
+    "Guten Tag, ich möchte einen Termin machen.",
+    "Grüß Gott, ich möchte einen Termin.",
+    "Guten Tag, ich möchte einen Termin."
+   ]
+  },
+  {
+   "id": "r0:09:d30",
+   "k": "guided_response",
+   "situation_tr": "Sekreter çok hızlı konuştu. Tekrar etmesini iste.",
+   "prompt_de": "Kommen Sie am Dienstag um halb zehn.",
+   "accepted": [
+    "Können Sie das wiederholen?",
+    "Können Sie das bitte wiederholen?",
+    "Wie bitte?",
+    "Könnten Sie das wiederholen?",
+    "Können Sie das noch einmal sagen?",
+    "Noch einmal, bitte."
+   ]
+  },
+  {
+   "id": "r0:09:d31",
+   "k": "guided_response",
+   "situation_tr": "Ioana birlikte pratik yapmak istiyor. Bugün işte çalışman gerekiyor.",
+   "prompt_de": "Wollen wir heute zusammen üben?",
+   "accepted": [
+    "Ich muss heute arbeiten.",
+    "Ich kann heute nicht, ich muss arbeiten.",
+    "Heute kann ich nicht, ich muss arbeiten.",
+    "Ich muss arbeiten.",
+    "Nein, ich muss arbeiten.",
+    "Heute nicht, ich muss arbeiten.",
+    "Ich kann heute nicht.",
+    "Nein, ich muss heute arbeiten."
+   ]
+  },
+  {
+   "id": "r0:09:d32",
+   "k": "guided_response",
+   "situation_tr": "Yarın sabah kan tahlilin var. Yemek yemene izin var mı, sor.",
+   "prompt_de": "Der Termin ist morgen früh um acht.",
+   "accepted": [
+    "Darf ich essen?",
+    "Darf ich etwas essen?",
+    "Darf ich morgen früh essen?",
+    "Kann ich etwas essen?",
+    "Darf ich vorher essen?",
+    "Darf ich vorher etwas essen?",
+    "Darf ich was essen?",
+    "Kann ich essen?"
+   ]
+  },
+  {
+   "id": "r0:09:d33",
+   "k": "listen_and_respond",
+   "audio_de": "Sie müssen leider noch zwanzig Minuten warten.",
+   "speed": "normal",
+   "situation_tr": "Burada beklemek için izin iste.",
+   "accepted": [
+    "Darf ich hier warten?",
+    "Kann ich hier warten?",
+    "Darf ich hier kurz warten?",
+    "Kann ich hier kurz warten?"
+   ]
+  },
+  {
+   "id": "r0:09:d34",
+   "k": "listen_and_respond",
+   "audio_de": "Möchten Sie am Montag oder am Mittwoch kommen?",
+   "speed": "natural",
+   "situation_tr": "Pazartesi gelebilirsin.",
+   "accepted": [
+    "Ich kann am Montag kommen.",
+    "Am Montag kann ich kommen.",
+    "Am Montag.",
+    "Ich möchte am Montag kommen.",
+    "Am Montag, bitte.",
+    "Montag.",
+    "Ich kann am Montag.",
+    "Am Montag kann ich."
+   ]
+  },
+  {
+   "id": "r0:09:d35",
+   "k": "listen_and_respond",
+   "audio_de": "Rufen Sie bitte noch einmal an.",
+   "speed": "fast",
+   "situation_tr": "Ne zaman araman gerektiğini sor.",
+   "accepted": [
+    "Wann soll ich anrufen?",
+    "Wann kann ich anrufen?",
+    "Wann soll ich denn anrufen?",
+    "Wann soll ich noch einmal anrufen?"
+   ]
+  }
+ ],
+ "dialogue": {
+  "title_tr": "Ioana ile plan",
+  "lines": [
+   {
+    "speaker": "ch:popescu",
+    "r": "A",
+    "de": "Hallo {name}! Wollen wir heute zusammen üben?",
+    "tr": "Selam {name}! Bugün birlikte pratik yapalım mı?"
+   },
+   {
+    "speaker": "ogrenci",
+    "r": "B",
+    "de": "Ich kann heute nicht kommen.",
+    "tr": "Bugün gelemem."
+   },
+   {
+    "speaker": "ch:popescu",
+    "r": "A",
+    "de": "Warum nicht?",
+    "tr": "Neden?"
+   },
+   {
+    "speaker": "ogrenci",
+    "r": "B",
+    "de": "Ich muss arbeiten.",
+    "tr": "Çalışmam gerekiyor."
+   },
+   {
+    "speaker": "ch:popescu",
+    "r": "A",
+    "de": "Schade! Kannst du morgen?",
+    "tr": "Yazık! Yarın olur mu?"
+   },
+   {
+    "speaker": "ogrenci",
+    "r": "B",
+    "de": "Ja, ich kann morgen kommen. Wann soll ich kommen?",
+    "tr": "Evet, yarın gelebilirim. Ne zaman geleyim?"
+   },
+   {
+    "speaker": "ch:popescu",
+    "r": "A",
+    "de": "Um acht, nach dem Kurs?",
+    "tr": "Saat sekizde, kurstan sonra?"
+   },
+   {
+    "speaker": "ogrenci",
+    "r": "B",
+    "de": "Um acht. Ich will Deutsch sprechen!",
+    "tr": "Saat sekizde. Almanca konuşmak istiyorum!"
+   },
+   {
+    "speaker": "ch:popescu",
+    "r": "A",
+    "de": "Ich auch. Nur Deutsch!",
+    "tr": "Ben de. Sadece Almanca!"
+   }
+  ]
+ },
+ "listening": [
+  {
+   "id": "r0:09:h1",
+   "title_tr": "Kan tahlilinden önce",
+   "speed": "normal",
+   "speeds": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "r": "Frau Huber",
+     "de": "Sie sollen morgen früh um acht kommen.",
+     "tr": "Yarın sabah saat sekizde gelmeniz gerekiyor."
+    },
+    {
+     "r": "Patient",
+     "de": "Darf ich vorher etwas essen?",
+     "tr": "Önceden bir şey yiyebilir miyim?"
+    },
+    {
+     "r": "Frau Huber",
+     "de": "Nein, Sie dürfen nichts essen. Aber Sie können Wasser trinken.",
+     "tr": "Hayır, hiçbir şey yememelisiniz. Ama su içebilirsiniz."
+    },
+    {
+     "r": "Patient",
+     "de": "Muss ich meine Karte mitbringen?",
+     "tr": "Kartımı getirmem gerekiyor mu?"
+    },
+    {
+     "r": "Frau Huber",
+     "de": "Ja, die müssen Sie mitbringen.",
+     "tr": "Evet, onu getirmeniz gerekiyor."
+    },
+    {
+     "r": "Patient",
+     "de": "Gut. Dann bis morgen.",
+     "tr": "Tamam. O zaman yarın görüşürüz."
+    }
+   ],
+   "qs": [
+    {
+     "kind": "gist",
+     "q_tr": "Konuşma ne hakkında?",
+     "opts": [
+      "Tahlilden önce yapılacaklar",
+      "Randevunun iptali",
+      "Bir ilacın fiyatı"
+     ],
+     "ans": 0
+    },
+    {
+     "kind": "detail",
+     "q_tr": "Hasta sabah ne yapabilir?",
+     "opts": [
+      "Kahvaltı edebilir",
+      "Su içebilir",
+      "Kahve içebilir"
+     ],
+     "ans": 1
+    },
+    {
+     "kind": "detail",
+     "q_tr": "Hasta ne getirmeli?",
+     "opts": [
+      "Kartını",
+      "Parasını",
+      "Bir arkadaşını"
+     ],
+     "ans": 0
+    }
+   ]
+  },
+  {
+   "id": "r0:09:h2",
+   "title_tr": "Tobi yardım istiyor",
+   "speed": "natural",
+   "speeds": [
+    "normal",
+    "natural"
+   ],
+   "script": [
+    {
+     "r": "Tobi",
+     "de": "Du, kannst du mir am Freitag helfen?",
+     "tr": "Baksana, cuma günü bana yardım edebilir misin?"
+    },
+    {
+     "r": "Derya",
+     "de": "Am Freitag? Da muss ich zum Arzt.",
+     "tr": "Cuma mı? O gün doktora gitmem gerekiyor."
+    },
+    {
+     "r": "Tobi",
+     "de": "Und am Samstag? Ich will mein Auto verkaufen.",
+     "tr": "Peki cumartesi? Arabamı satmak istiyorum."
+    },
+    {
+     "r": "Derya",
+     "de": "Am Samstag kann ich. Soll ich um zehn kommen?",
+     "tr": "Cumartesi olur. Saat onda geleyim mi?"
+    },
+    {
+     "r": "Tobi",
+     "de": "Super, um zehn!",
+     "tr": "Süper, saat onda!"
+    }
+   ],
+   "qs": [
+    {
+     "kind": "gist",
+     "q_tr": "Tobi ne istiyor?",
+     "opts": [
+      "Yardım istiyor",
+      "Araba almak istiyor",
+      "Yeni bir iş istiyor"
+     ],
+     "ans": 0
+    },
+    {
+     "kind": "detail",
+     "q_tr": "Derya cuma günü neden gelemiyor?",
+     "opts": [
+      "Doktora gidecek",
+      "Çalışacak",
+      "Tatilde"
+     ],
+     "ans": 0
+    },
+    {
+     "kind": "detail",
+     "q_tr": "Derya ne zaman gelecek?",
+     "opts": [
+      "Cuma saat onda",
+      "Cumartesi saat onda",
+      "Cumartesi saat sekizde"
+     ],
+     "ans": 1
+    }
+   ]
+  }
+ ],
+ "placement": [
+  {
+   "id": "r0:09:p01",
+   "k": "gap",
+   "de": "Ich ___ heute arbeiten.",
+   "tr": "Bugün çalışmam gerekiyor.",
+   "accepted": [
+    "muss"
+   ],
+   "opts": [
+    "muss",
+    "musst",
+    "müssen"
+   ]
+  },
+  {
+   "id": "r0:09:p02",
+   "k": "pick",
+   "q_tr": "**Sie müssen nicht kommen** ne demek?",
+   "opts": [
+    "Gelmeniz gerekmiyor.",
+    "Gelmeniz yasak.",
+    "Gelmek istiyorsunuz."
+   ],
+   "ans": 0
+  },
+  {
+   "id": "r0:09:p03",
+   "k": "tr_de",
+   "tr": "Yarın gelebilirim.",
+   "accepted": [
+    "Ich kann morgen kommen.",
+    "Morgen kann ich kommen.",
+    "Ich kann morgen."
+   ]
+  },
+  {
+   "id": "r0:09:p04",
+   "k": "tr_de",
+   "tr": "Ne zaman geleyim?",
+   "accepted": [
+    "Wann soll ich kommen?",
+    "Wann kann ich kommen?",
+    "Wann soll ich denn kommen?"
+   ]
+  },
+  {
+   "id": "r0:09:p05",
+   "k": "guided_response",
+   "situation_tr": "Muayenehaneyi aradın. Ne istediğini söyle.",
+   "prompt_de": "Praxis Dr. Weber, grüß Gott?",
+   "accepted": [
+    "Ich möchte einen Termin machen.",
+    "Ich möchte einen Termin.",
+    "Ich möchte gern einen Termin machen.",
+    "Ich hätte gern einen Termin.",
+    "Ich möchte gerne einen Termin machen.",
+    "Ich hätte gerne einen Termin.",
+    "Ich brauche einen Termin.",
+    "Grüß Gott, ich möchte einen Termin machen.",
+    "Guten Tag, ich möchte einen Termin machen.",
+    "Grüß Gott, ich möchte einen Termin.",
+    "Guten Tag, ich möchte einen Termin."
+   ]
+  }
+ ],
+ "mission": {
+  "task_tr": "Yarın için üç cümle söyle. Başlangıçlar: **Ich muss**, **Ich kann**, **Ich möchte**."
+ }
+}
