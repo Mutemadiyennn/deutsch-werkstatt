@@ -32,6 +32,26 @@ export const Domain = z.object({
 });
 export type Domain = z.infer<typeof Domain>;
 
+/** İçerik evrenine bağlılık (PM-040.3, PM-042 A.2–A.3, OD-1, AH-4): yer, ünite, karakterler, "bunu yapabilirim" hedefleri, kol, önkoşullar */
+export const Anchors = {
+  /** WORLD.md yer kimliği (ör. place:praxis-weber) */
+  place: z.string().optional(),
+  /** ünite kimliği (ör. u:a2-03) */
+  unit: z.string().optional(),
+  /** WORLD.md karakter kimlikleri */
+  characters: z.array(z.string()).default([]),
+  /** can_do kimlikleri (ör. cd:a2:telefon-randevu) */
+  can_do: z.array(z.string()).default([]),
+  /** AHTAPOT kolu (ör. arm:konusma) */
+  arm: z.string().optional(),
+  /** önce öğretilmiş olması gereken öğeler (lx:, ch:, pt:, gr:, sc:, r0:) — OD-1 */
+  requires: z.array(z.string()).default([])
+};
+/** Hazır ses (D-085): dosya + kim okudu + lisans; yoksa cihaz sesi */
+export const Audio = z.object({ src: z.string().min(1), speaker: z.string().optional(), license: z.string().optional(), source: z.string().optional() });
+/** Güney Almanya kullanımı (gell, daheim, Semmel…): Bairisch DEĞİL, bölgesel gündelik dil (PM-042 A.6) */
+const Sued = z.boolean().optional();
+
 export const Tier = z.enum(["K1", "K2", "K3"]);
 export const Example = z.object({
   id: z.string(),
@@ -40,7 +60,9 @@ export const Example = z.object({
   img: z.string().optional(),
   layer: z.enum(["hd", "alltag"]).default("hd"),
   /** Diyalog içinden örnek ("– … – …" biçiminde iki konuşmacı) */
-  dialog: z.boolean().optional()
+  dialog: z.boolean().optional(),
+  audio: Audio.optional(),
+  sued: Sued
 });
 
 export const Lexeme = z.object({
@@ -77,7 +99,12 @@ export const Lexeme = z.object({
   freqRank: z.number().int().positive().optional(),
   domains: z.array(z.string()).default([]),
   /** v1 kaynakları: ünite + kurs motorundaki kelime anahtarı (kuWKey = "<ünite>:w:<de>"); ilerleme taşıma için */
-  legacy: z.array(z.object({ unit: z.string(), key: z.string() })).default([])
+  legacy: z.array(z.object({ unit: z.string(), key: z.string() })).default([]),
+  /** OD-9.1 yapılandırılmış açıklama (PM-040.3) */
+  exp: Explanation.optional(),
+  audio: Audio.optional(),
+  sued: Sued,
+  ...Anchors
 });
 export type Lexeme = z.infer<typeof Lexeme>;
 
@@ -114,7 +141,9 @@ export const Chunk = z.object({
   alltag_exp: Explanation.optional(),
   /** OD: bu ifadenin açıklamasının varsaydığı önceden öğretilmiş öğeler (ör. gr:dativ) */
   requires: z.array(z.string()).default([]),
-  mistakes_tr: z.array(z.string()).default([])
+  mistakes_tr: z.array(z.string()).default([]),
+  audio: Audio.optional(),
+  sued: Sued
 });
 export type Chunk = z.infer<typeof Chunk>;
 
@@ -137,7 +166,8 @@ export const Pattern = z.object({
     .default({}),
   mistakes_tr: z.array(z.string()).default([]),
   grammarRef: z.string().optional(),
-  review: ReviewState.optional()
+  review: ReviewState.optional(),
+  ...Anchors
 });
 export type Pattern = z.infer<typeof Pattern>;
 
@@ -163,7 +193,11 @@ export const DialogueLine = z.object({
   keywords: z.array(z.string()).optional(),
   hint_tr: z.string().optional(),
   accepted: z.array(z.string()).optional(),
-  speed: Speed.optional()
+  speed: Speed.optional(),
+  /** WORLD.md karakter kimliği: bu satırı kim söylüyor (PM-042 A.6) */
+  speaker: z.string().optional(),
+  audio: Audio.optional(),
+  sued: Sued
 });
 export const Dialogue = z.object({
   id: z.string(),
@@ -234,7 +268,8 @@ export const Scenario = z.object({
   speaking: z.array(z.object({ task_tr: z.string(), model_de: z.string(), hints_de: z.array(z.string()).default([]) })).default([]),
   missions: z.array(z.object({ id: z.string(), task_tr: z.string(), prep: z.array(ChunkId).default([]), escape_de: z.array(z.string()).default([]) })).default([]),
   mistakes_tr: z.array(z.string()).default([]),
-  source: z.object({ legacyUnit: z.string().optional(), notes: z.string().optional() }).default({})
+  source: z.object({ legacyUnit: z.string().optional(), notes: z.string().optional() }).default({}),
+  ...Anchors
 });
 export type Scenario = z.infer<typeof Scenario>;
 

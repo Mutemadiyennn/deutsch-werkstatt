@@ -20,7 +20,7 @@ export const CDIR = join(ROOT, "content/v2");
 export interface Loaded {
   domains: Domain[];
   lexemes: Lexeme[];
-  lexiconBatches: { file: string; batch: string; status: string; count: number }[];
+  lexiconBatches: { file: string; batch: string; status: string; okur?: string; count: number; ids: string[] }[];
   patterns: Pattern[];
   grammar: GrammarNote[];
   scenarios: { file: string; data: Scenario }[];
@@ -37,7 +37,25 @@ function parseFile<T>(file: string, schema: z.ZodType<T>, errors: string[]): T |
   try { raw = JSON.parse(readFileSync(file, "utf8")); } catch (e) { errors.push(`${rel(file)}: JSON okunamadı (${(e as Error).message})`); return null; }
   const r = schema.safeParse(raw);
   if (!r.success) { for (const i of r.error.issues.slice(0, 25)) errors.push(`${rel(file)}: ${i.path.join(".")} — ${i.message}`); return null; }
+  // PM-042 A.3: şemada olmayan alan sessizce atılmaz → hata (İçerik Motoru şema isteğini #12'ye yazar)
+  const unk = unknownKeys(raw, r.data);
+  for (const k of unk.slice(0, 25)) errors.push(`${rel(file)}: ${k} — şemada olmayan alan`);
+  if (unk.length > 25) errors.push(`${rel(file)}: … ve ${unk.length - 25} şemada olmayan alan daha`);
   return r.data;
+}
+/** Ham JSON'da olup ayrıştırılmış veride olmayan anahtarlar (zod bilinmeyen alanları atar) */
+export function unknownKeys(raw: unknown, parsed: unknown, path = ""): string[] {
+  if (Array.isArray(raw) && Array.isArray(parsed)) return raw.flatMap((x, i) => unknownKeys(x, parsed[i], `${path}[${i}]`));
+  if (raw && typeof raw === "object" && parsed && typeof parsed === "object" && !Array.isArray(raw)) {
+    const out: string[] = [];
+    for (const [k, v] of Object.entries(raw)) {
+      const p = path ? `${path}.${k}` : k;
+      if (!(k in (parsed as Record<string, unknown>))) out.push(p);
+      else out.push(...unknownKeys(v, (parsed as Record<string, unknown>)[k], p));
+    }
+    return out;
+  }
+  return [];
 }
 function walk(dir: string, out: string[] = []): string[] {
   if (!existsSync(dir)) return out;
@@ -60,7 +78,7 @@ export function loadContent(dir = CDIR): Loaded {
   for (const f of walk(join(dir, "registry/lexicon"))) {
     const b = parseFile(f, LexiconBatch, errors);
     if (!b) continue;
-    lexiconBatches.push({ file: rel(f), batch: b.batch, status: b.review.status, count: b.items.length });
+    lexiconBatches.push({ file: rel(f), batch: b.batch, status: b.review.status, okur: b.review.okur, count: b.items.length, ids: b.items.map((x) => x.id) });
     const seen = new Set(deep.map((x) => x.id));
     for (const it of b.items) { if (seen.has(it.id)) errors.push(`${rel(f)}: kelime ${it.id} başka bir partide de var`); deep.push(it); }
   }
@@ -180,6 +198,12 @@ export function explainTexts(s: Scenario): { where: string; text: string }[] {
   s.mistakes_tr.forEach((m, i) => add(`mistakes_tr[${i}]`, m));
   return out;
 }
+/** Sözlük kartında öğrenciye görünen Türkçe: karşılık, hatalar (PM-035.10, PM-042 A.3) */
+export function lexemeExplainTexts(l: Lexeme): { where: string; text: string }[] {
+  const out: { where: string; text: string }[] = [{ where: `${l.id}.tr`, text: l.tr }];
+  l.mistakes_tr.forEach((m, i) => out.push({ where: `${l.id}.mistakes_tr[${i}]`, text: m }));
+  return out;
+}
 export function patternExplainTexts(p: Pattern): { where: string; text: string }[] {
   // grammar_tr öğretmen notudur, öğrenciye gösterilmez; öğrenciye görünenler kurallar_tr, frame_tr, mistakes_tr
   const out: { where: string; text: string }[] = p.kurallar_tr.map((k, i) => ({ where: `${p.id}.kurallar_tr[${i}]`, text: k }));
@@ -200,11 +224,27 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean } = {}): 
   dupes(c.scenarios.map((s) => s.data.id), "senaryo");
   const units = new Set(c.grammar.map((g) => g.unit));
   for (const d of c.domains) for (const u of d.legacyUnits) if (!units.has(u)) errors.push(`alan ${d.id}: v1 ünitesi ${u} bulunamadı`);
+  const artInDe: string[] = [];
   for (const l of c.lexemes) {
     for (const p of l.patterns) if (!pt.has(p)) errors.push(`${l.id}: kalıp ${p} yok`);
     for (const r of l.related) if (!lx.has(r)) warnings.push(`${l.id}: ilgili kelime ${r} yok`);
     for (const x of checkLexeme(l)) errors.push(`${l.id} (${l.tier}): ${x}`);
+    // PM-042 B.9 (PM-035.3): artikel tek kaynak `art`; `de` artikelsiz isim, arayüz "der Termin" biçimini kendisi kurar
+    if (l.pos === "noun" && !l.art) errors.push(`${l.id}: isimde art zorunlu`);
+    // geçiş: İçerik Motoru 218 kartı tek partide çevirene kadar uyarı (D-098); --strict ve incelenmiş partide hata
+    if (l.pos === "noun" && /^(der|die|das)\s/i.test(l.de)) artInDe.push(l.id);
+    if (l.exp) for (const x of explanationIssues(l.exp)) errors.push(`${l.id}.exp.${x}`);
   }
+  if (artInDe.length) (opts.strictPatterns ? errors : warnings).push(`de alanı artikelle başlayan ${artInDe.length} isim (artikel yalnızca art alanında, D-098): ${artInDe.slice(0, 5).join(", ")}${artInDe.length > 5 ? " …" : ""}`);
+  // PM-040.3 / PM-042 A.3: sözlük partisi — "reviewed" ise okur zorunlu; tr ve mistakes_tr OD-9.2 (incelenmişte hata, taslakta sayı uyarısı)
+  { const byId = new Map(c.lexemes.map((l) => [l.id, l]));
+    for (const b of c.lexiconBatches) {
+      if (b.status === "reviewed" && b.okur !== "passed") errors.push(`${b.file}: "reviewed" ama okur kontrolü geçmemiş (OD-9.4)`);
+      const bad = b.ids.flatMap((id) => { const l = byId.get(id); return l ? lexemeExplainTexts(l).flatMap(({ where, text }) => textIssues(text).map((x) => `${where}: ${x}`)) : []; });
+      if (!bad.length) continue;
+      if (b.status === "reviewed") for (const x of bad) errors.push(`${b.file}: OD-9 ${x}`);
+      else warnings.push(`${b.file}: OD-9 açıklama standardına uymayan ${bad.length} metin (ilk: ${bad[0]})`);
+    } }
   for (const p of c.patterns) for (const x of checkPattern(p)) errors.push(`${p.id}: ${x}`);
   // OD-9.4 (PM-017): "reviewed" ancak okur kapısından geçtiyse; incelenmiş kalıbın açıklamaları OD-9.2'ye uymalı
   for (const p of c.patterns) {

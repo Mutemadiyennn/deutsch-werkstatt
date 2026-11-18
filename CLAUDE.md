@@ -39,7 +39,7 @@ PM belgeleri issue olarak gelir; depoya baş geliştirici alır (PM-011).
 - **Bitti tanımı:** kod + birim testleri + WebKit uçtan uca testleri + doğrulayıcı 0 hata + güncel STATUS + PR açıklaması. Biri eksikse "bitti" denmez.
 - **Küçük PR.** Her teslim ayrı dal ve ayrı PR; bağımlıysa öncekinin üstüne (yığınlı). PR açıklaması kendi başına anlaşılır: ne değişti, nasıl test edildi, arayüz değiştiyse ekran görüntüleri, bilinen eksikler.
 - **Bağımsız inceleme.** Her PR birleşmeden önce işi yazmamış `inceleme` ajanı temiz bağlamla inceler ve PR'a yorum yazar. İçerikte sıra: yazar → dilbilimci → örneklem kontrolü (ayrı ajanlar).
-- **En fazla 3 ajan aynı anda.** Ajanlar yalnızca `.claude/agents/` tanımlarıyla başlatılır (lex, yazar, dilbilimci, okur, inceleme, qa). İçerik sırası: yazar → dilbilimci → okur (OD-9) → örneklem.
+- **En fazla 3 ajan aynı anda (oturum başına, PM-040).** Ajanlar yalnızca `.claude/agents/` tanımlarıyla başlatılır (lex, yazar, dilbilimci, okur, inceleme, qa). İçerik sırası: yazar → dilbilimci → okur (OD-9) → örneklem.
 - **Arayüz çıtası:** v2 hiçbir ekranda v1'den görsel olarak zayıf olamaz (phases/04); iPhone standardı (phases/05).
 - **Rol oyunu:** güçlü model; 12 sn'de yanıt yoksa "Biraz uzun sürüyor" + Bekle / Tekrar dene / Yapay zekâsız devam; istek kesilmez (D-RP1).
 - **PR'lar LS ve RQ kimliklerini ve "AH bağı" satırını listeler** (LS-16.4, PM-005, PM-016). Arayüz değiştiren PR'da iPhone 15 Pro Max ekran görüntüleri, açık + koyu. Her sürümde LS-16.3 öğrenci simülasyonu zorunlu; QA ajanı bilgi kısıtlı oynar (öğretilmeyen öğeyi üretmesi istenirse P0).
@@ -79,6 +79,7 @@ scripts/v2-rollback.sh v2-YYYYMMDD-n          # ya da: gh workflow run deploy-v2
 | `docs/v2/PEDAGOGY.md`, `docs/v2/phases/` | proje sahibinin metni; yalnızca baş geliştirici kopyalar, içerik değiştirilmez |
 | `docs/v2/{AHTAPOT,YOL_HARITASI,OGRETIM_DONGUSU,BEYIN,MIMARI,TASARIM,KUTUPHANE,ICERIK_EVRENI,KAYNAKLAR}.md`, `docs/v2/design/` | PM belgeleri (issue'dan); baş geliştirici depoya alır; içerik PM talimatıyla değişir (KAYNAKLAR §5 doğrulama sonuçları baş geliştirici yazar) |
 | `docs/v2/reviews/okur/**` | okur |
+| `content/v2/**` (içerik) ve STATUS içerik sayacı | **içerik motoru oturumu** (PM-040): lex, yazar, dilbilimci, okur hattı; yalnızca içerik PR'ı. Şema/doğrulayıcı değişikliği istemez, #12'ye yazar |
 | `content/v2/registry/lexicon/**` | lex |
 | `content/v2/domains/<alan>/**` | yazar (görevde verilen alanlar) |
 | görevde verilen içerik dosyaları + `docs/v2/reviews/**` | dilbilimci (yazar o dosyaya artık dokunmaz) |
@@ -90,4 +91,4 @@ scripts/v2-rollback.sh v2-YYYYMMDD-n          # ya da: gh workflow run deploy-v2
 | PR yorumları | inceleme (depoya yazmaz) |
 | `app/` (v1) | baş geliştirici, yalnızca onaylı küçük dokunuşlar |
 
-Commit ve PR'ı yalnızca baş geliştirici açar; `git add -A` kullanılmaz (ajanlar çalışırken yarım dosya girmesin), yollar tek tek eklenir.
+Commit ve PR'ı yalnızca baş geliştirici açar (istisna: içerik motoru oturumu kendi dallarından yalnızca içerik PR'ı açar, PM-040). Şema, doğrulayıcı ve kod yalnızca baş geliştiricidedir; `git add -A` kullanılmaz (ajanlar çalışırken yarım dosya girmesin), yollar tek tek eklenir.
