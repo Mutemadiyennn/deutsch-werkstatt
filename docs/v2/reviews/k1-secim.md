@@ -1,6 +1,6 @@
 # K1 çekirdeği seçim listesi (PM-042 B.2, #46 P0-3)
 
-Durum: taslak. Makine listesi: `content/v2/curriculum/k1.json`. Tarih: 2026-11-18.
+Durum: **PM onaylı (PM-045 §3c).** Makine listesi: `content/v2/curriculum/k1.json`. Tarih: 2026-11-18.
 
 ## Neden yeniden kuruldu
 800 derin kart yalnızca altyazı sıklığıyla seçilmişti. Listede **töten**, **Waffe**, **Leiche** vardı; **Dienstag**, **Termin**, **Krankenkasse** yoktu. Yeni sıra önce ihtiyaca, sonra sıklığa bakar.
@@ -14,9 +14,9 @@ Durum: taslak. Makine listesi: `content/v2/curriculum/k1.json`. Tarih: 2026-11-1
 | 3 | Gündelik hayat kartları (eski A1–A2) | 262 | 0 | 262 | 0 |
 | 4 | A2 ünitelerinin ihtiyaç listesi | 119 | 1 | 15 | 103 |
 | 5 | Sıklık listesi, A1–A2 | 494 | 494 | 0 | 0 |
-| 6 | Sıklık listesi, B1 | 154 | 154 | 0 | 0 |
+| 6 | Sıklık listesi, B1 | 156 | 156 | 0 | 0 |
 
-Toplam çekirdek: **1247** kart. İlk 800 kart 1–4. grupların tamamını ve 5. grubun en sık kelimelerini içerir.
+Toplam çekirdek: **1249** kart. İlk 800 kart 1–4. grupların tamamını ve 5. grubun en sık kelimelerini içerir.
 
 ## Kurallar
 - Kapalı sınıflar (gün, ay, sayı, saat, tarih, soru kelimeleri) eksiksiz girer.
@@ -24,16 +24,16 @@ Toplam çekirdek: **1247** kart. İlk 800 kart 1–4. grupların tamamını ve 5
 - Aynı grupta sıra sıklığa göredir.
 - Pasife inen kart silinmez. Okuma ve dinlemede tanınabilir kalır, üretim istenmez, en son ve hafif biçimde işlenir.
 
-## Pasif katmana inenler (63)
+## Pasif katmana inenler (61)
 
 | Neden | Kelimeler |
 |---|---|
 | Şiddet ve suç | töten, umbringen, erschießen, schießen, Waffe, Mord, Mörder, Leiche, kämpfen, Kampf, angreifen, zerstören, Soldat, Gefängnis, verhaften, Opfer, schlagen, hauen, schnappen, verfolgen, erwischen, Wache |
 | Ölüm ve doğaüstü | sterben, tot, Tod, Seele, Hölle, Teufel, heilig |
 | Küfür ve kaba söz | Scheiße, verdammt, Arsch, Arschloch, Idiot, Mist, Kerl, Sex |
-| Film diline özgü, gündelik ihtiyaç dışı | König, Schiff, Befehl, Präsident, Ehre, retten, schwören, verraten, Geheimnis, beweisen, Spur, Meister, Boss, Kumpel, wetten, verstecken, fürchten, hassen, lügen, Schatz, Liebling, küssen, Pferd, schreien, stehlen, Himmel |
+| Film diline özgü, gündelik ihtiyaç dışı | König, Schiff, Befehl, Präsident, Ehre, retten, schwören, verraten, Geheimnis, beweisen, Spur, Meister, Boss, Kumpel, wetten, verstecken, fürchten, hassen, lügen, Schatz, Liebling, küssen, Pferd, schreien |
 
-## Karar bekleyen sınır durumları
-- **Blut** çekirdekte kaldı, çünkü doktorda gerekir. **Feuer** acil durum için kaldı.
-- **stehlen** pasifte. Kayıp ve hırsızlık bildirimi B1 güvenlik ünitesinde yeniden değerlendirilecek.
-- #46, ilk 800 için proje sahibinin onayladığı bir liste öneriyor. Bu tablo o liste için öneridir.
+## PM kararları (PM-045 §3c)
+- **stehlen** çekirdekte: bisiklet ya da cüzdan çalındığında polise ve kayıp bürosuna gerekir.
+- **Himmel** çekirdekte: hava durumu.
+- **Blut** ve **Feuer** çekirdekte kalır. **Schatz**, **Kumpel** ve **Mist** pasifte, tanıma için.
