@@ -355,7 +355,8 @@ body.kb .app.hasbar { --actionbar-h: 0px !important; }
 .daymin { margin-left: auto; color: var(--tinte-2); font-variant-numeric: tabular-nums; }
 .daymin b { color: var(--tinte); font-size: 1.1rem; }
 .goalhit { display: flex; gap: 6px; align-items: center; color: var(--wiese); font-weight: 700; margin: 0; }
-.card.nextcard { border-radius: 26px; padding: 20px; box-shadow: 0 1px 2px rgba(20, 35, 59, 0.05), 0 12px 32px rgba(20, 35, 59, 0.08); }
+/* 32 px bulanık gölge yazılımla çizen WebKit'te Bugün'ün ilk karesini 250–530 ms geciktiriyordu (#43 tanısı); öbür kartlarla aynı gölge */
+.card.nextcard { border-radius: 26px; padding: 20px; box-shadow: var(--shadow); }
 .nexttitle { font-size: 1.45rem; margin: 2px 0 0; line-height: 1.15; }
 .nextcard .btn.primary { min-height: 58px; font-size: 1.1rem; border-radius: 20px; }
 .focusrow { display: flex; align-items: center; gap: 8px; padding-top: 10px; border-top: 1px solid var(--line); }
