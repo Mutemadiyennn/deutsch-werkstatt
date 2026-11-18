@@ -19,7 +19,6 @@
   "ch:petrovic",
   "ch:lechner",
   "ch:aksoy",
-  "ch:brandl",
   "ch:wimmer"
  ],
  "requires": {
@@ -34,7 +33,7 @@
   "status": "reviewed",
   "by": "dilbilimci-ajan",
   "at": "2026-11-18",
-  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-01-05.md. Okur ve kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
+  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-01-05.md. Denetim: docs/v2/reviews/temel-r0-denetim.txt. Kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
   "okur": "passed",
   "okur_at": "2026-11-18"
  },
@@ -177,6 +176,26 @@
    }
   },
   {
+   "id": "r0:01:a:guten-tag",
+   "de": "Guten Tag, hier ist {name}.",
+   "tr": "İyi günler, ben {name}.",
+   "lexeme": "lx:Tag",
+   "exp": {
+    "anlam_tr": "Telefonda selam verir ve kim olduğunu söyler.",
+    "ne_zaman_tr": "Telefonda karşı taraf açınca.",
+    "parcalar": [
+     {
+      "de": "Guten Tag",
+      "tr": "iyi günler"
+     },
+     {
+      "de": "hier ist",
+      "tr": "ben"
+     }
+    ]
+   }
+  },
+  {
    "id": "r0:01:b:heute",
    "de": "heute",
    "tr": "bugün",
@@ -237,19 +256,11 @@
     "ne_zaman_tr": "Günü unuttuğunda herkese sorabilirsin.",
     "parcalar": [
      {
-      "de": "Welcher",
-      "tr": "hangi"
+      "de": "Welcher Tag",
+      "tr": "hangi gün"
      },
      {
-      "de": "Tag",
-      "tr": "gün"
-     },
-     {
-      "de": "ist",
-      "tr": "(-dir)"
-     },
-     {
-      "de": "heute",
+      "de": "ist heute",
       "tr": "bugün"
      }
     ]
@@ -269,11 +280,7 @@
       "tr": "bugün"
      },
      {
-      "de": "ist",
-      "tr": "(-dir)"
-     },
-     {
-      "de": "Montag",
+      "de": "ist Montag",
       "tr": "pazartesi"
      }
     ],
@@ -294,12 +301,8 @@
       "tr": "dün"
      },
      {
-      "de": "war",
-      "tr": "idi"
-     },
-     {
-      "de": "Sonntag",
-      "tr": "pazar"
+      "de": "war Sonntag",
+      "tr": "pazardı"
      }
     ],
     "ipucu_tr": "Geçmiş için **ist** yerine **war** gelir."
@@ -315,20 +318,12 @@
     "ne_zaman_tr": "Açılış saatlerinde ve iş planında çok geçer.",
     "parcalar": [
      {
-      "de": "von",
-      "tr": "-den"
+      "de": "von Montag",
+      "tr": "pazartesiden"
      },
      {
-      "de": "Montag",
-      "tr": "pazartesi"
-     },
-     {
-      "de": "bis",
-      "tr": "-e kadar"
-     },
-     {
-      "de": "Freitag",
-      "tr": "cuma"
+      "de": "bis Freitag",
+      "tr": "cumaya kadar"
      }
     ]
    }
@@ -655,7 +650,9 @@
     "Geht's Freitag?",
     "Geht's am Freitag?",
     "Passt es Freitag?",
-    "Passt der Freitag?"
+    "Passt der Freitag?",
+    "Geht am Freitag?",
+    "Passt am Freitag?"
    ]
   },
   {
@@ -800,7 +797,7 @@
   {
    "id": "r0:01:d31",
    "k": "guided_response",
-   "situation_tr": "Frau Brandl yarını soruyor. Bugün pazar.",
+   "situation_tr": "Ioana yarını soruyor. Bugün pazar.",
    "prompt_de": "Welcher Tag ist morgen?",
    "accepted": [
     "Morgen ist Montag.",
@@ -851,6 +848,18 @@
     "Freitag ist übermorgen.",
     "Übermorgen haben wir Freitag."
    ]
+  },
+  {
+   "id": "r0:01:d35",
+   "k": "tr_de",
+   "tr": "İyi günler, ben {name}.",
+   "accepted": [
+    "Guten Tag, hier ist {name}.",
+    "Guten Tag, ich bin {name}.",
+    "Guten Tag, mein Name ist {name}.",
+    "Grüß Gott, hier ist {name}.",
+    "Hallo, hier ist {name}."
+   ]
   }
  ],
  "dialogue": {
@@ -877,8 +886,8 @@
    {
     "speaker": "ogrenci",
     "r": "B",
-    "de": "Nein. Donnerstag ist übermorgen.",
-    "tr": "Hayır. Perşembe öbür gün."
+    "de": "Heute ist Dienstag. Donnerstag ist übermorgen.",
+    "tr": "Bugün salı. Perşembe öbür gün."
    },
    {
     "speaker": "ch:popescu",
@@ -889,14 +898,14 @@
    {
     "speaker": "ogrenci",
     "r": "B",
-    "de": "Genau. Und gestern war Montag.",
-    "tr": "Evet. Dün de pazartesiydi."
+    "de": "Gestern war Montag.",
+    "tr": "Dün pazartesiydi."
    },
    {
     "speaker": "ch:popescu",
     "r": "A",
     "de": "Wollen wir zusammen üben? Geht Mittwoch?",
-    "tr": "Birlikte çalışalım mı? Çarşamba olur mu?"
+    "tr": "Birlikte pratik yapalım mı? Çarşamba olur mu?"
    },
    {
     "speaker": "ogrenci",
@@ -1010,7 +1019,7 @@
     {
      "r": "Derya",
      "de": "Genau. Dann kommt das Wochenende.",
-     "tr": "Evet. Sonra hafta sonu geliyor."
+     "tr": "Doğru. Sonra hafta sonu geliyor."
     },
     {
      "r": "Tobi",

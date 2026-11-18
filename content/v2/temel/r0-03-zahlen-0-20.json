@@ -32,7 +32,7 @@
   "status": "reviewed",
   "by": "dilbilimci-ajan",
   "at": "2026-11-18",
-  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-01-05.md. Okur ve kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
+  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-01-05.md. Denetim: docs/v2/reviews/temel-r0-denetim.txt. Kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
   "okur": "passed",
   "okur_at": "2026-11-18"
  },
@@ -346,16 +346,8 @@
     "ne_zaman_tr": "Biri numaranı sorunca söylersin.",
     "parcalar": [
      {
-      "de": "Meine",
-      "tr": "benim"
-     },
-     {
-      "de": "Nummer",
-      "tr": "numara"
-     },
-     {
-      "de": "ist",
-      "tr": "(-dir)"
+      "de": "Meine Nummer ist",
+      "tr": "numaram"
      }
     ],
     "ipucu_tr": "Telefon numarasını rakam rakam söyleyebilirsin."
@@ -371,24 +363,12 @@
     "ne_zaman_tr": "Biri nerede oturduğunu sorunca söylersin.",
     "parcalar": [
      {
-      "de": "Ich",
-      "tr": "ben"
+      "de": "Brunnengasse 7",
+      "tr": "Brunnengasse 7 numarada"
      },
      {
-      "de": "wohne",
+      "de": "Ich wohne in",
       "tr": "oturuyorum"
-     },
-     {
-      "de": "in der",
-      "tr": "-de, -da"
-     },
-     {
-      "de": "Brunnengasse",
-      "tr": "sokak adı"
-     },
-     {
-      "de": "7",
-      "tr": "yedi"
      }
     ],
     "ipucu_tr": "Almancada ev numarası sokak adından sonra gelir."
@@ -658,7 +638,8 @@
    "de": "sieben / null / ist / Nummer / eins / Meine",
    "tr": "Numaram sıfır bir yedi.",
    "accepted": [
-    "Meine Nummer ist null eins sieben."
+    "Meine Nummer ist null eins sieben.",
+    "Null eins sieben ist meine Nummer."
    ]
   },
   {
@@ -768,7 +749,11 @@
     "Meine Nummer ist null eins sieben eins.",
     "Meine Telefonnummer ist null eins sieben eins.",
     "Die Nummer ist null eins sieben eins.",
-    "Null eins sieben eins."
+    "Null eins sieben eins.",
+    "Meine Nummer ist 0171.",
+    "Meine Telefonnummer ist 0171.",
+    "Die Nummer ist 0171.",
+    "0171."
    ]
   },
   {
@@ -779,7 +764,11 @@
     "Meine Nummer ist null acht neun.",
     "Meine Telefonnummer ist null acht neun.",
     "Die Nummer ist null acht neun.",
-    "Null acht neun."
+    "Null acht neun.",
+    "Meine Nummer ist 089.",
+    "Meine Telefonnummer ist 089.",
+    "Die Nummer ist 089.",
+    "089."
    ]
   },
   {
@@ -807,7 +796,11 @@
     "Meine Nummer ist null zwo drei.",
     "Die Nummer ist null zwo drei.",
     "Null zwo drei.",
-    "Meine Telefonnummer ist null zwo drei."
+    "Meine Telefonnummer ist null zwo drei.",
+    "Meine Nummer ist 023.",
+    "Die Nummer ist 023.",
+    "023.",
+    "Meine Telefonnummer ist 023."
    ]
   },
   {
@@ -881,7 +874,11 @@
     "Meine Nummer ist null eins sieben eins.",
     "Meine Telefonnummer ist null eins sieben eins.",
     "Null eins sieben eins.",
-    "Die Nummer ist null eins sieben eins."
+    "Die Nummer ist null eins sieben eins.",
+    "Meine Nummer ist 0171.",
+    "Meine Telefonnummer ist 0171.",
+    "0171.",
+    "Die Nummer ist 0171."
    ]
   },
   {
@@ -924,7 +921,11 @@
     "Meine Nummer ist null acht neun.",
     "Null acht neun.",
     "Die Nummer ist null acht neun.",
-    "Meine Telefonnummer ist null acht neun."
+    "Meine Telefonnummer ist null acht neun.",
+    "Meine Nummer ist 089.",
+    "089.",
+    "Die Nummer ist 089.",
+    "Meine Telefonnummer ist 089."
    ]
   },
   {
@@ -953,8 +954,8 @@
    {
     "speaker": "ogrenci",
     "r": "B",
-    "de": "Guten Tag, mein Name ist {name}. Ich wohne in der Brunnengasse 7.",
-    "tr": "İyi günler, adım {name}. Brunnengasse 7 numarada oturuyorum."
+    "de": "Guten Tag! Ich wohne in der Brunnengasse 7.",
+    "tr": "İyi günler! Brunnengasse 7 numarada oturuyorum."
    },
    {
     "speaker": "ch:pichler",
@@ -965,8 +966,8 @@
    {
     "speaker": "ogrenci",
     "r": "B",
-    "de": "Wohnung zwölf.",
-    "tr": "On iki numaralı daire."
+    "de": "Nummer zwölf.",
+    "tr": "On iki numara."
    },
    {
     "speaker": "ch:pichler",
@@ -989,8 +990,8 @@
    {
     "speaker": "ogrenci",
     "r": "B",
-    "de": "Nummer vierzehn. Danke, Herr Pichler!",
-    "tr": "On dört numara. Teşekkürler, Herr Pichler!"
+    "de": "Nummer vierzehn.",
+    "tr": "On dört numara."
    }
   ]
  },
@@ -1138,7 +1139,11 @@
     "Meine Nummer ist null eins sechs.",
     "Meine Telefonnummer ist null eins sechs.",
     "Die Nummer ist null eins sechs.",
-    "Null eins sechs."
+    "Null eins sechs.",
+    "Meine Nummer ist 016.",
+    "Meine Telefonnummer ist 016.",
+    "Die Nummer ist 016.",
+    "016."
    ]
   },
   {

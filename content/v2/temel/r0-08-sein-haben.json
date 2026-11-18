@@ -17,7 +17,8 @@
  "characters": [
   "ch:lechner",
   "ch:aksoy",
-  "ch:huber"
+  "ch:huber",
+  "ch:wimmer"
  ],
  "requires": {
   "kelimeler": [
@@ -38,7 +39,7 @@
   "status": "reviewed",
   "by": "dilbilimci-ajan",
   "at": "2026-11-18",
-  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-06-10.md. Okur ve kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
+  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-06-10.md. Denetim: docs/v2/reviews/temel-r0-denetim.txt. Kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
   "okur": "passed",
   "okur_at": "2026-11-18"
  },
@@ -51,20 +52,7 @@
    "exp": {
     "anlam_tr": "Kendi durumunu söyler.",
     "ne_zaman_tr": "Nasıl olduğunu anlatırken.",
-    "parcalar": [
-     {
-      "de": "Ich",
-      "tr": "ben"
-     },
-     {
-      "de": "bin",
-      "tr": "-im"
-     },
-     {
-      "de": "müde",
-      "tr": "yorgun"
-     }
-    ]
+    "parcalar": []
    }
   },
   {
@@ -75,20 +63,7 @@
    "exp": {
     "anlam_tr": "Samimi olduğun birine durumunu sorar.",
     "ne_zaman_tr": "İş arkadaşına ya da arkadaşına.",
-    "parcalar": [
-     {
-      "de": "Bist",
-      "tr": "-misin"
-     },
-     {
-      "de": "du",
-      "tr": "sen"
-     },
-     {
-      "de": "krank",
-      "tr": "hasta"
-     }
-    ]
+    "parcalar": []
    }
   },
   {
@@ -105,16 +80,8 @@
       "tr": "o"
      },
      {
-      "de": "ist",
-      "tr": "-dir"
-     },
-     {
-      "de": "nicht",
-      "tr": "değil"
-     },
-     {
-      "de": "da",
-      "tr": "burada"
+      "de": "ist nicht da",
+      "tr": "burada değil"
      }
     ],
     "ipucu_tr": "Kadın için **Sie ist nicht da** denir."
@@ -134,16 +101,8 @@
       "tr": "evet"
      },
      {
-      "de": "wir",
-      "tr": "biz"
-     },
-     {
-      "de": "sind",
-      "tr": "-iz"
-     },
-     {
-      "de": "hier",
-      "tr": "burada"
+      "de": "wir sind hier",
+      "tr": "buradayız"
      }
     ]
    }
@@ -156,20 +115,7 @@
    "exp": {
     "anlam_tr": "Birkaç arkadaşa hazır olup olmadıklarını sorar.",
     "ne_zaman_tr": "Samimi olduğun bir gruba.",
-    "parcalar": [
-     {
-      "de": "Seid",
-      "tr": "-misiniz"
-     },
-     {
-      "de": "ihr",
-      "tr": "siz"
-     },
-     {
-      "de": "fertig",
-      "tr": "hazır"
-     }
-    ],
+    "parcalar": [],
     "ipucu_tr": "**ihr** yalnızca samimi olduğun birkaç kişi içindir."
    }
   },
@@ -183,16 +129,8 @@
     "ne_zaman_tr": "Tanımadığın kişilere ve resmî yerlerde.",
     "parcalar": [
      {
-      "de": "Sind",
-      "tr": "-misiniz"
-     },
-     {
-      "de": "Sie",
-      "tr": "siz"
-     },
-     {
-      "de": "neu",
-      "tr": "yeni"
+      "de": "Sind Sie neu",
+      "tr": "yeni misiniz"
      },
      {
       "de": "hier",
@@ -294,7 +232,7 @@
    "tr": "Acıktınız mı?",
    "lexeme": "lx:haben",
    "exp": {
-    "anlam_tr": "Birkaç arkadaşa acıkıp acıkmadığını sorar.",
+    "anlam_tr": "Birkaç arkadaşa acıkıp acıkmadıklarını sorar.",
     "ne_zaman_tr": "Molada, samimi bir gruba.",
     "parcalar": [
      {
@@ -549,7 +487,8 @@
    "de": "nicht / bin / Morgen / da / ich",
    "tr": "Yarın burada değilim.",
    "accepted": [
-    "Morgen bin ich nicht da."
+    "Morgen bin ich nicht da.",
+    "Ich bin morgen nicht da."
    ],
    "why_tr": "**Morgen** başa gelince **bin** ikinci sırada kalır."
   },
@@ -559,7 +498,10 @@
    "de": "habe / ich / Am / Zeit / Dienstag",
    "tr": "Salı günü vaktim var.",
    "accepted": [
-    "Am Dienstag habe ich Zeit."
+    "Am Dienstag habe ich Zeit.",
+    "Ich habe am Dienstag Zeit.",
+    "Ich habe Zeit am Dienstag.",
+    "Zeit habe ich am Dienstag."
    ]
   },
   {
@@ -605,7 +547,11 @@
     "Ich habe am Dienstag einen Termin.",
     "Am Dienstag hab ich einen Termin.",
     "Ich hab am Dienstag einen Termin.",
-    "Ich habe Dienstag einen Termin."
+    "Ich habe Dienstag einen Termin.",
+    "Ich habe einen Termin am Dienstag.",
+    "Ich hab einen Termin am Dienstag.",
+    "Dienstag habe ich einen Termin.",
+    "Dienstag hab ich einen Termin."
    ]
   },
   {
@@ -789,7 +735,19 @@
     "Am Freitag um drei.",
     "Am Freitag um drei Uhr.",
     "Ich habe am Freitag um drei Zeit.",
-    "Am Freitag um drei habe ich Zeit."
+    "Am Freitag um drei habe ich Zeit.",
+    "Freitag um drei.",
+    "Freitag um drei Uhr.",
+    "Am Freitag um fünfzehn Uhr.",
+    "Freitag um fünfzehn Uhr.",
+    "Ich habe am Freitag um fünfzehn Uhr Zeit.",
+    "Am Freitag um fünfzehn Uhr habe ich Zeit.",
+    "Am Freitag um 3:00 Uhr.",
+    "Freitag um 3:00 Uhr.",
+    "Am Freitag um 15:00 Uhr.",
+    "Freitag um 15:00 Uhr.",
+    "Ich habe am Freitag um 15:00 Uhr Zeit.",
+    "Am Freitag um 15:00 Uhr habe ich Zeit."
    ]
   }
  ],
@@ -911,9 +869,9 @@
      "kind": "detail",
      "q_tr": "Randevu saat kaçta?",
      "opts": [
-      "10.00",
-      "11.00",
-      "12.00"
+      "10:00",
+      "11:00",
+      "12:00"
      ],
      "ans": 1
     }

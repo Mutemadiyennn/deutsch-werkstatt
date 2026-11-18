@@ -17,7 +17,6 @@
  "characters": [
   "ch:aksoy",
   "ch:huber",
-  "ch:brandl",
   "ch:popescu",
   "ch:wimmer"
  ],
@@ -36,7 +35,7 @@
   "status": "reviewed",
   "by": "dilbilimci-ajan",
   "at": "2026-11-18",
-  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-01-05.md. Okur ve kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
+  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-01-05.md. Denetim: docs/v2/reviews/temel-r0-denetim.txt. Kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
   "okur": "passed",
   "okur_at": "2026-11-18"
  },
@@ -256,16 +255,12 @@
     "ne_zaman_tr": "Mayısta ya da yazın gibi zamanları söylerken.",
     "parcalar": [
      {
-      "de": "im",
-      "tr": "-de, -da"
+      "de": "im Mai",
+      "tr": "mayısta"
      },
      {
-      "de": "Mai",
-      "tr": "mayıs"
-     },
-     {
-      "de": "Sommer",
-      "tr": "yaz"
+      "de": "im Sommer",
+      "tr": "yazın"
      }
     ]
    }
@@ -303,24 +298,12 @@
     "ne_zaman_tr": "Biri doğum gününü sorduğunda söylersin.",
     "parcalar": [
      {
-      "de": "Mein",
-      "tr": "benim"
+      "de": "Mein Geburtstag",
+      "tr": "doğum günüm"
      },
      {
-      "de": "Geburtstag",
-      "tr": "doğum günü"
-     },
-     {
-      "de": "ist",
-      "tr": "(-dir)"
-     },
-     {
-      "de": "im",
-      "tr": "-de, -da"
-     },
-     {
-      "de": "Mai",
-      "tr": "mayıs"
+      "de": "ist im Mai",
+      "tr": "mayısta"
      }
     ],
     "ipucu_tr": "**Ich habe im Mai Geburtstag.** da aynı anlama gelir."
@@ -581,7 +564,8 @@
    "accepted": [
     "Ich habe im August Urlaub.",
     "Im August habe ich Urlaub.",
-    "Ich habe Urlaub im August."
+    "Ich habe Urlaub im August.",
+    "Urlaub habe ich im August."
    ]
   },
   {
@@ -780,7 +764,7 @@
   {
    "id": "r0:02:d29",
    "k": "guided_response",
-   "situation_tr": "Frau Brandl doğum gününü soruyor. Doğum günün martta.",
+   "situation_tr": "Frau Huber doğum gününü soruyor. Doğum günün martta.",
    "prompt_de": "Wann ist Ihr Geburtstag?",
    "accepted": [
     "Mein Geburtstag ist im März.",
@@ -910,8 +894,8 @@
    {
     "speaker": "ogrenci",
     "r": "B",
-    "de": "Ja, im Mai!",
-    "tr": "Evet, mayısta!"
+    "de": "Im Frühling, im Mai!",
+    "tr": "İlkbaharda, mayısta!"
    }
   ]
  },
@@ -981,7 +965,7 @@
   },
   {
    "id": "r0:02:h2",
-   "title_tr": "Merdivende Frau Brandl",
+   "title_tr": "Molada Derya",
    "speed": "normal",
    "speeds": [
     "slow",
@@ -989,22 +973,22 @@
    ],
    "script": [
     {
-     "r": "Frau Brandl",
-     "de": "Sie sind neu in Wendlfing, oder?",
-     "tr": "Wendlfing'de yenisiniz, değil mi?"
+     "r": "Derya",
+     "de": "Du bist neu in Wendlfing, oder?",
+     "tr": "Wendlfing'de yenisin, değil mi?"
     },
     {
-     "r": "Frau Brandl",
-     "de": "Im Dezember ist der Weihnachtsmarkt auf dem Stadtplatz.",
-     "tr": "Aralıkta meydanda Noel pazarı var."
+     "r": "Derya",
+     "de": "Ende November beginnt der Weihnachtsmarkt auf dem Stadtplatz.",
+     "tr": "Kasım sonunda meydanda Noel pazarı başlıyor."
     },
     {
-     "r": "Frau Brandl",
+     "r": "Derya",
      "de": "Im Mai kommt der Maibaum.",
      "tr": "Mayısta Mayıs ağacı dikilir."
     },
     {
-     "r": "Frau Brandl",
+     "r": "Derya",
      "de": "Und im Frühling und im Herbst ist die Dult.",
      "tr": "İlkbaharda ve sonbaharda da Dult var."
     }
@@ -1012,21 +996,21 @@
    "qs": [
     {
      "kind": "gist",
-     "q_tr": "Frau Brandl ne anlatıyor?",
+     "q_tr": "Derya ne anlatıyor?",
      "opts": [
       "Şehirdeki yıllık etkinlikleri",
-      "Apartmanın kurallarını",
+      "Şirketin kurallarını",
       "Kendi doğum gününü"
      ],
      "ans": 0
     },
     {
      "kind": "detail",
-     "q_tr": "Noel pazarı hangi ayda?",
+     "q_tr": "Noel pazarı ne zaman başlıyor?",
      "opts": [
-      "kasımda",
-      "ocakta",
-      "aralıkta"
+      "ocak başında",
+      "aralık sonunda",
+      "kasım sonunda"
      ],
      "ans": 2
     },

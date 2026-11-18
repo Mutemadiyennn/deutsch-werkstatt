@@ -39,7 +39,7 @@
   "status": "reviewed",
   "by": "dilbilimci-ajan",
   "at": "2026-11-18",
-  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-06-10.md. Okur ve kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
+  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-06-10.md. Denetim: docs/v2/reviews/temel-r0-denetim.txt. Kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
   "okur": "passed",
   "okur_at": "2026-11-18"
  },
@@ -54,12 +54,8 @@
     "ne_zaman_tr": "Birini tanımadığında.",
     "parcalar": [
      {
-      "de": "Wer",
+      "de": "Wer ist",
       "tr": "kim"
-     },
-     {
-      "de": "ist",
-      "tr": "-dir"
      },
      {
       "de": "das",
@@ -78,12 +74,8 @@
     "ne_zaman_tr": "Bilmediğin bir şeyi görünce.",
     "parcalar": [
      {
-      "de": "Was",
+      "de": "Was ist",
       "tr": "ne"
-     },
-     {
-      "de": "ist",
-      "tr": "-dir"
      },
      {
       "de": "das",
@@ -102,16 +94,8 @@
     "ne_zaman_tr": "Sohbet başlatırken.",
     "parcalar": [
      {
-      "de": "Was",
-      "tr": "ne"
-     },
-     {
-      "de": "machen",
-      "tr": "yapmak"
-     },
-     {
-      "de": "Sie",
-      "tr": "siz"
+      "de": "Was machen Sie",
+      "tr": "ne yapıyorsunuz"
      },
      {
       "de": "heute",
@@ -130,12 +114,8 @@
     "ne_zaman_tr": "Yolda birine sorarken.",
     "parcalar": [
      {
-      "de": "Wo",
+      "de": "Wo ist",
       "tr": "nerede"
-     },
-     {
-      "de": "ist",
-      "tr": "-dir"
      },
      {
       "de": "die Praxis",
@@ -158,12 +138,8 @@
       "tr": "nereye"
      },
      {
-      "de": "gehen",
-      "tr": "gitmek"
-     },
-     {
-      "de": "Sie",
-      "tr": "siz"
+      "de": "gehen Sie",
+      "tr": "gidiyorsunuz"
      }
     ],
     "ipucu_tr": "**Wo** nerede, **Wohin** nereye demektir."
@@ -177,20 +153,7 @@
    "exp": {
     "anlam_tr": "Birinin nereden geldiğini sorar.",
     "ne_zaman_tr": "Tanışırken çok duyarsın.",
-    "parcalar": [
-     {
-      "de": "Woher",
-      "tr": "nereden"
-     },
-     {
-      "de": "kommen",
-      "tr": "gelmek"
-     },
-     {
-      "de": "Sie",
-      "tr": "siz"
-     }
-    ]
+    "parcalar": []
    }
   },
   {
@@ -203,12 +166,8 @@
     "ne_zaman_tr": "Tarihi ya da saati öğrenmek için.",
     "parcalar": [
      {
-      "de": "Wann",
+      "de": "Wann ist",
       "tr": "ne zaman"
-     },
-     {
-      "de": "ist",
-      "tr": "-dir"
      },
      {
       "de": "der Termin",
@@ -225,16 +184,7 @@
    "exp": {
     "anlam_tr": "Bir şeyin neden olmadığını sorar.",
     "ne_zaman_tr": "Biri olmaz deyince.",
-    "parcalar": [
-     {
-      "de": "Warum",
-      "tr": "neden"
-     },
-     {
-      "de": "nicht",
-      "tr": "değil"
-     }
-    ]
+    "parcalar": []
    }
   },
   {
@@ -273,11 +223,7 @@
       "tr": "hangi tarih"
      },
      {
-      "de": "ist",
-      "tr": "-dir"
-     },
-     {
-      "de": "heute",
+      "de": "ist heute",
       "tr": "bugün"
      }
     ],
@@ -689,7 +635,14 @@
     "Wie bitte?",
     "Bitte?",
     "Wie bitte? Wann?",
-    "Wann?"
+    "Wann?",
+    "Können Sie das wiederholen?",
+    "Können Sie das bitte wiederholen?",
+    "Könnten Sie das wiederholen?",
+    "Können Sie das noch einmal sagen?",
+    "Noch einmal, bitte.",
+    "Können Sie bitte langsamer sprechen?",
+    "Bitte langsamer."
    ],
    "why_tr": "**Wie bitte** en güvenli kurtarıcı cümledir."
   },
@@ -936,9 +889,9 @@
      "kind": "detail",
      "q_tr": "Randevu saat kaçta?",
      "opts": [
-      "9.15",
-      "8.45",
-      "9.30"
+      "9:15",
+      "8:45",
+      "9:30"
      ],
      "ans": 0
     }
@@ -1076,7 +1029,14 @@
     "Wie bitte?",
     "Bitte?",
     "Wann?",
-    "Wie bitte? Wann?"
+    "Wie bitte? Wann?",
+    "Können Sie das wiederholen?",
+    "Können Sie das bitte wiederholen?",
+    "Könnten Sie das wiederholen?",
+    "Können Sie das noch einmal sagen?",
+    "Noch einmal, bitte.",
+    "Können Sie bitte langsamer sprechen?",
+    "Bitte langsamer."
    ]
   }
  ],

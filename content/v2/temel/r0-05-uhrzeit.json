@@ -56,7 +56,7 @@
   "status": "reviewed",
   "by": "dilbilimci-ajan",
   "at": "2026-11-18",
-  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-01-05.md. Okur ve kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
+  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-01-05.md. Denetim: docs/v2/reviews/temel-r0-denetim.txt. Kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
   "okur": "passed",
   "okur_at": "2026-11-18"
  },
@@ -160,20 +160,7 @@
    "exp": {
     "anlam_tr": "Bir şeyin saat onda olduğunu söyler.",
     "ne_zaman_tr": "Randevu ve buluşma saatinde kullanırsın.",
-    "parcalar": [
-     {
-      "de": "um",
-      "tr": "-de, -da"
-     },
-     {
-      "de": "zehn",
-      "tr": "on"
-     },
-     {
-      "de": "Uhr",
-      "tr": "saat"
-     }
-    ]
+    "parcalar": []
    }
   },
   {
@@ -201,16 +188,8 @@
       "tr": "bu"
      },
      {
-      "de": "ist",
-      "tr": "(-dir)"
-     },
-     {
-      "de": "zu",
-      "tr": "fazla"
-     },
-     {
-      "de": "früh",
-      "tr": "erken"
+      "de": "ist zu früh",
+      "tr": "fazla erken"
      }
     ]
    }
@@ -229,16 +208,8 @@
       "tr": "bu"
      },
      {
-      "de": "ist",
-      "tr": "(-dir)"
-     },
-     {
-      "de": "zu",
-      "tr": "fazla"
-     },
-     {
-      "de": "spät",
-      "tr": "geç"
+      "de": "ist zu spät",
+      "tr": "fazla geç"
      }
     ]
    }
@@ -768,7 +739,8 @@
    "de": "halb / Es / zehn / ist",
    "tr": "Saat 9:30.",
    "accepted": [
-    "Es ist halb zehn."
+    "Es ist halb zehn.",
+    "Halb zehn ist es."
    ]
   },
   {
@@ -787,7 +759,8 @@
    "tr": "Yarın sabah saat onda.",
    "accepted": [
     "Morgen früh um zehn Uhr.",
-    "Um zehn Uhr morgen früh."
+    "Um zehn Uhr morgen früh.",
+    "Morgen um zehn Uhr früh."
    ]
   },
   {
@@ -798,7 +771,11 @@
     "Es ist halb neun.",
     "Halb neun.",
     "Es ist acht Uhr dreißig.",
-    "Acht Uhr dreißig."
+    "Acht Uhr dreißig.",
+    "Es ist 8:30.",
+    "Es ist 8:30 Uhr.",
+    "8:30.",
+    "8:30 Uhr."
    ],
    "why_tr": "**halb neun** dokuza yarım saat kala demektir."
   },
@@ -810,7 +787,17 @@
     "Es ist halb drei.",
     "Halb drei.",
     "Es ist vierzehn Uhr dreißig.",
-    "Vierzehn Uhr dreißig."
+    "Vierzehn Uhr dreißig.",
+    "Es ist zwei Uhr dreißig.",
+    "Zwei Uhr dreißig.",
+    "Es ist 14:30.",
+    "Es ist 14:30 Uhr.",
+    "14:30.",
+    "14:30 Uhr.",
+    "Es ist 2:30.",
+    "Es ist 2:30 Uhr.",
+    "2:30.",
+    "2:30 Uhr."
    ],
    "why_tr": "Gündelik söyleyişte **halb drei** denir."
   },
@@ -824,7 +811,11 @@
     "Es ist sieben Uhr fünfzehn.",
     "Sieben Uhr fünfzehn.",
     "Es ist viertel acht.",
-    "Viertel acht."
+    "Viertel acht.",
+    "Es ist 7:15.",
+    "Es ist 7:15 Uhr.",
+    "7:15.",
+    "7:15 Uhr."
    ]
   },
   {
@@ -839,7 +830,11 @@
     "Es ist drei viertel elf.",
     "Drei viertel elf.",
     "Es ist dreiviertel elf.",
-    "Dreiviertel elf."
+    "Dreiviertel elf.",
+    "Es ist 10:45.",
+    "Es ist 10:45 Uhr.",
+    "10:45.",
+    "10:45 Uhr."
    ]
   },
   {
@@ -850,7 +845,11 @@
     "Es ist zehn nach sechs.",
     "Zehn nach sechs.",
     "Es ist sechs Uhr zehn.",
-    "Sechs Uhr zehn."
+    "Sechs Uhr zehn.",
+    "Es ist 6:10.",
+    "Es ist 6:10 Uhr.",
+    "6:10.",
+    "6:10 Uhr."
    ]
   },
   {
@@ -861,7 +860,11 @@
     "Es ist zehn vor zwölf.",
     "Zehn vor zwölf.",
     "Es ist elf Uhr fünfzig.",
-    "Elf Uhr fünfzig."
+    "Elf Uhr fünfzig.",
+    "Es ist 11:50.",
+    "Es ist 11:50 Uhr.",
+    "11:50.",
+    "11:50 Uhr."
    ]
   },
   {
@@ -874,7 +877,11 @@
     "Es ist vier Uhr fünfundzwanzig.",
     "Vier Uhr fünfundzwanzig.",
     "Es ist fünfundzwanzig nach vier.",
-    "Fünfundzwanzig nach vier."
+    "Fünfundzwanzig nach vier.",
+    "Es ist 4:25.",
+    "Es ist 4:25 Uhr.",
+    "4:25.",
+    "4:25 Uhr."
    ]
   },
   {
@@ -920,7 +927,11 @@
     "Um acht Uhr heute Abend.",
     "Um acht heute Abend.",
     "Heute Abend um zwanzig Uhr.",
-    "Um zwanzig Uhr."
+    "Um zwanzig Uhr heute Abend.",
+    "Heute Abend um 8:00 Uhr.",
+    "Um 8:00 Uhr heute Abend.",
+    "Heute Abend um 20:00 Uhr.",
+    "Um 20:00 Uhr heute Abend."
    ]
   },
   {
@@ -931,7 +942,9 @@
     "Morgen früh um neun Uhr.",
     "Morgen früh um neun.",
     "Um neun Uhr morgen früh.",
-    "Um neun morgen früh."
+    "Um neun morgen früh.",
+    "Morgen früh um 9:00 Uhr.",
+    "Um 9:00 Uhr morgen früh."
    ]
   },
   {
@@ -956,7 +969,13 @@
     "Am Dienstag um halb zehn.",
     "Am Dienstag um neun Uhr dreißig.",
     "Dienstag halb zehn.",
-    "Dienstag neun Uhr dreißig."
+    "Dienstag neun Uhr dreißig.",
+    "Dienstag um 9:30.",
+    "Dienstag um 9:30 Uhr.",
+    "Am Dienstag um 9:30.",
+    "Am Dienstag um 9:30 Uhr.",
+    "Dienstag 9:30.",
+    "Dienstag 9:30 Uhr."
    ]
   },
   {
@@ -993,7 +1012,13 @@
    "accepted": [
     "Es ist sieben Uhr dreißig.",
     "Sieben Uhr dreißig.",
-    "Es ist jetzt sieben Uhr dreißig."
+    "Es ist jetzt sieben Uhr dreißig.",
+    "Es ist 7:30.",
+    "Es ist 7:30 Uhr.",
+    "7:30.",
+    "7:30 Uhr.",
+    "Es ist jetzt 7:30.",
+    "Es ist jetzt 7:30 Uhr."
    ]
   },
   {
@@ -1004,7 +1029,13 @@
    "accepted": [
     "Es ist fünfzehn Uhr fünfzehn.",
     "Fünfzehn Uhr fünfzehn.",
-    "Es ist jetzt fünfzehn Uhr fünfzehn."
+    "Es ist jetzt fünfzehn Uhr fünfzehn.",
+    "Es ist 15:15.",
+    "Es ist 15:15 Uhr.",
+    "15:15.",
+    "15:15 Uhr.",
+    "Es ist jetzt 15:15.",
+    "Es ist jetzt 15:15 Uhr."
    ]
   },
   {
@@ -1016,7 +1047,27 @@
     "Also zehn Uhr dreißig?",
     "Zehn Uhr dreißig?",
     "Also um zehn Uhr dreißig?",
-    "Um zehn Uhr dreißig?"
+    "Um zehn Uhr dreißig?",
+    "Also zweiundzwanzig Uhr dreißig?",
+    "Zweiundzwanzig Uhr dreißig?",
+    "Also um zweiundzwanzig Uhr dreißig?",
+    "Um zweiundzwanzig Uhr dreißig?",
+    "Also 10:30?",
+    "Also 10:30 Uhr?",
+    "10:30?",
+    "10:30 Uhr?",
+    "Also um 10:30?",
+    "Also um 10:30 Uhr?",
+    "Um 10:30?",
+    "Um 10:30 Uhr?",
+    "Also 22:30?",
+    "Also 22:30 Uhr?",
+    "22:30?",
+    "22:30 Uhr?",
+    "Also um 22:30?",
+    "Also um 22:30 Uhr?",
+    "Um 22:30?",
+    "Um 22:30 Uhr?"
    ]
   },
   {
@@ -1028,7 +1079,11 @@
     "Es ist halb neun.",
     "Halb neun.",
     "Es ist acht Uhr dreißig.",
-    "Acht Uhr dreißig."
+    "Acht Uhr dreißig.",
+    "Es ist 8:30.",
+    "Es ist 8:30 Uhr.",
+    "8:30.",
+    "8:30 Uhr."
    ]
   },
   {
@@ -1040,7 +1095,15 @@
     "Also neun Uhr dreißig?",
     "Neun Uhr dreißig?",
     "Also um neun Uhr dreißig?",
-    "Um neun Uhr dreißig?"
+    "Um neun Uhr dreißig?",
+    "Also 9:30?",
+    "Also 9:30 Uhr?",
+    "9:30?",
+    "9:30 Uhr?",
+    "Also um 9:30?",
+    "Also um 9:30 Uhr?",
+    "Um 9:30?",
+    "Um 9:30 Uhr?"
    ]
   },
   {
@@ -1055,7 +1118,8 @@
     "Sieben Uhr ist zu früh.",
     "Nein, das ist zu früh.",
     "Das ist leider zu früh.",
-    "Das ist mir leider zu früh."
+    "Das ist mir leider zu früh.",
+    "7:00 Uhr ist zu früh."
    ]
   },
   {
@@ -1067,7 +1131,9 @@
     "Um zehn Uhr.",
     "Um zehn.",
     "Ich komme um zehn Uhr.",
-    "Ich komme um zehn."
+    "Ich komme um zehn.",
+    "Um 10:00 Uhr.",
+    "Ich komme um 10:00 Uhr."
    ]
   },
   {
@@ -1082,7 +1148,11 @@
     "Es ist zehn Uhr fünfzehn.",
     "Zehn Uhr fünfzehn.",
     "Es ist viertel elf.",
-    "Viertel elf."
+    "Viertel elf.",
+    "Es ist 10:15.",
+    "Es ist 10:15 Uhr.",
+    "10:15.",
+    "10:15 Uhr."
    ]
   },
   {
@@ -1099,7 +1169,13 @@
     "Elf Uhr fünfundvierzig.",
     "Der Termin ist um elf Uhr fünfundvierzig.",
     "Um drei viertel zwölf.",
-    "Um dreiviertel zwölf."
+    "Um dreiviertel zwölf.",
+    "Um 11:45.",
+    "Um 11:45 Uhr.",
+    "11:45.",
+    "11:45 Uhr.",
+    "Der Termin ist um 11:45.",
+    "Der Termin ist um 11:45 Uhr."
    ]
   },
   {
@@ -1150,37 +1226,37 @@
     "speaker": "ch:huber",
     "r": "A",
     "de": "Genau, neun Uhr dreißig.",
-    "tr": "Evet, 9:30."
+    "tr": "Doğru, 9:30."
    },
    {
     "speaker": "ogrenci",
     "r": "B",
-    "de": "Das ist zu früh. Geht Donnerstagnachmittag?",
-    "tr": "Bu çok erken. Perşembe öğleden sonra olur mu?"
+    "de": "Das ist zu früh. Geht Viertel nach drei?",
+    "tr": "Bu çok erken. Üçü çeyrek geçe olur mu?"
    },
    {
     "speaker": "ch:huber",
     "r": "A",
-    "de": "Donnerstagnachmittag, ja. Viertel nach drei?",
-    "tr": "Perşembe öğleden sonra, evet. 15:15 olur mu?"
+    "de": "Viertel nach drei, ja, das geht.",
+    "tr": "Üçü çeyrek geçe, evet, olur."
    },
    {
     "speaker": "ogrenci",
     "r": "B",
-    "de": "Also fünfzehn Uhr fünfzehn? Das geht.",
-    "tr": "Yani 15:15 mi? Bu olur."
+    "de": "Also fünfzehn Uhr fünfzehn?",
+    "tr": "Yani 15:15 mi?"
    },
    {
     "speaker": "ch:huber",
     "r": "A",
-    "de": "Gut, dann bis Donnerstag. Auf Wiederhören!",
-    "tr": "Tamam, perşembeye görüşürüz. Hoşça kalın!"
+    "de": "Genau. Dann bis Donnerstag. Auf Wiederhören!",
+    "tr": "Doğru. O zaman perşembeye görüşürüz. Hoşça kalın!"
    },
    {
     "speaker": "ogrenci",
     "r": "B",
-    "de": "Auf Wiederhören!",
-    "tr": "Hoşça kalın!"
+    "de": "Bis Donnerstag!",
+    "tr": "Perşembeye görüşürüz!"
    }
   ]
  },
@@ -1322,7 +1398,11 @@
     "Es ist halb acht.",
     "Halb acht.",
     "Es ist sieben Uhr dreißig.",
-    "Sieben Uhr dreißig."
+    "Sieben Uhr dreißig.",
+    "Es ist 7:30.",
+    "Es ist 7:30 Uhr.",
+    "7:30.",
+    "7:30 Uhr."
    ]
   },
   {
@@ -1337,7 +1417,17 @@
     "Es ist drei viertel vier.",
     "Drei viertel vier.",
     "Es ist dreiviertel vier.",
-    "Dreiviertel vier."
+    "Dreiviertel vier.",
+    "Es ist drei Uhr fünfundvierzig.",
+    "Drei Uhr fünfundvierzig.",
+    "Es ist 15:45.",
+    "Es ist 15:45 Uhr.",
+    "15:45.",
+    "15:45 Uhr.",
+    "Es ist 3:45.",
+    "Es ist 3:45 Uhr.",
+    "3:45.",
+    "3:45 Uhr."
    ]
   },
   {
@@ -1361,7 +1451,17 @@
     "Fünfzehn Uhr dreißig?",
     "Also um fünfzehn Uhr dreißig?",
     "Also drei Uhr dreißig?",
-    "Um fünfzehn Uhr dreißig?"
+    "Um fünfzehn Uhr dreißig?",
+    "Also 15:30?",
+    "Also 15:30 Uhr?",
+    "15:30?",
+    "15:30 Uhr?",
+    "Also um 15:30?",
+    "Also um 15:30 Uhr?",
+    "Also 3:30?",
+    "Also 3:30 Uhr?",
+    "Um 15:30?",
+    "Um 15:30 Uhr?"
    ]
   },
   {

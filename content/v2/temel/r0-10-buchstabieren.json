@@ -17,7 +17,9 @@
  "characters": [
   "ch:schneider",
   "ch:huber",
-  "ch:kraus"
+  "ch:kraus",
+  "ch:brandl",
+  "ch:aksoy"
  ],
  "requires": {
   "kelimeler": [
@@ -36,7 +38,7 @@
   "status": "reviewed",
   "by": "dilbilimci-ajan",
   "at": "2026-11-18",
-  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-06-10.md. Okur ve kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
+  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-06-10.md. Denetim: docs/v2/reviews/temel-r0-denetim.txt. Kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
   "okur": "passed",
   "okur_at": "2026-11-18"
  },
@@ -51,16 +53,8 @@
     "ne_zaman_tr": "Telefonun başında ve resmî yerlerde.",
     "parcalar": [
      {
-      "de": "Mein",
-      "tr": "benim"
-     },
-     {
-      "de": "Name",
-      "tr": "ad"
-     },
-     {
-      "de": "ist",
-      "tr": "-dir"
+      "de": "Mein Name ist",
+      "tr": "benim adım"
      }
     ]
    }
@@ -75,16 +69,8 @@
     "ne_zaman_tr": "Form doldururken sorulur.",
     "parcalar": [
      {
-      "de": "Mein",
-      "tr": "benim"
-     },
-     {
-      "de": "Vorname",
-      "tr": "ön ad"
-     },
-     {
-      "de": "ist",
-      "tr": "-dir"
+      "de": "Mein Vorname ist",
+      "tr": "benim ön adım"
      }
     ]
    }
@@ -99,16 +85,8 @@
     "ne_zaman_tr": "Muayenehanede ilk sorulan şeydir.",
     "parcalar": [
      {
-      "de": "Mein",
-      "tr": "benim"
-     },
-     {
-      "de": "Nachname",
-      "tr": "soyad"
-     },
-     {
-      "de": "ist",
-      "tr": "-dir"
+      "de": "Mein Nachname ist",
+      "tr": "benim soyadım"
      }
     ]
    }
@@ -123,16 +101,8 @@
     "ne_zaman_tr": "Resmî dairede ve kargoda.",
     "parcalar": [
      {
-      "de": "Meine",
-      "tr": "benim"
-     },
-     {
-      "de": "Adresse",
-      "tr": "adres"
-     },
-     {
-      "de": "ist",
-      "tr": "-dir"
+      "de": "Meine Adresse ist",
+      "tr": "adresim"
      }
     ],
     "ipucu_tr": "**Adresse** kelimesinde bir **d** ve iki **s** vardır."
@@ -148,16 +118,8 @@
     "ne_zaman_tr": "Sekreter geri arayacağı zaman.",
     "parcalar": [
      {
-      "de": "Meine",
-      "tr": "benim"
-     },
-     {
-      "de": "Telefonnummer",
-      "tr": "telefon numarası"
-     },
-     {
-      "de": "ist",
-      "tr": "-dir"
+      "de": "Meine Telefonnummer ist",
+      "tr": "telefon numaram"
      }
     ],
     "ipucu_tr": "Numarayı rakam rakam ya da küçük gruplarla söyleyebilirsin."
@@ -185,14 +147,6 @@
     "ne_zaman_tr": "Sekreterden çok duyarsın, sen de sorabilirsin.",
     "parcalar": [
      {
-      "de": "Können",
-      "tr": "-ebilir misiniz"
-     },
-     {
-      "de": "Sie",
-      "tr": "siz"
-     },
-     {
       "de": "das",
       "tr": "bunu"
      },
@@ -201,8 +155,8 @@
       "tr": "lütfen"
      },
      {
-      "de": "buchstabieren",
-      "tr": "harf harf söylemek"
+      "de": "Können … buchstabieren",
+      "tr": "harf harf söyleyebilir misiniz"
      }
     ]
    }
@@ -760,6 +714,42 @@
    "why_tr": "Almancada **E** harfi e, **I** harfi i diye okunur."
   },
   {
+   "id": "r0:10:d33",
+   "k": "pick",
+   "q_tr": "Telefonda **K wie Köln** duydun. Hangi harf?",
+   "opts": [
+    "K",
+    "G",
+    "C"
+   ],
+   "ans": 0,
+   "why_tr": "**Köln** adı **K** ile başlar."
+  },
+  {
+   "id": "r0:10:d34",
+   "k": "pick",
+   "q_tr": "Telefonda **S wie Salzwedel** duydun. Hangi harf?",
+   "opts": [
+    "Z",
+    "S",
+    "C"
+   ],
+   "ans": 1,
+   "why_tr": "**Salzwedel** adı **S** ile başlar."
+  },
+  {
+   "id": "r0:10:d35",
+   "k": "pick",
+   "q_tr": "Telefonda **M wie München** duydun. Hangi harf?",
+   "opts": [
+    "N",
+    "W",
+    "M"
+   ],
+   "ans": 2,
+   "why_tr": "**München** adı **M** ile başlar."
+  },
+  {
    "id": "r0:10:d12",
    "k": "order",
    "de": "das / Wie / man / schreibt",
@@ -774,7 +764,8 @@
    "de": "bitte / Können / buchstabieren / das / Sie",
    "tr": "Bunu harf harf söyleyebilir misiniz?",
    "accepted": [
-    "Können Sie das bitte buchstabieren?"
+    "Können Sie das bitte buchstabieren?",
+    "Können Sie bitte das buchstabieren?"
    ]
   },
   {
@@ -852,7 +843,56 @@
     "Null eins sieben eins, drei neun zwei null null, vier sieben.",
     "Null eins sieben eins, drei neun zwo null null, vier sieben.",
     "Meine Telefonnummer ist null eins sieben eins, drei neun zwei null null, vier sieben.",
-    "Meine Nummer ist null eins sieben eins, drei neun zwei null null, vier sieben."
+    "Meine Nummer ist null eins sieben eins, drei neun zwei null null, vier sieben.",
+    "0171 3920047.",
+    "01713920047.",
+    "0171 392 00 47.",
+    "Null eins sieben eins, drei neun zwei null null, siebenundvierzig.",
+    "Null eins sieben eins, drei neun zwo null null, siebenundvierzig.",
+    "Null eins sieben eins, neununddreißig zweihundert, siebenundvierzig.",
+    "Null eins sieben eins, neununddreißig, zwei null null, siebenundvierzig.",
+    "Null eins sieben eins, neununddreißig, zwo null null, siebenundvierzig.",
+    "Null eins sieben eins, neununddreißig zwanzig null vier sieben.",
+    "Null hunderteinundsiebzig, drei neun zwei null null, vier sieben.",
+    "Null hunderteinundsiebzig, drei neun zwei null null, siebenundvierzig.",
+    "Meine Telefonnummer ist 0171 3920047.",
+    "Meine Telefonnummer ist 01713920047.",
+    "Meine Telefonnummer ist 0171 392 00 47.",
+    "Meine Telefonnummer ist null eins sieben eins, drei neun zwo null null, vier sieben.",
+    "Meine Telefonnummer ist null eins sieben eins, drei neun zwei null null, siebenundvierzig.",
+    "Meine Telefonnummer ist null eins sieben eins, drei neun zwo null null, siebenundvierzig.",
+    "Meine Telefonnummer ist null eins sieben eins, neununddreißig zweihundert, siebenundvierzig.",
+    "Meine Telefonnummer ist null eins sieben eins, neununddreißig, zwei null null, siebenundvierzig.",
+    "Meine Telefonnummer ist null eins sieben eins, neununddreißig, zwo null null, siebenundvierzig.",
+    "Meine Telefonnummer ist null eins sieben eins, neununddreißig zwanzig null vier sieben.",
+    "Meine Telefonnummer ist null hunderteinundsiebzig, drei neun zwei null null, vier sieben.",
+    "Meine Telefonnummer ist null hunderteinundsiebzig, drei neun zwei null null, siebenundvierzig.",
+    "Meine Nummer ist 0171 3920047.",
+    "Meine Nummer ist 01713920047.",
+    "Meine Nummer ist 0171 392 00 47.",
+    "Meine Nummer ist null eins sieben eins, drei neun zwo null null, vier sieben.",
+    "Meine Nummer ist null eins sieben eins, drei neun zwei null null, siebenundvierzig.",
+    "Meine Nummer ist null eins sieben eins, drei neun zwo null null, siebenundvierzig.",
+    "Meine Nummer ist null eins sieben eins, neununddreißig zweihundert, siebenundvierzig.",
+    "Meine Nummer ist null eins sieben eins, neununddreißig, zwei null null, siebenundvierzig.",
+    "Meine Nummer ist null eins sieben eins, neununddreißig, zwo null null, siebenundvierzig.",
+    "Meine Nummer ist null eins sieben eins, neununddreißig zwanzig null vier sieben.",
+    "Meine Nummer ist null hunderteinundsiebzig, drei neun zwei null null, vier sieben.",
+    "Meine Nummer ist null hunderteinundsiebzig, drei neun zwei null null, siebenundvierzig.",
+    "Die Nummer ist 0171 39200 47.",
+    "Die Nummer ist 0171 3920047.",
+    "Die Nummer ist 01713920047.",
+    "Die Nummer ist 0171 392 00 47.",
+    "Die Nummer ist null eins sieben eins, drei neun zwei null null, vier sieben.",
+    "Die Nummer ist null eins sieben eins, drei neun zwo null null, vier sieben.",
+    "Die Nummer ist null eins sieben eins, drei neun zwei null null, siebenundvierzig.",
+    "Die Nummer ist null eins sieben eins, drei neun zwo null null, siebenundvierzig.",
+    "Die Nummer ist null eins sieben eins, neununddreißig zweihundert, siebenundvierzig.",
+    "Die Nummer ist null eins sieben eins, neununddreißig, zwei null null, siebenundvierzig.",
+    "Die Nummer ist null eins sieben eins, neununddreißig, zwo null null, siebenundvierzig.",
+    "Die Nummer ist null eins sieben eins, neununddreißig zwanzig null vier sieben.",
+    "Die Nummer ist null hunderteinundsiebzig, drei neun zwei null null, vier sieben.",
+    "Die Nummer ist null hunderteinundsiebzig, drei neun zwei null null, siebenundvierzig."
    ]
   },
   {
@@ -869,24 +909,32 @@
   {
    "id": "r0:10:d22",
    "k": "transform",
-   "instr_tr": "Aynı harfi şehir adıyla söyle.",
-   "from_de": "K wie Kaufmann",
+   "instr_tr": "**K** harfini **wie** ile bir adla söyle.",
+   "from_de": "K",
    "accepted": [
+    "K wie Kaufmann",
+    "Kaufmann",
+    "K Kaufmann",
     "K wie Köln",
     "Köln",
     "K Köln"
-   ]
+   ],
+   "why_tr": "Şehir adıyla **K wie Köln** de doğrudur."
   },
   {
    "id": "r0:10:d23",
    "k": "transform",
-   "instr_tr": "Aynı harfi şehir adıyla söyle.",
-   "from_de": "S wie Samuel",
+   "instr_tr": "**S** harfini **wie** ile bir adla söyle.",
+   "from_de": "S",
    "accepted": [
+    "S wie Samuel",
+    "Samuel",
+    "S Samuel",
     "S wie Salzwedel",
     "Salzwedel",
     "S Salzwedel"
-   ]
+   ],
+   "why_tr": "Şehir adıyla **S wie Salzwedel** de doğrudur."
   },
   {
    "id": "r0:10:d24",
@@ -1262,13 +1310,17 @@
   {
    "id": "r0:10:p04",
    "k": "transform",
-   "instr_tr": "Aynı harfi şehir adıyla söyle.",
-   "from_de": "M wie Martha",
+   "instr_tr": "**M** harfini **wie** ile bir adla söyle.",
+   "from_de": "M",
    "accepted": [
+    "M wie Martha",
+    "Martha",
+    "M Martha",
     "M wie München",
     "München",
     "M München"
-   ]
+   ],
+   "why_tr": "Şehir adıyla **M wie München** de doğrudur."
   },
   {
    "id": "r0:10:p05",
@@ -1285,6 +1337,6 @@
   }
  ],
  "mission": {
-  "task_tr": "Kendi adını ve soyadını önce kişi adlarıyla, sonra şehir adlarıyla harf harf söyle. Sesini kaydet ve dinle."
+  "task_tr": "Kendi adını ve soyadını harf harf söyle. Tablodaki kişi adlarını kullan. İstersen şehir adlarıyla da dene. Sesini kaydet ve dinle."
  }
 }
