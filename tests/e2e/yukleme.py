@@ -52,6 +52,11 @@ def main():
         d2 = measure(); print("    tanı, animasyon kapalı:", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in d2 if t == "today"))
         pg.add_style_tag(content=".today > *:not([data-test=next-activity]){display:none!important}")
         d3 = measure(); print("    tanı, Bugün yalnız ders kartı:", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in d3 if t == "today"))
+        # tanı 5: gölgeler ve degradeler kapalı (yazılımla çizen WebKit'te bulanık gölge pahalı)
+        pg.add_style_tag(content="*{box-shadow:none!important;text-shadow:none!important}")
+        d5 = measure(); print("    tanı, gölge kapalı:", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in d5 if t == "today"))
+        pg.add_style_tag(content="*{background-image:none!important}")
+        d6 = measure(); print("    tanı, degrade de kapalı:", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in d6 if t == "today"))
         # tanı 4: dokunuştan sonraki ilk 800 ms'de ana iş parçacığının en uzun meşgul aralığı (JS mi, çizim mi?)
         for _ in range(2):
             pg.click("[data-tab=learn]"); pg.wait_for_selector("[data-test=next-activity]", state="detached"); pg.wait_for_timeout(200)
