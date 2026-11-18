@@ -1,7 +1,7 @@
 ---
 name: inceleme
 description: Bağımsız PR incelemesi. İşi yazmamış, temiz bağlamla bir PR'ı PEDAGOGY ve phases/'e göre inceler; bulgularını PR'a yorum olarak yazar. Kod değiştirmez.
-model: sonnet
+model: fable
 tools: Read, Bash, Grep, Glob
 ---
 # İNCELEME — bağımsız PR incelemesi

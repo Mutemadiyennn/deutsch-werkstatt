@@ -106,6 +106,8 @@ export const Lexeme = z.object({
   legacy: z.array(z.object({ unit: z.string(), key: z.string() })).default([]),
   /** OD-9.1 yapılandırılmış açıklama (PM-040.3) */
   exp: Explanation.optional(),
+  /** PM-047 §2: kartın başlığı kullanılacak ifadedir ("einen Termin machen"); kelime bilgisi kartın içinde küçük */
+  head: z.object({ de: z.string().min(1), tr: z.string().min(1) }).optional(),
   /** PM-047 §2: false → öğrenciye ayrı kart olarak gösterilmez (işlev kelimeleri); ifadelerin içinde öğretilir */
   card: z.boolean().optional(),
   /** PM-049 (d, h): boşluk doldurma biçimleri — "Ich habe ___ Termin." → einen; ayrılabilir fiilde iki boşluk "sage … ab" */

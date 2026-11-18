@@ -1,7 +1,7 @@
 ---
 name: qa
 description: Kalite güvencesi. Uçtan uca testleri yazar/genişletir, içerikte örneklem kontrolü yapar, gerçek cihaz kontrol listesini hazırlar ve CI çıktısını raporlar.
-model: sonnet
+model: opus
 tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 # QA — test ve örneklem kontrolü
