@@ -52,7 +52,7 @@ export function expandTaught(accepted: string[], chunks: { layers: { hd: string;
  */
 // norm() ümlautları açar (schön → schoen): listeler normalleştirilmiş biçimde
 const POLITE = new Set("bitte danke vielen dank sehr herzlichen schoen gern gerne".split(" "));
-const POLITE_LEAD = new Set("entschuldigung entschuldigen sie hallo".split(" "));
+const POLITE_LEAD = new Set("entschuldigung hallo".split(" "));
 const LEAD = new Set("ja also okay ok gut genau na dann super prima alles klar oder".split(" "));
 const NEG = /\b(nein|nicht|kein\w*|nie|niemals|leider)\b/;
 function containsWithFiller(variant: string, answer: string): boolean {
@@ -62,7 +62,8 @@ function containsWithFiller(variant: string, answer: string): boolean {
     if (!v.every((w, k) => a[i + k] === w)) continue;
     const pre = a.slice(0, i), post = a.slice(i + v.length);
     const neg = NEG.test(v.join(" "));
-    const preOk = pre.every((w) => POLITE.has(w) || POLITE_LEAD.has(w) || (!neg && LEAD.has(w)) || (neg && w === "nein"));
+    // "Entschuldigen Sie" iki kelimelik nezaket başlangıcı; "sie" tek başına dolgu değildir (inceleme #49 3. tur)
+    const preOk = pre.every((w, k) => POLITE.has(w) || POLITE_LEAD.has(w) || (w === "entschuldigen" && pre[k + 1] === "sie") || (w === "sie" && pre[k - 1] === "entschuldigen") || (!neg && LEAD.has(w)) || (neg && w === "nein"));
     const postOk = post.every((w) => POLITE.has(w));
     return preOk && postOk;
   }
