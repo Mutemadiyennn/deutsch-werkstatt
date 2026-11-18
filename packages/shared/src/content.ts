@@ -47,6 +47,9 @@ export const Anchors = {
   /** önce öğretilmiş olması gereken öğeler (lx:, ch:, pt:, gr:, sc:, r0:) — OD-1 */
   requires: z.array(z.string()).default([])
 };
+/** Senaryoda `requires` senaryo kimlikleridir (OD-1/OD-7, teach.ts); öteki alanlar ortak */
+const { requires: _anyRequires, ...AnchorsNoRequires } = Anchors;
+void _anyRequires;
 /** Hazır ses (D-085): dosya + kim okudu + lisans; yoksa cihaz sesi */
 export const Audio = z.object({ src: z.string().min(1), speaker: z.string().optional(), license: z.string().optional(), source: z.string().optional() });
 /** Güney Almanya kullanımı (gell, daheim, Semmel…): Bairisch DEĞİL, bölgesel gündelik dil (PM-042 A.6) */
@@ -279,7 +282,7 @@ export const Scenario = z.object({
   missions: z.array(z.object({ id: z.string(), task_tr: z.string(), prep: z.array(ChunkId).default([]), escape_de: z.array(z.string()).default([]) })).default([]),
   mistakes_tr: z.array(z.string()).default([]),
   source: z.object({ legacyUnit: z.string().optional(), notes: z.string().optional() }).default({}),
-  ...Anchors
+  ...AnchorsNoRequires
 });
 export type Scenario = z.infer<typeof Scenario>;
 
