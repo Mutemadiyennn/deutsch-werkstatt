@@ -354,6 +354,14 @@ def main():
             check(not em, f"{name}: emoji ikon yok ({''.join(em[:5])})")
             ind = page.locator(IND).count()
             check(ind <= 1, f"{name}: ilerleme göstergesi {ind} (≤1)")
+            check("**" not in page.evaluate("document.body.innerText"), f"{name}: kalın işaretinin yıldızları ekranda görünmüyor (D-092)")
+            if name == "ifade kartı" and page.locator("[data-test=ifade-card]").count():
+                check(page.locator("[data-test=exp-chips] span").count() >= 2, "ifade kartı: kelime kelime çipler (OD-9.1 parcalar)")
+                if page.locator("[data-test=why-open]").count():
+                    page.click("[data-test=why-open]"); page.wait_for_selector("[data-test=why-sheet]")
+                    check(page.locator("[data-test=why-sheet] .tip").count() >= 1, "ifade kartı: 'Neden böyle?' alt sayfası, satır başına tek fikir")
+                    shot(page, "p09-why-sheet", full=False)
+                    page.click("[data-test=why-close]")
             secs = page.evaluate(SECS)
             check(not secs, f"{name}: saniyeli sayaç yok ({secs[:2]})")
             prim = page.evaluate(PRIM)

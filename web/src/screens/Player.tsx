@@ -4,6 +4,7 @@
  * - Her cevap öğrenci modeline (FSRS çift yol) işlenir; odak motoru her bölümde etkinliği bilir.
  * - Üretim başarısızsa (<%50) bir önceki aşama yeniden açılır (geri dönüş kuralı).
  */
+import { Rich } from "../ui/rich.tsx";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Chunk, Drill, Lexeme, Pattern, Scenario, ScenarioProgress, Speed } from "@dw/shared";
 import { useApp } from "../state.ts";
@@ -242,7 +243,7 @@ function BuildSection({ ctx, finish, back, setSub }: SP) {
   return (
     <div class="stack" key={b.id}>
       <ProduceItem ctx={ctx} itemId={b.id} accepted={b.accepted} chips={r.i % 3 === 0 && !b.accepted[0]!.includes("{name}")}
-        prompt={<><div class="kicker">Almanca kur · {r.i + 1}/{r.total}</div><div class="de-lg">{b.prompt_tr}</div>{p && <div class="tiny muted" lang="de">Kalıp: {p.frame}</div>}</>}
+        prompt={<><div class="kicker">Almanca kur · {r.i + 1}/{r.total}</div><div class="de-lg">{b.prompt_tr}</div>{p?.frame_tr && <div class="tiny muted">Kalıp: <Rich text={p.frame_tr} /></div>}</>}
         onDone={(ok) => { if (p) void rec(p.id, "pattern", "active", ok ? "correct" : "wrong"); r.next(ok); }} />
     </div>
   );
@@ -271,7 +272,7 @@ function DrillView({ ctx, d, n, total, onDone }: { ctx: Ctx; d: Drill; n: number
         <div class="stack fade">
           <section class="card"><div class="kicker">Seç · {k}</div><div class="de-lg">{d.q_tr}</div></section>
           <div role="group" lang="de">{d.opts.map((o, i) => <button class={`opt${picked === null ? "" : i === d.ans ? " right" : i === picked ? " wrong" : ""}`} disabled={picked !== null} data-opt={i} onClick={() => { setPicked(i); haptic(i === d.ans ? "success" : "error"); }}>{o}</button>)}</div>
-          {picked !== null && <>{d.why_tr && <FeedbackBand kind={picked === d.ans ? "ok" : "bad"} title={picked === d.ans ? "Doğru" : "Doğrusu işaretli"}>{d.why_tr}</FeedbackBand>}<ActionBar><button class="btn primary block" onClick={() => { const ok = picked === d.ans; setPicked(null); onDone(ok); }} data-test="next">Devam</button></ActionBar></>}
+          {picked !== null && <>{d.why_tr && <FeedbackBand kind={picked === d.ans ? "ok" : "bad"} title={picked === d.ans ? "Doğru" : "Doğrusu işaretli"}><Rich text={d.why_tr} /></FeedbackBand>}<ActionBar><button class="btn primary block" onClick={() => { const ok = picked === d.ans; setPicked(null); onDone(ok); }} data-test="next">Devam</button></ActionBar></>}
         </div>
       );
     case "gap":
@@ -279,11 +280,11 @@ function DrillView({ ctx, d, n, total, onDone }: { ctx: Ctx; d: Drill; n: number
     case "order":
       return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted.length ? d.accepted : [d.de]} chips prompt={<><div class="kicker">Sıraya koy · {k}</div><div class="de-lg">{d.tr}</div></>} onDone={onDone} />;
     case "transform":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} prompt={<><div class="kicker">Dönüştür · {k}</div><div class="small">{d.instr_tr}</div><div class="de-lg" lang="de">{d.from_de}</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} prompt={<><div class="kicker">Dönüştür · {k}</div><div class="small"><Rich text={d.instr_tr} /></div><div class="de-lg" lang="de">{d.from_de}</div></>} onDone={onDone} />;
     case "guided_response":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.prompt_de} prompt={<><div class="kicker">Cevap ver · {k}</div><div class="small">{d.situation_tr}</div><div class="de-lg" lang="de">„{d.prompt_de}“</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.prompt_de} prompt={<><div class="kicker">Cevap ver · {k}</div><div class="small"><Rich text={d.situation_tr} /></div><div class="de-lg" lang="de">„{d.prompt_de}“</div></>} onDone={onDone} />;
     case "listen_and_respond":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.audio_de} audioSpeed={d.speed} prompt={<><div class="kicker">Dinle ve cevap ver · {k}</div>{d.situation_tr && <div class="small">{d.situation_tr}</div>}<div class="tiny muted">Metin gösterilmiyor: yalnızca dinle.</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.audio_de} audioSpeed={d.speed} prompt={<><div class="kicker">Dinle ve cevap ver · {k}</div>{d.situation_tr && <div class="small"><Rich text={d.situation_tr} /></div>}<div class="tiny muted">Metin gösterilmiyor: yalnızca dinle.</div></>} onDone={onDone} />;
     case "tr_de":
       return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} prompt={<><div class="kicker">Almanca söyle · {k}</div><div class="de-lg">{d.tr}</div></>} onDone={onDone} />;
   }
@@ -423,7 +424,7 @@ function DialogueSection({ ctx, finish, back }: SP) {
       {line.r === "B" && !v && (
         <section class="card stack fade" data-test="your-turn">
           <div class="kicker">Sıra sende · {d.roles.B}</div>
-          {support >= 1 && line.hint_tr && <div class="support">{line.hint_tr}</div>}
+          {support >= 1 && line.hint_tr && <div class="support"><Rich text={line.hint_tr} /></div>}
           {support >= 2 && line.keywords && <div class="row" lang="de">{line.keywords.map((k) => <span class="chip">{k}</span>)}</div>}
           {support >= 3 && line.starter && <div class="de" lang="de">{line.starter}</div>}
           <SayItBox entries={entriesOf(ctx)} level={s.level} context_de={line.de} />

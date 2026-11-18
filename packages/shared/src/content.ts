@@ -5,6 +5,7 @@
  * Kimlikler: lx:<lemma>[#n] · ch:<alan>:<slug> · pt:<slug> · sc:<alan>:<nn>-<slug> · gr:<v1-ünite>:<tN>
  */
 import { z } from "zod";
+import { Explanation } from "./explain.ts";
 
 export const Level = z.enum(["A1", "A2", "B1"]);
 export type Level = z.infer<typeof Level>;
@@ -80,7 +81,11 @@ export const Lexeme = z.object({
 });
 export type Lexeme = z.infer<typeof Lexeme>;
 
-export const ReviewState = z.object({ status: z.enum(["draft", "reviewed"]), by: z.string().optional(), at: z.string().optional(), notes: z.string().optional() });
+export const ReviewState = z.object({
+  status: z.enum(["draft", "reviewed"]), by: z.string().optional(), at: z.string().optional(), notes: z.string().optional(),
+  /** OD-9.3 okur kontrolü (PM-017): "reviewed" ancak okur her açıklamayı geçirdiyse */
+  okur: z.enum(["passed", "returned"]).optional(), okur_at: z.string().optional()
+});
 /** Sözlük partisi dosyası: content/v2/registry/lexicon/batch-NNN.json */
 export const LexiconBatch = z.object({ batch: z.string(), review: ReviewState, items: z.array(Lexeme).min(1) });
 
@@ -101,8 +106,14 @@ export const Chunk = z.object({
   pattern: PatternId.optional(),
   register: Register.default("neutral"),
   layers: z.object({ hd: z.string().min(1), alltag: z.string().optional(), bair: BairLayer.optional() }),
-  /** İşlev: ne zaman, hangi tonla (özellikle Alltag işaretleri için) */
+  /** İşlev: ne zaman, hangi tonla — ESKİ serbest metin; OD-9'a göre `exp` ile değiştirilir (PM-017) */
   use_tr: z.string().optional(),
+  /** OD-9.1 yapılandırılmış açıklama (Hochdeutsch ifade için) */
+  exp: Explanation.optional(),
+  /** OD-9.1 gündelik (Alltag) biçimin açıklaması: panelde çipli gösterilir (TARGET2) */
+  alltag_exp: Explanation.optional(),
+  /** OD: bu ifadenin açıklamasının varsaydığı önceden öğretilmiş öğeler (ör. gr:dativ) */
+  requires: z.array(z.string()).default([]),
   mistakes_tr: z.array(z.string()).default([])
 });
 export type Chunk = z.infer<typeof Chunk>;
@@ -112,8 +123,12 @@ export const Pattern = z.object({
   frame: z.string().min(1),
   level: Level.default("A1"),
   core: z.boolean().default(false),
-  /** 2–4 satır Türkçe not */
+  /** 2–4 satır Türkçe not — öğretmen/yazar notu; öğrenciye GÖSTERİLMEZ (OD-9: öğrenciye görünen kurallar `kurallar_tr`) */
   grammar_tr: z.string().min(5),
+  /** OD-9: öğrenciye görünen kurallar, her biri tek fikir (≤14 kelime); Gramer Atölyesi ve kur ekranı bunları tek tek gösterir */
+  kurallar_tr: z.array(z.string()).default([]),
+  /** OD-9: öğrenciye görünen çerçeve, terimsiz (ör. "**Ich habe** + bir şey"); yoksa çerçeve gösterilmez */
+  frame_tr: z.string().optional(),
   slots: z.array(z.object({ name: z.string(), fills: z.array(z.string()) })).default([]),
   examples: z.array(z.object({ de: z.string(), tr: z.string(), layer: z.enum(["hd", "alltag"]).default("hd") })).min(1),
   transforms: z
