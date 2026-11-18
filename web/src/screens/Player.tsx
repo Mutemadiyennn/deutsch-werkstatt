@@ -4,6 +4,7 @@
  * - Her cevap öğrenci modeline (FSRS çift yol) işlenir; odak motoru her bölümde etkinliği bilir.
  * - Üretim başarısızsa (<%50) bir önceki aşama yeniden açılır (geri dönüş kuralı).
  */
+import { expandTaught } from "../core/answer.ts";
 import { Rich } from "../ui/rich.tsx";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Chunk, Drill, Lexeme, Pattern, Scenario, ScenarioProgress, Speed } from "@dw/shared";
@@ -178,7 +179,9 @@ function useRun<T>(items: T[]) {
 
 /* ============================ Üretim maddesi (3–4–5 ortak) ============================ */
 function ProduceItem({ ctx, prompt, accepted, itemId, onDone, audio, audioSpeed, chips }: { ctx: Ctx; prompt: preact.ComponentChildren; accepted: string[]; itemId: string; onDone: (ok: boolean) => void; audio?: string; audioSpeed?: Speed; chips?: boolean }) {
-  const grade = useGrader();
+  const grade0 = useGrader();
+  // PM-032 §4: bu senaryoda öğretilmiş eşdeğer biçimler (Hochdeutsch ↔ Alltag) otomatik kabul
+  const grade = (acc: string[], a: string, p: string) => grade0(expandTaught(acc, ctx.s.chunks), a, p);
   const [v, setV] = useState<{ v: Verdict; a: string } | null>(null);
   const [busy, setBusy] = useState(false);
   const [mode, setMode] = useState<"type" | "chips">(chips ? "chips" : "type");

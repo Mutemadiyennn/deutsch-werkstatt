@@ -13,12 +13,40 @@ export type Verdict =
   | { kind: "unchecked"; best: string; note: string }
   | { kind: "ask_ai"; best: string };
 
+/**
+ * PM-032 §4: senaryoda öğretilmiş eşdeğer biçimler otomatik kabul edilir.
+ * Bir kabul cevabı bir ifadenin Hochdeutsch biçimini içeriyorsa Alltag biçimli hâli de eklenir (ve tersi).
+ */
+export function expandTaught(accepted: string[], chunks: { layers: { hd: string; alltag?: string } }[]): string[] {
+  const out = new Set(accepted);
+  const strip = (s: string) => s.replace(/[.!?…]+$/, "").trim();
+  for (const a of accepted) for (const c of chunks) {
+    const hd = strip(c.layers.hd), al = c.layers.alltag ? strip(c.layers.alltag) : "";
+    if (!al || hd.includes("…") || al.includes("…")) continue;
+    if (a.includes(hd)) out.add(a.replace(hd, al));
+    if (a.includes(al)) out.add(a.replace(al, hd));
+  }
+  return [...out];
+}
+/** Uzun ama doğru cevap: beklenen cevabın tamamı + yalnızca nezaket/dolgu kelimeleri (PM-032 §4) */
+const FILLER = new Set("oder ja bitte danke gerne gern also okay ok gut super genau dann schön vielen dank sehr herzlichen prima alles klar na".split(" "));
+function containsWithFiller(variant: string, answer: string): boolean {
+  const v = norm(variant).split(" ").filter(Boolean), a = norm(answer).split(" ").filter(Boolean);
+  if (!v.length || a.length <= v.length || a.length - v.length > 4) return false;
+  for (let i = 0; i + v.length <= a.length; i++) {
+    if (v.every((w, k) => a[i + k] === w)) { const extra = [...a.slice(0, i), ...a.slice(i + v.length)]; return extra.every((w) => FILLER.has(w)); }
+  }
+  return false;
+}
+
 /** Aynı kelimeler farklı sırada: Almancada çoğu zaman yanlış ama bazen doğru; karar yapay zekâya bırakılır, kendi başına doğru sayılmaz */
 const bag = (s: string) => norm(s).split(" ").filter(Boolean).sort().join(" ");
 
 export function ruleVerdict(accepted: string[], answer: string): Verdict {
   const j = judge(accepted, [answer]);
   if (j.ok) return { kind: "correct", best: j.best, via: norm(j.best) === norm(answer) ? "exact" : "variant" };
+  const longer = accepted.find((a) => containsWithFiller(a, answer));
+  if (longer) return { kind: "correct", best: longer, via: "variant" };
   if (!norm(answer)) return { kind: "wrong", best: accepted[0] || "" };
   const best = j.best || accepted[0] || "";
   const sc = scoreHeard(best, answer).score;
