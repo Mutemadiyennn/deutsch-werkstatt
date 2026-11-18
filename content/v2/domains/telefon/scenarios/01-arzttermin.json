@@ -5,7 +5,7 @@
   "level": "A2",
   "title_tr": "Doktordan telefonla randevu almak",
   "title_de": "Einen Arzttermin am Telefon vereinbaren",
-  "goal_tr": "Muayenehaneyi arayıp hızlı konuşan sekreteri anlamak, gerçek soruları (hasta mısınız, doğum tarihi, sigorta, şikâyet) cevaplamak, engellere (üç hafta sonra, akut muayene, yarın tekrar ara) tepki vermek ve saati doğru anlayarak randevuyu kapatmak.",
+  "goal_tr": "Muayenehaneyi arayıp hızlı konuşan sekreteri anlamak. Gerçek sorulara cevap vermek: hasta mısınız, doğum tarihi, sigorta, şikâyet. Engellere tepki vermek: üç hafta sonra, akut muayene, yarın tekrar ara. Saati doğru anlayıp randevuyu kapatmak.",
   "review": {
     "status": "draft",
     "by": "dilbilimci-ajan",
@@ -85,9 +85,66 @@
         "hd": "Ich möchte gern einen Termin machen.",
         "alltag": "Ich bräuchte mal 'nen Termin."
       },
-      "use_tr": "Görüşmenin ilk cümlesi. 'gern' kibarlaştırır. Gündelikte 'Ich bräuchte mal …' çok sık; 'mal' isteği yumuşatır, 'nen' = einen.",
+      "exp": {
+        "anlam_tr": "Bir randevu almak istiyorum.",
+        "ne_zaman_tr": "Muayenehaneyi arayınca ilk cümle olarak söylersin.",
+        "parcalar": [
+          {
+            "de": "Ich",
+            "tr": "ben"
+          },
+          {
+            "de": "möchte",
+            "tr": "isterdim"
+          },
+          {
+            "de": "gern",
+            "tr": "seve seve (kibarlık)"
+          },
+          {
+            "de": "einen",
+            "tr": "bir"
+          },
+          {
+            "de": "Termin",
+            "tr": "randevu"
+          },
+          {
+            "de": "machen",
+            "tr": "yapmak (burada almak)"
+          }
+        ],
+        "ipucu_tr": "**gern** cümleyi daha kibar yapar."
+      },
+      "alltag_exp": {
+        "anlam_tr": "Bir randevu lazımdı da.",
+        "ne_zaman_tr": "Telefonda, rahat konuşurken çok duyarsın.",
+        "parcalar": [
+          {
+            "de": "Ich",
+            "tr": "ben"
+          },
+          {
+            "de": "bräuchte",
+            "tr": "ihtiyacım olurdu"
+          },
+          {
+            "de": "mal",
+            "tr": "bir (isteği yumuşatır)"
+          },
+          {
+            "de": "'nen",
+            "tr": "bir"
+          },
+          {
+            "de": "Termin",
+            "tr": "randevu"
+          }
+        ],
+        "ipucu_tr": "**Einen** konuşurken kısalır ve **'nen** olur."
+      },
       "mistakes_tr": [
-        "Mastar sona gider: 'Ich möchte einen Termin machen' ('Ich möchte machen einen Termin' yanlış)."
+        "**machen** en sona gider: **Ich möchte einen Termin machen**. **Ich möchte machen einen Termin** yanlış olur."
       ]
     },
     {
@@ -102,7 +159,64 @@
         "hd": "Ja, ich bin schon Patientin bei Ihnen.",
         "alltag": "Ja, ich war schon mal bei Ihnen."
       },
-      "use_tr": "'Sind Sie schon Patient bei uns?' sorusuna cevap. Kadın konuşan 'Patientin', erkek 'Patient' der. Gündelik biçim cinsiyetsizdir.",
+      "exp": {
+        "anlam_tr": "Evet, zaten sizin hastanızım.",
+        "ne_zaman_tr": "Sekreter **Sind Sie schon Patient bei uns?** diye sorunca.",
+        "parcalar": [
+          {
+            "de": "Ja",
+            "tr": "evet"
+          },
+          {
+            "de": "ich",
+            "tr": "ben"
+          },
+          {
+            "de": "bin",
+            "tr": "-ım"
+          },
+          {
+            "de": "schon",
+            "tr": "zaten"
+          },
+          {
+            "de": "{Patient|Patientin}",
+            "tr": "hasta"
+          },
+          {
+            "de": "bei Ihnen",
+            "tr": "sizde"
+          }
+        ],
+        "ipucu_tr": "Kadınsan **Patientin**, erkeksen **Patient** dersin."
+      },
+      "alltag_exp": {
+        "anlam_tr": "Evet, daha önce size gelmiştim.",
+        "ne_zaman_tr": "Aynı soruya rahat cevap, herkes aynı biçimde söyler.",
+        "parcalar": [
+          {
+            "de": "Ja",
+            "tr": "evet"
+          },
+          {
+            "de": "ich",
+            "tr": "ben"
+          },
+          {
+            "de": "war",
+            "tr": "bulundum"
+          },
+          {
+            "de": "schon mal",
+            "tr": "daha önce"
+          },
+          {
+            "de": "bei Ihnen",
+            "tr": "sizde"
+          }
+        ],
+        "ipucu_tr": "Bu biçimde **Patient** ya da **Patientin** seçmen gerekmez."
+      },
       "mistakes_tr": []
     },
     {
@@ -117,9 +231,50 @@
         "hd": "Ich bin gesetzlich versichert, bei der AOK.",
         "alltag": "Gesetzlich, AOK."
       },
-      "use_tr": "'Gesetzlich oder privat?' ya da 'Welche Kasse?' sorusuna. Telefonda kısa cevap ('Gesetzlich, AOK.') tamamen normaldir.",
+      "exp": {
+        "anlam_tr": "Yasal sigortalıyım, AOK'deyim.",
+        "ne_zaman_tr": "Sekreter **Gesetzlich oder privat?** ya da **Welche Kasse?** diye sorunca.",
+        "parcalar": [
+          {
+            "de": "Ich",
+            "tr": "ben"
+          },
+          {
+            "de": "bin",
+            "tr": "-ım"
+          },
+          {
+            "de": "gesetzlich",
+            "tr": "yasal olarak"
+          },
+          {
+            "de": "versichert",
+            "tr": "sigortalı"
+          },
+          {
+            "de": "bei der AOK",
+            "tr": "AOK'de"
+          }
+        ],
+        "ipucu_tr": "**versichert** sigortalı demek, **Versichertenkarte** da sigorta kartın."
+      },
+      "alltag_exp": {
+        "anlam_tr": "Yasal sigorta, AOK.",
+        "ne_zaman_tr": "Telefonda hızlı soruya kısa cevap, tamamen normal.",
+        "parcalar": [
+          {
+            "de": "Gesetzlich",
+            "tr": "yasal (sigorta)"
+          },
+          {
+            "de": "AOK",
+            "tr": "sigorta kurumunun adı"
+          }
+        ],
+        "ipucu_tr": "Kendi kurumunun adını söylersin, **TK** ya da **AOK** gibi."
+      },
       "mistakes_tr": [
-        "Kurumla 'bei' kullanılır: 'bei der AOK', 'bei der TK' ('in der AOK' değil)."
+        "Kurumun önüne **bei der** gelir: **bei der AOK**, **bei der TK**. **in der AOK** denmez."
       ]
     },
     {
@@ -134,7 +289,44 @@
         "hd": "Geht es auch früher?",
         "alltag": "Geht's auch eher?"
       },
-      "use_tr": "Teklif edilen tarih geç olduğunda. 'eher' gündelikte 'früher' anlamında sık duyulur.",
+      "exp": {
+        "anlam_tr": "Daha erken olur mu?",
+        "ne_zaman_tr": "Sekreterin verdiği tarih sana geç gelince.",
+        "parcalar": [
+          {
+            "de": "Geht es",
+            "tr": "olur mu"
+          },
+          {
+            "de": "auch",
+            "tr": "de, da"
+          },
+          {
+            "de": "früher",
+            "tr": "daha erken"
+          }
+        ],
+        "ipucu_tr": "Sona başka zaman koyabilirsin: **Geht es auch morgen?**"
+      },
+      "alltag_exp": {
+        "anlam_tr": "Daha erken olmaz mı?",
+        "ne_zaman_tr": "Telefonda ve günlük konuşmada sık duyarsın.",
+        "parcalar": [
+          {
+            "de": "Geht's",
+            "tr": "olur mu"
+          },
+          {
+            "de": "auch",
+            "tr": "de, da"
+          },
+          {
+            "de": "eher",
+            "tr": "daha erken"
+          }
+        ],
+        "ipucu_tr": "**eher** burada **früher** ile aynı anlama gelir."
+      },
       "mistakes_tr": []
     },
     {
@@ -149,9 +341,42 @@
         "hd": "Das passt mir gut.",
         "alltag": "Passt."
       },
-      "use_tr": "Teklifi kabul etmek. Tek kelime 'Passt.' gündelikte 'olur, tamam' demektir; nötr-samimi tonda, telefonda da kibar sayılır.",
+      "exp": {
+        "anlam_tr": "Bu bana uyar.",
+        "ne_zaman_tr": "Sekreterin önerdiği gün ya da saat sana uyunca.",
+        "parcalar": [
+          {
+            "de": "Das",
+            "tr": "bu"
+          },
+          {
+            "de": "passt",
+            "tr": "uyar"
+          },
+          {
+            "de": "mir",
+            "tr": "bana"
+          },
+          {
+            "de": "gut",
+            "tr": "iyi"
+          }
+        ],
+        "ipucu_tr": "Size uyar mı diye sorarken **Passt Ihnen das?** dersin."
+      },
+      "alltag_exp": {
+        "anlam_tr": "Olur, tamam.",
+        "ne_zaman_tr": "Teklifi kabul ederken, telefonda da kibar sayılır.",
+        "parcalar": [
+          {
+            "de": "Passt",
+            "tr": "uyar, olur"
+          }
+        ],
+        "ipucu_tr": "Tek kelime ama kaba değil, gündelik ve sıcak bir onay."
+      },
       "mistakes_tr": [
-        "Kime uyduğu Dativ'dir: 'Das passt mir.' ('Das passt mich' yanlış)."
+        "Bana uyar derken **mir** gelir: **Das passt mir**. **Das passt mich** yanlış olur."
       ]
     },
     {
@@ -166,7 +391,47 @@
         "hd": "Entschuldigung, wie war das nochmal?",
         "alltag": "Wie war das nochmal?"
       },
-      "use_tr": "Bir bilgiyi (saat, ad, numara) kaçırınca. İngilizceye kaçmadan konuşmayı sürdürmenin en doğal yolu.",
+      "exp": {
+        "anlam_tr": "Pardon, nasıl demiştiniz?",
+        "ne_zaman_tr": "Saat, ad ya da numarayı kaçırınca.",
+        "parcalar": [
+          {
+            "de": "Entschuldigung",
+            "tr": "pardon"
+          },
+          {
+            "de": "wie",
+            "tr": "nasıl"
+          },
+          {
+            "de": "war das",
+            "tr": "idi o"
+          },
+          {
+            "de": "nochmal",
+            "tr": "bir daha"
+          }
+        ],
+        "ipucu_tr": "İngilizceye kaçmadan konuşmayı sürdürmenin en doğal yolu budur."
+      },
+      "alltag_exp": {
+        "anlam_tr": "Nasıldı o, bir daha söyler misiniz?",
+        "ne_zaman_tr": "Aynı durumda, biraz daha rahat bir soruş.",
+        "parcalar": [
+          {
+            "de": "Wie",
+            "tr": "nasıl"
+          },
+          {
+            "de": "war das",
+            "tr": "idi o"
+          },
+          {
+            "de": "nochmal",
+            "tr": "bir daha"
+          }
+        ]
+      },
       "mistakes_tr": []
     },
     {
@@ -182,7 +447,52 @@
         "hd": "Könnten Sie bitte etwas langsamer sprechen?",
         "alltag": "Etwas langsamer, bitte."
       },
-      "use_tr": "Karşı taraf hızlı konuşunca. Kısa biçim kaba değildir; 'bitte' ile yeterince kibardır.",
+      "exp": {
+        "anlam_tr": "Biraz daha yavaş konuşabilir misiniz?",
+        "ne_zaman_tr": "Karşındaki çok hızlı konuşunca.",
+        "parcalar": [
+          {
+            "de": "Könnten Sie",
+            "tr": "yapabilir miydiniz"
+          },
+          {
+            "de": "bitte",
+            "tr": "lütfen"
+          },
+          {
+            "de": "etwas",
+            "tr": "biraz"
+          },
+          {
+            "de": "langsamer",
+            "tr": "daha yavaş"
+          },
+          {
+            "de": "sprechen",
+            "tr": "konuşmak"
+          }
+        ],
+        "ipucu_tr": "**Könnten Sie** ile başlayan bir rica çok kibar olur."
+      },
+      "alltag_exp": {
+        "anlam_tr": "Biraz daha yavaş, lütfen.",
+        "ne_zaman_tr": "Hızlı konuşmayı kısa yoldan durdurmak için.",
+        "parcalar": [
+          {
+            "de": "Etwas",
+            "tr": "biraz"
+          },
+          {
+            "de": "langsamer",
+            "tr": "daha yavaş"
+          },
+          {
+            "de": "bitte",
+            "tr": "lütfen"
+          }
+        ],
+        "ipucu_tr": "Kısa biçim kaba değildir, **bitte** onu yeterince kibar yapar."
+      },
       "mistakes_tr": []
     },
     {
@@ -197,9 +507,54 @@
         "hd": "Ich buchstabiere: K wie Köln, A wie Aachen …",
         "alltag": "Ich buchstabier mal: K wie Köln …"
       },
-      "use_tr": "Adın yanlış yazılmasın diye. Yeni resmî tablo şehir adlarını kullanır (A wie Aachen); çok kişi eski isimleri de kullanır (A wie Anton). İkisi de anlaşılır.",
+      "exp": {
+        "anlam_tr": "Harf harf söylüyorum: K Köln'deki gibi, A Aachen'daki gibi.",
+        "ne_zaman_tr": "Adını söyledikten sonra, yanlış yazılmasın diye.",
+        "parcalar": [
+          {
+            "de": "Ich",
+            "tr": "ben"
+          },
+          {
+            "de": "buchstabiere",
+            "tr": "harf harf söylüyorum"
+          },
+          {
+            "de": "K wie Köln",
+            "tr": "K, Köln'deki gibi"
+          },
+          {
+            "de": "A wie Aachen",
+            "tr": "A, Aachen'daki gibi"
+          }
+        ],
+        "ipucu_tr": "Yeni resmî tablo şehir adlarını kullanır, **A wie Aachen** gibi."
+      },
+      "alltag_exp": {
+        "anlam_tr": "Bir harf harf söyleyeyim: K Köln'deki gibi.",
+        "ne_zaman_tr": "Telefonda rahat konuşurken, aynı durumda.",
+        "parcalar": [
+          {
+            "de": "Ich",
+            "tr": "ben"
+          },
+          {
+            "de": "buchstabier",
+            "tr": "harf harf söylerim"
+          },
+          {
+            "de": "mal",
+            "tr": "bir (yumuşatır)"
+          },
+          {
+            "de": "K wie Köln",
+            "tr": "K, Köln'deki gibi"
+          }
+        ],
+        "ipucu_tr": "Eski tablodaki **A wie Anton** da kullanılır, ikisi de anlaşılır."
+      },
       "mistakes_tr": [
-        "'K wie Köln' kalıbında 'wie' kullanılır ('K für Köln' da duyulur ama 'wie' daha yaygındır)."
+        "Harfle adın arasına **wie** gelir: **K wie Köln**. **K für Köln** de duyulur ama **wie** daha yaygındır."
       ]
     },
     {
@@ -214,9 +569,58 @@
         "hd": "Mein Geburtsdatum ist der zwölfte März neunzehnhundertachtundachtzig.",
         "alltag": "Zwölfter Dritter achtundachtzig."
       },
-      "use_tr": "Sekreter tarihi çok hızlı sorar ve tekrar eder. Gündelikte ay sayıyla söylenir: 'zwölfter Dritter' = 12.03.; yıl kısaltılabilir: 'achtundachtzig'.",
+      "exp": {
+        "anlam_tr": "Doğum tarihim 12 Mart 1988.",
+        "ne_zaman_tr": "Sekreter doğum tarihini sorunca, çoğu zaman hızlı sorar.",
+        "parcalar": [
+          {
+            "de": "Mein",
+            "tr": "benim"
+          },
+          {
+            "de": "Geburtsdatum",
+            "tr": "doğum tarihi"
+          },
+          {
+            "de": "ist",
+            "tr": "-dir"
+          },
+          {
+            "de": "der zwölfte",
+            "tr": "on ikinci (gün)"
+          },
+          {
+            "de": "März",
+            "tr": "mart"
+          },
+          {
+            "de": "neunzehnhundertachtundachtzig",
+            "tr": "bin dokuz yüz seksen sekiz"
+          }
+        ],
+        "ipucu_tr": "Yıl **neunzehnhundert** ile başlar, yani on dokuz yüz diye okunur."
+      },
+      "alltag_exp": {
+        "anlam_tr": "12.03.88, yani 12 Mart 1988.",
+        "ne_zaman_tr": "Sekreter hızlı sorup tekrar ederken böyle duyarsın.",
+        "parcalar": [
+          {
+            "de": "Zwölfter",
+            "tr": "on ikinci"
+          },
+          {
+            "de": "Dritter",
+            "tr": "üçüncü (ay)"
+          },
+          {
+            "de": "achtundachtzig",
+            "tr": "seksen sekiz"
+          }
+        ],
+        "ipucu_tr": "Ay adı yerine sayı, yıl yerine son iki rakam söylenir."
+      },
       "mistakes_tr": [
-        "Gün sıra sayısıdır: 'der zwölfte', 'der erste' ('der zwölf' yanlış)."
+        "Günü on ikinci gibi söylersin: **der zwölfte**, **der erste**. **der zwölf** yanlış olur."
       ]
     },
     {
@@ -232,9 +636,42 @@
         "hd": "Um halb zehn.",
         "alltag": "Halb zehn, passt."
       },
-      "use_tr": "Almanca 'halb' bir SONRAKİ saate göre söylenir: halb zehn = 9:30.",
+      "exp": {
+        "anlam_tr": "Saat dokuz buçukta.",
+        "ne_zaman_tr": "Sekreter saati söylerken ya da sen saati tekrar ederken.",
+        "parcalar": [
+          {
+            "de": "Um",
+            "tr": "saatte"
+          },
+          {
+            "de": "halb",
+            "tr": "yarım"
+          },
+          {
+            "de": "zehn",
+            "tr": "on"
+          }
+        ],
+        "ipucu_tr": "**halb zehn** ona yarım saat kala demektir, yani 9:30."
+      },
+      "alltag_exp": {
+        "anlam_tr": "Dokuz buçuk, uyar.",
+        "ne_zaman_tr": "Sekreterin önerdiği saati tekrar edip kabul ederken.",
+        "parcalar": [
+          {
+            "de": "Halb zehn",
+            "tr": "dokuz buçuk"
+          },
+          {
+            "de": "passt",
+            "tr": "uyar"
+          }
+        ],
+        "ipucu_tr": "Saati böyle tekrar edersen yanlış anlama hemen ortaya çıkar."
+      },
       "mistakes_tr": [
-        "halb zehn = 9:30, 10:30 DEĞİL. Türkçedeki 'on buçuk' alışkanlığı tipik hatadır."
+        "**halb zehn** 9:30 demektir, 10:30 değil. Türkçede on buçuk dediğimiz için 10:30 sanmak en tipik hatadır."
       ]
     },
     {
@@ -249,7 +686,68 @@
         "hd": "Es ist dringend. Kann ich heute noch kommen?",
         "alltag": "Es ist leider dringend – geht heute noch was?"
       },
-      "use_tr": "Randevu çok geç olduğunda ya da durum akut olduğunda. 'noch' = 'bugün içinde, daha'. 'geht … noch was?' = 'bir şey ayarlanabilir mi?'",
+      "exp": {
+        "anlam_tr": "Acil, bugün içinde gelebilir miyim?",
+        "ne_zaman_tr": "Randevu çok geç olunca ya da durum acilse.",
+        "parcalar": [
+          {
+            "de": "Es ist",
+            "tr": "bu (durum)"
+          },
+          {
+            "de": "dringend",
+            "tr": "acil"
+          },
+          {
+            "de": "Kann ich",
+            "tr": "-ebilir miyim"
+          },
+          {
+            "de": "heute",
+            "tr": "bugün"
+          },
+          {
+            "de": "noch",
+            "tr": "daha (bitmeden)"
+          },
+          {
+            "de": "kommen",
+            "tr": "gelmek"
+          }
+        ],
+        "ipucu_tr": "**noch** burada bugün bitmeden anlamını katar."
+      },
+      "alltag_exp": {
+        "anlam_tr": "Maalesef acil, bugün bir şey ayarlanabilir mi?",
+        "ne_zaman_tr": "Aynı durumda, sekreterden bir çare isterken.",
+        "parcalar": [
+          {
+            "de": "Es ist",
+            "tr": "bu (durum)"
+          },
+          {
+            "de": "leider",
+            "tr": "maalesef"
+          },
+          {
+            "de": "dringend",
+            "tr": "acil"
+          },
+          {
+            "de": "geht",
+            "tr": "olur mu"
+          },
+          {
+            "de": "heute noch",
+            "tr": "bugün içinde"
+          },
+          {
+            "de": "was",
+            "tr": "bir şey"
+          }
+        ],
+        "ipucu_tr": "**Geht heute noch was?** bugün bir şey ayarlanabilir mi demektir."
+      },
       "mistakes_tr": []
     },
     {
@@ -264,7 +762,64 @@
         "hd": "Ich brauche auch eine Krankschreibung.",
         "alltag": "Und ich bräuchte noch 'ne Krankschreibung."
       },
-      "use_tr": "İşe gidemiyorsan randevu isterken söylenir. Resmî adı Arbeitsunfähigkeitsbescheinigung (AU); günlük dilde 'Krankschreibung' ya da 'gelber Schein' (eski sarı kâğıt formdan kalma ad).",
+      "exp": {
+        "anlam_tr": "Ayrıca rapora ihtiyacım var.",
+        "ne_zaman_tr": "İşe gidemiyorsan, randevu isterken bunu da söylersin.",
+        "parcalar": [
+          {
+            "de": "Ich",
+            "tr": "ben"
+          },
+          {
+            "de": "brauche",
+            "tr": "ihtiyacım var"
+          },
+          {
+            "de": "auch",
+            "tr": "ayrıca"
+          },
+          {
+            "de": "eine",
+            "tr": "bir"
+          },
+          {
+            "de": "Krankschreibung",
+            "tr": "hastalık raporu"
+          }
+        ],
+        "ipucu_tr": "Resmî adı **Arbeitsunfähigkeitsbescheinigung**, kısaca **AU**."
+      },
+      "alltag_exp": {
+        "anlam_tr": "Bir de rapor lazımdı.",
+        "ne_zaman_tr": "Konuşmanın sonunda, rahat bir dille eklerken.",
+        "parcalar": [
+          {
+            "de": "Und",
+            "tr": "ve"
+          },
+          {
+            "de": "ich",
+            "tr": "ben"
+          },
+          {
+            "de": "bräuchte",
+            "tr": "ihtiyacım olurdu"
+          },
+          {
+            "de": "noch",
+            "tr": "bir de"
+          },
+          {
+            "de": "'ne",
+            "tr": "bir"
+          },
+          {
+            "de": "Krankschreibung",
+            "tr": "hastalık raporu"
+          }
+        ],
+        "ipucu_tr": "Günlük dilde **gelber Schein** da denir, eski sarı formdan kalma."
+      },
       "mistakes_tr": []
     },
     {
@@ -277,7 +832,36 @@
         "hd": "In Ordnung, vielen Dank.",
         "alltag": "Geht klar, danke."
       },
-      "use_tr": "Anlaşmayı onaylamak. 'Geht klar' gündelik, sıcak bir 'tamamdır'; sekreter de sık kullanır.",
+      "exp": {
+        "anlam_tr": "Tamam, çok teşekkürler.",
+        "ne_zaman_tr": "Randevu kesinleşince, telefonu kapatmadan önce.",
+        "parcalar": [
+          {
+            "de": "In Ordnung",
+            "tr": "tamam, olur"
+          },
+          {
+            "de": "vielen Dank",
+            "tr": "çok teşekkürler"
+          }
+        ],
+        "ipucu_tr": "**In Ordnung** her yerde kullanılan nötr bir tamamdır."
+      },
+      "alltag_exp": {
+        "anlam_tr": "Tamamdır, sağ olun.",
+        "ne_zaman_tr": "Aynı anda, daha sıcak bir onay olarak.",
+        "parcalar": [
+          {
+            "de": "Geht klar",
+            "tr": "tamamdır"
+          },
+          {
+            "de": "danke",
+            "tr": "sağ olun"
+          }
+        ],
+        "ipucu_tr": "Sekreter de bunu sık kullanır, duyunca anlaşma tamam demektir."
+      },
       "mistakes_tr": []
     },
     {
@@ -291,12 +875,37 @@
         "bair": {
           "text": "Pfiat Eana!",
           "status": "uncertain",
-          "note_tr": "Bavyera'da resmî vedalaşma olarak duyulduğu bilinir; bu biçim için kaynak doğrulanmadı."
+          "note_tr": "Bavyera'da resmî vedalaşma olarak duyulduğu bilinir. Bu biçim için kaynak doğrulanmadı."
         }
       },
-      "use_tr": "Telefonda vedalaşma: görmeyeceğiniz için 'Wiedersehen' değil 'Wiederhören'. Gündelikte 'auf' düşer.",
+      "exp": {
+        "anlam_tr": "Görüşmek üzere, hoşça kalın.",
+        "ne_zaman_tr": "Telefon konuşmasının en sonunda, kapatırken.",
+        "parcalar": [
+          {
+            "de": "Auf",
+            "tr": "üzere"
+          },
+          {
+            "de": "Wiederhören",
+            "tr": "yeniden duymak"
+          }
+        ],
+        "ipucu_tr": "Birbirinizi görmediğiniz için **Wiedersehen** değil **Wiederhören** dersin."
+      },
+      "alltag_exp": {
+        "anlam_tr": "Hoşça kalın.",
+        "ne_zaman_tr": "Aynı vedalaşmanın kısa ve gündelik hâli.",
+        "parcalar": [
+          {
+            "de": "Wiederhören",
+            "tr": "yeniden duymak"
+          }
+        ],
+        "ipucu_tr": "Konuşurken baştaki **Auf** düşer."
+      },
       "mistakes_tr": [
-        "Telefonda 'Auf Wiedersehen' yanlış değildir ama 'Auf Wiederhören' beklenen biçimdir."
+        "Telefonda **Auf Wiedersehen** yanlış değil ama **Auf Wiederhören** beklenir."
       ]
     }
   ],
@@ -987,7 +1596,7 @@
         "Viertel",
         "nach"
       ],
-      "why_tr": "halb zehn = 9:30: 'ona yarım saat var' diye düşün; 10:30 değil."
+      "why_tr": "**halb zehn** 9:30 demektir. Ona yarım saat var diye düşün, 10:30 değil."
     },
     {
       "id": "d04",
@@ -1002,7 +1611,7 @@
         "vor",
         "halb"
       ],
-      "why_tr": "Viertel nach elf = 11:15 · Viertel vor elf = 10:45."
+      "why_tr": "**Viertel nach elf** 11:15, **Viertel vor elf** 10:45 demektir."
     },
     {
       "id": "d05",
@@ -1031,7 +1640,7 @@
         "geht",
         "ist"
       ],
-      "why_tr": "'mir' ile kalıp 'Das passt mir'dir. 'Das geht.' de 'olur' demektir ama 'Das geht mir gut' denmez."
+      "why_tr": "**mir** ile birlikte **Das passt mir** dersin. **Das geht** de olur demektir. Ama **Das geht mir gut** denmez."
     },
     {
       "id": "d07",
@@ -1055,7 +1664,7 @@
       "accepted": [
         "Ich möchte gern einen Termin machen."
       ],
-      "why_tr": "Modal fiil 2. sırada, mastar (machen) en sonda."
+      "why_tr": "**möchte** ikinci sırada, **machen** en sonda durur."
     },
     {
       "id": "d09",
@@ -1075,7 +1684,7 @@
         "Morgen rufe ich nochmal an.",
         "Ich rufe morgen nochmal an."
       ],
-      "why_tr": "Zaman başa gelirse fiil yine 2. sırada kalır; 'an' en sona gider."
+      "why_tr": "**Morgen** başa gelince **rufe** yine ikinci sırada kalır. **an** en sona gider."
     },
     {
       "id": "d11",
@@ -1109,7 +1718,7 @@
     {
       "id": "d14",
       "k": "transform",
-      "instr_tr": "Kibar rica cümlesine çevir (Könnten Sie …?).",
+      "instr_tr": "Kibar rica cümlesine çevir, Könnten Sie ile başlasın.",
       "from_de": "Wiederholen Sie das.",
       "accepted": [
         "Könnten Sie das bitte wiederholen?",
@@ -1123,7 +1732,7 @@
     {
       "id": "d15",
       "k": "transform",
-      "instr_tr": "Zamanı başa al; fiil 2. sırada kalsın.",
+      "instr_tr": "Zamanı başa al. Fiil 2. sırada kalsın.",
       "from_de": "Ich rufe morgen früh nochmal an.",
       "accepted": [
         "Morgen früh rufe ich nochmal an.",
@@ -1166,7 +1775,7 @@
         "Halb zehn.",
         "Also um halb zehn."
       ],
-      "why_tr": "9:30 → halb zehn (bir sonraki saate yarım saat kala)."
+      "why_tr": "9:30 **halb zehn** olur, yani ona yarım saat kala."
     },
     {
       "id": "d19",
@@ -1179,12 +1788,12 @@
         "Um dreiviertel elf.",
         "Also um Viertel vor elf."
       ],
-      "why_tr": "Güney ve doğuda 'dreiviertel elf' de 10:45 demektir."
+      "why_tr": "Güney ve doğuda **dreiviertel elf** de 10:45 demektir."
     },
     {
       "id": "d20",
       "k": "guided_response",
-      "situation_tr": "Sekreter soruyor; daha önce bu muayenehaneye geldin.",
+      "situation_tr": "Sekreter soruyor. Daha önce bu muayenehaneye geldin.",
       "prompt_de": "Sind Sie schon Patient bei uns?",
       "accepted": [
         "Ja, ich bin schon Patient bei Ihnen.",
@@ -1230,7 +1839,7 @@
     {
       "id": "d23",
       "k": "guided_response",
-      "situation_tr": "Üç hafta sonrası sana çok geç; daha erken iste.",
+      "situation_tr": "Üç hafta sonrası sana çok geç. Daha erken iste.",
       "prompt_de": "Da hab ich erst was in drei Wochen.",
       "accepted": [
         "Geht es nicht früher? Es ist dringend.",
@@ -1247,7 +1856,7 @@
     {
       "id": "d24",
       "k": "guided_response",
-      "situation_tr": "Saat sana uyuyor; kabul et.",
+      "situation_tr": "Saat sana uyuyor. Kabul et.",
       "prompt_de": "Donnerstag um Viertel nach elf, passt's Ihnen?",
       "accepted": [
         "Ja, das passt mir gut.",
@@ -1263,7 +1872,7 @@
     {
       "id": "d25",
       "k": "guided_response",
-      "situation_tr": "Soyadın Demir; yeni (şehir adlı) tabloyla kodla.",
+      "situation_tr": "Soyadın Demir. Yeni (şehir adlı) tabloyla kodla.",
       "prompt_de": "Wie schreibt man das?",
       "accepted": [
         "Ich buchstabiere: D wie Düsseldorf, E wie Essen, M wie München, I wie Ingelheim, R wie Rostock.",
@@ -1274,7 +1883,7 @@
     {
       "id": "d26",
       "k": "guided_response",
-      "situation_tr": "Bugün yer yok; yarın sabah tekrar arayacağını söyle.",
+      "situation_tr": "Bugün yer yok. Yarın sabah tekrar arayacağını söyle.",
       "prompt_de": "Heute ist leider alles voll. Rufen Sie morgen früh um acht nochmal an.",
       "accepted": [
         "Gut, dann rufe ich morgen um acht nochmal an.",
@@ -1489,7 +2098,7 @@
         "9:50"
       ],
       "ans": 0,
-      "why_tr": "halb zehn = ona yarım saat kala = 9:30."
+      "why_tr": "**halb zehn** ona yarım saat kala, yani 9:30 demektir."
     }
   ],
   "dialogues": [
@@ -1607,7 +2216,7 @@
             "halb vier",
             "passt"
           ],
-          "hint_tr": "Kabul et ve saati tekrar et (halb vier = 15:30).",
+          "hint_tr": "Kabul et ve saati tekrar et (halb vier, yani 15:30).",
           "accepted": [
             "Ja, Mittwoch um halb vier passt mir gut.",
             "Ja, das passt mir gut.",
@@ -1733,7 +2342,7 @@
             "nochmal",
             "von wann bis wann"
           ],
-          "hint_tr": "Saati kaçırdın; tekrar ettir.",
+          "hint_tr": "Saati kaçırdın. Tekrar ettir.",
           "accepted": [
             "Entschuldigung, wie war das nochmal? Von wann bis wann?",
             "Wie war das nochmal? Von wann bis wann?",
@@ -1796,7 +2405,7 @@
             "erkältet",
             "Krankschreibung"
           ],
-          "hint_tr": "Adını söyle; hasta olduğunu ve rapor istediğini söyle.",
+          "hint_tr": "Adını söyle. Hasta olduğunu ve rapor istediğini söyle.",
           "accepted": [
             "Guten Tag, hier ist Novak. Ich bin erkältet und brauche eine Krankschreibung.",
             "Guten Tag, mein Name ist Novak. Ich bin erkältet und brauche eine Krankschreibung.",
@@ -1844,7 +2453,7 @@
             "Chef",
             "Bescheid"
           ],
-          "hint_tr": "Raporu sor; bugün işyerine haber vermen gerektiğini söyle.",
+          "hint_tr": "Raporu sor. Bugün işyerine haber vermen gerektiğini söyle.",
           "accepted": [
             "Und die Krankschreibung? Ich muss heute meinem Chef Bescheid sagen.",
             "Und was ist mit der Krankschreibung? Ich muss meinem Chef heute Bescheid sagen.",
@@ -1902,7 +2511,7 @@
     }
   ],
   "roleplay": {
-    "scene_tr": "Aile hekiminin muayenehanesini arıyorsun. Birkaç gündür hastasın; randevu almak, gerekirse rapor (Krankschreibung) sormak istiyorsun. Sekreter hızlı konuşuyor ve açılışta kendi adını söylüyor.",
+    "scene_tr": "Aile hekiminin muayenehanesini arıyorsun. Birkaç gündür hastasın. Randevu almak, gerekirse rapor (Krankschreibung) sormak istiyorsun. Sekreter hızlı konuşuyor ve açılışta kendi adını söylüyor.",
     "partner_de": "Sie sind Frau Huber, Medizinische Fachangestellte in einer vollen Hausarztpraxis in Bayern. Sie sind freundlich, aber im Stress und sprechen eher schnell. Sie melden sich mit „Praxis Dr. Weber, Huber, grüß Gott?“. Sie fragen, ob die Person schon Patient ist, nach Geburtsdatum, Krankenkasse und dem Grund des Anrufs. Reguläre Termine gibt es erst in drei Wochen; bei akuten Beschwerden verweisen Sie auf die Akutsprechstunde ohne Termin (8 bis 10 Uhr). Sie sind keine Lehrerin: Sie korrigieren nie, erklären keine Grammatik und verlangen keine bestimmten Sätze. Sie reagieren natürlich auf jede verständliche Antwort. Wenn die Person zweimal nicht versteht, sprechen Sie langsamer, mit einfachen Wörtern, und stellen Ja/Nein-Fragen.",
     "opener_de": "Praxis Dr. Weber, Huber, grüß Gott?",
     "goals": [
@@ -2227,7 +2836,7 @@
   "missions": [
     {
       "id": "m1",
-      "task_tr": "Bu hafta bir muayenehaneyi (ya da herhangi bir kurumu) Almanca ara: en yakın boş randevuyu ya da açılış saatlerini sor. Sekreterin söylediği adı ve saati not et; saati telefonda tekrar ederek doğrula.",
+      "task_tr": "Bu hafta bir muayenehaneyi (ya da herhangi bir kurumu) Almanca ara. En yakın boş randevuyu ya da açılış saatlerini sor. Sekreterin söylediği adı ve saati not et. Saati telefonda tekrar ederek doğrula.",
       "prep": [
         "ch:telefon:termin-machen",
         "ch:telefon:geht-frueher",
@@ -2247,12 +2856,12 @@
     }
   ],
   "mistakes_tr": [
-    "halb zehn = 9:30 (ona yarım saat kala). Türkçedeki 'on buçuk' alışkanlığıyla 10:30 anlamak en tipik hatadır.",
-    "Viertel nach elf = 11:15, Viertel vor elf = 10:45. Güneyde 'dreiviertel elf' de 10:45 demektir.",
-    "Sekreterin açılıştaki ikinci kelimesi (ör. 'Huber') onun soyadıdır, soru değildir. Kaçırırsan sorun yok: kendini tanıtıp devam et.",
-    "Telefonda vedalaşma 'Auf Wiederhören'dir; 'Auf Wiedersehen' yanlış değil ama telefona özgü değildir.",
-    "Modal fiilde mastar sona gider: 'Ich möchte einen Termin machen.'",
-    "Kime uyduğu Dativ'dir: 'Das passt mir', 'Passt Ihnen …?'"
+    "**halb zehn** 9:30 demektir, ona yarım saat kala. Türkçedeki on buçuk alışkanlığıyla 10:30 anlamak en tipik hatadır.",
+    "**Viertel nach elf** 11:15, **Viertel vor elf** 10:45 demektir. Güneyde **dreiviertel elf** de 10:45 demektir.",
+    "Sekreter açılışta kendi soyadını söyler, örneğin **Huber**. Bu bir soru değildir. Kaçırırsan sorun yok, kendini tanıtıp devam et.",
+    "Telefonda vedalaşma **Auf Wiederhören** olur. **Auf Wiedersehen** yanlış değil ama telefona özgü değildir.",
+    "**möchte** varsa **machen** en sona gider: **Ich möchte einen Termin machen**.",
+    "Bana uyar **Das passt mir**, size uyar mı **Passt Ihnen das?** olur."
   ],
   "source": {
     "notes": "Harf kodlama tablosu (DIN 5009:2022 ve eski isimli biçim) ile rapor bilgileri için: content/v2/domains/telefon/SOURCES.md. Muayenehane adları, saatler ve kişi adları kurgusaldır; örnek doğum tarihleri kişisel bilgi değildir."

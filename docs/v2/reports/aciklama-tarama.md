@@ -2,24 +2,24 @@
 
 Otomatik kural taraması (OD-9.3 katman 1). Okur kontrolü (katman 2) ayrıca her açıklamayı okur.
 
-**Toplam 367 açıklama · kurala aykırı 360 (%98)**
+**Toplam 353 açıklama · kurala aykırı 326 (%92)**
 
 | Dosya | Açıklama | Aykırı |
 |---|---|---|
 | content/v2/domains/arzt/scenarios/01-beschwerden.json | 32 | 32 |
 | content/v2/domains/strategie/scenarios/01-nicht-verstanden.json | 27 | 22 |
-| content/v2/domains/telefon/scenarios/01-arzttermin.json | 36 | 34 |
+| content/v2/domains/telefon/scenarios/01-arzttermin.json | 22 | 0 |
 | registry/patterns.json | 272 | 272 |
 
 ## İhlal türleri
 | Tür | Sayı |
 |---|---|
-| tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) | 348 |
-| öğretilmemiş terim | 215 |
-| cümle N kelime (en çok N) | 198 |
-| ';' işareti | 138 |
-| '…' işareti | 86 |
-| '=' işareti | 37 |
+| tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) | 319 |
+| öğretilmemiş terim | 211 |
+| cümle N kelime (en çok N) | 195 |
+| ';' işareti | 127 |
+| '…' işareti | 83 |
+| '=' işareti | 27 |
 
 ## Aykırı açıklamalar (çevrim sırası: bu liste önce)
 
@@ -84,44 +84,6 @@ Otomatik kural taraması (OD-9.3 katman 1). Okur kontrolü (katman 2) ayrıca he
 | mistakes_tr[3] | Bir kelimeyi hiç tanımıyorsan 'Das Wort kenne ich nicht'; aklına gelmiyorsa 'Mir fällt das Wort nicht ein'. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 17 kelime (en çok 14) |
 | mistakes_tr[4] | dreizehn (13) ve dreißig (30) sık karışır; emin değilsen sor. | ';' işareti |
 | mistakes_tr[5] | 'nochmal' gündelik yazımdır; resmî metinde 'noch einmal'. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-
-### content/v2/domains/telefon/scenarios/01-arzttermin.json
-| Yer | Metin | Sorun |
-|---|---|---|
-| ch:telefon:termin-machen.use_tr | Görüşmenin ilk cümlesi. 'gern' kibarlaştırır. Gündelikte 'Ich bräuchte mal …' çok sık; 'mal' isteği yumuşatır, 'nen' = einen. | '=' işareti; ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:termin-machen.mistakes_tr[0] | Mastar sona gider: 'Ich möchte einen Termin machen' ('Ich möchte machen einen Termin' yanlış). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:schon-patient.use_tr | 'Sind Sie schon Patient bei uns?' sorusuna cevap. Kadın konuşan 'Patientin', erkek 'Patient' der. Gündelik biçim cinsiyetsizdir. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:gesetzlich.use_tr | 'Gesetzlich oder privat?' ya da 'Welche Kasse?' sorusuna. Telefonda kısa cevap ('Gesetzlich, AOK.') tamamen normaldir. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:gesetzlich.mistakes_tr[0] | Kurumla 'bei' kullanılır: 'bei der AOK', 'bei der TK' ('in der AOK' değil). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:geht-frueher.use_tr | Teklif edilen tarih geç olduğunda. 'eher' gündelikte 'früher' anlamında sık duyulur. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:passt-mir.use_tr | Teklifi kabul etmek. Tek kelime 'Passt.' gündelikte 'olur, tamam' demektir; nötr-samimi tonda, telefonda da kibar sayılır. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:passt-mir.mistakes_tr[0] | Kime uyduğu Dativ'dir: 'Das passt mir.' ('Das passt mich' yanlış). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: dativ |
-| ch:telefon:langsamer.use_tr | Karşı taraf hızlı konuşunca. Kısa biçim kaba değildir; 'bitte' ile yeterince kibardır. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:buchstabiere.use_tr | Adın yanlış yazılmasın diye. Yeni resmî tablo şehir adlarını kullanır (A wie Aachen); çok kişi eski isimleri de kullanır (A wie Anton). İkisi de anlaşılır. | ';' işareti; cümle 18 kelime (en çok 14) |
-| ch:telefon:buchstabiere.mistakes_tr[0] | 'K wie Köln' kalıbında 'wie' kullanılır ('K für Köln' da duyulur ama 'wie' daha yaygındır). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14) |
-| ch:telefon:geburtsdatum.use_tr | Sekreter tarihi çok hızlı sorar ve tekrar eder. Gündelikte ay sayıyla söylenir: 'zwölfter Dritter' = 12.03.; yıl kısaltılabilir: 'achtundachtzig'. | '=' işareti; ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:geburtsdatum.mistakes_tr[0] | Gün sıra sayısıdır: 'der zwölfte', 'der erste' ('der zwölf' yanlış). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:halb-zehn.use_tr | Almanca 'halb' bir SONRAKİ saate göre söylenir: halb zehn = 9:30. | '=' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:halb-zehn.mistakes_tr[0] | halb zehn = 9:30, 10:30 DEĞİL. Türkçedeki 'on buçuk' alışkanlığı tipik hatadır. | '=' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:dringend.use_tr | Randevu çok geç olduğunda ya da durum akut olduğunda. 'noch' = 'bugün içinde, daha'. 'geht … noch was?' = 'bir şey ayarlanabilir mi?' | '=' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:krankschreibung.use_tr | İşe gidemiyorsan randevu isterken söylenir. Resmî adı Arbeitsunfähigkeitsbescheinigung (AU); günlük dilde 'Krankschreibung' ya da 'gelber Schein' (eski sarı kâğıt formdan kalma ad). | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 17 kelime (en çok 14) |
-| ch:telefon:geht-klar.use_tr | Anlaşmayı onaylamak. 'Geht klar' gündelik, sıcak bir 'tamamdır'; sekreter de sık kullanır. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:wiederhoeren.use_tr | Telefonda vedalaşma: görmeyeceğiniz için 'Wiedersehen' değil 'Wiederhören'. Gündelikte 'auf' düşer. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:wiederhoeren.mistakes_tr[0] | Telefonda 'Auf Wiedersehen' yanlış değildir ama 'Auf Wiederhören' beklenen biçimdir. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:telefon:wiederhoeren.bair.note_tr | Bavyera'da resmî vedalaşma olarak duyulduğu bilinir; bu biçim için kaynak doğrulanmadı. | ';' işareti |
-| d03.why_tr | halb zehn = 9:30: 'ona yarım saat var' diye düşün; 10:30 değil. | '=' işareti; ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d04.why_tr | Viertel nach elf = 11:15 · Viertel vor elf = 10:45. | '=' işareti |
-| d06.why_tr | 'mir' ile kalıp 'Das passt mir'dir. 'Das geht.' de 'olur' demektir ama 'Das geht mir gut' denmez. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d08.why_tr | Modal fiil 2. sırada, mastar (machen) en sonda. | öğretilmemiş terim: modal fiil |
-| d10.why_tr | Zaman başa gelirse fiil yine 2. sırada kalır; 'an' en sona gider. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d19.why_tr | Güney ve doğuda 'dreiviertel elf' de 10:45 demektir. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d39.why_tr | halb zehn = ona yarım saat kala = 9:30. | '=' işareti |
-| mistakes_tr[0] | halb zehn = 9:30 (ona yarım saat kala). Türkçedeki 'on buçuk' alışkanlığıyla 10:30 anlamak en tipik hatadır. | '=' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| mistakes_tr[1] | Viertel nach elf = 11:15, Viertel vor elf = 10:45. Güneyde 'dreiviertel elf' de 10:45 demektir. | '=' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| mistakes_tr[2] | Sekreterin açılıştaki ikinci kelimesi (ör. 'Huber') onun soyadıdır, soru değildir. Kaçırırsan sorun yok: kendini tanıtıp devam et. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| mistakes_tr[3] | Telefonda vedalaşma 'Auf Wiederhören'dir; 'Auf Wiedersehen' yanlış değil ama telefona özgü değildir. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| mistakes_tr[4] | Modal fiilde mastar sona gider: 'Ich möchte einen Termin machen.' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: modal fiil |
-| mistakes_tr[5] | Kime uyduğu Dativ'dir: 'Das passt mir', 'Passt Ihnen …?' | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: dativ |
 
 ### registry/patterns.json
 | Yer | Metin | Sorun |
