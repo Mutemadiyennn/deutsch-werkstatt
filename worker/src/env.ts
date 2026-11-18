@@ -18,6 +18,11 @@ export interface Env {
   AI_DAILY_LIMIT?: string;
   /** İsteğe bağlı sabit model tercihi (virgülle, öncelik sırası); boşsa listeden en yeni flash seçilir */
   GEMINI_MODELS?: string;
+  /**
+   * Yapay zekâ sağlayıcısı (PM-019, D-093). "gemini" dışındaki her değer (boş dahil) = kapalı:
+   * Gemini AEA şartı ve güvenilmezlik nedeniyle kapatıldı; kod silinmedi. Katman 2 (Workers AI) doğrulanınca ayrı değer alır.
+   */
+  AI_PROVIDER?: string;
   /** Kota sayaçları */
   QUOTA: KV;
 }

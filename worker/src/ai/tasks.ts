@@ -94,6 +94,8 @@ export async function runTask(env: Env, taskName: string, vars: unknown): Promis
   const spec = AiTasks[name];
   const parsed = spec.input.safeParse(vars);
   if (!parsed.success) throw new HttpError("invalid_request", parsed.error.issues[0]?.message);
+  // PM-019: sağlayıcı yapılandırmayla seçilir; Gemini varsayılan olarak kapalı (istemci yapay zekâsız yola geçer)
+  if ((env.AI_PROVIDER || "none").trim() !== "gemini") throw new HttpError("not_configured", "ai_disabled");
   if (!env.GEMINI_KEY) throw new HttpError("not_configured", "GEMINI_KEY");
   const tpl = TEMPLATES[name];
   const m = await models(env);
