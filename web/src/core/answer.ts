@@ -17,26 +17,57 @@ export type Verdict =
  * PM-032 §4: senaryoda öğretilmiş eşdeğer biçimler otomatik kabul edilir.
  * Bir kabul cevabı bir ifadenin Hochdeutsch biçimini içeriyorsa Alltag biçimli hâli de eklenir (ve tersi).
  */
+/** Kayıt hedefli madde: yönerge belirli bir biçimi (gündelik/resmî, Sie/du) istiyorsa eşdeğer genişletme yapılmaz (inceleme #49 P1-1) */
+export const REGISTER_HINT = /gündelik|alltag|resm[iî]|kibar|\bsie ile|\bdu ile|şefe|arkadaşına|lehçe|bairisch/i;
+const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+/** Kelime sınırına saygılı, büyük/küçük harf duyarsız değiştirme */
+function swap(text: string, from: string, to: string): string | null {
+  const re = new RegExp(`(^|[^\\p{L}])${esc(from)}(?![\\p{L}])`, "iu");
+  if (!re.test(text)) return null;
+  return text.replace(re, (_m, pre: string) => pre + to);
+}
+/**
+ * PM-032 §4: senaryoda öğretilmiş eşdeğer biçimler otomatik kabul edilir.
+ * Bir kabul cevabı bir ifadenin Hochdeutsch biçimini içeriyorsa Alltag biçimli hâli de eklenir (ve tersi).
+ * Kayıt hedefli maddelerde (opts.register) ve dönüşüm maddelerinde çağrılmaz.
+ */
 export function expandTaught(accepted: string[], chunks: { layers: { hd: string; alltag?: string } }[]): string[] {
-  const out = new Set(accepted);
+  const out = new Map(accepted.map((a) => [norm(a), a] as const));
   const strip = (s: string) => s.replace(/[.!?…]+$/, "").trim();
   for (const a of accepted) for (const c of chunks) {
     const hd = strip(c.layers.hd), al = c.layers.alltag ? strip(c.layers.alltag) : "";
-    if (!al || hd.includes("…") || al.includes("…")) continue;
-    if (a.includes(hd)) out.add(a.replace(hd, al));
-    if (a.includes(al)) out.add(a.replace(al, hd));
+    if (!al || hd.includes("…") || al.includes("…") || norm(hd) === norm(al)) continue;
+    // biri öbürünü içeriyorsa (Wiederhören ⊂ Auf Wiederhören) kısa biçim yalnızca uzun biçim metinde yokken genişletilir
+    const has = (t: string, f: string) => swap(t, f, f) !== null;
+    const cands = [has(a, al) && al.length < hd.length && has(a, hd) ? null : swap(a, al, hd), has(a, hd) && hd.length < al.length && has(a, al) ? null : swap(a, hd, al)];
+    for (const x of cands) if (x && !out.has(norm(x))) out.set(norm(x), x);
   }
-  return [...out];
+  return [...out.values()];
 }
-/** Uzun ama doğru cevap: beklenen cevabın tamamı + yalnızca nezaket/dolgu kelimeleri (PM-032 §4) */
-const FILLER = new Set("oder ja bitte danke gerne gern also okay ok gut super genau dann schön vielen dank sehr herzlichen prima alles klar na".split(" "));
+/**
+ * Uzun ama doğru cevap: beklenen cevap + yalnızca nezaket kelimeleri (PM-032 §4). İnceleme #49: anlamı kaydıran ekler
+ * reddedilir — değerlendirme kelimeleri (gut, super…) sona eklenemez; başa "ja/also/okay…" yalnızca beklenen cevap
+ * olumsuz değilse eklenebilir ("Ja, nein." ≠ "Nein.").
+ */
+const POLITE = new Set("bitte danke vielen dank sehr herzlichen schön gern gerne".split(" "));
+const LEAD = new Set("ja also okay ok gut genau na dann super prima alles klar oder".split(" "));
+const NEG = /\b(nein|nicht|kein\w*|nie|niemals|leider)\b/;
 function containsWithFiller(variant: string, answer: string): boolean {
   const v = norm(variant).split(" ").filter(Boolean), a = norm(answer).split(" ").filter(Boolean);
   if (!v.length || a.length <= v.length || a.length - v.length > 4) return false;
   for (let i = 0; i + v.length <= a.length; i++) {
-    if (v.every((w, k) => a[i + k] === w)) { const extra = [...a.slice(0, i), ...a.slice(i + v.length)]; return extra.every((w) => FILLER.has(w)); }
+    if (!v.every((w, k) => a[i + k] === w)) continue;
+    const pre = a.slice(0, i), post = a.slice(i + v.length);
+    const neg = NEG.test(v.join(" "));
+    const preOk = pre.every((w) => POLITE.has(w) || (!neg && LEAD.has(w)));
+    const postOk = post.every((w) => POLITE.has(w));
+    return preOk && postOk;
   }
   return false;
+}
+/** Dönüşüm maddesi: verilen cümlenin aynen tekrarı doğru sayılmaz */
+export function isSameAsGiven(given: string | undefined, answer: string): boolean {
+  return !!given && norm(given) === norm(answer);
 }
 
 /** Aynı kelimeler farklı sırada: Almancada çoğu zaman yanlış ama bazen doğru; karar yapay zekâya bırakılır, kendi başına doğru sayılmaz */

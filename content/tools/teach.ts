@@ -14,11 +14,18 @@ bin bist ist sind seid habe hast hat haben habt und oder aber nicht ja nein bitt
 export const tokens = (s: string) => s.replace(/\{[^}|]*\|[^}]*\}/g, " ").replace(/\{name\}/g, " ").toLowerCase().replace(/[^a-zäöüß' ]/g, " ").split(/\s+/).map((t) => t.replace(/^'+|'+$/g, "")).filter((t) => t.length > 1);
 const alts = (s: string) => [...s.matchAll(/\{([^}|]*)\|([^}]*)\}/g)].flatMap((m) => [m[1]!, m[2]!]).join(" ");
 
-function near(a: string, b: string) {
+/** Çekim eki: öğretilmiş biçime yalnızca bu ekler eklenmiş/çıkarılmışsa aynı kelime sayılır (inceleme #49: önek sezgisi
+ *  Mittag→Mittwoch, vier→vierzig, mein→Meinung gibi farklı kelimeleri geçiriyordu) */
+const ENDINGS = ["e", "en", "er", "es", "em", "n", "s", "st", "t", "te", "ten", "est", "et"];
+const NOT_INFLECTION = new Set(["nichts", "alles", "etwas"]);
+export function near(a: string, b: string) {
   if (a === b) return true;
-  if (Math.abs(a.length - b.length) > 3) return false;
-  const k = Math.max(4, Math.min(a.length, b.length) - 2);
-  return a.length >= k && b.length >= k && a.slice(0, k) === b.slice(0, k);
+  if (NOT_INFLECTION.has(a) || NOT_INFLECTION.has(b)) return false;
+  const [s, l] = a.length <= b.length ? [a, b] : [b, a];
+  const strip = (w: string) => ENDINGS.filter((e) => w.endsWith(e) && w.length - e.length >= 3).map((e) => w.slice(0, -e.length)).concat(w);
+  // ortak gövde: iki biçimden ekler atılınca aynı gövde kalıyorsa (mache/machst/machen → mach)
+  const sa = strip(s), la = strip(l);
+  return sa.some((x) => x.length >= 3 && la.includes(x));
 }
 
 export function taughtSet(s: Scenario, lx: Map<string, Lexeme>, extra: Scenario[] = [], pt: Map<string, Pattern> = new Map()): Set<string> {
@@ -46,6 +53,9 @@ export function untaught(s: Scenario, lx: Map<string, Lexeme>, all: Scenario[] =
   const out: Untaught[] = [];
   const check = (item: string, ans?: string) => { if (!ans) return; const bad = [...new Set(tokens(ans).filter((w) => !known(w)))]; if (bad.length) out.push({ item, words: bad }); };
   for (const b of s.build) check(b.id, b.accepted[0]);
+  // inceleme #49 P1-2: diyaloğun öğrenci satırları ve konuşma görevlerinin örnek cevabı da üretim istemidir
+  s.dialogues.forEach((dl, i) => dl.lines.forEach((l, j) => { if (l.r === "B") check(`dialog${i}#${j}`, (l.accepted && l.accepted[0]) || l.de); }));
+  (s.speaking || []).forEach((sp, i) => check(`speaking[${i}]`, (sp as { model_de?: string }).model_de));
   for (const d of s.drills) {
     if (d.k === "pick") continue;
     if (d.k === "gap") check(d.id, d.de.replace("___", d.accepted[0] || ""));

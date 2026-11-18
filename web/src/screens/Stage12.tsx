@@ -280,10 +280,11 @@ function IfadeCard({ c, accent, onPass }: { c: Card; accent: string; onPass: (ho
         {c.words.length > 0 && <div class="wordinfo" data-test="word-info">{c.words.map((w) => <div lang="de">{w}</div>)}</div>}
       </section>
       {why && <WhySheet tips={tips} onClose={() => setWhy(false)} />}
-      {res !== null && (res >= 60
-        ? <FeedbackBand kind="ok" title="Anlaşıldı." />
-        : <FeedbackBand kind="warn" title="Bir daha dinle ve söyle.">İpucu: ilk kelime <b lang="de">{c.de.split(/\s+/)[0]}</b>. <button class="linkbtn" onClick={() => play(c.de, "slow", "s")}>Yavaş dinle</button></FeedbackBand>)}
       <ActionBar>
+        {/* geri bildirim eylem çubuğunda: kartın kaydırma alanında kalıp görünmez olmasın (PM-032 ekran kontrolü) */}
+  {res !== null && (res >= 60
+        ? <FeedbackBand kind="ok" title="Anlaşıldı." />
+        : <FeedbackBand kind="warn" title="Bir daha dinle ve söyle.">İpucu: ilk kelime <b lang="de">{c.de.split(/\s+/)[0]}</b>. <button class="btn sm" data-test="slow-listen" onClick={() => play(c.de, "slow", "s")}><Icon name="play" /> Yavaş dinle</button></FeedbackBand>)}
         {typing ? <AnswerField onSubmit={(t) => check(t)} placeholder="İfadeyi yaz…" submitLabel="Tekrar et" voice={false} />
           : stt ? <MicButton wide onText={check} />
           : <button class="btn primary block" onClick={() => setTyping(true)} data-test="type-repeat"><Icon name="keyboard" /> Yazarak tekrar et</button>}

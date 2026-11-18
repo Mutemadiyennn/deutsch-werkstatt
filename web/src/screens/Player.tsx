@@ -4,7 +4,7 @@
  * - Her cevap öğrenci modeline (FSRS çift yol) işlenir; odak motoru her bölümde etkinliği bilir.
  * - Üretim başarısızsa (<%50) bir önceki aşama yeniden açılır (geri dönüş kuralı).
  */
-import { expandTaught } from "../core/answer.ts";
+import { expandTaught, isSameAsGiven, REGISTER_HINT } from "../core/answer.ts";
 import { Rich } from "../ui/rich.tsx";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Chunk, Drill, Lexeme, Pattern, Scenario, ScenarioProgress, Speed } from "@dw/shared";
@@ -178,10 +178,14 @@ function useRun<T>(items: T[]) {
 }
 
 /* ============================ Üretim maddesi (3–4–5 ortak) ============================ */
-function ProduceItem({ ctx, prompt, accepted, itemId, onDone, audio, audioSpeed, chips }: { ctx: Ctx; prompt: preact.ComponentChildren; accepted: string[]; itemId: string; onDone: (ok: boolean) => void; audio?: string; audioSpeed?: Speed; chips?: boolean }) {
+function ProduceItem({ ctx, prompt, accepted, itemId, onDone, audio, audioSpeed, chips, hint, given }: { ctx: Ctx; prompt: preact.ComponentChildren; accepted: string[]; itemId: string; onDone: (ok: boolean) => void; audio?: string; audioSpeed?: Speed; chips?: boolean; hint?: string; given?: string }) {
   const grade0 = useGrader();
-  // PM-032 §4: bu senaryoda öğretilmiş eşdeğer biçimler (Hochdeutsch ↔ Alltag) otomatik kabul
-  const grade = (acc: string[], a: string, p: string) => grade0(expandTaught(acc, ctx.s.chunks), a, p);
+  // PM-032 §4: bu senaryoda öğretilmiş eşdeğer biçimler (Hochdeutsch ↔ Alltag) otomatik kabul — ama yönerge belirli bir
+  // biçim istiyorsa ya da madde bir dönüşümse genişletme yok; verilen cümlenin tekrarı doğru değil (inceleme #49 P1-1)
+  const register = !!given || REGISTER_HINT.test(hint || (typeof prompt === "string" ? prompt : ""));
+  const grade = async (acc: string[], a: string, p: string): Promise<Verdict> =>
+    isSameAsGiven(given, a) ? { kind: "wrong", best: acc[0] || "", note: "Verilen cümleyi tekrarladın; istenen biçimde söyle." }
+      : grade0(register ? acc : expandTaught(acc, ctx.s.chunks), a, p);
   const [v, setV] = useState<{ v: Verdict; a: string } | null>(null);
   const [busy, setBusy] = useState(false);
   const [mode, setMode] = useState<"type" | "chips">(chips ? "chips" : "type");
@@ -245,7 +249,7 @@ function BuildSection({ ctx, finish, back, setSub }: SP) {
   const p = b.pattern ? ctx.pt.get(b.pattern) : undefined;
   return (
     <div class="stack" key={b.id}>
-      <ProduceItem ctx={ctx} itemId={b.id} accepted={b.accepted} chips={r.i % 3 === 0 && !b.accepted[0]!.includes("{name}")}
+      <ProduceItem ctx={ctx} itemId={b.id} accepted={b.accepted} hint={b.prompt_tr} chips={r.i % 3 === 0 && !b.accepted[0]!.includes("{name}")}
         prompt={<><div class="kicker">Almanca kur · {r.i + 1}/{r.total}</div><div class="de-lg">{b.prompt_tr}</div>{p?.frame_tr && <div class="tiny muted">Kalıp: <Rich text={p.frame_tr} /></div>}</>}
         onDone={(ok) => { if (p) void rec(p.id, "pattern", "active", ok ? "correct" : "wrong"); r.next(ok); }} />
     </div>
@@ -283,13 +287,13 @@ function DrillView({ ctx, d, n, total, onDone }: { ctx: Ctx; d: Drill; n: number
     case "order":
       return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted.length ? d.accepted : [d.de]} chips prompt={<><div class="kicker">Sıraya koy · {k}</div><div class="de-lg">{d.tr}</div></>} onDone={onDone} />;
     case "transform":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} prompt={<><div class="kicker">Dönüştür · {k}</div><div class="small"><Rich text={d.instr_tr} /></div><div class="de-lg" lang="de">{d.from_de}</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} given={d.from_de} hint={d.instr_tr} prompt={<><div class="kicker">Dönüştür · {k}</div><div class="small"><Rich text={d.instr_tr} /></div><div class="de-lg" lang="de">{d.from_de}</div></>} onDone={onDone} />;
     case "guided_response":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.prompt_de} prompt={<><div class="kicker">Cevap ver · {k}</div><div class="small"><Rich text={d.situation_tr} /></div><div class="de-lg" lang="de">„{d.prompt_de}“</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.prompt_de} hint={d.situation_tr} prompt={<><div class="kicker">Cevap ver · {k}</div><div class="small"><Rich text={d.situation_tr} /></div><div class="de-lg" lang="de">„{d.prompt_de}“</div></>} onDone={onDone} />;
     case "listen_and_respond":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.audio_de} audioSpeed={d.speed} prompt={<><div class="kicker">Dinle ve cevap ver · {k}</div>{d.situation_tr && <div class="small"><Rich text={d.situation_tr} /></div>}<div class="tiny muted">Metin gösterilmiyor: yalnızca dinle.</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.audio_de} audioSpeed={d.speed} hint={d.situation_tr} prompt={<><div class="kicker">Dinle ve cevap ver · {k}</div>{d.situation_tr && <div class="small"><Rich text={d.situation_tr} /></div>}<div class="tiny muted">Metin gösterilmiyor: yalnızca dinle.</div></>} onDone={onDone} />;
     case "tr_de":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} prompt={<><div class="kicker">Almanca söyle · {k}</div><div class="de-lg">{d.tr}</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} hint={d.tr} prompt={<><div class="kicker">Almanca söyle · {k}</div><div class="de-lg">{d.tr}</div></>} onDone={onDone} />;
   }
 }
 

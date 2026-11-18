@@ -121,6 +121,14 @@ def main():
                 if cards_seen == 2:
                     page.click("[data-test=known-skip]"); continue
                 page.click("[data-test=type-repeat]")
+                if cards_seen == 3:  # PM-032: uzak tekrar → yüzde yok, "bir daha dinle" + ilk kelime + 44 pt "Yavaş dinle"
+                    page.fill("[data-test=answer]", "Hallo Welt"); page.click("[data-test=submit]")
+                    page.wait_for_selector("[data-test=slow-listen]"); page.wait_for_timeout(400)  # açılış animasyonu (pop) bitsin
+                    body = page.inner_text("main")
+                    check("Bir daha dinle" in body and "%" not in body, "uzak tekrarda yüzde yok, 'Bir daha dinle ve söyle'")
+                    h = page.locator("[data-test=slow-listen]").bounding_box()["height"]
+                    check(h >= 44, f"'Yavaş dinle' dokunma hedefi ≥44 pt ({h:.0f})")
+                    shot(page, "p02b-tekrar-ipucu", full=False)
                 page.fill("[data-test=answer]", de); page.click("[data-test=submit]")
                 for _ in range(50):  # otomatik geçiş (≈0,7 sn): kart değişene ya da hatırlama gelene kadar
                     page.wait_for_timeout(100)
