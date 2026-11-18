@@ -52,6 +52,19 @@ def main():
         d2 = measure(); print("    tanı, animasyon kapalı:", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in d2 if t == "today"))
         pg.add_style_tag(content=".today > *:not([data-test=next-activity]){display:none!important}")
         d3 = measure(); print("    tanı, Bugün yalnız ders kartı:", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in d3 if t == "today"))
+        # tanı 4: dokunuştan sonraki ilk 800 ms'de ana iş parçacığının en uzun meşgul aralığı (JS mi, çizim mi?)
+        for _ in range(2):
+            pg.click("[data-tab=learn]"); pg.wait_for_selector("[data-test=next-activity]", state="detached"); pg.wait_for_timeout(200)
+            gaps = pg.evaluate("""async () => {
+              const ch = new MessageChannel(); let last = performance.now(), worst = 0, n = 0, t0 = last, frames = [];
+              const tick = () => { const t = performance.now(); worst = Math.max(worst, t - last); last = t; n++; if (t - t0 < 800) ch.port2.postMessage(0); };
+              ch.port1.onmessage = tick;
+              const raf = (t) => { frames.push(Math.round(performance.now() - t0)); if (performance.now() - t0 < 800) requestAnimationFrame(raf); };
+              requestAnimationFrame(raf);
+              document.querySelector('[data-tab=today]').click(); ch.port2.postMessage(0);
+              await new Promise((r) => setTimeout(r, 900));
+              return { worstBusy: Math.round(worst), ticks: n, frames: frames.slice(0, 8) }; }""")
+            print("    tanı, Bugün'e geçişte en uzun meşgul aralık (ms) ve kare zamanları:", gaps)
         print("    Bugün ekranının bölümleri:", pg.evaluate("() => [...document.querySelectorAll('.today > *')].map(e => (e.className||e.tagName) + ':' + e.querySelectorAll('*').length).join(' | ')"))
         check(worst <= 300, f"en yavaş ekran geçişi {worst:.0f} ms (≤ 300)")
         b.close()
