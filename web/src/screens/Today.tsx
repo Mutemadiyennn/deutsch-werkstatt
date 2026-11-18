@@ -110,6 +110,8 @@ export function Today() {
 
       <section class="plainsec" data-test="weak">
         <h2 class="sectitle">Tekrar edilecekler</h2>
+        {/* PM-049: kartlar soru olarak döner; tek ana eylem */}
+        <a class="btn primary block" href="#/garden" data-test="garden-start">Tekrar et</a>
         {bank.length ? (
           <ul class="list">
             {bank.map(({ it, lx }) => (
