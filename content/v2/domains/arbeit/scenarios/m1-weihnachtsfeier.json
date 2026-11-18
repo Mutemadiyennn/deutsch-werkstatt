@@ -7,12 +7,10 @@
   "title_de": "Die Weihnachtsfeier in der Firma",
   "goal_tr": "Şefin seni Weihnachtsfeier'e davet ediyor. Tarihi ve saati anlar, gelip gelmeyeceğini söylersin. Wichteln'i sorar ve Noel planları sohbetine katılırsın.",
   "review": {
-    "status": "reviewed",
+    "status": "draft",
     "by": "dilbilimci-ajan",
     "at": "2026-11-18",
-    "notes": "LS-17.0 mini senaryo (Advent), hikâye hafta 4. Dil incelemesi 2026-11-18 KAPANDI (docs/v2/reviews/advent-mini.md); içerik onaylı. Durum yalnızca kalıp kapısı (D-063) yüzünden draft: bu dalda patterns.json'daki temel kalıplar henüz draft. Kalıplar reviewed olunca status reviewed yapılır. Öğrenci satırlarında ad yer tutucuyla ({name}, D-061). Kaynaklar: arbeit/SOURCES.md.",
-    "okur": "passed",
-    "okur_at": "2026-11-18"
+    "notes": "LS-17.0 mini senaryo (Advent), hikâye hafta 4. Önceki dil incelemesi 2026-11-18 (docs/v2/reviews/advent-mini.md). PM-032 (2026-11-18): öğretmeden isteme düzeltmesi; namen-gezogen temel ifadeye alındı, bleiben/hier temel kelime, yeni exp/alltag_exp → dilbilimci + okur yeniden incelemeli (docs/v2/reviews/pm032-yazar.md). Öğrenci satırlarında ad yer tutucuyla ({name}, D-061). Kaynaklar: arbeit/SOURCES.md. dilbilimci: KAPANDI (2026-11-18), okur bekliyor (docs/v2/reviews/pm032-dilbilimci.md). Okur turu 1 (2026-11-18): GERİ maddeleri düzeltildi, okur tur 2 bekliyor."
   },
   "format": "mini",
   "season": {
@@ -31,7 +29,9 @@
       "lx:zusagen",
       "lx:absagen",
       "lx:Weihnachten",
-      "lx:duzen"
+      "lx:duzen",
+      "lx:bleiben",
+      "lx:hier"
     ],
     "chunks": [
       "ch:arbeit:komme-gern",
@@ -41,7 +41,8 @@
       "ch:arbeit:was-heisst-wichteln",
       "ch:arbeit:was-machst-du",
       "ch:arbeit:an-weihnachten",
-      "ch:arbeit:ich-bin-name"
+      "ch:arbeit:ich-bin-name",
+      "ch:arbeit:namen-gezogen"
     ],
     "patterns": [
       "pt:was-heisst",
@@ -62,7 +63,6 @@
       "lx:kaufen"
     ],
     "chunks": [
-      "ch:arbeit:namen-gezogen",
       "ch:arbeit:geschenk-gekauft"
     ]
   },
@@ -82,7 +82,22 @@
       "use_tr": "Şefinin davetini kabul ederken söylediğin kibar cümle.",
       "mistakes_tr": [
         "Für die Einladung denir, für der Einladung denmez."
-      ]
+      ],
+      "alltag_exp": {
+        "anlam_tr": "Teşekkürler, varım!",
+        "ne_zaman_tr": "İş arkadaşının davetini rahat bir dille kabul ederken.",
+        "parcalar": [
+          {
+            "de": "Danke",
+            "tr": "teşekkürler"
+          },
+          {
+            "de": "ich bin dabei",
+            "tr": "varım, katılıyorum"
+          }
+        ],
+        "ipucu_tr": "Şefe kibar biçimi, iş arkadaşına bu kısa biçimi söylersin."
+      }
     },
     {
       "id": "ch:arbeit:muss-absagen",
@@ -98,8 +113,27 @@
       },
       "use_tr": "Bir davete gelemeyeceğini kibarca bildirirken söylersin.",
       "mistakes_tr": [
-        "Ab cümlenin sonuna gider: Ich sage leider ab."
-      ]
+        "**muss** varsa **absagen** bölünmez ve en sona gider."
+      ],
+      "alltag_exp": {
+        "anlam_tr": "O gün maalesef olmuyor.",
+        "ne_zaman_tr": "Bir tarihe rahat bir dille hayır derken.",
+        "parcalar": [
+          {
+            "de": "Da",
+            "tr": "o gün, o zaman"
+          },
+          {
+            "de": "kann ich",
+            "tr": "gelebilirim"
+          },
+          {
+            "de": "leider nicht",
+            "tr": "maalesef değil"
+          }
+        ],
+        "ipucu_tr": "Burada **kommen** söylenmez, **kann ich nicht** gelemem demektir."
+      }
     },
     {
       "id": "ch:arbeit:bescheid-geben",
@@ -222,7 +256,49 @@
       "use_tr": "Wichteln'de isim çektiğini söylerken kullanırsın. Kimi çektiğini söylemezsin.",
       "mistakes_tr": [
         "Ziehen geçmişte gezogen olur, gezieht değil."
-      ]
+      ],
+      "exp": {
+        "anlam_tr": "Ben bir isim çektim bile.",
+        "ne_zaman_tr": "Wichteln'de çekilişi yaptığını söylerken.",
+        "parcalar": [
+          {
+            "de": "Ich habe",
+            "tr": "ben"
+          },
+          {
+            "de": "schon",
+            "tr": "bile, çoktan"
+          },
+          {
+            "de": "einen Namen",
+            "tr": "bir isim"
+          },
+          {
+            "de": "gezogen",
+            "tr": "çektim"
+          }
+        ],
+        "ipucu_tr": "Kimi çektiğini söylemezsin, bu bir sırdır."
+      },
+      "alltag_exp": {
+        "anlam_tr": "Ben çektim bile.",
+        "ne_zaman_tr": "Molada kısa ve rahat söylersin.",
+        "parcalar": [
+          {
+            "de": "Ich hab",
+            "tr": "ben (**ich habe**)"
+          },
+          {
+            "de": "schon",
+            "tr": "bile"
+          },
+          {
+            "de": "gezogen",
+            "tr": "çektim"
+          }
+        ],
+        "ipucu_tr": "Konuşmada **habe** kelimesinin sonundaki **e** düşer, **hab** olur."
+      }
     },
     {
       "id": "ch:arbeit:geschenk-gekauft",
@@ -373,9 +449,9 @@
           "register": "formal"
         },
         {
-          "de": "Entschuldigung, wann und wo war das noch mal?",
-          "tr": "Pardon, ne zaman ve nerede demiştiniz?",
-          "register": "formal"
+          "de": "Entschuldigung, wann war das noch mal?",
+          "tr": "Pardon, ne zaman demiştiniz?",
+          "register": "neutral"
         }
       ]
     },
@@ -388,9 +464,9 @@
           "register": "formal"
         },
         {
-          "de": "Leider muss ich absagen. An dem Abend kann ich nicht.",
-          "tr": "Maalesef katılamayacağım. O akşam olmuyor.",
-          "register": "formal"
+          "de": "Leider muss ich absagen.",
+          "tr": "Maalesef katılamayacağım.",
+          "register": "neutral"
         }
       ]
     },
@@ -403,9 +479,9 @@
           "register": "informal"
         },
         {
-          "de": "Klar, ich bin dabei!",
-          "tr": "Tabii, varım!",
-          "register": "informal"
+          "de": "Ich bin dabei!",
+          "tr": "Varım!",
+          "register": "neutral"
         }
       ]
     },
@@ -495,18 +571,16 @@
     },
     {
       "id": "b05",
-      "prompt_tr": "Nerede demiştiniz? (bir daha sor)",
+      "prompt_tr": "Ben çektim bile (gündelik, kısa).",
       "accepted": [
-        "Wo war das noch mal?",
-        "Entschuldigung, wo ist das noch mal?",
-        "Wo ist die Feier noch mal?",
-        "Können Sie den Ort noch mal sagen?",
-        "Wo war das nochmal?",
-        "Entschuldigung, wo war das noch mal?",
-        "Wo ist das noch mal?",
-        "Wo ist das nochmal?"
+        "Ich hab schon gezogen.",
+        "Ich habe schon gezogen.",
+        "Ich hab schon einen Namen gezogen.",
+        "Ich habe schon einen Namen gezogen.",
+        "Hab schon gezogen."
       ],
-      "pattern": "pt:noch-mal"
+      "pattern": "pt:perfekt-haben",
+      "chunk": "ch:arbeit:namen-gezogen"
     },
     {
       "id": "b06",
@@ -523,29 +597,27 @@
     },
     {
       "id": "b07",
-      "prompt_tr": "18:30'dan itibaren mi? (halb ile sor)",
+      "prompt_tr": "Teşekkürler, varım! (iş arkadaşına, gündelik)",
       "accepted": [
-        "Ab halb sieben?",
-        "Also ab halb sieben?",
-        "Um halb sieben?",
-        "Fängt es um halb sieben an?",
-        "Beginnt es um halb sieben?"
+        "Danke, ich bin dabei!",
+        "Danke, bin dabei!",
+        "Ich bin dabei!",
+        "Klar, ich bin dabei!",
+        "Danke, ich komme gern."
       ],
-      "pattern": "pt:um-uhr"
+      "chunk": "ch:arbeit:komme-gern"
     },
     {
       "id": "b08",
-      "prompt_tr": "18 Aralık cuma, saat yedide.",
+      "prompt_tr": "Burada kalıyorum. Ya sen? (du ile)",
       "accepted": [
-        "Am Freitag, den achtzehnten Dezember, um sieben Uhr.",
-        "Am Freitag, dem 18. Dezember, um sieben.",
-        "Am Freitag, den 18. Dezember, um 19 Uhr.",
-        "Freitag, der achtzehnte Dezember, um sieben Uhr.",
-        "Am 18. Dezember um sieben.",
-        "Am Freitag, dem achtzehnten Dezember, um sieben Uhr.",
-        "Am Freitag, den 18. Dezember, um sieben Uhr."
-      ],
-      "pattern": "pt:um-uhr"
+        "Ich bleibe hier. Und du?",
+        "An Weihnachten bleibe ich hier. Und du?",
+        "Ich bleib hier. Und du?",
+        "Ich bleibe hier. Was machst du an Weihnachten?",
+        "Ich bleibe hier. Und was machst du?",
+        "Ich bleibe an Weihnachten hier. Und du?"
+      ]
     },
     {
       "id": "b09",
@@ -575,18 +647,16 @@
     },
     {
       "id": "b11",
-      "prompt_tr": "Hediyeyi aldın mı bile? (du ile)",
+      "prompt_tr": "İsim çektin mi bile? (du ile)",
       "accepted": [
-        "Hast du schon ein Geschenk gekauft?",
-        "Hast du das Geschenk schon gekauft?",
-        "Hast du schon ein Geschenk?",
-        "Hast du schon was gekauft?",
-        "Hast du schon das Geschenk gekauft?",
-        "Hast du dein Geschenk schon gekauft?",
-        "Hast du schon dein Geschenk gekauft?"
+        "Hast du schon einen Namen gezogen?",
+        "Hast du auch schon einen Namen gezogen?",
+        "Hast du schon gezogen?",
+        "Hast du schon einen Namen?",
+        "Haste schon gezogen?"
       ],
       "pattern": "pt:perfekt-haben",
-      "chunk": "ch:arbeit:geschenk-gekauft"
+      "chunk": "ch:arbeit:namen-gezogen"
     },
     {
       "id": "b12",
@@ -745,12 +815,12 @@
     {
       "id": "d08",
       "k": "order",
-      "de": "schon / Hast / ein Geschenk / gekauft / du / ?",
-      "tr": "Hediyeyi aldın mı bile?",
+      "de": "schon / Hast / einen Namen / gezogen / du / ?",
+      "tr": "Bir isim çektin mi bile?",
       "accepted": [
-        "Hast du schon ein Geschenk gekauft?"
+        "Hast du schon einen Namen gezogen?"
       ],
-      "why_tr": "Soruda hast başta durur, gekauft en sona gider."
+      "why_tr": "Soruda **Hast** başta durur, **gezogen** en sona gider."
     },
     {
       "id": "d09",
@@ -846,14 +916,13 @@
     {
       "id": "d16",
       "k": "tr_de",
-      "tr": "Hediye en fazla ne kadar olabilir?",
+      "tr": "O gün maalesef olmuyor. (gündelik)",
       "accepted": [
-        "Wie viel darf das Geschenk kosten?",
-        "Wie teuer darf das Geschenk sein?",
-        "Was darf das Geschenk kosten?",
-        "Wie viel darf das Geschenk höchstens kosten?",
-        "Wie viel darf das Geschenk maximal kosten?",
-        "Wie teuer darf das Geschenk höchstens sein?"
+        "Da kann ich leider nicht.",
+        "Leider muss ich absagen.",
+        "Da kann ich leider nicht kommen.",
+        "Ich kann leider nicht.",
+        "Da geht's leider nicht."
       ]
     },
     {
@@ -955,18 +1024,17 @@
         },
         {
           "r": "B",
-          "de": "Ja, natürlich.",
-          "tr": "Evet, tabii.",
+          "de": "Ja, gern.",
+          "tr": "Evet, memnuniyetle.",
           "starter": "Ja, …",
           "keywords": [
-            "natürlich"
+            "gern"
           ],
           "hint_tr": "Evet de, vaktin olduğunu söyle.",
           "accepted": [
+            "Ja, gern.",
             "Ja, natürlich.",
             "Ja, klar.",
-            "Ja, gern.",
-            "Ja, natürlich. Worum geht es?",
             "Ja, sicher.",
             "Natürlich."
           ]
@@ -1006,23 +1074,20 @@
         },
         {
           "r": "B",
-          "de": "Ab halb sieben, alles klar. Vielen Dank für die Einladung, ich komme gern.",
-          "tr": "18:30'dan itibaren, tamam. Davetiniz için çok teşekkürler, memnuniyetle gelirim.",
-          "starter": "Ab halb sieben, alles klar. Vielen Dank …",
+          "de": "Vielen Dank für die Einladung, ich komme gern.",
+          "tr": "Davetiniz için çok teşekkürler, memnuniyetle gelirim.",
+          "starter": "Vielen Dank …",
           "keywords": [
-            "halb sieben",
             "Einladung",
             "komme gern"
           ],
-          "hint_tr": "Saati tekrar ederek doğrula. Teşekkür et ve geleceğini söyle.",
+          "hint_tr": "Teşekkür et ve geleceğini söyle.",
           "accepted": [
+            "Vielen Dank für die Einladung, ich komme gern.",
             "Ab halb sieben, alles klar. Vielen Dank für die Einladung, ich komme gern.",
-            "Also Freitag ab halb sieben. Danke, ich komme gern.",
-            "Alles klar, halb sieben. Vielen Dank, ich bin gern dabei.",
-            "Okay, ab halb sieben. Danke für die Einladung, ich komme gerne.",
-            "Freitag, halb sieben. Vielen Dank, ich komme gern.",
-            "Ab halb sieben, alles klar. Vielen Dank für die Einladung, ich komme gerne.",
-            "Ab halb sieben, alles klar. Danke, ich komme gern."
+            "Danke für die Einladung, ich komme gerne.",
+            "Vielen Dank, ich komme gern.",
+            "Freitag, halb sieben. Vielen Dank, ich komme gern."
           ]
         },
         {
@@ -1033,21 +1098,23 @@
         },
         {
           "r": "B",
-          "de": "Mache ich. Was heißt eigentlich „Wichteln“?",
-          "tr": "Yaparım. Bu arada Wichteln ne demek?",
-          "starter": "Mache ich. Was heißt …",
+          "de": "Danke. Was heißt „Wichteln“?",
+          "tr": "Teşekkürler. Wichteln ne demek?",
+          "starter": "Danke. Was heißt …",
           "keywords": [
             "was heißt",
             "Wichteln"
           ],
-          "hint_tr": "Yapacağını söyle. Wichteln'in ne olduğunu sor.",
+          "hint_tr": "Teşekkür et. Wichteln'in ne olduğunu sor.",
           "accepted": [
-            "Mache ich. Was heißt eigentlich „Wichteln“?",
-            "Mach ich. Was heißt Wichteln?",
-            "Okay. Entschuldigung, was ist Wichteln?",
-            "Gut. Was bedeutet Wichteln?",
-            "Mache ich. Und was heißt Wichteln?",
+            "Danke. Was heißt „Wichteln“?",
+            "Danke. Was heißt Wichteln?",
+            "Danke. Was ist Wichteln?",
+            "Danke. Was bedeutet Wichteln?",
+            "Mache ich. Was heißt „Wichteln“?",
             "Mache ich. Was heißt Wichteln?",
+            "Mach ich. Was heißt Wichteln?",
+            "Mache ich. Was heißt eigentlich „Wichteln“?",
             "Mache ich. Was ist Wichteln?"
           ]
         },
@@ -1059,20 +1126,18 @@
         },
         {
           "r": "B",
-          "de": "Gut, dann frage ich ihn. Danke!",
-          "tr": "Peki, o zaman ona sorarım. Teşekkürler!",
-          "starter": "Gut, dann frage ich …",
+          "de": "Vielen Dank!",
+          "tr": "Çok teşekkürler!",
+          "starter": "Vielen …",
           "keywords": [
-            "frage",
-            "ihn"
+            "Dank"
           ],
-          "hint_tr": "Ona soracağını söyle ve teşekkür et.",
+          "hint_tr": "Teşekkür et.",
           "accepted": [
+            "Vielen Dank!",
+            "Danke!",
             "Gut, dann frage ich ihn. Danke!",
-            "Okay, dann frag ich Tobi. Danke!",
-            "Alles klar, ich frage ihn. Vielen Dank!",
-            "Gut, mache ich. Danke schön!",
-            "Gut, dann frage ich Herrn Lechner. Danke!",
+            "Danke schön!",
             "Okay, ich frage ihn. Danke!"
           ]
         }
@@ -1111,52 +1176,25 @@
         },
         {
           "r": "A",
-          "de": "Jeder zieht 'nen Namen und besorgt 'n kleines Geschenk, so bis zehn Euro.",
-          "tr": "Herkes bir isim çeker ve küçük bir hediye alır, on euroya kadar falan.",
+          "de": "Jeder zieht 'nen Namen und besorgt 'n kleines Geschenk, so bis zehn Euro. Keiner weiß, von wem das Geschenk ist.",
+          "tr": "Herkes bir isim çeker ve küçük bir hediye alır, on euroya kadar falan. Hediyenin kimden olduğunu kimse bilmez.",
           "speed": "fast"
         },
         {
           "r": "B",
-          "de": "Und keiner weiß, von wem das Geschenk ist?",
-          "tr": "Ve hediyenin kimden olduğunu kimse bilmiyor mu?",
-          "starter": "Und keiner weiß, …",
+          "de": "Ich bin dabei!",
+          "tr": "Varım!",
+          "starter": "Ich bin …",
           "keywords": [
-            "keiner",
-            "von wem"
+            "dabei"
           ],
-          "hint_tr": "Anladığını kontrol et: hediyenin kimden olduğu gizli mi?",
+          "hint_tr": "Katıldığını söyle.",
           "accepted": [
-            "Und keiner weiß, von wem das Geschenk ist?",
-            "Und das ist geheim?",
-            "Also weiß keiner, von wem das Geschenk ist?",
-            "Und man weiß nicht, von wem das Geschenk ist?",
-            "Und es ist geheim, von wem das Geschenk ist?"
-          ]
-        },
-        {
-          "r": "A",
-          "de": "Genau, das ist ja der Witz. Also, bist du dabei?",
-          "tr": "Aynen, işin eğlencesi de bu. Eee, var mısın?",
-          "speed": "natural"
-        },
-        {
-          "r": "B",
-          "de": "Klar, ich bin dabei! Ich trage mich in die Liste ein.",
-          "tr": "Tabii, varım! Listeye adımı yazarım.",
-          "starter": "Klar, ich bin …",
-          "keywords": [
-            "dabei",
-            "Liste"
-          ],
-          "hint_tr": "Katıldığını söyle. Listeye adını yazacağını ekle.",
-          "accepted": [
-            "Klar, ich bin dabei! Ich trage mich in die Liste ein.",
-            "Ja, ich bin dabei!",
-            "Klar, ich mache mit. Ich trage mich gleich ein.",
-            "Ja, gern! Ich trag mich in die Liste ein.",
-            "Klar, bin dabei!",
+            "Ich bin dabei!",
             "Klar, ich bin dabei!",
-            "Ja, ich mache mit!"
+            "Ja, ich bin dabei!",
+            "Ja, ich mache mit!",
+            "Klar, bin dabei!"
           ]
         },
         {
@@ -1180,9 +1218,7 @@
             "Ich fahre zu meiner Familie. Und du?",
             "Ich bleibe hier. Und du?",
             "An Weihnachten bleibe ich hier. Was machst du?",
-            "Ich fahr heim zu meiner Familie. Und was machst du?",
-            "Ich bleibe hier. Und was machst du?",
-            "Ich fahre zu meiner Familie. Und du, was machst du an Weihnachten?"
+            "Ich fahr heim zu meiner Familie. Und was machst du?"
           ]
         },
         {
@@ -1193,22 +1229,19 @@
         },
         {
           "r": "B",
-          "de": "Klingt super! Und du, Derya?",
-          "tr": "Kulağa süper geliyor! Ya sen, Derya?",
-          "starter": "Klingt …! Und du, …?",
+          "de": "Und du? Was machst du an Weihnachten?",
+          "tr": "Ya sen? Noel'de ne yapıyorsun?",
+          "starter": "Und du? …",
           "keywords": [
-            "klingt",
             "und du"
           ],
-          "hint_tr": "Beğendiğini söyle ve aynı soruyu Derya'ya sor.",
+          "hint_tr": "Aynı soruyu Derya'ya sor.",
           "accepted": [
+            "Und du? Was machst du an Weihnachten?",
             "Klingt super! Und du, Derya?",
-            "Toll! Und was machst du, Derya?",
-            "Schön! Derya, und du?",
-            "Klingt gut! Und du, Derya, was machst du an Weihnachten?",
-            "Super! Und du, Derya?",
-            "Klingt gut! Und du, Derya?",
-            "Klingt super! Und du, Derya, was machst du?"
+            "Und du, Derya?",
+            "Und was machst du an Weihnachten, Derya?",
+            "Schön! Und du, Derya?"
           ]
         },
         {
@@ -1235,22 +1268,19 @@
         },
         {
           "r": "B",
-          "de": "Sehr gut, danke! Das Essen ist super.",
-          "tr": "Çok iyi, teşekkürler! Yemek süper.",
-          "starter": "Sehr gut, danke! Das Essen …",
+          "de": "Vielen Dank für die Einladung!",
+          "tr": "Davetiniz için çok teşekkürler!",
+          "starter": "Vielen Dank …",
           "keywords": [
-            "gut",
-            "Essen"
+            "Einladung"
           ],
-          "hint_tr": "Beğendiğini söyle ve yemeği öv.",
+          "hint_tr": "Kutlamayı beğendiğini teşekkürle göster.",
           "accepted": [
+            "Vielen Dank für die Einladung!",
             "Sehr gut, danke! Das Essen ist super.",
-            "Gut, danke! Das Essen ist sehr lecker.",
             "Sehr gut! Vielen Dank für die Einladung.",
-            "Super, danke! Das Essen ist toll.",
-            "Mir gefällt die Feier sehr gut, danke!",
-            "Sehr gut, danke!",
-            "Sehr gut, danke. Das Essen ist sehr gut."
+            "Gut, danke! Das Essen ist sehr lecker.",
+            "Danke für die Einladung!"
           ]
         },
         {
@@ -1285,22 +1315,19 @@
         },
         {
           "r": "B",
-          "de": "Ich fahre zu meiner Familie. Und was machst du, Stefan?",
-          "tr": "Ailemin yanına gidiyorum. Ya sen ne yapıyorsun, Stefan?",
-          "starter": "Ich fahre … Und was machst du, …?",
+          "de": "Ich fahre zu meiner Familie. Und was machst du?",
+          "tr": "Ailemin yanına gidiyorum. Ya sen ne yapıyorsun?",
+          "starter": "Ich fahre … Und was machst du?",
           "keywords": [
-            "und du",
-            "Stefan"
+            "und du"
           ],
-          "hint_tr": "Planını söyle. Şefe artık du ile ve adıyla geri sor.",
+          "hint_tr": "Planını söyle. Şefe artık du ile geri sor (istersen adıyla: Stefan).",
           "accepted": [
+            "Ich fahre zu meiner Familie. Und was machst du?",
             "Ich fahre zu meiner Familie. Und was machst du, Stefan?",
             "Ich bleibe hier. Und du, Stefan?",
-            "Ich fahre zu meiner Familie. Und du?",
-            "An Weihnachten bleibe ich hier. Was machst du, Stefan?",
-            "Ich fahr heim. Und du, Stefan, was machst du?",
-            "Ich bleibe hier. Und was machst du, Stefan?",
-            "Ich fahre zu meiner Familie. Und du, Stefan?"
+            "An Weihnachten bleibe ich hier. Was machst du?",
+            "Ich bleibe hier. Und was machst du?"
           ]
         },
         {
@@ -1308,50 +1335,6 @@
           "de": "Wir bleiben daheim, ganz ruhig. Endlich mal keine Meetings!",
           "tr": "Biz evde kalıyoruz, sakin sakin. Nihayet toplantı yok!",
           "speed": "natural"
-        },
-        {
-          "r": "B",
-          "de": "Das klingt gut. Schöne Feiertage!",
-          "tr": "Kulağa hoş geliyor. İyi tatiller!",
-          "starter": "Das klingt gut. Schöne …",
-          "keywords": [
-            "klingt",
-            "Feiertage"
-          ],
-          "hint_tr": "Beğendiğini söyle ve iyi tatiller dile.",
-          "accepted": [
-            "Das klingt gut. Schöne Feiertage!",
-            "Klingt gut! Frohe Weihnachten!",
-            "Schön! Dann schöne Feiertage!",
-            "Das klingt super. Frohe Weihnachten!",
-            "Klingt gut. Schöne Feiertage, Stefan!",
-            "Das klingt gut. Frohe Weihnachten!",
-            "Klingt gut. Schöne Feiertage!"
-          ]
-        },
-        {
-          "r": "A",
-          "de": "Echt jetzt? Der Chef duzt dich? Respekt!",
-          "tr": "(Tobi) Ciddi mi? Şef sana du mu diyor? Helal olsun!",
-          "speed": "fast"
-        },
-        {
-          "r": "B",
-          "de": "Ja, seit fünf Minuten!",
-          "tr": "Evet, beş dakikadır!",
-          "starter": "Ja, seit …",
-          "keywords": [
-            "seit"
-          ],
-          "hint_tr": "Evet de. Şakayla, yalnızca beş dakikadır böyle olduğunu ekle.",
-          "accepted": [
-            "Ja, seit fünf Minuten!",
-            "Ja, seit gerade eben!",
-            "Ja, seit heute Abend!",
-            "Ja, seit zwei Minuten!",
-            "Ja, seit heute!",
-            "Ja, seit einer Minute!"
-          ]
         }
       ]
     }
@@ -1441,7 +1424,7 @@
         {
           "r": "Herr Wimmer",
           "de": "Es war ein langes Jahr – vielen Dank für Ihre Arbeit.",
-          "tr": "Uzun bir yıldı; emekleriniz için çok teşekkürler."
+          "tr": "Uzun bir yıldı. Emekleriniz için çok teşekkürler."
         },
         {
           "r": "Herr Wimmer",
@@ -1451,7 +1434,7 @@
         {
           "r": "Herr Wimmer",
           "de": "Nach dem Essen machen wir das Wichteln, das organisiert wieder Herr Lechner.",
-          "tr": "Yemekten sonra Wichteln yapıyoruz; onu yine Herr Lechner organize ediyor."
+          "tr": "Yemekten sonra Wichteln yapıyoruz. Onu yine Herr Lechner organize ediyor."
         },
         {
           "r": "Herr Wimmer",
@@ -1585,16 +1568,15 @@
   "speaking": [
     {
       "task_tr": "Şefin davetine Sie ile cevap ver. Tarihi bir daha sor, sonra teşekkür edip geleceğini söyle.",
-      "model_de": "Entschuldigung, wann war das noch mal? – Freitag ab halb sieben, alles klar. Vielen Dank für die Einladung, ich komme gern.",
+      "model_de": "Entschuldigung, wann war das noch mal? – Vielen Dank für die Einladung, ich komme gern.",
       "hints_de": [
         "Entschuldigung, wann war das noch mal?",
-        "… ab halb sieben, alles klar.",
         "Vielen Dank für die Einladung, …"
       ]
     },
     {
       "task_tr": "Molada bir iş arkadaşına Noel planını sor. Kendi planını da bir cümleyle anlat.",
-      "model_de": "Und, was machst du an Weihnachten? Ich bleibe hier und treffe Freunde.",
+      "model_de": "Und, was machst du an Weihnachten? Ich bleibe hier.",
       "hints_de": [
         "Und, was machst du an Weihnachten?",
         "Ich bleibe … / Ich fahre …"
@@ -1613,11 +1595,9 @@
         "ch:arbeit:komme-gern"
       ],
       "escape_de": [
-        "Wie war das noch mal?",
+        "Wann war das noch mal?",
         "Was heißt das?",
-        "Etwas langsamer, bitte.",
-        "Sag's bitte noch mal.",
-        "Moment, ich überlege kurz."
+        "Entschuldigung, wann war das noch mal?"
       ]
     }
   ],

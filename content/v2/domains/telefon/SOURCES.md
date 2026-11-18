@@ -42,7 +42,8 @@ Bu alandaki olgusal bilgiler yalnızca aşağıdaki kaynaklarla doğrulanmış b
 
 ## Bairisch katmanı
 - "Pfiat Eana!" (resmî vedalaşma) için kaynak bulunamadı → `uncertain`.
-- Güney Almanca gündelik biçimler ("grüß Gott", "Kommen S'") Bairisch katmanında değil, Alltag katmanında ve yutulan ses (reductions) olarak verilmiştir.
+- Güney Almanca gündelik biçimler ("grüß Gott") Bairisch katmanında değil, Alltag katmanında ve yutulan ses (reductions) olarak verilmiştir. PM-032: telefon/01'de "Kommen S'" / "rufen S'" tam biçime (Sie) çevrildi; bu kısaltma önce essen/m1 (ch:essen:mit-karte) ve strategie/01 (ch:strategie:dialekt ipucu) ifade kartlarında gösterilir.
+- Harf kodlama, ifade kartında: Hochdeutsch katmanı DIN 5009:2022 (K wie Köln, A wie Aachen), Alltag katmanı eski isimli biçim (K wie Kaufmann, A wie Anton) — yukarıdaki tablolar (D-062).
 
 ## Kurgusal öğeler
 - Muayenehane adları (Dr. Weber, Dr. Berger, Dr. Yıldız), sekreter adları, saatler ve örnek doğum tarihleri kurgusaldır. "AOK" ve "TK" gerçek yasal sağlık sigortası kurumlarının yaygın kısaltmalarıdır; yalnızca cevap örneği olarak geçer.
