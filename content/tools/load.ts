@@ -229,6 +229,9 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
     // OD-9: yapılandırılmış açıklamalar her zaman; serbest açıklamalar incelenmiş senaryoda hata, taslakta uyarı
     for (const k of s.chunks) for (const [f, e] of [["exp", k.exp], ["alltag_exp", k.alltag_exp]] as const) if (e) for (const x of explanationIssues(e, k.requires)) errors.push(`${file}: ${k.id}.${f}.${x}`);
     if (s.review.status === "reviewed" && s.review.okur !== "passed") errors.push(`${file}: "reviewed" ama okur kontrolü geçmemiş (OD-9.4)`);
+    // İnceleme #39 P1-3: incelenmiş senaryoda her temel ifadenin yapılandırılmış açıklaması (exp) olmalı; taslakta uyarı
+    { const noExp = s.essentials.chunks.filter((id) => !s.chunks.find((k) => k.id === id)?.exp);
+      if (noExp.length) (s.review.status === "reviewed" ? errors : warnings).push(`${file}: temel ifadede exp yok (${noExp.length}): ${noExp.join(", ")}`); }
     // OD-0/OD-7 öğretmeden isteme (PM-032): incelenmiş senaryoda hata, taslakta uyarı (ilk 3 madde örnek)
     { const lxm = new Map(c.lexemes.map((l) => [l.id, l])); const u = untaught(s, lxm, c.scenarios.map((x) => x.data), ptById);
       if (u.length) { if (s.review.status === "reviewed" || opts.strictTeach) for (const x of u) errors.push(`${file}: öğretmeden isteme ${x.item}: ${x.words.join(", ")}`);

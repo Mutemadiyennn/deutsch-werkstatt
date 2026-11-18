@@ -10,7 +10,7 @@
     "status": "reviewed",
     "by": "dilbilimci-ajan",
     "at": "2026-11-18",
-    "notes": "LS-17.0 mini senaryo (Advent), hikâye hafta 2. Dil incelemesi 2026-11-18 KAPANDI (docs/v2/reviews/advent-mini.md); içerik onaylı. Durum yalnızca kalıp kapısı (D-063) yüzünden draft: bu dalda patterns.json'daki temel kalıplar (pt:wie-viel-kostet dahil) henüz draft. Kalıplar reviewed olunca status reviewed yapılır. Fiyatlar örnektir; kaynaklar essen/SOURCES.md.",
+    "notes": "PM-032: yazar → dilbilimci KAPANDI (docs/v2/reviews/pm032-dilbilimci.md) → okur tur 1–3 açık GERİ 0 (docs/v2/reviews/okur/pm032.md)",
     "okur": "passed",
     "okur_at": "2026-11-18"
   },
@@ -30,7 +30,10 @@
       "lx:Pfand",
       "lx:Tasse",
       "lx:kosten",
-      "lx:zurückgeben"
+      "lx:zurückgeben",
+      "lx:zwei",
+      "lx:bar",
+      "lx:zahlen"
     ],
     "chunks": [
       "ch:essen:einen-gluehwein",
@@ -39,7 +42,9 @@
       "ch:essen:was-kostet",
       "ch:essen:was-macht-das",
       "ch:essen:mit-karte",
-      "ch:essen:tasse-zurueck"
+      "ch:essen:tasse-zurueck",
+      "ch:essen:pfand-zurueck",
+      "ch:essen:stimmt-so"
     ],
     "patterns": [
       "pt:ich-moechte",
@@ -52,17 +57,13 @@
     "lexemes": [
       "lx:Stand",
       "lx:Karte",
-      "lx:bar",
       "lx:Senf",
       "lx:Tüte",
       "lx:Semmel",
       "lx:Weihnachtsmarkt",
       "lx:heiß"
     ],
-    "chunks": [
-      "ch:essen:pfand-zurueck",
-      "ch:essen:stimmt-so"
-    ]
+    "chunks": []
   },
   "chunks": [
     {
@@ -82,7 +83,49 @@
       "mistakes_tr": [
         "Stantta einen Glühwein denir, ein Glühwein değil.",
         "İki bardak isterken zwei Glühwein demen yeter."
-      ]
+      ],
+      "alltag_exp": {
+        "anlam_tr": "Bir Glühwein, lütfen.",
+        "ne_zaman_tr": "Stantta kısa ve hızlı sipariş verirken.",
+        "parcalar": [
+          {
+            "de": "Einmal",
+            "tr": "bir tane"
+          },
+          {
+            "de": "Glühwein",
+            "tr": "sıcak şarap"
+          },
+          {
+            "de": "bitte",
+            "tr": "lütfen"
+          }
+        ],
+        "ipucu_tr": "Siparişte **einen** yerine **einmal** demek çok yaygındır."
+      },
+      "exp": {
+        "anlam_tr": "Bir Glühwein istiyorum, lütfen.",
+        "ne_zaman_tr": "Stantta bir Glühwein isterken.",
+        "parcalar": [
+          {
+            "de": "Ich möchte",
+            "tr": "istiyorum"
+          },
+          {
+            "de": "einen",
+            "tr": "bir"
+          },
+          {
+            "de": "Glühwein",
+            "tr": "sıcak şarap"
+          },
+          {
+            "de": "bitte",
+            "tr": "lütfen"
+          }
+        ],
+        "ipucu_tr": "İsterken **einen Glühwein** dersin, **ein Glühwein** demezsin."
+      }
     },
     {
       "id": "ch:essen:was-heisst-schuss",
@@ -99,7 +142,26 @@
       "use_tr": "Satıcının sorusundaki bir kelimeyi anlamayınca böyle sorarsın.",
       "mistakes_tr": [
         "Soruda heißt hemen was kelimesinden sonra gelir: Was heißt das?"
-      ]
+      ],
+      "exp": {
+        "anlam_tr": "Pardon, **mit Schuss** ne demek?",
+        "ne_zaman_tr": "Satıcının sorusundaki bir kelimeyi anlamayınca.",
+        "parcalar": [
+          {
+            "de": "Entschuldigung",
+            "tr": "pardon"
+          },
+          {
+            "de": "was heißt",
+            "tr": "ne demek"
+          },
+          {
+            "de": "mit Schuss",
+            "tr": "ilave içkili"
+          }
+        ],
+        "ipucu_tr": "**mit Schuss** yerine anlamadığın kelimeyi koyarsın."
+      }
     },
     {
       "id": "ch:essen:ohne-schuss",
@@ -115,7 +177,26 @@
       "use_tr": "Satıcı Glühwein'e sert içki ekleyeyim mi diye sorunca istemiyorsan söylersin.",
       "mistakes_tr": [
         "Schuss burada bardağa eklenen biraz sert içkidir, çoğunlukla rom ya da amaretto."
-      ]
+      ],
+      "exp": {
+        "anlam_tr": "İlave içki olmasın, lütfen.",
+        "ne_zaman_tr": "Satıcı sert içki ekleyeyim mi diye sorunca.",
+        "parcalar": [
+          {
+            "de": "Ohne",
+            "tr": "olmadan"
+          },
+          {
+            "de": "Schuss",
+            "tr": "ilave sert içki"
+          },
+          {
+            "de": "bitte",
+            "tr": "lütfen"
+          }
+        ],
+        "ipucu_tr": "**Schuss** bardağa eklenen biraz rom ya da amarettodur."
+      }
     },
     {
       "id": "ch:essen:was-kostet",
@@ -133,7 +214,22 @@
       "use_tr": "Bir şeyin fiyatını sormanın en kısa yolu.",
       "mistakes_tr": [
         "Tek şey için kostet, birden fazla şey için kosten: Was kosten die Mandeln?"
-      ]
+      ],
+      "exp": {
+        "anlam_tr": "Bratwurst ne kadar?",
+        "ne_zaman_tr": "Bir şeyin fiyatını sorarken.",
+        "parcalar": [
+          {
+            "de": "Was kostet",
+            "tr": "ne kadar"
+          },
+          {
+            "de": "die Bratwurst",
+            "tr": "ızgara sosis"
+          }
+        ],
+        "ipucu_tr": "Birden fazla şey için **kosten** dersin: **Was kosten die Mandeln?**"
+      }
     },
     {
       "id": "ch:essen:was-macht-das",
@@ -150,7 +246,22 @@
       "use_tr": "Siparişini bitirince toplam tutarı sorarken kullanırsın.",
       "mistakes_tr": [
         "Burada machen yapmak değil, tutmak demektir: Das macht neun Euro."
-      ]
+      ],
+      "exp": {
+        "anlam_tr": "Toplam ne tutuyor?",
+        "ne_zaman_tr": "Siparişini bitirince toplam tutarı sorarken.",
+        "parcalar": [
+          {
+            "de": "Was macht das",
+            "tr": "ne tutuyor"
+          },
+          {
+            "de": "zusammen",
+            "tr": "hepsi birlikte"
+          }
+        ],
+        "ipucu_tr": "Burada **machen** yapmak değil, tutmak demektir."
+      }
     },
     {
       "id": "ch:essen:mit-karte",
@@ -162,12 +273,50 @@
       "register": "neutral",
       "layers": {
         "hd": "Geht es auch mit Karte?",
-        "alltag": "Geht auch Karte?"
+        "alltag": "Nehmen Sie auch Karte?"
       },
       "use_tr": "Kartla ödeyip ödeyemeyeceğini sorarken söylersin.",
       "mistakes_tr": [
         "Burada Karte banka kartıdır. Aynı kelime lokantada menü anlamına da gelir."
-      ]
+      ],
+      "alltag_exp": {
+        "anlam_tr": "Kart da alıyor musunuz?",
+        "ne_zaman_tr": "Ödemeden önce satıcıya kısa bir soru.",
+        "parcalar": [
+          {
+            "de": "Nehmen Sie",
+            "tr": "alır mısınız"
+          },
+          {
+            "de": "auch",
+            "tr": "de, da"
+          },
+          {
+            "de": "Karte",
+            "tr": "banka kartı"
+          }
+        ],
+        "ipucu_tr": "Güneyde hızlı konuşmada **Sie** kısalır, **S'** gibi duyulur."
+      },
+      "exp": {
+        "anlam_tr": "Kartla da olur mu?",
+        "ne_zaman_tr": "Kartla ödeyip ödeyemeyeceğini sorarken.",
+        "parcalar": [
+          {
+            "de": "Geht es",
+            "tr": "olur mu"
+          },
+          {
+            "de": "auch",
+            "tr": "de, da"
+          },
+          {
+            "de": "mit Karte",
+            "tr": "kartla"
+          }
+        ],
+        "ipucu_tr": "Burada **Karte** banka kartıdır."
+      }
     },
     {
       "id": "ch:essen:tasse-zurueck",
@@ -187,7 +336,45 @@
       "mistakes_tr": [
         "Zurück cümlenin sonuna gider: Ich gebe die Tasse zurück.",
         "Möchte varsa zurückgeben bitişik yazılır ve sonda durur: Ich möchte die Tasse zurückgeben."
-      ]
+      ],
+      "alltag_exp": {
+        "anlam_tr": "Bardağı geri getiriyorum.",
+        "ne_zaman_tr": "Bardağı standa uzatırken kısa söylersin.",
+        "parcalar": [
+          {
+            "de": "Ich bring",
+            "tr": "getiriyorum (**ich bringe**)"
+          },
+          {
+            "de": "die Tasse",
+            "tr": "bardağı"
+          },
+          {
+            "de": "zurück",
+            "tr": "geri"
+          }
+        ],
+        "ipucu_tr": "Konuşmada **bringe** kelimesinin sonundaki **e** düşer, **bring** olur."
+      },
+      "exp": {
+        "anlam_tr": "Bardağı geri vermek istiyorum.",
+        "ne_zaman_tr": "İçtikten sonra bardağı standa geri verirken.",
+        "parcalar": [
+          {
+            "de": "Ich möchte",
+            "tr": "istiyorum"
+          },
+          {
+            "de": "die Tasse",
+            "tr": "bardağı"
+          },
+          {
+            "de": "zurückgeben",
+            "tr": "geri vermek"
+          }
+        ],
+        "ipucu_tr": "**möchte** varsa **zurückgeben** bitişik kalır ve sona gider."
+      }
     },
     {
       "id": "ch:essen:pfand-zurueck",
@@ -204,7 +391,44 @@
       "use_tr": "Bardağı geri verirken depozitonu istemek için sorarsın.",
       "mistakes_tr": [
         "Doğrusu das Pfand, der Pfand değil."
-      ]
+      ],
+      "exp": {
+        "anlam_tr": "Depozitoyu geri alabilir miyim?",
+        "ne_zaman_tr": "Bardağı geri verip paranı isterken.",
+        "parcalar": [
+          {
+            "de": "Bekomme ich",
+            "tr": "alır mıyım"
+          },
+          {
+            "de": "das Pfand",
+            "tr": "depozitoyu"
+          },
+          {
+            "de": "zurück",
+            "tr": "geri"
+          }
+        ]
+      },
+      "alltag_exp": {
+        "anlam_tr": "Depozitoyu geri alıyor muyum?",
+        "ne_zaman_tr": "Aynı soru, stantta rahat biçimde.",
+        "parcalar": [
+          {
+            "de": "Krieg ich",
+            "tr": "alır mıyım (**bekomme ich**)"
+          },
+          {
+            "de": "das Pfand",
+            "tr": "depozitoyu"
+          },
+          {
+            "de": "zurück",
+            "tr": "geri"
+          }
+        ],
+        "ipucu_tr": "**kriegen** gündelik dilde **bekommen** ile aynı anlama gelir."
+      }
     },
     {
       "id": "ch:essen:stimmt-so",
@@ -218,7 +442,36 @@
       "use_tr": "Para üstünü bahşiş olarak bırakmak istediğinde söylersin.",
       "mistakes_tr": [
         "Stantta bahşiş vermek zorunlu değildir."
-      ]
+      ],
+      "exp": {
+        "anlam_tr": "Üstü kalsın.",
+        "ne_zaman_tr": "Parayı verirken, para üstünü bahşiş bırakınca.",
+        "parcalar": [
+          {
+            "de": "Stimmt",
+            "tr": "doğru, tamam"
+          },
+          {
+            "de": "so",
+            "tr": "böyle"
+          }
+        ]
+      },
+      "alltag_exp": {
+        "anlam_tr": "Üstü kalsın, böyle iyi.",
+        "ne_zaman_tr": "Para üstünü bahşiş bırakırken, Bavyera'da çok duyarsın.",
+        "parcalar": [
+          {
+            "de": "Passt",
+            "tr": "uyar, tamam"
+          },
+          {
+            "de": "so",
+            "tr": "böyle"
+          }
+        ],
+        "ipucu_tr": "İki biçim de kibar, ikisi de para üstü istemiyorum demektir."
+      }
     }
   ],
   "otherSide": [
@@ -330,7 +583,7 @@
     {
       "id": "o12",
       "de": "Die da ist vom Stand nebenan – die nehm ich leider nicht.",
-      "tr": "Şu bardak yandaki standın; onu maalesef alamıyorum.",
+      "tr": "Şu bardak yandaki standın. Onu maalesef alamıyorum.",
       "layer": "alltag",
       "speed": "natural",
       "reductions": [
@@ -390,8 +643,8 @@
       "to": "o04",
       "options": [
         {
-          "de": "Pfand? Für die Tassen?",
-          "tr": "Depozito mu? Bardaklar için mi?",
+          "de": "Entschuldigung, was heißt Pfand?",
+          "tr": "Pardon, Pfand ne demek?",
           "register": "neutral"
         },
         {
@@ -405,13 +658,13 @@
       "to": "o07",
       "options": [
         {
-          "de": "Kein Problem, ich zahle bar.",
-          "tr": "Sorun değil, nakit öderim.",
+          "de": "Ich zahle bar.",
+          "tr": "Nakit öderim.",
           "register": "neutral"
         },
         {
-          "de": "Dann nehme ich noch eine Tüte Mandeln.",
-          "tr": "O zaman bir paket badem de alayım.",
+          "de": "Was kosten die Mandeln?",
+          "tr": "Bademler ne kadar?",
           "register": "neutral"
         }
       ]
@@ -420,13 +673,13 @@
       "to": "o12",
       "options": [
         {
-          "de": "Ach so. Wo ist der Stand?",
-          "tr": "Anladım. Stant nerede?",
+          "de": "Entschuldigung, was heißt das?",
+          "tr": "Pardon, bu ne demek?",
           "register": "neutral"
         },
         {
-          "de": "Okay, dann bekomme ich sechs Euro zurück, oder?",
-          "tr": "Tamam, o zaman altı euro geri alırım, değil mi?",
+          "de": "Bekomme ich das Pfand zurück?",
+          "tr": "Depozitoyu geri alabilir miyim?",
           "register": "neutral"
         }
       ]
@@ -509,14 +762,13 @@
     },
     {
       "id": "b06",
-      "prompt_tr": "Kavrulmuş bademler ne kadar?",
+      "prompt_tr": "(Kavrulmuş) bademler ne kadar?",
       "accepted": [
-        "Was kosten die gebrannten Mandeln?",
-        "Wie viel kosten die gebrannten Mandeln?",
         "Was kosten die Mandeln?",
         "Wie viel kosten die Mandeln?",
+        "Was kosten die gebrannten Mandeln?",
+        "Wie viel kosten die gebrannten Mandeln?",
         "Und die Mandeln, was kosten die?",
-        "Was kosten gebrannte Mandeln?",
         "Wie teuer sind die Mandeln?"
       ],
       "pattern": "pt:wie-viel-kostet"
@@ -550,7 +802,9 @@
         "Geht auch mit Karte?",
         "Kann ich mit Karte bezahlen?",
         "Kann ich auch mit Karte zahlen?",
-        "Geht auch Kartenzahlung?"
+        "Geht auch Kartenzahlung?",
+        "Nehmen Sie auch Karte?",
+        "Nehmen S' auch Karte?"
       ],
       "pattern": "pt:geht-es-auch",
       "chunk": "ch:essen:mit-karte"
@@ -587,16 +841,17 @@
     },
     {
       "id": "b11",
-      "prompt_tr": "Bardağın depozitosu var mı?",
+      "prompt_tr": "Depozito ne kadar?",
       "accepted": [
-        "Ist da Pfand drauf?",
-        "Ist auf der Tasse Pfand?",
-        "Gibt es Pfand auf die Tasse?",
-        "Kostet die Tasse Pfand?",
-        "Muss ich für die Tasse Pfand zahlen?",
-        "Ist auf der Tasse Pfand drauf?",
-        "Gibt es Pfand für die Tasse?"
-      ]
+        "Was kostet das Pfand?",
+        "Wie viel kostet das Pfand?",
+        "Wie viel Pfand kostet die Tasse?",
+        "Was kostet das Pfand für die Tasse?",
+        "Wie hoch ist das Pfand?",
+        "Wie viel Pfand ist auf der Tasse?",
+        "Wie viel ist das Pfand?"
+      ],
+      "pattern": "pt:wie-viel-kostet"
     },
     {
       "id": "b12",
@@ -624,47 +879,40 @@
     },
     {
       "id": "b14",
-      "prompt_tr": "Bardağı saklamak istiyorum.",
+      "prompt_tr": "Bardağı geri getiriyorum (gündelik, kısa).",
       "accepted": [
-        "Ich möchte die Tasse behalten.",
-        "Ich behalte die Tasse.",
-        "Die Tasse möchte ich behalten.",
-        "Kann ich die Tasse behalten?",
-        "Ich will die Tasse behalten.",
-        "Ich möchte die Tasse gern behalten.",
-        "Ich möchte die Tasse gerne behalten."
+        "Ich bring die Tasse zurück.",
+        "Ich bringe die Tasse zurück.",
+        "Ich möchte die Tasse zurückgeben.",
+        "Ich gebe die Tasse zurück.",
+        "Ich bring die Tasse wieder."
       ],
-      "pattern": "pt:ich-moechte"
+      "chunk": "ch:essen:tasse-zurueck"
     },
     {
       "id": "b15",
-      "prompt_tr": "Hardallı bir Bratwurst, lütfen.",
+      "prompt_tr": "Bir Bratwurst, lütfen (gündelik: einmal ile).",
       "accepted": [
-        "Eine Bratwurst mit Senf, bitte.",
+        "Einmal Bratwurst, bitte.",
+        "Eine Bratwurst, bitte.",
         "Einmal Bratwurst mit Senf, bitte.",
-        "Ich möchte eine Bratwurst mit Senf.",
-        "Ich hätte gern eine Bratwurst mit Senf.",
-        "Ich hätte gerne eine Bratwurst mit Senf.",
-        "Ich möchte eine Bratwurst mit Senf, bitte."
+        "Ich möchte eine Bratwurst, bitte.",
+        "Ich hätte gern eine Bratwurst."
       ],
-      "pattern": "pt:ich-moechte"
+      "pattern": "pt:ich-moechte",
+      "chunk": "ch:essen:einen-gluehwein"
     },
     {
       "id": "b16",
-      "prompt_tr": "Fiyat neydi? (bir daha sor)",
+      "prompt_tr": "Satıcı Pfand dedi, anlamadın. Pardon de, ne demek olduğunu sor.",
       "accepted": [
-        "Wie viel war das noch mal?",
-        "Wie war der Preis noch mal?",
-        "Was kostet das noch mal?",
-        "Können Sie den Preis noch mal sagen?",
-        "Wie viel kostet das noch mal?",
-        "Wie viel war das nochmal?",
-        "Was kostet das nochmal?",
-        "Wie viel kostet das nochmal?",
-        "Was macht das noch mal?",
-        "Wie viel war das noch einmal?"
+        "Entschuldigung, was heißt Pfand?",
+        "Was heißt Pfand?",
+        "Pfand – was heißt das?",
+        "Entschuldigung, was bedeutet Pfand?",
+        "Was ist Pfand?"
       ],
-      "pattern": "pt:noch-mal"
+      "pattern": "pt:was-heisst"
     }
   ],
   "drills": [
@@ -729,8 +977,8 @@
     {
       "id": "d05",
       "k": "gap",
-      "de": "Kein Problem, ich zahle ___.",
-      "tr": "Sorun değil, nakit öderim.",
+      "de": "Ich zahle ___.",
+      "tr": "Nakit ödüyorum.",
       "accepted": [
         "bar"
       ],
@@ -739,7 +987,7 @@
         "Pfand",
         "Tasse"
       ],
-      "why_tr": "Bar zahlen nakit ödemek demektir."
+      "why_tr": "**bar zahlen** nakit ödemek demektir."
     },
     {
       "id": "d06",
@@ -802,31 +1050,29 @@
     {
       "id": "d11",
       "k": "guided_response",
-      "situation_tr": "Satıcı yalnızca nakit aldığını söylüyor. Sorun olmadığını söyle, nakit öde.",
+      "situation_tr": "Satıcı yalnızca nakit aldığını söylüyor. Nakit ödeyeceğini söyle.",
       "prompt_de": "Leider nur bar, gell?",
       "accepted": [
+        "Ich zahle bar.",
+        "Ich bezahle bar.",
         "Kein Problem, ich zahle bar.",
         "Okay, dann zahle ich bar.",
-        "Kein Problem, ich habe Bargeld.",
         "Gut, ich zahle bar.",
-        "Kein Problem, ich bezahle bar.",
-        "Kein Problem, dann zahle ich bar.",
-        "Okay, ich zahle bar.",
-        "Kein Problem, ich zahl bar."
+        "Ich zahl bar."
       ]
     },
     {
       "id": "d12",
       "k": "tr_de",
-      "tr": "Bardağın depozitosu var mı?",
+      "tr": "Bardağın depozitosu ne kadar?",
       "accepted": [
-        "Ist da Pfand drauf?",
-        "Ist auf der Tasse Pfand?",
-        "Gibt es Pfand auf die Tasse?",
-        "Kostet die Tasse Pfand?",
-        "Muss ich für die Tasse Pfand zahlen?",
-        "Ist auf der Tasse Pfand drauf?",
-        "Gibt es Pfand für die Tasse?"
+        "Was kostet das Pfand?",
+        "Wie viel kostet das Pfand?",
+        "Wie viel Pfand kostet die Tasse?",
+        "Was kostet das Pfand für die Tasse?",
+        "Wie hoch ist das Pfand?",
+        "Wie viel Pfand ist auf der Tasse?",
+        "Wie viel ist das Pfand?"
       ]
     },
     {
@@ -855,7 +1101,9 @@
         "Kann ich mit Karte bezahlen?",
         "Kann ich auch mit Karte zahlen?",
         "Geht auch mit Karte?",
-        "Geht auch Kartenzahlung?"
+        "Geht auch Kartenzahlung?",
+        "Nehmen Sie auch Karte?",
+        "Nehmen S' auch Karte?"
       ]
     },
     {
@@ -908,16 +1156,15 @@
       "k": "listen_and_respond",
       "audio_de": "Die da ist vom Stand nebenan – die nehm ich leider nicht.",
       "speed": "natural",
-      "situation_tr": "Bardağı nereye götürmen gerektiğini sor.",
+      "situation_tr": "nebenan kelimesini anlamadın. Pardon de, ne demek olduğunu sor.",
       "accepted": [
-        "Wo ist der Stand nebenan?",
-        "Wo kann ich die Tasse zurückgeben?",
-        "Wohin muss ich die Tasse bringen?",
-        "Und wo ist der Stand?",
-        "Welcher Stand ist das?",
-        "Wo ist der Stand?",
-        "Wo ist der andere Stand?",
-        "Wo muss ich die Tasse abgeben?"
+        "Entschuldigung, was heißt das?",
+        "Entschuldigung, was heißt nebenan?",
+        "Was heißt nebenan?",
+        "Nebenan – was heißt das?",
+        "Was heißt das?",
+        "Entschuldigung, was bedeutet nebenan?",
+        "Was bedeutet nebenan?"
       ]
     },
     {
@@ -963,23 +1210,20 @@
         },
         {
           "r": "B",
-          "de": "Grüß Gott! Zwei Glühwein und einen Kinderpunsch, bitte.",
-          "tr": "Merhaba! İki Glühwein ve bir Kinderpunsch, lütfen.",
-          "starter": "Grüß Gott! Zwei …",
+          "de": "Zwei Glühwein und einen Kinderpunsch, bitte.",
+          "tr": "İki Glühwein ve bir Kinderpunsch, lütfen.",
+          "starter": "Zwei …",
           "keywords": [
             "Glühwein",
             "Kinderpunsch"
           ],
-          "hint_tr": "Selam ver. İki Glühwein ve bir Kinderpunsch iste.",
+          "hint_tr": "İki Glühwein ve bir Kinderpunsch iste.",
           "accepted": [
-            "Grüß Gott! Zwei Glühwein und einen Kinderpunsch, bitte.",
             "Zwei Glühwein und einen Kinderpunsch, bitte.",
-            "Hallo, zweimal Glühwein und einmal Kinderpunsch, bitte.",
-            "Grüß Gott, ich möchte zwei Glühwein und einen Kinderpunsch.",
-            "Ich hätte gern zwei Glühwein und einen Kinderpunsch.",
-            "Hallo, zwei Glühwein und einen Kinderpunsch, bitte.",
-            "Guten Abend, zwei Glühwein und einen Kinderpunsch, bitte.",
-            "Ich hätte gerne zwei Glühwein und einen Kinderpunsch."
+            "Grüß Gott! Zwei Glühwein und einen Kinderpunsch, bitte.",
+            "Ich möchte zwei Glühwein und einen Kinderpunsch.",
+            "Zweimal Glühwein und einmal Kinderpunsch, bitte.",
+            "Ich hätte gern zwei Glühwein und einen Kinderpunsch."
           ]
         },
         {
@@ -1016,22 +1260,19 @@
         },
         {
           "r": "B",
-          "de": "Ah, okay. Ohne Schuss, bitte.",
-          "tr": "Anladım. İlave içki olmasın, lütfen.",
-          "starter": "Ah, okay. Ohne …",
+          "de": "Ohne Schuss, bitte.",
+          "tr": "İlave içki olmasın, lütfen.",
+          "starter": "Ohne …",
           "keywords": [
             "ohne"
           ],
           "hint_tr": "İlave içki istemediğini söyle.",
           "accepted": [
-            "Ah, okay. Ohne Schuss, bitte.",
-            "Ohne, bitte.",
-            "Okay, dann ohne Schuss.",
             "Ohne Schuss, bitte.",
+            "Ohne, bitte.",
+            "Ah, okay. Ohne Schuss, bitte.",
             "Dann lieber ohne.",
-            "Ohne.",
-            "Ohne, danke.",
-            "Okay, ohne Schuss, bitte."
+            "Ohne, danke."
           ]
         },
         {
@@ -1042,20 +1283,19 @@
         },
         {
           "r": "B",
-          "de": "Pfand? Für die Tassen?",
-          "tr": "Depozito mu? Bardaklar için mi?",
-          "starter": "Pfand? Für …",
+          "de": "Entschuldigung, was heißt Pfand?",
+          "tr": "Pardon, Pfand ne demek?",
+          "starter": "Entschuldigung, was heißt …",
           "keywords": [
-            "Pfand",
-            "Tassen"
+            "was heißt",
+            "Pfand"
           ],
-          "hint_tr": "Depozitonun bardaklar için mi olduğunu sor.",
+          "hint_tr": "Anlamadığın kelimeyi tekrar et ve ne demek olduğunu sor.",
           "accepted": [
-            "Pfand? Für die Tassen?",
-            "Ist das Pfand für die Tassen?",
+            "Entschuldigung, was heißt Pfand?",
             "Was heißt Pfand?",
-            "Neun Euro Pfand? Für die Tassen?",
-            "Pfand? Was ist das?",
+            "Pfand? Für die Tassen?",
+            "Pfand – was heißt das?",
             "Was ist Pfand?"
           ]
         },
@@ -1067,22 +1307,20 @@
         },
         {
           "r": "B",
-          "de": "Alles klar. Geht es auch mit Karte?",
-          "tr": "Tamam. Kartla da olur mu?",
-          "starter": "Alles klar. Geht es …",
+          "de": "Geht es auch mit Karte?",
+          "tr": "Kartla da olur mu?",
+          "starter": "Geht es …",
           "keywords": [
             "Karte"
           ],
           "hint_tr": "Kartla ödeyip ödeyemeyeceğini sor.",
           "accepted": [
-            "Alles klar. Geht es auch mit Karte?",
-            "Okay. Kann ich mit Karte zahlen?",
-            "Geht's auch mit Karte?",
-            "Alles klar. Geht auch Karte?",
-            "Gut. Kann ich auch mit Karte bezahlen?",
             "Geht es auch mit Karte?",
+            "Nehmen S' auch Karte?",
+            "Alles klar. Geht es auch mit Karte?",
+            "Geht's auch mit Karte?",
             "Kann ich mit Karte zahlen?",
-            "Kann ich mit Karte bezahlen?"
+            "Nehmen Sie auch Karte?"
           ]
         },
         {
@@ -1093,23 +1331,19 @@
         },
         {
           "r": "B",
-          "de": "Kein Problem, ich zahle bar. Hier sind fünfundzwanzig Euro.",
-          "tr": "Sorun değil, nakit öderim. Buyurun, yirmi beş euro.",
-          "starter": "Kein Problem, ich zahle …",
+          "de": "Ich zahle bar.",
+          "tr": "Nakit öderim.",
+          "starter": "Ich zahle …",
           "keywords": [
-            "bar",
-            "fünfundzwanzig"
+            "bar"
           ],
-          "hint_tr": "Nakit ödeyeceğini söyle ve 25 euro uzat.",
+          "hint_tr": "Nakit ödeyeceğini söyle.",
           "accepted": [
-            "Kein Problem, ich zahle bar. Hier sind fünfundzwanzig Euro.",
-            "Okay, dann bar. Hier, fünfundzwanzig Euro.",
-            "Kein Problem. Hier sind 25 Euro.",
-            "Gut, ich zahle bar. Bitte, fünfundzwanzig Euro.",
-            "Kein Problem, ich habe Bargeld. Hier sind 25 Euro.",
+            "Ich zahle bar.",
             "Kein Problem, ich zahle bar.",
-            "Kein Problem, dann zahle ich bar.",
-            "Okay, ich zahle bar. Hier sind fünfundzwanzig Euro."
+            "Okay, dann bar.",
+            "Kein Problem, ich zahle bar. Hier sind fünfundzwanzig Euro.",
+            "Gut, ich zahle bar."
           ]
         },
         {
@@ -1176,103 +1410,72 @@
         {
           "r": "A",
           "de": "Moment … Die zwei sind von uns. Die da ist vom Stand nebenan – die nehm ich leider nicht.",
-          "tr": "Bir saniye… Şu ikisi bizim. Şu yandaki standın; onu maalesef alamıyorum.",
+          "tr": "Bir saniye. Şu ikisi bizim. Şu yandaki standın, onu maalesef alamıyorum.",
           "speed": "natural"
         },
         {
           "r": "B",
-          "de": "Ach so. Wo ist der Stand nebenan?",
-          "tr": "Anladım. Yandaki stant nerede?",
-          "starter": "Ach so. Wo ist …",
+          "de": "Entschuldigung, was heißt das?",
+          "tr": "Pardon, bu ne demek?",
+          "starter": "Entschuldigung, was heißt …",
           "keywords": [
-            "wo",
-            "Stand"
+            "was heißt",
+            "das"
           ],
-          "hint_tr": "Diğer standın nerede olduğunu sor.",
+          "hint_tr": "Anlamadığın kelimeyi sor.",
           "accepted": [
-            "Ach so. Wo ist der Stand nebenan?",
-            "Ach so. Und wo ist der Stand?",
-            "Okay. Wohin muss ich die Tasse bringen?",
-            "Ach so. Wo kann ich die Tasse zurückgeben?",
-            "Und wo ist der andere Stand?",
-            "Ach so. Wo ist der Stand?",
-            "Wo ist der Stand nebenan?"
+            "Entschuldigung, was heißt das?",
+            "Entschuldigung, was heißt nebenan?",
+            "Was heißt nebenan?",
+            "Nebenan – was heißt das?",
+            "Was bedeutet nebenan?"
           ]
         },
         {
           "r": "A",
-          "de": "Gleich da drüben, der Punschstand mit den Sternen.",
-          "tr": "Hemen şurada, yıldızlı punç standı.",
-          "speed": "natural"
+          "de": "Nebenan, also gleich da drüben: der Punschstand mit den Sternen.",
+          "tr": "Nebenan yani hemen şurada: yıldızlı punç standı.",
+          "speed": "normal"
         },
         {
           "r": "B",
-          "de": "Danke. Und kann ich eine Tasse behalten? Die ist so schön.",
-          "tr": "Teşekkürler. Bir bardağı saklayabilir miyim? Çok güzel.",
-          "starter": "Danke. Und kann ich …",
+          "de": "Danke. Bekomme ich das Pfand zurück?",
+          "tr": "Teşekkürler. Depozitoyu geri alabilir miyim?",
+          "starter": "Danke. Bekomme ich …",
           "keywords": [
-            "Tasse",
-            "behalten"
-          ],
-          "hint_tr": "Bir bardağı hatıra olarak saklayıp saklayamayacağını sor.",
-          "accepted": [
-            "Danke. Und kann ich eine Tasse behalten? Die ist so schön.",
-            "Kann ich eine Tasse behalten?",
-            "Darf ich eine Tasse behalten?",
-            "Danke. Ich möchte eine Tasse behalten, geht das?",
-            "Kann ich die eine Tasse behalten?",
-            "Danke. Kann ich eine Tasse behalten?",
-            "Danke. Darf ich eine Tasse behalten?"
-          ]
-        },
-        {
-          "r": "A",
-          "de": "Klar. Dann bleiben die drei Euro halt bei uns.",
-          "tr": "Tabii. O zaman o üç euro bizde kalır, o kadar.",
-          "speed": "natural"
-        },
-        {
-          "r": "B",
-          "de": "Okay. Dann bekomme ich drei Euro zurück, oder?",
-          "tr": "Tamam. O zaman üç euro geri alırım, değil mi?",
-          "starter": "Okay. Dann bekomme ich …",
-          "keywords": [
-            "drei Euro",
+            "Pfand",
             "zurück"
           ],
-          "hint_tr": "Kaç euro geri alacağını doğrula.",
+          "hint_tr": "Teşekkür et ve iki bardağın depozitosunu iste.",
           "accepted": [
-            "Okay. Dann bekomme ich drei Euro zurück, oder?",
-            "Dann krieg ich drei Euro zurück, oder?",
-            "Also drei Euro zurück, richtig?",
-            "Gut, dann bekomme ich drei Euro zurück.",
-            "Okay, also drei Euro Pfand zurück?",
-            "Dann bekomme ich drei Euro zurück, oder?",
-            "Okay. Dann kriege ich drei Euro zurück, oder?"
+            "Danke. Bekomme ich das Pfand zurück?",
+            "Bekomme ich das Pfand zurück?",
+            "Danke. Krieg ich das Pfand zurück?",
+            "Danke. Und das Pfand?",
+            "Danke. Kann ich das Pfand zurückbekommen?"
           ]
         },
         {
           "r": "A",
-          "de": "Genau. Bitte schön, drei Euro.",
-          "tr": "Aynen. Buyurun, üç euro.",
+          "de": "Klar, für die zwei Tassen sechs Euro. Bitte schön, und schönen Abend noch!",
+          "tr": "Tabii, iki bardak için altı euro. Buyurun, iyi akşamlar!",
           "speed": "natural"
         },
         {
           "r": "B",
-          "de": "Danke schön! Schönen Abend noch!",
-          "tr": "Çok teşekkürler! İyi akşamlar!",
-          "starter": "Danke schön! Schönen …",
+          "de": "Danke, Ihnen auch!",
+          "tr": "Teşekkürler, size de!",
+          "starter": "Danke, …",
           "keywords": [
-            "Abend"
+            "Ihnen auch"
           ],
-          "hint_tr": "Teşekkür et ve iyi akşamlar dile.",
+          "hint_tr": "Teşekkür et ve iyi dileği ona da söyle.",
           "accepted": [
-            "Danke schön! Schönen Abend noch!",
-            "Vielen Dank! Schönen Abend!",
-            "Danke, schönen Abend noch!",
-            "Danke! Einen schönen Abend noch!",
-            "Danke schön! Schönen Abend!",
-            "Vielen Dank! Schönen Abend noch!"
+            "Danke, Ihnen auch!",
+            "Danke schön, Ihnen auch!",
+            "Vielen Dank, gleichfalls!",
+            "Danke, gleichfalls!",
+            "Danke schön! Schönen Abend noch!"
           ]
         }
       ]
@@ -1293,48 +1496,43 @@
         },
         {
           "r": "B",
-          "de": "Eine Bratwurst mit Senf, bitte.",
-          "tr": "Hardallı bir Bratwurst, lütfen.",
+          "de": "Eine Bratwurst, bitte.",
+          "tr": "Bir Bratwurst, lütfen.",
           "starter": "Eine Bratwurst …",
           "keywords": [
-            "Bratwurst",
-            "Senf"
+            "Bratwurst"
           ],
-          "hint_tr": "Hardallı bir Bratwurst iste.",
+          "hint_tr": "Bir Bratwurst iste.",
           "accepted": [
+            "Eine Bratwurst, bitte.",
+            "Einmal Bratwurst, bitte.",
             "Eine Bratwurst mit Senf, bitte.",
-            "Einmal Bratwurst mit Senf, bitte.",
-            "Ich hätte gern eine Bratwurst mit Senf.",
-            "Ich möchte eine Bratwurst mit Senf, bitte.",
-            "Grüß Gott, eine Bratwurst mit Senf, bitte.",
-            "Ich hätte gerne eine Bratwurst mit Senf.",
-            "Eine Bratwurst mit Senf."
+            "Ich möchte eine Bratwurst, bitte.",
+            "Ich hätte gern eine Bratwurst."
           ]
         },
         {
           "r": "A",
-          "de": "In der Semmel?",
-          "tr": "Ekmeğin içinde mi?",
+          "de": "Mit Senf? In der Semmel?",
+          "tr": "Hardallı mı? Ekmeğin içinde mi?",
           "speed": "fast"
         },
         {
           "r": "B",
-          "de": "Ja, gern. Und was kosten die gebrannten Mandeln?",
-          "tr": "Evet, lütfen. Peki kavrulmuş bademler ne kadar?",
-          "starter": "Ja, gern. Und was kosten …",
+          "de": "Ja, bitte. Und was kosten die Mandeln?",
+          "tr": "Evet, lütfen. Peki bademler ne kadar?",
+          "starter": "Ja, bitte. Und was kosten …",
           "keywords": [
             "kosten",
             "Mandeln"
           ],
           "hint_tr": "Evet de ve bademlerin fiyatını sor.",
           "accepted": [
+            "Ja, bitte. Und was kosten die Mandeln?",
             "Ja, gern. Und was kosten die gebrannten Mandeln?",
+            "Ja. Und wie viel kosten die Mandeln?",
             "Ja, bitte. Was kosten die Mandeln?",
-            "Ja. Und wie viel kosten die gebrannten Mandeln?",
-            "Gern. Und die Mandeln, was kosten die?",
-            "Ja, gerne. Was kosten die gebrannten Mandeln?",
-            "Ja, bitte. Und was kosten die gebrannten Mandeln?",
-            "Ja, gerne. Und was kosten die Mandeln?"
+            "Gern. Und die Mandeln, was kosten die?"
           ]
         },
         {
@@ -1345,28 +1543,26 @@
         },
         {
           "r": "B",
-          "de": "Dann eine kleine Tüte, bitte. Was macht das zusammen?",
-          "tr": "O zaman küçük bir paket, lütfen. Toplam ne tutuyor?",
-          "starter": "Dann eine kleine …",
+          "de": "Einmal Mandeln, bitte. Was macht das zusammen?",
+          "tr": "Bir paket badem, lütfen. Toplam ne tutuyor?",
+          "starter": "Einmal Mandeln …",
           "keywords": [
-            "kleine Tüte",
+            "Mandeln",
             "zusammen"
           ],
-          "hint_tr": "Küçük paketi seç ve toplamı sor.",
+          "hint_tr": "Bir paket badem iste ve toplamı sor.",
           "accepted": [
+            "Einmal Mandeln, bitte. Was macht das zusammen?",
             "Dann eine kleine Tüte, bitte. Was macht das zusammen?",
             "Eine kleine Tüte, bitte. Was macht das?",
-            "Dann die kleine Tüte. Was bekommen Sie?",
-            "Ich nehme eine kleine Tüte. Was macht das zusammen?",
-            "Eine kleine, bitte. Wie viel macht das zusammen?",
-            "Dann eine kleine Tüte, bitte. Was macht das?",
-            "Eine kleine Tüte, bitte. Was macht das zusammen?"
+            "Einmal Mandeln, bitte. Was macht das?",
+            "Ich nehme eine kleine Tüte. Was macht das zusammen?"
           ]
         },
         {
           "r": "A",
-          "de": "Bratwurst fünf, Mandeln vier – macht neun Euro.",
-          "tr": "Bratwurst beş, badem dört – dokuz euro.",
+          "de": "Die kleine Tüte? Bratwurst fünf, Mandeln vier – macht neun Euro.",
+          "tr": "Küçük paket mi? Bratwurst beş, badem dört – dokuz euro.",
           "speed": "fast"
         },
         {
@@ -1396,23 +1592,20 @@
         },
         {
           "r": "B",
-          "de": "Kein Problem, dann zahle ich bar. Hier sind zehn Euro – stimmt so.",
-          "tr": "Sorun değil, o zaman nakit öderim. Buyurun on euro, üstü kalsın.",
-          "starter": "Kein Problem, dann zahle ich …",
+          "de": "Ich zahle bar. Stimmt so.",
+          "tr": "Nakit öderim. Üstü kalsın.",
+          "starter": "Ich zahle … Stimmt …",
           "keywords": [
             "bar",
-            "zehn Euro",
             "stimmt so"
           ],
           "hint_tr": "Nakit ödeyeceğini söyle, 10 euro ver ve üstü kalsın de.",
           "accepted": [
+            "Ich zahle bar. Stimmt so.",
             "Kein Problem, dann zahle ich bar. Hier sind zehn Euro – stimmt so.",
-            "Okay, dann bar. Zehn Euro, stimmt so.",
-            "Kein Problem. Hier sind zehn Euro, passt so.",
-            "Dann zahle ich bar. Hier, zehn Euro. Der Rest ist für Sie.",
-            "Gut, dann bar. Stimmt so.",
-            "Kein Problem, dann zahle ich bar. Stimmt so.",
-            "Kein Problem, ich zahle bar. Hier sind zehn Euro, stimmt so."
+            "Ich zahle bar. Passt so.",
+            "Dann zahle ich bar. Stimmt so.",
+            "Kein Problem, ich zahle bar. Stimmt so."
           ]
         },
         {
@@ -1468,7 +1661,7 @@
       },
       {
         "level": 2,
-        "style_de": "Normales Markttempo, alltagssprachlich (darf's, 'nem, kriegen S'). Fragen Sie „Mit oder ohne Schuss?“ ohne Erklärung; nennen Sie nur die Summe plus Pfand.",
+        "style_de": "Normales Markttempo, alltagssprachlich (darf's, 'nem, nehmen S', kriegen S'). Fragen Sie „Mit oder ohne Schuss?“ ohne Erklärung; nennen Sie nur die Summe plus Pfand.",
         "speed": "natural"
       },
       {
@@ -1661,20 +1854,20 @@
   ],
   "speaking": [
     {
-      "task_tr": "Glühwein standında üç kişi için sipariş ver. İlave içki isteme ve toplamı sor.",
-      "model_de": "Grüß Gott! Zwei Glühwein und einen Kinderpunsch, bitte. Ohne Schuss. Was macht das zusammen?",
+      "task_tr": "Glühwein standında iki Glühwein ve bir Kinderpunsch iste. İlave içki istemediğini söyle ve toplamı sor.",
+      "model_de": "Zwei Glühwein und einen Kinderpunsch, bitte. Ohne Schuss. Was macht das zusammen?",
       "hints_de": [
-        "Grüß Gott! Zwei …",
+        "Zwei …",
         "Ohne …",
         "Was macht das …?"
       ]
     },
     {
-      "task_tr": "Pfand'ın ne olduğunu bir arkadaşına iki Almanca cümleyle anlat.",
-      "model_de": "Das Pfand ist drei Euro. Ich gebe die Tasse zurück und bekomme das Pfand zurück.",
+      "task_tr": "Bardağı standa geri ver ve depozitonu iste.",
+      "model_de": "Ich möchte die Tasse zurückgeben. Bekomme ich das Pfand zurück?",
       "hints_de": [
-        "Das Pfand ist …",
-        "Ich gebe die Tasse zurück und bekomme …"
+        "Ich möchte die Tasse …",
+        "Bekomme ich …?"
       ]
     }
   ],
@@ -1692,10 +1885,8 @@
       ],
       "escape_de": [
         "Entschuldigung, was heißt das?",
-        "Wie viel war das noch mal?",
-        "Etwas langsamer, bitte.",
-        "Moment, bitte.",
-        "Können Sie das bitte zeigen?"
+        "Was macht das zusammen?",
+        "Geht es auch mit Karte?"
       ]
     }
   ],
