@@ -1,0 +1,1636 @@
+{
+  "id": "sc:arbeit:m1-weihnachtsfeier",
+  "domain": "arbeit",
+  "order": 92,
+  "level": "A2",
+  "title_tr": "İş yerinin Noel kutlaması (Weihnachtsfeier)",
+  "title_de": "Die Weihnachtsfeier in der Firma",
+  "goal_tr": "Şefin seni Weihnachtsfeier'e davet ediyor. Tarihi ve saati anlar, gelip gelmeyeceğini söylersin. Wichteln'i sorar ve Noel planları sohbetine katılırsın.",
+  "review": {
+    "status": "reviewed",
+    "by": "dilbilimci-ajan",
+    "at": "2026-11-18",
+    "notes": "LS-17.0 mini senaryo (Advent), hikâye hafta 4. Dil incelemesi 2026-11-18 KAPANDI (docs/v2/reviews/advent-mini.md); içerik onaylı. Durum yalnızca kalıp kapısı (D-063) yüzünden draft: bu dalda patterns.json'daki temel kalıplar henüz draft. Kalıplar reviewed olunca status reviewed yapılır. Öğrenci satırlarında ad yer tutucuyla ({name}, D-061). Kaynaklar: arbeit/SOURCES.md.",
+    "okur": "passed",
+    "okur_at": "2026-11-18"
+  },
+  "format": "mini",
+  "season": {
+    "id": "weihnachtsfeier",
+    "from": "11-23",
+    "to": "12-20",
+    "title_tr": "Weihnachtsfeier"
+  },
+  "essentials": {
+    "lexemes": [
+      "lx:Weihnachtsfeier",
+      "lx:Wichteln",
+      "lx:Einladung",
+      "lx:Geschenk",
+      "lx:Bescheid",
+      "lx:zusagen",
+      "lx:absagen",
+      "lx:Weihnachten",
+      "lx:duzen"
+    ],
+    "chunks": [
+      "ch:arbeit:komme-gern",
+      "ch:arbeit:muss-absagen",
+      "ch:arbeit:bescheid-geben",
+      "ch:arbeit:wann-war-das",
+      "ch:arbeit:was-heisst-wichteln",
+      "ch:arbeit:was-machst-du",
+      "ch:arbeit:an-weihnachten",
+      "ch:arbeit:ich-bin-name"
+    ],
+    "patterns": [
+      "pt:was-heisst",
+      "pt:um-uhr",
+      "pt:perfekt-haben",
+      "pt:noch-mal"
+    ]
+  },
+  "extras": {
+    "lexemes": [
+      "lx:siezen",
+      "lx:Chef",
+      "lx:Kollege",
+      "lx:Familie",
+      "lx:feiern",
+      "lx:ziehen",
+      "lx:Name",
+      "lx:kaufen"
+    ],
+    "chunks": [
+      "ch:arbeit:namen-gezogen",
+      "ch:arbeit:geschenk-gekauft"
+    ]
+  },
+  "chunks": [
+    {
+      "id": "ch:arbeit:komme-gern",
+      "tr": "Davetiniz için çok teşekkürler, memnuniyetle gelirim.",
+      "lexemes": [
+        "lx:Einladung",
+        "lx:kommen"
+      ],
+      "register": "formal",
+      "layers": {
+        "hd": "Vielen Dank für die Einladung, ich komme gern.",
+        "alltag": "Danke, ich bin dabei!"
+      },
+      "use_tr": "Şefinin davetini kabul ederken söylediğin kibar cümle.",
+      "mistakes_tr": [
+        "Für die Einladung denir, für der Einladung denmez."
+      ]
+    },
+    {
+      "id": "ch:arbeit:muss-absagen",
+      "tr": "Maalesef katılamayacağım.",
+      "lexemes": [
+        "lx:absagen",
+        "lx:leider"
+      ],
+      "register": "neutral",
+      "layers": {
+        "hd": "Leider muss ich absagen.",
+        "alltag": "Da kann ich leider nicht."
+      },
+      "use_tr": "Bir davete gelemeyeceğini kibarca bildirirken söylersin.",
+      "mistakes_tr": [
+        "Ab cümlenin sonuna gider: Ich sage leider ab."
+      ]
+    },
+    {
+      "id": "ch:arbeit:bescheid-geben",
+      "tr": "Çarşambaya kadar size haber veririm.",
+      "lexemes": [
+        "lx:Bescheid"
+      ],
+      "register": "formal",
+      "layers": {
+        "hd": "Ich gebe Ihnen bis Mittwoch Bescheid.",
+        "alltag": "Ich sag bis Mittwoch Bescheid."
+      },
+      "use_tr": "Hemen karar veremeyince ne zaman haber vereceğini söylerken kullanırsın.",
+      "mistakes_tr": [
+        "Ich gebe Ihnen Bescheid denir. Ich gebe Sie Bescheid denmez."
+      ]
+    },
+    {
+      "id": "ch:arbeit:wann-war-das",
+      "tr": "Pardon, ne zaman demiştiniz?",
+      "lexemes": [
+        "lx:nochmal"
+      ],
+      "pattern": "pt:noch-mal",
+      "register": "neutral",
+      "layers": {
+        "hd": "Entschuldigung, wann war das noch mal?",
+        "alltag": "Wann war das noch mal?"
+      },
+      "use_tr": "Biri tarihi hızlı söyleyince bir daha duymak için sorarsın.",
+      "mistakes_tr": [
+        "Buradaki war geçmişi anlatmaz. Ne zaman demiştiniz anlamı katar."
+      ]
+    },
+    {
+      "id": "ch:arbeit:was-heisst-wichteln",
+      "tr": "Wichteln ne demek?",
+      "lexemes": [
+        "lx:Wichteln",
+        "lx:heißen"
+      ],
+      "pattern": "pt:was-heisst",
+      "register": "neutral",
+      "layers": {
+        "hd": "Was heißt „Wichteln“?",
+        "alltag": "Wichteln – was ist das?"
+      },
+      "use_tr": "Bilmediğin bir kelimeyi ya da geleneği sorarken kullanırsın.",
+      "mistakes_tr": [
+        "Wichteln'de herkes gizlice bir isim çeker. Çektiği kişiye küçük bir hediye alır."
+      ]
+    },
+    {
+      "id": "ch:arbeit:was-machst-du",
+      "tr": "Noel'de ne yapıyorsun?",
+      "lexemes": [
+        "lx:Weihnachten",
+        "lx:machen"
+      ],
+      "register": "informal",
+      "layers": {
+        "hd": "Was machst du an Weihnachten?",
+        "alltag": "Und, was machst du an Weihnachten?"
+      },
+      "use_tr": "Aralık'ta molada sohbet açmak için en sık sorulan soru.",
+      "mistakes_tr": [
+        "Şefe Was machen Sie, iş arkadaşına Was machst du diye sorarsın.",
+        "Bavyera'da an Weihnachten denir. Kuzeyde zu Weihnachten de duyarsın."
+      ]
+    },
+    {
+      "id": "ch:arbeit:an-weihnachten",
+      "tr": "Noel'de ailemin yanına gidiyorum.",
+      "lexemes": [
+        "lx:Weihnachten",
+        "lx:fahren",
+        "lx:Familie"
+      ],
+      "register": "neutral",
+      "layers": {
+        "hd": "An Weihnachten fahre ich zu meiner Familie.",
+        "alltag": "Ich fahr heim zu meiner Familie."
+      },
+      "use_tr": "Noel planını tek cümleyle anlatırken söylersin.",
+      "mistakes_tr": [
+        "An Weihnachten başta olunca fahre hemen ardından gelir: An Weihnachten fahre ich.",
+        "Heim gündelik dilde eve ya da memlekete demektir."
+      ]
+    },
+    {
+      "id": "ch:arbeit:ich-bin-name",
+      "tr": "Memnuniyetle! Ben de {name}.",
+      "lexemes": [
+        "lx:duzen"
+      ],
+      "register": "informal",
+      "layers": {
+        "hd": "Gern! Ich bin {name}.",
+        "alltag": "Gern, freut mich! Ich bin {name}."
+      },
+      "use_tr": "Biri sana du demeyi önerince kabul edip adını söylersin.",
+      "mistakes_tr": [
+        "İş yerinde du demeyi şef önerir. Sen şefe önermezsin.",
+        "Şef kutlamada senli benli konuşmayı önerdiyse ertesi gün yine Sie ile başla."
+      ]
+    },
+    {
+      "id": "ch:arbeit:namen-gezogen",
+      "tr": "Ben bir isim çektim bile.",
+      "lexemes": [
+        "lx:ziehen",
+        "lx:Name"
+      ],
+      "pattern": "pt:perfekt-haben",
+      "register": "informal",
+      "layers": {
+        "hd": "Ich habe schon einen Namen gezogen.",
+        "alltag": "Ich hab schon gezogen."
+      },
+      "use_tr": "Wichteln'de isim çektiğini söylerken kullanırsın. Kimi çektiğini söylemezsin.",
+      "mistakes_tr": [
+        "Ziehen geçmişte gezogen olur, gezieht değil."
+      ]
+    },
+    {
+      "id": "ch:arbeit:geschenk-gekauft",
+      "tr": "Hediyeyi aldın mı bile?",
+      "lexemes": [
+        "lx:Geschenk",
+        "lx:kaufen"
+      ],
+      "pattern": "pt:perfekt-haben",
+      "register": "informal",
+      "layers": {
+        "hd": "Hast du schon ein Geschenk gekauft?",
+        "alltag": "Haste schon 'n Geschenk?"
+      },
+      "use_tr": "Wichteln öncesinde molada iş arkadaşına sorabileceğin bir soru.",
+      "mistakes_tr": [
+        "Haste hızlı konuşmada Hast du demektir."
+      ]
+    }
+  ],
+  "otherSide": [
+    {
+      "id": "o01",
+      "de": "Haben Sie kurz Zeit?",
+      "tr": "Bir dakikanız var mı?",
+      "layer": "hd",
+      "speed": "fast"
+    },
+    {
+      "id": "o02",
+      "de": "Unsere Weihnachtsfeier ist am Freitag, den achtzehnten Dezember, ab halb sieben im Gasthaus am Stadtplatz.",
+      "tr": "Noel kutlamamız 18 Aralık cuma, 18:30'dan itibaren Stadtplatz'taki lokantada.",
+      "layer": "hd",
+      "speed": "fast"
+    },
+    {
+      "id": "o03",
+      "de": "Geben Sie mir bitte bis Mittwoch Bescheid, ob Sie kommen.",
+      "tr": "Gelip gelmeyeceğinizi çarşambaya kadar bana bildirin lütfen.",
+      "layer": "hd",
+      "speed": "fast"
+    },
+    {
+      "id": "o04",
+      "de": "Schade, aber kein Problem. Dann vielleicht nächstes Jahr.",
+      "tr": "Yazık, ama sorun değil. O zaman belki seneye.",
+      "layer": "hd",
+      "speed": "normal"
+    },
+    {
+      "id": "o05",
+      "de": "Das Essen geht auf die Firma.",
+      "tr": "Yemeği firma ödüyor.",
+      "layer": "alltag",
+      "speed": "natural"
+    },
+    {
+      "id": "o06",
+      "de": "Machst du beim Wichteln mit?",
+      "tr": "Wichteln'e katılıyor musun?",
+      "layer": "alltag",
+      "speed": "fast"
+    },
+    {
+      "id": "o07",
+      "de": "Jeder zieht 'nen Namen und besorgt 'n kleines Geschenk, so bis zehn Euro.",
+      "tr": "Herkes bir isim çeker ve küçük bir hediye alır, on euroya kadar falan.",
+      "layer": "alltag",
+      "speed": "fast",
+      "reductions": [
+        {
+          "heard": "'nen",
+          "full": "einen"
+        },
+        {
+          "heard": "'n",
+          "full": "ein"
+        }
+      ]
+    },
+    {
+      "id": "o08",
+      "de": "Keiner weiß, von wem das Geschenk ist. Das ist ja der Witz.",
+      "tr": "Hediyenin kimden olduğunu kimse bilmez. İşin eğlencesi de bu.",
+      "layer": "alltag",
+      "speed": "natural"
+    },
+    {
+      "id": "o09",
+      "de": "Und, was machst du an Weihnachten?",
+      "tr": "Eee, Noel'de ne yapıyorsun?",
+      "layer": "alltag",
+      "speed": "fast"
+    },
+    {
+      "id": "o10",
+      "de": "Fährst du heim, oder bleibst du hier?",
+      "tr": "Memlekete mi gidiyorsun, yoksa burada mı kalıyorsun?",
+      "layer": "alltag",
+      "speed": "natural"
+    },
+    {
+      "id": "o11",
+      "de": "Ich bin übrigens der Stefan. Wollen wir uns duzen?",
+      "tr": "Bu arada ben Stefan. Birbirimize du diyelim mi?",
+      "layer": "alltag",
+      "speed": "natural"
+    },
+    {
+      "id": "o12",
+      "de": "Echt jetzt? Der Chef duzt dich? Respekt!",
+      "tr": "Ciddi mi? Şef sana du mu diyor? Helal olsun!",
+      "layer": "alltag",
+      "speed": "fast"
+    },
+    {
+      "id": "o13",
+      "de": "Trag dich einfach in die Liste in der Küche ein.",
+      "tr": "Mutfaktaki listeye adını yazman yeterli.",
+      "layer": "alltag",
+      "speed": "natural"
+    },
+    {
+      "id": "o14",
+      "de": "Ich hab deinen Namen gezogen – nee, Spaß!",
+      "tr": "Ben senin adını çektim – yok, şaka!",
+      "layer": "alltag",
+      "speed": "fast",
+      "reductions": [
+        {
+          "heard": "hab",
+          "full": "habe"
+        },
+        {
+          "heard": "nee",
+          "full": "nein"
+        }
+      ]
+    }
+  ],
+  "responses": [
+    {
+      "to": "o02",
+      "options": [
+        {
+          "de": "Vielen Dank für die Einladung, ich komme gern.",
+          "tr": "Davetiniz için çok teşekkürler, memnuniyetle gelirim.",
+          "register": "formal"
+        },
+        {
+          "de": "Entschuldigung, wann und wo war das noch mal?",
+          "tr": "Pardon, ne zaman ve nerede demiştiniz?",
+          "register": "formal"
+        }
+      ]
+    },
+    {
+      "to": "o03",
+      "options": [
+        {
+          "de": "Ich gebe Ihnen bis Mittwoch Bescheid.",
+          "tr": "Çarşambaya kadar size haber veririm.",
+          "register": "formal"
+        },
+        {
+          "de": "Leider muss ich absagen. An dem Abend kann ich nicht.",
+          "tr": "Maalesef katılamayacağım. O akşam olmuyor.",
+          "register": "formal"
+        }
+      ]
+    },
+    {
+      "to": "o06",
+      "options": [
+        {
+          "de": "Wichteln – was ist das?",
+          "tr": "Wichteln ne ki?",
+          "register": "informal"
+        },
+        {
+          "de": "Klar, ich bin dabei!",
+          "tr": "Tabii, varım!",
+          "register": "informal"
+        }
+      ]
+    },
+    {
+      "to": "o09",
+      "options": [
+        {
+          "de": "Ich bleibe hier. Und du?",
+          "tr": "Burada kalıyorum. Ya sen?",
+          "register": "informal"
+        },
+        {
+          "de": "Ich fahre zu meiner Familie. Und was machst du?",
+          "tr": "Ailemin yanına gidiyorum. Ya sen ne yapıyorsun?",
+          "register": "informal"
+        }
+      ]
+    },
+    {
+      "to": "o11",
+      "options": [
+        {
+          "de": "Gern! Ich bin {name}.",
+          "tr": "Memnuniyetle! Ben de {name}.",
+          "register": "informal"
+        }
+      ]
+    }
+  ],
+  "build": [
+    {
+      "id": "b01",
+      "prompt_tr": "Davetiniz için çok teşekkürler, memnuniyetle gelirim. (şefe, Sie ile)",
+      "accepted": [
+        "Vielen Dank für die Einladung, ich komme gern.",
+        "Danke für die Einladung, ich komme gerne.",
+        "Vielen Dank, ich komme gern.",
+        "Danke schön für die Einladung, ich komme gern.",
+        "Vielen Dank für die Einladung. Ich bin gern dabei.",
+        "Vielen Dank für die Einladung, ich komme gerne.",
+        "Danke für die Einladung, ich komme gern."
+      ],
+      "chunk": "ch:arbeit:komme-gern"
+    },
+    {
+      "id": "b02",
+      "prompt_tr": "Maalesef katılamayacağım.",
+      "accepted": [
+        "Leider muss ich absagen.",
+        "Ich muss leider absagen.",
+        "Leider kann ich nicht kommen.",
+        "Ich kann leider nicht kommen.",
+        "Da kann ich leider nicht.",
+        "Ich kann leider nicht.",
+        "Leider kann ich nicht."
+      ],
+      "chunk": "ch:arbeit:muss-absagen"
+    },
+    {
+      "id": "b03",
+      "prompt_tr": "Çarşambaya kadar size haber veririm.",
+      "accepted": [
+        "Ich gebe Ihnen bis Mittwoch Bescheid.",
+        "Ich sage Ihnen bis Mittwoch Bescheid.",
+        "Bis Mittwoch gebe ich Ihnen Bescheid.",
+        "Ich sag Ihnen bis Mittwoch Bescheid.",
+        "Bis Mittwoch sage ich Ihnen Bescheid.",
+        "Ich gebe bis Mittwoch Bescheid.",
+        "Ich sage bis Mittwoch Bescheid."
+      ],
+      "chunk": "ch:arbeit:bescheid-geben"
+    },
+    {
+      "id": "b04",
+      "prompt_tr": "Ne zaman demiştiniz? (bir daha sor)",
+      "accepted": [
+        "Wann war das noch mal?",
+        "Wann war das nochmal?",
+        "Entschuldigung, wann war das noch mal?",
+        "Wann ist das noch mal?",
+        "Entschuldigung, wann war das nochmal?",
+        "Wann war das noch einmal?",
+        "Wann ist das nochmal?"
+      ],
+      "pattern": "pt:noch-mal",
+      "chunk": "ch:arbeit:wann-war-das"
+    },
+    {
+      "id": "b05",
+      "prompt_tr": "Nerede demiştiniz? (bir daha sor)",
+      "accepted": [
+        "Wo war das noch mal?",
+        "Entschuldigung, wo ist das noch mal?",
+        "Wo ist die Feier noch mal?",
+        "Können Sie den Ort noch mal sagen?",
+        "Wo war das nochmal?",
+        "Entschuldigung, wo war das noch mal?",
+        "Wo ist das noch mal?",
+        "Wo ist das nochmal?"
+      ],
+      "pattern": "pt:noch-mal"
+    },
+    {
+      "id": "b06",
+      "prompt_tr": "Wichteln ne demek?",
+      "accepted": [
+        "Was heißt „Wichteln“?",
+        "Wichteln – was ist das?",
+        "Was bedeutet Wichteln?",
+        "Was ist Wichteln?",
+        "Entschuldigung, was heißt Wichteln?"
+      ],
+      "pattern": "pt:was-heisst",
+      "chunk": "ch:arbeit:was-heisst-wichteln"
+    },
+    {
+      "id": "b07",
+      "prompt_tr": "18:30'dan itibaren mi? (halb ile sor)",
+      "accepted": [
+        "Ab halb sieben?",
+        "Also ab halb sieben?",
+        "Um halb sieben?",
+        "Fängt es um halb sieben an?",
+        "Beginnt es um halb sieben?"
+      ],
+      "pattern": "pt:um-uhr"
+    },
+    {
+      "id": "b08",
+      "prompt_tr": "18 Aralık cuma, saat yedide.",
+      "accepted": [
+        "Am Freitag, den achtzehnten Dezember, um sieben Uhr.",
+        "Am Freitag, dem 18. Dezember, um sieben.",
+        "Am Freitag, den 18. Dezember, um 19 Uhr.",
+        "Freitag, der achtzehnte Dezember, um sieben Uhr.",
+        "Am 18. Dezember um sieben.",
+        "Am Freitag, dem achtzehnten Dezember, um sieben Uhr.",
+        "Am Freitag, den 18. Dezember, um sieben Uhr."
+      ],
+      "pattern": "pt:um-uhr"
+    },
+    {
+      "id": "b09",
+      "prompt_tr": "Katılacağımı zaten bildirdim.",
+      "accepted": [
+        "Ich habe schon zugesagt.",
+        "Ich hab schon zugesagt.",
+        "Ich habe schon Bescheid gegeben.",
+        "Ich habe mich schon eingetragen.",
+        "Ich hab schon Bescheid gegeben.",
+        "Ich habe bereits zugesagt."
+      ],
+      "pattern": "pt:perfekt-haben"
+    },
+    {
+      "id": "b10",
+      "prompt_tr": "Ben bir isim çektim bile.",
+      "accepted": [
+        "Ich habe schon einen Namen gezogen.",
+        "Ich hab schon einen Namen gezogen.",
+        "Ich habe schon gezogen.",
+        "Einen Namen habe ich schon gezogen.",
+        "Ich hab schon gezogen."
+      ],
+      "pattern": "pt:perfekt-haben",
+      "chunk": "ch:arbeit:namen-gezogen"
+    },
+    {
+      "id": "b11",
+      "prompt_tr": "Hediyeyi aldın mı bile? (du ile)",
+      "accepted": [
+        "Hast du schon ein Geschenk gekauft?",
+        "Hast du das Geschenk schon gekauft?",
+        "Hast du schon ein Geschenk?",
+        "Hast du schon was gekauft?",
+        "Hast du schon das Geschenk gekauft?",
+        "Hast du dein Geschenk schon gekauft?",
+        "Hast du schon dein Geschenk gekauft?"
+      ],
+      "pattern": "pt:perfekt-haben",
+      "chunk": "ch:arbeit:geschenk-gekauft"
+    },
+    {
+      "id": "b12",
+      "prompt_tr": "Eee, Noel'de ne yapıyorsun? (du ile)",
+      "accepted": [
+        "Und, was machst du an Weihnachten?",
+        "Was machst du an Weihnachten?",
+        "Was machst du zu Weihnachten?",
+        "Und du, was machst du an Weihnachten?"
+      ],
+      "chunk": "ch:arbeit:was-machst-du"
+    },
+    {
+      "id": "b13",
+      "prompt_tr": "Noel'de ne yapıyorsunuz? (şefe, Sie ile)",
+      "accepted": [
+        "Was machen Sie an Weihnachten?",
+        "Und was machen Sie an Weihnachten?",
+        "Was machen Sie zu Weihnachten?",
+        "Und Sie, was machen Sie an Weihnachten?"
+      ]
+    },
+    {
+      "id": "b14",
+      "prompt_tr": "Noel'de ailemin yanına gidiyorum.",
+      "accepted": [
+        "An Weihnachten fahre ich zu meiner Familie.",
+        "Ich fahre an Weihnachten zu meiner Familie.",
+        "Zu Weihnachten fahre ich zu meiner Familie.",
+        "Ich fahr heim zu meiner Familie.",
+        "An Weihnachten besuche ich meine Familie.",
+        "Ich fahre zu meiner Familie."
+      ],
+      "chunk": "ch:arbeit:an-weihnachten"
+    },
+    {
+      "id": "b15",
+      "prompt_tr": "Noel'de burada kalıyorum.",
+      "accepted": [
+        "An Weihnachten bleibe ich hier.",
+        "Ich bleibe an Weihnachten hier.",
+        "Zu Weihnachten bleibe ich hier.",
+        "Ich bleibe hier.",
+        "An Weihnachten bin ich hier.",
+        "Ich bleibe zu Weihnachten hier."
+      ]
+    },
+    {
+      "id": "b16",
+      "prompt_tr": "Memnuniyetle! Ben de {name}. (şef du demeyi önerdi)",
+      "accepted": [
+        "Gern! Ich bin {name}.",
+        "Gerne! Ich bin {name}.",
+        "Sehr gern, ich bin {name}.",
+        "Gern, freut mich! Ich bin {name}.",
+        "Ja, gern. Ich bin {name}.",
+        "Gerne, freut mich! Ich bin {name}."
+      ],
+      "chunk": "ch:arbeit:ich-bin-name"
+    }
+  ],
+  "drills": [
+    {
+      "id": "d01",
+      "k": "gap",
+      "de": "Vielen Dank für die ___, ich komme gern.",
+      "tr": "Davetiniz için çok teşekkürler, memnuniyetle gelirim.",
+      "accepted": [
+        "Einladung"
+      ],
+      "opts": [
+        "Einladung",
+        "Feier",
+        "Geschenk"
+      ]
+    },
+    {
+      "id": "d02",
+      "k": "gap",
+      "de": "Ich gebe Ihnen bis Mittwoch ___.",
+      "tr": "Çarşambaya kadar size haber veririm.",
+      "accepted": [
+        "Bescheid"
+      ],
+      "opts": [
+        "Bescheid",
+        "Einladung",
+        "Termin"
+      ],
+      "why_tr": "Bescheid geben haber vermek demektir."
+    },
+    {
+      "id": "d03",
+      "k": "gap",
+      "de": "Wann war das noch ___?",
+      "tr": "Ne zaman demiştiniz?",
+      "accepted": [
+        "mal",
+        "einmal"
+      ],
+      "opts": [
+        "mal",
+        "so",
+        "da"
+      ]
+    },
+    {
+      "id": "d04",
+      "k": "gap",
+      "de": "Und, was ___ du an Weihnachten?",
+      "tr": "Eee, Noel'de ne yapıyorsun?",
+      "accepted": [
+        "machst"
+      ],
+      "opts": [
+        "machst",
+        "macht",
+        "machen"
+      ],
+      "why_tr": "Du ile machst, Sie ile machen dersin."
+    },
+    {
+      "id": "d05",
+      "k": "gap",
+      "de": "Ich habe schon einen Namen ___.",
+      "tr": "Bir isim çektim bile.",
+      "accepted": [
+        "gezogen"
+      ],
+      "opts": [
+        "gezogen",
+        "gezieht",
+        "ziehen"
+      ],
+      "why_tr": "Ziehen geçmişte gezogen olur."
+    },
+    {
+      "id": "d06",
+      "k": "order",
+      "de": "Sie / Was / machen / an Weihnachten / ?",
+      "tr": "Noel'de ne yapıyorsunuz?",
+      "accepted": [
+        "Was machen Sie an Weihnachten?"
+      ]
+    },
+    {
+      "id": "d07",
+      "k": "order",
+      "de": "Bescheid / Ich / bis Mittwoch / gebe / Ihnen",
+      "tr": "Çarşambaya kadar size haber veririm.",
+      "accepted": [
+        "Ich gebe Ihnen bis Mittwoch Bescheid.",
+        "Bis Mittwoch gebe ich Ihnen Bescheid."
+      ]
+    },
+    {
+      "id": "d08",
+      "k": "order",
+      "de": "schon / Hast / ein Geschenk / gekauft / du / ?",
+      "tr": "Hediyeyi aldın mı bile?",
+      "accepted": [
+        "Hast du schon ein Geschenk gekauft?"
+      ],
+      "why_tr": "Soruda hast başta durur, gekauft en sona gider."
+    },
+    {
+      "id": "d09",
+      "k": "guided_response",
+      "situation_tr": "Herr Wimmer seni Weihnachtsfeier'e davet ediyor. Teşekkür et ve geleceğini söyle.",
+      "prompt_de": "Unsere Weihnachtsfeier ist am Freitag, den achtzehnten Dezember, ab halb sieben im Gasthaus am Stadtplatz.",
+      "accepted": [
+        "Vielen Dank für die Einladung, ich komme gern.",
+        "Danke schön, ich komme gerne.",
+        "Vielen Dank, ich bin gern dabei.",
+        "Danke für die Einladung! Ich komme gern.",
+        "Schön, vielen Dank. Ich komme gern.",
+        "Vielen Dank für die Einladung, ich komme gerne.",
+        "Danke, ich komme gern."
+      ]
+    },
+    {
+      "id": "d10",
+      "k": "guided_response",
+      "situation_tr": "Tobi Wichteln'e katılıp katılmadığını soruyor. Bu kelimeyi bilmiyorsun. Ne demek olduğunu sor.",
+      "prompt_de": "Machst du beim Wichteln mit?",
+      "accepted": [
+        "Was heißt Wichteln?",
+        "Wichteln – was ist das?",
+        "Was ist Wichteln?",
+        "Entschuldigung, was heißt Wichteln?",
+        "Was bedeutet Wichteln?"
+      ]
+    },
+    {
+      "id": "d11",
+      "k": "guided_response",
+      "situation_tr": "Derya Noel planını soruyor. Burada kaldığını söyle ve ona da sor.",
+      "prompt_de": "Fährst du heim, oder bleibst du hier?",
+      "accepted": [
+        "Ich bleibe hier. Und du?",
+        "Ich bleibe hier. Was machst du an Weihnachten?",
+        "Ich bleib hier. Und du, was machst du?",
+        "Ich bleibe an Weihnachten hier. Und du?",
+        "Hier. Und du?",
+        "Ich bleibe hier. Und du, was machst du?"
+      ]
+    },
+    {
+      "id": "d12",
+      "k": "guided_response",
+      "situation_tr": "Şefin kutlamada du demeyi öneriyor. Kabul et ve adını söyle.",
+      "prompt_de": "Ich bin übrigens der Stefan. Wollen wir uns duzen?",
+      "accepted": [
+        "Gern! Ich bin {name}.",
+        "Gerne, ich bin {name}.",
+        "Sehr gern! Ich bin {name}.",
+        "Ja, gern. Ich bin {name}.",
+        "Gern, freut mich! Ich bin {name}."
+      ]
+    },
+    {
+      "id": "d13",
+      "k": "tr_de",
+      "tr": "Wichteln ne demek?",
+      "accepted": [
+        "Was heißt „Wichteln“?",
+        "Was bedeutet Wichteln?",
+        "Was ist Wichteln?",
+        "Wichteln – was ist das?",
+        "Entschuldigung, was heißt Wichteln?"
+      ]
+    },
+    {
+      "id": "d14",
+      "k": "tr_de",
+      "tr": "Eee, Noel'de ne yapıyorsun? (du ile)",
+      "accepted": [
+        "Und, was machst du an Weihnachten?",
+        "Was machst du an Weihnachten?",
+        "Was machst du zu Weihnachten?",
+        "Und du, was machst du an Weihnachten?"
+      ]
+    },
+    {
+      "id": "d15",
+      "k": "tr_de",
+      "tr": "Maalesef katılamayacağım.",
+      "accepted": [
+        "Leider muss ich absagen.",
+        "Ich muss leider absagen.",
+        "Ich kann leider nicht kommen.",
+        "Leider kann ich nicht kommen.",
+        "Da kann ich leider nicht.",
+        "Ich kann leider nicht."
+      ]
+    },
+    {
+      "id": "d16",
+      "k": "tr_de",
+      "tr": "Hediye en fazla ne kadar olabilir?",
+      "accepted": [
+        "Wie viel darf das Geschenk kosten?",
+        "Wie teuer darf das Geschenk sein?",
+        "Was darf das Geschenk kosten?",
+        "Wie viel darf das Geschenk höchstens kosten?",
+        "Wie viel darf das Geschenk maximal kosten?",
+        "Wie teuer darf das Geschenk höchstens sein?"
+      ]
+    },
+    {
+      "id": "d17",
+      "k": "transform",
+      "instr_tr": "Aynı soruyu iş arkadaşına sor: Sie yerine du kullan.",
+      "from_de": "Was machen Sie an Weihnachten?",
+      "accepted": [
+        "Was machst du an Weihnachten?",
+        "Und, was machst du an Weihnachten?",
+        "Was machst du zu Weihnachten?"
+      ]
+    },
+    {
+      "id": "d18",
+      "k": "transform",
+      "instr_tr": "Cümleyi geçmişte olmuş gibi söyle. Örnek: Ich kaufe yerine Ich habe gekauft.",
+      "from_de": "Ich ziehe einen Namen.",
+      "accepted": [
+        "Ich habe einen Namen gezogen.",
+        "Ich hab einen Namen gezogen.",
+        "Einen Namen habe ich gezogen.",
+        "Ich habe schon einen Namen gezogen."
+      ]
+    },
+    {
+      "id": "d19",
+      "k": "listen_and_respond",
+      "audio_de": "Unsere Weihnachtsfeier ist am Freitag, den achtzehnten Dezember, ab halb sieben im Gasthaus am Stadtplatz.",
+      "speed": "fast",
+      "situation_tr": "Saati kaçırdın. Bir daha sor.",
+      "accepted": [
+        "Wann war das noch mal?",
+        "Entschuldigung, um wie viel Uhr war das noch mal?",
+        "Ab wann war das noch mal?",
+        "Wie war die Uhrzeit noch mal?",
+        "Um wie viel Uhr noch mal?",
+        "Wann war das nochmal?",
+        "Entschuldigung, wann war das noch mal?",
+        "Um wie viel Uhr war das noch mal?",
+        "Um wie viel Uhr war das nochmal?"
+      ]
+    },
+    {
+      "id": "d20",
+      "k": "listen_and_respond",
+      "audio_de": "Geben Sie mir bitte bis Mittwoch Bescheid, ob Sie kommen.",
+      "speed": "fast",
+      "situation_tr": "Geleceğini hemen söyle.",
+      "accepted": [
+        "Ich komme gern!",
+        "Ja, ich komme gern.",
+        "Ich bin dabei.",
+        "Ich komme gerne, danke!",
+        "Ich kann Ihnen gleich Bescheid geben: Ich komme gern.",
+        "Ich komme gerne.",
+        "Ja, ich komme gerne."
+      ]
+    },
+    {
+      "id": "d21",
+      "k": "pick",
+      "q_tr": "İş yerinde du demeyi genellikle kim önerir?",
+      "opts": [
+        "Yaşı küçük olan",
+        "Yeni başlayan çalışan",
+        "Rütbesi yüksek olan, örneğin şef"
+      ],
+      "ans": 2,
+      "why_tr": "İş yerinde du demeyi rütbesi yüksek olan önerir, yaşı büyük olan değil."
+    },
+    {
+      "id": "d22",
+      "k": "pick",
+      "q_tr": "Wichteln nedir?",
+      "opts": [
+        "Noel yemeği",
+        "Herkesin gizlice çektiği kişiye küçük bir hediye alması",
+        "Şefin yıl sonu konuşması"
+      ],
+      "ans": 1,
+      "why_tr": "Wichteln gizli bir hediye çekilişidir."
+    }
+  ],
+  "dialogues": [
+    {
+      "id": "v1",
+      "title_tr": "Şefin daveti",
+      "roles": {
+        "A": "Herr Wimmer (Chef)",
+        "B": "Sen"
+      },
+      "lines": [
+        {
+          "r": "A",
+          "de": "Haben Sie kurz Zeit?",
+          "tr": "Bir dakikanız var mı?",
+          "speed": "fast"
+        },
+        {
+          "r": "B",
+          "de": "Ja, natürlich.",
+          "tr": "Evet, tabii.",
+          "starter": "Ja, …",
+          "keywords": [
+            "natürlich"
+          ],
+          "hint_tr": "Evet de, vaktin olduğunu söyle.",
+          "accepted": [
+            "Ja, natürlich.",
+            "Ja, klar.",
+            "Ja, gern.",
+            "Ja, natürlich. Worum geht es?",
+            "Ja, sicher.",
+            "Natürlich."
+          ]
+        },
+        {
+          "r": "A",
+          "de": "Unsere Weihnachtsfeier ist am Freitag, den achtzehnten Dezember, ab halb sieben im Gasthaus am Stadtplatz.",
+          "tr": "Noel kutlamamız 18 Aralık cuma, 18:30'dan itibaren Stadtplatz'taki lokantada.",
+          "speed": "fast"
+        },
+        {
+          "r": "B",
+          "de": "Entschuldigung, wann war das noch mal?",
+          "tr": "Pardon, ne zaman demiştiniz?",
+          "starter": "Entschuldigung, wann …",
+          "keywords": [
+            "wann",
+            "noch mal"
+          ],
+          "hint_tr": "Çok hızlıydı. Tarihi bir daha sor.",
+          "accepted": [
+            "Entschuldigung, wann war das noch mal?",
+            "Wann war das noch mal?",
+            "Entschuldigung, wann und wo war das noch mal?",
+            "Können Sie das Datum noch mal sagen?",
+            "Entschuldigung, an welchem Tag noch mal?",
+            "Entschuldigung, wann war das nochmal?",
+            "Wann war das nochmal?",
+            "Entschuldigung, wann ist das noch mal?"
+          ]
+        },
+        {
+          "r": "A",
+          "de": "Am Freitag, den achtzehnten. Ab halb sieben.",
+          "tr": "18'inde, cuma. 18:30'dan itibaren.",
+          "speed": "normal"
+        },
+        {
+          "r": "B",
+          "de": "Ab halb sieben, alles klar. Vielen Dank für die Einladung, ich komme gern.",
+          "tr": "18:30'dan itibaren, tamam. Davetiniz için çok teşekkürler, memnuniyetle gelirim.",
+          "starter": "Ab halb sieben, alles klar. Vielen Dank …",
+          "keywords": [
+            "halb sieben",
+            "Einladung",
+            "komme gern"
+          ],
+          "hint_tr": "Saati tekrar ederek doğrula. Teşekkür et ve geleceğini söyle.",
+          "accepted": [
+            "Ab halb sieben, alles klar. Vielen Dank für die Einladung, ich komme gern.",
+            "Also Freitag ab halb sieben. Danke, ich komme gern.",
+            "Alles klar, halb sieben. Vielen Dank, ich bin gern dabei.",
+            "Okay, ab halb sieben. Danke für die Einladung, ich komme gerne.",
+            "Freitag, halb sieben. Vielen Dank, ich komme gern.",
+            "Ab halb sieben, alles klar. Vielen Dank für die Einladung, ich komme gerne.",
+            "Ab halb sieben, alles klar. Danke, ich komme gern."
+          ]
+        },
+        {
+          "r": "A",
+          "de": "Schön! Wichteln machen wir auch. Tragen Sie sich einfach in die Liste in der Küche ein.",
+          "tr": "Güzel! Wichteln de yapıyoruz. Mutfaktaki listeye adınızı yazmanız yeterli.",
+          "speed": "natural"
+        },
+        {
+          "r": "B",
+          "de": "Mache ich. Was heißt eigentlich „Wichteln“?",
+          "tr": "Yaparım. Bu arada Wichteln ne demek?",
+          "starter": "Mache ich. Was heißt …",
+          "keywords": [
+            "was heißt",
+            "Wichteln"
+          ],
+          "hint_tr": "Yapacağını söyle. Wichteln'in ne olduğunu sor.",
+          "accepted": [
+            "Mache ich. Was heißt eigentlich „Wichteln“?",
+            "Mach ich. Was heißt Wichteln?",
+            "Okay. Entschuldigung, was ist Wichteln?",
+            "Gut. Was bedeutet Wichteln?",
+            "Mache ich. Und was heißt Wichteln?",
+            "Mache ich. Was heißt Wichteln?",
+            "Mache ich. Was ist Wichteln?"
+          ]
+        },
+        {
+          "r": "A",
+          "de": "Fragen Sie am besten Herrn Lechner, der organisiert das.",
+          "tr": "En iyisi Herr Lechner'e sorun, onu o organize ediyor.",
+          "speed": "natural"
+        },
+        {
+          "r": "B",
+          "de": "Gut, dann frage ich ihn. Danke!",
+          "tr": "Peki, o zaman ona sorarım. Teşekkürler!",
+          "starter": "Gut, dann frage ich …",
+          "keywords": [
+            "frage",
+            "ihn"
+          ],
+          "hint_tr": "Ona soracağını söyle ve teşekkür et.",
+          "accepted": [
+            "Gut, dann frage ich ihn. Danke!",
+            "Okay, dann frag ich Tobi. Danke!",
+            "Alles klar, ich frage ihn. Vielen Dank!",
+            "Gut, mache ich. Danke schön!",
+            "Gut, dann frage ich Herrn Lechner. Danke!",
+            "Okay, ich frage ihn. Danke!"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "title_tr": "Molada Wichteln ve Noel planları",
+      "roles": {
+        "A": "Tobi / Derya",
+        "B": "Sen"
+      },
+      "lines": [
+        {
+          "r": "A",
+          "de": "Und, machst du beim Wichteln mit?",
+          "tr": "Eee, Wichteln'e katılıyor musun?",
+          "speed": "fast"
+        },
+        {
+          "r": "B",
+          "de": "Wichteln – was ist das?",
+          "tr": "Wichteln ne ki?",
+          "starter": "Wichteln – …",
+          "keywords": [
+            "was ist das"
+          ],
+          "hint_tr": "Wichteln'in ne olduğunu sor.",
+          "accepted": [
+            "Wichteln – was ist das?",
+            "Was heißt Wichteln?",
+            "Was ist Wichteln?",
+            "Entschuldigung, was heißt Wichteln?",
+            "Was bedeutet Wichteln?"
+          ]
+        },
+        {
+          "r": "A",
+          "de": "Jeder zieht 'nen Namen und besorgt 'n kleines Geschenk, so bis zehn Euro.",
+          "tr": "Herkes bir isim çeker ve küçük bir hediye alır, on euroya kadar falan.",
+          "speed": "fast"
+        },
+        {
+          "r": "B",
+          "de": "Und keiner weiß, von wem das Geschenk ist?",
+          "tr": "Ve hediyenin kimden olduğunu kimse bilmiyor mu?",
+          "starter": "Und keiner weiß, …",
+          "keywords": [
+            "keiner",
+            "von wem"
+          ],
+          "hint_tr": "Anladığını kontrol et: hediyenin kimden olduğu gizli mi?",
+          "accepted": [
+            "Und keiner weiß, von wem das Geschenk ist?",
+            "Und das ist geheim?",
+            "Also weiß keiner, von wem das Geschenk ist?",
+            "Und man weiß nicht, von wem das Geschenk ist?",
+            "Und es ist geheim, von wem das Geschenk ist?"
+          ]
+        },
+        {
+          "r": "A",
+          "de": "Genau, das ist ja der Witz. Also, bist du dabei?",
+          "tr": "Aynen, işin eğlencesi de bu. Eee, var mısın?",
+          "speed": "natural"
+        },
+        {
+          "r": "B",
+          "de": "Klar, ich bin dabei! Ich trage mich in die Liste ein.",
+          "tr": "Tabii, varım! Listeye adımı yazarım.",
+          "starter": "Klar, ich bin …",
+          "keywords": [
+            "dabei",
+            "Liste"
+          ],
+          "hint_tr": "Katıldığını söyle. Listeye adını yazacağını ekle.",
+          "accepted": [
+            "Klar, ich bin dabei! Ich trage mich in die Liste ein.",
+            "Ja, ich bin dabei!",
+            "Klar, ich mache mit. Ich trage mich gleich ein.",
+            "Ja, gern! Ich trag mich in die Liste ein.",
+            "Klar, bin dabei!",
+            "Klar, ich bin dabei!",
+            "Ja, ich mache mit!"
+          ]
+        },
+        {
+          "r": "A",
+          "de": "Super. Und, was machst du an Weihnachten?",
+          "tr": "Süper. Eee, Noel'de ne yapıyorsun?",
+          "speed": "fast"
+        },
+        {
+          "r": "B",
+          "de": "Ich bleibe hier. Und du, was machst du an Weihnachten?",
+          "tr": "Burada kalıyorum. Ya sen, Noel'de ne yapıyorsun?",
+          "starter": "Ich bleibe … Und du, …",
+          "keywords": [
+            "bleibe",
+            "und du"
+          ],
+          "hint_tr": "Planını bir cümleyle söyle ve aynı soruyu geri sor.",
+          "accepted": [
+            "Ich bleibe hier. Und du, was machst du an Weihnachten?",
+            "Ich fahre zu meiner Familie. Und du?",
+            "Ich bleibe hier. Und du?",
+            "An Weihnachten bleibe ich hier. Was machst du?",
+            "Ich fahr heim zu meiner Familie. Und was machst du?",
+            "Ich bleibe hier. Und was machst du?",
+            "Ich fahre zu meiner Familie. Und du, was machst du an Weihnachten?"
+          ]
+        },
+        {
+          "r": "A",
+          "de": "Ich fahr heim zu meinen Eltern, in die Berge. Skifahren!",
+          "tr": "Annemlerin yanına gidiyorum, dağlara. Kayak!",
+          "speed": "fast"
+        },
+        {
+          "r": "B",
+          "de": "Klingt super! Und du, Derya?",
+          "tr": "Kulağa süper geliyor! Ya sen, Derya?",
+          "starter": "Klingt …! Und du, …?",
+          "keywords": [
+            "klingt",
+            "und du"
+          ],
+          "hint_tr": "Beğendiğini söyle ve aynı soruyu Derya'ya sor.",
+          "accepted": [
+            "Klingt super! Und du, Derya?",
+            "Toll! Und was machst du, Derya?",
+            "Schön! Derya, und du?",
+            "Klingt gut! Und du, Derya, was machst du an Weihnachten?",
+            "Super! Und du, Derya?",
+            "Klingt gut! Und du, Derya?",
+            "Klingt super! Und du, Derya, was machst du?"
+          ]
+        },
+        {
+          "r": "A",
+          "de": "Ich feiere mit der Familie, ganz gemütlich.",
+          "tr": "Ailemle kutluyorum, sakin sakin.",
+          "speed": "natural"
+        }
+      ]
+    },
+    {
+      "id": "v3",
+      "title_tr": "Kutlamada şef du demeyi öneriyor",
+      "roles": {
+        "A": "Stefan Wimmer / Tobi",
+        "B": "Sen"
+      },
+      "lines": [
+        {
+          "r": "A",
+          "de": "Schön, dass Sie da sind! Wie gefällt Ihnen die Feier?",
+          "tr": "Gelmenize sevindim! Kutlama nasıl, beğendiniz mi?",
+          "speed": "natural"
+        },
+        {
+          "r": "B",
+          "de": "Sehr gut, danke! Das Essen ist super.",
+          "tr": "Çok iyi, teşekkürler! Yemek süper.",
+          "starter": "Sehr gut, danke! Das Essen …",
+          "keywords": [
+            "gut",
+            "Essen"
+          ],
+          "hint_tr": "Beğendiğini söyle ve yemeği öv.",
+          "accepted": [
+            "Sehr gut, danke! Das Essen ist super.",
+            "Gut, danke! Das Essen ist sehr lecker.",
+            "Sehr gut! Vielen Dank für die Einladung.",
+            "Super, danke! Das Essen ist toll.",
+            "Mir gefällt die Feier sehr gut, danke!",
+            "Sehr gut, danke!",
+            "Sehr gut, danke. Das Essen ist sehr gut."
+          ]
+        },
+        {
+          "r": "A",
+          "de": "Ich bin übrigens der Stefan. Wollen wir uns duzen?",
+          "tr": "Bu arada ben Stefan. Birbirimize du diyelim mi?",
+          "speed": "natural"
+        },
+        {
+          "r": "B",
+          "de": "Gern! Ich bin {name}.",
+          "tr": "Memnuniyetle! Ben de {name}.",
+          "starter": "Gern! Ich bin …",
+          "keywords": [
+            "gern",
+            "ich bin"
+          ],
+          "hint_tr": "Kabul et ve adını söyle.",
+          "accepted": [
+            "Gern! Ich bin {name}.",
+            "Gerne, ich bin {name}.",
+            "Sehr gern! Ich bin {name}.",
+            "Ja, gern. Ich bin {name}.",
+            "Gern, freut mich! Ich bin {name}."
+          ]
+        },
+        {
+          "r": "A",
+          "de": "Freut mich, {name}. Und, was machst du an Weihnachten?",
+          "tr": "Memnun oldum, {name}. Eee, Noel'de ne yapıyorsun?",
+          "speed": "natural"
+        },
+        {
+          "r": "B",
+          "de": "Ich fahre zu meiner Familie. Und was machst du, Stefan?",
+          "tr": "Ailemin yanına gidiyorum. Ya sen ne yapıyorsun, Stefan?",
+          "starter": "Ich fahre … Und was machst du, …?",
+          "keywords": [
+            "und du",
+            "Stefan"
+          ],
+          "hint_tr": "Planını söyle. Şefe artık du ile ve adıyla geri sor.",
+          "accepted": [
+            "Ich fahre zu meiner Familie. Und was machst du, Stefan?",
+            "Ich bleibe hier. Und du, Stefan?",
+            "Ich fahre zu meiner Familie. Und du?",
+            "An Weihnachten bleibe ich hier. Was machst du, Stefan?",
+            "Ich fahr heim. Und du, Stefan, was machst du?",
+            "Ich bleibe hier. Und was machst du, Stefan?",
+            "Ich fahre zu meiner Familie. Und du, Stefan?"
+          ]
+        },
+        {
+          "r": "A",
+          "de": "Wir bleiben daheim, ganz ruhig. Endlich mal keine Meetings!",
+          "tr": "Biz evde kalıyoruz, sakin sakin. Nihayet toplantı yok!",
+          "speed": "natural"
+        },
+        {
+          "r": "B",
+          "de": "Das klingt gut. Schöne Feiertage!",
+          "tr": "Kulağa hoş geliyor. İyi tatiller!",
+          "starter": "Das klingt gut. Schöne …",
+          "keywords": [
+            "klingt",
+            "Feiertage"
+          ],
+          "hint_tr": "Beğendiğini söyle ve iyi tatiller dile.",
+          "accepted": [
+            "Das klingt gut. Schöne Feiertage!",
+            "Klingt gut! Frohe Weihnachten!",
+            "Schön! Dann schöne Feiertage!",
+            "Das klingt super. Frohe Weihnachten!",
+            "Klingt gut. Schöne Feiertage, Stefan!",
+            "Das klingt gut. Frohe Weihnachten!",
+            "Klingt gut. Schöne Feiertage!"
+          ]
+        },
+        {
+          "r": "A",
+          "de": "Echt jetzt? Der Chef duzt dich? Respekt!",
+          "tr": "(Tobi) Ciddi mi? Şef sana du mu diyor? Helal olsun!",
+          "speed": "fast"
+        },
+        {
+          "r": "B",
+          "de": "Ja, seit fünf Minuten!",
+          "tr": "Evet, beş dakikadır!",
+          "starter": "Ja, seit …",
+          "keywords": [
+            "seit"
+          ],
+          "hint_tr": "Evet de. Şakayla, yalnızca beş dakikadır böyle olduğunu ekle.",
+          "accepted": [
+            "Ja, seit fünf Minuten!",
+            "Ja, seit gerade eben!",
+            "Ja, seit heute Abend!",
+            "Ja, seit zwei Minuten!",
+            "Ja, seit heute!",
+            "Ja, seit einer Minute!"
+          ]
+        }
+      ]
+    }
+  ],
+  "roleplay": {
+    "scene_tr": "Weihnachtsfeier akşamı lokantadasın. Derya yanında oturuyor. Wichteln'i sor, Noel planını anlat ve ona da sor. Şef gelirse ona Sie de. Du demeyi önerirse du ile devam et.",
+    "partner_de": "Sie sind Derya Aksoy, 36, die erfahrenste Kollegin im Team, in Bayern aufgewachsen. Sie sind ruhig, klar und geduldig. Sie duzen die Person. Sie sitzen auf der Weihnachtsfeier der Firma (Gasthaus am Stadtplatz) neben ihr. Themen: das Essen, das Wichteln (jeder zieht einen Namen, Geschenk bis zehn Euro, geheim), Pläne für Weihnachten. Sie können kurz berichten, was der Chef (Stefan Wimmer) oder Tobi sagen. Sie sind keine Lehrerin: Sie korrigieren nie, erklären keine Grammatik und verlangen keine bestimmten Sätze. Wenn die Person ins Englische wechselt, sagen Sie freundlich: „Sag's einfach auf Deutsch, du schaffst das.“ Wenn die Person zweimal nicht versteht, sprechen Sie langsamer, mit einfachen Wörtern, und stellen Ja/Nein-Fragen. Höchstens zwei kurze Sätze pro Antwort.",
+    "opener_de": "Na, wie gefällt dir deine erste Weihnachtsfeier bei uns?",
+    "goals": [
+      {
+        "id": "g1",
+        "tr": "Wichteln'i anladın ya da ne olduğunu sordun.",
+        "de": "Das Wichteln ist verstanden oder erfragt."
+      },
+      {
+        "id": "g2",
+        "tr": "Noel planını sordun ve kendi planını bir cümleyle söyledin.",
+        "de": "Nach Weihnachtsplänen wurde gefragt und der eigene Plan genannt."
+      },
+      {
+        "id": "g3",
+        "tr": "Derya'ya du dedin. Şefe, o du demeyi önerene kadar Sie dedin.",
+        "de": "Die Anrede passt: Derya duzen, Chef siezen (oder duzen nach Angebot)."
+      }
+    ],
+    "targets": [
+      "Was heißt „Wichteln“?",
+      "Und, was machst du an Weihnachten?",
+      "An Weihnachten fahre ich zu meiner Familie.",
+      "Ich bleibe hier.",
+      "Ich habe schon einen Namen gezogen.",
+      "Gern! Ich bin {name}.",
+      "Wann war das noch mal?"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "style_de": "Sprechen Sie langsam und deutlich, in kurzen Sätzen, ohne Dialekt. Stellen Sie einfache Fragen und erklären Sie das Wichteln von selbst.",
+        "speed": "slow"
+      },
+      {
+        "level": 2,
+        "style_de": "Normales Tempo, alltagssprachlich ('nen, hab, heim, daheim). Fragen Sie nach Weihnachtsplänen und erzählen Sie kurz von Ihren.",
+        "speed": "natural"
+      },
+      {
+        "level": 3,
+        "style_de": "Lebhafte Feier, schneller, mit Unterbrechungen: Berichten Sie einmal, dass der Chef kommt und der Person das Du anbietet, und einmal einen Witz von Tobi.",
+        "speed": "fast"
+      }
+    ],
+    "surprises": [
+      {
+        "de": "Schau, der Chef kommt rüber. Er will dir bestimmt das Du anbieten.",
+        "tr": "Bak, şef buraya geliyor. Kesin sana du demeyi önerecek."
+      },
+      {
+        "de": "Rate mal, wen ich beim Wichteln gezogen hab!",
+        "tr": "Bil bakalım Wichteln'de kimi çektim!"
+      },
+      {
+        "de": "Und zwischen den Jahren – arbeitest du da?",
+        "tr": "Peki Noel ile yılbaşı arası, çalışıyor musun?"
+      },
+      {
+        "de": "Der Tobi sagt, er hat deinen Namen gezogen – Spaß!",
+        "tr": "Tobi senin adını çektiğini söylüyor – şaka!"
+      }
+    ]
+  },
+  "listening": [
+    {
+      "id": "h1",
+      "title_tr": "Herr Wimmer'in kısa konuşması",
+      "speed": "fast",
+      "layer": "hd",
+      "speeds": [
+        "normal",
+        "fast"
+      ],
+      "script": [
+        {
+          "r": "Herr Wimmer",
+          "de": "Liebe Kolleginnen und Kollegen, schön, dass Sie alle da sind.",
+          "tr": "Sevgili iş arkadaşlarım, hepinizin burada olmasına sevindim."
+        },
+        {
+          "r": "Herr Wimmer",
+          "de": "Es war ein langes Jahr – vielen Dank für Ihre Arbeit.",
+          "tr": "Uzun bir yıldı; emekleriniz için çok teşekkürler."
+        },
+        {
+          "r": "Herr Wimmer",
+          "de": "Das Essen und die Getränke gehen heute auf die Firma.",
+          "tr": "Bugün yemek ve içecekler firmadan."
+        },
+        {
+          "r": "Herr Wimmer",
+          "de": "Nach dem Essen machen wir das Wichteln, das organisiert wieder Herr Lechner.",
+          "tr": "Yemekten sonra Wichteln yapıyoruz; onu yine Herr Lechner organize ediyor."
+        },
+        {
+          "r": "Herr Wimmer",
+          "de": "Und jetzt: Guten Appetit und schöne Feiertage!",
+          "tr": "Şimdi de: Afiyet olsun ve iyi tatiller!"
+        }
+      ],
+      "qs": [
+        {
+          "kind": "gist",
+          "q_tr": "Konuşmanın amacı ne?",
+          "opts": [
+            "Yeni bir projeyi anlatmak",
+            "Teşekkür etmek ve akşamın planını söylemek",
+            "Toplantı tarihini değiştirmek"
+          ],
+          "ans": 1
+        },
+        {
+          "kind": "detail",
+          "q_tr": "Yemeği kim ödüyor?",
+          "opts": [
+            "Herkes kendisi",
+            "Herr Lechner",
+            "Firma"
+          ],
+          "ans": 2
+        },
+        {
+          "kind": "detail",
+          "q_tr": "Wichteln ne zaman?",
+          "opts": [
+            "Yemekten sonra",
+            "Yemekten önce",
+            "Ertesi gün ofiste"
+          ],
+          "ans": 0
+        }
+      ]
+    },
+    {
+      "id": "h2",
+      "title_tr": "Molada Noel planları (hızlı)",
+      "speed": "fast",
+      "layer": "alltag",
+      "speeds": [
+        "slow",
+        "fast"
+      ],
+      "script": [
+        {
+          "r": "Tobi",
+          "de": "Und, Derya, was machst du an Weihnachten?",
+          "tr": "Eee Derya, Noel'de ne yapıyorsun?"
+        },
+        {
+          "r": "Derya",
+          "de": "Heiligabend bei meinen Eltern, und am ersten Feiertag kommt die ganze Familie zu uns.",
+          "tr": "Noel arifesi annemlerde, Noel'in ilk günü de bütün aile bize geliyor."
+        },
+        {
+          "r": "Tobi",
+          "de": "Bei mir ist's ruhiger. Ich fahr in die Berge, zum Skifahren.",
+          "tr": "Bende daha sakin. Dağa gidiyorum, kayağa.",
+          "reductions": [
+            {
+              "heard": "ist's",
+              "full": "ist es"
+            },
+            {
+              "heard": "fahr",
+              "full": "fahre"
+            }
+          ]
+        },
+        {
+          "r": "Derya",
+          "de": "Und zwischen den Jahren? Arbeitest du da?",
+          "tr": "Peki Noel ile yılbaşı arası? O günlerde çalışıyor musun?"
+        },
+        {
+          "r": "Tobi",
+          "de": "Nee, da hab ich Urlaub. Passt scho.",
+          "tr": "Yok, o arada iznim var. Sorun yok.",
+          "reductions": [
+            {
+              "heard": "Nee",
+              "full": "Nein"
+            },
+            {
+              "heard": "hab",
+              "full": "habe"
+            }
+          ]
+        }
+      ],
+      "qs": [
+        {
+          "kind": "gist",
+          "q_tr": "Ne hakkında konuşuyorlar?",
+          "opts": [
+            "Noel planları",
+            "Wichteln hediyeleri",
+            "Yemek siparişi"
+          ],
+          "ans": 0
+        },
+        {
+          "kind": "detail",
+          "q_tr": "Tobi Noel'de ne yapıyor?",
+          "opts": [
+            "Derya'nın ailesine gidiyor",
+            "Evde kalıp çalışıyor",
+            "Dağa, kayağa gidiyor"
+          ],
+          "ans": 2
+        },
+        {
+          "kind": "detail",
+          "q_tr": "Tobi Noel ile yılbaşı arasında çalışıyor mu?",
+          "opts": [
+            "Evet, her gün",
+            "Hayır, izinli",
+            "Yalnızca bir gün"
+          ],
+          "ans": 1
+        }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "task_tr": "Şefin davetine Sie ile cevap ver. Tarihi bir daha sor, sonra teşekkür edip geleceğini söyle.",
+      "model_de": "Entschuldigung, wann war das noch mal? – Freitag ab halb sieben, alles klar. Vielen Dank für die Einladung, ich komme gern.",
+      "hints_de": [
+        "Entschuldigung, wann war das noch mal?",
+        "… ab halb sieben, alles klar.",
+        "Vielen Dank für die Einladung, …"
+      ]
+    },
+    {
+      "task_tr": "Molada bir iş arkadaşına Noel planını sor. Kendi planını da bir cümleyle anlat.",
+      "model_de": "Und, was machst du an Weihnachten? Ich bleibe hier und treffe Freunde.",
+      "hints_de": [
+        "Und, was machst du an Weihnachten?",
+        "Ich bleibe … / Ich fahre …"
+      ]
+    }
+  ],
+  "missions": [
+    {
+      "id": "m1",
+      "task_tr": "Molada birine şunu sor: Und, was machst du an Weihnachten? Kendi planını da bir cümleyle söyle. İş yerinde Wichteln ya da kutlama varsa ne zaman olduğunu sor.",
+      "prep": [
+        "ch:arbeit:was-machst-du",
+        "ch:arbeit:an-weihnachten",
+        "ch:arbeit:was-heisst-wichteln",
+        "ch:arbeit:wann-war-das",
+        "ch:arbeit:komme-gern"
+      ],
+      "escape_de": [
+        "Wie war das noch mal?",
+        "Was heißt das?",
+        "Etwas langsamer, bitte.",
+        "Sag's bitte noch mal.",
+        "Moment, ich überlege kurz."
+      ]
+    }
+  ],
+  "mistakes_tr": [
+    "Şefe Was machen Sie, iş arkadaşına Was machst du diye sorarsın.",
+    "İş yerinde du demeyi şef önerir. Sen şefe önermezsin.",
+    "Şef kutlamada senli benli konuşmayı önerdiyse ertesi gün yine Sie ile başla.",
+    "Bavyera'da an Weihnachten denir. Zu Weihnachten de doğrudur.",
+    "Ich gebe Ihnen Bescheid denir. Ich gebe Sie Bescheid denmez.",
+    "Geçmişi anlatırken ziehen gezogen olur, kaufen gekauft olur.",
+    "Chef Almancada şef ya da patron demektir. İngilizcedeki aşçı anlamı yoktur."
+  ],
+  "source": {
+    "notes": "Kutlama tarihi (cuma 18.12.2026) ve yer (Stadtplatz'taki lokanta) kurgusaldır, WORLD.md hafta 4'e bağlıdır. Wichteln, hediye sınırı, iş yerinde du/Sie ve 'an Weihnachten' kaynakları: content/v2/domains/arbeit/SOURCES.md."
+  }
+}
