@@ -395,6 +395,13 @@ def main():
                 check(page.locator(".card.err, [role=alert]").count() == 0, f"{mid} · {sec}: hata paneli yok") if sec in ("build", "drills") else None
         page.clock.set_system_time(_dt.datetime(2026, 7, 1, 10, 0)); page.goto(f"http://127.0.0.1:{PORT}/#/today"); page.wait_for_selector("[data-test=next-activity]")
         check(page.locator("[data-test=season]").count() == 0, "Temmuz'da mevsim kartı yok")
+        # PM-044.1: mevsim dersi ana yolda değil, Öğren'de mevsim dışında listelenmiyor
+        nxt = page.inner_text("[data-test=next-activity]")
+        check(not any(w in nxt for w in ("Weihnacht", "Noel", "Glühwein")), f"Temmuz: Bugün'ün sıradaki dersi mevsim dersi değil ({nxt.splitlines()[0][:60] if nxt else ''})")
+        for dom in ("arbeit", "essen", "freizeit"):
+            page.goto(f"http://127.0.0.1:{PORT}/#/learn/{dom}"); page.wait_for_selector("main h1, main h2"); page.wait_for_timeout(200)
+            t = page.inner_text("main")
+            check(not any(w in t for w in ("Weihnacht", "Glühwein")), f"Temmuz: Öğren/{dom} altında mevsim dersi yok")
         b6.close()
 
         print("10) uzun Almanca kelimeler 320/390 px'te taşmıyor; %130 yazı boyutu")
