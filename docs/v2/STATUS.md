@@ -9,6 +9,12 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 3. **#43 yükleme sınırı:** Bugün ekranının ilk karesi CI WebKit'te 170–630 ms (DOM 2–12 ms). Bir neden (saat dilimli `Intl` her çizimde) düzeltildi; kalan maliyetin tanısı CI'da.
 4. Sonra: PM-039.1 (deploy-v2 CI'a bağlı; deploy-worker "Dağıtılmadı: secret yok"), PM-039.2–4 (dayanıklılık, olay günlüğü, veri güvenliği), #45 arayüz P0'ları + PM-044.5, #46 P0-1, heceleme yuvaları (İçerik Motoru isteği).
 
+## Birleşenler (2026-11-18)
+- #52 gizlilik (23:05) → v1 **2026-11-18c** yayında · #48 46 kalıp (23:07): kayıttaki 61 kalıbın hepsi onaylı.
+
+## Ölçümler (PM-046 A)
+- Okur turu ortalaması: PM-032 partisi 5 tur (çip ölçütü tur 4'te eklendi), 46 kalıp 3 tur. Hedef ≤ 1,5. Geri dönen hata türleri (tırnak, noktalı virgül, "aynı durumda" göndermesi, olumsuzluğu kaybeden çip) yazar talimatına eklendi.
+
 ## Yarım işler (PM-042 C)
 | İş | Dal | Durum |
 |---|---|---|
@@ -30,11 +36,9 @@ Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur. Hata türler
 ## Açık PR'lar
 | PR | Dal | Teslim | İnceleme |
 |---|---|---|---|
-| #52 | `v1/gizlilik` | PM-036 A: kurum/kitap adları ve sınav tarihi depodan çıktı, `kursMig` | P1'ler düzeltildi |
-| #48 | `v2/kaliplar-46` | 46 kalıp onaylı + PM-044.3a | ONAY |
 | #50 | `content/kelime-001-003` | İçerik Motoru: 300 kelime kartı | ONAY |
 | #51 | `content/r0-temel` | İçerik Motoru: R0 temel paket | değişiklik gerekli (İçerik Motoru) |
-| #49 | `v2/telefon01-ogretim` | PM-032, PM-044.1–3 | P1'ler düzeltildi |
+| #49 | `v2/telefon01-ogretim` | PM-032 (öğretmeden isteme 0, cevap değerlendirme), PM-044.1 (mevsim dersi ana yolda değil), PM-044.3 (Advent + telefon/01 + strategie/01 onaylı; okur 5 tur) | 2. tur P1'leri düzeltildi |
 | #43 | `v2/denetim` | PM-030 DN-2 | yükleme sınırı kırmızı |
 
 ### Birleştirme turu (PM-007, 2026-11-17)

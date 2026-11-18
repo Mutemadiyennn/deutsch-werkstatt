@@ -200,6 +200,8 @@ export const Scenario = z.object({
   /** Gerçek takvim (WORLD.md §6): bu tarihler arasında Bugün'de öne çıkar; AA-GG */
   season: z.object({ id: z.string(), from: z.string().regex(/^\d\d-\d\d$/), to: z.string().regex(/^\d\d-\d\d$/), title_tr: z.string() }).optional(),
   essentials: z.object({ lexemes: z.array(LexemeId), chunks: z.array(ChunkId), patterns: z.array(PatternId) }),
+  /** OD-1/OD-7: bu senaryodan önce öğretilmiş olması gereken senaryolar (onların temel öğeleri "öğretilmiş" sayılır) */
+  requires: z.array(ScenarioId).default([]),
   extras: z.object({ lexemes: z.array(LexemeId).default([]), chunks: z.array(ChunkId).default([]) }).default({ lexemes: [], chunks: [] }),
   chunks: z.array(Chunk).default([]),
   otherSide: z.array(z.object({ id: z.string(), de: z.string(), tr: z.string(), layer: LayerKey, speed: Speed, reductions: z.array(Reduction).optional() })).default([]),

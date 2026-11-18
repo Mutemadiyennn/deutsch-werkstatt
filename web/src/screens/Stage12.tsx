@@ -174,7 +174,7 @@ export function HearSection({ ctx, finish, back, setSub }: SP & { setSub: (n: pr
         <div class="scangrid" role="list">
           {scanCards.map((c) => (
             <div class="scanrow" role="listitem" data-card={c.id}>
-              <div class="grow"><span lang="de" class="de">{c.de}</span></div>
+              <div class="grow"><span lang="de" class="de">{c.de}</span><div class="tr2">{c.tr}</div></div>
               <div class="seg tri" role="group" aria-label={`${c.de}: ne kadar biliyorsun?`}>
                 {([["known", "✓", "Biliyorum"], ["unsure", "?", "Emin değilim"], ["unknown", "✗", "Bilmiyorum"]] as const).map(([k, ic, lb]) =>
                   <button aria-pressed={mark[c.id] === k} aria-label={lb} title={lb} data-mark={k} onClick={() => { haptic("selection"); setMark({ ...mark, [c.id]: k }); }}>{ic}</button>)}
@@ -280,8 +280,11 @@ function IfadeCard({ c, accent, onPass }: { c: Card; accent: string; onPass: (ho
         {c.words.length > 0 && <div class="wordinfo" data-test="word-info">{c.words.map((w) => <div lang="de">{w}</div>)}</div>}
       </section>
       {why && <WhySheet tips={tips} onClose={() => setWhy(false)} />}
-      {res !== null && <FeedbackBand kind={res >= 60 ? "ok" : "warn"} title={res >= 60 ? `Anlaşıldı · %${res}` : `%${res} · bir daha dene`} />}
       <ActionBar>
+        {/* geri bildirim eylem çubuğunda: kartın kaydırma alanında kalıp görünmez olmasın (PM-032 ekran kontrolü) */}
+  {res !== null && (res >= 60
+        ? <FeedbackBand kind="ok" title="Anlaşıldı." />
+        : <FeedbackBand kind="warn" title="Bir daha dinle ve söyle.">İpucu: ilk kelime <b lang="de">{c.de.split(/\s+/)[0]}</b>. <button class="btn sm" data-test="slow-listen" onClick={() => play(c.de, "slow", "s")}><Icon name="play" /> Yavaş dinle</button></FeedbackBand>)}
         {typing ? <AnswerField onSubmit={(t) => check(t)} placeholder="İfadeyi yaz…" submitLabel="Tekrar et" voice={false} />
           : stt ? <MicButton wide onText={check} />
           : <button class="btn primary block" onClick={() => setTyping(true)} data-test="type-repeat"><Icon name="keyboard" /> Yazarak tekrar et</button>}
