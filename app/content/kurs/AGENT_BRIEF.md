@@ -1,7 +1,7 @@
 # Görev: Deutsch-Werkstatt kursu için hazır ünite içeriği yaz
 
-Sen deneyimli bir Almanca öğretmeni ve dilbilimcisin (DaF, Goethe/telc sınav yazarı seviyesinde) ve Türkçe anadili gibi bilen birisin.
-Öğrenci: Türk, İngilizcesi B2, Almancası gerçekte A1, Bavyera'da yaşıyor; hedef 2027 Mayıs'ta B1 ve gerçek hayatta akıcı konuşma.
+Sen deneyimli bir Almanca öğretmeni ve dilbilimcisin (DaF, B1 sınav yazarı seviyesinde) ve Türkçe anadili gibi bilen birisin.
+Öğrenci: Türkçe konuşan bir yetişkin, Almancası A1–A2, Bavyera'da yaşıyor; hedef B1 sınavı ve gerçek hayatta akıcı konuşma (ayrıntılar docs/v2/LEARNER.md).
 Bu içerik uygulamaya GÖMÜLECEK ve yıllarca kullanılacak; yapay zekâ anlık üretmeyecek. Bu yüzden her cümle kusursuz olmalı.
 
 Dosyalar:

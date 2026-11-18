@@ -80,7 +80,7 @@ jobs:
         run: |
           P=ios/App/App/Info.plist
           /usr/libexec/PlistBuddy -c "Add :NSMicrophoneUsageDescription string 'Konuşma alıştırmaları için mikrofon gerekli.'" $P || /usr/libexec/PlistBuddy -c "Set :NSMicrophoneUsageDescription 'Konuşma alıştırmaları için mikrofon gerekli.'" $P
-          # VHS ödev fotoğrafı için (yoksa fotoğraf seçerken uygulama kapanır)
+          # kurs ödevi fotoğrafı için (yoksa fotoğraf seçerken uygulama kapanır)
           /usr/libexec/PlistBuddy -c "Add :NSCameraUsageDescription string 'Ödev sayfasının fotoğrafını çekmek için.'" $P || true
           /usr/libexec/PlistBuddy -c "Add :NSPhotoLibraryUsageDescription string 'Ödev fotoğrafını seçmek için.'" $P || true
           /usr/libexec/PlistBuddy -c "Add :NSSpeechRecognitionUsageDescription string 'İnternet yokken konuşmanı cihazda yazıya dökmek için.'" $P || true

@@ -1,6 +1,6 @@
 /* ===== Bugün = kurs. Eski haftalık plan, yapay zekâya anlık yazdırılan ders/senaryo/hikâye görevleri günlük listeden çıkarıldı
    (yavaş, tekrar eden ve hata verip menüye atan kısım buydu). Hepsi "Daha fazla" altında isteğe bağlı durmaya devam eder. ===== */
-const KU_KEEP = new Set(["vocab", "external", "real", "vhspost", "mock", "exam"]);
+const KU_KEEP = new Set(["vocab", "external", "real", "sinifpost", "mock", "exam"]);
 function kuDay(){ const k = kSt(); const d = k.day || (k.day = {}); return d[dayKey()] || (d[dayKey()] = {n:0}); }
 {
   const _nfD = kuNodeFinish;

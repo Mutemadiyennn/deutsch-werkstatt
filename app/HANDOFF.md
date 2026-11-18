@@ -14,8 +14,8 @@
 
 **Öğrenci:**
 - Anadili Türkçe, İngilizcesi B2, Almancası gerçek A1.
-- Bavyera'da yaşıyor. VHS kursu Kasım 2026 ortasında başladı.
-- Hedef: Goethe/telc **B1 sınavı, 15.05.2027**, ve gerçek hayatta konuşabilmek.
+- Bavyera'da yaşıyor. Bir dil kursuna gidiyor.
+- Hedef: **B1 sınavı** (tarih yalnızca cihazdaki profilde, D-075) ve gerçek hayatta konuşabilmek.
 - Günlük kullanım hedefi 60–90 dk.
 
 **Kullanıcının v1'deki şikâyetleri (v2'nin çözmesi gereken asıl sorunlar):**
@@ -338,7 +338,7 @@ Ardından `90-whatsnew.js` güncellenir.
 
 ## 7. Bilinen sorunlar
 
-- **Kişisel içerik** hâlâ legacy.html'de ve herkese açık depoda (≈130 satır): PERSONAS, SCEN, hikâye serisi kadrosu, MONO_TOPICS, LIFE_CH, coachAsk, liveSys, `profile()` tabanındaki SPRACHSITUATION / VHS-KURS satırları.
+- **Kişisel içerik** hâlâ legacy.html'de ve herkese açık depoda (≈130 satır): PERSONAS, SCEN, hikâye serisi kadrosu, MONO_TOPICS, LIFE_CH, coachAsk, liveSys, `profile()` tabanındaki SPRACHSITUATION / SPRACHKURS satırları.
   - Git geçmişinde de duruyor. Temizlemek için gh-pages / main geçmişinin yeniden yazılması gerekir; bu geri alınamaz bir iş, **kullanıcıya sorulmalı**.
 - **Hata akışları** (legacy):
   - "Dersler" hata verince menüye atıyor.
@@ -349,7 +349,7 @@ Ardından `90-whatsnew.js` güncellenir.
 - **Seslendirme:** kelimeye bitişik tireler ("-ebilmek", "-e") hâlâ okunuyor.
 - **Küçük işler:**
   - 5 karakterde boş "Durum:" alanı
-  - VHS dosya girişinin stili
+  - kurs ödevi dosya girişinin stili
   - Bazı beklemelerde Durdur düğmesi yok
   - Yanlış "Koç" başlıkları
   - Menü sadeleştirme
@@ -375,7 +375,7 @@ Ardından `90-whatsnew.js` güncellenir.
 
 **P2 — sağlamlık ve cila**
 8. §7'deki hata akışları, 503 kodu, toplam zaman aşımı bütçesi, bitişik tire seslendirmesi, küçük işler.
-9. VHS ders kitabı öğrenildiğinde ünite sırası kitabın bölümleriyle hizalanabilir. Kullanıcıya hangi kitabı kullandıkları sorulacak.
+9. Kurs kitabı öğrenildiğinde ünite sırası kitabın bölümleriyle hizalanabilir. Kullanıcıya hangi kitabı kullandıkları sorulacak.
 
 **Mimari öneri (v2 için)**
 - legacy.html ~10.000 satırlık tek dosya, sarmalama zinciri derin: `renderMore` 4 kez, `renderSeviye` 3 kez sarmalanıyor.
