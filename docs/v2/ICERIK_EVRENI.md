@@ -3,6 +3,8 @@
 
 ---
 
+> Bağlantı: her okuma ve dinleme metni METIN_MERDIVENI.md'ye göre basamaklı görev taşır (PM-020).
+
 # İÇERİK EVRENİ — Almanya'da bir insanın gerçekten karşılaştığı her şey, oyunlaştırılmış
 
 > Bu belge PM'in kendi tasarımıdır. Proje sahibi neyi istediğini değil, **ne olduğunu** söyledi: "İnsanın beynini sürekli yorsun, canı sıkılmasın, sürekli yeni şeyler çıksın, dopamini beslensin."

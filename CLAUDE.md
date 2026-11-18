@@ -15,6 +15,7 @@ Her ajan ve oturum işe `docs/v2/LEARNER.md`'yi okuyarak başlar. Her kararda te
 7. `docs/v2/KUTUPHANE.md` — sonu olmayan, seviyeli, çevrimdışı kütüphane; içerik hattı (PM-011/012/015)
 8. `docs/v2/ICERIK_EVRENI.md` — gerçek hayatın metin ve ses türleri, 20 biçim, yenilik motoru
 9. `docs/v2/KAYNAKLAR.md` — açık lisanslı kaynaklar (A/B/C/X); telifli metin depoya girmez
+   - `docs/v2/METIN_MERDIVENI.md` — her metinden 20+ görev, Kolay/Orta/Zor/Acımasız(/Usta) basamakları (PM-020); `design/IFADE_ORNEK.png` açıklama standardının referans ekranı (PM-017 eki)
 10. `docs/v2/LEARNING_SYSTEM.md` — öğrenme sistemi (LS-x.y kimlikleri)
 11. `docs/v2/LEARNER.md` — öğrenci kartı (kimlik bilgisi yok); ürün bir öğretmendir
 12. `docs/v2/REQUIREMENTS.md` — gereksinim kaydı (RQ-x); her PR karşıladığı RQ ve LS kimliklerini listeler (PM-005)

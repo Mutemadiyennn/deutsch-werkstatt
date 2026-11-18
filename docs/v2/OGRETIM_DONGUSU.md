@@ -10,6 +10,8 @@
 
 ---
 
+> Bağlantı: metin görevlerinin basamakları METIN_MERDIVENI.md'de (PM-020); "Acımasız" öğretilmemiş gramer demek değildir, OD-1 hazırlık kontrolü her basamakta geçerli.
+
 ## OD-0 Temel kural
 
 **Hiçbir üretim görevi (konuş, yaz, anlat, benzerini yaz, fikrini söyle), gerektirdiği her şey önceden öğretilip hatırlanır hâle gelmeden öğrenciye verilmez.**
