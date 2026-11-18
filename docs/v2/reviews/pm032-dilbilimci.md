@@ -1,4 +1,4 @@
-İLERLEME: 5/5 dosya · okur turu 1 ve 2 kapandı · #39 P1-3: 23 exp eklendi (bölüm 10), okur bekliyor · doğrulama geçti · 2026-11-18
+İLERLEME: 5/5 dosya · okur turları kapandı · exp eklendi (bölüm 10) · PM-044 düzeltmeleri yapıldı (bölüm 11), okur bekliyor · doğrulama geçti · 2026-11-18
 
 # PM-032 / PM-035 — dilbilimci incelemesi (2026-11-18)
 
@@ -311,3 +311,57 @@ Yeni kart açılmadı. `Nein, noch nicht` `ch:telefon:schon-patient` kartının 
 | `ch:freizeit:passt-mir.exp` | Bu bana uyar. | Önerilen saat ya da yer sana uyunca. | Das → bu · passt → uyar · mir → bana · gut → iyi | **Das passt mir** dersin, **Das passt mich** demezsin. |
 | `ch:freizeit:plaetzchen-gebracht.exp` | Komşum bana kurabiye getirdi. | Advent sohbetinde küçük bir haber anlatırken. | Meine Nachbarin → (kadın) komşum · mir → bana · Plätzchen → kurabiye · gebracht → getirdi | **hat** ikinci sırada durur, **gebracht** en sona gider. |
 | `ch:freizeit:adventskranz.exp` | Evde Advent çelengin var mı? | Advent haftalarında sohbet açarken. | Hast du → sende var mı · zu Hause → evde · schon → şimdiden · einen Adventskranz → bir Advent çelengi | **Adventskranz** dört mumlu bir çelenktir, her pazar bir mum yakılır. |
+
+## 11. PM-044 düzeltmeleri (2026-11-18)
+
+Okur yalnızca bu bölümdeki "Sonra" metinlerini okur. Durum beş dosyada `draft`.
+
+- **Çip taraması (PM-042 B.10):** beş senaryodaki bütün çipler (exp ve alltag_exp, 98 kutu) şu ölçütle okundu: çipler soldan sağa okununca ifadenin anlamı çıkmalı, olumsuzluk ve zaman kaybolmamalı. PM'in saydığı altı kutuya ek olarak üç bozuk kutu bulundu: telefon `halb-zehn.exp` (**halb** → yarım, **zehn** → on: tam da 10:30 yanlışını öğretiyordu) ve telefon `wie-war-das` iki kutusu (**war das** → idi o). Ayrık parçalar üç nokta ile tek çip oldu (**kann … nicht**, **habe … gezogen**); çip sınırı (en çok 3 kelime) korundu.
+- **Dokunulmayan sınır örnekleri:** strategie `nicht-ganz` (**nicht ganz** → tam değil · **verstanden** → anladım) ve `dialekt` (**noch nicht** → henüz değil) olumsuzluğu taşıyor. essen `stimmt-so` (**Stimmt** → doğru, tamam · **so** → böyle) deyimin kelime karşılığı; anlam satırı "Üstü kalsın" diyor.
+- **essen v1:** "Ne demek?" sorusuna **Genau** cevabı kaldırıldı; satıcı artık Pfand'ı açıklıyor. Öğrenci satırının ipucu zaten uyuyordu, değişmedi.
+- **P2:** dördü de yapıldı (Servus katmanı, "mı bile", d20 sorusu, mit-karte ipucu).
+
+**telefon**
+
+| Kimlik | Önce | Sonra |
+|---|---|---|
+| `ch:telefon:wie-war-das.exp.parcalar` | Entschuldigung → pardon · wie → nasıl · war das → idi o · nochmal → bir daha | Entschuldigung → pardon · wie war das → nasıl demiştiniz · nochmal → bir daha |
+| `ch:telefon:wie-war-das.alltag_exp.parcalar` | Wie → nasıl · war das → idi o · nochmal → bir daha | Wie war das → nasıl demiştiniz · nochmal → bir daha |
+| `ch:telefon:halb-zehn.exp.parcalar` | Am Donnerstag → perşembe günü · um → saatte · halb → yarım · zehn → on | Am Donnerstag → perşembe günü · um → saat · halb zehn → dokuz buçuk |
+
+**essen**
+
+| Kimlik | Önce | Sonra |
+|---|---|---|
+| `v1#8.de` | Genau, drei Euro pro Tasse. Die Tassen bringen S' einfach wieder her, dann kriegen S' das Pfand zurück. | Das Pfand ist für die Tasse, drei Euro pro Tasse. Die Tassen bringen S' einfach wieder her, dann kriegen S' das Pfand zurück. |
+| `v1#8.tr` | Evet, bardak başına üç euro. Bardakları geri getirin, depozitoyu geri alırsınız. | Pfand bardak için, bardak başına üç euro. Bardakları geri getirin, depozitoyu geri alırsınız. |
+| `ch:essen:mit-karte.alltag_exp.ipucu_tr` | Güneyde hızlı konuşmada **Sie** kısalır, **S'** gibi duyulur. | **nehmen** burada kabul etmek demektir. |
+
+**freizeit**
+
+| Kimlik | Önce | Sonra |
+|---|---|---|
+| `ch:freizeit:heute-nicht.exp.parcalar` | Heute → bugün · kann ich → yapabiliyorum · leider nicht → maalesef değil | Heute → bugün · kann … nicht → gelemiyorum · leider → maalesef |
+| `ch:freizeit:heute-nicht.alltag_exp.parcalar` | Heut → bugün (**heute**) · geht's → olur (**geht es**) · leider nicht → maalesef değil | Heut → bugün (**heute**) · geht's … nicht → olmuyor (**geht es nicht**) · leider → maalesef |
+| `ch:freizeit:bis-gleich.layers.bair` | Servus! (Samimi selam ve veda sözü. Yalnızca du dediğin kişilere söylenir.) | (katman çıkarıldı: **Servus** selamdır, **Bis gleich** ile eşdeğer değil; o01 ve rol oyununda duyuluyor) |
+| `d20.q_tr` | Tobi ayrılırken Pfiat di diyor. Ne demek? | Tobi **Pfiat di** diyor. Ne demek? |
+
+**arbeit**
+
+| Kimlik | Önce | Sonra |
+|---|---|---|
+| `ch:arbeit:namen-gezogen.exp.parcalar` | Ich habe → ben · schon → bile, çoktan · einen Namen → bir isim · gezogen → çektim | Ich → ben · habe … gezogen → çektim · schon → bile, çoktan · einen Namen → bir isim |
+| `ch:arbeit:namen-gezogen.alltag_exp.parcalar` | Ich hab → ben (**ich habe**) · schon → bile · gezogen → çektim | Ich → ben · hab … gezogen → çektim (**habe gezogen**) · schon → bile |
+| `ch:arbeit:ich-bin-name.exp.parcalar` | Gern → memnuniyetle · Ich bin → ben | Gern → memnuniyetle · Ich bin → ben (ardından adın) |
+| `ch:arbeit:muss-absagen.exp.parcalar` | Leider → maalesef · muss ich → zorundayım · absagen → gelemeyeceğini bildirmek | Leider → maalesef · muss ich → zorundayım · absagen → hayır demek |
+| `ch:arbeit:muss-absagen.alltag_exp.parcalar` | Da → o gün, o zaman · kann ich → gelebilirim · leider nicht → maalesef değil | Da → o gün · kann … nicht → gelemiyorum · leider → maalesef |
+| `ch:arbeit:geschenk-gekauft.tr` | Hediyeyi aldın mı bile? | Hediye aldın mı? |
+| `b11.prompt_tr` | İsim çektin mi bile? (du ile) | İsim çektin mi? (du ile) |
+| `d08.tr` | Bir isim çektin mi bile? | Bir isim çektin mi? |
+
+**Okur tur 4 (iki GERİ)**
+
+| Kimlik | Önce | Sonra |
+|---|---|---|
+| `ch:telefon:schon-patient.alltag_exp.parcalar` (okur tur 4) | Ja → evet · ich → ben · war → bulundum · schon mal → daha önce · bei Ihnen → sizde · Nein, noch nicht → hayır, henüz değil | Ja → evet · ich → ben · war → bulundum · schon mal → daha önce · bei Ihnen → sizde · Nein, noch nicht → ya da: hayır, henüz değil |
+| `ch:strategie:nur-verstanden.alltag_exp.parcalar` (okur tur 4) | Ich hab → (ben) (**ich habe**) · nur → sadece · verstanden → anladım | Ich hab → (ben) (**ich habe**) · nur → sadece · Montag → pazartesi (örnek kelime) · verstanden → anladım |

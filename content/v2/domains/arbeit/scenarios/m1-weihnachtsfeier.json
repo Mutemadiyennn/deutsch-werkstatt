@@ -10,7 +10,7 @@
     "status": "reviewed",
     "by": "dilbilimci-ajan",
     "at": "2026-11-18",
-    "notes": "PM-032: yazar → dilbilimci KAPANDI (docs/v2/reviews/pm032-dilbilimci.md) → okur tur 1–3 açık GERİ 0 (docs/v2/reviews/okur/pm032.md)",
+    "notes": "PM-032 + PM-044.3: yazar → dilbilimci KAPANDI (docs/v2/reviews/pm032-dilbilimci.md) → okur tur 1–5 açık GERİ 0 (docs/v2/reviews/okur/pm032.md)",
     "okur": "passed",
     "okur_at": "2026-11-18"
   },
@@ -146,15 +146,15 @@
         "parcalar": [
           {
             "de": "Da",
-            "tr": "o gün, o zaman"
+            "tr": "o gün"
           },
           {
-            "de": "kann ich",
-            "tr": "gelebilirim"
+            "de": "kann … nicht",
+            "tr": "gelemiyorum"
           },
           {
-            "de": "leider nicht",
-            "tr": "maalesef değil"
+            "de": "leider",
+            "tr": "maalesef"
           }
         ],
         "ipucu_tr": "Burada **kommen** söylenmez, **kann ich nicht** gelemem demektir."
@@ -173,7 +173,7 @@
           },
           {
             "de": "absagen",
-            "tr": "gelemeyeceğini bildirmek"
+            "tr": "hayır demek"
           }
         ],
         "ipucu_tr": "**muss** varsa **absagen** bölünmez ve en sona gider."
@@ -388,7 +388,7 @@
           },
           {
             "de": "Ich bin",
-            "tr": "ben"
+            "tr": "ben (ardından adın)"
           }
         ],
         "ipucu_tr": "İş yerinde **du** demeyi şef önerir, sen önermezsin."
@@ -416,8 +416,12 @@
         "ne_zaman_tr": "Wichteln'de çekilişi yaptığını söylerken.",
         "parcalar": [
           {
-            "de": "Ich habe",
+            "de": "Ich",
             "tr": "ben"
+          },
+          {
+            "de": "habe … gezogen",
+            "tr": "çektim"
           },
           {
             "de": "schon",
@@ -426,10 +430,6 @@
           {
             "de": "einen Namen",
             "tr": "bir isim"
-          },
-          {
-            "de": "gezogen",
-            "tr": "çektim"
           }
         ],
         "ipucu_tr": "Kimi çektiğini söylemezsin, bu bir sırdır."
@@ -439,16 +439,16 @@
         "ne_zaman_tr": "Molada kısa ve rahat söylersin.",
         "parcalar": [
           {
-            "de": "Ich hab",
-            "tr": "ben (**ich habe**)"
+            "de": "Ich",
+            "tr": "ben"
+          },
+          {
+            "de": "hab … gezogen",
+            "tr": "çektim (**habe gezogen**)"
           },
           {
             "de": "schon",
             "tr": "bile"
-          },
-          {
-            "de": "gezogen",
-            "tr": "çektim"
           }
         ],
         "ipucu_tr": "Konuşmada **habe** kelimesinin sonundaki **e** düşer, **hab** olur."
@@ -456,7 +456,7 @@
     },
     {
       "id": "ch:arbeit:geschenk-gekauft",
-      "tr": "Hediyeyi aldın mı bile?",
+      "tr": "Hediye aldın mı?",
       "lexemes": [
         "lx:Geschenk",
         "lx:kaufen"
@@ -801,7 +801,7 @@
     },
     {
       "id": "b11",
-      "prompt_tr": "İsim çektin mi bile? (du ile)",
+      "prompt_tr": "İsim çektin mi? (du ile)",
       "accepted": [
         "Hast du schon einen Namen gezogen?",
         "Hast du auch schon einen Namen gezogen?",
@@ -970,7 +970,7 @@
       "id": "d08",
       "k": "order",
       "de": "schon / Hast / einen Namen / gezogen / du / ?",
-      "tr": "Bir isim çektin mi bile?",
+      "tr": "Bir isim çektin mi?",
       "accepted": [
         "Hast du schon einen Namen gezogen?"
       ],
