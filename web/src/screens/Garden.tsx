@@ -122,7 +122,17 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
     </div>
   );
 
-  const verdict = res && (
+  // PM (#59 yorumu): cevaptan sonra, doğru ya da yanlış, kelime cümlesiyle görünür — örnek cümle (dinle), fotoğraf, eşdizim
+  const colAfter = collocOf(l);
+  const verdict = res && (<>
+    <section class="card stack fade" data-test="after-card" data-lex={l.id} data-nex={l.examples.length} ref={(el) => { if (el && !el.dataset.seen) { el.dataset.seen = "1"; requestAnimationFrame(() => el.scrollIntoView({ block: "center", behavior: "smooth" })); } }}>
+      <div class="de-lg" lang="de"><Art art={l.art} de={l.de} /> <span class="small muted">· {l.tr}</span></div>
+      <Photo q={ex?.img || l.img} />
+      {ex && <div class="row" style={{ flexWrap: "nowrap", alignItems: "flex-start" }}><span class="grow"><span lang="de" data-test="after-ex">{ex.de}</span><br /><span class="small muted">{ex.tr}</span></span><ListenButton text={ex.de} small /></div>}
+      {colAfter && <p class="small">Birlikte: <b lang="de">{colAfter.de}</b> <span class="muted">· {colAfter.tr}</span></p>}
+    </section>
+    {/* geri bildirim bandı yüksek: kart bandın altında kalmasın diye kaydırma payı */}
+    <div aria-hidden="true" style={{ height: 180 }} />
     <ActionBar>
       {res.ok ? <FeedbackBand kind="ok" title="Doğru.">{res.expected && <span lang="de">{res.expected}</span>}</FeedbackBand>
         : <FeedbackBand kind="bad" title="Doğrusu bu.">
@@ -131,7 +141,7 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
             {res.note && <div class="small">{res.note}</div>}
           </FeedbackBand>}
       <button class="btn primary block" data-test="next" onClick={() => next(res.ok ? (hinted ? "hinted" : "correct") : "wrong")}>Devam</button>
-    </ActionBar>
+    </ActionBar></>
   );
 
   if (q.type === "listen_meaning" || q.type === "article" || q.type === "colloc") return <ChoiceQ q={q} l={l} all={all} ex={ex} show={show} verdict={verdict} />;
@@ -207,7 +217,6 @@ function ChoiceQ({ q, l, all, ex, show, verdict }: { q: GardenQ; l: Lexeme; all:
         {q.type === "listen_meaning" ? <div class="row"><ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} /><span class="small muted">Kelime cevaptan sonra görünür</span></div>
           : <div class="de-lg" lang="de">{m.stem}</div>}
         {picked !== null && q.type !== "colloc" && <div class="de-lg" lang="de"><Art art={l.art} de={l.de} /></div>}
-        {q.type === "article" && ex && picked !== null && <p class="small" lang="de">{ex.de}</p>}
       </section>
       <div role="group">{m.opts.map((o, k) => <button class={`opt${picked === null ? "" : k === m.ans ? " right" : k === picked ? " wrong" : ""}`} disabled={picked !== null} data-opt={k}
         {...(E2E ? { "data-right": k === m.ans ? "1" : undefined } : {})} lang={m.expected === l.tr ? undefined : "de"}
