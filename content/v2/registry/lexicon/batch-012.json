@@ -914,14 +914,14 @@
     {
      "id": "lx:Käse:1",
      "de": "Ich hätte gern 200 Gramm Käse, bitte.",
-     "tr": "200 gram peynir alayım, lütfen.",
+     "tr": "200 gram peynir istiyorum, lütfen.",
      "layer": "hd",
      "img": "cheese on scale at deli counter"
     },
     {
      "id": "lx:Käse:2",
      "de": "Bei Frau Stadler gibt es auch Brezen mit Käse.",
-     "tr": "Stadler Hanım'ın fırınında peynirli Brezel de var.",
+     "tr": "Stadler Hanım'ın fırınında peynirli Breze de var.",
      "layer": "hd",
      "img": "cheese pretzel in bakery display"
     },
@@ -939,6 +939,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "sliced cheese at cheese counter"
+    },
+    {
+     "id": "lx:Käse:5",
+     "de": "Im Kühlschrank ist kein Käse mehr.",
+     "tr": "Buzdolabında hiç peynir kalmadı.",
+     "layer": "alltag",
+     "img": "open fridge with empty shelf"
+    },
+    {
+     "id": "lx:Käse:6",
+     "de": "– Mit Käse oder ohne? – Mit Käse, bitte.",
+     "tr": "– Peynirli mi, peynirsiz mi? – Peynirli, lütfen.",
+     "layer": "hd",
+     "dialog": true,
+     "img": "pizza slice with melted cheese"
     }
    ],
    "level": "A1",
@@ -988,13 +1003,13 @@
      "de": "Was machen wir mit ___ Käse?",
      "answer": "dem",
      "tr": "Peyniri ne yapıyoruz?",
-     "hint_tr": "Bildiğimiz peynir: **mit dem Käse**."
+     "hint_tr": "**mit** dedikten sonra **der Käse**, **dem Käse** olur."
     },
     {
      "de": "Ich esse das Brot mit ___ guten Käse.",
      "answer": "einem",
      "tr": "Ekmeği iyi bir peynirle yiyorum.",
-     "hint_tr": "Herhangi bir peynir: **mit einem guten Käse**."
+     "hint_tr": "**mit** dedikten sonra **ein Käse**, **einem Käse** olur."
     }
    ],
    "unit": "u:m1:04",
@@ -4066,6 +4081,21 @@
      "layer": "alltag",
      "dialog": true,
      "img": "pharmacy with closed shutters at night"
+    },
+    {
+     "id": "lx:geschlossen:5",
+     "de": "Das Bürgerbüro ist am Freitagnachmittag geschlossen.",
+     "tr": "Vatandaş bürosu cuma öğleden sonra kapalı.",
+     "layer": "hd",
+     "img": "locked glass door town office"
+    },
+    {
+     "id": "lx:geschlossen:6",
+     "de": "– Ist der Supermarkt heute geschlossen? – Ja, heute ist Feiertag.",
+     "tr": "– Market bugün kapalı mı? – Evet, bugün resmî tatil.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "empty supermarket parking lot holiday"
     }
    ],
    "level": "A1",
@@ -4090,20 +4120,53 @@
     {
      "de": "Die Bank ist heute ___.",
      "answer": "geschlossen",
+     "also_ok": [
+      "zu"
+     ],
      "tr": "Banka bugün kapalı.",
      "hint_tr": "Bir yer açık değilse **geschlossen** denir."
     },
     {
      "de": "Montags ist das Café ___.",
      "answer": "geschlossen",
+     "also_ok": [
+      "zu"
+     ],
      "tr": "Kafe pazartesileri kapalı.",
      "hint_tr": "Belli günlerde kapalı olan yer için de **geschlossen** denir."
     },
     {
      "de": "Die Apotheke ist nicht offen, sie ist ___.",
      "answer": "geschlossen",
+     "also_ok": [
+      "zu"
+     ],
      "tr": "Eczane açık değil, kapalı.",
      "hint_tr": "Açık **offen**, kapalı **geschlossen** olur."
+    },
+    {
+     "de": "___ bis Montag.",
+     "answer": "Geschlossen",
+     "tr": "Pazartesiye kadar kapalı.",
+     "hint_tr": "Kapıdaki kâğıtta **Geschlossen** kapalı demektir."
+    },
+    {
+     "de": "Die Bäckerei hat schon ___.",
+     "answer": "geschlossen",
+     "also_ok": [
+      "zu"
+     ],
+     "tr": "Fırın çoktan kapandı.",
+     "hint_tr": "Kapandı derken **hat geschlossen** da denir."
+    },
+    {
+     "de": "Ist das Bürgerbüro am Samstag ___?",
+     "answer": "geschlossen",
+     "also_ok": [
+      "zu"
+     ],
+     "tr": "Vatandaş bürosu cumartesi günü kapalı mı?",
+     "hint_tr": "Kapalı mı diye sorarken **geschlossen** denir."
     }
    ],
    "unit": "u:m1:01",
@@ -6277,6 +6340,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "adriatic sea beach croatia"
+    },
+    {
+     "id": "lx:Urlaub:5",
+     "de": "Nach dem Urlaub hat Tobi viel Arbeit.",
+     "tr": "İzinden sonra Tobi'nin çok işi var.",
+     "layer": "hd",
+     "img": "man at desk with stack of papers"
+    },
+    {
+     "id": "lx:Urlaub:6",
+     "de": "– Ist Dr. Weber heute da? – Nein, er ist bis Montag im Urlaub.",
+     "tr": "– Dr. Weber bugün burada mı? – Hayır, pazartesiye kadar izinde.",
+     "layer": "hd",
+     "dialog": true,
+     "img": "empty clinic reception desk"
     }
    ],
    "level": "A2",
@@ -6314,13 +6392,13 @@
      "de": "Ich wünsche dir ___ schönen Urlaub.",
      "answer": "einen",
      "tr": "Sana iyi tatiller dilerim.",
-     "hint_tr": "İyi dilekte **einen schönen Urlaub** denir."
+     "hint_tr": "İyi tatiller dilerken **einen schönen Urlaub** denir."
     },
     {
      "de": "Ich freue mich auf ___ Urlaub.",
      "answer": "den",
      "tr": "Tatili dört gözle bekliyorum.",
-     "hint_tr": "**auf** sonrası burada **den Urlaub** gelir."
+     "hint_tr": "**Ich freue mich auf** dedikten sonra **der Urlaub**, **den Urlaub** olur."
     },
     {
      "de": "___ Urlaub schlafe ich lange.",
@@ -6332,7 +6410,7 @@
      "de": "Nach ___ Urlaub arbeite ich wieder.",
      "answer": "dem",
      "tr": "İzinden sonra yine çalışıyorum.",
-     "hint_tr": "Bildiğimiz tatil: **nach dem Urlaub**."
+     "hint_tr": "**nach** dedikten sonra **der Urlaub**, **dem Urlaub** olur."
     }
    ],
    "unit": "u:m1:02",

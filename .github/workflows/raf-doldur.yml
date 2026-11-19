@@ -1,0 +1,59 @@
+name: "Kapalı medya rafı doldurma (PM-061 / D-112, #58 B12): Pixabay → gizli depo; açık depoya kapalı dosya girmez"
+# Gizli ayarlar: PIXABAY_API_KEY, MEDYA_DEPO_TOKEN (yalnızca gizli depoya Contents yazma). Biri yoksa iş atlanır.
+# Değişken RAF_FAIL_CLOSED=1: proje sahibi raf projesinde "Fail closed"u seçtiğini böyle bildirir; yoksa gizli depoya
+# medya itilmez (kota dolunca dosyalar anahtarsız açılmasın; D-112, inceleme #98 2. tur).
+# Günlüğe yalnızca sayılar yazılır; yapıt (artifact) yüklenmez.
+on:
+  workflow_dispatch:
+  push:
+    branches: ["kaynak/raf"]
+    paths: ["scripts/raf/**", "worker/src/raf.ts", ".github/workflows/raf-doldur.yml"]
+permissions: { contents: read }
+concurrency: { group: raf-doldur, cancel-in-progress: false }
+jobs:
+  doldur:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Gizli ayarlar tanımlı mı
+        id: g
+        env: { T: "${{ secrets.MEDYA_DEPO_TOKEN }}", P: "${{ secrets.PIXABAY_API_KEY }}", F: "${{ vars.RAF_FAIL_CLOSED }}" }
+        run: |
+          if [ -z "$T" ] || [ -z "$P" ]; then echo "skip=1" >> "$GITHUB_OUTPUT"; echo "::notice::MEDYA_DEPO_TOKEN / PIXABAY_API_KEY yok; raf doldurma atlandı ([SAHİBE-İSTEK] 7010219623)."; fi
+          if [ "$F" != "1" ]; then echo "skip=1" >> "$GITHUB_OUTPUT"; echo "::notice::RAF_FAIL_CLOSED=1 yok; 'Fail closed' onaylanmadan gizli depoya medya itilmez (D-112)."; fi
+      - uses: actions/checkout@v4
+        if: steps.g.outputs.skip != '1'
+        with: { persist-credentials: false }
+      # üçüncü taraf paket kurulumu gizli depo jetonu çalışma alanına gelmeden önce (inceleme #99 P2)
+      - uses: actions/setup-python@v5
+        if: steps.g.outputs.skip != '1'
+        with: { python-version: "3.12" }
+      - name: Bağımlılık ve aday listesi
+        if: steps.g.outputs.skip != '1'
+        run: |
+          pip install -q pillow==11.0.0
+          git fetch -q --depth=1 https://github.com/${{ github.repository }} kaynak/foto
+          git show FETCH_HEAD:content/v2/media/foto/adaylar.json > /tmp/adaylar.json
+          python scripts/raf/test_doldur.py
+      - uses: actions/checkout@v4
+        if: steps.g.outputs.skip != '1'
+        with: { repository: "Mutemadiyennn/dw-medya", token: "${{ secrets.MEDYA_DEPO_TOKEN }}", path: raf }
+      - name: Function ve sınama dosyası
+        if: steps.g.outputs.skip != '1'
+        run: |
+          mkdir -p raf/functions
+          cp worker/src/raf.ts raf/functions/_middleware.ts
+      - name: Doldur (yalnızca sayılar günlüğe; kalıcı hatada durur ve iş kırmızı biter)
+        if: steps.g.outputs.skip != '1'
+        env: { PIXABAY_API_KEY: "${{ secrets.PIXABAY_API_KEY }}" }
+        run: python scripts/raf/doldur.py /tmp/adaylar.json raf
+      # doldurma durduysa da o ana kadarki kayıt ve dosyalar yazılır (iş yine kırmızı kalır)
+      - name: Gizli depoya yaz
+        if: steps.g.outputs.skip != '1' && !cancelled()
+        working-directory: raf
+        run: |
+          git config user.name "dw-raf-hatti"; git config user.email "dw-raf-hatti@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && { echo "değişiklik yok"; exit 0; }
+          git commit -q -m "raf: doldurma (otomatik)" && git push -q
+          echo "gizli depoya yazıldı: $(git diff --stat HEAD~1 --shortstat | tr -d '\n')"
