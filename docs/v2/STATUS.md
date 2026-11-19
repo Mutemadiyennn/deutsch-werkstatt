@@ -26,7 +26,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | İş | Dal | Durum |
 |---|---|---|
 | Konuşma provası, yapay zekâsız (#58 A7) | `v2/prova` | #68 birleşti |
-| Kapalı medya rafı (#58 B12) | `v2/medya-rafi` | 1. parça PR: Function + Profil "Medya rafı" + Rafı sına (D-112); sırada doldurma hattı, fotoğraf yolu, doğrulayıcı; proje sahibinin adımları bekleniyor |
+| Kapalı medya rafı (#58 B12) | `v2/medya-rafi`, `v2/raf-doldur` | 1. parça #98 (Function, Profil, Rafı sına); 2. parça doldurma hattı (Pixabay → gizli depo); sırada fotoğraf yolu ve doğrulayıcı; proje sahibinin adımları bekleniyor |
 | Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | #87 birleşti (D-107) |
 | Gün sonu özeti + yerel kullanım ölçümü (#58 B3) | `v2/gun-sonu` | PR açıldı (D-109) |
 | Doğrulayıcı B4 (#58 B4, #54 D16) | `v2/dogrulayici-b4` | #88 birleşti (D-108) |
