@@ -20,7 +20,7 @@
  *  - Tur 8–12 soru: önce vadesi gelenler, sonra yeni kartlar (tekrar yükü artınca yeni sayısı düşer).
  *  - Yanlışta kart turun sonunda başka örnek cümle (ve başka fotoğraf) ile yeniden gelir.
  */
-import type { Lexeme } from "@dw/shared";
+import { kartMi, type Lexeme } from "@dw/shared";
 import type { LearnerItem, PersonalWord } from "@dw/shared";
 import { isDue } from "./srs.ts";
 
@@ -51,10 +51,8 @@ export function collocOf(l: Lexeme): { de: string; tr: string; stem: string; las
   const all = l.collocations.filter((c) => !/…|\.\.\./.test(c.de)).map((c) => { const w = tokens(c.de); return { de: c.de, tr: c.tr, last: w[w.length - 1] ?? "", stem: w.slice(0, -1).join(" ") }; }).filter((c) => c.stem && c.last);
   return all.find((c) => all.filter((x) => x.stem.toLowerCase() === c.stem.toLowerCase()).length === 1) ?? null;
 }
-/** PM-047 §2: işlev kelimeleri ayrı kart olarak sorulmaz; ifadelerin içinde öğretilir. `card: false` içerikte işaretlenene
- *  kadar sözcük türünden de anlaşılır (tanımlık, zamir, bağlaç, edat, ilgeç, sayı — sayılar R0'da öğretilir). */
-const FUNCTION_POS = new Set(["det", "pron", "conj", "prep", "particle", "num"]);
-export const isCard = (l: Lexeme) => l.card !== false && !FUNCTION_POS.has(l.pos);
+/** PM-047 §2: işlev kelimeleri kart değildir (ortak kural `kartMi`, içerik derlemesi de kullanır) */
+export const isCard = (l: Lexeme) => kartMi(l);
 const verbForms = (l: Lexeme) => l.forms.filter(() => l.pos === "verb");
 const otherForms = (l: Lexeme) => l.forms.filter(() => l.pos !== "verb");
 

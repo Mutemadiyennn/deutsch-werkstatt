@@ -57,7 +57,7 @@ def main():
         d = durum(pg); check(d.startswith("Mola"), f"Bugün: mola ve kalan süre ({d!r})")
         # kilit / arka plan: 40 dk boyunca tick yok, sonra tek tick
         pg.clock.fast_forward(40 * 60_000)
-        pg.wait_for_function("document.querySelector('[data-test=seans-durum]')?.textContent.includes('Sırada seans 2/4')", timeout=10_000)
+        pg.wait_for_function("() => document.querySelector('[data-test=seans-durum]')?.textContent.includes('Sırada seans 2/4')", timeout=10_000)
         check(True, "kilitten sonra mola bitmiş: sırada seans 2/4")
         tm = pg.inner_text("[data-test=today-min]")
         check(tm.startswith("25 /"), f"kilitli geçen süre odak süresine eklenmedi ({tm!r})")
@@ -76,6 +76,10 @@ def main():
         pg.click("[data-test=m1-devam]"); pg.wait_for_selector("[data-test=focus-chip]")
         chip = pg.inner_text("[data-test=focus-chip]")
         check("Seans 2/4" in chip and "duraklatıldı" not in chip, f"'Devam et' duraklatılmış seansı sürdürdü ({chip!r})")
+        for _ in range(3):
+            pg.dispatch_event("body", "pointerdown"); pg.clock.run_for(60_000)
+        chip2 = pg.inner_text("[data-test=focus-chip]")
+        check("22 dk" in chip2 or "23 dk" in chip2, f"sürdürülen seansta süre yeniden akıyor ({chip!r} → {chip2!r})")
         # molada "Devam et": mola biter, sıradaki seans başlar
         for _ in range(26):
             pg.dispatch_event("body", "pointerdown")
@@ -85,6 +89,18 @@ def main():
         pg.click("[data-test=m1-devam]"); pg.wait_for_selector("[data-test=focus-chip]")
         chip = pg.inner_text("[data-test=focus-chip]")
         check("Seans 3/4" in chip, f"molada 'Devam et' molayı bitirip seans 3'ü başlattı ({chip!r})")
+        # mola başlayınca çok cümleli ses bölümü susar (inceleme #67 2. tur): sahte konuşma sentezi okunan cümleleri sayar
+        pg.add_init_script("""(() => { const ss = { speaking: false, pending: false, paused: false, getVoices: () => [], cancel() { (window.__iptal = (window.__iptal || 0) + 1); this._u && this._u.onerror && this._u.onerror(); this._u = null; },
+          speak(u) { (window.__oku = window.__oku || []).push(u.text); this._u = u; setTimeout(() => { if (this._u === u) { this._u = null; u.onend && u.onend(); } }, 1500); }, addEventListener() {}, removeEventListener() {} };
+          Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: ss }); })()""")
+        pg.goto(base + "#/m1/1/m1%3A01%3Aa1"); pg.reload(); pg.wait_for_selector("[data-test=dinle-bolum]")
+        pg.click("[data-test=dinle-bolum]")
+        pg.wait_for_function("() => (window.__oku || []).length >= 1")
+        pg.evaluate("window.dispatchEvent(new Event('dw:mola'))")
+        pg.wait_for_timeout(200); n0 = pg.evaluate("(window.__oku || []).length")
+        pg.clock.run_for(6000); pg.wait_for_timeout(300)
+        n1 = pg.evaluate("(window.__oku || []).length")
+        check(n1 == n0, f"mola başlayınca ses bölümünün sonraki cümleleri okunmadı ({n0} → {n1})")
         b.close()
     srv.shutdown()
     finish()
