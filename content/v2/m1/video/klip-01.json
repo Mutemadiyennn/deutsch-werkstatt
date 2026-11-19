@@ -1,0 +1,193 @@
+{
+ "id": "m1:01:rv1",
+ "day": 1,
+ "durum": "kisa",
+ "kaynak": "Deutsch im Blick",
+ "klip": "01_18_int_ek_who",
+ "konusmaci": "Eva",
+ "baslik": "Wer bin ich?",
+ "sure_kaynak": "1:37",
+ "video_url": "https://coerll.utexas.edu/dib/mp4s/01_18_int_ek_who.mp4",
+ "transkript_url": "https://www.coerll.utexas.edu/dib/vidt.php?f=01_18_int_ek_who",
+ "lisans": "CC BY 4.0",
+ "lisans_url": "https://creativecommons.org/licenses/by/4.0/",
+ "atif": "Deutsch im Blick, COERLL, University of Texas at Austin, CC BY 4.0. Klip kesilmiştir.",
+ "kesit": {
+  "bas_tur": 1,
+  "son_tur": 5
+ },
+ "haric": [],
+ "ortam_tr": "Eva genç bir kadın. Biri ona kısa sorular soruyor. Konuşma bir soruyla bitiyor. Cevabını dördüncü günde duyacaksın.",
+ "on_ogretim": [
+  {
+   "de": "Wie heißt du?",
+   "tr": "Adın ne?"
+  },
+  {
+   "de": "Woher kommst du?",
+   "tr": "Nereden geliyorsun?"
+  },
+  {
+   "de": "ich komme aus",
+   "tr": "bir yerden geliyorum"
+  },
+  {
+   "de": "ich wohne in",
+   "tr": "bir yerde oturuyorum"
+  },
+  {
+   "de": "seit zehn Jahren",
+   "tr": "on yıldır"
+  },
+  {
+   "de": "Wie alt bist du?",
+   "tr": "Kaç yaşındasın?"
+  }
+ ],
+ "turlar": [
+  {
+   "tur": 1,
+   "basi": "Wie heißt",
+   "kim": "soran"
+  },
+  {
+   "tur": 2,
+   "basi": "Eva",
+   "kim": "konusmaci"
+  },
+  {
+   "tur": 3,
+   "basi": "Woher kommst",
+   "kim": "soran"
+  },
+  {
+   "tur": 4,
+   "basi": "Ich komme ursprünglich",
+   "kim": "konusmaci"
+  },
+  {
+   "tur": 5,
+   "basi": "Wie alt",
+   "kim": "soran"
+  }
+ ],
+ "bolum": {
+  "ana_fikir": {
+   "q_tr": "Bu kısa konuşmada ne oluyor?",
+   "opts": [
+    "Eva bir dükkânda alışveriş yapıyor.",
+    "Biri Eva'yı tanımak için sorular soruyor.",
+    "Eva telefonla randevu alıyor."
+   ],
+   "ans": 1,
+   "why_tr": "Biri soru soruyor. Eva da kendisi hakkında kısa cevaplar veriyor."
+  },
+  "ayrinti": [
+   {
+    "q_tr": "Eva nereden geliyor?",
+    "opts": [
+     "Berlin",
+     "Würzburg",
+     "Münih"
+    ],
+    "ans": 2,
+    "tur": 4,
+    "why_tr": "Eva **aus München** diyor. Bu, Münih'ten demektir."
+   },
+   {
+    "q_tr": "Eva şimdi hangi şehirde oturuyor?",
+    "opts": [
+     "Würzburg",
+     "Münih",
+     "Viyana"
+    ],
+    "ans": 0,
+    "tur": 4,
+    "why_tr": "Eva **wohne** dedikten sonra Würzburg şehrini söylüyor. **ich wohne** oturuyorum demektir."
+   },
+   {
+    "q_tr": "Eva şimdiki şehrinde kaç yıldır oturuyor?",
+    "opts": [
+     "2 yıldır",
+     "10 yıldır",
+     "5 yıldır"
+    ],
+    "ans": 1,
+    "tur": 4,
+    "why_tr": "Eva **seit zehn Jahren** diyor. Bu, on yıldır demektir."
+   },
+   {
+    "q_tr": "Konuşmanın sonunda Eva'ya ne soruluyor?",
+    "opts": [
+     "Telefon numarası",
+     "Mesleği",
+     "Yaşı"
+    ],
+    "ans": 2,
+    "tur": 5,
+    "why_tr": "Son soruda **wie alt** geçiyor. Bu, kaç yaşında demektir."
+   }
+  ],
+  "dikte": [
+   {
+    "id": "d1",
+    "tur": 1,
+    "seviye": "kolay"
+   },
+   {
+    "id": "d2",
+    "tur": 3,
+    "seviye": "orta"
+   },
+   {
+    "id": "d5",
+    "seviye": "gercek",
+    "gorev_tr": "Eva şimdi nerede oturuyor? Cevabı Almanca yaz. Şehir **München** ya da **Würzburg**.",
+    "ornek_de": "In Würzburg.",
+    "accepted": [
+     "In Würzburg.",
+     "Würzburg.",
+     "Eva wohnt in Würzburg.",
+     "Sie wohnt in Würzburg.",
+     "Eva wohnt jetzt in Würzburg.",
+     "Sie wohnt jetzt in Würzburg."
+    ],
+    "zorunlu": [
+     "Würzburg"
+    ]
+   }
+  ],
+  "golge": [
+   1,
+   3
+  ],
+  "cevapla": {
+   "id": "m1:01:rv1:c1",
+   "soru_tur": 1,
+   "situation_tr": "Sana adını soruyorlar. Adını söyle.",
+   "ornek_de": "{name}.",
+   "accepted": [
+    "{name}.",
+    "Ich heiße {name}.",
+    "Mein Name ist {name}.",
+    "Ich bin {name}."
+   ],
+   "why_tr": "Eva gibi yalnızca adını söylemen yeter."
+  },
+  "dikte_notu": "Zor ve usta basamağı yok. Dördüncü tur uzun ve **ursprünglich** (aslen) öğretilmedi. Beşinci turun diktesi dördüncü gündedir."
+ },
+ "kanit": "Eva adını ve nereli olduğunu söylüyor. Bu, birinci günün tanışma konusuna uyuyor.",
+ "review": {
+  "status": "draft",
+  "notes": "Dilbilimci ve okur geçti. Süre 30 saniyenin altında, PM kararı bekliyor (#58 A9)."
+ },
+ "bilinmeyen": {
+  "oran": 0.087,
+  "kelimeler": [
+   "mittlerweile",
+   "ursprünglich"
+  ]
+ },
+ "kesit_sure_tahmin_sn": 26,
+ "sure_kaynak_sn": 97
+}
