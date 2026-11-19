@@ -1,0 +1,204 @@
+{
+ "id": "m1:03:rv1",
+ "day": 3,
+ "durum": "kisa",
+ "kaynak": "Deutsch im Blick",
+ "klip": "01_02_int_ag_who",
+ "konusmaci": "Adan",
+ "baslik": "Wer bin ich?",
+ "sure_kaynak": "0:58",
+ "kesit_sure_tahmin_sn": 26,
+ "video_url": "https://www.coerll.utexas.edu/dib/mp4s/01_02_int_ag_who.mp4",
+ "transkript_url": "https://www.coerll.utexas.edu/dib/vidt.php?f=01_02_int_ag_who",
+ "lisans": "CC BY 4.0",
+ "lisans_url": "https://creativecommons.org/licenses/by/4.0/",
+ "atif": "Deutsch im Blick, COERLL, University of Texas at Austin, CC BY 4.0. Klip kesilmiştir.",
+ "kesit": {
+  "bas_tur": 1,
+  "son_tur": 8
+ },
+ "haric": [],
+ "ortam_tr": "Adan Amerikalı bir öğrenci. Almanca öğreniyor, bu yüzden söyleyişi yabancı gelebilir.",
+ "bilinmeyen": {
+  "oran": 0.054,
+  "ham_oran": 0.243,
+  "kelimeler": [
+   "bist",
+   "25"
+  ]
+ },
+ "on_ogretim": [
+  {
+   "de": "heißen",
+   "tr": "bir adı olmak. **Ich heiße Anna** adım Anna demektir."
+  },
+  {
+   "de": "woher",
+   "tr": "nereden"
+  },
+  {
+   "de": "aus",
+   "tr": "bir yerden. **aus München** Münih'ten demektir."
+  },
+  {
+   "de": "wo",
+   "tr": "nerede"
+  },
+  {
+   "de": "ungefähr",
+   "tr": "yaklaşık"
+  },
+  {
+   "de": "südlich",
+   "tr": "güneyinde"
+  }
+ ],
+ "turlar": [
+  {
+   "tur": 1,
+   "basi": "Wie heißt",
+   "kim": "soran"
+  },
+  {
+   "tur": 2,
+   "basi": "Ich heiße",
+   "kim": "konusmaci"
+  },
+  {
+   "tur": 3,
+   "basi": "Woher kommst",
+   "kim": "soran"
+  },
+  {
+   "tur": 4,
+   "basi": "Ich komme",
+   "kim": "konusmaci"
+  },
+  {
+   "tur": 5,
+   "basi": "Und wo",
+   "kim": "soran"
+  },
+  {
+   "tur": 6,
+   "basi": "Long Beach Kalifornien",
+   "kim": "konusmaci"
+  },
+  {
+   "tur": 7,
+   "basi": "Wie alt",
+   "kim": "soran"
+  },
+  {
+   "tur": 8,
+   "basi": "Ich bin 25",
+   "kim": "konusmaci"
+  }
+ ],
+ "bolum": {
+  "ana_fikir": {
+   "q_tr": "Adan bu konuşmada ne anlatıyor?",
+   "opts": [
+    "Bir dükkânın fiyatlarını",
+    "Kendini ve geldiği yeri",
+    "Doktor randevusunu"
+   ],
+   "ans": 1,
+   "why_tr": "Adan adını, geldiği yeri ve yaşını söylüyor."
+  },
+  "ayrinti": [
+   {
+    "q_tr": "Adan nereden geliyor?",
+    "opts": [
+     "Kaliforniya",
+     "Teksas",
+     "Münih"
+    ],
+    "ans": 0,
+    "tur": 4,
+    "why_tr": "Adan Kaliforniya'daki Long Beach şehrinden geldiğini söylüyor."
+   },
+   {
+    "q_tr": "Long Beach, Los Angeles şehrine kaç dakika uzaklıkta?",
+    "opts": [
+     "Yaklaşık 2 dakika",
+     "Yaklaşık 12 dakika",
+     "Yaklaşık 20 dakika"
+    ],
+    "ans": 2,
+    "tur": 6,
+    "why_tr": "Adan sayıyı iki kez söylüyor. Yaklaşık 20 dakika."
+   },
+   {
+    "q_tr": "Long Beach, Los Angeles şehrinin hangi yönünde?",
+    "opts": [
+     "Kuzeyinde",
+     "Güneyinde",
+     "Doğusunda"
+    ],
+    "ans": 1,
+    "tur": 6,
+    "why_tr": "Adan şehrin güneyde olduğunu söylüyor."
+   }
+  ],
+  "dikte": [
+   {
+    "id": "d1",
+    "tur": 1,
+    "seviye": "kolay"
+   },
+   {
+    "id": "d2",
+    "tur": 3,
+    "seviye": "orta"
+   },
+   {
+    "id": "d3",
+    "tur": 2,
+    "seviye": "zor"
+   },
+   {
+    "id": "d4",
+    "tur": 7,
+    "seviye": "usta"
+   },
+   {
+    "id": "d5",
+    "seviye": "gercek",
+    "gorev_tr": "Long Beach ile Los Angeles arası kaç dakika? Almanca yaz.",
+    "ornek_de": "Zwanzig Minuten.",
+    "accepted": [
+     "Zwanzig Minuten.",
+     "20 Minuten.",
+     "Ungefähr zwanzig Minuten.",
+     "Ungefähr 20 Minuten."
+    ],
+    "zorunlu": [
+     "Minuten"
+    ]
+   }
+  ],
+  "golge": [
+   1,
+   3
+  ],
+  "cevapla": {
+   "id": "m1:03:rv1:c1",
+   "soru_tur": 1,
+   "situation_tr": "Aynı soruyu sana soruyorlar. Adını söyle.",
+   "ornek_de": "Ich heiße {name}.",
+   "accepted": [
+    "Ich heiße {name}.",
+    "Ich bin {name}.",
+    "Mein Name ist {name}.",
+    "{name}."
+   ],
+   "why_tr": "Adını tam cümleyle ya da tek başına söyleyebilirsin."
+  }
+ },
+ "kanit": "Adan iki şehir arasını 20 sayısıyla anlatıyor. Bu, üçüncü günün sayı konusuna uyuyor.",
+ "review": {
+  "status": "draft",
+  "notes": "Gerçek klip kararı bekliyor (#58 A9)."
+ }
+}
