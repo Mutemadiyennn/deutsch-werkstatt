@@ -667,3 +667,8 @@ svg.sandik { overflow: visible; }
 /* B16 hızlı şerit bandı: çıkış düğmesi ≥ 44 pt (inceleme #113 P1-5) */
 .bilgi-bant { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: 0; padding: 8px 14px; border-radius: 14px; background: var(--himmel-2); color: var(--ink); }
 .bilgi-bant .linkbtn { min-height: 44px; padding: 0 4px; }
+/* fotoğraf atfı: tek satır, soluk, altı çizgisiz; yazar "…" ile kısalır, lisans bölünmez (PM 7022084920) */
+.foto-atif { display: flex; gap: 4px; align-items: baseline; white-space: nowrap; overflow: hidden; }
+.foto-atif a { color: inherit; text-decoration: none; }
+.foto-yazar { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.foto-lisans { flex: none; white-space: nowrap; }

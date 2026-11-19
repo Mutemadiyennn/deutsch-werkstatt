@@ -11,7 +11,7 @@ from common import serve, launch, new_page, login_onboard, check, finish
 
 PORT = 4214
 JPEG = base64.b64decode("/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/yQALCAABAAEBAREA/8wABgAQEAX/2gAIAQEAAD8A0s8g/9k=")
-KAYIT = {"lx:Montag#kart": {"src": "https://foto.example/montag.jpg", "sinif": "acik", "yazar": "Örnek Yazar", "lisans": "CC BY 2.0", "lisans_url": "https://creativecommons.org/licenses/by/2.0", "sayfa": "https://commons.wikimedia.org/wiki/File:X.jpg"}}
+KAYIT = {"lx:Montag#kart": {"src": "https://foto.example/montag.jpg", "sinif": "acik", "yazar": "Örnek Yazar, çok uzun bir yazar adı ki satıra sığmasın diye uzatıldı", "lisans": "CC BY 2.0", "lisans_url": "https://creativecommons.org/licenses/by/2.0", "sayfa": "https://commons.wikimedia.org/wiki/File:X.jpg"}}
 
 def main():
     srv = serve(PORT); base = f"http://127.0.0.1:{PORT}/"
@@ -33,6 +33,8 @@ def main():
                 hrefs = f.locator("figcaption a").evaluate_all("(xs) => xs.map((x) => x.href)")
                 check(any("commons.wikimedia.org" in h for h in hrefs) and any("creativecommons.org" in h for h in hrefs), f"atıfta kaynak sayfa ve lisans bağlantısı ({hrefs})")
                 check(bool(f.locator("img").get_attribute("alt")), "fotoğrafta Türkçe alt metin")
+                h = f.locator("[data-test=foto-atif]").evaluate("(e) => { const r = e.getBoundingClientRect(); return [Math.round(r.height), parseFloat(getComputedStyle(e).lineHeight) || 16]; }")
+                check(h[0] <= h[1] * 1.3 and cap.startswith("Fotoğraf:"), f"atıf tek satır, 'Fotoğraf:' ({h}; PM 7022084920)")
             else:
                 pg.wait_for_timeout(800)
                 check(pg.locator("[data-test=garden-intro] [data-test=foto]").count() == 0, "kayıt yoksa fotoğraf alanı yok")
