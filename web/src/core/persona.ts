@@ -49,11 +49,26 @@ export function fillName(expected: string, answer: string): string {
   // ad yuvası boş bırakılmışsa ("Guten Tag, hier ist.") doğru sayılmaz: yuva gösterimdeki "(adın)" ile kalır (inceleme #65 3. tur P2)
   return expected.replace("{name}", "(adın)");
 }
-/** Yapay zekâya giden metin: ad → [Name] */
+/**
+ * Yapay zekâya giden metin: ad → [Name] (D-061). Kelime sınırı Unicode harfle belirlenir (`\b` Türkçe harfte çalışmaz:
+ * "Çağrı", "Özge", "İbrahim" sızıyordu — #73 incelemesi T-1). Büyük/küçük harf Türkçe ve Almanca kurala göre, boşluklar
+ * esnek; iki kelimeli adda tam ad ve ayrıca her parça (en az 2 harf) maskelenir ("Anna Maria" → "Anna" da; T-2).
+ */
+const TR_ASCII: Record<string, string> = { ç: "c", Ç: "C", ğ: "g", Ğ: "G", ı: "i", İ: "I", ö: "o", Ö: "O", ş: "s", Ş: "S", ü: "u", Ü: "U" };
+const asciiTr = (x: string) => x.replace(/[çÇğĞıİöÖşŞüÜ]/g, (c) => TR_ASCII[c]!);
+const asciiDe = (x: string) => asciiTr(x.replace(/ö/g, "oe").replace(/Ö/g, "Oe").replace(/ü/g, "ue").replace(/Ü/g, "Ue").replace(/ä/g, "ae").replace(/Ä/g, "Ae"));
 export function redact(t: string, p: Persona): string {
-  if (!p.name) return t;
-  const esc = p.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  return t.replace(new RegExp(`\\b${esc}\\b`, "gi"), "[Name]");
+  const ad = p.name?.trim().replace(/\s+/g, " ");
+  if (!ad) return t;
+  const kacis = (x: string) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/ /g, "\\s+");
+  const parcalar = ad.split(" ").filter((w) => [...w].length >= 2);
+  const adaylar = [ad, ...(parcalar.length > 1 ? parcalar : [])]
+    // Türkçe klavyesiz yazılış da (Çağrı → Cagri, Özge → Ozge / Oezge)
+    .flatMap((x) => [x, asciiTr(x), asciiDe(x)])
+    .flatMap((x) => [x, x.toLocaleLowerCase("tr"), x.toLocaleUpperCase("tr"), x.toLocaleLowerCase("de"), x.toLocaleUpperCase("de")])
+    .filter((x, i, a) => a.indexOf(x) === i).sort((a, b) => b.length - a.length);
+  const re = new RegExp(`(?<![\\p{L}\\p{N}])(?:${adaylar.map(kacis).join("|")})(?![\\p{L}\\p{N}])`, "giu");
+  return t.replace(re, "[Name]");
 }
 /** Yapay zekâdan gelen metin: [Name] → ad (yoksa hitap kalır) */
 export function unredact(t: string, p: Persona): string {
