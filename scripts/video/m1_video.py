@@ -280,12 +280,20 @@ def isle(klip_yolu: str, out: str, rss_onbellek: dict) -> dict:
     def aralikta(t0, t1): return [x["w"] for x in wk if x["t0"] >= t0 - 0.2 and x["t1"] <= t1 + 0.2]
     tur_z = []
     dislanan = []
+    # Whisper'ın kelime zamanları dikkat ağırlıklarından gelir ve sistematik bir kayma taşır (genelde 0,3–0,6 sn);
+    # CTC zorunlu hizalaması kare düzeyinde doğrudur. Sapma, iki ASR'nin başlangıç ve bitiş farklarının ORTANCASI
+    # (sistematik kayma) çıkarıldıktan sonra ölçülür; kalan sapma > 300 ms olan tur yayına girmez. Zamanlar CTC'den.
+    import statistics
+    ciftler = [(n, z1[n - 1], z2[n - 1]) for n in secili if z1[n - 1] and z2[n - 1]]
+    k0 = statistics.median([a[0] - b[0] for _, a, b in ciftler]) if ciftler else 0.0
+    k1 = statistics.median([a[1] - b[1] for _, a, b in ciftler]) if ciftler else 0.0
+    sonuc["whisper_kayma_ms"] = [round(k0 * 1000), round(k1 * 1000)]
     for n in secili:
         a, b = z1[n - 1], z2[n - 1]
         if not a or not b: dislanan.append({"tur": n, "neden": "hizalanamadı"}); tur_z.append(None); continue
-        sapma = max(abs(a[0] - b[0]), abs(a[1] - b[1])) * 1000
+        sapma = max(abs(a[0] - k0 - b[0]), abs(a[1] - k1 - b[1])) * 1000
         if sapma > SAPMA_MS: dislanan.append({"tur": n, "neden": f"iki ASR zaman sapması {sapma:.0f} ms"})
-        tur_z.append({"tur": n, "t0": round(b[0], 3), "t1": round(b[1], 3), "sapma_ms": round(sapma)})
+        tur_z.append({"tur": n, "t0": round(b[0], 3), "t1": round(b[1], 3), "sapma_ms": round(sapma), "ham": [round(a[0], 2), round(a[1], 2), round(b[0], 2), round(b[1], 2)]})
     gecerli = [z for z in tur_z if z]
     if not gecerli: return {**sonuc, "hata": "hiçbir tur hizalanamadı", "dislanan": dislanan}
     # ölçüm yalnızca seçili turların aralıklarında (çıkarılan turların sesi ölçüme girmez)
@@ -330,7 +338,7 @@ def isle(klip_yolu: str, out: str, rss_onbellek: dict) -> dict:
     for x in (mp4, wav): os.remove(x)
     return {**sonuc, "etiket": et, "olcum": o, "dislanan": dislanan, "sure_sn": round(gecen, 2),
             "kesit_kaynak_sn": [round(max(0.0, parca[0]["t0"] - pay), 3), round(parca[-1]["t1"] + pay, 3)],
-            "tur_zamanlari": [{"tur": z["tur"], "sapma_ms": z["sapma_ms"]} for z in tur_z if z],
+            "tur_zamanlari": [{"tur": z["tur"], "sapma_ms": z["sapma_ms"], "ham_w_ctc": z["ham"]} for z in tur_z if z],
             "varliklar": {os.path.basename(x): {"sha256": sha(x), "bayt": os.path.getsize(x)} for x in (son_mp4, poster, metin)}}
 
 def kesif(klip: str):
