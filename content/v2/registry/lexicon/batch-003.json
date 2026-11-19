@@ -2280,6 +2280,14 @@
     {
      "de": "Wie meinen Sie das?",
      "tr": "Bunu nasıl kastediyorsunuz?"
+    },
+    {
+     "de": "Das war nicht so gemeint.",
+     "tr": "Öyle demek istemedim."
+    },
+    {
+     "de": "Meinen Sie den Termin am Montag?",
+     "tr": "Pazartesi günkü randevuyu mu kastediyorsunuz?"
     }
    ],
    "patterns": [
@@ -2288,8 +2296,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Ich meine** bence demektir.",
-    "Kontrol için **Meinen Sie den Termin am Freitag?** diye sor."
+    "Öyle demek istemedim derken **Ich habe das nicht so meinen** yanlış. Doğrusu **Ich habe das nicht so gemeint**.",
+    "Cuma günkü randevuyu mu kastediyorsunuz derken **Sie meinen Freitag Termin?** yanlış. Doğrusu **Meinen Sie den Termin am Freitag?**"
    ],
    "examples": [
     {
@@ -2330,7 +2338,33 @@
     "anlam_tr": "Ne demek istediğini ya da ne düşündüğünü söyler.",
     "ne_zaman_tr": "Doğru anladığını kontrol ederken.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___, wir brauchen mehr Zeit.",
+     "answer": "meine",
+     "tr": "Bence daha fazla zamana ihtiyacımız var.",
+     "hint_tr": "**ich** ile **meine** olur."
+    },
+    {
+     "de": "Was ___ du, kommt er noch?",
+     "answer": "meinst",
+     "tr": "Ne dersin, o daha gelir mi?",
+     "hint_tr": "**du** ile **meinst** olur."
+    },
+    {
+     "de": "Der Arzt ___, es ist nur eine Erkältung.",
+     "answer": "meint",
+     "tr": "Doktor bunun sadece soğuk algınlığı olduğunu düşünüyor.",
+     "hint_tr": "**er** ve **sie** ile **meint** olur."
+    },
+    {
+     "de": "Das habe ich nicht so ___.",
+     "answer": "gemeint",
+     "tr": "Öyle demek istemedim.",
+     "hint_tr": "Geçmişi anlatırken **habe gemeint** denir."
+    }
+   ]
   },
   {
    "id": "lx:Abend",
@@ -3674,7 +3708,15 @@
     },
     {
      "de": "Ziehen!",
-     "tr": "Çekiniz! (kapıda)"
+     "tr": "Çekiniz!"
+    },
+    {
+     "de": "an der Tür ziehen",
+     "tr": "kapıyı çekmek"
+    },
+    {
+     "de": "in eine neue Wohnung ziehen",
+     "tr": "yeni bir eve taşınmak"
     }
    ],
    "patterns": [
@@ -3683,14 +3725,14 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Taşınınca **Wir sind nach München gezogen** dersin, **haben** olmaz.",
-    "Kapıda **Ziehen** çek, **Drücken** it demektir."
+    "Münih şehrine taşındık derken **Wir haben nach München gezogen** yanlış. Doğrusu **Wir sind nach München gezogen**.",
+    "Kapıyı itmek isterken **ziehen** yanlış. Kapıda **Ziehen** çek, **Drücken** it demektir."
    ],
    "examples": [
     {
      "id": "lx:ziehen:1",
      "de": "Wir sind letztes Jahr nach Augsburg gezogen.",
-     "tr": "Geçen yıl Augsburg'a taşındık.",
+     "tr": "Geçen yıl Augsburg şehrine taşındık.",
      "layer": "hd",
      "img": "family carrying moving boxes into new home"
     },
@@ -3709,7 +3751,7 @@
     {
      "id": "lx:ziehen:4",
      "de": "– Wohnst du noch in Köln? – Nein, ich bin nach München gezogen.",
-     "tr": "– Hâlâ Köln'de mi oturuyorsun? – Hayır, Münih'e taşındım.",
+     "tr": "– Hâlâ Köln şehrinde mi oturuyorsun? – Hayır, Münih şehrine taşındım.",
      "layer": "alltag",
      "dialog": true
     }
@@ -3724,7 +3766,39 @@
     "anlam_tr": "Bir şeyi kendine doğru çekmeyi ya da taşınmayı söyler.",
     "ne_zaman_tr": "Kapıda yazar, ev değiştirince de söylenir.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ nächsten Monat nach München.",
+     "answer": "ziehe",
+     "tr": "Gelecek ay Münih şehrine taşınıyorum.",
+     "hint_tr": "**ich** ile **ziehe** olur."
+    },
+    {
+     "de": "Wohin ___ du?",
+     "answer": "ziehst",
+     "tr": "Nereye taşınıyorsun?",
+     "hint_tr": "**du** ile **ziehst** olur."
+    },
+    {
+     "de": "Mach das Fenster zu, es ___.",
+     "answer": "zieht",
+     "tr": "Pencereyi kapat, cereyan var.",
+     "hint_tr": "Cereyan varken **es zieht** denir."
+    },
+    {
+     "de": "Wir sind nach Augsburg ___.",
+     "answer": "gezogen",
+     "tr": "Augsburg şehrine taşındık.",
+     "hint_tr": "Taşınmayı anlatırken **sind gezogen** denir."
+    },
+    {
+     "de": "Die Tür geht nicht auf. Sie müssen ___!",
+     "answer": "ziehen",
+     "tr": "Kapı açılmıyor. Çekmeniz lazım!",
+     "hint_tr": "Kapıyı kendine doğru açarken **ziehen** denir."
+    }
+   ]
   },
   {
    "id": "lx:Moment",
@@ -3939,7 +4013,15 @@
     },
     {
      "de": "Familie haben",
-     "tr": "ailesi olmak"
+     "tr": "eşi ve çocuğu olmak"
+    },
+    {
+     "de": "mit der Familie",
+     "tr": "aileyle"
+    },
+    {
+     "de": "Grüß deine Familie!",
+     "tr": "Ailene selam söyle!"
     }
    ],
    "patterns": [
@@ -3947,34 +4029,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Vurgu ikinci hecededir: **Fa-MI-li-e**.",
-    "**Meine Familie sind groß** yanlış. Doğrusu **Meine Familie ist groß**."
+    "Aile derken **FA-mi-lie** diye söylemek yanlış. Doğrusu **fa-MI-lie**, ortası güçlü söylenir.",
+    "Ailem kalabalık derken **Meine Familie sind groß** yanlış. Doğrusu **Meine Familie ist groß**."
    ],
    "examples": [
     {
      "id": "lx:Familie:1",
      "de": "Meine Familie wohnt in der Türkei.",
      "tr": "Ailem Türkiye'de yaşıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "video call with family abroad on tablet"
     },
     {
      "id": "lx:Familie:2",
      "de": "Haben Sie Familie?",
-     "tr": "Aileniz var mı? (eş, çocuk)",
-     "layer": "hd"
+     "tr": "Eşiniz, çocuğunuz var mı?",
+     "layer": "hd",
+     "img": "parents with two children at home"
     },
     {
      "id": "lx:Familie:3",
      "de": "Grüß deine Familie!",
      "tr": "Ailene selam söyle!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "family waving goodbye at front door"
     },
     {
      "id": "lx:Familie:4",
      "de": "– Wie geht's der Familie? – Allen gut, danke.",
      "tr": "– Aile nasıl? – Herkes iyi, sağ ol.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "family having dinner together at table"
     }
    ],
    "level": "A1",
@@ -3987,7 +4073,39 @@
     "anlam_tr": "Anne, baba, çocuklar gibi yakın akrabaları anlatır.",
     "parcalar": []
    },
-   "img": "family together at home"
+   "img": "family together at home",
+   "forms": [
+    {
+     "de": "Wir sind ___ große Familie.",
+     "answer": "eine",
+     "tr": "Biz kalabalık bir aileyiz.",
+     "hint_tr": "Bir aileden söz ederken **eine Familie** denir."
+    },
+    {
+     "de": "Ich telefoniere jeden Sonntag mit ___ Familie.",
+     "answer": "meiner",
+     "tr": "Her pazar ailemle telefonda konuşuyorum.",
+     "hint_tr": "Ailemle derken **mit meiner Familie** denir."
+    },
+    {
+     "de": "Wie geht es ___ Familie?",
+     "answer": "Ihrer",
+     "tr": "Aileniz nasıl?",
+     "hint_tr": "Kibarca aileniz nasıl derken **Wie geht es Ihrer Familie?** denir."
+    },
+    {
+     "de": "Haben Sie ___?",
+     "answer": "Familie",
+     "tr": "Eşiniz, çocuğunuz var mı?",
+     "hint_tr": "Eş ve çocuk sorarken **Haben Sie Familie?** denir."
+    },
+    {
+     "de": "Meine Familie ___ groß.",
+     "answer": "ist",
+     "tr": "Ailem kalabalık.",
+     "hint_tr": "Aile tek bir grup olduğu için **Meine Familie ist** denir."
+    }
+   ]
   },
   {
    "id": "lx:gegen",

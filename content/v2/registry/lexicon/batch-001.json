@@ -1182,7 +1182,7 @@
   {
    "id": "lx:werden",
    "de": "werden",
-   "tr": "olmak, dönüşmek, -ecek",
+   "tr": "olmak, dönüşmek",
    "pos": "verb",
    "verb": {
     "praesens3": "wird",
@@ -1197,7 +1197,19 @@
     },
     {
      "de": "Das wird schon!",
-     "tr": "Olur, merak etme!"
+     "tr": "Düzelir, merak etme!"
+    },
+    {
+     "de": "müde werden",
+     "tr": "yorulmak"
+    },
+    {
+     "de": "gesund werden",
+     "tr": "iyileşmek"
+    },
+    {
+     "de": "Es wird kalt.",
+     "tr": "Hava soğuyor."
     }
    ],
    "patterns": [
@@ -1207,8 +1219,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Yoruluyorum derken **Ich bin müde** yetmez. Doğrusu **Ich werde müde.**",
-    "**Er hat Arzt geworden** yanlış. Doğrusu **Er ist Arzt geworden.**"
+    "Hava soğuyor derken **Es ist kalt** yanlış. Bu hava soğuk demektir. Doğrusu **Es wird kalt**.",
+    "Doktor oldu derken **Er hat Arzt geworden** yanlış. Doğrusu **Er ist Arzt geworden**."
    ],
    "examples": [
     {
@@ -1249,7 +1261,33 @@
    "exp": {
     "anlam_tr": "Bir şeyin değiştiğini ya da ileride olacağını söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ morgen anrufen.",
+     "answer": "werde",
+     "tr": "Yarın arayacağım.",
+     "hint_tr": "**ich** ile **werde** olur."
+    },
+    {
+     "de": "Du ___ bestimmt schnell gesund.",
+     "answer": "wirst",
+     "tr": "Eminim çabuk iyileşirsin.",
+     "hint_tr": "**du** ile **wirst** olur."
+    },
+    {
+     "de": "Es ___ langsam dunkel.",
+     "answer": "wird",
+     "tr": "Hava yavaş yavaş kararıyor.",
+     "hint_tr": "**es**, **er** ve **sie** ile **wird** olur."
+    },
+    {
+     "de": "Er ist Arzt ___.",
+     "answer": "geworden",
+     "tr": "O doktor oldu.",
+     "hint_tr": "Geçmişi anlatırken **ist geworden** denir."
+    }
+   ]
   },
   {
    "id": "lx:zu",

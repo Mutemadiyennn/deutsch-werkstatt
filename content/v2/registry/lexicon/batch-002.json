@@ -636,6 +636,18 @@
     {
      "de": "Tabletten nehmen",
      "tr": "hap içmek"
+    },
+    {
+     "de": "Ich nehme das.",
+     "tr": "Bunu alıyorum."
+    },
+    {
+     "de": "Platz nehmen",
+     "tr": "oturmak"
+    },
+    {
+     "de": "sich Zeit nehmen",
+     "tr": "zaman ayırmak"
     }
    ],
    "patterns": [
@@ -644,8 +656,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Er nehmt** yanlış. Doğrusu **er nimmt**.",
-    "İlaç için **Tabletten trinken** denmez. Doğrusu **Tabletten nehmen**."
+    "O alıyor derken **Er nehmt** yanlış. Doğrusu **Er nimmt**.",
+    "Hap içiyorum derken **Ich trinke Tabletten** yanlış. Doğrusu **Ich nehme Tabletten**."
    ],
    "examples": [
     {
@@ -689,7 +701,33 @@
     "ne_zaman_tr": "Lokantada sipariş verirken de söylersin.",
     "parcalar": [],
     "ipucu_tr": "Otobüs için de kullanılır: **den Bus nehmen**."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ den Bus.",
+     "answer": "nehme",
+     "tr": "Otobüse biniyorum.",
+     "hint_tr": "**ich** ile **nehme** olur."
+    },
+    {
+     "de": "___ du auch einen Kaffee?",
+     "answer": "Nimmst",
+     "tr": "Sen de kahve alıyor musun?",
+     "hint_tr": "**du** ile **nimmst** olur."
+    },
+    {
+     "de": "Mein Kollege ___ die Suppe.",
+     "answer": "nimmt",
+     "tr": "İş arkadaşım çorbayı alıyor.",
+     "hint_tr": "**er** ve **sie** ile **nimmt** olur."
+    },
+    {
+     "de": "Ich habe die Tablette schon ___.",
+     "answer": "genommen",
+     "tr": "Hapı zaten içtim.",
+     "hint_tr": "Geçmişi anlatırken **habe genommen** denir."
+    }
+   ]
   },
   {
    "id": "lx:wirklich",
@@ -950,7 +988,7 @@
   {
    "id": "lx:einfach",
    "de": "einfach",
-   "tr": "kolay, basit, sadece",
+   "tr": "kolay, basit, tek yön",
    "pos": "adj",
    "collocations": [
     {
@@ -960,6 +998,14 @@
     {
      "de": "einfach so",
      "tr": "öylesine"
+    },
+    {
+     "de": "einmal einfach",
+     "tr": "tek yön bilet"
+    },
+    {
+     "de": "Das ist nicht so einfach.",
+     "tr": "Bu o kadar kolay değil."
     }
    ],
    "patterns": [
@@ -968,7 +1014,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Er ist einfach gegangen** kolayca gitti demek değil. Öylece gitti demek."
+    "Sadece iki avrom var derken **Ich habe einfach zwei Euro** yanlış. Doğrusu **Ich habe nur zwei Euro**."
    ],
    "examples": [
     {
@@ -980,7 +1026,7 @@
     {
      "id": "lx:einfach:2",
      "de": "Einmal einfach nach Nürnberg, bitte.",
-     "tr": "Nürnberg'e bir tek yön, lütfen.",
+     "tr": "Nürnberg için bir tek yön bilet, lütfen.",
      "layer": "hd",
      "img": "buying train ticket at counter"
     },
@@ -1009,7 +1055,27 @@
     "anlam_tr": "Bir şeyin zor olmadığını söyler.",
     "parcalar": [],
     "ipucu_tr": "Bilet alırken **einfach** tek yön demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ganz ___.",
+     "answer": "einfach",
+     "tr": "Bu çok basit.",
+     "hint_tr": "Bir iş zor değilse **einfach** denir."
+    },
+    {
+     "de": "Einmal ___ nach München, bitte.",
+     "answer": "einfach",
+     "tr": "Münih için bir tek yön bilet, lütfen.",
+     "hint_tr": "Tek yön bilet alırken **einmal einfach** denir."
+    },
+    {
+     "de": "Ruf mich ___ an.",
+     "answer": "einfach",
+     "tr": "Beni araman yeter.",
+     "hint_tr": "Başka bir şey gerekmiyorsa **einfach** denir."
+    }
+   ]
   },
   {
    "id": "lx:weg",
@@ -1165,6 +1231,14 @@
     {
      "de": "Das bringt nichts.",
      "tr": "Bunun faydası yok."
+    },
+    {
+     "de": "die Kinder zur Schule bringen",
+     "tr": "çocukları okula götürmek"
+    },
+    {
+     "de": "die Rechnung bringen",
+     "tr": "hesabı getirmek"
     }
    ],
    "patterns": [
@@ -1173,7 +1247,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Bringen Sie mich die Rechnung** yanlış. Doğrusu **Bringen Sie mir die Rechnung**."
+    "Bana hesabı getirin derken **Bringen Sie mich die Rechnung** yanlış. Doğrusu **Bringen Sie mir die Rechnung**.",
+    "Getirdi derken **Er hat gebringt** yanlış. Doğrusu **Er hat gebracht**."
    ],
    "examples": [
     {
@@ -1215,7 +1290,33 @@
     "anlam_tr": "Bir şeyi ya da birini bir yere taşımayı söyler.",
     "parcalar": [],
     "ipucu_tr": "**Ich bringe dich nach Hause** seni eve bırakırım demek."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ dir morgen das Buch.",
+     "answer": "bringe",
+     "tr": "Kitabı sana yarın getiriyorum.",
+     "hint_tr": "**ich** ile **bringe** olur."
+    },
+    {
+     "de": "___ du mir ein Wasser?",
+     "answer": "Bringst",
+     "tr": "Bana bir su getirir misin?",
+     "hint_tr": "**du** ile **bringst** olur."
+    },
+    {
+     "de": "Der Kellner ___ die Rechnung.",
+     "answer": "bringt",
+     "tr": "Garson hesabı getiriyor.",
+     "hint_tr": "**er** ve **sie** ile **bringt** olur."
+    },
+    {
+     "de": "Frau Brandl hat uns Plätzchen ___.",
+     "answer": "gebracht",
+     "tr": "Brandl Hanım bize kurabiye getirdi.",
+     "hint_tr": "Geçmişi anlatırken **hat gebracht** denir, **gebringt** olmaz."
+    }
+   ]
   },
   {
    "id": "lx:am",
@@ -2442,8 +2543,16 @@
      "tr": "tanışıyor olmak"
     },
     {
-     "de": "Kennst du …?",
-     "tr": "… -i tanıyor musun?"
+     "de": "Kennst du ihn?",
+     "tr": "Onu tanıyor musun?"
+    },
+    {
+     "de": "den Weg kennen",
+     "tr": "yolu bilmek"
+    },
+    {
+     "de": "jemanden gut kennen",
+     "tr": "birini iyi tanımak"
     }
    ],
    "patterns": [
@@ -2452,13 +2561,13 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Kennst du, wo er wohnt?** yanlış. Doğrusu **Weißt du, wo er wohnt?**"
+    "Nerede oturduğunu biliyor musun derken **Kennst du, wo er wohnt?** yanlış. Bir bilgiyi bilirken **wissen** gelir: **Weißt du, wo er wohnt?**"
    ],
    "examples": [
     {
      "id": "lx:kennen:1",
      "de": "Kennen Sie Herrn Becker?",
-     "tr": "Becker Bey'i tanıyor musunuz?",
+     "tr": "Becker Bey ile tanışıyor musunuz?",
      "layer": "hd"
     },
     {
@@ -2492,7 +2601,33 @@
     "anlam_tr": "Bir kişiyi ya da bir yeri tanıdığını söyler.",
     "parcalar": [],
     "ipucu_tr": "Tanışmak için **kennenlernen** kullanılır."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ ein gutes Café hier.",
+     "answer": "kenne",
+     "tr": "Burada iyi bir kafe biliyorum.",
+     "hint_tr": "**ich** ile **kenne** olur."
+    },
+    {
+     "de": "___ du meine Nachbarin?",
+     "answer": "Kennst",
+     "tr": "Komşumu tanıyor musun?",
+     "hint_tr": "**du** ile **kennst** olur."
+    },
+    {
+     "de": "Meine Kollegin ___ den Weg.",
+     "answer": "kennt",
+     "tr": "İş arkadaşım yolu biliyor.",
+     "hint_tr": "**er** ve **sie** ile **kennt** olur."
+    },
+    {
+     "de": "Woher ___ ihr euch?",
+     "answer": "kennt",
+     "tr": "Birbirinizi nereden tanıyorsunuz?",
+     "hint_tr": "**ihr** ile de **kennt** olur."
+    }
+   ]
   },
   {
    "id": "lx:Jahr",
@@ -5467,6 +5602,18 @@
     {
      "de": "Auto fahren",
      "tr": "araba sürmek"
+    },
+    {
+     "de": "mit dem Bus fahren",
+     "tr": "otobüsle gitmek"
+    },
+    {
+     "de": "nach Hause fahren",
+     "tr": "eve gitmek"
+    },
+    {
+     "de": "Rad fahren",
+     "tr": "bisiklete binmek"
     }
    ],
    "patterns": [
@@ -5475,8 +5622,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Ich gehe mit dem Bus** yanlış. Doğrusu **Ich fahre mit dem Bus**.",
-    "**Ich habe nach Berlin gefahren** yanlış. Doğrusu **Ich bin nach Berlin gefahren**."
+    "Otobüsle gidiyorum derken **Ich gehe mit dem Bus** yanlış. Doğrusu **Ich fahre mit dem Bus**.",
+    "Berlin şehrine gittim derken **Ich habe nach Berlin gefahren** yanlış. Doğrusu **Ich bin nach Berlin gefahren**."
    ],
    "examples": [
     {
@@ -5516,7 +5663,33 @@
    "exp": {
     "anlam_tr": "Araçla gitmeyi ya da araç sürmeyi söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ mit dem Bus zur Arbeit.",
+     "answer": "fahre",
+     "tr": "İşe otobüsle gidiyorum.",
+     "hint_tr": "**ich** ile **fahre** olur."
+    },
+    {
+     "de": "___ du morgen nach Nürnberg?",
+     "answer": "Fährst",
+     "tr": "Yarın Nürnberg şehrine gidiyor musun?",
+     "hint_tr": "**du** ile **fährst** olur."
+    },
+    {
+     "de": "Der Bus ___ um acht.",
+     "answer": "fährt",
+     "tr": "Otobüs sekizde kalkıyor.",
+     "hint_tr": "**er**, **sie** ve **der Bus** ile **fährt** olur."
+    },
+    {
+     "de": "Wir sind mit dem Zug ___.",
+     "answer": "gefahren",
+     "tr": "Trenle gittik.",
+     "hint_tr": "Geçmişi anlatırken **sind gefahren** denir, **haben** gelmez."
+    }
+   ]
   },
   {
    "id": "lx:durch",
@@ -6799,12 +6972,24 @@
    },
    "collocations": [
     {
-     "de": "Bekomme ich …?",
-     "tr": "… alabilir miyim?"
+     "de": "Bekomme ich eine Quittung?",
+     "tr": "Fiş alabilir miyim?"
     },
     {
      "de": "ein Kind bekommen",
      "tr": "çocuk sahibi olmak"
+    },
+    {
+     "de": "einen Termin bekommen",
+     "tr": "randevu almak"
+    },
+    {
+     "de": "eine Antwort bekommen",
+     "tr": "cevap almak"
+    },
+    {
+     "de": "Was bekommen Sie?",
+     "tr": "Ne alırsınız?"
     }
    ],
    "patterns": [
@@ -6813,8 +6998,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Bir şey eline geçince **bekommen** dersin: **Ich bekomme einen Brief.**",
-    "**Ich habe gebekommen** yanlış. Doğrusu **Ich habe bekommen**."
+    "Mektup aldım derken **Ich habe einen Brief genommen** yanlış. Doğrusu **Ich habe einen Brief bekommen**.",
+    "Cevap aldım derken **Ich habe eine Antwort gebekommen** yanlış. Doğrusu **Ich habe eine Antwort bekommen**."
    ],
    "examples": [
     {
@@ -6855,7 +7040,33 @@
    "exp": {
     "anlam_tr": "Bir şeyin sana verildiğini ya da geldiğini söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ einen Kaffee, bitte.",
+     "answer": "bekomme",
+     "tr": "Bir kahve alayım, lütfen.",
+     "hint_tr": "**ich** ile **bekomme** olur."
+    },
+    {
+     "de": "Wann ___ du dein Geld?",
+     "answer": "bekommst",
+     "tr": "Paranı ne zaman alıyorsun?",
+     "hint_tr": "**du** ile **bekommst** olur."
+    },
+    {
+     "de": "Meine Nachbarin ___ ein Baby.",
+     "answer": "bekommt",
+     "tr": "Komşumun bebeği olacak.",
+     "hint_tr": "**er** ve **sie** ile **bekommt** olur."
+    },
+    {
+     "de": "Ich habe noch keine Antwort ___.",
+     "answer": "bekommen",
+     "tr": "Henüz cevap almadım.",
+     "hint_tr": "Geçmişi anlatırken **habe bekommen** denir, başına **ge** gelmez."
+    }
+   ]
   },
   {
    "id": "lx:ohne",
@@ -7387,7 +7598,15 @@
     },
     {
      "de": "mal schnell",
-     "tr": "hemen bir"
+     "tr": "hemencecik"
+    },
+    {
+     "de": "zu schnell fahren",
+     "tr": "çok hızlı sürmek"
+    },
+    {
+     "de": "Das geht schnell.",
+     "tr": "Bu çabuk olur."
     }
    ],
    "patterns": [
@@ -7396,7 +7615,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Acele et derken **Sei schnell** az duyulur. Doğrusu **Beeil dich**."
+    "Acele et derken **Sei schnell** doğal değil. **Mach schnell!** de."
    ],
    "examples": [
     {
@@ -7437,7 +7656,27 @@
     "anlam_tr": "Bir şeyin hızlı olduğunu söyler.",
     "parcalar": [],
     "ipucu_tr": "**Ich gehe mal schnell raus** hemen çıkıp geliyorum demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Sie sprechen zu ___.",
+     "answer": "schnell",
+     "tr": "Çok hızlı konuşuyorsunuz.",
+     "hint_tr": "Hızlı derken **schnell** denir."
+    },
+    {
+     "de": "Ich komme so ___ wie möglich.",
+     "answer": "schnell",
+     "tr": "Olabildiğince çabuk geliyorum.",
+     "hint_tr": "Olabildiğince çabuk derken **so schnell wie möglich** denir."
+    },
+    {
+     "de": "Ich gehe mal ___ zum Bäcker.",
+     "answer": "schnell",
+     "tr": "Fırına bir gidip geliyorum.",
+     "hint_tr": "Kısa bir iş için **mal schnell** denir."
+    }
+   ]
   },
   {
    "id": "lx:Nacht",
