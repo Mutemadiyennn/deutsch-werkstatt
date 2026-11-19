@@ -174,7 +174,8 @@ export const Pattern = z.object({
   kurallar_tr: z.array(z.string()).default([]),
   /** OD-9: öğrenciye görünen çerçeve, terimsiz (ör. "**Ich habe** + bir şey"); yoksa çerçeve gösterilmez */
   frame_tr: z.string().optional(),
-  slots: z.array(z.object({ name: z.string(), fills: z.array(z.string()) })).default([]),
+  /** `fills_tr`: dolguların kısa Türkçe anlamı, `fills` ile aynı sırada ve uzunlukta (İÇ 7014566898; doğrulayıcı denetler) */
+  slots: z.array(z.object({ name: z.string(), fills: z.array(z.string()), fills_tr: z.array(z.string()).optional() })).default([]),
   examples: z.array(z.object({ de: z.string(), tr: z.string(), layer: z.enum(["hd", "alltag"]).default("hd") })).min(1),
   transforms: z
     .object({ question: z.string(), negative: z.string(), polite: z.string(), perfekt: z.string(), weil: z.string(), dass: z.string(), wenn: z.string() })

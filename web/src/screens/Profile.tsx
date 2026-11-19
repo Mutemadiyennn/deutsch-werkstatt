@@ -162,6 +162,7 @@ export function ProfileView() {
       </section>
 
       <section class="card">
+        <a class="btn sm" href="#/ses" data-test="ses-deneme-ac" style={{ marginBottom: 12 }}>Ses ve mikrofon denemesi</a>
         <p class="small muted">Giriş yapılan hesap: {user?.email || "Google hesabı"}</p>
         {/* Hesap kimliği (UID): sunucu izin listesine (ALLOWED_UIDS) proje sahibi ekler; ekran görüntüsü testlerinde maskelenir */}
         {user && <div class="row" style={{ flexWrap: "nowrap", marginBottom: 8 }}>
