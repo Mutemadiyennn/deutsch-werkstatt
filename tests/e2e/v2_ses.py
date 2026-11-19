@@ -8,7 +8,7 @@ B15 1. adım (PM-064 + PM 7016783246-2, 7017526063): karaktere göre ses, "Yava�
   - mikrofon: kullanılan yol yazılı; sahte tanıma "Guten Morgen" → ekranda; izin reddi → Türkçe neden
 python3 tests/e2e/v2_ses.py [--browser webkit] [--device "iPhone 15"] [--shots DIR]
 """
-import re
+import re, json
 from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
 
@@ -60,11 +60,15 @@ def main():
         pg.wait_for_selector("[data-test=karakter-sesleri]")
         check(not pg.locator("[data-test=karakter-ses]").first.is_visible(), "karakter listesi kapalı başlıyor")
         check(pg.locator("[data-test=karakter-sesleri]").evaluate("(e) => e.compareDocumentPosition(document.querySelector('[data-test=mikrofon-deneme]')) & 2") != 0, "üstte sesler ve mikrofon, karakterler altta")
+        hb = pg.locator("[data-test=karakter-ac]").bounding_box()
+        check(hb and hb["height"] >= 44, f"'Karakterlerin sesi' başlığı ≥ 44 pt ({hb and round(hb['height'])})")
+        if shots: pg.locator("[data-test=karakter-sesleri]").scroll_into_view_if_needed(); shot(pg, f"s00-karakter-kapali-{TEMA}", full=False)
         pg.click("[data-test=karakter-ac]"); pg.wait_for_selector("[data-test=karakter-ses]")
         adlar = pg.locator("[data-test=karakter-ses-ad]").all_inner_texts()
         check(all(re.match(r"^(Kadın|Erkek) sesi: \S|^Bu cihazda uygun ses yok$", x) for x in adlar) and not any(re.search(r"perde|cihaz sesi|Erweitert|\d\.\d", x) for x in adlar), f"karakter satırında yalnızca 'Kadın sesi: …' ({adlar[:3]})")
         cins = pg.locator("[data-test=karakter-ses]").evaluate_all("(xs) => xs.map((x) => [x.dataset.id, x.querySelector('[data-test=karakter-ses-ad]').innerText])")
-        check(all(t.startswith("Erkek") for i, t in cins if i in ("ch:lechner", "ch:weber", "ch:pichler")) and all(t.startswith("Kadın") for i, t in cins if i in ("ch:huber", "ch:stadler", "ch:brandl")), f"satırdaki 'Kadın/Erkek' karakterin cinsiyeti ({cins[:4]})")
+        dunya = {c["id"]: c["ses"]["cinsiyet"] for c in json.load(open(__file__.rsplit("/", 1)[0] + "/../../content/v2/world/world.json"))["characters"]}
+        check(len(cins) == len(dunya) and all(t.startswith({"erkek": "Erkek", "kadin": "Kadın"}[dunya[i]]) for i, t in cins), f"12 satırın hepsinde 'Kadın/Erkek' karakterin cinsiyeti ({len(cins)}/{len(dunya)})")
         ks = {e["id"]: e for e in pg.locator("[data-test=karakter-ses]").evaluate_all("(xs) => xs.map((x) => ({ id: x.dataset.id, ses: x.dataset.ses, pitch: x.dataset.pitch }))")}
         erkekler = [ks[i]["ses"] for i in ("ch:lechner", "ch:weber", "ch:pichler") if i in ks]
         kadinlar = [ks[i]["ses"] for i in ("ch:huber", "ch:stadler", "ch:brandl") if i in ks]

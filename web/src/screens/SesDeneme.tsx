@@ -17,7 +17,7 @@ function SesSatiri({ s }: { s: Ses }) {
   const dinle = (yavas: boolean) => void speak(ORNEK, "de", yavas ? "slow" : "normal", true, { ses: s, pitch: 1 });
   return (
     <li class="row ses-satir" style={{ flexWrap: "nowrap" }} data-test="ses" data-ad={s.name}>
-      <span class="grow" style={{ minWidth: 0 }}><b>{s.name}</b>{sesKalitesi(s) >= 2 && <span class="chip" style={{ marginLeft: 6 }}>gelişmiş</span>}</span>
+      <span class="grow" style={{ minWidth: 0 }}><b>{s.name.replace(/\s*\(.*\)$/, "")}</b>{sesKalitesi(s) >= 2 && <span class="chip" style={{ marginLeft: 6 }}>gelişmiş</span>}</span>
       <button class="btn sm" onClick={() => dinle(false)} data-test="ses-dinle">Dinle</button>
       <button class="btn sm ghost" onClick={() => dinle(true)} data-test="ses-yavas">Yavaş</button>
     </li>
@@ -31,7 +31,7 @@ export function SesDeneme() {
     // iOS/Chrome ses listesini geç doldurur
     const yenile = () => setSesler(cihazSesleri());
     if (ttsAvailable()) { speechSynthesis.addEventListener?.("voiceschanged", yenile); setTimeout(yenile, 400); }
-    void loadWorld().then((w) => w && setKarakter(w.characters.map((c) => ({ id: c.id, name: c.name, cinsiyet: (c as { ses?: { cinsiyet?: string } }).ses?.cinsiyet }))));
+    void loadWorld().then((w) => w && setKarakter(w.characters.map((c) => ({ id: c.id, name: c.name, cinsiyet: c.ses?.cinsiyet }))));
     return () => { if (ttsAvailable()) speechSynthesis.removeEventListener?.("voiceschanged", yenile); };
   }, []);
   const h = havuzlar(sesler);
@@ -53,7 +53,7 @@ export function SesDeneme() {
       </section>
       <MikrofonDeneme />
       {karakter.length > 0 && <details class="card stack" data-test="karakter-sesleri">
-        <summary data-test="karakter-ac"><b>Karakterlerin sesi · {karakter.length}</b></summary>
+        <summary class="ac-baslik" data-test="karakter-ac"><h2>Karakterlerin sesi · {karakter.length}</h2></summary>
         <ul class="list">{karakter.map((c) => { const a = karakterSesi(c.id); return (
           <li class="row" style={{ flexWrap: "nowrap" }} data-test="karakter-ses" data-id={c.id} data-ses={a?.ses?.name ?? ""} data-pitch={a?.pitch ?? 1}>
             <span class="grow" style={{ minWidth: 0 }}><b>{c.name}</b><br /><span class="tiny muted" data-test="karakter-ses-ad">{!a?.ses || a.cinsiyetYok ? "Bu cihazda uygun ses yok" : `${c.cinsiyet === "erkek" ? "Erkek" : c.cinsiyet === "kadin" ? "Kadın" : "Karakter"} sesi: ${a.ses.name.replace(/\s*\(.*\)$/, "")}`}</span></span>
