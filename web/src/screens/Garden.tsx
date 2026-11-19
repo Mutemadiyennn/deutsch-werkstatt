@@ -151,7 +151,8 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   if (intro) return (
     <div class="stack fade" data-test="garden-intro">
       <section class="card stack"><div class="kicker">Yeni kelime</div>
-        <Photo q={fotoOrnek?.img || l.img} sira={fotoEx} />
+        {/* PM 14:05 Berlin madde 1: tanıtımda kelimenin fotoğrafı (sayaçla döner); cümle görseli yalnızca cümlenin yanında */}
+        <Photo q={l.img} sira={q.ex} />
         <div class="de-xl" lang="de"><Art art={l.art} de={l.de} /></div>
         <div class="row"><ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} /></div>
         <p>{l.tr}</p>
