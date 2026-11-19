@@ -19,7 +19,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | İş | Dal | Durum |
 |---|---|---|
 | Şema PR'ı | `v2/sema` | itildi, PR açılmadı (PR sınırı) |
-| #43 Bugün ilk kare tanısı | `v2/denetim` | CI'da tanı koşusu |
+| #43 Bugün ilk kare | `v2/denetim` | kök neden 32 px bulanık gölge; düzeltildi, CI doğruluyor |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
 
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-18
@@ -39,7 +39,7 @@ Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur. Hata türler
 | #50 | `content/kelime-001-003` | İçerik Motoru: 300 kelime kartı | ONAY |
 | #51 | `content/r0-temel` | İçerik Motoru: R0 temel paket | değişiklik gerekli (İçerik Motoru) |
 | #49 | `v2/telefon01-ogretim` | PM-032 (öğretmeden isteme 0, cevap değerlendirme), PM-044.1 (mevsim dersi ana yolda değil), PM-044.3 (Advent + telefon/01 + strategie/01 onaylı; okur 5 tur) | 2. tur P1'leri düzeltildi |
-| #43 | `v2/denetim` | PM-030 DN-2 | yükleme sınırı kırmızı |
+| #43 | `v2/denetim` | PM-030 DN-2 (M1: çevrimdışı, servis işçisi) | yükleme sınırı düzeltildi |
 
 ### Birleştirme turu (PM-007, 2026-11-17)
 - `main`'e birleşti: #2 (T04), #3 (çalışma düzeni), #18 (v2_core bekleme düzeltmesi), #20 (PM tasarım dili), #16 (PM gereksinim kaydı), #19 (yığının tepesi: #4–#17'nin bütün commit'leri, merge commit ile SHA'lar korunarak), #21 (PM yol haritası).
