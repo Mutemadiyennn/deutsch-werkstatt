@@ -5,8 +5,7 @@
 import { useEffect, useState } from "preact/hooks";
 import type { Gun } from "@dw/shared";
 import { useApp } from "../state.ts";
-import { loadLexicon, loadM1Gun } from "../services/content.ts";
-import { isCard } from "../core/garden.ts";
+import { loadM1Gun } from "../services/content.ts";
 import { gunBittiYaz, ilerlemeOku, xpOku } from "../services/ilerleme.ts";
 import { adimAdi, gunAdimlari, seri, siradaki, yol, type Adim, type GunDurum, type XpKayit } from "../core/gun.ts";
 import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
@@ -34,9 +33,10 @@ export function usePlan(): { plan: Plan | null; err: string | null; yok: boolean
       const ilk = sonuc.findIndex((r) => r.status === "rejected");
       const gunler = (ilk < 0 ? sonuc : sonuc.slice(0, ilk)).map((r) => (r as PromiseFulfilledResult<Gun>).value);
       if (!gunler.length) throw new Error(`Günün dosyası yüklenemedi${sonuc[0]?.status === "rejected" ? `: ${String((sonuc[0] as PromiseRejectedResult).reason?.message || sonuc[0].reason)}` : ""}`);
-      const [ilr, xp, sozluk] = await Promise.all([ilerlemeOku(gunler.flatMap((g) => g.yeni_kartlar)), xpOku(), loadLexicon().catch(() => null)]);
-      // Bugün'deki "N yeni kelime" Bahçe'nin gerçekten getireceği kart sayısı (inceleme #66 2. tur P1-B)
-      if (sozluk) ilr.kartlar = new Set(sozluk.lexemes.filter(isCard).map((l) => l.id));
+      const [ilr, xp] = await Promise.all([ilerlemeOku(gunler.flatMap((g) => g.yeni_kartlar)), xpOku()]);
+      // Bugün'deki "N yeni kelime" Bahçe'nin gerçekten getireceği kart sayısı; derlemede indekse yazılır, plan 2 MB'lık
+      // sözlüğü yüklemez (inceleme #66 2. ve 3. tur)
+      ilr.kartlar = new Set(sirali.flatMap((g) => g.kartlar));
       const basliklar = Object.fromEntries(index.temel.map((t) => [t.id, t.title_tr]));
       const y = yol(gunler.map((g: Gun) => gunAdimlari(g, ilr, basliklar)));
       // gün bitişi kalıcı yazılır (sonradan hazır olan adım biten günü geri açmaz)

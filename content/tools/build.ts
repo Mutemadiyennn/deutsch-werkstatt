@@ -8,7 +8,7 @@ import { createHash } from "node:crypto";
 import { loadContent, checkRules, ROOT, parseFile } from "./load.ts";
 import { Gun, medyalar } from "../../packages/shared/src/m1.ts";
 import { readdirSync } from "node:fs";
-import type { ContentIndex } from "../../packages/shared/src/content.ts";
+import { kartMi, type ContentIndex } from "../../packages/shared/src/content.ts";
 
 const c = checkRules(loadContent());
 if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
@@ -54,6 +54,7 @@ for (const s of c.scenarios) {
   w(f, s.data);
   scenFiles[s.data.id] = f;
 }
+const lexById = new Map(c.lexemes.map((l) => [l.id, l]));
 const m1Files: Record<string, string> = {};
 if (days.length) mkdirSync(join(dir, "m1"), { recursive: true });
 for (const d of days) { const f = `m1/gun-${String(d.data.day).padStart(2, "0")}.json`; w(f, d.data); m1Files[String(d.data.day)] = f; }
@@ -67,7 +68,8 @@ const index: ContentIndex = {
   builtAt: new Date().toISOString(),
   domains: c.domains,
   scenarios: c.scenarios.map(({ data: s }) => ({ id: s.id, domain: s.domain, order: s.order, level: s.level, title_tr: s.title_tr, title_de: s.title_de, review: s.review.status, format: s.format, ...(s.season ? { season: s.season } : {}) })),
-  m1: days.map(({ data: g }) => ({ day: g.day, id: g.id, title_tr: g.title_tr, review: g.review.status, medya: medyalar(g).map((m) => ({ id: m.id, kind: m.kind, title_tr: m.title_tr })) })),
+  m1: days.map(({ data: g }) => ({ day: g.day, id: g.id, title_tr: g.title_tr, review: g.review.status,
+    kartlar: g.yeni_kartlar.filter((id) => { const l = lexById.get(id); return !!l && kartMi(l); }), medya: medyalar(g).map((m) => ({ id: m.id, kind: m.kind, title_tr: m.title_tr })) })),
   temel: temel.map((t) => ({ id: t.id, order: t.order, title_tr: t.title_tr, title_de: t.title_de, review: t.review.status })),
   counts: { lexemes: c.lexemes.length, grammar: c.grammar.length, assess: c.assess.length, scenarios: c.scenarios.length },
   files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles }
