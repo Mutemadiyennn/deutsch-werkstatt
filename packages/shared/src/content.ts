@@ -47,6 +47,9 @@ export const Anchors = {
   /** önce öğretilmiş olması gereken öğeler (lx:, ch:, pt:, gr:, sc:, r0:) — OD-1 */
   requires: z.array(z.string()).default([])
 };
+/** Senaryoda `requires` senaryo kimlikleridir (OD-1/OD-7, teach.ts); öteki alanlar ortak */
+const { requires: _anyRequires, ...AnchorsNoRequires } = Anchors;
+void _anyRequires;
 /** Hazır ses (D-085): dosya + kim okudu + lisans; yoksa cihaz sesi */
 export const Audio = z.object({ src: z.string().min(1), speaker: z.string().optional(), license: z.string().optional(), source: z.string().optional() });
 /** Güney Almanya kullanımı (gell, daheim, Semmel…): Bairisch DEĞİL, bölgesel gündelik dil (PM-042 A.6) */
@@ -103,6 +106,8 @@ export const Lexeme = z.object({
   legacy: z.array(z.object({ unit: z.string(), key: z.string() })).default([]),
   /** OD-9.1 yapılandırılmış açıklama (PM-040.3) */
   exp: Explanation.optional(),
+  /** PM-047 §2: kartın başlığı kullanılacak ifadedir ("einen Termin machen"); kelime bilgisi kartın içinde küçük */
+  head: z.object({ de: z.string().min(1), tr: z.string().min(1) }).optional(),
   /** PM-047 §2: false → öğrenciye ayrı kart olarak gösterilmez (işlev kelimeleri); ifadelerin içinde öğretilir */
   card: z.boolean().optional(),
   /** PM-049 (d, h): boşluk doldurma biçimleri — "Ich habe ___ Termin." → einen; ayrılabilir fiilde iki boşluk "sage … ab" */
@@ -242,6 +247,8 @@ export const Scenario = z.object({
   /** Gerçek takvim (WORLD.md §6): bu tarihler arasında Bugün'de öne çıkar; AA-GG */
   season: z.object({ id: z.string(), from: z.string().regex(/^\d\d-\d\d$/), to: z.string().regex(/^\d\d-\d\d$/), title_tr: z.string() }).optional(),
   essentials: z.object({ lexemes: z.array(LexemeId), chunks: z.array(ChunkId), patterns: z.array(PatternId) }),
+  /** OD-1/OD-7: bu senaryodan önce öğretilmiş olması gereken senaryolar (onların temel öğeleri "öğretilmiş" sayılır) */
+  requires: z.array(ScenarioId).default([]),
   extras: z.object({ lexemes: z.array(LexemeId).default([]), chunks: z.array(ChunkId).default([]) }).default({ lexemes: [], chunks: [] }),
   chunks: z.array(Chunk).default([]),
   otherSide: z.array(z.object({ id: z.string(), de: z.string(), tr: z.string(), layer: LayerKey, speed: Speed, reductions: z.array(Reduction).optional() })).default([]),
@@ -277,7 +284,7 @@ export const Scenario = z.object({
   missions: z.array(z.object({ id: z.string(), task_tr: z.string(), prep: z.array(ChunkId).default([]), escape_de: z.array(z.string()).default([]) })).default([]),
   mistakes_tr: z.array(z.string()).default([]),
   source: z.object({ legacyUnit: z.string().optional(), notes: z.string().optional() }).default({}),
-  ...Anchors
+  ...AnchorsNoRequires
 });
 export type Scenario = z.infer<typeof Scenario>;
 

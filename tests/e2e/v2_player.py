@@ -121,6 +121,14 @@ def main():
                 if cards_seen == 2:
                     page.click("[data-test=known-skip]"); continue
                 page.click("[data-test=type-repeat]")
+                if cards_seen == 3:  # PM-032: uzak tekrar → yüzde yok, "bir daha dinle" + ilk kelime + 44 pt "Yavaş dinle"
+                    page.fill("[data-test=answer]", "Hallo Welt"); page.click("[data-test=submit]")
+                    page.wait_for_selector("[data-test=slow-listen]"); page.wait_for_timeout(400)  # açılış animasyonu (pop) bitsin
+                    body = page.inner_text("main")
+                    check("Bir daha dinle" in body and "%" not in body, "uzak tekrarda yüzde yok, 'Bir daha dinle ve söyle'")
+                    h = page.locator("[data-test=slow-listen]").bounding_box()["height"]
+                    check(h >= 44, f"'Yavaş dinle' dokunma hedefi ≥44 pt ({h:.0f})")
+                    shot(page, "p02b-tekrar-ipucu", full=False)
                 page.fill("[data-test=answer]", de); page.click("[data-test=submit]")
                 for _ in range(50):  # otomatik geçiş (≈0,7 sn): kart değişene ya da hatırlama gelene kadar
                     page.wait_for_timeout(100)
@@ -387,6 +395,13 @@ def main():
                 check(page.locator(".card.err, [role=alert]").count() == 0, f"{mid} · {sec}: hata paneli yok") if sec in ("build", "drills") else None
         page.clock.set_system_time(_dt.datetime(2026, 7, 1, 10, 0)); page.goto(f"http://127.0.0.1:{PORT}/#/today"); page.wait_for_selector("[data-test=next-activity]")
         check(page.locator("[data-test=season]").count() == 0, "Temmuz'da mevsim kartı yok")
+        # PM-044.1: mevsim dersi ana yolda değil, Öğren'de mevsim dışında listelenmiyor
+        nxt = page.inner_text("[data-test=next-activity]")
+        check(not any(w in nxt for w in ("Weihnacht", "Noel", "Glühwein")), f"Temmuz: Bugün'ün sıradaki dersi mevsim dersi değil ({nxt.splitlines()[0][:60] if nxt else ''})")
+        for dom in ("arbeit", "essen", "freizeit"):
+            page.goto(f"http://127.0.0.1:{PORT}/#/learn/{dom}"); page.wait_for_selector("main h1, main h2"); page.wait_for_timeout(200)
+            t = page.inner_text("main")
+            check(not any(w in t for w in ("Weihnacht", "Glühwein")), f"Temmuz: Öğren/{dom} altında mevsim dersi yok")
         b6.close()
 
         print("10) uzun Almanca kelimeler 320/390 px'te taşmıyor; %130 yazı boyutu")

@@ -2,27 +2,27 @@
 
 Otomatik kural taraması (OD-9.3 katman 1). Okur kontrolü (katman 2) ayrıca her açıklamayı okur.
 
-**Toplam 850 açıklama · kurala aykırı 267 (%31)**
+**Toplam 832 açıklama · kurala aykırı 211 (%25)**
 
 | Dosya | Açıklama | Aykırı |
 |---|---|---|
-| content/v2/domains/arbeit/scenarios/m1-weihnachtsfeier.json | 83 | 0 |
+| content/v2/domains/arbeit/scenarios/m1-weihnachtsfeier.json | 80 | 0 |
 | content/v2/domains/arzt/scenarios/01-beschwerden.json | 103 | 39 |
-| content/v2/domains/essen/scenarios/m1-weihnachtsmarkt.json | 79 | 0 |
-| content/v2/domains/freizeit/scenarios/m1-gluehwein-einladung.json | 82 | 0 |
-| content/v2/domains/strategie/scenarios/01-nicht-verstanden.json | 98 | 47 |
-| content/v2/domains/telefon/scenarios/01-arzttermin.json | 94 | 9 |
+| content/v2/domains/essen/scenarios/m1-weihnachtsmarkt.json | 78 | 0 |
+| content/v2/domains/freizeit/scenarios/m1-gluehwein-einladung.json | 81 | 0 |
+| content/v2/domains/strategie/scenarios/01-nicht-verstanden.json | 84 | 0 |
+| content/v2/domains/telefon/scenarios/01-arzttermin.json | 95 | 0 |
 | registry/patterns.json | 311 | 172 |
 
 ## İhlal türleri
 | Tür | Sayı |
 |---|---|
-| tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) | 243 |
-| öğretilmemiş terim | 98 |
-| cümle N kelime (en çok N) | 93 |
-| ';' işareti | 92 |
-| '…' işareti | 51 |
-| '=' işareti | 23 |
+| tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) | 206 |
+| öğretilmemiş terim | 93 |
+| cümle N kelime (en çok N) | 90 |
+| ';' işareti | 66 |
+| '…' işareti | 47 |
+| '=' işareti | 21 |
 
 ## Aykırı açıklamalar (çevrim sırası: bu liste önce)
 
@@ -68,70 +68,6 @@ Otomatik kural taraması (OD-9.3 katman 1). Okur kontrolü (katman 2) ayrıca he
 | mistakes_tr[3] | seit + Dativ: 'seit einer Woche', 'seit drei Tagen' (-n). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: dativ |
 | mistakes_tr[4] | 'Mir ist schlecht' = midem bulanıyor; 'Ich bin schlecht' bambaşka bir anlamdır. | '=' işareti; ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 | mistakes_tr[5] | 'wenn' yan cümlesinden sonra ana cümle fiille başlar: 'Wenn ich schlucke, tut es weh.' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: yan cümle |
-
-### content/v2/domains/strategie/scenarios/01-nicht-verstanden.json
-| Yer | Metin | Sorun |
-|---|---|---|
-| ch:strategie:nicht-verstanden.use_tr | Az önce söyleneni anlamadığında. Perfekt kullanılır, çünkü söz az önce bitti. Gündelikte baştaki 'das' düşer, özne 'ich' kalır: '(Das) hab ich …'. | '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: özne |
-| ch:strategie:nicht-verstanden.mistakes_tr[0] | Az önceki cümle için 'Ich verstehe nicht' yerine 'Das habe ich nicht verstanden' daha doğal. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 15 kelime (en çok 14) |
-| ch:strategie:nicht-ganz.use_tr | Bir kısmını anladıysan. 'mitkriegen' gündelikte 'yakalamak, duymak' demektir; samimi ama kaba değil. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:wie-bitte.use_tr | En kısa ve en kibar 'anlamadım'. Soru tonuyla 'Bitte?' de aynı işi görür. 'Hä?' yalnızca yakın arkadaşlar arasında; yabancıya kaba gelir. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:wie-bitte.mistakes_tr[0] | 'Was?' tek başına sert gelebilir; 'Wie bitte?' güvenlidir. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:noch-einmal.use_tr | Tekrar ettirmek. 'nochmal' gündelik yazım; resmî: 'noch einmal'. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:langsamer.use_tr | Yavaşlatmak. 'Würden Sie …' çok kibar; kısa biçim de 'bitte' ile kibardır. | ';' işareti; '…' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:lerne-deutsch.use_tr | Karşı tarafın yavaşlaması ve sabretmesi için kısa açıklama. Özür dilemene gerek yok. Aynı işi gören başka bir cümle: 'Mein Deutsch ist noch nicht so gut.' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:was-heisst.use_tr | Bilmediğin kelimeyi hemen sor; kelimeyi tekrar etmek karşı tarafa neyi sorduğunu gösterir. ''n' = 'denn' (merak tonu). | '=' işareti; ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:aufschreiben.mistakes_tr[0] | Ayrılabilen fiil: 'Schreiben Sie das auf' ama 'Könnten Sie das aufschreiben?' | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); öğretilmemiş terim: ayrılabilen fiil |
-| ch:strategie:dialekt.use_tr | Bavyera'da sık gerekir. 'sich schwertun mit' = '-de zorlanmak'. | '=' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:ach-so.use_tr | Bir şey sonunda anlaşılınca. Konuşmayı kapatır ve karşı tarafa 'devam edebilirsin' der. Tonu: rahatlamış, olumlu. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| ch:strategie:lieber-deutsch.use_tr | Karşı taraf İngilizceye geçmek isterse. Kibar ve net; çoğu kişi memnun olur ve yavaşlar. | ';' işareti |
-| d01.why_tr | Perfekt: haben + Partizip II (verstanden). | öğretilmemiş terim: partizip |
-| d07.why_tr | Modal fiille ayrılabilen fiil bitişik ve sonda: aufschreiben. | öğretilmemiş terim: modal fiil; öğretilmemiş terim: ayrılabilen fiil |
-| d14.instr_tr | Kibar rica yap (Würden Sie …?). | '…' işareti |
-| d18.instr_tr | 'bedeuten' fiiliyle sor. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d19.instr_tr | 'nicht ganz' ile söyle (kısmen anladın). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d20.situation_tr | Kasiyer hızlı bir şey sordu; anlamadın. | ';' işareti |
-| d22.situation_tr | Karşı taraf İngilizceye geçmek istiyor; kibarca Almanca devam et. | ';' işareti |
-| d23.situation_tr | 'Kaution' kelimesini bilmiyorsun. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d24.situation_tr | Sadece 'Montag'ı anladın. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d25.situation_tr | Komşu güney ağzıyla konuştu; lehçeyi anlamadığını söyle. | ';' işareti |
-| d27.situation_tr | Anlamadın; tekrar iste. | ';' işareti |
-| d28.situation_tr | İş arkadaşın soruyor; anladın, evet de. | ';' işareti |
-| d29.situation_tr | Seni anlamadılar. 'Bir randevum var.' cümlesini yavaş ve net tekrarla. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d31.situation_tr | Şimdi anladın; teşekkür et. | ';' işareti |
-| d33.situation_tr | Anlamadın; tekrar iste. | ';' işareti |
-| d38.why_tr | Tek kelimelik Almanca tepki konuşmayı sürdürür; İngilizce ya da tahmini 'Nein' sorunu büyütebilir. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d38.q_tr | Kasada 'Sammeln Sie Punkte?' sorusunu anlamadın. En iyi tepki hangisi? | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b08.prompt_tr | 'Kaution' ne demek? | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b10.prompt_tr | 'Kaminkehrer' derken neyi kastediyorsunuz? | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b13.prompt_tr | Sadece 'pazartesi'yi anladım. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b20.prompt_tr | Tekrar eder misiniz? (Würden Sie …) | '…' işareti |
-| b21.prompt_tr | 'bis' mi dediniz, 'ab' mı? | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b28.prompt_tr | Bir kelimeyi anlamadım: 'Frist'. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| dialog0#3.hint_tr | Anladığını göster; kartın olmadığını söyle. | ';' işareti |
-| dialog0#5.hint_tr | Hayır de; çantanın yanında olduğunu söyle. | ';' işareti |
-| dialog1#7.hint_tr | Anladığını söyle; saati tekrar ederek doğrula. | ';' işareti |
-| dialog2#1.hint_tr | Çok hızlı olduğunu söyle; yavaşlamasını rica et. | ';' işareti |
-| dialog2#5.hint_tr | Kelimeyi anlamadığını söyle; yazmasını iste. | ';' işareti |
-| mistakes_tr[0] | Anlamayınca İngilizceye geçmek konuşmayı bitirir; 'Wie bitte?' konuşmayı sürdürür ve karşı taraf genelde yavaşlar. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| mistakes_tr[1] | Az önce söyleneni anlamadıysan Perfekt: 'Das habe ich nicht verstanden.' 'Ich verstehe nicht' daha genel ve sert duyulabilir. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 18 kelime (en çok 14) |
-| mistakes_tr[2] | 'Hä?' yalnızca yakın arkadaşlar arasında; yabancıya kaba gelir. Güvenli olanı 'Wie bitte?' ya da soru tonuyla 'Bitte?'. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| mistakes_tr[3] | Bir kelimeyi hiç tanımıyorsan 'Das Wort kenne ich nicht'; aklına gelmiyorsa 'Mir fällt das Wort nicht ein'. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır); cümle 17 kelime (en çok 14) |
-| mistakes_tr[4] | dreizehn (13) ve dreißig (30) sık karışır; emin değilsen sor. | ';' işareti |
-| mistakes_tr[5] | 'nochmal' gündelik yazımdır; resmî metinde 'noch einmal'. | ';' işareti; tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-
-### content/v2/domains/telefon/scenarios/01-arzttermin.json
-| Yer | Metin | Sorun |
-|---|---|---|
-| d18.instr_tr | Saati 'halb' ile söyle. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d19.instr_tr | Saati 'Viertel' ile söyle. | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d27.situation_tr | Randevu istiyorsun. ('Huber' sekreterin adı.) | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| d39.q_tr | 'halb zehn' saat kaçtır? | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b10.prompt_tr | Perşembe saat 9:30 bana uyar ('halb' ile). | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b11.prompt_tr | Saat 10:45'te mi? ('Viertel' ile sor) | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b12.prompt_tr | Saat 11:15'te, değil mi? ('Viertel' ile) | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
-| b13.prompt_tr | Bu bana maalesef uymuyor; o saatte çalışıyorum. | ';' işareti |
-| dinleme0.q3.q_tr | 'Huber' kimin adı? | tırnak işareti (Almanca kelime tırnakla değil **kalın** yazılır) |
 
 ### registry/patterns.json
 | Yer | Metin | Sorun |

@@ -29,7 +29,7 @@ export function VerdictView({ v, answer, onNext, onClaim, itemId, scenarioId, pr
   const claim = async () => { await addClaim({ at: new Date().toISOString(), scenarioId, itemId, prompt, answer, expected: accepted }); setClaimed(true); onClaim?.(); };
   return (
     <div class="stack fade" data-test="verdict">
-      {v.kind === "correct" && <FeedbackBand kind="ok" title="✓ Doğru">{v.via !== "exact" && v.best ? <>Örnek: <span class="de" lang="de">{v.best}</span>{v.note ? <> · {v.note}</> : null}</> : v.note}</FeedbackBand>}
+      {v.kind === "correct" && <FeedbackBand kind="ok" title="Doğru">{v.via !== "exact" && v.best ? <>Örnek: <span class="de" lang="de">{v.best}</span>{v.note ? <> · {v.note}</> : null}</> : v.note}</FeedbackBand>}
       {v.kind === "wrong" && <FeedbackBand kind="bad" title="Şöyle olmalı:"><span class="de" lang="de" style={{ fontSize: "1.05rem" }}>{v.best}</span>
         {v.words && <div style={{ marginTop: 4 }} lang="de">{v.words.map((w) => <span style={{ marginRight: 4, textDecoration: w.st === "miss" ? "underline wavy" : "none", opacity: w.st === "ok" ? 0.7 : 1 }}>{w.w}</span>)}</div>}
         {v.note && <div>{v.note}</div>}</FeedbackBand>}

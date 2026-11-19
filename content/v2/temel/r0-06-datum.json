@@ -1,0 +1,1046 @@
+{
+ "schema": 1,
+ "id": "r0:06-datum",
+ "order": 6,
+ "level": "A1",
+ "format": "temel",
+ "title_tr": "Tarih: hangi gün, ayın kaçı",
+ "title_de": "Das Datum",
+ "goal_tr": "Gün ve tarihi söyleyip randevu tarihini doğru anlamak.",
+ "can_do": {
+  "id": "cd:r0:06",
+  "tr": "Randevu gününü ve tarihini söyleyebilirim."
+ },
+ "unit": "u:r0:06",
+ "arm": "atolye",
+ "place": "pl:praxis",
+ "characters": [
+  "ch:huber",
+  "ch:popescu",
+  "ch:aksoy"
+ ],
+ "requires": {
+  "kelimeler": [
+   "lx:Dienstag",
+   "lx:November",
+   "lx:heute",
+   "lx:morgen",
+   "lx:übermorgen",
+   "lx:zehn",
+   "lx:zwanzig",
+   "lx:hundert",
+   "lx:um",
+   "lx:halb"
+  ],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "reviewed",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-18",
+  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-06-10.md. Denetim: docs/v2/reviews/temel-r0-denetim.txt. Kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
+  "okur": "passed",
+  "okur_at": "2026-11-18"
+ },
+ "teach": [
+  {
+   "id": "r0:06:a:erste",
+   "de": "der erste",
+   "tr": "ayın biri, birinci",
+   "lexeme": "lx:erster",
+   "exp": {
+    "anlam_tr": "Ayın ilk günü.",
+    "ne_zaman_tr": "Tarih söylerken.",
+    "parcalar": [],
+    "ipucu_tr": "**einste** denmez, bu sayı kuralın dışındadır."
+   }
+  },
+  {
+   "id": "r0:06:a:zweite",
+   "de": "der zweite",
+   "tr": "ayın ikisi, ikinci",
+   "lexeme": "lx:zweiter",
+   "exp": {
+    "anlam_tr": "Ayın ikinci günü.",
+    "ne_zaman_tr": "Tarih söylerken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "r0:06:a:dritte",
+   "de": "der dritte",
+   "tr": "ayın üçü, üçüncü",
+   "lexeme": "lx:dritter",
+   "exp": {
+    "anlam_tr": "Ayın üçüncü günü.",
+    "ne_zaman_tr": "Tarih söylerken.",
+    "parcalar": [],
+    "ipucu_tr": "**dreite** denmez, doğrusu **dritte**."
+   }
+  },
+  {
+   "id": "r0:06:a:vierte",
+   "de": "der vierte",
+   "tr": "ayın dördü, dördüncü",
+   "lexeme": "lx:vierter",
+   "exp": {
+    "anlam_tr": "Ayın dördüncü günü.",
+    "ne_zaman_tr": "Tarih söylerken.",
+    "parcalar": [],
+    "ipucu_tr": "4 ile 19 arasında sayıya **-te** eklenir."
+   }
+  },
+  {
+   "id": "r0:06:a:siebte-achte",
+   "de": "der siebte, der achte",
+   "tr": "ayın yedisi, ayın sekizi",
+   "lexeme": "lx:sieben",
+   "exp": {
+    "anlam_tr": "Ayın yedinci ve sekizinci günü.",
+    "ne_zaman_tr": "Tarih söylerken.",
+    "parcalar": [],
+    "ipucu_tr": "**sieben** kısalır, **acht** yalnızca bir **e** alır."
+   }
+  },
+  {
+   "id": "r0:06:a:zwanzigste",
+   "de": "der zwanzigste",
+   "tr": "ayın yirmisi, yirminci",
+   "lexeme": "lx:zwanzig",
+   "exp": {
+    "anlam_tr": "Ayın yirminci günü.",
+    "ne_zaman_tr": "Tarih söylerken.",
+    "parcalar": [],
+    "ipucu_tr": "20 ve üstünde sayıya **-ste** eklenir."
+   }
+  },
+  {
+   "id": "r0:06:b:am-dienstag",
+   "de": "am Dienstag",
+   "tr": "salı günü",
+   "lexeme": "lx:Dienstag",
+   "exp": {
+    "anlam_tr": "Bir şeyin salı günü olduğunu söyler.",
+    "ne_zaman_tr": "Bir işin hangi gün olduğunu söylerken.",
+    "parcalar": [],
+    "ipucu_tr": "Bütün günlerde aynıdır: **am Montag**, **am Freitag**."
+   }
+  },
+  {
+   "id": "r0:06:b:datum",
+   "de": "Datum",
+   "art": "das",
+   "tr": "tarih",
+   "lexeme": "lx:Datum",
+   "exp": {
+    "anlam_tr": "Gün, ay ve yıl bilgisi.",
+    "ne_zaman_tr": "Formlarda ve resmî dairede görürsün.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "r0:06:b:heute-ist-der",
+   "de": "Heute ist der 24. November.",
+   "tr": "Bugün 24 Kasım.",
+   "lexeme": "lx:November",
+   "exp": {
+    "anlam_tr": "Bugünün tarihini söyler.",
+    "ne_zaman_tr": "Biri bugünün tarihini sorunca.",
+    "parcalar": [],
+    "ipucu_tr": "Okunuşu **der vierundzwanzigste November** olur."
+   }
+  },
+  {
+   "id": "r0:06:b:am-datum",
+   "de": "am 24. November",
+   "tr": "24 Kasım günü",
+   "lexeme": "lx:November",
+   "exp": {
+    "anlam_tr": "Bir şeyin hangi tarihte olduğunu söyler.",
+    "ne_zaman_tr": "Randevu tarihi söylerken.",
+    "parcalar": [],
+    "ipucu_tr": "Okunuşu **am vierundzwanzigsten November** olur, sona **-n** gelir."
+   }
+  },
+  {
+   "id": "r0:06:b:gun-ve-tarih",
+   "de": "Am Dienstag, dem 24. November",
+   "tr": "Salı günü, 24 Kasım",
+   "lexeme": "lx:Dienstag",
+   "exp": {
+    "anlam_tr": "Günü ve tarihi birlikte söyler.",
+    "ne_zaman_tr": "Randevuyu kesinleştirirken.",
+    "parcalar": [],
+    "ipucu_tr": "**dem** yerine **den** de duyarsın, ikisi de doğru."
+   }
+  },
+  {
+   "id": "r0:06:b:geburtsdatum",
+   "de": "Geburtsdatum",
+   "art": "das",
+   "tr": "doğum tarihi",
+   "lexeme": "lx:Geburtsdatum",
+   "exp": {
+    "anlam_tr": "Doğduğun gün, ay ve yıl.",
+    "ne_zaman_tr": "Doktorda ve telefonda hemen sorulur.",
+    "parcalar": [
+     {
+      "de": "Geburts",
+      "tr": "doğum"
+     },
+     {
+      "de": "datum",
+      "tr": "tarih"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r0:06:b:dritter-elfter",
+   "de": "dritter Elfter",
+   "tr": "3 Kasım",
+   "lexeme": "lx:dritter",
+   "exp": {
+    "anlam_tr": "Ayı da sayıyla söyleyen kısa tarih.",
+    "ne_zaman_tr": "Doğum tarihi hızlı söylenirken çok duyarsın.",
+    "parcalar": [
+     {
+      "de": "dritter",
+      "tr": "üçüncü gün"
+     },
+     {
+      "de": "Elfter",
+      "tr": "on birinci ay"
+     }
+    ],
+    "ipucu_tr": "On birinci ay **November** olduğu için 3 Kasım demektir."
+   }
+  },
+  {
+   "id": "r0:06:b:yil",
+   "de": "neunzehnhundertneunzig, zweitausendvier",
+   "tr": "1990, 2004",
+   "lexeme": "lx:Jahr",
+   "exp": {
+    "anlam_tr": "Doğum yılı böyle okunur.",
+    "ne_zaman_tr": "Doğum tarihini söylerken.",
+    "parcalar": [],
+    "ipucu_tr": "1990 bin dokuz yüz diye değil, on dokuz yüz diye okunur."
+   }
+  }
+ ],
+ "table": {
+  "baslik_tr": "Tarih nasıl söylenir",
+  "sutunlar": [
+   "Tarih",
+   "Bugün kaçı",
+   "Ne zaman",
+   "Kısa cevap"
+  ],
+  "satirlar": [
+   [
+    "1.",
+    "der erste",
+    "am ersten",
+    "erster"
+   ],
+   [
+    "2.",
+    "der zweite",
+    "am zweiten",
+    "zweiter"
+   ],
+   [
+    "3.",
+    "der dritte",
+    "am dritten",
+    "dritter"
+   ],
+   [
+    "4.",
+    "der vierte",
+    "am vierten",
+    "vierter"
+   ],
+   [
+    "5.",
+    "der fünfte",
+    "am fünften",
+    "fünfter"
+   ],
+   [
+    "6.",
+    "der sechste",
+    "am sechsten",
+    "sechster"
+   ],
+   [
+    "7.",
+    "der siebte",
+    "am siebten",
+    "siebter"
+   ],
+   [
+    "8.",
+    "der achte",
+    "am achten",
+    "achter"
+   ],
+   [
+    "9.",
+    "der neunte",
+    "am neunten",
+    "neunter"
+   ],
+   [
+    "10.",
+    "der zehnte",
+    "am zehnten",
+    "zehnter"
+   ],
+   [
+    "11.",
+    "der elfte",
+    "am elften",
+    "elfter"
+   ],
+   [
+    "12.",
+    "der zwölfte",
+    "am zwölften",
+    "zwölfter"
+   ],
+   [
+    "19.",
+    "der neunzehnte",
+    "am neunzehnten",
+    "neunzehnter"
+   ],
+   [
+    "20.",
+    "der zwanzigste",
+    "am zwanzigsten",
+    "zwanzigster"
+   ],
+   [
+    "21.",
+    "der einundzwanzigste",
+    "am einundzwanzigsten",
+    "einundzwanzigster"
+   ],
+   [
+    "24.",
+    "der vierundzwanzigste",
+    "am vierundzwanzigsten",
+    "vierundzwanzigster"
+   ],
+   [
+    "25.",
+    "der fünfundzwanzigste",
+    "am fünfundzwanzigsten",
+    "fünfundzwanzigster"
+   ],
+   [
+    "30.",
+    "der dreißigste",
+    "am dreißigsten",
+    "dreißigster"
+   ],
+   [
+    "31.",
+    "der einunddreißigste",
+    "am einunddreißigsten",
+    "einunddreißigster"
+   ],
+   [
+    "3.11.",
+    "der dritte Elfte",
+    "am dritten Elften",
+    "dritter Elfter"
+   ]
+  ]
+ },
+ "drills": [
+  {
+   "id": "r0:06:d01",
+   "k": "gap",
+   "de": "Der Termin ist ___ Dienstag.",
+   "tr": "Randevu salı günü.",
+   "accepted": [
+    "am"
+   ],
+   "opts": [
+    "am",
+    "um",
+    "der"
+   ],
+   "why_tr": "Günlerin önüne **am** gelir. **um** saat içindir."
+  },
+  {
+   "id": "r0:06:d02",
+   "k": "gap",
+   "de": "Heute ist ___ 24. November.",
+   "tr": "Bugün 24 Kasım.",
+   "accepted": [
+    "der"
+   ],
+   "opts": [
+    "der",
+    "am",
+    "um"
+   ],
+   "why_tr": "**Heute ist** sonrasında **der** gelir."
+  },
+  {
+   "id": "r0:06:d03",
+   "k": "gap",
+   "de": "Der Kurs beginnt ___ 1. Dezember.",
+   "tr": "Kurs 1 Aralık günü başlıyor.",
+   "accepted": [
+    "am"
+   ],
+   "opts": [
+    "am",
+    "der",
+    "um"
+   ],
+   "why_tr": "Bir şeyin olduğu tarihte **am** gelir."
+  },
+  {
+   "id": "r0:06:d04",
+   "k": "gap",
+   "de": "Heute ist der ___ Mai.",
+   "tr": "Bugün 3 Mayıs.",
+   "accepted": [
+    "dritte"
+   ],
+   "opts": [
+    "dritte",
+    "dritten",
+    "drei"
+   ],
+   "why_tr": "**der** ile **dritte** söylenir. **dritten** ise **am** ile gelir."
+  },
+  {
+   "id": "r0:06:d05",
+   "k": "gap",
+   "de": "Ich komme am ___ Juli.",
+   "tr": "7 Temmuz günü geliyorum.",
+   "accepted": [
+    "siebten",
+    "siebenten"
+   ],
+   "opts": [
+    "siebten",
+    "siebte",
+    "sieben"
+   ],
+   "why_tr": "**am** ile sona **-n** gelir: **am siebten**."
+  },
+  {
+   "id": "r0:06:d06",
+   "k": "gap",
+   "de": "Mein Termin ist am ___ März.",
+   "tr": "Randevum 1 Mart günü.",
+   "accepted": [
+    "ersten"
+   ],
+   "opts": [
+    "ersten",
+    "erste",
+    "eins"
+   ],
+   "why_tr": "Bir için özel biçim vardır: **ersten**."
+  },
+  {
+   "id": "r0:06:d07",
+   "k": "gap",
+   "de": "Heute ist Montag, ___ ist Dienstag.",
+   "tr": "Bugün pazartesi, yarın salı.",
+   "accepted": [
+    "morgen"
+   ],
+   "opts": [
+    "morgen",
+    "gestern",
+    "vorgestern"
+   ]
+  },
+  {
+   "id": "r0:06:d08",
+   "k": "pick",
+   "q_tr": "Bugün pazartesi. **übermorgen** hangi gün?",
+   "opts": [
+    "Dienstag",
+    "Mittwoch",
+    "Donnerstag"
+   ],
+   "ans": 1,
+   "why_tr": "**übermorgen** yarından sonraki gündür."
+  },
+  {
+   "id": "r0:06:d09",
+   "k": "pick",
+   "q_tr": "**am 20. Mai** nasıl okunur?",
+   "opts": [
+    "am zwanzigsten Mai",
+    "am zwanzigten Mai",
+    "am zwanzig Mai"
+   ],
+   "ans": 0,
+   "why_tr": "20 ve üstünde **-sten** gelir."
+  },
+  {
+   "id": "r0:06:d10",
+   "k": "pick",
+   "q_tr": "Sekreter **dritter Elfter** diyor. Bu hangi tarih?",
+   "opts": [
+    "3 Kasım",
+    "3 Aralık",
+    "11 Mart"
+   ],
+   "ans": 0,
+   "why_tr": "**Elfter** on birinci ay, yani Kasım demektir."
+  },
+  {
+   "id": "r0:06:d11",
+   "k": "order",
+   "de": "ist / Heute / der / 24. / November",
+   "tr": "Bugün 24 Kasım.",
+   "accepted": [
+    "Heute ist der 24. November.",
+    "Der 24. November ist heute."
+   ]
+  },
+  {
+   "id": "r0:06:d12",
+   "k": "order",
+   "de": "Dienstag, / Am / dem / 24. / November",
+   "tr": "Salı günü, 24 Kasım.",
+   "accepted": [
+    "Am Dienstag, dem 24. November"
+   ]
+  },
+  {
+   "id": "r0:06:d13",
+   "k": "order",
+   "de": "um / Am / zehn / Dienstag",
+   "tr": "Salı günü saat onda.",
+   "accepted": [
+    "Am Dienstag um zehn",
+    "Um zehn am Dienstag"
+   ]
+  },
+  {
+   "id": "r0:06:d14",
+   "k": "tr_de",
+   "tr": "Salı günü saat onda.",
+   "accepted": [
+    "Am Dienstag um zehn.",
+    "Am Dienstag um zehn Uhr.",
+    "Dienstag um zehn.",
+    "Um zehn am Dienstag.",
+    "Um zehn Uhr am Dienstag.",
+    "Dienstag um zehn Uhr.",
+    "Am Dienstag um 10:00 Uhr.",
+    "Um 10:00 Uhr am Dienstag.",
+    "Dienstag um 10:00 Uhr."
+   ],
+   "why_tr": "Önce gün, sonra saat söylemek en doğalıdır."
+  },
+  {
+   "id": "r0:06:d15",
+   "k": "tr_de",
+   "tr": "Bugün salı, yarın çarşamba.",
+   "accepted": [
+    "Heute ist Dienstag, morgen ist Mittwoch.",
+    "Heute ist Dienstag, morgen Mittwoch.",
+    "Heute ist Dienstag und morgen ist Mittwoch.",
+    "Heute ist Dienstag und morgen Mittwoch."
+   ]
+  },
+  {
+   "id": "r0:06:d16",
+   "k": "tr_de",
+   "tr": "Bugün 24 Kasım.",
+   "accepted": [
+    "Heute ist der 24. November.",
+    "Heute ist der vierundzwanzigste November.",
+    "Heute ist der 24.11.",
+    "Heute ist der vierundzwanzigste Elfte.",
+    "Heute haben wir den 24. November.",
+    "Heute haben wir den vierundzwanzigsten November.",
+    "Der 24. November.",
+    "Der vierundzwanzigste November."
+   ]
+  },
+  {
+   "id": "r0:06:d17",
+   "k": "tr_de",
+   "tr": "3 Mayıs günü.",
+   "accepted": [
+    "Am 3. Mai.",
+    "Am dritten Mai.",
+    "Am 3.5.",
+    "Am dritten Fünften."
+   ],
+   "why_tr": "Yazarken **3.** okurken **dritten** olur."
+  },
+  {
+   "id": "r0:06:d18",
+   "k": "tr_de",
+   "tr": "Yarın 1 Aralık.",
+   "accepted": [
+    "Morgen ist der 1. Dezember.",
+    "Morgen ist der erste Dezember.",
+    "Morgen ist der 1.12.",
+    "Morgen ist der erste Zwölfte.",
+    "Morgen haben wir den 1. Dezember.",
+    "Morgen haben wir den ersten Dezember."
+   ]
+  },
+  {
+   "id": "r0:06:d19",
+   "k": "tr_de",
+   "tr": "Salı günü, 1 Aralık.",
+   "accepted": [
+    "Am Dienstag, dem 1. Dezember.",
+    "Am Dienstag, den 1. Dezember.",
+    "Am Dienstag, dem ersten Dezember.",
+    "Am Dienstag, den ersten Dezember.",
+    "Dienstag, der 1. Dezember.",
+    "Dienstag, der erste Dezember.",
+    "Dienstag, den 1. Dezember.",
+    "Dienstag, den ersten Dezember."
+   ]
+  },
+  {
+   "id": "r0:06:d20",
+   "k": "transform",
+   "instr_tr": "Tarihi randevu cevabına çevir. **Am** ile başla.",
+   "from_de": "der 12. Januar",
+   "accepted": [
+    "Am 12. Januar.",
+    "Am zwölften Januar.",
+    "Am 12.1.",
+    "Am zwölften Ersten."
+   ],
+   "why_tr": "**am** ile söyleyince **der zwölfte** kelimesi **am zwölften** olur."
+  },
+  {
+   "id": "r0:06:d21",
+   "k": "transform",
+   "instr_tr": "Tarihi randevu cevabına çevir. **Am** ile başla.",
+   "from_de": "der 20. Februar",
+   "accepted": [
+    "Am 20. Februar.",
+    "Am zwanzigsten Februar.",
+    "Am 20.2.",
+    "Am zwanzigsten Zweiten."
+   ]
+  },
+  {
+   "id": "r0:06:d22",
+   "k": "transform",
+   "instr_tr": "Tarihi randevu cevabına çevir. **Am** ile başla.",
+   "from_de": "der 8. April",
+   "accepted": [
+    "Am 8. April.",
+    "Am achten April.",
+    "Am 8.4.",
+    "Am achten Vierten."
+   ],
+   "why_tr": "**acht** sayısına yalnızca **-en** eklenir."
+  },
+  {
+   "id": "r0:06:d23",
+   "k": "guided_response",
+   "situation_tr": "Sekreter hangi günün uygun olduğunu soruyor. Salı günü gelmek istiyorsun.",
+   "prompt_de": "Welcher Tag passt Ihnen?",
+   "accepted": [
+    "Am Dienstag.",
+    "Dienstag.",
+    "Am Dienstag, bitte.",
+    "Dienstag, bitte.",
+    "Der Dienstag."
+   ]
+  },
+  {
+   "id": "r0:06:d24",
+   "k": "guided_response",
+   "situation_tr": "Sekreter doğum tarihini soruyor. Bu örnekte 7 Ağustos 1990.",
+   "prompt_de": "Ihr Geburtsdatum, bitte?",
+   "accepted": [
+    "Der 7. August 1990.",
+    "Der siebte August neunzehnhundertneunzig.",
+    "Siebter August neunzehnhundertneunzig.",
+    "Siebter Achter neunzehnhundertneunzig.",
+    "7.8.1990",
+    "Der siebte August 1990.",
+    "Siebter August 1990.",
+    "Siebter Achter 1990.",
+    "Der siebte Achte neunzehnhundertneunzig.",
+    "Am 7. August 1990.",
+    "Am siebten August neunzehnhundertneunzig.",
+    "Am siebten August 1990.",
+    "7. August 1990",
+    "Siebter Achter neunzig.",
+    "Der siebte Achte neunzig.",
+    "7.8.90"
+   ]
+  },
+  {
+   "id": "r0:06:d25",
+   "k": "guided_response",
+   "situation_tr": "Ioana bugünün tarihini soruyor. Bugün 30 Kasım.",
+   "prompt_de": "Welches Datum ist heute?",
+   "accepted": [
+    "Heute ist der 30. November.",
+    "Heute ist der dreißigste November.",
+    "Der 30. November.",
+    "Der dreißigste November.",
+    "Der 30.11.",
+    "Heute haben wir den 30. November.",
+    "Heute haben wir den dreißigsten November."
+   ]
+  },
+  {
+   "id": "r0:06:d26",
+   "k": "listen_and_respond",
+   "audio_de": "Passt es Ihnen am Mittwoch, dem 2. Dezember?",
+   "speed": "normal",
+   "situation_tr": "Sekreter bir tarih öneriyor. Tarihi tekrar ederek onayla.",
+   "accepted": [
+    "Am Mittwoch, dem 2. Dezember.",
+    "Am Mittwoch, den 2. Dezember.",
+    "Am Mittwoch, dem zweiten Dezember.",
+    "Am Mittwoch, den zweiten Dezember.",
+    "Mittwoch, der 2. Dezember.",
+    "Mittwoch, der zweite Dezember.",
+    "Mittwoch, den 2. Dezember.",
+    "Mittwoch, den zweiten Dezember."
+   ],
+   "why_tr": "Tarihi tekrar etmek yanlış anlamayı önler."
+  },
+  {
+   "id": "r0:06:d27",
+   "k": "listen_and_respond",
+   "audio_de": "Ist der Termin heute oder morgen?",
+   "speed": "normal",
+   "situation_tr": "Randevun bugün değil, yarın.",
+   "accepted": [
+    "Morgen.",
+    "Der Termin ist morgen.",
+    "Morgen, nicht heute.",
+    "Morgen ist der Termin.",
+    "Der Termin ist morgen, nicht heute."
+   ]
+  },
+  {
+   "id": "r0:06:d28",
+   "k": "listen_and_respond",
+   "audio_de": "Kommen Sie übermorgen oder erst am Samstag?",
+   "speed": "natural",
+   "situation_tr": "Bugün çarşamba. Cuma günü geleceksin.",
+   "accepted": [
+    "Übermorgen.",
+    "Am Freitag.",
+    "Übermorgen, am Freitag.",
+    "Ich komme übermorgen.",
+    "Ich komme am Freitag.",
+    "Ich komme übermorgen, am Freitag."
+   ]
+  }
+ ],
+ "dialogue": {
+  "title_tr": "Randevunun tarihi",
+  "lines": [
+   {
+    "speaker": "ch:huber",
+    "r": "A",
+    "de": "Grüß Gott, hier ist Huber von der Praxis Dr. Weber. Passt Ihnen ein Termin am Dienstag?",
+    "tr": "Merhaba, Dr. Weber muayenehanesinden Huber. Salı günü bir randevu size uyar mı?"
+   },
+   {
+    "speaker": "ogrenci",
+    "r": "B",
+    "de": "Am Dienstag?",
+    "tr": "Salı günü mü?"
+   },
+   {
+    "speaker": "ch:huber",
+    "r": "A",
+    "de": "Ja, am Dienstag, dem 24. November, um halb zehn.",
+    "tr": "Evet, salı günü, 24 Kasım, saat dokuz buçukta."
+   },
+   {
+    "speaker": "ogrenci",
+    "r": "B",
+    "de": "Am Dienstag, dem 24. November, um halb zehn.",
+    "tr": "Salı günü, 24 Kasım, saat dokuz buçukta."
+   },
+   {
+    "speaker": "ch:huber",
+    "r": "A",
+    "de": "Genau. Und Ihr Geburtsdatum, bitte?",
+    "tr": "Doğru. Doğum tarihiniz lütfen?"
+   },
+   {
+    "speaker": "ogrenci",
+    "r": "B",
+    "de": "Der siebte August neunzehnhundertneunzig.",
+    "tr": "7 Ağustos 1990."
+   },
+   {
+    "speaker": "ch:huber",
+    "r": "A",
+    "de": "Danke. Dann bis Dienstag. Wiederhören!",
+    "tr": "Teşekkürler. O zaman salıya görüşürüz. Hoşça kalın!"
+   }
+  ]
+ },
+ "listening": [
+  {
+   "id": "r0:06:h1",
+   "title_tr": "Muayenehaneye telefon",
+   "speed": "normal",
+   "speeds": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "r": "Frau Huber",
+     "de": "Praxis Dr. Weber, Huber, grüß Gott?",
+     "tr": "Dr. Weber muayenehanesi, Huber, buyurun?"
+    },
+    {
+     "r": "Patient",
+     "de": "Grüß Gott, ich brauche einen Termin.",
+     "tr": "Merhaba, bir randevuya ihtiyacım var."
+    },
+    {
+     "r": "Frau Huber",
+     "de": "Am Dienstag, dem 24. November, um halb zehn?",
+     "tr": "Salı günü, 24 Kasım, saat dokuz buçukta olur mu?"
+    },
+    {
+     "r": "Patient",
+     "de": "Am Dienstag geht es leider nicht. Geht auch Mittwoch?",
+     "tr": "Salı maalesef olmuyor. Çarşamba da olur mu?"
+    },
+    {
+     "r": "Frau Huber",
+     "de": "Mittwoch, der 25. November, um elf.",
+     "tr": "Çarşamba, 25 Kasım, saat on birde."
+    },
+    {
+     "r": "Patient",
+     "de": "Ja, das passt.",
+     "tr": "Evet, uyar."
+    },
+    {
+     "r": "Frau Huber",
+     "de": "Ihr Geburtsdatum, bitte?",
+     "tr": "Doğum tarihiniz lütfen?"
+    },
+    {
+     "r": "Patient",
+     "de": "Dritter Elfter neunzehnhundertfünfundachtzig.",
+     "tr": "3 Kasım 1985."
+    },
+    {
+     "r": "Frau Huber",
+     "de": "Danke. Dann bis Mittwoch. Wiederhören!",
+     "tr": "Teşekkürler. O zaman çarşambaya görüşürüz. Hoşça kalın!"
+    }
+   ],
+   "qs": [
+    {
+     "kind": "gist",
+     "q_tr": "Hasta neden arıyor?",
+     "opts": [
+      "Randevu almak için",
+      "Randevuyu iptal etmek için",
+      "Reçete istemek için"
+     ],
+     "ans": 0
+    },
+    {
+     "kind": "detail",
+     "q_tr": "Randevu hangi gün oldu?",
+     "opts": [
+      "Salı, 24 Kasım",
+      "Çarşamba, 25 Kasım",
+      "Perşembe, 26 Kasım"
+     ],
+     "ans": 1
+    },
+    {
+     "kind": "detail",
+     "q_tr": "Randevu saat kaçta?",
+     "opts": [
+      "9:30",
+      "10:30",
+      "11:00"
+     ],
+     "ans": 2
+    },
+    {
+     "kind": "detail",
+     "q_tr": "Hastanın doğum tarihi ne?",
+     "opts": [
+      "3 Kasım 1985",
+      "11 Mart 1985",
+      "3 Aralık 1985"
+     ],
+     "ans": 0
+    }
+   ]
+  },
+  {
+   "id": "r0:06:h2",
+   "title_tr": "Noel pazarı ne zaman başlıyor",
+   "speed": "normal",
+   "speeds": [
+    "slow",
+    "normal",
+    "natural"
+   ],
+   "script": [
+    {
+     "r": "Ioana",
+     "de": "Derya, wann beginnt der Weihnachtsmarkt?",
+     "tr": "Derya, Noel pazarı ne zaman başlıyor?"
+    },
+    {
+     "r": "Derya",
+     "de": "Am Freitag, dem 27. November.",
+     "tr": "Cuma günü, 27 Kasım."
+    },
+    {
+     "r": "Ioana",
+     "de": "Heute ist der 25., oder?",
+     "tr": "Bugün ayın yirmi beşi, değil mi?"
+    },
+    {
+     "r": "Derya",
+     "de": "Genau. Also übermorgen!",
+     "tr": "Doğru. Yani öbür gün!"
+    },
+    {
+     "r": "Ioana",
+     "de": "Und bis wann geht er?",
+     "tr": "Peki ne zamana kadar sürüyor?"
+    },
+    {
+     "r": "Derya",
+     "de": "Bis zum 23. Dezember.",
+     "tr": "23 Aralığa kadar."
+    }
+   ],
+   "qs": [
+    {
+     "kind": "gist",
+     "q_tr": "Ne hakkında konuşuyorlar?",
+     "opts": [
+      "Noel pazarının tarihleri",
+      "Bir doktor randevusu",
+      "Kursun saatleri"
+     ],
+     "ans": 0
+    },
+    {
+     "kind": "detail",
+     "q_tr": "Pazar hangi gün başlıyor?",
+     "opts": [
+      "Çarşamba",
+      "Cuma",
+      "Pazar"
+     ],
+     "ans": 1
+    },
+    {
+     "kind": "detail",
+     "q_tr": "Pazar ne zaman bitiyor?",
+     "opts": [
+      "23 Aralık",
+      "24 Aralık",
+      "27 Aralık"
+     ],
+     "ans": 0
+    }
+   ]
+  }
+ ],
+ "placement": [
+  {
+   "id": "r0:06:p01",
+   "k": "gap",
+   "de": "Der Termin ist ___ Freitag.",
+   "tr": "Randevu cuma günü.",
+   "accepted": [
+    "am"
+   ],
+   "opts": [
+    "am",
+    "um",
+    "der"
+   ]
+  },
+  {
+   "id": "r0:06:p02",
+   "k": "pick",
+   "q_tr": "**am dritten Elften** hangi tarih?",
+   "opts": [
+    "3 Kasım",
+    "11 Mart",
+    "13 Kasım"
+   ],
+   "ans": 0
+  },
+  {
+   "id": "r0:06:p03",
+   "k": "tr_de",
+   "tr": "4 Mart günü.",
+   "accepted": [
+    "Am 4. März.",
+    "Am vierten März.",
+    "Am 4.3.",
+    "Am vierten Dritten."
+   ]
+  },
+  {
+   "id": "r0:06:p04",
+   "k": "tr_de",
+   "tr": "Bugün 20 Mayıs.",
+   "accepted": [
+    "Heute ist der 20. Mai.",
+    "Heute ist der zwanzigste Mai.",
+    "Heute ist der 20.5.",
+    "Heute ist der zwanzigste Fünfte.",
+    "Heute haben wir den 20. Mai.",
+    "Heute haben wir den zwanzigsten Mai."
+   ]
+  },
+  {
+   "id": "r0:06:p05",
+   "k": "guided_response",
+   "situation_tr": "Sekreter gün soruyor. Perşembe günü gelmek istiyorsun.",
+   "prompt_de": "Welcher Tag passt Ihnen?",
+   "accepted": [
+    "Am Donnerstag.",
+    "Donnerstag.",
+    "Am Donnerstag, bitte.",
+    "Donnerstag, bitte."
+   ]
+  }
+ ],
+ "mission": {
+  "task_tr": "Telefonunun takvimini aç. Bu haftanın üç gününü tarihiyle birlikte yüksek sesle söyle. Sonra kendi doğum tarihini söyle."
+ }
+}
