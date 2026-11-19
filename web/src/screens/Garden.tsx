@@ -3,6 +3,7 @@
  * Kartlar öğrenciye soru olarak döner; cevap öğrenciden beklenir. Yanlışta doğrusu öğrencinin cevabıyla yan yana
  * gösterilir, kart turun sonunda başka örnek ve başka türle yeniden gelir ve kişisel bankaya girer (srs.review).
  */
+import { cumleKaydet } from "../services/kullanim.ts";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
 import { useApp } from "../state.ts";
@@ -232,7 +233,10 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
           {ownNote && <div class="small" data-test="own-missing">Cümlende bu kelimeyi göremedim. Çekimli hâlini kullandıysan doğru olabilir.</div>}
           Cümlen kelimeyi doğru kullanıyor mu? Bir kez yüksek sesle oku.{ex && <> Örnek: <span lang="de">{ex.de}</span></>}</FeedbackBand></section>
       <ActionBar>
-        <button class="btn primary block" data-test="own-ok" onClick={() => onDone({ ok: true, answer: selfCheck }, "hinted", exi)}>Evet, doğru kurdum</button>
+        <button class="btn primary block" data-test="own-ok" onClick={() => {
+          // #58 B3: gün sonu özetine yalnızca öğrencinin doğru dediği ve kelimesi görünen cümle (inceleme #93 P1-3)
+          if (selfCheck && !ownNote) void cumleKaydet(selfCheck, "bahce");
+          onDone({ ok: true, answer: selfCheck }, "hinted", exi); }}>Evet, doğru kurdum</button>
         <button class="btn block" data-test="own-unsure" onClick={() => onDone({ ok: true, answer: selfCheck }, null, exi)}>Emin değilim, geç</button>
       </ActionBar>
     </div>

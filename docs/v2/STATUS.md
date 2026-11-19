@@ -26,9 +26,10 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | İş | Dal | Durum |
 |---|---|---|
 | Konuşma provası, yapay zekâsız (#58 A7) | `v2/prova` | #68 birleşti |
-| Bahçe değişen cümle (PM-062, #58 B13) | `v2/bahce-donusum` | PR #92: 2 tur; WebKit süre ölçümü D-096 yöntemine (PM onayı bekleniyor) |
-| Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | PR #87: 1. tur 5 P1 + 9 P2 düzeltildi (D-107 sonu); 2. tur bekliyor |
-| Doğrulayıcı B4 (#58 B4, #54 D16) | `v2/dogrulayici-b4` | PR #88: 1. tur 5 P1 düzeltildi (D-108); 0 hata, 126 uyarı; İÇ iş listesi: 7 şiddet tanıma kartında kullanım uyarısı, 46/119/167 kart kuralı; 2. tur bekliyor |
+| Bahçe değişen cümle (PM-062, #58 B13) | `v2/bahce-donusum` | PR #92: 2 tur; 3 cihaz yeşil; süre ölçümü D-096 yöntemiyle (PM-060.3) |
+| Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | #87 birleşti (D-107) |
+| Gün sonu özeti + yerel kullanım ölçümü (#58 B3) | `v2/gun-sonu` | #93 birleşti (D-109) |
+| Doğrulayıcı B4 (#58 B4, #54 D16) | `v2/dogrulayici-b4` | #88 birleşti (D-108) |
 | Değerlendirme doğruluğu (#58 A11) | `v2/degerlendirme` | PR #76: 1. tur P0 (V2 aşırı kabul) ve P1'ler düzeltildi; kalıcı permütasyon taraması; 2. tur bekliyor (D-104) |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | `v2/degerlendirme` | #76 içinde (D-104 madde 3) |
 | Sözlük arama (#58 B1) | `v2/sozluk-ara` | PR açıldı: çevrimdışı DE↔TR, kart, "Duyduğum kelime" olarak Bahçe'ye |
@@ -46,7 +47,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 \* Pilotun 14 kalıbı dilbilimciden geçti (çalışma kopyasında, Advent PR'ıyla depoya girecek); OD-9.4 okur kapısı henüz yok, bu yüzden "yayında" sayılmaz. Kalan 47 kalıbın incelemesi yapıldı (35'inde düzeltme) ama ajan son raporu yazmadan durduruldu: bu 47'si onay bekliyor (taslak). Hedef sütunu (günlük: yazar ≥2 ünite parçası, lex 150–200 kart, dilbilimci aynı gün) hat başlayınca günlük doldurulur. BY-8 tükenme tahmini: K2 motoru (R1) gelene kadar hesaplanamaz.
 R0 temel paket: 10 ders, 189 öğretim öğesi, 353 alıştırma; main'de (#51). Kelime sayıları `card:false` işlev kelimelerini saymaz.
 Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur, M1 kartları 8 tur (hedef tutmadı). Geri dönen türler (hata notunda Türkçe niyet, çelişen ipucu) yazar ve lex görevine eklendi.
-B6 (`forms`, eşdizim, fotoğraf sorgusu; #58): 927 kartın 825'i #81'de, kalan 102'si #83'te. Okur turu B6: 11 grupta 28 tur (grup başına 2,5; hedef tutmadı). `forms` alanı bilerek boş 12 kart: eş anlamlısı da giren (`kriegen`, `seltsam`, `gucken`) ve boşluğa uygun olmayan zarflar (`bereits`, `nun`, `überhaupt` vb.). Bahçe ipucu soru sırasında kapalı ve `forms[].also_ok` var (#85, D-106); eş anlamlısı giren 12 kartın `forms` alanı artık doldurulabilir (İÇ işi).
+B6 (`forms`, eşdizim, fotoğraf sorgusu; #58): 927 kartın tamamı (#81: 825, #83: 102); 911 kartta 3.476 boşluk. Okur turu B6: 13 grupta 32 tur (grup başına 2,5; hedef tutmadı). `forms` alanı bilerek boş 16 kart: eş anlamlısı da giren (`kriegen`, `seltsam`, `gucken`, `erhalten`, `rum`, `wozu`, `jemals`) ve boşluğa uygun olmayan zarflar (`bereits`, `nun`, `überhaupt` vb.). Açık: Bahçe'de ipucu cevaptan önce görünüyor, bu yüzden boşluk sorusu şimdilik üretimi değil tanımayı kanıtlıyor (#12 şema isteği, `also_ok` ile birlikte).
 
 ## Açık PR'lar
 | PR | Dal | Teslim | İnceleme |

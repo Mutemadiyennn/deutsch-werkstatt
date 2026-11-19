@@ -120,7 +120,7 @@
   {
    "id": "lx:schlagen",
    "de": "schlagen",
-   "tr": "vurmak, dövmek; yenmek",
+   "tr": "vurmak, dövmek, yenmek",
    "pos": "verb",
    "verb": {
     "praesens3": "schlägt",
@@ -138,7 +138,15 @@
     },
     {
      "de": "jemanden schlagen",
-     "tr": "birine vurmak; birini yenmek"
+     "tr": "birine vurmak, birini yenmek"
+    },
+    {
+     "de": "zwei zu eins schlagen",
+     "tr": "iki bir yenmek"
+    },
+    {
+     "de": "beim Schach schlagen",
+     "tr": "satrançta yenmek"
     }
    ],
    "patterns": [
@@ -147,20 +155,20 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Çekimde umlaut: du schlägst, er schlägt.",
-    "\"vorschlagen\" (önermek) ayrılabilen fiildir: \"Ich schlage vor, dass wir gehen\"."
+    "Adam vuruyor derken **er schlagt** yanlış. Doğrusu **er schlägt.** **er** ile **a** yerine **ä** gelir.",
+    "Adam bana vurdu derken **Er hat mich geschlagt** yanlış. Doğrusu **Er hat mich geschlagen.**"
    ],
    "examples": [
     {
      "id": "lx:schlagen:1",
      "de": "Er hat mich geschlagen.",
-     "tr": "Bana vurdu.",
+     "tr": "Adam bana vurdu.",
      "layer": "hd"
     },
     {
      "id": "lx:schlagen:2",
-     "de": "Bayern hat Dortmund zwei zu eins geschlagen.",
-     "tr": "Bayern Dortmund'u ikiye bir yendi.",
+     "de": "Wir haben die andere Mannschaft zwei zu eins geschlagen.",
+     "tr": "Öbür takımı iki bir yendik.",
      "layer": "hd"
     },
     {
@@ -183,6 +191,43 @@
    "domains": [
     "sport",
     "notfall"
+   ],
+   "exp": {
+    "anlam_tr": "Birine ya da bir şeye vurmayı söyler.",
+    "parcalar": [],
+    "ipucu_tr": "Maçta ya da oyunda yenmek demektir: **Wir haben sie geschlagen** onları yendik."
+   },
+   "forms": [
+    {
+     "de": "Wir ___ sie morgen!",
+     "answer": "schlagen",
+     "tr": "Yarın onları yeneriz!",
+     "hint_tr": "**wir** ile **schlagen** aynı kalır."
+    },
+    {
+     "de": "Du ___ mich immer beim Schach.",
+     "answer": "schlägst",
+     "tr": "Beni satrançta hep yeniyorsun.",
+     "hint_tr": "**du** ile **schlagen**, **schlägst** olur, **a** yerine **ä** gelir."
+    },
+    {
+     "de": "Die Uhr ___ zwölf.",
+     "answer": "schlägt",
+     "tr": "Saat on ikiyi vuruyor.",
+     "hint_tr": "**die Uhr** ile **schlagen**, **schlägt** olur, **a** yerine **ä** gelir."
+    },
+    {
+     "de": "Er hat mich beim Tennis ___.",
+     "answer": "geschlagen",
+     "tr": "Adam beni teniste yendi.",
+     "hint_tr": "**hat** ile **schlagen**, **geschlagen** olur."
+    },
+    {
+     "de": "Ich ___ dich beim nächsten Mal!",
+     "answer": "schlage",
+     "tr": "Bir dahaki sefere seni yenerim!",
+     "hint_tr": "**ich** ile **schlagen**, **schlage** olur, **a** aynı kalır."
+    }
    ]
   },
   {
@@ -207,6 +252,14 @@
     {
      "de": "Du hast mich gerettet!",
      "tr": "Beni kurtardın!"
+    },
+    {
+     "de": "jemandem das Leben retten",
+     "tr": "birinin hayatını kurtarmak"
+    },
+    {
+     "de": "Du hast mir den Tag gerettet!",
+     "tr": "Günümü kurtardın!"
     }
    ],
    "patterns": [
@@ -215,14 +268,13 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Edilgen: \"Er wurde gerettet\" = kurtarıldı.",
-    "Abartıda: \"Du rettest meinen Tag!\" = Günümü kurtardın!"
+    "Beni kurtarıyorsun derken **Du rettst mich** yanlış. Doğrusu **Du rettest mich.** Burada **t** ile **st** arasına **e** girer."
    ],
    "examples": [
     {
      "id": "lx:retten:1",
      "de": "Der Arzt hat ihm das Leben gerettet.",
-     "tr": "Doktor onun hayatını kurtardı.",
+     "tr": "Doktor adamın hayatını kurtardı.",
      "layer": "hd"
     },
     {
@@ -239,7 +291,7 @@
     },
     {
      "id": "lx:retten:4",
-     "de": "– Ich hab dir einen Kaffee mitgebracht. – Du rettest mir den Tag!",
+     "de": "– Ich hab dir einen Kaffee mitgebracht. – Du hast mir den Tag gerettet!",
      "tr": "– Sana kahve getirdim. – Günümü kurtardın!",
      "layer": "alltag",
      "dialog": true
@@ -251,6 +303,37 @@
    "domains": [
     "notfall",
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Birini tehlikeden kurtarmayı söyler.",
+    "parcalar": [],
+    "ipucu_tr": "Şakayla da denir: **Du hast mir den Tag gerettet!** günümü kurtardın."
+   },
+   "forms": [
+    {
+     "de": "Ich ___ dich!",
+     "answer": "rette",
+     "tr": "Seni kurtarıyorum!",
+     "hint_tr": "**ich** ile **retten**, **rette** olur."
+    },
+    {
+     "de": "Du ___ mich jedes Mal!",
+     "answer": "rettest",
+     "tr": "Beni her seferinde kurtarıyorsun!",
+     "hint_tr": "**du** ile **retten**, **rettest** olur, araya **e** girer."
+    },
+    {
+     "de": "Der Arzt ___ Leben.",
+     "answer": "rettet",
+     "tr": "Doktor hayat kurtarıyor.",
+     "hint_tr": "**der Arzt** ile **retten**, **rettet** olur."
+    },
+    {
+     "de": "Der Arzt hat ihm das Leben ___.",
+     "answer": "gerettet",
+     "tr": "Doktor adamın hayatını kurtardı.",
+     "hint_tr": "**hat** ile **retten**, **gerettet** olur."
+    }
    ]
   },
   {
@@ -452,7 +535,7 @@
   {
    "id": "lx:Kerl",
    "de": "Kerl",
-   "tr": "herif, adam (konuşma dili)",
+   "tr": "herif, adam",
    "pos": "noun",
    "art": "der",
    "pl": "Kerle",
@@ -464,6 +547,14 @@
     {
      "de": "armer Kerl",
      "tr": "zavallı adam"
+    },
+    {
+     "de": "ein lustiger Kerl",
+     "tr": "komik bir adam"
+    },
+    {
+     "de": "ein komischer Kerl",
+     "tr": "tuhaf bir adam"
     }
    ],
    "patterns": [
@@ -471,34 +562,37 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Konuşma dilidir, olumlu ya da olumsuz olabilir; resmî yerde kullanılmaz.",
-    "Yalnızca erkekler için kullanılır; çoğulu \"Kerle\" (konuşmada \"Kerls\" de duyulur)."
+    "İyi bir adam derken **eine nette Kerl** yanlış. Doğrusu **ein netter Kerl.** Kelime **der Kerl** olduğu için **ein netter** gelir."
    ],
    "examples": [
     {
      "id": "lx:Kerl:1",
      "de": "Er ist ein netter Kerl.",
-     "tr": "İyi bir adam.",
-     "layer": "hd"
+     "tr": "İyi bir adamdır.",
+     "layer": "hd",
+     "img": "friendly young man smiling"
     },
     {
      "id": "lx:Kerl:2",
      "de": "Was will der Kerl hier?",
-     "tr": "Bu herif burada ne istiyor?",
-     "layer": "hd"
+     "tr": "Herif burada ne istiyor?",
+     "layer": "hd",
+     "img": "suspicious man standing at doorway"
     },
     {
      "id": "lx:Kerl:3",
      "de": "Armer Kerl!",
      "tr": "Zavallı adam!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "sad man sitting alone on bench"
     },
     {
      "id": "lx:Kerl:4",
      "de": "– Wie ist dein neuer Kollege? – Ein lustiger Kerl.",
      "tr": "– Yeni iş arkadaşın nasıl? – Komik bir adam.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "colleagues laughing together in office"
     }
    ],
    "level": "B1",
@@ -507,6 +601,38 @@
    "domains": [
     "medien",
     "smalltalk"
+   ],
+   "exp": {
+    "anlam_tr": "Konuşmada bir adamı, bir erkeği söyler.",
+    "ne_zaman_tr": "Arkadaş arasında söylenir, resmî yerde kullanma.",
+    "parcalar": [],
+    "ipucu_tr": "**Was will der Kerl?** derken herif gibi olumsuz bir anlam taşır."
+   },
+   "forms": [
+    {
+     "de": "Er ist ___ netter Kerl.",
+     "answer": "ein",
+     "tr": "İyi bir adamdır.",
+     "hint_tr": "**Er ist** dedikten sonra **ein Kerl** aynı kalır: **ein netter Kerl**."
+    },
+    {
+     "de": "Was will ___ Kerl hier?",
+     "answer": "der",
+     "tr": "Herif burada ne istiyor?",
+     "hint_tr": "Bildiğimiz herif: **der Kerl**."
+    },
+    {
+     "de": "Ich kenne ___ Kerl nicht.",
+     "answer": "den",
+     "tr": "Herifi tanımıyorum.",
+     "hint_tr": "**Ich kenne** dedikten sonra **der Kerl**, **den Kerl** olur."
+    },
+    {
+     "de": "Mit ___ Kerl rede ich nicht.",
+     "answer": "dem",
+     "tr": "O herifle konuşmam.",
+     "hint_tr": "**mit** dedikten sonra **der Kerl**, **dem Kerl** olur."
+    }
    ]
   },
   {
@@ -524,6 +650,14 @@
     {
      "de": "Waffe weg!",
      "tr": "Silahı bırak!"
+    },
+    {
+     "de": "Waffen verboten",
+     "tr": "silah yasak"
+    },
+    {
+     "de": "eine Waffe finden",
+     "tr": "silah bulmak"
     }
    ],
    "patterns": [
@@ -531,8 +665,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Haber ve filmlerde sık; günlük hayatta pek kullanılmaz.",
-    "Dişil: \"die Waffe\"."
+    "Bir silah derken **ein Waffe** yanlış. Doğrusu **eine Waffe.** Kelime **die Waffe** olduğu için **eine** gelir.",
+    "Silahı yok derken **Er hat nicht Waffe** yanlış. Doğrusu **Er hat keine Waffe.**"
    ],
    "examples": [
     {
@@ -543,20 +677,20 @@
     },
     {
      "id": "lx:Waffe:2",
-     "de": "In Deutschland darf man keine Waffe tragen.",
-     "tr": "Almanya'da silah taşınamaz.",
+     "de": "Hier sind Waffen verboten.",
+     "tr": "Burada silah yasak.",
      "layer": "hd"
     },
     {
      "id": "lx:Waffe:3",
      "de": "Hat der 'ne Waffe?",
-     "tr": "Onda silah var mı?",
+     "tr": "Adamda silah var mı?",
      "layer": "alltag"
     },
     {
      "id": "lx:Waffe:4",
      "de": "– Hat er eine Waffe? – Nein, keine Waffe.",
-     "tr": "– Silahı var mı? – Hayır, silah yok.",
+     "tr": "– Adamın silahı var mı? – Hayır, silah yok.",
      "layer": "alltag",
      "dialog": true
     }
@@ -567,6 +701,37 @@
    "domains": [
     "notfall",
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Tabanca gibi insanı yaralayabilen bir aleti söyler.",
+    "ne_zaman_tr": "Haberlerde ve filmlerde sık duyulur.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "Die Polizei hat ___ Waffe gefunden.",
+     "answer": "eine",
+     "tr": "Polis bir silah buldu.",
+     "hint_tr": "**Waffe** ile **ein**, **eine** olur: **eine Waffe**."
+    },
+    {
+     "de": "___ Waffe war nicht echt.",
+     "answer": "Die",
+     "tr": "Silah gerçek değildi.",
+     "hint_tr": "Bildiğimiz silah: **die Waffe**."
+    },
+    {
+     "de": "Er war mit ___ Waffe unterwegs.",
+     "answer": "einer",
+     "tr": "Adamın yanında bir silah vardı.",
+     "hint_tr": "**mit** dedikten sonra **eine Waffe**, **einer Waffe** olur."
+    },
+    {
+     "de": "Hier sind ___ verboten.",
+     "answer": "Waffen",
+     "tr": "Burada silah yasak.",
+     "hint_tr": "Birden çok silah: **Waffen**."
+    }
    ]
   },
   {
@@ -584,6 +749,14 @@
     {
      "de": "zu Tode",
      "tr": "ölesiye"
+    },
+    {
+     "de": "sich zu Tode erschrecken",
+     "tr": "ödü kopmak"
+    },
+    {
+     "de": "der plötzliche Tod",
+     "tr": "ani ölüm"
     }
    ],
    "patterns": [
@@ -591,14 +764,14 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"Tod\" (isim, ölüm) ile \"tot\" (sıfat, ölü) aynı okunur; yazımda karıştırma.",
-    "Abartı: \"zu Tode erschrecken\" = ödü kopmak."
+    "Ölümünden sonra derken **nach seinem Tot** yanlış. Doğrusu **nach seinem Tod.** Ölüm **d** ile yazılır, **tot** ölü demektir.",
+    "Ödüm koptu derken **Ich habe mich zum Tod erschrocken** yanlış. Doğrusu **Ich habe mich zu Tode erschrocken.** Bu kalıp **zu Tode** biçiminde söylenir."
    ],
    "examples": [
     {
      "id": "lx:Tod:1",
      "de": "Nach dem Tod seiner Mutter ist er umgezogen.",
-     "tr": "Annesinin ölümünden sonra taşındı.",
+     "tr": "Annesinin ölümünden sonra adam taşındı.",
      "layer": "hd"
     },
     {
@@ -616,7 +789,7 @@
     {
      "id": "lx:Tod:4",
      "de": "– Wie ist er gestorben? – Sein Tod war ein Unfall.",
-     "tr": "– Nasıl öldü? – Ölümü bir kazaydı.",
+     "tr": "– Adam nasıl öldü? – Ölümü bir kazaydı.",
      "layer": "alltag",
      "dialog": true
     }
@@ -627,6 +800,37 @@
    "domains": [
     "gefuehle",
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Bir hayatın sona ermesini, ölümü söyler.",
+    "parcalar": [],
+    "ipucu_tr": "**zu Tode** ölesiye demektir: **zu Tode erschrocken** ödü kopmuş."
+   },
+   "forms": [
+    {
+     "de": "Nach ___ Tod seiner Mutter ist er umgezogen.",
+     "answer": "dem",
+     "tr": "Annesinin ölümünden sonra adam taşındı.",
+     "hint_tr": "**nach** dedikten sonra **der Tod**, **dem Tod** olur."
+    },
+    {
+     "de": "___ Tod kam plötzlich.",
+     "answer": "Der",
+     "tr": "Ölüm aniden geldi.",
+     "hint_tr": "Bildiğimiz ölüm: **der Tod**."
+    },
+    {
+     "de": "Das war ___ schneller Tod.",
+     "answer": "ein",
+     "tr": "Bu çabuk bir ölümdü.",
+     "hint_tr": "**Das war** dedikten sonra **ein Tod** aynı kalır: **ein schneller Tod**."
+    },
+    {
+     "de": "Ich habe mich zu ___ erschrocken.",
+     "answer": "Tode",
+     "tr": "Ödüm koptu.",
+     "hint_tr": "Ödüm koptu: **zu Tode erschrocken**."
+    }
    ]
   },
   {
@@ -1229,12 +1433,20 @@
    "pl": "Teufel",
    "collocations": [
     {
-     "de": "Was zum Teufel …?",
-     "tr": "Ne halt …? (kaba)"
+     "de": "Was zum Teufel ist hier los?",
+     "tr": "Burada ne halt oluyor?"
     },
     {
      "de": "Pfui Teufel!",
      "tr": "İğrenç!"
+    },
+    {
+     "de": "wie der Teufel fahren",
+     "tr": "çok hızlı araba sürmek"
+    },
+    {
+     "de": "Weiß der Teufel!",
+     "tr": "Kim bilir!"
     }
    ],
    "patterns": [
@@ -1242,14 +1454,14 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Kalıplarda abartı/öfke: \"Was zum Teufel machst du?\" kaba kaçar.",
-    "Çoğulu tekil gibi: \"die Teufel\"."
+    "Şeytanlar derken **die Teufels** yanlış. Doğrusu **die Teufel.** Birden çok şeytanda kelime aynı kalır.",
+    "Burada ne halt oluyor derken **Was zu Teufel ist hier los?** yanlış. Doğrusu **Was zum Teufel ist hier los?** **zu** ile **dem** birleşir: **zum**."
    ],
    "examples": [
     {
      "id": "lx:Teufel:1",
      "de": "Er fährt wie der Teufel.",
-     "tr": "Şeytan gibi hızlı sürüyor.",
+     "tr": "Adam arabayı çok hızlı sürüyor.",
      "layer": "hd"
     },
     {
@@ -1261,7 +1473,7 @@
     {
      "id": "lx:Teufel:3",
      "de": "Pfui Teufel, das stinkt!",
-     "tr": "Iyy, kokuyor!",
+     "tr": "İğrenç, çok kötü kokuyor!",
      "layer": "alltag"
     },
     {
@@ -1278,6 +1490,37 @@
    "domains": [
     "gefuehle",
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Dinde kötülüğün başı olan şeytanı söyler.",
+    "ne_zaman_tr": "Konuşmada öfke ve şaşkınlık bildiren kalıplarda sık duyulur.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "Der Junge ist ___ kleiner Teufel.",
+     "answer": "ein",
+     "tr": "Oğlan küçük bir şeytan.",
+     "hint_tr": "**ist** dedikten sonra **ein Teufel** aynı kalır: **ein kleiner Teufel**."
+    },
+    {
+     "de": "Im Film spielt er ___ Teufel.",
+     "answer": "den",
+     "tr": "Adam filmde şeytanı oynuyor.",
+     "hint_tr": "**Er spielt** dedikten sonra **der Teufel**, **den Teufel** olur."
+    },
+    {
+     "de": "Was ___ Teufel ist hier los?",
+     "answer": "zum",
+     "tr": "Burada ne halt oluyor?",
+     "hint_tr": "**zu** ile **dem** birleşir: **zum Teufel**."
+    },
+    {
+     "de": "Auf dem Bild sind zwei kleine ___.",
+     "answer": "Teufel",
+     "tr": "Resimde iki küçük şeytan var.",
+     "hint_tr": "İki şeytan: **zwei Teufel**, kelime aynı kalır."
+    }
    ]
   },
   {
@@ -1762,12 +2005,20 @@
    },
    "collocations": [
     {
-     "de": "Ich hasse es, …",
-     "tr": "…-mekten nefret ediyorum"
+     "de": "Ich hasse es, zu warten.",
+     "tr": "Beklemekten nefret ediyorum."
     },
     {
      "de": "Ich hasse das!",
      "tr": "Bundan nefret ediyorum!"
+    },
+    {
+     "de": "jemanden hassen",
+     "tr": "birinden nefret etmek"
+    },
+    {
+     "de": "Ich hasse Montage.",
+     "tr": "Pazartesilerden nefret ediyorum."
     }
    ],
    "patterns": [
@@ -1775,8 +2026,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Çok güçlüdür; günlük şikâyette \"Ich mag … nicht\" daha yumuşak.",
-    "\"Ich hasse es, zu warten\" kalıbında \"es\" + \"zu\" gerekir."
+    "Yağmurdan nefret ediyorum derken **Ich hasse von Regen** yanlış. Doğrusu **Ich hasse Regen.** Türkçedeki gibi önüne **von** gelmez."
    ],
    "examples": [
     {
@@ -1810,6 +2060,38 @@
    "freqRank": 387,
    "domains": [
     "gefuehle"
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyden ya da birinden hiç hoşlanmadığını çok güçlü biçimde söyler.",
+    "ne_zaman_tr": "Çok güçlüdür, gündelik şikâyette dikkatli kullanılır.",
+    "parcalar": [],
+    "ipucu_tr": "Daha yumuşak söylemek için **Ich mag das nicht** denir."
+   },
+   "forms": [
+    {
+     "de": "Ich ___ Regen!",
+     "answer": "hasse",
+     "tr": "Yağmurdan nefret ediyorum!",
+     "hint_tr": "**ich** ile **hassen**, **hasse** olur."
+    },
+    {
+     "de": "___ du auch Montage?",
+     "answer": "Hasst",
+     "tr": "Sen de pazartesilerden nefret ediyor musun?",
+     "hint_tr": "**du** ile **hassen**, **hasst** olur."
+    },
+    {
+     "de": "Er ___ es, früh aufzustehen.",
+     "answer": "hasst",
+     "tr": "Adam erken kalkmaktan nefret ediyor.",
+     "hint_tr": "**er** ile **hassen**, **hasst** olur."
+    },
+    {
+     "de": "Ich habe die Schule immer ___.",
+     "answer": "gehasst",
+     "tr": "Okuldan hep nefret ettim.",
+     "hint_tr": "**Ich habe** ile **hassen**, **gehasst** olur."
+    }
    ]
   },
   {
@@ -1932,6 +2214,14 @@
     {
      "de": "Das beweist gar nichts.",
      "tr": "Bu hiçbir şey kanıtlamaz."
+    },
+    {
+     "de": "Können Sie das beweisen?",
+     "tr": "Bunu kanıtlayabilir misiniz?"
+    },
+    {
+     "de": "der Beweis",
+     "tr": "kanıt"
     }
    ],
    "patterns": [
@@ -1939,8 +2229,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Perfekt'te \"ge-\" yok: \"bewiesen\".",
-    "İsmi \"der Beweis\" (kanıt)."
+    "Kanıtladı derken **Er hat das gebewiesen** yanlış. Doğrusu **Er hat das bewiesen.** Bu kelimede başa **ge** gelmez."
    ],
    "examples": [
     {
@@ -1952,7 +2241,7 @@
     {
      "id": "lx:beweisen:2",
      "de": "Das beweist, dass er recht hat.",
-     "tr": "Bu onun haklı olduğunu kanıtlıyor.",
+     "tr": "Bu, adamın haklı olduğunu kanıtlıyor.",
      "layer": "hd"
     },
     {
@@ -1975,23 +2264,66 @@
    "domains": [
     "medien",
     "amt"
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin doğru olduğunu belgeyle ya da olayla göstermeyi söyler.",
+    "ne_zaman_tr": "Tartışmada, sigortada ve polis işlerinde sık duyulur.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "Ich ___ es dir.",
+     "answer": "beweise",
+     "tr": "Bunu sana kanıtlıyorum.",
+     "hint_tr": "**ich** ile **beweisen**, **beweise** olur."
+    },
+    {
+     "de": "Wie ___ du das?",
+     "answer": "beweist",
+     "tr": "Bunu nasıl kanıtlıyorsun?",
+     "hint_tr": "**du** ile **beweisen**, **beweist** olur."
+    },
+    {
+     "de": "Das Foto ___ alles.",
+     "answer": "beweist",
+     "tr": "Fotoğraf her şeyi kanıtlıyor.",
+     "hint_tr": "**das Foto** ile **beweisen**, **beweist** olur."
+    },
+    {
+     "de": "Er hat nichts ___.",
+     "answer": "bewiesen",
+     "tr": "Adam hiçbir şey kanıtlamadı.",
+     "hint_tr": "**hat** ile **beweisen**, **bewiesen** olur, başına **ge** gelmez."
+    }
    ]
   },
   {
    "id": "lx:Schatz",
    "de": "Schatz",
-   "tr": "hazine; canım, tatlım",
+   "tr": "hazine, canım, tatlım",
    "pos": "noun",
    "art": "der",
    "pl": "Schätze",
    "collocations": [
     {
      "de": "mein Schatz",
-     "tr": "canım, tatlım"
+     "tr": "canım"
     },
     {
      "de": "Schatzi",
-     "tr": "sevgilim (çok samimi)"
+     "tr": "tatlım"
+    },
+    {
+     "de": "einen Schatz finden",
+     "tr": "hazine bulmak"
+    },
+    {
+     "de": "Danke, Schatz!",
+     "tr": "Sağ ol, tatlım!"
+    },
+    {
+     "de": "Du bist ein Schatz!",
+     "tr": "Sen bir tanesin!"
     }
    ],
    "patterns": [
@@ -1999,34 +2331,38 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Sevgili, eş ve çocuklara hitap: \"Schatz, kommst du?\"; yabancıya kullanılmaz.",
-    "Çoğulu umlautlu \"Schätze\"."
+    "Hazineler derken **die Schatze** yanlış. Doğrusu **die Schätze.** Birden çok hazinede **a** yerine **ä** gelir.",
+    "Bir kadına canım derken **meine Schatz** yanlış. Doğrusu **mein Schatz.** Kelime **der Schatz** olduğu için kadına da **mein** denir."
    ],
    "examples": [
     {
      "id": "lx:Schatz:1",
      "de": "Schatz, wo sind die Schlüssel?",
      "tr": "Canım, anahtarlar nerede?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "couple searching for keys at home"
     },
     {
      "id": "lx:Schatz:2",
      "de": "Sie haben einen Schatz gefunden.",
      "tr": "Bir hazine buldular.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "treasure chest with gold coins"
     },
     {
      "id": "lx:Schatz:3",
      "de": "Danke, Schatz!",
      "tr": "Sağ ol, tatlım!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "woman smiling thanking partner with coffee"
     },
     {
      "id": "lx:Schatz:4",
      "de": "– Schatz, kommst du essen? – Ja, gleich!",
      "tr": "– Canım, yemeğe geliyor musun? – Evet, hemen!",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "mother calling child to dinner table"
     }
    ],
    "level": "A2",
@@ -2034,6 +2370,44 @@
    "freqRank": 390,
    "domains": [
     "gefuehle"
+   ],
+   "exp": {
+    "anlam_tr": "Sevdiğin birine sevgiyle seslenirken canım, tatlım demektir.",
+    "ne_zaman_tr": "Eşe, sevgiliye ve çocuğa söylenir, yabancıya söylenmez.",
+    "parcalar": [],
+    "ipucu_tr": "Asıl anlamı hazinedir: **einen Schatz finden** hazine bulmak."
+   },
+   "forms": [
+    {
+     "de": "Sie haben ___ Schatz gefunden.",
+     "answer": "einen",
+     "tr": "Bir hazine buldular.",
+     "hint_tr": "**Sie haben** dedikten sonra **ein Schatz**, **einen Schatz** olur."
+    },
+    {
+     "de": "Das ist ___ echter Schatz.",
+     "answer": "ein",
+     "tr": "Bu gerçek bir hazine.",
+     "hint_tr": "**Das ist** dedikten sonra **ein Schatz** aynı kalır."
+    },
+    {
+     "de": "Wo ist ___ Schatz versteckt?",
+     "answer": "der",
+     "tr": "Hazine nerede saklı?",
+     "hint_tr": "Bildiğimiz hazine: **der Schatz**."
+    },
+    {
+     "de": "Danke, ___ Schatz!",
+     "answer": "mein",
+     "tr": "Sağ ol, canım!",
+     "hint_tr": "Canım derken **mein Schatz** denir."
+    },
+    {
+     "de": "Im Museum gibt es alte ___.",
+     "answer": "Schätze",
+     "tr": "Müzede eski hazineler var.",
+     "hint_tr": "Birden çok hazine: **Schätze**, **a** yerine **ä** gelir."
+    }
    ]
   },
   {

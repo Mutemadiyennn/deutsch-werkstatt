@@ -28,8 +28,10 @@ export function XpUcus() {
       setUc((u) => [...u.slice(-2), { id, n }]);
       setTimeout(() => setUc((u) => u.filter((x) => x.id !== id)), 1000);
     };
-    window.addEventListener("dw:xp-ucus", f);
-    return () => window.removeEventListener("dw:xp-ucus", f);
+    // ekran değişince uçuşlar temizlenir: önceki ekranın "+XP"si yeni ekranın üstünde uçmaz
+    const temizle = () => setUc([]);
+    window.addEventListener("dw:xp-ucus", f); window.addEventListener("hashchange", temizle);
+    return () => { window.removeEventListener("dw:xp-ucus", f); window.removeEventListener("hashchange", temizle); };
   }, []);
   return <div class="xp-ucus-kap" aria-hidden="true">{uc.map((x) => <span class="xp-ucus" key={x.id} data-test="xp-ucus"><Mucevher boy={16} />+{x.n} XP</span>)}</div>;
 }
