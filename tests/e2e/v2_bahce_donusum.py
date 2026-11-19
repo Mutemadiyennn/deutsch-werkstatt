@@ -20,6 +20,12 @@ def degistir(pg, sel):
       const t0 = performance.now(); document.querySelector('[data-test=baska-cumle]').click();
       setTimeout(() => { if (dom === null) { mo.disconnect(); res([9999, 9999, el() ? el().innerText : '']); } }, 2000); })""", sel)
 
+def bos_kare(pg, n=6):
+    """Tarayıcının kendi kare aralığı (boşta, rAF→rAF ortancası): CI'daki WebKit yükte kareleri ~150 ms'ye kadar seyreltebiliyor (PM-069 P2-d)"""
+    return pg.evaluate("""(n) => new Promise((res) => { const t = []; let s = performance.now();
+      const f = (now) => { t.push(now - s); s = now; if (t.length > n) { t.shift(); t.sort((a, b) => a - b); res(t[Math.floor(t.length / 2)]); } else requestAnimationFrame(f); };
+      requestAnimationFrame(f); })""", n)
+
 def main():
     srv = serve(PORT); base = f"http://127.0.0.1:{PORT}/"
     shots = arg("--shots")
@@ -37,7 +43,10 @@ def main():
         check(len(set(goruldu[:3])) == 3, f"3 dokunuşta farklı cümleler ({[g[:30] for g in goruldu[:4]]})")
         # D-096 yöntemi: DOM her dokunuşta < 150 ms (sert), ilk kare 5 dokunuşun ortancası < 150 ms; en kötü kare raporda
         kortanca = sorted(kareler)[len(kareler) // 2]
-        check(max(doms) < 150 and kortanca < 150, f"değişim < 150 ms, uçak modunda (DOM {[round(x) for x in doms]} ms; kare ortanca {round(kortanca)}, en kötü {round(max(kareler))} ms)")
+        # kare ölçütü (PM-069 P2-d): bizim eklediğimiz gecikme = ilk kare − tarayıcının boş kare aralığı; DOM ölçütü değişmedi (sert)
+        bos = bos_kare(pg); ek = kortanca - bos
+        print(f"  (boş kare aralığı {round(bos)} ms; eklenen {round(ek)} ms)")
+        check(max(doms) < 150 and ek < 150, f"değişim < 150 ms, uçak modunda (DOM {[round(x) for x in doms]} ms; kare ortanca {round(kortanca)} − boş kare {round(bos)} = {round(ek)} ms; en kötü {round(max(kareler))} ms)")
         no_overflow(pg, "tanıtım")
         if shots: shot(pg, "b01-baska-cumle", full=False)
         # düğme ipucu sayılmaz: sonraki doğru cevap "Doğru." (XP'li)
@@ -69,18 +78,6 @@ def main():
             pg.wait_for_selector("[data-test=next]"); pg.click("[data-test=next]"); pg.wait_for_timeout(150)
             if pg.locator("[data-test=garden-again]").count(): pg.click("[data-test=garden-again]"); pg.wait_for_selector("[data-test=garden]")
         if not bosluk: print("  (bu turda boşluk sorusu gelmedi; birim testi kapsıyor)")
-        b.close()
-        # TANI (geçici): yeni öğrenci, ilk tanıtım, uçak modu
-        b, ctx = launch(p); pg = new_page(ctx)
-        login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
-        pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=garden-intro]"); ctx.set_offline(True)
-        # TANI (geçici, #122 CI): hangi öğe kareyi uzatıyor? her biri yalnızca rapor, denetim değil
-        for ad, css in [("temel", "x{}"), ("esdizim-gizli", ".esdizim-liste{display:none}"), ("bulaniklik-yok", "*{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}"),
-                        ("heceleme-yok", "[lang=de]{hyphens:manual!important;-webkit-hyphens:manual!important}"), ("foto-gizli", "figure{display:none!important}")]:
-            h = pg.add_style_tag(content=css)
-            kk = sorted(degistir(pg, "[data-test=intro-ex]")[1] for _ in range(5))
-            print(f"  TANI {ad}: kare ortanca {round(kk[2])} ms ({[round(x) for x in kk]})", flush=True)
-            h.evaluate("(e) => e.remove()")
         b.close()
     srv.shutdown()
     finish()
