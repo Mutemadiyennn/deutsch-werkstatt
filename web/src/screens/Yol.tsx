@@ -1,3 +1,4 @@
+import type { ComponentChildren } from "preact";
 /**
  * Ders yolu (#58 A5b): İlk Hafta'nın 7 günü, her günün 4 seansı, açık "sıradaki adım", XP ve seri.
  * Kural: tamamlanan adım yeniden önerilmez; sonraki gün, önceki gün bitince açılır. Seviye XP ile değil kanıtla atlanır.
@@ -82,7 +83,7 @@ const KAYMA = [0, 44, 70, 44, 0, -44, -70, -44];
  * Yol haritası (B11a, D-114; PM #104 notu 1–3): gün bandı + kıvrılan hatta düğümler + yol sandıkları + tekrar düğümü.
  * Bugün sekmesinin kendisidir (`selam` gün bandına tek satır girer); `onBasla` şimdiki düğüme dokununca odak süresini başlatır.
  */
-export function YolHarita({ plan, selam, onBasla }: { plan: Plan; selam?: string; onBasla?: () => void }) {
+export function YolHarita({ plan, selam, ek, onBasla }: { plan: Plan; selam?: string; ek?: ComponentChildren; onBasla?: () => void }) {
   const [acik, setAcik] = useState<Set<string>>(new Set());
   useEffect(() => { void yolSandiklari().then(setAcik); }, []);
   const hafta = 1;
@@ -105,6 +106,7 @@ export function YolHarita({ plan, selam, onBasla }: { plan: Plan; selam?: string
                 <div class="gun-bant-ust">{hafta}. HAFTA · GÜN {g.day}</div>
                 <div class="gun-bant-ad">{g.title_tr}</div>
                 {selam && g.day === simdiGun && <div class="gun-bant-selam" data-test="selam">{selam}</div>}
+                {ek && g.day === simdiGun && <div class="gun-bant-ek">{ek}</div>}
               </div>
               <a class="rehber-btn" href={`#/rehber/${g.day}`} data-test={`rehber-${g.day}`} aria-label={`${g.day}. günün rehberi: hedef ve kelimeler`}>Rehber</a>
             </div>

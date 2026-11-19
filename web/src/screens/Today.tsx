@@ -70,7 +70,8 @@ export function Today() {
     <div class="stack today bugun-yol" data-test="bugun-yol">
       {breakOn && <BreakCard />}
       {indexError && <ErrorPanel message={`İçerik yüklenemedi: ${indexError}`} onRetry={() => location.reload()} />}
-      <YolHarita plan={m1} selam={`${greetDe} ${greetTr}${profile.displayName ? `, ${profile.displayName}` : ""}.`} onBasla={devam} />
+      <YolHarita plan={m1} selam={`${greetDe} ${greetTr}${profile.displayName ? `, ${profile.displayName}` : ""}.`}
+        ek={examOn ? <span class="gun-bant-sinav" data-test="exam-badge">B1{exam !== null ? `: ${exam} gün` : ""}</span> : undefined} onBasla={devam} />
       <GorevSeridi plan={m1} />
       <GunSonu plan={m1} />
     </div>
