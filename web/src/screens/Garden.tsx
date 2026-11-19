@@ -13,6 +13,7 @@ import { itemsMap, personalWords, putItems } from "../data/db.ts";
 import { review, sessionKey, type Outcome } from "../core/srs.ts";
 import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, isNoun, meaningOptions, ownSentenceCheck, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
+import { umlautEksik } from "../core/esdeger.ts";
 import { judgeWord, numberWordHint } from "../core/grading.ts";
 import { isDue } from "../core/srs.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
@@ -22,7 +23,8 @@ import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Photo } from "../ui/learn.tsx";
 
 const E2E = import.meta.env.MODE === "e2e";
-type Result = { ok: boolean; answer?: string; expected?: string; note?: string };
+/** `yazim`: kelime doğru, yalnızca ümlaut/ß eksik (PM 7004537514-1): kart "bilmiyor" sayılmaz, turun sonunda bir kez daha sorulur */
+type Result = { ok: boolean; answer?: string; expected?: string; note?: string; yazim?: boolean };
 
 /**
  * `day`: M1 gününün Seans 1'i (#58 A5b). Havuz: önce önceki günlerin tanıtılmamış kartları, sonra günün kartları, sonra K1.
@@ -152,12 +154,12 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
     <div aria-hidden="true" style={{ height: 180 }} />
     <ActionBar>
       {res.ok ? <FeedbackBand kind="ok" title="Doğru.">{res.expected && <span lang="de">{res.expected}</span>}</FeedbackBand>
-        : <FeedbackBand kind="bad" title="Doğrusu bu.">
+        : <FeedbackBand kind={res.yazim ? "info" : "bad"} title={res.yazim ? "Kelime doğru, yazımı eksik." : "Doğrusu bu."}>
             <div class="small">Senin cevabın: <span lang="de">{res.answer || "—"}</span></div>
             <div>Doğrusu: <b lang="de">{res.expected}</b></div>
             {res.note && <div class="small">{res.note}</div>}
           </FeedbackBand>}
-      <button class="btn primary block" data-test="next" onClick={() => next(res.ok ? (hinted ? "hinted" : "correct") : "wrong")}>Devam</button>
+      <button class="btn primary block" data-test="next" onClick={() => next(res.ok ? (hinted ? "hinted" : "correct") : res.yazim ? "hinted" : "wrong")}>Devam</button>
     </ActionBar></>
   );
 
@@ -185,6 +187,9 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
     // eş anlamlı başka kart (sprechen/reden, Arbeit/Job): yanlış sayılmaz; aranan kelime yeniden istenir (inceleme #59 Y-2)
     const trySyn = () => { if (q.type !== "tr_de") return false; const syn = synonymHit(l, a, all); if (!syn) return false;
       setSynNote(`„${syn.de}“ başka bir kelime. Burada aranan kelimenin ilk harfi: ${l.de[0]}…`); setHinted(true); return true; };
+    // ümlautu/ß'si eksik ama kelime doğru: "yazım" (yanlış sayılmaz, kart geri atılmaz)
+    const yazim = mode === "typed" ? acc.map((x) => umlautEksik(x, a)).find(Boolean) : undefined;
+    if (yazim) { show({ ok: false, answer: a, expected: acc[0], note: yazim, yazim: true }); return; }
     if ((q.type === "tr_de" || q.type === "photo_say") && isNoun(l)) {
       const j = judgeWord(a, l.de, l.art);
       if (!j.ok && trySyn()) return;

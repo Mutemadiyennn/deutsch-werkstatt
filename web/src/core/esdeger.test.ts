@@ -153,6 +153,9 @@ describe("yazım: kabul + düzeltme notu", () => {
     }
     expect(umlautEksik("Ich bin müde.", "Ich bin mude.")).toMatch(/müde/);
     expect(umlautEksik("Ich bin müde.", "Ich bin krank.")).toBeUndefined();
+    // Bahçe: artikelli isim (PM 7004537514-1: "yazım", kart geri atılmaz)
+    expect(umlautEksik("die Ärztin", "die Arztin")).toMatch(/Ärztin/);
+    expect(umlautEksik("die Ärztin", "die Aerztin")).toBeUndefined();
     expect(ruleVerdict(["Ich bin müde."], "Ich bin muede.").kind).toBe("correct");
   });
 });
