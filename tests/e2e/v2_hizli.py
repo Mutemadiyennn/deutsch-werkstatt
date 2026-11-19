@@ -88,8 +88,11 @@ def main():
 
         # 2) tanıtımda "Biliyorum, sına beni": doğru → Bildin, yanlış → birlikte bakalım
         b, pg = yeni_sayfa(p); bahce(pg, base); kare(pg, 8)
+        basilan = pg.inner_text("[data-test=garden-intro] .de-xl"); tr_basilan = pg.locator("[data-test=garden-intro] p").first.inner_text()
         pg.click("[data-test=sina-beni]"); pg.wait_for_selector("[data-test=sina-soru]"); kare(pg, 6)
-        check(pg.locator("[data-test=garden-intro]").count() == 0, "düğmeden sonra sonraki yeni kart tanıtımsız: sına sorusu")
+        soru = pg.inner_text("[data-test=gq-tr_de] .de-lg") if pg.locator("[data-test=gq-tr_de] .de-lg").count() else pg.inner_text("main")
+        check(tr_basilan in soru, f"basılan kart = sorulan kart ({basilan!r} → {soru[:40]!r}; PM 7018403441-1)")
+        check(pg.locator("[data-test=garden-intro]").count() == 0, "düğmeden sonra tanıtımsız: sına sorusu")
         once = (pg.evaluate(OKU, ["meta", "xp"]) or {"value": {"toplam": 0}})["value"]["toplam"]
         t = sina_cevapla(pg, True); kare(pg, 8)
         check("Bildin" in t, f"doğru üretim: 'Bildin!' ({t[:60]!r})")
@@ -106,6 +109,7 @@ def main():
             check("Sorun değil" in t, f"yanlış: 'Sorun değil, birlikte bakalım' ({t[:50]!r})"); kare(pg, 8)
             if shots: shot(pg, f"h03-birlikte-bakalim-{TEMA}", full=False)
             pg.click("[data-test=next]"); pg.wait_for_selector("[data-test=garden-intro]")
+            check("birlikte öğreniyoruz" in pg.inner_text("[data-test=hizli-bant-metin]"), "tanıtım sırasında bant kipi söylüyor (PM 7018403441-2)")
             pg.click("[data-test=garden-intro] [data-test=next]"); pg.wait_for_selector("[data-test^=gq-]")
             check(pg.locator("[data-test=gq-listen_meaning]").count() == 1, "yanlıştan sonra tanıtım ve normal tanıma sorusu (cezasız)")
         no_overflow(pg, "hızlı şerit")
