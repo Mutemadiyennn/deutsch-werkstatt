@@ -60,7 +60,9 @@ for (const src of [...medyaAdlari].sort()) {
 }
 if (medyaEksik.length) console.warn(`uyarı: pakete girmeyen medya (${medyaEksik.length}): ${medyaEksik.slice(0, 5).join(", ")}`);
 const toplamMedya = medyaBul.reduce((n, m) => n + statSync(m.yol).size, 0);
-if (toplamMedya > 50 * 1024 * 1024) console.warn(`uyarı: paketteki medya ${Math.round(toplamMedya / 1048576)} MB > 50 MB (D-103: M5'te yerel indiriciye taşınır)`);
+// D-103 PM koşulu (7002348227): M1 medyası toplam ≤ 60 MB; aşılırsa yayın günlüğünde görünür uyarı, PM'e yazılır
+if (toplamMedya > 60 * 1024 * 1024) console.warn(`::warning::paketteki medya ${Math.round(toplamMedya / 1048576)} MB > 60 MB (D-103 sınırı; PM'e yaz)`);
+else if (toplamMedya > 50 * 1024 * 1024) console.warn(`uyarı: paketteki medya ${Math.round(toplamMedya / 1048576)} MB, D-103 sınırına (60 MB) yaklaşıyor`);
 const version = createHash("sha1").update(JSON.stringify([c.domains, payload, medyaBul.map((m) => [m.src, m.ozet])])).digest("hex").slice(0, 12);
 const base = join(ROOT, "web/public/content");
 if (existsSync(base)) rmSync(base, { recursive: true });
