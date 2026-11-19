@@ -122,6 +122,10 @@ export interface LearnerItem {
   gaps: { type: "passive" | "active" | "structure"; source: "drill" | "tap" | "convo" | "assess" | "sayit"; at: string; ctx?: string }[];
   inBank: boolean;
   u: number;
+  /** Kelime Bahçesi (PM-049): bu karta en son sorulan soru türü (aynı tür art arda gelmez) */
+  lastQ?: string;
+  /** yolun ilk değerlendirme zamanı (ISO): günlük yeni kart sınırı (LS-7.4) buradan sayılır */
+  firstAt?: { passive?: string; active?: string };
 }
 
 export interface ScenarioProgress {

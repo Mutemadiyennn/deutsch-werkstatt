@@ -89,6 +89,8 @@ jobs:
         run: cd tests/e2e && python yukleme.py
       - name: DN-2 uçak modu günü (çevrimdışı)
         run: cd tests/e2e && python ucak.py
+      - name: "Kelime Bahçesi (PM-049, #58 A3): tur, üretim yolu, duyduğum kelime"
+        run: cd tests/e2e && python v2_garden.py --shots /tmp/shots
       - name: "Veri güvenliği ve hata sınırı (#58 A12)"
         run: cd tests/e2e && python v2_veri.py
       - name: Görsel regresyon (açık + koyu)
