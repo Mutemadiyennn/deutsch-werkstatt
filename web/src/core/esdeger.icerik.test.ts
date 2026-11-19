@@ -1,15 +1,17 @@
 /**
- * İki yönlü doğruluk, kalıcı permütasyon taraması (inceleme #76 P0): temel ve M1 içeriğindeki her kabul cümlesinin
+ * İki yönlü doğruluk, kalıcı permütasyon taraması (inceleme #76 P0, 2. tur K1): temel, M1, senaryo (domains) ve dünya
+ * (world) içeriğindeki her kabul cümlesinin
  * kelime sıralamaları (≤ 5 kelimede hepsi, daha uzunda tohumlu 150 örnek) değerlendirilir. Kabul listesinde olmadığı hâlde
  * DOĞRU sayılan her sıralama anlık görüntüye yazılır: liste büyürse ya da değişirse test kırmızı olur ve yeni kabuller
  * gözle incelenir (`npx vitest -u` yalnızca inceleme sonrası).
  */
 import { describe, expect, it } from "vitest";
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { Drill } from "@dw/shared";
 import { drillVerdict } from "../ui/drill.tsx";
+import { ruleVerdict } from "./answer.ts";
 import { norm } from "./grading.ts";
 
 const KOK = join(dirname(fileURLToPath(import.meta.url)), "../../../content/v2");
@@ -25,6 +27,24 @@ function maddeler(): { dosya: string; d: Drill }[] {
       }
     };
     walk(JSON.parse(readFileSync(join(KOK, kl, f), "utf8")));
+  }
+  return out;
+}
+/** Senaryo ve dünya dosyaları: `accepted` dizisi olan her öğe (oynatıcıda ruleVerdict yolundan geçer) */
+function senaryoMaddeleri(): { dosya: string; id: string; accepted: string[] }[] {
+  const out: { dosya: string; id: string; accepted: string[] }[] = [];
+  const gez = (yol: string): string[] => readdirSync(yol).flatMap((f) => { const t = join(yol, f); return statSync(t).isDirectory() ? gez(t) : f.endsWith(".json") ? [t] : []; });
+  for (const kl of ["domains", "world"]) for (const f of gez(join(KOK, kl)).sort()) {
+    let n = 0;
+    const walk = (x: unknown) => {
+      if (Array.isArray(x)) x.forEach(walk);
+      else if (x && typeof x === "object") {
+        const o = x as Record<string, unknown>;
+        if (Array.isArray(o.accepted) && o.accepted.every((a) => typeof a === "string") && !("k" in o && o.k === "pick")) out.push({ dosya: f.slice(KOK.length + 1), id: String(o.id ?? `#${n++}`), accepted: o.accepted as string[] });
+        Object.values(o).forEach(walk);
+      }
+    };
+    walk(JSON.parse(readFileSync(f, "utf8")));
   }
   return out;
 }
@@ -61,6 +81,23 @@ describe("permütasyon taraması (temel + M1)", () => {
           if (accN.has(k) || gorulen.has(k)) continue;
           gorulen.add(k); n++;
           if (drillVerdict(d, c, true).kind === "correct") kabul.push(`${dosya} ${d.id}: ${a} → ${c}`);
+        }
+      }
+    }
+    for (const m of senaryoMaddeleri()) {
+      const acc = m.accepted.filter((a) => !a.includes("{") && !/\d/.test(a));
+      const accN = new Set(m.accepted.map((a) => norm(a)));
+      for (const a of acc) {
+        const w = a.replace(/[.!?…]+\s*$/, "").split(/\s+/).filter(Boolean);
+        if (w.length < 3 || w.length > 8) continue;
+        const tohum = [...a].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 11);
+        const gorulen = new Set<string>();
+        for (const p of siralamalar(w, tohum)) {
+          const c = p.join(" ") + ".";
+          const k = norm(c);
+          if (accN.has(k) || gorulen.has(k)) continue;
+          gorulen.add(k); n++;
+          if (ruleVerdict(m.accepted, c).kind === "correct") kabul.push(`${m.dosya} ${m.id}: ${a} → ${c}`);
         }
       }
     }

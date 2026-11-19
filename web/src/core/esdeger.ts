@@ -216,6 +216,16 @@ export function heceEsit(kabul: string[], cevap: string): boolean {
 const ISLEV = new Set("der die das den dem des ein eine einen einem einer eines mein meine meinen meinem meiner dein deine deinen deinem sein seine seinen seinem ihr ihre ihren ihrem unser unsere unseren euer eure kein keine keinen keinem keiner in im ins an am ans auf aufs aus bei beim mit nach von vom zu zum zur fuer um fuers ueber unter vor vors ums durchs hinter neben zwischen durch gegen ohne bis seit ab sehr".split(" "));
 const AYIRAN = new Set("an auf aus ein mit zu ab vor zurueck weg los fern nach her hin".split(" "));
 const ZAMIR = new Set("ich du er sie es wir ihr man".split(" "));
+/** Tek kelime olarak başa alınabilen zarflar (zaman, yer, sıklık, tutum); sıfat, derece kelimesi ve dönüşlü zamir alınmaz (inceleme #76 2. tur K1) */
+const ZARF = new Set("heute morgen gestern uebermorgen vorgestern jetzt dann bald spaeter frueher gleich sofort nachher vorher abends morgens mittags nachmittags vormittags nachts montags dienstags mittwochs donnerstags freitags samstags sonntags hier da dort zuhause draussen drinnen gern gerne leider vielleicht natuerlich oft manchmal selten taeglich".split(" "));
+const DERECE = new Set("so ganz gar genau richtig etwas viel wenig mehr als wie total ziemlich immer sehr zu besonders echt wirklich".split(" "));
+const SEIN = new Set("bin bist ist sind seid war warst waren wart".split(" "));
+const BELIRSIZ = new Set("sie es ihr".split(" "));
+/** Nesne zamirleri: orta alanda öbeklerden önce gelir (Hier tut es mir weh → Es tut mir hier weh) */
+const NESNE_ZAMIR = new Set("mir dir ihm uns euch ihnen mich dich sich ihn es sie".split(" "));
+/** Dizinin başındaki nesne zamirlerini ayırır */
+const zamirOnce = (x: string[]) => { let i = 0; while (i < x.length && (NESNE_ZAMIR.has(x[i]!) || (x[i] === "das" && (i === x.length - 1 || !/^[a-z]/.test(x[i + 1]!) || NESNE_ZAMIR.has(x[i + 1]!))))) i++; return [x.slice(0, i), x.slice(i)] as const; };
+const EDAT = new Set("in im ins an am ans auf aufs aus bei beim mit nach von vom zu zum zur fuer um ueber unter vor hinter neben zwischen durch gegen ohne bis seit ab".split(" "));
 const ARTIKEL = new Set("der die das den dem des ein eine einen einem einer eines kein keine keinen keinem keiner mein meine meinen meinem dein deine sein seine ihre ihren unser unsere".split(" "));
 /** Başa alınamayan kelimeler (kip ilgeçleri, olumsuzluk) ve cümle dışında durabilen ünlemler */
 const PARTIKEL = new Set("ja doch mal halt eben denn wohl nicht nur noch auch erst".split(" "));
@@ -228,9 +238,11 @@ const SAYISAL = (w: string) => SAYI.has(w) || /^o\d+/.test(w);
 function bicimler(a: string[], ham: string[]): { v2: Set<string>; v3: Set<string> } {
   const v2 = new Set<string>(), v3 = new Set<string>();
   const buyuk = (i: number) => /^\p{Lu}/u.test(ham[i]!);
-  const fiil = (i: number) => i > 0 && i < a.length && /^\p{Ll}/u.test(ham[i]!) && !ISLEV.has(a[i]!) && !ZAMIR.has(a[i]!);
+  const fiil = (i: number) => i > 0 && i < a.length && /^\p{Ll}/u.test(ham[i]!) && !ISLEV.has(a[i]!) && !ZAMIR.has(a[i]!) && !["beide", "selbst", "auch", "alle"].includes(a[i]!);
+  /** isim öbeği mi (edatla başlamayan, büyük harfli isim içeren): sie/es öznesiyle başa alınınca özne/nesne karışabilir */
+  const isimObegi = (S: string[], s: number) => !EDAT.has(S[0]!) && S.some((w, k) => buyuk(s + k) && !ZAMIR.has(w) && !(s + k === 0 && (ZARF.has(w) || SAYISAL(w))));
   /** a[s..e) bir öbek mi (s > 0 iken önceki kelime işlev kelimesi olmamalı: öbeği bölmez) */
-  const obek = (s: number, e: number) => {
+  const obek = (s: number, e: number, v = -1) => {
     const S = a.slice(s, e);
     if (!S.length || S.length > 4 || (s > 0 && ISLEV.has(a[s - 1]!)) || S.some((w) => ZAMIR.has(w))) return false;
     // sayı/saat öbeği bölünmez: "drei viertel elf", "neun Uhr", "halb zehn" (inceleme #76 permütasyon taraması)
@@ -243,22 +255,45 @@ function bicimler(a: string[], ham: string[]): { v2: Set<string>; v3: Set<string
     if ((sayi(e - 1) && isim(e)) || (isim(e - 1) && sayi(e)) || (sayi(s) && isim(s - 1)) || (isim(s) && sayi(s - 1))) return false;
     // ölçü öbeği: "dreißig Jahre | alt"
     if (s >= 2 && isim(s - 1) && sayi(s - 2)) return false;
-    if (S.length === 1) return !ISLEV.has(S[0]!) && !PARTIKEL.has(S[0]!) && !(e === a.length && AYIRAN.has(S[0]!));
+    if (S.length === 1) {
+      const w = S[0]!;
+      if (ISLEV.has(w) || PARTIKEL.has(w) || DERECE.has(w) || (e === a.length && AYIRAN.has(w))) return false;
+      if (s > 0 && DERECE.has(a[s - 1]!)) return false;                       // immer | schlimmer, etwas | besser
+      if (ZARF.has(w) || SAYISAL(w)) return true;
+      // büyük harfli isim: önünde onu niteleyen küçük harfli kelime yoksa (starke | Schmerzen değil)
+      if (buyuk(s)) {
+        const p = a[s - 1];
+        // önündeki sıfat, derece ya da odak kelimesi (nur Montag, starke Schmerzen) öbeğin parçasıdır
+        const niteleyen = s > 0 && s - 1 !== v && !!p && /^\p{Ll}/u.test(ham[s - 1]!) && !ZARF.has(p) && !ZAMIR.has(p) && (DERECE.has(p) || ["nur", "erst", "sogar"].includes(p) || /(e|en|er|es|em)$/.test(p));
+        return !niteleyen;
+      }
+      // küçük harfli: yalnızca sein ile cümle sonundaki yüklem (Müde bin ich) ya da kip fiiliyle sondaki mastar (Kommen kann ich morgen)
+      const V = a[v] ?? "";
+      if (e === a.length && SEIN.has(V) && !/^ge\p{L}+(t|en)$/u.test(w)) return true;   // ortaç değil (geworden ist es… değil)
+      if (e === a.length && MODAL.has(V) && !a.some((x) => ARTIKEL.has(x))) return true;   // nesne öbeği kalmıyorsa
+      return false;
+    }
     if (!ISLEV.has(S[0]!) && !SAYISAL(S[0]!)) return false;   // am Dienstag, ins Kino, neun Uhr, zwei Kinder
     const son = e - 1;
     if (!(buyuk(son) || SAYISAL(a[son]!))) return false;
     // ortadakiler işlev kelimesi ya da küçük harfli sıfat; tek isim sonda
-    for (let i = s + 1; i < son; i++) if (buyuk(i) && !ISLEV.has(a[i]!)) return false;
+    for (let i = s + 1; i < son; i++) {
+      if (ISLEV.has(a[i]!) || SAYISAL(a[i]!)) continue;
+      // ortadaki küçük harfli kelime sıfat gibi olmalı (seit gestern | Bauchschmerzen iki öğedir)
+      if (buyuk(i) || !/(e|en|er|es|em)$/.test(a[i]!) || ZARF.has(a[i]!)) return false;
+    }
     return true;
   };
   /** post (a[from..]) içindeki öbekler: [başlangıç, bitiş) */
-  const obekler = (from: number) => { const o: [number, number][] = []; for (let s = from; s < a.length; s++) for (let e = s + 1; e <= Math.min(a.length, s + 4); e++) if (obek(s, e)) o.push([s, e]); return o; };
+  const obekler = (from: number, v: number) => { const o: [number, number][] = []; for (let s = from; s < a.length; s++) for (let e = s + 1; e <= Math.min(a.length, s + 4); e++) if (obek(s, e, v)) o.push([s, e]); return o; };
   const ekle = (set: Set<string>, ...parca: string[][]) => set.add(parca.flat().join(" "));
   // Durum 1: Zamir + fiil + … (Ich gehe morgen ins Kino.)
   if (ZAMIR.has(a[0]!) && fiil(1) && a.length >= 3) {
     const P = [a[0]!], V = [a[1]!];
-    for (const [s, e] of obekler(2)) {
+    for (const [s, e] of obekler(2, 1)) {
       if (MODAL.has(a[1]!) && e === a.length && e - s === 1 && a.length > 4) continue;
+      // "Es frisst das Kind" → "Das Kind frisst es" anlam döner: sie/es öznesinde isim öbeği yalnızca sein/geben ile başa alınır
+      if (BELIRSIZ.has(a[0]!) && isimObegi(a.slice(s, e), s) && !SEIN.has(a[1]!) && a[1] !== "gibt") continue;
       const S = a.slice(s, e), rest = [...a.slice(2, s), ...a.slice(e)];
       if (rest.length && ISLEV.has(rest[rest.length - 1]!)) continue;
       ekle(v2, S, V, P, rest);                                         // Morgen gehe ich ins Kino. / Ins Kino gehe ich morgen.
@@ -267,19 +302,23 @@ function bicimler(a: string[], ham: string[]): { v2: Set<string>; v3: Set<string
   }
   // Durum 2: Öğe + fiil + zamir + … (Heute habe ich keine Zeit.)
   for (let j = 2; j <= Math.min(4, a.length - 1); j++) {
-    if (!ZAMIR.has(a[j]!) || !fiil(j - 1) || !obek(0, j - 1) || SOYLEM.has(a[0]!)) continue;
+    if (!ZAMIR.has(a[j]!) || !fiil(j - 1) || !obek(0, j - 1, j - 1) || SOYLEM.has(a[0]!)) continue;
+    // "Peter liebt sie": sie/es nesne olabilir; başta isim öbeği varken (sein/geben dışında) kural uygulanmaz
+    if (BELIRSIZ.has(a[j]!) && isimObegi(a.slice(0, j - 1), 0) && !SEIN.has(a[j - 1]!) && a[j - 1] !== "gibt") continue;
     const X = a.slice(0, j - 1), V = [a[j - 1]!], P = [a[j]!], post = a.slice(j + 1), X0 = X[0]!;
     // başa alınmış mastar kip fiiliyle geri dönünce cümle sonuna gider (Kommen kann ich morgen nicht → Ich kann morgen nicht kommen)
     // mastar: kip fiili + -en ile biten tek kelime başta ve cümlenin sonunda başka mastar yok ("Morgen kann ich nicht kommen" değil)
     const sonMastar = post.length > 0 && /(en|ern|eln)$/.test(post[post.length - 1]!);
     const mastar = MODAL.has(V[0]!) && X.length === 1 && !SAYISAL(X[0]!) && /(en|ern|eln)$/.test(X[0]!) && !sonMastar;
-    if (mastar) ekle(v2, P, V, post, X); else ekle(v2, P, V, X, post);   // Ich habe heute keine Zeit.
-    for (const [s, e] of obekler(j + 1)) {
+    const [pz, pk] = zamirOnce(post);
+    if (mastar) ekle(v2, P, V, post, X); else ekle(v2, P, V, pz, X, pk);   // Ich habe heute keine Zeit. / Es tut mir hier weh.
+    for (const [s, e] of obekler(j + 1, j - 1)) {
       // nesne başta kalırken sondaki mastar başa alınmaz ("Einen Termin möchte ich machen" → "Machen möchte ich einen Termin" değil)
       if (MODAL.has(a[j - 1]!) && e === a.length && e - s === 1 && (a.length - j > 2 || ARTIKEL.has(X0))) continue;
       const S = a.slice(s, e), rest = [...a.slice(j + 1, s), ...a.slice(e)];
       if (rest.length && ISLEV.has(rest[rest.length - 1]!)) continue;
-      if (mastar) ekle(v2, S, V, P, rest, X); else ekle(v2, S, V, P, X, rest);   // Keine Zeit habe ich heute.
+      const [rz, rk] = zamirOnce(rest);
+      if (mastar) ekle(v2, S, V, P, rest, X); else ekle(v2, S, V, P, rz, X, rk);   // Keine Zeit habe ich heute. / Bescheid sage ich Ihnen bis Mittwoch.
     }
     if (!SOYLEM.has(X[0]!)) ekle(v3, X, P, V, post);                    // Heute ich habe keine Zeit.
     break;

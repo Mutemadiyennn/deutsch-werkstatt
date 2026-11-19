@@ -10,7 +10,7 @@ import { loadLexicon, loadTemel } from "../services/content.ts";
 import { getMeta, setMeta } from "../data/db.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { DERS_ADIM_TR, TANIT_GRUP, adimlarDers, altSayisi, dersAnahtari, dersIleri, dersKonum, hatirlaKabul, hatirlaSecenek, maddeler, type DersIlerleme } from "../core/ders.ts";
-import { speak, stopSpeaking } from "../services/speech.ts";
+import { speak, speakDizi, stopSpeaking } from "../services/speech.ts";
 import { adimXpVer, xpVer } from "../services/ilerleme.ts";
 import { XP } from "../core/gun.ts";
 import { ActionBar, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
@@ -157,7 +157,7 @@ function useSesDizisi() {
   useEffect(() => () => { tok.current++; stopSpeaking(); }, []);
   return async (lines: string[], sp: "slow" | "normal" = "normal") => {
     const my = ++tok.current; stopSpeaking();
-    for (const l of lines) { if (tok.current !== my) return; await speak(l, "de", sp); }
+    await speakDizi(lines.map((de) => ({ de })), sp, 0, () => tok.current !== my);
   };
 }
 

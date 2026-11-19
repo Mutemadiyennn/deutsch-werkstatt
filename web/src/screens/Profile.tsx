@@ -28,13 +28,13 @@ export function ProfileView() {
   useEffect(() => { son.current = profile; }, [profile]);
   const adZaman = useRef<ReturnType<typeof setTimeout>>();
   const adBekleyen = useRef<string | null>(null);
-  const adKaydet = (v: string) => { adBekleyen.current = null; const ad = v.trim() || undefined; if (ad !== son.current.displayName) void save((p) => { p.displayName = ad; }); };
+  const adKaydet = (v: string) => { adBekleyen.current = null; const ad = v.trim() || undefined; if (ad !== son.current.displayName) void save((p) => { p.displayName = ad; }, true); };
   // ekrandan bekleme dolmadan çıkılırsa yazılan ad yine kaydedilir
   useEffect(() => () => { clearTimeout(adZaman.current); if (adBekleyen.current !== null) adKaydet(adBekleyen.current); }, []);
-  const save = (f: (p: Profile) => void) => {
+  const save = (f: (p: Profile) => void, sessiz = false) => {
     const is = sira.current.then(async () => {
       const n = structuredClone(son.current); f(n);
-      try { await setProfile(n); son.current = n; toast("Kaydedildi"); } catch { toast("Geçersiz değer; kaydedilmedi."); }
+      try { await setProfile(n); son.current = n; if (!sessiz) toast("Kaydedildi"); } catch { toast("Geçersiz değer; kaydedilmedi."); }
     });
     sira.current = is.catch(() => {});
     return is;
@@ -108,6 +108,7 @@ export function ProfileView() {
         <h2>Dinleme ve hedefler</h2>
         <label class="lbl">Dinlemeye başlangıç hızı</label>
         <div class="seg" role="group">{(["slow", "normal"] as const).map((s) => <button aria-pressed={profile.listening.startSpeed === s} onClick={() => save((p) => { p.listening.startSpeed = s; })}>{s === "slow" ? "Yavaş" : "Normal"}</button>)}</div>
+        <p class="tiny muted" data-test="hiz-aciklama">{profile.listening.startSpeed === "slow" ? "Her cümle ilk kez yavaş çalınır, tekrarında normal hızda. \"Yavaş\" düğmesi her zaman yavaş çalar." : "Cümleler normal hızda çalınır; \"Yavaş\" düğmesiyle yavaşlatabilirsin."}</p>
         <label class="row" style={{ marginTop: 12 }}><input type="checkbox" checked={profile.goals.examB1.enabled} onChange={(e) => save((p) => { p.goals.examB1.enabled = (e.target as HTMLInputElement).checked; })} /><span>B1 sınavına hazırlık (isteğe bağlı)</span></label>
         {profile.goals.examB1.enabled && <input class="input" type="date" aria-label="Sınav tarihi" value={profile.goals.examB1.date || ""} onChange={(e) => save((p) => { p.goals.examB1.date = (e.target as HTMLInputElement).value || undefined; })} />}
         <p class="small" style={{ marginTop: 12 }}><a href="#/assess">Yeniden ölç (aylık ölçüm)</a></p>

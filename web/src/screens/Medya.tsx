@@ -12,16 +12,17 @@ import { adimXpVer, xpVer } from "../services/ilerleme.ts";
 import { XP } from "../core/gun.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { loadIndex, loadLexicon, loadM1Gun, contentUrl } from "../services/content.ts";
-import { addClaim, addPersonal, getMeta, setMeta } from "../data/db.ts";
+import { addClaim, getMeta, setMeta } from "../data/db.ts";
 import { Rich } from "../ui/rich.tsx";
-import { ADIM_TR, BASLANGIC, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, kartBul, type MedyaIlerleme } from "../core/medya.ts";
+import { ADIM_TR, BASLANGIC, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { scoreHeard } from "../core/grading.ts";
-import { speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
+import { baslangicYavas, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { ActionBar, AnswerField, FeedbackBand, MicButton, ProgressHeader } from "../ui/kit.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
+import { DokunMetin, KelimeSayfasi } from "../ui/kelime.tsx";
 
 const E2E = import.meta.env.MODE === "e2e";
 
@@ -69,7 +70,7 @@ function useOynatici(m: Medya, video: HTMLVideoElement | null, base = ""): Oynat
     for (const c of cs) {
       if (iptal.current !== my) return;
       setCalisiyor(c.id);
-      if (c.audio?.src) await sesDosyasi(/^(https?:|\/)/.test(c.audio.src) ? c.audio.src : base + c.audio.src, yavas, my); else await speak(c.de, "de", yavas ? "slow" : "normal");
+      if (c.audio?.src) await sesDosyasi(/^(https?:|\/)/.test(c.audio.src) ? c.audio.src : base + c.audio.src, yavas, my); else await speak(c.de, "de", yavas ? "slow" : "normal", true);
     }
   };
   const o: Oynatici = {
@@ -191,7 +192,9 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
 /* (a) baştan sona, altyazısız */
 function DinleAdimi({ m, cs, oy, onNext }: { m: Medya; cs: MedyaCumle[]; oy: ReturnType<typeof useOynatici>; onNext: () => void }) {
   const [dinledi, setDinledi] = useState(false);
-  const yavas = m.kind === "ses" && m.hizlar[0] === "slow";
+  // #58 B7: Profil'de başlangıç hızı Yavaş ise ilk dinleme 0,75× ve düğmede yazılı; "Bir daha dinle" normal hızda
+  const ilkYavas = baslangicYavas() && !dinledi;
+  const yavas = (m.kind === "ses" && m.hizlar[0] === "slow") || ilkYavas;
   return (
     <section class="card stack fade" data-test="adim-dinle">
       <div class="kicker">Bölümü baştan sona dinle</div>
@@ -200,7 +203,7 @@ function DinleAdimi({ m, cs, oy, onNext }: { m: Medya; cs: MedyaCumle[]; oy: Ret
         {oy.calisiyor !== null
           ? <button class="btn grow" data-test="durdur" onClick={() => oy.dur()}><Icon name="pause" /> Durdur</button>
           : <button class="btn primary grow" data-test="dinle-bolum" onClick={() => { setDinledi(true); void oy.bolum(cs, yavas); }}>
-              <Icon name="play" /> {dinledi ? "Bir daha dinle" : "Dinle"}</button>}
+              <Icon name="play" /> {dinledi ? "Bir daha dinle" : ilkYavas ? "Dinle (yavaş)" : "Dinle"}</button>}
         {m.hizlar.includes("slow") && m.hizlar.length > 1 && oy.calisiyor === null && <button class="btn grow" onClick={() => { setDinledi(true); void oy.bolum(cs, true); }}>Yavaş</button>}
       </div>
       <ActionBar><button class="btn block" data-test="next" disabled={!dinledi && !E2E} onClick={onNext}>{dinledi ? "Sorulara geç" : "Önce dinle"}</button></ActionBar>
@@ -231,7 +234,8 @@ function EylemSoru({ m, onDone }: { m: Medya; onDone: (ok: boolean) => void }) {
 
 /* (c) cümle cümle: her cümle tek dokunuşla, 0,75× */
 function CumleAdimi({ cs, oy, onNext }: { cs: MedyaCumle[]; oy: ReturnType<typeof useOynatici>; onNext: () => void }) {
-  const [yavas, setYavas] = useState(false);
+  // #58 B7: 0,75× düğmesi Profil'deki başlangıç hızıyla açılır (görünür; öğrenci kapatabilir)
+  const [yavas, setYavas] = useState(baslangicYavas());
   return (
     <section class="card stack fade" data-test="adim-cumle">
       <div class="row"><div class="kicker grow">Cümle cümle dinle</div>
@@ -302,28 +306,16 @@ function DikteSec({ d, onPick, done }: { d: Extract<Dikte, { seviye: "kolay" }>;
 
 /* (e) metin açılır; kelimeye dokununca kart ve "bankaya ekle" */
 function TranskriptAdimi({ cs, lex, oy, onNext }: { cs: MedyaCumle[]; lex: Lexeme[]; oy: ReturnType<typeof useOynatici>; onNext: () => void }) {
-  const { toast } = useApp();
   const [kelime, setKelime] = useState<string | null>(null);
-  const kart = kelime ? kartBul(kelime, lex) : undefined;
   return (
     <section class="card stack fade" data-test="adim-transkript">
       <div class="kicker">Metin · bilmediğin kelimeye dokun</div>
       {cs.map((c) => (
         <p class={oy.calisiyor === c.id ? "on" : ""}>
-          <span lang="de">{c.de.split(/(\s+)/).map((w) => /\s/.test(w) ? w : <button class="wordtap" data-test="kelime" onClick={() => setKelime(w)}>{w}</button>)}</span>
+          <DokunMetin de={c.de} onKelime={setKelime} />
           {" "}<button class="btn ghost sm" aria-label="Bu cümleyi dinle" onClick={() => void oy.cumle(c, false)}><Icon name="play" /></button>
           <br /><span class="small muted">{c.tr}</span></p>))}
-      {kelime && (
-        <div class="card stack fade kelime-sheet" role="dialog" aria-label="Kelime kartı" data-test="kelime-kart">
-          {kart ? <><div class="de-lg" lang="de"><Art art={kart.art} de={kart.de} /></div><p>{kart.tr}</p>{kart.examples[0] && <p class="small"><span lang="de">{kart.examples[0].de}</span><br /><span class="muted">{kart.examples[0].tr}</span></p>}</>
-            : <><div class="de-lg" lang="de">{kelime.replace(/[.,!?;:]/g, "")}</div><p class="small muted">Bu kelimenin kartı henüz yok. Bankana eklersen anlamı hazırlanınca Bahçe'ye gelir.</p></>}
-          <div class="row"><button class="btn primary grow" data-test="bankaya-ekle" onClick={async () => {
-            const de = kart ? kart.de : kelime.replace(/[.,!?;:]/g, "");
-            await addPersonal({ id: `tap:${de}`, de: kart?.art ? `${kart.art} ${de}` : de, tr: kart?.tr, at: new Date().toISOString(), source: "tap" });
-            toast("Bankana eklendi"); setKelime(null);
-          }}>Bankaya ekle</button><button class="btn grow" onClick={() => setKelime(null)}>Kapat</button></div>
-        </div>
-      )}
+      {kelime && <KelimeSayfasi kelime={kelime} lex={lex} onClose={() => setKelime(null)} />}
       {!kelime && <ActionBar><button class="btn primary block" data-test="next" onClick={onNext}>Devam</button></ActionBar>}
     </section>
   );

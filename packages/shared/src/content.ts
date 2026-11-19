@@ -384,6 +384,8 @@ export const ContentIndex = z.object({
   /** R0 temel dersler (#58 A5, Seans 2): sıra, başlık, inceleme durumu */
   temel: z.array(z.object({ id: z.string(), order: z.number().int(), title_tr: z.string(), title_de: z.string(), review: z.string() })).default([]),
   counts: z.object({ lexemes: z.number(), grammar: z.number(), assess: z.number(), scenarios: z.number() }),
-  files: z.object({ lexemes: z.string(), grammar: z.string(), assess: z.string(), scenarios: z.record(z.string(), z.string()), m1: z.record(z.string(), z.string()).default({}), temel: z.record(z.string(), z.string()).default({}) })
+  files: z.object({ lexemes: z.string(), grammar: z.string(), assess: z.string(), scenarios: z.record(z.string(), z.string()), m1: z.record(z.string(), z.string()).default({}), temel: z.record(z.string(), z.string()).default({}),
+    /** paketteki medya dosyaları (servis işçisi ayrı önbelleğe alır; A12) */
+    medya: z.array(z.string()).default([]) })
 });
 export type ContentIndex = z.infer<typeof ContentIndex>;

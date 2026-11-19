@@ -125,6 +125,13 @@ describe("kelime sırası (V2)", () => {
     expect(v2Sira(["Bitte buchstabieren Sie das."], "Sie buchstabieren bitte das.")).toBeNull();
     expect(v2Sira(["Einen Termin möchte ich machen."], "Machen möchte ich einen Termin.")?.kind).not.toBe("correct");
     expect(v2Sira(["Am Montag kann ich kommen."], "Kommen kann ich am Montag.")?.kind).toBe("correct");
+    // 2. tur K1: sıfat, derece kelimesi, dönüşlü zamir tek başına başa alınmaz; sie/es ile isim öbeği anlamı döndürmez
+    for (const [k, c] of [["Ich habe starke Schmerzen.", "Starke habe ich Schmerzen."], ["Es tut genau hier weh.", "Genau tut es hier weh."], ["Es tut richtig weh.", "Richtig tut es weh."], ["Es ist etwas besser.", "Etwas ist es besser."], ["Es wird immer schlimmer.", "Schlimmer wird es immer."], ["Ich habe mich schon eingetragen.", "Mich habe ich schon eingetragen."], ["Ich habe zwei kleine Kinder.", "Kleine habe ich zwei Kinder."], ["Ich habe viel Arbeit.", "Viel habe ich Arbeit."], ["Ich bin so müde.", "So bin ich müde."], ["Ich habe gar keine Zeit.", "Gar habe ich keine Zeit."], ["Wir beide kommen morgen.", "Morgen beide wir kommen."], ["Sie liebt Peter.", "Peter liebt sie."], ["Peter liebt sie.", "Sie liebt Peter."], ["Es frisst das Kind.", "Das Kind frisst es."]] as const) expect(v2Sira([k], c)?.kind, c).not.toBe("correct");
+    for (const [k, c] of [["Ich habe seit gestern Bauchschmerzen.", "Seit gestern Bauchschmerzen habe ich."], ["Es ist schlimmer geworden.", "Geworden ist es schlimmer."], ["Hier tut es mir weh.", "Es tut hier mir weh."], ["Bis Mittwoch sage ich Ihnen Bescheid.", "Bescheid sage ich bis Mittwoch Ihnen."]] as const) expect(v2Sira([k], c)?.kind, c).not.toBe("correct");
+    for (const [k, c] of [["Ich habe nur Montag verstanden.", "Montag habe ich nur verstanden."], ["Seit Sonntag habe ich das.", "Ich habe seit Sonntag das."]] as const) expect(v2Sira([k], c)?.kind, c).not.toBe("correct");
+    for (const [k, c] of [["Ich lerne noch Deutsch.", "Deutsch lerne ich noch."], ["Seit Sonntag habe ich das.", "Ich habe das seit Sonntag."]] as const) expect(v2Sira([k], c)?.kind, c).toBe("correct");
+    for (const [k, c] of [["Hier tut es mir weh.", "Es tut mir hier weh."], ["Bis Mittwoch sage ich Ihnen Bescheid.", "Bescheid sage ich Ihnen bis Mittwoch."]] as const) expect(v2Sira([k], c)?.kind, c).toBe("correct");
+    for (const [k, c] of [["Ich bin müde.", "Müde bin ich."], ["Es ist Donnerstag.", "Donnerstag ist es."], ["Ich habe heute Zeit.", "Zeit habe ich heute."], ["Ich habe Urlaub im Juli.", "Urlaub habe ich im Juli."], ["Morgen kommt sie.", "Sie kommt morgen."]] as const) expect(v2Sira([k], c)?.kind, c).toBe("correct");
     expect(v2Sira(["Heute geht es nicht. Montag geht es."], "Montag geht es nicht. Heute geht es.")).toBeNull();
     // fiil sanılan başka kelime yüzünden doğru cümle "fiil üçüncü yerde" sayılmaz
     expect(v2Sira(["Ich habe heute keine Zeit."], "Ich habe keine Zeit heute.")?.kind).not.toBe("v3");
@@ -147,6 +154,17 @@ describe("yazım: kabul + düzeltme notu", () => {
     expect(umlautEksik("Ich bin müde.", "Ich bin mude.")).toMatch(/müde/);
     expect(umlautEksik("Ich bin müde.", "Ich bin krank.")).toBeUndefined();
     expect(ruleVerdict(["Ich bin müde."], "Ich bin muede.").kind).toBe("correct");
+  });
+});
+
+describe("fiil üçüncü yerde dolgu kuralından önce (2. tur K2)", () => {
+  it("Gern ich möchte einen Termin. → açıklamalı yanlış", () => {
+    const v = ruleVerdict(["Ich möchte gern einen Termin."], "Gern ich möchte einen Termin.");
+    expect(v.kind).toBe("wrong");
+    expect(ruleVerdict(["Ich möchte einen Termin."], "Bitte, ich möchte einen Termin.").kind).toBe("correct");
+    // sondaki dolgu yalnızca nezaket ifadesi: "…Schmerzen sehr" doğru değil, "…, danke sehr" doğru
+    expect(ruleVerdict(["Ich habe starke Schmerzen."], "Ich habe starke Schmerzen sehr.").kind).not.toBe("correct");
+    expect(ruleVerdict(["In Ordnung."], "In Ordnung, danke sehr.").kind).toBe("correct");
   });
 });
 
