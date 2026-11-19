@@ -33,7 +33,7 @@ jobs:
           pip install -q faster-whisper==1.1.1 "av>=11,<14" "transformers<4.50" soundfile jiwer==3.0.5 num2words==0.5.14
       - name: Hat
         # push'ta yalnızca M1_KLIPLER'deki klipler (önce tek klip ile doğrulama); elle çalıştırmada girilenler
-        env: { M1_KLIPLER: "klip-02" }
+        env: { M1_KLIPLER: "klip-01 klip-02 klip-04 klip-05 klip-06 klip-07" }
         run: python scripts/video/m1_video.py out ${{ github.event.inputs.klipler || '$M1_KLIPLER' }}
       - name: Releases (m1-medya)
         env: { GH_TOKEN: "${{ github.token }}" }
