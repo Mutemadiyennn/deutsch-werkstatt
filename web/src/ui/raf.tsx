@@ -15,18 +15,20 @@ export function MedyaRafi() {
   const sina = async () => {
     setMesgul(true);
     try {
-      if (!(await rafYaz(adres && anahtar ? { adres, anahtar } : null))) { setDurum("adres-gecersiz"); return; }
+      // tek alan boşsa kayıtlı ayar silinmez (silmek için "Sil"; inceleme #98 2. tur P2)
+      if (!adres.trim() || !anahtar.trim()) { setDurum(adres.trim() || anahtar.trim() ? "eksik" : "ayar-yok"); return; }
+      if (!(await rafYaz({ adres, anahtar }))) { setDurum("adres-gecersiz"); return; }
       setDurum(await rafSina());
     } catch { setDurum("ulasilamiyor"); } finally { setMesgul(false); }
   };
   const sil = async () => { setAdres(""); setAnahtar(""); setDurum(null); await rafYaz(null); };
   return (
     <div class="stack" style={{ gap: 8 }} data-test="medya-rafi" data-hazir={hazir ? "1" : undefined}>
-      <p class="small muted" id="raf-bilgi">Yalnızca sana özel medya (lisansı herkese açık dağıtıma izin vermeyen fotoğraflar). Adres ve anahtar yalnızca bu cihazda saklanır, yedek dosyasına girmez. Boş bırakırsan açık kaynaklı medya gösterilir.</p>
+      <p class="small muted" id="raf-bilgi">Yalnızca sana özel medya (lisansı herkese açık dağıtıma izin vermeyen fotoğraflar). Adres ve parola yalnızca bu cihazda saklanır, yedek dosyasına girmez. Boş bırakırsan açık kaynaklı medya gösterilir.</p>
       <label class="lbl" for="raf-adres">Raf adresi</label>
       <input id="raf-adres" class="input" type="url" inputMode="url" autoComplete="off" autoCapitalize="off" spellcheck={false} value={adres}
         onInput={(e) => { setAdres((e.target as HTMLInputElement).value); setDurum(null); }} placeholder="https://…" data-test="raf-adres" />
-      <label class="lbl" for="raf-anahtar">Anahtar</label>
+      <label class="lbl" for="raf-anahtar">Parola</label>
       <input id="raf-anahtar" class="input" type="password" autoComplete="off" value={anahtar}
         onInput={(e) => { setAnahtar((e.target as HTMLInputElement).value); setDurum(null); }} data-test="raf-anahtar" />
       <div class="row">
