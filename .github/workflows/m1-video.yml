@@ -30,7 +30,7 @@ jobs:
       - name: Bağımlılıklar (CPU)
         run: |
           pip install -q torch==2.5.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cpu
-          pip install -q faster-whisper==1.1.1 "transformers<4.50" soundfile jiwer==3.0.5 num2words==0.5.14
+          pip install -q faster-whisper==1.1.1 "av>=11,<14" "transformers<4.50" soundfile jiwer==3.0.5 num2words==0.5.14
       - name: Hat
         # push'ta yalnızca M1_KLIPLER'deki klipler (önce tek klip ile doğrulama); elle çalıştırmada girilenler
         env: { M1_KLIPLER: "klip-02" }
