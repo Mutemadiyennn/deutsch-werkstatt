@@ -19,7 +19,7 @@ def main():
         pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]"); pg.wait_for_timeout(500)
         # kurulumun bittiği İLK oturumda istenir (yeniden açmayı beklemez; inceleme #61 P1-2)
-        # sonuç cihazda yazılıysa istek yapılmıştır (WebKit zaten kalıcıysa persist() çağrılmaz: persisted() true döner)
+        # sonuç cihazda yazılıysa istek yapılmıştır (sayaç sarmalayıcısı ilk oturumdaki çağrıyı her tarayıcıda görmeyebilir; meta kesin kanıttır)
         first = pg.evaluate("""() => new Promise((ok) => { const r = indexedDB.open('dw2'); r.onsuccess = () => { const q = r.result.transaction('meta').objectStore('meta').get('storagePersist'); q.onsuccess = () => ok(q.result ? q.result.value : null); }; })""")
         check(first in ("persisted", "best-effort", "unsupported"), f"kurulum biter bitmez kalıcı depolama istendi ({first}, persist çağrısı {pg.evaluate('window.__persist')})")
         pg.reload(); pg.wait_for_selector("[data-tab=today]"); pg.wait_for_timeout(500)
