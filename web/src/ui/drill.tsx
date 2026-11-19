@@ -6,6 +6,7 @@
 import { useMemo, useState } from "preact/hooks";
 import type { Drill } from "@dw/shared";
 import { countsAsCorrect, isSameAsGiven, ruleVerdict } from "../core/answer.ts";
+import { esEsit, esNorm, saat12, yazimNotu } from "../core/esdeger.ts";
 import { judgeWord, norm, numberWordHint } from "../core/grading.ts";
 import { fillName } from "../core/persona.ts";
 import { addClaim } from "../data/db.ts";
@@ -21,9 +22,10 @@ export type DrillSonuc = "correct" | "wrong" | "claimed";
  * Cevabın bu kelimelerden oluşan kümesi kabul biçimlerinden HİÇBİRİNİNKİYLE aynı değilse cevap "yakın" değil, yanlıştır
  * (on yedi ≠ on altı); kelime sırası ya da biçim farkı (Donnerstag ist heute.) karar öğrencide kalır — inceleme #65 2. tur.
  */
-const ANAHTAR = new RegExp("^(null|eins?|zwei|zwo|drei|vier|fuenf|sechs|sieben|acht|neun|zehn|elf|zwoelf|\\w*zehn|\\w*zig|\\w*und\\w*zig|\\w*ssig|hundert|tausend|halb|viertel|montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|januar|februar|maerz|april|mai|juni|juli|august|september|oktober|november|dezember|heute|morgen|gestern|uebermorgen|vorgestern)$");
+const ANAHTAR = new RegExp("^(o\\d+|null|eins?|zwei|zwo|drei|vier|fuenf|sechs|sieben|acht|neun|zehn|elf|zwoelf|\\w*zehn|\\w*zig|\\w*und\\w*zig|\\w*ssig|hundert|tausend|halb|viertel|montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|januar|februar|maerz|april|mai|juni|juli|august|september|oktober|november|dezember|heute|morgen|gestern|uebermorgen|vorgestern)$");
 const SAYI_KELIME = /\b(null|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf|\w+zehn|\w+zig|hundert)\b/i;
-const anahtarlar = (s: string) => [...new Set(norm(s).split(" ").filter((w) => ANAHTAR.test(w)))].sort().join(" ");
+// esNorm: saat/tarih/sıra sayısı tek biçimde (halb zehn = 9:30, 3. Mai = dritten Mai); saat12: 14:30 ↔ halb drei açık yanlış değil
+const anahtarlar = (s: string) => [...new Set(saat12(esNorm(s)).split(" ").filter((w) => ANAHTAR.test(w)))].sort().join(" ");
 
 /**
  * Bir maddeyi değerlendirir (saf; test edilir).
@@ -43,12 +45,14 @@ export function drillVerdict(d: Drill, answer: string, typed = true, artikel?: {
   const istem = d.k === "gap" ? d.de : d.k === "transform" ? d.from_de : d.k === "guided_response" ? d.situation_tr + d.prompt_de : d.k === "listen_and_respond" ? (d.situation_tr ?? "") + d.audio_de : d.tr;
   const strict = d.strictNumberWords ?? (!/\d/.test(istem) && acc.every((x) => !/\d/.test(x)) && acc.some((x) => SAYI_KELIME.test(x)));
   if (typed && strict && acc.every((x) => !/\d/.test(x))) { const h = numberWordHint(answer); if (h) return { kind: "wrong", best, note: h }; }
-  if (list.some((a) => norm(a) === norm(answer))) return { kind: "correct", best };
+  const tam = list.find((a) => norm(a) === norm(answer) || esEsit(a, answer));
+  if (tam) return { kind: "correct", best, note: yazimNotu(tam, answer) };
   // isim kartı (hatırlama turu): artikel zorunlu; kelime doğru ama artikel eksik/yanlışsa açıklamalı yanlış
   if (artikel) { const j = judgeWord(answer, artikel.de, artikel.art); if (j.ok) return { kind: "correct", best }; if (j.why_tr) return { kind: "wrong", best, note: j.why_tr }; }
   if (d.k === "transform" && isSameAsGiven(d.from_de, answer)) return { kind: "wrong", best, note: "Verilen cümleyi tekrarladın; istenen biçimde söyle." };
   const v = ruleVerdict(list, answer);
-  if (v.kind === "correct") return { kind: "correct", best };
+  if (v.kind === "correct") return { kind: "correct", best, note: v.note };
+  if (v.kind === "wrong" && v.note) return { kind: "wrong", best: v.best, note: v.note };
   if (v.kind === "ask_ai") {
     // anahtar kelime (sayı, gün, ay) kümesi hiçbir kabul biçimininkiyle aynı değilse açık bir yanlıştır
     const k = anahtarlar(answer);
@@ -95,7 +99,7 @@ export function DrillView({ d, sira, onDone, artikel }: { d: Drill; sira?: strin
       {prompt}
       {!v && (d.k === "order" ? <OrderChips target={d.accepted[0]!} given={d.de} onSubmit={(a) => submit(a, "typed")} /> : <ActionBar><AnswerField onSubmit={submit} /></ActionBar>)}
       {v && <ActionBar>
-        {v.kind === "correct" ? <FeedbackBand kind="ok" title="Doğru."><span lang="de">{v.a}</span></FeedbackBand>
+        {v.kind === "correct" ? <FeedbackBand kind="ok" title="Doğru."><span lang="de">{v.a}</span>{v.note && <div class="small" data-test="yazim-notu">{v.note}</div>}</FeedbackBand>
           : v.kind === "unchecked" ? <FeedbackBand kind="info" title="Bu cevabı kendim kontrol edemedim.">
               <div class="small">Senin cevabın: <span lang="de">{v.a}</span></div><div>Örnek: <b lang="de">{v.best}</b></div>
               <div class="small">İkisi aynı şeyi mi söylüyor? Emin değilsen örneği öğren.</div></FeedbackBand>
