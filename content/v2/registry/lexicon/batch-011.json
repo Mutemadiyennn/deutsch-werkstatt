@@ -1994,6 +1994,18 @@
     {
      "de": "Brot backen",
      "tr": "ekmek yapmak"
+    },
+    {
+     "de": "Brot kaufen",
+     "tr": "ekmek almak"
+    },
+    {
+     "de": "Brot mit Käse",
+     "tr": "peynirli ekmek"
+    },
+    {
+     "de": "das Vollkornbrot",
+     "tr": "tam tahıllı ekmek"
     }
    ],
    "patterns": [
@@ -2009,26 +2021,30 @@
      "id": "lx:Brot:1",
      "de": "Gerti backt jeden Morgen frisches Brot.",
      "tr": "Gerti her sabah taze ekmek yapıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "baker taking bread out of oven"
     },
     {
      "id": "lx:Brot:2",
      "de": "Ich hätte gern ein halbes Brot, bitte.",
      "tr": "Yarım ekmek rica ediyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "half loaf of bread on bakery counter"
     },
     {
      "id": "lx:Brot:3",
      "de": "Hol bitte noch Brot, wir haben keins mehr.",
      "tr": "Bir de ekmek al lütfen, hiç kalmadı.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "empty bread basket on kitchen table"
     },
     {
      "id": "lx:Brot:4",
      "de": "– Noch etwas? – Ja, ein Brot und zwei Brezen, bitte.",
      "tr": "– Başka bir şey? – Evet, bir ekmek ve iki Breze, lütfen.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "bread and pretzels at bakery"
     }
    ],
    "level": "A1",
@@ -2049,7 +2065,45 @@
     "ne_zaman_tr": "Fırında ve kahvaltıda.",
     "parcalar": [],
     "ipucu_tr": "Küçük ekmeğe **Brötchen** denir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ gutes Brot.",
+     "answer": "ein",
+     "tr": "Bu güzel bir ekmek.",
+     "hint_tr": "**das Brot** için bir derken **ein** gelir."
+    },
+    {
+     "de": "___ Brot ist noch warm.",
+     "answer": "Das",
+     "tr": "Ekmek hâlâ sıcak.",
+     "hint_tr": "Hangi ekmek olduğu belliyse **das Brot** denir."
+    },
+    {
+     "de": "Ich kaufe ___ Brot.",
+     "answer": "ein",
+     "tr": "Bir ekmek alıyorum.",
+     "hint_tr": "**kaufen** sonrası da **ein Brot** gelir."
+    },
+    {
+     "de": "Ich esse ___ Brot.",
+     "answer": "das",
+     "tr": "Ekmeği yiyorum.",
+     "hint_tr": "Hangi ekmek olduğu belliyse **das Brot** gelir."
+    },
+    {
+     "de": "Was ist auf ___ Brot?",
+     "answer": "dem",
+     "tr": "Ekmeğin üstünde ne var?",
+     "hint_tr": "**auf** ile üstünde olanı sorarken **dem** gelir."
+    },
+    {
+     "de": "Ich komme mit ___ Brot nach Hause.",
+     "answer": "einem",
+     "tr": "Eve bir ekmekle geliyorum.",
+     "hint_tr": "**mit** sonrası **einem** gelir."
+    }
+   ]
   },
   {
    "id": "lx:abnehmen",
@@ -3624,26 +3678,30 @@
      "id": "lx:Kilo:1",
      "de": "Ich hätte gern ein halbes Kilo Käse.",
      "tr": "Yarım kilo peynir rica ediyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "cheese counter at deli"
     },
     {
      "id": "lx:Kilo:2",
      "de": "Der Koffer wiegt zwanzig Kilo.",
      "tr": "Bavul yirmi kilo geliyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "suitcase on airport scale"
     },
     {
      "id": "lx:Kilo:3",
      "de": "Uff, schon wieder zwei Kilo mehr auf der Waage.",
      "tr": "Of, tartıda yine iki kilo fazla çıktı.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "person stepping on bathroom scale"
     },
     {
      "id": "lx:Kilo:4",
      "de": "– Wie viel darf's sein? – Ein Kilo Kartoffeln, bitte.",
      "tr": "– Ne kadar olsun? – Bir kilo patates, lütfen.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "potatoes weighed at market stall"
     }
    ],
    "level": "A1",
@@ -3663,7 +3721,39 @@
     "anlam_tr": "Ağırlığı bin gramla ölçen birimi söyler.",
     "ne_zaman_tr": "Markette ve doktorda tartılırken.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ Kilo.",
+     "answer": "ein",
+     "tr": "Bu bir kilo.",
+     "hint_tr": "**das Kilo** için bir derken **ein** gelir."
+    },
+    {
+     "de": "Ich hätte gern ein ___ Kilo Käse.",
+     "answer": "halbes",
+     "tr": "Yarım kilo peynir rica ediyorum.",
+     "hint_tr": "Yarım kilo derken **ein halbes Kilo** denir."
+    },
+    {
+     "de": "Ich nehme ___ Kilo Tomaten.",
+     "answer": "ein",
+     "tr": "Bir kilo domates alıyorum.",
+     "hint_tr": "**nehmen** sonrası da **ein Kilo** gelir."
+    },
+    {
+     "de": "Ich nehme zwei ___ Äpfel.",
+     "answer": "Kilo",
+     "tr": "İki kilo elma alıyorum.",
+     "hint_tr": "İki kilo derken **zwei Kilo** denir, sonuna **s** gelmez."
+    },
+    {
+     "de": "Was kostet das pro ___?",
+     "answer": "Kilo",
+     "tr": "Bunun kilosu ne kadar?",
+     "hint_tr": "Kilo başına derken **pro Kilo** denir."
+    }
+   ]
   },
   {
    "id": "lx:Kindheit",
@@ -4080,6 +4170,18 @@
     {
      "de": "der Apfelsaft",
      "tr": "elma suyu"
+    },
+    {
+     "de": "einen Apfel essen",
+     "tr": "bir elma yemek"
+    },
+    {
+     "de": "Äpfel kaufen",
+     "tr": "elma almak"
+    },
+    {
+     "de": "der Apfelkuchen",
+     "tr": "elmalı pasta"
     }
    ],
    "patterns": [
@@ -4096,26 +4198,30 @@
      "id": "lx:Apfel:1",
      "de": "Die Äpfel hier kommen aus der Region.",
      "tr": "Buradaki elmalar bu yöreden geliyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "apple crates at farmers market"
     },
     {
      "id": "lx:Apfel:2",
      "de": "Nehmen Sie doch einen Apfel für die Pause mit.",
      "tr": "Mola için yanınıza bir elma alın.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "apple on office desk"
     },
     {
      "id": "lx:Apfel:3",
      "de": "Magst du 'n Apfel?",
      "tr": "Elma ister misin?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "friend offering an apple"
     },
     {
      "id": "lx:Apfel:4",
      "de": "– Was kosten die Äpfel? – Zwei Euro das Kilo.",
      "tr": "– Elmalar ne kadar? – Kilosu iki avro.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "apples with price sign at market stall"
     }
    ],
    "level": "A1",
@@ -4135,7 +4241,45 @@
     "anlam_tr": "Ağaçta yetişen yuvarlak meyveyi söyler.",
     "ne_zaman_tr": "Markette ve pazarda.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ grüner Apfel.",
+     "answer": "ein",
+     "tr": "Bu yeşil bir elma.",
+     "hint_tr": "**der Apfel** için bir derken **ein** gelir."
+    },
+    {
+     "de": "___ Apfel ist süß.",
+     "answer": "Der",
+     "tr": "Elma tatlı.",
+     "hint_tr": "Hangi elma olduğu belliyse **der Apfel** denir."
+    },
+    {
+     "de": "Ich esse ___ Apfel.",
+     "answer": "einen",
+     "tr": "Bir elma yiyorum.",
+     "hint_tr": "**essen** sonrası **einen Apfel** gelir."
+    },
+    {
+     "de": "Ich nehme ___ Apfel.",
+     "answer": "den",
+     "tr": "Elmayı alıyorum.",
+     "hint_tr": "Hangi elma olduğu belliyse **den Apfel** gelir."
+    },
+    {
+     "de": "Was ist mit ___ Apfel?",
+     "answer": "dem",
+     "tr": "Elmaya ne oldu?",
+     "hint_tr": "**mit** sonrası **dem** gelir."
+    },
+    {
+     "de": "Ich beginne den Tag mit ___ Apfel.",
+     "answer": "einem",
+     "tr": "Güne bir elmayla başlıyorum.",
+     "hint_tr": "**mit** sonrası **einem** gelir."
+    }
+   ]
   },
   {
    "id": "lx:Hausaufgabe",
@@ -7319,7 +7463,8 @@
     "anlam_tr": "Bir şeyin fiyata dahil olduğunu söyler.",
     "ne_zaman_tr": "Otelde, kirada ve fiyat sorarken.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:Geschwister",

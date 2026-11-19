@@ -384,6 +384,10 @@
     {
      "de": "halb acht",
      "tr": "yedi buçuk"
+    },
+    {
+     "de": "acht Stunden",
+     "tr": "sekiz saat"
     }
    ],
    "patterns": [
@@ -391,15 +395,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"halb acht\" = 7:30, 8:30 değil!",
-    "\"acht\" (sekiz) ile \"Acht geben\" (dikkat etmek) karıştırma."
+    "Saat sekiz buçuk derken **halb acht** yanlış. Doğrusu **halb neun**.",
+    "Sekiz saat derken **acht Stunde** yanlış. Doğrusu **acht Stunden**."
    ],
    "examples": [
     {
      "id": "lx:acht:1",
      "de": "Ich fange um acht an.",
      "tr": "Sekizde başlıyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "worker starting morning shift"
     },
     {
      "id": "lx:acht:2",
@@ -418,7 +423,8 @@
      "de": "– Wann geht der Bus? – Um acht Uhr acht.",
      "tr": "– Otobüs ne zaman kalkıyor? – Sekizi sekiz geçe.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "bus stop timetable"
     }
    ],
    "level": "A1",
@@ -427,6 +433,32 @@
    "domains": [
     "arbeit",
     "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Sekiz sayısını söyler.",
+    "ne_zaman_tr": "Fiyat, saat ve süre söylerken.",
+    "parcalar": [],
+    "ipucu_tr": "**um acht** saat sekizde demektir."
+   },
+   "forms": [
+    {
+     "de": "Ich arbeite ___ Stunden.",
+     "answer": "acht",
+     "tr": "Sekiz saat çalışıyorum.",
+     "hint_tr": "Sekiz **acht** olur."
+    },
+    {
+     "de": "Die Praxis öffnet um ___.",
+     "answer": "acht",
+     "tr": "Muayenehane sekizde açılıyor.",
+     "hint_tr": "Sekizde derken **um acht** denir."
+    },
+    {
+     "de": "Es ist halb ___.",
+     "answer": "acht",
+     "tr": "Saat yedi buçuk.",
+     "hint_tr": "**halb acht** yedi buçuk demektir, sekiz buçuk değil."
+    }
    ]
   },
   {
@@ -922,7 +954,7 @@
    "pos": "noun",
    "art": "das",
    "pl": "Geschenke",
-   "img": "gift box",
+   "img": "wrapped gift box with ribbon",
    "collocations": [
     {
      "de": "ein Geschenk machen",
@@ -938,8 +970,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Mağazada \"Können Sie das als Geschenk einpacken?\" = Hediye paketi yapar mısınız?",
-    "Nötr: \"das Geschenk\"."
+    "Hediye aldım derken **Ich habe Geschenk gekauft** yanlış. Doğrusu **Ich habe ein Geschenk gekauft**."
    ],
    "examples": [
     {
@@ -974,7 +1005,12 @@
    "domains": [
     "freizeit",
     "einkaufen"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Birine karşılıksız verdiğin şeyi anlatır.",
+    "parcalar": [],
+    "ipucu_tr": "**als Geschenk einpacken** hediye paketi yapmak demektir."
+   }
   },
   {
    "id": "lx:Seele",
@@ -1526,7 +1562,7 @@
   {
    "id": "lx:Bescheid",
    "de": "Bescheid",
-   "tr": "haber; resmî karar",
+   "tr": "haber, resmî karar",
    "pos": "noun",
    "art": "der",
    "pl": "Bescheide",
@@ -1545,8 +1581,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"Sag mir Bescheid\" = Bana haber ver; çok sık.",
-    "Resmî dairede \"Bescheid\" = yazılı karar: \"Sie bekommen einen Bescheid per Post\"."
+    "Sana haber veririm derken **Ich sage dich Bescheid** yanlış. Doğrusu **Ich sage dir Bescheid**.",
+    "Bana haber ver derken **Gib mir ein Bescheid** yanlış. Doğrusu **Gib mir Bescheid**."
    ],
    "examples": [
     {
@@ -1559,7 +1595,8 @@
      "id": "lx:Bescheid:2",
      "de": "Ich habe den Bescheid vom Amt bekommen.",
      "tr": "Daireden kararı aldım.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "official letter from government office on table"
     },
     {
      "id": "lx:Bescheid:3",
@@ -1582,7 +1619,13 @@
     "amt",
     "arbeit",
     "telefon"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Birine verilen haberi anlatır.",
+    "ne_zaman_tr": "Birinden sonucu bildirmesini isterken.",
+    "parcalar": [],
+    "ipucu_tr": "Resmî dairenin yazılı kararına da **Bescheid** denir."
+   }
   },
   {
    "id": "lx:jemals",
@@ -1714,7 +1757,7 @@
   {
    "id": "lx:feiern",
    "de": "feiern",
-   "tr": "kutlamak; eğlenmek",
+   "tr": "kutlamak, eğlenmek",
    "pos": "verb",
    "verb": {
     "praesens3": "feiert",
@@ -1741,15 +1784,15 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"kutlamak\" Akkusativ ve edatsız: \"Wir feiern Geburtstag\".",
-    "\"feiern gehen\" = gece eğlenmeye çıkmak."
+    "Doğum günümü kutluyorum derken **Ich feiere mein Geburtstag** yanlış. Doğrusu **Ich feiere meinen Geburtstag**."
    ],
    "examples": [
     {
      "id": "lx:feiern:1",
      "de": "Am Samstag feiern wir meinen Geburtstag.",
      "tr": "Cumartesi doğum günümü kutluyoruz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "family birthday party with cake"
     },
     {
      "id": "lx:feiern:2",
@@ -1776,7 +1819,12 @@
    "freqRank": 751,
    "domains": [
     "freizeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Özel bir günü kutlamayı söyler.",
+    "parcalar": [],
+    "ipucu_tr": "**feiern gehen** eğlenmeye çıkmak demektir."
+   }
   },
   {
    "id": "lx:mitnehmen",
@@ -2159,7 +2207,8 @@
    "freqRank": 758,
    "domains": [
     "gefuehle"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:sieben",
@@ -2174,6 +2223,10 @@
     {
      "de": "halb sieben",
      "tr": "altı buçuk"
+    },
+    {
+     "de": "sieben Tage",
+     "tr": "yedi gün"
     }
    ],
    "patterns": [
@@ -2181,21 +2234,23 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"halb sieben\" = 6:30!",
-    "Konuşmada \"siebzehn\" ile \"siebzig\" karıştırma (17 / 70)."
+    "Saat yedi buçuk derken **halb sieben** yanlış. Doğrusu **halb acht**.",
+    "On yedi derken **siebenzehn** yanlış. Doğrusu **siebzehn**."
    ],
    "examples": [
     {
      "id": "lx:sieben:1",
      "de": "Ich stehe um sieben auf.",
      "tr": "Yedide kalkıyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person getting out of bed morning"
     },
     {
      "id": "lx:sieben:2",
      "de": "Der Laden öffnet um halb sieben.",
      "tr": "Dükkân altı buçukta açılıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "shopkeeper opening store early morning"
     },
     {
      "id": "lx:sieben:3",
@@ -2217,6 +2272,32 @@
    "domains": [
     "arbeit",
     "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Yedi sayısını söyler.",
+    "ne_zaman_tr": "Fiyat, saat ve süre söylerken.",
+    "parcalar": [],
+    "ipucu_tr": "**um sieben** saat yedide demektir."
+   },
+   "forms": [
+    {
+     "de": "Die Woche hat ___ Tage.",
+     "answer": "sieben",
+     "tr": "Haftada yedi gün var.",
+     "hint_tr": "Yedi **sieben** olur."
+    },
+    {
+     "de": "Um ___ esse ich zu Abend.",
+     "answer": "sieben",
+     "tr": "Yedide akşam yemeği yiyorum.",
+     "hint_tr": "Yedide derken **um sieben** denir."
+    },
+    {
+     "de": "Es ist halb ___.",
+     "answer": "sieben",
+     "tr": "Saat altı buçuk.",
+     "hint_tr": "**halb sieben** altı buçuk demektir: yediye yarım saat var."
+    }
    ]
   },
   {
@@ -4461,7 +4542,7 @@
   {
    "id": "lx:Chef",
    "de": "Chef",
-   "tr": "şef, patron",
+   "tr": "patron, şef",
    "pos": "noun",
    "art": "der",
    "pl": "Chefs",
@@ -4480,8 +4561,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kadın için \"die Chefin\"; \"Chef\" restoranda aşçıbaşı değil, patron/şef anlamında.",
-    "Konuşmada \"der Chef\" hitap olarak da: \"Danke, Chef!\""
+    "Yemeği yapan şef derken **der Chef** yanlış. Doğrusu **der Koch**.",
+    "Kadın patronum derken **meine Chef** yanlış. Doğrusu **meine Chefin**."
    ],
    "examples": [
     {
@@ -4492,9 +4573,10 @@
     },
     {
      "id": "lx:Chef:2",
-     "de": "Ich muss mit meiner Chefin sprechen.",
+     "de": "Ich muss mit meinem Chef sprechen.",
      "tr": "Şefimle konuşmam lazım.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "employee talking with manager in office"
     },
     {
      "id": "lx:Chef:3",
@@ -4515,7 +4597,12 @@
    "freqRank": 802,
    "domains": [
     "arbeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "İş yerinde yöneticini anlatır.",
+    "parcalar": [],
+    "ipucu_tr": "Kadın yöneticiye **Chefin** denir."
+   }
   },
   {
    "id": "lx:Zug",
@@ -4713,6 +4800,14 @@
     {
      "de": "Anfang Mai",
      "tr": "mayıs başı"
+    },
+    {
+     "de": "von Anfang an",
+     "tr": "en başından beri"
+    },
+    {
+     "de": "Anfang der Woche",
+     "tr": "hafta başında"
     }
    ],
    "patterns": [
@@ -4720,21 +4815,22 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Ay başı artikelsiz: \"Anfang Juni\", \"Ende Juni\".",
-    "\"von Anfang an\" = baştan beri."
+    "Haziran başında derken **am Anfang Juni** yanlış. Doğrusu **Anfang Juni**."
    ],
    "examples": [
     {
      "id": "lx:Anfang:1",
      "de": "Am Anfang war alles neu für mich.",
      "tr": "Başta her şey benim için yeniydi.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "new employee first day at office"
     },
     {
      "id": "lx:Anfang:2",
      "de": "Der Kurs beginnt Anfang September.",
      "tr": "Kurs eylül başında başlıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "adult language class first lesson"
     },
     {
      "id": "lx:Anfang:3",
@@ -4755,7 +4851,45 @@
    "freqRank": 807,
    "domains": [
     "arbeit"
-   ]
+   ],
+   "forms": [
+    {
+     "de": "Das ist ___ guter Anfang.",
+     "answer": "ein",
+     "tr": "Bu iyi bir başlangıç.",
+     "hint_tr": "**der Anfang** için bir derken **ein** gelir."
+    },
+    {
+     "de": "___ Anfang war schwer.",
+     "answer": "Der",
+     "tr": "Başlangıç zordu.",
+     "hint_tr": "Hangi başlangıç olduğu belliyse **der Anfang** denir."
+    },
+    {
+     "de": "Ich habe ___ Anfang nicht verstanden.",
+     "answer": "den",
+     "tr": "Başını anlamadım.",
+     "hint_tr": "Neyi anlamadın sorusunun cevabında **den Anfang** denir."
+    },
+    {
+     "de": "___ Anfang ist alles neu.",
+     "answer": "Am",
+     "tr": "Başta her şey yeni.",
+     "hint_tr": "Başta derken **am Anfang** denir."
+    },
+    {
+     "de": "Ich komme Anfang ___ Woche.",
+     "answer": "der",
+     "tr": "Hafta başında geliyorum.",
+     "hint_tr": "Hafta başında derken **Anfang der Woche** denir."
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin ilk bölümünü söyler.",
+    "ne_zaman_tr": "Ay başı ve yeni iş konuşurken.",
+    "parcalar": [],
+    "ipucu_tr": "**Anfang Juni** haziran başı demektir."
+   }
   },
   {
    "id": "lx:leiden",
@@ -5200,7 +5334,8 @@
    "freqRank": 815,
    "domains": [
     "freizeit"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:Partner",
@@ -5761,7 +5896,7 @@
    "pos": "noun",
    "art": "der",
    "pl": "Rücken",
-   "img": "back pain",
+   "img": "man holding his lower back",
    "collocations": [
     {
      "de": "Rückenschmerzen",
@@ -5777,8 +5912,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"Sırtım ağrıyor\" = \"Mir tut der Rücken weh\" / \"Ich habe Rückenschmerzen\".",
-    "Fiil \"rücken\" (kaydırmak) ile karıştırma."
+    "Sırtım ağrıyor derken **Mich tut der Rücken weh** yanlış. Doğrusu **Mir tut der Rücken weh**."
    ],
    "examples": [
     {
@@ -5813,7 +5947,13 @@
    "domains": [
     "arzt",
     "sport"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Vücudunun arka bölümünü anlatır.",
+    "ne_zaman_tr": "Doktorda ağrını anlatırken.",
+    "parcalar": [],
+    "ipucu_tr": "**Rückenschmerzen** sırt ağrısı demektir."
+   }
   },
   {
    "id": "lx:Unfall",
@@ -5837,8 +5977,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"kaza yapmak/geçirmek\" = \"einen Unfall haben\" (konuşmada \"bauen\").",
-    "Çoğulu umlautlu \"Unfälle\"."
+    "Kaza yaptım derken **Ich habe Unfall gemacht** yanlış. Doğrusu **Ich hatte einen Unfall**."
    ],
    "examples": [
     {
@@ -5851,7 +5990,8 @@
      "id": "lx:Unfall:2",
      "de": "Auf der Autobahn gab es einen Unfall.",
      "tr": "Otoyolda bir kaza oldu.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "minor car accident on road"
     },
     {
      "id": "lx:Unfall:3",
@@ -5873,7 +6013,13 @@
    "domains": [
     "notfall",
     "verkehr"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Beklenmedik ve zarar veren bir olayı anlatır.",
+    "ne_zaman_tr": "Polise, doktora ya da işe haber verirken.",
+    "parcalar": [],
+    "ipucu_tr": "**Autounfall** trafik kazası demektir."
+   }
   },
   {
    "id": "lx:Hochzeit",

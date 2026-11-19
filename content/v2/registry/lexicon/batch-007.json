@@ -7,7 +7,7 @@
   {
    "id": "lx:kosten",
    "de": "kosten",
-   "tr": "tutmak (fiyat); tadına bakmak",
+   "tr": "fiyatı olmak, tadına bakmak",
    "pos": "verb",
    "verb": {
     "praesens3": "kostet",
@@ -26,6 +26,14 @@
     {
      "de": "kostenlos",
      "tr": "ücretsiz"
+    },
+    {
+     "de": "viel kosten",
+     "tr": "pahalı olmak"
+    },
+    {
+     "de": "Wie viel kostet das?",
+     "tr": "Bu ne kadar?"
     }
    ],
    "patterns": [
@@ -33,15 +41,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Fiyat özne: \"Das kostet zehn Euro\" (\"Es ist zehn Euro\" konuşmada olur ama \"kostet\" doğal).",
-    "\"probieren\" = tadına bakmak (konuşmada daha sık)."
+    "Bu ne kadar derken **Wie kostet das?** yanlış. Doğrusu **Wie viel kostet das?**",
+    "Elli avro tutuyor derken **Das kostet fünfzig Euros** yanlış. Doğrusu **Das kostet fünfzig Euro**."
    ],
    "examples": [
     {
      "id": "lx:kosten:1",
      "de": "Was kostet das Ticket?",
      "tr": "Bilet ne kadar?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "train ticket machine"
     },
     {
      "id": "lx:kosten:2",
@@ -60,7 +69,8 @@
      "de": "– Wie viel kostet die Jacke? – Neunundvierzig Euro.",
      "tr": "– Ceket ne kadar? – Kırk dokuz avro.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "price tag on jacket in store"
     }
    ],
    "level": "A1",
@@ -68,6 +78,38 @@
    "freqRank": 605,
    "domains": [
     "einkaufen"
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin fiyatını söyler.",
+    "ne_zaman_tr": "Alışverişte fiyat sorarken.",
+    "parcalar": [],
+    "ipucu_tr": "Yemekte **kosten** tadına bakmak demektir."
+   },
+   "forms": [
+    {
+     "de": "Das Brot ___ drei Euro.",
+     "answer": "kostet",
+     "tr": "Ekmek üç avro.",
+     "hint_tr": "Tek bir şeyin fiyatında **kostet** olur."
+    },
+    {
+     "de": "Die Schuhe ___ fünfzig Euro.",
+     "answer": "kosten",
+     "tr": "Ayakkabılar elli avro.",
+     "hint_tr": "Birden çok şeyin fiyatında **kosten** olur."
+    },
+    {
+     "de": "Was ___ ein Kaffee?",
+     "answer": "kostet",
+     "tr": "Bir kahve ne kadar?",
+     "hint_tr": "Fiyat sorarken **Was kostet** denir."
+    },
+    {
+     "de": "Das hat zwanzig Euro ___.",
+     "answer": "gekostet",
+     "tr": "Bu yirmi avro tuttu.",
+     "hint_tr": "Geçmişi anlatırken **hat gekostet** denir."
+    }
    ]
   },
   {
@@ -242,7 +284,8 @@
    "freqRank": 608,
    "domains": [
     "arbeit"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:persönlich",
@@ -2433,7 +2476,8 @@
    "domains": [
     "arbeit",
     "telefon"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:nochmal",
@@ -2453,28 +2497,28 @@
    "patterns": [
     "pt:noch-mal"
    ],
-   "register": "neutral",
+   "register": "informal",
    "mistakes_tr": [
-    "\"nochmal\" = \"noch einmal\"; anlamadığında en kullanışlı kelime.",
-    "\"Wie heißen Sie nochmal?\" = Adınız neydi?"
+    "Tekrar söyleyin derken **Sagen Sie das wieder** doğal değil. Doğrusu **Sagen Sie das nochmal**."
    ],
    "examples": [
     {
      "id": "lx:nochmal:1",
      "de": "Können Sie das nochmal sagen?",
      "tr": "Bunu bir daha söyleyebilir misiniz?",
-     "layer": "hd"
+     "layer": "alltag",
+     "img": "woman listening carefully on the phone"
     },
     {
      "id": "lx:nochmal:2",
      "de": "Wie war Ihr Name nochmal?",
      "tr": "Adınız neydi?",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:nochmal:3",
      "de": "Nochmal von vorne!",
-     "tr": "Baştan bir daha!",
+     "tr": "Bir daha, en baştan!",
      "layer": "alltag"
     },
     {
@@ -2490,7 +2534,13 @@
    "freqRank": 648,
    "domains": [
     "strategie"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin tekrar yapılmasını söyler.",
+    "ne_zaman_tr": "Anlamadığında, karşındakinden tekrar etmesini isterken.",
+    "parcalar": [],
+    "ipucu_tr": "**Wie war Ihr Name nochmal?** adınız neydi demektir."
+   }
   },
   {
    "id": "lx:Sex",
@@ -2927,11 +2977,11 @@
   {
    "id": "lx:Karte",
    "de": "Karte",
-   "tr": "kart; harita; bilet; menü",
+   "tr": "kart, harita, menü",
    "pos": "noun",
    "art": "die",
    "pl": "Karten",
-   "img": "bank card",
+   "img": "hand holding bank card at payment terminal",
    "collocations": [
     {
      "de": "mit Karte zahlen",
@@ -2940,6 +2990,18 @@
     {
      "de": "die Speisekarte",
      "tr": "yemek menüsü"
+    },
+    {
+     "de": "die Fahrkarte",
+     "tr": "bilet"
+    },
+    {
+     "de": "die Gesundheitskarte",
+     "tr": "sağlık kartı"
+    },
+    {
+     "de": "die EC-Karte",
+     "tr": "banka kartı"
     }
    ],
    "patterns": [
@@ -2947,34 +3009,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Çok anlamlı: kart, bilet (\"Fahrkarte\"), harita (\"Landkarte\"), menü (\"Speisekarte\").",
-    "Restoranda \"Die Karte, bitte\" = Menü lütfen."
+    "Kartla ödeyebilir miyim derken **Kann ich Karte zahlen?** yanlış. Doğrusu **Kann ich mit Karte zahlen?**",
+    "Yemek listesini isterken **Das Menü, bitte** yanlış. Doğrusu **Die Karte, bitte**."
    ],
    "examples": [
     {
      "id": "lx:Karte:1",
      "de": "Kann ich mit Karte zahlen?",
      "tr": "Kartla ödeyebilir miyim?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "customer paying with card in cafe"
     },
     {
      "id": "lx:Karte:2",
      "de": "Können Sie mir das auf der Karte zeigen?",
      "tr": "Bunu bana haritada gösterebilir misiniz?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person pointing at city map"
     },
     {
      "id": "lx:Karte:3",
      "de": "Nur Karte, kein Bargeld.",
      "tr": "Sadece kart, nakit yok.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "card only sign at checkout"
     },
     {
      "id": "lx:Karte:4",
      "de": "– Bar oder Karte? – Karte, bitte.",
      "tr": "– Nakit mi kart mı? – Kart, lütfen.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "cashier holding card reader for customer"
     }
    ],
    "level": "A1",
@@ -2984,6 +3050,49 @@
     "einkaufen",
     "verkehr",
     "essen"
+   ],
+   "exp": {
+    "anlam_tr": "Ödeme yaparken kullandığın kartı anlatır.",
+    "parcalar": [],
+    "ipucu_tr": "Restoranda **die Karte** menü, yolda harita demektir."
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ neue Karte.",
+     "answer": "eine",
+     "tr": "Bu yeni bir kart.",
+     "hint_tr": "**die Karte** için bir derken **eine** gelir."
+    },
+    {
+     "de": "___ Karte funktioniert nicht.",
+     "answer": "Die",
+     "tr": "Kart çalışmıyor.",
+     "hint_tr": "Hangi kart olduğu belliyse **die Karte** denir."
+    },
+    {
+     "de": "Ich brauche ___ neue Karte.",
+     "answer": "eine",
+     "tr": "Yeni bir karta ihtiyacım var.",
+     "hint_tr": "**brauchen** sonrası **eine** gelir."
+    },
+    {
+     "de": "Können wir bitte ___ Karte haben?",
+     "answer": "die",
+     "tr": "Menüyü alabilir miyiz lütfen?",
+     "hint_tr": "Restoranda menü isterken **die Karte** denir."
+    },
+    {
+     "de": "Was steht auf ___ Karte?",
+     "answer": "der",
+     "tr": "Kartta ne yazıyor?",
+     "hint_tr": "**auf** ile üstünde yazanı sorarken **der** gelir."
+    },
+    {
+     "de": "Ich zahle mit ___ anderen Karte.",
+     "answer": "einer",
+     "tr": "Başka bir kartla ödüyorum.",
+     "hint_tr": "**mit** sonrası **einer** gelir."
+    }
    ]
   },
   {
@@ -3721,7 +3830,8 @@
    "freqRank": 668,
    "domains": [
     "gefuehle"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:Nähe",
@@ -3840,7 +3950,8 @@
    "freqRank": 670,
    "domains": [
     "einkaufen"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:kalt",
@@ -3923,8 +4034,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Ağrı genelde çoğul: \"Ich habe Schmerzen\", \"Bauchschmerzen\".",
-    "Doktor: \"Wo haben Sie Schmerzen?\" / \"Seit wann?\""
+    "Ağrım var derken **Ich habe Schmerz** doğal değil. Doğrusu **Ich habe Schmerzen**.",
+    "Karnım ağrıyor derken **Mein Bauch hat Schmerzen** yanlış. Doğrusu **Ich habe Bauchschmerzen**."
    ],
    "examples": [
     {
@@ -3936,7 +4047,7 @@
     {
      "id": "lx:Schmerz:2",
      "de": "Haben Sie etwas gegen Schmerzen?",
-     "tr": "Ağrıya karşı bir şeyiniz var mı?",
+     "tr": "Ağrıya iyi gelen bir şeyiniz var mı?",
      "layer": "hd"
     },
     {
@@ -3950,7 +4061,8 @@
      "de": "– Wo haben Sie Schmerzen? – Hier, im Rücken.",
      "tr": "– Neresi ağrıyor? – Burası, sırtım.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "doctor examining patient back"
     }
    ],
    "level": "A2",
@@ -3958,7 +4070,13 @@
    "freqRank": 672,
    "domains": [
     "arzt"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Vücudunda hissettiğin ağrıyı ve acıyı anlatır.",
+    "ne_zaman_tr": "Doktora nerenin ağrıdığını anlatırken.",
+    "parcalar": [],
+    "ipucu_tr": "**Kopfschmerzen** baş ağrısı demektir."
+   }
   },
   {
    "id": "lx:Tier",
@@ -5006,7 +5124,8 @@
    "freqRank": 693,
    "domains": [
     "wohnen"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:erwischen",
@@ -5987,7 +6106,8 @@
    "freqRank": 712,
    "domains": [
     "freizeit"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:vorher",

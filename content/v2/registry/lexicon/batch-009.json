@@ -29,6 +29,18 @@
     {
      "de": "Name und Adresse",
      "tr": "ad ve adres"
+    },
+    {
+     "de": "die E-Mail-Adresse",
+     "tr": "e-posta adresi"
+    },
+    {
+     "de": "die falsche Adresse",
+     "tr": "yanlış adres"
+    },
+    {
+     "de": "die Adresse aufschreiben",
+     "tr": "adresi not etmek"
     }
    ],
    "patterns": [
@@ -45,32 +57,37 @@
      "id": "lx:Adresse:1",
      "de": "Wie ist Ihre Adresse, bitte?",
      "tr": "Adresiniz nedir, lütfen?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "office clerk talking to citizen at counter"
     },
     {
      "id": "lx:Adresse:2",
      "de": "Ich habe eine neue Adresse: Brunnengasse sieben.",
      "tr": "Yeni bir adresim var: Brunnengasse yedi.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "moving boxes in new apartment"
     },
     {
      "id": "lx:Adresse:3",
      "de": "Das Paket ist an die falsche Adresse gegangen.",
      "tr": "Paket yanlış adrese gitmiş.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "parcel left at wrong door"
     },
     {
      "id": "lx:Adresse:4",
      "de": "Schick mir mal die Adresse, ja?",
      "tr": "Adresi bana bir atsana, olur mu?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "map location on smartphone"
     },
     {
      "id": "lx:Adresse:5",
      "de": "– Ist das noch Ihre Adresse? – Nein, ich wohne jetzt in der Brunnengasse.",
      "tr": "– Adresiniz hâlâ bu mu? – Hayır, artık Brunnengasse'de oturuyorum.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "street sign and house number"
     }
    ],
    "level": "A1",
@@ -92,7 +109,45 @@
     "ne_zaman_tr": "Resmî dairede, doktorda ve kargoda sorulur.",
     "parcalar": [],
     "ipucu_tr": "Önce sokak, sonra numara söylenir: **Brunnengasse 7**."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ neue Adresse.",
+     "answer": "eine",
+     "tr": "Bu yeni bir adres.",
+     "hint_tr": "**die Adresse** için bir derken **eine** gelir."
+    },
+    {
+     "de": "___ Adresse ist falsch.",
+     "answer": "Die",
+     "tr": "Adres yanlış.",
+     "hint_tr": "Hangi adres olduğu belliyse **die Adresse** denir."
+    },
+    {
+     "de": "Ich brauche ___ Adresse.",
+     "answer": "eine",
+     "tr": "Bir adrese ihtiyacım var.",
+     "hint_tr": "**brauchen** sonrası **eine Adresse** gelir."
+    },
+    {
+     "de": "Ich kenne ___ Adresse nicht.",
+     "answer": "die",
+     "tr": "Adresi bilmiyorum.",
+     "hint_tr": "Hangi adres olduğu belliyse **die Adresse** gelir."
+    },
+    {
+     "de": "Bei ___ Adresse fehlt die Hausnummer.",
+     "answer": "der",
+     "tr": "Adreste ev numarası eksik.",
+     "hint_tr": "**bei** sonrası **der** gelir."
+    },
+    {
+     "de": "Mit ___ falschen Adresse kommt das Paket nicht an.",
+     "answer": "einer",
+     "tr": "Yanlış bir adresle paket ulaşmaz.",
+     "hint_tr": "**mit** sonrası **einer** gelir."
+    }
+   ]
   },
   {
    "id": "lx:neun",
@@ -126,7 +181,8 @@
      "id": "lx:neun:1",
      "de": "Die Praxis macht um neun auf.",
      "tr": "Muayenehane saat dokuzda açılıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "opening hours on clinic door"
     },
     {
      "id": "lx:neun:2",
@@ -145,7 +201,8 @@
      "de": "– Wann kommt der Bus? – In neun Minuten.",
      "tr": "– Otobüs ne zaman geliyor? – Dokuz dakika sonra.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "bus arriving at stop"
     }
    ],
    "level": "A1",
@@ -159,7 +216,27 @@
     "anlam_tr": "Dokuz sayısını söyler.",
     "parcalar": [],
     "ipucu_tr": "**eu** burada **oy** gibi okunur."
-   }
+   },
+   "forms": [
+    {
+     "de": "Es ist ___ Uhr.",
+     "answer": "neun",
+     "tr": "Saat dokuz.",
+     "hint_tr": "Dokuz **neun** olur, **eu** burada **oy** gibi okunur."
+    },
+    {
+     "de": "Ich komme um ___.",
+     "answer": "neun",
+     "tr": "Dokuzda geliyorum.",
+     "hint_tr": "Dokuzda derken **um neun** denir."
+    },
+    {
+     "de": "Wir haben ___ Tage Urlaub.",
+     "answer": "neun",
+     "tr": "Dokuz gün iznimiz var.",
+     "hint_tr": "Dokuz gün derken **neun Tage** denir."
+    }
+   ]
   },
   {
    "id": "lx:Wochenende",
@@ -180,6 +257,14 @@
     {
      "de": "übers Wochenende",
      "tr": "hafta sonu boyunca"
+    },
+    {
+     "de": "jedes Wochenende",
+     "tr": "her hafta sonu"
+    },
+    {
+     "de": "nächstes Wochenende",
+     "tr": "gelecek hafta sonu"
     }
    ],
    "patterns": [
@@ -208,7 +293,8 @@
      "id": "lx:Wochenende:3",
      "de": "Schönes Wochenende, bis Montag!",
      "tr": "İyi hafta sonları, pazartesi görüşürüz!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "coworkers saying goodbye leaving office"
     },
     {
      "id": "lx:Wochenende:4",
@@ -245,7 +331,39 @@
       "tr": "son"
      }
     ]
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich arbeite ___ Wochenende.",
+     "answer": "am",
+     "tr": "Hafta sonu çalışıyorum.",
+     "hint_tr": "Hafta sonu derken **am Wochenende** denir."
+    },
+    {
+     "de": "Das war ___ schönes Wochenende.",
+     "answer": "ein",
+     "tr": "Güzel bir hafta sonuydu.",
+     "hint_tr": "**das Wochenende** için bir derken **ein** gelir."
+    },
+    {
+     "de": "___ Wochenende war schön.",
+     "answer": "Das",
+     "tr": "Hafta sonu güzeldi.",
+     "hint_tr": "Hangi hafta sonu olduğu belliyse **das Wochenende** denir."
+    },
+    {
+     "de": "Ich wünsche dir ___ schönes Wochenende.",
+     "answer": "ein",
+     "tr": "Sana iyi hafta sonları dilerim.",
+     "hint_tr": "İyi dilekte **ein schönes Wochenende** denir."
+    },
+    {
+     "de": "___ Wochenende fahre ich nach Hause.",
+     "answer": "Jedes",
+     "tr": "Her hafta sonu eve gidiyorum.",
+     "hint_tr": "Her hafta sonu derken **jedes Wochenende** denir."
+    }
+   ]
   },
   {
    "id": "lx:Nachmittag",
@@ -302,7 +420,8 @@
      "de": "– Ist Herr Wimmer da? – Nein, er kommt erst am Nachmittag.",
      "tr": "– Wimmer Bey burada mı? – Hayır, ancak öğleden sonra gelecek.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "empty desk in afternoon light"
     }
    ],
    "level": "A1",
@@ -325,7 +444,33 @@
       "tr": "öğle"
      }
     ]
-   }
+   },
+   "forms": [
+    {
+     "de": "___ Nachmittag bin ich zu Hause.",
+     "answer": "Am",
+     "tr": "Öğleden sonra evdeyim.",
+     "hint_tr": "Öğleden sonra derken **am Nachmittag** denir."
+    },
+    {
+     "de": "Morgen ___ arbeite ich nicht.",
+     "answer": "Nachmittag",
+     "tr": "Yarın öğleden sonra çalışmıyorum.",
+     "hint_tr": "**morgen Nachmittag** yarın öğleden sonra demektir."
+    },
+    {
+     "de": "___ Nachmittag war schön.",
+     "answer": "Der",
+     "tr": "Öğleden sonra güzeldi.",
+     "hint_tr": "O öğleden sonrayı anlatırken **der Nachmittag** denir."
+    },
+    {
+     "de": "Wir haben einen freien ___.",
+     "answer": "Nachmittag",
+     "tr": "Boş bir öğleden sonramız var.",
+     "hint_tr": "**haben** sonrası **einen freien Nachmittag** gelir."
+    }
+   ]
   },
   {
    "id": "lx:Sommer",
@@ -362,26 +507,30 @@
      "id": "lx:Sommer:1",
      "de": "Im Sommer ist der Biergarten jeden Abend voll.",
      "tr": "Yazın bira bahçesi her akşam dolu oluyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "crowded beer garden summer evening"
     },
     {
      "id": "lx:Sommer:2",
      "de": "Diesen Sommer bleiben wir zu Hause.",
      "tr": "Bu yaz evde kalıyoruz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "family relaxing in home garden"
     },
     {
      "id": "lx:Sommer:3",
      "de": "Letzten Sommer war's echt heiß hier.",
      "tr": "Geçen yaz burası gerçekten çok sıcaktı.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "hot summer day in city"
     },
     {
      "id": "lx:Sommer:4",
      "de": "– Fährst du im Sommer weg? – Ja, im August, zwei Wochen.",
      "tr": "– Yazın bir yere gidiyor musun? – Evet, ağustosta, iki hafta.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "loading suitcases into car summer trip"
     }
    ],
    "level": "A1",
@@ -395,7 +544,33 @@
     "anlam_tr": "Yılın en sıcak mevsimini söyler.",
     "parcalar": [],
     "ipucu_tr": "Haziran, temmuz ve ağustos bu mevsimdedir."
-   }
+   },
+   "forms": [
+    {
+     "de": "___ Sommer ist es hier heiß.",
+     "answer": "Im",
+     "tr": "Yazın burası sıcak oluyor.",
+     "hint_tr": "Yazın derken **im Sommer** denir."
+    },
+    {
+     "de": "___ Sommer war sehr heiß.",
+     "answer": "Der",
+     "tr": "Yaz çok sıcak geçti.",
+     "hint_tr": "Yaz **der Sommer** olur."
+    },
+    {
+     "de": "Das war ___ schöner Sommer.",
+     "answer": "ein",
+     "tr": "Güzel bir yaz geçti.",
+     "hint_tr": "**der Sommer** için bir derken **ein** gelir."
+    },
+    {
+     "de": "___ Sommer bleibe ich hier.",
+     "answer": "Diesen",
+     "tr": "Bu yaz burada kalıyorum.",
+     "hint_tr": "Bu yaz derken **diesen Sommer** denir."
+    }
+   ]
   },
   {
    "id": "lx:Freitag",
@@ -416,6 +591,18 @@
     {
      "de": "Freitagabend",
      "tr": "cuma akşamı"
+    },
+    {
+     "de": "jeden Freitag",
+     "tr": "her cuma"
+    },
+    {
+     "de": "nächsten Freitag",
+     "tr": "gelecek cuma"
+    },
+    {
+     "de": "bis Freitag",
+     "tr": "cumaya kadar"
     }
    ],
    "patterns": [
@@ -451,7 +638,8 @@
      "de": "– Wann ist die Besprechung? – Am Freitag um zehn.",
      "tr": "– Toplantı ne zaman? – Cuma günü saat onda.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "team meeting around office table"
     }
    ],
    "level": "A1",
@@ -465,12 +653,38 @@
     "anlam_tr": "Hafta sonundan önceki son iş gününü söyler.",
     "parcalar": [],
     "ipucu_tr": "Kapılarda ve takvimde kısaltması **Fr** olur."
-   }
+   },
+   "forms": [
+    {
+     "de": "___ Freitag!",
+     "answer": "Bis",
+     "tr": "Cuma görüşürüz!",
+     "hint_tr": "Vedalaşırken **Bis Freitag!** cuma görüşürüz demektir."
+    },
+    {
+     "de": "Am ___ gehen wir essen.",
+     "answer": "Freitag",
+     "tr": "Cuma günü yemeğe gidiyoruz.",
+     "hint_tr": "Cuma **Freitag** olur."
+    },
+    {
+     "de": "Kommst du ___ Freitag?",
+     "answer": "am",
+     "tr": "Cuma günü geliyor musun?",
+     "hint_tr": "Cuma günü derken **am Freitag** denir."
+    },
+    {
+     "de": "Ich arbeite von Montag bis ___.",
+     "answer": "Freitag",
+     "tr": "Pazartesiden cumaya kadar çalışıyorum.",
+     "hint_tr": "İş haftasının son günü **Freitag**, yani cuma."
+    }
+   ]
   },
   {
    "id": "lx:Sonntag",
    "de": "Sonntag",
-   "tr": "pazar",
+   "tr": "pazar günü",
    "pos": "noun",
    "art": "der",
    "pl": "Sonntage",
@@ -481,11 +695,23 @@
     },
     {
      "de": "sonntags",
-     "tr": "pazarları"
+     "tr": "pazar günleri"
     },
     {
      "de": "Sonntagabend",
      "tr": "pazar akşamı"
+    },
+    {
+     "de": "jeden Sonntag",
+     "tr": "her pazar günü"
+    },
+    {
+     "de": "diesen Sonntag",
+     "tr": "bu pazar günü"
+    },
+    {
+     "de": "von Freitag bis Sonntag",
+     "tr": "cumadan pazar gününe kadar"
     }
    ],
    "patterns": [
@@ -507,7 +733,7 @@
     {
      "id": "lx:Sonntag:2",
      "de": "Sonntags hat die Bäckerei Stadler bis elf offen.",
-     "tr": "Stadler Fırını pazarları on bire kadar açık.",
+     "tr": "Stadler Fırını pazar günleri on bire kadar açık.",
      "layer": "hd"
     },
     {
@@ -519,9 +745,10 @@
     {
      "id": "lx:Sonntag:4",
      "de": "– Arbeitest du am Sonntag? – Nein, da hab ich frei.",
-     "tr": "– Pazar çalışıyor musun? – Hayır, o gün izinliyim.",
+     "tr": "– Pazar günü çalışıyor musun? – Hayır, o gün izinliyim.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "person relaxing on sofa day off"
     }
    ],
    "level": "A1",
@@ -535,7 +762,33 @@
     "anlam_tr": "Haftanın son gününü söyler.",
     "parcalar": [],
     "ipucu_tr": "Her pazar demek için küçük harfle **sonntags** yazılır."
-   }
+   },
+   "forms": [
+    {
+     "de": "___ Sonntag schlafe ich lange.",
+     "answer": "Am",
+     "tr": "Pazar günü uzun uzun uyuyorum.",
+     "hint_tr": "Pazar günü derken **am Sonntag** denir."
+    },
+    {
+     "de": "___ Sonntag rufe ich meine Mutter an.",
+     "answer": "Jeden",
+     "tr": "Her pazar günü annemi arıyorum.",
+     "hint_tr": "Her pazar günü derken **jeden Sonntag** denir."
+    },
+    {
+     "de": "Heute ist ___, alles ist zu.",
+     "answer": "Sonntag",
+     "tr": "Bugün pazar günü, her yer kapalı.",
+     "hint_tr": "Haftanın son günü **Sonntag**, yani pazar günü."
+    },
+    {
+     "de": "Wir kommen ___ Sonntag zurück.",
+     "answer": "diesen",
+     "tr": "Bu pazar günü dönüyoruz.",
+     "hint_tr": "Bu pazar günü derken **diesen Sonntag** denir."
+    }
+   ]
   },
   {
    "id": "lx:zwölf",
@@ -569,7 +822,8 @@
      "id": "lx:zwölf:1",
      "de": "Um zwölf machen wir Mittagspause.",
      "tr": "Saat on ikide öğle molası veriyoruz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "clock at noon lunch break"
     },
     {
      "id": "lx:zwölf:2",
@@ -588,7 +842,8 @@
      "de": "– Wie viele Eier brauchen Sie? – Zwölf, bitte.",
      "tr": "– Kaç yumurta istiyorsunuz? – On iki, lütfen.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "carton of twelve eggs"
     }
    ],
    "level": "A1",
@@ -602,7 +857,27 @@
     "anlam_tr": "On iki sayısını söyler.",
     "parcalar": [],
     "ipucu_tr": "**ö** sesini Türkçedeki gibi söylersin."
-   }
+   },
+   "forms": [
+    {
+     "de": "Um ___ essen wir.",
+     "answer": "zwölf",
+     "tr": "On ikide yemek yiyoruz.",
+     "hint_tr": "On iki **zwölf** olur, **zweizehn** denmez."
+    },
+    {
+     "de": "Das Jahr hat ___ Monate.",
+     "answer": "zwölf",
+     "tr": "Bir yılda on iki ay var.",
+     "hint_tr": "On iki ay derken **zwölf Monate** denir."
+    },
+    {
+     "de": "Es ist gleich ___.",
+     "answer": "zwölf",
+     "tr": "Saat birazdan on iki.",
+     "hint_tr": "Saat söylerken sayı yeter: **Es ist gleich zwölf.**"
+    }
+   ]
   },
   {
    "id": "lx:Samstag",
@@ -623,6 +898,14 @@
     {
      "de": "jeden Samstag",
      "tr": "her cumartesi"
+    },
+    {
+     "de": "nächsten Samstag",
+     "tr": "gelecek cumartesi"
+    },
+    {
+     "de": "von Montag bis Samstag",
+     "tr": "pazartesiden cumartesiye kadar"
     }
    ],
    "patterns": [
@@ -658,7 +941,8 @@
      "de": "– Haben Sie am Samstag offen? – Ja, von acht bis zwölf.",
      "tr": "– Cumartesi açık mısınız? – Evet, sekizden on ikiye kadar.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "open sign on shop door"
     }
    ],
    "level": "A1",
@@ -673,7 +957,33 @@
     "anlam_tr": "Hafta sonunun ilk gününü söyler.",
     "parcalar": [],
     "ipucu_tr": "Kapılarda ve takvimde kısaltması **Sa** olur."
-   }
+   },
+   "forms": [
+    {
+     "de": "___ Samstag habe ich Zeit.",
+     "answer": "Am",
+     "tr": "Cumartesi günü vaktim var.",
+     "hint_tr": "Cumartesi günü derken **am Samstag** denir."
+    },
+    {
+     "de": "Ich gehe ___ Samstag einkaufen.",
+     "answer": "jeden",
+     "tr": "Her cumartesi alışverişe gidiyorum.",
+     "hint_tr": "Her cumartesi derken **jeden Samstag** denir."
+    },
+    {
+     "de": "Das Fest ist am ___.",
+     "answer": "Samstag",
+     "tr": "Şenlik cumartesi günü.",
+     "hint_tr": "Cumartesi **Samstag** olur, **Sonntag** ise pazar günüdür."
+    },
+    {
+     "de": "Ich habe ___ Samstag frei.",
+     "answer": "diesen",
+     "tr": "Bu cumartesi izinliyim.",
+     "hint_tr": "Bu cumartesi derken **diesen Samstag** denir."
+    }
+   ]
   },
   {
    "id": "lx:Montag",
@@ -694,6 +1004,18 @@
     {
      "de": "Montagmorgen",
      "tr": "pazartesi sabahı"
+    },
+    {
+     "de": "jeden Montag",
+     "tr": "her pazartesi"
+    },
+    {
+     "de": "von Montag bis Freitag",
+     "tr": "pazartesiden cumaya kadar"
+    },
+    {
+     "de": "nächsten Montag",
+     "tr": "gelecek pazartesi"
     }
    ],
    "patterns": [
@@ -709,7 +1031,8 @@
      "id": "lx:Montag:1",
      "de": "Am Montag rufe ich in der Praxis an.",
      "tr": "Pazartesi muayenehaneyi arayacağım.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person calling doctor office on phone"
     },
     {
      "id": "lx:Montag:2",
@@ -722,7 +1045,8 @@
      "id": "lx:Montag:3",
      "de": "Montags bin ich immer total müde.",
      "tr": "Pazartesileri hep çok yorgun oluyorum.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "tired person with coffee early morning"
     },
     {
      "id": "lx:Montag:4",
@@ -749,7 +1073,33 @@
     "anlam_tr": "Haftanın ilk iş gününü söyler.",
     "parcalar": [],
     "ipucu_tr": "Kapılarda ve takvimde kısaltması **Mo** olur."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich komme ___ Montag.",
+     "answer": "am",
+     "tr": "Pazartesi günü geliyorum.",
+     "hint_tr": "Pazartesi günü derken **am Montag** denir."
+    },
+    {
+     "de": "Heute ist ___.",
+     "answer": "Montag",
+     "tr": "Bugün pazartesi.",
+     "hint_tr": "Pazartesi **Montag** olur, büyük harfle başlar."
+    },
+    {
+     "de": "Ich arbeite ___ Montag.",
+     "answer": "jeden",
+     "tr": "Her pazartesi çalışıyorum.",
+     "hint_tr": "Her pazartesi derken **jeden Montag** denir."
+    },
+    {
+     "de": "Wir arbeiten von Montag ___ Freitag.",
+     "answer": "bis",
+     "tr": "Pazartesiden cumaya kadar çalışıyoruz.",
+     "hint_tr": "Cumaya kadar derken **bis Freitag** denir."
+    }
+   ]
   },
   {
    "id": "lx:dritter",
@@ -784,13 +1134,15 @@
      "id": "lx:dritter:1",
      "de": "Die Praxis ist im dritten Stock.",
      "tr": "Muayenehane üçüncü katta.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "doctor office sign in building lobby"
     },
     {
      "id": "lx:dritter:2",
      "de": "Heute ist der dritte März.",
      "tr": "Bugün üç mart.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "tear off calendar page"
     },
     {
      "id": "lx:dritter:3",
@@ -816,7 +1168,27 @@
    "exp": {
     "anlam_tr": "Sırada üçüncü olanı ya da ayın üçünü söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Heute ist der ___ Mai.",
+     "answer": "dritte",
+     "tr": "Bugün üç mayıs.",
+     "hint_tr": "Tarih söylerken **der dritte Mai** denir."
+    },
+    {
+     "de": "Ich fahre in den ___ Stock.",
+     "answer": "dritten",
+     "tr": "Üçüncü kata çıkıyorum.",
+     "hint_tr": "Üçüncü kata derken **in den dritten Stock** denir."
+    },
+    {
+     "de": "Das ist schon das ___ Mal.",
+     "answer": "dritte",
+     "tr": "Bu artık üçüncü kez.",
+     "hint_tr": "Üçüncü kez derken **das dritte Mal** denir."
+    }
+   ]
   },
   {
    "id": "lx:Winter",
@@ -853,26 +1225,30 @@
      "id": "lx:Winter:1",
      "de": "Im Winter ist es hier sehr kalt.",
      "tr": "Burası kışın çok soğuk oluyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person with scarf on freezing day"
     },
     {
      "id": "lx:Winter:2",
      "de": "Für den Winter brauche ich neue Reifen.",
      "tr": "Kış için yeni lastiğe ihtiyacım var.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "winter tires in car garage"
     },
     {
      "id": "lx:Winter:3",
      "de": "Im Winter geh ich abends kaum raus.",
      "tr": "Kışın akşamları pek dışarı çıkmıyorum.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "cozy evening indoors snow outside window"
     },
     {
      "id": "lx:Winter:4",
      "de": "– Räumt hier jemand den Schnee? – Ja, im Winter macht das Herr Pichler.",
      "tr": "– Buradaki karı kürüyen biri var mı? – Evet, kışın bu işi Pichler Bey yapıyor.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "man shoveling snow from sidewalk"
     }
    ],
    "level": "A1",
@@ -887,7 +1263,33 @@
     "anlam_tr": "Yılın en soğuk mevsimini söyler.",
     "parcalar": [],
     "ipucu_tr": "Aralık, ocak ve şubat bu mevsimdedir."
-   }
+   },
+   "forms": [
+    {
+     "de": "___ Winter schneit es hier.",
+     "answer": "Im",
+     "tr": "Kışın burada kar yağıyor.",
+     "hint_tr": "Kışın derken **im Winter** denir."
+    },
+    {
+     "de": "___ Winter war lang.",
+     "answer": "Der",
+     "tr": "Kış uzun sürdü.",
+     "hint_tr": "Kış **der Winter** olur."
+    },
+    {
+     "de": "Wir hatten ___ kalten Winter.",
+     "answer": "einen",
+     "tr": "Soğuk bir kış geçirdik.",
+     "hint_tr": "**hatten** sonrası **einen** gelir."
+    },
+    {
+     "de": "Ich brauche eine Jacke für ___ Winter.",
+     "answer": "den",
+     "tr": "Kış için bir monta ihtiyacım var.",
+     "hint_tr": "**für** sonrası **den** gelir."
+    }
+   ]
   },
   {
    "id": "lx:Mittag",
@@ -908,6 +1310,10 @@
     {
      "de": "über Mittag",
      "tr": "öğle arasında"
+    },
+    {
+     "de": "heute Mittag",
+     "tr": "bugün öğlen"
     }
    ],
    "patterns": [
@@ -923,7 +1329,8 @@
      "id": "lx:Mittag:1",
      "de": "Die Praxis ist über Mittag geschlossen.",
      "tr": "Muayenehane öğle arasında kapalı.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "closed for lunch sign on door"
     },
     {
      "id": "lx:Mittag:2",
@@ -958,7 +1365,33 @@
     "ne_zaman_tr": "İş yerinde mola ve yemek konuşurken.",
     "parcalar": [],
     "ipucu_tr": "Öğle yemeğine **Mittagessen** denir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Wir essen ___ Mittag.",
+     "answer": "zu",
+     "tr": "Öğle yemeği yiyoruz.",
+     "hint_tr": "Öğle yemeği yemek **zu Mittag essen** olur."
+    },
+    {
+     "de": "Ich komme gegen ___.",
+     "answer": "Mittag",
+     "tr": "Öğleye doğru geliyorum.",
+     "hint_tr": "Öğleye doğru derken **gegen Mittag** denir."
+    },
+    {
+     "de": "Das Büro ist ___ Mittag zu.",
+     "answer": "über",
+     "tr": "Büro öğle arasında kapalı.",
+     "hint_tr": "Öğle arasında derken **über Mittag** denir."
+    },
+    {
+     "de": "Heute ___ habe ich Zeit.",
+     "answer": "Mittag",
+     "tr": "Bugün öğlen vaktim var.",
+     "hint_tr": "Bugün öğlen derken **heute Mittag** denir."
+    }
+   ]
   },
   {
    "id": "lx:April",
@@ -1001,7 +1434,8 @@
      "id": "lx:April:2",
      "de": "Der Mietvertrag beginnt am ersten April.",
      "tr": "Kira sözleşmesi bir nisanda başlıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "signing rental contract apartment keys"
     },
     {
      "id": "lx:April:3",
@@ -1027,7 +1461,33 @@
    "exp": {
     "anlam_tr": "Yılın dördüncü ayını söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Mein Urlaub ist ___ April.",
+     "answer": "im",
+     "tr": "İznim nisan ayında.",
+     "hint_tr": "Nisan ayında derken **im April** denir."
+    },
+    {
+     "de": "Der Kurs endet ___ April.",
+     "answer": "Ende",
+     "tr": "Kurs nisan sonunda bitiyor.",
+     "hint_tr": "**Ende April** nisan ayının sonu demektir."
+    },
+    {
+     "de": "___ April macht, was er will.",
+     "answer": "Der",
+     "tr": "Nisan ayının havası belli olmaz.",
+     "hint_tr": "Ay adlarının önüne **der** gelir: **der April**."
+    },
+    {
+     "de": "Am ersten ___ zahle ich die Miete.",
+     "answer": "April",
+     "tr": "Kirayı bir nisanda ödüyorum.",
+     "hint_tr": "Nisan **April** olur."
+    }
+   ]
   },
   {
    "id": "lx:elf",
@@ -1066,8 +1526,9 @@
     {
      "id": "lx:elf:2",
      "de": "Die Bäckerei schließt sonntags um elf.",
-     "tr": "Fırın pazarları saat on birde kapanıyor.",
-     "layer": "hd"
+     "tr": "Fırın pazar günleri saat on birde kapanıyor.",
+     "layer": "hd",
+     "img": "bakery closing time sign"
     },
     {
      "id": "lx:elf:3",
@@ -1080,7 +1541,8 @@
      "de": "– In welchem Zimmer ist Frau Schneider? – In Zimmer elf, im ersten Stock.",
      "tr": "– Schneider Hanım hangi odada? – On bir numarada, birinci katta.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "hospital room door number"
     }
    ],
    "level": "A1",
@@ -1094,7 +1556,27 @@
     "anlam_tr": "On bir sayısını söyler.",
     "parcalar": [],
     "ipucu_tr": "**elf** tek parçadır, içinde **zehn** yoktur."
-   }
+   },
+   "forms": [
+    {
+     "de": "Es ist ___ Uhr.",
+     "answer": "elf",
+     "tr": "Saat on bir.",
+     "hint_tr": "On bir **elf** olur, **einzehn** denmez."
+    },
+    {
+     "de": "Wir treffen uns um ___.",
+     "answer": "elf",
+     "tr": "On birde buluşuyoruz.",
+     "hint_tr": "On birde derken **um elf** denir."
+    },
+    {
+     "de": "Ich habe ___ Euro.",
+     "answer": "elf",
+     "tr": "On bir avrom var.",
+     "hint_tr": "On bir avro derken **elf Euro** denir."
+    }
+   ]
   },
   {
    "id": "lx:Viertel",
@@ -1142,7 +1624,8 @@
      "id": "lx:Viertel:3",
      "de": "Wir wohnen in einem ruhigen Viertel.",
      "tr": "Sakin bir mahallede oturuyoruz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "quiet residential street"
     },
     {
      "id": "lx:Viertel:4",
@@ -1155,7 +1638,8 @@
      "de": "– Wie spät ist es? – Viertel nach drei.",
      "tr": "– Saat kaç? – Üçü çeyrek geçiyor.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "clock showing quarter past three"
     }
    ],
    "level": "A1",
@@ -1176,7 +1660,45 @@
     "ne_zaman_tr": "Saat söylerken ve oturduğun yeri anlatırken.",
     "parcalar": [],
     "ipucu_tr": "Bazı bölgelerde **viertel zehn** duyarsan saat 9:15 demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ ruhiges Viertel.",
+     "answer": "ein",
+     "tr": "Bu sakin bir mahalle.",
+     "hint_tr": "**das Viertel** için bir derken **ein** gelir."
+    },
+    {
+     "de": "Ich kenne ___ Viertel gut.",
+     "answer": "das",
+     "tr": "Mahalleyi iyi biliyorum.",
+     "hint_tr": "Hangi mahalle olduğu belliyse **das Viertel** denir."
+    },
+    {
+     "de": "Wir wohnen in ___ schönen Viertel.",
+     "answer": "einem",
+     "tr": "Güzel bir mahallede oturuyoruz.",
+     "hint_tr": "**in** sonrası burada **einem** gelir."
+    },
+    {
+     "de": "In ___ Viertel gibt es viele Cafés.",
+     "answer": "dem",
+     "tr": "O mahallede çok kafe var.",
+     "hint_tr": "Hangi mahalle olduğu belliyse **in dem Viertel** denir."
+    },
+    {
+     "de": "Es ist ___ nach acht.",
+     "answer": "Viertel",
+     "tr": "Saat sekizi çeyrek geçiyor.",
+     "hint_tr": "Çeyrek **Viertel** olur."
+    },
+    {
+     "de": "Es ist Viertel ___ neun.",
+     "answer": "vor",
+     "tr": "Saat dokuza çeyrek var.",
+     "hint_tr": "Çeyrek var derken **Viertel vor** denir."
+    }
+   ]
   },
   {
    "id": "lx:hundert",
@@ -1216,7 +1738,8 @@
      "id": "lx:hundert:2",
      "de": "Die Apotheke ist nur hundert Meter entfernt.",
      "tr": "Eczane yalnızca yüz metre ileride.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "green pharmacy cross sign on street"
     },
     {
      "id": "lx:hundert:3",
@@ -1229,7 +1752,8 @@
      "de": "– Wie viel kostet die Garage? – Hundert Euro im Monat.",
      "tr": "– Garaj ne kadar? – Ayda yüz avro.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "residential garage door"
     }
    ],
    "level": "A1",
@@ -1243,7 +1767,27 @@
     "anlam_tr": "Yüz sayısını söyler.",
     "parcalar": [],
     "ipucu_tr": "**hundertfünf** derken sayıyı Türkçedeki sırayla söylersin."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das kostet ___ Euro.",
+     "answer": "hundert",
+     "tr": "Bu yüz avro.",
+     "hint_tr": "Yüz avro derken **hundert Euro** denir."
+    },
+    {
+     "de": "Ich bin mir zu ___ Prozent sicher.",
+     "answer": "hundert",
+     "tr": "Yüzde yüz eminim.",
+     "hint_tr": "Yüzde yüz derken **zu hundert Prozent** denir."
+    },
+    {
+     "de": "Die Bank ist ___ Meter von hier.",
+     "answer": "hundert",
+     "tr": "Banka buradan yüz metre uzakta.",
+     "hint_tr": "Yüz metre derken **hundert Meter** denir."
+    }
+   ]
   },
   {
    "id": "lx:Dienstag",
@@ -1264,6 +1808,18 @@
     {
      "de": "nächsten Dienstag",
      "tr": "gelecek salı"
+    },
+    {
+     "de": "jeden Dienstag",
+     "tr": "her salı"
+    },
+    {
+     "de": "letzten Dienstag",
+     "tr": "geçen salı"
+    },
+    {
+     "de": "von Dienstag bis Donnerstag",
+     "tr": "salıdan perşembeye kadar"
     }
    ],
    "patterns": [
@@ -1299,7 +1855,8 @@
      "de": "– Wann ist die Praxis wieder offen? – Am Dienstag, ab acht.",
      "tr": "– Muayenehane ne zaman yeniden açık? – Salı günü, sekizden itibaren.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "medical practice entrance door"
     }
    ],
    "level": "A1",
@@ -1313,7 +1870,33 @@
     "anlam_tr": "Haftanın ikinci gününü söyler.",
     "parcalar": [],
     "ipucu_tr": "Kapılarda ve takvimde kısaltması **Di** olur."
-   }
+   },
+   "forms": [
+    {
+     "de": "Der Termin ist ___ Dienstag.",
+     "answer": "am",
+     "tr": "Randevu salı günü.",
+     "hint_tr": "Salı günü derken **am Dienstag** denir."
+    },
+    {
+     "de": "Ich habe ___ Dienstag frei.",
+     "answer": "nächsten",
+     "tr": "Gelecek salı izinliyim.",
+     "hint_tr": "Gelecek salı derken **nächsten Dienstag** denir."
+    },
+    {
+     "de": "___ Dienstag war ich beim Arzt.",
+     "answer": "Letzten",
+     "tr": "Geçen salı doktordaydım.",
+     "hint_tr": "Geçen salı derken **letzten Dienstag** denir."
+    },
+    {
+     "de": "Morgen ist ___.",
+     "answer": "Dienstag",
+     "tr": "Yarın salı.",
+     "hint_tr": "Salı **Dienstag**, perşembe **Donnerstag** olur."
+    }
+   ]
   },
   {
    "id": "lx:Donnerstag",
@@ -1334,6 +1917,18 @@
     {
      "de": "Donnerstagabend",
      "tr": "perşembe akşamı"
+    },
+    {
+     "de": "jeden Donnerstag",
+     "tr": "her perşembe"
+    },
+    {
+     "de": "nächsten Donnerstag",
+     "tr": "gelecek perşembe"
+    },
+    {
+     "de": "von Montag bis Donnerstag",
+     "tr": "pazartesiden perşembeye kadar"
     }
    ],
    "patterns": [
@@ -1349,7 +1944,8 @@
      "id": "lx:Donnerstag:1",
      "de": "Am Donnerstag komme ich etwas später.",
      "tr": "Perşembe biraz geç geleceğim.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "employee arriving late at office"
     },
     {
      "id": "lx:Donnerstag:2",
@@ -1383,7 +1979,33 @@
     "anlam_tr": "Haftanın dördüncü gününü söyler.",
     "parcalar": [],
     "ipucu_tr": "Kapılarda ve takvimde kısaltması **Do** olur."
-   }
+   },
+   "forms": [
+    {
+     "de": "Am ___ habe ich einen Termin.",
+     "answer": "Donnerstag",
+     "tr": "Perşembe günü randevum var.",
+     "hint_tr": "Perşembe **Donnerstag** olur, salı **Dienstag** ile karıştırma."
+    },
+    {
+     "de": "___ Donnerstag komme ich später.",
+     "answer": "Am",
+     "tr": "Perşembe günü daha geç geliyorum.",
+     "hint_tr": "Perşembe günü derken **am Donnerstag** denir."
+    },
+    {
+     "de": "Das Büro ist ___ Donnerstag zu.",
+     "answer": "bis",
+     "tr": "Büro perşembeye kadar kapalı.",
+     "hint_tr": "Perşembeye kadar derken **bis Donnerstag** denir."
+    },
+    {
+     "de": "___ Donnerstag ist die Praxis offen.",
+     "answer": "Jeden",
+     "tr": "Muayenehane her perşembe açık.",
+     "hint_tr": "Her perşembe derken **jeden Donnerstag** denir."
+    }
+   ]
   },
   {
    "id": "lx:Mai",
@@ -1432,7 +2054,8 @@
      "id": "lx:Mai:3",
      "de": "Im Mai sitzen wir endlich wieder draußen.",
      "tr": "Mayısta nihayet yine dışarıda oturuyoruz.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "people sitting outside at cafe in spring"
     },
     {
      "id": "lx:Mai:4",
@@ -1453,7 +2076,33 @@
     "anlam_tr": "Yılın beşinci ayını söyler.",
     "parcalar": [],
     "ipucu_tr": "Bir mayıs resmî tatildir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Wir machen ___ Mai Urlaub.",
+     "answer": "im",
+     "tr": "Mayıs ayında tatil yapıyoruz.",
+     "hint_tr": "Mayıs ayında derken **im Mai** denir."
+    },
+    {
+     "de": "___ ersten Mai haben alle frei.",
+     "answer": "Am",
+     "tr": "Bir mayısta herkes izinli.",
+     "hint_tr": "Tarih söylerken **am ersten Mai** denir."
+    },
+    {
+     "de": "Ab ___ arbeite ich hier.",
+     "answer": "Mai",
+     "tr": "Mayıs ayından itibaren burada çalışıyorum.",
+     "hint_tr": "Mayıs **Mai** olur, **i** ile biter."
+    },
+    {
+     "de": "___ Mai ist schön.",
+     "answer": "Der",
+     "tr": "Mayıs ayı güzel.",
+     "hint_tr": "Ay adlarının önüne **der** gelir: **der Mai**."
+    }
+   ]
   },
   {
    "id": "lx:August",
@@ -1509,7 +2158,8 @@
      "de": "– Wann nehmen Sie Urlaub? – Im August, wie jedes Jahr.",
      "tr": "– Ne zaman izin alıyorsunuz? – Her yıl olduğu gibi ağustosta.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "packing suitcase for vacation"
     }
    ],
    "level": "A1",
@@ -1523,7 +2173,33 @@
     "anlam_tr": "Yılın sekizinci ayını söyler.",
     "parcalar": [],
     "ipucu_tr": "Vurgu sondadır: **Au-GUST**."
-   }
+   },
+   "forms": [
+    {
+     "de": "___ August ist es sehr heiß.",
+     "answer": "Im",
+     "tr": "Ağustos ayında hava çok sıcak.",
+     "hint_tr": "Ağustos ayında derken **im August** denir."
+    },
+    {
+     "de": "Ich bin ___ August weg.",
+     "answer": "bis",
+     "tr": "Ağustosa kadar yokum.",
+     "hint_tr": "Ağustosa kadar derken **bis August** denir."
+    },
+    {
+     "de": "Ende ___ fahren wir nach Hause.",
+     "answer": "August",
+     "tr": "Ağustos sonunda eve dönüyoruz.",
+     "hint_tr": "Ağustos **August** olur, **au** sesiyle başlar."
+    },
+    {
+     "de": "Mein Urlaub beginnt ___ ersten August.",
+     "answer": "am",
+     "tr": "İznim bir ağustosta başlıyor.",
+     "hint_tr": "Tarih söylerken **am ersten August** denir."
+    }
+   ]
   },
   {
    "id": "lx:Juli",
@@ -1572,7 +2248,8 @@
      "id": "lx:Juli:3",
      "de": "Im Juli sind alle im Urlaub, ist echt ruhig hier.",
      "tr": "Temmuzda herkes izinde, burası gerçekten sakin oluyor.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "empty quiet office in summer"
     },
     {
      "id": "lx:Juli:4",
@@ -1592,7 +2269,33 @@
    "exp": {
     "anlam_tr": "Yılın yedinci ayını söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Wir fahren ___ Juli weg.",
+     "answer": "im",
+     "tr": "Temmuz ayında bir yere gidiyoruz.",
+     "hint_tr": "Temmuz ayında derken **im Juli** denir."
+    },
+    {
+     "de": "___ Juli habe ich Urlaub.",
+     "answer": "Mitte",
+     "tr": "Temmuz ortasında iznim var.",
+     "hint_tr": "**Mitte Juli** temmuz ayının ortası demektir."
+    },
+    {
+     "de": "Der Kurs dauert bis ___.",
+     "answer": "Juli",
+     "tr": "Kurs temmuza kadar sürüyor.",
+     "hint_tr": "Temmuz **Juli** olur, haziran **Juni** ile karıştırma."
+    },
+    {
+     "de": "Am vierten ___ bin ich nicht da.",
+     "answer": "Juli",
+     "tr": "Dört temmuzda burada değilim.",
+     "hint_tr": "Dört temmuzda derken **am vierten Juli** denir."
+    }
+   ]
   },
   {
    "id": "lx:Mittwoch",
@@ -1613,6 +2316,18 @@
     {
      "de": "Mittwochnachmittag",
      "tr": "çarşamba öğleden sonra"
+    },
+    {
+     "de": "jeden Mittwoch",
+     "tr": "her çarşamba"
+    },
+    {
+     "de": "ab Mittwoch",
+     "tr": "çarşambadan itibaren"
+    },
+    {
+     "de": "bis Mittwoch",
+     "tr": "çarşambaya kadar"
     }
    ],
    "patterns": [
@@ -1628,7 +2343,8 @@
      "id": "lx:Mittwoch:1",
      "de": "Mittwochnachmittag ist die Praxis geschlossen.",
      "tr": "Muayenehane çarşamba öğleden sonra kapalı.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "closed sign on clinic door"
     },
     {
      "id": "lx:Mittwoch:2",
@@ -1672,7 +2388,33 @@
      }
     ],
     "ipucu_tr": "Kapılarda ve takvimde kısaltması **Mi** olur."
-   }
+   },
+   "forms": [
+    {
+     "de": "Wir sehen uns ___ Mittwoch.",
+     "answer": "am",
+     "tr": "Çarşamba günü görüşürüz.",
+     "hint_tr": "Çarşamba günü derken **am Mittwoch** denir."
+    },
+    {
+     "de": "___ Mittwoch habe ich Urlaub.",
+     "answer": "Ab",
+     "tr": "Çarşambadan itibaren izinliyim.",
+     "hint_tr": "Çarşambadan itibaren derken **ab Mittwoch** denir."
+    },
+    {
+     "de": "Ich bleibe bis ___.",
+     "answer": "Mittwoch",
+     "tr": "Çarşambaya kadar kalıyorum.",
+     "hint_tr": "Çarşamba **Mittwoch** olur, haftanın ortasıdır."
+    },
+    {
+     "de": "Der Kurs ist ___ Mittwoch.",
+     "answer": "jeden",
+     "tr": "Kurs her çarşamba.",
+     "hint_tr": "Her çarşamba derken **jeden Mittwoch** denir."
+    }
+   ]
   },
   {
    "id": "lx:September",
@@ -1708,7 +2450,8 @@
      "id": "lx:September:1",
      "de": "Seit September arbeitet Herr Kaya bei uns.",
      "tr": "Kaya Bey eylülden beri bizde çalışıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "new employee welcomed at office"
     },
     {
      "id": "lx:September:2",
@@ -1741,7 +2484,33 @@
    "exp": {
     "anlam_tr": "Yılın dokuzuncu ayını söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "___ September fängt der Kurs an.",
+     "answer": "Im",
+     "tr": "Kurs eylül ayında başlıyor.",
+     "hint_tr": "Eylül ayında derken **im September** denir."
+    },
+    {
+     "de": "Ich arbeite seit ___ hier.",
+     "answer": "September",
+     "tr": "Eylül ayından beri burada çalışıyorum.",
+     "hint_tr": "Eylül **September** olur."
+    },
+    {
+     "de": "Der Termin ist ___ fünften September.",
+     "answer": "am",
+     "tr": "Randevu beş eylülde.",
+     "hint_tr": "Tarih söylerken **am fünften September** denir."
+    },
+    {
+     "de": "___ September habe ich wieder Zeit.",
+     "answer": "Ab",
+     "tr": "Eylül ayından itibaren yine vaktim var.",
+     "hint_tr": "Eylül ayından itibaren derken **ab September** denir."
+    }
+   ]
   },
   {
    "id": "lx:Juni",
@@ -1790,7 +2559,8 @@
      "id": "lx:Juni:3",
      "de": "Im Juni ist's abends lange hell, das mag ich.",
      "tr": "Haziranda akşamları uzun süre aydınlık oluyor, bunu seviyorum.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "summer evening sunset on terrace"
     },
     {
      "id": "lx:Juni:4",
@@ -1811,7 +2581,33 @@
     "anlam_tr": "Yılın altıncı ayını söyler.",
     "parcalar": [],
     "ipucu_tr": "Telefonda **Juli** ile karışmasın diye **Juno** diyenler olur."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich habe ___ Juni Zeit.",
+     "answer": "im",
+     "tr": "Haziran ayında vaktim var.",
+     "hint_tr": "Haziran ayında derken **im Juni** denir."
+    },
+    {
+     "de": "Ich arbeite bis ___ Juni.",
+     "answer": "Ende",
+     "tr": "Haziran sonuna kadar çalışıyorum.",
+     "hint_tr": "Haziran sonu derken **Ende Juni** denir."
+    },
+    {
+     "de": "Ist das ___ oder Juli?",
+     "answer": "Juni",
+     "tr": "Bu haziran mı, temmuz mu?",
+     "hint_tr": "**Juni** haziran, **Juli** temmuz demektir."
+    },
+    {
+     "de": "Der Termin ist am dritten ___.",
+     "answer": "Juni",
+     "tr": "Randevu üç haziranda.",
+     "hint_tr": "Üç haziranda derken **am dritten Juni** denir."
+    }
+   ]
   },
   {
    "id": "lx:Telefonnummer",
@@ -1833,6 +2629,18 @@
     {
      "de": "eine falsche Telefonnummer",
      "tr": "yanlış bir telefon numarası"
+    },
+    {
+     "de": "die Telefonnummer geben",
+     "tr": "telefon numarasını vermek"
+    },
+    {
+     "de": "die Telefonnummer speichern",
+     "tr": "telefon numarasını kaydetmek"
+    },
+    {
+     "de": "Wie ist Ihre Telefonnummer?",
+     "tr": "Telefon numaranız nedir?"
     }
    ],
    "patterns": [
@@ -1848,26 +2656,30 @@
      "id": "lx:Telefonnummer:1",
      "de": "Können Sie mir Ihre Telefonnummer geben?",
      "tr": "Telefon numaranızı bana verebilir misiniz?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person writing phone number on paper"
     },
     {
      "id": "lx:Telefonnummer:2",
      "de": "Meine Telefonnummer ist null eins sieben eins, drei neun zwo null null, vier sieben.",
      "tr": "Telefon numaram 0171 39200 47.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "phone number on business card"
     },
     {
      "id": "lx:Telefonnummer:3",
      "de": "Gibst du mir mal deine Telefonnummer?",
      "tr": "Telefon numaranı bana versene.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "friends exchanging numbers on smartphones"
     },
     {
      "id": "lx:Telefonnummer:4",
      "de": "– Unter welcher Telefonnummer erreiche ich Sie? – Unter null acht neun, neun neun neun neun acht, drei null sieben.",
      "tr": "– Size hangi numaradan ulaşabilirim? – 089 99998 307'den.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "office worker on phone taking notes"
     }
    ],
    "level": "A1",
@@ -1896,7 +2708,45 @@
       "tr": "numara"
      }
     ]
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ deutsche Telefonnummer.",
+     "answer": "eine",
+     "tr": "Bu bir Almanya telefon numarası.",
+     "hint_tr": "**die Telefonnummer** için bir derken **eine** gelir."
+    },
+    {
+     "de": "Das ist ___ Telefonnummer von der Praxis.",
+     "answer": "die",
+     "tr": "Bu, muayenehanenin telefon numarası.",
+     "hint_tr": "Hangi numara olduğu belliyse **die Telefonnummer** denir."
+    },
+    {
+     "de": "Ich habe ___ neue Telefonnummer.",
+     "answer": "eine",
+     "tr": "Yeni bir telefon numaram var.",
+     "hint_tr": "**haben** sonrası **eine** gelir."
+    },
+    {
+     "de": "Ich schreibe ___ Telefonnummer auf.",
+     "answer": "die",
+     "tr": "Telefon numarasını not ediyorum.",
+     "hint_tr": "Hangi numara olduğu belliyse **die Telefonnummer** gelir."
+    },
+    {
+     "de": "Mit ___ Telefonnummer stimmt etwas nicht.",
+     "answer": "der",
+     "tr": "Telefon numarasında bir sorun var.",
+     "hint_tr": "**mit** sonrası **der** gelir."
+    },
+    {
+     "de": "Ich rufe mit ___ neuen Telefonnummer an.",
+     "answer": "einer",
+     "tr": "Yeni bir telefon numarasından arıyorum.",
+     "hint_tr": "**mit** sonrası **einer** gelir."
+    }
+   ]
   },
   {
    "id": "lx:Oktober",
@@ -1932,7 +2782,8 @@
      "id": "lx:Oktober:1",
      "de": "Anfang Oktober bekommen wir neue Fenster.",
      "tr": "Ekim başında yeni pencerelerimiz takılıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "workers installing new windows"
     },
     {
      "id": "lx:Oktober:2",
@@ -1965,7 +2816,33 @@
    "exp": {
     "anlam_tr": "Yılın onuncu ayını söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "___ Oktober wird es kalt.",
+     "answer": "Im",
+     "tr": "Ekim ayında hava soğuyor.",
+     "hint_tr": "Ekim ayında derken **im Oktober** denir."
+    },
+    {
+     "de": "Anfang ___ habe ich Urlaub.",
+     "answer": "Oktober",
+     "tr": "Ekim başında iznim var.",
+     "hint_tr": "Ekim **Oktober** olur, **k** ile yazılır."
+    },
+    {
+     "de": "Der Kurs beginnt ___ zehnten Oktober.",
+     "answer": "am",
+     "tr": "Kurs on ekimde başlıyor.",
+     "hint_tr": "Tarih söylerken **am zehnten Oktober** denir."
+    },
+    {
+     "de": "___ Oktober arbeite ich hier.",
+     "answer": "Seit",
+     "tr": "Ekim ayından beri burada çalışıyorum.",
+     "hint_tr": "Ekim ayından beri derken **seit Oktober** denir."
+    }
+   ]
   },
   {
    "id": "lx:Frühling",
@@ -2002,26 +2879,30 @@
      "id": "lx:Frühling:1",
      "de": "Im Frühling gibt es in Wendlfing die Dult.",
      "tr": "İlkbaharda Wendlfing'de panayır kuruluyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "town fair carousel in spring"
     },
     {
      "id": "lx:Frühling:2",
      "de": "Nächsten Frühling ziehen wir um.",
      "tr": "Gelecek ilkbahar taşınıyoruz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "moving boxes in new apartment"
     },
     {
      "id": "lx:Frühling:3",
      "de": "Endlich Frühling, ich brauch keine Jacke mehr!",
      "tr": "Nihayet ilkbahar, artık monta gerek yok!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "person walking without jacket sunny day"
     },
     {
      "id": "lx:Frühling:4",
      "de": "– Wann streichen Sie den Flur? – Im Frühling, wenn es wärmer ist.",
      "tr": "– Koridoru ne zaman boyayacaksınız? – İlkbaharda, hava ısınınca.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "painter painting apartment hallway"
     }
    ],
    "level": "A1",
@@ -2035,7 +2916,33 @@
     "anlam_tr": "Kıştan sonra gelen mevsimi söyler.",
     "parcalar": [],
     "ipucu_tr": "Mart, nisan ve mayıs bu mevsimdedir."
-   }
+   },
+   "forms": [
+    {
+     "de": "___ Frühling ist es schön hier.",
+     "answer": "Im",
+     "tr": "İlkbaharda burası güzel.",
+     "hint_tr": "İlkbaharda derken **im Frühling** denir."
+    },
+    {
+     "de": "___ Frühling kommt.",
+     "answer": "Der",
+     "tr": "İlkbahar geliyor.",
+     "hint_tr": "İlkbahar **der Frühling** olur."
+    },
+    {
+     "de": "Das ist ___ schöner Frühling.",
+     "answer": "ein",
+     "tr": "Bu güzel bir ilkbahar.",
+     "hint_tr": "**der Frühling** için bir derken **ein** gelir."
+    },
+    {
+     "de": "Ich freue mich auf ___ Frühling.",
+     "answer": "den",
+     "tr": "İlkbaharı dört gözle bekliyorum.",
+     "hint_tr": "**auf** sonrası burada **den Frühling** gelir."
+    }
+   ]
   },
   {
    "id": "lx:Nachname",
@@ -2056,6 +2963,14 @@
     {
      "de": "Vorname und Nachname",
      "tr": "ad ve soyadı"
+    },
+    {
+     "de": "den Nachnamen ändern",
+     "tr": "soyadını değiştirmek"
+    },
+    {
+     "de": "mein Nachname",
+     "tr": "soyadım"
     }
    ],
    "patterns": [
@@ -2071,7 +2986,8 @@
      "id": "lx:Nachname:1",
      "de": "Wie ist Ihr Nachname?",
      "tr": "Soyadınız nedir?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "receptionist typing patient details"
     },
     {
      "id": "lx:Nachname:2",
@@ -2097,7 +3013,8 @@
      "de": "– Ihr Nachname, bitte? – Aksoy, mit K und Y.",
      "tr": "– Soyadınız, lütfen? – Aksoy, K ve Y ile.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "clerk writing name on form"
     }
    ],
    "level": "A1",
@@ -2122,7 +3039,39 @@
      }
     ],
     "ipucu_tr": "Formda **Familienname** görürsen o da soyadın demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ langer Nachname.",
+     "answer": "ein",
+     "tr": "Bu uzun bir soyadı.",
+     "hint_tr": "**der Nachname** için bir derken **ein** gelir."
+    },
+    {
+     "de": "___ Nachname fehlt hier.",
+     "answer": "Der",
+     "tr": "Soyadı burada eksik.",
+     "hint_tr": "Hangi soyadı olduğu belliyse **der Nachname** denir."
+    },
+    {
+     "de": "Ich habe ___ neuen Nachnamen.",
+     "answer": "einen",
+     "tr": "Yeni bir soyadım var.",
+     "hint_tr": "**haben** sonrası **einen** gelir."
+    },
+    {
+     "de": "Ich kenne ___ Nachnamen nicht.",
+     "answer": "den",
+     "tr": "Soyadını bilmiyorum.",
+     "hint_tr": "Hangi soyadı olduğu belliyse **den Nachnamen** gelir."
+    },
+    {
+     "de": "Am Telefon melde ich mich mit dem ___.",
+     "answer": "Nachnamen",
+     "tr": "Telefonu soyadımla açıyorum.",
+     "hint_tr": "**mit dem** sonrası **Nachnamen** gelir, sonda **n** var."
+    }
+   ]
   },
   {
    "id": "lx:Vorname",
@@ -2143,6 +3092,14 @@
     {
      "de": "Vor- und Nachname",
      "tr": "ad ve soyadı"
+    },
+    {
+     "de": "den Vornamen buchstabieren",
+     "tr": "adını harf harf söylemek"
+    },
+    {
+     "de": "den Vornamen angeben",
+     "tr": "adını belirtmek"
     }
    ],
    "patterns": [
@@ -2171,14 +3128,16 @@
      "id": "lx:Vorname:3",
      "de": "Nenn mich ruhig beim Vornamen!",
      "tr": "Bana adımla hitap edebilirsin!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "coworkers shaking hands friendly"
     },
     {
      "id": "lx:Vorname:4",
      "de": "– Wie ist Ihr Vorname? – Ioana, mit I am Anfang.",
      "tr": "– Adınız nedir? – Ioana, başında I var.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "clerk typing name at office counter"
     }
    ],
    "level": "A1",
@@ -2208,7 +3167,39 @@
      }
     ],
     "ipucu_tr": "İş yerinde **du** diyenler birbirine ön adla seslenir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ schöner Vorname.",
+     "answer": "ein",
+     "tr": "Bu güzel bir ad.",
+     "hint_tr": "**der Vorname** için bir derken **ein** gelir."
+    },
+    {
+     "de": "___ Vorname steht hier.",
+     "answer": "Der",
+     "tr": "Ön ad burada yazıyor.",
+     "hint_tr": "Hangi ad olduğu belliyse **der Vorname** denir."
+    },
+    {
+     "de": "Ich habe ___ langen Vornamen.",
+     "answer": "einen",
+     "tr": "Uzun bir adım var.",
+     "hint_tr": "**haben** sonrası **einen** gelir."
+    },
+    {
+     "de": "Der Nachname fehlt. Ich sehe nur ___ Vornamen.",
+     "answer": "den",
+     "tr": "Soyadı eksik. Yalnızca ön adı görüyorum.",
+     "hint_tr": "**sehen** sonrası **den Vornamen** gelir."
+    },
+    {
+     "de": "Er nennt mich beim ___.",
+     "answer": "Vornamen",
+     "tr": "Bana adımla hitap ediyor.",
+     "hint_tr": "Adıyla hitap derken **beim Vornamen** denir."
+    }
+   ]
   },
   {
    "id": "lx:Datum",
@@ -2246,32 +3237,37 @@
      "id": "lx:Datum:1",
      "de": "Welches Datum haben wir heute?",
      "tr": "Bugün ayın kaçı?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "desk calendar in office"
     },
     {
      "id": "lx:Datum:2",
      "de": "Schreiben Sie bitte das Datum hier oben hin.",
      "tr": "Lütfen tarihi buraya, yukarıya yazın.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "hand writing on top of paper form"
     },
     {
      "id": "lx:Datum:3",
      "de": "Das Datum auf der Rechnung stimmt nicht.",
      "tr": "Faturadaki tarih doğru değil.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "invoice paper close up"
     },
     {
      "id": "lx:Datum:4",
      "de": "Schreib einfach das Datum von heute drauf.",
      "tr": "Üstüne bugünün tarihini yazıver.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "pen writing date on document"
     },
     {
      "id": "lx:Datum:5",
      "de": "– Welches Datum steht auf dem Brief? – Der zwölfte Mai.",
      "tr": "– Mektupta hangi tarih yazıyor? – On iki mayıs.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "person reading letter at table"
     }
    ],
    "level": "A1",
@@ -2291,7 +3287,39 @@
     "anlam_tr": "Günü, ayı ve yılı birlikte söyler.",
     "ne_zaman_tr": "Form, mektup ve fatura üzerinde görürsün.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ wichtiges Datum.",
+     "answer": "ein",
+     "tr": "Bu önemli bir tarih.",
+     "hint_tr": "**das Datum** için bir derken **ein** gelir."
+    },
+    {
+     "de": "___ Datum stimmt nicht.",
+     "answer": "Das",
+     "tr": "Tarih doğru değil.",
+     "hint_tr": "Hangi tarih olduğu belliyse **das Datum** denir."
+    },
+    {
+     "de": "Ich brauche ___ Datum von heute.",
+     "answer": "das",
+     "tr": "Bugünün tarihine ihtiyacım var.",
+     "hint_tr": "Bugünün tarihi derken **das Datum von heute** denir."
+    },
+    {
+     "de": "Wir suchen ___ neues Datum.",
+     "answer": "ein",
+     "tr": "Yeni bir tarih arıyoruz.",
+     "hint_tr": "**suchen** sonrası **ein neues Datum** gelir."
+    },
+    {
+     "de": "Mit ___ Datum stimmt etwas nicht.",
+     "answer": "dem",
+     "tr": "Tarihte bir sorun var.",
+     "hint_tr": "**mit** sonrası **dem** gelir."
+    }
+   ]
   },
   {
    "id": "lx:zwanzig",
@@ -2325,13 +3353,15 @@
      "id": "lx:zwanzig:1",
      "de": "Der Haarschnitt kostet zwanzig Euro.",
      "tr": "Saç kesimi yirmi avro.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "barber cutting hair"
     },
     {
      "id": "lx:zwanzig:2",
      "de": "Bis zum Bahnhof sind es zwanzig Minuten zu Fuß.",
      "tr": "İstasyona yürüyerek yirmi dakika.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person walking toward train station"
     },
     {
      "id": "lx:zwanzig:3",
@@ -2359,7 +3389,27 @@
     "anlam_tr": "Yirmi sayısını söyler.",
     "parcalar": [],
     "ipucu_tr": "**zwölf** on iki demektir, **zwanzig** ile karıştırma."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das kostet ___ Euro.",
+     "answer": "zwanzig",
+     "tr": "Bu yirmi avro.",
+     "hint_tr": "Yirmi **zwanzig** olur, **zig** ile biter."
+    },
+    {
+     "de": "Ich warte seit ___ Minuten.",
+     "answer": "zwanzig",
+     "tr": "Yirmi dakikadır bekliyorum.",
+     "hint_tr": "Yirmi dakikadır derken **seit zwanzig Minuten** denir."
+    },
+    {
+     "de": "Es ist ___ nach acht.",
+     "answer": "zwanzig",
+     "tr": "Saat sekizi yirmi geçiyor.",
+     "hint_tr": "Sekizi yirmi geçiyor derken **zwanzig nach acht** denir."
+    }
+   ]
   },
   {
    "id": "lx:November",
@@ -2395,7 +3445,8 @@
      "id": "lx:November:1",
      "de": "Mitte November machen wir im Lager Inventur.",
      "tr": "Kasım ortasında depoda sayım yapıyoruz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "warehouse workers counting stock"
     },
     {
      "id": "lx:November:2",
@@ -2428,7 +3479,33 @@
    "exp": {
     "anlam_tr": "Yılın on birinci ayını söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "___ November ist es oft dunkel.",
+     "answer": "Im",
+     "tr": "Kasım ayında çoğu zaman karanlık oluyor.",
+     "hint_tr": "Kasım ayında derken **im November** denir."
+    },
+    {
+     "de": "Ich komme ___ November.",
+     "answer": "Ende",
+     "tr": "Kasım sonunda geliyorum.",
+     "hint_tr": "**Ende November** kasım ayının sonu demektir."
+    },
+    {
+     "de": "Mein Geburtstag ist am elften ___.",
+     "answer": "November",
+     "tr": "Doğum günüm on bir kasımda.",
+     "hint_tr": "Kasım **November** olur, **v** ile yazılır."
+    },
+    {
+     "de": "___ November ist kalt und nass.",
+     "answer": "Der",
+     "tr": "Kasım ayı soğuk ve yağışlı.",
+     "hint_tr": "Ay adlarının önüne **der** gelir: **der November**."
+    }
+   ]
   },
   {
    "id": "lx:Dezember",
@@ -2471,7 +3548,8 @@
      "id": "lx:Dezember:2",
      "de": "Die Weihnachtsfeier der Firma ist am zwölften Dezember.",
      "tr": "Şirketin Noel kutlaması on iki aralıkta.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "company christmas party office"
     },
     {
      "id": "lx:Dezember:3",
@@ -2498,7 +3576,33 @@
     "anlam_tr": "Yılın son ayını söyler.",
     "parcalar": [],
     "ipucu_tr": "**z** burada **ts** gibi okunur."
-   }
+   },
+   "forms": [
+    {
+     "de": "___ Dezember ist Weihnachten.",
+     "answer": "Im",
+     "tr": "Noel aralık ayında.",
+     "hint_tr": "Aralık ayında derken **im Dezember** denir."
+    },
+    {
+     "de": "Ab ___ Dezember habe ich frei.",
+     "answer": "Mitte",
+     "tr": "Aralık ortasından itibaren izinliyim.",
+     "hint_tr": "**Mitte Dezember** aralık ayının ortası demektir."
+    },
+    {
+     "de": "Der Kurs endet im ___.",
+     "answer": "Dezember",
+     "tr": "Kurs aralık ayında bitiyor.",
+     "hint_tr": "Aralık **Dezember** olur, **z** ile yazılır."
+    },
+    {
+     "de": "Das Büro ist ___ dritten Dezember zu.",
+     "answer": "am",
+     "tr": "Büro üç aralıkta kapalı.",
+     "hint_tr": "Tarih söylerken **am dritten Dezember** denir."
+    }
+   ]
   },
   {
    "id": "lx:März",
@@ -2554,7 +3658,8 @@
      "de": "– Wann läuft Ihr Ausweis ab? – Im März, glaube ich.",
      "tr": "– Kimliğinizin süresi ne zaman doluyor? – Martta galiba.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "identity card document close up"
     }
    ],
    "level": "A1",
@@ -2568,7 +3673,33 @@
     "anlam_tr": "Yılın üçüncü ayını söyler.",
     "parcalar": [],
     "ipucu_tr": "**ä** burada açık **e** gibi okunur."
-   }
+   },
+   "forms": [
+    {
+     "de": "Wir ziehen ___ März um.",
+     "answer": "im",
+     "tr": "Mart ayında taşınıyoruz.",
+     "hint_tr": "Mart ayında derken **im März** denir."
+    },
+    {
+     "de": "Ich wohne ___ März hier.",
+     "answer": "seit",
+     "tr": "Mart ayından beri burada oturuyorum.",
+     "hint_tr": "Mart ayından beri derken **seit März** denir."
+    },
+    {
+     "de": "Heute ist der zweite ___.",
+     "answer": "März",
+     "tr": "Bugün iki mart.",
+     "hint_tr": "Mart **März** olur, **ä** ile yazılır."
+    },
+    {
+     "de": "___ März beginnt der Kurs.",
+     "answer": "Anfang",
+     "tr": "Kurs mart başında başlıyor.",
+     "hint_tr": "**Anfang März** mart ayının başı demektir."
+    }
+   ]
   },
   {
    "id": "lx:übermorgen",
@@ -2609,7 +3740,8 @@
      "id": "lx:übermorgen:2",
      "de": "Das Paket kommt erst übermorgen.",
      "tr": "Paket ancak öbür gün geliyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "parcel delivery at front door"
     },
     {
      "id": "lx:übermorgen:3",
@@ -2636,7 +3768,27 @@
     "anlam_tr": "Yarından sonraki günü söyler.",
     "ne_zaman_tr": "Randevu ve teslim günü konuşurken.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "___ habe ich Zeit.",
+     "answer": "Übermorgen",
+     "tr": "Öbür gün vaktim var.",
+     "hint_tr": "Yarından sonraki gün **übermorgen** olur."
+    },
+    {
+     "de": "Der Arzt ist erst ___ wieder da.",
+     "answer": "übermorgen",
+     "tr": "Doktor ancak öbür gün yine burada olacak.",
+     "hint_tr": "**erst übermorgen** ancak öbür gün demektir."
+    },
+    {
+     "de": "Nicht morgen, ___.",
+     "answer": "übermorgen",
+     "tr": "Yarın değil, öbür gün.",
+     "hint_tr": "Yarın **morgen**, ondan sonraki gün **übermorgen** olur."
+    }
+   ]
   },
   {
    "id": "lx:Herbst",
@@ -2673,26 +3825,30 @@
      "id": "lx:Herbst:1",
      "de": "Im Herbst wird es früh dunkel.",
      "tr": "Sonbaharda hava erken kararıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "street lamps at dusk autumn"
     },
     {
      "id": "lx:Herbst:2",
      "de": "Familie Kaya ist letzten Herbst nach Wendlfing gezogen.",
      "tr": "Kaya ailesi geçen sonbahar Wendlfing'e taşındı.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "family carrying boxes into house autumn"
     },
     {
      "id": "lx:Herbst:3",
      "de": "Im Herbst bin ich dauernd erkältet.",
      "tr": "Sonbaharda sürekli nezle oluyorum.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "person sneezing into tissue"
     },
     {
      "id": "lx:Herbst:4",
      "de": "– Wann ist die nächste Dult? – Im Herbst, glaube ich.",
      "tr": "– Bir sonraki panayır ne zaman? – Sonbaharda galiba.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "fairground rides in autumn"
     }
    ],
    "level": "A1",
@@ -2706,7 +3862,33 @@
     "anlam_tr": "Yazdan sonra gelen mevsimi söyler.",
     "parcalar": [],
     "ipucu_tr": "Eylül, ekim ve kasım bu mevsimdedir."
-   }
+   },
+   "forms": [
+    {
+     "de": "___ Herbst regnet es viel.",
+     "answer": "Im",
+     "tr": "Sonbaharda çok yağmur yağıyor.",
+     "hint_tr": "Sonbaharda derken **im Herbst** denir."
+    },
+    {
+     "de": "___ Herbst ist da.",
+     "answer": "Der",
+     "tr": "Sonbahar geldi.",
+     "hint_tr": "Sonbahar **der Herbst** olur."
+    },
+    {
+     "de": "Letzten ___ war ich hier.",
+     "answer": "Herbst",
+     "tr": "Geçen sonbahar buradaydım.",
+     "hint_tr": "Geçen sonbahar derken **letzten Herbst** denir."
+    },
+    {
+     "de": "Wir haben ___ schönen Herbst.",
+     "answer": "einen",
+     "tr": "Güzel bir sonbahar geçiriyoruz.",
+     "hint_tr": "**haben** sonrası **einen** gelir."
+    }
+   ]
   },
   {
    "id": "lx:Buchstabe",
@@ -2828,7 +4010,8 @@
      "id": "lx:Januar:3",
      "de": "Im Januar hab ich nie viel Geld.",
      "tr": "Ocakta pek param olmuyor.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "empty wallet with few coins"
     },
     {
      "id": "lx:Januar:4",
@@ -2848,7 +4031,33 @@
    "exp": {
     "anlam_tr": "Yılın ilk ayını söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich habe ___ Januar Urlaub.",
+     "answer": "im",
+     "tr": "Ocak ayında iznim var.",
+     "hint_tr": "Ocak ayında derken **im Januar** denir."
+    },
+    {
+     "de": "Der Kurs beginnt ___ Januar.",
+     "answer": "Anfang",
+     "tr": "Kurs ocak ayının başında başlıyor.",
+     "hint_tr": "**Anfang Januar** ocak ayının başı demektir."
+    },
+    {
+     "de": "Heute ist der erste ___.",
+     "answer": "Januar",
+     "tr": "Bugün bir ocak.",
+     "hint_tr": "Bir ocak derken **der erste Januar** denir."
+    },
+    {
+     "de": "___ Januar ist sehr kalt.",
+     "answer": "Der",
+     "tr": "Ocak ayı çok soğuk.",
+     "hint_tr": "Ay adlarının önüne **der** gelir: **der Januar**."
+    }
+   ]
   },
   {
    "id": "lx:Februar",
@@ -2897,7 +4106,8 @@
      "id": "lx:Februar:3",
      "de": "Im Februar will ich mal Ski fahren.",
      "tr": "Şubatta bir ara kayağa gitmek istiyorum.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "skiing on mountain slope"
     },
     {
      "id": "lx:Februar:4",
@@ -2918,7 +4128,33 @@
     "anlam_tr": "Yılın ikinci ayını söyler.",
     "parcalar": [],
     "ipucu_tr": "İki şubat derken **zwei** değil **zweite** dersin: **der zweite Februar**."
-   }
+   },
+   "forms": [
+    {
+     "de": "___ Februar ist es oft kalt.",
+     "answer": "Im",
+     "tr": "Şubat ayında hava çoğu zaman soğuk.",
+     "hint_tr": "Şubat ayında derken **im Februar** denir."
+    },
+    {
+     "de": "Ich bleibe bis Ende ___.",
+     "answer": "Februar",
+     "tr": "Şubat ayının sonuna kadar kalıyorum.",
+     "hint_tr": "Şubat **Februar** olur, iki **r** ile yazılır."
+    },
+    {
+     "de": "Mein Geburtstag ist ___ zehnten Februar.",
+     "answer": "am",
+     "tr": "Doğum günüm on şubatta.",
+     "hint_tr": "Tarih söylerken **am zehnten Februar** denir."
+    },
+    {
+     "de": "___ Februar bin ich wieder da.",
+     "answer": "Ab",
+     "tr": "Şubat ayından itibaren yine buradayım.",
+     "hint_tr": "Şubat ayından itibaren derken **ab Februar** denir."
+    }
+   ]
   },
   {
    "id": "lx:Uhrzeit",
@@ -2954,7 +4190,8 @@
      "id": "lx:Uhrzeit:1",
      "de": "Bitte tragen Sie Datum und Uhrzeit ein.",
      "tr": "Lütfen tarihi ve saati yazın.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "filling in date and time on form"
     },
     {
      "id": "lx:Uhrzeit:2",
@@ -2998,7 +4235,39 @@
       "tr": "zaman"
      }
     ]
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ gute Uhrzeit.",
+     "answer": "eine",
+     "tr": "Bu iyi bir saat.",
+     "hint_tr": "**die Uhrzeit** için bir derken **eine** gelir."
+    },
+    {
+     "de": "___ Uhrzeit passt mir.",
+     "answer": "Die",
+     "tr": "Saat bana uyuyor.",
+     "hint_tr": "Hangi saat olduğu belliyse **die Uhrzeit** denir."
+    },
+    {
+     "de": "Ich brauche ___ genaue Uhrzeit.",
+     "answer": "die",
+     "tr": "Saatin tam kaç olduğunu bilmem gerek.",
+     "hint_tr": "Kesin saat derken **die genaue Uhrzeit** denir."
+    },
+    {
+     "de": "Sagen Sie mir bitte ___ Uhrzeit.",
+     "answer": "eine",
+     "tr": "Lütfen bana bir saat söyleyin.",
+     "hint_tr": "**sagen** sonrası **eine Uhrzeit** gelir."
+    },
+    {
+     "de": "Zu ___ Uhrzeit bin ich nicht da.",
+     "answer": "der",
+     "tr": "O saatte burada değilim.",
+     "hint_tr": "O saatte derken **zu der Uhrzeit** denir."
+    }
+   ]
   },
   {
    "id": "lx:null",
@@ -3032,13 +4301,15 @@
      "id": "lx:null:1",
      "de": "Die Nummer fängt mit null eins sieben eins an.",
      "tr": "Numara 0171 ile başlıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "phone keypad dialing number"
     },
     {
      "id": "lx:null:2",
      "de": "Heute Nacht sind es null Grad.",
      "tr": "Bu gece hava sıfır derece.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "thermometer at zero degrees"
     },
     {
      "id": "lx:null:3",
@@ -3064,7 +4335,27 @@
     "anlam_tr": "Sıfır sayısını söyler.",
     "ne_zaman_tr": "Telefon numarası verirken ve hava durumunda.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Die Nummer beginnt mit ___.",
+     "answer": "null",
+     "tr": "Numara sıfırla başlıyor.",
+     "hint_tr": "Telefonda sıfır **null** olur."
+    },
+    {
+     "de": "Draußen sind ___ Grad.",
+     "answer": "null",
+     "tr": "Dışarıda sıfır derece var.",
+     "hint_tr": "Sıfır derece derken **null Grad** denir."
+    },
+    {
+     "de": "Ich habe ___ Zeit.",
+     "answer": "null",
+     "tr": "Hiç vaktim yok.",
+     "hint_tr": "Konuşmada **null** hiç anlamına da gelir."
+    }
+   ]
   },
   {
    "id": "lx:eins",
@@ -3099,7 +4390,8 @@
      "id": "lx:eins:1",
      "de": "Der Zug fährt von Gleis eins.",
      "tr": "Tren birinci perondan kalkıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "train platform number one sign"
     },
     {
      "id": "lx:eins:2",
@@ -3118,7 +4410,8 @@
      "de": "– Welcher Bus fährt zum Rathaus? – Die Eins, gleich da vorne.",
      "tr": "– Belediyeye hangi otobüs gidiyor? – Bir numara, hemen şurada.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "city bus at stop"
     }
    ],
    "level": "A1",
@@ -3132,7 +4425,27 @@
     "ne_zaman_tr": "Sayarken, numara verirken ve saat söylerken.",
     "parcalar": [],
     "ipucu_tr": "**Kaffee** gibi bir kelimeden önce **ein** gelir: **ein Kaffee**."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich komme um ___.",
+     "answer": "eins",
+     "tr": "Saat birde geliyorum.",
+     "hint_tr": "Saat birde derken **um eins** denir."
+    },
+    {
+     "de": "Es ist ___ Uhr.",
+     "answer": "ein",
+     "tr": "Saat bir.",
+     "hint_tr": "**Uhr** önünde **eins** değil **ein** denir."
+    },
+    {
+     "de": "Wir nehmen Bus Nummer ___.",
+     "answer": "eins",
+     "tr": "Bir numaralı otobüse biniyoruz.",
+     "hint_tr": "Numara söylerken **eins** denir."
+    }
+   ]
   },
   {
    "id": "lx:dreizehn",
@@ -3178,14 +4491,16 @@
      "id": "lx:dreizehn:3",
      "de": "Der Bus dreizehn kommt mal wieder nicht.",
      "tr": "On üç numaralı otobüs yine gelmiyor.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "people waiting for late bus"
     },
     {
      "id": "lx:dreizehn:4",
      "de": "– Welche Nummer haben Sie? – Die Dreizehn, ich bin gleich dran.",
      "tr": "– Numaranız kaç? – On üç, sıra birazdan bende.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "queue number display in waiting room"
     }
    ],
    "level": "A1",
@@ -3207,7 +4522,27 @@
      }
     ],
     "ipucu_tr": "**dreißig** otuz demektir, sonuna dikkat et."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich wohne in Nummer ___.",
+     "answer": "dreizehn",
+     "tr": "On üç numarada oturuyorum.",
+     "hint_tr": "**drei** ve **zehn** birleşir: **dreizehn**."
+    },
+    {
+     "de": "Der Kurs beginnt um ___ Uhr.",
+     "answer": "dreizehn",
+     "tr": "Kurs saat on üçte başlıyor.",
+     "hint_tr": "Saat on üçte derken **um dreizehn Uhr** denir."
+    },
+    {
+     "de": "Das kostet ___ Euro.",
+     "answer": "dreizehn",
+     "tr": "Bu on üç avro.",
+     "hint_tr": "On üç avro derken **dreizehn Euro** denir."
+    }
+   ]
   },
   {
    "id": "lx:vierzehn",
@@ -3247,7 +4582,8 @@
      "id": "lx:vierzehn:2",
      "de": "Am Freitag schließt das Bürgerbüro um vierzehn Uhr.",
      "tr": "Vatandaş bürosu cuma günü saat on dörtte kapanıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "office closing hours sign"
     },
     {
      "id": "lx:vierzehn:3",
@@ -3260,7 +4596,8 @@
      "de": "– Wie viele Tabletten sind in der Packung? – Vierzehn, für zwei Wochen.",
      "tr": "– Kutuda kaç tablet var? – On dört, iki haftalık.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "blister pack of tablets"
     }
    ],
    "level": "A1",
@@ -3282,7 +4619,27 @@
      }
     ],
     "ipucu_tr": "**vierzehn Tage** çoğu zaman iki hafta demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "In ___ Tagen bin ich wieder da.",
+     "answer": "vierzehn",
+     "tr": "On dört gün sonra yine buradayım.",
+     "hint_tr": "**vierzehn Tage** on dört gün, yani iki hafta demektir."
+    },
+    {
+     "de": "Der Zug fährt um ___ Uhr.",
+     "answer": "vierzehn",
+     "tr": "Tren saat on dörtte kalkıyor.",
+     "hint_tr": "Saat on dörtte derken **um vierzehn Uhr** denir."
+    },
+    {
+     "de": "Das Kind ist ___.",
+     "answer": "vierzehn",
+     "tr": "Çocuk on dört yaşında.",
+     "hint_tr": "**vier** önce, **zehn** sonra gelir: **vierzehn**."
+    }
+   ]
   },
   {
    "id": "lx:fünfzehn",
@@ -3316,13 +4673,15 @@
      "id": "lx:fünfzehn:1",
      "de": "Der Zug hat fünfzehn Minuten Verspätung.",
      "tr": "Trenin on beş dakika rötarı var.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "train delay on departure board"
     },
     {
      "id": "lx:fünfzehn:2",
      "de": "Wir treffen uns um fünfzehn Uhr im Büro.",
      "tr": "Saat on beşte ofiste buluşuyoruz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "colleagues meeting in office afternoon"
     },
     {
      "id": "lx:fünfzehn:3",
@@ -3357,7 +4716,27 @@
      }
     ],
     "ipucu_tr": "Saatte **Viertel** de on beş dakika demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich komme in ___ Minuten.",
+     "answer": "fünfzehn",
+     "tr": "On beş dakikaya geliyorum.",
+     "hint_tr": "On beş **fünfzehn** olur, **ü** ile yazılır."
+    },
+    {
+     "de": "Das macht ___ Euro.",
+     "answer": "fünfzehn",
+     "tr": "On beş avro ediyor.",
+     "hint_tr": "On beş avro derken **fünfzehn Euro** denir."
+    },
+    {
+     "de": "Die Pause beginnt um ___ Uhr.",
+     "answer": "fünfzehn",
+     "tr": "Mola saat on beşte başlıyor.",
+     "hint_tr": "Saat on beşte derken **um fünfzehn Uhr** denir."
+    }
+   ]
   },
   {
    "id": "lx:sechzehn",
@@ -3397,7 +4776,8 @@
      "id": "lx:sechzehn:2",
      "de": "Das Haus Nummer sechzehn ist gleich da vorne.",
      "tr": "On altı numaralı ev hemen ileride.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "house number on front door"
     },
     {
      "id": "lx:sechzehn:3",
@@ -3410,7 +4790,8 @@
      "de": "– Was macht das zusammen? – Sechzehn Euro fünfzig.",
      "tr": "– Hepsi ne kadar ediyor? – On altı avro elli sent.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "cashier handing receipt to customer"
     }
    ],
    "level": "A1",
@@ -3431,7 +4812,27 @@
       "tr": "on"
      }
     ]
-   }
+   },
+   "forms": [
+    {
+     "de": "Das Kind ist ___.",
+     "answer": "sechzehn",
+     "tr": "Çocuk on altı yaşında.",
+     "hint_tr": "**sechs** içindeki **s** düşer: **sechzehn**."
+    },
+    {
+     "de": "Ich arbeite bis ___ Uhr.",
+     "answer": "sechzehn",
+     "tr": "Saat on altıya kadar çalışıyorum.",
+     "hint_tr": "Saat on altıya kadar derken **bis sechzehn Uhr** denir."
+    },
+    {
+     "de": "Das kostet ___ Euro.",
+     "answer": "sechzehn",
+     "tr": "Bu on altı avro.",
+     "hint_tr": "On altı avro derken **sechzehn Euro** denir."
+    }
+   ]
   },
   {
    "id": "lx:siebzehn",
@@ -3465,13 +4866,15 @@
      "id": "lx:siebzehn:1",
      "de": "Die Apotheke hat heute nur bis siebzehn Uhr offen.",
      "tr": "Eczane bugün yalnızca saat on yediye kadar açık.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "pharmacy storefront"
     },
     {
      "id": "lx:siebzehn:2",
      "de": "Heute sind es siebzehn Grad.",
      "tr": "Bugün hava on yedi derece.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "outdoor thermometer mild weather"
     },
     {
      "id": "lx:siebzehn:3",
@@ -3505,7 +4908,27 @@
       "tr": "on"
      }
     ]
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich bin um ___ Uhr zu Hause.",
+     "answer": "siebzehn",
+     "tr": "Saat on yedide evdeyim.",
+     "hint_tr": "**sieben** içindeki **en** düşer: **siebzehn**."
+    },
+    {
+     "de": "Das Mädchen ist ___.",
+     "answer": "siebzehn",
+     "tr": "Kız on yedi yaşında.",
+     "hint_tr": "Yaş söylerken sayı yeter: **Das Mädchen ist siebzehn.**"
+    },
+    {
+     "de": "Der Bus kommt in ___ Minuten.",
+     "answer": "siebzehn",
+     "tr": "Otobüs on yedi dakika sonra geliyor.",
+     "hint_tr": "On yedi dakika derken **siebzehn Minuten** denir."
+    }
+   ]
   },
   {
    "id": "lx:achtzehn",
@@ -3545,7 +4968,8 @@
      "id": "lx:achtzehn:2",
      "de": "Im Büro sind nur achtzehn Grad.",
      "tr": "Ofiste sıcaklık yalnızca on sekiz derece.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "office wall thermostat"
     },
     {
      "id": "lx:achtzehn:3",
@@ -3558,7 +4982,8 @@
      "de": "– Wann treffen wir uns? – Um achtzehn Uhr am Bahnhof.",
      "tr": "– Ne zaman buluşuyoruz? – Saat on sekizde istasyonda.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "friends meeting at train station"
     }
    ],
    "level": "A1",
@@ -3579,7 +5004,27 @@
       "tr": "on"
      }
     ]
-   }
+   },
+   "forms": [
+    {
+     "de": "Mein Bruder ist ___.",
+     "answer": "achtzehn",
+     "tr": "Erkek kardeşim on sekiz yaşında.",
+     "hint_tr": "**acht** ile **zehn** birleşir: **achtzehn**."
+    },
+    {
+     "de": "Wir essen um ___ Uhr.",
+     "answer": "achtzehn",
+     "tr": "Saat on sekizde yemek yiyoruz.",
+     "hint_tr": "Saat on sekizde derken **um achtzehn Uhr** denir."
+    },
+    {
+     "de": "Das kostet ___ Euro.",
+     "answer": "achtzehn",
+     "tr": "Bu on sekiz avro.",
+     "hint_tr": "On sekiz avro derken **achtzehn Euro** denir."
+    }
+   ]
   },
   {
    "id": "lx:neunzehn",
@@ -3613,13 +5058,15 @@
      "id": "lx:neunzehn:1",
      "de": "Der Abendkurs beginnt um neunzehn Uhr.",
      "tr": "Akşam kursu saat on dokuzda başlıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "adults in evening class"
     },
     {
      "id": "lx:neunzehn:2",
      "de": "Das Hemd kostet neunzehn Euro neunzig.",
      "tr": "Gömlek on dokuz avro doksan sent.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "shirt with price tag"
     },
     {
      "id": "lx:neunzehn:3",
@@ -3654,7 +5101,27 @@
      }
     ],
     "ipucu_tr": "Bin dokuz yüzlü yıllar **neunzehnhundert** diye başlar."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich komme um ___ Uhr.",
+     "answer": "neunzehn",
+     "tr": "Saat on dokuzda geliyorum.",
+     "hint_tr": "**neun** ile **zehn** birleşir: **neunzehn**."
+    },
+    {
+     "de": "Die Karte kostet ___ Euro.",
+     "answer": "neunzehn",
+     "tr": "Bilet on dokuz avro.",
+     "hint_tr": "On dokuz avro derken **neunzehn Euro** denir."
+    },
+    {
+     "de": "Meine Schwester ist ___.",
+     "answer": "neunzehn",
+     "tr": "Kız kardeşim on dokuz yaşında.",
+     "hint_tr": "Yaş söylerken sayı yeter: **Meine Schwester ist neunzehn.**"
+    }
+   ]
   },
   {
    "id": "lx:einundzwanzig",
@@ -3689,19 +5156,22 @@
      "id": "lx:einundzwanzig:1",
      "de": "Frau Aksoy sitzt in Büro einundzwanzig.",
      "tr": "Aksoy Hanım yirmi bir numaralı ofiste oturuyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "office door number sign"
     },
     {
      "id": "lx:einundzwanzig:2",
      "de": "Das Paket wiegt einundzwanzig Kilo.",
      "tr": "Paket yirmi bir kilo geliyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "parcel on weighing scale"
     },
     {
      "id": "lx:einundzwanzig:3",
-     "de": "Machen Sie einundzwanzig, bitte.",
-     "tr": "Yirmi bir olsun lütfen.",
-     "layer": "alltag"
+     "de": "Neunzehn fünfzig? Machen Sie einundzwanzig, bitte.",
+     "tr": "On dokuz elli mi? Yirmi bir olsun lütfen, üstü kalsın.",
+     "layer": "alltag",
+     "img": "customer paying waiter at restaurant table"
     },
     {
      "id": "lx:einundzwanzig:4",
@@ -3734,7 +5204,27 @@
      }
     ],
     "ipucu_tr": "Almancada sayı sondan başlar: bir ve yirmi."
-   }
+   },
+   "forms": [
+    {
+     "de": "Mein Bruder ist ___.",
+     "answer": "einundzwanzig",
+     "tr": "Erkek kardeşim yirmi bir yaşında.",
+     "hint_tr": "Önce bir, sonra yirmi söylenir: **einundzwanzig**."
+    },
+    {
+     "de": "Das kostet ___ Euro.",
+     "answer": "einundzwanzig",
+     "tr": "Bu yirmi bir avro.",
+     "hint_tr": "Yirmi bir avro derken **einundzwanzig Euro** denir."
+    },
+    {
+     "de": "Ich bin in Zimmer ___.",
+     "answer": "einundzwanzig",
+     "tr": "Yirmi bir numaralı odadayım.",
+     "hint_tr": "Yirmi biri tek kelime yazarsın."
+    }
+   ]
   },
   {
    "id": "lx:dreißig",
@@ -3768,7 +5258,8 @@
      "id": "lx:dreißig:1",
      "de": "Hier gilt Tempo dreißig.",
      "tr": "Burada hız sınırı otuz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "round european speed limit 30 sign"
     },
     {
      "id": "lx:dreißig:2",
@@ -3787,7 +5278,8 @@
      "de": "– Wann fährt der nächste Zug? – Um vierzehn Uhr dreißig.",
      "tr": "– Bir sonraki tren ne zaman kalkıyor? – Saat on dört otuzda.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "train station departure board"
     }
    ],
    "level": "A1",
@@ -3800,7 +5292,27 @@
     "anlam_tr": "Otuz sayısını söyler.",
     "parcalar": [],
     "ipucu_tr": "Onluklar **-zig** ile biter, bu sayı **-ßig** ile biter."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich habe ___ Tage Urlaub.",
+     "answer": "dreißig",
+     "tr": "Otuz gün iznim var.",
+     "hint_tr": "Otuz **dreißig** olur, **ß** ile yazılır."
+    },
+    {
+     "de": "Es ist vierzehn Uhr ___.",
+     "answer": "dreißig",
+     "tr": "Saat on dört otuz.",
+     "hint_tr": "Dakika **Uhr** sözünden sonra gelir: **vierzehn Uhr dreißig**."
+    },
+    {
+     "de": "Das kostet ___ Euro.",
+     "answer": "dreißig",
+     "tr": "Bu otuz avro.",
+     "hint_tr": "Otuz avro derken **dreißig Euro** denir."
+    }
+   ]
   },
   {
    "id": "lx:vierzig",
@@ -3834,7 +5346,8 @@
      "id": "lx:vierzig:1",
      "de": "Ich arbeite vierzig Stunden in der Woche.",
      "tr": "Haftada kırk saat çalışıyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "punching time card at work"
     },
     {
      "id": "lx:vierzig:2",
@@ -3846,7 +5359,8 @@
      "id": "lx:vierzig:3",
      "de": "Er hat fast vierzig Fieber, der Arme.",
      "tr": "Ateşi neredeyse kırk, zavallı.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "thermometer showing high fever"
     },
     {
      "id": "lx:vierzig:4",
@@ -3866,7 +5380,27 @@
     "anlam_tr": "Kırk sayısını söyler.",
     "parcalar": [],
     "ipucu_tr": "Baştaki **v** burada **f** gibi okunur."
-   }
+   },
+   "forms": [
+    {
+     "de": "Wir arbeiten ___ Stunden.",
+     "answer": "vierzig",
+     "tr": "Kırk saat çalışıyoruz.",
+     "hint_tr": "Kırk **vierzig** olur, **v** burada **f** gibi okunur."
+    },
+    {
+     "de": "Das kostet ___ Euro.",
+     "answer": "vierzig",
+     "tr": "Bu kırk avro.",
+     "hint_tr": "Kırk avro derken **vierzig Euro** denir."
+    },
+    {
+     "de": "Mein Chef ist ___.",
+     "answer": "vierzig",
+     "tr": "Patronum kırk yaşında.",
+     "hint_tr": "Yaş söylerken sayı yeter: **Mein Chef ist vierzig.**"
+    }
+   ]
   },
   {
    "id": "lx:fünfzig",
@@ -3900,7 +5434,8 @@
      "id": "lx:fünfzig:1",
      "de": "Können Sie mir fünfzig Euro wechseln?",
      "tr": "Elli avroyu bozabilir misiniz?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "fifty euro banknote"
     },
     {
      "id": "lx:fünfzig:2",
@@ -3912,7 +5447,8 @@
      "id": "lx:fünfzig:3",
      "de": "Fünfzig Cent Pfand, die gibt's zurück, oder?",
      "tr": "Elli sent depozito, geri veriliyor, değil mi?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "bottle deposit return machine"
     },
     {
      "id": "lx:fünfzig:4",
@@ -3932,7 +5468,27 @@
     "anlam_tr": "Elli sayısını söyler.",
     "parcalar": [],
     "ipucu_tr": "**fünfzehn** on beş demektir, sonuna dikkat et."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das kostet ___ Euro.",
+     "answer": "fünfzig",
+     "tr": "Bu elli avro.",
+     "hint_tr": "Elli **fünfzig** olur, **zig** ile biter."
+    },
+    {
+     "de": "Hier dürfen Sie nur ___ fahren.",
+     "answer": "fünfzig",
+     "tr": "Burada en fazla elliyle gidebilirsiniz.",
+     "hint_tr": "Hız söylerken sayı yeter: **fünfzig fahren**."
+    },
+    {
+     "de": "Er ist über ___.",
+     "answer": "fünfzig",
+     "tr": "O elli yaşın üzerinde.",
+     "hint_tr": "Elli yaşın üzerinde derken **über fünfzig** denir."
+    }
+   ]
   },
   {
    "id": "lx:sechzig",
@@ -3966,7 +5522,8 @@
      "id": "lx:sechzig:1",
      "de": "Die Untersuchung dauert etwa sechzig Minuten.",
      "tr": "Muayene yaklaşık altmış dakika sürüyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "doctor examining patient in clinic"
     },
     {
      "id": "lx:sechzig:2",
@@ -3985,7 +5542,8 @@
      "de": "– Wie viel zahlen Sie für Strom? – Sechzig Euro im Monat.",
      "tr": "– Elektriğe ne kadar ödüyorsunuz? – Ayda altmış avro.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "electricity meter in basement"
     }
    ],
    "level": "A1",
@@ -3997,7 +5555,27 @@
    "exp": {
     "anlam_tr": "Altmış sayısını söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Eine Stunde hat ___ Minuten.",
+     "answer": "sechzig",
+     "tr": "Bir saatte altmış dakika var.",
+     "hint_tr": "**sechs** içindeki **s** düşer: **sechzig**."
+    },
+    {
+     "de": "Das kostet ___ Euro.",
+     "answer": "sechzig",
+     "tr": "Bu altmış avro.",
+     "hint_tr": "Altmış avro derken **sechzig Euro** denir."
+    },
+    {
+     "de": "Meine Mutter ist ___.",
+     "answer": "sechzig",
+     "tr": "Annem altmış yaşında.",
+     "hint_tr": "Yaş söylerken sayı yeter: **Meine Mutter ist sechzig.**"
+    }
+   ]
   },
   {
    "id": "lx:siebzig",
@@ -4031,13 +5609,15 @@
      "id": "lx:siebzig:1",
      "de": "Ich wiege ungefähr siebzig Kilo.",
      "tr": "Yaklaşık yetmiş kiloyum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "feet on bathroom scale"
     },
     {
      "id": "lx:siebzig:2",
      "de": "Auf dieser Straße darfst du nur siebzig fahren.",
      "tr": "Bu yolda en fazla yetmişle gidebilirsin.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "round european speed limit 70 sign"
     },
     {
      "id": "lx:siebzig:3",
@@ -4062,7 +5642,27 @@
    "exp": {
     "anlam_tr": "Yetmiş sayısını söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Das kostet ___ Euro.",
+     "answer": "siebzig",
+     "tr": "Bu yetmiş avro.",
+     "hint_tr": "**sieben** içindeki **en** düşer: **siebzig**."
+    },
+    {
+     "de": "Mein Opa ist über ___.",
+     "answer": "siebzig",
+     "tr": "Dedem yetmiş yaşın üzerinde.",
+     "hint_tr": "Yetmiş yaşın üzerinde derken **über siebzig** denir."
+    },
+    {
+     "de": "Hier darf man ___ fahren.",
+     "answer": "siebzig",
+     "tr": "Burada yetmişle gidilebilir.",
+     "hint_tr": "Hız söylerken sayı yeter: **siebzig fahren**."
+    }
+   ]
   },
   {
    "id": "lx:achtzig",
@@ -4102,7 +5702,8 @@
      "id": "lx:achtzig:2",
      "de": "Der Kaffee kostet hier zwei Euro achtzig.",
      "tr": "Kahve burada iki avro seksen sent.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "cup of coffee at cafe counter"
     },
     {
      "id": "lx:achtzig:3",
@@ -4115,7 +5716,8 @@
      "de": "– Wie schnell darf man hier fahren? – Achtzig, glaube ich.",
      "tr": "– Burada hız sınırı kaç? – Seksen galiba.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "round european speed limit 80 sign"
     }
    ],
    "level": "A1",
@@ -4127,7 +5729,27 @@
    "exp": {
     "anlam_tr": "Seksen sayısını söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Das kostet ___ Cent.",
+     "answer": "achtzig",
+     "tr": "Bu seksen sent.",
+     "hint_tr": "**acht** ile **zig** birleşir: **achtzig**."
+    },
+    {
+     "de": "Meine Oma ist ___.",
+     "answer": "achtzig",
+     "tr": "Büyükannem seksen yaşında.",
+     "hint_tr": "Yaş söylerken sayı yeter: **Meine Oma ist achtzig.**"
+    },
+    {
+     "de": "Hier fahren alle nur ___.",
+     "answer": "achtzig",
+     "tr": "Burada herkes yalnızca seksenle gidiyor.",
+     "hint_tr": "Hız söylerken sayı yeter: **achtzig fahren**."
+    }
+   ]
   },
   {
    "id": "lx:neunzig",
@@ -4161,7 +5783,8 @@
      "id": "lx:neunzig:1",
      "de": "Eine Breze kostet neunzig Cent.",
      "tr": "Bir Breze doksan sent.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "pretzels in bakery display"
     },
     {
      "id": "lx:neunzig:2",
@@ -4173,7 +5796,8 @@
      "id": "lx:neunzig:3",
      "de": "Neunzig Minuten im Stau, echt nervig!",
      "tr": "Doksan dakika trafikte, gerçekten sinir bozucu!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "traffic jam on highway"
     },
     {
      "id": "lx:neunzig:4",
@@ -4192,7 +5816,27 @@
    "exp": {
     "anlam_tr": "Doksan sayısını söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Das Spiel dauert ___ Minuten.",
+     "answer": "neunzig",
+     "tr": "Maç doksan dakika sürüyor.",
+     "hint_tr": "Doksan **neunzig** olur, **eu** burada **oy** gibi okunur."
+    },
+    {
+     "de": "Das kostet ___ Cent.",
+     "answer": "neunzig",
+     "tr": "Bu doksan sent.",
+     "hint_tr": "Doksan sent derken **neunzig Cent** denir."
+    },
+    {
+     "de": "Meine Oma ist fast ___.",
+     "answer": "neunzig",
+     "tr": "Büyükannem neredeyse doksan yaşında.",
+     "hint_tr": "Neredeyse doksan derken **fast neunzig** denir."
+    }
+   ]
   },
   {
    "id": "lx:erster",
@@ -4227,7 +5871,8 @@
      "id": "lx:erster:1",
      "de": "Die Miete zahle ich immer am Ersten des Monats.",
      "tr": "Kirayı hep ayın birinde ödüyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "paying rent with banking app"
     },
     {
      "id": "lx:erster:2",
@@ -4246,7 +5891,8 @@
      "de": "– In welchem Stock wohnen Sie? – Im ersten, gleich links.",
      "tr": "– Kaçıncı katta oturuyorsunuz? – Birincide, hemen solda.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "apartment building first floor staircase"
     }
    ],
    "level": "A1",
@@ -4258,7 +5904,27 @@
    "exp": {
     "anlam_tr": "Sırada en başta olanı ya da ayın ilk gününü söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist mein ___ Tag hier.",
+     "answer": "erster",
+     "tr": "Bu benim burada ilk günüm.",
+     "hint_tr": "İlk günüm derken **mein erster Tag** denir."
+    },
+    {
+     "de": "Das ist das ___ Mal.",
+     "answer": "erste",
+     "tr": "Bu ilk kez.",
+     "hint_tr": "Birinci kez derken **das erste Mal** denir."
+    },
+    {
+     "de": "Heute ist der ___ Mai.",
+     "answer": "erste",
+     "tr": "Bugün bir mayıs.",
+     "hint_tr": "Bir mayıs derken **der erste Mai** denir."
+    }
+   ]
   },
   {
    "id": "lx:vierter",
@@ -4293,13 +5959,15 @@
      "id": "lx:vierter:1",
      "de": "Der Termin ist am vierten Juli.",
      "tr": "Randevu dört temmuzda.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "appointment written in paper calendar"
     },
     {
      "id": "lx:vierter:2",
      "de": "Die Wohnung liegt im vierten Stock, leider ohne Aufzug.",
      "tr": "Daire dördüncü katta, maalesef asansör yok.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "staircase in old apartment building"
     },
     {
      "id": "lx:vierter:3",
@@ -4324,7 +5992,27 @@
    "exp": {
     "anlam_tr": "Sırada dördüncü olanı ya da ayın dördünü söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Heute ist der ___ Juli.",
+     "answer": "vierte",
+     "tr": "Bugün dört temmuz.",
+     "hint_tr": "Tarih söylerken **der vierte Juli** denir."
+    },
+    {
+     "de": "Wir wohnen im ___ Stock.",
+     "answer": "vierten",
+     "tr": "Dördüncü katta oturuyoruz.",
+     "hint_tr": "Dördüncü katta derken **im vierten Stock** denir."
+    },
+    {
+     "de": "Das ist sein ___ Kaffee heute.",
+     "answer": "vierter",
+     "tr": "Bu onun bugünkü dördüncü kahvesi.",
+     "hint_tr": "**der Kaffee** için **sein vierter Kaffee** denir."
+    }
+   ]
   },
   {
    "id": "lx:Vormittag",
@@ -4380,7 +6068,8 @@
      "de": "– Geht es auch am Vormittag? – Ja, um zehn ist noch was frei.",
      "tr": "– Öğleden önce de olur mu? – Evet, saat onda hâlâ boş yer var.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "receptionist checking appointment book"
     }
    ],
    "level": "A1",
@@ -4402,7 +6091,33 @@
       "tr": "öğle"
      }
     ]
-   }
+   },
+   "forms": [
+    {
+     "de": "___ Vormittag arbeite ich.",
+     "answer": "Am",
+     "tr": "Öğleden önce çalışıyorum.",
+     "hint_tr": "Öğleden önce derken **am Vormittag** denir."
+    },
+    {
+     "de": "Heute ___ rufe ich an.",
+     "answer": "Vormittag",
+     "tr": "Bugün öğleden önce arıyorum.",
+     "hint_tr": "**heute Vormittag** bugün öğleden önce demektir."
+    },
+    {
+     "de": "___ Vormittag war ruhig.",
+     "answer": "Der",
+     "tr": "Öğleden önce sakindi.",
+     "hint_tr": "O öğleden önceyi anlatırken **der Vormittag** denir."
+    },
+    {
+     "de": "Ich habe den ganzen ___ Zeit.",
+     "answer": "Vormittag",
+     "tr": "Bütün sabah vaktim var.",
+     "hint_tr": "Bütün öğleden önce derken **den ganzen Vormittag** denir."
+    }
+   ]
   },
   {
    "id": "lx:vorgestern",
@@ -4443,7 +6158,8 @@
      "id": "lx:vorgestern:2",
      "de": "Vorgestern war ich beim Zahnarzt.",
      "tr": "Evvelsi gün dişçideydim.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "dentist examining patient"
     },
     {
      "id": "lx:vorgestern:3",
@@ -4469,7 +6185,27 @@
     "anlam_tr": "Dünden önceki günü söyler.",
     "ne_zaman_tr": "Şikâyetin ne zaman başladığını anlatırken.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "___ war ich krank.",
+     "answer": "Vorgestern",
+     "tr": "Evvelsi gün hastaydım.",
+     "hint_tr": "Dünden önceki gün **vorgestern** olur."
+    },
+    {
+     "de": "Das Paket ist ___ gekommen.",
+     "answer": "vorgestern",
+     "tr": "Paket evvelsi gün geldi.",
+     "hint_tr": "Evvelsi gün derken **vorgestern** denir."
+    },
+    {
+     "de": "Nicht gestern, ___.",
+     "answer": "vorgestern",
+     "tr": "Dün değil, evvelsi gün.",
+     "hint_tr": "Dün **gestern**, ondan önceki gün **vorgestern** olur."
+    }
+   ]
   },
   {
    "id": "lx:wie_viel",
@@ -4524,7 +6260,8 @@
      "de": "– Wie viel Zucker nehmen Sie? – Nur ein bisschen, danke.",
      "tr": "– Ne kadar şeker alırsınız? – Yalnızca biraz, teşekkürler.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "pouring sugar into coffee cup"
     }
    ],
    "level": "A1",
@@ -4537,7 +6274,27 @@
     "anlam_tr": "Miktarı ya da fiyatı sorar.",
     "ne_zaman_tr": "Dükkânda, kasada ve saat sorarken.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "___ Uhr ist es?",
+     "answer": "Wie viel",
+     "tr": "Saat kaç?",
+     "hint_tr": "Saati sorarken **Wie viel Uhr** denir."
+    },
+    {
+     "de": "Wie ___ Geld hast du dabei?",
+     "answer": "viel",
+     "tr": "Yanında ne kadar para var?",
+     "hint_tr": "Ne kadar derken **wie viel** denir, iki ayrı kelimedir."
+    },
+    {
+     "de": "___ Zeit haben wir?",
+     "answer": "Wie viel",
+     "tr": "Ne kadar vaktimiz var?",
+     "hint_tr": "Miktar sorarken **Wie viel** denir."
+    }
+   ]
   },
   {
    "id": "lx:möchten",
@@ -4588,7 +6345,8 @@
      "id": "lx:möchten:2",
      "de": "Möchten Sie Milch in den Kaffee?",
      "tr": "Kahvenize süt ister misiniz?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "pouring milk into coffee"
     },
     {
      "id": "lx:möchten:3",
@@ -4622,7 +6380,33 @@
     "ne_zaman_tr": "Dükkânda, telefonda ve resmî dairede.",
     "parcalar": [],
     "ipucu_tr": "Geçmişte **wollte** kullanılır: **Ich wollte anrufen**."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ einen Kaffee.",
+     "answer": "möchte",
+     "tr": "Bir kahve istiyorum.",
+     "hint_tr": "Kibarca isterken **ich möchte** denir."
+    },
+    {
+     "de": "Was ___ du essen?",
+     "answer": "möchtest",
+     "tr": "Ne yemek istersin?",
+     "hint_tr": "**du** ile **möchtest** olur."
+    },
+    {
+     "de": "Er ___ hier bleiben.",
+     "answer": "möchte",
+     "tr": "O burada kalmak istiyor.",
+     "hint_tr": "**er** ve **sie** ile de **möchte** olur."
+    },
+    {
+     "de": "Gestern ___ ich anrufen.",
+     "answer": "wollte",
+     "tr": "Dün aramak istedim.",
+     "hint_tr": "Geçmişi anlatırken **möchte** yerine **wollte** denir."
+    }
+   ]
   },
   {
    "id": "lx:buchstabieren",

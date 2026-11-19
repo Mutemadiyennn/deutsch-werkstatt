@@ -948,6 +948,10 @@
     {
      "de": "zehn Euro",
      "tr": "on avro"
+    },
+    {
+     "de": "zehn Minuten",
+     "tr": "on dakika"
     }
    ],
    "patterns": [
@@ -956,8 +960,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"halb zehn\" = 9:30 (onun yarısı), 10:30 değil!",
-    "Ondan sonraki sayılar: elf, zwölf (düzensiz)."
+    "Saat on buçuk derken **halb zehn** yanlış. Doğrusu **halb elf**.",
+    "On avro derken **zehn Euros** yanlış. Doğrusu **zehn Euro**."
    ],
    "examples": [
     {
@@ -970,7 +974,8 @@
      "id": "lx:zehn:2",
      "de": "Das macht zehn Euro.",
      "tr": "On avro tutuyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "ten euro banknote"
     },
     {
      "id": "lx:zehn:3",
@@ -983,7 +988,8 @@
      "de": "– Um wie viel Uhr? – Um zehn, passt das?",
      "tr": "– Saat kaçta? – Onda, uyar mı?",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "wall clock at ten o clock"
     }
    ],
    "level": "A1",
@@ -992,6 +998,32 @@
    "domains": [
     "einkaufen",
     "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "On sayısını söyler.",
+    "ne_zaman_tr": "Fiyat, saat ve süre söylerken.",
+    "parcalar": [],
+    "ipucu_tr": "**um zehn** saat onda demektir."
+   },
+   "forms": [
+    {
+     "de": "Das kostet ___ Euro.",
+     "answer": "zehn",
+     "tr": "Bu on avro.",
+     "hint_tr": "On **zehn** olur, **z** burada **ts** gibi okunur."
+    },
+    {
+     "de": "Ich warte seit ___ Minuten.",
+     "answer": "zehn",
+     "tr": "On dakikadır bekliyorum.",
+     "hint_tr": "On dakikadır derken **seit zehn Minuten** denir."
+    },
+    {
+     "de": "Es ist halb ___.",
+     "answer": "zehn",
+     "tr": "Saat dokuz buçuk.",
+     "hint_tr": "**halb zehn** dokuz buçuk demektir, on buçuk değil."
+    }
    ]
   },
   {
@@ -1314,6 +1346,10 @@
     {
      "de": "sechs Monate",
      "tr": "altı ay"
+    },
+    {
+     "de": "sechs Uhr",
+     "tr": "saat altı"
     }
    ],
    "patterns": [
@@ -1321,15 +1357,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"chs\" \"ks\" gibi okunur: \"zeks\".",
-    "\"halb sechs\" = 5:30."
+    "Saat altı buçuk derken **halb sechs** yanlış. Doğrusu **halb sieben**.",
+    "Altı ay derken **sechs Monat** yanlış. Doğrusu **sechs Monate**."
    ],
    "examples": [
     {
      "id": "lx:sechs:1",
      "de": "Ich stehe um sechs auf.",
      "tr": "Altıda kalkıyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "alarm clock at six in morning"
     },
     {
      "id": "lx:sechs:2",
@@ -1348,7 +1385,8 @@
      "de": "– Wann macht ihr zu? – Um sechs.",
      "tr": "– Saat kaçta kapatıyorsunuz? – Altıda.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "shop closing time sign"
     }
    ],
    "level": "A1",
@@ -1357,6 +1395,32 @@
    "domains": [
     "einkaufen",
     "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Altı sayısını söyler.",
+    "ne_zaman_tr": "Fiyat, saat ve süre söylerken.",
+    "parcalar": [],
+    "ipucu_tr": "Altı anlamındaki **sechs** kelimesi zeks gibi okunur."
+   },
+   "forms": [
+    {
+     "de": "Es ist ___ Uhr.",
+     "answer": "sechs",
+     "tr": "Saat altı.",
+     "hint_tr": "Altı **sechs** olur, **chs** burada **ks** gibi okunur."
+    },
+    {
+     "de": "Der Kurs dauert ___ Wochen.",
+     "answer": "sechs",
+     "tr": "Kurs altı hafta sürüyor.",
+     "hint_tr": "Altı hafta derken **sechs Wochen** denir."
+    },
+    {
+     "de": "Wir sind ___ Personen.",
+     "answer": "sechs",
+     "tr": "Altı kişiyiz.",
+     "hint_tr": "Altı kişi derken **sechs Personen** denir."
+    }
    ]
   },
   {
@@ -1681,6 +1745,10 @@
     {
      "de": "zum zweiten Mal",
      "tr": "ikinci kez"
+    },
+    {
+     "de": "jeden zweiten Tag",
+     "tr": "iki günde bir"
     }
    ],
    "patterns": [
@@ -1688,15 +1756,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Sıra sayısı sıfat gibi çekilir: \"der zweite Stock\", \"am zweiten Mai\".",
-    "Tarihte nokta: \"2. Mai\" = zweiter Mai."
+    "İkinci katta derken **im zweite Stock** yanlış. Doğrusu **im zweiten Stock**.",
+    "İkinci kez buradayım derken **Ich bin zweite Mal hier** yanlış. Doğrusu **Ich bin zum zweiten Mal hier**."
    ],
    "examples": [
     {
      "id": "lx:zweiter:1",
      "de": "Wir wohnen im zweiten Stock.",
      "tr": "İkinci katta oturuyoruz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "apartment building balconies"
     },
     {
      "id": "lx:zweiter:2",
@@ -1715,7 +1784,8 @@
      "de": "– Welche Tür? – Die zweite links.",
      "tr": "– Hangi kapı? – Soldaki ikinci.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "hallway with row of doors"
     }
    ],
    "level": "A1",
@@ -1724,6 +1794,32 @@
    "domains": [
     "wohnen",
     "verkehr"
+   ],
+   "exp": {
+    "anlam_tr": "Sırada birinciden sonra geleni söyler.",
+    "ne_zaman_tr": "Kat, kapı ve tarih söylerken.",
+    "parcalar": [],
+    "ipucu_tr": "**am zweiten Mai** mayısın ikisinde demektir."
+   },
+   "forms": [
+    {
+     "de": "Das ist das ___ Mal.",
+     "answer": "zweite",
+     "tr": "Bu ikinci kez.",
+     "hint_tr": "İkinci kez derken **das zweite Mal** denir."
+    },
+    {
+     "de": "Das Büro ist im ___ Stock.",
+     "answer": "zweiten",
+     "tr": "Ofis ikinci katta.",
+     "hint_tr": "İkinci katta derken **im zweiten Stock** denir."
+    },
+    {
+     "de": "Nehmen Sie die ___ Straße links.",
+     "answer": "zweite",
+     "tr": "Soldaki ikinci sokağa girin.",
+     "hint_tr": "İkinci sokak derken **die zweite Straße** denir."
+    }
    ]
   },
   {
@@ -1815,6 +1911,22 @@
     {
      "de": "bar zahlen",
      "tr": "nakit ödemek"
+    },
+    {
+     "de": "mit Karte zahlen",
+     "tr": "kartla ödemek"
+    },
+    {
+     "de": "die Miete zahlen",
+     "tr": "kira ödemek"
+    },
+    {
+     "de": "getrennt zahlen",
+     "tr": "ayrı ayrı ödemek"
+    },
+    {
+     "de": "zusammen zahlen",
+     "tr": "birlikte ödemek"
     }
    ],
    "patterns": [
@@ -1823,15 +1935,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"zahlen\" ve \"bezahlen\" aynı anlamda; restoranda \"Zahlen, bitte!\" en kısa yol.",
-    "\"die Zahl\" = sayı; karıştırma."
+    "Kartla ödüyorum derken **Ich zahle Karte** yanlış. Doğrusu **Ich zahle mit Karte**.",
+    "Parayı sayıyorum derken **Ich zahle das Geld** yanlış. Doğrusu **Ich zähle das Geld**."
    ],
    "examples": [
     {
      "id": "lx:zahlen:1",
      "de": "Kann ich mit Karte zahlen?",
      "tr": "Kartla ödeyebilir miyim?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "customer tapping card on payment terminal"
     },
     {
      "id": "lx:zahlen:2",
@@ -1843,14 +1956,16 @@
      "id": "lx:zahlen:3",
      "de": "Zahlen, bitte!",
      "tr": "Hesap, lütfen!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "customer raising hand to waiter in restaurant"
     },
     {
      "id": "lx:zahlen:4",
      "de": "– Ich zahle heute. – Nein, ich zahle!",
      "tr": "– Bugün ben ödüyorum. – Hayır, ben ödüyorum!",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "friends arguing over restaurant bill"
     }
    ],
    "level": "A1",
@@ -1860,6 +1975,38 @@
     "einkaufen",
     "essen",
     "bank"
+   ],
+   "exp": {
+    "anlam_tr": "**zahlen** bir şeyin parasını vermeyi söyler.",
+    "ne_zaman_tr": "Kasada, restoranda ve kira öderken.",
+    "parcalar": [],
+    "ipucu_tr": "Restoranda hesabı isterken **Zahlen, bitte!** dersin."
+   },
+   "forms": [
+    {
+     "de": "Zahlen Sie bar? – Nein, ich ___ mit Karte.",
+     "answer": "zahle",
+     "tr": "Nakit mi ödüyorsunuz? – Hayır, kartla ödüyorum.",
+     "hint_tr": "**ich** ile **zahle** olur."
+    },
+    {
+     "de": "Ich zahle heute, du ___ morgen.",
+     "answer": "zahlst",
+     "tr": "Bugün ben ödüyorum, yarın sen ödersin.",
+     "hint_tr": "**du** ile **zahlst** olur."
+    },
+    {
+     "de": "Ich zahle bar und er ___ mit Karte.",
+     "answer": "zahlt",
+     "tr": "Ben nakit ödüyorum, o kartla ödüyor.",
+     "hint_tr": "**er** ve **sie** ile **zahlt** olur."
+    },
+    {
+     "de": "Ich möchte zahlen. – Ihr Kollege hat schon ___.",
+     "answer": "gezahlt",
+     "tr": "Ödemek istiyorum. – İş arkadaşınız çoktan ödedi.",
+     "hint_tr": "Geçmişi anlatırken **hat gezahlt** denir."
+    }
    ]
   },
   {
@@ -2005,6 +2152,18 @@
     {
      "de": "leider ja",
      "tr": "maalesef evet"
+    },
+    {
+     "de": "Das geht leider nicht.",
+     "tr": "Bu maalesef olmuyor."
+    },
+    {
+     "de": "Ich kann leider nicht kommen.",
+     "tr": "Maalesef gelemiyorum."
+    },
+    {
+     "de": "leider keine Zeit",
+     "tr": "maalesef vakit yok"
     }
    ],
    "patterns": [
@@ -2012,26 +2171,28 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Cümle başında fiil ikinci sırada: \"Leider habe ich keine Zeit\".",
-    "Kısa cevap: \"Leider nicht\" = Maalesef hayır."
+    "Maalesef vaktim yok derken **Leider ich habe keine Zeit** yanlış. Doğrusu **Leider habe ich keine Zeit**.",
+    "Üzgünüm derken **Ich bin leider** yanlış. Doğrusu **Es tut mir leid**."
    ],
    "examples": [
     {
      "id": "lx:leider:1",
      "de": "Leider habe ich morgen keine Zeit.",
      "tr": "Maalesef yarın vaktim yok.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person checking full calendar on phone"
     },
     {
      "id": "lx:leider:2",
      "de": "Das ist leider nicht möglich.",
      "tr": "Bu maalesef mümkün değil.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "office clerk apologizing to customer at counter"
     },
     {
      "id": "lx:leider:3",
-     "de": "Leider, leider!",
-     "tr": "Maalesef, maalesef!",
+     "de": "Geht leider nicht.",
+     "tr": "Maalesef olmuyor.",
      "layer": "alltag"
     },
     {
@@ -2039,7 +2200,8 @@
      "de": "– Haben Sie heute noch einen Termin? – Leider nicht.",
      "tr": "– Bugün boş randevunuz var mı? – Maalesef yok.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "receptionist on phone at doctor office"
     }
    ],
    "level": "A1",
@@ -2049,6 +2211,32 @@
     "strategie",
     "arzt",
     "amt"
+   ],
+   "exp": {
+    "anlam_tr": "Kötü bir haberi kibarca söylemeni sağlar.",
+    "ne_zaman_tr": "Bir isteğe olumsuz cevap verirken.",
+    "parcalar": [],
+    "ipucu_tr": "**Leider nicht** maalesef hayır demektir."
+   },
+   "forms": [
+    {
+     "de": "Ich habe ___ keine Zeit.",
+     "answer": "leider",
+     "tr": "Maalesef vaktim yok.",
+     "hint_tr": "Kötü bir haberi yumuşatırken **leider** denir."
+    },
+    {
+     "de": "Ist Frau Huber da? – Nein, ___ nicht.",
+     "answer": "leider",
+     "tr": "Huber Hanım orada mı? – Hayır, maalesef yok.",
+     "hint_tr": "Maalesef yok derken **leider nicht** denir."
+    },
+    {
+     "de": "___ kann ich morgen nicht kommen.",
+     "answer": "Leider",
+     "tr": "Maalesef yarın gelemiyorum.",
+     "hint_tr": "**Leider** başta olunca hemen sonra **kann** gelir."
+    }
    ]
   },
   {
@@ -2447,15 +2635,15 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "İşe hastalık bildirmek \"sich krankmelden\"; doktor raporu \"die Krankschreibung\".",
-    "\"hastalanmak\" = \"krank werden\"."
+    "Hastayım derken **Ich krank** eksik. Doğrusu **Ich bin krank**."
    ],
    "examples": [
     {
      "id": "lx:krank:1",
      "de": "Ich bin krank und kann nicht kommen.",
      "tr": "Hastayım, gelemiyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "sick person resting in bed"
     },
     {
      "id": "lx:krank:2",
@@ -2483,7 +2671,13 @@
    "domains": [
     "arzt",
     "arbeit"
-   ]
+   ],
+   "exp": {
+    "anlam_tr": "Birinin sağlığının iyi olmadığını söyler.",
+    "ne_zaman_tr": "İşe ya da doktora haber verirken.",
+    "parcalar": [],
+    "ipucu_tr": "İşe hasta olduğunu bildirmek **sich krankmelden** demektir."
+   }
   },
   {
    "id": "lx:Foto",
@@ -3082,7 +3276,8 @@
    "domains": [
     "gefuehle",
     "smalltalk"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:Idiot",
@@ -3204,7 +3399,7 @@
   {
    "id": "lx:halb",
    "de": "halb",
-   "tr": "yarım; (saat) buçuk",
+   "tr": "yarım, buçuk",
    "pos": "adj",
    "collocations": [
     {
@@ -3214,6 +3409,10 @@
     {
      "de": "eine halbe Stunde",
      "tr": "yarım saat"
+    },
+    {
+     "de": "ein halbes Kilo",
+     "tr": "yarım kilo"
     }
    ],
    "patterns": [
@@ -3221,21 +3420,23 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"halb acht\" = 7:30 (sekizin yarısı), 8:30 değil! Türkçe konuşanın en sık hatası.",
-    "\"halb so …\" = yarısı kadar: \"halb so teuer\"."
+    "Saat üç buçuk derken **halb drei** yanlış. Doğrusu **halb vier**.",
+    "Yarım saat derken **ein halb Stunde** yanlış. Doğrusu **eine halbe Stunde**."
    ],
    "examples": [
     {
      "id": "lx:halb:1",
      "de": "Der Termin ist um halb neun.",
      "tr": "Randevu sekiz buçukta.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "clock showing half past eight"
     },
     {
      "id": "lx:halb:2",
      "de": "Ich warte schon eine halbe Stunde.",
      "tr": "Yarım saattir bekliyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person waiting and looking at wristwatch"
     },
     {
      "id": "lx:halb:3",
@@ -3257,6 +3458,32 @@
    "domains": [
     "arzt",
     "verkehr"
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin yarısını söyler.",
+    "ne_zaman_tr": "Saat ve süre söylerken.",
+    "parcalar": [],
+    "ipucu_tr": "Saatte **halb neun** sekiz buçuk demektir."
+   },
+   "forms": [
+    {
+     "de": "Es ist ___ vier.",
+     "answer": "halb",
+     "tr": "Saat üç buçuk.",
+     "hint_tr": "**halb vier** üç buçuk demektir, dört buçuk değil."
+    },
+    {
+     "de": "Ich warte eine ___ Stunde.",
+     "answer": "halbe",
+     "tr": "Yarım saat bekliyorum.",
+     "hint_tr": "Yarım saat derken **eine halbe Stunde** denir."
+    },
+    {
+     "de": "Ich nehme ein ___ Kilo.",
+     "answer": "halbes",
+     "tr": "Yarım kilo alıyorum.",
+     "hint_tr": "Yarım kilo derken **ein halbes Kilo** denir."
+    }
    ]
   },
   {

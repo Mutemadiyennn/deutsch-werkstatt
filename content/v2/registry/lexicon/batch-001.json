@@ -79,7 +79,8 @@
     "anlam_tr": "Bilinen bir kişi ya da şeyden söz ederken kelimenin önüne gelir.",
     "parcalar": [],
     "ipucu_tr": "Türkçede karşılığı yoktur, çoğu zaman çevrilmez."
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:ich",
@@ -144,7 +145,8 @@
     "anlam_tr": "Konuşan kişinin kendisini gösterir.",
     "parcalar": [],
     "ipucu_tr": "Bana derken **mir**, beni derken **mich** kullanılır."
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:sein",
@@ -165,6 +167,14 @@
     {
      "de": "zu Hause sein",
      "tr": "evde olmak"
+    },
+    {
+     "de": "da sein",
+     "tr": "burada olmak"
+    },
+    {
+     "de": "krank sein",
+     "tr": "hasta olmak"
     }
    ],
    "patterns": [
@@ -202,7 +212,8 @@
      "de": "– Bist du schon da? – Ja, ich bin vor der Tür.",
      "tr": "– Geldin mi? – Evet, kapının önündeyim.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "person waiting at front door"
     }
    ],
    "level": "A1",
@@ -217,7 +228,39 @@
     "anlam_tr": "Bir kişinin ya da şeyin nasıl, kim, nerede olduğunu söyler.",
     "parcalar": [],
     "ipucu_tr": "Türkçedeki -im, -sin ekleri burada ayrı kelimedir: **ich bin**, **du bist**."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ heute zu Hause.",
+     "answer": "bin",
+     "tr": "Bugün evdeyim.",
+     "hint_tr": "**ich** ile **bin** olur."
+    },
+    {
+     "de": "___ du müde?",
+     "answer": "Bist",
+     "tr": "Yorgun musun?",
+     "hint_tr": "**du** ile **bist** olur."
+    },
+    {
+     "de": "Er ___ nicht da.",
+     "answer": "ist",
+     "tr": "O burada değil.",
+     "hint_tr": "**er** ve **sie** ile **ist** olur."
+    },
+    {
+     "de": "Ich ___ gestern im Kino.",
+     "answer": "war",
+     "tr": "Dün sinemadaydım.",
+     "hint_tr": "Geçmişi anlatırken **ich war** denir."
+    },
+    {
+     "de": "Ich bin schon mal dort ___.",
+     "answer": "gewesen",
+     "tr": "Daha önce orada bulundum.",
+     "hint_tr": "**Ich bin** ile söylerken sona **gewesen** gelir."
+    }
+   ]
   },
   {
    "id": "lx:sein#2",
@@ -280,7 +323,8 @@
     "ne_zaman_tr": "**das Kind** için de **sein** dersin: **das Kind und sein Ball**.",
     "parcalar": [],
     "ipucu_tr": "Arkasındaki kelimeye göre değişir: **sein Bruder**, **seine Schwester**."
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:du",
@@ -344,7 +388,8 @@
     "anlam_tr": "Yakın olduğun kişiye seslenirken kullanılır.",
     "ne_zaman_tr": "Arkadaşa, aileye ve çocuklara söylenir.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:sie",
@@ -406,7 +451,8 @@
    "exp": {
     "anlam_tr": "Bir kadından, bir gruptan ya da **die** ile söylenen şeyden bahseder.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:sie#2",
@@ -474,7 +520,8 @@
     "ne_zaman_tr": "Doktora, memura ve yabancı yetişkinlere söylenir.",
     "parcalar": [],
     "ipucu_tr": "Yazarken her zaman büyük harfle başlar."
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:haben",
@@ -498,6 +545,18 @@
     {
      "de": "Hunger haben",
      "tr": "acıkmak"
+    },
+    {
+     "de": "Fieber haben",
+     "tr": "ateşi olmak"
+    },
+    {
+     "de": "Angst haben",
+     "tr": "korkmak"
+    },
+    {
+     "de": "einen Termin haben",
+     "tr": "randevusu olmak"
     }
    ],
    "patterns": [
@@ -521,7 +580,8 @@
      "id": "lx:haben:2",
      "de": "Haben Sie einen Termin?",
      "tr": "Randevunuz var mı?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "receptionist talking to patient at desk"
     },
     {
      "id": "lx:haben:3",
@@ -549,7 +609,39 @@
    "exp": {
     "anlam_tr": "Bir şeyin sende ya da birinde olduğunu söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ einen Termin.",
+     "answer": "habe",
+     "tr": "Randevum var.",
+     "hint_tr": "**ich** ile **habe** olur."
+    },
+    {
+     "de": "___ du morgen Zeit?",
+     "answer": "Hast",
+     "tr": "Yarın vaktin var mı?",
+     "hint_tr": "**du** ile **hast** olur."
+    },
+    {
+     "de": "Er ___ zwei Kinder.",
+     "answer": "hat",
+     "tr": "Onun iki çocuğu var.",
+     "hint_tr": "**er** ve **sie** ile **hat** olur."
+    },
+    {
+     "de": "Gestern ___ ich keine Zeit.",
+     "answer": "hatte",
+     "tr": "Dün vaktim yoktu.",
+     "hint_tr": "Geçmişi anlatırken **ich hatte** denir."
+    },
+    {
+     "de": "Ich habe Fieber ___.",
+     "answer": "gehabt",
+     "tr": "Ateşim vardı.",
+     "hint_tr": "**Ich habe** ile söylerken sona **gehabt** gelir."
+    }
+   ]
   },
   {
    "id": "lx:ein",
@@ -614,7 +706,8 @@
    "exp": {
     "anlam_tr": "Bilinmeyen ya da ilk kez söz edilen tek bir şeyi gösterir.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:nicht",
@@ -677,7 +770,8 @@
    "exp": {
     "anlam_tr": "Bir cümleyi ya da kelimeyi olumsuz yapar.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:es",
@@ -739,7 +833,8 @@
    "exp": {
     "anlam_tr": "**das** ile söylenen şeyin yerine ya da hava ve saat cümlesinde gelir.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:und",
@@ -754,6 +849,18 @@
     {
      "de": "Und du?",
      "tr": "Ya sen?"
+    },
+    {
+     "de": "und so weiter",
+     "tr": "ve benzeri"
+    },
+    {
+     "de": "Und dir?",
+     "tr": "Ya sen nasılsın?"
+    },
+    {
+     "de": "Und Sie?",
+     "tr": "Ya siz?"
     }
    ],
    "patterns": [
@@ -770,13 +877,15 @@
      "id": "lx:und:1",
      "de": "Ich mache Kaffee und du deckst den Tisch.",
      "tr": "Ben kahve yapıyorum, sen de sofrayı kur.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "couple making coffee and setting breakfast table"
     },
     {
      "id": "lx:und:2",
      "de": "Brot und Käse, bitte.",
      "tr": "Ekmek ve peynir, lütfen.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "bread and cheese on wooden table"
     },
     {
      "id": "lx:und:3",
@@ -802,7 +911,22 @@
    "exp": {
     "anlam_tr": "İki kelimeyi ya da iki cümleyi birbirine bağlar.",
     "parcalar": []
-   }
+   },
+   "card": false,
+   "forms": [
+    {
+     "de": "Einen Kaffee ___ einen Tee, bitte.",
+     "answer": "und",
+     "tr": "Bir kahve ve bir çay, lütfen.",
+     "hint_tr": "İki şeyi birbirine bağlarken **und** denir."
+    },
+    {
+     "de": "Mir geht es gut. ___ dir?",
+     "answer": "Und",
+     "tr": "İyiyim. Ya sen nasılsın?",
+     "hint_tr": "Aynı soruyu geri sorarken **Und dir?** denir."
+    }
+   ]
   },
   {
    "id": "lx:wir",
@@ -865,7 +989,8 @@
    "exp": {
     "anlam_tr": "Konuşanın kendisiyle birlikte başkalarını da gösterir.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:er",
@@ -927,7 +1052,8 @@
    "exp": {
     "anlam_tr": "Bir erkekten ya da **der** ile söylenen şeyden bahseder.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:was",
@@ -942,6 +1068,18 @@
     {
      "de": "Was kostet das?",
      "tr": "Bu ne kadar?"
+    },
+    {
+     "de": "Was machst du?",
+     "tr": "Ne yapıyorsun?"
+    },
+    {
+     "de": "Was heißt das?",
+     "tr": "Bu ne demek?"
+    },
+    {
+     "de": "Was möchten Sie?",
+     "tr": "Ne istersiniz?"
     }
    ],
    "patterns": [
@@ -959,7 +1097,8 @@
      "id": "lx:was:1",
      "de": "Was machst du am Wochenende?",
      "tr": "Hafta sonu ne yapıyorsun?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "colleagues chatting during coffee break"
     },
     {
      "id": "lx:was:2",
@@ -978,7 +1117,8 @@
      "de": "– Was möchten Sie? – Einen Tee, bitte.",
      "tr": "– Ne istersiniz? – Bir çay, lütfen.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "waiter taking order at cafe table"
     }
    ],
    "level": "A1",
@@ -992,7 +1132,28 @@
    "exp": {
     "anlam_tr": "Bir şeyi ya da bir işi sorar.",
     "parcalar": []
-   }
+   },
+   "card": false,
+   "forms": [
+    {
+     "de": "___ möchtest du trinken?",
+     "answer": "Was",
+     "tr": "Ne içmek istersin?",
+     "hint_tr": "Bir şeyi sorarken **Was** denir."
+    },
+    {
+     "de": "___ machst du heute?",
+     "answer": "Was",
+     "tr": "Bugün ne yapıyorsun?",
+     "hint_tr": "Birinin ne yaptığını sorarken **Was machst du** denir."
+    },
+    {
+     "de": "___ ist los?",
+     "answer": "Was",
+     "tr": "Ne oldu?",
+     "hint_tr": "Ne oldu diye sorarken **Was ist los** denir."
+    }
+   ]
   },
   {
    "id": "lx:werden",
@@ -1129,7 +1290,8 @@
     "anlam_tr": "Birine ya da bir yere gidişi söyler.",
     "parcalar": [],
     "ipucu_tr": "Kapı için **zu** kapalı demektir: **Die Tür ist zu.**"
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:zu#2",
@@ -1257,7 +1419,8 @@
     "anlam_tr": "Yakın olduğun birkaç kişiye birden seslenirken kullanılır.",
     "ne_zaman_tr": "Arkadaş grubuna ya da aileye söylenir.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:ihr#2",
@@ -1320,7 +1483,8 @@
    "exp": {
     "anlam_tr": "Bir şeyin bir kadına, bir gruba ya da size ait olduğunu söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:in",
@@ -1384,7 +1548,8 @@
    "exp": {
     "anlam_tr": "Bir şeyin içinde olmayı ya da içine girmeyi söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:mein",
@@ -1447,7 +1612,8 @@
    "exp": {
     "anlam_tr": "Bir şeyin bana ait olduğunu söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:können",
@@ -1468,6 +1634,10 @@
     {
      "de": "Deutsch können",
      "tr": "Almanca bilmek"
+    },
+    {
+     "de": "kann sein",
+     "tr": "olabilir"
     }
    ],
    "patterns": [
@@ -1497,7 +1667,8 @@
      "id": "lx:können:3",
      "de": "Kannste mal kurz helfen?",
      "tr": "Bir saniye yardım edebilir misin?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "coworker helping carry box"
     },
     {
      "id": "lx:können:4",
@@ -1520,7 +1691,33 @@
     "anlam_tr": "Bir şeyi yapabildiğini ya da yapmanın mümkün olduğunu söyler.",
     "ne_zaman_tr": "Kibarca rica ederken de söylenir.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ heute nicht kommen.",
+     "answer": "kann",
+     "tr": "Bugün gelemem.",
+     "hint_tr": "**ich** ile **kann** olur."
+    },
+    {
+     "de": "___ du mir helfen?",
+     "answer": "Kannst",
+     "tr": "Bana yardım edebilir misin?",
+     "hint_tr": "**du** ile **kannst** olur."
+    },
+    {
+     "de": "Er ___ gut kochen.",
+     "answer": "kann",
+     "tr": "O iyi yemek yapabiliyor.",
+     "hint_tr": "**er** ve **sie** ile de **kann** olur."
+    },
+    {
+     "de": "Gestern ___ ich nicht kommen.",
+     "answer": "konnte",
+     "tr": "Dün gelemedim.",
+     "hint_tr": "Geçmişi anlatırken **ich konnte** denir."
+    }
+   ]
   },
   {
    "id": "lx:ja",
@@ -1535,6 +1732,18 @@
     {
      "de": "ja, klar",
      "tr": "evet, tabii"
+    },
+    {
+     "de": "ja, bitte",
+     "tr": "evet, lütfen"
+    },
+    {
+     "de": "ja, genau",
+     "tr": "evet, aynen"
+    },
+    {
+     "de": "ja, natürlich",
+     "tr": "evet, elbette"
     }
    ],
    "patterns": [
@@ -1557,7 +1766,8 @@
      "id": "lx:ja:2",
      "de": "Ja, gern, vielen Dank.",
      "tr": "Evet, memnuniyetle, çok teşekkürler.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person accepting cup of coffee"
     },
     {
      "id": "lx:ja:3",
@@ -1570,7 +1780,8 @@
      "de": "– Haben Sie einen Termin? – Ja, um zehn.",
      "tr": "– Randevunuz var mı? – Evet, saat onda.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "patient at doctor reception desk"
     }
    ],
    "level": "A1",
@@ -1584,7 +1795,28 @@
    "exp": {
     "anlam_tr": "Bir soruya olumlu cevap verir.",
     "parcalar": []
-   }
+   },
+   "card": false,
+   "forms": [
+    {
+     "de": "___, gern.",
+     "answer": "Ja",
+     "tr": "Evet, memnuniyetle.",
+     "hint_tr": "Teklifi kabul ederken **Ja, gern** denir."
+    },
+    {
+     "de": "Kommst du morgen? – ___, klar.",
+     "answer": "Ja",
+     "tr": "Yarın geliyor musun? – Evet, tabii.",
+     "hint_tr": "Evet, tabii derken **Ja, klar** denir."
+    },
+    {
+     "de": "___, das ist richtig.",
+     "answer": "Ja",
+     "tr": "Evet, bu doğru.",
+     "hint_tr": "Karşındakini onaylarken **Ja** denir."
+    }
+   ]
   },
   {
    "id": "lx:ja#2",
@@ -1648,7 +1880,8 @@
     "anlam_tr": "Şaşkınlığı ya da iki kişinin de bildiği şeyi vurgular.",
     "parcalar": [],
     "ipucu_tr": "Çoğu zaman çevrilmez, hafif söylenir."
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:mit",
@@ -1712,7 +1945,8 @@
    "exp": {
     "anlam_tr": "Kiminle ya da neyle yapıldığını söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:wie",
@@ -1727,6 +1961,10 @@
     {
      "de": "so … wie",
      "tr": "… kadar"
+    },
+    {
+     "de": "wie immer",
+     "tr": "her zamanki gibi"
     }
    ],
    "patterns": [
@@ -1751,7 +1989,8 @@
      "id": "lx:wie:2",
      "de": "Wie sagt man das auf Deutsch?",
      "tr": "Bu Almancada nasıl söylenir?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "german language class blackboard"
     },
     {
      "id": "lx:wie:3",
@@ -1777,7 +2016,27 @@
    "exp": {
     "anlam_tr": "Bir şeyin nasıl olduğunu sorar ya da benzerlik kurar.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "___ heißt du?",
+     "answer": "Wie",
+     "tr": "Adın ne?",
+     "hint_tr": "Ad sorarken **Wie** denir, **Was** denmez."
+    },
+    {
+     "de": "___ geht es Ihnen?",
+     "answer": "Wie",
+     "tr": "Nasılsınız?",
+     "hint_tr": "Nasılsınız derken **Wie geht es Ihnen?** denir."
+    },
+    {
+     "de": "Er ist so alt ___ ich.",
+     "answer": "wie",
+     "tr": "O benimle aynı yaşta.",
+     "hint_tr": "Aynı yaşta derken **so alt wie** denir."
+    }
+   ]
   },
   {
    "id": "lx:auf",
@@ -1841,7 +2100,8 @@
    "exp": {
     "anlam_tr": "Bir şeyin üstünde olmayı ya da üstüne gitmeyi söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:dass",
@@ -1904,7 +2164,8 @@
    "exp": {
     "anlam_tr": "Bir düşünceyi ya da haberi önceki cümleye bağlar.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:aber",
@@ -1967,7 +2228,8 @@
    "exp": {
     "anlam_tr": "Önceki söze karşıt bir şey ekler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:wollen",
@@ -1988,6 +2250,10 @@
     {
      "de": "nach Hause wollen",
      "tr": "eve gitmek istemek"
+    },
+    {
+     "de": "Ich will nicht.",
+     "tr": "İstemiyorum."
     }
    ],
    "patterns": [
@@ -2011,7 +2277,8 @@
      "id": "lx:wollen:2",
      "de": "Wollen wir einen Kaffee trinken?",
      "tr": "Bir kahve içelim mi?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "friends having coffee at cafe"
     },
     {
      "id": "lx:wollen:3",
@@ -2038,7 +2305,33 @@
     "anlam_tr": "Bir şeyi yapmak istediğini açıkça söyler.",
     "ne_zaman_tr": "Arkadaşla plan yaparken rahatça söylenir.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ nach Hause.",
+     "answer": "will",
+     "tr": "Eve gitmek istiyorum.",
+     "hint_tr": "**ich** ile **will** olur."
+    },
+    {
+     "de": "Was ___ du trinken?",
+     "answer": "willst",
+     "tr": "Ne içmek istiyorsun?",
+     "hint_tr": "**du** ile **willst** olur."
+    },
+    {
+     "de": "Er ___ morgen kommen.",
+     "answer": "will",
+     "tr": "O yarın gelmek istiyor.",
+     "hint_tr": "**er** ve **sie** ile de **will** olur."
+    },
+    {
+     "de": "Ich ___ dich gestern anrufen.",
+     "answer": "wollte",
+     "tr": "Dün seni aramak istedim.",
+     "hint_tr": "Geçmişi anlatırken **ich wollte** denir."
+    }
+   ]
   },
   {
    "id": "lx:gut",
@@ -2258,6 +2551,18 @@
     {
      "de": "Sag mal, …",
      "tr": "Baksana, …"
+    },
+    {
+     "de": "Danke sagen",
+     "tr": "teşekkür etmek"
+    },
+    {
+     "de": "die Wahrheit sagen",
+     "tr": "doğruyu söylemek"
+    },
+    {
+     "de": "Wie sagt man das auf Deutsch?",
+     "tr": "Bu Almanca nasıl denir?"
     }
    ],
    "patterns": [
@@ -2287,14 +2592,16 @@
      "id": "lx:sagen:3",
      "de": "Sag mal, hast du heute Zeit?",
      "tr": "Baksana, bugün vaktin var mı?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "colleagues talking during work break"
     },
     {
      "id": "lx:sagen:4",
      "de": "– Sagst du mir Bescheid? – Klar, ich ruf dich an.",
      "tr": "– Bana haber verir misin? – Tabii, seni ararım.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "two friends talking outdoors holding phones"
     }
    ],
    "level": "A1",
@@ -2308,7 +2615,33 @@
    "exp": {
     "anlam_tr": "Birine bir şeyi söylemeyi anlatır.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ nichts.",
+     "answer": "sage",
+     "tr": "Hiçbir şey söylemiyorum.",
+     "hint_tr": "**ich** ile **sage** olur."
+    },
+    {
+     "de": "Was ___ du?",
+     "answer": "sagst",
+     "tr": "Ne diyorsun?",
+     "hint_tr": "**du** ile **sagst** olur."
+    },
+    {
+     "de": "Er ___ immer Danke.",
+     "answer": "sagt",
+     "tr": "O hep teşekkür eder.",
+     "hint_tr": "**er** ve **sie** ile **sagt** olur."
+    },
+    {
+     "de": "Das habe ich nicht ___.",
+     "answer": "gesagt",
+     "tr": "Bunu söylemedim.",
+     "hint_tr": "Geçmişi anlatırken **habe gesagt** denir."
+    }
+   ]
   },
   {
    "id": "lx:für",
@@ -2371,7 +2704,8 @@
    "exp": {
     "anlam_tr": "Bir şeyin kime ya da neye yönelik olduğunu söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:gehen",
@@ -2392,6 +2726,18 @@
     {
      "de": "Das geht nicht.",
      "tr": "Bu olmaz."
+    },
+    {
+     "de": "nach Hause gehen",
+     "tr": "eve gitmek"
+    },
+    {
+     "de": "zu Fuß gehen",
+     "tr": "yürüyerek gitmek"
+    },
+    {
+     "de": "einkaufen gehen",
+     "tr": "alışverişe gitmek"
     }
    ],
    "patterns": [
@@ -2428,7 +2774,8 @@
      "de": "– Wie geht's dir? – Gut, und dir?",
      "tr": "– Nasılsın? – İyi, ya sen?",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "two friends greeting on street"
     }
    ],
    "level": "A1",
@@ -2443,7 +2790,39 @@
     "anlam_tr": "Yürüyerek bir yere gitmeyi söyler.",
     "parcalar": [],
     "ipucu_tr": "**Geht das?** olur mu demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ heute zum Arzt.",
+     "answer": "gehe",
+     "tr": "Bugün doktora gidiyorum.",
+     "hint_tr": "**ich** ile **gehe** olur."
+    },
+    {
+     "de": "Wann ___ du nach Hause?",
+     "answer": "gehst",
+     "tr": "Eve ne zaman gidiyorsun?",
+     "hint_tr": "**du** ile **gehst** olur."
+    },
+    {
+     "de": "Er ___ zu Fuß.",
+     "answer": "geht",
+     "tr": "O yürüyerek gidiyor.",
+     "hint_tr": "**er** ve **sie** ile **geht** olur."
+    },
+    {
+     "de": "Ich bin nach Hause ___.",
+     "answer": "gegangen",
+     "tr": "Eve gittim.",
+     "hint_tr": "Geçmişi anlatırken **ich bin gegangen** denir."
+    },
+    {
+     "de": "Das ___ nicht.",
+     "answer": "geht",
+     "tr": "Bu olmaz.",
+     "hint_tr": "**Das geht nicht** bu olmaz demektir."
+    }
+   ]
   },
   {
    "id": "lx:von",
@@ -2506,7 +2885,8 @@
    "exp": {
     "anlam_tr": "Bir şeyin nereden ya da kimden geldiğini söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:alle",
@@ -2569,7 +2949,8 @@
    "exp": {
     "anlam_tr": "Bir grubun tamamını ya da her şeyi anlatır.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:kommen",
@@ -2590,6 +2971,18 @@
     {
      "de": "Ich komme aus …",
      "tr": "…-liyim"
+    },
+    {
+     "de": "nach Hause kommen",
+     "tr": "eve gelmek"
+    },
+    {
+     "de": "zum Termin kommen",
+     "tr": "randevuya gelmek"
+    },
+    {
+     "de": "pünktlich kommen",
+     "tr": "zamanında gelmek"
     }
    ],
    "patterns": [
@@ -2619,14 +3012,16 @@
      "id": "lx:kommen:3",
      "de": "Komm, wir gehen!",
      "tr": "Hadi, gidelim!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "friend waving come along at door"
     },
     {
      "id": "lx:kommen:4",
      "de": "– Wann kommst du? – So gegen sieben.",
      "tr": "– Ne zaman geliyorsun? – Yedi gibi.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "person texting friend while waiting"
     }
    ],
    "level": "A1",
@@ -2640,7 +3035,39 @@
    "exp": {
     "anlam_tr": "Bir yere gelmeyi ya da nereli olduğunu söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ morgen.",
+     "answer": "komme",
+     "tr": "Yarın geliyorum.",
+     "hint_tr": "**ich** ile **komme** olur."
+    },
+    {
+     "de": "___ du heute?",
+     "answer": "Kommst",
+     "tr": "Bugün geliyor musun?",
+     "hint_tr": "**du** ile **kommst** olur."
+    },
+    {
+     "de": "Der Bus ___ gleich.",
+     "answer": "kommt",
+     "tr": "Otobüs birazdan geliyor.",
+     "hint_tr": "**er** ve **sie** gibi **der Bus** ile de **kommt** olur."
+    },
+    {
+     "de": "Er ist gestern ___.",
+     "answer": "gekommen",
+     "tr": "O dün geldi.",
+     "hint_tr": "Geçmişi anlatırken **ist gekommen** denir."
+    },
+    {
+     "de": "Ich ___ zu spät gekommen.",
+     "answer": "bin",
+     "tr": "Geç kaldım.",
+     "hint_tr": "**gekommen** ile **bin** gelir, **habe** gelmez."
+    }
+   ]
   },
   {
    "id": "lx:wenn",
@@ -2704,7 +3131,8 @@
    "exp": {
     "anlam_tr": "Bir şeyin hangi durumda olacağını söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:machen",
@@ -2728,6 +3156,14 @@
     {
      "de": "Das macht nichts.",
      "tr": "Önemli değil."
+    },
+    {
+     "de": "Feierabend machen",
+     "tr": "paydos etmek"
+    },
+    {
+     "de": "einen Termin machen",
+     "tr": "randevu almak"
     }
    ],
    "patterns": [
@@ -2744,7 +3180,8 @@
      "id": "lx:machen:1",
      "de": "Was machst du am Wochenende?",
      "tr": "Hafta sonu ne yapıyorsun?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "friends chatting over coffee"
     },
     {
      "id": "lx:machen:2",
@@ -2778,7 +3215,39 @@
    "exp": {
     "anlam_tr": "Bir işi yapmayı anlatır.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ heute nichts.",
+     "answer": "mache",
+     "tr": "Bugün hiçbir şey yapmıyorum.",
+     "hint_tr": "**ich** ile **mache** olur."
+    },
+    {
+     "de": "Was ___ du hier?",
+     "answer": "machst",
+     "tr": "Burada ne yapıyorsun?",
+     "hint_tr": "**du** ile **machst** olur."
+    },
+    {
+     "de": "Er ___ gerade Pause.",
+     "answer": "macht",
+     "tr": "O şu an mola veriyor.",
+     "hint_tr": "**er** ve **sie** ile **macht** olur."
+    },
+    {
+     "de": "Ich habe das schon ___.",
+     "answer": "gemacht",
+     "tr": "Bunu zaten yaptım.",
+     "hint_tr": "Geçmişi anlatırken **habe gemacht** denir."
+    },
+    {
+     "de": "Das ___ nichts.",
+     "answer": "macht",
+     "tr": "Önemli değil.",
+     "hint_tr": "**Das macht nichts** önemli değil demektir."
+    }
+   ]
   },
   {
    "id": "lx:kein",
@@ -2841,7 +3310,8 @@
    "exp": {
     "anlam_tr": "Bir şeyin olmadığını söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:wissen",
@@ -2933,6 +3403,10 @@
     {
      "de": "los müssen",
      "tr": "gitmesi gerekmek"
+    },
+    {
+     "de": "arbeiten müssen",
+     "tr": "çalışmak zorunda olmak"
     }
    ],
    "patterns": [
@@ -2962,7 +3436,8 @@
      "id": "lx:müssen:3",
      "de": "Ich muss los, tschüss!",
      "tr": "Gitmem lazım, hoşça kal!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "person leaving in hurry waving goodbye"
     },
     {
      "id": "lx:müssen:4",
@@ -2983,7 +3458,33 @@
    "exp": {
     "anlam_tr": "Bir şeyin yapılması gerektiğini söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ jetzt gehen.",
+     "answer": "muss",
+     "tr": "Şimdi gitmem lazım.",
+     "hint_tr": "**ich** ile **muss** olur."
+    },
+    {
+     "de": "Was ___ du noch machen?",
+     "answer": "musst",
+     "tr": "Daha ne yapman lazım?",
+     "hint_tr": "**du** ile **musst** olur."
+    },
+    {
+     "de": "Er ___ zum Arzt.",
+     "answer": "muss",
+     "tr": "Onun doktora gitmesi lazım.",
+     "hint_tr": "**er** ve **sie** ile de **muss** olur."
+    },
+    {
+     "de": "Gestern ___ ich lange arbeiten.",
+     "answer": "musste",
+     "tr": "Dün uzun süre çalışmak zorundaydım.",
+     "hint_tr": "Geçmişi anlatırken **ich musste** denir."
+    }
+   ]
   },
   {
    "id": "lx:nein",
@@ -2998,6 +3499,18 @@
     {
      "de": "Ach nein!",
      "tr": "Yok artık!"
+    },
+    {
+     "de": "nein, leider nicht",
+     "tr": "hayır, maalesef"
+    },
+    {
+     "de": "Nein, noch nicht.",
+     "tr": "Hayır, henüz değil."
+    },
+    {
+     "de": "nein sagen",
+     "tr": "hayır demek"
     }
    ],
    "patterns": [
@@ -3017,9 +3530,11 @@
     },
     {
      "id": "lx:nein:2",
-     "de": "Möchten Sie eine Tüte? – Nein, danke.",
-     "tr": "Poşet ister misiniz? – Hayır, teşekkürler.",
-     "layer": "hd"
+     "de": "– Möchten Sie eine Tüte? – Nein, danke.",
+     "tr": "– Poşet ister misiniz? – Hayır, teşekkürler.",
+     "layer": "hd",
+     "img": "cashier offering shopping bag at checkout",
+     "dialog": true
     },
     {
      "id": "lx:nein:3",
@@ -3032,7 +3547,8 @@
      "de": "– Ist das Ihr Auto? – Nein, meins ist das blaue.",
      "tr": "– Bu sizin arabanız mı? – Hayır, benimki mavi olan.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "person standing next to parked blue car"
     }
    ],
    "level": "A1",
@@ -3046,7 +3562,28 @@
     "anlam_tr": "Bir soruya ya da teklife olumsuz cevap verir.",
     "parcalar": [],
     "ipucu_tr": "Konuşmada çoğu zaman **nee** duyarsın, anlamı aynıdır."
-   }
+   },
+   "card": false,
+   "forms": [
+    {
+     "de": "___, danke.",
+     "answer": "Nein",
+     "tr": "Hayır, teşekkürler.",
+     "hint_tr": "Teklifi kibarca geri çevirirken **Nein, danke** denir."
+    },
+    {
+     "de": "Haben Sie einen Termin? – ___, leider nicht.",
+     "answer": "Nein",
+     "tr": "Randevunuz var mı? – Hayır, maalesef yok.",
+     "hint_tr": "Olumsuz cevap verirken **Nein** denir."
+    },
+    {
+     "de": "___, das ist falsch.",
+     "answer": "Nein",
+     "tr": "Hayır, bu yanlış.",
+     "hint_tr": "Karşındakine katılmıyorsan **Nein** dersin."
+    }
+   ]
   },
   {
    "id": "lx:an",
@@ -3110,7 +3647,8 @@
    "exp": {
     "anlam_tr": "Bir şeyin yanında ya da ona değerek durduğunu söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:dieser",
@@ -3172,7 +3710,8 @@
    "exp": {
     "anlam_tr": "Yakındaki ya da söz edilen şeyi gösterir.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:sehen",
@@ -3570,7 +4109,8 @@
    "exp": {
     "anlam_tr": "Yapılan işin kişinin kendisine döndüğünü söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:dein",
@@ -3634,7 +4174,8 @@
     "anlam_tr": "Bir şeyin sana ait olduğunu söyler.",
     "ne_zaman_tr": "Arkadaşa ve aileye söylenir.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:sollen",
@@ -3655,6 +4196,10 @@
     {
      "de": "Was soll das?",
      "tr": "Bu da ne demek oluyor?"
+    },
+    {
+     "de": "Was soll ich machen?",
+     "tr": "Ne yapayım?"
     }
    ],
    "patterns": [
@@ -3691,7 +4236,8 @@
      "de": "– Sollen wir anfangen? – Ja, los geht's.",
      "tr": "– Başlayalım mı? – Evet, hadi başlayalım.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "team starting meeting in office"
     }
    ],
    "level": "A2",
@@ -3704,7 +4250,33 @@
    "exp": {
     "anlam_tr": "Başkasının senden istediği şeyi ya da bir teklifi söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "___ ich dir helfen?",
+     "answer": "Soll",
+     "tr": "Sana yardım edeyim mi?",
+     "hint_tr": "**ich** ile **soll** olur."
+    },
+    {
+     "de": "Du ___ den Arzt anrufen.",
+     "answer": "sollst",
+     "tr": "Doktoru araman gerekiyor.",
+     "hint_tr": "**du** ile **sollst** olur."
+    },
+    {
+     "de": "Er ___ um acht hier sein.",
+     "answer": "soll",
+     "tr": "Onun sekizde burada olması gerekiyor.",
+     "hint_tr": "**er** ve **sie** ile de **soll** olur."
+    },
+    {
+     "de": "Ich ___ gestern kommen.",
+     "answer": "sollte",
+     "tr": "Dün gelmem gerekiyordu.",
+     "hint_tr": "Geçmişi anlatırken **ich sollte** denir."
+    }
+   ]
   },
   {
    "id": "lx:auch",
@@ -3968,7 +4540,8 @@
    "exp": {
     "anlam_tr": "Bir görevi söyler ya da iki şeyi karşılaştırır.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:als#2",
@@ -4031,7 +4604,8 @@
    "exp": {
     "anlam_tr": "Geçmişte bir kez olan olayın zamanını söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:mal",
@@ -4095,7 +4669,8 @@
     "anlam_tr": "Ricayı yumuşatır, cümleyi daha kibar yapar.",
     "ne_zaman_tr": "Rica ederken ve arkadaşça konuşurken söylenir.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:Mal",
@@ -4351,7 +4926,8 @@
     "anlam_tr": "Nereden geldiğini ya da bir şeyin içinden çıktığını söyler.",
     "parcalar": [],
     "ipucu_tr": "Işık ya da makine için kapalı demektir: **Das Licht ist aus.**"
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:um",
@@ -4366,6 +4942,18 @@
     {
      "de": "um … zu",
      "tr": "…-mek için"
+    },
+    {
+     "de": "um die Ecke",
+     "tr": "köşeyi dönünce"
+    },
+    {
+     "de": "Um wie viel Uhr?",
+     "tr": "Saat kaçta?"
+    },
+    {
+     "de": "um halb neun",
+     "tr": "sekiz buçukta"
     }
    ],
    "patterns": [
@@ -4382,13 +4970,15 @@
      "id": "lx:um:1",
      "de": "Der Termin ist um halb zehn.",
      "tr": "Randevu dokuz buçukta.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "wall clock showing half past nine"
     },
     {
      "id": "lx:um:2",
      "de": "Ich komme um drei.",
      "tr": "Üçte geliyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "wristwatch showing three o clock"
     },
     {
      "id": "lx:um:3",
@@ -4415,7 +5005,28 @@
    "exp": {
     "anlam_tr": "Bir işin saatini ya da bir şeyin çevresini söyler.",
     "parcalar": []
-   }
+   },
+   "card": false,
+   "forms": [
+    {
+     "de": "Ich komme ___ acht Uhr.",
+     "answer": "um",
+     "tr": "Saat sekizde geliyorum.",
+     "hint_tr": "Bir işin saatini söylerken **um** denir."
+    },
+    {
+     "de": "___ wie viel Uhr kommst du?",
+     "answer": "Um",
+     "tr": "Saat kaçta geliyorsun?",
+     "hint_tr": "Saat kaçta derken **Um wie viel Uhr** denir."
+    },
+    {
+     "de": "Die Apotheke ist gleich ___ die Ecke.",
+     "answer": "um",
+     "tr": "Eczane hemen köşeyi dönünce.",
+     "hint_tr": "Köşeyi dönünce derken **um die Ecke** denir."
+    }
+   ]
   },
   {
    "id": "lx:im",
@@ -4479,7 +5090,8 @@
     "anlam_tr": "Bir yerin içinde olmayı ya da ayı, mevsimi söyler.",
     "parcalar": [],
     "ipucu_tr": "**im**, **in dem** sözünün kısa hâlidir."
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:doch",
@@ -4542,7 +5154,8 @@
    "exp": {
     "anlam_tr": "Olumsuz söze itiraz eder ya da isteği yumuşatır.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:lassen",
@@ -4677,7 +5290,8 @@
    "exp": {
     "anlam_tr": "İki seçenek sunar ya da cümle sonunda onay ister.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:hören",
@@ -4766,6 +5380,18 @@
     {
      "de": "nach der Arbeit",
      "tr": "işten sonra"
+    },
+    {
+     "de": "nach links",
+     "tr": "sola"
+    },
+    {
+     "de": "Viertel nach drei",
+     "tr": "üçü çeyrek geçe"
+    },
+    {
+     "de": "nach dem Essen",
+     "tr": "yemekten sonra"
     }
    ],
    "patterns": [
@@ -4782,7 +5408,8 @@
      "id": "lx:nach:1",
      "de": "Ich fahre am Wochenende nach Hamburg.",
      "tr": "Hafta sonu Hamburg'a gidiyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "train at hamburg central station"
     },
     {
      "id": "lx:nach:2",
@@ -4801,7 +5428,8 @@
      "de": "– Wohin gehst du? – Nach Hause, ich bin müde.",
      "tr": "– Nereye gidiyorsun? – Eve, yorgunum.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "tired person walking home in evening"
     }
    ],
    "level": "A1",
@@ -4814,7 +5442,28 @@
    "exp": {
     "anlam_tr": "Şehre ya da ülkeye gidişi veya bir şeyden sonrasını söyler.",
     "parcalar": []
-   }
+   },
+   "card": false,
+   "forms": [
+    {
+     "de": "Ich gehe jetzt ___ Hause.",
+     "answer": "nach",
+     "tr": "Şimdi eve gidiyorum.",
+     "hint_tr": "Eve giderken **nach Hause** denir."
+    },
+    {
+     "de": "___ der Arbeit trinke ich Kaffee.",
+     "answer": "Nach",
+     "tr": "İşten sonra kahve içiyorum.",
+     "hint_tr": "Bir şeyden sonra derken **nach** denir."
+    },
+    {
+     "de": "Der Zug fährt ___ München.",
+     "answer": "nach",
+     "tr": "Tren Münih yönüne gidiyor.",
+     "hint_tr": "Şehre giderken **nach** denir."
+    }
+   ]
   },
   {
    "id": "lx:nichts",
@@ -4877,7 +5526,8 @@
     "anlam_tr": "Hiçbir şeyin olmadığını söyler.",
     "parcalar": [],
     "ipucu_tr": "Konuşmada **nix** duyarsın, anlamı aynıdır."
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:man",
@@ -4940,7 +5590,8 @@
    "exp": {
     "anlam_tr": "Belli bir kişi değil, genel olarak insanları anlatır.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:bitte",
@@ -4955,6 +5606,18 @@
     {
      "de": "Bitte schön!",
      "tr": "Buyurun! / Rica ederim!"
+    },
+    {
+     "de": "Ja, bitte.",
+     "tr": "Evet, lütfen."
+    },
+    {
+     "de": "Noch einmal, bitte.",
+     "tr": "Bir kez daha, lütfen."
+    },
+    {
+     "de": "Die Rechnung, bitte.",
+     "tr": "Hesap, lütfen."
     }
    ],
    "patterns": [
@@ -4972,13 +5635,15 @@
      "id": "lx:bitte:1",
      "de": "Die Rechnung, bitte.",
      "tr": "Hesap, lütfen.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "customer asking waiter for bill in restaurant"
     },
     {
      "id": "lx:bitte:2",
      "de": "Einen Kaffee, bitte.",
      "tr": "Bir kahve, lütfen.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "ordering coffee at cafe counter"
     },
     {
      "id": "lx:bitte:3",
@@ -5005,7 +5670,28 @@
    "exp": {
     "anlam_tr": "Kibarca ister, bir şey uzatır ya da teşekküre cevap verir.",
     "parcalar": []
-   }
+   },
+   "card": false,
+   "forms": [
+    {
+     "de": "Einen Tee, ___.",
+     "answer": "bitte",
+     "tr": "Bir çay, lütfen.",
+     "hint_tr": "Kibarca bir şey isterken **bitte** denir."
+    },
+    {
+     "de": "Wie ___?",
+     "answer": "bitte",
+     "tr": "Efendim?",
+     "hint_tr": "Duymadığında kibarca **Wie bitte?** denir."
+    },
+    {
+     "de": "Danke! – ___!",
+     "answer": "Bitte",
+     "tr": "Teşekkürler! – Rica ederim!",
+     "hint_tr": "Teşekküre cevap verirken **Bitte** denir."
+    }
+   ]
   },
   {
    "id": "lx:bitten",
@@ -5233,6 +5919,10 @@
     {
      "de": "Wo finde ich …?",
      "tr": "… nerede bulurum?"
+    },
+    {
+     "de": "Wo wohnst du?",
+     "tr": "Nerede oturuyorsun?"
     }
    ],
    "patterns": [
@@ -5249,7 +5939,8 @@
      "id": "lx:wo:1",
      "de": "Wo ist die nächste Apotheke?",
      "tr": "En yakın eczane nerede?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "green pharmacy cross on building"
     },
     {
      "id": "lx:wo:2",
@@ -5282,7 +5973,27 @@
    "exp": {
     "anlam_tr": "Bir kişinin ya da şeyin yerini sorar.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "___ ist der Bahnhof?",
+     "answer": "Wo",
+     "tr": "İstasyon nerede?",
+     "hint_tr": "Yer sorarken **Wo** denir."
+    },
+    {
+     "de": "___ arbeitest du?",
+     "answer": "Wo",
+     "tr": "Nerede çalışıyorsun?",
+     "hint_tr": "Nerede derken **Wo** denir."
+    },
+    {
+     "de": "Ich weiß nicht, ___ er ist.",
+     "answer": "wo",
+     "tr": "Onun nerede olduğunu bilmiyorum.",
+     "hint_tr": "Cümlenin ortasında da nerede **wo** olur."
+    }
+   ]
   },
   {
    "id": "lx:mehr",
@@ -5409,7 +6120,8 @@
    "exp": {
     "anlam_tr": "Belli olmayan bir şeyi ya da az miktarı söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:bei",
@@ -5472,7 +6184,8 @@
    "exp": {
     "anlam_tr": "Birinin yanında ya da bir yerde olmayı söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:also",
@@ -5487,6 +6200,10 @@
     {
      "de": "Also, …",
      "tr": "Şey, … / Yani …"
+    },
+    {
+     "de": "also dann",
+     "tr": "peki o zaman"
     }
    ],
    "patterns": [
@@ -5502,7 +6219,8 @@
      "id": "lx:also:1",
      "de": "Also, ich fange an.",
      "tr": "Pekâlâ, başlıyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "speaker starting presentation at meeting"
     },
     {
      "id": "lx:also:2",
@@ -5535,7 +6253,27 @@
    "exp": {
     "anlam_tr": "Bir sonuç çıkarır ya da söze başlatır.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "___, ich gehe jetzt.",
+     "answer": "Also",
+     "tr": "Peki, ben şimdi gidiyorum.",
+     "hint_tr": "Konuşmayı toparlarken **Also** denir."
+    },
+    {
+     "de": "Du kommst ___ nicht?",
+     "answer": "also",
+     "tr": "Yani gelmiyorsun?",
+     "hint_tr": "Anladığını sorarken **also** yani demektir."
+    },
+    {
+     "de": "___ gut, machen wir das.",
+     "answer": "Also",
+     "tr": "Peki, öyle yapalım.",
+     "hint_tr": "**Also gut** peki, tamam demektir."
+    }
+   ]
   },
   {
    "id": "lx:immer",
@@ -5674,6 +6412,18 @@
     {
      "de": "Wer spricht?",
      "tr": "Kiminle görüşüyorum?"
+    },
+    {
+     "de": "Wer ist das?",
+     "tr": "Bu kim?"
+    },
+    {
+     "de": "Mit wem?",
+     "tr": "Kiminle?"
+    },
+    {
+     "de": "Wer weiß?",
+     "tr": "Kim bilir?"
     }
    ],
    "patterns": [
@@ -5689,7 +6439,8 @@
      "id": "lx:wer:1",
      "de": "Wer ist das auf dem Foto?",
      "tr": "Fotoğraftaki kim?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person pointing at family photo"
     },
     {
      "id": "lx:wer:2",
@@ -5708,7 +6459,8 @@
      "de": "– Wer ist da? – Ich bin's, Selin.",
      "tr": "– Kim o? – Benim, Selin.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "person answering door intercom"
     }
    ],
    "level": "A1",
@@ -5721,7 +6473,28 @@
    "exp": {
     "anlam_tr": "Bir kişiyi sorar.",
     "parcalar": []
-   }
+   },
+   "card": false,
+   "forms": [
+    {
+     "de": "___ ist das?",
+     "answer": "Wer",
+     "tr": "Bu kim?",
+     "hint_tr": "Bir kişiyi sorarken **Wer** denir."
+    },
+    {
+     "de": "___ kommt heute?",
+     "answer": "Wer",
+     "tr": "Bugün kim geliyor?",
+     "hint_tr": "Kim geliyor diye sorarken **Wer kommt** denir."
+    },
+    {
+     "de": "Mit ___ spreche ich?",
+     "answer": "wem",
+     "tr": "Kiminle görüşüyorum?",
+     "hint_tr": "**mit** sonrası **wem** gelir."
+    }
+   ]
   },
   {
    "id": "lx:unser",
@@ -5784,7 +6557,8 @@
    "exp": {
     "anlam_tr": "Bir şeyin bize ait olduğunu söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:warum",
@@ -5799,6 +6573,10 @@
     {
      "de": "warum auch immer",
      "tr": "her ne sebeple olursa"
+    },
+    {
+     "de": "Warum denn?",
+     "tr": "Neden ki?"
     }
    ],
    "patterns": [
@@ -5828,7 +6606,8 @@
      "id": "lx:warum:3",
      "de": "Warum das denn?",
      "tr": "O da neden?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "confused person shrugging"
     },
     {
      "id": "lx:warum:4",
@@ -5848,7 +6627,27 @@
    "exp": {
     "anlam_tr": "Bir şeyin sebebini sorar.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "___ bist du so müde?",
+     "answer": "Warum",
+     "tr": "Neden bu kadar yorgunsun?",
+     "hint_tr": "Sebep sorarken **Warum** denir."
+    },
+    {
+     "de": "___ rufst du nicht an?",
+     "answer": "Warum",
+     "tr": "Neden aramıyorsun?",
+     "hint_tr": "Neden derken **Warum** denir."
+    },
+    {
+     "de": "___ geht das nicht?",
+     "answer": "Warum",
+     "tr": "Bu neden olmuyor?",
+     "hint_tr": "Neden olmuyor derken **Warum geht das nicht?** denir."
+    }
+   ]
   },
   {
    "id": "lx:vor",
@@ -5863,6 +6662,18 @@
     {
      "de": "vor dem Haus",
      "tr": "evin önünde"
+    },
+    {
+     "de": "vor einer Woche",
+     "tr": "bir hafta önce"
+    },
+    {
+     "de": "fünf vor zehn",
+     "tr": "ona beş var"
+    },
+    {
+     "de": "vor der Tür",
+     "tr": "kapının önünde"
     }
    ],
    "patterns": [
@@ -5885,13 +6696,15 @@
      "id": "lx:vor:2",
      "de": "Ich warte vor der Tür.",
      "tr": "Kapının önünde bekliyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person waiting in front of door"
     },
     {
      "id": "lx:vor:3",
      "de": "Es ist zehn vor acht.",
      "tr": "Saat sekize on var.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "clock showing ten to eight"
     },
     {
      "id": "lx:vor:4",
@@ -5911,7 +6724,28 @@
    "exp": {
     "anlam_tr": "Bir şeyin önünde olmayı ya da geçmişteki zamanı söyler.",
     "parcalar": []
-   }
+   },
+   "card": false,
+   "forms": [
+    {
+     "de": "Ich warte ___ dem Haus.",
+     "answer": "vor",
+     "tr": "Evin önünde bekliyorum.",
+     "hint_tr": "Bir şeyin önünde derken **vor** denir."
+    },
+    {
+     "de": "Ich war ___ zwei Tagen hier.",
+     "answer": "vor",
+     "tr": "İki gün önce buradaydım.",
+     "hint_tr": "Kaç gün önce olduğunu söylerken **vor** başa gelir."
+    },
+    {
+     "de": "Es ist fünf ___ zehn.",
+     "answer": "vor",
+     "tr": "Saat ona beş var.",
+     "hint_tr": "Saate kalan dakikayı söylerken **vor** denir."
+    }
+   ]
   },
   {
    "id": "lx:glauben",
@@ -6202,6 +7036,18 @@
     {
      "de": "Danke, gleichfalls!",
      "tr": "Teşekkürler, size de!"
+    },
+    {
+     "de": "Nein, danke.",
+     "tr": "Hayır, teşekkürler."
+    },
+    {
+     "de": "Danke für die Hilfe.",
+     "tr": "Yardım için teşekkürler."
+    },
+    {
+     "de": "Vielen Dank!",
+     "tr": "Çok teşekkür ederim!"
     }
    ],
    "patterns": [
@@ -6218,7 +7064,8 @@
      "id": "lx:danke:1",
      "de": "Danke für Ihre Hilfe.",
      "tr": "Yardımınız için teşekkürler.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person thanking helper with handshake"
     },
     {
      "id": "lx:danke:2",
@@ -6237,7 +7084,8 @@
      "de": "– Schönes Wochenende! – Danke, gleichfalls!",
      "tr": "– İyi hafta sonları! – Teşekkürler, size de!",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "colleagues saying goodbye at office door"
     }
    ],
    "level": "A1",
@@ -6250,7 +7098,28 @@
    "exp": {
     "anlam_tr": "Birine teşekkür eder.",
     "parcalar": []
-   }
+   },
+   "card": false,
+   "forms": [
+    {
+     "de": "___ für den Kaffee.",
+     "answer": "Danke",
+     "tr": "Kahve için teşekkürler.",
+     "hint_tr": "Teşekkür ederken **Danke** denir."
+    },
+    {
+     "de": "Nein, ___.",
+     "answer": "danke",
+     "tr": "Hayır, teşekkürler.",
+     "hint_tr": "Teklifi kibarca geri çevirirken **Nein, danke** denir."
+    },
+    {
+     "de": "___ schön!",
+     "answer": "Danke",
+     "tr": "Çok teşekkürler!",
+     "hint_tr": "Çok teşekkürler derken **Danke schön** denir."
+    }
+   ]
   },
   {
    "id": "lx:anderer",
@@ -6439,7 +7308,8 @@
     "anlam_tr": "Soruya merak ve samimiyet katar.",
     "parcalar": [],
     "ipucu_tr": "Çoğu zaman çevrilmez."
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:denn#2",
@@ -6501,7 +7371,8 @@
     "ne_zaman_tr": "Daha çok yazıda ve dikkatli konuşmada söylenir.",
     "parcalar": [],
     "ipucu_tr": "Konuşmada aynı iş için çoğu zaman **weil** duyarsın."
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:Mann",

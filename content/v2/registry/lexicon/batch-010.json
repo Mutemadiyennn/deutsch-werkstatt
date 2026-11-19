@@ -31,6 +31,18 @@
     {
      "de": "Passt es Ihnen?",
      "tr": "Size uyar mı?"
+    },
+    {
+     "de": "Das passt!",
+     "tr": "Tamam, uyar!"
+    },
+    {
+     "de": "Passt schon.",
+     "tr": "Sorun değil."
+    },
+    {
+     "de": "Wann passt es Ihnen?",
+     "tr": "Size ne zaman uyar?"
     }
    ],
    "patterns": [
@@ -54,7 +66,8 @@
      "id": "lx:passen#2:2",
      "de": "Am Montag passt es mir leider nicht.",
      "tr": "Pazartesi maalesef bana uymuyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "fully booked weekly planner"
     },
     {
      "id": "lx:passen#2:3",
@@ -67,7 +80,8 @@
      "de": "– Um drei bei mir, passt das? – Ja, das passt gut.",
      "tr": "– Saat üçte bende, olur mu? – Evet, gayet iyi.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "friends making plans over coffee"
     }
    ],
    "level": "A1",
@@ -83,7 +97,39 @@
     "parcalar": [],
     "ipucu_tr": "Bana uyar demek için **Das passt mir** dersin."
    },
-   "freqRank": 265
+   "freqRank": 265,
+   "forms": [
+    {
+     "de": "Montag ___ mir gut.",
+     "answer": "passt",
+     "tr": "Pazartesi bana uyar.",
+     "hint_tr": "Gün ya da saat sana uyuyorsa **passt** denir."
+    },
+    {
+     "de": "___ es dir morgen?",
+     "answer": "Passt",
+     "tr": "Yarın sana uyar mı?",
+     "hint_tr": "Sana uyar mı diye sorarken **Passt es dir** denir."
+    },
+    {
+     "de": "Das passt ___.",
+     "answer": "mir",
+     "tr": "Bu bana uyar.",
+     "hint_tr": "Bana uyar derken **mir** gelir, **mich** gelmez."
+    },
+    {
+     "de": "Frau Huber, passt es ___ am Freitag?",
+     "answer": "Ihnen",
+     "tr": "Huber Hanım, cuma size uyar mı?",
+     "hint_tr": "Kibarca size derken **Ihnen** denir."
+    },
+    {
+     "de": "Gestern hat es mir nicht ___.",
+     "answer": "gepasst",
+     "tr": "Dün bana uymadı.",
+     "hint_tr": "Geçmişi anlatırken **hat gepasst** denir."
+    }
+   ]
   },
   {
    "id": "lx:Stand",
@@ -300,6 +346,18 @@
     {
      "de": "in bar",
      "tr": "nakit olarak"
+    },
+    {
+     "de": "bar bezahlen",
+     "tr": "nakit ödemek"
+    },
+    {
+     "de": "nur bar",
+     "tr": "sadece nakit"
+    },
+    {
+     "de": "das Bargeld",
+     "tr": "nakit para"
     }
    ],
    "patterns": [
@@ -314,26 +372,30 @@
      "id": "lx:bar:1",
      "de": "Kann ich hier bar zahlen?",
      "tr": "Burada nakit ödeyebilir miyim?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "customer paying cash at market stall"
     },
     {
      "id": "lx:bar:2",
      "de": "Sie können bar oder mit Karte zahlen.",
      "tr": "Nakit ya da kartla ödeyebilirsiniz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "cash and bank card on shop counter"
     },
     {
      "id": "lx:bar:3",
      "de": "Hier geht leider nur bar.",
      "tr": "Burada maalesef sadece nakit geçiyor.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "cash only sign at shop"
     },
     {
      "id": "lx:bar:4",
      "de": "– Bar oder mit Karte? – Bar, bitte.",
      "tr": "– Nakit mi, kartla mı? – Nakit, lütfen.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "handing banknotes to cashier"
     }
    ],
    "level": "A1",
@@ -348,7 +410,27 @@
     "ne_zaman_tr": "Kasada ya da pazarda öderken.",
     "parcalar": []
    },
-   "freqRank": 905
+   "freqRank": 905,
+   "forms": [
+    {
+     "de": "Ich zahle ___.",
+     "answer": "bar",
+     "tr": "Nakit ödüyorum.",
+     "hint_tr": "Nakit öderken **bar** denir, **mit** gelmez."
+    },
+    {
+     "de": "Zahlen Sie ___ oder mit Karte?",
+     "answer": "bar",
+     "tr": "Nakit mi ödüyorsunuz, kartla mı?",
+     "hint_tr": "Kartla **mit Karte**, nakit **bar** olur."
+    },
+    {
+     "de": "Ich habe hundert Euro in ___ dabei.",
+     "answer": "bar",
+     "tr": "Yanımda yüz avro nakit var.",
+     "hint_tr": "Nakit para için **in bar** da denir."
+    }
+   ]
   },
   {
    "id": "lx:Patient",
@@ -966,6 +1048,18 @@
     {
      "de": "einen Termin absagen",
      "tr": "randevuyu iptal etmek"
+    },
+    {
+     "de": "einen Termin vereinbaren",
+     "tr": "randevu ayarlamak"
+    },
+    {
+     "de": "einen Termin verschieben",
+     "tr": "randevuyu ertelemek"
+    },
+    {
+     "de": "einen Termin haben",
+     "tr": "randevusu olmak"
     }
    ],
    "patterns": [
@@ -981,26 +1075,30 @@
      "id": "lx:Termin:1",
      "de": "Ich möchte gern einen Termin machen.",
      "tr": "Bir randevu almak istiyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person booking appointment by phone"
     },
     {
      "id": "lx:Termin:2",
      "de": "Haben Sie diese Woche noch einen Termin frei?",
      "tr": "Bu hafta boş randevunuz var mı?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "receptionist checking appointment calendar"
     },
     {
      "id": "lx:Termin:3",
      "de": "Ich hab um drei 'nen Termin beim Arzt.",
      "tr": "Saat üçte doktorda randevum var.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "doctor appointment note in planner"
     },
     {
      "id": "lx:Termin:4",
      "de": "– Haben Sie einen Termin? – Ja, um halb zehn.",
      "tr": "– Randevunuz var mı? – Evet, dokuz buçukta.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "patient arriving at clinic reception"
     }
    ],
    "level": "A1",
@@ -1026,6 +1124,44 @@
      "unit": "a1-12",
      "key": "a1-12:w:Termin"
     }
+   ],
+   "forms": [
+    {
+     "de": "Das ist ___ wichtiger Termin.",
+     "answer": "ein",
+     "tr": "Bu önemli bir randevu.",
+     "hint_tr": "**der Termin** için bir derken **ein** gelir."
+    },
+    {
+     "de": "___ Termin ist um zehn.",
+     "answer": "Der",
+     "tr": "Randevu saat onda.",
+     "hint_tr": "Hangi randevu olduğu belliyse **der Termin** denir."
+    },
+    {
+     "de": "Ich brauche ___ Termin.",
+     "answer": "einen",
+     "tr": "Bir randevuya ihtiyacım var.",
+     "hint_tr": "**brauchen** sonrası **einen** gelir."
+    },
+    {
+     "de": "Ich sage ___ Termin ab.",
+     "answer": "den",
+     "tr": "Randevuyu iptal ediyorum.",
+     "hint_tr": "Hangi randevu olduğu belliyse **den Termin** gelir."
+    },
+    {
+     "de": "Ich komme ___ Termin.",
+     "answer": "zum",
+     "tr": "Randevuya geliyorum.",
+     "hint_tr": "Randevuya gelirken **zum Termin** denir."
+    },
+    {
+     "de": "Ich komme von ___ Termin.",
+     "answer": "einem",
+     "tr": "Bir randevudan geliyorum.",
+     "hint_tr": "**von** sonrası **einem** gelir."
+    }
    ]
   },
   {
@@ -1050,6 +1186,18 @@
     {
      "de": "noch einmal wiederholen",
      "tr": "bir kez daha tekrarlamak"
+    },
+    {
+     "de": "die Frage wiederholen",
+     "tr": "soruyu tekrarlamak"
+    },
+    {
+     "de": "die Nummer wiederholen",
+     "tr": "numarayı tekrarlamak"
+    },
+    {
+     "de": "Wiederholen Sie bitte!",
+     "tr": "Lütfen tekrar edin!"
     }
    ],
    "patterns": [
@@ -1073,7 +1221,8 @@
      "id": "lx:wiederholen:2",
      "de": "Ich wiederhole: Montag um zehn.",
      "tr": "Tekrar ediyorum: pazartesi saat onda.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "receptionist confirming appointment on phone"
     },
     {
      "id": "lx:wiederholen:3",
@@ -1086,7 +1235,8 @@
      "de": "– Können Sie die Nummer wiederholen? – Ja, gern: null, acht, neun.",
      "tr": "– Numarayı tekrarlayabilir misiniz? – Tabii: sıfır, sekiz, dokuz.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "person writing down number during call"
     }
    ],
    "level": "A1",
@@ -1105,6 +1255,32 @@
     {
      "unit": "a1-12",
      "key": "a1-12:w:wiederholen"
+    }
+   ],
+   "forms": [
+    {
+     "de": "Ich ___ die Nummer.",
+     "answer": "wiederhole",
+     "tr": "Numarayı tekrar ediyorum.",
+     "hint_tr": "**ich** ile **wiederhole** olur."
+    },
+    {
+     "de": "___ du das bitte?",
+     "answer": "Wiederholst",
+     "tr": "Bunu tekrar eder misin lütfen?",
+     "hint_tr": "**du** ile **wiederholst** olur."
+    },
+    {
+     "de": "Der Arzt ___ die Frage.",
+     "answer": "wiederholt",
+     "tr": "Doktor soruyu tekrar ediyor.",
+     "hint_tr": "**er** ve **sie** gibi **der Arzt** ile de **wiederholt** olur."
+    },
+    {
+     "de": "Ich habe die Adresse ___.",
+     "answer": "wiederholt",
+     "tr": "Adresi tekrar ettim.",
+     "hint_tr": "Geçmişi anlatırken **habe wiederholt** denir, başa **ge** gelmez."
     }
    ]
   },
@@ -1650,6 +1826,18 @@
     {
      "de": "Fieber messen",
      "tr": "ateş ölçmek"
+    },
+    {
+     "de": "Fieber haben",
+     "tr": "ateşi olmak"
+    },
+    {
+     "de": "leichtes Fieber",
+     "tr": "hafif ateş"
+    },
+    {
+     "de": "Das Fieber sinkt.",
+     "tr": "Ateş düşüyor."
     }
    ],
    "patterns": [
@@ -1665,26 +1853,30 @@
      "id": "lx:Fieber:1",
      "de": "Ich habe seit gestern hohes Fieber.",
      "tr": "Dünden beri ateşim yüksek.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "sick person in bed with fever"
     },
     {
      "id": "lx:Fieber:2",
      "de": "Haben Sie schon Fieber gemessen?",
      "tr": "Ateşinizi ölçtünüz mü?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "nurse measuring temperature on forehead"
     },
     {
      "id": "lx:Fieber:3",
      "de": "Ich glaub, ich hab Fieber.",
      "tr": "Sanırım ateşim var.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "person touching forehead feeling unwell"
     },
     {
      "id": "lx:Fieber:4",
      "de": "– Hast du noch Fieber? – Nein, heute geht's mir besser.",
      "tr": "– Hâlâ ateşin var mı? – Hayır, bugün daha iyiyim.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "person recovering on sofa with tea"
     }
    ],
    "level": "A1",
@@ -1703,6 +1895,38 @@
     {
      "unit": "a1-10",
      "key": "a1-10:w:Fieber"
+    }
+   ],
+   "forms": [
+    {
+     "de": "Ich habe ___.",
+     "answer": "Fieber",
+     "tr": "Ateşim var.",
+     "hint_tr": "Ateşim var derken **Ich habe Fieber** denir."
+    },
+    {
+     "de": "___ Fieber ist weg.",
+     "answer": "Das",
+     "tr": "Ateş geçti.",
+     "hint_tr": "Hangi ateş olduğu belliyse **das Fieber** denir."
+    },
+    {
+     "de": "Das Kind hat ___ Fieber.",
+     "answer": "hohes",
+     "tr": "Çocuğun ateşi yüksek.",
+     "hint_tr": "Yüksek ateş derken **hohes Fieber** denir."
+    },
+    {
+     "de": "Ich habe heute ___ Fieber.",
+     "answer": "kein",
+     "tr": "Bugün ateşim yok.",
+     "hint_tr": "Ateşim yok derken **kein Fieber** denir."
+    },
+    {
+     "de": "Mit ___ bleibst du zu Hause.",
+     "answer": "Fieber",
+     "tr": "Ateşin varsa evde kal.",
+     "hint_tr": "Ateşle derken **mit Fieber** denir."
     }
    ]
   },
@@ -1877,6 +2101,18 @@
     {
      "de": "die Praxis anrufen",
      "tr": "muayenehaneyi aramak"
+    },
+    {
+     "de": "in die Praxis kommen",
+     "tr": "muayenehaneye gelmek"
+    },
+    {
+     "de": "die Arztpraxis",
+     "tr": "doktor muayenehanesi"
+    },
+    {
+     "de": "die Praxis hat geschlossen",
+     "tr": "muayenehane kapalı"
     }
    ],
    "patterns": [
@@ -1892,26 +2128,30 @@
      "id": "lx:Praxis:1",
      "de": "Praxis Dr. Weber, guten Tag.",
      "tr": "Dr. Weber muayenehanesi, iyi günler.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "medical receptionist answering phone"
     },
     {
      "id": "lx:Praxis:2",
      "de": "Die Praxis ist am Mittwochnachmittag geschlossen.",
      "tr": "Muayenehane çarşamba öğleden sonra kapalı.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "closed sign on doctor office door"
     },
     {
      "id": "lx:Praxis:3",
      "de": "Ich ruf gleich mal in der Praxis an.",
      "tr": "Birazdan muayenehaneyi bir arayayım.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "person calling on smartphone at home"
     },
     {
      "id": "lx:Praxis:4",
      "de": "– Wo ist die Praxis? – Im ersten Stock, gleich links.",
      "tr": "– Muayenehane nerede? – Birinci katta, hemen solda.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "doctor office sign in stairwell"
     }
    ],
    "level": "A1",
@@ -1930,6 +2170,44 @@
     {
      "unit": "a1-10",
      "key": "a1-10:w:Praxis"
+    }
+   ],
+   "forms": [
+    {
+     "de": "Das ist ___ große Praxis.",
+     "answer": "eine",
+     "tr": "Bu büyük bir muayenehane.",
+     "hint_tr": "**die Praxis** için bir derken **eine** gelir."
+    },
+    {
+     "de": "___ Praxis ist heute geschlossen.",
+     "answer": "Die",
+     "tr": "Muayenehane bugün kapalı.",
+     "hint_tr": "Hangi muayenehane olduğu belliyse **die Praxis** denir."
+    },
+    {
+     "de": "Ich suche ___ Praxis in der Nähe.",
+     "answer": "eine",
+     "tr": "Yakında bir muayenehane arıyorum.",
+     "hint_tr": "**suchen** sonrası **eine Praxis** gelir."
+    },
+    {
+     "de": "Ich rufe ___ Praxis an.",
+     "answer": "die",
+     "tr": "Muayenehaneye telefon ediyorum.",
+     "hint_tr": "Hangi muayenehane olduğu belliyse **die Praxis** gelir."
+    },
+    {
+     "de": "Ich bin in ___ Praxis.",
+     "answer": "der",
+     "tr": "Muayenehanedeyim.",
+     "hint_tr": "**in** ile bir yerde olduğunu söylerken **der** gelir."
+    },
+    {
+     "de": "Ich arbeite in ___ Praxis.",
+     "answer": "einer",
+     "tr": "Bir muayenehanede çalışıyorum.",
+     "hint_tr": "**in** ile bir yerde olduğunu söylerken **einer** gelir."
     }
    ]
   },
@@ -2742,6 +3020,10 @@
     {
      "de": "Name und Geburtsdatum",
      "tr": "ad ve doğum tarihi"
+    },
+    {
+     "de": "das Geburtsdatum angeben",
+     "tr": "doğum tarihini belirtmek"
     }
    ],
    "patterns": [
@@ -2776,7 +3058,8 @@
      "de": "– Ihr Geburtsdatum, bitte? – Der zwölfte März neunzehnhundertneunzig.",
      "tr": "– Doğum tarihiniz lütfen? – On iki Mart bin dokuz yüz doksan.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "clerk entering data at service counter"
     }
    ],
    "level": "A1",
@@ -2804,6 +3087,38 @@
     {
      "unit": "a1-09",
      "key": "a1-09:w:Geburtsdatum"
+    }
+   ],
+   "forms": [
+    {
+     "de": "Das ist ___ Geburtsdatum.",
+     "answer": "mein",
+     "tr": "Bu benim doğum tarihim.",
+     "hint_tr": "Benim doğum tarihim derken **mein Geburtsdatum** denir."
+    },
+    {
+     "de": "___ Geburtsdatum steht hier.",
+     "answer": "Das",
+     "tr": "Doğum tarihi burada yazıyor.",
+     "hint_tr": "Hangi doğum tarihi olduğu belliyse **das Geburtsdatum** denir."
+    },
+    {
+     "de": "Ich brauche ___ Geburtsdatum.",
+     "answer": "Ihr",
+     "tr": "Doğum tarihinize ihtiyacım var.",
+     "hint_tr": "Sizin derken **Ihr Geburtsdatum** denir, **I** büyük yazılır."
+    },
+    {
+     "de": "Ich sage Ihnen ___ Geburtsdatum.",
+     "answer": "mein",
+     "tr": "Size doğum tarihimi söylüyorum.",
+     "hint_tr": "Benim derken burada da **mein Geburtsdatum** denir."
+    },
+    {
+     "de": "Mit ___ Geburtsdatum stimmt etwas nicht.",
+     "answer": "dem",
+     "tr": "Doğum tarihinde bir sorun var.",
+     "hint_tr": "**mit** sonrası **dem** gelir."
     }
    ]
   },
@@ -2967,6 +3282,18 @@
     {
      "de": "mein Hausarzt",
      "tr": "aile hekimim"
+    },
+    {
+     "de": "beim Hausarzt",
+     "tr": "aile hekiminde"
+    },
+    {
+     "de": "den Hausarzt anrufen",
+     "tr": "aile hekimine telefon etmek"
+    },
+    {
+     "de": "einen Hausarzt suchen",
+     "tr": "aile hekimi aramak"
     }
    ],
    "patterns": [
@@ -2981,26 +3308,30 @@
      "id": "lx:Hausarzt:1",
      "de": "Ich muss morgen zum Hausarzt.",
      "tr": "Yarın aile hekimine gitmem lazım.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "family doctor office entrance"
     },
     {
      "id": "lx:Hausarzt:2",
      "de": "Dr. Weber ist mein Hausarzt.",
      "tr": "Dr. Weber benim aile hekimim.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "friendly family doctor portrait in office"
     },
     {
      "id": "lx:Hausarzt:3",
      "de": "Geh doch mal zum Hausarzt.",
      "tr": "Aile hekimine bir görün bence.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "person coughing while friend gives advice"
     },
     {
      "id": "lx:Hausarzt:4",
      "de": "– Haben Sie einen Hausarzt? – Ja, Dr. Weber.",
      "tr": "– Aile hekiminiz var mı? – Evet, Dr. Weber.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "patient filling form at clinic reception"
     }
    ],
    "level": "A1",
@@ -3028,6 +3359,44 @@
     {
      "unit": "a1-10",
      "key": "a1-10:w:Hausarzt"
+    }
+   ],
+   "forms": [
+    {
+     "de": "Das ist ___ guter Hausarzt.",
+     "answer": "ein",
+     "tr": "O iyi bir aile hekimi.",
+     "hint_tr": "**der Hausarzt** için bir derken **ein** gelir."
+    },
+    {
+     "de": "___ Hausarzt ist heute nicht da.",
+     "answer": "Der",
+     "tr": "Aile hekimi bugün burada değil.",
+     "hint_tr": "Hangi hekim olduğu belliyse **der Hausarzt** denir."
+    },
+    {
+     "de": "Ich suche ___ Hausarzt.",
+     "answer": "einen",
+     "tr": "Kendime bir aile hekimi arıyorum.",
+     "hint_tr": "**suchen** sonrası **einen** gelir."
+    },
+    {
+     "de": "Ich rufe ___ Hausarzt an.",
+     "answer": "den",
+     "tr": "Aile hekimine telefon ediyorum.",
+     "hint_tr": "Telefon ederken de **den Hausarzt** gelir."
+    },
+    {
+     "de": "Ich gehe heute ___ Hausarzt.",
+     "answer": "zum",
+     "tr": "Bugün aile hekimine gidiyorum.",
+     "hint_tr": "Aile hekimine giderken **zum Hausarzt** denir."
+    },
+    {
+     "de": "Ich habe einen Termin bei ___ neuen Hausarzt.",
+     "answer": "einem",
+     "tr": "Yeni bir aile hekiminde randevum var.",
+     "hint_tr": "**bei** sonrası **einem** gelir."
     }
    ]
   },
@@ -3529,6 +3898,18 @@
     {
      "de": "zwei Semmeln",
      "tr": "iki küçük ekmek"
+    },
+    {
+     "de": "frische Semmeln",
+     "tr": "taze küçük ekmekler"
+    },
+    {
+     "de": "Semmeln holen",
+     "tr": "küçük ekmek almak"
+    },
+    {
+     "de": "eine Semmel mit Butter",
+     "tr": "tereyağlı küçük ekmek"
     }
    ],
    "patterns": [
@@ -3543,26 +3924,30 @@
      "id": "lx:Semmel:1",
      "de": "Zwei Semmeln, bitte.",
      "tr": "İki küçük ekmek, lütfen.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "customer buying bread rolls at bakery counter"
     },
     {
      "id": "lx:Semmel:2",
      "de": "Die Semmeln sind noch warm.",
      "tr": "Ekmekler hâlâ sıcak.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "fresh bread rolls on baking tray"
     },
     {
      "id": "lx:Semmel:3",
      "de": "Holst du noch schnell Semmeln?",
      "tr": "Çabucak ekmek de alır mısın?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "paper bag of bread rolls on kitchen table"
     },
     {
      "id": "lx:Semmel:4",
      "de": "– Mit Senf, in der Semmel? – Ja, gern.",
      "tr": "– Hardallı, ekmek arası mı? – Evet, lütfen.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "sausage in bread roll with mustard"
     }
    ],
    "level": "A1",
@@ -3581,6 +3966,44 @@
     {
      "unit": "a1-03",
      "key": "a1-03:w:Semmel"
+    }
+   ],
+   "forms": [
+    {
+     "de": "Das ist ___ Semmel mit Käse.",
+     "answer": "eine",
+     "tr": "Bu peynirli bir küçük ekmek.",
+     "hint_tr": "**die Semmel** için bir derken **eine** gelir."
+    },
+    {
+     "de": "___ Semmel ist noch warm.",
+     "answer": "Die",
+     "tr": "Küçük ekmek hâlâ sıcak.",
+     "hint_tr": "Hangi ekmek olduğu belliyse **die Semmel** denir."
+    },
+    {
+     "de": "Ich möchte ___ Semmel.",
+     "answer": "eine",
+     "tr": "Bir küçük ekmek istiyorum.",
+     "hint_tr": "**Ich möchte** sonrası **eine Semmel** gelir."
+    },
+    {
+     "de": "Ich nehme ___ Semmel mit Käse.",
+     "answer": "die",
+     "tr": "Peynirli küçük ekmeği alıyorum.",
+     "hint_tr": "Hangi ekmek olduğu belliyse **die Semmel** gelir."
+    },
+    {
+     "de": "Was ist in ___ Semmel?",
+     "answer": "der",
+     "tr": "Küçük ekmeğin içinde ne var?",
+     "hint_tr": "**in** ile içindekini sorarken **der** gelir."
+    },
+    {
+     "de": "Ich esse den Käse mit ___ Semmel.",
+     "answer": "einer",
+     "tr": "Peyniri bir küçük ekmekle yiyorum.",
+     "hint_tr": "**mit** sonrası **einer** gelir."
     }
    ]
   },
@@ -3738,6 +4161,18 @@
     {
      "de": "eine große Tüte",
      "tr": "büyük bir poşet"
+    },
+    {
+     "de": "eine Tüte Chips",
+     "tr": "bir paket cips"
+    },
+    {
+     "de": "die Plastiktüte",
+     "tr": "plastik poşet"
+    },
+    {
+     "de": "die Einkaufstüte",
+     "tr": "alışveriş poşeti"
     }
    ],
    "patterns": [
@@ -3752,26 +4187,30 @@
      "id": "lx:Tüte:1",
      "de": "Möchten Sie eine Tüte?",
      "tr": "Poşet ister misiniz?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "cashier handing bag to customer"
     },
     {
      "id": "lx:Tüte:2",
      "de": "Die kleine Tüte kostet vier Euro.",
      "tr": "Küçük paket dört avro.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "small bag of almonds at market stall"
     },
     {
      "id": "lx:Tüte:3",
      "de": "Brauchst du 'ne Tüte?",
      "tr": "Poşet lazım mı?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "friends packing groceries into bag"
     },
     {
      "id": "lx:Tüte:4",
      "de": "– Brauchen Sie eine Tüte? – Nein danke, ich hab eine dabei.",
      "tr": "– Poşet ister misiniz? – Hayır teşekkürler, yanımda var.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "reusable shopping bag at checkout"
     }
    ],
    "level": "A1",
@@ -3785,7 +4224,45 @@
     "ne_zaman_tr": "Kasada ya da pazarda.",
     "parcalar": [],
     "ipucu_tr": "**eine Tüte Mandeln** bir paket badem demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ große Tüte.",
+     "answer": "eine",
+     "tr": "Bu büyük bir poşet.",
+     "hint_tr": "**die Tüte** için bir derken **eine** gelir."
+    },
+    {
+     "de": "___ Tüte ist voll.",
+     "answer": "Die",
+     "tr": "Poşet dolu.",
+     "hint_tr": "Hangi poşet olduğu belliyse **die Tüte** denir."
+    },
+    {
+     "de": "Ich brauche ___ Tüte.",
+     "answer": "eine",
+     "tr": "Bir poşete ihtiyacım var.",
+     "hint_tr": "**brauchen** sonrası **eine Tüte** gelir."
+    },
+    {
+     "de": "Ich trage ___ Tüte.",
+     "answer": "die",
+     "tr": "Poşeti ben taşıyorum.",
+     "hint_tr": "Hangi poşet olduğu belliyse **die Tüte** gelir."
+    },
+    {
+     "de": "Das Brot ist in ___ Tüte.",
+     "answer": "der",
+     "tr": "Ekmek poşetin içinde.",
+     "hint_tr": "**in** ile bir şeyin içinde olunca **der** gelir."
+    },
+    {
+     "de": "Er kommt mit ___ Tüte aus dem Laden.",
+     "answer": "einer",
+     "tr": "Dükkândan elinde bir poşetle çıkıyor.",
+     "hint_tr": "**mit** sonrası **einer** gelir."
+    }
+   ]
   },
   {
    "id": "lx:Versichertenkarte",
@@ -5574,6 +6051,10 @@
     {
      "de": "Geburtstag feiern",
      "tr": "doğum günü kutlamak"
+    },
+    {
+     "de": "zum Geburtstag gratulieren",
+     "tr": "doğum gününü kutlamak"
     }
    ],
    "patterns": [
@@ -5589,26 +6070,30 @@
      "id": "lx:Geburtstag:1",
      "de": "Alles Gute zum Geburtstag!",
      "tr": "Doğum günün kutlu olsun!",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "friends singing around birthday cake"
     },
     {
      "id": "lx:Geburtstag:2",
      "de": "Wann hast du Geburtstag?",
      "tr": "Doğum günün ne zaman?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "birthday marked on calendar"
     },
     {
      "id": "lx:Geburtstag:3",
      "de": "Am Samstag feier ich meinen Geburtstag.",
      "tr": "Cumartesi doğum günümü kutluyorum.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "birthday party at home with friends"
     },
     {
      "id": "lx:Geburtstag:4",
      "de": "– Hast du heute Geburtstag? – Ja, ich werde dreißig.",
      "tr": "– Bugün doğum günün mü? – Evet, otuz oluyorum.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "thirtieth birthday balloons"
     }
    ],
    "level": "A1",
@@ -5636,6 +6121,44 @@
     {
      "unit": "a1-14",
      "key": "a1-14:w:Geburtstag"
+    }
+   ],
+   "forms": [
+    {
+     "de": "Heute ist ___ Geburtstag.",
+     "answer": "mein",
+     "tr": "Bugün doğum günüm.",
+     "hint_tr": "Benim doğum günüm derken **mein Geburtstag** denir."
+    },
+    {
+     "de": "Morgen habe ich ___.",
+     "answer": "Geburtstag",
+     "tr": "Yarın doğum günüm.",
+     "hint_tr": "Doğum günüm derken **ich habe Geburtstag** de."
+    },
+    {
+     "de": "Das ist ___ schöner Geburtstag.",
+     "answer": "ein",
+     "tr": "Bu güzel bir doğum günü.",
+     "hint_tr": "**der Geburtstag** için bir derken **ein** gelir."
+    },
+    {
+     "de": "___ Geburtstag war schön.",
+     "answer": "Der",
+     "tr": "Doğum günü güzeldi.",
+     "hint_tr": "Hangi doğum günü olduğu belliyse **der Geburtstag** denir."
+    },
+    {
+     "de": "Alles Gute ___ Geburtstag, Anna!",
+     "answer": "zum",
+     "tr": "Doğum günün kutlu olsun Anna!",
+     "hint_tr": "Kutlarken **zum Geburtstag** denir."
+    },
+    {
+     "de": "Ich feiere ___ Geburtstag zu Hause.",
+     "answer": "meinen",
+     "tr": "Doğum günümü evde kutluyorum.",
+     "hint_tr": "**feiern** sonrası **meinen** gelir."
     }
    ]
   },
@@ -5846,7 +6369,8 @@
      "unit": "a2-10",
      "key": "a2-10:w:gegenüber"
     }
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:ankommen",
@@ -7156,6 +7680,14 @@
     {
      "de": "ziemlich teuer",
      "tr": "epey pahalı"
+    },
+    {
+     "de": "viel zu teuer",
+     "tr": "fazlasıyla pahalı"
+    },
+    {
+     "de": "teurer werden",
+     "tr": "pahalanmak"
     }
    ],
    "patterns": [
@@ -7178,7 +7710,8 @@
      "id": "lx:teuer:2",
      "de": "Die Wohnung ist ziemlich teuer.",
      "tr": "Daire epey pahalı.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "apartment for rent sign"
     },
     {
      "id": "lx:teuer:3",
@@ -7191,7 +7724,8 @@
      "de": "– Wie findest du die Schuhe? – Schön, aber viel zu teuer.",
      "tr": "– Ayakkabıları nasıl buldun? – Güzel ama çok pahalı.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "friends looking at shoes in shop window"
     }
    ],
    "level": "A1",
@@ -7209,6 +7743,26 @@
     {
      "unit": "a1-03",
      "key": "a1-03:w:teuer"
+    }
+   ],
+   "forms": [
+    {
+     "de": "Die Schuhe sind zu ___.",
+     "answer": "teuer",
+     "tr": "Ayakkabılar fazla pahalı.",
+     "hint_tr": "Fiyat yüksekse **teuer** denir."
+    },
+    {
+     "de": "Der Kaffee hier ist nicht ___.",
+     "answer": "teuer",
+     "tr": "Buradaki kahve pahalı değil.",
+     "hint_tr": "Pahalı değil derken **nicht teuer** denir."
+    },
+    {
+     "de": "Das Brot ist hier ___ als dort.",
+     "answer": "teurer",
+     "tr": "Ekmek burada oradakinden daha pahalı.",
+     "hint_tr": "Daha pahalı derken **teurer** denir."
     }
    ]
   },
@@ -7278,7 +7832,8 @@
      "unit": "a2-10",
      "key": "a2-10:w:entlang"
     }
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:Bus",
