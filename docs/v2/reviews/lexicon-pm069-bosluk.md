@@ -14,10 +14,14 @@ Sayaç bir betik: `cm/bcheck.py`. İçerik motorunun çalışma aracı, depoda d
 
 Kelimenin kendisini tanırken düzensiz fiil listesine, ünlü değişimine (ablaut), ayrılan ve ayrılmayan öneklere bakıyor.
 
+Sayılar `content/k1-6cumle-2` dalının commit'lerinden ölçüldü (1.164 kart):
+
 | | own | coll | IHLAL |
 |---|---|---|---|
-| Önce (1.164 kart, 6.649 boşluk) | 4.730 | 1.126 | 793 |
-| Sonra | 5.668 | 1.099 | 5 |
+| Önce (42d0b5d) | 4.864 | 1.101 | 684 |
+| Sonra (c15110a, grup 21 dahil) | 5.668 | 1.099 | 5 |
+
+(İlk sürümdeki "793" sayısı içerik motorunun commit'lenmemiş yerel ağacından alınmıştı; o ağaçta grup 21'in yazar yaması da vardı. e342000'de görülen 50 ihlalin 45'i grup 21 kartlarıydı ve c15110a ile geldi.)
 
 Sonra kalan 5 IHLAL, betiğin yanlış alarmı. Hepsi kartın kendi kelimesi:
 - `mögen#2` ve `möchten` → wollte
@@ -39,7 +43,10 @@ Sonra kalan 5 IHLAL, betiğin yanlış alarmı. Hepsi kartın kendi kelimesi:
   - Kalan 43 + 46 boşlukta 178 satırda 2 GERİ çıktı; sonraki turda 0.
 
 ## Dallara dağılım
-- `content/k1-6cumle` (#107): bu PR'ın kapsamındaki 122 kart (M1 ve grup 05–11). Kapsamda kalan IHLAL 3, üçü de betiğin yanlış alarmı (`mögen#2`, `möchten` wollte; `hoch` hohen).
+- `content/k1-6cumle` (#107): bu PR'ın kapsamındaki 121 kart (dağıtım listesinde 122 vardı; biri değişmeden kaldı) (M1 ve grup 05–11). Kapsamda kalan IHLAL 3, üçü de betiğin yanlış alarmı (`mögen#2`, `möchten` wollte; `hoch` hohen).
   - Bu kartlar sözlüğün güncel hâlinden kopyalandı. Bu yüzden `content/k1-6cumle-2`'de yapılan aile satırları ve genel ad turlarının o kartlara dokunan değişiklikleri de buraya geldi.
 - `content/k1-6cumle-2`: kalan 268 kart (grup 12–20 ve 6 cümle turuna henüz girmemiş K1/K2 kartları).
 - Grup 21'in 28 kartı, grubun kendi commit'iyle gelecek.
+
+## İnceleme sonrası (#107 3. tur)
+- Başka kartla aynı Almanca + aynı Türkçe olup farklı cevap isteyen 3 boşluğa iki yönlü eş anlamlı kabulü eklendi: `lx:Vater` b1 Papa, `lx:Mutter` b2 Mama, `lx:Name` b1 Vorname.
