@@ -26,6 +26,8 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | İş | Dal | Durum |
 |---|---|---|
 | Konuşma provası, yapay zekâsız (#58 A7) | `v2/prova` | #68 birleşti |
+| Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | PR #87: 1. tur 5 P1 + 9 P2 düzeltildi (D-107 sonu); 2. tur bekliyor |
+| Doğrulayıcı B4 (#58 B4, #54 D16) | `v2/dogrulayici-b4` | PR #88: 1. tur 5 P1 düzeltildi (D-108); 0 hata, 126 uyarı; İÇ iş listesi: 7 şiddet tanıma kartında kullanım uyarısı, 46/119/167 kart kuralı; 2. tur bekliyor |
 | Değerlendirme doğruluğu (#58 A11) | `v2/degerlendirme` | PR #76: 1. tur P0 (V2 aşırı kabul) ve P1'ler düzeltildi; kalıcı permütasyon taraması; 2. tur bekliyor (D-104) |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | `v2/degerlendirme` | #76 içinde (D-104 madde 3) |
 | Sözlük arama (#58 B1) | `v2/sozluk-ara` | PR açıldı: çevrimdışı DE↔TR, kart, "Duyduğum kelime" olarak Bahçe'ye |
@@ -46,7 +48,7 @@ PM-062 (cümle havuzu): M1'in 155 kartında en az 6 örnek ve en az 6 boşluk (1
 K1 çekirdeğin kalanı (PM-062 sırası, sıklığa göre): 100/1.050 kart 6 örnek + 6 boşluğa çıktı (grup 05–06); sıradaki gruplar aynı hattan.
 Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur, M1 kartları 8 tur (hedef tutmadı). Geri dönen türler (hata notunda Türkçe niyet, çelişen ipucu) yazar ve lex görevine eklendi.
 B6 (`forms`, eşdizim, fotoğraf sorgusu; #58): 927 kartın tamamı (#81: 825, #83: 102); 927 kartta 3.540 boşluk. Okur turu B6: 13 grupta 32 tur (grup başına 2,5; hedef tutmadı). `forms` alanı boş kalan 17 kart #85'in `also_ok` alanıyla dolduruldu; 18 kartta eş anlamlı boşluklara `also_ok` eklendi (107 boşluk). Bahçe ipucu artık soru sırasında kapalı (#85).
-Sözlüğün tamamı onaylı: taslak partiler 004–008'deki 394 girdi tam incelemeden geçti (Almanca örnekler, eşdizim, kart verisi; 8 grupta 159 kartta düzeltme, kalan 0) ve okurdan geçti. `lx:Million` B1 → A2.
+Sözlüğün tamamı onaylı: taslak partiler 004–008'deki 394 girdi tam incelemeden geçti (Almanca örnekler, eşdizim, kart verisi; 8 grupta 139 kartta düzeltme, kalan 0) ve okurdan geçti. `lx:Million` B1 → A2.
 
 ## Açık PR'lar
 | PR | Dal | Teslim | İnceleme |
