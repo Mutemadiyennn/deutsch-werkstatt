@@ -15,7 +15,7 @@ def walk(pg):
     pg.wait_for_selector("[data-test=prova-hazirlik]")
     for i in range(pg.locator("[data-test=hazirlik-dinle]").count()):
         pg.locator("[data-test=hazirlik-dinle]").nth(i).click()
-    pg.wait_for_function("!document.querySelector('[data-test=prova-basla]').disabled")
+    pg.wait_for_function("() => !document.querySelector('[data-test=prova-basla]').disabled", timeout=60_000)
     pg.click("[data-test=prova-basla]"); pg.wait_for_selector("[data-test=prova-konusma]")
     return converse(pg)
 
@@ -48,7 +48,7 @@ def main():
         if shots: shot(pg, "p01-hazirlik", full=False)
         for i in range(n):
             pg.locator("[data-test=hazirlik-dinle]").nth(i).click()
-        pg.wait_for_function("!document.querySelector('[data-test=prova-basla]').disabled")
+        pg.wait_for_function("() => !document.querySelector('[data-test=prova-basla]').disabled", timeout=60_000)
         check(True, "bütün cümleler dinlenince prova açıldı")
         pg.click("[data-test=prova-basla]"); pg.wait_for_selector("[data-test=prova-konusma]")
         check(pg.locator("[data-test=prova-chat] [data-kim=karsi]").count() == 1, "karşı taraf ilk sözü söyledi")

@@ -60,7 +60,7 @@ export function FocusChip() {
   const now = Date.now();
   const sn = (n: number) => (n <= 4 ? `${n}/4` : `${n}`);
   if (e.rt.phase === "break") return <span class="focuschip" data-test="focus-chip" title="Mola">Mola · {minLeft(e.breakLeftSec(now))}</span>;
-  if (e.rt.phase === "focus" && e.current) return <span class="focuschip" data-test="focus-chip" title={`Seans ${e.current.n}`}>Seans {sn(e.current.n)} · {minLeft(e.focusLeftSec())}</span>;
+  if (e.rt.phase === "focus" && e.current) return <span class="focuschip" data-test="focus-chip" title={`Seans ${e.current.n}`}>Seans {sn(e.current.n)} · {e.rt.paused ? "duraklatıldı" : minLeft(e.focusLeftSec())}</span>;
   return <span class="focuschip" data-test="focus-chip">{e.focusMin()}/{e.cfg.dailyGoalMin} dk</span>;
 }
 

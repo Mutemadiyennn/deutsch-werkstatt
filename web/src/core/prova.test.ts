@@ -2,12 +2,15 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { Gun } from "@dw/shared";
-import { dugumBul, eslestir, hazirlikCumleleri, rapor, sonMu, type ProvaT } from "./prova.ts";
-import { personalizeDeep } from "./persona.ts";
+import { EN_COK_TEKRAR, dugumBul, eslestir, hazirlikCumleleri, rakamOku, rapor, sonMu, sonrakiDugum, type ProvaT } from "./prova.ts";
+import { bilinenKelimeler, personalizeDeep } from "./persona.ts";
 
 const dir = join(import.meta.dirname, "../../../content/v2/m1");
 const gunler = readdirSync(dir).filter((f) => /^gun-\d+\.json$/.test(f)).map((f) => Gun.parse(JSON.parse(readFileSync(join(dir, f), "utf8"))));
 const provalar = gunler.filter((g) => g.prova).map((g) => ({ day: g.day, ham: g.prova! }));
+// uygulamada sözlük yüklenince yapılır: adsız profilde bilinen kelime ad sayılmaz
+const lexDir = join(import.meta.dirname, "../../../content/v2/registry/lexicon");
+bilinenKelimeler(readdirSync(lexDir).filter((f) => f.endsWith(".json")).flatMap((f) => (JSON.parse(readFileSync(join(lexDir, f), "utf8")).items as { de: string }[]).map((x) => x.de)));
 const profiller = [{}, { name: "Ayşe", address: "Frau" as const }, { name: "Jean-Luc", address: "Herr" as const }];
 
 describe("Konuşma provası (#58 A7)", () => {
@@ -74,5 +77,36 @@ describe("Konuşma provası (#58 A7)", () => {
     expect(r.duzeltmeler[0]).toBe(n.secenekler[ki]!.geri_bildirim_tr);
     expect(new Set(r.duzeltmeler).size).toBe(3);
     expect(rapor(p, []).iyi).toBeTruthy();
+  });
+  it("inceleme #68 P1-1: olumsuz cevap olumlu dala 'yakın' sayılmaz", () => {
+    const p = personalizeDeep(provalar.find((x) => x.day === 1)!.ham, { name: "Ayşe", address: "Frau" }) as ProvaT;
+    const n3 = dugumBul(p, "n3")!;
+    const e = eslestir(n3, "Nein, Donnerstag geht nicht.", true, p.durum_tr);
+    expect(e.kind).toBe("wrong");
+    expect(e.i).toBeNull();
+  });
+  it("inceleme #68 P1-2: adsız profilde bilinen kelime ad sayılmaz", () => {
+    const p = personalizeDeep(provalar.find((x) => x.day === 7)!.ham, {}) as ProvaT;
+    const n1 = dugumBul(p, "n1")!;
+    for (const a of ["Ich bin krank.", "Ich bin Fieber.", "Hier ist die Praxis."]) expect(eslestir(n1, a, true, p.durum_tr).kind, a).not.toBe("correct");
+    expect(eslestir(n1, "Guten Tag, hier ist Gülşah Yıldırım.", true, p.durum_tr).kind).toBe("correct");
+  });
+  it("inceleme #68 P1-3: istemde rakam varsa rakamla cevap yasak değil; sesli numara rakam rakam okunur", () => {
+    expect(rakamOku("0171 39200 47")).toBe("null eins sieben eins drei neun zwei null null vier sieben");
+    const p3 = personalizeDeep(provalar.find((x) => x.day === 3)!.ham, { name: "Ayşe", address: "Frau" }) as ProvaT;
+    const n3 = dugumBul(p3, "n3")!;
+    const e = eslestir(n3, "Meine Nummer ist 0171 39200 47.", false, p3.durum_tr);
+    expect(e.kind).not.toBe("wrong");
+    expect(n3.secenekler[e.i!]!.uygun).toBe(true);
+  });
+  it("inceleme #68 P1-4: kendine dönen dal en çok EN_COK_TEKRAR kez; sonra uygun dal", () => {
+    const p = provalar.find((x) => x.day === 1)!.ham as ProvaT;
+    const n3 = dugumBul(p, "n3")!;
+    const kotu = n3.secenekler.findIndex((s) => !s.uygun && s.sonraki === "n3");
+    const ziyaret = new Map<string, number>([["n3", 1]]);
+    let sayi = 0;
+    while (sonrakiDugum(n3, kotu, ziyaret) === "n3" && sayi < 10) { ziyaret.set("n3", ziyaret.get("n3")! + 1); sayi++; }
+    expect(sayi).toBe(EN_COK_TEKRAR - 1);
+    expect(sonrakiDugum(n3, kotu, ziyaret)).toBe(n3.secenekler.find((s) => s.uygun)!.sonraki);
   });
 });

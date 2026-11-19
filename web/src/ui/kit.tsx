@@ -91,8 +91,10 @@ export function MicButton({ onText, disabled, wide = false, label = "Sesli söyl
   useEffect(() => {
     // kesinti: uygulama arka plana giderse kaydı güvenle durdur
     const vis = () => { if (document.visibilityState === "hidden") stopRef.current(); };
+    const mola = () => stopRef.current();
     document.addEventListener("visibilitychange", vis);
-    return () => { document.removeEventListener("visibilitychange", vis); stopRef.current(); };
+    window.addEventListener("dw:mola", mola);
+    return () => { document.removeEventListener("visibilitychange", vis); window.removeEventListener("dw:mola", mola); stopRef.current(); };
   }, []);
   if (!sttAvailable()) return null;
   const start = async () => {

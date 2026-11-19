@@ -5,10 +5,10 @@
  */
 import { useEffect, useRef, useState } from "preact/hooks";
 import { useApp } from "../state.ts";
-import { loadM1Gun } from "../services/content.ts";
+import { loadLexicon, loadM1Gun } from "../services/content.ts";
 import { adimXpVer } from "../services/ilerleme.ts";
 import { personalizeDeep } from "../core/persona.ts";
-import { EN_COK_TEKRAR, dugumBul, eslestir, hazirlikCumleleri, rapor, sonMu, type Eslesme, type Kayit, type ProvaT } from "../core/prova.ts";
+import { dugumBul, eslestir, hazirlikCumleleri, rapor, sonMu, sonrakiDugum, type Eslesme, type Kayit, type ProvaT } from "../core/prova.ts";
 import { addClaim, setMeta } from "../data/db.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
 import { ActionBar, AnswerField, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
@@ -27,7 +27,9 @@ export function ProvaEkrani({ day }: { day: number }) {
   const [kayitlar, setKayitlar] = useState<Kayit[]>([]);
   useEffect(() => {
     (async () => {
-      const g = personalizeDeep(await loadM1Gun(day), { name: profile.displayName, address: profile.address });
+      // sözlük: adsız profilde bilinen kelime ad sayılmasın (persona.fillName)
+      const [gun] = await Promise.all([loadM1Gun(day), loadLexicon().catch(() => null)]);
+      const g = personalizeDeep(gun, { name: profile.displayName, address: profile.address });
       if (!g.prova) throw new Error("Bu günün konuşma provası henüz hazır değil.");
       setP(g.prova);
     })().catch((e) => setErr(String(e?.message || e)));
@@ -54,7 +56,8 @@ function Hazirlik({ p, onBasla }: { p: ProvaT; onBasla: () => void }) {
   const cumleler = hazirlikCumleleri(p);
   const [dinlenen, setDinlenen] = useState<Set<number>>(new Set());
   const kalan = cumleler.length - dinlenen.size;
-  const dinle = async (i: number) => { setDinlenen((s) => new Set(s).add(i)); await speak(cumleler[i]!.de, "de", "normal"); };
+  // cümle dinlenmiş sayılır: seslendirme bittiğinde (art arda dokunmak kilidi açmaz)
+  const dinle = async (i: number) => { await speak(cumleler[i]!.de, "de", "normal"); setDinlenen((s) => new Set(s).add(i)); };
   return (
     <>
       <section class="card stack fade" data-test="prova-hazirlik">
@@ -101,17 +104,20 @@ function Konusma({ p, onBitti }: { p: ProvaT; onBitti: (k: Kayit[]) => void }) {
     const s = dugum!.secenekler[i]!;
     const yeni = [...kayitlar, k];
     setKayitlar(yeni);
-    setSatirlar((x) => [...x, { kim: "sen", de: k.cevap || s.de }]);
+    // "Doğrusunu söyleyip geç": balonda doğru cümle görünür ve okunur
+    setSatirlar((x) => [...x, { kim: "sen", de: k.dogrusu ?? (k.cevap || s.de) }]);
+    if (k.dogrusu) void speak(k.dogrusu, "de", "normal");
     setCevap(null);
-    // aynı düğüme dönüş sınırı: öğrenci uygun olmayan dalda dönüp durmasın, uygun dal seçilir
-    let hedef = s.sonraki;
-    if ((ziyaret.current.get(hedef) ?? 0) >= EN_COK_TEKRAR) { const u = dugum!.secenekler.find((x) => x.uygun); if (u) hedef = u.sonraki; }
-    if (hedef === id) { setSatirlar((x) => [...x, { kim: "karsi", de: dugum!.de, tr: dugum!.tr }]); void speak(dugum!.de, "de", "normal"); }
-    else setId(hedef);
+    // aynı düğüme dönüş sınırı (kendine dönen dal dahil): sınır dolunca uygun dal seçilir
+    const hedef = sonrakiDugum(dugum!, i, ziyaret.current);
+    if (hedef === id) {
+      ziyaret.current.set(id, (ziyaret.current.get(id) ?? 0) + 1);
+      setSatirlar((x) => [...x, { kim: "karsi", de: dugum!.de, tr: dugum!.tr }]); void speak(dugum!.de, "de", "normal");
+    } else setId(hedef);
     if (!dugumBul(p, hedef)) onBitti(yeni);
   };
   const uygunI = () => Math.max(0, dugum?.secenekler.findIndex((x) => x.uygun) ?? 0);
-  const gonder = (a: string, mode: "typed" | "voice") => setCevap({ a, mode, e: eslestir(dugum!, a, mode === "typed") });
+  const gonder = (a: string, mode: "typed" | "voice") => setCevap({ a, mode, e: eslestir(dugum!, a, mode === "typed", p.durum_tr) });
 
   return (
     <>

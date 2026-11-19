@@ -1,5 +1,5 @@
 /** Bugün: 100 dk hedefi, seans x/4, kalan odak/mola süresi, sıradaki etkinlik, öğrenilenler, zayıflıklar */
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import type { LearnerItem, Lexeme, Scenario } from "@dw/shared";
 import { HeardWordBox } from "../ui/learn.tsx";
 import { useApp } from "../state.ts";
@@ -78,7 +78,7 @@ export function Today() {
     : yarida ? `Seans ${sn(yarida.n)} yarıda kaldı · ${minLeft(e.cfg.workMin * 60 - yarida.focusSec)} kaldı`
     : done >= 4 && min >= goal ? "Bugünkü dört seans tamam" : `Sırada seans ${sn(e.nextN)} · ${e.cfg.workMin} dk`;
   /** "Devam et" süreyi başlatır (#58 A6): yarıda kalan seans sürer, yoksa yeni seans; mola sürüyorsa mola biter */
-  const devam = () => { if (!e || cur) return; if (yarida) focusResume(); else focusStart(); };
+  const devam = () => { if (!e) return; if (cur) { if (e.rt.paused) focusPause(false); return; } if (yarida) focusResume(); else focusStart(); };
   const accent = accentOf(scen?.domain);
   const who = scen?.dialogues[0]?.roles.A;
   const initials = (who || scen?.title_de || "DW").split(/\s+/).filter((w) => /^\p{Lu}/u.test(w)).slice(0, 2).map((w) => w[0]).join("") || "DW";
@@ -107,11 +107,11 @@ export function Today() {
       {indexError && <ErrorPanel message={`İçerik yüklenemedi: ${indexError}`} onRetry={() => location.reload()} />}
 
       {!m1 && planErr ? <ErrorPanel message={`Günün planı yüklenemedi. ${planErr}`} onRetry={yenile} /> : !m1 && !!index?.m1.length ? <LoadingCard lines={2} /> : m1 ? (
-      <section class="card nextcard stack" data-test="next-activity" data-m1="1">
+      <section class="card nextcard stack" data-test="next-activity" data-m1="1" data-seans={m1.sonraki?.seans ?? 0}>
         <div class="row" style={{ flexWrap: "nowrap", gap: 14, alignItems: "center" }}>
           <span class="avatar" aria-hidden="true" style={{ width: 52, height: 52, background: "var(--himmel)" }}><Icon name="raute" size={24} /></span>
           <div class="grow" style={{ minWidth: 0 }}>
-            <div class="small muted">{m1.sonraki ? `${m1.simdi!.day}. gün · Seans ${m1.sonraki.seans}: ${adimAdi(m1.sonraki)}` : "İlk Hafta"}</div>
+            <div class="small muted">{m1.sonraki ? `${m1.simdi!.day}. gün · ${adimAdi(m1.sonraki)}` : "İlk Hafta"}</div>
             <h2 class="nexttitle">{m1.sonraki ? m1.sonraki.title_tr : m1.gunler.length >= 7 && !m1.eksik ? "İlk Hafta tamam" : "Hazır günlerin hepsi bitti"}</h2>
           </div>
         </div>
@@ -237,6 +237,17 @@ function FocusPanel() {
 /** Öğrenme ekranındayken mola başlarsa (v1'deki gibi) ekranı mola kartı kaplar; atlanınca kaldığı yerden sürer */
 export function BreakOverlay() {
   const e = useFocusTick();
-  if (!e || e.rt.phase !== "break") return null;
-  return <div class="breakov" role="dialog" aria-label="Mola"><div><BreakCard /></div></div>;
+  const on = !!e && e.rt.phase === "break";
+  const ref = useRef<HTMLDivElement>(null);
+  // mola kartı kaplarken alttaki ekran kullanılamaz (inert) ve klavye kapanır; odak karta taşınır (inceleme #67 P1-4)
+  useEffect(() => {
+    if (!on) return;
+    const main = document.querySelector("main");
+    main?.setAttribute("inert", ""); main?.setAttribute("aria-hidden", "true");
+    (document.activeElement as HTMLElement | null)?.blur?.();
+    ref.current?.focus();
+    return () => { main?.removeAttribute("inert"); main?.removeAttribute("aria-hidden"); };
+  }, [on]);
+  if (!on) return null;
+  return <div class="breakov" role="dialog" aria-modal="true" aria-label="Mola" tabIndex={-1} ref={ref} data-test="mola-ortusu"><div><BreakCard /></div></div>;
 }
