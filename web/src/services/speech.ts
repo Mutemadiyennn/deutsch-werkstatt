@@ -28,9 +28,25 @@ function voiceFor(lang: "de" | "tr"): SpeechSynthesisVoice | undefined {
 export function sesMetni(t: string): string {
   return t.replace(/\s*\(adın\)/g, "").replace(/(\p{Lu}\p{Ll}+)\/(\p{Lu}\p{Ll}+)/gu, "$1").replace(/\s+([,.!?])/g, "$1").replace(/\s{2,}/g, " ").trim();
 }
+/**
+ * #58 B7: "Dinlemeye başlangıç hızı" (Profil) gerçekten etkili. Yavaş seçiliyse normal hızda istenen her Almanca cümle
+ * bu oturumda İLK kez yavaş (RATE.slow) çalınır, tekrarında normal hızda. İçeriğin belirttiği doğal/hızlı basamaklar
+ * (LS-8.1) ve açık "Yavaş" düğmesi değişmez.
+ */
+let baslangic: "slow" | "normal" = "normal";
+const calindi = new Set<string>();
+export function setBaslangicHizi(s: "slow" | "normal") { baslangic = s; }
+/** Bu metin için ilk çalma hızı (kayıtlı ses ve video da kullanır); çağrı metni "çalındı" sayar */
+export function ilkHiz(text: string, speed: Speed = "normal"): Speed {
+  const k = text.trim();
+  const ilk = !calindi.has(k);
+  calindi.add(k);
+  return speed === "normal" && baslangic === "slow" && ilk ? "slow" : speed;
+}
 export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed = "normal"): Promise<void> {
   if (!ttsAvailable()) return;
   text = sesMetni(text);
+  if (lang === "de") speed = ilkHiz(text, speed);
   speechSynthesis.cancel();
   for (const seg of splitForSpeech(text, lang)) {
     await new Promise<void>((res) => {

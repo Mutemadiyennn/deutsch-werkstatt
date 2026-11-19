@@ -17,7 +17,7 @@ import { Rich } from "../ui/rich.tsx";
 import { ADIM_TR, BASLANGIC, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { scoreHeard } from "../core/grading.ts";
-import { speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
+import { ilkHiz, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { ActionBar, AnswerField, FeedbackBand, MicButton, ProgressHeader } from "../ui/kit.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
@@ -75,11 +75,14 @@ function useOynatici(m: Medya, video: HTMLVideoElement | null, base = ""): Oynat
   };
   const o: Oynatici = {
     async cumle(c, yavas) {
+      // #58 B7: başlangıç hızı "Yavaş" ise her cümle/bölüm ilk kez 0,75× çalınır
+      yavas = yavas || ilkHiz(`medya:${m.id}:${c.id}`) === "slow";
       setCalisiyor(c.id);
       if (m.kind === "video" && video && c.t0 !== undefined && c.t1 !== undefined) await vidAralik(c.t0, c.t1, yavas); else await sesle([c], yavas);
       setCalisiyor(null);
     },
     async bolum(cs, yavas) {
+      yavas = yavas || ilkHiz(`medya:${m.id}:${cs.map((c) => c.id).join(",")}`) === "slow";
       const r = aralik(cs);
       if (m.kind === "video" && video && r) { setCalisiyor("*"); await vidAralik(r.t0, r.t1, yavas); } else await sesle(cs, yavas);
       setCalisiyor(null);
