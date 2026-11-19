@@ -7,7 +7,7 @@ Tarih: 2026-11-19 · inceleyen: dilbilimci-ajan
 Tam incelenen (forms, coll, örnekler, tr, exp, mistakes_tr): `lx:neu`, `lx:Büro`, `lx:offen`, `lx:wieder`, `lx:da`, `lx:brauchen`, `lx:Herr`, `lx:müde`.
 Yalnız `mistakes_tr`: `lx:haben`, `lx:sollen`, `lx:heißen`, `lx:machen`, `lx:vor`, `lx:Stunde`, `lx:Minute`, `lx:Abend`.
 
-Sözlük dosyasına dokunulmadı. Yama: `/home/claude/cm/work/batch-m3.dil.json` (10 kart, `lintpatch` temiz).
+Sözlük dosyasına dokunulmadı. Yama: depo dışı yama dosyası (10 kart, `lintpatch` temiz).
 
 | Kart | Alan | Önce → sonra | Gerekçe |
 |---|---|---|---|
@@ -59,3 +59,66 @@ Denetim: `m1audit.ts` → İHLAL 0 · `npm run content:validate` → 0 hata (59 
 ## Sonuç
 
 Kartlar: 16 kart, 15 düzeltme (10 kartta). Gün ve test: 84 alan + 12 test maddesi, 5 düzeltme. **KAPANDI** (açık noktalar engelleyici değil).
+
+## İkinci tur
+
+Tarih: 2026-11-19 · dilbilimci-ajan · kapsam: yazarın ikinci inceleme düzeltmelerinde değişen 50 Almanca alan (gün 1, 5, 6, 7, hafta sonu testi, video 1, 2, 3, 5, 6, 7).
+
+### 1. Gün dosyaları (9 alan)
+
+Değişen bütün satırlar sahnenin tamamıyla birlikte okundu. Hata bulunmadı, düzeltme yapılmadı.
+
+| Alan | Almanca | Karar |
+|---|---|---|
+| gun-01 `s15` | `Heute ist Donnerstag. Danke, Frau Brandl!` | doğru, doğal |
+| gun-05 `s1` | `Hallo, Ioana! Du bist früh da!` | doğru; `früh` aynı günün kartı |
+| gun-05 `s15` | `Es ist zehn nach neun. Danke, Derya!` | doğru |
+| gun-06 `s17` | `Nur so! Danke!` | doğru; sahne artık `s3` ile açılıyor, kanıt ve gölge kimlikleri tutarlı |
+| gun-06 `a1.c1b` | `Der Arzt kommt heute um neun Uhr.` | doğru; hekim WORLD ile uyumlu (erkek); ana fikir çeldiricisi artık metinle çürütülüyor |
+| gun-06 `a1.c3`, `d2`, `d4` | `Dann brauchen wir Vorname, Nachname, Geburtsdatum und Telefonnummer.` | doğru; sayım listesinde artikelsiz kullanım olağan; boşluk ve dikte kabul listesi yeni cümleyle aynı |
+| gun-07 `s1` | `Hallo, Ioana! Bist du krank?` | doğru, A1 |
+
+### 2. Hafta sonu testi kabul listeleri
+
+Rastgele 40'ar örnek okundu. Ek olarak iki liste parçalarına ayrılıp **bütün** yapı taşları tek tek denetlendi (örneklemden daha güçlü).
+
+- `t03` (1190 cevap, yinelenen yok): 7 selamlama × 4 tanıtma × bağlama × 17 istek. Özne düşürme (`und möchte …`) yalnızca `ich bin` ve `ich heiße` sonrasında; `hier ist` ve `mein Name ist` sonrasında hep `und ich …`. Dilbilgisi hatası yok.
+- `t09` (1734 cevap, yinelenen yok): her cevapta `{name}` ve `Wendlfing` var. Özne düşürme yine yalnızca özne `ich` olan cümlelerden sonra. Kelime sırası hatası yok. Eski 96 cevabın hepsi listede duruyor.
+- `t07`: yalnızca `Ja.` çıkarılmış; görev iki bilgi istediği için yerinde.
+
+Çıkarılan kalıp: yok. Not: `t09` içinde 48 cevap `Ich bin {name} und bin aus der Türkei …` biçiminde. Dilbilgisi doğru, yalnızca `bin` iki kez geçtiği için biraz hantal. Öğrenciyi haksız reddetmemek için bırakıldı; örnek cevap olarak gösterilmemeli.
+
+### 3. Video dosyaları (36 ön öğretim maddesi, 4 yeni soru, 1 yeni cevapla)
+
+Altı klibin transkripti okundu; her ön öğretim maddesi, yeni soru, cevap ve tur numarası metne karşı denetlendi.
+
+| Gün | Karar |
+|---|---|
+| 1 | Ön öğretim doğru. 1 düzeltme (aşağıda). |
+| 2 | Ön öğretim doğru. Yeni eyalet sorusu 4. turla uyuşuyor. |
+| 3 | Ön öğretim doğru. Sorular uyuşuyor. Bilinmeyen oranı açık nokta (aşağıda). |
+| 5 | Ön öğretim doğru. Yeni soru (hesap yapıyor) 2. turla uyuşuyor. `d1` ve `d2` aynı turda (1. tur). |
+| 6 | Ön öğretim doğru. Yeni soru (pasta ve dondurma) 8. turla uyuşuyor. |
+| 7 | Ön öğretim doğru. Yeni soru 14. turla, yeni `cevapla` 5. turdaki kibar soruyla uyuşuyor; 4 kabul cevabı doğru. |
+
+| Dosya | Alan | Önce → sonra | Gerekçe |
+|---|---|---|---|
+| video gün 1 | bolum.ayrinti[1].why_tr | `Eva **ich wohne** dedikten sonra …` → `Eva **wohne** dedikten sonra …` | klipte özne söylenmiyor; kalın yazılan söz duyulanla aynı olmalı |
+
+Değişen Türkçe alan `m1duz2.alanlar.txt` sonuna eklendi: `video-01.bolum.ayrinti[1].why_tr`.
+
+### Denetim
+
+`m1audit.ts` → İHLAL 0 · `vcheck.py` → 7 gün `tamam` · `npm run content:validate` → 0 hata (59 uyarı, eskiden beri).
+
+### Açık noktalar
+
+1. **Video gün 3 bilinmeyen oranı %20,5** (`vcheck.py`; ölçüt ≤ %10; bu turdan önce %16,4). Çok kelimeli maddeler tek kalıba indirilince `heißt`, `heiße`, `komme`, `bin` sayım dışı kaldı. Aday havuzundan en iyi altı madde denendi: en düşük oran %17,8. Yalnızca ön öğretimle çözülmüyor. Seçenekler: önceki günlerin video ön öğretimini bilinen saymak (o zaman yaklaşık %15), kesiti kısaltmak (5. ve 6. tur çıkarsa süre 25 sn altına iner) ya da başka klip. Karar baş geliştiricide; dosyaya dokunulmadı.
+2. Video dosyalarında yazılı `bilinmeyen.oran` eski: gün 2 (0,053 → 0,088), gün 5 (0,07 → 0,093), gün 6 (0,059 → 0,098), gün 7 (0,086 → 0,10). Hepsi sınırın içinde, gün 7 tam sınırda. Alanları baş geliştirici yeniler.
+3. Video gün 5: `d1` ve `d2` aynı turu kullanıyor; gölge listesindeki 3. turda iki soru var. Hata değil, çeşitlilik zayıf.
+4. `t09` içindeki `Ich bin {name} und bin aus …` biçimi (48 cevap) kabul listesinde bırakıldı.
+5. gun-06 sahnesinde Ioana, birinci günde konuştuğu Herr Pichler'e adını soruyor. Dil açısından doğru; hikâye tutarlılığı baş geliştiricinin kararı.
+
+### Sonuç
+
+İkinci tur: 50 Almanca alan + iki kabul listesi (2924 cevap) + 6 klip. Almanca düzeltme 0, Türkçe düzeltme 1. **KAPANDI**; açık nokta 1 baş geliştirici kararı bekliyor.

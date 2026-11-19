@@ -7,7 +7,7 @@
  "konusmaci": "Peter",
  "baslik": "Wer bin ich?",
  "sure_kaynak": "0:56",
- "kesit_sure_tahmin_sn": 33,
+ "kesit_sure_tahmin_sn": 32,
  "video_url": "https://coerll.utexas.edu/dib/mp4s/01_26_int_ph_who.mp4",
  "transkript_url": "https://www.coerll.utexas.edu/dib/vidt.php?f=01_26_int_ph_who",
  "lisans": "CC BY 4.0",
@@ -37,40 +37,41 @@
  ],
  "ortam_tr": "Peter yetişkin bir adam. Biri ona kibar bir dille sorular soruyor. Peter'in söyleyişi sana biraz farklı gelebilir.",
  "bilinmeyen": {
-  "oran": 0.086,
+  "oran": 0.1,
   "kelimeler": [
    "haus",
    "heisse",
    "heissen",
    "intensiv",
+   "mag",
    "sehen",
    "teppiche"
   ]
  },
  "on_ogretim": [
   {
-   "de": "ursprünglich",
-   "tr": "aslen"
+   "de": "ursprünglich aus der Schweiz",
+   "tr": "aslen İsviçre'den"
   },
   {
-   "de": "die Farbe, die Lieblingsfarbe",
-   "tr": "renk, en sevilen renk"
-  },
-  {
-   "de": "ich mag Rot",
-   "tr": "kırmızıyı seviyorum"
-  },
-  {
-   "de": "die Schweiz",
-   "tr": "İsviçre. **aus der Schweiz** İsviçre'den demektir."
-  },
-  {
-   "de": "toll",
-   "tr": "harika"
+   "de": "aber",
+   "tr": "ama"
   },
   {
    "de": "jetzt",
    "tr": "şimdi"
+  },
+  {
+   "de": "die Lieblingsfarbe",
+   "tr": "en sevilen renk"
+  },
+  {
+   "de": "rot",
+   "tr": "kırmızı"
+  },
+  {
+   "de": "eine tolle Farbe",
+   "tr": "harika bir renk"
   }
  ],
  "turlar": [
@@ -169,6 +170,17 @@
     "ans": 1,
     "tur": 12,
     "why_tr": "Peter tek kelimeyle **Rot** diyor. Bu, kırmızı demektir."
+   },
+   {
+    "q_tr": "Peter bu rengi nasıl buluyor?",
+    "opts": [
+     "Sıkıcı buluyor",
+     "Çok koyu buluyor",
+     "Harika buluyor"
+    ],
+    "ans": 2,
+    "tur": 14,
+    "why_tr": "Peter **eine tolle Farbe** diyor. Bu, harika bir renk demektir."
    }
   ],
   "dikte": [
@@ -213,28 +225,30 @@
    }
   ],
   "golge": [
-   3,
-   5
+   5,
+   11
   ],
   "cevapla": {
    "id": "m1:07:rv1:c1",
-   "soru_tur": 3,
-   "situation_tr": "Biri seninle kibarca tanışıyor ve aynı soruyu soruyor. Adını söyle.",
-   "ornek_de": "Ich heiße {name}.",
+   "soru_tur": 5,
+   "situation_tr": "Biri sana nereli olduğunu soruyor. Diyelim ki Ankara'dan geliyorsun. Cevap ver.",
+   "ornek_de": "Ich komme aus Ankara.",
    "accepted": [
-    "Ich heiße {name}.",
-    "Mein Name ist {name}.",
-    "Ich bin {name}."
+    "Ich komme aus Ankara.",
+    "Aus Ankara.",
+    "Ich bin aus Ankara.",
+    "Ich komme ursprünglich aus Ankara."
    ],
-   "why_tr": "**Ich heiße** dedikten sonra adını söylersin. **Mein Name ist** ve **Ich bin** de aynı işi görür."
-  }
+   "why_tr": "**Ich komme aus Ankara.** Ankara'dan geliyorum demektir. Kısaca **Aus Ankara.** da olur."
+  },
+  "dikte_notu": "Üçüncü ve dördüncü turların yazısında **heißen** kelimesi ß yerine ss ile yazılmış. Bu iki tur dikte, gölge ve cevap için kullanılmadı."
  },
  "kanit": "Peter kibar bir konuşmada kendini tanıtıyor. Bu, yedinci günün kendini anlatma konusudur. Randevu konusu bu klipte yok.",
  "review": {
   "status": "reviewed",
   "by": "dilbilimci-ajan",
   "at": "2026-11-19",
-  "notes": "docs/v2/reviews/m1-video.md; okur: docs/v2/reviews/okur/m1-tekrar7.md.",
+  "notes": "docs/v2/reviews/m1-video.md, m1-duzeltme.md; okur: docs/v2/reviews/okur/m1-tekrar7.md, m1-tekrar10.md.",
   "okur": "passed",
   "okur_at": "2026-11-19"
  },

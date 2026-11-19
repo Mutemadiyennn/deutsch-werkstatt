@@ -20,6 +20,10 @@
  "ortam_tr": "Jan yetişkin bir adam. Biri ona her gece kaç saat uyuduğunu soruyor.",
  "on_ogretim": [
   {
+   "de": "Wie viele Stunden schläfst du?",
+   "tr": "Kaç saat uyuyorsun?"
+  },
+  {
    "de": "ungefähr",
    "tr": "yaklaşık"
   },
@@ -28,16 +32,12 @@
    "tr": "hesap yapmam gerekiyor"
   },
   {
-   "de": "ich gehe ins Bett, ich stehe auf",
-   "tr": "yatağa gidiyorum, kalkıyorum"
+   "de": "ich gehe ins Bett",
+   "tr": "yatmaya gidiyorum"
   },
   {
-   "de": "du schläfst",
-   "tr": "uyuyorsun"
-  },
-  {
-   "de": "achteinhalb",
-   "tr": "sekiz buçuk"
+   "de": "ich stehe auf",
+   "tr": "kalkıyorum"
   },
   {
    "de": "genug für dich",
@@ -79,6 +79,17 @@
   },
   "ayrinti": [
    {
+    "q_tr": "Jan cevap vermeden önce ne yapıyor?",
+    "opts": [
+     "Saatine bakıyor",
+     "Telefonuna bakıyor",
+     "Hesap yapıyor"
+    ],
+    "ans": 2,
+    "tur": 2,
+    "why_tr": "Jan **ich muss rechnen** diyor. Bu, hesap yapmam gerekiyor demektir."
+   },
+   {
     "q_tr": "Jan akşam saat kaç civarında yatıyor?",
     "opts": [
      "10 civarında",
@@ -101,17 +112,6 @@
     "why_tr": "Jan **halb acht** diyor. Bu, yedi buçuk demektir."
    },
    {
-    "q_tr": "Jan her gece kaç saat uyuyor?",
-    "opts": [
-     "Yedi buçuk saat",
-     "On bir saat",
-     "Sekiz buçuk saat"
-    ],
-    "ans": 2,
-    "tur": 2,
-    "why_tr": "Jan **achteinhalb** diyor. Bu, sekiz buçuk demektir."
-   },
-   {
     "q_tr": "Jan bu uyku süresini nasıl buluyor?",
     "opts": [
      "Yeterli buluyor",
@@ -126,7 +126,7 @@
   "dikte": [
    {
     "id": "d1",
-    "tur": 3,
+    "tur": 1,
     "seviye": "kolay"
    },
    {
@@ -170,7 +170,7 @@
    ],
    "why_tr": "**Acht Stunden.** sekiz saat demektir. Kısa cevap yeter."
   },
-  "dikte_notu": "Zor ve usta basamağı yok. İkinci tur çok uzun. Dördüncü turda **ich glaube** (sanırım) öğretilmedi."
+  "dikte_notu": "Zor ve usta basamağı yok. İkinci tur çok uzun. Üçüncü turda iki soru var. Dördüncü turda **ich glaube** (sanırım) öğretilmedi."
  },
  "kanit": "Jan yatma ve kalkma saatini söylüyor. **halb acht** yani yedi buçuk geçiyor. Bu, beşinci günün saat konusudur.",
  "review": {
@@ -178,8 +178,9 @@
   "notes": "Dilbilimci ve okur geçti. Süre 30 saniyenin altında, PM kararı bekliyor (#58 A9)."
  },
  "bilinmeyen": {
-  "oran": 0.07,
+  "oran": 0.093,
   "kelimeler": [
+   "achteinhalb",
    "doch",
    "glaube",
    "moment"

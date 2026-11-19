@@ -97,33 +97,19 @@
  ],
  "sahne": {
   "id": "m1:06:v1",
-  "title_tr": "Ioana meydanda soru soruyor",
+  "title_tr": "Ioana komşularına soru soruyor",
   "sahneler": [
-   {
-    "id": "s1",
-    "speaker": "ch:popescu",
-    "sahne_tr": "Ioana elinde soru listesiyle şehir meydanında duruyor.",
-    "de": "Hallo, hier ist Ioana!",
-    "tr": "Merhaba, ben Ioana!"
-   },
-   {
-    "id": "s2",
-    "speaker": "ch:popescu",
-    "sahne_tr": "Ioana uzun soru listesini havaya kaldırıyor.",
-    "de": "Heute habe ich nur Fragen.",
-    "tr": "Bugün yalnızca sorularım var."
-   },
    {
     "id": "s3",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana tulumlu, elinde anahtarlar olan bir adama yaklaşıyor.",
+    "sahne_tr": "Apartmanın girişinde Ioana panoya bir doğum günü takvimi asıyor. Herr Pichler elinde anahtarlarla geliyor.",
     "de": "Guten Tag!",
     "tr": "İyi günler!"
    },
    {
     "id": "s3b",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana soru listesine bakıp adama soruyor.",
+    "sahne_tr": "Ioana kalemini kaldırıp Herr Pichler'e soruyor.",
     "de": "Wie heißen Sie?",
     "tr": "Adınız ne?"
    },
@@ -137,7 +123,7 @@
    {
     "id": "s5",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana soru listesine bakıp bir satırı işaretliyor.",
+    "sahne_tr": "Ioana komşunun adını takvimin kenarına yazıyor.",
     "de": "Was machen Sie heute, Herr Pichler?",
     "tr": "Bugün ne yapıyorsunuz, Herr Pichler?"
    },
@@ -151,7 +137,7 @@
    {
     "id": "s7",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana yanındaki takvimi havaya kaldırıyor.",
+    "sahne_tr": "Ioana panodaki doğum günü takvimini gösteriyor.",
     "de": "Und wann haben Sie Geburtstag?",
     "tr": "Peki doğum gününüz ne zaman?"
    },
@@ -165,7 +151,7 @@
    {
     "id": "s9",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana fırın tezgâhına geçip Frau Stadler'le konuşuyor.",
+    "sahne_tr": "Ioana fırının tezgâhında bir form dolduruyor. Bugünün tarihini bilmiyor.",
     "de": "Frau Stadler, welches Datum ist heute?",
     "tr": "Frau Stadler, bugünün tarihi ne?"
    },
@@ -179,14 +165,14 @@
    {
     "id": "s11",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana başını sallayıp listeye not alıyor.",
+    "sahne_tr": "Ioana tarihi forma yazıyor. Frau Stadler'in önlüğünü çıkardığını görüyor.",
     "de": "Der siebte? Danke! Wohin gehen Sie?",
     "tr": "Yedisi mi? Teşekkürler! Nereye gidiyorsunuz?"
    },
    {
     "id": "s12",
     "speaker": "ch:stadler",
-    "sahne_tr": "Frau Stadler önlüğünü çıkarıyor.",
+    "sahne_tr": "Frau Stadler önlüğünü askıya asıyor.",
     "de": "Zum Arzt.",
     "tr": "Doktora."
    },
@@ -229,16 +215,14 @@
     "id": "s17",
     "speaker": "ch:popescu",
     "sahne_tr": "Ioana gülerek el sallıyor.",
-    "de": "Nur so! Danke und bis morgen!",
-    "tr": "Öylesine! Teşekkürler, yarın görüşürüz!"
+    "de": "Nur so! Danke!",
+    "tr": "Öylesine! Teşekkürler!"
    }
   ],
   "bolumler": [
    {
     "id": "b1",
     "cumleler": [
-     "s1",
-     "s2",
      "s3",
      "s3b",
      "s4",
@@ -259,16 +243,16 @@
     ],
     "ana_fikir": {
      "kind": "gist",
-     "q_tr": "Ioana meydanda ne yapıyor?",
+     "q_tr": "Ioana bu sahnede ne yapıyor?",
      "opts": [
       "Fırından ekmek alıyor",
-      "İnsanlara sorular soruyor",
+      "Komşularına sorular soruyor",
       "Saçını kestiriyor"
      ],
      "ans": 1,
      "kanit": [
-      "s2",
-      "s3b"
+      "s3b",
+      "s7"
      ]
     },
     "ayrinti": [
@@ -420,13 +404,18 @@
      "tr": "Günaydın!"
     },
     {
+     "id": "c1b",
+     "de": "Der Arzt kommt heute um neun Uhr.",
+     "tr": "Doktor bugün saat dokuzda geliyor."
+    },
+    {
      "id": "c2",
      "de": "Sind Sie neu hier?",
      "tr": "Burada yeni misiniz?"
     },
     {
      "id": "c3",
-     "de": "Dann brauche ich Vorname, Nachname, Geburtsdatum und Telefonnummer.",
+     "de": "Dann brauchen wir Vorname, Nachname, Geburtsdatum und Telefonnummer.",
      "tr": "O zaman ad, soyad, doğum tarihi ve telefon numarası gerekiyor."
     },
     {
@@ -440,6 +429,7 @@
      "id": "b1",
      "cumleler": [
       "c1",
+      "c1b",
       "c2",
       "c3",
       "c4"
@@ -503,7 +493,7 @@
        "id": "d2",
        "cumle": "c3",
        "seviye": "orta",
-       "de": "Dann brauche ich ___, Nachname, Geburtsdatum und Telefonnummer.",
+       "de": "Dann brauchen wir ___, Nachname, Geburtsdatum und Telefonnummer.",
        "accepted": [
         "Vorname",
         "vorname",
@@ -533,9 +523,9 @@
        "cumle": "c3",
        "seviye": "usta",
        "accepted": [
-        "Dann brauche ich Vorname, Nachname, Geburtsdatum und Telefonnummer.",
-        "dann brauche ich vorname nachname geburtsdatum und telefonnummer",
-        "Dann brauche ich Vorname, Nachname, Geburtsdatum und Telefonnummer"
+        "Dann brauchen wir Vorname, Nachname, Geburtsdatum und Telefonnummer.",
+        "dann brauchen wir vorname nachname geburtsdatum und telefonnummer",
+        "Dann brauchen wir Vorname, Nachname, Geburtsdatum und Telefonnummer"
        ]
       },
       {
@@ -558,7 +548,7 @@
      "cevapla": {
       "id": "m1:06:a1:c1",
       "k": "guided_response",
-      "situation_tr": "Sıra sende. Frau Huber adını soruyor. Adını söyle.",
+      "situation_tr": "Bankoya gidiyorsun. Frau Huber adını soruyor. Adını söyle.",
       "prompt_de": "Wie ist Ihr Name?",
       "accepted": [
        "Mein Name ist {name}.",
