@@ -63,6 +63,8 @@ def main():
                 # alıştırmadan alt sayfa: ilerleme kaybolmaz (P1-3)
                 pg.goto(base + "#/scenario/sc:telefon:01-arzttermin/build"); pg.wait_for_selector(".pbar h1")
                 pg.wait_for_selector("[data-test=kalip-bag]", timeout=10000)
+                # madde sayacı (x/y) üst çubuğa efektle gelir; okumadan önce beklenir (WebKit'te sayaçsız okunuyordu)
+                pg.wait_for_selector(".pbar [data-test=item-count]", timeout=10000)
                 if True:
                     once = pg.inner_text(".pbar")
                     pg.click("[data-test=kalip-bag]"); pg.wait_for_selector("[role=dialog][data-test=kalip-karti]")
