@@ -62,15 +62,28 @@ const DEGISKEN: Record<string, string> = {
   ç: "(?:ç|c)", c: "(?:c|ç)", ğ: "(?:ğ|g)", g: "(?:g|ğ)", ş: "(?:ş|s)", s: "(?:s|ş)", ı: "[ıiİI]", i: "[iıİI]",
   ö: "(?:ö|oe|o)", o: "(?:o|ö)", ü: "(?:ü|ue|u)", u: "(?:u|ü)", ä: "(?:ä|ae|a)", a: "(?:a|ä)", ß: "(?:ß|ss)"
 };
-const desen = (x: string) => [...x.toLocaleLowerCase("tr")].map((c) => DEGISKEN[c] ?? (/\s/.test(c) ? "\\s+" : c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))).join("");
+/** İki harflik yazımlar ters yönde de (ad "Mueller" iken "Müller", "Strauss" iken "Strauß"; inceleme #80 P1-2) */
+const IKILI: Record<string, string> = { ue: "(?:ue|ü|u)", oe: "(?:oe|ö|o)", ae: "(?:ae|ä|a)", ss: "(?:ss|ß)" };
+const desen = (x: string) => {
+  const h = [...x.normalize("NFC").toLocaleLowerCase("tr")];
+  let out = "";
+  for (let i = 0; i < h.length; i++) {
+    const c = h[i]!, ik = c + (h[i + 1] ?? "");
+    if (IKILI[ik]) { out += IKILI[ik]; i++; continue; }
+    // kesme işareti düz ya da kıvrık (iPhone akıllı noktalama), tire ya da boşluk (Jean-Luc / Jean Luc; P1-1, P2)
+    out += DEGISKEN[c] ?? (/['’‘`´]/.test(c) ? "['’‘`´]" : /[\s-]/.test(c) ? "[\\s-]+" : c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  }
+  return out;
+};
 export function redact(t: string, p: Persona): string {
-  const ad = p.name?.trim().replace(/\s+/g, " ");
+  const ad = p.name?.normalize("NFC").trim().replace(/\s+/g, " ");
   if (!ad) return t;
-  const parcalar = ad.split(" ").filter((w) => [...w].length >= 2);
-  // tam ad önce (daha uzun), sonra iki kelimeli adın parçaları
+  // tireli ve iki kelimeli adın parçaları (≥ 2 harf) da ayrıca
+  const parcalar = ad.split(/[\s-]+/).filter((w) => [...w].length >= 2);
+  // tam ad önce (daha uzun), sonra parçalar
   const adaylar = [ad, ...(parcalar.length > 1 ? parcalar : [])].filter((x, i, a) => a.indexOf(x) === i).sort((a, b) => b.length - a.length);
   const re = new RegExp(`(?<![\\p{L}\\p{N}])(?:${adaylar.map(desen).join("|")})(?![\\p{L}\\p{N}])`, "giu");
-  return t.replace(re, "[Name]");
+  return t.normalize("NFC").replace(re, "[Name]");
 }
 /** Yapay zekâdan gelen metin: [Name] → ad (yoksa hitap kalır) */
 export function unredact(t: string, p: Persona): string {

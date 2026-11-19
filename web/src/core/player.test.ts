@@ -122,6 +122,17 @@ describe("öğrenci kimliği yer tutucuları (D-061)", () => {
     expect(redact("Ich bin Cağri.", { name: "Çağrı" })).toBe("Ich bin [Name].");
     expect(redact("Hier ist GOEKCE.", { name: "Gökçe" })).toBe("Hier ist [Name].");
     expect(redact("Ich bin Müller.", { name: "Muller" })).toBe("Ich bin [Name].");
+    // ters yön, kıvrık kesme işareti, NFD, tire (inceleme #80)
+    expect(redact("Ich bin Müller.", { name: "Mueller" })).toBe("Ich bin [Name].");
+    expect(redact("Ich bin Gökçe.", { name: "Goekce" })).toBe("Ich bin [Name].");
+    expect(redact("Herr Strauß", { name: "Strauss" })).toBe("Herr [Name]");
+    expect(redact("Hier ist O’Neil.", { name: "O'Neil" })).toBe("Hier ist [Name].");
+    expect(redact("Hier ist O'Neil.", { name: "O’Neil" })).toBe("Hier ist [Name].");
+    expect(redact("Ich bin Go\u0308kce.", { name: "Gökçe" })).toBe("Ich bin [Name].");
+    expect(redact("Hier ist Jean Luc. Jean kommt.", { name: "Jean-Luc" })).toBe("Hier ist [Name]. [Name] kommt.");
+    // aşırı maskeleme yok: kelime içi ve başka kelime
+    expect(redact("Ich kann Suppe essen.", { name: "Su" })).toBe("Ich kann Suppe essen.");
+    expect(redact("Das kann ich.", { name: "Can" })).toBe("Das kann ich.");
     // kelimenin içi maskelenmez
     expect(redact("Alina und Ali", { name: "Ali" })).toBe("Alina und [Name]");
     expect(redact("Guten Tag", {})).toBe("Guten Tag");
