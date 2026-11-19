@@ -79,6 +79,19 @@
      "tr": "– Sana güvenebilir miyim? – Tabii, yüzde yüz.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:verlassen:5",
+     "de": "Auf Derya kann man sich immer verlassen.",
+     "tr": "Derya'ya her zaman güvenilir.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:verlassen:6",
+     "de": "– Hat Herr Wimmer das Büro schon verlassen? – Ja, vor fünf Minuten.",
+     "tr": "– Wimmer Bey bürodan çıktı mı? – Evet, beş dakika önce.",
+     "layer": "hd",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -108,16 +121,28 @@
      "hint_tr": "**er** ve **sie** ile **verlässt** olur, **a** harfi **ä** olur."
     },
     {
-     "de": "Kann ich mich ___ dich verlassen?",
-     "answer": "auf",
+     "de": "Kann ich mich auf dich ___?",
+     "answer": "verlassen",
      "tr": "Sana güvenebilir miyim?",
-     "hint_tr": "Güvenmek anlamında **auf dich** gelir."
+     "hint_tr": "Güvenmek **sich auf jemanden verlassen** ile söylenir."
     },
     {
      "de": "Sie hat ihren Mann ___.",
      "answer": "verlassen",
      "tr": "Kadın kocasını terk etti.",
      "hint_tr": "Geçmişi anlatırken **hat verlassen** denir, başına **ge** gelmez."
+    },
+    {
+     "de": "Herr Wimmer hat das Büro schon ___.",
+     "answer": "verlassen",
+     "tr": "Wimmer Bey bürodan çoktan çıktı.",
+     "hint_tr": "Geçmişi anlatırken **hat verlassen** denir, başına **ge** gelmez."
+    },
+    {
+     "de": "Du ___ dich immer auf Tobi.",
+     "answer": "verlässt",
+     "tr": "Hep Tobi'ye güveniyorsun.",
+     "hint_tr": "**du** ile **verlässt** olur, **a** harfi **ä** olur."
     }
    ]
   },
@@ -408,6 +433,19 @@
      "tr": "– Paket bugün geliyor mu? – Umarım, günlerdir onu bekliyorum.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:darauf:5",
+     "de": "Basti freut sich schon darauf.",
+     "tr": "Basti şimdiden dört gözle bekliyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:darauf:6",
+     "de": "– Gehen wir morgen schwimmen? – Kommt darauf an, wie das Wetter ist.",
+     "tr": "– Yarın yüzmeye gidelim mi? – Havaya bağlı.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -436,13 +474,52 @@
      "de": "Ich freue mich schon ___.",
      "answer": "darauf",
      "tr": "Şimdiden dört gözle bekliyorum.",
-     "hint_tr": "Dört gözle beklerken **sich darauf freuen** denir."
+     "hint_tr": "Dört gözle beklerken **sich darauf freuen** denir.",
+     "also_ok": [
+      "drauf"
+     ]
     },
     {
      "de": "Wir warten schon lange ___.",
      "answer": "darauf",
      "tr": "Bunu uzun zamandır bekliyoruz.",
-     "hint_tr": "Bunu beklemek derken **darauf warten** denir."
+     "hint_tr": "Bunu beklemek derken **darauf warten** denir.",
+     "also_ok": [
+      "drauf"
+     ]
+    },
+    {
+     "de": "Es kommt ___ an.",
+     "answer": "darauf",
+     "tr": "Duruma bağlı.",
+     "hint_tr": "Duruma bağlı derken **Es kommt darauf an** denir.",
+     "also_ok": [
+      "drauf"
+     ]
+    },
+    {
+     "de": "___ habe ich keine Lust.",
+     "answer": "Darauf",
+     "tr": "Buna hiç hevesim yok.",
+     "hint_tr": "Buna derken **darauf** denir."
+    },
+    {
+     "de": "Basti freut sich schon ___.",
+     "answer": "darauf",
+     "tr": "Basti şimdiden dört gözle bekliyor.",
+     "hint_tr": "Dört gözle beklemek **sich darauf freuen** ile söylenir.",
+     "also_ok": [
+      "drauf"
+     ]
+    },
+    {
+     "de": "Da ist der Tisch, stell die Tasche ___.",
+     "answer": "darauf",
+     "tr": "Masa orada, çantayı üstüne koy.",
+     "hint_tr": "Bir şeyin üstüne derken **darauf** denir.",
+     "also_ok": [
+      "drauf"
+     ]
     }
    ]
   },
@@ -508,6 +585,19 @@
      "tr": "– Kızgın mı? – Öyle görünüyor.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:scheinen:5",
+     "de": "Frau Huber scheint heute keine Zeit zu haben.",
+     "tr": "Huber Hanım'ın bugün vakti yok gibi görünüyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:scheinen:6",
+     "de": "– Scheint die Sonne bei euch? – Nein, es regnet seit Stunden.",
+     "tr": "– Sizde güneş parlıyor mu? – Hayır, saatlerdir yağmur yağıyor.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -538,13 +628,25 @@
      "de": "Er ___ krank zu sein.",
      "answer": "scheint",
      "tr": "Adam hasta gibi görünüyor.",
-     "hint_tr": "Gibi görünmek anlamında **scheint** ile **zu sein** gelir."
+     "hint_tr": "Hasta gibi görünüyor derken **Er scheint krank zu sein** denir."
     },
     {
      "de": "Gestern hat die Sonne ___.",
      "answer": "geschienen",
      "tr": "Dün güneş parladı.",
      "hint_tr": "Geçmişi anlatırken **hat geschienen** denir."
+    },
+    {
+     "de": "Die Kollegen ___ zufrieden zu sein.",
+     "answer": "scheinen",
+     "tr": "İş arkadaşları memnun gibi görünüyor.",
+     "hint_tr": "Birden çok kişi için **scheinen** olur."
+    },
+    {
+     "de": "Frau Huber ___ heute keine Zeit zu haben.",
+     "answer": "scheint",
+     "tr": "Huber Hanım'ın bugün vakti yok gibi görünüyor.",
+     "hint_tr": "**er** ve **sie** ile **scheint** olur."
     }
    ]
   },
