@@ -126,6 +126,11 @@ export interface LearnerItem {
   lastQ?: string;
   /** yolun ilk değerlendirme zamanı (ISO): günlük yeni kart sınırı (LS-7.4) buradan sayılır */
   firstAt?: { passive?: string; active?: string };
+  /**
+   * PM-062 (#58 B13): kartın Bahçe'de gösterildiği cümle sayacı. Sonraki soru bu sayıdan kurulur: her havuz (örnekler,
+   * boşluklar) kendi uzunluğuna göre döner; aynı kart art arda iki oturumda aynı cümleyle açılmaz.
+   */
+  exSeen?: number;
 }
 
 export interface ScenarioProgress {

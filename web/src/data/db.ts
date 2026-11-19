@@ -73,6 +73,9 @@ export async function saveProfile(p: Profile): Promise<Profile> {
 
 export async function getMeta<T>(key: string): Promise<T | undefined> { return (await db.meta.get(key))?.value as T | undefined; }
 export async function setMeta(key: string, value: unknown) { await db.meta.put({ key, value }); }
+export async function delMeta(key: string) { await db.meta.delete(key); }
+/** Bu zamandan sonra ilk kez tanıtılan (pasif) öğeler: gün sonu özetinde "yeni anladığın kelimeler" (#58 B3) */
+export async function tanitilanlar(sonra: string): Promise<LearnerItem[]> { return db.items.filter((it) => (it.firstAt?.passive ?? "") >= sonra).toArray(); }
 
 export async function saveFocus(day: FocusDay, rt: Runtime, previous?: FocusDay) {
   await db.transaction("rw", db.focusDays, db.meta, async () => {

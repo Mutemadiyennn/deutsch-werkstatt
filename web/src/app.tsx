@@ -18,6 +18,7 @@ import { getProfile, latestPlacement, saveProfile } from "./data/db.ts";
 import { setLearning, startFocus, updateFocusConfig } from "./services/focusRuntime.ts";
 import { setBaslangicHizi } from "./services/speech.ts";
 import { efektAyar, sesKilidiAc, ustUsteSifirla } from "./services/efekt.ts";
+import { kullanimIzle } from "./services/kullanim.ts";
 import { XpUcus } from "./ui/solen.tsx";
 import { TabBar, Loading, ErrorPanel } from "./ui/components.tsx";
 import { ErrorBoundary, recordError } from "./ui/ErrorBoundary.tsx";
@@ -71,6 +72,8 @@ export function App() {
     // açılabilir; ses bağlamı çalışınca sesKilidiAc hemen döner (inceleme #87 2. tur)
     const kilit = () => sesKilidiAc();
     addEventListener("pointerdown", kilit, true); addEventListener("touchend", kilit, true);
+    // #58 B3: yerel kullanım ölçümü (açılış, adımın bitirildiği ya da bırakıldığı nokta; cihazdan çıkmaz)
+    const izBitir = kullanimIzle(() => parseHash(location.hash));
     auth.ready.then(() => { setUser(auth.current()); setAuthReady(true); }).catch(() => setAuthReady(true));
     // inceleme #43 P1-3: giriş durumu 8 sn'de gelmezse öğrenci sonsuz "Yükleniyor"da kalmaz
     const slow = setTimeout(() => setAuthSlow(true), 8000);
@@ -80,7 +83,7 @@ export function App() {
     const onErr = (e: ErrorEvent) => recordError("window", e.error ?? e.message);
     const onRej = (e: PromiseRejectionEvent) => recordError("promise", e.reason);
     addEventListener("error", onErr); addEventListener("unhandledrejection", onRej);
-    return () => { removeEventListener("hashchange", on); removeEventListener("pointerdown", kilit, true); removeEventListener("touchend", kilit, true); removeEventListener("error", onErr); removeEventListener("unhandledrejection", onRej); off(); };
+    return () => { izBitir(); removeEventListener("hashchange", on); removeEventListener("pointerdown", kilit, true); removeEventListener("touchend", kilit, true); removeEventListener("error", onErr); removeEventListener("unhandledrejection", onRej); off(); };
   }, []);
 
   useEffect(() => {
