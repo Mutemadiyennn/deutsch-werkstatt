@@ -99,3 +99,38 @@ Kalan şüpheler:
 - Değişen 3 Türkçe alan okurdan geçmedi. Yollar alan listesinin sonuna eklendi.
 
 Sonuç: içerik hataları KAPANDI. `review.status` değerlerine dokunulmadı (`draft`; ses ve süre bekliyor). Hata oranı: 3/43.
+
+## Ön öğretim (PM kararı)
+İncelenen: `klip-01, 02, 04, 05, 06, 07.json` içinde 35 ön öğretim maddesi (Almanca ve Türkçe), klip-06 `d5`, değişen 4 `dikte_notu`, çıkarılan 6 ayrıntı sorusunun gerekçesi. Toplam 40 madde. Yazarın `kural.py` betiği ve `vcheck.py` ölçümü ayrıca elle denetlendi.
+
+| Yer | Önce → sonra | Gerekçe |
+|---|---|---|
+| klip-01 `on_ogretim[4]` | **Jahre alt** (yaşında) → **bin dreißig Jahre alt** (otuz yaşındayım) | **bist** birinci günün bilinen listesinde yok. `vcheck.py` onu kök kuralıyla **bis** kelimesinden bilinen sayıyordu. Gerçek oran 7/60 (%11,7) idi, sınırın üstünde. Yeni madde **bin** kelimesini de örtüyor. |
+| klip-01 `on_ogretim[3]` | **ich wohne** → **wohne** | Yukarıdaki maddeye yer açmak için (toplam 15 kelime). Eva da öznesiz söylüyor: **wohne mittlerweile seit 10 Jahren**. **ich** üçüncü maddede duruyor. |
+| klip-01 `dikte_notu` | **bin** öğretilmedi → **Wie alt bist du?** sorusundaki **bist** öğretilmedi, soru kaç yaşındasın demektir | Artık öğretilmeyen kelime **bist**. |
+| klip-01 `bilinmeyen` | 0,083 → 0,1; listeye **bist** girdi, **bin** çıktı | Elle sayım: **bist** iki kez, **heiße**, **wo**, **ursprünglich**, **mittlerweile** = 6/60. |
+| klip-02 `on_ogretim[4]` | **bin angekommen** (vardım) → **bin, bist angekommen** (vardım, vardın) | Aynı araç hatası: **bist** ikinci günün listesinde de yok, gerçek oran 6/57 (%10,5) idi. Şimdi 5/57 (%8,8). |
+| klip-02 `dikte_notu` | `Bu soru biçimi henüz öğretilmedi` → `Bu soruyu yazman henüz beklenmiyor` | **bist angekommen** artık ön öğretimde, eski cümle onunla çelişiyordu. |
+| klip-06 `on_ogretim[4]` | **bei den Großeltern** (büyükanne ve büyükbabanın yanında) → **bei meinen Großeltern** (büyükannemle büyükbabamın yanında) | Kaynakta **bei meinen Großeltern**. Kelime sayısı aynı. |
+| klip-06 `d5` görev | `Senin doğum günün hangi ayda? Diyelim ki mayısta…` → `Sana doğum gününün hangi ayda olduğunu soruyorlar. Diyelim ki doğum günün mayısta, yani **im Mai**. Jan gibi Almanca bir cümleyle cevap ver.` | İlk cümle öğrencinin gerçek ayını soruyordu, ikincisi mayıs diyordu. Kendi ayını yazan öğrenci `zorunlu: Mai` yüzünden ret alırdı. |
+| klip-06 `d5` kabul listesi | 5 → 7 cevap | Eksik doğru sıralamalar: **Im Mai habe ich Geburtstag.**, **Ich habe Geburtstag im Mai.** |
+
+Denetim:
+- Sınırlar (`kural.py`, düzeltmelerden sonra): klip-01 6 madde 15 kelime, klip-02 6/15, klip-04 5/11, klip-05 6/14, klip-06 6/15, klip-07 6/11. Hiçbir madde 4 kelimeyi geçmiyor.
+- Üçüncü kural: betik soru cevabını, kanıt turunun cümlelerini, dikte `accepted[0]` ve `ornek_de` değerlerini, gölge cümlelerini ve `cevapla` ilk cevabını maddenin Almancası ve Türkçesiyle karşılaştırıyor. Elle de bakıldı: boşluk cevapları (**Woher**, **wohnst**, **dabei**, **Warum**) ve `kolay` cevapları (**heißt**, **studierst**, **Freunde**, **Blau**) hiçbir maddeyle aynı değil. Betik yalnızca tam eşitliği yakalıyor. **heißt du** ile **Wie heißt du?**, **woher kommst** ile **Woher kommst du?** bir kelime farkla ayrılıyor. Kural bunu yasaklamıyor (madde cümlenin parçası olabilir).
+- Almanca: maddeler kaynak turlardaki biçimle uyumlu. İki istisna bilerek bırakıldı: klip-06 **eine andere Region** (kaynakta **in einer anderen Region**, 4 kelime, toplamı 16 yapar) ve klip-04 **um die zwanzig** (kaynakta **um die fünfzig**, cevapla aynı olmasın diye).
+- Türkçe: 35 `tr` doğru, terim yok. Renk maddesi (**Rot, Blau oder Pink?**) sırayla çevrilmiş, eşleşme açık.
+- Dikte ve sorular: değişen maddelerde cevap tek. İstenen her kelime bilinen listede ya da o günün ön öğretiminde. Klip-06 `d5` kelimeleri (**Geburtstag**, **Mai**, **habe**, **im**) altıncı günün listesinde.
+- Çıkarılan sorular (klip-01 iki, klip-06 üç, klip-07 bir): kalan sorular parçanın iki konuşmacısını da kapsıyor. Klip-06'da Eva'nın 8. turuna artık soru yok, `dikte_notu` bunu söylüyor.
+- Doğrulayıcı 0 hata (klip dosyalarını kapsamıyor). `vcheck.py`: 7 klip `tamam`.
+
+Kalan şüpheler:
+- **`vcheck.py` kök kuralı yanlış eşleşme veriyor:** **bist** → **bis**. Araç klip-01 için 0,067 gösteriyor, dosyada elle sayılan 0,1 yazıyor. `--yaz` çalıştırılırsa dosyadaki değer yeniden yanlışa döner. Aracı baş geliştirici düzeltmeli. Diğer kök eşleşmeleri (**Jahren**, **Jahre**, **viele**, **anderen**, **hattest**) yerinde.
+- Klip-01 tam sınırda: 6/60 = %10,0. Bir kelime daha bilinmeyen sayılırsa (örnek: **ganz** maddesi çıkarsa) `yalnizca-dinle` gerekir. **bin dreißig Jahre alt** Berna'nın 8. turunun **Ich** dışındaki bütünü. O tura soru, dikte ve gölge bağlı değil, kural tutuyor. PM yine de görmeli.
+- İki biçimli maddeler tek fikir ölçütünü zorluyor: klip-02 **ich studiere, du studierst**, **ich wohne, du wohnst**, **bin, bist angekommen**; klip-05 **ich schlafe, du schläfst**. Altı madde sınırında başka yol bulunamadı. Okur karar vermeli.
+- Klip-06 **das letzte Mal gefeiert** → `son kez kutlamış`: Almancası yardımcı fiilsiz olduğu için Türkçesi de kişisiz. `kutlamış` duyum bildiren biçim gibi okunabilir. **hast gefeiert** (kutladın) ayrı madde olsa daha açık olurdu, ama 7 madde eder.
+- Klip-06 `d5` öğrencinin gerçek doğum ayını istemiyor, ay sabit. Oynatıcı `accepted_kaliplar` (`Ich habe im ___ Geburtstag.`) desteklerse görev gerçek aya çevrilebilir.
+- Klip-07 ön öğretimi dördüncü günün üç maddesini yineliyor (**jetzt**, **deine Lieblingsfarbe**, renkler). Bilinen listeler önceki günlerin ön öğretimini saymıyor. 4 kelimelik boşluk var, **Teil** ya da **Farben** eklenebilirdi. Kurala aykırı değil, dokunulmadı.
+- Değişen 9 Türkçe alan okurdan geçmedi. Yeni yol alan listesinin sonuna eklendi, diğerleri listede vardı.
+
+Sonuç: içerik hataları KAPANDI, araç hatası ve PM soruları AÇIK. `review.status` altı dosyada `draft` kaldı. Hata oranı: 7/40.

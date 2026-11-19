@@ -59,24 +59,24 @@
    "tr": "son kez kutlamış"
   },
   {
-   "de": "bei den Großeltern",
-   "tr": "büyükanne ve büyükbabanın yanında"
+   "de": "Freunde dabei",
+   "tr": "yanında arkadaşlar"
   },
   {
-   "de": "es gab Kuchen und Eis",
-   "tr": "pasta ve dondurma vardı"
+   "de": "weil",
+   "tr": "çünkü"
+  },
+  {
+   "de": "eine andere Region",
+   "tr": "başka bir bölge"
+  },
+  {
+   "de": "bei meinen Großeltern",
+   "tr": "büyükannemle büyükbabamın yanında"
   },
   {
    "de": "typisch amerikanisch",
    "tr": "tam Amerikan usulü"
-  },
-  {
-   "de": "Hattest du Freunde dabei?",
-   "tr": "Yanında arkadaşların var mıydı?"
-  },
-  {
-   "de": "in einer anderen Region",
-   "tr": "başka bir bölgede"
   }
  ],
  "turlar": [
@@ -118,28 +118,6 @@
   },
   "ayrinti": [
    {
-    "q_tr": "Eva'nın son doğum gününde neler varmış?",
-    "opts": [
-     "Çorba ve ekmek",
-     "Pasta ve dondurma",
-     "Elma ve peynir"
-    ],
-    "ans": 1,
-    "tur": 8,
-    "why_tr": "Eva **Kuchen und Eis** diyor. Bu, pasta ve dondurma demektir."
-   },
-   {
-    "q_tr": "Eva o gün kimin yanındaymış?",
-    "opts": [
-     "Annesinin",
-     "Kız kardeşinin",
-     "Büyükanne ve büyükbabasının"
-    ],
-    "ans": 2,
-    "tur": 8,
-    "why_tr": "Eva **Großeltern** diyor. Bu, büyükanne ve büyükbaba demektir."
-   },
-   {
     "q_tr": "Eva'nın arkadaşları o gün yanında mıymış?",
     "opts": [
      "Evet, hepsi oradaymış",
@@ -149,17 +127,6 @@
     "ans": 1,
     "tur": 10,
     "why_tr": "Eva **Leider nein** diyor. Bu, maalesef hayır demektir."
-   },
-   {
-    "q_tr": "Eva'nın arkadaşları neden yanında değilmiş?",
-    "opts": [
-     "Başka bir bölgede oturuyorlar",
-     "Hastaymışlar",
-     "Çalışıyorlarmış"
-    ],
-    "ans": 0,
-    "tur": 10,
-    "why_tr": "Eva **in einer anderen Region** diyor. Bu, başka bir bölgede demektir. Arkadaşları orada oturuyor."
    },
    {
     "q_tr": "Jan'ın doğum günü hangi ayda?",
@@ -252,18 +219,19 @@
    {
     "id": "d5",
     "seviye": "gercek",
-    "gorev_tr": "Eva'nın son doğum gününde hangi iki yiyecek vardı? Almanca yaz.",
-    "ornek_de": "Kuchen und Eis.",
+    "gorev_tr": "Sana doğum gününün hangi ayda olduğunu soruyorlar. Diyelim ki doğum günün mayısta, yani **im Mai**. Jan gibi Almanca bir cümleyle cevap ver.",
+    "ornek_de": "Ich habe im Mai Geburtstag.",
     "accepted": [
-     "Kuchen und Eis.",
-     "Es gab Kuchen und Eis.",
-     "Eis und Kuchen.",
-     "Da gab es Kuchen und Eis.",
-     "Sie hatte Kuchen und Eis."
+     "Ich habe im Mai Geburtstag.",
+     "Im Mai.",
+     "Mein Geburtstag ist im Mai.",
+     "Im Mai habe ich Geburtstag.",
+     "Ich habe Geburtstag im Mai.",
+     "Ich habe im Mai Geburtstag",
+     "ich habe im mai geburtstag"
     ],
     "zorunlu": [
-     "Kuchen",
-     "Eis"
+     "Mai"
     ]
    },
    {
@@ -305,18 +273,20 @@
    ],
    "why_tr": "**Leider nein.** maalesef hayır demektir. Eva da böyle cevap veriyor."
   },
-  "dikte_notu": "Eva'nın kaydında 3. ve 4. turlar sesle uyuşmuyor, 5. ve 6. turlar parçaya girmedi. 10. turda **weil** (çünkü) öğretilmedi, bu tur dikteye girmedi. Jan'ın söylediği tarih kaynak metinde rakamla yazılmış: **am 13. Oktober**. Sesteki gibi **am dreizehnten Oktober** (13 Ekim'de) yazmak da doğru."
+  "dikte_notu": "Eva'nın kaydında 3. ve 4. turlar sesle uyuşmuyor, 5. ve 6. turlar parçaya girmedi. 8. turda **es gab** (vardı), **Kuchen** (pasta) ve **Eis** (dondurma) öğretilmedi, bu yüzden bu tura soru yok. Jan'ın söylediği tarih kaynak metinde rakamla yazılmış: **am 13. Oktober**. Sesteki gibi **am dreizehnten Oktober** (13 Ekim'de) yazmak da doğru."
  },
  "kanit": "Eva son doğum günü kutlamasını anlatıyor, Jan doğum gününün tarihini söylüyor. Konuşmalarda **wann** (ne zaman) ve **wie** (nasıl) ile başlayan sorular var. Bir de evet-hayır sorusu var. Bu, altıncı günün soru konusuna uyuyor. İki parça birlikte tahminen 25 saniye sürüyor.",
  "review": {
   "status": "draft",
-  "notes": "#58 A9 PM kararı: Eva parçası fiilen 7–10. turları oynatıyor, 20 sn altı. Kesit 7. turdan başlatıldı. 20 sn ölçümü 5–10. turları kapsıyordu, 7–10 ayrıca ölçülmedi. Jan'ın 1–2. turları ikinci parça olarak eklendi (kesitler), tahmin 6 sn, transkript sesle henüz karşılaştırılmadı. Dilbilimci ve okur yeniden bakmalı. #82 inceleme (P2-7): kesit 7. turdan başladığı için 3–6. turlar haric listesinden çıkarıldı (3–4: ses uyuşmuyor, 5–6: içki geçiyor). d4 zor basamağına alındı, böylece tek usta d6 kaldı."
+  "notes": "#58 A9 PM kararı: Eva parçası fiilen 7–10. turları oynatıyor, 20 sn altı. Kesit 7. turdan başlatıldı. 20 sn ölçümü 5–10. turları kapsıyordu, 7–10 ayrıca ölçülmedi. Jan'ın 1–2. turları ikinci parça olarak eklendi (kesitler), tahmin 6 sn, transkript sesle henüz karşılaştırılmadı. Dilbilimci ve okur yeniden bakmalı. #82 inceleme (P2-7): kesit 7. turdan başladığı için 3–6. turlar haric listesinden çıkarıldı (3–4: ses uyuşmuyor, 5–6: içki geçiyor). d4 zor basamağına alındı, böylece tek usta d6 kaldı. #58 A9 ön öğretim kararı (19.11): ön öğretim en çok 6 madde, madde başına en çok 4, toplam en çok 15 kelime; hiçbir madde bir sorunun cevabı, dikte, gölge ya da kanıt cümlesiyle aynı değil. Eski maddeler **es gab Kuchen und Eis** ve **Hattest du Freunde dabei?** soru, dikte ve gölge cevabıyla aynıydı. Cevabı ön öğretim maddesine dayanan ya da öğretilmeyen kelimeye (**es gab**, **Kuchen**, **Eis**) dayanan üç ayrıntı sorusu çıkarıldı (yiyecek, büyükanne ve büyükbaba, başka bölge). d5 gerçek görevi Eva'nın yiyeceklerinden öğrencinin kendi doğum ayına geçti. **am 13. Oktober** kaldı. Dilbilimci (19.11, ön öğretim): **bei den Großeltern** kaynaktaki biçime döndü: **bei meinen Großeltern**. d5 görevi yeniden yazıldı: ay sabit (mayıs), öğrencinin kendi ayı çevrimdışı denetlenemiyor. İki doğru sıralama kabul listesine eklendi."
  },
  "bilinmeyen": {
-  "oran": 0.039,
+  "oran": 0.078,
   "kelimeler": [
-   "usa",
-   "weil"
+   "eis",
+   "gab",
+   "kuchen",
+   "usa"
   ]
  },
  "kesit_sure_tahmin_sn": 25,
