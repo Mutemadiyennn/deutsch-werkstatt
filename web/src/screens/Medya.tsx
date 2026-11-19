@@ -5,6 +5,7 @@
  * (e) metin + kelimeye dokununca kart ve "bankaya ekle", (f) gölge konuşma, (g) "Sen ne derdin?".
  * Kaldığı yer cihazda saklanır (yarıda bırakılıp sürdürülebilir). Uzun kayıt hiçbir zaman baştan sona yazdırılmaz.
  */
+import { gorevSay } from "../services/gorev.ts";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Gun, medyalar, type AnlamaQ, type Bolum, type Dikte, type Lexeme, type Medya, type MedyaCumle } from "@dw/shared";
 import { useApp } from "../state.ts";
@@ -17,7 +18,7 @@ import { Rich } from "../ui/rich.tsx";
 import { ADIM_TR, BASLANGIC, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { scoreHeard } from "../core/grading.ts";
-import { baslangicYavas, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
+import { baslangicYavas, konusanAta, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { ActionBar, AnswerField, CevapXp, FeedbackBand, MicButton, ProgressHeader, YanlisIci } from "../ui/kit.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
@@ -70,7 +71,7 @@ function useOynatici(m: Medya, video: HTMLVideoElement | null, base = ""): Oynat
     for (const c of cs) {
       if (iptal.current !== my) return;
       setCalisiyor(c.id);
-      if (c.audio?.src) await sesDosyasi(/^(https?:|\/)/.test(c.audio.src) ? c.audio.src : base + c.audio.src, yavas, my); else await speak(c.de, "de", yavas ? "slow" : "normal", true);
+      if (c.audio?.src) await sesDosyasi(/^(https?:|\/)/.test(c.audio.src) ? c.audio.src : base + c.audio.src, yavas, my); else await speak(c.de, "de", yavas ? "slow" : "normal", true, c.speaker ? konusanAta(m.cumleler.map((x) => x.speaker)).get(c.speaker) : undefined);
     }
   };
   const o: Oynatici = {
@@ -265,6 +266,8 @@ function DikteAdimi({ d, sira, cs, oy, onNext }: { d: Dikte; sira: string; cs: M
   const kontrol = (a: string) => {
     if (d.seviye === "orta" || d.seviye === "zor" || d.seviye === "usta") {
       const r = dikteDegerlendir(d, a);
+      // B11b günlük görev: dikte merdiveninin puanlı en üst basamağında ("Duyduğun cümleyi yaz") doğru cümle
+      if (r.ok && d.seviye === "usta") void gorevSay("dikteUsta", d.cumle);
       goster(r.ok, a, d.seviye === "orta" ? d.de.replace("___", r.beklenen) : r.beklenen, r.yazim ? `Yazımı: ${r.yazim}` : undefined);
     } else if (d.seviye === "gercek") {
       const eksik = eksikZorunlu(a, d.zorunlu);
@@ -338,7 +341,7 @@ function GolgeAdimi({ c, sira, oy, onNext }: { c: MedyaCumle; sira: string; oy: 
         <FeedbackBand kind={skor.score >= 0.8 ? "ok" : "info"} title={`Duyduğum: ${duydum}`} xp={iyiSayisi > 1 ? 0 : undefined}>
           {skor.score >= 0.8 ? "Çok iyi." : "Bir daha dene; zorlanılan kelimeyi yavaş dinle."}</FeedbackBand>)}
       <ActionBar>
-        {sttAvailable() ? <MicButton wide label={duydum === null ? "Söyle" : "Tekrar söyle"} onText={(t) => { setDuydum(t); if (scoreHeard(c.de, t).score >= 0.8) setIyiSayisi((n) => n + 1); }} /> : null}
+        {sttAvailable() ? <MicButton wide label={duydum === null ? "Söyle" : "Tekrar söyle"} onText={(t) => { setDuydum(t); if (scoreHeard(c.de, t).score >= 0.8) { setIyiSayisi((n) => n + 1); void gorevSay("sesli", c.id); } }} /> : null}
         {/* konuşma tanıma yanlış duyabilir: öğrenci "doğru söyledim" diyebilir (PM-054.3) */}
         <button class="btn block" data-test="next" onClick={() => onNext(true, iyiSayisi > 0)}>{duydum === null ? "Söyledim" : skor && skor.score >= 0.8 ? "Devam" : "Doğru söyledim, devam"}</button>
       </ActionBar>

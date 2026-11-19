@@ -1,6 +1,9 @@
 /** Uygulama kabuğu: giriş kapısı → profil → ilk kurulum (onboarding) → ekranlar */
 import { DurumCubugu } from "./ui/durum.tsx";
 import { RehberEkrani } from "./screens/Rehber.tsx";
+import { GorevlerEkrani } from "./ui/gorev.tsx";
+import { usePlan } from "./screens/Yol.tsx";
+import { dondurmaKontrol } from "./services/gorev.ts";
 import { probeProvider } from "./services/ai.ts";
 import { CallScreen as Call } from "./screens/Call.tsx";
 import { M1Gun, MedyaEkrani } from "./screens/Medya.tsx";
@@ -15,10 +18,11 @@ import type { Assessment, ContentIndex, Profile } from "@dw/shared";
 import { Ctx, LEARNING_ROUTES, parseHash, type AppCtx, type Route } from "./state.ts";
 import { auth, type AuthUser } from "./services/auth.ts";
 import { createApi } from "./services/api.ts";
-import { loadIndex, within } from "./services/content.ts";
+import { SesDeneme } from "./screens/SesDeneme.tsx";
+import { loadIndex, within, loadWorld } from "./services/content.ts";
 import { getProfile, latestPlacement, saveProfile } from "./data/db.ts";
 import { setLearning, startFocus, updateFocusConfig } from "./services/focusRuntime.ts";
-import { setBaslangicHizi } from "./services/speech.ts";
+import { setBaslangicHizi, setKarakterler, setOgrenciHitap } from "./services/speech.ts";
 import { efektAyar, sesKilidiAc, ustUsteSifirla } from "./services/efekt.ts";
 import { kullanimIzle } from "./services/kullanim.ts";
 import { TabBar, Loading, ErrorPanel } from "./ui/components.tsx";
@@ -30,7 +34,7 @@ import { Today } from "./screens/Today.tsx";
 import { Learn, DomainView } from "./screens/Learn.tsx";
 import { PlayerHome, PlayerSection } from "./screens/Player.tsx";
 import { LongPressExplain } from "./ui/learn.tsx";
-import { BreakOverlay } from "./screens/Today.tsx";
+import { BreakOverlay, OdakEkrani } from "./screens/Today.tsx";
 import { AssessRun, AssessResult } from "./screens/Assess.tsx";
 import { Progress } from "./screens/Progress.tsx";
 import { Garden } from "./screens/Garden.tsx";
@@ -52,6 +56,8 @@ export function App() {
   const [authReady, setAuthReady] = useState(false);
   const [user, setUser] = useState<AuthUser | null>(null);
   const [profile, setP] = useState<Profile | null>(null);
+  // öğrencinin satırları hitaba göre seslendirilir; Profil'de değişince hemen (PM-064, inceleme #117 P1-4)
+  useEffect(() => { setOgrenciHitap(profile?.address); }, [profile?.address]);
   const [index, setIndex] = useState<ContentIndex | null>(null);
   const [indexError, setIndexError] = useState<string | null>(null);
   const [placement, setPlacement] = useState<Assessment | undefined>();
@@ -98,8 +104,12 @@ export function App() {
       if (p.onboardedAt) void ensurePersist();
       setPlacement(await latestPlacement());
       await startFocus(p);
+      // seri dondurma açılışta (Bugün açılmasa da; inceleme #108 P2): dün boş kaldıysa ve hak varsa seri korunur, söylenir
+      if (p.onboardedAt) void dondurmaKontrol().then((g) => { if (g) toast("Dün çalışamadın; seri dondurma hakkın serini korudu."); });
     })().catch((e) => { recordError("profil", e); setProfileErr("Profilin bu cihazdan okunamadı."); });
     within(loadIndex()).then(setIndex).catch((e) => setIndexError(String(e.message || e)));
+    // PM-064: karakterlerin sesi (cinsiyet, sıra) — dünya yoksa cihaz sesiyle tek ses
+    void loadWorld().then((w) => { if (w) setKarakterler(w.characters.map((c) => ({ id: c.id, name: c.name, ses: c.ses }))); });
   }, [user?.uid]);
 
   useEffect(() => { if (route.name !== "section") setLearning(LEARNING_ROUTES.has(route.name), route.name === "assess" ? "assess" : "vocab"); window.scrollTo(0, 0); }, [route]);
@@ -138,9 +148,12 @@ export function App() {
     case "prova": screen = <ProvaEkrani key={route.day} day={route.day} />; break;
     case "okuma": screen = <OkumaEkrani key={route.day} day={route.day} />; break;
     case "sozluk": screen = <SozlukEkrani q={route.q} id={route.id} />; break;
+    case "ses": screen = <SesDeneme />; break;
     case "kalip": screen = <KalipEkrani key={route.id ?? "-"} id={route.id} />; break;
     case "m1day": screen = <M1Gun day={route.day} />; break;
     case "rehber": screen = <RehberEkrani day={route.day} />; break;
+    case "gorevler": screen = <GorevlerRota />; break;
+    case "odak": screen = <OdakEkrani />; break;
     case "m1medya": screen = <MedyaEkrani key={route.id} day={route.day} id={route.id} />; break;
     default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : <Today />;
   }
@@ -158,3 +171,6 @@ export function App() {
 
 /** yalnızca e2e: hata sınırını sınamak için bilerek hata veren ekran */
 function Crash(): never { throw new Error("e2e: bilerek hata"); }
+
+/** Görevler sayfası günün planıyla (bugün kayıt adımı yoksa dikte/sesli görev seçilmez) */
+function GorevlerRota() { const { plan } = usePlan(); return <GorevlerEkrani plan={plan} />; }

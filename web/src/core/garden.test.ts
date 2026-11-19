@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { Lexeme } from "@dw/shared";
 import type { LearnerItem } from "@dw/shared";
-import { synonymHit, personalMatch, availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak, formFor, guclu, GUCLU_GUN, siradakiEx, sonrakiExSeen } from "./garden.ts";
+import { sinaKabul, sinaTuru, synonymHit, personalMatch, availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak, formFor, guclu, GUCLU_GUN, siradakiEx, sonrakiExSeen } from "./garden.ts";
 import { review, sessionKey } from "./srs.ts";
 import { turKademe, TUR_BASLIK } from "../ui/solen.tsx";
 
@@ -294,4 +294,14 @@ describe("Kelime Bahçesi (PM-049)", () => {
       expect(r[0]?.type).not.toBe("photo_say");
     }
   });
+  it("B16 hızlı şerit: yeni kartların tanıtımı sına sorusuna döner (tekrar ve yanlış tekrarı aynen); isimde artikel zorunlu", () => {
+    const r = sinaTuru([{ lexId: "a", type: "tr_de", ex: 0 }, { lexId: "b", type: "listen_meaning", intro: true, ex: 0 }, { lexId: "c", type: "listen_meaning", intro: true, ex: 1, retry: 1 }], 0);
+    expect(r[0]).toEqual({ lexId: "a", type: "tr_de", ex: 0 });
+    expect(r[1]).toMatchObject({ lexId: "b", type: "tr_de", sina: true, intro: false });
+    expect(r[2]).toMatchObject({ intro: true, retry: 1 });
+    expect(sinaTuru([{ lexId: "b", type: "listen_meaning", intro: true, ex: 0 }], 1)[0]!.intro).toBe(true);
+    expect(sinaKabul(termin)).toEqual(["der Termin"]);
+    expect(sinaKabul(absagen)).toContain("absagen");
+  });
 });
+

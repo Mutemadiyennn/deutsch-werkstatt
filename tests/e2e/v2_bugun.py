@@ -15,8 +15,15 @@ PORT = 4197
 VIB = "Object.defineProperty(navigator, 'vibrate', { configurable: true, value: (p) => { (window.__vib = window.__vib || []).push(p); return true; } });"
 
 def durum(pg):
+    # PM 7015070303-E: süre ve seans bilgisi Odak ekranında (durum çubuğundaki dakika halkası → #/odak)
+    if "#/odak" not in pg.url: pg.goto(pg.url.split("#")[0] + "#/odak")
     pg.wait_for_selector("[data-test=seans-durum]")
     return pg.inner_text("[data-test=seans-durum]")
+
+def devam(pg):
+    """Bugün = yol: 'Devam et' yoldaki sıradaki düğüm."""
+    if "#/today" not in pg.url: pg.goto(pg.url.split("#")[0] + "#/today")
+    pg.wait_for_selector("[data-test=m1-devam]"); pg.click("[data-test=m1-devam]")
 
 def main():
     v2_medya.install_media()
@@ -28,14 +35,16 @@ def main():
         pg.clock.install(time=datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days=1), datetime.time(10, 0)))
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=next-activity][data-m1]")
-        check(pg.locator("[data-test=gun-halkasi] svg.ring").count() == 1, "Bugün: 100 dakika halkası")
+        check(pg.locator("[data-test=gun-halkasi], [data-test=seans-durum]").count() == 0, "Bugün = yol: süre kartı Bugün'de yok (PM 7015070303-E)")
+        pg.click("[data-test=durum-dk]"); pg.wait_for_selector("[data-test=odak]")
+        check(pg.locator("[data-test=gun-halkasi] svg.ring").count() == 1, "Odak: 100 dakika halkası (durum çubuğundaki dakikadan)")
         check("0 / 100" in pg.inner_text("[data-test=today-min]"), "halka: 0 / 100 dk")
         d = durum(pg); check("Sırada seans 1/4" in d, f"seans x/4 ve süre ({d!r})")
         check(pg.locator("[data-test=focus-start]").count() == 0, "eski 'Sayacı başlat' satırı yok (süre 'Devam et' ile başlar)")
-        no_overflow(pg, "bugün")
-        if shots: shot(pg, "b01-bugun", full=False)
+        no_overflow(pg, "odak")
+        if shots: shot(pg, "b01-odak", full=False)
 
-        pg.click("[data-test=m1-devam]"); pg.wait_for_selector("[data-test=garden], [data-test=garden-empty]")
+        devam(pg); pg.wait_for_selector("[data-test=garden], [data-test=garden-empty]")
         pg.wait_for_selector("[data-test=focus-chip]")
         chip = pg.inner_text("[data-test=focus-chip]")
         check("Seans 1/4" in chip and "25 dk" in chip, f"'Devam et' süreyi başlattı; başlıkta seans ve kalan dakika ({chip!r})")
@@ -53,8 +62,8 @@ def main():
         check(vib >= 1, f"mola başında titreşim ({vib})")
         if shots: shot(pg, "b03-mola", full=False)
 
-        pg.goto(base + "#/today")
-        d = durum(pg); check(d.startswith("Mola"), f"Bugün: mola ve kalan süre ({d!r})")
+        pg.goto(base + "#/odak")
+        d = durum(pg); check(d.startswith("Mola"), f"Odak: mola ve kalan süre ({d!r})")
         # kilit / arka plan: 40 dk boyunca tick yok, sonra tek tick
         pg.clock.fast_forward(40 * 60_000)
         pg.wait_for_function("() => document.querySelector('[data-test=seans-durum]')?.textContent.includes('Sırada seans 2/4')", timeout=10_000)
@@ -65,15 +74,15 @@ def main():
         check(vib2 > vib, f"mola sonunda titreşim ({vib2})")
         check("1/4" in pg.inner_text("[data-test=sessions-done]"), "tamamlanan seans 1/4")
 
-        pg.click("[data-test=m1-devam]")
+        devam(pg)
         pg.wait_for_selector("[data-test=focus-chip]")
         chip = pg.inner_text("[data-test=focus-chip]")
         check("Seans 2/4" in chip, f"'Devam et' seans 2'yi başlattı ({chip!r})")
         # duraklatılmış seans: "Devam et" süreyi yeniden başlatır (inceleme #67 P1-2)
-        pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=focus-running] button")
+        pg.goto(base + "#/odak"); pg.wait_for_selector("[data-test=focus-running] button")
         pg.click("[data-test=focus-running] button")
-        d = durum(pg); check("duraklatıldı" in d, f"Bugün: seans duraklatıldı ({d!r})")
-        pg.click("[data-test=m1-devam]"); pg.wait_for_selector("[data-test=focus-chip]")
+        d = durum(pg); check("duraklatıldı" in d, f"Odak: seans duraklatıldı ({d!r})")
+        devam(pg); pg.wait_for_selector("[data-test=focus-chip]")
         chip = pg.inner_text("[data-test=focus-chip]")
         check("Seans 2/4" in chip and "duraklatıldı" not in chip, f"'Devam et' duraklatılmış seansı sürdürdü ({chip!r})")
         for _ in range(3):
@@ -85,8 +94,8 @@ def main():
             pg.dispatch_event("body", "pointerdown")
             pg.clock.run_for(60_000)
         pg.wait_for_selector(".breakov [data-test=break]")
-        pg.goto(base + "#/today"); d = durum(pg); check(d.startswith("Mola"), f"2. seanstan sonra mola ({d!r})")
-        pg.click("[data-test=m1-devam]"); pg.wait_for_selector("[data-test=focus-chip]")
+        pg.goto(base + "#/odak"); d = durum(pg); check(d.startswith("Mola"), f"2. seanstan sonra mola ({d!r})")
+        devam(pg); pg.wait_for_selector("[data-test=focus-chip]")
         chip = pg.inner_text("[data-test=focus-chip]")
         check("Seans 3/4" in chip, f"molada 'Devam et' molayı bitirip seans 3'ü başlattı ({chip!r})")
         # mola başlayınca çok cümleli ses bölümü susar (inceleme #67 2. tur): sahte konuşma sentezi okunan cümleleri sayar

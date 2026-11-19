@@ -127,6 +127,13 @@ Bütün ekranlar yalnızca şu bileşenlerle kurulur (`web/src/ui`):
 4. **Boş durumlar:** Hiçbir ekran yalnızca "0" ya da "henüz yok" ile bitmez. Her boş durumun bir eylemi vardır.
 5. **Uçak modu:** Bütün sekmeler ve tam ekran akışlar çevrimdışı açılır (BY-12).
 6. **Görsel regresyon tabanı:** Yeni tasarım uygulandıktan sonra CI'daki WebKit çıktısından yeniden üretilir.
+7. **Yerleşim kuralları** (PM 7015070303, #104 notu; e2e `tests/e2e/v2_yerlesim.py`, Bugün · Görevler · Odak, iki tema):
+   - **Y1** Bir ekranda en çok 1 birincil düğme. Bugün'ün ana eylemi yoldaki sıradaki düğümdür.
+   - **Y2** Bir ekranda en çok 3 ana blok (ör. Bugün: yol, görev şeridi, gün sonu).
+   - **Y3** Ana bloklar arası ≥ 24 px; liste satırları arası ≥ 12 px.
+   - **Y4** Dokunulabilir kutular birbirine değmez ve kesişmez (iç içe olanlar hariç).
+   - **Y5** Aynı metin (≥ 12 karakter) aynı birimde iki kez görünmez. Yol günleri gibi eş birimler kendi içinde sayılır; düğüm adı gün başlığıyla aynıysa türün adı yazılır.
+   - **Y6** Gövde paragrafı en çok 2 satır. Uzun açıklama "?" düğmesinin arkasında açılır.
 
 ---
 
