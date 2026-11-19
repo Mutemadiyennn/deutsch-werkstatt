@@ -25,7 +25,8 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 ## Yarım işler (PM-042 C)
 | İş | Dal | Durum |
 |---|---|---|
-| Konuşma provası, yapay zekâsız (#58 A7) | `v2/prova` | PR açıldı (#67 üstünde) |
+| Konuşma provası, yapay zekâsız (#58 A7) | `v2/prova` | #68 birleşti |
+| Değerlendirme doğruluğu (#58 A11) | `v2/degerlendirme` | PR açıldı: saat/tarih/sıra sayısı, telefon rakamları, harf harf söyleme yuvaları, kelime sırası (V2), yazım notu; "Bu ne demek?" ve uzun basma yerel sözlükten (D-104) |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
 
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-19

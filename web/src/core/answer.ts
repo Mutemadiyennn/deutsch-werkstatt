@@ -6,6 +6,19 @@
  *  4) "Benim cevabım da doğru" her zaman vardır; kayıt içerik iyileştirme kuyruğuna gider.
  */
 import { judge, norm, scoreHeard } from "./grading.ts";
+import { esNorm, heceEsit, rakamEsit, umlautTamamla, v2Sira, yazimNotu } from "./esdeger.ts";
+import { bilinenMi } from "./persona.ts";
+
+/**
+ * #58 A11: yapay zekâsız eşdeğer biçimler — saat/tarih/sıra sayısı (esNorm), uzun rakam dizisi, ümlautsuz yazım
+ * (ümlautsuz hâli bilinen bir kelime değilse: Muller → Müller, ama schon ≠ schön). Eşleşen kabul biçimini döner.
+ */
+export function esdegerBul(accepted: string[], answer: string): string | undefined {
+  const e = esNorm(answer);
+  if (!e) return undefined;
+  return accepted.find((a) => esNorm(a) === e || rakamEsit(a, answer) || esNorm(a) === esNorm(umlautTamamla(a, answer, bilinenMi)));
+}
+export const V3_NOT = "Almancada çekimli fiil cümlenin ikinci yerindedir: başa bir kelime aldıysan fiil hemen ardından gelir.";
 
 export type Verdict =
   | { kind: "correct"; best: string; via: "exact" | "variant" | "order" | "ai" | "claim"; note?: string }
@@ -79,10 +92,17 @@ const bag = (s: string) => norm(s).split(" ").filter(Boolean).sort().join(" ");
 
 export function ruleVerdict(accepted: string[], answer: string): Verdict {
   const j = judge(accepted, [answer]);
-  if (j.ok) return { kind: "correct", best: j.best, via: norm(j.best) === norm(answer) ? "exact" : "variant" };
+  if (j.ok) return { kind: "correct", best: j.best, via: norm(j.best) === norm(answer) ? "exact" : "variant", note: yazimNotu(j.best, answer) };
   const longer = accepted.find((a) => containsWithFiller(a, answer));
   if (longer) return { kind: "correct", best: longer, via: "variant" };
   if (!norm(answer)) return { kind: "wrong", best: accepted[0] || "" };
+  // #58 A11: saat/tarih/rakam/ümlaut eşdeğeri, harf harf söyleme yuvaları, kelime sırası (V2)
+  const es = esdegerBul(accepted, answer);
+  if (es) return { kind: "correct", best: es, via: "variant", note: yazimNotu(es, answer) };
+  if (heceEsit(accepted, answer)) return { kind: "correct", best: accepted[0] || "", via: "variant" };
+  const sira = v2Sira(accepted, answer);
+  if (sira?.kind === "correct") return { kind: "correct", best: sira.best, via: "order" };
+  if (sira?.kind === "v3") return { kind: "wrong", best: sira.best, note: V3_NOT };
   const best = j.best || accepted[0] || "";
   const sc = scoreHeard(best, answer).score;
   // çok uzak cevap: yapay zekâya sormaya değmez (anlam açıkça farklı)

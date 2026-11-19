@@ -1,6 +1,6 @@
 /** Oynatıcının ortak parçaları: cevap kutusu, karar gösterimi, "Bu ne demek?", "Almanca nasıl derim?", "Duyduğum kelime", fotoğraf */
-import { useEffect, useState } from "preact/hooks";
-import type { PhotoResult } from "@dw/shared";
+import { useEffect, useMemo, useState } from "preact/hooks";
+import type { Lexeme, PhotoResult } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { ai, aiState } from "../services/ai.ts";
 import { ApiError } from "../services/api.ts";
@@ -10,6 +10,20 @@ import { fillName, redact } from "../core/persona.ts";
 import { verdict, type Verdict } from "../core/answer.ts";
 import { localSayIt, type LocalEntry } from "../core/sayit.ts";
 import { addClaim, addPersonal, cacheGet, cachePut } from "../data/db.ts";
+import { noktadakiKelime, yerelAcikla, type YerelAciklama } from "../core/sozluk.ts";
+import { loadLexicon } from "../services/content.ts";
+
+/** Cihazdaki sözlük (içerik paketi; çevrimdışı da var). Yüklenemezse boş liste: "Bu ne demek?" yine yapay zekâya sorabilir */
+function useSozluk(): Lexeme[] | null {
+  const [lex, setLex] = useState<Lexeme[] | null>(null);
+  useEffect(() => { let canli = true; loadLexicon().then((x) => { if (canli) setLex(x.lexemes); }, () => { if (canli) setLex([]); }); return () => { canli = false; }; }, []);
+  return lex;
+}
+
+function YerelCevap({ a }: { a: YerelAciklama }) {
+  if (a.kaynak === "kelimeler") return <div data-test="yerel-kelimeler">{a.kelimeler!.map((k) => <div><b lang="de">{k.art ? `${k.art} ` : ""}{k.de}</b> — {k.tr}</div>)}</div>;
+  return <div data-test="yerel-cevap"><b lang="de">{a.art ? `${a.art} ` : ""}{a.de}</b> — {a.tr}{a.kart && <span class="muted"> ({a.kart})</span>}</div>;
+}
 
 /** Yazı ya da konuşma ile cevap (tasarım sistemi: AnswerField) */
 export function AnswerBox({ onSubmit, placeholder, disabled }: { onSubmit: (s: string) => void; placeholder?: string; disabled?: boolean }) {
@@ -46,30 +60,40 @@ export function VerdictView({ v, answer, onNext, onClaim, itemId, scenarioId, pr
   );
 }
 
-/** "Bu ne demek?" — puan düşürmez; konuşma/akış kaldığı yerden sürer */
-export function ExplainBtn({ de, context, onAsked }: { de: string; context?: string; onAsked?: (de: string) => void }) {
-  const { api } = useApp();
+/**
+ * "Bu ne demek?" — puan düşürmez; konuşma/akış kaldığı yerden sürer. #58 A11: cevap önce cihazdaki sözlükten (ifade, kelime,
+ * cümlede kelime kelime); yapay zekâ yalnızca yerel cevap yoksa ya da cümlenin tamamı istenirse, ad maskelenerek (D-061).
+ */
+export function ExplainBtn({ de, context, onAsked, acik: ilk = false }: { de: string; context?: string; onAsked?: (de: string) => void; acik?: boolean }) {
+  const { api, profile } = useApp();
+  const lex = useSozluk();
+  const [acik, setAcik] = useState(ilk);
   const [st, setSt] = useState<{ busy?: boolean; out?: { tr: string; note_tr: string }; err?: string } | null>(null);
-  const run = async () => {
-    onAsked?.(de);
+  const yerel = useMemo(() => (acik && lex ? yerelAcikla(de, lex) : null), [acik, lex, de]);
+  useEffect(() => { setAcik(ilk); setSt(null); }, [de]);
+  const sor = async () => {
     if (!aiState(api).available) { setSt({ err: aiState(api).reason }); return; }
     setSt({ busy: true });
-    try { const o = await ai(api, "explain_tr", { de: de.slice(0, 120), context: context?.slice(0, 400) }); setSt({ out: o }); }
+    const persona = { name: profile.displayName, address: profile.address };
+    try { const o = await ai(api, "explain_tr", { de: redact(de, persona).slice(0, 120), context: context ? redact(context, persona).slice(0, 400) : undefined }); setSt({ out: o }); }
     catch (e) { setSt({ err: e instanceof ApiError ? e.message_tr : "Açıklama alınamadı." }); }
   };
+  const tamCevap = yerel && yerel.kaynak !== "kelimeler";
   return (
     <span>
-      <button class="btn ghost sm" onClick={run} data-test="explain">Bu ne demek?</button>
-      {st && <div class="fb info small" style={{ marginTop: 6 }}>
-        {st.busy && "Açıklanıyor…"}{st.out && <><b>{st.out.tr}</b> — {st.out.note_tr}</>}{st.err && st.err}
-        <button class="btn ghost sm" onClick={() => setSt(null)}>Kapat</button></div>}
+      {!ilk && <button class="btn ghost sm" onClick={() => { onAsked?.(de); setAcik(true); }} data-test="explain">Bu ne demek?</button>}
+      {acik && <div class="fb info small stack" style={{ marginTop: 6 }} data-test="explain-out">
+        {!lex ? "Sözlük açılıyor…" : yerel ? <YerelCevap a={yerel} /> : !st && <div data-test="yerel-yok">Cihazdaki sözlükte yok.</div>}
+        {lex && !tamCevap && !st && aiState(api).available && <button class="btn ghost sm" onClick={sor} data-test="explain-ai">{yerel ? "Cümlenin tamamını öğretmene sor" : "Öğretmene sor"}</button>}
+        {st && <div>{st.busy && "Açıklanıyor…"}{st.out && <><b>{st.out.tr}</b> — {st.out.note_tr}</>}{st.err && st.err}</div>}
+        {!ilk && <button class="btn ghost sm" onClick={() => { setAcik(false); setSt(null); }}>Kapat</button>}</div>}
     </span>
   );
 }
 
 /** "Bunu Almanca nasıl derim?" — önce yerel arama, bulunamazsa sunucu; öğe aktif eksik olarak bankaya girer */
 export function SayItBox({ entries, level = "A2", context_de, onFound }: { entries: LocalEntry[]; level?: "A1" | "A2" | "B1"; context_de?: string; onFound?: (de: string) => void }) {
-  const { api } = useApp();
+  const { api, profile } = useApp();
   const [open, setOpen] = useState(false);
   const [tr, setTr] = useState("");
   const [res, setRes] = useState<{ list?: LocalEntry[]; ai?: { de_simple: string; paraphrase_de?: string; note_tr?: string }; err?: string; busy?: boolean } | null>(null);
@@ -78,7 +102,9 @@ export function SayItBox({ entries, level = "A2", context_de, onFound }: { entri
     if (loc.length) { setRes({ list: loc }); onFound?.(loc[0]!.de); return; }
     if (!aiState(api).available) { setRes({ err: `Yerel listede bulunamadı. ${aiState(api).reason}` }); return; }
     setRes({ busy: true });
-    try { const o = await ai(api, "say_it_de", { tr, level, context_de }); setRes({ ai: o }); onFound?.(o.de_simple); await addPersonal({ id: `sayit:${o.de_simple}`, de: o.de_simple, tr, at: new Date().toISOString(), source: "sayit" }); }
+    // D-061: öğrencinin yazdığı Türkçe ve bağlam cümlesindeki ad maskelenir (inceleme #75 P1-2)
+    const persona = { name: profile.displayName, address: profile.address };
+    try { const o = await ai(api, "say_it_de", { tr: redact(tr, persona), level, context_de: context_de ? redact(context_de, persona) : undefined }); setRes({ ai: o }); onFound?.(o.de_simple); await addPersonal({ id: `sayit:${o.de_simple}`, de: o.de_simple, tr, at: new Date().toISOString(), source: "sayit" }); }
     catch (e) { setRes({ err: e instanceof ApiError ? e.message_tr : "Bulunamadı." }); }
   };
   if (!open) return <button class="btn ghost sm" onClick={() => setOpen(true)} data-test="sayit">Almanca nasıl derim?</button>;
@@ -135,9 +161,12 @@ export function Photo({ q }: { q?: string }) {
   return <figure style={{ margin: 0 }}><img src={p.src} alt={p.alt} style={{ width: "100%", maxHeight: 200, objectFit: "cover", borderRadius: 12 }} loading="lazy" /><figcaption class="tiny muted">Foto: {p.credit} · Pexels</figcaption></figure>;
 }
 
-/** Almanca metne uzun basma = "Bu ne demek?" (EK2 §2). Sistem seçim menüsünün yerini alır; puan düşürmez. */
+/**
+ * Almanca metne uzun basma = "Bu ne demek?" (EK2 §2). Sistem seçim menüsünün yerini alır; puan düşürmez.
+ * #58 A11: parmağın altındaki kelime ve cümle, yapay zekâ beklenmeden cihazdaki sözlükten hemen açıklanır.
+ */
 export function LongPressExplain() {
-  const [de, setDe] = useState<string | null>(null);
+  const [sec, setSec] = useState<{ de: string; kelime: string | null } | null>(null);
   useEffect(() => {
     let t: number | undefined; let x0 = 0, y0 = 0, pid = -1;
     const down = (e: PointerEvent) => {
@@ -147,7 +176,9 @@ export function LongPressExplain() {
       // metin basış anında alınır: zamanlayıcı dolarken öğe yeniden çizilse ya da ayrılsa bile sayfa açılır (WebKit)
       const txt = (el.innerText || el.textContent || "").trim().replace(/\s+/g, " ").slice(0, 120);
       if (!txt) return;
-      t = window.setTimeout(() => { t = undefined; try { haptic("selection"); } catch { /* yok say */ } setDe(txt); }, 550);
+      let kelime: string | null = null;
+      try { kelime = noktadakiKelime(e.clientX, e.clientY); } catch { kelime = null; }
+      t = window.setTimeout(() => { t = undefined; try { haptic("selection"); } catch { /* yok say */ } setSec({ de: txt, kelime }); }, 550);
     };
     const cancel = () => { if (t) { clearTimeout(t); t = undefined; } };
     // yalnızca basışı başlatan işaretçi iptal eder: başka bir işaretçinin (fare/üzerinde gezinme, ikinci parmak) hareketi basışı bozmaz
@@ -157,11 +188,14 @@ export function LongPressExplain() {
     document.addEventListener("pointerdown", down); document.addEventListener("pointerup", up); document.addEventListener("pointercancel", up); document.addEventListener("pointermove", move); document.addEventListener("contextmenu", ctx);
     return () => { cancel(); document.removeEventListener("pointerdown", down); document.removeEventListener("pointerup", up); document.removeEventListener("pointercancel", up); document.removeEventListener("pointermove", move); document.removeEventListener("contextmenu", ctx); };
   }, []);
-  if (!de) return null;
+  if (!sec) return null;
+  const tekKelime = !sec.kelime || sec.kelime === sec.de.replace(/[.,!?;:„“"]/g, "").trim();
   return (
-    <div class="sheet fade" role="dialog" aria-label="Bu ne demek?" data-test="lp-sheet">
-      <div class="de-lg" lang="de">{de}</div>
-      <div class="row"><ExplainBtn de={de} /><button class="btn ghost sm" onClick={() => setDe(null)}>Kapat</button></div>
+    <div class="sheet fade stack" role="dialog" aria-label="Bu ne demek?" data-test="lp-sheet">
+      {!tekKelime && <div data-test="lp-kelime"><ExplainBtn de={sec.kelime!} acik /></div>}
+      <div class="de-lg" lang="de">{sec.de}</div>
+      <ExplainBtn de={sec.de} acik />
+      <div class="row"><button class="btn ghost sm" onClick={() => setSec(null)} data-test="lp-kapat">Kapat</button></div>
     </div>
   );
 }

@@ -312,9 +312,19 @@ def main():
         dbg = "" if opened else page.evaluate("() => JSON.stringify({ev: window.__lpdbg, url: location.hash, tgt: !!document.querySelector('[data-lp-target]')})")
         check(opened, f"Almanca metne uzun basınca 'Bu ne demek?' sayfası açıldı (hedef: {desc}) {dbg}")
         if page.locator("[data-test=lp-sheet]").count():
-            page.click("[data-test=lp-sheet] [data-test=explain]")
-            page.wait_for_selector("[data-test=lp-sheet] .fb.info b")
-            page.click("[data-test=lp-sheet] >> text=Kapat")
+            # #58 A11: cevap yapay zekâ beklenmeden cihazdaki sözlükten (ifade, kelime ya da kelime kelime) gelir
+            n_lp = len(API_CALLS)
+            page.wait_for_selector("[data-test=lp-sheet] [data-test=explain-out] >> nth=-1")
+            page.wait_for_function("() => !document.querySelector('[data-test=lp-sheet]').innerText.includes('Sözlük açılıyor')", timeout=10_000)
+            yerel = page.locator("[data-test=lp-sheet] [data-test=yerel-cevap], [data-test=lp-sheet] [data-test=yerel-kelimeler]").count()
+            ai_lp = [c for c in API_CALLS[n_lp:] if c["url"].endswith("/v1/ai/run") and "explain_tr" in (c["body"] or "")]
+            check(yerel > 0 and not ai_lp, f"uzun basma: cihazdaki sözlükten hemen cevap, yapay zekâ isteği yok ({yerel} yerel, {len(ai_lp)} istek; {page.locator('[data-test=lp-sheet]').inner_text()[:120]!r})")
+            if page.locator("[data-test=lp-sheet] [data-test=explain-ai]").count():
+                page.locator("[data-test=lp-sheet] [data-test=explain-ai]").first.click()
+                page.wait_for_selector("[data-test=lp-sheet] .fb.info b >> nth=-1")
+                ai_lp = [c["body"] or "" for c in API_CALLS[n_lp:] if c["url"].endswith("/v1/ai/run") and "explain_tr" in (c["body"] or "")]
+                check(ai_lp and all("Novak" not in b for b in ai_lp), "'Öğretmene sor' isteğinde ad yok (D-061)")
+            page.click("[data-test=lp-kapat]")
         sel = page.evaluate("getComputedStyle(document.body).webkitUserSelect || getComputedStyle(document.body).userSelect")
         check(sel == "none", f"genel metin seçimi kapalı ({sel})")
         ctx.close()

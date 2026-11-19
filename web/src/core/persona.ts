@@ -36,6 +36,8 @@ const BILINEN = new Set("der die das den dem des ein eine einen einem einer kein
 export function bilinenKelimeler(l: Iterable<string>) {
   for (const de of l) for (const w of de.toLocaleLowerCase("de").split(/[\s,/]+/)) if (w.length > 1) BILINEN.add(w);
 }
+/** Sözlükte (ya da temel listede) bulunan kelime mi — küçük harfle */
+export const bilinenMi = (w: string) => BILINEN.has(w.toLocaleLowerCase("de"));
 /** Ad girilmemişse: beklenen cümledeki {name} yuvasını öğrencinin cevabındaki 1–3 kelimeyle doldur (bilinen kelime ad değildir) */
 export function fillName(expected: string, answer: string): string {
   if (!expected.includes("{name}")) return expected;

@@ -6,6 +6,7 @@
   - yarıda bırakılan ders kaldığı yerden sürer; %130 yazıda taşma yok
   python3 tests/e2e/v2_ders.py [--browser webkit] [--device "iPhone 15"] [--shots /tmp/shots] [--scheme dark]
 """
+import re
 from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
 
@@ -18,7 +19,7 @@ def wait_change(pg, before):
     pg.wait_for_function("""(b) => { const m = document.querySelector('[data-test=ders]'); if (!m) return true;
       return (m.dataset.adim || '') + (m.dataset.pos || '') + ((document.querySelector('[data-test=ders-hatirla]') || {dataset: {}}).dataset.q || '') + (document.querySelector('[data-test=ders-bitti]') ? 'B' : '') !== b; }""", arg=before)
 
-def step(pg, wrong=False):
+def step(pg, wrong=False, donustur=None):
     before = state(pg)
     if pg.locator("[data-test=altyazi]").count():
         pg.click("[data-test=altyazi]"); pg.wait_for_selector("[data-test=diyalog-metin]")
@@ -32,7 +33,8 @@ def step(pg, wrong=False):
     elif pg.locator("[data-test^=drill-]").count():
         sec = pg.locator("[data-test^=drill-]").first
         # adsız profil: öğrenci kendi adını yazar (yer tutucu ad değildir; bilinen kelime "Name" ad sayılmaz)
-        pg.fill("[data-test=answer]", "xyz falsch" if wrong else (sec.get_attribute("data-cevap") or "").replace("{name}", "Ayşe")); pg.click("[data-test=submit]")
+        cevap = (sec.get_attribute("data-cevap") or "").replace("{name}", "Ayşe")
+        pg.fill("[data-test=answer]", "xyz falsch" if wrong else (donustur(cevap) if donustur else cevap)); pg.click("[data-test=submit]")
     elif pg.locator("[data-test=ders-dinleme]").count():
         pg.click("[data-test=dinle]")
         while pg.locator("[data-test=ders-dinleme] button.opt").count() and not pg.locator("[data-test=dinleme-metin]").count():
@@ -68,6 +70,13 @@ def main():
                 if shots: shot(pg, "d04-sonraki-madde", full=False)
                 check("Doğrusu" in band and "Senin cevabın" in band, "yanlışta doğrusu öğrencinin cevabıyla yan yana")
                 k += 1; continue
+            if a == "kurma" and "yazim" not in seen and pg.locator("[data-test=drill-tr_de]").count():
+                c = pg.get_attribute("[data-test=drill-tr_de]", "data-cevap") or ""
+                if re.search(r"\s[A-ZÄÖÜ]\w", c) and "{name}" not in c:
+                    # #58 A11: küçük harfle yazılan doğru cevap kabul edilir, isimlerin büyük harfi gösterilir
+                    band = step(pg, donustur=lambda x: x.lower()); seen.add("yazim")
+                    check(band.startswith("Doğru") and "büyük harf" in band, f"küçük harfli doğru cevap kabul, büyük harf notu ({band[:90]!r})")
+                    k += 1; continue
             if a == "kurma" and k > 12 and "yarida" not in seen:
                 # yarıda bırak → yeniden aç: kaldığı yerden
                 pos = pg.get_attribute("[data-test=ders]", "data-pos")
