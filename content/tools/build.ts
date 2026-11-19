@@ -13,6 +13,10 @@ import type { ContentIndex } from "../../packages/shared/src/content.ts";
 const c = checkRules(loadContent());
 if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
 
+// PM-045 §3a: K1 pasif listesindeki kart yalnızca tanıma (tier passive) — içerikte işaretlenene kadar paket bunu uygular
+// (Bahçe'de üretim sorusu ve yeni kart havuzu dışında; inceleme #59 P1-4)
+if (c.k1) { const pas = new Set(c.k1.pasif); for (const l of c.lexemes) if (pas.has(l.id)) l.tier = "passive"; }
+
 // M1 günleri: içerikte yoksa ve DW_E2E_FIXTURES=1 ise e2e için örnek gün (content/tools/fixtures/m1) — yayın paketine girmez
 const days = [...c.m1];
 if (process.env.DW_E2E_FIXTURES === "1") {

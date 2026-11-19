@@ -1,6 +1,7 @@
 /** Bugün: 100 dk hedefi, seans x/4, kalan odak/mola süresi, sıradaki etkinlik, öğrenilenler, zayıflıklar */
 import { useEffect, useState } from "preact/hooks";
 import type { LearnerItem, Lexeme, Scenario } from "@dw/shared";
+import { HeardWordBox } from "../ui/learn.tsx";
 import { useApp } from "../state.ts";
 import { recommend, ACTIVITY_TR } from "../core/planner.ts";
 import { seasonal } from "../core/season.ts";
@@ -121,6 +122,9 @@ export function Today() {
 
       <section class="plainsec" data-test="weak">
         <h2 class="sectitle">Tekrar edilecekler</h2>
+        {/* PM-049: kartlar soru olarak döner. EK1: ekranda tek ana eylem "Devam et"; bu ikincil (yeni Bugün A6'da seans 1 olur) */}
+        <a class="btn block" href="#/garden" data-test="garden-start">Kelime Bahçesi: tekrar et</a>
+        <div class="row"><HeardWordBox /></div>
         {bank.length ? (
           <ul class="list">
             {bank.map(({ it, de, tr, art }) => (
