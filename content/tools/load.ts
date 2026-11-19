@@ -12,6 +12,8 @@ import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import { Domain, Lexeme, LexiconBatch, Pattern, GrammarNote, Scenario, AssessItem, World, TemelDers, PRODUCTION_DRILLS, productionCount } from "../../packages/shared/src/content.ts";
+import { Gun } from "../../packages/shared/src/m1.ts";
+import { checkGun } from "./m1check.ts";
 import { explanationIssues, textIssues } from "../../packages/shared/src/explain.ts";
 import { untaught } from "./teach.ts";
 
@@ -29,6 +31,8 @@ export interface Loaded {
   world?: World | null;
   /** R0 temel paket (content/v2/temel/r0-NN-*.json) */
   temel: { file: string; data: TemelDers }[];
+  /** M1 İlk Hafta günleri (content/v2/m1/gun-NN.json; #58 A2/A4) */
+  m1: { file: string; data: Gun }[];
   /** K1 seçim listesi (content/v2/curriculum/k1.json) */
   k1?: { cekirdek: string[]; pasif: string[] } | null;
   errors: string[];
@@ -36,7 +40,7 @@ export interface Loaded {
 }
 
 const rel = (f: string) => relative(ROOT, f);
-function parseFile<T>(file: string, schema: z.ZodType<T>, errors: string[]): T | null {
+export function parseFile<T>(file: string, schema: z.ZodType<T>, errors: string[]): T | null {
   if (!existsSync(file)) return null;
   let raw: unknown;
   try { raw = JSON.parse(readFileSync(file, "utf8")); } catch (e) { errors.push(`${rel(file)}: JSON okunamadı (${(e as Error).message})`); return null; }
@@ -114,11 +118,15 @@ export function loadContent(dir = CDIR): Loaded {
     .filter((f) => /\/r0-\d{2}-[^/]+\.json$/.test(f))
     .map((f) => ({ file: rel(f), data: parseFile(f, TemelDers, errors) }))
     .filter((x): x is { file: string; data: TemelDers } => !!x.data);
+  const m1 = walk(join(dir, "m1"))
+    .filter((f) => /\/gun-\d{2}\.json$/.test(f))
+    .map((f) => ({ file: rel(f), data: parseFile(f, Gun, errors) }))
+    .filter((x): x is { file: string; data: Gun } => !!x.data);
   const k1File = join(dir, "curriculum/k1.json");
   const K1 = z.object({ schema: z.number(), review: ReviewStateLoose, note_tr: z.string().optional(), cekirdek: z.array(z.object({ id: z.string() }).passthrough()), pasif: z.array(z.object({ id: z.string() }).passthrough()).default([]) });
   const k1raw = existsSync(k1File) ? parseFile(k1File, K1, errors) : null;
   const k1 = k1raw ? { cekirdek: k1raw.cekirdek.map((x) => x.id), pasif: k1raw.pasif.map((x) => x.id) } : null;
-  return { domains, lexemes: [...byId.values()], lexiconBatches, patterns, grammar, scenarios, assess, world, temel, k1, errors, warnings };
+  return { domains, lexemes: [...byId.values()], lexiconBatches, patterns, grammar, scenarios, assess, world, temel, m1, k1, errors, warnings };
 }
 
 /** PEDAGOGY.md §2: derin (K1) ve hafif (K2) kart zorunlu alanları */
@@ -334,6 +342,19 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
       for (const x of t.teach) if (x.exp) for (const i of explanationIssues(x.exp)) (t.review.status === "reviewed" ? errors : warnings).push(`${file}: ${x.id}.exp.${i}`);
       for (const x of t.teach) if (x.lexeme && !lx.has(x.lexeme)) warnings.push(`${file}: ${x.id} sözlükte olmayan karta bağlı (${x.lexeme})`);
     } }
+  // M1 günleri (#58 A4, PM-053, PM-055): kimlik/dosya, bölüm ve dikte bağları, gerçek video
+  { const days = new Set<number>(), temelIds = new Set(c.temel.map((t) => t.data.id));
+    const taught = baseTaught(c);
+    for (const { file, data: g } of [...c.m1].sort((a, b) => a.data.day - b.data.day)) {
+      addDayTaught(taught, g, c);
+      const nn = /gun-(\d{2})\.json$/.exec(file)?.[1];
+      if (nn && g.id !== `m1:gun:${nn}`) errors.push(`${file}: kimlik ${g.id} dosya adıyla uyuşmuyor (m1:gun:${nn})`);
+      if (nn && g.day !== Number(nn)) errors.push(`${file}: day ${g.day} dosya adıyla uyuşmuyor`);
+      if (days.has(g.day)) errors.push(`${file}: tekrar eden gün ${g.day}`); days.add(g.day);
+      const r = checkGun(g, { lexicon: lx, temel: temelIds, taught });
+      errors.push(...r.errors.map((e) => `${file}: ${e}`));
+      (g.review.status === "reviewed" ? errors : warnings).push(...r.warnings.map((w) => `${file}: ${w}`));
+    } }
   // K1 listesi (PM-045 §3a): pasif kart çekirdekte olamaz; pasif listedeki kartın tier'ı passive olmalı
   if (c.k1) {
     const core = new Set(c.k1.cekirdek);
@@ -342,4 +363,30 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
     if (notPassive.length) warnings.push(`curriculum/k1.json: pasif listede olup tier'ı passive olmayan ${notPassive.length} kart (ilk: ${notPassive.slice(0, 5).join(", ")})`);
   }
   return c;
+}
+
+/* ---------- M1 "öğretilmiş" kelime kümesi (#58 A2 kuralı, inceleme #60 P0-3) ---------- */
+const FUNCTION_POS = new Set(["det", "pron", "conj", "prep", "particle", "num"]);
+const toks = (s: string) => s.toLowerCase().replace(/[.,!?;:„“"'»«()–\-…/]/g, " ").split(/\s+/).filter(Boolean);
+/** her günün başında bilinen: işlev kelimeleri (her biçim) ve karakter adları */
+function baseTaught(c: Loaded): Set<string> {
+  const t = new Set<string>();
+  for (const l of c.lexemes) if (l.card === false || FUNCTION_POS.has(l.pos)) for (const w of toks(l.de)) t.add(w);
+  for (const ch of c.world?.characters ?? []) for (const w of toks(ch.name)) t.add(w);
+  return t;
+}
+/** gün d'nin öğrettikleri kümeye eklenir (kümülatif). Kartın örnek cümlesi öğretim sayılmaz (FORMAT: dikte örnek cümleden gelemez) */
+function addDayTaught(t: Set<string>, g: Gun, c: Loaded) {
+  const byId = new Map(c.lexemes.map((l) => [l.id, l]));
+  for (const id of g.yeni_kartlar) {
+    const l = byId.get(id); if (!l) continue;
+    for (const s of [l.de, l.pl, l.verb?.praesens3, l.verb?.praeteritum, l.verb?.perfekt, ...l.forms.map((f) => f.answer), ...l.collocations.map((x) => x.de)]) if (s) for (const w of toks(s)) t.add(w);
+  }
+  for (const did of g.dersler) {
+    const d = c.temel.find((x) => x.data.id === did)?.data; if (!d) continue;
+    for (const x of d.teach) for (const w of toks(x.de)) t.add(w);
+    for (const row of d.table?.satirlar ?? []) for (const cell of row) for (const w of toks(cell)) t.add(w);
+    for (const dr of d.drills) if ("accepted" in dr) for (const a of dr.accepted) for (const w of toks(a)) t.add(w);
+    for (const ln of d.dialogue?.lines ?? []) for (const w of toks(ln.de)) t.add(w);
+  }
 }
