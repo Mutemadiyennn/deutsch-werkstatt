@@ -14,6 +14,14 @@ export function Learn() {
   return (
     <div class="stack">
       <TopBar title="Öğren" />
+      {index.temel.length > 0 && (
+        <section class="card" data-test="temel-liste">
+          <div class="kicker">Temel dersler</div>
+          <ul class="list">{index.temel.map((t) => (
+            <li><a href={`#/ders/${encodeURIComponent(t.id)}`} class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }} data-test="temel-ders">
+              <span class="grow"><b>{t.title_tr}</b> <span class="small muted">· {t.title_de}</span></span><span aria-hidden="true">›</span></a></li>))}</ul>
+        </section>
+      )}
       {index.m1.length > 0 && (
         <section class="card" data-test="m1-liste">
           <div class="kicker">İlk Hafta</div>

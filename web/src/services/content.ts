@@ -1,6 +1,6 @@
 /** İçerik paketi yükleyici: /content/current.json → /content/<sürüm>/… (şemayla doğrulanır, bellekte önbellek) */
 import { z } from "zod";
-import { AssessItem, ContentIndex, GrammarNote, Gun, Lexeme, Pattern, Scenario } from "@dw/shared";
+import { AssessItem, ContentIndex, GrammarNote, Gun, Lexeme, Pattern, Scenario, TemelDers } from "@dw/shared";
 
 const base = () => `${import.meta.env.BASE_URL}content/`;
 let idx: Promise<ContentIndex> | null = null;
@@ -59,4 +59,11 @@ export async function loadM1Gun(day: number): Promise<Gun> {
   const f = i.files.m1[String(day)];
   if (!f) throw new Error("Bu günün içeriği henüz hazır değil.");
   return file(f, Gun);
+}
+/** R0 temel ders (#58 A5, Seans 2) */
+export async function loadTemel(id: string): Promise<TemelDers> {
+  const i = await loadIndex();
+  const f = i.files.temel[id];
+  if (!f) throw new Error("Bu ders henüz hazır değil.");
+  return file(f, TemelDers);
 }
