@@ -63,8 +63,14 @@ jobs:
         with: { python-version: "3.12" }
       - name: Playwright + WebKit (apt aynası takılırsa 3 deneme)
         run: |
-          pip install -q playwright==1.49.1
-          for i in 1 2 3; do sudo apt-get update -q && sudo python -m playwright install-deps webkit && break; echo "apt denemesi $i başarısız"; sleep 20; done
-          python -m playwright install webkit
+          pip install -q "playwright==1.*"
+          # sudo python setup-python ortamını görmez; Playwright sudo'yu kendisi çağırır (ci-v2 ile aynı yol)
+          ok=0
+          for i in 1 2 3; do
+            if timeout 420 python -m playwright install --with-deps webkit; then ok=1; break; fi
+            echo "kurulum denemesi $i takıldı"; sudo pkill -9 -f apt-get || true; sudo pkill -9 -f dpkg || true
+            sudo rm -f /var/lib/dpkg/lock* /var/lib/apt/lists/lock /var/cache/apt/archives/lock; sudo dpkg --configure -a || true; sleep 10
+          done
+          [ "$ok" = 1 ] || { echo "::error::WebKit bağımlılıkları kurulamadı"; exit 1; }
       - name: WebKit'te Releases'ten oynatma
         run: python scripts/video/oynatma.py https://github.com/Mutemadiyennn/deutsch-werkstatt/releases/download/m1-medya/klip-02.mp4
