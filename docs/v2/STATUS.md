@@ -26,6 +26,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | İş | Dal | Durum |
 |---|---|---|
 | Konuşma provası, yapay zekâsız (#58 A7) | `v2/prova` | #68 birleşti |
+| Google girişi onarımı + hesap kimliği (PM 7017264235, 7017394092) | `v2/giris-uid` | PR #114: `initializeAuth`'a web'de `popupRedirectResolver` (kök neden: `auth/argument-error`); engellenince yönlendirme; bilinmeyen hatada kod; Profil → Hesap kimliği + Kopyala. Bilinen: Safari'de yönlendirme sonucu sessiz düşebilir (ayrı iş) |
 | Kapalı medya rafı (#58 B12) | `v2/medya-rafi`, `v2/raf-doldur` | 1. parça #98 birleşti (D-112); 2. parça PR #99 doldurma hattı (Pixabay → gizli depo; "Fail closed" onayı `RAF_FAIL_CLOSED=1` olmadan itmez); sırada fotoğraf yolu ve doğrulayıcı; proje sahibinin adımları bekleniyor |
 | Kalıp kartı (#58 B2) | `v2/kalip-karti` | #94 birleşti (D-110). İÇ iş listesi: 957 dolgunun 381'i (%40) için ne örnek ne anlam var |
 | Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | PR #87: 1. tur 5 P1 + 9 P2 düzeltildi (D-107 sonu); 2. tur bekliyor |
