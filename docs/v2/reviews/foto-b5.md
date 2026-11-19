@@ -1,37 +1,52 @@
 # B5 fotoğraf seçimi (M1, #58 B5) ve A10 kısa sorgular
 
-Kaynak: `m1-foto` sürümündeki A10 adayları (Wikimedia Commons; yalnızca CC0, kamu malı, CC BY, CC BY-SA). Ölçüt: PM'in 19.11 kararı. Kötü fotoğraf, fotoğrafsız karttan kötüdür; fotoğraf kelimeyi tek bakışta gösterir. Okunur yazı, marka ve filigran olmaz. Eski tarama, çizim ve belge reddedilir. Tanınabilir kişi ancak nötr bağlamda olur; soyut anlamda fotoğraf zorlanmaz.
+**Kaynak:** `m1-foto` sürümündeki A10 adayları. Çoğu Wikimedia Commons'tan; bir kısmı Flickr ve başka açık havuzlardan, Commons ve Openverse üzerinden geldi.
+
+**Lisans:** yalnızca CC0, kamu malı, CC BY ve CC BY-SA.
+
+**Ölçüt:** PM'in 19.11 kararı.
+- Kötü fotoğraf, fotoğrafsız karttan kötüdür.
+- Fotoğraf kelimeyi tek bakışta göstermeli.
+- Okunur yazı, marka ve filigran olmamalı.
+- Eski tarama, çizim, belge ve banknot taraması reddedilir.
+- Tanınabilir kişi ancak nötr bağlamda olabilir.
+- Yanlış ülke izlenimi (Avrupa dışı trafik, avro olmayan para) reddedilir.
+- Soyut anlamda fotoğraf zorlanmaz.
 
 ## Yöntem
-- Her sorgunun adayları yan yana tek sayfada `qa` ajanına (Opus) gösterildi. Ajan kartın kelimesine ve örnek cümlesine göre karar verdi; iki ajan sorguları yarı yarıya böldü.
-- Seçilen 55 fotoğraf ayrıca baş geliştirici tarafından toplu sayfada gözle kontrol edildi.
+- Her sorgunun adayları yan yana tek sayfada `qa` ajanına (Opus) gösterildi. Ajan kartın kelimesine ve örnek cümlesine göre karar verdi.
+- Seçilenler baş geliştirici tarafından toplu sayfada gözle kontrol edildi.
+- Bağımsız inceleme (#91, 1. tur) 15 seçimi daha geri çevirdi: okunur yazı, banknot taraması, yanlış ülke, zayıf temsil. Bunlar `aday: null` yapıldı.
 
 ## Sonuç
 | | Sayı |
 |---|---|
-| Sorgu (toplam) | 425 |
-| Adayı olan | 296 |
-| Fotoğraf seçilen | **55** |
-| Reddedilen (`aday: null`) | 241 |
-| Adayı olmayan | 129 |
-| Kısa ikinci sorgu yazılan | 117 |
-| Soyut (fotoğraf yok) | 12 |
-| Reddedilenler için kısa sorgu | 205 (+30 soyut) |
+| Yer (toplam `secim.json`) | 308 |
+| Fotoğraf seçilen | **40** |
+| Reddedilen (`aday: null`, soyut değil) | 220 |
+| Soyut ya da sayıya bağlı (fotoğraf yok) | 48 |
+| Kısa ikinci sorgu (`kisa-sorgu.json`) | 319 |
 
-**Ret nedenleri** (241; ana nedene göre):
+**Seçilenlerin lisansı:** CC BY-SA 19, CC BY 12, kamu malı 5, CC0 4.
+
+**Seçilenlerin kaynağı:** Commons 36, Flickr 3, diğer 1.
+
+**Ret nedenleri** (ilk tur, ana nedene göre):
 - eski tarama, çizim ya da belge: 106
 - okunur yazı, marka ya da filigran: 68
 - kelimeyi göstermiyor ya da teknik sorun: 50
 - siyasi, askerî, çocuk ya da özel bağlam: 12
 - yanlış ülke ya da dönem: 4
-- soyut: 1
 
-**Seçilenlerin lisansı:** CC BY-SA 27, CC BY 16, kamu malı 6, CC0 6.
+İnceleme turunda 15 ret daha eklendi.
 
 ## Dosyalar
-- `content/v2/media/foto/secim.json` (ANA'nın biçimi, #12): anahtar yer kimliği (`kart#kart|#ornekN`; birden çok yer virgülle). Değer: `aday` (`adaylar.json` dosya adı ya da `null`) ve `neden_tr`. Soyut sayılan 42 yer de `aday: null` ile burada (308 kayıt).
-- `content/v2/media/foto/kisa-sorgu.json` (ANA'nın biçimi): `{ "<uzun sorgu aynen>": "<2–3 kelime>" }`, 322 sorgu. Soyutlara sorgu yazılmadı. Openverse aramasıyla (PM kararı) ANA'nın hattında kullanılır. `neden`: `adaysiz` (129: 117 sorgu, 12 soyut) ya da `ret` (235: 205 sorgu, 30 soyut; saat, tarih, kat ve sayı cümleleri gösterilemez). Ret satırlarında yeni sorgu ret nedenini önler (yazısız nesne, güncel görünüm). Sayı isteyen sorgularda (hız sınırı, banknot) seçimde sayının doğruluğu ayrıca denetlenmeli.
+- **`content/v2/media/foto/secim.json`** (ANA'nın biçimi): anahtar yer kimliğidir (`kart#kart` ya da `kart#ornekN`; birden çok yer virgülle). Değer: `aday` (`adaylar.json` dosya adı ya da `null`) ve `neden_tr`.
+- **`content/v2/media/foto/kisa-sorgu.json`** (ANA'nın biçimi): `{ "<uzun sorgu aynen>": "<2–3 kelime>" }`. Adaysız ve reddedilen sorgular içindir; Openverse aramasıyla ANA'nın hattında kullanılır.
+  - Yazı isteyen sorgular yazısız nesneye çevrildi: tabela → kapı ya da kepenk, form → masa başı.
+  - Kapı numarası ve banknot gibi sayıya ya da tasarım hakkına bağlı sorgular çıkarıldı; o yerler `aday: null`.
+  - Saat ve takvim sorgularında seçim sırasında sayının doğruluğu ayrıca denetlenmeli.
 
 ## Açık noktalar
-- Hedef (somut kelimelerin %85'inde kabul edilmiş fotoğraf) bu kaynakla tutmuyor. Openverse adaylarından sonra yeniden ölçülecek.
-- `lx:passen#2#ornek1` satırında A10 bağlamındaki `tr` kartla uyuşmuyor ("bedenine olmak"); sorgu kartın şimdiki örneğine göre yazıldı.
+- Hedef, somut kelimelerin %85'inde kabul edilmiş fotoğraf; bu kaynakla tutmuyor. Openverse adaylarından sonra B5 ikinci turu yapılacak.
+- Doğrulayıcı bu iki dosyayı henüz okumuyor; şema ve denetim ANA'nın A10 hattında.
