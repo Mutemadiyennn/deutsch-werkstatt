@@ -107,10 +107,10 @@ Ayrı dosya `content/v2/m1/hafta-sonu-testi.json`, `maddeler` alanı: 10–12 ma
 
 ## Gerçek insan videosu (#58 A9)
 
-Günün videosu ayrı dosyadadır: `content/v2/m1/video/gun-NN.json`. Kaynak Deutsch im Blick (COERLL, UT Austin; CC BY 4.0). Çizimli `sahne` bunun yerine geçmez.
+Günün videosu ayrı dosyadadır: `content/v2/m1/video/klip-NN.json`. Kaynak Deutsch im Blick (COERLL, UT Austin; CC BY 4.0). Çizimli `sahne` bunun yerine geçmez.
 
 - Transkript depoda tutulmaz. Dosyada klip kimliği, `video_url`, `transkript_url`, `kesit`, `haric` ve `turlar[{tur, basi, kim}]` bulunur. `basi` turun ilk kelimeleridir (en çok 4). Derleme adımı metni kaynaktan alır, `basi` ile doğrular, videoyla hizalar.
 - `haric`: kesitten çıkarılan turlar. Telefon numarası, adres ve tam doğum tarihi yayına girmez.
-- `durum`: `hazir` | `kisa` (30 sn altı, PM kararı bekler) | `bulunamadi`.
+- `durum`: `hazir` | `kisa` (30 sn altı, PM kararı bekler) | `sinir-asimi` (bilinmeyen %10 üstü) | `bulunamadi`. Dosya adı `klip-NN.json`: gün şemasının `gun-NN.json` deseniyle karışmaz.
 - `bolum`: `ana_fikir`, `ayrinti[]`, `dikte[]`, `golge[]`, `cevapla`; dikte ve gölge tur numarasına bağlıdır.
 - `atif` ekranda gösterilir (CC BY).

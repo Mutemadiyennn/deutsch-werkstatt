@@ -1,12 +1,12 @@
 # Dil incelemesi: M1 gerçek video dosyaları (ikinci tur)
 
-- Dosyalar: `content/v2/m1/video/gun-01.json` … `gun-07.json` (yedisi de yeniden yazılmış hâliyle)
+- Dosyalar: `content/v2/m1/video/klip-01.json` … `klip-07.json` (yedisi de yeniden yazılmış hâliyle)
 - İnceleyen: dilbilimci-ajan · 2026-11-19
 - Kaynak denetimi: yedi dosyanın altı klibi `dib.py goster` ile okundu (web kullanılmadı). Her soru, cevap, `tur`, `basi`, dikte ve gölge turu metne karşı tek tek denetlendi.
 - `vcheck.py`: yedi dosya `tamam`. Tur göndermelerinin hepsi kesit içinde, hiçbiri `haric` turda değil.
 - İncelenen madde: 118. Düzeltilen madde: 19. Oran 0,16.
-- `review.status` yedisinde de `draft` bırakıldı (onay baş geliştiricide).
-- **Sonuç: dil hataları KAPANDI.** Aşağıda iki karar baş geliştiriciyi bekliyor (gün 6 süresi, gün 7 yazımı).
+- Onay sonrası durum (baş geliştirici, ölçüm `vcheck`): gün 2, 4, 7 `reviewed`; gün 1, 5, 6 `kisa` (30 sn altı) ve gün 3 (bilinmeyen %20,5) `draft`, PM kararı bekliyor. Bu rapordaki eski süre ve oranların yerine dosyalardaki `kesit_sure_tahmin_sn` ve `bilinmeyen.oran` geçerlidir.
+- **Sonuç: dil hataları KAPANDI.** Açık kararlar #12'de PM'de.
 
 ## Gün başına karar
 
