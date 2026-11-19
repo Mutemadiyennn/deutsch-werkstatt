@@ -162,6 +162,7 @@ export function ProfileView() {
       </section>
 
       <section class="card">
+        <a class="btn sm" href="#/ses" data-test="ses-deneme-ac" style={{ marginBottom: 12 }}>Ses ve mikrofon denemesi</a>
         <p class="small muted">Giriş yapılan hesap: {user?.email || "Google hesabı"}</p>
         <div class="row">
           <a class="btn sm" href="#/onboarding">Kurulumu yeniden yap</a>

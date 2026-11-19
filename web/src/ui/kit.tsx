@@ -5,7 +5,7 @@
 import { createContext, type ComponentChildren } from "preact";
 import { useContext, useEffect, useRef, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
-import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive } from "../services/speech.ts";
+import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive, STT_HATA_TR, sttHataTuru } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { efekt, ustUsteSay, xpUcur } from "../services/efekt.ts";
 import { Icon } from "./icons.tsx";
@@ -103,8 +103,8 @@ export function MicButton({ onText, disabled, wide = false, label = "Sesli söyl
     if (!localStorage.getItem(MIC_OK_KEY)) { setState("explain"); return; }
     setErr(null); setState("rec"); stopSpeaking();
     const h = listenOnce("de-DE", 12000); stopRef.current = h.stop;
-    try { const alts = await h.result; setState("idle"); if (alts[0]) { haptic("selection"); onText(alts[0]); } else setErr("Ses algılanamadı. Tekrar dene ya da yaz."); }
-    catch { setState("idle"); setErr("Mikrofon kullanılamadı. Ayarlar'dan izin verebilir ya da yazarak cevaplayabilirsin."); }
+    try { const alts = await h.result; setState("idle"); if (alts[0]) { haptic("selection"); onText(alts[0]); } else setErr(STT_HATA_TR.sessiz); }
+    catch (e) { setState("idle"); setErr(STT_HATA_TR[sttHataTuru(e)]); }
   };
   return (
     <>

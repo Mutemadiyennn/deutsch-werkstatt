@@ -6,6 +6,7 @@
  */
 import type { Speed } from "@dw/shared";
 import { splitForSpeech } from "../core/ttsClean.ts";
+import { konusanBul, sahneAta, type Atama, type KarakterSes, type Konusan } from "../core/sesSec.ts";
 
 export const RATE: Record<Speed, number> = { slow: 0.72, normal: 0.95, natural: 1.05, fast: 1.2 };
 let speakingN = 0;
@@ -13,6 +14,20 @@ let listening = false;
 export const audioActive = () => speakingN > 0 || listening || (typeof speechSynthesis !== "undefined" && speechSynthesis.speaking);
 
 export const ttsAvailable = () => typeof window !== "undefined" && "speechSynthesis" in window;
+
+/** PM-064: dünya karakterleri (ses: cinsiyet, sıra); içerik yüklenince `setKarakterler` ile verilir */
+let karakterler: KarakterSes[] = [];
+export function setKarakterler(k: KarakterSes[]) { karakterler = k; }
+/** Cihazdaki sesler (Profil → Ses denemesi ve atama için) */
+export const cihazSesleri = (): SpeechSynthesisVoice[] => (ttsAvailable() ? speechSynthesis.getVoices() : []);
+/** Konuşan(lar)a ses: aynı sahnedekiler birlikte atanır (aynı sahnede iki konuşan aynı sesi almaz) */
+export function konusanAta(adlar: (string | undefined)[]): Map<string, Atama> {
+  const ks = adlar.map((a) => konusanBul(a, karakterler)).filter((x): x is Konusan => !!x);
+  const m = sahneAta(ks, cihazSesleri());
+  const out = new Map<string, Atama>();
+  for (const a of adlar) { const k = a ? konusanBul(a, karakterler) : null; if (a && k && m.has(k.id)) out.set(a, m.get(k.id)!); }
+  return out;
+}
 
 function voiceFor(lang: "de" | "tr"): SpeechSynthesisVoice | undefined {
   const vs = speechSynthesis.getVoices();
@@ -49,17 +64,24 @@ export function ilkHiz(text: string, speed: Speed = "normal"): Speed {
   return speed === "normal" && ilk ? "slow" : speed;
 }
 /** Satır satır çalınan diyalog/dinleme: hız bütün dizi için bir kez belirlenir (satırlar arasında karışmaz; inceleme #77 P2) */
-export async function speakDizi(lines: { de: string; speed?: Speed }[], speed: Speed = "normal", ara = 0, iptal?: () => boolean): Promise<void> {
+export async function speakDizi(lines: { de: string; speed?: Speed; kim?: string }[], speed: Speed = "normal", ara = 0, iptal?: () => boolean): Promise<void> {
   const ilk = ilkHiz(lines.map((l) => l.de).join("\n"), "normal") === "slow";
+  // sahne: konuşanlar birlikte atanır (yavaşta da aynı sesler)
+  const sahne = konusanAta(lines.map((l) => l.kim));
   for (const l of lines) {
     if (iptal?.()) return;
     const sp = l.speed ?? speed;
-    await speak(l.de, "de", ilk && sp === "normal" ? "slow" : sp, true);
+    await speak(l.de, "de", ilk && sp === "normal" ? "slow" : sp, true, l.kim ? sahne.get(l.kim) : undefined);
     if (ara) await new Promise((r) => setTimeout(r, ara));
   }
 }
-/** `kesin`: hız olduğu gibi (seviye ölçümü, dizi içindeki satır); yoksa başlangıç hızı kuralı uygulanır */
-export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed = "normal", kesin = false): Promise<void> {
+/**
+ * `kesin`: hız olduğu gibi (seviye ölçümü, dizi içindeki satır); yoksa başlangıç hızı kuralı uygulanır.
+ * `kim`: konuşan (karakter kimliği ya da adı) ya da hazır atama; Almanca bölümler o sesle ve perdeyle okunur (PM-064).
+ * "Yavaş" yalnızca `rate`i düşürür; ses ve perde değişmez.
+ */
+export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed = "normal", kesin = false, kim?: string | Atama): Promise<void> {
+  const atama: Atama | undefined = typeof kim === "string" ? konusanAta([kim]).get(kim) : kim;
   if (!ttsAvailable()) return;
   text = sesMetni(text);
   if (lang === "de" && !kesin) speed = ilkHiz(text, speed);
@@ -68,8 +90,10 @@ export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed
     await new Promise<void>((res) => {
       const u = new SpeechSynthesisUtterance(seg.text);
       u.lang = seg.lang === "de" ? "de-DE" : "tr-TR";
-      const v = voiceFor(seg.lang); if (v) u.voice = v;
+      const av = seg.lang === "de" && atama?.ses ? cihazSesleri().find((x) => x.name === atama.ses!.name) : undefined;
+      const v = av ?? voiceFor(seg.lang); if (v) u.voice = v;
       u.rate = seg.lang === "de" ? RATE[speed] : 1;
+      if (seg.lang === "de" && atama) u.pitch = atama.pitch;
       speakingN++;
       let fin = false;
       const done = () => { if (fin) return; fin = true; speakingN = Math.max(0, speakingN - 1); res(); };
@@ -86,10 +110,34 @@ const SR: any = typeof window !== "undefined" ? (window as any).SpeechRecognitio
 /** iPhone kabuğu: WKWebView'de tarayıcı tanıması yoksa v1'deki yerel eklenti (cihaz üstü tanıma) */
 const NATIVE_SR = () => (globalThis as any).Capacitor?.Plugins?.SpeechRecognition;
 export const sttAvailable = () => !!SR || !!NATIVE_SR();
+const kabukta = () => !!(globalThis as any).Capacitor?.isNativePlatform?.();
+/** Hangi tanıma yolu kullanılacak (PM 7017526063): kabukta her zaman önce iPhone'un kendi tanıması */
+export const sttYolu = (): "yerel" | "tarayici" | "yok" => (kabukta() && NATIVE_SR() ? "yerel" : SR ? "tarayici" : NATIVE_SR() ? "yerel" : "yok");
+
+/** Tanıma hatalarının türü ve Türkçe karşılığı (PM 7016783246-2 d): her birinde ne yapılacağı */
+export type SttHata = "izin" | "mesgul" | "sessiz" | "hizmet" | "zaman" | "diger";
+export function sttHataTuru(e: unknown): SttHata {
+  const c = String((e as any)?.message ?? (e as any)?.error ?? e).toLowerCase();
+  if (/service-not-allowed/.test(c)) return "hizmet";
+  if (/not-allowed|permission|denied|notallowed|security/.test(c)) return "izin";
+  if (/audio-capture|busy|in use|notreadable|already/.test(c)) return "mesgul";
+  if (/no-speech|no match|nomatch|sessiz/.test(c)) return "sessiz";
+  if (/service-not-allowed|unavailable|not supported|stt_unavailable|network|language-not-supported/.test(c)) return "hizmet";
+  if (/timeout|zaman/.test(c)) return "zaman";
+  return "diger";
+}
+export const STT_HATA_TR: Record<SttHata, string> = {
+  izin: "Mikrofon izni yok. iPhone'da Ayarlar → Deutsch Werkstatt (ya da Safari) → Mikrofon'u aç; uygulamada ayrıca Ayarlar → Siri → Dikte açık olmalı.",
+  mesgul: "Mikrofonu başka bir uygulama kullanıyor (arama, kayıt, başka sekme). Onu kapatıp tekrar dene.",
+  sessiz: "Ses gelmedi. Telefonu ağzına yaklaştır, biraz daha yüksek sesle söyle ve tekrar dene.",
+  hizmet: "Konuşma tanıma bu cihazda ya da bu tarayıcıda şu an kullanılamıyor. Yazarak cevaplayabilirsin; iPhone uygulamasında Siri ve Dikte açık olmalı.",
+  zaman: "Tanıma zamanında bitmedi. Tekrar dene; olmazsa yazarak cevapla.",
+  diger: "Mikrofon kullanılamadı. Tekrar dene ya da yazarak cevapla."
+};
 
 /** Almanca konuşma tanıma: olası metinleri döndürür (en iyi ilk). Desteklenmiyorsa hata fırlatır; arayüz yazarak cevaba geçer. */
 export function listenOnce(lang = "de-DE", maxMs = 9000): { result: Promise<string[]>; stop: () => void } {
-  if (!SR && NATIVE_SR()) {
+  if (sttYolu() === "yerel") {
     const N = NATIVE_SR();
     listening = true;
     const result = (async () => {

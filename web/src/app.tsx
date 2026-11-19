@@ -15,10 +15,11 @@ import type { Assessment, ContentIndex, Profile } from "@dw/shared";
 import { Ctx, LEARNING_ROUTES, parseHash, type AppCtx, type Route } from "./state.ts";
 import { auth, type AuthUser } from "./services/auth.ts";
 import { createApi } from "./services/api.ts";
-import { loadIndex, within } from "./services/content.ts";
+import { SesDeneme } from "./screens/SesDeneme.tsx";
+import { loadIndex, within, loadWorld } from "./services/content.ts";
 import { getProfile, latestPlacement, saveProfile } from "./data/db.ts";
 import { setLearning, startFocus, updateFocusConfig } from "./services/focusRuntime.ts";
-import { setBaslangicHizi } from "./services/speech.ts";
+import { setBaslangicHizi, setKarakterler } from "./services/speech.ts";
 import { efektAyar, sesKilidiAc, ustUsteSifirla } from "./services/efekt.ts";
 import { kullanimIzle } from "./services/kullanim.ts";
 import { TabBar, Loading, ErrorPanel } from "./ui/components.tsx";
@@ -100,6 +101,8 @@ export function App() {
       await startFocus(p);
     })().catch((e) => { recordError("profil", e); setProfileErr("Profilin bu cihazdan okunamadı."); });
     within(loadIndex()).then(setIndex).catch((e) => setIndexError(String(e.message || e)));
+    // PM-064: karakterlerin sesi (cinsiyet, sıra) — dünya yoksa cihaz sesiyle tek ses
+    void loadWorld().then((w) => { if (w) setKarakterler(w.characters.map((c) => ({ id: c.id, name: c.name, ses: c.ses }))); });
   }, [user?.uid]);
 
   useEffect(() => { if (route.name !== "section") setLearning(LEARNING_ROUTES.has(route.name), route.name === "assess" ? "assess" : "vocab"); window.scrollTo(0, 0); }, [route]);
@@ -138,6 +141,7 @@ export function App() {
     case "prova": screen = <ProvaEkrani key={route.day} day={route.day} />; break;
     case "okuma": screen = <OkumaEkrani key={route.day} day={route.day} />; break;
     case "sozluk": screen = <SozlukEkrani q={route.q} id={route.id} />; break;
+    case "ses": screen = <SesDeneme />; break;
     case "kalip": screen = <KalipEkrani key={route.id ?? "-"} id={route.id} />; break;
     case "m1day": screen = <M1Gun day={route.day} />; break;
     case "rehber": screen = <RehberEkrani day={route.day} />; break;

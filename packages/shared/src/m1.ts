@@ -172,7 +172,7 @@ export interface Medya {
 export function medyalar(g: Gun): Medya[] {
   const out: Medya[] = [];
   if (g.video) out.push({ id: g.video.id, kind: "video", title_tr: g.video.title_tr, cumleler: g.video.cumleler, bolumler: g.video.bolumler, hizlar: ["normal"], video: g.video });
-  for (const s of g.sesler) out.push({ id: s.id, kind: "ses", title_tr: s.title_tr, ortam_tr: s.ortam_tr, cumleler: s.script, bolumler: s.bolumler, hizlar: s.hizlar, eylem: s.eylem });
+  for (const s of g.sesler) out.push({ id: s.id, kind: "ses", title_tr: s.title_tr, ortam_tr: s.ortam_tr, cumleler: s.script.map((c) => (c.speaker || !s.speaker ? c : { ...c, speaker: s.speaker })), bolumler: s.bolumler, hizlar: s.hizlar, eylem: s.eylem });
   if (g.sahne && g.sahne.bolumler.length) out.push({ id: g.sahne.id, kind: "sahne", title_tr: g.sahne.title_tr, cumleler: g.sahne.sahneler, bolumler: g.sahne.bolumler, hizlar: ["slow", "normal"] });
   return out;
 }

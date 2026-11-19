@@ -597,3 +597,9 @@ a.dugum:active { transform: translateY(6px); box-shadow: 0 1px 0 var(--vurgu-koy
 .whysheet.kalip-sheet h3.kicker { font-size: 0.78rem; margin-bottom: 4px; }
 .wchip[aria-pressed="true"] { background: var(--himmel); color: var(--card); }
 @media (prefers-reduced-motion: reduce) { .kalip-ornek { transition: none; } }
+/* B15 ses ve mikrofon denemesi */
+.ses-satir { gap: 8px; }
+.ses-seviye { height: 12px; border-radius: 999px; background: var(--soft); overflow: hidden; }
+.ses-seviye > i { display: block; height: 100%; background: var(--wiese); transition: width 80ms linear; }
+.fb-uyari { margin: 0; padding: 10px 12px; border-radius: 12px; background: color-mix(in srgb, var(--rot) 12%, var(--card)); }
+@media (prefers-reduced-motion: reduce) { .ses-seviye > i { transition: none; } }

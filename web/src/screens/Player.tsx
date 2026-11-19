@@ -350,7 +350,7 @@ function ListeningItem({ li, progress, onDone }: { li: Scenario["listening"][num
   const [phase, setPhase] = useState<"listen" | "qs" | "script">("listen");
   const [q, setQ] = useState(0); const [ok, setOk] = useState(0); const [picked, setPicked] = useState<number | null>(null);
   const [playing, setPlaying] = useState(false);
-  const playAll = async (sp: Speed) => { setPlaying(true); try { await speakDizi(li.script.map((l) => ({ de: l.de })), sp, 250); } finally { setPlaying(false); } };
+  const playAll = async (sp: Speed) => { setPlaying(true); try { await speakDizi(li.script.map((l) => ({ de: l.de, kim: l.r })), sp, 250); } finally { setPlaying(false); } };
   useEffect(() => () => stopSpeaking(), []);
   if (phase === "listen") return (
     <div class="stack fade">{progress}

@@ -70,7 +70,7 @@ function useOynatici(m: Medya, video: HTMLVideoElement | null, base = ""): Oynat
     for (const c of cs) {
       if (iptal.current !== my) return;
       setCalisiyor(c.id);
-      if (c.audio?.src) await sesDosyasi(/^(https?:|\/)/.test(c.audio.src) ? c.audio.src : base + c.audio.src, yavas, my); else await speak(c.de, "de", yavas ? "slow" : "normal", true);
+      if (c.audio?.src) await sesDosyasi(/^(https?:|\/)/.test(c.audio.src) ? c.audio.src : base + c.audio.src, yavas, my); else await speak(c.de, "de", yavas ? "slow" : "normal", true, c.speaker);
     }
   };
   const o: Oynatici = {

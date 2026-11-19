@@ -130,7 +130,7 @@ export function HearSection({ ctx, finish, back, setSub }: SP & { setSub: (n: pr
   }, [s.id]);
   useEffect(() => () => stopSpeaking(), []);
   useEffect(() => { if (phase === "quick" && strong && qi >= strong.length) { setQi(0); setPhase("scan"); } }, [phase, qi, strong]);
-  const playAll = async () => { setPlaying(true); try { await speakDizi(lines.map((l) => ({ de: l.de, speed: l.speed })), "normal", 300); } finally { setPlaying(false); setHeard(true); } };
+  const playAll = async () => { setPlaying(true); try { await speakDizi(lines.map((l) => ({ de: l.de, speed: l.speed, kim: l.speaker ?? (l.r === "A" ? s.dialogues[0]?.roles.A : s.dialogues[0]?.roles.B) })), "normal", 300); } finally { setPlaying(false); setHeard(true); } };
   const strongIds = new Set((strong || []).map((c) => c.id));
   const scanCards = cards.filter((c) => !strongIds.has(c.id));
   const knownClaims = scanCards.filter((c) => mark[c.id] === "known");
