@@ -30,7 +30,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-19",
+  "notes": "Dil incelemesi: docs/v2/reviews/m1-gun01-02.md. Okur ve örneklem bekliyor."
  },
  "dersler": [
   "r0:01-tage"
@@ -158,7 +161,7 @@
     "speaker": "ch:brandl",
     "sahne_tr": "Frau Brandl çantasını kucağına koymuş, neşeyle el sallıyor.",
     "de": "Übermorgen ist Samstag. Dann Wochenende!",
-    "tr": "Öbür gün cumartesi. Sonra hafta sonu!"
+    "tr": "Öbür gün cumartesi. Hafta sonu geliyor!"
    },
    {
     "id": "s14",
@@ -290,7 +293,7 @@
      {
       "id": "d5",
       "seviye": "gercek",
-      "gorev_tr": "Röportajın sonucunu iki kısa cümleyle yaz.",
+      "gorev_tr": "Videoda duyduklarını Almanca bir iki kısa cümleyle özetle.",
       "ornek_de": "Heute ist Donnerstag. Morgen ist Freitag.",
       "zorunlu": [
        "Donnerstag",
@@ -312,9 +315,12 @@
       "Donnerstag.",
       "Heute haben wir Donnerstag.",
       "Wir haben heute Donnerstag.",
-      "Es ist Donnerstag."
+      "Es ist Donnerstag.",
+      "Donnerstag ist heute.",
+      "Es ist heute Donnerstag.",
+      "Heute ist es Donnerstag."
      ],
-     "why_tr": "Cevaba **Heute ist** ile başla, sonra günü söyle."
+     "why_tr": "Cevaba **Heute ist** (bugün) ile başla, sonra günü söyle."
     }
    }
   ]
@@ -338,13 +344,13 @@
     },
     {
      "id": "c2",
-     "de": "Heute ist Freitag.",
-     "tr": "Bugün cuma."
+     "de": "Heute, am Freitag, ist die Praxis geschlossen.",
+     "tr": "Bugün, cuma günü, muayenehane kapalı."
     },
     {
      "id": "c3",
-     "de": "Heute und am Wochenende ist die Praxis geschlossen.",
-     "tr": "Bugün ve hafta sonu muayenehane kapalı."
+     "de": "Am Samstag und am Sonntag ist die Praxis geschlossen.",
+     "tr": "Cumartesi ve pazar günü muayenehane kapalı."
     },
     {
      "id": "c4",
@@ -371,6 +377,7 @@
       ],
       "ans": 1,
       "kanit": [
+       "c2",
        "c3"
       ]
      },
@@ -432,20 +439,21 @@
        "seviye": "zor",
        "banka": [
         "geschlossen",
-        "Praxis",
+        "Sonntag",
         "am",
-        "Heute",
-        "nicht",
-        "ist",
+        "Praxis",
         "und",
-        "die",
         "Montag",
-        "Wochenende"
+        "Am",
+        "ist",
+        "nicht",
+        "die",
+        "Samstag"
        ],
        "accepted": [
-        "Heute und am Wochenende ist die Praxis geschlossen.",
-        "heute und am wochenende ist die praxis geschlossen",
-        "Heute und am Wochenende ist die Praxis geschlossen"
+        "Am Samstag und am Sonntag ist die Praxis geschlossen.",
+        "am samstag und am sonntag ist die praxis geschlossen",
+        "Am Samstag und am Sonntag ist die Praxis geschlossen"
        ]
       },
       {
@@ -453,15 +461,15 @@
        "cumle": "c2",
        "seviye": "usta",
        "accepted": [
-        "Heute ist Freitag.",
-        "heute ist freitag",
-        "Heute ist Freitag"
+        "Heute, am Freitag, ist die Praxis geschlossen.",
+        "heute am freitag ist die praxis geschlossen",
+        "Heute am Freitag ist die Praxis geschlossen"
        ]
       },
       {
        "id": "d5",
        "seviye": "gercek",
-       "gorev_tr": "Kaydı bir arkadaşına iki kısa cümleyle yaz.",
+       "gorev_tr": "Duyuruda ne dendiğini Almanca bir iki kısa cümleyle özetle.",
        "ornek_de": "Heute ist die Praxis geschlossen. Montag geht.",
        "zorunlu": [
         "geschlossen",
@@ -482,9 +490,18 @@
        "Heute geht nicht. Montag geht.",
        "Nein, heute geht nicht. Montag geht.",
        "Heute nicht, Montag geht.",
-       "Heute geht nicht, aber Montag geht."
+       "Heute geht nicht, aber Montag geht.",
+       "Heute geht es nicht. Montag geht es.",
+       "Nein, heute nicht. Montag geht.",
+       "Heute nicht. Montag geht.",
+       "Nein, heute geht es nicht. Montag geht es.",
+       "Heute geht nicht. Montag geht es.",
+       "Heute ist die Praxis geschlossen. Montag geht.",
+       "Nein, heute ist die Praxis geschlossen. Montag geht.",
+       "Heute geht nicht. Am Montag geht es.",
+       "Nein, heute geht nicht. Am Montag geht es."
       ],
-      "why_tr": "Önce olmayan günü, sonra olan günü söyle."
+      "why_tr": "Önce uymayan günü, sonra uyan günü söyle."
      }
     }
    ],
@@ -498,8 +515,9 @@
      "Hemen muayenehaneye git."
     ],
     "ans": 0,
-    "why_tr": "Muayenehane bugün ve hafta sonu kapalı. Pazartesi yeniden açık.",
+    "why_tr": "Muayenehane bugün, cumartesi ve pazar kapalı. Pazartesi yeniden açık.",
     "kanit": [
+     "c2",
      "c3",
      "c4"
     ]
@@ -519,13 +537,13 @@
    "script": [
     {
      "id": "c1",
-     "de": "Guten Tag, {Herr|Frau} {name}.",
-     "tr": "İyi günler, {Herr|Frau} {name}."
+     "de": "Guten Tag.",
+     "tr": "İyi günler."
     },
     {
      "id": "c2",
-     "de": "Hier ist Herr Pichler.",
-     "tr": "Ben Herr Pichler."
+     "de": "Hier ist Josef Pichler.",
+     "tr": "Ben Josef Pichler."
     },
     {
      "id": "c3",
@@ -649,7 +667,7 @@
       {
        "id": "d5",
        "seviye": "gercek",
-       "gorev_tr": "Herr Pichler'in mesajını iki kısa cümleyle yaz.",
+       "gorev_tr": "Mesajda ne dendiğini Almanca bir iki kısa cümleyle özetle.",
        "ornek_de": "Montag geht nicht. Geht Mittwoch?",
        "zorunlu": [
         "Montag",
@@ -670,7 +688,14 @@
        "Mittwoch geht.",
        "Ja, Mittwoch geht.",
        "Ja, das geht.",
-       "Ja, am Mittwoch geht es."
+       "Ja, am Mittwoch geht es.",
+       "Ja, Mittwoch passt.",
+       "Mittwoch passt.",
+       "Ja, Mittwoch ist gut.",
+       "Ja, das passt.",
+       "Ja, am Mittwoch geht's.",
+       "Ja, Mittwoch geht, danke.",
+       "Am Mittwoch geht es."
       ],
       "why_tr": "Soruda **Geht** başta. Cevapta **geht** günden sonra gelir."
      }
@@ -738,17 +763,17 @@
   {
    "id": "m1:01:g5",
    "de": "geschlossen",
-   "dogru_img": "shop door locked with chain, lights off",
+   "dogru_img": "shop front with metal roller shutter pulled down, nobody inside",
    "celdirici_img": [
     "open shop door with customers walking in",
     "busy shop counter with a cashier",
-    "shop window full of colorful goods"
+    "open market stall with a seller serving a customer"
    ]
   },
   {
    "id": "m1:01:g6",
    "de": "Praxis",
-   "dogru_img": "doctor office reception desk",
+   "dogru_img": "doctor's office reception desk with waiting room chairs and a doctor in a white coat",
    "celdirici_img": [
     "bakery counter with bread",
     "hair salon chairs and mirrors",
@@ -759,14 +784,14 @@
  "prova": {
   "id": "m1:01:p1",
   "title_tr": "Muayenehaneyi arıyorsun",
-  "durum_tr": "Randevu için Dr. Weber'in muayenehanesini arıyorsun. Telefonu Frau Huber açıyor.",
+  "durum_tr": "Dr. Weber'in muayenehanesi randevu günü için seni aramış ama ulaşamamış. Şimdi sen geri arıyorsun. Telefonu Frau Huber açıyor.",
   "karsi": "ch:huber",
   "baslangic": "n1",
   "dugumler": [
    {
     "id": "n1",
-    "de": "Praxis Dr. Weber, guten Tag.",
-    "tr": "Dr. Weber muayenehanesi, iyi günler.",
+    "de": "Praxis Dr. Weber, Huber, guten Tag.",
+    "tr": "Dr. Weber muayenehanesi, ben Huber, iyi günler.",
     "secenekler": [
      {
       "de": "Guten Tag, hier ist {name}.",
@@ -775,7 +800,12 @@
        "Guten Tag, hier ist {name}.",
        "Guten Tag, ich bin {name}.",
        "Guten Tag, mein Name ist {name}.",
-       "Grüß Gott, hier ist {name}."
+       "Grüß Gott, hier ist {name}.",
+       "Guten Tag, {name} hier.",
+       "Guten Tag, hier spricht {name}.",
+       "Guten Morgen, hier ist {name}.",
+       "Grüß Gott, {name} hier.",
+       "Grüß Gott, mein Name ist {name}."
       ],
       "sonraki": "n2",
       "uygun": true,
@@ -787,7 +817,9 @@
       "accepted": [
        "Hallo, hier ist {name}.",
        "Hallo, ich bin {name}.",
-       "Hallo, mein Name ist {name}."
+       "Hallo, mein Name ist {name}.",
+       "Hallo, {name} hier.",
+       "Hallo, hier spricht {name}."
       ],
       "sonraki": "n2",
       "uygun": true,
@@ -819,7 +851,12 @@
        "Guten Tag, hier ist {name}.",
        "Guten Tag, ich bin {name}.",
        "Guten Tag, mein Name ist {name}.",
-       "Grüß Gott, hier ist {name}."
+       "Grüß Gott, hier ist {name}.",
+       "Guten Tag, {name} hier.",
+       "Guten Tag, hier spricht {name}.",
+       "Guten Morgen, hier ist {name}.",
+       "Grüß Gott, {name} hier.",
+       "Grüß Gott, mein Name ist {name}."
       ],
       "sonraki": "n2",
       "uygun": true,
@@ -851,7 +888,14 @@
        "Ja, Dienstag geht.",
        "Dienstag geht.",
        "Ja, das geht.",
-       "Ja, am Dienstag geht es."
+       "Ja, am Dienstag geht es.",
+       "Ja, Dienstag passt.",
+       "Dienstag passt.",
+       "Ja, Dienstag ist gut.",
+       "Ja, das passt.",
+       "Ja, am Dienstag geht's.",
+       "Ja, Dienstag geht, danke.",
+       "Am Dienstag geht es."
       ],
       "sonraki": "n4",
       "uygun": true,
@@ -864,7 +908,14 @@
        "Nein, Dienstag geht nicht.",
        "Dienstag geht nicht.",
        "Nein, das geht nicht.",
-       "Nein, am Dienstag geht es nicht."
+       "Nein, am Dienstag geht es nicht.",
+       "Dienstag passt nicht.",
+       "Nein, Dienstag passt nicht.",
+       "Dienstag geht leider nicht.",
+       "Nein, Dienstag geht leider nicht.",
+       "Nein, am Dienstag geht's nicht.",
+       "Am Dienstag geht es nicht.",
+       "Nein, das passt nicht."
       ],
       "sonraki": "n3",
       "uygun": true,
@@ -896,7 +947,13 @@
        "Ja, Donnerstag geht.",
        "Donnerstag geht.",
        "Ja, das geht.",
-       "Ja, am Donnerstag geht es."
+       "Ja, am Donnerstag geht es.",
+       "Ja, Donnerstag passt.",
+       "Donnerstag passt.",
+       "Ja, Donnerstag ist gut.",
+       "Ja, das passt.",
+       "Ja, am Donnerstag geht's.",
+       "Am Donnerstag geht es."
       ],
       "sonraki": "n5",
       "uygun": true,
@@ -908,7 +965,11 @@
       "accepted": [
        "Donnerstag geht, danke.",
        "Ja, Donnerstag geht, danke.",
-       "Am Donnerstag geht es, danke."
+       "Am Donnerstag geht es, danke.",
+       "Donnerstag passt, danke.",
+       "Ja, Donnerstag passt, danke.",
+       "Donnerstag geht, danke schön.",
+       "Ja, das geht, danke."
       ],
       "sonraki": "n5",
       "uygun": true,
@@ -920,7 +981,9 @@
       "accepted": [
        "Ja, Dienstag geht.",
        "Dienstag geht.",
-       "Ja, am Dienstag geht es."
+       "Ja, am Dienstag geht es.",
+       "Ja, Dienstag passt.",
+       "Dienstag passt."
       ],
       "sonraki": "n3",
       "uygun": false,
@@ -939,7 +1002,12 @@
       "accepted": [
        "Danke, bis Dienstag!",
        "Bis Dienstag, danke!",
-       "Danke und bis Dienstag!"
+       "Danke und bis Dienstag!",
+       "Bis Dienstag!",
+       "Danke schön, bis Dienstag!",
+       "Vielen Dank, bis Dienstag!",
+       "Danke, dann bis Dienstag!",
+       "Danke, bis Dienstag. Auf Wiederhören!"
       ],
       "sonraki": "n6",
       "uygun": true,
@@ -951,7 +1019,12 @@
       "accepted": [
        "Danke, bis Donnerstag!",
        "Bis Donnerstag, danke!",
-       "Danke und bis Donnerstag!"
+       "Danke und bis Donnerstag!",
+       "Bis Donnerstag!",
+       "Danke schön, bis Donnerstag!",
+       "Vielen Dank, bis Donnerstag!",
+       "Danke, dann bis Donnerstag!",
+       "Danke, bis Donnerstag. Auf Wiederhören!"
       ],
       "sonraki": "n4",
       "uygun": false,
@@ -970,7 +1043,12 @@
       "accepted": [
        "Danke, bis Donnerstag!",
        "Bis Donnerstag, danke!",
-       "Danke und bis Donnerstag!"
+       "Danke und bis Donnerstag!",
+       "Bis Donnerstag!",
+       "Danke schön, bis Donnerstag!",
+       "Vielen Dank, bis Donnerstag!",
+       "Danke, dann bis Donnerstag!",
+       "Danke, bis Donnerstag. Auf Wiederhören!"
       ],
       "sonraki": "n6",
       "uygun": true,
@@ -982,7 +1060,12 @@
       "accepted": [
        "Danke, bis Dienstag!",
        "Bis Dienstag, danke!",
-       "Danke und bis Dienstag!"
+       "Danke und bis Dienstag!",
+       "Bis Dienstag!",
+       "Danke schön, bis Dienstag!",
+       "Vielen Dank, bis Dienstag!",
+       "Danke, dann bis Dienstag!",
+       "Danke, bis Dienstag. Auf Wiederhören!"
       ],
       "sonraki": "n5",
       "uygun": false,
@@ -1073,7 +1156,14 @@
      "Freitag geht.",
      "Ja, Freitag geht.",
      "Ja, das geht.",
-     "Ja, am Freitag geht es."
+     "Ja, am Freitag geht es.",
+     "Ja, Freitag passt.",
+     "Freitag passt.",
+     "Ja, Freitag ist gut.",
+     "Ja, das passt.",
+     "Ja, am Freitag geht's.",
+     "Ja, Freitag geht, danke.",
+     "Am Freitag geht es."
     ],
     "why_tr": "Soruda **Geht** başta. Cevapta **geht** günden sonra gelir."
    }

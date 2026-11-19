@@ -40,7 +40,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-19",
+  "notes": "Dil incelemesi: docs/v2/reviews/m1-gun01-02.md. Okur ve örneklem bekliyor."
  },
  "dersler": [
   "r0:02-monate"
@@ -73,7 +76,7 @@
  "video": {
   "id": "m1:02:v1",
   "tur": "bunu-nasil-soylersin",
-  "title_tr": "**im Mai** mı, **in Mai** mi?",
+  "title_tr": "Ayları doğru söylemek",
   "sure_sn": 68,
   "gercek_insan": false,
   "sahneler": [
@@ -224,7 +227,7 @@
      "q_tr": "Luka, Ioana'nın neyini düzeltiyor?",
      "opts": [
       "**Urlaub** yerine **Geburtstag** demesini",
-      "**im August** yerine **in August** demesini",
+      "**in August** yerine **im August** demesini",
       "**August** yerine **Januar** demesini"
      ],
      "ans": 1,
@@ -253,7 +256,7 @@
       "q_tr": "Bugün kimin doğum günü?",
       "opts": [
        "Ioana'nın",
-       "Frau Brandl'ın",
+       "Herr Pichler'in",
        "Luka'nın"
       ],
       "ans": 2,
@@ -319,7 +322,7 @@
      {
       "id": "d5",
       "seviye": "gercek",
-      "gorev_tr": "Ioana'nın yerine iki cümle yaz: izin ayı ve doğum günü ayı.",
+      "gorev_tr": "Videoda duyduklarını Almanca bir iki kısa cümleyle özetle.",
       "ornek_de": "Ich habe im August Urlaub. Mein Geburtstag ist im Mai.",
       "zorunlu": [
        "August",
@@ -340,7 +343,11 @@
       "Ich habe im Juli Urlaub.",
       "Im Juli habe ich Urlaub.",
       "Im Juli.",
-      "Ich habe Urlaub im Juli."
+      "Ich habe Urlaub im Juli.",
+      "Ich hab im Juli Urlaub.",
+      "Mein Urlaub ist im Juli.",
+      "Im Juli hab ich Urlaub.",
+      "Ich habe im Juli Urlaub. Und du?"
      ],
      "why_tr": "Temmuzda derken **in Juli** yanlış. Doğrusu **im Juli**."
     }
@@ -352,7 +359,7 @@
    "id": "m1:02:a1",
    "tur": "anons",
    "title_tr": "Fırında duyuru",
-   "ortam_tr": "Fırında sıradasın. Frau Stadler hoparlörden müşterilere sesleniyor.",
+   "ortam_tr": "Fırında sıradasın. Frau Stadler tezgâhın arkasından bütün müşterilere sesleniyor.",
    "speaker": "ch:stadler",
    "hizlar": [
     "slow",
@@ -487,7 +494,7 @@
       {
        "id": "d5",
        "seviye": "gercek",
-       "gorev_tr": "Duyuruyu bir arkadaşına iki kısa cümleyle yaz.",
+       "gorev_tr": "Duyuruda ne dendiğini Almanca bir iki kısa cümleyle özetle.",
        "ornek_de": "August geht nicht. Anfang September geht.",
        "zorunlu": [
         "August",
@@ -502,13 +509,22 @@
      "cevapla": {
       "id": "m1:02:a1:c1",
       "k": "guided_response",
-      "situation_tr": "Arkadaşın ağustosta bu fırına gitmek istiyor. Olmayacağını söyle.",
+      "situation_tr": "Arkadaşın ağustosta bu fırından pasta ısmarlamak istiyor. Ağustosta olmadığını ona söyle.",
       "prompt_de": "Geht August?",
       "accepted": [
        "August geht nicht.",
        "Im August geht es nicht.",
        "Nein, August geht nicht.",
-       "Nein, im August nicht."
+       "Nein, im August nicht.",
+       "Nein, im August geht es nicht.",
+       "Im August geht's nicht.",
+       "Nein, im August geht's nicht.",
+       "August geht leider nicht.",
+       "Nein, August passt nicht.",
+       "August passt nicht.",
+       "Im August ist die Bäckerei geschlossen.",
+       "Nein, im August ist die Bäckerei geschlossen.",
+       "Nein, im August ist geschlossen."
       ],
       "why_tr": "Bu cümlede **nicht** en sona gelir."
      }
@@ -544,8 +560,8 @@
    "script": [
     {
      "id": "c1",
-     "de": "Guten Tag, {Herr|Frau} {name}, hier ist Herr Wimmer.",
-     "tr": "İyi günler {Herr|Frau} {name}, ben Herr Wimmer."
+     "de": "Guten Tag, hier ist Stefan Wimmer.",
+     "tr": "İyi günler, ben Stefan Wimmer."
     },
     {
      "id": "c2",
@@ -668,7 +684,7 @@
       {
        "id": "d5",
        "seviye": "gercek",
-       "gorev_tr": "Şefinin mesajını iki kısa cümleyle yaz.",
+       "gorev_tr": "Mesajda ne dendiğini Almanca bir iki kısa cümleyle özetle.",
        "ornek_de": "Juli geht nicht. Anfang August geht.",
        "zorunlu": [
         "Juli",
@@ -689,7 +705,13 @@
        "Ja, Anfang August geht.",
        "Anfang August geht.",
        "Ja, das geht.",
-       "Ja, Anfang August passt."
+       "Ja, Anfang August passt.",
+       "Anfang August passt.",
+       "Ja, das passt.",
+       "Ja, Anfang August ist gut.",
+       "Ja, Anfang August geht, danke.",
+       "Ja, Anfang August geht's.",
+       "Anfang August geht, danke."
       ],
       "why_tr": "Soruyu **Ja** ile cevapla, sonra zamanı söyle."
      }
@@ -701,7 +723,7 @@
     "q_tr": "Temmuzda izin planlamıştın. Ne yapmalısın?",
     "opts": [
      "Temmuzda yine izne çık.",
-     "İznini aralığa al.",
+     "İznini aralık ayına al.",
      "İznini ağustos başına al."
     ],
     "ans": 2,
@@ -778,7 +800,7 @@
  "prova": {
   "id": "m1:02:p1",
   "title_tr": "Merdivende Frau Brandl",
-  "durum_tr": "Merdivende alt kat komşun Frau Brandl ile karşılaşıyorsun. Elinde küçük bir pasta var.",
+  "durum_tr": "Merdivende alt kat komşun Frau Brandl ile karşılaşıyorsun. Frau Brandl elinde küçük bir pasta tutuyor.",
   "karsi": "ch:brandl",
   "baslangic": "n1",
   "dugumler": [
@@ -794,7 +816,12 @@
        "Alles Gute zum Geburtstag!",
        "Alles Gute!",
        "Herzlichen Glückwunsch zum Geburtstag!",
-       "Alles Gute zum Geburtstag, Frau Brandl!"
+       "Alles Gute zum Geburtstag, Frau Brandl!",
+       "Herzlichen Glückwunsch!",
+       "Alles Liebe zum Geburtstag!",
+       "Herzlichen Glückwunsch zum Geburtstag, Frau Brandl!",
+       "Alles Gute, Frau Brandl!",
+       "Ich gratuliere zum Geburtstag!"
       ],
       "sonraki": "n2",
       "uygun": true,
@@ -806,7 +833,10 @@
       "accepted": [
        "Heute? Alles Gute zum Geburtstag!",
        "Heute? Alles Gute!",
-       "Oh, heute? Alles Gute!"
+       "Oh, heute? Alles Gute!",
+       "Heute? Herzlichen Glückwunsch!",
+       "Heute? Herzlichen Glückwunsch zum Geburtstag!",
+       "Oh, heute? Alles Gute zum Geburtstag!"
       ],
       "sonraki": "n2",
       "uygun": true,
@@ -838,7 +868,12 @@
        "Alles Gute zum Geburtstag!",
        "Alles Gute!",
        "Herzlichen Glückwunsch zum Geburtstag!",
-       "Alles Gute zum Geburtstag, Frau Brandl!"
+       "Alles Gute zum Geburtstag, Frau Brandl!",
+       "Herzlichen Glückwunsch!",
+       "Alles Liebe zum Geburtstag!",
+       "Herzlichen Glückwunsch zum Geburtstag, Frau Brandl!",
+       "Alles Gute, Frau Brandl!",
+       "Ich gratuliere zum Geburtstag!"
       ],
       "sonraki": "n2",
       "uygun": true,
@@ -850,7 +885,7 @@
       "accepted": [
        "Und?",
        "Na und?",
-       "Und dann?"
+       "Ja, und?"
       ],
       "sonraki": "n1b",
       "uygun": false,
@@ -860,8 +895,8 @@
    },
    {
     "id": "n2",
-    "de": "Danke! Und Sie? Wann haben Sie Geburtstag?",
-    "tr": "Teşekkürler! Ya siz? Sizin doğum gününüz ne zaman?",
+    "de": "Danke! Und wann haben Sie Geburtstag?",
+    "tr": "Teşekkürler! Peki sizin doğum gününüz ne zaman?",
     "secenekler": [
      {
       "de": "Mein Geburtstag ist im Mai.",
@@ -869,7 +904,11 @@
       "accepted": [
        "Mein Geburtstag ist im Mai.",
        "Ich habe im Mai Geburtstag.",
-       "Im Mai."
+       "Im Mai.",
+       "Im Mai habe ich Geburtstag.",
+       "Ich hab im Mai Geburtstag.",
+       "Mein Geburtstag ist im Mai, Frau Brandl.",
+       "Im Mai ist mein Geburtstag."
       ],
       "sonraki": "n3",
       "uygun": true,
@@ -881,7 +920,10 @@
       "accepted": [
        "Ich habe im Oktober Geburtstag.",
        "Mein Geburtstag ist im Oktober.",
-       "Im Oktober."
+       "Im Oktober.",
+       "Im Oktober habe ich Geburtstag.",
+       "Ich hab im Oktober Geburtstag.",
+       "Im Oktober ist mein Geburtstag."
       ],
       "sonraki": "n3",
       "uygun": true,
@@ -889,7 +931,7 @@
      },
      {
       "de": "Mein Geburtstag ist in Mai.",
-      "tr": "Doğum günüm mayısta.",
+      "tr": "Mayıs içinde doğum günüm.",
       "accepted": [
        "Mein Geburtstag ist in Mai.",
        "Ich habe in Mai Geburtstag.",
@@ -934,8 +976,8 @@
    },
    {
     "id": "n3",
-    "de": "Und haben Sie im Sommer Urlaub?",
-    "tr": "Peki yazın izniniz var mı?",
+    "de": "Und Urlaub? Im Sommer?",
+    "tr": "Peki izin? Yazın mı?",
     "secenekler": [
      {
       "de": "Ja, ich habe im August Urlaub.",
@@ -944,7 +986,11 @@
        "Ja, ich habe im August Urlaub.",
        "Ich habe im August Urlaub.",
        "Ja, im August.",
-       "Im August habe ich Urlaub."
+       "Im August habe ich Urlaub.",
+       "Ja, ich hab im August Urlaub.",
+       "Ja, im August habe ich Urlaub.",
+       "Ja, Anfang August.",
+       "Ja, Ende August."
       ],
       "sonraki": "n4",
       "uygun": true,
@@ -956,7 +1002,10 @@
       "accepted": [
        "Nein, ich habe im Winter Urlaub.",
        "Nein, im Winter.",
-       "Ich habe im Winter Urlaub."
+       "Ich habe im Winter Urlaub.",
+       "Nein, im Winter habe ich Urlaub.",
+       "Nein, ich hab im Winter Urlaub.",
+       "Im Winter."
       ],
       "sonraki": "n4",
       "uygun": true,
@@ -987,7 +1036,9 @@
       "accepted": [
        "Danke, bis morgen!",
        "Bis morgen, danke!",
-       "Danke und bis morgen!"
+       "Danke und bis morgen!",
+       "Danke schön, bis morgen!",
+       "Danke, Frau Brandl, bis morgen!"
       ],
       "sonraki": "n5",
       "uygun": true,
@@ -999,7 +1050,10 @@
       "accepted": [
        "Bis morgen, Frau Brandl!",
        "Bis morgen!",
-       "Auf Wiedersehen, bis morgen!"
+       "Auf Wiedersehen, bis morgen!",
+       "Bis morgen, Frau Brandl! Auf Wiedersehen!",
+       "Auf Wiedersehen, Frau Brandl, bis morgen!",
+       "Tschüs, bis morgen!"
       ],
       "sonraki": "n5",
       "uygun": true,
@@ -1026,7 +1080,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Komşunun doğum gününü kutladın ve kendi ayını söyledin. Onu bugün sevindirdin."
+  "kapanis_tr": "Komşunun doğum gününü kutladın ve kendi doğum ayını söyledin. Onu bugün sevindirdin."
  },
  "okuma_yazma": {
   "tur": "yazma",
@@ -1054,22 +1108,31 @@
    "ornek_de": "Hallo Derya, hier ist {name}. Ich habe im August Urlaub. Mein Geburtstag ist im Mai. Und du?",
    "zorunlu": [
     "Urlaub",
-    "Mein Geburtstag ist",
-    "im"
+    "Geburtstag"
    ],
    "accepted_kaliplar": [
     "Hallo ___, hier ist ___.",
+    "Hallo ___!",
+    "Hallo ___,",
     "Ich habe im ___ Urlaub.",
     "Ich habe Anfang ___ Urlaub.",
     "Ich habe Ende ___ Urlaub.",
+    "Im ___ habe ich Urlaub.",
+    "Anfang ___ habe ich Urlaub.",
+    "Ende ___ habe ich Urlaub.",
     "Mein Geburtstag ist im ___.",
+    "Mein Geburtstag ist Anfang ___.",
+    "Mein Geburtstag ist Ende ___.",
     "Ich habe im ___ Geburtstag.",
+    "Ich habe Anfang ___ Geburtstag.",
+    "Ich habe Ende ___ Geburtstag.",
+    "Im ___ habe ich Geburtstag.",
     "Und du?"
    ],
    "kontrol_tr": [
     "İzin ayını yazdın mı?",
     "Doğum günü ayını yazdın mı?",
-    "Ayın önünde **im** var mı?"
+    "Ay adından önce **im** yazdın mı?"
    ]
   }
  }

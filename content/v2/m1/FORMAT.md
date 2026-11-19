@@ -87,3 +87,19 @@ Cümle cümle çalışma (c), 0,75× hız ve dokununca kart (e) oynatıcının i
 - **Kimlikler:** `cevapla` ve `eylem` genel kimlik taşır (`m1:01:a1:c1`, `m1:01:a1:e1`). `b1`, `d1` gibi kimlikler üst öğesinin içinde geçerlidir.
 - **`accepted_kaliplar`:** `___` serbest yuvadır (`Ich habe im ___ Urlaub.`). `ornek_de` içindeki her cümle bir kalıba uyar.
 - **`zorunlu`:** düz metin, kalın işareti yok. Tam kelime ya da kelime grubu olarak aranır.
+
+## Hafta sonu testi (yalnızca `gun-07.json`)
+Üst düzeyde `hafta_sonu_testi` alanı: 10–12 maddelik `Drill` dizisi. Haftanın sonunda çözülür, 1–7. günlerde öğretilmeyen hiçbir şey istemez. Başka günlerde bu alan olmaz.
+
+```jsonc
+"hafta_sonu_testi": [
+  { "id": "m1:07:t01", "k": "listen_and_respond", "audio_de": "", "speed": "normal", "situation_tr": "", "accepted": [], "why_tr": "" },
+  { "id": "m1:07:t02", "k": "order", "de": "nicht / morgen / kommen / Ich / kann", "tr": "", "accepted": [], "why_tr": "" },
+  { "id": "m1:07:t03", "k": "guided_response", "situation_tr": "", "prompt_de": "", "accepted": [], "why_tr": "" }
+]
+```
+- **Karışım:** en az 3 dinleme (`listen_and_respond`), en az 3 kurma (`order`, `gap`, `transform`), en az 2 konuşma (`guided_response`, `tr_de`). Türler sırayla değil, karışık gelir.
+- **Kimlik:** `m1:07:tNN`.
+- **`accepted`:** en az 3 farklı cevap. `gap` tek kelime ister: aynı kelimenin en az 3 yazımı, doğru cevap `opts` içinde.
+- **`order`:** `de` içindeki parçalar ilk cevabın kelimeleridir.
+- **Ses:** `audio_de` içinde ad yer tutucusu olmaz. Yer tutucu yalnızca öğrencinin cevabında olur.
