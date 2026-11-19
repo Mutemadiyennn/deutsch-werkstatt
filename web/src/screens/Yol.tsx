@@ -47,41 +47,80 @@ export function usePlan(): { plan: Plan | null; err: string | null; yok: boolean
   return { plan, err, yok, yenile: () => setN((x) => x + 1) };
 }
 
+/** Haftanın vurgu rengi (PM-065 madde 4): hafta 1–4 döner; açık ve koyu temada doygun (CSS `--hafta-N`) */
+export const haftaRengi = (hafta: number) => `var(--hafta-${((hafta - 1) % 4) + 1})`;
+
+/** Düğüm simgeleri (özgün, tek renk çizgi): etkinlik türünü söyler */
+function DugumSimge({ tur }: { tur: Adim["tur"] | "gunsonu" | "kupa" }) {
+  const p: Record<string, string> = {
+    bahce: "M12 21v-8M12 13c-1-4-5-6-8-6 0 4 3 7 8 6zM12 11c1-4 4-6 7-6 0 4-3 7-7 6z",
+    ders: "M3 5.5C5.5 4.5 8.5 4.5 12 6.5c3.5-2 6.5-2 9-1V19c-2.5-1-5.5-1-9 1-3.5-2-6.5-2-9-1zM12 6.5V20",
+    medya: "M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H5a1 1 0 0 1-1-1zM20 14h-3v6h2a1 1 0 0 0 1-1z",
+    prova: "M4 5h16v10H9l-5 4zM8 9h8M8 12h5",
+    okuma: "M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7",
+    gunsonu: "M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z",
+    kupa: "M7 4h10v5a5 5 0 0 1-10 0zM7 6H4c0 3 1.5 4.5 3.5 4.5M17 6h3c0 3-1.5 4.5-3.5 4.5M12 14v3M8 21h8M9 17h6v4H9z"
+  };
+  return <svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d={p[tur]} /></svg>;
+}
+const TUR_AD: Record<Adim["tur"], string> = { bahce: "Kelime Bahçesi", ders: "Ders", medya: "Dinle ve izle", prova: "Konuşma provası", okuma: "Okuma ve yazma" };
+/** Kıvrılan hat: düğümün yatay kayması (px), 8 adımda bir dalga */
+const KAYMA = [0, 44, 70, 44, 0, -44, -70, -44];
+
 export function YolEkrani() {
   const { plan, err, yok, yenile } = usePlan();
   if (err) return <div class="stack"><TopBar title="İlk Hafta" back="#/today" /><ErrorPanel message={err} onRetry={yenile} /></div>;
   if (yok) return <div class="stack"><TopBar title="Yol" back="#/today" /><section class="card"><p>İlk Hafta'nın günleri hazırlanıyor.</p></section></div>;
   if (!plan) return <Loading />;
   const s = seri(plan.xp);
+  const hafta = 1;
+  let sira = 0;
   return (
-    <div class="stack" data-test="yol">
+    <div class="stack yol-harita" data-test="yol" style={{ "--vurgu": haftaRengi(hafta) } as Record<string, string>}>
       <TopBar title="İlk Hafta" back="#/today" />
-      <div class="row" data-test="xp-seri" style={{ gap: 16 }}>
-        <span class="chip"><b data-test="xp">{plan.xp.toplam}</b>&nbsp;XP</span>
-        <span class="chip">{s ? <><b data-test="seri">{s}</b>&nbsp;gün üst üste</> : "Bugün başla, seri başlasın"}</span>
-      </div>
+      <div class="sr-only" data-test="xp-seri"><b data-test="xp">{plan.xp.toplam}</b> XP · {s ? <><b data-test="seri">{s}</b> gün üst üste</> : "Bugün başla, seri başlasın"}</div>
       {plan.sonraki && (
         <a class="btn primary block" href={plan.sonraki.href} data-test="yol-sonraki"><Icon name="play" size={18} /> Sıradaki: {adimAdi(plan.sonraki)} · {plan.sonraki.title_tr}</a>
       )}
       {!plan.sonraki && !plan.simdi && (plan.gunler.length >= 7
         ? <section class="card" data-test="hafta-bitti"><h2>İlk Hafta tamam</h2><p>Bütün günleri bitirdin. Kendini tanıtabilir ve basit bir randevu cümlesi kurabilirsin.</p></section>
         : <section class="card" data-test="hafta-bitti"><h2>Hazır günlerin hepsi bitti</h2><p>Sıradaki günler hazırlanıyor. Bu arada Kelime Bahçesi'nde tekrar yapabilirsin.</p></section>)}
-      <ol class="list yol">{plan.gunler.map((g) => (
-        <li class={`card stack yolgun ${g.durum}`} data-test={`gun-${g.day}`} data-durum={g.durum}>
-          <div class="row" style={{ flexWrap: "nowrap", alignItems: "center" }}>
-            <span class="yolno" aria-hidden="true">{g.durum === "bitti" ? <Icon name="check" size={18} /> : g.day}</span>
-            <span class="grow"><b>{g.day}. gün</b><br /><span class="small muted">{g.title_tr}</span></span>
-            <span class="tiny muted">{g.durum === "bitti" ? "Bitti" : g.durum === "simdi" ? "Şimdi" : "Kilitli"}</span>
-          </div>
-          {g.durum === "simdi" && (
-            <ul class="list">{g.adimlar.map((a) => (
-              <li class="row" style={{ flexWrap: "nowrap" }} data-test="adim" data-tur={a.tur} data-bitti={a.bitti ? "1" : "0"}>
-                <span class="tiny muted" style={{ width: 58 }}>Seans {a.seans}</span>
-                {a.hazir && !a.bitti ? <a class="grow" href={a.href}>{a.title_tr}</a> : <span class={`grow${a.bitti ? "" : " muted"}`}>{a.title_tr}{!a.hazir ? " · hazırlanıyor" : ""}</span>}
-                {a.bitti && <Icon name="check" size={16} />}
-              </li>))}</ul>
-          )}
-        </li>))}</ol>
+      {plan.gunler.map((g) => {
+        const hazirAdim = g.adimlar.filter((a) => a.hazir);
+        const biten = hazirAdim.filter((a) => a.bitti).length;
+        const son = g.day === 7 ? "kupa" : "gunsonu";
+        return (
+          <section class={`yolgun ${g.durum}`} data-test={`gun-${g.day}`} data-durum={g.durum} aria-label={`${g.day}. gün: ${g.title_tr}, ${g.durum === "bitti" ? "bitti" : g.durum === "simdi" ? "şimdi" : "kilitli"}`}>
+            <div class="gun-bant">
+              <div class="grow"><div class="gun-bant-ust">{hafta}. HAFTA · GÜN {g.day}</div><div class="gun-bant-ad">{g.title_tr}</div></div>
+              <a class="rehber-btn" href={`#/rehber/${g.day}`} data-test={`rehber-${g.day}`} aria-label={`${g.day}. günün rehberi: kalıplar ve kelimeler`}>Rehber</a>
+            </div>
+            <ol class="dugumler">
+              {g.adimlar.map((a) => {
+                const kay = KAYMA[sira++ % KAYMA.length]!;
+                const simdi = plan.sonraki?.id === a.id;
+                const durum = a.bitti ? "bitti" : simdi ? "simdi" : g.durum === "kilitli" || !a.hazir ? "kilitli" : "acik";
+                const ad = `Seans ${a.seans} · ${TUR_AD[a.tur]}: ${a.title_tr}${!a.hazir ? " (hazırlanıyor)" : ""}${a.bitti ? ", bitti" : ""}`;
+                const ic = <><span class="dugum-yuz"><DugumSimge tur={a.tur} /></span>{a.bitti && <span class="dugum-onay" aria-hidden="true"><Icon name="check" size={14} stroke={3} /></span>}</>;
+                return (
+                  <li class={`dugum-yer ${durum}`} style={{ "--kay": `${kay}px` } as Record<string, string>} data-test="adim" data-tur={a.tur} data-bitti={a.bitti ? "1" : "0"} data-durum={durum}>
+                    {simdi && <span class="basla-balon" aria-hidden="true">BAŞLA</span>}
+                    {simdi && <svg class="dugum-halka" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" /><circle class="dolu" cx="50" cy="50" r="46" style={{ strokeDasharray: `${2 * Math.PI * 46 * (hazirAdim.length ? biten / hazirAdim.length : 0)} 999` }} /></svg>}
+                    {a.hazir && !a.bitti && g.durum !== "kilitli"
+                      ? <a class="dugum" href={a.href} aria-label={ad} aria-current={simdi ? "step" : undefined}>{ic}</a>
+                      : <span class="dugum" role="img" aria-label={ad}>{ic}</span>}
+                    <span class="dugum-ad tiny">{TUR_AD[a.tur]}</span>
+                  </li>
+                );
+              })}
+              <li class={`dugum-yer ${g.bitti ? "bitti" : "kilitli"} son`} style={{ "--kay": `${KAYMA[sira++ % KAYMA.length]}px` } as Record<string, string>}>
+                <span class="dugum" role="img" aria-label={g.day === 7 ? `Hafta sonu ${g.bitti ? "tamam" : "kilitli"}` : `Gün sonu ${g.bitti ? "tamam" : "kilitli"}`}><span class="dugum-yuz"><DugumSimge tur={son} /></span></span>
+                <span class="dugum-ad tiny">{g.day === 7 ? "Hafta sonu" : "Gün sonu"}</span>
+              </li>
+            </ol>
+          </section>
+        );
+      })}
     </div>
   );
 }
