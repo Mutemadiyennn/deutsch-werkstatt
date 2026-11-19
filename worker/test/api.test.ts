@@ -276,12 +276,12 @@ describe("Workers AI sağlayıcısı (PM 7022002310-5)", () => {
     expect(j.error.code).toBe("quota_upstream"); expect(cagri.length).toBe(0);
   });
   it("rol oyunu: istemde A2 ve ≤25 kelime; uzun cevap cümle sınırında kısaltılır", async () => {
-    const uzun = "Ja, gerne. Wir haben am Donnerstag um zehn Uhr noch einen Termin frei. Oder möchten Sie lieber am Freitag kommen, dann wäre es am Nachmittag ab drei Uhr möglich, wenn das passt?";
+    const uzun = "Ja, gerne. Wir haben am Donnerstag um zehn Uhr noch einen Termin frei. Die Praxis ist im ersten Stock. Bitte bringen Sie Ihre Versichertenkarte und die Überweisung mit.";
     const { AI, cagri } = sahteAI([{ response: { reply_de: uzun, end: false } }]);
     const vars = { partner_de: "Medizinische Fachangestellte", scene_tr: "Randevu", goals_de: ["Termin vereinbart"], level: 2, history: [], stuck: 0 };
     const j = await (await handle(run(await token(), "roleplay_turn", vars), waEnv(AI))).json();
     expect(j.output.reply_de.split(/\s+/).length).toBeLessThanOrEqual(25);
-    expect(j.output.reply_de).toBe("Ja, gerne. Wir haben am Donnerstag um zehn Uhr noch einen Termin frei.");
+    expect(j.output.reply_de).toBe("Ja, gerne. Wir haben am Donnerstag um zehn Uhr noch einen Termin frei. Die Praxis ist im ersten Stock.");
     expect(cagri[0]!.input.messages[0].content).toContain("Niveau A2"); expect(cagri[0]!.input.messages[0].content).toContain("höchstens 25 Wörtern");
   });
   it("ücretsiz pay bitti (4006) → quota_upstream; yedek model denenmez (inceleme #125 P1-3)", async () => {

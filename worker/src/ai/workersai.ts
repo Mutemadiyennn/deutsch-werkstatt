@@ -42,7 +42,7 @@ export async function generateWA(env: Env, model: string, system: string, user: 
   const esle = (e: unknown) => {
     if (e instanceof HttpError) return e;
     const m = String((e as Error)?.message ?? e);
-    return /4006|neuron|allocation|daily free/i.test(m) ? new HttpError("quota_upstream", "workers-ai free allocation") : new HttpError("upstream_busy", m.slice(0, 120));
+    return /\b4006\b|neurons?\b|free allocation|daily free/i.test(m) ? new HttpError("quota_upstream", "workers-ai free allocation") : new HttpError("upstream_busy", m.slice(0, 120));
   };
   // zaman aşımında model arkada sürebilir: sayaç üst tahminle yazılır (çıkış = max_tokens), tavan yumuşamaz (inceleme #125 P1-2)
   const tahminYaz = async () => { await env.QUOTA.put(nKey(u.day), String(u.used + neurons(model, Math.ceil((system.length + user.length) / 4), WA.max_tokens)), { expirationTtl: 3 * 86400 }); };
@@ -105,5 +105,8 @@ export function kisalt(s: string, n = WA.reply_max_words, bitis = false): string
     const soru = dusen.find(soruVar);
     if (soru && kelime([...al, soru].join(" ")) <= n) al.push(soru);
   }
-  return al.join(" ");
+  // kısaltma cevabın özünü atıyorsa (soru düştü ya da yarıdan azı kaldı) özgün cevap kalır; asıl sınır istemde (inceleme #125 P2-1)
+  const sonuc = al.join(" ");
+  if ((c.some(soruVar) && !al.some(soruVar) && !bitis) || kelime(sonuc) * 2 < kelime(s)) return s.trim();
+  return sonuc;
 }
