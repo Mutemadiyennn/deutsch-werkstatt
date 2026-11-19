@@ -70,6 +70,16 @@ def main():
             if t: types.append(t)
         # 1. soru yanlış: doğrusu ve öğrencinin cevabı yan yana, tur bir soru uzar
         note()
+        # çift dokunuş (inceleme #126 P1-B): "Tamam"a iki kez basmak tam bir adım ilerletir (sonraki tanıtım atlanmaz)
+        if pg.locator("[data-test=garden-intro]").count():  # turun ilk tanıtımı: ardından yine tanıtım gelir
+            pg.wait_for_timeout(500)
+            i0 = int(pg.get_attribute("[data-test=garden]", "data-i"))
+            pg.dblclick("[data-test=garden-intro] [data-test=next]"); pg.wait_for_timeout(150)
+            if pg.locator("[data-test=garden-intro] [data-test=next]").count(): pg.click("[data-test=garden-intro] [data-test=next]")  # 150 ms sonra üçüncü dokunuş
+            pg.wait_for_timeout(700)
+            i1 = int(pg.get_attribute("[data-test=garden]", "data-i"))
+            check(i1 == i0 + 1, f"çift dokunuşta yalnızca bir adım ilerledi (i {i0} → {i1})")
+            note()
         while pg.locator("[data-test=garden-intro]").count():
             tanitim_gec(pg); note()
         if pg.locator("button.opt").count(): pg.locator("button.opt:not([data-right])").first.click()

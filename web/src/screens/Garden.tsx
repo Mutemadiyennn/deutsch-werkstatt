@@ -68,6 +68,9 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   const startedAt = useMemo(() => Date.now(), []);
   // çift dokunuş bir sonraki tanıtımı atlatmaz (inceleme #126 P1-3); kanca erken dönüşlerden önce
   const ertelendi = useRef(-1);
+  // ekran açıldıktan sonraki ilk 350 ms'deki "Tamam" sayılmaz: çift dokunuşun ikincisi yeni tanıtımı atlatmasın (inceleme #126 2. tur P1-B)
+  const acildi = useRef(0);
+  useEffect(() => { acildi.current = performance.now(); }, [i]);
 
   useEffect(() => {
     (async () => {
@@ -166,7 +169,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   const soruMu = (x: GardenQ) => !x.intro || !!x.retry || !!x.sina;
   const ilerleme = { n: round.slice(0, i).filter(soruMu).length, toplam: round.filter(soruMu).length + round.slice(i).filter((x) => !soruMu(x)).length };
   // PM-069 madde 3: tanıtım bitti, ilk soru en az 2 öğe sonra (değerlendirme yok, kayıt yok)
-  const tanitimBitti = (exi: number) => { if (ertelendi.current >= i) return; ertelendi.current = i; setData({ ...data, round: ertele(round, i, exi) }); setI(i + 1); };
+  const tanitimBitti = (exi: number) => { if (ertelendi.current >= i || performance.now() - acildi.current < 350) return; ertelendi.current = i; acildi.current = performance.now(); setData({ ...data, round: ertele(round, i, exi) }); setI(i + 1); };
   // öğrencinin seçimi yalnızca bugünün kalan yeni kartları için (inceleme #113 P1-1)
   const hizliAc = async (bas: number, kaynak: "ogrenci") => { setHizli(kaynak); setOneri("yok"); await setMeta("hizliGun", yerelGun(new Date())); return sinaTuru(round, bas); };
   // tanıtım kartında "Biliyorum, sına beni": düğmeye basılan kartın KENDİSİ hemen sınanır, sonraki yeni kartlar sınavla açılır (PM 7018403441-1)
@@ -195,7 +198,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
     </div>
   );
   return (
-    <div class="stack" data-test="garden" data-hizli={hizli ?? undefined}>
+    <div class="stack" data-test="garden" data-hizli={hizli ?? undefined} {...(E2E ? { "data-i": i } : {})}>
       <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} ilerleme={ilerleme} />
       {/* hızlı şerit açıkken çıkış her soruda görünür (inceleme #113 P1-1); açıklama yalnızca ilk soruda */}
       {hizli && <div class="small bilgi-bant" data-test={hizli === "tespit" ? "hizli-tespit" : "hizli-ogrenci"}>
