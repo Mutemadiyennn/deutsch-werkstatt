@@ -44,3 +44,43 @@ describe("cihaz veritabanı", () => {
     expect(ex.profile).toHaveLength(0);
   });
 });
+
+describe("şema geçişi (#58 A12: geçişte veri kaybı yok)", () => {
+  // Her tarihsel sürüm için sabit veri burada durur; yeni sürüm eklenince verno beklentisi kırılır ve yeni sabit istenir.
+  const GUNCEL_SURUM = 2;
+  it("1. sürümdeki profil (kurulum bitmiş), tespit, öğe, meta ve odak verisi güncel sürüme geçince korunur", async () => {
+    const { default: Dexie } = await import("dexie");
+    const name = `mig-${Date.now()}`;
+    const old = new Dexie(name);
+    old.version(1).stores({ meta: "&key", profile: "&id", items: "&itemId, kind, inBank, u", focusDays: "&date, u", assess: "&id, startedAt, type" });
+    await old.open();
+    const it = emptyItem("lx:Termin"); it.inBank = true; it.passive.ok = 2;
+    await old.table("items").put(it);
+    await old.table("meta").put({ key: "x", value: 42 });
+    await old.table("focusDays").put({ date: "2026-11-18", u: 1, sessions: [] });
+    const pr = await (async () => { useDb(new DwDB(`tmp-${Date.now()}`)); const p = await getProfile(); p.onboardedAt = "2026-11-10T08:00:00Z"; p.displayName = "Test"; return p; })();
+    await old.table("profile").put(pr);
+    await old.table("assess").put({ id: "a1", type: "placement", startedAt: "2026-11-10T09:00:00Z", answers: [], u: 1, finishedAt: "2026-11-10T09:20:00Z", result: { level: "A1" } });
+    old.close();
+    const cur = new DwDB(name);
+    useDb(cur);
+    expect(cur.verno).toBe(GUNCEL_SURUM);
+    expect(await cur.items.get("lx:Termin")).toMatchObject({ itemId: "lx:Termin", inBank: true, passive: { ok: 2 } });
+    expect((await cur.meta.get("x"))?.value).toBe(42);
+    expect(await cur.focusDays.count()).toBe(1);
+    expect((await getProfile()).onboardedAt).toBe("2026-11-10T08:00:00Z");
+    expect((await getProfile()).displayName).toBe("Test");
+    expect(await cur.assess.get("a1")).toMatchObject({ id: "a1", type: "placement" });
+    expect(await cur.personal.count()).toBe(0);
+  });
+  it("bozuk profil kaydı: eski kayıt yedeklenir, kurulumu bitmiş öğrenci kuruluma geri atılmaz", async () => {
+    const d = new DwDB(`bozuk-${Date.now()}`); useDb(d);
+    await d.profile.put({ id: "me", onboardedAt: "2026-11-10T08:00:00Z", displayName: "Test", focus: "bozuk", domains: 7 } as never);
+    const p = await getProfile();
+    expect(p.onboardedAt).toBe("2026-11-10T08:00:00Z");
+    expect(p.displayName).toBe("Test");
+    const backups = (await d.meta.toArray()).filter((m) => m.key.startsWith("profileBackup:"));
+    expect(backups).toHaveLength(1);
+    expect((backups[0]!.value as { focus: string }).focus).toBe("bozuk");
+  });
+});

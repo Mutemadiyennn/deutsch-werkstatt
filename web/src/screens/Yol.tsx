@@ -47,7 +47,9 @@ export function YolEkrani() {
       {plan.sonraki && (
         <a class="btn primary block" href={plan.sonraki.href} data-test="yol-sonraki"><Icon name="play" size={18} /> Sıradaki: {SEANS_TR[plan.sonraki.seans]} · {plan.sonraki.title_tr}</a>
       )}
-      {!plan.sonraki && !plan.simdi && <section class="card" data-test="hafta-bitti"><h2>İlk Hafta tamam</h2><p>Bütün günleri bitirdin. Kendini tanıtabilir ve basit bir randevu cümlesi kurabilirsin.</p></section>}
+      {!plan.sonraki && !plan.simdi && (plan.gunler.length >= 7
+        ? <section class="card" data-test="hafta-bitti"><h2>İlk Hafta tamam</h2><p>Bütün günleri bitirdin. Kendini tanıtabilir ve basit bir randevu cümlesi kurabilirsin.</p></section>
+        : <section class="card" data-test="hafta-bitti"><h2>Hazır günlerin hepsi bitti</h2><p>Sıradaki günler hazırlanıyor. Bu arada Kelime Bahçesi'nde tekrar yapabilirsin.</p></section>)}
       <ol class="list yol">{plan.gunler.map((g) => (
         <li class={`card stack yolgun ${g.durum}`} data-test={`gun-${g.day}`} data-durum={g.durum}>
           <div class="row" style={{ flexWrap: "nowrap", alignItems: "center" }}>

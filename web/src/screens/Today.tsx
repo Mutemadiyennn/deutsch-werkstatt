@@ -101,8 +101,10 @@ export function Today() {
           </div>
         </div>
         {m1.sonraki && <a class="btn primary block" href={m1.sonraki.href} data-test="m1-devam"><Icon name="play" size={18} /> Devam et</a>}
-        {!placement && <a class="small" href="#/assess" data-test="assess-link">Almancan varsa: seviye tespitiyle yerini bul</a>}
-        <a class="small" href="#/yol" data-test="yol-link">Haftanın yolu · {m1.xp.toplam} XP{seri(m1.xp) ? ` · ${seri(m1.xp)} gün üst üste` : ""}</a>
+        <div class="stack" style={{ gap: 6 }}>
+          <a class="small" style={{ display: "block" }} href="#/yol" data-test="yol-link">Haftanın yolu · {m1.xp.toplam} XP{seri(m1.xp) ? ` · ${seri(m1.xp)} gün üst üste` : ""}</a>
+          {!placement && <a class="small" style={{ display: "block" }} href="#/assess" data-test="assess-link">Almancan varsa: seviye tespitiyle yerini bul</a>}
+        </div>
         {e && !breakOn && <FocusPanel />}
       </section>
       ) : (

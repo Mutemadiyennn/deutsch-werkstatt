@@ -6,7 +6,9 @@
 import { useMemo, useState } from "preact/hooks";
 import type { Drill } from "@dw/shared";
 import { countsAsCorrect, isSameAsGiven, ruleVerdict } from "../core/answer.ts";
-import { numberWordHint } from "../core/grading.ts";
+import { norm, numberWordHint } from "../core/grading.ts";
+import { fillName } from "../core/persona.ts";
+import { addClaim } from "../data/db.ts";
 import { haptic } from "../services/haptics.ts";
 import { ActionBar, AnswerField, FeedbackBand, ListenButton } from "./kit.tsx";
 import { Rich } from "./rich.tsx";
@@ -14,18 +16,38 @@ import { Rich } from "./rich.tsx";
 const E2E = import.meta.env.MODE === "e2e";
 export type DrillSonuc = "correct" | "wrong" | "claimed";
 
-/** Bir maddeyi değerlendirir (saf; test edilir) */
+/** Sayı, gün, ay ve saat kelimeleri: bunlardan biri farklıysa cevap "yakın" değil, yanlıştır (on yedi ≠ on altı) */
+const ANAHTAR = new RegExp("^(null|eins?|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf|\\w*zehn|\\w*zig|\\w*und\\w*zig|hundert|tausend|halb|viertel|montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|januar|februar|märz|april|mai|juni|juli|august|september|oktober|november|dezember|heute|morgen|gestern|übermorgen|vorgestern)$", "i");
+const SAYI_KELIME = /\b(null|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf|\w+zehn|\w+zig|hundert)\b/i;
+const kelimeler = (s: string) => s.toLowerCase().replace(/[.,!?;:„“"]/g, " ").split(/\s+/).filter(Boolean);
+
+/**
+ * Bir maddeyi değerlendirir (saf; test edilir).
+ *  - {name} yuvası öğrencinin cevabındaki adla doldurulur (ad girilmemiş profil; fillName)
+ *  - kabul listesinde birebir olan cevap her zaman doğru (ör. "Du bist müde?" tonlamalı soru, dönüşümde de)
+ *  - sayı kelimesiyle cevaplanan maddede yazılan rakam kabul edilmez (strictNumberWords; içerikte işaret yoksa kabul
+ *    cevabında sayı kelimesi ve rakam yoksa kendiliğinden) — yalnızca yazıda
+ *  - sayı/gün/ay kelimesi farklıysa "kontrol edemedim" değil yanlış
+ */
 export function drillVerdict(d: Drill, answer: string, typed = true): { kind: "correct" | "wrong" | "unchecked"; best: string; note?: string } {
   if (d.k === "pick") return { kind: "wrong", best: d.opts[d.ans] ?? "" };
-  const acc = d.accepted;
+  const acc = d.accepted.map((a) => fillName(a, answer));
   const best = d.k === "gap" ? d.de.replace("___", acc[0]!) : acc[0]!;
-  if (typed && d.strictNumberWords && acc.every((x) => !/\d/.test(x))) { const h = numberWordHint(answer); if (h) return { kind: "wrong", best, note: h }; }
-  if (d.k === "transform" && isSameAsGiven(d.from_de, answer)) return { kind: "wrong", best, note: "Verilen cümleyi tekrarladın; istenen biçimde söyle." };
-  // boşluk: boşluğa gelen kelime ya da bütün cümle
   const list = d.k === "gap" ? [...acc, ...acc.map((a) => d.de.replace("___", a))] : acc;
+  // rakam kuralı norm() karşılaştırmasından ÖNCE: norm rakamı yazıya çevirir ("17" = "siebzehn")
+  const strict = d.strictNumberWords ?? (acc.every((x) => !/\d/.test(x)) && acc.some((x) => SAYI_KELIME.test(x)));
+  if (typed && strict && acc.every((x) => !/\d/.test(x))) { const h = numberWordHint(answer); if (h) return { kind: "wrong", best, note: h }; }
+  if (list.some((a) => norm(a) === norm(answer))) return { kind: "correct", best };
+  if (d.k === "transform" && isSameAsGiven(d.from_de, answer)) return { kind: "wrong", best, note: "Verilen cümleyi tekrarladın; istenen biçimde söyle." };
   const v = ruleVerdict(list, answer);
   if (v.kind === "correct") return { kind: "correct", best };
-  if (v.kind === "ask_ai") return { kind: "unchecked", best };
+  if (v.kind === "ask_ai") {
+    // anahtar kelime (sayı, gün, ay) farkı açık bir yanlıştır; kararı öğrenciye bırakmayız
+    const a = new Set(kelimeler(answer)), e = new Set(kelimeler(v.best || best));
+    const fark = [...e].filter((w) => !a.has(w)).concat([...a].filter((w) => !e.has(w)));
+    if (fark.some((w) => ANAHTAR.test(w))) return { kind: "wrong", best, note: undefined };
+    return { kind: "unchecked", best };
+  }
   return { kind: "wrong", best, note: undefined };
 }
 
@@ -64,7 +86,7 @@ export function DrillView({ d, sira, onDone }: { d: Drill; sira?: string; onDone
     <section class="card stack fade" data-test={`drill-${d.k}`} {...(E2E ? { "data-cevap": cevap } : {})}>
       <div class="kicker">{kicker}</div>
       {prompt}
-      {!v && (d.k === "order" ? <OrderChips target={d.accepted[0]!} onSubmit={(a) => submit(a, "typed")} /> : <ActionBar><AnswerField onSubmit={submit} /></ActionBar>)}
+      {!v && (d.k === "order" ? <OrderChips target={d.accepted[0]!} given={d.de} onSubmit={(a) => submit(a, "typed")} /> : <ActionBar><AnswerField onSubmit={submit} /></ActionBar>)}
       {v && <ActionBar>
         {v.kind === "correct" ? <FeedbackBand kind="ok" title="Doğru."><span lang="de">{v.a}</span></FeedbackBand>
           : v.kind === "unchecked" ? <FeedbackBand kind="info" title="Bu cevabı kendim kontrol edemedim.">
@@ -74,20 +96,21 @@ export function DrillView({ d, sira, onDone }: { d: Drill; sira?: string; onDone
               {v.note && <div class="small">{v.note}</div>}{d.why_tr && <div class="small"><Rich text={d.why_tr} /></div>}</FeedbackBand>}
         {v.kind === "unchecked"
           ? <><button class="btn primary block" data-test="next" onClick={() => done("wrong")}>Örneği öğrendim, devam</button>
-              <button class="btn block" data-test="claim" onClick={() => done(countsAsCorrect("unchecked", true) ? "claimed" : "wrong")}>Benimki de aynı anlamda</button></>
+              <button class="btn block" data-test="claim" onClick={() => { void addClaim({ at: new Date().toISOString(), scenarioId: "temel", itemId: d.id, prompt: d.k === "tr_de" ? d.tr : d.k === "transform" ? d.instr_tr : d.k === "gap" || d.k === "order" ? d.tr : d.situation_tr ?? "", answer: v.a, expected: d.accepted }); done(countsAsCorrect("unchecked", true) ? "claimed" : "wrong"); }}>Benimki de aynı anlamda</button></>
           : <button class="btn primary block" data-test="next" onClick={() => done(v.kind === "correct" ? "correct" : "wrong")}>Devam</button>}
       </ActionBar>}
     </section>
   );
 }
 
-/** Sıraya koy: kelime çipleri (ilk kelimenin büyük harfi ipucu vermesin diye küçültülür) */
-function OrderChips({ target, onSubmit }: { target: string; onSubmit: (s: string) => void }) {
+/** Sıraya koy: içerik karışık sırayı "a / b / c" olarak verir (d.de); vermezse hedef cümle karıştırılır */
+function OrderChips({ target, given, onSubmit }: { target: string; given?: string; onSubmit: (s: string) => void }) {
   const chips = useMemo(() => {
+    if (given && given.includes(" / ")) return given.split(" / ").map((w) => w.trim()).filter(Boolean);
     const t = target.split(/\s+/).map((w) => w.replace(/[.,!?;:„“"]/g, "")).filter(Boolean);
     let h = 0; for (const c of target) h = (h * 31 + c.charCodeAt(0)) >>> 0;
     return t.map((w, i) => ({ w, k: ((h ^ (i * 2654435761)) >>> 0) % 997 })).sort((x, y) => x.k - y.k).map((x) => x.w);
-  }, [target]);
+  }, [target, given]);
   const [sel, setSel] = useState<number[]>([]);
   return (
     <div class="stack">

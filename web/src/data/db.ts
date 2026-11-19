@@ -51,9 +51,15 @@ export async function getProfile(): Promise<Profile> {
       if (pr.join() !== r.data.domains.priority.join()) { r.data.domains.priority = pr; await db.profile.put(r.data); }
       return r.data;
     }
-    // şema bozulmuşsa bilinen alanları koruyarak varsayılanla birleştir
+    // şema bozulmuşsa: önce eski kayıt yedeklenir (A12: veri kaybı yok), sonra bilinen alanlar korunarak varsayılanla birleştirilir
+    await db.meta.put({ key: `profileBackup:${Date.now()}`, value: structuredClone(p) });
     const merged = Profile.safeParse({ ...defaultProfile(), ...p, focus: { ...defaultProfile().focus, ...(p as any).focus } });
     if (merged.success) { await db.profile.put(merged.data); return merged.data; }
+    // birleştirme de olmuyorsa kurulumu bitmiş öğrenci kuruluma geri atılmaz: onboardedAt, ad ve hitap taşınır
+    const d0 = defaultProfile(); const old = p as Partial<Profile>;
+    const keep = Profile.safeParse({ ...d0, ...(old.onboardedAt ? { onboardedAt: old.onboardedAt } : {}), ...(old.displayName ? { displayName: old.displayName } : {}), ...(old.address ? { address: old.address } : {}) });
+    const v = keep.success ? keep.data : d0;
+    await db.profile.put(v); return v;
   }
   const d = defaultProfile();
   await db.profile.put(d);

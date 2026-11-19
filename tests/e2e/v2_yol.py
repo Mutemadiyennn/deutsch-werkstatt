@@ -35,7 +35,7 @@ def main():
         na = next_card(pg, base)
         check("Seans 2" in na and "Temel ders" in na, f"Bugün: Seans 2 temel ders ({na[:80]!r})")
         check("Seans 1: Kelime Bahçesi" not in na, "biten Seans 1 yeniden önerilmiyor")
-        pg.click("[data-test=m1-devam]"); pg.wait_for_selector("[data-test=ders-tanit]")
+        pg.click("[data-test=m1-devam]"); pg.wait_for_selector("[data-test=ders]")
         k = 0
         while not pg.locator("[data-test=ders-bitti]").count() and k < 120:
             v2_ders.step(pg); k += 1

@@ -21,8 +21,16 @@ function voiceFor(lang: "de" | "tr"): SpeechSynthesisVoice | undefined {
   return undefined;
 }
 
+/**
+ * Seslendirmeden önce gösterim yer tutucuları temizlenir (D-061): ad girilmemişse "(adın)" okunmaz; hitap seçilmemişse
+ * "Herr/Frau" gibi çift biçimin ilki okunur. (Metin ekranda kişiselleştirilmiş hâliyle gelir.)
+ */
+export function sesMetni(t: string): string {
+  return t.replace(/\s*\(adın\)/g, "").replace(/(\p{Lu}\p{Ll}+)\/(\p{Lu}\p{Ll}+)/gu, "$1").replace(/\s+([,.!?])/g, "$1").replace(/\s{2,}/g, " ").trim();
+}
 export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed = "normal"): Promise<void> {
   if (!ttsAvailable()) return;
+  text = sesMetni(text);
   speechSynthesis.cancel();
   for (const seg of splitForSpeech(text, lang)) {
     await new Promise<void>((res) => {

@@ -265,6 +265,10 @@ def main():
         open_section(page, "roleplay"); page.wait_for_selector("[data-test=rp-start]"); page.click("[data-test=rp-start]")
         page.fill("[data-test=answer]", "Guten Tag, hier ist Frau Novak."); page.click("[data-test=submit]")
         page.locator("[data-test=rp-chat] .bubble.them").nth(1).wait_for()
+        # yavaş cihazda istek baloncuktan sonra kaydedilebilir: rol oyunu isteği gelene kadar bekle (en çok 15 sn)
+        for _ in range(60):
+            if any(c["url"].endswith("/v1/ai/run") and "roleplay_turn" in (c["body"] or "") for c in API_CALLS[n0:]): break
+            page.wait_for_timeout(250)
         bodies = [c["body"] or "" for c in API_CALLS[n0:] if c["url"].endswith("/v1/ai/run")]
         check(bodies and all("Novak" not in b for b in bodies), "yapay zekâ isteklerinde ad yok")
         check(any('"address_de": "Frau"' in b or '"address_de":"Frau"' in b for b in bodies) and any("[Name]" in b for b in bodies), "yapay zekâya yalnızca hitap + [Name] gidiyor")

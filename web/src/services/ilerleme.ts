@@ -8,7 +8,7 @@ import { XP_BOS, xpEkle, type Ilerleme, type XpKayit } from "../core/gun.ts";
 export async function ilerlemeOku(): Promise<Ilerleme> {
   const [d, m, b] = await Promise.all([metaPrefix<{ bitti?: unknown }>("ders:"), metaPrefix<{ bitti?: unknown }>("m1:medya:"), metaPrefix<unknown>("m1:bahce:")]);
   return {
-    dersBitti: new Set(d.filter((x) => x.value?.bitti).map((x) => x.key.slice("ders:".length))),
+    dersBitti: new Set(d.filter((x) => x.value?.bitti || (x.value as { ilkBitti?: unknown })?.ilkBitti).map((x) => x.key.slice("ders:".length))),
     medyaBitti: new Set(m.filter((x) => x.value?.bitti).map((x) => x.key.slice("m1:medya:".length))),
     bahceBitti: new Set(b.map((x) => Number(x.key.slice("m1:bahce:".length))).filter((n) => Number.isFinite(n)))
   };
