@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { loadContent, checkRules, checkScenario } from "./load.ts";
+import { loadContent, checkRules, checkScenario, icerikGuvenligi, b4Uyarilar } from "./load.ts";
 import { importV1, sameSense } from "./import-v1.ts";
 import { AiTasks } from "../../packages/shared/src/api.ts";
 
@@ -69,5 +69,24 @@ describe("v1 aktarımı", () => {
     expect(full.some((e) => e.includes("cümle kurma en az 25"))).toBe(true);
     expect(full.some((e) => e.includes("alıştırma en az 35"))).toBe(true);
     expect(mini.filter((e) => /en az (10|12|1) |alıştırma türü eksik/.test(e))).toEqual([]);
+  });
+});
+
+describe("#58 B4 doğrulayıcı", () => {
+  const L = (x: Record<string, unknown>) => ({ collocations: [], patterns: [], register: "neutral", related: [], mistakes_tr: [], examples: [], domains: [], legacy: [], forms: [], ...x }) as never;
+  const bos = { scenarios: [], temel: [], m1: [], patterns: [] };
+  it("kaba kelime: aktif kartta hata, yalnızca tanıma kartında uyarı; hassas konu uyarı", () => {
+    const a = icerikGuvenligi({ ...bos, lexemes: [L({ id: "lx:x", de: "Das ist Scheiße.", tr: "x", pos: "phrase", tier: "K1" })] });
+    expect(a.hata).toHaveLength(1);
+    const b = icerikGuvenligi({ ...bos, lexemes: [L({ id: "lx:y", de: "Scheiße", tr: "x", pos: "noun", tier: "passive" })] });
+    expect(b.hata).toHaveLength(0); expect(b.uyari[0]).toMatch(/yalnızca tanıma/);
+    const c = icerikGuvenligi({ ...bos, lexemes: [L({ id: "lx:z", de: "Waffe", tr: "silah", pos: "noun", tier: "passive" })] });
+    expect(c.uyari[0]).toMatch(/hassas/);
+    // kelime içinde geçen masum kök yakalanmaz (Schiff, Pickel)
+    expect(icerikGuvenligi({ ...bos, lexemes: [L({ id: "lx:s", de: "Das Schiff", tr: "gemi", pos: "noun", tier: "K1" })] }).hata).toHaveLength(0);
+  });
+  it("isimde forms, K1'de 3+ eşdizim, somut kelimede örnek görseli: sayılı uyarı", () => {
+    const u = b4Uyarilar([L({ id: "lx:a", de: "Tisch", tr: "masa", pos: "noun", tier: "K1", img: "table", examples: [{ de: "x", tr: "y" }] })]);
+    expect(u.join("\n")).toMatch(/forms yok: 1/); expect(u.join("\n")).toMatch(/3'ten az eşdizim: 1/); expect(u.join("\n")).toMatch(/görselsiz örnek: 1/);
   });
 });

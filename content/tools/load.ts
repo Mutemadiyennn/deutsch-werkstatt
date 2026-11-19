@@ -257,6 +257,12 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
     if (l.pos === "noun" && /^(der|die|das)\s/i.test(l.de)) artInDe.push(l.id);
     if (l.exp) for (const x of explanationIssues(l.exp)) errors.push(`${l.id}.exp.${x}`);
   }
+  // #58 B4: içerik güvenliği, pasif kelime, isimde forms, K1'de 3+ eşdizim, somut kelimede örnek başına görsel
+  { const g = icerikGuvenligi(c);
+    errors.push(...g.hata); warnings.push(...g.uyari);
+    warnings.push(...b4Uyarilar(c.lexemes));
+    for (const l of c.lexemes) if (l.tier === "passive" && l.forms.length) errors.push(`${l.id}: pasif (yalnızca tanıma) kartta forms olmaz; üretim havuzuna girer (#58 B4)`);
+  }
   if (artInDe.length) errors.push(`de alanı artikelle başlayan ${artInDe.length} isim (artikel yalnızca art alanında, D-098): ${artInDe.slice(0, 5).join(", ")}${artInDe.length > 5 ? " …" : ""}`);
   // PM-040.3 / PM-042 A.3: sözlük partisi — "reviewed" ise okur zorunlu; tr ve mistakes_tr OD-9.2 (incelenmişte hata, taslakta sayı uyarısı)
   { const byId = new Map(c.lexemes.map((l) => [l.id, l]));
@@ -389,4 +395,50 @@ function addDayTaught(t: Set<string>, g: Gun, c: Loaded) {
     for (const dr of d.drills) if ("accepted" in dr) for (const a of dr.accepted) for (const w of toks(a)) t.add(w);
     for (const ln of d.dialogue?.lines ?? []) for (const w of toks(ln.de)) t.add(w);
   }
+}
+
+/**
+ * #58 B4 içerik güvenliği süzgeci: öğrenciye görünecek bütün metinlerde küfür/hakaret (hata) ve hassas konu (uyarı; insan
+ * incelemesi). Liste kısa ve kapalı; kelime sınırıyla aranır (Almanca birleşik kelimeler için kök başta da aranır).
+ */
+const KUFUR = /(?<![\p{L}])(schei(ß|ss)e\w*|fick\w*|wichser\w*|fotze\w*|hurensohn\w*|arschloch\w*|nutte\w*|missgeburt\w*|siktir\w*|amk|amına|orospu\w*|piç\w*|yavşak\w*|şerefsiz\w*|ibne\w*)(?![\p{L}])/iu;
+const HASSAS = /(?<![\p{L}])(selbstmord\w*|suizid\w*|umbringen|kokain|heroin|crystal meth|waffe\w*|bombe\w*|vergewaltig\w*|intihar\w*|uyuşturucu\w*|tecavüz\w*)(?![\p{L}])/iu;
+function metinler(x: unknown, yol: string, out: { yol: string; t: string }[]) {
+  if (typeof x === "string") { out.push({ yol, t: x }); return; }
+  if (Array.isArray(x)) { x.forEach((v, i) => metinler(v, `${yol}[${i}]`, out)); return; }
+  if (x && typeof x === "object") for (const [k, v] of Object.entries(x)) { if (k === "id" || k === "source" || k === "license" || k === "url" || k === "img") continue; metinler(v, yol ? `${yol}.${k}` : k, out); }
+}
+export function icerikGuvenligi(c: Pick<Loaded, "lexemes" | "scenarios" | "temel" | "m1" | "patterns">): { hata: string[]; uyari: string[] } {
+  const hata: string[] = [], uyari: string[] = [];
+  const kaynaklar: [string, unknown][] = [
+    ...c.lexemes.map((l) => [l.id, l] as [string, unknown]), ...c.patterns.map((p) => [p.id, p] as [string, unknown]),
+    ...c.scenarios.map((s) => [s.file, s.data] as [string, unknown]), ...c.temel.map((t) => [t.file, t.data] as [string, unknown]), ...c.m1.map((g) => [g.file, g.data] as [string, unknown])
+  ];
+  const pasif = new Set(c.lexemes.filter((l) => l.tier === "passive").map((l) => l.id));
+  for (const [ad, v] of kaynaklar) {
+    const out: { yol: string; t: string }[] = []; metinler(v, "", out);
+    const kufur = out.map((m) => ({ m, k: KUFUR.exec(m.t) })).filter((x) => x.k);
+    const hassas = out.map((m) => HASSAS.exec(m.t)).filter(Boolean);
+    if (kufur.length) {
+      const ilk = `${kufur[0]!.m.yol}: "${kufur[0]!.k![0]}"`;
+      // yalnızca tanıma kartı (tier: passive), "kibar ortamda deme" uyarısıyla: duyduğunu anlamak için kalabilir (uyarı)
+      if (pasif.has(ad)) uyari.push(`${ad}: kaba kelime yalnızca tanıma kartında (${kufur.length} metin, ilk ${ilk}); mistakes_tr'de kullanım uyarısı olmalı (#58 B4)`);
+      else hata.push(`${ad}: içerik güvenliği — uygunsuz kelime ${kufur.length} metinde (ilk ${ilk}); öğrenciye üretim olarak sunulamaz (#58 B4)`);
+    }
+    if (hassas.length) uyari.push(`${ad}: hassas konu "${hassas[0]![0]}" ${hassas.length} metinde — insan incelemesi (#58 B4)`);
+  }
+  return { hata, uyari };
+}
+/** #58 B4 kart kuralları (içerik tamamlanınca hataya döner; şimdilik sayılı uyarı): isimde forms, K1'de 3+ eşdizim, somut kelimede örnek başına img */
+export function b4Uyarilar(lexemes: Lexeme[]): string[] {
+  const k1 = lexemes.filter((l) => l.tier === "K1" && l.card !== false);
+  const formsuz = k1.filter((l) => l.pos === "noun" && !l.forms.length).map((l) => l.id);
+  const azEsdizim = k1.filter((l) => l.collocations.length < 3).map((l) => l.id);
+  const gorselsiz = lexemes.filter((l) => l.img && l.examples.some((e) => !e.img)).map((l) => l.id);
+  const ilk = (x: string[]) => x.slice(0, 5).join(", ") + (x.length > 5 ? " …" : "");
+  return [
+    ...(formsuz.length ? [`K1 isimde forms yok: ${formsuz.length} kart (ilk: ${ilk(formsuz)}) (#58 B4)`] : []),
+    ...(azEsdizim.length ? [`K1'de 3'ten az eşdizim: ${azEsdizim.length} kart (ilk: ${ilk(azEsdizim)}) (#58 B4)`] : []),
+    ...(gorselsiz.length ? [`somut kelimede (img var) görselsiz örnek: ${gorselsiz.length} kart (ilk: ${ilk(gorselsiz)}) (#58 B4)`] : [])
+  ];
 }
