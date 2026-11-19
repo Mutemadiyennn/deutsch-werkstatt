@@ -2867,6 +2867,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "doctor talking with coughing patient"
+    },
+    {
+     "id": "lx:Husten:5",
+     "de": "Dr. Weber fragt: Seit wann haben Sie den Husten?",
+     "tr": "Dr. Weber soruyor: Öksürük ne zamandan beri var?",
+     "layer": "hd",
+     "img": "doctor listening to patient's chest"
+    },
+    {
+     "id": "lx:Husten:6",
+     "de": "– Tobi, du hustest ja immer noch! – Ja, der Husten geht einfach nicht weg.",
+     "tr": "– Tobi, hâlâ öksürüyorsun! – Evet, bu öksürük bir türlü geçmiyor.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "man coughing near coffee machine"
     }
    ],
    "level": "A1",
@@ -2889,9 +2904,9 @@
    ],
    "forms": [
     {
-     "de": "Ich habe ___.",
+     "de": "Ich habe ___ und Fieber.",
      "answer": "Husten",
-     "tr": "Öksürüğüm var.",
+     "tr": "Öksürüğüm ve ateşim var.",
      "hint_tr": "Öksürüğüm var derken **Ich habe Husten** denir."
     },
     {
@@ -2907,10 +2922,22 @@
      "hint_tr": "Hangi öksürük olduğu belliyse **der Husten** denir."
     },
     {
-     "de": "Haben Sie etwas gegen ___?",
+     "de": "Was hilft gegen ___?",
      "answer": "Husten",
-     "tr": "Öksürüğe iyi gelen bir şeyiniz var mı?",
+     "tr": "Öksürüğe ne iyi gelir?",
      "hint_tr": "Öksürüğe karşı derken **gegen Husten** denir."
+    },
+    {
+     "de": "Der ___ ist schon besser.",
+     "answer": "Husten",
+     "tr": "Öksürük şimdiden daha iyi.",
+     "hint_tr": "Öksürük derken **der Husten** denir."
+    },
+    {
+     "de": "Derya hat seit Montag ___.",
+     "answer": "Husten",
+     "tr": "Derya'nın pazartesiden beri öksürüğü var.",
+     "hint_tr": "Derya'nın öksürüğü var derken **Derya hat Husten** denir."
     }
    ]
   },
@@ -2983,6 +3010,19 @@
      "tr": "– Cuma geliyor musun? – Hayır, maalesef gelemeyeceğim.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:absagen:5",
+     "de": "Frau Huber sagt alle Termine für Freitag ab.",
+     "tr": "Huber Hanım cuma günkü bütün randevuları iptal ediyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:absagen:6",
+     "de": "– Kommt Basti heute zum Training? – Nee, er hat abgesagt.",
+     "tr": "– Basti bugün antrenmana geliyor mu? – Yok, gelemeyeceğini bildirdi.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -3015,31 +3055,37 @@
      "de": "Ich ___ den Termin ___.",
      "answer": "sage … ab",
      "tr": "Randevuyu iptal ediyorum.",
-     "hint_tr": "**ich** ile **sage** olur, **ab** sona gider."
+     "hint_tr": "Randevuyu iptal ediyorum derken **Ich sage den Termin ab** denir."
     },
     {
-     "de": "___ du für morgen ___?",
+     "de": "___ du das Treffen morgen ___?",
      "answer": "Sagst … ab",
-     "tr": "Yarın için iptal ediyor musun?",
-     "hint_tr": "**du** ile **sagst** olur, **ab** sona gider."
+     "tr": "Yarınki buluşmayı iptal ediyor musun?",
+     "hint_tr": "Buluşmayı iptal ediyor musun derken **Sagst du das Treffen ab** denir."
     },
     {
      "de": "Frau Aksoy ___ für heute ___.",
      "answer": "sagt … ab",
      "tr": "Aksoy Hanım bugün gelemeyeceğini bildiriyor.",
-     "hint_tr": "**er** ve **sie** ile **sagt** olur, **ab** sona gider."
+     "hint_tr": "Bugün gelemeyeceğini bildiriyor derken **sagt für heute ab** denir."
     },
     {
      "de": "Ich muss leider ___.",
      "answer": "absagen",
      "tr": "Maalesef iptal etmem gerekiyor.",
-     "hint_tr": "**muss** varsa sonda bitişik **absagen** gelir."
+     "hint_tr": "Maalesef iptal etmem gerekiyor derken **Ich muss leider absagen** denir."
     },
     {
-     "de": "Er hat den Termin ___.",
+     "de": "Herr Wimmer hat den Termin ___.",
      "answer": "abgesagt",
-     "tr": "Adam randevuyu iptal etti.",
-     "hint_tr": "Geçmişi anlatırken **hat abgesagt** denir."
+     "tr": "Wimmer Bey randevuyu iptal etti.",
+     "hint_tr": "Wimmer Bey randevuyu iptal etti derken **Herr Wimmer hat den Termin abgesagt** denir."
+    },
+    {
+     "de": "Wir müssen die Feier ___.",
+     "answer": "absagen",
+     "tr": "Kutlamayı iptal etmemiz gerekiyor.",
+     "hint_tr": "Kutlamayı iptal etmemiz gerekiyor derken **Wir müssen die Feier absagen** denir."
     }
    ]
   },
@@ -3252,6 +3298,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "cozy evening with candle on coffee table"
+    },
+    {
+     "id": "lx:Kerze:5",
+     "de": "Frau Brandl stellt eine Kerze ins Fenster.",
+     "tr": "Brandl Hanım pencereye bir mum koyuyor.",
+     "layer": "hd",
+     "img": "candle on windowsill at night"
+    },
+    {
+     "id": "lx:Kerze:6",
+     "de": "– Was schenken wir Frau Brandl? – Vielleicht eine Kerze? Die mag sie.",
+     "tr": "– Brandl Hanım'a ne hediye edelim? – Belki bir mum? Mumları seviyor.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "wrapped candle gift on table"
     }
    ],
    "level": "A1",
@@ -3282,14 +3343,26 @@
     {
      "de": "Der Adventskranz hat vier ___.",
      "answer": "Kerzen",
-     "tr": "Advent çelengi dört mumlu.",
-     "hint_tr": "Birçok mum için **Kerzen** denir."
+     "tr": "Mum çelenginde dört mum var.",
+     "hint_tr": "Dört mum derken **vier Kerzen** denir."
     },
     {
-     "de": "Wir zünden die erste Kerze ___.",
-     "answer": "an",
+     "de": "Wir zünden die erste ___ an.",
+     "answer": "Kerze",
      "tr": "İlk mumu yakıyoruz.",
-     "hint_tr": "Mum yakarken **Wir zünden die Kerze an** denir."
+     "hint_tr": "İlk mumu derken **die erste Kerze** denir."
+    },
+    {
+     "de": "Die ___ ist noch an.",
+     "answer": "Kerze",
+     "tr": "Mum hâlâ yanıyor.",
+     "hint_tr": "Mum derken **die Kerze** denir."
+    },
+    {
+     "de": "Ich brauche noch zwei ___.",
+     "answer": "Kerzen",
+     "tr": "İki muma daha ihtiyacım var.",
+     "hint_tr": "İki mum derken **zwei Kerzen** denir."
     }
    ]
   },
@@ -3362,6 +3435,19 @@
      "tr": "– Pantolonu iade edebilir miyim? – Evet, fişiniz yanınızda mı?",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:zurückgeben:5",
+     "de": "Tobi gibt mir morgen das Geld zurück.",
+     "tr": "Tobi parayı bana yarın geri verecek.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:zurückgeben:6",
+     "de": "– Hast du Frau Brandl das Buch zurückgegeben? – Ja, gestern schon.",
+     "tr": "– Brandl Hanım'a kitabı geri verdin mi? – Evet, dün verdim.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -3396,31 +3482,37 @@
      "de": "Ich ___ dir das Geld morgen ___.",
      "answer": "gebe … zurück",
      "tr": "Paranı yarın geri veriyorum.",
-     "hint_tr": "**ich** ile **gebe** olur, **zurück** sona gider."
+     "hint_tr": "Paranı yarın geri veriyorum derken **Ich gebe dir das Geld morgen zurück** denir."
     },
     {
      "de": "Wann ___ du mir das Buch ___?",
      "answer": "gibst … zurück",
      "tr": "Kitabı bana ne zaman geri vereceksin?",
-     "hint_tr": "**du** ile **gibst** olur, **zurück** sona gider."
+     "hint_tr": "Geri vereceksin derken **gibst zurück** denir."
     },
     {
-     "de": "Er ___ die Tasse am Stand ___.",
+     "de": "Tobi ___ die Tasse am Stand ___.",
      "answer": "gibt … zurück",
-     "tr": "Adam kupayı tezgâha geri veriyor.",
-     "hint_tr": "**er** ve **sie** ile **gibt** olur, **zurück** sona gider."
+     "tr": "Tobi kupayı tezgâha geri veriyor.",
+     "hint_tr": "Tobi kupayı geri veriyor derken **Tobi gibt die Tasse zurück** denir."
     },
     {
      "de": "Ich möchte die Hose ___.",
      "answer": "zurückgeben",
      "tr": "Pantolonu iade etmek istiyorum.",
-     "hint_tr": "**möchte** varsa sonda bitişik **zurückgeben** gelir."
+     "hint_tr": "Pantolonu iade etmek istiyorum derken **Ich möchte die Hose zurückgeben** denir."
     },
     {
      "de": "Hast du die Tassen schon ___?",
      "answer": "zurückgegeben",
      "tr": "Kupaları geri verdin mi?",
-     "hint_tr": "Geçmişi anlatırken **hast zurückgegeben** denir."
+     "hint_tr": "Kupaları geri verdin mi derken **Hast du die Tassen schon zurückgegeben?** denir."
+    },
+    {
+     "de": "Wir ___ die Schlüssel am Freitag ___.",
+     "answer": "geben … zurück",
+     "tr": "Anahtarları cuma günü geri veriyoruz.",
+     "hint_tr": "Anahtarları geri veriyoruz derken **Wir geben die Schlüssel zurück** denir."
     }
    ]
   },
