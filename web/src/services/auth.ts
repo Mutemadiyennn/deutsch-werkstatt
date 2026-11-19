@@ -51,8 +51,9 @@ class FirebaseAuth implements AuthAdapter {
       const [{ initializeApp, getApps, getApp }, au] = await Promise.all([import("firebase/app"), import("firebase/auth")]);
       const app = getApps().length ? getApp() : initializeApp(FIREBASE_CONFIG);
       let auth: import("firebase/auth").Auth;
-      // popupRedirectResolver şart: initializeAuth onu kendiliğinden eklemez, yoksa signInWithPopup her tarayıcıda hemen hata verir
-      try { auth = au.initializeAuth(app, { persistence: [au.indexedDBLocalPersistence, au.browserLocalPersistence], popupRedirectResolver: au.browserPopupRedirectResolver }); } catch { auth = au.getAuth(app); }
+      // popupRedirectResolver şart (web): initializeAuth onu kendiliğinden eklemez, yoksa signInWithPopup her tarayıcıda hemen
+      // hata verir. Kabukta verilmez: Google düğmesi orada yok, çözümleyici açılışı ağa bağlardı (inceleme #114 P1-1)
+      try { auth = au.initializeAuth(app, { persistence: [au.indexedDBLocalPersistence, au.browserLocalPersistence], ...(isNative() ? {} : { popupRedirectResolver: au.browserPopupRedirectResolver }) }); } catch { auth = au.getAuth(app); }
       this.mod = au; this.auth = auth;
       await new Promise<void>((res) => {
         let first = true;
