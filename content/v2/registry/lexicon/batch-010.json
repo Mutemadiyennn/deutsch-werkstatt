@@ -3701,38 +3701,53 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kurabiye yaptım derken **Ich habe Plätzchen gebackt** yanlış. Doğrusu **Ich habe Plätzchen gebacken**.",
+    "Kurabiye pişirdim derken **Ich habe Plätzchen gebackt** yanlış. Doğrusu: **Ich habe Plätzchen gebacken**. Pişirdim derken **habe gebacken** denir.",
     "Kek pişiriyorum derken **Ich koche einen Kuchen** yanlış. Doğrusu **Ich backe einen Kuchen**."
    ],
    "examples": [
     {
      "id": "lx:backen:1",
      "de": "Hast du schon Plätzchen gebacken?",
-     "tr": "Kurabiye yaptın mı?",
+     "tr": "Kurabiye pişirdin mi?",
      "layer": "hd",
      "img": "tray of freshly baked cookies"
     },
     {
      "id": "lx:backen:2",
      "de": "Frau Brandl backt jedes Jahr für alle Nachbarn.",
-     "tr": "Brandl Hanım her yıl bütün komşulara kek kurabiye yapıyor.",
+     "tr": "Brandl Hanım her yıl bütün komşulara kek kurabiye pişiriyor.",
      "layer": "hd",
      "img": "elderly woman giving cookies to neighbor"
     },
     {
      "id": "lx:backen:3",
      "de": "Komm, wir backen heut was Süßes.",
-     "tr": "Hadi, bugün tatlı bir şeyler yapalım.",
+     "tr": "Hadi, bugün tatlı bir şeyler pişirelim.",
      "layer": "alltag",
      "img": "family baking together in kitchen"
     },
     {
      "id": "lx:backen:4",
      "de": "– Hast du das selbst gebacken, Anna? – Ja, nach dem Rezept von meiner Oma.",
-     "tr": "– Bunu kendin mi yaptın, Anna? – Evet, büyükannemin tarifiyle.",
+     "tr": "– Bunu kendin mi pişirdin, Anna? – Evet, büyükannemin tarifiyle.",
      "layer": "hd",
      "dialog": true,
      "img": "homemade cake on table with recipe book"
+    },
+    {
+     "id": "lx:backen:5",
+     "de": "Derya hat für das Team einen Kuchen gebacken.",
+     "tr": "Derya ekip için bir kek pişirdi.",
+     "layer": "hd",
+     "img": "woman bringing homemade cake to office"
+    },
+    {
+     "id": "lx:backen:6",
+     "de": "– Das riecht gut! Was backst du? – Einen Apfelkuchen.",
+     "tr": "– Güzel kokuyor! Ne pişiriyorsun? – Elmalı kek.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "apple cake baking in oven"
     }
    ],
    "level": "A2",
@@ -3755,28 +3770,43 @@
    ],
    "forms": [
     {
-     "de": "Ich ___ heute Plätzchen.",
+     "de": "Ich ___ für die Kollegen einen Kuchen.",
      "answer": "backe",
-     "tr": "Bugün kurabiye yapıyorum.",
-     "hint_tr": "**ich** ile **backe** olur."
+     "tr": "İş arkadaşlarıma bir kek pişiriyorum.",
+     "hint_tr": "Bir kek pişiriyorum derken **Ich backe einen Kuchen** denir."
     },
     {
      "de": "Wir ___ am Wochenende Kuchen.",
      "answer": "backen",
-     "tr": "Hafta sonu kek yapıyoruz.",
-     "hint_tr": "**wir** ile **backen** olur."
+     "tr": "Hafta sonu kek pişiriyoruz.",
+     "hint_tr": "Kek pişiriyoruz derken **Wir backen Kuchen** denir."
     },
     {
      "de": "Ich will morgen Brot ___.",
      "answer": "backen",
-     "tr": "Yarın ekmek yapmak istiyorum.",
-     "hint_tr": "**will** varsa sonda **backen** gelir."
+     "tr": "Yarın ekmek pişirmek istiyorum.",
+     "hint_tr": "Ekmek pişirmek istiyorum derken **Ich will Brot backen** denir."
     },
     {
      "de": "Hast du das selbst ___?",
      "answer": "gebacken",
-     "tr": "Bunu kendin mi yaptın?",
-     "hint_tr": "Geçmişi anlatırken **hast gebacken** denir."
+     "tr": "Bunu kendin mi pişirdin?",
+     "hint_tr": "Kendin mi pişirdin derken **Hast du das selbst gebacken?** denir."
+    },
+    {
+     "de": "Frau Stadler ___ jeden Morgen frisches Brot.",
+     "answer": "backt",
+     "tr": "Stadler Hanım her sabah taze ekmek pişiriyor.",
+     "hint_tr": "Stadler Hanım ekmek pişiriyor derken **Frau Stadler backt Brot** denir.",
+     "also_ok": [
+      "bäckt"
+     ]
+    },
+    {
+     "de": "___ ihr heute Plätzchen?",
+     "answer": "Backt",
+     "tr": "Bugün kurabiye mi pişiriyorsunuz?",
+     "hint_tr": "Kurabiye mi pişiriyorsunuz derken **Backt ihr Plätzchen?** denir."
     }
    ]
   },
@@ -3844,6 +3874,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "doctor explaining dosage to patient"
+    },
+    {
+     "id": "lx:Tablette:5",
+     "de": "Tobi nimmt eine Tablette gegen Kopfschmerzen.",
+     "tr": "Tobi baş ağrısı için bir hap içiyor.",
+     "layer": "hd",
+     "img": "man taking pill with glass of water"
+    },
+    {
+     "id": "lx:Tablette:6",
+     "de": "– Hast du deine Tabletten genommen? – Oh nein, die hab ich ganz vergessen!",
+     "tr": "– Haplarını içtin mi? – Eyvah, tamamen unutmuşum!",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "pill box on kitchen counter"
     }
    ],
    "level": "A1",
@@ -3874,19 +3919,37 @@
      "de": "Nehmen Sie ___ Tablette nach dem Essen.",
      "answer": "die",
      "tr": "Hapı yemekten sonra için.",
-     "hint_tr": "Doktorun verdiği hap: **die Tablette**."
+     "hint_tr": "Hangi hap olduğu belliyse **die Tablette** denir."
     },
     {
      "de": "Ich habe die ___ schon genommen.",
      "answer": "Tabletten",
      "tr": "Hapları zaten içtim.",
-     "hint_tr": "Birçok hap için **Tabletten** denir."
+     "hint_tr": "Hapları derken **die Tabletten** denir."
     },
     {
      "de": "Haben Sie Tabletten ___ Kopfschmerzen?",
      "answer": "gegen",
      "tr": "Baş ağrısına iyi gelen hapınız var mı?",
-     "hint_tr": "Bir ağrıya iyi gelen hap için **gegen** denir."
+     "hint_tr": "Baş ağrısına iyi gelen hap derken **Tabletten gegen Kopfschmerzen** denir."
+    },
+    {
+     "de": "Frau Brandl hat ihre ___ vergessen.",
+     "answer": "Tabletten",
+     "tr": "Brandl Hanım haplarını unuttu.",
+     "hint_tr": "Haplarını derken **ihre Tabletten** denir."
+    },
+    {
+     "de": "Die ___ hilft gut gegen Schmerzen.",
+     "answer": "Tablette",
+     "tr": "Hap ağrıya iyi geliyor.",
+     "hint_tr": "Hap derken **die Tablette** denir."
+    },
+    {
+     "de": "Wie viele ___ nehmen Sie am Tag?",
+     "answer": "Tabletten",
+     "tr": "Günde kaç hap içiyorsunuz?",
+     "hint_tr": "Kaç hap derken **wie viele Tabletten** denir."
     }
    ]
   },
@@ -3944,7 +4007,7 @@
     {
      "id": "lx:aufschreiben:2",
      "de": "Ich schreibe mir die Adresse auf.",
-     "tr": "Adresi not alıyorum.",
+     "tr": "Adresi not ediyorum.",
      "layer": "hd"
     },
     {
@@ -3956,8 +4019,21 @@
     {
      "id": "lx:aufschreiben:4",
      "de": "– Haben Sie die Nummer? – Moment, ich schreibe sie auf.",
-     "tr": "– Numara sizde var mı? – Bir dakika, not alıyorum.",
+     "tr": "– Numara sizde var mı? – Bir dakika, not ediyorum.",
      "layer": "hd",
+     "dialog": true
+    },
+    {
+     "id": "lx:aufschreiben:5",
+     "de": "Frau Huber schreibt Ihnen die Uhrzeit auf.",
+     "tr": "Huber Hanım saati sizin için not ediyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:aufschreiben:6",
+     "de": "– Wie war der Name noch mal? – Moment, ich hab ihn aufgeschrieben.",
+     "tr": "– Adı neydi? – Bir dakika, not ettim.",
+     "layer": "alltag",
      "dialog": true
     }
    ],
@@ -3988,31 +4064,37 @@
      "de": "Ich ___ die Nummer ___.",
      "answer": "schreibe … auf",
      "tr": "Numarayı not ediyorum.",
-     "hint_tr": "**ich** ile **schreibe** olur, **auf** sona gider."
+     "hint_tr": "Numarayı not ediyorum derken **Ich schreibe die Nummer auf** denir."
     },
     {
      "de": "___ du dir die Adresse ___?",
      "answer": "Schreibst … auf",
      "tr": "Adresi not ediyor musun?",
-     "hint_tr": "**du** ile **schreibst** olur, **auf** sona gider."
+     "hint_tr": "Adresi not ediyor musun derken **Schreibst du dir die Adresse auf?** denir."
     },
     {
      "de": "Die Ärztin ___ den Namen ___.",
      "answer": "schreibt … auf",
      "tr": "Doktor adı not ediyor.",
-     "hint_tr": "**er** ve **sie** ile **schreibt** olur, **auf** sona gider."
+     "hint_tr": "Doktor adı not ediyor derken **Die Ärztin schreibt den Namen auf** denir."
     },
     {
-     "de": "Können Sie das bitte ___?",
+     "de": "Können Sie mir die Adresse bitte ___?",
      "answer": "aufschreiben",
-     "tr": "Bunu lütfen yazabilir misiniz?",
-     "hint_tr": "**Können Sie** varsa sonda bitişik **aufschreiben** gelir."
+     "tr": "Adresi benim için not eder misiniz lütfen?",
+     "hint_tr": "Not etmek derken **aufschreiben** denir."
     },
     {
-     "de": "Ich habe alles ___.",
+     "de": "Ich habe die Nummer ___.",
      "answer": "aufgeschrieben",
-     "tr": "Her şeyi not ettim.",
-     "hint_tr": "Geçmişi anlatırken **habe aufgeschrieben** denir."
+     "tr": "Numarayı not ettim.",
+     "hint_tr": "Numarayı not ettim derken **Ich habe die Nummer aufgeschrieben** denir."
+    },
+    {
+     "de": "Wir ___ alle Namen ___.",
+     "answer": "schreiben … auf",
+     "tr": "Bütün adları not ediyoruz.",
+     "hint_tr": "Bütün adları not ediyoruz derken **Wir schreiben alle Namen auf** denir."
     }
    ]
   },
@@ -4076,6 +4158,19 @@
      "tr": "– Bugün kaçta çıkıyorsun? – Beş buçukta.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:Feierabend:5",
+     "de": "Nach Feierabend fährt Tobi mit dem Bus nach Hause.",
+     "tr": "Tobi işten sonra otobüsle eve gidiyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Feierabend:6",
+     "de": "– Hast du schon Feierabend? – Nein, ich muss noch eine Stunde arbeiten.",
+     "tr": "– İşin bitti mi? – Hayır, daha bir saat çalışmam lazım.",
+     "layer": "hd",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -4102,19 +4197,31 @@
      "de": "Schönen ___!",
      "answer": "Feierabend",
      "tr": "İyi dinlenmeler!",
-     "hint_tr": "İşten çıkan birine **Schönen Feierabend** denir."
+     "hint_tr": "İyi dinlenmeler derken **Schönen Feierabend!** denir."
     },
     {
      "de": "Wann machst du heute ___?",
      "answer": "Feierabend",
      "tr": "Bugün kaçta işten çıkıyorsun?",
-     "hint_tr": "İşi bitirip çıkmak için **Feierabend machen** denir."
+     "hint_tr": "Kaçta işten çıkıyorsun derken **Wann machst du Feierabend?** denir."
     },
     {
      "de": "Nach ___ gehe ich einkaufen.",
      "answer": "Feierabend",
      "tr": "İşten sonra alışverişe gidiyorum.",
      "hint_tr": "İşten sonra derken **nach Feierabend** denir."
+    },
+    {
+     "de": "Herr Wimmer, ich mache jetzt ___.",
+     "answer": "Feierabend",
+     "tr": "Wimmer Bey, ben artık işten çıkıyorum.",
+     "hint_tr": "İşten çıkıyorum derken **Ich mache Feierabend** denir."
+    },
+    {
+     "de": "Ich freue mich auf ___ Feierabend.",
+     "answer": "den",
+     "tr": "İş çıkışını dört gözle bekliyorum.",
+     "hint_tr": "İş çıkışını dört gözle bekliyorum derken **Ich freue mich auf den Feierabend** denir."
     }
    ]
   },
