@@ -40,7 +40,17 @@ export interface GardenQ {
   ex: number;
   /** turda kaçıncı deneme (yanlıştan sonra 1) */
   retry?: number;
+  /** B16: yeni kart "Biliyorum, sına beni" — tanıtım yok; tek üretim sorusu (TR→DE, ipucusuz, isimde artikel) */
+  sina?: boolean;
 }
+
+/** B16 sına kabulü: isimde artikel zorunlu (artikelsiz kabul edilmez), öteki türlerde TR→DE kabulü */
+export const sinaKabul = (l: Lexeme): string[] => (isNoun(l) ? [`${l.art} ${l.de}`] : accepted(l, "tr_de"));
+/** Kendiliğinden öneri: art arda bu kadar yeni kart ilk tanıma sorusunda hızlı (≤ HIZLI_SN) ve doğru bilinince */
+export const ONERI_ART_ARDA = 3;
+export const HIZLI_SN = 8;
+/** Tura hızlı şerit uygula: yeni kartların tanıtımı sına sorusuna döner (tekrar kartları ve yanlış tekrarları aynen) */
+export const sinaTuru = (round: GardenQ[], bas = 0): GardenQ[] => round.map((q, i) => (i >= bas && q.intro && !q.retry ? { ...q, intro: false, sina: true, type: "tr_de" as QType } : q));
 
 export const isNoun = (l: Lexeme) => l.pos === "noun" && !!l.art;
 
@@ -232,12 +242,33 @@ export function requeue(round: GardenQ[], q: GardenQ, l: Lexeme, rng: () => numb
   return [...round, { lexId: q.lexId, type: t, ex, retry: 1 }];
 }
 
-/** Anlam seçenekleri: doğru + aynı türden 3 çeldirici (yakın sıklıkta) */
-export function meaningOptions(l: Lexeme, all: Lexeme[], rng: () => number = Math.random): { opts: string[]; ans: number } {
-  const same = all.filter((x) => x.id !== l.id && x.pos === l.pos && x.tr !== l.tr && isCard(x));
-  const near = same.sort((a, b) => Math.abs((a.freqRank ?? 9e9) - (l.freqRank ?? 9e9)) - Math.abs((b.freqRank ?? 9e9) - (l.freqRank ?? 9e9))).slice(0, 12);
+/** Çeldirici yakınlığı (PM 7011722598 madde 5): `tur` = bu turun ve M1 gününün kartları; `bilinen` = öğrencinin tanıdığı kartlar */
+export interface Yakinlik { tur?: Set<string>; bilinen?: Set<string> }
+
+/**
+ * Anlam seçenekleri: doğru + aynı türden 3 çeldirici. Çeldirici eleme ile değil ayırt ederek bilinsin: önce **aynı turun /
+ * günün kartları** (günler için öteki günler), sonra öğrencinin tanıdığı ve aynı alandan kartlar; en çok **1 uzak**
+ * çeldirici (yakın sıklıkta, tercihen tanıdık). Yakın aday yoksa eski davranış (yakın sıklık).
+ */
+export function meaningOptions(l: Lexeme, all: Lexeme[], rng: () => number = Math.random, y: Yakinlik = {}): { opts: string[]; ans: number } {
+  // tek doğru cevap: aynı Almanca kelime (eşsesli kart) ve Türkçe anlamı kesişen kart çeldirici olamaz (inceleme #100 P1-1:
+  // Uhr "saat" ↔ Stunde "saat, ders saati")
+  const benim = trAnahtar(l.tr), deKucuk = l.de.toLowerCase();
+  const uygun = all.filter((x) => x.id !== l.id && x.pos === l.pos && x.tr !== l.tr && isCard(x) && x.de.toLowerCase() !== deKucuk && ![...trAnahtar(x.tr)].some((k) => benim.has(k)));
+  const alan = new Set(l.domains ?? []);
+  const derece = (x: Lexeme) => (y.tur?.has(x.id) ? 2 : y.bilinen?.has(x.id) && (x.domains ?? []).some((d) => alan.has(d)) ? 1 : 0);
+  const uzaklik = (x: Lexeme) => Math.abs((x.freqRank ?? 9e9) - (l.freqRank ?? 9e9));
   const pick: string[] = [];
-  while (pick.length < 3 && near.length) { const i = Math.floor(rng() * near.length) % near.length; const x = near.splice(i, 1)[0]!; if (!pick.includes(x.tr)) pick.push(x.tr); }
+  const al = (havuz: Lexeme[], n: number) => {
+    const h = [...havuz];
+    while (pick.length < n && h.length) { const x = h.splice(Math.floor(rng() * h.length) % h.length, 1)[0]!; if (!pick.includes(x.tr)) pick.push(x.tr); }
+  };
+  // yakın: önce tur/gün, sonra tanıdık + aynı alan; her kademede sıklıkça en yakın 8'den rastgele
+  for (const d of [2, 1]) al(uygun.filter((x) => derece(x) === d).sort((a, b) => uzaklik(a) - uzaklik(b)).slice(0, 8), 3);
+  const yakinSayi = pick.length;
+  // uzak: yakın ≥2 ise en çok 1 (toplam 3); tanıdık kart önce
+  const uzak = uygun.filter((x) => derece(x) === 0).sort((a, b) => Number(!!y.bilinen?.has(b.id)) - Number(!!y.bilinen?.has(a.id)) || uzaklik(a) - uzaklik(b)).slice(0, 12);
+  al(uzak, yakinSayi >= 2 ? Math.min(3, yakinSayi + 1) : 3);
   const opts = [...pick];
   const ans = Math.floor(rng() * (opts.length + 1)) % (opts.length + 1);
   opts.splice(ans, 0, l.tr);
@@ -326,9 +357,11 @@ export function ownSentenceCheck(l: Lexeme, answer: string): "ok" | "missing" | 
  * Aynı Türkçe karşılığı taşıyan başka kart (sprechen/reden, Arbeit/Job): öğrenci onu söylediyse ceza yok, aranan kelime
  * istenir. Aynı sözcük türü şartı; parantezli açıklama anlamın parçası sayılır (inceleme #59 3. tur).
  */
+/** Türkçe anlam anahtarları; parantezli açıklama anlamın parçasıdır: "tutmak (süre)" ≠ "tutmak (fiyat)" */
+export const trAnahtar = (tr: string) => new Set(tr.toLowerCase().split(/[,;/](?![^(]*\))|\bya da\b/).map((x) => x.replace(/\s+/g, " ").trim()).filter((x) => x.length > 1));
+
 export function synonymHit(l: Lexeme, answer: string, all: Lexeme[]): Lexeme | null {
-  // parantezli açıklama anlamın parçasıdır: "tutmak (süre)" ≠ "tutmak (fiyat)"
-  const keys = (tr: string) => new Set(tr.toLowerCase().split(/[,;/](?![^(]*\))|\bya da\b/).map((x) => x.replace(/\s+/g, " ").trim()).filter((x) => x.length > 1));
+  const keys = trAnahtar;
   const mine = keys(l.tr);
   const a = answer.trim().toLowerCase().replace(/[.!?]+$/, "").replace(/^(der|die|das)\s+/, "");
   for (const x of all) {

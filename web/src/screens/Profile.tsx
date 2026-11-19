@@ -162,7 +162,13 @@ export function ProfileView() {
       </section>
 
       <section class="card">
+        <a class="btn sm" href="#/ses" data-test="ses-deneme-ac" style={{ marginBottom: 12 }}>Ses ve mikrofon denemesi</a>
         <p class="small muted">Giriş yapılan hesap: {user?.email || "Google hesabı"}</p>
+        {/* Hesap kimliği (UID): sunucu izin listesine (ALLOWED_UIDS) proje sahibi ekler; ekran görüntüsü testlerinde maskelenir */}
+        {user && <div class="row" style={{ flexWrap: "nowrap", marginBottom: 8 }}>
+          <span class="small grow" style={{ minWidth: 0, overflowWrap: "anywhere" }}>Hesap kimliği: <code data-test="uid" class="selectable" style={{ userSelect: "text", WebkitUserSelect: "text" }}>{user.uid}</code></span>
+          <button class="btn sm" data-test="uid-kopyala" onClick={() => (navigator.clipboard ? navigator.clipboard.writeText(user.uid) : Promise.reject()).then(() => toast("Hesap kimliği kopyalandı."), () => toast("Kopyalanamadı; kimliği seçip kopyala."))}>Kopyala</button>
+        </div>}
         <div class="row">
           <a class="btn sm" href="#/onboarding">Kurulumu yeniden yap</a>
           <button class="btn sm" onClick={() => auth.signOut()}>Çıkış yap</button>

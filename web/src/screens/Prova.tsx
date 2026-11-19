@@ -100,7 +100,7 @@ function Konusma({ p, onBitti }: { p: ProvaT; onBitti: (k: Kayit[]) => void }) {
     setSatirlar((s) => [...s, { kim: "karsi", de: dugum.de, tr: dugum.tr }]);
     // "Doğrusunu söyleyip geç": önce doğru cümle duyulur, sonra karşı tarafın sözü (biri ötekini kesmez)
     const ilk = once.current; once.current = null;
-    void (async () => { if (ilk) await speak(ilk, "de", "normal"); await speak(dugum.de, "de", "normal"); })();
+    void (async () => { if (ilk) await speak(ilk, "de", "normal", false, p.karsi); await speak(dugum.de, "de", "normal", false, p.karsi); })();
     setIpucu(false);
   }, [id]);
   useEffect(() => { window.scrollTo(0, document.body.scrollHeight); }, [satirlar.length, !!cevap]);
@@ -121,7 +121,7 @@ function Konusma({ p, onBitti }: { p: ProvaT; onBitti: (k: Kayit[]) => void }) {
       ziyaret.current.set(id, (ziyaret.current.get(id) ?? 0) + 1);
       setSatirlar((x) => [...x, { kim: "karsi", de: dugum!.de, tr: dugum!.tr }]);
       const ilk = once.current; once.current = null;
-      void (async () => { if (ilk) await speak(ilk, "de", "normal"); await speak(dugum!.de, "de", "normal"); })();
+      void (async () => { if (ilk) await speak(ilk, "de", "normal", false, p.karsi); await speak(dugum!.de, "de", "normal", false, p.karsi); })();
     } else setId(hedef);
     if (!dugumBul(p, hedef)) onBitti(yeni);
   };

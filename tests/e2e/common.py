@@ -148,13 +148,19 @@ def shot(page, name, full=True):
     if SHOTS:
         os.makedirs(SHOTS, exist_ok=True)
         page.wait_for_timeout(350)  # geçişler (≤200 ms) bitsin
-        page.screenshot(path=os.path.join(SHOTS, name + ".png"), full_page=full)
+        # hesap kimliği (UID) ekran görüntüsünde maskeli
+        page.screenshot(path=os.path.join(SHOTS, name + ".png"), full_page=full, mask=[page.locator("[data-test=uid]")])
 
 def no_overflow(page, where):
     sw, iw = page.evaluate("[document.documentElement.scrollWidth, window.innerWidth]")
     check(sw <= iw, f"{where}: yatay taşma yok (scrollWidth {sw} ≤ {iw})")
 
-def login_onboard(page, port, assess=False):
+# B16 (PM-066): e2e botları cevabı anında verdiği için "Bunları biliyor gibisin" önerisi her testte çıkardı. Testler
+# varsayılan olarak hızlı şeridi kapalı başlatır (öğrencinin "Normal akış" tercihi); hızlı şeridi sınayan test hizli_serit=None verir.
+HIZLI_KAPAT = """async () => { const d = await new Promise((ok, no) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); q.onerror = no; });
+  await new Promise((ok, no) => { const t = d.transaction('meta', 'readwrite'); t.objectStore('meta').put({ key: 'hizliSerit', value: false }); t.oncomplete = ok; t.onerror = no; }); d.close(); }"""
+
+def login_onboard(page, port, assess=False, hizli_serit=False):
     page.goto(f"http://127.0.0.1:{port}/")
     page.wait_for_selector("text=Almancayı gerçek hayat için öğren")
     page.click("summary")
@@ -165,6 +171,7 @@ def login_onboard(page, port, assess=False):
     page.click("[data-struggle=phone]")
     page.click("text=Devam"); page.wait_for_selector("text=Öncelik sırası")
     page.click("text=Devam"); page.click("text=Devam")
+    if hizli_serit is False: page.evaluate(HIZLI_KAPAT)
     if assess: page.click("[data-test=start-assess]")
     else: page.click("text=Sonra yaparım")
 

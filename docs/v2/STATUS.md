@@ -26,14 +26,19 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | İş | Dal | Durum |
 |---|---|---|
 | Konuşma provası, yapay zekâsız (#58 A7) | `v2/prova` | #68 birleşti |
-| Kalıp kartı (#58 B2) | `v2/kalip-karti` | PR #94: 2. tur 1 P1 (alt sayfada kişiselleştirme) düzeltildi, odak yönetimi; PM-057 son tur. İÇ iş listesi: 957 dolgunun 381'i (%40) için ne örnek ne anlam var; kart bunu söylüyor (D-110) |
+| Ses 1. adım + mikrofon (#58 B15, PM-064) | `v2/ses-b15` | #117 birleşti (D-117; 2 inceleme turu, P1'ler kapandı): karaktere göre sabit ses, Yavaş yalnızca hız, Profil → Ses ve mikrofon, kabukta yerel tanıma önce. Bilinen: aynı günün iki kaydı arasında doğrudan adres değişince Medya yeniden yüklenmiyor (ayrı iş); 2. adım doğal ses denemesi |
+| Kapalı medya rafı (#58 B12) | `v2/medya-rafi`, `v2/raf-doldur` | 1. parça #98 birleşti (D-112); 2. parça PR #99 doldurma hattı (Pixabay → gizli depo; "Fail closed" onayı `RAF_FAIL_CLOSED=1` olmadan itmez); sırada fotoğraf yolu ve doğrulayıcı; proje sahibinin adımları bekleniyor; iskelet kipi #115 birleşti (Function + saglik.txt gizli depoda, koşu 44585624937 başarılı); raf durumu ayrımı #118 birleşti (bağlandı / parola doğru raf boş / parola yanlış / parola Pages'te yok / koruma yok / ulaşılamıyor) |
+| Google girişi onarımı + hesap kimliği (PM 7017264235, 7017394092) | `v2/giris-uid` | #114 birleşti: `initializeAuth`'a web'de `popupRedirectResolver` (kök neden: `auth/argument-error`); engellenince yönlendirme; bilinmeyen hatada kod; Profil → Hesap kimliği + Kopyala. Bilinen: Safari'de yönlendirme sonucu sessiz düşebilir (ayrı iş) |
+| Kalıp kartı (#58 B2) | `v2/kalip-karti` | #94 birleşti (D-110). İÇ iş listesi: 957 dolgunun 381'i (%40) için ne örnek ne anlam var |
 | Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | PR #87: 1. tur 5 P1 + 9 P2 düzeltildi (D-107 sonu); 2. tur bekliyor |
 | Doğrulayıcı B4 (#58 B4, #54 D16) | `v2/dogrulayici-b4` | PR #88: 1. tur 5 P1 düzeltildi (D-108); 0 hata, 126 uyarı; İÇ iş listesi: 7 şiddet tanıma kartında kullanım uyarısı, 46/119/167 kart kuralı; 2. tur bekliyor |
-| Kapalı medya rafı (#58 B12) | `v2/medya-rafi` | 1. parça PR #98: 1. tur 3 P1 düzeltildi (adres doğrulama, "Fail closed" zorunlu, gerçek Function ile e2e); 2. parça #99 doldurma hattı; sırada fotoğraf yolu, doğrulayıcı; proje sahibinin adımları bekleniyor |
 | Bahçe değişen cümle (PM-062, #58 B13) | `v2/bahce-donusum` | #92 birleşti (D-111) |
 | Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | #87 birleşti (D-107) |
-| Şema: gün sınavı + kalıp dolgu anlamı (İÇ 7014566898; PM-066.3, PM-067.1) | `v2/sema-sinav-dolgu` | PR #109; İÇ içeriği bu alanlarla yazıyor |
-| Şölen 2 / B11a yol haritası (PM-065 1–4) | `v2/yol-haritasi` | PR açıldı (D-114); sırada B11b günlük görevler ve sandık, B11c tören ve Filiz |
+| Şema: gün sınavı + kalıp dolgu anlamı (İÇ 7014566898; PM-066.3, PM-067.1) | `v2/sema-sinav-dolgu` | #109 birleşti; PR #109 geçmişi: (2. tur P1-A: fills_tr e2e diskten; `gun_sinavi.dikte` eklendi); İÇ içeriği bu alanlarla yazıyor |
+| Hızlı şerit "Biliyorum, sına beni" (#58 B16, PM-066 1, 2, 4, 5, 6) | `v2/hizli-serit` | #113 birleşti (D-116; 1. tur P1 düzeltildi); madde 3 PR'ına kalan P2: `DAILY_ACTIVE` sına kapsamı, son kartın hemen sınanmaması, başarısız sınav izi, `sinaKabul` üretim yolunda, artikel notu, tespit yükleme yarışı, pasif yola sınanmamış "doğru" (srs.ts:73), e2e boşlukları (8 sn olumsuz yön, dünkü tarih, "1. gün ≤ 25 dk" ölçüsü — PM'e sorulacak); sırada madde 3 "Günü sınavla geç" (İÇ `gun_sinavi` içeriği, #109 şeması). M2 girdisi (PM-067 2–6): dinle→resmi seç, sesli boşluk, takılan kelime, karışan çiftler (fark kartı), günlük yeni kart sınırı |
+| Şölen 2 / B11b görevler ve sandık (PM-065 5–7) | `v2/gunluk-gorev` | #108 birleşti (D-115 + eki): Bugün = yol + görev şeridi; görev başına sandık ve tören; Odak ekranı; yerleşim kuralları; sırada B11c tören, Filiz, büyüyen bahçe + B11b P2 (görev listesi gün içinde sabit, STT yoksa sesli görev yok, 20 pt) |
+| Şölen 1 küçük düzeltmeler (PM 7011722598 1–5) | `v2/solen-duzelt` | #100 birleşti (D-113). B11e girdisi (madde 6–7): tur sonunda büyüyen bahçe parçası, kartı soran karakterin avatarı (WORLD), seans başına vurgu rengi; doğru anında parlak ton + kısa ölçek (reduce-motion: yalnızca renk) |
+| Şölen 2 / B11a yol haritası (PM-065 1–4) | `v2/yol-haritasi` | #104 birleşti (D-114) |
 | Gün sonu özeti + yerel kullanım ölçümü (#58 B3) | `v2/gun-sonu` | #93 birleşti (D-109) |
 | Doğrulayıcı B4 (#58 B4, #54 D16) | `v2/dogrulayici-b4` | #88 birleşti (D-108) |
 | Değerlendirme doğruluğu (#58 A11) | `v2/degerlendirme` | PR #76: 1. tur P0 (V2 aşırı kabul) ve P1'ler düzeltildi; kalıcı permütasyon taraması; 2. tur bekliyor (D-104) |
@@ -54,8 +59,9 @@ Kalıpların 61'i de onaylı (main, `patterns.json`). Hedef sütunu (günlük: y
 R0 temel paket: 10 ders, 189 öğretim öğesi, 353 alıştırma; main'de (#51). Kelime sayıları `card:false` işlev kelimelerini saymaz.
 B4 kart kuralları (#88, #96): parti dosyalarında K1 isim boşluğu, 3+ eşdizim ve somut kelimede örnek başına fotoğraf sorgusu uyarıları 0 (150 kart kapandı). Doğrulayıcının "görselsiz örnek" sayacında kalan 82 kart eski `lexemes.v1.json` kartları; taban 0 / 0 / 82 (ANA, birleştirmede).
 B5 fotoğraf seçimi (#91): 308 yerin 40'ına açık lisanslı fotoğraf seçildi, 220'si reddedildi, 48'i soyut; 332 kısa ikinci sorgu A10 hattına verildi. Hedef somut kelimelerin %85'i; Openverse sonrası ikinci tur.
+PM-062 (cümle havuzu): M1'in 155 kartında en az 6 örnek ve en az 6 boşluk (155 × 6 örnek, 936 boşluk); yazar → dilbilimci → okur, 4 grup.
 Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur, M1 kartları 8 tur (hedef tutmadı). Geri dönen türler (hata notunda Türkçe niyet, çelişen ipucu) yazar ve lex görevine eklendi.
-B6 (`forms`, eşdizim, fotoğraf sorgusu; #58): 927 kartın tamamı (#81: 825, #83: 102). Okur turu B6: 13 grupta 32 tur (grup başına 2,5; hedef tutmadı). `forms` alanı boş kalan 17 kart #85'in `also_ok` alanıyla dolduruldu (#102). Sözlükte 1.119 kartta 4.334 boşluk; 47 kartta 126 boşlukta `also_ok` (#102 öncesi 4). Bahçe ipucu artık soru sırasında kapalı (#85).
+B6 (`forms`, eşdizim, fotoğraf sorgusu; #58): 927 kartın tamamı (#81: 825, #83: 102). Okur turu B6: 13 grupta 32 tur (grup başına 2,5; hedef tutmadı). `forms` alanı boş kalan 17 kart #85'in `also_ok` alanıyla dolduruldu (#102). Sözlükte 1.119 kartta 4.640 boşluk; 59 kartta 170 boşlukta `also_ok` (#102 öncesi 4; #103 M1 cümle havuzuyla 4.334 → 4.640). Bahçe ipucu artık soru sırasında kapalı (#85).
 Sözlüğün tamamı onaylı: taslak partiler 004–008'deki 394 girdi tam incelemeden geçti (Almanca örnekler, eşdizim, kart verisi; 8 grupta 139 kartta düzeltme, kalan 0) ve okurdan geçti. `lx:Million` B1 → A2.
 
 ## Açık PR'lar
