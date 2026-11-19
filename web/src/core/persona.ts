@@ -27,7 +27,16 @@ export function expandAccepted(list: string[], p: Persona): string[] {
 // Unicode harfler korunur (Ayşe, Çağrı, İbrahim), ad içindeki tire ve kesme işareti ayırmaz (Jean-Luc, O'Neil) — inceleme #65 2. tur
 const AYIR = /[^\p{L}\p{N}'’-]+/gu;
 const parca = (s: string) => s.replace(AYIR, " ").replace(/(^|\s)[-'’]+|[-'’]+(?=\s|$)/g, " ").trim().split(/\s+/).filter(Boolean);
-/** Ad girilmemişse: beklenen cümledeki {name} yuvasını öğrencinin cevabındaki 1–3 kelimeyle doldur */
+/**
+ * Ad yuvasına giremeyecek kelimeler (inceleme #68 P1-2): adsız profilde "Ich bin krank." / "Ich bin Fieber." /
+ * "Hier ist die Praxis." ad sanılmasın. Sözlük yüklenince `bilinenKelimeler` ile genişler; sözlükteki bir kelimeyle aynı
+ * olan ad (ör. Rose) adsız profilde tanınmaz — ad profile girilince bu kural devreye girmez.
+ */
+const BILINEN = new Set("der die das den dem des ein eine einen einem einer kein keine keinen nicht nichts ich du er sie es wir ihr mein meine dein deine sein seine hier da dort ja nein bitte danke auch und oder aber noch schon sehr gut krank müde heute morgen jetzt gerne gern frau herr doktor praxis termin".split(" "));
+export function bilinenKelimeler(l: Iterable<string>) {
+  for (const de of l) for (const w of de.toLocaleLowerCase("de").split(/[\s,/]+/)) if (w.length > 1) BILINEN.add(w);
+}
+/** Ad girilmemişse: beklenen cümledeki {name} yuvasını öğrencinin cevabındaki 1–3 kelimeyle doldur (bilinen kelime ad değildir) */
 export function fillName(expected: string, answer: string): string {
   if (!expected.includes("{name}")) return expected;
   const [pre, post = ""] = expected.split("{name}") as [string, string?];
@@ -35,14 +44,31 @@ export function fillName(expected: string, answer: string): string {
   const pr = parca(pre).map((w) => w.toLocaleLowerCase("de")), po = parca(post).map((w) => w.toLocaleLowerCase("de"));
   const head = a.slice(0, pr.length).join(" "), tail = po.length ? a.slice(-po.length).join(" ") : "";
   const n = a.length - pr.length - po.length;
-  if (head === pr.join(" ") && tail === po.join(" ") && n >= 1 && n <= 3) return expected.replace("{name}", orig.slice(pr.length, pr.length + n).join(" "));
-  return expected.replace("{name}", "").replace(/\s+/g, " ").replace(/\s([.,!?])/g, "$1");
+  const ad = a.slice(pr.length, pr.length + Math.max(0, n));
+  if (head === pr.join(" ") && tail === po.join(" ") && n >= 1 && n <= 3 && !ad.some((w) => BILINEN.has(w))) return expected.replace("{name}", orig.slice(pr.length, pr.length + n).join(" "));
+  // ad yuvası boş bırakılmışsa ("Guten Tag, hier ist.") doğru sayılmaz: yuva gösterimdeki "(adın)" ile kalır (inceleme #65 3. tur P2)
+  return expected.replace("{name}", "(adın)");
 }
-/** Yapay zekâya giden metin: ad → [Name] */
+/**
+ * Yapay zekâya giden metin: ad → [Name] (D-061). Kelime sınırı Unicode harfle belirlenir (`\b` Türkçe harfte çalışmaz:
+ * "Çağrı", "Özge", "İbrahim" sızıyordu — #73 incelemesi T-1). Büyük/küçük harf Türkçe ve Almanca kurala göre, boşluklar
+ * esnek; iki kelimeli adda tam ad ve ayrıca her parça (en az 2 harf) maskelenir ("Anna Maria" → "Anna" da; T-2).
+ */
+const TR_ASCII: Record<string, string> = { ç: "c", Ç: "C", ğ: "g", Ğ: "G", ı: "i", İ: "I", ö: "o", Ö: "O", ş: "s", Ş: "S", ü: "u", Ü: "U" };
+const asciiTr = (x: string) => x.replace(/[çÇğĞıİöÖşŞüÜ]/g, (c) => TR_ASCII[c]!);
+const asciiDe = (x: string) => asciiTr(x.replace(/ö/g, "oe").replace(/Ö/g, "Oe").replace(/ü/g, "ue").replace(/Ü/g, "Ue").replace(/ä/g, "ae").replace(/Ä/g, "Ae"));
 export function redact(t: string, p: Persona): string {
-  if (!p.name) return t;
-  const esc = p.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  return t.replace(new RegExp(`\\b${esc}\\b`, "gi"), "[Name]");
+  const ad = p.name?.trim().replace(/\s+/g, " ");
+  if (!ad) return t;
+  const kacis = (x: string) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/ /g, "\\s+");
+  const parcalar = ad.split(" ").filter((w) => [...w].length >= 2);
+  const adaylar = [ad, ...(parcalar.length > 1 ? parcalar : [])]
+    // Türkçe klavyesiz yazılış da (Çağrı → Cagri, Özge → Ozge / Oezge)
+    .flatMap((x) => [x, asciiTr(x), asciiDe(x)])
+    .flatMap((x) => [x, x.toLocaleLowerCase("tr"), x.toLocaleUpperCase("tr"), x.toLocaleLowerCase("de"), x.toLocaleUpperCase("de")])
+    .filter((x, i, a) => a.indexOf(x) === i).sort((a, b) => b.length - a.length);
+  const re = new RegExp(`(?<![\\p{L}\\p{N}])(?:${adaylar.map(kacis).join("|")})(?![\\p{L}\\p{N}])`, "giu");
+  return t.replace(re, "[Name]");
 }
 /** Yapay zekâdan gelen metin: [Name] → ad (yoksa hitap kalır) */
 export function unredact(t: string, p: Persona): string {

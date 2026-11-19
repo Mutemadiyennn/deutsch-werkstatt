@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { Lexeme } from "@dw/shared";
 import type { LearnerItem } from "@dw/shared";
-import { synonymHit, personalMatch, availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable } from "./garden.ts";
+import { synonymHit, personalMatch, availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak } from "./garden.ts";
 import { review, sessionKey } from "./srs.ts";
 
 const L = (o: Record<string, unknown>) => Lexeme.parse({ tr: "x", pos: "other", ...o });
@@ -175,5 +175,40 @@ describe("Kelime Bahçesi (PM-049)", () => {
     const uhr = L({ id: "lx:Uhr", de: "Uhr", tr: "saat", pos: "noun", art: "die" });
     expect(synonymHit(uhr, "um", [uhr, L({ id: "lx:um", de: "um", tr: "saat", pos: "prep" })])).toBeNull();
     expect(accepted(L({ id: "lx:weh", de: "weh (tun)", tr: "acımak", pos: "adj" }), "tr_de")).toEqual(expect.arrayContaining(["weh", "weh tun"]));
+  });
+  it("inceleme #66 P1-3: M1 günü (yeniAyir) — tekrar yükü yüksekken de günün yeni kartları gelir", () => {
+    const t0 = new Date("2026-11-01T10:00:00Z");
+    const lx = new Map(lex);
+    const many = new Map<string, LearnerItem>();
+    for (let i = 0; i < 30; i++) { const l = L({ id: `lx:d${i}`, de: `d${i}`, tr: `t${i}`, pos: "adj" }); lx.set(l.id, l); many.set(l.id, review(undefined, { itemId: l.id, kind: "lexeme", path: "passive", outcome: "wrong", session: "s@1" }, t0)); }
+    const yeni: string[] = [];
+    for (let i = 0; i < 25; i++) { const l = L({ id: `lx:n${i}`, de: `n${i}`, tr: `y${i}`, pos: "adj" }); lx.set(l.id, l); yeni.push(l.id); }
+    const now = new Date("2026-12-01T10:00:00Z");
+    const eski = buildRound(lx, many, yeni, { now }).filter((q) => q.intro).length;
+    expect(eski).toBe(0);
+    const r = buildRound(lx, many, yeni, { now, yeniAyir: 8, newLeft: 25 });
+    expect(r.length).toBe(12);
+    expect(r.filter((q) => q.intro).map((q) => q.lexId)).toEqual(yeni.slice(0, 8));
+    // tekrar yokken tur günün kartlarıyla dolar (en çok 10 yeni)
+    expect(buildRound(lx, new Map(), yeni, { now, yeniAyir: 8, newLeft: 25 }).length).toBe(10);
+  });
+  it("inceleme #66 2. tur P1-A: kişisel kelimeler günün kartlarını geciktirmez", () => {
+    const t0 = new Date("2026-11-01T10:00:00Z"), now = new Date("2026-12-01T10:00:00Z");
+    const lx = new Map(lex);
+    const yeni: string[] = [], kis: string[] = [];
+    for (let i = 0; i < 3; i++) { const l = L({ id: `lx:g${i}`, de: `g${i}`, tr: `g${i}`, pos: "adj" }); lx.set(l.id, l); yeni.push(l.id); }
+    for (let i = 0; i < 10; i++) { const l = L({ id: `lx:k${i}`, de: `k${i}`, tr: `k${i}`, pos: "adj" }); lx.set(l.id, l); kis.push(l.id); }
+    // takvim hakkı bitmiş: kişisel kelime gelmez, günün 3 kartı gelir
+    let h = m1Hak(0, 3, 10);
+    expect(h).toEqual({ newLeft: 3, kisiselIzin: false });
+    let r = buildRound(lx, new Map(), yeni, { now, priority: h.kisiselIzin ? kis : [], newLeft: h.newLeft, yeniAyir: 3 });
+    expect(r.filter((q) => q.intro).map((q) => q.lexId)).toEqual(yeni);
+    // takvim hakkı var: en çok 2 kişisel + günün bütün kartları
+    h = m1Hak(25, 3, 10);
+    r = buildRound(lx, new Map(), yeni, { now, priority: kis, newLeft: h.newLeft, yeniAyir: 3 });
+    const intro = r.filter((q) => q.intro).map((q) => q.lexId);
+    expect(yeni.every((id) => intro.includes(id))).toBe(true);
+    expect(intro.filter((id) => kis.includes(id)).length).toBe(2);
+    void t0;
   });
 });

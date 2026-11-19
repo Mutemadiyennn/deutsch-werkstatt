@@ -14,3 +14,13 @@ export function haptic(kind: Kind) {
     navigator.vibrate?.(kind === "success" ? 12 : kind === "error" ? [30, 40, 30] : 6);
   } catch {}
 }
+
+/** Mola başı ve sonu (#58 A6: "zil ve titreşim"): seçim dokunuşundan belirgin, iki vuruşluk titreşim */
+export function hapticAlarm() {
+  if (!enabled) return;
+  try {
+    const H = (globalThis as any).Capacitor?.Plugins?.Haptics;
+    if (H?.vibrate) { H.vibrate({ duration: 300 }); return; }
+    navigator.vibrate?.([220, 120, 220]);
+  } catch {}
+}

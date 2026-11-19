@@ -91,8 +91,10 @@ export function MicButton({ onText, disabled, wide = false, label = "Sesli söyl
   useEffect(() => {
     // kesinti: uygulama arka plana giderse kaydı güvenle durdur
     const vis = () => { if (document.visibilityState === "hidden") stopRef.current(); };
+    const mola = () => stopRef.current();
     document.addEventListener("visibilitychange", vis);
-    return () => { document.removeEventListener("visibilitychange", vis); stopRef.current(); };
+    window.addEventListener("dw:mola", mola);
+    return () => { document.removeEventListener("visibilitychange", vis); window.removeEventListener("dw:mola", mola); stopRef.current(); };
   }, []);
   if (!sttAvailable()) return null;
   const start = async () => {
@@ -130,13 +132,14 @@ export function FeedbackBand({ kind, title, children }: { kind: "ok" | "bad" | "
 }
 
 /* ---------- Üst ilerleme: aşama x/6 · seans x/4 · kalan süre ---------- */
+/** `right`: başlık satırının sağı (#58 A6: öğrenme ekranlarında seans ve kalan dakika çipi) */
 export function ProgressHeader({ title, back, step, steps = 7, doneSteps = [], right, sub }: { title: string; back: string; step?: number; steps?: number; doneSteps?: number[]; right?: ComponentChildren; sub?: ComponentChildren }) {
   return (
     <header class="pbar">
       <div class="row" style={{ gap: 8 }}>
         <a class="iconbtn plain" href={back} aria-label="Geri"><Icon name="back" /></a>
         <h1>{title}</h1>
-        {!sub && right}
+        {right}
       </div>
       {/* DESIGN §1: ekran başına tek ilerleme göstergesi — ekranın kendi göstergesi (sub) varsa bölüm noktaları ve sayaç gizlenir */}
       {sub && <div class="sub">{sub}</div>}

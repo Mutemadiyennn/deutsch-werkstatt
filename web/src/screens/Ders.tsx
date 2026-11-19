@@ -6,13 +6,15 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 import type { TemelDers } from "@dw/shared";
 import { useApp } from "../state.ts";
-import { loadTemel } from "../services/content.ts";
+import { loadLexicon, loadTemel } from "../services/content.ts";
 import { getMeta, setMeta } from "../data/db.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { DERS_ADIM_TR, TANIT_GRUP, adimlarDers, altSayisi, dersAnahtari, dersIleri, dersKonum, hatirlaKabul, hatirlaSecenek, maddeler, type DersIlerleme } from "../core/ders.ts";
-import { speak, stopSpeaking } from "../services/speech.ts";
+import { speak, speakDizi, stopSpeaking } from "../services/speech.ts";
+import { adimXpVer, xpVer } from "../services/ilerleme.ts";
+import { XP } from "../core/gun.ts";
 import { ActionBar, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
-import { Art, ErrorPanel, Loading } from "../ui/components.tsx";
+import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Chips, Rich } from "../ui/rich.tsx";
 import { DrillView } from "../ui/drill.tsx";
 
@@ -25,7 +27,8 @@ export function DersEkrani({ id }: { id: string }) {
   const [err, setErr] = useState<string | null>(null);
   useEffect(() => {
     (async () => {
-      const d = personalizeDeep(await loadTemel(id), { name: profile.displayName, address: profile.address });
+      const [ham] = await Promise.all([loadTemel(id), loadLexicon().catch(() => null)]);
+      const d = personalizeDeep(ham, { name: profile.displayName, address: profile.address });
       setT(d);
       setP0(dersKonum(await getMeta<DersIlerleme>(dersAnahtari(id)), d));
     })().catch((e) => setErr(String(e?.message || e)));
@@ -42,7 +45,7 @@ export function DersEkrani({ id }: { id: string }) {
       <section class="card stack" data-test="ders-bitti">
         <h2>Ders bitti</h2>
         <p>{p.toplam ? `${p.toplam} soruda ${p.dogru} doğru.` : ""} {t.can_do.tr}</p>
-        <div class="row"><a class="btn primary grow" href="#/today" data-test="ders-geri">Bugün'e dön</a>
+        <div class="row"><a class="btn primary grow" href="#/today" data-test="ders-geri">Sıradaki adıma geç</a>
           <button class="btn grow" onClick={() => setP({ s: 0, k: 0, dogru: 0, toplam: 0, ilkBitti: p.ilkBitti ?? p.bitti })}>Tekrar çalış</button></div>
       </section>
     </div>
@@ -50,10 +53,17 @@ export function DersEkrani({ id }: { id: string }) {
 
   const adim = steps[p.s]!;
   const n = altSayisi(t, adim);
-  const ileri = (ok?: boolean | { dogru: number; toplam: number }) => setP(dersIleri(p, t, ok));
+  const ileri = (ok?: boolean | { dogru: number; toplam: number }) => {
+    const np = dersIleri(p, t, ok);
+    const kazanc = ok === undefined ? 0 : typeof ok === "boolean" ? (ok ? 1 : 0) : ok.dogru;
+    // tekrar çalışmada doğru XP'si yok; adım XP'si bir kez (inceleme #66 P2-1)
+    if (kazanc && !p.ilkBitti) void xpVer(XP.dogru * kazanc);
+    if (np.bitti) void adimXpVer(`ders:${t.id}`);
+    setP(np);
+  };
   return (
     <div class="stack" data-test="ders" data-adim={adim} data-pos={`${p.s}.${p.k}`}>
-      <ProgressHeader title={t.title_tr} back="#/today" sub={`${p.s + 1}/${steps.length} · ${DERS_ADIM_TR[adim]}${n > 1 ? ` ${p.k + 1}/${n}` : ""}`} />
+      <ProgressHeader title={t.title_tr} back="#/today" right={<FocusChip />} sub={`${p.s + 1}/${steps.length} · ${DERS_ADIM_TR[adim]}${n > 1 ? ` ${p.k + 1}/${n}` : ""}`} />
       {adim === "tanit" && (p.k % 2 === 0
         ? <Tanit key={p.k} t={t} grup={p.k / 2} onNext={() => ileri()} />
         : <Hatirla key={p.k} t={t} grup={(p.k - 1) / 2} onDone={(dogru, toplam) => ileri({ dogru, toplam })} />)}
@@ -147,7 +157,7 @@ function useSesDizisi() {
   useEffect(() => () => { tok.current++; stopSpeaking(); }, []);
   return async (lines: string[], sp: "slow" | "normal" = "normal") => {
     const my = ++tok.current; stopSpeaking();
-    for (const l of lines) { if (tok.current !== my) return; await speak(l, "de", sp); }
+    await speakDizi(lines.map((de) => ({ de })), sp, 0, () => tok.current !== my);
   };
 }
 

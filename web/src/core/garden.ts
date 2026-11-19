@@ -20,7 +20,7 @@
  *  - Tur 8–12 soru: önce vadesi gelenler, sonra yeni kartlar (tekrar yükü artınca yeni sayısı düşer).
  *  - Yanlışta kart turun sonunda başka örnek cümle (ve başka fotoğraf) ile yeniden gelir.
  */
-import type { Lexeme } from "@dw/shared";
+import { kartMi, type Lexeme } from "@dw/shared";
 import type { LearnerItem, PersonalWord } from "@dw/shared";
 import { isDue } from "./srs.ts";
 
@@ -51,10 +51,8 @@ export function collocOf(l: Lexeme): { de: string; tr: string; stem: string; las
   const all = l.collocations.filter((c) => !/…|\.\.\./.test(c.de)).map((c) => { const w = tokens(c.de); return { de: c.de, tr: c.tr, last: w[w.length - 1] ?? "", stem: w.slice(0, -1).join(" ") }; }).filter((c) => c.stem && c.last);
   return all.find((c) => all.filter((x) => x.stem.toLowerCase() === c.stem.toLowerCase()).length === 1) ?? null;
 }
-/** PM-047 §2: işlev kelimeleri ayrı kart olarak sorulmaz; ifadelerin içinde öğretilir. `card: false` içerikte işaretlenene
- *  kadar sözcük türünden de anlaşılır (tanımlık, zamir, bağlaç, edat, ilgeç, sayı — sayılar R0'da öğretilir). */
-const FUNCTION_POS = new Set(["det", "pron", "conj", "prep", "particle", "num"]);
-export const isCard = (l: Lexeme) => l.card !== false && !FUNCTION_POS.has(l.pos);
+/** PM-047 §2: işlev kelimeleri kart değildir (ortak kural `kartMi`, içerik derlemesi de kullanır) */
+export const isCard = (l: Lexeme) => kartMi(l);
 const verbForms = (l: Lexeme) => l.forms.filter(() => l.pos === "verb");
 const otherForms = (l: Lexeme) => l.forms.filter(() => l.pos !== "verb");
 
@@ -95,6 +93,11 @@ export interface RoundOpts {
   priority?: string[];
   /** bugün için kalan yeni kart hakkı (LS-7.4: ~25 pasif, ~12 aktif) */
   newLeft?: number; activeLeft?: number;
+  /**
+   * M1 günü (Seans 1): yeni kartlara ayrılan yer — tekrar yükü ne olursa olsun turda en az bu kadar yeni kart
+   * (havuzda varsa) gelir; günün kartları vadesi gelen tekrarların arkasında kalmaz (inceleme #66 P1-3)
+   */
+  yeniAyir?: number;
 }
 
 /** Tanıtılmış ama henüz üretim (aktif) yolu açılmamış kart: aktif soruya geçmeye hazır (inceleme #59 P0-2) */
@@ -113,6 +116,15 @@ const localDay = (d: Date) => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDat
 export const DAILY_NEW = 25, DAILY_ACTIVE = 12;
 
 /**
+ * M1 günü yeni kart hakkı (inceleme #66): günün kartları takvim sınırına takılmaz; kişisel kelimeler (duyduğum, nasıl derim)
+ * yalnızca takvim hakkı kalmışsa ve günün kartlarının yerini almadan gelir (en çok 2).
+ */
+export function m1Hak(takvim: number, kalan: number, kisisel: number): { newLeft: number; kisiselIzin: boolean } {
+  const izin = takvim > 0 && kisisel > 0;
+  return { newLeft: kalan + (izin ? Math.min(2, takvim, kisisel) : 0), kisiselIzin: izin };
+}
+
+/**
  * Bir tur kurar. `items`: öğrenci modeli (yalnızca lexeme türü kullanılır). `pool`: yeni kart adayları sırasıyla.
  * Sıra: vadesi gelen aktif → üretime açılan (tanıtılmış) kartlar → vadesi gelen pasif → öncelikli yeni (duyduğum) → yeni.
  */
@@ -120,7 +132,8 @@ export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerI
   const max = o.max ?? 12, min = o.min ?? 8, rng = o.rng ?? Math.random, now = o.now ?? new Date();
   const newLeft = Math.max(0, o.newLeft ?? DAILY_NEW), activeLeft = Math.max(0, o.activeLeft ?? DAILY_ACTIVE);
   const prio = (o.priority ?? []).filter((id) => !items.has(id) && lex.has(id) && isCard(lex.get(id)!)).slice(0, Math.min(2, newLeft));
-  const cap = max - prio.length;
+  const ayir = Math.max(0, Math.min(o.yeniAyir ?? 0, newLeft - prio.length));
+  const cap = max - prio.length - ayir;
   const out: GardenQ[] = [];
   const used = new Set<string>();
   const add = (id: string, path: "passive" | "active") => {
@@ -148,7 +161,7 @@ export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerI
   const room = Math.max(0, max - out.length);
   const left = newLeft - prio.length;
   // vadesi gelen az ise tur yeni kartlarla en az `min`e tamamlanır (tek başına yeni kart turu 10); tekrar yükü yüksekse en çok 2 yeni
-  const newMax = Math.max(0, Math.min(left, out.length >= min ? Math.min(2, room) : Math.min(o.newMax ?? 10, room)));
+  const newMax = Math.max(0, Math.min(left, ayir ? Math.min(Math.max(ayir, o.newMax ?? 10), room) : out.length >= min ? Math.min(2, room) : Math.min(o.newMax ?? 10, room)));
   let added = 0;
   for (const id of pool) {
     if (added >= newMax) break;

@@ -1,17 +1,21 @@
 /** Bugün: 100 dk hedefi, seans x/4, kalan odak/mola süresi, sıradaki etkinlik, öğrenilenler, zayıflıklar */
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import type { LearnerItem, Lexeme, Scenario } from "@dw/shared";
 import { HeardWordBox } from "../ui/learn.tsx";
 import { useApp } from "../state.ts";
 import { recommend, ACTIVITY_TR } from "../core/planner.ts";
+import { LoadingCard } from "../ui/kit.tsx";
+import { usePlan } from "./Yol.tsx";
+import { adimAdi, seri } from "../core/gun.ts";
 import { seasonal } from "../core/season.ts";
 import { bankItems } from "../data/db.ts";
 import { loadIndex, loadLexicon, loadScenario } from "../services/content.ts";
 import { focusPause, focusResume, focusSkipBreak, focusStart } from "../services/focusRuntime.ts";
-import { Art, ErrorPanel, SpeakBtn, minLeft, useFocusTick } from "../ui/components.tsx";
+import { Art, ErrorPanel, Ring, SpeakBtn, minLeft, useFocusTick } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 import { Avatar, RauteRow, SkyBand, accentOf, type RState } from "../ui/raute.tsx";
 
+const breakOnNow = (e: { rt: { phase: string } }) => e.rt.phase === "break";
 const BREAK_IDEAS = ["Kalk, biraz yürü ya da gerin.", "Bir bardak su iç.", "Gözlerini ekrandan ayır; uzağa bak.", "Omuzlarını 10 kez geriye çevir.", "Pencereyi aç, derin nefes al."];
 
 export function Today() {
@@ -23,6 +27,10 @@ export function Today() {
   const now = Date.now();
   const n = e ? (e.rt.phase === "focus" && e.current ? e.current.n : e.nextN) : 1;
   const rec = recommend({ profile, index, hasPlacement: !!placement, sessionN: n });
+  // #58 A5b: M1 günleri varsa sıradaki adım günün planından gelir (v1'e gönderme yok). Sıfırdan başlayan öğrenci
+  // seviye tespitini beklemez (LS-2.1 ilk başarı ≤60 sn); tespit ikincil bağlantıdır
+  const { plan, err: planErr, yenile } = usePlan();
+  const m1 = plan;
 
   useEffect(() => {
     (async () => {
@@ -62,6 +70,15 @@ export function Today() {
   // ekrandaki tek ilerleme göstergesi: 4 seans = 4 Raute (yarım = sürüyor / yarıda kaldı)
   const rs = [1, 2, 3, 4].map((k) => { const x = sessions.find((y) => y.n === k && y.status !== "abandoned"); return (x?.status === "completed" ? 1 : x ? 0.5 : 0) as RState; });
   const done = e?.completedCount || 0;
+  const cur = e?.rt.phase === "focus" ? e.current : undefined;
+  const yarida = e?.rt.resumableId ? e.day.sessions.find((x) => x.id === e.rt.resumableId) : undefined;
+  const sn = (k: number) => (k <= 4 ? `${k}/4` : `${k} (ek)`);
+  const seansDurum = !e ? "" : breakOnNow(e) ? `Mola · ${minLeft(e.breakLeftSec(now))} kaldı`
+    : cur ? `Seans ${sn(cur.n)} sürüyor · ${minLeft(e.focusLeftSec())} kaldı${e.rt.paused ? " (duraklatıldı)" : ""}`
+    : yarida ? `Seans ${sn(yarida.n)} yarıda kaldı · ${minLeft(e.cfg.workMin * 60 - yarida.focusSec)} kaldı`
+    : done >= 4 && min >= goal ? "Bugünkü dört seans tamam" : `Sırada seans ${sn(e.nextN)} · ${e.cfg.workMin} dk`;
+  /** "Devam et" süreyi başlatır (#58 A6): yarıda kalan seans sürer, yoksa yeni seans; mola sürüyorsa mola biter */
+  const devam = () => { if (!e) return; if (cur) { if (e.rt.paused) focusPause(false); return; } if (yarida) focusResume(); else focusStart(); };
   const accent = accentOf(scen?.domain);
   const who = scen?.dialogues[0]?.roles.A;
   const initials = (who || scen?.title_de || "DW").split(/\s+/).filter((w) => /^\p{Lu}/u.test(w)).slice(0, 2).map((w) => w[0]).join("") || "DW";
@@ -70,20 +87,45 @@ export function Today() {
     <div class="stack today">
       <SkyBand hour={hour}>
         <h1 class="greet" lang="de">{greetDe}</h1>
-        <p class="skyline-tr">{greetTr}{profile.displayName ? `, ${profile.displayName}` : ""}. {rec.kind === "scenario" ? `Bugün sırada: ${rec.title_tr}.` : rec.kind === "assess" ? "Önce kısa bir seviye tespiti yapalım." : ""}</p>
+        <p class="skyline-tr">{greetTr}{profile.displayName ? `, ${profile.displayName}` : ""}. {m1?.sonraki ? `Bugün sırada: ${m1.sonraki.title_tr}.` : m1 ? "" : rec.kind === "scenario" ? `Bugün sırada: ${rec.title_tr}.` : rec.kind === "assess" && !m1 ? "Önce kısa bir seviye tespiti yapalım." : ""}</p>
         {examOn && <span class="skychip" data-test="exam-badge">B1{exam !== null ? `: ${exam} gün` : ""}</span>}
       </SkyBand>
 
-      <div class="dayrow">
-        <RauteRow states={rs} label={`Bugün ${done}/4 seans`} size={20} test="session-rauten" />
-        <span class="tiny sr-only" data-test="sessions-done">{done}/4 seans</span>
-        <span class="daymin" data-test="today-min"><b>{min}</b> / {goal} dk</span>
+      {/* #58 A6 (TARGET2): 100 dakika halkası + seans x/4 + kalan süre; tek gösterge grubu */}
+      <div class="dayring" data-test="gun-halkasi">
+        <Ring value={min} max={goal} size={84} label={`Bugün ${min} / ${goal} dakika`} />
+        <div class="grow stack" style={{ gap: 6, minWidth: 0 }}>
+          <div class="seansdurum" data-test="seans-durum">{seansDurum}</div>
+          <RauteRow states={rs} label={`Bugün ${done}/4 seans`} size={18} test="session-rauten" />
+          <span class="tiny sr-only" data-test="sessions-done">{done}/4 seans</span>
+          <span class="tiny sr-only" data-test="today-min">{min} / {goal} dk</span>
+          <span class="tiny muted" data-test="hedefe">{min < goal ? `Bugünkü hedefe ${goal - min} dk` : "Bugünkü hedef tamam"}</span>
+        </div>
       </div>
-      {e?.day.goalHitAt && <p class="small goalhit"><Icon name="check" size={18} /> Bugünkü hedef tamam</p>}
       {breakOn && <BreakCard />}
 
       {indexError && <ErrorPanel message={`İçerik yüklenemedi: ${indexError}`} onRetry={() => location.reload()} />}
 
+      {!m1 && planErr ? <ErrorPanel message={`Günün planı yüklenemedi. ${planErr}`} onRetry={yenile} /> : !m1 && !!index?.m1.length ? <LoadingCard lines={2} /> : m1 ? (
+      <section class="card nextcard stack" data-test="next-activity" data-m1="1" data-seans={m1.sonraki?.seans ?? 0}>
+        <div class="row" style={{ flexWrap: "nowrap", gap: 14, alignItems: "center" }}>
+          <span class="avatar" aria-hidden="true" style={{ width: 52, height: 52, background: "var(--himmel)" }}><Icon name="raute" size={24} /></span>
+          <div class="grow" style={{ minWidth: 0 }}>
+            <div class="small muted">{m1.sonraki ? `${m1.simdi!.day}. gün · ${adimAdi(m1.sonraki)}` : "İlk Hafta"}</div>
+            <h2 class="nexttitle">{m1.sonraki ? m1.sonraki.title_tr : m1.gunler.length >= 7 && !m1.eksik ? "İlk Hafta tamam" : "Hazır günlerin hepsi bitti"}</h2>
+          </div>
+        </div>
+        {m1.sonraki ? <a class="btn primary block" href={m1.sonraki.href} data-test="m1-devam" onClick={devam}><Icon name="play" size={18} /> Devam et</a>
+          : <a class="btn primary block" href="#/garden" data-test="m1-tekrar" onClick={devam}><Icon name="play" size={18} /> Kelime Bahçesi: tekrar et</a>}
+        <div class="stack" style={{ gap: 6 }}>
+          <a class="small" style={{ display: "block" }} href="#/yol" data-test="yol-link">Haftanın yolu · {m1.xp.toplam} XP{seri(m1.xp) ? ` · ${seri(m1.xp)} gün üst üste` : ""}</a>
+          {placement ? <a class="small" style={{ display: "block" }} href={`#/assess/result/${placement.id}`} data-test="assess-result">Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>
+            : <a class="small" style={{ display: "block" }} href="#/assess" data-test="assess-link">Almancan varsa: seviyeni gör (seviye tespiti)</a>}
+        </div>
+        {e && cur && !breakOn && <div class="focusrow" data-test="focus-running"><span class="small grow">Süre yalnızca öğrenirken sayılır.</span>
+          <button class="btn sm ghost" onClick={() => focusPause(!e.rt.paused)}>{e.rt.paused ? "Sürdür" : "Duraklat"}</button></div>}
+      </section>
+      ) : (
       <section class="card nextcard stack" data-test="next-activity">
         <div class="row" style={{ flexWrap: "nowrap", gap: 14, alignItems: "center" }}>
           {rec.kind === "scenario" ? <Avatar initials={initials} accent={accent} /> : <span class="avatar" aria-hidden="true" style={{ width: 52, height: 52, background: "var(--himmel)" }}><Icon name={rec.kind === "assess" ? "target" : "raute"} size={24} /></span>}
@@ -100,6 +142,7 @@ export function Today() {
         {e && !breakOn && <FocusPanel />}
         {placement && <a class="small" href={`#/assess/result/${placement.id}`}>Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>}
       </section>
+      )}
 
       {inSeasonNow.length > 0 && (
         <section class="card tint orange" data-test="season">
@@ -123,7 +166,7 @@ export function Today() {
       <section class="plainsec" data-test="weak">
         <h2 class="sectitle">Tekrar edilecekler</h2>
         {/* PM-049: kartlar soru olarak döner. EK1: ekranda tek ana eylem "Devam et"; bu ikincil (yeni Bugün A6'da seans 1 olur) */}
-        <a class="btn block" href="#/garden" data-test="garden-start">Kelime Bahçesi: tekrar et</a>
+        <a class="btn block" href={m1?.simdi ? `#/garden/${m1.simdi.day}` : "#/garden"} data-test="garden-start">Kelime Bahçesi: tekrar et</a>
         <div class="row"><HeardWordBox /></div>
         {bank.length ? (
           <ul class="list">
@@ -153,7 +196,7 @@ export function BreakCard() {
       <div class="kicker">{long ? "Uzun mola (isteğe bağlı)" : "Mola"} · {e.completedCount}. seans tamam</div>
       <div class="timer" role="timer" aria-live="off">{minLeft(e.breakLeftSec(Date.now()))}</div>
       <p style={{ margin: 0 }}>{long ? "Dört seansı bitirdin. İstersen uzun bir mola ver; istersen atla." : idea}</p>
-      <p class="small muted" style={{ marginTop: 6 }}>Mola bitince zil çalar; sıradaki seans öğrenmeye döndüğünde kendiliğinden başlar.</p>
+      <p class="small muted" style={{ marginTop: 6 }}>Mola bitince zil çalar ve telefon titrer. Sıradaki seans öğrenmeye döndüğünde başlar.</p>
       <div class="row" style={{ justifyContent: "center", flexWrap: "nowrap" }}><span class="de-lg" lang="de">Ich mache kurz Pause.</span><SpeakBtn text="Ich mache kurz Pause." /></div>
       <div class="tr2">Kısa bir mola veriyorum.</div>
       <button class="btn block" style={{ marginTop: 16 }} onClick={focusSkipBreak}>Molayı atla</button>
@@ -194,6 +237,17 @@ function FocusPanel() {
 /** Öğrenme ekranındayken mola başlarsa (v1'deki gibi) ekranı mola kartı kaplar; atlanınca kaldığı yerden sürer */
 export function BreakOverlay() {
   const e = useFocusTick();
-  if (!e || e.rt.phase !== "break") return null;
-  return <div class="breakov" role="dialog" aria-label="Mola"><div><BreakCard /></div></div>;
+  const on = !!e && e.rt.phase === "break";
+  const ref = useRef<HTMLDivElement>(null);
+  // mola kartı kaplarken alttaki ekran kullanılamaz (inert) ve klavye kapanır; odak karta taşınır (inceleme #67 P1-4)
+  useEffect(() => {
+    if (!on) return;
+    const main = document.querySelector("main");
+    main?.setAttribute("inert", ""); main?.setAttribute("aria-hidden", "true");
+    (document.activeElement as HTMLElement | null)?.blur?.();
+    ref.current?.focus();
+    return () => { main?.removeAttribute("inert"); main?.removeAttribute("aria-hidden"); };
+  }, [on]);
+  if (!on) return null;
+  return <div class="breakov" role="dialog" aria-modal="true" aria-label="Mola" tabIndex={-1} ref={ref} data-test="mola-ortusu"><div><BreakCard /></div></div>;
 }

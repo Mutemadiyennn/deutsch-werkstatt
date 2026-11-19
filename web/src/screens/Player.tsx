@@ -20,7 +20,7 @@ import type { LocalEntry } from "../core/sayit.ts";
 import { ai, aiState, SOFT_WAIT_MS } from "../services/ai.ts";
 import { personalizeDeep, redact, unredact, type Persona } from "../core/persona.ts";
 import { ApiError } from "../services/api.ts";
-import { speak, stopSpeaking } from "../services/speech.ts";
+import { baslangicYavas, speak, speakDizi, stopSpeaking } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { FocusChip } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
@@ -346,14 +346,14 @@ function ListeningItem({ li, progress, onDone }: { li: Scenario["listening"][num
   const [phase, setPhase] = useState<"listen" | "qs" | "script">("listen");
   const [q, setQ] = useState(0); const [ok, setOk] = useState(0); const [picked, setPicked] = useState<number | null>(null);
   const [playing, setPlaying] = useState(false);
-  const playAll = async (sp: Speed) => { setPlaying(true); try { for (const l of li.script) { await speak(l.de, "de", sp); await new Promise((r) => setTimeout(r, 250)); } } finally { setPlaying(false); } };
+  const playAll = async (sp: Speed) => { setPlaying(true); try { await speakDizi(li.script.map((l) => ({ de: l.de })), sp, 250); } finally { setPlaying(false); } };
   useEffect(() => () => stopSpeaking(), []);
   if (phase === "listen") return (
     <div class="stack fade">{progress}
       <section class="card stack"><div class="kicker">Dinle · {li.title_tr}</div><p class="small">Önce metni görmeden dinle. İstediğin kadar tekrar dinleyebilirsin.</p>
         <div class="row"><button class="btn primary" onClick={() => playAll(li.speed)} disabled={playing} data-test="play-all">{playing ? "Çalıyor…" : <><Icon name="play" size={18} /> Dinle</>}</button>
           {li.speeds.filter((x) => x !== li.speed).map((sp) => <button class="btn" onClick={() => playAll(sp)} disabled={playing} data-speed={sp}>{SPEED_TR[sp]}</button>)}</div>
-        <p class="tiny muted">Cihaz sesi · {li.speed === "fast" ? "hızlı" : li.speed === "natural" ? "doğal hız" : li.speed === "slow" ? "yavaş" : "normal"}</p></section>
+        <p class="tiny muted">Cihaz sesi · {li.speed === "fast" ? "hızlı" : li.speed === "natural" ? "doğal hız" : li.speed === "slow" ? "yavaş" : baslangicYavas() ? "normal (ilk dinleme yavaş; Profil)" : "normal"}</p></section>
       <ActionBar><button class="btn primary block" onClick={() => { stopSpeaking(); setPhase("qs"); }} data-test="to-questions">Sorulara geç</button></ActionBar>
     </div>
   );

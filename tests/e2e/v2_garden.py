@@ -95,11 +95,17 @@ def main():
         check(pg.locator("[data-test=garden-done]").count() == 1, f"tur baştan sona bitti ({n} soru)")
         txt = pg.inner_text("[data-test=garden-done]")
         check("doğru" in txt and "undefined" not in txt and "NaN" not in txt, "tur sonu özeti")
-        check(pg.locator("[data-test=garden-tomorrow]").count() == 1, "tur sonunda yarın ne geleceği yazıyor")
+        # M1 günündeyken (Bugün'deki giriş günün Bahçesi'ni açar) günün kartlarından kalan varsa "Bir tur daha" (inceleme #66 P1-3)
+        check(pg.locator("[data-test=garden-tomorrow]").count() == 1 or (pg.locator("[data-test=garden-kalan]").count() == 1 and pg.locator("[data-test=garden-again]").count() == 1),
+              "tur sonunda yarın ne geleceği ya da günün kalan kartları yazıyor")
         if shots: shot(pg, "g03-tur-sonu", full=False)
-        pg.click("[data-test=garden-back]"); pg.wait_for_selector("[data-tab=today]")
         # ikinci tur: ilk turda doğru bilinen yeni kartlar artık ÜRETİM sorusuyla gelir (inceleme #59 P0-2)
-        pg.click("[data-test=garden-start]"); pg.wait_for_selector("[data-test=garden], [data-test=garden-empty]")
+        if pg.locator("[data-test=garden-again]").count():
+            pg.click("[data-test=garden-again]")
+        else:
+            pg.click("[data-test=garden-back]"); pg.wait_for_selector("[data-tab=today]")
+            pg.click("[data-test=garden-start]")
+        pg.wait_for_selector("[data-test=garden], [data-test=garden-empty]")
         check(pg.locator(".card.err, [role=alert]").count() == 0, "ikinci tur hatasız açılıyor")
         ACTIVE = ("gq-tr_de", "gq-photo_say", "gq-gap", "gq-sep_perfekt", "gq-own_sentence")
         types2 = []

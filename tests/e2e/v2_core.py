@@ -13,6 +13,15 @@ SHOTS = sys.argv[sys.argv.index("--shots") + 1] if "--shots" in sys.argv else No
 PORT = 4180
 _STRAT = json.load(open(os.path.join(ROOT, "content/v2/domains/strategie/scenarios/01-nicht-verstanden.json")))
 STRAT_TITLE, STRAT_REVIEW = _STRAT["title_tr"], _STRAT["review"]["status"]
+# e2e paketinde M1 günü var mı (DW_E2E_FIXTURES=1 ile örnek gün girer)
+def _m1():
+    try:
+        root = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "web", "dist-e2e", "content")
+        ver = json.load(open(os.path.join(root, "current.json")))["version"]
+        return bool(json.load(open(os.path.join(root, ver, "index.json"))).get("m1"))
+    except Exception:
+        return False
+M1 = _m1()
 ERR = []
 API_CALLS = []
 
@@ -141,11 +150,16 @@ def main():
 
         print("4) Bugün")
         page.click("text=Bugün'e git")
-        page.wait_for_selector("[data-test=next-activity]")
+        page.wait_for_selector("[data-test=next-activity][data-m1]" if M1 else "[data-test=next-activity]")
         na = page.inner_text("[data-test=next-activity]")
-        check("Seans 1" in na and STRAT_TITLE in na, f"sıradaki etkinlik: seans 1 → strateji senaryosu ({na[:60]!r})")
-        draft = STRAT_REVIEW != "reviewed"
-        check(("Deneme dersi" in na) == draft, f"inceleme etiketi içerik durumuna uygun ({STRAT_REVIEW})")
+        if M1:
+            # #58 A5b: M1 günleri varken sıradaki adım günün planından (Seans 1: Kelime Bahçesi), v1'e gönderme yok
+            check(page.get_attribute("[data-test=next-activity]", "data-seans") == "1" and "Kelime Bahçesi" in na, f"sıradaki adım: 1. gün · Seans 1 Kelime Bahçesi ({na[:70]!r})")
+            check("Eski uygulama" not in na, "Bugün'de eski uygulamaya gönderme yok")
+        else:
+            check("Seans 1" in na and STRAT_TITLE in na, f"sıradaki etkinlik: seans 1 → strateji senaryosu ({na[:60]!r})")
+            draft = STRAT_REVIEW != "reviewed"
+            check(("Deneme dersi" in na) == draft, f"inceleme etiketi içerik durumuna uygun ({STRAT_REVIEW})")
         page.wait_for_selector("[data-test=weak] li")
         weak = page.inner_text("[data-test=weak]")
         check("Seviye tespitinde" not in weak and "Şu an listede kelime yok" not in weak, "bilinmeyen kelimeler zayıflık listesinde")
@@ -178,8 +192,10 @@ def main():
         check("1/4 seans" in page.inner_text("[data-test=sessions-done]"), "tamamlanan seans 1/4")
         shot(page, "06-break")
         page.clock.run_for(5 * 60_000 + 2000)
-        page.wait_for_selector("[data-test=focus-idle]")
-        check("Seans 2" in page.inner_text("[data-test=focus-idle]"), "mola bitince seans 2 önerisi (cümle kurma)")
+        # M1 günleri varsa (#58 A6) halkanın yanındaki durum satırı; yoksa eski odak satırı
+        page.wait_for_selector("[data-test=seans-durum], [data-test=focus-idle]")
+        page.wait_for_function("(document.querySelector('[data-test=seans-durum]') || document.querySelector('[data-test=focus-idle]'))?.textContent.match(/[Ss]eans 2/)")
+        check(True, "mola bitince sırada seans 2")
 
         print("6) İlerlemem")
         page.click("[data-tab=progress]")

@@ -1,5 +1,6 @@
 /** İçerik paketi yükleyici: /content/current.json → /content/<sürüm>/… (şemayla doğrulanır, bellekte önbellek) */
 import { z } from "zod";
+import { bilinenKelimeler } from "../core/persona.ts";
 import { AssessItem, ContentIndex, GrammarNote, Gun, Lexeme, Pattern, Scenario, TemelDers } from "@dw/shared";
 
 const base = () => `${import.meta.env.BASE_URL}content/`;
@@ -41,7 +42,12 @@ function file<T>(name: string, schema: z.ZodType<T>): Promise<T> {
   return cache.get(name) as Promise<T>;
 }
 export const loadAssessBank = () => within(file("assess.json", z.array(AssessItem)));
-export const loadLexicon = () => within(file("lexemes.json", z.object({ lexemes: z.array(Lexeme), patterns: z.array(Pattern) })));
+let kayitli = false;
+/** Sözlük; ilk yüklemede kelimeler ad yuvası denetimine bildirilir (adsız profilde bilinen kelime ad sayılmaz) */
+export const loadLexicon = () => within(file("lexemes.json", z.object({ lexemes: z.array(Lexeme), patterns: z.array(Pattern) }))).then((x) => {
+  if (!kayitli) { kayitli = true; bilinenKelimeler(x.lexemes.map((l) => l.de)); }
+  return x;
+});
 export const loadGrammar = () => within(file("grammar.json", z.array(GrammarNote)));
 export function loadScenario(id: string): Promise<Scenario> {
   return within((async () => {

@@ -99,6 +99,16 @@ jobs:
         run: cd tests/e2e && python v2_veri.py
       - name: "Temel ders oynatıcısı (#58 A5, Seans 2): R0 dersi baştan sona"
         run: cd tests/e2e && python v2_ders.py --shots /tmp/shots
+      - name: "Ders yolu (#58 A5b): 1. gün Bugün'den baştan sona (Bahçe → temel ders → video + sesler), XP ve seri"
+        run: cd tests/e2e && python v2_yol.py --shots /tmp/shots
+      - name: "Yeni Bugün + Pomodoro (#58 A6): halka, seans x/4, Devam et süreyi başlatır, mola zili/titreşimi, kilitte doğru süre"
+        run: cd tests/e2e && python v2_bugun.py --shots /tmp/shots
+      - name: "Konuşma provası (#58 A7): hazırlık kilidi, dallanan diyalog, tanınmayan cevap, Türkçe geri bildirim"
+        run: cd tests/e2e && python v2_prova.py --shots /tmp/shots
+      - name: "Okuma ve yazma (#58 A8): metin + kelime kartı, sorular, zorunlu kelime ve kalıp kontrolü, örnek, kontrol listesi"
+        run: cd tests/e2e && python v2_okuma.py --shots /tmp/shots
+      - name: "Dinleme başlangıç hızı (#58 B7): Yavaş seçiliyse ilk çalma yavaş, tekrar normal; Profil'de Normal etkili"
+        run: cd tests/e2e && python v2_hiz.py
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4

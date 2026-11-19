@@ -57,15 +57,61 @@ async function ensureContent() {
     await c.put(DONE, new Response(String(files.size)));
   }
   for (const k of await caches.keys()) if (k.startsWith("dw2-c-") && k !== name) await caches.delete(k);
+  return cur.version;
 }
 
-let syncing = null;
-const sync = () => (syncing ||= (async () => {
-  try { await ensureShell(); } catch (e) { console.warn("[sw] kabuk", e); }
-  try { await ensureContent(); } catch (e) { console.warn("[sw] içerik", e); }
-})().finally(() => { syncing = null; }));
+/** Medya (A12): video ve ses ayrı önbellekte; kurulumu bekletmez (yalnızca "sync" mesajında), eksikse sonraki açılışta sürer */
+async function ensureMedia() {
+  const cur = await (await (await caches.open(CUR)).match("content/current.json"))?.json().catch(() => null);
+  if (!cur) return;
+  const c = await caches.open(`dw2-c-${cur.version}`);
+  if (!(await c.match(DONE))) return;
+  // medya (A12): video ve ses ayrı önbellekte; JSON paketinin tamamlanmasını bekletmez, eksikse sonraki açılışta sürer
+  const mname = `dw2-m-${cur.version}`;
+  const m = await caches.open(mname);
+  if (!(await m.match(DONE))) {
+    const idx = await (await c.match(`content/${cur.version}/index.json`))?.json().catch(() => null);
+    if (!idx) return;
+    const liste = ((idx && idx.files && idx.files.medya) || []).map((f) => `content/${cur.version}/${f}`);
+    const eksik = [];
+    for (const f of liste) if (!(await m.match(f))) eksik.push(f);
+    await putAll(m, eksik);
+    await m.put(DONE, new Response(String(liste.length)));
+  }
+  for (const k of await caches.keys()) if (k.startsWith("dw2-m-") && k !== mname) await caches.delete(k);
+}
 
-self.addEventListener("install", (e) => { e.waitUntil(sync().then(() => self.skipWaiting())); });
+/** Safari <video>/<audio> aralıklı istek (Range) ister; önbellekteki tam yanıttan 206 kısmi yanıt üretilir */
+async function aralikli(req, yanit) {
+  const range = req.headers.get("range");
+  if (!range || !yanit || yanit.status !== 200) return yanit;
+  const m = /^bytes=(\d*)-(\d*)$/.exec(range.trim());
+  // geçersiz sözdizimi (bytes=-, bytes=5-2): aralık yok sayılır, tam yanıt (RFC 9110 §14.2)
+  if (!m || (m[1] === "" && m[2] === "") || (m[1] !== "" && m[2] !== "" && Number(m[2]) < Number(m[1]))) return yanit;
+  // dosya belleğe bütünüyle okunmaz: Blob dilimi
+  const blob = await yanit.clone().blob();
+  const boy = blob.size;
+  const bas = m[1] === "" ? Math.max(0, boy - Number(m[2])) : Number(m[1]);
+  const son = m[1] !== "" && m[2] !== "" ? Math.min(Number(m[2]), boy - 1) : boy - 1;
+  if (bas >= boy) return new Response(null, { status: 416, headers: { "Content-Range": `bytes */${boy}` } });
+  return new Response(blob.slice(bas, son + 1), { status: 206, headers: {
+    "Content-Type": yanit.headers.get("Content-Type") || "application/octet-stream", "Content-Range": `bytes ${bas}-${son}/${boy}`,
+    "Content-Length": String(son - bas + 1), "Accept-Ranges": "bytes" } });
+}
+
+let syncing = null, medyaBekliyor = false;
+// çalışan bir sync(false) varken gelen medya isteği yutulmaz: iş bitince medya ayrıca indirilir (inceleme #74 2. tur)
+const sync = (medya = true) => {
+  if (medya) medyaBekliyor = true;
+  return (syncing ||= (async () => {
+    try { await ensureShell(); } catch (e) { console.warn("[sw] kabuk", e); }
+    try { await ensureContent(); } catch (e) { console.warn("[sw] içerik", e); }
+    while (medyaBekliyor) { medyaBekliyor = false; try { await ensureMedia(); } catch (e) { console.warn("[sw] medya", e); } }
+  })().finally(() => { syncing = null; }));
+};
+
+// kurulum medya indirmesini beklemez (kabuk hemen etkinleşir); medya sayfanın "sync" mesajıyla gelir
+self.addEventListener("install", (e) => { e.waitUntil(sync(false).then(() => self.skipWaiting())); });
 self.addEventListener("activate", (e) => {
   e.waitUntil((async () => {
     for (const k of await caches.keys()) if ((k.startsWith("dw2-shell-") && k !== SHELL) || k.startsWith("dw2-v1")) await caches.delete(k);
@@ -97,10 +143,11 @@ self.addEventListener("fetch", (e) => {
     return;
   }
   e.respondWith((async () => {
-    const hit = (await caches.match(req, { ignoreSearch: true })) || (await caches.match(key));
-    if (hit) return hit;
+    const hit = (await caches.match(req.url, { ignoreSearch: true })) || (await caches.match(key));
+    if (hit) return aralikli(req, hit);
     const r = await fetch(req);
-    if (r.ok && (key.startsWith("assets/") || key.startsWith("content/"))) {
+    // medya kısmi yanıtla (206) gelir: önbelleğe yalnızca tam yanıt girer (medya önbelleği sync ile tam dosyayı alır)
+    if (r.status === 200 && (key.startsWith("assets/") || key.startsWith("content/"))) {
       const c = await caches.open(key.startsWith("assets/") ? SHELL : `dw2-c-${key.split("/")[1]}`);
       c.put(req, r.clone());
     }
