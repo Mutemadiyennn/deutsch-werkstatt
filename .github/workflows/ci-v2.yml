@@ -3,7 +3,7 @@ name: v2 — kontrol (tip, birim, içerik, derleme, WebKit uçtan uca, görsel)
 on:
   push:
     branches: [main]
-    paths: ["web/**", "worker/**", "packages/**", "content/**", "tests/e2e/**", "package.json", "package-lock.json", ".github/workflows/ci-v2.yml"]
+    paths: ["web/**", "worker/**", "packages/**", "content/**", "tests/e2e/**", "scripts/**", "package.json", "package-lock.json", ".github/workflows/ci-v2.yml"]
   pull_request:
   workflow_dispatch:
 
@@ -21,6 +21,8 @@ jobs:
         run: npm test
       - name: İçerik kapısı (0 hata)
         run: npm run content:validate
+      - name: Raf doldurma hattı birim testleri (ağsız; D-112)
+        run: python3 -m pip install --quiet --break-system-packages pillow 2>/dev/null || python3 -m pip install --quiet pillow; python3 scripts/raf/test_doldur.py
       - name: Gizli anahtar taraması (Firebase web yapılandırması hariç)
         run: |
           if git grep -nE 'AIza[0-9A-Za-z_-]{35}' -- ':!app/legacy.html' ':!web/src/services/auth.ts' ':!app/tests/*' | grep -v 'AIzaSyDU2GSwCowKMKWBOvTZdKQjCtxLsQFTlDg'; then echo "Anahtar bulundu"; exit 1; fi
