@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { Gun } from "@dw/shared";
-import { EN_COK_TEKRAR, dugumBul, eslestir, hazirlikCumleleri, rakamOku, rapor, sonMu, sonrakiDugum, type ProvaT } from "./prova.ts";
+import { EN_COK_TEKRAR, beyanSecenegi, dugumBul, eslestir, hazirlikCumleleri, rakamOku, rapor, sonMu, sonrakiDugum, type ProvaT } from "./prova.ts";
 import { bilinenKelimeler, personalizeDeep } from "./persona.ts";
 
 const dir = join(import.meta.dirname, "../../../content/v2/m1");
@@ -108,5 +108,25 @@ describe("Konuşma provası (#58 A7)", () => {
     while (sonrakiDugum(n3, kotu, ziyaret) === "n3" && sayi < 10) { ziyaret.set("n3", ziyaret.get("n3")! + 1); sayi++; }
     expect(sayi).toBe(EN_COK_TEKRAR - 1);
     expect(sonrakiDugum(n3, kotu, ziyaret)).toBe(n3.secenekler.find((s) => s.uygun)!.sonraki);
+  });
+  it("inceleme #68 2. tur: olumsuz cevap beyanla olumlu dala gidemez; en yakın biçimin olumsuzluğu esas", () => {
+    const p1 = personalizeDeep(provalar.find((x) => x.day === 1)!.ham, { name: "Ayşe", address: "Frau" }) as ProvaT;
+    const n3 = dugumBul(p1, "n3")!;
+    const a = "Nein, Donnerstag geht nicht.";
+    for (const sesli of [false, true]) expect(beyanSecenegi(n3, eslestir(n3, a, !sesli, p1.durum_tr), a, sesli)).toBeNull();
+    const p4 = personalizeDeep(provalar.find((x) => x.day === 4)!.ham, { name: "Ayşe", address: "Frau" }) as ProvaT;
+    const n2 = dugumBul(p4, "n2")!;
+    for (const x of ["Das geht nicht.", "Das ist zu teuer.", "Nein, das ist zu teuer."]) {
+      const e = eslestir(n2, x, true, p4.durum_tr);
+      // olumlu "Das geht." dalına ne yakın sayılır ne beyanla gidilir
+      const hedef = e.kind === "correct" ? e.i : beyanSecenegi(n2, e, x, false);
+      if (hedef !== null) expect(/geht\.|das geht/i.test(n2.secenekler[hedef]!.accepted[0] ?? "") && !/nicht|teuer/i.test(n2.secenekler[hedef]!.accepted[0]!), x).toBe(false);
+    }
+  });
+  it("inceleme #68 2. tur: uygun tekrar isteği (Wie bitte?) döngü sınırına takılmaz", () => {
+    const p3 = provalar.find((x) => x.day === 3)!.ham as ProvaT;
+    const n3 = dugumBul(p3, "n3")!;
+    const wb = n3.secenekler.findIndex((s) => s.uygun && s.sonraki === "n3");
+    if (wb >= 0) expect(sonrakiDugum(n3, wb, new Map([["n3", 9]]))).toBe("n3");
   });
 });

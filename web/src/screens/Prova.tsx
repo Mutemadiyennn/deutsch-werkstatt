@@ -8,7 +8,7 @@ import { useApp } from "../state.ts";
 import { loadLexicon, loadM1Gun } from "../services/content.ts";
 import { adimXpVer } from "../services/ilerleme.ts";
 import { personalizeDeep } from "../core/persona.ts";
-import { dugumBul, eslestir, hazirlikCumleleri, rapor, sonMu, sonrakiDugum, type Eslesme, type Kayit, type ProvaT } from "../core/prova.ts";
+import { beyanSecenegi, dugumBul, eslestir, hazirlikCumleleri, rapor, sonMu, sonrakiDugum, type Eslesme, type Kayit, type ProvaT } from "../core/prova.ts";
 import { addClaim, setMeta } from "../data/db.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
 import { ActionBar, AnswerField, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
@@ -89,13 +89,16 @@ function Konusma({ p, onBitti }: { p: ProvaT; onBitti: (k: Kayit[]) => void }) {
   const [ipucu, setIpucu] = useState(false);
   const [ceviri, setCeviri] = useState(false);
   const ziyaret = useRef(new Map<string, number>());
+  const once = useRef<string | null>(null);
   const dugum = dugumBul(p, id);
   const son = sonMu(dugum);
   useEffect(() => {
     if (!dugum) return;
     ziyaret.current.set(id, (ziyaret.current.get(id) ?? 0) + 1);
     setSatirlar((s) => [...s, { kim: "karsi", de: dugum.de, tr: dugum.tr }]);
-    void speak(dugum.de, "de", "normal");
+    // "Doğrusunu söyleyip geç": önce doğru cümle duyulur, sonra karşı tarafın sözü (biri ötekini kesmez)
+    const ilk = once.current; once.current = null;
+    void (async () => { if (ilk) await speak(ilk, "de", "normal"); await speak(dugum.de, "de", "normal"); })();
     setIpucu(false);
   }, [id]);
   useEffect(() => { window.scrollTo(0, document.body.scrollHeight); }, [satirlar.length, !!cevap]);
@@ -106,17 +109,20 @@ function Konusma({ p, onBitti }: { p: ProvaT; onBitti: (k: Kayit[]) => void }) {
     setKayitlar(yeni);
     // "Doğrusunu söyleyip geç": balonda doğru cümle görünür ve okunur
     setSatirlar((x) => [...x, { kim: "sen", de: k.dogrusu ?? (k.cevap || s.de) }]);
-    if (k.dogrusu) void speak(k.dogrusu, "de", "normal");
+    if (k.dogrusu) once.current = k.dogrusu;
     setCevap(null);
     // aynı düğüme dönüş sınırı (kendine dönen dal dahil): sınır dolunca uygun dal seçilir
     const hedef = sonrakiDugum(dugum!, i, ziyaret.current);
     if (hedef === id) {
       ziyaret.current.set(id, (ziyaret.current.get(id) ?? 0) + 1);
-      setSatirlar((x) => [...x, { kim: "karsi", de: dugum!.de, tr: dugum!.tr }]); void speak(dugum!.de, "de", "normal");
+      setSatirlar((x) => [...x, { kim: "karsi", de: dugum!.de, tr: dugum!.tr }]);
+      const ilk = once.current; once.current = null;
+      void (async () => { if (ilk) await speak(ilk, "de", "normal"); await speak(dugum!.de, "de", "normal"); })();
     } else setId(hedef);
     if (!dugumBul(p, hedef)) onBitti(yeni);
   };
   const uygunI = () => Math.max(0, dugum?.secenekler.findIndex((x) => x.uygun) ?? 0);
+  const beyanI = cevap && dugum ? beyanSecenegi(dugum, cevap.e, cevap.a, cevap.mode === "voice") : null;
   const gonder = (a: string, mode: "typed" | "voice") => setCevap({ a, mode, e: eslestir(dugum!, a, mode === "typed", p.durum_tr) });
 
   return (
@@ -146,13 +152,14 @@ function Konusma({ p, onBitti }: { p: ProvaT; onBitti: (k: Kayit[]) => void }) {
                 if (cevap.e.kind === "wrong") setKayitlar((k) => [...k, { dugum: id, cevap: cevap.a, secenek: null, uygun: false, dogrusu: cevap.e.best }]);
                 setCevap(null);
               }}>{cevap.mode === "voice" ? "Tekrar söyle" : "Tekrar yaz"}</button>
-              {/* konuşma tanıma yanlış duyabilir ya da kurallar cevabı tanımaz: karar öğrencinin (PM-054.3, D-097) */}
-              <button class="btn block" data-test="dogru-soyledim" onClick={() => {
-                const i = cevap.e.i ?? uygunI();
+              {/* konuşma tanıma yanlış duyabilir ya da kurallar cevabı tanımaz: karar öğrencinin (PM-054.3, D-097); olumsuz cevap
+                  olumlu dala beyanla gidemez (beyanSecenegi) */}
+              {beyanI !== null && <button class="btn block" data-test="dogru-soyledim" onClick={() => {
+                const i = beyanI;
                 const s = dugum!.secenekler[i]!;
                 void addClaim({ at: new Date().toISOString(), scenarioId: "m1:prova", itemId: `${p.id}:${id}`, prompt: dugum!.de, answer: cevap.a, expected: s.accepted.length ? s.accepted : [s.de] });
                 ilerle(i, { dugum: id, cevap: cevap.a, secenek: i, uygun: s.uygun, beyan: true });
-              }}>{cevap.mode === "voice" ? "Doğru söyledim" : "Benimki de doğru"}</button>
+              }}>{cevap.mode === "voice" ? "Doğru söyledim" : "Benimki de doğru"}</button>}
               {cevap.e.kind === "wrong" && <button class="btn block ghost" data-test="dogrusuyla-gec" onClick={() => {
                 const i = uygunI();
                 ilerle(i, { dugum: id, cevap: cevap.a, secenek: null, uygun: false, dogrusu: dugum!.secenekler[i]!.de });
