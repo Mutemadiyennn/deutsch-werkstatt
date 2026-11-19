@@ -45,7 +45,9 @@
 - **`content/v2/media/foto/kisa-sorgu.json`** (ANA'nın biçimi): `{ "<uzun sorgu aynen>": "<2–3 kelime>" }`. Adaysız ve reddedilen sorgular içindir; Openverse aramasıyla ANA'nın hattında kullanılır.
   - Yazı isteyen sorgular yazısız nesneye çevrildi: tabela → kapı ya da kepenk, form → masa başı.
   - Kapı numarası ve banknot gibi sayıya ya da tasarım hakkına bağlı sorgular çıkarıldı; o yerler `aday: null`.
-  - Saat ve takvim sorgularında seçim sırasında sayının doğruluğu ayrıca denetlenmeli.
+  - Saat, takvim ve hız sınırı (`speed limit 30/70/80`) sorgularında seçim sırasında sayının doğruluğu ayrıca denetlenmeli.
+  - Aynı kısa sorgu birden çok yere gidiyorsa (`paying cash counter` gibi) seçimde aynı fotoğraf iki yere düşmemeli.
+  - İnceleme turunda geri çevrilen 15 yerin bir kısmına da kısa sorgu yazıldı; ikinci turda aday gelir.
 
 ## Açık noktalar
 - Hedef, somut kelimelerin %85'inde kabul edilmiş fotoğraf; bu kaynakla tutmuyor. Openverse adaylarından sonra B5 ikinci turu yapılacak.
