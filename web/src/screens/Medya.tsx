@@ -85,6 +85,8 @@ function useOynatici(m: Medya, video: HTMLVideoElement | null, base = ""): Oynat
     },
     dur() { iptal.current++; stopSpeaking(); video?.pause(); sesEl.current?.pause(); setCalisiyor(null); }
   };
+  // mola başlayınca çok cümleli ses bölümü de susar (yalnızca o anki cümle değil; inceleme #67 2. tur)
+  useEffect(() => { const f = () => o.dur(); window.addEventListener("dw:mola", f); return () => window.removeEventListener("dw:mola", f); });
   return { ...o, calisiyor };
 }
 
