@@ -64,3 +64,45 @@ export function dersKonum(p: DersIlerleme | undefined, t: TemelDers): DersIlerle
   if (!steps[p.s] || p.k >= altSayisi(t, steps[p.s]!)) return { ...DERS_BASLANGIC };
   return p;
 }
+
+/* ---------- hatırlama turu (inceleme #65 2. tur) ---------- */
+const nk = (s: string) => s.toLocaleLowerCase("tr").replace(/[^\p{L}\p{N}: ]+/gu, " ").replace(/\s+/g, " ").trim();
+type Kart = TemelDers["teach"][number];
+/**
+ * "Türkçe → Almancasını yaz" sorusunun kabul listesi: kartın kendisi + aynı derste öğretilen eşdeğerler
+ *  - aynı Türkçe istemli tr_de maddesinin kabul listesi (Wie viel Uhr ist es? = Wie spät ist es?)
+ *  - tablo satırının ilk sütunu rakam/saatse ve kartın Türkçesine eşitse satırdaki öteki rakamsız hücreler
+ *    (9:30 → halb zehn = neun Uhr dreißig)
+ * Ad yuvası: ad girilmemiş profilde gösterim "(adın)" olur; kabulde {name} yuvasına döner (fillName doldurur).
+ */
+export function hatirlaKabul(t: TemelDers, x: Kart): string[] {
+  const yuva = (s: string) => s.replace(/\(adın\)/g, "{name}");
+  const out = [yuva(x.art ? `${x.art} ${x.de}` : x.de)];
+  const ekle = (s: string) => { const y = yuva(s); if (!out.includes(y)) out.push(y); };
+  for (const d of t.drills) if (d.k === "tr_de" && nk(d.tr) === nk(x.tr)) d.accepted.forEach(ekle);
+  for (const r of t.table?.satirlar ?? []) {
+    if (/\d/.test(r[0] ?? "") && nk(r[0]!) === nk(x.tr) && r.some((c) => nk(c) === nk(x.de))) r.slice(1).filter((c) => !/\d/.test(c)).forEach(ekle);
+  }
+  return out;
+}
+/**
+ * "Dinle: ne demek?" çeldiricileri: yalnızca şimdiye kadar gösterilmiş kartlardan (öğrenci tanımadığı anlamı seçmesin),
+ * doğru cevabın kelimelerini içermeyen ya da onun içinde kalmayan (saat ≠ "saat, vakit") ve biçimce en yakın (kelime sayısı) iki anlam.
+ */
+export function hatirlaSecenek(t: TemelDers, grup: number, x: Kart, i: number): string[] {
+  const kelime = (s: string) => nk(s).split(" ").filter((w) => w.length >= 3);
+  // fazla yakın: birinin kelimeleri ötekinin içinde (saat ↔ "saat, vakit")
+  const altKume = (a: string[], b: string[]) => a.length > 0 && a.every((w) => b.includes(w));
+  const ortak = (a: string, b: string) => { const x = kelime(a), y = kelime(b); return altKume(x, y) || altKume(y, x); };
+  const uygun = (y: Kart) => y.tr !== x.tr && !ortak(y.tr, x.tr) && nk(y.tr) !== nk(x.tr);
+  const sayi = (s: string) => nk(s).split(" ").length;
+  const yakin = (l: Kart[]) => [...new Set(l.map((y) => y.tr))].sort((a, b) => Math.abs(sayi(a) - sayi(x.tr)) - Math.abs(sayi(b) - sayi(x.tr)));
+  const gosterilen = yakin(t.teach.slice(0, (grup + 1) * TANIT_GRUP).filter(uygun));
+  // gösterilmiş uygun kart ikiden azsa (yalnızca ilk grupta olabilir) eksik, sonraki kartlardan tamamlanır
+  const sirali = gosterilen.length >= 2 ? gosterilen : [...gosterilen, ...yakin(t.teach.slice((grup + 1) * TANIT_GRUP).filter(uygun))].slice(0, 2);
+  const en = sirali.slice(0, Math.min(4, sirali.length));
+  const k = (grup * 7 + i * 3) % Math.max(1, en.length);
+  const opts = [x.tr, en[k], en[(k + 1) % en.length]].filter((o, j, a): o is string => !!o && a.indexOf(o) === j);
+  const rot = (i + grup) % opts.length;
+  return [...opts.slice(rot), ...opts.slice(0, rot)];
+}

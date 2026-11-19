@@ -9,7 +9,7 @@ import { useApp } from "../state.ts";
 import { loadTemel } from "../services/content.ts";
 import { getMeta, setMeta } from "../data/db.ts";
 import { personalizeDeep } from "../core/persona.ts";
-import { DERS_ADIM_TR, TANIT_GRUP, adimlarDers, altSayisi, dersAnahtari, dersIleri, dersKonum, maddeler, type DersIlerleme } from "../core/ders.ts";
+import { DERS_ADIM_TR, TANIT_GRUP, adimlarDers, altSayisi, dersAnahtari, dersIleri, dersKonum, hatirlaKabul, hatirlaSecenek, maddeler, type DersIlerleme } from "../core/ders.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
 import { ActionBar, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
 import { Art, ErrorPanel, Loading } from "../ui/components.tsx";
@@ -114,18 +114,16 @@ function Hatirla({ t, grup, onDone }: { t: TemelDers; grup: number; onDone: (dog
   const sayi = `${q + 1}/${sorular.length}`;
   const bitir = (ok: boolean) => { const d = dogru + (ok ? 1 : 0); if (q + 1 >= sorular.length) onDone(d, sorular.length); else { setDogru(d); setQ(q + 1); } };
   if (cur.tur === "anlam") {
-    const diger = t.teach.filter((y) => y.tr !== cur.x.tr).map((y) => y.tr);
-    const k = (grup * 7 + cur.i * 3) % Math.max(1, diger.length);
-    const opts = [cur.x.tr, diger[k], diger[(k + 2) % diger.length]].filter((o, j, a): o is string => !!o && a.indexOf(o) === j);
-    const rot = (cur.i + grup) % opts.length; const sec = [...opts.slice(rot), ...opts.slice(0, rot)];
+    const sec = hatirlaSecenek(t, grup, cur.x, cur.i);
     const d = { id: `hat:${cur.x.id}`, k: "pick" as const, q_tr: "Dinle: ne demek?", opts: sec, ans: sec.indexOf(cur.x.tr) };
     return <div class="stack fade" data-test="ders-hatirla" data-q={q}>
       <div class="row"><ListenButton text={cur.x.art ? `${cur.x.art} ${cur.x.de}` : cur.x.de} /></div>
       <DrillView key={`a${q}`} d={d} sira={`Hatırla ${sayi}`} onDone={(r) => bitir(r !== "wrong")} />
     </div>;
   }
-  const kabul = cur.x.art ? [`${cur.x.art} ${cur.x.de}`] : [cur.x.de];
-  return <div data-test="ders-hatirla" data-q={q}><DrillView key={`y${q}`} d={{ id: `hat:${cur.x.id}:y`, k: "tr_de", tr: `${cur.x.tr}${cur.x.art ? " (artikeliyle)" : ""}`, accepted: kabul }} sira={`Hatırla ${sayi}`} onDone={(r) => bitir(r !== "wrong")} /></div>;
+  const kabul = hatirlaKabul(t, cur.x);
+  return <div data-test="ders-hatirla" data-q={q}><DrillView key={`y${q}`} d={{ id: `hat:${cur.x.id}:y`, k: "tr_de", tr: `${cur.x.tr}${cur.x.art ? " (artikeliyle)" : ""}`, accepted: kabul }}
+    artikel={cur.x.art ? { de: cur.x.de, art: cur.x.art } : undefined} sira={`Hatırla ${sayi}`} onDone={(r) => bitir(r !== "wrong")} /></div>;
 }
 
 function Tablo({ t, onNext }: { t: TemelDers; onNext: () => void }) {
