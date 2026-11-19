@@ -116,7 +116,7 @@ export function ProfileView() {
           <button class="btn sm" onClick={checkServer}>Sunucu bağlantısını kontrol et</button>
         </> : <p class="small muted" data-test="no-server">Bu sürüm internete ve yapay zekâya ihtiyaç duymaz: dersler, cevap değerlendirmesi ve rol oyunu bu cihazda çalışır.</p>}
         {srv && <p class="small" style={{ marginTop: 8 }} data-test="server">{srv}</p>}
-        <p class="small" style={{ marginTop: 8 }} data-test="persist">{persist === "persisted" ? "İlerlemen bu cihazda kalıcı olarak saklanıyor." : persist === "best-effort" ? "İlerlemen bu cihazda saklanıyor; telefonda yer azalırsa tarayıcı silebilir. Ara sıra yedek indir." : "İlerlemen bu cihazda saklanıyor. Ara sıra yedek indir."}</p>
+        <p class="small" style={{ marginTop: 8 }} data-test="persist">{persist === "persisted" ? "İlerlemen bu cihazda kalıcı olarak saklanıyor. Telefon değiştirmeden önce yedek indir." : persist === "best-effort" ? "İlerlemen bu cihazda saklanıyor; telefonda yer azalırsa tarayıcı silebilir. Ara sıra yedek indir." : "İlerlemen bu cihazda saklanıyor. Ara sıra yedek indir."}</p>
         <div class="row" style={{ marginTop: 12 }}>
           <button class="btn sm" onClick={download}>Yedeği indir (JSON)</button>
           <a class="btn sm" href={V1_URL} target="_blank" rel="noopener">Arşiv: v1 uygulaması <Icon name="out" size={16} /></a>

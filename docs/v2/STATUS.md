@@ -40,6 +40,7 @@ Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur. Hata türler
 ## Açık PR'lar
 | PR | Dal | Teslim | İnceleme |
 |---|---|---|---|
+| #61 | `v2/veri` | #58 A12 kalan: hata sınırı, kalıcı depolama, şema geçişi | 1. tur bulguları düzeltildi; 2. tur |
 | #43 | `v2/denetim` | PM-030 DN-2 (M1 A12: çevrimdışı, servis işçisi) | 2. tur bulguları düzeltildi; kısa yeniden inceleme |
 
 ### Birleştirme turu (PM-007, 2026-11-17)

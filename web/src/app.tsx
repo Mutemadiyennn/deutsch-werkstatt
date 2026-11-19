@@ -45,6 +45,8 @@ export function App() {
   const [route, setRoute] = useState<Route>(parseHash(location.hash));
   const [toastMsg, setToast] = useState<string | null>(null);
   const [authSlow, setAuthSlow] = useState(false);
+  const [profileErr, setProfileErr] = useState<string | null>(null);
+  const [profileTry, setProfileTry] = useState(0);
 
   useEffect(() => {
     const on = () => setRoute(parseHash(location.hash));
@@ -63,6 +65,7 @@ export function App() {
 
   useEffect(() => {
     if (!user) return;
+    setProfileErr(null);
     (async () => {
       const p = await getProfile();
       applyTheme(p);
@@ -71,9 +74,9 @@ export function App() {
       if (p.onboardedAt) void ensurePersist();
       setPlacement(await latestPlacement());
       await startFocus(p);
-    })();
+    })().catch((e) => { recordError("profil", e); setProfileErr("Profilin bu cihazdan okunamadı."); });
     within(loadIndex()).then(setIndex).catch((e) => setIndexError(String(e.message || e)));
-  }, [user?.uid]);
+  }, [user?.uid, profileTry]);
 
   useEffect(() => { if (route.name !== "section") setLearning(LEARNING_ROUTES.has(route.name), route.name === "assess" ? "assess" : "vocab"); window.scrollTo(0, 0); }, [route]);
 
@@ -85,11 +88,11 @@ export function App() {
     ? <ErrorPanel message="Giriş bilgisi şu an doğrulanamadı. İnternet bağlantını kontrol edip tekrar dene." onRetry={() => location.reload()} />
     : <Loading />}</main>;
   if (!user) return <Login />;
-  if (!profile) return <main class="app notabs"><Loading text="Profil yükleniyor…" /></main>;
+  if (!profile) return <main class="app notabs">{profileErr ? <ErrorPanel message={`${profileErr} Verin silinmedi; tekrar dene.`} onRetry={() => setProfileTry((n) => n + 1)} /> : <Loading text="Profil yükleniyor…" />}</main>;
 
   const ctx: AppCtx = {
     user, profile, index, indexError, placement, api, route, toast,
-    setProfile: async (p) => { const v = await saveProfile(p); applyTheme(v); setP(v); updateFocusConfig(v); },
+    setProfile: async (p) => { const first = !profile.onboardedAt && !!p.onboardedAt; const v = await saveProfile(p); applyTheme(v); setP(v); updateFocusConfig(v); if (first) void ensurePersist(); },
     refreshPlacement: async () => setPlacement(await latestPlacement())
   };
 
