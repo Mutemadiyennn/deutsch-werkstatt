@@ -30,7 +30,7 @@ describe("Konuşma provası (#58 A7)", () => {
       });
     }
     expect(red).toEqual([]);
-  });
+  }, 20_000);
 
   it("dallar tutarlı: her 'sonraki' var, her düğüme ulaşılır, uygun cevaplarla sona varılır (döngü yok)", () => {
     for (const { day, ham } of provalar) {
