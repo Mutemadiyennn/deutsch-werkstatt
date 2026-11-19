@@ -36,7 +36,8 @@ export function authErrorTr(e: unknown): string {
   if (/invalid-credential|wrong-password|user-not-found|invalid-email|invalid-login/.test(c)) return "E-posta ya da uygulama şifresi yanlış.";
   if (/too-many-requests/.test(c)) return "Çok fazla deneme; birkaç dakika bekle.";
   if (/network-request-failed/.test(c)) return "İnternet bağlantısı yok gibi görünüyor.";
-  return "Giriş yapılamadı. Tekrar dene.";
+  // bilinmeyen hata: gerçek kod ekranda (PM 7017351856; sessiz başarısızlık yok)
+  return `Giriş yapılamadı. Tekrar dene. (kod: ${c.slice(0, 60)})`;
 }
 
 class FirebaseAuth implements AuthAdapter {
@@ -50,7 +51,9 @@ class FirebaseAuth implements AuthAdapter {
       const [{ initializeApp, getApps, getApp }, au] = await Promise.all([import("firebase/app"), import("firebase/auth")]);
       const app = getApps().length ? getApp() : initializeApp(FIREBASE_CONFIG);
       let auth: import("firebase/auth").Auth;
-      try { auth = au.initializeAuth(app, { persistence: [au.indexedDBLocalPersistence, au.browserLocalPersistence] }); } catch { auth = au.getAuth(app); }
+      // popupRedirectResolver şart (web): initializeAuth onu kendiliğinden eklemez, yoksa signInWithPopup her tarayıcıda hemen
+      // hata verir. Kabukta verilmez: Google düğmesi orada yok, çözümleyici açılışı ağa bağlardı (inceleme #114 P1-1)
+      try { auth = au.initializeAuth(app, { persistence: [au.indexedDBLocalPersistence, au.browserLocalPersistence], ...(isNative() ? {} : { popupRedirectResolver: au.browserPopupRedirectResolver }) }); } catch { auth = au.getAuth(app); }
       this.mod = au; this.auth = auth;
       await new Promise<void>((res) => {
         let first = true;
@@ -64,7 +67,12 @@ class FirebaseAuth implements AuthAdapter {
   }
   current() { return this.user; }
   onChange(cb: (u: AuthUser | null) => void) { this.subs.add(cb); return () => this.subs.delete(cb); }
-  async signInGoogle() { await this.ready; const p = new this.mod!.GoogleAuthProvider(); p.setCustomParameters({ prompt: "select_account" }); await this.mod!.signInWithPopup(this.auth!, p); }
+  async signInGoogle() {
+    await this.ready; const p = new this.mod!.GoogleAuthProvider(); p.setCustomParameters({ prompt: "select_account" });
+    // açılır pencere engellenirse ya da bu ortamda desteklenmezse aynı sekmede yönlendirmeyle giriş
+    try { await this.mod!.signInWithPopup(this.auth!, p); }
+    catch (e) { if (/popup-blocked|operation-not-supported/.test(String((e as any)?.code))) await this.mod!.signInWithRedirect(this.auth!, p); else throw e; }
+  }
   async signInEmail(email: string, pw: string) { await this.ready; await this.mod!.signInWithEmailAndPassword(this.auth!, email.trim(), pw); }
   async signOut() { await this.ready; await this.mod!.signOut(this.auth!); }
   async idToken(force = false) { await this.ready; return this.auth!.currentUser ? this.auth!.currentUser.getIdToken(force) : null; }
