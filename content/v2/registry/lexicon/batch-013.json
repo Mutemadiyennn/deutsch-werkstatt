@@ -3769,7 +3769,7 @@
     {
      "id": "lx:Nachbar:3",
      "de": "Unser Nachbar ist echt nett, der grüßt immer.",
-     "tr": "Komşumuz çok iyi biri, hep selam verir.",
+     "tr": "Komşumuz çok nazik, hep selam verir.",
      "layer": "alltag",
      "img": "friendly man waving in apartment hallway"
     },
@@ -3780,6 +3780,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "two people looking up at upstairs window"
+    },
+    {
+     "id": "lx:Nachbar:5",
+     "de": "Der neue Nachbar trägt Frau Brandls Taschen nach oben.",
+     "tr": "Yeni komşu Brandl Hanım'ın çantalarını yukarı taşıyor.",
+     "layer": "hd",
+     "img": "young man carrying grocery bags upstairs for older woman"
+    },
+    {
+     "id": "lx:Nachbar:6",
+     "de": "– Wer hat mein Paket? – Ihr Nachbar im zweiten Stock.",
+     "tr": "– Paketim kimde? – İkinci kattaki komşunuzda.",
+     "layer": "hd",
+     "dialog": true,
+     "img": "parcel handed over at apartment door"
     }
    ],
    "level": "A2",
@@ -3829,8 +3844,14 @@
     {
      "de": "Unsere ___ sind sehr nett.",
      "answer": "Nachbarn",
-     "tr": "Komşularımız çok iyi.",
+     "tr": "Komşularımız çok nazik.",
      "hint_tr": "Birden çok komşu için de **Nachbarn** denir."
+    },
+    {
+     "de": "Der ___ von oben ist sehr laut.",
+     "answer": "Nachbar",
+     "tr": "Üst kattaki komşu çok gürültücü.",
+     "hint_tr": "Komşu derken **der Nachbar** denir."
     }
    ]
   },
@@ -3902,8 +3923,21 @@
     },
     {
      "id": "lx:kündigen:4",
-     "de": "– Warum hast du dein Konto gekündigt? – Die Gebühren waren zu hoch.",
-     "tr": "– Hesabını neden kapattın? – Ücretler çok yüksekti.",
+     "de": "– Warum hast du den Handyvertrag gekündigt? – Er war zu teuer.",
+     "tr": "– Cep telefonu sözleşmeni neden feshettin? – Fazla pahalıydı.",
+     "layer": "hd",
+     "dialog": true
+    },
+    {
+     "id": "lx:kündigen:5",
+     "de": "Tobi kündigt, weil er umzieht.",
+     "tr": "Tobi taşındığı için işten ayrılıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:kündigen:6",
+     "de": "– Kann ich den Vertrag online kündigen? – Nein, nur schriftlich.",
+     "tr": "– Sözleşmeyi internetten feshedebilir miyim? – Hayır, sadece yazılı olarak.",
      "layer": "hd",
      "dialog": true
     }
@@ -3942,16 +3976,28 @@
      "hint_tr": "**du** ile **kündigst** olur."
     },
     {
-     "de": "Herr Wimmer ___ seinen Job.",
+     "de": "Tobi ___ seinen Job.",
      "answer": "kündigt",
-     "tr": "Wimmer Bey işinden ayrılıyor.",
-     "hint_tr": "**er** ve **sie** ile **kündigt** olur."
+     "tr": "Tobi işinden ayrılıyor.",
+     "hint_tr": "**Tobi** ile **kündigt** olur."
     },
     {
-     "de": "Ich habe das Konto ___.",
+     "de": "Wir haben den Vertrag schon ___.",
      "answer": "gekündigt",
-     "tr": "Hesabı kapattım.",
-     "hint_tr": "Geçmişi anlatırken **habe gekündigt** denir."
+     "tr": "Sözleşmeyi zaten feshettik.",
+     "hint_tr": "Feshettik derken **haben gekündigt** denir."
+    },
+    {
+     "de": "Sie müssen schriftlich ___.",
+     "answer": "kündigen",
+     "tr": "Yazılı olarak feshetmeniz gerekiyor.",
+     "hint_tr": "Feshetmeniz gerekiyor derken **müssen kündigen** denir."
+    },
+    {
+     "de": "Wir ___ die Wohnung im Mai.",
+     "answer": "kündigen",
+     "tr": "Kira sözleşmesini mayısta feshediyoruz.",
+     "hint_tr": "**wir** ile **kündigen** olur."
     }
    ]
   },
@@ -4017,6 +4063,19 @@
      "layer": "hd",
      "dialog": true,
      "img": "person asking at parcel shop counter"
+    },
+    {
+     "id": "lx:Sendung:5",
+     "de": "Ihre Sendung ist bei Ihrer Nachbarin, Frau Brandl.",
+     "tr": "Gönderiniz komşunuz Brandl Hanım'da.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Sendung:6",
+     "de": "– Wann kommt die Sendung über Tiere? – Um acht, nach den Nachrichten.",
+     "tr": "– Hayvan programı ne zaman başlıyor? – Sekizde, haberlerden sonra.",
+     "layer": "hd",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -4055,13 +4114,25 @@
      "de": "Heute Abend kommt ___ gute Sendung im Fernsehen.",
      "answer": "eine",
      "tr": "Bu akşam televizyonda iyi bir program var.",
-     "hint_tr": "Bir program için **eine Sendung** denir."
+     "hint_tr": "İyi bir program derken **eine gute Sendung** denir."
     },
     {
      "de": "Ich habe heute zwei ___ bekommen.",
      "answer": "Sendungen",
      "tr": "Bugün iki gönderi aldım.",
      "hint_tr": "İki gönderi için **zwei Sendungen** denir."
+    },
+    {
+     "de": "Ist meine ___ schon da?",
+     "answer": "Sendung",
+     "tr": "Gönderim geldi mi?",
+     "hint_tr": "Gönderim derken **meine Sendung** denir."
+    },
+    {
+     "de": "Die ___ im Radio ist sehr lustig.",
+     "answer": "Sendung",
+     "tr": "Radyodaki program çok komik.",
+     "hint_tr": "Radyodaki program derken **die Sendung im Radio** denir."
     }
    ]
   },
@@ -4123,6 +4194,19 @@
      "tr": "– Rahatsız ettiğim için kusura bakmayın. – Sorun değil, buyurun girin.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:Störung:5",
+     "de": "Herr Pichler meldet die Störung sofort.",
+     "tr": "Pichler Bey arızayı hemen bildiriyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Störung:6",
+     "de": "– Geht das Telefon wieder? – Nein, es gibt noch eine Störung.",
+     "tr": "– Telefon yine çalışıyor mu? – Hayır, hâlâ bir arıza var.",
+     "layer": "hd",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -4144,13 +4228,13 @@
      "de": "Ich möchte ___ Störung melden.",
      "answer": "eine",
      "tr": "Bir arıza bildirmek istiyorum.",
-     "hint_tr": "**melden** ile de **eine Störung** aynı kalır."
+     "hint_tr": "Bir arıza bildirmek derken **eine Störung melden** denir."
     },
     {
      "de": "Entschuldigen Sie ___ Störung.",
      "answer": "die",
      "tr": "Rahatsız ettiğim için kusura bakmayın.",
-     "hint_tr": "Rahatsız ettiğin için özür dilerken **Entschuldigen Sie die Störung** denir."
+     "hint_tr": "Rahatsız ettiğim için kusura bakmayın derken **Entschuldigen Sie die Störung** denir."
     },
     {
      "de": "Wegen ___ Störung fährt der Zug nicht.",
@@ -4163,6 +4247,18 @@
      "answer": "Störungen",
      "tr": "Bugün şebekede birçok arıza var.",
      "hint_tr": "Birden çok arıza için **Störungen** denir."
+    },
+    {
+     "de": "Die ___ dauert noch zwei Stunden.",
+     "answer": "Störung",
+     "tr": "Arıza iki saat daha sürüyor.",
+     "hint_tr": "Arıza derken **die Störung** denir."
+    },
+    {
+     "de": "Wegen der ___ gibt es heute kein Internet.",
+     "answer": "Störung",
+     "tr": "Arıza yüzünden bugün internet yok.",
+     "hint_tr": "Arıza yüzünden derken **wegen der Störung** denir."
     }
    ]
   },
