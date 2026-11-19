@@ -99,7 +99,7 @@ export function YolEkrani() {
           <section class={`yolgun ${g.durum}`} data-test={`gun-${g.day}`} data-durum={g.durum} aria-label={`${g.day}. gün: ${g.title_tr}, ${g.durum === "bitti" ? "bitti" : g.durum === "simdi" ? "şimdi" : "kilitli"}`}>
             <div class="gun-bant">
               <div class="grow"><div class="gun-bant-ust">{hafta}. HAFTA · GÜN {g.day}</div><div class="gun-bant-ad">{g.title_tr}</div></div>
-              <a class="rehber-btn" href={`#/rehber/${g.day}`} data-test={`rehber-${g.day}`} aria-label={`${g.day}. günün rehberi: kalıplar ve kelimeler`}>Rehber</a>
+              <a class="rehber-btn" href={`#/rehber/${g.day}`} data-test={`rehber-${g.day}`} aria-label={`${g.day}. günün rehberi: hedef ve kelimeler`}>Rehber</a>
             </div>
             <ol class="dugumler">
               {g.adimlar.flatMap((a, ai) => {

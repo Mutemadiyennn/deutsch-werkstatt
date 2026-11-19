@@ -915,7 +915,35 @@
     "parcalar": [],
     "ipucu_tr": "Konuşmada kısaca **raus** dersin: **Raus mit der Sprache!**, söyle hadi."
    },
-   "forms": []
+   "forms": [
+    {
+     "de": "Das Ergebnis ist noch nicht ___.",
+     "answer": "heraus",
+     "also_ok": [
+      "raus"
+     ],
+     "tr": "Sonuç henüz belli değil.",
+     "hint_tr": "Sonuç belli olunca **Das Ergebnis ist heraus** denir."
+    },
+    {
+     "de": "___ mit der Sprache!",
+     "answer": "Heraus",
+     "also_ok": [
+      "Raus"
+     ],
+     "tr": "Söyle hadi!",
+     "hint_tr": "Söyle hadi derken **Heraus mit der Sprache!** dersin, konuşmada **Raus** da denir."
+    },
+    {
+     "de": "Aus dem Bauch ___ würde ich Ja sagen.",
+     "answer": "heraus",
+     "also_ok": [
+      "raus"
+     ],
+     "tr": "İçimden geldiği gibi söylesem evet derdim.",
+     "hint_tr": "İçinden geldiği gibi derken **aus dem Bauch heraus** dersin."
+    }
+   ]
   },
   {
    "id": "lx:Beziehung",
@@ -1365,7 +1393,47 @@
     "parcalar": [],
     "ipucu_tr": "Şaşırınca tek başına **Tatsächlich?** dersin, hakikaten mi demektir."
    },
-   "forms": []
+   "forms": [
+    {
+     "de": "Er hat ___ angerufen.",
+     "answer": "tatsächlich",
+     "also_ok": [
+      "wirklich",
+      "echt"
+     ],
+     "tr": "Adam gerçekten telefon etti.",
+     "hint_tr": "Gerçekten derken **tatsächlich** dersin: **Er hat tatsächlich angerufen.**"
+    },
+    {
+     "de": "Ist das ___ so?",
+     "answer": "tatsächlich",
+     "also_ok": [
+      "wirklich",
+      "echt"
+     ],
+     "tr": "Gerçekten öyle mi?",
+     "hint_tr": "Gerçekten öyle mi diye sorarken **Ist das tatsächlich so?** dersin."
+    },
+    {
+     "de": "___, du hast recht!",
+     "answer": "Tatsächlich",
+     "also_ok": [
+      "Wirklich"
+     ],
+     "tr": "Hakikaten, haklısın!",
+     "hint_tr": "Şaşırıp hak verirken **Tatsächlich** dersin."
+    },
+    {
+     "de": "Das stimmt ___.",
+     "answer": "tatsächlich",
+     "also_ok": [
+      "wirklich",
+      "echt"
+     ],
+     "tr": "Bu gerçekten doğru.",
+     "hint_tr": "Gerçekten doğru derken **Das stimmt tatsächlich** dersin."
+    }
+   ]
   },
   {
    "id": "lx:Seele",
@@ -2301,8 +2369,8 @@
     },
     {
      "id": "lx:jemals:4",
-     "de": "– Hast du jemals Schnee gesehen? – Ja, in Erzurum!",
-     "tr": "– Hiç kar gördün mü? – Evet, Erzurum'da!",
+     "de": "– Hast du jemals Schnee gesehen? – Ja, in den Alpen!",
+     "tr": "– Hiç kar gördün mü? – Evet, Alplerde!",
      "layer": "alltag",
      "dialog": true
     }
@@ -2319,7 +2387,43 @@
     "parcalar": [],
     "ipucu_tr": "Konuşmada aynı soru **schon mal** ile de sorulur."
    },
-   "forms": []
+   "forms": [
+    {
+     "de": "Warst du ___ in Italien?",
+     "answer": "jemals",
+     "also_ok": [
+      "je",
+      "schon mal",
+      "schon einmal",
+      "schon",
+      "mal"
+     ],
+     "tr": "Hiç İtalya'ya gittin mi?",
+     "hint_tr": "Soruda hiç derken **jemals** dersin."
+    },
+    {
+     "de": "Hast du ___ so etwas gesehen?",
+     "answer": "jemals",
+     "also_ok": [
+      "je",
+      "schon mal",
+      "schon einmal",
+      "schon",
+      "mal"
+     ],
+     "tr": "Hiç böyle bir şey gördün mü?",
+     "hint_tr": "Hiç gördün mü derken **Hast du jemals** diye sorarsın."
+    },
+    {
+     "de": "Das Essen war besser als ___ zuvor.",
+     "answer": "jemals",
+     "also_ok": [
+      "je"
+     ],
+     "tr": "Yemek hiç olmadığı kadar iyiydi.",
+     "hint_tr": "Hiç olmadığı kadar derken **als jemals zuvor** dersin."
+    }
+   ]
   },
   {
    "id": "lx:zählen",
@@ -3132,18 +3236,27 @@
     {
      "de": "Ich ___ jeden Morgen zum Bus.",
      "answer": "renne",
+     "also_ok": [
+      "laufe"
+     ],
      "tr": "Her sabah otobüse koşuyorum.",
      "hint_tr": "**ich** ile **rennen**, **renne** olur."
     },
     {
      "de": "Warum ___ du so?",
      "answer": "rennst",
+     "also_ok": [
+      "läufst"
+     ],
      "tr": "Neden böyle koşuyorsun?",
      "hint_tr": "**du** ile **rennen**, **rennst** olur."
     },
     {
      "de": "Das Kind ___ zur Tür.",
      "answer": "rennt",
+     "also_ok": [
+      "läuft"
+     ],
      "tr": "Çocuk kapıya koşuyor.",
      "hint_tr": "**das Kind** ile **rennen**, **rennt** olur."
     },
@@ -3932,7 +4045,48 @@
     "parcalar": [],
     "ipucu_tr": "Konuşmada aynı anlamda **bekommen** denir."
    },
-   "forms": []
+   "forms": [
+    {
+     "de": "Sie ___ die Unterlagen per Post.",
+     "answer": "erhalten",
+     "also_ok": [
+      "bekommen",
+      "kriegen"
+     ],
+     "tr": "Belgeleri postayla alacaksınız.",
+     "hint_tr": "**Sie** ile **erhalten** olur."
+    },
+    {
+     "de": "Ich habe Ihre E-Mail ___.",
+     "answer": "erhalten",
+     "also_ok": [
+      "bekommen",
+      "gekriegt"
+     ],
+     "tr": "E-postanızı aldım.",
+     "hint_tr": "Geçmişi anlatırken **habe erhalten** denir, başa **ge** gelmez."
+    },
+    {
+     "de": "Jeder Kunde ___ eine Rechnung.",
+     "answer": "erhält",
+     "also_ok": [
+      "bekommt",
+      "kriegt"
+     ],
+     "tr": "Her müşteri bir fatura alıyor.",
+     "hint_tr": "**jeder Kunde** ile **erhalten**, **erhält** olur, **a** harfi **ä** olur."
+    },
+    {
+     "de": "Ich ___ jeden Monat einen Brief von der Bank.",
+     "answer": "erhalte",
+     "also_ok": [
+      "bekomme",
+      "kriege"
+     ],
+     "tr": "Her ay bankadan bir mektup alıyorum.",
+     "hint_tr": "**ich** ile **erhalten**, **erhalte** olur."
+    }
+   ]
   },
   {
    "id": "lx:wundern",
@@ -5594,7 +5748,38 @@
     "parcalar": [],
     "ipucu_tr": "**weit fort** çok uzakta demektir."
    },
-   "forms": []
+   "forms": [
+    {
+     "de": "Ich muss jetzt leider ___.",
+     "answer": "fort",
+     "also_ok": [
+      "weg",
+      "los",
+      "gehen"
+     ],
+     "tr": "Maalesef artık gitmem lazım.",
+     "hint_tr": "Gitmem lazım derken **Ich muss fort** dersin, konuşmada **weg** de denir."
+    },
+    {
+     "de": "Mein Schlüssel ist ___!",
+     "answer": "fort",
+     "also_ok": [
+      "weg",
+      "verschwunden"
+     ],
+     "tr": "Anahtarım ortada yok!",
+     "hint_tr": "Bir şey ortada yoksa **ist fort** denir."
+    },
+    {
+     "de": "Brot, Milch, Käse und so ___.",
+     "answer": "fort",
+     "also_ok": [
+      "weiter"
+     ],
+     "tr": "Ekmek, süt, peynir ve saire.",
+     "hint_tr": "Ve saire derken **und so fort** dersin."
+    }
+   ]
   },
   {
    "id": "lx:überprüfen",
@@ -5679,24 +5864,40 @@
     {
      "de": "Ich ___ das sofort.",
      "answer": "überprüfe",
+     "also_ok": [
+      "prüfe",
+      "kontrolliere"
+     ],
      "tr": "Bunu hemen kontrol ediyorum.",
      "hint_tr": "**ich** ile **überprüfen**, **überprüfe** olur."
     },
     {
      "de": "___ du bitte die Adresse?",
      "answer": "Überprüfst",
+     "also_ok": [
+      "Prüfst",
+      "Kontrollierst"
+     ],
      "tr": "Adresi kontrol eder misin lütfen?",
      "hint_tr": "**du** ile **überprüfen**, **überprüfst** olur."
     },
     {
      "de": "Die Bank ___ Ihre Angaben.",
      "answer": "überprüft",
+     "also_ok": [
+      "prüft",
+      "kontrolliert"
+     ],
      "tr": "Banka bilgilerinizi kontrol ediyor.",
      "hint_tr": "**die Bank** ile **überprüfen**, **überprüft** olur."
     },
     {
      "de": "Ich habe alles ___.",
      "answer": "überprüft",
+     "also_ok": [
+      "geprüft",
+      "kontrolliert"
+     ],
      "tr": "Her şeyi kontrol ettim.",
      "hint_tr": "**Ich habe** ile **überprüfen**, **überprüft** olur, başına **ge** gelmez."
     }
@@ -6362,7 +6563,48 @@
     "parcalar": [],
     "ipucu_tr": "**Die Woche ist rum** hafta bitti demektir."
    },
-   "forms": []
+   "forms": [
+    {
+     "de": "Die Woche ist schon ___.",
+     "answer": "rum",
+     "also_ok": [
+      "vorbei",
+      "um",
+      "herum"
+     ],
+     "tr": "Hafta çoktan bitti.",
+     "hint_tr": "Bir süre bitince konuşmada **ist rum** denir."
+    },
+    {
+     "de": "Die Pause ist gleich ___.",
+     "answer": "rum",
+     "also_ok": [
+      "vorbei",
+      "um",
+      "herum"
+     ],
+     "tr": "Mola birazdan bitiyor.",
+     "hint_tr": "Mola bitince konuşmada **Die Pause ist rum** denir."
+    },
+    {
+     "de": "Das kostet so um die zehn Euro ___.",
+     "answer": "rum",
+     "also_ok": [
+      "herum"
+     ],
+     "tr": "Bu on euro civarında tutuyor.",
+     "hint_tr": "On euro civarı derken konuşmada **um die zehn Euro rum** dersin."
+    },
+    {
+     "de": "Wir sitzen alle um den Tisch ___.",
+     "answer": "rum",
+     "also_ok": [
+      "herum"
+     ],
+     "tr": "Hepimiz masanın etrafında oturuyoruz.",
+     "hint_tr": "Masanın etrafında derken konuşmada **um den Tisch rum** dersin."
+    }
+   ]
   },
   {
    "id": "lx:Verbindung",
@@ -8062,13 +8304,19 @@
      "de": "Wir gehen um den See ___.",
      "answer": "herum",
      "tr": "Gölün etrafında yürüyoruz.",
-     "hint_tr": "Gölün etrafında: **um den See herum**, **herum** sona gider."
+     "hint_tr": "Gölün etrafında: **um den See herum**, **herum** sona gider.",
+     "also_ok": [
+      "rum"
+     ]
     },
     {
      "de": "Ich komme so um acht ___.",
      "answer": "herum",
      "tr": "Sekiz civarında gelirim.",
-     "hint_tr": "Sekiz civarında: **um acht herum**."
+     "hint_tr": "Sekiz civarında: **um acht herum**.",
+     "also_ok": [
+      "rum"
+     ]
     },
     {
      "de": "Wir gehen ___ den See herum.",
@@ -8939,7 +9187,35 @@
     "parcalar": [],
     "ipucu_tr": "Sebep sorarken daha çok **warum** denir."
    },
-   "forms": []
+   "forms": [
+    {
+     "de": "___ brauchen Sie das Formular?",
+     "answer": "Wozu",
+     "also_ok": [
+      "Wofür"
+     ],
+     "tr": "Formu ne için istiyorsunuz?",
+     "hint_tr": "Ne amaçla diye sorarken **Wozu** dersin."
+    },
+    {
+     "de": "___ soll das gut sein?",
+     "answer": "Wozu",
+     "also_ok": [
+      "Wofür"
+     ],
+     "tr": "Bunun ne faydası var?",
+     "hint_tr": "Bunun ne faydası var derken **Wozu soll das gut sein?** dersin."
+    },
+    {
+     "de": "___ ist dieser Knopf da?",
+     "answer": "Wozu",
+     "also_ok": [
+      "Wofür"
+     ],
+     "tr": "Bu düğme ne için?",
+     "hint_tr": "Bir şeyin ne işe yaradığını sorarken **Wozu** dersin."
+    }
+   ]
   },
   {
    "id": "lx:Daten",
