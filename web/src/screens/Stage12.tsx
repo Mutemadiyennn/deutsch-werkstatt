@@ -130,7 +130,7 @@ export function HearSection({ ctx, finish, back, setSub }: SP & { setSub: (n: pr
   }, [s.id]);
   useEffect(() => () => stopSpeaking(), []);
   useEffect(() => { if (phase === "quick" && strong && qi >= strong.length) { setQi(0); setPhase("scan"); } }, [phase, qi, strong]);
-  const playAll = async () => { setPlaying(true); try { await speakDizi(lines.map((l) => ({ de: l.de, speed: l.speed })), "normal", 300); } finally { setPlaying(false); setHeard(true); } };
+  const playAll = async () => { setPlaying(true); try { await speakDizi(lines.map((l) => ({ de: l.de, speed: l.speed, kim: l.speaker ?? (l.r === "A" ? s.dialogues[0]?.roles.A : s.dialogues[0]?.roles.B) })), "normal", 300); } finally { setPlaying(false); setHeard(true); } };
   const strongIds = new Set((strong || []).map((c) => c.id));
   const scanCards = cards.filter((c) => !strongIds.has(c.id));
   const knownClaims = scanCards.filter((c) => mark[c.id] === "known");
@@ -152,7 +152,7 @@ export function HearSection({ ctx, finish, back, setSub }: SP & { setSub: (n: pr
         <p style={{ margin: 0 }}>{subs ? "Şimdi altyazılı dinle: kelimeleri bağlam içinde gör." : "Önce gerçek konuşmayı altyazısız dinle. Her şeyi anlaman gerekmiyor; ne olduğunu yakalamaya çalış."}</p>
         <div class="row"><button class="btn" onClick={() => void playAll()} disabled={playing} data-test="play-dialogue">{playing ? "Çalıyor…" : <><Icon name="play" size={18} /> Diyaloğu dinle</>}</button>{playing && <button class="btn ghost sm" onClick={() => { stopSpeaking(); setPlaying(false); setHeard(true); }}>Durdur</button>}</div>
       </section>
-      {subs && <section class="card stack" data-test="subtitles">{lines.map((l) => <div class="dline"><div class="grow"><div class="who" style={{ fontSize: "0.8rem", fontWeight: 800, color: "var(--muted)" }}>{s.dialogues[0]!.roles[l.r]}</div><div lang="de" class="de">{l.de}</div><div class="tr2">{l.tr}</div></div><ListenButton text={l.de} speed={l.speed} small slowToggle={false} /></div>)}</section>}
+      {subs && <section class="card stack" data-test="subtitles">{lines.map((l) => <div class="dline"><div class="grow"><div class="who" style={{ fontSize: "0.8rem", fontWeight: 800, color: "var(--muted)" }}>{s.dialogues[0]!.roles[l.r]}</div><div lang="de" class="de">{l.de}</div><div class="tr2">{l.tr}</div></div><ListenButton text={l.de} speed={l.speed} small slowToggle={false} kim={l.speaker ?? s.dialogues[0]!.roles[l.r]} sahne={lines.map((x) => x.speaker ?? s.dialogues[0]!.roles[x.r])} /></div>)}</section>}
       <ActionBar>{!subs
         ? <button class="btn primary block" onClick={() => setSubs(true)} data-test="to-subtitles">{heard ? "Altyazılı dinle" : "Dinlemeden altyazıya geç"}</button>
         : <button class="btn primary block" onClick={() => setPhase(strong && strong.length ? "quick" : "scan")} disabled={strong === null} data-test="to-scan">Devam: bildiklerini işaretle</button>}</ActionBar>

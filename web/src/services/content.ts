@@ -1,7 +1,7 @@
 /** İçerik paketi yükleyici: /content/current.json → /content/<sürüm>/… (şemayla doğrulanır, bellekte önbellek) */
 import { z } from "zod";
 import { bilinenKelimeler } from "../core/persona.ts";
-import { AssessItem, ContentIndex, GrammarNote, Gun, Lexeme, Pattern, Scenario, TemelDers } from "@dw/shared";
+import { AssessItem, ContentIndex, GrammarNote, Gun, Lexeme, Pattern, Scenario, TemelDers, World } from "@dw/shared";
 
 const base = () => `${import.meta.env.BASE_URL}content/`;
 let idx: Promise<ContentIndex> | null = null;
@@ -41,6 +41,8 @@ function file<T>(name: string, schema: z.ZodType<T>): Promise<T> {
   if (!cache.has(name)) cache.set(name, (async () => { const i = await loadIndex(); return schema.parse(await getJson(`${base()}${i.version}/${name}`)); })().catch((e) => { cache.delete(name); throw e; }));
   return cache.get(name) as Promise<T>;
 }
+/** PM-064: dünya (karakterlerin ses kaydı); içerikte yoksa boş */
+export const loadWorld = () => within(file("world/world.json", World)).catch(() => null);
 export const loadAssessBank = () => within(file("assess.json", z.array(AssessItem)));
 let kayitli = false;
 /** Sözlük; ilk yüklemede kelimeler ad yuvası denetimine bildirilir (adsız profilde bilinen kelime ad sayılmaz) */

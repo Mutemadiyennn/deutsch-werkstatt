@@ -4,7 +4,7 @@
  * - Ustalık ("kalıcı", v1 kuralı): aktif yolda iki ayrı oturumda, ≥3 saat arayla doğru üretim.
  * - Anlamını sormak / "bilmiyorum" puan cezası değildir: yalnızca eksik olarak kaydedilir, kart "Again" ile erken döner.
  */
-import { fsrs, createEmptyCard, generatorParameters, Rating, type Card, type Grade } from "ts-fsrs";
+import { fsrs, createEmptyCard, generatorParameters, Rating, State, type Card, type Grade } from "ts-fsrs";
 import type { FsrsState, LearnerItem } from "@dw/shared";
 import { emptyItem } from "./learner.ts";
 
@@ -54,6 +54,24 @@ export function review(prev: LearnerItem | undefined, r: Review, now = new Date(
   // bankadan çıkış: aktif yolda kalıcı olunca ya da son 2 değerlendirme doğruysa
   if (it.inBank && it.durable) it.inBank = false;
   it.u = now.getTime();
+  return it;
+}
+
+/**
+ * B16 "Biliyorum, sına beni" (PM-066 madde 1, 5): yeni kart üretimle (TR→DE, ipucusuz, isimde artikel) kanıtlanınca
+ * tanıma basamağını atlar. Aktif yol bu doğru üretimle başlar; pasif yol yüksek başlangıç kararlılığıyla girer (ilk tanıma
+ * tekrarı HIZLI_GUN gün sonra). Kart yine tekrar takvimindedir; ilk tekrarında yanlışsa FSRS normal karta düşürür.
+ * Eşik `policy.json` gelene kadar burada.
+ */
+export const HIZLI_GUN = 7;
+export function hizliGecis(prev: LearnerItem | undefined, itemId: string, session: string, now = new Date()): LearnerItem {
+  const it = review(prev, { itemId, kind: "lexeme", path: "active", outcome: "correct", session, source: "drill", ctx: "sina" }, now);
+  const c = createEmptyCard(now);
+  c.state = State.Review; c.stability = HIZLI_GUN; c.difficulty = 4; c.scheduled_days = HIZLI_GUN; c.reps = 1; c.last_review = now;
+  c.due = new Date(now.getTime() + HIZLI_GUN * 86400_000);
+  const fs = toState(c);
+  it.passive = { ...it.passive, s: Math.max(it.passive.s, 0.75), n: it.passive.n + 1, ok: it.passive.ok + 1, last: now.toISOString(), due: fs.due, fsrs: fs };
+  it.firstAt = { ...it.firstAt, passive: it.firstAt?.passive ?? now.toISOString() };
   return it;
 }
 

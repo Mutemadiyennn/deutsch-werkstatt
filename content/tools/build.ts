@@ -72,6 +72,8 @@ const w = (p: string, v: unknown) => writeFileSync(join(dir, p), JSON.stringify(
 w("lexemes.json", { lexemes: c.lexemes, patterns: c.patterns });
 w("grammar.json", c.grammar);
 w("assess.json", c.assess);
+// PM-064: karakterlerin sesi (cinsiyet, yaş, sıra) uygulamada ses ataması için
+if (c.world) { mkdirSync(join(dir, "world"), { recursive: true }); w("world/world.json", c.world); }
 const scenFiles: Record<string, string> = {};
 for (const s of c.scenarios) {
   const f = `scenarios/${s.data.id.replace(/[^a-z0-9-]/gi, "_")}.json`;
