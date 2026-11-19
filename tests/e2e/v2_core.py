@@ -212,6 +212,7 @@ def main():
         print("7) Profil: hedef değişikliği kalıcı; sunucu iletişimi")
         page.clock.resume()
         page.click("[data-tab=profile]")
+        check(page.inner_text("[data-test=uid]") == "e2e-user" and page.locator("[data-test=uid-kopyala]").count() == 1, "Profil: hesap kimliği ve 'Kopyala' (ALLOWED_UIDS için)")
         page.select_option("[data-test=goal]", "120")
         page.wait_for_selector("text=Kaydedildi")
         page.click("text=Sunucu bağlantısını kontrol et")
