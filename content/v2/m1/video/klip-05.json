@@ -16,54 +16,45 @@
   "bas_tur": 1,
   "son_tur": 4
  },
- "haric": [],
- "ortam_tr": "Jan yetişkin bir adam. Biri ona her gece kaç saat uyuduğunu soruyor.",
+ "haric": [
+  {
+   "tur": 2,
+   "neden": "ses uyuşmuyor"
+  }
+ ],
+ "ortam_tr": "Jan yetişkin bir adam. Biri ona her gece kaç saat uyuduğunu soruyor. Sonra bunun yeterli olup olmadığını soruyor.",
  "on_ogretim": [
   {
    "de": "Wie viele Stunden schläfst du?",
    "tr": "Kaç saat uyuyorsun?"
   },
   {
-   "de": "ungefähr",
-   "tr": "yaklaşık"
-  },
-  {
-   "de": "ich muss rechnen",
-   "tr": "hesap yapmam gerekiyor"
-  },
-  {
-   "de": "ich gehe ins Bett",
-   "tr": "yatmaya gidiyorum"
-  },
-  {
-   "de": "ich stehe auf",
-   "tr": "kalkıyorum"
-  },
-  {
    "de": "genug für dich",
    "tr": "senin için yeterli"
+  },
+  {
+   "de": "ich glaube",
+   "tr": "sanırım"
   }
  ],
  "turlar": [
   {
    "tur": 1,
    "basi": "Wie viele Stunden",
-   "kim": "soran"
-  },
-  {
-   "tur": 2,
-   "basi": "Ungefähr, Moment",
-   "kim": "konusmaci"
+   "kim": "soran",
+   "tr": "Her gece kaç saat uyuyorsun?"
   },
   {
    "tur": 3,
    "basi": "Ist das genug",
-   "kim": "soran"
+   "kim": "soran",
+   "tr": "Bu senin için yeterli mi? Sağlıklı mı?"
   },
   {
    "tur": 4,
    "basi": "Ich glaube",
-   "kim": "konusmaci"
+   "kim": "konusmaci",
+   "tr": "Sanırım evet, öyle. Böyle iyi."
   }
  ],
  "bolum": {
@@ -71,48 +62,37 @@
    "q_tr": "Bu kısa konuşma ne hakkında?",
    "opts": [
     "Yemek saatleri",
-    "Uyku saatleri",
+    "Uyku",
     "Doktor randevusu"
    ],
    "ans": 1,
-   "why_tr": "Soru uyku süresini soruyor. Jan yatma ve kalkma saatini söylüyor."
+   "why_tr": "Jan'a her gece kaç saat uyuduğu soruluyor. **schläfst** uyuyorsun demektir."
   },
   "ayrinti": [
    {
-    "q_tr": "Jan cevap vermeden önce ne yapıyor?",
+    "q_tr": "İlk soruda hangi zaman geçiyor?",
     "opts": [
-     "Saatine bakıyor",
-     "Telefonuna bakıyor",
-     "Hesap yapıyor"
-    ],
-    "ans": 2,
-    "tur": 2,
-    "why_tr": "Jan **ich muss rechnen** diyor. Bu, hesap yapmam gerekiyor demektir."
-   },
-   {
-    "q_tr": "Jan akşam saat kaç civarında yatıyor?",
-    "opts": [
-     "10 civarında",
-     "11 civarında",
-     "12 civarında"
+     "Her hafta",
+     "Her gece",
+     "Her ay"
     ],
     "ans": 1,
-    "tur": 2,
-    "why_tr": "Jan **um elf** diyor. Bu, saat on birde demektir."
+    "tur": 1,
+    "why_tr": "Soruda **jede Nacht** geçiyor. Bu, her gece demektir."
    },
    {
-    "q_tr": "Jan sabah saat kaçta kalkıyor?",
+    "q_tr": "Soran kişi ikinci olarak ne soruyor?",
     "opts": [
-     "7.30",
-     "8.00",
-     "8.30"
+     "Jan'ın saat kaçta kalktığını",
+     "Jan'ın nerede oturduğunu",
+     "Bu uykunun yeterli ve sağlıklı olup olmadığını"
     ],
-    "ans": 0,
-    "tur": 2,
-    "why_tr": "Jan **halb acht** diyor. Bu, yedi buçuk demektir."
+    "ans": 2,
+    "tur": 3,
+    "why_tr": "Soruda **genug** ve **gesund** geçiyor. **genug** yeterli, **gesund** sağlıklı demektir."
    },
    {
-    "q_tr": "Jan bu uyku süresini nasıl buluyor?",
+    "q_tr": "Jan uykusunu nasıl buluyor?",
     "opts": [
      "Yeterli buluyor",
      "Çok az buluyor",
@@ -120,33 +100,80 @@
     ],
     "ans": 0,
     "tur": 4,
-    "why_tr": "Jan **ja** diyor. Bu, evet demektir. Sonra bunun iyi olduğunu ekliyor."
+    "why_tr": "Jan **Ich glaube ja** diyor. Bu, sanırım evet demektir. Sonra **Das ist okay.** diyor. Bu da böyle iyi demektir."
    }
   ],
   "dikte": [
    {
     "id": "d1",
     "tur": 1,
-    "seviye": "kolay"
+    "seviye": "kolay",
+    "q_tr": "Soruda hangi kelimeyi duydun?",
+    "opts": [
+     "Woche",
+     "Nacht",
+     "Tag"
+    ],
+    "ans": 1
    },
    {
     "id": "d2",
     "tur": 1,
-    "seviye": "orta"
+    "seviye": "orta",
+    "de": "Wie viele ___ schläfst du jede Nacht?",
+    "accepted": [
+     "Stunden",
+     "stunden",
+     "Stunden."
+    ]
+   },
+   {
+    "id": "d3",
+    "tur": 1,
+    "seviye": "zor",
+    "banka": [
+     "jede",
+     "Stunden",
+     "Tag",
+     "schläfst",
+     "Wie",
+     "Nacht",
+     "du",
+     "Minuten",
+     "viele"
+    ],
+    "accepted": [
+     "Wie viele Stunden schläfst du jede Nacht?",
+     "wie viele stunden schläfst du jede nacht",
+     "Wie viele Stunden schlaefst du jede Nacht?"
+    ]
+   },
+   {
+    "id": "d4",
+    "tur": 3,
+    "seviye": "usta",
+    "accepted": [
+     "Ist das genug für dich?  Ist das gesund?",
+     "Ist das genug für dich? Ist das gesund?",
+     "ist das genug für dich ist das gesund",
+     "Ist das genug fuer dich? Ist das gesund?"
+    ]
    },
    {
     "id": "d5",
     "seviye": "gercek",
-    "gorev_tr": "Jan sabah saat kaçta kalkıyor? Saati Jan'ın söylediği gibi Almanca yaz.",
-    "ornek_de": "Um halb acht.",
+    "gorev_tr": "Jan'a göre uykusu yeterli mi? Cevabı Almanca kısa bir cümleyle yaz.",
+    "ornek_de": "Ja, das ist genug.",
     "accepted": [
-     "Um halb acht.",
-     "Halb acht.",
-     "Er steht um halb acht auf.",
-     "Jan steht um halb acht auf."
+     "Ja, das ist genug.",
+     "Das ist genug.",
+     "Ja, genug.",
+     "Genug.",
+     "Ja, das ist genug für ihn.",
+     "Für Jan ist das genug."
     ],
     "zorunlu": [
-     "halb acht"
+     "genug"
     ]
    }
   ],
@@ -170,22 +197,20 @@
    ],
    "why_tr": "**Acht Stunden.** sekiz saat demektir. Kısa cevap yeter."
   },
-  "dikte_notu": "Zor ve usta basamağı yok. İkinci tur çok uzun. Üçüncü turda iki soru var. Dördüncü turda **ich glaube** (sanırım) öğretilmedi."
+  "dikte_notu": "İkinci tur sesle uyuşmadığı için çıkarıldı. Dördüncü turda **doch** (evet, öyle) öğretilmedi, bu yüzden bu tur dikteye girmedi."
  },
- "kanit": "Jan yatma ve kalkma saatini söylüyor. **halb acht** yani yedi buçuk geçiyor. Bu, beşinci günün saat konusudur.",
+ "kanit": "Jan'a her gece kaç saat uyuduğu soruluyor. Soruda **Stunden** (saat) ve **jede Nacht** (her gece) geçiyor. Jan'ın saatleri söylediği ikinci tur sesle uyuşmadığı için çıkarıldı. Bu yüzden saat okuma bu klipte yok.",
  "review": {
   "status": "draft",
-  "notes": "Dilbilimci ve okur geçti. Süre 30 saniyenin altında, PM kararı bekliyor (#58 A9)."
+  "notes": "#58 A9 PM kararı: ikinci tur sesle uyuşmadığı için çıkarıldı, sorular yeniden yazıldı. Ölçülen süre 21 sn (kisa). Dilbilimci ve okur yeniden bakmalı."
  },
  "bilinmeyen": {
-  "oran": 0.093,
+  "oran": 0.045,
   "kelimeler": [
-   "achteinhalb",
-   "doch",
-   "glaube",
-   "moment"
+   "doch"
   ]
  },
- "kesit_sure_tahmin_sn": 27,
+ "kesit_sure_tahmin_sn": 14,
+ "kesit_sure_olcum_sn": 21,
  "sure_kaynak_sn": 42
 }

@@ -113,4 +113,5 @@ Günün videosu ayrı dosyadadır: `content/v2/m1/video/klip-NN.json`. Kaynak De
 - `haric`: kesitten çıkarılan turlar. Telefon numarası, adres ve tam doğum tarihi yayına girmez.
 - `durum`: `hazir` | `kisa` (30 sn altı, PM kararı bekler) | `sinir-asimi` (bilinmeyen %10 üstü) | `bulunamadi`. Dosya adı `klip-NN.json`: gün şemasının `gun-NN.json` deseniyle karışmaz.
 - `bolum`: `ana_fikir`, `ayrinti[]`, `dikte[]`, `golge[]`, `cevapla`; dikte ve gölge tur numarasına bağlıdır.
+- `kesitler`: 20 sn altı kesite ikinci parça gerekince `[{klip, bas_tur, son_tur, haric}]` sırayla oynatılır; ilk eleman üst düzeydeki `klip`/`kesit`/`haric`/`turlar` ile aynıdır, sonrakiler kendi `konusmaci`, `video_url` ve `turlar` alanını taşır, sorular ve dikte onlara `"kesit": 1` (sıra numarası) ile, gölge `{kesit, tur}` ile bağlanır.
 - `atif` ekranda gösterilir (CC BY).

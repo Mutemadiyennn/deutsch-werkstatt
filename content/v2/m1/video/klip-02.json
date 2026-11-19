@@ -8,6 +8,7 @@
  "baslik": "Studium & Wohnen",
  "sure_kaynak": "0:33",
  "kesit_sure_tahmin_sn": 33,
+ "kesit_sure_olcum_sn": 31,
  "video_url": "https://coerll.utexas.edu/dib/mp4s/01_24_int_ju_studies-home.mp4",
  "transkript_url": "https://www.coerll.utexas.edu/dib/vidt.php?f=01_24_int_ju_studies-home",
  "lisans": "CC BY 4.0",
@@ -59,42 +60,50 @@
   {
    "tur": 1,
    "basi": "Was studierst",
-   "kim": "soran"
+   "kim": "soran",
+   "tr": "Üniversitede ne okuyorsun?"
   },
   {
    "tur": 2,
    "basi": "Ich studiere",
-   "kim": "konusmaci"
+   "kim": "konusmaci",
+   "tr": "Üniversitede Alman dili ve edebiyatı okuyorum."
   },
   {
    "tur": 3,
    "basi": "Und wo",
-   "kim": "soran"
+   "kim": "soran",
+   "tr": "Peki nerede oturuyorsun?"
   },
   {
    "tur": 4,
    "basi": "Ich wohne",
-   "kim": "konusmaci"
+   "kim": "konusmaci",
+   "tr": "Austin'de oturuyorum, Teksas'taki Austin'de."
   },
   {
    "tur": 5,
    "basi": "Wann bist",
-   "kim": "soran"
+   "kim": "soran",
+   "tr": "Amerika'ya ne zaman vardın?"
   },
   {
    "tur": 6,
    "basi": "Ich bin im",
-   "kim": "konusmaci"
+   "kim": "konusmaci",
+   "tr": "2004 yılında Amerika'ya vardım, tam olarak ağustosta."
   },
   {
    "tur": 7,
    "basi": "Und wo hast",
-   "kim": "soran"
+   "kim": "soran",
+   "tr": "Peki burada nerelerde yaşadın?"
   },
   {
    "tur": 8,
    "basi": "Ich habe hier",
-   "kim": "konusmaci"
+   "kim": "konusmaci",
+   "tr": "Burada daha önce Lubbock'ta yaşadım, Kuzey Teksas'ta, daha doğrusu Kuzeybatı Teksas'ta. Austin'de de yaşadım."
   }
  ],
  "bolum": {
@@ -158,17 +167,55 @@
    {
     "id": "d1",
     "tur": 1,
-    "seviye": "kolay"
+    "seviye": "kolay",
+    "q_tr": "Soruda hangi kelimeyi duydun?",
+    "opts": [
+     "wohnst",
+     "studierst",
+     "hast"
+    ],
+    "ans": 1
    },
    {
     "id": "d2",
     "tur": 3,
-    "seviye": "orta"
+    "seviye": "orta",
+    "de": "Und wo ___ du?",
+    "accepted": [
+     "wohnst",
+     "Wohnst",
+     "wohnst."
+    ]
    },
    {
     "id": "d3",
     "tur": 7,
-    "seviye": "zor"
+    "seviye": "zor",
+    "banka": [
+     "gelebt",
+     "du",
+     "studierst",
+     "hier",
+     "Und",
+     "hast",
+     "wohnst",
+     "wo"
+    ],
+    "accepted": [
+     "Und wo hast du hier gelebt?",
+     "und wo hast du hier gelebt",
+     "Und wo hast du hier gelebt"
+    ]
+   },
+   {
+    "id": "d4",
+    "tur": 3,
+    "seviye": "usta",
+    "accepted": [
+     "Und wo wohnst du?",
+     "und wo wohnst du",
+     "Und wo wohnst du"
+    ]
    },
    {
     "id": "d5",
@@ -205,7 +252,7 @@
    ],
    "why_tr": "**In Berlin.** Berlin'de demektir. Kısa cevap yeter."
   },
-  "dikte_notu": "Usta basamağı yok. Beşinci turda **bist** (sensin) henüz öğretilmedi. Sekizinci tur çok uzun."
+  "dikte_notu": "Beşinci turda **bist** (sensin) henüz öğretilmedi. Sekizinci tur çok uzun."
  },
  "kanit": "Jan geldiği ayı ve yılı söylüyor. Bu, ikinci günün ay konusuna uyuyor. Mevsim konusu bu klipte yok.",
  "review": {
