@@ -4,6 +4,7 @@
  * - Her cevap öğrenci modeline (FSRS çift yol) işlenir; odak motoru her bölümde etkinliği bilir.
  * - Üretim başarısızsa (<%50) bir önceki aşama yeniden açılır (geri dönüş kuralı).
  */
+import { KalipKarti } from "./Kalip.tsx";
 import { countsAsCorrect, expandTaught, isSameAsGiven, REGISTER_HINT } from "../core/answer.ts";
 import { Rich } from "../ui/rich.tsx";
 import { isRepeatRequest, offlineDialogueIndex } from "../core/offline.ts";
@@ -52,7 +53,7 @@ function useScenario(id: string) {
     Promise.all([loadScenario(id), loadLexicon(), getScenarioProgress(id)])
       .then(([s, l, p]) => {
         const holder: { p: ScenarioProgress } = { p };
-        const ctx: Ctx = { s: personalizeDeep(s, persona), lx: new Map(l.lexemes.map((x) => [x.id, x])), pt: new Map(l.patterns.map((x) => [x.id, x])), prog: p, setProg: async (np) => { holder.p = np; await saveScenarioProgress(np); setSt((o) => (o.ctx ? { ctx: { ...o.ctx, prog: np } } : o)); } };
+        const ctx: Ctx = { s: personalizeDeep(s, persona), lx: new Map(l.lexemes.map((x) => [x.id, x])), pt: new Map(personalizeDeep(l.patterns, persona).map((x) => [x.id, x])), prog: p, setProg: async (np) => { holder.p = np; await saveScenarioProgress(np); setSt((o) => (o.ctx ? { ctx: { ...o.ctx, prog: np } } : o)); } };
         setSt({ ctx });
       })
       .catch((e) => setSt({ err: String(e.message || e) }));
@@ -247,6 +248,8 @@ function ChipBuilder({ target, onSubmit }: { target: string; onSubmit: (s: strin
 const Count = ({ i, n }: { i: number; n: number }) => <span class="tiny" data-test="item-count">{Math.min(i + 1, n)}/{n}</span>;
 function BuildSection({ ctx, finish, back, setSub }: SP) {
   const r = useRun(ctx.s.build);
+  // #58 B2: kalıp kartı alt sayfada açılır; alıştırmadan çıkılmaz, tur konumu ve puan kaybolmaz (inceleme #94 P1-3)
+  const [kalipAcik, setKalipAcik] = useState<HTMLElement | null | false>(false);
   useEffect(() => { setSub?.(<Count i={r.i} n={r.total} />); }, [r.i]);
   useEffect(() => { if (r.done && r.total) void finish(r.score, r.total); }, [r.done]);
   if (!r.total) return <Empty title="Bu senaryoda cümle kurma maddesi yok" />;
@@ -255,8 +258,9 @@ function BuildSection({ ctx, finish, back, setSub }: SP) {
   const p = b.pattern ? ctx.pt.get(b.pattern) : undefined;
   return (
     <div class="stack" key={b.id}>
+      {kalipAcik !== false && p && <KalipKarti p={p} donus={kalipAcik} kapat={() => setKalipAcik(false)} />}
       <ProduceItem ctx={ctx} itemId={b.id} accepted={b.accepted} hint={b.prompt_tr} chips={r.i % 3 === 0 && !b.accepted[0]!.includes("{name}")}
-        prompt={<><div class="kicker">Almanca kur · {r.i + 1}/{r.total}</div><div class="de-lg">{b.prompt_tr}</div>{p?.frame_tr && <div class="tiny muted">Kalıp: <Rich text={p.frame_tr} /></div>}</>}
+        prompt={<><div class="kicker">Almanca kur · {r.i + 1}/{r.total}</div><div class="de-lg">{b.prompt_tr}</div>{p?.frame_tr && <div class="tiny muted">Kalıp: <button class="kalip-bag-btn" data-test="kalip-bag" onClick={(e) => setKalipAcik(e.currentTarget as HTMLElement)}><Rich text={p.frame_tr} /></button></div>}</>}
         onDone={(ok) => { if (p) void rec(p.id, "pattern", "active", ok ? "correct" : "wrong"); r.next(ok); }} />
     </div>
   );
