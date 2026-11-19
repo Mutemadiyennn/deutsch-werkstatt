@@ -474,3 +474,10 @@ ol.yol > li.yolgun { padding: 14px 16px; }
 .sozluk-satir .sozluk-de { flex: 0 1 auto; min-width: 0; max-width: 58%; overflow-wrap: break-word; }
 .sozluk-satir .sozluk-tr { flex: 1 1 0; min-width: 0; text-align: right; overflow-wrap: anywhere; }
 .sozluk-satir:focus-visible { outline: 2px solid var(--himmel); outline-offset: 2px; border-radius: 8px; }
+
+/* Kalıp kartı (#58 B2): kurallar tek fikir satırları, seçilen öbeği kullanan örnek vurgulu */
+.kurallar { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
+.kalip-ornek { border-radius: 12px; padding: 4px 6px; margin: 0 -6px; transition: background 200ms ease-out; }
+.kalip-ornek.vurgu { background: var(--himmel-2); }
+.wchip[aria-pressed="true"] { background: var(--himmel); color: var(--card); }
+@media (prefers-reduced-motion: reduce) { .kalip-ornek { transition: none; } }

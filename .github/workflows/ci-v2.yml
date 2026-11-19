@@ -107,6 +107,8 @@ jobs:
         run: cd tests/e2e && python v2_prova.py --shots /tmp/shots
       - name: "Okuma ve yazma (#58 A8): metin + kelime kartı, sorular, zorunlu kelime ve kalıp kontrolü, örnek, kontrol listesi"
         run: cd tests/e2e && python v2_okuma.py --shots /tmp/shots
+      - name: "Kalıp kartı (#58 B2): kural, örnekler, slot doldurma, dönüşümler, sık hata; Sözlük'ten bağlantı"
+        run: cd tests/e2e && python v2_kalip.py --shots /tmp/shots
       - name: "Sözlük arama (#58 B1): DE↔TR, çekimli biçim, kart, Duyduğum kelime olarak Bahçe'ye"
         run: cd tests/e2e && python v2_sozluk.py
       - name: "Dinleme başlangıç hızı (#58 B7): Yavaş seçiliyse ilk çalma yavaş, tekrar normal; Profil'de Normal etkili"

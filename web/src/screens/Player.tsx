@@ -256,7 +256,7 @@ function BuildSection({ ctx, finish, back, setSub }: SP) {
   return (
     <div class="stack" key={b.id}>
       <ProduceItem ctx={ctx} itemId={b.id} accepted={b.accepted} hint={b.prompt_tr} chips={r.i % 3 === 0 && !b.accepted[0]!.includes("{name}")}
-        prompt={<><div class="kicker">Almanca kur · {r.i + 1}/{r.total}</div><div class="de-lg">{b.prompt_tr}</div>{p?.frame_tr && <div class="tiny muted">Kalıp: <Rich text={p.frame_tr} /></div>}</>}
+        prompt={<><div class="kicker">Almanca kur · {r.i + 1}/{r.total}</div><div class="de-lg">{b.prompt_tr}</div>{p?.frame_tr && <div class="tiny muted">Kalıp: <a href={`#/kalip/${encodeURIComponent(p.id)}`} data-test="kalip-bag"><Rich text={p.frame_tr} /></a></div>}</>}
         onDone={(ok) => { if (p) void rec(p.id, "pattern", "active", ok ? "correct" : "wrong"); r.next(ok); }} />
     </div>
   );
