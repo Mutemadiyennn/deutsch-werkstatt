@@ -1,6 +1,6 @@
 /** Profil ve ayarlar: odak/Pomodoro, seans planı, alan önceliği, dinleme, hedefler, görünüm, sunucu durumu, yedek, v1 arşivi */
 import { Icon } from "../ui/icons.tsx";
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import { Activity, type Profile } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { auth } from "../services/auth.ts";
@@ -20,7 +20,20 @@ export function ProfileView() {
   useEffect(() => onAiState(() => tick((n) => n + 1)), []); // sağlayıcı yoklaması sonrası yeniden çiz
   const { profile, setProfile, index, api, toast, user } = useApp();
   const [srv, setSrv] = useState<string | null>(null);
-  const save = async (f: (p: Profile) => void) => { const n = structuredClone(profile); f(n); try { await setProfile(n); toast("Kaydedildi"); } catch { toast("Geçersiz değer; kaydedilmedi."); } };
+  // Art arda iki değişiklik (ör. adı yazıp hemen hitabı seçmek) aynı eski kopyadan yazılırsa ikincisi birincisini siler:
+  // ad kaybolur ve yapay zekâya giden metinde ad "[Name]" ile değiştirilemez (D-061; inceleme #66). Kayıtlar sıraya
+  // girer ve her biri bir önceki kaydın sonucunun üstüne yazılır.
+  const son = useRef<Profile>(profile);
+  const sira = useRef<Promise<unknown>>(Promise.resolve());
+  useEffect(() => { son.current = profile; }, [profile]);
+  const save = (f: (p: Profile) => void) => {
+    const is = sira.current.then(async () => {
+      const n = structuredClone(son.current); f(n);
+      try { await setProfile(n); son.current = n; toast("Kaydedildi"); } catch { toast("Geçersiz değer; kaydedilmedi."); }
+    });
+    sira.current = is.catch(() => {});
+    return is;
+  };
   const dTitle = (id: string) => index?.domains.find((d) => d.id === id)?.title_tr || id;
   const num = (e: Event) => Number((e.target as HTMLSelectElement).value);
 
