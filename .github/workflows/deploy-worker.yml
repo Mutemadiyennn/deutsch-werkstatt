@@ -42,7 +42,11 @@ jobs:
       - name: Dağıt
         if: steps.chk.outputs.skip != '1'
         working-directory: worker
-        run: npx wrangler deploy | tee /tmp/deploy.log
+        # adres günlüğe yazılmaz (PM 7024109445-3): wrangler çıktısında workers.dev adresi gizlenir
+        run: |
+          set -o pipefail
+          npx wrangler deploy > /tmp/deploy.log 2>&1 || { sed -E 's#https://[A-Za-z0-9.-]+\.workers\.dev#<worker-adresi>#g' /tmp/deploy.log; exit 1; }
+          sed -E 's#https://[A-Za-z0-9.-]+\.workers\.dev#<worker-adresi>#g' /tmp/deploy.log
       - name: Gizli değerleri Worker'a aktar (yalnızca tanımlı olanlar)
         if: steps.chk.outputs.skip != '1'
         working-directory: worker
@@ -58,6 +62,9 @@ jobs:
       - name: Adres ve sağlık kontrolü
         if: steps.chk.outputs.skip != '1'
         run: |
-          URL=$(grep -oE 'https://[a-z0-9.-]+\.workers\.dev' /tmp/deploy.log | head -1)
-          echo "Worker adresi: $URL (web derlemesi bunu web/.env.production'dan alır; adres değişirse orayı güncelle)"
-          [ -n "$URL" ] && curl -s "$URL/v1/health" && echo
+          URL=$(grep -oE 'https://[A-Za-z0-9.-]+\.workers\.dev' /tmp/deploy.log | head -1)
+          [ -n "$URL" ] && echo "::add-mask::$URL"
+          A=$(sed -n 's/^VITE_API_BASE=//p' web/.env.production)
+          if [ -z "$URL" ]; then echo "adres alınamadı"; exit 0; fi
+          echo "adres alındı; web/.env.production ile aynı: $([ "$URL" = "$A" ] && echo evet || echo HAYIR — web/.env.production güncellenmeli)"
+          curl -s "$URL/v1/health" && echo
