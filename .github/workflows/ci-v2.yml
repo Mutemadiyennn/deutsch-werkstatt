@@ -111,6 +111,8 @@ jobs:
         run: cd tests/e2e && python v2_solen.py --shots /tmp/shots
       - name: "Gün sonu özeti ve yerel kullanım ölçümü (#58 B3): bırakma noktası, biten adım, kendi cümlen, yeni kelimeler; ağa gitmez"
         run: cd tests/e2e && python v2_gunsonu.py --shots /tmp/shots
+      - name: "Kapalı medya rafı (#58 B12, D-112): Profil'de adres ve anahtar, Rafı sına (bağlandı / anahtar yanlış / ulaşılamıyor), yedeğe girmez"
+        run: cd tests/e2e && python v2_raf.py --shots /tmp/shots
       - name: "Sözlük arama (#58 B1): DE↔TR, çekimli biçim, kart, Duyduğum kelime olarak Bahçe'ye"
         run: cd tests/e2e && python v2_sozluk.py
       - name: "Dinleme başlangıç hızı (#58 B7): Yavaş seçiliyse ilk çalma yavaş, tekrar normal; Profil'de Normal etkili"
