@@ -381,6 +381,18 @@
     {
      "de": "Das brauche ich nicht.",
      "tr": "Buna ihtiyacım yok."
+    },
+    {
+     "de": "einen Termin brauchen",
+     "tr": "randevuya ihtiyacı olmak"
+    },
+    {
+     "de": "Hilfe brauchen",
+     "tr": "yardıma ihtiyacı olmak"
+    },
+    {
+     "de": "Brauchst du etwas?",
+     "tr": "Bir şey lazım mı?"
     }
    ],
    "patterns": [
@@ -389,14 +401,15 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Mir braucht Hilfe** yanlış. Doğrusu **Ich brauche Hilfe**."
+    "Yardıma ihtiyacım var derken **Mir braucht Hilfe** yanlış. Doğrusu **Ich brauche Hilfe.**"
    ],
    "examples": [
     {
      "id": "lx:brauchen:1",
      "de": "Ich brauche einen Termin beim Arzt.",
      "tr": "Doktordan bir randevu almam lazım.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "patient calling doctor office by phone"
     },
     {
      "id": "lx:brauchen:2",
@@ -409,14 +422,16 @@
      "id": "lx:brauchen:3",
      "de": "Brauchst du Hilfe?",
      "tr": "Yardım lazım mı?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "person helping carry heavy box"
     },
     {
      "id": "lx:brauchen:4",
      "de": "– Was brauchst du noch? – Nur noch Milch.",
      "tr": "– Başka ne lazım? – Sadece süt kaldı.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "shopping list next to milk in supermarket"
     }
    ],
    "level": "A1",
@@ -431,7 +446,45 @@
     "anlam_tr": "Bir şeye ihtiyacın olduğunu söyler.",
     "parcalar": [],
     "ipucu_tr": "**Du brauchst nicht zu kommen** gelmene gerek yok demek."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ Hilfe.",
+     "answer": "brauche",
+     "tr": "Yardıma ihtiyacım var.",
+     "hint_tr": "**ich** ile **brauche** olur."
+    },
+    {
+     "de": "___ du etwas?",
+     "answer": "Brauchst",
+     "tr": "Bir şey lazım mı?",
+     "hint_tr": "**du** ile **brauchst** olur."
+    },
+    {
+     "de": "Er ___ einen Arzt.",
+     "answer": "braucht",
+     "tr": "Onun doktora ihtiyacı var.",
+     "hint_tr": "**er** ve **sie** ile **braucht** olur."
+    },
+    {
+     "de": "Ich habe deine Hilfe ___.",
+     "answer": "gebraucht",
+     "tr": "Yardımına ihtiyacım vardı.",
+     "hint_tr": "Geçmişi anlatırken **habe gebraucht** denir."
+    },
+    {
+     "de": "Ich brauche ___ Termin.",
+     "answer": "einen",
+     "tr": "Bir randevuya ihtiyacım var.",
+     "hint_tr": "**Ich brauche** dedikten sonra **ein Termin**, **einen Termin** olur."
+    }
+   ],
+   "unit": "u:m1:06",
+   "can_do": [
+    "cd:m1:06"
+   ],
+   "arm": "pazar",
+   "place": "pl:marktplatz"
   },
   {
    "id": "lx:über",
@@ -3523,7 +3576,7 @@
     "parcalar": [],
     "ipucu_tr": "Güneyde **Grüß Gott** da çok duyulur."
    },
-   "card": false,
+   "card": true,
    "forms": [
     {
      "de": "___, ich bin neu hier in der Firma.",
@@ -4768,6 +4821,18 @@
     {
      "de": "ganz neu",
      "tr": "yepyeni"
+    },
+    {
+     "de": "eine neue Nummer",
+     "tr": "yeni bir numara"
+    },
+    {
+     "de": "eine neue Wohnung",
+     "tr": "yeni bir ev"
+    },
+    {
+     "de": "neu hier",
+     "tr": "burada yeni"
     }
    ],
    "patterns": [
@@ -4776,20 +4841,22 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**ein neu Handy** yanlış. Doğrusu **ein neues Handy**."
+    "Yeni bir telefon derken **ein neu Handy** yanlış. Doğrusu **ein neues Handy.**"
    ],
    "examples": [
     {
      "id": "lx:neu:1",
      "de": "Ich habe eine neue Wohnung.",
      "tr": "Yeni bir evim var.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person unpacking boxes in new apartment"
     },
     {
      "id": "lx:neu:2",
      "de": "Ist das Handy neu?",
      "tr": "Telefon yeni mi?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person holding new smartphone from box"
     },
     {
      "id": "lx:neu:3",
@@ -4817,7 +4884,45 @@
     "anlam_tr": "Bir şeyin yeni olduğunu söyler.",
     "parcalar": [],
     "ipucu_tr": "**Was gibt's Neues** ne var ne yok demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich habe eine ___ Nummer.",
+     "answer": "neue",
+     "tr": "Yeni bir numaram var.",
+     "hint_tr": "**die Nummer** yeni olunca **eine neue Nummer** olur."
+    },
+    {
+     "de": "Das ist ein ___ Handy.",
+     "answer": "neues",
+     "tr": "Bu yeni bir telefon.",
+     "hint_tr": "**das Handy** yeni olunca **ein neues Handy** olur."
+    },
+    {
+     "de": "Ich brauche einen ___ Termin.",
+     "answer": "neuen",
+     "tr": "Yeni bir randevuya ihtiyacım var.",
+     "hint_tr": "**Ich brauche** dedikten sonra **ein neuer Termin**, **einen neuen Termin** olur."
+    },
+    {
+     "de": "Das Handy ist ___.",
+     "answer": "neu",
+     "tr": "Telefon yeni.",
+     "hint_tr": "**ist** dedikten sonra **neu** aynen kalır."
+    },
+    {
+     "de": "Gibt es etwas ___?",
+     "answer": "Neues",
+     "tr": "Yeni bir şey var mı?",
+     "hint_tr": "Yeni bir şey derken büyük harfle **etwas Neues** yazılır."
+    }
+   ],
+   "unit": "u:m1:03",
+   "can_do": [
+    "cd:m1:03"
+   ],
+   "arm": "pazar",
+   "place": "pl:haus"
   },
   {
    "id": "lx:Leute",

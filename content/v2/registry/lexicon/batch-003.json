@@ -88,6 +88,18 @@
     {
      "de": "meine Damen und Herren",
      "tr": "bayanlar baylar"
+    },
+    {
+     "de": "mit Herrn Müller sprechen",
+     "tr": "Müller Bey'le konuşmak"
+    },
+    {
+     "de": "Sehr geehrter Herr Müller",
+     "tr": "Sayın Müller"
+    },
+    {
+     "de": "der Herr da drüben",
+     "tr": "şuradaki beyefendi"
     }
    ],
    "patterns": [
@@ -96,8 +108,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**mit Herr Weber** yanlış. Doğrusu **mit Herrn Weber**.",
-    "**Herr Mehmet** yanlış. Soyadıyla söyle: **Herr Kaya**."
+    "Weber Bey'le derken **mit Herr Weber** yanlış. Doğrusu **mit Herrn Weber.**",
+    "Mehmet Kaya'ya seslenirken **Herr Mehmet** yanlış. Doğrusu soyadıyla **Herr Kaya.**"
    ],
    "examples": [
     {
@@ -111,20 +123,23 @@
      "id": "lx:Herr:2",
      "de": "Kann ich bitte Herrn Becker sprechen?",
      "tr": "Becker Bey'le görüşebilir miyim lütfen?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "caller on office phone asking for colleague"
     },
     {
      "id": "lx:Herr:3",
      "de": "Der Herr da drüben war zuerst da.",
      "tr": "Şuradaki beyefendi önce geldi.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "man first in line at service counter"
     },
     {
      "id": "lx:Herr:4",
      "de": "– Ist Herr Yılmaz schon da? – Ja, er wartet draußen.",
      "tr": "– Yılmaz Bey geldi mi? – Evet, dışarıda bekliyor.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "man waiting outside office entrance"
     }
    ],
    "level": "A1",
@@ -139,7 +154,51 @@
     "anlam_tr": "Bir erkeğe saygıyla seslenirken soyadının önüne gelir.",
     "ne_zaman_tr": "Resmî yerde, tanımadığın bir erkekle konuşurken.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Da wartet ___ Herr.",
+     "answer": "ein",
+     "tr": "Orada bir bey bekliyor.",
+     "hint_tr": "**der Herr** için bir derken **ein** gelir."
+    },
+    {
+     "de": "___ Herr da drüben war zuerst da.",
+     "answer": "Der",
+     "tr": "Şuradaki beyefendi önce geldi.",
+     "hint_tr": "Bildiğimiz bey: **der Herr**."
+    },
+    {
+     "de": "Ich kenne ___ Herrn nicht.",
+     "answer": "den",
+     "tr": "O beyi tanımıyorum.",
+     "hint_tr": "**Ich kenne** dedikten sonra **der Herr**, **den Herrn** olur."
+    },
+    {
+     "de": "Ich suche ___ Herrn mit Brille.",
+     "answer": "einen",
+     "tr": "Gözlüklü bir bey arıyorum.",
+     "hint_tr": "**Ich suche** dedikten sonra **ein Herr**, **einen Herrn** olur."
+    },
+    {
+     "de": "Ich spreche mit ___ Herrn.",
+     "answer": "dem",
+     "tr": "O beyle konuşuyorum.",
+     "hint_tr": "Bildiğimiz bey: **mit dem Herrn**."
+    },
+    {
+     "de": "Ich habe mit ___ Herrn telefoniert.",
+     "answer": "einem",
+     "tr": "Bir beyle telefonda konuştum.",
+     "hint_tr": "Herhangi bir bey: **mit einem Herrn**."
+    }
+   ],
+   "unit": "u:m1:01",
+   "can_do": [
+    "cd:m1:01"
+   ],
+   "arm": "pazar",
+   "place": "pl:marktplatz"
   },
   {
    "id": "lx:natürlich",
@@ -2304,8 +2363,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Her akşam için **abends**, bir akşam için **am Abend** dersin.",
-    "Ayrılırken **Schönen Abend noch!** dersin."
+    "Bu akşam geliyorum derken **Ich komme diese Abend** yanlış. Doğrusu **Ich komme heute Abend.**",
+    "İyi akşamlar dilerken **Schöner Abend noch!** yanlış. Doğrusu **Schönen Abend noch!**"
    ],
    "examples": [
     {
@@ -2365,7 +2424,7 @@
      "de": "Ich wünsche Ihnen ___ schönen Abend.",
      "answer": "einen",
      "tr": "Size iyi akşamlar dilerim.",
-     "hint_tr": "**wünschen** sonrası **einen** gelir."
+     "hint_tr": "**Ich wünsche Ihnen** dedikten sonra **ein schöner Abend**, **einen schönen Abend** olur."
     },
     {
      "de": "Ich bin ___ Abend zu Hause.",
@@ -3388,7 +3447,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Adın ne derken **Was heißt du?** yanlış. Doğrusu **Wie heißt du?**",
-    "**das heißt** yani demektir."
+    "Doktorun adı Weber derken **Der Arzt ist heißt Weber** yanlış. Doğrusu **Der Arzt heißt Weber.**"
    ],
    "examples": [
     {
@@ -4624,8 +4683,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**zwei Stunden** iki saat sürer, **zwei Uhr** saat ikidir.",
-    "Yarım saat **eine halbe Stunde** olur."
+    "İki saat bekliyorum derken **Ich warte zwei Uhr** yanlış. Doğrusu **Ich warte zwei Stunden.**",
+    "Yarım saat derken **halb Stunde** yanlış. Doğrusu **eine halbe Stunde.**"
    ],
    "examples": [
     {
@@ -4693,10 +4752,10 @@
      "hint_tr": "Hangi ders olduğu belliyse **die Stunde** denir."
     },
     {
-     "de": "Nach ___ Stunde gehe ich.",
+     "de": "In ___ Stunde gehe ich.",
      "answer": "einer",
      "tr": "Bir saat sonra gidiyorum.",
-     "hint_tr": "Bir saat sonra: **nach einer Stunde**."
+     "hint_tr": "Bir saat sonra: **in einer Stunde**."
     }
    ],
    "unit": "u:m1:05",
@@ -5528,12 +5587,12 @@
      "hint_tr": "Ne zamandan beri derken **seit wann** denir."
     }
    ],
-   "unit": "u:m1:06",
+   "unit": "u:m1:02",
    "can_do": [
-    "cd:m1:06"
+    "cd:m1:02"
    ],
    "arm": "pazar",
-   "place": "pl:marktplatz"
+   "place": "pl:friseur"
   },
   {
    "id": "lx:Auge",
@@ -5629,8 +5688,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Beş dakika sonra **in fünf Minuten** olur.",
-    "**Hast du 'ne Minute?** bir dakikan var mı demektir."
+    "Otobüs beş dakika sonra geliyor derken **Der Bus kommt nach fünf Minuten** yanlış. Doğrusu **Der Bus kommt in fünf Minuten.**",
+    "On dakika derken **zehn Minute** yanlış. Doğrusu **zehn Minuten.**"
    ],
    "examples": [
     {

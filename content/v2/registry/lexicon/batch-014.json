@@ -4,7 +4,7 @@
   "status": "reviewed",
   "by": "dilbilimci-ajan",
   "at": "2026-11-19",
-  "notes": "Çekirdek ve M1 kartları 004–008 partilerinden taşındı. docs/v2/reviews/lexicon-batch-c1.md, lexicon-m1.md, lexicon-m2.md; okur: docs/v2/reviews/okur/lexicon-batch-c1.md, lexicon-m1.md, m1-tekrar2…5.md.",
+  "notes": "Çekirdek ve M1 kartları 004–008 partilerinden taşındı. docs/v2/reviews/lexicon-batch-c1.md, lexicon-m1.md, lexicon-m2.md, m1-duzeltme.md; okur: docs/v2/reviews/okur/lexicon-batch-c1.md, lexicon-m1.md, m1-tekrar2…8.md.",
   "okur": "passed",
   "okur_at": "2026-11-19"
  },
@@ -5880,7 +5880,7 @@
      "de": "Ich rufe mit ___ neuen Nummer an.",
      "answer": "einer",
      "tr": "Yeni bir numarayla arıyorum.",
-     "hint_tr": "Yeni, başka bir numara: **mit einer** Nummer."
+     "hint_tr": "Yeni bir numara: **mit einer neuen Nummer**."
     },
     {
      "de": "Mit ___ Nummer stimmt etwas nicht.",
@@ -7081,7 +7081,7 @@
      "de": "Ich brauche ___ neue Karte.",
      "answer": "eine",
      "tr": "Yeni bir karta ihtiyacım var.",
-     "hint_tr": "**brauchen** sonrası **eine** gelir."
+     "hint_tr": "**Ich brauche** dedikten sonra **eine neue Karte** gelir."
     },
     {
      "de": "Können wir bitte ___ Karte haben?",
@@ -7881,6 +7881,365 @@
     "parcalar": [],
     "ipucu_tr": "**Autounfall** trafik kazası demektir."
    }
+  },
+  {
+   "id": "lx:müde",
+   "de": "müde",
+   "tr": "yorgun, uykulu",
+   "pos": "adj",
+   "level": "A1",
+   "tier": "K1",
+   "freqRank": 881,
+   "register": "neutral",
+   "domains": [
+    "smalltalk",
+    "arbeit",
+    "arzt"
+   ],
+   "patterns": [
+    "pt:ich-bin"
+   ],
+   "exp": {
+    "anlam_tr": "Birinin yorgun olduğunu söyler.",
+    "ne_zaman_tr": "İşten sonra, gece ya da sabah erken saatte.",
+    "parcalar": [],
+    "ipucu_tr": "**Ich bin müde** yorgunum demektir, uykun gelince de söylenir."
+   },
+   "mistakes_tr": [
+    "Yorgunum derken **Ich müde** yanlış. Doğrusu **Ich bin müde.**",
+    "Yorgun değilim derken **Ich bin kein müde** yanlış. Doğrusu **Ich bin nicht müde.**"
+   ],
+   "forms": [
+    {
+     "de": "Ich bin ___.",
+     "answer": "müde",
+     "tr": "Yorgunum.",
+     "hint_tr": "Yorgunum derken **Ich bin müde** denir."
+    },
+    {
+     "de": "Ich ___ heute sehr müde.",
+     "answer": "bin",
+     "tr": "Bugün çok yorgunum.",
+     "hint_tr": "**ich** ile **bin** olur: **Ich bin müde.**"
+    },
+    {
+     "de": "Bist du ___?",
+     "answer": "müde",
+     "tr": "Yorgun musun?",
+     "hint_tr": "Karşındakine sorarken **Bist du müde?** denir."
+    },
+    {
+     "de": "Das Kind ist ___ und schläft.",
+     "answer": "müde",
+     "tr": "Çocuk yorgun, uyuyor.",
+     "hint_tr": "Başkası için **ist müde** denir."
+    },
+    {
+     "de": "Ich bin ___ und gehe ins Bett.",
+     "answer": "müde",
+     "tr": "Uykum geldi, yatıyorum.",
+     "hint_tr": "Uykun gelince de **Ich bin müde** denir."
+    }
+   ],
+   "collocations": [
+    {
+     "de": "müde sein",
+     "tr": "yorgun olmak"
+    },
+    {
+     "de": "sehr müde",
+     "tr": "çok yorgun"
+    },
+    {
+     "de": "müde werden",
+     "tr": "yorulmak"
+    },
+    {
+     "de": "müde aussehen",
+     "tr": "yorgun görünmek"
+    }
+   ],
+   "examples": [
+    {
+     "id": "lx:müde:1",
+     "de": "Ich bin heute sehr müde.",
+     "tr": "Bugün çok yorgunum.",
+     "layer": "hd",
+     "img": "tired person yawning at desk"
+    },
+    {
+     "id": "lx:müde:2",
+     "de": "Nach der Arbeit bin ich immer müde.",
+     "tr": "İşten sonra hep yorgun oluyorum.",
+     "layer": "hd",
+     "img": "tired commuter on train after work"
+    },
+    {
+     "id": "lx:müde:3",
+     "de": "Bin total müde, ich geh ins Bett.",
+     "tr": "Çok yorgunum, yatıyorum.",
+     "layer": "alltag",
+     "img": "sleepy person going to bed at night"
+    },
+    {
+     "id": "lx:müde:4",
+     "de": "– Du siehst müde aus. – Ja, ich habe schlecht geschlafen.",
+     "tr": "– Yorgun görünüyorsun. – Evet, kötü uyudum.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "colleague with tired face talking in kitchen"
+    }
+   ],
+   "unit": "u:m1:07",
+   "can_do": [
+    "cd:m1:07"
+   ],
+   "arm": "pazar",
+   "place": "pl:praxis"
+  },
+  {
+   "id": "lx:Büro",
+   "de": "Büro",
+   "tr": "ofis, büro",
+   "pos": "noun",
+   "art": "das",
+   "pl": "Büros",
+   "img": "office desk",
+   "collocations": [
+    {
+     "de": "im Büro",
+     "tr": "ofiste"
+    },
+    {
+     "de": "ins Büro gehen",
+     "tr": "ofise gitmek"
+    },
+    {
+     "de": "im Büro arbeiten",
+     "tr": "ofiste çalışmak"
+    },
+    {
+     "de": "im Büro anrufen",
+     "tr": "ofise telefon etmek"
+    },
+    {
+     "de": "aus dem Büro kommen",
+     "tr": "ofisten gelmek"
+    }
+   ],
+   "patterns": [
+    "pt:wo-ist"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Ofis derken **die Büro** yanlış. Doğrusu **das Büro.**",
+    "Ofise gidiyorum derken **Ich gehe im Büro** yanlış. Doğrusu **Ich gehe ins Büro.**"
+   ],
+   "examples": [
+    {
+     "id": "lx:Büro:1",
+     "de": "Ich arbeite in einem Büro.",
+     "tr": "Bir ofiste çalışıyorum.",
+     "layer": "hd",
+     "img": "person working at office desk"
+    },
+    {
+     "id": "lx:Büro:2",
+     "de": "Herr Wagner ist heute nicht im Büro.",
+     "tr": "Wagner Bey bugün ofiste değil.",
+     "layer": "hd",
+     "img": "empty chair at office desk"
+    },
+    {
+     "id": "lx:Büro:3",
+     "de": "Bin noch im Büro, wird später.",
+     "tr": "Hâlâ ofisteyim, geç olacak.",
+     "layer": "alltag",
+     "img": "person working late in office at night"
+    },
+    {
+     "id": "lx:Büro:4",
+     "de": "– Wo ist Ihr Büro? – Im dritten Stock.",
+     "tr": "– Ofisiniz nerede? – Üçüncü katta.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "visitor asking directions in office building"
+    }
+   ],
+   "level": "A1",
+   "tier": "K1",
+   "freqRank": 515,
+   "domains": [
+    "arbeit"
+   ],
+   "exp": {
+    "anlam_tr": "Masa başı işlerin yapıldığı çalışma yerini anlatır.",
+    "ne_zaman_tr": "İşten ya da resmî bir yerden söz ederken.",
+    "parcalar": [],
+    "ipucu_tr": "Ofiste derken **im Büro**, ofise giderken **ins Büro** denir."
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ Büro.",
+     "answer": "ein",
+     "tr": "Bu bir ofis.",
+     "hint_tr": "**das Büro** için bir derken **ein** gelir."
+    },
+    {
+     "de": "___ Büro ist im dritten Stock.",
+     "answer": "Das",
+     "tr": "Ofis üçüncü katta.",
+     "hint_tr": "Bildiğimiz ofis: **das Büro**."
+    },
+    {
+     "de": "Wir suchen ___ Büro.",
+     "answer": "ein",
+     "tr": "Bir ofis arıyoruz.",
+     "hint_tr": "**Wir suchen** dedikten sonra **ein Büro** aynen kalır."
+    },
+    {
+     "de": "Ich suche ___ Büro von Frau Weber.",
+     "answer": "das",
+     "tr": "Weber Hanım'ın ofisini arıyorum.",
+     "hint_tr": "**Ich suche** dedikten sonra **das Büro** aynen kalır."
+    },
+    {
+     "de": "Ich arbeite in ___ Büro.",
+     "answer": "einem",
+     "tr": "Bir ofiste çalışıyorum.",
+     "hint_tr": "Herhangi bir ofis: **in einem Büro**."
+    },
+    {
+     "de": "Ich bin heute ___ Büro.",
+     "answer": "im",
+     "tr": "Bugün ofisteyim.",
+     "hint_tr": "Bildiğimiz ofis: **im Büro**."
+    }
+   ],
+   "unit": "u:m1:03",
+   "can_do": [
+    "cd:m1:03"
+   ],
+   "arm": "pazar",
+   "place": "pl:haus"
+  },
+  {
+   "id": "lx:offen",
+   "de": "offen",
+   "tr": "açık",
+   "pos": "adj",
+   "collocations": [
+    {
+     "de": "Haben Sie offen?",
+     "tr": "Açık mısınız?"
+    },
+    {
+     "de": "offen sagen",
+     "tr": "açıkça söylemek"
+    },
+    {
+     "de": "Bis wann haben Sie offen?",
+     "tr": "Saat kaça kadar açıksınız?"
+    },
+    {
+     "de": "die Tür offen lassen",
+     "tr": "kapıyı açık bırakmak"
+    },
+    {
+     "de": "offen bleiben",
+     "tr": "açık kalmak"
+    }
+   ],
+   "patterns": [
+    "pt:ja-nein-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Dükkân açık derken **Der Laden offen** yanlış. Doğrusu **Der Laden ist offen.**",
+    "Kapıyı açıyorum derken **Ich offen die Tür** yanlış. Doğrusu **Ich mache die Tür auf.**"
+   ],
+   "examples": [
+    {
+     "id": "lx:offen:1",
+     "de": "Hat die Apotheke heute offen?",
+     "tr": "Eczane bugün açık mı?",
+     "layer": "hd",
+     "img": "pharmacy entrance with open sign"
+    },
+    {
+     "id": "lx:offen:2",
+     "de": "Das Fenster ist offen.",
+     "tr": "Pencere açık.",
+     "layer": "hd",
+     "img": "open window in living room"
+    },
+    {
+     "id": "lx:offen:3",
+     "de": "Offen gesagt, keine Ahnung.",
+     "tr": "Açıkçası, hiç bilmiyorum.",
+     "layer": "alltag",
+     "img": "person shrugging in conversation"
+    },
+    {
+     "id": "lx:offen:4",
+     "de": "– Ist die Tür offen? – Ja, komm einfach rein.",
+     "tr": "– Kapı açık mı? – Evet, giriver.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "friend at open front door inviting guest in"
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 667,
+   "domains": [
+    "einkaufen",
+    "wohnen"
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin kapalı olmadığını söyler.",
+    "ne_zaman_tr": "Dükkânı, kapıyı ya da pencereyi sorarken.",
+    "parcalar": [],
+    "ipucu_tr": "**Offen gesagt** açıkçası demektir."
+   },
+   "forms": [
+    {
+     "de": "Die Tür ist ___.",
+     "answer": "offen",
+     "tr": "Kapı açık.",
+     "hint_tr": "Açık olduğunu söylerken **ist offen** denir."
+    },
+    {
+     "de": "Hat die Apotheke heute ___?",
+     "answer": "offen",
+     "tr": "Eczane bugün açık mı?",
+     "hint_tr": "Eczane, dükkân gibi yerler için **hat offen** da denir."
+    },
+    {
+     "de": "Wir haben bis sechs Uhr ___.",
+     "answer": "offen",
+     "tr": "Saat altıya kadar açığız.",
+     "hint_tr": "Açığız derken **Wir haben offen** denir."
+    },
+    {
+     "de": "Das Fenster bleibt ___.",
+     "answer": "offen",
+     "tr": "Pencere açık kalıyor.",
+     "hint_tr": "Açık kalıyor derken **bleibt offen** denir."
+    },
+    {
+     "de": "Ich schlafe bei ___ Fenster.",
+     "answer": "offenem",
+     "tr": "Pencereyi açık bırakıp uyuyorum.",
+     "hint_tr": "Pencere açıkken derken **bei offenem Fenster** denir."
+    }
+   ],
+   "unit": "u:m1:02",
+   "can_do": [
+    "cd:m1:02"
+   ],
+   "arm": "pazar",
+   "place": "pl:friseur"
   }
  ]
 }

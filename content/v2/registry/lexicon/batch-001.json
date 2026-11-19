@@ -532,7 +532,7 @@
   {
    "id": "lx:haben",
    "de": "haben",
-   "tr": "sahip olmak, -im var",
+   "tr": "sahip olmak, bende var",
    "pos": "verb",
    "verb": {
     "praesens3": "hat",
@@ -573,7 +573,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Arabam var derken **Es gibt mein Auto** yanlış. Doğrusu **Ich habe ein Auto.**",
-    "Başım ağrıyor derken **Ich habe Kopfschmerzen** dersin."
+    "Başım ağrıyor derken **Ich bin Kopfschmerzen** yanlış. Doğrusu **Ich habe Kopfschmerzen.**"
    ],
    "examples": [
     {
@@ -1151,7 +1151,7 @@
     "anlam_tr": "Bir şeyi ya da bir işi sorar.",
     "parcalar": []
    },
-   "card": false,
+   "card": true,
    "forms": [
     {
      "de": "___ möchtest du trinken?",
@@ -1826,7 +1826,7 @@
     "anlam_tr": "Bir soruya olumlu cevap verir.",
     "parcalar": []
    },
-   "card": false,
+   "card": true,
    "forms": [
     {
      "de": "___, gern.",
@@ -3238,8 +3238,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Duş alıyorum derken **Dusche machen** yanlış. Doğrusu **duschen**.",
-    "**Was machst du?** bazen mesleğini de sorar."
+    "Duş alıyorum derken **Ich mache Dusche** yanlış. Doğrusu **Ich dusche.**",
+    "Ne iş yapıyorsun derken **Was Arbeit machst du?** yanlış. Doğrusu **Was machst du beruflich?**"
    ],
    "examples": [
     {
@@ -3641,7 +3641,7 @@
     "parcalar": [],
     "ipucu_tr": "Konuşmada çoğu zaman **nee** duyarsın, anlamı aynıdır."
    },
-   "card": false,
+   "card": true,
    "forms": [
     {
      "de": "___, danke.",
@@ -4001,7 +4001,7 @@
   {
    "id": "lx:da",
    "de": "da",
-   "tr": "orada, işte, o zaman",
+   "tr": "burada, orada",
    "pos": "adv",
    "collocations": [
     {
@@ -4009,8 +4009,24 @@
      "tr": "şu karşıda"
     },
     {
-     "de": "Ist … da?",
-     "tr": "… orada mı? … burada mı?"
+     "de": "Ist Herr Weber da?",
+     "tr": "Weber Bey burada mı?"
+    },
+    {
+     "de": "wieder da",
+     "tr": "yeniden burada"
+    },
+    {
+     "de": "Ich bin da.",
+     "tr": "Geldim."
+    },
+    {
+     "de": "noch da",
+     "tr": "hâlâ burada"
+    },
+    {
+     "de": "Da hast du recht.",
+     "tr": "Bu konuda haklısın."
     }
    ],
    "patterns": [
@@ -4019,15 +4035,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Ist Herr Weber da?** Bu kişi şu an burada mı demektir.",
-    "**Da ich kann nichts machen** yanlış. Doğrusu **Da kann ich nichts machen.**"
+    "Doktor burada değil derken **Der Arzt ist da nicht** yanlış. Doğrusu **Der Arzt ist nicht da.**",
+    "Elimden bir şey gelmez derken **Da ich kann nichts machen** yanlış. Doğrusu **Da kann ich nichts machen.**"
    ],
    "examples": [
     {
      "id": "lx:da:1",
      "de": "Ist Frau Becker heute da?",
      "tr": "Becker Hanım bugün burada mı?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "visitor asking at reception desk"
     },
     {
      "id": "lx:da:2",
@@ -4047,7 +4064,8 @@
      "de": "– Hallo, ich bin da! – Super, ich komme runter.",
      "tr": "– Merhaba, geldim! – Süper, aşağı iniyorum.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "person calling from building entrance"
     }
    ],
    "level": "A1",
@@ -4058,9 +4076,41 @@
     "telefon"
    ],
    "exp": {
-    "anlam_tr": "Bir yeri gösterir ya da birinin geldiğini söyler.",
+    "anlam_tr": "Çoğu zaman birinin burada olduğunu söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ist Frau Becker heute ___?",
+     "answer": "da",
+     "tr": "Becker Hanım bugün burada mı?",
+     "hint_tr": "Biri burada mı diye sorarken cümlenin sonuna **da** gelir."
+    },
+    {
+     "de": "Ich bin ___!",
+     "answer": "da",
+     "tr": "Geldim!",
+     "hint_tr": "Geldiğini söylerken **Ich bin da** denir."
+    },
+    {
+     "de": "Der Arzt ist wieder ___.",
+     "answer": "da",
+     "tr": "Doktor yeniden burada.",
+     "hint_tr": "Biri geri gelince **wieder da** denir."
+    },
+    {
+     "de": "___ drüben ist die Haltestelle.",
+     "answer": "Da",
+     "tr": "Durak şu karşıda.",
+     "hint_tr": "Karşıyı gösterirken **da drüben** denir."
+    }
+   ],
+   "unit": "u:m1:05",
+   "can_do": [
+    "cd:m1:05"
+   ],
+   "arm": "pazar",
+   "place": "pl:praxis"
   },
   {
    "id": "lx:tun",
@@ -4264,7 +4314,7 @@
   {
    "id": "lx:sollen",
    "de": "sollen",
-   "tr": "-meli, gerekmek",
+   "tr": "yapması gerekmek",
    "pos": "verb",
    "verb": {
     "praesens3": "soll",
@@ -4292,8 +4342,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Doktorun isteğini söylerken **Ich soll mehr trinken** denir.",
-    "Teklifte **Muss ich das Fenster aufmachen?** yanlış. Doğrusu **Soll ich das Fenster aufmachen?**"
+    "Doktor çok su içmemi istiyor derken **Der Arzt sagt, ich viel Wasser trinken** yanlış. Doğrusu **Der Arzt sagt, ich soll viel Wasser trinken.**",
+    "Pencereyi açayım mı derken **Muss ich das Fenster aufmachen?** yanlış. Doğrusu **Soll ich das Fenster aufmachen?**"
    ],
    "examples": [
     {
@@ -5773,7 +5823,7 @@
     "anlam_tr": "Kibarca ister, bir şey uzatır ya da teşekküre cevap verir.",
     "parcalar": []
    },
-   "card": false,
+   "card": true,
    "forms": [
     {
      "de": "Einen Tee, ___.",
@@ -6594,7 +6644,7 @@
     "anlam_tr": "Bir kişiyi sorar.",
     "parcalar": []
    },
-   "card": false,
+   "card": true,
    "forms": [
     {
      "de": "___ ist das?",
@@ -6815,7 +6865,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "İki gün önce derken **zwei Tage vor** yanlış. Doğrusu **vor zwei Tagen**.",
-    "**Viertel vor acht** sekize çeyrek var demektir."
+    "Sekize çeyrek var derken **acht Viertel vor** yanlış. Doğrusu **Viertel vor acht.**"
    ],
    "examples": [
     {
@@ -7038,6 +7088,18 @@
     {
      "de": "wieder gesund",
      "tr": "iyileşmiş"
+    },
+    {
+     "de": "wieder da",
+     "tr": "yeniden burada"
+    },
+    {
+     "de": "immer wieder",
+     "tr": "tekrar tekrar"
+    },
+    {
+     "de": "nie wieder",
+     "tr": "bir daha asla"
     }
    ],
    "patterns": [
@@ -7045,15 +7107,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Yine anlamında **ie** ile yazılır: **Auf Wiedersehen.**",
-    "Eski duruma dönünce **wieder** denir: **Ich bin wieder gesund.**"
+    "Yine buradayım derken **Ich wieder bin da** yanlış. Doğrusu **Ich bin wieder da.**",
+    "Yine derken **wider** yazmak yanlış. Doğrusu **ie** ile **wieder.**"
    ],
    "examples": [
     {
      "id": "lx:wieder:1",
      "de": "Ich bin wieder zu Hause.",
      "tr": "Eve döndüm.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person arriving home at front door"
     },
     {
      "id": "lx:wieder:2",
@@ -7073,7 +7136,8 @@
      "de": "– Geht's dir besser? – Ja, ich bin wieder fit.",
      "tr": "– Daha iyi misin? – Evet, toparlandım.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "happy person jogging in park"
     }
    ],
    "level": "A1",
@@ -7086,7 +7150,33 @@
    "exp": {
     "anlam_tr": "Bir şeyin yeniden olduğunu söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Der Arzt ist am Donnerstag ___ da.",
+     "answer": "wieder",
+     "tr": "Doktor perşembe günü yeniden burada.",
+     "hint_tr": "Biri geri gelince **wieder da** denir, yani yeniden burada."
+    },
+    {
+     "de": "Es regnet schon ___.",
+     "answer": "wieder",
+     "tr": "Yine yağmur yağıyor.",
+     "hint_tr": "Yine mi derken **schon wieder** denir."
+    },
+    {
+     "de": "Ich bin ___ gesund.",
+     "answer": "wieder",
+     "tr": "İyileştim.",
+     "hint_tr": "İyileşince **wieder gesund** denir."
+    }
+   ],
+   "unit": "u:m1:05",
+   "can_do": [
+    "cd:m1:05"
+   ],
+   "arm": "pazar",
+   "place": "pl:praxis"
   },
   {
    "id": "lx:finden",
@@ -7237,7 +7327,7 @@
     "anlam_tr": "Birine teşekkür eder.",
     "parcalar": []
    },
-   "card": false,
+   "card": true,
    "forms": [
     {
      "de": "___ für den Kaffee.",
