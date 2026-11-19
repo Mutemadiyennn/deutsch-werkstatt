@@ -3,6 +3,7 @@
  * kendi mesajın → zorunlu kelime ve kalıp kontrolü (yapay zekâsız, çevrimdışı; PM-054.5) → örnek cevap → kontrol listesi.
  * Bitiş cihazda `m1:okuma:<gün>`; adım XP'si bir kez.
  */
+import { cumleKaydet } from "../services/kullanim.ts";
 import { useEffect, useState } from "preact/hooks";
 import type { Drill, Lexeme } from "@dw/shared";
 import { useApp } from "../state.ts";
@@ -145,7 +146,7 @@ function Yaz({ o, yazi, setYazi, kontrol, setKontrol, onNext }: { o: OkumaYazmaT
       )}
       <ActionBar>
         {!kontrol || kontrol.eksik.length > 0
-          ? <button class="btn primary block" data-test="yazi-kontrol-et" disabled={!yazi.trim()} onClick={() => setKontrol(yazmaKontrol(yazi, y))}>Kontrol et</button>
+          ? <button class="btn primary block" data-test="yazi-kontrol-et" disabled={!yazi.trim()} onClick={() => { const k = yazmaKontrol(yazi, y); setKontrol(k); if (k.tamam) void cumleKaydet(yazi, "yazma"); /* yalnızca kontrolden geçen mesaj (inceleme #93 P1-3) */ }}>Kontrol et</button>
           : <button class="btn primary block" data-test="next" onClick={onNext}>Örnek cevabı gör</button>}
         {kontrol && kontrol.eksik.length > 0 && <button class="btn block ghost" data-test="yine-de" onClick={onNext}>Yine de örnek cevabı gör</button>}
       </ActionBar>
