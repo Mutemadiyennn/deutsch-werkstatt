@@ -93,7 +93,7 @@ def main():
         pg.click("[data-test=yavas]"); pg.click(f"[data-test=cumle-{s3['id']}]"); pg.wait_for_timeout(400)
         rate = pg.evaluate("document.querySelector('[data-test=video]').playbackRate")
         check(abs(rate - 0.75) < 0.01, f"(c) 0,75× hız ({rate})")
-        pg.mouse.wheel(0, 800); pg.wait_for_timeout(200)
+        pg.evaluate("window.scrollBy(0, 800)"); pg.wait_for_timeout(200)
         top1 = pg.evaluate("document.querySelector('[data-test=medya-ust]').getBoundingClientRect().top")
         check(top1 >= 0 and top1 <= max(top0, 140), f"video üstte sabit kalıyor (kaydırınca üst {top1:.0f} px)")
         answer_step(pg)
