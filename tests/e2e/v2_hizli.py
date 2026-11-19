@@ -7,6 +7,7 @@ B16 hızlı şerit (PM-066 madde 1, 2, 4, 5, 6) — "Biliyorum, sına beni":
   - seviye tespiti A2: Bahçe hızlı şeritle açılır; tur tanıma sorusu görmeden biter; "Normal akışa dön" seçeneği
 python3 tests/e2e/v2_hizli.py [--browser webkit] [--device "iPhone 15"] [--shots DIR]
 """
+import io, os
 from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
 
@@ -16,7 +17,14 @@ OKU = """async ([st, k]) => { const d = await new Promise((ok) => { const q = in
 YAZ = """async ([st, v]) => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
   await new Promise((ok, no) => { const t = d.transaction(st, 'readwrite'); t.objectStore(st).put(v); t.oncomplete = ok; t.onerror = no; }); d.close(); }"""
 
-def yeni_sayfa(p, tema="light"):
+TEMA = arg("--scheme") or "light"
+GIF = arg("--gif"); KARELER = []
+def kare(pg, n=4):
+    """--gif: 10 sn'lik kayıt için n kare (250 ms arayla)"""
+    if GIF:
+        for _ in range(n): KARELER.append(pg.screenshot()); pg.wait_for_timeout(250)
+
+def yeni_sayfa(p, tema=TEMA):
     b, ctx = launch(p, color_scheme=tema); pg = new_page(ctx)
     login_onboard(pg, PORT, hizli_serit=None); pg.wait_for_selector("[data-tab=today]")
     return b, pg
@@ -37,7 +45,7 @@ def main():
         b, pg = yeni_sayfa(p); bahce(pg, base)
         check(pg.locator("[data-test=garden-intro]").count() == 1 and pg.get_attribute("[data-test=garden]", "data-hizli") is None, "sıfır profil: Bahçe tanıtım kartıyla açılır (bugünkü akış)")
         check(pg.locator("[data-test=sina-beni]").count() == 1, "tanıtımda 'Biliyorum, sına beni' düğmesi")
-        if shots: shot(pg, "h01-tanitim-sina", full=False)
+        if shots: shot(pg, f"h01-tanitim-sina-{TEMA}", full=False)
         oneri = False
         for _ in range(6):
             if pg.locator("[data-test=hizli-oneri]").count(): oneri = True; break
@@ -48,17 +56,17 @@ def main():
             pg.wait_for_selector("[data-test=garden-intro], [data-test=hizli-oneri], [data-test=garden-done]")
         check(oneri, "art arda 3 yeni kart hızlı ve doğru → 'Bunları biliyor gibisin' önerisi")
         if oneri:
-            if shots: shot(pg, "h02-oneri", full=False)
+            if shots: shot(pg, f"h02-oneri-{TEMA}", full=False)
             pg.click("[data-test=hizli-evet]"); pg.wait_for_selector("[data-test=sina-soru], [data-test=garden-done]")
             check(pg.locator("[data-test=sina-soru]").count() == 1, "öneri kabul: sonraki yeni kart sına sorusuyla açılır")
         b.close()
 
         # 2) tanıtımda "Biliyorum, sına beni": doğru → Bildin, yanlış → birlikte bakalım
-        b, pg = yeni_sayfa(p); bahce(pg, base)
-        pg.click("[data-test=sina-beni]"); pg.wait_for_selector("[data-test=sina-soru]")
+        b, pg = yeni_sayfa(p); bahce(pg, base); kare(pg, 8)
+        pg.click("[data-test=sina-beni]"); pg.wait_for_selector("[data-test=sina-soru]"); kare(pg, 6)
         check(pg.locator("[data-test=garden-intro]").count() == 0, "düğmeden sonra sonraki yeni kart tanıtımsız: sına sorusu")
         once = (pg.evaluate(OKU, ["meta", "xp"]) or {"value": {"toplam": 0}})["value"]["toplam"]
-        t = sina_cevapla(pg, True)
+        t = sina_cevapla(pg, True); kare(pg, 8)
         check("Bildin" in t, f"doğru üretim: 'Bildin!' ({t[:60]!r})")
         lex = pg.get_attribute("[data-test=after-card]", "data-lex")
         pg.click("[data-test=next]")
@@ -69,8 +77,8 @@ def main():
         pg.wait_for_selector("[data-test=sina-soru], [data-test^=gq-], [data-test=garden-done]")
         if pg.locator("[data-test=sina-soru]").count():
             t = sina_cevapla(pg, False)
-            check("Sorun değil" in t, f"yanlış: 'Sorun değil, birlikte bakalım' ({t[:50]!r})")
-            if shots: shot(pg, "h03-birlikte-bakalim", full=False)
+            check("Sorun değil" in t, f"yanlış: 'Sorun değil, birlikte bakalım' ({t[:50]!r})"); kare(pg, 8)
+            if shots: shot(pg, f"h03-birlikte-bakalim-{TEMA}", full=False)
             pg.click("[data-test=next]"); pg.wait_for_selector("[data-test=garden-intro]")
             pg.click("[data-test=garden-intro] [data-test=next]"); pg.wait_for_selector("[data-test^=gq-]")
             check(pg.locator("[data-test=gq-listen_meaning]").count() == 1, "yanlıştan sonra tanıtım ve normal tanıma sorusu (cezasız)")
@@ -82,7 +90,7 @@ def main():
         pg.evaluate(YAZ, ["assess", {"id": "e2e-a2", "type": "placement", "startedAt": "2026-11-18T10:00:00.000Z", "finishedAt": "2026-11-18T10:30:00.000Z", "overall": "A2", "items": [], "skills": {}}])
         pg.reload(); pg.wait_for_selector("[data-tab=today]"); bahce(pg, base)
         check(pg.get_attribute("[data-test=garden]", "data-hizli") == "tespit" and pg.locator("[data-test=hizli-tespit]").count() == 1, "tespit A2: Bahçe hızlı şeritle açılır ve bunu söyler")
-        if shots: shot(pg, "h04-tespit-a2", full=False)
+        if shots: shot(pg, f"h04-tespit-a2-{TEMA}", full=False)
         tanima, sina, k = 0, 0, 0
         while k < 60 and not pg.locator("[data-test=garden-done]").count():
             k += 1
@@ -104,6 +112,12 @@ def main():
         check(pg.evaluate(OKU, ["meta", "hizliSerit"])["value"] is False, "tercih kaydedildi (bir dahaki açılışta normal akış)")
         b.close()
     srv.shutdown()
+    if GIF and KARELER:
+        from PIL import Image
+        im = [Image.open(io.BytesIO(k)).convert("P", palette=Image.ADAPTIVE) for k in KARELER]
+        w = 390; im = [x.resize((w, int(x.height * w / x.width))) for x in im]
+        im[0].save(GIF, save_all=True, append_images=im[1:], duration=int(10000 / len(im)), loop=0, optimize=True)
+        check(os.path.getsize(GIF) > 0, f"GIF yazıldı ({len(im)} kare, ~10 sn)")
     finish()
 
 if __name__ == "__main__":
