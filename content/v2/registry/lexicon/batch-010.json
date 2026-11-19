@@ -8011,6 +8011,14 @@
     {
      "de": "eine fremde Stadt",
      "tr": "yabancı bir şehir"
+    },
+    {
+     "de": "fremde Leute",
+     "tr": "tanımadık insanlar"
+    },
+    {
+     "de": "eine fremde Sprache",
+     "tr": "yabancı bir dil"
     }
    ],
    "patterns": [
@@ -8055,7 +8063,7 @@
     "verkehr"
    ],
    "exp": {
-    "anlam_tr": "**fremd** bir yeri tanımadığını söyler.",
+    "anlam_tr": "**fremd** tanımadığın bir yeri, kişiyi ya da dili anlatır.",
     "ne_zaman_tr": "Yol sorarken ya da yeni bir yerde.",
     "parcalar": []
    },
@@ -8064,6 +8072,26 @@
     {
      "unit": "a2-01",
      "key": "a2-01:w:fremd"
+    }
+   ],
+   "forms": [
+    {
+     "de": "Entschuldigung, ich bin hier ___.",
+     "answer": "fremd",
+     "tr": "Affedersiniz, buranın yabancısıyım.",
+     "hint_tr": "Bir yeri tanımadığını söylerken **Ich bin hier fremd** denir."
+    },
+    {
+     "de": "Die Stadt ist mir noch ___.",
+     "answer": "fremd",
+     "tr": "Şehir bana hâlâ yabancı.",
+     "hint_tr": "Bir yer sana yabancı geliyorsa **Das ist mir fremd** denir."
+    },
+    {
+     "de": "Das ist eine ___ Stadt für mich.",
+     "answer": "fremde",
+     "tr": "Bu benim için yabancı bir şehir.",
+     "hint_tr": "**eine Stadt** ile **fremd**, **eine fremde Stadt** olur."
     }
    ]
   },
@@ -8089,6 +8117,14 @@
     {
      "de": "jemanden sehr vermissen",
      "tr": "birini çok özlemek"
+    },
+    {
+     "de": "die Heimat vermissen",
+     "tr": "memleketi özlemek"
+    },
+    {
+     "de": "Ich vermisse dich.",
+     "tr": "Seni özlüyorum."
     }
    ],
    "patterns": [
@@ -8096,7 +8132,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Seni özlüyorum derken **Ich vermisse dir** yanlış. Doğrusu **Ich vermisse dich**."
+    "Seni özlüyorum derken **Ich vermisse dir** yanlış. Doğrusu **Ich vermisse dich**.",
+    "Seni özledim derken **Ich habe dich gevermisst** yanlış. Doğrusu **Ich habe dich vermisst**."
    ],
    "examples": [
     {
@@ -8143,6 +8180,32 @@
      "unit": "a2-01",
      "key": "a2-01:w:vermissen"
     }
+   ],
+   "forms": [
+    {
+     "de": "Ich ___ meine Familie.",
+     "answer": "vermisse",
+     "tr": "Ailemi özlüyorum.",
+     "hint_tr": "**ich** ile **vermisse** olur."
+    },
+    {
+     "de": "___ du deine Heimat?",
+     "answer": "Vermisst",
+     "tr": "Memleketini özlüyor musun?",
+     "hint_tr": "**du** ile **vermisst** olur."
+    },
+    {
+     "de": "Ioana ___ ihre Freunde.",
+     "answer": "vermisst",
+     "tr": "Ioana arkadaşlarını özlüyor.",
+     "hint_tr": "**er** ve **sie** ile de **vermisst** olur."
+    },
+    {
+     "de": "Ich habe dich sehr ___.",
+     "answer": "vermisst",
+     "tr": "Seni çok özledim.",
+     "hint_tr": "Geçmişi anlatırken **habe vermisst** denir, başına **ge** gelmez."
+    }
    ]
   },
   {
@@ -8160,7 +8223,15 @@
     },
     {
      "de": "ein Gericht empfehlen",
-     "tr": "bir yemek önermek"
+     "tr": "bir yemek tavsiye etmek"
+    },
+    {
+     "de": "ein Gericht ohne Fleisch",
+     "tr": "etsiz bir yemek"
+    },
+    {
+     "de": "ein typisches Gericht",
+     "tr": "yöresel bir yemek"
     }
    ],
    "patterns": [
@@ -8169,33 +8240,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Bu yemek derken **der Gericht** yanlış. Doğrusu **das Gericht**."
+    "Yemek bana fazla acı derken **Der Gericht ist mir zu scharf** yanlış. Doğrusu **Das Gericht ist mir zu scharf**.",
+    "Akşam yemeği derken **Abendgericht** yanlış. Doğrusu **Abendessen**. **Gericht** tabaktaki yemek çeşididir, öğün için **Essen** denir."
    ],
    "examples": [
     {
      "id": "lx:Gericht:1",
      "de": "Welches Gericht können Sie empfehlen?",
-     "tr": "Hangi yemeği önerirsiniz?",
-     "layer": "hd"
+     "tr": "Hangi yemeği tavsiye edersiniz?",
+     "layer": "hd",
+     "img": "waiter recommending dish to guest"
     },
     {
      "id": "lx:Gericht:2",
      "de": "Das Gericht ist mir zu scharf.",
-     "tr": "Bu yemek bana fazla acı.",
-     "layer": "hd"
+     "tr": "Yemek bana fazla acı.",
+     "layer": "hd",
+     "img": "spicy curry dish on plate"
     },
     {
      "id": "lx:Gericht:3",
      "de": "Was ist denn das für ein Gericht?",
      "tr": "Bu nasıl bir yemek böyle?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "guest looking curiously at unfamiliar dish"
     },
     {
      "id": "lx:Gericht:4",
      "de": "– Haben Sie auch Gerichte ohne Fleisch? – Ja, auf der zweiten Seite.",
      "tr": "– Etsiz yemekleriniz de var mı? – Evet, ikinci sayfada.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "vegetarian page of restaurant menu"
     }
    ],
    "level": "A2",
@@ -8215,6 +8291,38 @@
      "unit": "a2-03",
      "key": "a2-03:w:Gericht"
     }
+   ],
+   "forms": [
+    {
+     "de": "Das ist ___ Gericht aus der Türkei.",
+     "answer": "ein",
+     "tr": "Bu Türkiye'den bir yemek.",
+     "hint_tr": "Bir yemeği tanıtırken **Das ist ein Gericht** denir."
+    },
+    {
+     "de": "Können Sie mir ___ Gericht empfehlen?",
+     "answer": "ein",
+     "tr": "Bana bir yemek tavsiye edebilir misiniz?",
+     "hint_tr": "**Können Sie mir** dedikten sonra da **ein Gericht** aynı kalır."
+    },
+    {
+     "de": "___ Gericht ist mir zu scharf.",
+     "answer": "Das",
+     "tr": "Yemek bana fazla acı.",
+     "hint_tr": "Bildiğimiz yemek: **das Gericht**."
+    },
+    {
+     "de": "Ich nehme ___ Gericht mit Reis.",
+     "answer": "das",
+     "tr": "Pilavlı yemeği alıyorum.",
+     "hint_tr": "**Ich nehme** dedikten sonra da **das Gericht** aynı kalır."
+    },
+    {
+     "de": "Haben Sie auch ___ ohne Fleisch?",
+     "answer": "Gerichte",
+     "tr": "Etsiz yemekleriniz de var mı?",
+     "hint_tr": "Birden çok yemek için **Gerichte** denir."
+    }
    ]
   },
   {
@@ -8231,6 +8339,14 @@
     {
      "de": "links abbiegen",
      "tr": "sola dönmek"
+    },
+    {
+     "de": "links neben der Bank",
+     "tr": "bankanın solunda"
+    },
+    {
+     "de": "die zweite Straße links",
+     "tr": "soldaki ikinci sokak"
     }
    ],
    "patterns": [
@@ -8251,7 +8367,7 @@
     {
      "id": "lx:links:2",
      "de": "Die Apotheke ist links neben der Bank.",
-     "tr": "Eczane solda, bankanın yanında.",
+     "tr": "Eczane bankanın solunda.",
      "layer": "hd"
     },
     {
@@ -8283,6 +8399,26 @@
     {
      "unit": "a1-11",
      "key": "a1-11:w:links"
+    }
+   ],
+   "forms": [
+    {
+     "de": "An der Ampel gehen Sie ___.",
+     "answer": "links",
+     "tr": "Trafik ışığında sola gidin.",
+     "hint_tr": "**gehen Sie** dedikten sonra **links** gelir."
+    },
+    {
+     "de": "Biegen Sie hier ___ ab.",
+     "answer": "links",
+     "tr": "Burada sola dönün.",
+     "hint_tr": "Sola dönün derken **Biegen Sie links ab** denir."
+    },
+    {
+     "de": "Gehen Sie nach ___.",
+     "answer": "links",
+     "tr": "Sola gidin.",
+     "hint_tr": "Sola doğru derken **nach links** denir."
     }
    ]
   },
@@ -8433,6 +8569,14 @@
     {
      "de": "kaputt machen",
      "tr": "bozmak"
+    },
+    {
+     "de": "kaputtgehen",
+     "tr": "bozulmak"
+    },
+    {
+     "de": "Ich bin total kaputt.",
+     "tr": "Çok yorgunum."
     }
    ],
    "patterns": [
@@ -8452,7 +8596,7 @@
     {
      "id": "lx:kaputt:2",
      "de": "Die Heizung ist schon wieder kaputt.",
-     "tr": "Kalorifer yine bozuldu.",
+     "tr": "Kalorifer yine bozuk.",
      "layer": "hd"
     },
     {
@@ -8487,6 +8631,26 @@
      "unit": "a1-12",
      "key": "a1-12:w:kaputt"
     }
+   ],
+   "forms": [
+    {
+     "de": "Mein Handy ist ___.",
+     "answer": "kaputt",
+     "tr": "Telefonum bozuk.",
+     "hint_tr": "Bir şey çalışmıyorsa **ist kaputt** denir."
+    },
+    {
+     "de": "Die Heizung ist schon wieder ___.",
+     "answer": "kaputt",
+     "tr": "Kalorifer yine bozuk.",
+     "hint_tr": "Bozuk derken **ist kaputt** denir, **hat kaputt** denmez."
+    },
+    {
+     "de": "Nach der Arbeit bin ich total ___.",
+     "answer": "kaputt",
+     "tr": "İşten sonra çok yorgun oluyorum.",
+     "hint_tr": "Çok yorgunum derken de **Ich bin kaputt** denir."
+    }
    ]
   },
   {
@@ -8503,6 +8667,14 @@
     {
      "de": "wieder gesund",
      "tr": "yeniden sağlıklı"
+    },
+    {
+     "de": "gesund werden",
+     "tr": "iyileşmek"
+    },
+    {
+     "de": "Bleib gesund!",
+     "tr": "Sağlıkla kal!"
     }
    ],
    "patterns": [
@@ -8557,6 +8729,26 @@
     {
      "unit": "a2-05",
      "key": "a2-05:w:gesund"
+    }
+   ],
+   "forms": [
+    {
+     "de": "Gemüse ist sehr ___.",
+     "answer": "gesund",
+     "tr": "Sebze çok sağlıklı.",
+     "hint_tr": "Bedene iyi gelen şey için **gesund** denir."
+    },
+    {
+     "de": "Bist du wieder ___?",
+     "answer": "gesund",
+     "tr": "İyileştin mi?",
+     "hint_tr": "Hastalıktan sonra **wieder gesund** denir."
+    },
+    {
+     "de": "Ich esse jetzt ___.",
+     "answer": "gesünder",
+     "tr": "Artık daha sağlıklı besleniyorum.",
+     "hint_tr": "Daha sağlıklı derken **gesünder** denir."
     }
    ]
   },
@@ -8653,6 +8845,14 @@
     {
      "de": "pünktlich ankommen",
      "tr": "zamanında varmak"
+    },
+    {
+     "de": "am Bahnhof ankommen",
+     "tr": "gara varmak"
+    },
+    {
+     "de": "zu Hause ankommen",
+     "tr": "eve varmak"
     }
    ],
    "patterns": [
@@ -8684,7 +8884,7 @@
     },
     {
      "id": "lx:ankommen:4",
-     "de": "– Bist du schon angekommen? – Ja, ich steh am Bahnhof.",
+     "de": "– Bist du schon angekommen? – Ja, ich stehe am Bahnhof.",
      "tr": "– Vardın mı? – Evet, gardayım.",
      "layer": "hd",
      "dialog": true
@@ -8716,6 +8916,32 @@
      "unit": "a2-01",
      "key": "a2-01:w:ankommen"
     }
+   ],
+   "forms": [
+    {
+     "de": "Ich ___ um acht ___.",
+     "answer": "komme … an",
+     "tr": "Sekizde varıyorum.",
+     "hint_tr": "**ich** ile **komme** olur, **an** sona gider."
+    },
+    {
+     "de": "Wann ___ du ___?",
+     "answer": "kommst … an",
+     "tr": "Ne zaman varıyorsun?",
+     "hint_tr": "**du** ile **kommst** olur, **an** sona gider."
+    },
+    {
+     "de": "Der Zug ___ um zehn ___.",
+     "answer": "kommt … an",
+     "tr": "Tren onda varıyor.",
+     "hint_tr": "**er**, **sie** ve **der Zug** ile **kommt** olur, **an** sona gider."
+    },
+    {
+     "de": "Ich bin gut ___.",
+     "answer": "angekommen",
+     "tr": "Sağ salim vardım.",
+     "hint_tr": "Geçmişi anlatırken **bin angekommen** denir, **habe** gelmez."
+    }
    ]
   },
   {
@@ -8733,7 +8959,15 @@
     },
     {
      "de": "die Hose passt",
-     "tr": "pantolon oluyor"
+     "tr": "pantolon bedene uyuyor"
+    },
+    {
+     "de": "eine neue Hose",
+     "tr": "yeni bir pantolon"
+    },
+    {
+     "de": "eine Hose kaufen",
+     "tr": "pantolon almak"
     }
    ],
    "patterns": [
@@ -8742,33 +8976,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Bir pantolon derken **eine Hosen** yanlış. Doğrusu **eine Hose**."
+    "Bir pantolon derken **eine Hosen** yanlış. Doğrusu **eine Hose**. **Hosen** birden çok pantolon demektir.",
+    "Pantolonu deniyorum derken **Ich probiere die Hose** eksik kalır. Doğrusu **Ich probiere die Hose an**."
    ],
    "examples": [
     {
      "id": "lx:Hose:1",
      "de": "Die Hose ist mir zu lang.",
      "tr": "Pantolon bana fazla uzun.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "trousers too long in fitting room mirror"
     },
     {
      "id": "lx:Hose:2",
      "de": "Haben Sie diese Hose auch in Blau?",
      "tr": "Bu pantolonun mavisi de var mı?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "blue trousers on shop shelf"
     },
     {
      "id": "lx:Hose:3",
      "de": "Die Hose sitzt echt gut.",
      "tr": "Pantolon gerçekten iyi oturdu.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "person happy with fit of new trousers"
     },
     {
      "id": "lx:Hose:4",
      "de": "– Passt die Hose? – Nein, ich brauche eine Nummer größer.",
      "tr": "– Pantolon oldu mu? – Hayır, bir beden büyüğü lazım.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "shop assistant bringing bigger trousers"
     }
    ],
    "level": "A1",
@@ -8787,6 +9026,38 @@
      "unit": "a1-13",
      "key": "a1-13:w:Hose"
     }
+   ],
+   "forms": [
+    {
+     "de": "Das ist ___ schöne Hose.",
+     "answer": "eine",
+     "tr": "Bu güzel bir pantolon.",
+     "hint_tr": "Bir pantolonu gösterirken **Das ist eine Hose** denir."
+    },
+    {
+     "de": "Ich suche ___ Hose in Blau.",
+     "answer": "eine",
+     "tr": "Mavi bir pantolon arıyorum.",
+     "hint_tr": "**Ich suche** dedikten sonra da **eine Hose** aynı kalır."
+    },
+    {
+     "de": "___ Hose ist mir zu lang.",
+     "answer": "Die",
+     "tr": "Pantolon bana fazla uzun.",
+     "hint_tr": "Bildiğimiz pantolon: **die Hose**."
+    },
+    {
+     "de": "Ich bin mit ___ Hose zufrieden.",
+     "answer": "der",
+     "tr": "Pantolondan memnunum.",
+     "hint_tr": "Bildiğimiz pantolon: **mit der Hose**."
+    },
+    {
+     "de": "Ich brauche zwei neue ___.",
+     "answer": "Hosen",
+     "tr": "İki yeni pantolona ihtiyacım var.",
+     "hint_tr": "İki pantolon için **zwei Hosen** denir."
+    }
    ]
   },
   {
@@ -8803,6 +9074,14 @@
     {
      "de": "rechts abbiegen",
      "tr": "sağa dönmek"
+    },
+    {
+     "de": "rechts neben der Tür",
+     "tr": "kapının sağında"
+    },
+    {
+     "de": "die erste Straße rechts",
+     "tr": "sağdaki ilk sokak"
     }
    ],
    "patterns": [
@@ -8856,6 +9135,26 @@
      "unit": "a1-11",
      "key": "a1-11:w:rechts"
     }
+   ],
+   "forms": [
+    {
+     "de": "Biegen Sie an der Kirche ___ ab.",
+     "answer": "rechts",
+     "tr": "Kilisenin orada sağa dönün.",
+     "hint_tr": "Sağa dönün derken **Biegen Sie rechts ab** denir."
+    },
+    {
+     "de": "Die Bäckerei ist ___.",
+     "answer": "rechts",
+     "tr": "Fırın sağda.",
+     "hint_tr": "Sağ tarafta derken **rechts** denir."
+    },
+    {
+     "de": "Gehen Sie nach ___.",
+     "answer": "rechts",
+     "tr": "Sağa gidin.",
+     "hint_tr": "Sağa doğru derken **nach rechts** denir."
+    }
    ]
   },
   {
@@ -8874,6 +9173,14 @@
     {
      "de": "Flaschen zurückbringen",
      "tr": "şişeleri geri götürmek"
+    },
+    {
+     "de": "eine Flasche aufmachen",
+     "tr": "bir şişe açmak"
+    },
+    {
+     "de": "eine leere Flasche",
+     "tr": "boş bir şişe"
     }
    ],
    "patterns": [
@@ -8881,33 +9188,37 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "İki şişe su derken **zwei Flasche Wasser** yanlış. Doğrusu **zwei Flaschen Wasser**."
+    "İki şişe su derken **zwei Flasche Wasser** yanlış. İki şişe olduğu için sonuna **n** gelir: **zwei Flaschen Wasser**."
    ],
    "examples": [
     {
      "id": "lx:Flasche:1",
      "de": "Eine Flasche Wasser, bitte.",
      "tr": "Bir şişe su, lütfen.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "waiter bringing water bottle to table"
     },
     {
      "id": "lx:Flasche:2",
      "de": "Auf der Flasche ist Pfand.",
      "tr": "Şişenin depozitosu var.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "deposit logo on plastic bottle"
     },
     {
      "id": "lx:Flasche:3",
      "de": "Bringst du noch 'ne Flasche mit?",
-     "tr": "Bir şişe de getirir misin?",
-     "layer": "alltag"
+     "tr": "Bir şişe daha getirir misin?",
+     "layer": "alltag",
+     "img": "guest arriving at party with bottle"
     },
     {
      "id": "lx:Flasche:4",
      "de": "– Wohin mit den leeren Flaschen? – Zurück in den Laden.",
      "tr": "– Boş şişeleri ne yapalım? – Dükkâna geri götürelim.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "returning empty bottles at supermarket machine"
     }
    ],
    "level": "A1",
@@ -8927,6 +9238,38 @@
      "unit": "a1-03",
      "key": "a1-03:w:Flasche"
     }
+   ],
+   "forms": [
+    {
+     "de": "Das ist ___ Flasche Wasser.",
+     "answer": "eine",
+     "tr": "Bu bir şişe su.",
+     "hint_tr": "Bir şişeyi gösterirken **eine Flasche** denir."
+    },
+    {
+     "de": "Ich nehme ___ Flasche Apfelsaft.",
+     "answer": "eine",
+     "tr": "Bir şişe elma suyu alıyorum.",
+     "hint_tr": "**Ich nehme** dedikten sonra da **eine Flasche** aynı kalır."
+    },
+    {
+     "de": "Kannst du ___ Flasche aufmachen?",
+     "answer": "die",
+     "tr": "Şişeyi açabilir misin?",
+     "hint_tr": "Bildiğimiz şişe: **die Flasche**."
+    },
+    {
+     "de": "Auf ___ Flasche ist Pfand.",
+     "answer": "der",
+     "tr": "Şişenin depozitosu var.",
+     "hint_tr": "Bildiğimiz şişenin üstünde derken **auf der Flasche** denir."
+    },
+    {
+     "de": "Wir brauchen zwei ___ Wasser.",
+     "answer": "Flaschen",
+     "tr": "İki şişe suya ihtiyacımız var.",
+     "hint_tr": "İki şişe için **zwei Flaschen** denir."
+    }
    ]
   },
   {
@@ -8945,6 +9288,14 @@
     {
      "de": "die türkische Küche",
      "tr": "Türk mutfağı"
+    },
+    {
+     "de": "in die Küche gehen",
+     "tr": "mutfağa gitmek"
+    },
+    {
+     "de": "die Küche aufräumen",
+     "tr": "mutfağı toplamak"
     }
    ],
    "patterns": [
@@ -8952,33 +9303,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Mutfakta yemek yapıyorum derken **Ich koche in Küche** yanlış. Doğrusu **Ich koche in der Küche**."
+    "Mutfakta yemek yapıyorum derken **Ich koche in Küche** yanlış. Doğrusu **Ich koche in der Küche**.",
+    "Mutfağa gidiyorum derken **Ich gehe in der Küche** yanlış. Doğrusu **Ich gehe in die Küche**. Bir yere doğru giderken **in die** gelir."
    ],
    "examples": [
     {
      "id": "lx:Küche:1",
      "de": "Die Küche ist klein, aber hell.",
      "tr": "Mutfak küçük ama aydınlık.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "small bright kitchen with window"
     },
     {
      "id": "lx:Küche:2",
      "de": "Mittags treffen wir uns in der Küche.",
      "tr": "Öğlen mutfakta buluşuyoruz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "coworkers having lunch in office kitchen"
     },
     {
      "id": "lx:Küche:3",
      "de": "Komm, wir gehen in die Küche.",
      "tr": "Gel, mutfağa geçelim.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "host leading guest into kitchen"
     },
     {
      "id": "lx:Küche:4",
      "de": "– Wo ist der Kaffee? – In der Küche, im Schrank oben.",
      "tr": "– Kahve nerede? – Mutfakta, üst dolapta.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "coffee jar in upper kitchen cabinet"
     }
    ],
    "level": "A1",
@@ -8998,6 +9354,38 @@
      "unit": "a1-04",
      "key": "a1-04:w:Küche"
     }
+   ],
+   "forms": [
+    {
+     "de": "Das ist ___ kleine Küche.",
+     "answer": "eine",
+     "tr": "Bu küçük bir mutfak.",
+     "hint_tr": "Bir mutfağı gösterirken **eine Küche** denir."
+    },
+    {
+     "de": "Die Wohnung hat ___ neue Küche.",
+     "answer": "eine",
+     "tr": "Dairenin yeni bir mutfağı var.",
+     "hint_tr": "**Die Wohnung hat** dedikten sonra da **eine Küche** aynı kalır."
+    },
+    {
+     "de": "Ich koche in ___ Küche.",
+     "answer": "der",
+     "tr": "Mutfakta yemek yapıyorum.",
+     "hint_tr": "Bildiğimiz mutfakta derken **in der Küche** denir."
+    },
+    {
+     "de": "Komm, wir gehen in ___ Küche.",
+     "answer": "die",
+     "tr": "Gel, mutfağa geçelim.",
+     "hint_tr": "Mutfağa doğru giderken **in die Küche** denir."
+    },
+    {
+     "de": "Ich mag die türkische ___.",
+     "answer": "Küche",
+     "tr": "Türk mutfağını seviyorum.",
+     "hint_tr": "Bir ülkenin yemekleri için de **Küche** denir."
+    }
    ]
   },
   {
@@ -9015,7 +9403,15 @@
     },
     {
      "de": "Glückwunsch zum Geburtstag",
-     "tr": "doğum günü kutlaması"
+     "tr": "doğum günü tebriği"
+    },
+    {
+     "de": "Glückwunsch zur neuen Wohnung",
+     "tr": "yeni ev için tebrik"
+    },
+    {
+     "de": "Herzliche Glückwünsche",
+     "tr": "içten tebrikler"
     }
    ],
    "patterns": [
@@ -9035,7 +9431,7 @@
     {
      "id": "lx:Glückwunsch:2",
      "de": "Glückwunsch zur neuen Wohnung!",
-     "tr": "Yeni eviniz hayırlı olsun!",
+     "tr": "Yeni evin hayırlı olsun!",
      "layer": "hd"
     },
     {
@@ -9079,6 +9475,26 @@
      "unit": "a1-14",
      "key": "a1-14:w:Glückwunsch"
     }
+   ],
+   "forms": [
+    {
+     "de": "Herzlichen ___!",
+     "answer": "Glückwunsch",
+     "tr": "Tebrikler!",
+     "hint_tr": "Birini kutlarken **Herzlichen Glückwunsch** denir."
+    },
+    {
+     "de": "Glückwunsch ___ Geburtstag!",
+     "answer": "zum",
+     "tr": "Doğum günün kutlu olsun!",
+     "hint_tr": "Doğum gününü kutlarken **zum Geburtstag** denir."
+    },
+    {
+     "de": "Glückwunsch ___ neuen Wohnung!",
+     "answer": "zur",
+     "tr": "Yeni evin hayırlı olsun!",
+     "hint_tr": "**die Wohnung** için kutlarken **zur Wohnung** denir."
+    }
    ]
   },
   {
@@ -9097,6 +9513,14 @@
     {
      "de": "den Kunden anrufen",
      "tr": "müşteriyi aramak"
+    },
+    {
+     "de": "mit dem Kunden sprechen",
+     "tr": "müşteriyle konuşmak"
+    },
+    {
+     "de": "viele Kunden",
+     "tr": "çok müşteri"
     }
    ],
    "patterns": [
@@ -9104,33 +9528,37 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Müşteriye yardım ediyorum derken **Ich helfe dem Kunde** yanlış. Doğrusu **Ich helfe dem Kunden**."
+    "Müşteriye yardım ediyorum derken **Ich helfe dem Kunde** yanlış. Doğrusu **Ich helfe dem Kunden**. **dem** ve **den** ile **Kunde** sonuna **n** alır."
    ],
    "examples": [
     {
      "id": "lx:Kunde:1",
      "de": "Ich bin schon lange {Kunde|Kundin} bei Ihnen.",
      "tr": "Uzun zamandır müşterinizim.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "regular customer greeting shop owner"
     },
     {
      "id": "lx:Kunde:2",
      "de": "Der Kunde wartet am Telefon.",
      "tr": "Müşteri telefonda bekliyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "office worker putting customer call on hold"
     },
     {
      "id": "lx:Kunde:3",
      "de": "Heut waren echt viele Kunden da.",
      "tr": "Bugün gerçekten çok müşteri vardı.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "busy shop full of customers"
     },
     {
      "id": "lx:Kunde:4",
      "de": "– Ist das ein Kunde? – Ja, ich rufe ihn gleich zurück.",
-     "tr": "– Bu müşteri mi? – Evet, birazdan onu geri arayacağım.",
+     "tr": "– Bu kişi müşteri mi? – Evet, birazdan onu geri arayacağım.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "employee looking at incoming call on phone"
     }
    ],
    "level": "A2",
@@ -9151,6 +9579,38 @@
      "unit": "a2-04",
      "key": "a2-04:w:Kunde"
     }
+   ],
+   "forms": [
+    {
+     "de": "Da kommt ___ Kunde.",
+     "answer": "ein",
+     "tr": "Bir müşteri geliyor.",
+     "hint_tr": "Bir müşteriden söz ederken **ein Kunde** denir."
+    },
+    {
+     "de": "Ich rufe ___ Kunden zurück.",
+     "answer": "den",
+     "tr": "Müşteriyi geri arıyorum.",
+     "hint_tr": "**Ich rufe** dedikten sonra **der Kunde**, **den Kunden** olur."
+    },
+    {
+     "de": "Ich spreche gerade mit ___ Kunden.",
+     "answer": "einem",
+     "tr": "Şu an bir müşteriyle konuşuyorum.",
+     "hint_tr": "Herhangi bir müşteri: **mit einem Kunden**."
+    },
+    {
+     "de": "Ich helfe ___ Kunden.",
+     "answer": "dem",
+     "tr": "Müşteriye yardım ediyorum.",
+     "hint_tr": "Bildiğimiz müşteriye yardım ederken **dem Kunden** denir."
+    },
+    {
+     "de": "Heute waren viele ___ da.",
+     "answer": "Kunden",
+     "tr": "Bugün çok müşteri vardı.",
+     "hint_tr": "Birçok müşteri için **viele Kunden** denir."
+    }
    ]
   },
   {
@@ -9168,6 +9628,14 @@
     {
      "de": "eine leichte Aufgabe",
      "tr": "kolay bir iş"
+    },
+    {
+     "de": "eine neue Aufgabe",
+     "tr": "yeni bir görev"
+    },
+    {
+     "de": "Das ist deine Aufgabe.",
+     "tr": "Bu senin görevin."
     }
    ],
    "patterns": [
@@ -9176,7 +9644,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Çok görevim var derken **Ich habe viel Aufgaben** yanlış. Doğrusu **Ich habe viele Aufgaben**."
+    "Çok görevim var derken **Ich habe viel Aufgaben** yanlış. Doğrusu **Ich habe viele Aufgaben**. Sayılabilen şeylerde **viele** gelir."
    ],
    "examples": [
     {
@@ -9195,7 +9663,7 @@
     {
      "id": "lx:Aufgabe:3",
      "de": "Die Aufgabe macht echt Spaß.",
-     "tr": "Bu iş gerçekten eğlenceli.",
+     "tr": "Görev gerçekten eğlenceli.",
      "layer": "alltag"
     },
     {
@@ -9222,6 +9690,38 @@
      "unit": "a2-04",
      "key": "a2-04:w:Aufgabe"
     }
+   ],
+   "forms": [
+    {
+     "de": "Das ist ___ leichte Aufgabe.",
+     "answer": "eine",
+     "tr": "Bu kolay bir iş.",
+     "hint_tr": "Bir işten söz ederken **eine Aufgabe** denir."
+    },
+    {
+     "de": "Ich habe ___ neue Aufgabe.",
+     "answer": "eine",
+     "tr": "Yeni bir görevim var.",
+     "hint_tr": "**Ich habe** dedikten sonra da **eine Aufgabe** aynı kalır."
+    },
+    {
+     "de": "___ Aufgabe macht Spaß.",
+     "answer": "Die",
+     "tr": "Görev eğlenceli.",
+     "hint_tr": "Bildiğimiz görev: **die Aufgabe**."
+    },
+    {
+     "de": "Ich brauche Hilfe bei ___ Aufgabe.",
+     "answer": "der",
+     "tr": "Görevde yardıma ihtiyacım var.",
+     "hint_tr": "Bildiğimiz görevde yardım isterken **bei der Aufgabe** denir."
+    },
+    {
+     "de": "Ich habe heute viele ___.",
+     "answer": "Aufgaben",
+     "tr": "Bugün çok işim var.",
+     "hint_tr": "Birçok iş için **viele Aufgaben** denir."
+    }
    ]
   },
   {
@@ -9245,6 +9745,14 @@
     {
      "de": "um sechs aufstehen",
      "tr": "altıda kalkmak"
+    },
+    {
+     "de": "spät aufstehen",
+     "tr": "geç kalkmak"
+    },
+    {
+     "de": "vom Stuhl aufstehen",
+     "tr": "sandalyeden kalkmak"
     }
    ],
    "patterns": [
@@ -9310,6 +9818,32 @@
      "unit": "a1-05",
      "key": "a1-05:w:aufstehen"
     }
+   ],
+   "forms": [
+    {
+     "de": "Ich ___ um sechs ___.",
+     "answer": "stehe … auf",
+     "tr": "Altıda kalkıyorum.",
+     "hint_tr": "**ich** ile **stehe** olur, **auf** sona gider."
+    },
+    {
+     "de": "Wann ___ du ___?",
+     "answer": "stehst … auf",
+     "tr": "Kaçta kalkıyorsun?",
+     "hint_tr": "**du** ile **stehst** olur, **auf** sona gider."
+    },
+    {
+     "de": "Meine Tochter ___ immer spät ___.",
+     "answer": "steht … auf",
+     "tr": "Kızım hep geç kalkıyor.",
+     "hint_tr": "**er** ve **sie** ile **steht** olur, **auf** sona gider."
+    },
+    {
+     "de": "Heute bin ich früh ___.",
+     "answer": "aufgestanden",
+     "tr": "Bugün erken kalktım.",
+     "hint_tr": "Geçmişi anlatırken **bin aufgestanden** denir, **habe** gelmez."
+    }
    ]
   },
   {
@@ -9326,6 +9860,14 @@
     {
      "de": "Mir ist warm.",
      "tr": "Sıcakladım."
+    },
+    {
+     "de": "sich warm anziehen",
+     "tr": "sıkı giyinmek"
+    },
+    {
+     "de": "warmes Wasser",
+     "tr": "ılık su"
     }
    ],
    "patterns": [
@@ -9380,6 +9922,26 @@
      "unit": "a1-06",
      "key": "a1-06:w:warm"
     }
+   ],
+   "forms": [
+    {
+     "de": "Heute ist es schön ___.",
+     "answer": "warm",
+     "tr": "Bugün hava güzel ve sıcak.",
+     "hint_tr": "Hava sıcaksa **Es ist warm** denir."
+    },
+    {
+     "de": "Mir ist ___.",
+     "answer": "warm",
+     "tr": "Sıcakladım.",
+     "hint_tr": "Sıcakladım derken **Mir ist warm** denir."
+    },
+    {
+     "de": "Zieh dich ___ an!",
+     "answer": "warm",
+     "tr": "Sıkı giyin!",
+     "hint_tr": "Sıkı giyin derken **Zieh dich warm an** denir."
+    }
    ]
   },
   {
@@ -9398,6 +9960,14 @@
     {
      "de": "auf die Insel fahren",
      "tr": "adaya gitmek"
+    },
+    {
+     "de": "auf der Insel",
+     "tr": "adada"
+    },
+    {
+     "de": "eine kleine Insel",
+     "tr": "küçük bir ada"
     }
    ],
    "patterns": [
@@ -9412,26 +9982,30 @@
      "id": "lx:Insel:1",
      "de": "Wir machen Urlaub auf einer Insel.",
      "tr": "Bir adada tatil yapıyoruz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "family on holiday on small island"
     },
     {
      "id": "lx:Insel:2",
      "de": "Die Insel liegt mitten im See.",
      "tr": "Ada gölün ortasında.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "island in middle of alpine lake"
     },
     {
      "id": "lx:Insel:3",
      "de": "Auf der Insel war's echt schön.",
      "tr": "Adada gerçekten güzeldi.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "friends relaxing on island shore"
     },
     {
      "id": "lx:Insel:4",
      "de": "– Wie kommt man auf die Insel? – Mit dem Schiff.",
      "tr": "– Adaya nasıl gidiliyor? – Gemiyle.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "ferry boat heading to island"
     }
    ],
    "level": "A2",
@@ -9449,6 +10023,38 @@
     {
      "unit": "a2-11",
      "key": "a2-11:w:Insel"
+    }
+   ],
+   "forms": [
+    {
+     "de": "Da ist ___ kleine Insel.",
+     "answer": "eine",
+     "tr": "Orada küçük bir ada var.",
+     "hint_tr": "Bir adayı gösterirken **eine Insel** denir."
+    },
+    {
+     "de": "Wir machen Urlaub auf ___ Insel.",
+     "answer": "einer",
+     "tr": "Bir adada tatil yapıyoruz.",
+     "hint_tr": "Herhangi bir ada: **auf einer Insel**."
+    },
+    {
+     "de": "Auf ___ Insel war es schön.",
+     "answer": "der",
+     "tr": "Adada güzeldi.",
+     "hint_tr": "Bildiğimiz ada: **auf der Insel**."
+    },
+    {
+     "de": "Wie kommt man auf ___ Insel?",
+     "answer": "die",
+     "tr": "Adaya nasıl gidiliyor?",
+     "hint_tr": "Adaya doğru giderken **auf die Insel** denir."
+    },
+    {
+     "de": "Im See gibt es zwei ___.",
+     "answer": "Inseln",
+     "tr": "Gölde iki ada var.",
+     "hint_tr": "İki ada için **zwei Inseln** denir."
     }
    ]
   },
@@ -9472,6 +10078,14 @@
     {
      "de": "im Café frühstücken",
      "tr": "kafede kahvaltı etmek"
+    },
+    {
+     "de": "um sieben frühstücken",
+     "tr": "yedide kahvaltı etmek"
+    },
+    {
+     "de": "in Ruhe frühstücken",
+     "tr": "rahat rahat kahvaltı etmek"
     }
    ],
    "patterns": [
@@ -9479,7 +10093,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kahvaltı ediyorum derken **Ich mache Frühstück** yanlış, bu hazırlıyorum demektir. Doğrusu **Ich frühstücke**."
+    "Kahvaltı ediyorum derken **Ich mache Frühstück** yanlış, bu kahvaltı hazırlıyorum demektir. Doğrusu **Ich frühstücke**."
    ],
    "examples": [
     {
@@ -9525,6 +10139,32 @@
      "unit": "a1-05",
      "key": "a1-05:w:frühstücken"
     }
+   ],
+   "forms": [
+    {
+     "de": "Ich ___ um sieben.",
+     "answer": "frühstücke",
+     "tr": "Yedide kahvaltı ediyorum.",
+     "hint_tr": "**ich** ile **frühstücke** olur."
+    },
+    {
+     "de": "___ du heute mit uns?",
+     "answer": "Frühstückst",
+     "tr": "Bugün bizimle kahvaltı ediyor musun?",
+     "hint_tr": "**du** ile **frühstückst** olur."
+    },
+    {
+     "de": "Herr Pichler ___ im Café.",
+     "answer": "frühstückt",
+     "tr": "Pichler Bey kafede kahvaltı ediyor.",
+     "hint_tr": "**er** ve **sie** ile **frühstückt** olur."
+    },
+    {
+     "de": "Hast du schon ___?",
+     "answer": "gefrühstückt",
+     "tr": "Kahvaltı ettin mi?",
+     "hint_tr": "Geçmişi anlatırken **hast gefrühstückt** denir."
+    }
    ]
   },
   {
@@ -9543,6 +10183,14 @@
     {
      "de": "ein scharfes Messer",
      "tr": "keskin bir bıçak"
+    },
+    {
+     "de": "mit dem Messer schneiden",
+     "tr": "bıçakla kesmek"
+    },
+    {
+     "de": "ein Messer bringen",
+     "tr": "bir bıçak getirmek"
     }
    ],
    "patterns": [
@@ -9550,33 +10198,37 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Bıçakla kesiyorum derken **Ich schneide mit der Messer** yanlış. Doğrusu **Ich schneide mit dem Messer**."
+    "Bıçakla kesiyorum derken **Ich schneide mit der Messer** yanlış. Doğrusu **Ich schneide mit dem Messer**. **das Messer** olduğu için **mit** ile **dem** gelir."
    ],
    "examples": [
     {
      "id": "lx:Messer:1",
      "de": "Könnten Sie mir bitte ein Messer bringen?",
      "tr": "Bana bir bıçak getirebilir misiniz lütfen?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "waiter bringing knife to restaurant table"
     },
     {
      "id": "lx:Messer:2",
      "de": "Das Brot schneide ich mit dem großen Messer.",
      "tr": "Ekmeği büyük bıçakla kesiyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "slicing bread loaf with large knife"
     },
     {
      "id": "lx:Messer:3",
      "de": "Das Messer schneidet überhaupt nicht.",
      "tr": "Bu bıçak hiç kesmiyor.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "dull knife squashing tomato"
     },
     {
      "id": "lx:Messer:4",
      "de": "– Wo sind die Messer? – In der Schublade links.",
      "tr": "– Bıçaklar nerede? – Soldaki çekmecede.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "open kitchen drawer with cutlery"
     }
    ],
    "level": "A2",
@@ -9595,6 +10247,38 @@
     {
      "unit": "a2-03",
      "key": "a2-03:w:Messer"
+    }
+   ],
+   "forms": [
+    {
+     "de": "Das ist ___ scharfes Messer.",
+     "answer": "ein",
+     "tr": "Bu keskin bir bıçak.",
+     "hint_tr": "Bir bıçağı gösterirken **ein Messer** denir."
+    },
+    {
+     "de": "Könnten Sie mir ___ Messer bringen?",
+     "answer": "ein",
+     "tr": "Bana bir bıçak getirebilir misiniz?",
+     "hint_tr": "**Könnten Sie mir** dedikten sonra da **ein Messer** aynı kalır."
+    },
+    {
+     "de": "Hast du ___ Messer gesehen?",
+     "answer": "das",
+     "tr": "Bıçağı gördün mü?",
+     "hint_tr": "Bildiğimiz bıçak: **das Messer**."
+    },
+    {
+     "de": "Ich schneide das Brot mit ___ großen Messer.",
+     "answer": "dem",
+     "tr": "Ekmeği büyük bıçakla kesiyorum.",
+     "hint_tr": "Bildiğimiz bıçakla derken **mit dem Messer** denir."
+    },
+    {
+     "de": "Wo sind die ___?",
+     "answer": "Messer",
+     "tr": "Bıçaklar nerede?",
+     "hint_tr": "Birden çok bıçak için de **die Messer** denir."
     }
    ]
   },
@@ -9621,6 +10305,14 @@
     {
      "de": "etwas zu essen bestellen",
      "tr": "yiyecek bir şey sipariş etmek"
+    },
+    {
+     "de": "eine Pizza bestellen",
+     "tr": "pizza sipariş etmek"
+    },
+    {
+     "de": "ein Taxi bestellen",
+     "tr": "taksi çağırmak"
     }
    ],
    "patterns": [
@@ -9629,7 +10321,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Sipariş veriyorum derken **Ich gebe eine Bestellung** yanlış. Doğrusu **Ich bestelle**."
+    "Sipariş veriyorum derken **Ich gebe eine Bestellung** yanlış. Doğrusu **Ich bestelle**.",
+    "Sipariş verdim derken **Ich habe gebestellt** yanlış. Doğrusu **Ich habe bestellt**."
    ],
    "examples": [
     {
@@ -9675,6 +10368,32 @@
      "unit": "a2-03",
      "key": "a2-03:w:bestellen"
     }
+   ],
+   "forms": [
+    {
+     "de": "Ich ___ eine Suppe.",
+     "answer": "bestelle",
+     "tr": "Bir çorba sipariş ediyorum.",
+     "hint_tr": "**ich** ile **bestelle** olur."
+    },
+    {
+     "de": "Was ___ du?",
+     "answer": "bestellst",
+     "tr": "Ne sipariş ediyorsun?",
+     "hint_tr": "**du** ile **bestellst** olur."
+    },
+    {
+     "de": "Herr Pichler ___ einen Kaffee.",
+     "answer": "bestellt",
+     "tr": "Pichler Bey bir kahve sipariş ediyor.",
+     "hint_tr": "**er** ve **sie** ile **bestellt** olur."
+    },
+    {
+     "de": "Haben Sie schon ___?",
+     "answer": "bestellt",
+     "tr": "Sipariş verdiniz mi?",
+     "hint_tr": "Geçmişi anlatırken **haben bestellt** denir, başına **ge** gelmez."
+    }
    ]
   },
   {
@@ -9700,6 +10419,14 @@
     {
      "de": "einen Vertrag unterschreiben",
      "tr": "sözleşme imzalamak"
+    },
+    {
+     "de": "das Formular unterschreiben",
+     "tr": "formu imzalamak"
+    },
+    {
+     "de": "Bitte unterschreiben Sie hier.",
+     "tr": "Lütfen buraya imza atın."
     }
    ],
    "patterns": [
@@ -9765,6 +10492,32 @@
      "unit": "a1-09",
      "key": "a1-09:w:unterschreiben"
     }
+   ],
+   "forms": [
+    {
+     "de": "Ich ___ den Vertrag.",
+     "answer": "unterschreibe",
+     "tr": "Sözleşmeyi imzalıyorum.",
+     "hint_tr": "**ich** ile **unterschreibe** olur."
+    },
+    {
+     "de": "___ du bitte hier?",
+     "answer": "Unterschreibst",
+     "tr": "Buraya imza atar mısın lütfen?",
+     "hint_tr": "**du** ile **unterschreibst** olur."
+    },
+    {
+     "de": "Der Chef ___ das Formular.",
+     "answer": "unterschreibt",
+     "tr": "Patron formu imzalıyor.",
+     "hint_tr": "**er** ve **sie** ile **unterschreibt** olur."
+    },
+    {
+     "de": "Ich habe schon ___.",
+     "answer": "unterschrieben",
+     "tr": "Zaten imzaladım.",
+     "hint_tr": "Geçmişi anlatırken **habe unterschrieben** denir, başına **ge** gelmez."
+    }
    ]
   },
   {
@@ -9788,6 +10541,14 @@
     {
      "de": "zu viel fernsehen",
      "tr": "çok fazla televizyon izlemek"
+    },
+    {
+     "de": "zusammen fernsehen",
+     "tr": "birlikte televizyon izlemek"
+    },
+    {
+     "de": "Was kommt im Fernsehen?",
+     "tr": "Televizyonda ne var?"
     }
    ],
    "patterns": [
@@ -9796,7 +10557,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Televizyon izliyorum derken **Ich fernsehe** yanlış. Doğrusu **Ich sehe fern**."
+    "Televizyon izliyorum derken **Ich fernsehe** yanlış. Doğrusu **Ich sehe fern**.",
+    "Adam televizyon izliyor derken **Er seht fern** yanlış. Doğrusu **Er sieht fern**. **er** ile **sehen**, **sieht** olur."
    ],
    "examples": [
     {
@@ -9852,6 +10614,32 @@
      "unit": "a1-05",
      "key": "a1-05:w:fernsehen"
     }
+   ],
+   "forms": [
+    {
+     "de": "Ich ___ abends ___.",
+     "answer": "sehe … fern",
+     "tr": "Akşamları televizyon izliyorum.",
+     "hint_tr": "**ich** ile **sehe** olur, **fern** sona gider."
+    },
+    {
+     "de": "___ du gern ___?",
+     "answer": "Siehst … fern",
+     "tr": "Televizyon izlemeyi sever misin?",
+     "hint_tr": "**du** ile **siehst** olur, **fern** sona gider."
+    },
+    {
+     "de": "Mein Sohn ___ zu viel ___.",
+     "answer": "sieht … fern",
+     "tr": "Oğlum çok fazla televizyon izliyor.",
+     "hint_tr": "**er** ve **sie** ile **sieht** olur, **fern** sona gider."
+    },
+    {
+     "de": "Hast du gestern ___?",
+     "answer": "ferngesehen",
+     "tr": "Dün televizyon izledin mi?",
+     "hint_tr": "Geçmişi anlatırken **hast ferngesehen** denir."
+    }
    ]
   },
   {
@@ -9870,6 +10658,14 @@
     {
      "de": "im See schwimmen",
      "tr": "gölde yüzmek"
+    },
+    {
+     "de": "am See",
+     "tr": "göl kenarında"
+    },
+    {
+     "de": "ein großer See",
+     "tr": "büyük bir göl"
     }
    ],
    "patterns": [
@@ -9884,26 +10680,30 @@
      "id": "lx:See:1",
      "de": "Im Sommer schwimmen wir oft im See.",
      "tr": "Yazın sık sık gölde yüzüyoruz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "people swimming in lake in summer"
     },
     {
      "id": "lx:See:2",
      "de": "Wollen wir am Sonntag an den See fahren?",
      "tr": "Pazar günü göle gidelim mi?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "car driving on country road toward lake"
     },
     {
      "id": "lx:See:3",
      "de": "Am See ist's heut richtig schön.",
      "tr": "Bugün göl kenarı çok güzel.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "sunny lakeshore with people on grass"
     },
     {
      "id": "lx:See:4",
      "de": "– Wo wart ihr? – Am See, es war herrlich.",
-     "tr": "– Neredeydiniz? – Göldeydik, harikaydı.",
+     "tr": "– Neredeydiniz? – Göl kenarındaydık, harikaydı.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "friends coming home from lake with towels"
     }
    ],
    "level": "A2",
@@ -9921,6 +10721,38 @@
     {
      "unit": "a2-08",
      "key": "a2-08:w:See"
+    }
+   ],
+   "forms": [
+    {
+     "de": "Das ist ___ schöner See.",
+     "answer": "ein",
+     "tr": "Bu güzel bir göl.",
+     "hint_tr": "Bir gölü gösterirken **ein See** denir."
+    },
+    {
+     "de": "Siehst du ___ See da unten?",
+     "answer": "den",
+     "tr": "Aşağıdaki gölü görüyor musun?",
+     "hint_tr": "**Siehst du** dedikten sonra **der See**, **den See** olur."
+    },
+    {
+     "de": "Am Sonntag fahren wir an ___ See.",
+     "answer": "den",
+     "tr": "Pazar günü göle gidiyoruz.",
+     "hint_tr": "Göle doğru giderken **an den See** denir."
+    },
+    {
+     "de": "Gestern waren wir ___ See.",
+     "answer": "am",
+     "tr": "Dün göl kenarındaydık.",
+     "hint_tr": "Göl kenarında derken **am See** denir."
+    },
+    {
+     "de": "In Bayern gibt es viele ___.",
+     "answer": "Seen",
+     "tr": "Bavyera'da çok göl var.",
+     "hint_tr": "Birçok göl için **viele Seen** denir."
     }
    ]
   },
@@ -10114,6 +10946,14 @@
     {
      "de": "den Bus nehmen",
      "tr": "otobüse binmek"
+    },
+    {
+     "de": "den Bus verpassen",
+     "tr": "otobüsü kaçırmak"
+    },
+    {
+     "de": "auf den Bus warten",
+     "tr": "otobüsü beklemek"
     }
    ],
    "patterns": [
@@ -10121,33 +10961,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Otobüsle gidiyorum derken **Ich gehe mit Bus** yanlış. Doğrusu **Ich fahre mit dem Bus**."
+    "Otobüsle gidiyorum derken **Ich gehe mit Bus** yanlış. Doğrusu **Ich fahre mit dem Bus**.",
+    "Otobüse biniyorum derken **Ich steige den Bus** yanlış. Doğrusu **Ich steige in den Bus**."
    ],
    "examples": [
     {
      "id": "lx:Bus:1",
      "de": "Ich fahre mit dem Bus zur Arbeit.",
      "tr": "İşe otobüsle gidiyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "commuter riding city bus to work"
     },
     {
      "id": "lx:Bus:2",
      "de": "Der Bus kommt alle zehn Minuten.",
      "tr": "Otobüs on dakikada bir geliyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "digital timetable at bus stop"
     },
     {
      "id": "lx:Bus:3",
      "de": "Ich hab den Bus verpasst.",
      "tr": "Otobüsü kaçırdım.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "person running after departing bus"
     },
     {
      "id": "lx:Bus:4",
      "de": "– Welcher Bus fährt zum Bahnhof? – Die Linie fünf.",
      "tr": "– Gara hangi otobüs gidiyor? – Beş numaralı hat.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "passenger asking driver at bus door"
     }
    ],
    "level": "A1",
@@ -10165,6 +11010,38 @@
     {
      "unit": "a1-11",
      "key": "a1-11:w:Bus"
+    }
+   ],
+   "forms": [
+    {
+     "de": "Da kommt ___ Bus.",
+     "answer": "ein",
+     "tr": "Bir otobüs geliyor.",
+     "hint_tr": "Bir otobüsten söz ederken **ein Bus** denir."
+    },
+    {
+     "de": "Ich nehme ___ Bus um acht.",
+     "answer": "den",
+     "tr": "Sekizdeki otobüse biniyorum.",
+     "hint_tr": "**Ich nehme** dedikten sonra **der Bus**, **den Bus** olur."
+    },
+    {
+     "de": "Ich warte auf ___ Bus.",
+     "answer": "den",
+     "tr": "Otobüsü bekliyorum.",
+     "hint_tr": "**Ich warte auf** dedikten sonra **der Bus**, **den Bus** olur."
+    },
+    {
+     "de": "Ich fahre mit ___ Bus zur Arbeit.",
+     "answer": "dem",
+     "tr": "İşe otobüsle gidiyorum.",
+     "hint_tr": "Otobüsle giderken **mit dem Bus** denir."
+    },
+    {
+     "de": "Hier fahren viele ___.",
+     "answer": "Busse",
+     "tr": "Burada çok otobüs geçiyor.",
+     "hint_tr": "Birçok otobüs için **viele Busse** denir."
     }
    ]
   }
