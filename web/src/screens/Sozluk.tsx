@@ -4,8 +4,9 @@
  * (LS-7.5). Sözlükte olmayan kelime de "Duyduğum kelime" olarak eklenebilir (anlamı isteğe bağlı).
  * Kart adresle açılır (#/sozluk/<arama>/<kart>): geri hareketi aramaya döner.
  */
+import { KALIP_GERI } from "./Kalip.tsx";
 import { useEffect, useMemo, useState } from "preact/hooks";
-import type { Lexeme } from "@dw/shared";
+import type { Lexeme, Pattern } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadLexicon } from "../services/content.ts";
 import { addPersonal, personalWords } from "../data/db.ts";
@@ -20,13 +21,14 @@ const aramaAdresi = (q: string) => `#/sozluk/${encodeURIComponent(q.trim() || "-
 export function SozlukEkrani({ q: ilk = "", id }: { q?: string; id?: string }) {
   const { toast } = useApp();
   const [lex, setLex] = useState<Lexeme[] | null>(null);
+  const [kaliplar, setKaliplar] = useState<Map<string, Pattern>>(new Map());
   const [err, setErr] = useState<string | null>(null);
   const [q, setQ] = useState(ilk === "-" ? "" : ilk);
   const [bahce, setBahce] = useState<Set<string>>(new Set());
   const [tr, setTr] = useState("");
   const [benim, setBenim] = useState<{ de: string; tr?: string }[]>([]);
   useEffect(() => {
-    loadLexicon().then((x) => setLex(x.lexemes), (e) => setErr(e instanceof Error ? e.message : "Sözlük yüklenemedi."));
+    loadLexicon().then((x) => { setLex(x.lexemes); setKaliplar(new Map(x.patterns.map((p) => [p.id, p]))); }, (e) => setErr(e instanceof Error ? e.message : "Sözlük yüklenemedi."));
     void personalWords().then((ps) => { setBahce(new Set(ps.map((p) => kisiselAnahtar(p.de)))); setBenim(ps); });
   }, []);
   const sonuc = useMemo(() => (lex ? sozlukAra(q, lex) : []), [q, lex]);
@@ -58,6 +60,10 @@ export function SozlukEkrani({ q: ilk = "", id }: { q?: string; id?: string }) {
           {sec.collocations.length > 0 && <div class="small"><div class="kicker">Birlikte kullanılır</div>{sec.collocations.slice(0, 4).map((c) => <div><span lang="de">{c.de}</span> <span class="muted">— {c.tr}</span></div>)}</div>}
           {sec.examples[0] && <div class="small"><div class="kicker">Örnek</div><span lang="de">{sec.examples[0].de}</span><br /><span class="muted">{sec.examples[0].tr}</span></div>}
           {sec.mistakes_tr[0] && <div class="tiny muted"><Rich text={sec.mistakes_tr[0]} /></div>}
+          {/* #58 B2: kelimenin kullanıldığı kalıplar → kalıp kartı */}
+          {sec.patterns.some((id) => kaliplar.has(id)) && <div class="small" data-test="sozluk-kaliplar"><div class="kicker">Kalıpları</div>
+            {sec.patterns.filter((id) => kaliplar.has(id)).map((id) => <a key={id} class="kalip-link" href={`#/kalip/${encodeURIComponent(id)}`}
+              onClick={() => { try { sessionStorage.setItem(KALIP_GERI, location.hash); } catch { /* yok */ } }}><Rich text={kaliplar.get(id)!.frame_tr ?? kaliplar.get(id)!.frame} /></a>)}</div>}
           <button class="btn primary block" disabled={var_} data-test="sozluk-ekle" onClick={() => void ekle(de, sec.tr, sec)}>{var_ ? (bahceye ? "Bahçende ✓" : "Listende ✓") : "Duyduğum kelime olarak ekle"}</button>
           <p class="tiny muted" data-test="sozluk-ekle-not">{bahceye ? "Bahçe'de tekrarlarda öne alınır." : "Kişisel listene girer; bu kelimenin Bahçe kartı yok."}</p>
           <a class="btn block" href={aramaAdresi(q)} data-test="sozluk-geri">Aramaya dön</a>
