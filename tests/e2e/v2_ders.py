@@ -31,7 +31,8 @@ def step(pg, wrong=False):
         pg.click("[data-test=submit]")
     elif pg.locator("[data-test^=drill-]").count():
         sec = pg.locator("[data-test^=drill-]").first
-        pg.fill("[data-test=answer]", "xyz falsch" if wrong else sec.get_attribute("data-cevap")); pg.click("[data-test=submit]")
+        # adsız profil: öğrenci kendi adını yazar (yer tutucu ad değildir; bilinen kelime "Name" ad sayılmaz)
+        pg.fill("[data-test=answer]", "xyz falsch" if wrong else (sec.get_attribute("data-cevap") or "").replace("{name}", "Ayşe")); pg.click("[data-test=submit]")
     elif pg.locator("[data-test=ders-dinleme]").count():
         pg.click("[data-test=dinle]")
         while pg.locator("[data-test=ders-dinleme] button.opt").count() and not pg.locator("[data-test=dinleme-metin]").count():

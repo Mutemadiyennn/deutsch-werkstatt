@@ -103,6 +103,8 @@ jobs:
         run: cd tests/e2e && python v2_yol.py --shots /tmp/shots
       - name: "Yeni Bugün + Pomodoro (#58 A6): halka, seans x/4, Devam et süreyi başlatır, mola zili/titreşimi, kilitte doğru süre"
         run: cd tests/e2e && python v2_bugun.py --shots /tmp/shots
+      - name: "Konuşma provası (#58 A7): hazırlık kilidi, dallanan diyalog, tanınmayan cevap, Türkçe geri bildirim"
+        run: cd tests/e2e && python v2_prova.py --shots /tmp/shots
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4
