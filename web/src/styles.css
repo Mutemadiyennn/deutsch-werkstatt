@@ -638,10 +638,11 @@ a.dugum:active { transform: translateY(6px); box-shadow: 0 1px 0 var(--vurgu-koy
 .gorev-satir.tamam { box-shadow: 0 0 0 2px var(--sandik-kilit) inset, 0 4px 0 var(--sandik-serit); }
 .gorev-simge { flex: none; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; color: #fff; }
 .gorev-orta { display: grid; gap: 8px; min-width: 0; }
-.gorev-baslik { font-weight: 800; line-height: 1.25; }
-.gorev-satir .gorev-cubuk { position: relative; height: 18px; }
+.gorev-baslik { font-weight: 800; font-size: 1.1rem; line-height: 1.25; }
+.gorev-cubuk-satir { display: flex; align-items: center; gap: 10px; }
+.gorev-satir .gorev-cubuk { flex: 1; height: 14px; }
 .gorev-satir.tamam .gorev-cubuk > i { background: linear-gradient(90deg, var(--alev-b), var(--sandik-kilit)); }
-.gorev-sayi { position: absolute; inset: 0; display: grid; place-items: center; font-size: .72rem; font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums; }
+.gorev-sayi { flex: none; min-width: 3.2em; text-align: right; font-size: .85rem; font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums; }
 .sandik-btn { flex: none; display: grid; place-items: center; min-width: 48px; min-height: 48px; padding: 0; border: 0; background: none; cursor: pointer; }
 .toren { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 24px; background: color-mix(in srgb, #000 55%, transparent); }
 .toren-ic { width: min(360px, 100%); display: grid; justify-items: center; gap: 16px; padding: 28px 22px; border-radius: 22px; background: var(--card); color: var(--ink); text-align: center; box-shadow: 0 8px 0 var(--line); }
@@ -652,7 +653,6 @@ a.dugum:active { transform: translateY(6px); box-shadow: 0 1px 0 var(--vurgu-koy
 @media (prefers-reduced-motion: reduce) { .toren .sandik { animation: none; } .gorev-seridi:active { transform: none; } }
 svg.sandik { overflow: visible; }
 .toren-ic { padding-top: 40px; }
-.gorev-satir.tamam .gorev-sayi { color: #3d2a00; }
 /* yerleşim kuralı (docs/v2/TASARIM.md): ekranın ana blokları arasında ≥ 24 px */
 .bugun-yol > * + *, .gorevler-sayfa > * + *, .odak-sayfa > * + * { margin-top: 24px; }
 .gun-bant-ek { margin-top: 6px; }

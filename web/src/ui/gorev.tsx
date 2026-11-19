@@ -91,7 +91,14 @@ export function GorevSeridi({ plan }: { plan?: Plan | null }) {
 /** Tam ekran sandık töreni (PM 7015070303-C): ödül büyük ve tek; "Devam" hemen basılabilir (PM-059) */
 function SandikToreni({ odul, hak, kapat }: { odul: Odul; hak: number; kapat: () => void }) {
   const ref = useRef<HTMLButtonElement>(null);
-  useEffect(() => { ref.current?.focus(); if (kutlamaAcik() && !hareketAzalt()) efekt("kutlama"); }, []);
+  useEffect(() => {
+    // odak "Devam"da; Escape kapatır; kapanınca odak açan düğmeye ya da sayfa başlığına döner; arka plan kaydırılmaz (2. tur P2)
+    const once = document.activeElement as HTMLElement | null;
+    ref.current?.focus(); if (kutlamaAcik() && !hareketAzalt()) efekt("kutlama");
+    const esc = (e: KeyboardEvent) => { if (e.key === "Escape") kapat(); };
+    document.addEventListener("keydown", esc); const tasma = document.body.style.overflow; document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", esc); document.body.style.overflow = tasma; (once?.isConnected ? once : document.querySelector<HTMLElement>("main h1, main h2"))?.focus?.(); };
+  }, []);
   return (
     <div class="toren" role="dialog" aria-modal="true" aria-label="Sandık açıldı" data-test="sandik-toreni">
       <div class="toren-ic">
@@ -123,8 +130,11 @@ export function GorevlerEkrani({ plan }: { plan?: Plan | null }) {
           <span class="gorev-simge" style={{ background: GOREV_RENK[g.olcu] }} aria-hidden="true"><GorevSimge olcu={g.olcu} boy={28} /></span>
           <div class="grow gorev-orta">
             <div class="gorev-baslik">{g.kisa}</div>
-            <div class="gorev-cubuk" role="progressbar" aria-valuemin={0} aria-valuemax={g.hedef} aria-valuenow={n} aria-label={g.ad}>
-              <i style={{ width: `${(n / g.hedef) * 100}%` }} /><span class="gorev-sayi">{n}/{g.hedef}</span>
+            {/* sayı çubuğun yanında: dolgu üstünde okunmaz (koyu temada 2:1; 2. tur P1-3) */}
+            <div class="gorev-cubuk-satir">
+              <div class="gorev-cubuk" role="progressbar" aria-valuemin={0} aria-valuemax={g.hedef} aria-valuenow={Math.min(n, g.hedef)} aria-label={g.ad}>
+                <i style={{ width: `${Math.min(1, n / g.hedef) * 100}%` }} />
+              </div><span class="gorev-sayi">{Math.min(n, g.hedef)}/{g.hedef}</span>
             </div>
           </div>
           {sandik === "hazir"

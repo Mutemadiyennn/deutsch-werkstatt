@@ -16,8 +16,10 @@ export const hareketAzalt = () => typeof matchMedia !== "undefined" && matchMedi
 
 /** Doğru cevapta artar, yanlışta sıfırlanır; değeri döner */
 /** üst üste dizisinin kimliği: dizi her kırıldığında değişir (görev sayımı aynı eşiği bir kez sayar; inceleme #108 P1-1) */
+/** dizi kimliği: oturumlar arasında da tekil (açılış zamanı + sıra); "5 üst üste" günde bir kez sayılırken yeniden açılış eski anahtarlarla çakışmasın (inceleme #108 2. tur P1-4) */
+const oturum = Date.now().toString(36);
 let dizi = 0;
-export const ustUsteDizi = () => dizi;
+export const ustUsteDizi = () => `${oturum}.${dizi}`;
 export function ustUsteSay(dogru: boolean): number { if (!dogru && ustUste) dizi++; ustUste = dogru ? ustUste + 1 : 0; return ustUste; }
 /** Ekran değişince sayaç sıfırlanır: dersteki seri Bahçe'ye taşınmaz (inceleme #87 P2) */
 export function ustUsteSifirla() { if (ustUste) dizi++; ustUste = 0; }

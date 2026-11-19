@@ -83,9 +83,16 @@ const KAYMA = [0, 44, 70, 44, 0, -44, -70, -44];
  * Yol haritası (B11a, D-114; PM #104 notu 1–3): gün bandı + kıvrılan hatta düğümler + yol sandıkları + tekrar düğümü.
  * Bugün sekmesinin kendisidir (`selam` gün bandına tek satır girer); `onBasla` şimdiki düğüme dokununca odak süresini başlatır.
  */
-export function YolHarita({ plan, selam, ek, onBasla }: { plan: Plan; selam?: string; ek?: ComponentChildren; onBasla?: () => void }) {
+export function YolHarita({ plan, selam, ek, onBasla, yalnizBugun }: { plan: Plan; selam?: string; ek?: ComponentChildren; onBasla?: () => void; yalnizBugun?: boolean }) {
   const [acik, setAcik] = useState<Set<string>>(new Set());
   useEffect(() => { void yolSandiklari().then(setAcik); }, []);
+  // Bugün sekmesinde yalnızca bugünün günü (inceleme #108 2. tur P1-1): BAŞLA ilk ekranda; ekran dışındaysa ortaya kaydırılır
+  const gosterilen = yalnizBugun ? plan.gunler.filter((g) => g.day === (plan.simdi?.day ?? plan.gunler.find((x) => x.durum !== "bitti")?.day ?? plan.gunler[plan.gunler.length - 1]?.day)) : plan.gunler;
+  useEffect(() => {
+    if (!yalnizBugun) return;
+    const el = document.querySelector<HTMLElement>("[data-test=yol] [aria-current=step]");
+    if (el) { const r = el.getBoundingClientRect(); if (r.bottom > innerHeight - 96) el.scrollIntoView({ block: "center" }); }
+  }, [plan.simdi?.day, plan.simdi?.adimlar.filter((a) => a.bitti).length]);
   const hafta = 1;
   let sira = 0;
   const simdiGun = plan.simdi?.day;
@@ -95,7 +102,7 @@ export function YolHarita({ plan, selam, ek, onBasla }: { plan: Plan; selam?: st
       {!plan.sonraki && !plan.simdi && (plan.gunler.length >= 7
         ? <section class="card" data-test="hafta-bitti"><h2>İlk Hafta tamam</h2><p>Bütün günleri bitirdin. Kendini tanıtabilir ve basit bir randevu cümlesi kurabilirsin.</p></section>
         : <section class="card" data-test="hafta-bitti"><h2>Hazır günlerin hepsi bitti</h2><p>Sıradaki günler hazırlanıyor. Bu arada Kelime Bahçesi'nde tekrar yapabilirsin.</p></section>)}
-      {plan.gunler.map((g) => {
+      {gosterilen.map((g) => {
         const hazirAdim = g.adimlar.filter((a) => a.hazir);
         const biten = hazirAdim.filter((a) => a.bitti).length;
         const son = g.day === 7 ? "kupa" : "gunsonu";

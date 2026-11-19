@@ -70,9 +70,9 @@ export function Today() {
     <div class="stack today bugun-yol" data-test="bugun-yol">
       {breakOn && <BreakCard />}
       {indexError && <ErrorPanel message={`İçerik yüklenemedi: ${indexError}`} onRetry={() => location.reload()} />}
-      <YolHarita plan={m1} selam={`${greetDe} ${greetTr}${profile.displayName ? `, ${profile.displayName}` : ""}.`}
-        ek={examOn ? <span class="gun-bant-sinav" data-test="exam-badge">B1{exam !== null ? `: ${exam} gün` : ""}</span> : undefined} onBasla={devam} />
       <GorevSeridi plan={m1} />
+      <YolHarita yalnizBugun plan={m1} selam={`${greetDe} ${greetTr}${profile.displayName ? `, ${profile.displayName}` : ""}.`}
+        ek={examOn ? <span class="gun-bant-sinav" data-test="exam-badge">B1{exam !== null ? `: ${exam} gün` : ""}</span> : undefined} onBasla={devam} />
       <GunSonu plan={m1} />
     </div>
   );
@@ -185,7 +185,7 @@ export function TekrarListesi() {
         <h2 class="sectitle">Tekrar edilecekler</h2>
         {/* PM-049: kartlar soru olarak döner. EK1: ekranda tek ana eylem "Devam et"; bu ikincil (yeni Bugün A6'da seans 1 olur) */}
         <a class="btn block" href="#/garden" data-test="tekrar-bahce">Kelime Bahçesi: tekrar et</a>
-        <div class="row"><HeardWordBox /></div>
+        <div class="row" style={{ marginTop: 16 }}><HeardWordBox /></div>
         {bank.length ? (
           <ul class="list">
             {bank.map(({ it, de, tr, art }) => (
