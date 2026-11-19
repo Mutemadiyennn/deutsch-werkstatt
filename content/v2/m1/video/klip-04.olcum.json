@@ -7,11 +7,116 @@
   "asr1": "faster-whisper large-v3-turbo",
   "asr2": "jonatasgrosman/wav2vec2-large-xlsr-53-german"
  },
- "hata": "video indirilemedi",
- "denenen": [
-  "http://coerll.utexas.edu/dib/mp4s/01_18_int_ek_who.mp4: HTTP Error 404: Not Found",
-  "https://coerll.utexas.edu/dib/mp4s/01_18_int_ek_who.mp4: HTTP Error 404: Not Found",
-  "http://www.coerll.utexas.edu/dib/mp4s/01_18_int_ek_who.mp4: HTTP Error 404: Not Found",
-  "https://www.coerll.utexas.edu/dib/mp4s/01_18_int_ek_who.mp4: HTTP Error 404: Not Found"
- ]
+ "video_adresi": "https://media.la.utexas.edu/dib/video/01_18_int_ek_who.mp4",
+ "whisper_kayma_ms": [
+  -469,
+  -41
+ ],
+ "etiket": "insan-orneklemi",
+ "olcum": {
+  "wer": 0.069,
+  "eksik_metin": 0.0,
+  "fazla_metin": 0.0345,
+  "wer_asr1": 0.2069,
+  "wer_asr2": 0.3103,
+  "cumle_wer": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   1.0,
+   0.143
+  ]
+ },
+ "dislanan": [
+  {
+   "tur": 6,
+   "neden": "iki ASR zaman sapması 387 ms"
+  },
+  {
+   "tur": 15,
+   "neden": "iki ASR zaman sapması 740 ms"
+  }
+ ],
+ "sure_sn": 13.75,
+ "kesit_kaynak_sn": [
+  10.755,
+  46.732
+ ],
+ "tur_zamanlari": [
+  {
+   "tur": 5,
+   "sapma_ms": 263,
+   "ham_w_ctc": [
+    10.8,
+    11.72,
+    11.01,
+    11.65
+   ]
+  },
+  {
+   "tur": 6,
+   "sapma_ms": 387,
+   "ham_w_ctc": [
+    11.92,
+    15.72,
+    12.19,
+    16.15
+   ]
+  },
+  {
+   "tur": 13,
+   "sapma_ms": 130,
+   "ham_w_ctc": [
+    38.28,
+    40.34,
+    38.88,
+    40.3
+   ]
+  },
+  {
+   "tur": 14,
+   "sapma_ms": 130,
+   "ham_w_ctc": [
+    40.52,
+    42.4,
+    40.86,
+    42.42
+   ]
+  },
+  {
+   "tur": 15,
+   "sapma_ms": 740,
+   "ham_w_ctc": [
+    42.76,
+    43.28,
+    43.88,
+    44.06
+   ]
+  },
+  {
+   "tur": 16,
+   "sapma_ms": 152,
+   "ham_w_ctc": [
+    43.88,
+    46.42,
+    44.5,
+    46.48
+   ]
+  }
+ ],
+ "varliklar": {
+  "klip-04.mp4": {
+   "sha256": "2499c310bf95b57e62d1977e27fdc054d322592a9ab3002e70c4dada3f89bd77",
+   "bayt": 241908
+  },
+  "klip-04.jpg": {
+   "sha256": "4071f0849fd30f0ad64272e90f1af0b0342fdc2d361da32cc9f6e7219eed4230",
+   "bayt": 8064
+  },
+  "klip-04.metin.json": {
+   "sha256": "86f4df2f9d96d13e2c917949ccc9812cab99f3586d3305a38dd6d908679ae2b1",
+   "bayt": 758
+  }
+ }
 }

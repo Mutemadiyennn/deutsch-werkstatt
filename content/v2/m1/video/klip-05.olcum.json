@@ -7,11 +7,90 @@
   "asr1": "faster-whisper large-v3-turbo",
   "asr2": "jonatasgrosman/wav2vec2-large-xlsr-53-german"
  },
- "hata": "video indirilemedi",
- "denenen": [
-  "http://coerll.utexas.edu/dib/mp4s/07_12_int_ju_schlafen.mp4: HTTP Error 404: Not Found",
-  "https://coerll.utexas.edu/dib/mp4s/07_12_int_ju_schlafen.mp4: HTTP Error 404: Not Found",
-  "http://www.coerll.utexas.edu/dib/mp4s/07_12_int_ju_schlafen.mp4: HTTP Error 404: Not Found",
-  "https://www.coerll.utexas.edu/dib/mp4s/07_12_int_ju_schlafen.mp4: HTTP Error 404: Not Found"
- ]
+ "video_adresi": "https://media.la.utexas.edu/dib/video/07_12_int_ju_schlafen.mp4",
+ "whisper_kayma_ms": [
+  -335,
+  -56
+ ],
+ "etiket": "birebir",
+ "olcum": {
+  "wer": 0.0,
+  "eksik_metin": 0.0,
+  "fazla_metin": 0.0,
+  "wer_asr1": 0.0698,
+  "wer_asr2": 0.2558,
+  "cumle_wer": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ "dislanan": [
+  {
+   "tur": 2,
+   "neden": "iki ASR zaman sapması 1313 ms"
+  }
+ ],
+ "sure_sn": 20.65,
+ "kesit_kaynak_sn": [
+  0.13,
+  20.78
+ ],
+ "tur_zamanlari": [
+  {
+   "tur": 1,
+   "sapma_ms": 46,
+   "ham_w_ctc": [
+    0.0,
+    2.16,
+    0.38,
+    2.22
+   ]
+  },
+  {
+   "tur": 2,
+   "sapma_ms": 1313,
+   "ham_w_ctc": [
+    4.34,
+    13.1,
+    3.36,
+    13.25
+   ]
+  },
+  {
+   "tur": 3,
+   "sapma_ms": 213,
+   "ham_w_ctc": [
+    15.1,
+    17.6,
+    15.65,
+    17.63
+   ]
+  },
+  {
+   "tur": 4,
+   "sapma_ms": 46,
+   "ham_w_ctc": [
+    17.98,
+    20.48,
+    18.27,
+    20.53
+   ]
+  }
+ ],
+ "varliklar": {
+  "klip-05.mp4": {
+   "sha256": "d3c40a0ec28904e01950ae24bf7869023b105f367f7d8be1475176c0aa272c40",
+   "bayt": 324016
+  },
+  "klip-05.jpg": {
+   "sha256": "ce035414c8e41aa0f8e41a01582a2af07dee2f4fae7c877e0c6ca0fb168e51c5",
+   "bayt": 5985
+  },
+  "klip-05.metin.json": {
+   "sha256": "4b6561166fe98bb8cfdd3ecab67bc930573fe7ba280c2f56d34a88a5cf95b8a8",
+   "bayt": 664
+  }
+ }
 }
