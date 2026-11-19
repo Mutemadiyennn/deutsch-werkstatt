@@ -6,7 +6,7 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 import type { TemelDers } from "@dw/shared";
 import { useApp } from "../state.ts";
-import { loadTemel } from "../services/content.ts";
+import { loadLexicon, loadTemel } from "../services/content.ts";
 import { getMeta, setMeta } from "../data/db.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { DERS_ADIM_TR, TANIT_GRUP, adimlarDers, altSayisi, dersAnahtari, dersIleri, dersKonum, hatirlaKabul, hatirlaSecenek, maddeler, type DersIlerleme } from "../core/ders.ts";
@@ -27,7 +27,8 @@ export function DersEkrani({ id }: { id: string }) {
   const [err, setErr] = useState<string | null>(null);
   useEffect(() => {
     (async () => {
-      const d = personalizeDeep(await loadTemel(id), { name: profile.displayName, address: profile.address });
+      const [ham] = await Promise.all([loadTemel(id), loadLexicon().catch(() => null)]);
+      const d = personalizeDeep(ham, { name: profile.displayName, address: profile.address });
       setT(d);
       setP0(dersKonum(await getMeta<DersIlerleme>(dersAnahtari(id)), d));
     })().catch((e) => setErr(String(e?.message || e)));

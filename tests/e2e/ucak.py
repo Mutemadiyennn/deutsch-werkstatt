@@ -68,6 +68,9 @@ def main():
         }""", want)
         check(st["shell"] and st["content"] >= want, f"A: kabuk ve içerik paketi tam önbellekte ({st['content']}/{want} dosya)")
         medya = (idx.get("files") or {}).get("medya") or []
+        # M1 günü medya kullanıyorsa pakette medya olmalı: denetimler sessizce atlanmaz (inceleme #74 2. tur)
+        m1_medya = [x for g in idx.get("m1", []) for x in g.get("medya", []) if x.get("kind") == "video"]
+        if m1_medya: check(bool(medya), f"A: M1 medyası pakette ({len(medya)} dosya, {len(m1_medya)} kullanım)")
         if medya:
             # A12: M1 medyası (video, ses) ayrı önbellekte tamamlanır
             mt = pg.evaluate("""async (n) => { for (let i = 0; i < 160; i++) { for (const k of await caches.keys()) if (k.startsWith('dw2-m-')) {

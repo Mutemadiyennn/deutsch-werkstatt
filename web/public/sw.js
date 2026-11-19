@@ -99,12 +99,16 @@ async function aralikli(req, yanit) {
     "Content-Length": String(son - bas + 1), "Accept-Ranges": "bytes" } });
 }
 
-let syncing = null;
-const sync = (medya = true) => (syncing ||= (async () => {
-  try { await ensureShell(); } catch (e) { console.warn("[sw] kabuk", e); }
-  try { await ensureContent(); } catch (e) { console.warn("[sw] içerik", e); }
-  if (medya) try { await ensureMedia(); } catch (e) { console.warn("[sw] medya", e); }
-})().finally(() => { syncing = null; }));
+let syncing = null, medyaBekliyor = false;
+// çalışan bir sync(false) varken gelen medya isteği yutulmaz: iş bitince medya ayrıca indirilir (inceleme #74 2. tur)
+const sync = (medya = true) => {
+  if (medya) medyaBekliyor = true;
+  return (syncing ||= (async () => {
+    try { await ensureShell(); } catch (e) { console.warn("[sw] kabuk", e); }
+    try { await ensureContent(); } catch (e) { console.warn("[sw] içerik", e); }
+    while (medyaBekliyor) { medyaBekliyor = false; try { await ensureMedia(); } catch (e) { console.warn("[sw] medya", e); } }
+  })().finally(() => { syncing = null; }));
+};
 
 // kurulum medya indirmesini beklemez (kabuk hemen etkinleşir); medya sayfanın "sync" mesajıyla gelir
 self.addEventListener("install", (e) => { e.waitUntil(sync(false).then(() => self.skipWaiting())); });
