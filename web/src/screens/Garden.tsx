@@ -18,7 +18,7 @@ import { isDue } from "../core/srs.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { ActionBar, AnswerField, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
-import { Art, ErrorPanel, Loading } from "../ui/components.tsx";
+import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Photo } from "../ui/learn.tsx";
 
 const E2E = import.meta.env.MODE === "e2e";
@@ -81,7 +81,7 @@ export function Garden({ day }: { day?: number } = {}) {
 
   return (
     <div class="stack" data-test="garden">
-      <ProgressHeader title="Kelime Bahçesi" back="#/today" sub={`${Math.min(i + 1, round.length)} / ${round.length}`} />
+      <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} sub={`${Math.min(i + 1, round.length)} / ${round.length}`} />
       <Question key={`${i}:${q.lexId}:${q.type}`} q={q} l={l} all={data.all} onDone={finish} />
     </div>
   );

@@ -192,8 +192,10 @@ def main():
         check("1/4 seans" in page.inner_text("[data-test=sessions-done]"), "tamamlanan seans 1/4")
         shot(page, "06-break")
         page.clock.run_for(5 * 60_000 + 2000)
-        page.wait_for_selector("[data-test=focus-idle]")
-        check("Seans 2" in page.inner_text("[data-test=focus-idle]"), "mola bitince seans 2 önerisi (cümle kurma)")
+        # M1 günleri varsa (#58 A6) halkanın yanındaki durum satırı; yoksa eski odak satırı
+        page.wait_for_selector("[data-test=seans-durum], [data-test=focus-idle]")
+        page.wait_for_function("(document.querySelector('[data-test=seans-durum]') || document.querySelector('[data-test=focus-idle]'))?.textContent.match(/[Ss]eans 2/)")
+        check(True, "mola bitince sırada seans 2")
 
         print("6) İlerlemem")
         page.click("[data-tab=progress]")

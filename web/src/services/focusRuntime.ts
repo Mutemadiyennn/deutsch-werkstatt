@@ -6,6 +6,7 @@ import type { Activity, Profile } from "@dw/shared";
 import { FocusEngine, localDate, type FocusEvent } from "../core/focus.ts";
 import { loadFocus, saveFocus } from "../data/db.ts";
 import { audioActive, chime } from "./speech.ts";
+import { hapticAlarm } from "./haptics.ts";
 
 let engine: FocusEngine | null = null;
 let lastInputAt = 0;
@@ -60,12 +61,35 @@ function tick() {
 function emit(ev: FocusEvent[]) {
   if (ev.length) {
     dirty = true;
-    if (sfx && ev.some((e) => e.type === "breakStarted" || e.type === "breakEnded")) chime(ev.some((e) => e.type === "breakEnded") ? "end" : "start");
+    const mola = ev.some((e) => e.type === "breakStarted" || e.type === "breakEnded");
+    // #58 A6: mola başında ve sonunda zil (ses ayarı açıksa) ve titreşim (titreşim ayarı açıksa)
+    if (mola) { if (sfx) chime(ev.some((e) => e.type === "breakEnded") ? "end" : "start"); hapticAlarm(); }
+    for (const e of ev) {
+      if (e.type === "breakStarted") void molaBildirimi(e.endsAt);
+      if (e.type === "breakEnded") void molaBildirimi(null);
+    }
   }
   if (engine && engine.rt.phase === "focus") dirty = true;
   subs.forEach((f) => f(ev));
   void persist(ev.length > 0);
 }
+/**
+ * Uygulama arka plandayken ya da telefon kilitliyken mola biterse zil sayfada çalamaz: iPhone kabuğunda (Capacitor
+ * LocalNotifications varsa) mola bitişine yerel bildirim kurulur, mola atlanınca ya da bitince kaldırılır. Web'de yok sayılır.
+ */
+const MOLA_BILDIRIM_ID = 4101;
+async function molaBildirimi(endsAt: number | null) {
+  try {
+    const L = (globalThis as any).Capacitor?.Plugins?.LocalNotifications;
+    if (!L) return;
+    await L.cancel?.({ notifications: [{ id: MOLA_BILDIRIM_ID }] });
+    if (endsAt === null || endsAt <= Date.now()) return;
+    const izin = await L.checkPermissions?.();
+    if (izin?.display !== "granted" && (await L.requestPermissions?.())?.display !== "granted") return;
+    await L.schedule({ notifications: [{ id: MOLA_BILDIRIM_ID, title: "Mola bitti", body: "Sıradaki seansa hazırsan uygulamayı aç.", schedule: { at: new Date(endsAt), allowWhileIdle: true } }] });
+  } catch { /* bildirim yoksa sessizce geç */ }
+}
+
 async function persist(force: boolean) {
   if (!engine || !dirty) return;
   const now = Date.now();

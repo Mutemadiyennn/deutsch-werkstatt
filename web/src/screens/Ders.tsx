@@ -14,7 +14,7 @@ import { speak, stopSpeaking } from "../services/speech.ts";
 import { xpVer } from "../services/ilerleme.ts";
 import { XP } from "../core/gun.ts";
 import { ActionBar, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
-import { Art, ErrorPanel, Loading } from "../ui/components.tsx";
+import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Chips, Rich } from "../ui/rich.tsx";
 import { DrillView } from "../ui/drill.tsx";
 
@@ -61,7 +61,7 @@ export function DersEkrani({ id }: { id: string }) {
   };
   return (
     <div class="stack" data-test="ders" data-adim={adim} data-pos={`${p.s}.${p.k}`}>
-      <ProgressHeader title={t.title_tr} back="#/today" sub={`${p.s + 1}/${steps.length} · ${DERS_ADIM_TR[adim]}${n > 1 ? ` ${p.k + 1}/${n}` : ""}`} />
+      <ProgressHeader title={t.title_tr} back="#/today" right={<FocusChip />} sub={`${p.s + 1}/${steps.length} · ${DERS_ADIM_TR[adim]}${n > 1 ? ` ${p.k + 1}/${n}` : ""}`} />
       {adim === "tanit" && (p.k % 2 === 0
         ? <Tanit key={p.k} t={t} grup={p.k / 2} onNext={() => ileri()} />
         : <Hatirla key={p.k} t={t} grup={(p.k - 1) / 2} onDone={(dogru, toplam) => ileri({ dogru, toplam })} />)}

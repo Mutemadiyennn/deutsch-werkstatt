@@ -20,7 +20,7 @@ import { scoreHeard } from "../core/grading.ts";
 import { speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { ActionBar, AnswerField, FeedbackBand, MicButton, ProgressHeader } from "../ui/kit.tsx";
-import { Art, ErrorPanel, Loading } from "../ui/components.tsx";
+import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 
 const E2E = import.meta.env.MODE === "e2e";
@@ -132,7 +132,7 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
 
   if (p.bitti) return (
     <div class="stack" data-test="medya">
-      <ProgressHeader title={m.title_tr} back={geri} sub={baslik} />
+      <ProgressHeader title={m.title_tr} back={geri} right={<FocusChip />} sub={baslik} />
       {m.eylem && !p.eylem ? <EylemSoru m={m} onDone={(ok) => setP({ ...p, eylem: true, dogru: p.dogru + (ok ? 1 : 0), toplam: p.toplam + 1 })} />
         : <section class="card stack" data-test="medya-bitti"><h2>Bitti</h2>
             <p>{p.toplam} soruda {p.dogru} doğru. {m.bolumler.length > 1 ? `${m.bolumler.length} bölümün hepsini çalıştın.` : ""}</p>
@@ -151,7 +151,7 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
 
   return (
     <div class="stack" data-test="medya" data-adim={adim} data-pos={`${p.b}.${p.s}.${p.k}`}>
-      <ProgressHeader title={m.title_tr} back={geri} sub={`Bölüm ${p.b + 1}/${m.bolumler.length} · ${ADIM_TR[adim]}`} />
+      <ProgressHeader title={m.title_tr} back={geri} right={<FocusChip />} sub={`Bölüm ${p.b + 1}/${m.bolumler.length} · ${ADIM_TR[adim]}`} />
       {/* PM-053 §4: video üstte sabit, sorular altta akar */}
       <div class="medya-ust" data-test="medya-ust">
         {m.kind === "video" && m.video ? (
