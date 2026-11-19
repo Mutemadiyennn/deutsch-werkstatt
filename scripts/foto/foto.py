@@ -179,7 +179,7 @@ def main():
             for k, v in onceki.items():
                 v["adaylar"] = [a for a in v.get("adaylar", []) if a.get("dosya") in var]
     elle = kisa_sorgular()
-    sure = float(sys.argv[sys.argv.index("--sure") + 1]) if "--sure" in sys.argv else 140.0
+    sure = float(sys.argv[sys.argv.index("--sure") + 1]) if "--sure" in sys.argv else 120.0
     basla = time.time()
     # sıra: adaysız sorgular, sonra eksikler, sonra yeniler (PM 19.11); süre dolunca kalanlar önceki kayıtla yazılır
     def oncelik(kv):
@@ -202,6 +202,8 @@ def main():
                 once = len(adaylar)
                 for a in havuz:
                     if len(adaylar) >= ADAY: break
+                    # süre sorgunun içinde de denetlenir: tek sorgu 429 beklemeleriyle adım zaman aşımını aşmasın (19.11 koşusu 160 dk'da kesildi)
+                    if (time.time() - basla) / 60 > sure + 10: raise RuntimeError("süre doldu")
                     if any(x.get("sayfa") == a.get("sayfa") for x in adaylar): continue
                     try:
                         veri = kucult(get(a["url"]))
