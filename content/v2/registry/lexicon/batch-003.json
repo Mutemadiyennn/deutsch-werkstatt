@@ -309,7 +309,15 @@
     },
     {
      "de": "halb tot",
-     "tr": "yarı ölü (abartı)"
+     "tr": "yarı ölü"
+    },
+    {
+     "de": "mehr tot als lebendig",
+     "tr": "ölüden farksız"
+    },
+    {
+     "de": "Der Akku ist tot.",
+     "tr": "Batarya öldü."
     }
    ],
    "patterns": [
@@ -317,8 +325,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Er ist Tod** yanlış. Doğrusu **Er ist tot**.",
-    "**Ich bin todmüde** ölesiye yorgunum demektir."
+    "Adam öldü derken **Er ist Tod** yanlış. Doğrusu **Er ist tot.** **Tod** ölüm demektir, ölü için küçük **tot** yazılır.",
+    "Ölesiye yorgunum derken **Ich bin totmüde** yanlış. Doğrusu **Ich bin todmüde.** Bu kelimede **d** yazılır."
    ],
    "examples": [
     {
@@ -336,7 +344,7 @@
     {
      "id": "lx:tot:3",
      "de": "Mein Handy ist tot.",
-     "tr": "Telefonum öldü (şarjı bitti/bozuldu).",
+     "tr": "Telefonum öldü.",
      "layer": "alltag",
      "img": "smartphone with empty battery"
     },
@@ -358,8 +366,28 @@
    "exp": {
     "anlam_tr": "Bir canlının artık yaşamadığını söyler.",
     "parcalar": [],
-    "ipucu_tr": "Konuşmada şarjı bitmiş telefon için de kullanılır."
-   }
+    "ipucu_tr": "Konuşmada şarjı biten telefon için de öldü denir."
+   },
+   "forms": [
+    {
+     "de": "Der Fisch ist ___.",
+     "answer": "tot",
+     "tr": "Balık ölmüş.",
+     "hint_tr": "Ölmüş: **ist tot**, küçük harf ve **t** ile."
+    },
+    {
+     "de": "Nach der Arbeit bin ich halb ___.",
+     "answer": "tot",
+     "tr": "İşten sonra yarı ölü gibiyim.",
+     "hint_tr": "Yarı ölü: **halb tot**."
+    },
+    {
+     "de": "Mein Handy ist ___.",
+     "answer": "tot",
+     "tr": "Telefonum öldü.",
+     "hint_tr": "Telefon için de **tot** denir: **Mein Handy ist tot**."
+    }
+   ]
   },
   {
    "id": "lx:lange",
@@ -2221,7 +2249,15 @@
     },
     {
      "de": "verdammt gut",
-     "tr": "müthiş iyi"
+     "tr": "çok iyi"
+    },
+    {
+     "de": "verdammt kalt",
+     "tr": "çok soğuk"
+    },
+    {
+     "de": "verdammt teuer",
+     "tr": "çok pahalı"
     }
    ],
    "patterns": [
@@ -2229,8 +2265,7 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Kaba bir sözdür, resmî yerde kullanma.",
-    "**verdammt teuer** çok pahalı demektir."
+    "Resmî bir yerde kahretsin derken **Verdammt!** kaba kaçar. Yumuşak karşılığı **So ein Mist!**, yani hay aksi."
    ],
    "examples": [
     {
@@ -2268,10 +2303,25 @@
     "medien"
    ],
    "exp": {
-    "anlam_tr": "Öfkeyi gösterir, konuşmada çok anlamına da gelir.",
-    "ne_zaman_tr": "Yalnızca arkadaş arasında, resmî yerde söyleme.",
-    "parcalar": []
-   }
+    "anlam_tr": "Kızınca söylenen kaba bir sözdür.",
+    "ne_zaman_tr": "Yalnızca arkadaş arasında söylenir, resmî yerde söyleme.",
+    "parcalar": [],
+    "ipucu_tr": "Bir kelimenin önünde çok demektir: **verdammt kalt** çok soğuk."
+   },
+   "forms": [
+    {
+     "de": "___ noch mal!",
+     "answer": "Verdammt",
+     "tr": "Hay lanet olsun!",
+     "hint_tr": "Hay lanet olsun: **Verdammt noch mal!**"
+    },
+    {
+     "de": "Der ___ Bus ist schon wieder weg!",
+     "answer": "verdammte",
+     "tr": "Lanet otobüs yine kaçtı!",
+     "hint_tr": "**der Bus** önünde **verdammte** olur."
+    }
+   ]
   },
   {
    "id": "lx:zeigen",

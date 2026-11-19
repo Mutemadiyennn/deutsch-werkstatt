@@ -459,7 +459,7 @@
   {
    "id": "lx:erschießen",
    "de": "erschießen",
-   "tr": "vurarak öldürmek",
+   "tr": "vurarak öldürmek, bitkin düşmek",
    "pos": "verb",
    "verb": {
     "praesens3": "erschießt",
@@ -477,7 +477,15 @@
     },
     {
      "de": "Ich bin erschossen.",
-     "tr": "Bittim. (abartı)"
+     "tr": "Bitkinim."
+    },
+    {
+     "de": "total erschossen sein",
+     "tr": "bitkin olmak"
+    },
+    {
+     "de": "jemanden erschießen",
+     "tr": "birini vurup öldürmek"
     }
    ],
    "patterns": [
@@ -485,8 +493,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Haber ve filmde; konuşmada abartı: \"Ich bin total erschossen\" = Bitkinim.",
-    "Edilgen: \"Er wurde erschossen\"."
+    "Vurularak öldürüldü derken **Er wurde geerschossen** yanlış. Doğrusu **Er wurde erschossen.** Bu kelimede başa **ge** gelmez."
    ],
    "examples": [
     {
@@ -498,19 +505,19 @@
     {
      "id": "lx:erschießen:2",
      "de": "Laut Nachrichten wurde niemand erschossen.",
-     "tr": "Haberlere göre kimse vurulmadı.",
+     "tr": "Haberlere göre kimse vurularak öldürülmedi.",
      "layer": "hd"
     },
     {
      "id": "lx:erschießen:3",
      "de": "Nach der Schicht bin ich total erschossen.",
-     "tr": "Vardiyadan sonra bitmiş oluyorum.",
+     "tr": "Vardiyadan sonra bitkin oluyorum.",
      "layer": "alltag"
     },
     {
      "id": "lx:erschießen:4",
      "de": "– Wie endet der Film? – Der Böse wird erschossen.",
-     "tr": "– Film nasıl bitiyor? – Kötü adam vuruluyor.",
+     "tr": "– Film nasıl bitiyor? – Kötü adam vurularak öldürülüyor.",
      "layer": "alltag",
      "dialog": true
     }
@@ -520,6 +527,32 @@
    "freqRank": 611,
    "domains": [
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Birini silahla vurup öldürmeyi söyler.",
+    "ne_zaman_tr": "Haberlerde ve polisiye dizilerde duyulur.",
+    "parcalar": [],
+    "ipucu_tr": "Konuşmada **Ich bin total erschossen** çok yorgunum, bitkinim demektir."
+   },
+   "forms": [
+    {
+     "de": "In der Serie wird der Polizist ___.",
+     "answer": "erschossen",
+     "tr": "Dizide polis vurularak öldürülüyor.",
+     "hint_tr": "**wird** ile **erschießen**, **erschossen** olur."
+    },
+    {
+     "de": "Der Jäger ___ den Fuchs.",
+     "answer": "erschießt",
+     "tr": "Avcı tilkiyi vurup öldürüyor.",
+     "hint_tr": "**der Jäger** ile **erschießen**, **erschießt** olur."
+    },
+    {
+     "de": "Er hat niemanden ___.",
+     "answer": "erschossen",
+     "tr": "Adam kimseyi vurup öldürmedi.",
+     "hint_tr": "**hat** ile **erschießen**, **erschossen** olur, başına **ge** gelmez."
+    }
    ]
   },
   {
@@ -1738,6 +1771,14 @@
     {
      "de": "arbeiten wie ein Pferd",
      "tr": "at gibi çalışmak"
+    },
+    {
+     "de": "vom Pferd fallen",
+     "tr": "attan düşmek"
+    },
+    {
+     "de": "Angst vor Pferden",
+     "tr": "at korkusu"
     }
    ],
    "patterns": [
@@ -1745,34 +1786,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Nötr: \"das Pferd\".",
-    "\"reiten\" = ata binmek (\"Pferd fahren\" yanlış)."
+    "Ata binmeyi severim derken **Ich fahre gern Pferd** yanlış. Doğrusu **Ich reite gern.** Ata binmek tek kelimeyle **reiten** denir.",
+    "Atlar derken **die Pferden** yanlış. Doğrusu **die Pferde.** Birden çok atta sona yalnızca **e** gelir."
    ],
    "examples": [
     {
      "id": "lx:Pferd:1",
-     "de": "Meine Tochter reitet gern Pferde.",
-     "tr": "Kızım ata binmeyi seviyor.",
-     "layer": "hd"
+     "de": "Meine Tochter reitet gern auf ihrem Pferd.",
+     "tr": "Kızım atına binmeyi seviyor.",
+     "layer": "hd",
+     "img": "girl riding horse in field"
     },
     {
      "id": "lx:Pferd:2",
      "de": "Auf dem Bauernhof gibt es drei Pferde.",
      "tr": "Çiftlikte üç at var.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "horses grazing on farm pasture"
     },
     {
      "id": "lx:Pferd:3",
      "de": "Ich arbeite wie ein Pferd.",
      "tr": "At gibi çalışıyorum.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "exhausted worker carrying heavy boxes"
     },
     {
      "id": "lx:Pferd:4",
      "de": "– Kannst du reiten? – Nein, ich habe Angst vor Pferden.",
      "tr": "– Ata binebilir misin? – Hayır, atlardan korkarım.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "nervous person standing near horse in stable"
     }
    ],
    "level": "A2",
@@ -1780,6 +1825,43 @@
    "freqRank": 624,
    "domains": [
     "freizeit"
+   ],
+   "exp": {
+    "anlam_tr": "Binilen ya da çiftlikte beslenen atı söyler.",
+    "parcalar": [],
+    "ipucu_tr": "Ata binmek tek kelimeyle **reiten** ile söylenir."
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ schönes Pferd.",
+     "answer": "ein",
+     "tr": "Bu güzel bir at.",
+     "hint_tr": "**Das ist** dedikten sonra **ein Pferd** aynı kalır: **ein schönes Pferd**."
+    },
+    {
+     "de": "Sie hat ___ Pferd.",
+     "answer": "ein",
+     "tr": "Kadının bir atı var.",
+     "hint_tr": "**Sie hat** dedikten sonra **ein Pferd** aynı kalır, **einen** olmaz."
+    },
+    {
+     "de": "___ Pferd ist müde.",
+     "answer": "Das",
+     "tr": "At yorgun.",
+     "hint_tr": "Bildiğimiz at: **das Pferd**."
+    },
+    {
+     "de": "Ich gebe ___ Pferd Wasser.",
+     "answer": "dem",
+     "tr": "Ata su veriyorum.",
+     "hint_tr": "**Ich gebe** dedikten sonra su verilen at için **dem Pferd** olur."
+    },
+    {
+     "de": "Auf dem Hof gibt es drei ___.",
+     "answer": "Pferde",
+     "tr": "Çiftlikte üç at var.",
+     "hint_tr": "Birden çok at: **Pferde**."
+    }
    ]
   },
   {
@@ -3108,6 +3190,14 @@
     {
      "de": "im Gefängnis sitzen",
      "tr": "hapiste yatmak"
+    },
+    {
+     "de": "aus dem Gefängnis kommen",
+     "tr": "hapisten çıkmak"
+    },
+    {
+     "de": "wie im Gefängnis",
+     "tr": "hapishanedeki gibi"
     }
    ],
    "patterns": [
@@ -3115,34 +3205,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Konuşmada \"im Knast\" de denir.",
-    "Nötr: \"das Gefängnis\"; çoğulu \"-nisse\"."
+    "Hapse girdi derken **Er ist im Gefängnis gekommen** yanlış. Doğrusu **Er ist ins Gefängnis gekommen.** Gidilen yer için **ins** gelir.",
+    "Hapishaneler derken **die Gefängnise** yanlış. Doğrusu **die Gefängnisse.** Burada **s** iki kez yazılır."
    ],
    "examples": [
     {
      "id": "lx:Gefängnis:1",
      "de": "Er sitzt seit zwei Jahren im Gefängnis.",
      "tr": "İki yıldır hapiste.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "prison cell with barred window"
     },
     {
      "id": "lx:Gefängnis:2",
      "de": "Dafür kann man ins Gefängnis kommen.",
      "tr": "Bunun için hapse girilebilir.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "prison building with high wall"
     },
     {
      "id": "lx:Gefängnis:3",
      "de": "Das ist ja wie im Gefängnis hier!",
      "tr": "Burası hapishane gibi!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "bored child looking out rainy window"
     },
     {
      "id": "lx:Gefängnis:4",
      "de": "– Was ist mit ihm passiert? – Er ist im Gefängnis.",
      "tr": "– Ona ne oldu? – Hapiste.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "prison gate exterior"
     }
    ],
    "level": "B1",
@@ -3150,6 +3244,37 @@
    "freqRank": 640,
    "domains": [
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Suç işleyenlerin cezasını çektiği kapalı yeri söyler.",
+    "parcalar": [],
+    "ipucu_tr": "Konuşmada hapishaneye **der Knast** da denir."
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ altes Gefängnis.",
+     "answer": "ein",
+     "tr": "Bu eski bir hapishane.",
+     "hint_tr": "**Das ist** dedikten sonra **ein Gefängnis** aynı kalır: **ein altes Gefängnis**."
+    },
+    {
+     "de": "___ Gefängnis liegt am Stadtrand.",
+     "answer": "Das",
+     "tr": "Hapishane şehrin kenarında.",
+     "hint_tr": "Bildiğimiz hapishane: **das Gefängnis**."
+    },
+    {
+     "de": "Er sitzt ___ Gefängnis.",
+     "answer": "im",
+     "tr": "Adam hapiste yatıyor.",
+     "hint_tr": "**in** ile **dem** birleşir: **im Gefängnis**."
+    },
+    {
+     "de": "Er kommt ___ Gefängnis.",
+     "answer": "ins",
+     "tr": "Adam hapse giriyor.",
+     "hint_tr": "Hapse girmek: **in** ile **das** birleşir, **ins Gefängnis**."
+    }
    ]
   },
   {
@@ -3247,7 +3372,7 @@
   {
    "id": "lx:Mist",
    "de": "Mist",
-   "tr": "(kibar küfür) hay aksi; saçmalık",
+   "tr": "hay aksi, saçmalık",
    "pos": "noun",
    "art": "der",
    "pl": "-",
@@ -3259,6 +3384,14 @@
     {
      "de": "Mist bauen",
      "tr": "çuvallamak"
+    },
+    {
+     "de": "Das ist doch Mist!",
+     "tr": "Bu saçmalık!"
+    },
+    {
+     "de": "Mist, vergessen!",
+     "tr": "Hay aksi, unuttum!"
     }
    ],
    "patterns": [
@@ -3266,8 +3399,7 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "\"Scheiße\"nin kibar karşılığı; iş yerinde de söylenebilir.",
-    "\"Mist\" aslında gübre demek; mecazen \"saçmalık, kötü şey\"."
+    "Hay aksi derken **So eine Mist!** yanlış. Doğrusu **So ein Mist!** Kelime **der Mist** olduğu için **ein** gelir."
    ],
    "examples": [
     {
@@ -3301,6 +3433,26 @@
    "freqRank": 642,
    "domains": [
     "gefuehle"
+   ],
+   "exp": {
+    "anlam_tr": "Bir şey ters gidince söylenen hafif bir öfke sözüdür.",
+    "ne_zaman_tr": "Hafiftir, iş yerinde de söylenebilir.",
+    "parcalar": [],
+    "ipucu_tr": "**Das ist Mist** bu saçmalık demektir."
+   },
+   "forms": [
+    {
+     "de": "So ___ Mist!",
+     "answer": "ein",
+     "tr": "Hay aksi!",
+     "hint_tr": "Hay aksi derken **So ein Mist!** denir."
+    },
+    {
+     "de": "Was für ___ Mist!",
+     "answer": "ein",
+     "tr": "Ne saçmalık!",
+     "hint_tr": "Ne saçmalık derken **Was für ein Mist!** denir."
+    }
    ]
   },
   {
@@ -3395,7 +3547,7 @@
   {
    "id": "lx:hauen",
    "de": "hauen",
-   "tr": "vurmak; (abhauen) kaçmak",
+   "tr": "vurmak, kaçıp gitmek",
    "pos": "verb",
    "verb": {
     "praesens3": "haut",
@@ -3408,12 +3560,20 @@
    },
    "collocations": [
     {
-     "de": "Hau ab!",
-     "tr": "Defol!"
+     "de": "auf den Tisch hauen",
+     "tr": "masaya vurmak"
+    },
+    {
+     "de": "jemanden hauen",
+     "tr": "birine vurmak"
     },
     {
      "de": "abhauen",
      "tr": "kaçıp gitmek"
+    },
+    {
+     "de": "Hau ab!",
+     "tr": "Defol!"
     }
    ],
    "patterns": [
@@ -3421,26 +3581,26 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "\"Hau ab!\" kabadır; \"Geh weg!\" daha yumuşak.",
-    "\"Das haut mich um\" = Buna şaşırdım (mecaz)."
+    "Masaya vurdu derken **Er hat auf dem Tisch gehauen** yanlış. Doğrusu **Er hat auf den Tisch gehauen.** Vurulan yer için **den** gelir.",
+    "Kaçıp gitti derken **Er hat abgehauen** yanlış. Doğrusu **Er ist abgehauen.** Yer değiştirdiği için **ist** gelir."
    ],
    "examples": [
     {
      "id": "lx:hauen:1",
-     "de": "Er hat ihn gehauen.",
-     "tr": "Ona vurdu.",
+     "de": "Der Junge hat seinen Bruder gehauen.",
+     "tr": "Oğlan kardeşine vurdu.",
      "layer": "hd"
     },
     {
      "id": "lx:hauen:2",
-     "de": "Der Dieb ist sofort abgehauen.",
-     "tr": "Hırsız hemen kaçtı.",
+     "de": "Er haut mit der Faust auf den Tisch.",
+     "tr": "Adam yumruğunu masaya vuruyor.",
      "layer": "hd"
     },
     {
      "id": "lx:hauen:3",
-     "de": "Hau ab!",
-     "tr": "Defol!",
+     "de": "Hau nicht so auf die Tasten!",
+     "tr": "Tuşlara öyle vurma!",
      "layer": "alltag"
     },
     {
@@ -3456,6 +3616,31 @@
    "freqRank": 645,
    "domains": [
     "gefuehle"
+   ],
+   "exp": {
+    "anlam_tr": "Birine ya da bir şeye elle vurmayı söyler.",
+    "parcalar": [],
+    "ipucu_tr": "**ab** ile birlikte **abhauen** kaçıp gitmek demektir."
+   },
+   "forms": [
+    {
+     "de": "Er ___ auf den Tisch.",
+     "answer": "haut",
+     "tr": "Adam masaya vuruyor.",
+     "hint_tr": "**er** ile **hauen**, **haut** olur."
+    },
+    {
+     "de": "Der Junge hat seinen Bruder ___.",
+     "answer": "gehauen",
+     "tr": "Oğlan kardeşine vurdu.",
+     "hint_tr": "**hat** ile **hauen**, **gehauen** olur."
+    },
+    {
+     "de": "Hau ___!",
+     "answer": "ab",
+     "tr": "Defol!",
+     "hint_tr": "Defol derken **Hau ab!** denir."
+    }
    ]
   },
   {
@@ -3622,6 +3807,14 @@
     {
      "de": "Safer Sex",
      "tr": "korunarak seks"
+    },
+    {
+     "de": "Sex und Gewalt",
+     "tr": "seks ve şiddet"
+    },
+    {
+     "de": "über Sex reden",
+     "tr": "seks hakkında konuşmak"
     }
    ],
    "patterns": [
@@ -3629,8 +3822,7 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Eril: \"der Sex\"; çoğulu yok.",
-    "Doktorda resmî terim \"Geschlechtsverkehr\" duyulabilir."
+    "Seks yapmak derken **Sex machen** yanlış. Doğrusu **Sex haben.**"
    ],
    "examples": [
     {
@@ -3665,6 +3857,25 @@
    "domains": [
     "medien",
     "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Cinsel ilişkiyi söyler.",
+    "ne_zaman_tr": "Doktorda, filmlerde ve gazetede açıkça kullanılır.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "Über ___ redet man bei uns nicht offen.",
+     "answer": "Sex",
+     "tr": "Bizde seks hakkında açık konuşulmaz.",
+     "hint_tr": "Seks hakkında: **über Sex**, önüne **den** gelmez."
+    },
+    {
+     "de": "Der Film zeigt zu viel ___ und Gewalt.",
+     "answer": "Sex",
+     "tr": "Film çok fazla seks ve şiddet gösteriyor.",
+     "hint_tr": "Seks ve şiddet: **Sex und Gewalt**."
+    }
    ]
   },
   {
@@ -3866,7 +4077,7 @@
   {
    "id": "lx:verraten",
    "de": "verraten",
-   "tr": "ele vermek; (sır) söylemek",
+   "tr": "ele vermek, sır vermek, söylemek",
    "pos": "verb",
    "verb": {
     "praesens3": "verrät",
@@ -3884,8 +4095,16 @@
      "tr": "sır vermek"
     },
     {
-     "de": "Verrat mir …",
-     "tr": "Bana … söyle"
+     "de": "Verrat es niemandem!",
+     "tr": "Kimseye söyleme!"
+    },
+    {
+     "de": "Kannst du mir verraten, wo du warst?",
+     "tr": "Nerede olduğunu söyler misin?"
+    },
+    {
+     "de": "jemanden verraten",
+     "tr": "birini ele vermek"
     }
    ],
    "patterns": [
@@ -3893,8 +4112,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Günlük dilde \"Kannst du mir verraten, …?\" = Söyler misin …? (şakacı).",
-    "Perfekt \"verraten\" (değişmez)."
+    "Bizi kim ele verdi derken **Wer hat uns geverratet?** yanlış. Doğrusu **Wer hat uns verraten?** Bu kelime geçmişte de **verraten** kalır."
    ],
    "examples": [
     {
@@ -3929,6 +4147,38 @@
    "domains": [
     "gefuehle",
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Gizli kalması gereken bir şeyi başkasına söylemeyi anlatır.",
+    "ne_zaman_tr": "Arkadaşına sırrını sorarken şakayla da kullanılır.",
+    "parcalar": [],
+    "ipucu_tr": "Birini polise ele vermek de **verraten** ile söylenir."
+   },
+   "forms": [
+    {
+     "de": "Ich ___ nichts!",
+     "answer": "verrate",
+     "tr": "Hiçbir şey söylemem!",
+     "hint_tr": "**ich** ile **verraten**, **verrate** olur."
+    },
+    {
+     "de": "___ du mir das Geheimnis?",
+     "answer": "Verrätst",
+     "tr": "Sırrı bana söyler misin?",
+     "hint_tr": "**du** ile **verraten**, **verrätst** olur, **a** yerine **ä** gelir."
+    },
+    {
+     "de": "Er ___ nie etwas.",
+     "answer": "verrät",
+     "tr": "Adam asla bir şey söylemez.",
+     "hint_tr": "**er** ile **verraten**, **verrät** olur."
+    },
+    {
+     "de": "Wer hat uns ___?",
+     "answer": "verraten",
+     "tr": "Bizi kim ele verdi?",
+     "hint_tr": "**hat** ile **verraten** aynı kalır, başına **ge** gelmez."
+    }
    ]
   },
   {
@@ -4642,12 +4892,20 @@
    },
    "collocations": [
     {
-     "de": "sich fürchten vor",
-     "tr": "…-den korkmak"
+     "de": "sich vor etwas fürchten",
+     "tr": "bir şeyden korkmak"
     },
     {
-     "de": "Ich fürchte, …",
-     "tr": "Korkarım ki …"
+     "de": "Ich fürchte, nein.",
+     "tr": "Korkarım hayır."
+    },
+    {
+     "de": "Ich fürchte, wir sind zu spät.",
+     "tr": "Korkarım geç kaldık."
+    },
+    {
+     "de": "das Schlimmste fürchten",
+     "tr": "en kötüsünden korkmak"
     }
    ],
    "patterns": [
@@ -4655,8 +4913,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kibar kötü haber: \"Ich fürchte, das geht nicht\" = Korkarım olmaz.",
-    "Günlük dilde \"Angst haben vor\" daha sık."
+    "Köpekten korkuyorum derken **Ich fürchte mich von dem Hund** yanlış. Doğrusu **Ich fürchte mich vor dem Hund.** Korkulan şeyden önce **vor** gelir."
    ],
    "examples": [
     {
@@ -4673,14 +4930,14 @@
     },
     {
      "id": "lx:fürchten:3",
-     "de": "Fürchte schon, ja.",
-     "tr": "Korkarım öyle.",
+     "de": "Ich fürchte, das wird nix.",
+     "tr": "Korkarım bu iş olmayacak.",
      "layer": "alltag"
     },
     {
      "id": "lx:fürchten:4",
      "de": "– Ist der Termin noch frei? – Ich fürchte, nein.",
-     "tr": "– Randevu hâlâ boş mu? – Korkarım değil.",
+     "tr": "– Randevu hâlâ boş mu? – Korkarım hayır.",
      "layer": "alltag",
      "dialog": true
     }
@@ -4690,6 +4947,38 @@
    "freqRank": 661,
    "domains": [
     "gefuehle"
+   ],
+   "exp": {
+    "anlam_tr": "Kötü bir şeyden korkmayı söyler.",
+    "ne_zaman_tr": "Daha çok yazıda ve haberlerde geçer.",
+    "parcalar": [],
+    "ipucu_tr": "Kibarca kötü haber verirken **Ich fürchte** korkarım ki demektir."
+   },
+   "forms": [
+    {
+     "de": "Ich ___, das geht nicht.",
+     "answer": "fürchte",
+     "tr": "Korkarım olmaz.",
+     "hint_tr": "**ich** ile **fürchten**, **fürchte** olur."
+    },
+    {
+     "de": "___ du dich vor Spinnen?",
+     "answer": "Fürchtest",
+     "tr": "Örümceklerden korkar mısın?",
+     "hint_tr": "**du** ile **fürchten**, **fürchtest** olur."
+    },
+    {
+     "de": "Das Kind ___ sich vor dem Hund.",
+     "answer": "fürchtet",
+     "tr": "Çocuk köpekten korkuyor.",
+     "hint_tr": "**das Kind** ile **fürchten**, **fürchtet** olur."
+    },
+    {
+     "de": "Er fürchtet sich ___ Hunden.",
+     "answer": "vor",
+     "tr": "Adam köpeklerden korkuyor.",
+     "hint_tr": "Korkulan şeyden önce **vor** gelir: **vor Hunden**."
+    }
    ]
   },
   {
@@ -5631,6 +5920,14 @@
     {
      "de": "Wer ist der Mörder?",
      "tr": "Katil kim?"
+    },
+    {
+     "de": "den Mörder fassen",
+     "tr": "katili yakalamak"
+    },
+    {
+     "de": "die Mörderin",
+     "tr": "kadın katil"
     }
    ],
    "patterns": [
@@ -5638,8 +5935,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Polisiyelerde çok sık; çoğulu tekil gibi.",
-    "Kadın katil \"die Mörderin\"."
+    "Katiller yakalandı derken **Die Mördern wurden gefasst** yanlış. Doğrusu **Die Mörder wurden gefasst.** Birden çok katilde kelime aynı kalır."
    ],
    "examples": [
     {
@@ -5651,7 +5947,7 @@
     {
      "id": "lx:Mörder:2",
      "de": "Im Krimi weiß man erst am Ende, wer der Mörder ist.",
-     "tr": "Polisiyede katilin kim olduğunu ancak sonunda öğreniyorsun.",
+     "tr": "Polisiyede katilin kim olduğu ancak sonunda anlaşılıyor.",
      "layer": "hd"
     },
     {
@@ -5673,6 +5969,38 @@
    "freqRank": 675,
    "domains": [
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Birini bile bile öldüren kişiyi söyler.",
+    "ne_zaman_tr": "Polisiye dizilerde ve haberlerde çok sık duyulur.",
+    "parcalar": [],
+    "ipucu_tr": "Kadın katile **die Mörderin** denir."
+   },
+   "forms": [
+    {
+     "de": "Die Polizei sucht ___ Mörder.",
+     "answer": "den",
+     "tr": "Polis katili arıyor.",
+     "hint_tr": "**sucht** dedikten sonra **der Mörder**, **den Mörder** olur."
+    },
+    {
+     "de": "Wer ist ___ Mörder?",
+     "answer": "der",
+     "tr": "Katil kim?",
+     "hint_tr": "Bildiğimiz katil: **der Mörder**."
+    },
+    {
+     "de": "Er ist ___ Mörder!",
+     "answer": "ein",
+     "tr": "Adam bir katil!",
+     "hint_tr": "**Er ist** dedikten sonra **ein Mörder** aynı kalır."
+    },
+    {
+     "de": "Die beiden ___ sitzen im Gefängnis.",
+     "answer": "Mörder",
+     "tr": "İki katil de hapiste.",
+     "hint_tr": "İki katil: **die beiden Mörder**, kelime aynı kalır."
+    }
    ]
   },
   {
@@ -5802,6 +6130,14 @@
     {
      "de": "Wer ist hier der Boss?",
      "tr": "Burada patron kim?"
+    },
+    {
+     "de": "den Boss fragen",
+     "tr": "patrona sormak"
+    },
+    {
+     "de": "Du bist der Boss!",
+     "tr": "Patron sensin!"
     }
    ],
    "patterns": [
@@ -5809,34 +6145,37 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Konuşma dili; resmî olarak \"Chef/Chefin\" ya da \"Vorgesetzte\".",
-    "Çoğulu \"Bosse\"."
+    "Patrona sormam lazım derken **Ich muss dem Boss fragen** yanlış. Doğrusu **Ich muss den Boss fragen.** Sorulan kişi için **den** gelir."
    ],
    "examples": [
     {
      "id": "lx:Boss:1",
      "de": "Mein Boss ist heute nicht da.",
      "tr": "Patronum bugün yok.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "empty manager desk in office"
     },
     {
      "id": "lx:Boss:2",
      "de": "Frag mal den Boss.",
      "tr": "Patrona sor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "employee asking manager question in office"
     },
     {
      "id": "lx:Boss:3",
      "de": "Du bist der Boss!",
      "tr": "Patron sensin!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "friends laughing at cafe table"
     },
     {
      "id": "lx:Boss:4",
      "de": "– Darfst du früher gehen? – Muss ich den Boss fragen.",
      "tr": "– Erken çıkabilir misin? – Patrona sormam lazım.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "worker talking to supervisor in warehouse"
     }
    ],
    "level": "B1",
@@ -5844,6 +6183,31 @@
    "freqRank": 677,
    "domains": [
     "arbeit"
+   ],
+   "exp": {
+    "anlam_tr": "İş yerinde en üstteki kişiyi, patronu söyler.",
+    "ne_zaman_tr": "Konuşma dilidir, resmî olarak **Chef** ya da **Chefin** denir.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "Frag mal ___ Boss.",
+     "answer": "den",
+     "tr": "Patrona sor.",
+     "hint_tr": "**Frag** dedikten sonra **der Boss**, **den Boss** olur."
+    },
+    {
+     "de": "Du bist ___ Boss!",
+     "answer": "der",
+     "tr": "Patron sensin!",
+     "hint_tr": "Bildiğimiz tek patron: **der Boss**."
+    },
+    {
+     "de": "Ich spreche mit ___ Boss.",
+     "answer": "dem",
+     "tr": "Patronla konuşuyorum.",
+     "hint_tr": "Bildiğimiz patron: **mit dem Boss**."
+    }
    ]
   },
   {
@@ -6235,18 +6599,22 @@
   {
    "id": "lx:Arschloch",
    "de": "Arschloch",
-   "tr": "(çok kaba hakaret) pislik herif",
+   "tr": "pislik herif",
    "pos": "noun",
    "art": "das",
    "pl": "Arschlöcher",
    "collocations": [
     {
      "de": "So ein Arschloch!",
-     "tr": "Ne pislik herif! (çok kaba)"
+     "tr": "Ne pislik herif!"
     },
     {
      "de": "sich wie ein Arschloch benehmen",
      "tr": "pislik gibi davranmak"
+    },
+    {
+     "de": "ein echtes Arschloch",
+     "tr": "tam bir pislik"
     }
    ],
    "patterns": [
@@ -6254,8 +6622,7 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Çok ağır bir hakarettir; asla kullanma, yalnızca duyduğunda anlamak için öğren.",
-    "Daha yumuşak: \"Idiot\" ya da \"Blödmann\"."
+    "Ne pislik derken **So eine Arschloch!** yanlış. Doğrusu **So ein Arschloch!** Kelime **das Arschloch** olduğu için **ein** gelir."
    ],
    "examples": [
     {
@@ -6266,8 +6633,8 @@
     },
     {
      "id": "lx:Arschloch:2",
-     "de": "Das Wort ist sehr beleidigend.",
-     "tr": "Bu kelime çok aşağılayıcı.",
+     "de": "Er hat sich wie ein Arschloch benommen.",
+     "tr": "Adam pislik gibi davrandı.",
      "layer": "hd"
     },
     {
@@ -6290,6 +6657,25 @@
    "domains": [
     "gefuehle",
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Birine çok kaba biçimde pislik, kötü insan demektir.",
+    "ne_zaman_tr": "Çok ağır hakarettir, yalnızca duyunca anlamak için öğren.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "Der Typ ist echt ___ Arschloch.",
+     "answer": "ein",
+     "tr": "O adam gerçekten pislik.",
+     "hint_tr": "**ist** dedikten sonra **ein Arschloch** aynı kalır."
+    },
+    {
+     "de": "So ___ Arschloch!",
+     "answer": "ein",
+     "tr": "Ne pislik herif!",
+     "hint_tr": "Ne pislik derken **So ein Arschloch!** denir."
+    }
    ]
   },
   {
@@ -6506,7 +6892,15 @@
     },
     {
      "de": "auf etwas schwören",
-     "tr": "bir şeye güvenmek"
+     "tr": "bir şeye çok güvenmek"
+    },
+    {
+     "de": "Schwör!",
+     "tr": "Yemin et!"
+    },
+    {
+     "de": "einen Eid schwören",
+     "tr": "and içmek"
     }
    ],
    "patterns": [
@@ -6514,8 +6908,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Konuşmada inandırmak için: \"Ich schwöre, das war so!\"",
-    "Perfekt \"geschworen\" (düzensiz)."
+    "Yemin ettim derken **Ich habe geschwört** yanlış. Doğrusu **Ich habe geschworen.** Bu kelime geçmişte **geschworen** olur."
    ],
    "examples": [
     {
@@ -6549,6 +6942,37 @@
    "freqRank": 688,
    "domains": [
     "gefuehle"
+   ],
+   "exp": {
+    "anlam_tr": "Söylediğinin doğru olduğuna yemin etmeyi söyler.",
+    "ne_zaman_tr": "Konuşmada birini inandırmak için sık kullanılır.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "Ich ___, ich war es nicht!",
+     "answer": "schwöre",
+     "tr": "Yemin ederim, ben değildim!",
+     "hint_tr": "**ich** ile **schwören**, **schwöre** olur."
+    },
+    {
+     "de": "___ du es?",
+     "answer": "Schwörst",
+     "tr": "Yemin eder misin?",
+     "hint_tr": "**du** ile **schwören**, **schwörst** olur."
+    },
+    {
+     "de": "Er ___, dass er nichts weiß.",
+     "answer": "schwört",
+     "tr": "Adam hiçbir şey bilmediğine yemin ediyor.",
+     "hint_tr": "**er** ile **schwören**, **schwört** olur."
+    },
+    {
+     "de": "Er hat ___, die Wahrheit zu sagen.",
+     "answer": "geschworen",
+     "tr": "Adam doğruyu söyleyeceğine yemin etti.",
+     "hint_tr": "**hat** ile **schwören**, **geschworen** olur."
+    }
    ]
   },
   {
@@ -6879,6 +7303,14 @@
     {
      "de": "der Kuss",
      "tr": "öpücük"
+    },
+    {
+     "de": "auf die Wange küssen",
+     "tr": "yanaktan öpmek"
+    },
+    {
+     "de": "Küsschen!",
+     "tr": "Öpücük!"
     }
    ],
    "patterns": [
@@ -6886,34 +7318,37 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Selamlaşmada Almanya'da yanaktan öpmek az yaygın; el sıkışma ya da sarılma daha sık.",
-    "İsim \"der Kuss\", çoğulu \"Küsse\"."
+    "Öpüşüyorlar derken **Sie küssen** yanlış. Doğrusu **Sie küssen sich.** Birbirlerini öptükleri için **sich** gelir."
    ],
    "examples": [
     {
      "id": "lx:küssen:1",
      "de": "Er hat sie geküsst.",
-     "tr": "Onu öptü.",
-     "layer": "hd"
+     "tr": "Adam kadını öptü.",
+     "layer": "hd",
+     "img": "couple kissing at train station"
     },
     {
      "id": "lx:küssen:2",
      "de": "Die beiden küssen sich.",
      "tr": "İkisi öpüşüyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "couple kissing in park"
     },
     {
      "id": "lx:küssen:3",
      "de": "Küsschen!",
      "tr": "Öpücük!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "mother blowing kiss to child"
     },
     {
      "id": "lx:küssen:4",
      "de": "– Habt ihr euch geküsst? – Das sag ich nicht!",
      "tr": "– Öpüştünüz mü? – Söylemem!",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "two teenagers talking shyly on bench"
     }
    ],
    "level": "B1",
@@ -6921,6 +7356,37 @@
    "freqRank": 692,
    "domains": [
     "gefuehle"
+   ],
+   "exp": {
+    "anlam_tr": "Dudaklarla birine sevgiyle dokunmayı, öpmeyi söyler.",
+    "parcalar": [],
+    "ipucu_tr": "İki kişi birbirini öpünce **sich küssen** denir."
+   },
+   "forms": [
+    {
+     "de": "Ich ___ dich.",
+     "answer": "küsse",
+     "tr": "Seni öpüyorum.",
+     "hint_tr": "**ich** ile **küssen**, **küsse** olur."
+    },
+    {
+     "de": "Er ___ seine Frau.",
+     "answer": "küsst",
+     "tr": "Adam karısını öpüyor.",
+     "hint_tr": "**er** ile **küssen**, **küsst** olur."
+    },
+    {
+     "de": "Die beiden ___ sich.",
+     "answer": "küssen",
+     "tr": "İkisi öpüşüyor.",
+     "hint_tr": "**die beiden** ile **küssen** aynı kalır."
+    },
+    {
+     "de": "Hast du sie ___?",
+     "answer": "geküsst",
+     "tr": "Kadını öptün mü?",
+     "hint_tr": "**hast** ile **küssen**, **geküsst** olur."
+    }
    ]
   },
   {
@@ -6984,7 +7450,7 @@
   {
    "id": "lx:erwischen",
    "de": "erwischen",
-   "tr": "yakalamak; yetişmek",
+   "tr": "yakalamak, yetişmek",
    "pos": "verb",
    "verb": {
     "praesens3": "erwischt",
@@ -7003,6 +7469,18 @@
     {
      "de": "erwischt werden",
      "tr": "yakalanmak"
+    },
+    {
+     "de": "Mich hat's erwischt.",
+     "tr": "Hastalandım."
+    },
+    {
+     "de": "jemanden erwischen",
+     "tr": "birini yakalamak"
+    },
+    {
+     "de": "den Zug gerade noch erwischen",
+     "tr": "trene son anda yetişmek"
     }
    ],
    "patterns": [
@@ -7010,34 +7488,38 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Konuşmada \"den Zug erwischen\" = trene yetişmek.",
-    "\"Mich hat's erwischt\" = Hastalık beni de yakaladı."
+    "Trene yetiştim derken **Ich habe den Zug geerwischt** yanlış. Doğrusu **Ich habe den Zug erwischt.** Bu kelimede başa **ge** gelmez.",
+    "Otobüse yetiştim derken **Ich habe dem Bus erwischt** yanlış. Doğrusu **Ich habe den Bus erwischt.** Yetişilen şey için **den** gelir."
    ],
    "examples": [
     {
      "id": "lx:erwischen:1",
      "de": "Ich habe den letzten Bus noch erwischt.",
      "tr": "Son otobüse yetiştim.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person running to catch last bus at night"
     },
     {
      "id": "lx:erwischen:2",
      "de": "Er wurde beim Schwarzfahren erwischt.",
      "tr": "Biletsiz binerken yakalandı.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "ticket inspector checking passengers on tram"
     },
     {
      "id": "lx:erwischen:3",
      "de": "Jetzt hat's mich auch erwischt, Grippe!",
-     "tr": "Şimdi beni de yakaladı, grip!",
-     "layer": "alltag"
+     "tr": "Şimdi ben de hastalandım, grip!",
+     "layer": "alltag",
+     "img": "sick person in bed with thermometer"
     },
     {
      "id": "lx:erwischen:4",
      "de": "– Hast du den Zug erwischt? – Ja, gerade so.",
      "tr": "– Trene yetiştin mi? – Evet, kıl payı.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "man boarding train as doors close"
     }
    ],
    "level": "B1",
@@ -7045,6 +7527,38 @@
    "freqRank": 694,
    "domains": [
     "verkehr"
+   ],
+   "exp": {
+    "anlam_tr": "Birini bir şey yaparken yakalamayı söyler.",
+    "ne_zaman_tr": "Konuşma dilinde sık duyulur.",
+    "parcalar": [],
+    "ipucu_tr": "Otobüse ya da trene yetişmek de **erwischen** ile söylenir."
+   },
+   "forms": [
+    {
+     "de": "Ich ___ den Bus noch.",
+     "answer": "erwische",
+     "tr": "Otobüse daha yetişirim.",
+     "hint_tr": "**ich** ile **erwischen**, **erwische** olur."
+    },
+    {
+     "de": "___ du den Zug noch?",
+     "answer": "Erwischst",
+     "tr": "Trene yetişiyor musun?",
+     "hint_tr": "**du** ile **erwischen**, **erwischst** olur."
+    },
+    {
+     "de": "Der Kontrolleur ___ ihn ohne Ticket.",
+     "answer": "erwischt",
+     "tr": "Kontrolör adamı biletsiz yakalıyor.",
+     "hint_tr": "**der Kontrolleur** ile **erwischen**, **erwischt** olur."
+    },
+    {
+     "de": "Ich habe den letzten Bus noch ___.",
+     "answer": "erwischt",
+     "tr": "Son otobüse yetiştim.",
+     "hint_tr": "**habe** ile **erwischen**, **erwischt** olur, başına **ge** gelmez."
+    }
    ]
   },
   {
@@ -7562,6 +8076,14 @@
     {
      "de": "Das ist kein Geheimnis.",
      "tr": "Bu sır değil."
+    },
+    {
+     "de": "ein Geheimnis für sich behalten",
+     "tr": "sır tutmak"
+    },
+    {
+     "de": "Das bleibt unser Geheimnis.",
+     "tr": "Bu aramızda kalsın."
     }
    ],
    "patterns": [
@@ -7569,8 +8091,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Nötr; çoğulu \"-nisse\" (çift s).",
-    "\"Kannst du ein Geheimnis für dich behalten?\" = Sır tutabilir misin?"
+    "Sır tutmak derken **ein Geheimnis halten** yanlış. Doğrusu **ein Geheimnis für sich behalten.**",
+    "Sırlar derken **die Geheimnise** yanlış. Doğrusu **die Geheimnisse.** Burada **s** iki kez yazılır."
    ],
    "examples": [
     {
@@ -7582,12 +8104,12 @@
     {
      "id": "lx:Geheimnis:2",
      "de": "Es ist kein Geheimnis, dass er gehen will.",
-     "tr": "Gitmek istediği sır değil.",
+     "tr": "Adamın gitmek istediği sır değil.",
      "layer": "hd"
     },
     {
      "id": "lx:Geheimnis:3",
-     "de": "Kannst du ein Geheimnis behalten?",
+     "de": "Kannst du ein Geheimnis für dich behalten?",
      "tr": "Sır tutabilir misin?",
      "layer": "alltag"
     },
@@ -7604,6 +8126,36 @@
    "freqRank": 701,
    "domains": [
     "gefuehle"
+   ],
+   "exp": {
+    "anlam_tr": "Başkalarının bilmemesi gereken bir bilgiyi, sırrı söyler.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ Geheimnis.",
+     "answer": "ein",
+     "tr": "Bu bir sır.",
+     "hint_tr": "**Das ist** dedikten sonra **ein Geheimnis** aynı kalır."
+    },
+    {
+     "de": "Kannst du ___ Geheimnis für dich behalten?",
+     "answer": "ein",
+     "tr": "Sır tutabilir misin?",
+     "hint_tr": "**behalten** ile **ein Geheimnis** aynı kalır, **einen** olmaz."
+    },
+    {
+     "de": "Ich verrate ___ Geheimnis nicht.",
+     "answer": "das",
+     "tr": "Sırrı söylemiyorum.",
+     "hint_tr": "Bildiğimiz sır: **das Geheimnis**."
+    },
+    {
+     "de": "Jeder Mensch hat ___.",
+     "answer": "Geheimnisse",
+     "tr": "Her insanın sırları var.",
+     "hint_tr": "Birden çok sır: **Geheimnisse**, **s** iki kez yazılır."
+    }
    ]
   },
   {
@@ -7705,7 +8257,15 @@
     },
     {
      "de": "heilig sein",
-     "tr": "kutsal olmak, dokunulmaz olmak"
+     "tr": "kutsal olmak"
+    },
+    {
+     "de": "ein heiliger Ort",
+     "tr": "kutsal bir yer"
+    },
+    {
+     "de": "Das ist mir heilig.",
+     "tr": "Bu benim için kutsal."
     }
    ],
    "patterns": [
@@ -7713,8 +8273,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "İsimleşince büyük harf: \"der/die Heilige\" (aziz); sıfat küçük harf.",
-    "Ünlem \"Heilige Scheiße!\" kabadır; filmlerde duyulur."
+    "Pazar benim için kutsal derken **Der Sonntag ist mir Heilig** yanlış. Doğrusu küçük harfle **Der Sonntag ist mir heilig.**"
    ],
    "examples": [
     {
@@ -7749,6 +8308,31 @@
    "domains": [
     "freizeit",
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Din için ya da bir kişi için çok değerli, dokunulmaz olanı söyler.",
+    "parcalar": [],
+    "ipucu_tr": "**Heiligabend** Noel arifesi, yani 24 Aralık akşamıdır."
+   },
+   "forms": [
+    {
+     "de": "Der Sonntag ist mir ___.",
+     "answer": "heilig",
+     "tr": "Pazar günü benim için kutsal.",
+     "hint_tr": "Benim için kutsal: **ist mir heilig**."
+    },
+    {
+     "de": "Am ___ feiern wir zusammen.",
+     "answer": "Heiligabend",
+     "tr": "Noel arifesinde birlikte kutlarız.",
+     "hint_tr": "Noel arifesi: **Heiligabend**, tek kelime ve büyük harfle."
+    },
+    {
+     "de": "Das ist ein ___ Ort.",
+     "answer": "heiliger",
+     "tr": "Bu kutsal bir yer.",
+     "hint_tr": "**ein** ile **Ort** arasında **heiliger** olur."
+    }
    ]
   },
   {

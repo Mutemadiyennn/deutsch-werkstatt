@@ -342,6 +342,14 @@
     {
      "de": "Lüg mich nicht an!",
      "tr": "Bana yalan söyleme!"
+    },
+    {
+     "de": "die Lüge",
+     "tr": "yalan"
+    },
+    {
+     "de": "jemanden anlügen",
+     "tr": "birine yalan söylemek"
     }
    ],
    "patterns": [
@@ -349,8 +357,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kişiye yalan söylemek \"anlügen\": \"Er hat mich angelogen\".",
-    "Perfekt \"gelogen\" (düzensiz)."
+    "Yalan söyledi derken **Er hat gelügt** yanlış. Doğrusu **Er hat gelogen.** Bu kelime geçmişte **gelogen** olur.",
+    "Bana yalan söyledi derken **Er hat mir gelogen** yanlış. Doğrusu **Er hat mich angelogen.** Birine yalan söylemek **anlügen** ile söylenir ve **mich** gelir."
    ],
    "examples": [
     {
@@ -384,6 +392,37 @@
    "freqRank": 400,
    "domains": [
     "gefuehle"
+   ],
+   "exp": {
+    "anlam_tr": "Bile bile doğru olmayan bir şey söylemeyi anlatır.",
+    "parcalar": [],
+    "ipucu_tr": "Birine yalan söylemek için **anlügen** denir: **Er hat mich angelogen** bana yalan söyledi."
+   },
+   "forms": [
+    {
+     "de": "Ich ___ nicht!",
+     "answer": "lüge",
+     "tr": "Yalan söylemiyorum!",
+     "hint_tr": "**ich** ile **lügen**, **lüge** olur."
+    },
+    {
+     "de": "Du ___!",
+     "answer": "lügst",
+     "tr": "Yalan söylüyorsun!",
+     "hint_tr": "**du** ile **lügen**, **lügst** olur."
+    },
+    {
+     "de": "Er ___ immer.",
+     "answer": "lügt",
+     "tr": "Adam hep yalan söylüyor.",
+     "hint_tr": "**er** ile **lügen**, **lügt** olur."
+    },
+    {
+     "de": "Hast du ___?",
+     "answer": "gelogen",
+     "tr": "Yalan mı söyledin?",
+     "hint_tr": "**hast** ile **lügen**, **gelogen** olur."
+    }
    ]
   },
   {
@@ -2641,7 +2680,7 @@
   {
    "id": "lx:schießen",
    "de": "schießen",
-   "tr": "ateş etmek; şut çekmek",
+   "tr": "ateş etmek, şut çekmek, gol atmak",
    "pos": "verb",
    "verb": {
     "praesens3": "schießt",
@@ -2657,6 +2696,14 @@
     {
      "de": "ein Foto schießen",
      "tr": "fotoğraf çekmek"
+    },
+    {
+     "de": "aufs Tor schießen",
+     "tr": "kaleye şut çekmek"
+    },
+    {
+     "de": "in die Luft schießen",
+     "tr": "havaya ateş etmek"
     }
    ],
    "patterns": [
@@ -2664,34 +2711,37 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Futbolda \"ein Tor schießen\" = gol atmak; \"ein Tor machen\" de olur.",
-    "Konuşmada \"ein Foto schießen\" = fotoğraf çekmek."
+    "Golü attı derken **Er hat das Tor geschießt** yanlış. Doğrusu **Er hat das Tor geschossen.** Bu kelime geçmişte **geschossen** olur."
    ],
    "examples": [
     {
      "id": "lx:schießen:1",
      "de": "Wer hat das Tor geschossen?",
      "tr": "Golü kim attı?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "football player scoring goal"
     },
     {
      "id": "lx:schießen:2",
      "de": "Die Polizei hat nicht geschossen.",
      "tr": "Polis ateş etmedi.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "police officers standing beside patrol car"
     },
     {
      "id": "lx:schießen:3",
      "de": "Schieß mal 'n Foto von uns!",
      "tr": "Bizim bir fotoğrafımızı çeksene!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "friends taking group photo outdoors"
     },
     {
      "id": "lx:schießen:4",
      "de": "– Wie steht's? – Eins zu null, Müller hat geschossen.",
      "tr": "– Skor ne? – Bir sıfır, Müller attı.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "football stadium scoreboard"
     }
    ],
    "level": "B1",
@@ -2700,6 +2750,38 @@
    "domains": [
     "sport",
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Silahla ateş etmeyi söyler.",
+    "ne_zaman_tr": "Haberde, polisiyede ve futbol yorumunda sık duyulur.",
+    "parcalar": [],
+    "ipucu_tr": "Futbolda **aufs Tor schießen** şut çekmek, **ein Tor schießen** gol atmaktır."
+   },
+   "forms": [
+    {
+     "de": "Ich ___ aufs Tor.",
+     "answer": "schieße",
+     "tr": "Kaleye şut çekiyorum.",
+     "hint_tr": "**ich** ile **schießen**, **schieße** olur."
+    },
+    {
+     "de": "Warum ___ du nicht?",
+     "answer": "schießt",
+     "tr": "Neden şut çekmiyorsun?",
+     "hint_tr": "**du** ile **schießen**, **schießt** olur."
+    },
+    {
+     "de": "Er ___ mit dem linken Fuß.",
+     "answer": "schießt",
+     "tr": "Adam sol ayakla şut çekiyor.",
+     "hint_tr": "**er** ile **schießen**, **schießt** olur."
+    },
+    {
+     "de": "Die Polizei hat nicht ___.",
+     "answer": "geschossen",
+     "tr": "Polis ateş etmedi.",
+     "hint_tr": "**hat** ile **schießen**, **geschossen** olur."
+    }
    ]
   },
   {
@@ -3147,6 +3229,14 @@
     {
      "de": "Schrei nicht so!",
      "tr": "Bu kadar bağırma!"
+    },
+    {
+     "de": "jemanden anschreien",
+     "tr": "birine bağırmak"
+    },
+    {
+     "de": "laut schreien",
+     "tr": "yüksek sesle bağırmak"
     }
    ],
    "patterns": [
@@ -3154,34 +3244,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Perfekt \"geschrien\" (düzensiz); \"geschreit\" yanlış.",
-    "\"rufen\" seslenmek, \"schreien\" bağırmak/çığlık."
+    "Bağırdı derken **Er hat geschreit** yanlış. Doğrusu **Er hat geschrien.** Bu kelime geçmişte **geschrien** olur.",
+    "Bana bağırma derken **Schrei nicht zu mir!** yanlış. Doğrusu **Schrei mich nicht an!** Birine bağırmak **anschreien** ile söylenir, **mich** gelir."
    ],
    "examples": [
     {
      "id": "lx:schreien:1",
      "de": "Das Baby schreit die ganze Nacht.",
-     "tr": "Bebek bütün gece ağlıyor.",
-     "layer": "hd"
+     "tr": "Bebek bütün gece çığlık çığlığa ağlıyor.",
+     "layer": "hd",
+     "img": "crying baby in crib at night"
     },
     {
      "id": "lx:schreien:2",
      "de": "Jemand hat um Hilfe geschrien.",
      "tr": "Biri yardım için bağırdı.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "woman shouting for help on street"
     },
     {
      "id": "lx:schreien:3",
      "de": "Schrei mich nicht an!",
      "tr": "Bana bağırma!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "angry man shouting"
     },
     {
      "id": "lx:schreien:4",
      "de": "– Warum schreist du so? – Sorry, ich bin sauer.",
      "tr": "– Neden bu kadar bağırıyorsun? – Pardon, kızgınım.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "couple arguing in kitchen"
     }
    ],
    "level": "B1",
@@ -3190,6 +3284,37 @@
    "domains": [
     "gefuehle",
     "notfall"
+   ],
+   "exp": {
+    "anlam_tr": "Çok yüksek sesle bağırmayı, çığlık atmayı söyler.",
+    "ne_zaman_tr": "Kızgınken, korkunca ya da yardım isterken kullanılır.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "Ich ___ nicht!",
+     "answer": "schreie",
+     "tr": "Bağırmıyorum!",
+     "hint_tr": "**ich** ile **schreien**, **schreie** olur."
+    },
+    {
+     "de": "Warum ___ du so?",
+     "answer": "schreist",
+     "tr": "Neden bu kadar bağırıyorsun?",
+     "hint_tr": "**du** ile **schreien**, **schreist** olur."
+    },
+    {
+     "de": "Das Baby ___ die ganze Nacht.",
+     "answer": "schreit",
+     "tr": "Bebek bütün gece çığlık çığlığa ağlıyor.",
+     "hint_tr": "**das Baby** ile **schreien**, **schreit** olur."
+    },
+    {
+     "de": "Jemand hat um Hilfe ___.",
+     "answer": "geschrien",
+     "tr": "Biri yardım için bağırdı.",
+     "hint_tr": "**hat** ile **schreien**, **geschrien** olur."
+    }
    ]
   },
   {
@@ -4101,6 +4226,14 @@
     {
      "de": "gegen etwas kämpfen",
      "tr": "bir şeye karşı savaşmak"
+    },
+    {
+     "de": "gut kämpfen",
+     "tr": "iyi mücadele etmek"
+    },
+    {
+     "de": "gegen die Krankheit kämpfen",
+     "tr": "hastalıkla mücadele etmek"
     }
    ],
    "patterns": [
@@ -4108,8 +4241,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"für\" ve \"gegen\" Akkusativ ister.",
-    "Spor yorumlarında sık: \"Die Mannschaft hat gut gekämpft\"."
+    "İyi mücadele ettiler derken **Sie sind gut gekämpft** yanlış. Doğrusu **Sie haben gut gekämpft.**"
    ],
    "examples": [
     {
@@ -4144,6 +4276,38 @@
    "domains": [
     "sport",
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Bir şey için ya da bir şeye karşı mücadele etmeyi söyler.",
+    "ne_zaman_tr": "Sporda, hastalıkta ve iş hayatında sık duyulur.",
+    "parcalar": [],
+    "ipucu_tr": "Savaşta askerler için de **kämpfen** denir."
+   },
+   "forms": [
+    {
+     "de": "Ich ___ für meine Familie.",
+     "answer": "kämpfe",
+     "tr": "Ailem için mücadele ediyorum.",
+     "hint_tr": "**ich** ile **kämpfen**, **kämpfe** olur."
+    },
+    {
+     "de": "Er ___ gegen die Krankheit.",
+     "answer": "kämpft",
+     "tr": "Adam hastalıkla mücadele ediyor.",
+     "hint_tr": "**er** ile **kämpfen**, **kämpft** olur."
+    },
+    {
+     "de": "Wir ___ für bessere Löhne.",
+     "answer": "kämpfen",
+     "tr": "Daha iyi maaşlar için mücadele ediyoruz.",
+     "hint_tr": "**wir** ile **kämpfen** aynı kalır."
+    },
+    {
+     "de": "Sie haben gut ___.",
+     "answer": "gekämpft",
+     "tr": "İyi mücadele ettiler.",
+     "hint_tr": "**haben** ile **kämpfen**, **gekämpft** olur."
+    }
    ]
   },
   {
@@ -4270,6 +4434,14 @@
     {
      "de": "Verstecken spielen",
      "tr": "saklambaç oynamak"
+    },
+    {
+     "de": "Geld verstecken",
+     "tr": "para saklamak"
+    },
+    {
+     "de": "das Geschenk verstecken",
+     "tr": "hediyeyi saklamak"
     }
    ],
    "patterns": [
@@ -4277,34 +4449,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Saklanmak dönüşlü: \"Das Kind versteckt sich\".",
-    "Oyun: \"Verstecken spielen\" = saklambaç."
+    "Saklanıyorum derken **Ich verstecke** yanlış. Doğrusu **Ich verstecke mich.** Saklanan kendin olduğun için **mich** de söylenir.",
+    "Sakladım derken **Ich habe es geversteckt** yanlış. Doğrusu **Ich habe es versteckt.** Bu kelimede başa **ge** gelmez."
    ],
    "examples": [
     {
      "id": "lx:verstecken:1",
      "de": "Wo hast du das Geschenk versteckt?",
      "tr": "Hediyeyi nereye sakladın?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "wrapped gift hidden in closet"
     },
     {
      "id": "lx:verstecken:2",
      "de": "Die Katze versteckt sich unter dem Bett.",
      "tr": "Kedi yatağın altına saklanıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "cat hiding under bed"
     },
     {
      "id": "lx:verstecken:3",
      "de": "Versteck dich nicht!",
      "tr": "Saklanma!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "child hiding behind curtain"
     },
     {
      "id": "lx:verstecken:4",
      "de": "– Wo ist der Schlüssel? – Unter der Matte versteckt.",
-     "tr": "– Anahtar nerede? – Paspasın altına saklı.",
+     "tr": "– Anahtar nerede? – Paspasın altında saklı.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "house key under doormat"
     }
    ],
    "level": "B1",
@@ -4313,6 +4489,43 @@
    "domains": [
     "medien",
     "freizeit"
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyi kimse bulmasın diye gizli bir yere koymayı söyler.",
+    "parcalar": [],
+    "ipucu_tr": "Kendin saklanınca **sich verstecken** denir: **Ich verstecke mich** saklanıyorum."
+   },
+   "forms": [
+    {
+     "de": "Ich ___ das Geschenk im Schrank.",
+     "answer": "verstecke",
+     "tr": "Hediyeyi dolaba saklıyorum.",
+     "hint_tr": "**ich** ile **verstecken**, **verstecke** olur."
+    },
+    {
+     "de": "Wo ___ du das Geld?",
+     "answer": "versteckst",
+     "tr": "Parayı nereye saklıyorsun?",
+     "hint_tr": "**du** ile **verstecken**, **versteckst** olur."
+    },
+    {
+     "de": "Die Katze ___ sich unter dem Bett.",
+     "answer": "versteckt",
+     "tr": "Kedi yatağın altına saklanıyor.",
+     "hint_tr": "**die Katze** ile **verstecken**, **versteckt** olur."
+    },
+    {
+     "de": "Wo hast du den Schlüssel ___?",
+     "answer": "versteckt",
+     "tr": "Anahtarı nereye sakladın?",
+     "hint_tr": "**hast** ile **verstecken**, **versteckt** olur, başına **ge** gelmez."
+    },
+    {
+     "de": "Das Kind versteckt ___.",
+     "answer": "sich",
+     "tr": "Çocuk saklanıyor.",
+     "hint_tr": "Çocuk kendini sakladığı için **versteckt sich** denir."
+    }
    ]
   },
   {
@@ -6297,6 +6510,14 @@
     {
      "de": "auf dem Schiff",
      "tr": "gemide"
+    },
+    {
+     "de": "das Schiff nehmen",
+     "tr": "gemiye binmek"
+    },
+    {
+     "de": "Das Schiff legt ab.",
+     "tr": "Gemi kalkıyor."
     }
    ],
    "patterns": [
@@ -6304,34 +6525,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Nötr: \"das Schiff\"; küçük tekne \"das Boot\".",
-    "Gemide olmak \"auf dem Schiff\" (\"im Schiff\" daha az)."
+    "Gemiyle gidiyoruz derken **Wir fahren mit Schiff** yanlış. Doğrusu **Wir fahren mit dem Schiff.** Araya **dem** girer.",
+    "Gemiler derken **die Schiffen** yanlış. Doğrusu **die Schiffe.** Birden çok gemide sona yalnızca **e** gelir."
    ],
    "examples": [
     {
      "id": "lx:Schiff:1",
      "de": "Wir fahren mit dem Schiff über den See.",
      "tr": "Gölü gemiyle geçiyoruz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "passenger boat crossing alpine lake"
     },
     {
      "id": "lx:Schiff:2",
      "de": "Das Schiff fährt um zehn ab.",
      "tr": "Gemi onda kalkıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "ship leaving harbor pier"
     },
     {
      "id": "lx:Schiff:3",
      "de": "Mir wird auf dem Schiff immer schlecht.",
      "tr": "Gemide hep midem bulanır.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "seasick woman on ship deck"
     },
     {
      "id": "lx:Schiff:4",
      "de": "– Fliegt ihr? – Nein, wir nehmen das Schiff.",
      "tr": "– Uçakla mı gidiyorsunuz? – Hayır, gemiyle gidiyoruz.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "travelers boarding ferry with luggage"
     }
    ],
    "level": "A2",
@@ -6340,6 +6565,43 @@
    "domains": [
     "verkehr",
     "freizeit"
+   ],
+   "exp": {
+    "anlam_tr": "Denizde, gölde ya da nehirde giden büyük gemiyi söyler.",
+    "parcalar": [],
+    "ipucu_tr": "Küçük tekneye **das Boot** denir."
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ großes Schiff.",
+     "answer": "ein",
+     "tr": "Bu büyük bir gemi.",
+     "hint_tr": "**Das ist** dedikten sonra **ein Schiff** aynı kalır: **ein großes Schiff**."
+    },
+    {
+     "de": "Wir nehmen ___ Schiff um zehn.",
+     "answer": "das",
+     "tr": "Saat ondaki gemiye biniyoruz.",
+     "hint_tr": "Bildiğimiz gemi: **das Schiff**."
+    },
+    {
+     "de": "Wir fahren mit ___ Schiff über den See.",
+     "answer": "dem",
+     "tr": "Gölü gemiyle geçiyoruz.",
+     "hint_tr": "Gemiyle gitmek: **mit dem Schiff fahren**."
+    },
+    {
+     "de": "Ich war noch nie auf ___ Schiff.",
+     "answer": "einem",
+     "tr": "Hiç gemide bulunmadım.",
+     "hint_tr": "Herhangi bir gemi: **auf einem Schiff**."
+    },
+    {
+     "de": "Im Hafen liegen viele ___.",
+     "answer": "Schiffe",
+     "tr": "Limanda çok gemi var.",
+     "hint_tr": "Birden çok gemi: **Schiffe**."
+    }
    ]
   },
   {
@@ -7070,18 +7332,26 @@
   {
    "id": "lx:Arsch",
    "de": "Arsch",
-   "tr": "(kaba) kıç",
+   "tr": "kıç",
    "pos": "noun",
    "art": "der",
    "pl": "Ärsche",
    "collocations": [
     {
      "de": "am Arsch sein",
-     "tr": "mahvolmuş olmak (kaba)"
+     "tr": "mahvolmuş olmak"
     },
     {
      "de": "Leck mich am Arsch!",
-     "tr": "(çok kaba hakaret)"
+     "tr": "Canın cehenneme!"
+    },
+    {
+     "de": "sich den Arsch abfrieren",
+     "tr": "soğuktan kıçı donmak"
+    },
+    {
+     "de": "am Arsch der Welt",
+     "tr": "ıssız, çok uzak bir yerde"
     }
    ],
    "patterns": [
@@ -7089,14 +7359,13 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Kaba bir kelimedir; filmde ve sokakta sık duyulur ama doktorda \"Po\" ya da \"Gesäß\" denir.",
-    "\"Leck mich …\" kalıbı ağır hakarettir; anlaman yeter, kullanma."
+    "Kıç üstü düştüm derken **Ich bin auf dem Arsch gefallen** yanlış. Doğrusu **Ich bin auf den Arsch gefallen.** Düşülen yer için **den** gelir."
    ],
    "examples": [
     {
      "id": "lx:Arsch:1",
-     "de": "Beim Arzt sagt man „Po“, nicht „Arsch“.",
-     "tr": "Doktorda \"Arsch\" değil \"Po\" denir.",
+     "de": "Er ist auf den Arsch gefallen.",
+     "tr": "Adam kıç üstü düştü.",
      "layer": "hd"
     },
     {
@@ -7108,7 +7377,7 @@
     {
      "id": "lx:Arsch:3",
      "de": "Ich hab mir den Arsch abgefroren!",
-     "tr": "Soğuktan donup kaldım!",
+     "tr": "Soğuktan kıçım dondu!",
      "layer": "alltag"
     },
     {
@@ -7125,6 +7394,26 @@
    "domains": [
     "gefuehle",
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Kıçı kaba bir dille söyler.",
+    "ne_zaman_tr": "Kabadır, sokakta ve filmlerde duyulur.",
+    "parcalar": [],
+    "ipucu_tr": "Doktorda kibar kelime **der Po** kullanılır."
+   },
+   "forms": [
+    {
+     "de": "Ich habe mir ___ Arsch abgefroren.",
+     "answer": "den",
+     "tr": "Soğuktan kıçım dondu.",
+     "hint_tr": "**Ich habe mir** dedikten sonra **der Arsch**, **den Arsch** olur."
+    },
+    {
+     "de": "Er ist auf ___ Arsch gefallen.",
+     "answer": "den",
+     "tr": "Adam kıç üstü düştü.",
+     "hint_tr": "**auf** ile düşülen yer için **der Arsch**, **den Arsch** olur."
+    }
    ]
   },
   {
@@ -7136,12 +7425,20 @@
    "pl": "Könige",
    "collocations": [
     {
-     "de": "der König von …",
-     "tr": "…-in kralı"
+     "de": "der König von Bayern",
+     "tr": "Bavyera kralı"
     },
     {
      "de": "König Ludwig",
      "tr": "Kral Ludwig"
+    },
+    {
+     "de": "Der Kunde ist König.",
+     "tr": "Müşteri kraldır."
+    },
+    {
+     "de": "wie ein König leben",
+     "tr": "kral gibi yaşamak"
     }
    ],
    "patterns": [
@@ -7149,34 +7446,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kral ve kraliçe ayrı kelimelerdir: \"der König\" / \"die Königin\"; \"die König\" yanlış.",
-    "Çoğulu \"Könige\"; dişil \"Königin\"."
+    "Kraliçe derken **die König** yanlış. Doğrusu **die Königin.** Kadın olduğu için sona **in** gelir.",
+    "Krallar derken **die Königen** yanlış. Doğrusu **die Könige.** Birden çok kralda sona yalnızca **e** gelir."
    ],
    "examples": [
     {
      "id": "lx:König:1",
      "de": "Das Schloss gehörte einem König.",
      "tr": "Şato bir krala aitti.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "old castle on hill"
     },
     {
      "id": "lx:König:2",
      "de": "Der Kunde ist König.",
-     "tr": "Müşteri her zaman haklıdır.",
-     "layer": "hd"
+     "tr": "Müşteri kraldır.",
+     "layer": "hd",
+     "img": "shop assistant serving smiling customer"
     },
     {
      "id": "lx:König:3",
      "de": "Ich fühl mich wie ein König!",
      "tr": "Kendimi kral gibi hissediyorum!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "man wearing paper crown at party"
     },
     {
      "id": "lx:König:4",
      "de": "– Wer hat das Schloss gebaut? – König Ludwig der Zweite.",
      "tr": "– Şatoyu kim yaptırdı? – Kral II. Ludwig.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "tourists on guided castle tour"
     }
    ],
    "level": "B1",
@@ -7185,6 +7486,43 @@
    "domains": [
     "medien",
     "freizeit"
+   ],
+   "exp": {
+    "anlam_tr": "Bir ülkeyi yöneten kralı söyler.",
+    "parcalar": [],
+    "ipucu_tr": "Kadın olursa **die Königin** kraliçe denir."
+   },
+   "forms": [
+    {
+     "de": "Das Schloss gehörte ___ König.",
+     "answer": "einem",
+     "tr": "Şato bir krala aitti.",
+     "hint_tr": "**gehörte** dedikten sonra **ein König**, **einem König** olur."
+    },
+    {
+     "de": "Ich fühle mich wie ___ König.",
+     "answer": "ein",
+     "tr": "Kendimi kral gibi hissediyorum.",
+     "hint_tr": "**wie** dedikten sonra **ein König** aynı kalır."
+    },
+    {
+     "de": "___ König wohnte im Schloss.",
+     "answer": "Der",
+     "tr": "Kral şatoda yaşıyordu.",
+     "hint_tr": "Bildiğimiz kral: **der König**."
+    },
+    {
+     "de": "Der Kunde ist ___.",
+     "answer": "König",
+     "tr": "Müşteri kraldır.",
+     "hint_tr": "Müşteri kraldır: **Der Kunde ist König**, önüne **ein** gelmez."
+    },
+    {
+     "de": "Das Land hatte drei ___.",
+     "answer": "Könige",
+     "tr": "Ülkenin üç kralı vardı.",
+     "hint_tr": "Birden çok kral: **Könige**."
+    }
    ]
   },
   {
