@@ -76,6 +76,14 @@ Cümle cümle çalışma (c), 0,75× hız ve dokununca kart (e) oynatıcının i
 
 ## Kurallar
 - **Öğretmeden isteme yok:** öğrenciden istenen her kelime o güne kadarki `dersler` ve `yeni_kartlar` içinde olmalı.
-- Dinlenen metinde en çok %10 bilinmeyen kelime olabilir; anlama sorusu bilinmeyene dayanmaz.
+- Dinlenen metinde en çok %5 bilinmeyen kelime olabilir (OD-0); anlama sorusu bilinmeyene dayanmaz.
 - Yazma görevi çevrimdışı denetlenir: zorunlu kelime ve kalıp kontrolü, ardından `ornek_de` ve 3 maddelik `kontrol_tr` (PM-054.5).
 - Türkçe metinler OD-9 kurallarına uyar. Öğrenci adı ve cinsiyeti yer tutucudur.
+
+## Pilotun netleştirdikleri (gün 1–2, denetim: `m1audit.ts`)
+- **`kanit`:** `ana_fikir`, `ayrinti`, `eylem` ve okuma sorularında zorunlu ek alan. Cevabın dayandığı cümlelerin kimlikleri (okumada 0'dan başlayan cümle sırası). Bu cümlelerde bilinmeyen kelime olamaz.
+- **Dikte merdiveni:** `kolay` doğru seçeneği cümlede geçer, çeldiriciler geçmez. `orta` yalnızca boşluktaki kelimeyi ister. `zor` ve `usta` tek cümle yazdırır; `banka` cevabın kelimeleri ve en az 2 çeldiricidir. Yazdırılan kelime kartın örnek cümlesinden gelemez; ders ya da kartın kendisi ve eşdizimi gerekir.
+- **Dikte `accepted`:** aynı metnin en az 3 yazımı (büyük/küçük harf, noktalama, ümlaut). Başka kelime kabul edilmez.
+- **Kimlikler:** `cevapla` ve `eylem` genel kimlik taşır (`m1:01:a1:c1`, `m1:01:a1:e1`). `b1`, `d1` gibi kimlikler üst öğesinin içinde geçerlidir.
+- **`accepted_kaliplar`:** `___` serbest yuvadır (`Ich habe im ___ Urlaub.`). `ornek_de` içindeki her cümle bir kalıba uyar.
+- **`zorunlu`:** düz metin, kalın işareti yok. Tam kelime ya da kelime grubu olarak aranır.
