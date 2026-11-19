@@ -82,7 +82,7 @@ export function OkumaEkrani({ day }: { day: number }) {
         <section class="card stack fade" data-test="okuma-bitti">
           <h2>{o.tur === "yazma" ? "Mesajın hazır" : "Okuma bitti"}</h2>
           {o.sorular.length > 0 && <p>{o.sorular.length} soruda {dogru} doğru.</p>}
-          {yazmaVar && kontrol && <p class="small">{kontrol.tamam ? "Gereken kelimeleri ve kalıpları kullandın." : "Bir dahaki sefere gereken kelimelerin hepsini kullanmayı dene."}</p>}
+          {yazmaVar && kontrol && <p class="small">{kontrol.tamam ? "Gereken kelimeleri ve kalıpları kullandın." : kontrol.eksik.length ? "Bir dahaki sefere gereken kelimelerin hepsini kullanmayı dene." : "Kelimeleri kullandın; bir dahaki sefere onları öğrendiğin kalıplarla kur."}</p>}
           <div class="row"><a class="btn primary grow" href="#/today" data-test="okuma-sonraki">Sıradaki adım</a>
             <button class="btn grow" onClick={() => { setDogru(0); setYazi(""); setKontrol(null); setOnce(true); git({ a: "metin" }); }}>Baştan</button></div>
         </section>
@@ -125,7 +125,9 @@ function Yaz({ o, yazi, setYazi, kontrol, setKontrol, onNext }: { o: OkumaYazmaT
       {kontrol && (
         <div class="stack" style={{ gap: 6 }} data-test="yazi-kontrol">
           {kontrol.eksik.length > 0 && <FeedbackBand kind="bad" title="Eksik kelime">{kontrol.eksik.map((z, i) => <>{i > 0 && ", "}<b lang="de">{z}</b></>)} yok. Ekleyip tekrar kontrol et.</FeedbackBand>}
-          {kontrol.eksik.length === 0 && kontrol.kalipli > 0 && <FeedbackBand kind="ok" title="Gereken kelimeler tamam.">{kontrol.toplam} cümlenin {kontrol.kalipli} tanesi öğrendiğin kalıplara uyuyor.</FeedbackBand>}
+          {/* yeşil bant yalnızca "tamam"da: zorunlu kelimeler kalıba uyan cümlelerin sabit kısmında (inceleme #70 2. tur P2-A) */}
+          {kontrol.tamam && <FeedbackBand kind="ok" title="Gereken kelimeler tamam.">{kontrol.toplam} cümlenin {kontrol.kalipli} tanesi öğrendiğin kalıplara uyuyor.</FeedbackBand>}
+          {!kontrol.tamam && kontrol.eksik.length === 0 && <FeedbackBand kind="info" title="Kelimeler var, ama kalıba uyan cümlede değil">Gereken kelimeleri öğrendiğin bir kalıbın içinde kullan; örnek cevaba bakabilirsin.</FeedbackBand>}
           {kontrol.taninmayan.length > 0 && <FeedbackBand kind="info" title="Bunları kontrol edemedim">
             {kontrol.taninmayan.map((c) => <div lang="de">{c}</div>)}
             <div>Yanlış demek değil; örnek cevapla karşılaştır.</div></FeedbackBand>}
