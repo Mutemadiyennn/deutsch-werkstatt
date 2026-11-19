@@ -330,6 +330,36 @@ export function accepted(l: Lexeme, t: QType, formIdx = 0): string[] {
 }
 export function formFor(l: Lexeme, t: QType, i = 0) { const list = t === "gap" ? otherForms(l) : verbForms(l); return list.length ? list[i % list.length] : undefined; }
 
+/**
+ * PM-069 P0 ("öğretilmeden isteme yok"): boşluğun cevabı öğrenciye gösterilmiş mi?
+ * Cevabın her kelimesi şunlardan birinde olmalı: kartın kendi kelimesi ve çekimleri (gövde eşleşmesi), kartın eşdizimleri
+ * (tanıtım kartında hepsi gösterilir), öğrencinin daha önce gördüğü (tanıtılmış) kartların kelimeleri (`gorulen`).
+ */
+export function cevapGosterildi(l: Lexeme, cevap: string, gorulen: Set<string> = new Set()): boolean {
+  const kelimeler = tokens(cevap.toLowerCase().replace(/\s*…\s*/g, " "));
+  if (!kelimeler.length) return false;
+  const kendi = (x: string) => ownSentenceCheck(l, `${x} x x`) === "ok";
+  const eszizim = new Set(l.collocations.flatMap((c) => tokens(c.de.toLowerCase())));
+  return kelimeler.every((x) => kendi(x) || eszizim.has(x) || gorulen.has(x));
+}
+/**
+ * Sorulabilir boşluk: `i`'den başlayarak cevabı gösterilmiş ilk biçim; hiçbiri yoksa null (soru türü değişir).
+ */
+export function ogretilmisForm(l: Lexeme, t: QType, i = 0, gorulen: Set<string> = new Set()): number | null {
+  const list = t === "gap" ? otherForms(l) : verbForms(l);
+  for (let d = 0; d < list.length; d++) {
+    const k = (i + d) % list.length;
+    if (cevapGosterildi(l, list[k]!.answer, gorulen)) return k;
+  }
+  return null;
+}
+/** Öğrencinin gördüğü kelimeler: tanıtılmış kartların başlık kelimeleri (artikel dahil), küçük harf */
+export function gorulenKelimeler(lex: Map<string, Lexeme>, tanitilan: Iterable<string>): Set<string> {
+  const g = new Set<string>();
+  for (const id of tanitilan) { const x = lex.get(id); if (!x) continue; for (const w of tokens(`${x.art ?? ""} ${x.de}`.toLowerCase())) g.add(w); }
+  return g;
+}
+
 /** Ayrılabilir fiil önekleri (absagen → sage … ab) */
 const SEP = ["ab", "an", "auf", "aus", "bei", "ein", "fest", "fort", "her", "hin", "los", "mit", "nach", "vor", "weg", "zu", "zurück", "zusammen"];
 /**

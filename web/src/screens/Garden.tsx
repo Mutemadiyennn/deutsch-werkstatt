@@ -14,7 +14,7 @@ import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { XP, seri, yerelGun } from "../core/gun.ts";
 import { getMeta, itemsMap, personalWords, putItems, setMeta } from "../data/db.ts";
 import { hizliGecis, review, sessionKey, type Outcome } from "../core/srs.ts";
-import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
+import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, ogretilmisForm, gorulenKelimeler, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { umlautEksik } from "../core/esdeger.ts";
 import { judgeWord, numberWordHint } from "../core/grading.ts";
@@ -194,16 +194,17 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       {hizli && <div class="small bilgi-bant" data-test={hizli === "tespit" ? "hizli-tespit" : "hizli-ogrenci"}>
         <span class="grow" data-test="hizli-bant-metin">{tanitimda ? "Bu kelimeyi birlikte öğreniyoruz; sınama sıradaki yeni kelimede sürüyor." : i === 0 && hizli === "tespit" ? "İlk haftayı senin hızında geçelim: bildiğin kelimeyi Almanca yazarak kanıtla, geç." : "Bugünün yeni kelimelerini sınıyoruz."}</span>
         <button class="linkbtn" data-test="hizli-kapat" onClick={() => void normaleDon()}>Normal akışa dön</button></div>}
-      <Question key={`${i}:${q.lexId}:${q.type}:${q.sina ? 1 : 0}`} q={q} l={l} all={data.all} yakin={data.yakin} onDone={(...a) => { setCevapVar(false); return finish(...a); }} onCevap={() => setCevapVar(true)} onTanitim={() => setTanitimda(true)} onSina={q.intro && !q.retry && !hizli ? () => void tanitimdaSina() : undefined} />
+      <Question key={`${i}:${q.lexId}:${q.type}:${q.sina ? 1 : 0}`} q={q} l={l} all={data.all} yakin={data.yakin} gorulen={gorulenKelimeler(data.lex, data.items.keys())} onDone={(...a) => { setCevapVar(false); return finish(...a); }} onCevap={() => setCevapVar(true)} onTanitim={() => setTanitimda(true)} onSina={q.intro && !q.retry && !hizli ? () => void tanitimdaSina() : undefined} />
     </div>
   );
 }
 
-function Question({ q, l, all, yakin, onDone: bitir, onSina, onCevap, onTanitim }: { q: GardenQ; l: Lexeme; all: Lexeme[]; yakin?: Yakinlik; onDone: (r: Result, o: Outcome | null, exi: number, m?: SoruBilgi) => void; onSina?: () => void; onCevap?: () => void; onTanitim?: () => void }) {
+function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, onTanitim }: { q: GardenQ; l: Lexeme; all: Lexeme[]; yakin?: Yakinlik; /** öğrencinin gördüğü kelimeler (PM-069 P0) */ gorulen?: Set<string>; onDone: (r: Result, o: Outcome | null, exi: number, m?: SoruBilgi) => void; onSina?: () => void; onCevap?: () => void; onTanitim?: () => void }) {
   const [intro, setIntro] = useState(!!q.intro);
   // B16: sına sorusu; bilemezse "Sorun değil, birlikte bakalım" → tanıtım ve normal tanıma sorusu (PM-066 madde 1)
   const [sina, setSina] = useState(!!q.sina);
-  const [tip, setTip] = useState<QType>(q.type);
+  // PM-069 P0: cevabı öğrenciye gösterilmemiş boşluk sorulmaz; sorulabilir biçim yoksa Türkçeden Almancaya (kartın kendi kelimesi)
+  const [tip, setTip] = useState<QType>(() => (q.type === "gap" || q.type === "sep_perfekt") && ogretilmisForm(l, q.type, q.ex, gorulen) === null ? "tr_de" : q.type);
   const basla = useMemo(() => ({ t: Date.now() }), []);
   useEffect(() => { if (!intro) basla.t = Date.now(); }, [intro]);
   // öneri süresi cevap anında ölçülür; cevap kartını okumak süreye girmez (inceleme #113 P1-4)
@@ -242,7 +243,9 @@ function Question({ q, l, all, yakin, onDone: bitir, onSina, onCevap, onTanitim 
         <p>{l.tr}</p>
         {ex && <p class="small" data-test="intro-ex"><span lang="de">{ex.de}</span><br /><span class="muted">{ex.tr}</span></p>}
         {baska(l.examples.length)}
-        {col && <p class="small" data-test="intro-colloc">Birlikte: <b lang="de">{col.de}</b> <span class="muted">· {col.tr}</span></p>}
+        {/* PM-069 P0: eşdizimlerin hepsi görünür (boşluk soruları ancak gösterilen öbeği sorar) */}
+        {l.collocations.length > 0 && <div class="small" data-test="intro-colloc"><span class="muted">Birlikte:</span>
+          <ul class="esdizim-liste">{l.collocations.map((c) => <li><b lang="de">{c.de}</b> <span class="muted">· {c.tr}</span></li>)}</ul></div>}
       </section>
       <ActionBar>
         <button class="btn primary block" data-test="next" onClick={() => setIntro(false)}>Şimdi sor</button>
@@ -253,7 +256,8 @@ function Question({ q, l, all, yakin, onDone: bitir, onSina, onCevap, onTanitim 
   );
 
   // ipucu ve boşluk cümlesi yalnızca boşluk sorularında (başka türde öğrencinin görmediği cümlenin ipucu çıkmasın; inceleme #85 P1-1)
-  const form = qe.type === "gap" || qe.type === "sep_perfekt" ? formFor(l, qe.type, exi) : undefined;
+  const fi = qe.type === "gap" || qe.type === "sep_perfekt" ? ogretilmisForm(l, qe.type, exi, gorulen) ?? 0 : exi;
+  const form = qe.type === "gap" || qe.type === "sep_perfekt" ? formFor(l, qe.type, fi) : undefined;
   // PM (#59 yorumu): cevaptan sonra, doğru ya da yanlış, kelime cümlesiyle görünür — örnek cümle (dinle), fotoğraf, eşdizim
   const colAfter = collocOf(l);
   const verdict = res && (<>
@@ -302,7 +306,7 @@ function Question({ q, l, all, yakin, onDone: bitir, onSina, onCevap, onTanitim 
       if (c === "short") { setShortNote(true); return; }
       setOwnNote(c === "missing"); setSelfCheck(a); return;
     }
-    const acc = accepted(l, qe.type, exi);
+    const acc = accepted(l, qe.type, fi);
     // rakam kuralı yalnızca yazılan cevapta: konuşma tanıma sayıyı rakamla döker (inceleme #59 P1-3)
     const hint = mode === "typed" ? numberWordHint(a) : null;
     if (hint && acc.every((x) => !/\d/.test(x))) { show({ ok: false, answer: a, expected: acc[0], note: hint }); return; }
