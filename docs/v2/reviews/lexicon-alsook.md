@@ -60,3 +60,8 @@
 
 ## Sonuç
 KAPANDI (yama uygulanıp `content:validate` 0 hata verince). `review` alanı için öneri: `reviewed`, `dilbilimci-ajan`, 2026-11-19.
+
+## İnceleme 1. tur (#102)
+- Eş anlamlı kabulü iki yönlü yapıldı (10 boşluk): weg ← fort, bekommen ← kriegt, schon ← bereits, großartig ← toll/super/wunderbar (2), erreichen ← geschafft/erwischt, total ← völlig/ganz/komplett, sehen ← geguckt/geschaut, herum ← rum (2).
+- `lx:heraus` also_ok'tan bekannt/klar çıktı. `lx:jemals` ö4 "in Erzurum" → "in den Alpen".
+- `lx:übel` "Ist ___ übel?": **euch** önce çıkarıldı, 2. turda geri kondu (çeviri "siz" çoğulu da karşılıyor).
