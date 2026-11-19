@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { loadContent, checkRules, checkScenario } from "./load.ts";
+import { loadContent, checkRules, checkScenario, boslukCakismasi } from "./load.ts";
 import { importV1, sameSense } from "./import-v1.ts";
 import { AiTasks } from "../../packages/shared/src/api.ts";
 
@@ -69,5 +69,18 @@ describe("v1 aktarımı", () => {
     expect(full.some((e) => e.includes("cümle kurma en az 25"))).toBe(true);
     expect(full.some((e) => e.includes("alıştırma en az 35"))).toBe(true);
     expect(mini.filter((e) => /en az (10|12|1) |alıştırma türü eksik/.test(e))).toEqual([]);
+  });
+});
+
+describe("boşluk çakışması uyarısı (İÇ 7003635425-3, inceleme #85)", () => {
+  const f = (de: string, answer: string, also_ok?: string[], tr?: string) => ({ de, answer, also_ok, tr });
+  it("aynı cümle farklı cevap kümesi: uyarı; also_ok bir kartta var ötekinde yok: uyarı", () => {
+    expect(boslukCakismasi([{ id: "a", forms: [f("Ich bin krank, ___ komme ich nicht.", "deshalb", ["deswegen"])] }, { id: "b", forms: [f("Ich bin krank, ___ komme ich nicht.", "deshalb")] }])).toHaveLength(1);
+    expect(boslukCakismasi([{ id: "a", forms: [f("X ___ y.", "eins", undefined, "bir")] }, { id: "b", forms: [f("X ___ y.", "zwei")] }])).toHaveLength(1);
+  });
+  it("aynı küme ya da farklı çeviri: uyarı yok; also_ok cevabı tekrar ediyorsa uyarı", () => {
+    expect(boslukCakismasi([{ id: "a", forms: [f("X ___ y.", "eins", ["zwei"])] }, { id: "b", forms: [f("X ___ y.", "zwei", ["eins"])] }])).toHaveLength(0);
+    expect(boslukCakismasi([{ id: "a", forms: [f("X ___ y.", "eins", undefined, "bir")] }, { id: "b", forms: [f("X ___ y.", "zwei", undefined, "iki")] }])).toHaveLength(0);
+    expect(boslukCakismasi([{ id: "a", forms: [f("X ___ y.", "eins", ["Eins"])] }])[0]).toMatch(/tekrar/);
   });
 });
