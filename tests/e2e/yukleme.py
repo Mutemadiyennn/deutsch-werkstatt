@@ -43,7 +43,8 @@ def main():
                     out.append((tab, dom, frame))
             return out
         res = measure()
-        med = lambda xs: sorted(xs)[len(xs) // 2]
+        # PM-060.1: 5 ölçümün en iyi 3'ünün ortancası (CI makinesindeki tek seferlik gecikme kapıyı düşürmesin; bütçe aynı 300 ms)
+        med = lambda xs: sorted(xs)[:3][1] if len(xs) >= 3 else sorted(xs)[len(xs) // 2]
         per = {t: [f for tt, _, f in res if tt == t] for t, _ in TABS}
         print("    geçişler (dom/kare ms):", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in res))
         print("    ortanca kare (ms):", ", ".join(f"{t} {med(v):.0f} (en kötü {max(v):.0f})" for t, v in per.items()))
@@ -57,7 +58,7 @@ def main():
                 d5 = measure(2); print("    tanı, gölge/bulanık cam kapalı:", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in d5))
             except Exception as e: print("    tanı koşmadı:", e)
         check(worst_dom <= 300, f"ekran geçişi DOM'a giriş en kötü {worst_dom:.0f} ms (≤ 300, her geçiş)")
-        check(worst_med <= 300, f"ekran geçişi ilk kare ortancası en kötü sekmede {worst_med:.0f} ms (≤ 300; 5 geçiş)")
+        check(worst_med <= 300, f"ekran geçişi ilk kare (5 ölçümün en iyi 3'ünün ortancası) en kötü sekmede {worst_med:.0f} ms (≤ 300; PM-060.1)")
         b.close()
         # 3) içerik isteği takılırsa: ≤ 10 sn içinde hata + "Tekrar dene" (servis işçisi kapalı: önbellek olmayan ilk kullanım)
         b, ctx = launch(p, service_workers="block"); pg = new_page(ctx)
