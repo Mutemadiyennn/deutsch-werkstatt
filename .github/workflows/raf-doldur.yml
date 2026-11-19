@@ -1,5 +1,7 @@
 name: "Kapalı medya rafı doldurma (PM-061 / D-112, #58 B12): Pixabay → gizli depo; açık depoya kapalı dosya girmez"
 # Gizli ayarlar: PIXABAY_API_KEY, MEDYA_DEPO_TOKEN (yalnızca gizli depoya Contents yazma). Biri yoksa iş atlanır.
+# Değişken RAF_FAIL_CLOSED=1: proje sahibi raf projesinde "Fail closed"u seçtiğini böyle bildirir; yoksa gizli depoya
+# medya itilmez (kota dolunca dosyalar anahtarsız açılmasın; D-112, inceleme #98 2. tur).
 # Günlüğe yalnızca sayılar yazılır; yapıt (artifact) yüklenmez.
 on:
   workflow_dispatch:
@@ -15,9 +17,10 @@ jobs:
     steps:
       - name: Gizli ayarlar tanımlı mı
         id: g
-        env: { T: "${{ secrets.MEDYA_DEPO_TOKEN }}", P: "${{ secrets.PIXABAY_API_KEY }}" }
+        env: { T: "${{ secrets.MEDYA_DEPO_TOKEN }}", P: "${{ secrets.PIXABAY_API_KEY }}", F: "${{ vars.RAF_FAIL_CLOSED }}" }
         run: |
           if [ -z "$T" ] || [ -z "$P" ]; then echo "skip=1" >> "$GITHUB_OUTPUT"; echo "::notice::MEDYA_DEPO_TOKEN / PIXABAY_API_KEY yok; raf doldurma atlandı ([SAHİBE-İSTEK] 7010219623)."; fi
+          if [ "$F" != "1" ]; then echo "skip=1" >> "$GITHUB_OUTPUT"; echo "::notice::RAF_FAIL_CLOSED=1 yok; 'Fail closed' onaylanmadan gizli depoya medya itilmez (D-112)."; fi
       - uses: actions/checkout@v4
         if: steps.g.outputs.skip != '1'
         with: { fetch-depth: 0 }
