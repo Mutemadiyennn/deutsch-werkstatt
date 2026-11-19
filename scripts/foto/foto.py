@@ -116,6 +116,29 @@ def sorgular() -> dict[str, list[str]]:
             if e.get("img"): q.setdefault(e["img"], []).append(f"{i}#ornek{k}")
     return q
 
+def yaz(out, kayit, satir, onceki):
+    """adaylar.json ve secim.html (ara kayıt: zaman aşımında iş kaybolmaz; işlenmemiş sorgular önceki kayıttan)"""
+    kayit = {**{k: v for k, v in onceki.items() if k not in kayit}, **kayit}
+    hedef = os.path.join(KOK, "content/v2/media/foto")
+    os.makedirs(hedef, exist_ok=True)
+    json.dump({"surum": 1, "not": "Görseller GitHub Releases m1-foto varlığıdır; depoya girmez. Seçim #58 B5 görsel denetimiyle (secim.json).",
+               "sorgular": kayit}, open(os.path.join(hedef, "adaylar.json"), "w"), ensure_ascii=False, indent=1)
+    # görsel denetim sayfası (B5): sorgu başına 3 aday, atıf ve lisansla
+    base = "https://github.com/Mutemadiyennn/deutsch-werkstatt/releases/download/m1-foto/"
+    parca = ["<!doctype html><meta charset=utf-8><title>M1 fotoğraf adayları</title><style>body{font:14px system-ui;margin:16px}"
+             "section{border-top:1px solid #ccc;padding:8px 0}img{height:160px;margin:4px;border:1px solid #ddd}figure{display:inline-block;margin:0 8px;vertical-align:top;max-width:240px}"
+             "figcaption{font-size:11px;color:#555}</style><h1>M1 fotoğraf adayları (#58 A10 → B5 seçim)</h1>"]
+    for sorgu, yerler, adaylar in satir:
+        k = kayit[sorgu].get("kisa")
+        parca.append(f"<section><h3>{html.escape(sorgu)}</h3><div>{html.escape(', '.join(yerler))}</div>"
+                     + (f"<div><i>Kısa sorguyla bulundu: {html.escape(k)} — sahneye uyuyor mu dikkat</i></div>" if k else ""))
+        for a in adaylar:
+            parca.append(f"<figure><img loading=lazy src='{a['dosya']}'><figcaption>{html.escape(a['lisans'])} · {html.escape(a['yazar'])} · "
+                         f"<a href='{html.escape(a['sayfa'] or '')}'>kaynak</a> · {a['dosya']}</figcaption></figure>")
+        if not adaylar: parca.append("<p><b>Aday yok</b> (sahne çizimi ya da yeni sorgu)</p>")
+        parca.append("</section>")
+    open(os.path.join(out, "secim.html"), "w").write("".join(parca))
+
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "out"
     sinir = int(sys.argv[sys.argv.index("--sinir") + 1]) if "--sinir" in sys.argv else 10_000
@@ -156,25 +179,8 @@ def main():
         kayit[sorgu] = {"yerler": yerler, "adaylar": adaylar, **({"kisa": kisa} if kisa else {}), **({"hata": hata} if hata and not adaylar else {})}
         satir.append((sorgu, yerler, adaylar))
         print("FOTO " + json.dumps({"sorgu": sorgu, "aday": len(adaylar), "kisa": kisa, "hata": hata}, ensure_ascii=False), flush=True)
-    hedef = os.path.join(KOK, "content/v2/media/foto")
-    os.makedirs(hedef, exist_ok=True)
-    json.dump({"surum": 1, "not": "Görseller GitHub Releases m1-foto varlığıdır; depoya girmez. Seçim #58 B5 görsel denetimiyle (secim.json).",
-               "sorgular": kayit}, open(os.path.join(hedef, "adaylar.json"), "w"), ensure_ascii=False, indent=1)
-    # görsel denetim sayfası (B5): sorgu başına 3 aday, atıf ve lisansla
-    base = "https://github.com/Mutemadiyennn/deutsch-werkstatt/releases/download/m1-foto/"
-    parca = ["<!doctype html><meta charset=utf-8><title>M1 fotoğraf adayları</title><style>body{font:14px system-ui;margin:16px}"
-             "section{border-top:1px solid #ccc;padding:8px 0}img{height:160px;margin:4px;border:1px solid #ddd}figure{display:inline-block;margin:0 8px;vertical-align:top;max-width:240px}"
-             "figcaption{font-size:11px;color:#555}</style><h1>M1 fotoğraf adayları (#58 A10 → B5 seçim)</h1>"]
-    for sorgu, yerler, adaylar in satir:
-        k = kayit[sorgu].get("kisa")
-        parca.append(f"<section><h3>{html.escape(sorgu)}</h3><div>{html.escape(', '.join(yerler))}</div>"
-                     + (f"<div><i>Kısa sorguyla bulundu: {html.escape(k)} — sahneye uyuyor mu dikkat</i></div>" if k else ""))
-        for a in adaylar:
-            parca.append(f"<figure><img loading=lazy src='{a['dosya']}'><figcaption>{html.escape(a['lisans'])} · {html.escape(a['yazar'])} · "
-                         f"<a href='{html.escape(a['sayfa'] or '')}'>kaynak</a> · {a['dosya']}</figcaption></figure>")
-        if not adaylar: parca.append("<p><b>Aday yok</b> (sahne çizimi ya da yeni sorgu)</p>")
-        parca.append("</section>")
-    open(os.path.join(out, "secim.html"), "w").write("".join(parca))
+        if n % 10 == 9: yaz(out, kayit, satir, onceki)
+    yaz(out, kayit, satir, onceki)
     toplam = sum(len(a) for _, _, a in satir)
     print(f"bitti: {len(satir)} sorgu; {toplam} aday; adaysız {sum(1 for _, _, a in satir if not a)}; bayt {sum(x['bayt'] for _, _, a in satir for x in a)}", flush=True)
 
