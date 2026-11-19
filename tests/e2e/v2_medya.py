@@ -90,12 +90,18 @@ def main():
         pg.click(f"[data-test=cumle-{s3['id']}]"); pg.wait_for_timeout(700)
         ct = pg.evaluate("document.querySelector('[data-test=video]').currentTime")
         check(s3["t0"] - 0.5 <= ct <= s3["t1"], f"(c) cümleye dokununca videoda {s3['t0']} sn'ye atladı ({ct:.1f})")
+        # oynatma yarışı (inceleme #60 P0-2): bir cümle çalarken başka cümleye dokununca yenisi çalar, durmaz
+        s4 = next(c for c in VID["cumleler"] if c["id"] == VID["bolumler"][0]["cumleler"][3])
+        pg.click(f"[data-test=cumle-{s4['id']}]"); pg.wait_for_timeout(900)
+        st4 = pg.evaluate("(() => { const v = document.querySelector('[data-test=video]'); return { t: v.currentTime, p: v.paused }; })()")
+        check(not st4["p"] and s4["t0"] - 0.2 <= st4["t"] <= s4["t1"], f"(c) çalarken başka cümleye dokununca yenisi çalıyor ({st4})")
         pg.click("[data-test=yavas]"); pg.click(f"[data-test=cumle-{s3['id']}]"); pg.wait_for_timeout(400)
         rate = pg.evaluate("document.querySelector('[data-test=video]').playbackRate")
         check(abs(rate - 0.75) < 0.01, f"(c) 0,75× hız ({rate})")
         pg.evaluate("window.scrollBy(0, 800)"); pg.wait_for_timeout(200)
         top1 = pg.evaluate("document.querySelector('[data-test=medya-ust]').getBoundingClientRect().top")
-        check(top1 >= 0 and top1 <= max(top0, 140), f"video üstte sabit kalıyor (kaydırınca üst {top1:.0f} px)")
+        bar = pg.evaluate("document.querySelector('[data-test=medya] .pbar').getBoundingClientRect().bottom")
+        check(top1 >= bar - 1 and top1 <= bar + 24, f"video başlık çubuğunun altında sabit kalıyor (çubuk {bar:.0f}, video {top1:.0f} px)")
         answer_step(pg)
         # (d) dikte merdiveni
         seen = []
@@ -115,7 +121,10 @@ def main():
         check(seen == ["kolay", "orta", "zor", "usta", "gercek"], f"(d) dikte merdiveni sırayla ({seen})")
         # (e) metin + kelimeye dokununca kart
         check(adim(pg) == "transkript", f"(e) metin açılıyor ({adim(pg)})")
-        pg.locator("[data-test=kelime]").nth(2).click(); pg.wait_for_selector("[data-test=kelime-kart]")
+        pg.locator("[data-test=kelime]", has_text="Tag").first.click(); pg.wait_for_selector("[data-test=kelime-kart]")
+        kk = pg.inner_text("[data-test=kelime-kart]")
+        check("henüz yok" not in kk and "Tag" in kk, f"(e) sözlükteki kelimenin kartı açılıyor ({kk[:40]!r})")
+        check(pg.locator("[data-test=adim-transkript] [data-test=next]").count() == 0, "(e) kart açıkken 'Devam' kartın altında kalmıyor")
         if shots: shot(pg, "m03-kelime-kart", full=False)
         pg.click("[data-test=bankaya-ekle]"); pg.wait_for_selector("[data-test=kelime-kart]", state="detached")
         n_personal = pg.evaluate("""() => new Promise((ok) => { const r = indexedDB.open('dw2'); r.onsuccess = () => { const q = r.result.transaction('personal').objectStore('personal').count(); q.onsuccess = () => ok(q.result); }; })""")

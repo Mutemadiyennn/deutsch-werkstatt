@@ -94,7 +94,7 @@ export function App() {
     case "m1medya": screen = <MedyaEkrani key={route.id} day={route.day} id={route.id} />; break;
     default: screen = <Today />;
   }
-  const tabs = !!profile.onboardedAt && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call";
+  const tabs = !!profile.onboardedAt && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "m1medya";
   return (
     <Ctx.Provider value={ctx}>
       <main class={`app${tabs ? "" : " notabs"}`}>{screen}</main>

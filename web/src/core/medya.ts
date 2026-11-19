@@ -60,14 +60,28 @@ export function eksikZorunlu(text: string, zorunlu: string[]): string[] {
 /** Zor dikte: bankadan seçilen kelimelerle kurulan cümle */
 export const bankadan = (secilen: string[]) => secilen.join(" ");
 
-/** Transkript kelimesi → kart: kelimenin kendisi, çoğulu ya da artikelsiz biçimi; büyük harfle başlayan önce isim */
+/**
+ * Transkript kelimesi → kart: kelimenin kendisi, çoğulu, fiil biçimleri (Präsens 3, Präteritum, Partizip), sonra çekim
+ * ekleri atılarak (-e, -en, -n, -s, -es, -er, -em, -t, -st, -et). Büyük harfle eşleşen (isim) önce (inceleme #60 P1-7).
+ */
 export function kartBul(word: string, lex: Lexeme[]): Lexeme | undefined {
   const w = word.replace(/[.,!?;:„“"'»«()]/g, "");
   if (!w) return undefined;
   const exact = lex.find((l) => l.de === w || l.pl === w);
   if (exact) return exact;
   const low = w.toLowerCase();
-  return lex.find((l) => l.de.toLowerCase() === low || l.pl?.toLowerCase() === low);
+  const byForm = (x: string) => lex.find((l) => l.de.toLowerCase() === x || l.pl?.toLowerCase() === x
+    || [l.verb?.praesens3, l.verb?.praeteritum, l.verb?.perfekt?.split(/\s+/).pop()].some((f) => f?.toLowerCase() === x));
+  const direct = byForm(low);
+  if (direct) return direct;
+  for (const suf of ["en", "er", "em", "es", "st", "et", "e", "n", "s", "t"]) {
+    if (low.length > suf.length + 2 && low.endsWith(suf)) {
+      const stem = low.slice(0, -suf.length);
+      const hit = lex.find((l) => { const d = l.de.toLowerCase(); return d === stem || d === stem + "en" || d === stem + "n" || d === stem + "e"; });
+      if (hit) return hit;
+    }
+  }
+  return undefined;
 }
 
 /** Kaldığı yer (her seans yarıda bırakılıp sürdürülebilir; #58 "Öğrencinin bir günü") */
@@ -90,4 +104,17 @@ export function hedefSira(line: string, hedef: string): { sira: number; toplam: 
   if (cs.length < 2) return null;
   const i = cs.findIndex((x) => fold(x) === fold(hedef));
   return i >= 0 ? { sira: i + 1, toplam: cs.length } : null;
+}
+
+/** Kayıtlı konum içerikle uyuşmuyorsa (bölüm/adım sayısı değişti) baştan; uyuşuyorsa aynen */
+export function gecerliKonum(p: MedyaIlerleme | undefined, m: Medya): MedyaIlerleme {
+  if (!p) return { ...BASLANGIC };
+  if (p.bitti) return p;
+  const b = m.bolumler[p.b];
+  if (!b) return { ...BASLANGIC };
+  const steps = adimlar(b);
+  const step = steps[p.s];
+  if (!step) return { ...BASLANGIC };
+  const n = step === "ayrinti" ? b.ayrinti.length : step === "dikte" ? b.dikte.length : step === "golge" ? b.golge.length : 1;
+  return p.k < n ? p : { ...p, k: 0 };
 }

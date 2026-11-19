@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { Gun } from "../../packages/shared/src/m1.ts";
-import { checkGun } from "./m1check.ts";
+import { checkGun, ogretilmemis } from "./m1check.ts";
 import { unknownKeys } from "./load.ts";
 
 const raw = JSON.parse(readFileSync(join(import.meta.dirname, "fixtures/m1/gun-01.json"), "utf8"));
@@ -59,5 +59,26 @@ describe("M1 gün biçimi (#58 A4, PM-053, PM-055)", () => {
     const out = checkGun(parse(r), ctx);
     expect(out.warnings.join("\n")).toMatch(/hizalanmamış/);
     expect(out.errors.join("\n")).toMatch(/r0:99-yok temel pakette yok/);
+  });
+  it("öğretmeden isteme: istenen kelime öğretilmemişse uyarı (reviewed günde hata); çekimli biçim kökten tanınır (inceleme #60 P0-3)", () => {
+    const taught = new Set(["heute", "ist", "donnerstag", "morgen", "freitag", "gestern", "war", "mittwoch", "hallo", "und", "guten", "tag", "hier", "ioana", "übermorgen", "samstag", "ja", "nein", "bitte", "welcher", "nicht", "dann", "wochenende"]);
+    expect(ogretilmemis("Heute ist Bundesverfassungsgericht.", taught)).toEqual(["bundesverfassungsgericht"]);
+    expect(ogretilmemis("Gestern war Mittwoch.", taught)).toEqual([]);
+    expect(ogretilmemis("Freitags", taught)).toEqual([]);
+    const r = clone(); r.video.bolumler[0].dikte[4].zorunlu = ["Bundesverfassungsgericht"];
+    const out = checkGun(parse(r), { ...ctx, taught });
+    expect(out.warnings.join("\n")).toMatch(/öğretilmemiş kelime isteniyor: bundesverfassungsgericht/);
+  });
+  it("yapı: aynı cümle iki bölümde, bitişik olmayan bölüm, orta kabulünde başka kelime, desteklenmeyen cevapla türü", () => {
+    const r = clone();
+    r.video.bolumler[1].cumleler = [...r.video.bolumler[1].cumleler, "s1"];
+    r.video.bolumler[2].cumleler = ["s11", "s13", "s12", "s14", "s15"];
+    r.video.bolumler[0].dikte[1].accepted = [...r.video.bolumler[0].dikte[1].accepted, "Montag"];
+    r.video.bolumler[0].cevapla = { id: "x", k: "pick", q_tr: "?", opts: ["a", "b"], ans: 0 };
+    const e = checkGun(parse(r), ctx).errors.join("\n");
+    expect(e).toMatch(/s1 iki bölümde/);
+    expect(e).toMatch(/sıralı ve bitişik değil/);
+    expect(e).toMatch(/başka bir kelime/);
+    expect(e).toMatch(/cevapla türü pick/);
   });
 });

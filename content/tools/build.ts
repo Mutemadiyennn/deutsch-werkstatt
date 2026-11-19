@@ -19,7 +19,8 @@ if (process.env.DW_E2E_FIXTURES === "1") {
   const fx = join(ROOT, "content/tools/fixtures/m1");
   for (const f of readdirSync(fx).filter((x) => /^gun-\d{2}\.json$/.test(x))) {
     const g = parseFile(join(fx, f), Gun, c.errors);
-    if (g && !days.some((d) => d.data.day === g.day)) days.push({ file: `fixtures/m1/${f}`, data: g });
+    // e2e paketinde örnek gün aynı numaralı gerçek günün YERİNE geçer: oynatıcı testi içerik değişince kırılmaz (inceleme #60 P1-8)
+    if (g) { const i = days.findIndex((d) => d.data.day === g.day); if (i >= 0) days.splice(i, 1); days.push({ file: `fixtures/m1/${f}`, data: g }); }
   }
   if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
 }

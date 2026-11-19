@@ -9,8 +9,9 @@ import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Gun, medyalar, type AnlamaQ, type Bolum, type Dikte, type Lexeme, type Medya, type MedyaCumle } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadIndex, loadLexicon, loadM1Gun, contentUrl } from "../services/content.ts";
-import { addPersonal, getMeta, setMeta } from "../data/db.ts";
-import { ADIM_TR, BASLANGIC, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, ilerlemeAnahtari, kartBul, type MedyaIlerleme } from "../core/medya.ts";
+import { addClaim, addPersonal, getMeta, setMeta } from "../data/db.ts";
+import { Rich } from "../ui/rich.tsx";
+import { ADIM_TR, BASLANGIC, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, kartBul, type MedyaIlerleme } from "../core/medya.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { scoreHeard } from "../core/grading.ts";
 import { speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
@@ -25,22 +26,48 @@ const E2E = import.meta.env.MODE === "e2e";
 /** Video: zaman aralığı oynatır (hizalanmış cümleler). Ses/sahne: cümleleri cihaz sesiyle sırayla okur. */
 interface Oynatici { cumle(c: MedyaCumle, yavas: boolean): Promise<void>; bolum(cs: MedyaCumle[], yavas: boolean): Promise<void>; dur(): void }
 
-function useOynatici(m: Medya, video: HTMLVideoElement | null): Oynatici & { calisiyor: string | null } {
+function useOynatici(m: Medya, video: HTMLVideoElement | null, base = ""): Oynatici & { calisiyor: string | null } {
   const [calisiyor, setCalisiyor] = useState<string | null>(null);
   const iptal = useRef(0);
+  const sesEl = useRef<HTMLAudioElement | null>(null);
+  /**
+   * Video aralığı: yalnızca KENDİ oynatması bittiğinde duraklatır. Yeni bir oynatma başlarsa eskisi duraklatmadan çözülür
+   * (inceleme #60 P0-2 yarışı). Bitiş kare kare denetlenir (timeupdate ~4 Hz yerine; A9 eşiği 300 ms).
+   * Video dışarıdan duraklatılırsa (sistem, öğrenci) söz çözülür; düğmeler kilitli kalmaz (P1-1).
+   */
   const vidAralik = (t0: number, t1: number, yavas: boolean) => new Promise<void>((res) => {
     if (!video) return res();
     const my = ++iptal.current;
     video.playbackRate = yavas ? 0.75 : 1;
     video.currentTime = t0;
-    const bitti = () => { video.removeEventListener("timeupdate", tick); video.pause(); res(); };
-    const tick = () => { if (iptal.current !== my || video.currentTime >= t1 - 0.05 || video.ended) bitti(); };
-    video.addEventListener("timeupdate", tick);
-    void video.play().catch(() => bitti());
+    let done = false;
+    const bitir = (pause: boolean) => { if (done) return; done = true; video.removeEventListener("pause", onPause); video.removeEventListener("ended", onPause); if (pause && iptal.current === my) video.pause(); res(); };
+    const onPause = () => bitir(false);
+    const loop = () => {
+      if (done) return;
+      if (iptal.current !== my) return bitir(false);
+      if (video.currentTime >= t1 - 0.03) return bitir(true);
+      requestAnimationFrame(loop);
+    };
+    video.addEventListener("pause", onPause); video.addEventListener("ended", onPause);
+    void video.play().then(() => requestAnimationFrame(loop)).catch(() => bitir(false));
+  });
+  /** hazır ses varsa onu çalar (LS-8.6 doğal ses önce), yoksa cihaz sesi */
+  const sesDosyasi = (src: string, yavas: boolean, my: number) => new Promise<void>((res) => {
+    const a = sesEl.current ?? (sesEl.current = new Audio());
+    a.src = src; a.playbackRate = yavas ? 0.75 : 1;
+    const end = () => { a.removeEventListener("ended", end); a.removeEventListener("pause", end); a.removeEventListener("error", end); res(); };
+    a.addEventListener("ended", end); a.addEventListener("pause", end); a.addEventListener("error", end);
+    if (iptal.current !== my) return end();
+    void a.play().catch(end);
   });
   const sesle = async (cs: MedyaCumle[], yavas: boolean) => {
     const my = ++iptal.current;
-    for (const c of cs) { if (iptal.current !== my) return; setCalisiyor(c.id); await speak(c.de, "de", yavas ? "slow" : "normal"); }
+    for (const c of cs) {
+      if (iptal.current !== my) return;
+      setCalisiyor(c.id);
+      if (c.audio?.src) await sesDosyasi(/^(https?:|\/)/.test(c.audio.src) ? c.audio.src : base + c.audio.src, yavas, my); else await speak(c.de, "de", yavas ? "slow" : "normal");
+    }
   };
   const o: Oynatici = {
     async cumle(c, yavas) {
@@ -53,7 +80,7 @@ function useOynatici(m: Medya, video: HTMLVideoElement | null): Oynatici & { cal
       if (m.kind === "video" && video && r) { setCalisiyor("*"); await vidAralik(r.t0, r.t1, yavas); } else await sesle(cs, yavas);
       setCalisiyor(null);
     },
-    dur() { iptal.current++; stopSpeaking(); video?.pause(); setCalisiyor(null); }
+    dur() { iptal.current++; stopSpeaking(); video?.pause(); sesEl.current?.pause(); setCalisiyor(null); }
   };
   return { ...o, calisiyor };
 }
@@ -70,7 +97,8 @@ export function MedyaEkrani({ day, id }: { day: number; id: string }) {
       if (!m) throw new Error("Bu kayıt bulunamadı.");
       const [{ lexemes }, i] = await Promise.all([loadLexicon(), loadIndex()]);
       setVeri({ gun, m, lex: lexemes, base: contentUrl(i.version) });
-      setP((await getMeta<MedyaIlerleme>(ilerlemeAnahtari(id))) ?? BASLANGIC);
+      // kayıtlı konum içerikle uyuşmuyorsa (içerik değişti) baştan başla; ekran çökmez (inceleme #60 P1-3)
+      setP(gecerliKonum(await getMeta<MedyaIlerleme>(ilerlemeAnahtari(id)), m));
     })().catch((e) => setErr(String(e?.message || e)));
     return () => stopSpeaking();
   }, [day, id]);
@@ -83,7 +111,17 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
   const { m, lex, base } = veri;
   const [video, setVideo] = useState<HTMLVideoElement | null>(null);
   const [vidHata, setVidHata] = useState(false);
-  const oy = useOynatici(m, video);
+  const oy = useOynatici(m, video, base);
+  // sabit video başlık çubuğunun hemen altında durur: çubuk yüksekliği ölçülür (yazı boyutuyla değişir; inceleme #60 P1-6)
+  useEffect(() => {
+    const bar = document.querySelector<HTMLElement>("[data-test=medya] .pbar");
+    if (!bar) return;
+    const set = () => document.documentElement.style.setProperty("--pbar-h", `${bar.getBoundingClientRect().height}px`);
+    set();
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(set) : null;
+    ro?.observe(bar);
+    return () => ro?.disconnect();
+  }, []);
   const geri = `#/m1/${veri.gun.day}`;
   const baslik = m.kind === "video" ? "Video" : m.kind === "ses" ? "Dinle" : "Köy dizisi";
 
@@ -133,7 +171,7 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
       {adim === "ana" && <SecmeliSoru key={`${p.b}a`} q={b.ana_fikir} onNext={(ok) => sonraki(1, ok)} tekrar={() => void oy.bolum(cs, false)} />}
       {adim === "ayrinti" && <SecmeliSoru key={`${p.b}y${p.k}`} q={b.ayrinti[p.k]!} sira={`${p.k + 1}/${b.ayrinti.length}`} onNext={(ok) => sonraki(b.ayrinti.length, ok)} tekrar={() => void oy.bolum(cs, false)} />}
       {adim === "cumle" && <CumleAdimi cs={cs} oy={oy} onNext={() => sonraki()} />}
-      {adim === "dikte" && <DikteAdimi key={`${p.b}k${p.k}`} d={b.dikte[p.k]!} sira={`${p.k + 1}/${b.dikte.length}`} cs={cs} oy={oy} onNext={(ok) => sonraki(b.dikte.length, ok)} />}
+      {adim === "dikte" && <DikteAdimi key={`${p.b}k${p.k}`} d={b.dikte[p.k]!} sira={`${p.k + 1}/${b.dikte.length}`} cs={cs} oy={oy} onNext={(ok) => sonraki(b.dikte.length, ok ?? undefined)} />}
       {adim === "transkript" && <TranskriptAdimi cs={cs} lex={lex} oy={oy} onNext={() => sonraki()} />}
       {adim === "golge" && <GolgeAdimi key={`${p.b}g${p.k}`} c={cs.find((c) => c.id === b.golge[p.k]) ?? cs[0]!} sira={`${p.k + 1}/${b.golge.length}`} oy={oy} onNext={(ok) => sonraki(b.golge.length, ok)} />}
       {adim === "cevapla" && b.cevapla && <CevaplaAdimi key={`${p.b}c`} d={b.cevapla} onNext={(ok) => sonraki(1, ok)} />}
@@ -150,9 +188,11 @@ function DinleAdimi({ m, cs, oy, onNext }: { m: Medya; cs: MedyaCumle[]; oy: Ret
       <div class="kicker">Bölümü baştan sona dinle</div>
       <p class="small">Metin yok: önce kulağınla dene. Ne hakkında olduğunu anlamaya çalış; her kelimeyi anlaman gerekmiyor.</p>
       <div class="row">
-        <button class="btn primary grow" data-test="dinle-bolum" disabled={oy.calisiyor !== null} onClick={async () => { await oy.bolum(cs, yavas); setDinledi(true); }}>
-          <Icon name="play" /> {dinledi ? "Bir daha dinle" : "Dinle"}</button>
-        {m.hizlar.includes("slow") && m.hizlar.length > 1 && <button class="btn grow" disabled={oy.calisiyor !== null} onClick={async () => { await oy.bolum(cs, true); setDinledi(true); }}>Yavaş</button>}
+        {oy.calisiyor !== null
+          ? <button class="btn grow" data-test="durdur" onClick={() => oy.dur()}><Icon name="pause" /> Durdur</button>
+          : <button class="btn primary grow" data-test="dinle-bolum" onClick={() => { setDinledi(true); void oy.bolum(cs, yavas); }}>
+              <Icon name="play" /> {dinledi ? "Bir daha dinle" : "Dinle"}</button>}
+        {m.hizlar.includes("slow") && m.hizlar.length > 1 && oy.calisiyor === null && <button class="btn grow" onClick={() => { setDinledi(true); void oy.bolum(cs, true); }}>Yavaş</button>}
       </div>
       <ActionBar><button class="btn block" data-test="next" disabled={!dinledi && !E2E} onClick={onNext}>{dinledi ? "Sorulara geç" : "Önce dinle"}</button></ActionBar>
     </section>
@@ -170,7 +210,7 @@ function SecmeliSoru({ q, sira, onNext, tekrar }: { q: AnlamaQ | { q_tr: string;
         {...(E2E ? { "data-right": k === q.ans ? "1" : undefined } : {})} onClick={() => { setSec(k); haptic(k === q.ans ? "success" : "error"); }}>{o}</button>)}</div>
       {sec === null && tekrar && <button class="btn sm ghost" onClick={tekrar}>Bir daha dinle</button>}
       {sec !== null && <ActionBar>
-        <FeedbackBand kind={sec === q.ans ? "ok" : "bad"} title={sec === q.ans ? "Doğru." : `Doğrusu: ${q.opts[q.ans]}`}>{"why_tr" in q && q.why_tr ? q.why_tr : null}</FeedbackBand>
+        <FeedbackBand kind={sec === q.ans ? "ok" : "bad"} title={sec === q.ans ? "Doğru." : `Doğrusu: ${q.opts[q.ans]}`}>{"why_tr" in q && q.why_tr ? <Rich text={q.why_tr} /> : null}</FeedbackBand>
         <button class="btn primary block" data-test="next" onClick={() => onNext(sec === q.ans)}>Devam</button></ActionBar>}
     </section>
   );
@@ -183,17 +223,16 @@ function EylemSoru({ m, onDone }: { m: Medya; onDone: (ok: boolean) => void }) {
 /* (c) cümle cümle: her cümle tek dokunuşla, 0,75× */
 function CumleAdimi({ cs, oy, onNext }: { cs: MedyaCumle[]; oy: ReturnType<typeof useOynatici>; onNext: () => void }) {
   const [yavas, setYavas] = useState(false);
-  const [acik, setAcik] = useState<Set<string>>(new Set());
   return (
     <section class="card stack fade" data-test="adim-cumle">
       <div class="row"><div class="kicker grow">Cümle cümle dinle</div>
         <button class={`btn sm${yavas ? " primary" : ""}`} aria-pressed={yavas} data-test="yavas" onClick={() => setYavas(!yavas)}>0,75×</button></div>
-      <p class="small muted">Cümleye dokun: o cümle çalar. Anlamadığında metnini aç.</p>
+      <p class="small muted">Cümleye dokun: o cümle çalar. Anlamadığın cümleyi yavaş dinle; metin dikteden sonra açılacak.</p>
       <ol class="list cumleler">{cs.map((c, i) => (
         <li class={`row${oy.calisiyor === c.id ? " on" : ""}`} style={{ flexWrap: "nowrap" }}>
           <button class="btn sm" data-test={`cumle-${c.id}`} aria-label={`${i + 1}. cümleyi dinle`} onClick={() => void oy.cumle(c, yavas)}><Icon name="play" /> {i + 1}</button>
-          <span class="grow">{acik.has(c.id) ? <><span lang="de">{c.de}</span><br /><span class="small muted">{c.tr}</span></>
-            : <button class="btn ghost sm" onClick={() => setAcik(new Set([...acik, c.id]))}>Metni göster</button>}</span>
+          <span class="grow small muted">{oy.calisiyor === c.id ? "Çalıyor…" : `${i + 1}. cümle`}</span>
+          {oy.calisiyor === c.id && <button class="btn ghost sm" aria-label="Durdur" onClick={() => oy.dur()}><Icon name="pause" /></button>}
         </li>))}</ol>
       <ActionBar><button class="btn primary block" data-test="next" onClick={onNext}>Devam</button></ActionBar>
     </section>
@@ -201,7 +240,7 @@ function CumleAdimi({ cs, oy, onNext }: { cs: MedyaCumle[]; oy: ReturnType<typeo
 }
 
 /* (d) dikte merdiveni */
-function DikteAdimi({ d, sira, cs, oy, onNext }: { d: Dikte; sira: string; cs: MedyaCumle[]; oy: ReturnType<typeof useOynatici>; onNext: (ok: boolean) => void }) {
+function DikteAdimi({ d, sira, cs, oy, onNext }: { d: Dikte; sira: string; cs: MedyaCumle[]; oy: ReturnType<typeof useOynatici>; onNext: (ok: boolean | null) => void }) {
   const c = "cumle" in d ? cs.find((x) => x.id === d.cumle) : undefined;
   const [res, setRes] = useState<{ ok: boolean; cevap: string; beklenen: string; not?: string } | null>(null);
   const [secim, setSecim] = useState<number[]>([]);
@@ -216,7 +255,7 @@ function DikteAdimi({ d, sira, cs, oy, onNext }: { d: Dikte; sira: string; cs: M
     } else if (d.seviye === "gercek") {
       const eksik = eksikZorunlu(a, d.zorunlu);
       // gerçek hayat görevi cezasız: zorunlu kelimeler kontrol edilir, örnek gösterilir
-      goster(eksik.length === 0, a, d.ornek_de, eksik.length ? `Şu kelimeler eksik: ${eksik.join(", ")}` : "Gereken kelimelerin hepsi var.");
+      goster(false, a, d.ornek_de, eksik.length ? `Şu kelimeleri de kullanmayı dene: ${eksik.join(", ")}` : "Gereken kelimelerin hepsini kullandın.");
     }
   };
   return (
@@ -241,7 +280,8 @@ function DikteAdimi({ d, sira, cs, oy, onNext }: { d: Dikte; sira: string; cs: M
           : <FeedbackBand kind={d.seviye === "gercek" ? "info" : "bad"} title={d.seviye === "gercek" ? "Örnek cevap" : "Doğrusu bu."}>
               <div class="small">Senin cevabın: <span lang="de">{res.cevap || "—"}</span></div>
               <div><b lang="de">{res.beklenen}</b></div>{res.not && <div class="small">{res.not}</div>}</FeedbackBand>}
-        <button class="btn primary block" data-test="next" onClick={() => onNext(res.ok)}>Devam</button></ActionBar>}
+        {/* gerçek hayat görevi serbest yazımdır: puana girmez */}
+        <button class="btn primary block" data-test="next" onClick={() => onNext(d.seviye === "gercek" ? null : res.ok)}>Devam</button></ActionBar>}
     </section>
   );
 }
@@ -275,7 +315,7 @@ function TranskriptAdimi({ cs, lex, oy, onNext }: { cs: MedyaCumle[]; lex: Lexem
           }}>Bankaya ekle</button><button class="btn grow" onClick={() => setKelime(null)}>Kapat</button></div>
         </div>
       )}
-      <ActionBar><button class="btn primary block" data-test="next" onClick={onNext}>Devam</button></ActionBar>
+      {!kelime && <ActionBar><button class="btn primary block" data-test="next" onClick={onNext}>Devam</button></ActionBar>}
     </section>
   );
 }
@@ -296,7 +336,7 @@ function GolgeAdimi({ c, sira, oy, onNext }: { c: MedyaCumle; sira: string; oy: 
       <ActionBar>
         {sttAvailable() ? <MicButton wide label={duydum === null ? "Söyle" : "Tekrar söyle"} onText={(t) => setDuydum(t)} /> : null}
         {/* konuşma tanıma yanlış duyabilir: öğrenci "doğru söyledim" diyebilir (PM-054.3) */}
-        <button class="btn block" data-test="next" onClick={() => onNext(skor ? skor.score >= 0.8 : true)}>{duydum === null ? "Söyledim" : skor && skor.score >= 0.8 ? "Devam" : "Doğru söyledim, devam"}</button>
+        <button class="btn block" data-test="next" onClick={() => onNext(true)}>{duydum === null ? "Söyledim" : skor && skor.score >= 0.8 ? "Devam" : "Doğru söyledim, devam"}</button>
       </ActionBar>
     </section>
   );
@@ -305,7 +345,8 @@ function GolgeAdimi({ c, sira, oy, onNext }: { c: MedyaCumle; sira: string; oy: 
 /* (g) "Sen ne derdin?" — kurallarla; kuralların tanımadığı cevapta karar öğrencinin (D-097) */
 function CevaplaAdimi({ d, onNext }: { d: NonNullable<Bolum["cevapla"]>; onNext: (ok: boolean) => void }) {
   const [v, setV] = useState<{ kind: "correct" | "wrong" | "unchecked"; a: string; best: string } | null>(null);
-  if (d.k !== "guided_response" && d.k !== "listen_and_respond" && d.k !== "tr_de") return null;
+  // desteklenmeyen madde türü (doğrulayıcı da hata verir): öğrenci sıkışmaz (inceleme #60 P1-4)
+  if (d.k !== "guided_response" && d.k !== "listen_and_respond" && d.k !== "tr_de") return <ActionBar><button class="btn primary block" data-test="next" onClick={() => onNext(true)}>Devam</button></ActionBar>;
   const prompt = d.k === "guided_response" ? d.prompt_de : d.k === "listen_and_respond" ? d.audio_de : undefined;
   const durum = d.k === "tr_de" ? d.tr : d.situation_tr;
   return (
@@ -316,9 +357,13 @@ function CevaplaAdimi({ d, onNext }: { d: NonNullable<Bolum["cevapla"]>; onNext:
       {!v && <ActionBar><AnswerField submitLabel="Söyle" onSubmit={(a) => { const r = ruleVerdict(d.accepted, a); setV({ kind: r.kind === "correct" ? "correct" : r.kind === "ask_ai" ? "unchecked" : "wrong", a, best: r.best || d.accepted[0]! }); haptic(r.kind === "correct" ? "success" : "error"); }} /></ActionBar>}
       {v && <ActionBar>
         {v.kind === "correct" ? <FeedbackBand kind="ok" title="Doğru."><span lang="de">{v.a}</span></FeedbackBand>
-          : v.kind === "unchecked" ? <FeedbackBand kind="info" title="Bu cevabı kendim kontrol edemedim.">Örnek: <b lang="de">{v.best}</b>. Senin cümlen aynı anlama geliyor mu?</FeedbackBand>
-          : <FeedbackBand kind="bad" title="Doğrusu bu."><div class="small">Senin cevabın: <span lang="de">{v.a}</span></div><b lang="de">{v.best}</b>{d.why_tr && <div class="small">{d.why_tr}</div>}</FeedbackBand>}
-        {v.kind === "unchecked" ? <><button class="btn primary block" data-test="claim" onClick={() => onNext(true)}>Evet, aynı anlamda</button><button class="btn block" data-test="next" onClick={() => onNext(false)}>Hayır, doğrusunu öğrendim</button></>
+          : v.kind === "unchecked" ? <FeedbackBand kind="info" title="Bu cevabı kendim kontrol edemedim.">
+              <div class="small">Senin cümlen: <span lang="de">{v.a}</span></div>
+              <div>Örnek cevap: <b lang="de">{v.best.replace(/\.+$/, ".")}</b></div>
+              <div class="small">İkisi aynı şeyi mi söylüyor? Emin değilsen örneği öğren.</div></FeedbackBand>
+          : <FeedbackBand kind="bad" title="Doğrusu bu."><div class="small">Senin cevabın: <span lang="de">{v.a}</span></div><b lang="de">{v.best}</b>{d.why_tr && <div class="small"><Rich text={d.why_tr} /></div>}</FeedbackBand>}
+        {v.kind === "unchecked" ? <><button class="btn primary block" data-test="next" onClick={() => onNext(false)}>Örneği öğrendim, devam</button>
+            <button class="btn block" data-test="claim" onClick={() => { void addClaim({ at: new Date().toISOString(), scenarioId: "m1", itemId: d.id, prompt: d.k === "tr_de" ? d.tr : d.situation_tr ?? "", answer: v.a, expected: d.accepted }); onNext(true); }}>Benimki de aynı anlamda</button></>
           : <button class="btn primary block" data-test="next" onClick={() => onNext(v.kind === "correct")}>Devam</button>}
       </ActionBar>}
     </section>

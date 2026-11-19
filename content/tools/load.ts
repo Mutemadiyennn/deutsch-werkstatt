@@ -344,12 +344,14 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
     } }
   // M1 günleri (#58 A4, PM-053, PM-055): kimlik/dosya, bölüm ve dikte bağları, gerçek video
   { const days = new Set<number>(), temelIds = new Set(c.temel.map((t) => t.data.id));
-    for (const { file, data: g } of c.m1) {
+    const taught = baseTaught(c);
+    for (const { file, data: g } of [...c.m1].sort((a, b) => a.data.day - b.data.day)) {
+      addDayTaught(taught, g, c);
       const nn = /gun-(\d{2})\.json$/.exec(file)?.[1];
       if (nn && g.id !== `m1:gun:${nn}`) errors.push(`${file}: kimlik ${g.id} dosya adıyla uyuşmuyor (m1:gun:${nn})`);
       if (nn && g.day !== Number(nn)) errors.push(`${file}: day ${g.day} dosya adıyla uyuşmuyor`);
       if (days.has(g.day)) errors.push(`${file}: tekrar eden gün ${g.day}`); days.add(g.day);
-      const r = checkGun(g, { lexicon: lx, temel: temelIds });
+      const r = checkGun(g, { lexicon: lx, temel: temelIds, taught });
       errors.push(...r.errors.map((e) => `${file}: ${e}`));
       (g.review.status === "reviewed" ? errors : warnings).push(...r.warnings.map((w) => `${file}: ${w}`));
     } }
@@ -361,4 +363,30 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
     if (notPassive.length) warnings.push(`curriculum/k1.json: pasif listede olup tier'ı passive olmayan ${notPassive.length} kart (ilk: ${notPassive.slice(0, 5).join(", ")})`);
   }
   return c;
+}
+
+/* ---------- M1 "öğretilmiş" kelime kümesi (#58 A2 kuralı, inceleme #60 P0-3) ---------- */
+const FUNCTION_POS = new Set(["det", "pron", "conj", "prep", "particle", "num"]);
+const toks = (s: string) => s.toLowerCase().replace(/[.,!?;:„“"'»«()–\-…/]/g, " ").split(/\s+/).filter(Boolean);
+/** her günün başında bilinen: işlev kelimeleri (her biçim) ve karakter adları */
+function baseTaught(c: Loaded): Set<string> {
+  const t = new Set<string>();
+  for (const l of c.lexemes) if (l.card === false || FUNCTION_POS.has(l.pos)) for (const w of toks(l.de)) t.add(w);
+  for (const ch of c.world?.characters ?? []) for (const w of toks(ch.name)) t.add(w);
+  return t;
+}
+/** gün d'nin öğrettikleri kümeye eklenir (kümülatif: önceki günler de bilinir) */
+function addDayTaught(t: Set<string>, g: Gun, c: Loaded) {
+  const byId = new Map(c.lexemes.map((l) => [l.id, l]));
+  for (const id of g.yeni_kartlar) {
+    const l = byId.get(id); if (!l) continue;
+    for (const s of [l.de, l.pl, l.verb?.praesens3, l.verb?.praeteritum, l.verb?.perfekt, ...l.forms.map((f) => f.answer), ...l.collocations.map((x) => x.de), ...l.examples.map((x) => x.de)]) if (s) for (const w of toks(s)) t.add(w);
+  }
+  for (const did of g.dersler) {
+    const d = c.temel.find((x) => x.data.id === did)?.data; if (!d) continue;
+    for (const x of d.teach) for (const w of toks(x.de)) t.add(w);
+    for (const row of d.table?.satirlar ?? []) for (const cell of row) for (const w of toks(cell)) t.add(w);
+    for (const dr of d.drills) if ("accepted" in dr) for (const a of dr.accepted) for (const w of toks(a)) t.add(w);
+    for (const ln of d.dialogue?.lines ?? []) for (const w of toks(ln.de)) t.add(w);
+  }
 }

@@ -13,8 +13,24 @@ const hasWord = (sentence: string, w: string) => ` ${sade(sentence)} `.includes(
 export const parcalar = (line: string) => [line, ...(line.match(/[^.!?]+[.!?]*/g) ?? []).map((x) => x.trim()).filter(Boolean)];
 const hedefMi = (line: string, t: string) => parcalar(line).some((x) => sade(x) === sade(t));
 
-export function checkGun(g: Gun, ctx: { lexicon: Set<string>; temel: Set<string> }): { errors: string[]; warnings: string[] } {
+/**
+ * Öğretmeden isteme (OD-0, #58 A2 kuralı): öğrenciden YAZMASI/SÖYLEMESİ istenen her kelime o güne kadar öğretilmiş olmalı.
+ * `taught`: o güne kadarki yeni kartlar (+ çoğul, fiil biçimleri, eşdizim ve örnek kelimeleri), temel derslerin öğretim
+ * öğeleri, tabloları, maddeleri ve diyalogları, işlev kelimeleri ve karakter adları (küçük harf). Çekim eki atılarak da aranır.
+ */
+export function ogretilmemis(text: string, taught: Set<string>): string[] {
+  const out: string[] = [];
+  for (const w of words(text)) {
+    if (taught.has(w) || /^\d+$/.test(w)) continue;
+    const stemOk = ["en", "er", "em", "es", "st", "et", "e", "n", "s", "t"].some((suf) => w.length > suf.length + 2 && w.endsWith(suf) && (taught.has(w.slice(0, -suf.length)) || taught.has(w.slice(0, -suf.length) + "en")));
+    if (!stemOk && !out.includes(w)) out.push(w);
+  }
+  return out;
+}
+
+export function checkGun(g: Gun, ctx: { lexicon: Set<string>; temel: Set<string>; taught?: Set<string> }): { errors: string[]; warnings: string[] } {
   const errors: string[] = [], warnings: string[] = [];
+  const ist = (where: string, text: string) => { if (!ctx.taught) return; const u = ogretilmemis(text, ctx.taught); if (u.length) warnings.push(`${where}: öğretilmemiş kelime isteniyor: ${u.slice(0, 6).join(", ")}`); };
   for (const d of g.dersler) if (!ctx.temel.has(d)) errors.push(`dersler: ${d} temel pakette yok`);
   const missing = g.yeni_kartlar.filter((id) => !ctx.lexicon.has(id));
   if (missing.length) warnings.push(`yeni_kartlar: sözlükte olmayan ${missing.length} kart (ilk: ${missing.slice(0, 5).join(", ")})`);
@@ -35,16 +51,32 @@ export function checkGun(g: Gun, ctx: { lexicon: Set<string>; temel: Set<string>
       for (let i = 1; i < m.cumleler.length; i++) { const a = m.cumleler[i - 1]!, b = m.cumleler[i]!; if (a.t0 !== undefined && b.t0 !== undefined && b.t0 < a.t0) errors.push(`${at}: ${b.id} zaman sırası bozuk`); }
       if (!v.medya.length) warnings.push(`${at}: paketlenmiş medya yok (A9 hattı)`);
     }
-    const inSome = new Set<string>();
+    const inSome = new Set<string>(), bIds = new Set<string>();
+    if (m.kind === "ses" && m.bolumler.length !== 1) warnings.push(`${at}: anons/sesli mesaj tek bölüm olmalı (PM-053 §6)`);
+    if (m.kind === "video") { const v = m.video!, len = v.kaynak.bit_sn - v.kaynak.bas_sn; for (const c of m.cumleler) if (c.t1 !== undefined && c.t1 > len + 0.5) errors.push(`${at}: ${c.id} klibin sonundan sonra bitiyor (${c.t1} > ${len} sn)`); }
+    const order = new Map(m.cumleler.map((c, i) => [c.id, i]));
     for (const b of m.bolumler) {
       const bat = `${at}/${b.id}`;
+      if (bIds.has(b.id)) errors.push(`${bat}: tekrar eden bölüm kimliği`); bIds.add(b.id);
       const own = new Set(b.cumleler);
-      for (const id of b.cumleler) { if (!byId.has(id)) errors.push(`${bat}: cümle ${id} yok`); inSome.add(id); }
+      for (const id of b.cumleler) { if (!byId.has(id)) errors.push(`${bat}: cümle ${id} yok`); if (inSome.has(id)) errors.push(`${bat}: cümle ${id} iki bölümde`); inSome.add(id); }
+      // bölüm kaydın kesintisiz bir parçasıdır: cümleler sıralı ve bitişik (oynatıcı ilk ve son cümleyle aralık çalar)
+      const idx = b.cumleler.map((id) => order.get(id)).filter((x): x is number => x !== undefined);
+      if (idx.some((x, i) => i > 0 && x !== idx[i - 1]! + 1)) errors.push(`${bat}: cümleler sıralı ve bitişik değil`);
+      const dIds = new Set<string>(); for (const d of b.dikte) { if (dIds.has(d.id)) errors.push(`${bat}: tekrar eden dikte kimliği ${d.id}`); dIds.add(d.id); }
+      for (const d of b.dikte) {
+        if (d.seviye === "orta" || d.seviye === "zor" || d.seviye === "usta") ist(`${bat}/dikte ${d.id}`, d.accepted[0]!);
+        if (d.seviye === "gercek") ist(`${bat}/dikte ${d.id}`, d.zorunlu.join(" "));
+      }
+      if (b.cevapla && "accepted" in b.cevapla && b.cevapla.accepted.length && ctx.taught && b.cevapla.accepted.every((a) => ogretilmemis(a, ctx.taught!).length)) ist(`${bat}/cevapla`, b.cevapla.accepted[0]!);
+      if (b.cevapla && !["guided_response", "listen_and_respond", "tr_de"].includes(b.cevapla.k)) errors.push(`${bat}: cevapla türü ${b.cevapla.k} oynatıcıda desteklenmiyor (guided_response, listen_and_respond, tr_de)`);
       // PM-053: bölüm 1–2 dakika (hizalanmış videoda ölçülür)
       const first = byId.get(b.cumleler[0]!), last = byId.get(b.cumleler[b.cumleler.length - 1]!);
       if (m.kind === "video" && first?.t0 !== undefined && last?.t1 !== undefined && last.t1 - first.t0 > 150) warnings.push(`${bat}: bölüm ${Math.round(last.t1 - first.t0)} sn (en çok ~2 dk)`);
       checkBolum(b, byId, own, (e) => errors.push(`${bat}: ${e}`), (w) => warnings.push(`${bat}: ${w}`));
     }
+    const kopuk = m.cumleler.filter((c) => !inSome.has(c.id) && m.bolumler.length);
+    if (kopuk.length && m.kind !== "sahne") warnings.push(`${at}: hiçbir bölümde olmayan ${kopuk.length} cümle (${kopuk.slice(0, 3).map((c) => c.id).join(", ")})`);
     if (m.eylem) for (const k of m.eylem.kanit) if (typeof k === "string" && !byId.has(k)) errors.push(`${at}: eylem kanıtı ${k} yok`);
     if (m.eylem && m.eylem.ans >= m.eylem.opts.length) errors.push(`${at}: eylem cevabı seçeneklerin dışında`);
   }
@@ -54,7 +86,9 @@ export function checkGun(g: Gun, ctx: { lexicon: Set<string>; temel: Set<string>
     for (const d of g.prova.dugumler) for (const s of d.secenekler) if (!ids.has(s.sonraki)) errors.push(`prova/${d.id}: sonraki ${s.sonraki} yok`);
     if (!g.prova.dugumler.some((d) => d.son)) errors.push("prova: bitiş düğümü (son) yok");
     for (const d of g.prova.dugumler) if (!d.son && !d.secenekler.length) errors.push(`prova/${d.id}: seçenek yok ve bitiş değil`);
+    if (ctx.taught) for (const d of g.prova.dugumler) for (const o of d.secenekler) if (o.uygun) { const all = [o.de, ...o.accepted]; if (all.every((a) => ogretilmemis(a, ctx.taught!).length)) ist(`prova/${d.id}`, o.de); }
   }
+  if (g.okuma_yazma?.yazma) ist("yazma", g.okuma_yazma.yazma.zorunlu.join(" "));
   if (g.okuma_yazma) for (const q of g.okuma_yazma.sorular) if ("kind" in q && q.ans >= q.opts.length) errors.push(`okuma ${q.id ?? q.q_tr}: cevap seçeneklerin dışında`);
   return { errors, warnings };
 }
@@ -85,6 +119,7 @@ function checkBolum(b: Bolum, byId: Map<string, MedyaCumle>, own: Set<string>, e
       if ((d.de.match(/___/g) || []).length !== 1) err(`${at}: tek boşluk olmalı`);
       if (!hedefMi(c.de, d.de.replace("___", d.accepted[0]!))) err(`${at}: boşluk doldurulunca "${c.de}" (ya da bir cümlesi) çıkmıyor`);
       if (words(d.accepted[0]!).length !== 1) err(`${at}: orta seviye yalnızca tek kelime ister`);
+      for (const a of d.accepted) if (sade(a) !== sade(d.accepted[0]!)) err(`${at}: kabul "${a}" başka bir kelime (yalnızca yazım farkı olabilir)`);
     } else {
       const hedef = d.accepted[0]!;
       if (!hedefMi(c.de, hedef)) err(`${at}: ilk kabul "${c.de}" satırının kendisi ya da bir cümlesi değil`);
