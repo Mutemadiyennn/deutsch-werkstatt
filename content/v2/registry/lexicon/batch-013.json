@@ -3034,7 +3034,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "1990'da doğdum derken **Ich bin in 1990 geboren** yanlış. Doğrusu **Ich bin 1990 geboren**. Yıldan önce **in** gelmez.",
+    "İş arkadaşım 1990'da doğdu derken **Mein Kollege ist in 1990 geboren** yanlış. Doğrusu **Mein Kollege ist 1990 geboren**. Yıldan önce **in** gelmez.",
     "Burada doğdum derken **Ich habe hier geboren** yanlış. Doğrusu **Ich bin hier geboren**."
    ],
    "examples": [
@@ -3059,9 +3059,22 @@
     },
     {
      "id": "lx:geboren:4",
-     "de": "– Ist Ihre Tochter hier geboren? – Ja, in Wendlfing.",
-     "tr": "– Kızınız burada mı doğdu? – Evet, Wendlfing'de.",
+     "de": "– Frau Koch, ist Ihre Tochter hier geboren? – Ja, in Wendlfing.",
+     "tr": "– Koch Hanım, kızınız burada mı doğdu? – Evet, Wendlfing'de.",
      "layer": "hd",
+     "dialog": true
+    },
+    {
+     "id": "lx:geboren:5",
+     "de": "In welchem Jahr sind Sie geboren?",
+     "tr": "Hangi yıl doğdunuz?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:geboren:6",
+     "de": "– Wann ist denn dein Sohn geboren, Anna? – Im März, vor zehn Jahren.",
+     "tr": "– Oğlun ne zaman doğdu, Anna? – Martta, on yıl önce.",
+     "layer": "alltag",
      "dialog": true
     }
    ],
@@ -3084,22 +3097,40 @@
    },
    "forms": [
     {
-     "de": "Ich bin 1990 ___.",
+     "de": "Mein Kollege ist 1990 ___.",
      "answer": "geboren",
-     "tr": "1990'da doğdum.",
-     "hint_tr": "Doğduğun yılı **Ich bin 1990 geboren** diye söylersin."
+     "tr": "İş arkadaşım 1990 doğumlu.",
+     "hint_tr": "1990 doğumlu derken **1990 geboren** denir."
     },
     {
-     "de": "Annas Sohn ist ___ März geboren.",
-     "answer": "im",
+     "de": "Annas Sohn ist im März ___.",
+     "answer": "geboren",
      "tr": "Anna'nın oğlu martta doğdu.",
-     "hint_tr": "Martta derken **im März** denir."
+     "hint_tr": "Martta doğdu derken **ist im März geboren** denir."
     },
     {
-     "de": "Ich bin ___ 3. Mai geboren.",
-     "answer": "am",
-     "tr": "3 Mayıs'ta doğdum.",
-     "hint_tr": "Günü söylerken **am 3. Mai** denir."
+     "de": "Derya ist hier ___ und spricht auch Türkisch.",
+     "answer": "geboren",
+     "tr": "Derya burada doğdu, Türkçe de konuşuyor.",
+     "hint_tr": "Burada doğdu derken **ist hier geboren** denir."
+    },
+    {
+     "de": "Wann ist Ihr Sohn ___?",
+     "answer": "geboren",
+     "tr": "Oğlunuz ne zaman doğdu?",
+     "hint_tr": "Oğlunuz ne zaman doğdu derken **Wann ist Ihr Sohn geboren?** denir."
+    },
+    {
+     "de": "Wo sind Sie ___?",
+     "answer": "geboren",
+     "tr": "Nerede doğdunuz?",
+     "hint_tr": "Nerede doğdunuz derken **Wo sind Sie geboren?** denir."
+    },
+    {
+     "de": "Toms Baby ist letztes Jahr ___.",
+     "answer": "geboren",
+     "tr": "Tom'un bebeği geçen yıl doğdu.",
+     "hint_tr": "Geçen yıl doğdu derken **ist letztes Jahr geboren** denir."
     }
    ]
   },
@@ -3154,18 +3185,33 @@
     },
     {
      "id": "lx:Kindergarten:3",
-     "de": "Ich muss los, die Kleine vom Kindergarten abholen.",
-     "tr": "Çıkmam lazım, küçüğü anaokulundan alacağım.",
+     "de": "Simon muss los, er holt die Kleine vom Kindergarten ab.",
+     "tr": "Simon'ın çıkması lazım, küçüğü anaokulundan alacak.",
      "layer": "alltag",
-     "img": "parent picking up child at kindergarten gate"
+     "img": "man hurrying out of office in afternoon"
     },
     {
      "id": "lx:Kindergarten:4",
-     "de": "– Wer holt heute Emre vom Kindergarten ab? – Das mache ich.",
-     "tr": "– Bugün Emre'yi anaokulundan kim alacak? – Ben alırım.",
+     "de": "– Simon, wer holt heute die Kleine vom Kindergarten ab? – Das mache ich.",
+     "tr": "– Simon, bugün küçüğü anaokulundan kim alacak? – Ben alırım.",
      "layer": "hd",
      "dialog": true,
      "img": "couple talking over morning coffee"
+    },
+    {
+     "id": "lx:Kindergarten:5",
+     "de": "Im Kindergarten singen die Kinder jeden Morgen.",
+     "tr": "Anaokulunda çocuklar her sabah şarkı söylüyor.",
+     "layer": "hd",
+     "img": "kindergarten room with small chairs in a circle and a guitar"
+    },
+    {
+     "id": "lx:Kindergarten:6",
+     "de": "– Gibt's hier in der Nähe 'nen Kindergarten? – Ja, gleich hinter der Kirche.",
+     "tr": "– Buralarda bir anaokulu var mı? – Evet, kilisenin hemen arkasında.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "small playground behind a church"
     }
    ],
    "level": "A2",
@@ -3186,34 +3232,40 @@
    },
    "forms": [
     {
-     "de": "In unserer Straße gibt es ___ Kindergarten.",
-     "answer": "einen",
+     "de": "In unserer Straße gibt es einen ___.",
+     "answer": "Kindergarten",
      "tr": "Sokağımızda bir anaokulu var.",
-     "hint_tr": "**Es gibt** dedikten sonra **ein Kindergarten**, **einen Kindergarten** olur."
-    },
-    {
-     "de": "Emre geht in ___ Kindergarten.",
-     "answer": "den",
-     "tr": "Emre anaokuluna gidiyor.",
-     "hint_tr": "Anaokuluna giderken **in den Kindergarten** denir."
-    },
-    {
-     "de": "Die Kinder spielen ___ Kindergarten.",
-     "answer": "im",
-     "tr": "Çocuklar anaokulunda oynuyor.",
-     "hint_tr": "Anaokulunda derken **in dem** birleşir: **im Kindergarten**."
-    },
-    {
-     "de": "Ich hole Emre ___ Kindergarten ab.",
-     "answer": "vom",
-     "tr": "Emre'yi anaokulundan alıyorum.",
-     "hint_tr": "Anaokulundan alırken **von dem** birleşir: **vom Kindergarten**."
+     "hint_tr": "Bir anaokulu var derken **es gibt einen Kindergarten** denir."
     },
     {
      "de": "In Wendlfing gibt es zwei ___.",
      "answer": "Kindergärten",
      "tr": "Wendlfing'de iki anaokulu var.",
-     "hint_tr": "İki anaokulu için **zwei Kindergärten** denir, **a** harfi **ä** olur."
+     "hint_tr": "İki anaokulu derken **zwei Kindergärten** denir."
+    },
+    {
+     "de": "Die Kinder spielen im ___ draußen.",
+     "answer": "Kindergarten",
+     "tr": "Çocuklar anaokulunda dışarıda oynuyor.",
+     "hint_tr": "Anaokulunda derken **im Kindergarten** denir."
+    },
+    {
+     "de": "Marie holt die Kleine vom ___ ab.",
+     "answer": "Kindergarten",
+     "tr": "Marie küçüğü anaokulundan alıyor.",
+     "hint_tr": "Anaokulundan derken **vom Kindergarten** denir."
+    },
+    {
+     "de": "Der ___ beginnt um halb acht.",
+     "answer": "Kindergarten",
+     "tr": "Anaokulu yedi buçukta başlıyor.",
+     "hint_tr": "Anaokulu derken **der Kindergarten** denir."
+    },
+    {
+     "de": "Die neue Nachbarin sucht einen ___ im Kindergarten.",
+     "answer": "Platz",
+     "tr": "Yeni komşu anaokulunda yer arıyor.",
+     "hint_tr": "Anaokulunda yer derken **einen Platz im Kindergarten** denir."
     }
    ]
   },
@@ -3276,6 +3328,19 @@
      "tr": "– Yeni yıl için bir kararın var mı? – Evet, daha az telefon.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:Vorsatz:5",
+     "de": "Frau Brandl macht keine Vorsätze mehr, sagt sie.",
+     "tr": "Brandl Hanım artık yeni yıl kararı almıyor, öyle diyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Vorsatz:6",
+     "de": "– Und, hältst du deinen Vorsatz ein? – Na ja, bis jetzt schon.",
+     "tr": "– Eee, kararına sadık kalıyor musun? – Eh, şimdiye kadar evet.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -3297,22 +3362,40 @@
    },
    "forms": [
     {
-     "de": "Ich habe ___ Vorsatz für das neue Jahr.",
-     "answer": "einen",
-     "tr": "Yeni yıl için bir kararım var.",
-     "hint_tr": "**Ich habe** dedikten sonra **ein Vorsatz**, **einen Vorsatz** olur."
-    },
-    {
      "de": "Was sind deine guten ___?",
      "answer": "Vorsätze",
      "tr": "Güzel kararların neler?",
-     "hint_tr": "Birden çok karar için **Vorsätze** denir, **a** harfi **ä** olur."
+     "hint_tr": "Güzel kararların derken **deine guten Vorsätze** denir."
     },
     {
      "de": "Mein ___ ist: mehr Deutsch sprechen.",
      "answer": "Vorsatz",
      "tr": "Kararım şu: daha çok Almanca konuşmak.",
      "hint_tr": "Kararım derken **Mein Vorsatz** denir."
+    },
+    {
+     "de": "Das ist ein guter ___, Tobi!",
+     "answer": "Vorsatz",
+     "tr": "Bu güzel bir karar, Tobi!",
+     "hint_tr": "Güzel bir karar derken **ein guter Vorsatz** denir."
+    },
+    {
+     "de": "Hast du deinen ___ schon vergessen?",
+     "answer": "Vorsatz",
+     "tr": "Kararını şimdiden mi unuttun?",
+     "hint_tr": "Kararını derken **deinen Vorsatz** denir."
+    },
+    {
+     "de": "___ fürs neue Jahr? Ioana hat schon drei.",
+     "answer": "Vorsätze",
+     "tr": "Yeni yıl kararları mı? Ioana'nın şimdiden üç tane var.",
+     "hint_tr": "Yeni yıl kararları derken **Vorsätze fürs neue Jahr** denir."
+    },
+    {
+     "de": "Basti hat nur einen ___: jeden Tag trainieren.",
+     "answer": "Vorsatz",
+     "tr": "Basti'nin tek bir kararı var: her gün antrenman yapmak.",
+     "hint_tr": "Tek bir kararı derken **nur einen Vorsatz** denir."
     }
    ]
   },
@@ -3379,6 +3462,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "bowl of salad for party"
+    },
+    {
+     "id": "lx:Silvester:5",
+     "de": "An Silvester ist die Bäckerei nur am Vormittag offen.",
+     "tr": "Yılbaşı gecesinin olduğu gün fırın sadece öğleden önce açık.",
+     "layer": "hd",
+     "img": "bakery counter with bread on winter morning"
+    },
+    {
+     "id": "lx:Silvester:6",
+     "de": "– Bist du an Silvester daheim? – Nee, wir gehen zum Stadtplatz, Feuerwerk schauen.",
+     "tr": "– Yılbaşı gecesi evde misin? – Yok, meydana gidiyoruz, havai fişek izlemeye.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "crowd on town square at night with fireworks"
     }
    ],
    "level": "A2",
@@ -3403,19 +3501,37 @@
      "de": "Wir ___ Silvester bei Tobi.",
      "answer": "feiern",
      "tr": "Yılbaşını Tobi'de kutluyoruz.",
-     "hint_tr": "Yılbaşını kutlamak için **Silvester feiern** denir."
+     "hint_tr": "Yılbaşını kutluyoruz derken **Wir feiern Silvester** denir."
     },
     {
-     "de": "Was machst du an ___?",
+     "de": "Wo feiert ihr ___?",
      "answer": "Silvester",
-     "tr": "Yılbaşı gecesi ne yapıyorsun?",
-     "hint_tr": "Yılın son gecesi için **Silvester** denir."
+     "tr": "Yılbaşını nerede kutluyorsunuz?",
+     "hint_tr": "Yılbaşını derken **Silvester** denir."
     },
     {
      "de": "___ ist am 31. Dezember.",
      "answer": "Silvester",
      "tr": "Yılbaşı gecesi 31 Aralık'ta.",
      "hint_tr": "Yılbaşı gecesi derken **Silvester** denir."
+    },
+    {
+     "de": "Die ___ ist dieses Jahr bei Tobi.",
+     "answer": "Silvesterparty",
+     "tr": "Yılbaşı partisi bu yıl Tobi'de.",
+     "hint_tr": "Yılbaşı partisi derken **die Silvesterparty** denir."
+    },
+    {
+     "de": "Frau Brandl bleibt an ___ zu Hause.",
+     "answer": "Silvester",
+     "tr": "Brandl Hanım yılbaşı gecesi evde kalıyor.",
+     "hint_tr": "Yılbaşı gecesi derken **an Silvester** denir."
+    },
+    {
+     "de": "Nach ___ fängt die Arbeit wieder an.",
+     "answer": "Silvester",
+     "tr": "Yılbaşından sonra iş yeniden başlıyor.",
+     "hint_tr": "Yılbaşından sonra derken **nach Silvester** denir."
     }
    ]
   },
@@ -3448,7 +3564,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Almanca öğrenmek için derken **für Deutsch lernen** yanlış. Doğrusu **um Deutsch zu lernen**.",
-    "Pasaportumu almak için derken **um zu abholen meinen Pass** yanlış. Doğrusu **um meinen Pass abzuholen**. Yapılacak iş sona gider ve **zu** onun ortasına girer."
+    "Randevu almak için derken **um zu machen einen Termin** yanlış. Doğrusu **um einen Termin zu machen**. **zu machen** sona gider."
    ],
    "examples": [
     {
@@ -3476,6 +3592,19 @@
      "img": "person studying with notebook",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:um_…_zu:5",
+     "de": "Basti geht jeden Morgen ins Fitnessstudio, um fit zu bleiben.",
+     "tr": "Basti formda kalmak için her sabah spor salonuna gidiyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:um_…_zu:6",
+     "de": "– Warum stehst du denn so früh auf? – Um vor der Arbeit Sport zu machen.",
+     "tr": "– Neden bu kadar erken kalkıyorsun? – İşten önce spor yapmak için.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -3492,28 +3621,46 @@
    ],
    "exp": {
     "anlam_tr": "Bir işi hangi amaçla yaptığını söyler.",
-    "ne_zaman_tr": "Nedenini anlatırken.",
+    "ne_zaman_tr": "Bir işi ne için yaptığını anlatırken.",
     "parcalar": [],
-    "ipucu_tr": "Yapılacak iş sona gider: **um einen Termin zu machen**, yani randevu almak için."
+    "ipucu_tr": "Randevu almak için derken **um einen Termin zu machen** denir."
    },
    "forms": [
     {
      "de": "Ich lerne Deutsch, ___ beim Arzt alles zu verstehen.",
      "answer": "um",
      "tr": "Doktorda her şeyi anlamak için Almanca öğreniyorum.",
-     "hint_tr": "Ne için yaptığını söylerken başa **um**, sona **zu verstehen** gelir."
+     "hint_tr": "Her şeyi anlamak için derken **um alles zu verstehen** denir."
     },
     {
      "de": "Ich spare, um ein Auto ___ kaufen.",
      "answer": "zu",
      "tr": "Araba almak için para biriktiriyorum.",
-     "hint_tr": "**um** ile başlayınca **zu**, en sondaki **kaufen** önüne gelir."
+     "hint_tr": "Araba almak için derken **um ein Auto zu kaufen** denir."
     },
     {
-     "de": "Ich bin hier, um meinen Pass ___.",
-     "answer": "abzuholen",
-     "tr": "Pasaportumu almak için buradayım.",
-     "hint_tr": "**abholen** içinde **zu** ortaya girer: **abzuholen**."
+     "de": "Ioana übt jeden Tag, ___ besser zu sprechen.",
+     "answer": "um",
+     "tr": "Ioana daha iyi konuşmak için her gün alıştırma yapıyor.",
+     "hint_tr": "Daha iyi konuşmak için derken **um besser zu sprechen** denir."
+    },
+    {
+     "de": "Tobi fährt mit dem Bus, um Geld ___.",
+     "answer": "zu sparen",
+     "tr": "Tobi para biriktirmek için otobüsle gidiyor.",
+     "hint_tr": "Para biriktirmek için derken **um Geld zu sparen** denir."
+    },
+    {
+     "de": "___ einen Termin zu machen, rufe ich in der Praxis an.",
+     "answer": "Um",
+     "tr": "Randevu almak için muayenehaneye telefon ediyorum.",
+     "hint_tr": "Randevu almak için derken **Um einen Termin zu machen** denir."
+    },
+    {
+     "de": "Herr Wimmer kommt früh, um in Ruhe ___ arbeiten.",
+     "answer": "zu",
+     "tr": "Wimmer Bey rahat çalışmak için erken geliyor.",
+     "hint_tr": "Rahat çalışmak için derken **um in Ruhe zu arbeiten** denir."
     }
    ]
   },
@@ -3545,7 +3692,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Merak etme derken **Mach keine Sorge** yanlış. Doğrusu **Mach dir keine Sorgen**. Araya **dir** girer ve **Sorge** sonuna **n** gelir. Kısaca **Keine Sorge!** de denir."
+    "Merak etme derken **Kein Sorge** yanlış. Doğrusu **Keine Sorge**. **Sorge** ile **Kein** değil **Keine** denir."
    ],
    "examples": [
     {
@@ -3573,6 +3720,19 @@
      "tr": "– Anahtarımı unuttum! – Merak etme, Pichler Bey'de bir tane var.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:Keine_Sorge!:5",
+     "de": "Keine Sorge, das tut gar nicht weh.",
+     "tr": "Merak etmeyin, hiç acımaz.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Keine_Sorge!:6",
+     "de": "– Mist, ich hab den Bus verpasst! – Keine Sorge, der nächste kommt in zehn Minuten.",
+     "tr": "– Hay aksi, otobüsü kaçırdım! – Merak etme, sonraki on dakika sonra geliyor.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -3597,13 +3757,37 @@
      "de": "Keine ___, das ist nicht schlimm.",
      "answer": "Sorge",
      "tr": "Merak etme, kötü bir şey değil.",
-     "hint_tr": "Merak etme derken **Keine Sorge** denir, **Sorge** büyük harfle yazılır."
+     "hint_tr": "Merak etme derken **Keine Sorge** denir."
     },
     {
      "de": "___ Sorge, ich helfe dir.",
      "answer": "Keine",
      "tr": "Merak etme, sana yardım ederim.",
-     "hint_tr": "Merak etme derken başa **Keine** gelir, **Nicht** gelmez."
+     "hint_tr": "Merak etme derken **Keine Sorge** denir."
+    },
+    {
+     "de": "Keine ___, Dr. Weber ruft Sie gleich zurück.",
+     "answer": "Sorge",
+     "tr": "Merak etmeyin, Doktor Weber size birazdan geri telefon edecek.",
+     "hint_tr": "Merak etmeyin derken **Keine Sorge** denir."
+    },
+    {
+     "de": "___ Sorge, wir haben noch Zeit.",
+     "answer": "Keine",
+     "tr": "Merak etme, daha vaktimiz var.",
+     "hint_tr": "Merak etme derken **Keine Sorge** denir."
+    },
+    {
+     "de": "Keine ___, Frau Brandl, ich trage die Tüte.",
+     "answer": "Sorge",
+     "tr": "Merak etmeyin Brandl Hanım, poşeti ben taşırım.",
+     "hint_tr": "Merak etmeyin derken **Keine Sorge** denir."
+    },
+    {
+     "de": "Derya sagt ruhig: „___ Sorge, du schaffst das.“",
+     "answer": "Keine",
+     "tr": "Derya sakin sakin diyor ki: Merak etme, başarırsın.",
+     "hint_tr": "Merak etme derken **Keine Sorge** denir."
     }
    ]
   },
@@ -8422,6 +8606,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "doctor's office hallway with door sign"
+    },
+    {
+     "id": "lx:Wartezimmer:5",
+     "de": "Im Wartezimmer bei Dr. Weber gibt es Wasser und Tee.",
+     "tr": "Doktor Weber'in bekleme odasında su ve çay var.",
+     "layer": "hd",
+     "img": "water dispenser and cups in waiting room"
+    },
+    {
+     "id": "lx:Wartezimmer:6",
+     "de": "– Wie lang dauert's noch? – Zwei vor Ihnen, setzen S' sich ruhig ins Wartezimmer.",
+     "tr": "– Daha ne kadar sürer? – Önünüzde iki kişi var, siz bekleme odasına geçip oturun.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "patient walking into quiet waiting room"
     }
    ],
    "level": "A2",
@@ -8445,28 +8644,40 @@
    },
    "forms": [
     {
-     "de": "Bitte warten Sie ___ Wartezimmer.",
-     "answer": "im",
-     "tr": "Lütfen bekleme odasında bekleyin.",
-     "hint_tr": "Bekleme odasında derken **in dem** birleşir: **im Wartezimmer**."
-    },
-    {
-     "de": "Gehen Sie bitte ___ Wartezimmer.",
-     "answer": "ins",
-     "tr": "Lütfen bekleme odasına geçin.",
-     "hint_tr": "Bekleme odasına giderken **in das** birleşir: **ins Wartezimmer**."
-    },
-    {
-     "de": "Die Praxis hat ___ großes Wartezimmer.",
-     "answer": "ein",
-     "tr": "Muayenehanenin büyük bir bekleme odası var.",
-     "hint_tr": "**hat** dedikten sonra da **ein Wartezimmer** aynı kalır."
-    },
-    {
      "de": "Das ___ ist heute voll.",
      "answer": "Wartezimmer",
      "tr": "Bekleme odası bugün dolu.",
-     "hint_tr": "Bekleme odası derken **Das Wartezimmer** denir."
+     "hint_tr": "Bekleme odası derken **das Wartezimmer** denir."
+    },
+    {
+     "de": "Bitte warten Sie im ___.",
+     "answer": "Wartezimmer",
+     "tr": "Lütfen bekleme odasında bekleyin.",
+     "hint_tr": "Bekleme odasında derken **im Wartezimmer** denir."
+    },
+    {
+     "de": "Gehen Sie bitte schon ins ___.",
+     "answer": "Wartezimmer",
+     "tr": "Lütfen bekleme odasına geçin.",
+     "hint_tr": "Bekleme odasına derken **ins Wartezimmer** denir."
+    },
+    {
+     "de": "Im ___ liegen viele Zeitschriften.",
+     "answer": "Wartezimmer",
+     "tr": "Bekleme odasında birçok dergi var.",
+     "hint_tr": "Bekleme odasında derken **im Wartezimmer** denir."
+    },
+    {
+     "de": "Die Praxis hat zwei ___.",
+     "answer": "Wartezimmer",
+     "tr": "Muayenehanenin iki bekleme odası var.",
+     "hint_tr": "İki bekleme odası derken **zwei Wartezimmer** denir."
+    },
+    {
+     "de": "Im ___ ist kein Platz mehr frei.",
+     "answer": "Wartezimmer",
+     "tr": "Bekleme odasında boş yer kalmadı.",
+     "hint_tr": "Bekleme odasında derken **im Wartezimmer** denir."
     }
    ]
   },
@@ -8528,6 +8739,19 @@
      "tr": "– Wimmer Bey'e haber verdiniz mi? – Evet, hastalık bildirimim ona ulaştı.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:Krankmeldung:5",
+     "de": "Herr Wimmer liest am Morgen zuerst die Krankmeldungen.",
+     "tr": "Wimmer Bey sabah önce hastalık bildirimlerini okuyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Krankmeldung:6",
+     "de": "– Wo ist denn die Derya heute? – Krank, die Krankmeldung ist grad gekommen.",
+     "tr": "– Derya bugün nerede? – Hasta, hastalık bildirimi az önce geldi.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -8559,16 +8783,38 @@
      "hint_tr": "Hastalık bildirimimi derken **meine Krankmeldung** denir."
     },
     {
-     "de": "Die Firma braucht ___ Krankmeldung.",
-     "answer": "eine",
-     "tr": "Şirketin bir hastalık bildirimine ihtiyacı var.",
-     "hint_tr": "**braucht** dedikten sonra da **eine Krankmeldung** aynı kalır."
+     "de": "Die ___ ist schon bei Herrn Wimmer.",
+     "answer": "Krankmeldung",
+     "tr": "Hastalık bildirimi Wimmer Bey'e ulaştı bile.",
+     "hint_tr": "Hastalık bildirimi derken **die Krankmeldung** denir."
     },
     {
-     "de": "___ Krankmeldung ist schon da.",
-     "answer": "Die",
-     "tr": "Hastalık bildirimi ulaştı bile.",
-     "hint_tr": "Hangi hastalık bildirimi olduğu belliyse **die Krankmeldung** denir."
+     "de": "Hast du die ___ schon geschickt?",
+     "answer": "Krankmeldung",
+     "tr": "Hastalık bildirimini gönderdin mi?",
+     "hint_tr": "Hastalık bildirimini derken **die Krankmeldung** denir."
+    },
+    {
+     "de": "Herr Wimmer bekommt heute drei ___.",
+     "answer": "Krankmeldungen",
+     "tr": "Wimmer Bey bugün üç hastalık bildirimi alıyor.",
+     "hint_tr": "Üç hastalık bildirimi derken **drei Krankmeldungen** denir."
+    },
+    {
+     "de": "Ich muss noch die Krankmeldung ___.",
+     "answer": "schicken",
+     "tr": "Daha hastalık bildirimini göndermem lazım.",
+     "hint_tr": "Hastalık bildirimini göndermek derken **die Krankmeldung schicken** denir.",
+     "also_ok": [
+      "senden",
+      "abschicken"
+     ]
+    },
+    {
+     "de": "___ per E-Mail sind bei uns kein Problem.",
+     "answer": "Krankmeldungen",
+     "tr": "E-postayla gelen hastalık bildirimleri bizde sorun değil.",
+     "hint_tr": "Hastalık bildirimleri derken **Krankmeldungen** denir."
     }
    ]
   },
@@ -8634,6 +8880,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "patient handing medical note at counter"
+    },
+    {
+     "id": "lx:Attest:5",
+     "de": "Frau Huber, ist mein Attest schon fertig?",
+     "tr": "Huber Hanım, doktor raporum hazır mı?",
+     "layer": "hd",
+     "img": "patient waiting at practice reception desk"
+    },
+    {
+     "id": "lx:Attest:6",
+     "de": "– Hast du das Attest eigentlich schon abgegeben? – Klar, gestern beim Chef.",
+     "tr": "– Doktor raporunu teslim ettin mi? – Tabii, dün şefe.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "employee handing envelope to manager"
     }
    ],
    "level": "A2",
@@ -8649,12 +8910,6 @@
    },
    "forms": [
     {
-     "de": "Ich brauche ___ Attest für die Schule.",
-     "answer": "ein",
-     "tr": "Okul için bir doktor raporuna ihtiyacım var.",
-     "hint_tr": "**Ich brauche** dedikten sonra da **ein Attest** aynı kalır."
-    },
-    {
      "de": "Ich gebe das ___ beim Chef ab.",
      "answer": "Attest",
      "tr": "Doktor raporunu şefe teslim ediyorum.",
@@ -8663,8 +8918,36 @@
     {
      "de": "Hier ist mein ___ von Dr. Weber.",
      "answer": "Attest",
-     "tr": "İşte Doktor Weber'den raporum.",
-     "hint_tr": "Raporum derken **mein Attest** denir."
+     "tr": "Doktor Weber'den aldığım doktor raporu burada.",
+     "hint_tr": "Doktor raporum derken **mein Attest** denir."
+    },
+    {
+     "de": "Das Kind braucht ein ___ für die Schule.",
+     "answer": "Attest",
+     "tr": "Çocuğun okul için doktor raporu lazım.",
+     "hint_tr": "Doktor raporu lazım derken **braucht ein Attest** denir."
+    },
+    {
+     "de": "Dr. Weber schreibt jeden Tag viele ___.",
+     "answer": "Atteste",
+     "tr": "Doktor Weber her gün birçok doktor raporu yazıyor.",
+     "hint_tr": "Birçok doktor raporu derken **viele Atteste** denir."
+    },
+    {
+     "de": "Bei Dr. Weber ___ Sie das Attest sofort.",
+     "answer": "bekommen",
+     "tr": "Doktor raporunu Doktor Weber'den hemen alırsınız.",
+     "hint_tr": "Doktor raporunu alırsınız derken **bekommen Sie das Attest** denir.",
+     "also_ok": [
+      "kriegen",
+      "erhalten"
+     ]
+    },
+    {
+     "de": "Das ___ liegt noch zu Hause.",
+     "answer": "Attest",
+     "tr": "Doktor raporu hâlâ evde duruyor.",
+     "hint_tr": "Doktor raporu derken **das Attest** denir."
     }
    ]
   },
@@ -8727,6 +9010,19 @@
      "tr": "– Alerjiniz var mı? – Evet, kedilere.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:Allergie:5",
+     "de": "Der Junge hat eine Allergie gegen Milch.",
+     "tr": "Oğlanın süte alerjisi var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Allergie:6",
+     "de": "– Ist da Milch drin? – Ja, warum? Hast du 'ne Allergie?",
+     "tr": "– İçinde süt var mı? – Evet, neden? Alerjin mi var?",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -8742,18 +9038,6 @@
    },
    "forms": [
     {
-     "de": "Ich habe ___ Allergie gegen Nüsse.",
-     "answer": "eine",
-     "tr": "Fındık fıstığa alerjim var.",
-     "hint_tr": "**Ich habe** dedikten sonra da **eine Allergie** aynı kalır."
-    },
-    {
-     "de": "Ich habe eine Allergie ___ Katzen.",
-     "answer": "gegen",
-     "tr": "Kedilere alerjim var.",
-     "hint_tr": "Neye alerjin olduğunu **gegen** ile söylersin: **gegen Katzen**."
-    },
-    {
      "de": "Im Frühling ist meine ___ schlimm.",
      "answer": "Allergie",
      "tr": "İlkbaharda alerjim kötü oluyor.",
@@ -8763,7 +9047,31 @@
      "de": "Das Kind hat viele ___.",
      "answer": "Allergien",
      "tr": "Çocuğun birçok alerjisi var.",
-     "hint_tr": "Birden çok alerji için **Allergien** denir."
+     "hint_tr": "Birçok alerji derken **viele Allergien** denir."
+    },
+    {
+     "de": "Haben Sie eine ___ gegen Medikamente?",
+     "answer": "Allergie",
+     "tr": "İlaçlara alerjiniz var mı?",
+     "hint_tr": "İlaçlara alerji derken **eine Allergie gegen Medikamente** denir."
+    },
+    {
+     "de": "Mein Kollege hat eine starke ___ gegen Katzen.",
+     "answer": "Allergie",
+     "tr": "İş arkadaşımın kedilere karşı şiddetli alerjisi var.",
+     "hint_tr": "Şiddetli alerji derken **eine starke Allergie** denir."
+    },
+    {
+     "de": "Gegen meine ___ nehme ich Tabletten.",
+     "answer": "Allergie",
+     "tr": "Alerjime karşı hap alıyorum.",
+     "hint_tr": "Alerjime karşı derken **gegen meine Allergie** denir."
+    },
+    {
+     "de": "Mit dieser ___ dürfen Sie keine Nüsse essen.",
+     "answer": "Allergie",
+     "tr": "Bu alerjiyle fındık fıstık yememelisiniz.",
+     "hint_tr": "Bu alerjiyle derken **mit dieser Allergie** denir."
     }
    ]
   },
@@ -8830,6 +9138,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "vaccination record booklet on table"
+    },
+    {
+     "id": "lx:Impfung:5",
+     "de": "Nach der Impfung bleiben Sie bitte noch kurz im Wartezimmer.",
+     "tr": "Aşıdan sonra lütfen biraz daha bekleme odasında kalın.",
+     "layer": "hd",
+     "img": "patient sitting in waiting room with plaster on arm"
+    },
+    {
+     "id": "lx:Impfung:6",
+     "de": "– Tut die Impfung weh? – Nur ganz kurz, keine Sorge.",
+     "tr": "– Aşı acıtıyor mu? – Sadece bir anlık, merak etme.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "nurse preparing vaccination at clinic table"
     }
    ],
    "level": "A2",
@@ -8843,12 +9166,6 @@
     "parcalar": []
    },
    "forms": [
-    {
-     "de": "Ich bekomme heute ___ Impfung.",
-     "answer": "eine",
-     "tr": "Bugün bir aşı oluyorum.",
-     "hint_tr": "**Ich bekomme** dedikten sonra da **eine Impfung** aynı kalır."
-    },
     {
      "de": "Wann war Ihre letzte ___?",
      "answer": "Impfung",
@@ -8865,7 +9182,29 @@
      "de": "Kinder brauchen mehrere ___.",
      "answer": "Impfungen",
      "tr": "Çocukların birkaç aşıya ihtiyacı var.",
-     "hint_tr": "Birden çok aşı için **Impfungen** denir."
+     "hint_tr": "Birkaç aşı derken **mehrere Impfungen** denir."
+    },
+    {
+     "de": "Die ___ gegen Grippe gibt es jetzt in der Praxis.",
+     "answer": "Impfung",
+     "tr": "Grip aşısı şimdi muayenehanede var.",
+     "hint_tr": "Grip aşısı derken **die Impfung gegen Grippe** denir."
+    },
+    {
+     "de": "Frau Brandl bekommt im Herbst eine ___.",
+     "answer": "Impfung",
+     "tr": "Brandl Hanım sonbaharda aşı oluyor.",
+     "hint_tr": "Aşı oluyor derken **bekommt eine Impfung** denir."
+    },
+    {
+     "de": "Heute ___ Sie Ihre Impfung.",
+     "answer": "bekommen",
+     "tr": "Bugün aşınızı oluyorsunuz.",
+     "hint_tr": "Aşınızı oluyorsunuz derken **bekommen Sie Ihre Impfung** denir.",
+     "also_ok": [
+      "kriegen",
+      "erhalten"
+     ]
     }
    ]
   },
@@ -8932,6 +9271,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "relieved person looking at healed rash"
+    },
+    {
+     "id": "lx:Salbe:5",
+     "de": "Die Apothekerin gibt dem Mann eine Salbe für sein Knie.",
+     "tr": "Eczacı, adama dizine sürmesi için bir merhem veriyor.",
+     "layer": "hd",
+     "img": "pharmacist handing small tube to elderly man"
+    },
+    {
+     "id": "lx:Salbe:6",
+     "de": "– Was ist mit deiner Hand? – Der Topf war zu heiß. Aber ich hab schon Salbe drauf.",
+     "tr": "– Elin ne oldu? – Tencere çok sıcaktı. Ama üstüne merhem sürdüm bile.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "hand with ointment next to kitchen stove"
     }
    ],
    "level": "A2",
@@ -8946,22 +9300,40 @@
    },
    "forms": [
     {
-     "de": "Haben Sie ___ Salbe gegen Sonnenbrand?",
-     "answer": "eine",
-     "tr": "Güneş yanığı için bir merheminiz var mı?",
-     "hint_tr": "**Haben Sie** dedikten sonra da **eine Salbe** aynı kalır."
-    },
-    {
-     "de": "Tragen Sie ___ Salbe zweimal täglich auf.",
-     "answer": "die",
-     "tr": "Merhemi günde iki kez sürün.",
-     "hint_tr": "**Tragen Sie** dedikten sonra **die Salbe** aynı kalır."
-    },
-    {
      "de": "Mit dieser ___ wird es schnell besser.",
      "answer": "Salbe",
      "tr": "Bu merhemle çabuk iyileşir.",
      "hint_tr": "Bu merhemle derken **Mit dieser Salbe** denir."
+    },
+    {
+     "de": "Haben Sie eine ___ ohne Rezept?",
+     "answer": "Salbe",
+     "tr": "Reçetesiz bir merheminiz var mı?",
+     "hint_tr": "Reçetesiz bir merhem derken **eine Salbe ohne Rezept** denir."
+    },
+    {
+     "de": "Tragen Sie die ___ zweimal täglich auf.",
+     "answer": "Salbe",
+     "tr": "Merhemi günde iki kez sürün.",
+     "hint_tr": "Merhemi sürün derken **Tragen Sie die Salbe auf** denir."
+    },
+    {
+     "de": "Die ___ vom Arzt hilft gut.",
+     "answer": "Salbe",
+     "tr": "Doktorun verdiği merhem iyi geliyor.",
+     "hint_tr": "Doktorun verdiği merhem derken **die Salbe vom Arzt** denir."
+    },
+    {
+     "de": "In der Apotheke gibt es viele ___.",
+     "answer": "Salben",
+     "tr": "Eczanede birçok merhem var.",
+     "hint_tr": "Birçok merhem derken **viele Salben** denir."
+    },
+    {
+     "de": "Sie müssen die Salbe jeden Abend ___.",
+     "answer": "auftragen",
+     "tr": "Merhemi her akşam sürmeniz gerekiyor.",
+     "hint_tr": "Merhemi sürmek derken **die Salbe auftragen** denir."
     }
    ]
   },
@@ -9024,6 +9396,19 @@
      "tr": "– Yan etki fark ettiniz mi? – Evet, sık sık midem bulanıyor.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:Nebenwirkung:5",
+     "de": "Bei Nebenwirkungen rufen Sie bitte sofort in der Praxis an.",
+     "tr": "Yan etki olursa lütfen hemen muayenehaneye telefon edin.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Nebenwirkung:6",
+     "de": "– Und, wie geht's mit den neuen Tabletten? – Gut, bis jetzt keine Nebenwirkungen.",
+     "tr": "– Eee, yeni haplar nasıl gidiyor? – İyi, şimdiye kadar yan etki yok.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -9056,13 +9441,31 @@
      "de": "Müdigkeit kann eine ___ sein.",
      "answer": "Nebenwirkung",
      "tr": "Yorgunluk bir yan etki olabilir.",
-     "hint_tr": "Tek yan etki için **eine Nebenwirkung** denir."
+     "hint_tr": "Bir yan etki derken **eine Nebenwirkung** denir."
     },
     {
      "de": "Hat das Medikament starke ___?",
      "answer": "Nebenwirkungen",
      "tr": "İlacın güçlü yan etkileri var mı?",
-     "hint_tr": "Birden çok yan etki için **Nebenwirkungen** denir."
+     "hint_tr": "Güçlü yan etkiler derken **starke Nebenwirkungen** denir."
+    },
+    {
+     "de": "Dr. Weber erklärt mir die ___.",
+     "answer": "Nebenwirkungen",
+     "tr": "Doktor Weber bana yan etkileri açıklıyor.",
+     "hint_tr": "Yan etkileri derken **die Nebenwirkungen** denir."
+    },
+    {
+     "de": "Gibt es Tabletten ohne ___?",
+     "answer": "Nebenwirkungen",
+     "tr": "Yan etkisi olmayan hap var mı?",
+     "hint_tr": "Yan etkisi olmayan derken **ohne Nebenwirkungen** denir."
+    },
+    {
+     "de": "___ hatte ich keine.",
+     "answer": "Nebenwirkungen",
+     "tr": "Hiç yan etkim olmadı.",
+     "hint_tr": "Yan etki derken **Nebenwirkungen** denir."
     }
    ]
   },
@@ -9125,6 +9528,19 @@
      "tr": "– Muayenehane bugün kapalı. – O zaman nöbetçi doktor hizmetine telefon edin.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:Bereitschaftsdienst:5",
+     "de": "Am Feiertag ist die Praxis zu, dann hilft der Bereitschaftsdienst.",
+     "tr": "Resmî tatilde muayenehane kapalı, o zaman nöbetçi doktor hizmeti yardım eder.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Bereitschaftsdienst:6",
+     "de": "– Das Kind hat hohes Fieber! – Ruf schnell den Bereitschaftsdienst an, 116 117.",
+     "tr": "– Çocuğun ateşi çok yüksek! – Hemen nöbetçi doktor hizmetine telefon et, 116 117.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -9151,22 +9567,40 @@
    },
    "forms": [
     {
-     "de": "Rufen Sie ___ Bereitschaftsdienst an.",
-     "answer": "den",
-     "tr": "Nöbetçi doktor hizmetine telefon edin.",
-     "hint_tr": "**Rufen Sie** dedikten sonra **der Bereitschaftsdienst**, **den Bereitschaftsdienst** olur."
-    },
-    {
-     "de": "___ Bereitschaftsdienst hat die Nummer 116 117.",
-     "answer": "Der",
-     "tr": "Nöbetçi doktor hizmetinin numarası 116 117.",
-     "hint_tr": "Nöbetçi doktor hizmeti derken **der Bereitschaftsdienst** denir."
-    },
-    {
      "de": "Am Wochenende hilft der ärztliche ___.",
      "answer": "Bereitschaftsdienst",
      "tr": "Hafta sonu nöbetçi doktor hizmeti yardım eder.",
-     "hint_tr": "Nöbetçi doktor hizmeti için **der ärztliche Bereitschaftsdienst** denir."
+     "hint_tr": "Nöbetçi doktor hizmeti derken **der ärztliche Bereitschaftsdienst** denir."
+    },
+    {
+     "de": "Rufen Sie den ___ an.",
+     "answer": "Bereitschaftsdienst",
+     "tr": "Nöbetçi doktor hizmetine telefon edin.",
+     "hint_tr": "Nöbetçi doktor hizmetine telefon edin derken **Rufen Sie den Bereitschaftsdienst an** denir."
+    },
+    {
+     "de": "Die Nummer vom ___ ist 116 117.",
+     "answer": "Bereitschaftsdienst",
+     "tr": "Nöbetçi doktor hizmetinin numarası 116 117.",
+     "hint_tr": "Nöbetçi doktor hizmetinin numarası derken **die Nummer vom Bereitschaftsdienst** denir."
+    },
+    {
+     "de": "Ich habe den ___ schon angerufen.",
+     "answer": "Bereitschaftsdienst",
+     "tr": "Nöbetçi doktor hizmetine telefon ettim bile.",
+     "hint_tr": "Nöbetçi doktor hizmetine telefon ettim derken **habe den Bereitschaftsdienst angerufen** denir."
+    },
+    {
+     "de": "Am Samstag müssen Sie den Bereitschaftsdienst ___.",
+     "answer": "anrufen",
+     "tr": "Cumartesi günü nöbetçi doktor hizmetine telefon etmeniz gerekiyor.",
+     "hint_tr": "Nöbetçi doktor hizmetine telefon etmek derken **den Bereitschaftsdienst anrufen** denir."
+    },
+    {
+     "de": "Den ___ erreichen Sie Tag und Nacht.",
+     "answer": "Bereitschaftsdienst",
+     "tr": "Nöbetçi doktor hizmetine gece gündüz ulaşırsınız.",
+     "hint_tr": "Nöbetçi doktor hizmetine ulaşırsınız derken **Den Bereitschaftsdienst erreichen Sie** denir."
     }
    ]
   },
@@ -9232,6 +9666,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "patient describing pain to doctor"
+    },
+    {
+     "id": "lx:Schmerzmittel:5",
+     "de": "Gegen die Rückenschmerzen hilft kein Schmerzmittel mehr.",
+     "tr": "Sırt ağrısına artık hiçbir ağrı kesici iyi gelmiyor.",
+     "layer": "hd",
+     "img": "man lying on floor with back pain"
+    },
+    {
+     "id": "lx:Schmerzmittel:6",
+     "de": "– Hast du 'n Schmerzmittel dabei? – Ja, in meiner Tasche, Moment.",
+     "tr": "– Yanında ağrı kesici var mı? – Evet, çantamda, bir dakika.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "woman searching in handbag at office desk"
     }
    ],
    "level": "A2",
@@ -9255,12 +9704,6 @@
    },
    "forms": [
     {
-     "de": "Ich nehme ___ Schmerzmittel.",
-     "answer": "ein",
-     "tr": "Bir ağrı kesici alıyorum.",
-     "hint_tr": "**Ich nehme** dedikten sonra da **ein Schmerzmittel** aynı kalır."
-    },
-    {
      "de": "Nehmen Sie das ___ nach dem Essen.",
      "answer": "Schmerzmittel",
      "tr": "Ağrı kesiciyi yemekten sonra alın.",
@@ -9276,7 +9719,25 @@
      "de": "Ich nehme nicht gern ___.",
      "answer": "Schmerzmittel",
      "tr": "Ağrı kesici almayı sevmem.",
-     "hint_tr": "Genel konuşurken **Schmerzmittel** önüne bir şey gelmez."
+     "hint_tr": "Ağrı kesici almayı sevmem derken **nehme nicht gern Schmerzmittel** denir."
+    },
+    {
+     "de": "Ich nehme ein ___ gegen die Kopfschmerzen.",
+     "answer": "Schmerzmittel",
+     "tr": "Baş ağrısı için bir ağrı kesici alıyorum.",
+     "hint_tr": "Bir ağrı kesici alıyorum derken **Ich nehme ein Schmerzmittel** denir."
+    },
+    {
+     "de": "Dr. Weber verschreibt ein starkes ___.",
+     "answer": "Schmerzmittel",
+     "tr": "Doktor Weber güçlü bir ağrı kesici yazıyor.",
+     "hint_tr": "Güçlü bir ağrı kesici derken **ein starkes Schmerzmittel** denir."
+    },
+    {
+     "de": "___ bekommen Sie hier auch ohne Rezept.",
+     "answer": "Schmerzmittel",
+     "tr": "Ağrı kesiciyi burada reçetesiz de alabilirsiniz.",
+     "hint_tr": "Ağrı kesici derken **Schmerzmittel** denir."
     }
    ]
   },
@@ -9344,6 +9805,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "doctor examining patient's throat"
+    },
+    {
+     "id": "lx:Halsschmerzen:5",
+     "de": "Mit Halsschmerzen rufe ich in der Praxis von Dr. Weber an.",
+     "tr": "Boğazım ağrıyınca Doktor Weber'in muayenehanesine telefon ediyorum.",
+     "layer": "hd",
+     "img": "person on phone with scarf around neck"
+    },
+    {
+     "id": "lx:Halsschmerzen:6",
+     "de": "– Du klingst aber komisch! – Ja, ich hab seit gestern Halsschmerzen.",
+     "tr": "– Sesin tuhaf geliyor! – Evet, dünden beri boğazım ağrıyor.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "colleague with scarf at office desk"
     }
    ],
    "level": "A2",
@@ -9371,7 +9847,7 @@
      "de": "Ich habe seit gestern ___.",
      "answer": "Halsschmerzen",
      "tr": "Dünden beri boğazım ağrıyor.",
-     "hint_tr": "Boğaz ağrısı için **Halsschmerzen** denir, sondaki **en** düşmez."
+     "hint_tr": "Boğazım ağrıyor derken **habe Halsschmerzen** denir."
     },
     {
      "de": "Meine ___ sind weg.",
@@ -9384,6 +9860,24 @@
      "answer": "Halsschmerzen",
      "tr": "Boğaz ağrısı için hapınız var mı?",
      "hint_tr": "Boğaz ağrısı için hap derken **Tabletten gegen Halsschmerzen** denir."
+    },
+    {
+     "de": "Bei ___ trinke ich viel Tee.",
+     "answer": "Halsschmerzen",
+     "tr": "Boğaz ağrısında çok çay içerim.",
+     "hint_tr": "Boğaz ağrısında derken **bei Halsschmerzen** denir."
+    },
+    {
+     "de": "Seit Montag hat Derya ___.",
+     "answer": "Halsschmerzen",
+     "tr": "Derya'nın pazartesiden beri boğazı ağrıyor.",
+     "hint_tr": "Boğazı ağrıyor derken **hat Halsschmerzen** denir."
+    },
+    {
+     "de": "___ und Fieber? Dann kommen Sie bitte vorbei.",
+     "answer": "Halsschmerzen",
+     "tr": "Boğaz ağrısı ve ateş mi? O zaman lütfen muayenehaneye uğrayın.",
+     "hint_tr": "Boğaz ağrısı derken **Halsschmerzen** denir."
     }
    ]
   },
@@ -9451,6 +9945,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "friend asking tired person at breakfast"
+    },
+    {
+     "id": "lx:Kopfschmerzen:5",
+     "de": "Bei starken Kopfschmerzen gehen Sie bitte zum Arzt.",
+     "tr": "Başınız çok ağrırsa lütfen doktora gidin.",
+     "layer": "hd",
+     "img": "woman with headache at doctor's door"
+    },
+    {
+     "id": "lx:Kopfschmerzen:6",
+     "de": "– Kommst du noch mit ins Kino? – Nee, ich hab Kopfschmerzen, ich geh heim.",
+     "tr": "– Sinemaya geliyor musun? – Yok, başım ağrıyor, eve gidiyorum.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "tired woman leaving cinema entrance at night"
     }
    ],
    "level": "A2",
@@ -9478,7 +9987,7 @@
      "de": "Ich habe seit heute früh ___.",
      "answer": "Kopfschmerzen",
      "tr": "Bu sabahtan beri başım ağrıyor.",
-     "hint_tr": "Baş ağrısı için **Kopfschmerzen** denir, önüne **eine** gelmez."
+     "hint_tr": "Başım ağrıyor derken **habe Kopfschmerzen** denir."
     },
     {
      "de": "Die ___ werden schlimmer.",
@@ -9491,6 +10000,24 @@
      "answer": "Kopfschmerzen",
      "tr": "Kahve içmeyince başım ağrımaya başlıyor.",
      "hint_tr": "Başım ağrımaya başlıyor derken **bekomme ich Kopfschmerzen** denir."
+    },
+    {
+     "de": "Gegen ___ trinkt Tobi viel Wasser.",
+     "answer": "Kopfschmerzen",
+     "tr": "Tobi baş ağrısına karşı çok su içiyor.",
+     "hint_tr": "Baş ağrısına karşı derken **gegen Kopfschmerzen** denir."
+    },
+    {
+     "de": "Hast du schon wieder ___?",
+     "answer": "Kopfschmerzen",
+     "tr": "Yine mi başın ağrıyor?",
+     "hint_tr": "Yine mi başın ağrıyor derken **Hast du schon wieder Kopfschmerzen?** denir."
+    },
+    {
+     "de": "___ habe ich nur am Abend.",
+     "answer": "Kopfschmerzen",
+     "tr": "Başım sadece akşamları ağrıyor.",
+     "hint_tr": "Başım ağrıyor derken **Kopfschmerzen habe ich** denir."
     }
    ]
   },
@@ -9558,6 +10085,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "doctor examining patient's stomach"
+    },
+    {
+     "id": "lx:Bauchschmerzen:5",
+     "de": "Der Junge kann wegen Bauchschmerzen nicht zur Schule gehen.",
+     "tr": "Oğlan karın ağrısı yüzünden okula gidemiyor.",
+     "layer": "hd",
+     "img": "hot water bottle on child bed blanket"
+    },
+    {
+     "id": "lx:Bauchschmerzen:6",
+     "de": "– Was hast du denn? – Bauchschmerzen, ich hab gestern zu viel gegessen.",
+     "tr": "– Neyin var? – Karın ağrısı, dün çok fazla yedim.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "man on couch holding stomach after dinner"
     }
    ],
    "level": "A2",
@@ -9585,19 +10127,37 @@
      "de": "Das Kind hat ___.",
      "answer": "Bauchschmerzen",
      "tr": "Çocuğun karnı ağrıyor.",
-     "hint_tr": "Karın ağrısı için **Bauchschmerzen** denir."
+     "hint_tr": "Karnı ağrıyor derken **hat Bauchschmerzen** denir."
     },
     {
      "de": "Seit wann ___ Sie Bauchschmerzen?",
      "answer": "haben",
      "tr": "Ne zamandan beri karnınız ağrıyor?",
-     "hint_tr": "Karnı ağrımak için **Bauchschmerzen haben** denir."
+     "hint_tr": "Karnınız ağrıyor derken **haben Sie Bauchschmerzen** denir."
     },
     {
      "de": "Ich habe keine ___ mehr.",
      "answer": "Bauchschmerzen",
      "tr": "Artık karnım ağrımıyor.",
-     "hint_tr": "Artık karnım ağrımıyor derken **Ich habe keine Bauchschmerzen mehr** denir."
+     "hint_tr": "Artık karnım ağrımıyor derken **keine Bauchschmerzen mehr** denir."
+    },
+    {
+     "de": "Der Junge hat ___ vom Eis.",
+     "answer": "Bauchschmerzen",
+     "tr": "Oğlanın dondurmadan karnı ağrıyor.",
+     "hint_tr": "Karnı ağrıyor derken **hat Bauchschmerzen** denir."
+    },
+    {
+     "de": "Wo genau haben Sie die ___?",
+     "answer": "Bauchschmerzen",
+     "tr": "Karın ağrınız tam olarak nerede?",
+     "hint_tr": "Karın ağrınız tam olarak nerede derken **Wo genau haben Sie die Bauchschmerzen?** denir."
+    },
+    {
+     "de": "Haben Sie einen Tee gegen ___?",
+     "answer": "Bauchschmerzen",
+     "tr": "Karın ağrısına iyi gelen bir çayınız var mı?",
+     "hint_tr": "Karın ağrısına iyi gelen çay derken **Tee gegen Bauchschmerzen** denir."
     }
    ]
   },
@@ -9665,6 +10225,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "man carrying moving boxes"
+    },
+    {
+     "id": "lx:Rückenschmerzen:5",
+     "de": "Mit seinen Rückenschmerzen kann Herr Pichler heute nichts Schweres tragen.",
+     "tr": "Pichler Bey sırt ağrısı yüzünden bugün ağır bir şey taşıyamıyor.",
+     "layer": "hd",
+     "img": "older man resting beside heavy boxes in stairwell"
+    },
+    {
+     "id": "lx:Rückenschmerzen:6",
+     "de": "– Gehst du heut ins Fitnessstudio? – Nee, ich hab Rückenschmerzen, ich mach Pause.",
+     "tr": "– Bugün spor salonuna gidiyor musun? – Yok, sırtım ağrıyor, ara veriyorum.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "empty gym bench"
     }
    ],
    "level": "A2",
@@ -9692,7 +10267,7 @@
      "de": "Ich habe starke ___.",
      "answer": "Rückenschmerzen",
      "tr": "Sırtım çok ağrıyor.",
-     "hint_tr": "Sırt ağrısı için **Rückenschmerzen** denir."
+     "hint_tr": "Sırtım çok ağrıyor derken **habe starke Rückenschmerzen** denir."
     },
     {
      "de": "Seit einer Woche habe ich ___.",
@@ -9704,7 +10279,25 @@
      "de": "Ich habe keine ___ mehr.",
      "answer": "Rückenschmerzen",
      "tr": "Artık sırtım ağrımıyor.",
-     "hint_tr": "Artık sırtım ağrımıyor derken **Ich habe keine Rückenschmerzen mehr** denir."
+     "hint_tr": "Artık sırtım ağrımıyor derken **keine Rückenschmerzen mehr** denir."
+    },
+    {
+     "de": "Die Verkäuferin hat abends oft ___.",
+     "answer": "Rückenschmerzen",
+     "tr": "Satıcı kadının akşamları sık sık sırtı ağrıyor.",
+     "hint_tr": "Sırtı ağrıyor derken **hat Rückenschmerzen** denir."
+    },
+    {
+     "de": "Vom Sitzen bekomme ich ___.",
+     "answer": "Rückenschmerzen",
+     "tr": "Oturmaktan sırtım ağrımaya başlıyor.",
+     "hint_tr": "Sırtım ağrımaya başlıyor derken **bekomme ich Rückenschmerzen** denir."
+    },
+    {
+     "de": "Basti sagt: Gegen ___ hilft Sport.",
+     "answer": "Rückenschmerzen",
+     "tr": "Basti diyor ki: Sırt ağrısına spor iyi gelir.",
+     "hint_tr": "Sırt ağrısına derken **gegen Rückenschmerzen** denir."
     }
    ]
   },
@@ -9767,6 +10360,19 @@
      "tr": "– Baş dönmeniz de var mı? – Evet, özellikle sabahları.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:Schwindel:5",
+     "de": "Frau Brandl hat Schwindel und bleibt heute im Bett.",
+     "tr": "Brandl Hanım'ın başı dönüyor, bugün yatakta kalıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Schwindel:6",
+     "de": "– Alles okay? Du siehst nicht gut aus. – Mir ist schwindelig, ich brauch Wasser.",
+     "tr": "– İyi misin? İyi görünmüyorsun. – Başım dönüyor, suya ihtiyacım var.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -9785,19 +10391,40 @@
      "de": "Ich habe starken ___.",
      "answer": "Schwindel",
      "tr": "Başım çok dönüyor.",
-     "hint_tr": "Baş dönmesi için **Schwindel** denir."
+     "hint_tr": "Başım çok dönüyor derken **habe starken Schwindel** denir."
     },
     {
-     "de": "___ ist schwindelig.",
-     "answer": "Mir",
-     "tr": "Başım dönüyor.",
-     "hint_tr": "Başım dönüyor derken **Mir ist schwindelig** denir, **Ich bin** denmez."
+     "de": "Plötzlich ist mir ___.",
+     "answer": "schwindelig",
+     "tr": "Birden başım dönüyor.",
+     "hint_tr": "Başım dönüyor derken **ist mir schwindelig** denir.",
+     "also_ok": [
+      "schwindlig"
+     ]
     },
     {
      "de": "Bei ___ setzen Sie sich bitte hin.",
      "answer": "Schwindel",
      "tr": "Başınız dönerse lütfen oturun.",
-     "hint_tr": "Baş dönmesi olunca derken **bei Schwindel** denir."
+     "hint_tr": "Başınız dönerse derken **bei Schwindel** denir."
+    },
+    {
+     "de": "Haben Sie oft ___?",
+     "answer": "Schwindel",
+     "tr": "Başınız sık sık dönüyor mu?",
+     "hint_tr": "Başınız dönüyor mu derken **Haben Sie Schwindel?** denir."
+    },
+    {
+     "de": "___ und Übelkeit können Nebenwirkungen sein.",
+     "answer": "Schwindel",
+     "tr": "Baş dönmesi ve mide bulantısı yan etki olabilir.",
+     "hint_tr": "Baş dönmesi ve mide bulantısı derken **Schwindel und Übelkeit** denir."
+    },
+    {
+     "de": "Der ___ kommt immer am Morgen.",
+     "answer": "Schwindel",
+     "tr": "Baş dönmesi hep sabahları geliyor.",
+     "hint_tr": "Baş dönmesi derken **der Schwindel** denir."
     }
    ]
   },
@@ -9860,6 +10487,19 @@
      "tr": "– Başka şikâyetiniz var mı? – Evet, mide bulantısı ve baş ağrısı.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:Übelkeit:5",
+     "de": "Bei Übelkeit hilft oft frische Luft.",
+     "tr": "Mide bulantısına çoğu zaman temiz hava iyi gelir.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Übelkeit:6",
+     "de": "– Hilft der Tee? – Ja, die Übelkeit wird langsam besser.",
+     "tr": "– Çay iyi geliyor mu? – Evet, mide bulantısı yavaş yavaş azalıyor.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -9878,7 +10518,7 @@
      "de": "Haben Sie etwas gegen ___?",
      "answer": "Übelkeit",
      "tr": "Mide bulantısı için bir şeyiniz var mı?",
-     "hint_tr": "Mide bulantısı için **Übelkeit** denir."
+     "hint_tr": "Mide bulantısı için derken **gegen Übelkeit** denir."
     },
     {
      "de": "Die ___ ist jetzt weg.",
@@ -9890,7 +10530,25 @@
      "de": "Nach der Tablette hatte ich starke ___.",
      "answer": "Übelkeit",
      "tr": "Haptan sonra midem çok bulandı.",
-     "hint_tr": "Şiddetli bulantı için **starke Übelkeit** denir."
+     "hint_tr": "Midem çok bulandı derken **hatte ich starke Übelkeit** denir."
+    },
+    {
+     "de": "Bei ___ helfen Tee und Ruhe.",
+     "answer": "Übelkeit",
+     "tr": "Mide bulantısına çay ve dinlenmek iyi gelir.",
+     "hint_tr": "Mide bulantısına derken **bei Übelkeit** denir."
+    },
+    {
+     "de": "Gegen die ___ am Morgen isst Anna ein Stück Brot.",
+     "answer": "Übelkeit",
+     "tr": "Anna sabahları mide bulantısına karşı bir parça ekmek yiyor.",
+     "hint_tr": "Sabahları mide bulantısı derken **Übelkeit am Morgen** denir."
+    },
+    {
+     "de": "___ ist eine Nebenwirkung von dem Medikament.",
+     "answer": "Übelkeit",
+     "tr": "Mide bulantısı bu ilacın bir yan etkisi.",
+     "hint_tr": "Mide bulantısı derken **Übelkeit** denir."
     }
    ]
   },
@@ -9954,6 +10612,19 @@
      "tr": "– Ateşiniz de var mı? – Hayır, ama şiddetli ishalim var.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:Durchfall:5",
+     "de": "Lena hat heute frei, ihre Tochter hat Durchfall.",
+     "tr": "Lena bugün izinli, kızının ishali var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Durchfall:6",
+     "de": "– Kommst du morgen? – Glaub nicht, ich hab Durchfall.",
+     "tr": "– Yarın geliyor musun? – Sanmam, ishalim.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -9971,13 +10642,37 @@
      "de": "Ich habe seit zwei Tagen ___.",
      "answer": "Durchfall",
      "tr": "İki gündür ishalim.",
-     "hint_tr": "İshal için **Durchfall** denir, önüne bir şey gelmez."
+     "hint_tr": "İshalim derken **Ich habe Durchfall** denir."
     },
     {
      "de": "Der Kleine hat ___.",
      "answer": "Durchfall",
      "tr": "Küçüğün ishali var.",
      "hint_tr": "Küçüğün ishali var derken **Der Kleine hat Durchfall** denir."
+    },
+    {
+     "de": "Lena gibt dem Kunden ein Mittel gegen ___.",
+     "answer": "Durchfall",
+     "tr": "Lena müşteriye ishal ilacı veriyor.",
+     "hint_tr": "İshal ilacı derken **ein Mittel gegen Durchfall** denir."
+    },
+    {
+     "de": "___ und Fieber hat das Kind seit gestern.",
+     "answer": "Durchfall",
+     "tr": "Çocuğun dünden beri ishali ve ateşi var.",
+     "hint_tr": "İshal ve ateş derken **Durchfall und Fieber** denir."
+    },
+    {
+     "de": "Bei starkem ___ müssen Sie viel trinken.",
+     "answer": "Durchfall",
+     "tr": "Şiddetli ishalde çok su içmelisiniz.",
+     "hint_tr": "Şiddetli ishalde derken **bei starkem Durchfall** denir."
+    },
+    {
+     "de": "Der Patient hat schon drei Tage ___.",
+     "answer": "Durchfall",
+     "tr": "Hastanın üç gündür ishali var.",
+     "hint_tr": "İshali var derken **hat Durchfall** denir."
     }
    ]
   },
@@ -10012,20 +10707,20 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Yabancılar dairesine gidiyorum derken **Ich gehe Ausländerbehörde** yanlış. Doğrusu **Ich gehe zur Ausländerbehörde**. Daireye giderken araya **zur** girer."
+    "Kadın yabancılar dairesine gidiyor derken **Die Frau geht Ausländerbehörde** yanlış. Doğrusu **Die Frau geht zur Ausländerbehörde**. Daireye giderken araya **zur** girer."
    ],
    "examples": [
     {
      "id": "lx:Ausländerbehörde:1",
-     "de": "Ich habe nächste Woche einen Termin bei der Ausländerbehörde.",
-     "tr": "Gelecek hafta yabancılar dairesinden randevum var.",
+     "de": "Der neue Kollege hat nächste Woche einen Termin bei der Ausländerbehörde.",
+     "tr": "Yeni iş arkadaşının gelecek hafta yabancılar dairesinde randevusu var.",
      "img": "calendar with appointment marked",
      "layer": "hd"
     },
     {
      "id": "lx:Ausländerbehörde:2",
-     "de": "Die Ausländerbehörde hat mir einen Brief geschickt.",
-     "tr": "Yabancılar dairesi bana bir mektup gönderdi.",
+     "de": "Die Ausländerbehörde hat dem Mann einen Brief geschickt.",
+     "tr": "Yabancılar dairesi adama bir mektup gönderdi.",
      "layer": "hd",
      "img": "official letter in mailbox"
     },
@@ -10043,6 +10738,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "information desk in government building"
+    },
+    {
+     "id": "lx:Ausländerbehörde:5",
+     "de": "Die Ausländerbehörde ist gleich neben dem Rathaus.",
+     "tr": "Yabancılar dairesi belediyenin hemen yanında.",
+     "layer": "hd",
+     "img": "office building next to town hall"
+    },
+    {
+     "id": "lx:Ausländerbehörde:6",
+     "de": "– Wo ist denn der neue Kollege? – Bei der Ausländerbehörde, er kommt um zehn.",
+     "tr": "– Yeni iş arkadaşı nerede? – Yabancılar dairesinde, saat onda geliyor.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "empty office desk with jacket on chair"
     }
    ],
    "level": "A2",
@@ -10066,22 +10776,40 @@
    },
    "forms": [
     {
-     "de": "Ich gehe morgen ___ Ausländerbehörde.",
-     "answer": "zur",
-     "tr": "Yarın yabancılar dairesine gidiyorum.",
-     "hint_tr": "Yabancılar dairesine giderken **zu der** birleşir: **zur Ausländerbehörde**."
+     "de": "Die ___ hat dem neuen Kollegen geschrieben.",
+     "answer": "Ausländerbehörde",
+     "tr": "Yabancılar dairesi yeni iş arkadaşına yazdı.",
+     "hint_tr": "Yabancılar dairesi derken **Die Ausländerbehörde** denir."
     },
     {
-     "de": "Ich habe einen Termin bei ___ Ausländerbehörde.",
-     "answer": "der",
-     "tr": "Yabancılar dairesinden randevum var.",
+     "de": "Der neue Kollege geht morgen zur ___.",
+     "answer": "Ausländerbehörde",
+     "tr": "Yeni iş arkadaşı yarın yabancılar dairesine gidiyor.",
+     "hint_tr": "Yabancılar dairesine derken **zur Ausländerbehörde** denir."
+    },
+    {
+     "de": "Bei der ___ ist heute viel los.",
+     "answer": "Ausländerbehörde",
+     "tr": "Yabancılar dairesi bugün çok kalabalık.",
      "hint_tr": "Yabancılar dairesinde derken **bei der Ausländerbehörde** denir."
     },
     {
-     "de": "Die ___ hat mir geschrieben.",
+     "de": "Wo ist hier die ___?",
      "answer": "Ausländerbehörde",
-     "tr": "Yabancılar dairesi bana yazdı.",
-     "hint_tr": "Yabancılar dairesi derken **Die Ausländerbehörde** denir."
+     "tr": "Yabancılar dairesi burada nerede?",
+     "hint_tr": "Yabancılar dairesi derken **die Ausländerbehörde** denir."
+    },
+    {
+     "de": "Der Mann hat einen ___ bei der Ausländerbehörde.",
+     "answer": "Termin",
+     "tr": "Adamın yabancılar dairesinde randevusu var.",
+     "hint_tr": "Yabancılar dairesinde randevu derken **Termin bei der Ausländerbehörde** denir."
+    },
+    {
+     "de": "Im Brief von der ___ steht eine Frist.",
+     "answer": "Ausländerbehörde",
+     "tr": "Yabancılar dairesinden gelen mektupta bir son tarih yazıyor.",
+     "hint_tr": "Yabancılar dairesinden gelen mektup derken **Brief von der Ausländerbehörde** denir."
     }
    ]
   },
@@ -10116,36 +10844,51 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Oturma iznimi uzatıyorum derken **Ich mache meinen Aufenthaltstitel länger** yanlış. Doğrusu **Ich verlängere meinen Aufenthaltstitel**."
+    "Adam oturma iznini uzatıyor derken **Der Mann macht seinen Aufenthaltstitel länger** yanlış. Doğrusu **Der Mann verlängert seinen Aufenthaltstitel**."
    ],
    "examples": [
     {
      "id": "lx:Aufenthaltstitel:1",
-     "de": "Ihr Aufenthaltstitel ist noch bis Oktober gültig.",
-     "tr": "Oturma izniniz ekime kadar geçerli.",
+     "de": "Herr Novak, Ihr Aufenthaltstitel ist noch bis Oktober gültig.",
+     "tr": "Novak Bey, oturma izniniz ekime kadar geçerli.",
      "img": "residence permit card on table",
      "layer": "hd"
     },
     {
      "id": "lx:Aufenthaltstitel:2",
-     "de": "Ich möchte meinen Aufenthaltstitel verlängern.",
-     "tr": "Oturma iznimi uzatmak istiyorum.",
+     "de": "Der neue Kollege möchte seinen Aufenthaltstitel verlängern.",
+     "tr": "Yeni iş arkadaşı oturma iznini uzatmak istiyor.",
      "layer": "hd",
      "img": "person handing documents at immigration counter"
     },
     {
      "id": "lx:Aufenthaltstitel:3",
-     "de": "Mein Aufenthaltstitel läuft im März ab, da muss ich noch hin.",
-     "tr": "Oturma iznimin süresi martta doluyor, oraya gitmem lazım.",
+     "de": "Der Aufenthaltstitel von meinem Kollegen läuft im März ab, da muss er noch hin.",
+     "tr": "İş arkadaşımın oturma izninin süresi martta doluyor, yabancılar dairesine gitmesi lazım.",
      "layer": "alltag"
     },
     {
      "id": "lx:Aufenthaltstitel:4",
-     "de": "– Haben Sie Ihren Aufenthaltstitel dabei? – Ja, hier ist die Karte.",
-     "tr": "– Oturma izniniz yanınızda mı? – Evet, işte kart.",
+     "de": "– Herr Novak, haben Sie Ihren Aufenthaltstitel dabei? – Ja, hier ist die Karte.",
+     "tr": "– Novak Bey, oturma izniniz yanınızda mı? – Evet, kart burada.",
      "layer": "hd",
      "dialog": true,
      "img": "official checking id card at counter"
+    },
+    {
+     "id": "lx:Aufenthaltstitel:5",
+     "de": "Der Aufenthaltstitel ist eine kleine Karte, wie ein Ausweis.",
+     "tr": "Oturma izni, kimlik kartı gibi küçük bir kart.",
+     "layer": "hd",
+     "img": "blank plastic card in open wallet"
+    },
+    {
+     "id": "lx:Aufenthaltstitel:6",
+     "de": "– Wo ist denn deine Nachbarin heute? – Beim Amt, ihr Aufenthaltstitel läuft bald ab.",
+     "tr": "– Komşun bugün nerede? – Resmî dairede, oturma izninin süresi yakında doluyor.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "woman waiting on bench in office hallway"
     }
    ],
    "level": "A2",
@@ -10161,22 +10904,40 @@
    },
    "forms": [
     {
-     "de": "Ich möchte meinen ___ verlängern.",
+     "de": "Der Mann möchte seinen ___ verlängern.",
      "answer": "Aufenthaltstitel",
-     "tr": "Oturma iznimi uzatmak istiyorum.",
-     "hint_tr": "Oturma iznimi derken **meinen Aufenthaltstitel** denir."
+     "tr": "Adam oturma iznini uzatmak istiyor.",
+     "hint_tr": "Oturma iznini derken **seinen Aufenthaltstitel** denir."
     },
     {
-     "de": "Ihr ___ ist bis Oktober gültig.",
+     "de": "Herr Novak, Ihr ___ ist bis Oktober gültig.",
      "answer": "Aufenthaltstitel",
-     "tr": "Oturma izniniz ekime kadar geçerli.",
+     "tr": "Novak Bey, oturma izniniz ekime kadar geçerli.",
      "hint_tr": "Oturma izniniz derken **Ihr Aufenthaltstitel** denir."
     },
     {
-     "de": "Ich beantrage ___ Aufenthaltstitel.",
-     "answer": "einen",
-     "tr": "Bir oturma izni için başvuruyorum.",
-     "hint_tr": "**Ich beantrage** dedikten sonra **ein Aufenthaltstitel**, **einen Aufenthaltstitel** olur."
+     "de": "Ein ___ ist ein wichtiges Dokument.",
+     "answer": "Aufenthaltstitel",
+     "tr": "Oturma izni önemli bir belgedir.",
+     "hint_tr": "Oturma izni derken **ein Aufenthaltstitel** denir."
+    },
+    {
+     "de": "Der ___ läuft im Mai ab.",
+     "answer": "Aufenthaltstitel",
+     "tr": "Oturma izninin süresi mayısta doluyor.",
+     "hint_tr": "Oturma izninin süresi doluyor derken **Der Aufenthaltstitel läuft ab** denir."
+    },
+    {
+     "de": "Wo kann man den Aufenthaltstitel ___?",
+     "answer": "verlängern",
+     "tr": "Oturma izni nerede uzatılır?",
+     "hint_tr": "Oturma iznini uzatmak derken **den Aufenthaltstitel verlängern** denir."
+    },
+    {
+     "de": "Bringen Sie bitte Ihren ___ mit.",
+     "answer": "Aufenthaltstitel",
+     "tr": "Lütfen oturma izninizi yanınızda getirin.",
+     "hint_tr": "Oturma izninizi derken **Ihren Aufenthaltstitel** denir."
     }
    ]
   },
@@ -10242,6 +11003,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "citizen at service counter filling form"
+    },
+    {
+     "id": "lx:Bürgerbüro:5",
+     "de": "Frau Schneider vom Bürgerbüro spricht langsam und klar.",
+     "tr": "Vatandaş bürosundan Schneider Hanım yavaş ve anlaşılır konuşuyor.",
+     "layer": "hd",
+     "img": "clerk explaining form at service desk"
+    },
+    {
+     "id": "lx:Bürgerbüro:6",
+     "de": "– Wo warst du denn? – Im Bürgerbüro, ewig gewartet!",
+     "tr": "– Neredeydin? – Vatandaş bürosunda, saatlerce bekledim!",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "tired man leaving town hall"
     }
    ],
    "level": "A2",
@@ -10265,24 +11041,57 @@
    },
    "forms": [
     {
-     "de": "Ich gehe morgen ___ Bürgerbüro.",
-     "answer": "ins",
-     "tr": "Yarın vatandaş bürosuna gidiyorum.",
-     "hint_tr": "Vatandaş bürosuna giderken **in das** birleşir: **ins Bürgerbüro**."
-    },
-    {
-     "de": "___ Bürgerbüro müssen Sie eine Nummer ziehen.",
-     "answer": "Im",
-     "tr": "Vatandaş bürosunda numara almanız gerekiyor.",
-     "hint_tr": "Vatandaş bürosunda derken **in dem** birleşir: **im Bürgerbüro**."
-    },
-    {
      "de": "Das ___ ist im Rathaus.",
      "answer": "Bürgerbüro",
      "tr": "Vatandaş bürosu belediyede.",
      "hint_tr": "Vatandaş bürosu derken **Das Bürgerbüro** denir.",
      "also_ok": [
       "Bürgeramt"
+     ]
+    },
+    {
+     "de": "Ich gehe morgen ins ___.",
+     "answer": "Bürgerbüro",
+     "tr": "Yarın vatandaş bürosuna gidiyorum.",
+     "hint_tr": "Vatandaş bürosuna derken **ins Bürgerbüro** denir.",
+     "also_ok": [
+      "Bürgeramt"
+     ]
+    },
+    {
+     "de": "Im ___ arbeitet Frau Schneider.",
+     "answer": "Bürgerbüro",
+     "tr": "Schneider Hanım vatandaş bürosunda çalışıyor.",
+     "hint_tr": "Vatandaş bürosunda derken **im Bürgerbüro** denir.",
+     "also_ok": [
+      "Bürgeramt"
+     ]
+    },
+    {
+     "de": "Ich habe einen Termin im ___.",
+     "answer": "Bürgerbüro",
+     "tr": "Vatandaş bürosunda randevum var.",
+     "hint_tr": "Vatandaş bürosunda randevum var derken **Ich habe einen Termin im Bürgerbüro** denir.",
+     "also_ok": [
+      "Bürgeramt"
+     ]
+    },
+    {
+     "de": "Das ___ hat am Donnerstag bis 18 Uhr offen.",
+     "answer": "Bürgerbüro",
+     "tr": "Vatandaş bürosu perşembe günü saat 18'e kadar açık.",
+     "hint_tr": "Vatandaş bürosu derken **das Bürgerbüro** denir.",
+     "also_ok": [
+      "Bürgeramt"
+     ]
+    },
+    {
+     "de": "Nach dem Umzug muss man sich im Bürgerbüro ___.",
+     "answer": "anmelden",
+     "tr": "Taşındıktan sonra vatandaş bürosunda adres kaydı yaptırmak gerekiyor.",
+     "hint_tr": "Vatandaş bürosunda adres kaydı yaptırmak derken **sich im Bürgerbüro anmelden** denir.",
+     "also_ok": [
+      "ummelden"
      ]
     }
    ]
@@ -10348,6 +11157,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "official document handed over counter"
+    },
+    {
+     "id": "lx:Meldebescheinigung:5",
+     "de": "Mit der Meldebescheinigung kann ich jetzt das Konto eröffnen.",
+     "tr": "İkamet belgesiyle artık hesabı açabilirim.",
+     "layer": "hd",
+     "img": "person signing papers at bank desk"
+    },
+    {
+     "id": "lx:Meldebescheinigung:6",
+     "de": "– Hast du die Meldebescheinigung dabei? – Mist, die liegt noch daheim!",
+     "tr": "– İkamet belgesi yanında mı? – Hay aksi, evde duruyor!",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "document lying on kitchen table"
     }
    ],
    "level": "A2",
@@ -10372,22 +11196,40 @@
    },
    "forms": [
     {
-     "de": "Ich brauche ___ Meldebescheinigung.",
-     "answer": "eine",
-     "tr": "Bir ikamet belgesine ihtiyacım var.",
-     "hint_tr": "**Ich brauche** dedikten sonra da **eine Meldebescheinigung** aynı kalır."
-    },
-    {
-     "de": "___ Meldebescheinigung bekommen Sie im Bürgerbüro.",
-     "answer": "Die",
-     "tr": "İkamet belgesini vatandaş bürosundan alırsınız.",
-     "hint_tr": "Hangi ikamet belgesi olduğu belliyse **die Meldebescheinigung** denir."
-    },
-    {
      "de": "Hier ist meine ___.",
      "answer": "Meldebescheinigung",
-     "tr": "İşte ikamet belgem.",
+     "tr": "İkamet belgem burada.",
      "hint_tr": "İkamet belgem derken **meine Meldebescheinigung** denir."
+    },
+    {
+     "de": "Die Bank will eine aktuelle ___.",
+     "answer": "Meldebescheinigung",
+     "tr": "Banka güncel bir ikamet belgesi istiyor.",
+     "hint_tr": "Güncel bir ikamet belgesi derken **eine aktuelle Meldebescheinigung** denir."
+    },
+    {
+     "de": "Die ___ ist in der Tasche.",
+     "answer": "Meldebescheinigung",
+     "tr": "İkamet belgesi çantada.",
+     "hint_tr": "İkamet belgesi derken **die Meldebescheinigung** denir."
+    },
+    {
+     "de": "Frau Schneider druckt die ___ sofort aus.",
+     "answer": "Meldebescheinigung",
+     "tr": "Schneider Hanım ikamet belgesini hemen yazdırıyor.",
+     "hint_tr": "İkamet belgesini derken **die Meldebescheinigung** denir."
+    },
+    {
+     "de": "Ich möchte eine Meldebescheinigung ___.",
+     "answer": "beantragen",
+     "tr": "Bir ikamet belgesi için başvurmak istiyorum.",
+     "hint_tr": "İkamet belgesi için başvurmak derken **eine Meldebescheinigung beantragen** denir."
+    },
+    {
+     "de": "Ohne ___ bekomme ich kein Konto.",
+     "answer": "Meldebescheinigung",
+     "tr": "İkamet belgesi olmadan banka hesabı açtıramıyorum.",
+     "hint_tr": "İkamet belgesi olmadan derken **ohne Meldebescheinigung** denir."
     }
    ]
   },
@@ -10454,6 +11296,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "passport and rental contract on counter"
+    },
+    {
+     "id": "lx:Unterlagen:5",
+     "de": "Frau Schneider sieht sich die Unterlagen ganz genau an.",
+     "tr": "Schneider Hanım evrakı çok dikkatle inceliyor.",
+     "layer": "hd",
+     "img": "clerk checking papers with pen"
+    },
+    {
+     "id": "lx:Unterlagen:6",
+     "de": "– Hast du alle Unterlagen? – Ja, Pass, Mietvertrag und Foto, alles da.",
+     "tr": "– Bütün evrak yanında mı? – Evet, pasaport, kira sözleşmesi ve fotoğraf, hepsi burada.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "documents in clear plastic folder"
     }
    ],
    "level": "A2",
@@ -10472,7 +11329,11 @@
      "de": "Bitte bringen Sie alle ___ mit.",
      "answer": "Unterlagen",
      "tr": "Lütfen bütün evrakı yanınızda getirin.",
-     "hint_tr": "Evrak için **die Unterlagen** denir."
+     "hint_tr": "Bütün evrak derken **alle Unterlagen** denir.",
+     "also_ok": [
+      "Papiere",
+      "Dokumente"
+     ]
     },
     {
      "de": "Ihre ___ sind nicht vollständig.",
@@ -10485,16 +11346,40 @@
      ]
     },
     {
-     "de": "Ich gebe heute ___ Unterlagen ab.",
-     "answer": "die",
-     "tr": "Evrakı bugün teslim ediyorum.",
-     "hint_tr": "Hangi evrak olduğu belliyse **die Unterlagen** denir."
-    },
-    {
      "de": "Ich suche meine ___.",
      "answer": "Unterlagen",
      "tr": "Evrakımı arıyorum.",
      "hint_tr": "Evrakımı derken **meine Unterlagen** denir.",
+     "also_ok": [
+      "Papiere",
+      "Dokumente"
+     ]
+    },
+    {
+     "de": "Die ___ liegen auf dem Tisch von Herrn Wimmer.",
+     "answer": "Unterlagen",
+     "tr": "Evrak Wimmer Bey'in masasında duruyor.",
+     "hint_tr": "Evrak derken **die Unterlagen** denir.",
+     "also_ok": [
+      "Papiere",
+      "Dokumente"
+     ]
+    },
+    {
+     "de": "Wann kann ich die Unterlagen ___?",
+     "answer": "abgeben",
+     "tr": "Evrakı ne zaman teslim edebilirim?",
+     "hint_tr": "Evrakı teslim etmek derken **die Unterlagen abgeben** denir.",
+     "also_ok": [
+      "einreichen",
+      "vorbeibringen"
+     ]
+    },
+    {
+     "de": "Die ___ schicke ich heute per Post.",
+     "answer": "Unterlagen",
+     "tr": "Evrakı bugün postayla gönderiyorum.",
+     "hint_tr": "Evrakı derken **die Unterlagen** denir.",
      "also_ok": [
       "Papiere",
       "Dokumente"
@@ -10564,10 +11449,25 @@
     {
      "id": "lx:Nachweis:4",
      "de": "– Haben Sie einen Nachweis über Ihre Wohnung? – Ja, hier ist der Mietvertrag.",
-     "tr": "– Eviniz için bir belgeniz var mı? – Evet, işte kira sözleşmesi.",
+     "tr": "– Eviniz için bir belgeniz var mı? – Evet, kira sözleşmesi burada.",
      "layer": "hd",
      "dialog": true,
      "img": "tenant handing rental contract to clerk"
+    },
+    {
+     "id": "lx:Nachweis:5",
+     "de": "Frau Schneider braucht noch einen Nachweis über Ihre Adresse.",
+     "tr": "Schneider Hanım'ın adresinizle ilgili bir belgeye daha ihtiyacı var.",
+     "layer": "hd",
+     "img": "clerk asking visitor for paper at counter"
+    },
+    {
+     "id": "lx:Nachweis:6",
+     "de": "– Was wollen die noch? – 'nen Nachweis vom Chef, sonst nix.",
+     "tr": "– Daha ne istiyorlar? – Şeften bir belge, başka bir şey yok.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "man holding envelope outside office building"
     }
    ],
    "level": "A2",
@@ -10586,13 +11486,7 @@
      "de": "Das ist ein ___ über mein Gehalt.",
      "answer": "Nachweis",
      "tr": "Bu bir maaş belgesi.",
-     "hint_tr": "Bir maaş belgesi derken **ein Nachweis über mein Gehalt** denir."
-    },
-    {
-     "de": "Ich brauche noch ___ Nachweis.",
-     "answer": "einen",
-     "tr": "Bir belge daha lazım.",
-     "hint_tr": "**Ich brauche** dedikten sonra **ein Nachweis**, **einen Nachweis** olur."
+     "hint_tr": "Maaş belgesi derken **ein Nachweis über mein Gehalt** denir."
     },
     {
      "de": "Ich bringe den ___ morgen mit.",
@@ -10601,16 +11495,31 @@
      "hint_tr": "Belgeyi derken **den Nachweis** denir."
     },
     {
-     "de": "___ Nachweis fehlt noch.",
-     "answer": "Der",
-     "tr": "Belge hâlâ eksik.",
-     "hint_tr": "Hangi belge olduğu belliyse **der Nachweis** denir."
-    },
-    {
      "de": "Ich gehe mit dem ___ zum Amt.",
      "answer": "Nachweis",
      "tr": "Belgeyle resmî daireye gidiyorum.",
      "hint_tr": "Belgeyle derken **mit dem Nachweis** denir."
+    },
+    {
+     "de": "Als ___ reicht eine Kopie.",
+     "answer": "Nachweis",
+     "tr": "Belge olarak bir fotokopi yeterli.",
+     "hint_tr": "Belge olarak derken **als Nachweis** denir."
+    },
+    {
+     "de": "Für den Antrag fehlen noch zwei ___.",
+     "answer": "Nachweise",
+     "tr": "Başvuru için daha iki belge eksik.",
+     "hint_tr": "İki belge derken **zwei Nachweise** denir."
+    },
+    {
+     "de": "Wir ___ noch einen Nachweis von Ihnen.",
+     "answer": "brauchen",
+     "tr": "Sizden bir belgeye daha ihtiyacımız var.",
+     "hint_tr": "Belgeye ihtiyacımız var derken **brauchen einen Nachweis** denir.",
+     "also_ok": [
+      "benötigen"
+     ]
     }
    ]
   },
@@ -10668,7 +11577,7 @@
     {
      "id": "lx:Frist:3",
      "de": "Oh nein, die Frist war ja schon gestern!",
-     "tr": "Eyvah, son tarih dünmüş!",
+     "tr": "Eyvah, süre dün dolmuş!",
      "layer": "alltag"
     },
     {
@@ -10676,6 +11585,19 @@
      "de": "– Bis wann habe ich Zeit? – Die Frist läuft bis Freitag.",
      "tr": "– Ne zamana kadar vaktim var? – Süre cumaya kadar.",
      "layer": "hd",
+     "dialog": true
+    },
+    {
+     "id": "lx:Frist:5",
+     "de": "Herr Wimmer gibt mir eine Frist bis Montag.",
+     "tr": "Wimmer Bey bana pazartesiye kadar süre veriyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Frist:6",
+     "de": "– Bis wann muss der Brief weg? – Die Frist läuft morgen ab, also schnell!",
+     "tr": "– Mektubun ne zamana kadar gönderilmesi lazım? – Süre yarın doluyor, yani çabuk!",
+     "layer": "alltag",
      "dialog": true
     }
    ],
@@ -10688,38 +11610,44 @@
     "anlam_tr": "Bir işin bitmesi gereken son zamanı söyler.",
     "ne_zaman_tr": "Resmî mektup okurken.",
     "parcalar": [],
-    "ipucu_tr": "Mektupta **Frist**, yani son tarih görünce hemen tarihe bak."
+    "ipucu_tr": "Mektupta **Frist**, yani süre görünce hemen tarihe bak."
    },
    "forms": [
-    {
-     "de": "Das ist ___ Frist von zwei Wochen.",
-     "answer": "eine",
-     "tr": "Bu iki haftalık bir süre.",
-     "hint_tr": "Bir süreyi anlatırken **Das ist eine Frist** denir."
-    },
-    {
-     "de": "Sie haben ___ Frist von einem Monat.",
-     "answer": "eine",
-     "tr": "Bir aylık bir süreniz var.",
-     "hint_tr": "**Sie haben** dedikten sonra **eine Frist** aynı kalır."
-    },
-    {
-     "de": "Ich habe ___ Frist verpasst.",
-     "answer": "die",
-     "tr": "Son tarihi kaçırdım.",
-     "hint_tr": "**Ich habe verpasst** derken **die Frist** aynı kalır."
-    },
-    {
-     "de": "___ Frist endet am Freitag.",
-     "answer": "Die",
-     "tr": "Süre cuma günü doluyor.",
-     "hint_tr": "Hangi süre olduğu belliyse **die Frist** denir."
-    },
     {
      "de": "Nach der ___ ist es zu spät.",
      "answer": "Frist",
      "tr": "Süre bittikten sonra çok geç olur.",
      "hint_tr": "Süre bittikten sonra derken **Nach der Frist** denir."
+    },
+    {
+     "de": "Ich habe die ___ verpasst.",
+     "answer": "Frist",
+     "tr": "Süreyi kaçırdım.",
+     "hint_tr": "Süreyi kaçırdım derken **habe die Frist verpasst** denir."
+    },
+    {
+     "de": "Die ___ endet am Freitag.",
+     "answer": "Frist",
+     "tr": "Süre cuma günü doluyor.",
+     "hint_tr": "Süre derken **Die Frist** denir."
+    },
+    {
+     "de": "Sie haben eine ___ von zwei Wochen.",
+     "answer": "Frist",
+     "tr": "İki haftalık süreniz var.",
+     "hint_tr": "İki haftalık süre derken **eine Frist von zwei Wochen** denir."
+    },
+    {
+     "de": "Können Sie die Frist bitte ___?",
+     "answer": "verlängern",
+     "tr": "Süreyi uzatabilir misiniz lütfen?",
+     "hint_tr": "Süreyi uzatmak derken **die Frist verlängern** denir."
+    },
+    {
+     "de": "___ und Termine schreibt Derya immer in den Kalender.",
+     "answer": "Fristen",
+     "tr": "Derya süreleri ve randevuları hep takvime yazar.",
+     "hint_tr": "Süreler derken **Fristen** denir."
     }
    ]
   },
@@ -10785,6 +11713,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "customer talking to clerk about invoice"
+    },
+    {
+     "id": "lx:Mahnung:5",
+     "de": "Nach der Mahnung bezahlt Tom die Rechnung sofort.",
+     "tr": "Tom ödeme uyarısından sonra faturayı hemen ödüyor.",
+     "layer": "hd",
+     "img": "young man with envelope and phone on sofa"
+    },
+    {
+     "id": "lx:Mahnung:6",
+     "de": "– Was ist das für 'n Brief? – 'ne Mahnung, ich hab die Rechnung vergessen.",
+     "tr": "– Bu ne mektubu? – Ödeme uyarısı, faturayı unutmuşum.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "woman reading letter at mailbox"
     }
    ],
    "level": "A2",
@@ -10801,28 +11744,40 @@
    },
    "forms": [
     {
-     "de": "Das ist ___ Mahnung von der Bank.",
-     "answer": "eine",
-     "tr": "Bu, bankadan gelen bir ödeme uyarısı.",
-     "hint_tr": "Bir mektubu gösterirken **Das ist eine Mahnung** denir."
-    },
-    {
-     "de": "Ich habe ___ Mahnung bekommen.",
-     "answer": "eine",
-     "tr": "Bir ödeme uyarısı aldım.",
-     "hint_tr": "Ödeme uyarısı aldım derken **eine Mahnung bekommen** denir."
-    },
-    {
-     "de": "Ich bezahle ___ Mahnung sofort.",
-     "answer": "die",
-     "tr": "Ödeme uyarısındaki parayı hemen ödüyorum.",
-     "hint_tr": "**Ich bezahle** dedikten sonra **die Mahnung** aynı kalır."
-    },
-    {
      "de": "In der ___ steht ein Datum.",
      "answer": "Mahnung",
      "tr": "Ödeme uyarısında bir tarih yazıyor.",
      "hint_tr": "Ödeme uyarısında derken **In der Mahnung** denir."
+    },
+    {
+     "de": "Ich habe eine ___ bekommen.",
+     "answer": "Mahnung",
+     "tr": "Bir ödeme uyarısı aldım.",
+     "hint_tr": "Ödeme uyarısı aldım derken **habe eine Mahnung bekommen** denir."
+    },
+    {
+     "de": "Das ist schon die zweite ___.",
+     "answer": "Mahnung",
+     "tr": "Bu zaten ikinci ödeme uyarısı.",
+     "hint_tr": "İkinci ödeme uyarısı derken **die zweite Mahnung** denir."
+    },
+    {
+     "de": "Der Nachbar hat zwei ___ bekommen.",
+     "answer": "Mahnungen",
+     "tr": "Komşu iki ödeme uyarısı aldı.",
+     "hint_tr": "İki ödeme uyarısı derken **zwei Mahnungen** denir."
+    },
+    {
+     "de": "Wegen der ___ rufe ich bei der Firma an.",
+     "answer": "Mahnung",
+     "tr": "Ödeme uyarısı yüzünden şirkete telefon ediyorum.",
+     "hint_tr": "Ödeme uyarısı yüzünden derken **wegen der Mahnung** denir."
+    },
+    {
+     "de": "___ machen mir Angst.",
+     "answer": "Mahnungen",
+     "tr": "Ödeme uyarıları beni korkutuyor.",
+     "hint_tr": "Ödeme uyarıları derken **Mahnungen** denir."
     }
    ]
   },
@@ -10840,7 +11795,7 @@
     },
     {
      "de": "die Staatsangehörigkeit angeben",
-     "tr": "uyruğunu belirtmek"
+     "tr": "vatandaşlığını belirtmek"
     },
     {
      "de": "zwei Staatsangehörigkeiten",
@@ -10857,20 +11812,20 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Ioana Romanya uyruklu derken **Ioanas Staatsangehörigkeit ist Rumänien** yanlış. Doğrusu **Ioanas Staatsangehörigkeit ist rumänisch**. **Rumänien** ülkenin adıdır."
+    "Novak Bey Çek vatandaşı derken **Seine Staatsangehörigkeit ist Tschechien** yanlış. Doğrusu: **Seine Staatsangehörigkeit ist tschechisch**. Çek derken **tschechisch** denir."
    ],
    "examples": [
     {
      "id": "lx:Staatsangehörigkeit:1",
      "de": "Tragen Sie hier bitte Ihre Staatsangehörigkeit ein.",
-     "tr": "Lütfen uyruğunuzu buraya yazın.",
+     "tr": "Lütfen vatandaşlığınızı buraya yazın.",
      "img": "passport and form on table",
      "layer": "hd"
     },
     {
      "id": "lx:Staatsangehörigkeit:2",
      "de": "Welche Staatsangehörigkeit haben Sie?",
-     "tr": "Hangi ülkenin vatandaşısınız?",
+     "tr": "Hangi vatandaşlığa sahipsiniz?",
      "layer": "hd"
     },
     {
@@ -10882,8 +11837,21 @@
     {
      "id": "lx:Staatsangehörigkeit:4",
      "de": "– Und Ihre Staatsangehörigkeit? – Das steht hier im Pass.",
-     "tr": "– Peki uyruğunuz? – Burada, pasaportta yazıyor.",
+     "tr": "– Peki vatandaşlığınız? – Burada, pasaportta yazıyor.",
      "layer": "hd",
+     "dialog": true
+    },
+    {
+     "id": "lx:Staatsangehörigkeit:5",
+     "de": "Im Formular fehlt noch Ihre Staatsangehörigkeit.",
+     "tr": "Formda vatandaşlığınız hâlâ eksik.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Staatsangehörigkeit:6",
+     "de": "– Was schreib ich bei Staatsangehörigkeit? – Na, das, was im Pass steht.",
+     "tr": "– Vatandaşlık kutusuna ne yazayım? – Pasaportta ne yazıyorsa o.",
+     "layer": "alltag",
      "dialog": true
     }
    ],
@@ -10899,31 +11867,55 @@
    },
    "forms": [
     {
-     "de": "Meine Nachbarin hat ___ deutsche Staatsangehörigkeit.",
-     "answer": "die",
-     "tr": "Komşum Alman uyruklu.",
-     "hint_tr": "Alman vatandaşlığı derken **die deutsche Staatsangehörigkeit** denir."
-    },
-    {
      "de": "Mein Kollege hat zwei ___.",
      "answer": "Staatsangehörigkeiten",
-     "tr": "İş arkadaşım çift uyruklu.",
+     "tr": "İş arkadaşımın iki vatandaşlığı var.",
      "hint_tr": "İki vatandaşlık derken **zwei Staatsangehörigkeiten** denir."
     },
     {
      "de": "Bitte geben Sie Ihre ___ an.",
      "answer": "Staatsangehörigkeit",
-     "tr": "Lütfen uyruğunuzu belirtin.",
-     "hint_tr": "Uyruğunuzu derken **Ihre Staatsangehörigkeit** denir.",
+     "tr": "Lütfen vatandaşlığınızı belirtin.",
+     "hint_tr": "Vatandaşlığınızı derken **Ihre Staatsangehörigkeit** denir.",
      "also_ok": [
       "Nationalität"
      ]
     },
     {
-     "de": "Ioanas ___ ist rumänisch.",
+     "de": "Herr Novaks ___ ist tschechisch.",
      "answer": "Staatsangehörigkeit",
-     "tr": "Ioana Romanya uyruklu.",
-     "hint_tr": "Birinin uyruğu için **Staatsangehörigkeit** denir."
+     "tr": "Novak Bey Çek vatandaşı.",
+     "hint_tr": "Novak Bey'in vatandaşlığı derken **Herr Novaks Staatsangehörigkeit** denir.",
+     "also_ok": [
+      "Nationalität"
+     ]
+    },
+    {
+     "de": "Meine Nachbarin hat die deutsche ___.",
+     "answer": "Staatsangehörigkeit",
+     "tr": "Komşumun Alman vatandaşlığı var.",
+     "hint_tr": "Alman vatandaşlığı derken **die deutsche Staatsangehörigkeit** denir.",
+     "also_ok": [
+      "Nationalität"
+     ]
+    },
+    {
+     "de": "Welche ___ hat das Kind?",
+     "answer": "Staatsangehörigkeit",
+     "tr": "Çocuk hangi vatandaşlığa sahip?",
+     "hint_tr": "Hangi vatandaşlık derken **Welche Staatsangehörigkeit** denir.",
+     "also_ok": [
+      "Nationalität"
+     ]
+    },
+    {
+     "de": "Die ___ steht auch im Pass.",
+     "answer": "Staatsangehörigkeit",
+     "tr": "Vatandaşlık pasaportta da yazıyor.",
+     "hint_tr": "Vatandaşlık derken **Die Staatsangehörigkeit** denir.",
+     "also_ok": [
+      "Nationalität"
+     ]
     }
    ]
   },
@@ -10986,6 +11978,19 @@
      "tr": "– Soyadınız nedir? – Bir dakika, harf harf söyleyeyim.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:Familienname:5",
+     "de": "Frau Huber fragt am Telefon nach dem Familiennamen.",
+     "tr": "Huber Hanım telefonda soyadını soruyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Familienname:6",
+     "de": "– Und der Familienname? – Pichler, P wie Paula.",
+     "tr": "– Peki soyadı? – Pichler, Paula'daki P.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -11011,16 +12016,13 @@
    },
    "forms": [
     {
-     "de": "Wie ist ___ Familienname?",
-     "answer": "Ihr",
-     "tr": "Soyadınız nedir?",
-     "hint_tr": "Soyadınız derken **Ihr Familienname** denir."
-    },
-    {
      "de": "Bitte schreiben Sie Ihren ___ hier.",
      "answer": "Familiennamen",
      "tr": "Lütfen soyadınızı buraya yazın.",
-     "hint_tr": "**Schreiben Sie Ihren** dedikten sonra **Familienname**, **Familiennamen** olur."
+     "hint_tr": "Soyadınızı derken **Ihren Familiennamen** denir.",
+     "also_ok": [
+      "Nachnamen"
+     ]
     },
     {
      "de": "Ich buchstabiere meinen ___.",
@@ -11032,10 +12034,40 @@
      ]
     },
     {
-     "de": "___ Familienname steht an der Klingel.",
-     "answer": "Der",
-     "tr": "Soyadı zilde yazıyor.",
-     "hint_tr": "Hangi soyadı olduğu belliyse **der Familienname** denir."
+     "de": "Wie ist Ihr ___?",
+     "answer": "Familienname",
+     "tr": "Soyadınız nedir?",
+     "hint_tr": "Soyadınız derken **Ihr Familienname** denir.",
+     "also_ok": [
+      "Nachname"
+     ]
+    },
+    {
+     "de": "Vorname und ___, bitte.",
+     "answer": "Familienname",
+     "tr": "Adınız ve soyadınız, lütfen.",
+     "hint_tr": "Ad ve soyad derken **Vorname und Familienname** denir.",
+     "also_ok": [
+      "Nachname"
+     ]
+    },
+    {
+     "de": "Annas ___ ist Maier.",
+     "answer": "Familienname",
+     "tr": "Anna'nın soyadı Maier.",
+     "hint_tr": "Anna'nın soyadı derken **Annas Familienname** denir.",
+     "also_ok": [
+      "Nachname"
+     ]
+    },
+    {
+     "de": "An den Klingeln stehen viele ___.",
+     "answer": "Familiennamen",
+     "tr": "Zillerde birçok soyadı yazıyor.",
+     "hint_tr": "Birçok soyadı derken **viele Familiennamen** denir.",
+     "also_ok": [
+      "Nachnamen"
+     ]
     }
    ]
   },
@@ -11089,14 +12121,27 @@
     {
      "id": "lx:Geburtsort:3",
      "de": "Was schreib ich denn beim Geburtsort hin?",
-     "tr": "Doğum yerine ne yazayım ki?",
+     "tr": "Doğum yeri kutusuna ne yazayım ki?",
      "layer": "alltag"
     },
     {
      "id": "lx:Geburtsort:4",
-     "de": "– Und Ihr Geburtsort? – Landshut.",
-     "tr": "– Peki doğum yeriniz? – Landshut.",
+     "de": "– Und Ihr Geburtsort, Frau Lorenz? – Landshut.",
+     "tr": "– Peki doğum yeriniz, Lorenz Hanım? – Landshut.",
      "layer": "hd",
+     "dialog": true
+    },
+    {
+     "id": "lx:Geburtsort:5",
+     "de": "Bei Geburtsort schreiben Sie bitte nur die Stadt.",
+     "tr": "Doğum yeri kutusuna lütfen sadece şehri yazın.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Geburtsort:6",
+     "de": "– Hast du den Geburtsort vergessen? – Oh ja, danke, trag ich gleich ein.",
+     "tr": "– Doğum yerini unuttun mu? – Ah evet, sağ ol, hemen yazıyorum.",
+     "layer": "alltag",
      "dialog": true
     }
    ],
@@ -11124,7 +12169,7 @@
      "de": "Deryas ___ ist Wendlfing.",
      "answer": "Geburtsort",
      "tr": "Derya'nın doğum yeri Wendlfing.",
-     "hint_tr": "Birinin doğum yeri için **Geburtsort** denir."
+     "hint_tr": "Derya'nın doğum yeri derken **Deryas Geburtsort** denir."
     },
     {
      "de": "Bitte nennen Sie Ihren ___.",
@@ -11133,16 +12178,32 @@
      "hint_tr": "Doğum yerinizi derken **Ihren Geburtsort** denir."
     },
     {
-     "de": "Schreiben Sie ___ Geburtsort in das Formular.",
-     "answer": "den",
+     "de": "Schreiben Sie den ___ in das Formular.",
+     "answer": "Geburtsort",
      "tr": "Doğum yerini forma yazın.",
-     "hint_tr": "**Schreiben Sie** dedikten sonra **der Geburtsort**, **den Geburtsort** olur."
+     "hint_tr": "Doğum yerini derken **den Geburtsort** denir."
     },
     {
-     "de": "___ Geburtsort steht im Pass.",
-     "answer": "Der",
-     "tr": "Doğum yeri pasaportta yazıyor.",
-     "hint_tr": "Hangi doğum yeri olduğu belliyse **der Geburtsort** denir."
+     "de": "___ und Geburtsdatum stehen im Pass.",
+     "answer": "Geburtsort",
+     "tr": "Doğum yeri ve doğum tarihi pasaportta yazıyor.",
+     "hint_tr": "Doğum yeri ve doğum tarihi derken **Geburtsort und Geburtsdatum** denir."
+    },
+    {
+     "de": "Der ___ von dem Patienten fehlt noch.",
+     "answer": "Geburtsort",
+     "tr": "Hastanın doğum yeri hâlâ eksik.",
+     "hint_tr": "Doğum yeri derken **der Geburtsort** denir."
+    },
+    {
+     "de": "Hier müssen Sie den Geburtsort ___.",
+     "answer": "angeben",
+     "tr": "Burada doğum yerini belirtmeniz gerekiyor.",
+     "hint_tr": "Doğum yerini belirtmek derken **den Geburtsort angeben** denir.",
+     "also_ok": [
+      "eintragen",
+      "schreiben"
+     ]
     }
    ]
   },
@@ -11209,6 +12270,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "two people comparing queue tickets"
+    },
+    {
+     "id": "lx:Wartenummer:5",
+     "de": "Mit der Wartenummer warten Sie bitte im Flur.",
+     "tr": "Sıra numaranızla lütfen koridorda bekleyin.",
+     "layer": "hd",
+     "img": "people waiting in office corridor"
+    },
+    {
+     "id": "lx:Wartenummer:6",
+     "de": "– Ist das deine Wartenummer? – Nee, die lag auf dem Boden.",
+     "tr": "– Bu senin sıra numaran mı? – Yok, yerde duruyordu.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "small paper ticket on office floor"
     }
    ],
    "level": "A2",
@@ -11232,28 +12308,44 @@
    },
    "forms": [
     {
-     "de": "Das ist ___ Wartenummer, kein Fahrschein.",
-     "answer": "eine",
-     "tr": "Bu bir sıra numarası, bilet değil.",
-     "hint_tr": "Bir kâğıdı gösterirken **Das ist eine Wartenummer** denir."
-    },
-    {
-     "de": "Ziehen Sie bitte ___ Wartenummer.",
-     "answer": "eine",
-     "tr": "Lütfen bir sıra numarası alın.",
-     "hint_tr": "**Ziehen Sie** dedikten sonra **eine Wartenummer** aynı kalır."
-    },
-    {
      "de": "Ich habe meine ___ verloren.",
      "answer": "Wartenummer",
      "tr": "Sıra numaramı kaybettim.",
      "hint_tr": "Sıra numaramı derken **meine Wartenummer** denir."
     },
     {
-     "de": "___ Wartenummer erscheint auf dem Bildschirm.",
-     "answer": "Die",
-     "tr": "Sıra numarası ekranda görünüyor.",
-     "hint_tr": "Hangi sıra numarası olduğu belliyse **die Wartenummer** denir."
+     "de": "Ziehen Sie bitte eine ___.",
+     "answer": "Wartenummer",
+     "tr": "Lütfen bir sıra numarası alın.",
+     "hint_tr": "Bir sıra numarası alın derken **Ziehen Sie eine Wartenummer** denir."
+    },
+    {
+     "de": "Ihre ___ erscheint auf dem Bildschirm.",
+     "answer": "Wartenummer",
+     "tr": "Sıra numaranız ekranda görünür.",
+     "hint_tr": "Sıra numaranız derken **Ihre Wartenummer** denir."
+    },
+    {
+     "de": "Frau Schneider ruft die ___ 42 auf.",
+     "answer": "Wartenummer",
+     "tr": "Schneider Hanım sıra numarası 42'yi çağırıyor.",
+     "hint_tr": "Sıra numarasını çağırmak derken **die Wartenummer aufrufen** denir."
+    },
+    {
+     "de": "Zuerst müssen Sie eine Wartenummer ___.",
+     "answer": "ziehen",
+     "tr": "Önce bir sıra numarası almanız gerekiyor.",
+     "hint_tr": "Sıra numarası almak derken **eine Wartenummer ziehen** denir.",
+     "also_ok": [
+      "nehmen",
+      "holen"
+     ]
+    },
+    {
+     "de": "___ gibt es am Automaten links.",
+     "answer": "Wartenummern",
+     "tr": "Sıra numaraları soldaki makinede.",
+     "hint_tr": "Sıra numaraları derken **Wartenummern** denir."
     }
    ]
   },
@@ -11288,20 +12380,20 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Jobcenter dairesine gidiyorum derken **Ich gehe Jobcenter** yanlış. Doğrusu **Ich gehe zum Jobcenter**. Gidilen yeri söylerken burada **zum** gerekir."
+    "Adam Jobcenter dairesine gidiyor derken **Der Mann geht Jobcenter** yanlış. Doğrusu **Der Mann geht zum Jobcenter**. Gidilen yeri söylerken burada **zum** gerekir."
    ],
    "examples": [
     {
      "id": "lx:Jobcenter:1",
-     "de": "Ich habe morgen einen Termin beim Jobcenter.",
-     "tr": "Yarın Jobcenter dairesinde randevum var.",
+     "de": "Der Nachbar hat morgen einen Termin beim Jobcenter.",
+     "tr": "Komşunun yarın Jobcenter dairesinde randevusu var.",
      "img": "waiting area of public employment office",
      "layer": "hd"
     },
     {
      "id": "lx:Jobcenter:2",
-     "de": "Das Jobcenter hat mir einen Brief geschickt.",
-     "tr": "Jobcenter dairesi bana bir mektup gönderdi.",
+     "de": "Das Jobcenter hat Lenas Mann einen Brief geschickt.",
+     "tr": "Jobcenter dairesi Lena'nın kocasına bir mektup gönderdi.",
      "layer": "hd",
      "img": "official letter opened on kitchen table"
     },
@@ -11314,11 +12406,26 @@
     },
     {
      "id": "lx:Jobcenter:4",
-     "de": "– Wo warst du heute Morgen? – Beim Jobcenter, das hat lange gedauert.",
-     "tr": "– Bu sabah neredeydin? – Jobcenter dairesindeydim, uzun sürdü.",
+     "de": "– Wo war dein Nachbar heute Morgen? – Beim Jobcenter, das hat lange gedauert.",
+     "tr": "– Komşun bu sabah neredeydi? – Jobcenter dairesindeydi, uzun sürdü.",
      "layer": "hd",
      "dialog": true,
      "img": "two friends talking on street in the morning"
+    },
+    {
+     "id": "lx:Jobcenter:5",
+     "de": "Das Jobcenter hat am Freitag nur bis Mittag offen.",
+     "tr": "Jobcenter dairesi cuma günü sadece öğlene kadar açık.",
+     "layer": "hd",
+     "img": "closed office door at noon"
+    },
+    {
+     "id": "lx:Jobcenter:6",
+     "de": "– Was wollte das Jobcenter von Lenas Mann? – Nur noch 'n Formular, nix Schlimmes.",
+     "tr": "– Jobcenter dairesi Lena'nın kocasından ne istedi? – Sadece bir form daha, kötü bir şey değil.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "man filling form at kitchen table"
     }
    ],
    "level": "A2",
@@ -11334,28 +12441,43 @@
    },
    "forms": [
     {
-     "de": "In der Stadt gibt es ___ Jobcenter.",
-     "answer": "ein",
-     "tr": "Şehirde bir Jobcenter dairesi var.",
-     "hint_tr": "**Es gibt** dedikten sonra **ein Jobcenter** aynı kalır."
-    },
-    {
      "de": "Ich finde das ___ nicht.",
      "answer": "Jobcenter",
      "tr": "Jobcenter dairesini bulamıyorum.",
      "hint_tr": "Jobcenter dairesini derken **das Jobcenter** denir."
     },
     {
-     "de": "Das ___ hat mir geschrieben.",
+     "de": "Das ___ hat dem Nachbarn geschrieben.",
      "answer": "Jobcenter",
-     "tr": "Jobcenter dairesi bana yazdı.",
+     "tr": "Jobcenter dairesi komşuya yazdı.",
      "hint_tr": "Jobcenter dairesi derken **Das Jobcenter** denir."
     },
     {
-     "de": "Ich habe einen Brief ___ Jobcenter bekommen.",
-     "answer": "vom",
-     "tr": "Jobcenter dairesinden bir mektup aldım.",
-     "hint_tr": "Jobcenter dairesinden derken **vom Jobcenter** denir. **von** ile **dem** birleşir."
+     "de": "Gestern kam ein Brief vom ___.",
+     "answer": "Jobcenter",
+     "tr": "Dün Jobcenter dairesinden bir mektup geldi.",
+     "hint_tr": "Jobcenter dairesinden derken **vom Jobcenter** denir."
+    },
+    {
+     "de": "Morgen hat der Mann einen Termin beim ___.",
+     "answer": "Jobcenter",
+     "tr": "Adamın yarın Jobcenter dairesinde randevusu var.",
+     "hint_tr": "Jobcenter dairesinde derken **beim Jobcenter** denir."
+    },
+    {
+     "de": "Das ___ ist neben dem Bahnhof.",
+     "answer": "Jobcenter",
+     "tr": "Jobcenter dairesi tren istasyonunun yanında.",
+     "hint_tr": "Jobcenter dairesi derken **das Jobcenter** denir."
+    },
+    {
+     "de": "Am Montag muss die Frau zum Jobcenter ___.",
+     "answer": "gehen",
+     "tr": "Kadının pazartesi Jobcenter dairesine gitmesi gerekiyor.",
+     "hint_tr": "Jobcenter dairesine gitmek derken **zum Jobcenter gehen** denir.",
+     "also_ok": [
+      "fahren"
+     ]
     }
    ]
   },
@@ -11422,6 +12544,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "woman translating for relative at counter"
+    },
+    {
+     "id": "lx:Dolmetscher:5",
+     "de": "Im Krankenhaus gibt es einen Dolmetscher für Arabisch.",
+     "tr": "Hastanede Arapça için bir tercüman var.",
+     "layer": "hd",
+     "img": "interpreter with doctor and patient in hospital corridor"
+    },
+    {
+     "id": "lx:Dolmetscher:6",
+     "de": "– Brauchst du beim Arzt 'nen Dolmetscher? – Nee, das schaff ich jetzt allein!",
+     "tr": "– Doktorda tercümana ihtiyacın var mı? – Yok, artık tek başıma hallederim!",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "confident person entering doctor's office"
     }
    ],
    "level": "A2",
@@ -11444,10 +12581,10 @@
      "hint_tr": "Bir tercüman derken **ein Dolmetscher** denir."
     },
     {
-     "de": "Ich brauche ___ Dolmetscher.",
-     "answer": "einen",
-     "tr": "Bir tercümana ihtiyacım var.",
-     "hint_tr": "**Ich brauche** dedikten sonra **ein Dolmetscher**, **einen Dolmetscher** olur."
+     "de": "Beim Arzt brauche ich einen ___.",
+     "answer": "Dolmetscher",
+     "tr": "Doktorda bir tercümana ihtiyacım var.",
+     "hint_tr": "Bir tercümana ihtiyacım var derken **brauche ich einen Dolmetscher** denir."
     },
     {
      "de": "Ich rufe den ___ an.",
@@ -11466,6 +12603,12 @@
      "answer": "Dolmetscher",
      "tr": "Lütfen bir tercümanla gelin.",
      "hint_tr": "Bir tercümanla derken **mit einem Dolmetscher** denir."
+    },
+    {
+     "de": "Der junge Mann möchte als Dolmetscher ___.",
+     "answer": "arbeiten",
+     "tr": "Genç adam tercüman olarak çalışmak istiyor.",
+     "hint_tr": "Tercüman olarak çalışmak derken **als Dolmetscher arbeiten** denir."
     }
    ]
   },
@@ -11536,6 +12679,19 @@
      "tr": "– Ne için başvurmak istiyorsunuz? – İkamet belgesi için, lütfen.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:beantragen:5",
+     "de": "Tobi hat einen neuen Ausweis beantragt.",
+     "tr": "Tobi yeni kimlik kartı için başvurdu.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:beantragen:6",
+     "de": "– Kann ich das online beantragen? – Ja, das geht auch online.",
+     "tr": "– Bunun için internetten başvurabilir miyim? – Evet, internetten de olur.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -11553,25 +12709,37 @@
      "de": "Ich ___ einen neuen Pass.",
      "answer": "beantrage",
      "tr": "Yeni pasaport için başvuruyorum.",
-     "hint_tr": "**ich** ile **beantrage** olur."
+     "hint_tr": "Başvuruyorum derken **Ich beantrage** denir."
     },
     {
      "de": "___ du das Kindergeld online?",
      "answer": "Beantragst",
      "tr": "Çocuk parası için internetten mi başvuruyorsun?",
-     "hint_tr": "**du** ile **beantragst** olur."
+     "hint_tr": "Başvuruyor musun derken **Beantragst du** denir."
     },
     {
      "de": "Meine Nachbarin ___ Wohngeld.",
      "answer": "beantragt",
      "tr": "Komşum konut yardımı için başvuruyor.",
-     "hint_tr": "**er** ve **sie** ile **beantragt** olur."
+     "hint_tr": "Komşum başvuruyor derken **Meine Nachbarin beantragt** denir."
     },
     {
      "de": "Ich habe den Pass schon ___.",
      "answer": "beantragt",
      "tr": "Pasaport için zaten başvurdum.",
-     "hint_tr": "Geçmişi anlatırken **habe beantragt** denir, başına **ge** gelmez."
+     "hint_tr": "Başvurdum derken **habe beantragt** denir."
+    },
+    {
+     "de": "Wo kann man einen Pass ___?",
+     "answer": "beantragen",
+     "tr": "Pasaport için nereye başvurulur?",
+     "hint_tr": "Pasaport için başvurmak derken **einen Pass beantragen** denir."
+    },
+    {
+     "de": "Anna und Max ___ bald Kindergeld für das Baby.",
+     "answer": "beantragen",
+     "tr": "Anna ile Max yakında bebek için çocuk parasına başvuruyor.",
+     "hint_tr": "Anna ile Max başvuruyor derken **Anna und Max beantragen** denir."
     }
    ]
   },
@@ -11619,8 +12787,8 @@
    "examples": [
     {
      "id": "lx:verlängern:1",
-     "de": "Ich muss meine Aufenthaltserlaubnis verlängern lassen.",
-     "tr": "Oturma iznimi uzattırmam gerekiyor.",
+     "de": "Der neue Kollege muss seine Aufenthaltserlaubnis verlängern lassen.",
+     "tr": "Yeni iş arkadaşının oturma iznini uzattırması gerekiyor.",
      "img": "person at government office counter",
      "layer": "hd"
     },
@@ -11642,6 +12810,19 @@
      "tr": "– Reçetemi uzatabilir misiniz? – Evet, size yenisini yazıyorum.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:verlängern:5",
+     "de": "Eva verlängert ihr Hotelzimmer um eine Nacht.",
+     "tr": "Eva otel odasını bir gece uzatıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:verlängern:6",
+     "de": "– Bis Freitag? – Nee, der Chef verlängert die Frist bis Montag.",
+     "tr": "– Cumaya kadar mı? – Yok, şef süreyi pazartesiye kadar uzatıyor.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -11660,25 +12841,37 @@
      "de": "Ich ___ meinen Vertrag.",
      "answer": "verlängere",
      "tr": "Sözleşmemi uzatıyorum.",
-     "hint_tr": "**ich** ile **verlängere** olur."
+     "hint_tr": "Uzatıyorum derken **Ich verlängere** denir."
     },
     {
-     "de": "___ du deinen Pass bald?",
+     "de": "___ du deinen Vertrag bald?",
      "answer": "Verlängerst",
-     "tr": "Pasaportunu yakında uzatıyor musun?",
-     "hint_tr": "**du** ile **verlängerst** olur."
+     "tr": "Sözleşmeni yakında uzatıyor musun?",
+     "hint_tr": "Uzatıyor musun derken **Verlängerst du** denir."
     },
     {
      "de": "Das Amt ___ die Frist um eine Woche.",
      "answer": "verlängert",
      "tr": "Resmî daire süreyi bir hafta uzatıyor.",
-     "hint_tr": "**er**, **sie** ve **es** ile **verlängert** olur."
+     "hint_tr": "Resmî daire uzatıyor derken **Das Amt verlängert** denir."
     },
     {
      "de": "Ich habe den Vertrag ___.",
      "answer": "verlängert",
      "tr": "Sözleşmeyi uzattım.",
-     "hint_tr": "Geçmişi anlatırken **habe verlängert** denir, başına **ge** gelmez."
+     "hint_tr": "Uzattım derken **habe verlängert** denir."
+    },
+    {
+     "de": "Wir möchten unseren Urlaub um zwei Tage ___.",
+     "answer": "verlängern",
+     "tr": "Tatilimizi iki gün uzatmak istiyoruz.",
+     "hint_tr": "Uzatmak istiyoruz derken **möchten verlängern** denir."
+    },
+    {
+     "de": "___ Sie bitte die Frist bis Freitag!",
+     "answer": "Verlängern",
+     "tr": "Lütfen süreyi cumaya kadar uzatın!",
+     "hint_tr": "Uzatın derken **Verlängern Sie** denir."
     }
    ]
   },
@@ -11746,6 +12939,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "cracked window in apartment living room"
+    },
+    {
+     "id": "lx:Vermieter:5",
+     "de": "Der Vermieter kommt am Samstag und sieht sich das Bad an.",
+     "tr": "Ev sahibi cumartesi gelip banyoyu kontrol ediyor.",
+     "layer": "hd",
+     "img": "landlord inspecting bathroom tiles"
+    },
+    {
+     "id": "lx:Vermieter:6",
+     "de": "– Darf ich hier 'ne Katze haben? – Frag lieber erst den Vermieter.",
+     "tr": "– Burada kedi besleyebilir miyim? – En iyisi önce ev sahibine sor.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "cat sitting by apartment window"
     }
    ],
    "level": "A2",
@@ -11767,28 +12975,40 @@
    },
    "forms": [
     {
-     "de": "Herr Huber ist mein ___.",
+     "de": "Der Mann im Erdgeschoss ist mein ___.",
      "answer": "Vermieter",
-     "tr": "Huber Bey benim ev sahibim.",
+     "tr": "Giriş katındaki adam benim ev sahibim.",
      "hint_tr": "Benim ev sahibim derken **mein Vermieter** denir."
     },
     {
-     "de": "Ich rufe ___ Vermieter an.",
-     "answer": "den",
-     "tr": "Ev sahibine telefon ediyorum.",
-     "hint_tr": "**Ich rufe** dedikten sonra **der Vermieter**, **den Vermieter** olur."
+     "de": "Wegen der Heizung rufe ich den ___ an.",
+     "answer": "Vermieter",
+     "tr": "Kalorifer yüzünden ev sahibine telefon ediyorum.",
+     "hint_tr": "Ev sahibine telefon ediyorum derken **rufe ich den Vermieter an** denir."
     },
     {
-     "de": "Ich spreche morgen mit ___ Vermieter.",
-     "answer": "dem",
+     "de": "Morgen spreche ich mit dem ___.",
+     "answer": "Vermieter",
      "tr": "Yarın ev sahibiyle konuşuyorum.",
-     "hint_tr": "**mit** dedikten sonra **der Vermieter**, **dem Vermieter** olur."
+     "hint_tr": "Ev sahibiyle derken **mit dem Vermieter** denir."
     },
     {
-     "de": "___ Vermieter wohnt im Erdgeschoss.",
-     "answer": "Der",
-     "tr": "Ev sahibi giriş katında oturuyor.",
-     "hint_tr": "Hangi ev sahibi olduğu belliyse **der Vermieter** denir."
+     "de": "Der neue ___ ist sehr nett.",
+     "answer": "Vermieter",
+     "tr": "Yeni ev sahibi çok nazik.",
+     "hint_tr": "Yeni ev sahibi derken **der neue Vermieter** denir."
+    },
+    {
+     "de": "Herr Pichler ist nicht der ___, er ist der Hausmeister.",
+     "answer": "Vermieter",
+     "tr": "Pichler Bey ev sahibi değil, apartman görevlisi.",
+     "hint_tr": "Ev sahibi derken **der Vermieter** denir."
+    },
+    {
+     "de": "Sag dem Vermieter bitte ___.",
+     "answer": "Bescheid",
+     "tr": "Ev sahibine lütfen haber ver.",
+     "hint_tr": "Ev sahibine haber vermek derken **dem Vermieter Bescheid sagen** denir."
     }
    ]
   },
@@ -11855,6 +13075,19 @@
      "tr": "– Ev kaça? – Yan giderler dahil 800 avro.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:Nebenkosten:5",
+     "de": "Im Winter sind die Nebenkosten wegen der Heizung höher.",
+     "tr": "Kışın kalorifer yüzünden yan giderler daha yüksek.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Nebenkosten:6",
+     "de": "– Der Brief mit den Nebenkosten ist da. – Oje, wie viel müssen wir noch zahlen?",
+     "tr": "– Yan giderlerin mektubu geldi. – Eyvah, daha ne kadar ödememiz gerekiyor?",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -11890,16 +13123,37 @@
      "hint_tr": "Yan giderler derken **Die Nebenkosten** denir."
     },
     {
-     "de": "Ich bezahle ___ Nebenkosten jeden Monat.",
-     "answer": "die",
+     "de": "Ich bezahle die ___ jeden Monat.",
+     "answer": "Nebenkosten",
      "tr": "Yan giderleri her ay ödüyorum.",
-     "hint_tr": "**Ich bezahle** dedikten sonra **die Nebenkosten** aynı kalır."
+     "hint_tr": "Yan giderleri derken **die Nebenkosten** denir."
     },
     {
-     "de": "Wie hoch sind ___ Nebenkosten?",
-     "answer": "die",
+     "de": "Wie hoch sind die ___?",
+     "answer": "Nebenkosten",
      "tr": "Yan giderler ne kadar?",
-     "hint_tr": "Hangi yan giderler olduğu belliyse **die Nebenkosten** denir."
+     "hint_tr": "Yan giderler derken **die Nebenkosten** denir."
+    },
+    {
+     "de": "Die Wohnung kostet 650 Euro mit ___.",
+     "answer": "Nebenkosten",
+     "tr": "Ev yan giderler dahil 650 avro.",
+     "hint_tr": "Yan giderler dahil derken **mit Nebenkosten** denir."
+    },
+    {
+     "de": "___ sind in der Miete nicht drin.",
+     "answer": "Nebenkosten",
+     "tr": "Yan giderler kiraya dahil değil.",
+     "hint_tr": "Yan giderler derken **Nebenkosten** denir."
+    },
+    {
+     "de": "Wann muss ich die Nebenkosten ___?",
+     "answer": "bezahlen",
+     "tr": "Yan giderleri ne zaman ödemem gerekiyor?",
+     "hint_tr": "Yan giderleri ödemek derken **die Nebenkosten bezahlen** denir.",
+     "also_ok": [
+      "zahlen"
+     ]
     }
    ]
   },
@@ -11965,6 +13219,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "couple pointing at dark spots on wall"
+    },
+    {
+     "id": "lx:Schimmel:5",
+     "de": "Machen Sie jeden Tag das Fenster auf, dann kommt kein Schimmel.",
+     "tr": "Her gün pencereyi açın, o zaman küf olmaz.",
+     "layer": "hd",
+     "img": "open window in bright bedroom"
+    },
+    {
+     "id": "lx:Schimmel:6",
+     "de": "– Riecht's hier komisch? – Ja, ich glaub, hinterm Schrank ist Schimmel.",
+     "tr": "– Burada tuhaf bir koku mu var? – Evet, galiba dolabın arkasında küf var.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "dark mold behind moved wardrobe"
     }
    ],
    "level": "A2",
@@ -11992,10 +13261,28 @@
      "hint_tr": "Küfü derken **den Schimmel** denir."
     },
     {
-     "de": "___ Schimmel ist an der Wand.",
-     "answer": "Der",
-     "tr": "Küf duvarda.",
-     "hint_tr": "Hangi küf olduğu belliyse **der Schimmel** denir."
+     "de": "Auf dem Käse ist ___.",
+     "answer": "Schimmel",
+     "tr": "Peynirin üstünde küf var.",
+     "hint_tr": "Küf var derken **ist Schimmel** denir."
+    },
+    {
+     "de": "___ an der Wand ist schlecht für die Gesundheit.",
+     "answer": "Schimmel",
+     "tr": "Duvardaki küf sağlığa zararlı.",
+     "hint_tr": "Duvardaki küf derken **Schimmel an der Wand** denir."
+    },
+    {
+     "de": "Bitte ___ Sie den Schimmel sofort.",
+     "answer": "melden",
+     "tr": "Lütfen küfü hemen bildirin.",
+     "hint_tr": "Küfü bildirmek derken **Schimmel melden** denir."
+    },
+    {
+     "de": "Herr Pichler sieht sich den ___ im Keller an.",
+     "answer": "Schimmel",
+     "tr": "Pichler Bey bodrumdaki küfü inceliyor.",
+     "hint_tr": "Küfü derken **den Schimmel** denir."
     }
    ]
   },
@@ -12062,6 +13349,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "electricity meter beside basement stairs"
+    },
+    {
+     "id": "lx:Zähler:5",
+     "de": "Bitte schicken Sie uns ein Foto vom Zähler.",
+     "tr": "Lütfen bize sayacın bir fotoğrafını gönderin.",
+     "layer": "hd",
+     "img": "hand holding phone in front of electricity meter"
+    },
+    {
+     "id": "lx:Zähler:6",
+     "de": "– Was macht der Mann im Keller? – Der liest die Zähler ab.",
+     "tr": "– Adam bodrumda ne yapıyor? – Sayaçları okuyor.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "man with flashlight in basement"
     }
    ],
    "level": "A2",
@@ -12076,22 +13378,10 @@
    },
    "forms": [
     {
-     "de": "Wo ist ___ Zähler?",
-     "answer": "der",
-     "tr": "Sayaç nerede?",
-     "hint_tr": "Hangi sayaç olduğu belliyse **der Zähler** denir."
-    },
-    {
-     "de": "Ich lese ___ Zähler ab.",
-     "answer": "den",
-     "tr": "Sayacı okuyorum.",
-     "hint_tr": "**Ich lese** dedikten sonra **der Zähler**, **den Zähler** olur."
-    },
-    {
      "de": "Wir haben einen neuen ___.",
      "answer": "Zähler",
      "tr": "Yeni bir sayacımız var.",
-     "hint_tr": "Yeni bir sayacımız var derken **Wir haben einen neuen Zähler** denir."
+     "hint_tr": "Yeni bir sayaç derken **einen neuen Zähler** denir."
     },
     {
      "de": "Der ___ ist im Keller.",
@@ -12104,6 +13394,24 @@
      "answer": "Zähler",
      "tr": "Sayı sayacın üstünde yazıyor.",
      "hint_tr": "Sayacın üstünde derken **auf dem Zähler** denir."
+    },
+    {
+     "de": "Wo ist denn hier der ___?",
+     "answer": "Zähler",
+     "tr": "Sayaç burada nerede?",
+     "hint_tr": "Sayaç derken **der Zähler** denir."
+    },
+    {
+     "de": "Herr Pichler will heute den Zähler ___.",
+     "answer": "ablesen",
+     "tr": "Pichler Bey bugün sayacı okumak istiyor.",
+     "hint_tr": "Sayacı okumak derken **den Zähler ablesen** denir."
+    },
+    {
+     "de": "Jede Wohnung hat zwei ___.",
+     "answer": "Zähler",
+     "tr": "Her dairenin iki sayacı var.",
+     "hint_tr": "İki sayaç derken **zwei Zähler** denir."
     }
    ]
   },
@@ -12171,6 +13479,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "overflowing mailbox with letters"
+    },
+    {
+     "id": "lx:Briefkasten:5",
+     "de": "Herr Pichler klebt die Namen an die Briefkästen.",
+     "tr": "Pichler Bey isimleri posta kutularına yapıştırıyor.",
+     "layer": "hd",
+     "img": "row of metal mailboxes in hallway"
+    },
+    {
+     "id": "lx:Briefkasten:6",
+     "de": "– Kannst du meinen Briefkasten leeren, wenn ich weg bin? – Klar, mach ich.",
+     "tr": "– Ben yokken posta kutumu boşaltabilir misin? – Tabii, boşaltırım.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "neighbor holding stack of mail"
     }
    ],
    "level": "A2",
@@ -12201,28 +13524,34 @@
      "hint_tr": "Bir posta kutusu derken **ein Briefkasten** denir."
     },
     {
-     "de": "Ich leere ___ Briefkasten jeden Tag.",
-     "answer": "den",
-     "tr": "Posta kutusunu her gün boşaltıyorum.",
-     "hint_tr": "**Ich leere** dedikten sonra **der Briefkasten**, **den Briefkasten** olur."
-    },
-    {
-     "de": "Der Schlüssel liegt ___ Briefkasten.",
-     "answer": "im",
-     "tr": "Anahtar posta kutusunda.",
-     "hint_tr": "**in** ile **dem** birleşir: **im Briefkasten**."
-    },
-    {
-     "de": "Wirf den Brief in ___ Briefkasten.",
-     "answer": "den",
-     "tr": "Mektubu posta kutusuna at.",
-     "hint_tr": "Kutunun içine atarken **in den Briefkasten** denir."
-    },
-    {
      "de": "Im Haus gibt es zehn ___.",
      "answer": "Briefkästen",
      "tr": "Binada on posta kutusu var.",
-     "hint_tr": "On kutu derken **zehn Briefkästen** denir, **a** harfi **ä** olur."
+     "hint_tr": "On posta kutusu derken **zehn Briefkästen** denir."
+    },
+    {
+     "de": "Der Schlüssel liegt im ___.",
+     "answer": "Briefkasten",
+     "tr": "Anahtar posta kutusunda.",
+     "hint_tr": "Posta kutusunda derken **im Briefkasten** denir."
+    },
+    {
+     "de": "Ich leere den ___ jeden Tag.",
+     "answer": "Briefkasten",
+     "tr": "Posta kutusunu her gün boşaltıyorum.",
+     "hint_tr": "Posta kutusunu boşaltmak derken **den Briefkasten leeren** denir."
+    },
+    {
+     "de": "Frau Brandl wirft den Brief in den ___.",
+     "answer": "Briefkasten",
+     "tr": "Brandl Hanım mektubu posta kutusuna atıyor.",
+     "hint_tr": "Posta kutusuna atmak derken **in den Briefkasten werfen** denir."
+    },
+    {
+     "de": "Der Name am ___ fehlt noch.",
+     "answer": "Briefkasten",
+     "tr": "Posta kutusundaki isim hâlâ eksik.",
+     "hint_tr": "Posta kutusundaki isim derken **der Name am Briefkasten** denir."
     }
    ]
   },
@@ -12289,6 +13618,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "delivery man waiting at front door"
+    },
+    {
+     "id": "lx:Klingel:5",
+     "de": "Der Postbote drückt auf die Klingel, aber niemand ist da.",
+     "tr": "Postacı zile basıyor, ama kimse yok.",
+     "layer": "hd",
+     "img": "postman waiting at apartment entrance"
+    },
+    {
+     "id": "lx:Klingel:6",
+     "de": "– Welche Klingel ist deine? – Die dritte von oben, mein Name steht dran.",
+     "tr": "– Hangi zil senin? – Yukarıdan üçüncü, adım üstünde yazıyor.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "panel of doorbell buttons at entrance"
     }
    ],
    "level": "A2",
@@ -12309,22 +13653,34 @@
      "hint_tr": "Bir zil derken **eine Klingel** denir."
     },
     {
-     "de": "Drück bitte auf ___ Klingel.",
-     "answer": "die",
+     "de": "Drück bitte auf die ___.",
+     "answer": "Klingel",
      "tr": "Lütfen zile bas.",
-     "hint_tr": "Zile basarken **auf die Klingel drücken** denir."
+     "hint_tr": "Zile basmak derken **auf die Klingel drücken** denir."
     },
     {
-     "de": "___ Klingel ist kaputt.",
-     "answer": "Die",
+     "de": "Die ___ ist kaputt.",
+     "answer": "Klingel",
      "tr": "Zil bozuk.",
-     "hint_tr": "Hangi zil olduğu belliyse **die Klingel** denir."
+     "hint_tr": "Zil bozuk derken **Die Klingel ist kaputt** denir."
     },
     {
-     "de": "Ihr Name steht an ___ Klingel.",
-     "answer": "der",
+     "de": "Ihr Name steht an der ___.",
+     "answer": "Klingel",
      "tr": "Adınız zilde yazıyor.",
-     "hint_tr": "Yeri söylerken **an** dedikten sonra **die Klingel**, **der Klingel** olur."
+     "hint_tr": "Zilde derken **an der Klingel** denir."
+    },
+    {
+     "de": "Im Garten kann man die Klingel nicht ___.",
+     "answer": "hören",
+     "tr": "Bahçeden zil duyulmuyor.",
+     "hint_tr": "Zili duymak derken **die Klingel hören** denir."
+    },
+    {
+     "de": "Neben der Haustür sind zwölf ___.",
+     "answer": "Klingeln",
+     "tr": "Bina kapısının yanında on iki zil var.",
+     "hint_tr": "On iki zil derken **zwölf Klingeln** denir."
     }
    ]
   }

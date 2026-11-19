@@ -131,3 +131,10 @@ Sara, Lea. (Lisa, Jan, Finn, Moritz, Jakob, Emil, David, Eva artık dolu; aşağ
 
 ### Emma (ek)
 - Bir otelin resepsiyonunda çalışıyor (`lx:Rezeption`).
+
+### Grup 23 ekleri
+- Anna sabah bulantısı çekiyor (hamile); Max ile bebek için çocuk parasına başvuracak.
+- Tom'un bebeği geçen yıl doğdu.
+- Eva otel odasını bir gece uzatıyor.
+- Lena'nın kocasına Jobcenter'dan mektup geliyor; Lena'nın kızında ishal, Lena eczanede ishal ilacı veriyor.
+- Herr Novak: oturma izni ekime kadar geçerli. Frau Lorenz: Landshut'ta doğdu. Frau Koch: kızı Mia burada (Wendlfing'de) doğdu.
