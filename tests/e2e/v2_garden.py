@@ -59,11 +59,12 @@ def main():
         check(8 <= total <= 12, f"tur 8–12 soru ({total})")
         no_overflow(pg, "Bahçe ilk soru")
         if shots: shot(pg, "g01-tanitim", full=False)
-        intros, types, sira = [], [], []
+        intros, types, sira, kopru1 = [], [], [], []
         def note():
             # ekran sırası (PM-069 madde 3): ("T", kart) tanıtım, ("Q", kart) soru
             if pg.locator("[data-test=garden-intro]").count(): sira.append(("T", pg.get_attribute("[data-test=garden-intro]", "data-lex")))
-            elif pg.locator("[data-test^=gq-]").count(): sira.append(("Q", pg.locator("[data-test^=gq-]").first.get_attribute("data-lex")))
+            elif pg.locator("[data-test^=gq-]").count():
+                g1 = pg.locator("[data-test^=gq-]").first; sira.append(("Q", g1.get_attribute("data-lex"))); kopru1.append((g1.get_attribute("data-test"), g1.get_attribute("data-lex")))
             if pg.locator("[data-test=garden-intro]").count(): intros.append(pg.inner_text("[data-test=garden-intro] .de-xl"))
             t = pg.locator("[data-test^=gq-]").first.get_attribute("data-test") if pg.locator("[data-test^=gq-]").count() else None
             if t: types.append(t)
@@ -152,7 +153,8 @@ def main():
         check(any(t in ACTIVE for t in types2), f"ikinci turda üretim sorusu var ({sorted(set(types2))})")
         # köprü (PM-069 madde 3): 1. turda tanıtılan kartın ilk üretim sorusundan (tr_de) önce artikel ya da eşdizim seçmeli
         # (köprü türü olmayan kart — ör. edat, yalnızca çoğul isim — doğrudan üretime geçer)
-        kopru_ihlal = [lx for k, (t, lx, kt) in enumerate(sira2) if t == "gq-tr_de" and kt and lx in tanitilan1 and not any(x[1] == lx and x[0] in ("gq-article", "gq-colloc") for x in sira2[:k])]
+        # köprü 1. turda da gelmiş olabilir (yanlıştan sonraki tekrar artikel/eşdizim olabilir)
+        kopru_ihlal = [lx for k, (t, lx, kt) in enumerate(sira2) if t == "gq-tr_de" and kt and lx in tanitilan1 and not any(x[1] == lx and x[0] in ("gq-article", "gq-colloc") for x in kopru1 + [y[:2] for y in sira2[:k]])]
         kopru_var = [lx for t, lx, _ in sira2 if t in ("gq-article", "gq-colloc") and lx in tanitilan1]
         check(not kopru_ihlal and kopru_var, f"ilk tr_de'den önce artikel/eşdizim köprüsü ({len(kopru_var)} köprü, ihlal {kopru_ihlal[:3]})")
         check(len(gaps) > 0 and all(gaps), f"boşluk sorusunda ipucu soru sırasında kapalı, düğme var, cevap kartta yok ({len(gaps)} soru)")
