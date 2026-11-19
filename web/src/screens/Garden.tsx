@@ -14,7 +14,7 @@ import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { XP, seri, yerelGun } from "../core/gun.ts";
 import { getMeta, itemsMap, personalWords, putItems, setMeta } from "../data/db.ts";
 import { hizliGecis, review, sessionKey, type Outcome } from "../core/srs.ts";
-import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, boslukSecimi, gosterilenCogul, tanitildi, gorulenKelimeler, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
+import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, boslukSecimi, esdizimler, gosterilenCogul, tanitildi, gorulenKelimeler, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { umlautEksik } from "../core/esdeger.ts";
 import { judgeWord, numberWordHint } from "../core/grading.ts";
@@ -88,6 +88,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       const kisisel = !day || hak.kisiselIzin ? priority : [];
       const newLeft = day ? hak.newLeft : takvim, activeLeft = DAILY_ACTIVE - t.active;
       let round = buildRound(lex, items, pool, { priority: kisisel, newLeft, activeLeft, yeniAyir: Math.min(8, kalan.length) });
+      // e2e: belirli kartın tanıtımı (en uzun kart sığıyor mu ölçümü, PM 7024150313); yalnızca e2e derlemesinde
+      if (E2E) { const k = sessionStorage.getItem("e2e-kart"); if (k && lex.has(k)) round = [{ lexId: k, type: "listen_meaning", intro: true, ex: 0 }]; }
       // B16 kapsamı (PM-066; inceleme #113 P1-1/2/3): öğrencinin "sına beni"si o günün kalan kartları için (`hizliGun`);
       // seviye tespiti A2 ve üstüyse yalnızca İlk Hafta günlerinde varsayılan; "normal akış" seçimi kalıcı (`hizliSerit` = false)
       const bugun = yerelGun(new Date());
@@ -199,6 +201,19 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   );
 }
 
+/** Eşdizimler: en çok 3 açık, kalanı "Daha fazla (n)" (PM 7024150313); açılır kısım boşlukta sorulmaz */
+function Esdizimler({ l, test }: { l: Lexeme; test?: string }) {
+  const { acik, kapali } = esdizimler(l);
+  if (!acik.length) return null;
+  const satir = (c: Lexeme["collocations"][number]) => <li><b lang="de">{c.de}</b> <span class="muted">· {c.tr}</span></li>;
+  return (
+    <div class="small" data-test={test}><span class="muted">Birlikte:</span>
+      <ul class="esdizim-liste">{acik.map(satir)}</ul>
+      {kapali.length > 0 && <details class="esdizim-daha" data-test="esdizim-daha"><summary class="linkbtn">Daha fazla ({kapali.length})</summary><ul class="esdizim-liste">{kapali.map(satir)}</ul></details>}
+    </div>
+  );
+}
+
 function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, onTanitim }: { q: GardenQ; l: Lexeme; all: Lexeme[]; yakin?: Yakinlik; /** öğrencinin gördüğü kelimeler (PM-069 P0) */ gorulen?: Set<string>; onDone: (r: Result, o: Outcome | null, exi: number, m?: SoruBilgi) => void; onSina?: () => void; onCevap?: () => void; onTanitim?: () => void }) {
   const [intro, setIntro] = useState(!!q.intro);
   // B16: sına sorusu; bilemezse "Sorun değil, birlikte bakalım" → tanıtım ve normal tanıma sorusu (PM-066 madde 1)
@@ -238,15 +253,18 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
       <section class="card stack"><div class="kicker">Yeni kelime</div>
         {/* PM 14:05 Berlin madde 1: tanıtımda kelimenin fotoğrafı (sayaçla döner); cümle görseli yalnızca cümlenin yanında */}
         <Photo q={l.img} sira={q.ex} />
-        <div class="de-xl" lang="de"><Art art={l.art} de={l.de} /></div>
-        {gosterilenCogul(l) && <div class="small muted cogul-satir" data-test="intro-pl">Çoğulu: <span lang="de">{isNoun(l) ? "die " : ""}{gosterilenCogul(l)}</span></div>}
-        <div class="row"><ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} /></div>
-        <p>{l.tr}</p>
-        {ex && <p class="small" data-test="intro-ex"><span lang="de">{ex.de}</span><br /><span class="muted">{ex.tr}</span></p>}
-        {baska(l.examples.length)}
-        {/* PM-069 P0: eşdizimlerin hepsi görünür (boşluk soruları ancak gösterilen öbeği sorar) */}
-        {l.collocations.length > 0 && <div class="small" data-test="intro-colloc"><span class="muted">Birlikte:</span>
-          <ul class="esdizim-liste">{l.collocations.map((c) => <li><b lang="de">{c.de}</b> <span class="muted">· {c.tr}</span></li>)}</ul></div>}
+        {/* PM 7024150313: görselli en uzun kart da düğmelere değmeden sığar — kelime ile dinle aynı satırda, çoğul anlamın yanında,
+            "Başka cümle" cümlenin yanında; eşdizimlerden en çok 3'ü açık */}
+        <div class="row" style={{ flexWrap: "nowrap", alignItems: "center", gap: 10 }}>
+          <div class="de-xl grow" lang="de" style={{ minWidth: 0 }}><Art art={l.art} de={l.de} /></div>
+          <ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} />
+        </div>
+        <p style={{ margin: 0 }}><span data-test="intro-tr">{l.tr}</span>{gosterilenCogul(l) && <span class="small muted cogul-satir" data-test="intro-pl"> · Çoğulu: <span lang="de">{isNoun(l) ? "die " : ""}{gosterilenCogul(l)}</span></span>}</p>
+        {ex && <div class="row" style={{ flexWrap: "nowrap", alignItems: "flex-start", gap: 8 }}>
+          <p class="small grow" data-test="intro-ex" style={{ margin: 0, minWidth: 0 }}><span lang="de">{ex.de}</span><br /><span class="muted">{ex.tr}</span></p>
+          {baska(l.examples.length)}
+        </div>}
+        <Esdizimler l={l} test="intro-colloc" />
       </section>
       <ActionBar>
         <button class="btn primary block" data-test="next" onClick={() => setIntro(false)}>Şimdi sor</button>
@@ -270,7 +288,7 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
       {ex && <div class="row" style={{ flexWrap: "nowrap", alignItems: "flex-start" }}><span class="grow"><span lang="de" data-test="after-ex">{ex.de}</span><br /><span class="small muted">{ex.tr}</span></span><ListenButton text={ex.de} small /></div>}
       {/* boşluk sorusunda cevap ekranındaki cümle sorulan cümlenin örneğidir; başka sorularda beğenilmeyen örnek değiştirilebilir */}
       {!form && baska(l.examples.length)}
-      {l.collocations.length > 0 && <div class="small"><span class="muted">Birlikte:</span><ul class="esdizim-liste">{l.collocations.map((c) => <li><b lang="de">{c.de}</b> <span class="muted">· {c.tr}</span></li>)}</ul></div>}
+      <Esdizimler l={l} />
     </section>
     {/* geri bildirim bandı yüksek: kart bandın altında kalmasın diye kaydırma payı */}
     <div aria-hidden="true" style={{ height: 180 }} />

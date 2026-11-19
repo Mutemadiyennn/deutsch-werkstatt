@@ -670,3 +670,6 @@ svg.sandik { overflow: visible; }
 .esdizim-liste { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 2px; }
 /* kısa öbekler (eşdizim listesi, çoğul satırı) hecelenmez: WebKit'te her lang="de" öğesi için heceleme düzeni "Başka cümle" karesini 150 ms üstüne çıkarıyordu (#122 CI) */
 .esdizim-liste [lang="de"], .cogul-satir [lang="de"] { hyphens: manual; -webkit-hyphens: manual; }
+/* "Daha fazla (n)" eşdizim: dokunma alanı 44 pt (PM 7024150313) */
+.esdizim-daha > summary { display: inline-flex; align-items: center; min-height: 44px; cursor: pointer; list-style: none; }
+.esdizim-daha > summary::-webkit-details-marker { display: none; }
