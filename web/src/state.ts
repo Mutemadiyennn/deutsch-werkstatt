@@ -24,7 +24,7 @@ export type Route =
   | { name: "ders"; id: string }
   | { name: "prova"; day: number }
   | { name: "okuma"; day: number }
-  | { name: "sozluk"; q?: string };
+  | { name: "sozluk"; q?: string; id?: string };
 
 export function parseHash(h: string): Route {
   const p = h.replace(/^#\/?/, "").split("/").map(decodeURIComponent);
@@ -41,7 +41,7 @@ export function parseHash(h: string): Route {
     case "ders": return { name: "ders", id: p[1] || "" };
     case "prova": return { name: "prova", day: Number(p[1]) || 1 };
     case "okuma": return { name: "okuma", day: Number(p[1]) || 1 };
-    case "sozluk": return { name: "sozluk", q: p[1] || undefined };
+    case "sozluk": return { name: "sozluk", q: p[1] || undefined, id: p[2] || undefined };
     case "m1": return p[2] ? { name: "m1medya", day: Number(p[1]) || 1, id: p[2] } : { name: "m1day", day: Number(p[1]) || 1 };
     default: return { name: "today" };
   }

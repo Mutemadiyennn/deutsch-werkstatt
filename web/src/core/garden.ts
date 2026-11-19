@@ -191,9 +191,10 @@ export function personalMatch(personal: { de: string }[], all: Lexeme[]): string
     const k = raw.replace(ART, "").trim();
     // sıra: tekil birebir → tekil harf duyarsız (tek aday) → çoğul birebir; artikel verilmişse uyan aday seçilir ("die Daten" ≠ das Datum)
     let hit: Lexeme | undefined;
-    const sing = (l: Lexeme) => l.de, plur = (l: Lexeme) => (l.pl && l.pl !== "-" ? l.pl : undefined);
-    for (const [exact, by] of [[true, sing], [false, sing], [true, plur]] as const) {
-      const c = find(k, exact, by);
+    // kartın kendisi noktalamalı olabilir ("Freut mich!"), ifade artikel gibi başlayabilir ("ein bisschen"; inceleme #78 P1-4)
+    const sing = (l: Lexeme) => l.de.replace(/[.!?]+$/, ""), plur = (l: Lexeme) => (l.pl && l.pl !== "-" ? l.pl : undefined);
+    for (const [exact, by, key] of [[true, sing, k], [true, sing, raw], [false, sing, k], [true, plur, k]] as const) {
+      const c = find(key, exact, by);
       // belirli artikel: tekilde kartın artikeli, çoğulda "die"
       const fit = art && ["der", "die", "das"].includes(art) ? c.filter((l) => (by === plur ? art === "die" : !l.art || l.art === art)) : c;
       const pick = fit.length ? fit : c;

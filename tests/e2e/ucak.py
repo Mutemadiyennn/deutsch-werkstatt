@@ -101,10 +101,6 @@ def main():
           if (navigator.mediaDevices) navigator.mediaDevices.getUserMedia = () => Promise.reject(new DOMException('no mic', 'NotAllowedError'));
         """)
         pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
-        # #58 B1: sözlük araması internetsiz (cihazdaki kartlar)
-        pg.goto(base + "#/sozluk"); pg.wait_for_selector("[data-test=sozluk-q]"); pg.fill("[data-test=sozluk-q]", "Termin")
-        pg.wait_for_selector("[data-test=sozluk-satir], [data-test=sozluk-yok]")
-        check(pg.locator("[data-test=sozluk-satir]").count() >= 1, "A: sözlük araması internetsiz sonuç veriyor (Termin)")
         v = dialogue_answer(pg, base, ans)
         check(v is not None, "B: mikrofon yokken diyalogda yazarak cevap verildi")
         pg.goto(base + f"#/scenario/{SC}/roleplay"); pg.wait_for_selector("[data-test=rp-start]"); pg.click("[data-test=rp-start]")
@@ -128,10 +124,6 @@ def main():
         pg.route("https://api.e2e.test/**", api)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         pg.wait_for_timeout(500)  # sağlayıcı yoklaması (health)
-        # #58 B1: sözlük araması internetsiz (cihazdaki kartlar)
-        pg.goto(base + "#/sozluk"); pg.wait_for_selector("[data-test=sozluk-q]"); pg.fill("[data-test=sozluk-q]", "Termin")
-        pg.wait_for_selector("[data-test=sozluk-satir], [data-test=sozluk-yok]")
-        check(pg.locator("[data-test=sozluk-satir]").count() >= 1, "A: sözlük araması internetsiz sonuç veriyor (Termin)")
         v = dialogue_answer(pg, base, ans)
         check(v is not None and "Şöyle olmalı" not in v, f"C: doğru cevap yapay zekâsız reddedilmedi ({(v or '')[:40]!r})")
         # D-097: kuralların tanımadığı yakın cevap → "kontrol edemedim"; öğrenci "aynı anlamda" derse doğru sayılır

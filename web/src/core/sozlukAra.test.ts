@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { sozlukAra, kisiselAnahtar } from "./sozlukAra.ts";
+import { sozlukAra, kisiselAnahtar, tamVar } from "./sozlukAra.ts";
 
 const L = (x: Record<string, unknown>) => ({ collocations: [], patterns: [], register: "neutral", related: [], mistakes_tr: [], examples: [], domains: [], legacy: [], ...x }) as never;
 const LEX = [
@@ -21,6 +21,15 @@ describe("sözlük araması (#58 B1)", () => {
   it("ümlautsuz ve ae/ue yazımı", () => {
     expect(sozlukAra("Schluessel", LEX)[0]!.l.de).toBe("Schlüssel");
     expect(sozlukAra("muede", LEX)[0]!.l.de).toBe("müde");
+    expect(sozlukAra("Schlussel", LEX)[0]!.l.de).toBe("Schlüssel");
+    expect(sozlukAra("mude", LEX)[0]!.l.de).toBe("müde");
+    expect(sozlukAra("arztin", LEX)[0]!.l.de).toBe("Ärztin");
+  });
+  it("Türkçe anlamın içindeki parça Almanca eşleşmenin önüne geçmez; tam eşleşme yoksa ekleme önerilir", () => {
+    const L2 = [...LEX, L({ id: "g", de: "Bargeld", tr: "nakit", pos: "noun", art: "das" }), L({ id: "h", de: "Herzlich willkommen", tr: "hoş geldiniz", pos: "phrase" })];
+    expect(sozlukAra("geld", L2)[0]!.l.de).toBe("Bargeld");
+    expect(tamVar(sozlukAra("Bahn", [...LEX, L({ id: "i", de: "Bahnhof", tr: "istasyon", pos: "noun", art: "der" })]))).toBe(false);
+    expect(tamVar(sozlukAra("Termin", LEX))).toBe(true);
   });
   it("Türkçe: anlamın parçası, Türkçe klavyesiz", () => {
     expect(sozlukAra("randevu", LEX)[0]!.l.de).toBe("Termin");
