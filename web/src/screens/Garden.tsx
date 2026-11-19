@@ -136,11 +136,9 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   const [hinted, setHinted] = useState(false);
   // PM-062: cümle sırası kartın gösterim sayacından gelir; "Başka cümle" havuzdaki sıradakine geçer (ipucu değil, XP etkilenmez)
   const [exi, setExi] = useState(q.ex);
-  // fotoğraf cümleden sonra değişir: dokunuşun ilk çiziminde yalnızca cümle güncellenir (<150 ms; inceleme #92 P0)
-  const [fotoEx, setFotoEx] = useState(q.ex);
-  useEffect(() => { if (fotoEx === exi) return; const t = setTimeout(() => setFotoEx(exi), 120); return () => clearTimeout(t); }, [exi]);
-  const fotoOrnek = l.examples[fotoEx % Math.max(1, l.examples.length)];
+  // cümlenin fotoğrafı (cevap kartı); fotoğraf bileşeni yenisi hazır olana kadar eskisini tutar (zıplama yok; inceleme #92 2. tur)
   const ex = l.examples[exi % Math.max(1, l.examples.length)];
+  const fotoEx = exi, fotoOrnek = ex;
   const show = (r: Result) => { setRes(r); haptic(r.ok ? "success" : "error"); };
   const next = (o: Outcome | null) => onDone(res || { ok: false }, o, exi);
   const baska = (n: number) => n > 1 ? <button class="btn sm ghost" data-test="baska-cumle" onClick={() => setExi((x) => x + 1)}>Başka cümle</button> : null;

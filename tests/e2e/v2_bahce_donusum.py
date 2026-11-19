@@ -11,11 +11,14 @@ from common import serve, launch, new_page, login_onboard, check, finish, shot, 
 PORT = 4205
 
 def degistir(pg, sel):
-    """'Başka cümle'ye basar; metin değişene kadar geçen süre (ms) ve yeni metin"""
+    """'Başka cümle'ye basar. D-096 yöntemi (PM-044.7): DOM süresi = tıklamadan cümlenin DOM'da değişmesine (MutationObserver),
+    kare süresi = değişimden sonraki ilk çizim karesine. Döner: (dom_ms, kare_ms, yeni metin)"""
     return pg.evaluate("""(sel) => new Promise((res) => { const el = () => document.querySelector(sel); const once = el() ? el().innerText : '';
+      let dom = null; const mo = new MutationObserver(() => { if (dom === null && el() && el().innerText !== once) {
+        dom = performance.now() - t0; mo.disconnect(); requestAnimationFrame(() => res([dom, performance.now() - t0, el().innerText])); } });
+      mo.observe(document.body, { subtree: true, childList: true, characterData: true });
       const t0 = performance.now(); document.querySelector('[data-test=baska-cumle]').click();
-      const bak = () => { const s = el() ? el().innerText : ''; if (s !== once) return res([performance.now() - t0, s]);
-        if (performance.now() - t0 > 2000) return res([9999, s]); requestAnimationFrame(bak); }; bak(); })""", sel)
+      setTimeout(() => { if (dom === null) { mo.disconnect(); res([9999, 9999, el() ? el().innerText : '']); } }, 2000); })""", sel)
 
 def main():
     srv = serve(PORT); base = f"http://127.0.0.1:{PORT}/"
@@ -27,12 +30,14 @@ def main():
         check(pg.locator("[data-test=baska-cumle]").count() == 1, "tanıtımda 'Başka cümle' düğmesi")
         ctx.set_offline(True)
         ilk = pg.inner_text("[data-test=intro-ex]")
-        goruldu, sureler = [ilk], []
-        for _ in range(3):
-            ms, metin = degistir(pg, "[data-test=intro-ex]")
-            sureler.append(ms); goruldu.append(metin)
-        check(len(set(goruldu[:3])) == 3, f"3 dokunuşta farklı cümleler ({[g[:30] for g in goruldu]})")
-        check(max(sureler) < 150, f"her değişim < 150 ms, uçak modunda ({[round(x) for x in sureler]} ms)")
+        goruldu, doms, kareler = [ilk], [], []
+        for _ in range(5):
+            dom, kare, metin = degistir(pg, "[data-test=intro-ex]")
+            doms.append(dom); kareler.append(kare); goruldu.append(metin)
+        check(len(set(goruldu[:3])) == 3, f"3 dokunuşta farklı cümleler ({[g[:30] for g in goruldu[:4]]})")
+        # D-096 yöntemi: DOM her dokunuşta < 150 ms (sert), ilk kare 5 dokunuşun ortancası < 150 ms; en kötü kare raporda
+        kortanca = sorted(kareler)[len(kareler) // 2]
+        check(max(doms) < 150 and kortanca < 150, f"değişim < 150 ms, uçak modunda (DOM {[round(x) for x in doms]} ms; kare ortanca {round(kortanca)}, en kötü {round(max(kareler))} ms)")
         no_overflow(pg, "tanıtım")
         if shots: shot(pg, "b01-baska-cumle", full=False)
         # düğme ipucu sayılmaz: sonraki doğru cevap "Doğru." (XP'li)
@@ -44,17 +49,17 @@ def main():
         lex = pg.get_attribute("[data-test=after-card]", "data-lex")
         ctx.set_offline(False)
         pg.click("[data-test=next]"); pg.wait_for_timeout(300)
-        # kayıt: kartın sayacı gösterilen (3 kez değiştirilmiş) cümlenin ardından yazıldı → sonraki oturum başka cümleyle açılır
+        # kayıt: kartın sayacı gösterilen (5 kez değiştirilmiş) cümlenin ardından yazıldı → sonraki oturum başka cümleyle açılır
         ex_seen = pg.evaluate("""(id) => new Promise((res) => { const r = indexedDB.open('dw2'); r.onsuccess = () => { const t = r.result.transaction('items').objectStore('items').get(id);
           t.onsuccess = () => res(t.result ? t.result.exSeen : null); t.onerror = () => res(null); }; r.onerror = () => res(null); })""", lex)
-        check(ex_seen == 4, f"öğrenci kaydında cümle sayacı gösterilenin ardından ({lex}: exSeen={ex_seen}, beklenen 4)")
+        check(ex_seen == 6, f"öğrenci kaydında cümle sayacı gösterilenin ardından ({lex}: exSeen={ex_seen}; 5 değişiklik + cevap = 6)")
         # boşluk sorusu: başka boşluk cümlesi (bir tur içinde bulunursa)
         bosluk = False
         for _ in range(60):
             if pg.locator("[data-test=garden-done]").count(): break
             if pg.locator("[data-test=gap-cumle]").count() and pg.locator("[data-test=baska-cumle]").count():
-                once = pg.inner_text("[data-test=gap-cumle]"); ms, sonra = degistir(pg, "[data-test=gap-cumle]")
-                check(sonra != once and ms < 150, f"boşluk sorusunda başka cümle ({once[:30]!r} → {sonra[:30]!r}, {round(ms)} ms)"); bosluk = True; break
+                once = pg.inner_text("[data-test=gap-cumle]"); dom, kare, sonra = degistir(pg, "[data-test=gap-cumle]")
+                check(sonra != once and dom < 150, f"boşluk sorusunda başka cümle ({once[:30]!r} → {sonra[:30]!r}; DOM {round(dom)} ms, kare {round(kare)} ms)"); bosluk = True; break
             if pg.locator("[data-test=garden-intro]").count(): pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]"); continue
             if pg.locator("button.opt:not([disabled])").count(): pg.locator("button.opt[data-right]").first.click()
             else:

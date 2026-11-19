@@ -155,12 +155,14 @@ export function Photo({ q, sira }: { q?: string; sira?: number }) {
   const { api } = useApp();
   const [p, setP] = useState<PhotoResult | null>(null);
   useEffect(() => {
-    let live = true; setP(null);
-    if (!q || !api.configured) return;
+    // yenisi seçilene kadar eskisi kalır: cümle değişirken alan boşalıp dolmaz (düzen kayması yok)
+    let live = true;
+    if (!q || !api.configured) { setP(null); return; }
     (async () => {
       let list = await cacheGet<PhotoResult[]>(`photo:${q}`, 30 * 86400_000);
-      if (!list) { try { list = await api.photos(q); await cachePut(`photo:${q}`, list); } catch { return; } }
-      if (!list?.length || !live) return;
+      if (!list) { try { list = await api.photos(q); await cachePut(`photo:${q}`, list); } catch { if (live) setP(null); return; } }
+      if (!live) return;
+      if (!list?.length) { setP(null); return; }
       const prev = lastShown.get(q);
       const pick = sira !== undefined ? list[sira % list.length]! : list.find((x) => x.id !== prev) || list[0]!;
       lastShown.set(q, pick.id); setP(pick);
