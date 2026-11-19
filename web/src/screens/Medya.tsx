@@ -5,6 +5,7 @@
  * (e) metin + kelimeye dokununca kart ve "bankaya ekle", (f) gölge konuşma, (g) "Sen ne derdin?".
  * Kaldığı yer cihazda saklanır (yarıda bırakılıp sürdürülebilir). Uzun kayıt hiçbir zaman baştan sona yazdırılmaz.
  */
+import { gorevSay } from "../services/gorev.ts";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Gun, medyalar, type AnlamaQ, type Bolum, type Dikte, type Lexeme, type Medya, type MedyaCumle } from "@dw/shared";
 import { useApp } from "../state.ts";
@@ -265,6 +266,8 @@ function DikteAdimi({ d, sira, cs, oy, onNext }: { d: Dikte; sira: string; cs: M
   const kontrol = (a: string) => {
     if (d.seviye === "orta" || d.seviye === "zor" || d.seviye === "usta") {
       const r = dikteDegerlendir(d, a);
+      // B11b günlük görev: dikte merdiveninin puanlı en üst basamağında ("Duyduğun cümleyi yaz") doğru cümle
+      if (r.ok && d.seviye === "usta") void gorevSay("dikteUsta");
       goster(r.ok, a, d.seviye === "orta" ? d.de.replace("___", r.beklenen) : r.beklenen, r.yazim ? `Yazımı: ${r.yazim}` : undefined);
     } else if (d.seviye === "gercek") {
       const eksik = eksikZorunlu(a, d.zorunlu);

@@ -9,6 +9,7 @@ import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive } from "../s
 import { haptic } from "../services/haptics.ts";
 import { efekt, ustUsteSay, xpUcur } from "../services/efekt.ts";
 import { Icon } from "./icons.tsx";
+import { gorevSay } from "../services/gorev.ts";
 
 /* ---------- Ses düğmesi: büyük, tek dokunuşla yavaş/normal ---------- */
 export function ListenButton({ text, speed = "normal", label = "Dinle", slowToggle = true, small = false }: { text: string; speed?: Speed; label?: string; slowToggle?: boolean; small?: boolean }) {
@@ -147,7 +148,7 @@ export function FeedbackBand({ kind, title, children, xp, sayac = true }: { kind
   const [ust] = useState(() => (!sayac ? 0 : kind === "ok" ? ustUsteSay(true) : kind === "bad" ? ustUsteSay(false) : 0));
   useEffect(() => {
     if (!sayac) return;
-    if (kind === "ok") { haptic("success"); efekt("dogru"); xpUcur(xp ?? baglamXp); } else if (kind === "bad") { haptic("error"); efekt("yanlis"); }
+    if (kind === "ok") { haptic("success"); efekt("dogru"); xpUcur(xp ?? baglamXp); if (ust > 0 && ust % 5 === 0) void gorevSay("ustuste5"); } else if (kind === "bad") { haptic("error"); efekt("yanlis"); }
   }, [kind, title]);
   return (
     <div class={`fb ${kind}`} role="status" aria-live="polite" data-test="feedback">

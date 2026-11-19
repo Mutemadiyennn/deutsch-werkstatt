@@ -3,6 +3,9 @@
  * Kural: tamamlanan adım yeniden önerilmez; sonraki gün, önceki gün bitince açılır. Seviye XP ile değil kanıtla atlanır.
  */
 import { useEffect, useState } from "preact/hooks";
+import { yolSandigiAc, yolSandiklari } from "../services/gorev.ts";
+import { YOL_SANDIK_XP } from "../core/gorev.ts";
+import { Sandik } from "../ui/gorev.tsx";
 import type { Gun } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadM1Gun } from "../services/content.ts";
@@ -69,6 +72,9 @@ const KAYMA = [0, 44, 70, 44, 0, -44, -70, -44];
 
 export function YolEkrani() {
   const { plan, err, yok, yenile } = usePlan();
+  // B11b (PM-065 madde 6): yol üstünde her 3 düğümde bir sandık; önceki düğümler bitince açılır (bir kez 5 XP)
+  const [acik, setAcik] = useState<Set<string>>(new Set());
+  useEffect(() => { void yolSandiklari().then(setAcik); }, []);
   if (err) return <div class="stack"><TopBar title="İlk Hafta" back="#/today" /><ErrorPanel message={err} onRetry={yenile} /></div>;
   if (yok) return <div class="stack"><TopBar title="Yol" back="#/today" /><section class="card"><p>İlk Hafta'nın günleri hazırlanıyor.</p></section></div>;
   if (!plan) return <Loading />;
@@ -96,13 +102,13 @@ export function YolEkrani() {
               <a class="rehber-btn" href={`#/rehber/${g.day}`} data-test={`rehber-${g.day}`} aria-label={`${g.day}. günün rehberi: kalıplar ve kelimeler`}>Rehber</a>
             </div>
             <ol class="dugumler">
-              {g.adimlar.map((a) => {
+              {g.adimlar.flatMap((a, ai) => {
                 const kay = KAYMA[sira++ % KAYMA.length]!;
                 const simdi = plan.sonraki?.id === a.id;
                 const durum = a.bitti ? "bitti" : simdi ? "simdi" : g.durum === "kilitli" || !a.hazir ? "kilitli" : "acik";
                 const ad = `Seans ${a.seans} · ${TUR_AD[a.tur]}: ${a.title_tr}${!a.hazir ? " (hazırlanıyor)" : ""}${a.bitti ? ", bitti" : ""}`;
                 const ic = <><span class="dugum-yuz"><DugumSimge tur={a.tur} /></span>{a.bitti && <span class="dugum-onay" aria-hidden="true"><Icon name="check" size={14} stroke={3} /></span>}</>;
-                return (
+                const dugum = (
                   <li class={`dugum-yer ${durum}`} style={{ "--kay": `${kay}px` } as Record<string, string>} data-test="adim" data-tur={a.tur} data-bitti={a.bitti ? "1" : "0"} data-durum={durum}>
                     {simdi && <span class="basla-balon" aria-hidden="true">BAŞLA</span>}
                     {simdi && <svg class="dugum-halka" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" /><circle class="dolu" cx="50" cy="50" r="46" style={{ strokeDasharray: `${2 * Math.PI * 46 * (hazirAdim.length ? biten / hazirAdim.length : 0)} 999` }} /></svg>}
@@ -112,6 +118,19 @@ export function YolEkrani() {
                     <span class="dugum-ad tiny">{TUR_AD[a.tur]}</span>
                   </li>
                 );
+                if ((ai + 1) % 3 !== 0 || ai === g.adimlar.length - 1) return [dugum];
+                const k = (ai + 1) / 3, anahtar = `${g.day}:${k}`;
+                const onceBitti = g.adimlar.slice(0, ai + 1).filter((x) => x.hazir).every((x) => x.bitti) && g.durum !== "kilitli";
+                const sd = acik.has(anahtar) ? "acik" : onceBitti ? "hazir" : "kilitli";
+                const kay2 = KAYMA[sira++ % KAYMA.length]!;
+                const ac = async () => { if (await yolSandigiAc(g.day, k)) setAcik(new Set([...acik, anahtar])); };
+                return [dugum, (
+                  <li class={`dugum-yer sandik-yer ${sd}`} style={{ "--kay": `${kay2}px` } as Record<string, string>} data-test="yol-sandik" data-durum={sd}>
+                    {sd === "hazir"
+                      ? <button class="dugum sandik-dugum" onClick={() => void ac()} aria-label={`Sandık: aç, +${YOL_SANDIK_XP} XP`}><Sandik durum="hazir" boy={50} /></button>
+                      : <span class="dugum sandik-dugum" role="img" aria-label={sd === "acik" ? "Sandık açıldı" : "Sandık: önceki adımları bitirince açılır"}><Sandik durum={sd} boy={50} /></span>}
+                    <span class="dugum-ad tiny">{sd === "acik" ? `+${YOL_SANDIK_XP} XP alındı` : "Sandık"}</span>
+                  </li>)];
               })}
               <li class={`dugum-yer ${g.bitti ? "bitti" : "kilitli"} son`} style={{ "--kay": `${KAYMA[sira++ % KAYMA.length]}px` } as Record<string, string>}>
                 <span class="dugum" role="img" aria-label={g.day === 7 ? `Hafta sonu ${g.bitti ? "tamam" : "kilitli"}` : `Gün sonu ${g.bitti ? "tamam" : "kilitli"}`}><span class="dugum-yuz"><DugumSimge tur={son} /></span></span>

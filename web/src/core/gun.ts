@@ -63,7 +63,8 @@ export function siradaki(g: GunDurum | null): Adim | null {
 }
 
 /* ---------- XP ve seri (motivasyon; seviye kanıtla atlanır, XP ile değil) ---------- */
-export interface XpKayit { toplam: number; gunler: Record<string, number> }
+/** `dondurulan`: seri dondurma hakkıyla kurtarılan günler (B11b; XP yok ama seri kırılmaz) */
+export interface XpKayit { toplam: number; gunler: Record<string, number>; dondurulan?: string[] }
 export const XP_BOS: XpKayit = { toplam: 0, gunler: {} };
 export const XP = { dogru: 2, adim: 10 } as const;
 export const yerelGun = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
@@ -73,9 +74,11 @@ export function xpEkle(x: XpKayit, n: number, now = new Date()): XpKayit {
 }
 /** Seri: bugünden (bugün henüz çalışılmadıysa dünden) geriye kesintisiz çalışılan gün sayısı */
 export function seri(x: XpKayit, now = new Date()): number {
+  const aktif = (g: string) => (x.gunler[g] ?? 0) > 0 || !!x.dondurulan?.includes(g);
   const d = new Date(now);
-  if (!((x.gunler[yerelGun(d)] ?? 0) > 0)) d.setDate(d.getDate() - 1);
+  if (!aktif(yerelGun(d))) d.setDate(d.getDate() - 1);
   let n = 0;
-  while ((x.gunler[yerelGun(d)] ?? 0) > 0) { n++; d.setDate(d.getDate() - 1); }
+  // dondurulan gün seriyi taşır ama sayıyı artırmaz
+  while (aktif(yerelGun(d))) { if ((x.gunler[yerelGun(d)] ?? 0) > 0) n++; d.setDate(d.getDate() - 1); }
   return n;
 }

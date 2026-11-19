@@ -16,7 +16,7 @@
   --c-blue: #2f7bf6; --c-blue2: #1d5fd6; --c-orange: #ff8a1f; --c-green: #16b37a; --c-green2: #0e8f60; --c-purple: #7c5cfa; --c-pink: #ef4a82; --c-amber: #f5a623;
   --ok: var(--wiese); --ok-soft: #e3f5ec; --bad: #a63d1f; --bad-soft: #fdece6; --warn: #b26a00; --warn-soft: #fff3dc;
   --mercan: #e8735a; --gem-a: #3fa9f5; --gem-b: #1c6fd6; --gem-c: #e9f5ff; --filiz-sap: #3c8c5a; --filiz-yaprak: #2f9e6b;
-  --hafta-1: #15834f; --hafta-2: #2f6fe0; --hafta-3: #b05a1c; --hafta-4: #8a4fd6; --alev-a: #f2792b; --alev-b: #ffd25e;
+  --hafta-1: #15834f; --hafta-2: #2f6fe0; --hafta-3: #b05a1c; --hafta-4: #8a4fd6; --alev-a: #f2792b; --alev-b: #ffd25e; --sandik-govde: #b8742a; --sandik-kapak: #d08a36; --sandik-serit: #7a4a17; --sandik-kilit: #f4c84a;
   --der: #2f7bf6; --die: #ef4a82; --das: #16a34a;
   --glow1: #d9e8ff; --glow2: #efe4ff; --glow3: #ffe9d6;
   --card-edge: rgba(16, 28, 48, 0.06);
@@ -38,7 +38,7 @@
   --accent: var(--himmel); --accent-ink: #ffffff; --accent-edge: #1d5fd6; --accent2: #6aa8ff;
   --ok: var(--wiese); --ok-soft: #10392b; --bad: #ff9a80; --bad-soft: #3b2119; --warn: #ffc566; --warn-soft: #3a2c12;
   --mercan: #ff9278; --gem-a: #6cc0ff; --gem-b: #3c86e3; --gem-c: #0b1424; --filiz-sap: #5cbf85; --filiz-yaprak: #4cc48f;
-  --hafta-1: #1b8456; --hafta-2: #2a5fc4; --hafta-3: #b05a1c; --hafta-4: #7449c4; --alev-a: #ff8a3d; --alev-b: #ffe07a;
+  --hafta-1: #1b8456; --hafta-2: #2a5fc4; --hafta-3: #b05a1c; --hafta-4: #7449c4; --alev-a: #ff8a3d; --alev-b: #ffe07a; --sandik-govde: #c98235; --sandik-kapak: #e09a45; --sandik-serit: #8a5520; --sandik-kilit: #ffd65c;
   --der: #6aa8ff; --die: #ff7aa6; --das: #4ed67f;
   --glow1: rgba(47, 123, 246, 0.28); --glow2: rgba(124, 92, 250, 0.22); --glow3: rgba(255, 138, 31, 0.1);
   --card-edge: rgba(255, 255, 255, 0.07);
@@ -53,7 +53,7 @@
     --accent: var(--himmel); --accent-ink: #ffffff; --accent-edge: #1d5fd6; --accent2: #6aa8ff;
     --ok: var(--wiese); --ok-soft: #10392b; --bad: #ff9a80; --bad-soft: #3b2119; --warn: #ffc566; --warn-soft: #3a2c12;
     --mercan: #ff9278; --gem-a: #6cc0ff; --gem-b: #3c86e3; --gem-c: #0b1424; --filiz-sap: #5cbf85; --filiz-yaprak: #4cc48f;
-  --hafta-1: #1b8456; --hafta-2: #2a5fc4; --hafta-3: #b05a1c; --hafta-4: #7449c4; --alev-a: #ff8a3d; --alev-b: #ffe07a;
+  --hafta-1: #1b8456; --hafta-2: #2a5fc4; --hafta-3: #b05a1c; --hafta-4: #7449c4; --alev-a: #ff8a3d; --alev-b: #ffe07a; --sandik-govde: #c98235; --sandik-kapak: #e09a45; --sandik-serit: #8a5520; --sandik-kilit: #ffd65c;
     --der: #6aa8ff; --die: #ff7aa6; --das: #4ed67f;
     --glow1: rgba(47, 123, 246, 0.28); --glow2: rgba(124, 92, 250, 0.22); --glow3: rgba(255, 138, 31, 0.1);
     --card-edge: rgba(255, 255, 255, 0.07);
@@ -587,3 +587,24 @@ a.dugum:active { transform: translateY(6px); box-shadow: 0 1px 0 var(--vurgu-koy
 .whysheet.kalip-sheet h3.kicker { font-size: 0.78rem; margin-bottom: 4px; }
 .wchip[aria-pressed="true"] { background: var(--himmel); color: var(--card); }
 @media (prefers-reduced-motion: reduce) { .kalip-ornek { transition: none; } }
+
+/* ===== Şölen 2 / B11b (PM-065 5–7): günlük görevler, sandık, geçen haftaki sen ===== */
+.gorev-liste { display: grid; gap: 10px; }
+.gorev { display: grid; gap: 4px; }
+.gorev-cubuk { height: 10px; border-radius: 999px; background: var(--soft); overflow: hidden; }
+.gorev-cubuk > i { display: block; height: 100%; border-radius: inherit; background: var(--brezel); transition: width 400ms ease-out; }
+.gorev.tamam .gorev-cubuk > i { background: var(--wiese); }
+.gorev.tamam b::after { content: " ✓"; color: var(--wiese-ink); }
+.sandik-satir { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 14px; background: var(--soft); }
+.sandik-satir.hazir { background: var(--brezel-soft); box-shadow: 0 0 0 2px var(--brezel) inset; }
+.sandik.kilitli { filter: grayscale(.85); opacity: .6; }
+.sandik.hazir { animation: sallan 1.6s ease-in-out infinite; transform-origin: 50% 90%; }
+.sandik.acik .sandik-kapak { transform: translateY(-6px) rotate(-14deg); transform-origin: 12% 70%; transition: transform 380ms cubic-bezier(.34, 1.56, .64, 1); }
+@keyframes sallan { 0%, 70%, 100% { transform: rotate(0); } 78% { transform: rotate(-6deg); } 86% { transform: rotate(6deg); } 94% { transform: rotate(-3deg); } }
+.sandik-dugum { background: var(--card) !important; box-shadow: 0 0 0 3px var(--brezel) inset, 0 7px 0 var(--line) !important; border: 0; cursor: pointer; }
+.sandik-yer.kilitli .sandik-dugum { box-shadow: 0 0 0 3px var(--line) inset, 0 7px 0 var(--line) !important; }
+.hafta-tablo { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.hafta-tablo th, .hafta-tablo td { padding: 6px 4px; text-align: left; border-bottom: 1px solid var(--line); }
+.hafta-tablo thead th { font-size: .78rem; color: var(--muted); font-weight: 700; }
+.rekor { padding: 3px 10px; border-radius: 999px; background: var(--brezel-ink); color: var(--card); font-weight: 800; font-size: .8rem; }
+@media (prefers-reduced-motion: reduce) { .sandik.hazir, .sandik.acik .sandik-kapak { animation: none !important; transition: none !important; } }

@@ -3,6 +3,7 @@
  * Kartlar öğrenciye soru olarak döner; cevap öğrenciden beklenir. Yanlışta doğrusu öğrencinin cevabıyla yan yana
  * gösterilir, kart turun sonunda başka örnek ve başka türle yeniden gelir ve kişisel bankaya girer (srs.review).
  */
+import { gorevSay } from "../services/gorev.ts";
 import { cumleKaydet } from "../services/kullanim.ts";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
@@ -110,7 +111,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
     // "Emin değilim, geç" sayılmaz: ne doğru ne soru (özet tutarlı, inceleme #59 P2-1)
     if (outcome) setScore((s) => ({ ok: s.ok + (r.ok ? 1 : 0), n: s.n + 1 }));
     // XP yalnızca ipucusuz doğruda (ipucu cevabı gösteriyor; D-102, inceleme #85 P2-2); uçuş da 0 (inceleme #87 2. tur)
-    if (outcome === "correct") void xpVer(XP.dogru);
+    if (outcome === "correct") { void xpVer(XP.dogru); void gorevSay("bahceIpucusuz"); }  // B11b: ipucusuz doğru
     // tekrar, en son gösterilen cümlenin ardından ("Başka cümle"ye basıldıysa o cümleden sonra; inceleme #92 P1-1)
     const r2 = !r.ok && outcome ? requeue(round, { ...q, ex: exi }, l, Math.random, data.items.get(q.lexId)) : round;
     // son cevap: günün bütün kartları tanıtıldıysa Seans 1 şimdi işaretlenir (inceleme #66 P1-1)
@@ -289,7 +290,11 @@ function tomorrow(items: Map<string, LearnerItem>): string {
 function GardenDone({ day, score, items, kalan, again, xp, kelimeler }: { day?: number; score: { ok: number; n: number }; items: Map<string, LearnerItem>; kalan: number; again: () => void; xp: number; kelimeler: string[] }) {
   const devam = !!day && kalan > 0;
   const [seriGun, setSeriGun] = useState<number | undefined>();
-  useEffect(() => { void xpOku().then((x) => setSeriGun(seri(x))); }, []);
+  useEffect(() => {
+    void xpOku().then((x) => setSeriGun(seri(x)));
+    // B11b günlük görev: en az 5 soruluk tur %90 ve üstü
+    if (score.n >= 5 && score.ok / score.n >= 0.9) void gorevSay("tur90");
+  }, []);
   return (
     <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" ilerleme={{ n: 1, toplam: 1 }} />
       <section class="card stack" data-test="garden-done"><Kutlama><h2>Tur bitti</h2></Kutlama>
