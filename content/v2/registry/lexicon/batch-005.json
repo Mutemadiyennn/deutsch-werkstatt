@@ -804,7 +804,10 @@
      "de": "Der Bus kommt nicht, deshalb ___ ich zu Fuß.",
      "answer": "gehe",
      "tr": "Otobüs gelmiyor, bu yüzden yürüyorum.",
-     "hint_tr": "**deshalb** arkasından hemen **gehe** gelir, **ich** sonra gelir."
+     "hint_tr": "**deshalb** arkasından hemen **gehe** gelir, **ich** sonra gelir.",
+     "also_ok": [
+      "laufe"
+     ]
     },
     {
      "de": "Es regnet, deshalb ___ ich zu Hause.",
@@ -817,6 +820,17 @@
      "answer": "gehe",
      "tr": "Yorgunum, bu yüzden erken yatıyorum.",
      "hint_tr": "**deshalb** arkasından hemen **gehe** gelir, **ich** sonra gelir."
+    },
+    {
+     "de": "Der Zug hatte Verspätung, ___ komme ich zu spät.",
+     "answer": "deshalb",
+     "also_ok": [
+      "deswegen",
+      "darum",
+      "daher"
+     ],
+     "tr": "Tren gecikti, bu yüzden geç kalıyorum.",
+     "hint_tr": "Bu yüzden derken **deshalb** dersin, arkasından hemen **komme** gelir."
     }
    ]
   },
@@ -1212,12 +1226,19 @@
     {
      "de": "Ich ___ im Stau.",
      "answer": "stecke",
+     "also_ok": [
+      "stehe"
+     ],
      "tr": "Trafikte sıkıştım.",
      "hint_tr": "**ich** ile **stecke** olur."
     },
     {
      "de": "Wo ___ du denn?",
      "answer": "steckst",
+     "also_ok": [
+      "bist",
+      "bleibst"
+     ],
      "tr": "Neredesin ya?",
      "hint_tr": "**du** ile **steckst** olur."
     },
@@ -1230,6 +1251,9 @@
     {
      "de": "Wir haben zwei Stunden im Stau ___.",
      "answer": "gesteckt",
+     "also_ok": [
+      "gestanden"
+     ],
      "tr": "İki saat trafikte sıkışıp kaldık.",
      "hint_tr": "Geçmişi anlatırken **haben gesteckt** denir."
     }
@@ -6175,6 +6199,9 @@
     {
      "de": "Die Aufgabe ist ___.",
      "answer": "leicht",
+     "also_ok": [
+      "einfach"
+     ],
      "tr": "Ödev kolay.",
      "hint_tr": "Kolay derken **leicht** denir."
     },
@@ -6187,12 +6214,18 @@
     {
      "de": "Das ist eine ___ Frage.",
      "answer": "leichte",
+     "also_ok": [
+      "einfache"
+     ],
      "tr": "Bu kolay bir soru.",
      "hint_tr": "**eine Frage** arasına girince **leicht**, **leichte** olur."
     },
     {
      "de": "Die Prüfung war ___ als gedacht.",
      "answer": "leichter",
+     "also_ok": [
+      "einfacher"
+     ],
      "tr": "Sınav sandığımdan daha kolaydı.",
      "hint_tr": "Daha kolay derken **leicht**, **leichter** olur."
     }
