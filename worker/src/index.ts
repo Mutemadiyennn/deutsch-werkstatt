@@ -39,6 +39,8 @@ export async function handle(req: Request, env: Env): Promise<Response> {
       try { body = await req.json(); } catch { throw new HttpError("invalid_request", "json"); }
       const p = AiRunRequest.safeParse(body);
       if (!p.success) throw new HttpError("invalid_request");
+      // İnceleme #41 P1-3: sağlayıcı kapalıysa kota sayacına hiç yazılmaz
+      if ((env.AI_PROVIDER || "none").trim() !== "gemini") throw new HttpError("not_configured", "ai_disabled");
       await takeAi(env, u.uid);
       const t0 = Date.now();
       const r = await runTask(env, p.data.task, p.data.vars);

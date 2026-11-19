@@ -127,6 +127,11 @@ describe("/v1/ai/run", () => {
     expect(f).not.toHaveBeenCalled();
     vi.unstubAllGlobals();
   });
+  it("İnceleme #41 P1-3: sağlayıcı kapalıyken kota sayacı artmaz", async () => {
+    const e = env({ AI_PROVIDER: "none" });
+    for (let i = 0; i < 3; i++) await handle(run(await token(), "equiv_check", EQ), e);
+    expect([...(e.QUOTA as unknown as { data: Map<string, string> }).data.keys()]).toEqual([]);
+  });
   it("anahtar yoksa not_configured", async () => {
     const r = await handle(run(await token(), "equiv_check", EQ), env({ GEMINI_KEY: undefined }));
     expect((await r.json()).error.code).toBe("not_configured");
