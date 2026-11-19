@@ -154,7 +154,7 @@ def main():
         na = page.inner_text("[data-test=next-activity]")
         if M1:
             # #58 A5b: M1 günleri varken sıradaki adım günün planından (Seans 1: Kelime Bahçesi), v1'e gönderme yok
-            check("Seans 1" in na and "Kelime Bahçesi" in na, f"sıradaki adım: 1. gün · Seans 1 Kelime Bahçesi ({na[:70]!r})")
+            check(page.get_attribute("[data-test=next-activity]", "data-seans") == "1" and "Kelime Bahçesi" in na, f"sıradaki adım: 1. gün · Seans 1 Kelime Bahçesi ({na[:70]!r})")
             check("Eski uygulama" not in na, "Bugün'de eski uygulamaya gönderme yok")
         else:
             check("Seans 1" in na and STRAT_TITLE in na, f"sıradaki etkinlik: seans 1 → strateji senaryosu ({na[:60]!r})")
