@@ -1,8 +1,12 @@
 {
  "batch": "005",
  "review": {
-  "status": "draft",
-  "notes": ""
+  "status": "reviewed",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-19",
+  "notes": "Taslak tam incelemesi (B6 sonrası): Almanca örnekler, eşdizim ve kart verisi baştan sona. docs/v2/reviews/lexicon-taslak-01…08.md, lexicon-taslak-duzeltme.md; okur: docs/v2/reviews/okur/taslak-0103.md, -0405.md, -06.md, -07.md, -08.md, -kartsiz.md, -duzeltme*.md. Türkçe alanlar ayrıca B6 okur turlarından geçti (lexicon-b6-NN).",
+  "okur": "passed",
+  "okur_at": "2026-11-19"
  },
  "items": [
   {
@@ -271,8 +275,8 @@
     },
     {
      "id": "lx:Wasser:4",
-     "de": "– Still oder mit Kohlensäure? – Still, bitte.",
-     "tr": "– Gazsız mı gazlı mı? – Gazsız, lütfen.",
+     "de": "– Ein Wasser, bitte. – Still oder mit Kohlensäure?",
+     "tr": "– Bir su, lütfen. – Gazsız mı, gazlı mı?",
      "layer": "alltag",
      "dialog": true,
      "img": "waiter holding sparkling and still water bottles"
@@ -382,7 +386,7 @@
     {
      "id": "lx:lügen:4",
      "de": "– Hast du gelogen? – Nein, ehrlich nicht!",
-     "tr": "– Yalan mı söyledin? – Hayır, gerçekten değil!",
+     "tr": "– Yalan mı söyledin? – Hayır, gerçekten söylemedim!",
      "layer": "alltag",
      "dialog": true
     }
@@ -1484,14 +1488,14 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Ankara'ya uçtuk derken **Wir haben nach Ankara geflogen** yanlış. Doğrusu **Wir sind nach Ankara geflogen**. Bir yere gitmeyi anlattığı için **haben** değil **sind** gelir.",
+    "Berlin'e uçtuk derken **Wir haben nach Berlin geflogen** yanlış. Doğrusu **Wir sind nach Berlin geflogen**. Bir yere gitmeyi anlattığı için **haben** değil **sind** gelir.",
     "Uçakla gidiyorum derken **Ich gehe mit dem Flugzeug** yanlış. Doğrusu **Ich fliege**. **gehen** yürüyerek gitmektir."
    ],
    "examples": [
     {
      "id": "lx:fliegen:1",
-     "de": "Ich fliege im Sommer in die Türkei.",
-     "tr": "Yazın Türkiye'ye uçuyorum.",
+     "de": "Ich fliege im Sommer in den Urlaub.",
+     "tr": "Yazın tatile uçakla gidiyorum.",
      "layer": "hd"
     },
     {
@@ -1527,9 +1531,9 @@
    },
    "forms": [
     {
-     "de": "Ich ___ im Sommer in die Türkei.",
+     "de": "Ich ___ im Sommer in den Urlaub.",
      "answer": "fliege",
-     "tr": "Yazın Türkiye'ye uçuyorum.",
+     "tr": "Yazın tatile uçakla gidiyorum.",
      "hint_tr": "**ich** ile **fliege** olur."
     },
     {
@@ -1545,9 +1549,9 @@
      "hint_tr": "**er** ve **sie** ile **fliegt** olur."
     },
     {
-     "de": "Wir ___ nach Ankara geflogen.",
+     "de": "Wir ___ nach Berlin geflogen.",
      "answer": "sind",
-     "tr": "Ankara'ya uçtuk.",
+     "tr": "Berlin'e uçtuk.",
      "hint_tr": "Bir yere gitmeyi anlatırken geçmişte **sind geflogen** denir."
     }
    ]
@@ -1637,7 +1641,7 @@
    "pos": "verb",
    "verb": {
     "praesens3": "freut",
-    "perfekt": "hat gefreut",
+    "perfekt": "hat sich gefreut",
     "aux": "haben",
     "reflexive": true,
     "prep": [
@@ -2200,8 +2204,8 @@
    "examples": [
     {
      "id": "lx:Feuer:1",
-     "de": "Rufen Sie die Feuerwehr, es brennt!",
-     "tr": "İtfaiyeyi çağırın, yangın var!",
+     "de": "Die Feuerwehr hat das Feuer schnell gelöscht.",
+     "tr": "İtfaiye yangını çabuk söndürdü.",
      "layer": "hd",
      "img": "fire truck at burning house"
     },
@@ -2580,8 +2584,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Konum Dativ (\"zwischen den Häusern\"), yön Akkusativ.",
-    "Zaman aralığı: \"zwischen 8 und 10 Uhr\"."
+    "Banka postaneyle kafe arasında derken **zwischen die Post und das Café** yanlış. Doğrusu **zwischen der Post und dem Café**. Bir şey orada durunca **die Post**, **der Post** olur, **das Café**, **dem Café** olur.",
+    "Sekizle on arasında gelin derken **Kommen Sie von acht und zehn Uhr** yanlış. Doğrusu **Kommen Sie zwischen acht und zehn Uhr**. Arasında derken **zwischen** gelir."
    ],
    "examples": [
     {
@@ -2598,8 +2602,8 @@
     },
     {
      "id": "lx:zwischen:3",
-     "de": "Bleibt unter uns, ne?",
-     "tr": "Aramızda kalsın, tamam mı?",
+     "de": "Zwischen uns ist alles gut, oder?",
+     "tr": "Aramızda her şey yolunda, değil mi?",
      "layer": "alltag"
     },
     {
@@ -2622,7 +2626,7 @@
   {
    "id": "lx:während",
    "de": "während",
-   "tr": "sırasında, boyunca; -ken",
+   "tr": "sırasında, boyunca, bir şey yaparken",
    "pos": "prep",
    "collocations": [
     {
@@ -2639,8 +2643,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Yazıda Genitiv (\"während des Urlaubs\"), konuşmada Dativ da duyulur.",
-    "Bağlaç olarak fiil sonda: \"während ich arbeite\"."
+    "İş sırasında derken **während die Arbeit** yanlış. Doğrusu **während der Arbeit**. **während** dedikten sonra **die Arbeit**, **der Arbeit** olur.",
+    "Ben büroda çalışırken derken **während ich arbeite im Büro** yanlış. Doğrusu **während ich im Büro arbeite**. **während** ile başlayınca **arbeite** sona gider."
    ],
    "examples": [
     {
@@ -2723,10 +2727,10 @@
     },
     {
      "id": "lx:schießen:2",
-     "de": "Die Polizei hat nicht geschossen.",
-     "tr": "Polis ateş etmedi.",
+     "de": "Er hat aus zwanzig Metern aufs Tor geschossen.",
+     "tr": "Adam yirmi metreden kaleye şut çekti.",
      "layer": "hd",
-     "img": "police officers standing beside patrol car"
+     "img": "football player shooting at goal"
     },
     {
      "id": "lx:schießen:3",
@@ -2737,8 +2741,8 @@
     },
     {
      "id": "lx:schießen:4",
-     "de": "– Wie steht's? – Eins zu null, unser Stürmer hat geschossen.",
-     "tr": "– Skor ne? – Bir sıfır, bizim forvet attı.",
+     "de": "– Wie steht's? – Eins zu null, unser Stürmer hat das Tor geschossen.",
+     "tr": "– Skor ne? – Bir sıfır, golü bizim forvet attı.",
      "layer": "alltag",
      "dialog": true,
      "img": "football stadium scoreboard"
@@ -2777,9 +2781,9 @@
      "hint_tr": "**er** ile **schießen**, **schießt** olur."
     },
     {
-     "de": "Die Polizei hat nicht ___.",
+     "de": "Wer hat das Tor ___?",
      "answer": "geschossen",
-     "tr": "Polis ateş etmedi.",
+     "tr": "Golü kim attı?",
      "hint_tr": "**hat** ile **schießen**, **geschossen** olur."
     }
    ]
@@ -3466,8 +3470,8 @@
     },
     {
      "id": "lx:Blut:2",
-     "de": "Die Wunde blutet stark.",
-     "tr": "Yara çok kanıyor.",
+     "de": "Ich kann kein Blut sehen.",
+     "tr": "Kan görmeye dayanamıyorum.",
      "layer": "hd"
     },
     {
@@ -3940,12 +3944,16 @@
    "pos": "det",
    "collocations": [
     {
-     "de": "so ein / solche",
-     "tr": "böyle bir / böyle"
+     "de": "solche Sachen",
+     "tr": "böyle şeyler"
     },
     {
      "de": "solche Leute",
      "tr": "böyle insanlar"
+    },
+    {
+     "de": "bei solchem Wetter",
+     "tr": "böyle havada"
     }
    ],
    "patterns": [
@@ -3953,8 +3961,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Konuşmada tekilde \"so ein\" daha sık: \"so ein Auto\" (\"solch ein Auto\" yazı dili).",
-    "Çoğulda \"solche\": \"solche Probleme\"."
+    "Böyle bir araba derken **solch ein Auto** kitap dili gibi durur. Konuşurken **so ein Auto** denir.",
+    "Böyle sorunlar derken **so ein Probleme** yanlış. Doğrusu **solche Probleme**. Birden çok sorun için **solche** gelir."
    ],
    "examples": [
     {
@@ -3965,14 +3973,14 @@
     },
     {
      "id": "lx:solcher:2",
-     "de": "Ich habe so etwas noch nie gesehen.",
-     "tr": "Böyle bir şeyi hiç görmedim.",
+     "de": "Bei solchem Wetter bleibe ich zu Hause.",
+     "tr": "Böyle havada evde kalırım.",
      "layer": "hd"
     },
     {
      "id": "lx:solcher:3",
-     "de": "So 'n Quatsch!",
-     "tr": "Ne saçmalık!",
+     "de": "Solche Sachen passieren halt.",
+     "tr": "Böyle şeyler olur işte.",
      "layer": "alltag"
     },
     {
@@ -4650,8 +4658,8 @@
      "tr": "Hoşça kalın!"
     },
     {
-     "de": "Auf Wiederhören!",
-     "tr": "Telefonda hoşça kalın!"
+     "de": "Auf Wiedersehen, bis morgen!",
+     "tr": "Hoşça kalın, yarın görüşürüz!"
     },
     {
      "de": "Wiedersehen!",
@@ -4679,8 +4687,8 @@
     },
     {
      "id": "lx:Wiedersehen:2",
-     "de": "Auf Wiederhören, Frau Wagner.",
-     "tr": "Hoşça kalın, Wagner Hanım.",
+     "de": "Auf Wiedersehen, Frau Wagner, bis nächste Woche!",
+     "tr": "Hoşça kalın Wagner Hanım, haftaya görüşürüz!",
      "layer": "hd"
     },
     {
@@ -4929,12 +4937,12 @@
   {
    "id": "lx:bloß",
    "de": "bloß",
-   "tr": "sadece; (vurgu) sakın, bari",
+   "tr": "sadece, sakın",
    "pos": "particle",
    "collocations": [
     {
-     "de": "bloß nicht",
-     "tr": "sakın … -me"
+     "de": "Bloß nicht!",
+     "tr": "Sakın ha!"
     },
     {
      "de": "Was ist bloß los?",
@@ -4946,21 +4954,21 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "\"bloß\" = \"nur\" ama konuşma dili; uyarıda \"Mach das bloß nicht!\" = Sakın yapma!",
-    "Soruda endişe katar: \"Wo ist er bloß?\" = Nerede kaldı ki?"
+    "Sakın bunu unutma derken **Vergiss das bloß nicht!** denir. Buradaki **bloß** uyarıyı güçlendirir.",
+    "Nerede kaldı ki derken **Wo bleibt er bloß?** denir. Soruda **bloß** merak ve endişe katar."
    ],
    "examples": [
     {
      "id": "lx:bloß:1",
      "de": "Ich wollte bloß fragen.",
      "tr": "Sadece sormak istemiştim.",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:bloß:2",
      "de": "Vergiss das bloß nicht!",
      "tr": "Sakın bunu unutma!",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:bloß:3",
@@ -5393,7 +5401,7 @@
   {
    "id": "lx:falls",
    "de": "falls",
-   "tr": "eğer, …-irse diye",
+   "tr": "eğer, olursa diye",
    "pos": "conj",
    "collocations": [
     {
@@ -5401,8 +5409,8 @@
      "tr": "gerekirse"
     },
     {
-     "de": "für den Fall, dass …",
-     "tr": "… olur diye"
+     "de": "falls möglich",
+     "tr": "mümkünse"
     }
    ],
    "patterns": [
@@ -5410,8 +5418,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"falls\" = olasılık vurgulu \"wenn\"; fiil sonda: \"falls du Zeit hast\".",
-    "\"falls\" zaman bildirmez; \"-dığında\" için kullanılmaz."
+    "Vaktin olursa derken **falls du hast Zeit** yanlış. Doğrusu **falls du Zeit hast**. **falls** ile başlayınca **hast** sona gider.",
+    "Eve geldiğimde ararım derken **Falls ich nach Hause komme, rufe ich an** yanlış. Doğrusu **Wenn ich nach Hause komme, rufe ich an**. **falls** yalnızca olup olmayacağı belli olmayan şey için söylenir."
    ],
    "examples": [
     {
@@ -5581,8 +5589,8 @@
     },
     {
      "id": "lx:Teil:2",
-     "de": "Das Ersatzteil kommt morgen.",
-     "tr": "Yedek parça yarın geliyor.",
+     "de": "Der erste Teil der Prüfung ist schriftlich.",
+     "tr": "Sınavın ilk kısmı yazılı.",
      "layer": "hd"
     },
     {
@@ -5941,7 +5949,7 @@
   {
    "id": "lx:derselbe",
    "de": "derselbe, dieselbe, dasselbe",
-   "tr": "aynı (kendisi)",
+   "tr": "aynı, aynısı",
    "pos": "pron",
    "collocations": [
     {
@@ -5958,8 +5966,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Konuşmada \"der/die/das gleiche\" çoğu zaman aynı anlamda kullanılır.",
-    "Tek kelime yazılır ve iki parça da çekilir: \"denselben\", \"demselben\"."
+    "Aynı adamı görüyorum derken **Ich sehe derselbe Mann** yanlış. Doğrusu **Ich sehe denselben Mann**. **Ich sehe** dedikten sonra **derselbe**, **denselben** olur.",
+    "Aynısını alıyorum derken **Ich nehme dasselbe** denir. Konuşurken **Ich nehme das Gleiche** de aynı anlamda duyulur."
    ],
    "examples": [
     {
@@ -6226,8 +6234,8 @@
    "examples": [
     {
      "id": "lx:Eltern:1",
-     "de": "Meine Eltern wohnen in Izmir.",
-     "tr": "Annemle babam İzmir'de oturuyor.",
+     "de": "Meine Eltern wohnen in der Nähe.",
+     "tr": "Annemle babam yakınlarda oturuyor.",
      "layer": "hd",
      "img": "elderly couple in front of their house"
     },
@@ -6266,15 +6274,15 @@
    },
    "forms": [
     {
-     "de": "Meine ___ wohnen in Izmir.",
+     "de": "Meine ___ wohnen in der Nähe.",
      "answer": "Eltern",
-     "tr": "Annemle babam İzmir'de oturuyor.",
+     "tr": "Annemle babam yakınlarda oturuyor.",
      "hint_tr": "Annemle babam derken **meine Eltern** denir."
     },
     {
-     "de": "Meine Eltern ___ in Izmir.",
+     "de": "Meine Eltern ___ in der Nähe.",
      "answer": "wohnen",
-     "tr": "Annemle babam İzmir'de oturuyor.",
+     "tr": "Annemle babam yakınlarda oturuyor.",
      "hint_tr": "**Eltern** iki kişi olduğu için **wohnen** olur."
     },
     {
@@ -6745,13 +6753,13 @@
      "id": "lx:drauf:1",
      "de": "Was ist auf der Pizza drauf?",
      "tr": "Pizzanın üstünde ne var?",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:drauf:2",
      "de": "Schreib den Namen drauf.",
      "tr": "Adı üstüne yaz.",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:drauf:3",
@@ -7016,13 +7024,13 @@
      "id": "lx:Zeug:1",
      "de": "Wo soll ich mein Zeug hinstellen?",
      "tr": "Eşyalarımı nereye koyayım?",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:Zeug:2",
      "de": "Was ist das für ein Zeug?",
      "tr": "Bu ne biçim bir şey?",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:Zeug:3",
@@ -7098,8 +7106,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Dativ ister: \"außer mir\" (\"außer mich\" yanlış).",
-    "Tabelada \"außer Betrieb\" = arızalı / çalışmıyor."
+    "Benden başka derken **außer mich** yanlış. Doğrusu **außer mir**. **außer** dedikten sonra **mich** değil **mir** gelir.",
+    "Asansörde ya da otomatta **außer Betrieb** yazıyorsa alet çalışmıyor demektir."
    ],
    "examples": [
     {
@@ -7362,13 +7370,13 @@
      "id": "lx:Arsch:1",
      "de": "Er ist auf den Arsch gefallen.",
      "tr": "Adam kıç üstü düştü.",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:Arsch:2",
      "de": "Mein Auto ist total am Arsch.",
      "tr": "Arabam tamamen mahvoldu.",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:Arsch:3",
@@ -7425,8 +7433,8 @@
      "tr": "Bavyera kralı"
     },
     {
-     "de": "König Ludwig",
-     "tr": "Kral Ludwig"
+     "de": "der König und die Königin",
+     "tr": "kral ve kraliçe"
     },
     {
      "de": "Der Kunde ist König.",
@@ -7469,8 +7477,8 @@
     },
     {
      "id": "lx:König:4",
-     "de": "– Wer hat das Schloss gebaut? – König Ludwig der Zweite.",
-     "tr": "– Şatoyu kim yaptırdı? – Kral II. Ludwig.",
+     "de": "– Wer hat das Schloss gebaut? – Ein bayerischer König.",
+     "tr": "– Şatoyu kim yaptırdı? – Bir Bavyera kralı.",
      "layer": "alltag",
      "dialog": true,
      "img": "tourists on guided castle tour"
@@ -7541,21 +7549,21 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "\"irgendwas\" = \"irgendetwas\"in konuşma biçimi.",
-    "\"Ist irgendwas?\" = Bir sorun mu var?"
+    "Bir şey derken **irgendwas** konuşurken söylenir. Resmî yazıda **irgendetwas** ya da **etwas** yazılır.",
+    "Bir sorun mu var diye sorarken **Ist irgendwas?** dersin."
    ],
    "examples": [
     {
      "id": "lx:irgendwas:1",
      "de": "Möchtest du irgendwas trinken?",
      "tr": "Bir şey içmek ister misin?",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:irgendwas:2",
      "de": "Ich habe irgendwas vergessen.",
      "tr": "Bir şey unuttum.",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:irgendwas:3",
@@ -7723,14 +7731,14 @@
      "id": "lx:Papa:1",
      "de": "Mein Papa holt mich ab.",
      "tr": "Babam beni alıyor.",
-     "layer": "hd",
+     "layer": "alltag",
      "img": "father picking up child from school"
     },
     {
      "id": "lx:Papa:2",
      "de": "Papa, kannst du mir helfen?",
      "tr": "Baba, bana yardım edebilir misin?",
-     "layer": "hd",
+     "layer": "alltag",
      "img": "child asking father for help with homework"
     },
     {
@@ -7743,7 +7751,7 @@
     {
      "id": "lx:Papa:4",
      "de": "– Wer kommt heute? – Papa und Oma.",
-     "tr": "– Bugün kim geliyor? – Babam ve babaannem.",
+     "tr": "– Bugün kim geliyor? – Babam ve büyükannem.",
      "layer": "alltag",
      "dialog": true,
      "img": "grandmother and father arriving at front door"
@@ -7784,16 +7792,16 @@
   {
    "id": "lx:sondern",
    "de": "sondern",
-   "tr": "bilakis, (değil) … -dir",
+   "tr": "aksine, değil de",
    "pos": "conj",
    "collocations": [
     {
-     "de": "nicht …, sondern …",
-     "tr": "… değil, …"
+     "de": "nicht heute, sondern morgen",
+     "tr": "bugün değil, yarın"
     },
     {
-     "de": "nicht nur …, sondern auch",
-     "tr": "sadece … değil, … da"
+     "de": "nicht nur heute, sondern auch morgen",
+     "tr": "sadece bugün değil, yarın da"
     }
    ],
    "patterns": [
@@ -7801,8 +7809,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Yalnızca olumsuzdan sonra: \"nicht heute, sondern morgen\". \"aber\" ile karıştırma.",
-    "Kelime sırası değişmez: \"sondern ich komme morgen\"."
+    "Bugün değil, yarın derken **nicht heute, aber morgen** yanlış. Doğrusu **nicht heute, sondern morgen**. **nicht** ile bir şeyi düzeltirken **aber** değil **sondern** gelir.",
+    "Bugün değil, yarın geliyorum derken **sondern komme ich morgen** yanlış. Doğrusu **sondern ich komme morgen**. **sondern** dedikten sonra **ich** yerinde kalır."
    ],
    "examples": [
     {
@@ -7814,7 +7822,7 @@
     {
      "id": "lx:sondern:2",
      "de": "Er ist nicht Arzt, sondern Pfleger.",
-     "tr": "O doktor değil, hemşire.",
+     "tr": "Adam doktor değil, hemşire.",
      "layer": "hd"
     },
     {
@@ -7868,14 +7876,14 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Eskiden İstanbul'da oturuyordum derken **Früher ich habe in Istanbul gewohnt** yanlış. Doğrusu **Früher habe ich in Istanbul gewohnt**. **Früher** ile başlayınca **habe** hemen arkasından gelir.",
+    "Eskiden bir köyde oturuyordum derken **Früher ich habe in einem Dorf gewohnt** yanlış. Doğrusu **Früher habe ich in einem Dorf gewohnt**. **Früher** ile başlayınca **habe** hemen arkasından gelir.",
     "Daha erken gel derken **Komm mehr früh** yanlış. Doğrusu **Komm früher**. Daha erken derken **früh**, **früher** olur."
    ],
    "examples": [
     {
      "id": "lx:früher:1",
-     "de": "Früher habe ich in Istanbul gewohnt.",
-     "tr": "Eskiden İstanbul'da oturuyordum.",
+     "de": "Früher habe ich in einem Dorf gewohnt.",
+     "tr": "Eskiden bir köyde oturuyordum.",
      "layer": "hd"
     },
     {
@@ -7911,15 +7919,15 @@
    },
    "forms": [
     {
-     "de": "___ habe ich in Istanbul gewohnt.",
+     "de": "___ habe ich in einem Dorf gewohnt.",
      "answer": "Früher",
-     "tr": "Eskiden İstanbul'da oturuyordum.",
+     "tr": "Eskiden bir köyde oturuyordum.",
      "hint_tr": "Eskiden derken cümleye **Früher** ile başlayabilirsin."
     },
     {
-     "de": "Früher ___ ich in Ankara gewohnt.",
+     "de": "Früher ___ ich in einer kleinen Stadt gewohnt.",
      "answer": "habe",
-     "tr": "Eskiden Ankara'da oturuyordum.",
+     "tr": "Eskiden küçük bir şehirde oturuyordum.",
      "hint_tr": "**Früher** ile başlayınca **habe** hemen arkasından gelir."
     },
     {
