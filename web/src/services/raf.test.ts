@@ -29,7 +29,9 @@ describe("kapalı medya rafı, uygulama tarafı (D-112, #58 B12)", () => {
       const yetki = new Headers(init?.headers).get("Authorization");
       cagri.push({ url, yetki });
       const ok = yetki === `Bearer ${ANAHTAR}`;
-      return new Response(ok ? "veri" : "Not found", { status: ok ? 200 : 404 });
+      // gerçek koruma gibi: başarıda X-Raf işareti, yanlış parolada gecikmeli 404
+      if (!ok) await new Promise((r) => setTimeout(r, 950));
+      return new Response(ok ? "veri" : "Not found", { status: ok ? 200 : 404, headers: ok ? { "X-Raf": "1" } : {} });
     }));
     let i = 0;
     vi.spyOn(URL, "createObjectURL").mockImplementation(() => `blob:test/${i++}`);
@@ -59,6 +61,14 @@ describe("kapalı medya rafı, uygulama tarafı (D-112, #58 B12)", () => {
     expect(await rafSina()).toBe("bagli");
     expect(await rafSina({ adres: "https://raf.ornek.dev", anahtar: "yanlis" })).toBe("anahtar-yanlis");
     expect(cagri.every((c) => c.url.startsWith("https://raf.ornek.dev/"))).toBe(true);
+  });
+  it("sına: üç durum ayrı (PM 7019082199): parola tanımsız (503), koruma yok (işaretsiz 200 ya da hızlı 404), ulaşılamıyor", async () => {
+    const yanit = (r: Response) => vi.stubGlobal("fetch", vi.fn(async () => r));
+    const a = { adres: "https://raf.ornek.dev", anahtar: ANAHTAR };
+    yanit(new Response(null, { status: 503, headers: { "X-Raf": "anahtar-yok" } })); expect(await rafSina(a)).toBe("anahtar-tanimsiz");
+    yanit(new Response("ok", { status: 200 })); expect(await rafSina(a)).toBe("koruma-yok");
+    yanit(new Response("Not found", { status: 404 })); expect(await rafSina(a)).toBe("koruma-yok");
+    vi.stubGlobal("fetch", vi.fn(async () => { throw new TypeError("Failed to fetch"); })); expect(await rafSina(a)).toBe("ulasilamiyor");
   });
   it("rafDosya: anahtarla çeker, önbelleğe koyar, aynı dosyada aynı yerel adresi verir; raf yoksa null", async () => {
     expect(await rafDosya("foto/a.jpg")).toBeNull();
