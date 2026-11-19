@@ -267,6 +267,8 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
     const k = b4Uyarilar(c.lexemes, c.b4Taban);
     errors.push(...k.hata); warnings.push(...k.uyari);
   }
+  // İÇ 7003635425-3 + inceleme #85: aynı boşluk cümlesi farklı kartlarda farklı cevap kümesiyle → uyarı
+  warnings.push(...boslukCakismasi(c.lexemes));
   if (artInDe.length) errors.push(`de alanı artikelle başlayan ${artInDe.length} isim (artikel yalnızca art alanında, D-098): ${artInDe.slice(0, 5).join(", ")}${artInDe.length > 5 ? " …" : ""}`);
   // PM-040.3 / PM-042 A.3: sözlük partisi — "reviewed" ise okur zorunlu; tr ve mistakes_tr OD-9.2 (incelenmişte hata, taslakta sayı uyarısı)
   { const byId = new Map(c.lexemes.map((l) => [l.id, l]));
@@ -510,4 +512,22 @@ export function b4Uyarilar(lexemes: Lexeme[], taban: B4Taban = {}): { hata: stri
     else if (ids.length) uyari.push(`${ad}: ${ids.length} kart${t !== undefined ? ` (taban ${t}${ids.length < t ? "; taban düşürülebilir" : ""})` : ""} (ilk: ${ilk(ids)}) (#58 B4)`);
   }
   return { hata, uyari };
+}
+/**
+ * Aynı boşluk cümlesi (ve aynı ya da eksik çeviri) farklı kartlarda farklı cevap kümesiyle geçiyorsa: öğrenci aynı soruyu
+ * görür, bir kartta doğru sayılan öbüründe yanlış sayılır (also_ok bir kartta var, ötekinde yok dahil). Ayrıca also_ok cevabı tekrar ediyorsa.
+ */
+export function boslukCakismasi(lexemes: { id: string; forms: { de: string; answer: string; also_ok?: string[]; tr?: string }[] }[]): string[] {
+  const out: string[] = [];
+  const n = (x: string) => x.toLowerCase().replace(/[^\p{L}\p{N}_ ]+/gu, " ").replace(/\s+/g, " ").trim();
+  const ayni = new Map<string, { id: string; tr: string; kume: string }[]>();
+  for (const l of lexemes) for (const f of l.forms) {
+    if ((f.also_ok ?? []).some((x) => n(x) === n(f.answer))) out.push(`${l.id}: forms also_ok cevabın kendisini tekrar ediyor (${f.answer})`);
+    const v = ayni.get(n(f.de)) ?? [];
+    v.push({ id: l.id, tr: n(f.tr ?? ""), kume: [...new Set([f.answer, ...(f.also_ok ?? [])].map(n))].sort().join("|") });
+    ayni.set(n(f.de), v);
+  }
+  const cakisan = [...ayni.entries()].filter(([, v]) => v.length > 1 && v.some((x, i) => v.some((y, j) => j > i && x.kume !== y.kume && (x.tr === y.tr || !x.tr || !y.tr))));
+  if (cakisan.length) out.push(`aynı boşluk cümlesi, farklı cevap: ${cakisan.length} küme (ilk: ${cakisan.slice(0, 3).map(([k, v]) => `"${k}" → ${v.map((x) => `${x.id}=${x.kume}`).join(" / ")}`).join("; ")}); also_ok ile birleştir ya da cümleyi ayır`);
+  return out;
 }

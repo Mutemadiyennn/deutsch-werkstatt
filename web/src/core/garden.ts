@@ -265,12 +265,15 @@ export function accepted(l: Lexeme, t: QType, formIdx = 0): string[] {
     case "gap": case "sep_perfekt": {
       const f = (t === "gap" ? otherForms(l) : verbForms(l))[formIdx % Math.max(1, l.forms.length)];
       if (!f) return [l.de];
-      const a = f.answer.trim();
       // boşluğa gelen kelime(ler) ya da bütün cümle (inceleme #59 P1-2): "sage … ab" → "Ich sage den Termin ab."
-      const parts = a.split(/\s*…\s*/);
-      let k = 0;
-      const full = f.de.replace(/___/g, () => parts[k++] ?? "").replace(/\s+/g, " ").trim();
-      return [a, a.replace(/\s*…\s*/g, " ").replace(/\s+/g, " "), ...(k === parts.length ? [full] : [])];
+      // `also_ok`: eş anlamlı başka doğru cevaplar da aynı biçimlerle (İÇ 7003635425-2)
+      const bicim = (cevap: string) => {
+        const a = cevap.trim(), parts = a.split(/\s*…\s*/);
+        let k = 0;
+        const full = f.de.replace(/___/g, () => parts[k++] ?? "").replace(/\s+/g, " ").trim();
+        return [a, a.replace(/\s*…\s*/g, " ").replace(/\s+/g, " "), ...(k === parts.length ? [full] : [])];
+      };
+      return [...new Set([f.answer, ...(f.also_ok ?? [])].flatMap(bicim))];
     }
     default: return [l.de];
   }
