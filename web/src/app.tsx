@@ -124,7 +124,7 @@ export function App() {
       <main class={`app${tabs ? "" : " notabs"}`}><ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>
       {tabs && <TabBar route={route} />}
       <LongPressExplain />
-      {(route.name === "section" || route.name === "assess") && <BreakOverlay />}
+      {LEARNING_ROUTES.has(route.name) && <BreakOverlay />}
       {toastMsg && <div class="toast" role="status">{toastMsg}</div>}
     </Ctx.Provider>
   );

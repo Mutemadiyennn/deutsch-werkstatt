@@ -136,4 +136,35 @@ describe("odak motoru — v2 eklemeleri", () => {
     expect(e.previous!.sessions[0]!.status).toBe("abandoned");
     expect(e.day.date).toBe("2026-11-18");
   });
+  it("#58 A6: mola sırasında telefon kilitlenir (tick yok) — açılınca mola bitmiş, yalnızca mola süresi sayılmış; odak süresine sızma yok", () => {
+    const e = FocusEngine.fresh(CFG, T0);
+    let { now } = sim(e, T0, 25 * 60);
+    expect(e.rt.phase).toBe("break");
+    const odak = e.day.focusSec;
+    // 40 dakika hiç tick yok (kilit / arka plan), sonra tek tick
+    now += 40 * 60_000;
+    const ev = e.tick(now, { visible: true, learning: false, audioActive: false, lastInputAt: now - 10 * 60_000 });
+    expect(ev).toContainEqual({ type: "breakEnded", skipped: false });
+    expect(e.rt.phase).toBe("idle");
+    expect(Math.round(e.day.breakSec)).toBe(300);
+    expect(e.day.focusSec).toBe(odak);
+    // mola içinde kısa kilit: 3 dk sonra açılınca kalan süre duvar saatiyle 2 dk
+    const f = FocusEngine.fresh(CFG, T0);
+    ({ now } = sim(f, T0, 25 * 60));
+    now += 3 * 60_000;
+    f.tick(now, { visible: true, learning: false, audioActive: false, lastInputAt: 0 });
+    expect(f.rt.phase).toBe("break");
+    expect(f.breakLeftSec(now)).toBe(120);
+  });
+  it("#58 A6: odak sırasında kilit — kilitli geçen süre seansa eklenmez, seans yarıda kalır, devam edince süre korunur", () => {
+    const e = FocusEngine.fresh(CFG, T0);
+    let { now } = sim(e, T0, 10 * 60);
+    const once = e.day.focusSec;
+    now += 30 * 60_000;
+    e.tick(now, { visible: true, learning: true, audioActive: false, lastInputAt: now - 10 * 60_000 });
+    expect(e.day.focusSec).toBe(once);
+    expect(e.rt.resumableId).toBeTruthy();
+    e.resume(now);
+    expect(e.current!.focusSec).toBe(once);
+  });
 });

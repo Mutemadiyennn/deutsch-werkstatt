@@ -13,7 +13,7 @@
 ## TS-0 Tasarım ilkeleri (her ekranda geçerli)
 
 1. **Tek iş:** Her ekranın tek bir amacı ve tek bir ana eylemi vardır.
-2. **Tek gösterge:** Her ekranda yalnızca bir ilerleme göstergesi (Raute dizisi) bulunur. Saniye sayacı, "1/36" ve kronometre gösterilmez. Gerekirse yalnızca kısa bir metin kullanılır ("yaklaşık 6 dakika").
+2. **Tek gösterge:** Her ekranda yalnızca bir ilerleme göstergesi (Raute dizisi) bulunur. Saniye sayacı, "1/36" ve kronometre gösterilmez. Gerekirse yalnızca kısa bir metin kullanılır ("yaklaşık 6 dakika"). Bugün'de 100 dakika halkası, seans durumu ve 4 seans Rautesi tek gösterge grubudur; ders ekranlarının başlığındaki seans çipi dakika olarak yazılır ("Seans 2/4 · 18 dk"), ilerleme göstergesi sayılmaz (#58 A6).
 3. **Ses önce:** Konuşma içeren ekranlarda ana eylem "Sesli söyle"dir. Yazmak ikincil bir seçenektir. Umlaut satırı yalnızca yazma açıkken görünür.
 4. **Dünya içinde:** İçerik öğrenciye mümkün olduğunca köyün ve telefonun içinden gelir (sesli mesaj, mektup, kafe, radyo). Ders listesi hissi verilmez.
 5. **Sakin ama canlı:** Zemin sakin (papier) olur. Canlılığı mekân aksanları, sahne illüstrasyonları, günün saatine göre değişen gök şeridi ve tek kutlama anı verir.
@@ -53,7 +53,7 @@ Her ekran için: amaç, tek ana eylem, tek gösterge, durumlar.
 ### Sekmeler
 | Ekran | Amaç | Ana eylem | Gösterge | Durumlar |
 |---|---|---|---|---|
-| **Bugün** | Günün planını tek dokunuşla başlatmak | "Devam et" (sıradaki etkinliğin adıyla, ör. "Devam et: Kafede sohbet") | Günün 4 seans Rautesi | İlk gün, normal, flashback (2+ gün ara), hasta modu, gün bitti ("Yarın: dedektif tanıkla konuşacak"), çevrimdışı |
+| **Bugün** | Günün planını tek dokunuşla başlatmak | "Devam et" (sıradaki etkinliğin adıyla, ör. "Devam et: Kafede sohbet"); süre bu dokunuşla başlar (#58 A6) | 100 dakika halkası + "Seans x/4" + kalan süre + 4 seans Rautesi (tek gösterge grubu) | İlk gün, normal, flashback (2+ gün ara), hasta modu, gün bitti ("Yarın: dedektif tanıkla konuşacak"), çevrimdışı |
 | **Yol** | Ana yolda yer görmek | Açık ünitenin "Devam" düğmesi | Seviyenin üniteleri Raute yolu olarak | Kilitli ünite: tek cümle neden + tek dokunuşla eksik yere gidiş (OD-5) |
 | **Ünite** | Ünitenin hedefi ve adımları | "Devam" | Ünitenin adımları | "Yapabiliyorum" hedefleri yazıyla; kanıt durumu üç simgeyle |
 | **Köy** | Kolları keşfetmek | Bir mekâna dokunmak | Yok (harita; yalnızca mekânların üzerindeki Raute rozetleri) | Kilitli mekân soluk ve seviyesi yazılı; yeni içerik varsa ışıklı pencere |
@@ -78,9 +78,9 @@ Her ekran için: amaç, tek ana eylem, tek gösterge, durumlar.
 ### Tam ekran akışlar
 | Ekran | Kural |
 |---|---|
-| **Ders oynatıcısı** | Üstte yalnızca "geri" ve etkinliğin Raute dizisi. Ortada Almanca ifade en büyük öğe, altında Türkçe. Altta "Sesli söyle" (64 px). İkincil: "Yazarak", "Bilmiyorum". Sayaç yok. OD-2 adımları ve LS kurma merdiveni aynı bileşenlerle kurulur. |
+| **Ders oynatıcısı** | Üstte "geri", etkinliğin ilerlemesi ve seans çipi. Ortada Almanca ifade en büyük öğe, altında Türkçe. Altta "Sesli söyle" (64 px). İkincil: "Yazarak", "Bilmiyorum". Seans çipi kalan dakikayı gösterir ("Seans 2/4 · 18 dk", #58 A6); saniye sayacı yok. OD-2 adımları ve LS kurma merdiveni aynı bileşenlerle kurulur. |
 | **Geri bildirim** | Doğru: Raute dolar + kısa ses + hafif titreşim. Hata: en önemli tek hata, doğru biçim, Türkçe tek cümle, "Bir daha söyle" (ikinci deneme). |
-| **Mola** | Saniye yok. Mekâna uygun sakin illüstrasyon, "Kalk, biraz yürü." Mola bitince yumuşak ses. "Molayı atla" ikincil. |
+| **Mola** | Kalan süre dakika olarak görünür (saniye sayacı yok). Mekâna uygun sakin illüstrasyon, "Kalk, biraz yürü." Mola başında ve sonunda zil ve titreşim; telefon kilitliyken iPhone kabuğunda yerel bildirim. Süre duvar saatiyle hesaplanır: kilit ya da arka plan molayı uzatmaz. Öğrenme ekranındayken mola kartı ekranı kaplar. "Molayı atla" ikincil. |
 | **Gelen arama** | Her zaman koyu. Arayan karakterin avatarı. "Aç / Reddet." Aramadan sonra kısa değerlendirme. |
 | **Araba modu** | Ekrana bakmadan: büyük tek düğme, sesli yönerge, otomatik ilerleme. Ekranda yalnızca "Duraklat". |
 | **Flashback** | "Sen yokken köyde…" sesli özeti, ardından hızlı hatırlama, ardından kesin başarı (BY-6). |

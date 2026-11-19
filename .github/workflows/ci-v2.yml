@@ -101,6 +101,8 @@ jobs:
         run: cd tests/e2e && python v2_ders.py --shots /tmp/shots
       - name: "Ders yolu (#58 A5b): 1. gün Bugün'den baştan sona (Bahçe → temel ders → video + sesler), XP ve seri"
         run: cd tests/e2e && python v2_yol.py --shots /tmp/shots
+      - name: "Yeni Bugün + Pomodoro (#58 A6): halka, seans x/4, Devam et süreyi başlatır, mola zili/titreşimi, kilitte doğru süre"
+        run: cd tests/e2e && python v2_bugun.py --shots /tmp/shots
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4
