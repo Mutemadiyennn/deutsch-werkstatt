@@ -67,7 +67,9 @@ def main():
         pg.wait_for_selector("[data-test=next-activity]"); pg.wait_for_load_state("networkidle")
         held = []
         pg.route("**/content/**/scenarios/**", lambda route: held.append(route))  # cevapsız bırak
-        t0 = time.time(); pg.goto(base + f"#/scenario/{SC}"); pg.reload()
+        # boş sayfadan doğrudan yükle: hash değişimi + reload, uçuştaki istekleri iptal ettirip WebKit'te "access control
+        # checks" sayfa hatası üretiyordu (inceleme #66 P1-C); ölçülen şey önbelleksiz ilk açılıştaki takılmadır
+        pg.goto("about:blank"); t0 = time.time(); pg.goto(base + f"#/scenario/{SC}")
         try:
             pg.wait_for_selector("button:has-text('Tekrar dene')", timeout=10_500); dt = time.time() - t0
             check(dt <= 10.5, f"takılan içerik: {dt:.1f} sn'de hata + 'Tekrar dene'")

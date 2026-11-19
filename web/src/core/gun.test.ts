@@ -50,6 +50,9 @@ describe("M1 ders yolu (#58 A5b)", () => {
     const n = g1.yeni_kartlar.length - 3;
     expect(gunAdimlari(g1, ilr, basliklar).adimlar[0]!.title_tr).toBe(n ? `${n} yeni kelime ve tekrar` : "Kelime tekrarı");
     expect(gunAdimlari(g1, { ...bos(), tanitilan: new Set(g1.yeni_kartlar) }, basliklar).adimlar[0]!.title_tr).toBe("Kelime tekrarı");
+    // sayı ve parçacık gibi kart olmayanlar sayılmaz (inceleme #66 2. tur P1-B)
+    const kartlar = new Set(g1.yeni_kartlar.slice(1));
+    expect(gunAdimlari(g1, { ...bos(), kartlar }, basliklar).adimlar[0]!.title_tr).toBe(`${g1.yeni_kartlar.length - 1} yeni kelime ve tekrar`);
     // gün bitti olarak kaydedildiyse, bitmemiş adım olsa da gün bitti
     const kalici = { ...bos(), gunBitti: new Set([1]) };
     const y = yol([gunAdimlari(g1, kalici, basliklar), gunAdimlari(g2, kalici, basliklar)]);
