@@ -50,6 +50,8 @@ export const isNoun = (l: Lexeme) => l.pos === "noun" && !!l.art;
  */
 export const GUCLU_GUN = 10;
 export const guclu = (it: LearnerItem | undefined) => (it?.active.fsrs?.stability ?? 0) >= GUCLU_GUN;
+/** Gösterilen cümleden sonra yazılacak sayaç (geri gitmez): sonraki oturum gösterilenin ardından başlar */
+export const sonrakiExSeen = (it: LearnerItem | undefined, gosterilen: number) => Math.max(it?.exSeen ?? 0, gosterilen + 1);
 /** Kartın sıradaki cümle sırası: gösterim sayacı (havuz kendi uzunluğuna göre döner) */
 export const siradakiEx = (it: LearnerItem | undefined) => it?.exSeen ?? 0;
 /** Soru türüne göre cümle havuzu: boşluk soruları `forms`, ötekiler `examples` */
@@ -220,9 +222,10 @@ export function personalMatch(personal: { de: string }[], all: Lexeme[]): string
 }
 
 /** Yanlış cevap: kart turun sonuna, başka örnek cümleyle ve (aynı yolda) başka türle geri gelir — bir kez */
-export function requeue(round: GardenQ[], q: GardenQ, l: Lexeme, rng: () => number = Math.random): GardenQ[] {
+export function requeue(round: GardenQ[], q: GardenQ, l: Lexeme, rng: () => number = Math.random, it?: LearnerItem): GardenQ[] {
   if (q.retry) return round;
-  const t = pickType(l, pathOf(q.type), q.type, rng) || q.type;
+  // güçlü kartta tekrar da fotoğraf sorusu olmaz (PM-062 4b; inceleme #92 P1-2)
+  const t = pickType(l, pathOf(q.type), q.type, rng, guclu(it) ? ["photo_say"] : []) || q.type;
   // ham sayaç: her havuz (örnekler, boşluklar) kendi uzunluğuna göre döner; mod örnek sayısıyla alınırsa boşluk havuzunda
   // aynı cümleye düşebilirdi (PM-062 madde 3)
   const ex = q.ex + 1;

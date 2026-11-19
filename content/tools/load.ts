@@ -499,29 +499,43 @@ export function icerikGuvenligi(c: Pick<Loaded, "lexemes" | "scenarios" | "temel
  * PM-062 anlam güvenliği: örnek cümle kartın kelimesini (gövde, çekim, çoğul, ayrılabilir fiilin gövdesi) içermeli; içermiyorsa
  * cümle başka kelimeyi ya da başka anlamı öğretiyor olabilir. Sezgisel (yanlış pozitif olabilir): tabanlı sayılı uyarı.
  */
-export function ornekteKelime(l: Pick<Lexeme, "de" | "pos" | "pl" | "verb" | "forms">, cumle: string): boolean {
-  const tok = cumle.toLowerCase().replace(/[^\p{L}\s-]/gu, " ").split(/[\s-]+/).filter(Boolean);
-  const bas = l.de.toLowerCase().split(/\s*[,(/]\s*/)[0]!.trim().split(/\s+/);
-  const kok = (w: string) => { let k = w; if (l.pos === "verb") k = k.replace(/(eln|ern)$/, "").replace(/(en|n)$/, ""); else k = k.replace(/(e|en|er|es)$/, ""); return k.length >= 3 ? k : w; };
-  const adaylar = new Set<string>([...bas.map(kok)]);
+export function ornekteKelime(l: Pick<Lexeme, "de" | "pos" | "pl" | "verb">, cumle: string): boolean {
+  const tok = cumle.toLowerCase().replace(/[^\p{L}\s-]/gu, " ").split(/\s+/).flatMap((t) => [t, ...t.split("-")]).filter(Boolean);
+  const bas0 = l.de.toLowerCase().replace(/\([^)]*\)/g, " ").split(/\s*[,/]\s*/).map((x) => x.trim()).find(Boolean) ?? l.de.toLowerCase();
+  // "sich anmelden": dönüşlü zamir değil fiil aranır
+  const bas = bas0.split(/\s+/).filter((w) => w !== "sich");
+  const kok = (w: string) => { let k = w; if (l.pos === "verb") k = k.replace(/(eln|ern)$/, "").replace(/(en|n)$/, ""); else k = k.replace(/(e|en|er|es)$/, ""); return k.length >= 3 || (k.length >= 2 && w.length <= 4) ? k : w; };
+  // tam başlık da aday (birleşik isimde: Einkaufswagen ⊃ wagen)
+  const adaylar = new Set<string>([...bas.map(kok), ...bas.filter((w) => w.length >= 4)]);
   // ayrılabilir fiil: önek atılmış gövde (anfangen → fang-, "Fangen wir an?")
-  if (l.pos === "verb") { const m = /^(ab|an|auf|aus|bei|ein|fest|fort|her|hin|los|mit|nach|vor|weg|zu|zurück|zusammen)(\p{L}{4,})$/u.exec(bas[0]!); if (m) adaylar.add(kok(m[2]!)); }
-  for (const x of [l.pl, l.verb?.praesens3, l.verb?.perfekt?.split(/\s+/).pop(), ...(l.forms ?? []).map((f) => f.answer.split(/\s*…\s*/)[0])]) if (x) adaylar.add(kok(x.toLowerCase()));
+  if (l.pos === "verb") { const m = /^(zusammen|spazieren|zurecht|heraus|herein|hinaus|vorbei|bereit|zurück|herum|kennen|kaputt|wieder|weiter|durch|statt|unter|fest|fort|heim|fern|frei|teil|über|auf|aus|bei|ein|her|hin|los|mit|nach|vor|weg|weh|dar|ab|an|um|zu)(\p{L}{2,})$/u.exec(bas[0]!); if (m) adaylar.add(kok(m[2]!)); }
+  for (const w of bas) for (const x of DUZENSIZ[w] ?? []) adaylar.add(x);
+  // boşluk cevapları aday değil: artikel ve zamir ("der", "Ihnen") her cümleye uyardı (inceleme #92 P1-4)
+  for (const x of [l.pl, l.verb?.praesens3?.split(/\s+/)[0], l.verb?.praeteritum?.split(/\s+/)[0], l.verb?.perfekt?.split(/\s+/).pop()]) if (x) { adaylar.add(kok(x.toLowerCase())); if (/t$/.test(x) && x.length >= 4) adaylar.add(x.toLowerCase().slice(0, -1)); }
   // umlaut ve gövde değişimi (fahren → fährt, nehmen → nimmt): ilk iki harf + son ünsüz grubu yerine en az 3 harflik ortak baş
   // birleşik isim (Lieblingsfach, Telefonnummer) ve önekli fiil (Fangen … an, nachzählen): gövde kelimenin içinde de olabilir
   const ic = l.pos === "noun" || l.pos === "verb";
-  const benzer = (t: string, k: string) => t.startsWith(k) || (ic && k.length >= 4 && t.includes(k)) || (k.length >= 4 && t.startsWith(k.slice(0, 3)) && t.length >= 3);
+  const benzer = (t: string, k: string) => t.startsWith(k) || (ic && k.length >= 4 && t.includes(k));
   return [...adaylar].some((k) => tok.some((t) => benzer(t, k) || t.normalize("NFD").replace(/\p{M}/gu, "").startsWith(k.normalize("NFD").replace(/\p{M}/gu, ""))));
 }
+/** Düzensiz çekim (örnekte başlık hiç geçmeyebilir): yalnızca sık kartlar */
+const DUZENSIZ: Record<string, string[]> = {
+  sein: ["bin", "bist", "ist", "sind", "seid", "war", "gewesen"], haben: ["hab", "hat", "hast", "hatte"], werden: ["wird", "wirst", "wurde", "geworden"],
+  wer: ["wem", "wen", "wessen"], mögen: ["mag", "magst", "möcht"], können: ["kann", "konnt"], müssen: ["muss", "musst"], dürfen: ["darf", "durft"],
+  wollen: ["will", "willst", "wollt"], wissen: ["weiß", "weißt", "wusst"], tun: ["tu", "tut", "getan"], gehen: ["ging", "gegangen"], ich: ["mir", "mich"],
+  gut: ["besser", "best"], nah: ["näher", "nächst"], hoch: ["hoh", "höher", "höchst"], viel: ["mehr", "meist"], gern: ["lieber", "liebst"],
+  du: ["dir", "dich"], wir: ["uns"], ihr: ["euch"], er: ["ihm", "ihn"], sie: ["ihr", "ihnen"],
+};
 /** Eşsesli kartlar (aynı başlık, farklı anlam kimliği) aynı örnek cümleyi paylaşamaz: soru başka anlamın cümlesini çekerdi (PM-062 madde 5) */
-export function essesliOrnek(lexemes: Pick<Lexeme, "id" | "de" | "examples">[]): { id: string; mesaj: string }[] {
+export function essesliOrnek(lexemes: Pick<Lexeme, "id" | "de" | "examples" | "forms">[]): { id: string; mesaj: string }[] {
   const out: { id: string; mesaj: string }[] = [];
-  const bas = new Map<string, Pick<Lexeme, "id" | "de" | "examples">[]>();
+  const bas = new Map<string, Pick<Lexeme, "id" | "de" | "examples" | "forms">[]>();
   for (const l of lexemes) { const k = l.de.trim(); bas.set(k, [...(bas.get(k) ?? []), l]); }
   for (const [de, ls] of bas) {
     if (ls.length < 2) continue;
     const gor = new Map<string, string>();
-    for (const l of ls) for (const e of l.examples) { const n = e.de.trim().toLowerCase(); const o = gor.get(n); if (o && o !== l.id) out.push({ id: l.id, mesaj: `örnek "${e.de}" eşsesli ${o} kartında da var ("${de}")` }); else gor.set(n, l.id); }
+    // örnekler ve boşluk cümleleri: aynı cümle iki anlamın havuzunda olamaz (boşluk sorusu da havuzdan seçilir)
+    for (const l of ls) for (const c of [...l.examples.map((e) => e.de), ...(l.forms ?? []).map((f) => f.de)]) { const n = c.trim().toLowerCase(); const o = gor.get(n); if (o && o !== l.id) out.push({ id: l.id, mesaj: `cümle "${c}" eşsesli ${o} kartında da var ("${de}")` }); else gor.set(n, l.id); }
   }
   return out;
 }

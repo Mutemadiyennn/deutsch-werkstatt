@@ -158,10 +158,22 @@ describe("PM-062 anlam güvenliği (doğrulayıcı)", () => {
     expect(ornekteKelime(V("Fach", "noun"), "Sport war mein Lieblingsfach.")).toBe(true);
     expect(ornekteKelime(V("Termin", "noun", { pl: "Termine" }), "Ich habe zwei Termine.")).toBe(true);
     expect(ornekteKelime(V("öffnen"), "Mach mal auf, ich bin's!")).toBe(false);
+    // inceleme #92: düzensiz çekim, dönüşlü ve önekli fiil, tireli isim, emir; başka kelime yakalanır
+    expect(ornekteKelime(V("sein"), "Ich bin heute sehr müde.")).toBe(true);
+    expect(ornekteKelime(V("sich anmelden"), "Ich melde mich für den Kurs an.")).toBe(true);
+    expect(ornekteKelime(V("zurückgeben", "verb", { verb: { praesens3: "gibt zurück" } }), "Wann gibst du mir das Buch zurück?")).toBe(true);
+    expect(ornekteKelime(V("aufgeben", "verb", { verb: { praesens3: "gibt auf" } }), "Gib nicht auf!")).toBe(true);
+    expect(ornekteKelime(V("U-Bahn", "noun"), "Die U-Bahn kommt gleich.")).toBe(true);
+    expect(ornekteKelime(V("Wagen", "noun"), "Nehmen Sie einen Einkaufswagen.")).toBe(true);
+    expect(ornekteKelime(V("Wiedersehen", "noun"), "Auf Wiederhören, Frau Wagner.")).toBe(false);
+    expect(ornekteKelime(V("Brot", "noun"), "Der Zug kommt um acht.")).toBe(false);
   });
   it("eşsesli kartlarda aynı örnek cümle bulunur", () => {
     const e = (de: string) => ({ id: "x", de, tr: "y", layer: "hd" as const });
-    expect(essesliOrnek([{ id: "lx:stehen", de: "stehen", examples: [e("Das Auto steht vor dem Haus.")] }, { id: "lx:stehen#2", de: "stehen", examples: [e("Das Auto steht vor dem Haus.")] }])).toHaveLength(1);
-    expect(essesliOrnek([{ id: "lx:a", de: "a", examples: [e("Gleich.")] }, { id: "lx:b", de: "b", examples: [e("Gleich.")] }])).toHaveLength(0);
+    expect(essesliOrnek([{ id: "lx:stehen", de: "stehen", examples: [e("Das Auto steht vor dem Haus.")], forms: [] }, { id: "lx:stehen#2", de: "stehen", examples: [e("Das Auto steht vor dem Haus.")], forms: [] }] as never)).toHaveLength(1);
+    expect(essesliOrnek([{ id: "lx:a", de: "a", examples: [e("Gleich.")], forms: [] }, { id: "lx:b", de: "b", examples: [e("Gleich.")], forms: [] }] as never)).toHaveLength(0);
+    // boşluk cümleleri de havuzdur (inceleme #92 P1-3)
+    const f = (de: string) => ({ de, answer: "x" });
+    expect(essesliOrnek([{ id: "lx:p", de: "passen", examples: [], forms: [f("Passt ___ das am Montag?")] }, { id: "lx:p#2", de: "passen", examples: [], forms: [f("Passt ___ das am Montag?")] }] as never)).toHaveLength(1);
   });
 });

@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { Lexeme } from "@dw/shared";
 import type { LearnerItem } from "@dw/shared";
-import { synonymHit, personalMatch, availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak, formFor, guclu, GUCLU_GUN, siradakiEx } from "./garden.ts";
+import { synonymHit, personalMatch, availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak, formFor, guclu, GUCLU_GUN, siradakiEx, sonrakiExSeen } from "./garden.ts";
 import { review, sessionKey } from "./srs.ts";
 
 const L = (o: Record<string, unknown>) => Lexeme.parse({ tr: "x", pos: "other", ...o });
@@ -236,16 +236,23 @@ describe("Kelime Bahçesi (PM-049)", () => {
       it = { ...review(it, { itemId: k.id, kind: "lexeme", path: "passive", outcome: "correct", session: `s@${gun}` }, t0), exSeen: ex + 1 };
     }
     expect(new Set(ornek).size).toBe(3); expect(new Set(bosluk).size).toBe(3);
-    // yanlıştan sonra tur sonunda başka cümle: ham sayaç bir artar (boşluk havuzunda da başka cümle)
-    const q = { lexId: k.id, type: "gap" as const, ex: 3 };
+    // yanlıştan sonra tur sonunda başka cümle: tekrar başka türle gelir; örnek havuzunda gösterilen cümle tekrarlanmaz
+    const q = { lexId: k.id, type: "tr_de" as const, ex: 4 };
     const r = requeue([q], q, k, seq(0));
-    expect(formFor(k, "gap", r[1]!.ex)!.de).not.toBe(formFor(k, "gap", q.ex)!.de);
+    expect(r[1]!.ex).toBe(5);
+    expect(k.examples[r[1]!.ex % 3]!.de).not.toBe(k.examples[q.ex % 3]!.de);
+    // kayıt: sayaç gösterilen cümlenin ardından, geri gitmez (Garden.tsx bu fonksiyonla yazar)
+    expect(sonrakiExSeen({ exSeen: 2 } as LearnerItem, 0)).toBe(2);
+    expect(sonrakiExSeen({ exSeen: 2 } as LearnerItem, 4)).toBe(5);
+    expect(sonrakiExSeen(undefined, 0)).toBe(1);
   });
   it("PM-062 4(b): güçlü kartta fotoğraf sorusu seçilmez", () => {
     let it: LearnerItem = review(undefined, { itemId: termin.id, kind: "lexeme", path: "passive", outcome: "correct", session: "s@1" }, t0);
     it = review(it, { itemId: termin.id, kind: "lexeme", path: "active", outcome: "correct", session: "s@1" }, t0);
     it.active.fsrs = { ...it.active.fsrs!, stability: GUCLU_GUN + 1, due: "2026-01-01T00:00:00Z" };
     expect(guclu(it)).toBe(true);
+    // tekrar da fotoğraf sorusu olmaz
+    for (let i = 0; i < 20; i++) expect(requeue([], { lexId: termin.id, type: "tr_de", ex: 0 }, termin, () => i / 20, it)[0]!.type).not.toBe("photo_say");
     for (let i = 0; i < 20; i++) {
       const r = buildRound(new Map([[termin.id, termin]]), new Map([[termin.id, it]]), [], { rng: () => i / 20, now: new Date("2026-12-01T10:00:00Z") });
       expect(r[0]?.type).not.toBe("photo_say");

@@ -11,7 +11,7 @@ import { bahceTamam, xpVer } from "../services/ilerleme.ts";
 import { XP } from "../core/gun.ts";
 import { itemsMap, personalWords, putItems } from "../data/db.ts";
 import { review, sessionKey, type Outcome } from "../core/srs.ts";
-import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, havuz, isNoun, meaningOptions, ownSentenceCheck, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
+import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { umlautEksik } from "../core/esdeger.ts";
 import { judgeWord, numberWordHint } from "../core/grading.ts";
@@ -87,11 +87,17 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
     if (busy) return; // "Devam"a çift dokunuş aynı değerlendirmeyi iki kez yazmaz (inceleme #59 P2-2)
     setBusy(true);
     try {
+      const once = data.items.get(q.lexId);
+      if (!outcome && once) {
+        // "Emin değilim, geç" de cümleyi gösterdi: sonraki oturum başka cümleyle açılır (inceleme #92 P2)
+        const next = { ...once, exSeen: sonrakiExSeen(once, exi) };
+        await putItems([next]); data.items.set(q.lexId, next);
+      }
       if (outcome) {
         const next = review(data.items.get(q.lexId), { itemId: q.lexId, kind: "lexeme", path: pathOf(q.type), outcome, session: sessionKey("garden", startedAt), source: "drill", ctx: q.type });
         next.lastQ = q.type;
         // PM-062: sonraki oturum gösterilen cümlenin ardından başlar (aynı cümleyle art arda açılmaz)
-        next.exSeen = Math.max(next.exSeen ?? 0, exi + 1);
+        next.exSeen = sonrakiExSeen(next, exi);
         await putItems([next]);
         data.items.set(q.lexId, next);
       }
@@ -101,7 +107,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
     if (outcome) setScore((s) => ({ ok: s.ok + (r.ok ? 1 : 0), n: s.n + 1 }));
     // ipucuyla verilen doğru cevaba XP yok (ipucu cevabı gösteriyor; D-102 "beyanla geçilene XP yok"; inceleme #85 P2-2)
     if (outcome === "correct") void xpVer(XP.dogru);
-    const r2 = !r.ok && outcome ? requeue(round, q, l) : round;
+    // tekrar, en son gösterilen cümlenin ardından ("Başka cümle"ye basıldıysa o cümleden sonra; inceleme #92 P1-1)
+    const r2 = !r.ok && outcome ? requeue(round, { ...q, ex: exi }, l, Math.random, data.items.get(q.lexId)) : round;
     // son cevap: günün bütün kartları tanıtıldıysa Seans 1 şimdi işaretlenir (inceleme #66 P1-1)
     if (day && i + 1 >= r2.length && data.gunKartlari.every((id) => data.items.has(id))) { try { await bahceTamam(day); } catch { /* bir sonraki açılışta yeniden denenir */ } }
     setData({ ...data, round: r2 });
@@ -126,6 +133,10 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   const [hinted, setHinted] = useState(false);
   // PM-062: cümle sırası kartın gösterim sayacından gelir; "Başka cümle" havuzdaki sıradakine geçer (ipucu değil, XP etkilenmez)
   const [exi, setExi] = useState(q.ex);
+  // fotoğraf cümleden sonra değişir: dokunuşun ilk çiziminde yalnızca cümle güncellenir (<150 ms; inceleme #92 P0)
+  const [fotoEx, setFotoEx] = useState(q.ex);
+  useEffect(() => { if (fotoEx === exi) return; const t = setTimeout(() => setFotoEx(exi), 120); return () => clearTimeout(t); }, [exi]);
+  const fotoOrnek = l.examples[fotoEx % Math.max(1, l.examples.length)];
   const ex = l.examples[exi % Math.max(1, l.examples.length)];
   const show = (r: Result) => { setRes(r); haptic(r.ok ? "success" : "error"); };
   const next = (o: Outcome | null) => onDone(res || { ok: false }, o, exi);
@@ -137,7 +148,7 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   if (intro) return (
     <div class="stack fade" data-test="garden-intro">
       <section class="card stack"><div class="kicker">Yeni kelime</div>
-        <Photo q={ex?.img || l.img} />
+        <Photo q={fotoOrnek?.img || l.img} sira={fotoEx} />
         <div class="de-xl" lang="de"><Art art={l.art} de={l.de} /></div>
         <div class="row"><ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} /></div>
         <p>{l.tr}</p>
@@ -156,7 +167,7 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   const verdict = res && (<>
     <section class="card stack fade" data-test="after-card" data-lex={l.id} data-nex={l.examples.length} ref={(el) => { if (el && !el.dataset.seen) { el.dataset.seen = "1"; requestAnimationFrame(() => el.scrollIntoView({ block: "center", behavior: "smooth" })); } }}>
       <div class="de-lg" lang="de"><Art art={l.art} de={l.de} /> <span class="small muted">· {l.tr}</span></div>
-      <Photo q={ex?.img || l.img} />
+      <Photo q={fotoOrnek?.img || l.img} sira={fotoEx} />
       {ex && <div class="row" style={{ flexWrap: "nowrap", alignItems: "flex-start" }}><span class="grow"><span lang="de" data-test="after-ex">{ex.de}</span><br /><span class="small muted">{ex.tr}</span></span><ListenButton text={ex.de} small /></div>}
       {/* boşluk sorusunda cevap ekranındaki cümle sorulan cümlenin örneğidir; başka sorularda beğenilmeyen örnek değiştirilebilir */}
       {!form && baska(l.examples.length)}
@@ -180,7 +191,7 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   if (q.type === "listen_meaning" || q.type === "article" || q.type === "colloc") return <ChoiceQ q={q} l={l} all={all} ex={ex} show={show} verdict={verdict} />;
 
   // ---- aktif: üretim ----
-  const prompt = q.type === "photo_say" ? <><div class="kicker">Fotoğraftaki ne? Artikeliyle söyle ya da yaz</div><Photo q={l.img} /><p class="small muted">{l.tr}</p></>
+  const prompt = q.type === "photo_say" ? <><div class="kicker">Fotoğraftaki ne? Artikeliyle söyle ya da yaz</div><Photo q={l.img} sira={exi} /><p class="small muted">{l.tr}</p></>
     : q.type === "tr_de" ? <><div class="kicker">Almanca söyle ya da yaz</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div></>
     : q.type === "gap" || q.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de" data-test="gap-cumle">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && !res && <IpucuDugmesi metin={form.hint_tr} onAc={() => setHinted(true)} />}{!res && baska(havuz(l, q.type))}</>
     : <><div class="kicker">Bu kelimeyle kendi cümleni kur</div><div class="de-lg" lang="de"><Art art={l.art} de={l.de} /></div><p class="small muted">{l.tr}{ex ? ` · Örnek: ` : ""}{ex && <span lang="de" data-test="own-ex">{ex.de}</span>}</p>{!selfCheck && baska(l.examples.length)}</>;
