@@ -20,6 +20,7 @@ export type Route =
   | { name: "garden"; day?: number }
   | { name: "yol" }
   | { name: "m1day"; day: number }
+  | { name: "rehber"; day: number }
   | { name: "m1medya"; day: number; id: string }
   | { name: "ders"; id: string }
   | { name: "prova"; day: number }
@@ -43,6 +44,7 @@ export function parseHash(h: string): Route {
     case "prova": return { name: "prova", day: Number(p[1]) || 1 };
     case "okuma": return { name: "okuma", day: Number(p[1]) || 1 };
     case "sozluk": return { name: "sozluk", q: p[1] || undefined, id: p[2] || undefined };
+    case "rehber": return { name: "rehber", day: Number(p[1]) || 1 };
     case "kalip": return { name: "kalip", id: p[1] || undefined };
     case "m1": return p[2] ? { name: "m1medya", day: Number(p[1]) || 1, id: p[2] } : { name: "m1day", day: Number(p[1]) || 1 };
     default: return { name: "today" };

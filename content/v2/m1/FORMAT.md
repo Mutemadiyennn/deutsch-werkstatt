@@ -132,21 +132,34 @@ Günün videosu ayrı dosyadadır: `content/v2/m1/video/klip-NN.json`. Kaynak De
 - Dikte sırası: kolay → orta → zor → usta → gerçek.
 
 ## Gün sınavı (`gun_sinavi`; PM-066 madde 3, B16 "Günü sınavla geç")
-İsteğe bağlı. 3–4 dakikalık sınav; ≥ %90 olursa günün dersi ve tanıma turları "geçildi" sayılır. Klip, konuşma provası ve gün sonu cümlesi atlanmaz. Eşik şimdilik kodda; `policy.json` gelince oraya taşınacak.
+İsteğe bağlı, 3–4 dakikalık sınav. ≥ %90 olursa günün dersi ve tanıma turları "geçildi" sayılır. Klip, konuşma provası ve gün sonu cümlesi atlanmaz. Eşik sınav ekranıyla (B16 2. PR) gelir.
 ```jsonc
 "gun_sinavi": {
   "id": "m1:01:s",
-  "maddeler": [ /* 10–12 madde, mevcut Drill türleri: 4 dikte (listen_and_respond, doğal hız), 6 üretim (tr_de; 2'si sesli), 1 mini prova (guided_response) */ ],
-  "sesli": ["m1:01:s9", "m1:01:s10"]   // sesle cevaplanacak maddelerin kimlikleri (sınavda olmalı)
+  "maddeler": [ /* 10–12 madde; mevcut Drill türleri */ ],
+  "sesli": ["m1:01:s9", "m1:01:s10"],
+  "dikte": ["m1:01:s1", "m1:01:s2", "m1:01:s3", "m1:01:s4"]
 }
 ```
+Madde bileşimi (11 madde):
+- **4 dikte:** `listen_and_respond`, doğal hız, "Duyduğunu yaz". `accepted` aynı cümlenin ≥ 3 yazımıdır.
+- **6 üretim:** 4 yazılı (`tr_de`) ve 2 sesli (`listen_and_respond` ya da `guided_response`).
+- **1 mini prova:** günün can-do'su, `guided_response`.
+
+Kurallar:
+- **Kimlik biçimi:** sınav `m1:NN:s`, maddeler `m1:NN:sK` (K = 1…12).
+- **Dikte maddeleri** `dikte` listesinde yazılır. Sınav ekranı bunları günlük dikteyle aynı kuralla puanlar (`dikteDegerlendir`): noktalama sayılmaz; büyük-küçük harf ya da ümlaut farkı doğru sayılır ama doğru yazım gösterilir; başka kelime kabul edilmez. Bir madde hem `dikte` hem `sesli` olamaz.
+- **Sesle cevaplanacak maddeler** yalnızca `sesli` listesinde yazılır. Maddenin içine `"sesli": true` yazılmaz (şemada olmayan alan hatası). Dikte ve seçmeli (`pick`) maddeler `sesli` olamaz.
+- **`audio_de` içinde ad yer tutucusu** (`{name}`, `{Herr|Frau}`) olmaz: ses dosyası önceden üretilir.
+- **Yalnızca öğretilen:** her madde yalnızca o güne kadar öğretilen öğeleri ister (`requires` kuralı).
+
 Doğrulayıcı (`m1check.ts`) şunları denetler:
 - madde kimlikleri tekil;
-- `sesli` kimlikleri sınavda var;
+- `sesli` kimlikleri sınavda var ve `pick` değil;
+- `dikte` kimlikleri sınavda var, `pick` değil ve `sesli` ile kesişmiyor;
 - üretim maddelerinde `accepted` ≥ 3 (D-064);
+- bütün kabulleri öğretilmemiş kelime içeren madde için uyarı;
 - 10–12 madde (şema).
 
-Her madde yalnızca o güne kadar öğretilen öğeleri ister (`requires` kuralı).
-
 ## Kalıp dolgu anlamları (`patterns.json` → `slots[].fills_tr`)
-İsteğe bağlı. `fills` ile aynı sırada ve uzunlukta kısa Türkçe anlamlar ("im Büro" → "ofiste"). Kalıp kartı (B2) seçilen dolgunun anlamını buradan gösterir; örnek cümle varsa o da öne çıkar. Uzunluk farkı doğrulayıcıda hatadır.
+İsteğe bağlı. `fills` ile aynı sırada ve uzunlukta kısa Türkçe anlamlar ("im Büro" → "ofiste"). Boş anlam yazılmaz (hata). Kalıp kartı (B2) seçilen dolgunun anlamını buradan gösterir; örnek cümle varsa o da öne çıkar. Uzunluk farkı doğrulayıcıda hatadır.

@@ -32,6 +32,8 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | Kapalı medya rafı (#58 B12) | `v2/medya-rafi` | 1. parça PR #98: 1. tur 3 P1 düzeltildi (adres doğrulama, "Fail closed" zorunlu, gerçek Function ile e2e); 2. parça #99 doldurma hattı; sırada fotoğraf yolu, doğrulayıcı; proje sahibinin adımları bekleniyor |
 | Bahçe değişen cümle (PM-062, #58 B13) | `v2/bahce-donusum` | #92 birleşti (D-111) |
 | Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | #87 birleşti (D-107) |
+| Şema: gün sınavı + kalıp dolgu anlamı (İÇ 7014566898; PM-066.3, PM-067.1) | `v2/sema-sinav-dolgu` | PR #109; İÇ içeriği bu alanlarla yazıyor |
+| Şölen 2 / B11a yol haritası (PM-065 1–4) | `v2/yol-haritasi` | PR açıldı (D-114); sırada B11b günlük görevler ve sandık, B11c tören ve Filiz |
 | Gün sonu özeti + yerel kullanım ölçümü (#58 B3) | `v2/gun-sonu` | #93 birleşti (D-109) |
 | Doğrulayıcı B4 (#58 B4, #54 D16) | `v2/dogrulayici-b4` | #88 birleşti (D-108) |
 | Değerlendirme doğruluğu (#58 A11) | `v2/degerlendirme` | PR #76: 1. tur P0 (V2 aşırı kabul) ve P1'ler düzeltildi; kalıcı permütasyon taraması; 2. tur bekliyor (D-104) |
@@ -53,7 +55,7 @@ R0 temel paket: 10 ders, 189 öğretim öğesi, 353 alıştırma; main'de (#51).
 B4 kart kuralları (#88, #96): parti dosyalarında K1 isim boşluğu, 3+ eşdizim ve somut kelimede örnek başına fotoğraf sorgusu uyarıları 0 (150 kart kapandı). Doğrulayıcının "görselsiz örnek" sayacında kalan 82 kart eski `lexemes.v1.json` kartları; taban 0 / 0 / 82 (ANA, birleştirmede).
 B5 fotoğraf seçimi (#91): 308 yerin 40'ına açık lisanslı fotoğraf seçildi, 220'si reddedildi, 48'i soyut; 332 kısa ikinci sorgu A10 hattına verildi. Hedef somut kelimelerin %85'i; Openverse sonrası ikinci tur.
 Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur, M1 kartları 8 tur (hedef tutmadı). Geri dönen türler (hata notunda Türkçe niyet, çelişen ipucu) yazar ve lex görevine eklendi.
-B6 (`forms`, eşdizim, fotoğraf sorgusu; #58): 927 kartın tamamı (#81: 825, #83: 102); 911 kartta 3.476 boşluk. Okur turu B6: 13 grupta 32 tur (grup başına 2,5; hedef tutmadı). `forms` alanı bilerek boş 16 kart: eş anlamlısı da giren (`kriegen`, `seltsam`, `gucken`, `erhalten`, `rum`, `wozu`, `jemals`) ve boşluğa uygun olmayan zarflar (`bereits`, `nun`, `überhaupt` vb.). Açık: Bahçe'de ipucu cevaptan önce görünüyor, bu yüzden boşluk sorusu şimdilik üretimi değil tanımayı kanıtlıyor (#12 şema isteği, `also_ok` ile birlikte).
+B6 (`forms`, eşdizim, fotoğraf sorgusu; #58): 927 kartın tamamı (#81: 825, #83: 102). Okur turu B6: 13 grupta 32 tur (grup başına 2,5; hedef tutmadı). `forms` alanı boş kalan 17 kart #85'in `also_ok` alanıyla dolduruldu (#102). Sözlükte 1.119 kartta 4.334 boşluk; 47 kartta 126 boşlukta `also_ok` (#102 öncesi 4). Bahçe ipucu artık soru sırasında kapalı (#85).
 Sözlüğün tamamı onaylı: taslak partiler 004–008'deki 394 girdi tam incelemeden geçti (Almanca örnekler, eşdizim, kart verisi; 8 grupta 139 kartta düzeltme, kalan 0) ve okurdan geçti. `lx:Million` B1 → A2.
 
 ## Açık PR'lar

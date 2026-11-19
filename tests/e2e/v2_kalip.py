@@ -63,6 +63,8 @@ def main():
                 # alıştırmadan alt sayfa: ilerleme kaybolmaz (P1-3)
                 pg.goto(base + "#/scenario/sc:telefon:01-arzttermin/build"); pg.wait_for_selector(".pbar h1")
                 pg.wait_for_selector("[data-test=kalip-bag]", timeout=10000)
+                # madde sayacı (x/y) üst çubuğa efektle gelir; okumadan önce beklenir (WebKit'te sayaçsız okunuyordu)
+                pg.wait_for_selector(".pbar [data-test=item-count]", timeout=10000)
                 if True:
                     once = pg.inner_text(".pbar")
                     pg.click("[data-test=kalip-bag]"); pg.wait_for_selector("[role=dialog][data-test=kalip-karti]")
@@ -104,6 +106,24 @@ def main():
                 pg.click(".pbar a[aria-label=Geri]"); pg.wait_for_selector("[data-test=sozluk-kart]")
                 check(True, "kalıp kartından geri: Sözlük kartına döner")
             b.close()
+        # fills_tr (İÇ 7014566898): içerikte henüz yok; sözlük paketine yönlendirmeyle eklenir, kart dolgunun anlamını gösterir
+        b, ctx = launch(p); pg = new_page(ctx)
+        def ekle(route):
+            r = route.fetch(); d = r.json()
+            for x in d["patterns"]:
+                if x["id"] == "pt:ich-bin":
+                    for sl in x["slots"]: sl["fills_tr"] = [f"anlam {i + 1}" for i in range(len(sl["fills"]))]
+            route.fulfill(response=r, json=d)
+        pg.route("**/lexemes.json", ekle)
+        login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
+        pg.goto(base + "#/kalip/pt:ich-bin"); pg.wait_for_selector("[data-test=kalip-karti]")
+        dolgu = pg.locator("[data-test=kalip-dolgu]", has_text="zufrieden").first
+        sira = pg.evaluate("(f) => [...document.querySelectorAll('[data-test=kalip-slot]')].flatMap((s) => [...s.querySelectorAll('[data-test=kalip-dolgu]')].map((b) => b.innerText)).indexOf(f)", dolgu.inner_text())
+        dolgu.click(); pg.wait_for_selector("[data-test=kalip-dolgu-tr]")
+        check(pg.inner_text("[data-test=kalip-dolgu-tr]").startswith("anlam "), f"seçilen dolgunun anlamı fills_tr'den ({pg.inner_text('[data-test=kalip-dolgu-tr]')!r}, sıra {sira})")
+        check("Anlamı:" not in pg.inner_text("[data-test=kalip-secili]"), "fills_tr varken sözlük anlamı tekrar yazılmıyor")
+        no_overflow(pg, "kalıp kartı fills_tr")
+        b.close()
     srv.shutdown()
     finish()
 

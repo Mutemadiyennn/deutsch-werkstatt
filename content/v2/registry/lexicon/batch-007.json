@@ -82,12 +82,32 @@
     {
      "de": "Das Essen hat ___ geschmeckt.",
      "answer": "wunderbar",
+     "also_ok": [
+      "toll",
+      "super",
+      "herrlich",
+      "großartig",
+      "klasse",
+      "prima",
+      "fantastisch",
+      "ausgezeichnet",
+      "hervorragend"
+     ],
      "tr": "Yemeğin tadı harikaydı.",
      "hint_tr": "Harika derken **wunderbar** denir."
     },
     {
      "de": "Das war ein ___ Abend.",
      "answer": "wunderbarer",
+     "also_ok": [
+      "toller",
+      "super",
+      "klasse",
+      "herrlicher",
+      "großartiger",
+      "prima",
+      "fantastischer"
+     ],
      "tr": "Harika bir akşamdı.",
      "hint_tr": "**ein Abend** arasına girince **wunderbar**, **wunderbarer** olur."
     }
@@ -869,7 +889,11 @@
      "de": "Ich habe den Zug noch ___.",
      "answer": "erreicht",
      "tr": "Trene yetiştim.",
-     "hint_tr": "Geçmişi anlatırken **habe erreicht** denir, başına **ge** gelmez."
+     "hint_tr": "Geçmişi anlatırken **habe erreicht** denir, başına **ge** gelmez.",
+     "also_ok": [
+      "geschafft",
+      "erwischt"
+     ]
     }
    ]
   },
@@ -1437,7 +1461,58 @@
     "parcalar": [],
     "ipucu_tr": "Film ve maç için de **gucken** denir, izlemek demektir."
    },
-   "forms": []
+   "forms": [
+    {
+     "de": "___ mal, da ist ein Parkplatz!",
+     "answer": "Guck",
+     "also_ok": [
+      "Schau",
+      "Sieh"
+     ],
+     "tr": "Bak, orada park yeri var!",
+     "hint_tr": "Birine bak derken **Guck mal** dersin."
+    },
+    {
+     "de": "Wir ___ heute einen Film.",
+     "answer": "gucken",
+     "also_ok": [
+      "schauen",
+      "sehen"
+     ],
+     "tr": "Bugün film izliyoruz.",
+     "hint_tr": "**wir** ile **gucken** olur."
+    },
+    {
+     "de": "Was ___ du?",
+     "answer": "guckst",
+     "also_ok": [
+      "schaust"
+     ],
+     "tr": "Ne bakıyorsun?",
+     "hint_tr": "**du** ile **gucken**, **guckst** olur."
+    },
+    {
+     "de": "Er ___ aus dem Fenster.",
+     "answer": "guckt",
+     "also_ok": [
+      "schaut",
+      "sieht",
+      "blickt"
+     ],
+     "tr": "Adam pencereden bakıyor.",
+     "hint_tr": "**er** ile **gucken**, **guckt** olur."
+    },
+    {
+     "de": "Wir haben gestern Fußball ___.",
+     "answer": "geguckt",
+     "also_ok": [
+      "geschaut",
+      "gesehen"
+     ],
+     "tr": "Dün maç izledik.",
+     "hint_tr": "Geçmişi anlatırken **haben geguckt** denir, sonu **t** olur."
+    }
+   ]
   },
   {
    "id": "lx:drüben",
@@ -3079,7 +3154,56 @@
     "parcalar": [],
     "ipucu_tr": "Konuşmada aynı anlamda **komisch** de dersin."
    },
-   "forms": []
+   "forms": [
+    {
+     "de": "Das ist ___, er antwortet nicht.",
+     "answer": "seltsam",
+     "also_ok": [
+      "komisch",
+      "merkwürdig",
+      "eigenartig",
+      "sonderbar"
+     ],
+     "tr": "Bu tuhaf, adam cevap vermiyor.",
+     "hint_tr": "Tuhaf derken **seltsam** dersin, **selten** nadiren demektir."
+    },
+    {
+     "de": "Ich hatte ein ___ Gefühl.",
+     "answer": "seltsames",
+     "also_ok": [
+      "komisches",
+      "merkwürdiges",
+      "eigenartiges",
+      "sonderbares"
+     ],
+     "tr": "İçimde tuhaf bir his vardı.",
+     "hint_tr": "**ein Gefühl** arasına girince **seltsam**, **seltsames** olur."
+    },
+    {
+     "de": "Er ist ein ___ Mann.",
+     "answer": "seltsamer",
+     "also_ok": [
+      "komischer",
+      "merkwürdiger",
+      "eigenartiger",
+      "sonderbarer"
+     ],
+     "tr": "Adam tuhaf biri.",
+     "hint_tr": "**ein Mann** arasına girince **seltsam**, **seltsamer** olur."
+    },
+    {
+     "de": "Die Milch riecht ___.",
+     "answer": "seltsam",
+     "also_ok": [
+      "komisch",
+      "merkwürdig",
+      "eigenartig",
+      "sonderbar"
+     ],
+     "tr": "Sütün kokusu tuhaf.",
+     "hint_tr": "Kokusu garipse **riecht seltsam** denir."
+    }
+   ]
   },
   {
    "id": "lx:Entscheidung",
@@ -5043,7 +5167,46 @@
     "parcalar": [],
     "ipucu_tr": "Hiç değilse telefon et derken **Ruf wenigstens an!** dersin."
    },
-   "forms": []
+   "forms": [
+    {
+     "de": "Ruf ___ an!",
+     "answer": "wenigstens",
+     "also_ok": [
+      "zumindest"
+     ],
+     "tr": "Hiç değilse telefon et!",
+     "hint_tr": "Hiç değilse derken **wenigstens** dersin, **an** sona gider."
+    },
+    {
+     "de": "___ regnet es nicht.",
+     "answer": "Wenigstens",
+     "also_ok": [
+      "Zumindest",
+      "Immerhin"
+     ],
+     "tr": "Hiç değilse yağmur yağmıyor.",
+     "hint_tr": "**Wenigstens** başa gelince **regnet** hemen arkasından gelir."
+    },
+    {
+     "de": "Na ja, ___ etwas.",
+     "answer": "wenigstens",
+     "also_ok": [
+      "immerhin",
+      "zumindest"
+     ],
+     "tr": "Eh, hiç değilse bir şey.",
+     "hint_tr": "Eh, hiç değilse bir şey derken **Na ja, wenigstens etwas** dersin."
+    },
+    {
+     "de": "Iss ___ etwas!",
+     "answer": "wenigstens",
+     "also_ok": [
+      "zumindest"
+     ],
+     "tr": "Hiç değilse bir şey ye!",
+     "hint_tr": "Hiç değilse derken **wenigstens** dersin."
+    }
+   ]
   },
   {
    "id": "lx:teilen",
@@ -7053,12 +7216,18 @@
     {
      "de": "Ich habe die Prüfung ___!",
      "answer": "bestanden",
+     "also_ok": [
+      "geschafft"
+     ],
      "tr": "Sınavı geçtim!",
      "hint_tr": "Geçmişi anlatırken **habe bestanden** denir."
     },
     {
      "de": "Hoffentlich ___ ich die Prüfung.",
      "answer": "bestehe",
+     "also_ok": [
+      "schaffe"
+     ],
      "tr": "Umarım sınavı geçerim.",
      "hint_tr": "**ich** ile **bestehe** olur."
     },
@@ -7838,7 +8007,43 @@
     "parcalar": [],
     "ipucu_tr": "Onaylarken tek başına **Absolut!** dersin, kesinlikle demektir."
    },
-   "forms": []
+   "forms": [
+    {
+     "de": "Das ist ___ richtig.",
+     "answer": "absolut",
+     "also_ok": [
+      "völlig",
+      "vollkommen",
+      "ganz",
+      "total"
+     ],
+     "tr": "Bu kesinlikle doğru.",
+     "hint_tr": "Kesinlikle doğru derken **absolut richtig** dersin."
+    },
+    {
+     "de": "Ich bin mir ___ sicher.",
+     "answer": "absolut",
+     "also_ok": [
+      "ganz",
+      "völlig",
+      "vollkommen",
+      "hundertprozentig",
+      "total"
+     ],
+     "tr": "Kesinlikle eminim.",
+     "hint_tr": "Kesinlikle eminim derken **Ich bin mir absolut sicher** dersin."
+    },
+    {
+     "de": "Das geht ___ nicht.",
+     "answer": "absolut",
+     "also_ok": [
+      "überhaupt",
+      "gar"
+     ],
+     "tr": "Bu kesinlikle olmaz.",
+     "hint_tr": "Kesinlikle olmaz derken **absolut** sözü **nicht** önüne gelir."
+    }
+   ]
   },
   {
    "id": "lx:verbringen",

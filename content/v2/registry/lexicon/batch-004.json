@@ -205,12 +205,18 @@
     {
      "de": "Wir ___ sie morgen!",
      "answer": "schlagen",
+     "also_ok": [
+      "besiegen"
+     ],
      "tr": "Yarın onları yeneriz!",
      "hint_tr": "**wir** ile **schlagen** aynı kalır."
     },
     {
      "de": "Du ___ mich immer beim Schach.",
      "answer": "schlägst",
+     "also_ok": [
+      "besiegst"
+     ],
      "tr": "Beni satrançta hep yeniyorsun.",
      "hint_tr": "**du** ile **schlagen**, **schlägst** olur, **a** yerine **ä** gelir."
     },
@@ -223,12 +229,18 @@
     {
      "de": "Er hat mich beim Tennis ___.",
      "answer": "geschlagen",
+     "also_ok": [
+      "besiegt"
+     ],
      "tr": "Adam beni teniste yendi.",
      "hint_tr": "**hat** ile **schlagen**, **geschlagen** olur."
     },
     {
      "de": "Ich ___ dich beim nächsten Mal!",
      "answer": "schlage",
+     "also_ok": [
+      "besiege"
+     ],
      "tr": "Bir dahaki sefere seni yenerim!",
      "hint_tr": "**ich** ile **schlagen**, **schlage** olur, **a** aynı kalır."
     }
@@ -622,18 +634,27 @@
     {
      "de": "Was will ___ Kerl hier?",
      "answer": "der",
+     "also_ok": [
+      "dieser"
+     ],
      "tr": "Herif burada ne istiyor?",
-     "hint_tr": "Bildiğimiz herif: **der Kerl**."
+     "hint_tr": "Hep birlikte gördüğümüz adam için **der Kerl** denir."
     },
     {
      "de": "Ich kenne ___ Kerl nicht.",
      "answer": "den",
+     "also_ok": [
+      "diesen"
+     ],
      "tr": "Herifi tanımıyorum.",
      "hint_tr": "**Ich kenne** dedikten sonra **der Kerl**, **den Kerl** olur."
     },
     {
      "de": "Mit ___ Kerl rede ich nicht.",
      "answer": "dem",
+     "also_ok": [
+      "diesem"
+     ],
      "tr": "O herifle konuşmam.",
      "hint_tr": "**mit** dedikten sonra **der Kerl**, **dem Kerl** olur."
     }
@@ -1221,7 +1242,21 @@
      "de": "Darum ___ ich zu spät.",
      "answer": "bin",
      "tr": "Bu yüzden geç kaldım.",
-     "hint_tr": "**Darum** başa gelince hemen **bin** gelir."
+     "hint_tr": "**Darum** başa gelince hemen **bin** gelir.",
+     "also_ok": [
+      "war"
+     ]
+    },
+    {
+     "de": "Mein Auto ist kaputt, ___ fahre ich mit dem Bus.",
+     "answer": "darum",
+     "also_ok": [
+      "deshalb",
+      "deswegen",
+      "daher"
+     ],
+     "tr": "Arabam bozuk, bu yüzden otobüsle gidiyorum.",
+     "hint_tr": "Bu yüzden derken **darum** dersin, arkasından hemen **fahre** gelir."
     }
    ]
   },
@@ -1795,7 +1830,48 @@
     "anlam_tr": "**nicht** ya da **kein** ile gelince hiç demektir.",
     "parcalar": [],
     "ipucu_tr": "Soruda **überhaupt** zaten ya da aslında anlamı verir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich habe ___ keine Zeit.",
+     "answer": "überhaupt",
+     "also_ok": [
+      "gar",
+      "absolut"
+     ],
+     "tr": "Hiç vaktim yok.",
+     "hint_tr": "Hiç vaktim yok derken **überhaupt** sözü **keine** önüne gelir."
+    },
+    {
+     "de": "Das stimmt ___ nicht!",
+     "answer": "überhaupt",
+     "also_ok": [
+      "gar",
+      "absolut"
+     ],
+     "tr": "Bu hiç doğru değil!",
+     "hint_tr": "Hiç doğru değil derken **überhaupt** sözü **nicht** önüne gelir."
+    },
+    {
+     "de": "Das gefällt mir ___ nicht.",
+     "answer": "überhaupt",
+     "also_ok": [
+      "gar",
+      "absolut"
+     ],
+     "tr": "Bunu hiç beğenmiyorum.",
+     "hint_tr": "Hiç beğenmiyorum derken **überhaupt nicht** dersin."
+    },
+    {
+     "de": "Wer bist du ___?",
+     "answer": "überhaupt",
+     "also_ok": [
+      "eigentlich"
+     ],
+     "tr": "Sen kimsin ki zaten?",
+     "hint_tr": "Soruyu sertleştirmek için sona **überhaupt** eklenir: **Wer bist du überhaupt?**"
+    }
+   ]
   },
   {
    "id": "lx:erwarten",
