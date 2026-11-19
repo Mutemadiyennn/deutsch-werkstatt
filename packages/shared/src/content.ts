@@ -364,7 +364,9 @@ export const World = z.object({
   town: z.object({ id: z.string(), name: z.string(), kind: z.string(), desc_tr: z.string(), neighbourhood: z.string(), places: z.array(z.object({ id: z.string(), name: z.string(), domain: z.string(), tr: z.string() })).min(5) }),
   characters: z.array(z.object({
     id: CharacterId, name: z.string(), age: z.number().int(), role_tr: z.string(), rel_tr: z.string(), personality_tr: z.string(),
-    mix: z.object({ hd: z.number(), alltag: z.number(), bair: z.number() }), speed: Speed, phrases: z.array(z.string()).min(2), bair_note: z.string().optional(), domains: z.array(z.string()).min(1)
+    mix: z.object({ hd: z.number(), alltag: z.number(), bair: z.number() }), speed: Speed, phrases: z.array(z.string()).min(2), bair_note: z.string().optional(), domains: z.array(z.string()).min(1),
+    /** PM-064: karakterin sesi (seslendirme ses havuzunda seçim): cinsiyet, yaş, havuz içi sıra; aynı sahnedekiler farklı sıra */
+    ses: z.object({ cinsiyet: z.enum(["kadin", "erkek"]), yas: z.enum(["genc", "orta", "yasli"]), sira: z.number().int().min(0) }).optional()
   })).min(10).max(12),
   story: z.array(z.object({ week: z.number().int(), from: z.string(), title_de: z.string(), title_tr: z.string(), plot_tr: z.string(), characters: z.array(CharacterId).min(1), domains: z.array(z.string()).min(1), real_task_tr: z.string(), calendar: z.string().nullable() })).length(26),
   reserves: z.array(z.object({ id: z.string(), title_de: z.string(), title_tr: z.string(), plot_tr: z.string(), characters: z.array(CharacterId), domains: z.array(z.string()) })).default([]),

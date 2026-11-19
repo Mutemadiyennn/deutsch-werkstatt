@@ -6,6 +6,7 @@ import { useApp } from "../state.ts";
 import { auth } from "../services/auth.ts";
 import { exportAll } from "../data/db.ts";
 import { KullanimTablosu } from "../ui/gunsonu.tsx";
+import { MedyaRafi } from "../ui/raf.tsx";
 import { persistState, type PersistState } from "../services/storage.ts";
 import { ACTIVITY_TR, V1_URL } from "../core/planner.ts";
 import { ApiError } from "../services/api.ts";
@@ -139,6 +140,11 @@ export function ProfileView() {
       <section class="card">
         <h2>Kullanımım</h2>
         <KullanimTablosu basliklar={basliklar} />
+      </section>
+
+      <section class="card">
+        <h2>Medya rafı</h2>
+        <MedyaRafi />
       </section>
 
       <section class="card">
