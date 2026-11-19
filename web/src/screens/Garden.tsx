@@ -132,6 +132,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
 function Question({ q, l, all, yakin, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[]; yakin?: Yakinlik; onDone: (r: Result, o: Outcome | null, exi: number) => void }) {
   const [intro, setIntro] = useState(!!q.intro);
   const [res, setRes] = useState<Result | null>(null);
+  // her soru sayfanın başından açılır: önceki sorudan kalan kaydırma başlığı üst çubuğun altında bırakmasın (inceleme #100 P1-2)
+  useEffect(() => { window.scrollTo(0, 0); }, [intro]);
   const [selfCheck, setSelfCheck] = useState<string | null>(null);
   const [ownNote, setOwnNote] = useState(false);
   const [shortNote, setShortNote] = useState(false);

@@ -48,7 +48,7 @@ export function DersEkrani({ id }: { id: string }) {
       <ProgressHeader title={t.title_tr} back="#/today" ilerleme={{ n: 1, toplam: 1 }} />
       <section class="card stack" data-test="ders-bitti">
         {simdiBitti ? <Kutlama><h2>Ders bitti</h2></Kutlama> : <h2>Ders bitti</h2>}
-        {simdiBitti && p.toplam > 0 && <Ozet dogru={p.dogru} toplam={p.toplam} xp={p.ilkBitti ? undefined : oturumXp} />}
+        {simdiBitti && p.toplam > 0 && <Ozet dogru={p.dogru} toplam={p.toplam} xp={p.ilkBitti ? undefined : oturumXp} baglam="ders" />}
         <p>{p.toplam ? `${p.toplam} soruda ${p.dogru} doğru.` : ""} {t.can_do.tr}</p>
         <div class="row"><a class="btn primary grow" href="#/today" data-test="ders-geri">Sıradaki adıma geç</a>
           <button class="btn grow" onClick={() => setP({ s: 0, k: 0, dogru: 0, toplam: 0, ilkBitti: p.ilkBitti ?? p.bitti })}>Tekrar çalış</button></div>

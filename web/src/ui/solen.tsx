@@ -100,19 +100,29 @@ export function Kutlama({ children }: { children?: preact.ComponentChildren }) {
   );
 }
 
-/** Tur sonu başlığı (PM 7011722598 madde 3): doğru oranına göre 3 kademe; düşük sonuçta cesaretlendirici */
-export const TUR_BASLIK = [
-  { b: "Harika!", a: "Neredeyse hepsi doğru." },
-  { b: "İyi gidiyor", a: "Yarısından fazlası doğru; tekrarlar gerisini getirecek." },
-  { b: "Zor bir turdu; yarın daha kolay", a: "Yanlış her kart sana bir kez daha gelecek. Böyle öğrenilir." }
-] as const;
+/** Tur/ders sonu başlığı (PM 7011722598 madde 3): doğru oranına göre 3 kademe; düşük sonuçta cesaretlendirici.
+ *  Bağlam: Bahçe turu yanlışları tekrara yazar; ders yazmaz (inceleme #100 P1-3), metin buna göre. */
+export const TUR_BASLIK = {
+  tur: [
+    { b: "Harika!", a: "Neredeyse hepsi doğru." },
+    { b: "İyi gidiyor", a: "Yarısı ya da daha fazlası doğru; tekrarlar gerisini getirecek." },
+    { b: "Zor bir turdu; yarın daha kolay", a: "Her tur seni biraz daha ileri götürür." }
+  ],
+  ders: [
+    { b: "Harika!", a: "Neredeyse hepsi doğru." },
+    { b: "İyi gidiyor", a: "Yarısı ya da daha fazlası doğru." },
+    { b: "Zor bir dersti", a: "Dersi istediğin zaman yeniden açıp tekrar edebilirsin; ikinci kez hep daha kolaydır." }
+  ]
+} as const;
+export type OzetBaglam = keyof typeof TUR_BASLIK;
 export const turKademe = (dogru: number, toplam: number) => { const o = toplam ? dogru / toplam : 0; return o >= 0.8 ? 0 : o >= 0.5 ? 1 : 2; };
 
-/** Kalıcı tur sonu görseli: doğru oranıyla dolan halka, ortasında oranla büyüyen filiz; kademeli başlık */
-export function TurSonu({ dogru, toplam }: { dogru: number; toplam: number }) {
+/** Kalıcı tur sonu görseli: doğru oranıyla dolan halka, ortasında oranla büyüyen filiz; kademeli başlık (h3: sayfa başlığının altında) */
+export function TurSonu({ dogru, toplam, baglam = "tur" }: { dogru: number; toplam: number; baglam?: OzetBaglam }) {
   const k = turKademe(dogru, toplam);
   const oran = toplam ? dogru / toplam : 0;
   const C = 2 * Math.PI * 52;
+  const m = TUR_BASLIK[baglam][k];
   return (
     <div class={`tur-sonu k${k}`} data-test="tur-sonu" data-kademe={k}>
       <div class="tur-halka" aria-hidden="true">
@@ -123,22 +133,22 @@ export function TurSonu({ dogru, toplam }: { dogru: number; toplam: number }) {
         </svg>
         <div class="tur-halka-ic"><Filiz gun={Math.max(1, Math.round(oran * 7))} boy={60} /></div>
       </div>
-      <h2 class="tur-basligi" data-test="tur-basligi">{TUR_BASLIK[k].b}</h2>
-      <p class="small muted">{dogru === toplam ? "Hepsi doğru." : TUR_BASLIK[k].a}</p>
+      <h3 class="tur-basligi" data-test="tur-basligi">{m.b}</h3>
+      <p class="small muted">{dogru === toplam ? "Hepsi doğru." : m.a}</p>
     </div>
   );
 }
 
 /** Özet satırı: doğru, XP, seri, öğrenilen kelimeler (çip), yarın */
 /** `xp` yoksa (tekrar çalışma: XP verilmez) XP kutusu gösterilmez */
-export function Ozet({ dogru, toplam, xp, seriGun, kelimeler = [], yarin }: { dogru: number; toplam: number; xp?: number; seriGun?: number; kelimeler?: string[]; yarin?: string }) {
+export function Ozet({ dogru, toplam, xp, seriGun, kelimeler = [], yarin, baglam = "tur" }: { dogru: number; toplam: number; xp?: number; seriGun?: number; kelimeler?: string[]; yarin?: string; baglam?: OzetBaglam }) {
   return (
     <div class="stack ozet" data-test="ozet">
-      {toplam > 0 && <TurSonu dogru={dogru} toplam={toplam} />}
+      {toplam > 0 && <TurSonu dogru={dogru} toplam={toplam} baglam={baglam} />}
       <div class="ozet-kutular">
         <div class="ozet-kutu"><b>{dogru}/{toplam}</b><span class="tiny muted">doğru</span></div>
-        {xp !== undefined && <div class="ozet-kutu xp"><b data-test="ozet-xp"><Mucevher boy={16} /> +{xp}</b><span class="tiny muted">XP</span></div>}
-        {seriGun !== undefined && <div class="ozet-kutu seri"><b><Filiz gun={seriGun} boy={18} /> {seriGun}</b><span class="tiny muted">gün üst üste</span></div>}
+        {!!xp && <div class="ozet-kutu xp"><b data-test="ozet-xp"><Mucevher boy={16} /> +{xp}</b><span class="tiny muted">XP</span></div>}
+        {!!seriGun && <div class="ozet-kutu seri"><b><Filiz gun={seriGun} boy={18} /> {seriGun}</b><span class="tiny muted">gün üst üste</span></div>}
       </div>
       {kelimeler.length > 0 && <div><div class="tiny muted">Bugün öğrendiğin kelimeler</div><div class="row" style={{ gap: 6 }} data-test="ozet-kelimeler">{kelimeler.map((k) => <span class="cip" lang="de">{k}</span>)}</div></div>}
       {yarin && <p class="small muted" data-test="ozet-yarin">Yarın: {yarin}</p>}

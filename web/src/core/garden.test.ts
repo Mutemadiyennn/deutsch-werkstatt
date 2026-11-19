@@ -86,12 +86,22 @@ describe("Kelime Bahçesi (PM-049)", () => {
     // tur bilgisi yoksa: tanıdık + aynı alan yakın sayılır; uzak en çok 1
     const m2 = meaningOptions(gunler[0]!, hepsi, () => 0.5, { bilinen: new Set(["lx:Dienstag", "lx:Mittwoch", "lx:Donnerstag"]) });
     expect(m2.opts.filter((x) => ["sayı", "arkadaşlık", "kimlik", "çocukluk", "başvuru", "randevu"].includes(x)).length).toBeLessThanOrEqual(1);
+    // tek doğru cevap: anlamı kesişen kart (Uhr "saat" / Stunde "saat, ders saati") ve eşsesli kart çeldirici olmaz (inceleme #100 P1-1)
+    const uhr = L({ id: "lx:Uhr", de: "Uhr", tr: "saat", pos: "noun", art: "die", freqRank: 300 });
+    const stunde = L({ id: "lx:Stunde", de: "Stunde", tr: "saat, ders saati", pos: "noun", art: "die", freqRank: 301 });
+    const uhr2 = L({ id: "lx:Uhr#2", de: "Uhr", tr: "kol saati", pos: "noun", art: "die", freqRank: 302 });
+    const ek = ["gün", "hafta", "ay", "yıl"].map((tr, i) => L({ id: `lx:z${i}`, de: `Z${i}`, tr, pos: "noun", art: "der", freqRank: 303 + i }));
+    for (let k = 0; k < 30; k++) {
+      let i = k; const rng = () => ((i = (i * 9301 + 49297) % 233280) / 233280);
+      const m = meaningOptions(uhr, [uhr, stunde, uhr2, ...ek], rng, { tur: new Set([stunde.id, uhr2.id]) });
+      expect(m.opts).not.toContain("saat, ders saati"); expect(m.opts).not.toContain("kol saati");
+    }
     // yakın aday yoksa eski davranış: yine 3 çeldirici
     expect(meaningOptions(gunler[0]!, hepsi, () => 0.5).opts).toHaveLength(4);
   });
   it("tur sonu başlığı 3 kademe: ≥%80 Harika, ≥%50 İyi gidiyor, altı cesaretlendirici (PM 7011722598 madde 3)", () => {
     expect([turKademe(17, 17), turKademe(14, 17), turKademe(9, 17), turKademe(6, 17), turKademe(0, 0)]).toEqual([0, 0, 1, 2, 2]);
-    expect(TUR_BASLIK[2].b).not.toMatch(/\d/);
+    expect(TUR_BASLIK.ders[2].a).not.toMatch(/gelecek/); // ders yanlışları tekrara yazmaz
   });
   it("kendi cümlesi: kelime yoksa ya da çok kısaysa geçmez", () => {
     expect(ownSentenceCheck(termin, "Ich habe morgen einen Termin.")).toBe("ok");

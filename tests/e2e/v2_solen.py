@@ -130,7 +130,7 @@ def main():
             if shots: shot(pg, f"s03-bugun-{tema}", full=False)
             # tur sonu kutlaması (Bahçe): seçmeliler doğru, yazılılar 'emin değilim'/yanlış
             pg.click("[data-test=garden-start]"); pg.wait_for_selector("[data-test=garden]")
-            ucus, ilk_dogru = False, True
+            ucus, ilk_dogru, kaydirma = False, True, []
             for _ in range(40):
                 if pg.locator("[data-test=garden-done]").count(): break
                 if pg.locator("[data-test=garden-intro]").count(): pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]")
@@ -144,9 +144,15 @@ def main():
                     ilk_dogru = False
                     check(pg.locator("[data-test=ustuste]").count() == 0, f"[{tema}] dersteki seri Bahçe'ye taşınmıyor (ilk doğruda rozet yok)")
                 old = pg.inner_text("[data-test=garden] .pbar")
+                # sayfa aşağı kaydırılmışken "Devam": sonraki ekranın ilk kartı üst çubuğun altında kalmamalı (inceleme #100 P1-2)
+                asagi = len(kaydirma) < 3 and pg.evaluate("() => { scrollTo(0, document.documentElement.scrollHeight); return scrollY > 0; }")
                 kayma.append(cubuk_kaymasi(pg))
                 pg.wait_for_function("(o) => document.querySelector('[data-test=garden-done]') || (document.querySelector('[data-test=garden] .pbar')||{}).innerText !== o", arg=old)
+                if asagi and not pg.locator("[data-test=garden-done]").count():
+                    pg.wait_for_timeout(100)
+                    kaydirma.append(pg.evaluate("() => { const b = document.querySelector('.pbar').getBoundingClientRect().bottom; const k = document.querySelector('[data-test=garden] main, [data-test=garden] .card, .card'); return Math.round(k.getBoundingClientRect().top - b); }"))
             check(ucus, f"[{tema}] doğru cevapta '+XP' uçuşu görüldü")
+            check(not kaydirma or min(kaydirma) >= -2, f"[{tema}] aşağı kaydırıp 'Devam': sonraki sorunun başlığı üst çubuğun altında kalmıyor ({kaydirma})")
             olcu = [x for x in kayma if x is not None]
             check(len(olcu) >= 3 and max(olcu) <= 4, f"[{tema}] soru geçişinde eylem çubuğu ekranın altında kalıyor ({len(olcu)} geçiş; alttan en çok {max(olcu or [0]):.0f} px)")
             check(pg.locator("[data-test=garden-done] [data-test=kutlama]").count() == 1 and pg.locator("[data-test=ozet]").count() == 1, f"[{tema}] tur sonunda kutlama ve özet")

@@ -241,7 +241,10 @@ export interface Yakinlik { tur?: Set<string>; bilinen?: Set<string> }
  * çeldirici (yakın sıklıkta, tercihen tanıdık). Yakın aday yoksa eski davranış (yakın sıklık).
  */
 export function meaningOptions(l: Lexeme, all: Lexeme[], rng: () => number = Math.random, y: Yakinlik = {}): { opts: string[]; ans: number } {
-  const uygun = all.filter((x) => x.id !== l.id && x.pos === l.pos && x.tr !== l.tr && isCard(x));
+  // tek doğru cevap: aynı Almanca kelime (eşsesli kart) ve Türkçe anlamı kesişen kart çeldirici olamaz (inceleme #100 P1-1:
+  // Uhr "saat" ↔ Stunde "saat, ders saati")
+  const benim = trAnahtar(l.tr), deKucuk = l.de.toLowerCase();
+  const uygun = all.filter((x) => x.id !== l.id && x.pos === l.pos && x.tr !== l.tr && isCard(x) && x.de.toLowerCase() !== deKucuk && ![...trAnahtar(x.tr)].some((k) => benim.has(k)));
   const alan = new Set(l.domains ?? []);
   const derece = (x: Lexeme) => (y.tur?.has(x.id) ? 2 : y.bilinen?.has(x.id) && (x.domains ?? []).some((d) => alan.has(d)) ? 1 : 0);
   const uzaklik = (x: Lexeme) => Math.abs((x.freqRank ?? 9e9) - (l.freqRank ?? 9e9));
@@ -344,9 +347,11 @@ export function ownSentenceCheck(l: Lexeme, answer: string): "ok" | "missing" | 
  * Aynı Türkçe karşılığı taşıyan başka kart (sprechen/reden, Arbeit/Job): öğrenci onu söylediyse ceza yok, aranan kelime
  * istenir. Aynı sözcük türü şartı; parantezli açıklama anlamın parçası sayılır (inceleme #59 3. tur).
  */
+/** Türkçe anlam anahtarları; parantezli açıklama anlamın parçasıdır: "tutmak (süre)" ≠ "tutmak (fiyat)" */
+export const trAnahtar = (tr: string) => new Set(tr.toLowerCase().split(/[,;/](?![^(]*\))|\bya da\b/).map((x) => x.replace(/\s+/g, " ").trim()).filter((x) => x.length > 1));
+
 export function synonymHit(l: Lexeme, answer: string, all: Lexeme[]): Lexeme | null {
-  // parantezli açıklama anlamın parçasıdır: "tutmak (süre)" ≠ "tutmak (fiyat)"
-  const keys = (tr: string) => new Set(tr.toLowerCase().split(/[,;/](?![^(]*\))|\bya da\b/).map((x) => x.replace(/\s+/g, " ").trim()).filter((x) => x.length > 1));
+  const keys = trAnahtar;
   const mine = keys(l.tr);
   const a = answer.trim().toLowerCase().replace(/[.!?]+$/, "").replace(/^(der|die|das)\s+/, "");
   for (const x of all) {
