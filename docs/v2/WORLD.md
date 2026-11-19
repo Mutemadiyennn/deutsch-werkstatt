@@ -27,6 +27,8 @@ Adsız: "sen". Şehre yeni gelmiş; Brunnenviertel'de oturuyor, Firma Kerschbaum
 
 ## 3. Kalıcı karakterler (12)
 
+**İçerik kuralı (İÇ 7013446061):** karakterlere WORLD'de olmayan akraba, geçmiş ya da olay eklenmez; cümle gerektiriyorsa adsız kişi kullanılır ("eine Freundin", "ein Kollege"). Yeni ayrıntı önce burada tanımlanır.
+
 Konuşma tarzı: hd / alltag / bair yüzdesi ve hız. Sık ifadeler örnektir; Bairisch olanlar yalnızca kaynaklıysa kullanılır (§5; kaynak URL'leri karakter notlarında ve §5 tablosunda).
 
 ### Rosa Brandl · 79 · alt kattaki komşu
@@ -35,6 +37,7 @@ Konuşma tarzı: hd / alltag / bair yüzdesi ve hız. Sık ifadeler örnektir; B
 - Seninle ilişkisi: Seni ilk gün merdivende yakalar; meraklı, sıcak, biraz geveze. Plätzchen getirir, her şeyi sorar, her şeyi bilir.
 - Konuşma: Hochdeutsch %25 · Alltag %40 · Bairisch %35 · hız: natural
 - Sık ifadeler: „Grüß Gott!“ · „…, gell?“ · „Ja mei.“ · „Kommen S' rein!“
+- Ayrıntı (İÇ 7013446061, M1 cümleleri): doğum günü 2 Mayıs. Akrabaları WORLD'de tanımlı değil; içerikte adlı akraba eklenmez.
 - Not: Bairisch yalnızca kaynaklı ifadelerle (WORLD §5). Kaynaklı: 'Grüß Gott' ve '…, gell?' (https://www.thelocal.de/20190927/bavarian-words-you-need-to-survive-down-south-language-bayerisch-bairisch-german-munich); 'Ja mei' (iç çekme ya da vurguya göre umursamazlık: 'ne yapalım, öyle işte') (https://www.muenchenwiki.de/wiki/Bairisch-Lexikon_J · https://muenchen.mitvergnuegen.com/2016/21-bayrische-redensarten-die-du-als-muenchner-kennen-solltest/). 'Kommen S' rein!' Bairisch değil, Alltag katmanında güney Almancası kısaltmasıdır (Sie → fiile eklenen S') (https://gfds.de/wp-content/uploads/2020/09/20-09-02-Duzen-und-Siezen-Passauer-Neue-Presse.pdf).
 
 ### Dr. Thomas Weber · 58 · aile hekimin (Hausarzt)
@@ -50,6 +53,7 @@ Konuşma tarzı: hd / alltag / bair yüzdesi ve hız. Sık ifadeler örnektir; B
 - Seninle ilişkisi: Telefonda ilk duyduğun ses. Hızlı konuşur, çok yoğundur ama iyi niyetlidir; onu anladığın gün telefon korkun kırılır.
 - Konuşma: Hochdeutsch %40 · Alltag %50 · Bairisch %10 · hız: fast
 - Sık ifadeler: „Praxis Dr. Weber, Huber, grüß Gott?“ · „Moment, ich schau mal.“ · „Passt's Ihnen am Dienstag?“ · „Geht klar.“
+- Ayrıntı (İÇ 7013446061, M1 cümleleri): doğum günü Haziran'da (gün belirtilmez).
 - Not: 'grüß Gott' kaynaklı (https://www.thelocal.de/20190927/bavarian-words-you-need-to-survive-down-south-language-bayerisch-bairisch-german-munich); 'Passt's Ihnen …?' Alltag katmanında güney Almancası kısaltmasıdır.
 
 ### Tobias „Tobi“ Lechner · 31 · iş arkadaşı
@@ -66,6 +70,7 @@ Konuşma tarzı: hd / alltag / bair yüzdesi ve hız. Sık ifadeler örnektir; B
 - Seninle ilişkisi: Burada doğup büyümüş. Türkçe bildiğini sonradan öğrenirsin, ama seninle hep Almanca konuşur: 'Auf Deutsch, du schaffst das.' Zor günlerde yanındadır.
 - Konuşma: Hochdeutsch %30 · Alltag %60 · Bairisch %10 · hız: natural
 - Sık ifadeler: „Alles klar?“ · „Kein Problem.“ · „Sag's einfach auf Deutsch.“ · „Wie war dein Wochenende?“
+- Ayrıntı (İÇ 7013446061, 7015155801; M1 cümleleri): doğum günü 7 Mart (gün 6 okuması).
 
 ### Stefan Wimmer · 49 · şefin
 - Kimlik: `ch:wimmer` · alanlar: arbeit
@@ -73,6 +78,7 @@ Konuşma tarzı: hd / alltag / bair yüzdesi ve hız. Sık ifadeler örnektir; B
 - Seninle ilişkisi: Kibar ama hep acelesi var. 'Sie' der; toplantıları kısa ve hızlıdır. Netlik ister; anlamadığını söylediğinde saygı duyar.
 - Konuşma: Hochdeutsch %75 · Alltag %25 · Bairisch %0 · hız: fast
 - Sık ifadeler: „Haben Sie kurz Zeit?“ · „Bis wann schaffen Sie das?“ · „Danke, das passt so.“ · „Melden Sie sich, wenn was ist.“
+- Ayrıntı (İÇ 7013446061, M1 cümleleri): eşi eczanede çalışır; ikinci katta oturur.
 
 ### Gerti Stadler · 61 · fırıncı (Bäckerei Stadler)
 - Kimlik: `ch:stadler` · alanlar: essen, einkaufen
@@ -88,6 +94,7 @@ Konuşma tarzı: hd / alltag / bair yüzdesi ve hız. Sık ifadeler örnektir; B
 - Seninle ilişkisi: Kendisi de yıllar önce Almanya'ya gelmiş; ilk zamanlarını anlatır, futbol ve tatil konuşur. Sohbete katılmanın en güvenli yeri onun koltuğu.
 - Konuşma: Hochdeutsch %30 · Alltag %70 · Bairisch %0 · hız: natural
 - Sık ifadeler: „Wie immer?“ · „Nur ein bisschen kürzer?“ · „Und, wie läuft's?“ · „Ich war auch mal neu hier.“
+- Ayrıntı (İÇ 7013446061, M1 cümleleri): doğum günü 11 Kasım.
 
 ### Sebastian „Basti“ Kraus · 27 · spor salonunun müdavimi
 - Kimlik: `ch:kraus` · alanlar: sport, smalltalk
@@ -95,6 +102,7 @@ Konuşma tarzı: hd / alltag / bair yüzdesi ve hız. Sık ifadeler örnektir; B
 - Seninle ilişkisi: Set aralarında konuşur, makineyi kullanıp kullanmadığını sorar, antrenman önerir. Kısa ve hızlı cümleler.
 - Konuşma: Hochdeutsch %20 · Alltag %70 · Bairisch %10 · hız: fast
 - Sık ifadeler: „Bist du hier noch dran?“ · „Wie viele Sätze noch?“ · „Geht's?“ · „Ich zeig's dir.“
+- Ayrıntı (İÇ 7013446061, M1 cümleleri): doğum günü 4 Ekim.
 
 ### Josef Pichler · 66 · Hausmeister (apartman görevlisi)
 - Kimlik: `ch:pichler` · alanlar: wohnen, bairisch
