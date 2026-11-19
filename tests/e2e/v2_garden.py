@@ -108,7 +108,7 @@ def main():
         pg.wait_for_selector("[data-test=garden], [data-test=garden-empty]")
         check(pg.locator(".card.err, [role=alert]").count() == 0, "ikinci tur hatasız açılıyor")
         ACTIVE = ("gq-tr_de", "gq-photo_say", "gq-gap", "gq-sep_perfekt", "gq-own_sentence")
-        types2 = []
+        types2 = []; gaps = []
         k = 0
         while pg.locator("[data-test=garden]").count() and not pg.locator("[data-test=garden-done]").count() and k < 25:
             t = pg.locator("[data-test^=gq-]").first.get_attribute("data-test") if pg.locator("[data-test^=gq-]").count() else "intro"
@@ -117,8 +117,12 @@ def main():
                 shot(pg, "g04-uretim", full=False)
             pg.evaluate("document.documentElement.classList.remove('dyn'); document.documentElement.style.setProperty('--ts','1.3')")
             no_overflow(pg, f"%130 yazı Bahçe {t}")
+            if t == "gq-gap":
+                # ipucu soru sırasında kapalı, düğmeyle açılır (PM 7004537514-2); cevap hiçbir yerde önceden görünmez
+                gaps.append(pg.locator("[data-test=ipucu]").count() == 0)
             answer_current(pg); k += 1
         check(any(t in ACTIVE for t in types2), f"ikinci turda üretim sorusu var ({sorted(set(types2))})")
+        if gaps: check(all(gaps), f"boşluk sorusunda ipucu soru sırasında kapalı ({len(gaps)} soru)")
         b.close()
     srv.shutdown()
     finish()

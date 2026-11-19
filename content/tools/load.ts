@@ -257,6 +257,17 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
     if (l.pos === "noun" && /^(der|die|das)\s/i.test(l.de)) artInDe.push(l.id);
     if (l.exp) for (const x of explanationIssues(l.exp)) errors.push(`${l.id}.exp.${x}`);
   }
+  // İÇ 7003635425-3: aynı boşluk cümlesi + aynı çeviri, farklı cevap → öğrenci aynı soruyu görür, tek cevap doğru sayılır
+  { const ayni = new Map<string, { id: string; cevap: string[] }[]>();
+    const n = (x: string) => x.toLowerCase().replace(/[^\p{L}\p{N}_ ]+/gu, " ").replace(/\s+/g, " ").trim();
+    for (const l of c.lexemes) for (const f of l.forms) {
+      const k = `${n(f.de)}|${n(f.tr ?? "")}`;
+      const v = ayni.get(k) ?? []; v.push({ id: l.id, cevap: [f.answer, ...(f.also_ok ?? [])].map(n) }); ayni.set(k, v);
+      if ((f.also_ok ?? []).some((x) => n(x) === n(f.answer))) warnings.push(`${l.id}: forms also_ok cevabın kendisini tekrar ediyor (${f.answer})`);
+    }
+    const cakisan = [...ayni.entries()].filter(([, v]) => v.length > 1 && v.some((x) => !x.cevap.some((y) => v.every((z) => z.cevap.includes(y)))));
+    if (cakisan.length) warnings.push(`aynı boşluk cümlesi ve çevirisi, farklı cevap: ${cakisan.length} küme (ilk: ${cakisan.slice(0, 3).map(([k, v]) => `"${k.split("|")[0]}" → ${v.map((x) => `${x.id}=${x.cevap[0]}`).join(" / ")}`).join("; ")}); also_ok ile birleştir ya da cümleyi ayır`);
+  }
   if (artInDe.length) errors.push(`de alanı artikelle başlayan ${artInDe.length} isim (artikel yalnızca art alanında, D-098): ${artInDe.slice(0, 5).join(", ")}${artInDe.length > 5 ? " …" : ""}`);
   // PM-040.3 / PM-042 A.3: sözlük partisi — "reviewed" ise okur zorunlu; tr ve mistakes_tr OD-9.2 (incelenmişte hata, taslakta sayı uyarısı)
   { const byId = new Map(c.lexemes.map((l) => [l.id, l]));
