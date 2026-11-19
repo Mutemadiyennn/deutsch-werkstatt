@@ -60,7 +60,7 @@ def main():
     srv = serve(PORT); base = f"http://127.0.0.1:{PORT}/"
     shots = arg("--shots")
     with sync_playwright() as p:
-        b, ctx = launch(p); pg = new_page(ctx)
+        b, ctx = launch(p, color_scheme=arg("--scheme") or "light"); pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         pg.goto(base + "#/learn"); pg.wait_for_selector("[data-test=m1-liste]")
         pg.click("[data-test=m1-gun-1]"); pg.wait_for_selector("[data-test=m1-gun]")

@@ -28,6 +28,8 @@ jobs:
         run: |
           npm run content:build
           npm run build -w web
+          # e2e paketi: içerikte henüz olmayan M1 günü için örnek gün (yayın paketine girmez)
+          DW_E2E_FIXTURES=1 npm run content:build
           (cd web && npx vite build --mode e2e --outDir dist-e2e)
           T=0; for f in web/dist/assets/*.js; do T=$((T + $(gzip -9c "$f" | wc -c))); done
           echo "JS toplam (gzip): $((T/1024)) KB" | tee -a "$GITHUB_STEP_SUMMARY"
@@ -72,6 +74,8 @@ jobs:
         run: cd tests/e2e && python v2_core.py
       - name: Oynatıcı (aşama 1–6, dinleme, klavye, uzun basma, dayanıklılık, taşma, %130)
         run: cd tests/e2e && python v2_player.py --shots /tmp/shots
+      - name: "Medya bölüm oynatıcısı (#58 A4): 5 dk video 3 bölüm, a–g, dikte merdiveni, anons"
+        run: cd tests/e2e && python v2_medya.py --shots /tmp/shots
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4

@@ -9,6 +9,9 @@ import { medyalar } from "../../packages/shared/src/m1.ts";
 export const sade = (s: string) => s.toLowerCase().replace(/[.,!?;:„“"'»«()–-]/g, " ").replace(/\s+/g, " ").trim();
 const words = (s: string) => sade(s).split(" ").filter(Boolean);
 const hasWord = (sentence: string, w: string) => ` ${sade(sentence)} `.includes(` ${sade(w)} `);
+/** Satır birden çok cümle taşıyabilir ("Heute ist Donnerstag. Gestern war Mittwoch."): dikte hedefi satırın tamamı ya da bir cümlesi */
+export const parcalar = (line: string) => [line, ...(line.match(/[^.!?]+[.!?]*/g) ?? []).map((x) => x.trim()).filter(Boolean)];
+const hedefMi = (line: string, t: string) => parcalar(line).some((x) => sade(x) === sade(t));
 
 export function checkGun(g: Gun, ctx: { lexicon: Set<string>; temel: Set<string> }): { errors: string[]; warnings: string[] } {
   const errors: string[] = [], warnings: string[] = [];
@@ -80,14 +83,15 @@ function checkBolum(b: Bolum, byId: Map<string, MedyaCumle>, own: Set<string>, e
       for (const [i, o] of d.opts.entries()) if (i !== d.ans && hasWord(c.de, o)) err(`${at}: çeldirici "${o}" cümlede geçiyor`);
     } else if (d.seviye === "orta") {
       if ((d.de.match(/___/g) || []).length !== 1) err(`${at}: tek boşluk olmalı`);
-      if (sade(d.de.replace("___", d.accepted[0]!)) !== sade(c.de)) err(`${at}: boşluk doldurulunca cümle "${c.de}" çıkmıyor`);
+      if (!hedefMi(c.de, d.de.replace("___", d.accepted[0]!))) err(`${at}: boşluk doldurulunca "${c.de}" (ya da bir cümlesi) çıkmıyor`);
       if (words(d.accepted[0]!).length !== 1) err(`${at}: orta seviye yalnızca tek kelime ister`);
     } else {
-      if (sade(d.accepted[0]!) !== sade(c.de)) err(`${at}: ilk kabul cümlenin kendisi değil ("${c.de}")`);
+      const hedef = d.accepted[0]!;
+      if (!hedefMi(c.de, hedef)) err(`${at}: ilk kabul "${c.de}" satırının kendisi ya da bir cümlesi değil`);
       if (d.accepted.length < 3) warn(`${at}: kabul ${d.accepted.length} (en az 3 yazım)`);
-      for (const a of d.accepted) if (sade(a) !== sade(c.de)) err(`${at}: kabul "${a}" başka bir cümle (yalnızca yazım farkı olabilir)`);
+      for (const a of d.accepted) if (sade(a) !== sade(hedef)) err(`${at}: kabul "${a}" başka bir cümle (yalnızca yazım farkı olabilir)`);
       if (d.seviye === "zor") {
-        const need = words(c.de), bank = d.banka.map(sade);
+        const need = words(hedef), bank = d.banka.map(sade);
         const left = [...bank];
         for (const w of need) { const i = left.indexOf(w); if (i < 0) { err(`${at}: bankada "${w}" yok`); break; } left.splice(i, 1); }
         if (left.length < 2) err(`${at}: bankada en az 2 çeldirici olmalı (${left.length})`);

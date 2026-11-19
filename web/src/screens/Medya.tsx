@@ -10,7 +10,7 @@ import { Gun, medyalar, type AnlamaQ, type Bolum, type Dikte, type Lexeme, type 
 import { useApp } from "../state.ts";
 import { loadIndex, loadLexicon, loadM1Gun, contentUrl } from "../services/content.ts";
 import { addPersonal, getMeta, setMeta } from "../data/db.ts";
-import { ADIM_TR, BASLANGIC, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, ileri, ilerlemeAnahtari, kartBul, type MedyaIlerleme } from "../core/medya.ts";
+import { ADIM_TR, BASLANGIC, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, ilerlemeAnahtari, kartBul, type MedyaIlerleme } from "../core/medya.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { scoreHeard } from "../core/grading.ts";
 import { speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
@@ -104,7 +104,6 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
   const adim = steps[p.s]!;
   const cs = bolumCumleleri(m, b);
   const sonraki = (alt = 1, ok?: boolean) => { oy.dur(); setP({ ...ileri(p, m, alt), ...(ok === undefined ? {} : { dogru: p.dogru + (ok ? 1 : 0), toplam: p.toplam + 1 }) }); };
-  const metinAcik = !["dinle", "ana", "ayrinti", "dikte"].includes(adim);
 
   return (
     <div class="stack" data-test="medya" data-adim={adim} data-pos={`${p.b}.${p.s}.${p.k}`}>
@@ -138,7 +137,6 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
       {adim === "transkript" && <TranskriptAdimi cs={cs} lex={lex} oy={oy} onNext={() => sonraki()} />}
       {adim === "golge" && <GolgeAdimi key={`${p.b}g${p.k}`} c={cs.find((c) => c.id === b.golge[p.k]) ?? cs[0]!} sira={`${p.k + 1}/${b.golge.length}`} oy={oy} onNext={(ok) => sonraki(b.golge.length, ok)} />}
       {adim === "cevapla" && b.cevapla && <CevaplaAdimi key={`${p.b}c`} d={b.cevapla} onNext={(ok) => sonraki(1, ok)} />}
-      {metinAcik ? null : <p class="tiny muted">Metin bu adımda gizli: önce kulağınla dene.</p>}
     </div>
   );
 }
@@ -150,7 +148,7 @@ function DinleAdimi({ m, cs, oy, onNext }: { m: Medya; cs: MedyaCumle[]; oy: Ret
   return (
     <section class="card stack fade" data-test="adim-dinle">
       <div class="kicker">Bölümü baştan sona dinle</div>
-      <p class="small">Metin yok. Ne hakkında olduğunu anlamaya çalış; her kelimeyi anlaman gerekmiyor.</p>
+      <p class="small">Metin yok: önce kulağınla dene. Ne hakkında olduğunu anlamaya çalış; her kelimeyi anlaman gerekmiyor.</p>
       <div class="row">
         <button class="btn primary grow" data-test="dinle-bolum" disabled={oy.calisiyor !== null} onClick={async () => { await oy.bolum(cs, yavas); setDinledi(true); }}>
           <Icon name="play" /> {dinledi ? "Bir daha dinle" : "Dinle"}</button>
@@ -226,6 +224,7 @@ function DikteAdimi({ d, sira, cs, oy, onNext }: { d: Dikte; sira: string; cs: M
       <div class="kicker">Dikte {sira} · {seviyeTr}</div>
       {c && <div class="row"><button class="btn primary grow" data-test="dikte-dinle" onClick={() => void oy.cumle(c, yavas)}><Icon name="play" /> Cümleyi dinle</button>
         <button class={`btn${yavas ? " primary" : ""}`} aria-pressed={yavas} onClick={() => setYavas(!yavas)}>0,75×</button></div>}
+      {c && (d.seviye === "orta" || d.seviye === "zor" || d.seviye === "usta") && (() => { const h = hedefSira(c.de, d.seviye === "orta" ? d.de.replace("___", d.accepted[0]!) : d.accepted[0]!); return h ? <p class="small" data-test="hedef-sira">Bu kayıtta {h.toplam} cümle var; {h.sira}. cümleyi yaz.</p> : null; })()}
       {d.seviye === "kolay" && <DikteSec d={d} onPick={(ok, o) => goster(ok, o, d.opts[d.ans]!)} done={!!res} />}
       {d.seviye === "orta" && <div class="de-lg" lang="de">{d.de.split("___").map((part, j) => <>{j > 0 && <span class="gapblank" aria-label="boşluk" />}{part}</>)}</div>}
       {d.seviye === "zor" && !res && (
@@ -266,7 +265,7 @@ function TranskriptAdimi({ cs, lex, oy, onNext }: { cs: MedyaCumle[]; lex: Lexem
           {" "}<button class="btn ghost sm" aria-label="Bu cümleyi dinle" onClick={() => void oy.cumle(c, false)}><Icon name="play" /></button>
           <br /><span class="small muted">{c.tr}</span></p>))}
       {kelime && (
-        <div class="card stack fade" data-test="kelime-kart">
+        <div class="card stack fade kelime-sheet" role="dialog" aria-label="Kelime kartı" data-test="kelime-kart">
           {kart ? <><div class="de-lg" lang="de"><Art art={kart.art} de={kart.de} /></div><p>{kart.tr}</p>{kart.examples[0] && <p class="small"><span lang="de">{kart.examples[0].de}</span><br /><span class="muted">{kart.examples[0].tr}</span></p>}</>
             : <><div class="de-lg" lang="de">{kelime.replace(/[.,!?;:]/g, "")}</div><p class="small muted">Bu kelimenin kartı henüz yok. Bankana eklersen anlamı hazırlanınca Bahçe'ye gelir.</p></>}
           <div class="row"><button class="btn primary grow" data-test="bankaya-ekle" onClick={async () => {

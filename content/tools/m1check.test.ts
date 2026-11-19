@@ -30,7 +30,7 @@ describe("M1 gün biçimi (#58 A4, PM-053, PM-055)", () => {
     d[2].banka = d[2].banka.slice(0, 3);
     const e = checkGun(parse(r), ctx).errors.join("\n");
     expect(e).toMatch(/doğru seçenek .* cümlede yok/);
-    expect(e).toMatch(/boşluk doldurulunca cümle/);
+    expect(e).toMatch(/boşluk doldurulunca/);
     expect(e).toMatch(/bankada/);
   });
   it("usta/zor kabulü yalnızca aynı cümlenin yazımları; merdiven sırası korunur", () => {

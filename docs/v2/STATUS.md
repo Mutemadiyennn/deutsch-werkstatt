@@ -22,7 +22,8 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 ## Yarım işler (PM-042 C)
 | İş | Dal | Durum |
 |---|---|---|
-| Kelime Bahçesi (PM-049) | `v2/bahce` | başlıyor |
+| Kelime Bahçesi (PM-049) | `v2/bahce` | PR #59, inceleme |
+| Medya oynatıcısı + dikte + gün şeması (#58 A4) | `v2/medya` | PR açıldı |
 | #43 Bugün ilk kare | `v2/denetim` | kök neden: 32 px bulanık gölge; düzeltme CI doğrulaması bekliyor |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
 

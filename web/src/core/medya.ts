@@ -83,3 +83,11 @@ export function ileri(p: MedyaIlerleme, m: Medya, altSayisi: number): MedyaIlerl
   if (p.b + 1 < m.bolumler.length) return { ...p, b: p.b + 1, s: 0, k: 0 };
   return { ...p, bitti: true };
 }
+
+/** Satır birden çok cümleyse ve dikte hedefi bunlardan biriyse: { sira, toplam } ("Kayıtta 2 cümle var; 2. cümleyi yaz") */
+export function hedefSira(line: string, hedef: string): { sira: number; toplam: number } | null {
+  const cs = (line.match(/[^.!?]+[.!?]*/g) ?? []).map((x) => x.trim()).filter(Boolean);
+  if (cs.length < 2) return null;
+  const i = cs.findIndex((x) => fold(x) === fold(hedef));
+  return i >= 0 ? { sira: i + 1, toplam: cs.length } : null;
+}

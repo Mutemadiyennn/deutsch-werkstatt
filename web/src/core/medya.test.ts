@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { Gun, Lexeme, medyalar } from "@dw/shared";
-import { adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, ileri, kartBul, BASLANGIC } from "./medya.ts";
+import { hedefSira, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, ileri, kartBul, BASLANGIC } from "./medya.ts";
 
 const gun = Gun.parse(JSON.parse(readFileSync(join(import.meta.dirname, "../../../content/tools/fixtures/m1/gun-01.json"), "utf8")));
 const [video, ses] = medyalar(gun);
@@ -52,5 +52,9 @@ describe("Medya bölüm oynatıcısı (#58 A4, PM-053)", () => {
     let q = { ...BASLANGIC, b: 2, s: adimlar(m.bolumler[2]!).length - 1 };
     q = ileri(q, m, 1);
     expect(q.bitti).toBe(true);
+  });
+  it("iki cümlelik satırda dikte hedefinin sırası", () => {
+    expect(hedefSira("Heute ist Donnerstag. Gestern war Mittwoch.", "Gestern war Mittwoch")).toEqual({ sira: 2, toplam: 2 });
+    expect(hedefSira("Heute ist Donnerstag.", "Heute ist Donnerstag.")).toBeNull();
   });
 });
