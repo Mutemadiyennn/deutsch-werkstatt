@@ -117,6 +117,11 @@ describe("öğrenci kimliği yer tutucuları (D-061)", () => {
     expect(redact("Ich heiße Oezge.", { name: "Özge" })).toBe("Ich heiße [Name].");
     expect(redact("Hier ist Anna Maria. Anna kommt.", { name: "Anna Maria" })).toBe("Hier ist [Name]. [Name] kommt.");
     expect(redact("Hier ist Anna  Maria.", { name: "Anna Maria" })).toBe("Hier ist [Name].");
+    // karışık klavye: bir harf Türkçe, öbürü değil (inceleme #75 P2)
+    expect(redact("Ich bin Gökce.", { name: "Gökçe" })).toBe("Ich bin [Name].");
+    expect(redact("Ich bin Cağri.", { name: "Çağrı" })).toBe("Ich bin [Name].");
+    expect(redact("Hier ist GOEKCE.", { name: "Gökçe" })).toBe("Hier ist [Name].");
+    expect(redact("Ich bin Müller.", { name: "Muller" })).toBe("Ich bin [Name].");
     // kelimenin içi maskelenmez
     expect(redact("Alina und Ali", { name: "Ali" })).toBe("Alina und [Name]");
     expect(redact("Guten Tag", {})).toBe("Guten Tag");

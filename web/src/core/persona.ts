@@ -54,20 +54,22 @@ export function fillName(expected: string, answer: string): string {
  * "Çağrı", "Özge", "İbrahim" sızıyordu — #73 incelemesi T-1). Büyük/küçük harf Türkçe ve Almanca kurala göre, boşluklar
  * esnek; iki kelimeli adda tam ad ve ayrıca her parça (en az 2 harf) maskelenir ("Anna Maria" → "Anna" da; T-2).
  */
-const TR_ASCII: Record<string, string> = { ç: "c", Ç: "C", ğ: "g", Ğ: "G", ı: "i", İ: "I", ö: "o", Ö: "O", ş: "s", Ş: "S", ü: "u", Ü: "U" };
-const asciiTr = (x: string) => x.replace(/[çÇğĞıİöÖşŞüÜ]/g, (c) => TR_ASCII[c]!);
-const asciiDe = (x: string) => asciiTr(x.replace(/ö/g, "oe").replace(/Ö/g, "Oe").replace(/ü/g, "ue").replace(/Ü/g, "Ue").replace(/ä/g, "ae").replace(/Ä/g, "Ae"));
+/**
+ * Harf başına yazım değişkenleri: karışık klavye ("Gökce", "Cağrı", "Oezge") da yakalanır (inceleme #75 P2).
+ * Büyük/küçük harf `i` bayrağıyla; İ/ı Unicode katlamasında eşleşmediği için açıkça yazılır.
+ */
+const DEGISKEN: Record<string, string> = {
+  ç: "(?:ç|c)", c: "(?:c|ç)", ğ: "(?:ğ|g)", g: "(?:g|ğ)", ş: "(?:ş|s)", s: "(?:s|ş)", ı: "[ıiİI]", i: "[iıİI]",
+  ö: "(?:ö|oe|o)", o: "(?:o|ö)", ü: "(?:ü|ue|u)", u: "(?:u|ü)", ä: "(?:ä|ae|a)", a: "(?:a|ä)", ß: "(?:ß|ss)"
+};
+const desen = (x: string) => [...x.toLocaleLowerCase("tr")].map((c) => DEGISKEN[c] ?? (/\s/.test(c) ? "\\s+" : c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))).join("");
 export function redact(t: string, p: Persona): string {
   const ad = p.name?.trim().replace(/\s+/g, " ");
   if (!ad) return t;
-  const kacis = (x: string) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/ /g, "\\s+");
   const parcalar = ad.split(" ").filter((w) => [...w].length >= 2);
-  const adaylar = [ad, ...(parcalar.length > 1 ? parcalar : [])]
-    // Türkçe klavyesiz yazılış da (Çağrı → Cagri, Özge → Ozge / Oezge)
-    .flatMap((x) => [x, asciiTr(x), asciiDe(x)])
-    .flatMap((x) => [x, x.toLocaleLowerCase("tr"), x.toLocaleUpperCase("tr"), x.toLocaleLowerCase("de"), x.toLocaleUpperCase("de")])
-    .filter((x, i, a) => a.indexOf(x) === i).sort((a, b) => b.length - a.length);
-  const re = new RegExp(`(?<![\\p{L}\\p{N}])(?:${adaylar.map(kacis).join("|")})(?![\\p{L}\\p{N}])`, "giu");
+  // tam ad önce (daha uzun), sonra iki kelimeli adın parçaları
+  const adaylar = [ad, ...(parcalar.length > 1 ? parcalar : [])].filter((x, i, a) => a.indexOf(x) === i).sort((a, b) => b.length - a.length);
+  const re = new RegExp(`(?<![\\p{L}\\p{N}])(?:${adaylar.map(desen).join("|")})(?![\\p{L}\\p{N}])`, "giu");
   return t.replace(re, "[Name]");
 }
 /** Yapay zekâdan gelen metin: [Name] → ad (yoksa hitap kalır) */
