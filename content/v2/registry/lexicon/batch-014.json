@@ -25,12 +25,24 @@
    },
    "collocations": [
     {
-     "de": "Ich hoffe, …",
-     "tr": "Umarım …"
+     "de": "Ich hoffe, es klappt.",
+     "tr": "Umarım olur."
     },
     {
      "de": "Hoffen wir das Beste!",
      "tr": "En iyisini umalım!"
+    },
+    {
+     "de": "auf gutes Wetter hoffen",
+     "tr": "güzel hava ummak"
+    },
+    {
+     "de": "Ich hoffe es.",
+     "tr": "Umarım."
+    },
+    {
+     "de": "Ich hoffe nicht.",
+     "tr": "Umarım öyle değildir."
     }
    ],
    "patterns": [
@@ -38,8 +50,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Umarım gelir derken **Ich hoffe, dass kommt er** yanlış. Doğrusu **Ich hoffe, dass er kommt**.",
-    "Güzel hava umuyoruz derken **Wir hoffen für gutes Wetter** yanlış. Doğrusu **Wir hoffen auf gutes Wetter**."
+    "Umarım gelir derken **Ich hoffe, dass kommt er** yanlış. Doğrusu **Ich hoffe, dass er kommt.** **dass** ile başlayan kısımda **kommt** en sona gider.",
+    "Güzel hava umuyoruz derken **Wir hoffen für gutes Wetter** yanlış. Doğrusu **Wir hoffen auf gutes Wetter.** Umulan şeyden önce **auf** gelir."
    ],
    "examples": [
     {
@@ -94,6 +106,18 @@
     {
      "de": "egal, was",
      "tr": "ne olursa olsun"
+    },
+    {
+     "de": "ganz egal",
+     "tr": "hiç fark etmez"
+    },
+    {
+     "de": "egal, wann",
+     "tr": "ne zaman olursa olsun"
+    },
+    {
+     "de": "Ist doch egal!",
+     "tr": "Önemli değil ki!"
     }
    ],
    "patterns": [
@@ -101,7 +125,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Bana fark etmez derken **Ich bin egal** yanlış. Doğrusu **Das ist mir egal**."
+    "Bana fark etmez derken **Ich bin egal** yanlış. Doğrusu **Das ist mir egal.** **Ich bin egal**, ben önemli değilim demektir."
    ],
    "examples": [
     {
@@ -113,7 +137,7 @@
     {
      "id": "lx:egal:2",
      "de": "Egal, wann du kommst, ruf an.",
-     "tr": "Ne zaman gelirsen gel, ara.",
+     "tr": "Ne zaman gelirsen gel, telefon et.",
      "layer": "hd"
     },
     {
@@ -141,7 +165,7 @@
    "exp": {
     "anlam_tr": "Seçeneklerin senin için aynı olduğunu söyler.",
     "parcalar": [],
-    "ipucu_tr": "Kibar olmak için **Mir ist beides recht** de: ikisi de olur."
+    "ipucu_tr": "**Das ist mir egal** bana fark etmez demektir."
    }
   },
   {
@@ -159,7 +183,19 @@
     },
     {
      "de": "in der Stadt",
-     "tr": "şehirde, merkezde"
+     "tr": "merkezde"
+    },
+    {
+     "de": "eine kleine Stadt",
+     "tr": "küçük bir şehir"
+    },
+    {
+     "de": "mitten in der Stadt",
+     "tr": "şehrin tam ortasında"
+    },
+    {
+     "de": "die Stadt besichtigen",
+     "tr": "şehri gezmek"
     }
    ],
    "patterns": [
@@ -167,34 +203,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Şehir merkezine gidiyorum derken **Ich fahre in der Stadt** yanlış. Doğrusu **Ich fahre in die Stadt**.",
-    "Şehirler derken **die Stadte** yanlış. Doğrusu **die Städte**."
+    "Şehir merkezine gidiyorum derken **Ich fahre in der Stadt** yanlış. Doğrusu **Ich fahre in die Stadt**. Bir yere giderken **der** değil **die** gelir.",
+    "Şehirler derken **die Stadte** yanlış. Doğrusu **die Städte**. Birden çok şehir için **a** harfi **ä** olur."
    ],
    "examples": [
     {
      "id": "lx:Stadt:1",
      "de": "Ich wohne in einer kleinen Stadt.",
      "tr": "Küçük bir şehirde oturuyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "small town square with church"
     },
     {
      "id": "lx:Stadt:2",
      "de": "Am Samstag fahre ich in die Stadt.",
      "tr": "Cumartesi şehir merkezine gidiyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "tram heading into city"
     },
     {
      "id": "lx:Stadt:3",
      "de": "Gehen wir in die Stadt?",
      "tr": "Merkeze gidelim mi?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "friends walking through old town"
     },
     {
      "id": "lx:Stadt:4",
      "de": "– Wo arbeitest du? – In der Stadt, am Marienplatz.",
      "tr": "– Nerede çalışıyorsun? – Merkezde, Marienplatz'ta.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "busy city square at noon"
     }
    ],
    "level": "A1",
@@ -208,7 +248,39 @@
     "anlam_tr": "Büyük bir yerleşim yerini anlatır.",
     "parcalar": [],
     "ipucu_tr": "**in die Stadt** şehir merkezine demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Regensburg ist ___ schöne Stadt.",
+     "answer": "eine",
+     "tr": "Regensburg güzel bir şehir.",
+     "hint_tr": "Bir şehri anlatırken **eine Stadt** denir: **eine schöne Stadt**."
+    },
+    {
+     "de": "Ich wohne in ___ kleinen Stadt.",
+     "answer": "einer",
+     "tr": "Küçük bir şehirde oturuyorum.",
+     "hint_tr": "Herhangi bir şehir: **in einer Stadt**."
+    },
+    {
+     "de": "Am Samstag fahre ich in ___ Stadt.",
+     "answer": "die",
+     "tr": "Cumartesi şehir merkezine gidiyorum.",
+     "hint_tr": "Merkeze giderken **in die Stadt** denir."
+    },
+    {
+     "de": "Ich arbeite in ___ Stadt.",
+     "answer": "der",
+     "tr": "Merkezde çalışıyorum.",
+     "hint_tr": "Merkezde derken **in der Stadt** denir."
+    },
+    {
+     "de": "Ich kenne viele deutsche ___.",
+     "answer": "Städte",
+     "tr": "Birçok Alman şehri tanıyorum.",
+     "hint_tr": "Birden çok şehir için **Städte** denir, **a** harfi **ä** olur."
+    }
+   ]
   },
   {
    "id": "lx:kurz",
@@ -223,6 +295,14 @@
     {
      "de": "Haben Sie kurz Zeit?",
      "tr": "Bir dakikanız var mı?"
+    },
+    {
+     "de": "eine kurze Pause",
+     "tr": "kısa bir mola"
+    },
+    {
+     "de": "kurze Haare",
+     "tr": "kısa saç"
     }
    ],
    "patterns": [
@@ -231,7 +311,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Daha kısa derken **kurzer** yanlış. Doğrusu **kürzer**."
+    "Saçım daha kısa derken **Meine Haare sind kurzer** yanlış. Doğrusu **Meine Haare sind kürzer**. Karşılaştırırken **u** harfi **ü** olur."
    ],
    "examples": [
     {
@@ -288,6 +368,18 @@
     {
      "de": "Was machst du eigentlich beruflich?",
      "tr": "Bu arada sen ne iş yapıyorsun?"
+    },
+    {
+     "de": "eigentlich nicht",
+     "tr": "aslında hayır"
+    },
+    {
+     "de": "Wie heißt du eigentlich?",
+     "tr": "Bu arada adın ne?"
+    },
+    {
+     "de": "Eigentlich wollte ich nur fragen.",
+     "tr": "Aslında sadece sormak istedim."
     }
    ],
    "patterns": [
@@ -295,7 +387,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Aslında vaktim yok derken **Eigentlich ich habe keine Zeit** yanlış. Doğrusu **Eigentlich habe ich keine Zeit**."
+    "Aslında vaktim yok derken **Eigentlich ich habe keine Zeit** yanlış. Doğrusu **Eigentlich habe ich keine Zeit.** **eigentlich** başa gelince **habe** hemen arkasından gelir."
    ],
    "examples": [
     {
@@ -354,6 +446,18 @@
     {
      "de": "mit dem Auto",
      "tr": "arabayla"
+    },
+    {
+     "de": "das Auto parken",
+     "tr": "arabayı park etmek"
+    },
+    {
+     "de": "ein Auto mieten",
+     "tr": "araba kiralamak"
+    },
+    {
+     "de": "Das Auto springt nicht an.",
+     "tr": "Araba çalışmıyor."
     }
    ],
    "patterns": [
@@ -370,26 +474,30 @@
      "id": "lx:Auto:1",
      "de": "Mein Auto ist in der Werkstatt.",
      "tr": "Arabam serviste.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "car on lift in garage"
     },
     {
      "id": "lx:Auto:2",
      "de": "Fahren Sie mit dem Auto?",
      "tr": "Arabayla mı gidiyorsunuz?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "car driving on country road"
     },
     {
      "id": "lx:Auto:3",
      "de": "Das Auto springt nicht an.",
      "tr": "Araba çalışmıyor.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "frustrated driver in stalled car"
     },
     {
      "id": "lx:Auto:4",
      "de": "– Hast du ein Auto? – Nein, ich fahre mit dem Rad.",
      "tr": "– Araban var mı? – Hayır, bisikletle gidiyorum.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "bicycle next to parked car"
     }
    ],
    "level": "A1",
@@ -403,7 +511,42 @@
     "anlam_tr": "Yolda kullandığın arabayı anlatır.",
     "parcalar": [],
     "ipucu_tr": "**Auto fahren** araba sürmek demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Hast du ___ Auto?",
+     "answer": "ein",
+     "tr": "Araban var mı?",
+     "hint_tr": "**Hast du** dedikten sonra da **ein Auto** aynı kalır."
+    },
+    {
+     "de": "Ich habe ___ Auto, ich fahre mit dem Rad.",
+     "answer": "kein",
+     "tr": "Arabam yok, bisikletle gidiyorum.",
+     "hint_tr": "Arabam yok derken **Ich habe kein Auto** denir."
+    },
+    {
+     "de": "___ Auto ist in der Werkstatt.",
+     "answer": "Das",
+     "tr": "Araba serviste.",
+     "hint_tr": "Bildiğimiz araba: **das Auto**.",
+     "also_ok": [
+      "Mein"
+     ]
+    },
+    {
+     "de": "Ich komme mit ___ Auto.",
+     "answer": "dem",
+     "tr": "Arabayla geliyorum.",
+     "hint_tr": "Arabayla gelirken **mit dem Auto** denir."
+    },
+    {
+     "de": "Vor dem Haus stehen drei ___.",
+     "answer": "Autos",
+     "tr": "Evin önünde üç araba duruyor.",
+     "hint_tr": "Üç araba için **drei Autos** denir, sona **s** gelir."
+    }
+   ]
   },
   {
    "id": "lx:Uhr",
@@ -548,6 +691,14 @@
     {
      "de": "Sitzt die Hose?",
      "tr": "Pantolon üstüne oturdu mu?"
+    },
+    {
+     "de": "am Tisch sitzen",
+     "tr": "masada oturmak"
+    },
+    {
+     "de": "auf dem Sofa sitzen",
+     "tr": "kanepede oturmak"
     }
    ],
    "patterns": [
@@ -556,7 +707,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Bu evde oturuyorum derken **Ich sitze in diesem Haus** yanlış. Doğrusu **Ich wohne in diesem Haus**.",
-    "Oturun lütfen derken **Sitzen Sie bitte** yanlış. Doğrusu **Setzen Sie sich bitte**."
+    "Oturun lütfen derken **Sitzen Sie bitte** yanlış. Doğrusu **Setzen Sie sich bitte**. Oturma hareketi için **sich setzen**, oturur durum için **sitzen** denir."
    ],
    "examples": [
     {
@@ -574,8 +725,8 @@
     },
     {
      "id": "lx:sitzen:3",
-     "de": "Wo sitzt ihr?",
-     "tr": "Nerede oturuyorsunuz?",
+     "de": "Wo sitzt ihr im Zug?",
+     "tr": "Trende nerede oturuyorsunuz?",
      "layer": "alltag"
     },
     {
@@ -614,6 +765,14 @@
     {
      "de": "Er ist nicht mein Typ.",
      "tr": "Benim tipim değil."
+    },
+    {
+     "de": "ein komischer Typ",
+     "tr": "tuhaf bir adam"
+    },
+    {
+     "de": "ein cooler Typ",
+     "tr": "havalı bir adam"
     }
    ],
    "patterns": [
@@ -664,7 +823,45 @@
     "ne_zaman_tr": "Arkadaşlar arasında konuşurken.",
     "parcalar": [],
     "ipucu_tr": "**Er ist nicht mein Typ** benim tipim değil demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ netter Typ.",
+     "answer": "ein",
+     "tr": "Bu iyi bir adam.",
+     "hint_tr": "**Das ist** dedikten sonra **ein Typ** aynı kalır: **ein netter Typ**."
+    },
+    {
+     "de": "Wer ist ___ Typ da drüben?",
+     "answer": "der",
+     "tr": "Şuradaki adam kim?",
+     "hint_tr": "Gösterdiğimiz adam: **der Typ da drüben**."
+    },
+    {
+     "de": "Kennst du ___ Typen?",
+     "answer": "den",
+     "tr": "Adamı tanıyor musun?",
+     "hint_tr": "**Kennst du** dedikten sonra **der Typ**, **den Typen** olur."
+    },
+    {
+     "de": "Ich kenne ___ Typen von der Arbeit.",
+     "answer": "einen",
+     "tr": "İşten bir adam tanıyorum.",
+     "hint_tr": "**Ich kenne** dedikten sonra **ein Typ**, **einen Typen** olur."
+    },
+    {
+     "de": "Sie spricht mit ___ Typen da drüben.",
+     "answer": "dem",
+     "tr": "Kadın şuradaki adamla konuşuyor.",
+     "hint_tr": "**mit** dedikten sonra **der Typ**, **dem Typen** olur."
+    },
+    {
+     "de": "Das sind nette ___.",
+     "answer": "Typen",
+     "tr": "Bunlar iyi adamlar.",
+     "hint_tr": "Birden çok adam: **Typen**."
+    }
+   ]
   },
   {
    "id": "lx:Tür",
@@ -681,7 +878,19 @@
     },
     {
      "de": "an der Tür klingeln",
-     "tr": "kapıyı çalmak (zil)"
+     "tr": "kapının zilini çalmak"
+    },
+    {
+     "de": "die Tür zumachen",
+     "tr": "kapıyı kapatmak"
+    },
+    {
+     "de": "an die Tür klopfen",
+     "tr": "kapıyı tıklatmak"
+    },
+    {
+     "de": "vor der Tür stehen",
+     "tr": "kapının önünde durmak"
     }
    ],
    "patterns": [
@@ -690,34 +899,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kapı çalıyor derken **Die Tür klingelt** yanlış. Doğrusu **Es klingelt an der Tür**.",
-    "Kapıyı aç derken **Mach Tür auf** yanlış. Doğrusu **Mach die Tür auf**."
+    "Kapı çalıyor derken **Die Tür klingelt** yanlış. Doğrusu **Es klingelt an der Tür.** Almanca, kapıda zil çalıyor der.",
+    "Kapıyı aç derken **Mach Tür auf** yanlış. Doğrusu **Mach die Tür auf.** **Tür** sözünün önüne **die** gelir."
    ],
    "examples": [
     {
      "id": "lx:Tür:1",
      "de": "Machen Sie bitte die Tür zu.",
      "tr": "Kapıyı kapatın lütfen.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "hand closing office door"
     },
     {
      "id": "lx:Tür:2",
      "de": "Es klingelt an der Tür.",
      "tr": "Kapı çalıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "finger pressing doorbell button"
     },
     {
      "id": "lx:Tür:3",
      "de": "Mach mal die Tür auf!",
      "tr": "Kapıyı açsana!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "hand opening apartment door"
     },
     {
      "id": "lx:Tür:4",
      "de": "– Wer ist an der Tür? – Der Paketbote.",
      "tr": "– Kapıdaki kim? – Kargocu.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "delivery man at front door"
     }
    ],
    "level": "A1",
@@ -730,7 +943,45 @@
     "anlam_tr": "Bir eve ya da odaya girdiğin kapıyı anlatır.",
     "parcalar": [],
     "ipucu_tr": "**Tür an Tür wohnen** kapı komşusu olmak demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Hier ist nur ___ Tür.",
+     "answer": "eine",
+     "tr": "Burada sadece bir kapı var.",
+     "hint_tr": "**Hier ist** dedikten sonra **eine Tür** aynı kalır."
+    },
+    {
+     "de": "Das ist ___ Tür zur Küche.",
+     "answer": "die",
+     "tr": "Bu, mutfağın kapısı.",
+     "hint_tr": "Belli bir kapı: **die Tür zur Küche**."
+    },
+    {
+     "de": "Mach bitte ___ Tür zu.",
+     "answer": "die",
+     "tr": "Lütfen kapıyı kapat.",
+     "hint_tr": "**Mach zu** dedikten sonra da **die Tür** aynı kalır."
+    },
+    {
+     "de": "Wir brauchen ___ neue Tür.",
+     "answer": "eine",
+     "tr": "Yeni bir kapıya ihtiyacımız var.",
+     "hint_tr": "**Wir brauchen** dedikten sonra da **eine Tür** aynı kalır."
+    },
+    {
+     "de": "Es klingelt an ___ Tür.",
+     "answer": "der",
+     "tr": "Kapı çalıyor.",
+     "hint_tr": "**an** ile **die Tür**, **an der Tür** olur."
+    },
+    {
+     "de": "Die Wohnung hat zwei ___.",
+     "answer": "Türen",
+     "tr": "Dairenin iki kapısı var.",
+     "hint_tr": "İki kapı: **zwei Türen**."
+    }
+   ]
   },
   {
    "id": "lx:falsch",
@@ -745,6 +996,18 @@
     {
      "de": "etwas falsch machen",
      "tr": "bir şeyi yanlış yapmak"
+    },
+    {
+     "de": "falsch verstehen",
+     "tr": "yanlış anlamak"
+    },
+    {
+     "de": "falsch schreiben",
+     "tr": "yanlış yazmak"
+    },
+    {
+     "de": "Das ist falsch.",
+     "tr": "Bu yanlış."
     }
    ],
    "patterns": [
@@ -752,14 +1015,14 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Hata yaptım derken **Ich habe falsch gemacht** eksik. Doğrusu **Ich habe etwas falsch gemacht**.",
-    "Yanılıyorsun derken **Du bist falsch** yanlış. Doğrusu **Das stimmt nicht**."
+    "Hata yaptım derken **Ich habe falsch gemacht** yanlış. Doğrusu **Ich habe etwas falsch gemacht.** Bu cümlede **etwas**, yani bir şey gerekir.",
+    "Yanılıyorsun derken **Du bist falsch** yanlış. Doğrusu **Du liegst falsch.** **Du bist falsch**, sen ikiyüzlüsün demektir."
    ],
    "examples": [
     {
      "id": "lx:falsch:1",
      "de": "Entschuldigung, ich bin falsch verbunden.",
-     "tr": "Pardon, yanlış numarayı aradım.",
+     "tr": "Pardon, yanlış numara çevirmişim.",
      "layer": "hd",
      "img": "confused person looking at phone"
     },
@@ -805,12 +1068,24 @@
    "pl": "Namen",
    "collocations": [
     {
-     "de": "mein Name ist …",
-     "tr": "adım …"
+     "de": "Mein Name ist Lena.",
+     "tr": "Adım Lena."
     },
     {
      "de": "der Vorname",
      "tr": "ön ad"
+    },
+    {
+     "de": "Wie ist Ihr Name?",
+     "tr": "Adınız ne?"
+    },
+    {
+     "de": "den Namen buchstabieren",
+     "tr": "adı harf harf söylemek"
+    },
+    {
+     "de": "auf den Namen Wolf",
+     "tr": "Wolf adına"
     }
    ],
    "patterns": [
@@ -819,8 +1094,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Onun adı Ali derken **Sein Name Ali** eksik. Doğrusu **Sein Name ist Ali**.",
-    "Adını yaz derken **Schreib deinen Name** yanlış. Doğrusu **Schreib deinen Namen**."
+    "Adamın adı Ali derken **Sein Name Ali** yanlış. Doğrusu **Sein Name ist Ali**. Almancada bu cümlede **ist** atlanmaz.",
+    "Adını yaz derken **Schreib deinen Name** yanlış. Doğrusu **Schreib deinen Namen**. **Schreib deinen** dedikten sonra **Name** kelimesine **n** eklenir."
    ],
    "examples": [
     {
@@ -843,8 +1118,8 @@
     },
     {
      "id": "lx:Name:4",
-     "de": "– Ihr Name, bitte? – Aksoy, A-K-S-O-Y.",
-     "tr": "– Adınız, lütfen? – Aksoy, A-K-S-O-Y.",
+     "de": "– Ihr Name, bitte? – Wolf, W-O-L-F.",
+     "tr": "– Adınız, lütfen? – Wolf, W-O-L-F.",
      "layer": "alltag",
      "dialog": true,
      "img": "receptionist writing name on form"
@@ -863,7 +1138,39 @@
     "ne_zaman_tr": "Telefonda, resmî dairede ve tanışırken.",
     "parcalar": [],
     "ipucu_tr": "Formlarda **Name** soyadın, **Vorname** adın demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ schöner Name!",
+     "answer": "ein",
+     "tr": "Bu güzel bir isim!",
+     "hint_tr": "Bir ismi beğenirken **ein schöner Name** denir."
+    },
+    {
+     "de": "Wie ist ___ Name, bitte?",
+     "answer": "Ihr",
+     "tr": "Adınız nedir, lütfen?",
+     "hint_tr": "Sizin adınız derken **Ihr Name** denir."
+    },
+    {
+     "de": "Können Sie ___ Namen buchstabieren?",
+     "answer": "Ihren",
+     "tr": "Adınızı harf harf söyleyebilir misiniz?",
+     "hint_tr": "**buchstabieren** ile **Ihr Name**, **Ihren Namen** olur."
+    },
+    {
+     "de": "Schreiben Sie bitte Ihren ___ hier.",
+     "answer": "Namen",
+     "tr": "Lütfen adınızı buraya yazın.",
+     "hint_tr": "**Schreiben Sie** dedikten sonra **Ihr Name**, **Ihren Namen** olur."
+    },
+    {
+     "de": "Mein ___ ist Lena Wolf.",
+     "answer": "Name",
+     "tr": "Adım Lena Wolf.",
+     "hint_tr": "Adımı söylerken **Mein Name ist** denir."
+    }
+   ]
   },
   {
    "id": "lx:Kopf",
@@ -880,7 +1187,19 @@
     },
     {
      "de": "im Kopf",
-     "tr": "kafada, akılda"
+     "tr": "akılda"
+    },
+    {
+     "de": "Kopf hoch!",
+     "tr": "Moralini bozma!"
+    },
+    {
+     "de": "sich den Kopf stoßen",
+     "tr": "başını çarpmak"
+    },
+    {
+     "de": "den Kopf schütteln",
+     "tr": "başını iki yana sallamak"
     }
    ],
    "patterns": [
@@ -888,34 +1207,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Başım ağrıyor derken **Ich tut der Kopf weh** yanlış. Doğrusu **Mir tut der Kopf weh**.",
-    "Kafalar derken **die Kopfe** yanlış. Doğrusu **die Köpfe**."
+    "Başım ağrıyor derken **Ich tut der Kopf weh** yanlış. Doğrusu **Mir tut der Kopf weh**. Ağrıyan yeri söylerken **ich** değil **mir** denir.",
+    "Kafalar derken **die Kopfe** yanlış. Doğrusu **die Köpfe**. Birden çok kafa için **o** harfi **ö** olur."
    ],
    "examples": [
     {
      "id": "lx:Kopf:1",
      "de": "Mir tut der Kopf weh.",
      "tr": "Başım ağrıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "woman holding head in pain"
     },
     {
      "id": "lx:Kopf:2",
-     "de": "Ich habe den ganzen Tag Kopfschmerzen.",
-     "tr": "Bütün gün başım ağrıyor.",
-     "layer": "hd"
+     "de": "Ich habe mir den Kopf am Schrank gestoßen.",
+     "tr": "Başımı dolaba çarptım.",
+     "layer": "hd",
+     "img": "man rubbing head near cupboard"
     },
     {
      "id": "lx:Kopf:3",
      "de": "Kopf hoch!",
      "tr": "Moralini bozma!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "friend comforting sad man"
     },
     {
      "id": "lx:Kopf:4",
-     "de": "– Was fehlt Ihnen? – Ich habe starke Kopfschmerzen.",
-     "tr": "– Neyiniz var? – Şiddetli baş ağrım var.",
+     "de": "– Warum schüttelst du den Kopf? – Weil das falsch ist.",
+     "tr": "– Neden başını iki yana sallıyorsun? – Çünkü bu yanlış.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "man shaking head at paper"
     }
    ],
    "level": "A1",
@@ -929,7 +1252,39 @@
     "ne_zaman_tr": "Doktorda ağrını anlatırken.",
     "parcalar": [],
     "ipucu_tr": "**Kopf hoch!** moralini bozma demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Mir tut ___ ganze Kopf weh.",
+     "answer": "der",
+     "tr": "Bütün başım ağrıyor.",
+     "hint_tr": "Başım ağrıyor derken **Mir tut der Kopf weh** denir: **der ganze Kopf**."
+    },
+    {
+     "de": "Ich habe mir ___ Kopf gestoßen.",
+     "answer": "den",
+     "tr": "Başımı çarptım.",
+     "hint_tr": "**Ich habe mir** dedikten sonra **der Kopf**, **den Kopf** olur."
+    },
+    {
+     "de": "Ich habe die Zahl im ___.",
+     "answer": "Kopf",
+     "tr": "Sayı aklımda.",
+     "hint_tr": "Aklımda derken **im Kopf** denir."
+    },
+    {
+     "de": "___ hoch!",
+     "answer": "Kopf",
+     "tr": "Moralini bozma!",
+     "hint_tr": "Moralini bozma derken **Kopf hoch** denir."
+    },
+    {
+     "de": "Alle ___ drehen sich zur Tür.",
+     "answer": "Köpfe",
+     "tr": "Bütün başlar kapıya dönüyor.",
+     "hint_tr": "Birden çok baş için **Köpfe** denir."
+    }
+   ]
   },
   {
    "id": "lx:Glück",
@@ -946,6 +1301,14 @@
     {
      "de": "zum Glück",
      "tr": "neyse ki"
+    },
+    {
+     "de": "Glück haben",
+     "tr": "şanslı olmak"
+    },
+    {
+     "de": "kein Glück haben",
+     "tr": "şansı olmamak"
     }
    ],
    "patterns": [
@@ -953,7 +1316,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Şanslıydık derken **Wir waren glücklich** yanlış. Doğrusu **Wir hatten Glück**.",
+    "Şanslıydık derken **Wir waren glücklich** yanlış. Doğrusu **Wir hatten Glück**. **glücklich** mutlu demektir, şans için **Glück haben** denir.",
     "Neyse ki bir şey olmadı derken **Glücklich ist nichts passiert** yanlış. Doğrusu **Zum Glück ist nichts passiert**."
    ],
    "examples": [
@@ -994,7 +1357,33 @@
     "anlam_tr": "İşlerin tesadüfen iyi gitmesini anlatır.",
     "parcalar": [],
     "ipucu_tr": "**Glück** mutluluk anlamına da gelir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Viel ___ bei der Prüfung!",
+     "answer": "Glück",
+     "tr": "Sınavda bol şans!",
+     "hint_tr": "Bol şans derken **Viel Glück** denir."
+    },
+    {
+     "de": "___ Glück ist nichts passiert.",
+     "answer": "Zum",
+     "tr": "Neyse ki bir şey olmadı.",
+     "hint_tr": "Neyse ki derken **zum Glück** denir."
+    },
+    {
+     "de": "Ich habe ___ gehabt!",
+     "answer": "Glück",
+     "tr": "Şansım yaver gitti!",
+     "hint_tr": "Şanslı olmak için **Glück haben** denir."
+    },
+    {
+     "de": "Wir hatten ___ Glück, der Zug war weg.",
+     "answer": "kein",
+     "tr": "Şansımız yoktu, tren gitmişti.",
+     "hint_tr": "Şansımız yoktu derken **kein Glück** denir."
+    }
+   ]
   },
   {
    "id": "lx:schwer",
@@ -1009,6 +1398,14 @@
     {
      "de": "Das fällt mir schwer.",
      "tr": "Bu bana zor geliyor."
+    },
+    {
+     "de": "eine schwere Tasche",
+     "tr": "ağır bir çanta"
+    },
+    {
+     "de": "schwer arbeiten",
+     "tr": "ağır iş yapmak"
     }
    ],
    "patterns": [
@@ -1016,13 +1413,13 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Çanta ağır derken **Die Tasche ist schwierig** yanlış. Doğrusu **Die Tasche ist schwer**."
+    "Çanta ağır derken **Die Tasche ist schwierig** yanlış. Doğrusu **Die Tasche ist schwer**. Ağırlık için yalnız **schwer** denir."
    ],
    "examples": [
     {
      "id": "lx:schwer:1",
      "de": "Die Kiste ist zu schwer für mich.",
-     "tr": "Kutu benim için çok ağır.",
+     "tr": "Kutu benim için fazla ağır.",
      "layer": "hd",
      "img": "person lifting a heavy box"
     },
@@ -1067,11 +1464,19 @@
    "collocations": [
     {
      "de": "Nicht so schlimm!",
-     "tr": "Çok önemli değil!"
+     "tr": "Önemli değil!"
     },
     {
      "de": "Das ist schlimm.",
-     "tr": "Bu çok kötü."
+     "tr": "Bu kötü."
+    },
+    {
+     "de": "Halb so schlimm!",
+     "tr": "O kadar da kötü değil!"
+    },
+    {
+     "de": "schlimmer werden",
+     "tr": "daha kötü olmak"
     }
    ],
    "patterns": [
@@ -1079,14 +1484,14 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Yemek kötü derken **Das Essen ist schlimm** yanlış. Doğrusu **Das Essen ist schlecht**.",
-    "Önemli değil derken **Nicht schlecht** yanlış. Doğrusu **Nicht schlimm**."
+    "Yemek kötü derken **Das Essen ist schlimm** yanlış. Doğrusu **Das Essen ist schlecht**. Tadı kötü olan şey için **schlecht** denir.",
+    "Önemli değil derken **Nicht schlecht** yanlış. Doğrusu **Nicht schlimm**. **Nicht schlecht** fena değil demektir."
    ],
    "examples": [
     {
      "id": "lx:schlimm:1",
      "de": "Ist es schlimm, Herr Doktor?",
-     "tr": "Ciddi mi, doktor bey?",
+     "tr": "Ciddi mi, Doktor Bey?",
      "layer": "hd"
     },
     {
@@ -1145,6 +1550,14 @@
     {
      "de": "für die Prüfung lernen",
      "tr": "sınava çalışmak"
+    },
+    {
+     "de": "Wörter lernen",
+     "tr": "kelime öğrenmek"
+    },
+    {
+     "de": "Auto fahren lernen",
+     "tr": "araba kullanmayı öğrenmek"
     }
    ],
    "patterns": [
@@ -1153,7 +1566,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Bana Almanca öğretiyor derken **Er lernt mir Deutsch** yanlış. Doğrusu **Er bringt mir Deutsch bei**.",
+    "Bana Almanca öğretiyor derken **Er lernt mir Deutsch** yanlış. Doğrusu **Er bringt mir Deutsch bei**. Öğretmek için **beibringen** denir.",
     "Sınava çalışıyorum derken **Ich arbeite für die Prüfung** yanlış. Doğrusu **Ich lerne für die Prüfung**."
    ],
    "examples": [
@@ -1172,8 +1585,8 @@
     },
     {
      "id": "lx:lernen:3",
-     "de": "Man lernt nie aus.",
-     "tr": "Öğrenmenin sonu yok.",
+     "de": "Ich lern grad für die Prüfung.",
+     "tr": "Şu an sınava çalışıyorum.",
      "layer": "alltag"
     },
     {
@@ -1325,6 +1738,18 @@
     {
      "de": "aus welchem Land",
      "tr": "hangi ülkeden"
+    },
+    {
+     "de": "aufs Land ziehen",
+     "tr": "kırsala taşınmak"
+    },
+    {
+     "de": "das ganze Land",
+     "tr": "bütün ülke"
+    },
+    {
+     "de": "in einem anderen Land leben",
+     "tr": "başka bir ülkede yaşamak"
     }
    ],
    "patterns": [
@@ -1374,12 +1799,44 @@
     "anlam_tr": "Bir ülkeyi anlatır.",
     "parcalar": [],
     "ipucu_tr": "**auf dem Land** şehir dışında, kırsalda demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Deutschland ist ___ schönes Land.",
+     "answer": "ein",
+     "tr": "Almanya güzel bir ülke.",
+     "hint_tr": "Bir ülkeyi anlatırken **ein Land** denir: **ein schönes Land**."
+    },
+    {
+     "de": "Aus welchem ___ kommen Sie?",
+     "answer": "Land",
+     "tr": "Hangi ülkedensiniz?",
+     "hint_tr": "Ülke için **Land** denir: **aus welchem Land**."
+    },
+    {
+     "de": "Meine Eltern wohnen auf ___ Land.",
+     "answer": "dem",
+     "tr": "Annemle babam kırsalda yaşıyor.",
+     "hint_tr": "Kırsalda derken **auf dem Land** denir."
+    },
+    {
+     "de": "Welche ___ kennst du?",
+     "answer": "Länder",
+     "tr": "Hangi ülkeleri biliyorsun?",
+     "hint_tr": "Birden çok ülke için **Länder** denir, **a** harfi **ä** olur."
+    },
+    {
+     "de": "Ich war schon in vielen ___.",
+     "answer": "Ländern",
+     "tr": "Birçok ülkede bulundum.",
+     "hint_tr": "**in vielen** dedikten sonra **Länder**, **Ländern** olur."
+    }
+   ]
   },
   {
    "id": "lx:anrufen",
    "de": "anrufen",
-   "tr": "telefonla aramak",
+   "tr": "telefon etmek",
    "pos": "verb",
    "verb": {
     "praesens3": "ruft an",
@@ -1394,11 +1851,23 @@
    "collocations": [
     {
      "de": "beim Arzt anrufen",
-     "tr": "doktoru aramak"
+     "tr": "doktora telefon etmek"
     },
     {
      "de": "zurückrufen",
-     "tr": "geri aramak"
+     "tr": "telefonla geri dönmek"
+    },
+    {
+     "de": "jemanden anrufen",
+     "tr": "birine telefon etmek"
+    },
+    {
+     "de": "später noch mal anrufen",
+     "tr": "sonra tekrar telefon etmek"
+    },
+    {
+     "de": "Ruf mich an!",
+     "tr": "Bana telefon et!"
     }
    ],
    "patterns": [
@@ -1407,33 +1876,33 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Seni arıyorum derken **Ich anrufe dich** yanlış. Doğrusu **Ich rufe dich an**.",
-    "Seni ararım derken **Ich rufe dir an** yanlış. Doğrusu **Ich rufe dich an**."
+    "Akşam telefon ediyorum derken **Ich anrufe am Abend** yanlış. Doğrusu **Ich rufe am Abend an.** **an** sona gider.",
+    "Sana telefon ederim derken **Ich rufe dir an** yanlış. Doğrusu **Ich rufe dich an.** Türkçedeki **sana** burada **dich** olur."
    ],
    "examples": [
     {
      "id": "lx:anrufen:1",
      "de": "Ich rufe Sie morgen an.",
-     "tr": "Sizi yarın ararım.",
+     "tr": "Size yarın telefon ederim.",
      "layer": "hd"
     },
     {
      "id": "lx:anrufen:2",
      "de": "Hat jemand für mich angerufen?",
-     "tr": "Beni arayan oldu mu?",
+     "tr": "Benim için telefon eden oldu mu?",
      "layer": "hd"
     },
     {
      "id": "lx:anrufen:3",
      "de": "Ruf mich mal an!",
-     "tr": "Ara beni!",
+     "tr": "Bana bir telefon et!",
      "layer": "alltag",
      "img": "person making a phone call"
     },
     {
      "id": "lx:anrufen:4",
      "de": "– Kannst du mich später anrufen? – Klar, so um sechs.",
-     "tr": "– Beni sonra arayabilir misin? – Tabii, altı gibi.",
+     "tr": "– Bana sonra telefon edebilir misin? – Tabii, altı gibi.",
      "layer": "alltag",
      "dialog": true
     }
@@ -1446,10 +1915,10 @@
     "arzt"
    ],
    "exp": {
-    "anlam_tr": "Birini telefonla aramayı söyler.",
-    "ne_zaman_tr": "Doktoru, daireyi ya da bir arkadaşını ararken.",
+    "anlam_tr": "Birine telefon etmeyi söyler.",
+    "ne_zaman_tr": "Doktora, daireye ya da bir arkadaşına telefon ederken.",
     "parcalar": [],
-    "ipucu_tr": "**zurückrufen** geri aramak demektir."
+    "ipucu_tr": "Bir yere telefon ederken **bei** gelir: **beim Arzt anrufen**, yani doktora telefon etmek."
    }
   },
   {
@@ -1465,6 +1934,18 @@
     {
      "de": "so bald wie möglich",
      "tr": "mümkün olduğunca çabuk"
+    },
+    {
+     "de": "bald wieder gesund werden",
+     "tr": "yakında iyileşmek"
+    },
+    {
+     "de": "bald fertig sein",
+     "tr": "birazdan hazır olmak"
+    },
+    {
+     "de": "bald wieder",
+     "tr": "yakında yine"
     }
    ],
    "patterns": [
@@ -1472,7 +1953,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Yakında görüşürüz derken **Wir sehen bald** eksik. Doğrusu **Wir sehen uns bald**."
+    "Yakında görüşürüz derken **Wir sehen bald** yanlış. Doğrusu **Wir sehen uns bald.** Birbirimizi görmek için **uns** gerekir."
    ],
    "examples": [
     {
@@ -1598,6 +2079,14 @@
     {
      "de": "die Tasche tragen",
      "tr": "çantayı taşımak"
+    },
+    {
+     "de": "einen Mantel tragen",
+     "tr": "palto giymek"
+    },
+    {
+     "de": "die Einkäufe tragen",
+     "tr": "alışveriş torbalarını taşımak"
     }
    ],
    "patterns": [
@@ -1605,8 +2094,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "O taşıyor derken **er tragt** yanlış. Doğrusu **er trägt**.",
-    "Şimdi ceketimi giyiyorum derken **Ich trage jetzt meine Jacke** yanlış. Doğrusu **Ich ziehe jetzt meine Jacke an**."
+    "Adam taşıyor derken **er tragt** yanlış. Doğrusu **er trägt**. **er** ile **a** harfi **ä** olur.",
+    "Şimdi ceketimi giyiyorum derken **Ich trage jetzt meine Jacke** yanlış. Doğrusu **Ich ziehe jetzt meine Jacke an**. Üstüne geçirirken **anziehen**, üstünde dururken **tragen** denir."
    ],
    "examples": [
     {
@@ -1619,7 +2108,7 @@
     {
      "id": "lx:tragen:2",
      "de": "Er trägt immer einen Anzug.",
-     "tr": "Hep takım elbise giyer.",
+     "tr": "Adam hep takım elbise giyer.",
      "layer": "hd"
     },
     {
@@ -1643,9 +2132,9 @@
     "einkaufen"
    ],
    "exp": {
-    "anlam_tr": "Bir şeyi elinde ya da üstünde götürmeyi söyler.",
+    "anlam_tr": "Bir şeyi kaldırıp taşımayı söyler.",
     "parcalar": [],
-    "ipucu_tr": "**Er trägt einen Anzug** takım elbise giyiyor demektir."
+    "ipucu_tr": "Giysi için de **tragen** denir: **Er trägt einen Anzug**."
    }
   },
   {
@@ -1726,6 +2215,18 @@
     {
      "de": "Vorsicht, heiß!",
      "tr": "Dikkat, sıcak!"
+    },
+    {
+     "de": "ein heißer Tag",
+     "tr": "sıcak bir gün"
+    },
+    {
+     "de": "heiß duschen",
+     "tr": "sıcak duş almak"
+    },
+    {
+     "de": "Mir ist heiß.",
+     "tr": "Sıcakladım."
     }
    ],
    "patterns": [
@@ -1733,7 +2234,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Sıcakladım derken **Ich bin heiß** yanlış. Doğrusu **Mir ist heiß**."
+    "Sıcakladım derken **Ich bin heiß** yanlış. Doğrusu **Mir ist heiß.** **Ich bin heiß** ayıp bir anlama gelebilir."
    ],
    "examples": [
     {
@@ -1792,12 +2293,24 @@
    },
    "collocations": [
     {
-     "de": "einkaufen gehen",
-     "tr": "alışverişe gitmek"
-    },
-    {
      "de": "online kaufen",
      "tr": "internetten almak"
+    },
+    {
+     "de": "Brot kaufen",
+     "tr": "ekmek almak"
+    },
+    {
+     "de": "eine Fahrkarte kaufen",
+     "tr": "bilet almak"
+    },
+    {
+     "de": "im Angebot kaufen",
+     "tr": "indirimde almak"
+    },
+    {
+     "de": "etwas günstig kaufen",
+     "tr": "bir şeyi ucuza almak"
     }
    ],
    "patterns": [
@@ -1806,8 +2319,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Alışveriş yapıyorum derken **Ich kaufe** eksik. Doğrusu **Ich kaufe ein**.",
-    "Her sabah ilacımı alıyorum derken **Ich kaufe jeden Morgen meine Tabletten** yanlış. Doğrusu **Ich nehme jeden Morgen meine Tabletten**."
+    "Alışveriş yapıyorum derken **Ich kaufe** yanlış. Doğrusu **Ich kaufe ein.** Alışveriş için sona **ein** gelir.",
+    "Her sabah ilacımı alıyorum derken **Ich kaufe jeden Morgen meine Tabletten** yanlış. Doğrusu **Ich nehme jeden Morgen meine Tabletten.** **kaufen** para verip almaktır."
    ],
    "examples": [
     {
@@ -1846,7 +2359,7 @@
    "exp": {
     "anlam_tr": "Para verip bir şey almayı söyler.",
     "parcalar": [],
-    "ipucu_tr": "**einkaufen gehen** alışverişe gitmek demektir."
+    "ipucu_tr": "Kimin için aldığını **für** ile söylersin: **Ich kaufe Brot für uns**."
    }
   },
   {
@@ -1862,12 +2375,20 @@
    },
    "collocations": [
     {
-     "de": "Was bedeutet …?",
-     "tr": "… ne anlama geliyor?"
+     "de": "Was bedeutet das?",
+     "tr": "Bu ne anlama geliyor?"
     },
     {
      "de": "Das bedeutet mir viel.",
      "tr": "Bu benim için çok önemli."
+    },
+    {
+     "de": "Das bedeutet nichts.",
+     "tr": "Bunun bir anlamı yok."
+    },
+    {
+     "de": "Was soll das bedeuten?",
+     "tr": "Bu da ne demek oluyor?"
     }
    ],
    "patterns": [
@@ -1875,8 +2396,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Bu ne demek derken **Was ist bedeuten?** yanlış. Doğrusu **Was bedeutet das?**",
-    "Bir anlamı yoktu derken **Das hat nichts gebedeutet** yanlış. Doğrusu **Das hat nichts bedeutet**."
+    "Bu ne demek derken **Was bedeuten das?** yanlış. Doğrusu **Was bedeutet das?** **das** ile **bedeuten**, **bedeutet** olur.",
+    "Bir anlamı yoktu derken **Das hat nichts gebedeutet** yanlış. Doğrusu **Das hat nichts bedeutet.** Başına **ge** gelmez."
    ],
    "examples": [
     {
@@ -1900,8 +2421,8 @@
     },
     {
      "id": "lx:bedeuten:4",
-     "de": "– Was bedeutet „Feierabend“? – Das Ende vom Arbeitstag.",
-     "tr": "– \"Feierabend\" ne demek? – İş gününün sonu.",
+     "de": "– Was bedeutet Feierabend? – Das Ende vom Arbeitstag.",
+     "tr": "– Feierabend ne anlama geliyor? – İş gününün sonu.",
      "layer": "alltag",
      "dialog": true
     }
@@ -1916,7 +2437,7 @@
     "anlam_tr": "Bir kelimenin ya da sözün anlamını söyler.",
     "ne_zaman_tr": "Bir kelimeyi anlamadığında sorarken.",
     "parcalar": [],
-    "ipucu_tr": "**Was heißt das?** sorusu da bu ne demek anlamına gelir."
+    "ipucu_tr": "**Das bedeutet mir viel** bu benim için çok önemli demektir."
    }
   },
   {
@@ -1930,8 +2451,16 @@
      "tr": "Delirdin mi?"
     },
     {
-     "de": "verrückt nach",
-     "tr": "…-e deli gibi düşkün"
+     "de": "verrückt nach Fußball",
+     "tr": "futbol delisi"
+    },
+    {
+     "de": "Das ist verrückt!",
+     "tr": "Bu çılgınlık!"
+    },
+    {
+     "de": "verrückt werden",
+     "tr": "delirmek"
     }
    ],
    "patterns": [
@@ -1939,7 +2468,7 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Futbola deli oluyor derken **Er ist verrückt für Fußball** yanlış. Doğrusu **Er ist verrückt nach Fußball**."
+    "Adam futbol delisi derken **Er ist verrückt für Fußball** yanlış. Doğrusu **Er ist verrückt nach Fußball**."
    ],
    "examples": [
     {
@@ -1951,7 +2480,7 @@
     {
      "id": "lx:verrückt:2",
      "de": "Er ist verrückt nach Fußball.",
-     "tr": "Futbola deli oluyor.",
+     "tr": "Adam futbol delisi.",
      "layer": "hd"
     },
     {
@@ -1997,6 +2526,18 @@
     {
      "de": "Ich habe eine Idee.",
      "tr": "Bir fikrim var."
+    },
+    {
+     "de": "keine gute Idee",
+     "tr": "iyi bir fikir değil"
+    },
+    {
+     "de": "auf eine Idee kommen",
+     "tr": "aklına bir fikir gelmek"
+    },
+    {
+     "de": "eine Idee für ein Geschenk",
+     "tr": "hediye fikri"
     }
    ],
    "patterns": [
@@ -2047,7 +2588,39 @@
     "anlam_tr": "Aklına gelen bir düşünceyi anlatır.",
     "parcalar": [],
     "ipucu_tr": "**Gute Idee!** iyi fikir demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ gute Idee!",
+     "answer": "eine",
+     "tr": "Bu iyi bir fikir!",
+     "hint_tr": "Bir fikri anlatırken **eine Idee** denir: **eine gute Idee**."
+    },
+    {
+     "de": "Hast du ___ Idee für ein Geschenk?",
+     "answer": "eine",
+     "tr": "Hediye için bir fikrin var mı?",
+     "hint_tr": "**Hast du** dedikten sonra da **eine Idee** aynı kalır."
+    },
+    {
+     "de": "Wie findest du ___ Idee von Tobi?",
+     "answer": "die",
+     "tr": "Tobi'nin fikrini nasıl buluyorsun?",
+     "hint_tr": "Bildiğimiz fikir: **die Idee von Tobi**."
+    },
+    {
+     "de": "Wir haben viele ___.",
+     "answer": "Ideen",
+     "tr": "Çok fikrimiz var.",
+     "hint_tr": "Birden çok fikir için **Ideen** denir."
+    },
+    {
+     "de": "Gute ___!",
+     "answer": "Idee",
+     "tr": "İyi fikir!",
+     "hint_tr": "Fikir için **Idee** denir."
+    }
+   ]
   },
   {
    "id": "lx:lesen",
@@ -2069,7 +2642,15 @@
      "tr": "gazete okumak"
     },
     {
-     "de": "vorlesen",
+     "de": "ein Buch lesen",
+     "tr": "kitap okumak"
+    },
+    {
+     "de": "eine Nachricht lesen",
+     "tr": "mesaj okumak"
+    },
+    {
+     "de": "laut lesen",
      "tr": "sesli okumak"
     }
    ],
@@ -2078,7 +2659,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "O okuyor derken **er lest** yanlış. Doğrusu **er liest**.",
+    "Adam okuyor derken **er lest** yanlış. Doğrusu **er liest**. **er** ile **e** harfi **ie** olur.",
     "Üniversitede okuyorum derken **Ich lese an der Uni** yanlış. Doğrusu **Ich studiere an der Uni**."
    ],
    "examples": [
@@ -2119,7 +2700,7 @@
    "exp": {
     "anlam_tr": "Yazılı bir şeyi okumayı söyler.",
     "parcalar": [],
-    "ipucu_tr": "**vorlesen** sesli okumak demektir."
+    "ipucu_tr": "**laut lesen** sesli okumak demektir."
    }
   },
   {
@@ -2135,6 +2716,18 @@
     {
      "de": "Bist du bereit?",
      "tr": "Hazır mısın?"
+    },
+    {
+     "de": "bereit zu helfen",
+     "tr": "yardıma hazır"
+    },
+    {
+     "de": "bereit für die Prüfung",
+     "tr": "sınava hazır"
+    },
+    {
+     "de": "zu allem bereit",
+     "tr": "her şeye hazır"
     }
    ],
    "patterns": [
@@ -2142,7 +2735,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Yemek hazır derken **Das Essen ist bereit** yanlış. Doğrusu **Das Essen ist fertig**."
+    "Yemek hazır derken **Das Essen ist bereit** yanlış. Doğrusu **Das Essen ist fertig.** **bereit** kişiler için söylenir, pişip biten yemek **fertig** olur."
    ],
    "examples": [
     {
@@ -2199,6 +2792,18 @@
     {
      "de": "Krankenschwester",
      "tr": "hemşire"
+    },
+    {
+     "de": "meine kleine Schwester",
+     "tr": "küçük kız kardeşim"
+    },
+    {
+     "de": "zwei Schwestern haben",
+     "tr": "iki kız kardeşi olmak"
+    },
+    {
+     "de": "mit der Schwester telefonieren",
+     "tr": "kız kardeşle telefonda konuşmak"
     }
    ],
    "patterns": [
@@ -2206,7 +2811,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Ablam derken **meine alte Schwester** yanlış. Doğrusu **meine große Schwester**.",
+    "Ablam derken **meine alte Schwester** yanlış. Doğrusu **meine große Schwester**. **alt** yaşlı demektir, abla için **groß** kullanılır.",
     "Kız kardeşim var derken **Ich habe Schwester** yanlış. Doğrusu **Ich habe eine Schwester**."
    ],
    "examples": [
@@ -2218,8 +2823,8 @@
     },
     {
      "id": "lx:Schwester:2",
-     "de": "Schwester, können Sie mir helfen?",
-     "tr": "Hemşire hanım, bana yardım edebilir misiniz?",
+     "de": "Das ist meine große Schwester Elif.",
+     "tr": "Bu ablam Elif.",
      "layer": "hd"
     },
     {
@@ -2247,8 +2852,34 @@
    "exp": {
     "anlam_tr": "Aynı anne babadan olan kız kardeşi anlatır.",
     "parcalar": [],
-    "ipucu_tr": "Hastanede **Schwester** hemşire demektir."
-   }
+    "ipucu_tr": "Hastanede hemşireye **Schwester** denir, ama bu eski bir hitaptır."
+   },
+   "forms": [
+    {
+     "de": "Ich habe ___ Schwester.",
+     "answer": "eine",
+     "tr": "Bir kız kardeşim var.",
+     "hint_tr": "**Ich habe** dedikten sonra da **eine Schwester** aynı kalır."
+    },
+    {
+     "de": "___ Schwester wohnt in Wien.",
+     "answer": "Meine",
+     "tr": "Kız kardeşim Viyana'da oturuyor.",
+     "hint_tr": "Benim kız kardeşim derken **meine Schwester** denir."
+    },
+    {
+     "de": "Ich telefoniere oft mit ___ Schwester.",
+     "answer": "meiner",
+     "tr": "Kız kardeşimle sık sık telefonda konuşuyorum.",
+     "hint_tr": "Kız kardeşimle derken **mit meiner Schwester** denir."
+    },
+    {
+     "de": "Ich habe zwei ___.",
+     "answer": "Schwestern",
+     "tr": "İki kız kardeşim var.",
+     "hint_tr": "İki kız kardeş için **zwei Schwestern** denir, sona **n** gelir."
+    }
+   ]
   },
   {
    "id": "lx:Monat",
@@ -2379,8 +3010,16 @@
      "tr": "Hiç bilmiyorum!"
     },
     {
-     "de": "Ahnung haben von",
-     "tr": "…-den anlamak"
+     "de": "Ahnung von etwas haben",
+     "tr": "bir şeyden anlamak"
+    },
+    {
+     "de": "keine Ahnung haben",
+     "tr": "hiç bilmemek"
+    },
+    {
+     "de": "Hast du eine Ahnung?",
+     "tr": "Bir fikrin var mı?"
     }
    ],
    "patterns": [
@@ -2430,7 +3069,27 @@
     "anlam_tr": "Bir konuda bilgin olup olmadığını anlatır.",
     "parcalar": [],
     "ipucu_tr": "Resmî yerde **Das weiß ich leider nicht** de: maalesef bilmiyorum."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich habe keine ___.",
+     "answer": "Ahnung",
+     "tr": "Hiç bilmiyorum.",
+     "hint_tr": "Hiç bilmiyorum derken **Ich habe keine Ahnung** denir."
+    },
+    {
+     "de": "Hast du ___ Ahnung, wo Tobi ist?",
+     "answer": "eine",
+     "tr": "Tobi nerede, bir fikrin var mı?",
+     "hint_tr": "Bir fikrin var mı diye sorarken **eine Ahnung** denir."
+    },
+    {
+     "de": "Hast du Ahnung ___ Autos?",
+     "answer": "von",
+     "tr": "Arabalardan anlar mısın?",
+     "hint_tr": "Bir konudan anlamak için **Ahnung von** denir: **Ahnung von Autos**."
+    }
+   ]
   },
   {
    "id": "lx:draußen",
@@ -2445,6 +3104,18 @@
     {
      "de": "draußen sitzen",
      "tr": "dışarıda oturmak"
+    },
+    {
+     "de": "draußen spielen",
+     "tr": "dışarıda oynamak"
+    },
+    {
+     "de": "draußen warten",
+     "tr": "dışarıda beklemek"
+    },
+    {
+     "de": "Es ist kalt draußen.",
+     "tr": "Dışarısı soğuk."
     }
    ],
    "patterns": [
@@ -2452,7 +3123,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Dışarı çıkıyorum derken **Ich gehe draußen** yanlış. Doğrusu **Ich gehe nach draußen**."
+    "Dışarı çıkıyorum derken **Ich gehe draußen** yanlış. Doğrusu **Ich gehe nach draußen.** Dışarıya doğru giderken **nach** gelir."
    ],
    "examples": [
     {
@@ -2492,7 +3163,7 @@
    "exp": {
     "anlam_tr": "Binanın dışındaki yeri söyler.",
     "parcalar": [],
-    "ipucu_tr": "**drinnen** içeride demektir."
+    "ipucu_tr": "Dışarıya doğru giderken **nach draußen** dersin: dışarıya."
    }
   },
   {
@@ -2512,12 +3183,20 @@
    },
    "collocations": [
     {
-     "de": "sich hinlegen",
-     "tr": "uzanmak"
-    },
-    {
      "de": "auf den Tisch legen",
      "tr": "masaya koymak"
+    },
+    {
+     "de": "in den Kühlschrank legen",
+     "tr": "buzdolabına koymak"
+    },
+    {
+     "de": "das Baby ins Bett legen",
+     "tr": "bebeği yatağa yatırmak"
+    },
+    {
+     "de": "sich ins Bett legen",
+     "tr": "yatağa uzanmak"
     }
    ],
    "patterns": [
@@ -2526,8 +3205,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kitap masada derken **Das Buch legt auf dem Tisch** yanlış. Doğrusu **Das Buch liegt auf dem Tisch**.",
-    "Biraz uzanıyorum derken **Ich lege kurz hin** eksik. Doğrusu **Ich lege mich kurz hin**."
+    "Kitap masada derken **Das Buch legt auf dem Tisch** yanlış. Doğrusu **Das Buch liegt auf dem Tisch**. Koyarken **legen**, dururken **liegen** denir.",
+    "Yatağa uzanıyorum derken **Ich lege ins Bett** yanlış. Doğrusu **Ich lege mich ins Bett**. Kendin uzanınca **mich** gerekir."
    ],
    "examples": [
     {
@@ -2538,8 +3217,8 @@
     },
     {
      "id": "lx:legen:2",
-     "de": "Ich lege mich kurz hin.",
-     "tr": "Biraz uzanıyorum.",
+     "de": "Ich lege mich kurz aufs Sofa.",
+     "tr": "Biraz kanepeye uzanıyorum.",
      "layer": "hd"
     },
     {
@@ -2550,7 +3229,7 @@
     },
     {
      "id": "lx:legen:4",
-     "de": "– Wo soll ich die Post hinlegen? – Auf den Tisch, bitte.",
+     "de": "– Wohin soll ich die Post legen? – Auf den Tisch, bitte.",
      "tr": "– Postayı nereye koyayım? – Masaya, lütfen.",
      "layer": "alltag",
      "dialog": true,
@@ -2583,7 +3262,15 @@
     },
     {
      "de": "Na, Jungs!",
-     "tr": "Eee, çocuklar! (erkekler)"
+     "tr": "Ne haber, çocuklar!"
+    },
+    {
+     "de": "ein netter Junge",
+     "tr": "iyi bir oğlan"
+    },
+    {
+     "de": "der Junge von nebenan",
+     "tr": "yan evdeki oğlan"
     }
    ],
    "patterns": [
@@ -2591,33 +3278,37 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Oğlanı görüyorum derken **Ich sehe den Junge** yanlış. Doğrusu **Ich sehe den Jungen**."
+    "Oğlanı görüyorum derken **Ich sehe den Junge** yanlış. Doğrusu **Ich sehe den Jungen**. **Ich sehe den** dedikten sonra **Junge** kelimesine **n** eklenir."
    ],
    "examples": [
     {
      "id": "lx:Junge:1",
      "de": "Der Junge spielt Fußball.",
      "tr": "Oğlan futbol oynuyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "boy kicking ball, back view"
     },
     {
      "id": "lx:Junge:2",
      "de": "Ist es ein Junge oder ein Mädchen?",
      "tr": "Erkek mi kız mı?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "blue and pink baby clothes"
     },
     {
      "id": "lx:Junge:3",
      "de": "Hey Jungs, kommt ihr mit?",
      "tr": "Hey çocuklar, geliyor musunuz?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "group of young men walking"
     },
     {
      "id": "lx:Junge:4",
      "de": "– Wie alt ist der Junge? – Sieben.",
      "tr": "– Oğlan kaç yaşında? – Yedi.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "birthday cake with candles on kitchen table"
     }
    ],
    "level": "A1",
@@ -2631,7 +3322,39 @@
     "parcalar": [],
     "ipucu_tr": "Erkeklerden oluşan bir gruba konuşmada **Jungs** denir."
    },
-   "img": "young boy playing football"
+   "img": "young boy playing football",
+   "forms": [
+    {
+     "de": "Ist es ___ Junge oder ein Mädchen?",
+     "answer": "ein",
+     "tr": "Erkek mi kız mı?",
+     "hint_tr": "Bebek erkek çocuk mu diye sorarken **ein Junge** denir."
+    },
+    {
+     "de": "Ich habe ___ Jungen und ein Mädchen.",
+     "answer": "einen",
+     "tr": "Bir oğlum ve bir kızım var.",
+     "hint_tr": "**Ich habe** dedikten sonra **ein Junge**, **einen Jungen** olur."
+    },
+    {
+     "de": "___ Junge spielt Fußball.",
+     "answer": "Der",
+     "tr": "Oğlan futbol oynuyor.",
+     "hint_tr": "Bildiğimiz oğlan: **der Junge**."
+    },
+    {
+     "de": "Kennst du den ___ dort?",
+     "answer": "Jungen",
+     "tr": "Oradaki oğlanı tanıyor musun?",
+     "hint_tr": "**Kennst du** dedikten sonra **der Junge**, **den Jungen** olur."
+    },
+    {
+     "de": "Der Lehrer spricht mit dem ___.",
+     "answer": "Jungen",
+     "tr": "Öğretmen oğlanla konuşuyor.",
+     "hint_tr": "**mit dem** dedikten sonra **Junge** kelimesine **n** eklenir: **mit dem Jungen**."
+    }
+   ]
   },
   {
    "id": "lx:Ruhe",
@@ -2643,11 +3366,23 @@
    "collocations": [
     {
      "de": "in Ruhe",
-     "tr": "rahatça, sakin sakin"
+     "tr": "acele etmeden"
     },
     {
      "de": "Lass mich in Ruhe!",
      "tr": "Beni rahat bırak!"
+    },
+    {
+     "de": "in aller Ruhe",
+     "tr": "sakin sakin"
+    },
+    {
+     "de": "Ruhe brauchen",
+     "tr": "huzura ihtiyacı olmak"
+    },
+    {
+     "de": "die Ruhe genießen",
+     "tr": "sessizliğin tadını çıkarmak"
     }
    ],
    "patterns": [
@@ -2655,7 +3390,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Beni rahat bırak derken **Lass mich ruhig** yanlış. Doğrusu **Lass mich in Ruhe**."
+    "Beni rahat bırak derken **Lass mich ruhig** yanlış. Doğrusu **Lass mich in Ruhe**. **ruhig** sakin demektir, rahat bırakmak **in Ruhe lassen** ile söylenir."
    ],
    "examples": [
     {
@@ -2696,7 +3431,33 @@
     "anlam_tr": "Gürültünün ve telaşın olmadığı durumu anlatır.",
     "parcalar": [],
     "ipucu_tr": "**in Ruhe** acele etmeden demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich brauche ein bisschen ___.",
+     "answer": "Ruhe",
+     "tr": "Biraz huzura ihtiyacım var.",
+     "hint_tr": "Huzur için **Ruhe** denir."
+    },
+    {
+     "de": "Ich genieße ___ Ruhe im Garten.",
+     "answer": "die",
+     "tr": "Bahçedeki sessizliğin tadını çıkarıyorum.",
+     "hint_tr": "Bildiğimiz sessizlik: **die Ruhe**."
+    },
+    {
+     "de": "Lass mich in ___!",
+     "answer": "Ruhe",
+     "tr": "Beni rahat bırak!",
+     "hint_tr": "Rahat bırak derken **in Ruhe lassen** denir."
+    },
+    {
+     "de": "Lassen Sie sich Zeit, in aller ___.",
+     "answer": "Ruhe",
+     "tr": "Acele etmeyin, sakin sakin.",
+     "hint_tr": "Sakin sakin derken **in aller Ruhe** denir."
+    }
+   ]
   },
   {
    "id": "lx:Polizei",
@@ -2714,6 +3475,14 @@
     {
      "de": "zur Polizei gehen",
      "tr": "karakola gitmek"
+    },
+    {
+     "de": "die Polizei kommt",
+     "tr": "polis geliyor"
+    },
+    {
+     "de": "bei der Polizei melden",
+     "tr": "polise bildirmek"
     }
    ],
    "patterns": [
@@ -2727,27 +3496,31 @@
     {
      "id": "lx:Polizei:1",
      "de": "Rufen Sie die Polizei!",
-     "tr": "Polisi arayın!",
-     "layer": "hd"
+     "tr": "Polisi çağırın!",
+     "layer": "hd",
+     "img": "woman making urgent phone call"
     },
     {
      "id": "lx:Polizei:2",
      "de": "Ich muss das bei der Polizei melden.",
      "tr": "Bunu polise bildirmem lazım.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "man at police station desk"
     },
     {
      "id": "lx:Polizei:3",
      "de": "Die Polizei war schon da.",
      "tr": "Polis gelip gitti bile.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "police car leaving street"
     },
     {
      "id": "lx:Polizei:4",
      "de": "– Was ist passiert? – Ein Unfall, die Polizei kommt gleich.",
      "tr": "– Ne oldu? – Bir kaza oldu, polis birazdan geliyor.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "police car at minor accident"
     }
    ],
    "level": "A1",
@@ -2761,8 +3534,34 @@
     "anlam_tr": "Güvenliği sağlayan kurumu anlatır.",
     "ne_zaman_tr": "Acil bir durumu bildirirken.",
     "parcalar": [],
-    "ipucu_tr": "Polisi aramak için 110 numarasını ara."
-   }
+    "ipucu_tr": "Acil durumda **Polizei** için 110 numarasına telefon et."
+   },
+   "forms": [
+    {
+     "de": "Rufen Sie ___ Polizei!",
+     "answer": "die",
+     "tr": "Polisi çağırın!",
+     "hint_tr": "**Rufen Sie** dedikten sonra da **die Polizei** aynı kalır."
+    },
+    {
+     "de": "___ Polizei kommt gleich.",
+     "answer": "Die",
+     "tr": "Polis birazdan geliyor.",
+     "hint_tr": "Bildiğimiz polis: **die Polizei**."
+    },
+    {
+     "de": "Ich muss das bei ___ Polizei melden.",
+     "answer": "der",
+     "tr": "Bunu polise bildirmem lazım.",
+     "hint_tr": "Polise bildirirken **bei der Polizei** denir."
+    },
+    {
+     "de": "Ich gehe ___ Polizei.",
+     "answer": "zur",
+     "tr": "Karakola gidiyorum.",
+     "hint_tr": "Karakola giderken **zu der** birleşir: **zur Polizei**."
+    }
+   ]
   },
   {
    "id": "lx:ruhig",
@@ -2777,6 +3576,14 @@
     {
      "de": "eine ruhige Wohnung",
      "tr": "sessiz bir ev"
+    },
+    {
+     "de": "eine ruhige Straße",
+     "tr": "sakin bir sokak"
+    },
+    {
+     "de": "ruhig schlafen",
+     "tr": "rahat uyumak"
     }
    ],
    "patterns": [
@@ -2785,13 +3592,13 @@
    "register": "neutral",
    "mistakes_tr": [
     "Sessiz ol derken **Sei Ruhe** yanlış. Doğrusu **Sei ruhig**.",
-    "Sessiz bir ev derken **eine Ruhe Wohnung** yanlış. Doğrusu **eine ruhige Wohnung**."
+    "Sessiz bir ev derken **eine Ruhe Wohnung** yanlış. Doğrusu **eine ruhige Wohnung**. **eine Wohnung** ile **ruhig**, **ruhige** olur."
    ],
    "examples": [
     {
      "id": "lx:ruhig:1",
      "de": "Die Wohnung ist schön ruhig.",
-     "tr": "Ev güzel ve sakin.",
+     "tr": "Ev gayet sessiz.",
      "layer": "hd",
      "img": "quiet bright apartment living room"
     },
@@ -2810,7 +3617,7 @@
     {
      "id": "lx:ruhig:4",
      "de": "– Darf ich das Fenster aufmachen? – Ja, mach ruhig.",
-     "tr": "– Pencereyi açabilir miyim? – Evet, rahatça aç.",
+     "tr": "– Pencereyi açabilir miyim? – Evet, çekinmeden aç.",
      "layer": "alltag",
      "dialog": true
     }
@@ -2851,6 +3658,14 @@
     {
      "de": "Ich kümmere mich darum.",
      "tr": "Ben hallederim."
+    },
+    {
+     "de": "sich um die Kinder kümmern",
+     "tr": "çocuklara bakmak"
+    },
+    {
+     "de": "sich um den Garten kümmern",
+     "tr": "bahçeyle ilgilenmek"
     }
    ],
    "patterns": [
@@ -2859,8 +3674,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Çocuklara bakıyorum derken **Ich kümmere die Kinder** eksik. Doğrusu **Ich kümmere mich um die Kinder**.",
-    "Çocuklarla ilgileniyorum derken **Ich kümmere mich mit den Kindern** yanlış. Doğrusu **Ich kümmere mich um die Kinder**."
+    "Çocuklara bakıyorum derken **Ich kümmere die Kinder** yanlış. Doğrusu **Ich kümmere mich um die Kinder**. Bakmak anlamında **kümmern** yanına **mich** ve **um** alır.",
+    "Çocuklarla ilgileniyorum derken **Ich kümmere mich mit den Kindern** yanlış. Doğrusu **Ich kümmere mich um die Kinder**. **um** gelince **den Kindern**, **die Kinder** olur."
    ],
    "examples": [
     {
@@ -2927,6 +3742,14 @@
     {
      "de": "sich versprechen",
      "tr": "dili sürçmek"
+    },
+    {
+     "de": "Ich verspreche es dir.",
+     "tr": "Sana söz veriyorum."
+    },
+    {
+     "de": "fest versprechen",
+     "tr": "kesin söz vermek"
     }
    ],
    "patterns": [
@@ -2935,8 +3758,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Sana söz veriyorum derken **Ich verspreche dich** yanlış. Doğrusu **Ich verspreche dir**.",
-    "Söz verdim derken **Ich habe versprecht** yanlış. Doğrusu **Ich habe versprochen**."
+    "Sana söz veriyorum derken **Ich verspreche es dich** yanlış. Doğrusu **Ich verspreche es dir**. Söz verdiğin kişi için **dir** gelir.",
+    "Söz verdim derken **Ich habe versprecht** yanlış. Doğrusu **Ich habe versprochen**. **versprechen** geçmişte **versprochen** olur."
    ],
    "examples": [
     {
@@ -2961,7 +3784,7 @@
     {
      "id": "lx:versprechen:4",
      "de": "– Rufst du mich an? – Ja, versprochen.",
-     "tr": "– Beni arayacak mısın? – Evet, söz.",
+     "tr": "– Bana telefon edecek misin? – Evet, söz.",
      "layer": "alltag",
      "dialog": true
     }
@@ -2991,6 +3814,18 @@
     {
      "de": "fast fertig",
      "tr": "neredeyse bitti"
+    },
+    {
+     "de": "fast immer",
+     "tr": "neredeyse her zaman"
+    },
+    {
+     "de": "fast alle",
+     "tr": "neredeyse herkes"
+    },
+    {
+     "de": "fast jeden Tag",
+     "tr": "neredeyse her gün"
     }
    ],
    "patterns": [
@@ -2998,7 +3833,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Çabuk gel derken **Komm fast** yanlış. Doğrusu **Komm schnell**."
+    "Çabuk gel derken **Komm fast** yanlış. Doğrusu **Komm schnell.** **fast** neredeyse demektir, İngilizcedeki hızlı anlamı yoktur."
    ],
    "examples": [
     {
@@ -3055,6 +3890,18 @@
     {
      "de": "die älteste Tochter",
      "tr": "en büyük kız"
+    },
+    {
+     "de": "die jüngste Tochter",
+     "tr": "en küçük kız"
+    },
+    {
+     "de": "eine Tochter bekommen",
+     "tr": "kızı olmak"
+    },
+    {
+     "de": "Vater und Tochter",
+     "tr": "baba ve kız"
     }
    ],
    "patterns": [
@@ -3062,8 +3909,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kızlarım derken **meine Tochters** yanlış. Doğrusu **meine Töchter**.",
-    "Parkta bir kız oynuyor derken **Eine Tochter spielt im Park** yanlış. Doğrusu **Ein Mädchen spielt im Park**."
+    "Kızlarım derken **meine Tochters** yanlış. Doğrusu **meine Töchter**. Birden çok kız için sona **s** gelmez, **o** harfi **ö** olur.",
+    "Parkta bir kız oynuyor derken **Eine Tochter spielt im Park** yanlış. Doğrusu **Ein Mädchen spielt im Park**. **Tochter** birinin evladıdır, herhangi bir kız çocuğu **Mädchen** olur."
    ],
    "examples": [
     {
@@ -3103,12 +3950,38 @@
     "anlam_tr": "Birinin kız çocuğunu anlatır.",
     "parcalar": [],
     "ipucu_tr": "**meine Tochter** kızım demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Wir haben ___ Tochter und einen Sohn.",
+     "answer": "eine",
+     "tr": "Bir kızımız ve bir oğlumuz var.",
+     "hint_tr": "**Wir haben** dedikten sonra da **eine Tochter** aynı kalır."
+    },
+    {
+     "de": "Wie alt ist ___ Tochter?",
+     "answer": "Ihre",
+     "tr": "Kızınız kaç yaşında?",
+     "hint_tr": "Sizin kızınız derken **Ihre Tochter** denir."
+    },
+    {
+     "de": "Ich gehe mit ___ Tochter zum Arzt.",
+     "answer": "meiner",
+     "tr": "Kızımla doktora gidiyorum.",
+     "hint_tr": "Kızımla derken **mit meiner Tochter** denir."
+    },
+    {
+     "de": "Wir haben zwei ___.",
+     "answer": "Töchter",
+     "tr": "İki kızımız var.",
+     "hint_tr": "İki kız için **zwei Töchter** denir, **o** harfi **ö** olur."
+    }
+   ]
   },
   {
    "id": "lx:bestimmt",
    "de": "bestimmt",
-   "tr": "kesin, belli",
+   "tr": "kesin, belirli",
    "pos": "adv",
    "collocations": [
     {
@@ -3118,6 +3991,18 @@
     {
      "de": "etwas Bestimmtes",
      "tr": "belirli bir şey"
+    },
+    {
+     "de": "bestimmt nicht",
+     "tr": "kesinlikle değil"
+    },
+    {
+     "de": "Das klappt bestimmt.",
+     "tr": "Bu kesin olur."
+    },
+    {
+     "de": "Er kommt bestimmt.",
+     "tr": "Adam kesin gelir."
     }
    ],
    "patterns": [
@@ -3125,7 +4010,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kesin gelir derken **Er bestimmt kommt** yanlış. Doğrusu **Er kommt bestimmt**."
+    "Adam kesin gelir derken **Er bestimmt kommt** yanlış. Doğrusu **Er kommt bestimmt.** **bestimmt**, **kommt** sözünden sonra gelir."
    ],
    "examples": [
     {
@@ -3164,7 +4049,7 @@
    "exp": {
     "anlam_tr": "Bir şeyin olacağından emin olduğunu söyler.",
     "parcalar": [],
-    "ipucu_tr": "**etwas Bestimmtes** belli bir şey demektir."
+    "ipucu_tr": "**etwas Bestimmtes** belirli bir şey demektir."
    }
   },
   {
@@ -3174,12 +4059,20 @@
    "pos": "adv",
    "collocations": [
     {
-     "de": "runterkommen",
-     "tr": "aşağı inmek"
-    },
-    {
      "de": "die Treppe runter",
      "tr": "merdivenden aşağı"
+    },
+    {
+     "de": "die Straße runter",
+     "tr": "caddeden aşağı"
+    },
+    {
+     "de": "Komm runter!",
+     "tr": "Aşağı gel!"
+    },
+    {
+     "de": "runter in den Keller",
+     "tr": "aşağı bodruma"
     }
    ],
    "patterns": [
@@ -3187,8 +4080,8 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Aşağı iniyorum derken **Ich komme unten** yanlış. Doğrusu **Ich komme runter**.",
-    "Aşağıdayım derken **Ich bin runter** yanlış. Doğrusu **Ich bin unten**."
+    "Aşağı iniyorum derken **Ich komme unten** yanlış. Doğrusu **Ich komme runter**. Aşağı doğru giderken **runter** denir.",
+    "Aşağıdayım derken **Ich bin runter** yanlış. Doğrusu **Ich bin unten**. Bulunduğun yer için **unten** denir."
    ],
    "examples": [
     {
@@ -3207,7 +4100,7 @@
     {
      "id": "lx:runter:3",
      "de": "Komm mal runter!",
-     "tr": "Sakin ol! / Aşağı gel!",
+     "tr": "Sakin ol!",
      "layer": "alltag"
     },
     {
@@ -3245,6 +4138,18 @@
     {
      "de": "lange Geschichte",
      "tr": "uzun hikâye"
+    },
+    {
+     "de": "eine wahre Geschichte",
+     "tr": "gerçek bir hikâye"
+    },
+    {
+     "de": "eine Geschichte vorlesen",
+     "tr": "bir hikâyeyi sesli okumak"
+    },
+    {
+     "de": "die Geschichte der Stadt",
+     "tr": "şehrin tarihi"
     }
    ],
    "patterns": [
@@ -3294,7 +4199,39 @@
     "anlam_tr": "Birinin anlattığı bir öyküyü söyler.",
     "parcalar": [],
     "ipucu_tr": "Okulda **Geschichte** tarih dersi demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Erzähl mir ___ Geschichte!",
+     "answer": "eine",
+     "tr": "Bana bir hikâye anlat!",
+     "hint_tr": "**Erzähl mir** dedikten sonra da **eine Geschichte** aynı kalır."
+    },
+    {
+     "de": "Ach, das ist ___ lange Geschichte.",
+     "answer": "eine",
+     "tr": "Ah, bu uzun bir hikâye.",
+     "hint_tr": "Herhangi bir hikâye: **eine lange Geschichte**."
+    },
+    {
+     "de": "___ Geschichte ist wirklich passiert.",
+     "answer": "Die",
+     "tr": "Hikâye gerçekten yaşandı.",
+     "hint_tr": "Bildiğimiz hikâye: **die Geschichte**."
+    },
+    {
+     "de": "In ___ Geschichte geht es um einen Hund.",
+     "answer": "der",
+     "tr": "Hikâye bir köpeği anlatıyor.",
+     "hint_tr": "Bildiğimiz hikâye: **in der Geschichte**."
+    },
+    {
+     "de": "Opa erzählt gern alte ___.",
+     "answer": "Geschichten",
+     "tr": "Dede eski hikâyeler anlatmayı sever.",
+     "hint_tr": "Birden çok hikâye için **Geschichten** denir."
+    }
+   ]
   },
   {
    "id": "lx:vorbei",
@@ -3303,12 +4240,20 @@
    "pos": "adv",
    "collocations": [
     {
-     "de": "vorbeikommen",
-     "tr": "uğramak"
-    },
-    {
      "de": "Es ist vorbei.",
      "tr": "Bitti."
+    },
+    {
+     "de": "Der Sommer ist vorbei.",
+     "tr": "Yaz bitti."
+    },
+    {
+     "de": "am Bahnhof vorbei",
+     "tr": "istasyonun önünden geçerek"
+    },
+    {
+     "de": "Komm mal vorbei!",
+     "tr": "Bir uğra!"
     }
    ],
    "patterns": [
@@ -3316,8 +4261,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Yarın uğrarım derken **Ich vorbeikomme morgen** yanlış. Doğrusu **Ich komme morgen vorbei**.",
-    "Yaz bitti derken **Der Sommer ist fertig** yanlış. Doğrusu **Der Sommer ist vorbei**."
+    "Yarın uğrarım derken **Ich vorbeikomme morgen** yanlış. Doğrusu **Ich komme morgen vorbei**. **vorbei** sona gider.",
+    "Yaz bitti derken **Der Sommer ist fertig** yanlış. Doğrusu **Der Sommer ist vorbei**. Biten zaman için **vorbei** denir."
    ],
    "examples": [
     {
@@ -3357,7 +4302,7 @@
    "exp": {
     "anlam_tr": "Bir şeyin bittiğini ve geride kaldığını söyler.",
     "parcalar": [],
-    "ipucu_tr": "**vorbeikommen** kısa bir ziyaret için uğramak demektir."
+    "ipucu_tr": "Bir yerin önünden geçerken de **vorbei** denir: **am Bahnhof vorbei** istasyonun önünden geçerek demektir."
    }
   },
   {
@@ -3373,6 +4318,18 @@
     {
      "de": "Sie sind dran.",
      "tr": "Sıra sizde."
+    },
+    {
+     "de": "Ich bin dran.",
+     "tr": "Sıra bende."
+    },
+    {
+     "de": "Du bist dran!",
+     "tr": "Sıra sende!"
+    },
+    {
+     "de": "als Nächstes dran sein",
+     "tr": "sıradaki olmak"
     }
    ],
    "patterns": [
@@ -3381,7 +4338,7 @@
    "register": "informal",
    "mistakes_tr": [
     "Sıra bende derken **Ich habe Reihe** yanlış. Doğrusu **Ich bin dran**.",
-    "Sıra sizde derken **Sie sind drin** yanlış. Doğrusu **Sie sind dran**."
+    "Sıra sizde derken **Sie sind drin** yanlış. Doğrusu **Sie sind dran.** **drin** içeride demektir."
    ],
    "examples": [
     {
@@ -3505,6 +4462,18 @@
     {
      "de": "ohne Grund",
      "tr": "sebepsiz"
+    },
+    {
+     "de": "aus welchem Grund",
+     "tr": "hangi sebeple"
+    },
+    {
+     "de": "einen guten Grund haben",
+     "tr": "iyi bir sebebi olmak"
+    },
+    {
+     "de": "viele Gründe",
+     "tr": "birçok sebep"
     }
    ],
    "patterns": [
@@ -3513,7 +4482,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Bu sebeple derken **mit diesem Grund** yanlış. Doğrusu **aus diesem Grund**.",
-    "Sebebi ne derken **Was ist Grund?** yanlış. Doğrusu **Was ist der Grund?**"
+    "Sebebi ne derken **Was ist Grund?** yanlış. Doğrusu **Was ist der Grund?** Belli bir sebep sorulduğu için **der** gelir."
    ],
    "examples": [
     {
@@ -3554,7 +4523,39 @@
     "anlam_tr": "Bir şeyin neden olduğunu anlatır.",
     "parcalar": [],
     "ipucu_tr": "**ohne Grund** sebepsiz demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich habe ___ guten Grund.",
+     "answer": "einen",
+     "tr": "İyi bir sebebim var.",
+     "hint_tr": "**Ich habe** dedikten sonra **ein guter Grund**, **einen guten Grund** olur."
+    },
+    {
+     "de": "Was ist ___ Grund für die Verspätung?",
+     "answer": "der",
+     "tr": "Gecikmenin sebebi ne?",
+     "hint_tr": "Bildiğimiz sebep: **der Grund**."
+    },
+    {
+     "de": "___ diesem Grund kann ich nicht kommen.",
+     "answer": "Aus",
+     "tr": "Bu sebeple gelemiyorum.",
+     "hint_tr": "Bu sebeple derken **aus diesem Grund** denir."
+    },
+    {
+     "de": "Er ist ohne ___ gegangen.",
+     "answer": "Grund",
+     "tr": "Adam sebepsiz gitti.",
+     "hint_tr": "Sebepsiz derken **ohne Grund** denir."
+    },
+    {
+     "de": "Dafür gibt es viele ___.",
+     "answer": "Gründe",
+     "tr": "Bunun birçok sebebi var.",
+     "hint_tr": "Birden çok sebep için **Gründe** denir, **u** harfi **ü** olur."
+    }
+   ]
   },
   {
    "id": "lx:arm",
@@ -3569,6 +4570,18 @@
     {
      "de": "arm sein",
      "tr": "fakir olmak"
+    },
+    {
+     "de": "ein armes Land",
+     "tr": "fakir bir ülke"
+    },
+    {
+     "de": "arme Leute",
+     "tr": "fakir insanlar"
+    },
+    {
+     "de": "das arme Kind",
+     "tr": "zavallı çocuk"
     }
    ],
    "patterns": [
@@ -3576,8 +4589,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Daha fakir derken **armer** yanlış. Doğrusu **ärmer**.",
-    "Zavallı köpek derken **Der arm Hund** yanlış. Doğrusu **Der arme Hund**."
+    "Adam benden daha fakir derken **Er ist armer als ich** yanlış. Doğrusu **Er ist ärmer als ich.** Karşılaştırırken **a**, **ä** olur.",
+    "Zavallı köpek derken **Der arm Hund** yanlış. Doğrusu **Der arme Hund.** **der** ile **Hund** arasında sona **e** gelir."
    ],
    "examples": [
     {
@@ -3617,7 +4630,7 @@
     "anlam_tr": "Parası çok az olan kişiyi anlatır.",
     "ne_zaman_tr": "Birine acıyınca **Du Armer!** dersin: zavallım.",
     "parcalar": [],
-    "ipucu_tr": "Fakir anlamında küçük harfle yazılır: **arm**."
+    "ipucu_tr": "Büyük harfle yazılan **der Arm** kol demektir."
    }
   },
   {
@@ -3636,6 +4649,18 @@
     {
      "de": "im Arm halten",
      "tr": "kollarında tutmak"
+    },
+    {
+     "de": "den Arm heben",
+     "tr": "kolunu kaldırmak"
+    },
+    {
+     "de": "Schmerzen im Arm",
+     "tr": "kolda ağrı"
+    },
+    {
+     "de": "jemanden in den Arm nehmen",
+     "tr": "birine sarılmak"
     }
    ],
    "patterns": [
@@ -3643,34 +4668,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kolumu kırdım derken **Ich habe meinen Arm kaputt** yanlış. Doğrusu **Ich habe mir den Arm gebrochen**.",
-    "Kol derken küçük harfle **arm** yanlış. Doğrusu **der Arm**."
+    "Kolum kırık derken **Mein Arm ist kaputt** yanlış. Doğrusu **Mein Arm ist gebrochen**. **kaputt** bozuk eşya için söylenir.",
+    "Kol derken küçük harfle **arm** yanlış. Kol anlamında büyük harfle yazılır: **der Arm**. Küçük harfle **arm** yoksul demektir."
    ],
    "examples": [
     {
      "id": "lx:Arm:1",
      "de": "Mir tut der Arm weh.",
      "tr": "Kolum ağrıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "woman rubbing her sore arm"
     },
     {
      "id": "lx:Arm:2",
      "de": "Er hat sich den Arm gebrochen.",
-     "tr": "Kolunu kırdı.",
-     "layer": "hd"
+     "tr": "Adam kolunu kırdı.",
+     "layer": "hd",
+     "img": "man with arm in cast"
     },
     {
      "id": "lx:Arm:3",
      "de": "Mein Arm ist eingeschlafen.",
      "tr": "Kolum uyuştu.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "man shaking his numb arm"
     },
     {
      "id": "lx:Arm:4",
      "de": "– Wo tut es weh? – Hier, am linken Arm.",
-     "tr": "– Neresi acıyor? – Burası, sol kolum.",
+     "tr": "– Neresi ağrıyor? – Burası, sol kolum.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "doctor examining patient's left arm"
     }
    ],
    "level": "A1",
@@ -3684,7 +4713,33 @@
     "ne_zaman_tr": "Doktorda ağrını anlatırken.",
     "parcalar": [],
     "ipucu_tr": "**Mir tut der Arm weh** kolum ağrıyor demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Mir tut ___ linke Arm weh.",
+     "answer": "der",
+     "tr": "Sol kolum ağrıyor.",
+     "hint_tr": "Kolum ağrıyor derken **Mir tut der Arm weh** denir: **der linke Arm**."
+    },
+    {
+     "de": "Ich habe mir ___ Arm gebrochen.",
+     "answer": "den",
+     "tr": "Kolumu kırdım.",
+     "hint_tr": "**Ich habe mir** dedikten sonra **der Arm**, **den Arm** olur."
+    },
+    {
+     "de": "Mit ___ gebrochenen Arm kann ich nicht arbeiten.",
+     "answer": "einem",
+     "tr": "Kırık bir kolla çalışamam.",
+     "hint_tr": "Herhangi bir kol: **mit einem Arm**."
+    },
+    {
+     "de": "Heben Sie bitte beide ___.",
+     "answer": "Arme",
+     "tr": "Lütfen iki kolunuzu da kaldırın.",
+     "hint_tr": "İki kol için **beide Arme** denir."
+    }
+   ]
   },
   {
    "id": "lx:Plan",
@@ -3701,6 +4756,18 @@
     {
      "de": "Was ist der Plan?",
      "tr": "Plan ne?"
+    },
+    {
+     "de": "einen Plan machen",
+     "tr": "plan yapmak"
+    },
+    {
+     "de": "nach Plan",
+     "tr": "plana göre"
+    },
+    {
+     "de": "Pläne für das Wochenende",
+     "tr": "hafta sonu planları"
     }
    ],
    "patterns": [
@@ -3708,14 +4775,14 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Planlar derken **die Plane** yanlış. Doğrusu **die Pläne**.",
+    "Planlar derken **die Plane** yanlış. Doğrusu **die Pläne**. Birden çok plan için **a** harfi **ä** olur.",
     "Planım var derken **Ich habe Plan** yanlış. Doğrusu **Ich habe einen Plan**."
    ],
    "examples": [
     {
      "id": "lx:Plan:1",
      "de": "Hast du schon Pläne für das Wochenende?",
-     "tr": "Hafta sonu için planın var mı?",
+     "tr": "Hafta sonu için planların var mı?",
      "layer": "hd",
      "img": "person writing plans in a calendar"
     },
@@ -3750,7 +4817,33 @@
     "anlam_tr": "Yapmayı düşündüğün şeyleri anlatır.",
     "parcalar": [],
     "ipucu_tr": "**Ich hab keinen Plan** konuşmada hiç bilmiyorum demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich habe ___ Plan.",
+     "answer": "einen",
+     "tr": "Bir planım var.",
+     "hint_tr": "**Ich habe** dedikten sonra **ein Plan**, **einen Plan** olur."
+    },
+    {
+     "de": "Was ist ___ Plan für heute?",
+     "answer": "der",
+     "tr": "Bugünün planı ne?",
+     "hint_tr": "Bildiğimiz plan: **der Plan**."
+    },
+    {
+     "de": "Alles läuft nach ___.",
+     "answer": "Plan",
+     "tr": "Her şey plana göre gidiyor.",
+     "hint_tr": "Plana göre derken **nach Plan** denir."
+    },
+    {
+     "de": "Hast du schon ___ für das Wochenende?",
+     "answer": "Pläne",
+     "tr": "Hafta sonu için planların var mı?",
+     "hint_tr": "Birden çok plan için **Pläne** denir, **a** harfi **ä** olur."
+    }
+   ]
   },
   {
    "id": "lx:lachen",
@@ -3774,6 +4867,14 @@
     {
      "de": "Ich musste lachen.",
      "tr": "Gülmeden edemedim."
+    },
+    {
+     "de": "laut lachen",
+     "tr": "yüksek sesle gülmek"
+    },
+    {
+     "de": "viel lachen",
+     "tr": "çok gülmek"
     }
    ],
    "patterns": [
@@ -3782,7 +4883,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Şakaya gülüyoruz derken **Wir lachen zu dem Witz** yanlış. Doğrusu **Wir lachen über den Witz**."
+    "Fıkraya gülüyoruz derken **Wir lachen zu dem Witz** yanlış. Doğrusu **Wir lachen über den Witz**. **über** gelince **dem Witz**, **den Witz** olur."
    ],
    "examples": [
     {
@@ -3822,7 +4923,7 @@
    "exp": {
     "anlam_tr": "Komik bir şeye sesli gülmeyi söyler.",
     "parcalar": [],
-    "ipucu_tr": "**lächeln** gülümsemek demektir."
+    "ipucu_tr": "**über etwas lachen** bir şeye gülmek demektir."
    }
   },
   {
@@ -3838,6 +4939,14 @@
     {
      "de": "ziemlich teuer",
      "tr": "epey pahalı"
+    },
+    {
+     "de": "ziemlich müde",
+     "tr": "oldukça yorgun"
+    },
+    {
+     "de": "ziemlich viel",
+     "tr": "epey çok"
     }
    ],
    "patterns": [
@@ -3901,8 +5010,16 @@
      "tr": "yürekten"
     },
     {
-     "de": "Herzlichen Glückwunsch!",
-     "tr": "Tebrikler! / İyi ki doğdun!"
+     "de": "das Herz klopft",
+     "tr": "kalp çarpıyor"
+    },
+    {
+     "de": "Probleme mit dem Herzen",
+     "tr": "kalp sorunları"
+    },
+    {
+     "de": "ein gutes Herz haben",
+     "tr": "iyi kalpli olmak"
     }
    ],
    "patterns": [
@@ -3910,34 +5027,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kalp derken **der Herz** yanlış. Doğrusu **das Herz**.",
-    "Kalpler derken **die Herze** yanlış. Doğrusu **die Herzen**."
+    "Kalp derken **der Herz** yanlış. Doğrusu **das Herz**. Kalp anlamındaki bu kelimenin başına **das** gelir.",
+    "Kalpler derken **die Herze** yanlış. Doğrusu **die Herzen**. Birden çok kalp için sona **n** de eklenir."
    ],
    "examples": [
     {
      "id": "lx:Herz:1",
      "de": "Er hat Probleme mit dem Herzen.",
-     "tr": "Kalbiyle ilgili sorunları var.",
-     "layer": "hd"
+     "tr": "Adamın kalbiyle ilgili sorunları var.",
+     "layer": "hd",
+     "img": "older man with heart monitor"
     },
     {
      "id": "lx:Herz:2",
-     "de": "Herzlichen Glückwunsch!",
-     "tr": "Tebrikler!",
-     "layer": "hd"
+     "de": "Die Ärztin hört das Herz ab.",
+     "tr": "Doktor kalbi dinliyor.",
+     "layer": "hd",
+     "img": "stethoscope on patient's chest"
     },
     {
      "id": "lx:Herz:3",
      "de": "Mein Herz klopft wie verrückt.",
      "tr": "Kalbim deli gibi çarpıyor.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "nervous woman waiting backstage"
     },
     {
      "id": "lx:Herz:4",
      "de": "– Was sagt der Arzt? – Das Herz ist in Ordnung.",
      "tr": "– Doktor ne diyor? – Kalp sağlam.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "doctor explaining results to patient"
     }
    ],
    "level": "A2",
@@ -3951,8 +5072,40 @@
     "anlam_tr": "Göğsünde atan organı anlatır.",
     "ne_zaman_tr": "Doktorda şikâyetini anlatırken.",
     "parcalar": [],
-    "ipucu_tr": "**Herzlichen Glückwunsch!** tebrikler demektir."
-   }
+    "ipucu_tr": "Duygulardan söz ederken **Herz** yürek demektir: **von Herzen** yürekten."
+   },
+   "forms": [
+    {
+     "de": "___ Herz ist in Ordnung.",
+     "answer": "Das",
+     "tr": "Kalp sağlam.",
+     "hint_tr": "Bildiğimiz kalp: **das Herz**."
+    },
+    {
+     "de": "Die Ärztin hört ___ Herz ab.",
+     "answer": "das",
+     "tr": "Doktor kalbi dinliyor.",
+     "hint_tr": "**Die Ärztin hört** dedikten sonra da **das Herz** aynı kalır."
+    },
+    {
+     "de": "Er hat Probleme mit dem ___.",
+     "answer": "Herzen",
+     "tr": "Adamın kalbiyle ilgili sorunları var.",
+     "hint_tr": "**mit dem** dedikten sonra **das Herz**, **dem Herzen** olur."
+    },
+    {
+     "de": "Sie hat ___ gutes Herz.",
+     "answer": "ein",
+     "tr": "Kadının iyi bir kalbi var.",
+     "hint_tr": "**Sie hat** dedikten sonra da **ein Herz** aynı kalır: **ein gutes Herz**."
+    },
+    {
+     "de": "Mein ___ klopft wie verrückt.",
+     "answer": "Herz",
+     "tr": "Kalbim deli gibi çarpıyor.",
+     "hint_tr": "Kalp için **Herz** denir."
+    }
+   ]
   },
   {
    "id": "lx:drin",
@@ -3967,6 +5120,18 @@
     {
      "de": "Da ist mehr drin.",
      "tr": "Daha fazlası mümkün."
+    },
+    {
+     "de": "Ist da Zucker drin?",
+     "tr": "İçinde şeker var mı?"
+    },
+    {
+     "de": "Da ist nichts drin.",
+     "tr": "İçinde bir şey yok."
+    },
+    {
+     "de": "in der Tasche drin",
+     "tr": "çantanın içinde"
     }
    ],
    "patterns": [
@@ -3974,8 +5139,8 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "İçinde et var mı derken **Ist Fleisch in?** yanlış. Doğrusu **Ist da Fleisch drin?**",
-    "İçeri gir derken **Komm drin** yanlış. Doğrusu **Komm rein**."
+    "İçinde et var mı derken **Ist da Fleisch in?** yanlış. Doğrusu **Ist da Fleisch drin?** Sonda **in** kalmaz, **drin** olur.",
+    "İçeri gir derken **Komm drin** yanlış. Doğrusu **Komm rein.** İçeriye doğru giderken **rein** söylenir."
    ],
    "examples": [
     {
@@ -4030,11 +5195,19 @@
    "collocations": [
     {
      "de": "ins Bett gehen",
-     "tr": "yatmaya gitmek"
+     "tr": "yatmak"
     },
     {
      "de": "im Bett bleiben",
      "tr": "yatakta kalmak"
+    },
+    {
+     "de": "im Bett liegen",
+     "tr": "yatakta yatmak"
+    },
+    {
+     "de": "das Bett machen",
+     "tr": "yatağı toplamak"
     }
    ],
    "patterns": [
@@ -4050,26 +5223,30 @@
      "id": "lx:Bett:1",
      "de": "Ich gehe heute Abend früh ins Bett.",
      "tr": "Bu akşam erken yatıyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "hand switching off bedside lamp"
     },
     {
      "id": "lx:Bett:2",
      "de": "Bleiben Sie zwei Tage im Bett.",
      "tr": "İki gün yatakta kalın.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "sick man resting in bed"
     },
     {
      "id": "lx:Bett:3",
      "de": "Ab ins Bett, Kinder!",
      "tr": "Hadi yatağa, çocuklar!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "empty bunk bed with teddy"
     },
     {
      "id": "lx:Bett:4",
      "de": "– Wo ist Tom? – Noch im Bett.",
      "tr": "– Tom nerede? – Hâlâ yatakta.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "man sleeping under blanket"
     }
    ],
    "level": "A1",
@@ -4083,7 +5260,39 @@
     "anlam_tr": "Üstünde uyuduğun eşyayı anlatır.",
     "parcalar": [],
     "ipucu_tr": "**ins Bett gehen** yatmak demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Im Zimmer steht ___ großes Bett.",
+     "answer": "ein",
+     "tr": "Odada büyük bir yatak var.",
+     "hint_tr": "Herhangi bir yatak: **ein großes Bett**."
+    },
+    {
+     "de": "Ich mache ___ Bett.",
+     "answer": "das",
+     "tr": "Yatağı topluyorum.",
+     "hint_tr": "**Ich mache** dedikten sonra da **das Bett** aynı kalır."
+    },
+    {
+     "de": "Ich gehe heute früh ___ Bett.",
+     "answer": "ins",
+     "tr": "Bugün erken yatıyorum.",
+     "hint_tr": "Yatmaya giderken **in das** birleşir: **ins Bett**."
+    },
+    {
+     "de": "Bleiben Sie zwei Tage ___ Bett.",
+     "answer": "im",
+     "tr": "İki gün yatakta kalın.",
+     "hint_tr": "Yatakta kalırken **in dem** birleşir: **im Bett**."
+    },
+    {
+     "de": "Das Hotelzimmer hat zwei ___.",
+     "answer": "Betten",
+     "tr": "Otel odasında iki yatak var.",
+     "hint_tr": "İki yatak için **zwei Betten** denir."
+    }
+   ]
   },
   {
    "id": "lx:klingen",
@@ -4104,6 +5313,18 @@
     {
      "de": "Das klingt komisch.",
      "tr": "Kulağa tuhaf geliyor."
+    },
+    {
+     "de": "müde klingen",
+     "tr": "sesi yorgun gelmek"
+    },
+    {
+     "de": "interessant klingen",
+     "tr": "kulağa ilginç gelmek"
+    },
+    {
+     "de": "Das klingt nicht schlecht.",
+     "tr": "Kulağa fena gelmiyor."
     }
    ],
    "patterns": [
@@ -4111,8 +5332,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Zil çalıyor derken **Es klingt** yanlış. Doğrusu **Es klingelt**.",
-    "Sesin yorgun geliyor derken **Deine Stimme kommt müde** yanlış. Doğrusu **Du klingst müde**."
+    "Zil çalıyor derken **Es klingt** yanlış. Doğrusu **Es klingelt.** Zil sesi için **klingeln** söylenir.",
+    "Sesin yorgun geliyor derken **Deine Stimme kommt müde** yanlış. Doğrusu **Deine Stimme klingt müde.** Ses için **kommen** değil **klingen** söylenir."
    ],
    "examples": [
     {
@@ -4131,13 +5352,13 @@
     {
      "id": "lx:klingen:3",
      "de": "Klingt gut!",
-     "tr": "Kulağa hoş geliyor!",
+     "tr": "Kulağa iyi geliyor!",
      "layer": "alltag"
     },
     {
      "id": "lx:klingen:4",
      "de": "– Treffen wir uns um sieben? – Klingt gut!",
-     "tr": "– Yedide buluşalım mı? – Olur!",
+     "tr": "– Yedide buluşalım mı? – Kulağa iyi geliyor!",
      "layer": "alltag",
      "dialog": true
     }
@@ -4152,7 +5373,7 @@
    "exp": {
     "anlam_tr": "Duyduğun şeyin sende bıraktığı izlenimi söyler.",
     "parcalar": [],
-    "ipucu_tr": "**Klingt gut!** kulağa hoş geliyor demektir."
+    "ipucu_tr": "**Klingt gut!** kulağa iyi geliyor demektir."
    }
   },
   {
@@ -4265,6 +5486,14 @@
     {
      "de": "einen neuen Job haben",
      "tr": "yeni bir işi olmak"
+    },
+    {
+     "de": "einen Job finden",
+     "tr": "iş bulmak"
+    },
+    {
+     "de": "den Job wechseln",
+     "tr": "iş değiştirmek"
     }
    ],
    "patterns": [
@@ -4287,7 +5516,7 @@
     {
      "id": "lx:Job:2",
      "de": "Sie hat einen guten Job bei der Stadt.",
-     "tr": "Belediyede iyi bir işi var.",
+     "tr": "Kadının belediyede iyi bir işi var.",
      "layer": "alltag"
     },
     {
@@ -4315,7 +5544,39 @@
     "ne_zaman_tr": "Günlük konuşmada.",
     "parcalar": [],
     "ipucu_tr": "Resmî yazıda iş için **Stelle** kullanılır."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ guter Job.",
+     "answer": "ein",
+     "tr": "Bu iyi bir iş.",
+     "hint_tr": "Bir işten söz ederken **ein Job** denir: **ein guter Job**."
+    },
+    {
+     "de": "Ich suche ___ neuen Job.",
+     "answer": "einen",
+     "tr": "Yeni bir iş arıyorum.",
+     "hint_tr": "**Ich suche** dedikten sonra **ein neuer Job**, **einen neuen Job** olur."
+    },
+    {
+     "de": "Wie ist ___ neue Job?",
+     "answer": "der",
+     "tr": "Yeni iş nasıl?",
+     "hint_tr": "Bildiğimiz iş: **der neue Job**."
+    },
+    {
+     "de": "Ich bin mit ___ Job zufrieden.",
+     "answer": "meinem",
+     "tr": "İşimden memnunum.",
+     "hint_tr": "İşimden memnun derken **mit meinem Job zufrieden** denir."
+    },
+    {
+     "de": "Basti hat zwei ___.",
+     "answer": "Jobs",
+     "tr": "Basti'nin iki işi var.",
+     "hint_tr": "İki iş için **zwei Jobs** denir, sona **s** gelir."
+    }
+   ]
   },
   {
    "id": "lx:verlieren",
@@ -4339,6 +5600,14 @@
     {
      "de": "ein Spiel verlieren",
      "tr": "maç kaybetmek"
+    },
+    {
+     "de": "die Geduld verlieren",
+     "tr": "sabrını kaybetmek"
+    },
+    {
+     "de": "keine Zeit verlieren",
+     "tr": "zaman kaybetmemek"
     }
    ],
    "patterns": [
@@ -4346,8 +5615,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kaybettim derken **Ich habe verliert** yanlış. Doğrusu **Ich habe verloren**.",
-    "Telefonumu kaybettim derken **Mein Handy verloren** eksik. Doğrusu **Ich habe mein Handy verloren**."
+    "Kaybettim derken **Ich habe verliert** yanlış. Doğrusu **Ich habe verloren**. **verlieren** geçmişte **verloren** olur.",
+    "Telefonumu kaybettim derken **Mein Handy verloren** eksik. Doğrusu **Ich habe mein Handy verloren**. Başa **Ich habe** gelir."
    ],
    "examples": [
     {
@@ -4365,7 +5634,7 @@
     {
      "id": "lx:verlieren:3",
      "de": "Nicht die Nerven verlieren!",
-     "tr": "Sakin ol, sinirlenme!",
+     "tr": "Soğukkanlılığını kaybetme!",
      "layer": "alltag"
     },
     {
@@ -4387,7 +5656,7 @@
    "exp": {
     "anlam_tr": "Sahip olduğun bir şeyi artık bulamamayı söyler.",
     "parcalar": [],
-    "ipucu_tr": "Kaybettiğin eşya için **Fundbüro** yani kayıp eşya bürosuna git."
+    "ipucu_tr": "Maçı kaybedince de **verlieren** denir: **Wir haben verloren** kaybettik demektir."
    }
   },
   {
@@ -4405,6 +5674,14 @@
     {
      "de": "Mama und Papa",
      "tr": "annemle babam"
+    },
+    {
+     "de": "zu Mama fahren",
+     "tr": "anneme gitmek"
+    },
+    {
+     "de": "Mama anrufen",
+     "tr": "anneme telefon etmek"
     }
    ],
    "patterns": [
@@ -4412,7 +5689,7 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Annem derken **mein Mama** yanlış. Doğrusu **meine Mama**."
+    "Annem derken **mein Mama** yanlış. Doğrusu **meine Mama**. **die Mama** olduğu için **mein** sonuna **e** alır."
    ],
    "examples": [
     {
@@ -4430,7 +5707,7 @@
     {
      "id": "lx:Mama:3",
      "de": "Ich ruf mal kurz meine Mama an.",
-     "tr": "Annemi bir arayayım.",
+     "tr": "Anneme bir telefon edeyim.",
      "layer": "alltag"
     },
     {
@@ -4453,7 +5730,33 @@
     "ne_zaman_tr": "Aile içinde ve yakın arkadaşlarla konuşurken.",
     "parcalar": [],
     "ipucu_tr": "Resmî yerde annen için **meine Mutter** de: annem."
-   }
+   },
+   "forms": [
+    {
+     "de": "___ Mama kommt morgen zu Besuch.",
+     "answer": "Meine",
+     "tr": "Annem yarın ziyarete geliyor.",
+     "hint_tr": "Benim annem derken **meine Mama** denir."
+    },
+    {
+     "de": "Ich rufe ___ Mama an.",
+     "answer": "meine",
+     "tr": "Anneme telefon ediyorum.",
+     "hint_tr": "**Ich rufe** dedikten sonra da **meine Mama** aynı kalır."
+    },
+    {
+     "de": "Am Wochenende fahre ich zu ___ Mama.",
+     "answer": "meiner",
+     "tr": "Hafta sonu anneme gidiyorum.",
+     "hint_tr": "Anneme giderken **zu meiner Mama** denir."
+    },
+    {
+     "de": "Wo ist ___ Mama?",
+     "answer": "deine",
+     "tr": "Annen nerede?",
+     "hint_tr": "Senin annen derken **deine Mama** denir."
+    }
+   ]
   },
   {
    "id": "lx:wünschen",
@@ -4473,12 +5776,20 @@
    },
    "collocations": [
     {
-     "de": "Ich wünsche dir …",
-     "tr": "Sana … dilerim"
+     "de": "Ich wünsche dir viel Glück.",
+     "tr": "Sana bol şans dilerim."
     },
     {
      "de": "sich etwas wünschen",
-     "tr": "bir şey istemek, dilemek"
+     "tr": "bir şey istemek"
+    },
+    {
+     "de": "alles Gute wünschen",
+     "tr": "her şeyin en iyisini dilemek"
+    },
+    {
+     "de": "einen schönen Tag wünschen",
+     "tr": "iyi günler dilemek"
     }
    ],
    "patterns": [
@@ -4486,7 +5797,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Sana bol şans dilerim derken **Ich wünsche dich viel Glück** yanlış. Doğrusu **Ich wünsche dir viel Glück**."
+    "Sana bol şans dilerim derken **Ich wünsche dich viel Glück** yanlış. Doğrusu **Ich wünsche dir viel Glück**. Dilek sana gittiği için **dir** gelir."
    ],
    "examples": [
     {
@@ -4511,7 +5822,7 @@
     {
      "id": "lx:wünschen:4",
      "de": "– Morgen ist meine Prüfung. – Ich wünsche dir viel Glück!",
-     "tr": "– Yarın sınavım var. – Sana bol şans!",
+     "tr": "– Yarın sınavım var. – Sana bol şans dilerim!",
      "layer": "alltag",
      "dialog": true
     }
@@ -4524,7 +5835,7 @@
     "einkaufen"
    ],
    "exp": {
-    "anlam_tr": "Birine iyi bir şey dilemeni sağlar.",
+    "anlam_tr": "Birine iyi bir şey dilemeyi söyler.",
     "parcalar": [],
     "ipucu_tr": "**Was wünschst du dir?** ne istiyorsun demektir."
    }
@@ -4551,6 +5862,18 @@
     {
      "de": "im Lotto gewinnen",
      "tr": "lotoda kazanmak"
+    },
+    {
+     "de": "einen Preis gewinnen",
+     "tr": "ödül kazanmak"
+    },
+    {
+     "de": "knapp gewinnen",
+     "tr": "kıl payı kazanmak"
+    },
+    {
+     "de": "drei zu null gewinnen",
+     "tr": "üç sıfır kazanmak"
     }
    ],
    "patterns": [
@@ -4558,8 +5881,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Ayda iki bin avro kazanıyorum derken **Ich gewinne 2000 Euro** yanlış. Doğrusu **Ich verdiene 2000 Euro**.",
-    "Kazandık derken **Wir haben gewinnt** yanlış. Doğrusu **Wir haben gewonnen**."
+    "Ayda iki bin avro kazanıyorum derken **Ich gewinne 2000 Euro** yanlış. Doğrusu **Ich verdiene 2000 Euro.** Maaş için **verdienen** söylenir.",
+    "Kazandık derken **Wir haben gewinnt** yanlış. Doğrusu **Wir haben gewonnen.** Geçmişi anlatırken **gewinnen**, **gewonnen** olur."
    ],
    "examples": [
     {
@@ -4612,11 +5935,23 @@
    "collocations": [
     {
      "de": "auf der anderen Seite",
-     "tr": "öbür tarafta"
+     "tr": "karşı tarafta"
     },
     {
      "de": "auf Seite zehn",
      "tr": "onuncu sayfada"
+    },
+    {
+     "de": "auf der linken Seite",
+     "tr": "sol tarafta"
+    },
+    {
+     "de": "eine Seite lesen",
+     "tr": "bir sayfa okumak"
+    },
+    {
+     "de": "auf beiden Seiten",
+     "tr": "iki tarafta"
     }
    ],
    "patterns": [
@@ -4649,7 +5984,7 @@
     },
     {
      "id": "lx:Seite:4",
-     "de": "– Wo ist die Haltestelle? – Auf der anderen Straßenseite.",
+     "de": "– Wo ist die Haltestelle? – Auf der anderen Seite der Straße.",
      "tr": "– Durak nerede? – Caddenin karşı tarafında.",
      "layer": "alltag",
      "dialog": true
@@ -4666,7 +6001,39 @@
     "anlam_tr": "Bir şeyin sağ ya da sol tarafını anlatır.",
     "parcalar": [],
     "ipucu_tr": "**auf Seite zwei** ikinci sayfada demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Unterschreiben Sie bitte auf ___ zwei.",
+     "answer": "Seite",
+     "tr": "Lütfen ikinci sayfada imzalayın.",
+     "hint_tr": "Sayfa numarasını söylerken **auf Seite zwei** denir."
+    },
+    {
+     "de": "Lesen Sie bitte ___ erste Seite.",
+     "answer": "die",
+     "tr": "Lütfen ilk sayfayı okuyun.",
+     "hint_tr": "**Lesen Sie** dedikten sonra da **die Seite** aynı kalır."
+    },
+    {
+     "de": "Die Apotheke ist auf ___ anderen Seite.",
+     "answer": "der",
+     "tr": "Eczane karşı tarafta.",
+     "hint_tr": "Karşı tarafta derken **auf der anderen Seite** denir."
+    },
+    {
+     "de": "Ich bin auf ___ Seite.",
+     "answer": "deiner",
+     "tr": "Senin tarafındayım.",
+     "hint_tr": "Senin tarafında derken **auf deiner Seite** denir."
+    },
+    {
+     "de": "Das Buch hat 200 ___.",
+     "answer": "Seiten",
+     "tr": "Kitap 200 sayfa.",
+     "hint_tr": "Birden çok sayfa için **Seiten** denir."
+    }
+   ]
   },
   {
    "id": "lx:frei",
@@ -4681,6 +6048,18 @@
     {
      "de": "Ist hier noch frei?",
      "tr": "Burası boş mu?"
+    },
+    {
+     "de": "einen Termin frei haben",
+     "tr": "boş randevusu olmak"
+    },
+    {
+     "de": "ein freier Platz",
+     "tr": "boş bir yer"
+    },
+    {
+     "de": "Eintritt frei",
+     "tr": "giriş ücretsiz"
     }
    ],
    "patterns": [
@@ -4689,8 +6068,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Burası boş mu derken **Ist hier leer?** yanlış. Doğrusu **Ist hier noch frei?**",
-    "Yarın izinliyim derken **Ich habe morgen Erlaubnis** yanlış. Doğrusu **Ich habe morgen frei**."
+    "Burası boş mu derken **Ist hier leer?** yanlış. Doğrusu **Ist hier frei?** Oturacak yer için **leer** değil, **frei** söylenir.",
+    "Yarın izinliyim derken **Ich habe morgen Erlaubnis** yanlış. Doğrusu **Ich habe morgen frei.** **Erlaubnis** bir şeye izin verilmesidir, işten izin değil."
    ],
    "examples": [
     {
@@ -4745,11 +6124,23 @@
    "collocations": [
     {
      "de": "vor Ort",
-     "tr": "yerinde"
+     "tr": "olayın olduğu yerde"
     },
     {
      "de": "Wohnort",
      "tr": "ikamet yeri"
+    },
+    {
+     "de": "ein kleiner Ort",
+     "tr": "küçük bir yer"
+    },
+    {
+     "de": "an einem ruhigen Ort",
+     "tr": "sakin bir yerde"
+    },
+    {
+     "de": "Ort und Datum",
+     "tr": "yer ve tarih"
     }
    ],
    "patterns": [
@@ -4798,7 +6189,39 @@
     "anlam_tr": "Belli bir yeri anlatır.",
     "parcalar": [],
     "ipucu_tr": "Formda **Ort** oturduğun şehir ya da köy demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ schöner Ort.",
+     "answer": "ein",
+     "tr": "Burası güzel bir yer.",
+     "hint_tr": "Bir yeri anlatırken **ein Ort** denir: **ein schöner Ort**."
+    },
+    {
+     "de": "Wir wohnen in ___ kleinen Ort.",
+     "answer": "einem",
+     "tr": "Küçük bir yerde oturuyoruz.",
+     "hint_tr": "**Wir wohnen in** dedikten sonra **ein Ort**, **einem Ort** olur."
+    },
+    {
+     "de": "___ Ort ist sehr ruhig.",
+     "answer": "Der",
+     "tr": "Kasaba çok sakin.",
+     "hint_tr": "Bildiğimiz yer: **der Ort**."
+    },
+    {
+     "de": "Die Polizei ist schon vor ___.",
+     "answer": "Ort",
+     "tr": "Polis zaten olay yerinde.",
+     "hint_tr": "Olayın olduğu yerde derken **vor Ort** denir."
+    },
+    {
+     "de": "Hier gibt es viele kleine ___.",
+     "answer": "Orte",
+     "tr": "Burada birçok küçük yerleşim yeri var.",
+     "hint_tr": "Birden çok yer için **Orte** denir."
+    }
+   ]
   },
   {
    "id": "lx:gefallen",
@@ -4820,8 +6243,20 @@
      "tr": "Bunu beğendim."
     },
     {
-     "de": "Wie gefällt dir …?",
-     "tr": "… nasıl buldun?"
+     "de": "Wie gefällt dir die Stadt?",
+     "tr": "Şehri nasıl buldun?"
+    },
+    {
+     "de": "Gefällt dir das?",
+     "tr": "Bunu beğendin mi?"
+    },
+    {
+     "de": "Das gefällt mir sehr gut.",
+     "tr": "Bunu çok beğendim."
+    },
+    {
+     "de": "Das gefällt mir nicht.",
+     "tr": "Bunu beğenmedim."
     }
    ],
    "patterns": [
@@ -4829,14 +6264,14 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Bunu beğendim derken **Ich gefalle das** yanlış. Doğrusu **Das gefällt mir**.",
-    "Ayakkabıları beğendim derken **Die Schuhe gefällt mir** yanlış. Doğrusu **Die Schuhe gefallen mir**."
+    "Bunu beğendim derken **Ich gefalle das** yanlış. Doğrusu **Das gefällt mir.** Beğenilen şey başa gelir. Sen **mir** olursun.",
+    "Ayakkabıları beğendim derken **Die Schuhe gefällt mir** yanlış. Doğrusu **Die Schuhe gefallen mir.** Birden çok ayakkabı olduğu için **gefallen** gelir."
    ],
    "examples": [
     {
      "id": "lx:gefallen:1",
      "de": "Die Wohnung gefällt mir sehr.",
-     "tr": "Evi çok beğendim.",
+     "tr": "Daireyi çok beğendim.",
      "layer": "hd"
     },
     {
@@ -4896,6 +6331,18 @@
     {
      "de": "verheiratet sein",
      "tr": "evli olmak"
+    },
+    {
+     "de": "im Sommer heiraten",
+     "tr": "yazın evlenmek"
+    },
+    {
+     "de": "standesamtlich heiraten",
+     "tr": "resmî nikâhla evlenmek"
+    },
+    {
+     "de": "jung heiraten",
+     "tr": "genç yaşta evlenmek"
     }
    ],
    "patterns": [
@@ -4903,8 +6350,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Anna ile evleniyorum derken **Ich heirate mit Anna** yanlış. Doğrusu **Ich heirate Anna**.",
-    "Evliyim derken **Ich bin geheiratet** yanlış. Doğrusu **Ich bin verheiratet**."
+    "Kız kardeşim Tom ile evleniyor derken **Meine Schwester heiratet mit Tom** yanlış. Doğrusu **Meine Schwester heiratet Tom.** Türkçedeki **ile** burada gelmez.",
+    "Evliyim derken **Ich bin geheiratet** yanlış. Doğrusu **Ich bin verheiratet.** Evli olmak için **verheiratet** söylenir."
    ],
    "examples": [
     {
@@ -4944,7 +6391,7 @@
    "exp": {
     "anlam_tr": "Biriyle evlenmeyi söyler.",
     "parcalar": [],
-    "ipucu_tr": "**verheiratet** evli demektir."
+    "ipucu_tr": "**jemanden heiraten** biriyle evlenmek demektir, araya **mit** girmez."
    }
   },
   {
@@ -5248,12 +6695,24 @@
    "pl": "Wörter",
    "collocations": [
     {
-     "de": "ein Wort für …",
-     "tr": "… için bir kelime"
+     "de": "Gibt es ein Wort dafür?",
+     "tr": "Bunun için bir kelime var mı?"
     },
     {
      "de": "Wort halten",
      "tr": "sözünü tutmak"
+    },
+    {
+     "de": "kein Wort verstehen",
+     "tr": "tek kelime anlamamak"
+    },
+    {
+     "de": "ein Wort nachschlagen",
+     "tr": "bir kelimeye sözlükte bakmak"
+    },
+    {
+     "de": "ein neues Wort lernen",
+     "tr": "yeni bir kelime öğrenmek"
     }
    ],
    "patterns": [
@@ -5262,13 +6721,13 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kelimeler derken **die Worts** yanlış. Doğrusu **die Wörter**."
+    "Kelimeler derken **die Worts** yanlış. Doğrusu **die Wörter.** Birden çok kelimede **o**, **ö** olur ve sona **er** gelir."
    ],
    "examples": [
     {
      "id": "lx:Wort:1",
      "de": "Was bedeutet dieses Wort?",
-     "tr": "Bu kelime ne demek?",
+     "tr": "Bu kelime ne anlama geliyor?",
      "layer": "hd",
      "img": "open dictionary page close up"
     },
@@ -5286,8 +6745,8 @@
     },
     {
      "id": "lx:Wort:4",
-     "de": "– Was ist das deutsche Wort dafür? – „Schlüssel“.",
-     "tr": "– Bunun Almancası ne? – \"Schlüssel\".",
+     "de": "– Kennst du das deutsche Wort dafür? – Nein, das Wort kenne ich nicht.",
+     "tr": "– Bunun Almanca kelimesini biliyor musun? – Hayır, o kelimeyi bilmiyorum.",
      "layer": "alltag",
      "dialog": true
     }
@@ -5302,7 +6761,39 @@
     "anlam_tr": "Dildeki tek bir kelimeyi anlatır.",
     "parcalar": [],
     "ipucu_tr": "**Wort halten** sözünü tutmak demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ schweres Wort.",
+     "answer": "ein",
+     "tr": "Bu zor bir kelime.",
+     "hint_tr": "**Das ist** dedikten sonra **ein Wort** aynı kalır: **ein schweres Wort**."
+    },
+    {
+     "de": "Wir lernen heute ___ neues Wort.",
+     "answer": "ein",
+     "tr": "Bugün yeni bir kelime öğreniyoruz.",
+     "hint_tr": "**Wir lernen** dedikten sonra da **ein Wort** aynı kalır."
+    },
+    {
+     "de": "Ich kenne ___ Wort nicht.",
+     "answer": "das",
+     "tr": "Kelimeyi bilmiyorum.",
+     "hint_tr": "**Ich kenne** dedikten sonra da **das Wort** aynı kalır."
+    },
+    {
+     "de": "Sag es in ___ Wort.",
+     "answer": "einem",
+     "tr": "Tek kelimeyle söyle.",
+     "hint_tr": "Tek kelimeyle derken **in einem Wort** denir."
+    },
+    {
+     "de": "Ich lerne jeden Tag zehn neue ___.",
+     "answer": "Wörter",
+     "tr": "Her gün on yeni kelime öğreniyorum.",
+     "hint_tr": "Birden çok kelime: **Wörter**, **o** yerine **ö** gelir."
+    }
+   ]
   },
   {
    "id": "lx:stark",
@@ -5317,6 +6808,14 @@
     {
      "de": "starker Kaffee",
      "tr": "sert kahve"
+    },
+    {
+     "de": "stark regnen",
+     "tr": "şiddetli yağmur yağmak"
+    },
+    {
+     "de": "starker Wind",
+     "tr": "sert rüzgâr"
     }
    ],
    "patterns": [
@@ -5324,7 +6823,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Şiddetli ağrım var derken **Ich habe stark Schmerzen** yanlış. Doğrusu **Ich habe starke Schmerzen**.",
+    "Şiddetli ağrım var derken **Ich habe stark Schmerzen** yanlış. Doğrusu **Ich habe starke Schmerzen**. **Schmerzen** önünde **stark**, **starke** olur.",
     "Sert kahve derken **harter Kaffee** yanlış. Doğrusu **starker Kaffee**."
    ],
    "examples": [
@@ -5488,11 +6987,19 @@
    "collocations": [
     {
      "de": "Entschuldigung!",
-     "tr": "Pardon! / Affedersiniz!"
+     "tr": "Affedersiniz!"
     },
     {
      "de": "eine Entschuldigung schreiben",
      "tr": "okula mazeret yazısı yazmak"
+    },
+    {
+     "de": "die Entschuldigung annehmen",
+     "tr": "özrü kabul etmek"
+    },
+    {
+     "de": "um Entschuldigung bitten",
+     "tr": "özür dilemek"
     }
    ],
    "patterns": [
@@ -5500,7 +7007,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Özür dilemek istiyorum derken **Ich möchte Entschuldigung** yanlış. Doğrusu **Ich möchte mich entschuldigen**."
+    "Özür dilemek istiyorum derken **Ich möchte Entschuldigung** yanlış. Doğrusu **Ich möchte mich entschuldigen**. Özür dilemek **sich entschuldigen** ile söylenir, **Entschuldigung** tek başına pardon demektir."
    ],
    "examples": [
     {
@@ -5541,7 +7048,27 @@
     "ne_zaman_tr": "Bir hata yaptığında ya da birini durdururken.",
     "parcalar": [],
     "ipucu_tr": "Yol sorarken **Entschuldigung** affedersiniz demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich schreibe ___ Entschuldigung für die Schule.",
+     "answer": "eine",
+     "tr": "Okul için bir mazeret yazısı yazıyorum.",
+     "hint_tr": "Herhangi bir mazeret yazısı: **eine Entschuldigung**."
+    },
+    {
+     "de": "Die Lehrerin hat ___ Entschuldigung bekommen.",
+     "answer": "die",
+     "tr": "Öğretmen mazeret yazısını aldı.",
+     "hint_tr": "Bildiğimiz mazeret yazısı: **die Entschuldigung**."
+    },
+    {
+     "de": "Ich nehme deine ___ an.",
+     "answer": "Entschuldigung",
+     "tr": "Özrünü kabul ediyorum.",
+     "hint_tr": "Özrü kabul etmek için **die Entschuldigung annehmen** denir."
+    }
+   ]
   },
   {
    "id": "lx:anfangen",
@@ -5566,6 +7093,18 @@
     {
      "de": "Fang an!",
      "tr": "Başla!"
+    },
+    {
+     "de": "mit der Arbeit anfangen",
+     "tr": "işe başlamak"
+    },
+    {
+     "de": "von vorne anfangen",
+     "tr": "baştan başlamak"
+    },
+    {
+     "de": "einen neuen Job anfangen",
+     "tr": "yeni bir işe başlamak"
     }
    ],
    "patterns": [
@@ -5574,8 +7113,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Sekizde başlıyorum derken **Ich anfange um acht** yanlış. Doğrusu **Ich fange um acht an**.",
-    "Başladım derken **Ich habe geanfangen** yanlış. Doğrusu **Ich habe angefangen**."
+    "Sekizde başlıyorum derken **Ich anfange um acht** yanlış. Doğrusu **Ich fange um acht an.** **an** sona gider.",
+    "Başladım derken **Ich habe geanfangen** yanlış. Doğrusu **Ich habe angefangen.** **ge**, **an** ile **fangen** arasına girer."
    ],
    "examples": [
     {
@@ -5725,6 +7264,14 @@
     {
      "de": "langsam sprechen",
      "tr": "yavaş konuşmak"
+    },
+    {
+     "de": "langsam fahren",
+     "tr": "yavaş sürmek"
+    },
+    {
+     "de": "langsam essen",
+     "tr": "yavaş yemek yemek"
     }
    ],
    "patterns": [
@@ -5733,7 +7280,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Daha yavaş derken **mehr langsam** yanlış. Doğrusu **langsamer**."
+    "Daha yavaş derken **mehr langsam** yanlış. Doğrusu **langsamer**. **mehr** yerine sona **er** eklenir."
    ],
    "examples": [
     {
@@ -6655,8 +8202,16 @@
      "tr": "hasta olmak"
     },
     {
-     "de": "sich krankmelden",
-     "tr": "hastalık bildirmek"
+     "de": "krank werden",
+     "tr": "hastalanmak"
+    },
+    {
+     "de": "sich krank fühlen",
+     "tr": "kendini hasta hissetmek"
+    },
+    {
+     "de": "krank im Bett liegen",
+     "tr": "hasta yatmak"
     }
    ],
    "patterns": [
@@ -6706,7 +8261,7 @@
     "anlam_tr": "Birinin sağlığının iyi olmadığını söyler.",
     "ne_zaman_tr": "İşe ya da doktora haber verirken.",
     "parcalar": [],
-    "ipucu_tr": "İşe hasta olduğunu bildirmek **sich krankmelden** demektir."
+    "ipucu_tr": "**krank werden** hastalanmak demektir."
    }
   },
   {
@@ -6931,7 +8486,15 @@
     },
     {
      "de": "Wie war das nochmal?",
-     "tr": "Neydi o?"
+     "tr": "Ne demiştin, bir daha söyler misin?"
+    },
+    {
+     "de": "nochmal sagen",
+     "tr": "bir daha söylemek"
+    },
+    {
+     "de": "es nochmal versuchen",
+     "tr": "bir daha denemek"
     }
    ],
    "patterns": [
@@ -7124,6 +8687,18 @@
     {
      "de": "starke Schmerzen",
      "tr": "şiddetli ağrı"
+    },
+    {
+     "de": "Schmerzen haben",
+     "tr": "ağrısı olmak"
+    },
+    {
+     "de": "etwas gegen Schmerzen",
+     "tr": "ağrıya iyi gelen bir şey"
+    },
+    {
+     "de": "keine Schmerzen mehr",
+     "tr": "artık ağrı yok"
     }
    ],
    "patterns": [
@@ -7132,7 +8707,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Ağrım var derken **Ich habe Schmerz** doğal değil. Doğrusu **Ich habe Schmerzen**.",
+    "Ağrım var derken **Ich habe Schmerz** doğal değil. Doğrusu **Ich habe Schmerzen**. Ağrıdan söz ederken çoğunlukla **Schmerzen** denir.",
     "Karnım ağrıyor derken **Mein Bauch hat Schmerzen** yanlış. Doğrusu **Ich habe Bauchschmerzen**."
    ],
    "examples": [
@@ -7157,7 +8732,7 @@
     {
      "id": "lx:Schmerz:4",
      "de": "– Wo haben Sie Schmerzen? – Hier, im Rücken.",
-     "tr": "– Neresi ağrıyor? – Burası, sırtım.",
+     "tr": "– Nerenizde ağrı var? – Burada, sırtımda.",
      "layer": "alltag",
      "dialog": true,
      "img": "doctor examining patient back"
@@ -7174,7 +8749,33 @@
     "ne_zaman_tr": "Doktora nerenin ağrıdığını anlatırken.",
     "parcalar": [],
     "ipucu_tr": "**Kopfschmerzen** baş ağrısı demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich habe starke ___.",
+     "answer": "Schmerzen",
+     "tr": "Şiddetli ağrım var.",
+     "hint_tr": "Ağrım var derken çoğunlukla **Schmerzen** denir."
+    },
+    {
+     "de": "Wo haben Sie ___?",
+     "answer": "Schmerzen",
+     "tr": "Nerenizde ağrı var?",
+     "hint_tr": "Doktor ağrıyı sorarken **Wo haben Sie Schmerzen?** der."
+    },
+    {
+     "de": "___ Schmerzen sind weg!",
+     "answer": "Die",
+     "tr": "Ağrı geçti!",
+     "hint_tr": "Bildiğimiz ağrı: **die Schmerzen**."
+    },
+    {
+     "de": "Ich habe ___ Schmerzen mehr.",
+     "answer": "keine",
+     "tr": "Artık ağrım yok.",
+     "hint_tr": "Ağrım yok derken **keine Schmerzen** denir."
+    }
+   ]
   },
   {
    "id": "lx:acht",
@@ -7288,6 +8889,18 @@
     {
      "de": "als Geschenk verpacken",
      "tr": "hediye paketi yapmak"
+    },
+    {
+     "de": "ein Geschenk bekommen",
+     "tr": "hediye almak"
+    },
+    {
+     "de": "ein kleines Geschenk",
+     "tr": "küçük bir hediye"
+    },
+    {
+     "de": "ein Geschenk aussuchen",
+     "tr": "hediye seçmek"
     }
    ],
    "patterns": [
@@ -7295,33 +8908,37 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Hediye aldım derken **Ich habe Geschenk gekauft** yanlış. Doğrusu **Ich habe ein Geschenk gekauft**."
+    "Bir hediye satın aldım derken **Ich habe Geschenk gekauft** yanlış. Doğrusu **Ich habe ein Geschenk gekauft**."
    ],
    "examples": [
     {
      "id": "lx:Geschenk:1",
      "de": "Das ist ein Geschenk für dich.",
      "tr": "Bu senin için bir hediye.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "hands giving wrapped present"
     },
     {
      "id": "lx:Geschenk:2",
      "de": "Können Sie das als Geschenk einpacken?",
      "tr": "Bunu hediye paketi yapabilir misiniz?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "shop clerk wrapping gift"
     },
     {
      "id": "lx:Geschenk:3",
      "de": "Oh, ein Geschenk? Danke!",
      "tr": "Ay, hediye mi? Teşekkürler!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "surprised woman holding gift box"
     },
     {
      "id": "lx:Geschenk:4",
      "de": "– Was schenkst du ihr? – Keine Ahnung, ich suche noch ein Geschenk.",
      "tr": "– Ona ne hediye edeceksin? – Bilmiyorum, hâlâ hediye arıyorum.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "man browsing gifts in shop"
     }
    ],
    "level": "A1",
@@ -7335,7 +8952,39 @@
     "anlam_tr": "Birine karşılıksız verdiğin şeyi anlatır.",
     "parcalar": [],
     "ipucu_tr": "**als Geschenk einpacken** hediye paketi yapmak demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ Geschenk für dich.",
+     "answer": "ein",
+     "tr": "Bu senin için bir hediye.",
+     "hint_tr": "Bir hediyeyi gösterirken **ein Geschenk** denir."
+    },
+    {
+     "de": "Ich suche noch ___ Geschenk für Derya.",
+     "answer": "ein",
+     "tr": "Derya için hâlâ bir hediye arıyorum.",
+     "hint_tr": "**Ich suche** dedikten sonra da **ein Geschenk** aynı kalır."
+    },
+    {
+     "de": "Danke für ___ Geschenk!",
+     "answer": "das",
+     "tr": "Hediye için teşekkürler!",
+     "hint_tr": "Bildiğimiz hediye: **für das Geschenk**."
+    },
+    {
+     "de": "Ich komme mit ___ kleinen Geschenk.",
+     "answer": "einem",
+     "tr": "Küçük bir hediyeyle geliyorum.",
+     "hint_tr": "Herhangi bir hediye: **mit einem Geschenk**."
+    },
+    {
+     "de": "Unter dem Baum liegen viele ___.",
+     "answer": "Geschenke",
+     "tr": "Ağacın altında birçok hediye var.",
+     "hint_tr": "Birden çok hediye için **Geschenke** denir."
+    }
+   ]
   },
   {
    "id": "lx:Bescheid",
@@ -7352,6 +9001,18 @@
     {
      "de": "Bescheid wissen",
      "tr": "haberdar olmak"
+    },
+    {
+     "de": "Gib mir Bescheid!",
+     "tr": "Bana haber ver!"
+    },
+    {
+     "de": "einen Bescheid bekommen",
+     "tr": "resmî karar yazısı almak"
+    },
+    {
+     "de": "kurz Bescheid sagen",
+     "tr": "kısaca haber vermek"
     }
    ],
    "patterns": [
@@ -7359,8 +9020,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Sana haber veririm derken **Ich sage dich Bescheid** yanlış. Doğrusu **Ich sage dir Bescheid**.",
-    "Bana haber ver derken **Gib mir ein Bescheid** yanlış. Doğrusu **Gib mir Bescheid**."
+    "Sana haber veririm derken **Ich sage dich Bescheid** yanlış. Doğrusu **Ich sage dir Bescheid**. Haber verilen kişi için **dich** değil **dir** gelir.",
+    "Bana haber ver derken **Gib mir ein Bescheid** yanlış. Doğrusu **Gib mir Bescheid**. Haber vermek anlamında **ein** kullanılmaz."
    ],
    "examples": [
     {
@@ -7403,7 +9064,39 @@
     "ne_zaman_tr": "Birinden sonucu bildirmesini isterken.",
     "parcalar": [],
     "ipucu_tr": "Resmî dairenin yazılı kararına da **Bescheid** denir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Sagen Sie mir bitte ___.",
+     "answer": "Bescheid",
+     "tr": "Lütfen bana haber verin.",
+     "hint_tr": "Haber vermek için **Bescheid sagen** denir."
+    },
+    {
+     "de": "Ich sage ___ Bescheid.",
+     "answer": "dir",
+     "tr": "Sana haber veririm.",
+     "hint_tr": "Sana haber veririm derken **Ich sage dir Bescheid** denir."
+    },
+    {
+     "de": "Weißt du schon ___?",
+     "answer": "Bescheid",
+     "tr": "Haberin var mı?",
+     "hint_tr": "Haberdar olmak için **Bescheid wissen** denir."
+    },
+    {
+     "de": "Heute kam ___ Bescheid vom Amt.",
+     "answer": "ein",
+     "tr": "Bugün daireden bir karar yazısı geldi.",
+     "hint_tr": "Herhangi bir karar yazısı: **ein Bescheid**."
+    },
+    {
+     "de": "Ich bekomme morgen ___ Bescheid vom Amt.",
+     "answer": "den",
+     "tr": "Yarın daireden kararı alıyorum.",
+     "hint_tr": "**Ich bekomme** dedikten sonra **der Bescheid**, **den Bescheid** olur."
+    }
+   ]
   },
   {
    "id": "lx:feiern",
@@ -7427,6 +9120,18 @@
     {
      "de": "feiern gehen",
      "tr": "eğlenmeye çıkmak"
+    },
+    {
+     "de": "Hochzeit feiern",
+     "tr": "düğün yapmak"
+    },
+    {
+     "de": "zusammen feiern",
+     "tr": "birlikte kutlamak"
+    },
+    {
+     "de": "Silvester feiern",
+     "tr": "yılbaşı gecesini kutlamak"
     }
    ],
    "patterns": [
@@ -7435,7 +9140,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Doğum günümü kutluyorum derken **Ich feiere mein Geburtstag** yanlış. Doğrusu **Ich feiere meinen Geburtstag**."
+    "Doğum günümü kutluyorum derken **Ich feiere mein Geburtstag** yanlış. Doğrusu **Ich feiere meinen Geburtstag.** **Ich feiere** dedikten sonra **mein Geburtstag**, **meinen Geburtstag** olur."
    ],
    "examples": [
     {
@@ -7588,6 +9293,18 @@
     {
      "de": "die Chefin",
      "tr": "kadın şef"
+    },
+    {
+     "de": "mit dem Chef sprechen",
+     "tr": "şefle konuşmak"
+    },
+    {
+     "de": "den Chef fragen",
+     "tr": "şefe sormak"
+    },
+    {
+     "de": "der neue Chef",
+     "tr": "yeni şef"
     }
    ],
    "patterns": [
@@ -7636,7 +9353,45 @@
     "anlam_tr": "İş yerinde yöneticini anlatır.",
     "parcalar": [],
     "ipucu_tr": "Kadın yöneticiye **Chefin** denir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Wir haben ___ neuen Chef.",
+     "answer": "einen",
+     "tr": "Yeni bir şefimiz var.",
+     "hint_tr": "**Wir haben** dedikten sonra **ein neuer Chef**, **einen neuen Chef** olur."
+    },
+    {
+     "de": "___ Chef ist heute nicht da.",
+     "answer": "Der",
+     "tr": "Şef bugün yok.",
+     "hint_tr": "Bildiğimiz şef: **der Chef**.",
+     "also_ok": [
+      "Mein"
+     ]
+    },
+    {
+     "de": "Frag ___ Chef.",
+     "answer": "den",
+     "tr": "Şefe sor.",
+     "hint_tr": "**Frag** dedikten sonra **der Chef**, **den Chef** olur."
+    },
+    {
+     "de": "Ich muss mit ___ Chef sprechen.",
+     "answer": "dem",
+     "tr": "Şefle konuşmam lazım.",
+     "hint_tr": "Bildiğimiz şef: **mit dem Chef**.",
+     "also_ok": [
+      "meinem"
+     ]
+    },
+    {
+     "de": "Beide ___ sind heute nicht da.",
+     "answer": "Chefs",
+     "tr": "İki şef de bugün yok.",
+     "hint_tr": "İki şef için **beide Chefs** denir, sona **s** gelir."
+    }
+   ]
   },
   {
    "id": "lx:Anfang",
@@ -7766,6 +9521,18 @@
     {
      "de": "auf dem Rücken liegen",
      "tr": "sırtüstü yatmak"
+    },
+    {
+     "de": "Mir tut der Rücken weh.",
+     "tr": "Sırtım ağrıyor."
+    },
+    {
+     "de": "Schmerzen im Rücken",
+     "tr": "sırtta ağrı"
+    },
+    {
+     "de": "den Rücken gerade halten",
+     "tr": "sırtını dik tutmak"
     }
    ],
    "patterns": [
@@ -7773,33 +9540,37 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Sırtım ağrıyor derken **Mich tut der Rücken weh** yanlış. Doğrusu **Mir tut der Rücken weh**."
+    "Sırtım ağrıyor derken **Mich tut der Rücken weh** yanlış. Doğrusu **Mir tut der Rücken weh**. Ağrıyan yeri söylerken **mich** değil **mir** denir."
    ],
    "examples": [
     {
      "id": "lx:Rücken:1",
      "de": "Mir tut der Rücken weh.",
      "tr": "Sırtım ağrıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "woman rubbing back at desk"
     },
     {
      "id": "lx:Rücken:2",
      "de": "Legen Sie sich bitte auf den Rücken.",
      "tr": "Lütfen sırtüstü uzanın.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "patient lying on examination table"
     },
     {
      "id": "lx:Rücken:3",
      "de": "Mein Rücken bringt mich um!",
      "tr": "Sırtım beni öldürüyor!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "man stretching sore back outdoors"
     },
     {
      "id": "lx:Rücken:4",
      "de": "– Wo tut es weh? – Unten im Rücken.",
      "tr": "– Neresi ağrıyor? – Sırtımın alt kısmı.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "doctor pressing patient's lower back"
     }
    ],
    "level": "A1",
@@ -7814,7 +9585,33 @@
     "ne_zaman_tr": "Doktorda ağrını anlatırken.",
     "parcalar": [],
     "ipucu_tr": "**Rückenschmerzen** sırt ağrısı demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Mir tut ___ ganze Rücken weh.",
+     "answer": "der",
+     "tr": "Bütün sırtım ağrıyor.",
+     "hint_tr": "Sırtım ağrıyor derken **Mir tut der Rücken weh** denir: **der ganze Rücken**."
+    },
+    {
+     "de": "Legen Sie sich bitte auf ___ Rücken.",
+     "answer": "den",
+     "tr": "Lütfen sırtüstü uzanın.",
+     "hint_tr": "Sırtüstü uzanırken **auf den Rücken** denir."
+    },
+    {
+     "de": "Ich schlafe immer auf ___ Rücken.",
+     "answer": "dem",
+     "tr": "Hep sırtüstü uyurum.",
+     "hint_tr": "Sırtüstü uyurken **auf dem Rücken** denir."
+    },
+    {
+     "de": "Ich habe Schmerzen im ___.",
+     "answer": "Rücken",
+     "tr": "Sırtımda ağrı var.",
+     "hint_tr": "Sırtımda derken **im Rücken** denir."
+    }
+   ]
   },
   {
    "id": "lx:Unfall",
@@ -7831,6 +9628,18 @@
     {
      "de": "der Autounfall",
      "tr": "trafik kazası"
+    },
+    {
+     "de": "ein schwerer Unfall",
+     "tr": "ağır bir kaza"
+    },
+    {
+     "de": "einen Unfall melden",
+     "tr": "kazayı bildirmek"
+    },
+    {
+     "de": "bei einem Unfall verletzt werden",
+     "tr": "bir kazada yaralanmak"
     }
    ],
    "patterns": [
@@ -7838,7 +9647,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Kaza yaptım derken **Ich habe Unfall gemacht** yanlış. Doğrusu **Ich hatte einen Unfall**."
+    "Kaza yaptım derken **Ich habe einen Unfall gemacht** yanlış. Doğrusu **Ich hatte einen Unfall.** Kaza için **machen** değil, **haben** söylenir: **Ich hatte**.",
+    "Kazalar derken **die Unfalle** yanlış. Doğrusu **die Unfälle.** Birden çok kazada **a**, **ä** olur."
    ],
    "examples": [
     {
@@ -7857,7 +9667,7 @@
     {
      "id": "lx:Unfall:3",
      "de": "Gott sei Dank nur ein kleiner Unfall.",
-     "tr": "Çok şükür küçük bir kaza.",
+     "tr": "Çok şükür, sadece küçük bir kaza.",
      "layer": "alltag"
     },
     {
@@ -7880,7 +9690,39 @@
     "ne_zaman_tr": "Polise, doktora ya da işe haber verirken.",
     "parcalar": [],
     "ipucu_tr": "**Autounfall** trafik kazası demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das war ___ schwerer Unfall.",
+     "answer": "ein",
+     "tr": "Bu ağır bir kazaydı.",
+     "hint_tr": "**Das war** dedikten sonra **ein Unfall** aynı kalır: **ein schwerer Unfall**."
+    },
+    {
+     "de": "Wo ist ___ Unfall passiert?",
+     "answer": "der",
+     "tr": "Kaza nerede oldu?",
+     "hint_tr": "Belli bir kaza: **der Unfall**."
+    },
+    {
+     "de": "Ich hatte ___ Unfall.",
+     "answer": "einen",
+     "tr": "Bir kaza geçirdim.",
+     "hint_tr": "**Ich hatte** dedikten sonra **ein Unfall**, **einen Unfall** olur."
+    },
+    {
+     "de": "Nach ___ Unfall war ich im Krankenhaus.",
+     "answer": "dem",
+     "tr": "Kazadan sonra hastanedeydim.",
+     "hint_tr": "**nach** dedikten sonra **der Unfall**, **dem Unfall** olur."
+    },
+    {
+     "de": "Hier gibt es oft ___.",
+     "answer": "Unfälle",
+     "tr": "Burada sık sık kazalar oluyor.",
+     "hint_tr": "Birden çok kaza: **Unfälle**, **a** yerine **ä** gelir."
+    }
+   ]
   },
   {
    "id": "lx:müde",
