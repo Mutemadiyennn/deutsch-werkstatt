@@ -1,7 +1,8 @@
 {
  "batch": "005",
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "notes": ""
  },
  "items": [
   {
@@ -124,65 +125,6 @@
    ]
   },
   {
-   "id": "lx:fünf",
-   "de": "fünf",
-   "tr": "beş",
-   "pos": "num",
-   "collocations": [
-    {
-     "de": "fünf Minuten",
-     "tr": "beş dakika"
-    },
-    {
-     "de": "um fünf",
-     "tr": "beşte"
-    }
-   ],
-   "patterns": [
-    "pt:um-uhr",
-    "pt:wie-viel-kostet"
-   ],
-   "register": "neutral",
-   "mistakes_tr": [
-    "\"ü\" sesi Türkçedeki \"ü\" gibi okunur; \"fünf\" ile \"fünfzig\" (50) karıştırma.",
-    "Saat: \"fünf nach drei\" = üçü beş geçiyor."
-   ],
-   "examples": [
-    {
-     "id": "lx:fünf:1",
-     "de": "Das kostet fünf Euro.",
-     "tr": "Bu beş avro.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:fünf:2",
-     "de": "Ich komme in fünf Minuten.",
-     "tr": "Beş dakikaya geliyorum.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:fünf:3",
-     "de": "Gib mir fünf Minuten!",
-     "tr": "Bana beş dakika ver!",
-     "layer": "alltag"
-    },
-    {
-     "id": "lx:fünf:4",
-     "de": "– Wie viel Uhr ist es? – Fünf nach drei.",
-     "tr": "– Saat kaç? – Üçü beş geçiyor.",
-     "layer": "alltag",
-     "dialog": true
-    }
-   ],
-   "level": "A1",
-   "tier": "K1",
-   "freqRank": 398,
-   "domains": [
-    "einkaufen",
-    "arzt"
-   ]
-  },
-  {
    "id": "lx:Wasser",
    "de": "Wasser",
    "tr": "su",
@@ -301,7 +243,7 @@
     }
    ],
    "level": "A2",
-   "tier": "K1",
+   "tier": "passive",
    "freqRank": 400,
    "domains": [
     "gefuehle"
@@ -996,64 +938,6 @@
    ]
   },
   {
-   "id": "lx:vier",
-   "de": "vier",
-   "tr": "dört",
-   "pos": "num",
-   "collocations": [
-    {
-     "de": "um vier",
-     "tr": "dörtte"
-    },
-    {
-     "de": "zu viert",
-     "tr": "dört kişi"
-    }
-   ],
-   "patterns": [
-    "pt:um-uhr"
-   ],
-   "register": "neutral",
-   "mistakes_tr": [
-    "\"Viertel\" (çeyrek) \"vier\"den gelir: \"Viertel nach vier\" = dördü çeyrek geçiyor.",
-    "\"zu viert\" = dört kişi."
-   ],
-   "examples": [
-    {
-     "id": "lx:vier:1",
-     "de": "Wir sind zu viert.",
-     "tr": "Dört kişiyiz.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:vier:2",
-     "de": "Der Kurs dauert vier Wochen.",
-     "tr": "Kurs dört hafta sürüyor.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:vier:3",
-     "de": "Um vier bei mir?",
-     "tr": "Dörtte bende?",
-     "layer": "alltag"
-    },
-    {
-     "id": "lx:vier:4",
-     "de": "– Wie viele Personen? – Vier, bitte.",
-     "tr": "– Kaç kişi? – Dört, lütfen.",
-     "layer": "alltag",
-     "dialog": true
-    }
-   ],
-   "level": "A1",
-   "tier": "K1",
-   "freqRank": 412,
-   "domains": [
-    "einkaufen",
-    "arzt"
-   ]
-  },
-  {
    "id": "lx:niemals",
    "de": "niemals",
    "tr": "asla",
@@ -1738,7 +1622,8 @@
    "domains": [
     "verkehr",
     "wohnen"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:während",
@@ -1795,67 +1680,8 @@
    "freqRank": 424,
    "domains": [
     "arbeit"
-   ]
-  },
-  {
-   "id": "lx:Wort",
-   "de": "Wort",
-   "tr": "kelime; söz",
-   "pos": "noun",
-   "art": "das",
-   "pl": "Wörter",
-   "collocations": [
-    {
-     "de": "ein Wort für …",
-     "tr": "… için bir kelime"
-    },
-    {
-     "de": "Wort halten",
-     "tr": "sözünü tutmak"
-    }
    ],
-   "patterns": [
-    "pt:was-heisst",
-    "pt:wie-sagt-man"
-   ],
-   "register": "neutral",
-   "mistakes_tr": [
-    "Çoğulu iki türlü: tek tek kelimeler \"Wörter\", sözler/ifadeler \"Worte\".",
-    "\"Sözüm söz\" = \"Ich halte mein Wort\"."
-   ],
-   "examples": [
-    {
-     "id": "lx:Wort:1",
-     "de": "Was bedeutet dieses Wort?",
-     "tr": "Bu kelime ne demek?",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:Wort:2",
-     "de": "Ich verstehe kein Wort.",
-     "tr": "Tek kelime anlamıyorum.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:Wort:3",
-     "de": "Kein Wort zu niemandem!",
-     "tr": "Kimseye tek kelime yok!",
-     "layer": "alltag"
-    },
-    {
-     "id": "lx:Wort:4",
-     "de": "– Wie heißt das Wort auf Deutsch? – „Schlüssel“.",
-     "tr": "– Bu kelime Almancada ne? – \"Schlüssel\".",
-     "layer": "alltag",
-     "dialog": true
-    }
-   ],
-   "level": "A1",
-   "tier": "K1",
-   "freqRank": 425,
-   "domains": [
-    "strategie"
-   ]
+   "card": false
   },
   {
    "id": "lx:schießen",
@@ -1914,69 +1740,11 @@
     }
    ],
    "level": "B1",
-   "tier": "K1",
+   "tier": "passive",
    "freqRank": 426,
    "domains": [
     "sport",
     "medien"
-   ]
-  },
-  {
-   "id": "lx:stark",
-   "de": "stark",
-   "tr": "güçlü; şiddetli",
-   "pos": "adj",
-   "collocations": [
-    {
-     "de": "starke Schmerzen",
-     "tr": "şiddetli ağrılar"
-    },
-    {
-     "de": "starker Kaffee",
-     "tr": "sert kahve"
-    }
-   ],
-   "patterns": [
-    "pt:mir-tut-weh"
-   ],
-   "register": "neutral",
-   "mistakes_tr": [
-    "Ağrı/yağmur şiddeti \"stark\": \"starker Regen\", \"starke Schmerzen\".",
-    "Gençlik dilinde \"Stark!\" = Harika!"
-   ],
-   "examples": [
-    {
-     "id": "lx:stark:1",
-     "de": "Ich habe starke Kopfschmerzen.",
-     "tr": "Şiddetli baş ağrım var.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:stark:2",
-     "de": "Es regnet stark.",
-     "tr": "Şiddetli yağmur yağıyor.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:stark:3",
-     "de": "Stark, Mann!",
-     "tr": "Harika be!",
-     "layer": "alltag"
-    },
-    {
-     "id": "lx:stark:4",
-     "de": "– Tut es stark weh? – Ja, ziemlich.",
-     "tr": "– Çok mu acıyor? – Evet, epey.",
-     "layer": "alltag",
-     "dialog": true
-    }
-   ],
-   "level": "A2",
-   "tier": "K1",
-   "freqRank": 427,
-   "domains": [
-    "arzt",
-    "sport"
    ]
   },
   {
@@ -2283,7 +2051,7 @@
     }
    ],
    "level": "B1",
-   "tier": "K1",
+   "tier": "passive",
    "freqRank": 433,
    "domains": [
     "gefuehle",
@@ -2480,71 +2248,6 @@
    ]
   },
   {
-   "id": "lx:wohnen",
-   "de": "wohnen",
-   "tr": "oturmak, ikamet etmek",
-   "pos": "verb",
-   "verb": {
-    "praesens3": "wohnt",
-    "perfekt": "hat gewohnt",
-    "aux": "haben",
-    "praeteritum": "wohnte"
-   },
-   "collocations": [
-    {
-     "de": "in München wohnen",
-     "tr": "Münih'te oturmak"
-    },
-    {
-     "de": "zur Miete wohnen",
-     "tr": "kirada oturmak"
-    }
-   ],
-   "patterns": [
-    "pt:seit",
-    "pt:w-frage"
-   ],
-   "register": "neutral",
-   "mistakes_tr": [
-    "\"oturmak (yaşamak)\" = \"wohnen\"; \"sitzen\" (sandalyede oturmak) ile karıştırma.",
-    "\"seit\" ile şimdiki zaman: \"Ich wohne seit zwei Jahren hier\"."
-   ],
-   "examples": [
-    {
-     "id": "lx:wohnen:1",
-     "de": "Wo wohnen Sie?",
-     "tr": "Nerede oturuyorsunuz?",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:wohnen:2",
-     "de": "Wir wohnen im dritten Stock.",
-     "tr": "Üçüncü katta oturuyoruz.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:wohnen:3",
-     "de": "Ich wohn gleich um die Ecke.",
-     "tr": "Hemen köşede oturuyorum.",
-     "layer": "alltag"
-    },
-    {
-     "id": "lx:wohnen:4",
-     "de": "– Wohnst du allein? – Nein, in einer WG.",
-     "tr": "– Yalnız mı oturuyorsun? – Hayır, paylaşımlı evde.",
-     "layer": "alltag",
-     "dialog": true
-    }
-   ],
-   "level": "A1",
-   "tier": "K1",
-   "freqRank": 437,
-   "domains": [
-    "wohnen",
-    "amt"
-   ]
-  },
-  {
    "id": "lx:verkaufen",
    "de": "verkaufen",
    "tr": "satmak",
@@ -2729,65 +2432,6 @@
    ]
   },
   {
-   "id": "lx:Entschuldigung",
-   "de": "Entschuldigung",
-   "tr": "özür; affedersiniz",
-   "pos": "noun",
-   "art": "die",
-   "pl": "Entschuldigungen",
-   "collocations": [
-    {
-     "de": "Entschuldigung!",
-     "tr": "Pardon! / Affedersiniz!"
-    },
-    {
-     "de": "eine Entschuldigung schreiben",
-     "tr": "özür yazısı yazmak (okul)"
-    }
-   ],
-   "patterns": [
-    "pt:es-tut-mir-leid"
-   ],
-   "register": "neutral",
-   "mistakes_tr": [
-    "Dikkat çekmek ve özür için aynı kelime: \"Entschuldigung, wo ist …?\" / \"Entschuldigung, das war mein Fehler\".",
-    "Okulda \"Entschuldigung\" = devamsızlık mazeret yazısı."
-   ],
-   "examples": [
-    {
-     "id": "lx:Entschuldigung:1",
-     "de": "Entschuldigung, ist der Platz frei?",
-     "tr": "Pardon, bu yer boş mu?",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:Entschuldigung:2",
-     "de": "Entschuldigung, das war meine Schuld.",
-     "tr": "Özür dilerim, benim hatamdı.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:Entschuldigung:3",
-     "de": "'tschuldigung!",
-     "tr": "Pardon!",
-     "layer": "alltag"
-    },
-    {
-     "id": "lx:Entschuldigung:4",
-     "de": "– Entschuldigung, wie spät ist es? – Kurz nach zwei.",
-     "tr": "– Affedersiniz, saat kaç? – İkiyi biraz geçiyor.",
-     "layer": "alltag",
-     "dialog": true
-    }
-   ],
-   "level": "A1",
-   "tier": "K1",
-   "freqRank": 440,
-   "domains": [
-    "strategie"
-   ]
-  },
-  {
    "id": "lx:solcher",
    "de": "solcher, solche, solches",
    "tr": "böyle, öyle",
@@ -2842,7 +2486,8 @@
    "freqRank": 441,
    "domains": [
     "smalltalk"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:reichen",
@@ -3039,7 +2684,7 @@
     }
    ],
    "level": "B1",
-   "tier": "K1",
+   "tier": "passive",
    "freqRank": 445,
    "domains": [
     "sport",
@@ -3115,75 +2760,6 @@
    ]
   },
   {
-   "id": "lx:anfangen",
-   "de": "anfangen",
-   "tr": "başlamak",
-   "pos": "verb",
-   "verb": {
-    "praesens3": "fängt an",
-    "perfekt": "hat angefangen",
-    "aux": "haben",
-    "separable": "an",
-    "prep": [
-     "mit+Dat"
-    ],
-    "praeteritum": "fing an"
-   },
-   "collocations": [
-    {
-     "de": "mit etwas anfangen",
-     "tr": "bir şeye başlamak"
-    },
-    {
-     "de": "Fang an!",
-     "tr": "Başla!"
-    }
-   ],
-   "patterns": [
-    "pt:trennbar",
-    "pt:perfekt-haben"
-   ],
-   "register": "neutral",
-   "mistakes_tr": [
-    "Ayrılabilen fiil: \"Der Kurs fängt um neun an\" (\"an\" sonda).",
-    "Perfekt: \"Ich habe angefangen\" (\"ge\" ortada)."
-   ],
-   "examples": [
-    {
-     "id": "lx:anfangen:1",
-     "de": "Wann fängt die Arbeit an?",
-     "tr": "İş ne zaman başlıyor?",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:anfangen:2",
-     "de": "Ich habe gestern einen neuen Job angefangen.",
-     "tr": "Dün yeni bir işe başladım.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:anfangen:3",
-     "de": "Fangen wir an?",
-     "tr": "Başlayalım mı?",
-     "layer": "alltag"
-    },
-    {
-     "id": "lx:anfangen:4",
-     "de": "– Hast du schon angefangen? – Nein, ich fange gleich an.",
-     "tr": "– Başladın mı? – Hayır, birazdan başlıyorum.",
-     "layer": "alltag",
-     "dialog": true
-    }
-   ],
-   "level": "A1",
-   "tier": "K1",
-   "freqRank": 448,
-   "domains": [
-    "arbeit",
-    "freizeit"
-   ]
-  },
-  {
    "id": "lx:verstecken",
    "de": "verstecken",
    "tr": "saklamak",
@@ -3244,69 +2820,11 @@
     }
    ],
    "level": "B1",
-   "tier": "K1",
+   "tier": "passive",
    "freqRank": 449,
    "domains": [
     "medien",
     "freizeit"
-   ]
-  },
-  {
-   "id": "lx:früh",
-   "de": "früh",
-   "tr": "erken",
-   "pos": "adj",
-   "collocations": [
-    {
-     "de": "morgen früh",
-     "tr": "yarın sabah"
-    },
-    {
-     "de": "zu früh",
-     "tr": "çok erken"
-    }
-   ],
-   "patterns": [
-    "pt:zu-adj",
-    "pt:um-uhr"
-   ],
-   "register": "neutral",
-   "mistakes_tr": [
-    "\"morgen früh\" = yarın sabah; \"früher\" = eskiden / daha erken.",
-    "Karşılaştırma: früh → früher → am frühesten."
-   ],
-   "examples": [
-    {
-     "id": "lx:früh:1",
-     "de": "Ich stehe jeden Tag früh auf.",
-     "tr": "Her gün erken kalkarım.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:früh:2",
-     "de": "Sie sind zu früh, der Termin ist um zehn.",
-     "tr": "Çok erkencisiniz, randevu onda.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:früh:3",
-     "de": "So früh? Echt?",
-     "tr": "Bu kadar erken mi? Cidden?",
-     "layer": "alltag"
-    },
-    {
-     "id": "lx:früh:4",
-     "de": "– Wann musst du morgen raus? – Ganz früh, um fünf.",
-     "tr": "– Yarın ne zaman kalkman lazım? – Çok erken, beşte.",
-     "layer": "alltag",
-     "dialog": true
-    }
-   ],
-   "level": "A1",
-   "tier": "K1",
-   "freqRank": 450,
-   "domains": [
-    "arbeit"
    ]
   },
   {
@@ -3603,7 +3121,8 @@
    "freqRank": 456,
    "domains": [
     "gefuehle"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:funktionieren",
@@ -3910,7 +3429,8 @@
    "domains": [
     "strategie",
     "arbeit"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:unten",
@@ -4276,7 +3796,8 @@
    "freqRank": 467,
    "domains": [
     "smalltalk"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:hart",
@@ -4451,125 +3972,6 @@
    "freqRank": 471,
    "domains": [
     "smalltalk"
-   ]
-  },
-  {
-   "id": "lx:langsam",
-   "de": "langsam",
-   "tr": "yavaş",
-   "pos": "adj",
-   "collocations": [
-    {
-     "de": "Langsam, bitte!",
-     "tr": "Yavaş, lütfen!"
-    },
-    {
-     "de": "langsam sprechen",
-     "tr": "yavaş konuşmak"
-    }
-   ],
-   "patterns": [
-    "pt:koennten-sie",
-    "pt:noch-mal"
-   ],
-   "register": "neutral",
-   "mistakes_tr": [
-    "Anlamadığında: \"Langsamer, bitte!\" (karşılaştırma) daha kibar.",
-    "Konuşmada \"langsam\" = \"yavaş yavaş, artık\": \"Ich muss langsam los\" = Artık gitmem lazım."
-   ],
-   "examples": [
-    {
-     "id": "lx:langsam:1",
-     "de": "Können Sie bitte langsamer sprechen?",
-     "tr": "Daha yavaş konuşabilir misiniz lütfen?",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:langsam:2",
-     "de": "Fahren Sie hier langsam!",
-     "tr": "Burada yavaş sürün!",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:langsam:3",
-     "de": "Ich muss langsam los.",
-     "tr": "Artık gitmem lazım.",
-     "layer": "alltag"
-    },
-    {
-     "id": "lx:langsam:4",
-     "de": "– Hast du alles verstanden? – Nein, sprich bitte langsamer.",
-     "tr": "– Her şeyi anladın mı? – Hayır, lütfen daha yavaş konuş.",
-     "layer": "alltag",
-     "dialog": true
-    }
-   ],
-   "level": "A1",
-   "tier": "K1",
-   "freqRank": 472,
-   "domains": [
-    "strategie",
-    "verkehr"
-   ]
-  },
-  {
-   "id": "lx:Nummer",
-   "de": "Nummer",
-   "tr": "numara",
-   "pos": "noun",
-   "art": "die",
-   "pl": "Nummern",
-   "collocations": [
-    {
-     "de": "die Handynummer",
-     "tr": "cep numarası"
-    },
-    {
-     "de": "Nummer ziehen",
-     "tr": "sıra numarası almak"
-    }
-   ],
-   "patterns": [
-    "pt:haben-sie"
-   ],
-   "register": "neutral",
-   "mistakes_tr": [
-    "Resmî dairede \"eine Nummer ziehen\" = sıra numarası almak.",
-    "Telefonda rakamları tek tek söylemek yaygındır; 2 için \"zwo\"."
-   ],
-   "examples": [
-    {
-     "id": "lx:Nummer:1",
-     "de": "Wie ist Ihre Telefonnummer?",
-     "tr": "Telefon numaranız nedir?",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:Nummer:2",
-     "de": "Ziehen Sie bitte eine Nummer.",
-     "tr": "Lütfen bir sıra numarası alın.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:Nummer:3",
-     "de": "Gib mir mal deine Nummer!",
-     "tr": "Numaranı versene!",
-     "layer": "alltag"
-    },
-    {
-     "id": "lx:Nummer:4",
-     "de": "– Haben Sie meine Nummer? – Nein, sagen Sie sie bitte langsam.",
-     "tr": "– Numaram sizde var mı? – Hayır, lütfen yavaşça söyleyin.",
-     "layer": "alltag",
-     "dialog": true
-    }
-   ],
-   "level": "A1",
-   "tier": "K1",
-   "freqRank": 473,
-   "domains": [
-    "telefon",
-    "amt"
    ]
   },
   {
@@ -4751,7 +4153,7 @@
     }
    ],
    "level": "A2",
-   "tier": "K1",
+   "tier": "passive",
    "freqRank": 476,
    "domains": [
     "verkehr",
@@ -5112,7 +4514,8 @@
    "freqRank": 482,
    "domains": [
     "einkaufen"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:schätzen",
@@ -5290,7 +4693,7 @@
     }
    ],
    "level": "B1",
-   "tier": "K1",
+   "tier": "passive",
    "freqRank": 485,
    "domains": [
     "gefuehle",
@@ -5350,7 +4753,7 @@
     }
    ],
    "level": "B1",
-   "tier": "K1",
+   "tier": "passive",
    "freqRank": 486,
    "domains": [
     "medien",
@@ -5413,7 +4816,8 @@
    "domains": [
     "smalltalk",
     "einkaufen"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:Platz",
@@ -5590,7 +4994,8 @@
    "freqRank": 490,
    "domains": [
     "smalltalk"
-   ]
+   ],
+   "card": false
   },
   {
    "id": "lx:früher",
@@ -5909,124 +5314,6 @@
    "domains": [
     "werkstatt",
     "medien"
-   ]
-  },
-  {
-   "id": "lx:wohin",
-   "de": "wohin",
-   "tr": "nereye",
-   "pos": "adv",
-   "collocations": [
-    {
-     "de": "Wohin gehst du?",
-     "tr": "Nereye gidiyorsun?"
-    },
-    {
-     "de": "Wohin damit?",
-     "tr": "Bunu nereye koyayım?"
-    }
-   ],
-   "patterns": [
-    "pt:w-frage"
-   ],
-   "register": "neutral",
-   "mistakes_tr": [
-    "\"nereye\" = wohin, \"nerede\" = wo; konuşmada bölünür: \"Wo gehst du hin?\"",
-    "Cevap Akkusativ ya da \"nach/zu\": \"In die Stadt\", \"Nach Hause\"."
-   ],
-   "examples": [
-    {
-     "id": "lx:wohin:1",
-     "de": "Wohin fährt dieser Zug?",
-     "tr": "Bu tren nereye gidiyor?",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:wohin:2",
-     "de": "Wohin möchten Sie?",
-     "tr": "Nereye gitmek istiyorsunuz?",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:wohin:3",
-     "de": "Wohin damit?",
-     "tr": "Bunu nereye koyayım?",
-     "layer": "alltag"
-    },
-    {
-     "id": "lx:wohin:4",
-     "de": "– Wohin fahrt ihr im Urlaub? – In die Türkei.",
-     "tr": "– Tatilde nereye gidiyorsunuz? – Türkiye'ye.",
-     "layer": "alltag",
-     "dialog": true
-    }
-   ],
-   "level": "A1",
-   "tier": "K1",
-   "freqRank": 496,
-   "domains": [
-    "verkehr"
-   ]
-  },
-  {
-   "id": "lx:Arzt",
-   "de": "Arzt",
-   "tr": "doktor, hekim",
-   "pos": "noun",
-   "art": "der",
-   "pl": "Ärzte",
-   "img": "doctor",
-   "collocations": [
-    {
-     "de": "zum Arzt gehen",
-     "tr": "doktora gitmek"
-    },
-    {
-     "de": "beim Arzt",
-     "tr": "doktorda"
-    }
-   ],
-   "patterns": [
-    "pt:ich-muss",
-    "pt:mit-dativ"
-   ],
-   "register": "neutral",
-   "mistakes_tr": [
-    "Kadın doktor \"Ärztin\"; hitap \"Herr Doktor/Frau Doktor\" ya da soyadla.",
-    "Çoğulu umlautlu \"Ärzte\"."
-   ],
-   "examples": [
-    {
-     "id": "lx:Arzt:1",
-     "de": "Ich muss morgen zum Arzt.",
-     "tr": "Yarın doktora gitmem lazım.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:Arzt:2",
-     "de": "Mein Arzt hat mich krankgeschrieben.",
-     "tr": "Doktorum bana rapor verdi.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:Arzt:3",
-     "de": "Geh doch mal zum Arzt!",
-     "tr": "Bir doktora gitsene!",
-     "layer": "alltag"
-    },
-    {
-     "id": "lx:Arzt:4",
-     "de": "– Warst du beim Arzt? – Ja, es ist nur eine Erkältung.",
-     "tr": "– Doktora gittin mi? – Evet, sadece soğuk algınlığı.",
-     "layer": "alltag",
-     "dialog": true
-    }
-   ],
-   "level": "A1",
-   "tier": "K1",
-   "freqRank": 497,
-   "domains": [
-    "arzt"
    ]
   },
   {

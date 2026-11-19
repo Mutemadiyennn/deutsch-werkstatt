@@ -2,7 +2,8 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { TemelDers } from "@dw/shared";
-import { adimlarDers, altSayisi, dersIleri, dersKonum, maddeler, DERS_BASLANGIC } from "./ders.ts";
+import { adimlarDers, altSayisi, dersIleri, dersKonum, hatirlaKabul, hatirlaSecenek, maddeler, DERS_BASLANGIC, TANIT_GRUP } from "./ders.ts";
+import { personalizeDeep } from "./persona.ts";
 import { drillVerdict } from "../ui/drill.tsx";
 
 const dir = join(import.meta.dirname, "../../../content/v2/temel");
@@ -55,5 +56,55 @@ describe("Temel ders akışı (#58 A5)", () => {
     expect(drillVerdict(num, "Meine Nummer ist sechzehn.").kind).toBe("wrong");
     expect(drillVerdict(num, "Meine Nummer ist 17.").note).toMatch(/kelimeyle/);
     expect(drillVerdict(num, "Meine Nummer ist 17.", false).kind).toBe("correct");
+  });
+  it("inceleme #65 2. tur: adsız profilde Türkçe harfli, tireli, iki kelimeli adlar her kabul biçiminde doğru", () => {
+    const adlar = ["Ayşe", "Çağrı", "İbrahim", "Jean-Luc", "O'Neil", "Gülşah Yıldırım", "Mehmet"];
+    const red: string[] = [];
+    for (const d of dersler) for (const m of d.drills) {
+      if (m.k === "pick" || !m.accepted.some((a) => a.includes("{name}"))) continue;
+      const acc = m.accepted.map((x) => x.replace(/\{[^|}]+\|([^}]+)\}/g, "$1"));
+      for (const ad of adlar) for (const a of acc) {
+        const cevap = a.replace(/\{name\}/g, ad);
+        if (drillVerdict({ ...m, accepted: acc } as typeof m, cevap).kind !== "correct") red.push(`${m.id} ${ad}: ${cevap}`);
+      }
+    }
+    expect(red).toEqual([]);
+  });
+  it("inceleme #65 2. tur: anahtar kelime kümesi bir kabul biçimininkiyle aynıysa karar öğrencide; hiçbiriyle değilse yanlış", () => {
+    const d28 = t.drills.find((m) => m.id === "r0:01:d28")!;
+    for (const a of ["Donnerstag ist heute.", "Es ist heute Donnerstag.", "Heute Donnerstag."]) expect(drillVerdict(d28, a).kind).not.toBe("wrong");
+    expect(drillVerdict(d28, "Heute ist Freitag.").kind).toBe("wrong");
+    expect(drillVerdict(d28, "Morgen ist Donnerstag.").kind).toBe("wrong");
+    // istem rakamı gösteriyorsa (adres) rakamla cevap yasak değil
+    const d29 = dersler.flatMap((d) => d.drills).find((m) => m.id === "r0:03:d29")!;
+    expect(drillVerdict(d29, "Ich wohne in der Brunnengasse 7.").kind).toBe("correct");
+  });
+  it("inceleme #65 2. tur: hatırlama — artikel denetimi, aynı derste öğretilen eşdeğer, ad yuvası", () => {
+    const mo = t.teach.find((x) => x.de === "Montag")!;
+    const yaz = (tt: typeof t, x: typeof mo) => ({ id: "h", k: "tr_de" as const, tr: x.tr, accepted: hatirlaKabul(tt, x) });
+    const art = { de: mo.de, art: mo.art! };
+    expect(drillVerdict(yaz(t, mo), "der Montag", true, art).kind).toBe("correct");
+    expect(drillVerdict(yaz(t, mo), "Montag", true, art)).toMatchObject({ kind: "wrong", note: expect.stringMatching(/artikel eksik/) });
+    expect(drillVerdict(yaz(t, mo), "die Montag", true, art)).toMatchObject({ kind: "wrong", note: expect.stringMatching(/artikel yanlış/) });
+    const uhr = dersler.find((d) => d.id === "r0:05-uhrzeit")!;
+    const hz = uhr.teach.find((x) => x.de === "halb zehn")!;
+    expect(drillVerdict(yaz(uhr, hz), "neun Uhr dreißig").kind).toBe("correct");
+    expect(drillVerdict(yaz(uhr, hz), "halb zehn").kind).toBe("correct");
+    // adsız profil: kart gösterimde "(adın)"; kabul {name} yuvasıyla
+    const p = personalizeDeep(t, {});
+    const ad = p.teach.find((x) => x.de.includes("(adın)"))!;
+    expect(drillVerdict(yaz(p, ad), "Guten Tag, hier ist Gülşah Yıldırım.").kind).toBe("correct");
+  });
+  it("inceleme #65 2. tur: hatırlama çeldiricileri (ilk grup dışında) yalnızca gösterilmiş kartlardan, biri ötekinin içinde değil, 3 seçenek", () => {
+    const sorun: string[] = [];
+    const nk = (s: string) => s.toLocaleLowerCase("tr").split(/[^\p{L}\p{N}:]+/u).filter((w) => w.length >= 3);
+    for (const d of dersler) for (let g = 0; g * TANIT_GRUP < d.teach.length; g++) d.teach.slice(g * TANIT_GRUP, (g + 1) * TANIT_GRUP).forEach((x, i) => {
+      const s = hatirlaSecenek(d, g, x, i);
+      if (s.length !== 3 || !s.includes(x.tr)) sorun.push(`${x.id}: ${s.join(" | ")}`);
+      const gosterilen = new Set(d.teach.slice(0, (g + 1) * TANIT_GRUP).map((y) => y.tr));
+      const alt = (a: string[], b: string[]) => a.length > 0 && a.every((w) => b.includes(w));
+      for (const o of s) if (o !== x.tr && ((!gosterilen.has(o) && g > 0) || alt(nk(o), nk(x.tr)) || alt(nk(x.tr), nk(o)))) sorun.push(`${x.id}: ${o}`);
+    });
+    expect(sorun).toEqual([]);
   });
 });

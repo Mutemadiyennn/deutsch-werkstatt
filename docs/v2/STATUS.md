@@ -22,21 +22,20 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 ## Yarım işler (PM-042 C)
 | İş | Dal | Durum |
 |---|---|---|
-| Medya oynatıcısı + dikte + gün şeması (#58 A4) | `v2/medya` | PR #60; ONAY (3. tur) |
-| Temel ders oynatıcısı (#58 A5a, Seans 2) | `v2/yol` | PR #65 |
-| Ders yolu, Bugün'de günün planı, XP ve seri (#58 A5b) | `v2/yol-b` | PR açıldı (#65 üstünde) |
+| Ders yolu, Bugün'de günün planı, XP ve seri (#58 A5b) | `v2/yol-b` | PR #66; 1. tur bulguları düzeltiliyor |
+| Yeni Bugün + Pomodoro (#58 A6) | `v2/bugun` | PR #67 (#66 üstünde) |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
 
-## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-18
+## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-19
 | Seviye | Kelime kartı | Kalıp | Senaryo (tam) | Mini senaryo | Diyalog grafiği | Okuma | Dinleme | Haber | Madde bankası |
 |---|---|---|---|---|---|---|---|---|---|
-| A1 | — / 355 / 227 / 0 | — / 40 / 14* / 0 | — / 1 / 0 / 0 | — / 1 / 0 / 0 | 0 | 0 | 0 | 0 | seviye tespiti 2241 (tüm seviyeler) |
-| A2 | — / 237 / 55 / 0 | — / 10 / 0 / 0 | — / 2 / 0 / 0 | — / 2 / 0 / 0 | 0 | 0 | 0 | 0 | — |
-| B1 | — / 208 / 18 / 0 | — / 11 / 0 / 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
+| A1 | — / 505 / 440 / 0 | — / 40 / 14* / 0 | — / 1 / 0 / 0 | — / 1 / 0 / 0 | 0 | 0 | 0 | 0 | seviye tespiti 2241 (tüm seviyeler) |
+| A2 | — / 462 / 331 / 0 | — / 10 / 0 / 0 | — / 2 / 0 / 0 | — / 2 / 0 / 0 | 0 | 0 | 0 | 0 | — |
+| B1 | — / 193 / 14 / 0 | — / 11 / 0 / 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | B2, C1, C2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 \* Pilotun 14 kalıbı dilbilimciden geçti (çalışma kopyasında, Advent PR'ıyla depoya girecek); OD-9.4 okur kapısı henüz yok, bu yüzden "yayında" sayılmaz. Kalan 47 kalıbın incelemesi yapıldı (35'inde düzeltme) ama ajan son raporu yazmadan durduruldu: bu 47'si onay bekliyor (taslak). Hedef sütunu (günlük: yazar ≥2 ünite parçası, lex 150–200 kart, dilbilimci aynı gün) hat başlayınca günlük doldurulur. BY-8 tükenme tahmini: K2 motoru (R1) gelene kadar hesaplanamaz.
-R0 temel paket: 10 ders, 189 öğretim öğesi, 353 alıştırma; PR #51 (`TemelDers` türü gelene kadar uygulamada görünmez).
-Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur. Hata türleri yazar görevine eklendi; 009 ve sonrası ölçülüyor.
+R0 temel paket: 10 ders, 189 öğretim öğesi, 353 alıştırma; main'de (#51). Kelime sayıları `card:false` işlev kelimelerini saymaz.
+Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur, M1 kartları 8 tur (hedef tutmadı). Geri dönen türler (hata notunda Türkçe niyet, çelişen ipucu) yazar ve lex görevine eklendi.
 
 ## Açık PR'lar
 | PR | Dal | Teslim | İnceleme |
