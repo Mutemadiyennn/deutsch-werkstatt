@@ -10,15 +10,19 @@ export function MedyaRafi() {
   const [anahtar, setAnahtar] = useState("");
   const [durum, setDurum] = useState<RafDurum | null>(null);
   const [mesgul, setMesgul] = useState(false);
-  useEffect(() => { void rafOku().then((r) => { if (r) { setAdres(r.adres); setAnahtar(r.anahtar); } }); }, []);
+  const [hazir, setHazir] = useState(false);
+  useEffect(() => { void rafOku().then((r) => { if (r) { setAdres(r.adres); setAnahtar(r.anahtar); } }).finally(() => setHazir(true)); }, []);
   const sina = async () => {
     setMesgul(true);
-    await rafYaz(adres && anahtar ? { adres, anahtar } : null);
-    setDurum(await rafSina()); setMesgul(false);
+    try {
+      if (!(await rafYaz(adres && anahtar ? { adres, anahtar } : null))) { setDurum("adres-gecersiz"); return; }
+      setDurum(await rafSina());
+    } catch { setDurum("ulasilamiyor"); } finally { setMesgul(false); }
   };
+  const sil = async () => { setAdres(""); setAnahtar(""); setDurum(null); await rafYaz(null); };
   return (
-    <div class="stack" style={{ gap: 8 }} data-test="medya-rafi">
-      <p class="small muted">Yalnızca sana özel medya (lisansı herkese açık dağıtıma izin vermeyen fotoğraflar). Adres ve anahtar yalnızca bu cihazda saklanır, yedek dosyasına girmez. Boş bırakırsan açık kaynaklı medya gösterilir.</p>
+    <div class="stack" style={{ gap: 8 }} data-test="medya-rafi" data-hazir={hazir ? "1" : undefined}>
+      <p class="small muted" id="raf-bilgi">Yalnızca sana özel medya (lisansı herkese açık dağıtıma izin vermeyen fotoğraflar). Adres ve anahtar yalnızca bu cihazda saklanır, yedek dosyasına girmez. Boş bırakırsan açık kaynaklı medya gösterilir.</p>
       <label class="lbl" for="raf-adres">Raf adresi</label>
       <input id="raf-adres" class="input" type="url" inputMode="url" autoComplete="off" autoCapitalize="off" spellcheck={false} value={adres}
         onInput={(e) => { setAdres((e.target as HTMLInputElement).value); setDurum(null); }} placeholder="https://…" data-test="raf-adres" />
@@ -27,9 +31,10 @@ export function MedyaRafi() {
         onInput={(e) => { setAnahtar((e.target as HTMLInputElement).value); setDurum(null); }} data-test="raf-anahtar" />
       <div class="row">
         <button class="btn sm" disabled={mesgul} onClick={() => void sina()} data-test="raf-sina">{mesgul ? "Sınanıyor…" : "Kaydet ve rafı sına"}</button>
-        {(adres || anahtar) && <button class="btn sm ghost" onClick={() => { setAdres(""); setAnahtar(""); setDurum(null); void rafYaz(null); }} data-test="raf-sil">Sil</button>}
+        {(adres || anahtar) && <button class="btn sm ghost" onClick={() => void sil()} data-test="raf-sil">Sil</button>}
       </div>
-      {durum && <p class={`small ${durum === "bagli" ? "goalhit" : ""}`} role="status" data-test="raf-durum" data-durum={durum}>{RAF_DURUM_TR[durum]}</p>}
+      {/* canlı bölge baştan var: VoiceOver sonradan eklenen role=status'u okumayabilir (inceleme #98 P2) */}
+      <p class={`small ${durum === "bagli" ? "goalhit" : ""}`} role="status" aria-live="polite" data-test="raf-durum" data-durum={durum ?? undefined}>{durum ? RAF_DURUM_TR[durum] : ""}</p>
     </div>
   );
 }
