@@ -2151,8 +2151,8 @@
    "examples": [
     {
      "id": "lx:lernen:1",
-     "de": "Ich lerne seit einem Jahr Deutsch.",
-     "tr": "Bir yıldır Almanca öğreniyorum.",
+     "de": "Julia lernt seit drei Jahren Deutsch.",
+     "tr": "Julia üç yıldır Almanca öğreniyor.",
      "layer": "hd",
      "img": "adult studying with notebook at desk"
     },
@@ -2203,40 +2203,40 @@
    },
    "forms": [
     {
-     "de": "Ich ___ seit einem Jahr Deutsch.",
+     "de": "Heute Abend ___ ich mit Ioana Deutsch.",
      "answer": "lerne",
-     "tr": "Bir yıldır Almanca öğreniyorum.",
-     "hint_tr": "**ich** ile **lerne** olur."
+     "tr": "Bu akşam Ioana'yla Almanca öğreniyorum.",
+     "hint_tr": "Ioana'yla Almanca öğreniyorum derken **lerne ich mit Ioana Deutsch** denir."
     },
     {
      "de": "Wo haben Sie so gut Deutsch ___?",
      "answer": "gelernt",
      "tr": "Almancayı bu kadar iyi nerede öğrendiniz?",
-     "hint_tr": "Geçmişi sorarken **haben gelernt** denir."
+     "hint_tr": "Almancayı bu kadar iyi nerede öğrendiniz derken **Wo haben Sie so gut Deutsch gelernt?** denir."
     },
     {
      "de": "___ du noch?",
      "answer": "Lernst",
      "tr": "Hâlâ ders mi çalışıyorsun?",
-     "hint_tr": "**du** ile **lernst** olur."
+     "hint_tr": "Hâlâ ders mi çalışıyorsun derken **Lernst du noch?** denir."
     },
     {
      "de": "Ioana ___ jeden Tag neue Wörter.",
      "answer": "lernt",
      "tr": "Ioana her gün yeni kelimeler öğreniyor.",
-     "hint_tr": "**er** ve **sie** ile **lernt** olur."
+     "hint_tr": "Ioana öğreniyor derken **Ioana lernt** denir."
     },
     {
      "de": "Wir ___ zusammen für die Prüfung.",
      "answer": "lernen",
      "tr": "Birlikte sınava çalışıyoruz.",
-     "hint_tr": "**wir** ile **lernen** olur."
+     "hint_tr": "Birlikte sınava çalışıyoruz derken **Wir lernen zusammen für die Prüfung** denir."
     },
     {
      "de": "Tobi hat mit achtzehn Auto fahren ___.",
      "answer": "gelernt",
      "tr": "Tobi on sekiz yaşında araba kullanmayı öğrendi.",
-     "hint_tr": "Geçmişi anlatırken **hat gelernt** denir."
+     "hint_tr": "Tobi on sekiz yaşında araba kullanmayı öğrendi derken **Tobi hat mit achtzehn Auto fahren gelernt** denir."
     }
    ]
   },
@@ -2806,13 +2806,26 @@
     {
      "id": "lx:einige:3",
      "de": "Da hab ich einiges erlebt.",
-     "tr": "Orada epey şey yaşadım.",
+     "tr": "Orada birkaç şey yaşadım.",
      "layer": "alltag"
     },
     {
      "id": "lx:einige:4",
      "de": "– Waren viele Leute da? – Einige, aber nicht viele.",
      "tr": "– Çok insan var mıydı? – Birkaç kişi, ama çok değil.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:einige:5",
+     "de": "In der Praxis warten einige Patienten.",
+     "tr": "Muayenehanede birkaç hasta bekliyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:einige:6",
+     "de": "– Hast du noch Fragen? – Ja, einige.",
+     "tr": "– Başka soruların var mı? – Evet, birkaç tane.",
      "layer": "alltag",
      "dialog": true
     }
@@ -2828,7 +2841,60 @@
     "parcalar": [],
     "ipucu_tr": "Konuşmada birkaç için **ein paar** daha sık duyulur."
    },
-   "card": false
+   "card": false,
+   "forms": [
+    {
+     "de": "Tobi hat es schon ___ Male gesagt.",
+     "answer": "einige",
+     "tr": "Tobi bunu birkaç kez söyledi bile.",
+     "hint_tr": "Birkaç kez derken **einige Male** denir.",
+     "also_ok": [
+      "mehrere"
+     ]
+    },
+    {
+     "de": "___ Leute warten schon vor der Tür.",
+     "answer": "Einige",
+     "tr": "Birkaç kişi kapının önünde bekliyor bile.",
+     "hint_tr": "Birkaç kişi derken **Einige Leute** denir.",
+     "also_ok": [
+      "Mehrere"
+     ]
+    },
+    {
+     "de": "Mit ___ Kollegen gehe ich mittags essen.",
+     "answer": "einigen",
+     "tr": "Birkaç iş arkadaşıyla öğlen yemeğe gidiyorum.",
+     "hint_tr": "Birkaç iş arkadaşıyla derken **Mit einigen Kollegen** denir.",
+     "also_ok": [
+      "mehreren"
+     ]
+    },
+    {
+     "de": "Herr Wimmer hat ___ Fragen.",
+     "answer": "einige",
+     "tr": "Wimmer Bey'in birkaç sorusu var.",
+     "hint_tr": "Birkaç sorusu derken **einige Fragen** denir.",
+     "also_ok": [
+      "mehrere"
+     ]
+    },
+    {
+     "de": "Ich muss heute noch ___ erledigen.",
+     "answer": "einiges",
+     "tr": "Bugün daha birkaç şey halletmem lazım.",
+     "hint_tr": "Birkaç şey derken **einiges** denir."
+    },
+    {
+     "de": "Vor ___ Tagen war Tobi krank.",
+     "answer": "einigen",
+     "tr": "Birkaç gün önce Tobi hastaydı.",
+     "hint_tr": "Birkaç gün önce derken **Vor einigen Tagen** denir.",
+     "also_ok": [
+      "mehreren"
+     ]
+    }
+   ]
   },
   {
    "id": "lx:tragen",
@@ -3013,6 +3079,19 @@
      "tr": "– Süt ister misin? – Evet, biraz.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:bisschen:5",
+     "de": "Der Kaffee ist ein bisschen zu heiß.",
+     "tr": "Kahve biraz fazla sıcak.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:bisschen:6",
+     "de": "– Und, wie war das Wochenende? – Ein bisschen langweilig, ehrlich.",
+     "tr": "– Eee, hafta sonu nasıldı? – Biraz sıkıcı, açıkçası.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -3027,7 +3106,60 @@
     "parcalar": [],
     "ipucu_tr": "**kein bisschen** hiç demektir."
    },
-   "card": false
+   "card": false,
+   "forms": [
+    {
+     "de": "Ich verstehe ein ___ Bairisch.",
+     "answer": "bisschen",
+     "tr": "Biraz Bavyera ağzı anlıyorum.",
+     "hint_tr": "Biraz Bavyera ağzı derken **ein bisschen Bairisch** denir.",
+     "also_ok": [
+      "wenig"
+     ]
+    },
+    {
+     "de": "Können Sie ein ___ lauter sprechen?",
+     "answer": "bisschen",
+     "tr": "Biraz daha yüksek sesle konuşabilir misiniz?",
+     "hint_tr": "Biraz daha yüksek sesle derken **ein bisschen lauter** denir.",
+     "also_ok": [
+      "wenig"
+     ]
+    },
+    {
+     "de": "Ein ___ Zucker, bitte.",
+     "answer": "bisschen",
+     "tr": "Biraz şeker, lütfen.",
+     "hint_tr": "Biraz şeker derken **Ein bisschen Zucker** denir.",
+     "also_ok": [
+      "wenig"
+     ]
+    },
+    {
+     "de": "Warten Sie ein ___, bitte.",
+     "answer": "bisschen",
+     "tr": "Biraz bekleyin lütfen.",
+     "hint_tr": "Biraz bekleyin derken **Warten Sie ein bisschen** denir.",
+     "also_ok": [
+      "wenig"
+     ]
+    },
+    {
+     "de": "Mir ist ein ___ kalt.",
+     "answer": "bisschen",
+     "tr": "Biraz üşüyorum.",
+     "hint_tr": "Biraz üşüyorum derken **Mir ist ein bisschen kalt** denir.",
+     "also_ok": [
+      "wenig"
+     ]
+    },
+    {
+     "de": "Frau Brandl ist heute kein ___ müde.",
+     "answer": "bisschen",
+     "tr": "Brandl Hanım bugün hiç yorgun değil.",
+     "hint_tr": "Hiç yorgun değil derken **kein bisschen müde** denir."
+    }
+   ]
   },
   {
    "id": "lx:heiß",
@@ -6424,6 +6556,19 @@
      "tr": "– Bisiklet nerede? – Evin arkasında.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:hinter:5",
+     "de": "Hinter der Bäckerei ist ein kleiner Park.",
+     "tr": "Fırının arkasında küçük bir park var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:hinter:6",
+     "de": "– Wo ist der Eingang? – Hinten, hinter den Bäumen.",
+     "tr": "– Giriş nerede? – Arkada, ağaçların arkasında.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -6438,7 +6583,45 @@
     "parcalar": [],
     "ipucu_tr": "**hinten** tek başına arkada demektir."
    },
-   "card": false
+   "card": false,
+   "forms": [
+    {
+     "de": "Der Müll steht ___ der Garage.",
+     "answer": "hinter",
+     "tr": "Çöpler garajın arkasında duruyor.",
+     "hint_tr": "Garajın arkasında derken **hinter der Garage** denir."
+    },
+    {
+     "de": "Stell das Fahrrad ___ das Haus.",
+     "answer": "hinter",
+     "tr": "Bisikleti evin arkasına koy.",
+     "hint_tr": "Evin arkasına derken **hinter das Haus** denir."
+    },
+    {
+     "de": "___ der Kirche ist ein Parkplatz.",
+     "answer": "Hinter",
+     "tr": "Kilisenin arkasında bir otopark var.",
+     "hint_tr": "Kilisenin arkasında derken **Hinter der Kirche** denir."
+    },
+    {
+     "de": "Tobi sitzt im Bus ___ mir.",
+     "answer": "hinter",
+     "tr": "Tobi otobüste arkamda oturuyor.",
+     "hint_tr": "Arkamda derken **hinter mir** denir."
+    },
+    {
+     "de": "Die Toiletten sind ___ der Kasse.",
+     "answer": "hinter",
+     "tr": "Tuvaletler kasanın arkasında.",
+     "hint_tr": "Kasanın arkasında derken **hinter der Kasse** denir."
+    },
+    {
+     "de": "Die Kinder spielen ___ dem Haus.",
+     "answer": "hinter",
+     "tr": "Çocuklar evin arkasında oynuyor.",
+     "hint_tr": "Evin arkasında derken **hinter dem Haus** denir."
+    }
+   ]
   },
   {
    "id": "lx:Grund",

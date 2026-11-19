@@ -11037,9 +11037,22 @@
     },
     {
      "id": "lx:gegenüber:4",
-     "de": "– Wo ist der Mandelstand? – Gleich gegenüber.",
-     "tr": "– Bademci nerede? – Hemen karşıda.",
-     "layer": "hd",
+     "de": "– Wo sitzt Derya? – Mir gegenüber, am Fenster.",
+     "tr": "– Derya nerede oturuyor? – Karşımda, pencerenin yanında.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:gegenüber:5",
+     "de": "Die Nachbarin gegenüber ist sehr nett.",
+     "tr": "Karşıdaki komşu kadın çok nazik.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:gegenüber:6",
+     "de": "– Wo kann ich hier Brot kaufen? – Gleich gegenüber, bei Frau Stadler.",
+     "tr": "– Burada nereden ekmek alabilirim? – Hemen karşıda, Stadler Hanım'da.",
+     "layer": "alltag",
      "dialog": true
     }
    ],
@@ -11061,7 +11074,45 @@
      "key": "a2-10:w:gegenüber"
     }
    ],
-   "card": false
+   "card": false,
+   "forms": [
+    {
+     "de": "Die Haltestelle ist ___ vom Kino.",
+     "answer": "gegenüber",
+     "tr": "Durak sinemanın karşısında.",
+     "hint_tr": "Sinemanın karşısında derken **gegenüber vom Kino** denir."
+    },
+    {
+     "de": "Wer wohnt ___ von Ihnen?",
+     "answer": "gegenüber",
+     "tr": "Sizin karşınızda kim oturuyor?",
+     "hint_tr": "Sizin karşınızda derken **gegenüber von Ihnen** denir."
+    },
+    {
+     "de": "___ der Schule ist ein Park.",
+     "answer": "Gegenüber",
+     "tr": "Okulun karşısında bir park var.",
+     "hint_tr": "Okulun karşısında derken **Gegenüber der Schule** denir."
+    },
+    {
+     "de": "Tobi sitzt mir ___.",
+     "answer": "gegenüber",
+     "tr": "Tobi karşımda oturuyor.",
+     "hint_tr": "Karşımda derken **mir gegenüber** denir."
+    },
+    {
+     "de": "Das Café ___ vom Bahnhof ist sehr gut.",
+     "answer": "gegenüber",
+     "tr": "Garın karşısındaki kafe çok iyi.",
+     "hint_tr": "Garın karşısındaki derken **gegenüber vom Bahnhof** denir."
+    },
+    {
+     "de": "Die Post ist ___ dem Supermarkt.",
+     "answer": "gegenüber",
+     "tr": "Postane süpermarketin karşısında.",
+     "hint_tr": "Süpermarketin karşısında derken **gegenüber dem Supermarkt** denir."
+    }
+   ]
   },
   {
    "id": "lx:ankommen",
@@ -13657,7 +13708,7 @@
     },
     {
      "de": "an der Vils entlang",
-     "tr": "Vils kıyısı boyunca"
+     "tr": "Vils nehrinin kıyısı boyunca"
     }
    ],
    "patterns": [
@@ -13677,7 +13728,7 @@
     {
      "id": "lx:entlang:2",
      "de": "Wir gehen oft an der Vils entlang.",
-     "tr": "Sık sık Vils kıyısı boyunca yürüyoruz.",
+     "tr": "Sık sık Vils nehrinin kıyısı boyunca yürüyoruz.",
      "layer": "hd",
      "img": "path along river"
     },
@@ -13692,6 +13743,19 @@
      "de": "– Wie komme ich zur Post? – Immer die Straße entlang.",
      "tr": "– Postaneye nasıl giderim? – Cadde boyunca hep düz.",
      "layer": "hd",
+     "dialog": true
+    },
+    {
+     "id": "lx:entlang:5",
+     "de": "Den Flur entlang und dann rechts.",
+     "tr": "Koridor boyunca gidin, sonra sağa.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:entlang:6",
+     "de": "– Wo ist das Rathaus? – Immer den Fluss entlang, dann sehen Sie es.",
+     "tr": "– Belediye binası nerede? – Nehir boyunca hep düz gidin, sonra göreceksiniz.",
+     "layer": "alltag",
      "dialog": true
     }
    ],
@@ -13712,7 +13776,45 @@
      "key": "a2-10:w:entlang"
     }
    ],
-   "card": false
+   "card": false,
+   "forms": [
+    {
+     "de": "Fahren Sie die Straße ___.",
+     "answer": "entlang",
+     "tr": "Cadde boyunca gidin.",
+     "hint_tr": "Cadde boyunca derken **die Straße entlang** denir."
+    },
+    {
+     "de": "Wir laufen am Fluss ___.",
+     "answer": "entlang",
+     "tr": "Nehir boyunca yürüyoruz.",
+     "hint_tr": "Nehir boyunca derken **am Fluss entlang** denir."
+    },
+    {
+     "de": "Gehen Sie den Weg ___ bis zur Kirche.",
+     "answer": "entlang",
+     "tr": "Kiliseye kadar yol boyunca gidin.",
+     "hint_tr": "Yol boyunca derken **den Weg entlang** denir."
+    },
+    {
+     "de": "Der Bus fährt die Hauptstraße ___.",
+     "answer": "entlang",
+     "tr": "Otobüs ana cadde boyunca gidiyor.",
+     "hint_tr": "Ana cadde boyunca derken **die Hauptstraße entlang** denir."
+    },
+    {
+     "de": "An der Wand ___ stehen Stühle.",
+     "answer": "entlang",
+     "tr": "Duvar boyunca sandalyeler duruyor.",
+     "hint_tr": "Duvar boyunca derken **An der Wand entlang** denir."
+    },
+    {
+     "de": "Die Kinder fahren mit dem Rad den See ___.",
+     "answer": "entlang",
+     "tr": "Çocuklar bisikletle göl boyunca gidiyor.",
+     "hint_tr": "Göl boyunca derken **den See entlang** denir."
+    }
+   ]
   },
   {
    "id": "lx:Bus",

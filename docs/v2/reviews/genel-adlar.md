@@ -138,3 +138,10 @@ Sara, Lea. (Lisa, Jan, Finn, Moritz, Jakob, Emil, David, Eva artık dolu; aşağ
 - Eva otel odasını bir gece uzatıyor.
 - Lena'nın kocasına Jobcenter'dan mektup geliyor; Lena'nın kızında ishal, Lena eczanede ishal ilacı veriyor.
 - Herr Novak: oturma izni ekime kadar geçerli. Frau Lorenz: Landshut'ta doğdu. Frau Koch: kızı Mia burada (Wendlfing'de) doğdu.
+
+### Grup 24–25 ekleri
+- Felix artık Münih'te oturuyor; dairesini bir arkadaşı sayesinde buldu.
+- Herr Novak Bürgerbüro'da pasaportunu geri alıyor.
+- Paul'un ağabeyi şoför.
+- Anna bebeği dört gözle bekliyor; işini bir arkadaşı sayesinde buldu.
+- Julia bir yıldır Almanca öğreniyor.
