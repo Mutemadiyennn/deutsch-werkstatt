@@ -29,6 +29,14 @@
     {
      "de": "das Gleis wechseln",
      "tr": "peron değiştirmek"
+    },
+    {
+     "de": "auf welchem Gleis",
+     "tr": "hangi peronda"
+    },
+    {
+     "de": "am Gleis warten",
+     "tr": "peronda beklemek"
     }
    ],
    "patterns": [
@@ -44,26 +52,30 @@
      "id": "lx:Gleis:1",
      "de": "Der Zug nach Landshut fährt heute von Gleis 4.",
      "tr": "Landshut treni bugün 4. perondan kalkıyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "departure board showing platform 4"
     },
     {
      "id": "lx:Gleis:2",
      "de": "Entschuldigung, wie komme ich zu Gleis 7?",
      "tr": "Affedersiniz, 7. perona nasıl giderim?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "traveler asking staff for directions in station hall"
     },
     {
      "id": "lx:Gleis:3",
      "de": "Schau mal, unser Zug fährt heut von 'nem anderen Gleis.",
      "tr": "Baksana, trenimiz bugün başka perondan kalkıyor.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "platform change notice on station screen"
     },
     {
      "id": "lx:Gleis:4",
      "de": "– Auf welchem Gleis steht der Zug? – Auf Gleis 2, gleich da vorne.",
      "tr": "– Tren hangi peronda duruyor? – 2. peronda, hemen şurada.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "train waiting at platform 2"
     }
    ],
    "level": "A2",
@@ -82,7 +94,27 @@
     "ne_zaman_tr": "İstasyonda anons dinlerken ve treni ararken.",
     "parcalar": [],
     "ipucu_tr": "Anonstaki **Gleis 3** sözü üçüncü peron demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Welches ___ ist das hier?",
+     "answer": "Gleis",
+     "tr": "Burası hangi peron?",
+     "hint_tr": "Hangi peron diye sorarken **Welches Gleis?** denir."
+    },
+    {
+     "de": "Der Zug fährt heute von ___ anderen Gleis.",
+     "answer": "einem",
+     "tr": "Tren bugün başka bir perondan kalkıyor.",
+     "hint_tr": "Herhangi bir peron: **von einem anderen Gleis**."
+    },
+    {
+     "de": "Bitte nicht über ___ Gleise gehen!",
+     "answer": "die",
+     "tr": "Lütfen raylardan geçmeyin!",
+     "hint_tr": "Birden çok hat için **die Gleise** denir."
+    }
+   ]
   },
   {
    "id": "lx:Anschluss",
@@ -103,6 +135,14 @@
     {
      "de": "Anschluss in Regensburg",
      "tr": "Regensburg aktarması"
+    },
+    {
+     "de": "einen Anschluss haben",
+     "tr": "aktarması olmak"
+    },
+    {
+     "de": "Kein Anschluss unter dieser Nummer.",
+     "tr": "Bu numara kullanılmıyor."
     }
    ],
    "patterns": [
@@ -111,7 +151,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Aktarmayı kaçırdım derken **Ich habe den Anschluss vermisst** yanlış. Doğrusu **Ich habe den Anschluss verpasst**."
+    "Aktarmayı kaçırdım derken **Ich habe den Anschluss vermisst** yanlış. **vermissen** özlemek demektir. Doğrusu **Ich habe den Anschluss verpasst**."
    ],
    "examples": [
     {
@@ -158,7 +198,33 @@
     "ne_zaman_tr": "Yolculukta, özellikle tren gecikince.",
     "parcalar": [],
     "ipucu_tr": "Telefonda **Kein Anschluss unter dieser Nummer** bu numara kullanılmıyor demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "In Regensburg haben Sie ___ Anschluss nach Passau.",
+     "answer": "einen",
+     "tr": "Regensburg'da Passau'ya bir aktarmanız var.",
+     "hint_tr": "**Sie haben** dedikten sonra **ein Anschluss**, **einen Anschluss** olur."
+    },
+    {
+     "de": "Ich habe ___ Anschluss verpasst.",
+     "answer": "den",
+     "tr": "Aktarmayı kaçırdım.",
+     "hint_tr": "Aktarmayı kaçırırken **der Anschluss**, **den Anschluss** olur."
+    },
+    {
+     "de": "Was ist mit ___ Anschluss?",
+     "answer": "dem",
+     "tr": "Aktarma ne olacak?",
+     "hint_tr": "Bildiğimiz aktarma: **mit dem Anschluss**."
+    },
+    {
+     "de": "Kein ___ unter dieser Nummer.",
+     "answer": "Anschluss",
+     "tr": "Bu numara kullanılmıyor.",
+     "hint_tr": "Telefonda bu duyuru **Kein Anschluss unter dieser Nummer** diye söylenir."
+    }
+   ]
   },
   {
    "id": "lx:Durchsage",
@@ -179,6 +245,14 @@
     {
      "de": "die Durchsage am Bahnhof",
      "tr": "istasyondaki anons"
+    },
+    {
+     "de": "eine Durchsage im Zug",
+     "tr": "trende anons"
+    },
+    {
+     "de": "auf die Durchsage achten",
+     "tr": "anonsa dikkat etmek"
     }
    ],
    "patterns": [
@@ -187,7 +261,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Anonsu anlamadım derken **Ich habe nicht die Durchsage verstanden** yanlış. Doğrusu **Ich habe die Durchsage nicht verstanden**."
+    "Anonsu anlamadım derken **Ich habe nicht die Durchsage verstanden** yanlış. Doğrusu **Ich habe die Durchsage nicht verstanden**. **nicht** burada **verstanden** sözünün önüne gelir."
    ],
    "examples": [
     {
@@ -232,7 +306,27 @@
     "anlam_tr": "Hoparlörden herkese yapılan duyuruyu söyler.",
     "ne_zaman_tr": "İstasyonda, trende ve büyük mağazada duyarsın.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Gerade kam ___ Durchsage.",
+     "answer": "eine",
+     "tr": "Az önce bir anons yapıldı.",
+     "hint_tr": "Bir anonsu söylerken **eine Durchsage** denir."
+    },
+    {
+     "de": "Hast du ___ Durchsage verstanden?",
+     "answer": "die",
+     "tr": "Anonsu anladın mı?",
+     "hint_tr": "**verstanden** ile **die Durchsage** değişmez."
+    },
+    {
+     "de": "In ___ Durchsage hieß es, der Zug fällt aus.",
+     "answer": "der",
+     "tr": "Anonsta trenin iptal olduğu söylendi.",
+     "hint_tr": "Bildiğimiz anons: **in der Durchsage**."
+    }
+   ]
   },
   {
    "id": "lx:um_…_herum",
@@ -251,6 +345,10 @@
     {
      "de": "um den Tisch herum",
      "tr": "masanın etrafında"
+    },
+    {
+     "de": "um acht herum",
+     "tr": "sekiz civarı"
     }
    ],
    "patterns": [
@@ -259,7 +357,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Evin etrafından derken **um dem Haus herum** yanlış. Doğrusu **um das Haus herum**."
+    "Evin etrafından derken **um dem Haus herum** yanlış. Doğrusu **um das Haus herum**. **um** dedikten sonra **das Haus** değişmez."
    ],
    "examples": [
     {
@@ -306,7 +404,33 @@
     "ne_zaman_tr": "Yol tarif ederken.",
     "parcalar": [],
     "ipucu_tr": "Saatle yaklaşık demektir: **um acht herum**, yani sekiz civarı."
-   }
+   },
+   "forms": [
+    {
+     "de": "Gehen Sie bitte um das Haus ___.",
+     "answer": "herum",
+     "tr": "Lütfen evin etrafından dolaşın.",
+     "hint_tr": "**um** ile başlar, **herum** ile biter: **um das Haus herum**."
+    },
+    {
+     "de": "Fahren Sie ___ die Kirche herum.",
+     "answer": "um",
+     "tr": "Kilisenin etrafından dolaşın.",
+     "hint_tr": "Etrafından derken başa **um** gelir: **um die Kirche herum**."
+    },
+    {
+     "de": "Wir laufen um ___ See herum.",
+     "answer": "den",
+     "tr": "Gölün çevresinde yürüyoruz.",
+     "hint_tr": "**um** dedikten sonra **der See**, **den See** olur."
+    },
+    {
+     "de": "Komm so um acht ___ vorbei.",
+     "answer": "herum",
+     "tr": "Sekiz civarı uğra.",
+     "hint_tr": "Saatle **um acht herum** sekiz civarı demektir."
+    }
+   ]
   },
   {
    "id": "lx:Fluss",
@@ -328,6 +452,14 @@
     {
      "de": "über den Fluss",
      "tr": "nehrin üstünden"
+    },
+    {
+     "de": "an den Fluss gehen",
+     "tr": "nehir kenarına gitmek"
+    },
+    {
+     "de": "ein breiter Fluss",
+     "tr": "geniş bir nehir"
     }
    ],
    "patterns": [
@@ -336,34 +468,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Nehirde yüzüyorum derken **Ich schwimme in Fluss** yanlış. Doğrusu **Ich schwimme im Fluss**.",
-    "Nehirler derken **die Flussen** yanlış. Doğrusu **die Flüsse**."
+    "Nehirde yüzüyorum derken **Ich schwimme in Fluss** yanlış. Doğrusu **Ich schwimme im Fluss**. **in** ile **dem** birleşir: **im**.",
+    "Nehirler derken **die Flussen** yanlış. Doğrusu **die Flüsse**. Birden çok nehirde **u** yerine **ü** gelir ve sona **e** eklenir."
    ],
    "examples": [
     {
      "id": "lx:Fluss:1",
      "de": "Wendlfing liegt an einem kleinen Fluss, der Vils.",
      "tr": "Wendlfing küçük bir ırmağın, Vils'in kıyısında.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "small river flowing past village"
     },
     {
      "id": "lx:Fluss:2",
      "de": "Im Sommer gehen wir gern am Fluss spazieren.",
      "tr": "Yazın nehir kenarında yürümeyi severiz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "couple walking along riverbank in summer"
     },
     {
      "id": "lx:Fluss:3",
      "de": "Komm, wir setzen uns 'n bisschen an den Fluss.",
      "tr": "Hadi, biraz nehir kenarına oturalım.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "friends sitting on grassy river bank"
     },
     {
      "id": "lx:Fluss:4",
      "de": "– Wie heißt der Fluss hier? – Das ist die Vils.",
      "tr": "– Buradaki ırmağın adı ne? – Vils.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "person pointing at river from bridge"
     }
    ],
    "level": "A2",
@@ -381,7 +517,39 @@
     "anlam_tr": "Karada akan büyük suyu söyler.",
     "ne_zaman_tr": "Gezerken ve şehri anlatırken.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Wendlfing liegt an ___ kleinen Fluss.",
+     "answer": "einem",
+     "tr": "Wendlfing küçük bir ırmağın kıyısında.",
+     "hint_tr": "Herhangi bir ırmak: **an einem kleinen Fluss**."
+    },
+    {
+     "de": "Wie heißt ___ Fluss hier?",
+     "answer": "der",
+     "tr": "Buradaki ırmağın adı ne?",
+     "hint_tr": "Belli bir ırmağı sorarken **der Fluss** denir."
+    },
+    {
+     "de": "Wir gehen gern ___ Fluss spazieren.",
+     "answer": "am",
+     "tr": "Nehir kenarında yürümeyi severiz.",
+     "hint_tr": "Nehir kenarında derken **an** ile **dem** birleşir: **am Fluss**."
+    },
+    {
+     "de": "Die Kinder schwimmen ___ Fluss.",
+     "answer": "im",
+     "tr": "Çocuklar nehirde yüzüyor.",
+     "hint_tr": "Nehrin içinde derken **in** ile **dem** birleşir: **im Fluss**."
+    },
+    {
+     "de": "Durch Bayern fließen viele ___.",
+     "answer": "Flüsse",
+     "tr": "Bavyera'dan birçok nehir geçer.",
+     "hint_tr": "Birçok nehir derken **viele Flüsse** denir."
+    }
+   ]
   },
   {
    "id": "lx:Strand",
@@ -403,6 +571,14 @@
     {
      "de": "ein schöner Strand",
      "tr": "güzel bir plaj"
+    },
+    {
+     "de": "am Strand spazieren gehen",
+     "tr": "kumsalda yürümek"
+    },
+    {
+     "de": "ein Hotel am Strand",
+     "tr": "plaj kenarında bir otel"
     }
    ],
    "patterns": [
@@ -418,26 +594,30 @@
      "id": "lx:Strand:1",
      "de": "Wir waren im Urlaub jeden Tag am Strand.",
      "tr": "Tatilde her gün plajdaydık.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "family on beach towels in summer"
     },
     {
      "id": "lx:Strand:2",
      "de": "Vom Hotel läuft man nur fünf Minuten zum Strand.",
      "tr": "Otelden plaja yürüyerek sadece beş dakika.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "path from hotel down to beach"
     },
     {
      "id": "lx:Strand:3",
      "de": "Ich will nur noch am Strand liegen und nix tun.",
      "tr": "Tek istediğim kumsalda uzanıp hiçbir şey yapmamak.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "person lying on sand with sunglasses"
     },
     {
      "id": "lx:Strand:4",
      "de": "– Wie war dein Urlaub? – Super, wir waren fast nur am Strand.",
      "tr": "– Tatilin nasıldı? – Süperdi, neredeyse hep plajdaydık.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "friends looking at beach holiday photos on phone"
     }
    ],
    "level": "A2",
@@ -455,7 +635,33 @@
     "anlam_tr": "Deniz kıyısındaki kumlu yeri söyler.",
     "ne_zaman_tr": "Tatil anlatırken.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Das Hotel hat ___ eigenen Strand.",
+     "answer": "einen",
+     "tr": "Otelin kendine ait bir plajı var.",
+     "hint_tr": "**hat** dedikten sonra **ein Strand**, **einen Strand** olur: **einen eigenen Strand**."
+    },
+    {
+     "de": "___ Strand ist sehr sauber.",
+     "answer": "Der",
+     "tr": "Plaj çok temiz.",
+     "hint_tr": "Belli bir plajı söylerken **der Strand** denir."
+    },
+    {
+     "de": "Wir gehen an ___ Strand.",
+     "answer": "den",
+     "tr": "Plaja gidiyoruz.",
+     "hint_tr": "Plaja giderken **an den Strand** denir."
+    },
+    {
+     "de": "Wir liegen den ganzen Tag ___ Strand.",
+     "answer": "am",
+     "tr": "Bütün gün plajda uzanıyoruz.",
+     "hint_tr": "Plajdayken **an** ile **dem** birleşir: **am Strand**."
+    }
+   ]
   },
   {
    "id": "lx:Berg",
@@ -477,6 +683,14 @@
     {
      "de": "in den Bergen wandern",
      "tr": "dağlarda yürüyüş yapmak"
+    },
+    {
+     "de": "auf dem Berg",
+     "tr": "dağın tepesinde"
+    },
+    {
+     "de": "ein hoher Berg",
+     "tr": "yüksek bir dağ"
     }
    ],
    "patterns": [
@@ -492,26 +706,30 @@
      "id": "lx:Berg:1",
      "de": "Am Samstag fahren wir mit dem Zug in die Berge.",
      "tr": "Cumartesi trenle dağlara gidiyoruz.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "regional train passing alpine mountains"
     },
     {
      "id": "lx:Berg:2",
      "de": "Von diesem Berg sieht man die ganze Stadt.",
      "tr": "Bu dağdan bütün şehir görünüyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "view of town from mountain top"
     },
     {
      "id": "lx:Berg:3",
      "de": "Am Sonntag geht's in die Berge, kommst du mit?",
      "tr": "Pazar günü dağlara gidiyoruz, geliyor musun?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "friends packing hiking backpacks"
     },
     {
      "id": "lx:Berg:4",
      "de": "– Was machst du im Urlaub? – Ich wandere in den Bergen.",
      "tr": "– Tatilde ne yapıyorsun? – Dağlarda yürüyüş yapıyorum.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "hiker on mountain trail"
     }
    ],
    "level": "A2",
@@ -530,7 +748,39 @@
     "anlam_tr": "Yerden çok yükselen büyük toprak ve kayayı söyler.",
     "ne_zaman_tr": "Hafta sonu planı yaparken.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ hoher Berg.",
+     "answer": "ein",
+     "tr": "Bu yüksek bir dağ.",
+     "hint_tr": "Bir dağı gösterirken **ein hoher Berg** denir."
+    },
+    {
+     "de": "Am Wochenende steigen wir auf ___ Berg.",
+     "answer": "einen",
+     "tr": "Hafta sonu bir dağa çıkıyoruz.",
+     "hint_tr": "**steigen auf** dedikten sonra **ein Berg**, **einen Berg** olur."
+    },
+    {
+     "de": "___ Berg sieht man die ganze Stadt.",
+     "answer": "Vom",
+     "tr": "Dağdan bütün şehir görünüyor.",
+     "hint_tr": "**von** ile **dem** birleşir: **vom Berg**."
+    },
+    {
+     "de": "Am Samstag fahren wir in ___ Berge.",
+     "answer": "die",
+     "tr": "Cumartesi dağlara gidiyoruz.",
+     "hint_tr": "Dağlara giderken **in die Berge** denir."
+    },
+    {
+     "de": "Wir wandern gern in den ___.",
+     "answer": "Bergen",
+     "tr": "Dağlarda yürüyüş yapmayı severiz.",
+     "hint_tr": "Dağlarda derken **in den Bergen** denir, **Berge** sözünün sonuna **n** gelir."
+    }
+   ]
   },
   {
    "id": "lx:Doppelzimmer",
@@ -543,7 +793,7 @@
    "collocations": [
     {
      "de": "ein Doppelzimmer buchen",
-     "tr": "çift kişilik oda ayırtmak"
+     "tr": "çift kişilik oda tutmak"
     },
     {
      "de": "ein Doppelzimmer mit Frühstück",
@@ -551,7 +801,15 @@
     },
     {
      "de": "ein Doppelzimmer reservieren",
-     "tr": "çift kişilik oda rezerve etmek"
+     "tr": "çift kişilik oda ayırtmak"
+    },
+    {
+     "de": "ein Doppelzimmer für zwei Nächte",
+     "tr": "iki gecelik çift kişilik oda"
+    },
+    {
+     "de": "im Doppelzimmer schlafen",
+     "tr": "çift kişilik odada kalmak"
     }
    ],
    "patterns": [
@@ -560,33 +818,37 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Çift kişilik oda istiyorum derken **Ich möchte einen Doppelzimmer** yanlış. Doğrusu **Ich möchte ein Doppelzimmer**."
+    "Çift kişilik oda istiyorum derken **Ich möchte einen Doppelzimmer** yanlış. Doğrusu **Ich möchte ein Doppelzimmer**. **das Doppelzimmer** olduğu için **einen** değil **ein** gelir."
    ],
    "examples": [
     {
      "id": "lx:Doppelzimmer:1",
      "de": "Ich möchte ein Doppelzimmer für zwei Nächte reservieren.",
      "tr": "İki gecelik çift kişilik oda ayırtmak istiyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "hotel receptionist on phone taking booking"
     },
     {
      "id": "lx:Doppelzimmer:2",
      "de": "Das Doppelzimmer kostet 95 Euro pro Nacht.",
      "tr": "Çift kişilik oda gecelik 95 avro.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "room price list at hotel reception"
     },
     {
      "id": "lx:Doppelzimmer:3",
      "de": "Wir nehmen einfach 'n Doppelzimmer, das ist billiger.",
      "tr": "Çift kişilik oda alalım gitsin, daha ucuz.",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "couple comparing hotel prices on laptop"
     },
     {
      "id": "lx:Doppelzimmer:4",
      "de": "– Haben Sie noch ein Doppelzimmer frei? – Ja, im zweiten Stock.",
      "tr": "– Boş çift kişilik odanız var mı? – Evet, ikinci katta.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "guest at hotel front desk asking for room"
     }
    ],
    "level": "A2",
@@ -613,7 +875,33 @@
       "tr": "oda"
      }
     ]
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich möchte ___ Doppelzimmer reservieren.",
+     "answer": "ein",
+     "tr": "Çift kişilik bir oda ayırtmak istiyorum.",
+     "hint_tr": "**Ich möchte** dedikten sonra **ein Doppelzimmer** aynı kalır."
+    },
+    {
+     "de": "___ Doppelzimmer kostet 95 Euro pro Nacht.",
+     "answer": "Das",
+     "tr": "Çift kişilik oda gecelik 95 avro.",
+     "hint_tr": "Belli bir odayı söylerken **das Doppelzimmer** denir."
+    },
+    {
+     "de": "Wir nehmen ___ Doppelzimmer im zweiten Stock.",
+     "answer": "das",
+     "tr": "İkinci kattaki çift kişilik odayı alıyoruz.",
+     "hint_tr": "**Wir nehmen** dedikten sonra da **das Doppelzimmer** değişmez."
+    },
+    {
+     "de": "Im ___ gibt es ein großes Bett.",
+     "answer": "Doppelzimmer",
+     "tr": "Çift kişilik odada büyük bir yatak var.",
+     "hint_tr": "Çift kişilik odada derken **im Doppelzimmer** denir."
+    }
+   ]
   },
   {
    "id": "lx:Einzelzimmer",
