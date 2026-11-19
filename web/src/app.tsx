@@ -67,7 +67,9 @@ export function App() {
     const on = () => { ustUsteSifirla(); setRoute(parseHash(location.hash)); };
     addEventListener("hashchange", on);
     // iOS: efekt sesi için ses bağlamı ilk dokunuşta açılır (inceleme #87 P2)
-    const kilit = () => { sesKilidiAc(); removeEventListener("pointerdown", kilit, true); removeEventListener("touchend", kilit, true); };
+    // dinleyici kalır: ilk dokunuş etkinleştirme sayılmayabilir (iOS'ta touchend sayılır, pointerdown sayılmaz) ve ses sonradan
+    // açılabilir; ses bağlamı çalışınca sesKilidiAc hemen döner (inceleme #87 2. tur)
+    const kilit = () => sesKilidiAc();
     addEventListener("pointerdown", kilit, true); addEventListener("touchend", kilit, true);
     // #58 B3: yerel kullanım ölçümü (açılış, adımın bitirildiği ya da bırakıldığı nokta; cihazdan çıkmaz)
     const izBitir = kullanimIzle(() => parseHash(location.hash));

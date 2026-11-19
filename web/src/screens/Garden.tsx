@@ -100,7 +100,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
     setBusy(false);
     // "Emin değilim, geç" sayılmaz: ne doğru ne soru (özet tutarlı, inceleme #59 P2-1)
     if (outcome) setScore((s) => ({ ok: s.ok + (r.ok ? 1 : 0), n: s.n + 1 }));
-    if (outcome && r.ok) void xpVer(XP.dogru);
+    // XP yalnızca ipucusuz doğruda (ipuçlu ya da yazımı eksik doğru tekrar sayılır; uçuş da 0 — inceleme #87 2. tur)
+    if (outcome === "correct") void xpVer(XP.dogru);
     const r2 = !r.ok && outcome ? requeue(round, q, l) : round;
     // son cevap: günün bütün kartları tanıtıldıysa Seans 1 şimdi işaretlenir (inceleme #66 P1-1)
     if (day && i + 1 >= r2.length && data.gunKartlari.every((id) => data.items.has(id))) { try { await bahceTamam(day); } catch { /* bir sonraki açılışta yeniden denenir */ } }
