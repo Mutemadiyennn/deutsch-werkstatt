@@ -26,6 +26,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | İş | Dal | Durum |
 |---|---|---|
 | Konuşma provası, yapay zekâsız (#58 A7) | `v2/prova` | #68 birleşti |
+| Ses 1. adım + mikrofon (#58 B15, PM-064) | `v2/ses-b15` | PR #117 (D-117; 2 inceleme turu, P1'ler kapandı): karaktere göre sabit ses, Yavaş yalnızca hız, Profil → Ses ve mikrofon, kabukta yerel tanıma önce. Bilinen: aynı günün iki kaydı arasında doğrudan adres değişince Medya yeniden yüklenmiyor (ayrı iş); 2. adım doğal ses denemesi |
 | Kapalı medya rafı (#58 B12) | `v2/medya-rafi`, `v2/raf-doldur` | 1. parça #98 birleşti (D-112); 2. parça PR #99 doldurma hattı (Pixabay → gizli depo; "Fail closed" onayı `RAF_FAIL_CLOSED=1` olmadan itmez); sırada fotoğraf yolu ve doğrulayıcı; proje sahibinin adımları bekleniyor; iskelet kipi #115 birleşti (Function + saglik.txt gizli depoda, koşu 44585624937 başarılı) |
 | Google girişi onarımı + hesap kimliği (PM 7017264235, 7017394092) | `v2/giris-uid` | #114 birleşti: `initializeAuth`'a web'de `popupRedirectResolver` (kök neden: `auth/argument-error`); engellenince yönlendirme; bilinmeyen hatada kod; Profil → Hesap kimliği + Kopyala. Bilinen: Safari'de yönlendirme sonucu sessiz düşebilir (ayrı iş) |
 | Kalıp kartı (#58 B2) | `v2/kalip-karti` | #94 birleşti (D-110). İÇ iş listesi: 957 dolgunun 381'i (%40) için ne örnek ne anlam var |

@@ -107,6 +107,8 @@ jobs:
         run: cd tests/e2e && python v2_yol.py --shots /tmp/shots
       - name: "Yol haritası ve durum çubuğu (#58 B11a, PM-065): düğümler, BAŞLA, kilitli, gün bandı ve Rehber, seri/XP/dakika, kontrast"
         run: cd tests/e2e && python v2_yol_harita.py --shots /tmp/shots
+      - name: "Ses ve mikrofon (#58 B15 1. adım, PM-064): karaktere göre ses, Yavaş yalnızca hız, mikrofon yolu ve Türkçe hata türleri"
+        run: cd tests/e2e && python v2_ses.py --shots /tmp/shots
       - name: "Günlük görevler, sandık, seri dondurma, geçen haftaki sen (#58 B11b, PM-065 5–7)"
         run: cd tests/e2e && python v2_gorev.py --shots /tmp/shots
       - name: "Yerleşim kuralları Y1–Y6 (TASARIM TS-4.7): Bugün, Görevler, Odak; iki tema"

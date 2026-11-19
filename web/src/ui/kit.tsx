@@ -5,7 +5,7 @@
 import { createContext, type ComponentChildren } from "preact";
 import { useContext, useEffect, useRef, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
-import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive } from "../services/speech.ts";
+import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive, STT_HATA_TR, sttHataTuru, konusanAta } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { efekt, ustUsteDizi, ustUsteSay, xpUcur } from "../services/efekt.ts";
 import { Icon } from "./icons.tsx";
@@ -13,9 +13,9 @@ import { gorevSay } from "../services/gorev.ts";
 import { Mucevher } from "./solen.tsx";
 
 /* ---------- Ses düğmesi: büyük, tek dokunuşla yavaş/normal ---------- */
-export function ListenButton({ text, speed = "normal", label = "Dinle", slowToggle = true, small = false }: { text: string; speed?: Speed; label?: string; slowToggle?: boolean; small?: boolean }) {
+export function ListenButton({ text, speed = "normal", label = "Dinle", slowToggle = true, small = false, kim, sahne }: { text: string; speed?: Speed; label?: string; slowToggle?: boolean; small?: boolean; /** konuşan: karakterin sabit sesi (PM-064) */ kim?: string; /** sahnedeki bütün konuşanlar: aynı sahnede iki kişi aynı sesi almasın (2. tur P1-B) */ sahne?: (string | undefined)[] }) {
   const [busy, setBusy] = useState<false | "n" | "s">(false);
-  const play = async (s: Speed, k: "n" | "s") => { if (busy) { stopSpeaking(); setBusy(false); return; } setBusy(k); try { await speak(text, "de", s); } finally { setBusy(false); } };
+  const play = async (s: Speed, k: "n" | "s") => { if (busy) { stopSpeaking(); setBusy(false); return; } setBusy(k); try { await speak(text, "de", s, false, kim && sahne ? konusanAta(sahne).get(kim) ?? kim : kim); } finally { setBusy(false); } };
   return (
     <span class={`listen${small ? " sm" : ""}`} role="group" aria-label={label}>
       <button type="button" onClick={() => play(speed, "n")} aria-label={`${label}: ${text}`} data-test="listen">{busy === "n" ? <Icon name="stop" /> : <Icon name="volume" />}</button>
@@ -104,8 +104,8 @@ export function MicButton({ onText, disabled, wide = false, label = "Sesli söyl
     if (!localStorage.getItem(MIC_OK_KEY)) { setState("explain"); return; }
     setErr(null); setState("rec"); stopSpeaking();
     const h = listenOnce("de-DE", 12000); stopRef.current = h.stop;
-    try { const alts = await h.result; setState("idle"); if (alts[0]) { haptic("selection"); onText(alts[0]); } else setErr("Ses algılanamadı. Tekrar dene ya da yaz."); }
-    catch { setState("idle"); setErr("Mikrofon kullanılamadı. Ayarlar'dan izin verebilir ya da yazarak cevaplayabilirsin."); }
+    try { const alts = await h.result; setState("idle"); if (alts[0]) { haptic("selection"); onText(alts[0]); } else setErr(STT_HATA_TR.sessiz); }
+    catch (e) { setState("idle"); setErr(STT_HATA_TR[sttHataTuru(e)]); }
   };
   return (
     <>

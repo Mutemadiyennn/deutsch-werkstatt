@@ -18,7 +18,7 @@ import { Rich } from "../ui/rich.tsx";
 import { ADIM_TR, BASLANGIC, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { scoreHeard } from "../core/grading.ts";
-import { baslangicYavas, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
+import { baslangicYavas, konusanAta, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { ActionBar, AnswerField, CevapXp, FeedbackBand, MicButton, ProgressHeader, YanlisIci } from "../ui/kit.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
@@ -71,7 +71,7 @@ function useOynatici(m: Medya, video: HTMLVideoElement | null, base = ""): Oynat
     for (const c of cs) {
       if (iptal.current !== my) return;
       setCalisiyor(c.id);
-      if (c.audio?.src) await sesDosyasi(/^(https?:|\/)/.test(c.audio.src) ? c.audio.src : base + c.audio.src, yavas, my); else await speak(c.de, "de", yavas ? "slow" : "normal", true);
+      if (c.audio?.src) await sesDosyasi(/^(https?:|\/)/.test(c.audio.src) ? c.audio.src : base + c.audio.src, yavas, my); else await speak(c.de, "de", yavas ? "slow" : "normal", true, c.speaker ? konusanAta(m.cumleler.map((x) => x.speaker)).get(c.speaker) : undefined);
     }
   };
   const o: Oynatici = {
