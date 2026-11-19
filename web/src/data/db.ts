@@ -146,3 +146,7 @@ export async function cacheGet<T>(key: string, maxAgeMs = 30 * 86400_000): Promi
   return r && Date.now() - r.at < maxAgeMs ? (r.value as T) : undefined;
 }
 export async function cachePut(key: string, value: unknown) { await db.aicache.put({ key, value, at: Date.now() }); }
+/** meta anahtarı önekiyle (ör. "ders:") bütün kayıtlar */
+export async function metaPrefix<T>(prefix: string): Promise<{ key: string; value: T }[]> {
+  return (await db.meta.where("key").startsWith(prefix).toArray()) as { key: string; value: T }[];
+}

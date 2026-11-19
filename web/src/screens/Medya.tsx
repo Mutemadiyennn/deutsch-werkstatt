@@ -8,6 +8,8 @@
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Gun, medyalar, type AnlamaQ, type Bolum, type Dikte, type Lexeme, type Medya, type MedyaCumle } from "@dw/shared";
 import { useApp } from "../state.ts";
+import { xpVer } from "../services/ilerleme.ts";
+import { XP } from "../core/gun.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { loadIndex, loadLexicon, loadM1Gun, contentUrl } from "../services/content.ts";
 import { addClaim, addPersonal, getMeta, setMeta } from "../data/db.ts";
@@ -134,7 +136,8 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
       {m.eylem && !p.eylem ? <EylemSoru m={m} onDone={(ok) => setP({ ...p, eylem: true, dogru: p.dogru + (ok ? 1 : 0), toplam: p.toplam + 1 })} />
         : <section class="card stack" data-test="medya-bitti"><h2>Bitti</h2>
             <p>{p.toplam} soruda {p.dogru} doğru. {m.bolumler.length > 1 ? `${m.bolumler.length} bölümün hepsini çalıştın.` : ""}</p>
-            <div class="row"><a class="btn primary grow" href={geri} data-test="medya-geri">Güne dön</a>
+            <div class="row"><a class="btn primary grow" href="#/today" data-test="medya-sonraki">Sıradaki adım</a>
+              <a class="btn grow" href={geri} data-test="medya-geri">Güne dön</a>
               <button class="btn grow" onClick={() => setP({ ...BASLANGIC })}>Baştan çalış</button></div>
           </section>}
     </div>
@@ -144,7 +147,7 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
   const steps = adimlar(b);
   const adim = steps[p.s]!;
   const cs = bolumCumleleri(m, b);
-  const sonraki = (alt = 1, ok?: boolean) => { oy.dur(); setP({ ...ileri(p, m, alt), ...(ok === undefined ? {} : { dogru: p.dogru + (ok ? 1 : 0), toplam: p.toplam + 1 }) }); };
+  const sonraki = (alt = 1, ok?: boolean) => { oy.dur(); const np = ileri(p, m, alt); if (ok) void xpVer(XP.dogru); if (np.bitti) void xpVer(XP.adim); setP({ ...np, ...(ok === undefined ? {} : { dogru: p.dogru + (ok ? 1 : 0), toplam: p.toplam + 1 }) }); };
 
   return (
     <div class="stack" data-test="medya" data-adim={adim} data-pos={`${p.b}.${p.s}.${p.k}`}>

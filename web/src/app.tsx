@@ -3,6 +3,7 @@ import { probeProvider } from "./services/ai.ts";
 import { CallScreen as Call } from "./screens/Call.tsx";
 import { M1Gun, MedyaEkrani } from "./screens/Medya.tsx";
 import { DersEkrani } from "./screens/Ders.tsx";
+import { YolEkrani } from "./screens/Yol.tsx";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Assessment, ContentIndex, Profile } from "@dw/shared";
 import { Ctx, LEARNING_ROUTES, parseHash, type AppCtx, type Route } from "./state.ts";
@@ -100,7 +101,8 @@ export function App() {
     case "assess": screen = <AssessRun />; break;
     case "assessResult": screen = <AssessResult id={route.id} />; break;
     case "call": screen = <Call id={route.id} />; break;
-    case "garden": screen = <Garden />; break;
+    case "garden": screen = <Garden key={route.day ?? 0} day={route.day} />; break;
+    case "yol": screen = <YolEkrani />; break;
     case "ders": screen = <DersEkrani key={route.id} id={route.id} />; break;
     case "m1day": screen = <M1Gun day={route.day} />; break;
     case "m1medya": screen = <MedyaEkrani key={route.id} day={route.day} id={route.id} />; break;
