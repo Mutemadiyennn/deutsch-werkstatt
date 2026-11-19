@@ -28,13 +28,13 @@ export function ProfileView() {
   useEffect(() => { son.current = profile; }, [profile]);
   const adZaman = useRef<ReturnType<typeof setTimeout>>();
   const adBekleyen = useRef<string | null>(null);
-  const adKaydet = (v: string) => { adBekleyen.current = null; const ad = v.trim() || undefined; if (ad !== son.current.displayName) void save((p) => { p.displayName = ad; }); };
+  const adKaydet = (v: string) => { adBekleyen.current = null; const ad = v.trim() || undefined; if (ad !== son.current.displayName) void save((p) => { p.displayName = ad; }, true); };
   // ekrandan bekleme dolmadan çıkılırsa yazılan ad yine kaydedilir
   useEffect(() => () => { clearTimeout(adZaman.current); if (adBekleyen.current !== null) adKaydet(adBekleyen.current); }, []);
-  const save = (f: (p: Profile) => void) => {
+  const save = (f: (p: Profile) => void, sessiz = false) => {
     const is = sira.current.then(async () => {
       const n = structuredClone(son.current); f(n);
-      try { await setProfile(n); son.current = n; toast("Kaydedildi"); } catch { toast("Geçersiz değer; kaydedilmedi."); }
+      try { await setProfile(n); son.current = n; if (!sessiz) toast("Kaydedildi"); } catch { toast("Geçersiz değer; kaydedilmedi."); }
     });
     sira.current = is.catch(() => {});
     return is;
