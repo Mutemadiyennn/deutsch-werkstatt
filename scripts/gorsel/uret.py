@@ -1,5 +1,5 @@
 """
-PM-063 (#58 B14) cümle görseli üretimi — DENEME (1. adım). CI'da çalışır; anahtar yalnızca GitHub şifreli secret'ında.
+PM-063 (#58 B14) cümle görseli üretimi — DENEME (1. adım). Secret'lar 19.11 19:05 UTC girildi (PM 7019220480). CI'da çalışır; anahtar yalnızca GitHub şifreli secret'ında.
 
 Cloudflare Workers AI REST: POST /accounts/{hesap}/ai/run/@cf/black-forest-labs/flux-1-schnell
   - Hesap Workers Free, ödeme yöntemi yok (PM 7009256371): kota aşılırsa istek hata verir, ücret doğmaz. Kota hatasında
