@@ -18,7 +18,7 @@ import base64, html, io, json, os, sys, time, urllib.error, urllib.request
 KOK = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 MODEL = "@cf/black-forest-labs/flux-1-schnell"
 ADIM = 4
-NORON = 58          # 4 adım, 1024 px; bütçe için üst sınır (deneme: 60 görsel ≈ 3.480)
+NORON = 170         # gözlenen: deneme 60 görsel ≈ 10.000 nöron (günlük ücretsiz pay doldu, HTTP 429); bütçe için üst sınır
 BOY = 640           # uygulamaya giden kenar (PM 7020888298-1)
 USLUP_SURUM = "cizim-v1"
 USLUP = "Soft gentle illustration with warm muted colors, clean shapes, landscape 4:3 composition, simple uncluttered background, everyday life in southern Germany. "
