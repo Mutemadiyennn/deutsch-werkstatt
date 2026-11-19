@@ -156,7 +156,7 @@ def main():
                 ders_ac(pg, base); ders_ilerle_kurmaya(pg); pg.evaluate("window.__efekt = []")
                 yazili(pg, True)
                 # bant efekti useEffect'te yazılır: kayıt gelene kadar beklenir (inceleme #87 2. tur, iPhone 15 yarışı)
-                pg.wait_for_function("(window.__efekt || []).length > 0", timeout=5000)
+                pg.wait_for_function("() => (window.__efekt || []).length > 0", timeout=5000)
                 ef = pg.evaluate("window.__efekt || []")
                 check(ef and all(x.endswith(":sessiz") for x in ef), f"efekt sesleri kapalıyken ton çalmıyor ({ef})")
             b.close()

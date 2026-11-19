@@ -98,7 +98,7 @@ def main():
         txt = pg.inner_text("[data-test=ders-bitti]")
         check("doğru" in txt and "undefined" not in txt and "NaN" not in txt, "bitiş özeti")
         check(pg.locator("[data-test=ders-bitti] [data-test=kutlama]").count() == 1, "ders bu oturumda bitince kutlama var")
-        pg.wait_for_function("window.__kayit >= 10", timeout=5000); pg.wait_for_timeout(300)
+        pg.wait_for_function("() => window.__kayit >= 10", timeout=5000); pg.wait_for_timeout(300)
         uc, kay = pg.evaluate("[window.__ucus, window.__kayit]")
         check(uc > 0 and uc == kay - 10, f"uçan XP ({uc}) = kaydedilen ({kay}) − ders adımı (10)")
         if shots: shot(pg, "d03-bitti", full=False)
