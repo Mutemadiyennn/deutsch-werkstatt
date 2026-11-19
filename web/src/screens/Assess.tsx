@@ -140,7 +140,8 @@ function Choice({ it, prompt, opts, ans, right, onAnswer, extra }: { it: AssessI
 function Listening({ it, onAnswer }: { it: Extract<AssessItem, { skill: "listening" }>; onAnswer: OnAnswer }) {
   const speed = LISTEN_SPEED[it.level as Level];
   const [plays, setPlays] = useState(0);
-  const play = async () => { setPlays((n) => n + 1); await speak(it.de, "de", speed); };
+  // ölçüm: hız seviyenin hızıdır; Profil'deki başlangıç hızı uygulanmaz (inceleme #77 P1-1)
+  const play = async () => { setPlays((n) => n + 1); await speak(it.de, "de", speed, true); };
   useEffect(() => { void play(); }, []);
   return (
     <Choice it={it} opts={it.opts_tr} ans={it.ans} right={it.opts_tr[it.ans]!} onAnswer={onAnswer}
