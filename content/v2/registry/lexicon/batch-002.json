@@ -3411,7 +3411,7 @@
   {
    "id": "lx:nun",
    "de": "nun",
-   "tr": "şimdi, artık, peki",
+   "tr": "şimdi, artık",
    "pos": "adv",
    "collocations": [
     {
@@ -3421,6 +3421,14 @@
     {
      "de": "Was nun?",
      "tr": "Şimdi ne olacak?"
+    },
+    {
+     "de": "von nun an",
+     "tr": "bundan sonra"
+    },
+    {
+     "de": "Das ist nun mal so.",
+     "tr": "Bu işler böyle."
     }
    ],
    "patterns": [
@@ -3428,7 +3436,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Nun ja** evet demek değil. Kararsız olduğunu gösterir."
+    "Evet derken **Nun ja** yanlış. Doğrusu **Ja**. **Nun ja** eh, şey demektir, kararsızlık gösterir.",
+    "Artık çok geç derken **Nun es ist zu spät** yanlış. Doğrusu **Nun ist es zu spät**. **Nun** başa gelince **ist** hemen ardından gelir."
    ],
    "examples": [
     {
@@ -3466,10 +3475,10 @@
     "strategie"
    ],
    "exp": {
-    "anlam_tr": "Şimdiki durumu söyler ya da konuşmayı başka yöne taşır.",
+    "anlam_tr": "Şimdiki durumu söyler, şimdi ve artık anlamına gelir.",
     "ne_zaman_tr": "Daha çok yazıda ve resmî konuşmada.",
     "parcalar": [],
-    "ipucu_tr": "Günlük konuşmada **jetzt** daha sık duyulur."
+    "ipucu_tr": "Peki şimdi ne olacak derken **Und was nun?** dersin."
    }
   },
   {
@@ -6660,6 +6669,14 @@
     {
      "de": "Zum Wohl!",
      "tr": "Şerefe!"
+    },
+    {
+     "de": "wohl zu spät",
+     "tr": "herhalde çok geç"
+    },
+    {
+     "de": "Fühlen Sie sich wohl?",
+     "tr": "Kendinizi iyi hissediyor musunuz?"
     }
    ],
    "patterns": [
@@ -6667,7 +6684,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Er ist wohl krank** iyi demek değil. Herhalde hasta demek."
+    "Kendimi iyi hissediyorum derken **Ich bin wohl** yanlış. Doğrusu **Ich fühle mich wohl**. İyi anlamında **wohl** ile **sich fühlen** gelir."
    ],
    "examples": [
     {
@@ -6705,10 +6722,24 @@
     "arzt"
    ],
    "exp": {
-    "anlam_tr": "Tahmin ettiğini ya da kendini iyi hissettiğini söyler.",
+    "anlam_tr": "Bir şeyi tahmin ettiğini söyler, herhalde demektir.",
     "parcalar": [],
-    "ipucu_tr": "**Zum Wohl** şerefe demektir."
-   }
+    "ipucu_tr": "**Ich fühle mich wohl** kendimi iyi hissediyorum demektir."
+   },
+   "forms": [
+    {
+     "de": "Zum ___!",
+     "answer": "Wohl",
+     "tr": "Şerefe!",
+     "hint_tr": "Kadeh kaldırırken büyük harfle **Zum Wohl** denir."
+    },
+    {
+     "de": "Er ist ___ noch im Bett.",
+     "answer": "wohl",
+     "tr": "Adam herhalde hâlâ yatakta.",
+     "hint_tr": "Herhalde derken **ist** ardından **wohl** gelir."
+    }
+   ]
   },
   {
    "id": "lx:Geld",
