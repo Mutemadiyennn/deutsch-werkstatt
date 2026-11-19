@@ -11,7 +11,7 @@ import { bahceTamam, xpVer } from "../services/ilerleme.ts";
 import { XP } from "../core/gun.ts";
 import { itemsMap, personalWords, putItems } from "../data/db.ts";
 import { review, sessionKey, type Outcome } from "../core/srs.ts";
-import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, isNoun, meaningOptions, ownSentenceCheck, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
+import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, havuz, isNoun, meaningOptions, ownSentenceCheck, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { umlautEksik } from "../core/esdeger.ts";
 import { judgeWord, numberWordHint } from "../core/grading.ts";
@@ -83,13 +83,15 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   const q = round[i]!;
   const l = data.lex.get(q.lexId)!;
 
-  const finish = async (r: Result, outcome: Outcome | null) => {
+  const finish = async (r: Result, outcome: Outcome | null, exi = q.ex) => {
     if (busy) return; // "Devam"a çift dokunuş aynı değerlendirmeyi iki kez yazmaz (inceleme #59 P2-2)
     setBusy(true);
     try {
       if (outcome) {
         const next = review(data.items.get(q.lexId), { itemId: q.lexId, kind: "lexeme", path: pathOf(q.type), outcome, session: sessionKey("garden", startedAt), source: "drill", ctx: q.type });
         next.lastQ = q.type;
+        // PM-062: sonraki oturum gösterilen cümlenin ardından başlar (aynı cümleyle art arda açılmaz)
+        next.exSeen = Math.max(next.exSeen ?? 0, exi + 1);
         await putItems([next]);
         data.items.set(q.lexId, next);
       }
@@ -114,7 +116,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   );
 }
 
-function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[]; onDone: (r: Result, o: Outcome | null) => void }) {
+function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[]; onDone: (r: Result, o: Outcome | null, exi: number) => void }) {
   const [intro, setIntro] = useState(!!q.intro);
   const [res, setRes] = useState<Result | null>(null);
   const [selfCheck, setSelfCheck] = useState<string | null>(null);
@@ -122,9 +124,12 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   const [shortNote, setShortNote] = useState(false);
   const [synNote, setSynNote] = useState<string | null>(null);
   const [hinted, setHinted] = useState(false);
-  const ex = l.examples[q.ex % Math.max(1, l.examples.length)];
+  // PM-062: cümle sırası kartın gösterim sayacından gelir; "Başka cümle" havuzdaki sıradakine geçer (ipucu değil, XP etkilenmez)
+  const [exi, setExi] = useState(q.ex);
+  const ex = l.examples[exi % Math.max(1, l.examples.length)];
   const show = (r: Result) => { setRes(r); haptic(r.ok ? "success" : "error"); };
-  const next = (o: Outcome | null) => onDone(res || { ok: false }, o);
+  const next = (o: Outcome | null) => onDone(res || { ok: false }, o, exi);
+  const baska = (n: number) => n > 1 ? <button class="btn sm ghost" data-test="baska-cumle" onClick={() => setExi((x) => x + 1)}>Başka cümle</button> : null;
 
   // önce duy (PM-049 tanıtım): kelime ekrana gelince bir kez okunur (inceleme #59 P2-8)
   useEffect(() => { if (intro) void speak(isNoun(l) ? `${l.art} ${l.de}` : l.de, "de", "normal"); }, [intro]);
@@ -132,11 +137,12 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   if (intro) return (
     <div class="stack fade" data-test="garden-intro">
       <section class="card stack"><div class="kicker">Yeni kelime</div>
-        <Photo q={l.img} />
+        <Photo q={ex?.img || l.img} />
         <div class="de-xl" lang="de"><Art art={l.art} de={l.de} /></div>
         <div class="row"><ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} /></div>
         <p>{l.tr}</p>
-        {ex && <p class="small"><span lang="de">{ex.de}</span><br /><span class="muted">{ex.tr}</span></p>}
+        {ex && <p class="small" data-test="intro-ex"><span lang="de">{ex.de}</span><br /><span class="muted">{ex.tr}</span></p>}
+        {baska(l.examples.length)}
         {col && <p class="small" data-test="intro-colloc">Birlikte: <b lang="de">{col.de}</b> <span class="muted">· {col.tr}</span></p>}
       </section>
       <ActionBar><button class="btn primary block" data-test="next" onClick={() => setIntro(false)}>Şimdi sor</button></ActionBar>
@@ -144,7 +150,7 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   );
 
   // ipucu ve boşluk cümlesi yalnızca boşluk sorularında (başka türde öğrencinin görmediği cümlenin ipucu çıkmasın; inceleme #85 P1-1)
-  const form = q.type === "gap" || q.type === "sep_perfekt" ? formFor(l, q.type, q.ex) : undefined;
+  const form = q.type === "gap" || q.type === "sep_perfekt" ? formFor(l, q.type, exi) : undefined;
   // PM (#59 yorumu): cevaptan sonra, doğru ya da yanlış, kelime cümlesiyle görünür — örnek cümle (dinle), fotoğraf, eşdizim
   const colAfter = collocOf(l);
   const verdict = res && (<>
@@ -152,6 +158,8 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
       <div class="de-lg" lang="de"><Art art={l.art} de={l.de} /> <span class="small muted">· {l.tr}</span></div>
       <Photo q={ex?.img || l.img} />
       {ex && <div class="row" style={{ flexWrap: "nowrap", alignItems: "flex-start" }}><span class="grow"><span lang="de" data-test="after-ex">{ex.de}</span><br /><span class="small muted">{ex.tr}</span></span><ListenButton text={ex.de} small /></div>}
+      {/* boşluk sorusunda cevap ekranındaki cümle sorulan cümlenin örneğidir; başka sorularda beğenilmeyen örnek değiştirilebilir */}
+      {!form && baska(l.examples.length)}
       {colAfter && <p class="small">Birlikte: <b lang="de">{colAfter.de}</b> <span class="muted">· {colAfter.tr}</span></p>}
     </section>
     {/* geri bildirim bandı yüksek: kart bandın altında kalmasın diye kaydırma payı */}
@@ -174,8 +182,8 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   // ---- aktif: üretim ----
   const prompt = q.type === "photo_say" ? <><div class="kicker">Fotoğraftaki ne? Artikeliyle söyle ya da yaz</div><Photo q={l.img} /><p class="small muted">{l.tr}</p></>
     : q.type === "tr_de" ? <><div class="kicker">Almanca söyle ya da yaz</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div></>
-    : q.type === "gap" || q.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && !res && <IpucuDugmesi metin={form.hint_tr} onAc={() => setHinted(true)} />}</>
-    : <><div class="kicker">Bu kelimeyle kendi cümleni kur</div><div class="de-lg" lang="de"><Art art={l.art} de={l.de} /></div><p class="small muted">{l.tr}{ex ? ` · Örnek: ` : ""}{ex && <span lang="de">{ex.de}</span>}</p></>;
+    : q.type === "gap" || q.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de" data-test="gap-cumle">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && !res && <IpucuDugmesi metin={form.hint_tr} onAc={() => setHinted(true)} />}{!res && baska(havuz(l, q.type))}</>
+    : <><div class="kicker">Bu kelimeyle kendi cümleni kur</div><div class="de-lg" lang="de"><Art art={l.art} de={l.de} /></div><p class="small muted">{l.tr}{ex ? ` · Örnek: ` : ""}{ex && <span lang="de" data-test="own-ex">{ex.de}</span>}</p>{!selfCheck && baska(l.examples.length)}</>;
 
   const submit = (a: string, mode: "typed" | "voice") => {
     if (q.type === "own_sentence") {
@@ -184,7 +192,7 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
       if (c === "short") { setShortNote(true); return; }
       setOwnNote(c === "missing"); setSelfCheck(a); return;
     }
-    const acc = accepted(l, q.type, q.ex);
+    const acc = accepted(l, q.type, exi);
     // rakam kuralı yalnızca yazılan cevapta: konuşma tanıma sayıyı rakamla döker (inceleme #59 P1-3)
     const hint = mode === "typed" ? numberWordHint(a) : null;
     if (hint && acc.every((x) => !/\d/.test(x))) { show({ ok: false, answer: a, expected: acc[0], note: hint }); return; }
@@ -212,8 +220,8 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
           {ownNote && <div class="small" data-test="own-missing">Cümlende bu kelimeyi göremedim. Çekimli hâlini kullandıysan doğru olabilir.</div>}
           Cümlen kelimeyi doğru kullanıyor mu? Bir kez yüksek sesle oku.{ex && <> Örnek: <span lang="de">{ex.de}</span></>}</FeedbackBand></section>
       <ActionBar>
-        <button class="btn primary block" data-test="own-ok" onClick={() => onDone({ ok: true, answer: selfCheck }, "hinted")}>Evet, doğru kurdum</button>
-        <button class="btn block" data-test="own-unsure" onClick={() => onDone({ ok: true, answer: selfCheck }, null)}>Emin değilim, geç</button>
+        <button class="btn primary block" data-test="own-ok" onClick={() => onDone({ ok: true, answer: selfCheck }, "hinted", exi)}>Evet, doğru kurdum</button>
+        <button class="btn block" data-test="own-unsure" onClick={() => onDone({ ok: true, answer: selfCheck }, null, exi)}>Emin değilim, geç</button>
       </ActionBar>
     </div>
   );

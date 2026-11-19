@@ -26,6 +26,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | İş | Dal | Durum |
 |---|---|---|
 | Konuşma provası, yapay zekâsız (#58 A7) | `v2/prova` | #68 birleşti |
+| Bahçe değişen cümle (PM-062, #58 B13) | `v2/bahce-donusum` | Hazır (D-111); doğrulayıcı kuralı #88 sonrası; açık PR sınırında yer açılınca PR |
 | Değerlendirme doğruluğu (#58 A11) | `v2/degerlendirme` | PR #76: 1. tur P0 (V2 aşırı kabul) ve P1'ler düzeltildi; kalıcı permütasyon taraması; 2. tur bekliyor (D-104) |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | `v2/degerlendirme` | #76 içinde (D-104 madde 3) |
 | Sözlük arama (#58 B1) | `v2/sozluk-ara` | PR açıldı: çevrimdışı DE↔TR, kart, "Duyduğum kelime" olarak Bahçe'ye |
