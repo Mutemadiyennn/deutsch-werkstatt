@@ -16,6 +16,8 @@ import { loadIndex, within } from "./services/content.ts";
 import { getProfile, latestPlacement, saveProfile } from "./data/db.ts";
 import { setLearning, startFocus, updateFocusConfig } from "./services/focusRuntime.ts";
 import { setBaslangicHizi } from "./services/speech.ts";
+import { efektAyar } from "./services/efekt.ts";
+import { XpUcus } from "./ui/solen.tsx";
 import { TabBar, Loading, ErrorPanel } from "./ui/components.tsx";
 import { ErrorBoundary, recordError } from "./ui/ErrorBoundary.tsx";
 import { ensurePersist } from "./services/storage.ts";
@@ -56,6 +58,8 @@ export function App() {
   const [profileErr, setProfileErr] = useState<string | null>(null);
   // #58 B7: Profil'deki dinleme başlangıç hızı ses servisine
   useEffect(() => { if (profile) setBaslangicHizi(profile.listening.startSpeed); }, [profile?.listening.startSpeed]);
+  // Şölen 1 (#58 B10): efekt sesleri ve kutlamalar Profil'den
+  useEffect(() => { if (profile) efektAyar(profile.ui); }, [profile?.ui.sfx, profile?.ui.celebrations]);
 
   useEffect(() => {
     const on = () => setRoute(parseHash(location.hash));
@@ -133,6 +137,7 @@ export function App() {
       <main class={`app${tabs ? "" : " notabs"}`}><ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>
       {tabs && <TabBar route={route} />}
       <LongPressExplain />
+      <XpUcus />
       {LEARNING_ROUTES.has(route.name) && <BreakOverlay />}
       {toastMsg && <div class="toast" role="status">{toastMsg}</div>}
     </Ctx.Provider>

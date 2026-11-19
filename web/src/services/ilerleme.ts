@@ -23,9 +23,11 @@ export async function ilerlemeOku(kartlar: string[] = []): Promise<Ilerleme> {
   };
 }
 let kuyruk: Promise<unknown> = Promise.resolve();
+/** Şölen 1 (#58 B10): XP yazılınca arayüze haber ver ("+N XP" uçuşu, sayaçlar) */
+const xpOlay = (n: number) => { try { window.dispatchEvent(new CustomEvent("dw:xp", { detail: { n } })); } catch { /* sunucu tarafı/test */ } };
 /** XP ekle (sırayla yazılır; aynı anda iki ekleme birbirini ezmez) */
 export function xpVer(n: number): Promise<void> {
-  const p = kuyruk.then(async () => { const x = (await getMeta<XpKayit>("xp")) ?? XP_BOS; await setMeta("xp", xpEkle(x, n)); });
+  const p = kuyruk.then(async () => { const x = (await getMeta<XpKayit>("xp")) ?? XP_BOS; await setMeta("xp", xpEkle(x, n)); xpOlay(n); });
   kuyruk = p.catch(() => {});
   return p;
 }
@@ -34,7 +36,7 @@ export function adimXpVer(id: string): Promise<void> {
   const p = kuyruk.then(async () => {
     if (await getMeta(`xp:adim:${id}`)) return;
     await setMeta(`xp:adim:${id}`, new Date().toISOString());
-    const x = (await getMeta<XpKayit>("xp")) ?? XP_BOS; await setMeta("xp", xpEkle(x, XP.adim));
+    const x = (await getMeta<XpKayit>("xp")) ?? XP_BOS; await setMeta("xp", xpEkle(x, XP.adim)); xpOlay(XP.adim);
   });
   kuyruk = p.catch(() => {});
   return p;
@@ -44,7 +46,7 @@ export function soruXpVer(id: string): Promise<void> {
   const p = kuyruk.then(async () => {
     if (await getMeta(`xp:soru:${id}`)) return;
     await setMeta(`xp:soru:${id}`, 1);
-    const x = (await getMeta<XpKayit>("xp")) ?? XP_BOS; await setMeta("xp", xpEkle(x, XP.dogru));
+    const x = (await getMeta<XpKayit>("xp")) ?? XP_BOS; await setMeta("xp", xpEkle(x, XP.dogru)); xpOlay(XP.dogru);
   });
   kuyruk = p.catch(() => {});
   return p;

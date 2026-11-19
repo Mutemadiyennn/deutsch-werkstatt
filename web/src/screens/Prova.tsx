@@ -37,10 +37,11 @@ export function ProvaEkrani({ day }: { day: number }) {
   }, [day]);
   if (err) return <div class="stack"><ProgressHeader title="Konuşma provası" back="#/today" /><ErrorPanel message={err} onRetry={() => location.reload()} /></div>;
   if (!p) return <Loading />;
-  const sub = asama === "hazirlik" ? "1/3 · Hazırlık" : asama === "konusma" ? "2/3 · Konuşma" : "3/3 · Geri bildirim";
+  const sub = asama === "hazirlik" ? "Hazırlık" : asama === "konusma" ? "Konuşma" : "Geri bildirim";
+  const sira = asama === "hazirlik" ? 0 : asama === "konusma" ? 1 : 2;
   return (
     <div class="stack" data-test="prova" data-asama={asama}>
-      <ProgressHeader title={p.title_tr} back="#/today" right={<FocusChip />} sub={sub} />
+      <ProgressHeader title={p.title_tr} back="#/today" right={<FocusChip />} sub={sub} ilerleme={{ n: sira, toplam: 3 }} />
       {asama === "hazirlik" && <Hazirlik p={p} onBasla={() => setAsama("konusma")} />}
       {asama === "konusma" && <Konusma p={p} onBitti={(k) => {
         setKayitlar(k); setAsama("bitti");

@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
 import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
+import { efekt, ustUsteSay } from "../services/efekt.ts";
 import { Icon } from "./icons.tsx";
 
 /* ---------- Ses düğmesi: büyük, tek dokunuşla yavaş/normal ---------- */
@@ -126,14 +127,25 @@ export function MicButton({ onText, disabled, wide = false, label = "Sesli söyl
 }
 
 /* ---------- Geri bildirim bandı: renk + titreşim + kısa Türkçe açıklama ---------- */
+/**
+ * Cevap anı (Şölen 1, #58 B10): doğru → yeşile yumuşak geçiş, yaylanan onay işareti, kısa ton, üst üste 3+ rozeti;
+ * yanlış → hafif sallanma, sakin mercan tonu (azarlamaz). Ses Profil'deki "Efekt sesleri" ile kapanır.
+ */
 export function FeedbackBand({ kind, title, children }: { kind: "ok" | "bad" | "info" | "warn"; title: string; children?: ComponentChildren }) {
-  useEffect(() => { if (kind === "ok") haptic("success"); else if (kind === "bad") haptic("error"); }, [kind, title]);
-  return <div class={`fb ${kind}`} role="status" aria-live="polite" data-test="feedback"><b>{title}</b>{children && <div class="small" style={{ marginTop: 2 }}>{children}</div>}</div>;
+  const [ust] = useState(() => (kind === "ok" ? ustUsteSay(true) : kind === "bad" ? ustUsteSay(false) : 0));
+  useEffect(() => { if (kind === "ok") { haptic("success"); efekt("dogru"); } else if (kind === "bad") { haptic("error"); efekt("yanlis"); } }, [kind, title]);
+  return (
+    <div class={`fb ${kind}`} role="status" aria-live="polite" data-test="feedback">
+      <div class="fb-bas">{kind === "ok" && <span class="fb-isaret" aria-hidden="true"><Icon name="check" size={18} stroke={3} /></span>}<b>{title}</b>
+        {kind === "ok" && ust >= 3 && <span class="ustuste" data-test="ustuste">{ust} üst üste</span>}</div>
+      {children && <div class="small" style={{ marginTop: 2 }}>{children}</div>}
+    </div>
+  );
 }
 
 /* ---------- Üst ilerleme: aşama x/6 · seans x/4 · kalan süre ---------- */
 /** `right`: başlık satırının sağı (#58 A6: öğrenme ekranlarında seans ve kalan dakika çipi) */
-export function ProgressHeader({ title, back, step, steps = 7, doneSteps = [], right, sub }: { title: string; back: string; step?: number; steps?: number; doneSteps?: number[]; right?: ComponentChildren; sub?: ComponentChildren }) {
+export function ProgressHeader({ title, back, step, steps = 7, doneSteps = [], right, sub, ilerleme }: { title: string; back: string; step?: number; steps?: number; doneSteps?: number[]; right?: ComponentChildren; sub?: ComponentChildren; ilerleme?: { n: number; toplam: number } }) {
   return (
     <header class="pbar">
       <div class="row" style={{ gap: 8 }}>
@@ -142,6 +154,9 @@ export function ProgressHeader({ title, back, step, steps = 7, doneSteps = [], r
         {right}
       </div>
       {/* DESIGN §1: ekran başına tek ilerleme göstergesi — ekranın kendi göstergesi (sub) varsa bölüm noktaları ve sayaç gizlenir */}
+      {/* Şölen 1: "3 / 10" yazısı yerine dolan çubuk; sayı ekran okuyucu ve testler için (sr-only) */}
+      {ilerleme && ilerleme.toplam > 0 && <div class={`ilerleme${ilerleme.n >= ilerleme.toplam - 1 ? " son" : ""}`} data-test="ilerleme" role="progressbar" aria-valuemin={0} aria-valuemax={ilerleme.toplam} aria-valuenow={Math.min(Math.floor(ilerleme.n) + 1, ilerleme.toplam)}>
+        <i style={{ width: `${Math.min(100, ((ilerleme.n + 1) / ilerleme.toplam) * 100)}%` }} /><span class="sr-only">{Math.min(Math.floor(ilerleme.n) + 1, ilerleme.toplam)} / {ilerleme.toplam}</span></div>}
       {sub && <div class="sub">{sub}</div>}
       {!sub && step !== undefined && <div class="steps" data-progress="" aria-label={`Aşama ${Math.min(step, 6)}/6`}>{Array.from({ length: steps }, (_, i) => <i class={doneSteps.includes(i) ? "done" : i === step ? "cur" : ""} />)}</div>}
     </header>

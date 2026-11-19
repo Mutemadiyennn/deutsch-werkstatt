@@ -55,7 +55,7 @@ export function OkumaEkrani({ day }: { day: number }) {
 
   return (
     <div class="stack" data-test="okuma" data-asama={as.a}>
-      <ProgressHeader title={o.title_tr} back="#/today" right={<FocusChip />} sub={`${Math.min(sira, adimlar)}/${adimlar} · ${etiket[as.a]}`} />
+      <ProgressHeader title={o.title_tr} back="#/today" right={<FocusChip />} sub={etiket[as.a]} ilerleme={{ n: Math.min(sira, adimlar) - 1, toplam: adimlar }} />
       {(as.a === "metin" || as.a === "soru") && o.metin_de && <Metin key={as.a} o={o} lex={lex} kisa={as.a === "soru"} />}
       {as.a === "metin" && <ActionBar><button class="btn primary block" data-test="next" onClick={() => (o.sorular.length ? git({ a: "soru", i: 0 }) : sorulardanSonra())}>{o.sorular.length ? "Sorulara geç" : "Devam"}</button></ActionBar>}
       {as.a === "soru" && (() => {

@@ -7,8 +7,9 @@ import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadLexicon, loadM1Gun } from "../services/content.ts";
-import { bahceTamam, xpVer } from "../services/ilerleme.ts";
-import { XP } from "../core/gun.ts";
+import { bahceTamam, xpOku, xpVer } from "../services/ilerleme.ts";
+import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
+import { XP, seri } from "../core/gun.ts";
 import { itemsMap, personalWords, putItems } from "../data/db.ts";
 import { review, sessionKey, type Outcome } from "../core/srs.ts";
 import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, isNoun, meaningOptions, ownSentenceCheck, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
@@ -41,6 +42,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   const [err, setErr] = useState<string | null>(null);
   const [i, setI] = useState(0);
   const [score, setScore] = useState({ ok: 0, n: 0 });
+  const turXp = useOturumXp();
   const startedAt = useMemo(() => Date.now(), []);
 
   useEffect(() => {
@@ -76,7 +78,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   const { round } = data;
   const kalanSayi = data.gunKartlari.filter((id) => !data.items.has(id)).length;
   if (!round.length) return <GardenEmpty day={day} capped={data.capped} />;
-  if (i >= round.length) return <GardenDone day={day} score={score} items={data.items} kalan={kalanSayi} again={again} />;
+  if (i >= round.length) return <GardenDone day={day} score={score} items={data.items} kalan={kalanSayi} again={again} xp={turXp}
+    kelimeler={[...new Set(round.filter((q) => q.intro).map((q) => { const l = data.lex.get(q.lexId); return l ? (l.art ? `${l.art} ${l.de}` : l.de) : ""; }).filter(Boolean))]} />;
   const q = round[i]!;
   const l = data.lex.get(q.lexId)!;
 
@@ -104,7 +107,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
 
   return (
     <div class="stack" data-test="garden">
-      <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} sub={`${Math.min(i + 1, round.length)} / ${round.length}`} />
+      <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} ilerleme={{ n: Math.min(i, round.length - 1), toplam: round.length }} />
       <Question key={`${i}:${q.lexId}:${q.type}`} q={q} l={l} all={data.all} onDone={finish} />
     </div>
   );
@@ -252,12 +255,15 @@ function tomorrow(items: Map<string, LearnerItem>): string {
 }
 
 /** Tur sonu. M1 gününde günün kartlarından tanıtılmamış kalan varsa ana eylem "Bir tur daha" (Seans 1 henüz bitmedi) */
-function GardenDone({ day, score, items, kalan, again }: { day?: number; score: { ok: number; n: number }; items: Map<string, LearnerItem>; kalan: number; again: () => void }) {
+function GardenDone({ day, score, items, kalan, again, xp, kelimeler }: { day?: number; score: { ok: number; n: number }; items: Map<string, LearnerItem>; kalan: number; again: () => void; xp: number; kelimeler: string[] }) {
   const devam = !!day && kalan > 0;
+  const [seriGun, setSeriGun] = useState<number | undefined>();
+  useEffect(() => { void xpOku().then((x) => setSeriGun(seri(x))); }, []);
   return (
     <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" />
-      <section class="card stack" data-test="garden-done"><h2>Tur bitti</h2>
-        <p>{score.n} soruda {score.ok} doğru.{score.ok < score.n ? " Yanlış olanlar yarın ya da birkaç gün sonra başka bir soruyla geri gelecek." : " Hepsi doğru."}</p>
+      <section class="card stack" data-test="garden-done"><Kutlama><h2>Tur bitti</h2></Kutlama>
+        <Ozet dogru={score.ok} toplam={score.n} xp={xp} seriGun={seriGun} kelimeler={kelimeler} yarin={devam ? undefined : tomorrow(items).replace(/^Yarın /, "")} />
+        {score.ok < score.n && <p class="small">Yanlış olanlar yarın ya da birkaç gün sonra başka bir soruyla geri gelecek.</p>}
         {devam ? <p data-test="garden-kalan">Bugünün kartlarından <b>{kalan}</b> yeni kelime kaldı.</p> : <p class="small muted" data-test="garden-tomorrow">{tomorrow(items)}</p>}
         {devam ? <ActionBar><button class="btn primary block" data-test="garden-again" onClick={again}>Bir tur daha</button></ActionBar>
           : <a class="btn primary block" href="#/today" data-test="garden-back">{day ? "Sıradaki adıma geç" : "Bugün'e dön"}</a>}</section></div>

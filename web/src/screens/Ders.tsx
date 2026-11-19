@@ -14,6 +14,7 @@ import { speak, speakDizi, stopSpeaking } from "../services/speech.ts";
 import { adimXpVer, xpVer } from "../services/ilerleme.ts";
 import { XP } from "../core/gun.ts";
 import { ActionBar, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
+import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Chips, Rich } from "../ui/rich.tsx";
 import { DrillView } from "../ui/drill.tsx";
@@ -25,6 +26,7 @@ export function DersEkrani({ id }: { id: string }) {
   const [t, setT] = useState<TemelDers | null>(null);
   const [p, setP0] = useState<DersIlerleme | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  const oturumXp = useOturumXp();
   useEffect(() => {
     (async () => {
       const [ham] = await Promise.all([loadTemel(id), loadLexicon().catch(() => null)]);
@@ -43,7 +45,8 @@ export function DersEkrani({ id }: { id: string }) {
     <div class="stack" data-test="ders">
       <ProgressHeader title={t.title_tr} back="#/today" />
       <section class="card stack" data-test="ders-bitti">
-        <h2>Ders bitti</h2>
+        <Kutlama><h2>Ders bitti</h2></Kutlama>
+        {p.toplam > 0 && <Ozet dogru={p.dogru} toplam={p.toplam} xp={oturumXp} />}
         <p>{p.toplam ? `${p.toplam} soruda ${p.dogru} doğru.` : ""} {t.can_do.tr}</p>
         <div class="row"><a class="btn primary grow" href="#/today" data-test="ders-geri">Sıradaki adıma geç</a>
           <button class="btn grow" onClick={() => setP({ s: 0, k: 0, dogru: 0, toplam: 0, ilkBitti: p.ilkBitti ?? p.bitti })}>Tekrar çalış</button></div>
@@ -63,7 +66,7 @@ export function DersEkrani({ id }: { id: string }) {
   };
   return (
     <div class="stack" data-test="ders" data-adim={adim} data-pos={`${p.s}.${p.k}`}>
-      <ProgressHeader title={t.title_tr} back="#/today" right={<FocusChip />} sub={`${p.s + 1}/${steps.length} · ${DERS_ADIM_TR[adim]}${n > 1 ? ` ${p.k + 1}/${n}` : ""}`} />
+      <ProgressHeader title={t.title_tr} back="#/today" right={<FocusChip />} sub={`${DERS_ADIM_TR[adim]}${n > 1 ? ` · ${p.k + 1}/${n}` : ""}`} ilerleme={{ n: p.s + (n > 1 ? p.k / n : 0), toplam: steps.length }} />
       {adim === "tanit" && (p.k % 2 === 0
         ? <Tanit key={p.k} t={t} grup={p.k / 2} onNext={() => ileri()} />
         : <Hatirla key={p.k} t={t} grup={(p.k - 1) / 2} onDone={(dogru, toplam) => ileri({ dogru, toplam })} />)}
