@@ -70,7 +70,8 @@
     "ne_zaman_tr": "İki seçenekten ikisini de istediğinde.",
     "parcalar": [],
     "ipucu_tr": "Çay ve kahve gibi iki ayrı şey için **beides** dersin."
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:Herr",
@@ -257,7 +258,7 @@
     }
    ],
    "level": "B1",
-   "tier": "K2",
+   "tier": "passive",
    "freqRank": 193,
    "domains": [
     "notfall",
@@ -544,7 +545,8 @@
     "anlam_tr": "Şaşkınlığı, üzüntüyü ya da yeni anladığını gösterir.",
     "ne_zaman_tr": "Karşındakinin sözüne hemen tepki verirken.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:gar",
@@ -607,7 +609,8 @@
    "exp": {
     "anlam_tr": "**nicht** ve **kein** kelimelerinin anlamını güçlendirir.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:spät",
@@ -617,11 +620,23 @@
    "collocations": [
     {
      "de": "zu spät",
-     "tr": "çok geç, geç kalmak"
+     "tr": "çok geç"
+    },
+    {
+     "de": "zu spät kommen",
+     "tr": "geç kalmak"
     },
     {
      "de": "Wie spät ist es?",
      "tr": "Saat kaç?"
+    },
+    {
+     "de": "bis später",
+     "tr": "sonra görüşürüz"
+    },
+    {
+     "de": "später",
+     "tr": "daha sonra"
     }
    ],
    "patterns": [
@@ -630,8 +645,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Ich bin spät geblieben** yanlış. Doğrusu **Ich bin zu spät**.",
-    "**später** daha sonra demektir: **Bis später!**"
+    "Geç kaldım derken **Ich bin spät geblieben** yanlış. Doğrusu **Ich bin zu spät**.",
+    "Sonra görüşürüz derken **Bis später!** denir."
    ],
    "examples": [
     {
@@ -651,7 +666,8 @@
      "id": "lx:spät:3",
      "de": "Oh, schon so spät!",
      "tr": "Ay, saat çok geç olmuş!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "surprised person looking at clock at night"
     },
     {
      "id": "lx:spät:4",
@@ -672,7 +688,33 @@
     "anlam_tr": "Bir şeyin beklenen zamandan sonra olduğunu söyler.",
     "ne_zaman_tr": "Geç kaldığında ya da saati sorarken.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Wie ___ ist es jetzt?",
+     "answer": "spät",
+     "tr": "Saat şimdi kaç?",
+     "hint_tr": "Saati sorarken **Wie spät** denir."
+    },
+    {
+     "de": "Es ist schon ___.",
+     "answer": "spät",
+     "tr": "Artık geç oldu.",
+     "hint_tr": "Geç **spät** olur."
+    },
+    {
+     "de": "Bis ___!",
+     "answer": "später",
+     "tr": "Sonra görüşürüz!",
+     "hint_tr": "Vedalaşırken **Bis später!** sonra görüşürüz demektir."
+    }
+   ],
+   "unit": "u:m1:05",
+   "can_do": [
+    "cd:m1:05"
+   ],
+   "arm": "pazar",
+   "place": "pl:praxis"
   },
   {
    "id": "lx:Sache",
@@ -874,7 +916,8 @@
    "exp": {
     "anlam_tr": "**in das** kelimelerinin kısası, bir yere gidişi söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:dort",
@@ -1134,7 +1177,8 @@
     "anlam_tr": "Bir kişinin bile olmadığını söyler.",
     "ne_zaman_tr": "Kapıyı ya da telefonu açan olmayınca.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:seit",
@@ -1197,7 +1241,8 @@
     "anlam_tr": "Bir şeyin ne zaman başlayıp hâlâ sürdüğünü söyler.",
     "ne_zaman_tr": "Doktor ağrının ne zamandır sürdüğünü sorunca.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:Ordnung",
@@ -1325,7 +1370,8 @@
    "exp": {
     "anlam_tr": "**von dem** kelimelerinin kısası, nereden geldiğini söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:Problem",
@@ -1667,7 +1713,7 @@
     }
    ],
    "level": "B1",
-   "tier": "K2",
+   "tier": "passive",
    "freqRank": 214,
    "domains": [
     "gefuehle",
@@ -1880,7 +1926,8 @@
     "anlam_tr": "Bir şeyin sebebini kısaca söyler.",
     "ne_zaman_tr": "Telefonda arama sebebini söylerken: **wegen des Termins**.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:welcher",
@@ -1942,7 +1989,8 @@
    "exp": {
     "anlam_tr": "Birkaç seçenek arasından birini sorar.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:Ding",
@@ -2240,6 +2288,14 @@
     {
      "de": "heute Abend",
      "tr": "bu akşam"
+    },
+    {
+     "de": "am Abend",
+     "tr": "akşam"
+    },
+    {
+     "de": "jeden Abend",
+     "tr": "her akşam"
     }
    ],
    "patterns": [
@@ -2269,7 +2325,8 @@
      "id": "lx:Abend:3",
      "de": "Schönen Abend noch!",
      "tr": "İyi akşamlar!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "neighbors saying goodbye in evening"
     },
     {
      "id": "lx:Abend:4",
@@ -2290,7 +2347,45 @@
     "anlam_tr": "Günün akşam saatlerini anlatır.",
     "ne_zaman_tr": "Selamlaşırken ya da akşam planı yaparken.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Das war ___ schöner Abend.",
+     "answer": "ein",
+     "tr": "Güzel bir akşamdı.",
+     "hint_tr": "**der Abend** için bir derken **ein** gelir."
+    },
+    {
+     "de": "___ Abend war lang.",
+     "answer": "Der",
+     "tr": "Akşam uzun sürdü.",
+     "hint_tr": "Hangi akşam olduğu belliyse **der Abend** denir."
+    },
+    {
+     "de": "Ich wünsche Ihnen ___ schönen Abend.",
+     "answer": "einen",
+     "tr": "Size iyi akşamlar dilerim.",
+     "hint_tr": "**wünschen** sonrası **einen** gelir."
+    },
+    {
+     "de": "Ich bin ___ Abend zu Hause.",
+     "answer": "am",
+     "tr": "Akşam evdeyim.",
+     "hint_tr": "Akşam derken **am Abend** denir."
+    },
+    {
+     "de": "___ Abend gehe ich spazieren.",
+     "answer": "Jeden",
+     "tr": "Her akşam yürüyüşe çıkıyorum.",
+     "hint_tr": "Her akşam derken **jeden Abend** denir."
+    }
+   ],
+   "unit": "u:m1:05",
+   "can_do": [
+    "cd:m1:05"
+   ],
+   "arm": "pazar",
+   "place": "pl:praxis"
   },
   {
    "id": "lx:rein",
@@ -2369,6 +2464,10 @@
     {
      "de": "zu dritt",
      "tr": "üç kişi"
+    },
+    {
+     "de": "drei Tage",
+     "tr": "üç gün"
     }
    ],
    "patterns": [
@@ -2378,7 +2477,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Telefonda **drei** ile karışmasın diye **zwei** yerine **zwo** denir.",
-    "**der dreite Stock** yanlış. Doğrusu **der dritte Stock**."
+    "Üçüncü kat derken **der dreite Stock** yanlış. Doğrusu **der dritte Stock**."
    ],
    "examples": [
     {
@@ -2391,7 +2490,8 @@
      "id": "lx:drei:2",
      "de": "Der Termin ist um drei Uhr.",
      "tr": "Randevu saat üçte.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "clock showing three o clock"
     },
     {
      "id": "lx:drei:3",
@@ -2404,7 +2504,8 @@
      "de": "– Wie viele Brötchen? – Drei, bitte.",
      "tr": "– Kaç küçük ekmek? – Üç, lütfen.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "three bread rolls at bakery"
     }
    ],
    "level": "A1",
@@ -2417,7 +2518,33 @@
    "exp": {
     "anlam_tr": "Üç tane olduğunu söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Es ist ___ Uhr.",
+     "answer": "drei",
+     "tr": "Saat üç.",
+     "hint_tr": "Üç **drei** olur."
+    },
+    {
+     "de": "Ich bleibe ___ Tage.",
+     "answer": "drei",
+     "tr": "Üç gün kalıyorum.",
+     "hint_tr": "Üç gün derken **drei Tage** denir."
+    },
+    {
+     "de": "Morgen sind wir zu ___.",
+     "answer": "dritt",
+     "tr": "Yarın üç kişiyiz.",
+     "hint_tr": "Üç kişi derken **zu dritt** denir."
+    }
+   ],
+   "unit": "u:m1:03",
+   "can_do": [
+    "cd:m1:03"
+   ],
+   "arm": "pazar",
+   "place": "pl:haus"
   },
   {
    "id": "lx:Freund",
@@ -2885,7 +3012,8 @@
    "exp": {
     "anlam_tr": "Bir şeyin aşağısında olduğunu söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:zusammen",
@@ -3223,7 +3351,7 @@
   {
    "id": "lx:heißen",
    "de": "heißen",
-   "tr": "adı olmak, demek",
+   "tr": "adı olmak, anlamına gelmek",
    "pos": "verb",
    "verb": {
     "praesens3": "heißt",
@@ -3239,6 +3367,18 @@
     {
      "de": "Was heißt …?",
      "tr": "… ne demek?"
+    },
+    {
+     "de": "Ich heiße …",
+     "tr": "Benim adım …"
+    },
+    {
+     "de": "das heißt",
+     "tr": "yani"
+    },
+    {
+     "de": "Wie heißt du?",
+     "tr": "Adın ne?"
     }
    ],
    "patterns": [
@@ -3247,7 +3387,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Was heißt du?** yanlış. Doğrusu **Wie heißt du?**",
+    "Adın ne derken **Was heißt du?** yanlış. Doğrusu **Wie heißt du?**",
     "**das heißt** yani demektir."
    ],
    "examples": [
@@ -3255,13 +3395,15 @@
      "id": "lx:heißen:1",
      "de": "Wie heißen Sie?",
      "tr": "Adınız ne?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "receptionist asking name and filling form"
     },
     {
      "id": "lx:heißen:2",
      "de": "Was heißt das auf Türkisch?",
      "tr": "Bunun Türkçesi ne?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person looking up word in dictionary"
     },
     {
      "id": "lx:heißen:3",
@@ -3289,7 +3431,45 @@
     "anlam_tr": "Birinin adını ya da bir kelimenin anlamını söyler.",
     "ne_zaman_tr": "Tanışırken ya da kelime sorarken.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ wie mein Vater.",
+     "answer": "heiße",
+     "tr": "Babamla aynı adı taşıyorum.",
+     "hint_tr": "**ich** ile **heiße** olur."
+    },
+    {
+     "de": "Wie ___ du?",
+     "answer": "heißt",
+     "tr": "Adın ne?",
+     "hint_tr": "**du** ile **heißt** olur."
+    },
+    {
+     "de": "Mein Arzt ___ Weber.",
+     "answer": "heißt",
+     "tr": "Doktorumun adı Weber.",
+     "hint_tr": "**Mein Arzt** gibi tek kişiden sonra **heißt** olur."
+    },
+    {
+     "de": "Wie ___ das auf Deutsch?",
+     "answer": "heißt",
+     "tr": "Bunun Almancası ne?",
+     "hint_tr": "Bir şeyin Almancasını sorarken **Wie heißt das** denir."
+    },
+    {
+     "de": "Wie hat er noch mal ___?",
+     "answer": "geheißen",
+     "tr": "Onun adı neydi?",
+     "hint_tr": "Geçmişi anlatırken **hat geheißen** denir."
+    }
+   ],
+   "unit": "u:m1:06",
+   "can_do": [
+    "cd:m1:06"
+   ],
+   "arm": "pazar",
+   "place": "pl:marktplatz"
   },
   {
    "id": "lx:lang",
@@ -3810,7 +3990,8 @@
    "exp": {
     "anlam_tr": "Karşı olmayı ya da yaklaşık saati söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:setzen",
@@ -4431,6 +4612,10 @@
     {
      "de": "in einer Stunde",
      "tr": "bir saat sonra"
+    },
+    {
+     "de": "jede Stunde",
+     "tr": "her saat"
     }
    ],
    "patterns": [
@@ -4454,7 +4639,8 @@
      "id": "lx:Stunde:2",
      "de": "Die Fahrt dauert zwei Stunden.",
      "tr": "Yolculuk iki saat sürüyor.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "long car journey on highway"
     },
     {
      "id": "lx:Stunde:3",
@@ -4480,7 +4666,45 @@
    "exp": {
     "anlam_tr": "Altmış dakikalık süreyi anlatır.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist nur ___ Stunde.",
+     "answer": "eine",
+     "tr": "Bu yalnızca bir saat.",
+     "hint_tr": "**die Stunde** için bir derken **eine** gelir."
+    },
+    {
+     "de": "___ Stunde ist gleich vorbei.",
+     "answer": "Die",
+     "tr": "Ders birazdan bitiyor.",
+     "hint_tr": "Ders saati de **die Stunde** olur."
+    },
+    {
+     "de": "Ich brauche ___ Stunde.",
+     "answer": "eine",
+     "tr": "Bir saate ihtiyacım var.",
+     "hint_tr": "**brauchen** sonrası **eine Stunde** gelir."
+    },
+    {
+     "de": "Ich nehme ___ Stunde um acht.",
+     "answer": "die",
+     "tr": "Saat sekizdeki dersi alıyorum.",
+     "hint_tr": "Hangi ders olduğu belliyse **die Stunde** denir."
+    },
+    {
+     "de": "Nach ___ Stunde gehe ich.",
+     "answer": "einer",
+     "tr": "Bir saat sonra gidiyorum.",
+     "hint_tr": "Bir saat sonra: **nach einer Stunde**."
+    }
+   ],
+   "unit": "u:m1:05",
+   "can_do": [
+    "cd:m1:05"
+   ],
+   "arm": "pazar",
+   "place": "pl:praxis"
   },
   {
    "id": "lx:sofort",
@@ -4739,7 +4963,8 @@
    "exp": {
     "anlam_tr": "Bir işten önce yapılacak başka işi söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:entschuldigen",
@@ -5042,6 +5267,18 @@
     {
      "de": "zweimal die Woche",
      "tr": "haftada iki kez"
+    },
+    {
+     "de": "jede Woche",
+     "tr": "her hafta"
+    },
+    {
+     "de": "diese Woche",
+     "tr": "bu hafta"
+    },
+    {
+     "de": "in einer Woche",
+     "tr": "bir hafta sonra"
     }
    ],
    "patterns": [
@@ -5058,7 +5295,8 @@
      "id": "lx:Woche:1",
      "de": "Ich arbeite vierzig Stunden pro Woche.",
      "tr": "Haftada kırk saat çalışıyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "weekly work schedule on desk"
     },
     {
      "id": "lx:Woche:2",
@@ -5091,7 +5329,51 @@
    "exp": {
     "anlam_tr": "Yedi günlük süreyi anlatır.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Das war ___ lange Woche.",
+     "answer": "eine",
+     "tr": "Uzun bir hafta oldu.",
+     "hint_tr": "**die Woche** için bir derken **eine** gelir."
+    },
+    {
+     "de": "___ Woche war lang.",
+     "answer": "Die",
+     "tr": "Hafta uzundu.",
+     "hint_tr": "Hangi hafta olduğu belliyse **die Woche** denir."
+    },
+    {
+     "de": "Ich habe ___ Woche Urlaub.",
+     "answer": "eine",
+     "tr": "Bir hafta iznim var.",
+     "hint_tr": "**Ich habe** sonrası **eine Woche** gelir."
+    },
+    {
+     "de": "Ich arbeite ___ ganze Woche.",
+     "answer": "die",
+     "tr": "Bütün hafta çalışıyorum.",
+     "hint_tr": "Bütün hafta derken **die ganze Woche** denir."
+    },
+    {
+     "de": "Ich komme in ___ Woche wieder.",
+     "answer": "einer",
+     "tr": "Bir hafta sonra yine geliyorum.",
+     "hint_tr": "Bir hafta sonra derken **in einer Woche** denir."
+    },
+    {
+     "de": "In ___ Woche habe ich viel Arbeit.",
+     "answer": "der",
+     "tr": "Hafta içinde çok işim var.",
+     "hint_tr": "Hafta içinde derken **in der Woche** denir."
+    }
+   ],
+   "unit": "u:m1:01",
+   "can_do": [
+    "cd:m1:01"
+   ],
+   "arm": "pazar",
+   "place": "pl:marktplatz"
   },
   {
    "id": "lx:letzter",
@@ -5170,6 +5452,10 @@
     {
      "de": "seit wann",
      "tr": "ne zamandan beri"
+    },
+    {
+     "de": "ab wann",
+     "tr": "ne zamandan itibaren"
     }
    ],
    "patterns": [
@@ -5178,15 +5464,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Wann ich Zeit habe, komme ich** yanlış. Doğrusu **Wenn ich Zeit habe, komme ich**. Vaktim olunca anlamında **wenn** gelir.",
-    "**Wissen Sie, wann kommt der Zug?** yanlış. Doğrusu **Wissen Sie, wann der Zug kommt?**"
+    "Zamanım olunca gelirim derken **Wann ich Zeit habe, komme ich** yanlış. Doğrusu **Wenn ich Zeit habe, komme ich**. Vaktim olunca anlamında **wenn** gelir.",
+    "Tren ne zaman geliyor diye sorarken **Wissen Sie, wann kommt der Zug?** yanlış. Doğrusu **Wissen Sie, wann der Zug kommt?**"
    ],
    "examples": [
     {
      "id": "lx:wann:1",
      "de": "Wann haben Sie Zeit?",
      "tr": "Ne zaman vaktiniz var?",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person checking calendar on phone"
     },
     {
      "id": "lx:wann:2",
@@ -5220,7 +5507,33 @@
    "exp": {
     "anlam_tr": "Bir şeyin zamanını sorar.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "___ kommt der Arzt?",
+     "answer": "Wann",
+     "tr": "Doktor ne zaman geliyor?",
+     "hint_tr": "Zamanı sorarken **Wann** denir."
+    },
+    {
+     "de": "Bis ___ arbeitest du?",
+     "answer": "wann",
+     "tr": "Ne zamana kadar çalışıyorsun?",
+     "hint_tr": "Ne zamana kadar derken **bis wann** denir."
+    },
+    {
+     "de": "Seit ___ wohnen Sie hier?",
+     "answer": "wann",
+     "tr": "Ne zamandan beri burada yaşıyorsunuz?",
+     "hint_tr": "Ne zamandan beri derken **seit wann** denir."
+    }
+   ],
+   "unit": "u:m1:06",
+   "can_do": [
+    "cd:m1:06"
+   ],
+   "arm": "pazar",
+   "place": "pl:marktplatz"
   },
   {
    "id": "lx:Auge",
@@ -5301,6 +5614,14 @@
     {
      "de": "eine Minute",
      "tr": "bir dakika"
+    },
+    {
+     "de": "jede Minute",
+     "tr": "her dakika"
+    },
+    {
+     "de": "in letzter Minute",
+     "tr": "son dakikada"
     }
    ],
    "patterns": [
@@ -5329,7 +5650,8 @@
      "id": "lx:Minute:3",
      "de": "Hast du mal 'ne Minute?",
      "tr": "Bir dakikan var mı?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "coworker asking colleague at desk"
     },
     {
      "id": "lx:Minute:4",
@@ -5349,7 +5671,45 @@
    "exp": {
     "anlam_tr": "Altmış saniyelik süreyi anlatır.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist nur ___ Minute.",
+     "answer": "eine",
+     "tr": "Bu yalnızca bir dakika.",
+     "hint_tr": "**die Minute** için bir derken **eine** gelir."
+    },
+    {
+     "de": "Haben Sie ___ Minute?",
+     "answer": "eine",
+     "tr": "Bir dakikanız var mı?",
+     "hint_tr": "**haben** sonrası **eine Minute** gelir."
+    },
+    {
+     "de": "___ erste Minute kostet nichts.",
+     "answer": "Die",
+     "tr": "İlk dakika ücretsiz.",
+     "hint_tr": "İlk dakika derken **die erste Minute** denir."
+    },
+    {
+     "de": "Ich komme in ___ Minute.",
+     "answer": "einer",
+     "tr": "Bir dakikaya geliyorum.",
+     "hint_tr": "Bir dakikaya derken **in einer Minute** denir."
+    },
+    {
+     "de": "Ich bin ___ Minute zu spät.",
+     "answer": "eine",
+     "tr": "Bir dakika geç kaldım.",
+     "hint_tr": "Süre söylerken **eine Minute** denir."
+    }
+   ],
+   "unit": "u:m1:05",
+   "can_do": [
+    "cd:m1:05"
+   ],
+   "arm": "pazar",
+   "place": "pl:praxis"
   },
   {
    "id": "lx:fertig",
@@ -5475,7 +5835,8 @@
     "anlam_tr": "Değiştiremeyeceğin bir durumu kabullendiğini gösterir.",
     "ne_zaman_tr": "Arkadaşla konuşurken, özellikle güneyde.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:allein",
@@ -5600,7 +5961,8 @@
    "exp": {
     "anlam_tr": "**bei dem** kelimelerinin kısası, yeri ya da o anki işi söyler.",
     "parcalar": []
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:einzig",
@@ -5926,7 +6288,8 @@
     "ne_zaman_tr": "Arkadaşla konuşurken.",
     "parcalar": [],
     "ipucu_tr": "Uzun söylenen **nee** başka kelimedir, konuşmada hayır demektir."
-   }
+   },
+   "card": false
   },
   {
    "id": "lx:wichtig",
