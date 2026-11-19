@@ -13,7 +13,7 @@ PORT = 4198
 
 def ara(pg, q):
     pg.fill("[data-test=sozluk-q]", q)
-    pg.wait_for_selector("[data-test=sozluk-satir], [data-test=sozluk-yok]")
+    if q: pg.wait_for_selector("[data-test=sozluk-satir], [data-test=sozluk-yok]")
 
 def kisisel(pg):
     return pg.evaluate("""() => new Promise((res) => { const r = indexedDB.open('dw2'); r.onsuccess = () => { const db = r.result;
@@ -56,6 +56,9 @@ def main():
         check(pg.locator("[data-test=sozluk-yok]").count() == 1, "sözlükte olmayan kelime için ekleme kartı")
         pg.fill("[aria-label='Türkçe anlamı']", "saçma"); pg.click("[data-test=sozluk-yok-ekle]"); pg.wait_for_selector("[data-test=sozluk-yok-ekle][disabled]")
         check(any(x["de"] == "Quatschkopfwort" for x in kisisel(pg)), "sözlükte olmayan kelime de 'Duyduğum kelime' olarak eklendi")
+        ara(pg, ""); pg.fill("[data-test=sozluk-q]", ""); pg.wait_for_selector("[data-test=kelimelerim]")
+        kl = pg.inner_text("[data-test=kelimelerim]")
+        check("Quatschkopfwort" in kl and "Termin" in kl, f"arama boşken 'Kelimelerim' eklenen kelimeleri gösteriyor, kartsız olanı da ({kl[:80]!r})")
         b.close()
     srv.shutdown()
     finish()
