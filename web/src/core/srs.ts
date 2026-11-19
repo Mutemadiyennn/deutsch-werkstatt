@@ -32,6 +32,7 @@ export interface Review {
 export function review(prev: LearnerItem | undefined, r: Review, now = new Date()): LearnerItem {
   const it: LearnerItem = prev ? structuredClone(prev) : emptyItem(r.itemId, r.kind);
   const st = r.path === "passive" ? it.passive : it.active;
+  if (!st.fsrs) it.firstAt = { ...it.firstAt, [r.path]: now.toISOString() };
   const card = st.fsrs ? toCard(st.fsrs) : createEmptyCard(now);
   const next = F.next(card, now, RATING[r.outcome]).card;
   st.fsrs = toState(next);

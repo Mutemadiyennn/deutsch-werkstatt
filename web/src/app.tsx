@@ -1,14 +1,15 @@
 /** Uygulama kabuğu: giriş kapısı → profil → ilk kurulum (onboarding) → ekranlar */
+import { probeProvider } from "./services/ai.ts";
 import { CallScreen as Call } from "./screens/Call.tsx";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Assessment, ContentIndex, Profile } from "@dw/shared";
 import { Ctx, LEARNING_ROUTES, parseHash, type AppCtx, type Route } from "./state.ts";
 import { auth, type AuthUser } from "./services/auth.ts";
 import { createApi } from "./services/api.ts";
-import { loadIndex } from "./services/content.ts";
+import { loadIndex, within } from "./services/content.ts";
 import { getProfile, latestPlacement, saveProfile } from "./data/db.ts";
 import { setLearning, startFocus, updateFocusConfig } from "./services/focusRuntime.ts";
-import { TabBar, Loading } from "./ui/components.tsx";
+import { TabBar, Loading, ErrorPanel } from "./ui/components.tsx";
 import { Login } from "./screens/Login.tsx";
 import { Onboarding } from "./screens/Onboarding.tsx";
 import { Today } from "./screens/Today.tsx";
@@ -18,6 +19,7 @@ import { LongPressExplain } from "./ui/learn.tsx";
 import { BreakOverlay } from "./screens/Today.tsx";
 import { AssessRun, AssessResult } from "./screens/Assess.tsx";
 import { Progress } from "./screens/Progress.tsx";
+import { Garden } from "./screens/Garden.tsx";
 import { ProfileView } from "./screens/Profile.tsx";
 
 const API_BASE = (import.meta.env.VITE_API_BASE as string | undefined) || "";
@@ -41,11 +43,15 @@ export function App() {
   const [placement, setPlacement] = useState<Assessment | undefined>();
   const [route, setRoute] = useState<Route>(parseHash(location.hash));
   const [toastMsg, setToast] = useState<string | null>(null);
+  const [authSlow, setAuthSlow] = useState(false);
 
   useEffect(() => {
     const on = () => setRoute(parseHash(location.hash));
     addEventListener("hashchange", on);
     auth.ready.then(() => { setUser(auth.current()); setAuthReady(true); }).catch(() => setAuthReady(true));
+    // inceleme #43 P1-3: giriş durumu 8 sn'de gelmezse öğrenci sonsuz "Yükleniyor"da kalmaz
+    const slow = setTimeout(() => setAuthSlow(true), 8000);
+    auth.ready.then(() => clearTimeout(slow), () => clearTimeout(slow));
     const off = auth.onChange((u) => setUser(u));
     return () => { removeEventListener("hashchange", on); off(); };
   }, []);
@@ -59,15 +65,18 @@ export function App() {
       setPlacement(await latestPlacement());
       await startFocus(p);
     })();
-    loadIndex().then(setIndex).catch((e) => setIndexError(String(e.message || e)));
+    within(loadIndex()).then(setIndex).catch((e) => setIndexError(String(e.message || e)));
   }, [user?.uid]);
 
   useEffect(() => { if (route.name !== "section") setLearning(LEARNING_ROUTES.has(route.name), route.name === "assess" ? "assess" : "vocab"); window.scrollTo(0, 0); }, [route]);
 
   const api = useMemo(() => createApi({ base: API_BASE, token: (f) => auth.idToken(f) }), []);
+  useEffect(() => { void probeProvider(api); }, [api]);
   const toast = (m: string) => { setToast(m); setTimeout(() => setToast(null), 2600); };
 
-  if (!authReady) return <main class="app notabs"><Loading /></main>;
+  if (!authReady) return <main class="app notabs">{authSlow
+    ? <ErrorPanel message="Giriş bilgisi şu an doğrulanamadı. İnternet bağlantını kontrol edip tekrar dene." onRetry={() => location.reload()} />
+    : <Loading />}</main>;
   if (!user) return <Login />;
   if (!profile) return <main class="app notabs"><Loading text="Profil yükleniyor…" /></main>;
 
@@ -89,9 +98,10 @@ export function App() {
     case "assess": screen = <AssessRun />; break;
     case "assessResult": screen = <AssessResult id={route.id} />; break;
     case "call": screen = <Call id={route.id} />; break;
+    case "garden": screen = <Garden />; break;
     default: screen = <Today />;
   }
-  const tabs = !!profile.onboardedAt && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call";
+  const tabs = !!profile.onboardedAt && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden";
   return (
     <Ctx.Provider value={ctx}>
       <main class={`app${tabs ? "" : " notabs"}`}>{screen}</main>

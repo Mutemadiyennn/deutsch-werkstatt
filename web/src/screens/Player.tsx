@@ -4,8 +4,9 @@
  * - Her cevap öğrenci modeline (FSRS çift yol) işlenir; odak motoru her bölümde etkinliği bilir.
  * - Üretim başarısızsa (<%50) bir önceki aşama yeniden açılır (geri dönüş kuralı).
  */
-import { expandTaught, isSameAsGiven, REGISTER_HINT } from "../core/answer.ts";
+import { countsAsCorrect, expandTaught, isSameAsGiven, REGISTER_HINT } from "../core/answer.ts";
 import { Rich } from "../ui/rich.tsx";
+import { isRepeatRequest, offlineDialogueIndex } from "../core/offline.ts";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Chunk, Drill, Lexeme, Pattern, Scenario, ScenarioProgress, Speed } from "@dw/shared";
 import { useApp } from "../state.ts";
@@ -13,7 +14,7 @@ import { loadLexicon, loadScenario } from "../services/content.ts";
 import { getItem, getScenarioProgress, putItem, saveScenarioProgress, addPersonal } from "../data/db.ts";
 import { focus, setLearning } from "../services/focusRuntime.ts";
 import { review, sessionKey, type Outcome } from "../core/srs.ts";
-import { norm, scoreHeard } from "../core/grading.ts";
+import { norm, numberWordHint, scoreHeard } from "../core/grading.ts";
 import type { Verdict } from "../core/answer.ts";
 import type { LocalEntry } from "../core/sayit.ts";
 import { ai, aiState, SOFT_WAIT_MS } from "../services/ai.ts";
@@ -71,7 +72,7 @@ function chunkFor(s: Scenario, text: string): Chunk | undefined {
   const t = norm(text);
   return s.chunks.find((c) => s.essentials.chunks.includes(c.id) && [c.layers.hd, c.layers.alltag].some((x) => x && norm(x.replace(/…/g, "")).length > 3 && t.includes(norm(x.replace(/…/g, "")))));
 }
-const outcomeOf = (v: Verdict, hinted = false): Outcome => (v.kind === "correct" ? (hinted ? "hinted" : "correct") : v.kind === "unchecked" ? "hinted" : "wrong");
+const outcomeOf = (v: Verdict, hinted = false): Outcome => (v.kind === "correct" ? (hinted ? "hinted" : "correct") : "wrong"); // "unchecked": öğrenci "aynı anlamda" demediyse yanlış sayılır (claim → correct)
 
 /* ============================ Senaryo ana sayfası ============================ */
 export function PlayerHome({ id }: { id: string }) {
@@ -87,7 +88,7 @@ export function PlayerHome({ id }: { id: string }) {
     <div class="stack">
       <ProgressHeader title={s.title_tr} back={`#/learn/${s.domain}`} step={next ? idx(next.k) : 7} doneSteps={doneIdx} />
       <section class="card hero fade">
-        <div class="row between"><span class="chip">{s.level}</span>{s.review.status !== "reviewed" && <span class="chip">inceleme bekliyor</span>}</div>
+        <div class="row between"><span class="chip">{s.level}</span>{s.review.status !== "reviewed" && <span class="chip">deneme dersi</span>}</div>
         <h1 style={{ marginTop: 8 }}>{s.title_tr}</h1>
         <div class="tr2" lang="de">{s.title_de}</div>
         <p class="small" style={{ marginTop: 8 }}>{s.goal_tr}</p>
@@ -96,7 +97,7 @@ export function PlayerHome({ id }: { id: string }) {
       <nav aria-label="Bölümler">
         {SECTIONS.map((x, i) => {
           const done = prog.done.includes(x.k), open = unlocked(i), cur = next?.k === x.k;
-          const body = (<><span class="num" aria-hidden="true">{done ? <Icon name="check" size={18} /> : x.k === "listening" ? <Icon name="headphones" size={18} /> : x.n}</span><span class="grow"><b>{/\d/.test(x.n) ? `Aşama ${x.n}: ` : ""}{x.title}</b><br /><span class="tiny muted">{done ? "Tamamlandı" : open ? (cur ? "Sıradaki" : "Açık") : "Önceki bölümü bitirince açılır"}</span></span><span aria-hidden="true">{open ? "›" : "🔒"}</span></>);
+          const body = (<><span class="num" aria-hidden="true">{done ? <Icon name="check" size={18} /> : x.k === "listening" ? <Icon name="headphones" size={18} /> : x.n}</span><span class="grow"><b>{/\d/.test(x.n) ? `Aşama ${x.n}: ` : ""}{x.title}</b><br /><span class="tiny muted">{done ? "Tamamlandı" : open ? (cur ? "Sıradaki" : "Açık") : "Önceki bölümü bitirince açılır"}</span></span><span aria-hidden="true">{open ? <Icon name="next" size={18} /> : <span class="lockdot" />}</span></>);
           return open ? <a class={`tile${done ? " done" : ""}${cur ? " cur" : ""}`} href={`#/scenario/${encodeURIComponent(s.id)}/${x.k}`} data-section={x.k}>{body}</a> : <div class={`tile lock`} aria-disabled="true" data-section={x.k}>{body}</div>;
         })}
       </nav>
@@ -154,15 +155,16 @@ export function PlayerSection({ id, section }: { id: string; section: string }) 
 }
 export type SP = { ctx: Ctx; finish: (score: number, total: number, extra?: Partial<ScenarioProgress["runs"][number]>, mut?: (p: ScenarioProgress) => void) => Promise<void>; back: string; setSub?: (n: preact.ComponentChildren) => void };
 
-export function Done({ score, total, back, ctx, title, note }: { score: number; total: number; back: string; ctx: Ctx; title: string; note?: string }) {
-  const ratio = total ? score / total : 1;
+export function Done({ score, total, back, ctx, title, note, plain, production }: { score: number; total: number; back: string; ctx: Ctx; title: string; note?: string; plain?: string; production?: boolean }) {
+  // PM-035 §5: tanıma aşamasında puan/oran yok; yalnızca ne öğrenileceği
+  const ratio = plain ? 1 : total ? score / total : 1;
   useEffect(() => { haptic(ratio >= 0.7 ? "success" : "error"); }, []);
   return (
     <div class="stack fade" data-test="section-done">
       <section class={`card ${ratio >= 0.7 ? "hero" : ""}`}>
         <div class="kicker">{title}</div>
-        <div class="big">{score}/{total}</div>
-        <p class="small">{ratio >= 0.7 ? "Bu bölüm tamam. Bir sonraki açıldı." : ratio >= 0.5 ? "Biraz daha pratik iyi olur; bu bölümü bir kez daha yapmanı öneririm." : "Bir önceki aşamayı tekrar açtım: önce temeli sağlamlaştıralım."}</p>
+        {plain ? <p class="big" style={{ fontSize: "1.4rem" }}>{plain}</p> : <div class="big">{score}/{total}</div>}
+        <p class="small">{plain ? "Şimdi bunları tek tek öğreneceğiz." : ratio >= 0.7 ? "Bu bölüm tamam. Bir sonraki açıldı." : ratio >= 0.5 ? "Biraz daha pratik iyi olur; bu bölümü bir kez daha yapmanı öneririm." : production ? "Bir önceki aşamayı yeniden açtım. Önce orayı tekrar etmek iyi olur, acele yok." : "Bu bölümü bir kez daha yapmak iyi olur, acele yok."}</p>
         {note && <p class="tiny">{note}</p>}
       </section>
       <ActionBar><a class="btn primary block" href={back} data-test="back-to-scenario">Senaryoya dön</a></ActionBar>
@@ -178,27 +180,31 @@ function useRun<T>(items: T[]) {
 }
 
 /* ============================ Üretim maddesi (3–4–5 ortak) ============================ */
-function ProduceItem({ ctx, prompt, accepted, itemId, onDone, audio, audioSpeed, chips, hint, given }: { ctx: Ctx; prompt: preact.ComponentChildren; accepted: string[]; itemId: string; onDone: (ok: boolean) => void; audio?: string; audioSpeed?: Speed; chips?: boolean; hint?: string; given?: string }) {
+function ProduceItem({ ctx, prompt, accepted, itemId, onDone, audio, audioSpeed, chips, hint, given, strictNumbers }: { ctx: Ctx; prompt: preact.ComponentChildren; accepted: string[]; itemId: string; onDone: (ok: boolean) => void; audio?: string; audioSpeed?: Speed; chips?: boolean; hint?: string; given?: string; strictNumbers?: boolean }) {
   const grade0 = useGrader();
   // PM-032 §4: bu senaryoda öğretilmiş eşdeğer biçimler (Hochdeutsch ↔ Alltag) otomatik kabul — ama yönerge belirli bir
   // biçim istiyorsa ya da madde bir dönüşümse genişletme yok; verilen cümlenin tekrarı doğru değil (inceleme #49 P1-1)
   const register = !!given || REGISTER_HINT.test(hint || (typeof prompt === "string" ? prompt : ""));
-  const grade = async (acc: string[], a: string, p: string): Promise<Verdict> =>
-    isSameAsGiven(given, a) ? { kind: "wrong", best: acc[0] || "", note: "Verilen cümleyi tekrarladın; istenen biçimde söyle." }
+  // PM-045 §4.2 / #58 A11: sayı maddesinde rakam kabul edilmez (norm() rakamı yazıya çevirdiği için kurallardan önce)
+  // yalnızca yazılan cevapta: konuşma tanıma sayıyı rakamla döker (inceleme #59 P1-3)
+  const numHint = (acc: string[], a: string, typed: boolean) => (typed && strictNumbers && acc.every((x) => !/\d/.test(x)) ? numberWordHint(a) : null);
+  const grade = async (acc: string[], a: string, p: string, typed = true): Promise<Verdict> =>
+    numHint(acc, a, typed) ? { kind: "wrong", best: acc[0] || "", note: numHint(acc, a, typed)! }
+    : isSameAsGiven(given, a) ? { kind: "wrong", best: acc[0] || "", note: "Verilen cümleyi tekrarladın; istenen biçimde söyle." }
       : grade0(register ? acc : expandTaught(acc, ctx.s.chunks), a, p);
   const [v, setV] = useState<{ v: Verdict; a: string } | null>(null);
   const [busy, setBusy] = useState(false);
   const [mode, setMode] = useState<"type" | "chips">(chips ? "chips" : "type");
   const promptTxt = typeof prompt === "string" ? prompt : accepted[0]!;
-  const submit = async (a: string) => {
+  const submit = async (a: string, typed = true) => {
     setBusy(true);
-    const res = await grade(accepted, a, promptTxt);
+    const res = await grade(accepted, a, promptTxt, typed);
     setBusy(false); setV({ v: res, a }); setClaimed(false);
   };
   const [claimed, setClaimed] = useState(false);
   // "Benim cevabım da doğru": doğru sayılır (puan + öğrenci modeli); kayıt içerik kuyruğuna da gider
   const next = () => {
-    const ok = v!.v.kind !== "wrong" || claimed;
+    const ok = countsAsCorrect(v!.v.kind, claimed);
     const ch = chunkFor(ctx.s, accepted[0]!);
     if (ch) void rec(ch.id, "chunk", "active", claimed ? "correct" : outcomeOf(v!.v));
     setV(null); onDone(ok);
@@ -209,7 +215,7 @@ function ProduceItem({ ctx, prompt, accepted, itemId, onDone, audio, audioSpeed,
       {!v && (
         <>
           {accepted[0]!.split(" ").length > 2 && <div class="seg" role="group" aria-label="Cevap biçimi"><button aria-pressed={mode === "type"} onClick={() => setMode("type")}>Yaz / söyle</button><button aria-pressed={mode === "chips"} onClick={() => setMode("chips")}>Kelimelerle kur</button></div>}
-          {mode === "type" ? <ActionBar><AnswerField onSubmit={(t) => void submit(t)} disabled={busy} /></ActionBar> : <ChipBuilder target={accepted[0]!} onSubmit={(t) => void submit(t)} />}
+          {mode === "type" ? <ActionBar><AnswerField onSubmit={(t, m) => void submit(t, m === "typed")} disabled={busy} /></ActionBar> : <ChipBuilder target={accepted[0]!} onSubmit={(t) => void submit(t)} />}
           {busy && <p class="small muted" aria-live="polite">Öğretmen kontrol ediyor…</p>}
         </>
       )}
@@ -244,7 +250,7 @@ function BuildSection({ ctx, finish, back, setSub }: SP) {
   useEffect(() => { setSub?.(<Count i={r.i} n={r.total} />); }, [r.i]);
   useEffect(() => { if (r.done && r.total) void finish(r.score, r.total); }, [r.done]);
   if (!r.total) return <Empty title="Bu senaryoda cümle kurma maddesi yok" />;
-  if (r.done) return <Done score={r.score} total={r.total} back={back} ctx={ctx} title="Aşama 3 · Cümle kurma" />;
+  if (r.done) return <Done score={r.score} total={r.total} back={back} ctx={ctx} title="Aşama 3 · Cümle kurma" production />;
   const b = r.item!;
   const p = b.pattern ? ctx.pt.get(b.pattern) : undefined;
   return (
@@ -262,7 +268,7 @@ function DrillsSection({ ctx, finish, back, setSub }: SP) {
   useEffect(() => { setSub?.(<Count i={r.i} n={r.total} />); }, [r.i]);
   useEffect(() => { if (r.done && r.total) void finish(r.score, r.total); }, [r.done]);
   if (!r.total) return <Empty title="Bu senaryoda alıştırma yok" />;
-  if (r.done) return <Done score={r.score} total={r.total} back={back} ctx={ctx} title="Aşama 4 · Alıştırma" />;
+  if (r.done) return <Done score={r.score} total={r.total} back={back} ctx={ctx} title="Aşama 4 · Alıştırma" production />;
   const d = r.item!;
   return (
     <div class="stack" key={d.id}>
@@ -283,17 +289,17 @@ function DrillView({ ctx, d, n, total, onDone }: { ctx: Ctx; d: Drill; n: number
         </div>
       );
     case "gap":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted.map((a) => d.de.replace("___", a))} prompt={<><div class="kicker">Boşluğu doldur · {k}</div><div class="de-lg" lang="de">{d.de.split("___").map((part, j) => <>{j > 0 && <span class="gapblank" aria-label="boşluk" />}{part}</>)}</div><div class="tr2">{d.tr}</div><div class="tiny muted">Bütün cümleyi yaz.</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted.map((a) => d.de.replace("___", a))} prompt={<><div class="kicker">Boşluğu doldur · {k}</div><div class="de-lg" lang="de">{d.de.split("___").map((part, j) => <>{j > 0 && <span class="gapblank" aria-label="boşluk" />}{part}</>)}</div><div class="tr2">{d.tr}</div><div class="tiny muted">Bütün cümleyi yaz.</div></>} strictNumbers={d.strictNumberWords} onDone={onDone} />;
     case "order":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted.length ? d.accepted : [d.de]} chips prompt={<><div class="kicker">Sıraya koy · {k}</div><div class="de-lg">{d.tr}</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted.length ? d.accepted : [d.de]} chips prompt={<><div class="kicker">Sıraya koy · {k}</div><div class="de-lg">{d.tr}</div></>} strictNumbers={d.strictNumberWords} onDone={onDone} />;
     case "transform":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} given={d.from_de} hint={d.instr_tr} prompt={<><div class="kicker">Dönüştür · {k}</div><div class="small"><Rich text={d.instr_tr} /></div><div class="de-lg" lang="de">{d.from_de}</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} given={d.from_de} hint={d.instr_tr} prompt={<><div class="kicker">Dönüştür · {k}</div><div class="small"><Rich text={d.instr_tr} /></div><div class="de-lg" lang="de">{d.from_de}</div></>} strictNumbers={d.strictNumberWords} onDone={onDone} />;
     case "guided_response":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.prompt_de} hint={d.situation_tr} prompt={<><div class="kicker">Cevap ver · {k}</div><div class="small"><Rich text={d.situation_tr} /></div><div class="de-lg" lang="de">„{d.prompt_de}“</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.prompt_de} hint={d.situation_tr} prompt={<><div class="kicker">Cevap ver · {k}</div><div class="small"><Rich text={d.situation_tr} /></div><div class="de-lg" lang="de">„{d.prompt_de}“</div></>} strictNumbers={d.strictNumberWords} onDone={onDone} />;
     case "listen_and_respond":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.audio_de} audioSpeed={d.speed} hint={d.situation_tr} prompt={<><div class="kicker">Dinle ve cevap ver · {k}</div>{d.situation_tr && <div class="small"><Rich text={d.situation_tr} /></div>}<div class="tiny muted">Metin gösterilmiyor: yalnızca dinle.</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.audio_de} audioSpeed={d.speed} hint={d.situation_tr} prompt={<><div class="kicker">Dinle ve cevap ver · {k}</div>{d.situation_tr && <div class="small"><Rich text={d.situation_tr} /></div>}<div class="tiny muted">Metin gösterilmiyor: yalnızca dinle.</div></>} strictNumbers={d.strictNumberWords} onDone={onDone} />;
     case "tr_de":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} hint={d.tr} prompt={<><div class="kicker">Almanca söyle · {k}</div><div class="de-lg">{d.tr}</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} hint={d.tr} prompt={<><div class="kicker">Almanca söyle · {k}</div><div class="de-lg">{d.tr}</div></>} strictNumbers={d.strictNumberWords} onDone={onDone} />;
   }
 }
 
@@ -345,7 +351,7 @@ function ListeningItem({ li, progress, onDone }: { li: Scenario["listening"][num
   if (phase === "listen") return (
     <div class="stack fade">{progress}
       <section class="card stack"><div class="kicker">Dinle · {li.title_tr}</div><p class="small">Önce metni görmeden dinle. İstediğin kadar tekrar dinleyebilirsin.</p>
-        <div class="row"><button class="btn primary" onClick={() => playAll(li.speed)} disabled={playing} data-test="play-all">{playing ? "Çalıyor…" : "▶ Dinle"}</button>
+        <div class="row"><button class="btn primary" onClick={() => playAll(li.speed)} disabled={playing} data-test="play-all">{playing ? "Çalıyor…" : <><Icon name="play" size={18} /> Dinle</>}</button>
           {li.speeds.filter((x) => x !== li.speed).map((sp) => <button class="btn" onClick={() => playAll(sp)} disabled={playing} data-speed={sp}>{SPEED_TR[sp]}</button>)}</div>
         <p class="tiny muted">Cihaz sesi · {li.speed === "fast" ? "hızlı" : li.speed === "natural" ? "doğal hız" : li.speed === "slow" ? "yavaş" : "normal"}</p></section>
       <ActionBar><button class="btn primary block" onClick={() => { stopSpeaking(); setPhase("qs"); }} data-test="to-questions">Sorulara geç</button></ActionBar>
@@ -437,19 +443,19 @@ function DialogueSection({ ctx, finish, back }: SP) {
           <SayItBox entries={entriesOf(ctx)} level={s.level} context_de={line.de} />
           <ActionBar><AnswerField onSubmit={async (a) => {
             setBusy(true); const res = await grade(line.accepted?.length ? line.accepted : [line.de], a, line.tr); setBusy(false);
-            setV({ v: res, a }); setTotal(total + 1); if (res.kind !== "wrong") setScore(score + 1);
+            setV({ v: res, a }); setTotal(total + 1); if (countsAsCorrect(res.kind, false)) setScore(score + 1);
           }} disabled={busy} submitLabel="Söyle" /></ActionBar>
         </section>
       )}
       {line.r === "B" && v && <VerdictView v={v.v} answer={v.a} itemId={`${d.id}:${li}`} scenarioId={s.id} prompt={line.tr} accepted={line.accepted?.length ? line.accepted : [line.de]}
-        onClaim={() => { if (v.v.kind === "wrong") setScore(score + 1); setClaimedD(true); }}
+        onClaim={() => { if (!countsAsCorrect(v.v.kind, false)) setScore(score + 1); setClaimedD(true); }}
         onNext={() => { const ch = chunkFor(s, line.de); if (ch) void rec(ch.id, "chunk", "active", claimedD ? "correct" : outcomeOf(v.v, support >= 2)); setClaimedD(false); setV(null); setLi(li + 1); }} nextLabel="Devam" />}
     </div>
   );
 }
 function DialogueDone({ score, total, back, ctx, onFinish }: { score: number; total: number; back: string; ctx: Ctx; onFinish: () => Promise<void> }) {
   useEffect(() => { void onFinish(); }, []);
-  return <Done score={score} total={total} back={back} ctx={ctx} title="Aşama 5 · Destekli diyalog" note={score / Math.max(1, total) >= 0.8 ? "Bir dahaki sefere daha az destekle deneyeceğiz." : undefined} />;
+  return <Done score={score} total={total} back={back} ctx={ctx} title="Aşama 5 · Destekli diyalog" production note={score / Math.max(1, total) >= 0.8 ? "Bir dahaki sefere daha az destekle deneyeceğiz." : undefined} />;
 }
 function entriesOf(ctx: Ctx): LocalEntry[] {
   const out: LocalEntry[] = [];
@@ -484,7 +490,8 @@ function RoleplaySection({ ctx, finish, back }: SP) {
   const [selfGoals, setSelfGoals] = useState<Record<string, boolean>>({});
   const surprise = useMemo(() => (level >= 2 && s.roleplay.surprises.length ? s.roleplay.surprises[runs % s.roleplay.surprises.length]!.de : undefined), [level]);
   const lv = s.roleplay.levels.find((x) => x.level === level);
-  const offLines = (s.dialogues[0]?.lines || []).filter((l) => l.r === "A");
+  const offIdx = useMemo(() => offlineDialogueIndex(s), [s]);
+  const offLines = (s.dialogues[offIdx]?.lines || []).filter((l) => l.r === "A");
   const say = (de: string) => void speak(de, "de", lv?.speed || (level === 3 ? "fast" : level === 2 ? "natural" : "slow"));
 
   // Yumuşak bekleme (DECISIONS D-RP1): 12 sn'de yanıt yoksa seçenekler çıkar; istek kesilmez, gelirse kullanılır.
@@ -499,6 +506,10 @@ function RoleplaySection({ ctx, finish, back }: SP) {
   const [waiting, setWaiting] = useState(false);     // "Bekle" seçildi: seçenekler gizli, bekleniyor
   const histRef = useRef<Turn[]>([]); const stuckRef = useRef(0);
   const nextOffline = (hist: Turn[]) => {
+    // tekrar/yavaşlatma isteği: aynı satır yavaş söylenir (strateji işe yarar)
+    const lastMe = [...hist].reverse().find((t) => t.r === "learner")?.de || "";
+    const lastPartner = [...hist].reverse().find((t) => t.r === "partner")?.de;
+    if (lastPartner && isRepeatRequest(lastMe)) { const nt = [...hist, { r: "partner" as const, de: lastPartner }]; setTurns(nt); histRef.current = nt; void speak(lastPartner, "de", "slow"); return; }
     const nx = offLines[offRef.current];
     if (!nx) { void endTalk(hist); return; }
     offRef.current++; const nt = [...hist, { r: "partner" as const, de: nx.de }]; setTurns(nt); histRef.current = nt; say(nx.de);
@@ -560,7 +571,7 @@ function RoleplaySection({ ctx, finish, back }: SP) {
         <p class="tiny muted">Konuşma sırasında düzeltme yok; sonunda Türkçe rapor alırsın. "Bu ne demek?" ve "Almanca nasıl derim?" puan düşürmez.</p>
         <div class="kicker">Zorluk</div>
         <div class="seg" role="group">{([1, 2, 3] as const).map((n) => <button aria-pressed={level === n} onClick={() => setLevel(n)}>{n === 1 ? "Kolay" : n === 2 ? "Normal" : "Gerçekçi"}</button>)}</div>
-        {mode === "offline" && <FeedbackBand kind="info" title="Yapay zekâ bağlı değil: senaryodaki diyalogla rol yapılıyor.">{aiState(api).reason} Karşı taraf hazır cümlelerle konuşur; sonunda görevi kendin değerlendirirsin.</FeedbackBand>}
+        {mode === "offline" && <FeedbackBand kind="info" title="Karşındaki kişi dersin hazır cümleleriyle konuşur.">Anlamazsan <b>Noch mal, bitte</b> de; aynı cümleyi yavaşça tekrar eder. Sonunda görevi kendin değerlendirirsin.</FeedbackBand>}
       </section>
       <ActionBar><button class="btn primary block" onClick={start} data-test="rp-start">Konuşmayı başlat</button></ActionBar>
     </div>
@@ -584,7 +595,7 @@ function RoleplaySection({ ctx, finish, back }: SP) {
   // rapor
   if (mode === "offline") {
     const learner = turns.filter((t) => t.r === "learner").map((t) => t.de);
-    const expect = (s.dialogues[0]?.lines || []).filter((l) => l.r === "B").map((l) => l.de);
+    const expect = (s.dialogues[offIdx]?.lines || []).filter((l) => l.r === "B").map((l) => l.de);
     return (
       <div class="stack fade" data-test="rp-report">
         <section class="card stack"><div class="kicker">Rapor · yapay zekâsız mod</div>
