@@ -544,9 +544,11 @@ main { overflow-x: clip; }
 .donen { display: inline-block; overflow: hidden; height: 1.25em; line-height: 1.25em; vertical-align: bottom; }
 .donen-ic { display: inline-block; animation: don 380ms cubic-bezier(.2, .8, .2, 1); }
 @keyframes don { from { transform: translateY(100%); opacity: 0; } }
-.yol-harita, .rehber { --vurgu-koyu: color-mix(in srgb, var(--vurgu) 65%, #000); }
+.yol-harita, .rehber { --vurgu-koyu: color-mix(in srgb, var(--vurgu) 65%, #000); --vurgu-yazi: var(--vurgu); }
+:root[data-theme="dark"] .yol-harita { --vurgu-yazi: var(--ink); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .yol-harita { --vurgu-yazi: var(--ink); } }
 .gun-bant { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 16px; background: var(--vurgu, var(--hafta-1)); color: #fff; box-shadow: 0 4px 0 color-mix(in srgb, var(--vurgu, var(--hafta-1)) 70%, #000); }
-.gun-bant-ust { font-size: .78rem; font-weight: 800; letter-spacing: .06em; opacity: .92; }
+.gun-bant-ust { font-size: .78rem; font-weight: 800; letter-spacing: .06em; }
 .gun-bant-ad { font-size: 1.15rem; font-weight: 800; }
 .rehber-btn { flex: none; min-height: 44px; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 12px; color: #fff; font-weight: 800; text-decoration: none; box-shadow: 0 0 0 2px rgba(255, 255, 255, .55) inset; }
 .yolgun { display: grid; gap: 6px; }
@@ -557,9 +559,10 @@ main { overflow-x: clip; }
 .dugum { position: relative; z-index: 1; width: 76px; height: 70px; border-radius: 50%; display: grid; place-items: center; text-decoration: none; background: var(--vurgu); color: #fff; box-shadow: 0 7px 0 var(--vurgu-koyu); transition: transform 90ms, box-shadow 90ms; -webkit-tap-highlight-color: transparent; }
 a.dugum:active { transform: translateY(6px); box-shadow: 0 1px 0 var(--vurgu-koyu); }
 .dugum-yer.kilitli .dugum { background: var(--soft); color: var(--muted); box-shadow: 0 7px 0 var(--line); }
-.dugum-yer.acik .dugum { background: color-mix(in srgb, var(--vurgu) 55%, var(--card)); }
+/* açık (henüz yapılmamış) düğüm: kart zemininde vurgu renkli simge ve halka (simge ≥ 3:1, inceleme #104 P1-1) */
+.dugum-yer.acik .dugum { background: var(--card); color: var(--vurgu-yazi); box-shadow: 0 0 0 3px var(--vurgu) inset, 0 7px 0 var(--line); }
 .dugum-yer.bitti .dugum { background: var(--vurgu); }
-.dugum-onay { position: absolute; right: -2px; bottom: -2px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--card); color: var(--vurgu-koyu); box-shadow: 0 0 0 2px var(--vurgu); }
+.dugum-onay { position: absolute; right: -2px; bottom: -2px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--vurgu-koyu); color: #fff; box-shadow: 0 0 0 2px var(--card); }
 .dugum-ad { color: var(--muted); font-weight: 700; }
 .dugum-yer.simdi .dugum-ad { color: var(--ink); }
 .dugum-halka { position: absolute; top: -9px; width: 94px; height: 94px; fill: none; stroke-width: 6; }
@@ -567,9 +570,8 @@ a.dugum:active { transform: translateY(6px); box-shadow: 0 1px 0 var(--vurgu-koy
 .dugum-halka circle.dolu { stroke: var(--vurgu); stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; }
 .dugum-yer.simdi .dugum { animation: nabiz 1.8s ease-in-out infinite; }
 @keyframes nabiz { 50% { box-shadow: 0 7px 0 var(--vurgu-koyu), 0 0 0 10px color-mix(in srgb, var(--vurgu) 22%, transparent); } }
-.basla-balon { position: absolute; z-index: 2; top: -40px; padding: 6px 12px; border-radius: 10px; background: var(--card); color: var(--vurgu-koyu); font-weight: 900; font-size: .85rem; letter-spacing: .05em; box-shadow: 0 0 0 2px var(--line) inset, 0 3px 0 var(--line); white-space: nowrap; }
+.basla-balon { position: absolute; z-index: 2; top: -40px; padding: 6px 12px; border-radius: 10px; border-bottom: 3px solid var(--vurgu); background: var(--card); color: var(--ink); font-weight: 900; font-size: .85rem; letter-spacing: .05em; box-shadow: 0 0 0 2px var(--line) inset, 0 3px 0 var(--line); white-space: nowrap; }
 .basla-balon::after { content: ""; position: absolute; left: 50%; bottom: -7px; margin-left: -7px; border: 7px solid transparent; border-bottom: 0; border-top-color: var(--card); }
 .dugum-yer.simdi { margin-top: 30px; }
 .dugum-yer.simdi .dugum-ad { margin-top: 12px; }
-.rehber-kalip { display: block; padding: 10px 12px; border-radius: 12px; background: var(--soft); color: inherit; text-decoration: none; min-height: 44px; }
 @media (prefers-reduced-motion: reduce) { .donen-ic, .dugum-yer.simdi .dugum { animation: none !important; } a.dugum:active { transform: none; } }

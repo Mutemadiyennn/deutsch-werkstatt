@@ -12,6 +12,14 @@ from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
 
 PORT = 4209
+# öğenin yazı/simge rengi ile en yakın opak zemin arasındaki kontrast
+KONTRAST = r"""(sel) => { const el = document.querySelector(sel);
+  const rgb = (s) => s.match(/[\d.]+/g).slice(0, 3).map(Number);
+  const L = (c) => { const [r, g, b] = c.map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+  let z = el, bg = 'rgba(0, 0, 0, 0)';
+  while (z && (bg = getComputedStyle(z).backgroundColor).match(/rgba\(.*, 0\)$/)) z = z.parentElement;
+  if (!z) bg = getComputedStyle(document.body).backgroundColor;
+  const a = L(rgb(getComputedStyle(el).color)), b = L(rgb(bg)); return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05); }"""
 KOK = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..")
 
 def main():
@@ -35,11 +43,12 @@ def main():
             pg.goto(base + "#/yol"); pg.wait_for_selector("[data-test=yol] [data-test=gun-1]")
             bant = pg.inner_text("[data-test=gun-1] .gun-bant")
             check("1. HAFTA" in bant and "GÜN 1" in bant, f"[{tema}] gün bandı: hafta ve gün ({bant.splitlines()[0]!r})")
-            kon = pg.evaluate("""() => { const el = document.querySelector('[data-test=gun-1] .gun-bant-ad');
-              const rgb = (s) => s.match(/[\\d.]+/g).slice(0, 3).map(Number);
-              const L = (c) => { const [r, g, b] = c.map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
-              const a = L(rgb(getComputedStyle(el).color)), b = L(rgb(getComputedStyle(el.closest('.gun-bant')).backgroundColor)); return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05); }""")
-            check(kon >= 4.5, f"[{tema}] gün bandı yazısı kontrastı {kon:.2f}:1 (≥ 4,5)")
+            # kontrast (inceleme #104 P1-1): yazı ≥ 4,5; simge ≥ 3
+            for sel, esik, ad in [("[data-test=gun-1] .gun-bant-ad", 4.5, "gün adı"), ("[data-test=gun-1] .gun-bant-ust", 4.5, "hafta·gün satırı"),
+                                  (".basla-balon", 4.5, "BAŞLA balonu"), (".dugum-yer.acik .dugum", 3, "açık düğüm simgesi"), (".dugum-onay", 3, "onay işareti")]:
+                if not pg.locator(sel).count(): continue
+                kon = pg.evaluate(KONTRAST, sel)
+                check(kon >= esik, f"[{tema}] {ad} kontrastı {kon:.2f}:1 (≥ {esik})")
             adim = pg.locator("[data-test=gun-1] [data-test=adim]").count()
             check(adim >= 3 and pg.locator("[data-test=gun-1] .dugum-yer.son").count() == 1, f"[{tema}] her adım bir düğüm ({adim}) + gün sonu düğümü")
             simdi = pg.locator("[data-test=adim][data-durum=simdi]")
@@ -71,6 +80,7 @@ def main():
             n = pg.locator("[data-test=rehber-kelime]").count()
             check(n >= 1 and (gun is None or n <= len(gun["yeni_kartlar"])), f"[{tema}] Rehber: günün kelimeleri ({n})")
             check(pg.locator("[data-test=rehber-yapabilir]").count() == 1, f"[{tema}] Rehber: gün sonu hedefi")
+            check(pg.locator("[data-test=rehber] a[href^='#/kalip']").count() == 0, f"[{tema}] Rehber: henüz olmayan kalıp rotasına bağlantı yok")
             check("{" not in pg.inner_text("[data-test=rehber]"), f"[{tema}] Rehber: ham yer tutucu yok")
             no_overflow(pg, f"[{tema}] Rehber")
             if shots: shot(pg, f"h02-rehber-{tema}", full=False)
