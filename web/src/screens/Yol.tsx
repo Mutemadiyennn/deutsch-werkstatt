@@ -7,7 +7,7 @@ import type { Gun } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadM1Gun } from "../services/content.ts";
 import { gunBittiYaz, ilerlemeOku, xpOku } from "../services/ilerleme.ts";
-import { SEANS_TR, gunAdimlari, seri, siradaki, yol, type Adim, type GunDurum, type XpKayit } from "../core/gun.ts";
+import { adimAdi, gunAdimlari, seri, siradaki, yol, type Adim, type GunDurum, type XpKayit } from "../core/gun.ts";
 import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 
@@ -61,7 +61,7 @@ export function YolEkrani() {
         <span class="chip">{s ? <><b data-test="seri">{s}</b>&nbsp;gün üst üste</> : "Bugün başla, seri başlasın"}</span>
       </div>
       {plan.sonraki && (
-        <a class="btn primary block" href={plan.sonraki.href} data-test="yol-sonraki"><Icon name="play" size={18} /> Sıradaki: {SEANS_TR[plan.sonraki.seans]} · {plan.sonraki.title_tr}</a>
+        <a class="btn primary block" href={plan.sonraki.href} data-test="yol-sonraki"><Icon name="play" size={18} /> Sıradaki: {adimAdi(plan.sonraki)} · {plan.sonraki.title_tr}</a>
       )}
       {!plan.sonraki && !plan.simdi && (plan.gunler.length >= 7
         ? <section class="card" data-test="hafta-bitti"><h2>İlk Hafta tamam</h2><p>Bütün günleri bitirdin. Kendini tanıtabilir ve basit bir randevu cümlesi kurabilirsin.</p></section>

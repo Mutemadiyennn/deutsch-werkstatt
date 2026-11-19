@@ -4,6 +4,7 @@ import { CallScreen as Call } from "./screens/Call.tsx";
 import { M1Gun, MedyaEkrani } from "./screens/Medya.tsx";
 import { DersEkrani } from "./screens/Ders.tsx";
 import { ProvaEkrani } from "./screens/Prova.tsx";
+import { OkumaEkrani } from "./screens/Okuma.tsx";
 import { YolEkrani } from "./screens/Yol.tsx";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Assessment, ContentIndex, Profile } from "@dw/shared";
@@ -116,11 +117,12 @@ export function App() {
     case "yol": screen = <YolEkrani />; break;
     case "ders": screen = <DersEkrani key={route.id} id={route.id} />; break;
     case "prova": screen = <ProvaEkrani key={route.day} day={route.day} />; break;
+    case "okuma": screen = <OkumaEkrani key={route.day} day={route.day} />; break;
     case "m1day": screen = <M1Gun day={route.day} />; break;
     case "m1medya": screen = <MedyaEkrani key={route.id} day={route.day} id={route.id} />; break;
     default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : <Today />;
   }
-  const tabs = !!profile.onboardedAt && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "ders" && route.name !== "prova";
+  const tabs = !!profile.onboardedAt && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma";
   return (
     <Ctx.Provider value={ctx}>
       <main class={`app${tabs ? "" : " notabs"}`}><ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>
