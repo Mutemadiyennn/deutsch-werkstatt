@@ -44,3 +44,25 @@ describe("cihaz veritabanı", () => {
     expect(ex.profile).toHaveLength(0);
   });
 });
+
+describe("şema geçişi (#58 A12: geçişte veri kaybı yok)", () => {
+  it("1. sürüm veritabanındaki profil, öğe ve odak verisi güncel sürüme geçince korunur; yeni tablolar boş açılır", async () => {
+    const { default: Dexie } = await import("dexie");
+    const name = `mig-${Date.now()}`;
+    const old = new Dexie(name);
+    old.version(1).stores({ meta: "&key", profile: "&id", items: "&itemId, kind, inBank, u", focusDays: "&date, u", assess: "&id, startedAt, type" });
+    await old.open();
+    const it = emptyItem("lx:Termin"); it.inBank = true; it.passive.ok = 2;
+    await old.table("items").put(it);
+    await old.table("meta").put({ key: "x", value: 42 });
+    await old.table("focusDays").put({ date: "2026-11-18", u: 1, sessions: [] });
+    old.close();
+    const cur = new DwDB(name);
+    useDb(cur);
+    expect(await cur.items.get("lx:Termin")).toMatchObject({ itemId: "lx:Termin", inBank: true, passive: { ok: 2 } });
+    expect((await cur.meta.get("x"))?.value).toBe(42);
+    expect(await cur.focusDays.count()).toBe(1);
+    expect(await cur.personal.count()).toBe(0);
+    expect(cur.verno).toBeGreaterThanOrEqual(2);
+  });
+});

@@ -89,6 +89,8 @@ jobs:
         run: cd tests/e2e && python yukleme.py
       - name: DN-2 uçak modu günü (çevrimdışı)
         run: cd tests/e2e && python ucak.py
+      - name: "Veri güvenliği ve hata sınırı (#58 A12)"
+        run: cd tests/e2e && python v2_veri.py
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4

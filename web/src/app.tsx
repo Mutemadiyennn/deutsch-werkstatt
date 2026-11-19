@@ -10,6 +10,8 @@ import { loadIndex, within } from "./services/content.ts";
 import { getProfile, latestPlacement, saveProfile } from "./data/db.ts";
 import { setLearning, startFocus, updateFocusConfig } from "./services/focusRuntime.ts";
 import { TabBar, Loading, ErrorPanel } from "./ui/components.tsx";
+import { ErrorBoundary, recordError } from "./ui/ErrorBoundary.tsx";
+import { ensurePersist } from "./services/storage.ts";
 import { Login } from "./screens/Login.tsx";
 import { Onboarding } from "./screens/Onboarding.tsx";
 import { Today } from "./screens/Today.tsx";
@@ -52,7 +54,11 @@ export function App() {
     const slow = setTimeout(() => setAuthSlow(true), 8000);
     auth.ready.then(() => clearTimeout(slow), () => clearTimeout(slow));
     const off = auth.onChange((u) => setUser(u));
-    return () => { removeEventListener("hashchange", on); off(); };
+    // beklenmeyen hata yalnızca cihazda kaydedilir (A12; dışarı gönderilmez)
+    const onErr = (e: ErrorEvent) => recordError("window", e.error ?? e.message);
+    const onRej = (e: PromiseRejectionEvent) => recordError("promise", e.reason);
+    addEventListener("error", onErr); addEventListener("unhandledrejection", onRej);
+    return () => { removeEventListener("hashchange", on); removeEventListener("error", onErr); removeEventListener("unhandledrejection", onRej); off(); };
   }, []);
 
   useEffect(() => {
@@ -61,6 +67,8 @@ export function App() {
       const p = await getProfile();
       applyTheme(p);
       setP(p);
+      // veri güvenliği (A12): kurulum bittiyse tarayıcıdan kalıcı depolama iste (yer darlığında silinmesin)
+      if (p.onboardedAt) void ensurePersist();
       setPlacement(await latestPlacement());
       await startFocus(p);
     })();
@@ -97,12 +105,12 @@ export function App() {
     case "assess": screen = <AssessRun />; break;
     case "assessResult": screen = <AssessResult id={route.id} />; break;
     case "call": screen = <Call id={route.id} />; break;
-    default: screen = <Today />;
+    default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : <Today />;
   }
   const tabs = !!profile.onboardedAt && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call";
   return (
     <Ctx.Provider value={ctx}>
-      <main class={`app${tabs ? "" : " notabs"}`}>{screen}</main>
+      <main class={`app${tabs ? "" : " notabs"}`}><ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>
       {tabs && <TabBar route={route} />}
       <LongPressExplain />
       {(route.name === "section" || route.name === "assess") && <BreakOverlay />}
@@ -110,3 +118,6 @@ export function App() {
     </Ctx.Provider>
   );
 }
+
+/** yalnızca e2e: hata sınırını sınamak için bilerek hata veren ekran */
+function Crash(): never { throw new Error("e2e: bilerek hata"); }
