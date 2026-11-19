@@ -81,7 +81,7 @@ def main():
         pg.close(); pg = new_page(ctx)  # soğuk açılış: yeni sekme, ağ yok
         pg.goto(base); pg.wait_for_selector("[data-tab=today]", timeout=10_000)
         check(True, "A: uçak modunda soğuk açılış")
-        walk = [("#/today", "[data-test=next-activity]"), ("#/learn", "main h1, main h2"), ("#/progress", "[data-test=panel-focus]"), ("#/profile", "main h1, main h2")]
+        walk = [("#/today", "[data-test=next-activity]"), ("#/learn", "main h1, main h2"), ("#/progress", "[data-test=panel-focus]"), ("#/profile", "main h1, main h2"), ("#/sozluk", "[data-test=sozluk-q]")]
         walk += [(f"#/scenario/{s}", "[data-section]") for s in scenarios]  # açılmamış senaryolar da (PM-035/6)
         walk += [(f"#/scenario/{SC}/{sec}", sel) for sec, sel in [
             ("words", "[data-test=stage-intro]"), ("chunks", "[data-test=ifade-card], [data-test=say-q], [data-test=meaning-q], [data-test=section-done], .empty"),
@@ -96,6 +96,10 @@ def main():
             txt = pg.inner_text("main") if pg.locator("main").count() else ""
             if not shown or pg.locator(".card.err, [role=alert]").count() or "yüklenemedi" in txt: bad.append(h)
         check(not bad, f"A: {len(walk)} ekran internetsiz açıldı, hata paneli yok" + (f" — sorunlu: {bad}" if bad else ""))
+        # #58 B1: sözlük araması internetsiz (cihazdaki kartlar)
+        pg.goto(base + "#/sozluk"); pg.wait_for_selector("[data-test=sozluk-q]"); pg.fill("[data-test=sozluk-q]", "Termin")
+        pg.wait_for_selector("[data-test=sozluk-satir], [data-test=sozluk-yok]")
+        check(pg.locator("[data-test=sozluk-satir]").count() >= 1, "A: sözlük araması internetsiz sonuç veriyor (Termin)")
         v = dialogue_answer(pg, base, ans)
         check(v is not None and "Şöyle olmalı" not in v, f"A: diyalogda doğru cevap internetsiz değerlendirildi ({(v or '')[:40]!r})")
         if medya:

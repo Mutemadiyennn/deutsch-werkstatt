@@ -5,6 +5,7 @@ import { M1Gun, MedyaEkrani } from "./screens/Medya.tsx";
 import { DersEkrani } from "./screens/Ders.tsx";
 import { ProvaEkrani } from "./screens/Prova.tsx";
 import { OkumaEkrani } from "./screens/Okuma.tsx";
+import { SozlukEkrani } from "./screens/Sozluk.tsx";
 import { YolEkrani } from "./screens/Yol.tsx";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Assessment, ContentIndex, Profile } from "@dw/shared";
@@ -121,6 +122,7 @@ export function App() {
     case "ders": screen = <DersEkrani key={route.id} id={route.id} />; break;
     case "prova": screen = <ProvaEkrani key={route.day} day={route.day} />; break;
     case "okuma": screen = <OkumaEkrani key={route.day} day={route.day} />; break;
+    case "sozluk": screen = <SozlukEkrani q={route.q} id={route.id} />; break;
     case "m1day": screen = <M1Gun day={route.day} />; break;
     case "m1medya": screen = <MedyaEkrani key={route.id} day={route.day} id={route.id} />; break;
     default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : <Today />;
