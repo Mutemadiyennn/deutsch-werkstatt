@@ -68,6 +68,8 @@ describe("strictNumberWords (PM-045 §4.2)", () => {
     expect(numberWordHint("Es ist 1 Uhr")).toBe("Rakamla değil, kelimeyle yaz.");
     expect(numberWordHint("Am 3. Mai")).toBe("Rakamla değil, kelimeyle yaz.");
     expect(numberWordHint("um 14:30")).toBe("Rakamla değil, kelimeyle yaz.");
+    expect(numberWordHint("Ich habe 1 Bruder")).toBe("Rakamla değil, kelimeyle yaz.");
+    expect(numberWordHint("1 Euro")).toBe("Rakamla değil, kelimeyle yaz.");
     expect(numberWordHint("vierunddreißig")).toBeNull();
   });
 });
