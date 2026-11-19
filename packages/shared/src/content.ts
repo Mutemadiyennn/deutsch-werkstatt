@@ -111,7 +111,9 @@ export const Lexeme = z.object({
   /** PM-047 §2: false → öğrenciye ayrı kart olarak gösterilmez (işlev kelimeleri); ifadelerin içinde öğretilir */
   card: z.boolean().optional(),
   /** PM-049 (d, h): boşluk doldurma biçimleri — "Ich habe ___ Termin." → einen; ayrılabilir fiilde iki boşluk "sage … ab" */
-  forms: z.array(z.object({ de: z.string().includes("___"), answer: z.string().min(1), tr: z.string().optional(), hint_tr: z.string().optional() })).default([]),
+  /** Boşluk biçimleri. `hint_tr`: yanlış cevaptan sonraki açıklama (soru sırasında yalnızca dokunuşla açılır; PM 7004537514-2).
+   *  `also_ok`: boşluğa giren eş anlamlı başka doğru cevaplar (kriegen/bekommen; İÇ 7003635425-2) */
+  forms: z.array(z.object({ de: z.string().includes("___"), answer: z.string().min(1), also_ok: z.array(z.string().min(1)).optional(), tr: z.string().optional(), hint_tr: z.string().optional() })).default([]),
   audio: Audio.optional(),
   sued: Sued,
   ...Anchors
