@@ -117,6 +117,10 @@ export const Lexeme = z.object({
   ...Anchors
 });
 export type Lexeme = z.infer<typeof Lexeme>;
+/** PM-047 §2: işlev kelimeleri ayrı kart olarak sorulmaz; ifadelerin içinde öğretilir. `card: false` içerikte işaretlenene
+ *  kadar sözcük türünden de anlaşılır (tanımlık, zamir, bağlaç, edat, ilgeç, sayı — sayılar R0'da öğretilir). */
+const ISLEV_TURU = new Set(["det", "pron", "conj", "prep", "particle", "num"]);
+export const kartMi = (l: Pick<Lexeme, "card" | "pos">) => l.card !== false && !ISLEV_TURU.has(l.pos);
 
 export const ReviewState = z.object({
   status: z.enum(["draft", "reviewed"]), by: z.string().optional(), at: z.string().optional(), notes: z.string().optional(),
@@ -374,6 +378,8 @@ export const ContentIndex = z.object({
   scenarios: z.array(z.object({ id: ScenarioId, domain: z.string(), order: z.number(), level: Level, title_tr: z.string(), title_de: z.string(), review: z.string(), format: z.enum(["full", "mini"]).default("full"), season: z.object({ id: z.string(), from: z.string(), to: z.string(), title_tr: z.string() }).optional() })),
   /** M1 İlk Hafta günleri (#58 A4): gün → başlık ve medya listesi (oynatıcı dosyayı `files.m1`'den yükler) */
   m1: z.array(z.object({ day: z.number().int(), id: z.string(), title_tr: z.string(), review: z.string(),
+    /** günün yeni kartlarından Bahçe'ye kart olarak girenler (Bugün'deki "N yeni kelime"; plan sözlüğü yüklemez) */
+    kartlar: z.array(z.string()).default([]),
     medya: z.array(z.object({ id: z.string(), kind: z.enum(["video", "sahne", "ses"]), title_tr: z.string() })) })).default([]),
   /** R0 temel dersler (#58 A5, Seans 2): sıra, başlık, inceleme durumu */
   temel: z.array(z.object({ id: z.string(), order: z.number().int(), title_tr: z.string(), title_de: z.string(), review: z.string() })).default([]),
