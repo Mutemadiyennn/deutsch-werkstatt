@@ -66,7 +66,9 @@ export function App() {
     const on = () => { ustUsteSifirla(); setRoute(parseHash(location.hash)); };
     addEventListener("hashchange", on);
     // iOS: efekt sesi için ses bağlamı ilk dokunuşta açılır (inceleme #87 P2)
-    const kilit = () => { sesKilidiAc(); removeEventListener("pointerdown", kilit, true); removeEventListener("touchend", kilit, true); };
+    // dinleyici kalır: ilk dokunuş etkinleştirme sayılmayabilir (iOS'ta touchend sayılır, pointerdown sayılmaz) ve ses sonradan
+    // açılabilir; ses bağlamı çalışınca sesKilidiAc hemen döner (inceleme #87 2. tur)
+    const kilit = () => sesKilidiAc();
     addEventListener("pointerdown", kilit, true); addEventListener("touchend", kilit, true);
     auth.ready.then(() => { setUser(auth.current()); setAuthReady(true); }).catch(() => setAuthReady(true));
     // inceleme #43 P1-3: giriş durumu 8 sn'de gelmezse öğrenci sonsuz "Yükleniyor"da kalmaz

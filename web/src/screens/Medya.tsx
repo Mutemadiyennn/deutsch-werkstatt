@@ -184,7 +184,7 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
       {adim === "cumle" && <CumleAdimi cs={cs} oy={oy} onNext={() => sonraki()} />}
       {adim === "dikte" && <DikteAdimi key={`${p.b}k${p.k}`} d={b.dikte[p.k]!} sira={`${p.k + 1}/${b.dikte.length}`} cs={cs} oy={oy} onNext={(ok) => sonraki(b.dikte.length, ok ?? undefined)} />}
       {adim === "transkript" && <TranskriptAdimi cs={cs} lex={lex} oy={oy} onNext={() => sonraki()} />}
-      {adim === "golge" && <GolgeAdimi key={`${p.b}g${p.k}`} c={cs.find((c) => c.id === b.golge[p.k]) ?? cs[0]!} sira={`${p.k + 1}/${b.golge.length}`} oy={oy} onNext={(ok) => sonraki(b.golge.length, ok)} />}
+      {adim === "golge" && <GolgeAdimi key={`${p.b}g${p.k}`} c={cs.find((c) => c.id === b.golge[p.k]) ?? cs[0]!} sira={`${p.k + 1}/${b.golge.length}`} oy={oy} onNext={(ok, xp) => sonraki(b.golge.length, ok, xp)} />}
       {adim === "cevapla" && b.cevapla && <CevaplaAdimi key={`${p.b}c`} d={b.cevapla} onNext={(ok, beyan) => sonraki(1, ok, ok && !beyan)} />}
     </div>
   </CevapXp.Provider>);
@@ -322,8 +322,11 @@ function TranskriptAdimi({ cs, lex, oy, onNext }: { cs: MedyaCumle[]; lex: Lexem
 }
 
 /* (f) gölge konuşma: dinle, aynısını söyle */
-function GolgeAdimi({ c, sira, oy, onNext }: { c: MedyaCumle; sira: string; oy: ReturnType<typeof useOynatici>; onNext: (ok: boolean) => void }) {
+/** XP yalnızca tanıma "çok iyi" dediyse ve bir kez (tekrar söyleyince yeniden uçmaz); "Söyledim"/"Doğru söyledim" beyandır,
+ *  XP almaz (D-102; inceleme #87 2. tur) */
+function GolgeAdimi({ c, sira, oy, onNext }: { c: MedyaCumle; sira: string; oy: ReturnType<typeof useOynatici>; onNext: (ok: boolean, xp: boolean) => void }) {
   const [duydum, setDuydum] = useState<string | null>(null);
+  const [iyiSayisi, setIyiSayisi] = useState(0);
   const skor = duydum ? scoreHeard(c.de, duydum) : null;
   return (
     <section class="card stack fade" data-test="adim-golge">
@@ -332,12 +335,12 @@ function GolgeAdimi({ c, sira, oy, onNext }: { c: MedyaCumle; sira: string; oy: 
       <div class="row"><button class="btn primary grow" data-test="golge-dinle" onClick={() => void oy.cumle(c, false)}><Icon name="play" /> Dinle</button>
         <button class="btn grow" onClick={() => void oy.cumle(c, true)}>0,75×</button></div>
       {duydum !== null && skor && (
-        <FeedbackBand kind={skor.score >= 0.8 ? "ok" : "info"} title={`Duyduğum: ${duydum}`}>
+        <FeedbackBand kind={skor.score >= 0.8 ? "ok" : "info"} title={`Duyduğum: ${duydum}`} xp={iyiSayisi > 1 ? 0 : undefined}>
           {skor.score >= 0.8 ? "Çok iyi." : "Bir daha dene; zorlanılan kelimeyi yavaş dinle."}</FeedbackBand>)}
       <ActionBar>
-        {sttAvailable() ? <MicButton wide label={duydum === null ? "Söyle" : "Tekrar söyle"} onText={(t) => setDuydum(t)} /> : null}
+        {sttAvailable() ? <MicButton wide label={duydum === null ? "Söyle" : "Tekrar söyle"} onText={(t) => { setDuydum(t); if (scoreHeard(c.de, t).score >= 0.8) setIyiSayisi((n) => n + 1); }} /> : null}
         {/* konuşma tanıma yanlış duyabilir: öğrenci "doğru söyledim" diyebilir (PM-054.3) */}
-        <button class="btn block" data-test="next" onClick={() => onNext(true)}>{duydum === null ? "Söyledim" : skor && skor.score >= 0.8 ? "Devam" : "Doğru söyledim, devam"}</button>
+        <button class="btn block" data-test="next" onClick={() => onNext(true, iyiSayisi > 0)}>{duydum === null ? "Söyledim" : skor && skor.score >= 0.8 ? "Devam" : "Doğru söyledim, devam"}</button>
       </ActionBar>
     </section>
   );

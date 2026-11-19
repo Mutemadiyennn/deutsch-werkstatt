@@ -38,7 +38,7 @@ function baglam(): AudioContext | null {
  * boş bir tampon çalınır (inceleme #87 P2). app.tsx bunu `pointerdown`/`touchend`'e bağlar.
  */
 export function sesKilidiAc() {
-  if (!ses) return;
+  if (!ses || ac?.state === "running") return;
   try {
     const c = baglam(); if (!c) return;
     if (c.state === "suspended") void c.resume();
