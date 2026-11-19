@@ -57,11 +57,14 @@ function KalipListesi({ ps }: { ps: Pattern[] }) {
 
 /** Alt sayfa (inceleme #94 2. tur P2): açılınca odak "Kapat"ta, Tab sayfanın içinde döner, Escape kapatır, kapanınca
  *  odak açan düğmeye döner. Arkadaki alıştırma (madde, yarım cevap) olduğu gibi kalır. */
-function KalipSayfasi({ p, kapat, children }: { p: Pattern; kapat: () => void; children: preact.ComponentChildren }) {
+function KalipSayfasi({ p, kapat, donus, children }: { p: Pattern; kapat: () => void; donus?: HTMLElement | null; children: preact.ComponentChildren }) {
   const kutu = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const onceki = document.activeElement as HTMLElement | null;
+    // Safari düğmeye tıklayınca odak vermez (activeElement = body); açan düğme ayrıca verilir
+    const onceki = donus ?? (document.activeElement as HTMLElement | null);
     kutu.current?.querySelector<HTMLElement>("[data-test=kalip-kapat]")?.focus();
+    // tarayıcı düğmeye odak vermezse sayfanın kendisine (tabIndex -1); ekran okuyucu etiketi okur
+    if (kutu.current && !kutu.current.contains(document.activeElement)) kutu.current.focus();
     const tus = (e: KeyboardEvent) => {
       if (e.key === "Escape") { e.preventDefault(); kapat(); return; }
       if (e.key !== "Tab" || !kutu.current) return;
@@ -77,7 +80,7 @@ function KalipSayfasi({ p, kapat, children }: { p: Pattern; kapat: () => void; c
   }, []);
   return (
     <div class="whydim" onClick={kapat}>
-      <div ref={kutu} class="whysheet kalip-sheet stack" role="dialog" aria-modal="true" aria-label="Kalıp kartı" data-test="kalip-karti" data-id={p.id} onClick={(e) => e.stopPropagation()}>
+      <div ref={kutu} tabIndex={-1} class="whysheet kalip-sheet stack" role="dialog" aria-modal="true" aria-label="Kalıp kartı" data-test="kalip-karti" data-id={p.id} onClick={(e) => e.stopPropagation()}>
         <div class="row" style={{ flexWrap: "nowrap" }}><h2 class="grow">Kalıp</h2>
           <button class="iconbtn" aria-label="Kapat" data-test="kalip-kapat" onClick={kapat}><Icon name="x" /></button></div>
         {children}
@@ -92,7 +95,7 @@ function KalipSayfasi({ p, kapat, children }: { p: Pattern; kapat: () => void; c
  * Boşluk adları (`slots[].name`) yazar alanıdır ve terim içerebilir (Dativ, Akkusativ…): öğrenciye gösterilmez (OD-9; P1-1).
  * Seçilen öbek: onu kullanan örnek hemen çiplerin altında; örnek yoksa bunu söyler ve cihazdaki sözlükten anlamını verir (P1-2).
  */
-export function KalipKarti({ p, lex = [], back = "#/kalip", kapat }: { p: Pattern; lex?: Lexeme[]; back?: string; kapat?: () => void }) {
+export function KalipKarti({ p, lex = [], back = "#/kalip", kapat, donus }: { p: Pattern; lex?: Lexeme[]; back?: string; kapat?: () => void; donus?: HTMLElement | null }) {
   const [secili, setSecili] = useState<string | null>(null);
   const donusum = DONUSUM_SIRA.filter((k) => p.transforms[k]);
   const eslesen = secili ? p.examples.find((e) => ornekteGecer(e.de, secili)) : undefined;
@@ -154,7 +157,7 @@ export function KalipKarti({ p, lex = [], back = "#/kalip", kapat }: { p: Patter
       )}
     </>
   );
-  if (kapat) return <KalipSayfasi p={p} kapat={kapat}>{govde}</KalipSayfasi>;
+  if (kapat) return <KalipSayfasi p={p} kapat={kapat} donus={donus}>{govde}</KalipSayfasi>;
   return (
     <div class="stack" data-test="kalip-karti" data-id={p.id}>
       <ProgressHeader title="Kalıp" back={back} />

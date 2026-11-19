@@ -249,7 +249,7 @@ const Count = ({ i, n }: { i: number; n: number }) => <span class="tiny" data-te
 function BuildSection({ ctx, finish, back, setSub }: SP) {
   const r = useRun(ctx.s.build);
   // #58 B2: kalıp kartı alt sayfada açılır; alıştırmadan çıkılmaz, tur konumu ve puan kaybolmaz (inceleme #94 P1-3)
-  const [kalipAcik, setKalipAcik] = useState(false);
+  const [kalipAcik, setKalipAcik] = useState<HTMLElement | null | false>(false);
   useEffect(() => { setSub?.(<Count i={r.i} n={r.total} />); }, [r.i]);
   useEffect(() => { if (r.done && r.total) void finish(r.score, r.total); }, [r.done]);
   if (!r.total) return <Empty title="Bu senaryoda cümle kurma maddesi yok" />;
@@ -258,9 +258,9 @@ function BuildSection({ ctx, finish, back, setSub }: SP) {
   const p = b.pattern ? ctx.pt.get(b.pattern) : undefined;
   return (
     <div class="stack" key={b.id}>
-      {kalipAcik && p && <KalipKarti p={p} kapat={() => setKalipAcik(false)} />}
+      {kalipAcik !== false && p && <KalipKarti p={p} donus={kalipAcik} kapat={() => setKalipAcik(false)} />}
       <ProduceItem ctx={ctx} itemId={b.id} accepted={b.accepted} hint={b.prompt_tr} chips={r.i % 3 === 0 && !b.accepted[0]!.includes("{name}")}
-        prompt={<><div class="kicker">Almanca kur · {r.i + 1}/{r.total}</div><div class="de-lg">{b.prompt_tr}</div>{p?.frame_tr && <div class="tiny muted">Kalıp: <button class="kalip-bag-btn" data-test="kalip-bag" onClick={() => setKalipAcik(true)}><Rich text={p.frame_tr} /></button></div>}</>}
+        prompt={<><div class="kicker">Almanca kur · {r.i + 1}/{r.total}</div><div class="de-lg">{b.prompt_tr}</div>{p?.frame_tr && <div class="tiny muted">Kalıp: <button class="kalip-bag-btn" data-test="kalip-bag" onClick={(e) => setKalipAcik(e.currentTarget as HTMLElement)}><Rich text={p.frame_tr} /></button></div>}</>}
         onDone={(ok) => { if (p) void rec(p.id, "pattern", "active", ok ? "correct" : "wrong"); r.next(ok); }} />
     </div>
   );
