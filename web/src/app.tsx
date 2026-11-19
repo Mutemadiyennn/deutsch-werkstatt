@@ -12,6 +12,8 @@ import { loadIndex, within } from "./services/content.ts";
 import { getProfile, latestPlacement, saveProfile } from "./data/db.ts";
 import { setLearning, startFocus, updateFocusConfig } from "./services/focusRuntime.ts";
 import { TabBar, Loading, ErrorPanel } from "./ui/components.tsx";
+import { ErrorBoundary, recordError } from "./ui/ErrorBoundary.tsx";
+import { ensurePersist } from "./services/storage.ts";
 import { Login } from "./screens/Login.tsx";
 import { Onboarding } from "./screens/Onboarding.tsx";
 import { Today } from "./screens/Today.tsx";
@@ -46,6 +48,7 @@ export function App() {
   const [route, setRoute] = useState<Route>(parseHash(location.hash));
   const [toastMsg, setToast] = useState<string | null>(null);
   const [authSlow, setAuthSlow] = useState(false);
+  const [profileErr, setProfileErr] = useState<string | null>(null);
 
   useEffect(() => {
     const on = () => setRoute(parseHash(location.hash));
@@ -55,18 +58,25 @@ export function App() {
     const slow = setTimeout(() => setAuthSlow(true), 8000);
     auth.ready.then(() => clearTimeout(slow), () => clearTimeout(slow));
     const off = auth.onChange((u) => setUser(u));
-    return () => { removeEventListener("hashchange", on); off(); };
+    // beklenmeyen hata yalnızca cihazda kaydedilir (A12; dışarı gönderilmez)
+    const onErr = (e: ErrorEvent) => recordError("window", e.error ?? e.message);
+    const onRej = (e: PromiseRejectionEvent) => recordError("promise", e.reason);
+    addEventListener("error", onErr); addEventListener("unhandledrejection", onRej);
+    return () => { removeEventListener("hashchange", on); removeEventListener("error", onErr); removeEventListener("unhandledrejection", onRej); off(); };
   }, []);
 
   useEffect(() => {
     if (!user) return;
+    setProfileErr(null);
     (async () => {
       const p = await getProfile();
       applyTheme(p);
       setP(p);
+      // veri güvenliği (A12): kurulum bittiyse tarayıcıdan kalıcı depolama iste (yer darlığında silinmesin)
+      if (p.onboardedAt) void ensurePersist();
       setPlacement(await latestPlacement());
       await startFocus(p);
-    })();
+    })().catch((e) => { recordError("profil", e); setProfileErr("Profilin bu cihazdan okunamadı."); });
     within(loadIndex()).then(setIndex).catch((e) => setIndexError(String(e.message || e)));
   }, [user?.uid]);
 
@@ -80,11 +90,11 @@ export function App() {
     ? <ErrorPanel message="Giriş bilgisi şu an doğrulanamadı. İnternet bağlantını kontrol edip tekrar dene." onRetry={() => location.reload()} />
     : <Loading />}</main>;
   if (!user) return <Login />;
-  if (!profile) return <main class="app notabs"><Loading text="Profil yükleniyor…" /></main>;
+  if (!profile) return <main class="app notabs">{profileErr ? <ErrorPanel message={`${profileErr} Verin silinmedi; tekrar dene.`} onRetry={() => location.reload()} /> : <Loading text="Profil yükleniyor…" />}</main>;
 
   const ctx: AppCtx = {
     user, profile, index, indexError, placement, api, route, toast,
-    setProfile: async (p) => { const v = await saveProfile(p); applyTheme(v); setP(v); updateFocusConfig(v); },
+    setProfile: async (p) => { const first = !profile.onboardedAt && !!p.onboardedAt; const v = await saveProfile(p); applyTheme(v); setP(v); updateFocusConfig(v); if (first) void ensurePersist(); },
     refreshPlacement: async () => setPlacement(await latestPlacement())
   };
 
@@ -104,12 +114,12 @@ export function App() {
     case "ders": screen = <DersEkrani key={route.id} id={route.id} />; break;
     case "m1day": screen = <M1Gun day={route.day} />; break;
     case "m1medya": screen = <MedyaEkrani key={route.id} day={route.day} id={route.id} />; break;
-    default: screen = <Today />;
+    default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : <Today />;
   }
   const tabs = !!profile.onboardedAt && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "ders";
   return (
     <Ctx.Provider value={ctx}>
-      <main class={`app${tabs ? "" : " notabs"}`}>{screen}</main>
+      <main class={`app${tabs ? "" : " notabs"}`}><ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>
       {tabs && <TabBar route={route} />}
       <LongPressExplain />
       {(route.name === "section" || route.name === "assess") && <BreakOverlay />}
@@ -117,3 +127,6 @@ export function App() {
     </Ctx.Provider>
   );
 }
+
+/** yalnızca e2e: hata sınırını sınamak için bilerek hata veren ekran */
+function Crash(): never { throw new Error("e2e: bilerek hata"); }

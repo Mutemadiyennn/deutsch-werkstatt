@@ -95,6 +95,8 @@ jobs:
         run: cd tests/e2e && python v2_garden.py --shots /tmp/shots
       - name: "Medya bölüm oynatıcısı (#58 A4): 5 dk video 3 bölüm, a–g, dikte merdiveni, anons"
         run: cd tests/e2e && python v2_medya.py --shots /tmp/shots
+      - name: "Veri güvenliği ve hata sınırı (#58 A12)"
+        run: cd tests/e2e && python v2_veri.py
       - name: "Temel ders oynatıcısı (#58 A5, Seans 2): R0 dersi baştan sona"
         run: cd tests/e2e && python v2_ders.py --shots /tmp/shots
       - name: Görsel regresyon (açık + koyu)
