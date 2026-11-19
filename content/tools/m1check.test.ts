@@ -94,6 +94,9 @@ describe("M1 gün biçimi (#58 A4, PM-053, PM-055)", () => {
     const ogr = clone(); ogr.gun_sinavi = { id: "m1:01:s", maddeler: Array.from({ length: 10 }, (_, i) => m(i)), sesli: [] };
     ogr.gun_sinavi.maddeler[0] = m(0, ["Der Krankenwagen kommt übermorgen.", "Der Krankenwagen kommt übermorgen!", "Krankenwagen kommt übermorgen."]);
     expect(checkGun(parse(ogr), { ...ctx, taught: new Set(["ich", "heiße", "bin", "mein", "name", "ist", "ana"]) }).warnings.some((w) => w.startsWith("gun_sinavi/s0") && w.includes("öğretilmemiş"))).toBe(true);
+    const dk = clone(); dk.gun_sinavi = { id: "m1:01:s", maddeler: Array.from({ length: 10 }, (_, i) => m(i)), sesli: ["s8"], dikte: ["s0", "s8", "s77"] };
+    const dkE = checkGun(parse(dk), ctx).errors.join("\n");
+    expect(dkE).toMatch(/dikte madde s77 sınavda yok/); expect(dkE).toMatch(/s8 hem sesli hem dikte/);
     const az = clone(); az.gun_sinavi = { id: "x", maddeler: [m(0)], sesli: [] };
     expect(Gun.safeParse(az).success).toBe(false);
   });

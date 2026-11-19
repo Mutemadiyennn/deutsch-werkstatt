@@ -137,7 +137,8 @@ Günün videosu ayrı dosyadadır: `content/v2/m1/video/klip-NN.json`. Kaynak De
 "gun_sinavi": {
   "id": "m1:01:s",
   "maddeler": [ /* 10–12 madde; mevcut Drill türleri */ ],
-  "sesli": ["m1:01:s9", "m1:01:s10"]
+  "sesli": ["m1:01:s9", "m1:01:s10"],
+  "dikte": ["m1:01:s1", "m1:01:s2", "m1:01:s3", "m1:01:s4"]
 }
 ```
 Madde bileşimi (11 madde):
@@ -147,6 +148,7 @@ Madde bileşimi (11 madde):
 
 Kurallar:
 - **Kimlik biçimi:** sınav `m1:NN:s`, maddeler `m1:NN:sK` (K = 1…12).
+- **Dikte maddeleri** `dikte` listesinde yazılır. Sınav ekranı bunları günlük dikteyle aynı kuralla puanlar (`dikteDegerlendir`): noktalama sayılmaz; büyük-küçük harf ya da ümlaut farkı doğru sayılır ama doğru yazım gösterilir; başka kelime kabul edilmez. Bir madde hem `dikte` hem `sesli` olamaz.
 - **Sesle cevaplanacak maddeler** yalnızca `sesli` listesinde yazılır. Maddenin içine `"sesli": true` yazılmaz (şemada olmayan alan hatası). Dikte ve seçmeli (`pick`) maddeler `sesli` olamaz.
 - **`audio_de` içinde ad yer tutucusu** (`{name}`, `{Herr|Frau}`) olmaz: ses dosyası önceden üretilir.
 - **Yalnızca öğretilen:** her madde yalnızca o güne kadar öğretilen öğeleri ister (`requires` kuralı).
@@ -154,6 +156,7 @@ Kurallar:
 Doğrulayıcı (`m1check.ts`) şunları denetler:
 - madde kimlikleri tekil;
 - `sesli` kimlikleri sınavda var ve `pick` değil;
+- `dikte` kimlikleri sınavda var, `pick` değil ve `sesli` ile kesişmiyor;
 - üretim maddelerinde `accepted` ≥ 3 (D-064);
 - bütün kabulleri öğretilmemiş kelime içeren madde için uyarı;
 - 10–12 madde (şema).
