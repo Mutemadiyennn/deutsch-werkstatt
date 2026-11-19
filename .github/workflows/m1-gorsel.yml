@@ -1,42 +1,45 @@
-name: "PM-063 cümle görseli denemesi (#58 B14): Workers AI flux-1-schnell, 30 sahne × 2 üslup, Releases'e galeri"
-# Yalnızca kaynak/gorsel dalına push'ta. Hesap Workers Free, ödeme yöntemi yok (PM 7009256371): kota aşılırsa hata, ücret yok.
-# Anahtar yalnızca GitHub şifreli secret'ında: CF_AI_TOKEN ('Workers AI' izinli API jetonu; yoksa CLOUDFLARE_API_TOKEN denenir).
-# Görseller depoya girmez (D-103): Releases `m1-gorsel-deneme`; depoya yalnızca kayıt (content/v2/media/uretim/deneme-kayit.json).
+name: "B14 cümle görseli hattı (PM-063, PM 7020970126): Workers AI flux-1-schnell, üslup cizim-v1, M1 sahneleri, Releases'e"
+# Yalnızca kaynak/gorsel dalına push'ta (gece koşusu: ana motor dala günlük küçük bir itiş yapar). Hesap Workers Free, ödeme
+# yöntemi yok (PM 7009256371): kota aşılırsa hata, ücret yok. Günlük bütçe ≤ 7.000 nöron (policy.json); koşu başına BUTCE.
+# Anahtar yalnızca GitHub şifreli secret'ında: CF_AI_TOKEN ('Workers AI' izinli). Görseller depoya girmez (D-103):
+# Releases `m1-gorsel`; dala yalnızca durum kaydı (content/v2/media/uretim/hat-kayit.json). Seçim (kabul/ret) qa ajanı ayrı adımda.
 on:
   push:
     branches: ["kaynak/gorsel"]
-    paths: ["scripts/gorsel/**", ".github/workflows/m1-gorsel.yml", "content/v2/media/uretim/sahne-*.json"]
+    paths: ["scripts/gorsel/**", ".github/workflows/m1-gorsel.yml", "content/v2/media/uretim/sahne-*.json", "content/v2/media/uretim/butce.txt"]
 permissions:
   contents: write
 concurrency: { group: m1-gorsel, cancel-in-progress: false }
 jobs:
   gorsel:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -q pillow==11.0.0
-      - name: Üretim (bütçe 3.500 nöron)
+      - name: Üretim (koşu bütçesi content/v2/media/uretim/butce.txt; yoksa 3.500 nöron)
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CF_AI_TOKEN: ${{ secrets.CF_AI_TOKEN || secrets.CLOUDFLARE_API_TOKEN }}
-        run: python scripts/gorsel/uret.py out --butce 3500
-      - name: Releases (m1-gorsel-deneme)
+        run: |
+          B=$(cat content/v2/media/uretim/butce.txt 2>/dev/null || echo 3500); [ "$B" -le 7000 ] || B=7000
+          python scripts/gorsel/hat.py out --butce "$B"
+      - name: Releases (m1-gorsel)
         if: always()
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
           shopt -s nullglob
-          f=(out/*.jpg out/galeri.html)
+          f=(out/*.jpg out/galeri-*.html)
           if [ ${#f[@]} -eq 0 ]; then echo "görsel yok"; exit 0; fi
-          gh release view m1-gorsel-deneme >/dev/null 2>&1 || gh release create m1-gorsel-deneme --prerelease --title "PM-063 cümle görseli denemesi" \
-            --notes "Workers AI flux-1-schnell ile üretildi (kaynak: uretim, sinif: acik). Kayıt content/v2/media/uretim/deneme-kayit.json (kaynak/gorsel dalı). PM gözle onaylamadan hat kurulmaz."
-          for ((i=0; i<${#f[@]}; i+=50)); do gh release upload m1-gorsel-deneme "${f[@]:i:50}" --clobber; done
+          gh release view m1-gorsel >/dev/null 2>&1 || gh release create m1-gorsel --prerelease --title "B14 cümle görselleri (cizim-v1)" \
+            --notes "Workers AI flux-1-schnell (kaynak: uretim, sinif: acik, uslup: cizim-v1). Kayıt content/v2/media/uretim/hat-kayit.json (kaynak/gorsel dalı). Uygulamaya yalnızca qa'nın kabul ettiği görseller girer."
+          for ((i=0; i<${#f[@]}; i+=50)); do gh release upload m1-gorsel "${f[@]:i:50}" --clobber; done
       - name: Kaydı dala yaz
         if: always()
         run: |
-          [ -f content/v2/media/uretim/deneme-kayit.json ] || exit 0
+          [ -f content/v2/media/uretim/hat-kayit.json ] || exit 0
           git config user.name "dw-gorsel-hatti"; git config user.email "dw-gorsel-hatti@users.noreply.github.com"
-          git add content/v2/media/uretim/deneme-kayit.json
-          git diff --cached --quiet || (git commit -m "PM-063: deneme kaydı (otomatik) [skip ci]" && git push)
+          git add content/v2/media/uretim/hat-kayit.json
+          git diff --cached --quiet || (git commit -m "B14 hat: durum kaydı (otomatik) [skip ci]" && git push)
