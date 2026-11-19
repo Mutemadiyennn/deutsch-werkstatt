@@ -13,7 +13,7 @@ export function Learn() {
   const domains = index.domains.slice().sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
   return (
     <div class="stack">
-      <TopBar title="Öğren" />
+      <TopBar title="Öğren"><a class="btn sm" href="#/sozluk" data-test="sozluk-ac">Sözlük</a></TopBar>
       {index.temel.length > 0 && (
         <section class="card" data-test="temel-liste">
           <div class="kicker">Temel dersler</div>
