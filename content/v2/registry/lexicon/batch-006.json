@@ -1444,7 +1444,46 @@
     "parcalar": [],
     "ipucu_tr": "**hier** burada, **hierher** buraya demektir."
    },
-   "forms": []
+   "forms": [
+    {
+     "de": "Komm mal ___!",
+     "answer": "hierher",
+     "also_ok": [
+      "her",
+      "hierhin"
+     ],
+     "tr": "Buraya gel!",
+     "hint_tr": "Buraya gel derken **hierher** dersin, **hier** burada demektir."
+    },
+    {
+     "de": "Stellen Sie das bitte ___.",
+     "answer": "hierher",
+     "also_ok": [
+      "hierhin"
+     ],
+     "tr": "Bunu buraya koyun lütfen.",
+     "hint_tr": "Buraya koyarken **hierher** dersin, **hier** burada demektir."
+    },
+    {
+     "de": "Wie lange brauchst du ___?",
+     "answer": "hierher",
+     "tr": "Buraya ne kadar sürede geliyorsun?",
+     "hint_tr": "Buraya gelmek için ne kadar sürdüğünü sorarken **hierher** dersin.",
+     "also_ok": [
+      "hierhin"
+     ]
+    },
+    {
+     "de": "Setz dich ___!",
+     "answer": "hierher",
+     "also_ok": [
+      "her",
+      "hierhin"
+     ],
+     "tr": "Buraya otur!",
+     "hint_tr": "Buraya otur derken **Setz dich hierher!** dersin."
+    }
+   ]
   },
   {
    "id": "lx:reisen",
@@ -1628,7 +1667,44 @@
     "parcalar": [],
     "ipucu_tr": "Konuşmada aynı anlamda daha çok **schon** dersin."
    },
-   "forms": []
+   "forms": [
+    {
+     "de": "Ich habe die Rechnung ___ bezahlt.",
+     "answer": "bereits",
+     "also_ok": [
+      "schon"
+     ],
+     "tr": "Faturayı zaten ödedim.",
+     "hint_tr": "Zaten derken **bereits** dersin: **Ich habe die Rechnung bereits bezahlt.**"
+    },
+    {
+     "de": "Der Zug ist ___ abgefahren.",
+     "answer": "bereits",
+     "also_ok": [
+      "schon"
+     ],
+     "tr": "Tren çoktan kalktı.",
+     "hint_tr": "Çoktan derken **bereits** dersin, konuşmada **schon** de denir."
+    },
+    {
+     "de": "Wie ___ gesagt, das Büro ist morgen zu.",
+     "answer": "bereits",
+     "also_ok": [
+      "schon"
+     ],
+     "tr": "Daha önce söylendiği gibi, büro yarın kapalı.",
+     "hint_tr": "Daha önce söylendiği gibi derken **wie bereits gesagt** dersin."
+    },
+    {
+     "de": "Es ist ___ zehn Uhr.",
+     "answer": "bereits",
+     "also_ok": [
+      "schon"
+     ],
+     "tr": "Saat on olmuş bile.",
+     "hint_tr": "Saat beklenenden ileriyse **Es ist bereits** dersin."
+    }
+   ]
   },
   {
    "id": "lx:klappen",
@@ -3451,13 +3527,23 @@
      "de": "Das ist eine ___ Nachricht!",
      "answer": "großartige",
      "tr": "Bu harika bir haber!",
-     "hint_tr": "**eine Nachricht** önünde **großartige** olur."
+     "hint_tr": "**eine Nachricht** önünde **großartige** olur.",
+     "also_ok": [
+      "tolle",
+      "super",
+      "wunderbare"
+     ]
     },
     {
      "de": "Das war ein ___ Tag.",
      "answer": "großartiger",
      "tr": "Harika bir gündü.",
-     "hint_tr": "**ein Tag** önünde **großartiger** olur."
+     "hint_tr": "**ein Tag** önünde **großartiger** olur.",
+     "also_ok": [
+      "toller",
+      "super",
+      "wunderbarer"
+     ]
     },
     {
      "de": "Sie haben ___ gearbeitet.",
@@ -5253,7 +5339,12 @@
      "de": "Das habe ich ___ vergessen.",
      "answer": "total",
      "tr": "Bunu tamamen unuttum.",
-     "hint_tr": "Tamamen derken konuşmada **total** denir."
+     "hint_tr": "Tamamen derken konuşmada **total** denir.",
+     "also_ok": [
+      "völlig",
+      "ganz",
+      "komplett"
+     ]
     },
     {
      "de": "War's schön? – Ja, ___!",
@@ -5665,6 +5756,17 @@
      "answer": "bleiben",
      "tr": "Yağmur yağıyor, bu yüzden evde kalıyoruz.",
      "hint_tr": "**deswegen** arkasından hemen **bleiben** gelir, **wir** sonra gelir."
+    },
+    {
+     "de": "Ich habe Kopfschmerzen, ___ nehme ich eine Tablette.",
+     "answer": "deswegen",
+     "also_ok": [
+      "deshalb",
+      "darum",
+      "daher"
+     ],
+     "tr": "Başım ağrıyor, bu yüzden bir hap alıyorum.",
+     "hint_tr": "Bu yüzden derken **deswegen** dersin, arkasından hemen **nehme** gelir."
     }
    ]
   },
@@ -5937,7 +6039,58 @@
     "parcalar": [],
     "ipucu_tr": "Bana hiç fark etmez derken **Das ist mir völlig egal** dersin."
    },
-   "forms": []
+   "forms": [
+    {
+     "de": "Ich bin ___ fertig.",
+     "answer": "völlig",
+     "also_ok": [
+      "total",
+      "ganz",
+      "komplett",
+      "vollkommen"
+     ],
+     "tr": "Tamamen bitkinim.",
+     "hint_tr": "Tamamen derken **völlig** dersin: **Ich bin völlig fertig.**"
+    },
+    {
+     "de": "Das ist ___ falsch.",
+     "answer": "völlig",
+     "also_ok": [
+      "total",
+      "ganz",
+      "komplett",
+      "vollkommen",
+      "absolut"
+     ],
+     "tr": "Bu tamamen yanlış.",
+     "hint_tr": "Tamamen yanlış derken **völlig falsch** dersin."
+    },
+    {
+     "de": "Die Straße ist ___ leer.",
+     "answer": "völlig",
+     "also_ok": [
+      "total",
+      "ganz",
+      "komplett",
+      "vollkommen",
+      "absolut"
+     ],
+     "tr": "Sokak tamamen boş.",
+     "hint_tr": "Tamamen boş derken **völlig leer** dersin."
+    },
+    {
+     "de": "Ich habe den Termin ___ vergessen.",
+     "answer": "völlig",
+     "also_ok": [
+      "total",
+      "ganz",
+      "komplett",
+      "vollkommen"
+     ],
+     "tr": "Randevuyu tamamen unuttum.",
+     "hint_tr": "Tamamen derken **völlig** dersin: **Ich habe den Termin völlig vergessen.**"
+    }
+   ]
   },
   {
    "id": "lx:Party",
@@ -8034,18 +8187,36 @@
     {
      "de": "Das Essen schmeckt ___.",
      "answer": "komisch",
+     "also_ok": [
+      "seltsam",
+      "merkwürdig",
+      "eigenartig",
+      "sonderbar"
+     ],
      "tr": "Yemeğin tadı tuhaf.",
      "hint_tr": "Tadı garipse **schmeckt komisch** denir."
     },
     {
      "de": "Ich habe ein ___ Gefühl.",
      "answer": "komisches",
+     "also_ok": [
+      "seltsames",
+      "merkwürdiges",
+      "eigenartiges",
+      "sonderbares"
+     ],
      "tr": "İçimde tuhaf bir his var.",
      "hint_tr": "**ein Gefühl** arasına girince **komisch**, **komisches** olur."
     },
     {
      "de": "Er ist ein ___ Typ.",
      "answer": "komischer",
+     "also_ok": [
+      "seltsamer",
+      "merkwürdiger",
+      "eigenartiger",
+      "sonderbarer"
+     ],
      "tr": "Adam tuhaf biri.",
      "hint_tr": "**ein Typ** arasına girince **komisch**, **komischer** olur."
     },
@@ -8140,6 +8311,9 @@
     {
      "de": "Ich ___ dir, zum Arzt zu gehen.",
      "answer": "rate",
+     "also_ok": [
+      "empfehle"
+     ],
      "tr": "Doktora gitmeni tavsiye ederim.",
      "hint_tr": "**ich** ile **rate** olur."
     },
@@ -8147,17 +8321,26 @@
      "de": "___ mal, wer heute kommt!",
      "answer": "Rate",
      "tr": "Tahmin et bakalım bugün kim geliyor!",
-     "hint_tr": "Tahmin et bakalım derken **Rate mal** denir."
+     "hint_tr": "Tahmin et bakalım derken **Rate mal** denir.",
+     "also_ok": [
+      "Rat"
+     ]
     },
     {
      "de": "Der Arzt ___ mir, mehr zu schlafen.",
      "answer": "rät",
+     "also_ok": [
+      "empfiehlt"
+     ],
      "tr": "Doktor bana daha çok uyumamı tavsiye ediyor.",
      "hint_tr": "**er** ve **sie** ile **rät** olur."
     },
     {
      "de": "Er hat mir ___, zu warten.",
      "answer": "geraten",
+     "also_ok": [
+      "empfohlen"
+     ],
      "tr": "Adam bana beklememi tavsiye etti.",
      "hint_tr": "Geçmişi anlatırken **hat geraten** denir."
     }
