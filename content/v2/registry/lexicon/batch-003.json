@@ -304,16 +304,24 @@
    },
    "forms": [
     {
-     "de": "Natürlich ___ ich morgen.",
-     "answer": "komme",
-     "tr": "Tabii ki yarın geliyorum.",
-     "hint_tr": "**Natürlich** başta olunca **komme** hemen arkadan gelir."
+     "de": "___ helfe ich dir!",
+     "answer": "Natürlich",
+     "tr": "Tabii ki sana yardım ederim!",
+     "hint_tr": "Tabii ki yardım ederim derken **Natürlich helfe ich** denir.",
+     "also_ok": [
+      "Klar",
+      "Sicher",
+      "Selbstverständlich"
+     ]
     },
     {
-     "de": "Natürlich ___ Sie hier zahlen.",
-     "answer": "können",
+     "de": "Sie können ___ hier zahlen.",
+     "answer": "natürlich",
      "tr": "Tabii ki burada ödeyebilirsiniz.",
-     "hint_tr": "**Natürlich** başta olunca **können** hemen arkadan gelir."
+     "hint_tr": "Tabii ki derken **natürlich** denir.",
+     "also_ok": [
+      "selbstverständlich"
+     ]
     },
     {
      "de": "Das ist ganz ___.",
@@ -342,7 +350,7 @@
      "de": "Das ist ein ___ Saft, ohne Zucker.",
      "answer": "natürlicher",
      "tr": "Bu doğal bir meyve suyu, şekersiz.",
-     "hint_tr": "**ein** ile **Saft** arasında **natürlich**, **natürlicher** olur."
+     "hint_tr": "Doğal bir meyve suyu derken **ein natürlicher Saft** denir."
     }
    ]
   },
@@ -1558,16 +1566,22 @@
    },
    "forms": [
     {
-     "de": "Dort ___ der Eingang.",
-     "answer": "ist",
-     "tr": "Giriş orada.",
-     "hint_tr": "**Dort** başta olunca **ist** hemen arkadan gelir."
+     "de": "Sehen Sie die Tür? ___ ist der Eingang.",
+     "answer": "Dort",
+     "tr": "Kapıyı görüyor musunuz? Giriş orada.",
+     "hint_tr": "Giriş orada derken **Dort ist der Eingang** denir.",
+     "also_ok": [
+      "Da"
+     ]
     },
     {
-     "de": "Dort ___ wir uns.",
-     "answer": "treffen",
-     "tr": "Orada buluşuyoruz.",
-     "hint_tr": "**Dort** başta olunca **treffen** hemen arkadan gelir."
+     "de": "Wir treffen uns ___, vor der Apotheke.",
+     "answer": "dort",
+     "tr": "Orada buluşuyoruz, eczanenin önünde.",
+     "hint_tr": "Orada buluşuyoruz derken **Wir treffen uns dort** denir.",
+     "also_ok": [
+      "da"
+     ]
     },
     {
      "de": "Wie komme ich ___?",
@@ -2987,8 +3001,8 @@
     },
     {
      "id": "lx:Mädchen:2",
-     "de": "Wir haben zwei Mädchen und einen Jungen.",
-     "tr": "İki kız ve bir erkek çocuğumuz var.",
+     "de": "Die Nachbarn haben zwei Mädchen und einen Jungen.",
+     "tr": "Komşuların iki kız ve bir erkek çocuğu var.",
      "layer": "hd",
      "img": "parents walking with three children from behind"
     },
@@ -3536,8 +3550,8 @@
     },
     {
      "id": "lx:sorgen:4",
-     "de": "– Ich mache mir Sorgen um meine Mutter. – Ist sie krank?",
-     "tr": "– Annem için endişeleniyorum. – Hasta mı?",
+     "de": "– Anna macht sich Sorgen um ihre Mutter. – Ist sie krank?",
+     "tr": "– Anna annesi için endişeleniyor. – Annesi hasta mı?",
      "layer": "alltag",
      "dialog": true,
      "img": "worried daughter with elderly mother"
@@ -3589,9 +3603,9 @@
      "hint_tr": "Çocuklarla ilgilenmek derken **für die Kinder sorgen** denir."
     },
     {
-     "de": "Ich mache mir ___ um meine Mutter.",
+     "de": "Anna macht sich ___ um ihre Mutter.",
      "answer": "Sorgen",
-     "tr": "Annem için endişeleniyorum.",
+     "tr": "Anna annesi için endişeleniyor.",
      "hint_tr": "Endişelenmek **sich Sorgen machen** ile söylenir."
     },
     {
@@ -3603,7 +3617,7 @@
     {
      "de": "Die Kinder ___ für ihren alten Vater.",
      "answer": "sorgen",
-     "tr": "Çocuklar yaşlı babalarına bakıyor.",
+     "tr": "Çocuklar yaşlı babalarıyla ilgileniyor.",
      "hint_tr": "**die Kinder** ile **sorgen** olur."
     }
    ]
@@ -4537,8 +4551,8 @@
      "hint_tr": "Dünyayı gezmek **um die Welt reisen** ile söylenir."
     },
     {
-     "de": "Davon geht die Welt nicht ___.",
-     "answer": "unter",
+     "de": "Davon geht die ___ nicht unter.",
+     "answer": "Welt",
      "tr": "Dünyanın sonu değil.",
      "hint_tr": "Dünyanın sonu değil derken **Davon geht die Welt nicht unter** denir."
     },
@@ -4969,10 +4983,10 @@
      "hint_tr": "Çok korkmak **große Angst haben** ile söylenir."
     },
     {
-     "de": "Ich ___ keine Angst.",
-     "answer": "habe",
-     "tr": "Korkmuyorum.",
-     "hint_tr": "Korkmak **Angst haben** ile söylenir: **Ich habe keine Angst**."
+     "de": "Du musst keine ___ haben, der Hund ist lieb.",
+     "answer": "Angst",
+     "tr": "Korkmana gerek yok, köpek uysal.",
+     "hint_tr": "Korkmana gerek yok derken **Du musst keine Angst haben** denir."
     }
    ]
   },
@@ -6129,7 +6143,7 @@
    "collocations": [
     {
      "de": "nach München ziehen",
-     "tr": "Münih şehrine taşınmak"
+     "tr": "Münih'e taşınmak"
     },
     {
      "de": "Ziehen!",
@@ -6150,16 +6164,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Münih şehrine taşındık derken **Wir haben nach München gezogen** yanlış. Doğrusu **Wir sind nach München gezogen**.",
+    "Anna Münih'e taşındı derken **Anna hat nach München gezogen** yanlış. Doğrusu **Anna ist nach München gezogen**.",
     "Kapıyı itmek isterken **ziehen** yanlış. Kapıda **Ziehen** çek, **Drücken** it demektir."
    ],
    "examples": [
     {
      "id": "lx:ziehen:1",
-     "de": "Wir sind letztes Jahr nach Augsburg gezogen.",
-     "tr": "Geçen yıl Augsburg şehrine taşındık.",
+     "de": "Anna ist letztes Jahr nach Augsburg gezogen.",
+     "tr": "Anna geçen yıl Augsburg'a taşındı.",
      "layer": "hd",
-     "img": "family carrying moving boxes into new home"
+     "img": "woman carrying moving boxes into new home"
     },
     {
      "id": "lx:ziehen:2",
@@ -6175,8 +6189,8 @@
     },
     {
      "id": "lx:ziehen:4",
-     "de": "– Wohnst du noch in Köln? – Nein, ich bin nach München gezogen.",
-     "tr": "– Hâlâ Köln şehrinde mi oturuyorsun? – Hayır, Münih şehrine taşındım.",
+     "de": "– Wohnt Max noch in Köln? – Nein, er ist nach München gezogen.",
+     "tr": "– Max hâlâ Köln'de mi oturuyor? – Hayır, Münih'e taşındı.",
      "layer": "alltag",
      "dialog": true
     },
@@ -6225,10 +6239,13 @@
      "hint_tr": "**ihr** ile **zieht** olur."
     },
     {
-     "de": "Wir sind nach Augsburg ___.",
+     "de": "Anna ist nach Augsburg ___.",
      "answer": "gezogen",
-     "tr": "Augsburg şehrine taşındık.",
-     "hint_tr": "Taşındık derken **wir sind gezogen** denir."
+     "tr": "Anna Augsburg'a taşındı.",
+     "hint_tr": "Taşındı derken **ist gezogen** denir.",
+     "also_ok": [
+      "umgezogen"
+     ]
     },
     {
      "de": "Nicht drücken, Sie müssen ___!",
@@ -6240,7 +6257,7 @@
      "de": "Tobi ___ bald in eine andere Stadt.",
      "answer": "zieht",
      "tr": "Tobi yakında başka bir şehre taşınıyor.",
-     "hint_tr": "**er** ve **sie** ile **zieht** olur."
+     "hint_tr": "Tobi başka şehre taşınıyor derken **Tobi zieht** denir."
     }
    ]
   },
@@ -6704,7 +6721,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Aile derken **FA-mi-lie** diye söylemek yanlış. Doğrusu **fa-MI-lie**, ortası güçlü söylenir.",
-    "Ailem kalabalık derken **Meine Familie sind groß** yanlış. Doğrusu **Meine Familie ist groß**."
+    "Max'ın ailesi kalabalık derken **Die Familie von Max sind groß** yanlış. Doğrusu **Die Familie von Max ist groß**."
    ],
    "examples": [
     {
@@ -6765,16 +6782,19 @@
    "img": "family together at home",
    "forms": [
     {
-     "de": "Wir sind ___ große Familie.",
+     "de": "Das ist ___ große Familie.",
      "answer": "eine",
-     "tr": "Biz kalabalık bir aileyiz.",
+     "tr": "Bu kalabalık bir aile.",
      "hint_tr": "Bir aileden söz ederken **eine Familie** denir."
     },
     {
-     "de": "Ich telefoniere jeden Sonntag mit ___ Familie.",
-     "answer": "meiner",
-     "tr": "Her pazar günü ailemle telefonda konuşuyorum.",
-     "hint_tr": "Ailemle derken **mit meiner Familie** denir."
+     "de": "Anna telefoniert jeden Sonntag mit ___ Familie.",
+     "answer": "ihrer",
+     "tr": "Anna her pazar günü ailesiyle telefonda konuşuyor.",
+     "hint_tr": "Kadının ailesiyle derken **mit ihrer Familie** denir.",
+     "also_ok": [
+      "der"
+     ]
     },
     {
      "de": "Wie geht es ___ Familie?",
@@ -6792,10 +6812,10 @@
      "hint_tr": "Eş ve çocuk sorarken **Haben Sie Familie?** denir."
     },
     {
-     "de": "Meine Familie ___ groß.",
-     "answer": "ist",
-     "tr": "Ailem kalabalık.",
-     "hint_tr": "Aile tek bir grup olduğu için **Meine Familie ist** denir."
+     "de": "Die ___ von Max ist sehr groß.",
+     "answer": "Familie",
+     "tr": "Max'ın ailesi çok kalabalık.",
+     "hint_tr": "Max'ın ailesi derken **die Familie von Max** denir."
     },
     {
      "de": "Luka fährt am Wochenende zu seiner ___.",
@@ -7974,24 +7994,24 @@
    "examples": [
     {
      "id": "lx:Sohn:1",
-     "de": "Mein Sohn ist zehn Jahre alt.",
-     "tr": "Oğlum on yaşında.",
+     "de": "Der Sohn von Anna ist zehn Jahre alt.",
+     "tr": "Anna'nın oğlu on yaşında.",
      "layer": "hd",
-     "img": "father and son walking from behind"
+     "img": "mother and son walking from behind"
     },
     {
      "id": "lx:Sohn:2",
-     "de": "Wir haben einen Sohn und eine Tochter.",
-     "tr": "Bir oğlumuz ve bir kızımız var.",
+     "de": "Die Nachbarn haben einen Sohn und eine Tochter.",
+     "tr": "Komşuların bir oğlu ve bir kızı var.",
      "layer": "hd",
      "img": "family of four walking in park from behind"
     },
     {
      "id": "lx:Sohn:3",
-     "de": "Mein Sohn spielt den ganzen Tag.",
-     "tr": "Oğlum bütün gün oynuyor.",
+     "de": "Dein Sohn ist aber groß geworden!",
+     "tr": "Oğlun ne kadar büyümüş!",
      "layer": "alltag",
-     "img": "child hands playing with toy cars on floor"
+     "img": "teenage boy and parent walking from behind"
     },
     {
      "id": "lx:Sohn:4",
@@ -8029,22 +8049,25 @@
    },
    "forms": [
     {
-     "de": "Wir haben ___ Sohn und eine Tochter.",
+     "de": "Die Nachbarn haben ___ Sohn und eine Tochter.",
      "answer": "einen",
-     "tr": "Bir oğlumuz ve bir kızımız var.",
-     "hint_tr": "**Wir haben** dedikten sonra **ein Sohn**, **einen Sohn** olur."
+     "tr": "Komşuların bir oğlu ve bir kızı var.",
+     "hint_tr": "**Die Nachbarn haben** dedikten sonra **ein Sohn**, **einen Sohn** olur."
     },
     {
-     "de": "___ Sohn ist zehn Jahre alt.",
-     "answer": "Mein",
-     "tr": "Oğlum on yaşında.",
-     "hint_tr": "Oğlum derken **mein Sohn** denir."
+     "de": "Wie heißt ___ Sohn?",
+     "answer": "dein",
+     "tr": "Oğlunun adı ne?",
+     "hint_tr": "Oğlun derken **dein Sohn** denir."
     },
     {
-     "de": "Ich gehe mit ___ Sohn zum Arzt.",
-     "answer": "meinem",
-     "tr": "Oğlumla doktora gidiyorum.",
-     "hint_tr": "Oğlumla derken **mit meinem Sohn** denir."
+     "de": "Anna geht mit ___ Sohn zum Arzt.",
+     "answer": "ihrem",
+     "tr": "Anna oğluyla doktora gidiyor.",
+     "hint_tr": "**mit** dedikten sonra **ihr Sohn**, **ihrem Sohn** olur.",
+     "also_ok": [
+      "dem"
+     ]
     },
     {
      "de": "Sie hat zwei ___.",
@@ -8059,10 +8082,10 @@
      "hint_tr": "Oğul derken **der Sohn** denir."
     },
     {
-     "de": "Unser ___ geht schon zur Schule.",
+     "de": "Geht euer ___ schon zur Schule?",
      "answer": "Sohn",
-     "tr": "Oğlumuz artık okula gidiyor.",
-     "hint_tr": "Oğlumuz derken **unser Sohn** denir."
+     "tr": "Oğlunuz artık okula gidiyor mu?",
+     "hint_tr": "Oğlunuz derken **euer Sohn** denir."
     }
    ]
   },
@@ -11889,7 +11912,7 @@
      "de": "Frau Schneider schreibt die Nummer auf einen Zettel.",
      "tr": "Schneider Hanım numarayı bir kâğıda yazıyor.",
      "layer": "hd",
-     "img": "clerk writing number on paper slip"
+     "img": "hand with pen over small blank notepad on desk"
     },
     {
      "id": "lx:schreiben:6",
@@ -12021,7 +12044,7 @@
      "de": "Im Bus weint ein Baby.",
      "tr": "Otobüste bir bebek ağlıyor.",
      "layer": "hd",
-     "img": "baby crying on city bus"
+     "img": "baby stroller from behind inside city bus"
     },
     {
      "id": "lx:Baby:6",
@@ -12029,7 +12052,7 @@
      "tr": "– Bebek hasta mı? – Hayır, sadece acıkmış.",
      "layer": "alltag",
      "dialog": true,
-     "img": "mother feeding baby with bottle"
+     "img": "hand holding baby milk bottle"
     }
    ],
    "level": "A1",

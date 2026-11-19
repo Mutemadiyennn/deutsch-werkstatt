@@ -541,8 +541,8 @@
     },
     {
      "id": "lx:mögen#2:6",
-     "de": "– Möchten Sie eine Tüte? – Nein, danke.",
-     "tr": "– Poşet ister misiniz? – Hayır, teşekkürler.",
+     "de": "– Möchten Sie noch einen Kaffee? – Ja, gern.",
+     "tr": "– Bir kahve daha ister misiniz? – Evet, memnuniyetle.",
      "layer": "alltag",
      "dialog": true
     }
@@ -1253,12 +1253,12 @@
      "hint_tr": "Asla derken **nie** denir."
     },
     {
-     "de": "Nie ___!",
-     "answer": "wieder",
+     "de": "___ wieder!",
+     "answer": "Nie",
      "tr": "Bir daha asla!",
      "hint_tr": "Bir daha asla derken **nie wieder** denir.",
      "also_ok": [
-      "mehr"
+      "Niemals"
      ]
     },
     {
@@ -5647,8 +5647,8 @@
     },
     {
      "id": "lx:Kind:2",
-     "de": "Frau Stadler holt die Kinder um vier ab.",
-     "tr": "Stadler Hanım çocukları dörtte alıyor.",
+     "de": "Frau Wagner holt die Kinder um vier ab.",
+     "tr": "Wagner Hanım çocukları dörtte alıyor.",
      "layer": "hd",
      "img": "parent picking up children at kindergarten"
     },
@@ -5712,9 +5712,9 @@
      "hint_tr": "**bekommen** dedikten sonra **ein Kind** aynı kalır."
     },
     {
-     "de": "Frau Stadler holt ___ Kinder um vier ab.",
+     "de": "Frau Wagner holt ___ Kinder um vier ab.",
      "answer": "die",
-     "tr": "Stadler Hanım çocukları dörtte alıyor.",
+     "tr": "Wagner Hanım çocukları dörtte alıyor.",
      "hint_tr": "Hangi çocuklar olduğu belliyse **die Kinder** denir.",
      "also_ok": [
       "ihre"
@@ -5727,16 +5727,16 @@
      "hint_tr": "**mit** dedikten sonra **die Kinder**, **den Kindern** olur."
     },
     {
-     "de": "Frau Stadler hat drei ___.",
+     "de": "Frau Wagner hat drei ___.",
      "answer": "Kinder",
-     "tr": "Stadler Hanım'ın üç çocuğu var.",
+     "tr": "Wagner Hanım'ın üç çocuğu var.",
      "hint_tr": "Üç çocuk derken **drei Kinder** denir."
     },
     {
      "de": "Das ___ hat Fieber.",
      "answer": "Kind",
      "tr": "Çocuğun ateşi var.",
-     "hint_tr": "**Kind** ile **das** gelir: **das Kind**."
+     "hint_tr": "Çocuk derken **das Kind** denir."
     }
    ]
   },
@@ -6475,10 +6475,10 @@
     },
     {
      "id": "lx:Vater:3",
-     "de": "Mein Vater sagt das immer.",
-     "tr": "Babam bunu hep söyler.",
+     "de": "Dein Vater ist echt nett!",
+     "tr": "Baban gerçekten nazik biri!",
      "layer": "alltag",
-     "img": "father talking at family dinner table"
+     "img": "friendly older man smiling at garden gate"
     },
     {
      "id": "lx:Vater:4",
@@ -6518,22 +6518,28 @@
    "img": "father and child",
    "forms": [
     {
-     "de": "Das ist ___ Vater.",
-     "answer": "mein",
-     "tr": "Bu benim babam.",
-     "hint_tr": "Benim babam derken **mein Vater** denir."
+     "de": "Ist das ___ Vater?",
+     "answer": "dein",
+     "tr": "Bu senin baban mı?",
+     "hint_tr": "Senin baban derken **dein Vater** denir."
     },
     {
-     "de": "Ich besuche ___ Vater.",
-     "answer": "meinen",
-     "tr": "Babamı ziyaret ediyorum.",
-     "hint_tr": "**Ich besuche** dedikten sonra **mein Vater**, **meinen Vater** olur."
+     "de": "Tom besucht ___ Vater.",
+     "answer": "seinen",
+     "tr": "Tom babasını ziyaret ediyor.",
+     "hint_tr": "**Tom besucht** dedikten sonra **sein Vater**, **seinen Vater** olur.",
+     "also_ok": [
+      "den"
+     ]
     },
     {
-     "de": "Ich telefoniere mit ___ Vater.",
-     "answer": "meinem",
-     "tr": "Babamla telefonda konuşuyorum.",
-     "hint_tr": "**mit** dedikten sonra **mein Vater**, **meinem Vater** olur."
+     "de": "Tom fährt mit ___ Vater in die Stadt.",
+     "answer": "seinem",
+     "tr": "Tom babasıyla şehre gidiyor.",
+     "hint_tr": "**mit** dedikten sonra **sein Vater**, **seinem Vater** olur.",
+     "also_ok": [
+      "dem"
+     ]
     },
     {
      "de": "Tom ist letztes Jahr ___ geworden.",
@@ -6674,13 +6680,10 @@
      "hint_tr": "Seve seve evet derken **Klar** dersin."
     },
     {
-     "de": "Sprechen Sie bitte laut und ___.",
+     "de": "Jetzt ist mir alles ___.",
      "answer": "klar",
-     "also_ok": [
-      "deutlich"
-     ],
-     "tr": "Lütfen yüksek sesle ve açık konuşun.",
-     "hint_tr": "Açık konuşmak derken **klar sprechen** denir."
+     "tr": "Şimdi her şeyi anlıyorum.",
+     "hint_tr": "Şimdi her şeyi anlıyorum derken **Jetzt ist mir alles klar** denir."
     }
    ]
   },
@@ -7797,10 +7800,13 @@
      "hint_tr": "Hangi insanlar olduğu belliyse **die Leute** denir."
     },
     {
-     "de": "Die Leute ___ sehr freundlich.",
-     "answer": "sind",
-     "tr": "İnsanlar çok güler yüzlü.",
-     "hint_tr": "**die Leute** birden çok kişi olduğu için **sind** gelir."
+     "de": "Im Bus sind heute wenig ___.",
+     "answer": "Leute",
+     "tr": "Bugün otobüste az insan var.",
+     "hint_tr": "Az insan derken **wenig Leute** denir.",
+     "also_ok": [
+      "Menschen"
+     ]
     },
     {
      "de": "Kennst du ___ Leute da drüben?",
@@ -8546,13 +8552,10 @@
      "hint_tr": "Hangi para olduğu belliyse **das Geld** denir."
     },
     {
-     "de": "Ich muss noch Geld ___.",
-     "answer": "abheben",
-     "tr": "Bir de para çekmem lazım.",
-     "hint_tr": "Bankamatikten para çekmek **Geld abheben** ile söylenir.",
-     "also_ok": [
-      "holen"
-     ]
+     "de": "Ich muss vor dem Einkaufen noch ___ abheben.",
+     "answer": "Geld",
+     "tr": "Alışverişten önce bir de para çekmem lazım.",
+     "hint_tr": "Para çekmek derken **Geld abheben** denir."
     },
     {
      "de": "Kann ich hier ___ wechseln?",
@@ -8746,7 +8749,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Otobüsle gidiyorum derken **Ich gehe mit dem Bus** yanlış. Doğrusu **Ich fahre mit dem Bus**.",
-    "Berlin şehrine gittim derken **Ich habe nach Berlin gefahren** yanlış. Doğrusu **Ich bin nach Berlin gefahren**."
+    "Berlin'e gittim derken **Ich habe nach Berlin gefahren** yanlış. Doğrusu **Ich bin nach Berlin gefahren**."
    ],
    "examples": [
     {
@@ -8810,7 +8813,7 @@
     {
      "de": "___ du morgen nach Nürnberg?",
      "answer": "Fährst",
-     "tr": "Yarın Nürnberg şehrine gidiyor musun?",
+     "tr": "Yarın Nürnberg'e gidiyor musun?",
      "hint_tr": "**du** ile **fährst** olur."
     },
     {
@@ -8823,7 +8826,7 @@
      "de": "Wir sind mit dem Zug ___.",
      "answer": "gefahren",
      "tr": "Trenle gittik.",
-     "hint_tr": "Geçmişi anlatırken **sind gefahren** denir, **haben** gelmez."
+     "hint_tr": "Trenle gittik derken **Wir sind mit dem Zug gefahren** denir."
     },
     {
      "de": "___ ihr am Wochenende in die Berge?",
@@ -8945,8 +8948,8 @@
    "examples": [
     {
      "id": "lx:Mutter:1",
-     "de": "Meine Mutter ruft jeden Tag an.",
-     "tr": "Annem her gün telefon ediyor.",
+     "de": "Die Mutter von Anna ruft jeden Tag an.",
+     "tr": "Anna'nın annesi her gün telefon ediyor.",
      "layer": "hd",
      "img": "elderly mother talking on phone at home"
     },
@@ -8959,10 +8962,10 @@
     },
     {
      "id": "lx:Mutter:3",
-     "de": "Meine Mutter kocht am besten.",
-     "tr": "En iyi yemeği annem yapar.",
+     "de": "Grüß deine Mutter von mir!",
+     "tr": "Annene benden selam söyle!",
      "layer": "alltag",
-     "img": "mother cooking family meal in kitchen"
+     "img": "two women waving goodbye at front door"
     },
     {
      "id": "lx:Mutter:4",
@@ -8977,7 +8980,7 @@
      "de": "Eine Mutter wartet mit ihrem Baby beim Arzt.",
      "tr": "Bir anne bebeğiyle doktorda bekliyor.",
      "layer": "hd",
-     "img": "mother with baby stroller in waiting room"
+     "img": "mother from behind with baby stroller in waiting room"
     },
     {
      "id": "lx:Mutter:6",
@@ -9008,16 +9011,22 @@
      "hint_tr": "Bir anneden söz ederken **eine Mutter** denir."
     },
     {
-     "de": "Ich rufe ___ Mutter an.",
-     "answer": "meine",
-     "tr": "Anneme telefon ediyorum.",
-     "hint_tr": "**Ich rufe** dedikten sonra da **meine Mutter** aynı kalır."
+     "de": "Max ruft ___ Mutter an.",
+     "answer": "seine",
+     "tr": "Max annesine telefon ediyor.",
+     "hint_tr": "**Max ruft** dedikten sonra da **seine Mutter** aynı kalır.",
+     "also_ok": [
+      "die"
+     ]
     },
     {
-     "de": "Ich telefoniere mit ___ Mutter.",
-     "answer": "meiner",
-     "tr": "Annemle telefonda konuşuyorum.",
-     "hint_tr": "**mit** dedikten sonra **meine Mutter**, **meiner Mutter** olur."
+     "de": "Anna telefoniert mit ___ Mutter.",
+     "answer": "ihrer",
+     "tr": "Anna annesiyle telefonda konuşuyor.",
+     "hint_tr": "**mit** dedikten sonra **ihre Mutter**, **ihrer Mutter** olur.",
+     "also_ok": [
+      "der"
+     ]
     },
     {
      "de": "Wie geht es ___ Mutter?",
@@ -9830,32 +9839,42 @@
    },
    "forms": [
     {
-     "de": "Wieso ___ du nicht gekommen?",
-     "answer": "bist",
+     "de": "___ bist du nicht gekommen?",
+     "answer": "Wieso",
      "tr": "Niye gelmedin?",
-     "hint_tr": "**Wieso** ile sorarken **bist** hemen arkadan gelir."
-    },
-    {
-     "de": "Wieso ___ du nicht mit?",
-     "answer": "kommst",
-     "tr": "Niye bizimle gelmiyorsun?",
-     "hint_tr": "**Wieso** ile sorarken **kommst** hemen arkadan gelir.",
+     "hint_tr": "Niye gelmedin derken **Wieso bist du nicht gekommen?** denir.",
      "also_ok": [
-      "gehst",
-      "fährst"
+      "Warum",
+      "Weshalb"
      ]
     },
     {
-     "de": "Wieso ___?",
-     "answer": "nicht",
-     "tr": "Neden olmasın?",
-     "hint_tr": "Neden olmasın derken **Wieso nicht?** denir."
+     "de": "Und ___ kommst du nicht mit?",
+     "answer": "wieso",
+     "tr": "Peki niye bizimle gelmiyorsun?",
+     "hint_tr": "Peki niye derken **Und wieso** denir.",
+     "also_ok": [
+      "warum",
+      "weshalb"
+     ]
     },
     {
-     "de": "Wieso ___ Tobi nicht da?",
-     "answer": "ist",
-     "tr": "Tobi niye burada değil?",
-     "hint_tr": "**Wieso** ile sorarken **ist** hemen arkadan gelir."
+     "de": "– Gehen wir zu Fuß? – Ja, ___ nicht?",
+     "answer": "wieso",
+     "tr": "– Yürüyerek mi gidelim? – Evet, neden olmasın?",
+     "hint_tr": "Neden olmasın derken **Wieso nicht?** denir.",
+     "also_ok": [
+      "warum"
+     ]
+    },
+    {
+     "de": "– Ich gehe heute früher. – ___, bist du krank?",
+     "answer": "Wieso",
+     "tr": "– Bugün daha erken çıkıyorum. – Niye, hasta mısın?",
+     "hint_tr": "Kısaca niye diye sorarken **Wieso?** denir.",
+     "also_ok": [
+      "Warum"
+     ]
     },
     {
      "de": "___ das denn?",
@@ -9865,13 +9884,16 @@
       "Weshalb"
      ],
      "tr": "O da niye?",
-     "hint_tr": "Şaşırınca **Wieso das denn?** dersin."
+     "hint_tr": "O da niye derken **Wieso das denn?** denir."
     },
     {
-     "de": "Wieso ___ Sie das nicht gesagt?",
-     "answer": "haben",
-     "tr": "Bunu niye söylemediniz?",
-     "hint_tr": "**Wieso** ile sorarken **haben** hemen arkadan gelir."
+     "de": "– Das geht leider nicht. – ___ denn?",
+     "answer": "Wieso",
+     "tr": "– Maalesef olmuyor. – Niye ki?",
+     "hint_tr": "Niye ki derken **Wieso denn?** denir.",
+     "also_ok": [
+      "Warum"
+     ]
     }
    ]
   },
