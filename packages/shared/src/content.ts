@@ -372,7 +372,10 @@ export const ContentIndex = z.object({
   builtAt: z.string(),
   domains: z.array(Domain),
   scenarios: z.array(z.object({ id: ScenarioId, domain: z.string(), order: z.number(), level: Level, title_tr: z.string(), title_de: z.string(), review: z.string(), format: z.enum(["full", "mini"]).default("full"), season: z.object({ id: z.string(), from: z.string(), to: z.string(), title_tr: z.string() }).optional() })),
+  /** M1 İlk Hafta günleri (#58 A4): gün → başlık ve medya listesi (oynatıcı dosyayı `files.m1`'den yükler) */
+  m1: z.array(z.object({ day: z.number().int(), id: z.string(), title_tr: z.string(), review: z.string(),
+    medya: z.array(z.object({ id: z.string(), kind: z.enum(["video", "sahne", "ses"]), title_tr: z.string() })) })).default([]),
   counts: z.object({ lexemes: z.number(), grammar: z.number(), assess: z.number(), scenarios: z.number() }),
-  files: z.object({ lexemes: z.string(), grammar: z.string(), assess: z.string(), scenarios: z.record(z.string(), z.string()) })
+  files: z.object({ lexemes: z.string(), grammar: z.string(), assess: z.string(), scenarios: z.record(z.string(), z.string()), m1: z.record(z.string(), z.string()).default({}) })
 });
 export type ContentIndex = z.infer<typeof ContentIndex>;

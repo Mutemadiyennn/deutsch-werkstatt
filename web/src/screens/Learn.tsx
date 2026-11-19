@@ -14,6 +14,14 @@ export function Learn() {
   return (
     <div class="stack">
       <TopBar title="Öğren" />
+      {index.m1.length > 0 && (
+        <section class="card" data-test="m1-liste">
+          <div class="kicker">İlk Hafta</div>
+          <ul class="list">{index.m1.map((g) => (
+            <li><a href={`#/m1/${g.day}`} class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }} data-test={`m1-gun-${g.day}`}>
+              <span class="grow"><b>{g.day}. gün</b> <span class="small muted">· {g.title_tr}</span></span><span aria-hidden="true">›</span></a></li>))}</ul>
+        </section>
+      )}
       <p class="small muted">Gerçek hayattaki {domains.length} durum, senin öncelik sırana göre. Her durumda önce kelime ve ifadeler, sonra cümle kurma, en sonunda konuşma.</p>
       <ul class="list card">
         {domains.map((d) => {
