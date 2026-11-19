@@ -7,8 +7,9 @@ import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadLexicon, loadM1Gun } from "../services/content.ts";
-import { bahceTamam, xpVer } from "../services/ilerleme.ts";
-import { XP } from "../core/gun.ts";
+import { bahceTamam, xpOku, xpVer } from "../services/ilerleme.ts";
+import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
+import { XP, seri } from "../core/gun.ts";
 import { itemsMap, personalWords, putItems } from "../data/db.ts";
 import { review, sessionKey, type Outcome } from "../core/srs.ts";
 import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
@@ -18,7 +19,7 @@ import { judgeWord, numberWordHint } from "../core/grading.ts";
 import { isDue } from "../core/srs.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
-import { ActionBar, AnswerField, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
+import { ActionBar, AnswerField, FeedbackBand, ListenButton, ProgressHeader, YanlisIci } from "../ui/kit.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Photo } from "../ui/learn.tsx";
 import { Rich } from "../ui/rich.tsx";
@@ -44,6 +45,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   const [err, setErr] = useState<string | null>(null);
   const [i, setI] = useState(0);
   const [score, setScore] = useState({ ok: 0, n: 0 });
+  const turXp = useOturumXp();
   const startedAt = useMemo(() => Date.now(), []);
 
   useEffect(() => {
@@ -79,7 +81,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   const { round } = data;
   const kalanSayi = data.gunKartlari.filter((id) => !data.items.has(id)).length;
   if (!round.length) return <GardenEmpty day={day} capped={data.capped} />;
-  if (i >= round.length) return <GardenDone day={day} score={score} items={data.items} kalan={kalanSayi} again={again} />;
+  if (i >= round.length) return <GardenDone day={day} score={score} items={data.items} kalan={kalanSayi} again={again} xp={turXp}
+    kelimeler={[...new Set(round.filter((q) => q.intro).map((q) => { const l = data.lex.get(q.lexId); return l ? (l.art ? `${l.art} ${l.de}` : l.de) : ""; }).filter(Boolean))]} />;
   const q = round[i]!;
   const l = data.lex.get(q.lexId)!;
 
@@ -105,7 +108,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
     setBusy(false);
     // "Emin değilim, geç" sayılmaz: ne doğru ne soru (özet tutarlı, inceleme #59 P2-1)
     if (outcome) setScore((s) => ({ ok: s.ok + (r.ok ? 1 : 0), n: s.n + 1 }));
-    // ipucuyla verilen doğru cevaba XP yok (ipucu cevabı gösteriyor; D-102 "beyanla geçilene XP yok"; inceleme #85 P2-2)
+    // XP yalnızca ipucusuz doğruda (ipucu cevabı gösteriyor; D-102, inceleme #85 P2-2); uçuş da 0 (inceleme #87 2. tur)
     if (outcome === "correct") void xpVer(XP.dogru);
     // tekrar, en son gösterilen cümlenin ardından ("Başka cümle"ye basıldıysa o cümleden sonra; inceleme #92 P1-1)
     const r2 = !r.ok && outcome ? requeue(round, { ...q, ex: exi }, l, Math.random, data.items.get(q.lexId)) : round;
@@ -117,7 +120,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
 
   return (
     <div class="stack" data-test="garden">
-      <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} sub={`${Math.min(i + 1, round.length)} / ${round.length}`} />
+      <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} ilerleme={{ n: i, toplam: round.length }} />
       <Question key={`${i}:${q.lexId}:${q.type}`} q={q} l={l} all={data.all} onDone={finish} />
     </div>
   );
@@ -176,13 +179,12 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
     {/* geri bildirim bandı yüksek: kart bandın altında kalmasın diye kaydırma payı */}
     <div aria-hidden="true" style={{ height: 180 }} />
     <ActionBar>
-      {res.ok ? <FeedbackBand kind="ok" title="Doğru.">{res.expected && <span lang="de">{res.expected}</span>}</FeedbackBand>
-        : <FeedbackBand kind={res.yazim ? "info" : "bad"} title={res.yazim ? "Kelime doğru, yazımı eksik." : "Doğrusu bu."}>
-            <div class="small">Senin cevabın: <span lang="de">{res.answer || "—"}</span></div>
-            <div>Doğrusu: <b lang="de">{res.expected}</b></div>
-            {res.note && <div class="small">{res.note}</div>}
-            {/* ipucu yanlış cevaptan sonra açıklama olarak (PM 7004537514-2) */}
-            {form?.hint_tr && <div class="small" data-test="ipucu-sonra"><Rich text={form.hint_tr} /></div>}
+      {res.ok ? <FeedbackBand kind="ok" title="Doğru." xp={hinted ? 0 : XP.dogru}>{res.expected && <span lang="de">{res.expected}</span>}</FeedbackBand>
+        : <FeedbackBand kind={res.yazim ? "info" : "bad"} title={res.yazim ? "Kelime doğru, yazımı eksik." : "Doğrusu:"}>
+            {/* PM-059 madde 1: önce doğrusu; örnek cümle hemen üstteki kartta (dinlenebilir) */}
+            <YanlisIci dogrusu={res.expected ?? ""} cevap={res.answer}>{res.note && <div class="small">{res.note}</div>}
+              {/* ipucu yanlış cevaptan sonra açıklama olarak (PM 7004537514-2) */}
+              {form?.hint_tr && <div class="small" data-test="ipucu-sonra"><Rich text={form.hint_tr} /></div>}</YanlisIci>
           </FeedbackBand>}
       <button class="btn primary block" data-test="next" onClick={() => next(res.ok ? (hinted ? "hinted" : "correct") : res.yazim ? "hinted" : "wrong")}>Devam</button>
     </ActionBar></>
@@ -281,12 +283,15 @@ function tomorrow(items: Map<string, LearnerItem>): string {
 }
 
 /** Tur sonu. M1 gününde günün kartlarından tanıtılmamış kalan varsa ana eylem "Bir tur daha" (Seans 1 henüz bitmedi) */
-function GardenDone({ day, score, items, kalan, again }: { day?: number; score: { ok: number; n: number }; items: Map<string, LearnerItem>; kalan: number; again: () => void }) {
+function GardenDone({ day, score, items, kalan, again, xp, kelimeler }: { day?: number; score: { ok: number; n: number }; items: Map<string, LearnerItem>; kalan: number; again: () => void; xp: number; kelimeler: string[] }) {
   const devam = !!day && kalan > 0;
+  const [seriGun, setSeriGun] = useState<number | undefined>();
+  useEffect(() => { void xpOku().then((x) => setSeriGun(seri(x))); }, []);
   return (
-    <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" />
-      <section class="card stack" data-test="garden-done"><h2>Tur bitti</h2>
-        <p>{score.n} soruda {score.ok} doğru.{score.ok < score.n ? " Yanlış olanlar yarın ya da birkaç gün sonra başka bir soruyla geri gelecek." : " Hepsi doğru."}</p>
+    <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" ilerleme={{ n: 1, toplam: 1 }} />
+      <section class="card stack" data-test="garden-done"><Kutlama><h2>Tur bitti</h2></Kutlama>
+        <Ozet dogru={score.ok} toplam={score.n} xp={xp} seriGun={seriGun} kelimeler={kelimeler} />
+        {score.ok < score.n && <p class="small">Yanlış olanlar yarın ya da birkaç gün sonra başka bir soruyla geri gelecek.</p>}
         {devam ? <p data-test="garden-kalan">Bugünün kartlarından <b>{kalan}</b> yeni kelime kaldı.</p> : <p class="small muted" data-test="garden-tomorrow">{tomorrow(items)}</p>}
         {devam ? <ActionBar><button class="btn primary block" data-test="garden-again" onClick={again}>Bir tur daha</button></ActionBar>
           : <a class="btn primary block" href="#/today" data-test="garden-back">{day ? "Sıradaki adıma geç" : "Bugün'e dön"}</a>}</section></div>

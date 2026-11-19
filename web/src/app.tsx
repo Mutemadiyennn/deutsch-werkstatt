@@ -16,6 +16,8 @@ import { loadIndex, within } from "./services/content.ts";
 import { getProfile, latestPlacement, saveProfile } from "./data/db.ts";
 import { setLearning, startFocus, updateFocusConfig } from "./services/focusRuntime.ts";
 import { setBaslangicHizi } from "./services/speech.ts";
+import { efektAyar, sesKilidiAc, ustUsteSifirla } from "./services/efekt.ts";
+import { XpUcus } from "./ui/solen.tsx";
 import { TabBar, Loading, ErrorPanel } from "./ui/components.tsx";
 import { ErrorBoundary, recordError } from "./ui/ErrorBoundary.tsx";
 import { ensurePersist } from "./services/storage.ts";
@@ -56,10 +58,18 @@ export function App() {
   const [profileErr, setProfileErr] = useState<string | null>(null);
   // #58 B7: Profil'deki dinleme başlangıç hızı ses servisine
   useEffect(() => { if (profile) setBaslangicHizi(profile.listening.startSpeed); }, [profile?.listening.startSpeed]);
+  // Şölen 1 (#58 B10): efekt sesleri ve kutlamalar Profil'den
+  useEffect(() => { if (profile) efektAyar(profile.ui); }, [profile?.ui.sfx, profile?.ui.celebrations]);
 
   useEffect(() => {
-    const on = () => setRoute(parseHash(location.hash));
+    // ekran değişince "üst üste" sayacı sıfırlanır (inceleme #87 P2)
+    const on = () => { ustUsteSifirla(); setRoute(parseHash(location.hash)); };
     addEventListener("hashchange", on);
+    // iOS: efekt sesi için ses bağlamı ilk dokunuşta açılır (inceleme #87 P2)
+    // dinleyici kalır: ilk dokunuş etkinleştirme sayılmayabilir (iOS'ta touchend sayılır, pointerdown sayılmaz) ve ses sonradan
+    // açılabilir; ses bağlamı çalışınca sesKilidiAc hemen döner (inceleme #87 2. tur)
+    const kilit = () => sesKilidiAc();
+    addEventListener("pointerdown", kilit, true); addEventListener("touchend", kilit, true);
     auth.ready.then(() => { setUser(auth.current()); setAuthReady(true); }).catch(() => setAuthReady(true));
     // inceleme #43 P1-3: giriş durumu 8 sn'de gelmezse öğrenci sonsuz "Yükleniyor"da kalmaz
     const slow = setTimeout(() => setAuthSlow(true), 8000);
@@ -69,7 +79,7 @@ export function App() {
     const onErr = (e: ErrorEvent) => recordError("window", e.error ?? e.message);
     const onRej = (e: PromiseRejectionEvent) => recordError("promise", e.reason);
     addEventListener("error", onErr); addEventListener("unhandledrejection", onRej);
-    return () => { removeEventListener("hashchange", on); removeEventListener("error", onErr); removeEventListener("unhandledrejection", onRej); off(); };
+    return () => { removeEventListener("hashchange", on); removeEventListener("pointerdown", kilit, true); removeEventListener("touchend", kilit, true); removeEventListener("error", onErr); removeEventListener("unhandledrejection", onRej); off(); };
   }, []);
 
   useEffect(() => {
@@ -133,6 +143,7 @@ export function App() {
       <main class={`app${tabs ? "" : " notabs"}`}><ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>
       {tabs && <TabBar route={route} />}
       <LongPressExplain />
+      <XpUcus />
       {LEARNING_ROUTES.has(route.name) && <BreakOverlay />}
       {toastMsg && <div class="toast" role="status">{toastMsg}</div>}
     </Ctx.Provider>

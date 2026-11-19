@@ -39,9 +39,15 @@ def main():
         pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]")
         pg.evaluate("window.__ucus = 0; addEventListener('dw:xp-ucus', (e) => { window.__ucus += e.detail.n; })")
         pg.locator("button.opt[data-right]").first.click(); pg.wait_for_selector("[data-test=feedback]")
-        check(pg.locator(".fb.ok").count() == 1, "'Başka cümle'den sonra doğru cevap doğru sayılır (ipucu değil)")
+        pg.wait_for_function("() => window.__ucus > 0", timeout=3000)
+        check(pg.locator(".fb.ok").count() == 1 and pg.evaluate("window.__ucus") > 0, f"'Başka cümle'den sonra doğru cevap doğru ve XP'li (ipucu değil; uçan {pg.evaluate('window.__ucus')})")
+        lex = pg.get_attribute("[data-test=after-card]", "data-lex")
         ctx.set_offline(False)
-        pg.click("[data-test=next]"); pg.wait_for_timeout(150)
+        pg.click("[data-test=next]"); pg.wait_for_timeout(300)
+        # kayıt: kartın sayacı gösterilen (3 kez değiştirilmiş) cümlenin ardından yazıldı → sonraki oturum başka cümleyle açılır
+        ex_seen = pg.evaluate("""(id) => new Promise((res) => { const r = indexedDB.open('dw2'); r.onsuccess = () => { const t = r.result.transaction('items').objectStore('items').get(id);
+          t.onsuccess = () => res(t.result ? t.result.exSeen : null); t.onerror = () => res(null); }; r.onerror = () => res(null); })""", lex)
+        check(ex_seen == 4, f"öğrenci kaydında cümle sayacı gösterilenin ardından ({lex}: exSeen={ex_seen}, beklenen 4)")
         # boşluk sorusu: başka boşluk cümlesi (bir tur içinde bulunursa)
         bosluk = False
         for _ in range(60):
