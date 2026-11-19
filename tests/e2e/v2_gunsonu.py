@@ -14,7 +14,9 @@ PORT = 4201
 def bahce_tur(pg, bitir=True, adim=4):
     """Bahçe 1. gün: 'adim' soru cevaplar; bitir ise tur sonuna kadar (seçmeliler doğru, yazılılar yanlış)"""
     k = 0
-    for _ in range(80):
+    for _ in range(160):
+        # günün kartları bitmediyse tur sonunda "Bir tur daha": adım ancak bütün kartlar tanıtılınca biter
+        if pg.locator("[data-test=garden-again]").count(): pg.click("[data-test=garden-again]"); pg.wait_for_selector("[data-test=garden]"); continue
         if pg.locator("[data-test=garden-done]").count(): return True
         if not bitir and k >= adim: return False
         if pg.locator("[data-test=garden-intro]").count(): pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]")
