@@ -1,0 +1,22 @@
+name: kaynak — Deutsch im Blick klip kataloğu (tek seferlik, artifact; depoya girmez)
+# #58 A9: İçerik Motoru klip seçimi için transkript ve süre (#12 yorum 6996802525). Yalnızca kaynak/** dallarına push'ta çalışır.
+on:
+  push:
+    branches: ["kaynak/**"]
+  workflow_dispatch:
+jobs:
+  katalog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: ffprobe (süre için; yoksa süre boş kalır)
+        timeout-minutes: 6
+        run: which ffprobe || (timeout 300 sudo apt-get install -y -o Acquire::http::Timeout=30 ffmpeg || true)
+      - name: Katalog
+        run: python scripts/kaynak/dib_crawl.py out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: dib-katalog, path: out, retention-days: 14 }
