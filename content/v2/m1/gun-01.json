@@ -1182,5 +1182,206 @@
     "why_tr": "Soruda **Geht** başta. Cevapta **geht** günden sonra gelir."
    }
   ]
+ },
+ "gun_sinavi": {
+  "id": "m1:01:s",
+  "maddeler": [
+   {
+    "id": "m1:01:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Am Wochenende ist die Praxis geschlossen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Am Wochenende ist die Praxis geschlossen.",
+     "am wochenende ist die praxis geschlossen",
+     "Am Wochenende ist die Praxis geschlossen"
+    ],
+    "why_tr": "**am Wochenende** hafta sonu demektir."
+   },
+   {
+    "id": "m1:01:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Gestern war Sonntag, heute ist Montag.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Gestern war Sonntag, heute ist Montag.",
+     "gestern war sonntag heute ist montag",
+     "Gestern war Sonntag, heute ist Montag"
+    ],
+    "why_tr": "**gestern** dün, **heute** bugün demektir."
+   },
+   {
+    "id": "m1:01:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Übermorgen ist Freitag, nicht Donnerstag.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Übermorgen ist Freitag, nicht Donnerstag.",
+     "übermorgen ist freitag nicht donnerstag",
+     "Übermorgen ist Freitag, nicht Donnerstag",
+     "Uebermorgen ist Freitag, nicht Donnerstag.",
+     "uebermorgen ist freitag nicht donnerstag"
+    ],
+    "why_tr": "**übermorgen** öbür gün demektir."
+   },
+   {
+    "id": "m1:01:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Guten Tag, Herr Pichler! Geht Samstag?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Guten Tag, Herr Pichler! Geht Samstag?",
+     "guten tag herr pichler geht samstag",
+     "Guten Tag, Herr Pichler! Geht Samstag"
+    ],
+    "why_tr": "**Geht Samstag?** cumartesi olur mu demektir."
+   },
+   {
+    "id": "m1:01:s5",
+    "k": "tr_de",
+    "tr": "Bugün cuma, yarın cumartesi.",
+    "accepted": [
+     "Heute ist Freitag, morgen ist Samstag.",
+     "Heute ist Freitag und morgen ist Samstag.",
+     "Heute ist Freitag. Morgen ist Samstag.",
+     "Heute ist Freitag, morgen Samstag.",
+     "Heute haben wir Freitag, morgen ist Samstag.",
+     "Heute ist Freitag und morgen Samstag.",
+     "Heute haben wir Freitag, morgen Samstag.",
+     "Heute ist Freitag, morgen ist dann Samstag."
+    ],
+    "why_tr": "Bugün cuma derken **Heute ist Freitag** dersin."
+   },
+   {
+    "id": "m1:01:s6",
+    "k": "tr_de",
+    "tr": "Öbür gün pazartesi.",
+    "accepted": [
+     "Übermorgen ist Montag.",
+     "Montag ist übermorgen.",
+     "Übermorgen haben wir Montag.",
+     "Übermorgen ist es Montag."
+    ],
+    "why_tr": "Öbür gün derken **übermorgen** dersin."
+   },
+   {
+    "id": "m1:01:s7",
+    "k": "tr_de",
+    "tr": "Teşekkürler, cumartesi görüşürüz!",
+    "accepted": [
+     "Danke, bis Samstag!",
+     "Danke und bis Samstag!",
+     "Bis Samstag, danke!",
+     "Danke schön, bis Samstag!",
+     "Danke, dann bis Samstag!",
+     "Vielen Dank, bis Samstag!",
+     "Dankeschön, bis Samstag!",
+     "Danke, bis zum Samstag!"
+    ],
+    "why_tr": "Cumartesi görüşürüz derken **bis Samstag** dersin."
+   },
+   {
+    "id": "m1:01:s8",
+    "k": "tr_de",
+    "tr": "Salı olmaz, perşembe olur.",
+    "accepted": [
+     "Dienstag geht nicht, Donnerstag geht.",
+     "Dienstag geht nicht. Donnerstag geht.",
+     "Dienstag geht nicht, aber Donnerstag geht.",
+     "Am Dienstag geht es nicht, am Donnerstag geht es.",
+     "Nein, Dienstag geht nicht. Donnerstag geht.",
+     "Dienstag geht nicht, Donnerstag schon.",
+     "Dienstag geht nicht, aber Donnerstag.",
+     "Dienstag geht nicht, Donnerstag passt.",
+     "Dienstag passt nicht, Donnerstag passt.",
+     "Dienstag geht nicht, aber Donnerstag passt.",
+     "Am Dienstag geht es nicht, aber am Donnerstag geht es.",
+     "Am Dienstag geht es nicht, am Donnerstag schon.",
+     "Dienstag geht es nicht, Donnerstag geht es."
+    ],
+    "why_tr": "**Dienstag** salı, **Donnerstag** perşembe demektir."
+   },
+   {
+    "id": "m1:01:s9",
+    "k": "guided_response",
+    "situation_tr": "Komşun pazar günü için soruyor. Pazar günü sana uymuyor.",
+    "prompt_de": "Und Sonntag? Geht Sonntag?",
+    "accepted": [
+     "Nein, Sonntag geht nicht.",
+     "Sonntag geht nicht.",
+     "Nein, am Sonntag geht es nicht.",
+     "Nein, das geht nicht.",
+     "Sonntag geht leider nicht.",
+     "Nein, Sonntag geht leider nicht.",
+     "Nein, am Sonntag geht's nicht.",
+     "Am Sonntag geht es nicht.",
+     "Nein, Sonntag passt nicht.",
+     "Sonntag passt nicht.",
+     "Nein, leider nicht.",
+     "Nein, Sonntag nicht.",
+     "Nein, das passt nicht.",
+     "Nein, am Sonntag nicht.",
+     "Am Sonntag geht's nicht.",
+     "Nein, Sonntag passt leider nicht.",
+     "Sonntag geht nicht, leider."
+    ],
+    "why_tr": "Pazar günü olmaz derken **Sonntag geht nicht** dersin."
+   },
+   {
+    "id": "m1:01:s10",
+    "k": "guided_response",
+    "situation_tr": "Arkadaşın dünü soruyor. Dün salıydı.",
+    "prompt_de": "Heute ist Mittwoch. Und gestern?",
+    "accepted": [
+     "Gestern war Dienstag.",
+     "Dienstag.",
+     "Gestern war es Dienstag.",
+     "Dienstag war gestern.",
+     "Das war Dienstag.",
+     "Gestern? Dienstag.",
+     "Gestern war Dienstag, heute ist Mittwoch.",
+     "Gestern hatten wir Dienstag."
+    ],
+    "why_tr": "Dün salıydı derken **Gestern war Dienstag** dersin."
+   },
+   {
+    "id": "m1:01:s11",
+    "k": "guided_response",
+    "situation_tr": "Frau Stadler selam verip günü soruyor. Bugün çarşamba. Selam ver ve günü söyle.",
+    "prompt_de": "Guten Tag! Welcher Tag ist heute?",
+    "accepted": [
+     "Guten Tag! Heute ist Mittwoch.",
+     "Guten Tag, heute ist Mittwoch.",
+     "Hallo! Heute ist Mittwoch.",
+     "Grüß Gott! Heute ist Mittwoch.",
+     "Guten Morgen! Heute ist Mittwoch.",
+     "Guten Tag, Frau Stadler! Heute ist Mittwoch.",
+     "Hallo, Frau Stadler! Heute ist Mittwoch.",
+     "Guten Tag! Heute haben wir Mittwoch.",
+     "Guten Tag! Mittwoch.",
+     "Grüß Gott, Frau Stadler! Heute ist Mittwoch.",
+     "Guten Morgen, Frau Stadler! Heute ist Mittwoch.",
+     "Hallo! Mittwoch.",
+     "Guten Tag! Es ist Mittwoch.",
+     "Guten Tag! Heute ist es Mittwoch.",
+     "Hallo! Heute haben wir Mittwoch.",
+     "Grüß Gott! Heute haben wir Mittwoch.",
+     "Guten Tag, Frau Stadler! Heute haben wir Mittwoch.",
+     "Guten Tag, Frau Stadler! Mittwoch.",
+     "Hallo, Frau Stadler! Mittwoch.",
+     "Grüß Gott! Mittwoch.",
+     "Guten Tag! Wir haben heute Mittwoch."
+    ],
+    "why_tr": "Bugün çarşamba derken **Heute ist Mittwoch** dersin."
+   }
+  ],
+  "sesli": [
+   "m1:01:s9",
+   "m1:01:s10"
+  ]
  }
 }
