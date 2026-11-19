@@ -4,6 +4,7 @@ import { useApp } from "../state.ts";
 import { V1_URL } from "../core/planner.ts";
 import { visibleScenarios } from "../core/season.ts";
 import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
+import { MevsimKarti, TekrarListesi } from "./Today.tsx";
 
 export function Learn() {
   const { index, indexError, profile } = useApp();
@@ -14,6 +15,8 @@ export function Learn() {
   return (
     <div class="stack">
       <TopBar title="Öğren"><a class="btn sm" href="#/kalip" data-test="kalip-ac">Kalıplar</a> <a class="btn sm" href="#/sozluk" data-test="sozluk-ac">Sözlük</a></TopBar>
+      <MevsimKarti />
+      <TekrarListesi />
       {index.temel.length > 0 && (
         <section class="card" data-test="temel-liste">
           <div class="kicker">Temel dersler</div>

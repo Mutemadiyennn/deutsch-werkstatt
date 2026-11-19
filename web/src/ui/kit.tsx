@@ -7,8 +7,9 @@ import { useContext, useEffect, useRef, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
 import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive, STT_HATA_TR, sttHataTuru, konusanAta } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
-import { efekt, ustUsteSay, xpUcur } from "../services/efekt.ts";
+import { efekt, ustUsteDizi, ustUsteSay, xpUcur } from "../services/efekt.ts";
 import { Icon } from "./icons.tsx";
+import { gorevSay } from "../services/gorev.ts";
 import { Mucevher } from "./solen.tsx";
 
 /* ---------- Ses düğmesi: büyük, tek dokunuşla yavaş/normal ---------- */
@@ -148,7 +149,7 @@ export function FeedbackBand({ kind, title, children, xp, sayac = true }: { kind
   const [ust] = useState(() => (!sayac ? 0 : kind === "ok" ? ustUsteSay(true) : kind === "bad" ? ustUsteSay(false) : 0));
   useEffect(() => {
     if (!sayac) return;
-    if (kind === "ok") { haptic("success"); efekt("dogru"); xpUcur(xp ?? baglamXp); } else if (kind === "bad") { haptic("error"); efekt("yanlis"); }
+    if (kind === "ok") { haptic("success"); efekt("dogru"); xpUcur(xp ?? baglamXp); if (ust > 0 && ust % 5 === 0 && (xp ?? baglamXp) > 0) void gorevSay("ustuste5", `${ustUsteDizi()}:${ust}`); } else if (kind === "bad") { haptic("error"); efekt("yanlis"); }
   }, [kind, title]);
   // "+N XP" bandın içinde, başlığın yanında: hiçbir metnin üstüne binmez (PM 7011722598 madde 1)
   const n = kind === "ok" && sayac ? (xp ?? baglamXp) : 0;

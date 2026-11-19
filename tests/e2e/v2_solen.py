@@ -118,18 +118,17 @@ def main():
             pg.click("[data-test=next]"); pg.wait_for_timeout(200)
             w1 = pg.evaluate("parseFloat(document.querySelector('[data-test=ilerleme] i').style.width)")
             check(w1 > w0, f"[{tema}] ilerleme çubuğu doldu (%{w0:.1f} → %{w1:.1f}; hedef genişlik, geçiş animasyonundan bağımsız)")
-            # XP: Bugün göstergesi
-            pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=xp-seri]")
+            # XP: mücevherli sayaç ve seri kartı (B11b'den beri İlerlemem'de; durum çubuğu her ekranda)
+            pg.goto(base + "#/progress"); pg.wait_for_selector("[data-test=xp-seri]")
             pg.wait_for_function("() => Number(document.querySelector('[data-test=xp-toplam]').innerText) > 0", timeout=5000)
-            check(pg.locator("[data-test=gun-noktalari] .nokta").count() == 7 and pg.locator(".xpseri .mucevher").count() >= 1, f"[{tema}] Bugün: mücevherli XP sayacı ve 7 günlük noktalar")
-            check("0 XP" not in pg.inner_text("[data-test=yol-link]"), f"[{tema}] düz XP bağlantısı kalktı")
-            no_overflow(pg, f"[{tema}] Bugün XP/seri")
+            check(pg.locator("[data-test=gun-noktalari] .nokta").count() == 7 and pg.locator(".xpseri .mucevher").count() >= 1, f"[{tema}] İlerlemem: mücevherli XP sayacı ve 7 günlük noktalar")
+            no_overflow(pg, f"[{tema}] İlerlemem XP/seri")
             import re as _re
             hd = pg.inner_text("[data-test=gunluk-hedef]"); m = _re.search(r"(\d+) / (\d+)", hd)
             check(not m or int(m.group(1)) < int(m.group(2)), f"[{tema}] günlük hedef taşmıyor ({hd!r})")
             if shots: shot(pg, f"s03-bugun-{tema}", full=False)
             # tur sonu kutlaması (Bahçe): seçmeliler doğru, yazılılar 'emin değilim'/yanlış
-            pg.click("[data-test=garden-start]"); pg.wait_for_selector("[data-test=garden]")
+            pg.goto(base + "#/today"); pg.click("[data-test=garden-start]"); pg.wait_for_selector("[data-test=garden]")
             ucus, ilk_dogru, kaydirma = False, True, []
             for _ in range(40):
                 if pg.locator("[data-test=garden-done]").count(): break

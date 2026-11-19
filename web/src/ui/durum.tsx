@@ -58,9 +58,9 @@ export function DurumCubugu() {
   const hedef = e?.day.goalMin ?? profile.focus.dailyGoalMin;
   return (
     <div class="durum-cubugu" data-test="durum-cubugu">
-      <a class="durum-ogesi" href="#/yol" data-test="durum-seri" aria-label={s ? `${s} gün üst üste` : "Seri yok; bugün başla"}><Alev sonuk={!s} /><DonenSayi n={s} /></a>
-      <a class="durum-ogesi" href="#/yol" data-test="durum-xp" aria-label={`Toplam ${xp?.toplam ?? 0} XP`}><Mucevher boy={20} /><DonenSayi n={xp?.toplam ?? 0} test="durum-xp-sayi" /></a>
-      <a class="durum-ogesi" href="#/today" data-test="durum-dk" aria-label={`Bugün ${dk} / ${hedef} dakika`}><DakikaHalkasi dk={dk} hedef={hedef} /><span class="durum-dk"><DonenSayi n={dk} /><span class="tiny muted">/{hedef} dk</span></span></a>
+      <a class="durum-ogesi" href="#/yol" data-test="durum-seri" aria-label={s ? `${s} gün üst üste` : "Seri henüz başlamadı"} title={s ? undefined : "Seri henüz başlamadı"}><Alev /><DonenSayi n={s} /></a>
+      <a class="durum-ogesi" href="#/yol" data-test="durum-xp" aria-label={xp?.toplam ? `Toplam ${xp.toplam} XP` : "XP henüz başlamadı"}><Mucevher boy={20} /><DonenSayi n={xp?.toplam ?? 0} test="durum-xp-sayi" /></a>
+      <a class="durum-ogesi" href="#/odak" data-test="durum-dk" aria-label={`Bugün ${dk} / ${hedef} dakika`}><DakikaHalkasi dk={dk} hedef={hedef} /><span class="durum-dk"><DonenSayi n={dk} /><span class="tiny muted">/{hedef} dk</span></span></a>
     </div>
   );
 }
