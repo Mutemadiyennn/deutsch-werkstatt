@@ -56,6 +56,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   const [hizli, setHizli] = useState<null | "ogrenci" | "tespit">(null);
   const [oneri, setOneri] = useState<"yok" | "goster" | "reddedildi">("yok");
   const [oneriSayac, setOneriSayac] = useState(0);
+  // bu soru cevaplandı mı ("Normal akışa dön" cevaplanmış sına sorusunu bozmasın; 2. tur P2-C)
+  const [cevapVar, setCevapVar] = useState(false);
   const turXp = useOturumXp();
   const startedAt = useMemo(() => Date.now(), []);
 
@@ -86,7 +88,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       const kapali = (await getMeta<boolean>("hizliSerit")) === false;
       const ogrenciBugun = (await getMeta<string>("hizliGun")) === bugun;
       const a2 = !!placement && A2_VE_USTU.includes(placement.overall ?? "") && !!day && day <= 7;
-      if (!kapali && (ogrenciBugun || a2)) { round = sinaTuru(round); setHizli(ogrenciBugun ? "ogrenci" : "tespit"); }
+      // öğrencinin bugünkü açık seçimi kalıcı "normal akış"ı da geçer (inceleme #113 2. tur P2-B)
+      if (ogrenciBugun || (!kapali && a2)) { round = sinaTuru(round); setHizli(ogrenciBugun ? "ogrenci" : "tespit"); }
       // normal akış seçildiyse ya da bugün öneri reddedildiyse kendiliğinden öneri de gelmez (tercih saygısı)
       if (kapali || (await getMeta<string>("hizliOneriRed")) === bugun) setOneri("reddedildi");
       // boş tur: günün kartları zaten tanıtıldıysa Seans 1 burada tamamlanır (ekran efektine bırakılmaz)
@@ -158,11 +161,11 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
     setData({ ...data, round: [...r2, { lexId: q.lexId, type: "tr_de", sina: true, ex: q.ex }] }); setI(i + 1);
   };
   const normaleDon = async () => {
-    // tespitten gelen varsayılan kalıcı kapanır; öğrencinin bugünkü seçimi yalnızca bugün için geri alınır
-    if (hizli === "tespit") await setMeta("hizliSerit", false);
+    // varsayılan (tespit) kalıcı kapanır, öğrencinin bugünkü seçimi geri alınır; ikisi birlikteyse de tek basış yeter (2. tur P2-A)
+    await setMeta("hizliSerit", false);
     await setMeta("hizliGun", ""); await setMeta("hizliOneriRed", yerelGun(new Date()));
     setHizli(null); setOneri("reddedildi");
-    setData({ ...data, round: round.map((x, k) => (k >= i && x.sina ? { ...x, sina: false, intro: true, type: "listen_meaning" as const } : x)) });
+    setData({ ...data, round: round.map((x, k) => ((k > i || (k === i && !cevapVar)) && x.sina ? { ...x, sina: false, intro: true, type: "listen_meaning" as const } : x)) });
   };
   if (oneri === "goster") return (
     <div class="stack" data-test="garden">
@@ -184,12 +187,12 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       {hizli && <div class="small bilgi-bant" data-test={hizli === "tespit" ? "hizli-tespit" : "hizli-ogrenci"}>
         <span class="grow">{i === 0 && hizli === "tespit" ? "İlk haftayı senin hızında geçelim: bildiğin kelimeyi Almanca yazarak kanıtla, geç." : "Bugünün yeni kelimelerini sınıyoruz."}</span>
         <button class="linkbtn" data-test="hizli-kapat" onClick={() => void normaleDon()}>Normal akışa dön</button></div>}
-      <Question key={`${i}:${q.lexId}:${q.type}:${q.sina ? 1 : 0}`} q={q} l={l} all={data.all} yakin={data.yakin} onDone={finish} onSina={q.intro && !q.retry && !hizli ? () => void tanitimdaSina() : undefined} />
+      <Question key={`${i}:${q.lexId}:${q.type}:${q.sina ? 1 : 0}`} q={q} l={l} all={data.all} yakin={data.yakin} onDone={(...a) => { setCevapVar(false); return finish(...a); }} onCevap={() => setCevapVar(true)} onSina={q.intro && !q.retry && !hizli ? () => void tanitimdaSina() : undefined} />
     </div>
   );
 }
 
-function Question({ q, l, all, yakin, onDone: bitir, onSina }: { q: GardenQ; l: Lexeme; all: Lexeme[]; yakin?: Yakinlik; onDone: (r: Result, o: Outcome | null, exi: number, m?: SoruBilgi) => void; onSina?: () => void }) {
+function Question({ q, l, all, yakin, onDone: bitir, onSina, onCevap }: { q: GardenQ; l: Lexeme; all: Lexeme[]; yakin?: Yakinlik; onDone: (r: Result, o: Outcome | null, exi: number, m?: SoruBilgi) => void; onSina?: () => void; onCevap?: () => void }) {
   const [intro, setIntro] = useState(!!q.intro);
   // B16: sına sorusu; bilemezse "Sorun değil, birlikte bakalım" → tanıtım ve normal tanıma sorusu (PM-066 madde 1)
   const [sina, setSina] = useState(!!q.sina);
@@ -215,7 +218,7 @@ function Question({ q, l, all, yakin, onDone: bitir, onSina }: { q: GardenQ; l: 
   // cümlenin fotoğrafı (cevap kartı); fotoğraf bileşeni yenisi hazır olana kadar eskisini tutar (zıplama yok; inceleme #92 2. tur)
   const ex = l.examples[exi % Math.max(1, l.examples.length)];
   const fotoEx = exi, fotoOrnek = ex;
-  const show = (r: Result) => { if (sure.current === null) sure.current = Date.now() - basla.t; setRes(r); haptic(r.ok ? "success" : "error"); };
+  const show = (r: Result) => { if (sure.current === null) sure.current = Date.now() - basla.t; onCevap?.(); setRes(r); haptic(r.ok ? "success" : "error"); };
   const next = (o: Outcome | null) => onDone(res || { ok: false }, o, exi);
   const baska = (n: number) => n > 1 ? <button class="btn sm ghost" data-test="baska-cumle" onClick={() => setExi((x) => x + 1)}>Başka cümle</button> : null;
 
