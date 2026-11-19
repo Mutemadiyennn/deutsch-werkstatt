@@ -5,7 +5,7 @@ import { useApp } from "../state.ts";
 import { recommend, ACTIVITY_TR } from "../core/planner.ts";
 import { seasonal } from "../core/season.ts";
 import { bankItems } from "../data/db.ts";
-import { loadLexicon, loadScenario } from "../services/content.ts";
+import { loadIndex, loadLexicon, loadScenario } from "../services/content.ts";
 import { focusPause, focusResume, focusSkipBreak, focusStart } from "../services/focusRuntime.ts";
 import { Art, ErrorPanel, SpeakBtn, minLeft, useFocusTick } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
@@ -16,7 +16,8 @@ const BREAK_IDEAS = ["Kalk, biraz yürü ya da gerin.", "Bir bardak su iç.", "G
 export function Today() {
   const { profile, index, indexError, placement } = useApp();
   const e = useFocusTick();
-  const [bank, setBank] = useState<{ it: LearnerItem; lx?: Lexeme }[]>([]);
+  // PM-035 §3: tekrar listesinde ham kimlik yok; kelime, ifade ve kalıp çözülür, çözülemeyen gösterilmez
+  const [bank, setBank] = useState<{ it: LearnerItem; de: string; tr: string; art?: string }[]>([]);
   const [scen, setScen] = useState<Scenario | null>(null);
   const now = Date.now();
   const n = e ? (e.rt.phase === "focus" && e.current ? e.current.n : e.nextN) : 1;
@@ -26,9 +27,19 @@ export function Today() {
     (async () => {
       const items = await bankItems(6);
       if (!items.length) { setBank([]); return; }
-      const { lexemes } = await loadLexicon();
+      const { lexemes, patterns } = await loadLexicon();
       const m = new Map(lexemes.map((l) => [l.id, l]));
-      setBank(items.map((it) => ({ it, lx: m.get(it.itemId) })));
+      const pm = new Map(patterns.map((p) => [p.id, p]));
+      const chunkMap = new Map<string, { de: string; tr: string }>();
+      const doms = [...new Set(items.filter((x) => x.itemId.startsWith("ch:")).map((x) => x.itemId.split(":")[1]))];
+      const idx = await loadIndex();
+      for (const sc of idx.scenarios.filter((x) => doms.includes(x.domain))) { try { const s = await loadScenario(sc.id); for (const c of s.chunks) chunkMap.set(c.id, { de: c.layers.hd, tr: c.tr }); } catch { /* çevrimdışı: atla */ } }
+      setBank(items.flatMap((it) => {
+        const l = m.get(it.itemId); if (l) return [{ it, de: l.de, tr: l.tr, art: l.art }];
+        const c = chunkMap.get(it.itemId); if (c) return [{ it, ...c }];
+        const p = pm.get(it.itemId); if (p?.examples[0]) return [{ it, de: p.examples[0].de, tr: p.examples[0].tr }];
+        return [];
+      }));
     })().catch(() => setBank([]));
   }, [placement?.id]);
   useEffect(() => {
@@ -81,10 +92,10 @@ export function Today() {
           </div>
         </div>
         <p class="small muted" style={{ margin: 0 }}>{rec.why_tr}</p>
-        {rec.kind === "scenario" && rec.draft && <p class="tiny" style={{ margin: 0 }}><span class="chip">İçerik inceleme bekliyor</span></p>}
+        {rec.kind === "scenario" && rec.draft && <p class="tiny" style={{ margin: 0 }}><span class="chip">Deneme dersi</span></p>}
         {rec.kind === "assess" && <a class="btn primary block" href="#/assess"><Icon name="play" size={18} /> Seviye tespitine başla</a>}
         {rec.kind === "scenario" && <a class="btn primary block" href={`#/scenario/${encodeURIComponent(rec.scenarioId)}`}><Icon name="play" size={18} /> Devam et</a>}
-        {rec.kind === "v1" && <a class="btn primary block" href={rec.url} target="_blank" rel="noopener">v1'de aç <Icon name="out" size={18} /></a>}
+        {rec.kind === "v1" && <a class="btn primary block" href={rec.url} target="_blank" rel="noopener">Eski uygulamada aç <Icon name="out" size={18} /></a>}
         {e && !breakOn && <FocusPanel />}
         {placement && <a class="small" href={`#/assess/result/${placement.id}`}>Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>}
       </section>
@@ -112,11 +123,11 @@ export function Today() {
         <h2 class="sectitle">Tekrar edilecekler</h2>
         {bank.length ? (
           <ul class="list">
-            {bank.map(({ it, lx }) => (
+            {bank.map(({ it, de, tr, art }) => (
               <li class="row" style={{ flexWrap: "nowrap" }}>
-                <span class="grow">{lx ? <Art art={lx.art} de={lx.de} /> : it.itemId}{lx && <><br /><span class="small muted">{lx.tr}</span></>}</span>
+                <span class="grow"><Art art={art} de={de} /><br /><span class="small muted">{tr}</span></span>
                 <span class="tiny muted">{it.gaps.at(-1)?.type === "passive" ? "tanıma" : "üretme"}</span>
-                {lx && <SpeakBtn text={lx.de} />}
+                <SpeakBtn text={de} />
               </li>
             ))}
           </ul>

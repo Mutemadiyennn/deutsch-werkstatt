@@ -24,12 +24,19 @@ export function latencyStats(): Record<string, { n: number; p50: number; p95: nu
 }
 const BREAK_AFTER = 3, OPEN_MS = 5 * 60_000;
 let fails = 0, openUntil = 0;
+/** PM-019/İnceleme #41 P1-1: sunucu sağlayıcıyı kapattıysa (health.provider = none) istemci sessizce yapay zekâsız çalışır */
+let providerOff = false;
+export async function probeProvider(api: Api) {
+  if (!api.configured) return;
+  try { const h = await api.health(); providerOff = !!h.provider && h.provider !== "gemini"; emit(); } catch { /* bağlantı yoksa devre kesici zaten korur */ }
+}
 const subs = new Set<() => void>();
 export const onAiState = (f: () => void) => { subs.add(f); return () => { subs.delete(f); }; };
 const emit = () => subs.forEach((f) => f());
 
 export function aiState(api: Api): { available: boolean; reason?: string; openUntil?: number } {
-  if (!api.configured) return { available: false, reason: "Sunucu henüz bağlanmadı (anahtarlar Cloudflare'de değil)." };
+  // PM-035 §8: öğrenci diliyle (geliştirici notu değil)
+  if (!api.configured || providerOff) return { available: false, reason: "Bu sürümde cevapların uygulamanın kendi kurallarıyla değerlendirilir." };
   if (Date.now() < openUntil) return { available: false, reason: `Yapay zekâ art arda hata verdi; ${Math.ceil((openUntil - Date.now()) / 60000)} dk yapay zekâsız devam ediliyor.`, openUntil };
   return { available: true };
 }

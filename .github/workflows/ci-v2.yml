@@ -41,7 +41,7 @@ jobs:
     # Kabul ölçütü (DECISIONS D-040): iPhone profilleriyle WebKit
     needs: check
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     strategy:
       fail-fast: false
       matrix:
@@ -53,25 +53,42 @@ jobs:
         with: { name: dist-e2e, path: web/dist-e2e }
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
+      # apt aynası zaman zaman çok yavaş (140 MB'ı 12 dakikada indiremedi): indirilen .deb'ler ve tarayıcı önbelleğe alınır
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/ms-playwright
+            ~/apt-debs
+          key: pw-webkit-${{ runner.os }}-${{ hashFiles('.github/workflows/ci-v2.yml') }}
+          restore-keys: pw-webkit-${{ runner.os }}-
       - name: Playwright + WebKit
-        timeout-minutes: 14
-        # apt aynası zaman zaman takılıyor: her deneme 4 dk ile sınırlı, en çok 3 deneme
+        timeout-minutes: 22
         run: |
           pip install playwright==1.* pillow
-          # apt ağ zaman aşımı kısa + yeniden deneme; takılan denemenin kilidi temizlenir (dpkg lock → exit 100)
-          echo 'Acquire::Retries "5"; Acquire::http::Timeout "30"; Acquire::https::Timeout "30";' | sudo tee /etc/apt/apt.conf.d/99dw-net >/dev/null
+          echo 'Acquire::Retries "5"; Acquire::http::Timeout "30"; Acquire::https::Timeout "30"; APT::Keep-Downloaded-Packages "true"; Binary::apt::APT::Keep-Downloaded-Packages "true";' | sudo tee /etc/apt/apt.conf.d/99dw-net >/dev/null
+          mkdir -p ~/apt-debs
+          if ls ~/apt-debs/*.deb >/dev/null 2>&1; then sudo cp ~/apt-debs/*.deb /var/cache/apt/archives/; echo "önbellekten $(ls ~/apt-debs/*.deb | wc -l) paket"; fi
+          ok=0
           for i in 1 2 3; do
-            timeout 240 python -m playwright install --with-deps webkit && break
+            # takılan denemenin kilidi temizlenir (dpkg lock → exit 100); indirilmiş paketler bir sonraki denemede kalır
+            if timeout 420 python -m playwright install --with-deps webkit; then ok=1; break; fi
             echo "kurulum denemesi $i takıldı, kilit temizlenip yeniden"
             sudo pkill -9 -f apt-get || true; sudo pkill -9 -f dpkg || true
             sudo rm -f /var/lib/dpkg/lock* /var/lib/apt/lists/lock /var/cache/apt/archives/lock
             sudo dpkg --configure -a || true; sleep 5
           done
-          python -m playwright install webkit
+          cp /var/cache/apt/archives/*.deb ~/apt-debs/ 2>/dev/null || true
+          [ "$ok" = 1 ] || { echo "::error::WebKit bağımlılıkları kurulamadı (apt aynası). Test sonucu değil; yeniden çalıştırın."; exit 1; }
       - name: Çekirdek akış (giriş, kurulum, tespit, Bugün, odak, İlerlemem, Profil)
         run: cd tests/e2e && python v2_core.py
       - name: Oynatıcı (aşama 1–6, dinleme, klavye, uzun basma, dayanıklılık, taşma, %130)
         run: cd tests/e2e && python v2_player.py --shots /tmp/shots
+      - name: DN-2 gezgin (her ekranda her düğme)
+        run: mkdir -p /tmp/shots && cd tests/e2e && python gezgin.py --out /tmp/shots/gezgin.json
+      - name: DN-2 yükleme sınırı (ilk açılış, sekme geçişi, takılan içerik)
+        run: cd tests/e2e && python yukleme.py
+      - name: DN-2 uçak modu günü (çevrimdışı)
+        run: cd tests/e2e && python ucak.py
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4
