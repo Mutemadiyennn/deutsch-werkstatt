@@ -40,7 +40,7 @@ Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur. Hata türler
 ## Açık PR'lar
 | PR | Dal | Teslim | İnceleme |
 |---|---|---|---|
-| Bahçe | `v2/bahce` | #58 A3 Kelime Bahçesi (+ A11 parçası: `strictNumberWords` oynatıcıda) | bekliyor |
+| #59 | `v2/bahce` | #58 A3 Kelime Bahçesi (+ A11 parçası: `strictNumberWords` oynatıcıda) | 1. tur bulguları düzeltildi; 2. tur |
 | #43 | `v2/denetim` | PM-030 DN-2 | yükleme sınırı: kök neden (bulanık gölge) düzeltildi |
 
 ### Birleştirme turu (PM-007, 2026-11-17)

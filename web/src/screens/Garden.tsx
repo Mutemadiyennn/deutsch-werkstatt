@@ -9,9 +9,10 @@ import { useApp } from "../state.ts";
 import { loadLexicon } from "../services/content.ts";
 import { itemsMap, personalWords, putItems } from "../data/db.ts";
 import { review, sessionKey, type Outcome } from "../core/srs.ts";
-import { accepted, buildRound, isCard, personalFirst, collocQuestion, formFor, isNoun, meaningOptions, ownSentenceCheck, pathOf, requeue, type GardenQ } from "../core/garden.ts";
+import { accepted, buildRound, isCard, personalMatch, collocOf, collocQuestion, formFor, isNoun, meaningOptions, ownSentenceCheck, pathOf, requeue, startedToday, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
-import { numberWordHint } from "../core/grading.ts";
+import { judgeWord, numberWordHint } from "../core/grading.ts";
+import { isDue } from "../core/srs.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { ActionBar, AnswerField, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
@@ -22,7 +23,8 @@ const E2E = import.meta.env.MODE === "e2e";
 type Result = { ok: boolean; answer?: string; expected?: string; note?: string };
 
 export function Garden() {
-  const [data, setData] = useState<{ lex: Map<string, Lexeme>; all: Lexeme[]; items: Map<string, LearnerItem>; round: GardenQ[] } | null>(null);
+  const [data, setData] = useState<{ lex: Map<string, Lexeme>; all: Lexeme[]; items: Map<string, LearnerItem>; round: GardenQ[]; capped: boolean } | null>(null);
+  const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [i, setI] = useState(0);
   const [score, setScore] = useState({ ok: 0, n: 0 });
@@ -34,10 +36,13 @@ export function Garden() {
       const lex = new Map(lexemes.map((l) => [l.id, l]));
       const items = await itemsMap(lexemes.map((l) => l.id));
       // yeni kart sırası: K1 derin kartlar sıklık sırasıyla (işlev kelimesi ve yalnızca tanıma kartları hariç)
-      const k1 = lexemes.filter((l) => l.tier === "K1" && isCard(l)).sort((a, b) => (a.freqRank ?? 9e9) - (b.freqRank ?? 9e9)).map((l) => l.id);
-      // duyduğun ve "nasıl derim" diye sorduğun kelimeler önce (kişisel banka, #58 A3)
-      const pool = personalFirst(await personalWords(), lexemes, k1);
-      setData({ lex, all: lexemes, items, round: buildRound(lex, items, pool) });
+      // yeni kart sırası: K1 derin kartlar sıklık sırasıyla (M1 günlerinin `yeni_kartlar` listesi A5 ile önce gelecek)
+      const pool = lexemes.filter((l) => l.tier === "K1" && isCard(l)).sort((a, b) => (a.freqRank ?? 9e9) - (b.freqRank ?? 9e9)).map((l) => l.id);
+      // duyduğun ve "nasıl derim" diye sorduğun kelimeler öncelikli (kişisel banka, #58 A3, LS-7.5)
+      const priority = personalMatch(await personalWords(), lexemes);
+      const t = startedToday(items.values());
+      const newLeft = DAILY_NEW - t.passive, activeLeft = DAILY_ACTIVE - t.active;
+      setData({ lex, all: lexemes, items, round: buildRound(lex, items, pool, { priority, newLeft, activeLeft }), capped: newLeft <= 0 });
     })().catch((e) => setErr(String(e?.message || e)));
     return () => stopSpeaking();
   }, []);
@@ -47,28 +52,34 @@ export function Garden() {
   const { round } = data;
   if (!round.length) return (
     <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" />
-      <section class="card stack" data-test="garden-empty"><h2>Bugün bahçe sakin</h2><p>Vadesi gelen kart yok. Yeni kartlar senaryolarda tanıtıldıkça burada soru olarak döner.</p>
+      <section class="card stack" data-test="garden-empty"><h2>Bugün bahçe sakin</h2>
+        <p>{data.capped ? "Bugünkü yeni kartların bitti ve vadesi gelen kart yok. Yarın yeni kartlar ve tekrarlar seni bekliyor." : "Şu an vadesi gelen kart yok. Yeni kart da kalmadı."}</p>
         <a class="btn primary block" href="#/today">Bugün'e dön</a></section></div>
   );
   if (i >= round.length) return (
     <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" />
       <section class="card stack" data-test="garden-done"><h2>Tur bitti</h2>
-        <p>{score.n} soruda {score.ok} doğru. Yanlış olanlar bankana girdi; yarın ya da birkaç gün sonra başka bir soruyla geri gelecek.</p>
+        <p>{score.n} soruda {score.ok} doğru.{score.ok < score.n ? " Yanlış olanlar yarın ya da birkaç gün sonra başka bir soruyla geri gelecek." : " Hepsi doğru."}</p>
+        <p class="small muted" data-test="garden-tomorrow">{tomorrow(data.items)}</p>
         <a class="btn primary block" href="#/today" data-test="garden-back">Bugün'e dön</a></section></div>
   );
   const q = round[i]!;
   const l = data.lex.get(q.lexId)!;
 
   const finish = async (r: Result, outcome: Outcome | null) => {
-    const prev = data.items.get(q.lexId);
-    let next = prev;
-    if (outcome) {
-      next = review(prev, { itemId: q.lexId, kind: "lexeme", path: pathOf(q.type), outcome, session: sessionKey("garden", startedAt), source: "drill", ctx: q.type });
-      next.lastQ = q.type;
-      data.items.set(q.lexId, next);
-      await putItems([next]);
-    }
-    setScore((s) => ({ ok: s.ok + (r.ok ? 1 : 0), n: s.n + (outcome ? 1 : 0) }));
+    if (busy) return; // "Devam"a çift dokunuş aynı değerlendirmeyi iki kez yazmaz (inceleme #59 P2-2)
+    setBusy(true);
+    try {
+      if (outcome) {
+        const next = review(data.items.get(q.lexId), { itemId: q.lexId, kind: "lexeme", path: pathOf(q.type), outcome, session: sessionKey("garden", startedAt), source: "drill", ctx: q.type });
+        next.lastQ = q.type;
+        await putItems([next]);
+        data.items.set(q.lexId, next);
+      }
+    } catch { setBusy(false); setErr("Cevabın kaydedilemedi. Tekrar dene."); return; }
+    setBusy(false);
+    // "Emin değilim, geç" sayılmaz: ne doğru ne soru (özet tutarlı, inceleme #59 P2-1)
+    if (outcome) setScore((s) => ({ ok: s.ok + (r.ok ? 1 : 0), n: s.n + 1 }));
     const r2 = !r.ok && outcome ? requeue(round, q, l) : round;
     setData({ ...data, round: r2 });
     setI(i + 1);
@@ -86,10 +97,15 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   const [intro, setIntro] = useState(!!q.intro);
   const [res, setRes] = useState<Result | null>(null);
   const [selfCheck, setSelfCheck] = useState<string | null>(null);
+  const [ownNote, setOwnNote] = useState(false);
+  const [shortNote, setShortNote] = useState(false);
   const ex = l.examples[q.ex % Math.max(1, l.examples.length)];
   const show = (r: Result) => { setRes(r); haptic(r.ok ? "success" : "error"); };
   const next = (o: Outcome | null) => onDone(res || { ok: false }, o);
 
+  // önce duy (PM-049 tanıtım): kelime ekrana gelince bir kez okunur (inceleme #59 P2-8)
+  useEffect(() => { if (intro) void speak(isNoun(l) ? `${l.art} ${l.de}` : l.de, "de", "normal"); }, [intro]);
+  const col = collocOf(l);
   if (intro) return (
     <div class="stack fade" data-test="garden-intro">
       <section class="card stack"><div class="kicker">Yeni kelime</div>
@@ -98,6 +114,7 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
         <div class="row"><ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} /></div>
         <p>{l.tr}</p>
         {ex && <p class="small"><span lang="de">{ex.de}</span><br /><span class="muted">{ex.tr}</span></p>}
+        {col && <p class="small" data-test="intro-colloc">Birlikte: <b lang="de">{col.de}</b> <span class="muted">· {col.tr}</span></p>}
       </section>
       <ActionBar><button class="btn primary block" data-test="next" onClick={() => setIntro(false)}>Şimdi sor</button></ActionBar>
     </div>
@@ -121,18 +138,22 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   const form = formFor(l, q.type, q.ex);
   const prompt = q.type === "photo_say" ? <><div class="kicker">Fotoğraftaki ne? Artikeliyle söyle ya da yaz</div><Photo q={l.img} /><p class="small muted">{l.tr}</p></>
     : q.type === "tr_de" ? <><div class="kicker">Almanca söyle ya da yaz</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div></>
-    : q.type === "gap" || q.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur</div><div class="de-lg" lang="de">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && <p class="small">{form.hint_tr}</p>}</>
+    : q.type === "gap" || q.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && <p class="small">{form.hint_tr}</p>}</>
     : <><div class="kicker">Bu kelimeyle kendi cümleni kur</div><div class="de-lg" lang="de"><Art art={l.art} de={l.de} /></div><p class="small muted">{l.tr}{ex ? ` · Örnek: ` : ""}{ex && <span lang="de">{ex.de}</span>}</p></>;
 
-  const submit = (a: string) => {
+  const submit = (a: string, mode: "typed" | "voice") => {
     if (q.type === "own_sentence") {
       const c = ownSentenceCheck(l, a);
-      if (c !== "ok") { show({ ok: false, answer: a, expected: ex?.de || l.de, note: c === "short" ? "En az üç kelimelik bir cümle kur." : "Cümlede bu kelime yok." }); return; }
-      setSelfCheck(a); return;
+      // kısa cümle yeniden yazdırılır (ceza yok); kelimeyi göremediysek yalnızca not düşer, karar öğrencinin (inceleme #59 P1-1)
+      if (c === "short") { setShortNote(true); return; }
+      setOwnNote(c === "missing"); setSelfCheck(a); return;
     }
     const acc = accepted(l, q.type, q.ex);
-    const hint = numberWordHint(a);
+    // rakam kuralı yalnızca yazılan cevapta: konuşma tanıma sayıyı rakamla döker (inceleme #59 P1-3)
+    const hint = mode === "typed" ? numberWordHint(a) : null;
     if (hint && acc.every((x) => !/\d/.test(x))) { show({ ok: false, answer: a, expected: acc[0], note: hint }); return; }
+    // isimde artikel zorunlu ve eksik/yanlış artikel açıklanır (inceleme #59 P2-3)
+    if ((q.type === "tr_de" || q.type === "photo_say") && isNoun(l)) { const j = judgeWord(a, l.de, l.art); show({ ok: j.ok, answer: a, expected: acc[0], note: j.why_tr }); return; }
     const v = ruleVerdict(acc, a);
     show({ ok: v.kind === "correct", answer: a, expected: acc[0] });
   };
@@ -140,17 +161,19 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   if (selfCheck !== null && !res) return (
     <div class="stack fade" data-test="gq-own-check">
       <section class="card stack">{prompt}<div class="de-lg" lang="de">{selfCheck}</div>
-        <FeedbackBand kind="info" title="Bunu kendim kontrol edemem.">Cümlen kelimeyi doğru kullanıyor mu? İçinden bir kez yüksek sesle oku.</FeedbackBand></section>
+        <FeedbackBand kind="info" title="Bunu kendim kontrol edemem.">
+          {ownNote && <div class="small" data-test="own-missing">Cümlende bu kelimeyi göremedim. Çekimli hâlini kullandıysan doğru olabilir.</div>}
+          Cümlen kelimeyi doğru kullanıyor mu? Bir kez yüksek sesle oku.{ex && <> Örnek: <span lang="de">{ex.de}</span></>}</FeedbackBand></section>
       <ActionBar>
-        <button class="btn block" data-test="own-ok" onClick={() => onDone({ ok: true, answer: selfCheck }, "hinted")}>Evet, doğru kurdum</button>
-        <button class="btn primary block" data-test="own-unsure" onClick={() => onDone({ ok: true, answer: selfCheck }, null)}>Emin değilim, geç</button>
+        <button class="btn primary block" data-test="own-ok" onClick={() => onDone({ ok: true, answer: selfCheck }, "hinted")}>Evet, doğru kurdum</button>
+        <button class="btn block" data-test="own-unsure" onClick={() => onDone({ ok: true, answer: selfCheck }, null)}>Emin değilim, geç</button>
       </ActionBar>
     </div>
   );
 
   return (
     <div class="stack fade" data-test={`gq-${q.type}`}>
-      <section class="card stack">{prompt}</section>
+      <section class="card stack">{prompt}{shortNote && <p class="small" data-test="own-short">En az üç kelimelik bir cümle kur.</p>}</section>
       {!res && <ActionBar><AnswerField onSubmit={submit} /></ActionBar>}
       {verdict}
     </div>
@@ -161,7 +184,10 @@ function ChoiceQ({ q, l, all, ex, show, verdict }: { q: GardenQ; l: Lexeme; all:
   const m = useMemo(() => {
     if (q.type === "listen_meaning") { const o = meaningOptions(l, all); return { title: "Dinle: ne demek?", stem: null as string | null, ...o, expected: l.tr }; }
     if (q.type === "article") { const opts = ["der", "die", "das"]; return { title: "Hangi artikel?", stem: l.de, opts, ans: opts.indexOf(l.art!), expected: `${l.art} ${l.de}` }; }
-    const c = collocQuestion(l, all)!; return { title: `Tamamla: ${c.tr}`, stem: c.stem, opts: c.opts, ans: c.ans, expected: c.stem.replace("___", c.opts[c.ans]!) };
+    const c = collocQuestion(l, all);
+    // yeterli güvenli çeldirici yoksa anlam sorusuna düşer (tek doğru cevap kuralı)
+    if (!c) { const o = meaningOptions(l, all); return { title: "Ne demek?", stem: isNoun(l) ? `${l.art} ${l.de}` : l.de, ...o, expected: l.tr }; }
+    return { title: `Tamamla: ${c.tr}`, stem: c.stem, opts: c.opts, ans: c.ans, expected: c.stem.replace("___", c.opts[c.ans]!) };
   }, [q.lexId, q.type]);
   const [picked, setPicked] = useState<number | null>(null);
   useEffect(() => { if (q.type === "listen_meaning") void speak(isNoun(l) ? `${l.art} ${l.de}` : l.de, "de", "normal"); }, []);
@@ -174,9 +200,17 @@ function ChoiceQ({ q, l, all, ex, show, verdict }: { q: GardenQ; l: Lexeme; all:
         {q.type === "article" && ex && picked !== null && <p class="small" lang="de">{ex.de}</p>}
       </section>
       <div role="group">{m.opts.map((o, k) => <button class={`opt${picked === null ? "" : k === m.ans ? " right" : k === picked ? " wrong" : ""}`} disabled={picked !== null} data-opt={k}
-        {...(E2E ? { "data-right": k === m.ans ? "1" : undefined } : {})} lang={q.type === "listen_meaning" ? undefined : "de"}
+        {...(E2E ? { "data-right": k === m.ans ? "1" : undefined } : {})} lang={m.expected === l.tr ? undefined : "de"}
         onClick={() => { setPicked(k); show({ ok: k === m.ans, answer: o, expected: m.expected }); }}>{o}</button>)}</div>
       {verdict}
     </div>
   );
+}
+
+/** Tur sonu: yarın kaç kart dönecek (somut "sırada ne var") */
+function tomorrow(items: Map<string, LearnerItem>): string {
+  const t = new Date(Date.now() + 24 * 3600_000);
+  let n = 0;
+  for (const it of items.values()) if (isDue(it, "passive", t) || isDue(it, "active", t)) n++;
+  return n ? `Yarın ${n} kart seni bekliyor.` : "Yarın yeni kartlar gelecek.";
 }

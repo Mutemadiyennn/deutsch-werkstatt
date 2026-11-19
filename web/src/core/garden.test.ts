@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { Lexeme } from "@dw/shared";
 import type { LearnerItem } from "@dw/shared";
-import { personalFirst, availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced } from "./garden.ts";
+import { personalMatch, availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable } from "./garden.ts";
 import { review, sessionKey } from "./srs.ts";
 
 const L = (o: Record<string, unknown>) => Lexeme.parse({ tr: "x", pos: "other", ...o });
@@ -72,11 +72,76 @@ describe("Kelime Bahçesi (PM-049)", () => {
     expect(ownSentenceCheck(termin, "Termin.")).toBe("short");
     expect(ownSentenceCheck(termin, "Ich gehe heute nach Hause.")).toBe("missing");
   });
-  it("duyduğun / 'nasıl derim' kelimesi sözlükte varsa yeni kart sırasının başına girer (#58 A3)", () => {
-    const at = "2026-11-19T00:00:00Z";
-    const all = [termin, absagen, der, toeten];
-    const pool = personalFirst([{ id: "k3:der Termin", de: "der Termin", at, source: "heard" }, { id: "sayit:absagen", de: "absagen", at, source: "sayit" },
-      { id: "k3:töten", de: "töten", at, source: "heard" }, { id: "k3:Quatsch", de: "Quatsch", at, source: "heard" }], all, ["lx:absagen", "lx:x"]);
-    expect(pool).toEqual(["lx:Termin", "lx:absagen", "lx:x"]);
+  it("kişisel banka: duyduğun kelime sözlükte varsa öncelikli; büyük/küçük harf, artikel ve çoğul doğru eşleşir (#58 A3, inceleme #59 P1-6)", () => {
+    const essenV = L({ id: "lx:essen", de: "essen", tr: "yemek yemek", pos: "verb" });
+    const essenN = L({ id: "lx:Essen", de: "Essen", tr: "yemek", pos: "noun", art: "das" });
+    const datum = L({ id: "lx:Datum", de: "Datum", pl: "Daten", tr: "tarih", pos: "noun", art: "das" });
+    const daten = L({ id: "lx:Daten", de: "Daten", pl: "Daten", tr: "veriler", pos: "noun", art: "die" });
+    const all = [termin, absagen, der, toeten, essenV, essenN, datum, daten];
+    const ids = personalMatch([{ de: "der Termin" }, { de: "ein Termin" }, { de: "Termine" }, { de: "absagen" }, { de: "töten" }, { de: "Quatsch" }, { de: "essen" }, { de: "Essen" }, { de: "die Daten" }], all);
+    expect(ids).toEqual(["lx:Termin", "lx:absagen", "lx:essen", "lx:Essen", "lx:Daten"]);
+    expect(personalMatch([{ de: "das Datum" }], all)).toEqual(["lx:Datum"]);
+  });
+  it("öncelikli (duyduğum) kart, vadesi gelen ≥12 kart olsa da turda yer bulur (LS-7.5)", () => {
+    const t0 = new Date("2026-11-01T10:00:00Z");
+    const lx2 = new Map(lex), many = new Map<string, LearnerItem>();
+    for (let i = 0; i < 20; i++) { const l = L({ id: `lx:p${i}`, de: `p${i}`, tr: `t${i}`, pos: "adj" }); lx2.set(l.id, l); many.set(l.id, review(undefined, { itemId: l.id, kind: "lexeme", path: "passive", outcome: "wrong", session: "s@1" }, t0)); }
+    const r = buildRound(lx2, many, [], { now: new Date("2026-12-01T10:00:00Z"), priority: ["lx:Termin"] });
+    expect(r).toHaveLength(12);
+    expect(r.filter((q) => q.lexId === "lx:Termin")).toEqual([{ lexId: "lx:Termin", type: "listen_meaning", intro: true, ex: 0 }]);
+  });
+  it("tanıtılmış kart (pasifte doğru) bir sonraki turda ilk üretim sorusunu alır; günlük aktif sınırı uyulur (inceleme #59 P0-2)", () => {
+    const t0 = new Date("2026-11-01T10:00:00Z");
+    const it = review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "correct", session: "g@1" }, t0);
+    expect(activatable(it, termin)).toBe(true);
+    const r = buildRound(lex, new Map([["lx:Termin", it]]), [], { now: new Date("2026-11-01T10:05:00Z") });
+    expect(r[0]!.lexId).toBe("lx:Termin");
+    expect(["tr_de", "photo_say", "gap", "own_sentence"]).toContain(r[0]!.type);
+    const after = review(it, { itemId: "lx:Termin", kind: "lexeme", path: "active", outcome: "correct", session: "g@2" }, t0);
+    expect(activatable(after, termin)).toBe(false);
+    expect(after.firstAt).toMatchObject({ passive: t0.toISOString(), active: t0.toISOString() });
+    expect(startedToday([after], t0)).toEqual({ passive: 1, active: 1 });
+    expect(buildRound(lex, new Map([["lx:Termin", it]]), [], { now: t0, activeLeft: 0 }).some((q) => q.lexId === "lx:Termin")).toBe(false);
+    // tanıtılmamış (yalnızca yanlış) kart üretime açılmaz
+    expect(activatable(review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "wrong", session: "g@1" }, t0), termin)).toBe(false);
+  });
+  it("günlük yeni kart sınırı (LS-7.4): hak bitince yeni kart gelmez", () => {
+    expect(buildRound(lex, new Map(), ["lx:Termin", "lx:absagen"], { newLeft: 1 }).map((q) => q.lexId)).toEqual(["lx:Termin"]);
+    expect(buildRound(lex, new Map(), ["lx:Termin", "lx:absagen"], { newLeft: 0 })).toEqual([]);
+  });
+  it("son sorulan tür (lastQ) yeni turda tekrar edilmez", () => {
+    const t0 = new Date("2026-11-01T10:00:00Z");
+    let it = review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "correct", session: "g@1" }, t0);
+    it = review(it, { itemId: "lx:Termin", kind: "lexeme", path: "active", outcome: "correct", session: "g@1" }, t0);
+    it.lastQ = "tr_de";
+    for (let k = 0; k < 10; k++) expect(buildRound(lex, new Map([["lx:Termin", it]]), [], { now: new Date("2026-12-01T10:00:00Z"), rng: () => k / 10 })[0]!.type).not.toBe("tr_de");
+  });
+  it("artikel sorusu yalnızca çoğul isimlerde sorulmaz (die Daten)", () => {
+    const daten = L({ id: "lx:Daten", de: "Daten", pl: "Daten", tr: "veriler", pos: "noun", art: "die" });
+    expect(availableTypes(daten, "passive")).not.toContain("article");
+  });
+  it("eşdizim: çeldirici gövdeyle geçerli bir eşdizim oluşturamaz, noktalama atılır; gövdesi tekrar eden eşdizim sorulmaz (inceleme #59 P1-5)", () => {
+    const zeit = L({ id: "lx:Zeit", de: "Zeit", tr: "zaman", pos: "noun", art: "die", collocations: [{ de: "Zeit haben", tr: "vakti olmak" }] });
+    const x1 = L({ id: "lx:x1", de: "x1", tr: "x", pos: "verb", collocations: [{ de: "Zeit verbringen", tr: "vakit geçirmek" }, { de: "Komm rein!", tr: "gir" }, { de: "Geld sparen", tr: "para biriktirmek" }, { de: "Sport machen", tr: "spor yapmak" }] });
+    for (let k = 0; k < 10; k++) {
+      const q = collocQuestion(zeit, [zeit, x1], () => k / 10)!;
+      expect(q.opts[q.ans]).toBe("haben");
+      expect(q.opts).not.toContain("verbringen");
+      expect(q.opts.every((o) => !/[!?.,]/.test(o))).toBe(true);
+    }
+    const two = L({ id: "lx:y", de: "y", tr: "y", pos: "noun", art: "der", collocations: [{ de: "einen Termin machen", tr: "a" }, { de: "einen Termin absagen", tr: "b" }] });
+    expect(availableTypes(two, "passive")).not.toContain("colloc");
+  });
+  it("boşluk sorusunda bütün cümle de kabul (inceleme #59 P1-2)", () => {
+    expect(accepted(termin, "gap")).toContain("Ich habe einen Termin.");
+    expect(accepted(absagen, "sep_perfekt")).toContain("Ich sage den Termin ab.");
+  });
+  it("kendi cümlesi: çekimli ve ayrılabilir kullanım tanınır (inceleme #59 P1-1)", () => {
+    const anrufen = L({ id: "lx:anrufen", de: "anrufen", tr: "aramak", pos: "verb" });
+    const nehmen = L({ id: "lx:nehmen", de: "nehmen", tr: "almak", pos: "verb", verb: { praesens3: "nimmt", perfekt: "hat genommen", aux: "haben", sep: false } });
+    expect(ownSentenceCheck(absagen, "Ich sage den Termin ab.")).toBe("ok");
+    expect(ownSentenceCheck(anrufen, "Ich rufe dich morgen an.")).toBe("ok");
+    expect(ownSentenceCheck(nehmen, "Nimmst du den Bus?")).toBe("ok");
+    expect(ownSentenceCheck(absagen, "Ich habe den Termin abgesagt.")).toBe("ok");
   });
 });
