@@ -118,6 +118,15 @@ const localDay = (d: Date) => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDat
 export const DAILY_NEW = 25, DAILY_ACTIVE = 12;
 
 /**
+ * M1 günü yeni kart hakkı (inceleme #66): günün kartları takvim sınırına takılmaz; kişisel kelimeler (duyduğum, nasıl derim)
+ * yalnızca takvim hakkı kalmışsa ve günün kartlarının yerini almadan gelir (en çok 2).
+ */
+export function m1Hak(takvim: number, kalan: number, kisisel: number): { newLeft: number; kisiselIzin: boolean } {
+  const izin = takvim > 0 && kisisel > 0;
+  return { newLeft: kalan + (izin ? Math.min(2, takvim, kisisel) : 0), kisiselIzin: izin };
+}
+
+/**
  * Bir tur kurar. `items`: öğrenci modeli (yalnızca lexeme türü kullanılır). `pool`: yeni kart adayları sırasıyla.
  * Sıra: vadesi gelen aktif → üretime açılan (tanıtılmış) kartlar → vadesi gelen pasif → öncelikli yeni (duyduğum) → yeni.
  */

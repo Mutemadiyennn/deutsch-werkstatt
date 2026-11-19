@@ -11,7 +11,7 @@ import { bahceTamam, xpVer } from "../services/ilerleme.ts";
 import { XP } from "../core/gun.ts";
 import { itemsMap, personalWords, putItems } from "../data/db.ts";
 import { review, sessionKey, type Outcome } from "../core/srs.ts";
-import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, isNoun, meaningOptions, ownSentenceCheck, pathOf, requeue, startedToday, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
+import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, isNoun, meaningOptions, ownSentenceCheck, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { judgeWord, numberWordHint } from "../core/grading.ts";
 import { isDue } from "../core/srs.ts";
@@ -57,8 +57,13 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       // duyduğun ve "nasıl derim" diye sorduğun kelimeler öncelikli (kişisel banka, #58 A3, LS-7.5)
       const priority = personalMatch(await personalWords(), lexemes);
       const t = startedToday(items.values());
-      const newLeft = Math.max(DAILY_NEW - t.passive, kalan.length), activeLeft = DAILY_ACTIVE - t.active;
-      const round = buildRound(lex, items, pool, { priority, newLeft, activeLeft, yeniAyir: Math.min(8, kalan.length) });
+      // M1 gününde günün kartları takvim sınırına takılmaz; kişisel kelimeler (duyduğum, nasıl derim) yalnızca takvim hakkı
+      // kalmışsa ve günün kartlarının yerini almadan gelir (inceleme #66 2. tur P1-A)
+      const takvim = Math.max(0, DAILY_NEW - t.passive);
+      const hak = m1Hak(takvim, kalan.length, priority.length);
+      const kisisel = !day || hak.kisiselIzin ? priority : [];
+      const newLeft = day ? hak.newLeft : takvim, activeLeft = DAILY_ACTIVE - t.active;
+      const round = buildRound(lex, items, pool, { priority: kisisel, newLeft, activeLeft, yeniAyir: Math.min(8, kalan.length) });
       // boş tur: günün kartları zaten tanıtıldıysa Seans 1 burada tamamlanır (ekran efektine bırakılmaz)
       if (day && !round.length && !kalan.length) await bahceTamam(day);
       setData({ lex, all: lexemes, items, round, capped: newLeft <= 0, gunKartlari });
