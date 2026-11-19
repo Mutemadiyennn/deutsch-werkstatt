@@ -2,7 +2,7 @@
 
 Sözlükte WORLD dışı adlar her kartta aynı kişidir. Yeni cümle yazmadan önce buradan oku.
 Kimliğe uymayan bir bilgi gerekiyorsa o adı kullanma; "boş adlar" listesinden yeni bir ad al ve buraya ekle.
-Durum: genel ad tutarlılık turundan (47 cümle, 3 hata notu, okur 4 tur) sonraki hâl. Yazar ve dilbilimci görevleri bu dosyaya bağlıdır.
+Durum: genel ad tutarlılık turundan (47 cümle, 3 hata notu, okur 4 tur) ve sonraki gruplardan sonraki hâl. Yazar ve dilbilimci görevleri bu dosyaya bağlıdır.
 
 ## Ana adlar
 
@@ -83,7 +83,7 @@ Durum: genel ad tutarlılık turundan (47 cümle, 3 hata notu, okur 4 tur) sonra
 - Yalnızca telefonda kendini tanıtan ses (`lx:hier`). Başka bilgi yazma.
 
 ## Boş adlar (sözlükte bilgisi yok)
-Lisa, Jan, Jakob, Emil, Finn, Moritz, Eva, David, Sara, Lea.
+Sara, Lea. (Lisa, Jan, Finn, Moritz, Jakob, Emil, David, Eva artık dolu; aşağıya bak.)
 
 ## Kullanma
 - **Ben**: Türkçe "ben" ile karışır.
@@ -98,10 +98,36 @@ Lisa, Jan, Jakob, Emil, Finn, Moritz, Eva, David, Sara, Lea.
 - Garson (`lx:Kellner`); `lx:duzen`de kendini tanıtıyor. Başka bilgi yok.
 
 ### Lisa
-- Haftalık toplu taşıma bileti alıyor, bir dernekte dans ediyor.
+- Haftalık toplu taşıma bileti alıyor, bir kulüpte dans ediyor.
 
 ### Moritz
 - Sporla hiç ilgilenmedi.
 
 ### Finn
-- Küçük çocuk, ilkokulda; pasaportu henüz yok. Beden eğitimi dersinde iyi.
+- Küçük çocuk, ilkokulda; pasaportu henüz yok. Beden eğitimi dersinde iyi; en sevdiği ders beden eğitimi (grup 22).
+
+## Grup 22'de (c6-22) açılan ya da genişleyen adlar
+### Jakob
+- Genç yetişkin. Abitur'u Passau'da yaptı (eskiden Basti'deydi; WORLD karakterine geçmiş eklenmesin diye taşındı). Şu an yeni âşık.
+### Emil
+- Abitur'dan sonra bir yıl gezdi (eskiden Tobi'deydi; WORLD karakterine yolculuk eklenmesin diye taşındı).
+### David
+- Bir şantiyede çalışıyor (eskiden Basti'deydi).
+### Eva
+- İki gecelik tek kişilik otel odası ayırtıyor.
+### Eklenen bilgiler (var olan adlara)
+- Clara: gelecek yıl Abitur'a giriyor; okulu bir yıl sonra bitiyor.
+- Leo: Abitur için çok çalışıyor; en zor dersi matematik; bu yıl on dersi var.
+- Sophie: Abitur'u yok; aşçılık meslek eğitiminde.
+- Lena'nın erkek kardeşi: Abitur'u var (bankada meslek eğitiminde).
+- Julia: başvuru için diplomalarını (Zeugnisse) Almancaya çevirtiyor; Almanca özgeçmiş yazıyor.
+- Anna: oğlunun karnesi çok iyi; kızının en sevdiği ders müzik. Max ile para yüzünden hiç tartışmaz. Max ona yıllar önce âşık oldu.
+- Max: yazın uzun bisiklet turları yapar.
+- Felix ve Laura: yazın birbirlerine âşık oldular.
+- Leon: çabuk âşık olur; Nina ondan ayrıldı.
+- Simon: ilk karısından yıllar önce ayrıldı.
+- Emma: her akşam plajda yürür; otelinden plaja iki dakika; otelde altı çift kişilik oda.
+- Paul: pazar günleri geç saate kadar uyur (eskiden Tobi'deydi; Tobi hafta sonu dağa gider).
+
+### Emma (ek)
+- Bir otelin resepsiyonunda çalışıyor (`lx:Rezeption`).
