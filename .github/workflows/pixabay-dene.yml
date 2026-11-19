@@ -1,0 +1,23 @@
+name: "Pixabay anahtarı denemesi (PM 12:57, #58 B12): gizli ayar dolu mu, tek arama 200 ve totalHits > 0 mı"
+# Anahtar ve tam adres günlüğe yazılmaz: yalnızca durum kodu ve sonuç sayısı. Elle (workflow_dispatch) ya da kaynak/pixabay-dene dalına push.
+on:
+  workflow_dispatch:
+  push:
+    branches: ["kaynak/pixabay-dene"]
+    paths: [".github/workflows/pixabay-dene.yml"]
+permissions: { contents: read }
+jobs:
+  dene:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Pixabay
+        env: { PIXABAY_API_KEY: "${{ secrets.PIXABAY_API_KEY }}" }
+        run: |
+          set +x
+          if [ -z "$PIXABAY_API_KEY" ]; then echo "PIXABAY: boş (gizli ayar tanımlı değil)"; echo "::notice::PIXABAY: boş"; exit 0; fi
+          kod=$(curl -s -o /tmp/p.json -w '%{http_code}' --get "https://pixabay.com/api/" --data-urlencode "key=$PIXABAY_API_KEY" --data "q=bakery&image_type=photo&per_page=3")
+          n=$(python3 -c "import json;print(json.load(open('/tmp/p.json')).get('totalHits',0))" 2>/dev/null || echo 0)
+          if [ "$kod" = "200" ] && [ "$n" -gt 0 ]; then s="çalışıyor (HTTP 200, totalHits $n)"; else s="geçersiz (HTTP $kod, totalHits $n)"; fi
+          echo "PIXABAY: $s"; echo "::notice::PIXABAY: $s"
+          rm -f /tmp/p.json
