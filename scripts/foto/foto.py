@@ -12,7 +12,8 @@ ve lisansı okunamayan görsel alınmaz. Kaynak sayfa, yazar ve lisans kayda ge�
     (#58 B5: denetçi her sorgu için birini seçer ya da hepsini reddeder; soyut kelimede sahne çizimi).
   - Depo: `content/v2/media/foto/adaylar.json` — sorgu → aday (dosya, kaynak sayfa, yazar, lisans, boyut). Görsel depoya girmez.
 
-Kullanım: python scripts/foto/foto.py OUT_DIR [--sinir N]
+Kullanım: python scripts/foto/foto.py OUT_DIR [--sinir N] [--yalniz-eksik]
+  Adaysız uzun sorgu için içerik kelimelerinden kısa yedek sorgular denenir (aday kaydında `sorgu`, B5 sayfasında işaretli).
 """
 from __future__ import annotations
 import glob, hashlib, html, io, json, os, re, sys, time, urllib.parse, urllib.request
@@ -25,15 +26,17 @@ ADAY = 3
 UYGUN = re.compile(r"^(cc0|cc[- ]?by(-sa)?([- ]\d(\.\d)?)?|public domain|pdm|cc[- ]?pdm)", re.I)
 YASAK = re.compile(r"\b(nc|nd|noncommercial|noderivs|fair use|non-free)\b", re.I)
 
-def get(url: str, tekrar: int = 3) -> bytes:
+def get(url: str, tekrar: int = 4) -> bytes:
     for k in range(tekrar):
         try:
-            time.sleep(0.5)
+            time.sleep(0.7)
             with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": UA}), timeout=60) as r:
                 return r.read()
         except Exception as e:
             if k == tekrar - 1: raise RuntimeError(f"{url[:120]}: {e}") from e
-            time.sleep(3 * (k + 1))
+            # 429: sunucunun istediği kadar (yoksa 30, 60, 90 sn) beklenir; ilk turda 24 sorgu bundan boş kaldı
+            ra = getattr(e, "headers", None) and e.headers.get("Retry-After")
+            time.sleep(min(int(ra), 120) if ra and ra.isdigit() else (30 * (k + 1) if getattr(e, "code", 0) == 429 else 3 * (k + 1)))
     raise RuntimeError("ulaşılamadı")
 
 def temiz(s: str | None) -> str:
@@ -75,6 +78,26 @@ def kucult(veri: bytes) -> bytes:
     b = io.BytesIO(); im.save(b, "JPEG", quality=82, optimize=True, progressive=True)
     return b.getvalue()
 
+DOLGU = {"a", "an", "the", "on", "in", "at", "with", "without", "of", "for", "into", "to", "from", "by", "and", "or", "his", "her",
+         "their", "two", "three", "person", "people", "man", "woman", "someone", "smiling", "small", "big", "new", "empty"}
+
+def kisalar(sorgu: str) -> list[str]:
+    """Uzun sahne sorgusu Commons'ta tüm kelimeleri aradığından boş döner; içerik kelimelerinden kısa yedekler (#58 A10, 129 adaysız)"""
+    w = [x for x in re.findall(r"[a-z]+", sorgu.lower()) if x not in DOLGU]
+    aday = [w[-3:], w[:1] + w[-1:], w[-2:], w[:2]]
+    out = []
+    for a in aday:
+        q = " ".join(a)
+        if len(a) >= 2 and q != sorgu and q not in out: out.append(q)
+    return out
+
+def topla(sorgu: str) -> tuple[list[dict], str | None]:
+    havuz, hata = commons(sorgu), None
+    if len(havuz) < ADAY:
+        try: havuz += openverse(sorgu)
+        except Exception as e: hata = f"openverse: {e}"
+    return havuz, hata
+
 def sorgular() -> dict[str, list[str]]:
     """M1 günlerinin kartları: kart sorgusu (`img`) ve örnek cümle sorguları → kullanan yerler"""
     lex = {}
@@ -100,29 +123,39 @@ def main():
     q = sorgular()
     print(f"sorgu: {len(q)}", flush=True)
     kayit, satir = {}, []
+    # --yalniz-eksik: önceki adaylar.json'da 3 adayı olan sorgu yeniden aranmaz (görselleri Releases'te durur)
+    onceki = {}
+    if "--yalniz-eksik" in sys.argv:
+        try: onceki = json.load(open(os.path.join(KOK, "content/v2/media/foto/adaylar.json")))["sorgular"]
+        except Exception: onceki = {}
     for n, (sorgu, yerler) in enumerate(list(q.items())[:sinir]):
-        adaylar, hata = [], None
+        eski = onceki.get(sorgu)
+        if eski and len(eski["adaylar"]) >= ADAY:
+            kayit[sorgu] = {**eski, "yerler": yerler}; satir.append((sorgu, yerler, eski["adaylar"])); continue
+        adaylar, hata, kisa = list((eski or {}).get("adaylar", [])), None, None
         try:
-            havuz = commons(sorgu)
-            if len(havuz) < ADAY:
-                try: havuz += openverse(sorgu)
-                except Exception as e: hata = f"openverse: {e}"
-            for a in havuz:
+            for i, sq in enumerate([sorgu] + kisalar(sorgu)):
                 if len(adaylar) >= ADAY: break
-                try:
-                    veri = kucult(get(a["url"]))
-                except Exception as e:
-                    hata = str(e)[:160]; continue
-                h = hashlib.sha256(veri).hexdigest()[:16]
-                ad = f"{h}.jpg"
-                if any(x["dosya"] == ad for x in adaylar): continue
-                open(os.path.join(out, ad), "wb").write(veri)
-                adaylar.append({**{k: v for k, v in a.items() if k != "url"}, "dosya": ad, "bayt": len(veri)})
+                havuz, h = topla(sq); hata = h or hata
+                once = len(adaylar)
+                for a in havuz:
+                    if len(adaylar) >= ADAY: break
+                    if any(x.get("sayfa") == a.get("sayfa") for x in adaylar): continue
+                    try:
+                        veri = kucult(get(a["url"]))
+                    except Exception as e:
+                        hata = str(e)[:160]; continue
+                    h = hashlib.sha256(veri).hexdigest()[:16]
+                    ad = f"{h}.jpg"
+                    if any(x["dosya"] == ad for x in adaylar): continue
+                    open(os.path.join(out, ad), "wb").write(veri)
+                    adaylar.append({**{k: v for k, v in a.items() if k != "url"}, "dosya": ad, "bayt": len(veri), **({"sorgu": sq} if i else {})})
+                if i and len(adaylar) > once: kisa = sq
         except Exception as e:
             hata = str(e)[:200]
-        kayit[sorgu] = {"yerler": yerler, "adaylar": adaylar, **({"hata": hata} if hata and not adaylar else {})}
+        kayit[sorgu] = {"yerler": yerler, "adaylar": adaylar, **({"kisa": kisa} if kisa else {}), **({"hata": hata} if hata and not adaylar else {})}
         satir.append((sorgu, yerler, adaylar))
-        print("FOTO " + json.dumps({"sorgu": sorgu, "aday": len(adaylar), "hata": hata}, ensure_ascii=False), flush=True)
+        print("FOTO " + json.dumps({"sorgu": sorgu, "aday": len(adaylar), "kisa": kisa, "hata": hata}, ensure_ascii=False), flush=True)
     hedef = os.path.join(KOK, "content/v2/media/foto")
     os.makedirs(hedef, exist_ok=True)
     json.dump({"surum": 1, "not": "Görseller GitHub Releases m1-foto varlığıdır; depoya girmez. Seçim #58 B5 görsel denetimiyle (secim.json).",
@@ -133,7 +166,9 @@ def main():
              "section{border-top:1px solid #ccc;padding:8px 0}img{height:160px;margin:4px;border:1px solid #ddd}figure{display:inline-block;margin:0 8px;vertical-align:top;max-width:240px}"
              "figcaption{font-size:11px;color:#555}</style><h1>M1 fotoğraf adayları (#58 A10 → B5 seçim)</h1>"]
     for sorgu, yerler, adaylar in satir:
-        parca.append(f"<section><h3>{html.escape(sorgu)}</h3><div>{html.escape(', '.join(yerler))}</div>")
+        k = kayit[sorgu].get("kisa")
+        parca.append(f"<section><h3>{html.escape(sorgu)}</h3><div>{html.escape(', '.join(yerler))}</div>"
+                     + (f"<div><i>Kısa sorguyla bulundu: {html.escape(k)} — sahneye uyuyor mu dikkat</i></div>" if k else ""))
         for a in adaylar:
             parca.append(f"<figure><img loading=lazy src='{a['dosya']}'><figcaption>{html.escape(a['lisans'])} · {html.escape(a['yazar'])} · "
                          f"<a href='{html.escape(a['sayfa'] or '')}'>kaynak</a> · {a['dosya']}</figcaption></figure>")

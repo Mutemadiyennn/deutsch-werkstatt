@@ -18,7 +18,7 @@ jobs:
         with: { python-version: "3.12" }
       - run: pip install -q pillow==11.0.0
       - name: Hat
-        run: python scripts/foto/foto.py out
+        run: python scripts/foto/foto.py out --yalniz-eksik
       - name: Releases (m1-foto)
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
