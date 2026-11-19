@@ -61,7 +61,11 @@ def main():
         try: html = get(url)
         except Exception as e: print("atlandı", url, e); continue
         open(os.path.join(OUT, "html", f"toc_{k}.html"), "w").write(html)
-        for href, _ in parse(html).links:
+        pp = parse(html)
+        if k == 1:
+            print("toc_1 bağlantı örnekleri:", [h for h, _ in pp.links][:80])
+            print("toc_1 medya:", pp.media[:20]); print("toc_1 boyut:", len(html)); print(re.findall(r"(?:href|src|onclick|data-[a-z]+)=[\"']([^\"']{4,120})", html)[:120])
+        for href, _ in pp.links:
             u = urllib.parse.urljoin(url, href)
             if u.startswith(BASE) and re.search(r"(video|clip|interview|sic|toc\.php\?k=\d+&)", u) and not u.endswith(".pdf"):
                 pages.setdefault(u, k)
