@@ -1,8 +1,11 @@
 /** İçerik kapısı: 0 hata olmadan derleme yapılmaz. Kullanım: npm run content:validate */
-import { loadContent, checkRules } from "./load.ts";
+import { loadContent, checkRules, ROOT } from "./load.ts";
 import { ogretilmemisBosluklar } from "./bosluk.ts";
+import { medyaDenetle } from "./medya.ts";
 
 const c = checkRules(loadContent(), { strictPatterns: process.argv.includes("--strict"), strictTeach: process.argv.includes("--strict") });
+// B12 3. parça / D-112: kapalı medya açık depoya giremez
+c.errors.push(...medyaDenetle(ROOT));
 // PM-069 P0 sayacı (uyarı; uygulama bu boşlukları sormaz, içerik düzeltilir)
 const bos = ogretilmemisBosluklar(c.lexemes, c.m1.map((g) => g.data));
 if (bos.length) {
