@@ -45,8 +45,11 @@ def get(url: str) -> bytes:
     rp = _robots()
     if rp and not rp.can_fetch(UA, url): raise RuntimeError(f"robots.txt izin vermiyor: {url}")
     time.sleep(1.0)
-    with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": UA}), timeout=120) as r:
-        return r.read()
+    try:
+        with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": UA}), timeout=120) as r:
+            return r.read()
+    except Exception as e:
+        raise RuntimeError(f"{url}: {e}") from e
 
 def fix(s: str) -> str:
     if s and re.search("[ÃÂ]", s):
@@ -332,7 +335,7 @@ def main():
         try: r = isle(f, out, rss)
         except Exception as e: r = {"klip": ad, "hata": f"{type(e).__name__}: {e}"}
         sonuclar.append(r)
-        print("OLCUM " + json.dumps(r, ensure_ascii=False))
+        print("OLCUM " + json.dumps(r, ensure_ascii=False), flush=True)
         # depoya yalnızca sayılar: metin yok
         json.dump(r, open(os.path.join(VIDEO_DIR, f"{ad}.olcum.json"), "w"), ensure_ascii=False, indent=1)
     print(f"bitti: {len(sonuclar)} klip; birebir {sum(1 for r in sonuclar if r.get('etiket') == 'birebir')}; hata {sum(1 for r in sonuclar if r.get('hata'))}")
