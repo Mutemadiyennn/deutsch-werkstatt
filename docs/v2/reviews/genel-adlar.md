@@ -95,4 +95,13 @@ Lisa, Jan, Jakob, Emil, Finn, Moritz, Eva, David, Sara, Lea.
 - Yetişkin. Nina ile bir süre birlikteydi, ayrıldılar; bir iş arkadaşına âşık oldu. (Tobi'nin ilişkisi WORLD'de yok; bu cümleler Leon'a geçti.)
 
 ### Jan
-- Yalnızca kendini tanıtan ses (`lx:duzen`: "Ich bin Jan"). Başka bilgi yok.
+- Garson (`lx:Kellner`); `lx:duzen`de kendini tanıtıyor. Başka bilgi yok.
+
+### Lisa
+- Haftalık toplu taşıma bileti alıyor, bir dernekte dans ediyor.
+
+### Moritz
+- Sporla hiç ilgilenmedi.
+
+### Finn
+- Küçük çocuk, ilkokulda; pasaportu henüz yok. Beden eğitimi dersinde iyi.
