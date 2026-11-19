@@ -10,7 +10,7 @@ import { Icon } from "./icons.tsx";
 const ICONS = { today: <Icon name="raute" size={24} />, learn: <Icon name="list" size={24} />, progress: <Icon name="chart" size={24} />, profile: <Icon name="user" size={24} /> };
 
 export function TabBar({ route }: { route: Route }) {
-  const tab = route.name === "learn" || route.name === "domain" || route.name === "scenario" ? "learn" : route.name === "progress" ? "progress" : route.name === "profile" ? "profile" : "today";
+  const tab = route.name === "learn" || route.name === "domain" || route.name === "scenario" || route.name === "sozluk" ? "learn" : route.name === "progress" ? "progress" : route.name === "profile" ? "profile" : "today";
   const items: [string, string, keyof typeof ICONS, string][] = [
     ["today", "#/today", "today", "Bugün"],
     ["learn", "#/learn", "learn", "Öğren"],
@@ -53,13 +53,15 @@ export const minLeft = (sec: number) => `${Math.max(1, Math.ceil(sec / 60))} dk`
 export const mmss = (sec: number) => `${String(Math.floor(sec / 60)).padStart(2, "0")}:${String(Math.floor(sec % 60)).padStart(2, "0")}`;
 
 /** Öğrenme ekranlarındaki küçük odak göstergesi: seans x/4 ve kalan süre */
+/** Başlıktaki seans çipi (#58 A6: "ders başlığında seans ve kalan dakika"); mola sürerken kalan mola */
 export function FocusChip() {
   const e = useFocusTick();
   if (!e) return null;
   const now = Date.now();
-  if (e.rt.phase === "break") return <span class="focuschip" title="Mola">Mola · {minLeft(e.breakLeftSec(now))}</span>;
-  if (e.rt.phase === "focus" && e.current) return <span class="focuschip" title={`Seans ${e.current.n}`}>Seans {e.current.n} · {minLeft(e.focusLeftSec())} kaldı</span>;
-  return <span class="focuschip">{e.focusMin()}/{e.cfg.dailyGoalMin} dk</span>;
+  const sn = (n: number) => (n <= 4 ? `${n}/4` : `${n}`);
+  if (e.rt.phase === "break") return <span class="focuschip" data-test="focus-chip" title="Mola">Mola · {minLeft(e.breakLeftSec(now))}</span>;
+  if (e.rt.phase === "focus" && e.current) return <span class="focuschip" data-test="focus-chip" title={`Seans ${e.current.n}`}>Seans {sn(e.current.n)} · {e.rt.paused ? "duraklatıldı" : minLeft(e.focusLeftSec())}</span>;
+  return <span class="focuschip" data-test="focus-chip">{e.focusMin()}/{e.cfg.dailyGoalMin} dk</span>;
 }
 
 export function Ring({ value, max, size = 92, label }: { value: number; max: number; size?: number; label: string }) {

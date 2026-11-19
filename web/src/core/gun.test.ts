@@ -6,14 +6,15 @@ import { gunAdimlari, yol, siradaki, xpEkle, seri, XP_BOS } from "./gun.ts";
 
 const g1 = Gun.parse(JSON.parse(readFileSync(join(import.meta.dirname, "../../../content/tools/fixtures/m1/gun-01.json"), "utf8")));
 const g2 = { ...g1, id: "m1:gun:02", day: 2, title_tr: "İkinci gün" } as Gun;
-const bos = () => ({ dersBitti: new Set<string>(), medyaBitti: new Set<string>(), bahceBitti: new Set<number>() });
+const bos = () => ({ dersBitti: new Set<string>(), medyaBitti: new Set<string>(), bahceBitti: new Set<number>(), provaBitti: new Set<number>(), okumaBitti: new Set<number>() });
 const basliklar = { "r0:01-tage": "Günler" };
 
 describe("M1 ders yolu (#58 A5b)", () => {
-  it("günün 4 seansı sırayla: Bahçe → temel ders → video ve sesler → prova (hazırlanıyor)", () => {
+  it("günün 4 seansı sırayla: Bahçe → temel ders → video ve sesler → prova (A7) + okuma/yazma (A8)", () => {
     const d = gunAdimlari(g1, bos(), basliklar);
-    expect(d.adimlar.map((a) => a.seans)).toEqual([1, 2, 3, 3, 3, 4]);
-    expect(d.adimlar.find((a) => a.seans === 4)!.hazir).toBe(false);
+    expect(d.adimlar.map((a) => a.seans)).toEqual([1, 2, 3, 3, 3, 4, 4]);
+    expect(d.adimlar.find((a) => a.tur === "prova")).toMatchObject({ hazir: true, href: "#/prova/1" });
+    expect(d.adimlar.find((a) => a.tur === "okuma")).toMatchObject({ hazir: true, href: "#/okuma/1" });
     expect(d.adimlar.find((a) => a.tur === "ders")!.title_tr).toBe("Günler");
     expect(d.adimlar.every((a) => a.tur !== "medya" || !a.title_tr.startsWith("Köy dizisi"))).toBe(true);
   });
@@ -27,6 +28,11 @@ describe("M1 ders yolu (#58 A5b)", () => {
     expect(siradaki(gunAdimlari(g1, ilr, basliklar))!.tur).toBe("ders");
     ilr.dersBitti.add("r0:01-tage");
     for (const m of [g1.video!.id, ...g1.sesler.map((s) => s.id)]) ilr.medyaBitti.add(m);
+    // Seans 4 prova bitmeden gün bitmez (A7)
+    expect(siradaki(gunAdimlari(g1, ilr, basliklar))!.tur).toBe("prova");
+    ilr.provaBitti.add(1);
+    expect(siradaki(gunAdimlari(g1, ilr, basliklar))!.tur).toBe("okuma");
+    ilr.okumaBitti.add(1);
     y = yol([gunAdimlari(g1, ilr, basliklar), gunAdimlari(g2, ilr, basliklar)]);
     expect(y.gunler[0]!.durum).toBe("bitti");
     expect(y.simdi!.day).toBe(2);

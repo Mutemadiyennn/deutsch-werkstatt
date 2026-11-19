@@ -81,6 +81,10 @@ describe("Kelime Bahçesi (PM-049)", () => {
     const ids = personalMatch([{ de: "der Termin" }, { de: "ein Termin" }, { de: "Termine" }, { de: "absagen" }, { de: "töten" }, { de: "Quatsch" }, { de: "essen" }, { de: "Essen" }, { de: "die Daten" }], all);
     expect(ids).toEqual(["lx:Termin", "lx:absagen", "lx:essen", "lx:Essen", "lx:Daten"]);
     expect(personalMatch([{ de: "das Datum" }], all)).toEqual(["lx:Datum"]);
+    // noktalamalı kart ve artikel gibi başlayan ifade (inceleme #78 P1-4)
+    const freut = L({ id: "lx:freut", de: "Freut mich!", tr: "memnun oldum", pos: "phrase" });
+    const bisschen = L({ id: "lx:bisschen", de: "ein bisschen", tr: "biraz", pos: "phrase" });
+    expect(personalMatch([{ de: "Freut mich!" }, { de: "ein bisschen" }], [...all, freut, bisschen])).toEqual(["lx:freut", "lx:bisschen"]);
   });
   it("öncelikli (duyduğum) kart, vadesi gelen ≥12 kart olsa da turda yer bulur (LS-7.5)", () => {
     const t0 = new Date("2026-11-01T10:00:00Z");

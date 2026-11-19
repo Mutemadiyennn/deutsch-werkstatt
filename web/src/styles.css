@@ -347,11 +347,16 @@ body.kb .app.hasbar { --actionbar-h: 0px !important; }
 .sky.evening { --sky-a: #C9D3F2; --sky-b: #E7E5F6; }
 :root[data-theme="dark"] .sky.evening, :root[data-theme="dark"] .sky.night { --sky-a: #1A1E44; --sky-b: #0E1430; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sky.evening, :root:not([data-theme="light"]) .sky.night { --sky-a: #1A1E44; --sky-b: #0E1430; } }
+:root[data-theme="dark"] .sky.morning { --sky-a: #17294A; --sky-b: #0D1830; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sky.morning { --sky-a: #17294A; --sky-b: #0D1830; } }
 .sky .skyline { display: block; width: 100%; height: 64px; color: var(--sky-ink); margin-bottom: 6px; }
 .sky .greet { font-family: var(--font-display); font-size: 2.6rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; margin: 0 0 6px; color: var(--tinte); }
 .sky .skyline-tr { color: var(--tinte-2); font-size: 1rem; margin: 0; max-width: 34ch; }
 .skychip { position: absolute; top: calc(var(--safe-top) + 10px); right: 16px; background: color-mix(in srgb, var(--card) 80%, transparent); color: var(--tinte); border-radius: 999px; padding: 4px 10px; font-size: 0.8rem; font-weight: 700; }
 .dayrow { display: flex; align-items: center; gap: 12px; padding: 2px 4px; }
+.dayring { display: flex; align-items: center; gap: 14px; padding: 4px 4px 0; }
+.dayring .ring { flex: none; }
+.seansdurum { font-weight: 700; font-size: 0.98rem; line-height: 1.25; font-variant-numeric: tabular-nums; }
 .daymin { margin-left: auto; color: var(--tinte-2); font-variant-numeric: tabular-nums; }
 .daymin b { color: var(--tinte); font-size: 1.1rem; }
 .goalhit { display: flex; gap: 6px; align-items: center; color: var(--wiese); font-weight: 700; margin: 0; }
@@ -446,7 +451,7 @@ html.callmode body { background: #121C30; }
 .medya-ust video { width: 100%; aspect-ratio: 16 / 9; border-radius: var(--r, 16px); background: #000; display: block; }
 .medya-ses { align-items: center; flex-wrap: nowrap; }
 .cumleler li.on, [data-test=adim-transkript] p.on { background: var(--himmel-2, var(--soft)); border-radius: 10px; }
-.wordtap { background: none; border: 0; padding: 10px 2px; margin: -10px 0; min-width: 24px; line-height: 1.2; font: inherit; color: inherit; border-bottom: 1px dotted var(--muted, #888); cursor: pointer; }
+.wordtap { background: none; border: 0; padding: 10px 2px; margin: -10px 0; min-width: 24px; line-height: 1.2; font: inherit; color: inherit; text-decoration: underline dotted var(--muted, #888); text-decoration-thickness: 1px; text-underline-offset: 4px; cursor: pointer; }
 .wordtap:active { background: var(--soft); }
 .kelime-sheet { position: fixed; left: 12px; right: 12px; bottom: calc(var(--safe-bottom) + 12px); z-index: 70; max-width: 616px; margin: 0 auto; box-shadow: var(--shadow); }
 [data-test=adim-transkript] p { line-height: 2.2; }
@@ -463,3 +468,9 @@ ol.yol > li.yolgun { padding: 14px 16px; }
 .yolno { width: 34px; height: 34px; border-radius: 50%; display: inline-grid; place-items: center; margin-right: 12px; flex: none; background: var(--soft); font-weight: 800; }
 .yolgun.bitti .yolno { background: var(--ok-soft); color: var(--ok); }
 .yolgun.simdi .yolno { background: var(--himmel); color: #fff; }
+.iconbtn.done { background: color-mix(in srgb, var(--wiese) 18%, transparent); color: var(--wiese); }
+/* Sözlük (#58 B1): sonuç satırı tam genişlik dokunma alanı (en az 44 pt); Almanca kelime bölünmez, uzun anlam sarılır */
+.sozluk-satir { display: flex; align-items: baseline; width: 100%; min-height: 44px; gap: 12px; color: inherit; text-decoration: none; padding: 2px 0; }
+.sozluk-satir .sozluk-de { flex: 0 1 auto; min-width: 0; max-width: 58%; overflow-wrap: break-word; }
+.sozluk-satir .sozluk-tr { flex: 1 1 0; min-width: 0; text-align: right; overflow-wrap: anywhere; }
+.sozluk-satir:focus-visible { outline: 2px solid var(--himmel); outline-offset: 2px; border-radius: 8px; }

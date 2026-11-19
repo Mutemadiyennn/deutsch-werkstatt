@@ -8,7 +8,7 @@ DN-2 §5 (PM-030, BY-12.1a) — internetsiz, mikrofonsuz ve yapay zekâsız duru
      ekranlarda geliştirici notu yok (PM-035/8).
   python3 tests/e2e/ucak.py [--browser webkit] [--device "iPhone 15"]
 """
-import json, re
+import json, re, urllib.parse
 from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, ERR, content_file
 
@@ -67,11 +67,21 @@ def main():
           return { shell: false, content: 0 };
         }""", want)
         check(st["shell"] and st["content"] >= want, f"A: kabuk ve içerik paketi tam önbellekte ({st['content']}/{want} dosya)")
+        medya = (idx.get("files") or {}).get("medya") or []
+        # M1 günü medya kullanıyorsa pakette medya olmalı: denetimler sessizce atlanmaz (inceleme #74 2. tur)
+        m1_medya = [x for g in idx.get("m1", []) for x in g.get("medya", []) if x.get("kind") == "video"]
+        if m1_medya: check(bool(medya), f"A: M1 medyası pakette ({len(medya)} dosya, {len(m1_medya)} kullanım)")
+        if medya:
+            # A12: M1 medyası (video, ses) ayrı önbellekte tamamlanır
+            mt = pg.evaluate("""async (n) => { for (let i = 0; i < 160; i++) { for (const k of await caches.keys()) if (k.startsWith('dw2-m-')) {
+                const c = await caches.open(k); if (await c.match('__complete')) return (await c.keys()).filter(r => r.url.includes('/media/')).length; }
+              await new Promise(r => setTimeout(r, 250)); } return 0; }""", len(medya))
+            check(mt >= len(medya), f"A: M1 medyası önbellekte ({mt}/{len(medya)} dosya)")
         ctx.set_offline(True)
         pg.close(); pg = new_page(ctx)  # soğuk açılış: yeni sekme, ağ yok
         pg.goto(base); pg.wait_for_selector("[data-tab=today]", timeout=10_000)
         check(True, "A: uçak modunda soğuk açılış")
-        walk = [("#/today", "[data-test=next-activity]"), ("#/learn", "main h1, main h2"), ("#/progress", "[data-test=panel-focus]"), ("#/profile", "main h1, main h2")]
+        walk = [("#/today", "[data-test=next-activity]"), ("#/learn", "main h1, main h2"), ("#/progress", "[data-test=panel-focus]"), ("#/profile", "main h1, main h2"), ("#/sozluk", "[data-test=sozluk-q]")]
         walk += [(f"#/scenario/{s}", "[data-section]") for s in scenarios]  # açılmamış senaryolar da (PM-035/6)
         walk += [(f"#/scenario/{SC}/{sec}", sel) for sec, sel in [
             ("words", "[data-test=stage-intro]"), ("chunks", "[data-test=ifade-card], [data-test=say-q], [data-test=meaning-q], [data-test=section-done], .empty"),
@@ -86,8 +96,40 @@ def main():
             txt = pg.inner_text("main") if pg.locator("main").count() else ""
             if not shown or pg.locator(".card.err, [role=alert]").count() or "yüklenemedi" in txt: bad.append(h)
         check(not bad, f"A: {len(walk)} ekran internetsiz açıldı, hata paneli yok" + (f" — sorunlu: {bad}" if bad else ""))
+        # #58 B1: sözlük araması internetsiz (cihazdaki kartlar)
+        pg.goto(base + "#/sozluk"); pg.wait_for_selector("[data-test=sozluk-q]"); pg.fill("[data-test=sozluk-q]", "Termin")
+        pg.wait_for_selector("[data-test=sozluk-satir], [data-test=sozluk-yok]")
+        check(pg.locator("[data-test=sozluk-satir]").count() >= 1, "A: sözlük araması internetsiz sonuç veriyor (Termin)")
         v = dialogue_answer(pg, base, ans)
         check(v is not None and "Şöyle olmalı" not in v, f"A: diyalogda doğru cevap internetsiz değerlendirildi ({(v or '')[:40]!r})")
+        if medya:
+            # Safari <video> aralıklı istek ister: servis işçisi önbellekten 206 kısmi yanıt verir
+            u = f"{base}content/{idx['version']}/{medya[0]}"
+            r = pg.evaluate("""async (u) => { const out = {};
+              for (const h of ['bytes=0-99', 'bytes=0-1', 'bytes=10-', 'bytes=-10', 'bytes=99999999-', 'bytes=5-2']) {
+                const x = await fetch(u, { headers: { Range: h } }); out[h] = { s: x.status, n: (await x.arrayBuffer()).byteLength, cr: x.headers.get('content-range') }; }
+              return out; }""", u)
+            boy = int((r["bytes=0-99"]["cr"] or "/0").split("/")[-1])
+            check(r["bytes=0-99"]["s"] == 206 and r["bytes=0-99"]["n"] == 100 and (r["bytes=0-99"]["cr"] or "").startswith("bytes 0-99/"), f"A: medya internetsiz aralıklı istekle geliyor ({r['bytes=0-99']})")
+            check(r["bytes=0-1"]["n"] == 2 and r["bytes=10-"]["n"] == boy - 10 and r["bytes=-10"]["n"] == 10 and r["bytes=99999999-"]["s"] == 416 and r["bytes=5-2"]["s"] == 200,
+                  f"A: aralık biçimleri (0-1, a-, -n, 416, geçersiz → 200) doğru ({ {k: (v['s'], v['n']) for k, v in r.items()} })")
+            # M1 yolu internetsiz: Yol, günün temel dersi, medya oynatıcısı
+            m1w = [("#/yol", "[data-test=yol]")]
+            if idx.get("temel"): m1w.append((f"#/ders/{urllib.parse.quote(idx['temel'][0]['id'], safe='')}", "[data-test=ders]"))
+            vid = next(((g["day"], x["id"]) for g in idx.get("m1", []) for x in g.get("medya", []) if x["kind"] == "video"), None)
+            if idx.get("m1") and idx["m1"][0].get("medya"): m1w.append((f"#/m1/{idx['m1'][0]['day']}/{urllib.parse.quote(idx['m1'][0]['medya'][0]['id'], safe='')}", "[data-test=medya]"))
+            kotu = []
+            for h, sel in m1w:
+                pg.goto(base + h)
+                try: pg.wait_for_selector(sel, timeout=10_000)
+                except Exception: kotu.append(h)
+            check(not kotu, f"A: M1 ekranları internetsiz açıldı ({len(m1w)})" + (f" — sorunlu: {kotu}" if kotu else ""))
+            if vid:
+                # <video> öğesi internetsiz gerçekten yükleniyor (yalnızca kap değil; inceleme #74 P1-2)
+                pg.goto(base + f"#/m1/{vid[0]}/{urllib.parse.quote(vid[1], safe='')}"); pg.wait_for_selector("[data-test=medya]")
+                ok = pg.wait_for_function("() => { const v = document.querySelector('video'); return !!v && v.readyState >= 1 || !!document.querySelector('[data-test=video-yok]'); }", timeout=15_000)
+                rs = pg.evaluate("() => ({ rs: document.querySelector('video')?.readyState ?? -1, yok: !!document.querySelector('[data-test=video-yok]') })")
+                check(rs["rs"] >= 1 and not rs["yok"], f"A: video internetsiz yüklendi (readyState {rs['rs']}, video-yok {rs['yok']})")
         ctx.set_offline(False); b.close()
 
         # ---------- B) mikrofonsuz ----------

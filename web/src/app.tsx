@@ -3,6 +3,9 @@ import { probeProvider } from "./services/ai.ts";
 import { CallScreen as Call } from "./screens/Call.tsx";
 import { M1Gun, MedyaEkrani } from "./screens/Medya.tsx";
 import { DersEkrani } from "./screens/Ders.tsx";
+import { ProvaEkrani } from "./screens/Prova.tsx";
+import { OkumaEkrani } from "./screens/Okuma.tsx";
+import { SozlukEkrani } from "./screens/Sozluk.tsx";
 import { YolEkrani } from "./screens/Yol.tsx";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Assessment, ContentIndex, Profile } from "@dw/shared";
@@ -12,6 +15,7 @@ import { createApi } from "./services/api.ts";
 import { loadIndex, within } from "./services/content.ts";
 import { getProfile, latestPlacement, saveProfile } from "./data/db.ts";
 import { setLearning, startFocus, updateFocusConfig } from "./services/focusRuntime.ts";
+import { setBaslangicHizi } from "./services/speech.ts";
 import { TabBar, Loading, ErrorPanel } from "./ui/components.tsx";
 import { ErrorBoundary, recordError } from "./ui/ErrorBoundary.tsx";
 import { ensurePersist } from "./services/storage.ts";
@@ -50,6 +54,8 @@ export function App() {
   const [toastMsg, setToast] = useState<string | null>(null);
   const [authSlow, setAuthSlow] = useState(false);
   const [profileErr, setProfileErr] = useState<string | null>(null);
+  // #58 B7: Profil'deki dinleme başlangıç hızı ses servisine
+  useEffect(() => { if (profile) setBaslangicHizi(profile.listening.startSpeed); }, [profile?.listening.startSpeed]);
 
   useEffect(() => {
     const on = () => setRoute(parseHash(location.hash));
@@ -114,17 +120,20 @@ export function App() {
     case "garden": screen = <Garden key={route.day ?? 0} day={route.day} />; break;
     case "yol": screen = <YolEkrani />; break;
     case "ders": screen = <DersEkrani key={route.id} id={route.id} />; break;
+    case "prova": screen = <ProvaEkrani key={route.day} day={route.day} />; break;
+    case "okuma": screen = <OkumaEkrani key={route.day} day={route.day} />; break;
+    case "sozluk": screen = <SozlukEkrani q={route.q} id={route.id} />; break;
     case "m1day": screen = <M1Gun day={route.day} />; break;
     case "m1medya": screen = <MedyaEkrani key={route.id} day={route.day} id={route.id} />; break;
     default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : <Today />;
   }
-  const tabs = !!profile.onboardedAt && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "ders";
+  const tabs = !!profile.onboardedAt && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma";
   return (
     <Ctx.Provider value={ctx}>
       <main class={`app${tabs ? "" : " notabs"}`}><ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>
       {tabs && <TabBar route={route} />}
       <LongPressExplain />
-      {(route.name === "section" || route.name === "assess") && <BreakOverlay />}
+      {LEARNING_ROUTES.has(route.name) && <BreakOverlay />}
       {toastMsg && <div class="toast" role="status">{toastMsg}</div>}
     </Ctx.Provider>
   );

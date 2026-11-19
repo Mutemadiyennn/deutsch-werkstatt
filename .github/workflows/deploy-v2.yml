@@ -24,6 +24,13 @@ jobs:
       - uses: actions/setup-node@v4
         if: ${{ !inputs.rollback_to }}
         with: { node-version: 22, cache: npm }
+      - name: M1 medyası (GitHub Releases m1-medya → .medya; ses ve video depoya girmez, #42 §4.6)
+        if: ${{ !inputs.rollback_to }}
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          mkdir -p .medya
+          gh release download m1-medya --dir .medya --pattern '*.mp4' --pattern '*.jpg' --pattern '*.m4a' --clobber || echo "::warning::m1-medya indirilemedi; bu yayında video yok (oynatıcı kaynağa bağlantı gösterir)"
+          ls -la .medya || true
       - name: Derle
         if: ${{ !inputs.rollback_to }}
         env: { VITE_API_BASE: "${{ vars.V2_API_BASE }}" }

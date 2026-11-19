@@ -6,6 +6,15 @@
  *  4) "Benim cevabım da doğru" her zaman vardır; kayıt içerik iyileştirme kuyruğuna gider.
  */
 import { judge, norm, scoreHeard } from "./grading.ts";
+import { esEsit, heceEsit, rakamEsit, umlautEksik, v2Sira, yazimNotu } from "./esdeger.ts";
+
+/**
+ * #58 A11: yapay zekâsız eşdeğer biçimler — saat/tarih/sıra sayısı (esEsit), uzun rakam dizisi. Eşleşen kabul biçimini döner.
+ */
+export function esdegerBul(accepted: string[], answer: string): string | undefined {
+  return accepted.find((a) => esEsit(a, answer) || rakamEsit(a, answer));
+}
+export const V3_NOT = "Almancada çekimli fiil cümlenin ikinci yerindedir: başa bir kelime aldıysan fiil hemen ardından gelir.";
 
 export type Verdict =
   | { kind: "correct"; best: string; via: "exact" | "variant" | "order" | "ai" | "claim"; note?: string }
@@ -53,6 +62,7 @@ export function expandTaught(accepted: string[], chunks: { layers: { hd: string;
 // norm() ümlautları açar (schön → schoen): listeler normalleştirilmiş biçimde
 const POLITE = new Set("bitte danke vielen dank sehr herzlichen schoen gern gerne".split(" "));
 const POLITE_LEAD = new Set("entschuldigung hallo".split(" "));
+const SON_DOLGU = new Set(["bitte", "danke", "danke schoen", "danke sehr", "vielen dank", "herzlichen dank", "gern", "gerne", "bitte schoen", "bitte sehr", "danke vielen dank"]);
 const LEAD = new Set("ja also okay ok gut genau na dann super prima alles klar oder".split(" "));
 const NEG = /\b(nein|nicht|kein\w*|nie|niemals|leider)\b/;
 function containsWithFiller(variant: string, answer: string): boolean {
@@ -64,7 +74,11 @@ function containsWithFiller(variant: string, answer: string): boolean {
     const neg = NEG.test(v.join(" "));
     // "Entschuldigen Sie" iki kelimelik nezaket başlangıcı; "sie" tek başına dolgu değildir (inceleme #49 3. tur)
     const preOk = pre.every((w, k) => POLITE.has(w) || POLITE_LEAD.has(w) || (w === "entschuldigen" && pre[k + 1] === "sie") || (w === "sie" && pre[k - 1] === "entschuldigen") || (!neg && LEAD.has(w)) || (neg && w === "nein"));
-    const postOk = post.every((w) => POLITE.has(w));
+    // sondaki dolgu yalnızca nezaket ifadesi olarak: "bitte", "danke (schön|sehr)", "vielen/herzlichen Dank", "gern(e)";
+    // tek başına "sehr" ya da "schön" anlamı değiştirir ("…Schmerzen sehr"; inceleme #76 permütasyon taraması)
+    const postOk = !post.length || SON_DOLGU.has(post.join(" "));
+    // baştaki "sehr" tek başına dolgu değil
+    if (pre.includes("sehr") || pre.includes("schoen")) return false;
     return preOk && postOk;
   }
   return false;
@@ -79,10 +93,21 @@ const bag = (s: string) => norm(s).split(" ").filter(Boolean).sort().join(" ");
 
 export function ruleVerdict(accepted: string[], answer: string): Verdict {
   const j = judge(accepted, [answer]);
-  if (j.ok) return { kind: "correct", best: j.best, via: norm(j.best) === norm(answer) ? "exact" : "variant" };
+  if (j.ok) return { kind: "correct", best: j.best, via: norm(j.best) === norm(answer) ? "exact" : "variant", note: yazimNotu(j.best, answer) };
+  // fiil üçüncü yerde (Gern ich möchte…) dolgu kuralından önce: baştaki "gern" dolgu sayılıp doğru verilmesin (inceleme #76 2. tur K2)
+  const v3once = v2Sira(accepted, answer);
+  if (v3once?.kind === "v3") return { kind: "wrong", best: v3once.best, note: V3_NOT };
   const longer = accepted.find((a) => containsWithFiller(a, answer));
   if (longer) return { kind: "correct", best: longer, via: "variant" };
   if (!norm(answer)) return { kind: "wrong", best: accepted[0] || "" };
+  // #58 A11: saat/tarih/rakam/ümlaut eşdeğeri, harf harf söyleme yuvaları, kelime sırası (V2)
+  const es = esdegerBul(accepted, answer);
+  if (es) return { kind: "correct", best: es, via: "variant", note: yazimNotu(es, answer) };
+  if (heceEsit(accepted, answer)) return { kind: "correct", best: accepted[0] || "", via: "variant" };
+  const sira = v3once;
+  if (sira?.kind === "correct") return { kind: "correct", best: sira.best, via: "order" };
+  // ümlautu unutulmuş cevap: doğru sayılmaz, yazım notu gösterilir
+  for (const a of accepted) { const n = umlautEksik(a, answer); if (n) return { kind: "wrong", best: a, note: n }; }
   const best = j.best || accepted[0] || "";
   const sc = scoreHeard(best, answer).score;
   // çok uzak cevap: yapay zekâya sormaya değmez (anlam açıkça farklı)

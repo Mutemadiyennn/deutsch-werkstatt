@@ -107,6 +107,36 @@ describe("öğrenci kimliği yer tutucuları (D-061)", () => {
     expect(redact("Ich heiße Novak.", { name: "Novak" })).toBe("Ich heiße [Name].");
     expect(unredact("Danke, Frau [Name]!", { name: "Novak" })).toBe("Danke, Frau Novak!");
   });
+  it("D-061: Türkçe harfli, büyük harfli, Türkçe klavyesiz ve iki kelimeli adlar da maskelenir (#73 incelemesi T-1..T-3)", () => {
+    for (const ad of ["Çağrı", "Özge", "Ömer", "Ümit", "Şule", "İbrahim", "Ayşe", "Gül", "Jean-Luc", "O'Neil"]) {
+      expect(redact(`Guten Tag, hier ist ${ad}.`, { name: ad }), ad).toBe("Guten Tag, hier ist [Name].");
+      expect(redact(`Ich bin ${ad.toLocaleUpperCase("tr")}!`, { name: ad }), ad).toBe("Ich bin [Name]!");
+    }
+    expect(redact("Ich bin ALİ.", { name: "Ali" })).toBe("Ich bin [Name].");
+    expect(redact("Hier ist Cagri, nicht Ozge.", { name: "Çağrı" })).toBe("Hier ist [Name], nicht Ozge.");
+    expect(redact("Ich heiße Oezge.", { name: "Özge" })).toBe("Ich heiße [Name].");
+    expect(redact("Hier ist Anna Maria. Anna kommt.", { name: "Anna Maria" })).toBe("Hier ist [Name]. [Name] kommt.");
+    expect(redact("Hier ist Anna  Maria.", { name: "Anna Maria" })).toBe("Hier ist [Name].");
+    // karışık klavye: bir harf Türkçe, öbürü değil (inceleme #75 P2)
+    expect(redact("Ich bin Gökce.", { name: "Gökçe" })).toBe("Ich bin [Name].");
+    expect(redact("Ich bin Cağri.", { name: "Çağrı" })).toBe("Ich bin [Name].");
+    expect(redact("Hier ist GOEKCE.", { name: "Gökçe" })).toBe("Hier ist [Name].");
+    expect(redact("Ich bin Müller.", { name: "Muller" })).toBe("Ich bin [Name].");
+    // ters yön, kıvrık kesme işareti, NFD, tire (inceleme #80)
+    expect(redact("Ich bin Müller.", { name: "Mueller" })).toBe("Ich bin [Name].");
+    expect(redact("Ich bin Gökçe.", { name: "Goekce" })).toBe("Ich bin [Name].");
+    expect(redact("Herr Strauß", { name: "Strauss" })).toBe("Herr [Name]");
+    expect(redact("Hier ist O’Neil.", { name: "O'Neil" })).toBe("Hier ist [Name].");
+    expect(redact("Hier ist O'Neil.", { name: "O’Neil" })).toBe("Hier ist [Name].");
+    expect(redact("Ich bin Go\u0308kce.", { name: "Gökçe" })).toBe("Ich bin [Name].");
+    expect(redact("Hier ist Jean Luc. Jean kommt.", { name: "Jean-Luc" })).toBe("Hier ist [Name]. [Name] kommt.");
+    // aşırı maskeleme yok: kelime içi ve başka kelime
+    expect(redact("Ich kann Suppe essen.", { name: "Su" })).toBe("Ich kann Suppe essen.");
+    expect(redact("Das kann ich.", { name: "Can" })).toBe("Das kann ich.");
+    // kelimenin içi maskelenmez
+    expect(redact("Alina und Ali", { name: "Ali" })).toBe("Alina und [Name]");
+    expect(redact("Guten Tag", {})).toBe("Guten Tag");
+  });
   it("senaryo metinleri derinlemesine hazırlanır", () => {
     const s = personalizeDeep({ build: [{ prompt_tr: "x", accepted: ["Hier ist {name}.", "{Herr|Frau} {name} hier."] }], de: "{Patient|Patientin}" }, { address: "Herr", name: "Novak" });
     expect(s.build[0]!.accepted).toEqual(["Hier ist Novak.", "Herr Novak hier."]);

@@ -21,7 +21,10 @@ export type Route =
   | { name: "yol" }
   | { name: "m1day"; day: number }
   | { name: "m1medya"; day: number; id: string }
-  | { name: "ders"; id: string };
+  | { name: "ders"; id: string }
+  | { name: "prova"; day: number }
+  | { name: "okuma"; day: number }
+  | { name: "sozluk"; q?: string; id?: string };
 
 export function parseHash(h: string): Route {
   const p = h.replace(/^#\/?/, "").split("/").map(decodeURIComponent);
@@ -36,6 +39,9 @@ export function parseHash(h: string): Route {
     case "garden": return p[1] && Number(p[1]) ? { name: "garden", day: Number(p[1]) } : { name: "garden" };
     case "yol": return { name: "yol" };
     case "ders": return { name: "ders", id: p[1] || "" };
+    case "prova": return { name: "prova", day: Number(p[1]) || 1 };
+    case "okuma": return { name: "okuma", day: Number(p[1]) || 1 };
+    case "sozluk": return { name: "sozluk", q: p[1] || undefined, id: p[2] || undefined };
     case "m1": return p[2] ? { name: "m1medya", day: Number(p[1]) || 1, id: p[2] } : { name: "m1day", day: Number(p[1]) || 1 };
     default: return { name: "today" };
   }
@@ -43,7 +49,7 @@ export function parseHash(h: string): Route {
 export const go = (path: string) => { location.hash = "#/" + path.replace(/^#?\/?/, ""); };
 
 /** Öğrenme ekranları: odak süresi yalnızca bunlarda sayılır (v1: menü ekranları sayılmaz) */
-export const LEARNING_ROUTES = new Set<Route["name"]>(["assess", "section", "garden", "m1medya", "ders"]);
+export const LEARNING_ROUTES = new Set<Route["name"]>(["assess", "section", "garden", "m1medya", "ders", "prova", "okuma"]);
 
 export interface AppCtx {
   user: AuthUser | null;
