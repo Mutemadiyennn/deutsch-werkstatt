@@ -29,7 +29,7 @@ jobs:
         run: |
           shopt -s nullglob
           f=(out/*.jpg out/galeri.html)
-          [ ${#f[@]} -eq 0 ] && { echo "görsel yok"; exit 0; }
+          if [ ${#f[@]} -eq 0 ]; then echo "görsel yok"; exit 0; fi
           gh release view m1-gorsel-deneme >/dev/null 2>&1 || gh release create m1-gorsel-deneme --prerelease --title "PM-063 cümle görseli denemesi" \
             --notes "Workers AI flux-1-schnell ile üretildi (kaynak: uretim, sinif: acik). Kayıt content/v2/media/uretim/deneme-kayit.json (kaynak/gorsel dalı). PM gözle onaylamadan hat kurulmaz."
           for ((i=0; i<${#f[@]}; i+=50)); do gh release upload m1-gorsel-deneme "${f[@]:i:50}" --clobber; done
