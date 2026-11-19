@@ -3,6 +3,7 @@
  * Kartlar öğrenciye soru olarak döner; cevap öğrenciden beklenir. Yanlışta doğrusu öğrencinin cevabıyla yan yana
  * gösterilir, kart turun sonunda başka örnek ve başka türle yeniden gelir ve kişisel bankaya girer (srs.review).
  */
+import { cumleKaydet } from "../services/kullanim.ts";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
 import { useApp } from "../state.ts";
@@ -179,6 +180,7 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
       const c = ownSentenceCheck(l, a);
       // kısa cümle yeniden yazdırılır (ceza yok); kelimeyi göremediysek yalnızca not düşer, karar öğrencinin (inceleme #59 P1-1)
       if (c === "short") { setShortNote(true); return; }
+      void cumleKaydet(a, "bahce"); // #58 B3: gün sonunda "bugün kurduğun cümle"
       setOwnNote(c === "missing"); setSelfCheck(a); return;
     }
     const acc = accepted(l, q.type, q.ex);

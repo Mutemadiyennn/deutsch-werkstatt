@@ -4,6 +4,7 @@
  *    m1:gun:<gün> (gün bitti; kalıcı — sonradan eklenen adım biten günü geri açmaz), xp:adim:<id> (adım XP'si verildi), xp
  *  - tanitilan: günlerin yeni kartlarından cihazda kaydı olanlar (Bahçe'de tanıtılmış; "Emin değilim, geç" kayıt açmaz)
  */
+import { adimBittiKaydet } from "./kullanim.ts";
 import { getMeta, itemsMap, metaPrefix, setMeta } from "../data/db.ts";
 import { XP, XP_BOS, bahceAnahtari, xpEkle, type Ilerleme, type XpKayit } from "../core/gun.ts";
 
@@ -33,6 +34,8 @@ export function xpVer(n: number): Promise<void> {
 }
 /** Adım XP'si adım başına bir kez (yeniden çalışma ya da yeniden tur XP şişirmez; inceleme #66 P2-1) */
 export function adimXpVer(id: string): Promise<void> {
+  // #58 B3: adım bitişi her seferinde kullanım kaydına (XP bir kez kalır)
+  void adimBittiKaydet(id);
   const p = kuyruk.then(async () => {
     if (await getMeta(`xp:adim:${id}`)) return;
     await setMeta(`xp:adim:${id}`, new Date().toISOString());
