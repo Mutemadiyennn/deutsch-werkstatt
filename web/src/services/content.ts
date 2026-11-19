@@ -42,6 +42,14 @@ function file<T>(name: string, schema: z.ZodType<T>): Promise<T> {
   return cache.get(name) as Promise<T>;
 }
 /** PM-064: dünya (karakterlerin ses kaydı); içerikte yoksa boş */
+/** B12 3. parça: seçilmiş açık fotoğraflar; anahtar "lx:Kelime#kart" ya da "lx:Kelime#ornekN" */
+export interface FotoKayit { src: string; sinif: "acik"; yazar?: string | null; lisans: string; lisans_url?: string | null; sayfa?: string | null }
+/** Fotoğraf haritası oturum boyunca bir kez çözülür; hata olursa boş harita saklanır (her dokunuşta ağ/çözüm yok; inceleme #121 P1-5) */
+let fotoHarita: Record<string, FotoKayit> | null = null;
+let fotoSoz: Promise<Record<string, FotoKayit>> | null = null;
+export const fotoHaritasi = () => fotoHarita;
+export const loadFoto = (): Promise<Record<string, FotoKayit>> => fotoHarita ? Promise.resolve(fotoHarita) : (fotoSoz ??= fotoYukle().then((h) => (fotoHarita = h)));
+const fotoYukle = () => within(file("foto.json", z.object({ foto: z.record(z.string(), z.object({ src: z.string().url(), sinif: z.literal("acik"), yazar: z.string().nullish(), lisans: z.string(), lisans_url: z.string().nullish(), sayfa: z.string().nullish() }).passthrough()) }))).then((x) => x.foto as Record<string, FotoKayit>).catch(() => ({} as Record<string, FotoKayit>));
 export const loadWorld = () => within(file("world/world.json", World)).catch(() => null);
 export const loadAssessBank = () => within(file("assess.json", z.array(AssessItem)));
 let kayitli = false;
