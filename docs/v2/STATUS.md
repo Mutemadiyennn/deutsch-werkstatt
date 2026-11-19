@@ -26,10 +26,10 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | İş | Dal | Durum |
 |---|---|---|
 | Konuşma provası, yapay zekâsız (#58 A7) | `v2/prova` | #68 birleşti |
-| Kalıp kartı (#58 B2) | `v2/kalip-karti` | PR #94: 2. tur 1 P1 (alt sayfada kişiselleştirme) düzeltildi, odak yönetimi; PM-057 son tur. İÇ iş listesi: 957 dolgunun 381'i (%40) için ne örnek ne anlam var; kart bunu söylüyor (D-110) |
+| Kapalı medya rafı (#58 B12) | `v2/medya-rafi`, `v2/raf-doldur` | 1. parça #98 birleşti (D-112); 2. parça PR #99 doldurma hattı (Pixabay → gizli depo; "Fail closed" onayı `RAF_FAIL_CLOSED=1` olmadan itmez); sırada fotoğraf yolu ve doğrulayıcı; proje sahibinin adımları bekleniyor |
+| Kalıp kartı (#58 B2) | `v2/kalip-karti` | #94 birleşti (D-110). İÇ iş listesi: 957 dolgunun 381'i (%40) için ne örnek ne anlam var |
 | Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | PR #87: 1. tur 5 P1 + 9 P2 düzeltildi (D-107 sonu); 2. tur bekliyor |
 | Doğrulayıcı B4 (#58 B4, #54 D16) | `v2/dogrulayici-b4` | PR #88: 1. tur 5 P1 düzeltildi (D-108); 0 hata, 126 uyarı; İÇ iş listesi: 7 şiddet tanıma kartında kullanım uyarısı, 46/119/167 kart kuralı; 2. tur bekliyor |
-| Kapalı medya rafı (#58 B12) | `v2/medya-rafi` | 1. parça PR #98: 1. tur 3 P1 düzeltildi (adres doğrulama, "Fail closed" zorunlu, gerçek Function ile e2e); 2. parça #99 doldurma hattı; sırada fotoğraf yolu, doğrulayıcı; proje sahibinin adımları bekleniyor |
 | Bahçe değişen cümle (PM-062, #58 B13) | `v2/bahce-donusum` | #92 birleşti (D-111) |
 | Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | #87 birleşti (D-107) |
 | Şölen 1 küçük düzeltmeler (PM 7011722598 1–5) | `v2/solen-duzelt` | PR açıldı (D-113). B11e girdisi (madde 6–7): tur sonunda büyüyen bahçe parçası, kartı soran karakterin avatarı (WORLD), seans başına vurgu rengi; doğru anında parlak ton + kısa ölçek (reduce-motion: yalnızca renk) |
