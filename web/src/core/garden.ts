@@ -52,6 +52,8 @@ const otherForms = (l: Lexeme) => l.forms.filter(() => l.pos !== "verb");
 export function availableTypes(l: Lexeme, path: "passive" | "active"): QType[] {
   if (path === "passive") {
     const t: QType[] = ["listen_meaning"];
+    // `tier: passive` yalnızca tanıma: dinle → anlamını seç (a); artikel ve eşdizim üretime yakın (inceleme #55 2. tur kabulü)
+    if (l.tier === "passive") return t;
     if (isNoun(l)) t.push("article");
     if (l.collocations.some((c) => c.de.split(/\s+/).length >= 2)) t.push("colloc");
     return t;

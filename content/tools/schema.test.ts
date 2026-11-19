@@ -56,6 +56,7 @@ describe("pasif kart", () => {
   it("senaryonun temel öğesi olamaz", () => {
     const c = loadContent();
     const sc = c.scenarios[0]!; const id = sc.data.essentials.lexemes[0];
+    expect(id).toBeDefined();
     if (!id) return;
     const l = c.lexemes.find((x) => x.id === id)!; l.tier = "passive";
     expect(checkRules(c).errors.some((e) => e.includes("pasif kart") && e.includes(id))).toBe(true);

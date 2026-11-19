@@ -28,6 +28,9 @@ describe("Kelime Bahçesi (PM-049)", () => {
   it("card:false ve passive kartlar aktif soruya girmez", () => {
     expect(availableTypes(der, "active")).toEqual([]);
     expect(availableTypes(toeten, "active")).toEqual([]);
+    // pasif kart yalnızca (a) dinle → anlamını seç; isim olsa da artikel/eşdizim sorulmaz (inceleme #55)
+    const pasifIsim = L({ id: "lx:Behörde", de: "Behörde", tr: "resmî daire", pos: "noun", art: "die", tier: "passive", collocations: [{ de: "bei der Behörde anrufen", tr: "resmî daireyi aramak" }] });
+    expect(availableTypes(pasifIsim, "passive")).toEqual(["listen_meaning"]);
   });
   it("aynı tür art arda gelmez", () => {
     for (let i = 0; i < 20; i++) expect(pickType(termin, "active", "tr_de", () => i / 20)).not.toBe("tr_de");
