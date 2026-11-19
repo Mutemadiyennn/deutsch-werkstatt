@@ -3,6 +3,7 @@
  * Karşı taraf öğrencinin cevabına göre tepki verir (içerikteki dallar). Sesli cevapta "Duyduğum: …", "Tekrar söyle",
  * "Doğru söyledim" (PM-054.3, D-097). Sonda 1 iyi şey + en fazla 3 düzeltme. Bitiş cihazda `m1:prova:<gün>` olarak kalır.
  */
+import { cumleKaydet } from "../services/kullanim.ts";
 import { useEffect, useRef, useState } from "preact/hooks";
 import { useApp } from "../state.ts";
 import { loadLexicon, loadM1Gun } from "../services/content.ts";
@@ -108,6 +109,8 @@ function Konusma({ p, onBitti }: { p: ProvaT; onBitti: (k: Kayit[]) => void }) {
     const s = dugum!.secenekler[i]!;
     const yeni = [...kayitlar, k];
     setKayitlar(yeni);
+    // #58 B3: anlaşılan kendi cümlesi gün sonu özetine (doğrusu gösterilip geçilen ya da beyanla geçilen değil)
+    if (k.uygun && !k.beyan && !k.dogrusu && k.cevap) void cumleKaydet(k.cevap, "prova");
     // "Doğrusunu söyleyip geç": balonda doğru cümle görünür ve okunur
     setSatirlar((x) => [...x, { kim: "sen", de: k.dogrusu ?? (k.cevap || s.de) }]);
     if (k.dogrusu) once.current = k.dogrusu;

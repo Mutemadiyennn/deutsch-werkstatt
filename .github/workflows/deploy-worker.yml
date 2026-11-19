@@ -1,6 +1,6 @@
 name: v2 — Worker dağıtımı (Cloudflare)
 # Gizli değerler YALNIZCA GitHub şifreli secret'larında: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID,
-# GEMINI_KEY, PEXELS_KEY, ALLOWED_UIDS. Bu iş onları Worker'a "secret" olarak aktarır; loglara yazılmaz.
+# GEMINI_KEY, PEXELS_API_KEY (Worker içinde PEXELS_KEY adıyla), ALLOWED_UIDS. Bu iş onları Worker'a "secret" olarak aktarır; loglara yazılmaz.
 on:
   push:
     branches: [main]
@@ -48,7 +48,8 @@ jobs:
         working-directory: worker
         env:
           GEMINI_KEY: ${{ secrets.GEMINI_KEY }}
-          PEXELS_KEY: ${{ secrets.PEXELS_KEY }}
+          # GitHub gizli ayarının adı PEXELS_API_KEY (PM 19.11 14:40; PIXABAY_API_KEY ile aynı kalıp); eski ad yedek
+          PEXELS_KEY: ${{ secrets.PEXELS_API_KEY || secrets.PEXELS_KEY }}
           ALLOWED_UIDS: ${{ secrets.ALLOWED_UIDS }}
         run: |
           for k in GEMINI_KEY PEXELS_KEY ALLOWED_UIDS; do

@@ -15,6 +15,7 @@ import { Art, ErrorPanel, Ring, SpeakBtn, minLeft, useFocusTick } from "../ui/co
 import { Icon } from "../ui/icons.tsx";
 import { Avatar, RauteRow, SkyBand, accentOf, type RState } from "../ui/raute.tsx";
 import { XpSeri } from "../ui/solen.tsx";
+import { GunSonu } from "../ui/gunsonu.tsx";
 
 const breakOnNow = (e: { rt: { phase: string } }) => e.rt.phase === "break";
 const BREAK_IDEAS = ["Kalk, biraz yürü ya da gerin.", "Bir bardak su iç.", "Gözlerini ekrandan ayır; uzağa bak.", "Omuzlarını 10 kez geriye çevir.", "Pencereyi aç, derin nefes al."];
@@ -145,6 +146,9 @@ export function Today() {
         {placement && <a class="small" href={`#/assess/result/${placement.id}`}>Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>}
       </section>
       )}
+
+      {/* #58 B3: gün sonu özeti (bugün en az bir adım bittiyse) */}
+      {m1 && <GunSonu plan={m1} />}
 
       {inSeasonNow.length > 0 && (
         <section class="card tint orange" data-test="season">
