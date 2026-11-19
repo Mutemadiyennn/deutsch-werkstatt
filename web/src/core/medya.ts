@@ -101,7 +101,8 @@ export function kartBul(word: string, lex: Lexeme[]): Lexeme | undefined {
 }
 
 /** Kaldığı yer (her seans yarıda bırakılıp sürdürülebilir; #58 "Öğrencinin bir günü") */
-export interface MedyaIlerleme { b: number; s: number; k: number; dogru: number; toplam: number; bitti?: boolean; eylem?: boolean }
+/** `ilkBitti`: en az bir kez bitirildi — "Baştan çalış" bunu korur; yol ve Bugün tamamlanan adımı yeniden önermez (inceleme #66 P1-2) */
+export interface MedyaIlerleme { b: number; s: number; k: number; dogru: number; toplam: number; bitti?: boolean; ilkBitti?: boolean; eylem?: boolean }
 export const ilerlemeAnahtari = (medyaId: string) => `m1:medya:${medyaId}`;
 export const BASLANGIC: MedyaIlerleme = { b: 0, s: 0, k: 0, dogru: 0, toplam: 0 };
 
@@ -111,7 +112,7 @@ export function ileri(p: MedyaIlerleme, m: Medya, altSayisi: number): MedyaIlerl
   const steps = adimlar(m.bolumler[p.b]!);
   if (p.s + 1 < steps.length) return { ...p, s: p.s + 1, k: 0 };
   if (p.b + 1 < m.bolumler.length) return { ...p, b: p.b + 1, s: 0, k: 0 };
-  return { ...p, bitti: true };
+  return { ...p, bitti: true, ilkBitti: true };
 }
 
 /** Satır birden çok cümleyse ve dikte hedefi bunlardan biriyse: { sira, toplam } ("Kayıtta 2 cümle var; 2. cümleyi yaz") */
@@ -126,11 +127,12 @@ export function hedefSira(line: string, hedef: string): { sira: number; toplam: 
 export function gecerliKonum(p: MedyaIlerleme | undefined, m: Medya): MedyaIlerleme {
   if (!p) return { ...BASLANGIC };
   if (p.bitti) return p;
+  const bas = { ...BASLANGIC, ...(p.ilkBitti ? { ilkBitti: true } : {}) };
   const b = m.bolumler[p.b];
-  if (!b) return { ...BASLANGIC };
+  if (!b) return bas;
   const steps = adimlar(b);
   const step = steps[p.s];
-  if (!step) return { ...BASLANGIC };
+  if (!step) return bas;
   const n = step === "ayrinti" ? b.ayrinti.length : step === "dikte" ? b.dikte.length : step === "golge" ? b.golge.length : 1;
   return p.k < n ? p : { ...p, k: 0 };
 }

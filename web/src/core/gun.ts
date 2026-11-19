@@ -12,19 +12,29 @@ export type SeansNo = 1 | 2 | 3 | 4;
 export interface Adim { seans: SeansNo; tur: "bahce" | "ders" | "medya" | "prova"; id: string; title_tr: string; href: string; bitti: boolean; hazir: boolean }
 export interface GunDurum { day: number; title_tr: string; adimlar: Adim[]; bitti: boolean }
 /** Cihazda saklanan ilerlemeden okunanlar (meta anahtarları ekranda doldurulur) */
-export interface Ilerleme { dersBitti: Set<string>; medyaBitti: Set<string>; bahceBitti: Set<number> }
+export interface Ilerleme {
+  dersBitti: Set<string>; medyaBitti: Set<string>;
+  /** Seans 1 bitti: Bahçe, günün ve önceki günlerin bütün yeni kartları tanıtılınca yazar (tur sayısına değil kanıta bağlı) */
+  bahceBitti: Set<number>;
+  /** kalıcı gün bitişi: sonradan hazır olan adım (A7/A8) biten günü geriye dönük açmaz */
+  gunBitti?: Set<number>;
+  /** cihazda kaydı olan (tanıtılmış) kart kimlikleri — Seans 1 kartındaki "kalan yeni kelime" sayısı */
+  tanitilan?: Set<string>;
+}
 
 export const SEANS_TR: Record<SeansNo, string> = { 1: "Kelime Bahçesi", 2: "Temel ders", 3: "Video ve sesler", 4: "Konuşma provası" };
 export const bahceAnahtari = (day: number) => `m1:bahce:${day}`;
 
 export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<string, string> = {}): GunDurum {
   const a: Adim[] = [];
-  a.push({ seans: 1, tur: "bahce", id: `bahce:${g.day}`, title_tr: g.yeni_kartlar.length ? `${g.yeni_kartlar.length} yeni kelime ve tekrar` : "Kelime tekrarı", href: `#/garden/${g.day}`, bitti: ilr.bahceBitti.has(g.day), hazir: true });
+  const bahceBitti = ilr.bahceBitti.has(g.day);
+  const kalan = bahceBitti ? 0 : g.yeni_kartlar.filter((id) => !ilr.tanitilan?.has(id)).length;
+  a.push({ seans: 1, tur: "bahce", id: `bahce:${g.day}`, title_tr: kalan ? `${kalan} yeni kelime ve tekrar` : "Kelime tekrarı", href: `#/garden/${g.day}`, bitti: bahceBitti, hazir: true });
   for (const d of g.dersler) a.push({ seans: 2, tur: "ders", id: d, title_tr: temelBasliklari[d] ?? "Temel ders", href: `#/ders/${encodeURIComponent(d)}`, bitti: ilr.dersBitti.has(d), hazir: d in temelBasliklari });
   for (const m of medyalar(g)) if (m.kind !== "sahne") a.push({ seans: 3, tur: "medya", id: m.id, title_tr: m.title_tr, href: `#/m1/${g.day}/${encodeURIComponent(m.id)}`, bitti: ilr.medyaBitti.has(m.id), hazir: true });
   if (g.prova || g.okuma_yazma) a.push({ seans: 4, tur: "prova", id: `prova:${g.day}`, title_tr: g.prova?.title_tr ?? "Konuşma provası", href: "", bitti: false, hazir: false });
   // gün, hazır olan bütün adımlar bitince biter (hazırlanmakta olan adım öğrenciyi bekletmez)
-  const bitti = a.filter((x) => x.hazir).every((x) => x.bitti);
+  const bitti = !!ilr.gunBitti?.has(g.day) || a.filter((x) => x.hazir).every((x) => x.bitti);
   return { day: g.day, title_tr: g.title_tr, adimlar: a, bitti };
 }
 

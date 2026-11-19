@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { Gun, Lexeme, medyalar } from "@dw/shared";
-import { hedefSira, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, ileri, kartBul, BASLANGIC } from "./medya.ts";
+import { hedefSira, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, gecerliKonum, ileri, kartBul, BASLANGIC } from "./medya.ts";
 
 const gun = Gun.parse(JSON.parse(readFileSync(join(import.meta.dirname, "../../../content/tools/fixtures/m1/gun-01.json"), "utf8")));
 const [video, ses] = medyalar(gun);
@@ -69,5 +69,14 @@ describe("Medya bölüm oynatıcısı (#58 A4, PM-053)", () => {
     expect(kartBul("sagt", lex)!.id).toBe("lx:sagen");
     expect(kartBul("Tagen", lex)!.id).toBe("lx:Tag");
     expect(kartBul("bisschen", lex)).toBeUndefined();
+  });
+  it("inceleme #66 P1-2: bitiş ilkBitti'yi yazar; 'Baştan çalış' ve geçersiz konum sıfırlaması onu korur", () => {
+    const m = video!;
+    let p = { ...BASLANGIC };
+    for (let k = 0; k < 500 && !p.bitti; k++) p = ileri(p, m, 1);
+    expect(p).toMatchObject({ bitti: true, ilkBitti: true });
+    const bastan = { ...BASLANGIC, ilkBitti: true };
+    expect(gecerliKonum(bastan, m).ilkBitti).toBe(true);
+    expect(gecerliKonum({ ...bastan, b: 99 }, m)).toEqual({ ...BASLANGIC, ilkBitti: true });
   });
 });

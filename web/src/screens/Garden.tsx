@@ -7,9 +7,9 @@ import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadLexicon, loadM1Gun } from "../services/content.ts";
-import { xpVer } from "../services/ilerleme.ts";
-import { XP, bahceAnahtari } from "../core/gun.ts";
-import { itemsMap, personalWords, putItems, setMeta } from "../data/db.ts";
+import { bahceTamam, xpVer } from "../services/ilerleme.ts";
+import { XP } from "../core/gun.ts";
+import { itemsMap, personalWords, putItems } from "../data/db.ts";
 import { review, sessionKey, type Outcome } from "../core/srs.ts";
 import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, isNoun, meaningOptions, ownSentenceCheck, pathOf, requeue, startedToday, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
@@ -24,9 +24,19 @@ import { Photo } from "../ui/learn.tsx";
 const E2E = import.meta.env.MODE === "e2e";
 type Result = { ok: boolean; answer?: string; expected?: string; note?: string };
 
-/** `day`: M1 gününün Seans 1'i — günün yeni kartları önce gelir, tur bitince gün adımı tamamlanır (#58 A5b) */
+/**
+ * `day`: M1 gününün Seans 1'i (#58 A5b). Havuz: önce önceki günlerin tanıtılmamış kartları, sonra günün kartları, sonra K1.
+ * Seans 1'in bitişi tur sayısına değil kanıta bağlı (inceleme #66 P1-3): bu kartların hepsi tanıtılınca (cihazda kaydı
+ * olunca) işaretlenir; kalan varsa tur sonunda "Bir tur daha" sunulur ve Bugün yine Seans 1'i gösterir. Günün kartları
+ * takvim gününün yeni kart sınırına takılmaz (M1 günü birimdir). İşaret son cevapta yazılır, ekranın boyanmasına bağlı değil.
+ */
 export function Garden({ day }: { day?: number } = {}) {
-  const [data, setData] = useState<{ lex: Map<string, Lexeme>; all: Lexeme[]; items: Map<string, LearnerItem>; round: GardenQ[]; capped: boolean } | null>(null);
+  const [tur, setTur] = useState(0);
+  return <GardenTur key={tur} day={day} again={() => setTur((x) => x + 1)} />;
+}
+
+function GardenTur({ day, again }: { day?: number; again: () => void }) {
+  const [data, setData] = useState<{ lex: Map<string, Lexeme>; all: Lexeme[]; items: Map<string, LearnerItem>; round: GardenQ[]; capped: boolean; gunKartlari: string[] } | null>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [i, setI] = useState(0);
@@ -40,13 +50,18 @@ export function Garden({ day }: { day?: number } = {}) {
       const items = await itemsMap(lexemes.map((l) => l.id));
       // yeni kart sırası: önce M1 gününün yeni kartları (A5b), sonra K1 derin kartlar sıklık sırasıyla
       const k1 = lexemes.filter((l) => l.tier === "K1" && isCard(l)).sort((a, b) => (a.freqRank ?? 9e9) - (b.freqRank ?? 9e9)).map((l) => l.id);
-      const gunun = day ? (await loadM1Gun(day).catch(() => null))?.yeni_kartlar.filter((id) => lex.has(id) && isCard(lex.get(id)!)) ?? [] : [];
-      const pool = [...gunun, ...k1.filter((id) => !gunun.includes(id))];
+      const gunler = day ? await Promise.all(Array.from({ length: day }, (_, k) => loadM1Gun(k + 1).catch(() => null))) : [];
+      const gunKartlari = [...new Set(gunler.flatMap((g) => g?.yeni_kartlar ?? []))].filter((id) => lex.has(id) && isCard(lex.get(id)!));
+      const kalan = gunKartlari.filter((id) => !items.has(id));
+      const pool = [...kalan, ...k1.filter((id) => !kalan.includes(id))];
       // duyduğun ve "nasıl derim" diye sorduğun kelimeler öncelikli (kişisel banka, #58 A3, LS-7.5)
       const priority = personalMatch(await personalWords(), lexemes);
       const t = startedToday(items.values());
-      const newLeft = DAILY_NEW - t.passive, activeLeft = DAILY_ACTIVE - t.active;
-      setData({ lex, all: lexemes, items, round: buildRound(lex, items, pool, { priority, newLeft, activeLeft }), capped: newLeft <= 0 });
+      const newLeft = Math.max(DAILY_NEW - t.passive, kalan.length), activeLeft = DAILY_ACTIVE - t.active;
+      const round = buildRound(lex, items, pool, { priority, newLeft, activeLeft, yeniAyir: Math.min(8, kalan.length) });
+      // boş tur: günün kartları zaten tanıtıldıysa Seans 1 burada tamamlanır (ekran efektine bırakılmaz)
+      if (day && !round.length && !kalan.length) await bahceTamam(day);
+      setData({ lex, all: lexemes, items, round, capped: newLeft <= 0, gunKartlari });
     })().catch((e) => setErr(String(e?.message || e)));
     return () => stopSpeaking();
   }, []);
@@ -54,8 +69,9 @@ export function Garden({ day }: { day?: number } = {}) {
   if (err) return <ErrorPanel message={err} onRetry={() => location.reload()} />;
   if (!data) return <Loading />;
   const { round } = data;
+  const kalanSayi = data.gunKartlari.filter((id) => !data.items.has(id)).length;
   if (!round.length) return <GardenEmpty day={day} capped={data.capped} />;
-  if (i >= round.length) return <GardenDone day={day} score={score} items={data.items} />;
+  if (i >= round.length) return <GardenDone day={day} score={score} items={data.items} kalan={kalanSayi} again={again} />;
   const q = round[i]!;
   const l = data.lex.get(q.lexId)!;
 
@@ -75,6 +91,8 @@ export function Garden({ day }: { day?: number } = {}) {
     if (outcome) setScore((s) => ({ ok: s.ok + (r.ok ? 1 : 0), n: s.n + 1 }));
     if (outcome && r.ok) void xpVer(XP.dogru);
     const r2 = !r.ok && outcome ? requeue(round, q, l) : round;
+    // son cevap: günün bütün kartları tanıtıldıysa Seans 1 şimdi işaretlenir (inceleme #66 P1-1)
+    if (day && i + 1 >= r2.length && data.gunKartlari.every((id) => data.items.has(id))) { try { await bahceTamam(day); } catch { /* bir sonraki açılışta yeniden denenir */ } }
     setData({ ...data, round: r2 });
     setI(i + 1);
   };
@@ -228,21 +246,21 @@ function tomorrow(items: Map<string, LearnerItem>): string {
   return n ? `Yarın ${n} kart seni bekliyor.` : "Yarın yeni kartlar gelecek.";
 }
 
-/** Tur sonu: M1 gününden açıldıysa Seans 1 tamamlanır (yol ve Bugün sıradaki adıma geçer) */
-function GardenDone({ day, score, items }: { day?: number; score: { ok: number; n: number }; items: Map<string, LearnerItem> }) {
-  useEffect(() => { if (day) void setMeta(bahceAnahtari(day), new Date().toISOString()).then(() => xpVer(XP.adim)); }, []);
+/** Tur sonu. M1 gününde günün kartlarından tanıtılmamış kalan varsa ana eylem "Bir tur daha" (Seans 1 henüz bitmedi) */
+function GardenDone({ day, score, items, kalan, again }: { day?: number; score: { ok: number; n: number }; items: Map<string, LearnerItem>; kalan: number; again: () => void }) {
+  const devam = !!day && kalan > 0;
   return (
     <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" />
       <section class="card stack" data-test="garden-done"><h2>Tur bitti</h2>
         <p>{score.n} soruda {score.ok} doğru.{score.ok < score.n ? " Yanlış olanlar yarın ya da birkaç gün sonra başka bir soruyla geri gelecek." : " Hepsi doğru."}</p>
-        <p class="small muted" data-test="garden-tomorrow">{tomorrow(items)}</p>
-        <a class="btn primary block" href="#/today" data-test="garden-back">{day ? "Sıradaki adıma geç" : "Bugün'e dön"}</a></section></div>
+        {devam ? <p data-test="garden-kalan">Bugünün kartlarından <b>{kalan}</b> yeni kelime kaldı.</p> : <p class="small muted" data-test="garden-tomorrow">{tomorrow(items)}</p>}
+        {devam ? <ActionBar><button class="btn primary block" data-test="garden-again" onClick={again}>Bir tur daha</button></ActionBar>
+          : <a class="btn primary block" href="#/today" data-test="garden-back">{day ? "Sıradaki adıma geç" : "Bugün'e dön"}</a>}</section></div>
   );
 }
 
-/** Soru yoksa: gün adımı yine tamamlanır (öğrenci yolda takılmaz) */
+/** Soru yoksa (günün kartları tanıtılmışsa Seans 1 yüklemede işaretlendi) */
 function GardenEmpty({ day, capped }: { day?: number; capped: boolean }) {
-  useEffect(() => { if (day) void setMeta(bahceAnahtari(day), new Date().toISOString()); }, []);
   return (
     <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" />
       <section class="card stack" data-test="garden-empty"><h2>Bugün bahçe sakin</h2>

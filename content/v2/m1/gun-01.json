@@ -1,0 +1,1186 @@
+{
+ "schema": 1,
+ "id": "m1:gun:01",
+ "day": 1,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Merhaba ve günler",
+ "goal_tr": "Selam verir, bugünün hangi gün olduğunu söyler, önerilen güne cevap verirsin.",
+ "can_do": {
+  "id": "cd:m1:01",
+  "tr": "Selam verir, bugünün hangi gün olduğunu söylerim."
+ },
+ "unit": "u:m1:01",
+ "arm": "pazar",
+ "place": "pl:marktplatz",
+ "characters": [
+  "ch:popescu",
+  "ch:lechner",
+  "ch:stadler",
+  "ch:pichler",
+  "ch:brandl",
+  "ch:huber"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-19",
+  "notes": "docs/v2/reviews/m1-gun01-02.md; okur: docs/v2/reviews/okur/m1-gun01-02.md, m1-tekrar2…8.md. Medya paketlenince reviewed olur.",
+  "okur": "passed",
+  "okur_at": "2026-11-19"
+ },
+ "dersler": [
+  "r0:01-tage"
+ ],
+ "yeni_kartlar": [
+  "lx:Montag",
+  "lx:Dienstag",
+  "lx:Mittwoch",
+  "lx:Donnerstag",
+  "lx:Freitag",
+  "lx:Samstag",
+  "lx:Sonntag",
+  "lx:Wochenende",
+  "lx:Woche",
+  "lx:Tag",
+  "lx:heute",
+  "lx:morgen",
+  "lx:gestern",
+  "lx:übermorgen",
+  "lx:vorgestern",
+  "lx:gehen",
+  "lx:hallo",
+  "lx:danke",
+  "lx:bitte",
+  "lx:ja",
+  "lx:nein",
+  "lx:Frau",
+  "lx:Praxis",
+  "lx:geschlossen",
+  "lx:Herr"
+ ],
+ "sahne": {
+  "id": "m1:01:v1",
+  "title_tr": "Bugün günlerden ne?",
+  "sahneler": [
+   {
+    "id": "s2",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana sabah şehir meydanına geliyor. Elindeki küçük takvime bakıp omuz silkiyor.",
+    "de": "Heute ist Mittwoch, ja?",
+    "tr": "Bugün çarşamba, değil mi?"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana, kahve içen Tobi'nin yanına gidiyor.",
+    "de": "Hallo! Welcher Tag ist heute?",
+    "tr": "Merhaba! Bugün günlerden ne?"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi esniyor, ellerini birleştirip yalvarır gibi yapıyor.",
+    "de": "Heute? Freitag! Bitte, Freitag!",
+    "tr": "Bugün mü? Cuma! Lütfen cuma olsun!"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana gülerek başını iki yana sallıyor, Tobi omuzlarını düşürüyor.",
+    "de": "Freitag? Nein, nicht Freitag.",
+    "tr": "Cuma mı? Hayır, cuma değil."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana fırının kapısında duran Frau Stadler'e yaklaşıyor.",
+    "de": "Guten Tag, Frau Stadler! Welcher Tag ist heute?",
+    "tr": "İyi günler Frau Stadler! Bugün günlerden ne?"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler önlüğüyle kapıda duruyor, elinde bir tepsi ekmek var.",
+    "de": "Heute ist Donnerstag.",
+    "tr": "Bugün perşembe."
+   },
+   {
+    "id": "s7b",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler başıyla Ioana'nın takvimindeki çarşambayı gösteriyor.",
+    "de": "Gestern war Mittwoch.",
+    "tr": "Dün çarşambaydı."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana şaşırıyor, takvimine yeniden bakıyor.",
+    "de": "Donnerstag? Nicht Mittwoch?",
+    "tr": "Perşembe mi? Çarşamba değil mi?"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler gülüyor, parmağıyla Ioana'nın takvimini gösteriyor.",
+    "de": "Nein, nicht Mittwoch. Donnerstag!",
+    "tr": "Hayır, çarşamba değil. Perşembe!"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana süpürge tutan Herr Pichler'in yanına gidiyor.",
+    "de": "Guten Tag! Heute ist Donnerstag, ja?",
+    "tr": "İyi günler! Bugün perşembe, değil mi?"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler süpürgesine yaslanmış, ciddi ciddi başını sallıyor.",
+    "de": "Ja, Donnerstag.",
+    "tr": "Evet, perşembe."
+   },
+   {
+    "id": "s11b",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler takvimde bir sonraki günü gösteriyor.",
+    "de": "Morgen ist Freitag.",
+    "tr": "Yarın cuma."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana bankta oturan Frau Brandl'ın önünde eğiliyor.",
+    "de": "Frau Brandl, und übermorgen?",
+    "tr": "Frau Brandl, peki öbür gün?"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl çantasını kucağına koymuş, gülümsüyor.",
+    "de": "Übermorgen ist Samstag.",
+    "tr": "Öbür gün cumartesi."
+   },
+   {
+    "id": "s13b",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl neşeyle el sallıyor.",
+    "de": "Samstag ist Wochenende!",
+    "tr": "Cumartesi hafta sonu!"
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi koşarak geliyor, kahvesini havaya kaldırıyor.",
+    "de": "Morgen ist Freitag? Ja! Übermorgen ist Wochenende!",
+    "tr": "Yarın cuma mı? Evet! Öbür gün de hafta sonu!"
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana takvimdeki çarşambanın üstünü çiziyor ve Frau Brandl'a gülümsüyor.",
+    "de": "Heute ist Donnerstag. Danke, Frau Brandl!",
+    "tr": "Bugün perşembe. Teşekkürler, Frau Brandl!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s7b",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s11b",
+     "s12",
+     "s13",
+     "s13b",
+     "s14",
+     "s15"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Ioana insanlara ne soruyor?",
+     "opts": [
+      "Saatin kaç olduğunu",
+      "Bugünün hangi gün olduğunu",
+      "Nerede oturduklarını"
+     ],
+     "ans": 1,
+     "kanit": [
+      "s3"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Bugün gerçekte hangi gün?",
+      "opts": [
+       "cuma",
+       "çarşamba",
+       "perşembe"
+      ],
+      "ans": 2,
+      "kanit": [
+       "s7"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi sonunda neden seviniyor?",
+      "opts": [
+       "Yarın cuma olduğu için",
+       "Bugün cuma olduğu için",
+       "Bugün hafta sonu olduğu için"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s14"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s5",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Samstag",
+       "Freitag",
+       "Sonntag"
+      ],
+      "ans": 1
+     },
+     {
+      "id": "d2",
+      "cumle": "s11b",
+      "seviye": "orta",
+      "de": "Morgen ist ___.",
+      "accepted": [
+       "Freitag",
+       "freitag",
+       "Freitag."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s7b",
+      "seviye": "zor",
+      "banka": [
+       "Mittwoch",
+       "ist",
+       "Gestern",
+       "Montag",
+       "war"
+      ],
+      "accepted": [
+       "Gestern war Mittwoch.",
+       "gestern war mittwoch",
+       "Gestern war Mittwoch"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s13",
+      "seviye": "usta",
+      "accepted": [
+       "Übermorgen ist Samstag.",
+       "übermorgen ist samstag",
+       "Übermorgen ist Samstag"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Sahnede duyduklarını Almanca bir iki kısa cümleyle özetle.",
+      "ornek_de": "Heute ist Donnerstag. Morgen ist Freitag.",
+      "zorunlu": [
+       "Donnerstag",
+       "Freitag"
+      ]
+     }
+    ],
+    "golge": [
+     "s3",
+     "s15"
+    ],
+    "cevapla": {
+     "id": "m1:01:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Ioana sana da soruyor. Bugün perşembe.",
+     "prompt_de": "Welcher Tag ist heute?",
+     "accepted": [
+      "Heute ist Donnerstag.",
+      "Donnerstag.",
+      "Heute haben wir Donnerstag.",
+      "Wir haben heute Donnerstag.",
+      "Es ist Donnerstag.",
+      "Donnerstag ist heute.",
+      "Es ist heute Donnerstag.",
+      "Heute ist es Donnerstag."
+     ],
+     "why_tr": "Cevaba **Heute ist** (bugün) ile başla, sonra günü söyle."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:01:a1",
+   "tur": "bekleme-anonsu",
+   "title_tr": "Muayenehanenin telefon kaydı",
+   "ortam_tr": "Muayenehaneyi arıyorsun. Telefonda bu kayıt çalıyor.",
+   "speaker": "ch:huber",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Praxis Dr. Weber, guten Tag.",
+     "tr": "Dr. Weber muayenehanesi, iyi günler."
+    },
+    {
+     "id": "c2",
+     "de": "Heute, am Freitag, ist die Praxis geschlossen.",
+     "tr": "Bugün, cuma günü, muayenehane kapalı."
+    },
+    {
+     "id": "c3",
+     "de": "Am Samstag und am Sonntag ist die Praxis geschlossen.",
+     "tr": "Cumartesi ve pazar günü muayenehane kapalı."
+    },
+    {
+     "id": "c4",
+     "de": "Danke und bis Montag!",
+     "tr": "Teşekkürler, pazartesi görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Bu kayıt ne söylüyor?",
+      "opts": [
+       "Muayenehane taşındı",
+       "Muayenehane şu an kapalı",
+       "Doktor bugün çok yoğun"
+      ],
+      "ans": 1,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Muayenehane hangi gün yeniden açık?",
+       "opts": [
+        "cumartesi",
+        "salı",
+        "pazartesi"
+       ],
+       "ans": 2,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Kayda göre bugün hangi gün?",
+       "opts": [
+        "cuma",
+        "perşembe",
+        "cumartesi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Dienstag",
+        "Sonntag",
+        "Freitag"
+       ],
+       "ans": 2
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Danke und bis ___!",
+       "accepted": [
+        "Montag",
+        "montag",
+        "Montag."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "geschlossen",
+        "Sonntag",
+        "am",
+        "Praxis",
+        "und",
+        "Montag",
+        "Am",
+        "ist",
+        "nicht",
+        "die",
+        "Samstag"
+       ],
+       "accepted": [
+        "Am Samstag und am Sonntag ist die Praxis geschlossen.",
+        "am samstag und am sonntag ist die praxis geschlossen",
+        "Am Samstag und am Sonntag ist die Praxis geschlossen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Heute, am Freitag, ist die Praxis geschlossen.",
+        "heute am freitag ist die praxis geschlossen",
+        "Heute am Freitag ist die Praxis geschlossen"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Duyuruda ne dendiğini Almanca bir iki kısa cümleyle özetle.",
+       "ornek_de": "Heute ist die Praxis geschlossen. Montag geht.",
+       "zorunlu": [
+        "geschlossen",
+        "Montag"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:01:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Arkadaşın bugün muayenehaneye gitmek istiyor. Bugün olmaz, pazartesi olur.",
+      "prompt_de": "Geht heute?",
+      "accepted": [
+       "Heute geht nicht. Montag geht.",
+       "Nein, heute geht nicht. Montag geht.",
+       "Heute nicht, Montag geht.",
+       "Heute geht nicht, aber Montag geht.",
+       "Heute geht es nicht. Montag geht es.",
+       "Nein, heute nicht. Montag geht.",
+       "Heute nicht. Montag geht.",
+       "Nein, heute geht es nicht. Montag geht es.",
+       "Heute geht nicht. Montag geht es.",
+       "Heute ist die Praxis geschlossen. Montag geht.",
+       "Nein, heute ist die Praxis geschlossen. Montag geht.",
+       "Heute geht nicht. Am Montag geht es.",
+       "Nein, heute geht nicht. Am Montag geht es."
+      ],
+      "why_tr": "Önce uymayan günü, sonra uyan günü söyle."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:01:a1:e1",
+    "k": "pick",
+    "q_tr": "Randevu almak istiyorsun. Ne yapmalısın?",
+    "opts": [
+     "Pazartesi yeniden ara.",
+     "Yarın yeniden ara.",
+     "Hemen muayenehaneye git."
+    ],
+    "ans": 0,
+    "why_tr": "Muayenehane bugün, cumartesi ve pazar kapalı. Pazartesi yeniden açık.",
+    "kanit": [
+     "c2",
+     "c3",
+     "c4"
+    ]
+   }
+  },
+  {
+   "id": "m1:01:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Herr Pichler'den sesli mesaj",
+   "ortam_tr": "Banyodaki musluk bozuk. Apartman görevlisi Herr Pichler sana mesaj bırakmış.",
+   "speaker": "ch:pichler",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag.",
+     "tr": "İyi günler."
+    },
+    {
+     "id": "c2",
+     "de": "Hier ist Josef Pichler.",
+     "tr": "Ben Josef Pichler."
+    },
+    {
+     "id": "c3",
+     "de": "Montag geht nicht.",
+     "tr": "Pazartesi olmaz."
+    },
+    {
+     "id": "c4",
+     "de": "Geht Mittwoch?",
+     "tr": "Çarşamba olur mu?"
+    },
+    {
+     "id": "c5",
+     "de": "Danke und schönes Wochenende!",
+     "tr": "Teşekkürler, iyi hafta sonları!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Herr Pichler neden mesaj bırakıyor?",
+      "opts": [
+       "Kira istemek için",
+       "Bir gün ayarlamak için",
+       "Seni yemeğe çağırmak için"
+      ],
+      "ans": 1,
+      "kanit": [
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Herr Pichler hangi gün gelemiyor?",
+       "opts": [
+        "salı",
+        "çarşamba",
+        "pazartesi"
+       ],
+       "ans": 2,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Herr Pichler hangi günü soruyor?",
+       "opts": [
+        "çarşamba",
+        "cuma",
+        "salı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Sonntag",
+        "Mittwoch",
+        "Montag"
+       ],
+       "ans": 2
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Geht ___?",
+       "accepted": [
+        "Mittwoch",
+        "mittwoch",
+        "Mittwoch."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "nicht",
+        "heute",
+        "Montag",
+        "ist",
+        "geht"
+       ],
+       "accepted": [
+        "Montag geht nicht.",
+        "montag geht nicht",
+        "Montag geht nicht"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Danke und schönes Wochenende!",
+        "danke und schönes wochenende",
+        "Danke und schönes Wochenende"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajda ne dendiğini Almanca bir iki kısa cümleyle özetle.",
+       "ornek_de": "Montag geht nicht. Geht Mittwoch?",
+       "zorunlu": [
+        "Montag",
+        "Mittwoch"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:01:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Herr Pichler'e cevap veriyorsun. Çarşamba sana uyuyor.",
+      "prompt_de": "Geht Mittwoch?",
+      "accepted": [
+       "Mittwoch geht.",
+       "Ja, Mittwoch geht.",
+       "Ja, das geht.",
+       "Ja, am Mittwoch geht es.",
+       "Ja, Mittwoch passt.",
+       "Mittwoch passt.",
+       "Ja, Mittwoch ist gut.",
+       "Ja, das passt.",
+       "Ja, am Mittwoch geht's.",
+       "Ja, Mittwoch geht, danke.",
+       "Am Mittwoch geht es."
+      ],
+      "why_tr": "Soruda **Geht** başta. Cevapta **geht** günden sonra gelir."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:01:a2:e1",
+    "k": "pick",
+    "q_tr": "Musluğun tamir edilmesini istiyorsun. Ne yapmalısın?",
+    "opts": [
+     "Pazartesi evde bekle.",
+     "Çarşambanın uyup uymadığını söyle.",
+     "Cumartesi günü onu bekle."
+    ],
+    "ans": 1,
+    "why_tr": "Pazartesi olmuyor. Herr Pichler çarşambayı soruyor.",
+    "kanit": [
+     "c3",
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:01:g1",
+   "de": "Montag",
+   "dogru_img": "week strip Mo Di Mi Do Fr Sa So, Mo circled",
+   "celdirici_img": [
+    "week strip Mo Di Mi Do Fr Sa So, Di circled",
+    "week strip Mo Di Mi Do Fr Sa So, Mi circled",
+    "week strip Mo Di Mi Do Fr Sa So, So circled"
+   ]
+  },
+  {
+   "id": "m1:01:g2",
+   "de": "Donnerstag",
+   "dogru_img": "week strip Mo Di Mi Do Fr Sa So, Do circled",
+   "celdirici_img": [
+    "week strip Mo Di Mi Do Fr Sa So, Di circled",
+    "week strip Mo Di Mi Do Fr Sa So, Fr circled",
+    "week strip Mo Di Mi Do Fr Sa So, Mi circled"
+   ]
+  },
+  {
+   "id": "m1:01:g3",
+   "de": "Sonntag",
+   "dogru_img": "week strip Mo Di Mi Do Fr Sa So, So circled",
+   "celdirici_img": [
+    "week strip Mo Di Mi Do Fr Sa So, Sa circled",
+    "week strip Mo Di Mi Do Fr Sa So, Mo circled",
+    "week strip Mo Di Mi Do Fr Sa So, Fr circled"
+   ]
+  },
+  {
+   "id": "m1:01:g4",
+   "de": "von Montag bis Freitag",
+   "dogru_img": "week strip Mo Di Mi Do Fr Sa So, bracket from Mo to Fr",
+   "celdirici_img": [
+    "week strip Mo Di Mi Do Fr Sa So, bracket from Sa to So",
+    "week strip Mo Di Mi Do Fr Sa So, bracket from Mo to Mi",
+    "week strip Mo Di Mi Do Fr Sa So, bracket from Mi to So"
+   ]
+  },
+  {
+   "id": "m1:01:g5",
+   "de": "geschlossen",
+   "dogru_img": "shop front with metal roller shutter pulled down, nobody inside",
+   "celdirici_img": [
+    "open shop door with customers walking in",
+    "busy shop counter with a cashier",
+    "open market stall with a seller serving a customer"
+   ]
+  },
+  {
+   "id": "m1:01:g6",
+   "de": "Praxis",
+   "dogru_img": "doctor's office reception desk with waiting room chairs and a doctor in a white coat",
+   "celdirici_img": [
+    "bakery counter with bread",
+    "hair salon chairs and mirrors",
+    "train station platform"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:01:p1",
+  "title_tr": "Muayenehaneyi arıyorsun",
+  "durum_tr": "Dr. Weber'in muayenehanesi randevu günü için seni aramış ama ulaşamamış. Şimdi sen geri arıyorsun. Telefonu Frau Huber açıyor.",
+  "karsi": "ch:huber",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Praxis Dr. Weber, Huber, guten Tag.",
+    "tr": "Dr. Weber muayenehanesi, ben Huber, iyi günler.",
+    "secenekler": [
+     {
+      "de": "Guten Tag, hier ist {name}.",
+      "tr": "İyi günler, ben {name}.",
+      "accepted": [
+       "Guten Tag, hier ist {name}.",
+       "Guten Tag, ich bin {name}.",
+       "Guten Tag, mein Name ist {name}.",
+       "Grüß Gott, hier ist {name}.",
+       "Guten Tag, {name} hier.",
+       "Guten Tag, hier spricht {name}.",
+       "Guten Morgen, hier ist {name}.",
+       "Grüß Gott, {name} hier.",
+       "Grüß Gott, mein Name ist {name}."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Önce selam verdin, sonra adını söyledin."
+     },
+     {
+      "de": "Hallo, hier ist {name}.",
+      "tr": "Merhaba, ben {name}.",
+      "accepted": [
+       "Hallo, hier ist {name}.",
+       "Hallo, ich bin {name}.",
+       "Hallo, mein Name ist {name}.",
+       "Hallo, {name} hier.",
+       "Hallo, hier spricht {name}."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Muayenehanede **Guten Tag** daha kibar duyulur."
+     },
+     {
+      "de": "Welcher Tag ist heute?",
+      "tr": "Bugün günlerden ne?",
+      "accepted": [
+       "Welcher Tag ist heute?",
+       "Was für ein Tag ist heute?",
+       "Welchen Tag haben wir heute?"
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Frau Huber seni tanımıyor. Önce selam ver ve adını söyle."
+     }
+    ]
+   },
+   {
+    "id": "n1b",
+    "de": "Wie bitte? Hier ist die Praxis Dr. Weber.",
+    "tr": "Efendim? Burası Dr. Weber muayenehanesi.",
+    "secenekler": [
+     {
+      "de": "Guten Tag, hier ist {name}.",
+      "tr": "İyi günler, ben {name}.",
+      "accepted": [
+       "Guten Tag, hier ist {name}.",
+       "Guten Tag, ich bin {name}.",
+       "Guten Tag, mein Name ist {name}.",
+       "Grüß Gott, hier ist {name}.",
+       "Guten Tag, {name} hier.",
+       "Guten Tag, hier spricht {name}.",
+       "Guten Morgen, hier ist {name}.",
+       "Grüß Gott, {name} hier.",
+       "Grüß Gott, mein Name ist {name}."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Şimdi oldu. Selam verdin ve adını söyledin."
+     },
+     {
+      "de": "Heute ist Mittwoch.",
+      "tr": "Bugün çarşamba.",
+      "accepted": [
+       "Heute ist Mittwoch.",
+       "Heute haben wir Mittwoch.",
+       "Wir haben heute Mittwoch."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Frau Huber gün sormadı. Önce selam ver ve adını söyle."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Guten Tag, {Herr|Frau} {name}. Geht Dienstag?",
+    "tr": "İyi günler, {Herr|Frau} {name}. Salı olur mu?",
+    "secenekler": [
+     {
+      "de": "Ja, Dienstag geht.",
+      "tr": "Evet, salı olur.",
+      "accepted": [
+       "Ja, Dienstag geht.",
+       "Dienstag geht.",
+       "Ja, das geht.",
+       "Ja, am Dienstag geht es.",
+       "Ja, Dienstag passt.",
+       "Dienstag passt.",
+       "Ja, Dienstag ist gut.",
+       "Ja, das passt.",
+       "Ja, am Dienstag geht's.",
+       "Ja, Dienstag geht, danke.",
+       "Am Dienstag geht es."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Açık bir cevap. Frau Huber günü hemen yazar."
+     },
+     {
+      "de": "Nein, Dienstag geht nicht.",
+      "tr": "Hayır, salı olmaz.",
+      "accepted": [
+       "Nein, Dienstag geht nicht.",
+       "Dienstag geht nicht.",
+       "Nein, das geht nicht.",
+       "Nein, am Dienstag geht es nicht.",
+       "Dienstag passt nicht.",
+       "Nein, Dienstag passt nicht.",
+       "Dienstag geht leider nicht.",
+       "Nein, Dienstag geht leider nicht.",
+       "Nein, am Dienstag geht's nicht.",
+       "Am Dienstag geht es nicht.",
+       "Nein, das passt nicht."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar ve açık. Frau Huber başka bir gün önerecek."
+     },
+     {
+      "de": "Nein!",
+      "tr": "Hayır!",
+      "accepted": [
+       "Nein!",
+       "Nee!",
+       "Nein, nein!"
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Tek başına **Nein!** sert duyulur. **Nein, Dienstag geht nicht.** de."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Und Donnerstag? Geht Donnerstag?",
+    "tr": "Peki perşembe? Perşembe olur mu?",
+    "secenekler": [
+     {
+      "de": "Ja, Donnerstag geht.",
+      "tr": "Evet, perşembe olur.",
+      "accepted": [
+       "Ja, Donnerstag geht.",
+       "Donnerstag geht.",
+       "Ja, das geht.",
+       "Ja, am Donnerstag geht es.",
+       "Ja, Donnerstag passt.",
+       "Donnerstag passt.",
+       "Ja, Donnerstag ist gut.",
+       "Ja, das passt.",
+       "Ja, am Donnerstag geht's.",
+       "Am Donnerstag geht es."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru günü duydun ve onayladın."
+     },
+     {
+      "de": "Donnerstag geht, danke.",
+      "tr": "Perşembe olur, teşekkürler.",
+      "accepted": [
+       "Donnerstag geht, danke.",
+       "Ja, Donnerstag geht, danke.",
+       "Am Donnerstag geht es, danke.",
+       "Donnerstag passt, danke.",
+       "Ja, Donnerstag passt, danke.",
+       "Donnerstag geht, danke schön.",
+       "Ja, das geht, danke."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **danke** cevabı daha sıcak yapar."
+     },
+     {
+      "de": "Ja, Dienstag geht.",
+      "tr": "Evet, salı olur.",
+      "accepted": [
+       "Ja, Dienstag geht.",
+       "Dienstag geht.",
+       "Ja, am Dienstag geht es.",
+       "Ja, Dienstag passt.",
+       "Dienstag passt."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Frau Huber perşembeyi soruyor, sen salı dedin. **Donnerstag** de."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Dienstag, ja. Danke, {Herr|Frau} {name}.",
+    "tr": "Salı, tamam. Teşekkürler, {Herr|Frau} {name}.",
+    "secenekler": [
+     {
+      "de": "Danke, bis Dienstag!",
+      "tr": "Teşekkürler, salı görüşürüz!",
+      "accepted": [
+       "Danke, bis Dienstag!",
+       "Bis Dienstag, danke!",
+       "Danke und bis Dienstag!",
+       "Bis Dienstag!",
+       "Danke schön, bis Dienstag!",
+       "Vielen Dank, bis Dienstag!",
+       "Danke, dann bis Dienstag!",
+       "Danke, bis Dienstag. Auf Wiederhören!"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Günü bir kez daha söyledin. Yanlış anlama kalmadı."
+     },
+     {
+      "de": "Danke, bis Donnerstag!",
+      "tr": "Teşekkürler, perşembe görüşürüz!",
+      "accepted": [
+       "Danke, bis Donnerstag!",
+       "Bis Donnerstag, danke!",
+       "Danke und bis Donnerstag!",
+       "Bis Donnerstag!",
+       "Danke schön, bis Donnerstag!",
+       "Vielen Dank, bis Donnerstag!",
+       "Danke, dann bis Donnerstag!",
+       "Danke, bis Donnerstag. Auf Wiederhören!"
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Randevu salı günü. **Dienstag** ile **Donnerstag** telefonda kolay karışır."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Donnerstag, ja. Danke, {Herr|Frau} {name}.",
+    "tr": "Perşembe, tamam. Teşekkürler, {Herr|Frau} {name}.",
+    "secenekler": [
+     {
+      "de": "Danke, bis Donnerstag!",
+      "tr": "Teşekkürler, perşembe görüşürüz!",
+      "accepted": [
+       "Danke, bis Donnerstag!",
+       "Bis Donnerstag, danke!",
+       "Danke und bis Donnerstag!",
+       "Bis Donnerstag!",
+       "Danke schön, bis Donnerstag!",
+       "Vielen Dank, bis Donnerstag!",
+       "Danke, dann bis Donnerstag!",
+       "Danke, bis Donnerstag. Auf Wiederhören!"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Günü bir kez daha söyledin. Yanlış anlama kalmadı."
+     },
+     {
+      "de": "Danke, bis Dienstag!",
+      "tr": "Teşekkürler, salı görüşürüz!",
+      "accepted": [
+       "Danke, bis Dienstag!",
+       "Bis Dienstag, danke!",
+       "Danke und bis Dienstag!",
+       "Bis Dienstag!",
+       "Danke schön, bis Dienstag!",
+       "Vielen Dank, bis Dienstag!",
+       "Danke, dann bis Dienstag!",
+       "Danke, bis Dienstag. Auf Wiederhören!"
+      ],
+      "sonraki": "n5",
+      "uygun": false,
+      "geri_bildirim_tr": "Randevu perşembe günü. **Donnerstag** ile **Dienstag** telefonda kolay karışır."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Gern! Bis dann!",
+    "tr": "Rica ederim! Görüşürüz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Telefonda selam verdin, adını söyledin ve günü ayarladın."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Ioana'dan mesaj",
+  "metin_de": "Hallo {name}, hier ist Ioana. Heute ist Dienstag. Morgen geht nicht. Donnerstag geht nicht. Geht Freitag? Danke!",
+  "metin_tr": "Merhaba {name}, ben Ioana. Bugün salı. Yarın olmaz. Perşembe olmaz. Cuma olur mu? Teşekkürler!",
+  "sorular": [
+   {
+    "id": "m1:01:o1",
+    "kind": "gist",
+    "q_tr": "Ioana neden yazıyor?",
+    "opts": [
+     "Birlikte bir gün bulmak için",
+     "Doktora gitmek için",
+     "Para istemek için"
+    ],
+    "ans": 0,
+    "kanit": [
+     2,
+     3,
+     4
+    ]
+   },
+   {
+    "id": "m1:01:o2",
+    "kind": "detail",
+    "q_tr": "Mesaja göre bugün hangi gün?",
+    "opts": [
+     "pazartesi",
+     "perşembe",
+     "salı"
+    ],
+    "ans": 2,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:01:o3",
+    "kind": "detail",
+    "q_tr": "Çarşamba günü Ioana'ya uyuyor mu?",
+    "opts": [
+     "Evet, uyuyor",
+     "Hayır, uymuyor",
+     "Mesajda yazmıyor"
+    ],
+    "ans": 1,
+    "kanit": [
+     1,
+     2
+    ]
+   },
+   {
+    "id": "m1:01:o4",
+    "kind": "detail",
+    "q_tr": "Ioana hangi günü öneriyor?",
+    "opts": [
+     "perşembe",
+     "cuma",
+     "cumartesi"
+    ],
+    "ans": 1,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:01:o5",
+    "k": "guided_response",
+    "situation_tr": "Cuma sana uyuyor. Ioana'ya cevap ver.",
+    "prompt_de": "Geht Freitag?",
+    "accepted": [
+     "Freitag geht.",
+     "Ja, Freitag geht.",
+     "Ja, das geht.",
+     "Ja, am Freitag geht es.",
+     "Ja, Freitag passt.",
+     "Freitag passt.",
+     "Ja, Freitag ist gut.",
+     "Ja, das passt.",
+     "Ja, am Freitag geht's.",
+     "Ja, Freitag geht, danke.",
+     "Am Freitag geht es."
+    ],
+    "why_tr": "Soruda **Geht** başta. Cevapta **geht** günden sonra gelir."
+   }
+  ]
+ }
+}

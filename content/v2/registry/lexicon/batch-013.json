@@ -1,0 +1,7506 @@
+{
+ "batch": "013",
+ "review": {
+  "status": "reviewed",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-19",
+  "notes": "docs/v2/reviews/lexicon-batch-013.md; okur: docs/v2/reviews/okur/lexicon-batch-013.md, lexicon-batch-re8.md, m1-tekrar7.md.",
+  "okur": "passed",
+  "okur_at": "2026-11-19"
+ },
+ "items": [
+  {
+   "id": "lx:Gleis",
+   "de": "Gleis",
+   "tr": "peron, tren hattı",
+   "pos": "noun",
+   "art": "das",
+   "pl": "Gleise",
+   "img": "train platform tracks",
+   "collocations": [
+    {
+     "de": "auf Gleis 5",
+     "tr": "5. peronda"
+    },
+    {
+     "de": "von Gleis 2 abfahren",
+     "tr": "2. perondan kalkmak"
+    },
+    {
+     "de": "das Gleis wechseln",
+     "tr": "peron değiştirmek"
+    }
+   ],
+   "patterns": [
+    "pt:wo-ist",
+    "pt:w-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Beşinci peronda derken **in Gleis 5** yanlış. Doğrusu **auf Gleis 5**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Gleis:1",
+     "de": "Der Zug nach Landshut fährt heute von Gleis 4.",
+     "tr": "Landshut treni bugün 4. perondan kalkıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Gleis:2",
+     "de": "Entschuldigung, wie komme ich zu Gleis 7?",
+     "tr": "Affedersiniz, 7. perona nasıl giderim?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Gleis:3",
+     "de": "Schau mal, unser Zug fährt heut von 'nem anderen Gleis.",
+     "tr": "Baksana, trenimiz bugün başka perondan kalkıyor.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Gleis:4",
+     "de": "– Auf welchem Gleis steht der Zug? – Auf Gleis 2, gleich da vorne.",
+     "tr": "– Tren hangi peronda duruyor? – 2. peronda, hemen şurada.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "verkehr"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-10",
+     "key": "a2-10:w:Gleis"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Trenin geldiği ve kalktığı hattı söyler.",
+    "ne_zaman_tr": "İstasyonda anons dinlerken ve treni ararken.",
+    "parcalar": [],
+    "ipucu_tr": "Anonstaki **Gleis 3** sözü üçüncü peron demektir."
+   }
+  },
+  {
+   "id": "lx:Anschluss",
+   "de": "Anschluss",
+   "tr": "aktarma, telefon bağlantısı",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Anschlüsse",
+   "collocations": [
+    {
+     "de": "den Anschluss verpassen",
+     "tr": "aktarmayı kaçırmak"
+    },
+    {
+     "de": "den Anschluss schaffen",
+     "tr": "aktarmaya yetişmek"
+    },
+    {
+     "de": "Anschluss in Regensburg",
+     "tr": "Regensburg aktarması"
+    }
+   ],
+   "patterns": [
+    "pt:w-frage",
+    "pt:ich-habe"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Aktarmayı kaçırdım derken **Ich habe den Anschluss vermisst** yanlış. Doğrusu **Ich habe den Anschluss verpasst**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Anschluss:1",
+     "de": "In Regensburg haben Sie acht Minuten Zeit für den Anschluss.",
+     "tr": "Regensburg'da aktarma için sekiz dakikanız var.",
+     "img": "passengers changing trains platform",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Anschluss:2",
+     "de": "Kein Anschluss unter dieser Nummer.",
+     "tr": "Bu numara kullanılmıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Anschluss:3",
+     "de": "Oh Mann, den Anschluss kriegen wir nie.",
+     "tr": "Off be, aktarmaya asla yetişemeyiz.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Anschluss:4",
+     "de": "– Schaffen wir den Anschluss noch? – Ja, wenn wir schnell gehen.",
+     "tr": "– Aktarmaya yetişebilecek miyiz? – Evet, hızlı yürürsek.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "verkehr",
+    "telefon"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-10",
+     "key": "a2-10:w:Anschluss"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Bir trenden inip binmen gereken sonraki treni söyler.",
+    "ne_zaman_tr": "Yolculukta, özellikle tren gecikince.",
+    "parcalar": [],
+    "ipucu_tr": "Telefonda **Kein Anschluss unter dieser Nummer** bu numara kullanılmıyor demektir."
+   }
+  },
+  {
+   "id": "lx:Durchsage",
+   "de": "Durchsage",
+   "tr": "anons",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Durchsagen",
+   "collocations": [
+    {
+     "de": "eine Durchsage machen",
+     "tr": "anons yapmak"
+    },
+    {
+     "de": "die Durchsage hören",
+     "tr": "anonsu duymak"
+    },
+    {
+     "de": "die Durchsage am Bahnhof",
+     "tr": "istasyondaki anons"
+    }
+   ],
+   "patterns": [
+    "pt:perfekt-haben",
+    "pt:nicht"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Anonsu anlamadım derken **Ich habe nicht die Durchsage verstanden** yanlış. Doğrusu **Ich habe die Durchsage nicht verstanden**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Durchsage:1",
+     "de": "Die Durchsage war so leise, ich habe nichts verstanden.",
+     "tr": "Anons o kadar kısıktı ki hiçbir şey anlamadım.",
+     "img": "train station loudspeaker",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Durchsage:2",
+     "de": "In der Durchsage hieß es, dass der Zug ausfällt.",
+     "tr": "Anonsta trenin iptal olduğu söylendi.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Durchsage:3",
+     "de": "Hast du die Durchsage grad mitgekriegt?",
+     "tr": "Az önceki anonsu duydun mu?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Durchsage:4",
+     "de": "– Was war das für eine Durchsage? – Unser Zug kommt zehn Minuten später.",
+     "tr": "– O anons neydi? – Trenimiz on dakika geç geliyor.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "verkehr"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-10",
+     "key": "a2-10:w:Durchsage"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Hoparlörden herkese yapılan duyuruyu söyler.",
+    "ne_zaman_tr": "İstasyonda, trende ve büyük mağazada duyarsın.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:um_…_herum",
+   "de": "um … herum",
+   "tr": "etrafında, çevresinde",
+   "pos": "phrase",
+   "collocations": [
+    {
+     "de": "um das Haus herum",
+     "tr": "evin etrafından"
+    },
+    {
+     "de": "um den See herum",
+     "tr": "gölün çevresinde"
+    },
+    {
+     "de": "um den Tisch herum",
+     "tr": "masanın etrafında"
+    }
+   ],
+   "patterns": [
+    "pt:imperativ-sie",
+    "pt:es-gibt"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Evin etrafından derken **um dem Haus herum** yanlış. Doğrusu **um das Haus herum**."
+   ],
+   "examples": [
+    {
+     "id": "lx:um_…_herum:1",
+     "de": "Gehen Sie bitte um das Haus herum, der Eingang ist hinten.",
+     "tr": "Lütfen evin etrafından dolaşın, giriş arkada.",
+     "img": "path around a house",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:um_…_herum:2",
+     "de": "Um den Stadtplatz herum gibt es viele kleine Läden.",
+     "tr": "Meydanın çevresinde bir sürü küçük dükkân var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:um_…_herum:3",
+     "de": "Komm so um acht herum vorbei, passt das?",
+     "tr": "Sekiz civarı uğra, olur mu?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:um_…_herum:4",
+     "de": "– Wo ist der Parkplatz? – Fahren Sie einfach um die Kirche herum.",
+     "tr": "– Otopark nerede? – Kilisenin etrafından dolaşın, yeter.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "verkehr",
+    "smalltalk"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-10",
+     "key": "a2-10:w:um … herum"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin çevresinden dolaşmayı söyler.",
+    "ne_zaman_tr": "Yol tarif ederken.",
+    "parcalar": [],
+    "ipucu_tr": "Saatle yaklaşık demektir: **um acht herum**, yani sekiz civarı."
+   }
+  },
+  {
+   "id": "lx:Fluss",
+   "de": "Fluss",
+   "tr": "nehir, ırmak",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Flüsse",
+   "img": "river",
+   "collocations": [
+    {
+     "de": "am Fluss",
+     "tr": "nehir kenarında"
+    },
+    {
+     "de": "im Fluss schwimmen",
+     "tr": "nehirde yüzmek"
+    },
+    {
+     "de": "über den Fluss",
+     "tr": "nehrin üstünden"
+    }
+   ],
+   "patterns": [
+    "pt:w-frage",
+    "pt:verb-zweite-stelle"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Nehirde yüzüyorum derken **Ich schwimme in Fluss** yanlış. Doğrusu **Ich schwimme im Fluss**.",
+    "Nehirler derken **die Flussen** yanlış. Doğrusu **die Flüsse**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Fluss:1",
+     "de": "Wendlfing liegt an einem kleinen Fluss, der Vils.",
+     "tr": "Wendlfing küçük bir ırmağın, Vils'in kıyısında.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Fluss:2",
+     "de": "Im Sommer gehen wir gern am Fluss spazieren.",
+     "tr": "Yazın nehir kenarında yürümeyi severiz.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Fluss:3",
+     "de": "Komm, wir setzen uns 'n bisschen an den Fluss.",
+     "tr": "Hadi, biraz nehir kenarına oturalım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Fluss:4",
+     "de": "– Wie heißt der Fluss hier? – Das ist die Vils.",
+     "tr": "– Buradaki ırmağın adı ne? – Vils.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "freizeit"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-10",
+     "key": "a2-10:w:Fluss"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Karada akan büyük suyu söyler.",
+    "ne_zaman_tr": "Gezerken ve şehri anlatırken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Strand",
+   "de": "Strand",
+   "tr": "plaj, kumsal",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Strände",
+   "img": "beach",
+   "collocations": [
+    {
+     "de": "an den Strand gehen",
+     "tr": "plaja gitmek"
+    },
+    {
+     "de": "am Strand liegen",
+     "tr": "kumsalda uzanmak"
+    },
+    {
+     "de": "ein schöner Strand",
+     "tr": "güzel bir plaj"
+    }
+   ],
+   "patterns": [
+    "pt:ich-war",
+    "pt:verb-zweite-stelle"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Plaja gidiyoruz derken **Wir gehen zu Strand** yanlış. Doğrusu **Wir gehen an den Strand**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Strand:1",
+     "de": "Wir waren im Urlaub jeden Tag am Strand.",
+     "tr": "Tatilde her gün plajdaydık.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Strand:2",
+     "de": "Vom Hotel läuft man nur fünf Minuten zum Strand.",
+     "tr": "Otelden plaja yürüyerek sadece beş dakika.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Strand:3",
+     "de": "Ich will nur noch am Strand liegen und nix tun.",
+     "tr": "Tek istediğim kumsalda uzanıp hiçbir şey yapmamak.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Strand:4",
+     "de": "– Wie war dein Urlaub? – Super, wir waren fast nur am Strand.",
+     "tr": "– Tatilin nasıldı? – Süperdi, neredeyse hep plajdaydık.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "freizeit"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-11",
+     "key": "a2-11:w:Strand"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Deniz kıyısındaki kumlu yeri söyler.",
+    "ne_zaman_tr": "Tatil anlatırken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Berg",
+   "de": "Berg",
+   "tr": "dağ",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Berge",
+   "img": "mountain",
+   "collocations": [
+    {
+     "de": "in die Berge fahren",
+     "tr": "dağlara gitmek"
+    },
+    {
+     "de": "auf einen Berg steigen",
+     "tr": "bir dağa çıkmak"
+    },
+    {
+     "de": "in den Bergen wandern",
+     "tr": "dağlarda yürüyüş yapmak"
+    }
+   ],
+   "patterns": [
+    "pt:verb-zweite-stelle",
+    "pt:w-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Dağlara gidiyoruz derken **Wir fahren nach Berge** yanlış. Doğrusu **Wir fahren in die Berge**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Berg:1",
+     "de": "Am Samstag fahren wir mit dem Zug in die Berge.",
+     "tr": "Cumartesi trenle dağlara gidiyoruz.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Berg:2",
+     "de": "Von diesem Berg sieht man die ganze Stadt.",
+     "tr": "Bu dağdan bütün şehir görünüyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Berg:3",
+     "de": "Am Sonntag geht's in die Berge, kommst du mit?",
+     "tr": "Pazar günü dağlara gidiyoruz, geliyor musun?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Berg:4",
+     "de": "– Was machst du im Urlaub? – Ich wandere in den Bergen.",
+     "tr": "– Tatilde ne yapıyorsun? – Dağlarda yürüyüş yapıyorum.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "freizeit",
+    "sport"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-11",
+     "key": "a2-11:w:Berg"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Yerden çok yükselen büyük toprak ve kayayı söyler.",
+    "ne_zaman_tr": "Hafta sonu planı yaparken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Doppelzimmer",
+   "de": "Doppelzimmer",
+   "tr": "çift kişilik oda",
+   "pos": "noun",
+   "art": "das",
+   "pl": "Doppelzimmer",
+   "img": "hotel double room",
+   "collocations": [
+    {
+     "de": "ein Doppelzimmer buchen",
+     "tr": "çift kişilik oda ayırtmak"
+    },
+    {
+     "de": "ein Doppelzimmer mit Frühstück",
+     "tr": "kahvaltılı çift kişilik oda"
+    },
+    {
+     "de": "ein Doppelzimmer reservieren",
+     "tr": "çift kişilik oda rezerve etmek"
+    }
+   ],
+   "patterns": [
+    "pt:ich-moechte",
+    "pt:haben-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Çift kişilik oda istiyorum derken **Ich möchte einen Doppelzimmer** yanlış. Doğrusu **Ich möchte ein Doppelzimmer**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Doppelzimmer:1",
+     "de": "Ich möchte ein Doppelzimmer für zwei Nächte reservieren.",
+     "tr": "İki gecelik çift kişilik oda ayırtmak istiyorum.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Doppelzimmer:2",
+     "de": "Das Doppelzimmer kostet 95 Euro pro Nacht.",
+     "tr": "Çift kişilik oda gecelik 95 avro.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Doppelzimmer:3",
+     "de": "Wir nehmen einfach 'n Doppelzimmer, das ist billiger.",
+     "tr": "Çift kişilik oda alalım gitsin, daha ucuz.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Doppelzimmer:4",
+     "de": "– Haben Sie noch ein Doppelzimmer frei? – Ja, im zweiten Stock.",
+     "tr": "– Boş çift kişilik odanız var mı? – Evet, ikinci katta.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "freizeit"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-11",
+     "key": "a2-11:w:Doppelzimmer"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Otelde iki kişinin kaldığı odayı söyler.",
+    "ne_zaman_tr": "Otel ayırtırken.",
+    "parcalar": [
+     {
+      "de": "Doppel",
+      "tr": "çift kişilik"
+     },
+     {
+      "de": "zimmer",
+      "tr": "oda"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Einzelzimmer",
+   "de": "Einzelzimmer",
+   "tr": "tek kişilik oda",
+   "pos": "noun",
+   "art": "das",
+   "pl": "Einzelzimmer",
+   "img": "hotel single room",
+   "collocations": [
+    {
+     "de": "ein Einzelzimmer nehmen",
+     "tr": "tek kişilik oda tutmak"
+    },
+    {
+     "de": "ein ruhiges Einzelzimmer",
+     "tr": "sessiz bir tek kişilik oda"
+    },
+    {
+     "de": "Einzelzimmer mit Dusche",
+     "tr": "duşlu tek kişilik oda"
+    }
+   ],
+   "patterns": [
+    "pt:ich-moechte"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Tek kişilik oda derken **eine Person Zimmer** yanlış. Doğrusu **ein Einzelzimmer**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Einzelzimmer:1",
+     "de": "Das Einzelzimmer ist klein, aber sehr ruhig.",
+     "tr": "Tek kişilik oda küçük ama çok sessiz.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Einzelzimmer:2",
+     "de": "Im Krankenhaus lag Frau Brandl in einem Einzelzimmer.",
+     "tr": "Brandl Hanım hastanede tek kişilik odada yattı.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Einzelzimmer:3",
+     "de": "Mir reicht 'n Einzelzimmer, ich bin eh nur zum Schlafen da.",
+     "tr": "Bana tek kişilik oda yeter, zaten sadece uyumaya geliyorum.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Einzelzimmer:4",
+     "de": "– Möchten Sie ein Einzelzimmer? – Ja, bitte, nur für eine Nacht.",
+     "tr": "– Tek kişilik oda ister misiniz? – Evet lütfen, sadece bir gecelik.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "freizeit",
+    "arzt"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-11",
+     "key": "a2-11:w:Einzelzimmer"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Otelde bir kişinin kaldığı odayı söyler.",
+    "ne_zaman_tr": "Otel ayırtırken.",
+    "parcalar": [
+     {
+      "de": "Einzel",
+      "tr": "tek kişilik"
+     },
+     {
+      "de": "zimmer",
+      "tr": "oda"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Übernachtung",
+   "de": "Übernachtung",
+   "tr": "konaklama, geceleme",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Übernachtungen",
+   "collocations": [
+    {
+     "de": "Übernachtung mit Frühstück",
+     "tr": "kahvaltılı konaklama"
+    },
+    {
+     "de": "eine Übernachtung buchen",
+     "tr": "bir gecelik yer ayırtmak"
+    },
+    {
+     "de": "die Kosten für die Übernachtung",
+     "tr": "konaklama masrafı"
+    }
+   ],
+   "patterns": [
+    "pt:w-frage",
+    "pt:fuer-akk"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Üç gece derken **drei Übernachtung** yanlış. Doğrusu **drei Übernachtungen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Übernachtung:1",
+     "de": "Die Firma bezahlt die Übernachtung im Hotel.",
+     "tr": "Oteldeki konaklamayı şirket ödüyor.",
+     "img": "hotel room bed",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Übernachtung:2",
+     "de": "Wir bleiben nur für eine Übernachtung in Passau.",
+     "tr": "Passau'da sadece bir gece kalıyoruz.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Übernachtung:3",
+     "de": "Drei Übernachtungen für 200 Euro, das ist doch echt okay.",
+     "tr": "Üç gece 200 avro, gayet iyi aslında.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Übernachtung:4",
+     "de": "– Wie viele Übernachtungen brauchen Sie? – Nur zwei, bis Sonntag.",
+     "tr": "– Kaç gece kalacaksınız? – Sadece iki, pazara kadar.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "freizeit"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-11",
+     "key": "a2-11:w:Übernachtung"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Bir yerde gece kalmayı söyler.",
+    "ne_zaman_tr": "Otel ayırtırken ve fiyat sorarken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Rezeption",
+   "de": "Rezeption",
+   "tr": "resepsiyon",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Rezeptionen",
+   "img": "hotel reception desk",
+   "collocations": [
+    {
+     "de": "an der Rezeption fragen",
+     "tr": "resepsiyonda sormak"
+    },
+    {
+     "de": "an der Rezeption warten",
+     "tr": "resepsiyonda beklemek"
+    },
+    {
+     "de": "die Rezeption anrufen",
+     "tr": "resepsiyonu aramak"
+    }
+   ],
+   "patterns": [
+    "pt:imperativ-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Resepsiyona soracağım derken **Ich frage in Rezeption** yanlış. Doğrusu **Ich frage an der Rezeption**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Rezeption:1",
+     "de": "Fragen Sie bitte an der Rezeption nach dem Schlüssel.",
+     "tr": "Anahtarı lütfen resepsiyondan isteyin.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Rezeption:2",
+     "de": "Die Rezeption ist bis 22 Uhr besetzt.",
+     "tr": "Resepsiyonda saat 22'ye kadar görevli var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Rezeption:3",
+     "de": "Ich frag mal kurz an der Rezeption.",
+     "tr": "Resepsiyona bir sorayım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Rezeption:4",
+     "de": "– Das WLAN geht nicht. – Dann rufen Sie bitte die Rezeption an.",
+     "tr": "– İnternet çalışmıyor. – O zaman lütfen resepsiyonu arayın.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "freizeit"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-11",
+     "key": "a2-11:w:Rezeption"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Otelde gelenleri karşılayan masayı söyler.",
+    "ne_zaman_tr": "Otele girince ve bir sorun olunca.",
+    "parcalar": [],
+    "ipucu_tr": "**Rezeption** otelde olur, **Rezept** ise doktorun yazdığı reçetedir."
+   }
+  },
+  {
+   "id": "lx:sich_beschweren",
+   "de": "sich beschweren",
+   "tr": "şikâyet etmek",
+   "pos": "verb",
+   "verb": {
+    "praesens3": "beschwert sich",
+    "praeteritum": "beschwerte sich",
+    "perfekt": "hat sich beschwert",
+    "aux": "haben",
+    "reflexive": true,
+    "prep": [
+     "über+Akk",
+     "bei+Dat"
+    ]
+   },
+   "collocations": [
+    {
+     "de": "sich über den Lärm beschweren",
+     "tr": "gürültüden şikâyet etmek"
+    },
+    {
+     "de": "sich beim Vermieter beschweren",
+     "tr": "ev sahibine şikâyet etmek"
+    },
+    {
+     "de": "sich beim Chef beschweren",
+     "tr": "şefe şikâyet etmek"
+    }
+   ],
+   "patterns": [
+    "pt:reflexiv",
+    "pt:verb-praep"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Gürültüden şikâyet ediyorum derken **Ich beschwere mich von dem Lärm** yanlış. Doğrusu **Ich beschwere mich über den Lärm**.",
+    "Komşudan şikâyet ettim derken **Ich habe über den Nachbarn beschwert** yanlış. Doğrusu **Ich habe mich über den Nachbarn beschwert**."
+   ],
+   "examples": [
+    {
+     "id": "lx:sich_beschweren:1",
+     "de": "Die Nachbarn beschweren sich über die laute Musik.",
+     "tr": "Komşular yüksek sesli müzikten şikâyet ediyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:sich_beschweren:2",
+     "de": "Ich möchte mich über den Service beschweren.",
+     "tr": "Hizmetten şikâyetçi olmak istiyorum.",
+     "layer": "hd",
+     "img": "customer complaining at counter"
+    },
+    {
+     "id": "lx:sich_beschweren:3",
+     "de": "Der beschwert sich echt über alles.",
+     "tr": "Adam gerçekten her şeyden şikâyet ediyor.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:sich_beschweren:4",
+     "de": "– Warum ist Herr Pichler so sauer? – Jemand hat sich über den Müll beschwert.",
+     "tr": "– Pichler Bey neden bu kadar kızgın? – Biri çöpten şikâyet etmiş.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "einkaufen",
+    "wohnen"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-11",
+     "key": "a2-11:w:sich beschweren"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Memnun olmadığın bir şeyi yetkili kişiye söylemeyi anlatır.",
+    "ne_zaman_tr": "Gürültü, bozuk ürün ve kötü hizmet için.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Geldautomat",
+   "de": "Geldautomat",
+   "tr": "bankamatik",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Geldautomaten",
+   "img": "atm machine",
+   "collocations": [
+    {
+     "de": "am Geldautomaten",
+     "tr": "bankamatikte"
+    },
+    {
+     "de": "zum Geldautomaten gehen",
+     "tr": "bankamatiğe gitmek"
+    },
+    {
+     "de": "der nächste Geldautomat",
+     "tr": "en yakın bankamatik"
+    }
+   ],
+   "patterns": [
+    "pt:wo-ist",
+    "pt:ich-muss"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Bankamatik arıyorum derken **Ich suche einen Geldautomat** yanlış. Doğrusu **Ich suche einen Geldautomaten**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Geldautomat:1",
+     "de": "Wo ist hier der nächste Geldautomat?",
+     "tr": "Buradaki en yakın bankamatik nerede?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Geldautomat:2",
+     "de": "Der Geldautomat gibt mir meine Karte nicht zurück.",
+     "tr": "Bankamatik kartımı geri vermiyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Geldautomat:3",
+     "de": "Warte kurz, ich muss noch schnell zum Geldautomaten.",
+     "tr": "Bir saniye bekle, hemen bankamatiğe gitmem lazım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Geldautomat:4",
+     "de": "– Kann ich hier mit Karte zahlen? – Nein, nur bar, aber da drüben ist ein Geldautomat.",
+     "tr": "– Burada kartla ödeyebilir miyim? – Hayır, sadece nakit, ama karşıda bankamatik var.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "bank"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-12",
+     "key": "a2-12:w:Geldautomat"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Kartla nakit para aldığın makineyi söyler.",
+    "ne_zaman_tr": "Nakit paran kalmayınca.",
+    "parcalar": [
+     {
+      "de": "Geld",
+      "tr": "para"
+     },
+     {
+      "de": "automat",
+      "tr": "makinesi"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Überweisung",
+   "de": "Überweisung",
+   "tr": "havale, sevk kâğıdı",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Überweisungen",
+   "img": "online banking",
+   "collocations": [
+    {
+     "de": "eine Überweisung machen",
+     "tr": "havale yapmak"
+    },
+    {
+     "de": "per Überweisung bezahlen",
+     "tr": "havaleyle ödemek"
+    },
+    {
+     "de": "eine Überweisung vom Hausarzt",
+     "tr": "aile hekiminden sevk kâğıdı"
+    }
+   ],
+   "patterns": [
+    "pt:perfekt-haben",
+    "pt:ich-brauche"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Havaleyi yaptım derken **Ich habe Überweisung gemacht** yanlış. Doğrusu **Ich habe die Überweisung gemacht**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Überweisung:1",
+     "de": "Sie können die Rechnung per Überweisung bezahlen.",
+     "tr": "Faturayı havaleyle ödeyebilirsiniz.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Überweisung:2",
+     "de": "Für den Facharzt brauchen Sie eine Überweisung von Dr. Weber.",
+     "tr": "Uzman doktor için Doktor Weber'den sevk kâğıdı almanız gerekiyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Überweisung:3",
+     "de": "Hab die Überweisung grad gemacht, das Geld kommt morgen.",
+     "tr": "Havaleyi az önce yaptım, para yarın gelir.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Überweisung:4",
+     "de": "– Haben Sie die Miete schon bezahlt? – Ja, die Überweisung habe ich gestern gemacht.",
+     "tr": "– Kirayı ödediniz mi? – Evet, havaleyi dün yaptım.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "bank",
+    "arzt"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-12",
+     "key": "a2-12:w:Überweisung"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Bir hesaptan başka hesaba para göndermeyi söyler.",
+    "ne_zaman_tr": "Kira ve fatura öderken.",
+    "parcalar": [],
+    "ipucu_tr": "Doktorda **Überweisung** seni başka doktora gönderen sevk kâğıdıdır."
+   }
+  },
+  {
+   "id": "lx:Bankkarte",
+   "de": "Bankkarte",
+   "tr": "banka kartı",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Bankkarten",
+   "img": "debit card payment",
+   "collocations": [
+    {
+     "de": "mit der Bankkarte bezahlen",
+     "tr": "banka kartıyla ödemek"
+    },
+    {
+     "de": "die Bankkarte sperren lassen",
+     "tr": "banka kartını bloke ettirmek"
+    },
+    {
+     "de": "die neue Bankkarte",
+     "tr": "yeni banka kartı"
+    }
+   ],
+   "patterns": [
+    "pt:mit-dativ"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Kartımı kaybettim derken **Ich habe mein Bankkarte verloren** yanlış. Doğrusu **Ich habe meine Bankkarte verloren**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Bankkarte:1",
+     "de": "Die neue Bankkarte kommt in einer Woche mit der Post.",
+     "tr": "Yeni banka kartı bir hafta içinde postayla gelir.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Bankkarte:2",
+     "de": "Zahlen Sie bar oder mit der Bankkarte?",
+     "tr": "Nakit mi ödüyorsunuz, banka kartıyla mı?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Bankkarte:3",
+     "de": "Meine Bankkarte ist weg, die muss ich gleich sperren lassen.",
+     "tr": "Banka kartım kayıp, hemen bloke ettirmem lazım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Bankkarte:4",
+     "de": "– Geht auch Bankkarte? – Ja, halten Sie sie einfach hier dran.",
+     "tr": "– Banka kartı da olur mu? – Evet, buraya yaklaştırmanız yeterli.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "bank",
+    "einkaufen"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-12",
+     "key": "a2-12:w:Bankkarte"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Bankanın hesabın için verdiği kartı söyler.",
+    "ne_zaman_tr": "Kasada öderken ve bankamatikte.",
+    "parcalar": [
+     {
+      "de": "Bank",
+      "tr": "banka"
+     },
+     {
+      "de": "karte",
+      "tr": "kartı"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Geheimzahl",
+   "de": "Geheimzahl",
+   "tr": "kart şifresi",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Geheimzahlen",
+   "img": "entering pin at atm",
+   "collocations": [
+    {
+     "de": "die Geheimzahl eingeben",
+     "tr": "kart şifresini girmek"
+    },
+    {
+     "de": "die Geheimzahl vergessen",
+     "tr": "kart şifresini unutmak"
+    },
+    {
+     "de": "die Geheimzahl ändern",
+     "tr": "kart şifresini değiştirmek"
+    }
+   ],
+   "patterns": [
+    "pt:imperativ-sie",
+    "pt:noch-mal"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Kart şifresi derken **das Passwort** yanlış. Doğrusu **die Geheimzahl**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Geheimzahl:1",
+     "de": "Geben Sie jetzt bitte Ihre Geheimzahl ein.",
+     "tr": "Şimdi lütfen kart şifrenizi girin.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Geheimzahl:2",
+     "de": "Ich habe meine Geheimzahl vergessen, was kann ich tun?",
+     "tr": "Kart şifremi unuttum, ne yapabilirim?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Geheimzahl:3",
+     "de": "Oh nein, wie war noch mal meine Geheimzahl?",
+     "tr": "Eyvah, kart şifrem neydi?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Geheimzahl:4",
+     "de": "– Soll ich Ihnen meine Geheimzahl sagen? – Nein, die sagen Sie bitte niemandem.",
+     "tr": "– Kart şifremi size söyleyeyim mi? – Hayır, onu lütfen kimseye söylemeyin.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "bank"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-12",
+     "key": "a2-12:w:Geheimzahl"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Banka kartının gizli numarasını söyler.",
+    "ne_zaman_tr": "Bankamatikte ve kasada kart kullanırken.",
+    "parcalar": [
+     {
+      "de": "Geheim",
+      "tr": "gizli"
+     },
+     {
+      "de": "zahl",
+      "tr": "sayı"
+     }
+    ],
+    "ipucu_tr": "Konuşmada kısaca **PIN** de denir, anlamı aynıdır."
+   }
+  },
+  {
+   "id": "lx:Gebühr",
+   "de": "Gebühr",
+   "tr": "ücret, harç",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Gebühren",
+   "collocations": [
+    {
+     "de": "eine Gebühr bezahlen",
+     "tr": "harç ödemek"
+    },
+    {
+     "de": "die Gebühr für den Ausweis",
+     "tr": "kimlik harcı"
+    },
+    {
+     "de": "keine Gebühren",
+     "tr": "ücret yok"
+    }
+   ],
+   "patterns": [
+    "pt:kein",
+    "pt:wie-viel-kostet"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Hesap ücreti derken **der Lohn für das Konto** yanlış. Doğrusu **die Gebühr für das Konto**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Gebühr:1",
+     "de": "Für den neuen Ausweis zahlen Sie eine Gebühr.",
+     "tr": "Yeni kimlik için harç ödüyorsunuz.",
+     "img": "paying fee at office counter",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Gebühr:2",
+     "de": "Die Bank verlangt keine Gebühren für das Konto.",
+     "tr": "Banka hesap için ücret almıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Gebühr:3",
+     "de": "Was, fünf Euro Gebühr? Das ist ja echt frech.",
+     "tr": "Ne, beş avro ücret mi? Bu resmen küstahlık.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Gebühr:4",
+     "de": "– Kostet das etwas? – Ja, die Gebühr beträgt zwölf Euro.",
+     "tr": "– Bunun bir ücreti var mı? – Evet, harç on iki avro.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "bank",
+    "amt"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-12",
+     "key": "a2-12:w:Gebühr"
+    },
+    {
+     "unit": "b1-13",
+     "key": "b1-13:w:Gebühr"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Resmî işlem ve hizmet için ödenen parayı söyler.",
+    "ne_zaman_tr": "Bankada ve resmî dairede.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:überweisen",
+   "de": "überweisen",
+   "tr": "havale etmek, sevk etmek",
+   "pos": "verb",
+   "verb": {
+    "praesens3": "überweist",
+    "praeteritum": "überwies",
+    "perfekt": "hat überwiesen",
+    "aux": "haben",
+    "case": [
+     "akk",
+     "dat"
+    ],
+    "prep": [
+     "auf+Akk"
+    ]
+   },
+   "img": "online banking transfer",
+   "collocations": [
+    {
+     "de": "Geld überweisen",
+     "tr": "para havale etmek"
+    },
+    {
+     "de": "die Miete überweisen",
+     "tr": "kirayı havale etmek"
+    },
+    {
+     "de": "auf ein Konto überweisen",
+     "tr": "bir hesaba havale etmek"
+    }
+   ],
+   "patterns": [
+    "pt:perfekt-haben"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Havale ettim derken **Ich habe das Geld geüberwiesen** yanlış. Doğrusu **Ich habe das Geld überwiesen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:überweisen:1",
+     "de": "Ich überweise Ihnen das Geld noch heute.",
+     "tr": "Parayı size bugün havale ediyorum.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:überweisen:2",
+     "de": "Dr. Weber überweist Sie zu einem Facharzt.",
+     "tr": "Doktor Weber sizi bir uzmana sevk ediyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:überweisen:3",
+     "de": "Ich überweis dir das heute Abend, okay?",
+     "tr": "Onu sana bu akşam havale ederim, tamam mı?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:überweisen:4",
+     "de": "– Hast du Tobi das Geld schon überwiesen? – Nein, das mach ich heute Abend.",
+     "tr": "– Tobi'ye parayı havale ettin mi? – Hayır, bu akşam yaparım.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "bank",
+    "arzt"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-12",
+     "key": "a2-12:w:überweisen"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Parayı bir hesaptan başka hesaba göndermeyi söyler.",
+    "ne_zaman_tr": "Kira, fatura ve borç öderken.",
+    "parcalar": [],
+    "ipucu_tr": "Doktor seni başka doktora gönderince de **überweisen** denir, yani sevk etmek."
+   }
+  },
+  {
+   "id": "lx:abheben",
+   "de": "abheben",
+   "tr": "para çekmek",
+   "pos": "verb",
+   "verb": {
+    "praesens3": "hebt ab",
+    "praeteritum": "hob ab",
+    "perfekt": "hat abgehoben",
+    "aux": "haben",
+    "separable": "ab",
+    "case": [
+     "akk"
+    ]
+   },
+   "img": "withdrawing cash atm",
+   "collocations": [
+    {
+     "de": "Geld abheben",
+     "tr": "para çekmek"
+    },
+    {
+     "de": "am Automaten abheben",
+     "tr": "makineden çekmek"
+    },
+    {
+     "de": "100 Euro abheben",
+     "tr": "100 avro çekmek"
+    }
+   ],
+   "patterns": [
+    "pt:trennbar",
+    "pt:ich-muss"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Para çekiyorum derken **Ich abhebe Geld** yanlış. Doğrusu **Ich hebe Geld ab**."
+   ],
+   "examples": [
+    {
+     "id": "lx:abheben:1",
+     "de": "Frau Brandl hebt jeden Monat 200 Euro ab.",
+     "tr": "Brandl Hanım her ay 200 avro çekiyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:abheben:2",
+     "de": "Können Sie mir sagen, wo ich hier Geld abheben kann?",
+     "tr": "Burada nereden para çekebileceğimi söyler misiniz?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:abheben:3",
+     "de": "Ich heb schnell noch was ab, dann können wir los.",
+     "tr": "Hemen biraz para çekeyim, sonra çıkabiliriz.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:abheben:4",
+     "de": "– Hast du Bargeld dabei? – Nein, ich muss erst was abheben.",
+     "tr": "– Yanında nakit var mı? – Hayır, önce biraz çekmem lazım.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "bank"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-12",
+     "key": "a2-12:w:abheben"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Hesabından nakit para almayı söyler.",
+    "ne_zaman_tr": "Bankamatikte ve bankada.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:kostenlos",
+   "de": "kostenlos",
+   "tr": "ücretsiz, bedava",
+   "pos": "adj",
+   "collocations": [
+    {
+     "de": "kostenlos parken",
+     "tr": "ücretsiz park etmek"
+    },
+    {
+     "de": "ein kostenloser Parkplatz",
+     "tr": "ücretsiz bir park yeri"
+    },
+    {
+     "de": "kostenlose Beratung",
+     "tr": "ücretsiz danışma"
+    }
+   ],
+   "patterns": [
+    "pt:ich-muss",
+    "pt:es-gibt"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Ücretsiz park yeri derken **ein kostenlos Parkplatz** yanlış. Doğrusu **ein kostenloser Parkplatz**."
+   ],
+   "examples": [
+    {
+     "id": "lx:kostenlos:1",
+     "de": "Das Parken ist hier am Sonntag kostenlos.",
+     "tr": "Burada pazar günü park etmek ücretsiz.",
+     "img": "free parking sign",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:kostenlos:2",
+     "de": "Die Beratung im Rathaus ist kostenlos.",
+     "tr": "Belediyedeki danışma hizmeti ücretsiz.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:kostenlos:3",
+     "de": "Das Wasser gibt's hier kostenlos, nimm dir ruhig eins.",
+     "tr": "Su burada bedava, çekinme, bir tane al.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:kostenlos:4",
+     "de": "– Muss ich dafür bezahlen? – Nein, das ist kostenlos.",
+     "tr": "– Bunun için ödeme yapmam gerekiyor mu? – Hayır, ücretsiz.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "bank",
+    "einkaufen"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-12",
+     "key": "a2-12:w:kostenlos"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Para ödemeden alınan şeyi söyler.",
+    "ne_zaman_tr": "Fiyat sorarken ve duyuru okurken.",
+    "parcalar": [
+     {
+      "de": "kosten",
+      "tr": "ücret"
+     },
+     {
+      "de": "los",
+      "tr": "-siz"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Lebenslauf",
+   "de": "Lebenslauf",
+   "tr": "özgeçmiş",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Lebensläufe",
+   "img": "resume on desk",
+   "collocations": [
+    {
+     "de": "den Lebenslauf schicken",
+     "tr": "özgeçmişi göndermek"
+    },
+    {
+     "de": "einen Lebenslauf schreiben",
+     "tr": "özgeçmiş yazmak"
+    },
+    {
+     "de": "im Lebenslauf stehen",
+     "tr": "özgeçmişte yazmak"
+    }
+   ],
+   "patterns": [
+    "pt:ich-brauche",
+    "pt:imperativ-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Özgeçmişimi gönderdim derken **Ich habe mein Lebenslauf geschickt** yanlış. Doğrusu **Ich habe meinen Lebenslauf geschickt**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Lebenslauf:1",
+     "de": "Für die Bewerbung brauche ich noch einen Lebenslauf.",
+     "tr": "Başvuru için bir de özgeçmişe ihtiyacım var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Lebenslauf:2",
+     "de": "Schicken Sie uns bitte Ihren Lebenslauf per E-Mail.",
+     "tr": "Lütfen özgeçmişinizi bize e-postayla gönderin.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Lebenslauf:3",
+     "de": "Kannst du mal kurz über meinen Lebenslauf schauen?",
+     "tr": "Özgeçmişime bir bakabilir misin?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Lebenslauf:4",
+     "de": "– Was steht in Ihrem Lebenslauf? – Meine Ausbildung und meine letzten Jobs.",
+     "tr": "– Özgeçmişinizde neler yazıyor? – Eğitimim ve son işlerim.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arbeit"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-13",
+     "key": "a2-13:w:Lebenslauf"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "İş başvurusunda eğitimini ve işlerini anlatan yazıyı söyler.",
+    "ne_zaman_tr": "İş ararken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:geboren",
+   "de": "geboren",
+   "tr": "doğmuş, doğumlu",
+   "pos": "adj",
+   "collocations": [
+    {
+     "de": "in Wendlfing geboren",
+     "tr": "Wendlfing doğumlu"
+    },
+    {
+     "de": "am 3. Mai geboren",
+     "tr": "3 Mayıs doğumlu"
+    },
+    {
+     "de": "im Januar geboren",
+     "tr": "ocakta doğmuş"
+    }
+   ],
+   "patterns": [
+    "pt:ich-bin",
+    "pt:w-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Doğum yılını söylerken **Ich bin in 1990 geboren** yanlış. Doğrusu **Ich bin 1990 geboren**.",
+    "Burada doğdum derken **Ich habe hier geboren** yanlış. Doğrusu **Ich bin hier geboren**."
+   ],
+   "examples": [
+    {
+     "id": "lx:geboren:1",
+     "de": "Wann und wo sind Sie geboren?",
+     "tr": "Ne zaman ve nerede doğdunuz?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:geboren:2",
+     "de": "Mein Sohn ist im März geboren.",
+     "tr": "Oğlum martta doğdu.",
+     "img": "newborn baby",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:geboren:3",
+     "de": "Mein Bruder ist ja auch im Mai geboren, wie du.",
+     "tr": "Kardeşim de senin gibi mayısta doğmuş.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:geboren:4",
+     "de": "– Ist Ihre Tochter hier geboren? – Ja, in Wendlfing.",
+     "tr": "– Kızınız burada mı doğdu? – Evet, Wendlfing'de.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt",
+    "smalltalk"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-13",
+     "key": "a2-13:w:geboren"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Bir kişinin doğduğu zamanı ve yeri söylemeye yarar.",
+    "ne_zaman_tr": "Form doldururken ve kendini anlatırken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Kindergarten",
+   "de": "Kindergarten",
+   "tr": "anaokulu",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Kindergärten",
+   "img": "kindergarten children playing",
+   "collocations": [
+    {
+     "de": "in den Kindergarten gehen",
+     "tr": "anaokuluna gitmek"
+    },
+    {
+     "de": "im Kindergarten",
+     "tr": "anaokulunda"
+    },
+    {
+     "de": "vom Kindergarten abholen",
+     "tr": "anaokulundan almak"
+    }
+   ],
+   "patterns": [
+    "pt:seit",
+    "pt:trennbar"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Anaokuluna gidiyor derken **Er geht zu Kindergarten** yanlış. Doğrusu **Er geht in den Kindergarten**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Kindergarten:1",
+     "de": "Unsere Tochter geht seit September in den Kindergarten.",
+     "tr": "Kızımız eylülden beri anaokuluna gidiyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Kindergarten:2",
+     "de": "Der Kindergarten macht um 16 Uhr zu.",
+     "tr": "Anaokulu saat 16'da kapanıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Kindergarten:3",
+     "de": "Ich muss los, die Kleine vom Kindergarten abholen.",
+     "tr": "Çıkmam lazım, küçüğü anaokulundan alacağım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Kindergarten:4",
+     "de": "– Wer holt heute Emre vom Kindergarten ab? – Das mache ich.",
+     "tr": "– Bugün Emre'yi anaokulundan kim alacak? – Ben alırım.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "smalltalk"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-13",
+     "key": "a2-13:w:Kindergarten"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Okuldan önceki yaşlarda çocukların gittiği yeri söyler.",
+    "ne_zaman_tr": "Aile ve çocuklar konuşulurken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Vorsatz",
+   "de": "Vorsatz",
+   "tr": "karar, niyet",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Vorsätze",
+   "collocations": [
+    {
+     "de": "gute Vorsätze",
+     "tr": "güzel kararlar"
+    },
+    {
+     "de": "Vorsätze fürs neue Jahr",
+     "tr": "yeni yıl kararları"
+    },
+    {
+     "de": "einen Vorsatz haben",
+     "tr": "bir kararı olmak"
+    }
+   ],
+   "patterns": [
+    "pt:ich-habe",
+    "pt:fuer-akk"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Yeni yıl kararım derken **meine Entscheidung für das neue Jahr** yanlış. Doğrusu **mein Vorsatz für das neue Jahr**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Vorsatz:1",
+     "de": "Mein Vorsatz für nächstes Jahr: jeden Tag Deutsch sprechen.",
+     "tr": "Gelecek yıl için kararım: her gün Almanca konuşmak.",
+     "img": "new year resolution notebook",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Vorsatz:2",
+     "de": "Viele Vorsätze halten nur bis Februar.",
+     "tr": "Birçok karar ancak şubata kadar dayanıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Vorsatz:3",
+     "de": "Na, was sind deine guten Vorsätze fürs neue Jahr?",
+     "tr": "Eee, yeni yıl için ne kararlar aldın?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Vorsatz:4",
+     "de": "– Hast du einen Vorsatz fürs neue Jahr? – Ja, weniger Handy.",
+     "tr": "– Yeni yıl için bir kararın var mı? – Evet, daha az telefon.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "smalltalk",
+    "freizeit"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-14",
+     "key": "a2-14:w:Vorsatz"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Yapmaya kendi kendine söz verdiğin şeyi söyler.",
+    "ne_zaman_tr": "Yılbaşında çok duyarsın.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Silvester",
+   "de": "Silvester",
+   "tr": "yılbaşı gecesi, 31 Aralık",
+   "pos": "noun",
+   "art": "das",
+   "pl": "Silvester",
+   "img": "new year fireworks",
+   "collocations": [
+    {
+     "de": "an Silvester",
+     "tr": "yılbaşı gecesi"
+    },
+    {
+     "de": "Silvester feiern",
+     "tr": "yılbaşını kutlamak"
+    },
+    {
+     "de": "Silvester bei Freunden",
+     "tr": "arkadaşlarda yılbaşı"
+    }
+   ],
+   "patterns": [
+    "pt:w-frage",
+    "pt:um-uhr"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Yılbaşı gecesi derken **in Silvester** yanlış. Doğrusu **an Silvester**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Silvester:1",
+     "de": "Um Mitternacht schauen wir uns an Silvester das Feuerwerk an.",
+     "tr": "Yılbaşı gecesi saat on ikide havai fişekleri izliyoruz.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Silvester:2",
+     "de": "An Silvester sind wir dieses Jahr bei Freunden.",
+     "tr": "Bu yıl yılbaşı gecesi arkadaşlardayız.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Silvester:3",
+     "de": "Was geht bei dir an Silvester?",
+     "tr": "Yılbaşı gecesi ne yapıyorsun?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Silvester:4",
+     "de": "– Feierst du Silvester bei Tobi? – Ja, ich bringe Salat mit.",
+     "tr": "– Yılbaşını Tobi'de mi kutluyorsun? – Evet, salata getiriyorum.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "freizeit",
+    "smalltalk"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-14",
+     "key": "a2-14:w:Silvester"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Yılın son günü olan 31 Aralığı ve o geceyi söyler.",
+    "ne_zaman_tr": "Yıl sonu planı yaparken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:um_…_zu",
+   "de": "um … zu",
+   "tr": "bir şey yapmak için",
+   "pos": "phrase",
+   "collocations": [
+    {
+     "de": "um Deutsch zu lernen",
+     "tr": "Almanca öğrenmek için"
+    },
+    {
+     "de": "um Geld zu sparen",
+     "tr": "para biriktirmek için"
+    },
+    {
+     "de": "um einen Termin zu machen",
+     "tr": "randevu almak için"
+    }
+   ],
+   "patterns": [
+    "pt:um-zu"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Almanca öğrenmek için derken **für Deutsch lernen** yanlış. Doğrusu **um Deutsch zu lernen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:um_…_zu:1",
+     "de": "Ich bin hier, um meinen Pass abzuholen.",
+     "tr": "Pasaportumu almak için buradayım.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:um_…_zu:2",
+     "de": "Frau Brandl geht früh los, um den Bus nicht zu verpassen.",
+     "tr": "Brandl Hanım otobüsü kaçırmamak için erken çıkıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:um_…_zu:3",
+     "de": "Ich geh kurz raus, um frische Luft zu schnappen.",
+     "tr": "Biraz temiz hava almak için dışarı çıkıyorum.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:um_…_zu:4",
+     "de": "– Warum lernst du so viel? – Um beim Arzt alles zu verstehen.",
+     "tr": "– Neden bu kadar çok çalışıyorsun? – Doktorda her şeyi anlamak için.",
+     "img": "person studying with notebook",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "smalltalk",
+    "strategie"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-14",
+     "key": "a2-14:w:um … zu"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Bir işi hangi amaçla yaptığını söyler.",
+    "ne_zaman_tr": "Nedenini anlatırken.",
+    "parcalar": [],
+    "ipucu_tr": "Yapılacak iş sona gider: **um einen Termin zu machen**, yani randevu almak için."
+   }
+  },
+  {
+   "id": "lx:Keine_Sorge!",
+   "de": "Keine Sorge!",
+   "tr": "merak etme, endişelenme",
+   "pos": "phrase",
+   "collocations": [
+    {
+     "de": "Keine Sorge, das klappt.",
+     "tr": "Merak etme, olur."
+    },
+    {
+     "de": "Keine Sorge, ich helfe dir.",
+     "tr": "Merak etme, sana yardım ederim."
+    },
+    {
+     "de": "Keine Sorge, alles gut.",
+     "tr": "Merak etme, her şey yolunda."
+    }
+   ],
+   "patterns": [
+    "pt:kein"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Merak etme derken **Mach keine Sorge** yanlış. Doğrusu **Mach dir keine Sorgen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Keine_Sorge!:1",
+     "de": "Keine Sorge, Ihr Paket ist schon unterwegs.",
+     "tr": "Merak etmeyin, paketiniz yolda.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Keine_Sorge!:2",
+     "de": "Keine Sorge, das ist nicht schlimm.",
+     "tr": "Endişelenmeyin, kötü bir şey değil.",
+     "layer": "hd",
+     "img": "friend comforting person"
+    },
+    {
+     "id": "lx:Keine_Sorge!:3",
+     "de": "Keine Sorge, ich mach das schon.",
+     "tr": "Merak etme, ben hallederim.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Keine_Sorge!:4",
+     "de": "– Ich habe meinen Schlüssel vergessen! – Keine Sorge, Herr Pichler hat einen.",
+     "tr": "– Anahtarımı unuttum! – Merak etme, Pichler Bey'de bir tane var.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "smalltalk",
+    "gefuehle"
+   ],
+   "legacy": [
+    {
+     "unit": "a2-14",
+     "key": "a2-14:w:Keine Sorge!"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Karşındakini sakinleştirmek için söylenir.",
+    "ne_zaman_tr": "Telaşlanan birine söylenir, sen ya da siz diye konuştuğun fark etmez.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:schneiden",
+   "de": "schneiden",
+   "tr": "kesmek",
+   "pos": "verb",
+   "verb": {
+    "praesens3": "schneidet",
+    "praeteritum": "schnitt",
+    "perfekt": "hat geschnitten",
+    "aux": "haben",
+    "case": [
+     "akk"
+    ]
+   },
+   "img": "hairdresser cutting hair",
+   "collocations": [
+    {
+     "de": "die Haare schneiden",
+     "tr": "saçı kesmek"
+    },
+    {
+     "de": "sich die Haare schneiden lassen",
+     "tr": "saçını kestirmek"
+    },
+    {
+     "de": "Brot schneiden",
+     "tr": "ekmek kesmek"
+    }
+   ],
+   "patterns": [
+    "pt:perfekt-haben",
+    "pt:koennten-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Saçımı kestirdim derken **Ich habe meine Haare geschnitten** yanlış. Doğrusu **Ich habe mir die Haare schneiden lassen**.",
+    "Kestim derken **Ich habe geschneidet** yanlış. Doğrusu **Ich habe geschnitten**."
+   ],
+   "examples": [
+    {
+     "id": "lx:schneiden:1",
+     "de": "Könnten Sie mir die Haare etwas kürzer schneiden?",
+     "tr": "Saçımı biraz daha kısa kesebilir misiniz?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:schneiden:2",
+     "de": "Ich habe mich beim Kochen in den Finger geschnitten.",
+     "tr": "Yemek yaparken parmağımı kestim.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:schneiden:3",
+     "de": "Luka, schneid mir einfach die Seiten kürzer, ja?",
+     "tr": "Luka, sadece yanları biraz kısalt, olur mu?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:schneiden:4",
+     "de": "– Soll ich das Brot schneiden? – Ja, gern, aber nicht zu dick.",
+     "tr": "– Ekmeği keseyim mi? – Evet, olur, ama çok kalın olmasın.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 840,
+   "domains": [
+    "friseur",
+    "essen"
+   ],
+   "exp": {
+    "anlam_tr": "Bıçakla, makasla bir şeyi bölmeyi söyler.",
+    "ne_zaman_tr": "Kuaförde ve mutfakta.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Brief",
+   "de": "Brief",
+   "tr": "mektup",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Briefe",
+   "img": "letter envelope",
+   "collocations": [
+    {
+     "de": "einen Brief schreiben",
+     "tr": "mektup yazmak"
+    },
+    {
+     "de": "einen Brief einwerfen",
+     "tr": "mektubu kutuya atmak"
+    },
+    {
+     "de": "ein Brief vom Amt",
+     "tr": "resmî daireden mektup"
+    }
+   ],
+   "patterns": [
+    "pt:ja-nein-frage",
+    "pt:nicht"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Mektup yazıyorum derken **Ich schreibe Brief** yanlış. Doğrusu **Ich schreibe einen Brief**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Brief:1",
+     "de": "Der Brief muss heute noch zur Post.",
+     "tr": "Mektubun bugün postaya gitmesi lazım.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Brief:2",
+     "de": "Diesen Brief verstehe ich nicht, können Sie mir helfen?",
+     "tr": "Bu mektubu anlamıyorum, bana yardım edebilir misiniz?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Brief:3",
+     "de": "Da ist schon wieder so 'n Brief vom Finanzamt.",
+     "tr": "Yine vergi dairesinden öyle bir mektup gelmiş.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Brief:4",
+     "de": "– Ist Post für mich da? – Ja, ein Brief von der Krankenkasse.",
+     "tr": "– Bana posta var mı? – Evet, sağlık sigortasından bir mektup.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 885,
+   "domains": [
+    "post",
+    "amt"
+   ],
+   "exp": {
+    "anlam_tr": "Zarf içinde gönderilen yazıyı söyler.",
+    "ne_zaman_tr": "Posta kutunu açınca ve resmî işlerde.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:verbinden",
+   "de": "verbinden",
+   "tr": "telefonda bağlamak",
+   "pos": "verb",
+   "verb": {
+    "praesens3": "verbindet",
+    "praeteritum": "verband",
+    "perfekt": "hat verbunden",
+    "aux": "haben",
+    "case": [
+     "akk"
+    ],
+    "prep": [
+     "mit+Dat"
+    ]
+   },
+   "collocations": [
+    {
+     "de": "mit der Buchhaltung verbinden",
+     "tr": "muhasebeye bağlamak"
+    },
+    {
+     "de": "falsch verbunden sein",
+     "tr": "yanlış numarayı aramış olmak"
+    },
+    {
+     "de": "Ich verbinde Sie.",
+     "tr": "Sizi bağlıyorum."
+    }
+   ],
+   "patterns": [
+    "pt:koennten-sie",
+    "pt:mit-dativ",
+    "pt:moment"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Beni Huber Hanıma bağlayın derken **Verbinden Sie mich zu Frau Huber** yanlış. Doğrusu **Verbinden Sie mich mit Frau Huber**."
+   ],
+   "examples": [
+    {
+     "id": "lx:verbinden:1",
+     "de": "Einen Moment, ich verbinde Sie mit Frau Huber.",
+     "tr": "Bir dakika, sizi Huber Hanım'a bağlıyorum.",
+     "img": "office phone call transfer",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:verbinden:2",
+     "de": "Könnten Sie mich bitte mit der Buchhaltung verbinden?",
+     "tr": "Beni muhasebeye bağlayabilir misiniz lütfen?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:verbinden:3",
+     "de": "Oh, da sind Sie falsch verbunden.",
+     "tr": "Aa, yanlış numarayı aramışsınız.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:verbinden:4",
+     "de": "– Kann ich bitte Herrn Wimmer sprechen? – Ja, ich verbinde.",
+     "tr": "– Wimmer Bey ile görüşebilir miyim lütfen? – Evet, bağlıyorum.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 970,
+   "domains": [
+    "telefon"
+   ],
+   "legacy": [
+    {
+     "unit": "b1-10",
+     "key": "b1-10:w:verbinden"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Telefonda arayanı başka bir kişiye aktarmayı söyler.",
+    "ne_zaman_tr": "Bir şirketi, muayenehaneyi ve resmî daireyi ararken.",
+    "parcalar": [],
+    "ipucu_tr": "Telefonda **falsch verbunden** yanlış numara demektir."
+   }
+  },
+  {
+   "id": "lx:abholen",
+   "de": "abholen",
+   "tr": "gidip almak",
+   "pos": "verb",
+   "verb": {
+    "praesens3": "holt ab",
+    "praeteritum": "holte ab",
+    "perfekt": "hat abgeholt",
+    "aux": "haben",
+    "separable": "ab",
+    "case": [
+     "akk"
+    ]
+   },
+   "img": "picking up parcel at post office",
+   "collocations": [
+    {
+     "de": "ein Paket abholen",
+     "tr": "paketi gidip almak"
+    },
+    {
+     "de": "die Kinder abholen",
+     "tr": "çocukları almak"
+    },
+    {
+     "de": "jemanden vom Bahnhof abholen",
+     "tr": "birini istasyondan almak"
+    }
+   ],
+   "patterns": [
+    "pt:trennbar",
+    "pt:perfekt-haben"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Paketi alıyorum derken **Ich abhole das Paket** yanlış. Doğrusu **Ich hole das Paket ab**."
+   ],
+   "examples": [
+    {
+     "id": "lx:abholen:1",
+     "de": "Sie können das Paket ab morgen in der Filiale abholen.",
+     "tr": "Paketi yarından itibaren şubeden alabilirsiniz.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:abholen:2",
+     "de": "Frau Brandl hat ihre Tabletten in der Apotheke abgeholt.",
+     "tr": "Brandl Hanım haplarını eczaneden aldı.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:abholen:3",
+     "de": "Ich hol dich um acht vor der Firma ab, okay?",
+     "tr": "Seni sekizde şirketin önünden alırım, tamam mı?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:abholen:4",
+     "de": "– Wer holt dich vom Bahnhof ab? – Mein Bruder.",
+     "tr": "– Seni istasyondan kim alacak? – Kardeşim.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 1060,
+   "domains": [
+    "post",
+    "verkehr"
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyi durduğu yerden gidip almayı söyler.",
+    "ne_zaman_tr": "Postada, eczanede ve istasyonda.",
+    "parcalar": [],
+    "ipucu_tr": "Birini gidip almak için de **abholen** dersin: **Ich hole dich ab**, seni alırım."
+   }
+  },
+  {
+   "id": "lx:Angebot",
+   "de": "Angebot",
+   "tr": "indirim, teklif",
+   "pos": "noun",
+   "art": "das",
+   "pl": "Angebote",
+   "img": "supermarket special offer sign",
+   "collocations": [
+    {
+     "de": "im Angebot",
+     "tr": "indirimde"
+    },
+    {
+     "de": "ein gutes Angebot",
+     "tr": "iyi bir teklif"
+    },
+    {
+     "de": "ein Angebot machen",
+     "tr": "teklif vermek"
+    }
+   ],
+   "patterns": [
+    "pt:haben-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "İndirimde derken **in Angebot** yanlış. Doğrusu **im Angebot**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Angebot:1",
+     "de": "Die Tomaten sind diese Woche im Angebot.",
+     "tr": "Domatesler bu hafta indirimde.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Angebot:2",
+     "de": "Der Handwerker schickt uns morgen ein Angebot.",
+     "tr": "Usta yarın bize fiyat teklifi gönderiyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Angebot:3",
+     "de": "Schau mal, Kaffee ist grad im Angebot!",
+     "tr": "Baksana, kahve şu an indirimde!",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Angebot:4",
+     "de": "– Haben Sie etwas Günstigeres? – Ja, diese Jacke ist im Angebot.",
+     "tr": "– Daha uygun bir şeyiniz var mı? – Evet, bu ceket indirimde.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 1137,
+   "domains": [
+    "einkaufen",
+    "werkstatt"
+   ],
+   "exp": {
+    "anlam_tr": "Mağazada kısa süre ucuza satılan ürünü söyler.",
+    "ne_zaman_tr": "Alışverişte, indirim varken.",
+    "parcalar": [],
+    "ipucu_tr": "Usta sana fiyat verince o da **Angebot** olur, yani teklif."
+   }
+  },
+  {
+   "id": "lx:Nachbar",
+   "de": "Nachbar",
+   "tr": "komşu",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Nachbarn",
+   "img": "neighbors talking",
+   "collocations": [
+    {
+     "de": "der neue Nachbar",
+     "tr": "yeni komşu"
+    },
+    {
+     "de": "die Nachbarn im Haus",
+     "tr": "binadaki komşular"
+    },
+    {
+     "de": "beim Nachbarn klingeln",
+     "tr": "komşunun zilini çalmak"
+    }
+   ],
+   "patterns": [
+    "pt:koennten-sie",
+    "pt:w-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Komşuyu tanıyorum derken **Ich kenne den Nachbar** yanlış. Doğrusu **Ich kenne den Nachbarn**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Nachbar:1",
+     "de": "Könnten Sie das Paket bitte bei meinem Nachbarn abgeben?",
+     "tr": "Paketi lütfen komşuma bırakabilir misiniz?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Nachbar:2",
+     "de": "Frau Brandl kennt alle Nachbarn im Haus.",
+     "tr": "Brandl Hanım binadaki bütün komşuları tanıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Nachbar:3",
+     "de": "Unser Nachbar ist echt nett, der grüßt immer.",
+     "tr": "Komşumuz çok iyi biri, hep selam verir.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Nachbar:4",
+     "de": "– Kennst du den neuen Nachbarn? – Ja, er wohnt über uns.",
+     "tr": "– Yeni komşuyu tanıyor musun? – Evet, üst katımızda oturuyor.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 1300,
+   "domains": [
+    "wohnen",
+    "smalltalk"
+   ],
+   "legacy": [
+    {
+     "unit": "b1-07",
+     "key": "b1-07:w:Nachbar"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Senin yakınında oturan kişiyi söyler.",
+    "ne_zaman_tr": "Apartmanda ve mahallede.",
+    "parcalar": [],
+    "ipucu_tr": "Kadın komşu için **Nachbarin** dersin."
+   }
+  },
+  {
+   "id": "lx:kündigen",
+   "de": "kündigen",
+   "tr": "sözleşmeyi feshetmek, işten ayrılmak",
+   "pos": "verb",
+   "verb": {
+    "praesens3": "kündigt",
+    "praeteritum": "kündigte",
+    "perfekt": "hat gekündigt",
+    "aux": "haben",
+    "case": [
+     "akk",
+     "dat"
+    ]
+   },
+   "collocations": [
+    {
+     "de": "den Vertrag kündigen",
+     "tr": "sözleşmeyi feshetmek"
+    },
+    {
+     "de": "die Wohnung kündigen",
+     "tr": "kira sözleşmesini feshetmek"
+    },
+    {
+     "de": "schriftlich kündigen",
+     "tr": "yazılı olarak feshetmek"
+    }
+   ],
+   "patterns": [
+    "pt:ich-moechte",
+    "pt:perfekt-haben"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Sözleşmeyi iptal ettim derken **Ich habe den Vertrag abgesagt** yanlış. Doğrusu **Ich habe den Vertrag gekündigt**.",
+    "İşten çıkarıldım derken **Ich habe gekündigt** yanlış. Doğrusu **Mir wurde gekündigt**."
+   ],
+   "examples": [
+    {
+     "id": "lx:kündigen:1",
+     "de": "Ich möchte meinen Handyvertrag zum Jahresende kündigen.",
+     "tr": "Cep telefonu sözleşmemi yıl sonunda feshetmek istiyorum.",
+     "img": "signing a termination letter",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:kündigen:2",
+     "de": "Wir haben die Wohnung zum Ende des Monats gekündigt.",
+     "tr": "Kira sözleşmesini ay sonu için feshettik.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:kündigen:3",
+     "de": "Ich hab gekündigt, ab März bin ich weg.",
+     "tr": "İşten ayrıldım, marttan itibaren yokum.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:kündigen:4",
+     "de": "– Warum hast du dein Konto gekündigt? – Die Gebühren waren zu hoch.",
+     "tr": "– Hesabını neden kapattın? – Ücretler çok yüksekti.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 1951,
+   "domains": [
+    "bank",
+    "wohnen",
+    "arbeit"
+   ],
+   "legacy": [
+    {
+     "unit": "b1-07",
+     "key": "b1-07:w:kündigen"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Bir sözleşmeyi resmî olarak bitirmeyi söyler.",
+    "ne_zaman_tr": "Abonelik, kira ve iş sözleşmesinde.",
+    "parcalar": [],
+    "ipucu_tr": "İşten ayrılırken de **kündigen** dersin: **Ich habe gekündigt**, işten ayrıldım."
+   }
+  },
+  {
+   "id": "lx:Sendung",
+   "de": "Sendung",
+   "tr": "gönderi, yayın",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Sendungen",
+   "collocations": [
+    {
+     "de": "Ihre Sendung",
+     "tr": "gönderiniz"
+    },
+    {
+     "de": "eine Sendung verfolgen",
+     "tr": "gönderiyi takip etmek"
+    },
+    {
+     "de": "die Sendung im Fernsehen",
+     "tr": "televizyondaki program"
+    }
+   ],
+   "patterns": [
+    "pt:wo-ist",
+    "pt:ja-nein-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Gönderim nerede derken **Wo ist mein Sendung?** yanlış. Doğrusu **Wo ist meine Sendung?**"
+   ],
+   "examples": [
+    {
+     "id": "lx:Sendung:1",
+     "de": "Ihre Sendung wird heute zugestellt.",
+     "tr": "Gönderiniz bugün teslim edilecek.",
+     "img": "delivery notification on phone",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Sendung:2",
+     "de": "Ihre Sendung liegt in der Filiale für Sie bereit.",
+     "tr": "Gönderiniz şubede sizi bekliyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Sendung:3",
+     "de": "Die Sendung gestern im Fernsehen war echt gut.",
+     "tr": "Dün televizyondaki program çok iyiydi.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Sendung:4",
+     "de": "– Ist meine Sendung schon da? – Nein, sie kommt erst morgen.",
+     "tr": "– Gönderim geldi mi? – Hayır, ancak yarın gelecek.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 1996,
+   "domains": [
+    "post",
+    "medien"
+   ],
+   "legacy": [
+    {
+     "unit": "b1-02",
+     "key": "b1-02:w:Sendung"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Postayla yola çıkmış paketi söyler.",
+    "ne_zaman_tr": "Kargo mesajı okurken.",
+    "parcalar": [],
+    "ipucu_tr": "Televizyon ve radyodaki programa da **Sendung** denir, yani yayın."
+   }
+  },
+  {
+   "id": "lx:Störung",
+   "de": "Störung",
+   "tr": "arıza, rahatsızlık",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Störungen",
+   "collocations": [
+    {
+     "de": "eine Störung melden",
+     "tr": "arıza bildirmek"
+    },
+    {
+     "de": "Entschuldigen Sie die Störung.",
+     "tr": "Rahatsız ettiğim için kusura bakmayın."
+    },
+    {
+     "de": "eine Störung im Netz",
+     "tr": "şebekede arıza"
+    }
+   ],
+   "patterns": [
+    "pt:ich-moechte"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Telefonda arıza var derken **Die Leitung hat Störung** yanlış. Doğrusu **Die Leitung hat eine Störung**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Störung:1",
+     "de": "Ich möchte eine Störung beim Internet melden.",
+     "tr": "İnternetteki bir arızayı bildirmek istiyorum.",
+     "img": "technician repairing internet router",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Störung:2",
+     "de": "Wegen einer Störung fährt die S-Bahn heute nicht.",
+     "tr": "Bir arıza yüzünden S-Bahn bugün çalışmıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Störung:3",
+     "de": "Internet geht nicht, da ist wohl 'ne Störung.",
+     "tr": "İnternet çalışmıyor, galiba bir arıza var.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Störung:4",
+     "de": "– Entschuldigen Sie die Störung. – Kein Problem, kommen Sie rein.",
+     "tr": "– Rahatsız ettiğim için kusura bakmayın. – Sorun değil, buyurun girin.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 2059,
+   "domains": [
+    "wohnen",
+    "telefon",
+    "verkehr"
+   ],
+   "exp": {
+    "anlam_tr": "Bir cihazın, hattın düzgün çalışmamasını söyler.",
+    "ne_zaman_tr": "Telefonda ve elektrikte arıza bildirirken.",
+    "parcalar": [],
+    "ipucu_tr": "**Entschuldigen Sie die Störung** rahatsız ettiğim için kusura bakmayın demektir."
+   }
+  },
+  {
+   "id": "lx:Krankenwagen",
+   "de": "Krankenwagen",
+   "tr": "ambulans",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Krankenwagen",
+   "img": "ambulance",
+   "collocations": [
+    {
+     "de": "einen Krankenwagen rufen",
+     "tr": "ambulans çağırmak"
+    },
+    {
+     "de": "mit dem Krankenwagen",
+     "tr": "ambulansla"
+    },
+    {
+     "de": "der Krankenwagen kommt",
+     "tr": "ambulans geliyor"
+    }
+   ],
+   "patterns": [
+    "pt:imperativ-sie",
+    "pt:ich-brauche"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Ambulans çağırın derken **Rufen Sie Ambulans** yanlış. Doğrusu **Rufen Sie einen Krankenwagen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Krankenwagen:1",
+     "de": "Der Krankenwagen ist in fünf Minuten da.",
+     "tr": "Ambulans beş dakikaya burada.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Krankenwagen:2",
+     "de": "Frau Brandl ist mit dem Krankenwagen ins Krankenhaus gefahren.",
+     "tr": "Brandl Hanım ambulansla hastaneye gitti.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Krankenwagen:3",
+     "de": "Ruf schnell 'nen Krankenwagen, Frau Brandl ist gestürzt!",
+     "tr": "Çabuk ambulans çağır, Brandl Hanım düştü!",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Krankenwagen:4",
+     "de": "– Brauchen Sie einen Krankenwagen? – Ja, bitte, meine Nachbarin kann nicht aufstehen.",
+     "tr": "– Ambulans lazım mı? – Evet lütfen, komşum ayağa kalkamıyor.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 2108,
+   "domains": [
+    "arzt",
+    "notfall"
+   ],
+   "exp": {
+    "anlam_tr": "Hastayı hızla hastaneye götüren aracı söyler.",
+    "ne_zaman_tr": "Acil bir sağlık durumunda.",
+    "parcalar": [
+     {
+      "de": "Kranken",
+      "tr": "hasta"
+     },
+     {
+      "de": "wagen",
+      "tr": "arabası"
+     }
+    ],
+    "ipucu_tr": "Ambulans için **112** numarasını ararsın."
+   }
+  },
+  {
+   "id": "lx:Antrag",
+   "de": "Antrag",
+   "tr": "başvuru, dilekçe",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Anträge",
+   "collocations": [
+    {
+     "de": "einen Antrag stellen",
+     "tr": "başvuru yapmak"
+    },
+    {
+     "de": "den Antrag ausfüllen",
+     "tr": "başvuru formunu doldurmak"
+    },
+    {
+     "de": "der Antrag auf Wohngeld",
+     "tr": "konut yardımı başvurusu"
+    }
+   ],
+   "patterns": [
+    "pt:ich-brauche",
+    "pt:perfekt-haben"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Başvuru yaptım derken **Ich habe Antrag gemacht** yanlış. Doğrusu **Ich habe einen Antrag gestellt**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Antrag:1",
+     "de": "Den Antrag können Sie auch online stellen.",
+     "tr": "Başvuruyu internetten de yapabilirsiniz.",
+     "img": "filling out application form",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Antrag:2",
+     "de": "Haben Sie den Antrag schon ausgefüllt?",
+     "tr": "Başvuru formunu doldurdunuz mu?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Antrag:3",
+     "de": "Der Antrag dauert ewig, das nervt echt.",
+     "tr": "Başvuru bitmek bilmiyor, çok sinir bozucu.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Antrag:4",
+     "de": "– Was brauche ich für den Antrag? – Ihren Pass und ein Foto.",
+     "tr": "– Başvuru için neye ihtiyacım var? – Pasaportunuz ve bir fotoğraf.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 2252,
+   "domains": [
+    "amt"
+   ],
+   "exp": {
+    "anlam_tr": "Resmî bir daireden bir şey istemek için verilen yazıyı söyler.",
+    "ne_zaman_tr": "Resmî dairede ve form doldururken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Behörde",
+   "de": "Behörde",
+   "tr": "resmî daire, kurum",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Behörden",
+   "collocations": [
+    {
+     "de": "bei der Behörde",
+     "tr": "resmî dairede"
+    },
+    {
+     "de": "zur Behörde gehen",
+     "tr": "resmî daireye gitmek"
+    },
+    {
+     "de": "die zuständige Behörde",
+     "tr": "yetkili resmî daire"
+    }
+   ],
+   "patterns": [
+    "pt:w-frage",
+    "pt:ich-muss"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Resmî dairede derken **in Behörde** yanlış. Doğrusu **bei der Behörde**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Behörde:1",
+     "de": "Bei welcher Behörde bekomme ich dieses Formular?",
+     "tr": "Bu formu hangi resmî daireden alabilirim?",
+     "img": "government office building",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Behörde:2",
+     "de": "Diese Behörde hat nur vormittags geöffnet.",
+     "tr": "Bu resmî daire sadece öğleden önce açık.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Behörde:3",
+     "de": "Mit den Behörden dauert halt alles ewig.",
+     "tr": "Resmî dairelerde işte her şey çok uzun sürüyor.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Behörde:4",
+     "de": "– Wo muss ich das abgeben? – Bei der Behörde im Rathaus, zweiter Stock.",
+     "tr": "– Bunu nereye vermem gerekiyor? – Belediyedeki resmî daireye, ikinci kat.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 2374,
+   "domains": [
+    "amt"
+   ],
+   "exp": {
+    "anlam_tr": "Devlete bağlı resmî kurumu söyler.",
+    "ne_zaman_tr": "Belge ve izin işlerinde.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:auflegen",
+   "de": "auflegen",
+   "tr": "telefonu kapatmak",
+   "pos": "verb",
+   "verb": {
+    "praesens3": "legt auf",
+    "praeteritum": "legte auf",
+    "perfekt": "hat aufgelegt",
+    "aux": "haben",
+    "separable": "auf"
+   },
+   "collocations": [
+    {
+     "de": "einfach auflegen",
+     "tr": "telefonu yüzüne kapatmak"
+    },
+    {
+     "de": "nicht auflegen",
+     "tr": "telefonu kapatmamak"
+    },
+    {
+     "de": "den Hörer auflegen",
+     "tr": "ahizeyi yerine koymak"
+    }
+   ],
+   "patterns": [
+    "pt:trennbar",
+    "pt:nicht",
+    "pt:imperativ-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Telefonu kapattı derken **Er hat das Telefon zugemacht** yanlış. Doğrusu **Er hat aufgelegt**.",
+    "Kapatıyorum derken **Ich auflege** yanlış. Doğrusu **Ich lege auf**."
+   ],
+   "examples": [
+    {
+     "id": "lx:auflegen:1",
+     "de": "Bitte legen Sie nicht auf.",
+     "tr": "Lütfen telefonu kapatmayın.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:auflegen:2",
+     "de": "Ich lege jetzt auf und rufe Sie später wieder an.",
+     "tr": "Şimdi kapatıyorum, sizi sonra yine ararım.",
+     "layer": "hd",
+     "img": "person ending phone call"
+    },
+    {
+     "id": "lx:auflegen:3",
+     "de": "Warte, leg noch nicht auf!",
+     "tr": "Dur, daha kapatma!",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:auflegen:4",
+     "de": "– Hallo? Sind Sie noch da? – Ja, ich habe nicht aufgelegt.",
+     "tr": "– Alo? Hâlâ orada mısınız? – Evet, kapatmadım.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 2533,
+   "domains": [
+    "telefon"
+   ],
+   "exp": {
+    "anlam_tr": "Telefon konuşmasını bitirmeyi söyler.",
+    "ne_zaman_tr": "Telefonda beklerken ve konuşma biterken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Versicherung",
+   "de": "Versicherung",
+   "tr": "sigorta",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Versicherungen",
+   "collocations": [
+    {
+     "de": "eine Versicherung abschließen",
+     "tr": "sigorta yaptırmak"
+    },
+    {
+     "de": "die Versicherung bezahlt",
+     "tr": "sigorta ödüyor"
+    },
+    {
+     "de": "bei der Versicherung anrufen",
+     "tr": "sigortayı aramak"
+    }
+   ],
+   "patterns": [
+    "pt:haben-sie",
+    "pt:ich-brauche"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Sigortam var derken **Ich habe Versicherung** yanlış. Doğrusu **Ich habe eine Versicherung**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Versicherung:1",
+     "de": "Für das Auto brauchen Sie eine Versicherung.",
+     "tr": "Araba için sigorta yaptırmanız gerekiyor.",
+     "img": "insurance document signing",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Versicherung:2",
+     "de": "Ich rufe morgen bei meiner Versicherung an.",
+     "tr": "Yarın sigorta şirketimi arayacağım.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Versicherung:3",
+     "de": "Das zahlt doch die Versicherung, oder?",
+     "tr": "Onu sigorta öder, değil mi?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Versicherung:4",
+     "de": "– Haben Sie eine Versicherung? – Ja, hier ist meine Karte.",
+     "tr": "– Sigortanız var mı? – Evet, işte kartım.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 2676,
+   "domains": [
+    "bank",
+    "wohnen"
+   ],
+   "exp": {
+    "anlam_tr": "Zarar olunca masrafı karşılayan kurumu söyler.",
+    "ne_zaman_tr": "Kaza, hasar ve sözleşme konuşulurken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Lieferung",
+   "de": "Lieferung",
+   "tr": "teslimat",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Lieferungen",
+   "img": "delivery driver with package",
+   "collocations": [
+    {
+     "de": "die Lieferung kommt",
+     "tr": "teslimat geliyor"
+    },
+    {
+     "de": "kostenlose Lieferung",
+     "tr": "ücretsiz teslimat"
+    },
+    {
+     "de": "die Lieferung bestätigen",
+     "tr": "teslimatı onaylamak"
+    }
+   ],
+   "patterns": [
+    "pt:w-frage",
+    "pt:um-uhr"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Teslimat ne zaman derken **Wann ist Lieferung?** yanlış. Doğrusu **Wann kommt die Lieferung?**"
+   ],
+   "examples": [
+    {
+     "id": "lx:Lieferung:1",
+     "de": "Die Lieferung kommt zwischen zehn und zwölf Uhr.",
+     "tr": "Teslimat saat on ile on iki arasında geliyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Lieferung:2",
+     "de": "Die Lieferung ist ab 50 Euro kostenlos.",
+     "tr": "50 avro ve üzeri siparişte teslimat ücretsiz.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Lieferung:3",
+     "de": "Die Lieferung ist schon wieder zu spät, echt jetzt?",
+     "tr": "Teslimat yine gecikti, şaka gibi.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Lieferung:4",
+     "de": "– Wann kommt die neue Waschmaschine? – Die Lieferung ist am Donnerstag.",
+     "tr": "– Yeni çamaşır makinesi ne zaman geliyor? – Teslimat perşembe günü.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 2805,
+   "domains": [
+    "post",
+    "einkaufen"
+   ],
+   "exp": {
+    "anlam_tr": "Sipariş edilen şeyin sana getirilmesini söyler.",
+    "ne_zaman_tr": "İnternetten alışverişte ve kargo beklerken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Ankunft",
+   "de": "Ankunft",
+   "tr": "varış",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Ankünfte",
+   "collocations": [
+    {
+     "de": "die Ankunft des Zuges",
+     "tr": "trenin varışı"
+    },
+    {
+     "de": "bei der Ankunft",
+     "tr": "varışta"
+    },
+    {
+     "de": "nach der Ankunft",
+     "tr": "vardıktan sonra"
+    }
+   ],
+   "patterns": [
+    "pt:um-uhr",
+    "pt:w-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Varışta derken **in Ankunft** yanlış. Doğrusu **bei der Ankunft**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Ankunft:1",
+     "de": "Die Ankunft in Wendlfing ist um 18:40 Uhr.",
+     "tr": "Wendlfing'e varış saat 18.40'ta.",
+     "img": "arrivals board at train station",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Ankunft:2",
+     "de": "Bitte rufen Sie mich nach Ihrer Ankunft an.",
+     "tr": "Lütfen vardıktan sonra beni arayın.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Ankunft:3",
+     "de": "Schreib mir nach der Ankunft kurz, ja?",
+     "tr": "Varınca bana kısaca yaz, olur mu?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Ankunft:4",
+     "de": "– Wann ist die Ankunft? – Um halb neun, wenn alles klappt.",
+     "tr": "– Varış ne zaman? – Her şey yolunda giderse sekiz buçukta.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 2840,
+   "domains": [
+    "verkehr"
+   ],
+   "exp": {
+    "anlam_tr": "Bir yere gelip ulaşma anını söyler.",
+    "ne_zaman_tr": "Tren, otobüs ve uçak saatlerinde.",
+    "parcalar": [],
+    "ipucu_tr": "Tabelada **Ankunft** gelen trenleri, **Abfahrt** kalkan trenleri gösterir."
+   }
+  },
+  {
+   "id": "lx:Paket",
+   "de": "Paket",
+   "tr": "paket, koli",
+   "pos": "noun",
+   "art": "das",
+   "pl": "Pakete",
+   "img": "cardboard package delivery",
+   "collocations": [
+    {
+     "de": "ein Paket schicken",
+     "tr": "paket göndermek"
+    },
+    {
+     "de": "ein Paket bekommen",
+     "tr": "paket almak"
+    },
+    {
+     "de": "ein Paket annehmen",
+     "tr": "paketi teslim almak"
+    }
+   ],
+   "patterns": [
+    "pt:ich-moechte",
+    "pt:koennten-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Paket aldım derken **Ich habe Paket bekommen** yanlış. Doğrusu **Ich habe ein Paket bekommen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Paket:1",
+     "de": "Könnten Sie dieses Paket für Frau Brandl annehmen?",
+     "tr": "Bu paketi Brandl Hanım için teslim alabilir misiniz?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Paket:2",
+     "de": "Ich möchte dieses Paket nach Italien schicken.",
+     "tr": "Bu paketi İtalya'ya göndermek istiyorum.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Paket:3",
+     "de": "Du, dein Paket liegt bei Frau Brandl.",
+     "tr": "Baksana, paketin Brandl Hanım'da.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Paket:4",
+     "de": "– Ist ein Paket für mich gekommen? – Ja, es steht im Flur.",
+     "tr": "– Bana paket geldi mi? – Evet, koridorda duruyor.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 2896,
+   "domains": [
+    "post"
+   ],
+   "exp": {
+    "anlam_tr": "Postayla gönderilen büyük kutuyu söyler.",
+    "ne_zaman_tr": "Postanede ve kurye gelince.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Parkplatz",
+   "de": "Parkplatz",
+   "tr": "otopark, park yeri",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Parkplätze",
+   "img": "parking lot",
+   "collocations": [
+    {
+     "de": "einen Parkplatz suchen",
+     "tr": "park yeri aramak"
+    },
+    {
+     "de": "einen Parkplatz finden",
+     "tr": "park yeri bulmak"
+    },
+    {
+     "de": "der Parkplatz hinter dem Haus",
+     "tr": "evin arkasındaki otopark"
+    }
+   ],
+   "patterns": [
+    "pt:es-gibt",
+    "pt:wo-ist"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Park yeri arıyorum derken **Ich suche Parkplatz** yanlış. Doğrusu **Ich suche einen Parkplatz**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Parkplatz:1",
+     "de": "Gibt es beim Rathaus einen Parkplatz?",
+     "tr": "Belediyenin yanında otopark var mı?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Parkplatz:2",
+     "de": "Hinter der Praxis ist ein kleiner Parkplatz.",
+     "tr": "Muayenehanenin arkasında küçük bir otopark var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Parkplatz:3",
+     "de": "Hier findet man echt nie 'nen Parkplatz.",
+     "tr": "Burada park yeri bulmak imkânsız.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Parkplatz:4",
+     "de": "– Wo kann ich parken? – Auf dem Parkplatz hinter dem Supermarkt.",
+     "tr": "– Nereye park edebilirim? – Süpermarketin arkasındaki otoparka.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 2930,
+   "domains": [
+    "verkehr"
+   ],
+   "exp": {
+    "anlam_tr": "Arabayı bırakacağın yeri söyler.",
+    "ne_zaman_tr": "Arabayla bir yere gidince.",
+    "parcalar": [
+     {
+      "de": "Park",
+      "tr": "park"
+     },
+     {
+      "de": "platz",
+      "tr": "yeri"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:zurückrufen",
+   "de": "zurückrufen",
+   "tr": "geri aramak",
+   "pos": "verb",
+   "verb": {
+    "praesens3": "ruft zurück",
+    "praeteritum": "rief zurück",
+    "perfekt": "hat zurückgerufen",
+    "aux": "haben",
+    "separable": "zurück",
+    "case": [
+     "akk"
+    ]
+   },
+   "collocations": [
+    {
+     "de": "später zurückrufen",
+     "tr": "sonra geri aramak"
+    },
+    {
+     "de": "sofort zurückrufen",
+     "tr": "hemen geri aramak"
+    },
+    {
+     "de": "jemanden zurückrufen",
+     "tr": "birini geri aramak"
+    }
+   ],
+   "patterns": [
+    "pt:trennbar",
+    "pt:koennten-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Sizi geri ararım derken **Ich zurückrufe Sie** yanlış. Doğrusu **Ich rufe Sie zurück**.",
+    "Size dönerim derken **Ich komme zu Ihnen zurück** yanlış. Doğrusu **Ich rufe Sie zurück**."
+   ],
+   "examples": [
+    {
+     "id": "lx:zurückrufen:1",
+     "de": "Könnten Sie mich bitte heute noch zurückrufen?",
+     "tr": "Beni bugün geri arayabilir misiniz lütfen?",
+     "img": "person returning a phone call",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:zurückrufen:2",
+     "de": "Frau Huber ruft Sie heute Nachmittag zurück.",
+     "tr": "Huber Hanım sizi bugün öğleden sonra geri arayacak.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:zurückrufen:3",
+     "de": "Ich kann grad nicht, ich ruf dich gleich zurück.",
+     "tr": "Şu an müsait değilim, seni birazdan ararım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:zurückrufen:4",
+     "de": "– Herr Wimmer ist gerade nicht da. – Gut, dann rufe ich später zurück.",
+     "tr": "– Wimmer Bey şu an burada değil. – Tamam, o zaman sonra tekrar ararım.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 3009,
+   "domains": [
+    "telefon"
+   ],
+   "legacy": [
+    {
+     "unit": "b1-10",
+     "key": "b1-10:w:zurückrufen"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Seni arayan kişiyi sonra aramayı söyler.",
+    "ne_zaman_tr": "Telefona çıkamayınca ve mesaj bırakınca.",
+    "parcalar": [
+     {
+      "de": "zurück",
+      "tr": "geri"
+     },
+     {
+      "de": "rufen",
+      "tr": "aramak"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Patientin",
+   "de": "Patientin",
+   "tr": "kadın hasta",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Patientinnen",
+   "img": "female patient with doctor",
+   "collocations": [
+    {
+     "de": "eine neue Patientin",
+     "tr": "yeni bir hasta"
+    },
+    {
+     "de": "die nächste Patientin",
+     "tr": "sıradaki hasta"
+    },
+    {
+     "de": "Patientin bei Dr. Weber",
+     "tr": "Doktor Weber hastası"
+    }
+   ],
+   "patterns": [
+    "pt:ich-bin",
+    "pt:ja-nein-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Annem hasta derken **Meine Mutter ist Patientin** yanlış. Doğrusu **Meine Mutter ist krank**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Patientin:1",
+     "de": "Frau Yılmaz ist schon lange Patientin bei Dr. Weber.",
+     "tr": "Yılmaz Hanım uzun zamandır Doktor Weber'in hastası.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Patientin:2",
+     "de": "Die Patientin wartet schon in Zimmer zwei.",
+     "tr": "Hasta iki numaralı odada bekliyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Patientin:3",
+     "de": "Die nächste Patientin kann jetzt rein.",
+     "tr": "Sıradaki hasta şimdi girebilir.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Patientin:4",
+     "de": "– Sind Sie neu bei uns? – Nein, ich bin schon {Patient|Patientin} bei Ihnen.",
+     "tr": "– Bize yeni mi geliyorsunuz? – Hayır, zaten sizin hastanızım.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 3144,
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Doktora giden kadını söyler.",
+    "ne_zaman_tr": "Muayenehanede ve hastanede.",
+    "parcalar": [],
+    "ipucu_tr": "Erkek hasta için **Patient** dersin."
+   }
+  },
+  {
+   "id": "lx:Tropfen",
+   "de": "Tropfen",
+   "tr": "damla",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Tropfen",
+   "img": "medicine dropper bottle",
+   "collocations": [
+    {
+     "de": "Tropfen nehmen",
+     "tr": "damla kullanmak"
+    },
+    {
+     "de": "zehn Tropfen",
+     "tr": "on damla"
+    },
+    {
+     "de": "Tropfen gegen Husten",
+     "tr": "öksürük damlası"
+    }
+   ],
+   "patterns": [
+    "pt:imperativ-sie",
+    "pt:haben-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Göz damlası derken **Auge Tropfen** yanlış. Bitişik yazılır: **Augentropfen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Tropfen:1",
+     "de": "Nehmen Sie dreimal täglich zehn Tropfen.",
+     "tr": "Günde üç kez on damla alın.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Tropfen:2",
+     "de": "Haben Sie Tropfen gegen Husten?",
+     "tr": "Öksürük için damlanız var mı?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Tropfen:3",
+     "de": "Die Tropfen schmecken echt furchtbar.",
+     "tr": "Bu damlaların tadı berbat.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Tropfen:4",
+     "de": "– Wie oft soll ich die Tropfen nehmen? – Morgens und abends, bitte.",
+     "tr": "– Damlaları ne sıklıkla almalıyım? – Lütfen sabah ve akşam.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 3171,
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Şişeden tek tek akan küçük sıvı parçasını söyler.",
+    "ne_zaman_tr": "Eczanede ve doktorda.",
+    "parcalar": [],
+    "ipucu_tr": "İlaç için çoğunlukla **die Tropfen** duyarsın, yani damlalar."
+   }
+  },
+  {
+   "id": "lx:Kaution",
+   "de": "Kaution",
+   "tr": "depozito",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Kautionen",
+   "collocations": [
+    {
+     "de": "die Kaution zahlen",
+     "tr": "depozitoyu ödemek"
+    },
+    {
+     "de": "die Kaution zurückbekommen",
+     "tr": "depozitoyu geri almak"
+    },
+    {
+     "de": "die Kaution überweisen",
+     "tr": "depozitoyu havale etmek"
+    }
+   ],
+   "patterns": [
+    "pt:ich-muss",
+    "pt:w-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Kiralık evin depozitosu derken **das Pfand** yanlış. Doğrusu **die Kaution**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Kaution:1",
+     "de": "Die Kaution für die Wohnung beträgt 1.500 Euro.",
+     "tr": "Evin depozitosu 1.500 avro.",
+     "img": "handing over apartment keys",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Kaution:2",
+     "de": "Wann bekomme ich meine Kaution zurück?",
+     "tr": "Depozitomu ne zaman geri alırım?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Kaution:3",
+     "de": "Ich krieg die Kaution hoffentlich bald wieder.",
+     "tr": "Umarım depozitoyu yakında geri alırım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Kaution:4",
+     "de": "– Muss ich eine Kaution zahlen? – Ja, die überweisen Sie bitte bis Freitag.",
+     "tr": "– Depozito ödemem gerekiyor mu? – Evet, lütfen cumaya kadar havale edin.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 3230,
+   "domains": [
+    "wohnen"
+   ],
+   "legacy": [
+    {
+     "unit": "b1-07",
+     "key": "b1-07:w:Kaution"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Ev kiralarken güvence olarak verilen parayı söyler.",
+    "ne_zaman_tr": "Ev tutarken ve evden çıkarken.",
+    "parcalar": [],
+    "ipucu_tr": "Şişe ve bardak için verilen depozito ise **Pfand** olur."
+   }
+  },
+  {
+   "id": "lx:Blutdruck",
+   "de": "Blutdruck",
+   "tr": "tansiyon",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Blutdrücke",
+   "img": "blood pressure monitor",
+   "collocations": [
+    {
+     "de": "hoher Blutdruck",
+     "tr": "yüksek tansiyon"
+    },
+    {
+     "de": "niedriger Blutdruck",
+     "tr": "düşük tansiyon"
+    },
+    {
+     "de": "den Blutdruck messen",
+     "tr": "tansiyon ölçmek"
+    }
+   ],
+   "patterns": [
+    "pt:zu-adj",
+    "pt:ich-habe"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Tansiyonum yüksek derken **Mein Blutdruck ist viel** yanlış. Doğrusu **Mein Blutdruck ist hoch**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Blutdruck:1",
+     "de": "Ich messe jetzt Ihren Blutdruck.",
+     "tr": "Şimdi tansiyonunuzu ölçüyorum.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Blutdruck:2",
+     "de": "Ihr Blutdruck ist ein bisschen zu hoch.",
+     "tr": "Tansiyonunuz biraz fazla yüksek.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Blutdruck:3",
+     "de": "Mein Blutdruck ist grad wieder ganz schön hoch.",
+     "tr": "Tansiyonum yine epey yüksek şu an.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Blutdruck:4",
+     "de": "– Haben Sie Probleme mit dem Blutdruck? – Ja, er ist oft zu niedrig.",
+     "tr": "– Tansiyon sorununuz var mı? – Evet, sık sık çok düşüyor.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 3257,
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Kanın damarlara yaptığı basıncı söyler.",
+    "ne_zaman_tr": "Muayenede ve eczanede.",
+    "parcalar": [
+     {
+      "de": "Blut",
+      "tr": "kan"
+     },
+     {
+      "de": "druck",
+      "tr": "basıncı"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Diebstahl",
+   "de": "Diebstahl",
+   "tr": "hırsızlık",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Diebstähle",
+   "collocations": [
+    {
+     "de": "einen Diebstahl melden",
+     "tr": "hırsızlığı bildirmek"
+    },
+    {
+     "de": "Diebstahl anzeigen",
+     "tr": "hırsızlık için şikâyette bulunmak"
+    },
+    {
+     "de": "der Diebstahl des Fahrrads",
+     "tr": "bisikletin çalınması"
+    }
+   ],
+   "patterns": [
+    "pt:ich-moechte",
+    "pt:w-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Hırsızlık oldu derken **Es gab einen Dieb** yanlış. Doğrusu **Es gab einen Diebstahl**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Diebstahl:1",
+     "de": "Ich möchte einen Diebstahl bei der Polizei melden.",
+     "tr": "Polise bir hırsızlık bildirmek istiyorum.",
+     "img": "person reporting at police desk",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Diebstahl:2",
+     "de": "Der Diebstahl ist gestern Abend am Bahnhof passiert.",
+     "tr": "Hırsızlık dün akşam istasyonda oldu.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Diebstahl:3",
+     "de": "Mein Rad ist weg, ich glaub, das war Diebstahl.",
+     "tr": "Bisikletim yok, bence çalındı.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Diebstahl:4",
+     "de": "– Was ist passiert? – Ein Diebstahl, meine Tasche ist weg.",
+     "tr": "– Ne oldu? – Hırsızlık, çantam yok.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 3478,
+   "domains": [
+    "notfall"
+   ],
+   "exp": {
+    "anlam_tr": "Başkasının eşyasını izinsiz alıp götürmeyi söyler.",
+    "ne_zaman_tr": "Eşyan çalınınca, polise anlatırken.",
+    "parcalar": [],
+    "ipucu_tr": "Olay **Diebstahl**, bunu yapan kişi **Dieb** yani hırsızdır."
+   }
+  },
+  {
+   "id": "lx:Gehalt",
+   "de": "Gehalt",
+   "tr": "maaş",
+   "pos": "noun",
+   "art": "das",
+   "pl": "Gehälter",
+   "collocations": [
+    {
+     "de": "das Gehalt bekommen",
+     "tr": "maaş almak"
+    },
+    {
+     "de": "ein gutes Gehalt",
+     "tr": "iyi bir maaş"
+    },
+    {
+     "de": "über das Gehalt sprechen",
+     "tr": "maaş hakkında konuşmak"
+    }
+   ],
+   "patterns": [
+    "pt:ich-moechte",
+    "pt:w-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Maaşımı aldım derken **Ich habe mein Gehalt genommen** yanlış. Doğrusu **Ich habe mein Gehalt bekommen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Gehalt:1",
+     "de": "Im neuen Job bekomme ich ein besseres Gehalt.",
+     "tr": "Yeni işte daha iyi maaş alıyorum.",
+     "img": "payslip on desk",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Gehalt:2",
+     "de": "Ich möchte mit Ihnen über mein Gehalt sprechen.",
+     "tr": "Sizinle maaşım hakkında konuşmak istiyorum.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Gehalt:3",
+     "de": "Das Gehalt ist okay, aber die Arbeit nervt.",
+     "tr": "Maaş fena değil ama iş sinir bozucu.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Gehalt:4",
+     "de": "– Wann kommt das Gehalt? – Am Monatsende, wie immer.",
+     "tr": "– Maaş ne zaman yatıyor? – Her zamanki gibi ay sonunda.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 3490,
+   "domains": [
+    "arbeit",
+    "bank"
+   ],
+   "legacy": [
+    {
+     "unit": "b1-05",
+     "key": "b1-05:w:Gehalt"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "İş yerinin her ay ödediği parayı söyler.",
+    "ne_zaman_tr": "İş ve para konuşulurken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Kasse",
+   "de": "Kasse",
+   "tr": "kasa, ödeme yeri",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Kassen",
+   "img": "supermarket checkout",
+   "collocations": [
+    {
+     "de": "an der Kasse",
+     "tr": "kasada"
+    },
+    {
+     "de": "zur Kasse gehen",
+     "tr": "kasaya gitmek"
+    },
+    {
+     "de": "an der Kasse bezahlen",
+     "tr": "kasada ödemek"
+    }
+   ],
+   "patterns": [
+    "pt:wo-ist",
+    "pt:imperativ-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Kasada ödüyorum derken **Ich bezahle in der Kasse** yanlış. Doğrusu **Ich bezahle an der Kasse**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Kasse:1",
+     "de": "Bitte bezahlen Sie vorne an der Kasse.",
+     "tr": "Lütfen öndeki kasada ödeyin.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Kasse:2",
+     "de": "Die Schlange an der Kasse ist heute lang.",
+     "tr": "Kasadaki kuyruk bugün uzun.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Kasse:3",
+     "de": "Ich geh schon mal zur Kasse, ja?",
+     "tr": "Ben kasaya geçiyorum, tamam mı?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Kasse:4",
+     "de": "– Wo kann ich bezahlen? – Die Kasse ist dort vorne.",
+     "tr": "– Nerede ödeyebilirim? – Kasa şurada, ileride.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 3497,
+   "domains": [
+    "einkaufen",
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Markette ödeme yaptığın yeri söyler.",
+    "ne_zaman_tr": "Alışverişin sonunda.",
+    "parcalar": [],
+    "ipucu_tr": "Doktorda **die Kasse** sağlık sigortası anlamına da gelir."
+   }
+  },
+  {
+   "id": "lx:Notaufnahme",
+   "de": "Notaufnahme",
+   "tr": "acil servis",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Notaufnahmen",
+   "img": "hospital emergency entrance",
+   "collocations": [
+    {
+     "de": "in die Notaufnahme fahren",
+     "tr": "acil servise gitmek"
+    },
+    {
+     "de": "in der Notaufnahme warten",
+     "tr": "acil serviste beklemek"
+    },
+    {
+     "de": "die Notaufnahme im Krankenhaus",
+     "tr": "hastanedeki acil servis"
+    }
+   ],
+   "patterns": [
+    "pt:wo-ist",
+    "pt:sollte"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Acile gidiyorum derken **Ich gehe zu Notaufnahme** yanlış. Doğrusu **Ich gehe in die Notaufnahme**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Notaufnahme:1",
+     "de": "Wo ist hier die Notaufnahme?",
+     "tr": "Buranın acil servisi nerede?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Notaufnahme:2",
+     "de": "Wir mussten drei Stunden in der Notaufnahme warten.",
+     "tr": "Acil serviste üç saat beklemek zorunda kaldık.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Notaufnahme:3",
+     "de": "Mit dem Fuß würd ich echt in die Notaufnahme fahren.",
+     "tr": "O ayakla ben olsam acile giderdim.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Notaufnahme:4",
+     "de": "– Soll ich Sie in die Notaufnahme bringen? – Ja, bitte, es tut sehr weh.",
+     "tr": "– Sizi acil servise götüreyim mi? – Evet lütfen, çok acıyor.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 3627,
+   "domains": [
+    "arzt",
+    "notfall"
+   ],
+   "exp": {
+    "anlam_tr": "Hastanede acil hastalara bakılan bölümü söyler.",
+    "ne_zaman_tr": "Ani ve ciddi bir sağlık sorununda.",
+    "parcalar": [
+     {
+      "de": "Not",
+      "tr": "acil"
+     },
+     {
+      "de": "aufnahme",
+      "tr": "kabul"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Notruf",
+   "de": "Notruf",
+   "tr": "acil çağrı",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Notrufe",
+   "collocations": [
+    {
+     "de": "den Notruf wählen",
+     "tr": "acil numarayı aramak"
+    },
+    {
+     "de": "den Notruf anrufen",
+     "tr": "acil hattı aramak"
+    },
+    {
+     "de": "die Notrufnummer",
+     "tr": "acil çağrı numarası"
+    }
+   ],
+   "patterns": [
+    "pt:imperativ-sie",
+    "pt:perfekt-haben"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Acil hattı arıyorum derken **Ich rufe Notruf** yanlış. Doğrusu **Ich rufe den Notruf an**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Notruf:1",
+     "de": "Wählen Sie sofort den Notruf!",
+     "tr": "Hemen acil numarayı arayın!",
+     "img": "person calling emergency number",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Notruf:2",
+     "de": "Die Notrufnummer für den Krankenwagen ist 112.",
+     "tr": "Ambulans için acil numara 112.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Notruf:3",
+     "de": "Schnell, ruf den Notruf an!",
+     "tr": "Çabuk, acil hattı ara!",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Notruf:4",
+     "de": "– Hast du den Notruf gewählt? – Ja, der Krankenwagen kommt gleich.",
+     "tr": "– Acil numarayı aradın mı? – Evet, ambulans birazdan geliyor.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 3678,
+   "domains": [
+    "notfall",
+    "telefon"
+   ],
+   "exp": {
+    "anlam_tr": "Acil durumda yardım için yapılan telefonu söyler.",
+    "ne_zaman_tr": "Kaza, yangın ve ağır hastalıkta.",
+    "parcalar": [
+     {
+      "de": "Not",
+      "tr": "acil"
+     },
+     {
+      "de": "ruf",
+      "tr": "çağrı"
+     }
+    ],
+    "ipucu_tr": "**112** itfaiye ve ambulans, **110** polis içindir."
+   }
+  },
+  {
+   "id": "lx:Zahnarzt",
+   "de": "Zahnarzt",
+   "tr": "diş doktoru, dişçi",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Zahnärzte",
+   "img": "dentist",
+   "collocations": [
+    {
+     "de": "zum Zahnarzt gehen",
+     "tr": "dişçiye gitmek"
+    },
+    {
+     "de": "beim Zahnarzt",
+     "tr": "dişçide"
+    },
+    {
+     "de": "ein Termin beim Zahnarzt",
+     "tr": "dişçi randevusu"
+    }
+   ],
+   "patterns": [
+    "pt:ich-habe",
+    "pt:mir-tut-weh"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Dişçiye gidiyorum derken **Ich gehe nach Zahnarzt** yanlış. Doğrusu **Ich gehe zum Zahnarzt**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Zahnarzt:1",
+     "de": "Ich habe morgen früh einen Termin beim Zahnarzt.",
+     "tr": "Yarın sabah dişçiden randevum var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Zahnarzt:2",
+     "de": "Der Zahnarzt sagt, der Zahn muss raus.",
+     "tr": "Dişçi dişin çekilmesi gerektiğini söylüyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Zahnarzt:3",
+     "de": "Ich hab voll Angst vorm Zahnarzt.",
+     "tr": "Dişçiden çok korkuyorum.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Zahnarzt:4",
+     "de": "– Tut der Zahn noch weh? – Ja, ich gehe heute zum Zahnarzt.",
+     "tr": "– Diş hâlâ ağrıyor mu? – Evet, bugün dişçiye gidiyorum.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 3906,
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Dişlere bakan doktoru söyler.",
+    "ne_zaman_tr": "Diş ağrıyınca ve randevu alırken.",
+    "parcalar": [
+     {
+      "de": "Zahn",
+      "tr": "diş"
+     },
+     {
+      "de": "arzt",
+      "tr": "doktoru"
+     }
+    ],
+    "ipucu_tr": "Kadın dişçi için **Zahnärztin** dersin."
+   }
+  },
+  {
+   "id": "lx:Tankstelle",
+   "de": "Tankstelle",
+   "tr": "benzin istasyonu",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Tankstellen",
+   "img": "gas station",
+   "collocations": [
+    {
+     "de": "an der Tankstelle",
+     "tr": "benzin istasyonunda"
+    },
+    {
+     "de": "zur Tankstelle fahren",
+     "tr": "benzin istasyonuna gitmek"
+    },
+    {
+     "de": "die nächste Tankstelle",
+     "tr": "en yakın benzin istasyonu"
+    }
+   ],
+   "patterns": [
+    "pt:w-frage",
+    "pt:es-gibt"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Benzin istasyonunda derken **in Tankstelle** yanlış. Doğrusu **an der Tankstelle**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Tankstelle:1",
+     "de": "Wie weit ist es bis zur nächsten Tankstelle?",
+     "tr": "En yakın benzin istasyonu ne kadar uzakta?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Tankstelle:2",
+     "de": "An der Tankstelle gibt es auch Kaffee und Brötchen.",
+     "tr": "Benzin istasyonunda kahve ve sandviçlik ekmek de var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Tankstelle:3",
+     "de": "Ich muss noch kurz an die Tankstelle.",
+     "tr": "Bir de benzinciye uğramam lazım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Tankstelle:4",
+     "de": "– Wir haben kaum noch Benzin. – Da vorne ist eine Tankstelle.",
+     "tr": "– Neredeyse benzinimiz kalmadı. – İleride bir benzin istasyonu var.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 3979,
+   "domains": [
+    "verkehr"
+   ],
+   "exp": {
+    "anlam_tr": "Arabaya yakıt aldığın yeri söyler.",
+    "ne_zaman_tr": "Arabayla yoldayken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Feuerwehr",
+   "de": "Feuerwehr",
+   "tr": "itfaiye",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Feuerwehren",
+   "img": "fire truck",
+   "collocations": [
+    {
+     "de": "die Feuerwehr rufen",
+     "tr": "itfaiyeyi çağırmak"
+    },
+    {
+     "de": "die Feuerwehr kommt",
+     "tr": "itfaiye geliyor"
+    },
+    {
+     "de": "bei der Feuerwehr arbeiten",
+     "tr": "itfaiyede çalışmak"
+    }
+   ],
+   "patterns": [
+    "pt:imperativ-sie",
+    "pt:w-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "İtfaiyeyi arayın derken **Rufen Sie Feuerwehr** yanlış. Doğrusu **Rufen Sie die Feuerwehr**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Feuerwehr:1",
+     "de": "Es riecht nach Rauch, rufen Sie bitte die Feuerwehr!",
+     "tr": "Duman kokuyor, lütfen itfaiyeyi arayın!",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Feuerwehr:2",
+     "de": "Die Feuerwehr war in fünf Minuten da.",
+     "tr": "İtfaiye beş dakikada geldi.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Feuerwehr:3",
+     "de": "Ruf die Feuerwehr, da kommt Rauch aus dem Keller!",
+     "tr": "İtfaiyeyi ara, bodrumdan duman geliyor!",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Feuerwehr:4",
+     "de": "– Was macht die Feuerwehr hier? – Im Keller hat es gebrannt.",
+     "tr": "– İtfaiyenin burada ne işi var? – Bodrumda yangın çıkmış.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 4223,
+   "domains": [
+    "notfall"
+   ],
+   "exp": {
+    "anlam_tr": "Yangını söndüren ve yardıma gelen ekibi söyler.",
+    "ne_zaman_tr": "Yangın ve duman gibi acil durumlarda.",
+    "parcalar": [],
+    "ipucu_tr": "**Feuerwehr** için **112** numarasını ararsın."
+   }
+  },
+  {
+   "id": "lx:Hausmeister",
+   "de": "Hausmeister",
+   "tr": "apartman görevlisi, kapıcı",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Hausmeister",
+   "img": "building caretaker with tools",
+   "collocations": [
+    {
+     "de": "den Hausmeister anrufen",
+     "tr": "apartman görevlisini aramak"
+    },
+    {
+     "de": "den Hausmeister fragen",
+     "tr": "apartman görevlisine sormak"
+    },
+    {
+     "de": "der Hausmeister kommt",
+     "tr": "apartman görevlisi geliyor"
+    }
+   ],
+   "patterns": [
+    "pt:trennbar",
+    "pt:w-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Apartman görevlisini aradım derken **Ich habe dem Hausmeister angerufen** yanlış. Doğrusu **Ich habe den Hausmeister angerufen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Hausmeister:1",
+     "de": "Herr Pichler ist unser Hausmeister.",
+     "tr": "Pichler Bey bizim apartman görevlimiz.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Hausmeister:2",
+     "de": "Die Heizung ist kalt, ich rufe den Hausmeister an.",
+     "tr": "Kalorifer soğuk, apartman görevlisini arıyorum.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Hausmeister:3",
+     "de": "Frag mal den Hausmeister, der weiß das bestimmt.",
+     "tr": "Apartman görevlisine sor, o kesin biliyordur.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Hausmeister:4",
+     "de": "– Wer repariert das Licht im Flur? – Das macht der Hausmeister.",
+     "tr": "– Koridordaki ışığı kim tamir edecek? – Onu apartman görevlisi yapar.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 4234,
+   "domains": [
+    "wohnen"
+   ],
+   "exp": {
+    "anlam_tr": "Binanın bakımına ve küçük tamirlerine bakan kişiyi söyler.",
+    "ne_zaman_tr": "Evde bir şey bozulunca.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Nachbarin",
+   "de": "Nachbarin",
+   "tr": "kadın komşu",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Nachbarinnen",
+   "img": "elderly neighbor woman at door",
+   "collocations": [
+    {
+     "de": "meine Nachbarin",
+     "tr": "komşum"
+    },
+    {
+     "de": "die Nachbarin von oben",
+     "tr": "üst kattaki komşu"
+    },
+    {
+     "de": "die Nachbarin fragen",
+     "tr": "komşuya sormak"
+    }
+   ],
+   "patterns": [
+    "pt:ich-bin",
+    "pt:w-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Komşum derken **mein Nachbarin** yanlış. Doğrusu **meine Nachbarin**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Nachbarin:1",
+     "de": "Guten Tag, ich bin {Ihr neuer Nachbar|Ihre neue Nachbarin}.",
+     "tr": "İyi günler, ben yeni komşunuzum.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Nachbarin:2",
+     "de": "Meine Nachbarin hat mein Paket angenommen.",
+     "tr": "Paketimi komşum teslim aldı.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Nachbarin:3",
+     "de": "Die Nachbarin von unten backt super Kuchen.",
+     "tr": "Alt kattaki komşu süper kek yapıyor.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Nachbarin:4",
+     "de": "– Wer war das an der Tür? – Unsere Nachbarin, sie braucht Hilfe.",
+     "tr": "– Kapıdaki kimdi? – Komşumuz, yardıma ihtiyacı var.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 4279,
+   "domains": [
+    "wohnen",
+    "smalltalk"
+   ],
+   "exp": {
+    "anlam_tr": "Yakınında oturan kadını söyler.",
+    "ne_zaman_tr": "Apartmanda ve mahallede.",
+    "parcalar": [],
+    "ipucu_tr": "Erkek komşu için **Nachbar** dersin."
+   }
+  },
+  {
+   "id": "lx:Päckchen",
+   "de": "Päckchen",
+   "tr": "küçük paket",
+   "pos": "noun",
+   "art": "das",
+   "pl": "Päckchen",
+   "img": "small parcel",
+   "collocations": [
+    {
+     "de": "ein Päckchen schicken",
+     "tr": "küçük paket göndermek"
+    },
+    {
+     "de": "ein Päckchen abholen",
+     "tr": "küçük paketi almak"
+    },
+    {
+     "de": "ein Päckchen packen",
+     "tr": "küçük paket hazırlamak"
+    }
+   ],
+   "patterns": [
+    "pt:wie-viel-kostet",
+    "pt:ich-moechte"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Küçük bir paket derken **eine kleine Paket** yanlış. Doğrusu **ein Päckchen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Päckchen:1",
+     "de": "Ich möchte dieses Päckchen nach Polen schicken.",
+     "tr": "Bu küçük paketi Polonya'ya göndermek istiyorum.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Päckchen:2",
+     "de": "Ist das noch ein Päckchen oder schon ein Paket?",
+     "tr": "Bu hâlâ küçük paket mi, yoksa artık normal paket mi?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Päckchen:3",
+     "de": "Für dich ist 'n Päckchen gekommen.",
+     "tr": "Sana küçük bir paket gelmiş.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Päckchen:4",
+     "de": "– Was kostet dieses Päckchen nach Italien? – Moment, ich wiege es kurz.",
+     "tr": "– Bu küçük paket İtalya'ya kaça gider? – Bir dakika, hemen tartayım.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 4286,
+   "domains": [
+    "post"
+   ],
+   "exp": {
+    "anlam_tr": "Paketten daha küçük ve hafif gönderiyi söyler.",
+    "ne_zaman_tr": "Postanede ve kargo beklerken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Friseur",
+   "de": "Friseur",
+   "tr": "kuaför, berber",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Friseure",
+   "img": "barber shop",
+   "collocations": [
+    {
+     "de": "zum Friseur gehen",
+     "tr": "kuaföre gitmek"
+    },
+    {
+     "de": "beim Friseur",
+     "tr": "kuaförde"
+    },
+    {
+     "de": "ein Termin beim Friseur",
+     "tr": "kuaför randevusu"
+    }
+   ],
+   "patterns": [
+    "pt:ich-brauche",
+    "pt:ich-war"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Kuaföre gidiyorum derken **Ich gehe zu Friseur** yanlış. Doğrusu **Ich gehe zum Friseur**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Friseur:1",
+     "de": "Ich brauche für Freitag einen Termin beim Friseur.",
+     "tr": "Cuma için kuaförden randevu almam lazım.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Friseur:2",
+     "de": "Luka ist der beste Friseur in Wendlfing.",
+     "tr": "Luka, Wendlfing'in en iyi kuaförü.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Friseur:3",
+     "de": "Ich muss dringend mal wieder zum Friseur.",
+     "tr": "Acilen yine kuaföre gitmem lazım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Friseur:4",
+     "de": "– Warst du beim Friseur? – Ja, sieht man das?",
+     "tr": "– Kuaföre mi gittin? – Evet, belli oluyor mu?",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "freqRank": 4736,
+   "domains": [
+    "friseur"
+   ],
+   "exp": {
+    "anlam_tr": "Saç kesen kişiyi ve dükkânını söyler.",
+    "ne_zaman_tr": "Saçını kestirmek isteyince.",
+    "parcalar": [],
+    "ipucu_tr": "Kadın kuaför için **Friseurin** dersin."
+   }
+  },
+  {
+   "id": "lx:Wartezimmer",
+   "de": "Wartezimmer",
+   "tr": "bekleme odası",
+   "pos": "noun",
+   "art": "das",
+   "pl": "Wartezimmer",
+   "img": "doctor waiting room",
+   "collocations": [
+    {
+     "de": "im Wartezimmer warten",
+     "tr": "bekleme odasında beklemek"
+    },
+    {
+     "de": "ins Wartezimmer gehen",
+     "tr": "bekleme odasına geçmek"
+    },
+    {
+     "de": "im Wartezimmer Platz nehmen",
+     "tr": "bekleme odasında oturmak"
+    }
+   ],
+   "patterns": [
+    "pt:imperativ-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Bekleme odasında bekliyorum derken **Ich warte in Wartezimmer** yanlış. Doğrusu **Ich warte im Wartezimmer**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Wartezimmer:1",
+     "de": "Nehmen Sie bitte noch kurz im Wartezimmer Platz.",
+     "tr": "Lütfen biraz bekleme odasında oturun.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Wartezimmer:2",
+     "de": "Im Wartezimmer sitzen heute viele Leute.",
+     "tr": "Bugün bekleme odasında çok insan oturuyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Wartezimmer:3",
+     "de": "Das Wartezimmer ist heut total voll.",
+     "tr": "Bekleme odası bugün tıklım tıklım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Wartezimmer:4",
+     "de": "– Wo soll ich warten? – Gehen Sie bitte ins Wartezimmer, gleich links.",
+     "tr": "– Nerede bekleyeyim? – Lütfen bekleme odasına geçin, hemen solda.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Doktorun seni çağırmasını beklediğin odayı söyler.",
+    "ne_zaman_tr": "Muayenehaneye gidince.",
+    "parcalar": [
+     {
+      "de": "Warte",
+      "tr": "bekleme"
+     },
+     {
+      "de": "zimmer",
+      "tr": "odası"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Krankmeldung",
+   "de": "Krankmeldung",
+   "tr": "hastalık bildirimi",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Krankmeldungen",
+   "collocations": [
+    {
+     "de": "die Krankmeldung schicken",
+     "tr": "hastalık bildirimini göndermek"
+    },
+    {
+     "de": "eine Krankmeldung an den Chef",
+     "tr": "şefe hastalık bildirimi"
+    },
+    {
+     "de": "sich krankmelden",
+     "tr": "hasta olduğunu işe bildirmek"
+    }
+   ],
+   "patterns": [
+    "pt:perfekt-haben"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Bildirimi gönderdim derken **Ich habe Krankmeldung geschickt** yanlış. Doğrusu **Ich habe die Krankmeldung geschickt**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Krankmeldung:1",
+     "de": "Ich schicke Ihnen heute noch meine Krankmeldung.",
+     "tr": "Hastalık bildirimimi size bugün gönderiyorum.",
+     "img": "person sick in bed calling work",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Krankmeldung:2",
+     "de": "Ohne Krankmeldung weiß die Firma nicht, warum Sie fehlen.",
+     "tr": "Hastalık bildirimi olmadan şirket neden gelmediğinizi bilemez.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Krankmeldung:3",
+     "de": "Ich hab die Krankmeldung grad an Herrn Wimmer geschickt.",
+     "tr": "Hastalık bildirimini az önce Wimmer Bey'e gönderdim.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Krankmeldung:4",
+     "de": "– Haben Sie Herrn Wimmer informiert? – Ja, meine Krankmeldung ist schon da.",
+     "tr": "– Wimmer Bey'e haber verdiniz mi? – Evet, hastalık bildirimim ona ulaştı.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt",
+    "arbeit"
+   ],
+   "exp": {
+    "anlam_tr": "İş yerine hasta olduğunu bildirmeyi söyler.",
+    "ne_zaman_tr": "Hastalanıp işe gidemeyince.",
+    "parcalar": [
+     {
+      "de": "Krank",
+      "tr": "hastalık"
+     },
+     {
+      "de": "meldung",
+      "tr": "bildirimi"
+     }
+    ],
+    "ipucu_tr": "**Krankmeldung** için beklemezsin, işe hemen haber verirsin."
+   }
+  },
+  {
+   "id": "lx:Attest",
+   "de": "Attest",
+   "tr": "doktor raporu, doktor belgesi",
+   "pos": "noun",
+   "art": "das",
+   "pl": "Atteste",
+   "collocations": [
+    {
+     "de": "ein Attest bekommen",
+     "tr": "doktor raporu almak"
+    },
+    {
+     "de": "ein ärztliches Attest",
+     "tr": "doktor raporu"
+    },
+    {
+     "de": "ein Attest brauchen",
+     "tr": "doktor raporu gerekmek"
+    }
+   ],
+   "patterns": [
+    "pt:ich-brauche",
+    "pt:koennten-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Doktordan rapor aldım derken **Ich habe einen Bericht vom Arzt** yanlış. Doğrusu **Ich habe ein Attest vom Arzt**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Attest:1",
+     "de": "Für den Sportverein brauchen Sie ein Attest.",
+     "tr": "Spor kulübü için doktor raporu gerekiyor.",
+     "img": "doctor signing medical certificate",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Attest:2",
+     "de": "Können Sie mir bitte ein Attest ausstellen?",
+     "tr": "Bana bir doktor raporu yazabilir misiniz lütfen?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Attest:3",
+     "de": "Der Chef will jetzt echt 'n Attest von mir.",
+     "tr": "Şef şimdi cidden benden rapor istiyor.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Attest:4",
+     "de": "– Haben Sie ein Attest? – Ja, hier, von Dr. Weber.",
+     "tr": "– Doktor raporunuz var mı? – Evet, buyurun, Doktor Weber'den.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt",
+    "arbeit"
+   ],
+   "exp": {
+    "anlam_tr": "Sağlık durumunla ilgili doktor belgesini söyler.",
+    "ne_zaman_tr": "İş yerinde, okulda ve spor kulübünde.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Allergie",
+   "de": "Allergie",
+   "tr": "alerji",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Allergien",
+   "collocations": [
+    {
+     "de": "eine Allergie haben",
+     "tr": "alerjisi olmak"
+    },
+    {
+     "de": "eine Allergie gegen Nüsse",
+     "tr": "fındık fıstık alerjisi"
+    },
+    {
+     "de": "eine starke Allergie",
+     "tr": "güçlü bir alerji"
+    }
+   ],
+   "patterns": [
+    "pt:ich-habe",
+    "pt:haben-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Fındık fıstığa alerjim var derken **Ich habe Allergie von Nüssen** yanlış. Doğrusu **Ich habe eine Allergie gegen Nüsse**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Allergie:1",
+     "de": "Ich habe eine Allergie gegen Penicillin.",
+     "tr": "Penisiline alerjim var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Allergie:2",
+     "de": "Im Frühling ist meine Allergie besonders schlimm.",
+     "tr": "İlkbaharda alerjim özellikle kötü oluyor.",
+     "layer": "hd",
+     "img": "person sneezing near flowers"
+    },
+    {
+     "id": "lx:Allergie:3",
+     "de": "Keine Erdbeeren für mich, ich hab 'ne Allergie.",
+     "tr": "Bana çilek yok, alerjim var.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Allergie:4",
+     "de": "– Haben Sie eine Allergie? – Ja, gegen Katzen.",
+     "tr": "– Alerjiniz var mı? – Evet, kedilere.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt",
+    "essen"
+   ],
+   "exp": {
+    "anlam_tr": "Vücudun bir şeye kötü tepki vermesini söyler.",
+    "ne_zaman_tr": "Doktorda, eczanede ve lokantada.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Impfung",
+   "de": "Impfung",
+   "tr": "aşı",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Impfungen",
+   "img": "vaccination in arm",
+   "collocations": [
+    {
+     "de": "eine Impfung bekommen",
+     "tr": "aşı olmak"
+    },
+    {
+     "de": "die Impfung gegen Grippe",
+     "tr": "grip aşısı"
+    },
+    {
+     "de": "ein Termin für die Impfung",
+     "tr": "aşı randevusu"
+    }
+   ],
+   "patterns": [
+    "pt:ich-moechte",
+    "pt:mir-tut-weh"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Aşı oldum derken **Ich bin Impfung geworden** yanlış. Doğrusu **Ich habe mich impfen lassen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Impfung:1",
+     "de": "Ich möchte einen Termin für die Impfung machen.",
+     "tr": "Aşı için randevu almak istiyorum.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Impfung:2",
+     "de": "Die Impfung gegen Grippe bekommen Sie auch hier.",
+     "tr": "Grip aşısını burada da olabilirsiniz.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Impfung:3",
+     "de": "Mir tut der Arm noch weh, von der Impfung.",
+     "tr": "Aşıdan dolayı kolum hâlâ ağrıyor.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Impfung:4",
+     "de": "– Wann war Ihre letzte Impfung? – Das steht in meinem Impfpass.",
+     "tr": "– Son aşınız ne zamandı? – Aşı kartımda yazıyor.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Hastalıktan korunmak için yapılan iğneyi söyler.",
+    "ne_zaman_tr": "Doktorda ve randevu alırken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Salbe",
+   "de": "Salbe",
+   "tr": "merhem",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Salben",
+   "img": "ointment tube",
+   "collocations": [
+    {
+     "de": "die Salbe auftragen",
+     "tr": "merhemi sürmek"
+    },
+    {
+     "de": "eine Salbe gegen Sonnenbrand",
+     "tr": "güneş yanığı merhemi"
+    },
+    {
+     "de": "eine Salbe vom Arzt",
+     "tr": "doktorun verdiği merhem"
+    }
+   ],
+   "patterns": [
+    "pt:imperativ-sie",
+    "pt:haben-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Merhem sürüyorum derken **Ich fahre die Salbe** yanlış. Doğrusu **Ich trage die Salbe auf**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Salbe:1",
+     "de": "Tragen Sie die Salbe zweimal täglich auf.",
+     "tr": "Merhemi günde iki kez sürün.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Salbe:2",
+     "de": "Haben Sie eine Salbe gegen Sonnenbrand?",
+     "tr": "Güneş yanığı için merheminiz var mı?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Salbe:3",
+     "de": "Mach einfach 'n bisschen Salbe drauf.",
+     "tr": "Üstüne biraz merhem sür, yeter.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Salbe:4",
+     "de": "– Hilft die Salbe? – Ja, es juckt schon viel weniger.",
+     "tr": "– Merhem işe yarıyor mu? – Evet, kaşıntı çok azaldı bile.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Cilde sürülen yumuşak ilacı söyler.",
+    "ne_zaman_tr": "Eczanede ve cilt sorununda.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Nebenwirkung",
+   "de": "Nebenwirkung",
+   "tr": "yan etki",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Nebenwirkungen",
+   "collocations": [
+    {
+     "de": "Nebenwirkungen haben",
+     "tr": "yan etkileri olmak"
+    },
+    {
+     "de": "starke Nebenwirkungen",
+     "tr": "güçlü yan etkiler"
+    },
+    {
+     "de": "ohne Nebenwirkungen",
+     "tr": "yan etkisiz"
+    }
+   ],
+   "patterns": [
+    "pt:haben-sie",
+    "pt:ich-habe"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Yan etkisi var mı derken **Hat es Seite Wirkung?** yanlış. Doğrusu **Hat es Nebenwirkungen?**"
+   ],
+   "examples": [
+    {
+     "id": "lx:Nebenwirkung:1",
+     "de": "Hat dieses Medikament starke Nebenwirkungen?",
+     "tr": "Bu ilacın güçlü yan etkileri var mı?",
+     "img": "reading medicine leaflet",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Nebenwirkung:2",
+     "de": "Müdigkeit kann eine Nebenwirkung sein.",
+     "tr": "Yorgunluk bir yan etki olabilir.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Nebenwirkung:3",
+     "de": "Von den Tabletten krieg ich echt üble Nebenwirkungen.",
+     "tr": "Bu haplar bende çok kötü yan etki yapıyor.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Nebenwirkung:4",
+     "de": "– Haben Sie Nebenwirkungen bemerkt? – Ja, mir ist oft schlecht.",
+     "tr": "– Yan etki fark ettiniz mi? – Evet, sık sık midem bulanıyor.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "İlacın istenmeyen başka etkisini söyler.",
+    "ne_zaman_tr": "İlaç alırken doktora ve eczacıya sorarken.",
+    "parcalar": [
+     {
+      "de": "Neben",
+      "tr": "yan"
+     },
+     {
+      "de": "wirkung",
+      "tr": "etki"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Bereitschaftsdienst",
+   "de": "Bereitschaftsdienst",
+   "tr": "nöbetçi doktor hizmeti",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Bereitschaftsdienste",
+   "collocations": [
+    {
+     "de": "den Bereitschaftsdienst anrufen",
+     "tr": "nöbetçi doktor hizmetini aramak"
+    },
+    {
+     "de": "ärztlicher Bereitschaftsdienst",
+     "tr": "nöbetçi doktor hizmeti"
+    },
+    {
+     "de": "der Bereitschaftsdienst am Wochenende",
+     "tr": "hafta sonu nöbetçi doktor hizmeti"
+    }
+   ],
+   "patterns": [
+    "pt:imperativ-sie",
+    "pt:trennbar"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Nöbetçi doktor derken **Wache Arzt** yanlış. Doğrusu **der ärztliche Bereitschaftsdienst**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Bereitschaftsdienst:1",
+     "de": "Am Wochenende rufen Sie bitte den Bereitschaftsdienst an.",
+     "tr": "Hafta sonu lütfen nöbetçi doktor hizmetini arayın.",
+     "img": "doctor on call at night",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Bereitschaftsdienst:2",
+     "de": "Den ärztlichen Bereitschaftsdienst erreichen Sie unter 116 117.",
+     "tr": "Nöbetçi doktor hizmetine 116 117 numarasından ulaşırsınız.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Bereitschaftsdienst:3",
+     "de": "Die Praxis hat zu, ruf doch den Bereitschaftsdienst an.",
+     "tr": "Muayenehane kapalı, nöbetçi doktoru arasana.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Bereitschaftsdienst:4",
+     "de": "– Die Praxis ist heute zu. – Dann rufen Sie den Bereitschaftsdienst an.",
+     "tr": "– Muayenehane bugün kapalı. – O zaman nöbetçi doktor hizmetini arayın.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt",
+    "telefon",
+    "notfall"
+   ],
+   "exp": {
+    "anlam_tr": "Muayene saatleri dışındaki doktor hizmetini söyler.",
+    "ne_zaman_tr": "Muayenehane kapalıyken, durum acil ama hayati değilse.",
+    "parcalar": [
+     {
+      "de": "Bereitschafts",
+      "tr": "nöbet"
+     },
+     {
+      "de": "dienst",
+      "tr": "hizmeti"
+     }
+    ],
+    "ipucu_tr": "Numarası **116 117**, hayati tehlikede ise **112** ararsın."
+   }
+  },
+  {
+   "id": "lx:Schmerzmittel",
+   "de": "Schmerzmittel",
+   "tr": "ağrı kesici",
+   "pos": "noun",
+   "art": "das",
+   "pl": "Schmerzmittel",
+   "img": "painkiller pills",
+   "collocations": [
+    {
+     "de": "ein Schmerzmittel nehmen",
+     "tr": "ağrı kesici almak"
+    },
+    {
+     "de": "ein starkes Schmerzmittel",
+     "tr": "güçlü bir ağrı kesici"
+    },
+    {
+     "de": "Schmerzmittel ohne Rezept",
+     "tr": "reçetesiz ağrı kesici"
+    }
+   ],
+   "patterns": [
+    "pt:haben-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Ağrı kesici derken **Schmerz Mittel** yanlış. Bitişik yazılır: **Schmerzmittel**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Schmerzmittel:1",
+     "de": "Haben Sie ein Schmerzmittel ohne Rezept?",
+     "tr": "Reçetesiz bir ağrı kesiciniz var mı?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Schmerzmittel:2",
+     "de": "Nehmen Sie das Schmerzmittel nach dem Essen.",
+     "tr": "Ağrı kesiciyi yemekten sonra alın.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Schmerzmittel:3",
+     "de": "Ich hab schon 'n Schmerzmittel genommen, das wird gleich besser.",
+     "tr": "Ağrı kesici aldım bile, birazdan geçer.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Schmerzmittel:4",
+     "de": "– Haben Sie schon etwas genommen? – Ja, ein Schmerzmittel, aber es hilft nicht.",
+     "tr": "– Bir şey aldınız mı? – Evet, ağrı kesici, ama işe yaramıyor.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Ağrıyı azaltan ilacı söyler.",
+    "ne_zaman_tr": "Eczanede ve doktorda.",
+    "parcalar": [
+     {
+      "de": "Schmerz",
+      "tr": "ağrı"
+     },
+     {
+      "de": "mittel",
+      "tr": "ilacı"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Halsschmerzen",
+   "de": "Halsschmerzen",
+   "tr": "boğaz ağrısı",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Halsschmerzen",
+   "img": "woman with sore throat",
+   "collocations": [
+    {
+     "de": "starke Halsschmerzen",
+     "tr": "şiddetli boğaz ağrısı"
+    },
+    {
+     "de": "Halsschmerzen haben",
+     "tr": "boğazı ağrımak"
+    },
+    {
+     "de": "Tee gegen Halsschmerzen",
+     "tr": "boğaz ağrısına iyi gelen çay"
+    }
+   ],
+   "patterns": [
+    "pt:ich-habe",
+    "pt:mir-tut-weh",
+    "pt:seit"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Boğazım ağrıyor derken **Ich habe Halsschmerz** yanlış. Doğrusu **Ich habe Halsschmerzen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Halsschmerzen:1",
+     "de": "Haben Sie etwas gegen Halsschmerzen?",
+     "tr": "Boğaz ağrısı için bir şeyiniz var mı?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Halsschmerzen:2",
+     "de": "Wegen meiner Halsschmerzen kann ich kaum sprechen.",
+     "tr": "Boğaz ağrım yüzünden neredeyse konuşamıyorum.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Halsschmerzen:3",
+     "de": "Oje, ich krieg Halsschmerzen.",
+     "tr": "Eyvah, boğazım ağrımaya başlıyor.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Halsschmerzen:4",
+     "de": "– Was fehlt Ihnen? – Ich habe seit gestern starke Halsschmerzen.",
+     "tr": "– Şikâyetiniz nedir? – Dünden beri boğazım çok ağrıyor.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Boğazındaki ağrıyı söyler.",
+    "ne_zaman_tr": "Muayenede ve eczanede şikâyetini anlatırken.",
+    "parcalar": [
+     {
+      "de": "Hals",
+      "tr": "boğaz"
+     },
+     {
+      "de": "schmerzen",
+      "tr": "ağrısı"
+     }
+    ],
+    "ipucu_tr": "Boğazım ağrıyor demek için **Mir tut der Hals weh** diyebilirsin."
+   }
+  },
+  {
+   "id": "lx:Kopfschmerzen",
+   "de": "Kopfschmerzen",
+   "tr": "baş ağrısı",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Kopfschmerzen",
+   "img": "woman with headache",
+   "collocations": [
+    {
+     "de": "starke Kopfschmerzen",
+     "tr": "şiddetli baş ağrısı"
+    },
+    {
+     "de": "Kopfschmerzen bekommen",
+     "tr": "başı ağrımak"
+    },
+    {
+     "de": "eine Tablette gegen Kopfschmerzen",
+     "tr": "baş ağrısı hapı"
+    }
+   ],
+   "patterns": [
+    "pt:ich-habe",
+    "pt:mir-tut-weh",
+    "pt:seit"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Baş ağrım var derken **Ich habe eine Kopfschmerzen** yanlış. Doğrusu **Ich habe Kopfschmerzen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Kopfschmerzen:1",
+     "de": "Von dem Lärm bekomme ich Kopfschmerzen.",
+     "tr": "Bu gürültüden başım ağrıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Kopfschmerzen:2",
+     "de": "Gegen die Kopfschmerzen nehme ich eine Tablette.",
+     "tr": "Baş ağrısı için bir hap alıyorum.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Kopfschmerzen:3",
+     "de": "Boah, ich hab voll die Kopfschmerzen.",
+     "tr": "Of, başım çatlıyor.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Kopfschmerzen:4",
+     "de": "– Geht's dir nicht gut? – Nein, ich habe seit heute früh Kopfschmerzen.",
+     "tr": "– İyi değil misin? – Hayır, bu sabahtan beri başım ağrıyor.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Başındaki ağrıyı söyler.",
+    "ne_zaman_tr": "Muayenede ve eczanede şikâyetini anlatırken.",
+    "parcalar": [
+     {
+      "de": "Kopf",
+      "tr": "baş"
+     },
+     {
+      "de": "schmerzen",
+      "tr": "ağrısı"
+     }
+    ],
+    "ipucu_tr": "Başım ağrıyor demek için **Mir tut der Kopf weh** diyebilirsin."
+   }
+  },
+  {
+   "id": "lx:Bauchschmerzen",
+   "de": "Bauchschmerzen",
+   "tr": "karın ağrısı",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Bauchschmerzen",
+   "img": "person with stomach ache",
+   "collocations": [
+    {
+     "de": "starke Bauchschmerzen",
+     "tr": "şiddetli karın ağrısı"
+    },
+    {
+     "de": "Bauchschmerzen haben",
+     "tr": "karnı ağrımak"
+    },
+    {
+     "de": "Bauchschmerzen nach dem Essen",
+     "tr": "yemekten sonra karın ağrısı"
+    }
+   ],
+   "patterns": [
+    "pt:ich-habe",
+    "pt:mir-tut-weh",
+    "pt:seit"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Karnım ağrıyor derken **Mein Bauch tut Schmerzen** yanlış. Doğrusu **Ich habe Bauchschmerzen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Bauchschmerzen:1",
+     "de": "Das Kind hat seit heute Morgen Bauchschmerzen.",
+     "tr": "Çocuğun bu sabahtan beri karnı ağrıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Bauchschmerzen:2",
+     "de": "Nach dem Essen bekomme ich oft Bauchschmerzen.",
+     "tr": "Yemekten sonra karnım sık sık ağrıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Bauchschmerzen:3",
+     "de": "Ich hab echt Bauchschmerzen von dem Kuchen.",
+     "tr": "O kekten karnım fena ağrıdı.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Bauchschmerzen:4",
+     "de": "– Wo tut es weh? – Hier, ich habe starke Bauchschmerzen.",
+     "tr": "– Neresi ağrıyor? – Burası, karnım çok ağrıyor.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Karnındaki ağrıyı söyler.",
+    "ne_zaman_tr": "Muayenede ve eczanede şikâyetini anlatırken.",
+    "parcalar": [
+     {
+      "de": "Bauch",
+      "tr": "karın"
+     },
+     {
+      "de": "schmerzen",
+      "tr": "ağrısı"
+     }
+    ],
+    "ipucu_tr": "Karnım ağrıyor demek için **Mir tut der Bauch weh** diyebilirsin."
+   }
+  },
+  {
+   "id": "lx:Rückenschmerzen",
+   "de": "Rückenschmerzen",
+   "tr": "sırt ağrısı",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Rückenschmerzen",
+   "img": "person with back pain",
+   "collocations": [
+    {
+     "de": "starke Rückenschmerzen",
+     "tr": "şiddetli sırt ağrısı"
+    },
+    {
+     "de": "Rückenschmerzen haben",
+     "tr": "sırtı ağrımak"
+    },
+    {
+     "de": "Rückenschmerzen vom Sitzen",
+     "tr": "oturmaktan sırt ağrısı"
+    }
+   ],
+   "patterns": [
+    "pt:ich-habe",
+    "pt:mir-tut-weh",
+    "pt:seit"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Sırtım ağrıyor derken **Mein Rücken hat Schmerzen** yanlış. Doğrusu **Ich habe Rückenschmerzen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Rückenschmerzen:1",
+     "de": "Von der Arbeit bekomme ich oft Rückenschmerzen.",
+     "tr": "İşten dolayı sık sık sırtım ağrıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Rückenschmerzen:2",
+     "de": "Seit einer Woche habe ich starke Rückenschmerzen.",
+     "tr": "Bir haftadır sırtım çok ağrıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Rückenschmerzen:3",
+     "de": "Ich hab schon wieder Rückenschmerzen vom Sitzen.",
+     "tr": "Oturmaktan yine sırtım ağrıdı.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Rückenschmerzen:4",
+     "de": "– Seit wann haben Sie Rückenschmerzen? – Seit dem Umzug.",
+     "tr": "– Ne zamandan beri sırtınız ağrıyor? – Taşınmadan beri.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Sırtındaki ağrıyı söyler.",
+    "ne_zaman_tr": "Muayenede ve eczanede şikâyetini anlatırken.",
+    "parcalar": [
+     {
+      "de": "Rücken",
+      "tr": "sırt"
+     },
+     {
+      "de": "schmerzen",
+      "tr": "ağrısı"
+     }
+    ],
+    "ipucu_tr": "Sırtım ağrıyor demek için **Mir tut der Rücken weh** diyebilirsin."
+   }
+  },
+  {
+   "id": "lx:Schwindel",
+   "de": "Schwindel",
+   "tr": "baş dönmesi",
+   "pos": "noun",
+   "art": "der",
+   "pl": "-",
+   "collocations": [
+    {
+     "de": "starker Schwindel",
+     "tr": "şiddetli baş dönmesi"
+    },
+    {
+     "de": "Schwindel und Übelkeit",
+     "tr": "baş dönmesi ve mide bulantısı"
+    },
+    {
+     "de": "Schwindel haben",
+     "tr": "başı dönmek"
+    }
+   ],
+   "patterns": [
+    "pt:ich-habe",
+    "pt:seit"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Başım dönüyor derken **Ich bin schwindelig** yanlış. Doğrusu **Mir ist schwindelig**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Schwindel:1",
+     "de": "Seit heute Morgen habe ich starken Schwindel.",
+     "tr": "Bu sabahtan beri başım çok dönüyor.",
+     "img": "dizzy woman holding head",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Schwindel:2",
+     "de": "Bei Schwindel setzen Sie sich bitte sofort hin.",
+     "tr": "Başınız dönerse lütfen hemen oturun.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Schwindel:3",
+     "de": "Mir ist schwindelig, ich muss mich kurz setzen.",
+     "tr": "Başım dönüyor, biraz oturmam lazım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Schwindel:4",
+     "de": "– Haben Sie auch Schwindel? – Ja, vor allem am Morgen.",
+     "tr": "– Baş dönmeniz de var mı? – Evet, özellikle sabahları.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Etrafın dönüyormuş gibi hissetmeyi söyler.",
+    "ne_zaman_tr": "Doktora şikâyetini anlatırken.",
+    "parcalar": [],
+    "ipucu_tr": "Konuşmada çoğunlukla **Mir ist schwindelig** dersin, başım dönüyor demektir."
+   }
+  },
+  {
+   "id": "lx:Übelkeit",
+   "de": "Übelkeit",
+   "tr": "mide bulantısı",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Übelkeiten",
+   "collocations": [
+    {
+     "de": "starke Übelkeit",
+     "tr": "şiddetli mide bulantısı"
+    },
+    {
+     "de": "gegen Übelkeit",
+     "tr": "mide bulantısına karşı"
+    },
+    {
+     "de": "Übelkeit am Morgen",
+     "tr": "sabah bulantısı"
+    }
+   ],
+   "patterns": [
+    "pt:haben-sie",
+    "pt:ich-war"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Midem bulanıyor derken **Mein Magen hat Übelkeit** yanlış. Doğrusu **Mir ist übel**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Übelkeit:1",
+     "de": "Haben Sie etwas gegen Übelkeit?",
+     "tr": "Mide bulantısı için bir şeyiniz var mı?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Übelkeit:2",
+     "de": "Nach der Tablette hatte ich starke Übelkeit.",
+     "tr": "Haptan sonra midem çok bulandı.",
+     "layer": "hd",
+     "img": "nauseous person on sofa"
+    },
+    {
+     "id": "lx:Übelkeit:3",
+     "de": "Mir ist so schlecht, die Übelkeit geht nicht weg.",
+     "tr": "Midem çok bulanıyor, bir türlü geçmiyor.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Übelkeit:4",
+     "de": "– Haben Sie noch andere Beschwerden? – Ja, Übelkeit und Kopfschmerzen.",
+     "tr": "– Başka şikâyetiniz var mı? – Evet, mide bulantısı ve baş ağrısı.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Kusacakmış gibi hissetmeyi söyler.",
+    "ne_zaman_tr": "Doktora ve eczacıya şikâyetini anlatırken.",
+    "parcalar": [],
+    "ipucu_tr": "Konuşmada **Mir ist schlecht** diyebilirsin, yani midem bulanıyor."
+   }
+  },
+  {
+   "id": "lx:Durchfall",
+   "de": "Durchfall",
+   "tr": "ishal",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Durchfälle",
+   "collocations": [
+    {
+     "de": "Durchfall haben",
+     "tr": "ishal olmak"
+    },
+    {
+     "de": "Durchfall bekommen",
+     "tr": "ishal olmak"
+    },
+    {
+     "de": "ein Mittel gegen Durchfall",
+     "tr": "ishal ilacı"
+    }
+   ],
+   "patterns": [
+    "pt:ich-habe",
+    "pt:seit",
+    "pt:haben-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "İshal oldum derken **Ich bin Durchfall geworden** yanlış. Doğrusu **Ich habe Durchfall**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Durchfall:1",
+     "de": "Ich habe seit zwei Tagen Durchfall.",
+     "tr": "İki gündür ishalim.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Durchfall:2",
+     "de": "Haben Sie ein Mittel gegen Durchfall?",
+     "tr": "İshal için bir ilacınız var mı?",
+     "layer": "hd",
+     "img": "pharmacy medicine shelf"
+    },
+    {
+     "id": "lx:Durchfall:3",
+     "de": "Der Kleine hat Durchfall, ich bleib heut daheim.",
+     "tr": "Küçüğün ishali var, bugün evde kalıyorum.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Durchfall:4",
+     "de": "– Haben Sie auch Fieber? – Nein, aber starken Durchfall.",
+     "tr": "– Ateşiniz de var mı? – Hayır, ama şiddetli ishalim var.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Dışkının sık ve sulu olmasını söyler.",
+    "ne_zaman_tr": "Doktorda ve eczanede.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Ausländerbehörde",
+   "de": "Ausländerbehörde",
+   "tr": "yabancılar dairesi",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Ausländerbehörden",
+   "collocations": [
+    {
+     "de": "zur Ausländerbehörde gehen",
+     "tr": "yabancılar dairesine gitmek"
+    },
+    {
+     "de": "bei der Ausländerbehörde",
+     "tr": "yabancılar dairesinde"
+    },
+    {
+     "de": "ein Termin bei der Ausländerbehörde",
+     "tr": "yabancılar dairesi randevusu"
+    }
+   ],
+   "patterns": [
+    "pt:ich-habe",
+    "pt:wo-ist"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Yabancılar dairesine gidiyorum derken **Ich gehe Ausländerbehörde** yanlış. Doğrusu **Ich gehe zur Ausländerbehörde**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Ausländerbehörde:1",
+     "de": "Ich habe nächste Woche einen Termin bei der Ausländerbehörde.",
+     "tr": "Gelecek hafta yabancılar dairesinden randevum var.",
+     "img": "immigration office waiting room",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Ausländerbehörde:2",
+     "de": "Die Ausländerbehörde hat mir einen Brief geschickt.",
+     "tr": "Yabancılar dairesi bana bir mektup gönderdi.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Ausländerbehörde:3",
+     "de": "Bei der Ausländerbehörde wartest du echt ewig.",
+     "tr": "Yabancılar dairesinde gerçekten saatlerce beklersin.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Ausländerbehörde:4",
+     "de": "– Wo bekomme ich das Formular? – Bei der Ausländerbehörde, im ersten Stock.",
+     "tr": "– Formu nereden alabilirim? – Yabancılar dairesinden, birinci katta.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt"
+   ],
+   "exp": {
+    "anlam_tr": "Yabancıların oturma işlerine bakan resmî daireyi söyler.",
+    "ne_zaman_tr": "Oturma izni işlerinde.",
+    "parcalar": [
+     {
+      "de": "Ausländer",
+      "tr": "yabancılar"
+     },
+     {
+      "de": "behörde",
+      "tr": "dairesi"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Aufenthaltstitel",
+   "de": "Aufenthaltstitel",
+   "tr": "oturma izni",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Aufenthaltstitel",
+   "collocations": [
+    {
+     "de": "den Aufenthaltstitel verlängern",
+     "tr": "oturma iznini uzatmak"
+    },
+    {
+     "de": "einen Aufenthaltstitel beantragen",
+     "tr": "oturma izni için başvurmak"
+    },
+    {
+     "de": "der elektronische Aufenthaltstitel",
+     "tr": "elektronik oturma izni kartı"
+    }
+   ],
+   "patterns": [
+    "pt:ich-moechte",
+    "pt:haben-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Oturma iznimi uzatıyorum derken **Ich mache meinen Aufenthaltstitel länger** yanlış. Doğrusu **Ich verlängere meinen Aufenthaltstitel**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Aufenthaltstitel:1",
+     "de": "Ihr Aufenthaltstitel ist noch bis Oktober gültig.",
+     "tr": "Oturma izniniz ekime kadar geçerli.",
+     "img": "residence permit card",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Aufenthaltstitel:2",
+     "de": "Ich möchte meinen Aufenthaltstitel verlängern.",
+     "tr": "Oturma iznimi uzatmak istiyorum.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Aufenthaltstitel:3",
+     "de": "Mein Aufenthaltstitel läuft im März ab, da muss ich noch hin.",
+     "tr": "Oturma iznimin süresi martta doluyor, oraya gitmem lazım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Aufenthaltstitel:4",
+     "de": "– Haben Sie Ihren Aufenthaltstitel dabei? – Ja, hier ist die Karte.",
+     "tr": "– Oturma izniniz yanınızda mı? – Evet, işte kart.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt"
+   ],
+   "exp": {
+    "anlam_tr": "Bu ülkede kalma hakkını gösteren belgeyi söyler.",
+    "ne_zaman_tr": "Yabancılar dairesinde ve iş başvurusunda.",
+    "parcalar": [],
+    "ipucu_tr": "Türlerinden biri **Aufenthaltserlaubnis**, yani süreli oturma izni."
+   }
+  },
+  {
+   "id": "lx:Bürgerbüro",
+   "de": "Bürgerbüro",
+   "tr": "vatandaş bürosu",
+   "pos": "noun",
+   "art": "das",
+   "pl": "Bürgerbüros",
+   "collocations": [
+    {
+     "de": "im Bürgerbüro",
+     "tr": "vatandaş bürosunda"
+    },
+    {
+     "de": "ins Bürgerbüro gehen",
+     "tr": "vatandaş bürosuna gitmek"
+    },
+    {
+     "de": "ein Termin im Bürgerbüro",
+     "tr": "vatandaş bürosu randevusu"
+    }
+   ],
+   "patterns": [
+    "pt:wo-ist",
+    "pt:ich-muss"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Vatandaş bürosunda derken **in Bürgerbüro** yanlış. Doğrusu **im Bürgerbüro**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Bürgerbüro:1",
+     "de": "Das Bürgerbüro ist im Rathaus, gleich am Stadtplatz.",
+     "tr": "Vatandaş bürosu belediyede, meydanın hemen yanında.",
+     "img": "city hall service counter",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Bürgerbüro:2",
+     "de": "Im Bürgerbüro müssen Sie zuerst eine Nummer ziehen.",
+     "tr": "Vatandaş bürosunda önce numara almanız gerekiyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Bürgerbüro:3",
+     "de": "Ich muss morgen noch schnell ins Bürgerbüro.",
+     "tr": "Yarın bir de hemen vatandaş bürosuna gitmem lazım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Bürgerbüro:4",
+     "de": "– Wo melde ich mich an? – Im Bürgerbüro, Zimmer zwölf.",
+     "tr": "– Kaydımı nerede yaptırırım? – Vatandaş bürosunda, on iki numaralı oda.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt"
+   ],
+   "exp": {
+    "anlam_tr": "Belediyede kayıt ve belge işlerine bakan yeri söyler.",
+    "ne_zaman_tr": "Adres kaydı ve belge işlerinde.",
+    "parcalar": [
+     {
+      "de": "Bürger",
+      "tr": "vatandaş"
+     },
+     {
+      "de": "büro",
+      "tr": "bürosu"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Meldebescheinigung",
+   "de": "Meldebescheinigung",
+   "tr": "ikamet belgesi",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Meldebescheinigungen",
+   "collocations": [
+    {
+     "de": "eine Meldebescheinigung beantragen",
+     "tr": "ikamet belgesi istemek"
+    },
+    {
+     "de": "eine Meldebescheinigung bekommen",
+     "tr": "ikamet belgesi almak"
+    },
+    {
+     "de": "die Meldebescheinigung für die Bank",
+     "tr": "banka için ikamet belgesi"
+    }
+   ],
+   "patterns": [
+    "pt:ich-brauche"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "İkamet belgesi lazım derken **Ich brauche Meldebescheinigung** yanlış. Doğrusu **Ich brauche eine Meldebescheinigung**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Meldebescheinigung:1",
+     "de": "Für das Konto brauche ich eine Meldebescheinigung.",
+     "tr": "Hesap için ikamet belgesine ihtiyacım var.",
+     "img": "official document with stamp",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Meldebescheinigung:2",
+     "de": "Die Meldebescheinigung bekommen Sie im Bürgerbüro.",
+     "tr": "İkamet belgesini vatandaş bürosundan alırsınız.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Meldebescheinigung:3",
+     "de": "Die wollen bei der Bank echt 'ne Meldebescheinigung von mir.",
+     "tr": "Bankada benden cidden ikamet belgesi istiyorlar.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Meldebescheinigung:4",
+     "de": "– Brauchen Sie noch etwas? – Ja, eine Meldebescheinigung, bitte.",
+     "tr": "– Başka bir şey lazım mı? – Evet, bir ikamet belgesi lütfen.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt",
+    "bank"
+   ],
+   "exp": {
+    "anlam_tr": "Nerede kayıtlı oturduğunu gösteren belgeyi söyler.",
+    "ne_zaman_tr": "Banka ya da bir şirket adresini belgelemeni isteyince.",
+    "parcalar": [
+     {
+      "de": "Melde",
+      "tr": "kayıt"
+     },
+     {
+      "de": "bescheinigung",
+      "tr": "belgesi"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Unterlagen",
+   "de": "Unterlagen",
+   "tr": "evrak, belgeler",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Unterlagen",
+   "img": "stack of documents",
+   "collocations": [
+    {
+     "de": "die Unterlagen abgeben",
+     "tr": "evrakı teslim etmek"
+    },
+    {
+     "de": "die Unterlagen mitbringen",
+     "tr": "evrakı yanında getirmek"
+    },
+    {
+     "de": "vollständige Unterlagen",
+     "tr": "eksiksiz evrak"
+    }
+   ],
+   "patterns": [
+    "pt:imperativ-sie",
+    "pt:ich-brauche"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Evrakı teslim ettim derken **Ich habe die Unterlagen gegeben** yanlış. Doğrusu **Ich habe die Unterlagen abgegeben**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Unterlagen:1",
+     "de": "Bitte bringen Sie alle Unterlagen mit.",
+     "tr": "Lütfen bütün evrakı yanınızda getirin.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Unterlagen:2",
+     "de": "Ihre Unterlagen sind leider nicht vollständig.",
+     "tr": "Evrakınız maalesef eksik.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Unterlagen:3",
+     "de": "Ich such schon ewig meine Unterlagen.",
+     "tr": "Saatlerdir evraklarımı arıyorum.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Unterlagen:4",
+     "de": "– Welche Unterlagen brauchen Sie? – Ihren Pass und den Mietvertrag.",
+     "tr": "– Hangi belgelere ihtiyacınız var? – Pasaportunuz ve kira sözleşmeniz.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt",
+    "arbeit"
+   ],
+   "exp": {
+    "anlam_tr": "Bir iş için gereken kâğıtları söyler.",
+    "ne_zaman_tr": "Resmî dairede, bankada ve iş başvurusunda.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Nachweis",
+   "de": "Nachweis",
+   "tr": "belge, kanıt",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Nachweise",
+   "collocations": [
+    {
+     "de": "einen Nachweis bringen",
+     "tr": "belge getirmek"
+    },
+    {
+     "de": "der Nachweis über das Gehalt",
+     "tr": "maaş belgesi"
+    },
+    {
+     "de": "als Nachweis",
+     "tr": "kanıt olarak"
+    }
+   ],
+   "patterns": [
+    "pt:ich-brauche",
+    "pt:haben-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Maaş belgesi derken **Beweis für mein Gehalt** yanlış. Doğrusu **Nachweis über mein Gehalt**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Nachweis:1",
+     "de": "Als Nachweis reicht Ihre Gehaltsabrechnung.",
+     "tr": "Kanıt olarak maaş bordronuz yeterli.",
+     "img": "person showing document at counter",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Nachweis:2",
+     "de": "Ich brauche noch einen Nachweis von meiner Krankenkasse.",
+     "tr": "Sağlık sigortamdan bir belge daha lazım.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Nachweis:3",
+     "de": "Die wollen schon wieder 'nen Nachweis von mir.",
+     "tr": "Yine benden belge istiyorlar.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Nachweis:4",
+     "de": "– Haben Sie einen Nachweis über Ihre Wohnung? – Ja, hier ist der Mietvertrag.",
+     "tr": "– Eviniz için bir belgeniz var mı? – Evet, işte kira sözleşmesi.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt",
+    "arbeit"
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin doğru olduğunu gösteren belgeyi söyler.",
+    "ne_zaman_tr": "Resmî dairede belge istenince.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Frist",
+   "de": "Frist",
+   "tr": "son tarih, süre",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Fristen",
+   "collocations": [
+    {
+     "de": "die Frist einhalten",
+     "tr": "süreye uymak"
+    },
+    {
+     "de": "die Frist verpassen",
+     "tr": "süreyi kaçırmak"
+    },
+    {
+     "de": "eine Frist von zwei Wochen",
+     "tr": "iki haftalık süre"
+    }
+   ],
+   "patterns": [
+    "pt:koennten-sie",
+    "pt:um-uhr"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Süreyi kaçırdım derken **Ich habe die Frist vermisst** yanlış. Doğrusu **Ich habe die Frist verpasst**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Frist:1",
+     "de": "Die Frist endet am 15. März.",
+     "tr": "Süre 15 Mart'ta doluyor.",
+     "img": "calendar with marked deadline",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Frist:2",
+     "de": "Könnten Sie die Frist bitte um eine Woche verlängern?",
+     "tr": "Süreyi bir hafta uzatabilir misiniz lütfen?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Frist:3",
+     "de": "Oh nein, die Frist war ja schon gestern!",
+     "tr": "Eyvah, son tarih dünmüş!",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Frist:4",
+     "de": "– Bis wann habe ich Zeit? – Die Frist läuft bis Freitag.",
+     "tr": "– Ne zamana kadar vaktim var? – Süre cumaya kadar.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt"
+   ],
+   "exp": {
+    "anlam_tr": "Bir işin bitmesi gereken son zamanı söyler.",
+    "ne_zaman_tr": "Resmî mektup okurken.",
+    "parcalar": [],
+    "ipucu_tr": "Mektupta **Frist**, yani son tarih görünce hemen tarihe bak."
+   }
+  },
+  {
+   "id": "lx:Mahnung",
+   "de": "Mahnung",
+   "tr": "ödeme uyarısı, ihtar",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Mahnungen",
+   "collocations": [
+    {
+     "de": "eine Mahnung bekommen",
+     "tr": "ödeme uyarısı almak"
+    },
+    {
+     "de": "die erste Mahnung",
+     "tr": "ilk ödeme uyarısı"
+    },
+    {
+     "de": "eine Mahnung schicken",
+     "tr": "ödeme uyarısı göndermek"
+    }
+   ],
+   "patterns": [
+    "pt:perfekt-haben",
+    "pt:w-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Uyarı mektubu geldi derken **Ich habe eine Warnung bekommen** yanlış. Doğrusu **Ich habe eine Mahnung bekommen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Mahnung:1",
+     "de": "Heute kam eine Mahnung von der Stromfirma.",
+     "tr": "Bugün elektrik şirketinden ödeme uyarısı geldi.",
+     "img": "reminder letter and bill",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Mahnung:2",
+     "de": "Zahlen Sie bitte bald, sonst bekommen Sie eine Mahnung.",
+     "tr": "Lütfen yakında ödeyin, yoksa ödeme uyarısı alırsınız.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Mahnung:3",
+     "de": "Schon wieder 'ne Mahnung, ich hab doch längst bezahlt!",
+     "tr": "Yine ödeme uyarısı, ben çoktan ödedim ki!",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Mahnung:4",
+     "de": "– Warum haben Sie mir eine Mahnung geschickt? – Ihre Rechnung ist noch offen.",
+     "tr": "– Bana neden ödeme uyarısı gönderdiniz? – Faturanız hâlâ ödenmemiş.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt",
+    "bank",
+    "post"
+   ],
+   "exp": {
+    "anlam_tr": "Ödenmemiş para için gelen uyarı mektubunu söyler.",
+    "ne_zaman_tr": "Posta kutunda ödenmemiş fatura için.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Staatsangehörigkeit",
+   "de": "Staatsangehörigkeit",
+   "tr": "vatandaşlık, uyruk",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Staatsangehörigkeiten",
+   "collocations": [
+    {
+     "de": "die deutsche Staatsangehörigkeit",
+     "tr": "Alman vatandaşlığı"
+    },
+    {
+     "de": "die Staatsangehörigkeit angeben",
+     "tr": "uyruğunu belirtmek"
+    },
+    {
+     "de": "zwei Staatsangehörigkeiten",
+     "tr": "iki vatandaşlık"
+    }
+   ],
+   "patterns": [
+    "pt:imperativ-sie",
+    "pt:w-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Uyruğum Türk derken **Meine Staatsangehörigkeit ist Türkei** yanlış. Doğrusu **Meine Staatsangehörigkeit ist türkisch**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Staatsangehörigkeit:1",
+     "de": "Tragen Sie hier bitte Ihre Staatsangehörigkeit ein.",
+     "tr": "Lütfen uyruğunuzu buraya yazın.",
+     "img": "passport and form on table",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Staatsangehörigkeit:2",
+     "de": "Welche Staatsangehörigkeit haben Sie?",
+     "tr": "Hangi ülkenin vatandaşısınız?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Staatsangehörigkeit:3",
+     "de": "Mein Kollege hat zwei Staatsangehörigkeiten, ziemlich praktisch.",
+     "tr": "İş arkadaşımın iki vatandaşlığı var, epey pratik.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Staatsangehörigkeit:4",
+     "de": "– Und Ihre Staatsangehörigkeit? – Das steht hier im Pass.",
+     "tr": "– Peki uyruğunuz? – Burada, pasaportta yazıyor.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt"
+   ],
+   "exp": {
+    "anlam_tr": "Hangi ülkenin vatandaşı olduğunu söyler.",
+    "ne_zaman_tr": "Form doldururken ve resmî dairede.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Familienname",
+   "de": "Familienname",
+   "tr": "soyadı",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Familiennamen",
+   "collocations": [
+    {
+     "de": "den Familiennamen buchstabieren",
+     "tr": "soyadını harf harf söylemek"
+    },
+    {
+     "de": "Vorname und Familienname",
+     "tr": "ad ve soyadı"
+    },
+    {
+     "de": "Wie ist Ihr Familienname?",
+     "tr": "Soyadınız nedir?"
+    }
+   ],
+   "patterns": [
+    "pt:w-frage",
+    "pt:koennten-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Soyadımı yazdım derken **Ich habe mein Familienname geschrieben** yanlış. Doğrusu **Ich habe meinen Familiennamen geschrieben**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Familienname:1",
+     "de": "Schreiben Sie hier bitte Ihren Familiennamen.",
+     "tr": "Lütfen soyadınızı buraya yazın.",
+     "img": "filling in name on a form",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Familienname:2",
+     "de": "Könnten Sie Ihren Familiennamen bitte buchstabieren?",
+     "tr": "Soyadınızı harf harf söyleyebilir misiniz lütfen?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Familienname:3",
+     "de": "Mein Familienname ist echt schwer, ich buchstabier ihn lieber gleich.",
+     "tr": "Soyadım gerçekten zor, en iyisi hemen harf harf söyleyeyim.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Familienname:4",
+     "de": "– Wie ist Ihr Familienname? – Moment, ich buchstabiere ihn Ihnen.",
+     "tr": "– Soyadınız nedir? – Bir dakika, harf harf söyleyeyim.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt",
+    "telefon"
+   ],
+   "exp": {
+    "anlam_tr": "Ailenin ortak adını söyler.",
+    "ne_zaman_tr": "Form doldururken ve telefonda.",
+    "parcalar": [
+     {
+      "de": "Familien",
+      "tr": "aile"
+     },
+     {
+      "de": "name",
+      "tr": "adı"
+     }
+    ],
+    "ipucu_tr": "Aynı anlamda **Nachname** de çok duyarsın."
+   }
+  },
+  {
+   "id": "lx:Geburtsort",
+   "de": "Geburtsort",
+   "tr": "doğum yeri",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Geburtsorte",
+   "collocations": [
+    {
+     "de": "Geburtsort und Geburtsdatum",
+     "tr": "doğum yeri ve tarihi"
+    },
+    {
+     "de": "den Geburtsort eintragen",
+     "tr": "doğum yerini yazmak"
+    },
+    {
+     "de": "den Geburtsort angeben",
+     "tr": "doğum yerini belirtmek"
+    }
+   ],
+   "patterns": [
+    "pt:imperativ-sie",
+    "pt:w-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Doğum yerim İzmir derken **Mein Geburtsort ist in Izmir** yanlış. Doğrusu **Mein Geburtsort ist Izmir**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Geburtsort:1",
+     "de": "Bitte nennen Sie Ihren Geburtsort.",
+     "tr": "Lütfen doğum yerinizi söyleyin.",
+     "img": "birth certificate document",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Geburtsort:2",
+     "de": "Geburtsdatum und Geburtsort stehen im Pass.",
+     "tr": "Doğum tarihi ve doğum yeri pasaportta yazıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Geburtsort:3",
+     "de": "Was schreib ich denn beim Geburtsort hin?",
+     "tr": "Doğum yerine ne yazayım ki?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Geburtsort:4",
+     "de": "– Und Ihr Geburtsort? – Landshut.",
+     "tr": "– Peki doğum yeriniz? – Landshut.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt"
+   ],
+   "exp": {
+    "anlam_tr": "Doğduğun şehri söyler.",
+    "ne_zaman_tr": "Form doldururken ve resmî dairede.",
+    "parcalar": [
+     {
+      "de": "Geburts",
+      "tr": "doğum"
+     },
+     {
+      "de": "ort",
+      "tr": "yeri"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Wartenummer",
+   "de": "Wartenummer",
+   "tr": "sıra numarası",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Wartenummern",
+   "img": "queue number ticket",
+   "collocations": [
+    {
+     "de": "eine Wartenummer ziehen",
+     "tr": "sıra numarası almak"
+    },
+    {
+     "de": "die Wartenummer aufrufen",
+     "tr": "sıra numarasını çağırmak"
+    },
+    {
+     "de": "die Wartenummer erscheint",
+     "tr": "sıra numarası görünür"
+    }
+   ],
+   "patterns": [
+    "pt:imperativ-sie",
+    "pt:ich-habe"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Sıra numarası alıyorum derken **Ich nehme Wartenummer** yanlış. Doğrusu **Ich ziehe eine Wartenummer**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Wartenummer:1",
+     "de": "Ziehen Sie bitte zuerst eine Wartenummer.",
+     "tr": "Lütfen önce sıra numarası alın.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Wartenummer:2",
+     "de": "Ihre Wartenummer erscheint oben auf dem Bildschirm.",
+     "tr": "Sıra numaranız yukarıdaki ekranda görünür.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Wartenummer:3",
+     "de": "Ich hab die Wartenummer 87, das dauert noch ewig.",
+     "tr": "Sıra numaram 87, daha çok sürer.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Wartenummer:4",
+     "de": "– Welche Wartenummer haben Sie? – Die 42, ich bin gleich dran.",
+     "tr": "– Sıra numaranız kaç? – 42, sıra birazdan bana geliyor.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt"
+   ],
+   "exp": {
+    "anlam_tr": "Resmî dairede sıranı gösteren numarayı söyler.",
+    "ne_zaman_tr": "Vatandaş bürosunda ve benzeri yerlerde.",
+    "parcalar": [
+     {
+      "de": "Warte",
+      "tr": "bekleme"
+     },
+     {
+      "de": "nummer",
+      "tr": "numarası"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Jobcenter",
+   "de": "Jobcenter",
+   "tr": "iş ve geçim desteği dairesi",
+   "pos": "noun",
+   "art": "das",
+   "pl": "Jobcenter",
+   "collocations": [
+    {
+     "de": "zum Jobcenter gehen",
+     "tr": "Jobcenter dairesine gitmek"
+    },
+    {
+     "de": "beim Jobcenter",
+     "tr": "Jobcenter dairesinde"
+    },
+    {
+     "de": "ein Brief vom Jobcenter",
+     "tr": "Jobcenter dairesinden mektup"
+    }
+   ],
+   "patterns": [
+    "pt:ich-habe",
+    "pt:ich-war"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Jobcenter dairesine gidiyorum derken **Ich gehe Jobcenter** yanlış. Doğrusu **Ich gehe zum Jobcenter**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Jobcenter:1",
+     "de": "Ich habe morgen einen Termin beim Jobcenter.",
+     "tr": "Yarın Jobcenter'dan randevum var.",
+     "img": "job center office",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Jobcenter:2",
+     "de": "Das Jobcenter hat mir einen Brief geschickt.",
+     "tr": "Jobcenter bana bir mektup gönderdi.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Jobcenter:3",
+     "de": "Beim Jobcenter musst du echt Geduld haben.",
+     "tr": "Jobcenter'da gerçekten sabırlı olman lazım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Jobcenter:4",
+     "de": "– Wo warst du heute Morgen? – Beim Jobcenter, das hat lange gedauert.",
+     "tr": "– Bu sabah neredeydin? – Jobcenter'daydım, uzun sürdü.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt",
+    "arbeit"
+   ],
+   "exp": {
+    "anlam_tr": "Geçimini sağlayamayan iş arayanlara destek veren resmî daireyi söyler.",
+    "ne_zaman_tr": "Geçim desteği başvurusunda ve ondan mektup gelince.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Dolmetscher",
+   "de": "Dolmetscher",
+   "tr": "tercüman, sözlü çevirmen",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Dolmetscher",
+   "collocations": [
+    {
+     "de": "einen Dolmetscher brauchen",
+     "tr": "tercümana ihtiyaç duymak"
+    },
+    {
+     "de": "mit Dolmetscher",
+     "tr": "tercümanla"
+    },
+    {
+     "de": "als Dolmetscher arbeiten",
+     "tr": "tercüman olarak çalışmak"
+    }
+   ],
+   "patterns": [
+    "pt:ich-brauche",
+    "pt:haben-sie"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Tercümana ihtiyacım var derken **Ich brauche Dolmetscher** yanlış. Doğrusu **Ich brauche einen Dolmetscher**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Dolmetscher:1",
+     "de": "Zum Termin bringe ich einen Dolmetscher mit.",
+     "tr": "Randevuya bir tercüman getiriyorum.",
+     "img": "interpreter at a meeting",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Dolmetscher:2",
+     "de": "Brauchen Sie für das Gespräch einen Dolmetscher?",
+     "tr": "Görüşme için tercümana ihtiyacınız var mı?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Dolmetscher:3",
+     "de": "Kannst du für mich beim Amt 'n bisschen Dolmetscher spielen?",
+     "tr": "Resmî dairede bana biraz tercümanlık yapar mısın?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Dolmetscher:4",
+     "de": "– Haben Sie einen Dolmetscher dabei? – Nein, aber meine Schwester kann übersetzen.",
+     "tr": "– Yanınızda tercüman var mı? – Hayır, ama kız kardeşim çevirebilir.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt",
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Konuşulanları başka dile çeviren kişiyi söyler.",
+    "ne_zaman_tr": "Resmî dairede ve doktorda.",
+    "parcalar": [],
+    "ipucu_tr": "Yazılı metni çeviren kişiye ise **Übersetzer** denir."
+   }
+  },
+  {
+   "id": "lx:beantragen",
+   "de": "beantragen",
+   "tr": "resmî olarak başvurmak",
+   "pos": "verb",
+   "verb": {
+    "praesens3": "beantragt",
+    "praeteritum": "beantragte",
+    "perfekt": "hat beantragt",
+    "aux": "haben",
+    "case": [
+     "akk"
+    ]
+   },
+   "collocations": [
+    {
+     "de": "einen Pass beantragen",
+     "tr": "pasaport için başvurmak"
+    },
+    {
+     "de": "Wohngeld beantragen",
+     "tr": "konut yardımı için başvurmak"
+    },
+    {
+     "de": "online beantragen",
+     "tr": "internetten başvurmak"
+    }
+   ],
+   "patterns": [
+    "pt:ich-moechte",
+    "pt:perfekt-haben"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Pasaport için başvurdum derken **Ich habe für Pass beantragt** yanlış. Doğrusu **Ich habe einen Pass beantragt**."
+   ],
+   "examples": [
+    {
+     "id": "lx:beantragen:1",
+     "de": "Ich möchte einen neuen Pass beantragen.",
+     "tr": "Yeni pasaport için başvurmak istiyorum.",
+     "img": "person filling application at office",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:beantragen:2",
+     "de": "Wo kann ich Kindergeld beantragen?",
+     "tr": "Çocuk parası için nereye başvurabilirim?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:beantragen:3",
+     "de": "Hast du das Wohngeld schon beantragt?",
+     "tr": "Konut yardımı için başvurdun mu?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:beantragen:4",
+     "de": "– Was möchten Sie beantragen? – Eine Meldebescheinigung, bitte.",
+     "tr": "– Ne için başvurmak istiyorsunuz? – İkamet belgesi için, lütfen.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt"
+   ],
+   "exp": {
+    "anlam_tr": "Resmî bir daireden bir şeyi yazılı istemeyi söyler.",
+    "ne_zaman_tr": "Resmî dairede ve form doldururken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:verlängern",
+   "de": "verlängern",
+   "tr": "uzatmak",
+   "pos": "verb",
+   "verb": {
+    "praesens3": "verlängert",
+    "praeteritum": "verlängerte",
+    "perfekt": "hat verlängert",
+    "aux": "haben",
+    "case": [
+     "akk"
+    ]
+   },
+   "collocations": [
+    {
+     "de": "die Aufenthaltserlaubnis verlängern",
+     "tr": "oturma iznini uzatmak"
+    },
+    {
+     "de": "den Vertrag verlängern",
+     "tr": "sözleşmeyi uzatmak"
+    },
+    {
+     "de": "die Frist verlängern",
+     "tr": "süreyi uzatmak"
+    }
+   ],
+   "patterns": [
+    "pt:koennten-sie",
+    "pt:ich-muss"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Sözleşmeyi uzatıyorum derken **Ich mache den Vertrag lang** yanlış. Doğrusu **Ich verlängere den Vertrag**."
+   ],
+   "examples": [
+    {
+     "id": "lx:verlängern:1",
+     "de": "Ich muss meine Aufenthaltserlaubnis verlängern lassen.",
+     "tr": "Oturma iznimi uzattırmam gerekiyor.",
+     "img": "person at government office counter",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:verlängern:2",
+     "de": "Können wir den Vertrag um ein Jahr verlängern?",
+     "tr": "Sözleşmeyi bir yıl uzatabilir miyiz?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:verlängern:3",
+     "de": "Mein Abo läuft ab, das verlänger ich nicht mehr.",
+     "tr": "Aboneliğim bitiyor, artık uzatmayacağım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:verlängern:4",
+     "de": "– Können Sie mir das Rezept verlängern? – Ja, ich schreibe Ihnen ein neues.",
+     "tr": "– Reçetemi uzatabilir misiniz? – Evet, size yenisini yazıyorum.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "amt",
+    "arzt"
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyin süresini daha uzun yapmayı söyler.",
+    "ne_zaman_tr": "Belge, sözleşme ve son tarih konuşulurken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Vermieter",
+   "de": "Vermieter",
+   "tr": "ev sahibi",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Vermieter",
+   "img": "landlord handing keys",
+   "collocations": [
+    {
+     "de": "den Vermieter anrufen",
+     "tr": "ev sahibini aramak"
+    },
+    {
+     "de": "mit dem Vermieter sprechen",
+     "tr": "ev sahibiyle konuşmak"
+    },
+    {
+     "de": "der neue Vermieter",
+     "tr": "yeni ev sahibi"
+    }
+   ],
+   "patterns": [
+    "pt:trennbar",
+    "pt:perfekt-haben"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Ev sahibim derken **mein Mieter** yanlış. Doğrusu **mein Vermieter**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Vermieter:1",
+     "de": "Mein Vermieter wohnt im selben Haus.",
+     "tr": "Ev sahibim aynı binada oturuyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Vermieter:2",
+     "de": "Ich habe dem Vermieter schon wegen der Heizung geschrieben.",
+     "tr": "Kalorifer için ev sahibine yazdım bile.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Vermieter:3",
+     "de": "Unser Vermieter meldet sich einfach nicht.",
+     "tr": "Ev sahibimizden bir türlü ses çıkmıyor.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Vermieter:4",
+     "de": "– Ist das Fenster immer noch kaputt? – Ja, ich rufe gleich den Vermieter an.",
+     "tr": "– Pencere hâlâ bozuk mu? – Evet, birazdan ev sahibini arıyorum.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "wohnen"
+   ],
+   "legacy": [
+    {
+     "unit": "b1-07",
+     "key": "b1-07:w:Vermieter"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Evini kiraya veren kişiyi söyler.",
+    "ne_zaman_tr": "Kira ve evdeki sorunlar konuşulurken.",
+    "parcalar": [],
+    "ipucu_tr": "**Mieter** ise evde kirayla oturan kişidir, yani kiracı."
+   }
+  },
+  {
+   "id": "lx:Nebenkosten",
+   "de": "Nebenkosten",
+   "tr": "yan giderler, aidat",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Nebenkosten",
+   "collocations": [
+    {
+     "de": "die Nebenkosten bezahlen",
+     "tr": "yan giderleri ödemek"
+    },
+    {
+     "de": "mit Nebenkosten",
+     "tr": "yan giderler dahil"
+    },
+    {
+     "de": "die Abrechnung der Nebenkosten",
+     "tr": "yan gider hesabı"
+    }
+   ],
+   "patterns": [
+    "pt:wie-viel-kostet",
+    "pt:ja-nein-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Yan giderler yüksek derken **Die Nebenkosten ist hoch** yanlış. Doğrusu **Die Nebenkosten sind hoch**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Nebenkosten:1",
+     "de": "Die Miete beträgt 700 Euro plus Nebenkosten.",
+     "tr": "Kira 700 avro artı yan giderler.",
+     "img": "utility bills on table",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Nebenkosten:2",
+     "de": "Sind die Nebenkosten in der Miete enthalten?",
+     "tr": "Yan giderler kiraya dahil mi?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Nebenkosten:3",
+     "de": "Die Nebenkosten sind dieses Jahr echt heftig.",
+     "tr": "Yan giderler bu yıl gerçekten çok yüksek.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Nebenkosten:4",
+     "de": "– Was kostet die Wohnung? – 800 Euro, mit Nebenkosten.",
+     "tr": "– Ev kaça? – Yan giderler dahil 800 avro.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "wohnen"
+   ],
+   "legacy": [
+    {
+     "unit": "b1-07",
+     "key": "b1-07:w:Nebenkosten"
+    }
+   ],
+   "exp": {
+    "anlam_tr": "Kiranın yanında ödenen ev giderlerini söyler.",
+    "ne_zaman_tr": "Ev ararken ve kira konuşurken.",
+    "parcalar": [
+     {
+      "de": "Neben",
+      "tr": "yan"
+     },
+     {
+      "de": "kosten",
+      "tr": "giderler"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Schimmel",
+   "de": "Schimmel",
+   "tr": "küf",
+   "pos": "noun",
+   "art": "der",
+   "pl": "-",
+   "img": "mold on wall",
+   "collocations": [
+    {
+     "de": "Schimmel an der Wand",
+     "tr": "duvarda küf"
+    },
+    {
+     "de": "Schimmel im Bad",
+     "tr": "banyoda küf"
+    },
+    {
+     "de": "Schimmel entfernen",
+     "tr": "küfü temizlemek"
+    }
+   ],
+   "patterns": [
+    "pt:ich-muss"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Banyoda küf var derken **Im Bad gibt Schimmel** yanlış. Doğrusu **Im Bad gibt es Schimmel**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Schimmel:1",
+     "de": "Im Bad ist Schimmel an der Decke.",
+     "tr": "Banyonun tavanında küf var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Schimmel:2",
+     "de": "Wegen des Schimmels rufe ich meinen Vermieter an.",
+     "tr": "Küf yüzünden ev sahibimi arıyorum.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Schimmel:3",
+     "de": "Igitt, da ist ja Schimmel auf dem Brot!",
+     "tr": "Iyy, ekmeğin üstünde küf var!",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Schimmel:4",
+     "de": "– Was ist das Schwarze an der Wand? – Das ist Schimmel, das müssen wir melden.",
+     "tr": "– Duvardaki siyah şey ne? – O küf, bildirmemiz lazım.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "wohnen",
+    "essen"
+   ],
+   "exp": {
+    "anlam_tr": "Nemli yerde ve eski yiyecekte oluşan lekeyi söyler.",
+    "ne_zaman_tr": "Evdeki sorunu anlatırken.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Zähler",
+   "de": "Zähler",
+   "tr": "sayaç",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Zähler",
+   "img": "electricity meter",
+   "collocations": [
+    {
+     "de": "den Zähler ablesen",
+     "tr": "sayacı okumak"
+    },
+    {
+     "de": "der Stromzähler",
+     "tr": "elektrik sayacı"
+    },
+    {
+     "de": "der Zählerstand",
+     "tr": "sayaç değeri"
+    }
+   ],
+   "patterns": [
+    "pt:trennbar",
+    "pt:wo-ist"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Sayacı okuyorum derken **Ich lese den Zähler** yanlış. Doğrusu **Ich lese den Zähler ab**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Zähler:1",
+     "de": "Morgen kommt jemand und liest den Zähler ab.",
+     "tr": "Yarın biri gelip sayacı okuyacak.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Zähler:2",
+     "de": "Der Zähler ist im Keller, gleich neben der Tür.",
+     "tr": "Sayaç bodrumda, kapının hemen yanında.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Zähler:3",
+     "de": "Schreib mir mal den Zählerstand auf, ja?",
+     "tr": "Sayaçtaki değeri bana yazıver, olur mu?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Zähler:4",
+     "de": "– Wo finde ich den Stromzähler? – Im Keller, links neben der Treppe.",
+     "tr": "– Elektrik sayacını nerede bulurum? – Bodrumda, merdivenin solunda.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "wohnen"
+   ],
+   "exp": {
+    "anlam_tr": "Su ve elektrik kullanımını ölçen aleti söyler.",
+    "ne_zaman_tr": "Fatura ve ev işlerinde.",
+    "parcalar": []
+   }
+  },
+  {
+   "id": "lx:Briefkasten",
+   "de": "Briefkasten",
+   "tr": "posta kutusu",
+   "pos": "noun",
+   "art": "der",
+   "pl": "Briefkästen",
+   "img": "mailbox",
+   "collocations": [
+    {
+     "de": "in den Briefkasten werfen",
+     "tr": "posta kutusuna atmak"
+    },
+    {
+     "de": "im Briefkasten",
+     "tr": "posta kutusunda"
+    },
+    {
+     "de": "den Briefkasten leeren",
+     "tr": "posta kutusunu boşaltmak"
+    }
+   ],
+   "patterns": [
+    "pt:perfekt-haben",
+    "pt:ja-nein-frage"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Mektubu kutuya attım derken **Ich habe den Brief in Briefkasten geworfen** yanlış. Doğrusu **Ich habe den Brief in den Briefkasten geworfen**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Briefkasten:1",
+     "de": "Der Schlüssel liegt im Briefkasten.",
+     "tr": "Anahtar posta kutusunda.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Briefkasten:2",
+     "de": "Haben Sie heute schon in den Briefkasten geschaut?",
+     "tr": "Bugün posta kutusuna baktınız mı?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Briefkasten:3",
+     "de": "Schmeiß den Brief einfach in den Briefkasten.",
+     "tr": "Mektubu posta kutusuna atıver.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Briefkasten:4",
+     "de": "– War Post da? – Ja, der Briefkasten war voll.",
+     "tr": "– Posta var mıydı? – Evet, posta kutusu doluydu.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "wohnen",
+    "post"
+   ],
+   "exp": {
+    "anlam_tr": "Mektupların bırakıldığı kutuyu söyler.",
+    "ne_zaman_tr": "Evde ve postayla ilgili işlerde.",
+    "parcalar": [
+     {
+      "de": "Brief",
+      "tr": "mektup"
+     },
+     {
+      "de": "kasten",
+      "tr": "kutusu"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lx:Klingel",
+   "de": "Klingel",
+   "tr": "zil, kapı zili",
+   "pos": "noun",
+   "art": "die",
+   "pl": "Klingeln",
+   "img": "doorbell",
+   "collocations": [
+    {
+     "de": "auf die Klingel drücken",
+     "tr": "zile basmak"
+    },
+    {
+     "de": "die Klingel ist kaputt",
+     "tr": "zil bozuk"
+    },
+    {
+     "de": "der Name an der Klingel",
+     "tr": "zildeki isim"
+    }
+   ],
+   "patterns": [
+    "pt:nicht",
+    "pt:perfekt-haben"
+   ],
+   "register": "neutral",
+   "mistakes_tr": [
+    "Zil çaldı derken **Die Klingel hat gespielt** yanlış. Doğrusu **Es hat geklingelt**."
+   ],
+   "examples": [
+    {
+     "id": "lx:Klingel:1",
+     "de": "Die Klingel an der Haustür geht nicht.",
+     "tr": "Bina kapısındaki zil çalışmıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Klingel:2",
+     "de": "Ihr Name steht noch nicht an der Klingel.",
+     "tr": "Adınız henüz zilde yazmıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Klingel:3",
+     "de": "Drück einfach zweimal auf die Klingel, dann weiß ich, dass du's bist.",
+     "tr": "Zile iki kere bas, o zaman senin olduğunu anlarım.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:Klingel:4",
+     "de": "– Haben Sie nicht geklingelt? – Doch, aber die Klingel ist kaputt.",
+     "tr": "– Zili çalmadınız mı? – Çaldım, ama zil bozuk.",
+     "layer": "hd",
+     "dialog": true
+    }
+   ],
+   "level": "A2",
+   "tier": "K1",
+   "domains": [
+    "wohnen"
+   ],
+   "exp": {
+    "anlam_tr": "Kapıya gelince bastığın düğmeyi söyler.",
+    "ne_zaman_tr": "Eve gelen biri ve kargo için.",
+    "parcalar": []
+   }
+  }
+ ]
+}

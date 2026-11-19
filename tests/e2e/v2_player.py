@@ -270,6 +270,9 @@ def main():
             if any(c["url"].endswith("/v1/ai/run") and "roleplay_turn" in (c["body"] or "") for c in API_CALLS[n0:]): break
             page.wait_for_timeout(250)
         bodies = [c["body"] or "" for c in API_CALLS[n0:] if c["url"].endswith("/v1/ai/run")]
+        # boş liste "ad yok" sayılmaz; tanı için yakalanan istekler yazılır (inceleme #66 P1-5)
+        if not bodies: print("   tanı: 7b'de yapay zekâ isteği yakalanmadı; son istekler:", [c["url"][-40:] for c in API_CALLS[-6:]], "baloncuk:", page.locator("[data-test=rp-chat] .bubble.them").count())
+        check(bool(bodies), f"7b: rol oyunu yapay zekâ isteği yakalandı ({len(bodies)})")
         check(bodies and all("Novak" not in b for b in bodies), "yapay zekâ isteklerinde ad yok")
         check(any('"address_de": "Frau"' in b or '"address_de":"Frau"' in b for b in bodies) and any("[Name]" in b for b in bodies), "yapay zekâya yalnızca hitap + [Name] gidiyor")
 

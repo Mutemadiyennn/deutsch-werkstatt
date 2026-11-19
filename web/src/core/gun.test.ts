@@ -45,4 +45,15 @@ describe("M1 ders yolu (#58 A5b)", () => {
     expect(seri(x, d("2026-11-19"))).toBe(2);
     expect(seri(x, d("2026-11-20"))).toBe(0);
   });
+  it("inceleme #66: Seans 1 kartı kalan yeni kelimeyi söyler; gün bitişi kalıcı (sonradan hazır olan adım günü geri açmaz)", () => {
+    const ilr = { ...bos(), tanitilan: new Set(g1.yeni_kartlar.slice(0, 3)) };
+    const n = g1.yeni_kartlar.length - 3;
+    expect(gunAdimlari(g1, ilr, basliklar).adimlar[0]!.title_tr).toBe(n ? `${n} yeni kelime ve tekrar` : "Kelime tekrarı");
+    expect(gunAdimlari(g1, { ...bos(), tanitilan: new Set(g1.yeni_kartlar) }, basliklar).adimlar[0]!.title_tr).toBe("Kelime tekrarı");
+    // gün bitti olarak kaydedildiyse, bitmemiş adım olsa da gün bitti
+    const kalici = { ...bos(), gunBitti: new Set([1]) };
+    const y = yol([gunAdimlari(g1, kalici, basliklar), gunAdimlari(g2, kalici, basliklar)]);
+    expect(y.gunler[0]!.durum).toBe("bitti");
+    expect(y.simdi!.day).toBe(2);
+  });
 });

@@ -176,4 +176,20 @@ describe("Kelime Bahçesi (PM-049)", () => {
     expect(synonymHit(uhr, "um", [uhr, L({ id: "lx:um", de: "um", tr: "saat", pos: "prep" })])).toBeNull();
     expect(accepted(L({ id: "lx:weh", de: "weh (tun)", tr: "acımak", pos: "adj" }), "tr_de")).toEqual(expect.arrayContaining(["weh", "weh tun"]));
   });
+  it("inceleme #66 P1-3: M1 günü (yeniAyir) — tekrar yükü yüksekken de günün yeni kartları gelir", () => {
+    const t0 = new Date("2026-11-01T10:00:00Z");
+    const lx = new Map(lex);
+    const many = new Map<string, LearnerItem>();
+    for (let i = 0; i < 30; i++) { const l = L({ id: `lx:d${i}`, de: `d${i}`, tr: `t${i}`, pos: "adj" }); lx.set(l.id, l); many.set(l.id, review(undefined, { itemId: l.id, kind: "lexeme", path: "passive", outcome: "wrong", session: "s@1" }, t0)); }
+    const yeni: string[] = [];
+    for (let i = 0; i < 25; i++) { const l = L({ id: `lx:n${i}`, de: `n${i}`, tr: `y${i}`, pos: "adj" }); lx.set(l.id, l); yeni.push(l.id); }
+    const now = new Date("2026-12-01T10:00:00Z");
+    const eski = buildRound(lx, many, yeni, { now }).filter((q) => q.intro).length;
+    expect(eski).toBe(0);
+    const r = buildRound(lx, many, yeni, { now, yeniAyir: 8, newLeft: 25 });
+    expect(r.length).toBe(12);
+    expect(r.filter((q) => q.intro).map((q) => q.lexId)).toEqual(yeni.slice(0, 8));
+    // tekrar yokken tur günün kartlarıyla dolar (en çok 10 yeni)
+    expect(buildRound(lx, new Map(), yeni, { now, yeniAyir: 8, newLeft: 25 }).length).toBe(10);
+  });
 });

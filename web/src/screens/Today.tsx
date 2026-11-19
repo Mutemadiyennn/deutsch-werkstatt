@@ -29,7 +29,7 @@ export function Today() {
   const rec = recommend({ profile, index, hasPlacement: !!placement, sessionN: n });
   // #58 A5b: M1 günleri varsa sıradaki adım günün planından gelir (v1'e gönderme yok). Sıfırdan başlayan öğrenci
   // seviye tespitini beklemez (LS-2.1 ilk başarı ≤60 sn); tespit ikincil bağlantıdır
-  const { plan } = usePlan();
+  const { plan, err: planErr, yenile } = usePlan();
   const m1 = plan;
 
   useEffect(() => {
@@ -106,19 +106,21 @@ export function Today() {
 
       {indexError && <ErrorPanel message={`İçerik yüklenemedi: ${indexError}`} onRetry={() => location.reload()} />}
 
-      {!m1 && !!index?.m1.length ? <LoadingCard lines={2} /> : m1 ? (
+      {!m1 && planErr ? <ErrorPanel message={`Günün planı yüklenemedi. ${planErr}`} onRetry={yenile} /> : !m1 && !!index?.m1.length ? <LoadingCard lines={2} /> : m1 ? (
       <section class="card nextcard stack" data-test="next-activity" data-m1="1">
         <div class="row" style={{ flexWrap: "nowrap", gap: 14, alignItems: "center" }}>
           <span class="avatar" aria-hidden="true" style={{ width: 52, height: 52, background: "var(--himmel)" }}><Icon name="raute" size={24} /></span>
           <div class="grow" style={{ minWidth: 0 }}>
-            <div class="small muted">{m1.sonraki ? `Sıradaki · ${m1.simdi!.day}. gün · Seans ${m1.sonraki.seans}: ${SEANS_TR[m1.sonraki.seans]}` : "İlk Hafta"}</div>
-            <h2 class="nexttitle">{m1.sonraki ? m1.sonraki.title_tr : "İlk Hafta tamam"}</h2>
+            <div class="small muted">{m1.sonraki ? `${m1.simdi!.day}. gün · Seans ${m1.sonraki.seans}: ${SEANS_TR[m1.sonraki.seans]}` : "İlk Hafta"}</div>
+            <h2 class="nexttitle">{m1.sonraki ? m1.sonraki.title_tr : m1.gunler.length >= 7 && !m1.eksik ? "İlk Hafta tamam" : "Hazır günlerin hepsi bitti"}</h2>
           </div>
         </div>
-        {m1.sonraki && <a class="btn primary block" href={m1.sonraki.href} data-test="m1-devam" onClick={devam}><Icon name="play" size={18} /> Devam et</a>}
+        {m1.sonraki ? <a class="btn primary block" href={m1.sonraki.href} data-test="m1-devam" onClick={devam}><Icon name="play" size={18} /> Devam et</a>
+          : <a class="btn primary block" href="#/garden" data-test="m1-tekrar" onClick={devam}><Icon name="play" size={18} /> Kelime Bahçesi: tekrar et</a>}
         <div class="stack" style={{ gap: 6 }}>
           <a class="small" style={{ display: "block" }} href="#/yol" data-test="yol-link">Haftanın yolu · {m1.xp.toplam} XP{seri(m1.xp) ? ` · ${seri(m1.xp)} gün üst üste` : ""}</a>
-          {!placement && <a class="small" style={{ display: "block" }} href="#/assess" data-test="assess-link">Almancan varsa: seviye tespitiyle yerini bul</a>}
+          {placement ? <a class="small" style={{ display: "block" }} href={`#/assess/result/${placement.id}`} data-test="assess-result">Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>
+            : <a class="small" style={{ display: "block" }} href="#/assess" data-test="assess-link">Almancan varsa: seviyeni gör (seviye tespiti)</a>}
         </div>
         {e && cur && !breakOn && <div class="focusrow" data-test="focus-running"><span class="small grow">Süre yalnızca öğrenirken sayılır.</span>
           <button class="btn sm ghost" onClick={() => focusPause(!e.rt.paused)}>{e.rt.paused ? "Sürdür" : "Duraklat"}</button></div>}
@@ -164,7 +166,7 @@ export function Today() {
       <section class="plainsec" data-test="weak">
         <h2 class="sectitle">Tekrar edilecekler</h2>
         {/* PM-049: kartlar soru olarak döner. EK1: ekranda tek ana eylem "Devam et"; bu ikincil (yeni Bugün A6'da seans 1 olur) */}
-        <a class="btn block" href="#/garden" data-test="garden-start">Kelime Bahçesi: tekrar et</a>
+        <a class="btn block" href={m1?.simdi ? `#/garden/${m1.simdi.day}` : "#/garden"} data-test="garden-start">Kelime Bahçesi: tekrar et</a>
         <div class="row"><HeardWordBox /></div>
         {bank.length ? (
           <ul class="list">

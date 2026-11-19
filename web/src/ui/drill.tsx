@@ -6,7 +6,7 @@
 import { useMemo, useState } from "preact/hooks";
 import type { Drill } from "@dw/shared";
 import { countsAsCorrect, isSameAsGiven, ruleVerdict } from "../core/answer.ts";
-import { norm, numberWordHint } from "../core/grading.ts";
+import { judgeWord, norm, numberWordHint } from "../core/grading.ts";
 import { fillName } from "../core/persona.ts";
 import { addClaim } from "../data/db.ts";
 import { haptic } from "../services/haptics.ts";
@@ -16,10 +16,14 @@ import { Rich } from "./rich.tsx";
 const E2E = import.meta.env.MODE === "e2e";
 export type DrillSonuc = "correct" | "wrong" | "claimed";
 
-/** Sayı, gün, ay ve saat kelimeleri: bunlardan biri farklıysa cevap "yakın" değil, yanlıştır (on yedi ≠ on altı) */
-const ANAHTAR = new RegExp("^(null|eins?|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf|\\w*zehn|\\w*zig|\\w*und\\w*zig|hundert|tausend|halb|viertel|montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|januar|februar|märz|april|mai|juni|juli|august|september|oktober|november|dezember|heute|morgen|gestern|übermorgen|vorgestern)$", "i");
+/**
+ * Sayı, gün, ay ve saat kelimeleri (norm() sonrası yazımla: ü→ue, ß→ss; rakamlar norm'da yazıya döner).
+ * Cevabın bu kelimelerden oluşan kümesi kabul biçimlerinden HİÇBİRİNİNKİYLE aynı değilse cevap "yakın" değil, yanlıştır
+ * (on yedi ≠ on altı); kelime sırası ya da biçim farkı (Donnerstag ist heute.) karar öğrencide kalır — inceleme #65 2. tur.
+ */
+const ANAHTAR = new RegExp("^(null|eins?|zwei|zwo|drei|vier|fuenf|sechs|sieben|acht|neun|zehn|elf|zwoelf|\\w*zehn|\\w*zig|\\w*und\\w*zig|\\w*ssig|hundert|tausend|halb|viertel|montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|januar|februar|maerz|april|mai|juni|juli|august|september|oktober|november|dezember|heute|morgen|gestern|uebermorgen|vorgestern)$");
 const SAYI_KELIME = /\b(null|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf|\w+zehn|\w+zig|hundert)\b/i;
-const kelimeler = (s: string) => s.toLowerCase().replace(/[.,!?;:„“"]/g, " ").split(/\s+/).filter(Boolean);
+const anahtarlar = (s: string) => [...new Set(norm(s).split(" ").filter((w) => ANAHTAR.test(w)))].sort().join(" ");
 
 /**
  * Bir maddeyi değerlendirir (saf; test edilir).
@@ -29,23 +33,26 @@ const kelimeler = (s: string) => s.toLowerCase().replace(/[.,!?;:„“"]/g, " "
  *    cevabında sayı kelimesi ve rakam yoksa kendiliğinden) — yalnızca yazıda
  *  - sayı/gün/ay kelimesi farklıysa "kontrol edemedim" değil yanlış
  */
-export function drillVerdict(d: Drill, answer: string, typed = true): { kind: "correct" | "wrong" | "unchecked"; best: string; note?: string } {
+export function drillVerdict(d: Drill, answer: string, typed = true, artikel?: { de: string; art: string }): { kind: "correct" | "wrong" | "unchecked"; best: string; note?: string } {
   if (d.k === "pick") return { kind: "wrong", best: d.opts[d.ans] ?? "" };
   const acc = d.accepted.map((a) => fillName(a, answer));
   const best = d.k === "gap" ? d.de.replace("___", acc[0]!) : acc[0]!;
   const list = d.k === "gap" ? [...acc, ...acc.map((a) => d.de.replace("___", a))] : acc;
   // rakam kuralı norm() karşılaştırmasından ÖNCE: norm rakamı yazıya çevirir ("17" = "siebzehn")
-  const strict = d.strictNumberWords ?? (acc.every((x) => !/\d/.test(x)) && acc.some((x) => SAYI_KELIME.test(x)));
+  // istemde rakam varsa (ör. adres "Brunnengasse 7") kendiliğinden rakam yasağı yok; içerikte açık işaret her zaman geçerli
+  const istem = d.k === "gap" ? d.de : d.k === "transform" ? d.from_de : d.k === "guided_response" ? d.situation_tr + d.prompt_de : d.k === "listen_and_respond" ? (d.situation_tr ?? "") + d.audio_de : d.tr;
+  const strict = d.strictNumberWords ?? (!/\d/.test(istem) && acc.every((x) => !/\d/.test(x)) && acc.some((x) => SAYI_KELIME.test(x)));
   if (typed && strict && acc.every((x) => !/\d/.test(x))) { const h = numberWordHint(answer); if (h) return { kind: "wrong", best, note: h }; }
   if (list.some((a) => norm(a) === norm(answer))) return { kind: "correct", best };
+  // isim kartı (hatırlama turu): artikel zorunlu; kelime doğru ama artikel eksik/yanlışsa açıklamalı yanlış
+  if (artikel) { const j = judgeWord(answer, artikel.de, artikel.art); if (j.ok) return { kind: "correct", best }; if (j.why_tr) return { kind: "wrong", best, note: j.why_tr }; }
   if (d.k === "transform" && isSameAsGiven(d.from_de, answer)) return { kind: "wrong", best, note: "Verilen cümleyi tekrarladın; istenen biçimde söyle." };
   const v = ruleVerdict(list, answer);
   if (v.kind === "correct") return { kind: "correct", best };
   if (v.kind === "ask_ai") {
-    // anahtar kelime (sayı, gün, ay) farkı açık bir yanlıştır; kararı öğrenciye bırakmayız
-    const a = new Set(kelimeler(answer)), e = new Set(kelimeler(v.best || best));
-    const fark = [...e].filter((w) => !a.has(w)).concat([...a].filter((w) => !e.has(w)));
-    if (fark.some((w) => ANAHTAR.test(w))) return { kind: "wrong", best, note: undefined };
+    // anahtar kelime (sayı, gün, ay) kümesi hiçbir kabul biçimininkiyle aynı değilse açık bir yanlıştır
+    const k = anahtarlar(answer);
+    if (!list.some((x) => anahtarlar(x) === k)) return { kind: "wrong", best, note: undefined };
     return { kind: "unchecked", best };
   }
   return { kind: "wrong", best, note: undefined };
@@ -56,7 +63,7 @@ const KICKER: Record<Drill["k"], string> = {
   listen_and_respond: "Dinle ve cevap ver", tr_de: "Almanca söyle"
 };
 
-export function DrillView({ d, sira, onDone }: { d: Drill; sira?: string; onDone: (s: DrillSonuc) => void }) {
+export function DrillView({ d, sira, onDone, artikel }: { d: Drill; sira?: string; onDone: (s: DrillSonuc) => void; artikel?: { de: string; art: string } }) {
   const [v, setV] = useState<{ kind: "correct" | "wrong" | "unchecked"; best: string; note?: string; a: string } | null>(null);
   const [picked, setPicked] = useState<number | null>(null);
   const kicker = `${KICKER[d.k]}${sira ? ` · ${sira}` : ""}`;
@@ -81,7 +88,7 @@ export function DrillView({ d, sira, onDone }: { d: Drill; sira?: string; onDone
     : d.k === "listen_and_respond" ? <>{d.situation_tr && <p class="small"><Rich text={d.situation_tr} /></p>}<div class="row"><ListenButton text={d.audio_de} speed={d.speed} /></div><p class="tiny muted">Metin gösterilmiyor: yalnızca dinle.</p></>
     : <div class="de-lg">{d.tr}</div>;
   const cevap = d.k === "gap" ? d.accepted[0] : d.accepted[0];
-  const submit = (a: string, mode: "typed" | "voice") => { const r = drillVerdict(d, a, mode === "typed"); setV({ ...r, a }); haptic(r.kind === "correct" ? "success" : r.kind === "wrong" ? "error" : "selection"); };
+  const submit = (a: string, mode: "typed" | "voice") => { const r = drillVerdict(d, a, mode === "typed", artikel); setV({ ...r, a }); haptic(r.kind === "correct" ? "success" : r.kind === "wrong" ? "error" : "selection"); };
   return (
     <section class="card stack fade" data-test={`drill-${d.k}`} {...(E2E ? { "data-cevap": cevap } : {})}>
       <div class="kicker">{kicker}</div>

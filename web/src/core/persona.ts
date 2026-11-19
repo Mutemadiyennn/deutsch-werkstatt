@@ -24,19 +24,20 @@ export function expandAccepted(list: string[], p: Persona): string[] {
   }
   return out;
 }
-const norm = (s: string) => s.toLowerCase().replace(/[^a-zäöüß0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
+// Unicode harfler korunur (Ayşe, Çağrı, İbrahim), ad içindeki tire ve kesme işareti ayırmaz (Jean-Luc, O'Neil) — inceleme #65 2. tur
+const AYIR = /[^\p{L}\p{N}'’-]+/gu;
+const parca = (s: string) => s.replace(AYIR, " ").replace(/(^|\s)[-'’]+|[-'’]+(?=\s|$)/g, " ").trim().split(/\s+/).filter(Boolean);
 /** Ad girilmemişse: beklenen cümledeki {name} yuvasını öğrencinin cevabındaki 1–3 kelimeyle doldur */
 export function fillName(expected: string, answer: string): string {
   if (!expected.includes("{name}")) return expected;
   const [pre, post = ""] = expected.split("{name}") as [string, string?];
-  const a = norm(answer).split(" "), pr = norm(pre).split(" ").filter(Boolean), po = norm(post).split(" ").filter(Boolean);
+  const orig = parca(answer), a = orig.map((w) => w.toLocaleLowerCase("de"));
+  const pr = parca(pre).map((w) => w.toLocaleLowerCase("de")), po = parca(post).map((w) => w.toLocaleLowerCase("de"));
   const head = a.slice(0, pr.length).join(" "), tail = po.length ? a.slice(-po.length).join(" ") : "";
-  const mid = a.slice(pr.length, a.length - po.length);
-  if (head === pr.join(" ") && tail === po.join(" ") && mid.length >= 1 && mid.length <= 3) {
-    const orig = answer.trim().split(/\s+/).slice(pr.length, pr.length + mid.length).join(" ").replace(/[.,!?]+$/, "");
-    return expected.replace("{name}", orig);
-  }
-  return expected.replace("{name}", "").replace(/\s+/g, " ").replace(/\s([.,!?])/g, "$1");
+  const n = a.length - pr.length - po.length;
+  if (head === pr.join(" ") && tail === po.join(" ") && n >= 1 && n <= 3) return expected.replace("{name}", orig.slice(pr.length, pr.length + n).join(" "));
+  // ad yuvası boş bırakılmışsa ("Guten Tag, hier ist.") doğru sayılmaz: yuva gösterimdeki "(adın)" ile kalır (inceleme #65 3. tur P2)
+  return expected.replace("{name}", "(adın)");
 }
 /** Yapay zekâya giden metin: ad → [Name] */
 export function redact(t: string, p: Persona): string {
