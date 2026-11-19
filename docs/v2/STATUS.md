@@ -33,6 +33,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | Bahçe değişen cümle (PM-062, #58 B13) | `v2/bahce-donusum` | #92 birleşti (D-111) |
 | Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | #87 birleşti (D-107) |
 | Şölen 1 küçük düzeltmeler (PM 7011722598 1–5) | `v2/solen-duzelt` | PR açıldı (D-113). B11e girdisi (madde 6–7): tur sonunda büyüyen bahçe parçası, kartı soran karakterin avatarı (WORLD), seans başına vurgu rengi; doğru anında parlak ton + kısa ölçek (reduce-motion: yalnızca renk) |
+| Şema: gün sınavı + kalıp dolgu anlamı (İÇ 7014566898; PM-066.3, PM-067.1) | `v2/sema-sinav-dolgu` | PR #109; İÇ içeriği bu alanlarla yazıyor |
 | Şölen 2 / B11a yol haritası (PM-065 1–4) | `v2/yol-haritasi` | #104 birleşti (D-114) |
 | Gün sonu özeti + yerel kullanım ölçümü (#58 B3) | `v2/gun-sonu` | #93 birleşti (D-109) |
 | Doğrulayıcı B4 (#58 B4, #54 D16) | `v2/dogrulayici-b4` | #88 birleşti (D-108) |
