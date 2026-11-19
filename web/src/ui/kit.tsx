@@ -9,6 +9,7 @@ import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive } from "../s
 import { haptic } from "../services/haptics.ts";
 import { efekt, ustUsteSay, xpUcur } from "../services/efekt.ts";
 import { Icon } from "./icons.tsx";
+import { Mucevher } from "./solen.tsx";
 
 /* ---------- Ses düğmesi: büyük, tek dokunuşla yavaş/normal ---------- */
 export function ListenButton({ text, speed = "normal", label = "Dinle", slowToggle = true, small = false }: { text: string; speed?: Speed; label?: string; slowToggle?: boolean; small?: boolean }) {
@@ -149,10 +150,15 @@ export function FeedbackBand({ kind, title, children, xp, sayac = true }: { kind
     if (!sayac) return;
     if (kind === "ok") { haptic("success"); efekt("dogru"); xpUcur(xp ?? baglamXp); } else if (kind === "bad") { haptic("error"); efekt("yanlis"); }
   }, [kind, title]);
+  // "+N XP" bandın içinde, başlığın yanında: hiçbir metnin üstüne binmez (PM 7011722598 madde 1)
+  const n = kind === "ok" && sayac ? (xp ?? baglamXp) : 0;
+  // eşik (3, 5, 10, 15…): ünlemli ve parlak (madde 4)
+  const esik = ust === 3 || ust === 5 || (ust >= 10 && ust % 5 === 0);
   return (
     <div class={`fb ${kind}`} role="status" aria-live="polite" data-test="feedback">
       <div class="fb-bas">{kind === "ok" && sayac && <span class="fb-isaret" aria-hidden="true"><Icon name="check" size={18} stroke={3} /></span>}<b>{title}</b>
-        {kind === "ok" && ust >= 3 && <span class="ustuste" data-test="ustuste">{ust} üst üste</span>}</div>
+        {n > 0 && <span class="xp-rozet" data-test="xp-ucus"><Mucevher boy={14} />+{n} XP</span>}
+        {kind === "ok" && ust >= 3 && <span class={`ustuste${esik ? " esik" : ""}`} data-test="ustuste">{ust} üst üste{esik ? "!" : ""}</span>}</div>
       {children && <div class="small" style={{ marginTop: 2 }}>{children}</div>}
     </div>
   );
