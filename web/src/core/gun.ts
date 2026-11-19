@@ -65,7 +65,8 @@ export function siradaki(g: GunDurum | null): Adim | null {
 /* ---------- XP ve seri (motivasyon; seviye kanıtla atlanır, XP ile değil) ---------- */
 export interface XpKayit { toplam: number; gunler: Record<string, number> }
 export const XP_BOS: XpKayit = { toplam: 0, gunler: {} };
-export const XP = { dogru: 2, adim: 10 } as const;
+/** `bilinen`: "Biliyorum, sına beni" üretimle kanıtlanan yeni kart (tanımadan fazla; PM-066 madde 5) */
+export const XP = { dogru: 2, bilinen: 4, adim: 10 } as const;
 export const yerelGun = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 export function xpEkle(x: XpKayit, n: number, now = new Date()): XpKayit {
   const g = yerelGun(now);
