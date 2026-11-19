@@ -1,0 +1,34 @@
+name: "M1 fotoğraf hattı (#58 A10): sorgu başına 3 aday (Commons, Openverse), lisans ve atıf, Releases'e yükleme"
+# Yalnızca kaynak/foto dalına push'ta. Anahtar yok, ücretli servis yok. Görseller GitHub Releases (m1-foto) varlığıdır;
+# depoya yalnızca aday listesi ve atıflar (content/v2/media/foto/adaylar.json) yazılır.
+on:
+  push:
+    branches: ["kaynak/foto"]
+    paths: ["scripts/foto/**", ".github/workflows/m1-foto.yml"]
+permissions:
+  contents: write
+concurrency: { group: m1-foto, cancel-in-progress: false }
+jobs:
+  foto:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q pillow==11.0.0
+      - name: Hat
+        run: python scripts/foto/foto.py out
+      - name: Releases (m1-foto)
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          gh release view m1-foto >/dev/null 2>&1 || gh release create m1-foto --prerelease --title "M1 fotoğraf adayları" \
+            --notes "Wikimedia Commons ve Openverse; yalnızca CC0, kamu malı, CC BY, CC BY-SA. Atıflar content/v2/media/foto/adaylar.json içinde. #58 A10; seçim B5."
+          shopt -s nullglob
+          f=(out/*.jpg out/secim.html)
+          for ((i=0; i<${#f[@]}; i+=50)); do gh release upload m1-foto "${f[@]:i:50}" --clobber; done
+      - name: Aday listesini dala yaz
+        run: |
+          git config user.name "dw-foto-hatti"; git config user.email "dw-foto-hatti@users.noreply.github.com"
+          git add content/v2/media/foto/adaylar.json
+          git diff --cached --quiet || (git commit -m "M1 A10: fotoğraf adayları (otomatik) [skip ci]" && git push)
