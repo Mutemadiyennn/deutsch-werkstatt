@@ -75,7 +75,7 @@ export function YolEkrani() {
           </div>
           {g.durum === "simdi" && (
             <ul class="list">{g.adimlar.map((a) => (
-              <li class="row" style={{ flexWrap: "nowrap" }} data-test="adim" data-bitti={a.bitti ? "1" : "0"}>
+              <li class="row" style={{ flexWrap: "nowrap" }} data-test="adim" data-tur={a.tur} data-bitti={a.bitti ? "1" : "0"}>
                 <span class="tiny muted" style={{ width: 58 }}>Seans {a.seans}</span>
                 {a.hazir && !a.bitti ? <a class="grow" href={a.href}>{a.title_tr}</a> : <span class={`grow${a.bitti ? "" : " muted"}`}>{a.title_tr}{!a.hazir ? " · hazırlanıyor" : ""}</span>}
                 {a.bitti && <Icon name="check" size={16} />}
