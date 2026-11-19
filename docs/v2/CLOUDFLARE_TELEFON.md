@@ -37,7 +37,7 @@ Toplam 15–20 dakika sürer. Hiçbir yerde kredi kartı ya da ücretli plan ger
 | `CLOUDFLARE_API_TOKEN` | adım 12'deki token |
 | `CLOUDFLARE_ACCOUNT_ID` | adım 7'deki Account ID |
 | `GEMINI_KEY` | adım 13 |
-| `PEXELS_KEY` | adım 14 |
+| `PEXELS_API_KEY` | adım 14 |
 | `ALLOWED_UIDS` | adım 15'teki UID |
 
 18. Not uygulamasına yapıştırdığın token ve anahtarları **sil**.
