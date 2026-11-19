@@ -20,7 +20,7 @@ jobs:
   # İskelet: Pages bağlanınca ilk dağıtım hazır olsun. Medya yok; Function anahtarsız her isteğe 404 verir, bu yüzden
   # "Fail closed" onayı (RAF_FAIL_CLOSED) beklemez. Yalnızca MEDYA_DEPO_TOKEN gerekir.
   iskelet:
-    # elle (mod=iskelet) ya da kaynak/raf-iskelet dalına itince (iş akışı tetikleme yetkisi olmayan oturumlar için)
+    # elle (mod=iskelet) ya da kaynak/raf-iskelet dalına itince (bu dal yalnızca bunun için) (iş akışı tetikleme yetkisi olmayan oturumlar için)
     if: (github.event_name == 'workflow_dispatch' && inputs.mod == 'iskelet') || github.ref == 'refs/heads/kaynak/raf-iskelet'
     runs-on: ubuntu-latest
     timeout-minutes: 10
