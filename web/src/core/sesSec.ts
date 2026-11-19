@@ -10,8 +10,8 @@ export interface Konusan { id: string; cinsiyet?: Cins; sira: number }
 export interface Atama { ses?: Ses; pitch: number; cinsiyetYok?: boolean }
 
 /** Bilinen Almanca ses adları (iOS/macOS, Android/Chrome, Windows/Edge). Küçük harf, ilk sözcük. */
-const KADIN = ["anna", "helena", "petra", "marlene", "vicki", "katja", "hedda", "amala", "seraphina", "louisa", "elke", "sandy", "shelley", "grandma", "google", "ingrid", "gisela", "lea", "maja", "tanja", "elena"];
-const ERKEK = ["markus", "martin", "viktor", "yannick", "hans", "conrad", "stefan", "killian", "florian", "eddy", "reed", "rocko", "flo", "grandpa", "jonas", "ralf", "bernd", "christoph", "kasper"];
+const KADIN = ["anna", "helena", "petra", "marlene", "vicki", "katja", "hedda", "amala", "seraphina", "louisa", "elke", "sandy", "shelley", "grandma", "flo", "google", "ingrid", "gisela", "lea", "maja", "tanja", "elena"];
+const ERKEK = ["markus", "martin", "viktor", "yannick", "hans", "conrad", "stefan", "killian", "florian", "eddy", "reed", "rocko", "grandpa", "jonas", "ralf", "bernd", "christoph", "kasper"];
 /** Eğlence sesleri (iOS): son seçenek */
 const OYUNCAK = ["eddy", "reed", "rocko", "flo", "grandma", "grandpa", "sandy", "shelley", "bad news", "bubbles", "jester", "organ", "trinoids", "whisper", "zarvox", "albert", "bahh", "bells", "boing", "cellos", "wobble", "superstar", "good news"];
 

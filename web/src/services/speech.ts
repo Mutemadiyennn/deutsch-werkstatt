@@ -156,11 +156,20 @@ export function listenOnce(lang = "de-DE", maxMs = 9000): { result: Promise<stri
         const izinli = (x: any) => !x || x.speechRecognition === undefined || x.speechRecognition === "granted";
         let pm: any = null; try { pm = await N.checkPermissions?.(); } catch { /* eski eklenti */ }
         if (!izinli(pm)) { const r = await N.requestPermissions?.(); if (!izinli(r)) throw new Error("not-allowed"); }
-        const r: any = await Promise.race([
-          N.start({ language: lang, maxResults: 4, partialResults: false, popup: false }),
-          new Promise((_, rej) => setTimeout(() => { try { N.stop?.(); } catch { /* yok */ } rej(new Error("timeout")); }, maxMs + 2000))
-        ]);
-        return ((r && r.matches) || []) as string[];
+        // süre dolunca durdurulur ve eklentinin durdurma ile verdiği sonuç beklenir (atılmaz); zamanlayıcı her durumda temizlenir
+        // ki bir sonraki oturumu yarıda kesmesin (inceleme #117 2. tur P1-A)
+        const bas: Promise<any> = N.start({ language: lang, maxResults: 4, partialResults: false, popup: false });
+        let zaman: ReturnType<typeof setTimeout> | undefined;
+        const sure = new Promise<any>((res, rej) => {
+          zaman = setTimeout(() => {
+            try { void N.stop?.(); } catch { /* yok */ }
+            void Promise.race([bas, new Promise((_, j) => setTimeout(() => j(new Error("timeout")), 1500))]).then(res, rej);
+          }, maxMs);
+        });
+        try {
+          const r: any = await Promise.race([bas, sure]);
+          return ((r && r.matches) || []) as string[];
+        } finally { clearTimeout(zaman); }
       } finally { listening = false; }
     })();
     return { result, stop: () => { try { N.stop?.(); } catch {} } };

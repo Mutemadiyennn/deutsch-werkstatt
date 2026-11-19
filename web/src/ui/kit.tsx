@@ -5,16 +5,16 @@
 import { createContext, type ComponentChildren } from "preact";
 import { useContext, useEffect, useRef, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
-import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive, STT_HATA_TR, sttHataTuru } from "../services/speech.ts";
+import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive, STT_HATA_TR, sttHataTuru, konusanAta } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { efekt, ustUsteSay, xpUcur } from "../services/efekt.ts";
 import { Icon } from "./icons.tsx";
 import { Mucevher } from "./solen.tsx";
 
 /* ---------- Ses düğmesi: büyük, tek dokunuşla yavaş/normal ---------- */
-export function ListenButton({ text, speed = "normal", label = "Dinle", slowToggle = true, small = false, kim }: { text: string; speed?: Speed; label?: string; slowToggle?: boolean; small?: boolean; /** konuşan: karakterin sabit sesi (PM-064) */ kim?: string }) {
+export function ListenButton({ text, speed = "normal", label = "Dinle", slowToggle = true, small = false, kim, sahne }: { text: string; speed?: Speed; label?: string; slowToggle?: boolean; small?: boolean; /** konuşan: karakterin sabit sesi (PM-064) */ kim?: string; /** sahnedeki bütün konuşanlar: aynı sahnede iki kişi aynı sesi almasın (2. tur P1-B) */ sahne?: (string | undefined)[] }) {
   const [busy, setBusy] = useState<false | "n" | "s">(false);
-  const play = async (s: Speed, k: "n" | "s") => { if (busy) { stopSpeaking(); setBusy(false); return; } setBusy(k); try { await speak(text, "de", s, false, kim); } finally { setBusy(false); } };
+  const play = async (s: Speed, k: "n" | "s") => { if (busy) { stopSpeaking(); setBusy(false); return; } setBusy(k); try { await speak(text, "de", s, false, kim && sahne ? konusanAta(sahne).get(kim) ?? kim : kim); } finally { setBusy(false); } };
   return (
     <span class={`listen${small ? " sm" : ""}`} role="group" aria-label={label}>
       <button type="button" onClick={() => play(speed, "n")} aria-label={`${label}: ${text}`} data-test="listen">{busy === "n" ? <Icon name="stop" /> : <Icon name="volume" />}</button>

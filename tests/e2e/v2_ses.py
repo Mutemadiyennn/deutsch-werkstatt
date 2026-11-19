@@ -98,13 +98,19 @@ def main():
         ctx.add_init_script("""window.Capacitor = { isNativePlatform: () => !!window.__kabuk, Plugins: { SpeechRecognition: {
           checkPermissions: async () => ({ speechRecognition: window.__yerelIzin || 'granted' }),
           requestPermissions: async () => ({ speechRecognition: window.__yerelIzin || 'granted' }),
-          start: async () => ({ matches: ['Guten Morgen yerel'] }), stop: async () => {} } } };""")
+          // __yavasYerel: iOS'taki gibi sonuç yalnızca stop() ile gelir (inceleme #117 2. tur P1-A)
+          start: () => window.__yavasYerel ? new Promise((r) => { window.__yerelBitir = () => setTimeout(() => r({ matches: ['Guten Morgen durdurunca'] }), 150); }) : Promise.resolve({ matches: ['Guten Morgen yerel'] }),
+          stop: async () => { if (window.__yerelBitir) { const f = window.__yerelBitir; window.__yerelBitir = null; f(); } } } } };""")
         pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         pg.evaluate("window.__kabuk = 1")  # giriş web gibi; sonra kabuk (yeniden yükleme yok)
         pg.goto(base + "#/ses"); pg.wait_for_selector("[data-test=mikrofon-deneme]")
         check("kendi konuşma tanıması" in pg.inner_text("[data-test=stt-yol]"), "kabukta tanıma yolu: iPhone'un kendi tanıması")
         pg.click("[data-test=mic-dene]"); pg.wait_for_selector("[data-test=mic-sonuc]")
         check("yerel" in pg.inner_text("[data-test=mic-sonuc]"), "kabukta sonuç yerel eklentiden (tarayıcı arayüzü seçilmedi)")
+        pg.evaluate("window.__yavasYerel = 1"); pg.click("[data-test=mic-dene]"); pg.wait_for_selector("[data-test=mic-sonuc], [data-test=mic-hata]", timeout=20_000)
+        check(pg.locator("[data-test=mic-sonuc]").count() == 1 and "durdurunca" in pg.inner_text("[data-test=mic-sonuc]"), "süre dolunca durdurma sonucu atılmaz (zaman aşımı hatası yok)")
+        pg.evaluate("window.__yavasYerel = 0"); pg.click("[data-test=mic-dene]"); pg.wait_for_timeout(9_500)
+        check("yerel" in pg.inner_text("[data-test=mic-sonuc]") and pg.locator("[data-test=mic-hata]").count() == 0, "önceki oturumun zamanlayıcısı sonrakini kesmiyor")
         pg.evaluate("window.__yerelIzin = 'denied'"); pg.click("[data-test=mic-dene]"); pg.wait_for_selector("[data-test=mic-hata]")
         check("izni yok" in pg.inner_text("[data-test=mic-hata]") and pg.locator("[data-test=ayarlari-ac]").count() == 1, "kabukta tanıma izni yok: Türkçe neden + 'Ayarları aç'")
         b.close()

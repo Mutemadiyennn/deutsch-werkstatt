@@ -21,7 +21,7 @@ import type { LocalEntry } from "../core/sayit.ts";
 import { ai, aiState, SOFT_WAIT_MS } from "../services/ai.ts";
 import { personalizeDeep, redact, unredact, type Persona } from "../core/persona.ts";
 import { ApiError } from "../services/api.ts";
-import { baslangicYavas, speak, speakDizi, stopSpeaking } from "../services/speech.ts";
+import { baslangicYavas, konusanAta, speak, speakDizi, stopSpeaking } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { FocusChip } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
@@ -374,7 +374,7 @@ function ListeningItem({ li, progress, onDone }: { li: Scenario["listening"][num
   return (
     <div class="stack fade">{progress}
       <section class="card stack"><div class="kicker">Transkript · bilmediğin kelimeye dokun → listene eklenir</div>
-        {li.script.map((l) => <div><div class="tiny muted">{l.r}</div><TapLine de={l.de} /><div class="row" style={{ marginTop: 4 }}><ListenButton text={l.de} speed={li.speed} kim={l.r} /><ShadowBtn de={l.de} /></div>{l.tr && <div class="tr2">{l.tr}</div>}</div>)}
+        {li.script.map((l) => <div><div class="tiny muted">{l.r}</div><TapLine de={l.de} /><div class="row" style={{ marginTop: 4 }}><ListenButton text={l.de} speed={li.speed} kim={l.r} sahne={li.script.map((x) => x.r)} /><ShadowBtn de={l.de} /></div>{l.tr && <div class="tr2">{l.tr}</div>}</div>)}
       </section>
       <ActionBar><button class="btn primary block" onClick={() => onDone(ok, li.qs.length)} data-test="next">Devam</button></ActionBar>
     </div>
@@ -412,7 +412,7 @@ function DialogueSection({ ctx, finish, back }: SP) {
   const grade = useGrader();
   const [claimedD, setClaimedD] = useState(false);
   const d = s.dialogues[variant];
-  useEffect(() => { const l = d?.lines[li]; if (l && l.r === "A") void speak(l.de, "de", l.speed || "normal", false, l.speaker ?? d?.roles.A); }, [variant, li]);
+  useEffect(() => { const l = d?.lines[li]; if (l && l.r === "A") { const k = l.speaker ?? d?.roles.A; const sahne = d ? d.lines.map((x) => x.speaker ?? d.roles[x.r]) : []; void speak(l.de, "de", l.speed || "normal", false, k ? konusanAta(sahne).get(k) ?? k : undefined); } }, [variant, li]);
   if (!d) return <Empty title="Bu senaryoda diyalog yok" />;
   if (li >= d.lines.length) {
     const ratio = total ? score / total : 1;
