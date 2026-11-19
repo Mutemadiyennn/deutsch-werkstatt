@@ -439,12 +439,12 @@ function DialogueSection({ ctx, finish, back }: SP) {
           <SayItBox entries={entriesOf(ctx)} level={s.level} context_de={line.de} />
           <ActionBar><AnswerField onSubmit={async (a) => {
             setBusy(true); const res = await grade(line.accepted?.length ? line.accepted : [line.de], a, line.tr); setBusy(false);
-            setV({ v: res, a }); setTotal(total + 1); if (res.kind === "correct") setScore(score + 1);
+            setV({ v: res, a }); setTotal(total + 1); if (countsAsCorrect(res.kind, false)) setScore(score + 1);
           }} disabled={busy} submitLabel="Söyle" /></ActionBar>
         </section>
       )}
       {line.r === "B" && v && <VerdictView v={v.v} answer={v.a} itemId={`${d.id}:${li}`} scenarioId={s.id} prompt={line.tr} accepted={line.accepted?.length ? line.accepted : [line.de]}
-        onClaim={() => { if (v.v.kind !== "correct") setScore(score + 1); setClaimedD(true); }}
+        onClaim={() => { if (!countsAsCorrect(v.v.kind, false)) setScore(score + 1); setClaimedD(true); }}
         onNext={() => { const ch = chunkFor(s, line.de); if (ch) void rec(ch.id, "chunk", "active", claimedD ? "correct" : outcomeOf(v.v, support >= 2)); setClaimedD(false); setV(null); setLi(li + 1); }} nextLabel="Devam" />}
     </div>
   );

@@ -134,6 +134,8 @@ def main():
             if v2 and "kontrol edemedim" in v2: pg = pg2; break
             b2.close()
         check(v2 is not None and "kontrol edemedim" in v2, f"C: tanınmayan yakın cevap 'kontrol edemedim' ({(v2 or '')[:50]!r})")
+        # koşulsuz: düğme yoksa kırmızı (inceleme #43 3. tur)
+        check(pg.locator("[data-test=claim]").count() == 1, "C: 'kontrol edemedim' bandında 'Evet, aynı anlamda' düğmesi var")
         if pg.locator("[data-test=claim]").count():
             pg.click("[data-test=claim]"); pg.wait_for_selector("text=Kaydedildi")
             check(pg.locator("[data-test=next]").count() == 1, "C: 'Evet, aynı anlamda' → kaydedildi, devam edilebilir")

@@ -50,7 +50,7 @@ export function App() {
     auth.ready.then(() => { setUser(auth.current()); setAuthReady(true); }).catch(() => setAuthReady(true));
     // inceleme #43 P1-3: giriş durumu 8 sn'de gelmezse öğrenci sonsuz "Yükleniyor"da kalmaz
     const slow = setTimeout(() => setAuthSlow(true), 8000);
-    auth.ready.finally(() => clearTimeout(slow));
+    auth.ready.then(() => clearTimeout(slow), () => clearTimeout(slow));
     const off = auth.onChange((u) => setUser(u));
     return () => { removeEventListener("hashchange", on); off(); };
   }, []);
