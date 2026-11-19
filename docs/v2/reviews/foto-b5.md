@@ -25,7 +25,7 @@
 | Fotoğraf seçilen | **40** |
 | Reddedilen (`aday: null`, soyut değil) | 220 |
 | Soyut ya da sayıya bağlı (fotoğraf yok) | 48 |
-| Kısa ikinci sorgu (`kisa-sorgu.json`) | 319 |
+| Kısa ikinci sorgu (`kisa-sorgu.json`) | 332 |
 
 **Seçilenlerin lisansı:** CC BY-SA 19, CC BY 12, kamu malı 5, CC0 4.
 
