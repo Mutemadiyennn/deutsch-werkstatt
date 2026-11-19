@@ -14,6 +14,7 @@ import { focusPause, focusResume, focusSkipBreak, focusStart } from "../services
 import { Art, ErrorPanel, Ring, SpeakBtn, minLeft, useFocusTick } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 import { Avatar, RauteRow, SkyBand, accentOf, type RState } from "../ui/raute.tsx";
+import { XpSeri } from "../ui/solen.tsx";
 
 const breakOnNow = (e: { rt: { phase: string } }) => e.rt.phase === "break";
 const BREAK_IDEAS = ["Kalk, biraz yürü ya da gerin.", "Bir bardak su iç.", "Gözlerini ekrandan ayır; uzağa bak.", "Omuzlarını 10 kez geriye çevir.", "Pencereyi aç, derin nefes al."];
@@ -118,7 +119,8 @@ export function Today() {
         {m1.sonraki ? <a class="btn primary block" href={m1.sonraki.href} data-test="m1-devam" onClick={devam}><Icon name="play" size={18} /> Devam et</a>
           : <a class="btn primary block" href="#/garden" data-test="m1-tekrar" onClick={devam}><Icon name="play" size={18} /> Kelime Bahçesi: tekrar et</a>}
         <div class="stack" style={{ gap: 6 }}>
-          <a class="small" style={{ display: "block" }} href="#/yol" data-test="yol-link">Haftanın yolu · {m1.xp.toplam} XP{seri(m1.xp) ? ` · ${seri(m1.xp)} gün üst üste` : ""}</a>
+          <XpSeri xp={m1.xp} />
+          <a class="small" style={{ display: "block" }} href="#/yol" data-test="yol-link">Haftanın yolu</a>
           {placement ? <a class="small" style={{ display: "block" }} href={`#/assess/result/${placement.id}`} data-test="assess-result">Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>
             : <a class="small" style={{ display: "block" }} href="#/assess" data-test="assess-link">Almancan varsa: seviyeni gör (seviye tespiti)</a>}
         </div>

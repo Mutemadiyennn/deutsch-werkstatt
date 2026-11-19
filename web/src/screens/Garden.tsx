@@ -7,8 +7,9 @@ import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadLexicon, loadM1Gun } from "../services/content.ts";
-import { bahceTamam, xpVer } from "../services/ilerleme.ts";
-import { XP } from "../core/gun.ts";
+import { bahceTamam, xpOku, xpVer } from "../services/ilerleme.ts";
+import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
+import { XP, seri } from "../core/gun.ts";
 import { itemsMap, personalWords, putItems } from "../data/db.ts";
 import { review, sessionKey, type Outcome } from "../core/srs.ts";
 import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, isNoun, meaningOptions, ownSentenceCheck, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
@@ -18,9 +19,10 @@ import { judgeWord, numberWordHint } from "../core/grading.ts";
 import { isDue } from "../core/srs.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
-import { ActionBar, AnswerField, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
+import { ActionBar, AnswerField, FeedbackBand, ListenButton, ProgressHeader, YanlisIci } from "../ui/kit.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Photo } from "../ui/learn.tsx";
+import { Rich } from "../ui/rich.tsx";
 
 const E2E = import.meta.env.MODE === "e2e";
 /** `yazim`: kelime doğru, yalnızca ümlaut/ß eksik (PM 7004537514-1): kart "bilmiyor" sayılmaz, turun sonunda bir kez daha sorulur */
@@ -43,6 +45,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   const [err, setErr] = useState<string | null>(null);
   const [i, setI] = useState(0);
   const [score, setScore] = useState({ ok: 0, n: 0 });
+  const turXp = useOturumXp();
   const startedAt = useMemo(() => Date.now(), []);
 
   useEffect(() => {
@@ -78,7 +81,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   const { round } = data;
   const kalanSayi = data.gunKartlari.filter((id) => !data.items.has(id)).length;
   if (!round.length) return <GardenEmpty day={day} capped={data.capped} />;
-  if (i >= round.length) return <GardenDone day={day} score={score} items={data.items} kalan={kalanSayi} again={again} />;
+  if (i >= round.length) return <GardenDone day={day} score={score} items={data.items} kalan={kalanSayi} again={again} xp={turXp}
+    kelimeler={[...new Set(round.filter((q) => q.intro).map((q) => { const l = data.lex.get(q.lexId); return l ? (l.art ? `${l.art} ${l.de}` : l.de) : ""; }).filter(Boolean))]} />;
   const q = round[i]!;
   const l = data.lex.get(q.lexId)!;
 
@@ -96,7 +100,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
     setBusy(false);
     // "Emin değilim, geç" sayılmaz: ne doğru ne soru (özet tutarlı, inceleme #59 P2-1)
     if (outcome) setScore((s) => ({ ok: s.ok + (r.ok ? 1 : 0), n: s.n + 1 }));
-    if (outcome && r.ok) void xpVer(XP.dogru);
+    // XP yalnızca ipucusuz doğruda (ipucu cevabı gösteriyor; D-102, inceleme #85 P2-2); uçuş da 0 (inceleme #87 2. tur)
+    if (outcome === "correct") void xpVer(XP.dogru);
     const r2 = !r.ok && outcome ? requeue(round, q, l) : round;
     // son cevap: günün bütün kartları tanıtıldıysa Seans 1 şimdi işaretlenir (inceleme #66 P1-1)
     if (day && i + 1 >= r2.length && data.gunKartlari.every((id) => data.items.has(id))) { try { await bahceTamam(day); } catch { /* bir sonraki açılışta yeniden denenir */ } }
@@ -106,7 +111,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
 
   return (
     <div class="stack" data-test="garden">
-      <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} sub={`${Math.min(i + 1, round.length)} / ${round.length}`} />
+      <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} ilerleme={{ n: i, toplam: round.length }} />
       <Question key={`${i}:${q.lexId}:${q.type}`} q={q} l={l} all={data.all} onDone={finish} />
     </div>
   );
@@ -141,6 +146,8 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
     </div>
   );
 
+  // ipucu ve boşluk cümlesi yalnızca boşluk sorularında (başka türde öğrencinin görmediği cümlenin ipucu çıkmasın; inceleme #85 P1-1)
+  const form = q.type === "gap" || q.type === "sep_perfekt" ? formFor(l, q.type, q.ex) : undefined;
   // PM (#59 yorumu): cevaptan sonra, doğru ya da yanlış, kelime cümlesiyle görünür — örnek cümle (dinle), fotoğraf, eşdizim
   const colAfter = collocOf(l);
   const verdict = res && (<>
@@ -153,11 +160,12 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
     {/* geri bildirim bandı yüksek: kart bandın altında kalmasın diye kaydırma payı */}
     <div aria-hidden="true" style={{ height: 180 }} />
     <ActionBar>
-      {res.ok ? <FeedbackBand kind="ok" title="Doğru.">{res.expected && <span lang="de">{res.expected}</span>}</FeedbackBand>
-        : <FeedbackBand kind={res.yazim ? "info" : "bad"} title={res.yazim ? "Kelime doğru, yazımı eksik." : "Doğrusu bu."}>
-            <div class="small">Senin cevabın: <span lang="de">{res.answer || "—"}</span></div>
-            <div>Doğrusu: <b lang="de">{res.expected}</b></div>
-            {res.note && <div class="small">{res.note}</div>}
+      {res.ok ? <FeedbackBand kind="ok" title="Doğru." xp={hinted ? 0 : XP.dogru}>{res.expected && <span lang="de">{res.expected}</span>}</FeedbackBand>
+        : <FeedbackBand kind={res.yazim ? "info" : "bad"} title={res.yazim ? "Kelime doğru, yazımı eksik." : "Doğrusu:"}>
+            {/* PM-059 madde 1: önce doğrusu; örnek cümle hemen üstteki kartta (dinlenebilir) */}
+            <YanlisIci dogrusu={res.expected ?? ""} cevap={res.answer}>{res.note && <div class="small">{res.note}</div>}
+              {/* ipucu yanlış cevaptan sonra açıklama olarak (PM 7004537514-2) */}
+              {form?.hint_tr && <div class="small" data-test="ipucu-sonra"><Rich text={form.hint_tr} /></div>}</YanlisIci>
           </FeedbackBand>}
       <button class="btn primary block" data-test="next" onClick={() => next(res.ok ? (hinted ? "hinted" : "correct") : res.yazim ? "hinted" : "wrong")}>Devam</button>
     </ActionBar></>
@@ -166,10 +174,9 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   if (q.type === "listen_meaning" || q.type === "article" || q.type === "colloc") return <ChoiceQ q={q} l={l} all={all} ex={ex} show={show} verdict={verdict} />;
 
   // ---- aktif: üretim ----
-  const form = formFor(l, q.type, q.ex);
   const prompt = q.type === "photo_say" ? <><div class="kicker">Fotoğraftaki ne? Artikeliyle söyle ya da yaz</div><Photo q={l.img} /><p class="small muted">{l.tr}</p></>
     : q.type === "tr_de" ? <><div class="kicker">Almanca söyle ya da yaz</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div></>
-    : q.type === "gap" || q.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && <p class="small">{form.hint_tr}</p>}</>
+    : q.type === "gap" || q.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && !res && <IpucuDugmesi metin={form.hint_tr} onAc={() => setHinted(true)} />}</>
     : <><div class="kicker">Bu kelimeyle kendi cümleni kur</div><div class="de-lg" lang="de"><Art art={l.art} de={l.de} /></div><p class="small muted">{l.tr}{ex ? ` · Örnek: ` : ""}{ex && <span lang="de">{ex.de}</span>}</p></>;
 
   const submit = (a: string, mode: "typed" | "voice") => {
@@ -257,12 +264,15 @@ function tomorrow(items: Map<string, LearnerItem>): string {
 }
 
 /** Tur sonu. M1 gününde günün kartlarından tanıtılmamış kalan varsa ana eylem "Bir tur daha" (Seans 1 henüz bitmedi) */
-function GardenDone({ day, score, items, kalan, again }: { day?: number; score: { ok: number; n: number }; items: Map<string, LearnerItem>; kalan: number; again: () => void }) {
+function GardenDone({ day, score, items, kalan, again, xp, kelimeler }: { day?: number; score: { ok: number; n: number }; items: Map<string, LearnerItem>; kalan: number; again: () => void; xp: number; kelimeler: string[] }) {
   const devam = !!day && kalan > 0;
+  const [seriGun, setSeriGun] = useState<number | undefined>();
+  useEffect(() => { void xpOku().then((x) => setSeriGun(seri(x))); }, []);
   return (
-    <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" />
-      <section class="card stack" data-test="garden-done"><h2>Tur bitti</h2>
-        <p>{score.n} soruda {score.ok} doğru.{score.ok < score.n ? " Yanlış olanlar yarın ya da birkaç gün sonra başka bir soruyla geri gelecek." : " Hepsi doğru."}</p>
+    <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" ilerleme={{ n: 1, toplam: 1 }} />
+      <section class="card stack" data-test="garden-done"><Kutlama><h2>Tur bitti</h2></Kutlama>
+        <Ozet dogru={score.ok} toplam={score.n} xp={xp} seriGun={seriGun} kelimeler={kelimeler} />
+        {score.ok < score.n && <p class="small">Yanlış olanlar yarın ya da birkaç gün sonra başka bir soruyla geri gelecek.</p>}
         {devam ? <p data-test="garden-kalan">Bugünün kartlarından <b>{kalan}</b> yeni kelime kaldı.</p> : <p class="small muted" data-test="garden-tomorrow">{tomorrow(items)}</p>}
         {devam ? <ActionBar><button class="btn primary block" data-test="garden-again" onClick={again}>Bir tur daha</button></ActionBar>
           : <a class="btn primary block" href="#/today" data-test="garden-back">{day ? "Sıradaki adıma geç" : "Bugün'e dön"}</a>}</section></div>
@@ -277,4 +287,11 @@ function GardenEmpty({ day, capped }: { day?: number; capped: boolean }) {
         <p>{capped ? "Bugünkü yeni kartların bitti ve vadesi gelen kart yok. Yarın yeni kartlar ve tekrarlar seni bekliyor." : "Şu an vadesi gelen kart yok. Yeni kart da kalmadı."}</p>
         <a class="btn primary block" href="#/today">{day ? "Sıradaki adıma geç" : "Bugün'e dön"}</a></section></div>
   );
+}
+
+/** Boşluk ipucu: soru sırasında kapalı; dokunuşla açılırsa cevap "ipucuyla" sayılır (PM 7004537514-2) */
+function IpucuDugmesi({ metin, onAc }: { metin: string; onAc: () => void }) {
+  const [acik, setAcik] = useState(false);
+  if (acik) return <p class="small" data-test="ipucu"><Rich text={metin} /></p>;
+  return <div><button class="btn ghost sm" data-test="ipucu-ac" onClick={() => { setAcik(true); onAc(); }}>İpucu göster</button><div class="tiny muted">Açarsan bu kart daha sık tekrar gelir.</div></div>;
 }

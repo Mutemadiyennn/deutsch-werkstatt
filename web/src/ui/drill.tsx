@@ -11,7 +11,7 @@ import { judgeWord, norm, numberWordHint } from "../core/grading.ts";
 import { fillName } from "../core/persona.ts";
 import { addClaim } from "../data/db.ts";
 import { haptic } from "../services/haptics.ts";
-import { ActionBar, AnswerField, FeedbackBand, ListenButton } from "./kit.tsx";
+import { ActionBar, AnswerField, FeedbackBand, ListenButton, YanlisIci } from "./kit.tsx";
 import { Rich } from "./rich.tsx";
 
 const E2E = import.meta.env.MODE === "e2e";
@@ -103,8 +103,8 @@ export function DrillView({ d, sira, onDone, artikel }: { d: Drill; sira?: strin
           : v.kind === "unchecked" ? <FeedbackBand kind="info" title="Bu cevabı kendim kontrol edemedim.">
               <div class="small">Senin cevabın: <span lang="de">{v.a}</span></div><div>Örnek: <b lang="de">{v.best}</b></div>
               <div class="small">İkisi aynı şeyi mi söylüyor? Emin değilsen örneği öğren.</div></FeedbackBand>
-          : <FeedbackBand kind="bad" title="Doğrusu bu."><div class="small">Senin cevabın: <span lang="de">{v.a}</span></div><div><b lang="de">{v.best}</b></div>
-              {v.note && <div class="small">{v.note}</div>}{d.why_tr && <div class="small"><Rich text={d.why_tr} /></div>}</FeedbackBand>}
+          : <FeedbackBand kind="bad" title="Doğrusu:"><YanlisIci dogrusu={v.best} cevap={v.a}>
+              {v.note && <div class="small">{v.note}</div>}{d.why_tr && <div class="small"><Rich text={d.why_tr} /></div>}</YanlisIci></FeedbackBand>}
         {v.kind === "unchecked"
           ? <><button class="btn primary block" data-test="next" onClick={() => done("wrong")}>Örneği öğrendim, devam</button>
               <button class="btn block" data-test="claim" onClick={() => { void addClaim({ at: new Date().toISOString(), scenarioId: "temel", itemId: d.id, prompt: d.k === "tr_de" ? d.tr : d.k === "transform" ? d.instr_tr : d.k === "gap" || d.k === "order" ? d.tr : d.situation_tr ?? "", answer: v.a, expected: d.accepted }); done(countsAsCorrect("unchecked", true) ? "claimed" : "wrong"); }}>Benimki de aynı anlamda</button></>
