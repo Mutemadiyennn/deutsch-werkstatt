@@ -165,4 +165,15 @@ describe("Kelime Bahçesi (PM-049)", () => {
     const it = review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "correct", session: "g@1" }, t0);
     for (let k = 0; k < 10; k++) expect(buildRound(lex, new Map([["lx:Termin", it]]), [], { now: t0, rng: () => k / 10 })[0]!.type).not.toBe("own_sentence");
   });
+  it("3. tur: isimde eş anlamlı kart (Arbeit/Job) tanınır; farklı sözcük türü ve parantezli anlam eşleşmez; 'weh (tun)'", () => {
+    const arbeit = L({ id: "lx:Arbeit", de: "Arbeit", tr: "iş", pos: "noun", art: "die" });
+    const job = L({ id: "lx:Job", de: "Job", tr: "iş", pos: "noun", art: "der" });
+    const halten = L({ id: "lx:halten", de: "halten", tr: "tutmak (süre)", pos: "verb" });
+    const kosten = L({ id: "lx:kosten", de: "kosten", tr: "tutmak (fiyat)", pos: "verb" });
+    expect(synonymHit(arbeit, "der Job", [arbeit, job])?.id).toBe("lx:Job");
+    expect(synonymHit(halten, "kosten", [halten, kosten])).toBeNull();
+    const uhr = L({ id: "lx:Uhr", de: "Uhr", tr: "saat", pos: "noun", art: "die" });
+    expect(synonymHit(uhr, "um", [uhr, L({ id: "lx:um", de: "um", tr: "saat", pos: "prep" })])).toBeNull();
+    expect(accepted(L({ id: "lx:weh", de: "weh (tun)", tr: "acımak", pos: "adj" }), "tr_de")).toEqual(expect.arrayContaining(["weh", "weh tun"]));
+  });
 });

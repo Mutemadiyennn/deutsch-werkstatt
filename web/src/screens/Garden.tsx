@@ -100,6 +100,7 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   const [ownNote, setOwnNote] = useState(false);
   const [shortNote, setShortNote] = useState(false);
   const [synNote, setSynNote] = useState<string | null>(null);
+  const [hinted, setHinted] = useState(false);
   const ex = l.examples[q.ex % Math.max(1, l.examples.length)];
   const show = (r: Result) => { setRes(r); haptic(r.ok ? "success" : "error"); };
   const next = (o: Outcome | null) => onDone(res || { ok: false }, o);
@@ -129,7 +130,7 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
             <div>Doğrusu: <b lang="de">{res.expected}</b></div>
             {res.note && <div class="small">{res.note}</div>}
           </FeedbackBand>}
-      <button class="btn primary block" data-test="next" onClick={() => next(res.ok ? "correct" : "wrong")}>Devam</button>
+      <button class="btn primary block" data-test="next" onClick={() => next(res.ok ? (hinted ? "hinted" : "correct") : "wrong")}>Devam</button>
     </ActionBar>
   );
 
@@ -154,10 +155,16 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
     const hint = mode === "typed" ? numberWordHint(a) : null;
     if (hint && acc.every((x) => !/\d/.test(x))) { show({ ok: false, answer: a, expected: acc[0], note: hint }); return; }
     // isimde artikel zorunlu ve eksik/yanlış artikel açıklanır (inceleme #59 P2-3)
-    if ((q.type === "tr_de" || q.type === "photo_say") && isNoun(l)) { const j = judgeWord(a, l.de, l.art); show({ ok: j.ok, answer: a, expected: acc[0], note: j.why_tr }); return; }
+    // eş anlamlı başka kart (sprechen/reden, Arbeit/Job): yanlış sayılmaz; aranan kelime yeniden istenir (inceleme #59 Y-2)
+    const trySyn = () => { if (q.type !== "tr_de") return false; const syn = synonymHit(l, a, all); if (!syn) return false;
+      setSynNote(`„${syn.de}“ başka bir kelime. Burada aranan kelimenin ilk harfi: ${l.de[0]}…`); setHinted(true); return true; };
+    if ((q.type === "tr_de" || q.type === "photo_say") && isNoun(l)) {
+      const j = judgeWord(a, l.de, l.art);
+      if (!j.ok && trySyn()) return;
+      show({ ok: j.ok, answer: a, expected: acc[0], note: j.why_tr }); return;
+    }
     const v = ruleVerdict(acc, a);
-    // eş anlamlı başka kart (sprechen/reden): yanlış değil; aranan kelime yeniden istenir (inceleme #59 2. tur Y-2)
-    if (v.kind !== "correct" && q.type === "tr_de") { const syn = synonymHit(l, a, all); if (syn) { setSynNote(`„${syn.de}“ da doğru. Burada aranan başka bir kelime; ilk harfi: ${l.de[0]}…`); return; } }
+    if (v.kind !== "correct" && trySyn()) return;
     show({ ok: v.kind === "correct", answer: a, expected: acc[0] });
   };
 

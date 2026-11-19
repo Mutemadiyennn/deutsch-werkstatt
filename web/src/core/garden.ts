@@ -243,7 +243,11 @@ export function accepted(l: Lexeme, t: QType, formIdx = 0): string[] {
   switch (t) {
     case "photo_say": return [withArt];
     // çok biçimli başlık ("anderer, andere, anderes"): her biçim tek başına doğru (inceleme #59 2. tur Y-2)
-    case "tr_de": { const heads = l.de.split(/\s*,\s*/).filter(Boolean); return isNoun(l) ? [withArt, l.de] : heads.length > 1 ? [...heads, l.de] : [l.de]; }
+    case "tr_de": {
+      // "weh (tun)": parantezli kısım isteğe bağlı → "weh" ve "weh tun"
+      const heads = l.de.split(/\s*,\s*/).flatMap((h) => /\(.+\)/.test(h) ? [h.replace(/\s*\(.*?\)\s*/g, " ").trim(), h.replace(/[()]/g, "").trim()] : [h]).filter(Boolean);
+      return isNoun(l) ? [withArt, l.de] : heads.length > 1 || heads[0] !== l.de ? [...new Set([...heads, l.de])] : [l.de];
+    }
     case "gap": case "sep_perfekt": {
       const f = (t === "gap" ? otherForms(l) : verbForms(l))[formIdx % Math.max(1, l.forms.length)];
       if (!f) return [l.de];
@@ -282,13 +286,17 @@ export function ownSentenceCheck(l: Lexeme, answer: string): "ok" | "missing" | 
   return "ok";
 }
 
-/** Aynı Türkçe karşılığı taşıyan başka kart (sprechen/reden): öğrenci onu söylediyse ceza yok, aranan kelime istenir */
+/**
+ * Aynı Türkçe karşılığı taşıyan başka kart (sprechen/reden, Arbeit/Job): öğrenci onu söylediyse ceza yok, aranan kelime
+ * istenir. Aynı sözcük türü şartı; parantezli açıklama anlamın parçası sayılır (inceleme #59 3. tur).
+ */
 export function synonymHit(l: Lexeme, answer: string, all: Lexeme[]): Lexeme | null {
-  const keys = (tr: string) => new Set(tr.toLowerCase().split(/[,;/]|\bya da\b/).map((x) => x.replace(/\(.*?\)/g, "").trim()).filter(Boolean));
+  // parantezli açıklama anlamın parçasıdır: "tutmak (süre)" ≠ "tutmak (fiyat)"
+  const keys = (tr: string) => new Set(tr.toLowerCase().split(/[,;/](?![^(]*\))|\bya da\b/).map((x) => x.replace(/\s+/g, " ").trim()).filter((x) => x.length > 1));
   const mine = keys(l.tr);
   const a = answer.trim().toLowerCase().replace(/[.!?]+$/, "").replace(/^(der|die|das)\s+/, "");
   for (const x of all) {
-    if (x.id === l.id || !isCard(x)) continue;
+    if (x.id === l.id || !isCard(x) || x.pos !== l.pos) continue;
     if (![...keys(x.tr)].some((k) => mine.has(k))) continue;
     if (x.de.toLowerCase().split(/\s*,\s*/).includes(a)) return x;
   }
