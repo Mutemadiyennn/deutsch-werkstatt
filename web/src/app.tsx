@@ -46,7 +46,6 @@ export function App() {
   const [toastMsg, setToast] = useState<string | null>(null);
   const [authSlow, setAuthSlow] = useState(false);
   const [profileErr, setProfileErr] = useState<string | null>(null);
-  const [profileTry, setProfileTry] = useState(0);
 
   useEffect(() => {
     const on = () => setRoute(parseHash(location.hash));
@@ -76,7 +75,7 @@ export function App() {
       await startFocus(p);
     })().catch((e) => { recordError("profil", e); setProfileErr("Profilin bu cihazdan okunamadı."); });
     within(loadIndex()).then(setIndex).catch((e) => setIndexError(String(e.message || e)));
-  }, [user?.uid, profileTry]);
+  }, [user?.uid]);
 
   useEffect(() => { if (route.name !== "section") setLearning(LEARNING_ROUTES.has(route.name), route.name === "assess" ? "assess" : "vocab"); window.scrollTo(0, 0); }, [route]);
 
@@ -88,7 +87,7 @@ export function App() {
     ? <ErrorPanel message="Giriş bilgisi şu an doğrulanamadı. İnternet bağlantını kontrol edip tekrar dene." onRetry={() => location.reload()} />
     : <Loading />}</main>;
   if (!user) return <Login />;
-  if (!profile) return <main class="app notabs">{profileErr ? <ErrorPanel message={`${profileErr} Verin silinmedi; tekrar dene.`} onRetry={() => setProfileTry((n) => n + 1)} /> : <Loading text="Profil yükleniyor…" />}</main>;
+  if (!profile) return <main class="app notabs">{profileErr ? <ErrorPanel message={`${profileErr} Verin silinmedi; tekrar dene.`} onRetry={() => location.reload()} /> : <Loading text="Profil yükleniyor…" />}</main>;
 
   const ctx: AppCtx = {
     user, profile, index, indexError, placement, api, route, toast,
