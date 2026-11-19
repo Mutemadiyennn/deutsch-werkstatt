@@ -72,7 +72,8 @@ def rss_bolum(k: int) -> dict[str, dict]:
         d = fix(html.unescape(it.findtext("description") or ""))
         d = re.sub(r"<ul>.*?</ul>", "", d, flags=re.S)
         satirlar = [re.sub(r"<[^>]+>", "", x).strip() for x in re.split(r"<br\s*/?>", d)]
-        out[mp4.rsplit("/", 1)[-1].rsplit(".", 1)[0]] = {"mp4": mp4, "satirlar": [x for x in satirlar if x]}
+        enc = it.find("enclosure")
+        out[mp4.rsplit("/", 1)[-1].rsplit(".", 1)[0]] = {"mp4": mp4, "enc": enc.get("url") if enc is not None else None, "satirlar": [x for x in satirlar if x]}
     return out
 
 ETIKET = re.compile(r"^\s*([^:]{1,40}):\s*(.+)$")
@@ -255,7 +256,18 @@ def isle(klip_yolu: str, out: str, rss_onbellek: dict) -> dict:
     if uyusmaz: return {**sonuc, "hata": f"transkript turları içerikle uyuşmuyor: {uyusmaz}"}
     # indir, ses
     mp4 = os.path.join(out, f"{ad}.kaynak.mp4"); wav = os.path.join(out, f"{ad}.wav")
-    open(mp4, "wb").write(get(item["mp4"]))
+    # video adresi: RSS bağlantısı, enclosure, https ve www biçimleri (kaynak site adres düzenini değiştirmiş olabilir)
+    adaylar = []
+    for u in [item.get("enc"), item["mp4"], k.get("video_url")]:
+        if not u: continue
+        for v in (u, u.replace("http://", "https://"), u.replace("://coerll.", "://www.coerll."), u.replace("http://coerll.", "https://www.coerll.")):
+            if v not in adaylar: adaylar.append(v)
+    hatalar = []
+    for u in adaylar:
+        try: open(mp4, "wb").write(get(u)); sonuc["video_adresi"] = u; break
+        except Exception as e: hatalar.append(str(e)[:160])
+    else:
+        return {**sonuc, "hata": "video indirilemedi", "denenen": hatalar}
     ses_cikar(mp4, wav)
     tum = [norm_kelimeler(x["de"]) for x in de]
     # ASR'ler bütün kayıtta; ölçüm seçili turların kelimelerine göre
