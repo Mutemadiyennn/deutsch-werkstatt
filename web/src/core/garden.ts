@@ -40,7 +40,17 @@ export interface GardenQ {
   ex: number;
   /** turda kaçıncı deneme (yanlıştan sonra 1) */
   retry?: number;
+  /** B16: yeni kart "Biliyorum, sına beni" — tanıtım yok; tek üretim sorusu (TR→DE, ipucusuz, isimde artikel) */
+  sina?: boolean;
 }
+
+/** B16 sına kabulü: isimde artikel zorunlu (artikelsiz kabul edilmez), öteki türlerde TR→DE kabulü */
+export const sinaKabul = (l: Lexeme): string[] => (isNoun(l) ? [`${l.art} ${l.de}`] : accepted(l, "tr_de"));
+/** Kendiliğinden öneri: art arda bu kadar yeni kart ilk tanıma sorusunda hızlı (≤ HIZLI_SN) ve doğru bilinince */
+export const ONERI_ART_ARDA = 3;
+export const HIZLI_SN = 8;
+/** Tura hızlı şerit uygula: yeni kartların tanıtımı sına sorusuna döner (tekrar kartları ve yanlış tekrarları aynen) */
+export const sinaTuru = (round: GardenQ[], bas = 0): GardenQ[] => round.map((q, i) => (i >= bas && q.intro && !q.retry ? { ...q, intro: false, sina: true, type: "tr_de" as QType } : q));
 
 export const isNoun = (l: Lexeme) => l.pos === "noun" && !!l.art;
 

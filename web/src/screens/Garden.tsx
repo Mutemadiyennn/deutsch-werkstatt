@@ -5,16 +5,16 @@
  */
 import { gorevSay } from "../services/gorev.ts";
 import { cumleKaydet } from "../services/kullanim.ts";
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadLexicon, loadM1Gun } from "../services/content.ts";
 import { bahceTamam, xpOku, xpVer } from "../services/ilerleme.ts";
 import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
-import { XP, seri } from "../core/gun.ts";
-import { itemsMap, personalWords, putItems } from "../data/db.ts";
-import { review, sessionKey, type Outcome } from "../core/srs.ts";
-import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
+import { XP, seri, yerelGun } from "../core/gun.ts";
+import { getMeta, itemsMap, personalWords, putItems, setMeta } from "../data/db.ts";
+import { hizliGecis, review, sessionKey, type Outcome } from "../core/srs.ts";
+import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { umlautEksik } from "../core/esdeger.ts";
 import { judgeWord, numberWordHint } from "../core/grading.ts";
@@ -27,6 +27,11 @@ import { Photo } from "../ui/learn.tsx";
 import { Rich } from "../ui/rich.tsx";
 
 const E2E = import.meta.env.MODE === "e2e";
+/** Soru ekranından tura dönen bilgi: gerçekleşen soru türü (sına düşünce tanıma), sına mı, cevap süresi (öneri için) */
+interface SoruBilgi { tip?: QType; sina?: boolean; ms?: number }
+/** Seviye tespitinde hızlı şeridi varsayılan yapan sonuçlar (PM-066 madde 4) */
+const A2_VE_USTU = ["A2", "B1", "B2", "C1", "C2"];
+
 /** `yazim`: kelime doğru, yalnızca ümlaut/ß eksik (PM 7004537514-1): kart "bilmiyor" sayılmaz, turun sonunda bir kez daha sorulur */
 type Result = { ok: boolean; answer?: string; expected?: string; note?: string; yazim?: boolean };
 
@@ -49,6 +54,16 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   const [score, setScore] = useState({ ok: 0, n: 0 });
   // görev "2 turda %90+": yalnızca ipucusuz doğru sayılır, "Emin değilim, geç" de paydada (inceleme #108 P1-1)
   const [gorevTur, setGorevTur] = useState({ temiz: 0, toplam: 0 });
+  // B16 hızlı şerit (PM-066): yeni kartlar "Biliyorum, sına beni" üretim sorusuyla açılır; kaynak: öğrenci ya da seviye tespiti
+  const { placement } = useApp();
+  const [hizli, setHizli] = useState<null | "ogrenci" | "tespit">(null);
+  const [oneri, setOneri] = useState<"yok" | "goster" | "reddedildi">("yok");
+  const [oneriSayac, setOneriSayac] = useState(0);
+  // bu soru cevaplandı mı ("Normal akışa dön" cevaplanmış sına sorusunu bozmasın; 2. tur P2-C)
+  const [cevapVar, setCevapVar] = useState(false);
+  // sına bilinemedi, kelime şimdi tanıtılıyor: bant bunu söyler (PM 7018403441-2)
+  const [tanitimda, setTanitimda] = useState(false);
+  useEffect(() => { setTanitimda(false); }, [i]);
   const turXp = useOturumXp();
   const startedAt = useMemo(() => Date.now(), []);
 
@@ -72,7 +87,17 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       const hak = m1Hak(takvim, kalan.length, priority.length);
       const kisisel = !day || hak.kisiselIzin ? priority : [];
       const newLeft = day ? hak.newLeft : takvim, activeLeft = DAILY_ACTIVE - t.active;
-      const round = buildRound(lex, items, pool, { priority: kisisel, newLeft, activeLeft, yeniAyir: Math.min(8, kalan.length) });
+      let round = buildRound(lex, items, pool, { priority: kisisel, newLeft, activeLeft, yeniAyir: Math.min(8, kalan.length) });
+      // B16 kapsamı (PM-066; inceleme #113 P1-1/2/3): öğrencinin "sına beni"si o günün kalan kartları için (`hizliGun`);
+      // seviye tespiti A2 ve üstüyse yalnızca İlk Hafta günlerinde varsayılan; "normal akış" seçimi kalıcı (`hizliSerit` = false)
+      const bugun = yerelGun(new Date());
+      const kapali = (await getMeta<boolean>("hizliSerit")) === false;
+      const ogrenciBugun = (await getMeta<string>("hizliGun")) === bugun;
+      const a2 = !!placement && A2_VE_USTU.includes(placement.overall ?? "") && !!day && day <= 7;
+      // öğrencinin bugünkü açık seçimi kalıcı "normal akış"ı da geçer (inceleme #113 2. tur P2-B)
+      if (ogrenciBugun || (!kapali && a2)) { round = sinaTuru(round); setHizli(ogrenciBugun ? "ogrenci" : "tespit"); }
+      // normal akış seçildiyse ya da bugün öneri reddedildiyse kendiliğinden öneri de gelmez (tercih saygısı)
+      if (kapali || (await getMeta<string>("hizliOneriRed")) === bugun) setOneri("reddedildi");
       // boş tur: günün kartları zaten tanıtıldıysa Seans 1 burada tamamlanır (ekran efektine bırakılmaz)
       if (day && !round.length && !kalan.length) await bahceTamam(day);
       // çeldirici yakınlığı: turun ve günün kartları, öğrencinin tanıdıkları (PM 7011722598 madde 5)
@@ -88,11 +113,13 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   const kalanSayi = data.gunKartlari.filter((id) => !data.items.has(id)).length;
   if (!round.length) return <GardenEmpty day={day} capped={data.capped} />;
   if (i >= round.length) return <GardenDone day={day} score={score} items={data.items} kalan={kalanSayi} again={again} xp={turXp} gorevTur={gorevTur} turKimlik={`tur@${startedAt}`}
-    kelimeler={[...new Set(round.filter((q) => q.intro).map((q) => { const l = data.lex.get(q.lexId); return l ? (l.art ? `${l.art} ${l.de}` : l.de) : ""; }).filter(Boolean))]} />;
+    kelimeler={[...new Set(round.filter((q) => q.intro || q.sina).map((q) => { const l = data.lex.get(q.lexId); return l ? (l.art ? `${l.art} ${l.de}` : l.de) : ""; }).filter(Boolean))]} />;
   const q = round[i]!;
   const l = data.lex.get(q.lexId)!;
 
-  const finish = async (r: Result, outcome: Outcome | null, exi = q.ex) => {
+  const finish = async (r: Result, outcome: Outcome | null, exi = q.ex, m: SoruBilgi = {}) => {
+    const tip = m.tip ?? q.type;
+    const sinaBildi = !!q.sina && m.sina !== false && outcome === "correct";
     if (busy) return; // "Devam"a çift dokunuş aynı değerlendirmeyi iki kez yazmaz (inceleme #59 P2-2)
     setBusy(true);
     try {
@@ -103,8 +130,10 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
         await putItems([next]); data.items.set(q.lexId, next);
       }
       if (outcome) {
-        const next = review(data.items.get(q.lexId), { itemId: q.lexId, kind: "lexeme", path: pathOf(q.type), outcome, session: sessionKey("garden", startedAt), source: "drill", ctx: q.type });
-        next.lastQ = q.type;
+        // B16: üretimle kanıtlanan yeni kart tanıma basamağını atlar (yüksek başlangıç kararlılığı); öteki her şey normal
+        const next = sinaBildi ? hizliGecis(data.items.get(q.lexId), q.lexId, sessionKey("garden", startedAt))
+          : review(data.items.get(q.lexId), { itemId: q.lexId, kind: "lexeme", path: pathOf(tip), outcome, session: sessionKey("garden", startedAt), source: "drill", ctx: tip });
+        next.lastQ = tip;
         // PM-062: sonraki oturum gösterilen cümlenin ardından başlar (aynı cümleyle art arda açılmaz)
         next.exSeen = sonrakiExSeen(next, exi);
         await putItems([next]);
@@ -116,25 +145,73 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
     if (outcome) setScore((s) => ({ ok: s.ok + (r.ok ? 1 : 0), n: s.n + 1 }));
     setGorevTur((g) => ({ temiz: g.temiz + (outcome === "correct" ? 1 : 0), toplam: g.toplam + 1 }));
     // XP yalnızca ipucusuz doğruda (ipucu cevabı gösteriyor; D-102, inceleme #85 P2-2); uçuş da 0 (inceleme #87 2. tur)
-    if (outcome === "correct") { void xpVer(XP.dogru); void gorevSay("bahceIpucusuz", q.lexId); }  // B11b: ipucusuz doğru, kart başına günde bir kez
+    if (outcome === "correct") { void xpVer(sinaBildi ? XP.bilinen : XP.dogru); void gorevSay("bahceIpucusuz", q.lexId); }  // B11b: ipucusuz doğru, kart başına günde bir kez
+    // B16 kendiliğinden öneri: art arda 3 yeni kart ilk tanıma sorusunda hızlı ve doğru (PM-066 madde 2)
+    if (q.intro && !hizli && oneri === "yok") {
+      const n = outcome === "correct" && tip === "listen_meaning" && (m.ms ?? 1e9) <= HIZLI_SN * 1000 ? oneriSayac + 1 : 0;
+      setOneriSayac(n);
+      if (n >= ONERI_ART_ARDA && round.slice(i + 1).some((x) => x.intro && !x.retry)) setOneri("goster");
+    }
     // tekrar, en son gösterilen cümlenin ardından ("Başka cümle"ye basıldıysa o cümleden sonra; inceleme #92 P1-1)
-    const r2 = !r.ok && outcome ? requeue(round, { ...q, ex: exi }, l, Math.random, data.items.get(q.lexId)) : round;
+    const r2 = !r.ok && outcome ? requeue(round, { ...q, type: tip, sina: false, ex: exi }, l, Math.random, data.items.get(q.lexId)) : round;
     // son cevap: günün bütün kartları tanıtıldıysa Seans 1 şimdi işaretlenir (inceleme #66 P1-1)
     if (day && i + 1 >= r2.length && data.gunKartlari.every((id) => data.items.has(id))) { try { await bahceTamam(day); } catch { /* bir sonraki açılışta yeniden denenir */ } }
     setData({ ...data, round: r2 });
     setI(i + 1);
   };
 
-  return (
+  // öğrencinin seçimi yalnızca bugünün kalan yeni kartları için (inceleme #113 P1-1)
+  const hizliAc = async (bas: number, kaynak: "ogrenci") => { setHizli(kaynak); setOneri("yok"); await setMeta("hizliGun", yerelGun(new Date())); return sinaTuru(round, bas); };
+  // tanıtım kartında "Biliyorum, sına beni": düğmeye basılan kartın KENDİSİ hemen sınanır, sonraki yeni kartlar sınavla açılır (PM 7018403441-1)
+  const tanitimdaSina = async () => {
+    const r2 = await hizliAc(i + 1, "ogrenci");
+    setData({ ...data, round: r2.map((x, k) => (k === i ? { lexId: q.lexId, type: "tr_de" as const, sina: true, ex: q.ex } : x)) });
+  };
+  const normaleDon = async () => {
+    // varsayılan (tespit) kalıcı kapanır, öğrencinin bugünkü seçimi geri alınır; ikisi birlikteyse de tek basış yeter (2. tur P2-A)
+    await setMeta("hizliSerit", false);
+    await setMeta("hizliGun", ""); await setMeta("hizliOneriRed", yerelGun(new Date()));
+    setHizli(null); setOneri("reddedildi");
+    setData({ ...data, round: round.map((x, k) => ((k > i || (k === i && !cevapVar)) && x.sina ? { ...x, sina: false, intro: true, type: "listen_meaning" as const } : x)) });
+  };
+  if (oneri === "goster") return (
     <div class="stack" data-test="garden">
       <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} ilerleme={{ n: i, toplam: round.length }} />
-      <Question key={`${i}:${q.lexId}:${q.type}`} q={q} l={l} all={data.all} yakin={data.yakin} onDone={finish} />
+      <section class="card stack fade" data-test="hizli-oneri">
+        <h2>Bunları biliyor gibisin.</h2>
+        <p>Son üç kelimeyi hızlı ve doğru bildin. Kalan yeni kelimeleri tek tek sınayayım mı? Bildiğini Almanca yazarak (ya da söyleyerek) kanıtlarsın; bilemediğinde normal tanıtım gelir.</p>
+      </section>
+      <ActionBar>
+        <button class="btn primary block" data-test="hizli-evet" onClick={async () => { const r2 = await hizliAc(i, "ogrenci"); setData({ ...data, round: r2 }); }}>Evet, sına beni</button>
+        <button class="btn block" data-test="hizli-hayir" onClick={() => { setOneri("reddedildi"); void setMeta("hizliOneriRed", yerelGun(new Date())); }}>Hayır, böyle devam</button>
+      </ActionBar>
+    </div>
+  );
+  return (
+    <div class="stack" data-test="garden" data-hizli={hizli ?? undefined}>
+      <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} ilerleme={{ n: i, toplam: round.length }} />
+      {/* hızlı şerit açıkken çıkış her soruda görünür (inceleme #113 P1-1); açıklama yalnızca ilk soruda */}
+      {hizli && <div class="small bilgi-bant" data-test={hizli === "tespit" ? "hizli-tespit" : "hizli-ogrenci"}>
+        <span class="grow" data-test="hizli-bant-metin">{tanitimda ? "Bu kelimeyi birlikte öğreniyoruz; sınama sıradaki yeni kelimede sürüyor." : i === 0 && hizli === "tespit" ? "İlk haftayı senin hızında geçelim: bildiğin kelimeyi Almanca yazarak kanıtla, geç." : "Bugünün yeni kelimelerini sınıyoruz."}</span>
+        <button class="linkbtn" data-test="hizli-kapat" onClick={() => void normaleDon()}>Normal akışa dön</button></div>}
+      <Question key={`${i}:${q.lexId}:${q.type}:${q.sina ? 1 : 0}`} q={q} l={l} all={data.all} yakin={data.yakin} onDone={(...a) => { setCevapVar(false); return finish(...a); }} onCevap={() => setCevapVar(true)} onTanitim={() => setTanitimda(true)} onSina={q.intro && !q.retry && !hizli ? () => void tanitimdaSina() : undefined} />
     </div>
   );
 }
 
-function Question({ q, l, all, yakin, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[]; yakin?: Yakinlik; onDone: (r: Result, o: Outcome | null, exi: number) => void }) {
+function Question({ q, l, all, yakin, onDone: bitir, onSina, onCevap, onTanitim }: { q: GardenQ; l: Lexeme; all: Lexeme[]; yakin?: Yakinlik; onDone: (r: Result, o: Outcome | null, exi: number, m?: SoruBilgi) => void; onSina?: () => void; onCevap?: () => void; onTanitim?: () => void }) {
   const [intro, setIntro] = useState(!!q.intro);
+  // B16: sına sorusu; bilemezse "Sorun değil, birlikte bakalım" → tanıtım ve normal tanıma sorusu (PM-066 madde 1)
+  const [sina, setSina] = useState(!!q.sina);
+  const [tip, setTip] = useState<QType>(q.type);
+  const basla = useMemo(() => ({ t: Date.now() }), []);
+  useEffect(() => { if (!intro) basla.t = Date.now(); }, [intro]);
+  // öneri süresi cevap anında ölçülür; cevap kartını okumak süreye girmez (inceleme #113 P1-4)
+  const sure = useRef<number | null>(null);
+  useEffect(() => { if (!intro) sure.current = null; }, [intro]);
+  const onDone = (r: Result, o: Outcome | null, e: number) => bitir(r, o, e, { tip, sina, ms: sure.current ?? Date.now() - basla.t });
+  // gerçekleşen soru (sına düşünce tanıma sorusu); aşağıdaki her karar bunu kullanır
+  const qe: GardenQ = tip === q.type ? q : { ...q, type: tip };
   const [res, setRes] = useState<Result | null>(null);
   // her soru sayfanın başından açılır: önceki sorudan kalan kaydırma başlığı üst çubuğun altında bırakmasın (inceleme #100 P1-2)
   useEffect(() => { window.scrollTo(0, 0); }, [intro]);
@@ -148,7 +225,7 @@ function Question({ q, l, all, yakin, onDone }: { q: GardenQ; l: Lexeme; all: Le
   // cümlenin fotoğrafı (cevap kartı); fotoğraf bileşeni yenisi hazır olana kadar eskisini tutar (zıplama yok; inceleme #92 2. tur)
   const ex = l.examples[exi % Math.max(1, l.examples.length)];
   const fotoEx = exi, fotoOrnek = ex;
-  const show = (r: Result) => { setRes(r); haptic(r.ok ? "success" : "error"); };
+  const show = (r: Result) => { if (sure.current === null) sure.current = Date.now() - basla.t; onCevap?.(); setRes(r); haptic(r.ok ? "success" : "error"); };
   const next = (o: Outcome | null) => onDone(res || { ok: false }, o, exi);
   const baska = (n: number) => n > 1 ? <button class="btn sm ghost" data-test="baska-cumle" onClick={() => setExi((x) => x + 1)}>Başka cümle</button> : null;
 
@@ -167,12 +244,16 @@ function Question({ q, l, all, yakin, onDone }: { q: GardenQ; l: Lexeme; all: Le
         {baska(l.examples.length)}
         {col && <p class="small" data-test="intro-colloc">Birlikte: <b lang="de">{col.de}</b> <span class="muted">· {col.tr}</span></p>}
       </section>
-      <ActionBar><button class="btn primary block" data-test="next" onClick={() => setIntro(false)}>Şimdi sor</button></ActionBar>
+      <ActionBar>
+        <button class="btn primary block" data-test="next" onClick={() => setIntro(false)}>Şimdi sor</button>
+        {/* B16 (PM-066 madde 1): beyan değil kanıt — bu kart turun sonunda üretimle sınanır, sonraki yeni kartlar sınavla açılır */}
+        {onSina && <button class="btn block" data-test="sina-beni" onClick={onSina}>Biliyorum, sına beni</button>}
+      </ActionBar>
     </div>
   );
 
   // ipucu ve boşluk cümlesi yalnızca boşluk sorularında (başka türde öğrencinin görmediği cümlenin ipucu çıkmasın; inceleme #85 P1-1)
-  const form = q.type === "gap" || q.type === "sep_perfekt" ? formFor(l, q.type, exi) : undefined;
+  const form = qe.type === "gap" || qe.type === "sep_perfekt" ? formFor(l, qe.type, exi) : undefined;
   // PM (#59 yorumu): cevaptan sonra, doğru ya da yanlış, kelime cümlesiyle görünür — örnek cümle (dinle), fotoğraf, eşdizim
   const colAfter = collocOf(l);
   const verdict = res && (<>
@@ -187,44 +268,52 @@ function Question({ q, l, all, yakin, onDone }: { q: GardenQ; l: Lexeme; all: Le
     {/* geri bildirim bandı yüksek: kart bandın altında kalmasın diye kaydırma payı */}
     <div aria-hidden="true" style={{ height: 180 }} />
     <ActionBar>
-      {res.ok ? <FeedbackBand kind="ok" title="Doğru." xp={hinted ? 0 : XP.dogru}>{res.expected && <span lang="de">{res.expected}</span>}</FeedbackBand>
+      {sina ? (res.ok && !hinted
+          ? <FeedbackBand kind="ok" title="Bildin!" xp={XP.bilinen}><span lang="de">{res.expected}</span><div class="small">Bu kelime tanıma basamağını atladı; bundan sonra Almancasını hep sen kuracaksın.</div></FeedbackBand>
+          : <FeedbackBand kind="info" title="Sorun değil, birlikte bakalım."><div class="fb-dogrusu" lang="de" data-test="fb-dogrusu">{res.expected}</div><div class="small">Şimdi kelimeyi tanıyalım.</div></FeedbackBand>)
+        : res.ok ? <FeedbackBand kind="ok" title="Doğru." xp={hinted ? 0 : XP.dogru}>{res.expected && <span lang="de">{res.expected}</span>}</FeedbackBand>
         : <FeedbackBand kind={res.yazim ? "info" : "bad"} title={res.yazim ? "Kelime doğru, yazımı eksik." : "Doğrusu:"}>
             {/* PM-059 madde 1: önce doğrusu; örnek cümle hemen üstteki kartta (dinlenebilir) */}
             <YanlisIci dogrusu={res.expected ?? ""} cevap={res.answer}>{res.note && <div class="small">{res.note}</div>}
               {/* ipucu yanlış cevaptan sonra açıklama olarak (PM 7004537514-2) */}
               {form?.hint_tr && <div class="small" data-test="ipucu-sonra"><Rich text={form.hint_tr} /></div>}</YanlisIci>
           </FeedbackBand>}
-      <button class="btn primary block" data-test="next" onClick={() => next(res.ok ? (hinted ? "hinted" : "correct") : res.yazim ? "hinted" : "wrong")}>Devam</button>
+      <button class="btn primary block" data-test="next" onClick={() => {
+        // sına bilinemediyse: değerlendirme yazılmaz, kelime tanıtılır ve normal tanıma sorusu gelir (cezasız)
+        if (sina && !(res.ok && !hinted)) { setSina(false); setTip("listen_meaning"); setRes(null); setHinted(false); setSynNote(null); setIntro(true); onTanitim?.(); return; }
+        next(res.ok ? (hinted ? "hinted" : "correct") : res.yazim ? "hinted" : "wrong");
+      }}>Devam</button>
     </ActionBar></>
   );
 
-  if (q.type === "listen_meaning" || q.type === "article" || q.type === "colloc") return <ChoiceQ q={q} l={l} all={all} yakin={yakin} ex={ex} show={show} verdict={verdict} />;
+  if (qe.type === "listen_meaning" || qe.type === "article" || qe.type === "colloc") return <ChoiceQ q={qe} l={l} all={all} yakin={yakin} ex={ex} show={show} verdict={verdict} />;
 
   // ---- aktif: üretim ----
-  const prompt = q.type === "photo_say" ? <><div class="kicker">Fotoğraftaki ne? Artikeliyle söyle ya da yaz</div><Photo q={l.img} sira={exi} /><p class="small muted">{l.tr}</p></>
-    : q.type === "tr_de" ? <><div class="kicker">Almanca söyle ya da yaz</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div></>
-    : q.type === "gap" || q.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de" data-test="gap-cumle">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && !res && <IpucuDugmesi metin={form.hint_tr} onAc={() => setHinted(true)} />}{!res && baska(havuz(l, q.type))}</>
+  const prompt = qe.type === "photo_say" ? <><div class="kicker">Fotoğraftaki ne? Artikeliyle söyle ya da yaz</div><Photo q={l.img} sira={exi} /><p class="small muted">{l.tr}</p></>
+    : qe.type === "tr_de" && sina ? <><div class="kicker" data-test="sina-soru" {...(E2E ? { "data-cevap": sinaKabul(l)[0] } : {})}>Biliyorum, sına beni · ipucu yok</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div>{ex?.tr && <p class="small" data-test="sina-baglam">Cümlede: <span class="muted">{ex.tr}</span></p>}<p class="small muted">Almanca yaz ya da söyle. Bilirsen bu kelime ileri basamaklardan devam eder.</p>{!res && <button class="btn ghost" data-test="sina-bilmiyorum" onClick={() => show({ ok: false, expected: sinaKabul(l)[0] })}>Bilmiyorum, tanıt</button>}</>
+    : qe.type === "tr_de" ? <><div class="kicker">Almanca söyle ya da yaz</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div></>
+    : qe.type === "gap" || qe.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de" data-test="gap-cumle">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && !res && <IpucuDugmesi metin={form.hint_tr} onAc={() => setHinted(true)} />}{!res && baska(havuz(l, qe.type))}</>
     : <><div class="kicker">Bu kelimeyle kendi cümleni kur</div><div class="de-lg" lang="de"><Art art={l.art} de={l.de} /></div><p class="small muted">{l.tr}{ex ? ` · Örnek: ` : ""}{ex && <span lang="de" data-test="own-ex">{ex.de}</span>}</p>{!selfCheck && baska(l.examples.length)}</>;
 
   const submit = (a: string, mode: "typed" | "voice") => {
-    if (q.type === "own_sentence") {
+    if (qe.type === "own_sentence") {
       const c = ownSentenceCheck(l, a);
       // kısa cümle yeniden yazdırılır (ceza yok); kelimeyi göremediysek yalnızca not düşer, karar öğrencinin (inceleme #59 P1-1)
       if (c === "short") { setShortNote(true); return; }
       setOwnNote(c === "missing"); setSelfCheck(a); return;
     }
-    const acc = accepted(l, q.type, exi);
+    const acc = accepted(l, qe.type, exi);
     // rakam kuralı yalnızca yazılan cevapta: konuşma tanıma sayıyı rakamla döker (inceleme #59 P1-3)
     const hint = mode === "typed" ? numberWordHint(a) : null;
     if (hint && acc.every((x) => !/\d/.test(x))) { show({ ok: false, answer: a, expected: acc[0], note: hint }); return; }
     // isimde artikel zorunlu ve eksik/yanlış artikel açıklanır (inceleme #59 P2-3)
     // eş anlamlı başka kart (sprechen/reden, Arbeit/Job): yanlış sayılmaz; aranan kelime yeniden istenir (inceleme #59 Y-2)
-    const trySyn = () => { if (q.type !== "tr_de") return false; const syn = synonymHit(l, a, all); if (!syn) return false;
+    const trySyn = () => { if (qe.type !== "tr_de") return false; const syn = synonymHit(l, a, all); if (!syn) return false;
       setSynNote(`„${syn.de}“ başka bir kelime. Burada aranan kelimenin ilk harfi: ${l.de[0]}…`); setHinted(true); return true; };
     // ümlautu/ß'si eksik ama kelime doğru: "yazım" (yanlış sayılmaz, kart geri atılmaz)
     const yazim = mode === "typed" ? acc.map((x) => umlautEksik(x, a)).find(Boolean) : undefined;
     if (yazim) { show({ ok: false, answer: a, expected: acc[0], note: yazim, yazim: true }); return; }
-    if ((q.type === "tr_de" || q.type === "photo_say") && isNoun(l)) {
+    if ((qe.type === "tr_de" || qe.type === "photo_say") && isNoun(l)) {
       const j = judgeWord(a, l.de, l.art);
       if (!j.ok && trySyn()) return;
       show({ ok: j.ok, answer: a, expected: acc[0], note: j.why_tr }); return;
@@ -251,7 +340,7 @@ function Question({ q, l, all, yakin, onDone }: { q: GardenQ; l: Lexeme; all: Le
   );
 
   return (
-    <div class="stack fade" data-test={`gq-${q.type}`}>
+    <div class="stack fade" data-test={`gq-${qe.type}`}>
       <section class="card stack">{prompt}{shortNote && <p class="small" data-test="own-short">En az üç kelimelik bir cümle kur.</p>}{synNote && <p class="small" data-test="syn-note">{synNote}</p>}</section>
       {!res && <ActionBar><AnswerField onSubmit={submit} /></ActionBar>}
       {verdict}
