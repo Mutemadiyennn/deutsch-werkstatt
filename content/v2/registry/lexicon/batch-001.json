@@ -1301,8 +1301,8 @@
     },
     {
      "id": "lx:werden:2",
-     "de": "Ich werde morgen anrufen.",
-     "tr": "Yarın arayacağım.",
+     "de": "Ich werde am Abend schnell müde.",
+     "tr": "Akşamları çabuk yoruluyorum.",
      "layer": "hd"
     },
     {
@@ -1315,6 +1315,19 @@
      "id": "lx:werden:4",
      "de": "– Was will deine Tochter mal werden? – Ärztin, glaube ich.",
      "tr": "– Kızın ileride ne olmak istiyor? – Doktor sanırım.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:werden:5",
+     "de": "Frau Brandl wird bald achtzig.",
+     "tr": "Brandl Hanım yakında seksen yaşında olacak.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:werden:6",
+     "de": "– Wird das heute noch fertig? – Ja, bis fünf Uhr.",
+     "tr": "– Bu bugün hazır olur mu? – Evet, saat beşe kadar.",
      "layer": "alltag",
      "dialog": true
     }
@@ -1333,10 +1346,10 @@
    },
    "forms": [
     {
-     "de": "Ich ___ morgen anrufen.",
+     "de": "Ich ___ am Abend schnell müde.",
      "answer": "werde",
-     "tr": "Yarın arayacağım.",
-     "hint_tr": "**ich** ile **werde** olur."
+     "tr": "Akşamları çabuk yoruluyorum.",
+     "hint_tr": "Ben yorulurum derken **ich werde müde** denir."
     },
     {
      "de": "Du ___ bestimmt schnell gesund.",
@@ -1353,8 +1366,20 @@
     {
      "de": "Er ist Arzt ___.",
      "answer": "geworden",
-     "tr": "O doktor oldu.",
+     "tr": "Adam doktor oldu.",
      "hint_tr": "Geçmişi anlatırken **ist geworden** denir."
+    },
+    {
+     "de": "Die Semmeln ___ immer teurer.",
+     "answer": "werden",
+     "tr": "Küçük ekmekler gittikçe daha pahalı oluyor.",
+     "hint_tr": "**die Semmeln** gibi birden çok şeyle **werden** olur."
+    },
+    {
+     "de": "Das Wetter ist endlich schön ___.",
+     "answer": "geworden",
+     "tr": "Hava sonunda güzel oldu.",
+     "hint_tr": "Bir şeyin değiştiğini geçmişte anlatırken **ist geworden** denir."
     }
    ]
   },
@@ -1464,8 +1489,8 @@
     },
     {
      "id": "lx:zu#2:2",
-     "de": "Wir sind zu spät.",
-     "tr": "Geç kaldık.",
+     "de": "Neun Uhr ist mir zu spät.",
+     "tr": "Saat dokuz bana fazla geç.",
      "layer": "hd"
     },
     {
@@ -1481,6 +1506,19 @@
      "layer": "alltag",
      "dialog": true,
      "img": "person covering ears loud music"
+    },
+    {
+     "id": "lx:zu#2:5",
+     "de": "Die Schuhe sind mir zu klein.",
+     "tr": "Ayakkabılar bana fazla küçük.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:zu#2:6",
+     "de": "– Ist acht Uhr zu früh? – Nein, das passt.",
+     "tr": "– Saat sekiz fazla mı erken? – Hayır, uygun.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -1506,13 +1544,31 @@
      "de": "Die Musik ist ___ laut.",
      "answer": "zu",
      "tr": "Müzik fazla yüksek.",
-     "hint_tr": "Fazla yüksek derken **zu laut** denir."
+     "hint_tr": "Ses fazla yüksekse **zu laut** denir."
     },
     {
-     "de": "Wir sind ___ spät.",
+     "de": "Neun Uhr ist mir ___ spät.",
      "answer": "zu",
-     "tr": "Geç kaldık.",
-     "hint_tr": "Geç kaldık derken **Wir sind zu spät** denir."
+     "tr": "Saat dokuz bana fazla geç.",
+     "hint_tr": "Fazla geç derken **zu spät** denir."
+    },
+    {
+     "de": "___ viel Kaffee ist nicht gesund.",
+     "answer": "Zu",
+     "tr": "Fazla kahve sağlıklı değil.",
+     "hint_tr": "Gereğinden fazla derken **zu viel** denir."
+    },
+    {
+     "de": "Die Hose ist mir ___ groß.",
+     "answer": "zu",
+     "tr": "Pantolon bana fazla büyük.",
+     "hint_tr": "Bir şey sana fazla büyükse **zu groß** denir."
+    },
+    {
+     "de": "Der Kaffee ist ___ heiß, warte kurz.",
+     "answer": "zu",
+     "tr": "Kahve fazla sıcak, biraz bekle.",
+     "hint_tr": "Fazla sıcak derken **zu heiß** denir."
     }
    ]
   },
@@ -2692,6 +2748,19 @@
      "tr": "– Nasılsın? – İyiyim, sağ ol. Ya sen?",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:gut:5",
+     "de": "Das Brot von Frau Stadler ist sehr gut.",
+     "tr": "Stadler Hanım'ın ekmeği çok iyi.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:gut:6",
+     "de": "– Wie war dein Wochenende? – Gut, und deins?",
+     "tr": "– Hafta sonun nasıldı? – İyiydi, seninki?",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -2724,6 +2793,24 @@
      "answer": "gutes",
      "tr": "Bu iyi bir restoran.",
      "hint_tr": "**ein** ile **Restaurant** arasında **gut**, **gutes** olur."
+    },
+    {
+     "de": "Dr. Weber ist ein ___ Arzt.",
+     "answer": "guter",
+     "tr": "Dr. Weber iyi bir doktor.",
+     "hint_tr": "**ein** ile **Arzt** arasında **gut**, **guter** olur."
+    },
+    {
+     "de": "Hast du ___ geschlafen?",
+     "answer": "gut",
+     "tr": "İyi uyudun mu?",
+     "hint_tr": "İyi uyumak derken **gut schlafen** denir."
+    },
+    {
+     "de": "Luka schneidet die Haare sehr ___.",
+     "answer": "gut",
+     "tr": "Luka saçları çok iyi kesiyor.",
+     "hint_tr": "Çok iyi derken **sehr gut** denir."
     }
    ]
   },
@@ -2785,6 +2872,19 @@
      "tr": "– Hastaydım. – Ha, o yüzden yoktun.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:so:5",
+     "de": "Ich bin heute so müde.",
+     "tr": "Bugün çok yorgunum.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:so:6",
+     "de": "– Kann ich das so lassen? – Ja, so ist es gut.",
+     "tr": "– Bunu böyle bırakabilir miyim? – Evet, böyle iyi.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -2817,6 +2917,24 @@
      "answer": "so",
      "tr": "O kadar çok vaktim yok.",
      "hint_tr": "O kadar çok derken **so viel** denir."
+    },
+    {
+     "de": "___ machen wir das.",
+     "answer": "So",
+     "tr": "Bunu böyle yapıyoruz.",
+     "hint_tr": "Böyle derken **so** denir."
+    },
+    {
+     "de": "Ist das ___ richtig?",
+     "answer": "so",
+     "tr": "Böyle doğru mu?",
+     "hint_tr": "Böyle mi diye sorarken **so** denir."
+    },
+    {
+     "de": "Das habe ich nicht ___ gemeint.",
+     "answer": "so",
+     "tr": "Öyle demek istemedim.",
+     "hint_tr": "Öyle demek istemedim derken **nicht so gemeint** denir."
     }
    ]
   },
@@ -2862,8 +2980,8 @@
     },
     {
      "id": "lx:hier:2",
-     "de": "Hier ist Murat Demir, guten Tag.",
-     "tr": "Ben Murat Demir, iyi günler.",
+     "de": "Hier ist die Praxis Dr. Weber, guten Tag.",
+     "tr": "Burası Dr. Weber muayenehanesi, iyi günler.",
      "layer": "hd"
     },
     {
@@ -2876,6 +2994,19 @@
      "id": "lx:hier:4",
      "de": "– Ist hier noch frei? – Ja, klar.",
      "tr": "– Burası boş mu? – Evet, tabii.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:hier:5",
+     "de": "Hier ist Tobi, hast du kurz Zeit?",
+     "tr": "Ben Tobi, biraz vaktin var mı?",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:hier:6",
+     "de": "– Wo ist die Apotheke? – Gleich hier links.",
+     "tr": "– Eczane nerede? – Hemen burada, solda.",
      "layer": "alltag",
      "dialog": true
     }
@@ -2907,10 +3038,31 @@
      "hint_tr": "Buralarda derken **hier in der Nähe** denir."
     },
     {
-     "de": "___ wohne ich.",
+     "de": "___ wohnt Frau Brandl.",
      "answer": "Hier",
-     "tr": "Burada oturuyorum.",
-     "hint_tr": "Burada derken **hier** denir, **wohne** hemen arkasından gelir."
+     "tr": "Brandl Hanım burada oturuyor.",
+     "hint_tr": "Burada derken **hier** denir."
+    },
+    {
+     "de": "Ist es weit von ___ zum Bahnhof?",
+     "answer": "hier",
+     "tr": "Buradan gara uzak mı?",
+     "hint_tr": "Buradan derken **von hier** denir."
+    },
+    {
+     "de": "Entschuldigung, sind Sie von ___?",
+     "answer": "hier",
+     "tr": "Affedersiniz, buralı mısınız?",
+     "hint_tr": "Buralı derken **von hier** denir."
+    },
+    {
+     "de": "Bitte warten Sie ___.",
+     "answer": "hier",
+     "also_ok": [
+      "da"
+     ],
+     "tr": "Lütfen burada bekleyin.",
+     "hint_tr": "Burada derken **hier** denir."
     }
    ]
   },
@@ -3879,6 +4031,19 @@
      "layer": "alltag",
      "dialog": true,
      "img": "people waiting at bus stop"
+    },
+    {
+     "id": "lx:wissen:5",
+     "de": "Frau Brandl weiß alles über die Nachbarn.",
+     "tr": "Brandl Hanım komşular hakkında her şeyi bilir.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:wissen:6",
+     "de": "– Weißt du, wo Derya ist? – Ich glaube, beim Chef.",
+     "tr": "– Derya'nın nerede olduğunu biliyor musun? – Sanırım şefin yanında.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -3917,6 +4082,18 @@
      "answer": "gewusst",
      "tr": "Bunu bilmiyordum.",
      "hint_tr": "Geçmişi anlatırken **habe gewusst** denir."
+    },
+    {
+     "de": "Wir ___ es noch nicht.",
+     "answer": "wissen",
+     "tr": "Henüz bilmiyoruz.",
+     "hint_tr": "**wir** ile **wissen** olur."
+    },
+    {
+     "de": "Ich ___ nicht, dass du krank bist.",
+     "answer": "wusste",
+     "tr": "Hasta olduğunu bilmiyordum.",
+     "hint_tr": "Geçmişte **ich** ile **wusste** olur."
     }
    ]
   },
@@ -4384,6 +4561,19 @@
      "tr": "– Yarın görüşürüz! – Evet, yarın görüşürüz!",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:sehen:5",
+     "de": "Frau Brandl sieht alles vom Fenster aus.",
+     "tr": "Brandl Hanım her şeyi pencereden görür.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:sehen:6",
+     "de": "– Siehst du den Bus schon? – Ja, da kommt er.",
+     "tr": "– Otobüsü görüyor musun? – Evet, işte geliyor.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -4422,6 +4612,18 @@
      "answer": "gesehen",
      "tr": "Filmi izledin mi?",
      "hint_tr": "Geçmişi anlatırken **hast gesehen** denir."
+    },
+    {
+     "de": "Wir ___ uns morgen!",
+     "answer": "sehen",
+     "tr": "Yarın görüşürüz!",
+     "hint_tr": "Görüşürüz derken **Wir sehen uns** denir."
+    },
+    {
+     "de": "Kann ich die Wohnung ___?",
+     "answer": "sehen",
+     "tr": "Evi görebilir miyim?",
+     "hint_tr": "**kann** ile birlikte **sehen** sona gider."
     }
    ]
   },
@@ -4483,6 +4685,19 @@
      "layer": "alltag",
      "dialog": true,
      "img": "cashier serving customer at bakery"
+    },
+    {
+     "id": "lx:noch:5",
+     "de": "Frau Brandl wohnt noch allein.",
+     "tr": "Brandl Hanım hâlâ yalnız oturuyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:noch:6",
+     "de": "– Ist die Apotheke noch offen? – Ja, bis acht.",
+     "tr": "– Eczane hâlâ açık mı? – Evet, sekize kadar.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -4515,6 +4730,24 @@
      "answer": "noch",
      "tr": "Ahmet hâlâ hasta.",
      "hint_tr": "Hâlâ derken **noch** denir."
+    },
+    {
+     "de": "Ist Herr Wimmer ___ im Büro?",
+     "answer": "noch",
+     "tr": "Wimmer Bey hâlâ ofiste mi?",
+     "hint_tr": "Hâlâ derken **noch** denir."
+    },
+    {
+     "de": "Ich hätte gern ___ eine Semmel.",
+     "answer": "noch",
+     "tr": "Bir küçük ekmek daha isterim.",
+     "hint_tr": "Bir tane daha isterken **noch eine** denir."
+    },
+    {
+     "de": "Wir haben ___ zehn Minuten.",
+     "answer": "noch",
+     "tr": "Daha on dakikamız var.",
+     "hint_tr": "Daha on dakika derken **noch zehn Minuten** denir."
     }
    ]
   },
@@ -4576,6 +4809,19 @@
      "tr": "– Başka bir şey ister misiniz? – Hayır, sadece bu, teşekkürler.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:nur:5",
+     "de": "Derya trinkt in der Pause nur Wasser.",
+     "tr": "Derya molada sadece su içiyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:nur:6",
+     "de": "– Wie immer? – Ja, nur ein bisschen kürzer.",
+     "tr": "– Her zamanki gibi mi? – Evet, sadece biraz daha kısa.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -4606,6 +4852,24 @@
      "answer": "nur",
      "tr": "Sadece beş dakika sürer.",
      "hint_tr": "Sadece beş dakika derken **nur fünf Minuten** denir."
+    },
+    {
+     "de": "___ am Wochenende habe ich Zeit.",
+     "answer": "Nur",
+     "tr": "Sadece hafta sonu vaktim var.",
+     "hint_tr": "Sadece hafta sonu derken **nur am Wochenende** denir."
+    },
+    {
+     "de": "Ich wollte ___ kurz fragen.",
+     "answer": "nur",
+     "tr": "Sadece kısaca sormak istedim.",
+     "hint_tr": "Sadece derken **nur** denir."
+    },
+    {
+     "de": "Die Praxis ist ___ bis zwölf Uhr offen.",
+     "answer": "nur",
+     "tr": "Muayenehane sadece saat on ikiye kadar açık.",
+     "hint_tr": "Sadece on ikiye kadar derken **nur bis zwölf Uhr** denir."
     }
    ]
   },
@@ -4827,6 +5091,19 @@
      "tr": "– Bir şey yapabilir miyim? – Evet, sofrayı kurabilirsin.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:tun:5",
+     "de": "Herr Wimmer tut alles für sein Team.",
+     "tr": "Wimmer Bey ekibi için her şeyi yapar.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:tun:6",
+     "de": "– Was tust du da? – Nichts, ich warte nur.",
+     "tr": "– Orada ne yapıyorsun? – Hiç, sadece bekliyorum.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -4846,7 +5123,10 @@
      "de": "Ich ___ das gern für dich.",
      "answer": "tue",
      "tr": "Bunu senin için seve seve yapıyorum.",
-     "hint_tr": "**ich** ile **tue** olur."
+     "hint_tr": "**ich** ile **tue** olur.",
+     "also_ok": [
+      "mache"
+     ]
     },
     {
      "de": "Es ___ mir leid.",
@@ -4865,6 +5145,21 @@
      "answer": "getan",
      "tr": "Bu acıttı.",
      "hint_tr": "Geçmişi anlatırken **hat weh getan** denir."
+    },
+    {
+     "de": "Was kann ich für Sie ___?",
+     "answer": "tun",
+     "tr": "Sizin için ne yapabilirim?",
+     "hint_tr": "Yardım teklif ederken **Was kann ich für Sie tun?** denir."
+    },
+    {
+     "de": "Das ___ man nicht.",
+     "answer": "tut",
+     "also_ok": [
+      "macht"
+     ],
+     "tr": "Bu yapılmaz.",
+     "hint_tr": "Bu yapılmaz derken **Das tut man nicht** denir."
     }
    ]
   },
@@ -5186,6 +5481,19 @@
      "tr": "– Acıktım. – Ben de.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:auch:5",
+     "de": "Josef wohnt auch in unserem Haus.",
+     "tr": "Josef de bizim binada oturuyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:auch:6",
+     "de": "– Ich nehme einen Kaffee. – Für mich auch, bitte.",
+     "tr": "– Ben bir kahve alıyorum. – Bana da, lütfen.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -5216,6 +5524,24 @@
      "answer": "auch",
      "tr": "– Acıktım. – Ben de.",
      "hint_tr": "Ben de derken **Ich auch** denir."
+    },
+    {
+     "de": "Basti ist ___ hier.",
+     "answer": "auch",
+     "tr": "Basti de burada.",
+     "hint_tr": "Basti de derken **auch** denir."
+    },
+    {
+     "de": "– Schönes Wochenende! – Danke, dir ___!",
+     "answer": "auch",
+     "tr": "– İyi hafta sonları! – Teşekkürler, sana da!",
+     "hint_tr": "Sana da derken **dir auch** denir."
+    },
+    {
+     "de": "Hast du ___ Hunger?",
+     "answer": "auch",
+     "tr": "Sen de aç mısın?",
+     "hint_tr": "Sen de derken **auch** denir."
     }
    ]
   },
@@ -5287,6 +5613,19 @@
      "tr": "– Bugün yemekte ne var? – Makarna.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:geben:5",
+     "de": "Dr. Weber gibt mir ein Rezept.",
+     "tr": "Dr. Weber bana bir reçete veriyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:geben:6",
+     "de": "– Gib mir mal den Schlüssel! – Hier, bitte.",
+     "tr": "– Anahtarı bana ver! – Al, buyur.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -5325,6 +5664,21 @@
      "answer": "gegeben",
      "tr": "Kitabı ona verdim.",
      "hint_tr": "Geçmişi anlatırken **habe gegeben** denir."
+    },
+    {
+     "de": "___ Sie mir bitte Ihren Pass.",
+     "answer": "Geben",
+     "tr": "Bana pasaportunuzu verin lütfen.",
+     "hint_tr": "**Sie** dediğin birinden bir şey isterken **Geben Sie mir** denir."
+    },
+    {
+     "de": "Wir ___ dir am Montag Bescheid.",
+     "answer": "geben",
+     "tr": "Pazartesi sana haber veririz.",
+     "hint_tr": "**wir** ile **geben** olur.",
+     "also_ok": [
+      "sagen"
+     ]
     }
    ]
   },
@@ -5386,6 +5740,19 @@
      "tr": "– Otobüs gelmiyor mu? – Gelir gelir.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:schon:5",
+     "de": "Die Bäckerei ist schon zu.",
+     "tr": "Fırın çoktan kapandı.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:schon:6",
+     "de": "– Soll ich dir helfen? – Danke, ich bin schon fertig.",
+     "tr": "– Sana yardım edeyim mi? – Sağ ol, zaten bitirdim.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -5417,6 +5784,24 @@
      "answer": "schon",
      "tr": "Saat şimdiden on!",
      "hint_tr": "Şimdiden derken **schon** denir."
+    },
+    {
+     "de": "Das weiß ich ___.",
+     "answer": "schon",
+     "tr": "Bunu zaten biliyorum.",
+     "hint_tr": "Zaten derken **schon** denir."
+    },
+    {
+     "de": "Herr Wimmer ist ___ weg.",
+     "answer": "schon",
+     "tr": "Wimmer Bey çoktan gitti.",
+     "hint_tr": "Çoktan gitti derken **ist schon weg** denir."
+    },
+    {
+     "de": "Es ist ___ spät, ich gehe jetzt.",
+     "answer": "schon",
+     "tr": "Geç oldu artık, ben gidiyorum.",
+     "hint_tr": "Geç oldu artık derken **schon spät** denir."
     }
    ]
   },
@@ -5675,6 +6060,19 @@
      "tr": "– Daha önce buraya geldin mi? – Hayır, bu ilk sefer.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:Mal:5",
+     "de": "Josef kommt heute zum zweiten Mal.",
+     "tr": "Josef bugün ikinci kez geliyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Mal:6",
+     "de": "– Zum ersten Mal hier? – Nein, zum dritten Mal.",
+     "tr": "– Buraya ilk kez mi geliyorsun? – Hayır, üçüncü kez.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -5704,13 +6102,25 @@
      "de": "Ich bin ___ ersten Mal in München.",
      "answer": "zum",
      "tr": "Münih'e ilk kez geldim.",
-     "hint_tr": "İlk kez derken **zum ersten Mal** denir. **zu** ile **dem** birleşir."
+     "hint_tr": "İlk kez derken **zum ersten Mal** denir."
     },
     {
      "de": "Nächstes ___ komme ich früher.",
      "answer": "Mal",
      "tr": "Bir dahaki sefere daha erken gelirim.",
      "hint_tr": "Bir dahaki sefere derken **nächstes Mal** denir."
+    },
+    {
+     "de": "Dieses ___ zahle ich.",
+     "answer": "Mal",
+     "tr": "Bu sefer ben ödüyorum.",
+     "hint_tr": "Bu sefer derken **dieses Mal** denir, **Mal** büyük harfle yazılır."
+    },
+    {
+     "de": "Frau Brandl fragt jedes ___ nach dir.",
+     "answer": "Mal",
+     "tr": "Brandl Hanım her seferinde seni soruyor.",
+     "hint_tr": "Her seferinde derken **jedes Mal** denir."
     }
    ]
   },
@@ -5770,6 +6180,19 @@
      "tr": "– Şimdi gelebilir misin? – Hemen şimdi mi? Tamam.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:jetzt:5",
+     "de": "Dr. Weber hat jetzt Zeit für Sie.",
+     "tr": "Dr. Weber'in şimdi sizin için vakti var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:jetzt:6",
+     "de": "– Wo bist du jetzt? – Im Bus, ich bin gleich da.",
+     "tr": "– Şu an neredesin? – Otobüsteyim, birazdan oradayım.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -5794,13 +6217,34 @@
      "de": "___ verstehe ich das.",
      "answer": "Jetzt",
      "tr": "Şimdi anlıyorum.",
-     "hint_tr": "Şimdi derken **jetzt** denir, **verstehe** hemen arkasından gelir."
+     "hint_tr": "Şimdi derken **jetzt** denir."
     },
     {
      "de": "Echt ___?",
      "answer": "jetzt",
      "tr": "Cidden mi?",
      "hint_tr": "Şaşırınca **Echt jetzt?** denir."
+    },
+    {
+     "de": "Ich muss ___ los.",
+     "answer": "jetzt",
+     "tr": "Şimdi gitmem lazım.",
+     "hint_tr": "Şimdi gitmem lazım derken **Ich muss jetzt los** denir."
+    },
+    {
+     "de": "Was machst du ___?",
+     "answer": "jetzt",
+     "also_ok": [
+      "gerade"
+     ],
+     "tr": "Şu an ne yapıyorsun?",
+     "hint_tr": "Şu an derken **jetzt** denir."
+    },
+    {
+     "de": "Ab ___ bin ich pünktlich.",
+     "answer": "jetzt",
+     "tr": "Şu andan itibaren dakik olacağım.",
+     "hint_tr": "Şu andan itibaren derken **ab jetzt** denir."
     }
    ]
   },
@@ -5862,6 +6306,19 @@
      "tr": "– Vaktim yok. – O zaman yarın.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:dann:5",
+     "de": "Erst der Kaffee, dann die Arbeit!",
+     "tr": "Önce kahve, sonra iş!",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:dann:6",
+     "de": "– Ich bin krank. – Dann bleib zu Hause!",
+     "tr": "– Hastayım. – O zaman evde kal!",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -5888,6 +6345,36 @@
      "answer": "Dann",
      "tr": "– Vaktim yok. – O zaman yarın.",
      "hint_tr": "O zaman derken **dann** denir."
+    },
+    {
+     "de": "Zuerst zur Apotheke, ___ nach Hause.",
+     "answer": "dann",
+     "also_ok": [
+      "danach"
+     ],
+     "tr": "Önce eczaneye, sonra eve.",
+     "hint_tr": "Önce bir iş, sonra başka bir iş derken **zuerst** ve **dann** denir."
+    },
+    {
+     "de": "– Wir sehen uns am Montag. – Ja, bis ___!",
+     "answer": "dann",
+     "tr": "– Pazartesi günü görüşürüz. – Evet, o zaman görüşürüz!",
+     "hint_tr": "Sözü geçen güne kadar hoşça kal derken **Bis dann** denir."
+    },
+    {
+     "de": "Und ___? Was hat Dr. Weber gesagt?",
+     "answer": "dann",
+     "also_ok": [
+      "danach"
+     ],
+     "tr": "Ve sonra? Dr. Weber ne dedi?",
+     "hint_tr": "Ve sonra diye sorarken **Und dann?** denir."
+    },
+    {
+     "de": "Wenn es regnet, ___ nehme ich den Bus.",
+     "answer": "dann",
+     "tr": "Yağmur yağarsa o zaman otobüse binerim.",
+     "hint_tr": "**Wenn** ile başlayan cümleden sonra o zaman derken **dann** denir."
     }
    ]
   },
@@ -6261,6 +6748,19 @@
      "tr": "– Hadi sinemaya gidelim! – İyi fikir!",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:lassen:5",
+     "de": "Ich lasse mein Fahrrad vor dem Haus.",
+     "tr": "Bisikletimi evin önünde bırakıyorum.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:lassen:6",
+     "de": "– Wo ist dein Handy? – Ich lasse es gerade reparieren.",
+     "tr": "– Telefonun nerede? – Şu an tamir ettiriyorum.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -6299,6 +6799,18 @@
      "answer": "gelassen",
      "tr": "Anahtarı evde bıraktım.",
      "hint_tr": "Geçmişi anlatırken **habe gelassen** denir."
+    },
+    {
+     "de": "Wir ___ die Tür reparieren.",
+     "answer": "lassen",
+     "tr": "Kapıyı tamir ettiriyoruz.",
+     "hint_tr": "**wir** ile **lassen** olur."
+    },
+    {
+     "de": "___ mich bitte in Ruhe!",
+     "answer": "Lass",
+     "tr": "Beni lütfen rahat bırak!",
+     "hint_tr": "Beni rahat bırak derken **Lass mich in Ruhe** denir."
     }
    ]
   },
@@ -6431,6 +6943,19 @@
      "tr": "– Alo? Beni duyuyor musunuz? – Evet, şimdi daha iyi.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:hören:5",
+     "de": "Frau Brandl hört nicht mehr so gut.",
+     "tr": "Brandl Hanım artık o kadar iyi duymuyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:hören:6",
+     "de": "– Hörst du das? – Ja, da ist jemand an der Tür.",
+     "tr": "– Bunu duyuyor musun? – Evet, kapıda biri var.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -6470,6 +6995,18 @@
      "answer": "gehört",
      "tr": "Bunu duydun mu?",
      "hint_tr": "Geçmişi anlatırken **hast gehört** denir."
+    },
+    {
+     "de": "Wir ___ die Nachbarn jeden Abend.",
+     "answer": "hören",
+     "tr": "Komşuları her akşam duyuyoruz.",
+     "hint_tr": "**wir** ile **hören** olur."
+    },
+    {
+     "de": "___ mal, hast du heute Zeit?",
+     "answer": "Hör",
+     "tr": "Dinle, bugün vaktin var mı?",
+     "hint_tr": "**du** dediğin birine dinle derken **Hör mal** denir."
     }
    ]
   },
@@ -6912,6 +7449,19 @@
      "tr": "– Senden bir şey rica edebilir miyim? – Tabii, ne?",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:bitten:5",
+     "de": "Frau Brandl bittet mich oft um Hilfe.",
+     "tr": "Brandl Hanım benden sık sık yardım istiyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:bitten:6",
+     "de": "– Ich bitte um einen Termin. – Gern, wann passt es Ihnen?",
+     "tr": "– Bir randevu rica ediyorum. – Memnuniyetle, size ne zaman uyar?",
+     "layer": "hd",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -6955,6 +7505,12 @@
      "answer": "um",
      "tr": "Senden yardım istiyorum.",
      "hint_tr": "Yardım isterken **um Hilfe bitten** denir."
+    },
+    {
+     "de": "Wir ___ nach 22 Uhr um Ruhe.",
+     "answer": "bitten",
+     "tr": "Saat 22'den sonra sessizlik rica ediyoruz.",
+     "hint_tr": "**wir** ile **bitten** olur."
     }
    ]
   },
@@ -7016,6 +7572,19 @@
      "tr": "– Her şey için çok teşekkürler! – Rica ederim.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:viel:5",
+     "de": "Frau Huber hat heute sehr viel zu tun.",
+     "tr": "Huber Hanım'ın bugün çok işi var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:viel:6",
+     "de": "– War viel los im Bus? – Ja, sehr viele Leute.",
+     "tr": "– Otobüs kalabalık mıydı? – Evet, çok insan vardı.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -7053,6 +7622,18 @@
      "answer": "Vielen",
      "tr": "Çok teşekkürler!",
      "hint_tr": "Çok teşekkürler derken **Vielen Dank** denir."
+    },
+    {
+     "de": "Tobi redet in der Pause ___.",
+     "answer": "viel",
+     "tr": "Tobi molada çok konuşuyor.",
+     "hint_tr": "Çok konuşmak derken **viel reden** denir."
+    },
+    {
+     "de": "Basti trinkt ___ Wasser.",
+     "answer": "viel",
+     "tr": "Basti çok su içiyor.",
+     "hint_tr": "Çok su derken **viel Wasser** denir."
     }
    ]
   },
@@ -7123,6 +7704,19 @@
      "tr": "– Bugün geliyor mu? – Sanırım öyle.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:denken:5",
+     "de": "Frau Brandl denkt oft an früher.",
+     "tr": "Brandl Hanım sık sık eski günleri düşünür.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:denken:6",
+     "de": "– Kommt Josef heute noch? – Ich denke nicht.",
+     "tr": "– Josef bugün gelir mi? – Sanmıyorum.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -7166,6 +7760,15 @@
      "answer": "an",
      "tr": "Seni düşünüyorum.",
      "hint_tr": "Birini düşünürken **an** gelir: **an dich**."
+    },
+    {
+     "de": "Was ___ Sie, Herr Wimmer?",
+     "answer": "denken",
+     "also_ok": [
+      "meinen"
+     ],
+     "tr": "Ne düşünüyorsunuz, Wimmer Bey?",
+     "hint_tr": "**Sie** ile **denken** olur."
     }
    ]
   },
@@ -7353,6 +7956,19 @@
      "layer": "alltag",
      "dialog": true,
      "img": "pouring more coffee into cup"
+    },
+    {
+     "id": "lx:mehr:5",
+     "de": "Tobi arbeitet jetzt mehr als früher.",
+     "tr": "Tobi şimdi eskisinden daha çok çalışıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:mehr:6",
+     "de": "– Haben Sie noch Termine frei? – Heute leider nicht mehr.",
+     "tr": "– Hâlâ boş randevunuz var mı? – Bugün maalesef artık yok.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -7385,6 +8001,24 @@
      "answer": "mehr",
      "tr": "Gittikçe daha çok insan geliyor.",
      "hint_tr": "Gittikçe daha çok derken **immer mehr** denir."
+    },
+    {
+     "de": "Frau Brandl fährt nicht ___ Auto.",
+     "answer": "mehr",
+     "tr": "Brandl Hanım artık araba kullanmıyor.",
+     "hint_tr": "Artık değil derken **nicht mehr** denir."
+    },
+    {
+     "de": "Ich möchte ___ Deutsch sprechen.",
+     "answer": "mehr",
+     "tr": "Daha çok Almanca konuşmak istiyorum.",
+     "hint_tr": "Daha çok derken **mehr** denir."
+    },
+    {
+     "de": "Das kostet ___ als zehn Euro.",
+     "answer": "mehr",
+     "tr": "Bu on avrodan daha fazla tutuyor.",
+     "hint_tr": "Daha fazla derken **mehr als** denir."
     }
    ]
   },
@@ -7698,6 +8332,19 @@
      "tr": "– Hep bu kadar geç mi gelirsin? – Hayır, sadece bugün.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:immer:5",
+     "de": "Josef kommt immer pünktlich.",
+     "tr": "Josef hep zamanında gelir.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:immer:6",
+     "de": "– Hast du immer so viel Arbeit? – Nein, nur diese Woche.",
+     "tr": "– Hep bu kadar çok işin var mı? – Hayır, sadece bu hafta.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -7728,6 +8375,24 @@
      "answer": "immer",
      "tr": "Her zamanki gibi!",
      "hint_tr": "Her zamanki gibi derken **wie immer** denir."
+    },
+    {
+     "de": "Herr Wimmer hat ___ wenig Zeit.",
+     "answer": "immer",
+     "tr": "Wimmer Bey'in hep az vakti var.",
+     "hint_tr": "Hep derken **immer** denir."
+    },
+    {
+     "de": "Das war schon ___ so.",
+     "answer": "immer",
+     "tr": "Bu hep böyleydi.",
+     "hint_tr": "Hep böyleydi derken **schon immer so** denir."
+    },
+    {
+     "de": "Frau Brandl ist ___ nett.",
+     "answer": "immer",
+     "tr": "Brandl Hanım her zaman kibar.",
+     "hint_tr": "Her zaman derken **immer** denir."
     }
    ]
   },
@@ -7788,6 +8453,19 @@
      "tr": "– Film nasıldı? – Fena değildi.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:ganz:5",
+     "de": "Josef war den ganzen Morgen im Keller.",
+     "tr": "Josef bütün sabah bodrumdaydı.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:ganz:6",
+     "de": "– Ist die Wohnung groß? – Ja, ganz schön groß.",
+     "tr": "– Ev büyük mü? – Evet, oldukça büyük.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -7819,6 +8497,24 @@
      "answer": "ganze",
      "tr": "Bütün aile geliyor.",
      "hint_tr": "**die** ile **Familie** arasında **ganz**, **ganze** olur."
+    },
+    {
+     "de": "Tobi hat das ___ Wochenende geschlafen.",
+     "answer": "ganze",
+     "tr": "Tobi bütün hafta sonu uyudu.",
+     "hint_tr": "**das** ile **Wochenende** arasında **ganz**, **ganze** olur."
+    },
+    {
+     "de": "Ich habe es ___ vergessen!",
+     "answer": "ganz",
+     "tr": "Tamamen unuttum!",
+     "hint_tr": "Tamamen derken **ganz** denir."
+    },
+    {
+     "de": "Die Wohnung ist ___ neu.",
+     "answer": "ganz",
+     "tr": "Ev tamamen yeni.",
+     "hint_tr": "Tamamen yeni derken **ganz neu** denir."
     }
    ]
   },
@@ -8338,6 +9034,19 @@
      "tr": "– Dükkân hâlâ açık mı? – Sanırım öyle.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:glauben:5",
+     "de": "Frau Brandl glaubt, es regnet morgen.",
+     "tr": "Brandl Hanım yarın yağmur yağacağını sanıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:glauben:6",
+     "de": "– Frau Brandl ist neunundsiebzig! – Wirklich? Das glaube ich nicht.",
+     "tr": "– Brandl Hanım yetmiş dokuz yaşında! – Gerçekten mi? Buna inanmıyorum.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -8376,6 +9085,18 @@
      "answer": "geglaubt",
      "tr": "Ona inandım.",
      "hint_tr": "Geçmişi anlatırken **habe geglaubt** denir."
+    },
+    {
+     "de": "Wir ___, der Bus kommt gleich.",
+     "answer": "glauben",
+     "tr": "Otobüsün birazdan geleceğini sanıyoruz.",
+     "hint_tr": "**wir** ile **glauben** olur."
+    },
+    {
+     "de": "___ Sie mir, das stimmt.",
+     "answer": "Glauben",
+     "tr": "İnanın bana, bu doğru.",
+     "hint_tr": "**Sie** dediğin birine inanın derken **Glauben Sie mir** denir."
     }
    ]
   },
@@ -8437,6 +9158,19 @@
      "tr": "– Ne oldu? – Bir şey yok, sadece yorgunum.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:los:5",
+     "de": "Los, der Bus kommt!",
+     "tr": "Hadi, otobüs geliyor!",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:los:6",
+     "de": "– Was ist los, Frau Brandl? – Das Licht geht nicht.",
+     "tr": "– Ne oldu, Brandl Hanım? – Işık yanmıyor.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -8469,6 +9203,24 @@
      "answer": "los",
      "tr": "Burada hafta sonu çok hareket olur.",
      "hint_tr": "Bir yer çok hareketli derken **Hier ist viel los** denir."
+    },
+    {
+     "de": "___, beeil dich!",
+     "answer": "Los",
+     "tr": "Hadi, acele et!",
+     "hint_tr": "Birini acele ettirirken **Los** dersin, bu hadi demektir."
+    },
+    {
+     "de": "Was war gestern ___?",
+     "answer": "los",
+     "tr": "Dün ne oldu?",
+     "hint_tr": "Geçmişte ne oldu diye sorarken **Was war los?** denir."
+    },
+    {
+     "de": "Na ___, komm schon, Basti!",
+     "answer": "los",
+     "tr": "Hadi, gel artık, Basti!",
+     "hint_tr": "Hadi derken **Na los** da denir."
     }
    ]
   },
@@ -8677,6 +9429,19 @@
      "tr": "– Bence bu fazla pahalı. – Bence de.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:finden:5",
+     "de": "Josef findet den Fehler immer schnell.",
+     "tr": "Josef hatayı hep çabuk bulur.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:finden:6",
+     "de": "– Wie findest du meine Haare? – Super, Luka ist echt gut!",
+     "tr": "– Saçımı nasıl buluyorsun? – Süper, Luka gerçekten iyi!",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -8715,6 +9480,18 @@
      "answer": "gefunden",
      "tr": "Anahtarını buldun mu?",
      "hint_tr": "Geçmişi anlatırken **hast gefunden** denir."
+    },
+    {
+     "de": "Wir ___ keine Wohnung.",
+     "answer": "finden",
+     "tr": "Ev bulamıyoruz.",
+     "hint_tr": "**wir** ile **finden** olur."
+    },
+    {
+     "de": "Wie ___ Sie das Essen?",
+     "answer": "finden",
+     "tr": "Yemeği nasıl buluyorsunuz?",
+     "hint_tr": "**Sie** ile **finden** olur."
     }
    ]
   },
@@ -8911,6 +9688,19 @@
      "tr": "– Salı uymuyor mu? – Hayır, başka bir gün de olur mu?",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:anderer:5",
+     "de": "Frau Huber gibt mir einen anderen Termin.",
+     "tr": "Huber Hanım bana başka bir randevu veriyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:anderer:6",
+     "de": "– Die Hose ist zu klein. – Moment, ich bringe eine andere.",
+     "tr": "– Pantolon fazla küçük. – Bir dakika, başka bir tane getiriyorum.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -8941,6 +9731,24 @@
      "answer": "anderes",
      "tr": "Başka bir şey istiyorum.",
      "hint_tr": "Başka bir şey derken **etwas anderes** denir."
+    },
+    {
+     "de": "Die ___ sind schon da.",
+     "answer": "anderen",
+     "tr": "Diğerleri çoktan geldi.",
+     "hint_tr": "Diğerleri derken **die anderen** denir."
+    },
+    {
+     "de": "Haben Sie eine ___ Größe?",
+     "answer": "andere",
+     "tr": "Başka bir bedeniniz var mı?",
+     "hint_tr": "**eine** ile **Größe** arasında **andere** olur."
+    },
+    {
+     "de": "Das ist ein ___ Problem.",
+     "answer": "anderes",
+     "tr": "Bu başka bir sorun.",
+     "hint_tr": "**ein** ile **Problem** arasında **anderes** olur."
     }
    ]
   },
@@ -9001,6 +9809,19 @@
      "layer": "alltag",
      "dialog": true,
      "img": "person enjoying delicious meal in restaurant"
+    },
+    {
+     "id": "lx:sehr:5",
+     "de": "Dr. Weber hilft mir sehr.",
+     "tr": "Dr. Weber bana çok yardımcı oluyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:sehr:6",
+     "de": "– Hat es geschmeckt? – Ja, sehr gut, danke!",
+     "tr": "– Beğendiniz mi? – Evet, çok iyiydi, teşekkürler!",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -9019,7 +9840,10 @@
      "de": "Das Essen war ___ lecker.",
      "answer": "sehr",
      "tr": "Yemek çok lezzetliydi.",
-     "hint_tr": "Çok lezzetli derken **sehr lecker** denir."
+     "hint_tr": "Çok lezzetli derken **sehr lecker** denir.",
+     "also_ok": [
+      "so"
+     ]
     },
     {
      "de": "___ gern!",
@@ -9031,7 +9855,34 @@
      "de": "Ich freue mich ___.",
      "answer": "sehr",
      "tr": "Çok seviniyorum.",
-     "hint_tr": "Çok seviniyorum derken **Ich freue mich sehr** denir, **sehr** sona gelir."
+     "hint_tr": "Çok seviniyorum derken **Ich freue mich sehr** denir, **sehr** sona gelir.",
+     "also_ok": [
+      "so"
+     ]
+    },
+    {
+     "de": "Danke ___, Frau Huber!",
+     "answer": "sehr",
+     "tr": "Çok teşekkürler, Huber Hanım!",
+     "hint_tr": "Çok teşekkürler derken **Danke sehr** denir.",
+     "also_ok": [
+      "schön"
+     ]
+    },
+    {
+     "de": "Ich mag Kaffee ___.",
+     "answer": "sehr",
+     "tr": "Kahveyi çok severim.",
+     "hint_tr": "Çok severim derken **sehr** cümlenin sonuna gelir."
+    },
+    {
+     "de": "Das tut mir ___ leid.",
+     "answer": "sehr",
+     "also_ok": [
+      "so"
+     ],
+     "tr": "Çok üzgünüm.",
+     "hint_tr": "Çok üzgünüm derken **Das tut mir sehr leid** denir."
     }
    ]
   },
@@ -9226,6 +10077,21 @@
      "layer": "alltag",
      "dialog": true,
      "img": "older neighbor waving from garden"
+    },
+    {
+     "id": "lx:Mann:5",
+     "de": "Der Mann an der Kasse ist sehr nett.",
+     "tr": "Kasadaki adam çok kibar.",
+     "layer": "hd",
+     "img": "male cashier smiling at checkout"
+    },
+    {
+     "id": "lx:Mann:6",
+     "de": "– Wer war der Mann am Telefon? – Herr Wimmer, mein Chef.",
+     "tr": "– Telefondaki adam kimdi? – Wimmer Bey, şefim.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "man talking on phone in office"
     }
    ],
    "level": "A1",
@@ -9244,7 +10110,7 @@
      "de": "Das ist ___ Mann von Anna.",
      "answer": "der",
      "tr": "Bu, Anna'nın kocası.",
-     "hint_tr": "Bildiğimiz adam: **der Mann**."
+     "hint_tr": "**Das ist** dedikten sonra **der Mann** aynı kalır."
     },
     {
      "de": "Ich sehe ___ Mann an der Tür.",
@@ -9262,13 +10128,19 @@
      "de": "Ich spreche gerade mit ___ Mann.",
      "answer": "einem",
      "tr": "Şu an bir adamla konuşuyorum.",
-     "hint_tr": "Herhangi bir adam: **mit einem Mann**."
+     "hint_tr": "**mit** dedikten sonra **ein Mann**, **einem Mann** olur."
     },
     {
      "de": "Drei ___ warten draußen.",
      "answer": "Männer",
      "tr": "Dışarıda üç adam bekliyor.",
      "hint_tr": "Üç adam derken **drei Männer** denir, **a** harfi **ä** olur."
+    },
+    {
+     "de": "Frau Brandl redet oft von ihrem ___.",
+     "answer": "Mann",
+     "tr": "Brandl Hanım sık sık kocasından bahseder.",
+     "hint_tr": "Kocasından derken **von ihrem Mann** denir."
     }
    ]
   }
