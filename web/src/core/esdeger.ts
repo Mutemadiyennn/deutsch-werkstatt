@@ -78,8 +78,15 @@ function kelimeKanon(w: string[]): string[] {
 }
 
 /** norm() + saat/tarih/sıra sayısı eşdeğerliği: "Es ist 9:30." = "Es ist halb zehn." = "Es ist neun Uhr dreißig." */
+// sık çağrılır (her cevapta her kabul biçimi için): saf fonksiyon, küçük önbellek
+const esOnbellek = new Map<string, string>();
 export function esNorm(s: string): string {
-  return kelimeKanon(norm(hamKanon(s)).split(" ").filter(Boolean)).join(" ");
+  const v = esOnbellek.get(s);
+  if (v !== undefined) return v;
+  const r = kelimeKanon(norm(hamKanon(s)).split(" ").filter(Boolean)).join(" ");
+  if (esOnbellek.size > 5000) esOnbellek.clear();
+  esOnbellek.set(s, r);
+  return r;
 }
 /**
  * İki metin eşdeğer mi: esNorm kelime kelime; rakamlı sıra sayısı (o3) her ekle eşleşir, yazılı olanların eki aynı olmalı
