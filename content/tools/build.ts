@@ -32,6 +32,7 @@ days.sort((a, b) => a.data.day - b.data.day);
 
 const payload = {
   m1: days.map((d) => d.data),
+  temel: c.temel.map((t) => t.data),
   lexemes: c.lexemes,
   grammar: c.grammar,
   assess: c.assess,
@@ -56,14 +57,20 @@ for (const s of c.scenarios) {
 const m1Files: Record<string, string> = {};
 if (days.length) mkdirSync(join(dir, "m1"), { recursive: true });
 for (const d of days) { const f = `m1/gun-${String(d.data.day).padStart(2, "0")}.json`; w(f, d.data); m1Files[String(d.data.day)] = f; }
+// R0 temel dersler (yalnızca incelenmiş olanlar öğrenciye gider; taslak ders pakete girmez)
+const temelFiles: Record<string, string> = {};
+const temel = c.temel.map((t) => t.data).filter((t) => t.review.status === "reviewed").sort((a, b) => a.order - b.order);
+if (temel.length) mkdirSync(join(dir, "temel"), { recursive: true });
+for (const t of temel) { const f = `temel/${t.id.replace(/[^a-z0-9-]/gi, "_")}.json`; w(f, t); temelFiles[t.id] = f; }
 const index: ContentIndex = {
   version,
   builtAt: new Date().toISOString(),
   domains: c.domains,
   scenarios: c.scenarios.map(({ data: s }) => ({ id: s.id, domain: s.domain, order: s.order, level: s.level, title_tr: s.title_tr, title_de: s.title_de, review: s.review.status, format: s.format, ...(s.season ? { season: s.season } : {}) })),
   m1: days.map(({ data: g }) => ({ day: g.day, id: g.id, title_tr: g.title_tr, review: g.review.status, medya: medyalar(g).map((m) => ({ id: m.id, kind: m.kind, title_tr: m.title_tr })) })),
+  temel: temel.map((t) => ({ id: t.id, order: t.order, title_tr: t.title_tr, title_de: t.title_de, review: t.review.status })),
   counts: { lexemes: c.lexemes.length, grammar: c.grammar.length, assess: c.assess.length, scenarios: c.scenarios.length },
-  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files }
+  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles }
 };
 w("index.json", index);
 writeFileSync(join(base, "current.json"), JSON.stringify({ version }));

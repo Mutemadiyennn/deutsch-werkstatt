@@ -95,6 +95,8 @@ jobs:
         run: cd tests/e2e && python v2_garden.py --shots /tmp/shots
       - name: "Medya bölüm oynatıcısı (#58 A4): 5 dk video 3 bölüm, a–g, dikte merdiveni, anons"
         run: cd tests/e2e && python v2_medya.py --shots /tmp/shots
+      - name: "Temel ders oynatıcısı (#58 A5, Seans 2): R0 dersi baştan sona"
+        run: cd tests/e2e && python v2_ders.py --shots /tmp/shots
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4

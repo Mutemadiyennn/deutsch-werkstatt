@@ -23,6 +23,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | İş | Dal | Durum |
 |---|---|---|
 | Medya oynatıcısı + dikte + gün şeması (#58 A4) | `v2/medya` | PR #60; ONAY (3. tur) |
+| Temel ders oynatıcısı (#58 A5a, Seans 2) | `v2/yol` | PR açıldı |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
 
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-18
