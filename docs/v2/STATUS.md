@@ -28,6 +28,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | Konuşma provası, yapay zekâsız (#58 A7) | `v2/prova` | #68 birleşti |
 | Değerlendirme doğruluğu (#58 A11) | `v2/degerlendirme` | PR #76: 1. tur P0 (V2 aşırı kabul) ve P1'ler düzeltildi; kalıcı permütasyon taraması; 2. tur bekliyor (D-104) |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | `v2/degerlendirme` | #76 içinde (D-104 madde 3) |
+| Sözlük arama (#58 B1) | `v2/sozluk-ara` | PR açıldı: çevrimdışı DE↔TR, kart, "Duyduğum kelime" olarak Bahçe'ye |
 | Dinleme hızı ayarı etkili (#58 B7) | `v2/dinleme-hizi` | PR açıldı: Yavaş seçiliyse her cümle ilk kez yavaş, tekrarında normal; medya 0,75× |
 | Çevrimdışı medya (#58 A12 son parça) | `v2/cevrimdisi-medya` | PR #74: medya pakette, servis işçisi ayrı önbellek + 206 aralıklı yanıt, uçak modu e2e; 2. tur bulguları düzeltildi |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
@@ -42,6 +43,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 \* Pilotun 14 kalıbı dilbilimciden geçti (çalışma kopyasında, Advent PR'ıyla depoya girecek); OD-9.4 okur kapısı henüz yok, bu yüzden "yayında" sayılmaz. Kalan 47 kalıbın incelemesi yapıldı (35'inde düzeltme) ama ajan son raporu yazmadan durduruldu: bu 47'si onay bekliyor (taslak). Hedef sütunu (günlük: yazar ≥2 ünite parçası, lex 150–200 kart, dilbilimci aynı gün) hat başlayınca günlük doldurulur. BY-8 tükenme tahmini: K2 motoru (R1) gelene kadar hesaplanamaz.
 R0 temel paket: 10 ders, 189 öğretim öğesi, 353 alıştırma; main'de (#51). Kelime sayıları `card:false` işlev kelimelerini saymaz.
 Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur, M1 kartları 8 tur (hedef tutmadı). Geri dönen türler (hata notunda Türkçe niyet, çelişen ipucu) yazar ve lex görevine eklendi.
+B6 (`forms`, eşdizim, fotoğraf sorgusu; #58): 927 kartın 825'i #81'de, kalan 102'si #83'te. Okur turu B6: 11 grupta 28 tur (grup başına 2,5; hedef tutmadı). `forms` alanı bilerek boş 12 kart: eş anlamlısı da giren (`kriegen`, `seltsam`, `gucken`) ve boşluğa uygun olmayan zarflar (`bereits`, `nun`, `überhaupt` vb.). Açık: Bahçe'de ipucu cevaptan önce görünüyor, bu yüzden boşluk sorusu şimdilik üretimi değil tanımayı kanıtlıyor (#12 şema isteği, `also_ok` ile birlikte).
 
 ## Açık PR'lar
 | PR | Dal | Teslim | İnceleme |

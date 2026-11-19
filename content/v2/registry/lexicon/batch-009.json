@@ -4132,6 +4132,14 @@
     {
      "de": "Buchstabe für Buchstabe",
      "tr": "harf harf"
+    },
+    {
+     "de": "in großen Buchstaben schreiben",
+     "tr": "büyük harflerle yazmak"
+    },
+    {
+     "de": "mit dem Buchstaben A anfangen",
+     "tr": "A harfiyle başlamak"
     }
    ],
    "patterns": [
@@ -4140,34 +4148,38 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**den Buchstabe** yanlış. Doğrusu **den Buchstaben**.",
-    "**C** harfine **ce** deme. Almancada **tse** diye okunur."
+    "Harfi göremiyorum derken **Ich sehe den Buchstabe nicht** yanlış. Doğrusu **Ich sehe den Buchstaben nicht**.",
+    "Beş harf derken **fünf Buchstabe** yanlış. Doğrusu **fünf Buchstaben**."
    ],
    "examples": [
     {
      "id": "lx:Buchstabe:1",
      "de": "Das Wort hat sechs Buchstaben.",
      "tr": "Bu kelime altı harfli.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "word spelled with wooden letter tiles"
     },
     {
      "id": "lx:Buchstabe:2",
      "de": "Schreiben Sie bitte in großen Buchstaben.",
      "tr": "Lütfen büyük harflerle yazın.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "person filling out form in capital letters"
     },
     {
      "id": "lx:Buchstabe:3",
      "de": "Wie war der erste Buchstabe? B oder P?",
      "tr": "İlk harf neydi? B mi, P mi?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "person squinting at handwritten note"
     },
     {
      "id": "lx:Buchstabe:4",
      "de": "– Welcher Buchstabe ist das? – Ein K, K wie Köln.",
-     "tr": "– Bu hangi harf? – K, Köln'deki K.",
+     "tr": "– Bu hangi harf? – K, Köln kelimesindeki K.",
      "layer": "hd",
-     "dialog": true
+     "dialog": true,
+     "img": "two people looking at handwritten letter K"
     }
    ],
    "level": "A1",
@@ -4183,7 +4195,39 @@
     "ne_zaman_tr": "Adını telefonda harf harf söylerken.",
     "parcalar": [],
     "ipucu_tr": "Harfi netleştirmek için **K wie Köln** dersin."
-   }
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ Buchstabe, kein Wort.",
+     "answer": "ein",
+     "tr": "Bu bir harf, kelime değil.",
+     "hint_tr": "Bir harfi gösterirken **Das ist ein Buchstabe** denir."
+    },
+    {
+     "de": "Ich sehe ___ Buchstaben nicht gut.",
+     "answer": "den",
+     "tr": "Harfi iyi göremiyorum.",
+     "hint_tr": "**Ich sehe** dedikten sonra **der Buchstabe**, **den Buchstaben** olur."
+    },
+    {
+     "de": "Schreiben Sie bitte einen großen ___.",
+     "answer": "Buchstaben",
+     "tr": "Lütfen büyük bir harf yazın.",
+     "hint_tr": "**Schreiben Sie** dedikten sonra **ein großer Buchstabe**, **einen großen Buchstaben** olur."
+    },
+    {
+     "de": "Mein Name hat fünf ___.",
+     "answer": "Buchstaben",
+     "tr": "Adım beş harfli.",
+     "hint_tr": "Harfleri sayarken **fünf Buchstaben** denir."
+    },
+    {
+     "de": "Das Wort fängt mit ___ Buchstaben K an.",
+     "answer": "dem",
+     "tr": "Kelime K harfiyle başlıyor.",
+     "hint_tr": "K harfiyle derken **mit dem Buchstaben K** denir."
+    }
+   ]
   },
   {
    "id": "lx:Januar",
@@ -6812,6 +6856,10 @@
     {
      "de": "noch mal buchstabieren",
      "tr": "yeniden harf harf söylemek"
+    },
+    {
+     "de": "am Telefon buchstabieren",
+     "tr": "telefonda harf harf söylemek"
     }
    ],
    "patterns": [
@@ -6820,8 +6868,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Ich buchstabiere mein Name** yanlış. Doğrusu **Ich buchstabiere meinen Namen**.",
-    "**hat gebuchstabiert** yanlış. Doğrusu **hat buchstabiert**."
+    "Adımı harf harf söylüyorum derken **Ich buchstabiere mein Name** yanlış. Doğrusu **Ich buchstabiere meinen Namen**.",
+    "Harf harf söyledim derken **Ich habe gebuchstabiert** yanlış. Doğrusu **Ich habe buchstabiert**."
    ],
    "examples": [
     {
@@ -6875,7 +6923,33 @@
     "ne_zaman_tr": "Adın telefonda anlaşılmadığında.",
     "parcalar": [],
     "ipucu_tr": "Hece hece değil, harf harf söylersin."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ meinen Namen.",
+     "answer": "buchstabiere",
+     "tr": "Adımı harf harf söylüyorum.",
+     "hint_tr": "**ich** ile **buchstabiere** olur."
+    },
+    {
+     "de": "Du ___ sehr schnell.",
+     "answer": "buchstabierst",
+     "tr": "Çok hızlı harf harf söylüyorsun.",
+     "hint_tr": "**du** ile **buchstabierst** olur."
+    },
+    {
+     "de": "Frau Yıldız ___ ihren Namen.",
+     "answer": "buchstabiert",
+     "tr": "Yıldız Hanım adını harf harf söylüyor.",
+     "hint_tr": "**er** ve **sie** ile **buchstabiert** olur."
+    },
+    {
+     "de": "Ich habe den Namen schon ___.",
+     "answer": "buchstabiert",
+     "tr": "Adı zaten harf harf söyledim.",
+     "hint_tr": "Geçmişi anlatırken **habe buchstabiert** denir, başına **ge** gelmez."
+    }
+   ]
   }
  ]
 }
