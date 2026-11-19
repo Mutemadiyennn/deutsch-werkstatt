@@ -70,6 +70,18 @@ def main():
             if pg.locator("[data-test=garden-again]").count(): pg.click("[data-test=garden-again]"); pg.wait_for_selector("[data-test=garden]")
         if not bosluk: print("  (bu turda boşluk sorusu gelmedi; birim testi kapsıyor)")
         b.close()
+        # TANI (geçici): yeni öğrenci, ilk tanıtım, uçak modu
+        b, ctx = launch(p); pg = new_page(ctx)
+        login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
+        pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=garden-intro]"); ctx.set_offline(True)
+        # TANI (geçici, #122 CI): hangi öğe kareyi uzatıyor? her biri yalnızca rapor, denetim değil
+        for ad, css in [("temel", "x{}"), ("esdizim-gizli", ".esdizim-liste{display:none}"), ("bulaniklik-yok", "*{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}"),
+                        ("heceleme-yok", "[lang=de]{hyphens:manual!important;-webkit-hyphens:manual!important}"), ("foto-gizli", "figure{display:none!important}")]:
+            h = pg.add_style_tag(content=css)
+            kk = sorted(degistir(pg, "[data-test=intro-ex]")[1] for _ in range(5))
+            print(f"  TANI {ad}: kare ortanca {round(kk[2])} ms ({[round(x) for x in kk]})", flush=True)
+            h.evaluate("(e) => e.remove()")
+        b.close()
     srv.shutdown()
     finish()
 
