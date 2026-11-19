@@ -16,6 +16,8 @@ export interface Ilerleme {
   dersBitti: Set<string>; medyaBitti: Set<string>;
   /** Seans 4 konuşma provası bitti (m1:prova:<gün>, A7) */
   provaBitti?: Set<number>;
+  /** Seans 4 okuma/yazma bitti (m1:okuma:<gün>, A8) */
+  okumaBitti?: Set<number>;
   /** Seans 1 bitti: Bahçe, günün ve önceki günlerin bütün yeni kartları tanıtılınca yazar (tur sayısına değil kanıta bağlı) */
   bahceBitti: Set<number>;
   /** kalıcı gün bitişi: sonradan hazır olan adım (A7/A8) biten günü geriye dönük açmaz */
@@ -26,6 +28,8 @@ export interface Ilerleme {
 
 export const SEANS_TR: Record<SeansNo, string> = { 1: "Kelime Bahçesi", 2: "Temel ders", 3: "Video ve sesler", 4: "Konuşma provası" };
 export const bahceAnahtari = (day: number) => `m1:bahce:${day}`;
+/** Adımın etiketi: seansın adı; Seans 4'te okuma/yazma kendi adıyla */
+export const adimAdi = (a: Pick<Adim, "seans" | "tur">) => (a.tur === "okuma" ? "Okuma ve yazma" : SEANS_TR[a.seans]);
 
 export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<string, string> = {}): GunDurum {
   const a: Adim[] = [];
@@ -35,8 +39,7 @@ export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<strin
   for (const d of g.dersler) a.push({ seans: 2, tur: "ders", id: d, title_tr: temelBasliklari[d] ?? "Temel ders", href: `#/ders/${encodeURIComponent(d)}`, bitti: ilr.dersBitti.has(d), hazir: d in temelBasliklari });
   for (const m of medyalar(g)) if (m.kind !== "sahne") a.push({ seans: 3, tur: "medya", id: m.id, title_tr: m.title_tr, href: `#/m1/${g.day}/${encodeURIComponent(m.id)}`, bitti: ilr.medyaBitti.has(m.id), hazir: true });
   if (g.prova) a.push({ seans: 4, tur: "prova", id: `prova:${g.day}`, title_tr: g.prova.title_tr, href: `#/prova/${g.day}`, bitti: !!ilr.provaBitti?.has(g.day), hazir: true });
-  // okuma/yazma A8 ile gelir; o zamana kadar "hazırlanıyor" ve günü bekletmez
-  if (g.okuma_yazma) a.push({ seans: 4, tur: "okuma", id: `okuma:${g.day}`, title_tr: g.okuma_yazma.title_tr, href: "", bitti: false, hazir: false });
+  if (g.okuma_yazma) a.push({ seans: 4, tur: "okuma", id: `okuma:${g.day}`, title_tr: g.okuma_yazma.title_tr, href: `#/okuma/${g.day}`, bitti: !!ilr.okumaBitti?.has(g.day), hazir: true });
   // gün, hazır olan bütün adımlar bitince biter (hazırlanmakta olan adım öğrenciyi bekletmez)
   const bitti = !!ilr.gunBitti?.has(g.day) || a.filter((x) => x.hazir).every((x) => x.bitti);
   return { day: g.day, title_tr: g.title_tr, adimlar: a, bitti };

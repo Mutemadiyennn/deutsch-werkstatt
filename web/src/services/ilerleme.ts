@@ -9,7 +9,7 @@ import { XP, XP_BOS, bahceAnahtari, xpEkle, type Ilerleme, type XpKayit } from "
 
 export async function ilerlemeOku(kartlar: string[] = []): Promise<Ilerleme> {
   type B = { bitti?: unknown; ilkBitti?: unknown };
-  const [d, m, b, g, it, pr] = await Promise.all([metaPrefix<B>("ders:"), metaPrefix<B>("m1:medya:"), metaPrefix<unknown>("m1:bahce:"), metaPrefix<unknown>("m1:gun:"), kartlar.length ? itemsMap(kartlar) : Promise.resolve(new Map()), metaPrefix<B>("m1:prova:")]);
+  const [d, m, b, g, it, pr, ok] = await Promise.all([metaPrefix<B>("ders:"), metaPrefix<B>("m1:medya:"), metaPrefix<unknown>("m1:bahce:"), metaPrefix<unknown>("m1:gun:"), kartlar.length ? itemsMap(kartlar) : Promise.resolve(new Map()), metaPrefix<B>("m1:prova:"), metaPrefix<B>("m1:okuma:")]);
   const bitmis = (x: { value?: B }) => !!(x.value?.bitti || x.value?.ilkBitti);
   const sayi = (l: { key: string }[], on: string) => new Set(l.map((x) => Number(x.key.slice(on.length))).filter((n) => Number.isFinite(n)));
   return {
@@ -18,6 +18,7 @@ export async function ilerlemeOku(kartlar: string[] = []): Promise<Ilerleme> {
     bahceBitti: sayi(b, "m1:bahce:"),
     gunBitti: sayi(g, "m1:gun:"),
     provaBitti: sayi(pr.filter(bitmis), "m1:prova:"),
+    okumaBitti: sayi(ok.filter(bitmis), "m1:okuma:"),
     tanitilan: new Set(it.keys())
   };
 }

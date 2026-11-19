@@ -6,7 +6,7 @@ import { useApp } from "../state.ts";
 import { recommend, ACTIVITY_TR } from "../core/planner.ts";
 import { LoadingCard } from "../ui/kit.tsx";
 import { usePlan } from "./Yol.tsx";
-import { SEANS_TR, seri } from "../core/gun.ts";
+import { adimAdi, seri } from "../core/gun.ts";
 import { seasonal } from "../core/season.ts";
 import { bankItems } from "../data/db.ts";
 import { loadIndex, loadLexicon, loadScenario } from "../services/content.ts";
@@ -111,7 +111,7 @@ export function Today() {
         <div class="row" style={{ flexWrap: "nowrap", gap: 14, alignItems: "center" }}>
           <span class="avatar" aria-hidden="true" style={{ width: 52, height: 52, background: "var(--himmel)" }}><Icon name="raute" size={24} /></span>
           <div class="grow" style={{ minWidth: 0 }}>
-            <div class="small muted">{m1.sonraki ? `${m1.simdi!.day}. gün · Seans ${m1.sonraki.seans}: ${SEANS_TR[m1.sonraki.seans]}` : "İlk Hafta"}</div>
+            <div class="small muted">{m1.sonraki ? `${m1.simdi!.day}. gün · Seans ${m1.sonraki.seans}: ${adimAdi(m1.sonraki)}` : "İlk Hafta"}</div>
             <h2 class="nexttitle">{m1.sonraki ? m1.sonraki.title_tr : m1.gunler.length >= 7 && !m1.eksik ? "İlk Hafta tamam" : "Hazır günlerin hepsi bitti"}</h2>
           </div>
         </div>
