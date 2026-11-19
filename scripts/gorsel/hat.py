@@ -13,12 +13,16 @@ Seçim : üretilen görsel `durum: "uretildi"`; qa ajanı galeriye bakıp `kabul
 Kullanım: python scripts/gorsel/hat.py OUT_DIR [--butce NÖRON] [--sinir N]
 """
 from __future__ import annotations
-import base64, html, io, json, os, sys, time, urllib.error, urllib.request
+import base64, html, io, json, os, sys, time, urllib.error, urllib.request, uuid
 
 KOK = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-MODEL = "@cf/black-forest-labs/flux-1-schnell"
+SCHNELL, KLEIN = "@cf/black-forest-labs/flux-1-schnell", "@cf/black-forest-labs/flux-2-klein-4b"
+# PM 7022002310-3: boy denemesi (boy.py) secim.env yazar; hat o gece onunla (512) sürer. Yoksa eski ayar (schnell, model boyu).
+MODEL = os.environ.get("GORSEL_MODEL") or SCHNELL
+EN_IST = int(os.environ.get("GORSEL_EN") or 0)     # 0: modelin varsayılan boyu (schnell 1024×1024)
+BOY_IST = int(os.environ.get("GORSEL_BOY") or 0)
 ADIM = 4
-NORON = 170         # gözlenen: deneme 60 görsel ≈ 10.000 nöron (günlük ücretsiz pay doldu, HTTP 429); bütçe için üst sınır
+NORON = int(os.environ.get("GORSEL_NORON") or 175)  # 1024 schnell: 4 karo × (4,8 + 4 × 9,6) ≈ 173 (PM formülü; gözlenen ≈170)
 BOY = 640           # uygulamaya giden kenar (PM 7020888298-1)
 USLUP_SURUM = "cizim-v1"
 USLUP = "Soft gentle illustration with warm muted colors, clean shapes, landscape 4:3 composition, simple uncluttered background, everyday life in southern Germany. "
@@ -27,15 +31,29 @@ EN_COK_DENEME = 3   # ilk üretim + en çok 2 yeniden üretim
 GIRDI = os.path.join(KOK, "content/v2/media/uretim/sahne-m1.json")
 DURUM = os.path.join(KOK, "content/v2/media/uretim/hat-kayit.json")
 
-def uret(hesap: str, jeton: str, istem: str) -> bytes:
-    url = f"https://api.cloudflare.com/client/v4/accounts/{hesap}/ai/run/{MODEL}"
-    govde = json.dumps({"prompt": istem, "steps": ADIM}).encode()   # model "seed" kabul etmiyor
-    istek = urllib.request.Request(url, data=govde, method="POST", headers={"Authorization": f"Bearer {jeton}", "Content-Type": "application/json"})
-    with urllib.request.urlopen(istek, timeout=120) as r:
-        d = json.loads(r.read())
-    if not d.get("success", True) or not (d.get("result") or {}).get("image"):
+def istek(hesap: str, jeton: str, model: str, istem: str, en: int = 0, boy: int = 0) -> bytes:
+    """Workers AI görsel isteği. schnell: JSON (prompt, steps; "seed" kabul etmiyor); klein-4b: multipart (prompt, width, height)."""
+    url = f"https://api.cloudflare.com/client/v4/accounts/{hesap}/ai/run/{model}"
+    if model == KLEIN:
+        sinir = uuid.uuid4().hex
+        alan = [("prompt", istem)] + ([("width", en), ("height", boy)] if en and boy else [])
+        govde = ("".join(f'--{sinir}\r\nContent-Disposition: form-data; name="{a}"\r\n\r\n{d}\r\n' for a, d in alan) + f"--{sinir}--\r\n").encode()
+        tur = f"multipart/form-data; boundary={sinir}"
+    else:
+        govde = json.dumps({"prompt": istem, "steps": ADIM, **({"width": en, "height": boy} if en and boy else {})}).encode()
+        tur = "application/json"
+    r = urllib.request.urlopen(urllib.request.Request(url, data=govde, method="POST", headers={"Authorization": f"Bearer {jeton}", "Content-Type": tur}), timeout=120)
+    ham = r.read()
+    if r.headers.get("Content-Type", "").startswith("image/"):
+        return ham
+    d = json.loads(ham)
+    img = (d.get("result") or {}).get("image")
+    if not d.get("success", True) or not img:
         raise RuntimeError(f"yanıt: {json.dumps(d)[:300]}")
-    return base64.b64decode(d["result"]["image"])
+    return base64.b64decode(img)
+
+def uret(hesap: str, jeton: str, istem: str) -> bytes:
+    return istek(hesap, jeton, MODEL, istem, EN_IST, BOY_IST)
 
 def jpeg(veri: bytes) -> bytes:
     from PIL import Image
@@ -93,7 +111,7 @@ def main(argv: list[str]) -> int:
         ad = f"{k.replace(':', '_').replace('lx_', '')}-{USLUP_SURUM}-{deneme}.jpg"
         open(os.path.join(out, ad), "wb").write(veri)
         durum[k] = {"de": sahneler[k]["de"], "sahne_en": tarif, "durum": "uretildi", "dosya": ad, "deneme": deneme, "kosu": kosu,
-                    "kaynak": "uretim", "sinif": "acik", "model": MODEL, "uslup": USLUP_SURUM, "adim": ADIM, "bayt": len(veri),
+                    "kaynak": "uretim", "sinif": "acik", "model": MODEL, "uslup": USLUP_SURUM, "adim": ADIM, **({"boyut": f"{EN_IST}x{BOY_IST}"} if EN_IST else {}), "bayt": len(veri),
                     **({"onceki_ret": onceki.get("neden")} if onceki.get("durum") == "ret" else {})}
         yeni.append(k)
         print("GORSEL " + json.dumps({"anahtar": k, "deneme": deneme, "bayt": len(veri)}, ensure_ascii=False), flush=True)

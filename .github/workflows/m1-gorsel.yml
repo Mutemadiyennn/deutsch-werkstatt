@@ -25,13 +25,22 @@ jobs:
           CF_AI_TOKEN: ${{ secrets.CF_AI_TOKEN || secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           B=$(cat content/v2/media/uretim/butce.txt 2>/dev/null || echo 3500); [ "$B" -le 7000 ] || B=7000
-          python scripts/gorsel/hat.py out --butce "$B"
+          # PM 7022002310-3: boy denemesi (boy-deneme.txt varsa, içindeki bütçeyle) önce; hattın bu geceki ayarı onun secim.env'i
+          if [ -f content/v2/media/uretim/boy-deneme.txt ]; then
+            BD=$(cat content/v2/media/uretim/boy-deneme.txt); [ "$BD" -le "$B" ] || BD=$B
+            python scripts/gorsel/boy.py out --butce "$BD"
+            H=$(python -c "import json;print(json.load(open('out/boy-ozet.json'))['harcanan'])" 2>/dev/null || echo "$BD"); B=$((B - H))
+          fi
+          # kalıcı ayar (PM kararından sonra depoda) ya da bu gecenin denemesi
+          for f in content/v2/media/uretim/hat-ayar.env out/secim.env; do [ -s "$f" ] && { set -a; . "$f"; set +a; echo "ayar: $f"; break; }; done
+          echo "hat bütçesi: $B nöron; model ${GORSEL_MODEL:-schnell} ${GORSEL_EN:-1024}x${GORSEL_BOY:-1024}"
+          if [ "$B" -gt 0 ]; then python scripts/gorsel/hat.py out --butce "$B"; fi
       - name: Releases (m1-gorsel)
         if: always()
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
           shopt -s nullglob
-          f=(out/*.jpg out/galeri-*.html)
+          f=(out/*.jpg out/galeri-*.html out/boy-ozet.json)
           if [ ${#f[@]} -eq 0 ]; then echo "görsel yok"; exit 0; fi
           gh release view m1-gorsel >/dev/null 2>&1 || gh release create m1-gorsel --prerelease --title "B14 cümle görselleri (cizim-v1)" \
             --notes "Workers AI flux-1-schnell (kaynak: uretim, sinif: acik, uslup: cizim-v1). Kayıt content/v2/media/uretim/hat-kayit.json (kaynak/gorsel dalı). Uygulamaya yalnızca qa'nın kabul ettiği görseller girer."
