@@ -97,12 +97,19 @@ def main():
         check(v is not None and "Şöyle olmalı" not in v, f"A: diyalogda doğru cevap internetsiz değerlendirildi ({(v or '')[:40]!r})")
         if medya:
             # Safari <video> aralıklı istek ister: servis işçisi önbellekten 206 kısmi yanıt verir
-            r = pg.evaluate("""async (u) => { const x = await fetch(u, { headers: { Range: 'bytes=0-99' } }); return { s: x.status, n: (await x.arrayBuffer()).byteLength, cr: x.headers.get('content-range') }; }""",
-                            f"{base}content/{idx['version']}/{medya[0]}")
-            check(r["s"] == 206 and r["n"] == 100 and (r["cr"] or "").startswith("bytes 0-99/"), f"A: medya internetsiz aralıklı istekle geliyor ({r})")
+            u = f"{base}content/{idx['version']}/{medya[0]}"
+            r = pg.evaluate("""async (u) => { const out = {};
+              for (const h of ['bytes=0-99', 'bytes=0-1', 'bytes=10-', 'bytes=-10', 'bytes=99999999-', 'bytes=5-2']) {
+                const x = await fetch(u, { headers: { Range: h } }); out[h] = { s: x.status, n: (await x.arrayBuffer()).byteLength, cr: x.headers.get('content-range') }; }
+              return out; }""", u)
+            boy = int((r["bytes=0-99"]["cr"] or "/0").split("/")[-1])
+            check(r["bytes=0-99"]["s"] == 206 and r["bytes=0-99"]["n"] == 100 and (r["bytes=0-99"]["cr"] or "").startswith("bytes 0-99/"), f"A: medya internetsiz aralıklı istekle geliyor ({r['bytes=0-99']})")
+            check(r["bytes=0-1"]["n"] == 2 and r["bytes=10-"]["n"] == boy - 10 and r["bytes=-10"]["n"] == 10 and r["bytes=99999999-"]["s"] == 416 and r["bytes=5-2"]["s"] == 200,
+                  f"A: aralık biçimleri (0-1, a-, -n, 416, geçersiz → 200) doğru ({ {k: (v['s'], v['n']) for k, v in r.items()} })")
             # M1 yolu internetsiz: Yol, günün temel dersi, medya oynatıcısı
             m1w = [("#/yol", "[data-test=yol]")]
             if idx.get("temel"): m1w.append((f"#/ders/{urllib.parse.quote(idx['temel'][0]['id'], safe='')}", "[data-test=ders]"))
+            vid = next(((g["day"], x["id"]) for g in idx.get("m1", []) for x in g.get("medya", []) if x["kind"] == "video"), None)
             if idx.get("m1") and idx["m1"][0].get("medya"): m1w.append((f"#/m1/{idx['m1'][0]['day']}/{urllib.parse.quote(idx['m1'][0]['medya'][0]['id'], safe='')}", "[data-test=medya]"))
             kotu = []
             for h, sel in m1w:
@@ -110,6 +117,12 @@ def main():
                 try: pg.wait_for_selector(sel, timeout=10_000)
                 except Exception: kotu.append(h)
             check(not kotu, f"A: M1 ekranları internetsiz açıldı ({len(m1w)})" + (f" — sorunlu: {kotu}" if kotu else ""))
+            if vid:
+                # <video> öğesi internetsiz gerçekten yükleniyor (yalnızca kap değil; inceleme #74 P1-2)
+                pg.goto(base + f"#/m1/{vid[0]}/{urllib.parse.quote(vid[1], safe='')}"); pg.wait_for_selector("[data-test=medya]")
+                ok = pg.wait_for_function("() => { const v = document.querySelector('video'); return !!v && v.readyState >= 1 || !!document.querySelector('[data-test=video-yok]'); }", timeout=15_000)
+                rs = pg.evaluate("() => ({ rs: document.querySelector('video')?.readyState ?? -1, yok: !!document.querySelector('[data-test=video-yok]') })")
+                check(rs["rs"] >= 1 and not rs["yok"], f"A: video internetsiz yüklendi (readyState {rs['rs']}, video-yok {rs['yok']})")
         ctx.set_offline(False); b.close()
 
         # ---------- B) mikrofonsuz ----------

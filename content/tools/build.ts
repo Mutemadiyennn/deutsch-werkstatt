@@ -2,7 +2,7 @@
  * İçerik paketini derler: web/public/content/<sürüm>/… ve web/public/content/current.json
  * Sürüm = içeriğin SHA-1 özetinin ilk 12 karakteri (içerik değişmedikçe aynı kalır; önbellek dostu).
  */
-import { mkdirSync, writeFileSync, rmSync, existsSync, copyFileSync } from "node:fs";
+import { mkdirSync, writeFileSync, rmSync, existsSync, copyFileSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { createHash } from "node:crypto";
 import { loadContent, checkRules, ROOT, parseFile } from "./load.ts";
@@ -39,7 +39,29 @@ const payload = {
   patterns: c.patterns,
   scenarios: Object.fromEntries(c.scenarios.map((s) => [s.data.id, s.data]))
 };
-const version = createHash("sha1").update(JSON.stringify([c.domains, payload])).digest("hex").slice(0, 12);
+// Medya (A9/A12): günlerin başvurduğu "media/<ad>" dosyaları içerik paketine kopyalanır (Pages'ten aynı kaynaktan sunulur,
+// servis işçisi önbelleğe alır; Safari aralıklı istek ister). Kaynak: `.medya/` (deploy adımı GitHub Releases'ten indirir;
+// ses ve video depoya girmez, #42 §4.6) ve e2e'de tests/e2e/fixtures. Bulunamayan dosya pakete girmez; oynatıcı kaynağa
+// bağlantı gösterir (Video şeması). Medya adları ve içerik özetleri SÜRÜME katılır: medyasız ve medyalı paket aynı
+// sürümü almaz, yeniden kesilen klip yeni sürümle önbelleğe girer (inceleme #74 P1-1).
+const medyaKaynak = [join(ROOT, ".medya"), ...(process.env.DW_E2E_FIXTURES === "1" ? [join(ROOT, "tests/e2e/fixtures")] : [])];
+const medyaBul: { src: string; yol: string; ozet: string }[] = [], medyaEksik: string[] = [];
+const medyaAdlari = new Set<string>();
+for (const { data: g } of days) for (const m of medyalar(g)) {
+  if (m.video) { for (const s2 of m.video.medya) medyaAdlari.add(s2.src); if (m.video.poster) medyaAdlari.add(m.video.poster); }
+  for (const c2 of m.cumleler) if (c2.audio?.src) medyaAdlari.add(c2.audio.src);
+}
+for (const src of [...medyaAdlari].sort()) {
+  if (!/^media\/[\w-][\w.-]*$/.test(src) || src.includes("..")) continue; // dış adres ya da beklenmeyen yol: pakete girmez
+  const ad = src.slice("media/".length);
+  const yol = medyaKaynak.map((k) => join(k, ad)).find((p) => existsSync(p));
+  if (!yol) { medyaEksik.push(src); continue; }
+  medyaBul.push({ src, yol, ozet: createHash("sha1").update(readFileSync(yol)).digest("hex") });
+}
+if (medyaEksik.length) console.warn(`uyarı: pakete girmeyen medya (${medyaEksik.length}): ${medyaEksik.slice(0, 5).join(", ")}`);
+const toplamMedya = medyaBul.reduce((n, m) => n + statSync(m.yol).size, 0);
+if (toplamMedya > 50 * 1024 * 1024) console.warn(`uyarı: paketteki medya ${Math.round(toplamMedya / 1048576)} MB > 50 MB (D-103: M5'te yerel indiriciye taşınır)`);
+const version = createHash("sha1").update(JSON.stringify([c.domains, payload, medyaBul.map((m) => [m.src, m.ozet])])).digest("hex").slice(0, 12);
 const base = join(ROOT, "web/public/content");
 if (existsSync(base)) rmSync(base, { recursive: true });
 const dir = join(base, version);
@@ -63,27 +85,8 @@ const temelFiles: Record<string, string> = {};
 const temel = c.temel.map((t) => t.data).filter((t) => t.review.status === "reviewed").sort((a, b) => a.order - b.order);
 if (temel.length) mkdirSync(join(dir, "temel"), { recursive: true });
 for (const t of temel) { const f = `temel/${t.id.replace(/[^a-z0-9-]/gi, "_")}.json`; w(f, t); temelFiles[t.id] = f; }
-// Medya (A9/A12): günlerin başvurduğu "media/<ad>" dosyaları içerik paketine kopyalanır (Pages'ten aynı kaynaktan sunulur,
-// servis işçisi önbelleğe alır; Safari aralıklı istek ister). Kaynak: `.medya/` (deploy adımı GitHub Releases'ten indirir;
-// ses ve video depoya girmez, #42 §4.6) ve e2e'de tests/e2e/fixtures. Bulunamayan dosya pakete girmez; oynatıcı kaynağa
-// bağlantı gösterir (Video şeması).
-const medyaKaynak = [join(ROOT, ".medya"), ...(process.env.DW_E2E_FIXTURES === "1" ? [join(ROOT, "tests/e2e/fixtures")] : [])];
-const medyaFiles: string[] = [], medyaEksik: string[] = [];
-const medyaAdlari = new Set<string>();
-for (const { data: g } of days) for (const m of medyalar(g)) {
-  if (m.video) { for (const s of m.video.medya) medyaAdlari.add(s.src); if (m.video.poster) medyaAdlari.add(m.video.poster); }
-  for (const c2 of m.cumleler) if (c2.audio?.src) medyaAdlari.add(c2.audio.src);
-}
-for (const src of medyaAdlari) {
-  if (!/^media\/[\w.-]+$/.test(src)) continue; // dış adres ya da beklenmeyen yol: pakete girmez
-  const ad = src.slice("media/".length);
-  const bul = medyaKaynak.map((k) => join(k, ad)).find((p) => existsSync(p));
-  if (!bul) { medyaEksik.push(src); continue; }
-  mkdirSync(join(dir, "media"), { recursive: true });
-  copyFileSync(bul, join(dir, src));
-  medyaFiles.push(src);
-}
-if (medyaEksik.length) console.warn(`uyarı: pakete girmeyen medya (${medyaEksik.length}): ${medyaEksik.slice(0, 5).join(", ")}`);
+const medyaFiles: string[] = [];
+for (const m of medyaBul) { mkdirSync(join(dir, "media"), { recursive: true }); copyFileSync(m.yol, join(dir, m.src)); medyaFiles.push(m.src); }
 const index: ContentIndex = {
   version,
   builtAt: new Date().toISOString(),
