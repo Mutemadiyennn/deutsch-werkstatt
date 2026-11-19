@@ -161,6 +161,8 @@ export function checkLexeme(l: Lexeme): string[] {
 /** PEDAGOGY.md §3: temel kalıp kuralları */
 export function checkPattern(p: Pattern): string[] {
   const e: string[] = [];
+  // İÇ 7014566898: dolgu anlamları dolgularla aynı sırada ve uzunlukta (B2 kartı seçilen dolgunun anlamını buradan gösterir)
+  for (const s of p.slots) if (s.fills_tr && s.fills_tr.length !== s.fills.length) e.push(`slot '${s.name}': fills_tr (${s.fills_tr.length}) fills (${s.fills.length}) ile aynı uzunlukta olmalı`);
   if (!p.core) return e;
   if (!p.slots.length) e.push("en az 1 slot");
   for (const s of p.slots) if (s.fills.length < 8) e.push(`slot '${s.name}' için en az 8 doldurma (${s.fills.length})`);

@@ -153,7 +153,9 @@ export const Gun = z.object({
   sesler: z.array(Ses).default([]),
   gorsel: z.array(Gorsel).default([]),
   prova: Prova.optional(),
-  okuma_yazma: OkumaYazma.optional()
+  okuma_yazma: OkumaYazma.optional(),
+  /** PM-066 madde 3 (B16 "Günü sınavla geç"): 10–12 madde (4 dikte, 6 üretim — 2'si sesli —, 1 mini prova); mevcut Drill türleri */
+  gun_sinavi: z.object({ id: z.string(), maddeler: z.array(Drill).min(10).max(12), sesli: z.array(z.string()).default([]) }).optional()
 });
 export type Gun = z.infer<typeof Gun>;
 

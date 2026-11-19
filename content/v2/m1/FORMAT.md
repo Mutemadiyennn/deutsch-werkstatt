@@ -130,3 +130,23 @@ Günün videosu ayrı dosyadadır: `content/v2/m1/video/klip-NN.json`. Kaynak De
 - Bir gün, başka bir günde kullanılan klip parçasını tekrar etmez.
 - Ana dili Almanca olmayan konuşmacının hatalı cümlesine soru ya da dikte bağlanmaz.
 - Dikte sırası: kolay → orta → zor → usta → gerçek.
+
+## Gün sınavı (`gun_sinavi`; PM-066 madde 3, B16 "Günü sınavla geç")
+İsteğe bağlı. 3–4 dakikalık sınav; ≥ %90 olursa günün dersi ve tanıma turları "geçildi" sayılır. Klip, konuşma provası ve gün sonu cümlesi atlanmaz. Eşik şimdilik kodda; `policy.json` gelince oraya taşınacak.
+```jsonc
+"gun_sinavi": {
+  "id": "m1:01:s",
+  "maddeler": [ /* 10–12 madde, mevcut Drill türleri: 4 dikte (listen_and_respond, doğal hız), 6 üretim (tr_de; 2'si sesli), 1 mini prova (guided_response) */ ],
+  "sesli": ["m1:01:s9", "m1:01:s10"]   // sesle cevaplanacak maddelerin kimlikleri (sınavda olmalı)
+}
+```
+Doğrulayıcı (`m1check.ts`) şunları denetler:
+- madde kimlikleri tekil;
+- `sesli` kimlikleri sınavda var;
+- üretim maddelerinde `accepted` ≥ 3 (D-064);
+- 10–12 madde (şema).
+
+Her madde yalnızca o güne kadar öğretilen öğeleri ister (`requires` kuralı).
+
+## Kalıp dolgu anlamları (`patterns.json` → `slots[].fills_tr`)
+İsteğe bağlı. `fills` ile aynı sırada ve uzunlukta kısa Türkçe anlamlar ("im Büro" → "ofiste"). Kalıp kartı (B2) seçilen dolgunun anlamını buradan gösterir; örnek cümle varsa o da öne çıkar. Uzunluk farkı doğrulayıcıda hatadır.

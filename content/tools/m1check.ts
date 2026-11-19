@@ -90,6 +90,13 @@ export function checkGun(g: Gun, ctx: { lexicon: Set<string>; temel: Set<string>
   }
   if (g.okuma_yazma?.yazma) ist("yazma", g.okuma_yazma.yazma.zorunlu.join(" "));
   if (g.okuma_yazma) for (const q of g.okuma_yazma.sorular) if ("kind" in q && q.ans >= q.opts.length) errors.push(`okuma ${q.id ?? q.q_tr}: cevap seçeneklerin dışında`);
+  // PM-066 madde 3: gün sınavı — sesli maddeler sınavda olmalı; üretim maddelerinde accepted ≥ 3 (D-064); kimlikler tekil
+  if (g.gun_sinavi) {
+    const ids = g.gun_sinavi.maddeler.map((m) => m.id);
+    if (new Set(ids).size !== ids.length) errors.push("gun_sinavi: madde kimlikleri tekil değil");
+    for (const s of g.gun_sinavi.sesli) if (!ids.includes(s)) errors.push(`gun_sinavi: sesli madde ${s} sınavda yok`);
+    for (const m of g.gun_sinavi.maddeler) if ("accepted" in m && Array.isArray(m.accepted) && m.accepted.length < 3 && m.k !== "pick") errors.push(`gun_sinavi/${m.id}: accepted ≥ 3 olmalı (D-064; ${m.accepted.length})`);
+  }
   return { errors, warnings };
 }
 

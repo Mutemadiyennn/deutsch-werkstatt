@@ -81,4 +81,17 @@ describe("M1 gün biçimi (#58 A4, PM-053, PM-055)", () => {
     expect(e).toMatch(/başka bir kelime/);
     expect(e).toMatch(/cevapla türü pick/);
   });
+  it("gün sınavı (PM-066 madde 3): 10–12 madde, sesli maddeler sınavda, üretimde accepted ≥ 3, kimlikler tekil", () => {
+    const m = (i: number, acc = ["Ich heiße Ana.", "Ich bin Ana.", "Mein Name ist Ana."]) => ({ id: `s${i}`, k: "tr_de", tr: "Adım Ana.", accepted: acc });
+    const r = clone(); r.gun_sinavi = { id: "m1:01:s", maddeler: Array.from({ length: 10 }, (_, i) => m(i)), sesli: ["s8", "s9"] };
+    expect(checkGun(parse(r), ctx).errors.filter((e) => e.startsWith("gun_sinavi"))).toEqual([]);
+    r.gun_sinavi.sesli = ["s99"]; r.gun_sinavi.maddeler[0] = m(1, ["Adım."]);
+    const e = checkGun(parse(r), ctx).errors.filter((x) => x.startsWith("gun_sinavi"));
+    expect(e.some((x) => x.includes("s99"))).toBe(true);
+    expect(e.some((x) => x.includes("tekil"))).toBe(true);
+    expect(e.some((x) => x.includes("accepted"))).toBe(true);
+    const az = clone(); az.gun_sinavi = { id: "x", maddeler: [m(0)], sesli: [] };
+    expect(Gun.safeParse(az).success).toBe(false);
+  });
 });
+
