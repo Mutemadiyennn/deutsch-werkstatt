@@ -12,7 +12,7 @@ ve lisansı okunamayan görsel alınmaz. Kaynak sayfa, yazar ve lisans kayda ge�
     (#58 B5: denetçi her sorgu için birini seçer ya da hepsini reddeder; soyut kelimede sahne çizimi).
   - Depo: `content/v2/media/foto/adaylar.json` — sorgu → aday (dosya, kaynak sayfa, yazar, lisans, boyut). Görsel depoya girmez.
 
-Kullanım: python scripts/foto/foto.py OUT_DIR [--sinir N] [--yalniz-eksik]
+Kullanım: python scripts/foto/foto.py OUT_DIR [--sinir N] [--yalniz-eksik] [--sure DAKIKA]
   Adaysız uzun sorgu için içerik kelimelerinden kısa yedek sorgular denenir (aday kaydında `sorgu`, B5 sayfasında işaretli).
 """
 from __future__ import annotations
@@ -26,10 +26,17 @@ ADAY = 3
 UYGUN = re.compile(r"^(cc0|cc[- ]?by(-sa)?([- ]\d(\.\d)?)?|public domain|pdm|cc[- ]?pdm)", re.I)
 YASAK = re.compile(r"\b(nc|nd|noncommercial|noderivs|fair use|non-free)\b", re.I)
 
+SON: dict[str, float] = {}
+ARALIK = {"upload.wikimedia.org": 1.5, "commons.wikimedia.org": 0.7, "api.openverse.org": 4.0}
+
 def get(url: str, tekrar: int = 4) -> bytes:
+    host = urllib.parse.urlparse(url).hostname or ""
     for k in range(tekrar):
         try:
-            time.sleep(0.7)
+            # ana makine başına aralık: Commons küçük resimleri ve anahtarsız Openverse hızlı istekte 429/403 verir
+            bekle = SON.get(host, 0) + ARALIK.get(host, 0.7) - time.time()
+            if bekle > 0: time.sleep(bekle)
+            SON[host] = time.time()
             with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": UA}), timeout=60) as r:
                 return r.read()
         except Exception as e:
@@ -47,7 +54,7 @@ def lisans_uygun(ad: str) -> bool:
 
 def commons(sorgu: str, n: int = 10) -> list[dict]:
     q = urllib.parse.urlencode({"action": "query", "format": "json", "generator": "search", "gsrsearch": f"{sorgu} filetype:bitmap",
-                                "gsrnamespace": 6, "gsrlimit": n, "prop": "imageinfo", "iiprop": "url|extmetadata|size|mime", "iiurlwidth": 640})
+                                "gsrnamespace": 6, "gsrlimit": n, "prop": "imageinfo", "iiprop": "url|extmetadata|size|mime", "iiurlwidth": 960})
     d = json.loads(get(f"{COMMONS}?{q}"))
     out = []
     for p in sorted((d.get("query") or {}).get("pages", {}).values(), key=lambda x: x.get("index", 99)):
@@ -91,12 +98,20 @@ def kisalar(sorgu: str) -> list[str]:
         if len(a) >= 2 and q != sorgu and q not in out: out.append(q)
     return out
 
-def topla(sorgu: str) -> tuple[list[dict], str | None]:
-    havuz, hata = commons(sorgu), None
-    if len(havuz) < ADAY:
-        try: havuz += openverse(sorgu)
-        except Exception as e: hata = f"openverse: {e}"
+def topla(sorgu: str, once_openverse: bool = False) -> tuple[list[dict], str | None]:
+    """Commons + Openverse. Commons'ta daha önce aday çıkmayan sorguda Openverse önce (PM 19.11: adaysız sorgular önce)"""
+    havuz, hata = [], None
+    kaynaklar = [openverse, commons] if once_openverse else [commons, openverse]
+    for f in kaynaklar:
+        if len(havuz) >= ADAY: break
+        try: havuz += f(sorgu)
+        except Exception as e: hata = f"{f.__name__}: {e}"
     return havuz, hata
+
+def kisa_sorgular() -> dict[str, str]:
+    """İÇ'in elle yazdığı kısa İngilizce sorgular (PM 19.11 madde 2): content/v2/media/foto/kisa-sorgu.json = {"<sorgu>": "<2–3 kelime>"}"""
+    try: return {k: v for k, v in json.load(open(os.path.join(KOK, "content/v2/media/foto/kisa-sorgu.json"))).items() if isinstance(v, str) and v.strip()}
+    except Exception: return {}
 
 def sorgular() -> dict[str, list[str]]:
     """M1 günlerinin kartları: kart sorgusu (`img`) ve örnek cümle sorguları → kullanan yerler"""
@@ -151,15 +166,27 @@ def main():
     if "--yalniz-eksik" in sys.argv:
         try: onceki = json.load(open(os.path.join(KOK, "content/v2/media/foto/adaylar.json")))["sorgular"]
         except Exception: onceki = {}
-    for n, (sorgu, yerler) in enumerate(list(q.items())[:sinir]):
+    elle = kisa_sorgular()
+    sure = float(sys.argv[sys.argv.index("--sure") + 1]) if "--sure" in sys.argv else 140.0
+    basla = time.time()
+    # sıra: adaysız sorgular, sonra eksikler, sonra yeniler (PM 19.11); süre dolunca kalanlar önceki kayıtla yazılır
+    def oncelik(kv):
+        e = onceki.get(kv[0])
+        return 2 if e is None else (0 if not e["adaylar"] else 1)
+    for n, (sorgu, yerler) in enumerate(sorted(list(q.items())[:sinir], key=oncelik)):
         eski = onceki.get(sorgu)
+        if (time.time() - basla) / 60 > sure:
+            if eski: kayit[sorgu] = {**eski, "yerler": yerler}; satir.append((sorgu, yerler, eski["adaylar"]))
+            continue
         if eski and len(eski["adaylar"]) >= ADAY:
             kayit[sorgu] = {**eski, "yerler": yerler}; satir.append((sorgu, yerler, eski["adaylar"])); continue
         adaylar, hata, kisa = list((eski or {}).get("adaylar", [])), None, None
         try:
-            for i, sq in enumerate([sorgu] + kisalar(sorgu)):
+            bos_onceden = eski is not None and not eski["adaylar"]
+            yedek = ([elle[sorgu]] if sorgu in elle else []) + [x for x in kisalar(sorgu) if x != elle.get(sorgu)]
+            for i, sq in enumerate([sorgu] + yedek):
                 if len(adaylar) >= ADAY: break
-                havuz, h = topla(sq); hata = h or hata
+                havuz, h = topla(sq, once_openverse=bos_onceden); hata = h or hata
                 once = len(adaylar)
                 for a in havuz:
                     if len(adaylar) >= ADAY: break
