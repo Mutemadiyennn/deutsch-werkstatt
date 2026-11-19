@@ -26,7 +26,6 @@
    "lx:bitte",
    "lx:ja",
    "lx:nein",
-   "lx:und",
    "lx:Frau",
    "lx:Tag",
    "lx:heute",
@@ -51,10 +50,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "reviewed",
+  "status": "draft",
   "by": "dilbilimci-ajan",
   "at": "2026-11-19",
-  "notes": "docs/v2/reviews/m1-gun03-04.md; okur: docs/v2/reviews/okur/m1-gun03-04.md, m1-tekrar2…6.md. Örneklem bekliyor.",
+  "notes": "docs/v2/reviews/m1-gun03-04.md; okur: docs/v2/reviews/okur/m1-gun03-04.md, m1-tekrar2…8.md. Medya paketlenince reviewed olur.",
   "okur": "passed",
   "okur_at": "2026-11-19"
  },
@@ -85,17 +84,14 @@
   "lx:teuer",
   "lx:zahlen"
  ],
- "koy_dizisi": {
+ "sahne": {
   "id": "m1:04:v1",
-  "tur": "bir-gunum",
   "title_tr": "Ioana'nın cumartesisi",
-  "sure_sn": 68,
-  "gercek_insan": false,
   "sahneler": [
    {
     "id": "s1",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana cumartesi sabahı şehir meydanında telefonuna el sallıyor.",
+    "sahne_tr": "Ioana cumartesi sabahı şehir meydanında yürüyor, el sallıyor.",
     "de": "Hallo, hier ist Ioana! Heute ist Samstag.",
     "tr": "Merhaba, ben Ioana! Bugün cumartesi."
    },
@@ -110,8 +106,8 @@
     "id": "s3",
     "speaker": "ch:stadler",
     "sahne_tr": "Frau Stadler ekmekleri poşetin yanına koyuyor, kasaya bakıyor.",
-    "de": "Gern! Das macht vier Euro achtzig.",
-    "tr": "Memnuniyetle! Toplam dört avro seksen."
+    "de": "Das macht vier Euro achtzig.",
+    "tr": "Toplam dört avro seksen."
    },
    {
     "id": "s4",
@@ -123,16 +119,30 @@
    {
     "id": "s5",
     "speaker": "ch:stadler",
-    "sahne_tr": "Frau Stadler gülerek kasadaki sayıları gösteriyor.",
-    "de": "Nein, nicht vierzig! Vier Euro achtzig.",
-    "tr": "Hayır, kırk değil! Dört avro seksen."
+    "sahne_tr": "Frau Stadler gülerek başını sallıyor.",
+    "de": "Nein, nicht vierzig!",
+    "tr": "Hayır, kırk değil!"
+   },
+   {
+    "id": "s5b",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler kasadaki sayıları gösteriyor.",
+    "de": "Vier Euro achtzig.",
+    "tr": "Dört avro seksen."
    },
    {
     "id": "s6",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana rahatlıyor ve cüzdanından kartını çıkarıyor.",
-    "de": "Ach, vier Euro achtzig! Ich zahle mit Karte.",
-    "tr": "Ha, dört avro seksen! Kartla ödüyorum."
+    "sahne_tr": "Ioana rahatlıyor, gülümsüyor.",
+    "de": "Ach, vier Euro achtzig!",
+    "tr": "Ha, dört avro seksen!"
+   },
+   {
+    "id": "s6b",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana cüzdanından kartını çıkarıyor.",
+    "de": "Ich zahle mit Karte.",
+    "tr": "Kartla ödüyorum."
    },
    {
     "id": "s7",
@@ -207,7 +217,7 @@
    {
     "id": "s17",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana sepetiyle kameraya el sallıyor.",
+    "sahne_tr": "Ioana sepetiyle el sallıyor.",
     "de": "Bis morgen!",
     "tr": "Yarın görüşürüz!"
    }
@@ -221,7 +231,9 @@
      "s3",
      "s4",
      "s5",
+     "s5b",
      "s6",
+     "s6b",
      "s7",
      "s8",
      "s9",
@@ -260,7 +272,7 @@
       "ans": 2,
       "kanit": [
        "s3",
-       "s5"
+       "s5b"
       ]
      },
      {
@@ -287,7 +299,7 @@
       ],
       "ans": 1,
       "kanit": [
-       "s6"
+       "s6b"
       ]
      }
     ],
@@ -308,7 +320,7 @@
       "id": "d2",
       "cumle": "s5",
       "seviye": "orta",
-      "de": "Nein, nicht ___! Vier Euro achtzig.",
+      "de": "Nein, nicht ___!",
       "accepted": [
        "vierzig",
        "Vierzig",
@@ -317,7 +329,7 @@
      },
      {
       "id": "d3",
-      "cumle": "s6",
+      "cumle": "s6b",
       "seviye": "zor",
       "banka": [
        "Karte",
@@ -346,7 +358,7 @@
      {
       "id": "d5",
       "seviye": "gercek",
-      "gorev_tr": "Videoda duyduklarını Almanca bir iki kısa cümleyle özetle.",
+      "gorev_tr": "Sahnede duyduklarını Almanca bir iki kısa cümleyle özetle.",
       "ornek_de": "Das macht vier Euro achtzig. Ich bin vierunddreißig Jahre alt.",
       "zorunlu": [
        "vier Euro achtzig",
@@ -385,14 +397,13 @@
    "speaker": "ch:stadler",
    "hizlar": [
     "slow",
-    "normal",
-    "natural"
+    "normal"
    ],
    "script": [
     {
      "id": "c1",
-     "de": "Hallo und guten Tag auf dem Stadtplatz!",
-     "tr": "Stadtplatz'tan herkese merhaba, iyi günler!"
+     "de": "Hallo und guten Tag!",
+     "tr": "Merhaba, iyi günler!"
     },
     {
      "id": "c2",
@@ -577,14 +588,13 @@
    "speaker": "ch:petrovic",
    "hizlar": [
     "slow",
-    "normal",
-    "natural"
+    "normal"
    ],
    "script": [
     {
      "id": "c1",
-     "de": "Hallo, hier ist Luka vom Salon Haarwerk.",
-     "tr": "Merhaba, ben Salon Haarwerk'ten Luka."
+     "de": "Hallo, hier ist Luka, Salon Haarwerk.",
+     "tr": "Merhaba, ben Luka, Salon Haarwerk."
     },
     {
      "id": "c2",
@@ -598,8 +608,8 @@
     },
     {
      "id": "c4",
-     "de": "Bitte bar zahlen, mit Karte geht es nicht.",
-     "tr": "Lütfen nakit ödeyin, kartla olmuyor."
+     "de": "Bitte bar zahlen, Karte geht nicht.",
+     "tr": "Lütfen nakit ödeyin, kart olmuyor."
     },
     {
      "id": "c5",
@@ -691,18 +701,16 @@
         "nicht",
         "Karte",
         "bar",
-        "es",
         "Bitte",
         "Euro",
         "geht",
         "zahlen",
-        "mit",
         "Cent"
        ],
        "accepted": [
-        "Bitte bar zahlen, mit Karte geht es nicht.",
-        "bitte bar zahlen mit karte geht es nicht",
-        "Bitte bar zahlen, mit Karte geht es nicht"
+        "Bitte bar zahlen, Karte geht nicht.",
+        "bitte bar zahlen karte geht nicht",
+        "Bitte bar zahlen, Karte geht nicht"
        ]
       },
       {
@@ -734,18 +742,22 @@
       "id": "m1:04:a2:c1",
       "k": "guided_response",
       "situation_tr": "Fırında kasadasın. Frau Stadler nasıl ödeyeceğini soruyor. Nakit ödeyeceksin.",
-      "prompt_de": "Mit Karte oder bar?",
+      "prompt_de": "Zahlen Sie mit Karte?",
       "accepted": [
+       "Nein, ich zahle bar.",
+       "Nein, bar.",
+       "Nein, bar, bitte.",
        "Bar, bitte.",
        "Bar.",
        "Ich zahle bar.",
        "Ich zahle bar, danke.",
        "Bar, danke.",
+       "Nein, in bar.",
        "Ich zahle in bar.",
        "In bar, bitte.",
        "In bar."
       ],
-      "why_tr": "Kısa cevap yeter: **Bar, bitte.** (Nakit, lütfen.) Tam cümlesi **Ich zahle bar.**"
+      "why_tr": "Kısa cevap yeter: **Nein, bar.** (Hayır, nakit.)"
      }
     }
    ],
@@ -1064,9 +1076,11 @@
     "tr": "Yetmiş dokuz yaşındayım!",
     "secenekler": [
      {
-      "de": "Neunundsiebzig? Super!",
-      "tr": "Yetmiş dokuz mu? Harika!",
+      "de": "Neunundsiebzig? Das ist schön!",
+      "tr": "Yetmiş dokuz mu? Bu çok güzel!",
       "accepted": [
+       "Neunundsiebzig? Das ist schön!",
+       "Neunundsiebzig? Schön!",
        "Neunundsiebzig? Super!",
        "Neunundsiebzig, super!",
        "Neunundsiebzig? Toll!",

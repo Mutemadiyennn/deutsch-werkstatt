@@ -30,10 +30,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "reviewed",
+  "status": "draft",
   "by": "dilbilimci-ajan",
   "at": "2026-11-19",
-  "notes": "docs/v2/reviews/m1-gun01-02.md; okur: docs/v2/reviews/okur/m1-gun01-02.md, m1-tekrar2…6.md. Örneklem bekliyor.",
+  "notes": "docs/v2/reviews/m1-gun01-02.md; okur: docs/v2/reviews/okur/m1-gun01-02.md, m1-tekrar2…8.md. Medya paketlenince reviewed olur.",
   "okur": "passed",
   "okur_at": "2026-11-19"
  },
@@ -62,22 +62,19 @@
   "lx:bitte",
   "lx:ja",
   "lx:nein",
-  "lx:und",
   "lx:Frau",
   "lx:Praxis",
-  "lx:geschlossen"
+  "lx:geschlossen",
+  "lx:Herr"
  ],
- "koy_dizisi": {
+ "sahne": {
   "id": "m1:01:v1",
-  "tur": "sokak-roportaji",
   "title_tr": "Bugün günlerden ne?",
-  "sure_sn": 60,
-  "gercek_insan": false,
   "sahneler": [
    {
     "id": "s1",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana elinde mikrofonla şehir meydanında duruyor, kameraya el sallıyor.",
+    "sahne_tr": "Ioana şehir meydanında duruyor, gelenlere el sallıyor.",
     "de": "Hallo und guten Tag! Hier ist Ioana.",
     "tr": "Merhaba, iyi günler! Ben Ioana."
    },
@@ -91,7 +88,7 @@
    {
     "id": "s3",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana mikrofonu kahve içen Tobi'ye uzatıyor.",
+    "sahne_tr": "Ioana, kahve içen Tobi'nin yanına gidiyor.",
     "de": "Hallo! Welcher Tag ist heute?",
     "tr": "Merhaba! Bugün günlerden ne?"
    },
@@ -120,8 +117,15 @@
     "id": "s7",
     "speaker": "ch:stadler",
     "sahne_tr": "Frau Stadler önlüğüyle kapıda duruyor, elinde bir tepsi ekmek var.",
-    "de": "Heute ist Donnerstag. Gestern war Mittwoch.",
-    "tr": "Bugün perşembe. Dün çarşambaydı."
+    "de": "Heute ist Donnerstag.",
+    "tr": "Bugün perşembe."
+   },
+   {
+    "id": "s7b",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler başıyla Ioana'nın takvimindeki çarşambayı gösteriyor.",
+    "de": "Gestern war Mittwoch.",
+    "tr": "Dün çarşambaydı."
    },
    {
     "id": "s8",
@@ -148,8 +152,15 @@
     "id": "s11",
     "speaker": "ch:pichler",
     "sahne_tr": "Herr Pichler süpürgesine yaslanmış, ciddi ciddi başını sallıyor.",
-    "de": "Ja, Donnerstag. Morgen ist Freitag.",
-    "tr": "Evet, perşembe. Yarın cuma."
+    "de": "Ja, Donnerstag.",
+    "tr": "Evet, perşembe."
+   },
+   {
+    "id": "s11b",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler takvimde bir sonraki günü gösteriyor.",
+    "de": "Morgen ist Freitag.",
+    "tr": "Yarın cuma."
    },
    {
     "id": "s12",
@@ -161,21 +172,28 @@
    {
     "id": "s13",
     "speaker": "ch:brandl",
-    "sahne_tr": "Frau Brandl çantasını kucağına koymuş, neşeyle el sallıyor.",
-    "de": "Übermorgen ist Samstag. Dann Wochenende!",
-    "tr": "Öbür gün cumartesi. Hafta sonu geliyor!"
+    "sahne_tr": "Frau Brandl çantasını kucağına koymuş, gülümsüyor.",
+    "de": "Übermorgen ist Samstag.",
+    "tr": "Öbür gün cumartesi."
+   },
+   {
+    "id": "s13b",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl neşeyle el sallıyor.",
+    "de": "Samstag ist Wochenende!",
+    "tr": "Cumartesi hafta sonu!"
    },
    {
     "id": "s14",
     "speaker": "ch:lechner",
     "sahne_tr": "Tobi koşarak geliyor, kahvesini havaya kaldırıyor.",
-    "de": "Morgen ist Freitag? Ja! Und dann Wochenende!",
-    "tr": "Yarın cuma mı? Evet! Sonra da hafta sonu!"
+    "de": "Morgen ist Freitag? Ja! Übermorgen ist Wochenende!",
+    "tr": "Yarın cuma mı? Evet! Öbür gün de hafta sonu!"
    },
    {
     "id": "s15",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana takvimdeki çarşambanın üstünü çiziyor, kameraya gülümsüyor.",
+    "sahne_tr": "Ioana takvimdeki çarşambanın üstünü çiziyor ve gülümsüyor.",
     "de": "Heute ist Donnerstag. Danke und bis morgen!",
     "tr": "Bugün perşembe. Teşekkürler, yarın görüşürüz!"
    }
@@ -191,12 +209,15 @@
      "s5",
      "s6",
      "s7",
+     "s7b",
      "s8",
      "s9",
      "s10",
      "s11",
+     "s11b",
      "s12",
      "s13",
+     "s13b",
      "s14",
      "s15"
     ],
@@ -256,7 +277,7 @@
      },
      {
       "id": "d2",
-      "cumle": "s11",
+      "cumle": "s11b",
       "seviye": "orta",
       "de": "Morgen ist ___.",
       "accepted": [
@@ -267,7 +288,7 @@
      },
      {
       "id": "d3",
-      "cumle": "s7",
+      "cumle": "s7b",
       "seviye": "zor",
       "banka": [
        "Mittwoch",
@@ -295,7 +316,7 @@
      {
       "id": "d5",
       "seviye": "gercek",
-      "gorev_tr": "Videoda duyduklarını Almanca bir iki kısa cümleyle özetle.",
+      "gorev_tr": "Sahnede duyduklarını Almanca bir iki kısa cümleyle özetle.",
       "ornek_de": "Heute ist Donnerstag. Morgen ist Freitag.",
       "zorunlu": [
        "Donnerstag",
@@ -310,7 +331,7 @@
     "cevapla": {
      "id": "m1:01:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Ioana mikrofonu sana uzatıyor. Bugün perşembe.",
+     "situation_tr": "Ioana sana da soruyor. Bugün perşembe.",
      "prompt_de": "Welcher Tag ist heute?",
      "accepted": [
       "Heute ist Donnerstag.",
@@ -533,8 +554,7 @@
    "speaker": "ch:pichler",
    "hizlar": [
     "slow",
-    "normal",
-    "natural"
+    "normal"
    ],
    "script": [
     {

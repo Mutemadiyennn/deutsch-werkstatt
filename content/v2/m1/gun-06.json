@@ -35,7 +35,6 @@
    "lx:danke",
    "lx:bitte",
    "lx:ja",
-   "lx:und",
    "lx:Frau",
    "lx:Praxis",
    "lx:März",
@@ -63,10 +62,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "reviewed",
+  "status": "draft",
   "by": "dilbilimci-ajan",
   "at": "2026-11-19",
-  "notes": "docs/v2/reviews/m1-gun05-07.md; okur: docs/v2/reviews/okur/m1-gun05-07.md, m1-tekrar2…6.md. Örneklem bekliyor.",
+  "notes": "docs/v2/reviews/m1-gun05-07.md; okur: docs/v2/reviews/okur/m1-gun05-07.md, m1-tekrar2…8.md. Medya paketlenince reviewed olur.",
   "okur": "passed",
   "okur_at": "2026-11-19"
  },
@@ -84,7 +83,6 @@
   "lx:wo",
   "lx:wohin",
   "lx:woher",
-  "lx:wann",
   "lx:warum",
   "lx:wie",
   "lx:wie_viel",
@@ -94,34 +92,40 @@
   "lx:Vorname",
   "lx:Nachname",
   "lx:Adresse",
-  "lx:Telefonnummer"
+  "lx:Telefonnummer",
+  "lx:brauchen"
  ],
- "koy_dizisi": {
+ "sahne": {
   "id": "m1:06:v1",
-  "tur": "sokak-roportaji",
   "title_tr": "Ioana meydanda soru soruyor",
-  "gercek_insan": false,
   "sahneler": [
    {
     "id": "s1",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana elinde mikrofonla şehir meydanında duruyor.",
-    "de": "Hallo, hier ist Ioana vom Stadtplatz!",
-    "tr": "Merhaba, Stadtplatz'tan ben Ioana!"
+    "sahne_tr": "Ioana elinde soru listesiyle şehir meydanında duruyor.",
+    "de": "Hallo, hier ist Ioana!",
+    "tr": "Merhaba, ben Ioana!"
    },
    {
     "id": "s2",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana elindeki uzun soru listesini kameraya gösteriyor.",
+    "sahne_tr": "Ioana uzun soru listesini havaya kaldırıyor.",
     "de": "Heute habe ich nur Fragen.",
     "tr": "Bugün yalnızca sorularım var."
    },
    {
     "id": "s3",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana mikrofonu tulumlu, elinde anahtarlar olan bir adama uzatıyor.",
-    "de": "Guten Tag! Wie heißen Sie?",
-    "tr": "İyi günler! Adınız ne?"
+    "sahne_tr": "Ioana tulumlu, elinde anahtarlar olan bir adama yaklaşıyor.",
+    "de": "Guten Tag!",
+    "tr": "İyi günler!"
+   },
+   {
+    "id": "s3b",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana soru listesine bakıp adama soruyor.",
+    "de": "Wie heißen Sie?",
+    "tr": "Adınız ne?"
    },
    {
     "id": "s4",
@@ -161,7 +165,7 @@
    {
     "id": "s9",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana fırın tezgâhına geçip Frau Stadler'e mikrofon uzatıyor.",
+    "sahne_tr": "Ioana fırın tezgâhına geçip Frau Stadler'le konuşuyor.",
     "de": "Frau Stadler, welches Datum ist heute?",
     "tr": "Frau Stadler, bugünün tarihi ne?"
    },
@@ -182,9 +186,16 @@
    {
     "id": "s12",
     "speaker": "ch:stadler",
-    "sahne_tr": "Frau Stadler önlüğünü çıkarıp çantasını alıyor.",
-    "de": "Zum Arzt. Ich habe um elf einen Termin.",
-    "tr": "Doktora. Saat on birde randevum var."
+    "sahne_tr": "Frau Stadler önlüğünü çıkarıyor.",
+    "de": "Zum Arzt.",
+    "tr": "Doktora."
+   },
+   {
+    "id": "s12b",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler çantasını alıyor.",
+    "de": "Ich habe um elf einen Termin.",
+    "tr": "Saat on birde randevum var."
    },
    {
     "id": "s13",
@@ -203,7 +214,7 @@
    {
     "id": "s15",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana mikrofonu Basti'ye uzatıyor.",
+    "sahne_tr": "Ioana Basti'ye dönüyor.",
     "de": "Und woher kommen Sie?",
     "tr": "Peki siz nerelisiniz?"
    },
@@ -217,7 +228,7 @@
    {
     "id": "s17",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana gülerek kameraya el sallıyor.",
+    "sahne_tr": "Ioana gülerek el sallıyor.",
     "de": "Nur so! Danke und bis morgen!",
     "tr": "Öylesine! Teşekkürler, yarın görüşürüz!"
    }
@@ -229,6 +240,7 @@
      "s1",
      "s2",
      "s3",
+     "s3b",
      "s4",
      "s5",
      "s6",
@@ -238,6 +250,7 @@
      "s10",
      "s11",
      "s12",
+     "s12b",
      "s13",
      "s14",
      "s15",
@@ -255,7 +268,7 @@
      "ans": 1,
      "kanit": [
       "s2",
-      "s3"
+      "s3b"
      ]
     },
     "ayrinti": [
@@ -325,7 +338,7 @@
      },
      {
       "id": "d3",
-      "cumle": "s3",
+      "cumle": "s3b",
       "seviye": "zor",
       "banka": [
        "Sie",
@@ -342,7 +355,7 @@
      },
      {
       "id": "d4",
-      "cumle": "s12",
+      "cumle": "s12b",
       "seviye": "usta",
       "accepted": [
        "Ich habe um elf einen Termin.",
@@ -362,8 +375,8 @@
      }
     ],
     "golge": [
-     "s3",
-     "s12"
+     "s3b",
+     "s12b"
     ],
     "cevapla": {
      "id": "m1:06:v1:c1",
@@ -387,20 +400,18 @@
      "why_tr": "Üç mayıs derken **der drei Mai** yanlış. Doğrusu **der dritte Mai**."
     }
    }
-  ],
-  "sure_sn": 72
+  ]
  },
  "sesler": [
   {
    "id": "m1:06:a1",
    "tur": "anons",
-   "title_tr": "Muayenehanede kayıt masası",
-   "ortam_tr": "Muayenehanede sıra bekliyorsun. Frau Huber önündeki yeni hastayla konuşuyor, sonra bekleyen birini çağırıyor.",
+   "title_tr": "Bekleme odasında duyuru",
+   "ortam_tr": "Muayenehanenin bekleme odasındasın. Frau Huber hoparlörden herkese sesleniyor.",
    "speaker": "ch:huber",
    "hizlar": [
     "slow",
-    "normal",
-    "natural"
+    "normal"
    ],
    "script": [
     {
@@ -435,7 +446,7 @@
      ],
      "ana_fikir": {
       "kind": "gist",
-      "q_tr": "Frau Huber yeni hastaya ne söylüyor?",
+      "q_tr": "Frau Huber yeni gelen hastalara ne söylüyor?",
       "opts": [
        "Muayenehanenin kapandığını",
        "Doktorun bugün gelmediğini",
@@ -588,8 +599,7 @@
    "speaker": "ch:schneider",
    "hizlar": [
     "slow",
-    "normal",
-    "natural"
+    "normal"
    ],
    "script": [
     {

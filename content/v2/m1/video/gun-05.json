@@ -5,52 +5,43 @@
  "kaynak": "Deutsch im Blick",
  "klip": "07_12_int_ju_schlafen",
  "konusmaci": "Jan",
- "baslik": "Schlaf, Kindlein Schlaf",
- "sure_kaynak": null,
- "sure_notu": "Klibin toplam süresi kaynaktan okunamadı.",
- "kesit_sure_tahmin_sn": 15,
- "video_url": "https://www.coerll.utexas.edu/dib/mp4s/07_12_int_ju_schlafen.mp4",
+ "baslik": "Schlaf, Kindlein, schlaf",
+ "sure_kaynak": "0:42",
+ "video_url": "https://coerll.utexas.edu/dib/mp4s/07_12_int_ju_schlafen.mp4",
  "transkript_url": "https://www.coerll.utexas.edu/dib/vidt.php?f=07_12_int_ju_schlafen",
  "lisans": "CC BY 4.0",
  "lisans_url": "https://creativecommons.org/licenses/by/4.0/",
  "atif": "Deutsch im Blick, COERLL, University of Texas at Austin, CC BY 4.0. Klip kesilmiştir.",
  "kesit": {
   "bas_tur": 1,
-  "son_tur": 2
+  "son_tur": 4
  },
  "haric": [],
  "ortam_tr": "Jan yetişkin bir adam. Biri ona her gece kaç saat uyuduğunu soruyor.",
- "bilinmeyen": {
-  "oran": 0.036,
-  "ham_oran": 0.286,
-  "kelimeler": [
-   "Moment"
-  ]
- },
  "on_ogretim": [
   {
    "de": "ungefähr",
    "tr": "yaklaşık"
   },
   {
-   "de": "aufstehen",
-   "tr": "kalkmak. **Ich stehe auf** kalkıyorum demektir."
+   "de": "ich muss rechnen",
+   "tr": "hesap yapmam gerekiyor"
   },
   {
-   "de": "muss",
-   "tr": "zorundayım"
+   "de": "ich gehe ins Bett, ich stehe auf",
+   "tr": "yatağa gidiyorum, kalkıyorum"
   },
   {
-   "de": "rechnen",
-   "tr": "hesap yapmak"
-  },
-  {
-   "de": "ins Bett",
-   "tr": "yatağa"
+   "de": "du schläfst",
+   "tr": "uyuyorsun"
   },
   {
    "de": "achteinhalb",
    "tr": "sekiz buçuk"
+  },
+  {
+   "de": "genug für dich",
+   "tr": "senin için yeterli"
   }
  ],
  "turlar": [
@@ -62,6 +53,16 @@
   {
    "tur": 2,
    "basi": "Ungefähr, Moment",
+   "kim": "konusmaci"
+  },
+  {
+   "tur": 3,
+   "basi": "Ist das genug",
+   "kim": "soran"
+  },
+  {
+   "tur": 4,
+   "basi": "Ich glaube",
    "kim": "konusmaci"
   }
  ],
@@ -78,15 +79,15 @@
   },
   "ayrinti": [
    {
-    "q_tr": "Jan akşam saat kaçta yatıyor?",
+    "q_tr": "Jan akşam saat kaç civarında yatıyor?",
     "opts": [
-     "10.00",
-     "11.00",
-     "12.00"
+     "10 civarında",
+     "11 civarında",
+     "12 civarında"
     ],
     "ans": 1,
     "tur": 2,
-    "why_tr": "Jan yaklaşık on birde yattığını söylüyor."
+    "why_tr": "Jan **um elf** diyor. Bu, saat on birde demektir."
    },
    {
     "q_tr": "Jan sabah saat kaçta kalkıyor?",
@@ -97,7 +98,7 @@
     ],
     "ans": 0,
     "tur": 2,
-    "why_tr": "**halb acht** sekize yarım saat var demektir. Bu yüzden cevap 7.30."
+    "why_tr": "Jan **halb acht** diyor. Bu, yedi buçuk demektir."
    },
    {
     "q_tr": "Jan her gece kaç saat uyuyor?",
@@ -108,36 +109,35 @@
     ],
     "ans": 2,
     "tur": 2,
-    "why_tr": "Jan hesap yapıyor ve sekiz buçuk saat buluyor."
+    "why_tr": "Jan **achteinhalb** diyor. Bu, sekiz buçuk demektir."
    },
    {
-    "q_tr": "Jan cevap vermeden önce ne yapıyor?",
+    "q_tr": "Jan bu uyku süresini nasıl buluyor?",
     "opts": [
-     "Hesap yapıyor",
-     "Telefona bakıyor",
-     "Saati soruyor"
+     "Yeterli buluyor",
+     "Çok az buluyor",
+     "Çok fazla buluyor"
     ],
     "ans": 0,
-    "tur": 2,
-    "why_tr": "Jan önce hesap yapması gerektiğini söylüyor."
+    "tur": 4,
+    "why_tr": "Jan **ja** diyor. Bu, evet demektir. Sonra bunun iyi olduğunu ekliyor."
    }
   ],
   "dikte": [
    {
     "id": "d1",
-    "tur": 1,
+    "tur": 3,
     "seviye": "kolay"
    },
    {
     "id": "d2",
     "tur": 1,
-    "seviye": "orta",
-    "hedef": "Stunden"
+    "seviye": "orta"
    },
    {
     "id": "d5",
     "seviye": "gercek",
-    "gorev_tr": "Jan sabah saat kaçta kalkıyor? Almanca yaz.",
+    "gorev_tr": "Jan sabah saat kaçta kalkıyor? Saati Jan'ın söylediği gibi Almanca yaz.",
     "ornek_de": "Um halb acht.",
     "accepted": [
      "Um halb acht.",
@@ -150,30 +150,41 @@
     ]
    }
   ],
-  "dikte_notu": "Zor ve usta basamağı yok. Birinci turda öğretilmemiş bir biçim var, ikinci tur çok uzun.",
   "golge": [
-   1
+   1,
+   3
   ],
   "cevapla": {
    "id": "m1:05:rv1:c1",
    "soru_tur": 1,
    "situation_tr": "Aynı soruyu sana soruyorlar. Diyelim ki her gece sekiz saat uyuyorsun. Cevap ver.",
-   "ornek_de": "Ich schlafe acht Stunden.",
+   "ornek_de": "Acht Stunden.",
    "accepted": [
-    "Ich schlafe acht Stunden.",
-    "Ich schlafe 8 Stunden.",
-    "Ich schlafe ungefähr acht Stunden.",
-    "Ich schlafe jede Nacht acht Stunden.",
     "Acht Stunden.",
+    "8 Stunden.",
     "Ungefähr acht Stunden.",
-    "8 Stunden."
+    "Ungefähr 8 Stunden.",
+    "Ich schlafe acht Stunden.",
+    "Ich schlafe ungefähr acht Stunden.",
+    "Ich schlafe jede Nacht acht Stunden."
    ],
-   "why_tr": "Tam cümle de kısa cevap da doğrudur."
-  }
+   "why_tr": "**Acht Stunden.** sekiz saat demektir. Kısa cevap yeter."
+  },
+  "dikte_notu": "Zor ve usta basamağı yok. İkinci tur çok uzun. Dördüncü turda **ich glaube** (sanırım) öğretilmedi."
  },
- "kanit": "Jan yatma ve kalkma saatini söylüyor. **halb** yani yarım ile söylenen saat geçiyor. Bu, beşinci günün konusudur.",
+ "kanit": "Jan yatma ve kalkma saatini söylüyor. **halb acht** yani yedi buçuk geçiyor. Bu, beşinci günün saat konusudur.",
  "review": {
   "status": "draft",
-  "notes": "Gerçek klip kararı bekliyor (#58 A9)."
- }
+  "notes": "Dilbilimci ve okur geçti. Süre 30 saniyenin altında, PM kararı bekliyor (#58 A9)."
+ },
+ "bilinmeyen": {
+  "oran": 0.07,
+  "kelimeler": [
+   "doch",
+   "glaube",
+   "moment"
+  ]
+ },
+ "kesit_sure_tahmin_sn": 27,
+ "sure_kaynak_sn": 42
 }

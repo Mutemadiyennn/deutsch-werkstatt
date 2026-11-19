@@ -1,72 +1,68 @@
-# Dil incelemesi: M1 gerçek video dosyaları
+# Dil incelemesi: M1 gerçek video dosyaları (ikinci tur)
 
-- Dosyalar: `content/v2/m1/video/gun-02.json` … `gun-07.json` (gun-01 `bulunamadi`, incelenmedi)
+- Dosyalar: `content/v2/m1/video/gun-01.json` … `gun-07.json` (yedisi de yeniden yazılmış hâliyle)
 - İnceleyen: dilbilimci-ajan · 2026-11-19
-- Transkript denetimi: 6 klibin 6'sı `vidt.php` Almanca sekmesinden okundu (6 çağrı). Sayfa başlığı altısında da dosyadaki klip ve konuşmacıyla aynı. Doğrulanamayan klip yok.
-- İncelenen madde: 96 (gün başına ön öğretim, ana fikir, ayrıntı, dikte, gölge, cevapla, ortam, kanıt). Düzeltilen madde: 33. Oran 0,34.
-- `npm run content:validate` 0 hata (59 uyarı, hepsi bu dosyaların dışında). Doğrulayıcı video dosyalarını ayrıca denetlemiyor; altı dosya JSON olarak ayrışıyor.
-- **Sonuç: AÇIK.** Dosyalardaki dil hataları kapandı. Aşağıdaki açık maddeler baş geliştiricinin kararını bekliyor.
+- Kaynak denetimi: yedi dosyanın altı klibi `dib.py goster` ile okundu (web kullanılmadı). Her soru, cevap, `tur`, `basi`, dikte ve gölge turu metne karşı tek tek denetlendi.
+- `vcheck.py`: yedi dosya `tamam`. Tur göndermelerinin hepsi kesit içinde, hiçbiri `haric` turda değil.
+- İncelenen madde: 118. Düzeltilen madde: 19. Oran 0,16.
+- `review.status` yedisinde de `draft` bırakıldı (onay baş geliştiricide).
+- **Sonuç: dil hataları KAPANDI.** Aşağıda iki karar baş geliştiriciyi bekliyor (gün 6 süresi, gün 7 yazımı).
 
 ## Gün başına karar
 
-| Gün | Klip | Tur ve `basi` | Sorular klibe uyuyor mu | Özel bilgi | Karar |
+| Gün | Klip, kesit | Sorular metne uyuyor mu | Dikte | Özel bilgi | Karar |
 |---|---|---|---|---|---|
-| 2 | Jan, Studium & Wohnen | 8 tur, hepsi uyuyor | evet (5/5) | yok | düzeltildi, uygun |
-| 3 | Adan, Wer bin ich? | 1–8 uyuyor | evet (4/4) | kesit telefon turlarından önce bitiyor | düzeltildi, uygun; kesit kısa (yaklaşık 26 sn) |
-| 4 | Eva, Wer bin ich? | 10 tur uyuyor | evet (5/5) | 7–12 hariç: tam gün ve telefon dışarıda; 6. turda yalnızca ay kalıyor | düzeltildi, uygun |
-| 5 | Jan, uyku | 2 tur uyuyor | evet (5/5) | yok | düzeltildi, uygun; kesit çok kısa (yaklaşık 15 sn) |
-| 6 | Harald, Wer bin ich? | 12 tur uyuyor | evet (5/5) | 9–10 hariç: telefon dışarıda | düzeltildi, uygun |
-| 7 | Peter, Wer bin ich? | 10 tur uyuyor | evet (4/4) | 7–10 hariç: telefon dışarıda | düzeltildi, uygun |
+| 1 | Eva, 1–5 | evet (5/5) | 1, 3: kısa, ön öğretilmiş | yok | düzeltildi, uygun |
+| 2 | Jan, 1–8 | evet (5/5) | 1, 3, 7: uygun | yok | düzeltildi, uygun |
+| 3 | Harald, 1–14 | evet (5/5) | 12, 13, 3: uygun | 9–10 hariç, telefon dışarıda | düzeltildi, uygun |
+| 4 | Eva, 5–16 | evet (5/5) | 15, 5, 13, 16: uygun | 7–12 hariç. 6. turda yalnızca ay var | düzeltildi, uygun |
+| 5 | Jan, 1–4 | evet (5/5) | 3, 1: uygun | yok | düzeltildi, uygun (`kisa`, 27 sn) |
+| 6 | Eva, 3–10 | evet (5/5) | 3, 9, 7: düzeltmeyle uygun | 4. turda yalnızca ay var | düzeltildi, süre kararı açık (24 sn) |
+| 7 | Peter, 1–14 | evet (4/4) | 12, 1, 5, 11: uygun | 7–10 hariç, telefon dışarıda | düzeltildi, uygun |
 
 ## Düzeltmeler
 
+### Gün 1
+1. `cevapla.ornek_de` öğretilmemiş kalıptı: `Mein Name ist {name}.` Birinci gün sonunda ne **mein** ne **Name** ne **bin** biliniyor. Örnek artık ön öğretilen kalıpla: `Ich heiße {name}.` Öbür üç cevap `accepted` içinde kaldı.
+2. `cevapla.why_tr`: **Ich bin** için `ben demektir` yanlıştı, öğretilmemiş iki kalıbı da anlatıyordu. Yalnızca öğretilen kalıbı ve çıplak ad cevabını anlatıyor.
+3. `on_ogretim` **du heißt** → **ich heiße Eva, du heißt Eva** (`adım Eva, adın Eva`). Cevap kalıbı böylece önceden öğretiliyor, eşleme de tam.
+4. `ortam_tr`: `Kesit` → `Konuşma`.
+5. d5 `accepted`: **jetzt** içeren iki doğru cümle eklendi.
+
 ### Gün 2
-1. `on_ogretim` **zwar** → **und zwar**, `tam olarak`. Tek başına **zwar** başka anlam taşır; klipte ikili geçiyor. Karşılıkta iki anlam vardı.
-2. `on_ogretim` **angekommen** `varmış, gelmiş` → `bir yere gelmiş`. `varmış` iki türlü okunuyor.
-3. `on_ogretim` **gelebt** `yaşamış` → `bir yerde yaşamış`.
-4. d5 `accepted`: `Das ist im August.` çıkarıldı (geçmiş bir olay için doğal değil). `Er ist im August gekommen.` ve `Jan ist im August gekommen.` eklendi.
-5. Dikte: kolay ve orta aynı turdu (4), zor ve usta aynı turdu (7). Şimdi 3, 4, 7, 5. Dördü de kısa, bilinen ya da ön öğretilmiş kelimelerle.
-6. `cevapla.accepted`: `Ich wohne hier in Berlin.` eklendi.
-7. Yazım: `Amerikaya` → `Amerika'ya` (4 yer), `Berlinde` → `Berlin'de`. Depodaki diğer gün dosyaları kesme işareti kullanıyor.
+1. d5 `accepted`: ön öğretilen **angekommen** ile iki cümle eklendi. Önceden yalnızca **gekommen** kabul ediliyordu.
+2. `cevapla.why_tr`: ayraç içi çeviri yerine düz cümle.
+3. Ayrıntı 2 `why_tr`: Almanca söz ve anlamı eklendi (**im August**).
+4. `golge`: tek tur vardı, 3. tur eklendi.
 
 ### Gün 3
-1. `on_ogretim` **heißen**: `**heiße** adım` yanlış eşleme. Yeni: `bir adı olmak. **Ich heiße Anna** adım Anna demektir.`
-2. `on_ogretim` **aus**: tarif yerine karşılık ve örnek: `bir yerden. **aus München** Münih'ten demektir.`
-3. Dikte d4: tur 4 → tur 7. Tur 4 İngilizce yer adı ve Almancalaşmış eyalet adı yazdırıyordu; öğrenci için haksız.
-4. d5 `accepted`: `Ungefähr 20 Minuten.` eklendi.
-5. `cevapla.accepted`: `Mein Name ist {name}.` eklendi (doğru cevap reddedilmesin).
-6. Yazım: `Kaliforniyadaki` → `Kaliforniya'daki`.
+1. `on_ogretim` **ich heiße, du heißt** için `adım, adın` eşlemesi yanlıştı. Gün 1 ile aynı biçime çekildi.
+2. Ayrıntı soruları konuşma sırasına dizildi (4, 8, 12, 14).
+3. d5 `accepted`: `So um die fünfzig.`, `Er ist fünfzig.` eklendi.
+4. `cevapla.accepted`: **ursprünglich** içeren cümle eklendi.
 
 ### Gün 4
-1. `on_ogretim` **heißt**: `adı olmak` yanlış biçim. Yeni: `adın. **Wie heißt du?** adın ne demektir.`
-2. Dikte sırası: kolay basamakta uzun bileşik kelimeli tur (14), ortada üç kelimelik tur (1) vardı. Şimdi 1, 5, 14, 16.
-3. d5 `accepted`: `Eva ist 24.`, `24 Jahre alt.` eklendi.
-4. `cevapla.accepted`: kısa cevaplar eklendi (`30 Jahre alt.`, `Dreißig Jahre alt.`, `30.`, `Dreißig.`).
+1. `cevapla.accepted`: `Das ist Blau.` eklendi. Başka hata yok.
 
 ### Gün 5
-1. **aufstehen** hiçbir günde öğretilmiyor, ama ayrıntı 2 ve d5 buna dayanıyordu; d5 örnekleri bu kelimeyi ürettiriyordu. `on_ogretim` içinde **Moment** çıkarıldı, **aufstehen** eklendi (sınır 6). **Moment** bilinmeyen listesine geçti, oran 0 → 0,036.
-2. Ayrıntı 4 `why_tr`: artık öğretilmeyen bekleme sözü çıkarıldı.
-3. Ayrıntı 2 `why_tr`: `sonraki saatle söylenir` belirsizdi. Yeni: `**halb acht** sekize yarım saat var demektir. Bu yüzden cevap 7.30.`
-4. d5 `accepted`: `Halb acht.` eklendi.
-5. `cevapla.accepted`: `Ich schlafe 8 Stunden.`, `Ich schlafe ungefähr acht Stunden.`, `Ich schlafe jede Nacht acht Stunden.` eklendi.
+1. Ayrıntı 4 `why_tr`: **okay** için `sorun yok` karşılığı soruya uymuyordu. Açıklama artık **ja** üzerinden.
+2. d5 `gorev_tr`: `zorunlu` **halb acht** istiyor, ama görev bunu söylemiyordu. Dakikayla yazılan doğru cevap haksız yere reddedilirdi. Görev artık Jan'ın söyleyişini istiyor.
+3. `cevapla.accepted`: tam cümleli dört cevap eklendi.
 
 ### Gün 6
-1. `cevapla` gün 3 ile birebir aynıydı (aynı soru, aynı cevap). Soru turu 1 → 3. Öğrenci nereli olduğunu söylüyor: `Ich komme aus Istanbul.` ve üç eşdeğeri. Altıncı günün soru kelimesi konusuna da uyuyor.
-2. Ayrıntı 2 `why_tr`: klipteki **um die fünfzig** öğretilmemiş bir söyleyiş. Açıklamaya anlamı eklendi: `elli civarı`.
-3. d5 `accepted`: `Er ist aus München.`, `Harald kommt ursprünglich aus München.`, `Aus München.` eklendi.
+1. Dikte 9. turda **hattest** ne öğretilmiş ne ön öğretilmişti. `on_ogretim` öğesi **du hattest, Freunde dabei** oldu (öğe sayısı 6, değişmedi).
+2. d5 ve `cevapla` `accepted`: **Geburtstag ist im** kalıbıyla doğru cevaplar eklendi.
 
 ### Gün 7
-1. `ortam_tr` Peter'in nereli olduğunu söylüyordu; ayrıntı 1 tam bunu soruyor. Cevap ortamdan çıkarıldı.
-2. **Schweiz** hiçbir günde öğretilmiyor, ama ayrıntı 1 ve d5 (`aus der Schweiz` yazdırıyor) buna dayanıyordu. `on_ogretim` içinde **Farbe** çıkarıldı (**Lieblingsfarbe** zaten var), **die Schweiz** eklendi. **Farbe** bilinmeyen listesine geçti, oran 0,045 → 0,071.
-3. d5 `accepted`: `Er ist aus der Schweiz.`, `Peter kommt ursprünglich aus der Schweiz.`, `Aus der Schweiz.` eklendi.
-4. Yazım: `Teksasta`, `İsviçrede`, `Viyanada` kesme işaretiyle yazıldı.
+1. Ayrıntı 1 ve 3 `why_tr`: yalnızca Türkçe sonuç yazıyordu. Almanca söz ve anlamı eklendi.
+2. `cevapla.why_tr`: üç kalıp anlamsız sıralanıyordu. Yeniden yazıldı.
+3. d5 `accepted`: **ursprünglich** içeren iki cevap eklendi.
 
-## Açık maddeler
+## Açık kararlar ve doğrulanamayanlar
 
-1. **Süre:** gün 3 (yaklaşık 26 sn) ve gün 5 (yaklaşık 15 sn) 30 sn alt sınırının altında, `durum: "kisa"`. Gün 5'te kesit uzatılamaz: sonraki iki turda bilinmeyen kelime çok. Gün 3'te sonraki turlar telefon numarası.
-2. **Konu uyumu:** gün 4'te fiyat, gün 6'da tarih, gün 7'de randevu klipte yok (yazar `kanit` içinde açıkça yazmış). Gün 4, 6 ve 7 aynı soru dizisinin üç konuşmacısı. Dil hatası değil; içerik çeşitliliği kararı.
-3. **Gün 3 d5 `zorunlu`:** yalnızca `Minuten`. Sayı iki biçimde yazılabildiği için (yazıyla, rakamla) tek zorunlu parça olarak eklenemedi. Motor `zorunlu` tek başına yeterli sayıyorsa yanlış sayı da geçer; `accepted` ile birlikte denetlenmeli.
-4. **Gün 5 dikte:** iki basamak da tur 1. Bu turda **schlafe** kelimesinin öğretilmemiş bir biçimi geçiyor. Ön öğretim sınırı dolu olduğu için eklenmedi; kolay basamakta kelime gösteriliyorsa sorun yok.
-5. **Gün 7 yazım:** kaynak transkript 3. ve 4. turda İsviçre yazımı kullanıyor (çift s). `basi` kaynağa uyduğu için dokunulmadı. Bu turlar dikteye konmamış, doğru. Hizalanan metin ekranda gösterilecekse öğrenci derste öğrendiği yazımdan farklısını görür.
-6. **Gün 3 konuşmacı:** Almanca öğrenen biri. Kesitteki turlarda dil hatası yok (hatalı tur kesit dışında). Gölge ve dikte yalnızca soran kişinin turlarında ve kısa turlarda.
-7. **Bilinmeyen oranları** yeniden sayılmadı; yalnızca değişen iki günde güncellendi. Gün 6'da 6. ve 14. turlarda listede olmayan birkaç kelime daha var (ülke adının iki biçimi gibi); özel ad sayılırsa oran geçerli.
+1. **Gün 6 süresi 24 sn**, 25 sn sınırının altında. 5. tur kesite alınırsa tahmin 26 sn, bilinmeyen oranı yaklaşık 0,07 olur. O zaman bir soru cevapsız kalır, çünkü 6. tur içki yüzünden dışarıda. Dil açısından ikisi de olur, karar baş geliştiricide.
+2. **Gün 7, 3. ve 4. tur İsviçre yazımıyla** (çift s). Dikteye girmiyorlar. Ama `golge` ve `cevapla.soru_tur` 3. turu gösteriyor, metin ekranda bu yazımla görünecek. Öneri: gösterimde standart yazıma çevirmek ya da kısa bir not. `vcheck` bu iki kelimeyi bilinmeyen sayıyor, gerçek oran yaklaşık 0,06.
+3. **Gün 1 ve gün 7 `cevapla` aynı işi istiyor** (adını söyle). Bağlam farklı (senli ve sizli soru), bu yüzden bırakıldı.
+4. **Gün 4 d5** sayıyı harfle istiyor. Bu sayı kelime listesine altıncı günde giriyor, ama dördüncü günün kuralıyla kurulabiliyor. Bırakıldı.
+5. Süreler `vcheck` tahminidir (kelime oranı). Gerçek kesit süresi videodan ölçülmedi. Ses kalitesi ve söyleyişin netliği dinlenerek doğrulanmadı, yalnızca yazıdan denetlendi.
+6. `dikte_notu` alanı şemada yok. Öğrenciye gösterilecekse ayraç içi çeviriler düzeltilmeli.

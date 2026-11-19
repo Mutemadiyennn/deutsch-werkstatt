@@ -28,7 +28,6 @@
    "lx:danke",
    "lx:bitte",
    "lx:ja",
-   "lx:und",
    "lx:Frau",
    "lx:Praxis",
    "lx:haben",
@@ -48,8 +47,7 @@
    "lx:Viertel",
    "lx:also",
    "lx:Vormittag",
-   "lx:Abend",
-   "lx:um"
+   "lx:Abend"
   ],
   "kaliplar": [],
   "gramer": [],
@@ -58,10 +56,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "reviewed",
+  "status": "draft",
   "by": "dilbilimci-ajan",
   "at": "2026-11-19",
-  "notes": "docs/v2/reviews/m1-gun05-07.md; okur: docs/v2/reviews/okur/m1-gun05-07.md, m1-tekrar2…6.md. Örneklem bekliyor.",
+  "notes": "docs/v2/reviews/m1-gun05-07.md; okur: docs/v2/reviews/okur/m1-gun05-07.md, m1-tekrar2…8.md. Medya paketlenince reviewed olur.",
   "okur": "passed",
   "okur_at": "2026-11-19"
  },
@@ -85,18 +83,17 @@
   "lx:sagen",
   "lx:sprechen",
   "lx:warten",
-  "lx:arbeiten"
+  "lx:arbeiten",
+  "lx:müde"
  ],
- "koy_dizisi": {
+ "sahne": {
   "id": "m1:07:v1",
-  "tur": "nasil-yapilir",
   "title_tr": "Telefonla nasıl randevu alınır?",
-  "gercek_insan": false,
   "sahneler": [
    {
     "id": "s1",
     "speaker": "ch:aksoy",
-    "sahne_tr": "Derya bir kafede, elinde telefonla kameraya el sallıyor.",
+    "sahne_tr": "Derya bir kafede, elinde telefonla el sallıyor.",
     "de": "Hallo, hier ist Derya! Heute: Wie mache ich einen Termin?",
     "tr": "Merhaba, ben Derya! Bugünün konusu: Nasıl randevu alırım?"
    },
@@ -125,8 +122,8 @@
     "id": "s5",
     "speaker": "ch:aksoy",
     "sahne_tr": "Derya sakin sakin bir kâğıda birinci adımı yazıyor.",
-    "de": "Das geht, Ioana. Du kannst sagen: Hier ist Ioana Popescu.",
-    "tr": "Olur Ioana. Şöyle diyebilirsin: Ben Ioana Popescu."
+    "de": "Du kannst sagen: Hier ist Ioana Popescu.",
+    "tr": "Şöyle diyebilirsin: Ben Ioana Popescu."
    },
    {
     "id": "s6",
@@ -138,9 +135,16 @@
    {
     "id": "s7",
     "speaker": "ch:aksoy",
+    "sahne_tr": "Derya başını sallıyor, kalemini alıyor.",
+    "de": "Gut! Dann sag:",
+    "tr": "Güzel! Sonra şöyle de:"
+   },
+   {
+    "id": "s7b",
+    "speaker": "ch:aksoy",
     "sahne_tr": "Derya kâğıda ikinci adımı yazıyor.",
-    "de": "Gut! Dann sag: Ich möchte einen Termin machen.",
-    "tr": "Güzel! Sonra şöyle de: Randevu almak istiyorum."
+    "de": "Ich möchte einen Termin machen.",
+    "tr": "Randevu almak istiyorum."
    },
    {
     "id": "s8",
@@ -166,9 +170,16 @@
    {
     "id": "s11",
     "speaker": "ch:aksoy",
-    "sahne_tr": "Derya gözlüğü indirip kâğıda üçüncü adımı yazıyor.",
-    "de": "Sag: Können Sie das wiederholen?",
-    "tr": "Şöyle de: Bunu tekrar edebilir misiniz?"
+    "sahne_tr": "Derya gözlüğü indiriyor.",
+    "de": "Dann sag:",
+    "tr": "O zaman şöyle de:"
+   },
+   {
+    "id": "s11b",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya kâğıda üçüncü adımı yazıyor.",
+    "de": "Können Sie das wiederholen?",
+    "tr": "Bunu tekrar edebilir misiniz?"
    },
    {
     "id": "s12",
@@ -194,9 +205,9 @@
    {
     "id": "s15",
     "speaker": "ch:aksoy",
-    "sahne_tr": "Derya kameraya dönüp telefonu izleyiciye uzatıyor.",
-    "de": "Super! Und jetzt du!",
-    "tr": "Harika! Şimdi sıra sende!"
+    "sahne_tr": "Derya gülümsüyor, telefonu Ioana'ya uzatıyor.",
+    "de": "Und jetzt du!",
+    "tr": "Şimdi sıra sende!"
    }
   ],
   "bolumler": [
@@ -210,10 +221,12 @@
      "s5",
      "s6",
      "s7",
+     "s7b",
      "s8",
      "s9",
      "s10",
      "s11",
+     "s11b",
      "s12",
      "s13",
      "s14",
@@ -230,7 +243,7 @@
      "ans": 0,
      "kanit": [
       "s1",
-      "s7"
+      "s7b"
      ]
     },
     "ayrinti": [
@@ -300,7 +313,7 @@
      },
      {
       "id": "d3",
-      "cumle": "s7",
+      "cumle": "s7b",
       "seviye": "zor",
       "banka": [
        "machen",
@@ -319,7 +332,7 @@
      },
      {
       "id": "d4",
-      "cumle": "s11",
+      "cumle": "s11b",
       "seviye": "usta",
       "accepted": [
        "Können Sie das wiederholen?",
@@ -365,8 +378,7 @@
      "why_tr": "Anlamamak sorun değil. **Können Sie das wiederholen?** (Bunu tekrar edebilir misiniz?) telefonda seni kurtarır."
     }
    }
-  ],
-  "sure_sn": 74
+  ]
  },
  "sesler": [
   {
@@ -377,8 +389,7 @@
    "speaker": "ch:huber",
    "hizlar": [
     "slow",
-    "normal",
-    "natural"
+    "normal"
    ],
    "script": [
     {
@@ -388,8 +399,8 @@
     },
     {
      "id": "c2",
-     "de": "Wir sind gleich für Sie da.",
-     "tr": "Birazdan sizinle ilgileneceğiz."
+     "de": "Wir sind für Sie da.",
+     "tr": "Sizin için buradayız."
     },
     {
      "id": "c3",
@@ -398,8 +409,13 @@
     },
     {
      "id": "c4",
-     "de": "Haben Sie Fieber? Dann können Sie heute bis elf Uhr kommen.",
-     "tr": "Ateşiniz mi var? O zaman bugün saat on bire kadar gelebilirsiniz."
+     "de": "Haben Sie Fieber?",
+     "tr": "Ateşiniz mi var?"
+    },
+    {
+     "id": "c4b",
+     "de": "Dann können Sie heute bis elf Uhr kommen.",
+     "tr": "O zaman bugün saat on bire kadar gelebilirsiniz."
     }
    ],
    "bolumler": [
@@ -409,7 +425,8 @@
       "c1",
       "c2",
       "c3",
-      "c4"
+      "c4",
+      "c4b"
      ],
      "ana_fikir": {
       "kind": "gist",
@@ -422,7 +439,8 @@
       "ans": 1,
       "kanit": [
        "c3",
-       "c4"
+       "c4",
+       "c4b"
       ]
      },
      "ayrinti": [
@@ -436,7 +454,8 @@
        ],
        "ans": 2,
        "kanit": [
-        "c4"
+        "c4",
+        "c4b"
        ]
       }
      ],
@@ -455,7 +474,7 @@
       },
       {
        "id": "d2",
-       "cumle": "c4",
+       "cumle": "c4b",
        "seviye": "orta",
        "de": "Dann können Sie heute bis ___ Uhr kommen.",
        "accepted": [
@@ -475,13 +494,12 @@
         "sind",
         "hier",
         "für",
-        "Wir",
-        "gleich"
+        "Wir"
        ],
        "accepted": [
-        "Wir sind gleich für Sie da.",
-        "wir sind gleich für sie da",
-        "Wir sind gleich für Sie da"
+        "Wir sind für Sie da.",
+        "wir sind für sie da",
+        "Wir sind für Sie da"
        ]
       },
       {
@@ -593,7 +611,7 @@
        "Grüß Gott, ich hätte gern einen Termin.",
        "Grüß Gott, ich möchte einen Termin."
       ],
-      "why_tr": "İkisi de istemek demek. **Ich will** sert duyulur, **Ich möchte** kibardır."
+      "why_tr": "Kibarca istemek için **Ich möchte** de: **Ich möchte einen Termin machen.** (Randevu almak istiyorum.)"
      }
     }
    ],
@@ -609,7 +627,8 @@
     "ans": 1,
     "why_tr": "Ateşi olanlar bugün on bire kadar gelebiliyor.",
     "kanit": [
-     "c4"
+     "c4",
+     "c4b"
     ]
    }
   },
@@ -621,8 +640,7 @@
    "speaker": "ch:aksoy",
    "hizlar": [
     "slow",
-    "normal",
-    "natural"
+    "normal"
    ],
    "script": [
     {
@@ -1417,8 +1435,8 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Ioana kendini tanıtıyor",
-  "metin_de": "Hallo, ich bin Ioana. Ich bin vierunddreißig Jahre alt und ich komme aus Rumänien. Ich wohne in Wendlfing. Am Vormittag muss ich arbeiten. Am Abend habe ich Kurs, ich will Deutsch sprechen. Wollen wir zusammen üben?",
-  "metin_tr": "Merhaba, ben Ioana. Otuz dört yaşındayım ve Romanya'dan geliyorum. Wendlfing'de oturuyorum. Öğleden önce çalışmam gerekiyor. Akşam kursum var, Almanca konuşmak istiyorum. Birlikte pratik yapalım mı?",
+  "metin_de": "Hallo, ich bin Ioana. Ich bin vierunddreißig Jahre alt und ich komme aus Rumänien. Ich wohne in Wendlfing. Am Vormittag muss ich arbeiten. Am Abend will ich Deutsch sprechen. Wollen wir zusammen üben?",
+  "metin_tr": "Merhaba, ben Ioana. Otuz dört yaşındayım ve Romanya'dan geliyorum. Wendlfing'de oturuyorum. Öğleden önce çalışmam gerekiyor. Akşam Almanca konuşmak istiyorum. Birlikte pratik yapalım mı?",
   "sorular": [
    {
     "id": "m1:07:o1",
@@ -1437,15 +1455,15 @@
    {
     "id": "m1:07:o2",
     "kind": "detail",
-    "q_tr": "Ioana nereden geliyor?",
+    "q_tr": "Ioana nerede oturuyor?",
     "opts": [
-     "Romanya'dan",
-     "Münih'ten",
-     "Wendlfing'den"
+     "Wendlfing'de",
+     "Münih'te",
+     "Romanya'da"
     ],
     "ans": 0,
     "kanit": [
-     1
+     2
     ]
    },
    {
@@ -1465,11 +1483,11 @@
    {
     "id": "m1:07:o4",
     "kind": "detail",
-    "q_tr": "Ioana akşam ne yapıyor?",
+    "q_tr": "Ioana akşam ne yapmak istiyor?",
     "opts": [
-     "Kursa gidiyor",
-     "Doktora gidiyor",
-     "Çalışıyor"
+     "Almanca konuşmak",
+     "Doktora gitmek",
+     "Çalışmak"
     ],
     "ans": 0,
     "kanit": [
@@ -1491,249 +1509,5 @@
     ]
    }
   ]
- },
- "hafta_sonu_testi": [
-  {
-   "id": "m1:07:t01",
-   "k": "listen_and_respond",
-   "audio_de": "Können Sie am Dienstag um halb neun kommen?",
-   "speed": "normal",
-   "situation_tr": "Bu saat sana uyuyor. Gelebileceğini söyle.",
-   "accepted": [
-    "Ja, ich kann am Dienstag kommen.",
-    "Ja, das geht.",
-    "Ja, das passt.",
-    "Ja, ich kann am Dienstag um halb neun kommen.",
-    "Das geht.",
-    "Ja, das kann ich.",
-    "Ja, ich kann.",
-    "Ja, ich kann kommen.",
-    "Ja, am Dienstag kann ich.",
-    "Ja, am Dienstag kann ich kommen.",
-    "Ja, Dienstag passt.",
-    "Ja, Dienstag geht.",
-    "Ja, am Dienstag geht es.",
-    "Das passt.",
-    "Passt.",
-    "Ja, passt.",
-    "Ja, das passt gut.",
-    "Ja, gern.",
-    "Ja, um halb neun, das geht.",
-    "Ja, halb neun passt.",
-    "Also acht Uhr dreißig? Ja, das geht.",
-    "Also acht Uhr dreißig? Das passt.",
-    "Ja, ich komme am Dienstag.",
-    "Ja, ich komme.",
-    "Ja, ich kann um halb neun kommen.",
-    "Also 8:30 Uhr? Ja, das geht.",
-    "Also 8:30? Ja, das geht.",
-    "Also 8:30 Uhr? Das passt.",
-    "Also 8:30? Das passt."
-   ],
-   "why_tr": "Kısa cevap da olur: **Ja, das geht.**"
-  },
-  {
-   "id": "m1:07:t02",
-   "k": "order",
-   "de": "nicht / morgen / kommen / Ich / kann",
-   "tr": "Yarın gelemem.",
-   "accepted": [
-    "Ich kann morgen nicht kommen.",
-    "Morgen kann ich nicht kommen.",
-    "Ich kann morgen nicht."
-   ],
-   "why_tr": "**kann** ikinci sırada durur, **kommen** en sona gider."
-  },
-  {
-   "id": "m1:07:t03",
-   "k": "guided_response",
-   "situation_tr": "Muayenehaneyi aradın. Selam ver ve adını söyle.",
-   "prompt_de": "Praxis Dr. Weber, guten Tag.",
-   "accepted": [
-    "Guten Tag, hier ist {name}.",
-    "Hallo, hier ist {name}.",
-    "Guten Tag, mein Name ist {name}.",
-    "Hier ist {name}.",
-    "Guten Tag, ich bin {name}.",
-    "Mein Name ist {name}.",
-    "Hallo, mein Name ist {name}.",
-    "Grüß Gott, hier ist {name}.",
-    "Grüß Gott, mein Name ist {name}.",
-    "Guten Tag, Frau Huber, hier ist {name}."
-   ],
-   "why_tr": "Telefonda adını **Hier ist** ile söylersin."
-  },
-  {
-   "id": "m1:07:t04",
-   "k": "listen_and_respond",
-   "audio_de": "Der Termin ist um Viertel vor elf.",
-   "speed": "natural",
-   "situation_tr": "Görevli randevu saatini söylüyor. Saati rakamlarla söyle ve doğru mu diye sor.",
-   "accepted": [
-    "Also zehn Uhr fünfundvierzig?",
-    "Zehn Uhr fünfundvierzig?",
-    "Um zehn Uhr fünfundvierzig?",
-    "Also um zehn Uhr fünfundvierzig?",
-    "Zehn Uhr fünfundvierzig, ja?",
-    "Viertel vor elf, also zehn Uhr fünfundvierzig?",
-    "Um Viertel vor elf? Also zehn Uhr fünfundvierzig?",
-    "Also 10:45 Uhr?",
-    "Also 10:45?",
-    "10:45 Uhr?",
-    "10:45?",
-    "Um 10:45 Uhr?",
-    "Um 10:45?",
-    "Also um 10:45 Uhr?",
-    "Also um 10:45?",
-    "10:45 Uhr, ja?",
-    "10:45, ja?",
-    "Viertel vor elf, also 10:45 Uhr?",
-    "Viertel vor elf, also 10:45?",
-    "Um Viertel vor elf? Also 10:45 Uhr?",
-    "Um Viertel vor elf? Also 10:45?"
-   ],
-   "why_tr": "**Viertel vor elf** on bire çeyrek kala demek, yani 10:45."
-  },
-  {
-   "id": "m1:07:t07",
-   "k": "listen_and_respond",
-   "audio_de": "Kommen Sie am Mittwoch um Viertel nach drei.",
-   "speed": "fast",
-   "situation_tr": "Çok hızlıydı ve anlamadın. Tekrar etmesini iste.",
-   "accepted": [
-    "Können Sie das wiederholen?",
-    "Können Sie das bitte wiederholen?",
-    "Wie bitte?",
-    "Sprechen Sie bitte langsam!",
-    "Bitte langsam!",
-    "Könnten Sie das wiederholen?",
-    "Können Sie das noch einmal sagen?",
-    "Noch einmal, bitte.",
-    "Wie bitte? Können Sie das wiederholen?",
-    "Ich verstehe nicht. Können Sie das wiederholen?",
-    "Bitte langsamer.",
-    "Können Sie bitte langsamer sprechen?",
-    "Können Sie bitte langsam sprechen?"
-   ],
-   "why_tr": "Anlamayınca susma. **Können Sie das wiederholen?** (Bunu tekrar edebilir misiniz?) de."
-  },
-  {
-   "id": "m1:07:t09",
-   "k": "gap",
-   "de": "Heute ist der ___ Mai.",
-   "tr": "Bugün üç mayıs.",
-   "accepted": [
-    "dritte",
-    "Dritte",
-    "dritte."
-   ],
-   "opts": [
-    "drei",
-    "dritten",
-    "dritte"
-   ],
-   "why_tr": "Üç mayıs derken **der drei Mai** yanlış. Doğrusu **der dritte Mai**."
-  },
-  {
-   "id": "m1:07:t10",
-   "k": "guided_response",
-   "situation_tr": "Komşun sana soruyor: hasta mısın? Hastasın ve ateşin var.",
-   "prompt_de": "Sind Sie krank?",
-   "accepted": [
-    "Ja, ich habe Fieber.",
-    "Ich habe Fieber.",
-    "Ja, ich bin krank.",
-    "Ich bin krank.",
-    "Ja, ich bin krank und ich habe Fieber.",
-    "Ja, ich bin krank, ich habe Fieber.",
-    "Ja, ich habe Fieber, ich bin krank.",
-    "Ja, ich hab Fieber.",
-    "Ja, bin ich.",
-    "Ja, leider.",
-    "Ja, bin ich. Ich habe Fieber.",
-    "Ja, leider. Ich habe Fieber.",
-    "Ja, ich bin krank und habe Fieber.",
-    "Ich bin krank und ich habe Fieber.",
-    "Ja."
-   ],
-   "why_tr": "Hastayım için **Ich bin krank**, ateşim var için **Ich habe Fieber** söylenir."
-  },
-  {
-   "id": "m1:07:t11",
-   "k": "transform",
-   "instr_tr": "Bu cümleyi kibar bir isteğe çevir. **Ich möchte** ile başla.",
-   "from_de": "Ich mache einen Termin.",
-   "accepted": [
-    "Ich möchte einen Termin machen.",
-    "Ich möchte einen Termin.",
-    "Ich möchte bitte einen Termin machen.",
-    "Ich möchte gern einen Termin machen.",
-    "Ich möchte gerne einen Termin machen.",
-    "Ich möchte gerne einen Termin.",
-    "Ich möchte gern einen Termin."
-   ],
-   "why_tr": "**mache** en sona gider ve **machen** olur."
-  },
-  {
-   "id": "m1:07:t12",
-   "k": "listen_and_respond",
-   "audio_de": "Wie heißen Sie?",
-   "speed": "natural",
-   "situation_tr": "Adını söyle.",
-   "accepted": [
-    "Ich bin {name}.",
-    "Mein Name ist {name}.",
-    "{name}.",
-    "Ich heiße {name}.",
-    "Guten Tag, ich bin {name}.",
-    "Guten Tag, mein Name ist {name}.",
-    "Guten Tag, ich heiße {name}."
-   ],
-   "why_tr": "Yalnızca adını söylemek de yeter."
-  },
-  {
-   "id": "m1:07:t13",
-   "k": "listen_and_respond",
-   "audio_de": "Mit Karte oder bar?",
-   "speed": "natural",
-   "situation_tr": "Kasadasın. Kartla ödemek istiyorsun.",
-   "accepted": [
-    "Mit Karte.",
-    "Mit Karte, bitte.",
-    "Mit Karte bitte.",
-    "Ich zahle mit Karte.",
-    "Karte, bitte."
-   ],
-   "why_tr": "Kısa cevap yeter: **Mit Karte.**"
-  },
-  {
-   "id": "m1:07:t14",
-   "k": "listen_and_respond",
-   "audio_de": "Wie ist Ihre Telefonnummer?",
-   "speed": "natural",
-   "situation_tr": "Görevli numaranı soruyor. Numaran 0 3 5 7. Rakamları tek tek söyle.",
-   "accepted": [
-    "Null drei fünf sieben.",
-    "Meine Nummer ist null drei fünf sieben.",
-    "Meine Telefonnummer ist null drei fünf sieben.",
-    "Die Nummer ist null drei fünf sieben.",
-    "0 3 5 7",
-    "0357"
-   ],
-   "why_tr": "Telefonda rakamlar tek tek söylenir."
-  },
-  {
-   "id": "m1:07:t15",
-   "k": "guided_response",
-   "situation_tr": "Görevli randevunun ne zaman olduğunu soruyor. Randevun mayısta. Ayı söyle.",
-   "prompt_de": "Wann ist der Termin?",
-   "accepted": [
-    "Im Mai.",
-    "Der Termin ist im Mai.",
-    "Er ist im Mai.",
-    "Im Mai, bitte."
-   ],
-   "why_tr": "Aydan önce **im** gelir: **im Mai**."
-  }
- ]
+ }
 }

@@ -37,7 +37,6 @@
    "lx:bitte",
    "lx:ja",
    "lx:nein",
-   "lx:und",
    "lx:Frau",
    "lx:Praxis",
    "lx:geschlossen",
@@ -60,10 +59,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "reviewed",
+  "status": "draft",
   "by": "dilbilimci-ajan",
   "at": "2026-11-19",
-  "notes": "docs/v2/reviews/m1-gun05-07.md; okur: docs/v2/reviews/okur/m1-gun05-07.md, m1-tekrar2…6.md. Örneklem bekliyor.",
+  "notes": "docs/v2/reviews/m1-gun05-07.md; okur: docs/v2/reviews/okur/m1-gun05-07.md, m1-tekrar2…8.md. Medya paketlenince reviewed olur.",
   "okur": "passed",
   "okur_at": "2026-11-19"
  },
@@ -85,25 +84,22 @@
   "lx:Nachmittag",
   "lx:Abend",
   "lx:Nacht",
-  "lx:um",
-  "lx:nach",
-  "lx:vor",
   "lx:Termin",
   "lx:Arzt",
   "lx:passen#2",
   "lx:kommen",
-  "lx:leider"
+  "lx:leider",
+  "lx:wieder",
+  "lx:da"
  ],
- "koy_dizisi": {
+ "sahne": {
   "id": "m1:05:v1",
-  "tur": "bunu-nasil-soylersin",
   "title_tr": "**halb zehn** saat kaç demek?",
-  "gercek_insan": false,
   "sahneler": [
    {
     "id": "s1",
     "speaker": "ch:aksoy",
-    "sahne_tr": "Derya bir kafede, elinde büyük bir duvar saatiyle kameraya el sallıyor.",
+    "sahne_tr": "Derya bir kafede, elinde büyük bir duvar saatiyle el sallıyor.",
     "de": "Hallo, hier ist Derya! Heute: die Uhrzeit.",
     "tr": "Merhaba, ben Derya! Bugünün konusu saat."
    },
@@ -139,15 +135,22 @@
     "id": "s6",
     "speaker": "ch:popescu",
     "sahne_tr": "Ioana şaşkın, elini ağzına götürüyor.",
-    "de": "Neun Uhr dreißig? Nicht zehn Uhr dreißig?",
-    "tr": "Dokuz otuz mu? On otuz değil mi?"
+    "de": "Neun Uhr dreißig?",
+    "tr": "Dokuz otuz mu?"
    },
    {
     "id": "s7",
     "speaker": "ch:aksoy",
+    "sahne_tr": "Derya başını sallıyor.",
+    "de": "Ja.",
+    "tr": "Evet."
+   },
+   {
+    "id": "s7b",
+    "speaker": "ch:aksoy",
     "sahne_tr": "Derya saatin kollarını 9:15'e getiriyor.",
-    "de": "Nein. Viertel nach neun ist neun Uhr fünfzehn.",
-    "tr": "Hayır. Dokuzu çeyrek geçe, dokuz on beş demek."
+    "de": "Viertel nach neun ist neun Uhr fünfzehn.",
+    "tr": "Dokuzu çeyrek geçe, dokuz on beş demek."
    },
    {
     "id": "s8",
@@ -195,8 +198,8 @@
     "id": "s14",
     "speaker": "ch:aksoy",
     "sahne_tr": "Derya başparmağını kaldırıp duvardaki saate bakıyor.",
-    "de": "Super! Und wie spät ist es?",
-    "tr": "Harika! Peki saat kaç?"
+    "de": "Gut! Und wie spät ist es?",
+    "tr": "Güzel! Peki saat kaç?"
    },
    {
     "id": "s15",
@@ -217,6 +220,7 @@
      "s5",
      "s6",
      "s7",
+     "s7b",
      "s8",
      "s9",
      "s10",
@@ -228,7 +232,7 @@
     ],
     "ana_fikir": {
      "kind": "gist",
-     "q_tr": "Ioana bu videoda ne öğreniyor?",
+     "q_tr": "Ioana bu sahnede ne öğreniyor?",
      "opts": [
       "Muayenehanenin nerede olduğunu",
       "**halb zehn** ifadesinin hangi saat olduğunu",
@@ -296,7 +300,7 @@
      },
      {
       "id": "d2",
-      "cumle": "s7",
+      "cumle": "s7b",
       "seviye": "orta",
       "de": "Viertel nach neun ist neun Uhr ___.",
       "accepted": [
@@ -382,8 +386,7 @@
      "why_tr": "Saat 10:30 derken **elf Uhr dreißig** yanlış. Doğrusu **zehn Uhr dreißig**."
     }
    }
-  ],
-  "sure_sn": 74
+  ]
  },
  "sesler": [
   {
@@ -394,8 +397,7 @@
    "speaker": "ch:kraus",
    "hizlar": [
     "slow",
-    "normal",
-    "natural"
+    "normal"
    ],
    "script": [
     {
@@ -591,8 +593,7 @@
    "speaker": "ch:huber",
    "hizlar": [
     "slow",
-    "normal",
-    "natural"
+    "normal"
    ],
    "script": [
     {

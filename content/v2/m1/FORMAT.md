@@ -15,9 +15,9 @@ Sorular mevcut şema türlerini kullanır (`Drill`, `ListenQ`). Yeni olan yalnı
   "dersler": ["r0:01-tage"],          // o günün temel dersleri, sırayla
   "yeni_kartlar": ["lx:Montag"],      // 15–25 kart, Bahçe buradan alır
 
-  "koy_dizisi": {                     // çizim + sentez ses: ek içerik, günün videosu sayılmaz (#58 A9)
-    "id": "m1:01:v1", "tur": "sokak-roportaji",   // sokak-roportaji | bir-gunum | nasil-yapilir | bunu-nasil-soylersin | koy-dizisi
-    "title_tr": "", "sure_sn": 60, "gercek_insan": false,
+  "sahne": {                     // çizim + sentez ses: ek içerik, günün videosu sayılmaz (#58 A9)
+    "id": "m1:01:v1",
+    "title_tr": "",
     "sahneler": [ { "id": "s1", "speaker": "ch:...", "sahne_tr": "çizim tarifi", "de": "", "tr": "" } ],
     "bolumler": [ { /* aşağıdaki BÖLÜM biçimi; 1–2 dakikada bir bölüm */ } ]
   },
@@ -89,10 +89,10 @@ Cümle cümle çalışma (c), 0,75× hız ve dokununca kart (e) oynatıcının i
 - **`zorunlu`:** düz metin, kalın işareti yok. Tam kelime ya da kelime grubu olarak aranır.
 
 ## Hafta sonu testi (yalnızca `gun-07.json`)
-Üst düzeyde `hafta_sonu_testi` alanı: 10–12 maddelik `Drill` dizisi. Haftanın sonunda çözülür, 1–7. günlerde öğretilmeyen hiçbir şey istemez. Başka günlerde bu alan olmaz.
+Ayrı dosya `content/v2/m1/hafta-sonu-testi.json`, `maddeler` alanı: 10–12 maddelik `Drill` dizisi. Haftanın sonunda çözülür, 1–7. günlerde öğretilmeyen hiçbir şey istemez. Başka günlerde bu alan olmaz.
 
 ```jsonc
-"hafta_sonu_testi": [
+"maddeler": [
   { "id": "m1:07:t01", "k": "listen_and_respond", "audio_de": "", "speed": "normal", "situation_tr": "", "accepted": [], "why_tr": "" },
   { "id": "m1:07:t02", "k": "order", "de": "nicht / morgen / kommen / Ich / kann", "tr": "", "accepted": [], "why_tr": "" },
   { "id": "m1:07:t03", "k": "guided_response", "situation_tr": "", "prompt_de": "", "accepted": [], "why_tr": "" }
@@ -107,7 +107,7 @@ Cümle cümle çalışma (c), 0,75× hız ve dokununca kart (e) oynatıcının i
 
 ## Gerçek insan videosu (#58 A9)
 
-Günün videosu ayrı dosyadadır: `content/v2/m1/video/gun-NN.json`. Kaynak Deutsch im Blick (COERLL, UT Austin; CC BY 4.0). Çizimli `koy_dizisi` bunun yerine geçmez.
+Günün videosu ayrı dosyadadır: `content/v2/m1/video/gun-NN.json`. Kaynak Deutsch im Blick (COERLL, UT Austin; CC BY 4.0). Çizimli `sahne` bunun yerine geçmez.
 
 - Transkript depoda tutulmaz. Dosyada klip kimliği, `video_url`, `transkript_url`, `kesit`, `haric` ve `turlar[{tur, basi, kim}]` bulunur. `basi` turun ilk kelimeleridir (en çok 4). Derleme adımı metni kaynaktan alır, `basi` ile doğrular, videoyla hizalar.
 - `haric`: kesitten çıkarılan turlar. Telefon numarası, adres ve tam doğum tarihi yayına girmez.

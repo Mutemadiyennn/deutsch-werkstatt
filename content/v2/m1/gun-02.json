@@ -30,8 +30,7 @@
    "lx:hallo",
    "lx:danke",
    "lx:ja",
-   "lx:nein",
-   "lx:und"
+   "lx:nein"
   ],
   "kaliplar": [],
   "gramer": [],
@@ -40,10 +39,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "reviewed",
+  "status": "draft",
   "by": "dilbilimci-ajan",
   "at": "2026-11-19",
-  "notes": "docs/v2/reviews/m1-gun01-02.md; okur: docs/v2/reviews/okur/m1-gun01-02.md, m1-tekrar2…6.md. Örneklem bekliyor.",
+  "notes": "docs/v2/reviews/m1-gun01-02.md; okur: docs/v2/reviews/okur/m1-gun01-02.md, m1-tekrar2…8.md. Medya paketlenince reviewed olur.",
   "okur": "passed",
   "okur_at": "2026-11-19"
  },
@@ -73,47 +72,46 @@
   "lx:Urlaub",
   "lx:Geburtstag",
   "lx:Anfang",
-  "lx:Ende"
+  "lx:Ende",
+  "lx:offen",
+  "lx:wann"
  ],
- "koy_dizisi": {
+ "sahne": {
   "id": "m1:02:v1",
-  "tur": "bunu-nasil-soylersin",
   "title_tr": "Ayları doğru söylemek",
-  "sure_sn": 68,
-  "gercek_insan": false,
   "sahneler": [
    {
     "id": "s1",
     "speaker": "ch:petrovic",
     "sahne_tr": "Kuaför salonu. Luka makasla Ioana'nın saçını kesiyor, ikisi aynada görünüyor.",
-    "de": "Hallo Ioana! Wann hast du Urlaub?",
-    "tr": "Merhaba Ioana! İznin ne zaman?"
+    "de": "Hallo Ioana! Wann haben Sie Urlaub?",
+    "tr": "Merhaba Ioana! İzniniz ne zaman?"
    },
    {
     "id": "s2",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana aynaya bakıp kendinden emin gülümsüyor.",
-    "de": "Ich habe in August Urlaub.",
+    "sahne_tr": "Ioana aynaya bakıp konuşuyor. Luka o sırada saç kurutma makinesini çalıştırıyor.",
+    "de": "Ich habe im August Urlaub.",
     "tr": "Ağustosta iznim var."
    },
    {
     "id": "s3",
     "speaker": "ch:petrovic",
-    "sahne_tr": "Luka makası havada durduruyor, bir kaşını kaldırıyor.",
-    "de": "Nein, nicht in August. Im August!",
-    "tr": "Hayır, **in August** değil. **Im August!**"
+    "sahne_tr": "Luka makineyi kapatıyor, iyi duyamamış gibi başını Ioana'ya doğru eğiyor.",
+    "de": "Im Oktober?",
+    "tr": "Ekimde mi?"
    },
    {
     "id": "s4",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana elini alnına vuruyor ve gülüyor.",
-    "de": "Im August. Danke, Luka!",
-    "tr": "**Im August.** Teşekkürler, Luka!"
+    "sahne_tr": "Ioana gülüyor, duvardaki takvimde ağustosu gösteriyor.",
+    "de": "Nein, nicht im Oktober. Im August!",
+    "tr": "Hayır, ekimde değil. Ağustosta!"
    },
    {
     "id": "s5",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana parmağını kaldırıp cümleyi dikkatle söylüyor.",
+    "sahne_tr": "Ioana cümleyi yavaşça ve dikkatle yeniden söylüyor.",
     "de": "Ich habe im August Urlaub.",
     "tr": "Ağustosta iznim var."
    },
@@ -128,8 +126,8 @@
     "id": "s7",
     "speaker": "ch:popescu",
     "sahne_tr": "Ioana aynadan Luka'ya bakıyor.",
-    "de": "Und du? Wann hast du Urlaub?",
-    "tr": "Ya sen? Senin iznin ne zaman?"
+    "de": "Und Sie, Luka? Wann haben Sie Urlaub?",
+    "tr": "Ya siz, Luka? Sizin izniniz ne zaman?"
    },
    {
     "id": "s8",
@@ -155,23 +153,23 @@
    {
     "id": "s11",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana gururla kendini gösteriyor, sonra parmağını sallıyor.",
-    "de": "Mein Geburtstag ist im Mai. Im Mai, nicht in Mai!",
-    "tr": "Doğum günüm mayısta. **Im Mai**, **in Mai** değil!"
+    "sahne_tr": "Ioana gururla kendini gösteriyor.",
+    "de": "Mein Geburtstag ist im Mai.",
+    "tr": "Doğum günüm mayısta."
    },
    {
     "id": "s12",
     "speaker": "ch:petrovic",
     "sahne_tr": "Luka alkışlıyor, aynanın köşesinde çiçek çizimi beliriyor.",
-    "de": "Ja, im Mai! Im Frühling.",
-    "tr": "Evet, mayısta! İlkbaharda."
+    "de": "Ach, im Mai! Im Frühling.",
+    "tr": "Ha, mayısta! İlkbaharda."
    },
    {
     "id": "s13",
     "speaker": "ch:popescu",
     "sahne_tr": "Ioana koltukta Luka'ya doğru dönüyor.",
-    "de": "Und du? Wann hast du Geburtstag?",
-    "tr": "Ya sen? Senin doğum günün ne zaman?"
+    "de": "Und Sie? Wann haben Sie Geburtstag?",
+    "tr": "Ya siz? Sizin doğum gününüz ne zaman?"
    },
    {
     "id": "s14",
@@ -197,7 +195,7 @@
    {
     "id": "s17",
     "speaker": "ch:popescu",
-    "sahne_tr": "Ioana yeni saçıyla kameraya dönüyor, üç parmağını gösteriyor.",
+    "sahne_tr": "Ioana yeni saçıyla aynaya dönüyor, üç parmağını gösteriyor.",
     "de": "Im Januar, im Mai, im Sommer. Im!",
     "tr": "Ocakta, mayısta, yazın. **Im!**"
    }
@@ -226,16 +224,16 @@
     ],
     "ana_fikir": {
      "kind": "gist",
-     "q_tr": "Luka, Ioana'nın neyini düzeltiyor?",
+     "q_tr": "Ioana ile Luka ne konuşuyor?",
      "opts": [
-      "**Urlaub** yerine **Geburtstag** demesini",
-      "**in August** yerine **im August** demesini",
-      "**August** yerine **Januar** demesini"
+      "Fiyatları ve ödemeyi",
+      "İzin ve doğum günü zamanını",
+      "Saç kesimini ve rengini"
      ],
      "ans": 1,
      "kanit": [
-      "s2",
-      "s3"
+      "s1",
+      "s13"
      ]
     },
     "ayrinti": [
@@ -301,7 +299,7 @@
        "im",
        "Juni",
        "Mein",
-       "in",
+       "am",
        "Mai",
        "ist"
       ],
@@ -324,7 +322,7 @@
      {
       "id": "d5",
       "seviye": "gercek",
-      "gorev_tr": "Videoda duyduklarını Almanca bir iki kısa cümleyle özetle.",
+      "gorev_tr": "Sahnede duyduklarını Almanca bir iki kısa cümleyle özetle.",
       "ornek_de": "Ich habe im August Urlaub. Mein Geburtstag ist im Mai.",
       "zorunlu": [
        "August",
@@ -340,7 +338,7 @@
      "id": "m1:02:v1:c1",
      "k": "guided_response",
      "situation_tr": "Luka sana soruyor. İznin temmuzda.",
-     "prompt_de": "Und du? Wann hast du Urlaub?",
+     "prompt_de": "Und Sie? Wann haben Sie Urlaub?",
      "accepted": [
       "Ich habe im Juli Urlaub.",
       "Im Juli habe ich Urlaub.",
@@ -349,7 +347,7 @@
       "Ich hab im Juli Urlaub.",
       "Mein Urlaub ist im Juli.",
       "Im Juli hab ich Urlaub.",
-      "Ich habe im Juli Urlaub. Und du?"
+      "Ich habe im Juli Urlaub. Und Sie?"
      ],
      "why_tr": "Temmuzda derken **in Juli** yanlış. Doğrusu **im Juli**."
     }
@@ -365,8 +363,7 @@
    "speaker": "ch:stadler",
    "hizlar": [
     "slow",
-    "normal",
-    "natural"
+    "normal"
    ],
    "script": [
     {
@@ -556,8 +553,7 @@
    "speaker": "ch:wimmer",
    "hizlar": [
     "slow",
-    "normal",
-    "fast"
+    "normal"
    ],
    "script": [
     {
@@ -1087,8 +1083,8 @@
  "okuma_yazma": {
   "tur": "yazma",
   "title_tr": "Derya'ya cevap yaz",
-  "metin_de": "Hallo {name}, hier ist Derya. Ich habe Ende Juli Urlaub. Mein Geburtstag ist im September. Und du?",
-  "metin_tr": "Merhaba {name}, ben Derya. Temmuz sonunda iznim var. Doğum günüm eylülde. Ya sen?",
+  "metin_de": "Hallo {name}, hier ist Derya. Ich habe Ende Juli Urlaub. Mein Geburtstag ist im September. Bis morgen!",
+  "metin_tr": "Merhaba {name}, ben Derya. Temmuz sonunda iznim var. Doğum günüm eylülde. Yarın görüşürüz!",
   "sorular": [
    {
     "id": "m1:02:o1",
@@ -1107,7 +1103,7 @@
   ],
   "yazma": {
    "gorev_tr": "Derya'ya benzer bir mesaj yaz. İzin ayını ve doğum günü ayını söyle.",
-   "ornek_de": "Hallo Derya, hier ist {name}. Ich habe im August Urlaub. Mein Geburtstag ist im Mai. Und du?",
+   "ornek_de": "Hallo Derya, hier ist {name}. Ich habe im August Urlaub. Mein Geburtstag ist im Mai. Bis morgen!",
    "zorunlu": [
     "Urlaub",
     "Geburtstag"
@@ -1120,6 +1116,9 @@
     "Ich habe Anfang ___ Urlaub.",
     "Ich habe Ende ___ Urlaub.",
     "Im ___ habe ich Urlaub.",
+    "Mein Urlaub ist im ___.",
+    "Mein Urlaub ist Anfang ___.",
+    "Mein Urlaub ist Ende ___.",
     "Anfang ___ habe ich Urlaub.",
     "Ende ___ habe ich Urlaub.",
     "Mein Geburtstag ist im ___.",
@@ -1129,7 +1128,8 @@
     "Ich habe Anfang ___ Geburtstag.",
     "Ich habe Ende ___ Geburtstag.",
     "Im ___ habe ich Geburtstag.",
-    "Und du?"
+    "Und du?",
+    "Bis ___!"
    ],
    "kontrol_tr": [
     "İzin ayını yazdın mı?",

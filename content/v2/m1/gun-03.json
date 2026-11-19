@@ -27,7 +27,6 @@
    "lx:bitte",
    "lx:ja",
    "lx:nein",
-   "lx:und",
    "lx:Frau",
    "lx:Praxis",
    "lx:geschlossen",
@@ -45,10 +44,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "reviewed",
+  "status": "draft",
   "by": "dilbilimci-ajan",
   "at": "2026-11-19",
-  "notes": "docs/v2/reviews/m1-gun03-04.md; okur: docs/v2/reviews/okur/m1-gun03-04.md, m1-tekrar2…6.md. Örneklem bekliyor.",
+  "notes": "docs/v2/reviews/m1-gun03-04.md; okur: docs/v2/reviews/okur/m1-gun03-04.md, m1-tekrar2…8.md. Medya paketlenince reviewed olur.",
   "okur": "passed",
   "okur_at": "2026-11-19"
  },
@@ -78,19 +77,18 @@
   "lx:neunzehn",
   "lx:zwanzig",
   "lx:Nummer",
-  "lx:wohnen"
+  "lx:wohnen",
+  "lx:neu",
+  "lx:Büro"
  ],
- "koy_dizisi": {
+ "sahne": {
   "id": "m1:03:v1",
-  "tur": "nasil-yapilir",
   "title_tr": "Telefonda numara nasıl söylenir?",
-  "sure_sn": 64,
-  "gercek_insan": false,
   "sahneler": [
    {
     "id": "s1",
     "speaker": "ch:aksoy",
-    "sahne_tr": "Derya iş yerindeki mola odasında kameraya el sallıyor.",
+    "sahne_tr": "Derya iş yerindeki mola odasında el sallıyor.",
     "de": "Hallo, hier ist Derya!",
     "tr": "Merhaba, ben Derya!"
    },
@@ -133,8 +131,15 @@
     "id": "s7",
     "speaker": "ch:aksoy",
     "sahne_tr": "Derya gülüyor, kartın üstüne kocaman bir 2 rakamı çiziyor.",
-    "de": "Nein, zwo! Zwo eins vier.",
-    "tr": "Hayır, **zwo!** İki bir dört."
+    "de": "Nein, zwo!",
+    "tr": "Hayır, iki!"
+   },
+   {
+    "id": "s7b",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya rakamları parmağıyla tek tek gösteriyor.",
+    "de": "Zwo eins vier.",
+    "tr": "İki bir dört."
    },
    {
     "id": "s8",
@@ -188,7 +193,7 @@
    {
     "id": "s15",
     "speaker": "ch:aksoy",
-    "sahne_tr": "Derya kameraya dönüyor, kartta iki numara görünüyor.",
+    "sahne_tr": "Derya kartı havaya kaldırıyor, kartta iki numara görünüyor.",
     "de": "Zwo eins vier. Eins, sieben. Bis morgen!",
     "tr": "İki bir dört. Bir, yedi. Yarın görüşürüz!"
    }
@@ -204,6 +209,7 @@
      "s5",
      "s6",
      "s7",
+     "s7b",
      "s8",
      "s9",
      "s10",
@@ -215,7 +221,7 @@
     ],
     "ana_fikir": {
      "kind": "gist",
-     "q_tr": "Videoda Derya ve Tobi ne yapıyor?",
+     "q_tr": "Sahnede Derya ve Tobi ne yapıyor?",
      "opts": [
       "Muayenehaneden randevu alıyorlar",
       "Yanlış anlaşılan numaraları düzeltiyorlar",
@@ -273,9 +279,9 @@
      },
      {
       "id": "d2",
-      "cumle": "s7",
+      "cumle": "s7b",
       "seviye": "orta",
-      "de": "Nein, zwo! Zwo ___ vier.",
+      "de": "Zwo ___ vier.",
       "accepted": [
        "eins",
        "Eins",
@@ -316,7 +322,7 @@
      {
       "id": "d5",
       "seviye": "gercek",
-      "gorev_tr": "Videoda duyduklarını Almanca bir iki kısa cümleyle özetle.",
+      "gorev_tr": "Sahnede duyduklarını Almanca bir iki kısa cümleyle özetle.",
       "ornek_de": "Ich wohne in der Brunnengasse siebzehn. Die Nummer ist zwo eins vier.",
       "zorunlu": [
        "siebzehn",
@@ -325,14 +331,14 @@
      }
     ],
     "golge": [
-     "s7",
+     "s7b",
      "s11"
     ],
     "cevapla": {
      "id": "m1:03:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Derya sana soruyor. Brunnengasse yedi numarada oturuyorsun. Ev numaranı da söyle.",
-     "prompt_de": "Und du? Wohnst du in der Brunnengasse?",
+     "situation_tr": "Görevli sana soruyor. Brunnengasse yedi numarada oturuyorsun. Ev numaranı da söyle.",
+     "prompt_de": "Und Sie? Wohnen Sie in der Brunnengasse?",
      "accepted": [
       "Ja, ich wohne in der Brunnengasse sieben.",
       "Ich wohne in der Brunnengasse sieben.",
@@ -549,8 +555,7 @@
    "speaker": "ch:pichler",
    "hizlar": [
     "slow",
-    "normal",
-    "natural"
+    "normal"
    ],
    "script": [
     {
@@ -560,8 +565,8 @@
     },
     {
      "id": "c2",
-     "de": "Ich habe eine neue Nummer.",
-     "tr": "Yeni bir numaram var."
+     "de": "Meine Nummer ist neu.",
+     "tr": "Numaram yeni."
     },
     {
      "id": "c3",
@@ -677,18 +682,18 @@
        "cumle": "c2",
        "seviye": "usta",
        "accepted": [
-        "Ich habe eine neue Nummer.",
-        "ich habe eine neue nummer",
-        "Ich habe eine neue Nummer"
+        "Meine Nummer ist neu.",
+        "meine nummer ist neu",
+        "Meine Nummer ist neu"
        ]
       },
       {
        "id": "d5",
        "seviye": "gercek",
        "gorev_tr": "Mesajda ne dendiğini Almanca bir iki kısa cümleyle özetle.",
-       "ornek_de": "Das ist eine neue Nummer. Die Nummer ist null acht neun, neun neun neun neun acht, drei null sieben.",
+       "ornek_de": "Die Nummer ist neu. Die Nummer ist null acht neun, neun neun neun neun acht, drei null sieben.",
        "zorunlu": [
-        "neue Nummer",
+        "neu",
         "drei null sieben"
        ]
       }
@@ -846,13 +851,13 @@
     "tr": "İyi günler, {Herr|Frau} {name}!",
     "secenekler": [
      {
-      "de": "Ich habe eine neue Nummer.",
-      "tr": "Yeni bir numaram var.",
+      "de": "Meine Nummer ist neu.",
+      "tr": "Numaram yeni.",
       "accepted": [
+       "Meine Nummer ist neu.",
        "Ich habe eine neue Nummer.",
        "Ich habe eine neue Telefonnummer.",
        "Ich habe eine neue Handynummer.",
-       "Meine Nummer ist neu.",
        "Ich hab eine neue Nummer.",
        "Ich habe eine neue Nummer, Frau Huber.",
        "Ich habe jetzt eine neue Nummer.",
@@ -872,14 +877,14 @@
       ],
       "sonraki": "n2",
       "uygun": false,
-      "geri_bildirim_tr": "Bu, aramanın nedeni değil. Yeni numaran için **Ich habe eine neue Nummer.** (Yeni bir numaram var.) de."
+      "geri_bildirim_tr": "Bu, aramanın nedeni değil. Yeni numaran için **Meine Nummer ist neu.** (Numaram yeni.) de."
      }
     ]
    },
    {
     "id": "n3",
-    "de": "Eine neue Nummer, ja. Wie ist die Nummer?",
-    "tr": "Yeni bir numara, tamam. Numara nedir?",
+    "de": "Neu, ja. Wie ist die Nummer?",
+    "tr": "Yeni, tamam. Numara nedir?",
     "secenekler": [
      {
       "de": "Meine Nummer ist null eins sieben eins, drei neun zwo null null, vier sieben.",
@@ -1121,8 +1126,8 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Apartman girişindeki duyuru",
-  "metin_de": "Guten Tag! Ich habe eine neue Telefonnummer: null acht neun, neun neun neun neun acht, drei null sieben. Das Büro ist in Nummer eins. Am Samstag ist das Büro geschlossen. Am Montag ist das Büro von acht bis zwölf offen. Josef Pichler",
-  "metin_tr": "İyi günler! Yeni telefon numaram: sıfır sekiz dokuz, dokuz dokuz dokuz dokuz sekiz, üç sıfır yedi. Büro bir numarada. Cumartesi büro kapalı. Pazartesi büro sekizden on ikiye kadar açık. Josef Pichler",
+  "metin_de": "Guten Tag! Meine Nummer ist neu: null acht neun, neun neun neun neun acht, drei null sieben. Das Büro ist in Nummer eins. Am Samstag ist das Büro geschlossen. Am Montag ist das Büro von acht bis zwölf offen. Josef Pichler",
+  "metin_tr": "İyi günler! Numaram yeni: sıfır sekiz dokuz, dokuz dokuz dokuz dokuz sekiz, üç sıfır yedi. Apartman bürosu bir numarada. Cumartesi büro kapalı. Pazartesi büro sekizden on ikiye kadar açık. Josef Pichler",
   "sorular": [
    {
     "id": "m1:03:o1",
@@ -1156,7 +1161,7 @@
    {
     "id": "m1:03:o3",
     "kind": "detail",
-    "q_tr": "Büro hangi gün kapalı?",
+    "q_tr": "Apartman bürosu hangi gün kapalı?",
     "opts": [
      "cumartesi",
      "cuma",
