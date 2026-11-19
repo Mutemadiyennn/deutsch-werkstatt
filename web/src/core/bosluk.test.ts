@@ -38,6 +38,8 @@ describe("PM-069 P0: öğretilmeden boşluk sorulmaz", () => {
     expect(gosterilenCogul(tag)).toBe("Tage");
     expect(cevapGosterildi(tag, "Tage")).toBe(true);
     expect(gosterilenCogul(kart({ pl: "-" }))).toBeUndefined();
+    // yalnızca çoğul isim (die Daten): "Çoğulu" satırı tekrar olurdu
+    expect(gosterilenCogul(kart({ de: "Daten", pl: "Daten" }))).toBeUndefined();
     expect(cevapGosterildi(kart({ pl: "-" }), "-")).toBe(false);
   });
   it("boslukSecimi: sorulabilir biçim varsa o, yoksa Türkçeden Almancaya; sorulabilir sayısı", () => {

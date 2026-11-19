@@ -366,7 +366,7 @@ export function formFor(l: Lexeme, t: QType, i = 0) { const list = t === "gap" ?
  * (tanıtım kartında hepsi gösterilir), öğrencinin daha önce gördüğü (tanıtılmış) kartların kelimeleri (`gorulen`).
  */
 /** Kartta gösterilen çoğul ("-" ya da boşsa yok); Bahçe tanıtım ve cevap kartı bunu basar, boşluk kuralı da bunu sayar (inceleme #122 2. tur) */
-export const gosterilenCogul = (l: Lexeme): string | undefined => (l.pl && l.pl.trim() !== "-" ? l.pl.trim() : undefined);
+export const gosterilenCogul = (l: Lexeme): string | undefined => (l.pl && l.pl.trim() !== "-" && l.pl.trim() !== l.de ? l.pl.trim() : undefined);
 export function cevapGosterildi(l: Lexeme, cevap: string, gorulen: Set<string> = new Set()): boolean {
   const kelimeler = tokens(cevap.toLowerCase().replace(/\s*…\s*/g, " "));
   if (!kelimeler.length) return false;
