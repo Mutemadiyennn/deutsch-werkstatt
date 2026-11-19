@@ -296,6 +296,8 @@ def main():
             if desc: break
             page.wait_for_timeout(250)
         el = page.locator("[data-lp-target]")
+        # basış noktası görünür alanda olmalı: caretRangeFromPoint yalnızca görünen noktada metin bulur (WebKit iPhone 15 dalgalanması)
+        el.scroll_into_view_if_needed(); page.wait_for_timeout(150)
         bb = el.bounding_box()
         # uzun basma: işaretçi olaylarını doğrudan gönder (WebKit dokunmatik öykünmesinde fare olayları güvenilir değil)
         pt = {"clientX": bb["x"] + 10, "clientY": bb["y"] + 10, "bubbles": True, "pointerType": "touch", "isPrimary": True, "pointerId": 7}
