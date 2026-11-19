@@ -17,7 +17,9 @@ export type Route =
   | { name: "assessResult"; id?: string }
   | { name: "onboarding" }
   | { name: "call"; id: string }
-  | { name: "garden" };
+  | { name: "garden" }
+  | { name: "m1day"; day: number }
+  | { name: "m1medya"; day: number; id: string };
 
 export function parseHash(h: string): Route {
   const p = h.replace(/^#\/?/, "").split("/").map(decodeURIComponent);
@@ -30,13 +32,14 @@ export function parseHash(h: string): Route {
     case "onboarding": return { name: "onboarding" };
     case "call": return { name: "call", id: p[1] || "" };
     case "garden": return { name: "garden" };
+    case "m1": return p[2] ? { name: "m1medya", day: Number(p[1]) || 1, id: p[2] } : { name: "m1day", day: Number(p[1]) || 1 };
     default: return { name: "today" };
   }
 }
 export const go = (path: string) => { location.hash = "#/" + path.replace(/^#?\/?/, ""); };
 
 /** Öğrenme ekranları: odak süresi yalnızca bunlarda sayılır (v1: menü ekranları sayılmaz) */
-export const LEARNING_ROUTES = new Set<Route["name"]>(["assess", "section", "garden"]);
+export const LEARNING_ROUTES = new Set<Route["name"]>(["assess", "section", "garden", "m1medya"]);
 
 export interface AppCtx {
   user: AuthUser | null;

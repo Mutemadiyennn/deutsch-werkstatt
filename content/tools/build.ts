@@ -5,7 +5,9 @@
 import { mkdirSync, writeFileSync, rmSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { createHash } from "node:crypto";
-import { loadContent, checkRules, ROOT } from "./load.ts";
+import { loadContent, checkRules, ROOT, parseFile } from "./load.ts";
+import { Gun, medyalar } from "../../packages/shared/src/m1.ts";
+import { readdirSync } from "node:fs";
 import type { ContentIndex } from "../../packages/shared/src/content.ts";
 
 const c = checkRules(loadContent());
@@ -15,7 +17,21 @@ if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
 // (Bahçe'de üretim sorusu ve yeni kart havuzu dışında; inceleme #59 P1-4)
 if (c.k1) { const pas = new Set(c.k1.pasif); for (const l of c.lexemes) if (pas.has(l.id)) l.tier = "passive"; }
 
+// M1 günleri: içerikte yoksa ve DW_E2E_FIXTURES=1 ise e2e için örnek gün (content/tools/fixtures/m1) — yayın paketine girmez
+const days = [...c.m1];
+if (process.env.DW_E2E_FIXTURES === "1") {
+  const fx = join(ROOT, "content/tools/fixtures/m1");
+  for (const f of readdirSync(fx).filter((x) => /^gun-\d{2}\.json$/.test(x))) {
+    const g = parseFile(join(fx, f), Gun, c.errors);
+    // e2e paketinde örnek gün aynı numaralı gerçek günün YERİNE geçer: oynatıcı testi içerik değişince kırılmaz (inceleme #60 P1-8)
+    if (g) { const i = days.findIndex((d) => d.data.day === g.day); if (i >= 0) days.splice(i, 1); days.push({ file: `fixtures/m1/${f}`, data: g }); }
+  }
+  if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
+}
+days.sort((a, b) => a.data.day - b.data.day);
+
 const payload = {
+  m1: days.map((d) => d.data),
   lexemes: c.lexemes,
   grammar: c.grammar,
   assess: c.assess,
@@ -37,13 +53,17 @@ for (const s of c.scenarios) {
   w(f, s.data);
   scenFiles[s.data.id] = f;
 }
+const m1Files: Record<string, string> = {};
+if (days.length) mkdirSync(join(dir, "m1"), { recursive: true });
+for (const d of days) { const f = `m1/gun-${String(d.data.day).padStart(2, "0")}.json`; w(f, d.data); m1Files[String(d.data.day)] = f; }
 const index: ContentIndex = {
   version,
   builtAt: new Date().toISOString(),
   domains: c.domains,
   scenarios: c.scenarios.map(({ data: s }) => ({ id: s.id, domain: s.domain, order: s.order, level: s.level, title_tr: s.title_tr, title_de: s.title_de, review: s.review.status, format: s.format, ...(s.season ? { season: s.season } : {}) })),
+  m1: days.map(({ data: g }) => ({ day: g.day, id: g.id, title_tr: g.title_tr, review: g.review.status, medya: medyalar(g).map((m) => ({ id: m.id, kind: m.kind, title_tr: m.title_tr })) })),
   counts: { lexemes: c.lexemes.length, grammar: c.grammar.length, assess: c.assess.length, scenarios: c.scenarios.length },
-  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles }
+  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files }
 };
 w("index.json", index);
 writeFileSync(join(base, "current.json"), JSON.stringify({ version }));

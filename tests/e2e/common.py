@@ -22,8 +22,42 @@ def check(cond, msg):
     print(("  ✓ " if cond else "  ✗ ") + msg)
     if not cond: ERR.append(msg)
 
+class RangeHandler(http.server.SimpleHTTPRequestHandler):
+    """Video atlaması için Range (206) desteği — WebKit/Chromium medya isteklerinde bunu ister"""
+    def send_head(self):
+        rng = self.headers.get("Range")
+        if not rng or not rng.startswith("bytes="):
+            return super().send_head()
+        path = self.translate_path(self.path)
+        if os.path.isdir(path) or not os.path.exists(path):
+            return super().send_head()
+        size = os.path.getsize(path)
+        a, _, b = rng[6:].partition("-")
+        start = int(a) if a else max(0, size - int(b))
+        end = int(b) if (a and b) else size - 1
+        end = min(end, size - 1)
+        if start > end:
+            self.send_error(416); return None
+        f = open(path, "rb"); f.seek(start)
+        self.send_response(206)
+        self.send_header("Content-Type", self.guess_type(path))
+        self.send_header("Accept-Ranges", "bytes")
+        self.send_header("Content-Range", f"bytes {start}-{end}/{size}")
+        self.send_header("Content-Length", str(end - start + 1))
+        self.end_headers()
+        self._remain = end - start + 1
+        return f
+    def copyfile(self, src, dst):
+        n = getattr(self, "_remain", None)
+        if n is None: return super().copyfile(src, dst)
+        while n > 0:
+            buf = src.read(min(65536, n))
+            if not buf: break
+            dst.write(buf); n -= len(buf)
+        self._remain = None
+
 def serve(port):
-    h = functools.partial(http.server.SimpleHTTPRequestHandler, directory=DIST)
+    h = functools.partial(RangeHandler, directory=DIST)
     http.server.SimpleHTTPRequestHandler.log_message = lambda *a: None
     socketserver.TCPServer.allow_reuse_address = True
     s = socketserver.TCPServer(("127.0.0.1", port), h)
