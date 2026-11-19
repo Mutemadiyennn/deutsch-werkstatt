@@ -220,6 +220,20 @@
      "layer": "alltag",
      "dialog": true,
      "img": "mulled wine stall at christmas market"
+    },
+    {
+     "id": "lx:Stand:5",
+     "de": "Tobi und Derya warten am Stand mit den Würstchen.",
+     "tr": "Tobi ile Derya sosis tezgâhında bekliyor.",
+     "layer": "alltag",
+     "img": "friends waiting at sausage stall"
+    },
+    {
+     "id": "lx:Stand:6",
+     "de": "Am Bahnhof gibt es einen kleinen Stand mit Blumen.",
+     "tr": "Garda küçük bir çiçek tezgâhı var.",
+     "layer": "hd",
+     "img": "flower stall at train station"
     }
    ],
    "level": "A2",
@@ -240,7 +254,7 @@
      "de": "Da vorne ist ___ Stand mit Glühwein.",
      "answer": "ein",
      "tr": "Şu önde sıcak şarap satan bir tezgâh var.",
-     "hint_tr": "Bir tezgâhı gösterirken **ein Stand** denir."
+     "hint_tr": "Hangi tezgâh olduğu belli değilse **ein Stand** denir."
     },
     {
      "de": "Siehst du ___ Stand da drüben?",
@@ -258,13 +272,25 @@
      "de": "Wir treffen uns ___ Stand.",
      "answer": "am",
      "tr": "Tezgâhta buluşuyoruz.",
-     "hint_tr": "**an** ile **dem** birleşir: **am Stand**."
+     "hint_tr": "Tezgâhta derken **am Stand** denir."
     },
     {
      "de": "Auf dem Markt gibt es viele ___.",
      "answer": "Stände",
      "tr": "Pazar yerinde birçok tezgâh var.",
-     "hint_tr": "Birçok tezgâh için **viele Stände** denir."
+     "hint_tr": "Birçok tezgâh derken **viele Stände** denir."
+    },
+    {
+     "de": "Der ___ mit den Mandeln ist da vorne.",
+     "answer": "Stand",
+     "tr": "Badem satan tezgâh şu önde.",
+     "hint_tr": "Tezgâh derken **der Stand** denir."
+    },
+    {
+     "de": "An diesem ___ gibt es Glühwein.",
+     "answer": "Stand",
+     "tr": "Bu tezgâhta sıcak şarap var.",
+     "hint_tr": "Bu tezgâhta derken **an diesem Stand** denir."
     }
    ]
   },
@@ -305,14 +331,14 @@
    "examples": [
     {
      "id": "lx:Deutsch:1",
-     "de": "Wie sagt man das auf Deutsch?",
-     "tr": "Bu Almanca nasıl denir?",
+     "de": "Können Sie das bitte auf Deutsch sagen?",
+     "tr": "Bunu lütfen Almanca söyleyebilir misiniz?",
      "layer": "hd"
     },
     {
      "id": "lx:Deutsch:2",
-     "de": "Ich lerne seit einem Jahr Deutsch.",
-     "tr": "Bir yıldır Almanca öğreniyorum.",
+     "de": "Ioana lernt seit einem Jahr Deutsch.",
+     "tr": "Ioana bir yıldır Almanca öğreniyor.",
      "layer": "hd",
      "img": "adults learning in language class"
     },
@@ -327,6 +353,19 @@
      "de": "– Sollen wir Englisch sprechen? – Nein, lieber Deutsch, ich möchte üben.",
      "tr": "– İngilizce konuşalım mı? – Hayır, Almanca olsun, pratik yapmak istiyorum.",
      "layer": "hd",
+     "dialog": true
+    },
+    {
+     "id": "lx:Deutsch:5",
+     "de": "Derya spricht mit dir nur Deutsch.",
+     "tr": "Derya seninle yalnızca Almanca konuşuyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Deutsch:6",
+     "de": "– Wie heißt das auf Deutsch, Luka? – Das ist eine Schere.",
+     "tr": "– Bunun Almancası ne, Luka? – Bu bir makas.",
+     "layer": "alltag",
      "dialog": true
     }
    ],
@@ -354,19 +393,31 @@
      "de": "Ich spreche ein bisschen ___.",
      "answer": "Deutsch",
      "tr": "Biraz Almanca konuşuyorum.",
-     "hint_tr": "Almanca konuşmak için **Deutsch sprechen** denir."
+     "hint_tr": "Biraz Almanca konuşuyorum derken **Ich spreche ein bisschen Deutsch** denir."
     },
     {
      "de": "Ich lerne jeden Tag ___.",
      "answer": "Deutsch",
-     "tr": "Her gün Almanca çalışıyorum.",
-     "hint_tr": "Almanca öğrenmek için **Deutsch lernen** denir."
+     "tr": "Her gün Almanca öğreniyorum.",
+     "hint_tr": "Almanca öğreniyorum derken **Ich lerne Deutsch** denir."
     },
     {
      "de": "Mein ___ ist noch nicht so gut.",
      "answer": "Deutsch",
      "tr": "Almancam henüz o kadar iyi değil.",
      "hint_tr": "Almancam derken **mein Deutsch** denir."
+    },
+    {
+     "de": "Sag es bitte auf ___!",
+     "answer": "Deutsch",
+     "tr": "Lütfen bunu Almanca olarak söyle!",
+     "hint_tr": "Almanca olarak derken **auf Deutsch** denir."
+    },
+    {
+     "de": "Dein ___ ist schon sehr gut, Ioana.",
+     "answer": "Deutsch",
+     "tr": "Almancan şimdiden çok iyi, Ioana.",
+     "hint_tr": "Almancan derken **dein Deutsch** denir."
     }
    ]
   },

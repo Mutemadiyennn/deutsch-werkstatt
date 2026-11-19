@@ -12312,6 +12312,19 @@
      "layer": "alltag",
      "dialog": true,
      "img": "doctor examining patient back"
+    },
+    {
+     "id": "lx:Schmerz:5",
+     "de": "Frau Brandl hat Schmerzen im Bein.",
+     "tr": "Brandl Hanım'ın bacağında ağrı var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Schmerz:6",
+     "de": "– Wie stark sind die Schmerzen? – Sehr stark, Herr Doktor.",
+     "tr": "– Ağrınız ne kadar şiddetli? – Çok şiddetli, doktor bey.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -12331,25 +12344,40 @@
      "de": "Ich habe starke ___.",
      "answer": "Schmerzen",
      "tr": "Şiddetli ağrım var.",
-     "hint_tr": "Ağrım var derken çoğunlukla **Schmerzen** denir."
+     "hint_tr": "Şiddetli ağrım var derken **Ich habe starke Schmerzen** denir."
     },
     {
      "de": "Wo haben Sie ___?",
      "answer": "Schmerzen",
      "tr": "Nerenizde ağrı var?",
-     "hint_tr": "Doktor ağrıyı sorarken **Wo haben Sie Schmerzen?** der."
+     "hint_tr": "Nerenizde ağrı var derken **Wo haben Sie Schmerzen?** denir."
     },
     {
      "de": "___ Schmerzen sind weg!",
      "answer": "Die",
      "tr": "Ağrılar geçti!",
-     "hint_tr": "Ağrılar çok olduğu için **der Schmerz**, **die Schmerzen** olur."
+     "hint_tr": "Ağrılar derken **die Schmerzen** denir.",
+     "also_ok": [
+      "Meine"
+     ]
     },
     {
      "de": "Ich habe ___ Schmerzen mehr.",
      "answer": "keine",
      "tr": "Artık ağrım yok.",
-     "hint_tr": "Ağrım yok derken **keine Schmerzen** denir."
+     "hint_tr": "Artık ağrım yok derken **keine Schmerzen mehr** denir."
+    },
+    {
+     "de": "Plötzlich kam ein starker ___.",
+     "answer": "Schmerz",
+     "tr": "Birden şiddetli bir ağrı geldi.",
+     "hint_tr": "Şiddetli bir ağrı derken **ein starker Schmerz** denir."
+    },
+    {
+     "de": "Seit wann haben Sie die ___?",
+     "answer": "Schmerzen",
+     "tr": "Ağrılar ne zamandan beri var?",
+     "hint_tr": "Ağrılar ne zamandan beri var derken **Seit wann haben Sie die Schmerzen?** denir."
     }
    ]
   },
@@ -12520,8 +12548,8 @@
    "examples": [
     {
      "id": "lx:Geschenk:1",
-     "de": "Das ist ein Geschenk für dich.",
-     "tr": "Bu senin için bir hediye.",
+     "de": "Ich habe ein Geschenk für dich.",
+     "tr": "Sana bir hediyem var.",
      "layer": "hd",
      "img": "hands giving wrapped present"
     },
@@ -12546,6 +12574,21 @@
      "layer": "alltag",
      "dialog": true,
      "img": "man browsing gifts in shop"
+    },
+    {
+     "id": "lx:Geschenk:5",
+     "de": "Frau Brandl stellt ein Geschenk vor die Tür.",
+     "tr": "Brandl Hanım kapının önüne bir hediye bırakıyor.",
+     "layer": "hd",
+     "img": "gift box in front of apartment door"
+    },
+    {
+     "id": "lx:Geschenk:6",
+     "de": "– Für wen ist das Geschenk? – Für Frau Brandl, sie hilft mir immer.",
+     "tr": "– Hediye kimin için? – Brandl Hanım için, bana hep yardım ediyor.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "person holding wrapped gift in hallway"
     }
    ],
    "level": "A1",
@@ -12562,16 +12605,16 @@
    },
    "forms": [
     {
-     "de": "Das ist ___ Geschenk für dich.",
+     "de": "Ich habe ___ Geschenk für dich.",
      "answer": "ein",
-     "tr": "Bu senin için bir hediye.",
-     "hint_tr": "Bir hediyeyi gösterirken **ein Geschenk** denir."
+     "tr": "Sana bir hediyem var.",
+     "hint_tr": "**Ich habe** dedikten sonra **ein Geschenk** olduğu gibi kalır."
     },
     {
      "de": "Ich suche noch ___ Geschenk für Derya.",
      "answer": "ein",
      "tr": "Derya için hâlâ bir hediye arıyorum.",
-     "hint_tr": "**Ich suche** dedikten sonra da **ein Geschenk** aynı kalır."
+     "hint_tr": "**Ich suche** dedikten sonra **ein Geschenk** olduğu gibi kalır."
     },
     {
      "de": "Danke für ___ Geschenk!",
@@ -12589,7 +12632,19 @@
      "de": "Unter dem Baum liegen viele ___.",
      "answer": "Geschenke",
      "tr": "Ağacın altında birçok hediye var.",
-     "hint_tr": "Birden çok hediye için **Geschenke** denir."
+     "hint_tr": "Birçok hediye derken **viele Geschenke** denir."
+    },
+    {
+     "de": "Das ___ ist von Frau Brandl.",
+     "answer": "Geschenk",
+     "tr": "Hediye Brandl Hanım'dan.",
+     "hint_tr": "Hediye derken **das Geschenk** denir."
+    },
+    {
+     "de": "Zum Geburtstag bekommt Tobi ein kleines ___.",
+     "answer": "Geschenk",
+     "tr": "Tobi'ye doğum gününde küçük bir hediye veriyorlar.",
+     "hint_tr": "Küçük bir hediye derken **ein kleines Geschenk** denir."
     }
    ]
   },
