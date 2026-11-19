@@ -1,6 +1,7 @@
 """
-PM-049 Kelime Bahçesi — 10 kartlık bir tur baştan sona (kabul ölçütü).
+PM-049 / #58 A3 Kelime Bahçesi — 10 kartlık bir tur baştan sona (kabul ölçütü).
   - Bugün → "Tekrar et" → tur: yeni kart tanıtımı → soru; doğru/yanlış geri bildirimi eylem çubuğunda
+  - "Duyduğum kelime" (kişisel banka) sözlükte varsa ilk yeni kart olur
   - yanlış cevapta doğrusu öğrencinin cevabıyla yan yana; kart turun sonunda yeniden gelir (tur uzar)
   - tur sonu özeti → Bugün'e dönüş; ikinci tur yeni kartlar ve tanıtılmış kartlarla kurulur
   python3 tests/e2e/v2_garden.py [--browser webkit] [--device "iPhone 15"] [--shots /tmp/shots]
@@ -40,7 +41,14 @@ def main():
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         pg.wait_for_selector("[data-test=garden-start]")
         check(pg.locator("[data-test=garden-start]").count() == 1, "Bugün: 'Tekrar edilecekler' bölümünde tek ana eylem 'Tekrar et'")
+        # kişisel banka (#58 A3): "Duyduğum kelime" ile eklenmiş, K1 sırasında en sonda olan bir kelime ilk yeni kart olur
+        pg.evaluate("""() => new Promise((ok, no) => { const r = indexedDB.open('dw2'); r.onerror = no; r.onsuccess = () => {
+          const tx = r.result.transaction('personal', 'readwrite');
+          tx.objectStore('personal').put({ id: 'k3:die Daten', de: 'die Daten', at: new Date().toISOString(), source: 'heard' });
+          tx.oncomplete = () => { r.result.close(); ok(); }; tx.onerror = no; }; })""")
         pg.click("[data-test=garden-start]"); pg.wait_for_selector("[data-test=garden]")
+        first = pg.inner_text("[data-test=garden-intro]") if pg.locator("[data-test=garden-intro]").count() else ""
+        check("Daten" in first, f"duyduğum kelime ilk yeni kart olarak tanıtılıyor ({first[:40]!r})")
         sub = pg.inner_text("[data-test=garden] .pbar")
         total = int(sub.split("/")[-1].strip().split()[0]) if "/" in sub else 0
         check(8 <= total <= 12, f"tur 8–12 soru ({total})")

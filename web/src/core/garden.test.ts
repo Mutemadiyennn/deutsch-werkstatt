@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { Lexeme } from "@dw/shared";
 import type { LearnerItem } from "@dw/shared";
-import { availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced } from "./garden.ts";
+import { personalFirst, availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced } from "./garden.ts";
 import { review, sessionKey } from "./srs.ts";
 
 const L = (o: Record<string, unknown>) => Lexeme.parse({ tr: "x", pos: "other", ...o });
@@ -71,5 +71,12 @@ describe("Kelime Bahçesi (PM-049)", () => {
     expect(ownSentenceCheck(termin, "Ich habe morgen einen Termin.")).toBe("ok");
     expect(ownSentenceCheck(termin, "Termin.")).toBe("short");
     expect(ownSentenceCheck(termin, "Ich gehe heute nach Hause.")).toBe("missing");
+  });
+  it("duyduğun / 'nasıl derim' kelimesi sözlükte varsa yeni kart sırasının başına girer (#58 A3)", () => {
+    const at = "2026-11-19T00:00:00Z";
+    const all = [termin, absagen, der, toeten];
+    const pool = personalFirst([{ id: "k3:der Termin", de: "der Termin", at, source: "heard" }, { id: "sayit:absagen", de: "absagen", at, source: "sayit" },
+      { id: "k3:töten", de: "töten", at, source: "heard" }, { id: "k3:Quatsch", de: "Quatsch", at, source: "heard" }], all, ["lx:absagen", "lx:x"]);
+    expect(pool).toEqual(["lx:Termin", "lx:absagen", "lx:x"]);
   });
 });

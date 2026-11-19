@@ -13,7 +13,7 @@ import { loadLexicon, loadScenario } from "../services/content.ts";
 import { getItem, getScenarioProgress, putItem, saveScenarioProgress, addPersonal } from "../data/db.ts";
 import { focus, setLearning } from "../services/focusRuntime.ts";
 import { review, sessionKey, type Outcome } from "../core/srs.ts";
-import { norm, scoreHeard } from "../core/grading.ts";
+import { norm, numberWordHint, scoreHeard } from "../core/grading.ts";
 import type { Verdict } from "../core/answer.ts";
 import type { LocalEntry } from "../core/sayit.ts";
 import { ai, aiState, SOFT_WAIT_MS } from "../services/ai.ts";
@@ -178,13 +178,16 @@ function useRun<T>(items: T[]) {
 }
 
 /* ============================ Üretim maddesi (3–4–5 ortak) ============================ */
-function ProduceItem({ ctx, prompt, accepted, itemId, onDone, audio, audioSpeed, chips, hint, given }: { ctx: Ctx; prompt: preact.ComponentChildren; accepted: string[]; itemId: string; onDone: (ok: boolean) => void; audio?: string; audioSpeed?: Speed; chips?: boolean; hint?: string; given?: string }) {
+function ProduceItem({ ctx, prompt, accepted, itemId, onDone, audio, audioSpeed, chips, hint, given, strictNumbers }: { ctx: Ctx; prompt: preact.ComponentChildren; accepted: string[]; itemId: string; onDone: (ok: boolean) => void; audio?: string; audioSpeed?: Speed; chips?: boolean; hint?: string; given?: string; strictNumbers?: boolean }) {
   const grade0 = useGrader();
   // PM-032 §4: bu senaryoda öğretilmiş eşdeğer biçimler (Hochdeutsch ↔ Alltag) otomatik kabul — ama yönerge belirli bir
   // biçim istiyorsa ya da madde bir dönüşümse genişletme yok; verilen cümlenin tekrarı doğru değil (inceleme #49 P1-1)
   const register = !!given || REGISTER_HINT.test(hint || (typeof prompt === "string" ? prompt : ""));
+  // PM-045 §4.2 / #58 A11: sayı maddesinde rakam kabul edilmez (norm() rakamı yazıya çevirdiği için kurallardan önce)
+  const numHint = (acc: string[], a: string) => (strictNumbers && acc.every((x) => !/\d/.test(x)) ? numberWordHint(a) : null);
   const grade = async (acc: string[], a: string, p: string): Promise<Verdict> =>
-    isSameAsGiven(given, a) ? { kind: "wrong", best: acc[0] || "", note: "Verilen cümleyi tekrarladın; istenen biçimde söyle." }
+    numHint(acc, a) ? { kind: "wrong", best: acc[0] || "", note: numHint(acc, a)! }
+    : isSameAsGiven(given, a) ? { kind: "wrong", best: acc[0] || "", note: "Verilen cümleyi tekrarladın; istenen biçimde söyle." }
       : grade0(register ? acc : expandTaught(acc, ctx.s.chunks), a, p);
   const [v, setV] = useState<{ v: Verdict; a: string } | null>(null);
   const [busy, setBusy] = useState(false);
@@ -283,17 +286,17 @@ function DrillView({ ctx, d, n, total, onDone }: { ctx: Ctx; d: Drill; n: number
         </div>
       );
     case "gap":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted.map((a) => d.de.replace("___", a))} prompt={<><div class="kicker">Boşluğu doldur · {k}</div><div class="de-lg" lang="de">{d.de.split("___").map((part, j) => <>{j > 0 && <span class="gapblank" aria-label="boşluk" />}{part}</>)}</div><div class="tr2">{d.tr}</div><div class="tiny muted">Bütün cümleyi yaz.</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted.map((a) => d.de.replace("___", a))} prompt={<><div class="kicker">Boşluğu doldur · {k}</div><div class="de-lg" lang="de">{d.de.split("___").map((part, j) => <>{j > 0 && <span class="gapblank" aria-label="boşluk" />}{part}</>)}</div><div class="tr2">{d.tr}</div><div class="tiny muted">Bütün cümleyi yaz.</div></>} strictNumbers={d.strictNumberWords} onDone={onDone} />;
     case "order":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted.length ? d.accepted : [d.de]} chips prompt={<><div class="kicker">Sıraya koy · {k}</div><div class="de-lg">{d.tr}</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted.length ? d.accepted : [d.de]} chips prompt={<><div class="kicker">Sıraya koy · {k}</div><div class="de-lg">{d.tr}</div></>} strictNumbers={d.strictNumberWords} onDone={onDone} />;
     case "transform":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} given={d.from_de} hint={d.instr_tr} prompt={<><div class="kicker">Dönüştür · {k}</div><div class="small"><Rich text={d.instr_tr} /></div><div class="de-lg" lang="de">{d.from_de}</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} given={d.from_de} hint={d.instr_tr} prompt={<><div class="kicker">Dönüştür · {k}</div><div class="small"><Rich text={d.instr_tr} /></div><div class="de-lg" lang="de">{d.from_de}</div></>} strictNumbers={d.strictNumberWords} onDone={onDone} />;
     case "guided_response":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.prompt_de} hint={d.situation_tr} prompt={<><div class="kicker">Cevap ver · {k}</div><div class="small"><Rich text={d.situation_tr} /></div><div class="de-lg" lang="de">„{d.prompt_de}“</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.prompt_de} hint={d.situation_tr} prompt={<><div class="kicker">Cevap ver · {k}</div><div class="small"><Rich text={d.situation_tr} /></div><div class="de-lg" lang="de">„{d.prompt_de}“</div></>} strictNumbers={d.strictNumberWords} onDone={onDone} />;
     case "listen_and_respond":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.audio_de} audioSpeed={d.speed} hint={d.situation_tr} prompt={<><div class="kicker">Dinle ve cevap ver · {k}</div>{d.situation_tr && <div class="small"><Rich text={d.situation_tr} /></div>}<div class="tiny muted">Metin gösterilmiyor: yalnızca dinle.</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} audio={d.audio_de} audioSpeed={d.speed} hint={d.situation_tr} prompt={<><div class="kicker">Dinle ve cevap ver · {k}</div>{d.situation_tr && <div class="small"><Rich text={d.situation_tr} /></div>}<div class="tiny muted">Metin gösterilmiyor: yalnızca dinle.</div></>} strictNumbers={d.strictNumberWords} onDone={onDone} />;
     case "tr_de":
-      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} hint={d.tr} prompt={<><div class="kicker">Almanca söyle · {k}</div><div class="de-lg">{d.tr}</div></>} onDone={onDone} />;
+      return <ProduceItem ctx={ctx} itemId={d.id} accepted={d.accepted} hint={d.tr} prompt={<><div class="kicker">Almanca söyle · {k}</div><div class="de-lg">{d.tr}</div></>} strictNumbers={d.strictNumberWords} onDone={onDone} />;
   }
 }
 

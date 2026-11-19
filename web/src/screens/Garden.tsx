@@ -7,9 +7,9 @@ import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadLexicon } from "../services/content.ts";
-import { itemsMap, putItems } from "../data/db.ts";
+import { itemsMap, personalWords, putItems } from "../data/db.ts";
 import { review, sessionKey, type Outcome } from "../core/srs.ts";
-import { accepted, buildRound, isCard, collocQuestion, formFor, isNoun, meaningOptions, ownSentenceCheck, pathOf, requeue, type GardenQ } from "../core/garden.ts";
+import { accepted, buildRound, isCard, personalFirst, collocQuestion, formFor, isNoun, meaningOptions, ownSentenceCheck, pathOf, requeue, type GardenQ } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { numberWordHint } from "../core/grading.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
@@ -34,7 +34,9 @@ export function Garden() {
       const lex = new Map(lexemes.map((l) => [l.id, l]));
       const items = await itemsMap(lexemes.map((l) => l.id));
       // yeni kart sırası: K1 derin kartlar sıklık sırasıyla (işlev kelimesi ve yalnızca tanıma kartları hariç)
-      const pool = lexemes.filter((l) => l.tier === "K1" && isCard(l)).sort((a, b) => (a.freqRank ?? 9e9) - (b.freqRank ?? 9e9)).map((l) => l.id);
+      const k1 = lexemes.filter((l) => l.tier === "K1" && isCard(l)).sort((a, b) => (a.freqRank ?? 9e9) - (b.freqRank ?? 9e9)).map((l) => l.id);
+      // duyduğun ve "nasıl derim" diye sorduğun kelimeler önce (kişisel banka, #58 A3)
+      const pool = personalFirst(await personalWords(), lexemes, k1);
       setData({ lex, all: lexemes, items, round: buildRound(lex, items, pool) });
     })().catch((e) => setErr(String(e?.message || e)));
     return () => stopSpeaking();

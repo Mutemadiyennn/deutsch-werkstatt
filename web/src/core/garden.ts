@@ -21,7 +21,7 @@
  *  - Yanlışta kart turun sonunda başka örnek cümle (ve başka fotoğraf) ile yeniden gelir.
  */
 import type { Lexeme } from "@dw/shared";
-import type { LearnerItem } from "@dw/shared";
+import type { LearnerItem, PersonalWord } from "@dw/shared";
 import { isDue } from "./srs.ts";
 
 export type QType = "listen_meaning" | "article" | "colloc" | "photo_say" | "tr_de" | "gap" | "sep_perfekt" | "own_sentence";
@@ -117,6 +117,20 @@ export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerI
     out.push({ lexId: id, type: "listen_meaning", intro: true, ex: 0 }); used.add(id); added++;
   }
   return out;
+}
+
+/**
+ * Kişisel banka tek kaynak (#58 A3): "Duyduğum kelime" ve "Nasıl derim?" ile eklenen kelimeler sözlükte bir karta
+ * karşılık geliyorsa yeni kart sırasının BAŞINA girer (dokunulan kelimeler zaten öğrenci modelinde, `source: tap`).
+ * Eşleşme artikelsiz ve küçük harfle; karşılığı olmayan kelime kişisel listede kalır (kartı yok, soru üretilmez).
+ */
+export function personalFirst(personal: PersonalWord[], all: Lexeme[], pool: string[]): string[] {
+  const key = (s: string) => s.trim().toLowerCase().replace(/^(der|die|das)\s+/, "").replace(/[.!?]+$/, "");
+  const byDe = new Map<string, string>();
+  for (const l of all) if (isCard(l) && l.tier !== "passive") byDe.set(key(l.de), l.id);
+  const mine: string[] = [];
+  for (const w of personal) { const id = byDe.get(key(w.de)); if (id && !mine.includes(id)) mine.push(id); }
+  return [...mine, ...pool.filter((id) => !mine.includes(id))];
 }
 
 /** Yanlış cevap: kart turun sonuna, başka örnek cümleyle ve (aynı yolda) başka türle geri gelir — bir kez */
