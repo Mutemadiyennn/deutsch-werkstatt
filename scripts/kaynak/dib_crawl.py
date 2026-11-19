@@ -44,8 +44,11 @@ for k in range(1, 11):
     try:
         raw = get(url)
         try: root = ET.fromstring(raw)
-        except ET.ParseError:  # kaçışsız & (k=10): onarıp yeniden dene
-            root = ET.fromstring(re.sub(rb"&(?!#?\w+;)", b"&amp;", raw))
+        except ET.ParseError:  # bozuk XML (k=10): metin olarak onar — geçersiz bayt, kaçışsız &, HTML varlıkları
+            t = raw.decode("utf-8", "replace")
+            t = re.sub(r"&(?!(amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);)", "&amp;", t)
+            t = "".join(ch for ch in t if ch in "\t\n\r" or ord(ch) >= 32)
+            root = ET.fromstring(t.encode("utf-8"))
     except Exception as e: print("atlandı", url, e); continue
     for it in root.iter("item"):
         title = fix(it.findtext("title") or "").strip()
