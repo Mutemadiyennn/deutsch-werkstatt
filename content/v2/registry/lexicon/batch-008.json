@@ -2684,14 +2684,27 @@
     },
     {
      "id": "lx:Leben:3",
-     "de": "Nie im Leben!",
-     "tr": "Hayatta olmaz!",
+     "de": "Was, hundert Euro? Nie im Leben!",
+     "tr": "Ne, yüz avro mu? Hayatta olmaz!",
      "layer": "alltag"
     },
     {
      "id": "lx:Leben:4",
-     "de": "– Wie ist das Leben in München? – Schön, aber teuer.",
-     "tr": "– Münih'te hayat nasıl? – Güzel ama pahalı.",
+     "de": "– Anna, wie ist das Leben in München? – Schön, aber teuer.",
+     "tr": "– Anna, Münih'te hayat nasıl? – Güzel ama pahalı.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:Leben:5",
+     "de": "Frau Brandl erzählt gern aus ihrem Leben.",
+     "tr": "Brandl Hanım hayatını anlatmayı seviyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Leben:6",
+     "de": "– Warst du schon mal auf einem Berg? – Noch nie im Leben!",
+     "tr": "– Hiç dağa çıktın mı? – Hayatımda hiç çıkmadım!",
      "layer": "alltag",
      "dialog": true
     }
@@ -2719,19 +2732,31 @@
      "de": "Das war der schönste Tag in meinem ___.",
      "answer": "Leben",
      "tr": "Hayatımın en güzel günüydü.",
-     "hint_tr": "**in meinem** dedikten sonra **Leben** olduğu gibi kalır."
+     "hint_tr": "Hayatımda derken **in meinem Leben** denir."
     },
     {
      "de": "Nie ___ Leben!",
      "answer": "im",
      "tr": "Hayatta olmaz!",
-     "hint_tr": "**in** ile **dem** birleşir: **im Leben**."
+     "hint_tr": "Hayatta olmaz derken **Nie im Leben!** denir."
     },
     {
-     "de": "Meine Eltern führen ___ ruhiges Leben.",
+     "de": "Frau Brandl hat ___ ruhiges Leben.",
      "answer": "ein",
-     "tr": "Annemle babam sakin bir hayat sürüyor.",
-     "hint_tr": "**führen** dedikten sonra **ein Leben** olduğu gibi kalır."
+     "tr": "Brandl Hanım'ın sakin bir hayatı var.",
+     "hint_tr": "**hat** dedikten sonra **ein Leben** olduğu gibi kalır."
+    },
+    {
+     "de": "Das ___ hier ist ruhig und schön.",
+     "answer": "Leben",
+     "tr": "Buradaki hayat sakin ve güzel.",
+     "hint_tr": "Buradaki hayat derken **das Leben hier** denir."
+    },
+    {
+     "de": "Basti sagt: Sport ist mein ___!",
+     "answer": "Leben",
+     "tr": "Basti diyor ki: Spor benim hayatım!",
+     "hint_tr": "Benim hayatım derken **mein Leben** denir."
     }
    ]
   },
@@ -2803,6 +2828,19 @@
      "tr": "– Kitap neyi ele alıyor? – Bavyera'daki bir aileyi.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:handeln:5",
+     "de": "Tobi handelt um den Preis für das Fahrrad.",
+     "tr": "Tobi bisikletin fiyatında pazarlık ediyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:handeln:6",
+     "de": "– Praxis Dr. Weber, worum handelt es sich? – Um einen Termin für nächste Woche.",
+     "tr": "– Dr. Weber muayenehanesi, konu nedir? – Gelecek hafta için bir randevu.",
+     "layer": "hd",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -2823,7 +2861,7 @@
      "de": "Wir müssen schnell ___.",
      "answer": "handeln",
      "tr": "Hızlı davranmamız lazım.",
-     "hint_tr": "**müssen** varsa sonda **handeln** gelir."
+     "hint_tr": "Hızlı davranmamız lazım derken **Wir müssen schnell handeln** denir."
     },
     {
      "de": "Worum ___ es sich?",
@@ -2835,13 +2873,34 @@
      "de": "Das Buch ___ von einer Familie.",
      "answer": "handelt",
      "tr": "Kitap bir aileyi ele alıyor.",
-     "hint_tr": "**er**, **sie** ve **das Buch** ile **handelt** olur."
+     "hint_tr": "Kitap ele alıyor derken **Das Buch handelt von** denir.",
+     "also_ok": [
+      "erzählt"
+     ]
     },
     {
      "de": "Hast du auf dem Flohmarkt ___?",
      "answer": "gehandelt",
      "tr": "Bit pazarında pazarlık ettin mi?",
-     "hint_tr": "Geçmişi anlatırken **hast gehandelt** denir."
+     "hint_tr": "Pazarlık ettin mi derken **Hast du gehandelt?** denir."
+    },
+    {
+     "de": "Es handelt sich ___ Ihren Termin.",
+     "answer": "um",
+     "tr": "Konu randevunuz.",
+     "hint_tr": "Konu randevunuz derken **Es handelt sich um Ihren Termin** denir."
+    },
+    {
+     "de": "Bei dem Brief handelt es ___ um eine Rechnung.",
+     "answer": "sich",
+     "tr": "Mektubun konusu bir fatura.",
+     "hint_tr": "Konusu bir fatura derken **Es handelt sich um eine Rechnung** denir."
+    },
+    {
+     "de": "Tobi hat lange um den Preis ___.",
+     "answer": "gehandelt",
+     "tr": "Tobi fiyatta uzun süre pazarlık etti.",
+     "hint_tr": "Fiyatta pazarlık etti derken **hat um den Preis gehandelt** denir."
     }
    ]
   },
@@ -2900,6 +2959,19 @@
      "tr": "– Hiç kar gördün mü? – Evet, Alplerde!",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:jemals:5",
+     "de": "Haben Sie jemals Probleme mit dem Herzen gehabt?",
+     "tr": "Hiç kalbinizle ilgili sorun yaşadınız mı?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:jemals:6",
+     "de": "– Bist du jemals Ski gefahren? – Ja, einmal in Österreich.",
+     "tr": "– Hiç kayak yaptın mı? – Evet, bir kez, Avusturya'da.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -2949,6 +3021,41 @@
      ],
      "tr": "Yemek hiç olmadığı kadar iyiydi.",
      "hint_tr": "Hiç olmadığı kadar derken **als jemals zuvor** dersin."
+    },
+    {
+     "de": "Waren Sie ___ im Krankenhaus?",
+     "answer": "jemals",
+     "also_ok": [
+      "je",
+      "schon mal",
+      "schon einmal",
+      "schon",
+      "mal"
+     ],
+     "tr": "Hiç hastanede kaldınız mı?",
+     "hint_tr": "Hiç kaldınız mı derken **Waren Sie jemals** diye sorarsın."
+    },
+    {
+     "de": "Warst du ___ bei Luka im Salon?",
+     "answer": "jemals",
+     "also_ok": [
+      "je",
+      "schon mal",
+      "schon einmal",
+      "schon",
+      "mal"
+     ],
+     "tr": "Hiç Luka'nın salonuna gittin mi?",
+     "hint_tr": "Hiç gittin mi derken **Warst du jemals** diye sorarsın."
+    },
+    {
+     "de": "Auf dem Stadtplatz sind heute mehr Leute als ___ zuvor.",
+     "answer": "jemals",
+     "also_ok": [
+      "je"
+     ],
+     "tr": "Şehir meydanında bugün hiç olmadığı kadar çok insan var.",
+     "hint_tr": "Hiç olmadığı kadar çok derken **mehr als jemals zuvor** dersin."
     }
    ]
   },
@@ -3020,6 +3127,19 @@
      "tr": "– Kaç kişiyiz? – Bir saniye, sayıyorum. Yedi.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:zählen:5",
+     "de": "Am Abend zählt die Verkäuferin das Geld.",
+     "tr": "Akşam satıcı kadın parayı sayıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:zählen:6",
+     "de": "– Hilfst du mir beim Umzug? – Klar, zähl auf mich!",
+     "tr": "– Taşınırken bana yardım eder misin? – Tabii, bana güven!",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -3051,19 +3171,31 @@
      "de": "Das Kind ___ bis hundert.",
      "answer": "zählt",
      "tr": "Çocuk yüze kadar sayıyor.",
-     "hint_tr": "**er**, **sie** ve **das Kind** ile **zählt** olur."
+     "hint_tr": "Çocuk sayıyor derken **Das Kind zählt** denir."
     },
     {
      "de": "Ich habe die Leute ___.",
      "answer": "gezählt",
      "tr": "İnsanları saydım.",
-     "hint_tr": "Geçmişi anlatırken **habe gezählt** denir."
+     "hint_tr": "Saydım derken **habe gezählt** denir."
     },
     {
      "de": "Du kannst ___ mich zählen.",
      "answer": "auf",
      "tr": "Bana güvenebilirsin.",
-     "hint_tr": "Güvenmek anlamında **auf mich zählen** denir."
+     "hint_tr": "Bana güvenebilirsin derken **Du kannst auf mich zählen** denir."
+    },
+    {
+     "de": "Derya ___ immer auf ihr Team.",
+     "answer": "zählt",
+     "tr": "Derya hep ekibine güveniyor.",
+     "hint_tr": "Ekibine güveniyor derken **zählt auf ihr Team** denir."
+    },
+    {
+     "de": "Wir ___ das Geld zusammen.",
+     "answer": "zählen",
+     "tr": "Parayı birlikte sayıyoruz.",
+     "hint_tr": "Sayıyoruz derken **Wir zählen** denir."
     }
    ]
   },
@@ -3106,8 +3238,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Beni de götür derken **Mitnimm mich** yanlış. Doğrusu **Nimm mich mit**. **mit** cümlenin sonuna gider.",
-    "Paket istiyorum derken **zum mitnehmen** yazmak yanlış. Doğrusu **zum Mitnehmen**. Burada büyük harfle yazılır."
+    "Beni de götür derken **Mitnimm mich** yanlış. Doğrusu **Nimm mich mit**. Cümlede **mitnehmen** ikiye ayrılır: **nimm** ve **mit**.",
+    "Yanınıza almak için derken **für Mitnehmen** yanlış. Doğrusu **zum Mitnehmen**."
    ],
    "examples": [
     {
@@ -3138,6 +3270,21 @@
      "layer": "alltag",
      "dialog": true,
      "img": "cashier handing takeaway bag to customer"
+    },
+    {
+     "id": "lx:mitnehmen:5",
+     "de": "Tobi nimmt mich morgen zur Arbeit mit.",
+     "tr": "Tobi yarın beni işe götürüyor.",
+     "layer": "hd",
+     "img": "coworkers sharing car ride"
+    },
+    {
+     "id": "lx:mitnehmen:6",
+     "de": "– Was nimmst du für unterwegs mit? – Ein Wasser und einen Apfel.",
+     "tr": "– Yol için yanına ne alıyorsun? – Bir su ve bir elma.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "apple and water in backpack"
     }
    ],
    "level": "A2",
@@ -3168,31 +3315,40 @@
      "de": "Ich ___ einen Kaffee ___.",
      "answer": "nehme … mit",
      "tr": "Yanımda bir kahve götürüyorum.",
-     "hint_tr": "**ich** ile **nehme** olur, **mit** sona gider."
+     "hint_tr": "Yanımda bir kahve götürüyorum derken **Ich nehme einen Kaffee mit** denir."
     },
     {
      "de": "___ du mich ___?",
      "answer": "Nimmst … mit",
      "tr": "Beni de götürür müsün?",
-     "hint_tr": "**du** ile **nimmst** olur, **mit** sona gider."
+     "hint_tr": "Beni de götürür müsün derken **Nimmst du mich mit?** denir."
     },
     {
      "de": "Er ___ das Handy immer ___.",
      "answer": "nimmt … mit",
      "tr": "Adam telefonu hep yanına alıyor.",
-     "hint_tr": "**er** ve **sie** ile **nimmt** olur, **mit** sona gider."
+     "hint_tr": "Adam telefonu hep yanına alıyor derken **Er nimmt das Handy immer mit** denir."
     },
     {
      "de": "Ich habe den Schirm ___.",
      "answer": "mitgenommen",
      "tr": "Şemsiyeyi yanıma aldım.",
-     "hint_tr": "Geçmişi anlatırken **habe mitgenommen** denir."
+     "hint_tr": "Yanıma aldım derken **habe mitgenommen** denir."
     },
     {
      "de": "Hier essen oder zum ___?",
      "answer": "Mitnehmen",
-     "tr": "Burada mı yiyeceksiniz, paket mi?",
-     "hint_tr": "Paket derken büyük harfle **zum Mitnehmen** denir."
+     "tr": "Burada mı yiyeceksiniz, yoksa yanınıza mı alacaksınız?",
+     "hint_tr": "Yanınıza almak için derken **zum Mitnehmen** denir."
+    },
+    {
+     "de": "Frau Schneider sagt: ___ Sie den Pass mit!",
+     "answer": "Nehmen",
+     "tr": "Schneider Hanım diyor ki: Pasaportu yanınıza alın!",
+     "hint_tr": "Pasaportu yanınıza alın derken **Nehmen Sie den Pass mit** denir.",
+     "also_ok": [
+      "Bringen"
+     ]
     }
    ]
   },
@@ -3254,6 +3410,19 @@
      "tr": "– Ne yapmalıyım? – Daha çok hareket, daha az stres.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:Bewegung:5",
+     "de": "Basti braucht jeden Tag Bewegung.",
+     "tr": "Basti'nin her gün harekete ihtiyacı var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Bewegung:6",
+     "de": "– Fährst du mit dem Rad zur Arbeit? – Ja, für die Bewegung.",
+     "tr": "– İşe bisikletle mi gidiyorsun? – Evet, hareket için.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -3273,7 +3442,7 @@
      "de": "Das ist ___ gute Bewegung.",
      "answer": "eine",
      "tr": "Bu iyi bir hareket.",
-     "hint_tr": "**Bewegung** ile **ein**, **eine** olur: **eine gute Bewegung**."
+     "hint_tr": "Hangi hareket olduğu belli değilse **eine Bewegung** denir."
     },
     {
      "de": "Mach ___ Bewegung noch einmal!",
@@ -3285,7 +3454,7 @@
      "de": "Sie brauchen mehr ___.",
      "answer": "Bewegung",
      "tr": "Daha çok harekete ihtiyacınız var.",
-     "hint_tr": "Spor anlamında **mehr Bewegung** denir, **Bewegungen** denmez."
+     "hint_tr": "Daha çok hareket derken **mehr Bewegung** denir."
     },
     {
      "de": "Bei ___ Bewegung tut mein Knie weh.",
@@ -3297,7 +3466,13 @@
      "de": "Machen Sie langsame ___!",
      "answer": "Bewegungen",
      "tr": "Yavaş hareketler yapın!",
-     "hint_tr": "Birden çok hareket: **Bewegungen**."
+     "hint_tr": "Yavaş hareketler derken **langsame Bewegungen** denir."
+    },
+    {
+     "de": "Dr. Weber sagt: ___ ist gut für das Herz.",
+     "answer": "Bewegung",
+     "tr": "Dr. Weber diyor ki: Hareket kalbe iyi gelir.",
+     "hint_tr": "Hareket derken **Bewegung** denir."
     }
    ]
   },
@@ -3365,6 +3540,19 @@
      "tr": "– Bunu hissediyor musunuz? – Evet, biraz.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:spüren:5",
+     "de": "Nach dem Training spürt Basti seine Beine.",
+     "tr": "Antrenmandan sonra Basti bacaklarını hissediyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:spüren:6",
+     "de": "– Tut die Spritze weh? – Nein, ich spür gar nichts.",
+     "tr": "– İğne acıtıyor mu? – Hayır, hiçbir şey hissetmiyorum.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -3384,25 +3572,57 @@
      "de": "Ich ___ die Wirkung noch nicht.",
      "answer": "spüre",
      "tr": "Etkisini henüz hissetmiyorum.",
-     "hint_tr": "**ich** ile **spüren**, **spüre** olur."
+     "hint_tr": "**ich** ile **spüren**, **spüre** olur.",
+     "also_ok": [
+      "merke",
+      "fühle"
+     ]
     },
     {
      "de": "___ du schon etwas von der Tablette?",
      "answer": "Spürst",
      "tr": "Hapın etkisini hissediyor musun?",
-     "hint_tr": "**du** ile **spüren**, **spürst** olur."
+     "hint_tr": "**du** ile **spüren**, **spürst** olur.",
+     "also_ok": [
+      "Merkst"
+     ]
     },
     {
      "de": "Von der Spritze ___ man fast nichts.",
      "answer": "spürt",
      "tr": "İğne neredeyse hiç hissedilmiyor.",
-     "hint_tr": "**man** ile **spüren**, **spürt** olur."
+     "hint_tr": "**man** ile **spüren**, **spürt** olur.",
+     "also_ok": [
+      "merkt"
+     ]
     },
     {
      "de": "Ich habe von der Spritze nichts ___.",
      "answer": "gespürt",
      "tr": "İğneyi hiç hissetmedim.",
-     "hint_tr": "**Ich habe** ile **spüren**, **gespürt** olur."
+     "hint_tr": "Hiç hissetmedim derken **habe nichts gespürt** denir.",
+     "also_ok": [
+      "gemerkt"
+     ]
+    },
+    {
+     "de": "Herr Pichler ___ die Kälte im Rücken.",
+     "answer": "spürt",
+     "tr": "Pichler Bey soğuğu sırtında hissediyor.",
+     "hint_tr": "Pichler Bey hissediyor derken **Herr Pichler spürt** denir.",
+     "also_ok": [
+      "fühlt"
+     ]
+    },
+    {
+     "de": "___ Sie hier etwas?",
+     "answer": "Spüren",
+     "tr": "Burada bir şey hissediyor musunuz?",
+     "hint_tr": "Hissediyor musunuz derken **Spüren Sie** denir.",
+     "also_ok": [
+      "Fühlen",
+      "Merken"
+     ]
     }
    ]
   },
@@ -3580,6 +3800,19 @@
      "tr": "– Nasıl tanıştınız? – Almanca kursunda.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:kennenlernen:5",
+     "de": "Bei Luka im Salon lernt man viele Leute kennen.",
+     "tr": "Luka'nın salonunda birçok insanla tanışırsın.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:kennenlernen:6",
+     "de": "– Kennst du Basti? – Ja, wir haben uns im Fitnessstudio kennengelernt.",
+     "tr": "– Basti'yi tanıyor musun? – Evet, spor salonunda tanıştık.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -3599,25 +3832,37 @@
      "de": "Wir lernen uns ___.",
      "answer": "kennen",
      "tr": "Tanışıyoruz.",
-     "hint_tr": "**Wir lernen uns** dedikten sonra **kennen** sona gelir."
+     "hint_tr": "Tanışıyoruz derken **Wir lernen uns kennen** denir."
     },
     {
      "de": "Ich ___ ihn bei der Arbeit ___.",
      "answer": "lerne … kennen",
      "tr": "Adamla iş yerinde tanışıyorum.",
-     "hint_tr": "**ich** ile **lerne** olur, **kennen** sona gider."
+     "hint_tr": "Adamla tanışıyorum derken **Ich lerne ihn kennen** denir."
     },
     {
      "de": "Wo habt ihr euch ___?",
      "answer": "kennengelernt",
      "tr": "Nerede tanıştınız?",
-     "hint_tr": "Geçmişi anlatırken **habt kennengelernt** denir."
+     "hint_tr": "Nerede tanıştınız derken **Wo habt ihr euch kennengelernt?** denir."
     },
     {
      "de": "Schön, Sie ___!",
      "answer": "kennenzulernen",
      "tr": "Tanıştığımıza memnun oldum!",
-     "hint_tr": "Tanışınca **Schön, Sie kennenzulernen** dersin, **zu** ortaya girer."
+     "hint_tr": "Tanıştığımıza memnun oldum derken **Schön, Sie kennenzulernen** denir."
+    },
+    {
+     "de": "Ich habe Derya im Büro ___.",
+     "answer": "kennengelernt",
+     "tr": "Derya'yla ofiste tanıştım.",
+     "hint_tr": "Tanıştım derken **habe kennengelernt** denir."
+    },
+    {
+     "de": "Frau Brandl möchte die neuen Nachbarn ___.",
+     "answer": "kennenlernen",
+     "tr": "Brandl Hanım yeni komşularla tanışmak istiyor.",
+     "hint_tr": "Tanışmak istiyor derken **möchte kennenlernen** denir."
     }
    ]
   },
@@ -3728,7 +3973,7 @@
      "de": "Die Kinder rennen im Garten.",
      "tr": "Çocuklar bahçede koşuyor.",
      "layer": "hd",
-     "img": "children running in garden"
+     "img": "children running across lawn seen from behind"
     },
     {
      "id": "lx:rennen:3",
@@ -3744,6 +3989,21 @@
      "layer": "alltag",
      "dialog": true,
      "img": "out of breath man resting hands on knees"
+    },
+    {
+     "id": "lx:rennen:5",
+     "de": "Frau Huber rennt zum Telefon.",
+     "tr": "Huber Hanım telefona koşuyor.",
+     "layer": "hd",
+     "img": "woman hurrying to ringing phone"
+    },
+    {
+     "id": "lx:rennen:6",
+     "de": "– Wo warst du? – Ich bin zur Apotheke gerannt.",
+     "tr": "– Neredeydin? – Eczaneye koştum.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "man running toward pharmacy"
     }
    ],
    "level": "B1",
@@ -3791,7 +4051,25 @@
      "de": "Ich ___ zum Bus gerannt.",
      "answer": "bin",
      "tr": "Otobüse koştum.",
-     "hint_tr": "**gerannt** ile **habe** değil **bin** gelir."
+     "hint_tr": "Otobüse koştum derken **Ich bin zum Bus gerannt** denir."
+    },
+    {
+     "de": "Tobi ist zum Zug ___.",
+     "answer": "gerannt",
+     "also_ok": [
+      "gelaufen"
+     ],
+     "tr": "Tobi trene koştu.",
+     "hint_tr": "Koştu derken **ist gerannt** denir."
+    },
+    {
+     "de": "Es regnet, wir ___ nach Hause.",
+     "answer": "rennen",
+     "also_ok": [
+      "laufen"
+     ],
+     "tr": "Yağmur yağıyor, eve koşuyoruz.",
+     "hint_tr": "Koşuyoruz derken **Wir rennen** denir."
     }
    ]
   },
@@ -3851,6 +4129,19 @@
      "tr": "– Neredesin? – Yoldayım, on dakikaya oradayım.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:unterwegs:5",
+     "de": "Der Krankenwagen ist schon unterwegs.",
+     "tr": "Ambulans yolda bile.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:unterwegs:6",
+     "de": "– Hast du was zu essen dabei? – Ja, ein Brötchen für unterwegs.",
+     "tr": "– Yanında yiyecek bir şey var mı? – Evet, yol için bir ekmek.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -3877,13 +4168,31 @@
      "de": "Er ist beruflich viel ___.",
      "answer": "unterwegs",
      "tr": "Adam iş için çok yolculuk yapıyor.",
-     "hint_tr": "Sık yolculuk yapan için **viel unterwegs** denir."
+     "hint_tr": "Çok yolculuk yapıyor derken **ist viel unterwegs** denir."
     },
     {
      "de": "Ein Brötchen für ___, bitte.",
      "answer": "unterwegs",
      "tr": "Yol için bir ekmek, lütfen.",
      "hint_tr": "Yol için derken **für unterwegs** denir."
+    },
+    {
+     "de": "Ihr Paket ist schon ___.",
+     "answer": "unterwegs",
+     "tr": "Paketiniz yolda bile.",
+     "hint_tr": "Paketiniz yolda derken **Ihr Paket ist unterwegs** denir."
+    },
+    {
+     "de": "Wir waren den ganzen Tag ___.",
+     "answer": "unterwegs",
+     "tr": "Bütün gün yoldaydık.",
+     "hint_tr": "Yoldaydık derken **waren unterwegs** denir."
+    },
+    {
+     "de": "Tobi, bist du schon ___?",
+     "answer": "unterwegs",
+     "tr": "Tobi, yola çıktın mı?",
+     "hint_tr": "Yola çıktın mı derken **Bist du schon unterwegs?** denir."
     }
    ]
   },
@@ -3944,6 +4253,19 @@
      "tr": "– Neden bu kadar geç kaldın? – Arabayla sorun yaşadım.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:Ärger:5",
+     "de": "Herr Wimmer hat heute Ärger mit einem Kunden.",
+     "tr": "Wimmer Bey'in bugün bir müşteriyle başı dertte.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Ärger:6",
+     "de": "– Gab's Ärger mit dem Chef? – Nein, alles gut.",
+     "tr": "– Şefle sorun mu oldu? – Hayır, her şey yolunda.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -3963,7 +4285,12 @@
      "de": "Ich habe ___ mit dem Vermieter.",
      "answer": "Ärger",
      "tr": "Ev sahibiyle başım dertte.",
-     "hint_tr": "Başım dertte: **Ich habe Ärger**, önüne **einen** gelmez."
+     "hint_tr": "Başım dertte derken **Ich habe Ärger** denir.",
+     "also_ok": [
+      "Probleme",
+      "Streit",
+      "Stress"
+     ]
     },
     {
      "de": "Mach ___ Ärger!",
@@ -3976,6 +4303,38 @@
      "answer": "Der",
      "tr": "Komşuyla olan dert sonunda bitti.",
      "hint_tr": "Hangi dert olduğu belliyse **der Ärger** denir."
+    },
+    {
+     "de": "Tobi hat ___ mit seinem Vermieter.",
+     "answer": "Ärger",
+     "tr": "Tobi'nin ev sahibiyle başı dertte.",
+     "hint_tr": "Başı dertte derken **hat Ärger** denir.",
+     "also_ok": [
+      "Probleme",
+      "Streit",
+      "Stress"
+     ]
+    },
+    {
+     "de": "Wir wollen keinen ___ mit den Nachbarn.",
+     "answer": "Ärger",
+     "tr": "Komşularla sorun istemiyoruz.",
+     "hint_tr": "Sorun istemiyoruz derken **wollen keinen Ärger** denir.",
+     "also_ok": [
+      "Streit",
+      "Stress"
+     ]
+    },
+    {
+     "de": "Beim Müll gibt es oft ___ mit Herrn Pichler.",
+     "answer": "Ärger",
+     "tr": "Çöp konusunda Pichler Bey'le sık sık sorun çıkıyor.",
+     "hint_tr": "Sorun çıkıyor derken **Es gibt Ärger** denir.",
+     "also_ok": [
+      "Probleme",
+      "Streit",
+      "Stress"
+     ]
     }
    ]
   },
@@ -3993,7 +4352,7 @@
     },
     {
      "de": "auf meine Weise",
-     "tr": "kendi yöntemimle"
+     "tr": "kendi bildiğim şekilde"
     },
     {
      "de": "auf diese Art und Weise",
@@ -4026,7 +4385,7 @@
     {
      "id": "lx:Weise:2",
      "de": "Jeder lernt auf seine Weise.",
-     "tr": "Herkes kendi yöntemiyle öğrenir.",
+     "tr": "Herkes kendi bildiği şekilde öğrenir.",
      "layer": "hd"
     },
     {
@@ -4038,7 +4397,20 @@
     {
      "id": "lx:Weise:4",
      "de": "– Wie hast du das gemacht? – Auf meine Weise.",
-     "tr": "– Bunu nasıl yaptın? – Kendi yöntemimle.",
+     "tr": "– Bunu nasıl yaptın? – Kendi bildiğim şekilde.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:Weise:5",
+     "de": "Herr Pichler macht alles auf seine Weise.",
+     "tr": "Pichler Bey her şeyi kendi bildiği şekilde yapıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Weise:6",
+     "de": "– So geht das nicht. – Dann versuchen wir es auf andere Weise.",
+     "tr": "– Böyle olmaz. – O zaman başka bir şekilde deneyelim.",
      "layer": "alltag",
      "dialog": true
     }
@@ -4052,32 +4424,50 @@
    "exp": {
     "anlam_tr": "Bir işin nasıl yapıldığını, yolunu söyler.",
     "parcalar": [],
-    "ipucu_tr": "Kendi yöntemimle derken **auf meine Weise** dersin."
+    "ipucu_tr": "Kendi bildiğim şekilde derken **auf meine Weise** dersin."
    },
    "forms": [
     {
      "de": "___ diese Weise geht es schneller.",
      "answer": "Auf",
      "tr": "Bu şekilde daha hızlı olur.",
-     "hint_tr": "Bu şekilde: **auf diese Weise**."
+     "hint_tr": "Bu şekilde derken **auf diese Weise** denir."
     },
     {
      "de": "Auf diese Art und ___ klappt es.",
      "answer": "Weise",
      "tr": "Bu şekilde iş olur.",
-     "hint_tr": "Bu şekilde: **auf diese Art und Weise**."
+     "hint_tr": "Bu şekilde derken **auf diese Art und Weise** denir."
     },
     {
      "de": "Auf ___ Weise hast du das gemacht?",
      "answer": "welche",
-     "tr": "Bunu hangi yolla yaptın?",
-     "hint_tr": "Hangi yolla: **auf welche Weise**."
+     "tr": "Bunu ne şekilde yaptın?",
+     "hint_tr": "Ne şekilde derken **auf welche Weise** denir."
     },
     {
      "de": "Jeder lernt auf ___ Weise.",
      "answer": "seine",
-     "tr": "Herkes kendi yöntemiyle öğrenir.",
-     "hint_tr": "**auf** dedikten sonra **seine Weise** olduğu gibi kalır."
+     "tr": "Herkes kendi bildiği şekilde öğrenir.",
+     "hint_tr": "Kendi bildiği şekilde derken **auf seine Weise** denir."
+    },
+    {
+     "de": "Derya erklärt es auf ihre ___.",
+     "answer": "Weise",
+     "tr": "Derya bunu kendi bildiği şekilde anlatıyor.",
+     "hint_tr": "Kendi bildiği şekilde derken **auf ihre Weise** denir."
+    },
+    {
+     "de": "Das geht auch auf andere ___.",
+     "answer": "Weise",
+     "tr": "Bu başka bir şekilde de olur.",
+     "hint_tr": "Başka bir şekilde derken **auf andere Weise** denir."
+    },
+    {
+     "de": "Auf diese ___ sparen wir Zeit.",
+     "answer": "Weise",
+     "tr": "Bu şekilde zaman kazanıyoruz.",
+     "hint_tr": "Bu şekilde derken **auf diese Weise** denir."
     }
    ]
   },
@@ -4123,8 +4513,8 @@
    "examples": [
     {
      "id": "lx:beenden:1",
-     "de": "Ich habe meine Ausbildung letztes Jahr beendet.",
-     "tr": "Meslek eğitimimi geçen yıl bitirdim.",
+     "de": "Anna hat ihre Ausbildung letztes Jahr beendet.",
+     "tr": "Anna meslek eğitimini geçen yıl bitirdi.",
      "layer": "hd"
     },
     {
@@ -4143,6 +4533,19 @@
      "id": "lx:beenden:4",
      "de": "– Wann beendest du den Kurs? – Im Juni.",
      "tr": "– Kursu ne zaman bitiriyorsun? – Haziranda.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:beenden:5",
+     "de": "Derya hat das Gespräch mit dem Kunden beendet.",
+     "tr": "Derya müşteriyle konuşmayı bitirdi.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:beenden:6",
+     "de": "– Können wir das Training beenden? – Noch zehn Minuten!",
+     "tr": "– Antrenmanı bitirebilir miyiz? – On dakika daha!",
      "layer": "alltag",
      "dialog": true
     }
@@ -4175,13 +4578,25 @@
      "de": "Sie ___ ihre Ausbildung im Juni.",
      "answer": "beendet",
      "tr": "Kadın meslek eğitimini haziranda bitiriyor.",
-     "hint_tr": "**sie** ile **beenden**, **beendet** olur."
+     "hint_tr": "Kadın bitiriyor derken **Sie beendet** denir."
     },
     {
      "de": "Ich habe die Schule ___.",
      "answer": "beendet",
      "tr": "Okulu bitirdim.",
-     "hint_tr": "**Ich habe** ile **beenden**, **beendet** olur, başına **ge** gelmez."
+     "hint_tr": "Okulu bitirdim derken **habe beendet** denir."
+    },
+    {
+     "de": "Herr Wimmer ___ das Gespräch schnell.",
+     "answer": "beendet",
+     "tr": "Wimmer Bey konuşmayı çabuk bitiriyor.",
+     "hint_tr": "Wimmer Bey bitiriyor derken **Herr Wimmer beendet** denir."
+    },
+    {
+     "de": "Für heute ___ wir die Arbeit.",
+     "answer": "beenden",
+     "tr": "Bugünlük işi bitiriyoruz.",
+     "hint_tr": "Bitiriyoruz derken **wir beenden** denir."
     }
    ]
   },
@@ -4338,8 +4753,8 @@
     },
     {
      "id": "lx:Tasche:2",
-     "de": "Ist das Ihre Tasche?",
-     "tr": "Bu sizin çantanız mı?",
+     "de": "Wem gehört die Tasche hier?",
+     "tr": "Buradaki çanta kimin?",
      "layer": "hd",
      "img": "forgotten bag on train seat"
     },
@@ -4357,6 +4772,21 @@
      "layer": "alltag",
      "dialog": true,
      "img": "keys in jacket pocket"
+    },
+    {
+     "id": "lx:Tasche:5",
+     "de": "Dr. Weber stellt seine Tasche auf den Tisch.",
+     "tr": "Dr. Weber çantasını masaya koyuyor.",
+     "layer": "hd",
+     "img": "doctor bag on desk"
+    },
+    {
+     "id": "lx:Tasche:6",
+     "de": "– Brauchen Sie eine Tüte? – Nein danke, ich hab 'ne Tasche.",
+     "tr": "– Poşet ister misiniz? – Hayır teşekkürler, çantam var.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "cloth bag at supermarket checkout"
     }
    ],
    "level": "A1",
@@ -4375,7 +4805,7 @@
      "de": "Das ist ___ neue Tasche.",
      "answer": "eine",
      "tr": "Bu yeni bir çanta.",
-     "hint_tr": "Tanıtırken **Das ist eine Tasche** denir."
+     "hint_tr": "Hangi çanta olduğu belli değilse **eine Tasche** denir."
     },
     {
      "de": "Ich suche ___ Tasche für die Arbeit.",
@@ -4384,10 +4814,10 @@
      "hint_tr": "**Ich suche** dedikten sonra **eine Tasche** olduğu gibi kalır."
     },
     {
-     "de": "Frau Weber, ist das ___ Tasche?",
+     "de": "Frau Brandl, ist das ___ Tasche?",
      "answer": "Ihre",
-     "tr": "Weber Hanım, bu sizin çantanız mı?",
-     "hint_tr": "Kibar konuşurken **Ihre Tasche** denir, sizin çantanız."
+     "tr": "Brandl Hanım, bu sizin çantanız mı?",
+     "hint_tr": "Sizin çantanız derken **Ihre Tasche** denir."
     },
     {
      "de": "Mein Handy ist in ___ Tasche.",
@@ -4400,6 +4830,18 @@
      "answer": "Taschen",
      "tr": "Yanımda iki çanta var.",
      "hint_tr": "İki çanta için **zwei Taschen** denir."
+    },
+    {
+     "de": "Der Schlüssel ist in meiner ___.",
+     "answer": "Tasche",
+     "tr": "Anahtar çantamda.",
+     "hint_tr": "Çantamda derken **in meiner Tasche** denir."
+    },
+    {
+     "de": "Derya trägt eine schwere ___.",
+     "answer": "Tasche",
+     "tr": "Derya ağır bir çanta taşıyor.",
+     "hint_tr": "Ağır bir çanta derken **eine schwere Tasche** denir."
     }
    ]
   },
@@ -4459,6 +4901,19 @@
      "tr": "– Sigara içebilir miyim? – Ben karşıyım, kusura bakma.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:dagegen:5",
+     "de": "Herr Wimmer hat nichts dagegen, wenn Sie früher gehen.",
+     "tr": "Erken çıkmanıza Wimmer Bey'in itirazı yok.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:dagegen:6",
+     "de": "– Wollen wir zu Fuß gehen? – Nichts dagegen!",
+     "tr": "– Yürüyerek gidelim mi? – İtirazım yok!",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -4477,19 +4932,37 @@
      "de": "Ich bin ___.",
      "answer": "dagegen",
      "tr": "Buna karşıyım.",
-     "hint_tr": "Buna karşıyım: **Ich bin dagegen**."
+     "hint_tr": "Buna karşıyım derken **Ich bin dagegen** denir."
     },
     {
      "de": "Haben Sie etwas ___, wenn ich das Fenster öffne?",
      "answer": "dagegen",
      "tr": "Pencereyi açmamın sakıncası var mı?",
-     "hint_tr": "Sakıncası var mı: **Haben Sie etwas dagegen**."
+     "hint_tr": "Sakıncası var mı derken **Haben Sie etwas dagegen?** denir."
     },
     {
      "de": "Ich habe nichts ___.",
      "answer": "dagegen",
      "tr": "Bir itirazım yok.",
-     "hint_tr": "İtirazım yok: **Ich habe nichts dagegen**."
+     "hint_tr": "İtirazım yok derken **Ich habe nichts dagegen** denir."
+    },
+    {
+     "de": "Frau Brandl hat nichts ___, wenn wir feiern.",
+     "answer": "dagegen",
+     "tr": "Kutlama yapmamıza Brandl Hanım'ın itirazı yok.",
+     "hint_tr": "İtirazı yok derken **hat nichts dagegen** denir."
+    },
+    {
+     "de": "Ich mache das Radio an. Hast du was ___?",
+     "answer": "dagegen",
+     "tr": "Radyoyu açıyorum. Bir itirazın var mı?",
+     "hint_tr": "Bir itirazın var mı derken **Hast du was dagegen?** denir."
+    },
+    {
+     "de": "Tobi will Pizza, aber Derya ist ___.",
+     "answer": "dagegen",
+     "tr": "Tobi pizza istiyor ama Derya buna karşı.",
+     "hint_tr": "Buna karşı derken **ist dagegen** denir."
     }
    ]
   },
@@ -4557,6 +5030,19 @@
      "tr": "– Mektubumu aldınız mı? – Evet, dün.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:erhalten:5",
+     "de": "Herr Wimmer hat Ihre Nachricht erhalten.",
+     "tr": "Wimmer Bey mesajınızı aldı.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:erhalten:6",
+     "de": "– Haben Sie die Rechnung erhalten? – Nein, noch nicht.",
+     "tr": "– Faturayı aldınız mı? – Hayır, henüz almadım.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -4591,7 +5077,7 @@
       "gekriegt"
      ],
      "tr": "E-postanızı aldım.",
-     "hint_tr": "Geçmişi anlatırken **habe erhalten** denir, başa **ge** gelmez."
+     "hint_tr": "E-postanızı aldım derken **habe erhalten** denir."
     },
     {
      "de": "Jeder Kunde ___ eine Rechnung.",
@@ -4601,7 +5087,7 @@
       "kriegt"
      ],
      "tr": "Her müşteri bir fatura alıyor.",
-     "hint_tr": "**jeder Kunde** ile **erhalten**, **erhält** olur, **a** harfi **ä** olur."
+     "hint_tr": "Her müşteri alıyor derken **Jeder Kunde erhält** denir."
     },
     {
      "de": "Ich ___ jeden Monat einen Brief von der Bank.",
@@ -4612,6 +5098,26 @@
      ],
      "tr": "Her ay bankadan bir mektup alıyorum.",
      "hint_tr": "**ich** ile **erhalten**, **erhalte** olur."
+    },
+    {
+     "de": "Haben Sie meine Unterlagen ___?",
+     "answer": "erhalten",
+     "also_ok": [
+      "bekommen",
+      "gekriegt"
+     ],
+     "tr": "Belgelerimi aldınız mı?",
+     "hint_tr": "Belgelerimi aldınız mı derken **Haben Sie meine Unterlagen erhalten?** denir."
+    },
+    {
+     "de": "Frau Brandl hat das Paket ___.",
+     "answer": "erhalten",
+     "also_ok": [
+      "bekommen",
+      "gekriegt"
+     ],
+     "tr": "Brandl Hanım paketi aldı.",
+     "hint_tr": "Paketi aldı derken **hat das Paket erhalten** denir."
     }
    ]
   },
@@ -4681,6 +5187,19 @@
      "tr": "– Adam yine hasta. – Bu beni şaşırtmıyor.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:wundern:5",
+     "de": "Herr Pichler wundert sich über den vielen Müll.",
+     "tr": "Pichler Bey bu kadar çöpe şaşırıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:wundern:6",
+     "de": "– Tobi zieht um. – Echt? Das wundert mich.",
+     "tr": "– Tobi taşınıyor. – Gerçekten mi? Bu beni şaşırtıyor.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -4711,13 +5230,28 @@
      "de": "Ich wundere ___ über ihn.",
      "answer": "mich",
      "tr": "Adama şaşırıyorum.",
-     "hint_tr": "**Ich wundere** dedikten sonra şaşıran kendin olduğun için **mich** gelir."
+     "hint_tr": "Şaşırıyorum derken **Ich wundere mich** denir."
     },
     {
      "de": "Ich habe mich über die Rechnung ___.",
      "answer": "gewundert",
      "tr": "Faturaya şaşırdım.",
-     "hint_tr": "**habe** ile **wundern**, **gewundert** olur."
+     "hint_tr": "Şaşırdım derken **habe mich gewundert** denir."
+    },
+    {
+     "de": "Seine Antwort ___ mich.",
+     "answer": "wundert",
+     "tr": "Adamın cevabı beni şaşırtıyor.",
+     "hint_tr": "Beni şaşırtıyor derken **wundert mich** denir.",
+     "also_ok": [
+      "überrascht"
+     ]
+    },
+    {
+     "de": "Frau Brandl wundert ___ über den Schnee.",
+     "answer": "sich",
+     "tr": "Brandl Hanım yağan kara şaşırıyor.",
+     "hint_tr": "Brandl Hanım şaşırıyor derken **Frau Brandl wundert sich** denir."
     }
    ]
   },
@@ -4900,6 +5434,21 @@
      "layer": "alltag",
      "dialog": true,
      "img": "half packed suitcase in bedroom"
+    },
+    {
+     "id": "lx:packen:5",
+     "de": "Basti packt seine Sporttasche.",
+     "tr": "Basti spor çantasını hazırlıyor.",
+     "layer": "hd",
+     "img": "man packing gym bag"
+    },
+    {
+     "id": "lx:packen:6",
+     "de": "– Schaffst du das bis morgen? – Klar, das pack ich!",
+     "tr": "– Bunu yarına kadar yapabilir misin? – Tabii, başarırım!",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "smiling woman giving thumbs up"
     }
    ],
    "level": "A2",
@@ -4929,16 +5478,31 @@
      "hint_tr": "**du** ile **packst** olur."
     },
     {
-     "de": "Mama ___ die Tasche.",
+     "de": "Derya ___ die Tasche für die Reise.",
      "answer": "packt",
-     "tr": "Annem çantayı hazırlıyor.",
-     "hint_tr": "**er** ve **sie** ile **packt** olur."
+     "tr": "Derya yolculuk için çantayı hazırlıyor.",
+     "hint_tr": "Derya hazırlıyor derken **Derya packt** denir."
     },
     {
      "de": "Hast du schon ___?",
      "answer": "gepackt",
      "tr": "Valizini hazırladın mı?",
-     "hint_tr": "Geçmişi anlatırken **hast gepackt** denir."
+     "hint_tr": "Hazırladın mı derken **Hast du gepackt?** denir."
+    },
+    {
+     "de": "Tobi ___ seine Sachen.",
+     "answer": "packt",
+     "tr": "Tobi eşyalarını topluyor.",
+     "hint_tr": "Eşyalarını topluyor derken **packt seine Sachen** denir."
+    },
+    {
+     "de": "Keine Angst, das ___ du!",
+     "answer": "packst",
+     "tr": "Korkma, başarırsın!",
+     "hint_tr": "Başarırsın derken **Das packst du** denir.",
+     "also_ok": [
+      "schaffst"
+     ]
     }
    ]
   },
@@ -5000,6 +5564,19 @@
      "tr": "– Daha geç de gelebilir miyim? – Evet, bu imkân var.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:Möglichkeit:5",
+     "de": "Frau Huber, gibt es eine Möglichkeit, heute noch zu kommen?",
+     "tr": "Huber Hanım, bugün gelme imkânı var mı?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Möglichkeit:6",
+     "de": "– Wie komme ich nach Hause? – Die beste Möglichkeit ist der Bus.",
+     "tr": "– Eve nasıl giderim? – En iyi yol otobüs.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -5019,7 +5596,7 @@
      "de": "Das ist ___ gute Möglichkeit.",
      "answer": "eine",
      "tr": "Bu iyi bir imkân.",
-     "hint_tr": "**Möglichkeit** ile **ein**, **eine** olur: **eine gute Möglichkeit**."
+     "hint_tr": "Hangi imkân olduğu belli değilse **eine Möglichkeit** denir."
     },
     {
      "de": "Ich nutze ___ Möglichkeit.",
@@ -5031,13 +5608,25 @@
      "de": "Wir haben ___ andere Möglichkeit.",
      "answer": "keine",
      "tr": "Başka çaremiz yok.",
-     "hint_tr": "**Wir haben** dedikten sonra yok demek için **keine Möglichkeit** olur."
+     "hint_tr": "Başka çaremiz yok derken **keine andere Möglichkeit** denir."
     },
     {
      "de": "Ich sehe zwei ___.",
      "answer": "Möglichkeiten",
      "tr": "İki imkân görüyorum.",
-     "hint_tr": "İki imkân: **zwei Möglichkeiten**."
+     "hint_tr": "İki imkân derken **zwei Möglichkeiten** denir."
+    },
+    {
+     "de": "Gibt es die ___, später zu kommen?",
+     "answer": "Möglichkeit",
+     "tr": "Daha geç gelme imkânı var mı?",
+     "hint_tr": "İmkân var mı derken **Gibt es die Möglichkeit** denir."
+    },
+    {
+     "de": "Frau Schneider sagt: Es gibt nur eine ___.",
+     "answer": "Möglichkeit",
+     "tr": "Schneider Hanım diyor ki: Tek bir imkân var.",
+     "hint_tr": "Tek bir imkân derken **nur eine Möglichkeit** denir."
     }
    ]
   },
@@ -5105,6 +5694,19 @@
      "tr": "– Mendiller nerede? – Torpido gözüne bir uzan.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:greifen:5",
+     "de": "Derya greift nach ihrer Tasche und geht.",
+     "tr": "Derya çantasına uzanıp gidiyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:greifen:6",
+     "de": "– Kannst du das Buch oben greifen? – Nein, zu hoch.",
+     "tr": "– Yukarıdaki kitaba uzanabilir misin? – Hayır, çok yüksek.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -5135,13 +5737,31 @@
      "de": "Das Kind hat nach dem Ball ___.",
      "answer": "gegriffen",
      "tr": "Çocuk topa uzandı.",
-     "hint_tr": "**hat** ile **greifen**, **gegriffen** olur."
+     "hint_tr": "Topa uzandı derken **hat nach dem Ball gegriffen** denir."
     },
     {
      "de": "Greif mal ___ die Tasche!",
      "answer": "in",
      "tr": "Elini çantaya at!",
-     "hint_tr": "Bir şeyin içine uzanırken **in** gelir: **in die Tasche greifen**."
+     "hint_tr": "Elini çantaya at derken **Greif in die Tasche** denir."
+    },
+    {
+     "de": "Basti ___ nach seiner Wasserflasche.",
+     "answer": "greift",
+     "tr": "Basti su şişesine uzanıyor.",
+     "hint_tr": "Basti uzanıyor derken **Basti greift** denir."
+    },
+    {
+     "de": "Ich greife ___ dem Glas.",
+     "answer": "nach",
+     "tr": "Bardağa uzanıyorum.",
+     "hint_tr": "Bardağa uzanıyorum derken **Ich greife nach dem Glas** denir."
+    },
+    {
+     "de": "Frau Brandl ___ gleich zum Telefon.",
+     "answer": "greift",
+     "tr": "Brandl Hanım hemen telefonu eline alıyor.",
+     "hint_tr": "Telefonu eline alıyor derken **greift zum Telefon** denir."
     }
    ]
   },
@@ -5177,8 +5797,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Evliyim derken **Ich habe verheiratet** yanlış. Doğrusu **Ich bin verheiratet**. Evli olmak **sein** ile söylenir.",
-    "Geçen yıl evlendik derken **Wir sind letztes Jahr verheiratet** yanlış. Doğrusu **Wir haben letztes Jahr geheiratet**. **verheiratet** evli demektir. Evlenmek **heiraten** olur, geçmişi **haben** ile anlatılır."
+    "Anna evli derken **Anna hat verheiratet** yanlış. Doğrusu **Anna ist verheiratet**. Evli olduğunu söylerken **hat** değil **ist** gelir.",
+    "Müller'ler geçen yıl evlendi derken **Die Müllers sind letztes Jahr verheiratet** yanlış. Doğrusu **Die Müllers haben letztes Jahr geheiratet**. **verheiratet** evli demektir. Evlenmek **heiraten** olur, geçmişi **haben** ile anlatılır."
    ],
    "examples": [
     {
@@ -5189,8 +5809,8 @@
     },
     {
      "id": "lx:verheiratet:2",
-     "de": "Wir sind seit fünf Jahren verheiratet.",
-     "tr": "Beş yıldır evliyiz.",
+     "de": "Die Müllers sind seit fünf Jahren verheiratet.",
+     "tr": "Müller'ler beş yıldır evli.",
      "layer": "hd"
     },
     {
@@ -5201,8 +5821,21 @@
     },
     {
      "id": "lx:verheiratet:4",
-     "de": "– Sind Sie verheiratet? – Nein, ledig.",
-     "tr": "– Evli misiniz? – Hayır, bekârım.",
+     "de": "– Anna, bist du verheiratet? – Nein, ledig.",
+     "tr": "– Anna, evli misin? – Hayır, bekârım.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:verheiratet:5",
+     "de": "Im Formular steht: verheiratet, ledig oder geschieden.",
+     "tr": "Formda yazıyor: evli, bekâr ya da boşanmış.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:verheiratet:6",
+     "de": "– Ist Max verheiratet? – Nein, er hat eine Freundin.",
+     "tr": "– Max evli mi? – Hayır, kız arkadaşı var.",
      "layer": "alltag",
      "dialog": true
     }
@@ -5228,22 +5861,34 @@
      "hint_tr": "Evli misiniz derken **Sind Sie verheiratet?** denir."
     },
     {
-     "de": "Wir sind seit fünf Jahren ___.",
+     "de": "Die Müllers sind seit fünf Jahren ___.",
      "answer": "verheiratet",
-     "tr": "Beş yıldır evliyiz.",
-     "hint_tr": "**sind** dedikten sonra **verheiratet** hiç değişmez."
+     "tr": "Müller'ler beş yıldır evli.",
+     "hint_tr": "Beş yıldır evli derken **seit fünf Jahren verheiratet** denir."
     },
     {
      "de": "Sie ist ___ einem Arzt verheiratet.",
      "answer": "mit",
      "tr": "Kadın bir doktorla evli.",
-     "hint_tr": "Kiminle evli olduğunu **mit** ile söylersin."
+     "hint_tr": "Bir doktorla evli derken **mit einem Arzt verheiratet** denir."
     },
     {
      "de": "Das ist ein ___ Paar.",
      "answer": "verheiratetes",
      "tr": "Bu evli bir çift.",
-     "hint_tr": "**ein Paar** önünde **verheiratetes** olur."
+     "hint_tr": "Evli bir çift derken **ein verheiratetes Paar** denir."
+    },
+    {
+     "de": "Max ist nicht ___.",
+     "answer": "verheiratet",
+     "tr": "Max evli değil.",
+     "hint_tr": "Evli değil derken **nicht verheiratet** denir."
+    },
+    {
+     "de": "Frau Schneider fragt: Sind Sie ___ oder ledig?",
+     "answer": "verheiratet",
+     "tr": "Schneider Hanım soruyor: Evli misiniz, bekâr mı?",
+     "hint_tr": "Evli derken **verheiratet** denir."
     }
    ]
   },
@@ -5411,6 +6056,19 @@
      "tr": "– Yemekte ne var? – Sürpriz olsun!",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:überraschen:5",
+     "de": "Frau Brandl überrascht mich mit einem Besuch.",
+     "tr": "Brandl Hanım bana bir ziyaretle sürpriz yapıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:überraschen:6",
+     "de": "– Herr Wimmer im Kostüm? – Ja, das hat alle überrascht!",
+     "tr": "– Wimmer Bey kostümlü mü? – Evet, bu herkesi şaşırttı!",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -5448,7 +6106,19 @@
      "de": "Ich bin echt ___.",
      "answer": "überrascht",
      "tr": "Gerçekten şaşırdım.",
-     "hint_tr": "Şaşırdım: **Ich bin überrascht**."
+     "hint_tr": "Şaşırdım derken **Ich bin überrascht** denir."
+    },
+    {
+     "de": "Wir ___ Derya mit einem Kuchen.",
+     "answer": "überraschen",
+     "tr": "Derya'ya bir pastayla sürpriz yapıyoruz.",
+     "hint_tr": "Sürpriz yapıyoruz derken **Wir überraschen** denir."
+    },
+    {
+     "de": "Das Wetter hat uns ___.",
+     "answer": "überrascht",
+     "tr": "Hava bizi şaşırttı.",
+     "hint_tr": "Bizi şaşırttı derken **hat uns überrascht** denir."
     }
    ]
   },
@@ -5513,6 +6183,19 @@
      "tr": "– Yarın izinli misin? – Hayır, nöbetteyim.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:Dienst:5",
+     "de": "Welche Apotheke hat heute Dienst?",
+     "tr": "Bugün hangi eczane nöbetçi?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Dienst:6",
+     "de": "– Kommst du mit ins Kino? – Geht nicht, ich hab Dienst.",
+     "tr": "– Sinemaya geliyor musun? – Olmaz, nöbetteyim.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -5532,13 +6215,16 @@
      "de": "Ich habe heute ___.",
      "answer": "Dienst",
      "tr": "Bugün nöbetteyim.",
-     "hint_tr": "Nöbetteyim: **Ich habe Dienst**, önüne **einen** gelmez."
+     "hint_tr": "Nöbetteyim derken **Ich habe Dienst** denir."
     },
     {
      "de": "___ Dienst beginnt um sechs Uhr.",
      "answer": "Der",
      "tr": "Nöbet saat altıda başlıyor.",
-     "hint_tr": "Hangi nöbet olduğu belliyse **der Dienst** denir."
+     "hint_tr": "Hangi nöbet olduğu belliyse **der Dienst** denir.",
+     "also_ok": [
+      "Mein"
+     ]
     },
     {
      "de": "Nach ___ Dienst bin ich müde.",
@@ -5550,7 +6236,25 @@
      "de": "Ich bin heute ___ Dienst.",
      "answer": "im",
      "tr": "Bugün görevdeyim.",
-     "hint_tr": "**in** ile **dem** birleşir: **im Dienst**."
+     "hint_tr": "Görevdeyim derken **Ich bin im Dienst** denir."
+    },
+    {
+     "de": "Dr. Weber hat am Wochenende keinen ___.",
+     "answer": "Dienst",
+     "tr": "Dr. Weber'in hafta sonu nöbeti yok.",
+     "hint_tr": "Nöbeti yok derken **hat keinen Dienst** denir."
+    },
+    {
+     "de": "Wann beginnt dein ___?",
+     "answer": "Dienst",
+     "tr": "Nöbetin ne zaman başlıyor?",
+     "hint_tr": "Nöbetin derken **dein Dienst** denir."
+    },
+    {
+     "de": "Tobi und ich tauschen den ___.",
+     "answer": "Dienst",
+     "tr": "Tobi'yle nöbeti değiştiriyoruz.",
+     "hint_tr": "Nöbeti değiştirmek derken **den Dienst tauschen** denir."
     }
    ]
   },
@@ -5616,6 +6320,19 @@
      "tr": "– Hayalin ne? – Kendi restoranım.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:Traum:5",
+     "de": "Heute Nacht hatte Tobi einen lustigen Traum.",
+     "tr": "Dün gece Tobi komik bir rüya gördü.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Traum:6",
+     "de": "– Schöne Träume! – Danke, gute Nacht!",
+     "tr": "– Tatlı rüyalar! – Teşekkürler, iyi geceler!",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -5652,13 +6369,25 @@
      "de": "___ Traum war ich wieder ein Kind.",
      "answer": "Im",
      "tr": "Rüyada yine çocuktum.",
-     "hint_tr": "**in** ile **dem** birleşir: **im Traum**."
+     "hint_tr": "Rüyada derken **im Traum** denir."
     },
     {
      "de": "Ich habe schlechte ___.",
      "answer": "Träume",
      "tr": "Kötü rüyalar görüyorum.",
-     "hint_tr": "Birden çok rüya: **Träume**, **a** yerine **ä** gelir."
+     "hint_tr": "Kötü rüyalar derken **schlechte Träume** denir."
+    },
+    {
+     "de": "Was ist dein ___?",
+     "answer": "Traum",
+     "tr": "Hayalin ne?",
+     "hint_tr": "Hayalin derken **dein Traum** denir."
+    },
+    {
+     "de": "Annas ___ ist ein eigenes Café.",
+     "answer": "Traum",
+     "tr": "Anna'nın hayali kendi kafesi.",
+     "hint_tr": "Anna'nın hayali derken **Annas Traum** denir."
     }
    ]
   },
@@ -5705,7 +6434,7 @@
      "de": "Die Kinder springen ins Wasser.",
      "tr": "Çocuklar suya atlıyor.",
      "layer": "hd",
-     "img": "children jumping into lake"
+     "img": "kids jumping into lake seen from behind"
     },
     {
      "id": "lx:springen:2",
@@ -5719,7 +6448,7 @@
      "de": "Spring!",
      "tr": "Atla!",
      "layer": "alltag",
-     "img": "child jumping on trampoline"
+     "img": "person jumping from rock into water"
     },
     {
      "id": "lx:springen:4",
@@ -5727,7 +6456,22 @@
      "tr": "– Atlamaya cesaretin var mı? – Tabii ki!",
      "layer": "alltag",
      "dialog": true,
-     "img": "boy standing on high diving board"
+     "img": "empty high diving board at pool"
+    },
+    {
+     "id": "lx:springen:5",
+     "de": "Basti springt vor Freude in die Luft.",
+     "tr": "Basti sevinçten havaya zıplıyor.",
+     "layer": "hd",
+     "img": "man jumping for joy outdoors"
+    },
+    {
+     "id": "lx:springen:6",
+     "de": "– Ist das Wasser kalt? – Egal, ich springe!",
+     "tr": "– Su soğuk mu? – Fark etmez, atlıyorum!",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "adult jumping into lake"
     }
    ],
    "level": "B1",
@@ -5763,7 +6507,19 @@
      "de": "Er ___ ins Wasser gesprungen.",
      "answer": "ist",
      "tr": "Adam suya atladı.",
-     "hint_tr": "**gesprungen** ile **hat** değil **ist** gelir."
+     "hint_tr": "Adam suya atladı derken **Er ist ins Wasser gesprungen** denir."
+    },
+    {
+     "de": "Wir ___ zusammen in den See.",
+     "answer": "springen",
+     "tr": "Birlikte göle atlıyoruz.",
+     "hint_tr": "Atlıyoruz derken **Wir springen** denir."
+    },
+    {
+     "de": "Tobi ist schnell aus dem Bett ___.",
+     "answer": "gesprungen",
+     "tr": "Tobi hızla yataktan fırladı.",
+     "hint_tr": "Yataktan fırladı derken **ist aus dem Bett gesprungen** denir."
     }
    ]
   },
@@ -5938,6 +6694,21 @@
      "layer": "alltag",
      "dialog": true,
      "img": "open window with curtains blowing in winter"
+    },
+    {
+     "id": "lx:Fenster:5",
+     "de": "Herr Pichler putzt die Fenster im Flur.",
+     "tr": "Pichler Bey koridordaki pencereleri siliyor.",
+     "layer": "hd",
+     "img": "man cleaning hallway window"
+    },
+    {
+     "id": "lx:Fenster:6",
+     "de": "– Kann ich am Fenster sitzen? – Klar, setz dich.",
+     "tr": "– Pencere kenarında oturabilir miyim? – Tabii, otur.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "seat by train window"
     }
    ],
    "level": "A1",
@@ -5956,25 +6727,37 @@
      "de": "Das ist ___ großes Fenster.",
      "answer": "ein",
      "tr": "Bu büyük bir pencere.",
-     "hint_tr": "Tanıtırken **Das ist ein Fenster** denir."
+     "hint_tr": "Hangi pencere olduğu belli değilse **ein Fenster** denir."
     },
     {
      "de": "Darf ich ___ Fenster aufmachen?",
      "answer": "das",
      "tr": "Pencereyi açabilir miyim?",
-     "hint_tr": "**aufmachen** ile **das Fenster** olduğu gibi kalır."
+     "hint_tr": "Hangi pencere olduğu belliyse **das Fenster** denir."
     },
     {
      "de": "Wir möchten einen Tisch ___ Fenster.",
      "answer": "am",
      "tr": "Pencere kenarında bir masa istiyoruz.",
-     "hint_tr": "**an** ile **dem** birleşir: **am Fenster**."
+     "hint_tr": "Pencere kenarında derken **am Fenster** denir."
     },
     {
      "de": "Die Wohnung hat vier ___.",
      "answer": "Fenster",
      "tr": "Dairenin dört penceresi var.",
-     "hint_tr": "Dört pencere için de **Fenster** denir, sonu değişmez."
+     "hint_tr": "Dört pencere derken **vier Fenster** denir."
+    },
+    {
+     "de": "Frau Brandl sitzt oft am ___.",
+     "answer": "Fenster",
+     "tr": "Brandl Hanım sık sık pencere kenarında oturuyor.",
+     "hint_tr": "Pencere kenarında derken **am Fenster** denir."
+    },
+    {
+     "de": "Im Bus ist ein ___ offen.",
+     "answer": "Fenster",
+     "tr": "Otobüste bir pencere açık.",
+     "hint_tr": "Bir pencere derken **ein Fenster** denir."
     }
    ]
   },
@@ -6025,8 +6808,8 @@
    "examples": [
     {
      "id": "lx:kochen:1",
-     "de": "Ich koche heute Abend türkisch.",
-     "tr": "Bu akşam Türk yemeği yapıyorum.",
+     "de": "Derya kocht heute Abend türkisch.",
+     "tr": "Derya bu akşam Türk yemeği yapıyor.",
      "layer": "hd",
      "img": "person cooking in home kitchen"
     },
@@ -6051,6 +6834,21 @@
      "layer": "alltag",
      "dialog": true,
      "img": "pot of soup on stove"
+    },
+    {
+     "id": "lx:kochen:5",
+     "de": "Am Wochenende kocht Tobi Nudeln.",
+     "tr": "Hafta sonu Tobi makarna yapıyor.",
+     "layer": "hd",
+     "img": "man cooking pasta at home"
+    },
+    {
+     "id": "lx:kochen:6",
+     "de": "– Was kochst du? – Reis mit Gemüse.",
+     "tr": "– Ne yemek yapıyorsun? – Sebzeli pilav.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "rice and vegetables in pan"
     }
    ],
    "level": "A1",
@@ -6082,13 +6880,28 @@
      "de": "Das Wasser ___.",
      "answer": "kocht",
      "tr": "Su kaynıyor.",
-     "hint_tr": "**er**, **sie** ve **das Wasser** ile **kocht** olur."
+     "hint_tr": "Su kaynıyor derken **Das Wasser kocht** denir."
     },
     {
      "de": "Ich habe Suppe ___.",
      "answer": "gekocht",
      "tr": "Çorba yaptım.",
-     "hint_tr": "Geçmişi anlatırken **habe gekocht** denir."
+     "hint_tr": "Çorba yaptım derken **habe gekocht** denir."
+    },
+    {
+     "de": "Frau Brandl ___ gern für ihre Nachbarn.",
+     "answer": "kocht",
+     "tr": "Brandl Hanım komşuları için yemek yapmayı seviyor.",
+     "hint_tr": "Brandl Hanım yemek yapıyor derken **Frau Brandl kocht** denir."
+    },
+    {
+     "de": "Wir ___ zusammen Kaffee.",
+     "answer": "kochen",
+     "tr": "Birlikte kahve yapıyoruz.",
+     "hint_tr": "Kahve yapıyoruz derken **Wir kochen Kaffee** denir.",
+     "also_ok": [
+      "machen"
+     ]
     }
    ]
   },
@@ -6128,8 +6941,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Geri geldim derken **Ich habe zurückgekommen** yanlış. Doğrusu **Ich bin zurückgekommen**. Geri gelmek **sein** ile söylenir.",
-    "Yarın dönüyorum derken **Ich zurückkomme morgen** yanlış. Doğrusu **Ich komme morgen zurück**. **zurück** cümlenin sonuna gider."
+    "Geri geldim derken **Ich habe zurückgekommen** yanlış. Doğrusu **Ich bin zurückgekommen**.",
+    "Yarın geri geliyorum derken **Ich zurückkomme morgen** yanlış. Doğrusu **Ich komme morgen zurück**. Cümlede **zurückkommen** ikiye ayrılır: **komme** ve **zurück**."
    ],
    "examples": [
     {
@@ -6154,6 +6967,19 @@
      "id": "lx:zurückkommen:4",
      "de": "– Ist Frau Becker da? – Nein, sie kommt erst um zwei zurück.",
      "tr": "– Becker Hanım burada mı? – Hayır, ancak ikide geri geliyor.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:zurückkommen:5",
+     "de": "Frau Huber sagt: Dr. Weber kommt gleich zurück.",
+     "tr": "Huber Hanım diyor ki: Dr. Weber birazdan geri geliyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:zurückkommen:6",
+     "de": "– Wann kommt Herr Pichler zurück? – Am Montag, er ist im Urlaub.",
+     "tr": "– Pichler Bey ne zaman geri geliyor? – Pazartesi, tatilde.",
      "layer": "alltag",
      "dialog": true
     }
@@ -6184,25 +7010,46 @@
      "de": "Ich ___ morgen ___.",
      "answer": "komme … zurück",
      "tr": "Yarın geri geliyorum.",
-     "hint_tr": "**ich** ile **komme** olur, **zurück** sona gider."
+     "hint_tr": "Yarın geri geliyorum derken **Ich komme morgen zurück** denir."
     },
     {
      "de": "Wann ___ du ___?",
      "answer": "kommst … zurück",
      "tr": "Ne zaman geri geliyorsun?",
-     "hint_tr": "**du** ile **kommst** olur, **zurück** sona gider."
+     "hint_tr": "Ne zaman geri geliyorsun derken **Wann kommst du zurück?** denir."
     },
     {
      "de": "Frau Becker ___ erst um zwei ___.",
      "answer": "kommt … zurück",
      "tr": "Becker Hanım ancak ikide geri geliyor.",
-     "hint_tr": "**er** ve **sie** ile **kommt** olur, **zurück** sona gider."
+     "hint_tr": "Becker Hanım geri geliyor derken **Frau Becker kommt zurück** denir."
     },
     {
      "de": "Er ist gestern ___.",
      "answer": "zurückgekommen",
      "tr": "Adam dün geri geldi.",
-     "hint_tr": "Geçmişi anlatırken **ist zurückgekommen** denir."
+     "hint_tr": "Geri geldi derken **ist zurückgekommen** denir."
+    },
+    {
+     "de": "Tobi ist aus dem Urlaub ___.",
+     "answer": "zurückgekommen",
+     "tr": "Tobi tatilden döndü.",
+     "hint_tr": "Tatilden döndü derken **ist aus dem Urlaub zurückgekommen** denir."
+    },
+    {
+     "de": "Wir ___ um sechs zurück.",
+     "answer": "kommen",
+     "tr": "Altıda geri geliyoruz.",
+     "hint_tr": "Geri geliyoruz derken **Wir kommen zurück** denir.",
+     "also_ok": [
+      "sind"
+     ]
+    },
+    {
+     "de": "Frau Brandl ___ noch nicht zurückgekommen.",
+     "answer": "ist",
+     "tr": "Brandl Hanım henüz geri gelmedi.",
+     "hint_tr": "Geri gelmedi derken **ist nicht zurückgekommen** denir."
     }
    ]
   },
@@ -6261,6 +7108,19 @@
      "tr": "– Otobüs hâlâ orada mı? – Hayır, gitti.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:fort:5",
+     "de": "Derya ist seit einer Stunde fort.",
+     "tr": "Derya gideli bir saat oldu.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:fort:6",
+     "de": "– Wo ist Frau Huber? – Schon fort, die Praxis ist zu.",
+     "tr": "– Huber Hanım nerede? – Gitti bile, muayenehane kapalı.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -6285,7 +7145,7 @@
       "gehen"
      ],
      "tr": "Maalesef artık gitmem lazım.",
-     "hint_tr": "Gitmem lazım derken **Ich muss fort** dersin, konuşmada **weg** de denir."
+     "hint_tr": "Gitmem lazım derken **Ich muss fort** denir."
     },
     {
      "de": "Mein Schlüssel ist ___!",
@@ -6295,7 +7155,7 @@
       "verschwunden"
      ],
      "tr": "Anahtarım ortada yok!",
-     "hint_tr": "Bir şey ortada yoksa **ist fort** denir."
+     "hint_tr": "Anahtarım ortada yok derken **Mein Schlüssel ist fort** denir."
     },
     {
      "de": "Brot, Milch, Käse und so ___.",
@@ -6305,6 +7165,33 @@
      ],
      "tr": "Ekmek, süt, peynir ve saire.",
      "hint_tr": "Ve saire derken **und so fort** dersin."
+    },
+    {
+     "de": "Herr Wimmer ist schon ___.",
+     "answer": "fort",
+     "also_ok": [
+      "weg"
+     ],
+     "tr": "Wimmer Bey çoktan gitti.",
+     "hint_tr": "Çoktan gitti derken **ist schon fort** denir."
+    },
+    {
+     "de": "Tobi wohnt jetzt weit ___.",
+     "answer": "fort",
+     "also_ok": [
+      "weg"
+     ],
+     "tr": "Tobi artık çok uzakta oturuyor.",
+     "hint_tr": "Çok uzakta derken **weit fort** denir."
+    },
+    {
+     "de": "Mist, die Straßenbahn ist schon ___.",
+     "answer": "fort",
+     "also_ok": [
+      "weg"
+     ],
+     "tr": "Hay aksi, tramvay çoktan gitti.",
+     "hint_tr": "Çoktan gitti derken **ist schon fort** denir."
     }
    ]
   },
@@ -6373,6 +7260,19 @@
      "tr": "– Adres doğru mu? – Bir saniye, kontrol ediyorum.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:überprüfen:5",
+     "de": "Herr Pichler überprüft die Heizung.",
+     "tr": "Pichler Bey kaloriferi kontrol ediyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:überprüfen:6",
+     "de": "– Stimmt die Rechnung? – Derya hat sie schon überprüft.",
+     "tr": "– Fatura doğru mu? – Derya kontrol etti bile.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -6415,8 +7315,8 @@
       "prüft",
       "kontrolliert"
      ],
-     "tr": "Banka bilgilerinizi kontrol ediyor.",
-     "hint_tr": "**die Bank** ile **überprüfen**, **überprüft** olur."
+     "tr": "Banka, sizin bilgilerinizi kontrol ediyor.",
+     "hint_tr": "Banka kontrol ediyor derken **Die Bank überprüft** denir."
     },
     {
      "de": "Ich habe alles ___.",
@@ -6426,7 +7326,27 @@
       "kontrolliert"
      ],
      "tr": "Her şeyi kontrol ettim.",
-     "hint_tr": "**Ich habe** ile **überprüfen**, **überprüft** olur, başına **ge** gelmez."
+     "hint_tr": "Her şeyi kontrol ettim derken **habe alles überprüft** denir."
+    },
+    {
+     "de": "Frau Schneider ___ Ihre Unterlagen.",
+     "answer": "überprüft",
+     "also_ok": [
+      "prüft",
+      "kontrolliert"
+     ],
+     "tr": "Schneider Hanım belgelerinizi kontrol ediyor.",
+     "hint_tr": "Schneider Hanım kontrol ediyor derken **Frau Schneider überprüft** denir."
+    },
+    {
+     "de": "Wir müssen die Rechnung noch einmal ___.",
+     "answer": "überprüfen",
+     "also_ok": [
+      "prüfen",
+      "kontrollieren"
+     ],
+     "tr": "Faturayı bir daha kontrol etmemiz lazım.",
+     "hint_tr": "Kontrol etmemiz lazım derken **müssen überprüfen** denir."
     }
    ]
   },
@@ -6485,6 +7405,19 @@
      "tr": "– Neden sinirlisin? – Şefim sürekli telefon ediyor.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:ständig:5",
+     "de": "Der Drucker im Büro ist ständig kaputt.",
+     "tr": "Ofisteki yazıcı sürekli bozuk.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:ständig:6",
+     "de": "– Warum schaust du ständig aufs Handy? – Ich warte auf eine Nachricht.",
+     "tr": "– Neden sürekli telefona bakıyorsun? – Bir mesaj bekliyorum.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -6503,13 +7436,57 @@
      "de": "Der ___ Lärm macht mich krank.",
      "answer": "ständige",
      "tr": "Sürekli gürültü beni hasta ediyor.",
-     "hint_tr": "**der Lärm** önünde **ständige** olur."
+     "hint_tr": "Sürekli gürültü derken **der ständige Lärm** denir."
     },
     {
      "de": "Ich habe genug von dem ___ Stress.",
      "answer": "ständigen",
      "tr": "Bu sürekli stresten bıktım.",
-     "hint_tr": "**von dem** dedikten sonra **ständigen Stress** olur."
+     "hint_tr": "Sürekli stresten derken **von dem ständigen Stress** denir."
+    },
+    {
+     "de": "Bei Frau Huber klingelt ___ das Telefon.",
+     "answer": "ständig",
+     "also_ok": [
+      "dauernd",
+      "andauernd",
+      "immer"
+     ],
+     "tr": "Huber Hanım'da telefon sürekli çalıyor.",
+     "hint_tr": "Sürekli çalıyor derken **klingelt ständig** denir."
+    },
+    {
+     "de": "Tobi ist ___ zu spät.",
+     "answer": "ständig",
+     "also_ok": [
+      "dauernd",
+      "andauernd",
+      "immer"
+     ],
+     "tr": "Tobi sürekli geç kalıyor.",
+     "hint_tr": "Sürekli geç kalıyor derken **ist ständig zu spät** denir."
+    },
+    {
+     "de": "Herr Pichler redet ___ über den Müll.",
+     "answer": "ständig",
+     "also_ok": [
+      "dauernd",
+      "andauernd",
+      "immer"
+     ],
+     "tr": "Pichler Bey sürekli çöpten bahsediyor.",
+     "hint_tr": "Sürekli bahsediyor derken **redet ständig** denir."
+    },
+    {
+     "de": "Frau Brandl hat ___ Schmerzen im Knie.",
+     "answer": "ständig",
+     "also_ok": [
+      "dauernd",
+      "andauernd",
+      "immer"
+     ],
+     "tr": "Brandl Hanım'ın dizinde sürekli ağrı var.",
+     "hint_tr": "Sürekli ağrı var derken **hat ständig Schmerzen** denir."
     }
    ]
   },
@@ -6556,8 +7533,8 @@
     },
     {
      "id": "lx:Polizist:2",
-     "de": "Mein Bruder ist Polizist.",
-     "tr": "Kardeşim polis.",
+     "de": "Annas Bruder ist Polizist.",
+     "tr": "Anna'nın kardeşi polis.",
      "layer": "hd",
      "img": "police officer in uniform portrait"
     },
@@ -6575,6 +7552,21 @@
      "layer": "alltag",
      "dialog": true,
      "img": "police officer checking identity card"
+    },
+    {
+     "id": "lx:Polizist:5",
+     "de": "Der Polizist hilft Frau Brandl über die Straße.",
+     "tr": "Polis, Brandl Hanım'ın karşıya geçmesine yardım ediyor.",
+     "layer": "hd",
+     "img": "officer helping elderly woman cross"
+    },
+    {
+     "id": "lx:Polizist:6",
+     "de": "– Was ist passiert? – Keine Ahnung, da stehen zwei Polizisten.",
+     "tr": "– Ne oldu? – Bilmiyorum, orada iki polis duruyor.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "two police officers on sidewalk"
     }
    ],
    "level": "A2",
@@ -6600,13 +7592,13 @@
      "de": "Fragen Sie den ___.",
      "answer": "Polizisten",
      "tr": "Polise sorun.",
-     "hint_tr": "**Fragen Sie den** dedikten sonra **Polizisten** olur, sona **en** gelir."
+     "hint_tr": "**Fragen Sie** dedikten sonra **der Polizist**, **den Polizisten** olur."
     },
     {
      "de": "Ich habe ___ Polizisten gefragt.",
      "answer": "einen",
      "tr": "Bir polise sordum.",
-     "hint_tr": "**Ich habe gefragt** derken **ein Polizist**, **einen Polizisten** olur."
+     "hint_tr": "Bir polise sordum derken **einen Polizisten gefragt** denir."
     },
     {
      "de": "Was hat ___ Polizist gesagt?",
@@ -6619,6 +7611,18 @@
      "answer": "Polizisten",
      "tr": "İki polis geliyor.",
      "hint_tr": "İki polis için **zwei Polizisten** denir."
+    },
+    {
+     "de": "Herr Pichler spricht mit einem ___.",
+     "answer": "Polizisten",
+     "tr": "Pichler Bey bir polisle konuşuyor.",
+     "hint_tr": "**mit** dedikten sonra **ein Polizist**, **einem Polizisten** olur."
+    },
+    {
+     "de": "Max will ___ werden.",
+     "answer": "Polizist",
+     "tr": "Max polis olmak istiyor.",
+     "hint_tr": "Polis olmak derken **Polizist werden** denir."
     }
    ]
   },
@@ -6786,6 +7790,19 @@
      "tr": "– Tehlikeli mi? – Hayır, tehlike yok.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:Gefahr:5",
+     "de": "Für Frau Brandl ist die Treppe im Winter eine Gefahr.",
+     "tr": "Kışın merdiven Brandl Hanım için bir tehlike.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Gefahr:6",
+     "de": "– Darf das Kind hier spielen? – Ja, hier gibt's keine Gefahr.",
+     "tr": "– Çocuk burada oynayabilir mi? – Evet, burada tehlike yok.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -6804,19 +7821,19 @@
      "de": "Das ist ___ große Gefahr.",
      "answer": "eine",
      "tr": "Bu büyük bir tehlike.",
-     "hint_tr": "**Gefahr** ile **ein**, **eine** olur: **eine große Gefahr**."
+     "hint_tr": "Hangi tehlike olduğu belli değilse **eine Gefahr** denir."
     },
     {
      "de": "Ist er in ___?",
      "answer": "Gefahr",
      "tr": "Adam tehlikede mi?",
-     "hint_tr": "Tehlikede: **in Gefahr**, araya başka kelime girmez."
+     "hint_tr": "Tehlikede derken **in Gefahr** denir."
     },
     {
      "de": "Es gibt ___ Gefahr.",
      "answer": "keine",
      "tr": "Tehlike yok.",
-     "hint_tr": "**Es gibt** dedikten sonra yok demek için **keine Gefahr** olur."
+     "hint_tr": "Tehlike yok derken **Es gibt keine Gefahr** denir."
     },
     {
      "de": "___ Gefahr ist vorbei.",
@@ -6828,7 +7845,13 @@
      "de": "Im Winter gibt es auf der Straße viele ___.",
      "answer": "Gefahren",
      "tr": "Kışın yolda birçok tehlike var.",
-     "hint_tr": "Birden çok tehlike: **viele Gefahren**."
+     "hint_tr": "Birçok tehlike derken **viele Gefahren** denir."
+    },
+    {
+     "de": "Dr. Weber sagt: Sie sind außer ___.",
+     "answer": "Gefahr",
+     "tr": "Dr. Weber diyor ki: Tehlikeyi atlattınız.",
+     "hint_tr": "Tehlikeyi atlattınız derken **Sie sind außer Gefahr** denir."
     }
    ]
   },
@@ -6890,6 +7913,19 @@
      "tr": "– Schmidt Bey'le görüşebilir miyim? – Bir saniye, lütfen.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:Augenblick:5",
+     "de": "Dr. Weber ist im Augenblick bei einem Patienten.",
+     "tr": "Dr. Weber şu anda bir hastanın yanında.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Augenblick:6",
+     "de": "– Hast du kurz Zeit? – Einen Augenblick, ich komme gleich.",
+     "tr": "– Biraz vaktin var mı? – Bir saniye, hemen geliyorum.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -6909,13 +7945,49 @@
      "de": "___ Augenblick, bitte!",
      "answer": "Einen",
      "tr": "Bir saniye, lütfen!",
-     "hint_tr": "Birini bekletirken **Einen Augenblick, bitte** denir."
+     "hint_tr": "Bir saniye lütfen derken **Einen Augenblick, bitte** denir."
     },
     {
      "de": "___ Augenblick ist niemand da.",
      "answer": "Im",
      "tr": "Şu anda kimse yok.",
-     "hint_tr": "**in** ile **dem** birleşir: **im Augenblick**."
+     "hint_tr": "Şu anda derken **im Augenblick** denir."
+    },
+    {
+     "de": "Einen ___, ich hole Herrn Wimmer.",
+     "answer": "Augenblick",
+     "tr": "Bir saniye, Wimmer Bey'i çağırıyorum.",
+     "hint_tr": "Bir saniye derken **Einen Augenblick** denir.",
+     "also_ok": [
+      "Moment"
+     ]
+    },
+    {
+     "de": "___ mal, das ist mein Platz!",
+     "answer": "Augenblick",
+     "tr": "Bir dakika, orası benim yerim!",
+     "hint_tr": "Bir dakika derken **Augenblick mal** denir.",
+     "also_ok": [
+      "Moment"
+     ]
+    },
+    {
+     "de": "Tobi ist im letzten ___ eingestiegen.",
+     "answer": "Augenblick",
+     "tr": "Tobi son anda bindi.",
+     "hint_tr": "Son anda derken **im letzten Augenblick** denir.",
+     "also_ok": [
+      "Moment"
+     ]
+    },
+    {
+     "de": "Frau Huber hat im ___ keine Zeit.",
+     "answer": "Augenblick",
+     "tr": "Huber Hanım'ın şu anda vakti yok.",
+     "hint_tr": "Şu anda derken **im Augenblick** denir.",
+     "also_ok": [
+      "Moment"
+     ]
     }
    ]
   },
@@ -6976,8 +8048,21 @@
     },
     {
      "id": "lx:wirken:4",
-     "de": "– Hat das Medikament gewirkt? – Ja, die Schmerzen sind weg.",
-     "tr": "– İlaç etki etti mi? – Evet, ağrılar geçti.",
+     "de": "– Hat die Tablette gewirkt? – Ja, die Schmerzen sind weg.",
+     "tr": "– Hap etki etti mi? – Evet, ağrılar geçti.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:wirken:5",
+     "de": "Herr Wimmer wirkt heute gestresst.",
+     "tr": "Wimmer Bey bugün stresli görünüyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:wirken:6",
+     "de": "– Und, wirkt der Tee? – Ja, mir geht's schon besser.",
+     "tr": "– Ee, çay etki ediyor mu? – Evet, kendimi daha iyi hissediyorum.",
      "layer": "alltag",
      "dialog": true
     }
@@ -7014,10 +8099,22 @@
      "hint_tr": "**ich** ile **wirken**, **wirke** olur."
     },
     {
-     "de": "Hat das Medikament ___?",
+     "de": "Hat die Tablette ___?",
      "answer": "gewirkt",
-     "tr": "İlaç etki etti mi?",
-     "hint_tr": "**hat** ile **wirken**, **gewirkt** olur."
+     "tr": "Hap etki etti mi?",
+     "hint_tr": "Hap etki etti mi derken **Hat die Tablette gewirkt?** denir."
+    },
+    {
+     "de": "Derya ___ heute sehr ruhig.",
+     "answer": "wirkt",
+     "tr": "Derya bugün çok sakin görünüyor.",
+     "hint_tr": "Derya görünüyor derken **Derya wirkt** denir."
+    },
+    {
+     "de": "Die Tropfen ___ nach zehn Minuten.",
+     "answer": "wirken",
+     "tr": "Damlalar on dakika sonra etki ediyor.",
+     "hint_tr": "Damlalar etki ediyor derken **Die Tropfen wirken** denir."
     }
    ]
   },
@@ -7049,7 +8146,7 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Takılıyoruz derken **Wir rumhängen** yanlış. Doğrusu **Wir hängen rum.** Burada **rum** ayrılır ve sona gider."
+    "Takılıyoruz derken **Wir rumhängen** yanlış. Doğrusu **Wir hängen rum.** Cümlede **rumhängen** ikiye ayrılır: **hängen** ve **rum**."
    ],
    "examples": [
     {
@@ -7076,6 +8173,19 @@
      "tr": "– Ne zaman geliyorsun? – Sekiz civarında.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:rum:5",
+     "de": "Der Schlüssel liegt hier irgendwo rum.",
+     "tr": "Anahtar buralarda bir yerde duruyor.",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:rum:6",
+     "de": "– Ist die Zeit schon rum? – Ja, wir müssen gehen.",
+     "tr": "– Süre bitti mi? – Evet, gitmemiz lazım.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -7100,7 +8210,7 @@
       "herum"
      ],
      "tr": "Hafta çoktan bitti.",
-     "hint_tr": "Bir süre bitince konuşmada **ist rum** denir."
+     "hint_tr": "Hafta çoktan bitti derken **Die Woche ist schon rum** denir."
     },
     {
      "de": "Die Pause ist gleich ___.",
@@ -7111,7 +8221,7 @@
       "herum"
      ],
      "tr": "Mola birazdan bitiyor.",
-     "hint_tr": "Mola bitince konuşmada **Die Pause ist rum** denir."
+     "hint_tr": "Mola birazdan bitiyor derken **Die Pause ist gleich rum** denir."
     },
     {
      "de": "Das kostet so um die zehn Euro ___.",
@@ -7119,8 +8229,8 @@
      "also_ok": [
       "herum"
      ],
-     "tr": "Bu on euro civarında tutuyor.",
-     "hint_tr": "On euro civarı derken konuşmada **um die zehn Euro rum** dersin."
+     "tr": "Bu on avro civarında tutuyor.",
+     "hint_tr": "On avro civarında derken **um die zehn Euro rum** denir."
     },
     {
      "de": "Wir sitzen alle um den Tisch ___.",
@@ -7129,7 +8239,27 @@
       "herum"
      ],
      "tr": "Hepimiz masanın etrafında oturuyoruz.",
-     "hint_tr": "Masanın etrafında derken konuşmada **um den Tisch rum** dersin."
+     "hint_tr": "Masanın etrafında derken **um den Tisch rum** denir."
+    },
+    {
+     "de": "Der Urlaub ist leider schon ___.",
+     "answer": "rum",
+     "also_ok": [
+      "vorbei",
+      "um",
+      "herum"
+     ],
+     "tr": "Tatil maalesef bitti bile.",
+     "hint_tr": "Tatil bitti derken **Der Urlaub ist rum** denir."
+    },
+    {
+     "de": "Wir treffen uns so um sieben ___.",
+     "answer": "rum",
+     "also_ok": [
+      "herum"
+     ],
+     "tr": "Yedi civarında buluşuyoruz.",
+     "hint_tr": "Yedi civarında derken **so um sieben rum** denir."
     }
    ]
   },
@@ -7164,7 +8294,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Seferler derken **die Verbindungs** yanlış. Doğrusu **die Verbindungen**. Sonda **s** değil **en** gelir.",
-    "Aktarmasız sefer derken **eine direkt Verbindung** yanlış. Doğrusu **eine direkte Verbindung**. **Verbindung** önünde sona **e** gelir."
+    "Aktarmasız sefer derken **eine direkt Verbindung** yanlış. Doğrusu **eine direkte Verbindung**. Kelime **die Verbindung** olduğu için **direkt** sonuna **e** alır."
    ],
    "examples": [
     {
@@ -7189,6 +8319,19 @@
      "id": "lx:Verbindung:4",
      "de": "– Hallo? Hören Sie mich? – Kaum, die Verbindung ist schlecht.",
      "tr": "– Alo? Beni duyuyor musunuz? – Zar zor, bağlantı kötü.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:Verbindung:5",
+     "de": "Im Zug ist die Verbindung oft weg.",
+     "tr": "Trende bağlantı sık sık kopuyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Verbindung:6",
+     "de": "– Gibt's eine Verbindung ohne Umsteigen? – Nein, leider nicht.",
+     "tr": "– Aktarmasız bir sefer var mı? – Hayır, maalesef yok.",
      "layer": "alltag",
      "dialog": true
     }
@@ -7229,6 +8372,18 @@
      "answer": "Verbindungen",
      "tr": "Berlin'e iki sefer var.",
      "hint_tr": "İki sefer için **zwei Verbindungen** denir."
+    },
+    {
+     "de": "Frau Huber, die ___ ist sehr schlecht.",
+     "answer": "Verbindung",
+     "tr": "Huber Hanım, bağlantı çok kötü.",
+     "hint_tr": "Bağlantı derken **die Verbindung** denir."
+    },
+    {
+     "de": "Die nächste ___ nach München geht um acht.",
+     "answer": "Verbindung",
+     "tr": "Münih'e bir sonraki sefer sekizde.",
+     "hint_tr": "Bir sonraki sefer derken **die nächste Verbindung** denir."
     }
    ]
   },
@@ -7298,6 +8453,19 @@
      "tr": "– Size borcum ne kadar? – On iki avro, lütfen.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:schulden:5",
+     "de": "Ich schulde Frau Brandl noch fünf Euro.",
+     "tr": "Brandl Hanım'a hâlâ beş avro borcum var.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:schulden:6",
+     "de": "– Danke fürs Fahren! – Gern, du schuldest mir nichts.",
+     "tr": "– Arabayla götürdüğün için sağ ol! – Rica ederim, bana borcun yok.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -7334,7 +8502,19 @@
      "de": "Ich schulde ___ zehn Euro.",
      "answer": "dir",
      "tr": "Sana on avro borcum var.",
-     "hint_tr": "Sana borcum var: **Ich schulde dir**."
+     "hint_tr": "Sana borcum var derken **Ich schulde dir** denir."
+    },
+    {
+     "de": "Was ___ ich Ihnen?",
+     "answer": "schulde",
+     "tr": "Size borcum ne kadar?",
+     "hint_tr": "Size borcum ne kadar derken **Was schulde ich Ihnen?** denir."
+    },
+    {
+     "de": "Tobi ___ mir noch einen Kaffee.",
+     "answer": "schuldet",
+     "tr": "Tobi'nin bana hâlâ bir kahve borcu var.",
+     "hint_tr": "Tobi'nin borcu var derken **Tobi schuldet** denir."
     }
    ]
   },
@@ -7377,8 +8557,8 @@
    "examples": [
     {
      "id": "lx:Ziel:1",
-     "de": "Mein Ziel ist die B1-Prüfung.",
-     "tr": "Hedefim B1 sınavı.",
+     "de": "Lenas Ziel ist ein eigenes Geschäft.",
+     "tr": "Lena'nın hedefi kendi dükkânı.",
      "layer": "hd"
     },
     {
@@ -7395,8 +8575,21 @@
     },
     {
      "id": "lx:Ziel:4",
-     "de": "– Was ist dein Ziel? – Eine gute Arbeit finden.",
-     "tr": "– Hedefin ne? – İyi bir iş bulmak.",
+     "de": "– Max, was ist dein Ziel? – Eine gute Arbeit finden.",
+     "tr": "– Max, hedefin ne? – İyi bir iş bulmak.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:Ziel:5",
+     "de": "Paul hat ein Ziel: jeden Tag eine halbe Stunde Sport.",
+     "tr": "Paul'ün bir hedefi var: her gün yarım saat spor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Ziel:6",
+     "de": "– Sind wir bald da? – Ja, das Ziel ist gleich da vorne.",
+     "tr": "– Birazdan varıyor muyuz? – Evet, varış yeri hemen ileride.",
      "layer": "alltag",
      "dialog": true
     }
@@ -7419,13 +8612,13 @@
      "de": "Das ist ___ gutes Ziel.",
      "answer": "ein",
      "tr": "Bu iyi bir hedef.",
-     "hint_tr": "**Das ist** dedikten sonra **ein Ziel** aynı kalır: **ein gutes Ziel**."
+     "hint_tr": "Bu iyi bir hedef derken **Das ist ein gutes Ziel** denir."
     },
     {
      "de": "Ich habe ___ Ziel.",
      "answer": "ein",
      "tr": "Bir hedefim var.",
-     "hint_tr": "**Ich habe** dedikten sonra **ein Ziel** aynı kalır, **einen** olmaz."
+     "hint_tr": "Bir hedefim var derken **Ich habe ein Ziel** denir."
     },
     {
      "de": "___ Ziel ist klar.",
@@ -7437,13 +8630,25 @@
      "de": "Wir sind gleich ___ Ziel.",
      "answer": "am",
      "tr": "Birazdan varıyoruz.",
-     "hint_tr": "**an** ile **dem** birleşir: **am Ziel**."
+     "hint_tr": "Birazdan varıyoruz derken **Wir sind gleich am Ziel** denir."
     },
     {
      "de": "Ich habe zwei ___.",
      "answer": "Ziele",
      "tr": "İki hedefim var.",
-     "hint_tr": "İki hedef: **zwei Ziele**."
+     "hint_tr": "İki hedef derken **zwei Ziele** denir."
+    },
+    {
+     "de": "Derya hat ein klares ___.",
+     "answer": "Ziel",
+     "tr": "Derya'nın net bir hedefi var.",
+     "hint_tr": "Net bir hedef derken **ein klares Ziel** denir."
+    },
+    {
+     "de": "Herr Wimmer erklärt das ___ für dieses Jahr.",
+     "answer": "Ziel",
+     "tr": "Wimmer Bey bu yılın hedefini anlatıyor.",
+     "hint_tr": "Bu yılın hedefi derken **das Ziel für dieses Jahr** denir."
     }
    ]
   },
@@ -7492,7 +8697,7 @@
      "de": "Der Zug hat zehn Minuten Verspätung.",
      "tr": "Tren on dakika gecikmeli.",
      "layer": "hd",
-     "img": "train delay on departure board"
+     "img": "traveler checking watch on train platform"
     },
     {
      "id": "lx:Zug:2",
@@ -7515,6 +8720,21 @@
      "layer": "alltag",
      "dialog": true,
      "img": "passengers waiting on train platform"
+    },
+    {
+     "id": "lx:Zug:5",
+     "de": "Tobi steigt in den Zug nach Berlin ein.",
+     "tr": "Tobi Berlin trenine biniyor.",
+     "layer": "hd",
+     "img": "man with suitcase boarding train"
+    },
+    {
+     "id": "lx:Zug:6",
+     "de": "– Ist der Zug voll? – Ja, wir müssen stehen.",
+     "tr": "– Tren dolu mu? – Evet, ayakta durmamız lazım.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "crowded train passengers standing"
     }
    ],
    "level": "A1",
@@ -7533,13 +8753,16 @@
      "de": "Das ist ___ schneller Zug.",
      "answer": "ein",
      "tr": "Bu hızlı bir tren.",
-     "hint_tr": "Tanıtırken **Das ist ein Zug** denir."
+     "hint_tr": "Hangi tren olduğu belli değilse **ein Zug** denir."
     },
     {
-     "de": "Ich habe ___ Zug verpasst.",
+     "de": "Tobi hat ___ Zug verpasst.",
      "answer": "den",
-     "tr": "Treni kaçırdım.",
-     "hint_tr": "**verpasst** ile **der Zug**, **den Zug** olur."
+     "tr": "Tobi treni kaçırdı.",
+     "hint_tr": "Treni kaçırdı derken **den Zug verpasst** denir.",
+     "also_ok": [
+      "seinen"
+     ]
     },
     {
      "de": "Wir nehmen ___ späteren Zug.",
@@ -7557,7 +8780,19 @@
      "de": "Heute fahren keine ___.",
      "answer": "Züge",
      "tr": "Bugün hiç tren çalışmıyor.",
-     "hint_tr": "Birden çok tren için **Züge** denir, **u** harfi **ü** olur."
+     "hint_tr": "Hiç tren yok derken **keine Züge** denir."
+    },
+    {
+     "de": "Der ___ nach Wien hat Verspätung.",
+     "answer": "Zug",
+     "tr": "Viyana treni gecikmeli.",
+     "hint_tr": "Tren derken **der Zug** denir."
+    },
+    {
+     "de": "Derya fährt jeden Tag mit dem ___.",
+     "answer": "Zug",
+     "tr": "Derya her gün trenle gidiyor.",
+     "hint_tr": "Trenle derken **mit dem Zug** denir."
     }
    ]
   },
@@ -7618,6 +8853,19 @@
      "tr": "– Otel nasıl? – Süper, deniz manzaralı.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:Blick:5",
+     "de": "Dr. Weber wirft einen Blick auf das Knie.",
+     "tr": "Dr. Weber dize bir göz atıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Blick:6",
+     "de": "– Wie ist der Blick vom Berg? – Wunderschön!",
+     "tr": "– Dağdan manzara nasıl? – Harika!",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -7637,13 +8885,13 @@
      "de": "Kannst du mal ___ Blick darauf werfen?",
      "answer": "einen",
      "tr": "Şuna bir göz atabilir misin?",
-     "hint_tr": "**werfen** ile **ein Blick**, **einen Blick** olur."
+     "hint_tr": "Bir göz atabilir misin derken **Kannst du mal einen Blick darauf werfen?** denir."
     },
     {
      "de": "Das ist ___ schöner Blick!",
      "answer": "ein",
      "tr": "Bu güzel bir manzara!",
-     "hint_tr": "**Das ist** dedikten sonra **ein Blick** aynı kalır: **ein schöner Blick**."
+     "hint_tr": "**Das ist** dedikten sonra **ein Blick** aynı kalır."
     },
     {
      "de": "___ Blick vom Balkon ist toll.",
@@ -7656,6 +8904,24 @@
      "answer": "den",
      "tr": "İlk görüşte aşk.",
      "hint_tr": "**auf** dedikten sonra **der erste Blick**, **den ersten Blick** olur."
+    },
+    {
+     "de": "Die Wohnung hat einen schönen ___ auf den Park.",
+     "answer": "Blick",
+     "tr": "Evin parka güzel bir manzarası var.",
+     "hint_tr": "Güzel bir manzara derken **einen schönen Blick** denir."
+    },
+    {
+     "de": "Kannst du einen kurzen ___ auf meinen Brief werfen?",
+     "answer": "Blick",
+     "tr": "Mektubuma kısaca bir göz atabilir misin?",
+     "hint_tr": "Göz atmak derken **einen Blick werfen** denir."
+    },
+    {
+     "de": "Auf den ersten ___ ist alles klar.",
+     "answer": "Blick",
+     "tr": "İlk bakışta her şey açık.",
+     "hint_tr": "İlk bakışta derken **auf den ersten Blick** denir."
     }
    ]
   },
@@ -7721,6 +8987,19 @@
      "tr": "– Bu karmaşık mı? – Hayır, adım adım anlatırım.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:Schritt:5",
+     "de": "Frau Brandl macht nur kleine Schritte.",
+     "tr": "Brandl Hanım sadece küçük adımlar atıyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Schritt:6",
+     "de": "– Wo ist die Apotheke? – Nur ein paar Schritte von hier.",
+     "tr": "– Eczane nerede? – Buradan sadece birkaç adım.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -7740,7 +9019,7 @@
      "de": "Das ist ___ wichtiger Schritt.",
      "answer": "ein",
      "tr": "Bu önemli bir adım.",
-     "hint_tr": "**Das ist** dedikten sonra **ein Schritt** aynı kalır: **ein wichtiger Schritt**."
+     "hint_tr": "Önemli bir adım derken **ein wichtiger Schritt** denir."
     },
     {
      "de": "Wir machen ___ ersten Schritt.",
@@ -7758,13 +9037,25 @@
      "de": "Wir machen das Schritt ___ Schritt.",
      "answer": "für",
      "tr": "Bunu adım adım yaparız.",
-     "hint_tr": "Adım adım: **Schritt für Schritt**."
+     "hint_tr": "Adım adım derken **Schritt für Schritt** denir."
     },
     {
      "de": "Gehen Sie zwei ___ zurück.",
      "answer": "Schritte",
      "tr": "İki adım geri gidin.",
-     "hint_tr": "İki adım: **zwei Schritte**."
+     "hint_tr": "İki adım derken **zwei Schritte** denir."
+    },
+    {
+     "de": "Der erste ___ ist immer schwer.",
+     "answer": "Schritt",
+     "tr": "İlk adım hep zordur.",
+     "hint_tr": "İlk adım derken **der erste Schritt** denir."
+    },
+    {
+     "de": "Derya erklärt alles ___ für Schritt.",
+     "answer": "Schritt",
+     "tr": "Derya her şeyi adım adım anlatıyor.",
+     "hint_tr": "Adım adım derken **Schritt für Schritt** denir."
     }
    ]
   },
@@ -7807,7 +9098,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Sıcaktan çok çekiyorum derken **Ich leide von der Hitze** yanlış. Doğrusu **Ich leide unter der Hitze.**",
-    "Şeker hastasıyım derken **Ich leide von Diabetes** yanlış. Doğrusu **Ich leide an Diabetes.** Hastalık için **an** gelir."
+    "Adam şeker hastası derken **Er leidet von Diabetes** yanlış. Doğrusu **Er leidet an Diabetes.** Hastalık için **an** gelir."
    ],
    "examples": [
     {
@@ -7830,8 +9121,21 @@
     },
     {
      "id": "lx:leiden:4",
-     "de": "– Leiden Sie an einer Krankheit? – Ja, ich habe Asthma.",
-     "tr": "– Bir hastalığınız var mı? – Evet, astımım var.",
+     "de": "– Leidet Herr Maier an einer Krankheit? – Ja, er hat Asthma.",
+     "tr": "– Maier Bey'in bir hastalığı var mı? – Evet, astımı var.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:leiden:5",
+     "de": "Herr Pichler leidet unter dem Lärm von oben.",
+     "tr": "Pichler Bey üst kattaki gürültüden çok çekiyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:leiden:6",
+     "de": "– Magst du den neuen Nachbarn? – Nein, ich kann ihn nicht leiden.",
+     "tr": "– Yeni komşuyu seviyor musun? – Hayır, ona hiç katlanamıyorum.",
      "layer": "alltag",
      "dialog": true
     }
@@ -7872,13 +9176,25 @@
      "de": "Sie hat lange ___.",
      "answer": "gelitten",
      "tr": "Kadın uzun süre acı çekti.",
-     "hint_tr": "**hat** ile **leiden**, **gelitten** olur."
+     "hint_tr": "Acı çekti derken **hat gelitten** denir."
     },
     {
      "de": "Ich leide ___ der Hitze.",
      "answer": "unter",
      "tr": "Sıcaktan çok çekiyorum.",
-     "hint_tr": "Sıcaktan çekmek: **unter der Hitze leiden**."
+     "hint_tr": "Sıcaktan çok çekmek derken **unter der Hitze leiden** denir."
+    },
+    {
+     "de": "Frau Brandl ___ unter der Kälte.",
+     "answer": "leidet",
+     "tr": "Brandl Hanım soğuktan çok çekiyor.",
+     "hint_tr": "Brandl Hanım çekiyor derken **Frau Brandl leidet** denir."
+    },
+    {
+     "de": "Tobi kann den Regen nicht ___.",
+     "answer": "leiden",
+     "tr": "Tobi yağmura hiç katlanamıyor.",
+     "hint_tr": "Katlanamıyor derken **kann nicht leiden** denir."
     }
    ]
   },
@@ -7947,6 +9263,19 @@
      "tr": "– Neden bu kadar geç kaldın? – Otobüsü kaçırdım.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:verpassen:5",
+     "de": "Frau Brandl hat ihren Termin bei Dr. Weber verpasst.",
+     "tr": "Brandl Hanım Dr. Weber'deki randevusunu kaçırdı.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:verpassen:6",
+     "de": "– War die Feier gut? – Super, du hast echt was verpasst!",
+     "tr": "– Kutlama güzel miydi? – Süper, gerçekten bir şey kaçırdın!",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -7978,7 +9307,25 @@
      "de": "Ich habe den Zug ___.",
      "answer": "verpasst",
      "tr": "Treni kaçırdım.",
-     "hint_tr": "Geçmişi anlatırken **habe verpasst** denir, başına **ge** gelmez."
+     "hint_tr": "Treni kaçırdım derken **habe verpasst** denir."
+    },
+    {
+     "de": "Tobi hat den letzten Bus ___.",
+     "answer": "verpasst",
+     "tr": "Tobi son otobüsü kaçırdı.",
+     "hint_tr": "Kaçırdı derken **hat verpasst** denir."
+    },
+    {
+     "de": "Schnell, sonst ___ wir den Anfang!",
+     "answer": "verpassen",
+     "tr": "Çabuk, yoksa başlangıcı kaçırırız!",
+     "hint_tr": "Kaçırırız derken **wir verpassen** denir."
+    },
+    {
+     "de": "Ich habe einen Anruf von Frau Huber ___.",
+     "answer": "verpasst",
+     "tr": "Huber Hanım'dan gelen bir çağrıyı kaçırdım.",
+     "hint_tr": "Bir çağrıyı kaçırdım derken **habe einen Anruf verpasst** denir."
     }
    ]
   },
@@ -8047,6 +9394,19 @@
      "tr": "– Daha önce tedavi gördünüz mü? – Evet, geçen yıl.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:behandeln:5",
+     "de": "Frau Brandl wird von Dr. Weber behandelt.",
+     "tr": "Brandl Hanım'ı Dr. Weber tedavi ediyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:behandeln:6",
+     "de": "– Wie ist Herr Wimmer so? – Er behandelt alle freundlich.",
+     "tr": "– Wimmer Bey nasıl biri? – Herkese nazik davranıyor.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -8078,13 +9438,25 @@
      "de": "Wir ___ das Knie mit Eis.",
      "answer": "behandeln",
      "tr": "Dizi buzla tedavi ediyoruz.",
-     "hint_tr": "**wir** ile **behandeln** aynı kalır."
+     "hint_tr": "Tedavi ediyoruz derken **Wir behandeln** denir."
     },
     {
      "de": "Der Arzt hat mich gut ___.",
      "answer": "behandelt",
      "tr": "Doktor beni iyi tedavi etti.",
-     "hint_tr": "**hat** ile **behandeln**, **behandelt** olur, başına **ge** gelmez."
+     "hint_tr": "Tedavi etti derken **hat behandelt** denir."
+    },
+    {
+     "de": "Luka ___ seine Kunden wie Freunde.",
+     "answer": "behandelt",
+     "tr": "Luka müşterilerine arkadaş gibi davranıyor.",
+     "hint_tr": "Luka davranıyor derken **Luka behandelt** denir."
+    },
+    {
+     "de": "Dr. Weber muss das Knie noch einmal ___.",
+     "answer": "behandeln",
+     "tr": "Dr. Weber'in dizi bir daha tedavi etmesi lazım.",
+     "hint_tr": "Tedavi etmesi lazım derken **muss behandeln** denir."
     }
    ]
   },
@@ -8126,7 +9498,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Pes ediyorum derken **Ich aufgebe** yanlış. Doğrusu **Ich gebe auf.** **ich** ile **gebe** olur, **auf** sona gider.",
+    "Pes ediyorum derken **Ich aufgebe** yanlış. Doğrusu **Ich gebe auf.** Cümlede **aufgeben** ikiye ayrılır: **gebe** ve **auf**.",
     "Paketi postaya veriyorum derken **Ich gebe das Paket** eksik. Doğrusu **Ich gebe das Paket auf.** **auf** olmadan anlam sadece vermek olur."
    ],
    "examples": [
@@ -8154,6 +9526,19 @@
      "tr": "– Paketi nerede postaya verebilirim? – İki numaralı gişede.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:aufgeben:5",
+     "de": "Tobi gibt in der Mittagspause ein Paket auf.",
+     "tr": "Tobi öğle arasında bir paketi postaya veriyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:aufgeben:6",
+     "de": "– Die Übung ist zu schwer! – Gib nicht so schnell auf!",
+     "tr": "– Alıştırma çok zor! – Bu kadar çabuk pes etme!",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "B1",
@@ -8173,25 +9558,37 @@
      "de": "Ich ___ nie ___.",
      "answer": "gebe … auf",
      "tr": "Asla pes etmem.",
-     "hint_tr": "**ich** ile **gebe** olur, **auf** sona gider."
+     "hint_tr": "Asla pes etmem derken **Ich gebe nie auf** denir."
     },
     {
      "de": "Du ___ zu schnell ___.",
      "answer": "gibst … auf",
      "tr": "Çok çabuk pes ediyorsun.",
-     "hint_tr": "**du** ile **gibst** olur, **auf** sona gider."
+     "hint_tr": "Çok çabuk pes ediyorsun derken **Du gibst zu schnell auf** denir."
     },
     {
      "de": "Er ___ das Paket am Schalter ___.",
      "answer": "gibt … auf",
      "tr": "Adam paketi gişede postaya veriyor.",
-     "hint_tr": "**er** ile **gibt** olur, **auf** sona gider."
+     "hint_tr": "Adam paketi postaya veriyor derken **Er gibt das Paket auf** denir."
     },
     {
-     "de": "Sie hat das Rauchen ___.",
+     "de": "Sie hat nach zwei Stunden ___.",
      "answer": "aufgegeben",
-     "tr": "Kadın sigarayı bıraktı.",
-     "hint_tr": "**hat** ile **aufgeben**, **aufgegeben** olur."
+     "tr": "Kadın iki saat sonra pes etti.",
+     "hint_tr": "Pes etti derken **hat aufgegeben** denir."
+    },
+    {
+     "de": "Frau Brandl will ein Paket ___.",
+     "answer": "aufgeben",
+     "tr": "Brandl Hanım bir paketi postaya vermek istiyor.",
+     "hint_tr": "Postaya vermek istiyor derken **will ein Paket aufgeben** denir."
+    },
+    {
+     "de": "Wir haben bis zum Ende nicht ___.",
+     "answer": "aufgegeben",
+     "tr": "Sonuna kadar pes etmedik.",
+     "hint_tr": "Pes etmedik derken **haben nicht aufgegeben** denir."
     }
    ]
   },
@@ -8262,6 +9659,21 @@
      "layer": "alltag",
      "dialog": true,
      "img": "glass of water next to beer on bar table"
+    },
+    {
+     "id": "lx:Bier:5",
+     "de": "Am Abend trinkt Herr Pichler ein Bier auf dem Balkon.",
+     "tr": "Akşam Pichler Bey balkonda bir bira içiyor.",
+     "layer": "hd",
+     "img": "older man with beer on balcony"
+    },
+    {
+     "id": "lx:Bier:6",
+     "de": "– Was darf's sein? – Ein kleines Bier, bitte.",
+     "tr": "– Ne alırsınız? – Küçük bir bira, lütfen.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "small glass of beer on bar"
     }
    ],
    "level": "A1",
@@ -8293,7 +9705,25 @@
      "de": "Ich trinke ___ Bier.",
      "answer": "kein",
      "tr": "Bira içmiyorum.",
-     "hint_tr": "İçmiyorum derken **kein Bier** denir."
+     "hint_tr": "Bira içmiyorum derken **Ich trinke kein Bier** denir."
+    },
+    {
+     "de": "Zwei ___ und ein Wasser, bitte!",
+     "answer": "Bier",
+     "tr": "İki bira ve bir su, lütfen!",
+     "hint_tr": "İki bira derken **zwei Bier** denir."
+    },
+    {
+     "de": "Derya trinkt ein alkoholfreies ___.",
+     "answer": "Bier",
+     "tr": "Derya alkolsüz bira içiyor.",
+     "hint_tr": "Alkolsüz bira derken **alkoholfreies Bier** denir."
+    },
+    {
+     "de": "Tobi bestellt noch ein ___.",
+     "answer": "Bier",
+     "tr": "Tobi bir bira daha sipariş ediyor.",
+     "hint_tr": "Bir bira daha derken **noch ein Bier** denir."
     }
    ]
   },

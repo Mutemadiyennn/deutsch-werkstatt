@@ -12695,7 +12695,7 @@
     {
      "id": "lx:Bescheid:2",
      "de": "Ich habe den Bescheid vom Amt bekommen.",
-     "tr": "Daireden kararı aldım.",
+     "tr": "Daireden karar yazısını aldım.",
      "layer": "hd",
      "img": "official letter from government office on table"
     },
@@ -12709,6 +12709,19 @@
      "id": "lx:Bescheid:4",
      "de": "– Weißt du schon Bescheid? – Ja, Anna hat's mir gesagt.",
      "tr": "– Haberin var mı? – Evet, Anna söyledi.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:Bescheid:5",
+     "de": "Frau Schneider schickt Ihnen den Bescheid per Post.",
+     "tr": "Schneider Hanım karar yazısını size postayla gönderiyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Bescheid:6",
+     "de": "– Kommst du mit? – Weiß nicht, ich sag dir Bescheid.",
+     "tr": "– Geliyor musun? – Bilmiyorum, sana haber veririm.",
      "layer": "alltag",
      "dialog": true
     }
@@ -12732,7 +12745,7 @@
      "de": "Sagen Sie mir bitte ___.",
      "answer": "Bescheid",
      "tr": "Lütfen bana haber verin.",
-     "hint_tr": "Haber vermek için **Bescheid sagen** denir."
+     "hint_tr": "Bana haber verin derken **Sagen Sie mir Bescheid** denir."
     },
     {
      "de": "Ich sage ___ Bescheid.",
@@ -12744,7 +12757,7 @@
      "de": "Weißt du schon ___?",
      "answer": "Bescheid",
      "tr": "Haberin var mı?",
-     "hint_tr": "Haberdar olmak için **Bescheid wissen** denir."
+     "hint_tr": "Haberin var mı derken **Weißt du Bescheid?** denir."
     },
     {
      "de": "Heute kam ___ Bescheid vom Amt.",
@@ -12755,8 +12768,20 @@
     {
      "de": "Ich bekomme morgen ___ Bescheid vom Amt.",
      "answer": "den",
-     "tr": "Yarın daireden kararı alıyorum.",
+     "tr": "Yarın daireden karar yazısını alıyorum.",
      "hint_tr": "**Ich bekomme** dedikten sonra **der Bescheid**, **den Bescheid** olur."
+    },
+    {
+     "de": "Gib mir bitte kurz ___!",
+     "answer": "Bescheid",
+     "tr": "Bana kısaca haber ver lütfen!",
+     "hint_tr": "Bana haber ver derken **Gib mir Bescheid** denir."
+    },
+    {
+     "de": "Herr Pichler hat uns ___ gesagt.",
+     "answer": "Bescheid",
+     "tr": "Pichler Bey bize haber verdi.",
+     "hint_tr": "Haber verdi derken **hat Bescheid gesagt** denir."
     }
    ]
   },
@@ -12830,6 +12855,19 @@
      "tr": "– Hafta sonu ne yapıyorsun? – Eğlenmeye çıkıyoruz.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:feiern:5",
+     "de": "Im Dezember feiert die Firma Weihnachten.",
+     "tr": "Aralıkta şirket Noel'i kutluyor.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:feiern:6",
+     "de": "– Was feiert ihr heute? – Tobis Abschied.",
+     "tr": "– Bugün ne kutluyorsunuz? – Tobi'nin vedasını.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -12842,7 +12880,45 @@
     "anlam_tr": "Özel bir günü kutlamayı söyler.",
     "parcalar": [],
     "ipucu_tr": "**feiern gehen** eğlenmeye çıkmak demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Wir ___ am Samstag Annas Geburtstag.",
+     "answer": "feiern",
+     "tr": "Cumartesi Anna'nın doğum gününü kutluyoruz.",
+     "hint_tr": "Kutluyoruz derken **Wir feiern** denir."
+    },
+    {
+     "de": "___ du deinen Geburtstag zu Hause?",
+     "answer": "Feierst",
+     "tr": "Doğum gününü evde mi kutluyorsun?",
+     "hint_tr": "Kutluyor musun derken **Feierst du** denir."
+    },
+    {
+     "de": "Frau Brandl ___ heute ihren Geburtstag.",
+     "answer": "feiert",
+     "tr": "Brandl Hanım bugün doğum gününü kutluyor.",
+     "hint_tr": "Brandl Hanım kutluyor derken **Frau Brandl feiert** denir."
+    },
+    {
+     "de": "Wir haben bis Mitternacht ___.",
+     "answer": "gefeiert",
+     "tr": "Gece yarısına kadar kutladık.",
+     "hint_tr": "Kutladık derken **haben gefeiert** denir."
+    },
+    {
+     "de": "Am Freitag gehen wir ___.",
+     "answer": "feiern",
+     "tr": "Cuma eğlenmeye çıkıyoruz.",
+     "hint_tr": "Eğlenmeye çıkmak derken **feiern gehen** denir."
+    },
+    {
+     "de": "Wir ___ bei Tobi Silvester gefeiert.",
+     "answer": "haben",
+     "tr": "Yılbaşı gecesini Tobi'nin evinde kutladık.",
+     "hint_tr": "Kutladık derken **haben gefeiert** denir."
+    }
+   ]
   },
   {
    "id": "lx:sieben",
@@ -13006,7 +13082,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Yemeği yapan şef derken **der Chef** yanlış. Doğrusu **der Koch**.",
-    "Kadın patronum derken **meine Chef** yanlış. Doğrusu **meine Chefin**."
+    "Kadın şefim derken **meine Chef** yanlış. Doğrusu **meine Chefin**."
    ],
    "examples": [
     {
@@ -13032,6 +13108,19 @@
      "id": "lx:Chef:4",
      "de": "– Darf ich morgen frei nehmen? – Frag den Chef.",
      "tr": "– Yarın izin alabilir miyim? – Şefe sor.",
+     "layer": "alltag",
+     "dialog": true
+    },
+    {
+     "id": "lx:Chef:5",
+     "de": "Der Chef ist bis Freitag im Urlaub.",
+     "tr": "Şef cumaya kadar tatilde.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Chef:6",
+     "de": "– Wer ist hier der Chef? – Herr Wimmer, da hinten.",
+     "tr": "– Burada şef kim? – Wimmer Bey, şurada arkada.",
      "layer": "alltag",
      "dialog": true
     }
@@ -13082,7 +13171,19 @@
      "de": "Beide ___ sind heute nicht da.",
      "answer": "Chefs",
      "tr": "İki şef de bugün yok.",
-     "hint_tr": "İki şef için **beide Chefs** denir, sona **s** gelir."
+     "hint_tr": "İki şef de derken **beide Chefs** denir."
+    },
+    {
+     "de": "Herr Wimmer ist mein ___.",
+     "answer": "Chef",
+     "tr": "Wimmer Bey benim şefim.",
+     "hint_tr": "Şefim derken **mein Chef** denir."
+    },
+    {
+     "de": "Ich muss den ___ fragen.",
+     "answer": "Chef",
+     "tr": "Şefe sormam lazım.",
+     "hint_tr": "Şefe sormak derken **den Chef fragen** denir."
     }
    ]
   },
