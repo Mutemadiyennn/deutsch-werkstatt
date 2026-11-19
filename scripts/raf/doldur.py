@@ -72,22 +72,29 @@ def main(argv: list[str] | None = None, simdi: float | None = None) -> int:
     yeni, hata, art_arda, durdu = 0, 0, 0, ""
     for sorgu in hedef:
         aranan = acik[sorgu].get("kisa") or sorgu
-        try: havuz = pixabay(anahtar, aranan); art_arda = 0
+        try: havuz = pixabay(anahtar, aranan)
         except KaliciHata as e: durdu = f"Pixabay {e} (anahtar ya da izin)"; break
         except Exception:
             hata += 1; art_arda += 1
             if art_arda >= ART_ARDA_HATA: durdu = f"art arda {art_arda} arama hatası"; break
             continue
         ad_list = list(kayit.get(sorgu, {}).get("adaylar", []))
+        indirme_hatasi = 0
         for a in havuz:
             if len(ad_list) >= ADAY: break
             if any(x["sayfa"] == a["sayfa"] for x in ad_list): continue
             try: veri = kucult(get(a["url"]))
-            except Exception: hata += 1; continue
+            except Exception: hata += 1; indirme_hatasi += 1; continue
             ad = f"{hashlib.sha256(veri).hexdigest()[:16]}.jpg"
             open(os.path.join(raf, "foto", ad), "wb").write(veri)
             ad_list.append({**{k: v for k, v in a.items() if k != "url"}, "dosya": ad, "bayt": len(veri)}); yeni += 1
+        # indirmelerin hepsi düştüyse sorgu 30 gün kilitlenmez (`arandi` yazılmaz) ve art arda hata sayılır (inceleme #99 2. tur P2)
+        if havuz and indirme_hatasi and len(ad_list) == len(kayit.get(sorgu, {}).get("adaylar", [])):
+            art_arda += 1
+            if art_arda >= ART_ARDA_HATA: durdu = f"art arda {art_arda} sorguda indirme düştü"; break
+            continue
         kayit[sorgu] = {"yerler": acik[sorgu].get("yerler", []), "adaylar": ad_list, "arandi": bugun}
+        art_arda = 0
     json.dump({"surum": 1, "not": "Kapalı raf (D-112): sinif kapali; açık depoya, Pages'e, CI yapıtına girmez.", "sorgular": kayit}, open(kayit_yol, "w"), ensure_ascii=False, indent=1)
     open(os.path.join(raf, "saglik.txt"), "w").write("ok\n")
     p = ["<!doctype html><meta charset=utf-8><title>Kapalı raf adayları</title><style>body{font:14px system-ui;margin:16px}section{border-top:1px solid #ccc;padding:8px 0}img{height:160px;margin:4px}</style><h1>Kapalı raf adayları (B5 seçimi)</h1>"]

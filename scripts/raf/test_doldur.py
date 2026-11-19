@@ -14,6 +14,7 @@ class Sahte:
     """Pixabay araması ve dosya indirmesi; `kip`: normal | az | 429 | 400"""
     def __init__(self, kip="normal"): self.kip, self.arama, self.indirme = kip, 0, 0
     def __call__(self, url, tekrar=2):
+        if self.kip == "indirme403" and "pixabay.com/api/" not in url: raise urllib.error.HTTPError(url, 403, "Forbidden", {}, None)
         if "pixabay.com/api/" in url:
             self.arama += 1
             if self.kip == "400": raise doldur.KaliciHata("400")
@@ -58,6 +59,11 @@ class Doldur(unittest.TestCase):
     def test_art_arda_hata_durur(self):
         kod, s, _ = self.calistir("429", n=20)
         self.assertEqual(kod, 1); self.assertEqual(s.arama, doldur.ART_ARDA_HATA)
+    def test_indirmeler_duserse_kilitlenmez_kirmizi(self):
+        kod, s, raf = self.calistir("indirme403", n=10)
+        self.assertEqual(kod, 1); self.assertEqual(s.arama, doldur.ART_ARDA_HATA)
+        k = json.load(open(os.path.join(raf, "kayit.json")))["sorgular"]
+        self.assertTrue(all("arandi" not in v for v in k.values()), "indirme düşen sorgu 30 gün kilitlenmedi")
     def test_anahtar_yoksa_atlar(self):
         os.environ.pop("PIXABAY_API_KEY")
         a, raf = kur(2)
