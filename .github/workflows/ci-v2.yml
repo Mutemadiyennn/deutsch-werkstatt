@@ -54,8 +54,12 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - name: Playwright + WebKit
-        timeout-minutes: 8
-        run: pip install playwright==1.* pillow && python -m playwright install --with-deps webkit
+        timeout-minutes: 14
+        # apt aynası zaman zaman takılıyor: her deneme 4 dk ile sınırlı, en çok 3 deneme
+        run: |
+          pip install playwright==1.* pillow
+          for i in 1 2 3; do timeout 240 python -m playwright install --with-deps webkit && break; echo "kurulum denemesi $i takıldı, yeniden"; sleep 5; done
+          python -m playwright install webkit
       - name: Çekirdek akış (giriş, kurulum, tespit, Bugün, odak, İlerlemem, Profil)
         run: cd tests/e2e && python v2_core.py
       - name: Oynatıcı (aşama 1–6, dinleme, klavye, uzun basma, dayanıklılık, taşma, %130)
