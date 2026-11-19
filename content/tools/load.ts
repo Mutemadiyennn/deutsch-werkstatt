@@ -495,11 +495,43 @@ export function icerikGuvenligi(c: Pick<Loaded, "lexemes" | "scenarios" | "temel
  * uyarıdır; `b4-taban.json` → `uyari` bugünkü sayıları taban olarak tutar ve sayı tabanı aşarsa HATA olur (gerileme durur).
  * Sayı düşünce taban elle düşürülür (uyarı söyler); taban 0 olunca kural kalıcı hatadır.
  */
+/**
+ * PM-062 anlam güvenliği: örnek cümle kartın kelimesini (gövde, çekim, çoğul, ayrılabilir fiilin gövdesi) içermeli; içermiyorsa
+ * cümle başka kelimeyi ya da başka anlamı öğretiyor olabilir. Sezgisel (yanlış pozitif olabilir): tabanlı sayılı uyarı.
+ */
+export function ornekteKelime(l: Pick<Lexeme, "de" | "pos" | "pl" | "verb" | "forms">, cumle: string): boolean {
+  const tok = cumle.toLowerCase().replace(/[^\p{L}\s-]/gu, " ").split(/[\s-]+/).filter(Boolean);
+  const bas = l.de.toLowerCase().split(/\s*[,(/]\s*/)[0]!.trim().split(/\s+/);
+  const kok = (w: string) => { let k = w; if (l.pos === "verb") k = k.replace(/(eln|ern)$/, "").replace(/(en|n)$/, ""); else k = k.replace(/(e|en|er|es)$/, ""); return k.length >= 3 ? k : w; };
+  const adaylar = new Set<string>([...bas.map(kok)]);
+  // ayrılabilir fiil: önek atılmış gövde (anfangen → fang-, "Fangen wir an?")
+  if (l.pos === "verb") { const m = /^(ab|an|auf|aus|bei|ein|fest|fort|her|hin|los|mit|nach|vor|weg|zu|zurück|zusammen)(\p{L}{4,})$/u.exec(bas[0]!); if (m) adaylar.add(kok(m[2]!)); }
+  for (const x of [l.pl, l.verb?.praesens3, l.verb?.perfekt?.split(/\s+/).pop(), ...(l.forms ?? []).map((f) => f.answer.split(/\s*…\s*/)[0])]) if (x) adaylar.add(kok(x.toLowerCase()));
+  // umlaut ve gövde değişimi (fahren → fährt, nehmen → nimmt): ilk iki harf + son ünsüz grubu yerine en az 3 harflik ortak baş
+  // birleşik isim (Lieblingsfach, Telefonnummer) ve önekli fiil (Fangen … an, nachzählen): gövde kelimenin içinde de olabilir
+  const ic = l.pos === "noun" || l.pos === "verb";
+  const benzer = (t: string, k: string) => t.startsWith(k) || (ic && k.length >= 4 && t.includes(k)) || (k.length >= 4 && t.startsWith(k.slice(0, 3)) && t.length >= 3);
+  return [...adaylar].some((k) => tok.some((t) => benzer(t, k) || t.normalize("NFD").replace(/\p{M}/gu, "").startsWith(k.normalize("NFD").replace(/\p{M}/gu, ""))));
+}
+/** Eşsesli kartlar (aynı başlık, farklı anlam kimliği) aynı örnek cümleyi paylaşamaz: soru başka anlamın cümlesini çekerdi (PM-062 madde 5) */
+export function essesliOrnek(lexemes: Pick<Lexeme, "id" | "de" | "examples">[]): { id: string; mesaj: string }[] {
+  const out: { id: string; mesaj: string }[] = [];
+  const bas = new Map<string, Pick<Lexeme, "id" | "de" | "examples">[]>();
+  for (const l of lexemes) { const k = l.de.trim(); bas.set(k, [...(bas.get(k) ?? []), l]); }
+  for (const [de, ls] of bas) {
+    if (ls.length < 2) continue;
+    const gor = new Map<string, string>();
+    for (const l of ls) for (const e of l.examples) { const n = e.de.trim().toLowerCase(); const o = gor.get(n); if (o && o !== l.id) out.push({ id: l.id, mesaj: `örnek "${e.de}" eşsesli ${o} kartında da var ("${de}")` }); else gor.set(n, l.id); }
+  }
+  return out;
+}
 export function b4Sayilar(lexemes: Lexeme[]): { anahtar: string; ad: string; ids: string[] }[] {
   const k1 = lexemes.filter((l) => l.tier === "K1" && l.card !== false);
   return [
     { anahtar: "k1_isim_formsuz", ad: "K1 isimde forms yok", ids: k1.filter((l) => l.pos === "noun" && !l.forms.length).map((l) => l.id) },
     { anahtar: "k1_az_esdizim", ad: "K1'de 3'ten az eşdizim", ids: k1.filter((l) => l.collocations.length < 3).map((l) => l.id) },
+    { anahtar: "essesli_ortak_ornek", ad: "eşsesli kartlarda aynı örnek cümle; her anlamın cümlesi ayrı olmalı (PM-062)", ids: essesliOrnek(lexemes).map((x) => x.id) },
+    { anahtar: "ornekte_kelime_yok", ad: "örnek cümlede kartın kelimesi görünmüyor (PM-062 anlam güvenliği)", ids: k1.filter((l) => l.examples.some((e) => !e.dialog && e.layer !== "alltag" && !ornekteKelime(l, e.de))).map((l) => l.id) },
     { anahtar: "gorselsiz_ornek", ad: "somut kelimede (img var) görselsiz örnek", ids: lexemes.filter((l) => l.img && l.examples.some((e) => !e.img)).map((l) => l.id) }
   ];
 }
