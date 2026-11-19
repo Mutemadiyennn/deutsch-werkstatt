@@ -3,6 +3,7 @@ import { Lexeme } from "@dw/shared";
 import type { LearnerItem } from "@dw/shared";
 import { synonymHit, personalMatch, availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak, formFor, guclu, GUCLU_GUN, siradakiEx, sonrakiExSeen } from "./garden.ts";
 import { review, sessionKey } from "./srs.ts";
+import { turKademe, TUR_BASLIK } from "../ui/solen.tsx";
 
 const L = (o: Record<string, unknown>) => Lexeme.parse({ tr: "x", pos: "other", ...o });
 const termin = L({ id: "lx:Termin", de: "Termin", tr: "randevu", pos: "noun", art: "der", pl: "Termine", img: "calendar appointment", freqRank: 900,
@@ -66,6 +67,41 @@ describe("Kelime Bahçesi (PM-049)", () => {
     expect(m.opts.filter((x) => x === "randevu")).toHaveLength(1);
     expect(accepted(termin, "photo_say")).toEqual(["der Termin"]);
     expect(accepted(absagen, "sep_perfekt")).toContain("sage ab");
+  });
+  it("çeldiriciler: en az 2'si aynı turun/günün kartlarından (günler için öteki günler), en çok 1 uzak (PM 7011722598 madde 5)", () => {
+    const gun = (id: string, tr: string, f: number) => L({ id, de: id.slice(3), tr, pos: "noun", art: "der", freqRank: f, domains: ["arzt"] });
+    const gunler = [gun("lx:Montag", "pazartesi", 700), gun("lx:Dienstag", "salı", 710), gun("lx:Mittwoch", "çarşamba", 720), gun("lx:Donnerstag", "perşembe", 730)];
+    // sıklıkça daha yakın ama alakasız, öğretilmemiş isimler
+    const uzak = ["sayı", "arkadaşlık", "kimlik", "çocukluk", "başvuru"].map((tr, i) => L({ id: `lx:u${i}`, de: `U${i}`, tr, pos: "noun", art: "die", freqRank: 701 + i }));
+    const hepsi = [...gunler, ...uzak, termin];
+    const tur = new Set(gunler.map((g) => g.id));
+    for (let k = 0; k < 20; k++) {
+      let i = k; const rng = () => ((i = (i * 9301 + 49297) % 233280) / 233280);
+      const m = meaningOptions(gunler[0]!, hepsi, rng, { tur });
+      const celdirici = m.opts.filter((_, j) => j !== m.ans);
+      expect(m.opts[m.ans]).toBe("pazartesi");
+      expect(celdirici).toHaveLength(3);
+      expect(celdirici.filter((x) => ["salı", "çarşamba", "perşembe"].includes(x)).length).toBeGreaterThanOrEqual(2);
+    }
+    // tur bilgisi yoksa: tanıdık + aynı alan yakın sayılır; uzak en çok 1
+    const m2 = meaningOptions(gunler[0]!, hepsi, () => 0.5, { bilinen: new Set(["lx:Dienstag", "lx:Mittwoch", "lx:Donnerstag"]) });
+    expect(m2.opts.filter((x) => ["sayı", "arkadaşlık", "kimlik", "çocukluk", "başvuru", "randevu"].includes(x)).length).toBeLessThanOrEqual(1);
+    // tek doğru cevap: anlamı kesişen kart (Uhr "saat" / Stunde "saat, ders saati") ve eşsesli kart çeldirici olmaz (inceleme #100 P1-1)
+    const uhr = L({ id: "lx:Uhr", de: "Uhr", tr: "saat", pos: "noun", art: "die", freqRank: 300 });
+    const stunde = L({ id: "lx:Stunde", de: "Stunde", tr: "saat, ders saati", pos: "noun", art: "die", freqRank: 301 });
+    const uhr2 = L({ id: "lx:Uhr#2", de: "Uhr", tr: "kol saati", pos: "noun", art: "die", freqRank: 302 });
+    const ek = ["gün", "hafta", "ay", "yıl"].map((tr, i) => L({ id: `lx:z${i}`, de: `Z${i}`, tr, pos: "noun", art: "der", freqRank: 303 + i }));
+    for (let k = 0; k < 30; k++) {
+      let i = k; const rng = () => ((i = (i * 9301 + 49297) % 233280) / 233280);
+      const m = meaningOptions(uhr, [uhr, stunde, uhr2, ...ek], rng, { tur: new Set([stunde.id, uhr2.id]) });
+      expect(m.opts).not.toContain("saat, ders saati"); expect(m.opts).not.toContain("kol saati");
+    }
+    // yakın aday yoksa eski davranış: yine 3 çeldirici
+    expect(meaningOptions(gunler[0]!, hepsi, () => 0.5).opts).toHaveLength(4);
+  });
+  it("tur sonu başlığı 3 kademe: ≥%80 Harika, ≥%50 İyi gidiyor, altı cesaretlendirici (PM 7011722598 madde 3)", () => {
+    expect([turKademe(17, 17), turKademe(14, 17), turKademe(9, 17), turKademe(6, 17), turKademe(0, 0)]).toEqual([0, 0, 1, 2, 2]);
+    expect(TUR_BASLIK.ders[2].a).not.toMatch(/gelecek/); // ders yanlışları tekrara yazmaz
   });
   it("kendi cümlesi: kelime yoksa ya da çok kısaysa geçmez", () => {
     expect(ownSentenceCheck(termin, "Ich habe morgen einen Termin.")).toBe("ok");
