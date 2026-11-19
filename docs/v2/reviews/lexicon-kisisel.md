@@ -19,3 +19,10 @@ Kural: CLAUDE.md "kişisel bilgi yok". Öğrenci (ich, mein, wir ya da adı beli
 ## Açık (PM'e)
 - Öğrenciyi bir Alman şehrine bağlayan cümleler ("Ich wohne in München", "Vorher habe ich in Köln gewohnt") değiştirilmedi; gerçek hayatı ima etmiyorlar.
 - Göç öncülü cümleleri ("Als ich nach Deutschland kam, konnte ich kein Deutsch") uygulamanın öncülü sayıldı.
+
+## 2. tur (inceleme #95)
+- `lx:damals` ö4 Luka'ya verildi (Ioana'nın yaşı ve kurs geçmişi WORLD ile çelişiyordu): "2008, damals war ich zweiundzwanzig".
+- Bu dalda eski hâliyle kalan `lx:Familie` ö1, `lx:Vater` ö1, `lx:her` ö4, `lx:Jahr` ö1–ö2 çalışma sözlüğündeki düzeltilmiş hâllerine getirildi (karakter ya da genel cümle).
+- `lx:Welt` ö2 virgül, `lx:Heimat` b4 ipucu "memleket", `lx:woher` ikinci hata notu woher/wohin karışıklığı, `lx:ich` ö1 "Ich habe heute keine Zeit." ("Ich komme gleich" `lx:gleich` kartıyla aynıydı ve "hemen" çevirisi o kartın hata notuyla çelişiyordu).
+- Not: `lx:hilfsbereit` hata notu bu dalda değil, yığının üstündeki ipucu PR'ında düzeltildi.
+- Okur: 10 satır, GERİ 0.
