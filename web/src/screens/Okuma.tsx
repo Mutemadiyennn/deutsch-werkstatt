@@ -7,7 +7,7 @@ import { useEffect, useState } from "preact/hooks";
 import type { Drill, Lexeme } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadLexicon, loadM1Gun } from "../services/content.ts";
-import { adimXpVer, xpVer } from "../services/ilerleme.ts";
+import { adimXpVer, soruXpVer } from "../services/ilerleme.ts";
 import { XP } from "../core/gun.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { cumleler, yazmaKontrol, type OkumaYazmaT, type YazmaSonuc } from "../core/okuma.ts";
@@ -50,19 +50,19 @@ export function OkumaEkrani({ day }: { day: number }) {
   const sira = as.a === "metin" ? 1 : as.a === "soru" ? 2 : as.a === "yaz" ? 3 : as.a === "ornek" ? 4 : as.a === "kontrol" ? 5 : adimlar;
   const etiket: Record<Asama["a"], string> = { metin: o.tur === "yazma" ? "Mesajı oku" : "Oku", soru: "Sorular", yaz: "Yaz", ornek: "Örnek cevap", kontrol: "Kontrol listesi", bitti: "Bitti" };
   const git = (x: Asama) => { stopSpeaking(); setAs(x); window.scrollTo(0, 0); };
-  const sorulardanSonra = () => git(yazmaVar ? { a: "yaz" } : { a: "bitti" });
+  const sorulardanSonra = () => (yazmaVar ? git({ a: "yaz" }) : bitir());
   const bitir = () => { git({ a: "bitti" }); void setMeta(okumaAnahtari(day), { bitti: new Date().toISOString() }).then(() => adimXpVer(`okuma:${day}`)); };
 
   return (
     <div class="stack" data-test="okuma" data-asama={as.a}>
       <ProgressHeader title={o.title_tr} back="#/today" right={<FocusChip />} sub={`${Math.min(sira, adimlar)}/${adimlar} · ${etiket[as.a]}`} />
-      {(as.a === "metin" || as.a === "soru") && o.metin_de && <Metin o={o} lex={lex} kisa={as.a === "soru"} />}
+      {(as.a === "metin" || as.a === "soru") && o.metin_de && <Metin key={as.a} o={o} lex={lex} kisa={as.a === "soru"} />}
       {as.a === "metin" && <ActionBar><button class="btn primary block" data-test="next" onClick={() => (o.sorular.length ? git({ a: "soru", i: 0 }) : sorulardanSonra())}>{o.sorular.length ? "Sorulara geç" : "Devam"}</button></ActionBar>}
       {as.a === "soru" && (() => {
         const q = o.sorular[as.i]!;
         const d: Drill = "k" in q ? q : { id: q.id ?? `${o.title_tr}:${as.i}`, k: "pick", q_tr: q.q_tr, opts: q.opts, ans: q.ans };
         return <DrillView key={`s${as.i}`} d={d} sira={`${as.i + 1}/${o.sorular.length}`} onDone={(r) => {
-          if (r === "correct") { setDogru(dogru + 1); if (!once) void xpVer(XP.dogru); }
+          if (r === "correct") { setDogru(dogru + 1); void soruXpVer(`okuma:${day}:${d.id}`); }
           if (as.i + 1 < o.sorular.length) git({ a: "soru", i: as.i + 1 }); else bitirSonra();
         }} />;
       })()}

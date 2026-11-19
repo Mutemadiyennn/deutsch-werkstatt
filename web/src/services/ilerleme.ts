@@ -39,6 +39,16 @@ export function adimXpVer(id: string): Promise<void> {
   kuyruk = p.catch(() => {});
   return p;
 }
+/** Soru XP'si soru başına bir kez (yarıda bırakıp yeniden girince ya da tekrar çalışmada yeniden verilmez; D-102) */
+export function soruXpVer(id: string): Promise<void> {
+  const p = kuyruk.then(async () => {
+    if (await getMeta(`xp:soru:${id}`)) return;
+    await setMeta(`xp:soru:${id}`, 1);
+    const x = (await getMeta<XpKayit>("xp")) ?? XP_BOS; await setMeta("xp", xpEkle(x, XP.dogru));
+  });
+  kuyruk = p.catch(() => {});
+  return p;
+}
 /** Bekleyen XP yazımları bittikten sonra okur (adım biter bitmez Bugün'e geçilince eski toplam görünmesin) */
 export const xpOku = async () => { await kuyruk; return (await getMeta<XpKayit>("xp")) ?? XP_BOS; };
 /** M1 Seans 1: günün (ve önceki günlerin) yeni kartlarının hepsi tanıtılınca bir kez işaretlenir; adım XP'si bir kez */
