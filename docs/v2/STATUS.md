@@ -25,7 +25,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 ## Yarım işler (PM-042 C)
 | İş | Dal | Durum |
 |---|---|---|
-| Konuşma provası, yapay zekâsız (#58 A7) | `v2/prova` | PR açıldı (#67 üstünde) |
+| Çevrimdışı medya (#58 A12 son parça) | `v2/cevrimdisi-medya` | PR #74: medya pakette, servis işçisi ayrı önbellek + 206 aralıklı yanıt, uçak modu e2e; 2. tur bulguları düzeltildi |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
 
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-19
