@@ -7,12 +7,13 @@
 import { delMeta, getMeta, setMeta } from "../data/db.ts";
 
 export interface RafAyar { adres: string; anahtar: string }
-export type RafDurum = "bagli" | "anahtar-yanlis" | "ulasilamiyor" | "ayar-yok" | "adres-gecersiz";
+export type RafDurum = "bagli" | "anahtar-yanlis" | "ulasilamiyor" | "ayar-yok" | "adres-gecersiz" | "eksik";
 export const RAF_DURUM_TR: Record<RafDurum, string> = {
   bagli: "Bağlandı: raf çalışıyor.",
-  "anahtar-yanlis": "Anahtar yanlış (ya da adres başka bir rafı gösteriyor).",
+  "anahtar-yanlis": "Parola yanlış (ya da adres başka bir rafı gösteriyor).",
   ulasilamiyor: "Ulaşılamıyor: internet yok ya da adres yanlış.",
-  "ayar-yok": "Adres ve anahtar girilmedi; açık kaynaklı medya gösteriliyor.",
+  "ayar-yok": "Adres ve parola girilmedi; açık kaynaklı medya gösteriliyor.",
+  "eksik": "Adres ve parolanın ikisi de gerekli. Bir şey değiştirilmedi.",
   "adres-gecersiz": "Adres https:// ile başlamalı ve rafın kendi adresi olmalı. Kaydedilmedi."
 };
 const ONBELLEK = "dw2-kapali";

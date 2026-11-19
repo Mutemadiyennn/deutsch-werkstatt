@@ -53,6 +53,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with: { name: dist-e2e, path: web/dist-e2e }
+      - uses: actions/setup-node@v4   # v2_raf.py gerçek raf Function'ını Node ile koşar (inceleme #98 2. tur)
+        with: { node-version: 22 }
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       # apt aynası zaman zaman çok yavaş (140 MB'ı 12 dakikada indiremedi): indirilen .deb'ler ve tarayıcı önbelleğe alınır

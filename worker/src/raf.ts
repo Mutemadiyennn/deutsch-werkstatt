@@ -36,7 +36,7 @@ export async function rafYanit(req: Request, env: RafEnv, dosya: () => Promise<R
   if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: { ...c, Vary: "Origin" } });
   const yok = () => new Response("Not found", { status: 404, headers: { ...c, "Cache-Control": "no-store", Vary: "Origin" } });
   if (req.method !== "GET" && req.method !== "HEAD") return yok();
-  const anahtar = env.MEDYA_ANAHTARI ?? "";
+  const anahtar = (env.MEDYA_ANAHTARI ?? "").trim();   // panele yapıştırırken gelen boşluk/satır sonu
   const m = /^Bearer\s+(.+)$/.exec(req.headers.get("Authorization") ?? "");
   if (!anahtar || anahtar.length < ANAHTAR_EN_AZ || !m || !esit(m[1]!.trim(), anahtar)) { await bekle(YANLIS_GECIKME_MS); return yok(); }
   const r = await dosya();
