@@ -29,8 +29,8 @@ Kaynak: `m1-foto` sürümündeki A10 adayları (Wikimedia Commons; yalnızca CC0
 **Seçilenlerin lisansı:** CC BY-SA 27, CC BY 16, kamu malı 6, CC0 6.
 
 ## Dosyalar
-- `content/v2/media/foto/secim.json`: anahtar A10'daki yer kimliği (`kart#ornekN`; birden çok yer virgülle). Değer: `sorgu`, `aday` (Releases dosya adı ya da `null`), `neden_tr`.
-- `content/v2/media/foto/kisa-sorgu.json`: adaysız sorgular için 2–3 kelimelik İngilizce ikinci sorgu (`sorgu`, `eski`) ya da `soyut: true`. Openverse aramasıyla (PM kararı) ANA'nın hattında kullanılır. `neden`: `adaysiz` (129: 117 sorgu, 12 soyut) ya da `ret` (235: 205 sorgu, 30 soyut; saat, tarih, kat ve sayı cümleleri gösterilemez). Ret satırlarında yeni sorgu ret nedenini önler (yazısız nesne, güncel görünüm). Sayı isteyen sorgularda (hız sınırı, banknot) seçimde sayının doğruluğu ayrıca denetlenmeli.
+- `content/v2/media/foto/secim.json` (ANA'nın biçimi, #12): anahtar yer kimliği (`kart#kart|#ornekN`; birden çok yer virgülle). Değer: `aday` (`adaylar.json` dosya adı ya da `null`) ve `neden_tr`. Soyut sayılan 42 yer de `aday: null` ile burada (308 kayıt).
+- `content/v2/media/foto/kisa-sorgu.json` (ANA'nın biçimi): `{ "<uzun sorgu aynen>": "<2–3 kelime>" }`, 322 sorgu. Soyutlara sorgu yazılmadı. Openverse aramasıyla (PM kararı) ANA'nın hattında kullanılır. `neden`: `adaysiz` (129: 117 sorgu, 12 soyut) ya da `ret` (235: 205 sorgu, 30 soyut; saat, tarih, kat ve sayı cümleleri gösterilemez). Ret satırlarında yeni sorgu ret nedenini önler (yazısız nesne, güncel görünüm). Sayı isteyen sorgularda (hız sınırı, banknot) seçimde sayının doğruluğu ayrıca denetlenmeli.
 
 ## Açık noktalar
 - Hedef (somut kelimelerin %85'inde kabul edilmiş fotoğraf) bu kaynakla tutmuyor. Openverse adaylarından sonra yeniden ölçülecek.
