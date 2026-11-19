@@ -17,3 +17,18 @@
 - **Açık noktalar:**
   - Gün 3 s5 "On beş numarada oturuyorum" çeviri maddesi; adres olarak değil sayı alıştırması olarak duruyor.
   - Gün 2'nin doğum günü maddeleri günün öğrettiği cümleyi kullanıyor.
+
+## İnceleme #110 1. tur
+- 23 madde değişti.
+- **P0:** motorun kelime sırası kuralıyla yanlış Almanca türeten `accepted` biçimleri sadeleşti. Gün 2'nin doğum günü maddeleri ve gün 4 s3 dikte cümlesi değişti. Türetilen satır sayısı 109'dan 89'a indi.
+- **P1:**
+  - Gün 5 mini prova yeni görevle değişti: önerilen saat uymuyor, sekiz buçuğu sor.
+  - Gün 7 mini prova da yeni görevle değişti: kuaför randevusunu cumartesiye al. Eski görev başka yerlerde 5 kez vardı.
+  - Gün 1 diktesindeki soyadı çıktı.
+  - Öğretilmiş biçimlerle kurulan doğru cevaplar eklendi.
+- **Okur:** 18 Türkçe alan, 1 GERİ; düzeltildi, tekrar 2/2.
+- **Koda kalanlar:**
+  - dikte yalnızca yazım farkı kabul etmeli;
+  - "Anfang/Ende + ay" tek öbek sayılmalı;
+  - baştaki schön/so/oder dolgu sayılmamalı;
+  - m1check sınav maddelerine de uygulanmalı.
