@@ -11,8 +11,9 @@ import v2_garden, v2_ders, v2_medya, v2_prova
 PORT = 4196
 
 def next_card(pg, base):
+    """Bugün kartının metni; karttaki seans numarası (günün adımı) `data-seans` ile "Seans N" olarak başa eklenir"""
     pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=next-activity][data-m1]")
-    return pg.inner_text("[data-test=next-activity]")
+    return f"Seans {pg.get_attribute('[data-test=next-activity]', 'data-seans')} · " + pg.inner_text("[data-test=next-activity]")
 
 def main():
     v2_medya.install_media()
@@ -49,7 +50,7 @@ def main():
         # Seans 2
         na = next_card(pg, base)
         check("Seans 2" in na and "Temel ders" in na, f"Bugün: Seans 2 temel ders ({na[:80]!r})")
-        check("Seans 1: Kelime Bahçesi" not in na, "biten Seans 1 yeniden önerilmiyor")
+        check("Seans 1 ·" not in na and "Kelime Bahçesi" not in na, "biten Seans 1 yeniden önerilmiyor")
         pg.click("[data-test=m1-devam]"); pg.wait_for_selector("[data-test=ders]")
         k = 0
         while not pg.locator("[data-test=ders-bitti]").count() and k < 120:

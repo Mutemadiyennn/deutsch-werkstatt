@@ -5,7 +5,7 @@
 import type { Activity, Profile } from "@dw/shared";
 import { FocusEngine, localDate, type FocusEvent } from "../core/focus.ts";
 import { loadFocus, saveFocus } from "../data/db.ts";
-import { audioActive, chime } from "./speech.ts";
+import { audioActive, chime, stopSpeaking } from "./speech.ts";
 import { hapticAlarm } from "./haptics.ts";
 
 let engine: FocusEngine | null = null;
@@ -65,7 +65,7 @@ function emit(ev: FocusEvent[]) {
     // #58 A6: mola başında ve sonunda zil (ses ayarı açıksa) ve titreşim (titreşim ayarı açıksa)
     if (mola) { if (sfx) chime(ev.some((e) => e.type === "breakEnded") ? "end" : "start"); hapticAlarm(); }
     for (const e of ev) {
-      if (e.type === "breakStarted") void molaBildirimi(e.endsAt);
+      if (e.type === "breakStarted") { molayaGec(); void molaBildirimi(e.endsAt); }
       if (e.type === "breakEnded") void molaBildirimi(null);
     }
   }
@@ -73,6 +73,18 @@ function emit(ev: FocusEvent[]) {
   subs.forEach((f) => f(ev));
   void persist(ev.length > 0);
 }
+/**
+ * Mola başlayınca alttaki öğrenme ekranı susar (inceleme #67 P1-4): seslendirme durur, video/ses duraklar, mikrofon
+ * kapanır (MicButton "dw:mola" olayını dinler). Mola atlanınca öğrenci kaldığı yerden kendisi devam eder.
+ */
+function molayaGec() {
+  try {
+    stopSpeaking();
+    document.querySelectorAll<HTMLMediaElement>("video, audio").forEach((m) => { try { m.pause(); } catch { /* yok say */ } });
+    window.dispatchEvent(new Event("dw:mola"));
+  } catch { /* ekran yoksa (test) yok say */ }
+}
+
 /**
  * Uygulama arka plandayken ya da telefon kilitliyken mola biterse zil sayfada çalamaz: iPhone kabuğunda (Capacitor
  * LocalNotifications varsa) mola bitişine yerel bildirim kurulur, mola atlanınca ya da bitince kaldırılır. Web'de yok sayılır.

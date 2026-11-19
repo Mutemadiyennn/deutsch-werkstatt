@@ -22,6 +22,8 @@ export interface Ilerleme {
   gunBitti?: Set<number>;
   /** cihazda kaydı olan (tanıtılmış) kart kimlikleri — Seans 1 kartındaki "kalan yeni kelime" sayısı */
   tanitilan?: Set<string>;
+  /** Bahçe'ye kart olarak giren kimlikler (sayı, parçacık, zamir kart değildir); verilmezse hepsi sayılır */
+  kartlar?: Set<string>;
 }
 
 export const SEANS_TR: Record<SeansNo, string> = { 1: "Kelime Bahçesi", 2: "Temel ders", 3: "Video ve sesler", 4: "Konuşma provası" };
@@ -30,7 +32,7 @@ export const bahceAnahtari = (day: number) => `m1:bahce:${day}`;
 export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<string, string> = {}): GunDurum {
   const a: Adim[] = [];
   const bahceBitti = ilr.bahceBitti.has(g.day);
-  const kalan = bahceBitti ? 0 : g.yeni_kartlar.filter((id) => !ilr.tanitilan?.has(id)).length;
+  const kalan = bahceBitti ? 0 : g.yeni_kartlar.filter((id) => (!ilr.kartlar || ilr.kartlar.has(id)) && !ilr.tanitilan?.has(id)).length;
   a.push({ seans: 1, tur: "bahce", id: `bahce:${g.day}`, title_tr: kalan ? `${kalan} yeni kelime ve tekrar` : "Kelime tekrarı", href: `#/garden/${g.day}`, bitti: bahceBitti, hazir: true });
   for (const d of g.dersler) a.push({ seans: 2, tur: "ders", id: d, title_tr: temelBasliklari[d] ?? "Temel ders", href: `#/ders/${encodeURIComponent(d)}`, bitti: ilr.dersBitti.has(d), hazir: d in temelBasliklari });
   for (const m of medyalar(g)) if (m.kind !== "sahne") a.push({ seans: 3, tur: "medya", id: m.id, title_tr: m.title_tr, href: `#/m1/${g.day}/${encodeURIComponent(m.id)}`, bitti: ilr.medyaBitti.has(m.id), hazir: true });

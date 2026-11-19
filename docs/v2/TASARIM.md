@@ -13,7 +13,7 @@
 ## TS-0 Tasarım ilkeleri (her ekranda geçerli)
 
 1. **Tek iş:** Her ekranın tek bir amacı ve tek bir ana eylemi vardır.
-2. **Tek gösterge:** Her ekranda yalnızca bir ilerleme göstergesi (Raute dizisi) bulunur. Saniye sayacı, "1/36" ve kronometre gösterilmez. Gerekirse yalnızca kısa bir metin kullanılır ("yaklaşık 6 dakika").
+2. **Tek gösterge:** Her ekranda yalnızca bir ilerleme göstergesi (Raute dizisi) bulunur. Saniye sayacı, "1/36" ve kronometre gösterilmez. Gerekirse yalnızca kısa bir metin kullanılır ("yaklaşık 6 dakika"). Bugün'de 100 dakika halkası, seans durumu ve 4 seans Rautesi tek gösterge grubudur; ders ekranlarının başlığındaki seans çipi dakika olarak yazılır ("Seans 2/4 · 18 dk"), ilerleme göstergesi sayılmaz (#58 A6).
 3. **Ses önce:** Konuşma içeren ekranlarda ana eylem "Sesli söyle"dir. Yazmak ikincil bir seçenektir. Umlaut satırı yalnızca yazma açıkken görünür.
 4. **Dünya içinde:** İçerik öğrenciye mümkün olduğunca köyün ve telefonun içinden gelir (sesli mesaj, mektup, kafe, radyo). Ders listesi hissi verilmez.
 5. **Sakin ama canlı:** Zemin sakin (papier) olur. Canlılığı mekân aksanları, sahne illüstrasyonları, günün saatine göre değişen gök şeridi ve tek kutlama anı verir.
