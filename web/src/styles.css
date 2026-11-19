@@ -684,3 +684,6 @@ summary.ac-baslik::-webkit-details-marker { display: none; }
 summary.ac-baslik::before { content: "▸"; color: var(--muted); transition: transform var(--t); }
 details[open] > summary.ac-baslik::before { transform: rotate(90deg); }
 summary.ac-baslik h2 { margin: 0; }
+/* "Başka cümle" karesi (#122 CI 2. deneme): cümle alanı düzen ve boyama sınırı; eşdizim listesi ve görsel kendi katmanında */
+[data-test=intro-ex] { contain: layout paint; }
+.esdizim-liste, [data-test=garden-intro] figure { will-change: transform; }
