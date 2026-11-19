@@ -101,6 +101,6 @@ Yazar ve dilbilimci yamalarından betikle çıkarıldı (#116 inceleme P2-10). S
 | `pt:es-waere-nett` | wenn Sie mich zurückrufen könnten | beni geri arayabilirseniz | bana geri telefon edebilirseniz | bana geri telefon edebilirseniz |
 
 ## #116 inceleme sonrası (2. hat)
-- 26 dolgu ve 6 örnek çevirisi değişti: **zu spät** "fazla geç" (zu/sehr ayrımı), **Tabletten** her yerde "hap", saatler hep "saat …", **vorhin** "biraz önce", **auch** "bir de", **er** "adam" yerine "o/onun", doğallık düzeltmeleri.
+- 23 dolgu ve 10 örnek çevirisi değişti (3 dolgu denenip okurdan dönünce eski hâline alındı): **zu spät** "fazla geç" (zu/sehr ayrımı), **Tabletten** her yerde "hap", saatler hep "saat …", **vorhin** "biraz önce", **auch** "bir de", **er** "adam" yerine "o", doğallık düzeltmeleri.
 - **Bilinçli bırakılanlar:** **ist die Praxis** "muayenehane" ve **ist der Termin** "randevu" (Türkçede bu cümlelerde fiil yok; "… -dır" okurdan döndü); **Überweisung** bu kalıpta doktor ortamında "sevk kâğıdı", **Bescheid** "resmî yazı" (iki anlamlı öbekler okurdan döndü; "Bescheid sagen: haber vermek" kendi kalıplarında).
 - Okur: re4 32 satır (8 GERİ) → re5 8 satır (1 GERİ) → re6 1/1 GEÇTİ.
