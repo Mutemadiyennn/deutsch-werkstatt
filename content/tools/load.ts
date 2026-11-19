@@ -35,6 +35,8 @@ export interface Loaded {
   m1: { file: string; data: Gun }[];
   /** K1 seçim listesi (content/v2/curriculum/k1.json) */
   k1?: { cekirdek: string[]; pasif: string[] } | null;
+  /** #58 B4 tabanı ve incelenmiş hassas konular (content/tools/b4-taban.json; yalnızca depo içeriği yüklenince) */
+  b4Taban?: B4Taban;
   errors: string[];
   warnings: string[];
 }
@@ -126,7 +128,9 @@ export function loadContent(dir = CDIR): Loaded {
   const K1 = z.object({ schema: z.number(), review: ReviewStateLoose, note_tr: z.string().optional(), cekirdek: z.array(z.object({ id: z.string() }).passthrough()), pasif: z.array(z.object({ id: z.string() }).passthrough()).default([]) });
   const k1raw = existsSync(k1File) ? parseFile(k1File, K1, errors) : null;
   const k1 = k1raw ? { cekirdek: k1raw.cekirdek.map((x) => x.id), pasif: k1raw.pasif.map((x) => x.id) } : null;
-  return { domains, lexemes: [...byId.values()], lexiconBatches, patterns, grammar, scenarios, assess, world, temel, m1, k1, errors, warnings };
+  const tabanDosya = join(ROOT, "content/tools/b4-taban.json");
+  const b4Taban = dir === CDIR && existsSync(tabanDosya) ? (JSON.parse(readFileSync(tabanDosya, "utf8")) as B4Taban) : undefined;
+  return { domains, lexemes: [...byId.values()], lexiconBatches, patterns, grammar, scenarios, assess, world, temel, m1, k1, b4Taban, errors, warnings };
 }
 
 /** PEDAGOGY.md §2: derin (K1) ve hafif (K2) kart zorunlu alanları */
@@ -258,10 +262,10 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
     if (l.exp) for (const x of explanationIssues(l.exp)) errors.push(`${l.id}.exp.${x}`);
   }
   // #58 B4: içerik güvenliği, pasif kelime, isimde forms, K1'de 3+ eşdizim, somut kelimede örnek başına görsel
-  { const g = icerikGuvenligi(c);
+  { const g = icerikGuvenligi(c, c.b4Taban);
     errors.push(...g.hata); warnings.push(...g.uyari);
-    warnings.push(...b4Uyarilar(c.lexemes));
-    for (const l of c.lexemes) if (l.tier === "passive" && l.forms.length) errors.push(`${l.id}: pasif (yalnızca tanıma) kartta forms olmaz; üretim havuzuna girer (#58 B4)`);
+    const k = b4Uyarilar(c.lexemes, c.b4Taban);
+    errors.push(...k.hata); warnings.push(...k.uyari);
   }
   if (artInDe.length) errors.push(`de alanı artikelle başlayan ${artInDe.length} isim (artikel yalnızca art alanında, D-098): ${artInDe.slice(0, 5).join(", ")}${artInDe.length > 5 ? " …" : ""}`);
   // PM-040.3 / PM-042 A.3: sözlük partisi — "reviewed" ise okur zorunlu; tr ve mistakes_tr OD-9.2 (incelenmişte hata, taslakta sayı uyarısı)
@@ -398,47 +402,108 @@ function addDayTaught(t: Set<string>, g: Gun, c: Loaded) {
 }
 
 /**
- * #58 B4 içerik güvenliği süzgeci: öğrenciye görünecek bütün metinlerde küfür/hakaret (hata) ve hassas konu (uyarı; insan
- * incelemesi). Liste kısa ve kapalı; kelime sınırıyla aranır (Almanca birleşik kelimeler için kök başta da aranır).
+ * #58 B4 içerik güvenliği süzgeci (#54 D16, PM-052 A.10). Öğrenciye görünen bütün metinler taranır: kelime kartları, kalıplar,
+ * senaryolar, temel dersler, M1 günleri, dünya, seviye tespiti bankası, dilbilgisi notları, alanlar.
+ *  - KABA (küfür, hakaret) ve ŞİDDET: aktif içerikte HATA. Yalnızca tanıma kartında (tier: passive) kalabilir: öğrenci duyduğunu
+ *    anlasın, kendisi kullanmasın. Kartın Türkçe açıklamasında kullanım uyarısı ("kaba", "deme", "argo"…) varsa sessiz geçer;
+ *    yoksa uyarı. Böyle kart üretim havuzuna giremez: M1 yeni_kartlar, senaryo essentials.lexemes, K1 çekirdek (HATA). Kelimenin
+ *    kendisi kabul cevaplarına, alıştırmaya, provaya girerse aktif metin taramasıyla zaten HATA.
+ *  - AŞIRICILIK (nazi selamı vb.): her yerde HATA.
+ *  - HASSAS konu (siyaset, intihar, uyuşturucu): UYARI, insan incelemesi; incelenen kimlik `b4-taban.json` → `hassas_onay`.
+ * Almanca kalıplar kelimenin içinde de aranır (birleşik kelime: Hundescheiße, Scheißkerl); Almanca kalıplar Türkçe açıklama
+ * alanlarında (`*_tr`, `tr`) aranmaz: "Scheiße deme, So ein Mist de" gibi bir açıklama içerik değil, üst dildir. Türkçe kalıplar
+ * her alanda ve Türkçe küçük harfe çevrilerek aranır (İbne → ibne).
  */
-const KUFUR = /(?<![\p{L}])(schei(ß|ss)e\w*|fick\w*|wichser\w*|fotze\w*|hurensohn\w*|arschloch\w*|nutte\w*|missgeburt\w*|siktir\w*|amk|amına|orospu\w*|piç\w*|yavşak\w*|şerefsiz\w*|ibne\w*)(?![\p{L}])/iu;
-const HASSAS = /(?<![\p{L}])(selbstmord\w*|suizid\w*|umbringen|kokain|heroin|crystal meth|waffe\w*|bombe\w*|vergewaltig\w*|intihar\w*|uyuşturucu\w*|tecavüz\w*)(?![\p{L}])/iu;
-function metinler(x: unknown, yol: string, out: { yol: string; t: string }[]) {
-  if (typeof x === "string") { out.push({ yol, t: x }); return; }
-  if (Array.isArray(x)) { x.forEach((v, i) => metinler(v, `${yol}[${i}]`, out)); return; }
-  if (x && typeof x === "object") for (const [k, v] of Object.entries(x)) { if (k === "id" || k === "source" || k === "license" || k === "url" || k === "img") continue; metinler(v, yol ? `${yol}.${k}` : k, out); }
+const DE_KABA = /\p{L}*(schei(ß|ss)|fick|fotze|wichser|hurens[oö]hn|arschl[oö]ch|nutte|missgeburt|verdammt|drecksau|mistst[üu]ck)\p{L}*/iu;
+const DE_SIDDET = /(?<!\p{L})(t[öo]ten|t[öo]te|t[öo]tet|get[öo]tet|umbringen|umgebracht|bringe? (dich|ihn|sie) um|erschie(ß|ss)en|erschossen|ermorden|ermordet|mord|morde|mordes|m[öo]rder\p{L}*|leiche|leichen|erstechen|erstochen|vergewaltig\p{L}*|waffe|waffen|pistole\p{L}*|gewehr\p{L}*|bombe|bomben|sprengstoff\p{L}*)(?!\p{L})/iu;
+const DE_ASIRI = /(?<!\p{L})(heil hitler|sieg heil|hakenkreuz\p{L}*|nazi|nazis|hitler)(?!\p{L})/iu;
+const DE_HASSAS = /(?<!\p{L})(selbstmord\p{L}*|suizid\p{L}*|kokain|heroin|crystal meth|drogen|afd|cdu|csu|spd|fdp|partei|parteien|wahlkampf|bundestagswahl|politik\p{L}*|politisch\p{L}*|holocaust|terror\p{L}*)(?!\p{L})/iu;
+const TR_KABA = /(?<!\p{L})(siktir\p{L}*|sikeyim|sikerim|sikim\p{L}*|amk|aq|amına|amcık\p{L}*|orospu\p{L}*|piç\p{L}*|yavşa[kğ]\p{L}*|şerefsiz\p{L}*|ibne\p{L}*|götveren\p{L}*|kahpe\p{L}*|pezevenk\p{L}*)(?!\p{L})/u;
+const TR_SIDDET = /(?<!\p{L})(cinayet\p{L}*|katil|katiller\p{L}*|tecavüz\p{L}*|silah\p{L}*|bomba\p{L}*)(?!\p{L})/u;
+const TR_HASSAS = /(?<!\p{L})(intihar\p{L}*|uyuşturucu\p{L}*|siyaset\p{L}*|siyasi|hükümet\p{L}*|terör\p{L}*|savaş|savaşı|savaşta)(?!\p{L})/u;
+/** Kartta kullanım uyarısı (yalnızca tanıma kartı için): Türkçe açıklamada bu kelimelerden biri */
+const KULLANIM_UYARISI = /(kaba|deme|deme[zk]|kullanma|argo|küfür|hakaret|kibar ortam|yalnızca (tanı|anla))/iu;
+/**
+ * Savaş (hassas): yalnızca isim. "Krieg ich das Pfand zurück?" (kriegen = almak) yakalanmaz: büyük harfli ve cümle başında
+ * olmayan Krieg/Kriege/Kriegs-… isimdir; cümle başındaki belirsiz biçim fiil sayılır.
+ */
+const DE_KRIEG = /(?<!\p{L})(Krieg(e|es|s)?|Kriegs(?!t(?!\p{L}))\p{L}+|Weltkrieg\p{L}*)(?!\p{L})/gu;
+function kriegIsim(t: string): string | null {
+  for (const m of t.matchAll(DE_KRIEG)) { const once = t.slice(0, m.index).trimEnd(); if (once && !/[.!?:„“"]$/.test(once)) return m[0]; if (/^Weltkrieg/.test(m[0])) return m[0]; }
+  return null;
 }
-export function icerikGuvenligi(c: Pick<Loaded, "lexemes" | "scenarios" | "temel" | "m1" | "patterns">): { hata: string[]; uyari: string[] } {
+type Bulgu = { yol: string; t: string; tr: boolean };
+function metinler(x: unknown, yol: string, out: Bulgu[], tr = false) {
+  if (typeof x === "string") { out.push({ yol, t: x, tr }); return; }
+  if (Array.isArray(x)) { x.forEach((v, i) => metinler(v, `${yol}[${i}]`, out, tr)); return; }
+  if (x && typeof x === "object") for (const [k, v] of Object.entries(x)) {
+    if (k === "id" || k === "source" || k === "license" || k === "url" || k === "img" || k === "file" || k === "lexId") continue;
+    metinler(v, yol ? `${yol}.${k}` : k, out, tr || k === "tr" || /_tr$/.test(k) || k === "opts_tr" || k === "q_tr");
+  }
+}
+export type GuvenlikTur = "kaba" | "siddet" | "asiri" | "hassas";
+/** Tek metinde bulgu (dışa açık: test ve içerik araçları) */
+export function guvenlikTara(t: string, trAlan: boolean): { tur: GuvenlikTur; k: string } | null {
+  const lo = t.toLowerCase(), tl = t.toLocaleLowerCase("tr");
+  const de = (re: RegExp, tur: GuvenlikTur) => { if (trAlan) return null; const m = re.exec(lo); return m ? { tur, k: m[0]! } : null; };
+  const trr = (re: RegExp, tur: GuvenlikTur) => { const m = re.exec(tl); return m ? { tur, k: m[0]! } : null; };
+  const krieg = trAlan ? null : kriegIsim(t);
+  return de(DE_ASIRI, "asiri") ?? de(DE_KABA, "kaba") ?? trr(TR_KABA, "kaba") ?? de(DE_SIDDET, "siddet") ?? trr(TR_SIDDET, "siddet")
+    ?? de(DE_HASSAS, "hassas") ?? (krieg ? { tur: "hassas" as const, k: krieg } : null) ?? trr(TR_HASSAS, "hassas");
+}
+export type B4Taban = { uyari?: Record<string, number>; hassas_onay?: string[] };
+export function icerikGuvenligi(c: Pick<Loaded, "lexemes" | "scenarios" | "temel" | "m1" | "patterns"> & Partial<Pick<Loaded, "world" | "assess" | "grammar" | "domains" | "k1">>, taban: B4Taban = {}): { hata: string[]; uyari: string[] } {
   const hata: string[] = [], uyari: string[] = [];
   const kaynaklar: [string, unknown][] = [
     ...c.lexemes.map((l) => [l.id, l] as [string, unknown]), ...c.patterns.map((p) => [p.id, p] as [string, unknown]),
-    ...c.scenarios.map((s) => [s.file, s.data] as [string, unknown]), ...c.temel.map((t) => [t.file, t.data] as [string, unknown]), ...c.m1.map((g) => [g.file, g.data] as [string, unknown])
+    ...c.scenarios.map((s) => [s.file, s.data] as [string, unknown]), ...c.temel.map((t) => [t.file, t.data] as [string, unknown]), ...c.m1.map((g) => [g.file, g.data] as [string, unknown]),
+    ...(c.world ? [["world/world.json", c.world] as [string, unknown]] : []),
+    ...(c.assess ?? []).map((a) => [a.id, a] as [string, unknown]), ...(c.grammar ?? []).map((g) => [g.id, g] as [string, unknown]), ...(c.domains ?? []).map((d) => [`alan ${d.id}`, d] as [string, unknown])
   ];
   const pasif = new Set(c.lexemes.filter((l) => l.tier === "passive").map((l) => l.id));
+  const onay = new Set(taban.hassas_onay ?? []);
+  const kabaPasif = new Set<string>();
   for (const [ad, v] of kaynaklar) {
-    const out: { yol: string; t: string }[] = []; metinler(v, "", out);
-    const kufur = out.map((m) => ({ m, k: KUFUR.exec(m.t) })).filter((x) => x.k);
-    const hassas = out.map((m) => HASSAS.exec(m.t)).filter(Boolean);
-    if (kufur.length) {
-      const ilk = `${kufur[0]!.m.yol}: "${kufur[0]!.k![0]}"`;
-      // yalnızca tanıma kartı (tier: passive), "kibar ortamda deme" uyarısıyla: duyduğunu anlamak için kalabilir (uyarı)
-      if (pasif.has(ad)) uyari.push(`${ad}: kaba kelime yalnızca tanıma kartında (${kufur.length} metin, ilk ${ilk}); mistakes_tr'de kullanım uyarısı olmalı (#58 B4)`);
-      else hata.push(`${ad}: içerik güvenliği — uygunsuz kelime ${kufur.length} metinde (ilk ${ilk}); öğrenciye üretim olarak sunulamaz (#58 B4)`);
+    const out: Bulgu[] = []; metinler(v, "", out);
+    const b = out.map((m) => ({ m, g: guvenlikTara(m.t, m.tr) })).filter((x) => x.g) as { m: Bulgu; g: { tur: GuvenlikTur; k: string } }[];
+    const ilk = (x: typeof b) => `${x[0]!.m.yol}: "${x[0]!.g.k}"`;
+    const asiri = b.filter((x) => x.g.tur === "asiri"), kaba = b.filter((x) => x.g.tur === "kaba" || x.g.tur === "siddet"), hassas = b.filter((x) => x.g.tur === "hassas");
+    if (asiri.length) hata.push(`${ad}: içerik güvenliği — aşırıcı ifade ${asiri.length} metinde (ilk ${ilk(asiri)}) (#54 D16)`);
+    if (kaba.length) {
+      if (pasif.has(ad)) {
+        kabaPasif.add(ad);
+        const uyarili = out.some((m) => m.tr && KULLANIM_UYARISI.test(m.t));
+        if (!uyarili) uyari.push(`${ad}: kaba/şiddet kelimesi yalnızca tanıma kartında (ilk ${ilk(kaba)}) ama Türkçe açıklamada kullanım uyarısı yok (#54 D16)`);
+      } else hata.push(`${ad}: içerik güvenliği — ${kaba[0]!.g.tur === "kaba" ? "kaba/hakaret" : "şiddet"} kelimesi ${kaba.length} metinde (ilk ${ilk(kaba)}); yalnızca tanıma kartında olabilir (#54 D16)`);
     }
-    if (hassas.length) uyari.push(`${ad}: hassas konu "${hassas[0]![0]}" ${hassas.length} metinde — insan incelemesi (#58 B4)`);
+    if (hassas.length && !onay.has(ad)) uyari.push(`${ad}: hassas konu "${hassas[0]!.g.k}" ${hassas.length} metinde — insan incelemesi; incelendiyse b4-taban.json hassas_onay (#54 D16)`);
   }
+  // kaba/şiddet içeren tanıma kartı üretim havuzuna giremez
+  for (const g of c.m1) for (const id of g.data.yeni_kartlar ?? []) if (kabaPasif.has(id)) hata.push(`${g.file}: ${id} kaba/şiddet içeren tanıma kartı; günün yeni kartı olamaz (#54 D16)`);
+  for (const s of c.scenarios) for (const id of s.data.essentials.lexemes) if (kabaPasif.has(id)) hata.push(`${s.file}: ${id} kaba/şiddet içeren tanıma kartı; temel öğe olamaz (#54 D16)`);
+  for (const id of c.k1?.cekirdek ?? []) if (kabaPasif.has(id)) hata.push(`curriculum/k1.json: ${id} kaba/şiddet içeren kart çekirdekte olamaz (#54 D16)`);
   return { hata, uyari };
 }
-/** #58 B4 kart kuralları (içerik tamamlanınca hataya döner; şimdilik sayılı uyarı): isimde forms, K1'de 3+ eşdizim, somut kelimede örnek başına img */
-export function b4Uyarilar(lexemes: Lexeme[]): string[] {
+/**
+ * #58 B4 kart kuralları: isimde forms, K1'de 3+ eşdizim, somut kelimede örnek başına img. İçerik tamamlanana kadar sayılı
+ * uyarıdır; `b4-taban.json` → `uyari` bugünkü sayıları taban olarak tutar ve sayı tabanı aşarsa HATA olur (gerileme durur).
+ * Sayı düşünce taban elle düşürülür (uyarı söyler); taban 0 olunca kural kalıcı hatadır.
+ */
+export function b4Sayilar(lexemes: Lexeme[]): { anahtar: string; ad: string; ids: string[] }[] {
   const k1 = lexemes.filter((l) => l.tier === "K1" && l.card !== false);
-  const formsuz = k1.filter((l) => l.pos === "noun" && !l.forms.length).map((l) => l.id);
-  const azEsdizim = k1.filter((l) => l.collocations.length < 3).map((l) => l.id);
-  const gorselsiz = lexemes.filter((l) => l.img && l.examples.some((e) => !e.img)).map((l) => l.id);
-  const ilk = (x: string[]) => x.slice(0, 5).join(", ") + (x.length > 5 ? " …" : "");
   return [
-    ...(formsuz.length ? [`K1 isimde forms yok: ${formsuz.length} kart (ilk: ${ilk(formsuz)}) (#58 B4)`] : []),
-    ...(azEsdizim.length ? [`K1'de 3'ten az eşdizim: ${azEsdizim.length} kart (ilk: ${ilk(azEsdizim)}) (#58 B4)`] : []),
-    ...(gorselsiz.length ? [`somut kelimede (img var) görselsiz örnek: ${gorselsiz.length} kart (ilk: ${ilk(gorselsiz)}) (#58 B4)`] : [])
+    { anahtar: "k1_isim_formsuz", ad: "K1 isimde forms yok", ids: k1.filter((l) => l.pos === "noun" && !l.forms.length).map((l) => l.id) },
+    { anahtar: "k1_az_esdizim", ad: "K1'de 3'ten az eşdizim", ids: k1.filter((l) => l.collocations.length < 3).map((l) => l.id) },
+    { anahtar: "gorselsiz_ornek", ad: "somut kelimede (img var) görselsiz örnek", ids: lexemes.filter((l) => l.img && l.examples.some((e) => !e.img)).map((l) => l.id) }
   ];
+}
+export function b4Uyarilar(lexemes: Lexeme[], taban: B4Taban = {}): { hata: string[]; uyari: string[] } {
+  const hata: string[] = [], uyari: string[] = [];
+  const ilk = (x: string[]) => x.slice(0, 5).join(", ") + (x.length > 5 ? " …" : "");
+  for (const { anahtar, ad, ids } of b4Sayilar(lexemes)) {
+    const t = taban.uyari?.[anahtar];
+    if (t !== undefined && ids.length > t) hata.push(`${ad}: ${ids.length} kart, taban ${t} (b4-taban.json) — sayı arttı (ilk: ${ilk(ids)}) (#58 B4)`);
+    else if (ids.length) uyari.push(`${ad}: ${ids.length} kart${t !== undefined ? ` (taban ${t}${ids.length < t ? "; taban düşürülebilir" : ""})` : ""} (ilk: ${ilk(ids)}) (#58 B4)`);
+  }
+  return { hata, uyari };
 }
