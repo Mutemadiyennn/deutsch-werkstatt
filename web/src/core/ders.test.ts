@@ -10,19 +10,22 @@ const dersler = readdirSync(dir).filter((f) => f.endsWith(".json")).map((f) => T
 const t = dersler.find((d) => d.id === "r0:01-tage")!;
 
 describe("Temel ders akışı (#58 A5)", () => {
-  it("adımlar: tanıt → tablo → anla → kur → söyle → diyalog → dinle → görev; her madde bir kez", () => {
-    expect(adimlarDers(t)).toEqual(["tanit", "tablo", "anlama", "kurma", "konusma", "diyalog", "dinleme", "gorev"]);
+  it("adımlar: önce diyalog (dinle) → tanıt + hatırla → tablo → anla → kur → söyle → dinle → görev; her madde bir kez", () => {
+    expect(adimlarDers(t)).toEqual(["diyalog", "tanit", "tablo", "anlama", "kurma", "konusma", "dinleme", "gorev"]);
     const n = maddeler(t, "anlama").length + maddeler(t, "kurma").length + maddeler(t, "konusma").length;
     expect(n).toBe(t.drills.length);
     expect(maddeler(t, "kurma").map((d) => d.k)[0]).toBe("gap");
   });
   it("ilerleme sonda biter; sayaç yalnızca puanlanan adımda artar; uyuşmayan konum baştan", () => {
     let p = { ...DERS_BASLANGIC }, steps = 0;
-    while (!p.bitti && steps < 500) { const a = adimlarDers(t)[p.s]!; p = dersIleri(p, t, ["anlama", "kurma", "konusma", "dinleme"].includes(a) ? true : undefined); steps++; }
+    while (!p.bitti && steps < 500) {
+      const a = adimlarDers(t)[p.s]!;
+      p = dersIleri(p, t, a === "tanit" ? (p.k % 2 ? { dogru: 8, toplam: 8 } : undefined) : ["anlama", "kurma", "konusma", "dinleme"].includes(a) ? true : undefined); steps++;
+    }
     expect(p.bitti).toBeTruthy();
-    expect(p.toplam).toBe(t.drills.length + t.listening.length);
+    expect(p.toplam).toBe(t.drills.length + t.listening.length + 8 * Math.ceil(t.teach.length / 4));
     expect(dersKonum({ s: 99, k: 0, dogru: 0, toplam: 0 }, t)).toEqual(DERS_BASLANGIC);
-    expect(altSayisi(t, "tanit")).toBe(Math.ceil(t.teach.length / 6));
+    expect(altSayisi(t, "tanit")).toBe(Math.ceil(t.teach.length / 4) * 2);
   });
   it("her dersin her üretim maddesinde ilk kabul cevabı doğru sayılıyor (doğru cevap reddi 0)", () => {
     const red: string[] = [];
@@ -42,5 +45,15 @@ describe("Temel ders akışı (#58 A5)", () => {
     const num = { id: "x", k: "tr_de" as const, tr: "yirmi", accepted: ["zwanzig"], strictNumberWords: true };
     expect(drillVerdict(num, "20").note).toMatch(/kelimeyle/);
     expect(drillVerdict(num, "20", false).note).toBeUndefined();
+  });
+  it("inceleme #65: tonlamalı soru kabulde varsa dönüşümde de doğru; {name} öğrencinin adıyla; sayı kelimesi farkı yanlış; rakam kendiliğinden yasak", () => {
+    const d24 = dersler.flatMap((d) => d.drills).find((m) => m.id === "r0:08:d24")!;
+    expect(drillVerdict(d24, "Du bist müde?").kind).toBe("correct");
+    const nm = { id: "n", k: "guided_response" as const, situation_tr: "x", prompt_de: "Wie heißen Sie?", accepted: ["Ich heiße {name}."] };
+    expect(drillVerdict(nm, "Ich heiße Ayşe.").kind).toBe("correct");
+    const num = { id: "z", k: "tr_de" as const, tr: "Numaram on yedi.", accepted: ["Meine Nummer ist siebzehn."] };
+    expect(drillVerdict(num, "Meine Nummer ist sechzehn.").kind).toBe("wrong");
+    expect(drillVerdict(num, "Meine Nummer ist 17.").note).toMatch(/kelimeyle/);
+    expect(drillVerdict(num, "Meine Nummer ist 17.", false).kind).toBe("correct");
   });
 });

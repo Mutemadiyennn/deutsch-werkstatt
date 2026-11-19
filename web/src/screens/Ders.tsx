@@ -3,7 +3,7 @@
  * kip fiilleri, harf harf söyleme). Akış `core/ders.ts`. Kaldığı yer cihazda saklanır; ders bitince planlayıcı onu
  * yeniden önermez (meta `ders:<id>.bitti`).
  */
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import type { TemelDers } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadTemel } from "../services/content.ts";
@@ -43,18 +43,20 @@ export function DersEkrani({ id }: { id: string }) {
         <h2>Ders bitti</h2>
         <p>{p.toplam ? `${p.toplam} soruda ${p.dogru} doğru.` : ""} {t.can_do.tr}</p>
         <div class="row"><a class="btn primary grow" href="#/today" data-test="ders-geri">Bugün'e dön</a>
-          <button class="btn grow" onClick={() => setP({ s: 0, k: 0, dogru: 0, toplam: 0 })}>Tekrar çalış</button></div>
+          <button class="btn grow" onClick={() => setP({ s: 0, k: 0, dogru: 0, toplam: 0, ilkBitti: p.ilkBitti ?? p.bitti })}>Tekrar çalış</button></div>
       </section>
     </div>
   );
 
   const adim = steps[p.s]!;
   const n = altSayisi(t, adim);
-  const ileri = (ok?: boolean) => setP(dersIleri(p, t, ok));
+  const ileri = (ok?: boolean | { dogru: number; toplam: number }) => setP(dersIleri(p, t, ok));
   return (
     <div class="stack" data-test="ders" data-adim={adim} data-pos={`${p.s}.${p.k}`}>
       <ProgressHeader title={t.title_tr} back="#/today" sub={`${p.s + 1}/${steps.length} · ${DERS_ADIM_TR[adim]}${n > 1 ? ` ${p.k + 1}/${n}` : ""}`} />
-      {adim === "tanit" && <Tanit key={p.k} t={t} grup={p.k} onNext={() => ileri()} />}
+      {adim === "tanit" && (p.k % 2 === 0
+        ? <Tanit key={p.k} t={t} grup={p.k / 2} onNext={() => ileri()} />
+        : <Hatirla key={p.k} t={t} grup={(p.k - 1) / 2} onDone={(dogru, toplam) => ileri({ dogru, toplam })} />)}
       {adim === "tablo" && t.table && <Tablo t={t} onNext={() => ileri()} />}
       {(adim === "anlama" || adim === "kurma" || adim === "konusma") && (
         <DrillView key={`${adim}${p.k}`} d={maddeler(t, adim)[p.k]!} sira={`${p.k + 1}/${n}`} onDone={(s) => ileri(s !== "wrong")} />
@@ -94,9 +96,36 @@ function Tanit({ t, grup, onNext }: { t: TemelDers; grup: number; onNext: () => 
           </>}
         </section>
       ))}
-      <ActionBar><button class="btn primary block" data-test="next" onClick={onNext}>Devam</button></ActionBar>
+      <ActionBar><button class="btn primary block" data-test="next" onClick={onNext}>Hatırlamaya geç</button></ActionBar>
     </div>
   );
+}
+
+/** Hatırlama turu (phases/09 madde 5): grubun her kartı için dinle → anlamını seç, sonra Türkçe → Almancasını yaz */
+function Hatirla({ t, grup, onDone }: { t: TemelDers; grup: number; onDone: (dogru: number, toplam: number) => void }) {
+  const items = t.teach.slice(grup * TANIT_GRUP, (grup + 1) * TANIT_GRUP);
+  const sorular = items.flatMap((x, i) => [{ x, i, tur: "anlam" as const }, { x, i, tur: "yaz" as const }]);
+  const [q, setQ] = useState(0);
+  const [dogru, setDogru] = useState(0);
+  const cur = sorular[q];
+  // dinle → anlamını seç: kelime soru açılınca bir kez okunur
+  useEffect(() => { if (cur?.tur === "anlam") void speak(cur.x.art ? `${cur.x.art} ${cur.x.de}` : cur.x.de, "de", "normal"); }, [q]);
+  if (!cur) return null;
+  const sayi = `${q + 1}/${sorular.length}`;
+  const bitir = (ok: boolean) => { const d = dogru + (ok ? 1 : 0); if (q + 1 >= sorular.length) onDone(d, sorular.length); else { setDogru(d); setQ(q + 1); } };
+  if (cur.tur === "anlam") {
+    const diger = t.teach.filter((y) => y.tr !== cur.x.tr).map((y) => y.tr);
+    const k = (grup * 7 + cur.i * 3) % Math.max(1, diger.length);
+    const opts = [cur.x.tr, diger[k], diger[(k + 2) % diger.length]].filter((o, j, a): o is string => !!o && a.indexOf(o) === j);
+    const rot = (cur.i + grup) % opts.length; const sec = [...opts.slice(rot), ...opts.slice(0, rot)];
+    const d = { id: `hat:${cur.x.id}`, k: "pick" as const, q_tr: "Dinle: ne demek?", opts: sec, ans: sec.indexOf(cur.x.tr) };
+    return <div class="stack fade" data-test="ders-hatirla" data-q={q}>
+      <div class="row"><ListenButton text={cur.x.art ? `${cur.x.art} ${cur.x.de}` : cur.x.de} /></div>
+      <DrillView key={`a${q}`} d={d} sira={`Hatırla ${sayi}`} onDone={(r) => bitir(r !== "wrong")} />
+    </div>;
+  }
+  const kabul = cur.x.art ? [`${cur.x.art} ${cur.x.de}`] : [cur.x.de];
+  return <div data-test="ders-hatirla" data-q={q}><DrillView key={`y${q}`} d={{ id: `hat:${cur.x.id}:y`, k: "tr_de", tr: `${cur.x.tr}${cur.x.art ? " (artikeliyle)" : ""}`, accepted: kabul }} sira={`Hatırla ${sayi}`} onDone={(r) => bitir(r !== "wrong")} /></div>;
 }
 
 function Tablo({ t, onNext }: { t: TemelDers; onNext: () => void }) {
@@ -114,18 +143,36 @@ function Tablo({ t, onNext }: { t: TemelDers; onNext: () => void }) {
   );
 }
 
+/** Konuşulanı sırayla seslendirir; yeni çalma ya da ekrandan çıkış öncekini keser (inceleme #65 P1-7) */
+function useSesDizisi() {
+  const tok = useRef(0);
+  useEffect(() => () => { tok.current++; stopSpeaking(); }, []);
+  return async (lines: string[], sp: "slow" | "normal" = "normal") => {
+    const my = ++tok.current; stopSpeaking();
+    for (const l of lines) { if (tok.current !== my) return; await speak(l, "de", sp); }
+  };
+}
+
+/** Önce dinle (phases/09 madde 1): diyalog önce altyazısız dinlenir, sonra metin ve çeviri açılır */
 function Diyalog({ d, onNext }: { d: NonNullable<TemelDers["dialogue"]>; onNext: () => void }) {
+  const cal = useSesDizisi();
+  const [dinledi, setDinledi] = useState(false);
+  const [altyazi, setAltyazi] = useState(false);
   return (
     <section class="card stack fade" data-test="ders-diyalog">
       <div class="kicker">{d.title_tr}</div>
-      <div class="row"><button class="btn primary grow" data-test="diyalog-dinle" onClick={async () => { for (const l of d.lines) await speak(l.de, "de", "normal"); }}>Diyaloğu dinle</button></div>
-      <ul class="list">{d.lines.map((l) => (
+      <p class="small">{altyazi ? "Şimdi metinle birlikte dinle." : "Önce yalnızca dinle: kim ne istiyor? Kelimelerin hepsini anlaman gerekmiyor."}</p>
+      <div class="row"><button class="btn primary grow" data-test="diyalog-dinle" onClick={() => { setDinledi(true); void cal(d.lines.map((l) => l.de)); }}>{dinledi ? "Bir daha dinle" : "Dinle"}</button>
+        <button class="btn grow" onClick={() => { setDinledi(true); void cal(d.lines.map((l) => l.de), "slow"); }}>Yavaş</button></div>
+      {altyazi && <ul class="list" data-test="diyalog-metin">{d.lines.map((l) => (
         <li class="row" style={{ flexWrap: "nowrap" }}>
-          <span class="tiny muted" style={{ width: 22 }}>{l.r === "B" ? "Sen" : ""}</span>
+          <span class="tiny muted" style={{ width: 28 }}>{l.r === "B" ? "Sen" : ""}</span>
           <span class="grow"><span lang="de">{l.de}</span><br /><span class="small muted">{l.tr}</span></span>
           <ListenButton text={l.de} small slowToggle={false} />
-        </li>))}</ul>
-      <ActionBar><button class="btn primary block" data-test="next" onClick={onNext}>Devam</button></ActionBar>
+        </li>))}</ul>}
+      <ActionBar>{altyazi
+        ? <button class="btn primary block" data-test="next" onClick={onNext}>Kelimelere geç</button>
+        : <button class="btn primary block" data-test="altyazi" disabled={!dinledi && !E2E} onClick={() => setAltyazi(true)}>{dinledi || E2E ? "Metni aç" : "Önce dinle"}</button>}</ActionBar>
     </section>
   );
 }
@@ -136,16 +183,17 @@ function Dinleme({ l, onNext }: { l: TemelDers["listening"][number]; onNext: (ok
   const [sec, setSec] = useState<number | null>(null);
   const [dogru, setDogru] = useState(0);
   const [dinledi, setDinledi] = useState(false);
-  const cal = async (sp: "slow" | "normal") => { setDinledi(true); for (const c of l.script) await speak(c.de, "de", sp); };
+  const ses = useSesDizisi();
+  const cal = (sp: "slow" | "normal") => { setDinledi(true); void ses(l.script.map((c) => c.de), sp); };
   const soru = l.qs[q];
   return (
     <section class="card stack fade" data-test="ders-dinleme">
       <div class="kicker">{l.title_tr}</div>
-      <div class="row"><button class="btn primary grow" data-test="dinle" onClick={() => void cal(l.speed === "slow" ? "slow" : "normal")}>Dinle</button>
-        {l.speeds.includes("slow") && l.speeds.length > 1 && <button class="btn grow" onClick={() => void cal("slow")}>Yavaş</button>}</div>
+      <div class="row"><button class="btn primary grow" data-test="dinle" onClick={() => cal(l.speed === "slow" ? "slow" : "normal")}>Dinle</button>
+        {l.speeds.includes("slow") && l.speeds.length > 1 && <button class="btn grow" onClick={() => cal("slow")}>Yavaş</button>}</div>
       {!dinledi && !E2E ? <p class="small muted">Önce dinle; sorular sonra gelecek.</p> : soru ? (
         <div class="stack">
-          <h3>{soru.q_tr}</h3>
+          <h3><Rich text={soru.q_tr} /></h3>
           <div role="group">{soru.opts.map((o, k) => <button class={`opt${sec === null ? "" : k === soru.ans ? " right" : k === sec ? " wrong" : ""}`} disabled={sec !== null} data-opt={k}
             {...(E2E ? { "data-right": k === soru.ans ? "1" : undefined } : {})} onClick={() => { setSec(k); if (k === soru.ans) setDogru(dogru + 1); }}>{o}</button>)}</div>
           {sec !== null && <ActionBar>
