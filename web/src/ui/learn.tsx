@@ -1,4 +1,4 @@
-import { loadFoto, type FotoKayit } from "../services/content.ts";
+import { fotoHaritasi, loadFoto, type FotoKayit } from "../services/content.ts";
 /** Oynatıcının ortak parçaları: cevap kutusu, karar gösterimi, "Bu ne demek?", "Almanca nasıl derim?", "Duyduğum kelime", fotoğraf */
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Lexeme, PhotoResult } from "@dw/shared";
@@ -161,8 +161,8 @@ export function Photo({ q, sira, yer, alt = "" }: { q?: string; sira?: number; /
     // yenisi seçilene kadar eskisi kalır: cümle değişirken alan boşalıp dolmaz (düzen kayması yok)
     let live = true;
     (async () => {
-      // önce seçilmiş açık fotoğraf (atıflı); yoksa eski yol (sunucu araması)
-      const harita = yer?.length ? await loadFoto() : {};
+      // önce seçilmiş açık fotoğraf (atıflı); yoksa eski yol (sunucu araması). Harita çözülmüşse beklemeden (eşzamanlı)
+      const harita = !yer?.length ? {} : fotoHaritasi() ?? await loadFoto();
       const f = (yer ?? []).map((y) => harita[y]).find(Boolean);
       if (!live) return;
       if (f) { setAtif(f); setP({ id: 0, src: f.src, w: 0, h: 0, alt, credit: f.yazar || "Wikimedia/Openverse", url: f.sayfa || f.src }); return; }
@@ -183,7 +183,7 @@ export function Photo({ q, sira, yer, alt = "" }: { q?: string; sira?: number; /
   return <figure style={{ margin: 0 }} data-test="foto" data-kaynak={atif ? "secim" : "arama"}>
     <img src={p.src} alt={alt || p.alt} onError={() => setP(null)} style={{ width: "100%", aspectRatio: "3 / 2", maxHeight: 200, objectFit: "cover", borderRadius: 12, background: "var(--soft)" }} loading="lazy" />
     {atif
-      ? <figcaption class="tiny muted" data-test="foto-atif">Foto: {atif.sayfa ? <a href={atif.sayfa} target="_blank" rel="noopener noreferrer">{atif.yazar || "kaynak"}</a> : atif.yazar} · {atif.lisans_url ? <a href={atif.lisans_url} target="_blank" rel="noopener noreferrer">{atif.lisans}</a> : atif.lisans} · kırpıldı</figcaption>
+      ? <figcaption class="tiny muted" data-test="foto-atif">Foto: {atif.sayfa && /^https:\/\//.test(atif.sayfa) ? <a href={atif.sayfa} target="_blank" rel="noopener noreferrer">{atif.yazar || "kaynak"}</a> : atif.yazar} · {atif.lisans_url && /^https:\/\//.test(atif.lisans_url) ? <a href={atif.lisans_url} target="_blank" rel="noopener noreferrer">{atif.lisans}</a> : atif.lisans} · kırpıldı</figcaption>
       : <figcaption class="tiny muted">Foto: {p.credit} · Pexels</figcaption>}
   </figure>;
 }

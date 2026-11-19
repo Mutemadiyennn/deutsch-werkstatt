@@ -8,7 +8,7 @@ import { cumleKaydet } from "../services/kullanim.ts";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
 import { useApp } from "../state.ts";
-import { loadLexicon, loadM1Gun } from "../services/content.ts";
+import { loadFoto, loadLexicon, loadM1Gun } from "../services/content.ts";
 import { bahceTamam, xpOku, xpVer } from "../services/ilerleme.ts";
 import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { XP, seri, yerelGun } from "../core/gun.ts";
@@ -64,6 +64,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   // sına bilinemedi, kelime şimdi tanıtılıyor: bant bunu söyler (PM 7018403441-2)
   const [tanitimda, setTanitimda] = useState(false);
   useEffect(() => { setTanitimda(false); }, [i]);
+  // seçilmiş fotoğraf haritası tur başında bir kez (soru değişirken beklenmez; inceleme #121 P1-5)
+  useEffect(() => { void loadFoto(); }, []);
   const turXp = useOturumXp();
   const startedAt = useMemo(() => Date.now(), []);
 
