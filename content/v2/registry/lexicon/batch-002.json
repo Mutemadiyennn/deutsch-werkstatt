@@ -7514,6 +7514,14 @@
     {
      "de": "Bakterien töten",
      "tr": "bakterileri öldürmek"
+    },
+    {
+     "de": "eine Mücke töten",
+     "tr": "sivrisinek öldürmek"
+    },
+    {
+     "de": "Keime töten",
+     "tr": "mikropları öldürmek"
     }
    ],
    "patterns": [
@@ -7522,7 +7530,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Vakit öldürmek için **Zeit töten** denmez. Doğrusu **die Zeit totschlagen**."
+    "Vakit öldürmek derken **die Zeit töten** yanlış. Doğrusu **die Zeit totschlagen.**"
    ],
    "examples": [
     {
@@ -7559,11 +7567,37 @@
     "notfall"
    ],
    "exp": {
-    "anlam_tr": "Birinin ya da bir canlının hayatına son vermeyi söyler.",
+    "anlam_tr": "Bir canlının hayatına son vermeyi söyler.",
     "ne_zaman_tr": "Haberlerde ve filmlerde duyarsın.",
     "parcalar": [],
     "ipucu_tr": "Konuşmada daha çok **umbringen** duyulur."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ keine Tiere.",
+     "answer": "töte",
+     "tr": "Hayvan öldürmem.",
+     "hint_tr": "**ich** ile **töten**, **töte** olur."
+    },
+    {
+     "de": "Warum ___ du die Spinne?",
+     "answer": "tötest",
+     "tr": "Örümceği neden öldürüyorsun?",
+     "hint_tr": "**du** ile **töten**, **tötest** olur."
+    },
+    {
+     "de": "Das Mittel ___ Bakterien.",
+     "answer": "tötet",
+     "tr": "Bu ürün bakterileri öldürür.",
+     "hint_tr": "**das Mittel** ile **töten**, **tötet** olur."
+    },
+    {
+     "de": "Bei dem Unfall wurde niemand ___.",
+     "answer": "getötet",
+     "tr": "Kazada kimse ölmedi.",
+     "hint_tr": "**wurde** ile **töten**, **getötet** olur."
+    }
+   ]
   },
   {
    "id": "lx:euer",
@@ -8104,7 +8138,15 @@
     },
     {
      "de": "vor Hunger sterben",
-     "tr": "açlıktan ölmek (abartı)"
+     "tr": "açlıktan ölmek"
+    },
+    {
+     "de": "plötzlich sterben",
+     "tr": "aniden ölmek"
+    },
+    {
+     "de": "an Krebs sterben",
+     "tr": "kanserden ölmek"
     }
    ],
    "patterns": [
@@ -8112,7 +8154,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**Er hat gestorben** yanlış. Doğrusu **Er ist gestorben**."
+    "Adam öldü derken **Er hat gestorben** yanlış. Doğrusu **Er ist gestorben.**",
+    "Kanserden öldü derken **von Krebs gestorben** yanlış. Doğrusu **an Krebs gestorben.** Hastalık için **an** gelir."
    ],
    "examples": [
     {
@@ -8124,7 +8167,7 @@
     {
      "id": "lx:sterben:2",
      "de": "Sie ist an Krebs gestorben.",
-     "tr": "Kanserden öldü.",
+     "tr": "Kadın kanserden öldü.",
      "layer": "hd"
     },
     {
@@ -8151,7 +8194,39 @@
    "exp": {
     "anlam_tr": "Birinin hayatının sona erdiğini söyler.",
     "parcalar": []
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ vor Hunger!",
+     "answer": "sterbe",
+     "tr": "Açlıktan ölüyorum!",
+     "hint_tr": "**ich** ile **sterben**, **sterbe** olur."
+    },
+    {
+     "de": "Du ___ doch nicht vor Hunger!",
+     "answer": "stirbst",
+     "tr": "Açlıktan ölmüyorsun ya!",
+     "hint_tr": "**du** ile **sterben**, **stirbst** olur."
+    },
+    {
+     "de": "Die Pflanze ___.",
+     "answer": "stirbt",
+     "tr": "Bitki ölüyor.",
+     "hint_tr": "**die Pflanze** ile **sterben**, **stirbt** olur."
+    },
+    {
+     "de": "Mein Opa ist letztes Jahr ___.",
+     "answer": "gestorben",
+     "tr": "Dedem geçen yıl öldü.",
+     "hint_tr": "**ist** ile **sterben**, **gestorben** olur."
+    },
+    {
+     "de": "Er ___ letztes Jahr gestorben.",
+     "answer": "ist",
+     "tr": "Adam geçen yıl öldü.",
+     "hint_tr": "**gestorben** ile **hat** değil **ist** gelir."
+    }
+   ]
   },
   {
    "id": "lx:erzählen",
@@ -9405,11 +9480,15 @@
    "collocations": [
     {
      "de": "So eine Scheiße!",
-     "tr": "Hay aksi! (kaba)"
+     "tr": "Kahretsin!"
     },
     {
      "de": "Scheiße bauen",
-     "tr": "işi batırmak (kaba)"
+     "tr": "işi batırmak"
+    },
+    {
+     "de": "Das ist echt Scheiße.",
+     "tr": "Bu gerçekten berbat."
     }
    ],
    "patterns": [
@@ -9417,20 +9496,19 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Kibar ortamda **Scheiße** deme. Doğrusu **So ein Mist**."
+    "Resmî bir yerde kahretsin derken **Scheiße!** çok kaba kaçar. Yumuşak karşılığı **So ein Mist!**, yani hay aksi."
    ],
    "examples": [
     {
      "id": "lx:Scheiße:1",
      "de": "So eine Scheiße, der Zug ist weg!",
      "tr": "Kahretsin, tren kaçtı!",
-     "layer": "alltag",
-     "img": "man missed train on platform"
+     "layer": "alltag"
     },
     {
      "id": "lx:Scheiße:2",
      "de": "Sag nicht immer „Scheiße“!",
-     "tr": "Sürekli \"Scheiße\" deme!",
+     "tr": "Sürekli kahretsin deme!",
      "layer": "alltag"
     },
     {
@@ -9442,7 +9520,7 @@
     {
      "id": "lx:Scheiße:4",
      "de": "– Der Laden ist schon zu. – Scheiße!",
-     "tr": "– Dükkân kapanmış bile. – Hay aksi!",
+     "tr": "– Dükkân kapanmış bile. – Kahretsin!",
      "layer": "alltag",
      "dialog": true
     }
@@ -9456,9 +9534,24 @@
    ],
    "exp": {
     "anlam_tr": "Kızınca ya da canın sıkılınca söylenen kaba bir sözdür.",
-    "ne_zaman_tr": "Yalnızca yakın arkadaşlarla, resmî yerde asla.",
-    "parcalar": []
-   }
+    "ne_zaman_tr": "Yalnızca yakın arkadaşların yanında söylenir, resmî yerde söylenmez.",
+    "parcalar": [],
+    "ipucu_tr": "Yerine daha yumuşak **Mist** diyebilirsin, hay aksi demektir."
+   },
+   "forms": [
+    {
+     "de": "So ___ Scheiße!",
+     "answer": "eine",
+     "tr": "Kahretsin!",
+     "hint_tr": "**Scheiße** ile **ein**, **eine** olur: **So eine Scheiße**."
+    },
+    {
+     "de": "So eine ___, der Zug ist weg!",
+     "answer": "Scheiße",
+     "tr": "Kahretsin, tren kaçtı!",
+     "hint_tr": "Kahretsin: **So eine Scheiße**."
+    }
+   ]
   },
   {
    "id": "lx:schnell",

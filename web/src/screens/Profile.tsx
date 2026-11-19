@@ -120,7 +120,8 @@ export function ProfileView() {
         <div class="seg" role="group">{([["auto", "Otomatik"], ["light", "Açık"], ["dark", "Koyu"]] as const).map(([k, l]) => <button aria-pressed={profile.ui.theme === k} onClick={() => save((p) => { p.ui.theme = k; })}>{l}</button>)}</div>
         <label class="lbl" for="ts">Yazı boyutu</label>
         <select id="ts" class="input" value={profile.ui.textScale} onChange={(e) => save((p) => { p.ui.textScale = num(e); })}>{[[0.9, "Küçük"], [1, "Normal"], [1.15, "Büyük"], [1.3, "Çok büyük"]].map(([v, l]) => <option value={v}>{l}</option>)}</select>
-        <label class="row" style={{ marginTop: 12 }}><input type="checkbox" checked={profile.ui.sfx} onChange={(e) => save((p) => { p.ui.sfx = (e.target as HTMLInputElement).checked; })} /><span>Mola zili ve sesler</span></label>
+        <label class="row" style={{ marginTop: 12 }}><input type="checkbox" checked={profile.ui.sfx} onChange={(e) => save((p) => { p.ui.sfx = (e.target as HTMLInputElement).checked; })} /><span>Efekt sesleri (doğru/yanlış tonu, kutlama, mola zili)</span></label>
+        <label class="row" style={{ marginTop: 8 }}><input type="checkbox" checked={profile.ui.celebrations} onChange={(e) => save((p) => { p.ui.celebrations = (e.target as HTMLInputElement).checked; })} data-test="kutlama-ayar" /><span>Kutlama animasyonları</span></label>
         <label class="lbl" for="nm">Adın (isteğe bağlı)</label>
         {/* Ad yazarken kaydedilir (kısa bekleme) ve alan bırakılınca hemen; yalnızca "change" olayına bağlı kalınmaz: iPhone'da
             alan odaktayken hitap düğmesine dokunmak alanı bırakmayabilir ve ad hiç kaydedilmezdi (D-061; #68 inceleme).

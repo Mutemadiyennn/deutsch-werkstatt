@@ -3790,8 +3790,16 @@
      "tr": "Cehennem gibiydi!"
     },
     {
-     "de": "die Hölle los",
-     "tr": "kıyamet kopuyor (çok kalabalık)"
+     "de": "Da ist die Hölle los.",
+     "tr": "Orada kıyamet kopuyor."
+    },
+    {
+     "de": "Fahr zur Hölle!",
+     "tr": "Cehenneme kadar yolun var!"
+    },
+    {
+     "de": "die Hölle auf Erden",
+     "tr": "yeryüzündeki cehennem"
     }
    ],
    "patterns": [
@@ -3799,8 +3807,7 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Konuşmada abartı: \"Da war die Hölle los\" = Orası çok kalabalıktı.",
-    "Dişil: \"die Hölle\"."
+    "Cehennem gibiydi derken **Das war Hölle** yanlış. Doğrusu **Das war die Hölle.** Burada **Hölle** önüne **die** alır."
    ],
    "examples": [
     {
@@ -3817,8 +3824,8 @@
     },
     {
      "id": "lx:Hölle:3",
-     "de": "Was zur Hölle …?",
-     "tr": "Ne halt …?",
+     "de": "Was zur Hölle ist das?",
+     "tr": "Bu da ne halt?",
      "layer": "alltag"
     },
     {
@@ -3835,12 +3842,37 @@
    "domains": [
     "gefuehle",
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Konuşmada çok kötü, dayanılmaz bir durumu cehenneme benzetir.",
+    "parcalar": [],
+    "ipucu_tr": "**Da ist die Hölle los** orada kıyamet kopuyor demektir."
+   },
+   "forms": [
+    {
+     "de": "Im Supermarkt ist ___ Hölle los.",
+     "answer": "die",
+     "tr": "Süpermarkette kıyamet kopuyor.",
+     "hint_tr": "Kıyamet kopuyor: **die Hölle los**."
+    },
+    {
+     "de": "Was zur ___ ist das?",
+     "answer": "Hölle",
+     "tr": "Bu da ne halt?",
+     "hint_tr": "Öfkeyle sorarken **Was zur Hölle** denir."
+    },
+    {
+     "de": "Fahr zur ___!",
+     "answer": "Hölle",
+     "tr": "Cehenneme kadar yolun var!",
+     "hint_tr": "Cehenneme kadar yolun var: **Fahr zur Hölle!**"
+    }
    ]
   },
   {
    "id": "lx:Opfer",
    "de": "Opfer",
-   "tr": "kurban; mağdur",
+   "tr": "kurban, mağdur, fedakârlık",
    "pos": "noun",
    "art": "das",
    "pl": "Opfer",
@@ -3852,6 +3884,14 @@
     {
      "de": "ein Opfer bringen",
      "tr": "fedakârlık yapmak"
+    },
+    {
+     "de": "das Opfer einer Straftat",
+     "tr": "suç mağduru"
+    },
+    {
+     "de": "zum Opfer fallen",
+     "tr": "kurban gitmek"
     }
    ],
    "patterns": [
@@ -3859,14 +3899,14 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Nötr ve çoğulu aynı: \"die Opfer\".",
-    "Gençlik dilinde \"Opfer\" hakaret olarak kullanılır; kullanma."
+    "Kurbanlar derken **die Opfers** yanlış. Doğrusu **die Opfer.** Birden çok kurbanda kelime aynı kalır.",
+    "Fedakârlık yapmak derken **ein Opfer machen** yanlış. Doğrusu **ein Opfer bringen.**"
    ],
    "examples": [
     {
      "id": "lx:Opfer:1",
      "de": "Bei dem Unfall gab es keine Opfer.",
-     "tr": "Kazada can kaybı olmadı.",
+     "tr": "Kazada ölen ya da yaralanan olmadı.",
      "layer": "hd"
     },
     {
@@ -3878,13 +3918,13 @@
     {
      "id": "lx:Opfer:3",
      "de": "Das war ein großes Opfer für sie.",
-     "tr": "Bu onun için büyük bir fedakârlıktı.",
+     "tr": "Bu kadın için büyük bir fedakârlıktı.",
      "layer": "alltag"
     },
     {
      "id": "lx:Opfer:4",
-     "de": "– Gab es Verletzte? – Ja, zwei Opfer, aber nicht schwer.",
-     "tr": "– Yaralı var mı? – Evet, iki kişi, ama ağır değil.",
+     "de": "– Wer ist das Opfer? – Eine Frau, ihr wurde die Tasche gestohlen.",
+     "tr": "– Mağdur kim? – Bir kadın, çantası çalınmış.",
      "layer": "alltag",
      "dialog": true
     }
@@ -3895,6 +3935,32 @@
    "domains": [
     "medien",
     "notfall"
+   ],
+   "exp": {
+    "anlam_tr": "Bir kazada ya da suçta zarar gören kişiyi söyler.",
+    "ne_zaman_tr": "Haberlerde ve polis işlerinde sık duyulur.",
+    "parcalar": [],
+    "ipucu_tr": "**ein Opfer bringen** fedakârlık yapmak demektir."
+   },
+   "forms": [
+    {
+     "de": "Die Polizei hilft ___ Opfern.",
+     "answer": "den",
+     "tr": "Polis mağdurlara yardım ediyor.",
+     "hint_tr": "**hilft** dedikten sonra **die Opfer**, **den Opfern** olur."
+    },
+    {
+     "de": "Das war ___ großes Opfer für sie.",
+     "answer": "ein",
+     "tr": "Bu kadın için büyük bir fedakârlıktı.",
+     "hint_tr": "**Das war** dedikten sonra **ein Opfer** aynı kalır: **ein großes Opfer**."
+    },
+    {
+     "de": "Wer ist ___ Opfer?",
+     "answer": "das",
+     "tr": "Mağdur kim?",
+     "hint_tr": "Bildiğimiz mağdur: **das Opfer**."
+    }
    ]
   },
   {
@@ -4004,6 +4070,14 @@
     {
      "de": "mit Kumpels",
      "tr": "arkadaşlarla"
+    },
+    {
+     "de": "ein guter Kumpel",
+     "tr": "iyi bir arkadaş"
+    },
+    {
+     "de": "ein Kumpel von der Arbeit",
+     "tr": "işten bir arkadaş"
     }
    ],
    "patterns": [
@@ -4011,34 +4085,37 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Konuşma dili; çoğulu \"Kumpel\" ya da \"Kumpels\".",
-    "Kadın için \"Kumpel\" de denebilir ama genelde erkek arkadaş ortamı."
+    "Bir kankam derken **ein Kumpel von ich** yanlış. Doğrusu **ein Kumpel von mir.**"
    ],
    "examples": [
     {
      "id": "lx:Kumpel:1",
      "de": "Ich gehe mit ein paar Kumpels Fußball spielen.",
      "tr": "Birkaç kankayla futbol oynamaya gidiyorum.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "group of friends playing football in park"
     },
     {
      "id": "lx:Kumpel:2",
      "de": "Er ist ein guter Kumpel.",
      "tr": "İyi bir arkadaş.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "two friends laughing together"
     },
     {
      "id": "lx:Kumpel:3",
      "de": "Na, Kumpel, alles klar?",
      "tr": "Naber kanka, her şey yolunda mı?",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "friends greeting with handshake on street"
     },
     {
      "id": "lx:Kumpel:4",
      "de": "– Wer ist das? – Ein Kumpel von der Arbeit.",
-     "tr": "– Bu kim? – İşten bir kanka.",
+     "tr": "– Bu kim? – İşten bir arkadaş.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "coworkers chatting during break"
     }
    ],
    "level": "B1",
@@ -4046,6 +4123,37 @@
    "freqRank": 546,
    "domains": [
     "freizeit"
+   ],
+   "exp": {
+    "anlam_tr": "Yakın, rahat konuştuğun arkadaşı söyler.",
+    "ne_zaman_tr": "Konuşma dilidir, resmî yerde kullanılmaz.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "Er ist ___ guter Kumpel.",
+     "answer": "ein",
+     "tr": "Adam iyi bir arkadaş.",
+     "hint_tr": "**Er ist** dedikten sonra **ein Kumpel** aynı kalır."
+    },
+    {
+     "de": "Ich treffe heute ___ Kumpel.",
+     "answer": "einen",
+     "tr": "Bugün bir arkadaşla buluşuyorum.",
+     "hint_tr": "**Ich treffe** dedikten sonra **ein Kumpel**, **einen Kumpel** olur."
+    },
+    {
+     "de": "Kennst du ___ Kumpel von Ali?",
+     "answer": "den",
+     "tr": "Ali'nin arkadaşını tanıyor musun?",
+     "hint_tr": "**Kennst du** dedikten sonra **der Kumpel**, **den Kumpel** olur."
+    },
+    {
+     "de": "Ich gehe mit ___ Kumpel ins Kino.",
+     "answer": "einem",
+     "tr": "Bir arkadaşla sinemaya gidiyorum.",
+     "hint_tr": "Herhangi bir arkadaş: **mit einem Kumpel**."
+    }
    ]
   },
   {
@@ -4319,7 +4427,7 @@
   {
    "id": "lx:Idiot",
    "de": "Idiot",
-   "tr": "aptal, salak (hakaret)",
+   "tr": "aptal, salak",
    "pos": "noun",
    "art": "der",
    "pl": "Idioten",
@@ -4331,6 +4439,14 @@
     {
      "de": "sich wie ein Idiot fühlen",
      "tr": "kendini aptal gibi hissetmek"
+    },
+    {
+     "de": "Du Idiot!",
+     "tr": "Seni salak!"
+    },
+    {
+     "de": "Ich bin doch kein Idiot!",
+     "tr": "Ben salak değilim ki!"
     }
    ],
    "patterns": [
@@ -4338,8 +4454,7 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Hakarettir; trafikte ve filmlerde sık duyulur. Resmî ortamda kullanma.",
-    "Zayıf isim: \"den Idioten\", \"dem Idioten\"."
+    "Salakla konuşmuyorum derken **mit dem Idiot** yanlış. Doğrusu **mit dem Idioten.** Bu kelimede **dem** sonrası sona **en** gelir."
    ],
    "examples": [
     {
@@ -4374,6 +4489,31 @@
    "domains": [
     "gefuehle",
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Kızınca birine çok aptal olduğunu kaba biçimde söyler.",
+    "ne_zaman_tr": "Hakarettir, trafikte ve filmlerde sık duyulur.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "So ___ Idiot!",
+     "answer": "ein",
+     "tr": "Ne salak!",
+     "hint_tr": "Ne salak derken **So ein Idiot!** denir."
+    },
+    {
+     "de": "Ich habe mich wie ___ Idiot gefühlt.",
+     "answer": "ein",
+     "tr": "Kendimi aptal gibi hissettim.",
+     "hint_tr": "**wie** dedikten sonra **ein Idiot** aynı kalır."
+    },
+    {
+     "de": "Ich rede nicht mit diesem ___.",
+     "answer": "Idioten",
+     "tr": "Bu salakla konuşmuyorum.",
+     "hint_tr": "**mit diesem** dedikten sonra **Idiot**, **Idioten** olur."
+    }
    ]
   },
   {
@@ -5546,8 +5686,16 @@
      "tr": "birini öldürmek"
     },
     {
-     "de": "Ich bring dich um!",
-     "tr": "Seni öldüreceğim! (şaka/öfke)"
+     "de": "Meine Füße bringen mich um.",
+     "tr": "Ayaklarım beni öldürüyor."
+    },
+    {
+     "de": "Der Stress bringt mich um.",
+     "tr": "Stres beni öldürüyor."
+    },
+    {
+     "de": "Die Hitze bringt mich um.",
+     "tr": "Sıcak beni öldürüyor."
     }
    ],
    "patterns": [
@@ -5556,8 +5704,8 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "Ayrılabilen: \"Er bringt ihn um\"; Perfekt \"umgebracht\".",
-    "Günlük dilde abartı olarak: \"Der Stress bringt mich noch um\"."
+    "Sıcak beni öldürüyor derken **Die Hitze umbringt mich** yanlış. Doğrusu **Die Hitze bringt mich um.** **um** ayrılır ve sona gider.",
+    "Öldürdü derken **Er hat ihn umgebringt** yanlış. Doğrusu **Er hat ihn umgebracht.** Bu kelime geçmişte **umgebracht** olur."
    ],
    "examples": [
     {
@@ -5574,8 +5722,8 @@
     },
     {
      "id": "lx:umbringen:3",
-     "de": "Mach das, sonst bring ich dich um!",
-     "tr": "Yap şunu, yoksa seni öldürürüm! (şaka)",
+     "de": "Wenn Mama das sieht, bringt sie mich um!",
+     "tr": "Annem bunu görürse beni öldürür!",
      "layer": "alltag"
     },
     {
@@ -5592,6 +5740,32 @@
    "domains": [
     "medien",
     "gefuehle"
+   ],
+   "exp": {
+    "anlam_tr": "Birini öldürmeyi söyler.",
+    "ne_zaman_tr": "Konuşmada abartıyla, yorulunca ya da kızınca da söylenir.",
+    "parcalar": [],
+    "ipucu_tr": "**Die Hitze bringt mich um** sıcak beni öldürüyor demektir."
+   },
+   "forms": [
+    {
+     "de": "Die Hitze ___ mich ___.",
+     "answer": "bringt … um",
+     "tr": "Sıcak beni öldürüyor.",
+     "hint_tr": "**die Hitze** ile **bringt** olur, **um** sona gider."
+    },
+    {
+     "de": "Du ___ mich noch ___!",
+     "answer": "bringst … um",
+     "tr": "Beni öldüreceksin!",
+     "hint_tr": "**du** ile **bringst** olur, **um** sona gider."
+    },
+    {
+     "de": "Der Stress hat mich fast ___.",
+     "answer": "umgebracht",
+     "tr": "Stres beni neredeyse öldürdü.",
+     "hint_tr": "**hat** ile **umbringen**, **umgebracht** olur."
+    }
    ]
   },
   {
@@ -5609,6 +5783,14 @@
     {
      "de": "einen Befehl geben",
      "tr": "emir vermek"
+    },
+    {
+     "de": "Zu Befehl!",
+     "tr": "Emredersiniz!"
+    },
+    {
+     "de": "den Befehl eingeben",
+     "tr": "komutu girmek"
     }
    ],
    "patterns": [
@@ -5616,8 +5798,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Filmlerde ve bilgisayarda (komut) sık; işte \"Anweisung\" daha doğal.",
-    "Fiili \"befehlen\" (Dativ): \"Er befiehlt mir\"."
+    "Emir veriyor derken **Er macht einen Befehl** yanlış. Doğrusu **Er gibt einen Befehl.**"
    ],
    "examples": [
     {
@@ -5652,6 +5833,37 @@
    "domains": [
     "medien",
     "arbeit"
+   ],
+   "exp": {
+    "anlam_tr": "Yapılması kesin olarak istenen işi, emri söyler.",
+    "parcalar": [],
+    "ipucu_tr": "Bilgisayarda **Befehl** komut demektir."
+   },
+   "forms": [
+    {
+     "de": "Das ist ___ Befehl!",
+     "answer": "ein",
+     "tr": "Bu bir emir!",
+     "hint_tr": "**Das ist** dedikten sonra **ein Befehl** aynı kalır."
+    },
+    {
+     "de": "Der Chef gibt ___ Befehl.",
+     "answer": "einen",
+     "tr": "Şef bir emir veriyor.",
+     "hint_tr": "**gibt** dedikten sonra **ein Befehl**, **einen Befehl** olur."
+    },
+    {
+     "de": "Geben Sie ___ Befehl hier ein.",
+     "answer": "den",
+     "tr": "Komutu buraya girin.",
+     "hint_tr": "**Geben Sie** dedikten sonra **der Befehl**, **den Befehl** olur."
+    },
+    {
+     "de": "___ ist Befehl.",
+     "answer": "Befehl",
+     "tr": "Emir emirdir.",
+     "hint_tr": "Emir emirdir: **Befehl ist Befehl**."
+    }
    ]
   },
   {
@@ -6258,12 +6470,20 @@
    "pl": "Ehren",
    "collocations": [
     {
-     "de": "Sehr geehrte Damen und Herren",
-     "tr": "Sayın yetkili (mektup)"
-    },
-    {
      "de": "Es ist mir eine Ehre.",
      "tr": "Benim için onurdur."
+    },
+    {
+     "de": "eine große Ehre",
+     "tr": "büyük bir onur"
+    },
+    {
+     "de": "Ehrenwort!",
+     "tr": "Şeref sözü!"
+    },
+    {
+     "de": "zu Ehren des Gastes",
+     "tr": "konuğun onuruna"
     }
    ],
    "patterns": [
@@ -6271,14 +6491,14 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Resmî mektup başı \"Sehr geehrte Frau …\" / \"Sehr geehrter Herr …\" (\"Sehr geehrte Herr\" yanlış).",
-    "\"Ehrenwort\" = namus sözü."
+    "Benim için onurdur derken **Es ist mir Ehre** yanlış. Doğrusu **Es ist mir eine Ehre.** Burada **Ehre** önüne **eine** alır.",
+    "Konuğun onuruna derken **zu Ehre des Gastes** yanlış. Doğrusu **zu Ehren des Gastes.** Bu kalıpta sona **n** gelir."
    ],
    "examples": [
     {
      "id": "lx:Ehre:1",
-     "de": "Sehr geehrte Damen und Herren, …",
-     "tr": "Sayın yetkili, …",
+     "de": "Zu Ehren des Gastes gibt es ein Essen.",
+     "tr": "Konuğun onuruna bir yemek var.",
      "layer": "hd"
     },
     {
@@ -6290,13 +6510,13 @@
     {
      "id": "lx:Ehre:3",
      "de": "Ehrenwort!",
-     "tr": "Söz! / Namusum üzerine!",
+     "tr": "Şeref sözü!",
      "layer": "alltag"
     },
     {
      "id": "lx:Ehre:4",
      "de": "– Hast du es niemandem erzählt? – Ehrenwort!",
-     "tr": "– Kimseye anlatmadın mı? – Namusum üzerine!",
+     "tr": "– Kimseye anlatmadın mı? – Şeref sözü!",
      "layer": "alltag",
      "dialog": true
     }
@@ -6307,6 +6527,26 @@
    "domains": [
     "amt",
     "gefuehle"
+   ],
+   "exp": {
+    "anlam_tr": "Bir insanın onurunu, saygınlığını söyler.",
+    "ne_zaman_tr": "Resmî konuşmada ve kibar tanışma sözlerinde kullanılır.",
+    "parcalar": [],
+    "ipucu_tr": "**Ehrenwort!** şeref sözü demektir."
+   },
+   "forms": [
+    {
+     "de": "Es ist mir ___ Ehre.",
+     "answer": "eine",
+     "tr": "Benim için onurdur.",
+     "hint_tr": "**Es ist mir** dedikten sonra **eine Ehre** denir."
+    },
+    {
+     "de": "Zu ___ des Gastes gibt es ein Essen.",
+     "answer": "Ehren",
+     "tr": "Konuğun onuruna bir yemek var.",
+     "hint_tr": "Birinin onuruna: **zu Ehren**, sonda **n** ile."
+    }
    ]
   },
   {
@@ -6331,6 +6571,14 @@
     {
      "de": "zerstört werden",
      "tr": "tahrip edilmek"
+    },
+    {
+     "de": "alles zerstören",
+     "tr": "her şeyi mahvetmek"
+    },
+    {
+     "de": "durch das Feuer zerstört",
+     "tr": "yangında yıkılmış"
     }
    ],
    "patterns": [
@@ -6338,34 +6586,37 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Perfekt'te \"ge-\" yok: \"zerstört\".",
-    "Konuşmada \"kaputt machen\" daha sık."
+    "Fırtına evi yıktı derken **Der Sturm hat das Haus gezerstört** yanlış. Doğrusu **Der Sturm hat das Haus zerstört.** Bu kelimede başa **ge** gelmez."
    ],
    "examples": [
     {
      "id": "lx:zerstören:1",
      "de": "Das Haus wurde durch das Feuer zerstört.",
      "tr": "Ev yangında yıkıldı.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "burned house ruins after fire"
     },
     {
      "id": "lx:zerstören:2",
      "de": "Der Sturm hat viel zerstört.",
      "tr": "Fırtına çok şeyi tahrip etti.",
-     "layer": "hd"
+     "layer": "hd",
+     "img": "fallen trees after storm"
     },
     {
      "id": "lx:zerstören:3",
      "de": "Du zerstörst alles!",
      "tr": "Her şeyi mahvediyorsun!",
-     "layer": "alltag"
+     "layer": "alltag",
+     "img": "broken vase on floor"
     },
     {
      "id": "lx:zerstören:4",
      "de": "– Was ist mit dem Auto passiert? – Komplett zerstört.",
      "tr": "– Arabaya ne oldu? – Tamamen hurdaya döndü.",
      "layer": "alltag",
-     "dialog": true
+     "dialog": true,
+     "img": "wrecked car at scrapyard"
     }
    ],
    "level": "B1",
@@ -6374,12 +6625,37 @@
    "domains": [
     "medien",
     "notfall"
+   ],
+   "exp": {
+    "anlam_tr": "Bir şeyi kullanılamayacak kadar bozmayı, yıkmayı söyler.",
+    "ne_zaman_tr": "Haberlerde yangın ve fırtına için sık duyulur.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "Der Sturm ___ viele Häuser.",
+     "answer": "zerstört",
+     "tr": "Fırtına birçok evi yıkıyor.",
+     "hint_tr": "**der Sturm** ile **zerstören**, **zerstört** olur."
+    },
+    {
+     "de": "Du ___ alles!",
+     "answer": "zerstörst",
+     "tr": "Her şeyi mahvediyorsun!",
+     "hint_tr": "**du** ile **zerstören**, **zerstörst** olur."
+    },
+    {
+     "de": "Das Feuer hat alles ___.",
+     "answer": "zerstört",
+     "tr": "Yangın her şeyi yok etti.",
+     "hint_tr": "**hat** ile **zerstören**, **zerstört** olur, başına **ge** gelmez."
+    }
    ]
   },
   {
    "id": "lx:angreifen",
    "de": "angreifen",
-   "tr": "saldırmak",
+   "tr": "saldırmak, hücum etmek",
    "pos": "verb",
    "verb": {
     "praesens3": "greift an",
@@ -6399,6 +6675,14 @@
     {
      "de": "der Angriff",
      "tr": "saldırı"
+    },
+    {
+     "de": "angegriffen werden",
+     "tr": "saldırıya uğramak"
+    },
+    {
+     "de": "von hinten angreifen",
+     "tr": "arkadan saldırmak"
     }
    ],
    "patterns": [
@@ -6407,8 +6691,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Ayrılabilen: \"Der Hund greift an\"; edilgen \"Er wurde angegriffen\".",
-    "Futbol yorumunda \"angreifen\" = hücum etmek."
+    "Köpek bana saldırdı derken **Der Hund hat mir angegriffen** yanlış. Doğrusu **Der Hund hat mich angegriffen.** Saldırılan kişi için **mich** gelir."
    ],
    "examples": [
     {
@@ -6443,6 +6726,31 @@
    "domains": [
     "medien",
     "notfall"
+   ],
+   "exp": {
+    "anlam_tr": "Birine ya da bir yere zarar vermek için saldırmayı söyler.",
+    "parcalar": [],
+    "ipucu_tr": "Futbolda **angreifen** hücum etmek demektir."
+   },
+   "forms": [
+    {
+     "de": "Der Hund ___ nicht ___.",
+     "answer": "greift … an",
+     "tr": "Köpek saldırmaz.",
+     "hint_tr": "**der Hund** ile **greift** olur, **an** sona gider."
+    },
+    {
+     "de": "Wir ___ jetzt ___!",
+     "answer": "greifen … an",
+     "tr": "Şimdi hücum ediyoruz!",
+     "hint_tr": "**wir** ile **greifen** olur, **an** sona gider."
+    },
+    {
+     "de": "Er wurde auf der Straße ___.",
+     "answer": "angegriffen",
+     "tr": "Adam sokakta saldırıya uğradı.",
+     "hint_tr": "**wurde** ile **angreifen**, **angegriffen** olur."
+    }
    ]
   },
   {
@@ -7231,28 +7539,22 @@
    },
    "forms": [
     {
-     "de": "Das Wetter ist ___.",
-     "answer": "schrecklich",
-     "tr": "Hava berbat.",
-     "hint_tr": "Çok kötü derken **schrecklich** denir."
-    },
-    {
-     "de": "Oh, wie ___!",
-     "answer": "schrecklich",
-     "tr": "Ah, ne korkunç!",
-     "hint_tr": "Kötü habere **Wie schrecklich!** diye karşılık verilir."
-    },
-    {
-     "de": "Das war ein ___ Tag.",
+     "de": "– War der Tag schrecklich? – Ja, ein ___ Tag.",
      "answer": "schrecklicher",
-     "tr": "Berbat bir gündü.",
-     "hint_tr": "**ein Tag** arasına girince **schrecklich**, **schrecklicher** olur."
+     "tr": "– Gün berbat mıydı? – Evet, berbat bir gündü.",
+     "hint_tr": "**ein** ve **der Tag** ile **schrecklich**, **schrecklicher** olur."
     },
     {
-     "de": "Ich hatte ___ Angst.",
+     "de": "– War die Nacht schrecklich? – Ja, eine ___ Nacht.",
      "answer": "schreckliche",
-     "tr": "Çok korktum.",
-     "hint_tr": "Çok korktum derken **schreckliche Angst** denir."
+     "tr": "– Gece berbat mıydı? – Evet, berbat bir geceydi.",
+     "hint_tr": "**eine** ve **die Nacht** ile **schrecklich**, **schreckliche** olur."
+    },
+    {
+     "de": "– War das Hotel schrecklich? – Ja, ein ___ Hotel.",
+     "answer": "schreckliches",
+     "tr": "– Otel berbat mıydı? – Evet, berbat bir oteldi.",
+     "hint_tr": "**ein** ve **das Hotel** ile **schrecklich**, **schreckliches** olur."
     }
    ]
   },
@@ -7271,6 +7573,14 @@
     {
      "de": "die Mordkommission",
      "tr": "cinayet masası"
+    },
+    {
+     "de": "wegen Mordes",
+     "tr": "cinayet suçundan"
+    },
+    {
+     "de": "Das ist ja Mord!",
+     "tr": "Bu işkence!"
     }
    ],
    "patterns": [
@@ -7278,14 +7588,13 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Haber ve polisiyede sık; \"Krimi\" = polisiye dizi/kitap.",
-    "Abartı: \"Das ist ja Mord!\" = Bu işkence!"
+    "Cinayet işledi derken **Er hat einen Mord gemacht** yanlış. Doğrusu **Er hat einen Mord begangen.**"
    ],
    "examples": [
     {
      "id": "lx:Mord:1",
      "de": "In dem Krimi geht es um einen Mord.",
-     "tr": "Polisiyede bir cinayet konu ediliyor.",
+     "tr": "Polisiye bir cinayeti anlatıyor.",
      "layer": "hd"
     },
     {
@@ -7313,6 +7622,37 @@
    "freqRank": 586,
    "domains": [
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Birinin bile bile öldürülmesini, cinayeti söyler.",
+    "ne_zaman_tr": "Haberlerde ve polisiye dizilerde sık duyulur.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "Im Krimi geht es um ___ Mord.",
+     "answer": "einen",
+     "tr": "Polisiye bir cinayeti anlatıyor.",
+     "hint_tr": "**um** dedikten sonra **ein Mord**, **einen Mord** olur."
+    },
+    {
+     "de": "Er hat ___ Mord begangen.",
+     "answer": "einen",
+     "tr": "Adam bir cinayet işledi.",
+     "hint_tr": "**Er hat** dedikten sonra **ein Mord**, **einen Mord** olur."
+    },
+    {
+     "de": "___ Mord ist noch nicht geklärt.",
+     "answer": "Der",
+     "tr": "Cinayet henüz aydınlatılmadı.",
+     "hint_tr": "Bildiğimiz cinayet: **der Mord**."
+    },
+    {
+     "de": "In der Stadt gab es zwei ___.",
+     "answer": "Morde",
+     "tr": "Şehirde iki cinayet oldu.",
+     "hint_tr": "İki cinayet: **zwei Morde**."
+    }
    ]
   },
   {
@@ -8318,8 +8658,12 @@
      "tr": "ceset bulmak"
     },
     {
-     "de": "Leiche im Keller",
-     "tr": "gizli kalmış suç (deyim)"
+     "de": "eine Leiche im Keller haben",
+     "tr": "gizli bir günahı olmak"
+    },
+    {
+     "de": "Nur über meine Leiche!",
+     "tr": "Ölsem de izin vermem!"
     }
    ],
    "patterns": [
@@ -8327,8 +8671,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Haber ve polisiyede sık; günlük dilde nadir.",
-    "Deyim: \"Leichen im Keller haben\" = gizli günahları olmak."
+    "Ceset buldular derken **Sie haben einen Leiche gefunden** yanlış. Doğrusu **Sie haben eine Leiche gefunden.** Kelime **die Leiche** olduğu için **eine** gelir."
    ],
    "examples": [
     {
@@ -8346,7 +8689,7 @@
     {
      "id": "lx:Leiche:3",
      "de": "Der hat bestimmt 'ne Leiche im Keller.",
-     "tr": "Onun kesin gizli bir günahı var.",
+     "tr": "Adamın kesin gizli bir günahı var.",
      "layer": "alltag"
     },
     {
@@ -8362,6 +8705,31 @@
    "freqRank": 597,
    "domains": [
     "medien"
+   ],
+   "exp": {
+    "anlam_tr": "Ölmüş bir insanın bedenini söyler.",
+    "ne_zaman_tr": "Haberlerde ve polisiyede duyulur, gündelik konuşmada azdır.",
+    "parcalar": []
+   },
+   "forms": [
+    {
+     "de": "Die Polizei hat ___ Leiche gefunden.",
+     "answer": "eine",
+     "tr": "Polis bir ceset buldu.",
+     "hint_tr": "Herhangi bir ceset: **eine Leiche**."
+    },
+    {
+     "de": "___ Leiche lag im Wald.",
+     "answer": "Die",
+     "tr": "Ceset ormanda yatıyordu.",
+     "hint_tr": "Bildiğimiz ceset: **die Leiche**."
+    },
+    {
+     "de": "Man hat zwei ___ gefunden.",
+     "answer": "Leichen",
+     "tr": "İki ceset bulundu.",
+     "hint_tr": "İki ceset: **zwei Leichen**."
+    }
    ]
   },
   {

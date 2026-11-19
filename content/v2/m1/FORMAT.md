@@ -113,4 +113,20 @@ Günün videosu ayrı dosyadadır: `content/v2/m1/video/klip-NN.json`. Kaynak De
 - `haric`: kesitten çıkarılan turlar. Telefon numarası, adres ve tam doğum tarihi yayına girmez.
 - `durum`: `hazir` | `kisa` (30 sn altı, PM kararı bekler) | `sinir-asimi` (bilinmeyen %10 üstü) | `bulunamadi`. Dosya adı `klip-NN.json`: gün şemasının `gun-NN.json` deseniyle karışmaz.
 - `bolum`: `ana_fikir`, `ayrinti[]`, `dikte[]`, `golge[]`, `cevapla`; dikte ve gölge tur numarasına bağlıdır.
+- `kesitler`: 20 sn altı kesite ikinci parça gerekince `[{klip, bas_tur, son_tur, haric}]` sırayla oynatılır; ilk eleman üst düzeydeki `klip`/`kesit`/`haric`/`turlar` ile aynıdır, sonrakiler kendi `konusmaci`, `video_url` ve `turlar` alanını taşır, sorular ve dikte onlara `"kesit": 1` (sıra numarası) ile, gölge `{kesit, tur}` ile bağlanır.
 - `atif` ekranda gösterilir (CC BY).
+- Süre: her parça `kesit_sure_tahmin_sn` ya da `kesit_sure_olcum_sn` taşır; dosyada `toplam_sure_tahmin_sn` parçaların toplamıdır. 20 sn altı parça tek başına olmaz.
+
+### PM kuralları (#58 A9, 19.11)
+- `on_ogretim`: en çok 6 madde, madde başına en çok 4 kelime, toplam en çok 15 kelime.
+- Hiçbir madde bir sorunun cevabı ya da `kanit` cümlesiyle aynı olamaz.
+- Bilinmeyen oranı en çok %10. Bu sınırlarla %10'a inmeyen klip `"mod": "yalnizca-dinle"` olur.
+- Soyad ve tam doğum tarihi (yıl dahil) yayına girmez. Yılsız gün ve ay kalabilir.
+
+### Uygulama kuralları (#82 incelemesi; PM kuralının açılımı)
+- "Aynı olamaz" kuralı dikte `accepted[0]` ve gölge cümlesi için de geçerlidir. Boşluğun cevabı da maddeden doğrudan okunamaz (örnek: madde **Freunde dabei** iken boşluk **Hattest du Freunde ___?** olmaz).
+- Sayılar da kelime sayılır: **10**, **2004** gibi bir sayı, o güne kadar sözcüğü öğretilmediyse bilinmeyendir.
+- Soyad (PM onayı bekleyen yorum, #12): konuşmacının soyadını söylediği tur oynamaz (`haric`, `"neden": "soyad"`; tur kesitin başındaysa kesit ondan sonra başlar). Türkçe çeviride, soruda ve açıklamada da soyad geçmez.
+- Bir gün, başka bir günde kullanılan klip parçasını tekrar etmez.
+- Ana dili Almanca olmayan konuşmacının hatalı cümlesine soru ya da dikte bağlanmaz.
+- Dikte sırası: kolay → orta → zor → usta → gerçek.
