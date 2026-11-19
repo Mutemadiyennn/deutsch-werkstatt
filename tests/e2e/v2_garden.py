@@ -40,7 +40,7 @@ def main():
         b, ctx = launch(p, color_scheme=arg("--scheme") or "light"); pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         pg.wait_for_selector("[data-test=garden-start]")
-        check(pg.locator("[data-test=garden-start]").count() == 1, "Bugün: 'Tekrar edilecekler' bölümünde tek ana eylem 'Tekrar et'")
+        check(pg.locator("[data-test=garden-start]").count() == 1, "Bugün: 'Tekrar edilecekler' bölümünde Bahçe girişi (ikincil düğme; ana eylem 'Devam et')")
         # kişisel banka (#58 A3, LS-7.5): "Duyduğum kelime" kutusundan eklenen kelime turda öncelikli yeni kart olur
         pg.click("[data-test=heard]"); pg.fill("[data-test=heard-de]", "die Daten"); pg.click("form >> text=Ekle")
         pg.wait_for_selector("[data-test=heard]")

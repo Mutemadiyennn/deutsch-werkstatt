@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { Lexeme } from "@dw/shared";
 import type { LearnerItem } from "@dw/shared";
-import { personalMatch, availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable } from "./garden.ts";
+import { synonymHit, personalMatch, availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable } from "./garden.ts";
 import { review, sessionKey } from "./srs.ts";
 
 const L = (o: Record<string, unknown>) => Lexeme.parse({ tr: "x", pos: "other", ...o });
@@ -143,5 +143,26 @@ describe("Kelime Bahçesi (PM-049)", () => {
     expect(ownSentenceCheck(anrufen, "Ich rufe dich morgen an.")).toBe("ok");
     expect(ownSentenceCheck(nehmen, "Nimmst du den Bus?")).toBe("ok");
     expect(ownSentenceCheck(absagen, "Ich habe den Termin abgesagt.")).toBe("ok");
+  });
+  it("2. tur Y-1: yer tutuculu eşdizim soru olmaz", () => {
+    const moegen = L({ id: "lx:mögen", de: "mögen", tr: "sevmek", pos: "verb", collocations: [{ de: "Ich mag …", tr: "… seviyorum" }] });
+    expect(availableTypes(moegen, "passive")).not.toContain("colloc");
+  });
+  it("2. tur Y-2: çok biçimli başlıkta her biçim doğru; eş anlamlı kart cezasız tanınır", () => {
+    const anderer = L({ id: "lx:anderer", de: "anderer, andere, anderes", tr: "başka", pos: "adj" });
+    expect(accepted(anderer, "tr_de")).toContain("anderer");
+    const sprechen = L({ id: "lx:sprechen", de: "sprechen", tr: "konuşmak", pos: "verb" });
+    const reden = L({ id: "lx:reden", de: "reden", tr: "konuşmak, söylemek", pos: "verb" });
+    expect(synonymHit(sprechen, "reden", [sprechen, reden])?.id).toBe("lx:reden");
+    expect(synonymHit(sprechen, "laufen", [sprechen, reden])).toBeNull();
+  });
+  it("2. tur: artikel sorusu tekil isimde var (das Zimmer), gerçekten çoğul isimde yok (die Eltern)", () => {
+    expect(availableTypes(L({ id: "lx:Zimmer", de: "Zimmer", pl: "Zimmer", tr: "oda", pos: "noun", art: "das" }), "passive")).toContain("article");
+    expect(availableTypes(L({ id: "lx:Eltern", de: "Eltern", pl: "Eltern", tr: "anne baba", pos: "noun", art: "die" }), "passive")).not.toContain("article");
+  });
+  it("2. tur: ilk üretim sorusu 'kendi cümlen' olmaz", () => {
+    const t0 = new Date("2026-11-01T10:00:00Z");
+    const it = review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "correct", session: "g@1" }, t0);
+    for (let k = 0; k < 10; k++) expect(buildRound(lex, new Map([["lx:Termin", it]]), [], { now: t0, rng: () => k / 10 })[0]!.type).not.toBe("own_sentence");
   });
 });

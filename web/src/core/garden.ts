@@ -42,11 +42,13 @@ export interface GardenQ {
 
 export const isNoun = (l: Lexeme) => l.pos === "noun" && !!l.art;
 /** yalnızca çoğul isim (die Daten, die Eltern): artikel sorusu "die"yi cinsiyet gibi öğretmesin (inceleme #59 P2-4) */
-export const pluralOnly = (l: Lexeme) => isNoun(l) && !!l.pl && l.pl === l.de;
+const PLURALIA = new Set(["Eltern", "Großeltern", "Leute", "Geschwister", "Ferien", "Kosten", "Daten", "Personalien", "Masern", "Pommes", "Spaghetti", "Möbel"]);
+export const pluralOnly = (l: Lexeme) => isNoun(l) && PLURALIA.has(l.de);
 const tokens = (s: string) => s.trim().replace(/[.,!?;:„“"»«()]/g, " ").split(/\s+/).filter(Boolean);
 /** Eşdizim sorusuna uygun eşdizim: en az 2 kelime ve gövdesi kartın diğer eşdizimlerinde tekrar etmiyor (tek doğru cevap) */
 export function collocOf(l: Lexeme): { de: string; tr: string; stem: string; last: string } | null {
-  const all = l.collocations.map((c) => { const w = tokens(c.de); return { de: c.de, tr: c.tr, last: w[w.length - 1] ?? "", stem: w.slice(0, -1).join(" ") }; }).filter((c) => c.stem && c.last);
+  // yer tutuculu eşdizim ("Ich mag …") soru olamaz: doğru şık "…" olurdu (inceleme #59 2. tur Y-1)
+  const all = l.collocations.filter((c) => !/…|\.\.\./.test(c.de)).map((c) => { const w = tokens(c.de); return { de: c.de, tr: c.tr, last: w[w.length - 1] ?? "", stem: w.slice(0, -1).join(" ") }; }).filter((c) => c.stem && c.last);
   return all.find((c) => all.filter((x) => x.stem.toLowerCase() === c.stem.toLowerCase()).length === 1) ?? null;
 }
 /** PM-047 §2: işlev kelimeleri ayrı kart olarak sorulmaz; ifadelerin içinde öğretilir. `card: false` içerikte işaretlenene
@@ -76,8 +78,9 @@ export function availableTypes(l: Lexeme, path: "passive" | "active"): QType[] {
 }
 
 /** Aynı tür art arda gelmez; kalanlar arasında sırayla (rng ile karıştırılabilir) */
-export function pickType(l: Lexeme, path: "passive" | "active", last: string | undefined, rng: () => number = Math.random): QType | null {
-  const all = availableTypes(l, path);
+export function pickType(l: Lexeme, path: "passive" | "active", last: string | undefined, rng: () => number = Math.random, exclude: QType[] = []): QType | null {
+  const all0 = availableTypes(l, path);
+  const all = all0.filter((t) => !exclude.includes(t)).length ? all0.filter((t) => !exclude.includes(t)) : all0;
   if (!all.length) return null;
   const pool = all.length > 1 ? all.filter((t) => t !== last) : all;
   return pool[Math.floor(rng() * pool.length) % pool.length]!;
@@ -99,11 +102,14 @@ export const activatable = (it: LearnerItem | undefined, l: Lexeme) => !!it && i
 
 /** Bugün tanıtılan (pasif) ve üretime açılan (aktif) kart sayısı (LS-7.4 günlük sınır) */
 export function startedToday(items: Iterable<LearnerItem>, now = new Date()): { passive: number; active: number } {
-  const day = now.toISOString().slice(0, 10);
+  // yerel gün (öğrencinin gece yarısı), UTC değil
+  const day = localDay(now);
+  const on = (iso?: string) => !!iso && localDay(new Date(iso)) === day;
   let passive = 0, active = 0;
-  for (const it of items) { if (it.firstAt?.passive?.startsWith(day)) passive++; if (it.firstAt?.active?.startsWith(day)) active++; }
+  for (const it of items) { if (on(it.firstAt?.passive)) passive++; if (on(it.firstAt?.active)) active++; }
   return { passive, active };
 }
+const localDay = (d: Date) => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
 export const DAILY_NEW = 25, DAILY_ACTIVE = 12;
 
 /**
@@ -119,7 +125,9 @@ export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerI
   const used = new Set<string>();
   const add = (id: string, path: "passive" | "active") => {
     if (out.length >= cap || used.has(id)) return;
-    const t = pickType(lex.get(id)!, path, items.get(id)?.lastQ, rng);
+    // ilk üretim sorusu "kendi cümlen" olmaz: önce kelimeyi söyletir (inceleme #59 2. tur)
+    const first = path === "active" && !items.get(id)?.active.fsrs;
+    const t = pickType(lex.get(id)!, path, items.get(id)?.lastQ, rng, first ? ["own_sentence"] : []);
     if (t) { out.push({ lexId: id, type: t, ex: 0 }); used.add(id); }
   };
   const dueA: { id: string; at: number }[] = [], dueP: { id: string; at: number }[] = [], ready: { id: string; at: number }[] = [];
@@ -234,7 +242,8 @@ export function accepted(l: Lexeme, t: QType, formIdx = 0): string[] {
   const withArt = isNoun(l) ? `${l.art} ${l.de}` : l.de;
   switch (t) {
     case "photo_say": return [withArt];
-    case "tr_de": return isNoun(l) ? [withArt, l.de] : [l.de];
+    // çok biçimli başlık ("anderer, andere, anderes"): her biçim tek başına doğru (inceleme #59 2. tur Y-2)
+    case "tr_de": { const heads = l.de.split(/\s*,\s*/).filter(Boolean); return isNoun(l) ? [withArt, l.de] : heads.length > 1 ? [...heads, l.de] : [l.de]; }
     case "gap": case "sep_perfekt": {
       const f = (t === "gap" ? otherForms(l) : verbForms(l))[formIdx % Math.max(1, l.forms.length)];
       if (!f) return [l.de];
@@ -271,4 +280,17 @@ export function ownSentenceCheck(l: Lexeme, answer: string): "ok" | "missing" | 
   // ayrılabilir fiil çekimli kullanılmışsa önek de cümlede olmalı (sage … ab); mastar/ortaç biçiminde önek bitişik
   if (prefix && !w.some((x) => x.startsWith(prefix)) && !w.includes(prefix)) return "missing";
   return "ok";
+}
+
+/** Aynı Türkçe karşılığı taşıyan başka kart (sprechen/reden): öğrenci onu söylediyse ceza yok, aranan kelime istenir */
+export function synonymHit(l: Lexeme, answer: string, all: Lexeme[]): Lexeme | null {
+  const keys = (tr: string) => new Set(tr.toLowerCase().split(/[,;/]|\bya da\b/).map((x) => x.replace(/\(.*?\)/g, "").trim()).filter(Boolean));
+  const mine = keys(l.tr);
+  const a = answer.trim().toLowerCase().replace(/[.!?]+$/, "").replace(/^(der|die|das)\s+/, "");
+  for (const x of all) {
+    if (x.id === l.id || !isCard(x)) continue;
+    if (![...keys(x.tr)].some((k) => mine.has(k))) continue;
+    if (x.de.toLowerCase().split(/\s*,\s*/).includes(a)) return x;
+  }
+  return null;
 }

@@ -9,7 +9,7 @@ import { useApp } from "../state.ts";
 import { loadLexicon } from "../services/content.ts";
 import { itemsMap, personalWords, putItems } from "../data/db.ts";
 import { review, sessionKey, type Outcome } from "../core/srs.ts";
-import { accepted, buildRound, isCard, personalMatch, collocOf, collocQuestion, formFor, isNoun, meaningOptions, ownSentenceCheck, pathOf, requeue, startedToday, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
+import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, isNoun, meaningOptions, ownSentenceCheck, pathOf, requeue, startedToday, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { judgeWord, numberWordHint } from "../core/grading.ts";
 import { isDue } from "../core/srs.ts";
@@ -99,6 +99,7 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   const [selfCheck, setSelfCheck] = useState<string | null>(null);
   const [ownNote, setOwnNote] = useState(false);
   const [shortNote, setShortNote] = useState(false);
+  const [synNote, setSynNote] = useState<string | null>(null);
   const ex = l.examples[q.ex % Math.max(1, l.examples.length)];
   const show = (r: Result) => { setRes(r); haptic(r.ok ? "success" : "error"); };
   const next = (o: Outcome | null) => onDone(res || { ok: false }, o);
@@ -155,6 +156,8 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
     // isimde artikel zorunlu ve eksik/yanlış artikel açıklanır (inceleme #59 P2-3)
     if ((q.type === "tr_de" || q.type === "photo_say") && isNoun(l)) { const j = judgeWord(a, l.de, l.art); show({ ok: j.ok, answer: a, expected: acc[0], note: j.why_tr }); return; }
     const v = ruleVerdict(acc, a);
+    // eş anlamlı başka kart (sprechen/reden): yanlış değil; aranan kelime yeniden istenir (inceleme #59 2. tur Y-2)
+    if (v.kind !== "correct" && q.type === "tr_de") { const syn = synonymHit(l, a, all); if (syn) { setSynNote(`„${syn.de}“ da doğru. Burada aranan başka bir kelime; ilk harfi: ${l.de[0]}…`); return; } }
     show({ ok: v.kind === "correct", answer: a, expected: acc[0] });
   };
 
@@ -173,7 +176,7 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
 
   return (
     <div class="stack fade" data-test={`gq-${q.type}`}>
-      <section class="card stack">{prompt}{shortNote && <p class="small" data-test="own-short">En az üç kelimelik bir cümle kur.</p>}</section>
+      <section class="card stack">{prompt}{shortNote && <p class="small" data-test="own-short">En az üç kelimelik bir cümle kur.</p>}{synNote && <p class="small" data-test="syn-note">{synNote}</p>}</section>
       {!res && <ActionBar><AnswerField onSubmit={submit} /></ActionBar>}
       {verdict}
     </div>
