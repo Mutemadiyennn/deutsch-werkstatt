@@ -4,13 +4,13 @@
  * gösterilir, kart turun sonunda başka örnek ve başka türle yeniden gelir ve kişisel bankaya girer (srs.review).
  */
 import { cumleKaydet } from "../services/kullanim.ts";
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadLexicon, loadM1Gun } from "../services/content.ts";
 import { bahceTamam, xpOku, xpVer } from "../services/ilerleme.ts";
 import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
-import { XP, seri } from "../core/gun.ts";
+import { XP, seri, yerelGun } from "../core/gun.ts";
 import { getMeta, itemsMap, personalWords, putItems, setMeta } from "../data/db.ts";
 import { hizliGecis, review, sessionKey, type Outcome } from "../core/srs.ts";
 import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
@@ -80,12 +80,15 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       const kisisel = !day || hak.kisiselIzin ? priority : [];
       const newLeft = day ? hak.newLeft : takvim, activeLeft = DAILY_ACTIVE - t.active;
       let round = buildRound(lex, items, pool, { priority: kisisel, newLeft, activeLeft, yeniAyir: Math.min(8, kalan.length) });
-      // B16: öğrencinin tercihi; yoksa seviye tespiti A2 ve üstüyse hızlı şerit varsayılan (PM-066 madde 4)
-      const tercih = await getMeta<boolean>("hizliSerit");
-      const a2 = !!placement && A2_VE_USTU.includes(placement.overall ?? "");
-      if (tercih ?? a2) { round = sinaTuru(round); setHizli(tercih ? "ogrenci" : "tespit"); }
-      // öğrenci normal akışı seçtiyse kendiliğinden öneri de gelmez (tercih saygısı)
-      if (tercih === false) setOneri("reddedildi");
+      // B16 kapsamı (PM-066; inceleme #113 P1-1/2/3): öğrencinin "sına beni"si o günün kalan kartları için (`hizliGun`);
+      // seviye tespiti A2 ve üstüyse yalnızca İlk Hafta günlerinde varsayılan; "normal akış" seçimi kalıcı (`hizliSerit` = false)
+      const bugun = yerelGun(new Date());
+      const kapali = (await getMeta<boolean>("hizliSerit")) === false;
+      const ogrenciBugun = (await getMeta<string>("hizliGun")) === bugun;
+      const a2 = !!placement && A2_VE_USTU.includes(placement.overall ?? "") && !!day && day <= 7;
+      if (!kapali && (ogrenciBugun || a2)) { round = sinaTuru(round); setHizli(ogrenciBugun ? "ogrenci" : "tespit"); }
+      // normal akış seçildiyse ya da bugün öneri reddedildiyse kendiliğinden öneri de gelmez (tercih saygısı)
+      if (kapali || (await getMeta<string>("hizliOneriRed")) === bugun) setOneri("reddedildi");
       // boş tur: günün kartları zaten tanıtıldıysa Seans 1 burada tamamlanır (ekran efektine bırakılmaz)
       if (day && !round.length && !kalan.length) await bahceTamam(day);
       // çeldirici yakınlığı: turun ve günün kartları, öğrencinin tanıdıkları (PM 7011722598 madde 5)
@@ -147,14 +150,18 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
     setI(i + 1);
   };
 
-  const hizliAc = async (bas: number, kaynak: "ogrenci") => { setHizli(kaynak); setOneri("yok"); await setMeta("hizliSerit", true); return sinaTuru(round, bas); };
+  // öğrencinin seçimi yalnızca bugünün kalan yeni kartları için (inceleme #113 P1-1)
+  const hizliAc = async (bas: number, kaynak: "ogrenci") => { setHizli(kaynak); setOneri("yok"); await setMeta("hizliGun", yerelGun(new Date())); return sinaTuru(round, bas); };
   // tanıtım kartında "Biliyorum, sına beni": bu kart turun sonunda sına sorusu olur (kelime az önce göründü), sonrakiler sına
   const tanitimdaSina = async () => {
     const r2 = await hizliAc(i + 1, "ogrenci");
     setData({ ...data, round: [...r2, { lexId: q.lexId, type: "tr_de", sina: true, ex: q.ex }] }); setI(i + 1);
   };
   const normaleDon = async () => {
-    setHizli(null); setOneri("reddedildi"); await setMeta("hizliSerit", false);
+    // tespitten gelen varsayılan kalıcı kapanır; öğrencinin bugünkü seçimi yalnızca bugün için geri alınır
+    if (hizli === "tespit") await setMeta("hizliSerit", false);
+    await setMeta("hizliGun", ""); await setMeta("hizliOneriRed", yerelGun(new Date()));
+    setHizli(null); setOneri("reddedildi");
     setData({ ...data, round: round.map((x, k) => (k >= i && x.sina ? { ...x, sina: false, intro: true, type: "listen_meaning" as const } : x)) });
   };
   if (oneri === "goster") return (
@@ -166,14 +173,17 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       </section>
       <ActionBar>
         <button class="btn primary block" data-test="hizli-evet" onClick={async () => { const r2 = await hizliAc(i, "ogrenci"); setData({ ...data, round: r2 }); }}>Evet, sına beni</button>
-        <button class="btn block" data-test="hizli-hayir" onClick={() => setOneri("reddedildi")}>Hayır, böyle devam</button>
+        <button class="btn block" data-test="hizli-hayir" onClick={() => { setOneri("reddedildi"); void setMeta("hizliOneriRed", yerelGun(new Date())); }}>Hayır, böyle devam</button>
       </ActionBar>
     </div>
   );
   return (
     <div class="stack" data-test="garden" data-hizli={hizli ?? undefined}>
       <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} ilerleme={{ n: i, toplam: round.length }} />
-      {hizli === "tespit" && i === 0 && <p class="small bilgi-bant" data-test="hizli-tespit">İlk haftayı senin hızında geçelim: bildiğin kelimeleri Almanca yazarak kanıtla, geç. Bilemediğin kelime normal tanıtımla gelir. <button class="linkbtn" data-test="hizli-kapat" onClick={() => void normaleDon()}>Normal akışa dön</button></p>}
+      {/* hızlı şerit açıkken çıkış her soruda görünür (inceleme #113 P1-1); açıklama yalnızca ilk soruda */}
+      {hizli && <div class="small bilgi-bant" data-test={hizli === "tespit" ? "hizli-tespit" : "hizli-ogrenci"}>
+        <span class="grow">{i === 0 && hizli === "tespit" ? "İlk haftayı senin hızında geçelim: bildiğin kelimeyi Almanca yazarak kanıtla, geç." : "Bugünün yeni kelimelerini sınıyoruz."}</span>
+        <button class="linkbtn" data-test="hizli-kapat" onClick={() => void normaleDon()}>Normal akışa dön</button></div>}
       <Question key={`${i}:${q.lexId}:${q.type}:${q.sina ? 1 : 0}`} q={q} l={l} all={data.all} yakin={data.yakin} onDone={finish} onSina={q.intro && !q.retry && !hizli ? () => void tanitimdaSina() : undefined} />
     </div>
   );
@@ -186,7 +196,10 @@ function Question({ q, l, all, yakin, onDone: bitir, onSina }: { q: GardenQ; l: 
   const [tip, setTip] = useState<QType>(q.type);
   const basla = useMemo(() => ({ t: Date.now() }), []);
   useEffect(() => { if (!intro) basla.t = Date.now(); }, [intro]);
-  const onDone = (r: Result, o: Outcome | null, e: number) => bitir(r, o, e, { tip, sina, ms: Date.now() - basla.t });
+  // öneri süresi cevap anında ölçülür; cevap kartını okumak süreye girmez (inceleme #113 P1-4)
+  const sure = useRef<number | null>(null);
+  useEffect(() => { if (!intro) sure.current = null; }, [intro]);
+  const onDone = (r: Result, o: Outcome | null, e: number) => bitir(r, o, e, { tip, sina, ms: sure.current ?? Date.now() - basla.t });
   // gerçekleşen soru (sına düşünce tanıma sorusu); aşağıdaki her karar bunu kullanır
   const qe: GardenQ = tip === q.type ? q : { ...q, type: tip };
   const [res, setRes] = useState<Result | null>(null);
@@ -202,7 +215,7 @@ function Question({ q, l, all, yakin, onDone: bitir, onSina }: { q: GardenQ; l: 
   // cümlenin fotoğrafı (cevap kartı); fotoğraf bileşeni yenisi hazır olana kadar eskisini tutar (zıplama yok; inceleme #92 2. tur)
   const ex = l.examples[exi % Math.max(1, l.examples.length)];
   const fotoEx = exi, fotoOrnek = ex;
-  const show = (r: Result) => { setRes(r); haptic(r.ok ? "success" : "error"); };
+  const show = (r: Result) => { if (sure.current === null) sure.current = Date.now() - basla.t; setRes(r); haptic(r.ok ? "success" : "error"); };
   const next = (o: Outcome | null) => onDone(res || { ok: false }, o, exi);
   const baska = (n: number) => n > 1 ? <button class="btn sm ghost" data-test="baska-cumle" onClick={() => setExi((x) => x + 1)}>Başka cümle</button> : null;
 
@@ -246,7 +259,7 @@ function Question({ q, l, all, yakin, onDone: bitir, onSina }: { q: GardenQ; l: 
     <div aria-hidden="true" style={{ height: 180 }} />
     <ActionBar>
       {sina ? (res.ok && !hinted
-          ? <FeedbackBand kind="ok" title="Bildin!" xp={XP.bilinen}><span lang="de">{res.expected}</span><div class="small">Bu kelime tanıma basamağını atladı; birkaç gün sonra zor sorularla gelecek.</div></FeedbackBand>
+          ? <FeedbackBand kind="ok" title="Bildin!" xp={XP.bilinen}><span lang="de">{res.expected}</span><div class="small">Bu kelime tanıma basamağını atladı; bundan sonra Almancasını hep sen kuracaksın.</div></FeedbackBand>
           : <FeedbackBand kind="info" title="Sorun değil, birlikte bakalım."><div class="fb-dogrusu" lang="de" data-test="fb-dogrusu">{res.expected}</div><div class="small">Şimdi kelimeyi tanıyalım.</div></FeedbackBand>)
         : res.ok ? <FeedbackBand kind="ok" title="Doğru." xp={hinted ? 0 : XP.dogru}>{res.expected && <span lang="de">{res.expected}</span>}</FeedbackBand>
         : <FeedbackBand kind={res.yazim ? "info" : "bad"} title={res.yazim ? "Kelime doğru, yazımı eksik." : "Doğrusu:"}>
@@ -267,7 +280,7 @@ function Question({ q, l, all, yakin, onDone: bitir, onSina }: { q: GardenQ; l: 
 
   // ---- aktif: üretim ----
   const prompt = qe.type === "photo_say" ? <><div class="kicker">Fotoğraftaki ne? Artikeliyle söyle ya da yaz</div><Photo q={l.img} sira={exi} /><p class="small muted">{l.tr}</p></>
-    : qe.type === "tr_de" && sina ? <><div class="kicker" data-test="sina-soru" {...(E2E ? { "data-cevap": sinaKabul(l)[0] } : {})}>Biliyorum, sına beni · ipucu yok</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div><p class="small muted">Almanca yaz ya da söyle. Bilirsen bu kelime ileri basamaklardan devam eder.</p></>
+    : qe.type === "tr_de" && sina ? <><div class="kicker" data-test="sina-soru" {...(E2E ? { "data-cevap": sinaKabul(l)[0] } : {})}>Biliyorum, sına beni · ipucu yok</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div><p class="small muted">Almanca yaz ya da söyle. Bilirsen bu kelime ileri basamaklardan devam eder.</p>{!res && <button class="btn ghost" data-test="sina-bilmiyorum" onClick={() => show({ ok: false, expected: sinaKabul(l)[0] })}>Bilmiyorum, tanıt</button>}</>
     : qe.type === "tr_de" ? <><div class="kicker">Almanca söyle ya da yaz</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div></>
     : qe.type === "gap" || qe.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de" data-test="gap-cumle">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && !res && <IpucuDugmesi metin={form.hint_tr} onAc={() => setHinted(true)} />}{!res && baska(havuz(l, qe.type))}</>
     : <><div class="kicker">Bu kelimeyle kendi cümleni kur</div><div class="de-lg" lang="de"><Art art={l.art} de={l.de} /></div><p class="small muted">{l.tr}{ex ? ` · Örnek: ` : ""}{ex && <span lang="de" data-test="own-ex">{ex.de}</span>}</p>{!selfCheck && baska(l.examples.length)}</>;

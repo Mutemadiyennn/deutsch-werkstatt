@@ -37,6 +37,21 @@ def sina_cevapla(pg, dogru=True):
     pg.fill("[data-test=answer]", cevap); pg.click("[data-test=submit]"); pg.wait_for_selector("[data-test=feedback]")
     return pg.inner_text("[data-test=feedback]")
 
+BUGUN = "() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }"
+
+def oneriye_kadar(pg, okuma=300):
+    """yeni kartlarda ilk tanıma sorusunu hızlı ve doğru cevapla; öneri gelirse True"""
+    for _ in range(6):
+        if pg.locator("[data-test=hizli-oneri]").count(): return True
+        if pg.locator("[data-test=garden-intro]").count(): pg.click("[data-test=garden-intro] [data-test=next]")
+        pg.wait_for_selector("[data-test^=gq-]")
+        if not pg.locator("button.opt[data-right]").count(): return False
+        pg.locator("button.opt[data-right]").first.click(); pg.wait_for_selector("[data-test=next]")
+        pg.wait_for_timeout(okuma)  # cevap kartını okumak öneri süresine girmez (inceleme #113 P1-4)
+        pg.click("[data-test=next]")
+        pg.wait_for_selector("[data-test=garden-intro], [data-test=hizli-oneri], [data-test=garden-done]")
+    return pg.locator("[data-test=hizli-oneri]").count() > 0
+
 def main():
     shots = arg("--shots")
     srv = serve(PORT); base = f"http://127.0.0.1:{PORT}/"
@@ -46,19 +61,29 @@ def main():
         check(pg.locator("[data-test=garden-intro]").count() == 1 and pg.get_attribute("[data-test=garden]", "data-hizli") is None, "sıfır profil: Bahçe tanıtım kartıyla açılır (bugünkü akış)")
         check(pg.locator("[data-test=sina-beni]").count() == 1, "tanıtımda 'Biliyorum, sına beni' düğmesi")
         if shots: shot(pg, f"h01-tanitim-sina-{TEMA}", full=False)
-        oneri = False
-        for _ in range(6):
-            if pg.locator("[data-test=hizli-oneri]").count(): oneri = True; break
-            if pg.locator("[data-test=garden-intro]").count(): pg.click("[data-test=garden-intro] [data-test=next]")
-            pg.wait_for_selector("[data-test^=gq-]")
-            if not pg.locator("button.opt[data-right]").count(): break
-            pg.locator("button.opt[data-right]").first.click(); pg.wait_for_selector("[data-test=next]"); pg.click("[data-test=next]")
-            pg.wait_for_selector("[data-test=garden-intro], [data-test=hizli-oneri], [data-test=garden-done]")
-        check(oneri, "art arda 3 yeni kart hızlı ve doğru → 'Bunları biliyor gibisin' önerisi")
+        oneri = oneriye_kadar(pg, okuma=9000)  # her cevap kartında 9 sn okuma: süre cevap anında ölçülür
+        check(oneri, "art arda 3 yeni kart hızlı ve doğru (cevap kartını 9 sn okumak süreye girmedi) → 'Bunları biliyor gibisin' önerisi")
         if oneri:
             if shots: shot(pg, f"h02-oneri-{TEMA}", full=False)
             pg.click("[data-test=hizli-evet]"); pg.wait_for_selector("[data-test=sina-soru], [data-test=garden-done]")
             check(pg.locator("[data-test=sina-soru]").count() == 1, "öneri kabul: sonraki yeni kart sına sorusuyla açılır")
+            gun = pg.evaluate(BUGUN)
+            check((pg.evaluate(OKU, ["meta", "hizliGun"]) or {}).get("value") == gun and (pg.evaluate(OKU, ["meta", "hizliSerit"]) or {}).get("value") is not True,
+                  "seçim yalnızca bugün için (hizliGun); kalıcı hızlı şerit yazılmadı (inceleme #113 P1-1)")
+            check(pg.locator("[data-test=hizli-ogrenci] [data-test=hizli-kapat]").count() == 1, "öğrencinin seçtiği hızlı şeritte de 'Normal akışa dön' görünür")
+            bb = pg.locator("[data-test=hizli-kapat]").bounding_box()
+            check(bb and bb["height"] >= 44, f"'Normal akışa dön' dokunma hedefi ≥ 44 pt ({bb and round(bb['height'])})")
+        b.close()
+
+        # 1b) "Hayır, böyle devam" bugün için kaydedilir: yeni turda öneri yeniden gelmez (inceleme #113 P1-3)
+        b, pg = yeni_sayfa(p); bahce(pg, base)
+        if oneriye_kadar(pg):
+            pg.click("[data-test=hizli-hayir]"); pg.wait_for_selector("[data-test=garden-intro], [data-test^=gq-], [data-test=garden-done]")
+            check((pg.evaluate(OKU, ["meta", "hizliOneriRed"]) or {}).get("value") == pg.evaluate(BUGUN), "'Hayır, böyle devam' bugün için kaydedildi")
+            bahce(pg, base); pg.reload(); pg.wait_for_selector("[data-test=garden-intro], [data-test^=gq-], [data-test=garden-done]")
+            check(not oneriye_kadar(pg), "yeni turda öneri yeniden gelmedi")
+        else:
+            check(False, "1b: öneri tetiklenemedi")
         b.close()
 
         # 2) tanıtımda "Biliyorum, sına beni": doğru → Bildin, yanlış → birlikte bakalım
@@ -76,7 +101,8 @@ def main():
         check(it and it["passive"]["fsrs"] and abs(it["passive"]["fsrs"]["stability"] - 7) < 0.01 and it["active"]["ok"] == 1, f"kart tanımayı atladı: pasif kararlılık 7 gün, aktif yol başladı ({lex})")
         pg.wait_for_selector("[data-test=sina-soru], [data-test^=gq-], [data-test=garden-done]")
         if pg.locator("[data-test=sina-soru]").count():
-            t = sina_cevapla(pg, False)
+            # "Bilmiyorum, tanıt": uydurma yazmadan çıkış (inceleme #113 P1-2)
+            pg.click("[data-test=sina-bilmiyorum]"); pg.wait_for_selector("[data-test=feedback]"); t = pg.inner_text("[data-test=feedback]")
             check("Sorun değil" in t, f"yanlış: 'Sorun değil, birlikte bakalım' ({t[:50]!r})"); kare(pg, 8)
             if shots: shot(pg, f"h03-birlikte-bakalim-{TEMA}", full=False)
             pg.click("[data-test=next]"); pg.wait_for_selector("[data-test=garden-intro]")
@@ -102,6 +128,9 @@ def main():
             pg.wait_for_selector("[data-test=next]"); old = pg.inner_text("[data-test=garden] .pbar"); pg.click("[data-test=next]")
             pg.wait_for_function("(o) => document.querySelector('[data-test=garden-done]') || (document.querySelector('[data-test=garden] .pbar') || {}).innerText !== o", arg=old)
         check(pg.locator("[data-test=garden-done]").count() == 1 and sina >= 3 and tanima == 0, f"A2 profili turu tanıma sorusu görmeden bitirdi ({sina} sına, {tanima} tanıma)")
+        # A2 varsayılanı yalnızca İlk Hafta günlerinde: serbest Bahçe normal akış (inceleme #113 P1-2)
+        pg.goto(base + "#/garden"); pg.wait_for_selector("[data-test=garden-intro], [data-test^=gq-], [data-test=garden-done], [data-test=garden-empty]")
+        check(pg.locator("[data-test=garden]").count() == 0 or pg.get_attribute("[data-test=garden]", "data-hizli") is None, "A2: serbest Bahçe hızlı şeritle açılmaz")
         # normal akışa dön
         b.close()
         b, pg = yeni_sayfa(p)

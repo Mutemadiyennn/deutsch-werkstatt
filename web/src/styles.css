@@ -598,3 +598,6 @@ a.dugum:active { transform: translateY(6px); box-shadow: 0 1px 0 var(--vurgu-koy
 .whysheet.kalip-sheet h3.kicker { font-size: 0.78rem; margin-bottom: 4px; }
 .wchip[aria-pressed="true"] { background: var(--himmel); color: var(--card); }
 @media (prefers-reduced-motion: reduce) { .kalip-ornek { transition: none; } }
+/* B16 hızlı şerit bandı: çıkış düğmesi ≥ 44 pt (inceleme #113 P1-5) */
+.bilgi-bant { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: 0; padding: 8px 14px; border-radius: 14px; background: var(--himmel-2); color: var(--ink); }
+.bilgi-bant .linkbtn { min-height: 44px; padding: 0 4px; }
