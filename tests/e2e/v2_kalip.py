@@ -108,15 +108,19 @@ def main():
             b.close()
         # fills_tr (İÇ 7014566898): içerikte henüz yok; sözlük paketine yönlendirmeyle eklenir, kart dolgunun anlamını gösterir
         b, ctx = launch(p); pg = new_page(ctx)
-        def ekle(route):
-            r = route.fetch(); d = r.json()
-            for x in d["patterns"]:
-                if x["id"] == "pt:ich-bin":
-                    for sl in x["slots"]: sl["fills_tr"] = [f"anlam {i + 1}" for i in range(len(sl["fills"]))]
-            route.fulfill(response=r, json=d)
-        pg.route("**/lexemes.json", ekle)
+        # paket diskten okunur, gövde yönlendirmeden önce bir kez üretilir (ağdan çekip yeniden yazmak WebKit'te 8 sn sınırını aşabiliyordu; inceleme #109 2. tur P1-A)
+        from common import DIST
+        yol = glob.glob(os.path.join(DIST, "content", "*", "lexemes.json"))[0]
+        d = json.load(open(yol, encoding="utf-8"))
+        for x in d["patterns"]:
+            if x["id"] == "pt:ich-bin":
+                for sl in x["slots"]: sl["fills_tr"] = [f"anlam {i + 1}" for i in range(len(sl["fills"]))]
+        govde = json.dumps(d, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+        pg.route("**/lexemes.json", lambda route: route.fulfill(status=200, body=govde, headers={"Content-Type": "application/json"}))
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
-        pg.goto(base + "#/kalip/pt:ich-bin"); pg.wait_for_selector("[data-test=kalip-karti]")
+        with pg.expect_response("**/lexemes.json"):
+            pg.goto(base + "#/kalip/pt:ich-bin")
+        pg.wait_for_selector("[data-test=kalip-karti]")
         dolgu = pg.locator("[data-test=kalip-dolgu]", has_text="zufrieden").first
         sira = pg.evaluate("(f) => [...document.querySelectorAll('[data-test=kalip-slot]')].flatMap((s) => [...s.querySelectorAll('[data-test=kalip-dolgu]')].map((b) => b.innerText)).indexOf(f)", dolgu.inner_text())
         dolgu.click(); pg.wait_for_selector("[data-test=kalip-dolgu-tr]")
