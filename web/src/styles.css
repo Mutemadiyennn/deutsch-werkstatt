@@ -469,3 +469,6 @@ ol.yol > li.yolgun { padding: 14px 16px; }
 .yolgun.bitti .yolno { background: var(--ok-soft); color: var(--ok); }
 .yolgun.simdi .yolno { background: var(--himmel); color: #fff; }
 .iconbtn.done { background: color-mix(in srgb, var(--wiese) 18%, transparent); color: var(--wiese); }
+/* Sözlük (#58 B1): sonuç satırı tam genişlik dokunma alanı (en az 44 pt) */
+.sozluk-satir { width: 100%; min-height: 44px; background: none; border: 0; padding: 0; color: inherit; font: inherit; gap: 12px; cursor: pointer; }
+.sozluk-satir:focus-visible { outline: 2px solid var(--himmel); outline-offset: 2px; border-radius: 8px; }
