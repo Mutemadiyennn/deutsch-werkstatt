@@ -1,3 +1,4 @@
+import { loadFoto } from "../services/content.ts";
 /** Oynatıcının ortak parçaları: cevap kutusu, karar gösterimi, "Bu ne demek?", "Almanca nasıl derim?", "Duyduğum kelime", fotoğraf */
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Lexeme, PhotoResult } from "@dw/shared";
@@ -151,14 +152,21 @@ const lastShown = new Map<string, number>();
  * `sira` verilirse fotoğraf listedeki sırayla seçilir (PM-062: kartın gösterim sayacı; uygulama yeniden açılınca da döner).
  * Verilmezse oturum içinde bir önce gösterilenden farklısı.
  */
-export function Photo({ q, sira }: { q?: string; sira?: number }) {
+export function Photo({ q, sira, yer }: { q?: string; sira?: number; /** B12 3. parça: seçilmiş fotoğrafın yeri ("lx:Kelime#kart", "lx:Kelime#ornekN") */ yer?: string[] }) {
   const { api } = useApp();
   const [p, setP] = useState<PhotoResult | null>(null);
+  const [lisans, setLisans] = useState<string | null>(null);
   useEffect(() => {
     // yenisi seçilene kadar eskisi kalır: cümle değişirken alan boşalıp dolmaz (düzen kayması yok)
     let live = true;
-    if (!q || !api.configured) { setP(null); return; }
     (async () => {
+      // önce seçilmiş açık fotoğraf (atıflı); yoksa eski yol (sunucu araması)
+      const harita = yer?.length ? await loadFoto() : {};
+      const f = (yer ?? []).map((y) => harita[y]).find(Boolean);
+      if (!live) return;
+      if (f) { setLisans(f.lisans); setP({ id: 0, src: f.src, w: 0, h: 0, alt: "", credit: f.yazar || "Wikimedia/Openverse", url: f.sayfa || f.src }); return; }
+      setLisans(null);
+      if (!q || !api.configured) { setP(null); return; }
       let list = await cacheGet<PhotoResult[]>(`photo:${q}`, 30 * 86400_000);
       if (!list) { try { list = await api.photos(q); await cachePut(`photo:${q}`, list); } catch { if (live) setP(null); return; } }
       if (!live) return;
@@ -168,9 +176,9 @@ export function Photo({ q, sira }: { q?: string; sira?: number }) {
       lastShown.set(q, pick.id); setP(pick);
     })();
     return () => { live = false; };
-  }, [q, sira]);
+  }, [q, sira, yer?.join("|")]);
   if (!p) return null;
-  return <figure style={{ margin: 0 }}><img src={p.src} alt={p.alt} style={{ width: "100%", maxHeight: 200, objectFit: "cover", borderRadius: 12 }} loading="lazy" /><figcaption class="tiny muted">Foto: {p.credit} · Pexels</figcaption></figure>;
+  return <figure style={{ margin: 0 }} data-test="foto" data-kaynak={lisans ? "secim" : "arama"}><img src={p.src} alt={p.alt} style={{ width: "100%", maxHeight: 200, objectFit: "cover", borderRadius: 12 }} loading="lazy" /><figcaption class="tiny muted">Foto: {p.credit} · {lisans ?? "Pexels"}</figcaption></figure>;
 }
 
 /**
