@@ -26,6 +26,11 @@ export function ProfileView() {
   const son = useRef<Profile>(profile);
   const sira = useRef<Promise<unknown>>(Promise.resolve());
   useEffect(() => { son.current = profile; }, [profile]);
+  const adZaman = useRef<ReturnType<typeof setTimeout>>();
+  const adBekleyen = useRef<string | null>(null);
+  const adKaydet = (v: string) => { adBekleyen.current = null; const ad = v.trim() || undefined; if (ad !== son.current.displayName) void save((p) => { p.displayName = ad; }); };
+  // ekrandan bekleme dolmadan çıkılırsa yazılan ad yine kaydedilir
+  useEffect(() => () => { clearTimeout(adZaman.current); if (adBekleyen.current !== null) adKaydet(adBekleyen.current); }, []);
   const save = (f: (p: Profile) => void) => {
     const is = sira.current.then(async () => {
       const n = structuredClone(son.current); f(n);
@@ -116,7 +121,12 @@ export function ProfileView() {
         <select id="ts" class="input" value={profile.ui.textScale} onChange={(e) => save((p) => { p.ui.textScale = num(e); })}>{[[0.9, "Küçük"], [1, "Normal"], [1.15, "Büyük"], [1.3, "Çok büyük"]].map(([v, l]) => <option value={v}>{l}</option>)}</select>
         <label class="row" style={{ marginTop: 12 }}><input type="checkbox" checked={profile.ui.sfx} onChange={(e) => save((p) => { p.ui.sfx = (e.target as HTMLInputElement).checked; })} /><span>Mola zili ve sesler</span></label>
         <label class="lbl" for="nm">Adın (isteğe bağlı)</label>
-        <input id="nm" class="input" maxLength={40} autoComplete="off" value={profile.displayName || ""} onChange={(e) => save((p) => { p.displayName = (e.target as HTMLInputElement).value.trim() || undefined; })} />
+        {/* Ad yazarken kaydedilir (kısa bekleme) ve alan bırakılınca hemen; yalnızca "change" olayına bağlı kalınmaz: iPhone'da
+            alan odaktayken hitap düğmesine dokunmak alanı bırakmayabilir ve ad hiç kaydedilmezdi (D-061; #68 inceleme).
+            Alan denetimsiz (defaultValue): başka bir ayarın kaydı yazılmakta olan adı eski değere döndürmez. */}
+        <input id="nm" class="input" maxLength={40} autoComplete="off" defaultValue={profile.displayName || ""}
+          onInput={(e) => { const v = (e.target as HTMLInputElement).value; adBekleyen.current = v; clearTimeout(adZaman.current); adZaman.current = setTimeout(() => adKaydet(v), 350); }}
+          onBlur={(e) => { clearTimeout(adZaman.current); adKaydet((e.target as HTMLInputElement).value); }} />
         <label class="lbl">Almancada hitap (isteğe bağlı)</label>
         <div class="seg" role="group" aria-label="Hitap">{([[undefined, "Seçme"], ["Herr", "Herr"], ["Frau", "Frau"]] as const).map(([k, l]) => <button aria-pressed={profile.address === k} onClick={() => save((p) => { p.address = k; })} data-address={k || "none"}>{l}</button>)}</div>
         <p class="tiny muted">Ad ve hitap yalnızca bu cihazda kalır; diyaloglarda senin satırlarına yerleşir. Sunucuya ve yapay zekâya ad gönderilmez, yalnızca hitap gider.</p>
