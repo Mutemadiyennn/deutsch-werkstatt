@@ -68,6 +68,7 @@ describe("kapalı medya rafı, uygulama tarafı (D-112, #58 B12)", () => {
     yanit(new Response(null, { status: 503, headers: { "X-Raf": "anahtar-yok" } })); expect(await rafSina(a)).toBe("anahtar-tanimsiz");
     yanit(new Response("ok", { status: 200 })); expect(await rafSina(a)).toBe("koruma-yok");
     yanit(new Response("Not found", { status: 404 })); expect(await rafSina(a)).toBe("koruma-yok");
+    yanit(new Response("Not found", { status: 404, headers: { "X-Raf": "1" } })); expect(await rafSina(a)).toBe("dosya-yok");
     vi.stubGlobal("fetch", vi.fn(async () => { throw new TypeError("Failed to fetch"); })); expect(await rafSina(a)).toBe("ulasilamiyor");
   });
   it("rafDosya: anahtarla çeker, önbelleğe koyar, aynı dosyada aynı yerel adresi verir; raf yoksa null", async () => {

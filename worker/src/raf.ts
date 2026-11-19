@@ -43,7 +43,8 @@ export async function rafYanit(req: Request, env: RafEnv, dosya: () => Promise<R
   if (!m || !esit(m[1]!.trim(), anahtar)) { await bekle(YANLIS_GECIKME_MS); return yok(); }
   const r = await dosya();
   // 200, 206 (aralık) ve 304 (koşullu istek) olduğu gibi geçer; öteki her şey 404 (yönlendirme dahil; inceleme #98 P2)
-  if (!(r.status === 200 || r.status === 206 || r.status === 304)) return yok();
+  // doğrulanmış ama dosya yok: koruma çalışıyor işaretiyle 404 (parola doğru; inceleme #118 P1-1)
+  if (!(r.status === 200 || r.status === 206 || r.status === 304)) { const y = yok(); y.headers.set("X-Raf", "1"); return y; }
   const h = new Headers(r.headers);
   for (const [k, v] of Object.entries(c)) h.set(k, v);
   const vary = (h.get("Vary") ?? "").split(",").map((x) => x.trim()).filter(Boolean);

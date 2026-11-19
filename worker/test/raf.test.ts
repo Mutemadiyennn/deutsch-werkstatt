@@ -26,6 +26,10 @@ describe("kapalı medya rafı Function'ı (D-112, #58 B12)", () => {
   it("panele yapıştırılan anahtardaki boşluk/satır sonu kırpılır", async () => {
     expect((await rafYanit(istek({ anahtar: ANAHTAR }), { MEDYA_ANAHTARI: ` ${ANAHTAR}\n` }, dosya, async () => {})).status).toBe(200);
   });
+  it("doğru parola, dosya yok: 404 + X-Raf: 1 (parola hatasından ayrılır)", async () => {
+    const r = await rafYanit(istek({ anahtar: ANAHTAR }), env, async () => new Response("x", { status: 404 }), async () => {});
+    expect(r.status).toBe(404); expect(r.headers.get("X-Raf")).toBe("1");
+  });
   it("rafta anahtar tanımsız ya da kısaysa hiçbir dosya verilmez: 503 + X-Raf: anahtar-yok (Rafı sına ayırt etsin; PM 7019082199)", async () => {
     for (const e of [{}, { MEDYA_ANAHTARI: "kisa" }, { MEDYA_ANAHTARI: "a".repeat(31) }]) {
       const r = await rafYanit(istek({ anahtar: "kisa" }), e, dosya, async () => {});
