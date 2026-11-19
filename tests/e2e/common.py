@@ -148,7 +148,8 @@ def shot(page, name, full=True):
     if SHOTS:
         os.makedirs(SHOTS, exist_ok=True)
         page.wait_for_timeout(350)  # geçişler (≤200 ms) bitsin
-        page.screenshot(path=os.path.join(SHOTS, name + ".png"), full_page=full)
+        # hesap kimliği (UID) ekran görüntüsünde maskeli
+        page.screenshot(path=os.path.join(SHOTS, name + ".png"), full_page=full, mask=[page.locator("[data-test=uid]")])
 
 def no_overflow(page, where):
     sw, iw = page.evaluate("[document.documentElement.scrollWidth, window.innerWidth]")
