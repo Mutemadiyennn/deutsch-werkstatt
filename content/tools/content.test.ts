@@ -80,12 +80,17 @@ describe("#58 B4 doğrulayıcı (#54 D16)", () => {
     for (const t of ["Das ist Scheiße.", "So ein Scheißkerl!", "Hundescheiße überall", "scheiß drauf", "Ihr Arschlöcher", "diese Hurensöhne", "verfickt noch mal", "verdammt!", "Verdammt noch mal"])
       expect(tur(t), t).toBe("kaba");
     for (const t of ["orospuçocuğu", "yavşağın teki", "İbne", "aq ya", "siktir git"]) expect(tur(t, true), t).toBe("kaba");
+    // 2. tur: kelime başı kökler ve kalan kaçaklar
+    for (const t of ["Leck mich am Arsch!", "Halt die Fresse!", "du Kanake"]) expect(tur(t), t).toBe("kaba");
+    for (const t of ["hassiktir", "göt herif"]) expect(tur(t, true), t).toBe("kaba");
   });
   it("şiddet ve aşırıcılık: çekimli biçimler; aşırıcılık her yerde", () => {
-    for (const t of ["Er wurde getötet.", "Sie haben ihn erschossen.", "der Mord", "Der Mörder ist weg.", "eine Leiche", "Ich bring dich um!", "eine Pistole"]) expect(tur(t), t).toBe("siddet");
+    for (const t of ["Er wurde getötet.", "Sie haben ihn erschossen.", "der Mord", "Der Mörder ist weg.", "eine Leiche", "Ich bring dich um!", "Er bringt ihn um.", "I bring di um!", "eine Pistole"]) expect(tur(t), t).toBe("siddet");
     expect(tur("Heil Hitler")).toBe("asiri");
   });
   it("masum metin yakalanmaz: benzer kökler, deyim, kriegen fiili, Türkçe açıklamada geçen Almanca kelime", () => {
+    for (const t of ["Ich bringe sie um acht in die Kita.", "Bringst du ihn um 9 Uhr zum Arzt?", "der tote Winkel", "Hier ist tote Hose.", "Der Marsch ist lang.", "ein Barsch", "Warschau"]) expect(tur(t), t).toBeNull();
+    expect(tur("Bu film bomba gibi.", true)).toBeNull();
     for (const t of ["Das Schiff", "Ich habe einen Pickel.", "Mordsgaudi auf der Wiesn!", "Mein Rücken bringt mich um.", "Krieg ich das Pfand zurück?", "Kriegst du das hin?", "Das ist mir Wurst.", "Ich wähle die Suppe.", "die Auswahl", "Die Kirche ist alt.", "Die Party war toll.", "So ein Mist!"])
       expect(tur(t), t).toBeNull();
     // Türkçe açıklama alanı (üst dil): Almanca kaba kelime orada hata değildir
@@ -100,6 +105,14 @@ describe("#58 B4 doğrulayıcı (#54 D16)", () => {
     expect(uyarisiz.hata).toHaveLength(0); expect(uyarisiz.uyari[0]).toMatch(/kullanım uyarısı yok/);
     const mist = icerikGuvenligi({ ...bos, lexemes: [L({ id: "lx:Mist", de: "Mist", tr: "kahretsin (kibar)", pos: "noun", tier: "K1", mistakes_tr: ["„Scheiße“ yerine bunu söyle."] })] });
     expect(mist.hata).toHaveLength(0);
+  });
+  it("bütün pasif kartlar (süzgece takılmasa da) M1 yeni kartı ve K1 çekirdeği olamaz; kullanım uyarısı kelime sınırıyla aranır", () => {
+    const lx = [L({ id: "lx:Idiot", de: "Idiot", tr: "aptal", pos: "noun", tier: "passive" })];
+    const r = icerikGuvenligi({ ...bos, lexemes: lx, m1: [{ file: "m1/gun-01.json", data: { yeni_kartlar: ["lx:Idiot"] } as never }], k1: { cekirdek: ["lx:Idiot"], pasif: [] } });
+    expect(r.hata).toHaveLength(2);
+    // "ödeme", "kargo" kullanım uyarısı sayılmaz
+    const k = icerikGuvenligi({ ...bos, lexemes: [L({ id: "lx:W", de: "Waffe", tr: "silah", pos: "noun", tier: "passive", mistakes_tr: ["ödeme ve kargo ile ilgisi yok"] })] });
+    expect(k.uyari[0]).toMatch(/kullanım uyarısı yok/);
   });
   it("kaba/şiddet tanıma kartı üretim havuzuna giremez: M1 yeni kart, senaryo temel öğesi, K1 çekirdek", () => {
     const lx = [L({ id: "lx:S", de: "Scheiße", tr: "bok", pos: "noun", tier: "passive", mistakes_tr: ["kaba"] })];

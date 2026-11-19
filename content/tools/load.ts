@@ -415,14 +415,16 @@ function addDayTaught(t: Set<string>, g: Gun, c: Loaded) {
  * her alanda ve Türkçe küçük harfe çevrilerek aranır (İbne → ibne).
  */
 const DE_KABA = /\p{L}*(schei(ß|ss)|fick|fotze|wichser|hurens[oö]hn|arschl[oö]ch|nutte|missgeburt|verdammt|drecksau|mistst[üu]ck)\p{L}*/iu;
-const DE_SIDDET = /(?<!\p{L})(t[öo]ten|t[öo]te|t[öo]tet|get[öo]tet|umbringen|umgebracht|bringe? (dich|ihn|sie) um|erschie(ß|ss)en|erschossen|ermorden|ermordet|mord|morde|mordes|m[öo]rder\p{L}*|leiche|leichen|erstechen|erstochen|vergewaltig\p{L}*|waffe|waffen|pistole\p{L}*|gewehr\p{L}*|bombe|bomben|sprengstoff\p{L}*)(?!\p{L})/iu;
+const DE_SIDDET = /(?<!\p{L})(t(ö|oe)ten|t(ö|oe)te|t(ö|oe)tet|get(ö|oe)tet|umbringen|umgebracht|bring(e|t|st|en)? (dich|di|ihn|sie|euch) um(?=\s*([.!?,;:]|$))|erschie(ß|ss)en|erschossen|ermorden|ermordet|mord|morde|mordes|m[öo]rder\p{L}*|leiche|leichen|erstechen|erstochen|vergewaltig\p{L}*|waffe|waffen|pistole\p{L}*|gewehr\p{L}*|bombe|bomben|sprengstoff\p{L}*)(?!\p{L})/iu;
+/** kelime başında aranan kaba kökler (Marsch, Barsch, Warschau yakalanmaz) */
+const DE_KABA_BAS = /(?<!\p{L})(arsch\p{L}*|kanake\p{L}*|fresse)(?!\p{L})/iu;
 const DE_ASIRI = /(?<!\p{L})(heil hitler|sieg heil|hakenkreuz\p{L}*|nazi|nazis|hitler)(?!\p{L})/iu;
 const DE_HASSAS = /(?<!\p{L})(selbstmord\p{L}*|suizid\p{L}*|kokain|heroin|crystal meth|drogen|afd|cdu|csu|spd|fdp|partei|parteien|wahlkampf|bundestagswahl|politik\p{L}*|politisch\p{L}*|holocaust|terror\p{L}*)(?!\p{L})/iu;
-const TR_KABA = /(?<!\p{L})(siktir\p{L}*|sikeyim|sikerim|sikim\p{L}*|amk|aq|amına|amcık\p{L}*|orospu\p{L}*|piç\p{L}*|yavşa[kğ]\p{L}*|şerefsiz\p{L}*|ibne\p{L}*|götveren\p{L}*|kahpe\p{L}*|pezevenk\p{L}*)(?!\p{L})/u;
-const TR_SIDDET = /(?<!\p{L})(cinayet\p{L}*|katil|katiller\p{L}*|tecavüz\p{L}*|silah\p{L}*|bomba\p{L}*)(?!\p{L})/u;
+const TR_KABA = /(?<!\p{L})(siktir\p{L}*|hassiktir|göt|götü|götün|sikeyim|sikerim|sikim\p{L}*|amk|aq|amına|amcık\p{L}*|orospu\p{L}*|piç\p{L}*|yavşa[kğ]\p{L}*|şerefsiz\p{L}*|ibne\p{L}*|götveren\p{L}*|kahpe\p{L}*|pezevenk\p{L}*)(?!\p{L})/u;
+const TR_SIDDET = /(?<!\p{L})(cinayet\p{L}*|katil|katiller\p{L}*|tecavüz\p{L}*|silah\p{L}*)(?!\p{L})/u; // "bomba gibi" deyimdir
 const TR_HASSAS = /(?<!\p{L})(intihar\p{L}*|uyuşturucu\p{L}*|siyaset\p{L}*|siyasi|hükümet\p{L}*|terör\p{L}*|savaş|savaşı|savaşta)(?!\p{L})/u;
 /** Kartta kullanım uyarısı (yalnızca tanıma kartı için): Türkçe açıklamada bu kelimelerden biri */
-const KULLANIM_UYARISI = /(kaba|deme|deme[zk]|kullanma|argo|küfür|hakaret|kibar ortam|yalnızca (tanı|anla))/iu;
+const KULLANIM_UYARISI = /(?<!\p{L})(kaba|deme|demez|demek yanlış|kullanma|argo|küfür\p{L}*|hakaret\p{L}*|kibar ortam\p{L}*|yalnızca (tanı|anla)\p{L}*)(?!\p{L})/iu;
 /**
  * Savaş (hassas): yalnızca isim. "Krieg ich das Pfand zurück?" (kriegen = almak) yakalanmaz: büyük harfli ve cümle başında
  * olmayan Krieg/Kriege/Kriegs-… isimdir; cümle başındaki belirsiz biçim fiil sayılır.
@@ -448,7 +450,7 @@ export function guvenlikTara(t: string, trAlan: boolean): { tur: GuvenlikTur; k:
   const de = (re: RegExp, tur: GuvenlikTur) => { if (trAlan) return null; const m = re.exec(lo); return m ? { tur, k: m[0]! } : null; };
   const trr = (re: RegExp, tur: GuvenlikTur) => { const m = re.exec(tl); return m ? { tur, k: m[0]! } : null; };
   const krieg = trAlan ? null : kriegIsim(t);
-  return de(DE_ASIRI, "asiri") ?? de(DE_KABA, "kaba") ?? trr(TR_KABA, "kaba") ?? de(DE_SIDDET, "siddet") ?? trr(TR_SIDDET, "siddet")
+  return de(DE_ASIRI, "asiri") ?? de(DE_KABA, "kaba") ?? de(DE_KABA_BAS, "kaba") ?? trr(TR_KABA, "kaba") ?? de(DE_SIDDET, "siddet") ?? trr(TR_SIDDET, "siddet")
     ?? de(DE_HASSAS, "hassas") ?? (krieg ? { tur: "hassas" as const, k: krieg } : null) ?? trr(TR_HASSAS, "hassas");
 }
 export type B4Taban = { uyari?: Record<string, number>; hassas_onay?: string[] };
@@ -478,10 +480,12 @@ export function icerikGuvenligi(c: Pick<Loaded, "lexemes" | "scenarios" | "temel
     }
     if (hassas.length && !onay.has(ad)) uyari.push(`${ad}: hassas konu "${hassas[0]!.g.k}" ${hassas.length} metinde — insan incelemesi; incelendiyse b4-taban.json hassas_onay (#54 D16)`);
   }
-  // kaba/şiddet içeren tanıma kartı üretim havuzuna giremez
-  for (const g of c.m1) for (const id of g.data.yeni_kartlar ?? []) if (kabaPasif.has(id)) hata.push(`${g.file}: ${id} kaba/şiddet içeren tanıma kartı; günün yeni kartı olamaz (#54 D16)`);
-  for (const s of c.scenarios) for (const id of s.data.essentials.lexemes) if (kabaPasif.has(id)) hata.push(`${s.file}: ${id} kaba/şiddet içeren tanıma kartı; temel öğe olamaz (#54 D16)`);
-  for (const id of c.k1?.cekirdek ?? []) if (kabaPasif.has(id)) hata.push(`curriculum/k1.json: ${id} kaba/şiddet içeren kart çekirdekte olamaz (#54 D16)`);
+  // D16: pasif katman (yalnızca tanıma) kelimeleri üretim havuzuna giremez — bütün pasif kartlar, yalnızca süzgece takılanlar değil
+  // (inceleme #88 2. tur). Senaryo temel öğesi kuralı checkRules'ta da var (PM-045 §3a); burada M1 ve K1 çekirdek.
+  const neden = (id: string) => (kabaPasif.has(id) ? "kaba/şiddet içeren tanıma kartı" : "pasif (yalnızca tanıma) kart");
+  for (const g of c.m1) for (const id of g.data.yeni_kartlar ?? []) if (pasif.has(id)) hata.push(`${g.file}: ${id} ${neden(id)}; günün yeni kartı olamaz (#54 D16)`);
+  for (const s of c.scenarios) for (const id of s.data.essentials.lexemes) if (kabaPasif.has(id)) hata.push(`${s.file}: ${id} ${neden(id)}; temel öğe olamaz (#54 D16)`);
+  for (const id of c.k1?.cekirdek ?? []) if (pasif.has(id)) hata.push(`curriculum/k1.json: ${id} ${neden(id)}; çekirdekte olamaz (#54 D16)`);
   return { hata, uyari };
 }
 /**
