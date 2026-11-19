@@ -11,7 +11,7 @@ import type { Explanation, Lexeme, Scenario } from "@dw/shared";
 import { Chips, Rich, WhySheet } from "../ui/rich.tsx";
 import { getItem } from "../data/db.ts";
 import { scoreHeard } from "../core/grading.ts";
-import { speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
+import { speak, speakDizi, stopSpeaking, sttAvailable } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { ActionBar, AnswerField, Empty, FeedbackBand, ListenButton, MicButton } from "../ui/kit.tsx";
 import { VerdictView, useGrader } from "../ui/learn.tsx";
@@ -130,7 +130,7 @@ export function HearSection({ ctx, finish, back, setSub }: SP & { setSub: (n: pr
   }, [s.id]);
   useEffect(() => () => stopSpeaking(), []);
   useEffect(() => { if (phase === "quick" && strong && qi >= strong.length) { setQi(0); setPhase("scan"); } }, [phase, qi, strong]);
-  const playAll = async () => { setPlaying(true); try { for (const l of lines) { await speak(l.de, "de", l.speed || "normal"); await new Promise((r) => setTimeout(r, 300)); } } finally { setPlaying(false); setHeard(true); } };
+  const playAll = async () => { setPlaying(true); try { await speakDizi(lines.map((l) => ({ de: l.de, speed: l.speed })), "normal", 300); } finally { setPlaying(false); setHeard(true); } };
   const strongIds = new Set((strong || []).map((c) => c.id));
   const scanCards = cards.filter((c) => !strongIds.has(c.id));
   const knownClaims = scanCards.filter((c) => mark[c.id] === "known");
