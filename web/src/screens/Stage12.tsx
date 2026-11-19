@@ -15,7 +15,7 @@ import { speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { ActionBar, AnswerField, Empty, FeedbackBand, ListenButton, MicButton } from "../ui/kit.tsx";
 import { VerdictView, useGrader } from "../ui/learn.tsx";
-import type { Verdict } from "../core/answer.ts";
+import { countsAsCorrect, type Verdict } from "../core/answer.ts";
 import { Done, rec, type SP } from "./Player.tsx";
 import { Icon } from "../ui/icons.tsx";
 import { AlltagPanel, RauteRow as Rauten, Scene, accentOf, type RState } from "../ui/raute.tsx";
@@ -308,7 +308,7 @@ function SayQ({ card, onDone }: { card: Card; onDone: (ok: boolean) => void }) {
     <div class="stack fade" data-test="say-q">
       <section class="card stack"><div class="kicker">Almancası ne? Söyle ya da yaz</div><div class="de-lg">{card.tr}</div></section>
       {!v && <ActionBar><AnswerField onSubmit={async (a) => { setBusy(true); const r = await grade(accepted, a, card.tr); setBusy(false); setV({ v: r, a }); }} disabled={busy} /></ActionBar>}
-      {v && <VerdictView v={v.v} answer={v.a} itemId={card.id} prompt={card.tr} accepted={accepted} onClaim={() => setClaimed(true)} onNext={() => onDone(v.v.kind === "correct" || claimed)} />}
+      {v && <VerdictView v={v.v} answer={v.a} itemId={card.id} prompt={card.tr} accepted={accepted} onClaim={() => setClaimed(true)} onNext={() => onDone(countsAsCorrect(v.v.kind, claimed))} />}
     </div>
   );
 }

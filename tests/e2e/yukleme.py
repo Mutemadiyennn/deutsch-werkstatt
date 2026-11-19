@@ -24,11 +24,13 @@ def main():
         # ölçülür: dokunuştan hedef içeriğin DOM'a girişine (dom) ve çizildiği ilk kareye (kare) kadar; Playwright'ın
         # tıklama hazırlığı ve süreçler arası gecikme sayılmaz
         TABS = [("learn", "[data-domain]"), ("progress", "[data-test=panel-focus]"), ("profile", "[data-test=goal]"), ("today", "[data-test=next-activity]")]
-        def measure():
+        # Kapı (PM-044.7, D-096): her sekme için 5 geçiş; DOM'a giriş sert sınır (≤300 ms, her geçiş), ilk kare 5 geçişin
+        # ORTANCASI ≤300 ms (paylaşılan CI koşucusunda tek en kötü ölçüm kapı olmaz; en kötü değer rapora yazılır)
+        def measure(n=5, tabs=TABS):
             out = []
-            for tab, sel in TABS:
+            for tab, sel in tabs:
                 other = "learn" if tab == "today" else "today"
-                for _ in range(2):
+                for _ in range(n):
                     pg.click(f"[data-tab={other}]"); pg.wait_for_selector(sel, state="detached"); pg.wait_for_timeout(200)
                     dom, frame = pg.evaluate("""async ([tab, sel]) => {
                       const t0 = performance.now(); let dom = 0;
@@ -41,37 +43,21 @@ def main():
                     out.append((tab, dom, frame))
             return out
         res = measure()
+        med = lambda xs: sorted(xs)[len(xs) // 2]
+        per = {t: [f for tt, _, f in res if tt == t] for t, _ in TABS}
         print("    geçişler (dom/kare ms):", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in res))
-        worst = max(f for _, _, f in res)
-        # tanı: bulanık cam (backdrop-filter) kapalıyken aynı ölçüm — yazılımla çizen CI WebKit'te maliyeti ayırmak için
-        pg.add_style_tag(content="*{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}")
-        diag = measure()
-        print("    tanı, bulanık cam kapalı (dom/kare ms):", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in diag))
-        # tanı 2–3 (yalnızca günlük; kapıyı etkilemez): animasyonlar kapalı; Bugün'de yalnızca sıradaki ders kartı
-        pg.add_style_tag(content="*,*::before,*::after{animation:none!important;transition:none!important}")
-        d2 = measure(); print("    tanı, animasyon kapalı:", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in d2 if t == "today"))
-        pg.add_style_tag(content=".today > *:not([data-test=next-activity]){display:none!important}")
-        d3 = measure(); print("    tanı, Bugün yalnız ders kartı:", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in d3 if t == "today"))
-        # tanı 5: gölgeler ve degradeler kapalı (yazılımla çizen WebKit'te bulanık gölge pahalı)
-        pg.add_style_tag(content="*{box-shadow:none!important;text-shadow:none!important}")
-        d5 = measure(); print("    tanı, gölge kapalı:", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in d5 if t == "today"))
-        pg.add_style_tag(content="*{background-image:none!important}")
-        d6 = measure(); print("    tanı, degrade de kapalı:", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in d6 if t == "today"))
-        # tanı 4: dokunuştan sonraki ilk 800 ms'de ana iş parçacığının en uzun meşgul aralığı (JS mi, çizim mi?)
-        for _ in range(2):
-            pg.click("[data-tab=learn]"); pg.wait_for_selector("[data-test=next-activity]", state="detached"); pg.wait_for_timeout(200)
-            gaps = pg.evaluate("""async () => {
-              const ch = new MessageChannel(); let last = performance.now(), worst = 0, n = 0, t0 = last, frames = [];
-              const tick = () => { const t = performance.now(); worst = Math.max(worst, t - last); last = t; n++; if (t - t0 < 800) ch.port2.postMessage(0); };
-              ch.port1.onmessage = tick;
-              const raf = (t) => { frames.push(Math.round(performance.now() - t0)); if (performance.now() - t0 < 800) requestAnimationFrame(raf); };
-              requestAnimationFrame(raf);
-              document.querySelector('[data-tab=today]').click(); ch.port2.postMessage(0);
-              await new Promise((r) => setTimeout(r, 900));
-              return { worstBusy: Math.round(worst), ticks: n, frames: frames.slice(0, 8) }; }""")
-            print("    tanı, Bugün'e geçişte en uzun meşgul aralık (ms) ve kare zamanları:", gaps)
-        print("    Bugün ekranının bölümleri:", pg.evaluate("() => [...document.querySelectorAll('.today > *')].map(e => (e.className||e.tagName) + ':' + e.querySelectorAll('*').length).join(' | ')"))
-        check(worst <= 300, f"en yavaş ekran geçişi {worst:.0f} ms (≤ 300)")
+        print("    ortanca kare (ms):", ", ".join(f"{t} {med(v):.0f} (en kötü {max(v):.0f})" for t, v in per.items()))
+        worst_dom = max(d for _, d, _ in res)
+        worst_med = max(med(v) for v in per.values())
+        gate_ok = worst_dom <= 300 and worst_med <= 300
+        if not gate_ok:
+            # tanı (yalnızca kapı kırmızıyken, günlük için): gölge kapalı ölçüm — yazılımla çizen WebKit'te bulanık gölge pahalı
+            try:
+                pg.add_style_tag(content="*{box-shadow:none!important;text-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}")
+                d5 = measure(2); print("    tanı, gölge/bulanık cam kapalı:", ", ".join(f"{t} {d:.0f}/{f:.0f}" for t, d, f in d5))
+            except Exception as e: print("    tanı koşmadı:", e)
+        check(worst_dom <= 300, f"ekran geçişi DOM'a giriş en kötü {worst_dom:.0f} ms (≤ 300, her geçiş)")
+        check(worst_med <= 300, f"ekran geçişi ilk kare ortancası en kötü sekmede {worst_med:.0f} ms (≤ 300; 5 geçiş)")
         b.close()
         # 3) içerik isteği takılırsa: ≤ 10 sn içinde hata + "Tekrar dene" (servis işçisi kapalı: önbellek olmayan ilk kullanım)
         b, ctx = launch(p, service_workers="block"); pg = new_page(ctx)

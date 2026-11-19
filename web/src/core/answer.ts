@@ -106,3 +106,7 @@ export async function verdict(accepted: string[], answer: string, prompt_tr: str
     return { kind: "unchecked", best: v.best, note: (e as { message_tr?: string }).message_tr || "Öğretmen kontrolü şu an yapılamadı." };
   }
 }
+
+/** D-097: puan ve öğrenci modeli için doğru sayılma — yalnızca kural "doğru" dediyse ya da öğrenci "aynı anlamda" dediyse.
+ *  "Kontrol edilemedi" kendiliğinden başarı değildir (inceleme #43 P0-2). */
+export const countsAsCorrect = (kind: Verdict["kind"], claimed: boolean) => kind === "correct" || claimed;

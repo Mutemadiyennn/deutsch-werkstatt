@@ -95,7 +95,7 @@ export function Today() {
         {rec.kind === "scenario" && rec.draft && <p class="tiny" style={{ margin: 0 }}><span class="chip">Deneme dersi</span></p>}
         {rec.kind === "assess" && <a class="btn primary block" href="#/assess"><Icon name="play" size={18} /> Seviye tespitine başla</a>}
         {rec.kind === "scenario" && <a class="btn primary block" href={`#/scenario/${encodeURIComponent(rec.scenarioId)}`}><Icon name="play" size={18} /> Devam et</a>}
-        {rec.kind === "v1" && <a class="btn primary block" href={rec.url} target="_blank" rel="noopener">v1'de aç <Icon name="out" size={18} /></a>}
+        {rec.kind === "v1" && <a class="btn primary block" href={rec.url} target="_blank" rel="noopener">Eski uygulamada aç <Icon name="out" size={18} /></a>}
         {e && !breakOn && <FocusPanel />}
         {placement && <a class="small" href={`#/assess/result/${placement.id}`}>Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>}
       </section>

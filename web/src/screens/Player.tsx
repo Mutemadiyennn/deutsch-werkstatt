@@ -4,7 +4,7 @@
  * - Her cevap öğrenci modeline (FSRS çift yol) işlenir; odak motoru her bölümde etkinliği bilir.
  * - Üretim başarısızsa (<%50) bir önceki aşama yeniden açılır (geri dönüş kuralı).
  */
-import { expandTaught, isSameAsGiven, REGISTER_HINT } from "../core/answer.ts";
+import { countsAsCorrect, expandTaught, isSameAsGiven, REGISTER_HINT } from "../core/answer.ts";
 import { Rich } from "../ui/rich.tsx";
 import { isRepeatRequest, offlineDialogueIndex } from "../core/offline.ts";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
@@ -200,7 +200,7 @@ function ProduceItem({ ctx, prompt, accepted, itemId, onDone, audio, audioSpeed,
   const [claimed, setClaimed] = useState(false);
   // "Benim cevabım da doğru": doğru sayılır (puan + öğrenci modeli); kayıt içerik kuyruğuna da gider
   const next = () => {
-    const ok = v!.v.kind === "correct" || claimed;
+    const ok = countsAsCorrect(v!.v.kind, claimed);
     const ch = chunkFor(ctx.s, accepted[0]!);
     if (ch) void rec(ch.id, "chunk", "active", claimed ? "correct" : outcomeOf(v!.v));
     setV(null); onDone(ok);

@@ -122,6 +122,21 @@ def main():
         pg.wait_for_timeout(500)  # sağlayıcı yoklaması (health)
         v = dialogue_answer(pg, base, ans)
         check(v is not None and "Şöyle olmalı" not in v, f"C: doğru cevap yapay zekâsız reddedilmedi ({(v or '')[:40]!r})")
+        # D-097: kuralların tanımadığı yakın cevap → "kontrol edemedim"; öğrenci "aynı anlamda" derse doğru sayılır
+        # kurallara yakın ama tanınmayan biçimler; her deneme yeni bağlamda (diyalog ilerlemesi kalıcı, ilk öğrenci satırı)
+        w = ans.rstrip(".!?").split()
+        cands = [" ".join(w[:2] + ["wirklich"] + w[2:]) + ".", " ".join(w[:-1] + ["auch"] + w[-1:]) + ".", " ".join(w[1:] + w[:1]) + "."]
+        v2 = None
+        for near in cands:
+            b2, c2 = launch(p); pg2 = c2.new_page(); pg2.route("https://api.e2e.test/**", api)
+            login_onboard(pg2, PORT); pg2.wait_for_selector("[data-tab=today]"); pg2.wait_for_timeout(400)
+            v2 = dialogue_answer(pg2, base, near)
+            if v2 and "kontrol edemedim" in v2: pg = pg2; break
+            b2.close()
+        check(v2 is not None and "kontrol edemedim" in v2, f"C: tanınmayan yakın cevap 'kontrol edemedim' ({(v2 or '')[:50]!r})")
+        if pg.locator("[data-test=claim]").count():
+            pg.click("[data-test=claim]"); pg.wait_for_selector("text=Kaydedildi")
+            check(pg.locator("[data-test=next]").count() == 1, "C: 'Evet, aynı anlamda' → kaydedildi, devam edilebilir")
         pg.goto(base + f"#/scenario/{SC}/roleplay"); pg.wait_for_selector("[data-test=rp-start]"); pg.click("[data-test=rp-start]")
         pg.wait_for_timeout(800)
         check(not AI_CALLS, f"C: sağlayıcı kapalıyken yapay zekâ isteği gönderilmedi ({len(AI_CALLS)})")
