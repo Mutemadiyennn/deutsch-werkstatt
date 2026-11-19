@@ -4,6 +4,7 @@
  * (LS-7.5). Sözlükte olmayan kelime de "Duyduğum kelime" olarak eklenebilir (anlamı isteğe bağlı).
  * Kart adresle açılır (#/sozluk/<arama>/<kart>): geri hareketi aramaya döner.
  */
+import { KALIP_GERI } from "./Kalip.tsx";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Lexeme, Pattern } from "@dw/shared";
 import { useApp } from "../state.ts";
@@ -61,7 +62,8 @@ export function SozlukEkrani({ q: ilk = "", id }: { q?: string; id?: string }) {
           {sec.mistakes_tr[0] && <div class="tiny muted"><Rich text={sec.mistakes_tr[0]} /></div>}
           {/* #58 B2: kelimenin kullanıldığı kalıplar → kalıp kartı */}
           {sec.patterns.some((id) => kaliplar.has(id)) && <div class="small" data-test="sozluk-kaliplar"><div class="kicker">Kalıpları</div>
-            {sec.patterns.filter((id) => kaliplar.has(id)).map((id) => <div><a href={`#/kalip/${encodeURIComponent(id)}`}><Rich text={kaliplar.get(id)!.frame_tr ?? kaliplar.get(id)!.frame} /></a></div>)}</div>}
+            {sec.patterns.filter((id) => kaliplar.has(id)).map((id) => <a key={id} class="kalip-link" href={`#/kalip/${encodeURIComponent(id)}`}
+              onClick={() => { try { sessionStorage.setItem(KALIP_GERI, location.hash); } catch { /* yok */ } }}><Rich text={kaliplar.get(id)!.frame_tr ?? kaliplar.get(id)!.frame} /></a>)}</div>}
           <button class="btn primary block" disabled={var_} data-test="sozluk-ekle" onClick={() => void ekle(de, sec.tr, sec)}>{var_ ? (bahceye ? "Bahçende ✓" : "Listende ✓") : "Duyduğum kelime olarak ekle"}</button>
           <p class="tiny muted" data-test="sozluk-ekle-not">{bahceye ? "Bahçe'de tekrarlarda öne alınır." : "Kişisel listene girer; bu kelimenin Bahçe kartı yok."}</p>
           <a class="btn block" href={aramaAdresi(q)} data-test="sozluk-geri">Aramaya dön</a>

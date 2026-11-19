@@ -4,6 +4,7 @@
  * - Her cevap öğrenci modeline (FSRS çift yol) işlenir; odak motoru her bölümde etkinliği bilir.
  * - Üretim başarısızsa (<%50) bir önceki aşama yeniden açılır (geri dönüş kuralı).
  */
+import { KalipKarti } from "./Kalip.tsx";
 import { countsAsCorrect, expandTaught, isSameAsGiven, REGISTER_HINT } from "../core/answer.ts";
 import { Rich } from "../ui/rich.tsx";
 import { isRepeatRequest, offlineDialogueIndex } from "../core/offline.ts";
@@ -247,6 +248,8 @@ function ChipBuilder({ target, onSubmit }: { target: string; onSubmit: (s: strin
 const Count = ({ i, n }: { i: number; n: number }) => <span class="tiny" data-test="item-count">{Math.min(i + 1, n)}/{n}</span>;
 function BuildSection({ ctx, finish, back, setSub }: SP) {
   const r = useRun(ctx.s.build);
+  // #58 B2: kalıp kartı alt sayfada açılır; alıştırmadan çıkılmaz, tur konumu ve puan kaybolmaz (inceleme #94 P1-3)
+  const [kalipAcik, setKalipAcik] = useState(false);
   useEffect(() => { setSub?.(<Count i={r.i} n={r.total} />); }, [r.i]);
   useEffect(() => { if (r.done && r.total) void finish(r.score, r.total); }, [r.done]);
   if (!r.total) return <Empty title="Bu senaryoda cümle kurma maddesi yok" />;
@@ -255,8 +258,9 @@ function BuildSection({ ctx, finish, back, setSub }: SP) {
   const p = b.pattern ? ctx.pt.get(b.pattern) : undefined;
   return (
     <div class="stack" key={b.id}>
+      {kalipAcik && p && <KalipKarti p={p} kapat={() => setKalipAcik(false)} />}
       <ProduceItem ctx={ctx} itemId={b.id} accepted={b.accepted} hint={b.prompt_tr} chips={r.i % 3 === 0 && !b.accepted[0]!.includes("{name}")}
-        prompt={<><div class="kicker">Almanca kur · {r.i + 1}/{r.total}</div><div class="de-lg">{b.prompt_tr}</div>{p?.frame_tr && <div class="tiny muted">Kalıp: <a href={`#/kalip/${encodeURIComponent(p.id)}`} data-test="kalip-bag"><Rich text={p.frame_tr} /></a></div>}</>}
+        prompt={<><div class="kicker">Almanca kur · {r.i + 1}/{r.total}</div><div class="de-lg">{b.prompt_tr}</div>{p?.frame_tr && <div class="tiny muted">Kalıp: <button class="kalip-bag-btn" data-test="kalip-bag" onClick={() => setKalipAcik(true)}><Rich text={p.frame_tr} /></button></div>}</>}
         onDone={(ok) => { if (p) void rec(p.id, "pattern", "active", ok ? "correct" : "wrong"); r.next(ok); }} />
     </div>
   );

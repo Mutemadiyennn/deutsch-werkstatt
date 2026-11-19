@@ -10,9 +10,9 @@ export const DONUSUM_TR: Record<keyof Pattern["transforms"], string> = {
   negative: "Olumsuz",
   polite: "Kibarca",
   perfekt: "Geçmişte (yaptım, oldu)",
-  weil: "Sebebiyle (…, weil …)",
-  dass: "Aktarırken (…, dass …)",
-  wenn: "Koşuluyla (Wenn …)"
+  weil: "Sebebiyle: weil (çünkü)",
+  dass: "dass ile (ki)",
+  wenn: "Koşuluyla: wenn (-se, -sa)"
 };
 export const DONUSUM_SIRA = Object.keys(DONUSUM_TR) as (keyof Pattern["transforms"])[];
 

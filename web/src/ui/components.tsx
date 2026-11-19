@@ -10,7 +10,7 @@ import { Icon } from "./icons.tsx";
 const ICONS = { today: <Icon name="raute" size={24} />, learn: <Icon name="list" size={24} />, progress: <Icon name="chart" size={24} />, profile: <Icon name="user" size={24} /> };
 
 export function TabBar({ route }: { route: Route }) {
-  const tab = route.name === "learn" || route.name === "domain" || route.name === "scenario" || route.name === "sozluk" ? "learn" : route.name === "progress" ? "progress" : route.name === "profile" ? "profile" : "today";
+  const tab = route.name === "learn" || route.name === "domain" || route.name === "scenario" || route.name === "sozluk" || route.name === "kalip" ? "learn" : route.name === "progress" ? "progress" : route.name === "profile" ? "profile" : "today";
   const items: [string, string, keyof typeof ICONS, string][] = [
     ["today", "#/today", "today", "Bugün"],
     ["learn", "#/learn", "learn", "Öğren"],
