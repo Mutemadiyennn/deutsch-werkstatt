@@ -52,3 +52,15 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: m1-video-gunluk, path: "out/*.json", retention-days: 7 }
+  oynatma:
+    # Releases adresinden WebKit oynatması (#58 A9 "Barındırma"): oynamazsa Pages'e geçilir
+    needs: video
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q playwright==1.49.1 && python -m playwright install --with-deps webkit
+      - name: WebKit'te Releases'ten oynatma
+        run: python scripts/video/oynatma.py https://github.com/Mutemadiyennn/deutsch-werkstatt/releases/download/m1-medya/klip-02.mp4
