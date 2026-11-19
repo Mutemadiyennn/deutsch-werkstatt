@@ -260,7 +260,11 @@ def main():
 
         print("7b) öğrenci kimliği (D-061): ad yalnızca cihazda; yapay zekâya '[Name]' + hitap")
         page.goto(f"http://127.0.0.1:{PORT}/#/profile"); page.wait_for_selector("#nm")
-        page.fill("#nm", "Novak"); page.press("#nm", "Tab"); page.click("[data-address=Frau]"); page.wait_for_timeout(300)
+        page.fill("#nm", "Novak"); page.press("#nm", "Tab"); page.click("[data-address=Frau]")
+        # iki kayıt da diske yazılmadan rol oyununa geçilmez: yavaş WebKit koşucusunda 300 ms yetmiyordu (inceleme #68 2. tur)
+        page.wait_for_function("() => document.querySelector('[data-address=Frau]')?.getAttribute('aria-pressed') === 'true'")
+        page.reload(); page.wait_for_selector("#nm")
+        check(page.input_value("#nm") == "Novak" and page.get_attribute("[data-address=Frau]", "aria-pressed") == "true", "ad ve hitap birlikte kaydedildi (yeniden yüklemeden sonra)")
         n0 = len(API_CALLS)
         open_section(page, "roleplay"); page.wait_for_selector("[data-test=rp-start]"); page.click("[data-test=rp-start]")
         page.fill("[data-test=answer]", "Guten Tag, hier ist Frau Novak."); page.click("[data-test=submit]")
