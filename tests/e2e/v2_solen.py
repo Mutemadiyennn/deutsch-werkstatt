@@ -72,7 +72,7 @@ def main():
     shots = arg("--shots")
     with sync_playwright() as p:
         for tema in ("light", "dark"):
-            b, ctx = launch(p, color_scheme=tema); pg = new_page(ctx)
+            b, ctx = launch(p, color_scheme=tema, viewport={"width": 320, "height": 640} if tema == "dark" else None); pg = new_page(ctx)  # koyu tur 320×640 (inceleme #100 2. tur)
             login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
             ders_ac(pg, base)
             check(pg.locator("[data-test=ilerleme]").count() == 1, f"[{tema}] üstte dolan ilerleme çubuğu var")
@@ -87,7 +87,11 @@ def main():
                 if k == 0:
                     check(pg.locator(".fb.ok .fb-isaret").count() == 1, f"[{tema}] doğruda yaylanan onay işareti")
                     # uçuş cevap anında, "Devam"dan önce (önceki uçuşlar bitmişti)
-                    check(pg.locator("[data-test=xp-ucus]").count() >= 1, f"[{tema}] '+XP' cevapla 'Devam' arasında uçuyor")
+                    check(pg.locator("[data-test=xp-ucus]").count() >= 1, f"[{tema}] '+XP' cevapla 'Devam' arasında görünüyor")
+                    # rozet bandın içinde: kart başlığının ya da başka metnin üstüne binmez (PM 7011722598 madde 1)
+                    check(pg.evaluate("() => { const r = document.querySelector('[data-test=xp-ucus]'); const fb = r && r.closest('.fb'); if (!fb) return false; const a = r.getBoundingClientRect(), b = fb.getBoundingClientRect(); return a.top >= b.top && a.bottom <= b.bottom; }"), f"[{tema}] '+XP' rozeti bandın içinde")
+                    # üst çubuk opak (madde 2)
+                    check(pg.evaluate("() => { const c = getComputedStyle(document.querySelector('.pbar')).backgroundColor; const m = c.match(/rgba?\\(([^)]+)\\)/); const p = m ? m[1].split(',') : []; return p.length === 3 || parseFloat(p[3]) === 1; }"), f"[{tema}] üst çubuk opak")
                     kon = pg.evaluate(KONTRAST, ".fb.ok .fb-bas b")
                     check(kon >= 4.5, f"[{tema}] doğru bandı başlığı kontrastı {kon:.2f}:1 (≥ 4,5)")
                     if shots and tema == "light": shot(pg, f"s01-dogru-{tema}", full=False)
@@ -125,7 +129,7 @@ def main():
             if shots: shot(pg, f"s03-bugun-{tema}", full=False)
             # tur sonu kutlaması (Bahçe): seçmeliler doğru, yazılılar 'emin değilim'/yanlış
             pg.goto(base + "#/today"); pg.click("[data-test=garden-start]"); pg.wait_for_selector("[data-test=garden]")
-            ucus, ilk_dogru = False, True
+            ucus, ilk_dogru, kaydirma = False, True, []
             for _ in range(40):
                 if pg.locator("[data-test=garden-done]").count(): break
                 if pg.locator("[data-test=garden-intro]").count(): pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]")
@@ -139,12 +143,24 @@ def main():
                     ilk_dogru = False
                     check(pg.locator("[data-test=ustuste]").count() == 0, f"[{tema}] dersteki seri Bahçe'ye taşınmıyor (ilk doğruda rozet yok)")
                 old = pg.inner_text("[data-test=garden] .pbar")
+                # sayfa aşağı kaydırılmışken "Devam": sonraki ekranın ilk kartı üst çubuğun altında kalmamalı (inceleme #100 P1-2)
+                asagi = len(kaydirma) < 3 and pg.evaluate("() => { scrollTo(0, document.documentElement.scrollHeight); return scrollY > 0; }")
                 kayma.append(cubuk_kaymasi(pg))
                 pg.wait_for_function("(o) => document.querySelector('[data-test=garden-done]') || (document.querySelector('[data-test=garden] .pbar')||{}).innerText !== o", arg=old)
+                if asagi and not pg.locator("[data-test=garden-done]").count():
+                    pg.wait_for_timeout(100)
+                    kaydirma.append(pg.evaluate("() => { const b = document.querySelector('.pbar').getBoundingClientRect().bottom; const k = document.querySelector('[data-test=garden] main, [data-test=garden] .card, .card'); return Math.round(k.getBoundingClientRect().top - b); }"))
             check(ucus, f"[{tema}] doğru cevapta '+XP' uçuşu görüldü")
+            check(not kaydirma or min(kaydirma) >= -2, f"[{tema}] aşağı kaydırıp 'Devam': sonraki sorunun başlığı üst çubuğun altında kalmıyor ({kaydirma})")
             olcu = [x for x in kayma if x is not None]
             check(len(olcu) >= 3 and max(olcu) <= 4, f"[{tema}] soru geçişinde eylem çubuğu ekranın altında kalıyor ({len(olcu)} geçiş; alttan en çok {max(olcu or [0]):.0f} px)")
             check(pg.locator("[data-test=garden-done] [data-test=kutlama]").count() == 1 and pg.locator("[data-test=ozet]").count() == 1, f"[{tema}] tur sonunda kutlama ve özet")
+            # tur sonu sayfanın başından açılır (inceleme #100 2. tur): halka ve başlık görünür alanda
+            pg.wait_for_timeout(200)
+            check(pg.evaluate("() => { const r = document.querySelector('[data-test=tur-sonu]').getBoundingClientRect(); return scrollY <= 8 && r.top >= 0 && r.top < innerHeight; }"), f"[{tema}] tur sonu baştan açılıyor; halka görünür alanda (scrollY={pg.evaluate('scrollY')})")
+            # kalıcı görsel ve kademeli başlık (madde 3): halka konfetiden sonra da ekranda
+            pg.wait_for_timeout(1500)
+            check(pg.locator("[data-test=tur-sonu] .tur-halka").is_visible() and pg.inner_text("[data-test=tur-basligi]") in ("Harika!", "İyi gidiyor", "Zor bir turdu; yarın daha kolay"), f"[{tema}] tur sonu halkası ve başlığı kalıcı ({pg.inner_text('[data-test=tur-basligi]')})")
             check("+" in pg.inner_text("[data-test=ozet-xp]"), f"[{tema}] özette kazanılan XP ({pg.inner_text('[data-test=ozet-xp]')!r})")
             no_overflow(pg, f"[{tema}] tur sonu")
             if shots: pg.wait_for_timeout(300); shot(pg, f"s04-tur-sonu-{tema}", full=False)

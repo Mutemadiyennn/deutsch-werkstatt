@@ -32,9 +32,9 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | Kapalı medya rafı (#58 B12) | `v2/medya-rafi` | 1. parça PR #98: 1. tur 3 P1 düzeltildi (adres doğrulama, "Fail closed" zorunlu, gerçek Function ile e2e); 2. parça #99 doldurma hattı; sırada fotoğraf yolu, doğrulayıcı; proje sahibinin adımları bekleniyor |
 | Bahçe değişen cümle (PM-062, #58 B13) | `v2/bahce-donusum` | #92 birleşti (D-111) |
 | Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | #87 birleşti (D-107) |
-| Şölen 2 / B11a yol haritası (PM-065 1–4) | `v2/yol-haritasi` | PR #104 (D-114) |
 | Şölen 2 / B11b görevler ve sandık (PM-065 5–7) | `v2/gunluk-gorev` | PR #108 yeniden düzen (PM 7015070303 A–G): Bugün = yol + görev şeridi; Görevler sayfası, görev başına sandık ve tören; Odak ekranı; yerleşim kuralları e2e (D-115 eki); PM "gördüm" bekleniyor; sırada B11c tören, Filiz, büyüyen bahçe |
-| Şölen 2 / B11a yol haritası (PM-065 1–4) | `v2/yol-haritasi` | PR açıldı (D-114); sırada B11b günlük görevler ve sandık, B11c tören ve Filiz |
+| Şölen 1 küçük düzeltmeler (PM 7011722598 1–5) | `v2/solen-duzelt` | #100 birleşti (D-113). B11e girdisi (madde 6–7): tur sonunda büyüyen bahçe parçası, kartı soran karakterin avatarı (WORLD), seans başına vurgu rengi; doğru anında parlak ton + kısa ölçek (reduce-motion: yalnızca renk) |
+| Şölen 2 / B11a yol haritası (PM-065 1–4) | `v2/yol-haritasi` | #104 birleşti (D-114) |
 | Gün sonu özeti + yerel kullanım ölçümü (#58 B3) | `v2/gun-sonu` | #93 birleşti (D-109) |
 | Doğrulayıcı B4 (#58 B4, #54 D16) | `v2/dogrulayici-b4` | #88 birleşti (D-108) |
 | Değerlendirme doğruluğu (#58 A11) | `v2/degerlendirme` | PR #76: 1. tur P0 (V2 aşırı kabul) ve P1'ler düzeltildi; kalıcı permütasyon taraması; 2. tur bekliyor (D-104) |
