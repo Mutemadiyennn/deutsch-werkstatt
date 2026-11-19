@@ -23,6 +23,8 @@ Depoya hiçbir şey yazmaz. Tek çıktısı PR yorumu: `gh api repos/Mutemadiyen
 5. Arayüz: EK1 (v1'den zayıf değil) ve EK2 (klavye, ≥44 pt, taşma yok, %130, erişilebilirlik).
 6. Bitti tanımı: birim testleri + WebKit e2e (CI) + validate 0 hata + STATUS güncel + PR açıklaması.
 7. v1'e dokunuş varsa onaylı ve küçük mü.
+8. **phases/ ile çelişki var mı? (PM-047)** Proje sahibinin metni (`docs/v2/phases/`) her PM/uzman kararının üstündedir; arayüz ve içerik PR'ında bu soru her zaman sorulur.
+9. **İmza (PM-048):** PR açıklaması ilerlettiği FINAL imza satırlarını (#54, ör. "İmza: A4, D14") yazıyor mu; kanıtlar bağlantılı mı.
 
 ## Teslim raporu
-PR yorumu biçimi: **Sonuç: ONAY / DEĞİŞİKLİK GEREKLİ** · Engelleyici bulgular (dosya:satır, neden, öneri) · Engelleyici olmayan öneriler · Kontrol listesi (7 madde ✓/✗). Son mesajda yorum bağlantısı.
+PR yorumu biçimi: **Sonuç: ONAY / DEĞİŞİKLİK GEREKLİ** · Engelleyici bulgular (dosya:satır, neden, öneri) · Engelleyici olmayan öneriler · Kontrol listesi (9 madde ✓/✗). Son mesajda yorum bağlantısı.
