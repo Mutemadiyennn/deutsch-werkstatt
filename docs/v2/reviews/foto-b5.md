@@ -16,6 +16,7 @@ Kaynak: `m1-foto` sürümündeki A10 adayları (Wikimedia Commons; yalnızca CC0
 | Adayı olmayan | 129 |
 | Kısa ikinci sorgu yazılan | 117 |
 | Soyut (fotoğraf yok) | 12 |
+| Reddedilenler için kısa sorgu | 205 (+30 soyut) |
 
 **Ret nedenleri** (241; ana nedene göre):
 - eski tarama, çizim ya da belge: 106
@@ -29,7 +30,7 @@ Kaynak: `m1-foto` sürümündeki A10 adayları (Wikimedia Commons; yalnızca CC0
 
 ## Dosyalar
 - `content/v2/media/foto/secim.json`: anahtar A10'daki yer kimliği (`kart#ornekN`; birden çok yer virgülle). Değer: `sorgu`, `aday` (Releases dosya adı ya da `null`), `neden_tr`.
-- `content/v2/media/foto/kisa-sorgu.json`: adaysız sorgular için 2–3 kelimelik İngilizce ikinci sorgu (`sorgu`, `eski`) ya da `soyut: true`. Openverse aramasıyla (PM kararı) ANA'nın hattında kullanılır. Reddedilen 241 sorgu için kısa sorgu sonraki adım.
+- `content/v2/media/foto/kisa-sorgu.json`: adaysız sorgular için 2–3 kelimelik İngilizce ikinci sorgu (`sorgu`, `eski`) ya da `soyut: true`. Openverse aramasıyla (PM kararı) ANA'nın hattında kullanılır. `neden`: `adaysiz` (129: 117 sorgu, 12 soyut) ya da `ret` (235: 205 sorgu, 30 soyut; saat, tarih, kat ve sayı cümleleri gösterilemez). Ret satırlarında yeni sorgu ret nedenini önler (yazısız nesne, güncel görünüm). Sayı isteyen sorgularda (hız sınırı, banknot) seçimde sayının doğruluğu ayrıca denetlenmeli.
 
 ## Açık noktalar
 - Hedef (somut kelimelerin %85'inde kabul edilmiş fotoğraf) bu kaynakla tutmuyor. Openverse adaylarından sonra yeniden ölçülecek.
