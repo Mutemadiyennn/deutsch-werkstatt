@@ -57,6 +57,34 @@ async function ensureContent() {
     await c.put(DONE, new Response(String(files.size)));
   }
   for (const k of await caches.keys()) if (k.startsWith("dw2-c-") && k !== name) await caches.delete(k);
+  // medya (A12): video ve ses ayrı önbellekte; JSON paketinin tamamlanmasını bekletmez, eksikse sonraki açılışta sürer
+  const mname = `dw2-m-${cur.version}`;
+  const m = await caches.open(mname);
+  if (!(await m.match(DONE))) {
+    const idx = await (await c.match(`content/${cur.version}/index.json`))?.json().catch(() => null);
+    const liste = ((idx && idx.files && idx.files.medya) || []).map((f) => `content/${cur.version}/${f}`);
+    const eksik = [];
+    for (const f of liste) if (!(await m.match(f))) eksik.push(f);
+    await putAll(m, eksik);
+    await m.put(DONE, new Response(String(liste.length)));
+  }
+  for (const k of await caches.keys()) if (k.startsWith("dw2-m-") && k !== mname) await caches.delete(k);
+}
+
+/** Safari <video>/<audio> aralıklı istek (Range) ister; önbellekteki tam yanıttan 206 kısmi yanıt üretilir */
+async function aralikli(req, yanit) {
+  const range = req.headers.get("range");
+  if (!range || !yanit || yanit.status !== 200) return yanit;
+  const m = /^bytes=(\d*)-(\d*)$/.exec(range.trim());
+  if (!m) return yanit;
+  const buf = await yanit.clone().arrayBuffer();
+  const boy = buf.byteLength;
+  let bas = m[1] === "" ? Math.max(0, boy - Number(m[2])) : Number(m[1]);
+  let son = m[1] !== "" && m[2] !== "" ? Math.min(Number(m[2]), boy - 1) : boy - 1;
+  if (bas >= boy || bas > son) return new Response(null, { status: 416, headers: { "Content-Range": `bytes */${boy}` } });
+  return new Response(buf.slice(bas, son + 1), { status: 206, headers: {
+    "Content-Type": yanit.headers.get("Content-Type") || "application/octet-stream", "Content-Range": `bytes ${bas}-${son}/${boy}`,
+    "Content-Length": String(son - bas + 1), "Accept-Ranges": "bytes" } });
 }
 
 let syncing = null;
@@ -97,10 +125,11 @@ self.addEventListener("fetch", (e) => {
     return;
   }
   e.respondWith((async () => {
-    const hit = (await caches.match(req, { ignoreSearch: true })) || (await caches.match(key));
-    if (hit) return hit;
+    const hit = (await caches.match(req.url, { ignoreSearch: true })) || (await caches.match(key));
+    if (hit) return aralikli(req, hit);
     const r = await fetch(req);
-    if (r.ok && (key.startsWith("assets/") || key.startsWith("content/"))) {
+    // medya kısmi yanıtla (206) gelir: önbelleğe yalnızca tam yanıt girer (medya önbelleği sync ile tam dosyayı alır)
+    if (r.status === 200 && (key.startsWith("assets/") || key.startsWith("content/"))) {
       const c = await caches.open(key.startsWith("assets/") ? SHELL : `dw2-c-${key.split("/")[1]}`);
       c.put(req, r.clone());
     }

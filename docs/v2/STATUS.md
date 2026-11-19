@@ -24,6 +24,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 |---|---|---|
 | Ders yolu, Bugün'de günün planı, XP ve seri (#58 A5b) | `v2/yol-b` | PR #66; 2. tur bulguları düzeltildi; #71 (profil kaydı yarışı, D-061) birleşti (main 15402f4) |
 | Yeni Bugün + Pomodoro (#58 A6) | `v2/bugun` | PR #67 (#66 üstünde) |
+| Çevrimdışı medya (#58 A12 son parça) | `v2/cevrimdisi-medya` | PR açıldı: medya pakette, servis işçisi ayrı önbellek + 206 aralıklı yanıt, uçak modu e2e |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
 
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-19

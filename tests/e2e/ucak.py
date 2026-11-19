@@ -8,7 +8,7 @@ DN-2 §5 (PM-030, BY-12.1a) — internetsiz, mikrofonsuz ve yapay zekâsız duru
      ekranlarda geliştirici notu yok (PM-035/8).
   python3 tests/e2e/ucak.py [--browser webkit] [--device "iPhone 15"]
 """
-import json, re
+import json, re, urllib.parse
 from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, ERR, content_file
 
@@ -67,6 +67,13 @@ def main():
           return { shell: false, content: 0 };
         }""", want)
         check(st["shell"] and st["content"] >= want, f"A: kabuk ve içerik paketi tam önbellekte ({st['content']}/{want} dosya)")
+        medya = (idx.get("files") or {}).get("medya") or []
+        if medya:
+            # A12: M1 medyası (video, ses) ayrı önbellekte tamamlanır
+            mt = pg.evaluate("""async (n) => { for (let i = 0; i < 160; i++) { for (const k of await caches.keys()) if (k.startsWith('dw2-m-')) {
+                const c = await caches.open(k); if (await c.match('__complete')) return (await c.keys()).filter(r => r.url.includes('/media/')).length; }
+              await new Promise(r => setTimeout(r, 250)); } return 0; }""", len(medya))
+            check(mt >= len(medya), f"A: M1 medyası önbellekte ({mt}/{len(medya)} dosya)")
         ctx.set_offline(True)
         pg.close(); pg = new_page(ctx)  # soğuk açılış: yeni sekme, ağ yok
         pg.goto(base); pg.wait_for_selector("[data-tab=today]", timeout=10_000)
@@ -88,6 +95,21 @@ def main():
         check(not bad, f"A: {len(walk)} ekran internetsiz açıldı, hata paneli yok" + (f" — sorunlu: {bad}" if bad else ""))
         v = dialogue_answer(pg, base, ans)
         check(v is not None and "Şöyle olmalı" not in v, f"A: diyalogda doğru cevap internetsiz değerlendirildi ({(v or '')[:40]!r})")
+        if medya:
+            # Safari <video> aralıklı istek ister: servis işçisi önbellekten 206 kısmi yanıt verir
+            r = pg.evaluate("""async (u) => { const x = await fetch(u, { headers: { Range: 'bytes=0-99' } }); return { s: x.status, n: (await x.arrayBuffer()).byteLength, cr: x.headers.get('content-range') }; }""",
+                            f"{base}content/{idx['version']}/{medya[0]}")
+            check(r["s"] == 206 and r["n"] == 100 and (r["cr"] or "").startswith("bytes 0-99/"), f"A: medya internetsiz aralıklı istekle geliyor ({r})")
+            # M1 yolu internetsiz: Yol, günün temel dersi, medya oynatıcısı
+            m1w = [("#/yol", "[data-test=yol]")]
+            if idx.get("temel"): m1w.append((f"#/ders/{urllib.parse.quote(idx['temel'][0]['id'], safe='')}", "[data-test=ders]"))
+            if idx.get("m1") and idx["m1"][0].get("medya"): m1w.append((f"#/m1/{idx['m1'][0]['day']}/{urllib.parse.quote(idx['m1'][0]['medya'][0]['id'], safe='')}", "[data-test=medya]"))
+            kotu = []
+            for h, sel in m1w:
+                pg.goto(base + h)
+                try: pg.wait_for_selector(sel, timeout=10_000)
+                except Exception: kotu.append(h)
+            check(not kotu, f"A: M1 ekranları internetsiz açıldı ({len(m1w)})" + (f" — sorunlu: {kotu}" if kotu else ""))
         ctx.set_offline(False); b.close()
 
         # ---------- B) mikrofonsuz ----------
