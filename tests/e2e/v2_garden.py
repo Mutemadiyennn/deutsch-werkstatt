@@ -74,9 +74,9 @@ def main():
         if pg.locator("[data-test=garden-intro]").count():  # turun ilk tanıtımı: ardından yine tanıtım gelir
             pg.wait_for_timeout(500)
             i0 = int(pg.get_attribute("[data-test=garden]", "data-i"))
-            pg.dblclick("[data-test=garden-intro] [data-test=next]"); pg.wait_for_timeout(150)
-            if pg.locator("[data-test=garden-intro] [data-test=next]").count(): pg.click("[data-test=garden-intro] [data-test=next]")  # 150 ms sonra üçüncü dokunuş
-            pg.wait_for_timeout(700)
+            # tarayıcı içinde iki dokunuş 120 ms arayla (Playwright'ın kendi gecikmesi CI'da 350 ms'yi aşabiliyor)
+            pg.evaluate("""() => new Promise((res) => { const b = () => document.querySelector('[data-test=garden-intro] [data-test=next]');
+              b()?.click(); setTimeout(() => { b()?.click(); setTimeout(res, 600); }, 120); })""")
             i1 = int(pg.get_attribute("[data-test=garden]", "data-i"))
             check(i1 == i0 + 1, f"çift dokunuşta yalnızca bir adım ilerledi (i {i0} → {i1})")
             note()
