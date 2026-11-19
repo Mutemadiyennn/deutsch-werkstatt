@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { adimEtiketi, eskiMi, gununCumlesi, olayEkle, ozetle, rotaAdimi, KULLANIM_SINIR, type KullanimGun } from "./kullanim.ts";
+import { adimEtiketi, bugunBitenGun, eskiMi, gununCumlesi, olayEkle, ozetle, rotaAdimi, KULLANIM_SINIR, type KullanimGun } from "./kullanim.ts";
 
 const at = "2026-11-19T10:00:00Z";
 const bos = (): KullanimGun => ({ gun: "2026-11-19", olaylar: [] });
@@ -47,5 +47,12 @@ describe("yerel kullanım ölçümü (#58 B3)", () => {
     expect(eskiMi("2026-10-01", now)).toBe(true);
     expect(eskiMi("2026-11-10", now)).toBe(false);
     expect(eskiMi("bozuk", now)).toBe(true);
+  });
+  it("gün sonu başlığı: yalnızca bugün biten gün; eski günün adımını bugün tekrar etmek 'N. gün bitti' demez", () => {
+    const gunler = [{ day: 1, durum: "bitti" }, { day: 2, durum: "bitti" }, { day: 3, durum: "simdi" }];
+    const dun = new Date(2026, 10, 18, 10).toISOString(), bugunIso = new Date(2026, 10, 19, 10).toISOString();
+    expect(bugunBitenGun(gunler, { 1: dun, 2: dun }, "2026-11-19")).toBeNull();
+    expect(bugunBitenGun(gunler, { 1: dun, 2: bugunIso }, "2026-11-19")).toBe(2);
+    expect(bugunBitenGun(gunler, { 1: dun }, "2026-11-19")).toBe(2); // kaydı henüz yazılmamış bitmiş gün
   });
 });

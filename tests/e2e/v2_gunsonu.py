@@ -27,7 +27,11 @@ def bahce_tur(pg, bitir=True, adim=4):
             # "kendi cümleni kur": iki kelime kısa sayılır → üç kelimelik cümle (gün sonu özetine gider)
             if pg.locator("[data-test=own-short]").count():
                 pg.fill("[data-test=answer]", "Ich trinke jeden Morgen Kaffee."); pg.click("[data-test=submit]"); pg.wait_for_selector("[data-test=gq-own-check]")
-            if pg.locator("[data-test=gq-own-check]").count(): pg.click("[data-test=own-unsure]"); pg.wait_for_timeout(200); k += 1; continue
+            if pg.locator("[data-test=gq-own-check]").count():
+                # "Emin değilim, geç" de soruyu ilerletir: sonraki soru çizilene kadar beklenir (nokta denetimi tam değeri ister)
+                old = pg.inner_text("[data-test=garden] .pbar"); pg.click("[data-test=own-unsure]"); k += 1
+                pg.wait_for_function("(o) => document.querySelector('[data-test=garden-done]') || document.querySelector('[data-test=garden-again]') || (document.querySelector('[data-test=garden] .pbar')||{}).innerText !== o", arg=old)
+                continue
         pg.wait_for_selector("[data-test=next]")
         old = pg.inner_text("[data-test=garden] .pbar")
         pg.click("[data-test=next]"); k += 1
@@ -50,19 +54,25 @@ def main():
         pg.on("request", lambda r: istek.append(r.url) if r.method != "GET" else None)
         pg.goto(base + "#/profile"); pg.wait_for_selector("[data-test=kullanim]")
         k = pg.inner_text("[data-test=kullanim]")
-        check("Yarıda: Kelime Bahçesi (1. gün)" in k and "/" in k.split("Yarıda: Kelime Bahçesi (1. gün)")[1][:12], f"bırakma noktası kayıtlı ({k[-120:]!r})")
+        # 3 cevaptan sonra ekranda 4. soru vardı: nokta tam olarak "(4/…)" (inceleme #93 P1-4)
+        check("Yarıda: Kelime Bahçesi (1. gün) (4/" in k, f"bırakma noktası ekrandaki soru ({k[-120:]!r})")
         check("açılış" in k, "açılış sayılıyor")
         no_overflow(pg, "Profil kullanım")
         # bitir: Bahçe turu, sonra okuma ve yazma (kendi cümlesi)
         pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=garden]")
         check(bahce_tur(pg, bitir=True), "Bahçe turu bitti")
-        pg.goto(base + "#/okuma/1"); pg.wait_for_selector("[data-test=okuma-metin]")
-        v2_okuma.walk(pg)
+        # yazma görevi: eksik taslak gün sonuna girmez, kontrolden geçen mesaj girer (inceleme #93 P1-3)
+        pg.goto(base + "#/okuma/2"); pg.wait_for_selector("[data-test=okuma-metin]"); pg.click("[data-test=next]")
+        v2_okuma.sorular(pg); pg.wait_for_selector("[data-test=okuma-yaz]")
+        pg.fill("[data-test=yazi]", "Hallo Derya, hier ist Ayşe. Bis morgen!"); pg.click("[data-test=yazi-kontrol-et]"); pg.wait_for_selector("[data-test=yazi-kontrol]")
+        pg.fill("[data-test=yazi]", "Hallo Derya, hier ist Ayşe. Ich habe im August Urlaub. Mein Geburtstag ist im Mai. Bis morgen!")
+        pg.click("[data-test=yazi-kontrol-et]"); pg.wait_for_selector("[data-test=yazi-kontrol]")
         pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=gun-sonu]", timeout=10000)
         g = pg.inner_text("[data-test=gun-sonu]")
         check("adım bitirdin" in g, f"gün sonu kartı: biten adım ({g[:80]!r})")
         check(pg.locator("[data-test=gun-sonu-kelimeler] .cip").count() >= 1, "bugün yeni anladığın kelimeler (çip)")
-        check(pg.locator("[data-test=gun-sonu-cumle]").count() == 1 and pg.locator("[data-test=gun-sonu-cumle] [lang=de]").count() == 1, "bugün kendi kurduğun cümle (Bahçe ya da yazma görevi)")
+        cm = pg.inner_text("[data-test=gun-sonu-cumle]") if pg.locator("[data-test=gun-sonu-cumle]").count() else ""
+        check("Urlaub" in cm and "Bis morgen!“" not in cm.split("Urlaub")[0][-5:], f"bugün kendi kurduğun cümle: kontrolden geçen mesaj, eksik taslak değil ({cm[:70]!r})")
         no_overflow(pg, "Bugün gün sonu")
         if shots: pg.locator("[data-test=gun-sonu]").scroll_into_view_if_needed(); shot(pg, "g01-gun-sonu", full=False)
         pg.goto(base + "#/profile"); pg.wait_for_selector("[data-test=kullanim]")

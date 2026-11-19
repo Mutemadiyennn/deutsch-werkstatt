@@ -90,3 +90,14 @@ export function eskiMi(gun: string, now = new Date()): boolean {
   if (!y || !m || !d) return true;
   return (now.getTime() - new Date(y, m - 1, d).getTime()) / 86400_000 > KULLANIM_GUN;
 }
+
+/**
+ * Bugün biten M1 günü: gün bitmiş ve bitiş kaydı (`m1:gun:<gün>`, ilk bitişte yazılır) bugünün tarihini taşıyor; kaydı henüz
+ * olmayan bitmiş gün de bugün biter (plan şu an yazıyor). Eski bir günün adımını bugün tekrar etmek "N. gün bitti" demez
+ * (inceleme #93 P1-2). En büyük gün döner.
+ */
+export function bugunBitenGun(gunler: { day: number; durum: string }[], bitisler: Record<number, string | undefined>, bugun: string): number | null {
+  const yerel = (iso: string) => { const d = new Date(iso); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; };
+  const g = gunler.filter((x) => x.durum === "bitti" && (!bitisler[x.day] || yerel(bitisler[x.day]!) === bugun)).map((x) => x.day);
+  return g.length ? Math.max(...g) : null;
+}

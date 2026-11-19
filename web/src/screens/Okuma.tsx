@@ -146,7 +146,7 @@ function Yaz({ o, yazi, setYazi, kontrol, setKontrol, onNext }: { o: OkumaYazmaT
       )}
       <ActionBar>
         {!kontrol || kontrol.eksik.length > 0
-          ? <button class="btn primary block" data-test="yazi-kontrol-et" disabled={!yazi.trim()} onClick={() => { setKontrol(yazmaKontrol(yazi, y)); void cumleKaydet(yazi, "yazma"); }}>Kontrol et</button>
+          ? <button class="btn primary block" data-test="yazi-kontrol-et" disabled={!yazi.trim()} onClick={() => { const k = yazmaKontrol(yazi, y); setKontrol(k); if (k.tamam) void cumleKaydet(yazi, "yazma"); /* yalnızca kontrolden geçen mesaj (inceleme #93 P1-3) */ }}>Kontrol et</button>
           : <button class="btn primary block" data-test="next" onClick={onNext}>Örnek cevabı gör</button>}
         {kontrol && kontrol.eksik.length > 0 && <button class="btn block ghost" data-test="yine-de" onClick={onNext}>Yine de örnek cevabı gör</button>}
       </ActionBar>

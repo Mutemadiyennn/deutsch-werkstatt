@@ -50,22 +50,22 @@ export function kullanimIzle(rota: () => { name: string; id?: string; day?: numb
   void temizle();
   let gizlendi = 0;
   let onceki = rotaAdimi(rota());
-  // nokta önbelleği: rota olayı geldiğinde yeni ekran çoktan çizilmiş olabilir; adım ekranındayken saniyede bir ve her
-  // dokunuştan sonra okunur
+  // nokta önbelleği: rota olayı geldiğinde yeni ekran çoktan çizilmiş olabilir; ilerleme çubuğu ya da ekran konumu her
+  // değiştiğinde (MutationObserver) okunur — zamanlayıcı yok, nokta bir geride kalmaz (inceleme #93 P1-4)
   let sonNokta: string | undefined;
-  const oku = () => { if (onceki) { const n = ekranNoktasi(); if (n) sonNokta = n; } };
-  const zaman = setInterval(oku, 1000);
-  const dokun = () => setTimeout(oku, 300);
+  // yalnızca adres hâlâ bu adımdaysa: başka adım ekranına geçerken yeni ekranın sayısı eski adıma yazılmaz
+  const oku = () => { if (onceki && rotaAdimi(rota()) === onceki) { const n = ekranNoktasi(); if (n) sonNokta = n; } };
+  const gozcu = typeof MutationObserver !== "undefined" ? new MutationObserver(oku) : null;
+  gozcu?.observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["aria-valuenow", "data-pos"] });
   const cik = (adim: string | null, nokta?: string) => { if (adim) void kullanimYaz({ t: "cik", adim, nokta }); };
-  const rotaDegisti = () => { const yeni = rotaAdimi(rota()); if (yeni === onceki) return; cik(onceki, sonNokta); onceki = yeni; sonNokta = undefined; };
+  const rotaDegisti = () => { const yeni = rotaAdimi(rota()); if (yeni === onceki) return; cik(onceki, sonNokta); onceki = yeni; sonNokta = undefined; oku(); };
   const gorunurluk = () => {
     if (document.visibilityState === "hidden") { gizlendi = Date.now(); oku(); cik(onceki, sonNokta); }
     else if (gizlendi && Date.now() - gizlendi > 30 * 60_000) void kullanimYaz({ t: "ac" });
   };
   addEventListener("hashchange", rotaDegisti, true);
-  addEventListener("pointerup", dokun, true);
   document.addEventListener("visibilitychange", gorunurluk);
-  return () => { clearInterval(zaman); removeEventListener("hashchange", rotaDegisti, true); removeEventListener("pointerup", dokun, true); document.removeEventListener("visibilitychange", gorunurluk); };
+  return () => { gozcu?.disconnect(); removeEventListener("hashchange", rotaDegisti, true); document.removeEventListener("visibilitychange", gorunurluk); };
 }
 
 async function temizle() {

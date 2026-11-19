@@ -4,23 +4,15 @@
  */
 import { useEffect, useState } from "preact/hooks";
 import type { Plan } from "../screens/Yol.tsx";
-import { getMeta, setMeta, tanitilanlar } from "../data/db.ts";
+import { getMeta, metaPrefix, setMeta, tanitilanlar } from "../data/db.ts";
 import { loadLexicon } from "../services/content.ts";
 import { kullanimGunleri, kullanimOku } from "../services/kullanim.ts";
-import { adimEtiketi, gununCumlesi, type KullanimOzet } from "../core/kullanim.ts";
+import { adimEtiketi, bugunBitenGun, gununCumlesi, type KullanimOzet } from "../core/kullanim.ts";
 import { yerelGun } from "../core/gun.ts";
 import { ListenButton } from "./kit.tsx";
 import { Kutlama } from "./solen.tsx";
 
 const KELIME_SINIR = 12;
-
-/** Bugün biten M1 günü: günün hazır adımlarından biri bugün bitirildiyse ve gün bittiyse (en büyük gün) */
-export function bugunBitenGun(plan: Plan | null, bitenler: string[]): number | null {
-  if (!plan) return null;
-  const bitti = (a: { id: string; tur: string }) => bitenler.includes(a.id) || bitenler.includes(`${a.tur}:${a.id}`);
-  const g = plan.gunler.filter((x) => x.durum === "bitti" && x.adimlar.some((a) => a.hazir && bitti(a))).map((x) => x.day);
-  return g.length ? Math.max(...g) : null;
-}
 
 export function GunSonu({ plan }: { plan: Plan | null }) {
   const [oz, setOz] = useState<KullanimOzet | null>(null);
@@ -44,7 +36,9 @@ export function GunSonu({ plan }: { plan: Plan | null }) {
     })().catch(() => { /* özet isteğe bağlı: hata ekranı göstermez */ });
     return () => { iptal = true; };
   }, [bugun]);
-  const gun = oz ? bugunBitenGun(plan, oz.bitenler) : null;
+  const [bitisler, setBitisler] = useState<Record<number, string | undefined> | null>(null);
+  useEffect(() => { void metaPrefix<string>("m1:gun:").then((x) => setBitisler(Object.fromEntries(x.map((k) => [Number(k.key.slice(7)), k.value])))); }, [plan]);
+  const gun = oz && bitisler && oz.bitenler.length ? bugunBitenGun(plan?.gunler ?? [], bitisler, bugun) : null;
   // kutlama bir kez: gün bittiğinde ilk görüşte (aynı gün yeniden açılınca yok)
   useEffect(() => {
     if (!gun) return;
