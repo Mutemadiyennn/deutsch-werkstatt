@@ -668,3 +668,5 @@ svg.sandik { overflow: visible; }
 .bilgi-bant { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: 0; padding: 8px 14px; border-radius: 14px; background: var(--himmel-2); color: var(--ink); }
 .bilgi-bant .linkbtn { min-height: 44px; padding: 0 4px; }
 .esdizim-liste { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 2px; }
+/* kısa öbekler (eşdizim listesi, çoğul satırı) hecelenmez: WebKit'te her lang="de" öğesi için heceleme düzeni "Başka cümle" karesini 150 ms üstüne çıkarıyordu (#122 CI) */
+.esdizim-liste [lang="de"], .cogul-satir [lang="de"] { hyphens: manual; -webkit-hyphens: manual; }
