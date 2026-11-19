@@ -70,7 +70,7 @@ Konuşma tarzı: hd / alltag / bair yüzdesi ve hız. Sık ifadeler örnektir; B
 - Seninle ilişkisi: Burada doğup büyümüş. Türkçe bildiğini sonradan öğrenirsin, ama seninle hep Almanca konuşur: 'Auf Deutsch, du schaffst das.' Zor günlerde yanındadır.
 - Konuşma: Hochdeutsch %30 · Alltag %60 · Bairisch %10 · hız: natural
 - Sık ifadeler: „Alles klar?“ · „Kein Problem.“ · „Sag's einfach auf Deutsch.“ · „Wie war dein Wochenende?“
-- Ayrıntı (İÇ 7013446061, M1 cümleleri): doğum günü 10 Şubat.
+- Ayrıntı (İÇ 7013446061, 7015155801; M1 cümleleri): doğum günü 7 Mart (gün 6 okuması).
 
 ### Stefan Wimmer · 49 · şefin
 - Kimlik: `ch:wimmer` · alanlar: arbeit
