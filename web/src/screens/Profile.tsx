@@ -5,6 +5,7 @@ import { Activity, type Profile } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { auth } from "../services/auth.ts";
 import { exportAll } from "../data/db.ts";
+import { KullanimTablosu } from "../ui/gunsonu.tsx";
 import { persistState, type PersistState } from "../services/storage.ts";
 import { ACTIVITY_TR, V1_URL } from "../core/planner.ts";
 import { ApiError } from "../services/api.ts";
@@ -19,6 +20,7 @@ export function ProfileView() {
   const [, tick] = useState(0);
   useEffect(() => onAiState(() => tick((n) => n + 1)), []); // sağlayıcı yoklaması sonrası yeniden çiz
   const { profile, setProfile, index, api, toast, user } = useApp();
+  const basliklar = Object.fromEntries((index?.temel ?? []).map((t) => [t.id, t.title_tr]));
   const [srv, setSrv] = useState<string | null>(null);
   // Art arda iki değişiklik (ör. adı yazıp hemen hitabı seçmek) aynı eski kopyadan yazılırsa ikincisi birincisini siler:
   // ad kaybolur ve yapay zekâya giden metinde ad "[Name]" ile değiştirilemez (D-061; inceleme #66). Kayıtlar sıraya
@@ -132,6 +134,11 @@ export function ProfileView() {
         <label class="lbl">Almancada hitap (isteğe bağlı)</label>
         <div class="seg" role="group" aria-label="Hitap">{([[undefined, "Seçme"], ["Herr", "Herr"], ["Frau", "Frau"]] as const).map(([k, l]) => <button aria-pressed={profile.address === k} onClick={() => save((p) => { p.address = k; })} data-address={k || "none"}>{l}</button>)}</div>
         <p class="tiny muted">Ad ve hitap yalnızca bu cihazda kalır; diyaloglarda senin satırlarına yerleşir. Sunucuya ve yapay zekâya ad gönderilmez, yalnızca hitap gider.</p>
+      </section>
+
+      <section class="card">
+        <h2>Kullanımım</h2>
+        <KullanimTablosu basliklar={basliklar} />
       </section>
 
       <section class="card">
