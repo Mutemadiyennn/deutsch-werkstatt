@@ -296,6 +296,8 @@ def main():
             if desc: break
             page.wait_for_timeout(250)
         el = page.locator("[data-lp-target]")
+        # basış noktası görünür alanda olmalı: caretRangeFromPoint yalnızca görünen noktada metin bulur (WebKit iPhone 15 dalgalanması)
+        el.scroll_into_view_if_needed(); page.wait_for_timeout(150)
         bb = el.bounding_box()
         # uzun basma: işaretçi olaylarını doğrudan gönder (WebKit dokunmatik öykünmesinde fare olayları güvenilir değil)
         pt = {"clientX": bb["x"] + 10, "clientY": bb["y"] + 10, "bubbles": True, "pointerType": "touch", "isPrimary": True, "pointerId": 7}
@@ -312,9 +314,26 @@ def main():
         dbg = "" if opened else page.evaluate("() => JSON.stringify({ev: window.__lpdbg, url: location.hash, tgt: !!document.querySelector('[data-lp-target]')})")
         check(opened, f"Almanca metne uzun basınca 'Bu ne demek?' sayfası açıldı (hedef: {desc}) {dbg}")
         if page.locator("[data-test=lp-sheet]").count():
-            page.click("[data-test=lp-sheet] [data-test=explain]")
-            page.wait_for_selector("[data-test=lp-sheet] .fb.info b")
-            page.click("[data-test=lp-sheet] >> text=Kapat")
+            # #58 A11: cevap yapay zekâ beklenmeden cihazdaki sözlükten (ifade, kelime ya da kelime kelime) gelir
+            n_lp = len(API_CALLS)
+            page.wait_for_selector("[data-test=lp-sheet] [data-test=explain-out] >> nth=-1")
+            page.wait_for_function("() => !document.querySelector('[data-test=lp-sheet]').innerText.includes('Sözlük açılıyor')", timeout=10_000)
+            yerel = page.locator("[data-test=lp-sheet] [data-test=yerel-cevap], [data-test=lp-sheet] [data-test=yerel-kelimeler]").count()
+            ai_lp = [c for c in API_CALLS[n_lp:] if c["url"].endswith("/v1/ai/run") and "explain_tr" in (c["body"] or "")]
+            check(yerel > 0 and not ai_lp, f"uzun basma: cihazdaki sözlükten hemen cevap, yapay zekâ isteği yok ({yerel} yerel, {len(ai_lp)} istek; {page.locator('[data-test=lp-sheet]').inner_text()[:120]!r})")
+            # parmağın altındaki kelime (basış noktası öğenin sol üstü + 10 px: ilk kelime) ayrıca açıklanıyor (inceleme #76 P1-7)
+            ilk_kelime = desc.split(": ", 1)[-1].split()[0].strip(".,!?„“\"") if ": " in desc else ""
+            if len(desc.split(": ", 1)[-1].split()) > 1:
+                lk = page.locator("[data-test=lp-sheet] [data-test=lp-kelime]")
+                check(lk.count() == 1 and ilk_kelime.lower() in lk.inner_text().lower(), f"uzun basma: parmağın altındaki kelime ({ilk_kelime!r}) ayrıca açıklanıyor ({lk.inner_text()[:60] if lk.count() else 'yok'!r})")
+            if page.locator("[data-test=lp-sheet] [data-test=explain-ai]").count():
+                page.locator("[data-test=lp-sheet] [data-test=explain-ai]").first.click()
+                for _ in range(40):
+                    ai_lp = [c["body"] or "" for c in API_CALLS[n_lp:] if c["url"].endswith("/v1/ai/run") and "explain_tr" in (c["body"] or "")]
+                    if ai_lp: break
+                    page.wait_for_timeout(250)
+                check(ai_lp and all("Novak" not in b for b in ai_lp), "'Öğretmene sor' isteğinde ad yok (D-061)")
+            page.click("[data-test=lp-kapat]")
         sel = page.evaluate("getComputedStyle(document.body).webkitUserSelect || getComputedStyle(document.body).userSelect")
         check(sel == "none", f"genel metin seçimi kapalı ({sel})")
         ctx.close()
