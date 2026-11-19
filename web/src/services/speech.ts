@@ -36,17 +36,33 @@ export function sesMetni(t: string): string {
 let baslangic: "slow" | "normal" = "normal";
 const calindi = new Set<string>();
 export function setBaslangicHizi(s: "slow" | "normal") { baslangic = s; }
-/** Bu metin için ilk çalma hızı (kayıtlı ses ve video da kullanır); çağrı metni "çalındı" sayar */
+export const baslangicYavas = () => baslangic === "slow";
+/**
+ * Bu metin (ya da çok satırlı dizinin anahtarı) için ilk çalma hızı. Yalnızca başlangıç Yavaş iken "çalındı" sayar
+ * (Normal'de dinlenen cümle sonra Yavaş'a geçilince yine bir kez yavaş gelir; inceleme #77 P2).
+ */
 export function ilkHiz(text: string, speed: Speed = "normal"): Speed {
+  if (baslangic !== "slow") return speed;
   const k = text.trim();
   const ilk = !calindi.has(k);
   calindi.add(k);
-  return speed === "normal" && baslangic === "slow" && ilk ? "slow" : speed;
+  return speed === "normal" && ilk ? "slow" : speed;
 }
-export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed = "normal"): Promise<void> {
+/** Satır satır çalınan diyalog/dinleme: hız bütün dizi için bir kez belirlenir (satırlar arasında karışmaz; inceleme #77 P2) */
+export async function speakDizi(lines: { de: string; speed?: Speed }[], speed: Speed = "normal", ara = 0, iptal?: () => boolean): Promise<void> {
+  const ilk = ilkHiz(lines.map((l) => l.de).join("\n"), "normal") === "slow";
+  for (const l of lines) {
+    if (iptal?.()) return;
+    const sp = l.speed ?? speed;
+    await speak(l.de, "de", ilk && sp === "normal" ? "slow" : sp, true);
+    if (ara) await new Promise((r) => setTimeout(r, ara));
+  }
+}
+/** `kesin`: hız olduğu gibi (seviye ölçümü, dizi içindeki satır); yoksa başlangıç hızı kuralı uygulanır */
+export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed = "normal", kesin = false): Promise<void> {
   if (!ttsAvailable()) return;
   text = sesMetni(text);
-  if (lang === "de") speed = ilkHiz(text, speed);
+  if (lang === "de" && !kesin) speed = ilkHiz(text, speed);
   speechSynthesis.cancel();
   for (const seg of splitForSpeech(text, lang)) {
     await new Promise<void>((res) => {
