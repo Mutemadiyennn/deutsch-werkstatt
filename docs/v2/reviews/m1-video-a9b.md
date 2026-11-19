@@ -134,3 +134,47 @@ Kalan şüpheler:
 - Değişen 9 Türkçe alan okurdan geçmedi. Yeni yol alan listesinin sonuna eklendi, diğerleri listede vardı.
 
 Sonuç: içerik hataları KAPANDI, araç hatası ve PM soruları AÇIK. `review.status` altı dosyada `draft` kaldı. Hata oranı: 7/40.
+
+
+## #82 2. tur düzeltmeleri (dilbilimci, 2026-11-19)
+
+Kapsam: yazarın #82 2. tur bulgularına göre değiştirdiği `klip-01…07.json` ve `FORMAT.md` video bölümü. Klip-01 baştan sona (37 madde: 12 tur, 6 ön öğretim, 4 soru, 5 dikte, 2 gölge, cevapla, ortam, dikte notu, kanıt ve süre alanları); diğer dosyalarda değişen 27 madde (klip-02: 6 ön öğretim, 5 dikte, 2 gölge; klip-04: ortam, **32** sorusu, d4, d5; klip-05: ortam; klip-06: d1–d4, gölge, `ayrinti[2].why_tr`, dikte notu; klip-07: kesit ve `haric`, 14. tur sorusu, ortam, **der Teil**) ve `FORMAT.md`'ye eklenen 7 kural. Toplam 71 madde. Kaynak transkriptler `dib.py goster` ile tur tur karşılaştırıldı. Ses dinlenmedi.
+
+| Yer | Önce → sonra | Gerekçe |
+|---|---|---|
+| klip-01 `on_ogretim[3]` | **aus Ankara** (Ankara'dan) → **aus Deutschland** (Almanya'dan) | **Deutschland** 4. ve 5. turlarda geçiyor, `ayrinti[0]` ve `d2` 5. tura bağlı; kelime ne listede ne ön öğretimdeydi (`vcheck` onu özel ad sayıyor). Madde hiçbir cevap, dikte ya da gölge cümlesiyle aynı değil. 6 madde, 15 kelime. |
+| klip-01 `dikte_notu` | `Berna'nın dördüncü turundaki **Deutschland** bugün öğretilmedi…` cümlesi çıktı; sonraki cümle `Berna'nın altıncı turundaki` diye başlıyor | Kelime artık ön öğretimde. |
+| klip-01 `d1` çeldirici | **Da ist** → **Hier ist** | Kolay basamakta doğru cevaptan (**Das ist**) tek sesle ayrılıyordu. |
+| klip-01 `d3`, `d5` kabul listesi | 4 → 5, 5 → 8 yazım | Virgüllü küçük harf yazımı; noktasız **Aus Kiel**, **Kiel**. |
+| klip-02 `on_ogretim[5]` | **zwar, schon** (tam olarak, daha önce) → **und zwar, schon** | **zwar** tek başına `gerçi` demektir; `tam olarak` anlamı yalnızca **und zwar** öbeğinde var. Kaynak da **und zwar im August**. |
+| klip-02 `on_ogretim[1]` | **wohne, du wohnst** → **wohne, wohnst** | **und** için kelime yeri; **du** ilk maddede öğretiliyor. 6 madde, 15 kelime, oran aynı (4/58). |
+| klip-02 `d1.q_tr` | `Beşinci turdaki soruda hangi soru kelimesini duydun?` → `Üçüncü soru hangi kelimeyle başlıyor?` | Öğrenci tur numarası görmüyor; terim yerine sıra. |
+| klip-02 `d5` kabul listesi | 6 → 9 | Noktasız ve küçük harfli yazımlar. |
+| klip-04 `d4` kabul listesi | 3 → 7 | Dikte notu `sayıyı harflerle yazmak da doğru` diyor, listede **zweiunddreißig** yoktu: haksız ret. `accepted[0]` turla aynı kaldı. |
+| klip-04 `ortam_tr` | soruları tek tek sayan metin → `…Sonra Harald ve Jan konuşuyor. Üçü de kendileriyle ilgili kısa sorulara cevap veriyor.` | `ana_fikir` sorusu "hangi sorular soruluyor" diye soruyor; ortam cevabı kelimesi kelimesine veriyordu (klip-05 P2-3 ile aynı tür). |
+| klip-07 `ayrinti[2].q_tr` | `Harald mavi rengi neden seviyor olabilir?` → `Harald'a göre maviyi sevmesinin nedeni ne olabilir?` | Tahmin Harald'ın kendi sözü (**Vielleicht wegen Bayern**); eski cümle öğrenciden tahmin ister gibi okunuyordu. |
+| klip-07 14. tur `tr` | `Mavi aynı zamanda Bavyera'nın renklerinden biri. Bavyera'nın gökyüzünden dolayı.` → `Mavi de Bavyera'nın renklerinden biri. Bavyera gökyüzünden dolayı.` | **auch** ve **dem bayerischen Himmel** karşılığı. |
+| `FORMAT.md` video kuralları | tek başlık `PM kuralları` (9 madde) → `PM kuralları` (4 madde) + `Uygulama kuralları` (6 madde) | PM kararı (#12, 19.11) yalnızca şunları söylüyor: 6 madde, ≤4, ≤15; cevap ve `kanit` ile aynı madde yok; %10'a inmeyen klip yalnızca dinle; soyad ve tam doğum tarihi yok, gün ve ay kalır. Dikte, gölge ve boşluk genişletmesi, sayıların sayılması, tekrar yasağı, hatalı cümle ve dikte sırası inceleme ve görevden geliyor. Soyadın "tur oynamaz" yorumu PM'e soruldu, cevap henüz yok; öyle işaretlendi. |
+
+Denetim sonuçları (düzeltme gerekmeyenler):
+- **Klip-01, Adan:** oynayan 1–4. turlar hatasız (**Ich heiße Adan.**, **Ich komme aus Long Beach Kalifornien.**). Hatalı cümleler 6. ve 10. turda, telefon 9–12. turda; hepsi kesit dışında. Soru, `d3` ve `d4` hatasız turlara bağlı; gölge soranın turları (1 ve 3).
+- **Ön öğretim sınırları (betikle):** 01: 6 madde/15 kelime, 02: 6/15, 04: 5/11, 05: 6/14, 06: 6/15, 07: 6/12; en uzun madde 4 kelime. Hiçbir madde bir cevap, `accepted[0]`, gölge ya da kanıt cümlesiyle aynı değil; boşluk cevapları (**wo**, **hast**, **fünfzig**, **acht**, **Hattest**, **Warum**) maddeden doğrudan okunmuyor.
+- **`accepted[0]`:** altı klipte zor ve usta dikteler turla birebir; orta boşluklar turun cümlesi. Klip-07 `d4` 14. turun son cümlesi, `q_tr` bunu söylüyor. Dikte sırası altı klipte kolay → orta → zor → usta → gerçek.
+- **Klip-02 taşınan dikteler:** `d2` (**hast**, 2. günün listesinde), `d3` (3. tur), `d4` (1. tur), gölge 5 ve 7: doğru.
+- **Klip-04, 32:** **zweiunddreißig** listede tek kelime olarak yok, `vcheck` bilinmeyen sayıyor (1/44). 4. günün dersi `r0:04-zahlen-21-100` bu kuruluşu öğretiyor, parçaları listede; şıklar 22, 32, 42, cevap tek. Soru kalıyor.
+- **Klip-05 `ortam_tr`:** soruları vermiyor, yalnızca kimin konuştuğunu söylüyor.
+- **Klip-06:** `d2` **Hattest**; 9. tur yalnızca `d2` ve `cevapla` dayanağı; `ayrinti[2].why_tr` söylenişi olgu gibi yazmıyor.
+- **Klip-07:** kesit 3–14, `haric` 7–10; 14. tur sorusu kaynakla örtüşüyor, **wegen** listede, **vielleicht** ön öğretimde, cevap tek.
+- **Soyad:** yedi dosyada ve `FORMAT.md`'de hiçbir oynayan turda ve metinde yok (tarama: altı konuşmacının soyadı).
+- `vcheck.py`: 7 klip `tamam`; oranlar %5,7 · %6,9 · (3. gün yalnızca dinle) · %2,3 · %4,2 · %7,7 · %5,6. `content:validate` 0 hata, 112 uyarı (klip dosyalarını kapsamıyor).
+
+Kalan şüpheler:
+- Klip-01 `ayrinti[1]` 7. tura bağlı (**Wie alt bist du?**); **bist** öğretilmedi. Cevap **alt** kelimesinden çıkıyor (ön öğretimde). 15 kelime sınırında **bist** için yer yok.
+- Klip-01, 06 ve 07 `ortam_tr` konuyu söylüyor ve `ana_fikir` cevabıyla büyük ölçüde örtüşüyor. İnceleme "ortam konuyu söylesin" dediği için dokunulmadı; PM isterse ana fikir soruları değişmeli.
+- Klip-06 `d2`: **hattest** biçimi listede yok, yalnızca **hatte** var (inceleme önerisi). Dinleyip yazma görevi olduğu için bırakıldı.
+- Klip-01 `kanit` "tanışma konusu" diyor; 1. günün başlığı "Merhaba ve günler". Önceki turlardan kalan söz, dokunulmadı.
+- Klip-03 dosyadaki oran 0,265, araç 0,257 gösteriyor (yalnızca dinle, karar değişmiyor).
+- Soyad yorumu PM cevabı bekliyor. Adan parçası ve diğer yeni kesitler ölçülmedi, sesle karşılaştırılmadı.
+- Değişen 7 Türkçe alan okurdan geçmedi (`a9f.alanlar.txt` sonunda).
+
+Sonuç: içerik hataları KAPANDI; PM cevabı, ölçüm ve okur turu AÇIK. `review.status` yedi dosyada `draft`. Hata oranı: 10/71.
