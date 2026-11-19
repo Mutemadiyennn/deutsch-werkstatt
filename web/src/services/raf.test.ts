@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
 import { DwDB, useDb, getMeta } from "../data/db.ts";
-import { rafAdres, rafYaz, rafOku, rafSina, rafDosya, rafTemizle } from "./raf.ts";
+import { rafAdres, rafYaz, rafOku, rafSina, rafDosya, rafTemizle, PAROLA_EN_AZ } from "./raf.ts";
+import { ANAHTAR_EN_AZ } from "../../../worker/src/raf.ts";
 
 const ANAHTAR = "sahte-anahtar-0123456789abcdef-0123456789";
 let n = 0;
@@ -61,6 +62,9 @@ describe("kapalı medya rafı, uygulama tarafı (D-112, #58 B12)", () => {
     expect(await rafSina()).toBe("bagli");
     expect(await rafSina({ adres: "https://raf.ornek.dev", anahtar: "yanlis" })).toBe("anahtar-yanlis");
     expect(cagri.every((c) => c.url.startsWith("https://raf.ornek.dev/"))).toBe(true);
+  });
+  it("istemcinin parola alt sınırı rafınkiyle aynı (kısa parola girerken söylenir; PM 7020257764)", () => {
+    expect(PAROLA_EN_AZ).toBe(ANAHTAR_EN_AZ);
   });
   it("sına: üç durum ayrı (PM 7019082199): parola tanımsız (503), koruma yok (işaretsiz 200 ya da hızlı 404), ulaşılamıyor", async () => {
     const yanit = (r: Response) => vi.stubGlobal("fetch", vi.fn(async () => r));

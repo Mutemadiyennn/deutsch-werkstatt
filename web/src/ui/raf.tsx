@@ -3,7 +3,7 @@
  * açıkça söylenir (bağlandı / anahtar yanlış / ulaşılamıyor; PM 14:40 madde 1b). Alanlar boşsa açık kaynaklı medya kullanılır.
  */
 import { useEffect, useState } from "preact/hooks";
-import { RAF_DURUM_TR, rafOku, rafSina, rafYaz, type RafDurum } from "../services/raf.ts";
+import { PAROLA_EN_AZ, RAF_DURUM_TR, rafOku, rafSina, rafYaz, type RafDurum } from "../services/raf.ts";
 
 export function MedyaRafi() {
   const [adres, setAdres] = useState("");
@@ -17,6 +17,8 @@ export function MedyaRafi() {
     try {
       // tek alan boşsa kayıtlı ayar silinmez (silmek için "Sil"; inceleme #98 2. tur P2)
       if (!adres.trim() || !anahtar.trim()) { setDurum(adres.trim() || anahtar.trim() ? "eksik" : "ayar-yok"); return; }
+      // kısa parola girerken söylenir; hiçbir şey kaydedilmez ve rafa istek gitmez (PM 7020257764)
+      if (anahtar.trim().length < PAROLA_EN_AZ) { setDurum("parola-kisa"); return; }
       if (!(await rafYaz({ adres, anahtar }))) { setDurum("adres-gecersiz"); return; }
       setDurum(await rafSina());
     } catch { setDurum("ulasilamiyor"); } finally { setMesgul(false); }

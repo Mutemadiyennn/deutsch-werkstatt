@@ -7,9 +7,10 @@
 import { delMeta, getMeta, setMeta } from "../data/db.ts";
 
 export interface RafAyar { adres: string; anahtar: string }
-export type RafDurum = "dosya-yok" | "bagli" | "anahtar-yanlis" | "ulasilamiyor" | "ayar-yok" | "adres-gecersiz" | "eksik" | "anahtar-tanimsiz" | "koruma-yok";
+export type RafDurum = "parola-kisa" | "dosya-yok" | "bagli" | "anahtar-yanlis" | "ulasilamiyor" | "ayar-yok" | "adres-gecersiz" | "eksik" | "anahtar-tanimsiz" | "koruma-yok";
 export const RAF_DURUM_TR: Record<RafDurum, string> = {
   bagli: "Bağlandı: raf çalışıyor.",
+  "parola-kisa": "Parola en az 32 karakter olmalı (rafa girilenle aynı). Kaydedilmedi; istek gönderilmedi.",
   "dosya-yok": "Parola doğru, raf boş: sınama dosyası henüz yüklenmemiş.",
   "anahtar-yanlis": "Parola yanlış (ya da adres başka bir rafı gösteriyor).",
   "anahtar-tanimsiz": "Raf hazır değil: rafın parolası Pages ayarlarında tanımlı değil ya da tanımlandıktan sonra yeniden dağıtılmadı.",
@@ -48,6 +49,8 @@ export async function rafYaz(a: RafAyar | null): Promise<boolean> {
   await setMeta("raf", { adres, anahtar: a.anahtar.trim() });
   return true;
 }
+/** rafın kabul ettiği en kısa parola (worker/src/raf.ts ANAHTAR_EN_AZ ile aynı) */
+export const PAROLA_EN_AZ = 32;
 const istek = (a: RafAyar, yol: string, zaman = 10_000) => {
   const adres = rafAdres(a.adres);
   if (!adres) return Promise.reject(new Error("raf adresi geçersiz"));
