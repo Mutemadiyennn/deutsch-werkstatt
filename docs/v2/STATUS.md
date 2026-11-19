@@ -36,11 +36,11 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-19
 | Seviye | Kelime kartı | Kalıp | Senaryo (tam) | Mini senaryo | Diyalog grafiği | Okuma | Dinleme | Haber | Madde bankası |
 |---|---|---|---|---|---|---|---|---|---|
-| A1 | — / 505 / 505 / 0 | — / 40 / 14* / 0 | — / 1 / 0 / 0 | — / 1 / 0 / 0 | 0 | 0 | 0 | 0 | seviye tespiti 2241 (tüm seviyeler) |
-| A2 | — / 463 / 463 / 0 | — / 10 / 0 / 0 | — / 2 / 0 / 0 | — / 2 / 0 / 0 | 0 | 0 | 0 | 0 | — |
-| B1 | — / 192 / 192 / 0 | — / 11 / 0 / 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
+| A1 | — / 505 / 505 / 0 | — / 40 / 40 / 0 | — / 1 / 0 / 0 | — / 1 / 0 / 0 | 0 | 0 | 0 | 0 | seviye tespiti 2241 (tüm seviyeler) |
+| A2 | — / 463 / 463 / 0 | — / 10 / 10 / 0 | — / 2 / 0 / 0 | — / 2 / 0 / 0 | 0 | 0 | 0 | 0 | — |
+| B1 | — / 192 / 192 / 0 | — / 11 / 11 / 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | B2, C1, C2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
-\* Pilotun 14 kalıbı dilbilimciden geçti (çalışma kopyasında, Advent PR'ıyla depoya girecek); OD-9.4 okur kapısı henüz yok, bu yüzden "yayında" sayılmaz. Kalan 47 kalıbın incelemesi yapıldı (35'inde düzeltme) ama ajan son raporu yazmadan durduruldu: bu 47'si onay bekliyor (taslak). Hedef sütunu (günlük: yazar ≥2 ünite parçası, lex 150–200 kart, dilbilimci aynı gün) hat başlayınca günlük doldurulur. BY-8 tükenme tahmini: K2 motoru (R1) gelene kadar hesaplanamaz.
+Kalıpların 61'i de onaylı (main, `patterns.json`). Hedef sütunu (günlük: yazar ≥2 ünite parçası, lex 150–200 kart, dilbilimci aynı gün) hat başlayınca günlük doldurulur. BY-8 tükenme tahmini: K2 motoru (R1) gelene kadar hesaplanamaz.
 R0 temel paket: 10 ders, 189 öğretim öğesi, 353 alıştırma; main'de (#51). Kelime sayıları `card:false` işlev kelimelerini saymaz.
 Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur, M1 kartları 8 tur (hedef tutmadı). Geri dönen türler (hata notunda Türkçe niyet, çelişen ipucu) yazar ve lex görevine eklendi.
 B6 (`forms`, eşdizim, fotoğraf sorgusu; #58): 927 kartın tamamı (#81: 825, #83: 102); 911 kartta 3.476 boşluk. Okur turu B6: 13 grupta 32 tur (grup başına 2,5; hedef tutmadı). `forms` alanı bilerek boş 16 kart: eş anlamlısı da giren (`kriegen`, `seltsam`, `gucken`, `erhalten`, `rum`, `wozu`, `jemals`) ve boşluğa uygun olmayan zarflar (`bereits`, `nun`, `überhaupt` vb.). Açık: Bahçe'de ipucu cevaptan önce görünüyor, bu yüzden boşluk sorusu şimdilik üretimi değil tanımayı kanıtlıyor (#12 şema isteği, `also_ok` ile birlikte).
