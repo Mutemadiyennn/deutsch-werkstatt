@@ -9606,8 +9606,8 @@
    "examples": [
     {
      "id": "lx:Wort:1",
-     "de": "Was bedeutet dieses Wort?",
-     "tr": "Bu kelime ne anlama geliyor?",
+     "de": "Ich suche ein Wort im Wörterbuch.",
+     "tr": "Sözlükte bir kelime arıyorum.",
      "layer": "hd",
      "img": "open dictionary page close up"
     },
@@ -9629,6 +9629,19 @@
      "tr": "– Bunun Almanca kelimesini biliyor musun? – Hayır, o kelimeyi bilmiyorum.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:Wort:5",
+     "de": "Wie schreibt man dieses Wort?",
+     "tr": "Bu kelime nasıl yazılıyor?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Wort:6",
+     "de": "– Hast du das verstanden? – Kein Wort, Frau Huber spricht so schnell!",
+     "tr": "– Bunu anladın mı? – Tek kelime anlamadım, Huber Hanım çok hızlı konuşuyor!",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -9647,7 +9660,7 @@
      "de": "Das ist ___ schweres Wort.",
      "answer": "ein",
      "tr": "Bu zor bir kelime.",
-     "hint_tr": "**Das ist** dedikten sonra **ein Wort** aynı kalır: **ein schweres Wort**."
+     "hint_tr": "Hangi kelime olduğu belli değilse **ein Wort** denir."
     },
     {
      "de": "Wir lernen heute ___ neues Wort.",
@@ -9671,7 +9684,13 @@
      "de": "Ich lerne jeden Tag zehn neue ___.",
      "answer": "Wörter",
      "tr": "Her gün on yeni kelime öğreniyorum.",
-     "hint_tr": "Birden çok kelime: **Wörter**, **o** yerine **ö** gelir."
+     "hint_tr": "Birden çok kelime derken **Wörter** denir."
+    },
+    {
+     "de": "Frau Schneider erklärt jedes ___.",
+     "answer": "Wort",
+     "tr": "Schneider Hanım her kelimeyi açıklıyor.",
+     "hint_tr": "Her kelime derken **jedes Wort** denir."
     }
    ]
   },
@@ -9732,6 +9751,19 @@
      "tr": "– Çok mu acıyor? – Evet, epey.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:stark:5",
+     "de": "Derya ist eine starke Frau.",
+     "tr": "Derya güçlü bir kadın.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:stark:6",
+     "de": "– Wie ist der Wind? – Total stark, nimm keinen Schirm mit!",
+     "tr": "– Rüzgâr nasıl? – Çok sert, şemsiye alma!",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -9746,7 +9778,45 @@
     "ne_zaman_tr": "Doktorda ağrının şiddetini anlatırken.",
     "parcalar": [],
     "ipucu_tr": "**starke Schmerzen** şiddetli ağrılar demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich habe ___ Schmerzen im Rücken.",
+     "answer": "starke",
+     "tr": "Sırtımda şiddetli ağrılar var.",
+     "hint_tr": "Şiddetli ağrılar derken **starke Schmerzen** denir."
+    },
+    {
+     "de": "Es regnet heute sehr ___.",
+     "answer": "stark",
+     "tr": "Bugün çok şiddetli yağmur yağıyor.",
+     "hint_tr": "Şiddetli yağmur yağıyor derken **Es regnet stark** denir."
+    },
+    {
+     "de": "Der Kaffee ist mir zu ___.",
+     "answer": "stark",
+     "tr": "Kahve bana fazla sert.",
+     "hint_tr": "Kahve fazla sert derken **zu stark** denir."
+    },
+    {
+     "de": "Basti ist sehr ___.",
+     "answer": "stark",
+     "tr": "Basti çok güçlü.",
+     "hint_tr": "Güçlü derken **stark** denir."
+    },
+    {
+     "de": "Heute gibt es ___ Wind.",
+     "answer": "starken",
+     "tr": "Bugün sert rüzgâr var.",
+     "hint_tr": "**gibt es** dedikten sonra **starker Wind**, **starken Wind** olur."
+    },
+    {
+     "de": "Diese Tabletten sind sehr ___.",
+     "answer": "stark",
+     "tr": "Bu haplar çok güçlü.",
+     "hint_tr": "Çok güçlü derken **sehr stark** denir."
+    }
+   ]
   },
   {
    "id": "lx:wohnen",
@@ -9940,6 +10010,19 @@
      "layer": "alltag",
      "dialog": true,
      "img": "person asking a stranger on the street"
+    },
+    {
+     "id": "lx:Entschuldigung:5",
+     "de": "Entschuldigung, fährt dieser Bus zum Bahnhof?",
+     "tr": "Affedersiniz, bu otobüs istasyona gidiyor mu?",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:Entschuldigung:6",
+     "de": "– Entschuldigung, ich bin zu spät! – Kein Problem, wir fangen gerade an.",
+     "tr": "– Özür dilerim, geç kaldım! – Sorun değil, tam başlıyoruz.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -9956,9 +10039,9 @@
    },
    "forms": [
     {
-     "de": "Ich schreibe ___ Entschuldigung für die Schule.",
+     "de": "Anna schreibt ___ Entschuldigung für die Schule.",
      "answer": "eine",
-     "tr": "Okul için bir mazeret yazısı yazıyorum.",
+     "tr": "Anna okul için bir mazeret yazısı yazıyor.",
      "hint_tr": "Hangi mazeret yazısı olduğu belli değilse **eine Entschuldigung** denir."
     },
     {
@@ -9972,6 +10055,24 @@
      "answer": "Entschuldigung",
      "tr": "Özrünü kabul ediyorum.",
      "hint_tr": "Özrü kabul etmek için **die Entschuldigung annehmen** denir."
+    },
+    {
+     "de": "___, wo ist die Apotheke?",
+     "answer": "Entschuldigung",
+     "tr": "Affedersiniz, eczane nerede?",
+     "hint_tr": "Affedersiniz derken **Entschuldigung** denir."
+    },
+    {
+     "de": "Ich bitte um ___.",
+     "answer": "Entschuldigung",
+     "tr": "Özür dilerim.",
+     "hint_tr": "Kibarca özür dilerken **Ich bitte um Entschuldigung** denir."
+    },
+    {
+     "de": "Oh, ___! Ich habe Sie nicht gesehen.",
+     "answer": "Entschuldigung",
+     "tr": "Ah, özür dilerim! Sizi görmedim.",
+     "hint_tr": "Özür dilerim derken **Entschuldigung** denir."
     }
    ]
   },
@@ -10047,6 +10148,19 @@
      "tr": "– Başladın mı? – Hayır, birazdan başlıyorum.",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:anfangen:5",
+     "de": "Herr Wimmer fängt immer pünktlich an.",
+     "tr": "Wimmer Bey hep tam vaktinde başlar.",
+     "layer": "hd"
+    },
+    {
+     "id": "lx:anfangen:6",
+     "de": "– Sollen wir anfangen? – Moment, Derya kommt noch.",
+     "tr": "– Başlayalım mı? – Bir dakika, Derya daha geliyor.",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -10060,7 +10174,48 @@
     "anlam_tr": "Bir işin ya da olayın başlamasını söyler.",
     "parcalar": [],
     "ipucu_tr": "**Fangen wir an?** başlayalım mı demektir."
-   }
+   },
+   "forms": [
+    {
+     "de": "Ich ___ um acht ___.",
+     "answer": "fange … an",
+     "tr": "Sekizde başlıyorum.",
+     "hint_tr": "**ich** ile **fange** olur, **an** sona gider."
+    },
+    {
+     "de": "Wann ___ du morgen ___?",
+     "answer": "fängst … an",
+     "tr": "Yarın kaçta başlıyorsun?",
+     "hint_tr": "**du** ile **fängst** olur, **an** sona gider."
+    },
+    {
+     "de": "Die Arbeit ___ um sieben ___.",
+     "answer": "fängt … an",
+     "tr": "İş yedide başlıyor.",
+     "hint_tr": "**die Arbeit** ile **fängt** olur, **an** sona gider."
+    },
+    {
+     "de": "Derya hat schon ___.",
+     "answer": "angefangen",
+     "also_ok": [
+      "begonnen"
+     ],
+     "tr": "Derya çoktan başladı.",
+     "hint_tr": "Geçmişi anlatırken **hat angefangen** denir, **ge** ortaya girer."
+    },
+    {
+     "de": "Wir ___ gleich ___.",
+     "answer": "fangen … an",
+     "tr": "Birazdan başlıyoruz.",
+     "hint_tr": "**wir** ile **fangen** olur, **an** sona gider."
+    },
+    {
+     "de": "___ Sie bitte ___!",
+     "answer": "Fangen … an",
+     "tr": "Lütfen başlayın!",
+     "hint_tr": "Kibarca başlayın derken **Fangen Sie an** denir."
+    }
+   ]
   },
   {
    "id": "lx:früh",
