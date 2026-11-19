@@ -35,7 +35,9 @@ jobs:
       - name: Function + sağlık dosyası → gizli depo
         working-directory: raf
         run: |
-          mkdir -p functions && cp ../worker/src/raf.ts functions/_middleware.ts && printf 'ok\n' > saglik.txt
+          # Function her zaman main'deki incelenmiş sürümden (dala itilen raf.ts incelemesiz üretime gitmesin; inceleme #115 P2)
+          git -C .. fetch -q --depth=1 origin main && git -C .. show FETCH_HEAD:worker/src/raf.ts > /tmp/raf.ts
+          mkdir -p functions && cp /tmp/raf.ts functions/_middleware.ts && printf 'ok\n' > saglik.txt
           git config user.name "dw-raf-hatti"; git config user.email "dw-raf-hatti@users.noreply.github.com"
           git add functions/_middleware.ts saglik.txt
           git diff --cached --quiet && { echo "değişiklik yok"; exit 0; }
