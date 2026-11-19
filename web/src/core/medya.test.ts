@@ -1,0 +1,56 @@
+import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { Gun, Lexeme, medyalar } from "@dw/shared";
+import { adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, ileri, kartBul, BASLANGIC } from "./medya.ts";
+
+const gun = Gun.parse(JSON.parse(readFileSync(join(import.meta.dirname, "../../../content/tools/fixtures/m1/gun-01.json"), "utf8")));
+const [video, ses] = medyalar(gun);
+
+describe("Medya bölüm oynatıcısı (#58 A4, PM-053)", () => {
+  it("video, sesler ve köy dizisi aynı arayüzde; video gerçek insan ve 3 bölüm", () => {
+    expect(video!.kind).toBe("video");
+    expect(video!.bolumler).toHaveLength(3);
+    expect(ses!.kind).toBe("ses");
+    expect(ses!.bolumler).toHaveLength(1);
+  });
+  it("her bölümde a–g adımları sırayla", () => {
+    expect(adimlar(video!.bolumler[0]!)).toEqual(["dinle", "ana", "ayrinti", "cumle", "dikte", "transkript", "golge", "cevapla"]);
+  });
+  it("bölümün zaman aralığı hizalamadan gelir (5 dk kayıt → 3 bölüm)", () => {
+    const r = video!.bolumler.map((b) => aralik(bolumCumleleri(video!, b))!);
+    expect(r[0]!.t0).toBe(0);
+    expect(r[2]!.t1).toBeLessThanOrEqual(300);
+    expect(r[1]!.t0).toBeGreaterThan(r[0]!.t1 - 0.001);
+  });
+  it("dikte: kabul edilen yazım doğru; büyük harf/ümlaut farkında doğru + yazımı gösterilir; başka kelime yanlış", () => {
+    const d = { id: "d", seviye: "usta" as const, cumle: "s", accepted: ["Übermorgen ist Samstag.", "übermorgen ist samstag", "Übermorgen ist Samstag"] };
+    expect(dikteDegerlendir(d, "Übermorgen ist Samstag")).toEqual({ ok: true, beklenen: "Übermorgen ist Samstag." });
+    expect(dikteDegerlendir(d, "Uebermorgen ist samstag")).toEqual({ ok: true, yazim: "Übermorgen ist Samstag.", beklenen: "Übermorgen ist Samstag." });
+    expect(dikteDegerlendir(d, "übermorgen ist samstag").yazim).toBe("Übermorgen ist Samstag.");
+    expect(dikteDegerlendir(d, "Morgen ist Samstag").ok).toBe(false);
+    expect(dikteDegerlendir(d, "").ok).toBe(false);
+  });
+  it("zorunlu kelimeler: tam kelime aranır", () => {
+    expect(eksikZorunlu("Heute ist Donnerstag. Morgen ist Freitag.", ["Donnerstag", "Freitag"])).toEqual([]);
+    expect(eksikZorunlu("Heute ist Donnerstagabend.", ["Donnerstag"])).toEqual(["Donnerstag"]);
+  });
+  it("transkript kelimesi karta: büyük/küçük harf ve noktalama", () => {
+    const L = (o: Record<string, unknown>) => Lexeme.parse({ tr: "x", pos: "other", ...o });
+    const lex = [L({ id: "lx:morgen", de: "morgen", pos: "adv" }), L({ id: "lx:Morgen", de: "Morgen", pos: "noun", art: "der" }), L({ id: "lx:Termin", de: "Termin", pl: "Termine", pos: "noun", art: "der" })];
+    expect(kartBul("Morgen,", lex)!.id).toBe("lx:Morgen");
+    expect(kartBul("morgen", lex)!.id).toBe("lx:morgen");
+    expect(kartBul("Termine.", lex)!.id).toBe("lx:Termin");
+    expect(kartBul("Quatsch", lex)).toBeUndefined();
+  });
+  it("ilerleme: alt madde → adım → bölüm → bitti", () => {
+    const m = video!;
+    let p = ileri(BASLANGIC, m, 2);
+    expect(p).toMatchObject({ b: 0, s: 0, k: 1 });
+    p = ileri(p, m, 2);
+    expect(p).toMatchObject({ b: 0, s: 1, k: 0 });
+    let q = { ...BASLANGIC, b: 2, s: adimlar(m.bolumler[2]!).length - 1 };
+    q = ileri(q, m, 1);
+    expect(q.bitti).toBe(true);
+  });
+});

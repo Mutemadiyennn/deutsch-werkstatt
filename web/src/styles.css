@@ -430,3 +430,11 @@ html.callmode body { background: #121C30; }
 .whysheet .tip b.de { min-width: 72px; font-size: 1.05rem; }
 .whysheet .tip p { margin: 0; line-height: 1.45; }
 .whysheet .btn { margin-top: 14px; }
+
+/* M1 A4 medya oynatıcısı: video üstte sabit, sorular altta akar (PM-053 §4) */
+.medya-ust { position: sticky; top: var(--pbar-h, 64px); z-index: 5; background: var(--paper); padding-bottom: 6px; display: grid; gap: 4px; }
+.medya-ust video { width: 100%; aspect-ratio: 16 / 9; border-radius: var(--r, 16px); background: #000; display: block; }
+.medya-ses { align-items: center; flex-wrap: nowrap; }
+.cumleler li.on, [data-test=adim-transkript] p.on { background: var(--himmel-2, var(--soft)); border-radius: 10px; }
+.wordtap { background: none; border: 0; padding: 0 1px; font: inherit; color: inherit; border-bottom: 1px dotted var(--muted, #888); cursor: pointer; }
+.wordtap:active { background: var(--soft); }
