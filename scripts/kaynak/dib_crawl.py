@@ -41,7 +41,11 @@ def transcript(desc):
 out = []
 for k in range(1, 11):
     url = f"{BASE}rss.php?k={k}&a=mp4"
-    try: root = ET.fromstring(get(url))
+    try:
+        raw = get(url)
+        try: root = ET.fromstring(raw)
+        except ET.ParseError:  # kaçışsız & (k=10): onarıp yeniden dene
+            root = ET.fromstring(re.sub(rb"&(?!#?\w+;)", b"&amp;", raw))
     except Exception as e: print("atlandı", url, e); continue
     for it in root.iter("item"):
         title = fix(it.findtext("title") or "").strip()
