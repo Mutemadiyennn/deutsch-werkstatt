@@ -24,9 +24,10 @@ export function SozlukEkrani({ q: ilk = "", id }: { q?: string; id?: string }) {
   const [q, setQ] = useState(ilk === "-" ? "" : ilk);
   const [bahce, setBahce] = useState<Set<string>>(new Set());
   const [tr, setTr] = useState("");
+  const [benim, setBenim] = useState<{ de: string; tr?: string }[]>([]);
   useEffect(() => {
     loadLexicon().then((x) => setLex(x.lexemes), (e) => setErr(e instanceof Error ? e.message : "Sözlük yüklenemedi."));
-    void personalWords().then((ps) => setBahce(new Set(ps.map((p) => kisiselAnahtar(p.de)))));
+    void personalWords().then((ps) => { setBahce(new Set(ps.map((p) => kisiselAnahtar(p.de)))); setBenim(ps); });
   }, []);
   const sonuc = useMemo(() => (lex ? sozlukAra(q, lex) : []), [q, lex]);
   const sec = id && lex ? lex.find((l) => l.id === id) ?? null : null;
@@ -37,6 +38,7 @@ export function SozlukEkrani({ q: ilk = "", id }: { q?: string; id?: string }) {
   const ekle = async (de: string, anlam?: string, l?: Lexeme) => {
     await addPersonal({ id: `k3:${de}`, de, tr: anlam || undefined, at: new Date().toISOString(), source: "heard" });
     setBahce(new Set([...bahce, kisiselAnahtar(de)]));
+    setBenim([{ de, tr: anlam || undefined }, ...benim.filter((b) => kisiselAnahtar(b.de) !== kisiselAnahtar(de))]);
     toast(l && personalMatch([{ de }], lex).includes(l.id) ? "Bahçe'ye eklendi: tekrarlarda öne alınır" : "Kişisel listene eklendi");
   };
 
@@ -79,6 +81,9 @@ export function SozlukEkrani({ q: ilk = "", id }: { q?: string; id?: string }) {
         <li><a class="sozluk-satir" href={`${aramaAdresi(q)}/${encodeURIComponent(s.l.id)}`} data-test="sozluk-satir">
           <span class="sozluk-de" lang="de"><Art art={s.l.art} de={s.l.de} /></span><span class="sozluk-tr small muted">{s.l.tr}</span>
           {bahce.has(kisiselAnahtar(s.l.de)) && <span class="tiny" aria-label="Listende">✓</span>}</a></li>))}</ul></section>}
+      {/* PM 7004537514-5: "Duyduğum kelime" olarak eklenen her kelime görünür (kartı olmasa da) */}
+      {!yaz && benim.length > 0 && <section class="card" data-test="kelimelerim"><div class="kicker">Kelimelerim · {benim.length}</div>
+        <ul class="list">{benim.map((b) => <li class="row" style={{ flexWrap: "nowrap" }}><span class="grow" lang="de">{b.de}</span><span class="small muted">{b.tr || "anlamı yok"}</span></li>)}</ul></section>}
       {ekleKarti && <section class="card stack" data-test="sozluk-yok">
         <p class="small">{sonuc.length ? <>Aradığın tam olarak yok: <b lang="de">{yaz}</b>.</> : <>Sözlükte yok: <b lang="de">{yaz}</b>.</>} Dışarıda duyduysan kişisel listene ekle; anlamını biliyorsan yaz.</p>
         <input class="input" placeholder="Anlamı (isteğe bağlı)" value={tr} onInput={(e) => setTr((e.target as HTMLInputElement).value)} aria-label="Türkçe anlamı" />

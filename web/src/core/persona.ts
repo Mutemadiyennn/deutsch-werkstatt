@@ -54,21 +54,36 @@ export function fillName(expected: string, answer: string): string {
  * "Çağrı", "Özge", "İbrahim" sızıyordu — #73 incelemesi T-1). Büyük/küçük harf Türkçe ve Almanca kurala göre, boşluklar
  * esnek; iki kelimeli adda tam ad ve ayrıca her parça (en az 2 harf) maskelenir ("Anna Maria" → "Anna" da; T-2).
  */
-const TR_ASCII: Record<string, string> = { ç: "c", Ç: "C", ğ: "g", Ğ: "G", ı: "i", İ: "I", ö: "o", Ö: "O", ş: "s", Ş: "S", ü: "u", Ü: "U" };
-const asciiTr = (x: string) => x.replace(/[çÇğĞıİöÖşŞüÜ]/g, (c) => TR_ASCII[c]!);
-const asciiDe = (x: string) => asciiTr(x.replace(/ö/g, "oe").replace(/Ö/g, "Oe").replace(/ü/g, "ue").replace(/Ü/g, "Ue").replace(/ä/g, "ae").replace(/Ä/g, "Ae"));
+/**
+ * Harf başına yazım değişkenleri: karışık klavye ("Gökce", "Cağrı", "Oezge") da yakalanır (inceleme #75 P2).
+ * Büyük/küçük harf `i` bayrağıyla; İ/ı Unicode katlamasında eşleşmediği için açıkça yazılır.
+ */
+const DEGISKEN: Record<string, string> = {
+  ç: "(?:ç|c)", c: "(?:c|ç)", ğ: "(?:ğ|g)", g: "(?:g|ğ)", ş: "(?:ş|s)", s: "(?:s|ş)", ı: "[ıiİI]", i: "[iıİI]",
+  ö: "(?:ö|oe|o)", o: "(?:o|ö)", ü: "(?:ü|ue|u)", u: "(?:u|ü)", ä: "(?:ä|ae|a)", a: "(?:a|ä)", ß: "(?:ß|ss)"
+};
+/** İki harflik yazımlar ters yönde de (ad "Mueller" iken "Müller", "Strauss" iken "Strauß"; inceleme #80 P1-2) */
+const IKILI: Record<string, string> = { ue: "(?:ue|ü|u)", oe: "(?:oe|ö|o)", ae: "(?:ae|ä|a)", ss: "(?:ss|ß)" };
+const desen = (x: string) => {
+  const h = [...x.normalize("NFC").toLocaleLowerCase("tr")];
+  let out = "";
+  for (let i = 0; i < h.length; i++) {
+    const c = h[i]!, ik = c + (h[i + 1] ?? "");
+    if (IKILI[ik]) { out += IKILI[ik]; i++; continue; }
+    // kesme işareti düz ya da kıvrık (iPhone akıllı noktalama), tire ya da boşluk (Jean-Luc / Jean Luc; P1-1, P2)
+    out += DEGISKEN[c] ?? (/['’‘`´]/.test(c) ? "['’‘`´]" : /[\s-]/.test(c) ? "[\\s-]+" : c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  }
+  return out;
+};
 export function redact(t: string, p: Persona): string {
-  const ad = p.name?.trim().replace(/\s+/g, " ");
+  const ad = p.name?.normalize("NFC").trim().replace(/\s+/g, " ");
   if (!ad) return t;
-  const kacis = (x: string) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/ /g, "\\s+");
-  const parcalar = ad.split(" ").filter((w) => [...w].length >= 2);
-  const adaylar = [ad, ...(parcalar.length > 1 ? parcalar : [])]
-    // Türkçe klavyesiz yazılış da (Çağrı → Cagri, Özge → Ozge / Oezge)
-    .flatMap((x) => [x, asciiTr(x), asciiDe(x)])
-    .flatMap((x) => [x, x.toLocaleLowerCase("tr"), x.toLocaleUpperCase("tr"), x.toLocaleLowerCase("de"), x.toLocaleUpperCase("de")])
-    .filter((x, i, a) => a.indexOf(x) === i).sort((a, b) => b.length - a.length);
-  const re = new RegExp(`(?<![\\p{L}\\p{N}])(?:${adaylar.map(kacis).join("|")})(?![\\p{L}\\p{N}])`, "giu");
-  return t.replace(re, "[Name]");
+  // tireli ve iki kelimeli adın parçaları (≥ 2 harf) da ayrıca
+  const parcalar = ad.split(/[\s-]+/).filter((w) => [...w].length >= 2);
+  // tam ad önce (daha uzun), sonra parçalar
+  const adaylar = [ad, ...(parcalar.length > 1 ? parcalar : [])].filter((x, i, a) => a.indexOf(x) === i).sort((a, b) => b.length - a.length);
+  const re = new RegExp(`(?<![\\p{L}\\p{N}])(?:${adaylar.map(desen).join("|")})(?![\\p{L}\\p{N}])`, "giu");
+  return t.normalize("NFC").replace(re, "[Name]");
 }
 /** Yapay zekâdan gelen metin: [Name] → ad (yoksa hitap kalır) */
 export function unredact(t: string, p: Persona): string {
