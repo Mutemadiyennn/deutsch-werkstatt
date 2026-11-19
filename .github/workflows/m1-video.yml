@@ -31,6 +31,8 @@ jobs:
         run: |
           pip install -q torch==2.5.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cpu
           pip install -q faster-whisper==1.1.1 "transformers<4.50" soundfile jiwer==3.0.5 num2words==0.5.14
+      - name: Keşif (video adresi)
+        run: M1_KESIF="01_24_int_ju_studies-home" python scripts/video/m1_video.py out
       - name: Hat
         run: python scripts/video/m1_video.py out ${{ github.event.inputs.klipler }}
       - name: Releases (m1-medya)

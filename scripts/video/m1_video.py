@@ -332,8 +332,22 @@ def isle(klip_yolu: str, out: str, rss_onbellek: dict) -> dict:
             "tur_zamanlari": [{"tur": z["tur"], "sapma_ms": z["sapma_ms"]} for z in tur_z if z],
             "varliklar": {os.path.basename(x): {"sha256": sha(x), "bayt": os.path.getsize(x)} for x in (son_mp4, poster, metin)}}
 
+def kesif(klip: str):
+    """Kaynak sayfada video adresini arar (RSS'teki mp4 adresi 404 veriyor): sayfadaki medya bağlantılarını günlüğe yazar"""
+    for u in [f"{BASE}vid.php?f={klip}", f"https://www.coerll.utexas.edu/dib/vid.php?f={klip}", f"{BASE}vidt.php?f={klip}"]:
+        try:
+            h = get(u).decode("utf-8", "replace")
+            linkler = sorted(set(re.findall(r"""(?:src|href|data-src|file|url)\s*[=:]\s*["']([^"']+\.(?:mp4|m4v|webm|m3u8|mov)[^"']*)""", h, re.I)))
+            gom = sorted(set(re.findall(r"(https?://[^\s\"'<>]*(?:youtube|youtu\.be|vimeo|kaltura|mediaspace|box\.com|archive\.org)[^\s\"'<>]*)", h, re.I)))
+            print("KESIF " + json.dumps({"sayfa": u, "boyut": len(h), "medya": linkler[:10], "gomulu": gom[:10], "bas": re.sub(r"\s+", " ", h)[:1500]}, ensure_ascii=False), flush=True)
+        except Exception as e:
+            print("KESIF " + json.dumps({"sayfa": u, "hata": str(e)[:200]}, ensure_ascii=False), flush=True)
+
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "out"
+    if os.environ.get("M1_KESIF"):
+        for k in os.environ["M1_KESIF"].split(): kesif(k)
+        return
     os.makedirs(out, exist_ok=True)
     secim = set(sys.argv[2:])
     rss: dict = {}
