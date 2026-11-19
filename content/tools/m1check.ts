@@ -96,6 +96,10 @@ export function checkGun(g: Gun, ctx: { lexicon: Set<string>; temel: Set<string>
     if (new Set(ids).size !== ids.length) errors.push("gun_sinavi: madde kimlikleri tekil değil");
     for (const s of g.gun_sinavi.sesli) if (!ids.includes(s)) errors.push(`gun_sinavi: sesli madde ${s} sınavda yok`);
     for (const m of g.gun_sinavi.maddeler) if ("accepted" in m && Array.isArray(m.accepted) && m.accepted.length < 3 && m.k !== "pick") errors.push(`gun_sinavi/${m.id}: accepted ≥ 3 olmalı (D-064; ${m.accepted.length})`);
+    // sesli cevap seçmeli madde olamaz (inceleme #109)
+    for (const s of g.gun_sinavi.sesli) { const m = g.gun_sinavi.maddeler.find((x) => x.id === s); if (m?.k === "pick") errors.push(`gun_sinavi: sesli madde ${s} seçmeli (pick) olamaz`); }
+    // sınav yalnızca o güne kadar öğretilenleri ister (requires kuralı; cevapla ile aynı denetim; inceleme #109 P1-1)
+    for (const m of g.gun_sinavi.maddeler) if ("accepted" in m && m.accepted.length && ctx.taught && m.accepted.every((a) => ogretilmemis(a, ctx.taught!).length)) ist(`gun_sinavi/${m.id}`, m.accepted[0]!);
   }
   return { errors, warnings };
 }
