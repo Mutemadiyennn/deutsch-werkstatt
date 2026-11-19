@@ -6,7 +6,7 @@
 """
 from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
-import v2_garden, v2_ders, v2_medya
+import v2_garden, v2_ders, v2_medya, v2_prova
 
 PORT = 4196
 
@@ -74,6 +74,12 @@ def main():
                 check(baslik not in na2, f"baştan çalışılan kayıt yeniden önerilmiyor ({baslik!r})")
             if n3 > 5: break
         check(n3 >= 3, f"Seans 3: video + en az 2 ses ({n3})")
+        # Seans 4: konuşma provası (A7); okuma/yazma A8'e kadar hazırlanıyor ve günü bekletmez
+        na = next_card(pg, base)
+        check("Seans 4" in na, f"Bugün: Seans 4 konuşma provası ({na[:70]!r})")
+        pg.click("[data-test=m1-devam]")
+        t4 = v2_prova.walk(pg)
+        check(pg.locator("[data-test=prova-rapor]").count() == 1, f"Seans 4 prova bitti ({t4} cevap)")
         # gün bitti
         pg.goto(base + "#/yol"); pg.wait_for_selector("[data-test=yol]")
         check(pg.get_attribute("[data-test=gun-1]", "data-durum") == "bitti", "yol: 1. gün bitti")
