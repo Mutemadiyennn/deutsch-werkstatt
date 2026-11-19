@@ -10,7 +10,7 @@ python3 tests/e2e/v2_gorev.py [--browser webkit] [--device "iPhone 15 Pro Max"] 
 """
 import datetime as dt
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow, tanitim_gec
 
 PORT = 4210
 GIF = arg("--gif"); KARELER = []
@@ -59,7 +59,7 @@ def main():
             # 1) Bahçe'de ipucusuz doğru → sayaç (öğrenme eylemi)
             pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=garden], [data-test=garden-empty]")
             for _ in range(12):
-                if pg.locator("[data-test=garden-intro]").count(): pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]")
+                if pg.locator("[data-test=garden-intro]").count(): tanitim_gec(pg); continue
                 if pg.locator("button.opt[data-right]").count(): pg.locator("button.opt[data-right]").first.click(); pg.wait_for_selector("[data-test=next]"); break
                 if pg.locator("[data-test=answer]").count(): pg.fill("[data-test=answer]", "xyz"); pg.click("[data-test=submit]")
                 if pg.locator("[data-test=gq-own-check]").count(): pg.click("[data-test=own-unsure]")

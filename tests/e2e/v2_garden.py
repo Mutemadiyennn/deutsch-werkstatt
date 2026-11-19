@@ -7,7 +7,7 @@ PM-049 / #58 A3 Kelime Bahçesi — 10 kartlık bir tur baştan sona (kabul öl�
   python3 tests/e2e/v2_garden.py [--browser webkit] [--device "iPhone 15"] [--shots /tmp/shots]
 """
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow, tanitim_gec
 
 PORT = 4191
 AFTER = []  # cevaptan sonraki kart: (kelime, örnek cümle, örnek sayısı)
@@ -20,7 +20,7 @@ def note_after(pg):
 def answer_current(pg, wrong=False):
     """Ekrandaki soruyu cevaplar; seçmelide doğru şık e2e derlemesinde data-right ile işaretli"""
     if pg.locator("[data-test=garden-intro]").count():
-        pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]")
+        tanitim_gec(pg); return  # PM-069 madde 3: ilk soru sonra gelir
     if pg.locator("button.opt").count():
         sel = "button.opt:not([data-right])" if wrong else "button.opt[data-right]"
         pg.locator(sel).first.click()
@@ -66,8 +66,8 @@ def main():
             if t: types.append(t)
         # 1. soru yanlış: doğrusu ve öğrencinin cevabı yan yana, tur bir soru uzar
         note()
-        if pg.locator("[data-test=garden-intro]").count():
-            pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]"); note()
+        while pg.locator("[data-test=garden-intro]").count():
+            tanitim_gec(pg); note()
         if pg.locator("button.opt").count(): pg.locator("button.opt:not([data-right])").first.click()
         else: pg.fill("[data-test=answer]", "xyz falsch"); pg.click("[data-test=submit]")
         if pg.locator("[data-test=gq-own-check]").count():

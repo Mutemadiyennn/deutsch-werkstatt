@@ -132,7 +132,8 @@ describe("Kelime Bahçesi (PM-049)", () => {
   });
   it("tanıtılmış kart (pasifte doğru) bir sonraki turda ilk üretim sorusunu alır; günlük aktif sınırı uyulur (inceleme #59 P0-2)", () => {
     const t0 = new Date("2026-11-01T10:00:00Z");
-    const it = review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "correct", session: "g@1" }, t0);
+    // köprü (artikel/eşdizim seçmeli) sorulmuş kart; köprüsüz hâli aralik.test.ts'de (PM-069 madde 3)
+    const it = { ...review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "correct", session: "g@1" }, t0), lastQ: "article" };
     expect(activatable(it, termin)).toBe(true);
     const r = buildRound(lex, new Map([["lx:Termin", it]]), [], { now: new Date("2026-11-01T10:05:00Z") });
     expect(r[0]!.lexId).toBe("lx:Termin");

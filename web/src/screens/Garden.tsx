@@ -14,7 +14,7 @@ import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { XP, seri, yerelGun } from "../core/gun.ts";
 import { getMeta, itemsMap, personalWords, putItems, setMeta } from "../data/db.ts";
 import { hizliGecis, review, sessionKey, type Outcome } from "../core/srs.ts";
-import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, boslukSecimi, gosterilenCogul, tanitildi, gorulenKelimeler, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
+import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, boslukSecimi, ertele, gosterilenCogul, tanitildi, gorulenKelimeler, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { umlautEksik } from "../core/esdeger.ts";
 import { judgeWord, numberWordHint } from "../core/grading.ts";
@@ -147,7 +147,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
     // XP yalnızca ipucusuz doğruda (ipucu cevabı gösteriyor; D-102, inceleme #85 P2-2); uçuş da 0 (inceleme #87 2. tur)
     if (outcome === "correct") { void xpVer(sinaBildi ? XP.bilinen : XP.dogru); void gorevSay("bahceIpucusuz", q.lexId); }  // B11b: ipucusuz doğru, kart başına günde bir kez
     // B16 kendiliğinden öneri: art arda 3 yeni kart ilk tanıma sorusunda hızlı ve doğru (PM-066 madde 2)
-    if (q.intro && !hizli && oneri === "yok") {
+    if ((q.intro || q.ilkSoru) && !hizli && oneri === "yok") {
       const n = outcome === "correct" && tip === "listen_meaning" && (m.ms ?? 1e9) <= HIZLI_SN * 1000 ? oneriSayac + 1 : 0;
       setOneriSayac(n);
       if (n >= ONERI_ART_ARDA && round.slice(i + 1).some((x) => x.intro && !x.retry)) setOneri("goster");
@@ -160,6 +160,11 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
     setI(i + 1);
   };
 
+  // ilerleme soru sayar (tanıtım ekranı soru değil); ertelenecek ilk sorular baştan sayılır (PM-069 madde 3)
+  const soruMu = (x: GardenQ) => !x.intro || !!x.retry || !!x.sina;
+  const ilerleme = { n: round.slice(0, i).filter(soruMu).length, toplam: round.filter(soruMu).length + round.slice(i).filter((x) => !soruMu(x)).length };
+  // PM-069 madde 3: tanıtım bitti, ilk soru en az 2 öğe sonra (değerlendirme yok, kayıt yok)
+  const tanitimBitti = (exi: number) => { setData({ ...data, round: ertele(round, i, exi) }); setI(i + 1); };
   // öğrencinin seçimi yalnızca bugünün kalan yeni kartları için (inceleme #113 P1-1)
   const hizliAc = async (bas: number, kaynak: "ogrenci") => { setHizli(kaynak); setOneri("yok"); await setMeta("hizliGun", yerelGun(new Date())); return sinaTuru(round, bas); };
   // tanıtım kartında "Biliyorum, sına beni": düğmeye basılan kartın KENDİSİ hemen sınanır, sonraki yeni kartlar sınavla açılır (PM 7018403441-1)
@@ -176,7 +181,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   };
   if (oneri === "goster") return (
     <div class="stack" data-test="garden">
-      <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} ilerleme={{ n: i, toplam: round.length }} />
+      <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} ilerleme={ilerleme} />
       <section class="card stack fade" data-test="hizli-oneri">
         <h2>Bunları biliyor gibisin.</h2>
         <p>Son üç kelimeyi hızlı ve doğru bildin. Kalan yeni kelimeleri tek tek sınayayım mı? Bildiğini Almanca yazarak (ya da söyleyerek) kanıtlarsın; bilemediğinde normal tanıtım gelir.</p>
@@ -189,17 +194,17 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   );
   return (
     <div class="stack" data-test="garden" data-hizli={hizli ?? undefined}>
-      <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} ilerleme={{ n: i, toplam: round.length }} />
+      <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} ilerleme={ilerleme} />
       {/* hızlı şerit açıkken çıkış her soruda görünür (inceleme #113 P1-1); açıklama yalnızca ilk soruda */}
       {hizli && <div class="small bilgi-bant" data-test={hizli === "tespit" ? "hizli-tespit" : "hizli-ogrenci"}>
         <span class="grow" data-test="hizli-bant-metin">{tanitimda ? "Bu kelimeyi birlikte öğreniyoruz; sınama sıradaki yeni kelimede sürüyor." : i === 0 && hizli === "tespit" ? "İlk haftayı senin hızında geçelim: bildiğin kelimeyi Almanca yazarak kanıtla, geç." : "Bugünün yeni kelimelerini sınıyoruz."}</span>
         <button class="linkbtn" data-test="hizli-kapat" onClick={() => void normaleDon()}>Normal akışa dön</button></div>}
-      <Question key={`${i}:${q.lexId}:${q.type}:${q.sina ? 1 : 0}`} q={q} l={l} all={data.all} yakin={data.yakin} gorulen={gorulenKelimeler(data.lex, [...data.items.values()].filter(tanitildi).map((x) => x.itemId))} onDone={(...a) => { setCevapVar(false); return finish(...a); }} onCevap={() => setCevapVar(true)} onTanitim={() => setTanitimda(true)} onSina={q.intro && !q.retry && !hizli ? () => void tanitimdaSina() : undefined} />
+      <Question key={`${i}:${q.lexId}:${q.type}:${q.sina ? 1 : 0}`} q={q} l={l} all={data.all} yakin={data.yakin} gorulen={gorulenKelimeler(data.lex, [...data.items.values()].filter(tanitildi).map((x) => x.itemId))} onDone={(...a) => { setCevapVar(false); return finish(...a); }} onCevap={() => setCevapVar(true)} onTanitim={() => setTanitimda(true)} onSina={q.intro && !q.retry && !hizli ? () => void tanitimdaSina() : undefined} onTanitimBitti={q.intro && !q.sina && !q.retry ? tanitimBitti : undefined} />
     </div>
   );
 }
 
-function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, onTanitim }: { q: GardenQ; l: Lexeme; all: Lexeme[]; yakin?: Yakinlik; /** öğrencinin gördüğü kelimeler (PM-069 P0) */ gorulen?: Set<string>; onDone: (r: Result, o: Outcome | null, exi: number, m?: SoruBilgi) => void; onSina?: () => void; onCevap?: () => void; onTanitim?: () => void }) {
+function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, onTanitim, onTanitimBitti }: { q: GardenQ; l: Lexeme; all: Lexeme[]; yakin?: Yakinlik; /** öğrencinin gördüğü kelimeler (PM-069 P0) */ gorulen?: Set<string>; onDone: (r: Result, o: Outcome | null, exi: number, m?: SoruBilgi) => void; onSina?: () => void; onCevap?: () => void; onTanitim?: () => void; /** PM-069 madde 3: tanıtım ayrı; ilk soru sonra gelir */ onTanitimBitti?: (exi: number) => void }) {
   const [intro, setIntro] = useState(!!q.intro);
   // B16: sına sorusu; bilemezse "Sorun değil, birlikte bakalım" → tanıtım ve normal tanıma sorusu (PM-066 madde 1)
   const [sina, setSina] = useState(!!q.sina);
@@ -249,7 +254,8 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
           <ul class="esdizim-liste">{l.collocations.map((c) => <li><b lang="de">{c.de}</b> <span class="muted">· {c.tr}</span></li>)}</ul></div>}
       </section>
       <ActionBar>
-        <button class="btn primary block" data-test="next" onClick={() => setIntro(false)}>Şimdi sor</button>
+        {onTanitimBitti ? <button class="btn primary block" data-test="next" onClick={() => onTanitimBitti(exi)}>Tamam</button>
+          : <button class="btn primary block" data-test="next" onClick={() => setIntro(false)}>Şimdi sor</button>}
         {/* B16 (PM-066 madde 1): beyan değil kanıt — bu kart turun sonunda üretimle sınanır, sonraki yeni kartlar sınavla açılır */}
         {onSina && <button class="btn block" data-test="sina-beni" onClick={onSina}>Biliyorum, sına beni</button>}
       </ActionBar>
