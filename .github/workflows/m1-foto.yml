@@ -17,22 +17,44 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -q pillow==11.0.0
+      - name: Releases'teki varlıklar (m1-foto, m1-foto-2)
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          : > /tmp/varlik.txt
+          for t in m1-foto m1-foto-2; do gh release view $t --json assets -q '.assets[].name' 2>/dev/null | sed "s/^/$t\t/" >> /tmp/varlik.txt || true; done
+          wc -l /tmp/varlik.txt
       - name: Hat
         # 429 beklemeleri uzun sürebilir; ara kayıtlar (10 sorguda bir) zaman aşımında da yüklenir
         timeout-minutes: 160
+        env: { VARLIK: /tmp/varlik.txt }
         run: python scripts/foto/foto.py out --yalniz-eksik --sure 140
-      - name: Releases (m1-foto)
+      - name: Releases (yeni dosyalar m1-foto-2'ye; m1-foto 1000 varlık sınırında dolu)
         if: always()
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
-          gh release view m1-foto >/dev/null 2>&1 || gh release create m1-foto --prerelease --title "M1 fotoğraf adayları" \
-            --notes "Wikimedia Commons ve Openverse; yalnızca CC0, kamu malı, CC BY, CC BY-SA. Atıflar content/v2/media/foto/adaylar.json içinde. #58 A10; seçim B5."
+          gh release view m1-foto-2 >/dev/null 2>&1 || gh release create m1-foto-2 --prerelease --title "M1 fotoğraf adayları (2)" \
+            --notes "m1-foto'nun devamı (sürüm başına 1000 varlık sınırı). Wikimedia Commons ve Openverse; yalnızca CC0, kamu malı, CC BY, CC BY-SA. Atıflar content/v2/media/foto/adaylar.json; dosya → sürüm eşlemesi varlik.json."
           shopt -s nullglob
-          f=(out/*.jpg out/secim.html)
-          for ((i=0; i<${#f[@]}; i+=50)); do gh release upload m1-foto "${f[@]:i:50}" --clobber; done
+          yeni=()
+          for f in out/*.jpg; do cut -f2 /tmp/varlik.txt | grep -qx "$(basename "$f")" || yeni+=("$f"); done
+          echo "yeni dosya: ${#yeni[@]}"
+          for ((i=0; i<${#yeni[@]}; i+=50)); do gh release upload m1-foto-2 "${yeni[@]:i:50}" --clobber; done
+          [ -f out/secim.html ] && gh release upload m1-foto-2 out/secim.html --clobber
+          # dosya → sürüm eşlemesi (B5 seçimi ve yayın adımı bunu kullanır)
+          python3 - <<'PY'
+          import json, subprocess
+          m = {}
+          for t in ("m1-foto", "m1-foto-2"):
+              try: names = subprocess.run(["gh", "release", "view", t, "--json", "assets", "-q", ".assets[].name"], capture_output=True, text=True, check=True).stdout.split()
+              except Exception: names = []
+              for n in names:
+                  if n.endswith(".jpg"): m.setdefault(n, t)
+          json.dump({"not": "Fotoğraf dosyası → GitHub Releases sürümü (m1-foto 1000 varlık sınırında doldu).", "varlik": m}, open("content/v2/media/foto/varlik.json", "w"), indent=0, sort_keys=True)
+          print(len(m), "dosya eşlendi")
+          PY
       - name: Aday listesini dala yaz
         if: always()
         run: |
           git config user.name "dw-foto-hatti"; git config user.email "dw-foto-hatti@users.noreply.github.com"
-          git add content/v2/media/foto/adaylar.json
+          git add content/v2/media/foto/adaylar.json content/v2/media/foto/varlik.json
           git diff --cached --quiet || (git commit -m "M1 A10: fotoğraf adayları (otomatik) [skip ci]" && git push)

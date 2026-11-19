@@ -131,6 +131,9 @@ def sorgular() -> dict[str, list[str]]:
             if e.get("img"): q.setdefault(e["img"], []).append(f"{i}#ornek{k}")
     return q
 
+# dosya → Releases sürümü (m1-foto 1000 varlık sınırında doldu; yeni dosyalar m1-foto-2)
+VARLIK: dict[str, str] = {}
+
 def yaz(out, kayit, satir, onceki):
     """adaylar.json ve secim.html (ara kayıt: zaman aşımında iş kaybolmaz; işlenmemiş sorgular önceki kayıttan)"""
     kayit = {**{k: v for k, v in onceki.items() if k not in kayit}, **kayit}
@@ -139,7 +142,7 @@ def yaz(out, kayit, satir, onceki):
     json.dump({"surum": 1, "not": "Görseller GitHub Releases m1-foto varlığıdır; depoya girmez. Seçim #58 B5 görsel denetimiyle (secim.json).",
                "sorgular": kayit}, open(os.path.join(hedef, "adaylar.json"), "w"), ensure_ascii=False, indent=1)
     # görsel denetim sayfası (B5): sorgu başına 3 aday, atıf ve lisansla
-    base = "https://github.com/Mutemadiyennn/deutsch-werkstatt/releases/download/m1-foto/"
+    base = lambda d: f"https://github.com/Mutemadiyennn/deutsch-werkstatt/releases/download/{VARLIK.get(d, 'm1-foto-2')}/"
     parca = ["<!doctype html><meta charset=utf-8><title>M1 fotoğraf adayları</title><style>body{font:14px system-ui;margin:16px}"
              "section{border-top:1px solid #ccc;padding:8px 0}img{height:160px;margin:4px;border:1px solid #ddd}figure{display:inline-block;margin:0 8px;vertical-align:top;max-width:240px}"
              "figcaption{font-size:11px;color:#555}</style><h1>M1 fotoğraf adayları (#58 A10 → B5 seçim)</h1>"]
@@ -148,7 +151,7 @@ def yaz(out, kayit, satir, onceki):
         parca.append(f"<section><h3>{html.escape(sorgu)}</h3><div>{html.escape(', '.join(yerler))}</div>"
                      + (f"<div><i>Kısa sorguyla bulundu: {html.escape(k)} — sahneye uyuyor mu dikkat</i></div>" if k else ""))
         for a in adaylar:
-            parca.append(f"<figure><img loading=lazy src='{a['dosya']}'><figcaption>{html.escape(a['lisans'])} · {html.escape(a['yazar'])} · "
+            parca.append(f"<figure><img loading=lazy src='{base(a['dosya'])}{a['dosya']}'><figcaption>{html.escape(a['lisans'])} · {html.escape(a['yazar'])} · "
                          f"<a href='{html.escape(a['sayfa'] or '')}'>kaynak</a> · {a['dosya']}</figcaption></figure>")
         if not adaylar: parca.append("<p><b>Aday yok</b> (sahne çizimi ya da yeni sorgu)</p>")
         parca.append("</section>")
@@ -166,6 +169,15 @@ def main():
     if "--yalniz-eksik" in sys.argv:
         try: onceki = json.load(open(os.path.join(KOK, "content/v2/media/foto/adaylar.json")))["sorgular"]
         except Exception: onceki = {}
+    # Releases'te bulunmayan aday dosyası (sürüm başına 1000 varlık sınırı, yarıda kalan yükleme) yok sayılır; sorgu yeniden aranır
+    varlik_dosya = os.environ.get("VARLIK")
+    if varlik_dosya and os.path.exists(varlik_dosya):
+        satirlar = [x.split("\t") for x in open(varlik_dosya).read().splitlines() if "\t" in x]
+        VARLIK.update({ad: tag for tag, ad in satirlar if ad not in VARLIK})
+        var = set(VARLIK)
+        if var:
+            for k, v in onceki.items():
+                v["adaylar"] = [a for a in v.get("adaylar", []) if a.get("dosya") in var]
     elle = kisa_sorgular()
     sure = float(sys.argv[sys.argv.index("--sure") + 1]) if "--sure" in sys.argv else 140.0
     basla = time.time()
