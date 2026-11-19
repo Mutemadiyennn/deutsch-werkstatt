@@ -236,7 +236,7 @@ function Question({ q, l, all, yakin, onDone: bitir, onSina, onCevap, onTanitim 
     <div class="stack fade" data-test="garden-intro">
       <section class="card stack"><div class="kicker">Yeni kelime</div>
         {/* PM 14:05 Berlin madde 1: tanıtımda kelimenin fotoğrafı (sayaçla döner); cümle görseli yalnızca cümlenin yanında */}
-        <Photo q={l.img} sira={q.ex} yer={[`${l.id}#kart`]} />
+        <Photo q={l.img} sira={q.ex} yer={[`${l.id}#kart`]} alt={l.tr} />
         <div class="de-xl" lang="de"><Art art={l.art} de={l.de} /></div>
         <div class="row"><ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} /></div>
         <p>{l.tr}</p>
@@ -259,7 +259,7 @@ function Question({ q, l, all, yakin, onDone: bitir, onSina, onCevap, onTanitim 
   const verdict = res && (<>
     <section class="card stack fade" data-test="after-card" data-lex={l.id} data-nex={l.examples.length} ref={(el) => { if (el && !el.dataset.seen) { el.dataset.seen = "1"; requestAnimationFrame(() => el.scrollIntoView({ block: "center", behavior: "smooth" })); } }}>
       <div class="de-lg" lang="de"><Art art={l.art} de={l.de} /> <span class="small muted">· {l.tr}</span></div>
-      <Photo q={fotoOrnek?.img || l.img} sira={fotoEx} yer={[`${l.id}#ornek${fotoEx % Math.max(1, l.examples.length)}`, `${l.id}#kart`]} />
+      <Photo q={fotoOrnek?.img || l.img} sira={fotoEx} yer={[`${l.id}#ornek${fotoEx % Math.max(1, l.examples.length)}`, `${l.id}#kart`]} alt={fotoOrnek?.tr || l.tr} />
       {ex && <div class="row" style={{ flexWrap: "nowrap", alignItems: "flex-start" }}><span class="grow"><span lang="de" data-test="after-ex">{ex.de}</span><br /><span class="small muted">{ex.tr}</span></span><ListenButton text={ex.de} small /></div>}
       {/* boşluk sorusunda cevap ekranındaki cümle sorulan cümlenin örneğidir; başka sorularda beğenilmeyen örnek değiştirilebilir */}
       {!form && baska(l.examples.length)}
