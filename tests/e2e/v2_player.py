@@ -180,7 +180,8 @@ def main():
                 page.locator(f"button.opt[data-opt='{d['ans']}']").click()
                 page.click("[data-test=next]")
                 continue
-            ans = d["accepted"][0] if d["k"] != "gap" else d["de"].replace("___", d["accepted"][0])
+            # adsız profil: öğrenci kendi adını yazar (yer tutucu "{name}" ad değildir; bilinen kelime "Name" ad sayılmaz)
+            ans = (d["accepted"][0] if d["k"] != "gap" else d["de"].replace("___", d["accepted"][0])).replace("{name}", "Ayşe")
             if d["k"] == "order" and not d.get("accepted"): ans = d["de"]
             submit_text(page, ans)
             if i == 1: shot(page, "p04-drill", full=False)
