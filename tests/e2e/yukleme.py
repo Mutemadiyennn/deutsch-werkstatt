@@ -62,6 +62,9 @@ def main():
         # 3) içerik isteği takılırsa: ≤ 10 sn içinde hata + "Tekrar dene" (servis işçisi kapalı: önbellek olmayan ilk kullanım)
         b, ctx = launch(p, service_workers="block"); pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
+        # Bugün'ün içerik istekleri (plan, gün dosyaları, sözlük) bitmeden yeniden yükleme yapılmaz: WebKit iptal edilen
+        # isteği "access control checks" sayfa hatası olarak bildirir (inceleme #66 P1-5; uygulama hatası değil)
+        pg.wait_for_selector("[data-test=next-activity]"); pg.wait_for_load_state("networkidle")
         held = []
         pg.route("**/content/**/scenarios/**", lambda route: held.append(route))  # cevapsız bırak
         t0 = time.time(); pg.goto(base + f"#/scenario/{SC}"); pg.reload()

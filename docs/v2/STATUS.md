@@ -22,7 +22,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 ## Yarım işler (PM-042 C)
 | İş | Dal | Durum |
 |---|---|---|
-| Ders yolu, Bugün'de günün planı, XP ve seri (#58 A5b) | `v2/yol-b` | PR #66; 1. tur bulguları düzeltiliyor |
+| Ders yolu, Bugün'de günün planı, XP ve seri (#58 A5b) | `v2/yol-b` | PR #66; 1. tur bulguları düzeltildi (Seans 1 kanıta bağlı, medya ilkBitti, plan hatası + Tekrar dene, gün bitişi kalıcı, adım XP'si bir kez) |
 | Yeni Bugün + Pomodoro (#58 A6) | `v2/bugun` | PR #67 (#66 üstünde) |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
 

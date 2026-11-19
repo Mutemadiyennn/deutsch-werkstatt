@@ -95,6 +95,11 @@ export interface RoundOpts {
   priority?: string[];
   /** bugün için kalan yeni kart hakkı (LS-7.4: ~25 pasif, ~12 aktif) */
   newLeft?: number; activeLeft?: number;
+  /**
+   * M1 günü (Seans 1): yeni kartlara ayrılan yer — tekrar yükü ne olursa olsun turda en az bu kadar yeni kart
+   * (havuzda varsa) gelir; günün kartları vadesi gelen tekrarların arkasında kalmaz (inceleme #66 P1-3)
+   */
+  yeniAyir?: number;
 }
 
 /** Tanıtılmış ama henüz üretim (aktif) yolu açılmamış kart: aktif soruya geçmeye hazır (inceleme #59 P0-2) */
@@ -120,7 +125,8 @@ export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerI
   const max = o.max ?? 12, min = o.min ?? 8, rng = o.rng ?? Math.random, now = o.now ?? new Date();
   const newLeft = Math.max(0, o.newLeft ?? DAILY_NEW), activeLeft = Math.max(0, o.activeLeft ?? DAILY_ACTIVE);
   const prio = (o.priority ?? []).filter((id) => !items.has(id) && lex.has(id) && isCard(lex.get(id)!)).slice(0, Math.min(2, newLeft));
-  const cap = max - prio.length;
+  const ayir = Math.max(0, Math.min(o.yeniAyir ?? 0, newLeft - prio.length));
+  const cap = max - prio.length - ayir;
   const out: GardenQ[] = [];
   const used = new Set<string>();
   const add = (id: string, path: "passive" | "active") => {
@@ -148,7 +154,7 @@ export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerI
   const room = Math.max(0, max - out.length);
   const left = newLeft - prio.length;
   // vadesi gelen az ise tur yeni kartlarla en az `min`e tamamlanır (tek başına yeni kart turu 10); tekrar yükü yüksekse en çok 2 yeni
-  const newMax = Math.max(0, Math.min(left, out.length >= min ? Math.min(2, room) : Math.min(o.newMax ?? 10, room)));
+  const newMax = Math.max(0, Math.min(left, ayir ? Math.min(Math.max(ayir, o.newMax ?? 10), room) : out.length >= min ? Math.min(2, room) : Math.min(o.newMax ?? 10, room)));
   let added = 0;
   for (const id of pool) {
     if (added >= newMax) break;

@@ -11,7 +11,7 @@ import { getMeta, setMeta } from "../data/db.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { DERS_ADIM_TR, TANIT_GRUP, adimlarDers, altSayisi, dersAnahtari, dersIleri, dersKonum, hatirlaKabul, hatirlaSecenek, maddeler, type DersIlerleme } from "../core/ders.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
-import { xpVer } from "../services/ilerleme.ts";
+import { adimXpVer, xpVer } from "../services/ilerleme.ts";
 import { XP } from "../core/gun.ts";
 import { ActionBar, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
 import { Art, ErrorPanel, Loading } from "../ui/components.tsx";
@@ -55,8 +55,9 @@ export function DersEkrani({ id }: { id: string }) {
   const ileri = (ok?: boolean | { dogru: number; toplam: number }) => {
     const np = dersIleri(p, t, ok);
     const kazanc = ok === undefined ? 0 : typeof ok === "boolean" ? (ok ? 1 : 0) : ok.dogru;
-    if (kazanc) void xpVer(XP.dogru * kazanc);
-    if (np.bitti && !p.ilkBitti) void xpVer(XP.adim);
+    // tekrar çalışmada doğru XP'si yok; adım XP'si bir kez (inceleme #66 P2-1)
+    if (kazanc && !p.ilkBitti) void xpVer(XP.dogru * kazanc);
+    if (np.bitti) void adimXpVer(`ders:${t.id}`);
     setP(np);
   };
   return (

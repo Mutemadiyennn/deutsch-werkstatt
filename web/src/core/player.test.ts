@@ -98,6 +98,10 @@ describe("öğrenci kimliği yer tutucuları (D-061)", () => {
     const { ruleVerdict } = await import("./answer.ts");
     const exp = fillName("Guten Tag, hier ist {name}.", "Guten Tag, hier ist Novak.");
     expect(ruleVerdict([exp], "Guten Tag, hier ist Novak.").kind).toBe("correct");
+    // boş ad yuvası doğru sayılmaz (inceleme #65 3. tur P2)
+    const bos = fillName("Guten Tag, hier ist {name}.", "Guten Tag, hier ist.");
+    expect(bos).toBe("Guten Tag, hier ist (adın).");
+    expect(ruleVerdict([bos], "Guten Tag, hier ist.").kind).not.toBe("correct");
   });
   it("yapay zekâya ad gitmez", () => {
     expect(redact("Ich heiße Novak.", { name: "Novak" })).toBe("Ich heiße [Name].");

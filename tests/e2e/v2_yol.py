@@ -21,16 +21,31 @@ def main():
     with sync_playwright() as p:
         b, ctx = launch(p, color_scheme=arg("--scheme") or "light"); pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
+        # gün dosyası gelmezse Bugün iskelette takılmaz: hata + "Tekrar dene" (inceleme #66 P1-4)
+        engel = lambda r: r.abort()
+        pg.route("**/m1/gun-01.json", engel)
+        pg.reload(); pg.wait_for_selector(".card.err", timeout=20_000)
+        check("planı yüklenemedi" in pg.inner_text(".card.err"), "gün dosyası yoksa Bugün hata ve 'Tekrar dene' gösteriyor")
+        pg.unroute("**/m1/gun-01.json", engel)
+        pg.click(".card.err button"); pg.wait_for_selector("[data-test=next-activity][data-m1]")
+        check(True, "'Tekrar dene' ile plan yüklendi")
         na = next_card(pg, base)
         check("1. gün" in na and "Seans 1" in na and "Kelime Bahçesi" in na, f"Bugün: 1. gün · Seans 1 Kelime Bahçesi ({na[:80]!r})")
         check("Eski uygulama" not in pg.inner_text("main"), "Bugün'de eski uygulamaya gönderme yok")
         if shots: shot(pg, "y01-bugun", full=False)
-        # Seans 1
+        # Seans 1: günün kartlarının hepsi tanıtılana kadar tur ("Bir tur daha"); bitiş öğrencinin düğmesiyle (inceleme #66 P1-1, P1-3)
         pg.click("[data-test=m1-devam]"); pg.wait_for_selector("[data-test=garden], [data-test=garden-empty]")
-        k = 0
-        while pg.locator("[data-test=garden]").count() and not pg.locator("[data-test=garden-done]").count() and k < 40:
+        k = 0; turlar = 1
+        while k < 150:
+            if pg.locator("[data-test=garden-again]").count():
+                check("yeni kelime kaldı" in pg.inner_text("[data-test=garden-kalan]"), "tur sonu: kalan yeni kelime söyleniyor") if turlar == 1 else None
+                pg.click("[data-test=garden-again]"); pg.wait_for_selector("[data-test=garden] .pbar"); turlar += 1; continue
+            if pg.locator("[data-test=garden-back], [data-test=garden-empty]").count(): break
             v2_garden.answer_current(pg); k += 1
-        check(pg.locator("[data-test=garden-done], [data-test=garden-empty]").count() == 1, f"Seans 1 bitti ({k} soru)")
+        check(pg.locator("[data-test=garden-back]").count() == 1 and k >= 1, f"Seans 1 bitti: günün kartları tanıtıldı ({k} soru, {turlar} tur)")
+        pg.click("[data-test=garden-back]"); pg.wait_for_selector("[data-test=next-activity][data-m1]")
+        if shots:
+            pg.goto(base + "#/yol"); pg.wait_for_selector("[data-test=yol-sonraki]"); shot(pg, "y03-yol-acik", full=False)
         # Seans 2
         na = next_card(pg, base)
         check("Seans 2" in na and "Temel ders" in na, f"Bugün: Seans 2 temel ders ({na[:80]!r})")
@@ -51,11 +66,19 @@ def main():
             while not pg.locator("[data-test=medya-bitti]").count() and k < 100:
                 v2_medya.answer_step(pg); k += 1
             check(pg.locator("[data-test=medya-bitti]").count() == 1, f"Seans 3 · kayıt {n3} bitti ({k} adım)")
+            if n3 == 1:
+                # "Baştan çalış" biten adımı bitmemiş yapmaz (inceleme #66 P1-2)
+                baslik = pg.inner_text("[data-test=medya] .pbar h1")
+                pg.click("[data-test=medya-bastan]"); pg.wait_for_selector("[data-test=medya] [data-test=next], [data-test=medya] button")
+                na2 = next_card(pg, base)
+                check(baslik not in na2, f"baştan çalışılan kayıt yeniden önerilmiyor ({baslik!r})")
             if n3 > 5: break
         check(n3 >= 3, f"Seans 3: video + en az 2 ses ({n3})")
         # gün bitti
         pg.goto(base + "#/yol"); pg.wait_for_selector("[data-test=yol]")
         check(pg.get_attribute("[data-test=gun-1]", "data-durum") == "bitti", "yol: 1. gün bitti")
+        pg.reload(); pg.wait_for_selector("[data-test=yol]")
+        check(pg.get_attribute("[data-test=gun-1]", "data-durum") == "bitti", "yeniden yüklemeden sonra da 1. gün bitti (kalıcı)")
         xp = int(pg.inner_text("[data-test=xp]"))
         check(xp > 30, f"XP kazanıldı ({xp})")
         check(pg.locator("[data-test=seri]").count() == 1 and pg.inner_text("[data-test=seri]") == "1", "seri: 1 gün")

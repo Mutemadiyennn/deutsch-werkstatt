@@ -6,34 +6,47 @@ import { useEffect, useState } from "preact/hooks";
 import type { Gun } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadM1Gun } from "../services/content.ts";
-import { ilerlemeOku, xpOku } from "../services/ilerleme.ts";
+import { gunBittiYaz, ilerlemeOku, xpOku } from "../services/ilerleme.ts";
 import { SEANS_TR, gunAdimlari, seri, siradaki, yol, type Adim, type GunDurum, type XpKayit } from "../core/gun.ts";
 import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 
-export interface Plan { gunler: (GunDurum & { durum: "bitti" | "simdi" | "kilitli" })[]; simdi: GunDurum | null; sonraki: Adim | null; xp: XpKayit }
+export interface Plan { gunler: (GunDurum & { durum: "bitti" | "simdi" | "kilitli" })[]; simdi: GunDurum | null; sonraki: Adim | null; xp: XpKayit; /** sonraki bir gün dosyası yüklenemedi */ eksik?: boolean }
 
-/** Bugün ve Yol ekranlarının ortak verisi: günler + cihazdaki ilerleme + XP (index.m1 boşsa null) */
-export function usePlan(): { plan: Plan | null; err: string | null; yok: boolean } {
+/**
+ * Bugün ve Yol ekranlarının ortak verisi: günler + cihazdaki ilerleme + XP (index.m1 boşsa null).
+ * Bir gün dosyası gelmezse (çevrimdışı, önbellekte yok) o güne kadarki günlerle plan kurulur — ileri gün atlanmaz;
+ * ilk gün bile gelmezse hata döner ve ekran "Tekrar dene" gösterir (inceleme #66 P1-4).
+ */
+export function usePlan(): { plan: Plan | null; err: string | null; yok: boolean; yenile: () => void } {
   const { index } = useApp();
   const [plan, setPlan] = useState<Plan | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  const [n, setN] = useState(0);
   const yok = !!index && index.m1.length === 0;
   useEffect(() => {
     if (!index || !index.m1.length) return;
+    setErr(null);
     (async () => {
-      const [gunler, ilr, xp] = await Promise.all([Promise.all(index.m1.map((g) => loadM1Gun(g.day))), ilerlemeOku(), xpOku()]);
+      const sirali = [...index.m1].sort((a, b) => a.day - b.day);
+      const sonuc = await Promise.allSettled(sirali.map((g) => loadM1Gun(g.day)));
+      const ilk = sonuc.findIndex((r) => r.status === "rejected");
+      const gunler = (ilk < 0 ? sonuc : sonuc.slice(0, ilk)).map((r) => (r as PromiseFulfilledResult<Gun>).value);
+      if (!gunler.length) throw new Error(`Günün dosyası yüklenemedi${sonuc[0]?.status === "rejected" ? `: ${String((sonuc[0] as PromiseRejectedResult).reason?.message || sonuc[0].reason)}` : ""}`);
+      const [ilr, xp] = await Promise.all([ilerlemeOku(gunler.flatMap((g) => g.yeni_kartlar)), xpOku()]);
       const basliklar = Object.fromEntries(index.temel.map((t) => [t.id, t.title_tr]));
       const y = yol(gunler.map((g: Gun) => gunAdimlari(g, ilr, basliklar)));
-      setPlan({ ...y, sonraki: siradaki(y.simdi), xp });
+      // gün bitişi kalıcı yazılır (sonradan hazır olan adım biten günü geri açmaz)
+      for (const g of y.gunler) if (g.bitti && !ilr.gunBitti?.has(g.day)) void gunBittiYaz(g.day);
+      setPlan({ ...y, sonraki: siradaki(y.simdi), xp, eksik: ilk >= 0 });
     })().catch((e) => setErr(String(e?.message || e)));
-  }, [index?.version]);
-  return { plan, err, yok };
+  }, [index?.version, n]);
+  return { plan, err, yok, yenile: () => setN((x) => x + 1) };
 }
 
 export function YolEkrani() {
-  const { plan, err, yok } = usePlan();
-  if (err) return <ErrorPanel message={err} onRetry={() => location.reload()} />;
+  const { plan, err, yok, yenile } = usePlan();
+  if (err) return <div class="stack"><TopBar title="İlk Hafta" back="#/today" /><ErrorPanel message={err} onRetry={yenile} /></div>;
   if (yok) return <div class="stack"><TopBar title="Yol" back="#/today" /><section class="card"><p>İlk Hafta'nın günleri hazırlanıyor.</p></section></div>;
   if (!plan) return <Loading />;
   const s = seri(plan.xp);
@@ -55,7 +68,7 @@ export function YolEkrani() {
           <div class="row" style={{ flexWrap: "nowrap", alignItems: "center" }}>
             <span class="yolno" aria-hidden="true">{g.durum === "bitti" ? <Icon name="check" size={18} /> : g.day}</span>
             <span class="grow"><b>{g.day}. gün</b><br /><span class="small muted">{g.title_tr}</span></span>
-            <span class="tiny muted">{g.durum === "bitti" ? "Bitti" : g.durum === "simdi" ? "Bugün" : "Kilitli"}</span>
+            <span class="tiny muted">{g.durum === "bitti" ? "Bitti" : g.durum === "simdi" ? "Şimdi" : "Kilitli"}</span>
           </div>
           {g.durum === "simdi" && (
             <ul class="list">{g.adimlar.map((a) => (
