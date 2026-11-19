@@ -8,6 +8,7 @@ B15 1. adım (PM-064 + PM 7016783246-2, 7017526063): karaktere göre ses, "Yava�
   - mikrofon: kullanılan yol yazılı; sahte tanıma "Guten Morgen" → ekranda; izin reddi → Türkçe neden
 python3 tests/e2e/v2_ses.py [--browser webkit] [--device "iPhone 15"] [--shots DIR]
 """
+import re
 from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
 
@@ -55,8 +56,15 @@ def main():
         pg.locator("[data-test=havuz-erkek] [data-test=ses-yavas]").first.click(); pg.wait_for_function("() => window.__oku.length >= 2")
         n, y = pg.evaluate("window.__oku.slice(-2)")
         check(n["ses"] == y["ses"] == "Viktor (Erweitert)" and n["pitch"] == y["pitch"] and y["rate"] <= n["rate"] * 0.8, f"Yavaş yalnızca hız: {n['ses']} {n['rate']}→{y['rate']}, perde {n['pitch']}={y['pitch']}")
-        # karakterler: cinsiyete uygun, sabit
-        pg.wait_for_selector("[data-test=karakter-ses]")
+        # karakterler: liste kapalı başlar (PM 7022085356-4); açınca cinsiyete uygun, sabit; satırda teknik dil yok
+        pg.wait_for_selector("[data-test=karakter-sesleri]")
+        check(not pg.locator("[data-test=karakter-ses]").first.is_visible(), "karakter listesi kapalı başlıyor")
+        check(pg.locator("[data-test=karakter-sesleri]").evaluate("(e) => e.compareDocumentPosition(document.querySelector('[data-test=mikrofon-deneme]')) & 2") != 0, "üstte sesler ve mikrofon, karakterler altta")
+        pg.click("[data-test=karakter-ac]"); pg.wait_for_selector("[data-test=karakter-ses]")
+        adlar = pg.locator("[data-test=karakter-ses-ad]").all_inner_texts()
+        check(all(re.match(r"^(Kadın|Erkek) sesi: \S|^Bu cihazda uygun ses yok$", x) for x in adlar) and not any(re.search(r"perde|cihaz sesi|Erweitert|\d\.\d", x) for x in adlar), f"karakter satırında yalnızca 'Kadın sesi: …' ({adlar[:3]})")
+        cins = pg.locator("[data-test=karakter-ses]").evaluate_all("(xs) => xs.map((x) => [x.dataset.id, x.querySelector('[data-test=karakter-ses-ad]').innerText])")
+        check(all(t.startswith("Erkek") for i, t in cins if i in ("ch:lechner", "ch:weber", "ch:pichler")) and all(t.startswith("Kadın") for i, t in cins if i in ("ch:huber", "ch:stadler", "ch:brandl")), f"satırdaki 'Kadın/Erkek' karakterin cinsiyeti ({cins[:4]})")
         ks = {e["id"]: e for e in pg.locator("[data-test=karakter-ses]").evaluate_all("(xs) => xs.map((x) => ({ id: x.dataset.id, ses: x.dataset.ses, pitch: x.dataset.pitch }))")}
         erkekler = [ks[i]["ses"] for i in ("ch:lechner", "ch:weber", "ch:pichler") if i in ks]
         kadinlar = [ks[i]["ses"] for i in ("ch:huber", "ch:stadler", "ch:brandl") if i in ks]
@@ -70,11 +78,12 @@ def main():
         pg.locator("[data-test=karakter-sesleri]").scroll_into_view_if_needed(); kare(pg, 8)
         no_overflow(pg, "ses denemesi")
         if shots: shot(pg, f"s01-ses-deneme-{TEMA}", full=False)
-        pg.reload(); pg.wait_for_selector("[data-test=karakter-ses]")
+        pg.reload(); pg.wait_for_selector("[data-test=karakter-sesleri]"); pg.click("[data-test=karakter-ac]"); pg.wait_for_selector("[data-test=karakter-ses]")
         ks2 = {e["id"]: e["ses"] for e in pg.locator("[data-test=karakter-ses]").evaluate_all("(xs) => xs.map((x) => ({ id: x.dataset.id, ses: x.dataset.ses }))")}
         check(all(ks2[k] == v["ses"] for k, v in ks.items()), "yeniden açılışta her karakter aynı ses (sabit)")
         # mikrofon: yol, tanıma, hata
-        check("tarayıcının" in pg.inner_text("[data-test=stt-yol]"), "mikrofon: kullanılan tanıma yolu yazılı (tarayıcı)")
+        check(pg.inner_text("[data-test=stt-yol]").strip() == "Bu cihazda: tarayıcı tanıması", "mikrofon: tek satır durum (tarayıcı)")
+        check("%" not in pg.inner_text("[data-test=ses-deneme]") and "Yavaş: aynı ses, daha ağır" in pg.inner_text("[data-test=ses-deneme]"), "yavaş: yüzde yok, 'aynı ses, daha ağır'")
         pg.click("[data-test=mic-dene]"); pg.wait_for_selector("[data-test=mic-sonuc], [data-test=mic-hata]")
         pg.locator("[data-test=mikrofon-deneme]").scroll_into_view_if_needed(); kare(pg, 8)
         check("Guten Morgen" in (pg.inner_text("[data-test=mic-sonuc]") if pg.locator("[data-test=mic-sonuc]").count() else ""), "\"Guten Morgen\" söylendi → tanınan metin ekranda")
@@ -104,7 +113,7 @@ def main():
         pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         pg.evaluate("window.__kabuk = 1")  # giriş web gibi; sonra kabuk (yeniden yükleme yok)
         pg.goto(base + "#/ses"); pg.wait_for_selector("[data-test=mikrofon-deneme]")
-        check("kendi konuşma tanıması" in pg.inner_text("[data-test=stt-yol]"), "kabukta tanıma yolu: iPhone'un kendi tanıması")
+        check(pg.inner_text("[data-test=stt-yol]").strip() == "Bu cihazda: iPhone'un kendi tanıması", "kabukta tanıma yolu: iPhone'un kendi tanıması")
         pg.click("[data-test=mic-dene]"); pg.wait_for_selector("[data-test=mic-sonuc]")
         check("yerel" in pg.inner_text("[data-test=mic-sonuc]"), "kabukta sonuç yerel eklentiden (tarayıcı arayüzü seçilmedi)")
         pg.evaluate("window.__yavasYerel = 1"); pg.click("[data-test=mic-dene]"); pg.wait_for_selector("[data-test=mic-sonuc], [data-test=mic-hata]", timeout=20_000)
