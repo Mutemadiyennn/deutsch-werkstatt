@@ -184,18 +184,19 @@ function ProduceItem({ ctx, prompt, accepted, itemId, onDone, audio, audioSpeed,
   // biçim istiyorsa ya da madde bir dönüşümse genişletme yok; verilen cümlenin tekrarı doğru değil (inceleme #49 P1-1)
   const register = !!given || REGISTER_HINT.test(hint || (typeof prompt === "string" ? prompt : ""));
   // PM-045 §4.2 / #58 A11: sayı maddesinde rakam kabul edilmez (norm() rakamı yazıya çevirdiği için kurallardan önce)
-  const numHint = (acc: string[], a: string) => (strictNumbers && acc.every((x) => !/\d/.test(x)) ? numberWordHint(a) : null);
-  const grade = async (acc: string[], a: string, p: string): Promise<Verdict> =>
-    numHint(acc, a) ? { kind: "wrong", best: acc[0] || "", note: numHint(acc, a)! }
+  // yalnızca yazılan cevapta: konuşma tanıma sayıyı rakamla döker (inceleme #59 P1-3)
+  const numHint = (acc: string[], a: string, typed: boolean) => (typed && strictNumbers && acc.every((x) => !/\d/.test(x)) ? numberWordHint(a) : null);
+  const grade = async (acc: string[], a: string, p: string, typed = true): Promise<Verdict> =>
+    numHint(acc, a, typed) ? { kind: "wrong", best: acc[0] || "", note: numHint(acc, a, typed)! }
     : isSameAsGiven(given, a) ? { kind: "wrong", best: acc[0] || "", note: "Verilen cümleyi tekrarladın; istenen biçimde söyle." }
       : grade0(register ? acc : expandTaught(acc, ctx.s.chunks), a, p);
   const [v, setV] = useState<{ v: Verdict; a: string } | null>(null);
   const [busy, setBusy] = useState(false);
   const [mode, setMode] = useState<"type" | "chips">(chips ? "chips" : "type");
   const promptTxt = typeof prompt === "string" ? prompt : accepted[0]!;
-  const submit = async (a: string) => {
+  const submit = async (a: string, typed = true) => {
     setBusy(true);
-    const res = await grade(accepted, a, promptTxt);
+    const res = await grade(accepted, a, promptTxt, typed);
     setBusy(false); setV({ v: res, a }); setClaimed(false);
   };
   const [claimed, setClaimed] = useState(false);
@@ -212,7 +213,7 @@ function ProduceItem({ ctx, prompt, accepted, itemId, onDone, audio, audioSpeed,
       {!v && (
         <>
           {accepted[0]!.split(" ").length > 2 && <div class="seg" role="group" aria-label="Cevap biçimi"><button aria-pressed={mode === "type"} onClick={() => setMode("type")}>Yaz / söyle</button><button aria-pressed={mode === "chips"} onClick={() => setMode("chips")}>Kelimelerle kur</button></div>}
-          {mode === "type" ? <ActionBar><AnswerField onSubmit={(t) => void submit(t)} disabled={busy} /></ActionBar> : <ChipBuilder target={accepted[0]!} onSubmit={(t) => void submit(t)} />}
+          {mode === "type" ? <ActionBar><AnswerField onSubmit={(t, m) => void submit(t, m === "typed")} disabled={busy} /></ActionBar> : <ChipBuilder target={accepted[0]!} onSubmit={(t) => void submit(t)} />}
           {busy && <p class="small muted" aria-live="polite">Öğretmen kontrol ediyor…</p>}
         </>
       )}
