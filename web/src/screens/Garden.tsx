@@ -14,7 +14,7 @@ import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { XP, seri, yerelGun } from "../core/gun.ts";
 import { getMeta, itemsMap, personalWords, putItems, setMeta } from "../data/db.ts";
 import { hizliGecis, review, sessionKey, type Outcome } from "../core/srs.ts";
-import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, ogretilmisForm, gorulenKelimeler, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
+import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, boslukSecimi, tanitildi, gorulenKelimeler, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { umlautEksik } from "../core/esdeger.ts";
 import { judgeWord, numberWordHint } from "../core/grading.ts";
@@ -194,7 +194,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       {hizli && <div class="small bilgi-bant" data-test={hizli === "tespit" ? "hizli-tespit" : "hizli-ogrenci"}>
         <span class="grow" data-test="hizli-bant-metin">{tanitimda ? "Bu kelimeyi birlikte öğreniyoruz; sınama sıradaki yeni kelimede sürüyor." : i === 0 && hizli === "tespit" ? "İlk haftayı senin hızında geçelim: bildiğin kelimeyi Almanca yazarak kanıtla, geç." : "Bugünün yeni kelimelerini sınıyoruz."}</span>
         <button class="linkbtn" data-test="hizli-kapat" onClick={() => void normaleDon()}>Normal akışa dön</button></div>}
-      <Question key={`${i}:${q.lexId}:${q.type}:${q.sina ? 1 : 0}`} q={q} l={l} all={data.all} yakin={data.yakin} gorulen={gorulenKelimeler(data.lex, data.items.keys())} onDone={(...a) => { setCevapVar(false); return finish(...a); }} onCevap={() => setCevapVar(true)} onTanitim={() => setTanitimda(true)} onSina={q.intro && !q.retry && !hizli ? () => void tanitimdaSina() : undefined} />
+      <Question key={`${i}:${q.lexId}:${q.type}:${q.sina ? 1 : 0}`} q={q} l={l} all={data.all} yakin={data.yakin} gorulen={gorulenKelimeler(data.lex, [...data.items.values()].filter(tanitildi).map((x) => x.itemId))} onDone={(...a) => { setCevapVar(false); return finish(...a); }} onCevap={() => setCevapVar(true)} onTanitim={() => setTanitimda(true)} onSina={q.intro && !q.retry && !hizli ? () => void tanitimdaSina() : undefined} />
     </div>
   );
 }
@@ -204,7 +204,7 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
   // B16: sına sorusu; bilemezse "Sorun değil, birlikte bakalım" → tanıtım ve normal tanıma sorusu (PM-066 madde 1)
   const [sina, setSina] = useState(!!q.sina);
   // PM-069 P0: cevabı öğrenciye gösterilmemiş boşluk sorulmaz; sorulabilir biçim yoksa Türkçeden Almancaya (kartın kendi kelimesi)
-  const [tip, setTip] = useState<QType>(() => (q.type === "gap" || q.type === "sep_perfekt") && ogretilmisForm(l, q.type, q.ex, gorulen) === null ? "tr_de" : q.type);
+  const [tip, setTip] = useState<QType>(() => boslukSecimi(l, q.type, q.ex, gorulen ?? new Set()).tip);
   const basla = useMemo(() => ({ t: Date.now() }), []);
   useEffect(() => { if (!intro) basla.t = Date.now(); }, [intro]);
   // öneri süresi cevap anında ölçülür; cevap kartını okumak süreye girmez (inceleme #113 P1-4)
@@ -256,7 +256,8 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
   );
 
   // ipucu ve boşluk cümlesi yalnızca boşluk sorularında (başka türde öğrencinin görmediği cümlenin ipucu çıkmasın; inceleme #85 P1-1)
-  const fi = qe.type === "gap" || qe.type === "sep_perfekt" ? ogretilmisForm(l, qe.type, exi, gorulen) ?? 0 : exi;
+  const bs = boslukSecimi(l, qe.type, exi, gorulen ?? new Set());
+  const fi = bs.fi;
   const form = qe.type === "gap" || qe.type === "sep_perfekt" ? formFor(l, qe.type, fi) : undefined;
   // PM (#59 yorumu): cevaptan sonra, doğru ya da yanlış, kelime cümlesiyle görünür — örnek cümle (dinle), fotoğraf, eşdizim
   const colAfter = collocOf(l);
@@ -267,7 +268,7 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
       {ex && <div class="row" style={{ flexWrap: "nowrap", alignItems: "flex-start" }}><span class="grow"><span lang="de" data-test="after-ex">{ex.de}</span><br /><span class="small muted">{ex.tr}</span></span><ListenButton text={ex.de} small /></div>}
       {/* boşluk sorusunda cevap ekranındaki cümle sorulan cümlenin örneğidir; başka sorularda beğenilmeyen örnek değiştirilebilir */}
       {!form && baska(l.examples.length)}
-      {colAfter && <p class="small">Birlikte: <b lang="de">{colAfter.de}</b> <span class="muted">· {colAfter.tr}</span></p>}
+      {l.collocations.length > 0 && <div class="small"><span class="muted">Birlikte:</span><ul class="esdizim-liste">{l.collocations.map((c) => <li><b lang="de">{c.de}</b> <span class="muted">· {c.tr}</span></li>)}</ul></div>}
     </section>
     {/* geri bildirim bandı yüksek: kart bandın altında kalmasın diye kaydırma payı */}
     <div aria-hidden="true" style={{ height: 180 }} />
@@ -296,7 +297,7 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
   const prompt = qe.type === "photo_say" ? <><div class="kicker">Fotoğraftaki ne? Artikeliyle söyle ya da yaz</div><Photo q={l.img} sira={exi} /><p class="small muted">{l.tr}</p></>
     : qe.type === "tr_de" && sina ? <><div class="kicker" data-test="sina-soru" {...(E2E ? { "data-cevap": sinaKabul(l)[0] } : {})}>Biliyorum, sına beni · ipucu yok</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div>{ex?.tr && <p class="small" data-test="sina-baglam">Cümlede: <span class="muted">{ex.tr}</span></p>}<p class="small muted">Almanca yaz ya da söyle. Bilirsen bu kelime ileri basamaklardan devam eder.</p>{!res && <button class="btn ghost" data-test="sina-bilmiyorum" onClick={() => show({ ok: false, expected: sinaKabul(l)[0] })}>Bilmiyorum, tanıt</button>}</>
     : qe.type === "tr_de" ? <><div class="kicker">Almanca söyle ya da yaz</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div></>
-    : qe.type === "gap" || qe.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de" data-test="gap-cumle">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && !res && <IpucuDugmesi metin={form.hint_tr} onAc={() => setHinted(true)} />}{!res && baska(havuz(l, qe.type))}</>
+    : qe.type === "gap" || qe.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de" data-test="gap-cumle">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && !res && <IpucuDugmesi metin={form.hint_tr} onAc={() => setHinted(true)} />}{!res && bs.sorulabilir > 1 && <button class="btn sm ghost" data-test="baska-cumle" onClick={() => setExi(fi + 1)}>Başka cümle</button>}</>
     : <><div class="kicker">Bu kelimeyle kendi cümleni kur</div><div class="de-lg" lang="de"><Art art={l.art} de={l.de} /></div><p class="small muted">{l.tr}{ex ? ` · Örnek: ` : ""}{ex && <span lang="de" data-test="own-ex">{ex.de}</span>}</p>{!selfCheck && baska(l.examples.length)}</>;
 
   const submit = (a: string, mode: "typed" | "voice") => {

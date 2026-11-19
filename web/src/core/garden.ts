@@ -338,9 +338,11 @@ export function formFor(l: Lexeme, t: QType, i = 0) { const list = t === "gap" ?
 export function cevapGosterildi(l: Lexeme, cevap: string, gorulen: Set<string> = new Set()): boolean {
   const kelimeler = tokens(cevap.toLowerCase().replace(/\s*…\s*/g, " "));
   if (!kelimeler.length) return false;
-  const kendi = (x: string) => ownSentenceCheck(l, `${x} x x`) === "ok";
+  // kartın kendi kelimesi: yalnızca kartta GÖSTERİLEN biçimler (başlık, artikel, çoğul). Gövde eşleşmesi yok: Perfekt ortacı,
+  // Präteritum ve hâl biçimleri tanıtılmadıkça sorulmaz (inceleme #122 P0-1)
+  const kendi = new Set(tokens(`${l.art ?? ""} ${l.de} ${l.pl ?? ""}`.toLowerCase().replace(/[()]/g, " ")));
   const eszizim = new Set(l.collocations.flatMap((c) => tokens(c.de.toLowerCase())));
-  return kelimeler.every((x) => kendi(x) || eszizim.has(x) || gorulen.has(x));
+  return kelimeler.every((x) => kendi.has(x) || eszizim.has(x) || gorulen.has(x));
 }
 /**
  * Sorulabilir boşluk: `i`'den başlayarak cevabı gösterilmiş ilk biçim; hiçbiri yoksa null (soru türü değişir).
@@ -353,11 +355,26 @@ export function ogretilmisForm(l: Lexeme, t: QType, i = 0, gorulen: Set<string> 
   }
   return null;
 }
-/** Öğrencinin gördüğü kelimeler: tanıtılmış kartların başlık kelimeleri (artikel dahil), küçük harf */
+/** Artikel ve hâl biçimleri: başka kartın artikeli bu kartın hâl boşluğunu "görülmüş" yapmaz (inceleme #122 P1-1) */
+const ARTIKEL = new Set(["der", "die", "das", "den", "dem", "des", "ein", "eine", "einen", "einem", "einer", "eines"]);
+/** Öğrencinin gördüğü kelimeler: tanıtılmış kartların başlık kelimeleri ve eşdizimleri (artikeller hariç), küçük harf */
 export function gorulenKelimeler(lex: Map<string, Lexeme>, tanitilan: Iterable<string>): Set<string> {
   const g = new Set<string>();
-  for (const id of tanitilan) { const x = lex.get(id); if (!x) continue; for (const w of tokens(`${x.art ?? ""} ${x.de}`.toLowerCase())) g.add(w); }
+  for (const id of tanitilan) {
+    const x = lex.get(id); if (!x) continue;
+    for (const w of tokens([x.de, x.pl ?? "", ...x.collocations.map((c) => c.de)].join(" ").toLowerCase().replace(/[()]/g, " "))) if (!ARTIKEL.has(w)) g.add(w);
+  }
   return g;
+}
+/** Tanıtılmış kart: Bahçe'de değerlendirilmiş (FSRS kaydı) ya da doğru cevaplanmış; tespitte yalnızca yanlış görülen sayılmaz (P1-2) */
+export const tanitildi = (it: LearnerItem) => !!(it.passive.fsrs || it.active.fsrs || it.passive.ok > 0 || it.active.ok > 0);
+/** Boşluk sorusunun gerçekleşen türü ve biçimi (Garden bunu kullanır; birim testli) */
+export function boslukSecimi(l: Lexeme, t: QType, ex: number, gorulen: Set<string>): { tip: QType; fi: number; sorulabilir: number } {
+  if (t !== "gap" && t !== "sep_perfekt") return { tip: t, fi: ex, sorulabilir: 0 };
+  const list = t === "gap" ? otherForms(l) : verbForms(l);
+  const sorulabilir = list.filter((f) => cevapGosterildi(l, f.answer, gorulen)).length;
+  const fi = ogretilmisForm(l, t, ex, gorulen);
+  return fi === null ? { tip: "tr_de", fi: ex, sorulabilir } : { tip: t, fi, sorulabilir };
 }
 
 /** Ayrılabilir fiil önekleri (absagen → sage … ab) */
