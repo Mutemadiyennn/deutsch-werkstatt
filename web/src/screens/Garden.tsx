@@ -294,7 +294,8 @@ function GardenDone({ day, score, items, kalan, again, xp, kelimeler }: { day?: 
   const devam = !!day && kalan > 0;
   const [seriGun, setSeriGun] = useState<number | undefined>();
   // tur sonu sayfanın başından açılır: son cevap kartının kaydırması "Tur bitti" ve halkayı ekran dışında bırakmasın (inceleme #100 2. tur)
-  useEffect(() => { window.scrollTo(0, 0); void xpOku().then((x) => setSeriGun(seri(x))); }, []);
+  // önceki cevap kartının yumuşak kaydırması sürüyor olabilir: hemen ve bir kare sonra başa
+  useEffect(() => { window.scrollTo(0, 0); requestAnimationFrame(() => window.scrollTo(0, 0)); void xpOku().then((x) => setSeriGun(seri(x))); }, []);
   return (
     <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" ilerleme={{ n: 1, toplam: 1 }} />
       <section class="card stack" data-test="garden-done"><Kutlama><div class="kicker">Tur bitti</div></Kutlama>
