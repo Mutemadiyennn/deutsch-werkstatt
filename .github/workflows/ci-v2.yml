@@ -111,6 +111,8 @@ jobs:
         run: cd tests/e2e && python v2_prova.py --shots /tmp/shots
       - name: "Okuma ve yazma (#58 A8): metin + kelime kartı, sorular, zorunlu kelime ve kalıp kontrolü, örnek, kontrol listesi"
         run: cd tests/e2e && python v2_okuma.py --shots /tmp/shots
+      - name: "Kalıp kartı (#58 B2): kural, örnekler, slot doldurma, dönüşümler, sık hata; Sözlük'ten bağlantı"
+        run: cd tests/e2e && python v2_kalip.py --shots /tmp/shots
       - name: "Bahçe değişen cümle (PM-062, #58 B13): Başka cümle 3 dokunuşta 3 cümle, <150 ms, uçak modunda; ipucu sayılmaz"
         run: cd tests/e2e && python v2_bahce_donusum.py --shots /tmp/shots
       - name: "Şölen 1 (#58 B10): cevap anı, ilerleme çubuğu, XP ve seri, tur sonu kutlaması, efekt sesi ayarı, hareket azaltma"

@@ -536,3 +536,16 @@ main > .stack { animation: giris 200ms ease-out; }
 }
 /* kaydırma animasyonu sırasında yatay taşma olmasın (sticky etkilenmez: clip kaydırma kabı oluşturmaz) */
 main { overflow-x: clip; }
+
+/* Kalıp kartı (#58 B2): kurallar tek fikir satırları, seçilen öbeği kullanan örnek vurgulu */
+.kurallar { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
+.kalip-ornek { border-radius: 12px; padding: 4px 6px; margin: 0 -6px; transition: background 200ms ease-out; }
+.kalip-ornek.vurgu { background: var(--himmel-2); box-shadow: inset 3px 0 0 var(--himmel); }
+.kalip-secili { scroll-margin-bottom: calc(96px + var(--safe-bottom, 0px)); padding: 10px 12px; border-radius: 14px; background: var(--soft); box-shadow: inset 3px 0 0 var(--himmel); }
+.kalip-link, .kalip-bag-btn { display: flex; align-items: center; min-height: 44px; color: var(--himmel-ink); text-decoration: underline; }
+.kalip-bag-btn { background: none; border: 0; padding: 0; font: inherit; text-align: left; cursor: pointer; }
+.kalip-sheet { max-height: 88vh; overflow-y: auto; }
+/* alt sayfada bölüm başlıkları ayrı sayfadaki gibi küçük kicker (genel .whysheet h3 kuralı ezmesin; inceleme #94 2. tur) */
+.whysheet.kalip-sheet h3.kicker { font-size: 0.78rem; margin-bottom: 4px; }
+.wchip[aria-pressed="true"] { background: var(--himmel); color: var(--card); }
+@media (prefers-reduced-motion: reduce) { .kalip-ornek { transition: none; } }
