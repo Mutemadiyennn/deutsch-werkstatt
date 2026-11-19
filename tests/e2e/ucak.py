@@ -206,6 +206,9 @@ def main():
             found += [f"{h}: {w}" for w in DEV_NOTES if w in t]
         check(not found, "C: öğrenciye geliştirici notu gösterilmiyor" + (f" — {found}" if found else ""))
         b.close()
+        # C'nin "kontrol edemedim" denemesinde açık kalan tarayıcı (pg2) da kapanır; yoksa D'nin sayfası sunucuyu bekler (inceleme #125 P0-1)
+        try: b2.close()
+        except Exception: pass
 
         # ---------- D) Workers AI (deneme) sağlayıcısı: rol oyununda "deneme" etiketi (PM 7022002310-5) ----------
         def api_wa(route):

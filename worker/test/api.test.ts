@@ -4,6 +4,7 @@ import { handle } from "../src/index.ts";
 import { setJwksForTests } from "../src/auth.ts";
 import { pickModels, resetModelCacheForTests, generateJSON } from "../src/ai/gemini.ts";
 import type { Env, KV } from "../src/env.ts";
+import { generateWA } from "../src/ai/workersai.ts";
 
 const PROJECT = "deutsch-sync";
 let priv: CryptoKey;
@@ -282,6 +283,17 @@ describe("Workers AI sağlayıcısı (PM 7022002310-5)", () => {
     expect(j.output.reply_de.split(/\s+/).length).toBeLessThanOrEqual(25);
     expect(j.output.reply_de).toBe("Ja, gerne. Wir haben am Donnerstag um zehn Uhr noch einen Termin frei.");
     expect(cagri[0]!.input.messages[0].content).toContain("Niveau A2"); expect(cagri[0]!.input.messages[0].content).toContain("höchstens 25 Wörtern");
+  });
+  it("ücretsiz pay bitti (4006) → quota_upstream; yedek model denenmez (inceleme #125 P1-3)", async () => {
+    const { AI, cagri } = sahteAI([new Error("AiError: 4006: you have used up your daily free allocation of 10,000 neurons")]);
+    const j = await (await handle(run(await token(), "equiv_check", EQ), waEnv(AI))).json();
+    expect(j.error.code).toBe("quota_upstream"); expect(cagri.length).toBe(1);
+  });
+  it("zaman aşımında sayaç üst tahminle yazılır (tavan yumuşamaz; inceleme #125 P1-2)", async () => {
+    const e = waEnv({ run: () => new Promise(() => {}) } as Env["AI"]);
+    await expect(generateWA(e, "@cf/mistralai/mistral-small-3.1-24b-instruct", "sys", "usr", 30)).rejects.toMatchObject({ code: "timeout" });
+    const kv = (e.QUOTA as unknown as { data: Map<string, string> }).data;
+    expect(Number([...kv.entries()].find(([k]) => k.startsWith("n:wa:"))?.[1] ?? 0)).toBeGreaterThan(0);
   });
   it("bağlam yoksa not_configured ve kota sayacı artmaz", async () => {
     const e = waEnv(undefined);

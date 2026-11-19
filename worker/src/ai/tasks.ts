@@ -130,6 +130,8 @@ export async function runTask(env: Env, taskName: string, vars: unknown): Promis
     } catch (e) {
       if (!(e instanceof HttpError)) throw e;
       if (["not_configured", "invalid_request", "quota_user"].includes(e.code)) throw e;
+      // Workers AI: ücretsiz pay bittiyse yedek model de aynı paydan yer; denenmez
+      if (saglayici === "workers-ai" && e.code === "quota_upstream") throw e;
       last = e;
     }
   }
@@ -139,8 +141,8 @@ export async function runTask(env: Env, taskName: string, vars: unknown): Promis
 /** Rol oyunu cevabı en çok WA.reply_max_words kelime (PM 7022002310-5) */
 function kisa(name: AiTaskName, out: unknown): unknown {
   if (name !== "roleplay_turn") return out;
-  const o = out as { reply_de: string };
-  return { ...o, reply_de: kisalt(o.reply_de) };
+  const b = out as { reply_de: string; end?: boolean };
+  return { ...b, reply_de: kisalt(b.reply_de, undefined, !!b.end) };
 }
 
 export function safeJson(text: string): unknown {
