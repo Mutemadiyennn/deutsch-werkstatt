@@ -4,8 +4,10 @@
 Türkçe konuşan bir yetişkinin Almancayı gerçek hayatta (telefon, doktor, iş, resmî daireler, gündelik konuşma, Bavyera ağzını anlama) kullanabilmesi için kişisel bir iPhone uygulaması. Öğretim iletişim odaklıdır: önce duy, sonra parçala, sonra hatırla, en sonda bağımsız konuş. Açıklama dili Türkçe; üç dil katmanı (Hochdeutsch / Alltagsdeutsch / Bairisch). v1 (`app/`, Pages kökü) çalışmaya devam eder; v2 (`web/`, `worker/`, `content/v2/`) `/v2/` altında yayınlanır ve aynı iPhone kabuğundan açılır.
 
 ## Her oturumda önce oku
+**Önce `docs/v2/YOL_HARITASI.md`: hangi taştayız?** (PM-051; şu an **M1 İlk Hafta**, STATUS'un ilk satırı). Taşa bağlanamayan iş başlatılmaz; her PR bağlı olduğu taşı yazar.
+
 Her ajan ve oturum işe `docs/v2/LEARNER.md`'yi okuyarak başlar. Her kararda tek soru: **"Bu, bu öğrenciyi dışarıda konuşmaya yaklaştırıyor mu, ve yarın uygulamayı yeniden açmak istemesini sağlıyor mu?"**
-**Öncelik zinciri** (çelişkide üstteki geçerli; OGRETIM_DONGUSU başlığı): AHTAPOT → YOL_HARITASI → OGRETIM_DONGUSU → BEYIN → LEARNING_SYSTEM → KUTUPHANE → ICERIK_EVRENI → TASARIM/DESIGN. PEDAGOGY ilke kaynağıdır; çelişki görülürse PM'e yazılır, PEDAGOGY değiştirilmez. Bütün sayısal eşiklerin tek kaynağı `policy.json`.
+**Öncelik zinciri** (PM-052 C.4; çelişkide üstteki geçerli): (1) `phases/` ve PEDAGOGY (proje sahibinin metni) → (2) YOL_HARITASI (#56) → (3) LEARNER ve vizyon (#47) → (4) PM belgeleri (AHTAPOT, OGRETIM_DONGUSU, BEYIN, LEARNING_SYSTEM, KUTUPHANE, ICERIK_EVRENI, TASARIM). PM ya da uzman kararı phases/ ile çelişirse phases/ kazanır (PM-047 §4). Bütün sayısal eşiklerin tek kaynağı `policy.json`.
 1. `docs/v2/AHTAPOT.md` — **bütün eğitim sisteminin tek haritası** (PM-016): ana yol + kollar; her PR açıklamasında "AH bağı" satırı (aile, kol, kanıt; AH-4)
 2. `docs/v2/YOL_HARITASI.md` — **tek yol haritası** (PM-010): iş seçimi yalnızca §4'e göre (önce #12 P0→P2, sonra haritadaki sıradaki sürüm; haritada olmayan iş yapılmaz); her sürüm §1'in altı kapısından geçer
 3. `docs/v2/OGRETIM_DONGUSU.md` — önce öğret sonra iste; `requires`, kanıt düzeyleri, kapılar, OD-9 Türkçe açıklama standardı (**üretim görevleri ve kapılarda öncelikli**, PM-014)
@@ -37,9 +39,10 @@ PM belgeleri issue olarak gelir; depoya baş geliştirici alır (PM-011).
 - **Döngüsüzlük (H4 §4):** bir konu yeni bir şey öğretmedikçe tekrar gelmez; tekrarlar farklı bağlam ve karakterle gelir.
 - **WebKit kabul ölçütüdür.** "Bitti" kararı CI'daki WebKit (iPhone 15, iPhone 16 Pro Max) sonucuna göre verilir. Yerelde WebKit kurulamazsa Chromium'a düşülmez; yerel Chromium yalnızca hızlı geri bildirimdir.
 - **Bitti tanımı:** kod + birim testleri + WebKit uçtan uca testleri + DN-2 makine kapısının tamamı (gezgin, yükleme bütçesi, uçak modu, TS-4, üç cihaz; `docs/v2/DENETIM.md`) + doğrulayıcı 0 hata + güncel STATUS + PR açıklaması. Biri eksikse "bitti" denmez.
+- **PR sınırı (PM-046 B, PM-052 C.11):** yeni özellik PR'ı için en fazla 4 açık PR; ≤50 satırlık hata düzeltmeleri ve tarihi olan işler muaf.
 - **Küçük PR.** Her teslim ayrı dal ve ayrı PR; bağımlıysa öncekinin üstüne (yığınlı). PR açıklaması kendi başına anlaşılır: ne değişti, nasıl test edildi, arayüz değiştiyse ekran görüntüleri, bilinen eksikler.
 - **Bağımsız inceleme.** Her PR birleşmeden önce işi yazmamış `inceleme` ajanı temiz bağlamla inceler ve PR'a yorum yazar. İçerikte sıra: yazar → dilbilimci → örneklem kontrolü (ayrı ajanlar).
-- **En fazla 3 ajan aynı anda.** Ajanlar yalnızca `.claude/agents/` tanımlarıyla başlatılır (lex, yazar, dilbilimci, okur, inceleme, qa). İçerik sırası: yazar → dilbilimci → okur (OD-9) → örneklem.
+- **En fazla 3 ajan aynı anda (oturum başına, PM-040).** Modeller phases/08'e göre (PM-052 C.3): dilbilimci ve inceleme Fable; lex, yazar, qa, okur Opus; Haiku ve Sonnet yok. Fable haftalık payı dolarsa kredi alınmaz, Opus ile devam edilir (DECISIONS). Ajanlar yalnızca `.claude/agents/` tanımlarıyla başlatılır (lex, yazar, dilbilimci, okur, inceleme, qa). İçerik sırası: yazar → dilbilimci → okur (OD-9) → örneklem.
 - **Arayüz çıtası:** v2 hiçbir ekranda v1'den görsel olarak zayıf olamaz (phases/04); iPhone standardı (phases/05).
 - **Rol oyunu:** güçlü model; 12 sn'de yanıt yoksa "Biraz uzun sürüyor" + Bekle / Tekrar dene / Yapay zekâsız devam; istek kesilmez (D-RP1).
 - **PR'lar LS ve RQ kimliklerini ve "AH bağı" satırını listeler** (LS-16.4, PM-005, PM-016). Arayüz değiştiren PR'da iPhone 15 Pro Max ekran görüntüleri, açık + koyu. Her sürümde LS-16.3 öğrenci simülasyonu zorunlu; QA ajanı bilgi kısıtlı oynar (öğretilmeyen öğeyi üretmesi istenirse P0).
@@ -77,8 +80,10 @@ scripts/v2-rollback.sh v2-YYYYMMDD-n          # ya da: gh workflow run deploy-v2
 | `web/`, `worker/`, `packages/shared/`, `content/tools/`, `.github/`, `scripts/` | baş geliştirici (ana oturum) |
 | `docs/v2/STATUS.md`, `DECISIONS.md`, `BLUEPRINT.md`, `CONTENT_PLAN.md` | baş geliştirici |
 | `docs/v2/PEDAGOGY.md`, `docs/v2/phases/` | proje sahibinin metni; yalnızca baş geliştirici kopyalar, içerik değiştirilmez |
-| `docs/v2/{AHTAPOT,YOL_HARITASI,OGRETIM_DONGUSU,BEYIN,MIMARI,TASARIM,KUTUPHANE,ICERIK_EVRENI,KAYNAKLAR}.md`, `docs/v2/design/` | PM belgeleri (issue'dan); baş geliştirici depoya alır; içerik PM talimatıyla değişir (KAYNAKLAR §5 doğrulama sonuçları baş geliştirici yazar) |
+| `docs/v2/YOL_HARITASI.md` | #56'nın metni aynen; yalnızca değişiklik kuralıyla (PM-051) |
+| `docs/v2/{AHTAPOT,OGRETIM_DONGUSU,BEYIN,MIMARI,TASARIM,KUTUPHANE,ICERIK_EVRENI,KAYNAKLAR}.md`, `docs/v2/design/` | PM belgeleri (issue'dan); baş geliştirici depoya alır; içerik PM talimatıyla değişir (KAYNAKLAR §5 doğrulama sonuçları baş geliştirici yazar) |
 | `docs/v2/reviews/okur/**` | okur |
+| `content/v2/**` (içerik) ve STATUS içerik sayacı | **içerik motoru oturumu** (PM-040): lex, yazar, dilbilimci, okur hattı; yalnızca içerik PR'ı. Şema/doğrulayıcı değişikliği istemez, #12'ye yazar |
 | `content/v2/registry/lexicon/**` | lex |
 | `content/v2/domains/<alan>/**` | yazar (görevde verilen alanlar) |
 | görevde verilen içerik dosyaları + `docs/v2/reviews/**` | dilbilimci (yazar o dosyaya artık dokunmaz) |
@@ -90,4 +95,4 @@ scripts/v2-rollback.sh v2-YYYYMMDD-n          # ya da: gh workflow run deploy-v2
 | PR yorumları | inceleme (depoya yazmaz) |
 | `app/` (v1) | baş geliştirici, yalnızca onaylı küçük dokunuşlar |
 
-Commit ve PR'ı yalnızca baş geliştirici açar; `git add -A` kullanılmaz (ajanlar çalışırken yarım dosya girmesin), yollar tek tek eklenir.
+Commit ve PR'ı yalnızca baş geliştirici açar (istisna: içerik motoru oturumu kendi dallarından yalnızca içerik PR'ı açar, PM-040). Şema, doğrulayıcı ve kod yalnızca baş geliştiricidedir; `git add -A` kullanılmaz (ajanlar çalışırken yarım dosya girmesin), yollar tek tek eklenir.

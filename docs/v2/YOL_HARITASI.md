@@ -1,61 +1,62 @@
-# Deutsch Werkstatt — TEK YOL HARİTASI
+<!-- #56'nın metni aynen (PM-051). Değişiklik yalnızca #56'daki değişiklik kuralıyla. -->
+> **SABİT YOL HARİTASI, sürüm 1.1 (19.11.2026).** Projenin tek yolu budur. Ana motor, İçerik Motoru, denetim turları ve PM yalnızca bu yolda çalışır.
+> Bunu tamamlayan üç kaynak var:
+> - Vizyon: #47. Neden yapıyoruz.
+> - Bitti tanımı: #54. Ne zaman "final" deriz.
+> - İlerleme: #53. Neredeyiz.
+>
+> Bu belge depoda `docs/v2/YOL_HARITASI.md` olarak aynen tutulur; eski yol haritası arşive gider.
 
-> Sahibi: proje yöneticisi (PM). Tarih: 17.11.2026. Kişisel bilgi içermez.
-> Bu belge **sırayı** yönetir: öğrenci hangi hafta neyi yapabilir hale gelir, ürün hangi tarihte neyi sunar, her adım hangi kapılardan geçer. **Ne** yapılacağının ayrıntısı LEARNING_SYSTEM.md (LS), REQUIREMENTS.md (RQ), DESIGN.md ve PEDAGOGY.md'dedir. Ana oturum işi bu haritadaki sırayla seçer; haritada olmayan iş yapılmaz, haritaya ancak PM ekler.
+## Tek cümle
+Proje sahibi uygulamayı açınca Almanca öğrenir. Günde 100 dakika (4 × 25 dakika Pomodoro). Sıfırdan başlar, 6 ayda dışarıda rahatça konuşur. Arada boş vakit geçmez.
 
-## 0. Tek ilke
+## Altı deneyim (her kilometre taşında altısı birlikte büyür)
+1. **Video, podcast ve röportaj, altında sorular:** "Ne dedi? Yaz." / "Duydun mu?" / "Sen ne cevap verirdin? Söyle."
+2. **Gerçek sesler:** anons, radyo, sesli mesaj. Ardından "Anladın mı?", "Aynısını yaz", "Ne yapmalısın?".
+3. **Kelime:** fotoğraflı kart, aralıklı tekrar, cevabı öğrenciden bekleyen sorular.
+4. **Ders yolu:** seviye seviye açılır; XP, seri ve her zaman belli bir "sıradaki adım".
+5. **Konuşma partneri:** gerçek durum provası, ardından Türkçe geri bildirim.
+6. **Görselle anlam:** resim ve sesle anlam kurma.
 
-**Öğrenci her gün bir adım ileri gider.** "Adım" = dün yapamadığı bir şeyi bugün yapabilmek (yeni bir cümleyi ipucusuz söylemek, bir hızda dinlediğini anlamak, bir gerçek görevi denemek). Bir gün adımsız geçtiyse ürün bunu fark eder ve ertesi günü buna göre kurar. Üç gün üst üste adım yoksa koç planı değiştirir ve PM'ye işaret düşer.
-
-## 1. Altı bakış açısı = altı kapı
-
-Her sürüm ve her önemli PR yayından önce altı kapıdan geçer. Bir kapıdan geçemeyen iş yayınlanmaz.
-
-| Kapı | Soru | Nasıl ölçülür |
-|---|---|---|
-| **Öğrenci** | Bugün bir adım attım mı, sıkıldım mı, takıldım mı? | Bilgi kısıtlı öğrenci simülasyonu (LS-16.3); bırakma noktaları |
-| **Öğretmen** | Önce öğretti mi, sonra mı istedi? Konuşturdu mu? | Kurma merdiveni ve senaryo standardı kontrolü; sesli üretim oranı |
-| **Dilbilimci** | Almanca doğru ve doğal mı, gerçekten böyle konuşuluyor mu? | Bağımsız dilbilimci raporu; rastgele örneklem hatası ≤ %2 |
-| **Test uzmanı** | Her koşulda çalışıyor mu? | WebKit testleri; mikrofon 50 denemede ≥ 49; internetsiz ve yapay zekâsız gün; hata enjeksiyonu |
-| **Tüketici** | Açmak istiyor mu, güzel mi, ödüllendirici mi? | DESIGN.md kabulü; ekran başına tek ilerleme; açılma sıklığı |
-| **CEO** | Bu iş öğrenciyi nihai hedefe (günlük hayatta neredeyse ana dil rahatlığı) yaklaştırıyor mu, yoksa oyalıyor mu? | LS-0.2 ölçütleri; "yapabiliyorum" listesindeki artış |
-
-## 2. Öğrencinin yolu ve ürünün yolu (aynı takvim)
-
-Tarihler hedeftir; kayarsa PM yeniden planlar ve öğrenciye açıkça söyler. Bir sürüm kapılardan geçmeden tarih tutturmak için yayınlanmaz.
-
-| Dönem | Öğrenci bu dönemin sonunda… | Ürün o tarihe kadar… | Kapı kanıtı |
+## Kilometre taşları (sıra değişmez)
+| # | Taş | Kapsam | Bitti ölçütü |
 |---|---|---|---|
-| **Şimdi → R1** | Öğrenci uygulamanın hazır olmasını bekler (kendi tercihi); kursuna devam eder | Birleştirme turu (PM-007) biter, /v2/ yayına çıkar, R1 hazırlanır | Açık PR ≤ 3, /v2/ yayında |
-| **27.11.2026** | Weihnachtsmarkt'ta sipariş verebilir | Advent/Weihnachtsmarkt mini senaryoları (LS-17.0) | 3 senaryo, dilbilimci onaylı |
-| **R1 "İlk telefon"** — hedef: 1. Aralık haftası | Telefonla randevu alır; anlamadığında kontrolü elinde tutar; arabada ders yapar | LS-17 R1 kapsamı + PM-003…PM-008'in R1 maddeleri + DESIGN.md (Bugün, ifade kartı, gelen arama) | 6 kapının tamamı; ilk 10 dakika ölçütü (LS-2.2) |
-| **R2 "Molada konuşan"** — hedef: 20.12.2026 | Molada 2 dk sohbete katılır; hafta sonunu anlatır; Weihnachtsfeier'de küçük sohbet yapar | Mola sohbetleri, smalltalk, Benim cümlelerim, spor + toplu taşıma modu, hikâye 1–4, şehir haritası, haftalık koç, ödev yardımcısı, telefon 03–04, arzt 02–04 | 6 kapı; 4 bağlam modu simülasyonu |
-| **R3 "Şehirde"** — hedef: 20.01.2027 | Bürgeramt, banka, ev sahibi, market iadesi; habersiz aramaya cevap verir | einkaufen, bäckerei, amt, bank, wohnung, iş arama/iş görüşmesi; Kulak Salonu 3–4; gelen arama kademe 2–3; gerçek medya köprüsü | 6 kapı; Ay 3 "yapabiliyorum" hedefleri |
-| **R4 "Rahat"** — hedef: 01.02.2027 (Fasching'den önce) | Hızlı konuşanı takip eder; Bavyera ifadelerini anlar; 5 dk sohbet eder | Kalan alanlar; Kulak Salonu 5 (kaynaklı Bairisch); aylık konuşma karşılaştırması; Fasching/Starkbierzeit | 6 kapı; 19+ alan yayında |
-| **R5 "B1"** — hedef: sınav gününden 6 hafta önce (tarih yalnızca cihaz profilinde; D-075) | B1 sınav formatlarına hazır | B1 yolu (LS-15); medien alanı; v1'in emekliye ayrılması (onaylı liste) | Deneme sınavı sonuçları |
-| **Sınav günü** (yalnızca cihaz profilinde) | B1 sınavı | — | — |
-| **R6 "Akıcı" (ay 7–12)** | Çok kişili hızlı sohbeti takip eder, tartışır, espri anlar | PM-009 R6 | Gerçek görev kanıtları |
-| **R7 "Doğal" (ay 12–24)** | Register geçişleri, uzun anlatı, doğal tepkiler | PM-009 R7 | Aylık kayıt karşılaştırması |
-| **R8 "Gerçek dünya"** (R6 ile paralel) | Dizi, film, podcast ile kendi kendine öğrenir | PM-009 R8 | "Duyduğum kelime" akışı |
+| **M1** | **İlk Hafta** | A1'in 7 günü. Altı deneyimin hepsi gerçek içerikle ve yeni tasarımla. Ayrıca kelime tekrarı, Pomodoro, çevrimdışı çalışma ve veri güvenliği. | Hızlandırılmış öğrenci sıfırdan 7 günü bitirir, öğretilmeden istenen öğe 0 olur, hafta sonu testini geçer. Proje sahibine bir günlük ekran kaydı gösterilir. Bağımsız arayüz uzmanı "v1'den güçlü" der. |
+| **M2** | **A1 tamamı** | Aynı kalıpla 2.–8. haftalar. Seviye kontrolü, ara verince hatırlatma, hasta modu, araba ve spor modu. | Öğrenci A1'i bitirir. Her hafta sonu testi geçilir. |
+| **M3** | **A2 tamamı** (proje sahibinin seviyesi) | Telefon, doktor, Amt, iş, ev, alışveriş senaryoları. Metin merdiveni, gelen arama, posta kutusu, mola sohbeti, Deutsch im Blick A2. | Öğrenci A2'yi bitirir. Gerçek hayat görevleri prova edilir. |
+| **M4** | **B1 tamamı** | B1 içeriği ve sınav provası. | Öğrenci B1'i bitirir. |
+| **M5** | **FINAL 1.0** | Köyün bütün kolları, canlı akış, "Bütün kütüphaneyi indir" tek tuşu, iOS kabuğu final, #54'ün tamamı. | #54'teki her satır İMZALI. 3 uzmandan "final" hükmü. Proje sahibi kabuğu bir kez kurar ve tek tuşa basar. |
+| **M6** | **B2–C2** | Şema bugünden A1–C2'yi destekler. İçerik üretimi B1 bitince başlar; FINAL 1.0'dan sonra kütüphaneye fark paketleriyle eklenir. | Her seviyede aynı bitti ölçütü (hızlandırılmış öğrenci). |
 
-### 2.1 Kütüphane üretim takvimi (KUTUPHANE §10, PM-011; içerik hattı PM-015)
-| Sürüm | Kütüphane |
-|---|---|
-| R1 | K2 üretici alıştırma motoru (yapım gereği doğru cümle; kabul: 1.000 rastgele cümlede dilbilimci hata oranı ≤ %0,5) · 20 kalıp onaylı · A1–A2 gramer omurgası · içerik etiketleri (seviye/alan/gramer/bant/katman) · üretim/öğrenme oranı ölçümü (KT-3.1) |
-| R2 | İlk K3 paketi · Okuma Salonu ilk 40 metin · hikâye 1–4 |
-| R3–R5 | KUTUPHANE §10 tablosu |
-İçerik hattı R1'i beklemez: altı seviye, günlük üretim, her yayında cihaza (KUTUPHANE §10.1).
+Bir taş bitmeden sonrakine geçilmez. İçerik Motoru, bir sonraki taşın içeriğini önceden hazırlayabilir, ama kod ve ekran işi her zaman o anki taştadır.
 
-## 3. Günlük ilerleme güvencesi (ürün içinde, R1'den itibaren)
+## Değişiklik kuralı (yol "her gün" değişmez)
+- Yol yalnızca iki durumda değişir:
+  - (1) proje sahibi açıkça ister;
+  - (2) bir denetim, o anki taşı engelleyen P0 bir sorun bulur.
+- Her değişiklik aşağıdaki **değişiklik kaydına** tarih ve gerekçeyle yazılır ve sürüm numarası artar (1.0 → 1.1).
+- Bulgular yolu değiştirmez. Bulgu, ait olduğu taşın iş listesine girer.
+- PM'in her talimatı bağlı olduğu taşı yazar (ör. "M1"). Bir taşa bağlanamayan talimat verilmez.
+- Motorlar, taşa bağlı olmayan bir talimatı uygulamaz ve PM'e geri sorar.
 
-- Bugün ekranının en üstünde "Bugünün adımı": bugün yapabilir hale geleceğin tek şey (ör. "Randevuyu telefonda ertelemek"). Gün sonunda başarıldıysa Raute dolar.
-- Haftalık "yapabiliyorum" hedefi: her hafta en az 1 yeni gerçek hayat becerisi.
-- 3 gün üst üste adım yoksa: koç planı sadeleştirir, bir önceki aşamaya döner, başarı bandını (%80–85) yeniden kurar.
-- **Haftalık özet paylaşımı:** Öğrencinin ilerleme verisi cihazındadır; PM bunu göremez. Bugün ekranında tek dokunuşla "Haftalık özeti paylaş" (kişisel bilgi içermeyen sayılar: odak dakikası, sesli cümle, yeni kalıcı öğe, gerçek görev, İngilizceye kaçma, takıldığı ekranlar). Öğrenci isterse PM'ye iletir; PM planı buna göre ayarlar.
+## Eski talimatların bu yoldaki yeri
+- **M1'e girenler:**
+  - PM-042 A3 ve A6 (şema);
+  - PM-045 §4 (temel ders, sayı yazımı);
+  - PM-046 (model düzeni, birleştirme sırası);
+  - PM-047 (Pomodoro, işlev kelimeleri);
+  - PM-049 (Kelime Bahçesi);
+  - PM-050 (İlk Hafta);
+  - PM-044 madde 1 (mevsim dersi);
+  - PM-039'dan yalnızca çevrimdışı çalışma, veri güvenliği ve hata ekranı;
+  - kelime kartına `forms`, fotoğraf ve eşdizim eklenmesi;
+  - #45'te arayüz uzmanının bulduğu P0'lar (yeni tasarım, M1 ekranlarında).
+- **M2–M4:** İçerik Motoru'nun iki şeridi, metin merdiveni, gelen arama, posta kutusu ve geri kalan senaryo içeriği; her biri ait olduğu seviyede.
+- **M5:** kütüphane barındırma ve tek tuş (PM-041, PM-045 §2), iOS kabuğu (PM-038), PM-039'un geri kalanı, canlı akış (PM-024/025).
 
-## 4. İş seçme kuralı (ana oturum için)
+## Değişiklik kaydı
+| Sürüm | Tarih | Değişiklik | Gerekçe |
+|---|---|---|---|
+| 1.0 | 19.11.2026 | İlk sabit sürüm. "Her şeyi aynı anda genişlet" yerine dilim dilim ilerleme. | Proje sahibi: "Uygulamaya girince Almanca öğrenmek istiyorum. Sürekli karar değişmesin." |
 
-1. Önce açık PM talimatları (#12), P0 → P1 → P2.
-2. Sonra bu haritadaki bir sonraki sürümün kapsamı, REQUIREMENTS.md'deki o sürüme işaretli maddelerle birlikte.
-3. Haritada olmayan iş yapılmaz; gerekiyorsa #12'de PM'ye önerilir.
-4. Aynı anda en fazla 3 açık PR; her PR birleşince STATUS.md güncellenir.
+| 1.1 | 19.11.2026 | M6 (B2–C2) eklendi. Günde 100 dakika açıkça yazıldı. M1 iş listesi izlenebilirlik bulgularıyla genişledi (PM-052 A). Bairisch oranı düşürülmez. | Proje sahibi: 'A1… 6. seviye, şimdiden başlansın'; phases/00 öncelik 4; izlenebilirlik denetimi #57. |
