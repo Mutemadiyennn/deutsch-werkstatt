@@ -3,7 +3,7 @@
  * öbeği içeren örnek öne çıkar), dönüşümler (soru, olumsuz, kibar, geçmiş, sebep, aktarma, koşul), sık hata. `grammar_tr`
  * yazar notudur, gösterilmez (OD-9). Liste: `#/kalip`; kart: `#/kalip/<id>`. Çevrimdışı (sözlük paketiyle gelir).
  */
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import type { Lexeme, Pattern } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadLexicon } from "../services/content.ts";
@@ -51,6 +51,38 @@ function KalipListesi({ ps }: { ps: Pattern[] }) {
           <span class="grow">{p.frame_tr ? <Rich text={p.frame_tr} /> : <span lang="de">{p.frame}</span>}<br />
             <span class="small muted" lang="de">{p.examples[0]?.de}</span></span>
           <span class="chip">{p.level}</span><span aria-hidden="true">›</span></a></li>))}</ul>
+    </div>
+  );
+}
+
+/** Alt sayfa (inceleme #94 2. tur P2): açılınca odak "Kapat"ta, Tab sayfanın içinde döner, Escape kapatır, kapanınca
+ *  odak açan düğmeye döner. Arkadaki alıştırma (madde, yarım cevap) olduğu gibi kalır. */
+function KalipSayfasi({ p, kapat, children }: { p: Pattern; kapat: () => void; children: preact.ComponentChildren }) {
+  const kutu = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const onceki = document.activeElement as HTMLElement | null;
+    kutu.current?.querySelector<HTMLElement>("[data-test=kalip-kapat]")?.focus();
+    const tus = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { e.preventDefault(); kapat(); return; }
+      if (e.key !== "Tab" || !kutu.current) return;
+      const od = [...kutu.current.querySelectorAll<HTMLElement>("button, [href], input, [tabindex]:not([tabindex='-1'])")].filter((x) => !x.hasAttribute("disabled"));
+      if (!od.length) return;
+      const ilk = od[0]!, son = od[od.length - 1]!;
+      if (e.shiftKey && document.activeElement === ilk) { e.preventDefault(); son.focus(); }
+      else if (!e.shiftKey && document.activeElement === son) { e.preventDefault(); ilk.focus(); }
+      else if (!kutu.current.contains(document.activeElement)) { e.preventDefault(); ilk.focus(); }
+    };
+    document.addEventListener("keydown", tus);
+    return () => { document.removeEventListener("keydown", tus); if (onceki?.isConnected) onceki.focus(); };
+  }, []);
+  return (
+    <div class="whydim" onClick={kapat}>
+      <div ref={kutu} class="whysheet kalip-sheet stack" role="dialog" aria-modal="true" aria-label="Kalıp kartı" data-test="kalip-karti" data-id={p.id} onClick={(e) => e.stopPropagation()}>
+        <div class="row" style={{ flexWrap: "nowrap" }}><h2 class="grow">Kalıp</h2>
+          <button class="iconbtn" aria-label="Kapat" data-test="kalip-kapat" onClick={kapat}><Icon name="x" /></button></div>
+        {children}
+        <button class="btn primary block" onClick={kapat}>Alıştırmaya dön</button>
+      </div>
     </div>
   );
 }
@@ -122,16 +154,7 @@ export function KalipKarti({ p, lex = [], back = "#/kalip", kapat }: { p: Patter
       )}
     </>
   );
-  if (kapat) return (
-    <div class="whydim" onClick={kapat}>
-      <div class="whysheet kalip-sheet stack" role="dialog" aria-modal="true" aria-label="Kalıp kartı" data-test="kalip-karti" data-id={p.id} onClick={(e) => e.stopPropagation()}>
-        <div class="row" style={{ flexWrap: "nowrap" }}><h2 class="grow">Kalıp</h2>
-          <button class="iconbtn" aria-label="Kapat" data-test="kalip-kapat" onClick={kapat}><Icon name="x" /></button></div>
-        {govde}
-        <button class="btn primary block" onClick={kapat}>Alıştırmaya dön</button>
-      </div>
-    </div>
-  );
+  if (kapat) return <KalipSayfasi p={p} kapat={kapat}>{govde}</KalipSayfasi>;
   return (
     <div class="stack" data-test="kalip-karti" data-id={p.id}>
       <ProgressHeader title="Kalıp" back={back} />

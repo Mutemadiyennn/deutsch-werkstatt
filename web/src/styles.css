@@ -545,5 +545,7 @@ main { overflow-x: clip; }
 .kalip-link, .kalip-bag-btn { display: flex; align-items: center; min-height: 44px; color: var(--himmel-ink); text-decoration: underline; }
 .kalip-bag-btn { background: none; border: 0; padding: 0; font: inherit; text-align: left; cursor: pointer; }
 .kalip-sheet { max-height: 88vh; overflow-y: auto; }
+/* alt sayfada bölüm başlıkları ayrı sayfadaki gibi küçük kicker (genel .whysheet h3 kuralı ezmesin; inceleme #94 2. tur) */
+.whysheet.kalip-sheet h3.kicker { font-size: 0.78rem; margin-bottom: 4px; }
 .wchip[aria-pressed="true"] { background: var(--himmel); color: var(--card); }
 @media (prefers-reduced-motion: reduce) { .kalip-ornek { transition: none; } }

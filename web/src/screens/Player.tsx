@@ -53,7 +53,7 @@ function useScenario(id: string) {
     Promise.all([loadScenario(id), loadLexicon(), getScenarioProgress(id)])
       .then(([s, l, p]) => {
         const holder: { p: ScenarioProgress } = { p };
-        const ctx: Ctx = { s: personalizeDeep(s, persona), lx: new Map(l.lexemes.map((x) => [x.id, x])), pt: new Map(l.patterns.map((x) => [x.id, x])), prog: p, setProg: async (np) => { holder.p = np; await saveScenarioProgress(np); setSt((o) => (o.ctx ? { ctx: { ...o.ctx, prog: np } } : o)); } };
+        const ctx: Ctx = { s: personalizeDeep(s, persona), lx: new Map(l.lexemes.map((x) => [x.id, x])), pt: new Map(personalizeDeep(l.patterns, persona).map((x) => [x.id, x])), prog: p, setProg: async (np) => { holder.p = np; await saveScenarioProgress(np); setSt((o) => (o.ctx ? { ctx: { ...o.ctx, prog: np } } : o)); } };
         setSt({ ctx });
       })
       .catch((e) => setSt({ err: String(e.message || e) }));

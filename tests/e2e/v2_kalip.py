@@ -6,7 +6,7 @@
   - Sözlük kartından kelimenin kalıbına bağlantı; %130 yazıda taşma yok
 python3 tests/e2e/v2_kalip.py [--browser webkit] [--device "iPhone 15"] [--shots DIR]
 """
-import glob, json, os
+import glob, json, os, re
 from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
 
@@ -69,6 +69,29 @@ def main():
                     check("#/scenario/" in pg.url, "kalıp kartı alıştırmanın üstünde açılır (sayfa değişmez)")
                     pg.click("[data-test=kalip-kapat]")
                     check(pg.locator("[data-test=kalip-karti]").count() == 0 and pg.inner_text(".pbar") == once, "kapatınca aynı maddede devam")
+                # 3. madde pt:ich-bin ({Kunde|Kundin}, {name} taşır): alt sayfa da kişiselleştirilmiş (inceleme #94 2. tur P1)
+                sc = json.load(open(os.path.join(KOK, "content/v2/domains/telefon/scenarios/01-arzttermin.json")))
+                hedef = next(i for i, it in enumerate(sc["build"]) if it.get("pattern") == "pt:ich-bin")
+                for it in sc["build"][:hedef]:
+                    cevap = it["accepted"][0]
+                    pg.wait_for_selector("[data-test=answer], [data-chip]")
+                    if pg.locator("[data-test=answer]").count(): pg.fill("[data-test=answer]", cevap)
+                    else:
+                        for w in [x for x in (re.sub(r"[.,!?;:„“\"]", "", y) for y in cevap.split()) if x]:
+                            pg.locator(f'[data-chip="{w}"]:not([disabled]), [data-chip="{w.lower()}"]:not([disabled])').first.click()
+                    pg.click("[data-test=submit]"); pg.wait_for_selector("[data-test=verdict]"); pg.click("[data-test=verdict] [data-test=next]")
+                pg.wait_for_selector("[data-test=kalip-bag]")
+                pg.click("[data-test=kalip-bag]"); pg.wait_for_selector("[role=dialog][data-test=kalip-karti][data-id='pt:ich-bin']")
+                ak = pg.inner_text("[role=dialog][data-test=kalip-karti]")
+                check("{" not in ak and "Kundin bei Ihnen" in ak, f"alıştırmadaki alt sayfa da hitaba göre çözülmüş, ham yer tutucu yok (madde {hedef + 1})")
+                check(pg.evaluate("() => document.activeElement?.dataset?.test") == "kalip-kapat", "alt sayfa açılınca odak 'Kapat'ta")
+                pg.keyboard.press("Shift+Tab")
+                check(pg.evaluate("() => !!document.activeElement?.closest('[role=dialog]')"), "Tab alt sayfanın içinde döner")
+                bas = pg.evaluate("() => parseFloat(getComputedStyle(document.querySelector('[role=dialog] h3.kicker')).fontSize)")
+                kok = pg.evaluate("() => parseFloat(getComputedStyle(document.documentElement).fontSize)")
+                check(bas <= kok * 0.85, f"alt sayfada bölüm başlığı küçük kicker ({bas:.1f} px)")
+                pg.keyboard.press("Escape"); pg.wait_for_selector("[data-test=kalip-karti]", state="detached")
+                check(pg.evaluate("() => document.activeElement?.dataset?.test") == "kalip-bag", "Escape kapatır, odak açan düğmeye döner")
                 pg.goto(base + f"#/sozluk/{lx['de']}/{lx['id']}"); pg.wait_for_selector("[data-test=sozluk-kart]")
                 check(pg.locator("[data-test=sozluk-kaliplar] a").count() >= 1, f"Sözlük kartında kelimenin kalıbı ({lx['id']})")
                 pg.locator("[data-test=sozluk-kaliplar] a").first.click(); pg.wait_for_selector("[data-test=kalip-karti]")
