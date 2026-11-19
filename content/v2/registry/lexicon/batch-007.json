@@ -1,8 +1,12 @@
 {
  "batch": "007",
  "review": {
-  "status": "draft",
-  "notes": ""
+  "status": "reviewed",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-19",
+  "notes": "Taslak tam incelemesi (B6 sonrası): Almanca örnekler, eşdizim ve kart verisi baştan sona. docs/v2/reviews/lexicon-taslak-01…08.md, lexicon-taslak-duzeltme.md; okur: docs/v2/reviews/okur/taslak-0103.md, -0405.md, -06.md, -07.md, -08.md, -kartsiz.md, -duzeltme*.md. Türkçe alanlar ayrıca B6 okur turlarından geçti (lexicon-b6-NN).",
+  "okur": "passed",
+  "okur_at": "2026-11-19"
  },
  "items": [
   {
@@ -200,7 +204,7 @@
   {
    "id": "lx:nachdem",
    "de": "nachdem",
-   "tr": "-dikten sonra",
+   "tr": "bir şey yaptıktan sonra",
    "pos": "conj",
    "collocations": [
     {
@@ -217,8 +221,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Yan cümlede çoğu zaman bir önceki zaman (Perfekt/Plusquamperfekt): \"Nachdem ich gegessen habe, gehe ich\".",
-    "Fiil sonda: \"nachdem er angerufen hat\"."
+    "Yemek yedikten sonra gidiyorum derken **Nachdem ich habe gegessen, gehe ich** yanlış. Doğrusu **Nachdem ich gegessen habe, gehe ich**. **nachdem** ile başlayınca **habe** sona gider.",
+    "Yemek yedikten sonra gidiyorum derken **Nachdem ich esse, gehe ich** yanlış. Doğrusu **Nachdem ich gegessen habe, gehe ich**. Yemek önce bittiği için **esse** değil **gegessen habe** gelir."
    ],
    "examples": [
     {
@@ -230,13 +234,13 @@
     {
      "id": "lx:nachdem:2",
      "de": "Nachdem er angerufen hatte, war ich beruhigt.",
-     "tr": "O aradıktan sonra içim rahatladı.",
+     "tr": "Adam telefon ettikten sonra içim rahatladı.",
      "layer": "hd"
     },
     {
      "id": "lx:nachdem:3",
-     "de": "Nachdem du weg warst, kam er.",
-     "tr": "Sen gittikten sonra geldi.",
+     "de": "Nachdem du weg warst, ist er gekommen.",
+     "tr": "Sen gittikten sonra adam geldi.",
      "layer": "alltag"
     },
     {
@@ -568,8 +572,8 @@
      "tr": "bütün vücutta"
     },
     {
-     "de": "der Körperteil",
-     "tr": "vücut parçası"
+     "de": "der menschliche Körper",
+     "tr": "insan vücudu"
     },
     {
      "de": "gut für den Körper",
@@ -977,16 +981,16 @@
      "tr": "frene basmak"
     },
     {
-     "de": "eintreten",
-     "tr": "içeri girmek"
+     "de": "in eine Pfütze treten",
+     "tr": "su birikintisine basmak"
     },
     {
      "de": "jemandem auf den Fuß treten",
      "tr": "birinin ayağına basmak"
     },
     {
-     "de": "Treten Sie ein!",
-     "tr": "Buyurun, girin!"
+     "de": "in die Pedale treten",
+     "tr": "pedallara basmak"
     }
    ],
    "patterns": [
@@ -994,16 +998,16 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Lütfen içeri girin derken **Treten Sie bitte!** eksik. Doğrusu **Treten Sie bitte ein!** **ein** olmayınca tekme atın gibi anlaşılır.",
+    "Bana tekme attın derken **Du hast mich getretet** yanlış. Doğrusu **Du hast mich getreten**. Sona **t** değil **en** gelir.",
     "Ayağıma basıyorsun derken **Du tretest mir auf den Fuß** yanlış. Doğrusu **Du trittst mir auf den Fuß**. **du** ile **tretest** değil **trittst** gelir."
    ],
    "examples": [
     {
      "id": "lx:treten:1",
-     "de": "Treten Sie bitte ein!",
-     "tr": "Lütfen içeri girin!",
+     "de": "Ich bin in eine Scherbe getreten.",
+     "tr": "Bir cam kırığına bastım.",
      "layer": "hd",
-     "img": "host welcoming guest through doorway"
+     "img": "broken glass pieces on kitchen floor"
     },
     {
      "id": "lx:treten:2",
@@ -1054,10 +1058,10 @@
      "hint_tr": "**du** ile **trittst** olur."
     },
     {
-     "de": "Bitte ___ Sie ein!",
+     "de": "Wir ___ kräftig in die Pedale.",
      "answer": "treten",
-     "tr": "Lütfen içeri girin!",
-     "hint_tr": "Kibar konuşurken **treten Sie** denir, **ein** sona gider."
+     "tr": "Pedallara kuvvetle basıyoruz.",
+     "hint_tr": "**wir** ile **treten** olur."
     },
     {
      "de": "Au, du hast mich ___!",
@@ -1394,14 +1398,14 @@
      "id": "lx:gucken:1",
      "de": "Guck mal, da ist ein Parkplatz.",
      "tr": "Bak, orada park yeri var.",
-     "layer": "hd",
+     "layer": "alltag",
      "img": "driver pointing at free parking space"
     },
     {
      "id": "lx:gucken:2",
      "de": "Wir gucken heute einen Film.",
      "tr": "Bugün film izliyoruz.",
-     "layer": "hd",
+     "layer": "alltag",
      "img": "family watching movie on sofa"
     },
     {
@@ -1547,8 +1551,8 @@
      "tr": "bir şeyi öğrenmek"
     },
     {
-     "de": "rausfinden",
-     "tr": "öğrenmek"
+     "de": "den Grund herausfinden",
+     "tr": "nedenini öğrenmek"
     },
     {
      "de": "Ich finde es heraus.",
@@ -1883,8 +1887,8 @@
      "tr": "özellikle iyi"
     },
     {
-     "de": "etwas Besonderes",
-     "tr": "özel bir şey"
+     "de": "besonders wichtig",
+     "tr": "özellikle önemli"
     }
    ],
    "patterns": [
@@ -2006,10 +2010,10 @@
     },
     {
      "id": "lx:Bein:3",
-     "de": "Hals- und Beinbruch!",
-     "tr": "Bol şans!",
+     "de": "Mein Bein ist eingeschlafen.",
+     "tr": "Bacağım uyuştu.",
      "layer": "alltag",
-     "img": "actor backstage before show"
+     "img": "person rubbing numb leg while sitting on floor"
     },
     {
      "id": "lx:Bein:4",
@@ -2181,7 +2185,7 @@
      "tr": "anahtarı unutmak"
     },
     {
-     "de": "der Autoschlüssel",
+     "de": "der Schlüssel fürs Auto",
      "tr": "araba anahtarı"
     },
     {
@@ -2193,7 +2197,7 @@
      "tr": "anahtarı teslim etmek"
     },
     {
-     "de": "der Wohnungsschlüssel",
+     "de": "der Schlüssel für die Wohnung",
      "tr": "ev anahtarı"
     }
    ],
@@ -2815,8 +2819,8 @@
      "tr": "kırmızı bir araba"
     },
     {
-     "de": "der Rotwein",
-     "tr": "kırmızı şarap"
+     "de": "rote Haare",
+     "tr": "kızıl saç"
     },
     {
      "de": "in Rot",
@@ -3292,8 +3296,8 @@
      "tr": "dikkatli olmak"
     },
     {
-     "de": "Vorsicht!",
-     "tr": "Dikkat!"
+     "de": "vorsichtig öffnen",
+     "tr": "dikkatle açmak"
     }
    ],
    "patterns": [
@@ -3402,13 +3406,13 @@
      "id": "lx:Mist:1",
      "de": "So ein Mist, der Bus ist weg!",
      "tr": "Hay aksi, otobüs kaçtı!",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:Mist:2",
      "de": "Das ist doch Mist!",
      "tr": "Bu saçmalık!",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:Mist:3",
@@ -3471,7 +3475,7 @@
     },
     {
      "de": "still sitzen",
-     "tr": "kıpırdamadan oturmak"
+     "tr": "sessizce oturmak"
     }
    ],
    "patterns": [
@@ -3543,7 +3547,7 @@
   {
    "id": "lx:hauen",
    "de": "hauen",
-   "tr": "vurmak, kaçıp gitmek",
+   "tr": "vurmak",
    "pos": "verb",
    "verb": {
     "praesens3": "haut",
@@ -3564,12 +3568,12 @@
      "tr": "birine vurmak"
     },
     {
-     "de": "abhauen",
-     "tr": "kaçıp gitmek"
+     "de": "einen Nagel in die Wand hauen",
+     "tr": "duvara çivi çakmak"
     },
     {
-     "de": "Hau ab!",
-     "tr": "Defol!"
+     "de": "sich aufs Ohr hauen",
+     "tr": "biraz kestirmek"
     }
    ],
    "patterns": [
@@ -3578,20 +3582,20 @@
    "register": "informal",
    "mistakes_tr": [
     "Masaya vurdu derken **Er hat auf dem Tisch gehauen** yanlış. Doğrusu **Er hat auf den Tisch gehauen.** Vurulan yer için **den** gelir.",
-    "Kaçıp gitti derken **Er hat abgehauen** yanlış. Doğrusu **Er ist abgehauen.** Yer değiştirdiği için **ist** gelir."
+    "Oğlan kardeşine vurdu derken **Der Junge hat seinem Bruder gehauen** yanlış. Doğrusu **Der Junge hat seinen Bruder gehauen.** **hauen** ile **seinem** değil **seinen** gelir."
    ],
    "examples": [
     {
      "id": "lx:hauen:1",
      "de": "Der Junge hat seinen Bruder gehauen.",
      "tr": "Oğlan kardeşine vurdu.",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:hauen:2",
      "de": "Er haut mit der Faust auf den Tisch.",
      "tr": "Adam yumruğunu masaya vuruyor.",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:hauen:3",
@@ -3601,8 +3605,8 @@
     },
     {
      "id": "lx:hauen:4",
-     "de": "– Wo ist der Typ? – Der ist abgehauen.",
-     "tr": "– O adam nerede? – Kaçıp gitti.",
+     "de": "– Was ist das für ein Krach? – Der Nachbar haut einen Nagel in die Wand.",
+     "tr": "– Bu gürültü ne? – Komşu duvara çivi çakıyor.",
      "layer": "alltag",
      "dialog": true
     }
@@ -3616,20 +3620,20 @@
    "exp": {
     "anlam_tr": "Birine ya da bir şeye elle vurmayı söyler.",
     "parcalar": [],
-    "ipucu_tr": "**ab** ile birlikte **abhauen** kaçıp gitmek demektir."
+    "ipucu_tr": "Duvara çivi çakmak için de **einen Nagel in die Wand hauen** denir."
    },
    "forms": [
     {
-     "de": "Er ___ einfach ab.",
+     "de": "Er ___ mit der Faust auf den Tisch.",
      "answer": "haut",
-     "tr": "Adam öylece kaçıp gidiyor.",
-     "hint_tr": "**er** ile **hauen**, **haut** olur, **ab** sona gider."
+     "tr": "Adam yumruğunu masaya vuruyor.",
+     "hint_tr": "**er** ile **hauen**, **haut** olur."
     },
     {
-     "de": "Hau ___!",
-     "answer": "ab",
-     "tr": "Defol!",
-     "hint_tr": "Defol derken **Hau ab!** denir."
+     "de": "Der Junge hat seinen Bruder ___.",
+     "answer": "gehauen",
+     "tr": "Oğlan kardeşine vurdu.",
+     "hint_tr": "Geçmişi anlatırken **hat gehauen** denir."
     }
    ]
   },
@@ -3726,16 +3730,16 @@
   {
    "id": "lx:sobald",
    "de": "sobald",
-   "tr": "…-ir …-mez",
+   "tr": "bir şey olur olmaz",
    "pos": "conj",
    "collocations": [
     {
-     "de": "sobald wie möglich",
-     "tr": "mümkün olduğunca çabuk"
+     "de": "sobald es geht",
+     "tr": "mümkün olur olmaz"
     },
     {
      "de": "sobald ich da bin",
-     "tr": "varır varmaz"
+     "tr": "ben varır varmaz"
     }
    ],
    "patterns": [
@@ -3743,14 +3747,14 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Yan cümlede fiil sonda: \"sobald ich zu Hause bin\".",
-    "\"so bald wie möglich\" (ayrı) = mümkün olan en kısa sürede."
+    "Eve varır varmaz telefon ederim derken **sobald ich bin zu Hause** yanlış. Doğrusu **sobald ich zu Hause bin**. **sobald** ile başlayınca **bin** sona gider.",
+    "Mümkün olduğunca çabuk derken **sobald wie möglich** diye bitişik yazmak yanlış. Doğrusu **so bald wie möglich**, ayrı yazılır. Bitişik **sobald** bir şey olur olmaz demektir."
    ],
    "examples": [
     {
      "id": "lx:sobald:1",
      "de": "Ich rufe an, sobald ich da bin.",
-     "tr": "Varır varmaz ararım.",
+     "tr": "Varır varmaz telefon ederim.",
      "layer": "hd"
     },
     {
@@ -3762,13 +3766,13 @@
     {
      "id": "lx:sobald:3",
      "de": "Sobald's geht, komm ich.",
-     "tr": "Olur olmaz gelirim.",
+     "tr": "Mümkün olur olmaz gelirim.",
      "layer": "alltag"
     },
     {
      "id": "lx:sobald:4",
      "de": "– Wann bekomme ich das Ergebnis? – Sobald es da ist, rufen wir an.",
-     "tr": "– Sonucu ne zaman alırım? – Gelir gelmez ararız.",
+     "tr": "– Sonucu ne zaman alırım? – Gelir gelmez telefon ederiz.",
      "layer": "alltag",
      "dialog": true
     }
@@ -3810,7 +3814,7 @@
    "patterns": [
     "pt:ich-habe"
    ],
-   "register": "informal",
+   "register": "neutral",
    "mistakes_tr": [
     "Seks yapmak derken **Sex machen** yanlış. Doğrusu **Sex haben.**"
    ],
@@ -3982,8 +3986,8 @@
      "tr": "rol oynamak"
     },
     {
-     "de": "die Hauptrolle",
-     "tr": "başrol"
+     "de": "eine große Rolle spielen",
+     "tr": "büyük rol oynamak"
     },
     {
      "de": "Spielt keine Rolle!",
@@ -4007,8 +4011,8 @@
     },
     {
      "id": "lx:Rolle:2",
-     "de": "Sie spielt die Hauptrolle im Film.",
-     "tr": "Kadın filmde başrolü oynuyor.",
+     "de": "Im Film spielt sie die Rolle einer Ärztin.",
+     "tr": "Kadın filmde bir doktor rolünü oynuyor.",
      "layer": "hd"
     },
     {
@@ -4478,11 +4482,11 @@
    "tr": "acele etmek",
    "pos": "verb",
    "verb": {
-    "praesens3": "beeilt",
-    "perfekt": "hat beeilt",
+    "praesens3": "beeilt sich",
+    "perfekt": "hat sich beeilt",
     "aux": "haben",
     "reflexive": true,
-    "praeteritum": "beeilte"
+    "praeteritum": "beeilte sich"
    },
    "collocations": [
     {
@@ -4591,8 +4595,8 @@
    "pos": "adj",
    "collocations": [
     {
-     "de": "Weißwein",
-     "tr": "beyaz şarap"
+     "de": "ein weißes Hemd",
+     "tr": "beyaz bir gömlek"
     },
     {
      "de": "schwarz auf weiß",
@@ -4613,7 +4617,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Beyaz bir gömlek derken **ein weiß Hemd** yanlış. Doğrusu **ein weißes Hemd**. **Hemd** önünde **weiß** sonuna **es** alır.",
-    "Beyaz derken **weis** yazmak yanlış. Doğrusu **weiß**. Aynı yazılış biliyorum anlamında da kullanılır: **Ich weiß**."
+    "Beyaz derken **weis** yazmak yanlış. Doğrusu **weiß**. Sonda **s** değil **ß** yazılır."
    ],
    "examples": [
     {
@@ -5165,8 +5169,8 @@
      "tr": "telefonu şarj etmek"
     },
     {
-     "de": "Handynummer",
-     "tr": "cep numarası"
+     "de": "aufs Handy schauen",
+     "tr": "telefona bakmak"
     },
     {
      "de": "mit dem Handy bezahlen",
@@ -5200,10 +5204,10 @@
     },
     {
      "id": "lx:Handy:2",
-     "de": "Wie ist Ihre Handynummer?",
-     "tr": "Cep numaranız nedir?",
+     "de": "Bitte schalten Sie Ihr Handy aus.",
+     "tr": "Lütfen telefonunuzu kapatın.",
      "layer": "hd",
-     "img": "person writing phone number on form"
+     "img": "no mobile phones sign in waiting room"
     },
     {
      "id": "lx:Handy:3",
@@ -5477,7 +5481,7 @@
   {
    "id": "lx:solange",
    "de": "solange",
-   "tr": "-dığı sürece",
+   "tr": "sürece, olduğu sürece",
    "pos": "conj",
    "collocations": [
     {
@@ -5486,7 +5490,7 @@
     },
     {
      "de": "solange es geht",
-     "tr": "olduğu sürece"
+     "tr": "mümkün olduğu sürece"
     }
    ],
    "patterns": [
@@ -5494,8 +5498,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Fiil sonda: \"solange ich hier wohne\".",
-    "\"so lange\" (ayrı) = o kadar uzun: \"Warum dauert das so lange?\""
+    "Burada oturduğum sürece derken **solange ich wohne hier** yanlış. Doğrusu **solange ich hier wohne**. **solange** ile başlayınca **wohne** sona gider.",
+    "İstediğin sürece derken ayrı yazılan **so lange du willst** yanlış. Doğrusu bitişik **solange du willst**. Ayrı yazılan **so lange** o kadar uzun demektir."
    ],
    "examples": [
     {
@@ -5648,8 +5652,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"ein\" gibi çekilir: \"irgendeinen Tag\", \"irgendeiner Frau\".",
-    "\"Irgendeine Frage?\" = Herhangi bir soru var mı?"
+    "Herhangi bir fikrin var mı derken **Hast du irgendein Idee?** yanlış. Doğrusu **Hast du irgendeine Idee?** **eine Idee** dendiği için **irgendeine** olur.",
+    "Herhangi bir kalem lazım derken **Ich brauche irgendein Stift** yanlış. Doğrusu **Ich brauche irgendeinen Stift**. **Ich brauche** dedikten sonra **irgendein Stift**, **irgendeinen Stift** olur."
    ],
    "examples": [
     {
@@ -5801,8 +5805,8 @@
    "img": "animals",
    "collocations": [
     {
-     "de": "Haustier",
-     "tr": "evcil hayvan"
+     "de": "wilde Tiere",
+     "tr": "vahşi hayvanlar"
     },
     {
      "de": "Tiere erlaubt",
@@ -5828,10 +5832,10 @@
    "examples": [
     {
      "id": "lx:Tier:1",
-     "de": "Haben Sie Haustiere?",
-     "tr": "Evcil hayvanınız var mı?",
+     "de": "Im Zoo gibt es viele Tiere.",
+     "tr": "Hayvanat bahçesinde çok hayvan var.",
      "layer": "hd",
-     "img": "cat and dog at home on sofa"
+     "img": "giraffes and zebras in zoo enclosure"
     },
     {
      "id": "lx:Tier:2",
@@ -5888,10 +5892,10 @@
      "hint_tr": "Birden çok hayvan için **Tiere** denir."
     },
     {
-     "de": "Haben Sie ___?",
-     "answer": "Haustiere",
-     "tr": "Evcil hayvanınız var mı?",
-     "hint_tr": "Evcil hayvanlar için **Haustiere** denir."
+     "de": "Das Kind spielt gern mit ___.",
+     "answer": "Tieren",
+     "tr": "Çocuk hayvanlarla oynamayı seviyor.",
+     "hint_tr": "**mit** dedikten sonra **Tiere**, **Tieren** olur."
     }
    ]
   },
@@ -5916,8 +5920,8 @@
      "tr": "katili yakalamak"
     },
     {
-     "de": "die Mörderin",
-     "tr": "kadın katil"
+     "de": "der Mörder im Krimi",
+     "tr": "polisiyedeki katil"
     }
    ],
    "patterns": [
@@ -6010,8 +6014,8 @@
      "tr": "yere düşmek"
     },
     {
-     "de": "der Fußboden",
-     "tr": "döşeme"
+     "de": "auf dem Boden liegen",
+     "tr": "yerde durmak"
     },
     {
      "de": "den Boden putzen",
@@ -6142,14 +6146,14 @@
      "id": "lx:Boss:1",
      "de": "Mein Boss ist heute nicht da.",
      "tr": "Patronum bugün yok.",
-     "layer": "hd",
+     "layer": "alltag",
      "img": "empty manager desk in office"
     },
     {
      "id": "lx:Boss:2",
      "de": "Frag mal den Boss.",
      "tr": "Patrona sor.",
-     "layer": "hd",
+     "layer": "alltag",
      "img": "employee asking manager question in office"
     },
     {
@@ -6476,8 +6480,8 @@
      "hint_tr": "**Machen Sie** dedikten sonra **der Mund**, **den Mund** olur."
     },
     {
-     "de": "Ich habe eine Wunde im ___.",
-     "answer": "Mund",
+     "de": "Ich habe eine Wunde ___ Mund.",
+     "answer": "im",
      "tr": "Ağzımda bir yara var.",
      "hint_tr": "**in** ile **dem** birleşir: **im Mund**."
     },
@@ -6618,13 +6622,13 @@
      "id": "lx:Arschloch:1",
      "de": "Im Film nennt er seinen Chef ein Arschloch.",
      "tr": "Filmde şefine pislik herif diyor.",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:Arschloch:2",
      "de": "Er hat sich wie ein Arschloch benommen.",
      "tr": "Adam pislik gibi davrandı.",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:Arschloch:3",
@@ -6825,8 +6829,8 @@
     },
     {
      "id": "lx:verändern:4",
-     "de": "– Wie ist es zurück in der Heimat? – Alles hat sich verändert.",
-     "tr": "– Memlekete dönmek nasıl? – Her şey değişmiş.",
+     "de": "– Wie war es in der Heimat, Ioana? – Alles hat sich verändert.",
+     "tr": "– Memleket nasıldı, Ioana? – Her şey değişmiş.",
      "layer": "alltag",
      "dialog": true
     }
@@ -7083,8 +7087,8 @@
    },
    "collocations": [
     {
-     "de": "der Bericht",
-     "tr": "rapor, haber"
+     "de": "von der Reise berichten",
+     "tr": "yolculuğu anlatmak"
     },
     {
      "de": "über etwas berichten",
@@ -7128,8 +7132,8 @@
     },
     {
      "id": "lx:berichten:4",
-     "de": "– Was gibt's Neues? – Das berichte ich dir später.",
-     "tr": "– Ne var ne yok? – Sonra anlatırım.",
+     "de": "– Wie war der Termin beim Kunden? – Gut. Ich berichte morgen im Team.",
+     "tr": "– Müşteriyle görüşme nasıldı? – İyi. Yarın ekibe anlatırım.",
      "layer": "alltag",
      "dialog": true
     }
@@ -7173,11 +7177,11 @@
    "tr": "yanılmak",
    "pos": "verb",
    "verb": {
-    "praesens3": "irrt",
-    "perfekt": "hat geirrt",
+    "praesens3": "irrt sich",
+    "perfekt": "hat sich geirrt",
     "aux": "haben",
     "reflexive": true,
-    "praeteritum": "irrte"
+    "praeteritum": "irrte sich"
    },
    "collocations": [
     {
@@ -7290,16 +7294,16 @@
      "tr": "öpüşmek"
     },
     {
-     "de": "der Kuss",
-     "tr": "öpücük"
+     "de": "jemanden zum Abschied küssen",
+     "tr": "vedalaşırken birini öpmek"
     },
     {
      "de": "auf die Wange küssen",
      "tr": "yanaktan öpmek"
     },
     {
-     "de": "Küsschen!",
-     "tr": "Öpücük!"
+     "de": "auf die Stirn küssen",
+     "tr": "alnından öpmek"
     }
    ],
    "patterns": [
@@ -7326,10 +7330,10 @@
     },
     {
      "id": "lx:küssen:3",
-     "de": "Küsschen!",
-     "tr": "Öpücük!",
+     "de": "Sie küsst ihr Baby auf die Stirn.",
+     "tr": "Kadın bebeğini alnından öpüyor.",
      "layer": "alltag",
-     "img": "mother blowing kiss to child"
+     "img": "mother kissing baby on forehead"
     },
     {
      "id": "lx:küssen:4",
@@ -7381,7 +7385,7 @@
   {
    "id": "lx:selber",
    "de": "selber",
-   "tr": "kendisi (konuşma dili)",
+   "tr": "kendi, kendisi",
    "pos": "pron",
    "collocations": [
     {
@@ -7398,21 +7402,21 @@
    ],
    "register": "informal",
    "mistakes_tr": [
-    "\"selber\" = \"selbst\"; konuşmada daha sık.",
-    "\"Selber schuld!\" = Kabahat kendinde!"
+    "Bunu kendim yaptım derken **Das habe ich mich gemacht** yanlış. Doğrusu **Das habe ich selber gemacht**. Kendim derken **mich** değil **selber** gelir.",
+    "Kendim derken **selber** konuşurken söylenir. Resmî yazıda **selbst** yazılır."
    ],
    "examples": [
     {
      "id": "lx:selber:1",
      "de": "Das habe ich selber gemacht.",
      "tr": "Bunu kendim yaptım.",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:selber:2",
      "de": "Du kannst das selber machen.",
      "tr": "Bunu kendin yapabilirsin.",
-     "layer": "hd"
+     "layer": "alltag"
     },
     {
      "id": "lx:selber:3",
@@ -7485,14 +7489,14 @@
      "id": "lx:erwischen:1",
      "de": "Ich habe den letzten Bus noch erwischt.",
      "tr": "Son otobüse yetiştim.",
-     "layer": "hd",
+     "layer": "alltag",
      "img": "person running to catch last bus at night"
     },
     {
      "id": "lx:erwischen:2",
      "de": "Er wurde beim Schwarzfahren erwischt.",
      "tr": "Biletsiz binerken yakalandı.",
-     "layer": "hd",
+     "layer": "alltag",
      "img": "ticket inspector checking passengers on tram"
     },
     {
@@ -8241,8 +8245,8 @@
    "pos": "adj",
    "collocations": [
     {
-     "de": "Heiligabend",
-     "tr": "Noel arifesi"
+     "de": "eine heilige Stadt",
+     "tr": "kutsal bir şehir"
     },
     {
      "de": "heilig sein",
@@ -8267,8 +8271,8 @@
    "examples": [
     {
      "id": "lx:heilig:1",
-     "de": "Am Heiligabend feiert die Familie zusammen.",
-     "tr": "Noel arifesinde aile birlikte kutlar.",
+     "de": "Für viele Menschen ist dieser Ort heilig.",
+     "tr": "Birçok insan için bu yer kutsal.",
      "layer": "hd"
     },
     {
@@ -8285,8 +8289,8 @@
     },
     {
      "id": "lx:heilig:4",
-     "de": "– Arbeitest du am Heiligabend? – Nein, da ist frei.",
-     "tr": "– Noel arifesinde çalışıyor musun? – Hayır, o gün izin.",
+     "de": "– Darf ich dein Fahrrad nehmen? – Nein, mein Fahrrad ist mir heilig!",
+     "tr": "– Bisikletini alabilir miyim? – Hayır, bisikletim benim için kutsal!",
      "layer": "alltag",
      "dialog": true
     }
@@ -8311,10 +8315,10 @@
      "hint_tr": "Benim için kutsal: **ist mir heilig**."
     },
     {
-     "de": "Am ___ feiern wir zusammen.",
-     "answer": "Heiligabend",
-     "tr": "Noel arifesinde birlikte kutlarız.",
-     "hint_tr": "Noel arifesi: **Heiligabend**, tek kelime ve büyük harfle."
+     "de": "Das sind ___ Orte.",
+     "answer": "heilige",
+     "tr": "Bunlar kutsal yerler.",
+     "hint_tr": "**Orte** önünde **heilige** olur."
     },
     {
      "de": "Das ist ein ___ Ort.",
@@ -8526,8 +8530,8 @@
      "tr": "arabayı durdurmak"
     },
     {
-     "de": "Stopp, das reicht!",
-     "tr": "Dur, yeter!"
+     "de": "den Film stoppen",
+     "tr": "filmi durdurmak"
     }
    ],
    "patterns": [
@@ -8552,14 +8556,14 @@
     },
     {
      "id": "lx:stoppen:3",
-     "de": "Stopp, das reicht!",
-     "tr": "Dur, yeter!",
+     "de": "Ich stoppe mal die Zeit.",
+     "tr": "Ben süreyi tutayım.",
      "layer": "alltag"
     },
     {
      "id": "lx:stoppen:4",
-     "de": "– Soll ich weitermachen? – Nein, stopp!",
-     "tr": "– Devam edeyim mi? – Hayır, dur!",
+     "de": "– Läuft der Film noch? – Nein, ich hab ihn kurz gestoppt.",
+     "tr": "– Film hâlâ oynuyor mu? – Hayır, kısa bir süre durdurdum.",
      "layer": "alltag",
      "dialog": true
     }
@@ -8824,8 +8828,8 @@
      "tr": "avukat tutmak"
     },
     {
-     "de": "die Anwältin",
-     "tr": "kadın avukat"
+     "de": "mit dem Anwalt sprechen",
+     "tr": "avukatla konuşmak"
     },
     {
      "de": "zum Anwalt gehen",
@@ -8922,7 +8926,7 @@
   {
    "id": "lx:aufs",
    "de": "aufs",
-   "tr": "üstüne (auf + das)",
+   "tr": "bir yere, bir şeyin üstüne",
    "pos": "prep",
    "collocations": [
     {
@@ -8931,7 +8935,11 @@
     },
     {
      "de": "aufs Klo",
-     "tr": "tuvalete (konuşma)"
+     "tr": "tuvalete"
+    },
+    {
+     "de": "aufs Dach",
+     "tr": "çatıya"
     }
    ],
    "patterns": [
@@ -8939,8 +8947,8 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "\"aufs\" = \"auf das\"; yön bildirir: \"aufs Dach\", \"aufs Land\".",
-    "Konum \"auf dem\": \"auf dem Land\"."
+    "Kırsala gidiyoruz derken **Wir fahren auf dem Land** yanlış. Doğrusu **Wir fahren aufs Land**. Bir yere doğru giderken **auf das** gelir, kısaca **aufs**.",
+    "Kırsalda oturuyoruz derken **Wir wohnen aufs Land** yanlış. Doğrusu **Wir wohnen auf dem Land**. Bir yerde dururken **auf dem** gelir."
    ],
    "examples": [
     {
