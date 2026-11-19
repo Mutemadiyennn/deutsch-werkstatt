@@ -4,6 +4,9 @@ import type { LearnerItem, Lexeme, Scenario } from "@dw/shared";
 import { HeardWordBox } from "../ui/learn.tsx";
 import { useApp } from "../state.ts";
 import { recommend, ACTIVITY_TR } from "../core/planner.ts";
+import { LoadingCard } from "../ui/kit.tsx";
+import { usePlan } from "./Yol.tsx";
+import { SEANS_TR, seri } from "../core/gun.ts";
 import { seasonal } from "../core/season.ts";
 import { bankItems } from "../data/db.ts";
 import { loadIndex, loadLexicon, loadScenario } from "../services/content.ts";
@@ -23,6 +26,10 @@ export function Today() {
   const now = Date.now();
   const n = e ? (e.rt.phase === "focus" && e.current ? e.current.n : e.nextN) : 1;
   const rec = recommend({ profile, index, hasPlacement: !!placement, sessionN: n });
+  // #58 A5b: M1 günleri varsa sıradaki adım günün planından gelir (v1'e gönderme yok). Sıfırdan başlayan öğrenci
+  // seviye tespitini beklemez (LS-2.1 ilk başarı ≤60 sn); tespit ikincil bağlantıdır
+  const { plan, err: planErr, yenile } = usePlan();
+  const m1 = plan;
 
   useEffect(() => {
     (async () => {
@@ -70,7 +77,7 @@ export function Today() {
     <div class="stack today">
       <SkyBand hour={hour}>
         <h1 class="greet" lang="de">{greetDe}</h1>
-        <p class="skyline-tr">{greetTr}{profile.displayName ? `, ${profile.displayName}` : ""}. {rec.kind === "scenario" ? `Bugün sırada: ${rec.title_tr}.` : rec.kind === "assess" ? "Önce kısa bir seviye tespiti yapalım." : ""}</p>
+        <p class="skyline-tr">{greetTr}{profile.displayName ? `, ${profile.displayName}` : ""}. {m1?.sonraki ? `Bugün sırada: ${m1.sonraki.title_tr}.` : m1 ? "" : rec.kind === "scenario" ? `Bugün sırada: ${rec.title_tr}.` : rec.kind === "assess" && !m1 ? "Önce kısa bir seviye tespiti yapalım." : ""}</p>
         {examOn && <span class="skychip" data-test="exam-badge">B1{exam !== null ? `: ${exam} gün` : ""}</span>}
       </SkyBand>
 
@@ -84,6 +91,25 @@ export function Today() {
 
       {indexError && <ErrorPanel message={`İçerik yüklenemedi: ${indexError}`} onRetry={() => location.reload()} />}
 
+      {!m1 && planErr ? <ErrorPanel message={`Günün planı yüklenemedi. ${planErr}`} onRetry={yenile} /> : !m1 && !!index?.m1.length ? <LoadingCard lines={2} /> : m1 ? (
+      <section class="card nextcard stack" data-test="next-activity" data-m1="1">
+        <div class="row" style={{ flexWrap: "nowrap", gap: 14, alignItems: "center" }}>
+          <span class="avatar" aria-hidden="true" style={{ width: 52, height: 52, background: "var(--himmel)" }}><Icon name="raute" size={24} /></span>
+          <div class="grow" style={{ minWidth: 0 }}>
+            <div class="small muted">{m1.sonraki ? `${m1.simdi!.day}. gün · Seans ${m1.sonraki.seans}: ${SEANS_TR[m1.sonraki.seans]}` : "İlk Hafta"}</div>
+            <h2 class="nexttitle">{m1.sonraki ? m1.sonraki.title_tr : m1.gunler.length >= 7 && !m1.eksik ? "İlk Hafta tamam" : "Hazır günlerin hepsi bitti"}</h2>
+          </div>
+        </div>
+        {m1.sonraki ? <a class="btn primary block" href={m1.sonraki.href} data-test="m1-devam"><Icon name="play" size={18} /> Devam et</a>
+          : <a class="btn primary block" href="#/garden" data-test="m1-tekrar"><Icon name="play" size={18} /> Kelime Bahçesi: tekrar et</a>}
+        <div class="stack" style={{ gap: 6 }}>
+          <a class="small" style={{ display: "block" }} href="#/yol" data-test="yol-link">Haftanın yolu · {m1.xp.toplam} XP{seri(m1.xp) ? ` · ${seri(m1.xp)} gün üst üste` : ""}</a>
+          {placement ? <a class="small" style={{ display: "block" }} href={`#/assess/result/${placement.id}`} data-test="assess-result">Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>
+            : <a class="small" style={{ display: "block" }} href="#/assess" data-test="assess-link">Almancan varsa: seviyeni gör (seviye tespiti)</a>}
+        </div>
+        {e && !breakOn && <FocusPanel />}
+      </section>
+      ) : (
       <section class="card nextcard stack" data-test="next-activity">
         <div class="row" style={{ flexWrap: "nowrap", gap: 14, alignItems: "center" }}>
           {rec.kind === "scenario" ? <Avatar initials={initials} accent={accent} /> : <span class="avatar" aria-hidden="true" style={{ width: 52, height: 52, background: "var(--himmel)" }}><Icon name={rec.kind === "assess" ? "target" : "raute"} size={24} /></span>}
@@ -100,6 +126,7 @@ export function Today() {
         {e && !breakOn && <FocusPanel />}
         {placement && <a class="small" href={`#/assess/result/${placement.id}`}>Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>}
       </section>
+      )}
 
       {inSeasonNow.length > 0 && (
         <section class="card tint orange" data-test="season">
@@ -123,7 +150,7 @@ export function Today() {
       <section class="plainsec" data-test="weak">
         <h2 class="sectitle">Tekrar edilecekler</h2>
         {/* PM-049: kartlar soru olarak döner. EK1: ekranda tek ana eylem "Devam et"; bu ikincil (yeni Bugün A6'da seans 1 olur) */}
-        <a class="btn block" href="#/garden" data-test="garden-start">Kelime Bahçesi: tekrar et</a>
+        <a class="btn block" href={m1?.simdi ? `#/garden/${m1.simdi.day}` : "#/garden"} data-test="garden-start">Kelime Bahçesi: tekrar et</a>
         <div class="row"><HeardWordBox /></div>
         {bank.length ? (
           <ul class="list">

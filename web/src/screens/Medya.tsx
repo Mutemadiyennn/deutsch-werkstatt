@@ -8,6 +8,8 @@
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Gun, medyalar, type AnlamaQ, type Bolum, type Dikte, type Lexeme, type Medya, type MedyaCumle } from "@dw/shared";
 import { useApp } from "../state.ts";
+import { adimXpVer, xpVer } from "../services/ilerleme.ts";
+import { XP } from "../core/gun.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { loadIndex, loadLexicon, loadM1Gun, contentUrl } from "../services/content.ts";
 import { addClaim, addPersonal, getMeta, setMeta } from "../data/db.ts";
@@ -134,8 +136,9 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
       {m.eylem && !p.eylem ? <EylemSoru m={m} onDone={(ok) => setP({ ...p, eylem: true, dogru: p.dogru + (ok ? 1 : 0), toplam: p.toplam + 1 })} />
         : <section class="card stack" data-test="medya-bitti"><h2>Bitti</h2>
             <p>{p.toplam} soruda {p.dogru} doğru. {m.bolumler.length > 1 ? `${m.bolumler.length} bölümün hepsini çalıştın.` : ""}</p>
-            <div class="row"><a class="btn primary grow" href={geri} data-test="medya-geri">Güne dön</a>
-              <button class="btn grow" onClick={() => setP({ ...BASLANGIC })}>Baştan çalış</button></div>
+            <div class="row"><a class="btn primary grow" href="#/today" data-test="medya-sonraki">Sıradaki adım</a>
+              <a class="btn grow" href={geri} data-test="medya-geri">Güne dön</a>
+              <button class="btn grow" data-test="medya-bastan" onClick={() => setP({ ...BASLANGIC, ilkBitti: true })}>Baştan çalış</button></div>
           </section>}
     </div>
   );
@@ -144,7 +147,8 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
   const steps = adimlar(b);
   const adim = steps[p.s]!;
   const cs = bolumCumleleri(m, b);
-  const sonraki = (alt = 1, ok?: boolean) => { oy.dur(); setP({ ...ileri(p, m, alt), ...(ok === undefined ? {} : { dogru: p.dogru + (ok ? 1 : 0), toplam: p.toplam + 1 }) }); };
+  // XP: doğru başına (beyanla geçilen cevapta ve tekrar çalışmada yok); adım XP'si adım başına bir kez (inceleme #66 P1-2, P2-1)
+  const sonraki = (alt = 1, ok?: boolean, xp = ok) => { oy.dur(); const np = ileri(p, m, alt); if (xp && !p.ilkBitti) void xpVer(XP.dogru); if (np.bitti) void adimXpVer(`medya:${m.id}`); setP({ ...np, ...(ok === undefined ? {} : { dogru: p.dogru + (ok ? 1 : 0), toplam: p.toplam + 1 }) }); };
 
   return (
     <div class="stack" data-test="medya" data-adim={adim} data-pos={`${p.b}.${p.s}.${p.k}`}>
@@ -177,7 +181,7 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
       {adim === "dikte" && <DikteAdimi key={`${p.b}k${p.k}`} d={b.dikte[p.k]!} sira={`${p.k + 1}/${b.dikte.length}`} cs={cs} oy={oy} onNext={(ok) => sonraki(b.dikte.length, ok ?? undefined)} />}
       {adim === "transkript" && <TranskriptAdimi cs={cs} lex={lex} oy={oy} onNext={() => sonraki()} />}
       {adim === "golge" && <GolgeAdimi key={`${p.b}g${p.k}`} c={cs.find((c) => c.id === b.golge[p.k]) ?? cs[0]!} sira={`${p.k + 1}/${b.golge.length}`} oy={oy} onNext={(ok) => sonraki(b.golge.length, ok)} />}
-      {adim === "cevapla" && b.cevapla && <CevaplaAdimi key={`${p.b}c`} d={b.cevapla} onNext={(ok) => sonraki(1, ok)} />}
+      {adim === "cevapla" && b.cevapla && <CevaplaAdimi key={`${p.b}c`} d={b.cevapla} onNext={(ok, beyan) => sonraki(1, ok, ok && !beyan)} />}
     </div>
   );
 }
@@ -346,7 +350,7 @@ function GolgeAdimi({ c, sira, oy, onNext }: { c: MedyaCumle; sira: string; oy: 
 }
 
 /* (g) "Sen ne derdin?" — kurallarla; kuralların tanımadığı cevapta karar öğrencinin (D-097) */
-function CevaplaAdimi({ d, onNext }: { d: NonNullable<Bolum["cevapla"]>; onNext: (ok: boolean) => void }) {
+function CevaplaAdimi({ d, onNext }: { d: NonNullable<Bolum["cevapla"]>; onNext: (ok: boolean, beyan?: boolean) => void }) {
   const [v, setV] = useState<{ kind: "correct" | "wrong" | "unchecked"; a: string; best: string } | null>(null);
   // desteklenmeyen madde türü (doğrulayıcı da hata verir): öğrenci sıkışmaz (inceleme #60 P1-4)
   if (d.k !== "guided_response" && d.k !== "listen_and_respond" && d.k !== "tr_de") return <ActionBar><button class="btn primary block" data-test="next" onClick={() => onNext(true)}>Devam</button></ActionBar>;
@@ -366,7 +370,7 @@ function CevaplaAdimi({ d, onNext }: { d: NonNullable<Bolum["cevapla"]>; onNext:
               <div class="small">İkisi aynı şeyi mi söylüyor? Emin değilsen örneği öğren.</div></FeedbackBand>
           : <FeedbackBand kind="bad" title="Doğrusu bu."><div class="small">Senin cevabın: <span lang="de">{v.a}</span></div><b lang="de">{v.best}</b>{d.why_tr && <div class="small"><Rich text={d.why_tr} /></div>}</FeedbackBand>}
         {v.kind === "unchecked" ? <><button class="btn primary block" data-test="next" onClick={() => onNext(false)}>Örneği öğrendim, devam</button>
-            <button class="btn block" data-test="claim" onClick={() => { void addClaim({ at: new Date().toISOString(), scenarioId: "m1", itemId: d.id, prompt: d.k === "tr_de" ? d.tr : d.situation_tr ?? "", answer: v.a, expected: d.accepted }); onNext(true); }}>Benimki de aynı anlamda</button></>
+            <button class="btn block" data-test="claim" onClick={() => { void addClaim({ at: new Date().toISOString(), scenarioId: "m1", itemId: d.id, prompt: d.k === "tr_de" ? d.tr : d.situation_tr ?? "", answer: v.a, expected: d.accepted }); onNext(true, true); }}>Benimki de aynı anlamda</button></>
           : <button class="btn primary block" data-test="next" onClick={() => onNext(v.kind === "correct")}>Devam</button>}
       </ActionBar>}
     </section>

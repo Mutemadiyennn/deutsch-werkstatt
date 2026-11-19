@@ -3,6 +3,7 @@ v2 uçtan uca testleri için ortak yardımcılar.
 Tarayıcı/cihaz seçimi: --browser chromium|webkit  --device "iPhone 15"  (cihaz verilmezse 390×844)
 Sunucu (Worker) Playwright ile taklit edilir: https://api.e2e.test/v1/*
 """
+import re
 import json, os, sys, threading, functools, http.server, socketserver, time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -127,9 +128,19 @@ def launch(p, color_scheme="light", viewport=None, service_workers="block"):
         ctx = b.new_context(viewport=viewport or {"width": 390, "height": 844}, device_scale_factor=2, locale="tr-TR", color_scheme=color_scheme, has_touch=True, service_workers=service_workers)
     return b, ctx
 
+IPTAL = []
+def _sayfa_hatasi(page, e):
+    """WebKit, test sayfayı yeniden yüklerken ya da gezinirken iptal ettiği içerik isteğini (yalnızca /content/ altındaki
+    JSON) "due to access control checks" sayfa hatası olarak bildirir; uygulama hatası değildir (inceleme #66 3. tur).
+    Bunlar ayrı sayılır ve raporlanır; başka her sayfa hatası testi kırar."""
+    m = str(e)
+    if re.search(r"/content/\S+\.json due to access control checks", m):
+        IPTAL.append(m); print("   (iptal edilen içerik isteği, WebKit:", m[-90:], ")"); return
+    ERR.append("sayfa hatası: " + m)
+
 def new_page(ctx, ai_handler=None):
     page = ctx.new_page()
-    page.on("pageerror", lambda e: ERR.append("sayfa hatası: " + str(e)))
+    page.on("pageerror", lambda e: _sayfa_hatasi(page, e))
     page.route("https://api.e2e.test/**", make_api(ai_handler))
     return page
 

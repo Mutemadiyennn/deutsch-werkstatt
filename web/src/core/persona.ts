@@ -36,7 +36,8 @@ export function fillName(expected: string, answer: string): string {
   const head = a.slice(0, pr.length).join(" "), tail = po.length ? a.slice(-po.length).join(" ") : "";
   const n = a.length - pr.length - po.length;
   if (head === pr.join(" ") && tail === po.join(" ") && n >= 1 && n <= 3) return expected.replace("{name}", orig.slice(pr.length, pr.length + n).join(" "));
-  return expected.replace("{name}", "").replace(/\s+/g, " ").replace(/\s([.,!?])/g, "$1");
+  // ad yuvası boş bırakılmışsa ("Guten Tag, hier ist.") doğru sayılmaz: yuva gösterimdeki "(adın)" ile kalır (inceleme #65 3. tur P2)
+  return expected.replace("{name}", "(adın)");
 }
 /** Yapay zekâya giden metin: ad → [Name] */
 export function redact(t: string, p: Persona): string {

@@ -455,3 +455,11 @@ html.callmode body { background: #121C30; }
 .tbl { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
 .tbl th, .tbl td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
 .tbl th { font-size: 0.8rem; color: var(--muted); font-weight: 700; }
+/* M1 A5b ders yolu */
+.yol { display: grid; gap: 10px; padding: 0; list-style: none; }
+ol.yol > li.yolgun { padding: 14px 16px; }
+.yolgun.kilitli { opacity: 0.6; }
+.yolgun.simdi { box-shadow: 0 0 0 2px var(--himmel) inset, var(--shadow); }
+.yolno { width: 34px; height: 34px; border-radius: 50%; display: inline-grid; place-items: center; margin-right: 12px; flex: none; background: var(--soft); font-weight: 800; }
+.yolgun.bitti .yolno { background: var(--ok-soft); color: var(--ok); }
+.yolgun.simdi .yolno { background: var(--himmel); color: #fff; }
