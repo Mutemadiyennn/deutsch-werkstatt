@@ -104,5 +104,6 @@ export function numberWordHint(answer: string): string | null {
   // yalnızca tek başına duran tam sayı için örnek ver; sıra sayısı (3.), saat (14:30), tarih gibi biçimlerde genel ipucu (inceleme #55)
   const m = /^\D*?(?<![\d.:])(\d{1,2})(?![\d.:])\D*$/.exec(answer);
   const plain = m && !/\bUhr\b/i.test(answer) ? Number(m[1]) : null;
-  return plain !== null ? `Rakamla değil, kelimeyle yaz: ${numWord(plain)}` : "Rakamla değil, kelimeyle yaz.";
+  // "1" bağlama göre çekimlenir (einen Bruder, ein Euro, eine Stunde): "eins" önerilmez, genel ipucu (inceleme #55 2. tur)
+  return plain !== null && plain !== 1 ? `Rakamla değil, kelimeyle yaz: ${numWord(plain)}` : "Rakamla değil, kelimeyle yaz.";
 }

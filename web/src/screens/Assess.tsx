@@ -99,7 +99,7 @@ function Feedback({ fb, onNext, last }: { fb: Fb; onNext: () => void; last: bool
   return (
     <div class="stack" aria-live="polite">
       <div class={`fb ${fb.ok ? "ok" : fb.skipped ? "info" : "bad"}`} data-test="feedback">
-        <b>{fb.ok ? "✓ Doğru" : fb.skipped ? "Sorun değil." : "Bu sefer olmadı."}</b>
+        <b>{fb.ok ? "Doğru." : fb.skipped ? "Sorun değil." : "Bu sefer olmadı."}</b>
         {!fb.ok && <> Doğrusu: <span class="de">{fb.right}</span></>}
         {fb.tr && <div class="small">{fb.tr}</div>}
         {fb.note && <div class="small">{fb.note}</div>}

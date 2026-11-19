@@ -8,7 +8,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 
 ## Sıradaki adım (PM-050: "İlk Hafta" dikey dilimi önce; 2026-11-18 23:45 UTC)
 **İmza yol haritası:** [`docs/v2/IMZA_YOL_HARITASI.md`](IMZA_YOL_HARITASI.md) — #54'ün her satırı için ekran tarifi ve sıra (PM-048).
-1. Birleştirme: #55 (bu PR: şema) → #43 (DN-2) → Kelime Bahçesi PR'ı. Birleşenler: #52 (23:05), #48 (23:07), #50 (23:34), #51 (23:54), #49 (23:54).
+1. Birleştirme sırası: #59 (Bahçe) → #60 (medya) → #61 (veri). Birleşenler: #43 (01:37), #55 (00:27), #52 (23:05), #48 (23:07), #50 (23:34), #51 (23:54), #49 (23:54).
 2. **PM-049 Kelime Bahçesi** (dal `v2/bahce`): sekiz soru türü, FSRS vadesi, yanlışta başka örnek ve fotoğraf, kalıcılık kuralı; `strictNumberWords` oynatıcıya burada bağlanır.
 3. PM-050 sırası: video ve ses soru oynatıcısı + dikte → ders yolu ve XP → yeni Bugün + Pomodoro (PM-047) → konuşma provası. Öne alınan mühendislik: çevrimdışı, veri güvenliği, hata sınırı.
 4. Sonra: heceleme yuvaları (İçerik Motoru isteği), PM-039.1 (deploy-v2 CI'a bağlı), #45 arayüz P0'ları.
@@ -22,8 +22,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 ## Yarım işler (PM-042 C)
 | İş | Dal | Durum |
 |---|---|---|
-| Kelime Bahçesi (PM-049) | `v2/bahce` | başlıyor |
-| #43 Bugün ilk kare | `v2/denetim` | kök neden: 32 px bulanık gölge; düzeltme CI doğrulaması bekliyor |
+| Kelime Bahçesi (#58 A3) | `v2/bahce` | PR #59; 4. tur inceleme |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
 
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-19
@@ -40,8 +39,7 @@ Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur, M1 kartları
 ## Açık PR'lar
 | PR | Dal | Teslim | İnceleme |
 |---|---|---|---|
-| #55 | `v2/sema` | Şema sözleşmesi (D-098), ajan modelleri, imza yol haritası | ONAY (2. tur, Opus) |
-| #43 | `v2/denetim` | PM-030 DN-2 | yükleme sınırı: kök neden (bulanık gölge) düzeltildi |
+| #59 | `v2/bahce` | #58 A3 Kelime Bahçesi (+ A11 parçası: `strictNumberWords` oynatıcıda) | 3. tur bulguları düzeltildi; 4. tur |
 
 ### Birleştirme turu (PM-007, 2026-11-17)
 - `main`'e birleşti: #2 (T04), #3 (çalışma düzeni), #18 (v2_core bekleme düzeltmesi), #20 (PM tasarım dili), #16 (PM gereksinim kaydı), #19 (yığının tepesi: #4–#17'nin bütün commit'leri, merge commit ile SHA'lar korunarak), #21 (PM yol haritası).

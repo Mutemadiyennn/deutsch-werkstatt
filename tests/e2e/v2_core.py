@@ -145,7 +145,7 @@ def main():
         na = page.inner_text("[data-test=next-activity]")
         check("Seans 1" in na and STRAT_TITLE in na, f"sıradaki etkinlik: seans 1 → strateji senaryosu ({na[:60]!r})")
         draft = STRAT_REVIEW != "reviewed"
-        check(("İçerik inceleme bekliyor" in na) == draft, f"inceleme etiketi içerik durumuna uygun ({STRAT_REVIEW})")
+        check(("Deneme dersi" in na) == draft, f"inceleme etiketi içerik durumuna uygun ({STRAT_REVIEW})")
         page.wait_for_selector("[data-test=weak] li")
         weak = page.inner_text("[data-test=weak]")
         check("Seviye tespitinde" not in weak and "Şu an listede kelime yok" not in weak, "bilinmeyen kelimeler zayıflık listesinde")
@@ -231,7 +231,7 @@ def main():
         check(page.locator("[data-domain]").count() == 20, "20 gerçek hayat alanı listeleniyor")
         check(page.locator("[data-domain]").first.get_attribute("data-domain") == "strategie" and page.locator("[data-domain]").nth(1).get_attribute("data-domain") == "telefon", "alanlar öncelik sırasına göre (strateji, telefon)")
         page.click("[data-domain=amt]")
-        page.wait_for_selector("text=İlgili v1 kurs üniteleri")
+        page.wait_for_selector("text=Eski uygulamadaki üniteler")
         check("A1-09" in page.inner_text("main"), "v2 içeriği olmayan alanda v1 üniteleri bağlantısı")
         shot(page, "09-learn-domain")
 

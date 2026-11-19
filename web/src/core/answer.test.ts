@@ -52,3 +52,10 @@ describe("inceleme #49 ikinci tur (P1-5): doğru cevap reddi yok", () => {
     expect(REGISTER_HINT.test("Gündelik biçimde söyle.")).toBe(true);
   });
 });
+
+describe("inceleme #49 3. tur: 'sie' tek başına dolgu değil", () => {
+  it("'Entschuldigen Sie, wie bitte?' kabul; 'Sie ich habe Zeit' kabul değil", () => {
+    expect(ruleVerdict(["Wie bitte?"], "Entschuldigen Sie, wie bitte?").kind).toBe("correct");
+    expect(ruleVerdict(["Ich habe Zeit."], "Sie ich habe Zeit.").kind).not.toBe("correct");
+  });
+});

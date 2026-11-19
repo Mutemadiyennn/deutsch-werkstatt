@@ -96,9 +96,12 @@ export function SpeakBtn({ text, speed = "normal", label = "Dinle" }: { text: st
 }
 
 export function Art({ art, de }: { art?: string; de: string }) {
-  return <span class="de">{art && <span class={`tag-${art}`}>{art} </span>}{de}</span>;
+  // PM-035 §3: sözlükte artikel bazen `de` içinde de duruyor; iki kez basılmaz ("der der Tisch" yok)
+  const has = !!art && new RegExp(`^${art}\\s`, "i").test(de);
+  const word = has ? de.slice(art!.length + 1) : de;
+  return <span class="de">{art && <span class={`tag-${art}`}>{art} </span>}{word}</span>;
 }
 
 export function Loading({ text = "Yükleniyor…" }: { text?: string }) {
-  return <p class="muted" aria-live="polite">{text}</p>;
+  return <p class="muted" aria-live="polite" aria-busy="true" data-loading>{text}</p>;
 }
