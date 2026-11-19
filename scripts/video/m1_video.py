@@ -257,7 +257,8 @@ def isle(klip_yolu: str, out: str, rss_onbellek: dict) -> dict:
     # indir, ses
     mp4 = os.path.join(out, f"{ad}.kaynak.mp4"); wav = os.path.join(out, f"{ad}.wav")
     # video adresi: RSS bağlantısı, enclosure, https ve www biçimleri (kaynak site adres düzenini değiştirmiş olabilir)
-    adaylar = []
+    # kaynağın oynatıcısı videoyu media.la.utexas.edu'dan çeker (vid.php: video_loc + dosya adı + ".mp4"); RSS adresi 404
+    adaylar = [f"https://media.la.utexas.edu/dib/video/{k['klip']}.mp4"]
     for u in [item.get("enc"), item["mp4"], k.get("video_url")]:
         if not u: continue
         for v in (u, u.replace("http://", "https://"), u.replace("://coerll.", "://www.coerll."), u.replace("http://coerll.", "https://www.coerll.")):

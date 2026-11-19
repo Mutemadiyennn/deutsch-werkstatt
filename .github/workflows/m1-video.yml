@@ -19,8 +19,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - name: Keşif (video adresi)
-        run: M1_KESIF="01_24_int_ju_studies-home" python scripts/video/m1_video.py out
       - name: ffmpeg
         run: command -v ffmpeg || (sudo apt-get update -q && sudo apt-get install -y -q ffmpeg)
       - uses: actions/cache@v4
