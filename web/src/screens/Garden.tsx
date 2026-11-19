@@ -293,7 +293,8 @@ function tomorrow(items: Map<string, LearnerItem>): string {
 function GardenDone({ day, score, items, kalan, again, xp, kelimeler }: { day?: number; score: { ok: number; n: number }; items: Map<string, LearnerItem>; kalan: number; again: () => void; xp: number; kelimeler: string[] }) {
   const devam = !!day && kalan > 0;
   const [seriGun, setSeriGun] = useState<number | undefined>();
-  useEffect(() => { void xpOku().then((x) => setSeriGun(seri(x))); }, []);
+  // tur sonu sayfanın başından açılır: son cevap kartının kaydırması "Tur bitti" ve halkayı ekran dışında bırakmasın (inceleme #100 2. tur)
+  useEffect(() => { window.scrollTo(0, 0); void xpOku().then((x) => setSeriGun(seri(x))); }, []);
   return (
     <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" ilerleme={{ n: 1, toplam: 1 }} />
       <section class="card stack" data-test="garden-done"><Kutlama><div class="kicker">Tur bitti</div></Kutlama>

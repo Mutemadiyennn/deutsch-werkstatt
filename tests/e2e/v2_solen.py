@@ -72,7 +72,7 @@ def main():
     shots = arg("--shots")
     with sync_playwright() as p:
         for tema in ("light", "dark"):
-            b, ctx = launch(p, color_scheme=tema); pg = new_page(ctx)
+            b, ctx = launch(p, color_scheme=tema, viewport={"width": 320, "height": 640} if tema == "dark" else None); pg = new_page(ctx)  # koyu tur 320×640 (inceleme #100 2. tur)
             login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
             ders_ac(pg, base)
             check(pg.locator("[data-test=ilerleme]").count() == 1, f"[{tema}] üstte dolan ilerleme çubuğu var")
@@ -156,6 +156,9 @@ def main():
             olcu = [x for x in kayma if x is not None]
             check(len(olcu) >= 3 and max(olcu) <= 4, f"[{tema}] soru geçişinde eylem çubuğu ekranın altında kalıyor ({len(olcu)} geçiş; alttan en çok {max(olcu or [0]):.0f} px)")
             check(pg.locator("[data-test=garden-done] [data-test=kutlama]").count() == 1 and pg.locator("[data-test=ozet]").count() == 1, f"[{tema}] tur sonunda kutlama ve özet")
+            # tur sonu sayfanın başından açılır (inceleme #100 2. tur): halka ve başlık görünür alanda
+            pg.wait_for_timeout(200)
+            check(pg.evaluate("() => { const r = document.querySelector('[data-test=tur-sonu]').getBoundingClientRect(); return scrollY === 0 && r.top >= 0 && r.top < innerHeight; }"), f"[{tema}] tur sonu baştan açılıyor; halka görünür alanda (scrollY={pg.evaluate('scrollY')})")
             # kalıcı görsel ve kademeli başlık (madde 3): halka konfetiden sonra da ekranda
             pg.wait_for_timeout(1500)
             check(pg.locator("[data-test=tur-sonu] .tur-halka").is_visible() and pg.inner_text("[data-test=tur-basligi]") in ("Harika!", "İyi gidiyor", "Zor bir turdu; yarın daha kolay"), f"[{tema}] tur sonu halkası ve başlığı kalıcı ({pg.inner_text('[data-test=tur-basligi]')})")
