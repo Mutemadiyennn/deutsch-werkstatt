@@ -8,6 +8,7 @@ import { AiTasks, type AiTaskName } from "@dw/shared";
 import { HttpError } from "../http.ts";
 import type { Env } from "../env.ts";
 import { generateJSON, models } from "./gemini.ts";
+import { WA, generateWA, kisalt } from "./workersai.ts";
 
 interface Template { system: (v: any) => string; user: (v: any) => string; version: string }
 const J = (x: unknown) => JSON.stringify(x);
@@ -45,7 +46,7 @@ export const TEMPLATES: Record<AiTaskName, Template> = {
     user: (v) => `Türkisch: ${J(v.tr)}${v.context_de ? `\nGesprächskontext: ${J(v.context_de)}` : ""}`
   },
   roleplay_turn: {
-    version: "roleplay_turn.v2",
+    version: "roleplay_turn.v3",
     system: (v) => [
       `Du spielst in einem Alltagsgespräch in Deutschland (Bayern) GENAU EINE Figur: ${v.partner_de}`,
       `Situation (Türkisch, nur zu deiner Information): ${v.scene_tr}`,
@@ -60,6 +61,7 @@ export const TEMPLATES: Record<AiTaskName, Template> = {
       `8. Gesprächsziele (nicht erwähnen, nur damit das Gespräch realistisch verläuft): ${J(v.goals_de)}.`,
       v.surprise_de ? `9. Bring an einer passenden Stelle diese Wendung ein: ${v.surprise_de}` : "",
       `10. Der Name des Lernenden ist unbekannt und erscheint als [Name]. Schreib ihn, wenn nötig, genau so: ${v.address_de ? `"${v.address_de} [Name]"` : '"[Name]"'}. Erfinde keinen Namen.`,
+      `11. Sprich auf Niveau ${WA.level}: einfache, häufige Wörter. Antworte in höchstens ${WA.reply_max_words} Wörtern.`,
       'Setze "end": true nur, wenn das Gespräch natürlich zu Ende ist (Verabschiedung).',
       'Antworte nur als JSON {"reply_de": string, "end": boolean}.'
     ].filter(Boolean).join("\n"),
@@ -94,12 +96,18 @@ export async function runTask(env: Env, taskName: string, vars: unknown): Promis
   const spec = AiTasks[name];
   const parsed = spec.input.safeParse(vars);
   if (!parsed.success) throw new HttpError("invalid_request", parsed.error.issues[0]?.message);
-  // PM-019: sağlayıcı yapılandırmayla seçilir; Gemini varsayılan olarak kapalı (istemci yapay zekâsız yola geçer)
-  if ((env.AI_PROVIDER || "none").trim() !== "gemini") throw new HttpError("not_configured", "ai_disabled");
-  if (!env.GEMINI_KEY) throw new HttpError("not_configured", "GEMINI_KEY");
+  // PM-019: sağlayıcı yapılandırmayla seçilir; Gemini kapalı. PM 7022002310-5: Workers AI (deneme), model + yedek policy.json'da
+  const saglayici = (env.AI_PROVIDER || "none").trim();
+  let order: string[], gen: typeof generateJSON;
+  if (saglayici === "workers-ai") {
+    if (!env.AI) throw new HttpError("not_configured", "AI binding");
+    order = [WA.model, WA.fallback]; gen = generateWA;
+  } else if (saglayici === "gemini") {
+    if (!env.GEMINI_KEY) throw new HttpError("not_configured", "GEMINI_KEY");
+    const m = await models(env);
+    order = spec.tier === "quick" ? m.quick : m.full; gen = generateJSON;
+  } else throw new HttpError("not_configured", "ai_disabled");
   const tpl = TEMPLATES[name];
-  const m = await models(env);
-  const order = spec.tier === "quick" ? m.quick : m.full;
   const budget = BUDGET[spec.tier];
   const schema = schemaOf(name);
   const sys = tpl.system(parsed.data), usr = tpl.user(parsed.data);
@@ -108,15 +116,15 @@ export async function runTask(env: Env, taskName: string, vars: unknown): Promis
     const model = order[i]!;
     const t0 = Date.now();
     try {
-      const text = await generateJSON(env, model, sys, usr, budget[i]!, schema);
+      const text = await gen(env, model, sys, usr, budget[i]!, schema);
       const ok = spec.output.safeParse(safeJson(text));
-      if (ok.success) return { output: ok.data, model };
+      if (ok.success) return { output: kisa(name, ok.data), model };
       // bir kez onarım denemesi (aynı model, kalan bütçe içinde)
       const left = budget[i]! - (Date.now() - t0);
       if (left > 1500) {
-        const fixed = await generateJSON(env, model, "Repariere das JSON, sodass es exakt dem Schema entspricht. Inhalt beibehalten. Nur JSON ausgeben.", `Schema: ${J(schema)}\nFehlerhaftes JSON: ${text.slice(0, 3000)}\nFehler: ${ok.error.issues[0]?.message}`, left, schema);
+        const fixed = await gen(env, model, "Repariere das JSON, sodass es exakt dem Schema entspricht. Inhalt beibehalten. Nur JSON ausgeben.", `Schema: ${J(schema)}\nFehlerhaftes JSON: ${text.slice(0, 3000)}\nFehler: ${ok.error.issues[0]?.message}`, left, schema);
         const ok2 = spec.output.safeParse(safeJson(fixed));
-        if (ok2.success) return { output: ok2.data, model };
+        if (ok2.success) return { output: kisa(name, ok2.data), model };
       }
       last = new HttpError("bad_output", ok.error.issues[0]?.message);
     } catch (e) {
@@ -126,6 +134,13 @@ export async function runTask(env: Env, taskName: string, vars: unknown): Promis
     }
   }
   throw last;
+}
+
+/** Rol oyunu cevabı en çok WA.reply_max_words kelime (PM 7022002310-5) */
+function kisa(name: AiTaskName, out: unknown): unknown {
+  if (name !== "roleplay_turn") return out;
+  const o = out as { reply_de: string };
+  return { ...o, reply_de: kisalt(o.reply_de) };
 }
 
 export function safeJson(text: string): unknown {

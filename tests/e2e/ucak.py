@@ -10,7 +10,7 @@ DN-2 §5 (PM-030, BY-12.1a) — internetsiz, mikrofonsuz ve yapay zekâsız duru
 """
 import json, re, urllib.parse
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, ERR, content_file
+from common import CORS, serve, launch, new_page, login_onboard, check, finish, ERR, content_file
 
 PORT = 4189
 SC = "sc:telefon:01-arzttermin"
@@ -205,6 +205,22 @@ def main():
             t = pg.inner_text("body")
             found += [f"{h}: {w}" for w in DEV_NOTES if w in t]
         check(not found, "C: öğrenciye geliştirici notu gösterilmiyor" + (f" — {found}" if found else ""))
+        b.close()
+
+        # ---------- D) Workers AI (deneme) sağlayıcısı: rol oyununda "deneme" etiketi (PM 7022002310-5) ----------
+        def api_wa(route):
+            u = route.request.url
+            if route.request.method == "OPTIONS":
+                return route.fulfill(status=204, headers={**CORS, "Access-Control-Allow-Headers": "Authorization, Content-Type", "Access-Control-Allow-Methods": "GET, POST"})
+            if u.endswith("/v1/health"):
+                return route.fulfill(status=200, headers=CORS, content_type="application/json", body=json.dumps({"ok": True, "version": "e2e", "time": "", "provider": "workers-ai", "configured": {"gemini": False, "workers_ai": True, "allowlist": True}}))
+            if u.endswith("/v1/usage"):
+                return route.fulfill(status=200, headers=CORS, content_type="application/json", body=json.dumps({"ai": {"used": 0, "limit": 300}}))
+            return route.fulfill(status=503, headers=CORS, content_type="application/json", body=json.dumps({"error": {"code": "upstream_busy", "message_tr": "x"}}))
+        b, ctx = launch(p); pg = ctx.new_page(); pg.route("https://api.e2e.test/**", api_wa)
+        login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]"); pg.wait_for_timeout(500)
+        pg.goto(base + f"#/scenario/{SC}/roleplay"); pg.wait_for_selector("[data-test=rp-start]")
+        check(pg.locator("[data-test=ai-deneme]").count() == 1 and pg.inner_text("[data-test=ai-deneme]").lower() == "deneme", "D: Workers AI sağlayıcısında rol oyununda 'deneme' etiketi")
         b.close()
     srv.shutdown()
     check(not [e for e in ERR if e.startswith("sayfa hatası")], "sayfa hatası yok")

@@ -18,7 +18,7 @@ import { review, sessionKey, type Outcome } from "../core/srs.ts";
 import { norm, numberWordHint, scoreHeard } from "../core/grading.ts";
 import type { Verdict } from "../core/answer.ts";
 import type { LocalEntry } from "../core/sayit.ts";
-import { ai, aiState, SOFT_WAIT_MS } from "../services/ai.ts";
+import { ai, aiState, denemeSaglayici, SOFT_WAIT_MS } from "../services/ai.ts";
 import { personalizeDeep, redact, unredact, type Persona } from "../core/persona.ts";
 import { ApiError } from "../services/api.ts";
 import { baslangicYavas, konusanAta, speak, speakDizi, stopSpeaking } from "../services/speech.ts";
@@ -568,7 +568,7 @@ function RoleplaySection({ ctx, finish, back }: SP) {
   if (phase === "intro") return (
     <div class="stack fade">
       <section class="card stack">
-        <div class="kicker">Rol oyunu · bağımsız konuşma</div>
+        <div class="kicker">Rol oyunu · bağımsız konuşma{mode === "ai" && denemeSaglayici() && <span class="chip" style={{ marginLeft: 6 }} data-test="ai-deneme">deneme</span>}</div>
         <p><b>{s.roleplay.scene_tr}</b></p>
         <div class="small">Görevin:</div>
         <ul class="small" style={{ margin: 0, paddingLeft: 20 }}>{s.roleplay.goals.map((g) => <li>{g.tr}</li>)}</ul>

@@ -64,7 +64,7 @@ describe("health ve CORS", () => {
     const r = await handle(req("/v1/health"), env());
     expect(r.status).toBe(200);
     const t = await r.text();
-    expect(JSON.parse(t).configured).toEqual({ gemini: true, pexels: false, allowlist: true });
+    expect(JSON.parse(t).configured).toEqual({ gemini: true, workers_ai: false, pexels: false, allowlist: true });
     expect(t).not.toContain("test-gemini-key");
     expect(r.headers.get("Access-Control-Allow-Origin")).toBe("https://app.test");
   });
@@ -236,5 +236,57 @@ describe("model seçimi (v1 kuralı)", () => {
     const m = pickModels(["gemini-2.5-flash", "gemini-3.5-flash-preview-05", "gemini-3.5-flash", "gemini-3.5-flash-lite", "gemini-3.5-flash-preview-tts", "gemini-3.8-live", "gemini-2.0-flash-lite"]);
     expect(m.quick).toEqual(["gemini-3.5-flash-lite", "gemini-3.5-flash"]);
     expect(m.full).toEqual(["gemini-3.5-flash", "gemini-3.5-flash-lite"]);
+  });
+});
+
+/** PM 7022002310-5: Workers AI sağlayıcısı (deneme) */
+function sahteAI(cevaplar: Array<unknown | Error>) {
+  const cagri: { model: string; input: any }[] = []; let i = 0;
+  return { cagri, AI: { async run(model: string, input: any) { cagri.push({ model, input }); const c = cevaplar[i++]; if (c instanceof Error) throw c; return c ?? { response: "" }; } } };
+}
+const waEnv = (AI: Env["AI"], over: Partial<Env> = {}) => env({ AI_PROVIDER: "workers-ai", GEMINI_KEY: undefined, AI, ...over });
+describe("Workers AI sağlayıcısı (PM 7022002310-5)", () => {
+  it("health: provider workers-ai, bağlam varsa configured.workers_ai", async () => {
+    const { AI } = sahteAI([]);
+    const j = await (await handle(req("/v1/health"), waEnv(AI))).json();
+    expect(j.provider).toBe("workers-ai"); expect(j.configured.workers_ai).toBe(true); expect(j.configured.gemini).toBe(false);
+  });
+  it("equiv_check Mistral ile çalışır; Google'a istek gitmez; nöron sayacı KV'de", async () => {
+    const f = vi.fn(); vi.stubGlobal("fetch", f);
+    const { AI, cagri } = sahteAI([{ response: { ok: true, reason_tr: "Aynı anlam." }, usage: { prompt_tokens: 1000, completion_tokens: 100 } }]);
+    const e = waEnv(AI);
+    const j = await (await handle(run(await token(), "equiv_check", EQ), e)).json();
+    expect(j.output.ok).toBe(true); expect(j.model).toBe("@cf/mistralai/mistral-small-3.1-24b-instruct");
+    expect(cagri[0]!.input.response_format.type).toBe("json_schema");
+    expect(f).not.toHaveBeenCalled();
+    const kv = (e.QUOTA as unknown as { data: Map<string, string> }).data;
+    expect(Number([...kv.entries()].find(([k]) => k.startsWith("n:wa:"))![1])).toBe(Math.ceil((1000 * 31876 + 100 * 50488) / 1e6));
+  });
+  it("Mistral hata verirse Llama 3.3 70B yedeğine geçer; şema desteklenmezse bir kez şemasız dener", async () => {
+    const { AI, cagri } = sahteAI([new Error("5007 schema"), new Error("down"), { response: '{"ok": false, "reason_tr": "Fiil yanlış."}' }]);
+    const j = await (await handle(run(await token(), "equiv_check", EQ), waEnv(AI))).json();
+    expect(j.model).toBe("@cf/meta/llama-3.3-70b-instruct-fp8-fast"); expect(j.output.ok).toBe(false);
+    expect(cagri[1]!.input.response_format).toBeUndefined();
+  });
+  it("günlük nöron tavanı doluysa model çağrılmaz: quota_upstream", async () => {
+    const { AI, cagri } = sahteAI([{ response: { ok: true, reason_tr: "x" } }]);
+    const e = waEnv(AI); await e.QUOTA.put(`n:wa:${new Date().toISOString().slice(0, 10)}`, "3000");
+    const j = await (await handle(run(await token(), "equiv_check", EQ), e)).json();
+    expect(j.error.code).toBe("quota_upstream"); expect(cagri.length).toBe(0);
+  });
+  it("rol oyunu: istemde A2 ve ≤25 kelime; uzun cevap cümle sınırında kısaltılır", async () => {
+    const uzun = "Ja, gerne. Wir haben am Donnerstag um zehn Uhr noch einen Termin frei. Oder möchten Sie lieber am Freitag kommen, dann wäre es am Nachmittag ab drei Uhr möglich, wenn das passt?";
+    const { AI, cagri } = sahteAI([{ response: { reply_de: uzun, end: false } }]);
+    const vars = { partner_de: "Medizinische Fachangestellte", scene_tr: "Randevu", goals_de: ["Termin vereinbart"], level: 2, history: [], stuck: 0 };
+    const j = await (await handle(run(await token(), "roleplay_turn", vars), waEnv(AI))).json();
+    expect(j.output.reply_de.split(/\s+/).length).toBeLessThanOrEqual(25);
+    expect(j.output.reply_de).toBe("Ja, gerne. Wir haben am Donnerstag um zehn Uhr noch einen Termin frei.");
+    expect(cagri[0]!.input.messages[0].content).toContain("Niveau A2"); expect(cagri[0]!.input.messages[0].content).toContain("höchstens 25 Wörtern");
+  });
+  it("bağlam yoksa not_configured ve kota sayacı artmaz", async () => {
+    const e = waEnv(undefined);
+    const j = await (await handle(run(await token(), "equiv_check", EQ), e)).json();
+    expect(j.error.code).toBe("not_configured");
+    expect([...(e.QUOTA as unknown as { data: Map<string, string> }).data.keys()]).toEqual([]);
   });
 });
