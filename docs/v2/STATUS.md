@@ -26,8 +26,8 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | İş | Dal | Durum |
 |---|---|---|
 | Konuşma provası, yapay zekâsız (#58 A7) | `v2/prova` | #68 birleşti |
-| Değerlendirme doğruluğu (#58 A11) | `v2/degerlendirme` | PR açıldı: saat/tarih/sıra sayısı, telefon rakamları, harf harf söyleme yuvaları, kelime sırası (V2), yazım notu; "Bu ne demek?" ve uzun basma yerel sözlükten (D-104) |
-| Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
+| Değerlendirme doğruluğu (#58 A11) | `v2/degerlendirme` | PR #76: 1. tur P0 (V2 aşırı kabul) ve P1'ler düzeltildi; kalıcı permütasyon taraması; 2. tur bekliyor (D-104) |
+| Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | `v2/degerlendirme` | #76 içinde (D-104 madde 3) |
 
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-19
 | Seviye | Kelime kartı | Kalıp | Senaryo (tam) | Mini senaryo | Diyalog grafiği | Okuma | Dinleme | Haber | Madde bankası |

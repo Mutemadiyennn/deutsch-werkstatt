@@ -6,7 +6,7 @@
 import { useMemo, useState } from "preact/hooks";
 import type { Drill } from "@dw/shared";
 import { countsAsCorrect, isSameAsGiven, ruleVerdict } from "../core/answer.ts";
-import { esNorm, saat12, yazimNotu } from "../core/esdeger.ts";
+import { esEsit, esNorm, saat12, yazimNotu } from "../core/esdeger.ts";
 import { judgeWord, norm, numberWordHint } from "../core/grading.ts";
 import { fillName } from "../core/persona.ts";
 import { addClaim } from "../data/db.ts";
@@ -45,7 +45,7 @@ export function drillVerdict(d: Drill, answer: string, typed = true, artikel?: {
   const istem = d.k === "gap" ? d.de : d.k === "transform" ? d.from_de : d.k === "guided_response" ? d.situation_tr + d.prompt_de : d.k === "listen_and_respond" ? (d.situation_tr ?? "") + d.audio_de : d.tr;
   const strict = d.strictNumberWords ?? (!/\d/.test(istem) && acc.every((x) => !/\d/.test(x)) && acc.some((x) => SAYI_KELIME.test(x)));
   if (typed && strict && acc.every((x) => !/\d/.test(x))) { const h = numberWordHint(answer); if (h) return { kind: "wrong", best, note: h }; }
-  const tam = list.find((a) => norm(a) === norm(answer) || esNorm(a) === esNorm(answer));
+  const tam = list.find((a) => norm(a) === norm(answer) || esEsit(a, answer));
   if (tam) return { kind: "correct", best, note: yazimNotu(tam, answer) };
   // isim kartı (hatırlama turu): artikel zorunlu; kelime doğru ama artikel eksik/yanlışsa açıklamalı yanlış
   if (artikel) { const j = judgeWord(answer, artikel.de, artikel.art); if (j.ok) return { kind: "correct", best }; if (j.why_tr) return { kind: "wrong", best, note: j.why_tr }; }

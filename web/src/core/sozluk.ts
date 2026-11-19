@@ -50,12 +50,18 @@ export function yerelAcikla(metin: string, lex: Lexeme[]): YerelAciklama | null 
 }
 
 /** Uzun basılan noktadaki kelime (WebKit: caretRangeFromPoint; diğerleri: caretPositionFromPoint) */
-export function noktadakiKelime(x: number, y: number): string | null {
+export function noktadakiKelime(x: number, y: number, el?: HTMLElement | null): string | null {
   const d = document as Document & { caretRangeFromPoint?: (x: number, y: number) => Range | null; caretPositionFromPoint?: (x: number, y: number) => { offsetNode: Node; offset: number } | null };
   let node: Node | null = null, off = 0;
-  const r = d.caretRangeFromPoint?.(x, y);
-  if (r) { node = r.startContainer; off = r.startOffset; }
-  else { const p = d.caretPositionFromPoint?.(x, y); if (p) { node = p.offsetNode; off = p.offset; } }
+  // genel metin seçimi kapalı (user-select: none): WebKit'te isabet testi için öğe kısa süre seçilebilir yapılır (inceleme #76 P1-7)
+  const st = el?.style as (CSSStyleDeclaration & { webkitUserSelect?: string }) | undefined;
+  const eski = st ? [st.userSelect, st.webkitUserSelect ?? ""] : null;
+  if (st) { st.userSelect = "text"; st.webkitUserSelect = "text"; }
+  try {
+    const r = d.caretRangeFromPoint?.(x, y);
+    if (r) { node = r.startContainer; off = r.startOffset; }
+    else { const p = d.caretPositionFromPoint?.(x, y); if (p) { node = p.offsetNode; off = p.offset; } }
+  } finally { if (st && eski) { st.userSelect = eski[0]!; st.webkitUserSelect = eski[1]!; } }
   if (!node || node.nodeType !== Node.TEXT_NODE) return null;
   const s = node.textContent || "";
   const harf = /[\p{L}\p{N}'’-]/u;

@@ -25,7 +25,6 @@ for (let n = 1; n <= 31; n++) {
 }
 SIRA.set("siebent", 7); SIRA.set("zwot", 2);
 const SIRA_EK = /^(.+?)(e|en|er|es|em)$/;
-const sira = (w: string) => { const m = SIRA_EK.exec(w); const n = m ? SIRA.get(m[1]!) : undefined; return n; };
 const saatYaz = (h: number, mm: number) => `${norm(numWord(h))} uhr${mm ? " " + norm(numWord(mm)) : ""}`;
 
 /** Ham metindeki rakamlı saat ve tarih biçimleri (norm'dan önce: norm rakamı yazıya çevirir, noktayı siler) */
@@ -37,32 +36,42 @@ function hamKanon(s: string): string {
     const H = Number(h), M = Number(mm);
     return H <= 24 && M < 60 ? ` ${H} Uhr${M ? " " + M : ""} ` : m;
   });
-  // tarih: 3.5., 03.05.2026
-  t = t.replace(/(?<![\d.])(\d{1,2})\.\s?(\d{1,2})\.(\d{4}|\d{2})?(?!\d)/gu, (m, d: string, a: string, y?: string) => {
+  // tarih (3.5., 03.05.2026) ve rakamlı sıra sayısı (3. Mai, am 3., der 2. Stock) yalnızca bağlamda: artikel/am/im/zum…
+  // sonra ya da ay adından önce (inceleme #76 P2: "kostet 3.10.", "bis 5." sıra sayısı değil). Rakamlı sıra sayısının eki bilinmez: "o3"; yazılı olanın eki korunur: "o3sen"
+  const BAG = "(?<=(?:^|[^\\p{L}])(?:am|im|vom|zum|zur|der|den|dem|des|die|das)\\s+)";
+  t = t.replace(new RegExp(`${BAG}(\\d{1,2})\\.\\s?(\\d{1,2})\\.(\\d{4}|\\d{2})?(?!\\d)`, "giu"), (m, d: string, a: string, y?: string) => {
     const D = Number(d), A = Number(a);
     return D >= 1 && D <= 31 && A >= 1 && A <= 12 ? ` o${D} ${AYLAR[A - 1]}${y ? " " + y : ""} ` : m;
   });
-  // sıra sayısı: "3. Mai", "am 3.", "der 2. Stock" (artikel/edattan sonra ya da ay adından önce)
   t = t.replace(new RegExp(`(?<![\\d.])(\\d{1,2})\\.\\s*(?=(${AY_HAM})\\b)`, "giu"), (_m, d: string) => ` o${Number(d)} `);
-  t = t.replace(/(?<=(?:^|[^\p{L}])(?:am|im|vom|zum|zur|der|den|dem|des|die|das|ab|bis|seit)\s+)(\d{1,2})\.(?!\d)/giu, (_m, d: string) => ` o${Number(d)} `);
+  t = t.replace(new RegExp(`${BAG}(\\d{1,2})\\.(?!\\d)`, "giu"), (_m, d: string) => ` o${Number(d)} `);
   return t;
 }
+
+/** Sıra sayısı kelimesi yalnızca bağlamda (artikel/am/im/zum… sonra ya da ay adından önce): "wir achten auf…" fiil kalır */
+const SIRA_BAG = new Set("am im vom zum zur der den dem des die das jeden jede jedes".split(" "));
+const AY_SET = new Set(AYLAR);
 
 /** Normalleştirilmiş kelime dizisinde konuşma biçimleri: zwo, sıra sayısı kelimeleri, halb/Viertel/nach/vor saatleri */
 function kelimeKanon(w: string[]): string[] {
   const out: string[] = [];
   const saat = (x: string | undefined) => { const n = x === undefined ? undefined : SAYI.get(x); return n !== undefined && n >= 1 && n <= 24 ? n : undefined; };
+  const dk = (x: string | undefined) => { const n = x === undefined ? undefined : SAYI.get(x); return n !== undefined && n >= 1 && n <= 29 ? n : undefined; };
   const once = (h: number) => (h === 1 ? 12 : h - 1);
+  const yaz = (h: number, m: number) => out.push(...saatYaz(h, m).split(" "));
   for (let i = 0; i < w.length; i++) {
-    const x = w[i]!, y = w[i + 1], z = w[i + 2];
-    if (x === "halb" && saat(y)) { out.push(...saatYaz(once(saat(y)!), 30).split(" ")); i++; continue; }
-    if (x === "viertel" && (y === "nach" || y === "vor") && saat(z)) { out.push(...(y === "nach" ? saatYaz(saat(z)!, 15) : saatYaz(once(saat(z)!), 45)).split(" ")); i += 2; continue; }
-    if ((x === "fuenf" || x === "zehn" || x === "zwanzig") && (y === "nach" || y === "vor") && saat(z) && w[i + 3] !== "uhr") {
-      const n = SAYI.get(x)!; out.push(...(y === "nach" ? saatYaz(saat(z)!, n) : saatYaz(once(saat(z)!), 60 - n)).split(" ")); i += 2; continue;
-    }
+    const x = w[i]!, y = w[i + 1], z = w[i + 2], q = w[i + 3];
+    // fünf vor halb neun = 8:25, fünf nach halb neun = 8:35
+    if (dk(x) && (y === "vor" || y === "nach") && z === "halb" && saat(q)) { const h = once(saat(q)!); yaz(h, y === "vor" ? 30 - dk(x)! : 30 + dk(x)!); i += 3; continue; }
+    if (x === "halb" && saat(y)) { yaz(once(saat(y)!), 30); i++; continue; }
+    if (x === "viertel" && (y === "nach" || y === "vor") && saat(z)) { if (y === "nach") yaz(saat(z)!, 15); else yaz(once(saat(z)!), 45); i += 2; continue; }
+    // drei nach acht = 8:03, zehn vor neun = 8:50 ("zehn nach neun Uhr" değil)
+    if (dk(x) && (y === "nach" || y === "vor") && saat(z) && q !== "uhr") { if (y === "nach") yaz(saat(z)!, dk(x)!); else yaz(once(saat(z)!), 60 - dk(x)!); i += 2; continue; }
     if (x === "zwo") { out.push("zwei"); continue; }
-    const s = sira(x);
-    if (s !== undefined && x !== "achten") { out.push(`o${s}`); continue; }
+    // "ein Uhr dreißig" = "eins Uhr dreißig" (halb zwei)
+    if (x === "ein" && y === "uhr") { out.push("eins"); continue; }
+    const m = SIRA_EK.exec(x); const s = m ? SIRA.get(m[1]!) : undefined;
+    if (s !== undefined && (SIRA_BAG.has(out[out.length - 1] ?? "") || AY_SET.has(y ?? ""))) { out.push(`o${s}s${m![2]}`); continue; }
     out.push(x);
   }
   return out;
@@ -72,11 +81,23 @@ function kelimeKanon(w: string[]): string[] {
 export function esNorm(s: string): string {
   return kelimeKanon(norm(hamKanon(s)).split(" ").filter(Boolean)).join(" ");
 }
+/**
+ * İki metin eşdeğer mi: esNorm kelime kelime; rakamlı sıra sayısı (o3) her ekle eşleşir, yazılı olanların eki aynı olmalı
+ * (der dritte Mai ≠ der dritten Mai; inceleme #76 P1-1).
+ */
+export function esEsit(a: string, b: string): boolean {
+  const x = esNorm(a).split(" "), y = esNorm(b).split(" ");
+  if (x.length !== y.length || !x[0]) return false;
+  return x.every((t, i) => { const u = y[i]!; if (t === u) return true; const p = /^o(\d+)(?:s(\w+))?$/.exec(t), r = /^o(\d+)(?:s(\w+))?$/.exec(u); return !!p && !!r && p[1] === r[1] && (!p[2] || !r[2]); });
+}
 
-/** 13–24 saatleri 12 saate indirir: yalnızca "yanlış mı, kontrol edemedim mi" ayrımında (halb drei ↔ 14:30 açık yanlış değildir) */
+/**
+ * "Yanlış mı, kontrol edemedim mi" ayrımı için anahtar biçim: 0 ve 13–24 saatleri 12 saate iner (halb drei ↔ 14:30,
+ * halb eins ↔ 0:30 açık yanlış değildir), sıra sayısı eki atılır.
+ */
 export function saat12(s: string): string {
   const w = s.split(" ");
-  return w.map((x, i) => { const n = SAYI.get(x); return n !== undefined && n > 12 && n <= 24 && w[i + 1] === "uhr" ? norm(numWord(n - 12)) : x; }).join(" ");
+  return w.map((x, i) => { const n = SAYI.get(x); if (n !== undefined && w[i + 1] === "uhr" && (n === 0 || (n > 12 && n <= 24))) return norm(numWord(n === 0 ? 12 : n - 12)); return x.replace(/^(o\d+)s\w+$/, "$1"); }).join(" ");
 }
 
 /* ───────────── rakam dizisi (telefon numarası) ───────────── */
@@ -88,26 +109,35 @@ export function kelimeSayi(w: string): number | undefined {
   if (yuz) { const kalan = yuz[2] ? (yuz[2] === "eins" ? 1 : SAYI.get(yuz[2])) : 0; return kalan === undefined ? undefined : (yuz[1] ? BIRLER[yuz[1]]! : 1) * 100 + kalan; }
   return SAYI.get(w);
 }
-/** Uzun rakam dizisi: rakamlar ve sayı kelimeleri (gruplu ya da tek tek) tek rakam dizisine, kalan kelimeler ayrı */
-export function rakamDizisi(s: string): { rakam: string; kelime: string } {
+/**
+ * Uzun rakam dizisi: rakamlar ve sayı kelimeleri (gruplu ya da tek tek) ardışık bir grupta tek rakam dizisine iner;
+ * `yapi` kelimelerin sırasını ve grupların yerini (#) korur ("meine nummer ist #").
+ */
+export function rakamDizisi(s: string): { rakam: string; kelime: string; yapi: string } {
   const t = String(s || "").toLowerCase().replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss").replace(/[^a-z0-9 ]+/g, " ");
-  let rakam = ""; const kelime: string[] = [];
+  let rakam = ""; const kelime: string[] = [], yapi: string[] = [];
   for (const w of t.split(/\s+/).filter(Boolean)) {
-    if (/^\d+$/.test(w)) { rakam += w; continue; }
-    const n = kelimeSayi(w);
-    if (n !== undefined && w !== "ein") rakam += String(n); else kelime.push(w);
+    const n = /^\d+$/.test(w) ? w : w !== "ein" && kelimeSayi(w) !== undefined ? String(kelimeSayi(w)) : null;
+    if (n !== null) { rakam += n; if (yapi[yapi.length - 1] !== "#") yapi.push("#"); continue; }
+    kelime.push(w); yapi.push(w);
   }
-  return { rakam, kelime: kelime.join(" ") };
+  return { rakam, kelime: kelime.join(" "), yapi: yapi.join(" ") };
 }
-/** Kabul biçimi 5+ rakamlı bir dizi içeriyorsa (telefon, posta kodu): rakamlar ve kalan kelimeler aynıysa eşdeğer */
+/**
+ * Kabul biçimi rakamla yazılmış 5+ rakamlı bir dizi içeriyorsa (telefon, posta kodu): rakamlar, kelimeler ve grupların yeri
+ * aynıysa eşdeğer. Sayı kelimeleriyle yazılmış saat/yaş cümlelerinde uygulanmaz (inceleme #76 permütasyon taraması).
+ */
 export function rakamEsit(kabul: string, cevap: string): boolean {
+  // tarih, saat, ondalık: rakam grupları arasındaki ayraç anlamlı (1.12.2026 ≠ 11.2.2026; inceleme #76 P1-4)
+  if (/\d[.:/,]\d/.test(kabul) || /\d[.:/,]\d/.test(cevap)) return false;
+  if ((kabul.match(/\d/g) ?? []).length < 5) return false;
   const a = rakamDizisi(kabul), b = rakamDizisi(cevap);
-  return a.rakam.length >= 5 && a.rakam === b.rakam && a.kelime === b.kelime;
+  return a.rakam === b.rakam && a.yapi === b.yapi;
 }
 
 /* ───────────── harf harf söyleme ───────────── */
 /** Harf adları (sesle girişte "be", "ka" gelir) ve DIN 5009 kodlama sözcükleri (eski kişi adları, 2022 şehir adları); r0-10 tablosu */
-const HARF_AD: Record<string, string> = { ch: "ch", sch: "sch", a: "a", be: "b", ce: "c", tse: "c", ze: "c", de: "d", e: "e", ef: "f", ge: "g", ha: "h", i: "i", jot: "j", yot: "j", ka: "k", el: "l", em: "m", en: "n", o: "o", pe: "p", ku: "q", er: "r", es: "s", te: "t", u: "u", fau: "v", we: "w", ve: "w", ix: "x", iks: "x", ypsilon: "y", zett: "z", tset: "z", eszett: "ß", ae: "ä", oe: "ö", ue: "ü" };
+const HARF_AD: Record<string, string> = { ch: "ch", sch: "sch", a: "a", be: "b", ce: "c", tse: "c", ze: "c", de: "d", e: "e", ef: "f", ge: "g", ha: "h", i: "i", jot: "j", yot: "j", ka: "k", el: "l", em: "m", en: "n", o: "o", pe: "p", ku: "q", er: "r", es: "s", te: "t", u: "u", fau: "v", we: "w", ix: "x", iks: "x", ypsilon: "y", zett: "z", tset: "z", eszett: "ß", ae: "ä", oe: "ö", ue: "ü" };
 const KOD: Record<string, string> = {
   anton: "a", aachen: "a", berta: "b", berlin: "b", caesar: "c", chemnitz: "c", dora: "d", duesseldorf: "d", emil: "e", essen: "e",
   friedrich: "f", frankfurt: "f", gustav: "g", goslar: "g", heinrich: "h", hamburg: "h", ida: "i", ingelheim: "i", julius: "j", jena: "j",
@@ -123,10 +153,12 @@ export function harfler(s: string): string[] | null {
   const w = String(s || "").toLowerCase().replace(/[^\p{L}]+/gu, " ").split(" ").filter(Boolean);
   const out: string[] = [];
   const harf = (x: string): string | undefined => (/^\p{L}$/u.test(x) ? x : HARF_AD[asc(x)]);
+  const ekle = (h: string) => out.push(...(h === "ch" || h === "sch" ? [...h] : [h]));
   for (let i = 0; i < w.length; i++) {
     const x = w[i]!;
     if (x === "wie" || x === "und") continue;
-    if (x === "doppel" || x === "doppelt") {
+    // "Doppel-L", "zwei L" (inceleme #76 P2)
+    if (x === "doppel" || x === "doppelt" || x === "zwei") {
       const y = w[i + 1]; if (!y) return null;
       const h = harf(y) ?? KOD[asc(y)]; if (!h) return null;
       out.push(h, h); i++;
@@ -134,10 +166,14 @@ export function harfler(s: string): string[] | null {
       continue;
     }
     if (x === "umlaut") {
-      const y = w[i + 1]; if (!y) return null;
-      const h = harf(y) ?? KOD[asc(y)]; if (!h || !UMLAUT[h]) return null;
-      out.push(UMLAUT[h]!); i++; continue;
+      // "Umlaut Unna" (önce) ya da "U Umlaut" (sonra)
+      const y = w[i + 1]; const h = y ? harf(y) ?? KOD[asc(y)] : undefined;
+      if (h && UMLAUT[h]) { out.push(UMLAUT[h]!); i++; continue; }
+      const son = out[out.length - 1];
+      if (son && UMLAUT[son]) { out[out.length - 1] = UMLAUT[son]!; continue; }
+      return null;
     }
+    if (x === "scharfes" && w[i + 1] === "s") { out.push("ß"); i++; continue; }
     const h = harf(x);
     if (h) {
       // "B wie Berta": kodlama sözcüğü tablodaysa aynı harf olmalı; tabloda yoksa aynı harfle başlamalı (K wie Kaiser anlaşılır)
@@ -146,12 +182,11 @@ export function harfler(s: string): string[] | null {
         if (kh ? kh !== h : !asc(k).startsWith(asc(h))) return null;
         i += 2;
       }
-      out.push(...(h === "ch" || h === "sch" ? [...h] : [h]));
-      continue;
+      ekle(h); continue;
     }
     const k = KOD[asc(x)];
     if (!k) return null;
-    out.push(...(k === "ch" || k === "sch" ? [...k] : [k]));
+    ekle(k);
   }
   return out.length ? out : null;
 }
@@ -160,37 +195,94 @@ export function heceHedef(kabul: string[]): string[] | null {
   const h = kabul.find((a) => /^\s*\p{L}{1,2}(\s*,\s*(Doppel-)?\p{L}{1,2})+\s*\.?\s*$/u.test(a) && a.split(",").length >= 3);
   return h ? harfler(h) : null;
 }
+/** ä/ö/ü/ß, ae/oe/ue/ss olarak harf harf de söylenebilir (M, U, E, L, L, E, R) */
+const harfAsc = (h: string[]) => h.map((x) => asc(x)).join("");
+/** "Mein Name ist M, Ü, …", "Ich buchstabiere: …" gibi giriş cümlesi atlanır */
+const GIRIS = /^.*?\b(ist|buchstabiere|buchstabiert|schreibt man|schreibe|also)\b[\s:,]*/i;
 export function heceEsit(kabul: string[], cevap: string): boolean {
   const hedef = heceHedef(kabul);
   if (!hedef) return false;
-  const c = harfler(cevap);
-  return !!c && c.join("") === hedef.join("");
+  const c = harfler(cevap) ?? (GIRIS.test(cevap) ? harfler(cevap.replace(GIRIS, "")) : null);
+  return !!c && harfAsc(c) === harfAsc(hedef);
 }
 
 /* ───────────── kelime sırası (V2) ───────────── */
-/** Öğe başında/sonunda duramayan işlev kelimeleri (norm yazımıyla) */
+/**
+ * İnceleme #76 P0: fiilin yeri tahminle bulunamaz. Kural yalnızca öznenin şahıs zamiri olduğu cümlelerde çalışır:
+ * zamir + küçük harfli kelime (Ich gehe…) ya da öğe + küçük harfli kelime + zamir (Morgen gehe ich…) — çekimli fiil
+ * zamirin hemen yanındadır. Başa alınan öğe bir öbek olmalıdır: tek içerik kelimesi ya da işlev kelimesiyle başlayıp
+ * tek büyük harfli isimle (ya da sayıyla) biten 2–4 kelime (am Dienstag, ins Kino, keine Zeit, um neun Uhr).
+ */
 const ISLEV = new Set("der die das den dem des ein eine einen einem einer eines mein meine meinen meinem meiner dein deine deinen deinem sein seine seinen seinem ihr ihre ihren ihrem unser unsere unseren euer eure kein keine keinen keinem keiner in im ins an am ans auf aufs aus bei beim mit nach von vom zu zum zur fuer um fuers ueber unter vor vors ums durchs hinter neben zwischen durch gegen ohne bis seit ab sehr".split(" "));
-const AYIRAN = new Set("an auf aus ein mit zu ab vor zurueck weg los fern nach her hin mit".split(" "));
+const AYIRAN = new Set("an auf aus ein mit zu ab vor zurueck weg los fern nach her hin".split(" "));
 const ZAMIR = new Set("ich du er sie es wir ihr man".split(" "));
+const ARTIKEL = new Set("der die das den dem des ein eine einen einem einer eines kein keine keinen keinem keiner mein meine meinen meinem dein deine sein seine ihre ihren unser unsere".split(" "));
+/** Başa alınamayan kelimeler (kip ilgeçleri, olumsuzluk) ve cümle dışında durabilen ünlemler */
+const PARTIKEL = new Set("ja doch mal halt eben denn wohl nicht nur noch auch erst".split(" "));
+/** Kip ve yardımcı fiiller: sondaki mastar tek başına başa alınmaz ("machen möchte ich einen Termin" değil) */
+const MODAL = new Set("moechte moechtest moechten kann kannst koennen muss musst muessen will willst wollen darf darfst duerfen soll sollst sollen haette haettest haetten wuerde wuerdest wuerden werde wirst wird".split(" "));
+const SOYLEM = new Set("ja nein also doch gut okay ok naja ach oh so tja hm bitte danke na".split(" "));
 const BAGLAC = /\b(und|oder|aber|denn|sondern|dass|weil|wenn|ob)\b/;
-function bicimler(a: string[]): { v2: Set<string>; v3: Set<string> } {
+const SAYISAL = (w: string) => SAYI.has(w) || /^o\d+/.test(w);
+
+function bicimler(a: string[], ham: string[]): { v2: Set<string>; v3: Set<string> } {
   const v2 = new Set<string>(), v3 = new Set<string>();
-  const n = a.length;
-  for (let k = 1; k <= Math.min(4, n - 2); k++) {
-    const pre = a.slice(0, k), V = a[k]!, post = a.slice(k + 1);
-    if (ISLEV.has(pre[pre.length - 1]!) || ISLEV.has(V)) continue;
-    for (let s = 0; s < post.length; s++) for (let e = s + 1; e <= Math.min(post.length, s + 4); e++) {
-      const S = post.slice(s, e), rest = [...post.slice(0, s), ...post.slice(e)];
-      if (ISLEV.has(S[S.length - 1]!) || (s > 0 && ISLEV.has(post[s - 1]!)) || (S.length === 1 && S[0] === "nicht")) continue;
-      if (e === post.length && S.length === 1 && AYIRAN.has(S[0]!) && post.length > 1) continue;
+  const buyuk = (i: number) => /^\p{Lu}/u.test(ham[i]!);
+  const fiil = (i: number) => i > 0 && i < a.length && /^\p{Ll}/u.test(ham[i]!) && !ISLEV.has(a[i]!) && !ZAMIR.has(a[i]!);
+  /** a[s..e) bir öbek mi (s > 0 iken önceki kelime işlev kelimesi olmamalı: öbeği bölmez) */
+  const obek = (s: number, e: number) => {
+    const S = a.slice(s, e);
+    if (!S.length || S.length > 4 || (s > 0 && ISLEV.has(a[s - 1]!)) || S.some((w) => ZAMIR.has(w))) return false;
+    // sayı/saat öbeği bölünmez: "drei viertel elf", "neun Uhr", "halb zehn" (inceleme #76 permütasyon taraması)
+    const zaman = (w?: string) => !!w && (SAYISAL(w) || w === "uhr" || w === "viertel" || w === "dreiviertel" || w === "halb");
+    if ((zaman(a[s - 1]) && zaman(S[0])) || (zaman(a[e]) && zaman(S[S.length - 1]))) return false;
+    // sayı + isim (vierzig Jahre, den dritten Mai) ve isim + sayı (Nummer einundneunzig, Brunnengasse sieben) bölünmez
+    // sayı ve isim hangi yönde olursa olsun bitişik bölünmez: "die Nummer | vierzehn", "achtundsiebzig | Kilogramm"
+    const isim = (i: number) => i >= 0 && i < a.length && buyuk(i) && !ZAMIR.has(a[i]!) && !ISLEV.has(a[i]!);
+    const sayi = (i: number) => i >= 0 && i < a.length && SAYISAL(a[i]!);
+    if ((sayi(e - 1) && isim(e)) || (isim(e - 1) && sayi(e)) || (sayi(s) && isim(s - 1)) || (isim(s) && sayi(s - 1))) return false;
+    // ölçü öbeği: "dreißig Jahre | alt"
+    if (s >= 2 && isim(s - 1) && sayi(s - 2)) return false;
+    if (S.length === 1) return !ISLEV.has(S[0]!) && !PARTIKEL.has(S[0]!) && !(e === a.length && AYIRAN.has(S[0]!));
+    if (!ISLEV.has(S[0]!) && !SAYISAL(S[0]!)) return false;   // am Dienstag, ins Kino, neun Uhr, zwei Kinder
+    const son = e - 1;
+    if (!(buyuk(son) || SAYISAL(a[son]!))) return false;
+    // ortadakiler işlev kelimesi ya da küçük harfli sıfat; tek isim sonda
+    for (let i = s + 1; i < son; i++) if (buyuk(i) && !ISLEV.has(a[i]!)) return false;
+    return true;
+  };
+  /** post (a[from..]) içindeki öbekler: [başlangıç, bitiş) */
+  const obekler = (from: number) => { const o: [number, number][] = []; for (let s = from; s < a.length; s++) for (let e = s + 1; e <= Math.min(a.length, s + 4); e++) if (obek(s, e)) o.push([s, e]); return o; };
+  const ekle = (set: Set<string>, ...parca: string[][]) => set.add(parca.flat().join(" "));
+  // Durum 1: Zamir + fiil + … (Ich gehe morgen ins Kino.)
+  if (ZAMIR.has(a[0]!) && fiil(1) && a.length >= 3) {
+    const P = [a[0]!], V = [a[1]!];
+    for (const [s, e] of obekler(2)) {
+      if (MODAL.has(a[1]!) && e === a.length && e - s === 1 && a.length > 4) continue;
+      const S = a.slice(s, e), rest = [...a.slice(2, s), ...a.slice(e)];
       if (rest.length && ISLEV.has(rest[rest.length - 1]!)) continue;
-      // öğe başa: kalan özne fiilin hemen ardına (Ins Kino gehe ich morgen) ya da başa alınan öğenin yerine (Morgen gehe ich ins Kino)
-      v2.add([...S, V, ...pre, ...rest].join(" "));
-      v2.add([...S, V, ...post.slice(0, s), ...pre, ...post.slice(e)].join(" "));
-      // fiil üçüncü yerde: yalnızca özne bir şahıs zamiriyse (kapalı küme; fiilin yeri böylece güvenilir): Morgen ich gehe…, Heute ich habe…
-      if (pre.length === 1 && ZAMIR.has(pre[0]!)) v3.add([...S, ...pre, V, ...rest].join(" "));
-      if (S.length === 1 && ZAMIR.has(S[0]!) && s === 0) v3.add([...pre, ...S, V, ...rest].join(" "));
+      ekle(v2, S, V, P, rest);                                         // Morgen gehe ich ins Kino. / Ins Kino gehe ich morgen.
+      if (!SOYLEM.has(S[0]!)) ekle(v3, S, P, V, rest);                  // Morgen ich gehe ins Kino.
     }
+  }
+  // Durum 2: Öğe + fiil + zamir + … (Heute habe ich keine Zeit.)
+  for (let j = 2; j <= Math.min(4, a.length - 1); j++) {
+    if (!ZAMIR.has(a[j]!) || !fiil(j - 1) || !obek(0, j - 1) || SOYLEM.has(a[0]!)) continue;
+    const X = a.slice(0, j - 1), V = [a[j - 1]!], P = [a[j]!], post = a.slice(j + 1), X0 = X[0]!;
+    // başa alınmış mastar kip fiiliyle geri dönünce cümle sonuna gider (Kommen kann ich morgen nicht → Ich kann morgen nicht kommen)
+    // mastar: kip fiili + -en ile biten tek kelime başta ve cümlenin sonunda başka mastar yok ("Morgen kann ich nicht kommen" değil)
+    const sonMastar = post.length > 0 && /(en|ern|eln)$/.test(post[post.length - 1]!);
+    const mastar = MODAL.has(V[0]!) && X.length === 1 && !SAYISAL(X[0]!) && /(en|ern|eln)$/.test(X[0]!) && !sonMastar;
+    if (mastar) ekle(v2, P, V, post, X); else ekle(v2, P, V, X, post);   // Ich habe heute keine Zeit.
+    for (const [s, e] of obekler(j + 1)) {
+      // nesne başta kalırken sondaki mastar başa alınmaz ("Einen Termin möchte ich machen" → "Machen möchte ich einen Termin" değil)
+      if (MODAL.has(a[j - 1]!) && e === a.length && e - s === 1 && (a.length - j > 2 || ARTIKEL.has(X0))) continue;
+      const S = a.slice(s, e), rest = [...a.slice(j + 1, s), ...a.slice(e)];
+      if (rest.length && ISLEV.has(rest[rest.length - 1]!)) continue;
+      if (mastar) ekle(v2, S, V, P, rest, X); else ekle(v2, S, V, P, X, rest);   // Keine Zeit habe ich heute.
+    }
+    if (!SOYLEM.has(X[0]!)) ekle(v3, X, P, V, post);                    // Heute ich habe keine Zeit.
+    break;
   }
   return { v2, v3 };
 }
@@ -202,49 +294,60 @@ export function v2Sira(kabul: string[], cevap: string): { kind: "correct"; best:
   if (/\?\s*$/.test(cevap)) return null;
   const c = esNorm(cevap);
   let v3: string | null = null;
-  for (const a of kabul) {
-    if (/[?!,;:]/.test(a.replace(/[.!]\s*$/, ""))) continue;
-    if (/[?!]\s*$/.test(a)) continue;
-    const w = esNorm(a).split(" ").filter(Boolean);
-    if (w.length < 3 || BAGLAC.test(w.join(" "))) continue;
+  for (const k of kabul) {
+    if (/[?!]\s*$/.test(k) || /[?!,;:]|\.\s/.test(k.replace(/[.!]\s*$/, ""))) continue;
+    const w = esNorm(k).split(" ").filter(Boolean);
+    const ham = k.replace(/[.!…]+\s*$/, "").split(/\s+/).map((x) => x.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, "")).filter(Boolean);
+    if (w.length < 3 || ham.length !== w.length || BAGLAC.test(w.join(" "))) continue;
     if ([...w].sort().join(" ") !== c.split(" ").sort().join(" ")) continue;
-    const { v2, v3: y } = bicimler(w);
-    if (v2.has(c)) return { kind: "correct", best: a };
-    if (!v3 && y.has(c)) v3 = a;
+    const { v2, v3: y } = bicimler(w, ham);
+    if (v2.has(c)) return { kind: "correct", best: k };
+    if (!v3 && y.has(c)) v3 = k;
   }
   return v3 ? { kind: "v3", best: v3 } : null;
 }
 
 /* ───────────── yazım notu ───────────── */
 const sade = (w: string) => w.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, "");
-const umlautsuz = (w: string) => w.replace(/ä/g, "a").replace(/ö/g, "o").replace(/ü/g, "u").replace(/Ä/g, "A").replace(/Ö/g, "O").replace(/Ü/g, "U");
+const umlautsuz = (w: string) => w.replace(/ä/g, "a").replace(/ö/g, "o").replace(/ü/g, "u").replace(/Ä/g, "A").replace(/Ö/g, "O").replace(/Ü/g, "U").replace(/ß/g, "s");
+const KIBAR = new Set(["Sie", "Ihnen", "Ihr", "Ihre", "Ihren", "Ihrem", "Ihrer", "Ihres"]);
 /**
- * Doğru sayılan cevapta yazım farkı: büyük harf (isimler), ae/oe/ue/ss yerine ä/ö/ü/ß, ümlautsuz yazım (Muller → Müller).
- * Ümlautsuz biçim kendisi bilinen bir kelimeyse (schon ≠ schön) bu fonksiyon çağrılmadan önce cevap zaten eşleşmez.
+ * Doğru sayılan cevapta yazım farkı: büyük harf ve ae/oe/ue/ss yerine ä/ö/ü/ß. Kibar hitap (Sie, Ihnen) ve cümle başı
+ * ayrı söylenir; diğer büyük harfler isimdir (inceleme #76 P2).
  */
 export function yazimNotu(best: string, cevap: string): string | undefined {
   const b = best.split(/\s+/).map(sade).filter(Boolean), c = cevap.split(/\s+/).map(sade).filter(Boolean);
   if (b.length !== c.length) return undefined;
-  const buyuk: string[] = [], umlaut: string[] = [];
+  const isim: string[] = [], kibar: string[] = [], umlaut: string[] = [];
   b.forEach((x, i) => {
     const y = c[i]!;
     if (x === y) return;
-    if (i > 0 && x.toLowerCase() === y.toLowerCase() && /^\p{Lu}/u.test(x) && /^\p{Ll}/u.test(y)) { buyuk.push(x); return; }
+    if (x.toLowerCase() === y.toLowerCase() && /^\p{Lu}/u.test(x) && /^\p{Ll}/u.test(y)) {
+      if (KIBAR.has(x)) kibar.push(x); else if (i > 0 && !/[.!?]$/.test(best.split(/\s+/)[i - 1] ?? "")) isim.push(x);
+      return;
+    }
     const xl = x.toLowerCase(), yl = y.toLowerCase();
-    if (xl !== yl && (asc(xl) === yl || umlautsuz(xl) === yl || asc(xl) === asc(yl))) umlaut.push(x);
+    if (xl !== yl && (asc(xl) === yl || asc(xl) === asc(yl))) umlaut.push(x);
   });
   const p: string[] = [];
   if (umlaut.length) p.push(`Yazımı: ${umlaut.join(", ")}`);
-  if (buyuk.length) p.push(`İsimler büyük harfle başlar: ${buyuk.join(", ")}`);
+  if (isim.length) p.push(`İsimler büyük harfle başlar: ${isim.join(", ")}`);
+  if (kibar.length) p.push(`Kibar hitap büyük harfle yazılır: ${kibar.join(", ")}`);
   return p.length ? p.join(" · ") : undefined;
 }
-/** Ümlautsuz hâli de bir Almanca kelime olan sık çiftler (sözlük yüklenmemiş olsa bile): bunlarda ümlaut anlamı değiştirir */
-const UMLAUT_CIFT = new Set("schon mochte wurde konnte hatte musste durfte ware zahlen drucken fordern losen bruder mutter vater tochter apfel garten laden ofen vogel nagel mantel hute fuhren zuruck uber fur kuchen".split(" "));
-/** Ümlautsuz yazılmış kelimeleri kabul biçimindeki ümlautlu hâline çevirir; ümlautsuz hâli bilinen bir kelimeyse çevirmez (schon/schön) */
-export function umlautTamamla(best: string, cevap: string, bilinen: (w: string) => boolean): string {
-  const b = best.split(/\s+/).map(sade).filter(Boolean);
-  const harita = new Map<string, string>();
-  for (const x of b) { const u = umlautsuz(x).toLowerCase(); if (u !== x.toLowerCase() && !bilinen(u) && !UMLAUT_CIFT.has(u)) harita.set(u, x); }
-  if (!harita.size) return cevap;
-  return cevap.replace(/\p{L}+/gu, (w) => harita.get(w.toLowerCase()) ?? w);
+/**
+ * Ümlautu (ya da ß'yi) unutulmuş cevap: kabul biçiminin ümlautsuz hâliyle aynıysa düzeltme notu döner, cevap DOĞRU SAYILMAZ.
+ * Ümlautsuz biçim çoğu zaman başka bir kelimedir (schon/schön, fahrt/fährt, alter/älter; inceleme #76 P1-5) ve bunu
+ * listeyle bilmek mümkün değil; öğrenci notu görür, yazımı öğrenir.
+ */
+export function umlautEksik(kabul: string, cevap: string): string | undefined {
+  const k = kabul.split(/\s+/).map(sade).filter(Boolean), c = cevap.split(/\s+/).map(sade).filter(Boolean);
+  if (k.length !== c.length) return undefined;
+  const eksik: string[] = [];
+  for (let i = 0; i < k.length; i++) {
+    const x = k[i]!, y = c[i]!;
+    if (esNorm(x) === esNorm(y)) continue;
+    if (umlautsuz(x).toLowerCase() === umlautsuz(y).toLowerCase() && /[äöüßÄÖÜ]/.test(x)) eksik.push(x); else return undefined;
+  }
+  return eksik.length ? `Ümlaut/ß eksik: ${eksik.join(", ")} (ä, ö, ü, ß yazamıyorsan ae, oe, ue, ss yaz)` : undefined;
 }

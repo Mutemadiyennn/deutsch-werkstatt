@@ -319,10 +319,17 @@ def main():
             yerel = page.locator("[data-test=lp-sheet] [data-test=yerel-cevap], [data-test=lp-sheet] [data-test=yerel-kelimeler]").count()
             ai_lp = [c for c in API_CALLS[n_lp:] if c["url"].endswith("/v1/ai/run") and "explain_tr" in (c["body"] or "")]
             check(yerel > 0 and not ai_lp, f"uzun basma: cihazdaki sözlükten hemen cevap, yapay zekâ isteği yok ({yerel} yerel, {len(ai_lp)} istek; {page.locator('[data-test=lp-sheet]').inner_text()[:120]!r})")
+            # parmağın altındaki kelime (basış noktası öğenin sol üstü + 10 px: ilk kelime) ayrıca açıklanıyor (inceleme #76 P1-7)
+            ilk_kelime = desc.split(": ", 1)[-1].split()[0].strip(".,!?„“\"") if ": " in desc else ""
+            if len(desc.split(": ", 1)[-1].split()) > 1:
+                lk = page.locator("[data-test=lp-sheet] [data-test=lp-kelime]")
+                check(lk.count() == 1 and ilk_kelime.lower() in lk.inner_text().lower(), f"uzun basma: parmağın altındaki kelime ({ilk_kelime!r}) ayrıca açıklanıyor ({lk.inner_text()[:60] if lk.count() else 'yok'!r})")
             if page.locator("[data-test=lp-sheet] [data-test=explain-ai]").count():
                 page.locator("[data-test=lp-sheet] [data-test=explain-ai]").first.click()
-                page.wait_for_selector("[data-test=lp-sheet] .fb.info b >> nth=-1")
-                ai_lp = [c["body"] or "" for c in API_CALLS[n_lp:] if c["url"].endswith("/v1/ai/run") and "explain_tr" in (c["body"] or "")]
+                for _ in range(40):
+                    ai_lp = [c["body"] or "" for c in API_CALLS[n_lp:] if c["url"].endswith("/v1/ai/run") and "explain_tr" in (c["body"] or "")]
+                    if ai_lp: break
+                    page.wait_for_timeout(250)
                 check(ai_lp and all("Novak" not in b for b in ai_lp), "'Öğretmene sor' isteğinde ad yok (D-061)")
             page.click("[data-test=lp-kapat]")
         sel = page.evaluate("getComputedStyle(document.body).webkitUserSelect || getComputedStyle(document.body).userSelect")

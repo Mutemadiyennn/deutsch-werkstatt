@@ -1,8 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { esNorm, harfler, heceEsit, rakamEsit, umlautTamamla, v2Sira, yazimNotu } from "./esdeger.ts";
+import { esEsit, esNorm, harfler, heceEsit, rakamEsit, umlautEksik, v2Sira, yazimNotu } from "./esdeger.ts";
 import { ruleVerdict } from "./answer.ts";
 import { drillVerdict } from "../ui/drill.tsx";
-import { bilinenKelimeler, bilinenMi } from "./persona.ts";
 
 describe("saat, tarih, sıra sayısı (esNorm)", () => {
   it("rakamlı ve yazılı saat aynı", () => {
@@ -19,17 +18,29 @@ describe("saat, tarih, sıra sayısı (esNorm)", () => {
     expect(esNorm("Es ist halb zehn.")).not.toBe(esNorm("Es ist 10:30."));
     expect(esNorm("Um Viertel nach neun.")).not.toBe(esNorm("Um 9:45."));
   });
-  it("tarih ve sıra sayısı", () => {
-    const h = esNorm("Am dritten Mai.");
-    for (const x of ["Am 3. Mai.", "Am 3.5.", "Am 03.05.", "am 3. mai"]) expect(esNorm(x), x).toBe(h);
-    expect(esNorm("Heute ist der 1.")).toBe(esNorm("Heute ist der erste."));
-    expect(esNorm("Im 2. Stock.")).toBe(esNorm("Im zweiten Stock."));
-    expect(esNorm("Am 4. Mai.")).not.toBe(h);
-    // sıradan sayı ve cümle sonu noktası sıra sayısı değildir
+  it("tarih ve sıra sayısı (bağlamda)", () => {
+    for (const x of ["Am 3. Mai.", "Am 3.5.", "Am 03.05.", "am 3. mai"]) expect(esEsit("Am dritten Mai.", x), x).toBe(true);
+    expect(esEsit("Heute ist der erste.", "Heute ist der 1.")).toBe(true);
+    expect(esEsit("Im zweiten Stock.", "Im 2. Stock.")).toBe(true);
+    expect(esEsit("Am dritten Mai.", "Am 4. Mai.")).toBe(false);
+    expect(esEsit("Am 8. Mai.", "Am achten Mai.")).toBe(true);
+    // sıra sayısı eki denetlenir (inceleme #76 P1-1)
+    expect(esEsit("Heute ist der dritte Mai.", "Heute ist der dritten Mai.")).toBe(false);
+    expect(esEsit("Im zweiten Stock.", "Im zweite Stock.")).toBe(false);
+    // bağlamsız sayı ve fiil sıra sayısı değildir
     expect(esNorm("Ich bin 30.")).toBe(esNorm("Ich bin dreißig."));
-    // "9.30" tek başına saat sayılmaz (fiyat/tarih olabilir)
+    expect(esEsit("Ich arbeite bis 5.", "Ich arbeite bis fünf.")).toBe(true);
+    expect(esNorm("Wir achten auf den Preis.")).toContain("achten");
+    expect(esEsit("Das kostet 3.10.", "Das kostet dritten Oktober.")).toBe(false);
     expect(esNorm("9.30 Euro")).not.toBe(esNorm("neun Uhr dreißig Euro"));
     expect(esNorm("Zwo")).toBe(esNorm("zwei"));
+  });
+  it("saat: ein Uhr, fünf vor halb, dakika nach/vor", () => {
+    expect(esEsit("Um halb zwei.", "Um ein Uhr dreißig.")).toBe(true);
+    expect(esEsit("Um 8:25.", "Um fünf vor halb neun.")).toBe(true);
+    expect(esEsit("Um 8:35.", "Um fünf nach halb neun.")).toBe(true);
+    expect(esEsit("Um 8:03.", "Um drei nach acht.")).toBe(true);
+    expect(esEsit("Um 8:25.", "Um fünfundzwanzig nach acht.")).toBe(true);
   });
 });
 
@@ -42,6 +53,7 @@ describe("rakam dizisi (telefon)", () => {
     expect(rakamEsit(n, "Meine Nummer ist 0171 39200 48")).toBe(false);
     expect(rakamEsit(n, "Seine Nummer ist 0171 39200 47")).toBe(false);
     expect(rakamEsit("Ich bin einundzwanzig.", "Ich bin zwei eins.")).toBe(false); // 5 rakamdan kısa: kural uygulanmaz
+    expect(rakamEsit("Am 1.12.2026.", "Am 11.2.2026.")).toBe(false); // tarih ayraçları anlamlı (inceleme #76 P1-4)
   });
   it("ruleVerdict: tek kabul biçimi yeter", () => {
     expect(ruleVerdict([n], "Meine Nummer ist null eins sieben eins, drei neun zwo null null, siebenundvierzig.").kind).toBe("correct");
@@ -59,6 +71,11 @@ describe("harf harf söyleme yuvaları", () => {
     expect(heceEsit(k, "M, Ü, L, E, R")).toBe(false);
     expect(heceEsit(k, "Müller")).toBe(false);
   });
+  it("ue yazımı, zwei L, U Umlaut, scharfes S, giriş cümlesi; 've' W değildir", () => {
+    for (const x of ["M, U, E, L, L, E, R", "M, Ü, zwei L, E, R", "M, U Umlaut, L, L, E, R", "Mein Name ist M, Ü, L, L, E, R."]) expect(heceEsit(k, x), x).toBe(true);
+    expect(heceEsit(["G, R, O, ß"], "G, R, O, scharfes S")).toBe(true);
+    expect(heceEsit(["W, E, B, E, R"], "ve e be e er")).toBe(false);
+  });
   it("tabloda olmayan ama aynı harfle başlayan sözcük anlaşılır", () => {
     expect(heceEsit(["K, R, A, U, S"], "K wie Kaiser, R wie Rom, A, U, S")).toBe(true);
     expect(harfler("Sch wie Schule")).toEqual(["s", "c", "h"]);
@@ -75,6 +92,8 @@ describe("kelime sırası (V2)", () => {
     expect(v2Sira(["Heute habe ich keine Zeit."], "Ich habe heute keine Zeit.")?.kind).toBe("correct");
     expect(v2Sira(["Ich komme aus der Türkei."], "Aus der Türkei komme ich.")?.kind).toBe("correct");
     expect(v2Sira(["Es ist neun Uhr."], "Neun Uhr ist es.")?.kind).toBe("correct");
+    expect(v2Sira(["Ich habe am Dienstag Zeit."], "Am Dienstag habe ich Zeit.")?.kind).toBe("correct");
+    expect(v2Sira(["Morgen gehe ich ins Kino."], "Ins Kino gehe ich morgen.")?.kind).toBe("correct");
   });
   it("fiil üçüncü yerde → açıklamalı yanlış", () => {
     expect(v2Sira(k, "Morgen ich gehe ins Kino.")?.kind).toBe("v3");
@@ -88,28 +107,46 @@ describe("kelime sırası (V2)", () => {
     expect(v2Sira(["Wie heißen Sie?"], "Sie heißen wie?")).toBeNull();
     expect(v2Sira(["Ich komme, wenn ich Zeit habe."], "Wenn ich Zeit habe, komme ich.")).toBeNull();
     expect(v2Sira(["Ich gehe nicht."], "Nicht gehe ich.")?.kind).not.toBe("correct");
+    // inceleme #76 P0: öznesi isim olan cümlede ve öbek olmayan parçada sıra serbest değil
+    expect(v2Sira(["Das Kind sieht die Frau."], "Die Frau sieht das Kind.")).toBeNull();
+    expect(v2Sira(["Ich habe am Dienstag Zeit."], "Am Dienstag Zeit habe ich.")?.kind).not.toBe("correct");
+    expect(v2Sira(["Ich kann morgen kommen."], "Kommen ich morgen kann.")?.kind).not.toBe("correct");
+    expect(v2Sira(["Meine Nummer ist null eins sieben."], "Meine Nummer eins null sieben ist.")).toBeNull();
+    expect(v2Sira(["Ich komme ja."], "Ja komme ich.")?.kind).not.toBe("correct");
+    expect(v2Sira(["Ich komme ja."], "Ja ich komme.")?.kind).not.toBe("v3");
+    expect(v2Sira(["Ihr Termin ist morgen."], "Morgen ist Ihr Termin.")).toBeNull();
+    // permütasyon taraması bulguları: sayı+isim öbeği, kip fiili + mastar, söylem kelimesi
+    expect(v2Sira(["Ich habe die Nummer vierzehn."], "Die Nummer habe ich vierzehn.")?.kind).not.toBe("correct");
+    expect(v2Sira(["Ich bin dreißig Jahre alt."], "Alt bin ich dreißig Jahre.")?.kind).not.toBe("correct");
+    expect(v2Sira(["Ich möchte bitte einen Termin machen."], "Machen möchte ich bitte einen Termin.")?.kind).not.toBe("correct");
+    expect(v2Sira(["Morgen kann ich nicht kommen."], "Ich kann nicht kommen morgen.")?.kind).not.toBe("correct");
+    expect(v2Sira(["Kommen kann ich morgen nicht."], "Ich kann morgen nicht kommen.")?.kind).toBe("correct");
+    expect(v2Sira(["Kommen kann ich morgen nicht."], "Morgen kann ich kommen nicht.")?.kind).not.toBe("correct");
+    expect(v2Sira(["Bitte buchstabieren Sie das."], "Sie buchstabieren bitte das.")).toBeNull();
+    expect(v2Sira(["Einen Termin möchte ich machen."], "Machen möchte ich einen Termin.")?.kind).not.toBe("correct");
+    expect(v2Sira(["Am Montag kann ich kommen."], "Kommen kann ich am Montag.")?.kind).toBe("correct");
+    expect(v2Sira(["Heute geht es nicht. Montag geht es."], "Montag geht es nicht. Heute geht es.")).toBeNull();
     // fiil sanılan başka kelime yüzünden doğru cümle "fiil üçüncü yerde" sayılmaz
     expect(v2Sira(["Ich habe heute keine Zeit."], "Ich habe keine Zeit heute.")?.kind).not.toBe("v3");
   });
 });
 
 describe("yazım: kabul + düzeltme notu", () => {
-  it("büyük harf ve ümlaut notu", () => {
-    expect(yazimNotu("Ich habe einen Termin.", "ich habe einen termin")).toMatch(/Termin/);
+  it("büyük harf (isim, kibar hitap ayrı) ve ae/oe/ue notu", () => {
+    expect(yazimNotu("Ich habe einen Termin.", "ich habe einen termin")).toMatch(/İsimler.*Termin/);
+    expect(yazimNotu("Hallo. Wie geht es Ihnen?", "hallo. wie geht es ihnen?")).toBe("Kibar hitap büyük harfle yazılır: Ihnen");
     expect(yazimNotu("Mein Name ist Müller.", "Mein Name ist Mueller.")).toMatch(/Müller/);
     expect(yazimNotu("Ich habe Hunger.", "Ich habe Hunger.")).toBeUndefined();
   });
-  it("ümlautsuz yazım yalnızca ümlautsuz hâli bilinen bir kelime değilse kabul", () => {
-    bilinenKelimeler(["schon", "schön"]);
-    expect(umlautTamamla("Das ist schön.", "Das ist schon.", bilinenMi)).toBe("Das ist schon.");
-    // mochte (geçmiş zaman) ≠ möchte: sözlük yüklenmemiş olsa da ümlautsuz hâli kelime olan çiftler tamamlanmaz
-    expect(umlautTamamla("Ich möchte zahlen.", "Ich mochte zahlen.", () => false)).toBe("Ich mochte zahlen.");
-    expect(umlautTamamla("Ich bin müde.", "Ich bin mude.", bilinenMi)).toBe("Ich bin müde.");
-    const v = ruleVerdict(["Ich bin müde."], "Ich bin mude.");
-    expect(v).toMatchObject({ kind: "correct" });
-    expect((v as { note?: string }).note).toMatch(/müde/);
-    expect(ruleVerdict(["Ich möchte zahlen."], "Ich mochte zahlen.").kind).not.toBe("correct");
-    expect(ruleVerdict(["Das ist schön."], "Das ist schon.").kind).not.toBe("correct");
+  it("ümlautu unutulmuş cevap doğru sayılmaz, notu gösterilir (inceleme #76 P1-5)", () => {
+    for (const [k, c] of [["Das ist schön.", "Das ist schon."], ["Er fährt nach Hause.", "Er fahrt nach Hause."], ["Sie ist älter.", "Sie ist alter."], ["Ich bin müde.", "Ich bin mude."], ["Das ist größer.", "Das ist groser."]]) {
+      const v = ruleVerdict([k], c);
+      expect(v.kind, c).toBe("wrong");
+      expect((v as { note?: string }).note, c).toMatch(/Ümlaut/);
+    }
+    expect(umlautEksik("Ich bin müde.", "Ich bin mude.")).toMatch(/müde/);
+    expect(umlautEksik("Ich bin müde.", "Ich bin krank.")).toBeUndefined();
+    expect(ruleVerdict(["Ich bin müde."], "Ich bin muede.").kind).toBe("correct");
   });
 });
 

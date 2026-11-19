@@ -6,17 +6,13 @@
  *  4) "Benim cevabım da doğru" her zaman vardır; kayıt içerik iyileştirme kuyruğuna gider.
  */
 import { judge, norm, scoreHeard } from "./grading.ts";
-import { esNorm, heceEsit, rakamEsit, umlautTamamla, v2Sira, yazimNotu } from "./esdeger.ts";
-import { bilinenMi } from "./persona.ts";
+import { esEsit, heceEsit, rakamEsit, umlautEksik, v2Sira, yazimNotu } from "./esdeger.ts";
 
 /**
- * #58 A11: yapay zekâsız eşdeğer biçimler — saat/tarih/sıra sayısı (esNorm), uzun rakam dizisi, ümlautsuz yazım
- * (ümlautsuz hâli bilinen bir kelime değilse: Muller → Müller, ama schon ≠ schön). Eşleşen kabul biçimini döner.
+ * #58 A11: yapay zekâsız eşdeğer biçimler — saat/tarih/sıra sayısı (esEsit), uzun rakam dizisi. Eşleşen kabul biçimini döner.
  */
 export function esdegerBul(accepted: string[], answer: string): string | undefined {
-  const e = esNorm(answer);
-  if (!e) return undefined;
-  return accepted.find((a) => esNorm(a) === e || rakamEsit(a, answer) || esNorm(a) === esNorm(umlautTamamla(a, answer, bilinenMi)));
+  return accepted.find((a) => esEsit(a, answer) || rakamEsit(a, answer));
 }
 export const V3_NOT = "Almancada çekimli fiil cümlenin ikinci yerindedir: başa bir kelime aldıysan fiil hemen ardından gelir.";
 
@@ -103,6 +99,8 @@ export function ruleVerdict(accepted: string[], answer: string): Verdict {
   const sira = v2Sira(accepted, answer);
   if (sira?.kind === "correct") return { kind: "correct", best: sira.best, via: "order" };
   if (sira?.kind === "v3") return { kind: "wrong", best: sira.best, note: V3_NOT };
+  // ümlautu unutulmuş cevap: doğru sayılmaz, yazım notu gösterilir
+  for (const a of accepted) { const n = umlautEksik(a, answer); if (n) return { kind: "wrong", best: a, note: n }; }
   const best = j.best || accepted[0] || "";
   const sc = scoreHeard(best, answer).score;
   // çok uzak cevap: yapay zekâya sormaya değmez (anlam açıkça farklı)

@@ -16,7 +16,13 @@ import { loadLexicon } from "../services/content.ts";
 /** Cihazdaki sözlük (içerik paketi; çevrimdışı da var). Yüklenemezse boş liste: "Bu ne demek?" yine yapay zekâya sorabilir */
 function useSozluk(): Lexeme[] | null {
   const [lex, setLex] = useState<Lexeme[] | null>(null);
-  useEffect(() => { let canli = true; loadLexicon().then((x) => { if (canli) setLex(x.lexemes); }, () => { if (canli) setLex([]); }); return () => { canli = false; }; }, []);
+  useEffect(() => {
+    let canli = true;
+    // sözlük 8 sn'de gelmezse boş listeyle devam (yapay zekâya sorma yolu açık kalır; inceleme #76 P2)
+    const t = setTimeout(() => { if (canli) setLex((l) => l ?? []); }, 8000);
+    loadLexicon().then((x) => { if (canli) setLex(x.lexemes); }, () => { if (canli) setLex((l) => l ?? []); }).finally(() => clearTimeout(t));
+    return () => { canli = false; clearTimeout(t); };
+  }, []);
   return lex;
 }
 
@@ -78,13 +84,13 @@ export function ExplainBtn({ de, context, onAsked, acik: ilk = false }: { de: st
     try { const o = await ai(api, "explain_tr", { de: redact(de, persona).slice(0, 120), context: context ? redact(context, persona).slice(0, 400) : undefined }); setSt({ out: o }); }
     catch (e) { setSt({ err: e instanceof ApiError ? e.message_tr : "Açıklama alınamadı." }); }
   };
-  const tamCevap = yerel && yerel.kaynak !== "kelimeler";
+  const tamCevap = !!yerel && yerel.kaynak !== "kelimeler";
   return (
     <span>
       {!ilk && <button class="btn ghost sm" onClick={() => { onAsked?.(de); setAcik(true); }} data-test="explain">Bu ne demek?</button>}
       {acik && <div class="fb info small stack" style={{ marginTop: 6 }} data-test="explain-out">
-        {!lex ? "Sözlük açılıyor…" : yerel ? <YerelCevap a={yerel} /> : !st && <div data-test="yerel-yok">Cihazdaki sözlükte yok.</div>}
-        {lex && !tamCevap && !st && aiState(api).available && <button class="btn ghost sm" onClick={sor} data-test="explain-ai">{yerel ? "Cümlenin tamamını öğretmene sor" : "Öğretmene sor"}</button>}
+        {!lex ? "Sözlük açılıyor…" : yerel ? <YerelCevap a={yerel} /> : !st && <div data-test="yerel-yok">Cihazdaki sözlükte yok.{!aiState(api).available && <> {aiState(api).reason}</>}</div>}
+        {lex && !st && aiState(api).available && <button class="btn ghost sm" onClick={sor} data-test="explain-ai">{!yerel ? "Öğretmene sor" : tamCevap ? "Bu cümlede ne demek? Öğretmene sor" : "Cümlenin tamamını öğretmene sor"}</button>}
         {st && <div>{st.busy && "Açıklanıyor…"}{st.out && <><b>{st.out.tr}</b> — {st.out.note_tr}</>}{st.err && st.err}</div>}
         {!ilk && <button class="btn ghost sm" onClick={() => { setAcik(false); setSt(null); }}>Kapat</button>}</div>}
     </span>
@@ -177,7 +183,7 @@ export function LongPressExplain() {
       const txt = (el.innerText || el.textContent || "").trim().replace(/\s+/g, " ").slice(0, 120);
       if (!txt) return;
       let kelime: string | null = null;
-      try { kelime = noktadakiKelime(e.clientX, e.clientY); } catch { kelime = null; }
+      try { kelime = noktadakiKelime(e.clientX, e.clientY, el); } catch { kelime = null; }
       t = window.setTimeout(() => { t = undefined; try { haptic("selection"); } catch { /* yok say */ } setSec({ de: txt, kelime }); }, 550);
     };
     const cancel = () => { if (t) { clearTimeout(t); t = undefined; } };
