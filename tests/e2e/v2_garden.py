@@ -108,7 +108,7 @@ def main():
         pg.wait_for_selector("[data-test=garden], [data-test=garden-empty]")
         check(pg.locator(".card.err, [role=alert]").count() == 0, "ikinci tur hatasız açılıyor")
         ACTIVE = ("gq-tr_de", "gq-photo_say", "gq-gap", "gq-sep_perfekt", "gq-own_sentence")
-        types2 = []; gaps = []
+        types2 = []; gaps = []; sonra = []; acildi = False; trde_bakildi = False
         k = 0
         while pg.locator("[data-test=garden]").count() and not pg.locator("[data-test=garden-done]").count() and k < 25:
             t = pg.locator("[data-test^=gq-]").first.get_attribute("data-test") if pg.locator("[data-test^=gq-]").count() else "intro"
@@ -117,12 +117,27 @@ def main():
                 shot(pg, "g04-uretim", full=False)
             pg.evaluate("document.documentElement.classList.remove('dyn'); document.documentElement.style.setProperty('--ts','1.3')")
             no_overflow(pg, f"%130 yazı Bahçe {t}")
-            if t == "gq-gap":
-                # ipucu soru sırasında kapalı, düğmeyle açılır (PM 7004537514-2); cevap hiçbir yerde önceden görünmez
-                gaps.append(pg.locator("[data-test=ipucu]").count() == 0)
+            if t in ("gq-gap", "gq-sep_perfekt"):
+                # ipucu soru sırasında kapalı, düğmeyle açılır (PM 7004537514-2); kart metninde ipucu ya da cevap yok
+                kart = pg.inner_text(f"[data-test={t}]")
+                cev = (pg.get_attribute("[data-test=garden]", "data-cevap") or "") if pg.locator("[data-test=garden][data-cevap]").count() else ""
+                gaps.append(pg.locator("[data-test=ipucu-ac]").count() == 1 and pg.locator("[data-test=ipucu]").count() == 0 and (not cev or cev not in kart))
+                if not acildi:
+                    pg.click("[data-test=ipucu-ac]"); acildi = pg.locator("[data-test=ipucu]").count() == 1 and pg.locator("[data-test=ipucu-ac]").count() == 0
+                # yanlış cevaptan sonra ipucu açıklama olarak, cevaptan sonra ipucu düğmesi yok
+                answer_current_wrong_check = True
+                pg.fill("[data-test=answer]", "xyz falsch"); pg.click("[data-test=submit]"); pg.wait_for_selector("[data-test=next]")
+                sonra.append(pg.locator("[data-test=ipucu-sonra]").count() == 1 and pg.locator("[data-test=ipucu-ac]").count() == 0)
+                advance(pg); k += 1; continue
+            if t == "gq-tr_de" and not trde_bakildi:
+                pg.fill("[data-test=answer]", "xyz falsch"); pg.click("[data-test=submit]"); pg.wait_for_selector("[data-test=next]")
+                trde_bakildi = True; check(pg.locator("[data-test=ipucu-sonra]").count() == 0, "tr_de yanlışından sonra boşluk ipucu çıkmıyor (inceleme #85 P1-1)")
+                advance(pg); k += 1; continue
             answer_current(pg); k += 1
         check(any(t in ACTIVE for t in types2), f"ikinci turda üretim sorusu var ({sorted(set(types2))})")
-        if gaps: check(all(gaps), f"boşluk sorusunda ipucu soru sırasında kapalı ({len(gaps)} soru)")
+        check(len(gaps) > 0 and all(gaps), f"boşluk sorusunda ipucu soru sırasında kapalı, düğme var, cevap kartta yok ({len(gaps)} soru)")
+        check(acildi, "İpucu göster'e dokununca ipucu açılıyor, düğme kalkıyor")
+        check(len(sonra) > 0 and all(sonra), f"yanlış cevaptan sonra ipucu açıklama olarak görünüyor, ipucu düğmesi yok ({len(sonra)})")
         b.close()
     srv.shutdown()
     finish()

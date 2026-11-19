@@ -139,6 +139,9 @@ describe("Kelime Bahçesi (PM-049)", () => {
   it("boşlukta also_ok eş anlamlıları da kabul, cümle biçimiyle (İÇ 7003635425-2)", () => {
     const deshalb = L({ id: "lx:deshalb", de: "deshalb", tr: "bu yüzden", pos: "adv", forms: [{ de: "Ich bin krank, ___ komme ich nicht.", answer: "deshalb", also_ok: ["deswegen"] }] });
     expect(accepted(deshalb, "gap")).toEqual(expect.arrayContaining(["deshalb", "deswegen", "Ich bin krank, deswegen komme ich nicht.", "Ich bin krank, deshalb komme ich nicht."]));
+    expect(accepted(deshalb, "gap")).not.toContain("trotzdem");
+    const auf = L({ id: "lx:aufmachen", de: "aufmachen", tr: "açmak", pos: "adj", forms: [{ de: "Ich ___ das Fenster ___.", answer: "mache … auf", also_ok: ["öffne … "] }] });
+    expect(accepted(auf, "gap")).toEqual(expect.arrayContaining(["mache auf", "Ich mache das Fenster auf."]));
   });
   it("boşluk sorusunda bütün cümle de kabul (inceleme #59 P1-2)", () => {
     expect(accepted(termin, "gap")).toContain("Ich habe einen Termin.");
