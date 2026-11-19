@@ -38,7 +38,7 @@ PM belgeleri issue olarak gelir; depoya baş geliştirici alır (PM-011).
 - **Kalıp kapısı (D-063):** kalıplar "reviewed" olmadan yeni senaryo/alan yazılmaz. Üretim maddelerinde accepted[] ≥3 (D-064).
 - **Döngüsüzlük (H4 §4):** bir konu yeni bir şey öğretmedikçe tekrar gelmez; tekrarlar farklı bağlam ve karakterle gelir.
 - **WebKit kabul ölçütüdür.** "Bitti" kararı CI'daki WebKit (iPhone 15, iPhone 16 Pro Max) sonucuna göre verilir. Yerelde WebKit kurulamazsa Chromium'a düşülmez; yerel Chromium yalnızca hızlı geri bildirimdir.
-- **Bitti tanımı:** kod + birim testleri + WebKit uçtan uca testleri + doğrulayıcı 0 hata + güncel STATUS + PR açıklaması. Biri eksikse "bitti" denmez.
+- **Bitti tanımı:** kod + birim testleri + WebKit uçtan uca testleri + DN-2 makine kapısının tamamı (gezgin, yükleme bütçesi, uçak modu, TS-4, üç cihaz; `docs/v2/DENETIM.md`) + doğrulayıcı 0 hata + güncel STATUS + PR açıklaması. Biri eksikse "bitti" denmez.
 - **PR sınırı (PM-046 B, PM-052 C.11):** yeni özellik PR'ı için en fazla 4 açık PR; ≤50 satırlık hata düzeltmeleri ve tarihi olan işler muaf.
 - **Küçük PR.** Her teslim ayrı dal ve ayrı PR; bağımlıysa öncekinin üstüne (yığınlı). PR açıklaması kendi başına anlaşılır: ne değişti, nasıl test edildi, arayüz değiştiyse ekran görüntüleri, bilinen eksikler.
 - **Bağımsız inceleme.** Her PR birleşmeden önce işi yazmamış `inceleme` ajanı temiz bağlamla inceler ve PR'a yorum yazar. İçerikte sıra: yazar → dilbilimci → örneklem kontrolü (ayrı ajanlar).
@@ -62,7 +62,7 @@ npm run content:validate                      # içerik doğrulayıcı (0 hata �
 npm run content:build && npm run build -w web # web/dist
 (cd web && npx vite build --mode e2e --outDir dist-e2e)   # e2e sürümü (sahte giriş, sahte sunucu)
 # uçtan uca (yerel hızlı geri bildirim; kabul CI'da WebKit)
-cd tests/e2e && python v2_core.py && python v2_player.py && python visual.py --out /tmp/visual
+cd tests/e2e && python v2_core.py && python v2_player.py && python gezgin.py && python yukleme.py && python ucak.py && python visual.py --out /tmp/visual
 #   WebKit + cihaz: --browser webkit --device "iPhone 15"
 # v1 kapısı (yalnızca v1 değişince)
 bash app/tests/run_all.sh                     # → /tmp/dw_tests.log, 17/17

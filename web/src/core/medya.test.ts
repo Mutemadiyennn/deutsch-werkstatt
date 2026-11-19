@@ -57,4 +57,17 @@ describe("Medya bölüm oynatıcısı (#58 A4, PM-053)", () => {
     expect(hedefSira("Heute ist Donnerstag. Gestern war Mittwoch.", "Gestern war Mittwoch")).toEqual({ sira: 2, toplam: 2 });
     expect(hedefSira("Heute ist Donnerstag.", "Heute ist Donnerstag.")).toBeNull();
   });
+  it("kelime kartı: yalnızca uyumlu sözcük türünde ek atılır; düzensiz biçimler (inceleme #60 2. tur P1-A)", () => {
+    const L = (o: Record<string, unknown>) => Lexeme.parse({ tr: "x", pos: "other", ...o });
+    const lex = [L({ id: "lx:bis", de: "bis", pos: "prep" }), L({ id: "lx:wir", de: "wir", pos: "pron" }), L({ id: "lx:meinen", de: "meinen", pos: "verb" }),
+      L({ id: "lx:mein", de: "mein, meine", pos: "det" }), L({ id: "lx:sein", de: "sein", pos: "verb" }), L({ id: "lx:werden", de: "werden", pos: "verb" }),
+      L({ id: "lx:sagen", de: "sagen", pos: "verb" }), L({ id: "lx:Tag", de: "Tag", pl: "Tage", pos: "noun", art: "der" }), L({ id: "lx:wissen", de: "wissen", pos: "verb" }), L({ id: "lx:weiß", de: "weiß", pos: "adj" })];
+    expect(kartBul("bist", lex)!.id).toBe("lx:sein");
+    expect(kartBul("wirst", lex)!.id).toBe("lx:werden");
+    expect(kartBul("meine", lex)!.id).toBe("lx:mein");
+    expect(kartBul("weißt", lex)!.id).toBe("lx:wissen");
+    expect(kartBul("sagt", lex)!.id).toBe("lx:sagen");
+    expect(kartBul("Tagen", lex)!.id).toBe("lx:Tag");
+    expect(kartBul("bisschen", lex)).toBeUndefined();
+  });
 });

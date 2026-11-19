@@ -155,6 +155,9 @@ def main():
         while not pg.locator("[data-test=medya-bitti]").count() and k < 40:
             if pg.locator("[data-test=adim-soru]").count() and not pg.locator("[data-test=medya][data-adim]").count():
                 check(True, "anons sonunda 'Ne yapmalısın?' sorusu")
+            if adim(pg) == "transkript":
+                body = pg.inner_text("[data-test=medya]")
+                check("{" not in body and "}" not in body, "anons metninde yer tutucu ({name}, {Herr|Frau}) ham görünmüyor")
             answer_step(pg); k += 1
         check(pg.locator("[data-test=medya-bitti]").count() == 1, f"anons bitti ({k} adım)")
         # %130 yazı: taşma yok

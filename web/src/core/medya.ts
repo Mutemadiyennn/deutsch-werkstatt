@@ -60,25 +60,41 @@ export function eksikZorunlu(text: string, zorunlu: string[]): string[] {
 /** Zor dikte: bankadan seçilen kelimelerle kurulan cümle */
 export const bankadan = (secilen: string[]) => secilen.join(" ");
 
+/** Sık düzensiz biçimler → mastar (sein, haben, werden, kip fiilleri, wissen) */
+const DUZENSIZ: Record<string, string> = Object.fromEntries(Object.entries({
+  sein: "bin bist ist sind seid war warst waren wart gewesen", haben: "habe hast hat habt hatte hattest hatten gehabt",
+  werden: "werde wirst wird werdet wurde wurden geworden", können: "kann kannst könnt konnte konnten", müssen: "muss musst müsst musste mussten",
+  wollen: "will willst wollt wollte wollten", dürfen: "darf darfst dürft durfte durften", mögen: "mag magst mögt möchte möchtest möchten möchtet",
+  sollen: "soll sollst sollt sollte sollten", wissen: "weiß weißt wisst wusste wussten gewusst"
+}).flatMap(([lemma, forms]) => forms.split(" ").map((f) => [f, lemma])));
+const EKLER: Record<string, string[]> = {
+  verb: ["est", "st", "et", "en", "e", "t", "n"], noun: ["en", "es", "er", "e", "n", "s"],
+  adj: ["em", "en", "er", "es", "e"], det: ["em", "en", "er", "es", "e"], pron: ["em", "en", "er", "es", "e"]
+};
 /**
- * Transkript kelimesi → kart: kelimenin kendisi, çoğulu, fiil biçimleri (Präsens 3, Präteritum, Partizip), sonra çekim
- * ekleri atılarak (-e, -en, -n, -s, -es, -er, -em, -t, -st, -et). Büyük harfle eşleşen (isim) önce (inceleme #60 P1-7).
+ * Transkript kelimesi → kart. Sıra: birebir (kelime/çoğul) → fiil biçimleri ve düzensiz tablo → sözcük türüne göre ek atma
+ * (fiil: sag-t → sagen; isim: Tage → Tag; sıfat/tanımlık: meine → mein). Ek atma yalnızca uyumlu türde: "bist" edat
+ * "bis"e, "wirst" zamir "wir"e gitmez (inceleme #60 2. tur P1-A).
  */
 export function kartBul(word: string, lex: Lexeme[]): Lexeme | undefined {
   const w = word.replace(/[.,!?;:„“"'»«()]/g, "");
   if (!w) return undefined;
-  const exact = lex.find((l) => l.de === w || l.pl === w);
+  const heads = (l: Lexeme) => l.de.toLowerCase().split(/\s*,\s*/);
+  const exact = lex.find((l) => l.de === w || l.pl === w) ?? lex.find((l) => heads(l).includes(w.toLowerCase()) || l.pl?.toLowerCase() === w.toLowerCase());
   if (exact) return exact;
   const low = w.toLowerCase();
-  const byForm = (x: string) => lex.find((l) => l.de.toLowerCase() === x || l.pl?.toLowerCase() === x
-    || [l.verb?.praesens3, l.verb?.praeteritum, l.verb?.perfekt?.split(/\s+/).pop()].some((f) => f?.toLowerCase() === x));
-  const direct = byForm(low);
-  if (direct) return direct;
-  for (const suf of ["en", "er", "em", "es", "st", "et", "e", "n", "s", "t"]) {
-    if (low.length > suf.length + 2 && low.endsWith(suf)) {
+  const irr = DUZENSIZ[low];
+  if (irr) { const hit = lex.find((l) => l.pos === "verb" && l.de.toLowerCase() === irr); if (hit) return hit; }
+  const vf = lex.find((l) => l.pos === "verb" && [l.verb?.praesens3, l.verb?.praeteritum, l.verb?.perfekt?.split(/\s+/).pop()].some((f) => f?.toLowerCase() === low));
+  if (vf) return vf;
+  for (const l of lex) {
+    const ekler = EKLER[l.pos];
+    if (!ekler) continue;
+    for (const suf of ekler) {
+      if (low.length <= suf.length + 2 || !low.endsWith(suf)) continue;
       const stem = low.slice(0, -suf.length);
-      const hit = lex.find((l) => { const d = l.de.toLowerCase(); return d === stem || d === stem + "en" || d === stem + "n" || d === stem + "e"; });
-      if (hit) return hit;
+      const ok = l.pos === "verb" ? [stem + "en", stem + "n"].includes(l.de.toLowerCase()) : heads(l).includes(stem);
+      if (ok) return l;
     }
   }
   return undefined;

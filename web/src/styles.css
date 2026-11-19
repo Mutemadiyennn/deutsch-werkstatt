@@ -10,7 +10,7 @@
   --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px;
   /* DESIGN.md §2 belirteçleri (PM-006): bütün ekranlar bunlardan beslenir */
   --himmel: #1C6FD6; --himmel-2: #E3EEFB; --tinte: #14233B; --tinte-2: #5A6B82; --papier: #F5F8FC; --brezel: #C27A2C; --wiese: #2F9E6B; --rot: #D6453D;
-  --brezel-soft: #FCF1E4; --sky-a: #DCEAFB; --sky-b: #EEF4FC; --sky-ink: #1C6FD6; --sky-win: #E3EEFB; --sky-grid: rgba(28, 111, 214, 0.10);
+  --brezel-soft: #FCF1E4; --brezel-ink: #8F5418; --wiese-ink: #1F7A52; --himmel-ink: #1557AA; --sky-a: #DCEAFB; --sky-b: #EEF4FC; --sky-ink: #1C6FD6; --sky-win: #E3EEFB; --sky-grid: rgba(28, 111, 214, 0.10);
   --paper: var(--papier); --card: #ffffff; --ink: var(--tinte); --muted: var(--tinte-2); --line: #e3eaf4; --soft: #eef4fd;
   --accent: var(--himmel); --accent2: #3C86E3; --accent-edge: #1257AE; --accent-ink: #ffffff;
   --c-blue: #2f7bf6; --c-blue2: #1d5fd6; --c-orange: #ff8a1f; --c-green: #16b37a; --c-green2: #0e8f60; --c-purple: #7c5cfa; --c-pink: #ef4a82; --c-amber: #f5a623;
@@ -31,7 +31,7 @@
 }
 :root[data-theme="dark"] {
   --himmel: #4C93F0; --himmel-2: #1B2C47; --tinte: #EEF3FB; --tinte-2: #9AABC2; --papier: #0B1424; --brezel: #E0A15A; --wiese: #4CC48F; --rot: #EF6A62;
-  --brezel-soft: #2E2416; --sky-a: #13213A; --sky-b: #0E192C; --sky-ink: #2F5FA6; --sky-win: #F2C46B; --sky-grid: rgba(120, 170, 255, 0.08);
+  --brezel-soft: #2E2416; --brezel-ink: var(--brezel); --wiese-ink: var(--wiese); --himmel-ink: var(--himmel); --sky-a: #13213A; --sky-b: #0E192C; --sky-ink: #2F5FA6; --sky-win: #F2C46B; --sky-grid: rgba(120, 170, 255, 0.08);
   --paper: var(--papier); --card: #121d31; --ink: var(--tinte); --muted: var(--tinte-2); --line: #1f2b42; --soft: #1a2540;
   --accent: var(--himmel); --accent-ink: #ffffff; --accent-edge: #1d5fd6; --accent2: #6aa8ff;
   --ok: var(--wiese); --ok-soft: #10392b; --bad: #ff7aa6; --bad-soft: #3d1626; --warn: #ffc566; --warn-soft: #3a2c12;
@@ -44,7 +44,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --himmel: #4C93F0; --himmel-2: #1B2C47; --tinte: #EEF3FB; --tinte-2: #9AABC2; --papier: #0B1424; --brezel: #E0A15A; --wiese: #4CC48F; --rot: #EF6A62;
-    --brezel-soft: #2E2416; --sky-a: #13213A; --sky-b: #0E192C; --sky-ink: #2F5FA6; --sky-win: #F2C46B; --sky-grid: rgba(120, 170, 255, 0.08);
+    --brezel-soft: #2E2416; --brezel-ink: var(--brezel); --wiese-ink: var(--wiese); --himmel-ink: var(--himmel); --sky-a: #13213A; --sky-b: #0E192C; --sky-ink: #2F5FA6; --sky-win: #F2C46B; --sky-grid: rgba(120, 170, 255, 0.08);
     --paper: var(--papier); --card: #121d31; --ink: var(--tinte); --muted: var(--tinte-2); --line: #1f2b42; --soft: #1a2540;
     --accent: var(--himmel); --accent-ink: #ffffff; --accent-edge: #1d5fd6; --accent2: #6aa8ff;
     --ok: var(--wiese); --ok-soft: #10392b; --bad: #ff7aa6; --bad-soft: #3d1626; --warn: #ffc566; --warn-soft: #3a2c12;
@@ -355,7 +355,8 @@ body.kb .app.hasbar { --actionbar-h: 0px !important; }
 .daymin { margin-left: auto; color: var(--tinte-2); font-variant-numeric: tabular-nums; }
 .daymin b { color: var(--tinte); font-size: 1.1rem; }
 .goalhit { display: flex; gap: 6px; align-items: center; color: var(--wiese); font-weight: 700; margin: 0; }
-.card.nextcard { border-radius: 26px; padding: 20px; box-shadow: 0 1px 2px rgba(20, 35, 59, 0.05), 0 12px 32px rgba(20, 35, 59, 0.08); }
+/* 32 px bulanık gölge yazılımla çizen WebKit'te Bugün'ün ilk karesini 250–530 ms geciktiriyordu (#43 tanısı); öbür kartlarla aynı gölge */
+.card.nextcard { border-radius: 26px; padding: 20px; box-shadow: var(--shadow); }
 .nexttitle { font-size: 1.45rem; margin: 2px 0 0; line-height: 1.15; }
 .nextcard .btn.primary { min-height: 58px; font-size: 1.1rem; border-radius: 20px; }
 .focusrow { display: flex; align-items: center; gap: 8px; padding-top: 10px; border-top: 1px solid var(--line); }
@@ -430,6 +431,15 @@ html.callmode body { background: #121C30; }
 .whysheet .tip b.de { min-width: 72px; font-size: 1.05rem; }
 .whysheet .tip p { margin: 0; line-height: 1.45; }
 .whysheet .btn { margin-top: 14px; }
+/* Gezgin bulgusu (DN-2 §3): sekme çubuğu görünen ekranlarda ana eylem çubuğu sekmelerin ÜSTÜNDE durur, onları örtmez */
+.app:not(.notabs) .actionbar { bottom: calc(var(--tabbar-h) + var(--safe-bottom)); padding-bottom: 10px; }
+.app:not(.notabs).hasbar { padding-bottom: calc(var(--tabbar-h) + var(--actionbar-h) + var(--safe-bottom) + 22px); }
+.lockdot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; box-shadow: 0 0 0 2px var(--line) inset; }
+
+/* İnceleme #36 P1-2: küçük metinde AA (≥ 4,5:1) — dolgu renkleri aynı, metin için koyu tonlar */
+.alltagpanel .lbl, .whylink { color: var(--brezel-ink); }
+.goalhit { color: var(--wiese-ink); }
+.famchips .chip.cur { color: var(--himmel-ink); }
 
 /* M1 A4 medya oynatıcısı: video üstte sabit, sorular altta akar (PM-053 §4) */
 .medya-ust { position: sticky; top: var(--pbar-h, 64px); z-index: 5; background: var(--paper); padding-bottom: 6px; display: grid; gap: 4px; }

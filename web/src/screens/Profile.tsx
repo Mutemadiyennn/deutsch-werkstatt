@@ -1,17 +1,20 @@
 /** Profil ve ayarlar: odak/Pomodoro, seans planı, alan önceliği, dinleme, hedefler, görünüm, sunucu durumu, yedek, v1 arşivi */
 import { Icon } from "../ui/icons.tsx";
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { Activity, type Profile } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { auth } from "../services/auth.ts";
 import { exportAll } from "../data/db.ts";
 import { ACTIVITY_TR, V1_URL } from "../core/planner.ts";
 import { ApiError } from "../services/api.ts";
+import { aiState, onAiState } from "../services/ai.ts";
 import { TopBar } from "../ui/components.tsx";
 
 const ACTS = Activity.options.filter((a) => a !== "assess" && a !== "other");
 
 export function ProfileView() {
+  const [, tick] = useState(0);
+  useEffect(() => onAiState(() => tick((n) => n + 1)), []); // sağlayıcı yoklaması sonrası yeniden çiz
   const { profile, setProfile, index, api, toast, user } = useApp();
   const [srv, setSrv] = useState<string | null>(null);
   const save = async (f: (p: Profile) => void) => { const n = structuredClone(profile); f(n); try { await setProfile(n); toast("Kaydedildi"); } catch { toast("Geçersiz değer; kaydedilmedi."); } };
@@ -22,7 +25,7 @@ export function ProfileView() {
     setSrv("Kontrol ediliyor…");
     try {
       const h = await api.health();
-      let line = `Sunucu çalışıyor (sürüm ${h.version}). Gemini anahtarı: ${h.configured.gemini ? "var" : "YOK"} · izin listesi: ${h.configured.allowlist ? "var" : "YOK"}.`;
+      let line = `Sunucu çalışıyor (sürüm ${h.version}). ${h.provider && h.provider !== "gemini" ? "Yapay zekâ kapalı; dersler cihazda değerlendirilir." : "Yapay zekâ açık."}`;
       try { const u = await api.usage(); line += ` Bugünkü yapay zekâ kullanımı: ${u.ai.used}/${u.ai.limit}.`; } catch (e) { line += ` Hesap erişimi: ${e instanceof ApiError ? e.message_tr : "hata"}`; }
       setSrv(line);
     } catch (e) { setSrv(e instanceof ApiError ? e.message_tr : "Sunucuya ulaşılamadı."); }
@@ -73,7 +76,7 @@ export function ProfileView() {
               <li class="row" style={{ flexWrap: "nowrap" }}>
                 <span class="grow small" style={{ opacity: paused ? 0.5 : 1 }}><b>{i + 1}.</b> {dTitle(d)}</span>
                 <button class="iconbtn" aria-label={`${dTitle(d)} yukarı`} disabled={i === 0} onClick={() => save((p) => { const a = p.domains.priority; [a[i - 1], a[i]] = [a[i]!, a[i - 1]!]; })}>↑</button>
-                <button class="iconbtn" aria-label={paused ? `${dTitle(d)} devam` : `${dTitle(d)} duraklat`} onClick={() => save((p) => { p.domains.paused = paused ? p.domains.paused.filter((x) => x !== d) : [...p.domains.paused, d]; })}>{paused ? "▶" : "⏸"}</button>
+                <button class="iconbtn" aria-label={paused ? `${dTitle(d)} devam` : `${dTitle(d)} duraklat`} onClick={() => save((p) => { p.domains.paused = paused ? p.domains.paused.filter((x) => x !== d) : [...p.domains.paused, d]; })}>{paused ? <Icon name="play" size={18} /> : <Icon name="pause" size={18} />}</button>
               </li>
             );
           })}
@@ -105,8 +108,10 @@ export function ProfileView() {
 
       <section class="card">
         <h2>Sunucu ve veriler</h2>
-        <p class="small muted">Yapay zekâ özellikleri anahtarları güvenle tutan sunucu üzerinden çalışır. Anahtar bu uygulamada bulunmaz.</p>
-        <button class="btn sm" onClick={checkServer} disabled={!api.configured}>{api.configured ? "Sunucu bağlantısını kontrol et" : "Sunucu adresi henüz ayarlanmadı"}</button>
+        {aiState(api).available ? <>
+          <p class="small muted">Yapay zekâ özellikleri anahtarları güvenle tutan sunucu üzerinden çalışır. Anahtar bu uygulamada bulunmaz.</p>
+          <button class="btn sm" onClick={checkServer}>Sunucu bağlantısını kontrol et</button>
+        </> : <p class="small muted" data-test="no-server">Bu sürüm internete ve yapay zekâya ihtiyaç duymaz: dersler, cevap değerlendirmesi ve rol oyunu bu cihazda çalışır.</p>}
         {srv && <p class="small" style={{ marginTop: 8 }} data-test="server">{srv}</p>}
         <div class="row" style={{ marginTop: 12 }}>
           <button class="btn sm" onClick={download}>Yedeği indir (JSON)</button>

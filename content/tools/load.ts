@@ -375,12 +375,12 @@ function baseTaught(c: Loaded): Set<string> {
   for (const ch of c.world?.characters ?? []) for (const w of toks(ch.name)) t.add(w);
   return t;
 }
-/** gün d'nin öğrettikleri kümeye eklenir (kümülatif: önceki günler de bilinir) */
+/** gün d'nin öğrettikleri kümeye eklenir (kümülatif). Kartın örnek cümlesi öğretim sayılmaz (FORMAT: dikte örnek cümleden gelemez) */
 function addDayTaught(t: Set<string>, g: Gun, c: Loaded) {
   const byId = new Map(c.lexemes.map((l) => [l.id, l]));
   for (const id of g.yeni_kartlar) {
     const l = byId.get(id); if (!l) continue;
-    for (const s of [l.de, l.pl, l.verb?.praesens3, l.verb?.praeteritum, l.verb?.perfekt, ...l.forms.map((f) => f.answer), ...l.collocations.map((x) => x.de), ...l.examples.map((x) => x.de)]) if (s) for (const w of toks(s)) t.add(w);
+    for (const s of [l.de, l.pl, l.verb?.praesens3, l.verb?.praeteritum, l.verb?.perfekt, ...l.forms.map((f) => f.answer), ...l.collocations.map((x) => x.de)]) if (s) for (const w of toks(s)) t.add(w);
   }
   for (const did of g.dersler) {
     const d = c.temel.find((x) => x.data.id === did)?.data; if (!d) continue;

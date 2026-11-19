@@ -30,7 +30,7 @@ export function Learn() {
           return (
             <li>
               <a href={`#/learn/${d.id}`} class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }} data-domain={d.id}>
-                <span class="grow"><b>{d.title_tr}</b> <span class="muted small">· {d.title_de}</span><br /><span class="small muted">{n ? `${n} senaryo` : "v2 senaryoları hazırlanıyor"} · v1'de {d.legacyUnits.length} ünite{paused ? " · duraklatıldı" : ""}</span></span>
+                <span class="grow"><b>{d.title_tr}</b> <span class="muted small">· {d.title_de}</span><br /><span class="small muted">{n ? `${n} ders` : "Dersler yakında"}{paused ? " · duraklatıldı" : ""}</span></span>
                 <span aria-hidden="true">›</span>
               </a>
             </li>
@@ -59,15 +59,15 @@ export function DomainView({ id }: { id: string }) {
             {sc.map((s) => (
               <li><a href={`#/scenario/${encodeURIComponent(s.id)}`} class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }}>
                 <span class="grow"><b>{s.title_tr}</b><br /><span class="small muted">{s.title_de} · {s.level}</span></span>
-                {s.review !== "reviewed" && <span class="chip warn">inceleme bekliyor</span>}
+                {s.review !== "reviewed" && <span class="chip">deneme dersi</span>}
               </a></li>
             ))}
           </ul>
-        ) : <p class="small muted">Bu alanın v2 senaryoları bir sonraki içerik fazında yazılacak. O zamana kadar aşağıdaki v1 ünitelerini kullanabilirsin.</p>}
+        ) : <p class="small muted">Bu alanın dersleri yakında gelecek. O zamana kadar aşağıdaki eski ünitelere bakabilirsin.</p>}
       </section>
       <section class="card">
-        <div class="kicker">İlgili v1 kurs üniteleri</div>
-        <p class="small muted">v1 uygulamasında açılır (kurs yolu: kelime, kural, dinleme, okuma, oyun, yazma, rol oyunu, sınav).</p>
+        <div class="kicker">Eski uygulamadaki üniteler</div>
+        <p class="small muted">Eski uygulamada açılır.</p>
         <div class="row">{d.legacyUnits.map((u) => <a class="chip" href={`${V1_URL}#kurs`} target="_blank" rel="noopener">{u.toUpperCase()} <Icon name="out" size={14} /></a>)}</div>
       </section>
     </div>

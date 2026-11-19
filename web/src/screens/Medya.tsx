@@ -8,6 +8,7 @@
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Gun, medyalar, type AnlamaQ, type Bolum, type Dikte, type Lexeme, type Medya, type MedyaCumle } from "@dw/shared";
 import { useApp } from "../state.ts";
+import { personalizeDeep } from "../core/persona.ts";
 import { loadIndex, loadLexicon, loadM1Gun, contentUrl } from "../services/content.ts";
 import { addClaim, addPersonal, getMeta, setMeta } from "../data/db.ts";
 import { Rich } from "../ui/rich.tsx";
@@ -90,9 +91,11 @@ export function MedyaEkrani({ day, id }: { day: number; id: string }) {
   const [veri, setVeri] = useState<{ gun: Gun; m: Medya; lex: Lexeme[]; base: string } | null>(null);
   const [err, setErr] = useState<string | null>(null);
   const [p, setP] = useState<MedyaIlerleme | null>(null);
+  const { profile } = useApp();
   useEffect(() => {
     (async () => {
-      const gun = await loadM1Gun(day);
+      // {name}, {Herr|Frau} yer tutucuları cihaz profiline göre (D-061; inceleme #60 2. tur P1-B)
+      const gun = personalizeDeep(await loadM1Gun(day), { name: profile.displayName, address: profile.address });
       const m = medyalar(gun).find((x) => x.id === id);
       if (!m) throw new Error("Bu kayıt bulunamadı.");
       const [{ lexemes }, i] = await Promise.all([loadLexicon(), loadIndex()]);

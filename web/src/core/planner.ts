@@ -20,13 +20,13 @@ export type Recommendation =
 
 /** v1'de karşılığı olan bölümler (çalışan özellikler) */
 const V1_TARGET: Partial<Record<Activity, { hash: string; tr: string }>> = {
-  build: { hash: "#kurs", tr: "v1 kursundaki kural ve alıştırma basamakları" },
-  drills: { hash: "#kurs", tr: "v1 kursundaki alıştırmalar" },
-  listening: { hash: "#shadow", tr: "v1 Shadowing ve dinleme" },
-  pronunciation: { hash: "#shadow", tr: "v1 Shadowing ve telaffuz" },
-  dialogue: { hash: "#kurs", tr: "v1 kursundaki diyalog ve rol oyunu" },
-  roleplay: { hash: "#canli", tr: "v1 Canlı sohbet" },
-  review: { hash: "#kurs", tr: "v1 kurs tekrarı" }
+  build: { hash: "#kurs", tr: "Eski uygulama: kursundaki kural ve alıştırma basamakları" },
+  drills: { hash: "#kurs", tr: "Eski uygulama: kursundaki alıştırmalar" },
+  listening: { hash: "#shadow", tr: "Eski uygulama: Shadowing ve dinleme" },
+  pronunciation: { hash: "#shadow", tr: "Eski uygulama: Shadowing ve telaffuz" },
+  dialogue: { hash: "#kurs", tr: "Eski uygulama: kursundaki diyalog ve rol oyunu" },
+  roleplay: { hash: "#canli", tr: "Eski uygulama: Canlı sohbet" },
+  review: { hash: "#kurs", tr: "Eski uygulama: kurs tekrarı" }
 };
 
 export function recommend(o: { profile: Profile; index: ContentIndex | null; hasPlacement: boolean; sessionN: number }): Recommendation {
@@ -40,9 +40,9 @@ export function recommend(o: { profile: Profile; index: ContentIndex | null; has
       const sc = (o.index?.scenarios || []).filter((s) => s.domain === d && !s.season).sort((a, b) => a.order - b.order)[0];
       if (sc) return { kind: "scenario", activity, scenarioId: sc.id, title_tr: sc.title_tr, why_tr: `Seans ${o.sessionN}: ${ACTIVITY_TR[activity]}. Öncelikli alanından senaryonun kelime ve ifadelerini çalış.`, draft: sc.review !== "reviewed" };
     }
-    return { kind: "none", title_tr: "Bu alanlarda henüz v2 içeriği yok", why_tr: "Öncelik listendeki alanlar için senaryolar bir sonraki fazda eklenecek." };
+    return { kind: "none", title_tr: "Bu alanların dersleri yakında", why_tr: "Öncelik listendeki alanların dersleri hazırlanıyor." };
   }
   const t = V1_TARGET[activity];
-  if (t) return { kind: "v1", activity, url: V1_URL + t.hash, title_tr: t.tr, why_tr: `Seans ${o.sessionN}: ${ACTIVITY_TR[activity]}. Bu etkinlik v2'de henüz yok; şimdilik v1'deki karşılığıyla çalış.` };
+  if (t) return { kind: "v1", activity, url: V1_URL + t.hash, title_tr: t.tr, why_tr: `Seans ${o.sessionN}: ${ACTIVITY_TR[activity]}. Bu etkinlik için şimdilik eski uygulamadaki karşılığını kullan.` };
   return { kind: "none", title_tr: ACTIVITY_TR[activity], why_tr: "" };
 }
