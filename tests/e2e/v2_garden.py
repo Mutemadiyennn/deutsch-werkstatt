@@ -10,6 +10,12 @@ from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
 
 PORT = 4191
+AFTER = []  # cevaptan sonraki kart: (kelime, örnek cümle, örnek sayısı)
+
+def note_after(pg):
+    if pg.locator("[data-test=after-card]").count():
+        c = pg.locator("[data-test=after-card]").first
+        AFTER.append((c.get_attribute("data-lex"), pg.inner_text("[data-test=after-ex]") if pg.locator("[data-test=after-ex]").count() else "", int(c.get_attribute("data-nex") or 0)))
 
 def answer_current(pg, wrong=False):
     """Ekrandaki soruyu cevaplar; seçmelide doğru şık e2e derlemesinde data-right ile işaretli"""
@@ -24,6 +30,7 @@ def answer_current(pg, wrong=False):
             old = pg.inner_text("[data-test=garden] .pbar"); pg.click("[data-test=own-ok]")
             pg.wait_for_function("""(old) => document.querySelector('[data-test=garden-done]') || (document.querySelector('[data-test=garden] .pbar')||{}).innerText !== old""", arg=old); return
     pg.wait_for_selector("[data-test=next]")
+    note_after(pg)
     advance(pg)
 
 def advance(pg):
@@ -68,6 +75,10 @@ def main():
             pg.wait_for_selector("[data-test=next]")
             band = pg.inner_text(".actionbar")
             check("Doğrusu" in band and "Senin cevabın" in band, "yanlışta doğrusu öğrencinin cevabıyla yan yana")
+            # PM #59: cevaptan sonra kelime örnek cümlesiyle görünür (tek kelime ekranı değil)
+            check(pg.locator("[data-test=after-card] [data-test=after-ex]").count() == 1, "cevaptan sonra örnek cümle görünüyor")
+            note_after(pg)
+            pg.wait_for_timeout(700)
             if shots: shot(pg, "g02-yanlis", full=False)
             advance(pg)
             sub2 = pg.inner_text("[data-test=garden] .pbar")
@@ -75,6 +86,11 @@ def main():
         n = 1
         while not pg.locator("[data-test=garden-done]").count() and n < 25:
             note(); answer_current(pg); n += 1
+        # yanlış cevaplanan kart tur sonunda başka örnek cümleyle geri geldi (PM #59 madde 2)
+        if AFTER:
+            lx0, ex0, nex0 = AFTER[0]
+            again = [a for a in AFTER[1:] if a[0] == lx0]
+            check(bool(again) and (nex0 < 2 or again[-1][1] != ex0), f"yanlış kart başka örnekle geri geldi ({lx0}: {ex0[:30]!r} → {(again[-1][1] if again else '')[:30]!r})")
         check(any("Daten" in x for x in intros), f"duyduğum kelime (die Daten) bu turda tanıtıldı ({intros[:4]})")
         check(pg.locator("[data-test=garden-done]").count() == 1, f"tur baştan sona bitti ({n} soru)")
         txt = pg.inner_text("[data-test=garden-done]")
