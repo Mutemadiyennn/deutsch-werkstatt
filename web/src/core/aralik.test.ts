@@ -31,6 +31,26 @@ describe("PM-069 madde 3: tanıtım ile ilk soru arası", () => {
     // tanıtımdan hemen sonra aynı kartın sorusu hiç gelmez
     for (let k = 1; k < sira.length; k++) expect(sira[k]!.ilkSoru && sira[k - 1]!.intro && sira[k - 1]!.lexId === sira[k]!.lexId).toBeFalsy();
   });
+  it("az yeni kartlı turda (1 ya da 2 yeni + 9 tekrar) da ilk soru tanıtımdan en az 2 öğe sonra (inceleme #126 P1-1)", () => {
+    const t0 = new Date(Date.now() - 60 * 864e5);
+    const tekrar = Array.from({ length: 9 }, (_, k) => isim(100 + k));
+    const items = new Map<string, LearnerItem>();
+    for (const l of tekrar) {
+      const p = review(undefined, { itemId: l.id, kind: "lexeme", path: "passive", outcome: "correct", session: "g@1", source: "drill", ctx: "listen_meaning" }, t0);
+      items.set(l.id, review({ ...p, lastQ: "article" }, { itemId: l.id, kind: "lexeme", path: "active", outcome: "correct", session: "g@1", source: "drill", ctx: "tr_de" }, t0));
+    }
+    for (const n of [1, 2]) {
+      const yeni = Array.from({ length: n }, (_, k) => isim(k));
+      const lex = new Map([...tekrar, ...yeni].map((l) => [l.id, l]));
+      const tur = buildRound(lex, items, yeni.map((l) => l.id), { rng: () => 0, newMax: n });
+      expect(tur.filter((q) => q.intro)).toHaveLength(n);
+      const sira = yuru(tur);
+      for (const l of yeni) {
+        const t = sira.findIndex((q) => q.lexId === l.id && q.intro), s = sira.findIndex((q) => q.lexId === l.id && q.ilkSoru);
+        expect(s - t - 1).toBeGreaterThanOrEqual(ARALIK);
+      }
+    }
+  });
   it("ertele: ilk soru tanıtımda en son gösterilen cümleyle; tur kısaysa sona", () => {
     const r: GardenQ[] = [{ lexId: "a", type: "listen_meaning", intro: true, ex: 0 }];
     expect(ertele(r, 0, 3)).toEqual([r[0], { lexId: "a", type: "listen_meaning", ex: 3, ilkSoru: true }]);

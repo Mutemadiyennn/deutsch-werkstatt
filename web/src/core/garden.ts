@@ -226,7 +226,9 @@ export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerI
     if (!l || !isCard(l)) continue;
     out.push({ lexId: id, type: "listen_meaning", intro: true, ex: 0 }); used.add(id); added++;
   }
-  return out;
+  // PM-069 madde 3 (inceleme #126 P1-1): tanıtımlar başa; her tanıtımın ardında ilk sorusundan önce en az ARALIK öğe kalsın
+  // (az yeni kartlı turda tekrarlar araya girer: T1 T2 R1 S1 R2 S2 …)
+  return [...out.filter((q) => q.intro), ...out.filter((q) => !q.intro)];
 }
 
 /**

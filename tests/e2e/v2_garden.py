@@ -59,8 +59,11 @@ def main():
         check(8 <= total <= 12, f"tur 8–12 soru ({total})")
         no_overflow(pg, "Bahçe ilk soru")
         if shots: shot(pg, "g01-tanitim", full=False)
-        intros, types = [], []
+        intros, types, sira = [], [], []
         def note():
+            # ekran sırası (PM-069 madde 3): ("T", kart) tanıtım, ("Q", kart) soru
+            if pg.locator("[data-test=garden-intro]").count(): sira.append(("T", pg.get_attribute("[data-test=garden-intro]", "data-lex")))
+            elif pg.locator("[data-test^=gq-]").count(): sira.append(("Q", pg.locator("[data-test^=gq-]").first.get_attribute("data-lex")))
             if pg.locator("[data-test=garden-intro]").count(): intros.append(pg.inner_text("[data-test=garden-intro] .de-xl"))
             t = pg.locator("[data-test^=gq-]").first.get_attribute("data-test") if pg.locator("[data-test^=gq-]").count() else None
             if t: types.append(t)
@@ -93,6 +96,14 @@ def main():
             lx0, ex0, nex0 = AFTER[0]
             again = [a for a in AFTER[1:] if a[0] == lx0]
             check(bool(again) and (nex0 < 2 or again[-1][1] != ex0), f"yanlış kart başka örnekle geri geldi ({lx0}: {ex0[:30]!r} → {(again[-1][1] if again else '')[:30]!r})")
+        # PM-069 madde 3: her yeni kartın ilk sorusu tanıtımından en az 2 ekran sonra (inceleme #126 P1-2: gerçek arayüz sırası)
+        araliklar = {}
+        for t, (tur_, lx) in enumerate(sira):
+            if tur_ == "T" and lx not in araliklar:
+                s_ = next((k for k in range(t + 1, len(sira)) if sira[k] == ("Q", lx)), None)
+                araliklar[lx] = None if s_ is None else s_ - t - 1
+        check(araliklar and all(v is not None and v >= 2 for v in araliklar.values()), f"tanıtımdan sonra ilk soru en az 2 ekran sonra ({sorted(araliklar.values(), key=lambda v: -1 if v is None else v)[:5]}…, {len(araliklar)} kart)")
+        tanitilan1 = set(araliklar)
         check(any("Daten" in x for x in intros), f"duyduğum kelime (die Daten) bu turda tanıtıldı ({intros[:4]})")
         check(pg.locator("[data-test=garden-done]").count() == 1, f"tur baştan sona bitti ({n} soru)")
         txt = pg.inner_text("[data-test=garden-done]")
@@ -110,11 +121,13 @@ def main():
         pg.wait_for_selector("[data-test=garden], [data-test=garden-empty]")
         check(pg.locator(".card.err, [role=alert]").count() == 0, "ikinci tur hatasız açılıyor")
         ACTIVE = ("gq-tr_de", "gq-photo_say", "gq-gap", "gq-sep_perfekt", "gq-own_sentence")
-        types2 = []; gaps = []; sonra = []; acildi = False; trde_bakildi = False
+        types2 = []; sira2 = []; gaps = []; sonra = []; acildi = False; trde_bakildi = False
         k = 0
         while pg.locator("[data-test=garden]").count() and not pg.locator("[data-test=garden-done]").count() and k < 25:
             t = pg.locator("[data-test^=gq-]").first.get_attribute("data-test") if pg.locator("[data-test^=gq-]").count() else "intro"
             types2.append(t)
+            if pg.locator("[data-test^=gq-]").count():
+                g_ = pg.locator("[data-test^=gq-]").first; sira2.append((t, g_.get_attribute("data-lex"), g_.get_attribute("data-kopru") == "1"))
             if t in ACTIVE and shots and not any(x in ACTIVE for x in types2[:-1]):
                 shot(pg, "g04-uretim", full=False)
             pg.evaluate("document.documentElement.classList.remove('dyn'); document.documentElement.style.setProperty('--ts','1.3')")
@@ -137,6 +150,11 @@ def main():
                 advance(pg); k += 1; continue
             answer_current(pg); k += 1
         check(any(t in ACTIVE for t in types2), f"ikinci turda üretim sorusu var ({sorted(set(types2))})")
+        # köprü (PM-069 madde 3): 1. turda tanıtılan kartın ilk üretim sorusundan (tr_de) önce artikel ya da eşdizim seçmeli
+        # (köprü türü olmayan kart — ör. edat, yalnızca çoğul isim — doğrudan üretime geçer)
+        kopru_ihlal = [lx for k, (t, lx, kt) in enumerate(sira2) if t == "gq-tr_de" and kt and lx in tanitilan1 and not any(x[1] == lx and x[0] in ("gq-article", "gq-colloc") for x in sira2[:k])]
+        kopru_var = [lx for t, lx, _ in sira2 if t in ("gq-article", "gq-colloc") and lx in tanitilan1]
+        check(not kopru_ihlal and kopru_var, f"ilk tr_de'den önce artikel/eşdizim köprüsü ({len(kopru_var)} köprü, ihlal {kopru_ihlal[:3]})")
         check(len(gaps) > 0 and all(gaps), f"boşluk sorusunda ipucu soru sırasında kapalı, düğme var, cevap kartta yok ({len(gaps)} soru)")
         check(acildi, "İpucu göster'e dokununca ipucu açılıyor, düğme kalkıyor")
         check(len(sonra) > 0 and all(sonra), f"yanlış cevaptan sonra ipucu açıklama olarak görünüyor, ipucu düğmesi yok ({len(sonra)})")

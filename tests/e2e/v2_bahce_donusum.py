@@ -51,7 +51,6 @@ def main():
         if shots: shot(pg, "b01-baska-cumle", full=False)
         # düğme ipucu sayılmaz: sonraki doğru cevap "Doğru." (XP'li)
         # PM-069 madde 3: kartın ilk sorusu iki tanıtım sonra gelir
-        ilk_kart = pg.inner_text("[data-test=garden-intro] .de-xl")
         while pg.locator("[data-test=garden-intro]").count(): tanitim_gec(pg)
         pg.evaluate("window.__ucus = 0; addEventListener('dw:xp-ucus', (e) => { window.__ucus += e.detail.n; })")
         pg.locator("button.opt[data-right]").first.click(); pg.wait_for_selector("[data-test=feedback]")

@@ -14,7 +14,7 @@ import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { XP, seri, yerelGun } from "../core/gun.ts";
 import { getMeta, itemsMap, personalWords, putItems, setMeta } from "../data/db.ts";
 import { hizliGecis, review, sessionKey, type Outcome } from "../core/srs.ts";
-import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, boslukSecimi, ertele, gosterilenCogul, tanitildi, gorulenKelimeler, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
+import { accepted, availableTypes, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, boslukSecimi, ertele, gosterilenCogul, tanitildi, gorulenKelimeler, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { umlautEksik } from "../core/esdeger.ts";
 import { judgeWord, numberWordHint } from "../core/grading.ts";
@@ -66,6 +66,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   useEffect(() => { setTanitimda(false); }, [i]);
   const turXp = useOturumXp();
   const startedAt = useMemo(() => Date.now(), []);
+  // çift dokunuş bir sonraki tanıtımı atlatmaz (inceleme #126 P1-3); kanca erken dönüşlerden önce
+  const ertelendi = useRef(-1);
 
   useEffect(() => {
     (async () => {
@@ -164,7 +166,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   const soruMu = (x: GardenQ) => !x.intro || !!x.retry || !!x.sina;
   const ilerleme = { n: round.slice(0, i).filter(soruMu).length, toplam: round.filter(soruMu).length + round.slice(i).filter((x) => !soruMu(x)).length };
   // PM-069 madde 3: tanıtım bitti, ilk soru en az 2 öğe sonra (değerlendirme yok, kayıt yok)
-  const tanitimBitti = (exi: number) => { setData({ ...data, round: ertele(round, i, exi) }); setI(i + 1); };
+  const tanitimBitti = (exi: number) => { if (ertelendi.current >= i) return; ertelendi.current = i; setData({ ...data, round: ertele(round, i, exi) }); setI(i + 1); };
   // öğrencinin seçimi yalnızca bugünün kalan yeni kartları için (inceleme #113 P1-1)
   const hizliAc = async (bas: number, kaynak: "ogrenci") => { setHizli(kaynak); setOneri("yok"); await setMeta("hizliGun", yerelGun(new Date())); return sinaTuru(round, bas); };
   // tanıtım kartında "Biliyorum, sına beni": düğmeye basılan kartın KENDİSİ hemen sınanır, sonraki yeni kartlar sınavla açılır (PM 7018403441-1)
@@ -239,7 +241,7 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
   useEffect(() => { if (intro) void speak(isNoun(l) ? `${l.art} ${l.de}` : l.de, "de", "normal"); }, [intro]);
   const col = collocOf(l);
   if (intro) return (
-    <div class="stack fade" data-test="garden-intro">
+    <div class="stack fade" data-test="garden-intro" data-lex={l.id}>
       <section class="card stack"><div class="kicker">Yeni kelime</div>
         {/* PM 14:05 Berlin madde 1: tanıtımda kelimenin fotoğrafı (sayaçla döner); cümle görseli yalnızca cümlenin yanında */}
         <Photo q={l.img} sira={q.ex} />
@@ -353,7 +355,7 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
   );
 
   return (
-    <div class="stack fade" data-test={`gq-${qe.type}`}>
+    <div class="stack fade" data-test={`gq-${qe.type}`} data-lex={l.id} {...(E2E ? { "data-kopru": availableTypes(l, "passive").some((t) => t !== "listen_meaning") ? "1" : "0" } : {})}>
       <section class="card stack">{prompt}{shortNote && <p class="small" data-test="own-short">En az üç kelimelik bir cümle kur.</p>}{synNote && <p class="small" data-test="syn-note">{synNote}</p>}</section>
       {!res && <ActionBar><AnswerField onSubmit={submit} /></ActionBar>}
       {verdict}
@@ -373,7 +375,7 @@ function ChoiceQ({ q, l, all, yakin, ex, show, verdict }: { q: GardenQ; l: Lexem
   const [picked, setPicked] = useState<number | null>(null);
   useEffect(() => { if (q.type === "listen_meaning") void speak(isNoun(l) ? `${l.art} ${l.de}` : l.de, "de", "normal"); }, []);
   return (
-    <div class="stack fade" data-test={`gq-${q.type}`}>
+    <div class="stack fade" data-test={`gq-${q.type}`} data-lex={l.id}>
       <section class="card stack"><div class="kicker">{m.title}</div>
         {q.type === "listen_meaning" ? <div class="row"><ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} /><span class="small muted">Kelime cevaptan sonra görünür</span></div>
           : <div class="de-lg" lang="de">{m.stem}</div>}
