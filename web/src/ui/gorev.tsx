@@ -8,7 +8,7 @@ import { db, focusRange } from "../data/db.ts";
 import { localDate } from "../core/focus.ts";
 import { yerelGun } from "../core/gun.ts";
 import { gunGorevleri, haftaAraliklari, ilerleme, xpRekor, type GunSayac, type HaftaOzet, type Odul } from "../core/gorev.ts";
-import { dondurmaHakki, dondurmaKontrol, gorevOku, gorevSandigiAc } from "../services/gorev.ts";
+import { dondurmaHakki, dondurmaKontrol, gorevOku, gorevSandigiAc, gorevTemizle } from "../services/gorev.ts";
 import { useXp } from "./durum.tsx";
 import { useFocusTick } from "./components.tsx";
 import { Mucevher } from "./solen.tsx";
@@ -41,7 +41,7 @@ export function GunlukGorevler() {
   const [hak, setHak] = useState(0);
   useEffect(() => {
     const oku = () => { void gorevOku().then(setS); void dondurmaHakki().then(setHak); };
-    oku();
+    oku(); void gorevTemizle();
     // dün boş kaldıysa ve hak varsa seri dondurulur; öğrenciye söylenir
     void dondurmaKontrol().then((g) => { if (g) { toast("Dün çalışamadın; seri dondurma hakkın serini korudu."); oku(); } });
     window.addEventListener("dw:gorev", oku); window.addEventListener("dw:xp", oku);
