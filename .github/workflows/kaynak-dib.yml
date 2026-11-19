@@ -12,9 +12,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - name: ffprobe (süre için; yoksa süre boş kalır)
-        timeout-minutes: 6
-        run: which ffprobe || (timeout 300 sudo apt-get install -y -o Acquire::http::Timeout=30 ffmpeg || true)
       - name: Katalog
         run: python scripts/kaynak/dib_crawl.py out
       - uses: actions/upload-artifact@v4
