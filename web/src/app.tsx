@@ -18,7 +18,6 @@ import { setLearning, startFocus, updateFocusConfig } from "./services/focusRunt
 import { setBaslangicHizi } from "./services/speech.ts";
 import { efektAyar, sesKilidiAc, ustUsteSifirla } from "./services/efekt.ts";
 import { kullanimIzle } from "./services/kullanim.ts";
-import { XpUcus } from "./ui/solen.tsx";
 import { TabBar, Loading, ErrorPanel } from "./ui/components.tsx";
 import { ErrorBoundary, recordError } from "./ui/ErrorBoundary.tsx";
 import { ensurePersist } from "./services/storage.ts";
@@ -146,7 +145,6 @@ export function App() {
       <main class={`app${tabs ? "" : " notabs"}`}><ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>
       {tabs && <TabBar route={route} />}
       <LongPressExplain />
-      <XpUcus />
       {LEARNING_ROUTES.has(route.name) && <BreakOverlay />}
       {toastMsg && <div class="toast" role="status">{toastMsg}</div>}
     </Ctx.Provider>

@@ -87,7 +87,11 @@ def main():
                 if k == 0:
                     check(pg.locator(".fb.ok .fb-isaret").count() == 1, f"[{tema}] doğruda yaylanan onay işareti")
                     # uçuş cevap anında, "Devam"dan önce (önceki uçuşlar bitmişti)
-                    check(pg.locator("[data-test=xp-ucus]").count() >= 1, f"[{tema}] '+XP' cevapla 'Devam' arasında uçuyor")
+                    check(pg.locator("[data-test=xp-ucus]").count() >= 1, f"[{tema}] '+XP' cevapla 'Devam' arasında görünüyor")
+                    # rozet bandın içinde: kart başlığının ya da başka metnin üstüne binmez (PM 7011722598 madde 1)
+                    check(pg.evaluate("() => { const r = document.querySelector('[data-test=xp-ucus]'); const fb = r && r.closest('.fb'); if (!fb) return false; const a = r.getBoundingClientRect(), b = fb.getBoundingClientRect(); return a.top >= b.top && a.bottom <= b.bottom; }"), f"[{tema}] '+XP' rozeti bandın içinde")
+                    # üst çubuk opak (madde 2)
+                    check(pg.evaluate("() => { const c = getComputedStyle(document.querySelector('.pbar')).backgroundColor; const m = c.match(/rgba?\\(([^)]+)\\)/); const p = m ? m[1].split(',') : []; return p.length === 3 || parseFloat(p[3]) === 1; }"), f"[{tema}] üst çubuk opak")
                     kon = pg.evaluate(KONTRAST, ".fb.ok .fb-bas b")
                     check(kon >= 4.5, f"[{tema}] doğru bandı başlığı kontrastı {kon:.2f}:1 (≥ 4,5)")
                     if shots and tema == "light": shot(pg, f"s01-dogru-{tema}", full=False)
@@ -146,6 +150,9 @@ def main():
             olcu = [x for x in kayma if x is not None]
             check(len(olcu) >= 3 and max(olcu) <= 4, f"[{tema}] soru geçişinde eylem çubuğu ekranın altında kalıyor ({len(olcu)} geçiş; alttan en çok {max(olcu or [0]):.0f} px)")
             check(pg.locator("[data-test=garden-done] [data-test=kutlama]").count() == 1 and pg.locator("[data-test=ozet]").count() == 1, f"[{tema}] tur sonunda kutlama ve özet")
+            # kalıcı görsel ve kademeli başlık (madde 3): halka konfetiden sonra da ekranda
+            pg.wait_for_timeout(1500)
+            check(pg.locator("[data-test=tur-sonu] .tur-halka").is_visible() and pg.inner_text("[data-test=tur-basligi]") in ("Harika!", "İyi gidiyor", "Zor bir turdu; yarın daha kolay"), f"[{tema}] tur sonu halkası ve başlığı kalıcı ({pg.inner_text('[data-test=tur-basligi]')})")
             check("+" in pg.inner_text("[data-test=ozet-xp]"), f"[{tema}] özette kazanılan XP ({pg.inner_text('[data-test=ozet-xp]')!r})")
             no_overflow(pg, f"[{tema}] tur sonu")
             if shots: pg.wait_for_timeout(300); shot(pg, f"s04-tur-sonu-{tema}", full=False)

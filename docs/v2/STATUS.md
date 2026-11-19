@@ -28,6 +28,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | Konuşma provası, yapay zekâsız (#58 A7) | `v2/prova` | #68 birleşti |
 | Bahçe değişen cümle (PM-062, #58 B13) | `v2/bahce-donusum` | PR #92: 2 tur; 3 cihaz yeşil; süre ölçümü D-096 yöntemiyle (PM-060.3) |
 | Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | #87 birleşti (D-107) |
+| Şölen 1 küçük düzeltmeler (PM 7011722598 1–5) | `v2/solen-duzelt` | PR açıldı (D-113). B11e girdisi (madde 6–7): tur sonunda büyüyen bahçe parçası, kartı soran karakterin avatarı (WORLD), seans başına vurgu rengi; doğru anında parlak ton + kısa ölçek (reduce-motion: yalnızca renk) |
 | Gün sonu özeti + yerel kullanım ölçümü (#58 B3) | `v2/gun-sonu` | #93 birleşti (D-109) |
 | Doğrulayıcı B4 (#58 B4, #54 D16) | `v2/dogrulayici-b4` | #88 birleşti (D-108) |
 | Değerlendirme doğruluğu (#58 A11) | `v2/degerlendirme` | PR #76: 1. tur P0 (V2 aşırı kabul) ve P1'ler düzeltildi; kalıcı permütasyon taraması; 2. tur bekliyor (D-104) |

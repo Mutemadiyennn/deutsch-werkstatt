@@ -16,26 +16,6 @@ const GUN_KISA = ["Pz", "Pt", "Sa", "Ça", "Pe", "Cu", "Ct"];
  */
 export const GUNLUK_XP_HEDEF = 50;
 
-/** "+N XP" cevap anında uçar: `dw:xp-ucus` olayını dinler (FeedbackBand doğru cevapta gönderir; kayıt "Devam"da — inceleme #87 P1-2) */
-export function XpUcus() {
-  const [uc, setUc] = useState<{ id: number; n: number }[]>([]);
-  useEffect(() => {
-    let k = 0;
-    const f = (e: Event) => {
-      const n = (e as CustomEvent<{ n: number }>).detail?.n ?? 0;
-      if (!n) return;
-      const id = ++k;
-      setUc((u) => [...u.slice(-2), { id, n }]);
-      setTimeout(() => setUc((u) => u.filter((x) => x.id !== id)), 1000);
-    };
-    // ekran değişince uçuşlar temizlenir: önceki ekranın "+XP"si yeni ekranın üstünde uçmaz
-    const temizle = () => setUc([]);
-    window.addEventListener("dw:xp-ucus", f); window.addEventListener("hashchange", temizle);
-    return () => { window.removeEventListener("dw:xp-ucus", f); window.removeEventListener("hashchange", temizle); };
-  }, []);
-  return <div class="xp-ucus-kap" aria-hidden="true">{uc.map((x) => <span class="xp-ucus" key={x.id} data-test="xp-ucus"><Mucevher boy={16} />+{x.n} XP</span>)}</div>;
-}
-
 /** Özgün mücevher simgesi (çokgen kesim, iki ton) */
 export function Mucevher({ boy = 20 }: { boy?: number }) {
   return (
@@ -120,11 +100,41 @@ export function Kutlama({ children }: { children?: preact.ComponentChildren }) {
   );
 }
 
+/** Tur sonu başlığı (PM 7011722598 madde 3): doğru oranına göre 3 kademe; düşük sonuçta cesaretlendirici */
+export const TUR_BASLIK = [
+  { b: "Harika!", a: "Neredeyse hepsi doğru." },
+  { b: "İyi gidiyor", a: "Yarısından fazlası doğru; tekrarlar gerisini getirecek." },
+  { b: "Zor bir turdu; yarın daha kolay", a: "Yanlış her kart sana bir kez daha gelecek. Böyle öğrenilir." }
+] as const;
+export const turKademe = (dogru: number, toplam: number) => { const o = toplam ? dogru / toplam : 0; return o >= 0.8 ? 0 : o >= 0.5 ? 1 : 2; };
+
+/** Kalıcı tur sonu görseli: doğru oranıyla dolan halka, ortasında oranla büyüyen filiz; kademeli başlık */
+export function TurSonu({ dogru, toplam }: { dogru: number; toplam: number }) {
+  const k = turKademe(dogru, toplam);
+  const oran = toplam ? dogru / toplam : 0;
+  const C = 2 * Math.PI * 52;
+  return (
+    <div class={`tur-sonu k${k}`} data-test="tur-sonu" data-kademe={k}>
+      <div class="tur-halka" aria-hidden="true">
+        <svg viewBox="0 0 120 120" width="132" height="132">
+          <circle cx="60" cy="60" r="52" fill="none" stroke="var(--line)" stroke-width="10" />
+          <circle class="tur-halka-dolu" cx="60" cy="60" r="52" fill="none" stroke-width="10" stroke-linecap="round" transform="rotate(-90 60 60)"
+            style={{ strokeDasharray: `${C}`, strokeDashoffset: `${C * (1 - oran)}`, "--bos": `${C}` } as Record<string, string>} />
+        </svg>
+        <div class="tur-halka-ic"><Filiz gun={Math.max(1, Math.round(oran * 7))} boy={60} /></div>
+      </div>
+      <h2 class="tur-basligi" data-test="tur-basligi">{TUR_BASLIK[k].b}</h2>
+      <p class="small muted">{dogru === toplam ? "Hepsi doğru." : TUR_BASLIK[k].a}</p>
+    </div>
+  );
+}
+
 /** Özet satırı: doğru, XP, seri, öğrenilen kelimeler (çip), yarın */
 /** `xp` yoksa (tekrar çalışma: XP verilmez) XP kutusu gösterilmez */
 export function Ozet({ dogru, toplam, xp, seriGun, kelimeler = [], yarin }: { dogru: number; toplam: number; xp?: number; seriGun?: number; kelimeler?: string[]; yarin?: string }) {
   return (
     <div class="stack ozet" data-test="ozet">
+      {toplam > 0 && <TurSonu dogru={dogru} toplam={toplam} />}
       <div class="ozet-kutular">
         <div class="ozet-kutu"><b>{dogru}/{toplam}</b><span class="tiny muted">doğru</span></div>
         {xp !== undefined && <div class="ozet-kutu xp"><b data-test="ozet-xp"><Mucevher boy={16} /> +{xp}</b><span class="tiny muted">XP</span></div>}

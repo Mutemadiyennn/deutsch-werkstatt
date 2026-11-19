@@ -13,7 +13,7 @@ import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { XP, seri } from "../core/gun.ts";
 import { itemsMap, personalWords, putItems } from "../data/db.ts";
 import { review, sessionKey, type Outcome } from "../core/srs.ts";
-import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
+import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, type GardenQ } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { umlautEksik } from "../core/esdeger.ts";
 import { judgeWord, numberWordHint } from "../core/grading.ts";
@@ -41,7 +41,7 @@ export function Garden({ day }: { day?: number } = {}) {
 }
 
 function GardenTur({ day, again }: { day?: number; again: () => void }) {
-  const [data, setData] = useState<{ lex: Map<string, Lexeme>; all: Lexeme[]; items: Map<string, LearnerItem>; round: GardenQ[]; capped: boolean; gunKartlari: string[] } | null>(null);
+  const [data, setData] = useState<{ lex: Map<string, Lexeme>; all: Lexeme[]; items: Map<string, LearnerItem>; round: GardenQ[]; capped: boolean; gunKartlari: string[]; yakin: Yakinlik } | null>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [i, setI] = useState(0);
@@ -72,7 +72,9 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       const round = buildRound(lex, items, pool, { priority: kisisel, newLeft, activeLeft, yeniAyir: Math.min(8, kalan.length) });
       // boş tur: günün kartları zaten tanıtıldıysa Seans 1 burada tamamlanır (ekran efektine bırakılmaz)
       if (day && !round.length && !kalan.length) await bahceTamam(day);
-      setData({ lex, all: lexemes, items, round, capped: newLeft <= 0, gunKartlari });
+      // çeldirici yakınlığı: turun ve günün kartları, öğrencinin tanıdıkları (PM 7011722598 madde 5)
+      const yakin: Yakinlik = { tur: new Set([...round.map((q) => q.lexId), ...gunKartlari]), bilinen: new Set(items.keys()) };
+      setData({ lex, all: lexemes, items, round, capped: newLeft <= 0, gunKartlari, yakin });
     })().catch((e) => setErr(String(e?.message || e)));
     return () => stopSpeaking();
   }, []);
@@ -122,12 +124,12 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   return (
     <div class="stack" data-test="garden">
       <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} ilerleme={{ n: i, toplam: round.length }} />
-      <Question key={`${i}:${q.lexId}:${q.type}`} q={q} l={l} all={data.all} onDone={finish} />
+      <Question key={`${i}:${q.lexId}:${q.type}`} q={q} l={l} all={data.all} yakin={data.yakin} onDone={finish} />
     </div>
   );
 }
 
-function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[]; onDone: (r: Result, o: Outcome | null, exi: number) => void }) {
+function Question({ q, l, all, yakin, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[]; yakin?: Yakinlik; onDone: (r: Result, o: Outcome | null, exi: number) => void }) {
   const [intro, setIntro] = useState(!!q.intro);
   const [res, setRes] = useState<Result | null>(null);
   const [selfCheck, setSelfCheck] = useState<string | null>(null);
@@ -190,7 +192,7 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
     </ActionBar></>
   );
 
-  if (q.type === "listen_meaning" || q.type === "article" || q.type === "colloc") return <ChoiceQ q={q} l={l} all={all} ex={ex} show={show} verdict={verdict} />;
+  if (q.type === "listen_meaning" || q.type === "article" || q.type === "colloc") return <ChoiceQ q={q} l={l} all={all} yakin={yakin} ex={ex} show={show} verdict={verdict} />;
 
   // ---- aktif: üretim ----
   const prompt = q.type === "photo_say" ? <><div class="kicker">Fotoğraftaki ne? Artikeliyle söyle ya da yaz</div><Photo q={l.img} sira={exi} /><p class="small muted">{l.tr}</p></>
@@ -251,13 +253,13 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   );
 }
 
-function ChoiceQ({ q, l, all, ex, show, verdict }: { q: GardenQ; l: Lexeme; all: Lexeme[]; ex?: Lexeme["examples"][number]; show: (r: Result) => void; verdict: preact.ComponentChildren }) {
+function ChoiceQ({ q, l, all, yakin, ex, show, verdict }: { q: GardenQ; l: Lexeme; all: Lexeme[]; yakin?: Yakinlik; ex?: Lexeme["examples"][number]; show: (r: Result) => void; verdict: preact.ComponentChildren }) {
   const m = useMemo(() => {
-    if (q.type === "listen_meaning") { const o = meaningOptions(l, all); return { title: "Dinle: ne demek?", stem: null as string | null, ...o, expected: l.tr }; }
+    if (q.type === "listen_meaning") { const o = meaningOptions(l, all, Math.random, yakin); return { title: "Dinle: ne demek?", stem: null as string | null, ...o, expected: l.tr }; }
     if (q.type === "article") { const opts = ["der", "die", "das"]; return { title: "Hangi artikel?", stem: l.de, opts, ans: opts.indexOf(l.art!), expected: `${l.art} ${l.de}` }; }
     const c = collocQuestion(l, all);
     // yeterli güvenli çeldirici yoksa anlam sorusuna düşer (tek doğru cevap kuralı)
-    if (!c) { const o = meaningOptions(l, all); return { title: "Ne demek?", stem: isNoun(l) ? `${l.art} ${l.de}` : l.de, ...o, expected: l.tr }; }
+    if (!c) { const o = meaningOptions(l, all, Math.random, yakin); return { title: "Ne demek?", stem: isNoun(l) ? `${l.art} ${l.de}` : l.de, ...o, expected: l.tr }; }
     return { title: `Tamamla: ${c.tr}`, stem: c.stem, opts: c.opts, ans: c.ans, expected: c.stem.replace("___", c.opts[c.ans]!) };
   }, [q.lexId, q.type]);
   const [picked, setPicked] = useState<number | null>(null);
@@ -292,7 +294,7 @@ function GardenDone({ day, score, items, kalan, again, xp, kelimeler }: { day?: 
   useEffect(() => { void xpOku().then((x) => setSeriGun(seri(x))); }, []);
   return (
     <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" ilerleme={{ n: 1, toplam: 1 }} />
-      <section class="card stack" data-test="garden-done"><Kutlama><h2>Tur bitti</h2></Kutlama>
+      <section class="card stack" data-test="garden-done"><Kutlama><div class="kicker">Tur bitti</div></Kutlama>
         <Ozet dogru={score.ok} toplam={score.n} xp={xp} seriGun={seriGun} kelimeler={kelimeler} />
         {score.ok < score.n && <p class="small">Yanlış olanlar yarın ya da birkaç gün sonra başka bir soruyla geri gelecek.</p>}
         {devam ? <p data-test="garden-kalan">Bugünün kartlarından <b>{kalan}</b> yeni kelime kaldı.</p> : <p class="small muted" data-test="garden-tomorrow">{tomorrow(items)}</p>}
