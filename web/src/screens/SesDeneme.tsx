@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import { TopBar } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 import { havuzlar, sesKalitesi, type Ses } from "../core/sesSec.ts";
-import { cihazSesleri, konusanAta, listenOnce, RATE, speak, STT_HATA_TR, sttHataTuru, sttYolu, ttsAvailable } from "../services/speech.ts";
+import { cihazSesleri, karakterSesi, listenOnce, RATE, speak, STT_HATA_TR, sttHataTuru, sttYolu, ttsAvailable } from "../services/speech.ts";
 import { loadWorld } from "../services/content.ts";
 
 const ORNEK = "Guten Morgen! Ich hätte gern einen Termin am Montag.";
@@ -35,7 +35,6 @@ export function SesDeneme() {
     return () => { if (ttsAvailable()) speechSynthesis.removeEventListener?.("voiceschanged", yenile); };
   }, []);
   const h = havuzlar(sesler);
-  const atama = konusanAta(karakter.map((c) => c.id));
   const kaliteYok = ![...h.kadin, ...h.erkek].some((s) => sesKalitesi(s) >= 2);
   return (
     <div class="stack ses-deneme" data-test="ses-deneme">
@@ -54,10 +53,10 @@ export function SesDeneme() {
       </section>
       {karakter.length > 0 && <section class="card stack" data-test="karakter-sesleri">
         <h2>Karakterlerin sesi</h2>
-        <ul class="list">{karakter.map((c) => { const a = atama.get(c.id); return (
+        <ul class="list">{karakter.map((c) => { const a = karakterSesi(c.id); return (
           <li class="row" style={{ flexWrap: "nowrap" }} data-test="karakter-ses" data-id={c.id} data-ses={a?.ses?.name ?? ""} data-pitch={a?.pitch ?? 1}>
             <span class="grow" style={{ minWidth: 0 }}><b>{c.name}</b><br /><span class="tiny muted">{a?.ses?.name ?? "cihaz sesi"}{a && a.pitch !== 1 ? ` · perde ${a.pitch}` : ""}{a?.cinsiyetYok ? " · uygun ses yok" : ""}</span></span>
-            <button class="btn sm" onClick={() => void speak(ORNEK, "de", "normal", true, c.id)}>Dinle</button>
+            <button class="btn sm" aria-label={`${c.name}: dinle`} onClick={() => void speak(ORNEK, "de", "normal", true, a)}>Dinle</button>
           </li>); })}</ul>
       </section>}
       <MikrofonDeneme />
@@ -104,13 +103,15 @@ function MikrofonDeneme() {
     <section class="card stack" data-test="mikrofon-deneme">
       <h2>Mikrofon</h2>
       <p class="small" data-test="stt-yol">{yol === "yerel" ? "Tanıma: iPhone'un kendi konuşma tanıması (uygulama içinde)." : yol === "tarayici" ? "Tanıma: tarayıcının konuşma tanıması. iPhone uygulamasında iPhone'un kendi tanıması kullanılır." : "Bu tarayıcıda konuşma tanıma yok. Yazarak cevaplayabilirsin; iPhone uygulamasında sesli cevap çalışır."}</p>
-      <p class="small" data-test="mic-izin">İzin: <b>{izin === "verildi" ? "verildi" : izin === "reddedildi" ? "verilmedi" : izin === "sorulacak" ? "henüz sorulmadı" : "bilinmiyor"}</b>
+      <p class="small" data-test="mic-izin">Mikrofon izni: <b>{izin === "verildi" ? "verildi" : izin === "reddedildi" ? "verilmedi" : izin === "sorulacak" ? "henüz sorulmadı" : "bilinmiyor"}</b>
         {izin !== "verildi" && <button class="btn sm" style={{ marginLeft: 8 }} data-test="mic-izin-iste" onClick={() => void seviyeAc().then(() => { akis.current?.stop(); akis.current = null; })}>İzin iste</button>}</p>
       <div class="ses-seviye" role="meter" aria-label="Ses seviyesi" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(seviye * 100)} data-test="mic-seviye"><i style={{ width: `${Math.round(seviye * 100)}%` }} /></div>
       <p>Şunu söyle: <b lang="de">„Guten Morgen“</b></p>
       <button class="btn primary block" disabled={durum === "dinliyor" || yol === "yok"} onClick={() => void dene()} data-test="mic-dene"><Icon name="mic" /> {durum === "dinliyor" ? "Dinliyorum…" : durum === "sonuc" ? "Tekrar dene" : "Söyle"}</button>
       {metin !== null && <p data-test="mic-sonuc">Duyduğum: <b lang="de">{metin}</b>{/guten\s*morgen/i.test(metin) ? " · doğru" : ""}</p>}
       {hata && <p class="small fb-uyari" role="alert" data-test="mic-hata">{hata}</p>}
+      {/* kabukta izin yoksa tek dokunuşla iPhone Ayarları (PM 7017526063); cihazda doğrulanacak */}
+      {hata && yol === "yerel" && izin === "reddedildi" && <button class="btn" data-test="ayarlari-ac" onClick={() => { location.href = "app-settings:"; }}>Ayarları aç</button>}
     </section>
   );
 }

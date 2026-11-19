@@ -19,7 +19,7 @@ def kare(pg, n=4):
         for _ in range(n): KARELER.append(pg.screenshot()); pg.wait_for_timeout(250)
 
 SAHTE = """(() => {
-  const V = [["Anna","de-DE"],["Helena (Erweitert)","de-DE"],["Markus","de-DE"],["Viktor (Erweitert)","de-DE"],["Samantha","en-US"],["Yelda","tr-TR"]]
+  const V = [["Anna","de-DE"],["Helena (Erweitert)","de-DE"],["Markus","de-DE"],["Viktor (Erweitert)","de-DE"],["Eddy (Deutsch (Deutschland))","de-DE"],["Grandma (Deutsch (Deutschland))","de-DE"],["Samantha","en-US"],["Yelda","tr-TR"]]
     .map(([name, lang]) => ({ name, lang, voiceURI: name, localService: true, default: false }));
   window.__oku = [];
   const ss = { speaking: false, pending: false, paused: false, getVoices: () => V, cancel() {}, addEventListener() {}, removeEventListener() {},
@@ -61,8 +61,12 @@ def main():
         erkekler = [ks[i]["ses"] for i in ("ch:lechner", "ch:weber", "ch:pichler") if i in ks]
         kadinlar = [ks[i]["ses"] for i in ("ch:huber", "ch:stadler", "ch:brandl") if i in ks]
         check(erkekler and all(s in erkek for s in erkekler) and kadinlar and all(s in kadin for s in kadinlar), f"erkek karakter erkek sesi {erkekler}, kadın karakter kadın sesi {kadinlar}")
-        cift = [(k, v["ses"], v["pitch"]) for k, v in ks.items()]
-        check(len({(s, pi) for _, s, pi in cift}) == len(cift), f"aynı ekrandaki karakterler (ses, perde) ayrışıyor ({len(cift)} karakter)")
+        check(not any(v["ses"].startswith(("Eddy", "Grandma")) for v in ks.values()), "karakterlere eğlence sesi düşmüyor (daha iyi ses varken)")
+        # listedeki ses = "Dinle"nin çaldığı ses (inceleme #117 P1-3)
+        satir = pg.locator("[data-test=karakter-ses][data-id='ch:aksoy']")
+        pg.evaluate("window.__oku = []"); satir.locator("button").click(); pg.wait_for_function("() => window.__oku.length >= 1")
+        calan = pg.evaluate("window.__oku[0]")
+        check(calan["ses"] == ks["ch:aksoy"]["ses"] and str(calan["pitch"]) in (ks["ch:aksoy"]["pitch"], ks["ch:aksoy"]["pitch"] + ".0"), f"listede yazan ses çalıyor ({ks['ch:aksoy']['ses']} = {calan['ses']})")
         pg.locator("[data-test=karakter-sesleri]").scroll_into_view_if_needed(); kare(pg, 8)
         no_overflow(pg, "ses denemesi")
         if shots: shot(pg, f"s01-ses-deneme-{TEMA}", full=False)
@@ -88,6 +92,21 @@ def main():
         pg.evaluate("window.__oku = []"); pg.click("[data-test=dinle-bolum]"); pg.wait_for_function("() => window.__oku.length >= 1")
         a2 = pg.evaluate("window.__oku[0]")
         check((a1["ses"], a1["pitch"]) != (a2["ses"], a2["pitch"]) and a1["ses"] in kadin and a2["ses"] in erkek, f"kadın anons ({a1['ses']}) ve erkek sesli mesaj ({a2['ses']}) farklı seslerle")
+        b.close()
+        # kabuk (iPhone uygulaması): tarayıcı arayüzü olsa da önce iPhone'un kendi tanıması (inceleme #117 P1-7)
+        b, ctx = launch(p, color_scheme=TEMA); ctx.add_init_script(SAHTE)
+        ctx.add_init_script("""window.Capacitor = { isNativePlatform: () => !!window.__kabuk, Plugins: { SpeechRecognition: {
+          checkPermissions: async () => ({ speechRecognition: window.__yerelIzin || 'granted' }),
+          requestPermissions: async () => ({ speechRecognition: window.__yerelIzin || 'granted' }),
+          start: async () => ({ matches: ['Guten Morgen yerel'] }), stop: async () => {} } } };""")
+        pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
+        pg.evaluate("window.__kabuk = 1")  # giriş web gibi; sonra kabuk (yeniden yükleme yok)
+        pg.goto(base + "#/ses"); pg.wait_for_selector("[data-test=mikrofon-deneme]")
+        check("kendi konuşma tanıması" in pg.inner_text("[data-test=stt-yol]"), "kabukta tanıma yolu: iPhone'un kendi tanıması")
+        pg.click("[data-test=mic-dene]"); pg.wait_for_selector("[data-test=mic-sonuc]")
+        check("yerel" in pg.inner_text("[data-test=mic-sonuc]"), "kabukta sonuç yerel eklentiden (tarayıcı arayüzü seçilmedi)")
+        pg.evaluate("window.__yerelIzin = 'denied'"); pg.click("[data-test=mic-dene]"); pg.wait_for_selector("[data-test=mic-hata]")
+        check("izni yok" in pg.inner_text("[data-test=mic-hata]") and pg.locator("[data-test=ayarlari-ac]").count() == 1, "kabukta tanıma izni yok: Türkçe neden + 'Ayarları aç'")
         b.close()
     srv.shutdown()
     if GIF and KARELER:

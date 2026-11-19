@@ -20,7 +20,9 @@ describe("ses seçimi (PM-064, B15 1. adım)", () => {
     expect(sesKalitesi(v("Helena (Erweitert)"))).toBeGreaterThan(sesKalitesi(v("Anna")));
     expect(sesKalitesi(v("Eddy (Deutsch (Deutschland))"))).toBeLessThan(0);
     const h = havuzlar(IPHONE);
-    expect(h.kadin.map((x) => x.name)).toEqual(["Helena (Erweitert)", "Petra (Premium)", "Anna", "Grandma (Deutsch (Deutschland))"]);
+    // eğlence sesi (Grandma) havuzda yok: kadın havuzunda daha iyi sesler var (inceleme #117 P1-2)
+    expect(h.kadin.map((x) => x.name)).toEqual(["Helena (Erweitert)", "Petra (Premium)", "Anna"]);
+    expect(havuzlar([v("Grandma (Deutsch (Deutschland))"), v("Markus")]).kadin.map((x) => x.name)).toEqual(["Grandma (Deutsch (Deutschland))"]);
     expect(h.erkek[0]!.name).toBe("Viktor (Erweitert)");
     expect([...h.kadin, ...h.erkek, ...h.diger].some((x) => !x.lang.startsWith("de"))).toBe(false);
   });

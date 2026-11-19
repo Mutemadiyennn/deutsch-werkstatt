@@ -12,9 +12,9 @@ import { Icon } from "./icons.tsx";
 import { Mucevher } from "./solen.tsx";
 
 /* ---------- Ses düğmesi: büyük, tek dokunuşla yavaş/normal ---------- */
-export function ListenButton({ text, speed = "normal", label = "Dinle", slowToggle = true, small = false }: { text: string; speed?: Speed; label?: string; slowToggle?: boolean; small?: boolean }) {
+export function ListenButton({ text, speed = "normal", label = "Dinle", slowToggle = true, small = false, kim }: { text: string; speed?: Speed; label?: string; slowToggle?: boolean; small?: boolean; /** konuşan: karakterin sabit sesi (PM-064) */ kim?: string }) {
   const [busy, setBusy] = useState<false | "n" | "s">(false);
-  const play = async (s: Speed, k: "n" | "s") => { if (busy) { stopSpeaking(); setBusy(false); return; } setBusy(k); try { await speak(text, "de", s); } finally { setBusy(false); } };
+  const play = async (s: Speed, k: "n" | "s") => { if (busy) { stopSpeaking(); setBusy(false); return; } setBusy(k); try { await speak(text, "de", s, false, kim); } finally { setBusy(false); } };
   return (
     <span class={`listen${small ? " sm" : ""}`} role="group" aria-label={label}>
       <button type="button" onClick={() => play(speed, "n")} aria-label={`${label}: ${text}`} data-test="listen">{busy === "n" ? <Icon name="stop" /> : <Icon name="volume" />}</button>

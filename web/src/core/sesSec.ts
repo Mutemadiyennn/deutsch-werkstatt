@@ -37,7 +37,10 @@ export const almancaMi = (s: Ses) => /^de([-_]|$)/i.test(s.lang);
 
 /** Havuzlar: Almanca sesler, cinsiyete göre; her havuz kaliteye, sonra ada göre sıralı (kararlı) */
 export function havuzlar(sesler: Ses[]): { kadin: Ses[]; erkek: Ses[]; diger: Ses[] } {
-  const de = sesler.filter(almancaMi);
+  // eğlence sesleri (Eddy, Grandma…) yalnızca o cinsiyette başka ses yoksa (inceleme #117 P1-2)
+  const tum = sesler.filter(almancaMi);
+  const oyun = (s: Ses) => sesKalitesi(s) < 0;
+  const de = tum.filter((s) => !oyun(s) || !tum.some((x) => !oyun(x) && sesCinsi(x) === sesCinsi(s)));
   const sirala = (xs: Ses[]) => xs.slice().sort((a, b) => sesKalitesi(b) - sesKalitesi(a) || (a.lang.startsWith("de-DE") ? 0 : 1) - (b.lang.startsWith("de-DE") ? 0 : 1) || a.name.localeCompare(b.name));
   return { kadin: sirala(de.filter((s) => sesCinsi(s) === "kadin")), erkek: sirala(de.filter((s) => sesCinsi(s) === "erkek")), diger: sirala(de.filter((s) => sesCinsi(s) === null)) };
 }

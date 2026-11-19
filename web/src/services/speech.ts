@@ -18,16 +18,26 @@ export const ttsAvailable = () => typeof window !== "undefined" && "speechSynthe
 /** PM-064: dünya karakterleri (ses: cinsiyet, sıra); içerik yüklenince `setKarakterler` ile verilir */
 let karakterler: KarakterSes[] = [];
 export function setKarakterler(k: KarakterSes[]) { karakterler = k; }
+/** Öğrencinin satırları ("Sen", "{name}", rol "B" öğrenciyse) profildeki hitaba göre (Herr → erkek, Frau → kadın) */
+let ogrenciCins: "kadin" | "erkek" | undefined;
+export function setOgrenciHitap(h?: "Herr" | "Frau") { ogrenciCins = h === "Herr" ? "erkek" : h === "Frau" ? "kadin" : undefined; }
+const OGRENCI = /^(sen|du|ich|öğrenci|ogrenci|\{name\}|learner|student|kullanıcı)$/i;
+function konusanCoz(a: string | undefined): Konusan | null {
+  if (a && OGRENCI.test(a.trim())) return { id: "ogrenci", cinsiyet: ogrenciCins, sira: 0 };
+  return konusanBul(a, karakterler);
+}
 /** Cihazdaki sesler (Profil → Ses denemesi ve atama için) */
 export const cihazSesleri = (): SpeechSynthesisVoice[] => (ttsAvailable() ? speechSynthesis.getVoices() : []);
 /** Konuşan(lar)a ses: aynı sahnedekiler birlikte atanır (aynı sahnede iki konuşan aynı sesi almaz) */
 export function konusanAta(adlar: (string | undefined)[]): Map<string, Atama> {
-  const ks = adlar.map((a) => konusanBul(a, karakterler)).filter((x): x is Konusan => !!x);
+  const ks = adlar.map((a) => konusanCoz(a)).filter((x): x is Konusan => !!x);
   const m = sahneAta(ks, cihazSesleri());
   const out = new Map<string, Atama>();
-  for (const a of adlar) { const k = a ? konusanBul(a, karakterler) : null; if (a && k && m.has(k.id)) out.set(a, m.get(k.id)!); }
+  for (const a of adlar) { const k = a ? konusanCoz(a) : null; if (a && k && m.has(k.id)) out.set(a, m.get(k.id)!); }
   return out;
 }
+/** Tek konuşanın sabit sesi (sahnesiz): Profil listesi ve tek satırlık "Dinle" bununla aynı sesi çalar (inceleme #117 P1-3) */
+export const karakterSesi = (ad: string): Atama | undefined => konusanAta([ad]).get(ad);
 
 function voiceFor(lang: "de" | "tr"): SpeechSynthesisVoice | undefined {
   const vs = speechSynthesis.getVoices();
@@ -140,10 +150,16 @@ export function listenOnce(lang = "de-DE", maxMs = 9000): { result: Promise<stri
   if (sttYolu() === "yerel") {
     const N = NATIVE_SR();
     listening = true;
+    // kabuk yolu (inceleme #117 P1-6): önce tanıma izni (verilmezse "izin"), sonra zaman aşımlı tanıma (takılı "Dinliyorum…" yok)
     const result = (async () => {
       try {
-        try { await N.requestPermissions?.(); } catch {}
-        const r = await N.start({ language: lang, maxResults: 4, partialResults: false, popup: false });
+        const izinli = (x: any) => !x || x.speechRecognition === undefined || x.speechRecognition === "granted";
+        let pm: any = null; try { pm = await N.checkPermissions?.(); } catch { /* eski eklenti */ }
+        if (!izinli(pm)) { const r = await N.requestPermissions?.(); if (!izinli(r)) throw new Error("not-allowed"); }
+        const r: any = await Promise.race([
+          N.start({ language: lang, maxResults: 4, partialResults: false, popup: false }),
+          new Promise((_, rej) => setTimeout(() => { try { N.stop?.(); } catch { /* yok */ } rej(new Error("timeout")); }, maxMs + 2000))
+        ]);
         return ((r && r.matches) || []) as string[];
       } finally { listening = false; }
     })();

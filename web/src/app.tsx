@@ -19,7 +19,7 @@ import { SesDeneme } from "./screens/SesDeneme.tsx";
 import { loadIndex, within, loadWorld } from "./services/content.ts";
 import { getProfile, latestPlacement, saveProfile } from "./data/db.ts";
 import { setLearning, startFocus, updateFocusConfig } from "./services/focusRuntime.ts";
-import { setBaslangicHizi, setKarakterler } from "./services/speech.ts";
+import { setBaslangicHizi, setKarakterler, setOgrenciHitap } from "./services/speech.ts";
 import { efektAyar, sesKilidiAc, ustUsteSifirla } from "./services/efekt.ts";
 import { kullanimIzle } from "./services/kullanim.ts";
 import { TabBar, Loading, ErrorPanel } from "./ui/components.tsx";
@@ -53,6 +53,8 @@ export function App() {
   const [authReady, setAuthReady] = useState(false);
   const [user, setUser] = useState<AuthUser | null>(null);
   const [profile, setP] = useState<Profile | null>(null);
+  // öğrencinin satırları hitaba göre seslendirilir; Profil'de değişince hemen (PM-064, inceleme #117 P1-4)
+  useEffect(() => { setOgrenciHitap(profile?.address); }, [profile?.address]);
   const [index, setIndex] = useState<ContentIndex | null>(null);
   const [indexError, setIndexError] = useState<string | null>(null);
   const [placement, setPlacement] = useState<Assessment | undefined>();
