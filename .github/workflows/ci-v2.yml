@@ -107,6 +107,8 @@ jobs:
         run: cd tests/e2e && python v2_yol_harita.py --shots /tmp/shots
       - name: "Günlük görevler, sandık, seri dondurma, geçen haftaki sen (#58 B11b, PM-065 5–7)"
         run: cd tests/e2e && python v2_gorev.py --shots /tmp/shots
+      - name: "Yerleşim kuralları Y1–Y6 (TASARIM TS-4.7): Bugün, Görevler, Odak; iki tema"
+        run: cd tests/e2e && python v2_yerlesim.py
       - name: "Yeni Bugün + Pomodoro (#58 A6): halka, seans x/4, Devam et süreyi başlatır, mola zili/titreşimi, kilitte doğru süre"
         run: cd tests/e2e && python v2_bugun.py --shots /tmp/shots
       - name: "Konuşma provası (#58 A7): hazırlık kilidi, dallanan diyalog, tanınmayan cevap, Türkçe geri bildirim"

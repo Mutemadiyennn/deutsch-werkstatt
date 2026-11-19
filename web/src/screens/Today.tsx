@@ -5,16 +5,16 @@ import { HeardWordBox } from "../ui/learn.tsx";
 import { useApp } from "../state.ts";
 import { recommend, ACTIVITY_TR } from "../core/planner.ts";
 import { LoadingCard } from "../ui/kit.tsx";
-import { usePlan } from "./Yol.tsx";
+import { usePlan, YolHarita } from "./Yol.tsx";
 import { adimAdi, seri } from "../core/gun.ts";
 import { seasonal } from "../core/season.ts";
 import { bankItems } from "../data/db.ts";
 import { loadIndex, loadLexicon, loadScenario } from "../services/content.ts";
 import { focusPause, focusResume, focusSkipBreak, focusStart } from "../services/focusRuntime.ts";
-import { Art, ErrorPanel, Ring, SpeakBtn, minLeft, useFocusTick } from "../ui/components.tsx";
+import { Art, ErrorPanel, Ring, SpeakBtn, TopBar, minLeft, useFocusTick } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 import { Avatar, RauteRow, SkyBand, accentOf, type RState } from "../ui/raute.tsx";
-import { GunlukGorevler } from "../ui/gorev.tsx";
+import { GorevSeridi } from "../ui/gorev.tsx";
 import { GunSonu } from "../ui/gunsonu.tsx";
 
 const breakOnNow = (e: { rt: { phase: string } }) => e.rt.phase === "break";
@@ -23,8 +23,6 @@ const BREAK_IDEAS = ["Kalk, biraz yürü ya da gerin.", "Bir bardak su iç.", "G
 export function Today() {
   const { profile, index, indexError, placement } = useApp();
   const e = useFocusTick();
-  // PM-035 §3: tekrar listesinde ham kimlik yok; kelime, ifade ve kalıp çözülür, çözülemeyen gösterilmez
-  const [bank, setBank] = useState<{ it: LearnerItem; de: string; tr: string; art?: string }[]>([]);
   const [scen, setScen] = useState<Scenario | null>(null);
   const now = Date.now();
   const n = e ? (e.rt.phase === "focus" && e.current ? e.current.n : e.nextN) : 1;
@@ -34,6 +32,134 @@ export function Today() {
   const { plan, err: planErr, yenile } = usePlan();
   const m1 = plan;
 
+  useEffect(() => {
+    if (rec.kind === "scenario") loadScenario(rec.scenarioId).then(setScen).catch(() => setScen(null));
+  }, [rec.kind === "scenario" ? rec.scenarioId : ""]);
+
+  const min = e ? e.focusMin() : 0;
+  const goal = profile.focus.dailyGoalMin;
+  const sessions = e?.day.sessions || [];
+  const hour = new Date(now).getHours();
+  // DESIGN §6: gök şeridi günün saatine göre; selam Bavyera'da günlük biçimde
+  const greetDe = hour < 11 ? "Guten Morgen." : hour < 18 ? "Servus." : "Guten Abend.";
+  const greetTr = hour < 11 ? "Günaydın" : hour < 18 ? "Merhaba" : "İyi akşamlar";
+  const exam = profile.goals.examB1.enabled && profile.goals.examB1.date ? Math.max(0, Math.ceil((Date.parse(profile.goals.examB1.date) - now) / 86400_000)) : null;
+  const examOn = profile.goals.examB1.enabled;
+  const breakOn = e?.rt.phase === "break";
+  // LS-17.0 / WORLD §6: gerçek takvime bağlı mevsim senaryoları (AA-GG aralığı; yıl dönümü sarar)
+  // ekrandaki tek ilerleme göstergesi: 4 seans = 4 Raute (yarım = sürüyor / yarıda kaldı)
+  const rs = [1, 2, 3, 4].map((k) => { const x = sessions.find((y) => y.n === k && y.status !== "abandoned"); return (x?.status === "completed" ? 1 : x ? 0.5 : 0) as RState; });
+  const done = e?.completedCount || 0;
+  const cur = e?.rt.phase === "focus" ? e.current : undefined;
+  const yarida = e?.rt.resumableId ? e.day.sessions.find((x) => x.id === e.rt.resumableId) : undefined;
+  const sn = (k: number) => (k <= 4 ? `${k}/4` : `${k} (ek)`);
+  const seansDurum = !e ? "" : breakOnNow(e) ? `Mola · ${minLeft(e.breakLeftSec(now))} kaldı`
+    : cur ? `Seans ${sn(cur.n)} sürüyor · ${minLeft(e.focusLeftSec())} kaldı${e.rt.paused ? " (duraklatıldı)" : ""}`
+    : yarida ? `Seans ${sn(yarida.n)} yarıda kaldı · ${minLeft(e.cfg.workMin * 60 - yarida.focusSec)} kaldı`
+    : done >= 4 && min >= goal ? "Bugünkü dört seans tamam" : `Sırada seans ${sn(e.nextN)} · ${e.cfg.workMin} dk`;
+  /** "Devam et" süreyi başlatır (#58 A6): yarıda kalan seans sürer, yoksa yeni seans; mola sürüyorsa mola biter */
+  const devam = () => { if (!e) return; if (cur) { if (e.rt.paused) focusPause(false); return; } if (yarida) focusResume(); else focusStart(); };
+  const accent = accentOf(scen?.domain);
+  const who = scen?.dialogues[0]?.roles.A;
+  const initials = (who || scen?.title_de || "DW").split(/\s+/).filter((w) => /^\p{Lu}/u.test(w)).slice(0, 2).map((w) => w[0]).join("") || "DW";
+
+  // Şölen 2 (PM 7015070303 A, #104 notu 1): M1'de Bugün = yol. Tek kahraman yol ve BAŞLA; altında yalnızca görev şeridi
+  // ve (gün içinde adım bittiyse) gün sonu özeti. Süre ayrıntısı Odak ekranında (durum çubuğundaki dakika halkası);
+  // tekrar yolun sonunda, "Duyduğum kelime" ve mevsim dersi Öğren'de.
+  if (m1) return (
+    <div class="stack today bugun-yol" data-test="bugun-yol">
+      {breakOn && <BreakCard />}
+      {indexError && <ErrorPanel message={`İçerik yüklenemedi: ${indexError}`} onRetry={() => location.reload()} />}
+      <YolHarita plan={m1} selam={`${greetDe} ${greetTr}${profile.displayName ? `, ${profile.displayName}` : ""}.`} onBasla={devam} />
+      <GorevSeridi plan={m1} />
+      <GunSonu plan={m1} />
+    </div>
+  );
+
+  return (
+    <div class="stack today">
+      <SkyBand hour={hour}>
+        <h1 class="greet" lang="de">{greetDe}</h1>
+        <p class="skyline-tr">{greetTr}{profile.displayName ? `, ${profile.displayName}` : ""}. {rec.kind === "scenario" ? `Bugün sırada: ${rec.title_tr}.` : rec.kind === "assess" ? "Önce kısa bir seviye tespiti yapalım." : ""}</p>
+        {examOn && <span class="skychip" data-test="exam-badge">B1{exam !== null ? `: ${exam} gün` : ""}</span>}
+      </SkyBand>
+
+      {/* #58 A6 (TARGET2): 100 dakika halkası + seans x/4 + kalan süre; tek gösterge grubu */}
+      <div class="dayring" data-test="gun-halkasi">
+        <Ring value={min} max={goal} size={84} label={`Bugün ${min} / ${goal} dakika`} />
+        <div class="grow stack" style={{ gap: 6, minWidth: 0 }}>
+          <div class="seansdurum" data-test="seans-durum">{seansDurum}</div>
+          <RauteRow states={rs} label={`Bugün ${done}/4 seans`} size={18} test="session-rauten" />
+          <span class="tiny sr-only" data-test="sessions-done">{done}/4 seans</span>
+          <span class="tiny sr-only" data-test="today-min">{min} / {goal} dk</span>
+          <span class="tiny muted" data-test="hedefe">{min < goal ? `Bugünkü hedefe ${goal - min} dk` : "Bugünkü hedef tamam"}</span>
+        </div>
+      </div>
+      {breakOn && <BreakCard />}
+
+      {indexError && <ErrorPanel message={`İçerik yüklenemedi: ${indexError}`} onRetry={() => location.reload()} />}
+
+      {planErr ? <ErrorPanel message={`Günün planı yüklenemedi. ${planErr}`} onRetry={yenile} /> : !!index?.m1.length ? <LoadingCard lines={2} /> : (
+      <section class="card nextcard stack" data-test="next-activity">
+        <div class="row" style={{ flexWrap: "nowrap", gap: 14, alignItems: "center" }}>
+          {rec.kind === "scenario" ? <Avatar initials={initials} accent={accent} /> : <span class="avatar" aria-hidden="true" style={{ width: 52, height: 52, background: "var(--himmel)" }}><Icon name={rec.kind === "assess" ? "target" : "raute"} size={24} /></span>}
+          <div class="grow" style={{ minWidth: 0 }}>
+            <div class="small muted">Sıradaki · Seans {n}: {rec.kind === "assess" ? "Seviye tespiti" : rec.kind === "none" ? rec.title_tr : ACTIVITY_TR[rec.activity]}</div>
+            <h2 class="nexttitle">{rec.title_tr}</h2>
+          </div>
+        </div>
+        <p class="small muted" style={{ margin: 0 }}>{rec.why_tr}</p>
+        {rec.kind === "scenario" && rec.draft && <p class="tiny" style={{ margin: 0 }}><span class="chip">Deneme dersi</span></p>}
+        {rec.kind === "assess" && <a class="btn primary block" href="#/assess"><Icon name="play" size={18} /> Seviye tespitine başla</a>}
+        {rec.kind === "scenario" && <a class="btn primary block" href={`#/scenario/${encodeURIComponent(rec.scenarioId)}`}><Icon name="play" size={18} /> Devam et</a>}
+        {rec.kind === "v1" && <a class="btn primary block" href={rec.url} target="_blank" rel="noopener">Eski uygulamada aç <Icon name="out" size={18} /></a>}
+        {e && !breakOn && <FocusPanel />}
+        {placement && <a class="small" href={`#/assess/result/${placement.id}`}>Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>}
+      </section>
+      )}
+
+      {/* #58 B3: gün sonu özeti (bugün en az bir adım bittiyse) */}
+      {m1 && <GunSonu plan={m1} />}
+
+      <MevsimKarti />
+
+      {scen && (
+        <section class="plainsec">
+          <h2 class="sectitle">Şu an öğrendiklerin</h2>
+          <div class="tiny muted">{scen.title_tr}</div>
+          <ul class="list">
+            {scen.chunks.filter((c) => scen.essentials.chunks.includes(c.id)).slice(0, 5).map((c) => (
+              <li class="row" style={{ flexWrap: "nowrap" }}><span class="grow"><span class="de" lang="de">{c.layers.hd}</span><br /><span class="small muted">{c.tr}</span></span><SpeakBtn text={c.layers.hd} /></li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <TekrarListesi />
+      <p class="tiny muted" style={{ textAlign: "center", margin: 0 }}>{profile.focus.workMin} dk çalışma, {profile.focus.breakMin} dk mola. Süre yalnızca öğrenirken sayılır.</p>
+    </div>
+  );
+}
+
+
+/** Mevsimin dersi (Öğren'de de gösterilir; M1'de Bugün = yol). */
+export function MevsimKarti() {
+  const { index } = useApp();
+  const inSeasonNow = seasonal(index?.scenarios || [], Date.now());
+  if (!inSeasonNow.length) return null;
+  return (
+        <section class="card tint orange" data-test="season">
+          <div class="sechead"><span class="ic" aria-hidden="true" style={{ color: "var(--brezel)" }}><Icon name="raute" /></span><div><h2>Mevsimin dersi</h2><div class="tiny muted">{inSeasonNow[0]!.season!.title_tr}</div></div></div>
+          <ul class="list">{inSeasonNow.map((x) => <li><a href={`#/scenario/${encodeURIComponent(x.id)}`} class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }}><span class="grow"><b>{x.title_tr}</b><br /><span class="small muted" lang="de">{x.title_de}</span></span>{x.review !== "reviewed" && <span class="chip">inceleme bekliyor</span>}<Icon name="next" size={18} /></a></li>)}</ul>
+        </section>
+  );
+}
+
+/** "Tekrar edilecekler" (PM-035 §3): zayıf kartlar, "Duyduğum kelime", Bahçe tekrarı. M1'de Bugün = yol olduğundan Öğren'de. */
+export function TekrarListesi() {
+  const { placement } = useApp();
+  // PM-035 §3: tekrar listesinde ham kimlik yok; kelime, ifade ve kalıp çözülür, çözülemeyen gösterilmez
+  const [bank, setBank] = useState<{ it: LearnerItem; de: string; tr: string; art?: string }[]>([]);
   useEffect(() => {
     (async () => {
       const items = await bankItems(6);
@@ -53,128 +179,11 @@ export function Today() {
       }));
     })().catch(() => setBank([]));
   }, [placement?.id]);
-  useEffect(() => {
-    if (rec.kind === "scenario") loadScenario(rec.scenarioId).then(setScen).catch(() => setScen(null));
-  }, [rec.kind === "scenario" ? rec.scenarioId : ""]);
-
-  const min = e ? e.focusMin() : 0;
-  const goal = profile.focus.dailyGoalMin;
-  const sessions = e?.day.sessions || [];
-  const hour = new Date(now).getHours();
-  // DESIGN §6: gök şeridi günün saatine göre; selam Bavyera'da günlük biçimde
-  const greetDe = hour < 11 ? "Guten Morgen." : hour < 18 ? "Servus." : "Guten Abend.";
-  const greetTr = hour < 11 ? "Günaydın" : hour < 18 ? "Merhaba" : "İyi akşamlar";
-  const exam = profile.goals.examB1.enabled && profile.goals.examB1.date ? Math.max(0, Math.ceil((Date.parse(profile.goals.examB1.date) - now) / 86400_000)) : null;
-  const examOn = profile.goals.examB1.enabled;
-  const breakOn = e?.rt.phase === "break";
-  // LS-17.0 / WORLD §6: gerçek takvime bağlı mevsim senaryoları (AA-GG aralığı; yıl dönümü sarar)
-  const inSeasonNow = seasonal(index?.scenarios || [], now);
-  // ekrandaki tek ilerleme göstergesi: 4 seans = 4 Raute (yarım = sürüyor / yarıda kaldı)
-  const rs = [1, 2, 3, 4].map((k) => { const x = sessions.find((y) => y.n === k && y.status !== "abandoned"); return (x?.status === "completed" ? 1 : x ? 0.5 : 0) as RState; });
-  const done = e?.completedCount || 0;
-  const cur = e?.rt.phase === "focus" ? e.current : undefined;
-  const yarida = e?.rt.resumableId ? e.day.sessions.find((x) => x.id === e.rt.resumableId) : undefined;
-  const sn = (k: number) => (k <= 4 ? `${k}/4` : `${k} (ek)`);
-  const seansDurum = !e ? "" : breakOnNow(e) ? `Mola · ${minLeft(e.breakLeftSec(now))} kaldı`
-    : cur ? `Seans ${sn(cur.n)} sürüyor · ${minLeft(e.focusLeftSec())} kaldı${e.rt.paused ? " (duraklatıldı)" : ""}`
-    : yarida ? `Seans ${sn(yarida.n)} yarıda kaldı · ${minLeft(e.cfg.workMin * 60 - yarida.focusSec)} kaldı`
-    : done >= 4 && min >= goal ? "Bugünkü dört seans tamam" : `Sırada seans ${sn(e.nextN)} · ${e.cfg.workMin} dk`;
-  /** "Devam et" süreyi başlatır (#58 A6): yarıda kalan seans sürer, yoksa yeni seans; mola sürüyorsa mola biter */
-  const devam = () => { if (!e) return; if (cur) { if (e.rt.paused) focusPause(false); return; } if (yarida) focusResume(); else focusStart(); };
-  const accent = accentOf(scen?.domain);
-  const who = scen?.dialogues[0]?.roles.A;
-  const initials = (who || scen?.title_de || "DW").split(/\s+/).filter((w) => /^\p{Lu}/u.test(w)).slice(0, 2).map((w) => w[0]).join("") || "DW";
-
   return (
-    <div class="stack today">
-      <SkyBand hour={hour}>
-        <h1 class="greet" lang="de">{greetDe}</h1>
-        <p class="skyline-tr">{greetTr}{profile.displayName ? `, ${profile.displayName}` : ""}. {m1?.sonraki ? `Bugün sırada: ${m1.sonraki.title_tr}.` : m1 ? "" : rec.kind === "scenario" ? `Bugün sırada: ${rec.title_tr}.` : rec.kind === "assess" && !m1 ? "Önce kısa bir seviye tespiti yapalım." : ""}</p>
-        {examOn && <span class="skychip" data-test="exam-badge">B1{exam !== null ? `: ${exam} gün` : ""}</span>}
-      </SkyBand>
-
-      {/* #58 A6 (TARGET2): 100 dakika halkası + seans x/4 + kalan süre; tek gösterge grubu */}
-      <div class="dayring" data-test="gun-halkasi">
-        <Ring value={min} max={goal} size={84} label={`Bugün ${min} / ${goal} dakika`} />
-        <div class="grow stack" style={{ gap: 6, minWidth: 0 }}>
-          <div class="seansdurum" data-test="seans-durum">{seansDurum}</div>
-          <RauteRow states={rs} label={`Bugün ${done}/4 seans`} size={18} test="session-rauten" />
-          <span class="tiny sr-only" data-test="sessions-done">{done}/4 seans</span>
-          <span class="tiny sr-only" data-test="today-min">{min} / {goal} dk</span>
-          <span class="tiny muted" data-test="hedefe">{min < goal ? `Bugünkü hedefe ${goal - min} dk` : "Bugünkü hedef tamam"}</span>
-        </div>
-      </div>
-      {breakOn && <BreakCard />}
-
-      {indexError && <ErrorPanel message={`İçerik yüklenemedi: ${indexError}`} onRetry={() => location.reload()} />}
-
-      {!m1 && planErr ? <ErrorPanel message={`Günün planı yüklenemedi. ${planErr}`} onRetry={yenile} /> : !m1 && !!index?.m1.length ? <LoadingCard lines={2} /> : m1 ? (
-      <section class="card nextcard stack" data-test="next-activity" data-m1="1" data-seans={m1.sonraki?.seans ?? 0}>
-        <div class="row" style={{ flexWrap: "nowrap", gap: 14, alignItems: "center" }}>
-          <span class="avatar" aria-hidden="true" style={{ width: 52, height: 52, background: "var(--himmel)" }}><Icon name="raute" size={24} /></span>
-          <div class="grow" style={{ minWidth: 0 }}>
-            <div class="small muted">{m1.sonraki ? `${m1.simdi!.day}. gün · ${adimAdi(m1.sonraki)}` : "İlk Hafta"}</div>
-            <h2 class="nexttitle">{m1.sonraki ? m1.sonraki.title_tr : m1.gunler.length >= 7 && !m1.eksik ? "İlk Hafta tamam" : "Hazır günlerin hepsi bitti"}</h2>
-          </div>
-        </div>
-        {m1.sonraki ? <a class="btn primary block" href={m1.sonraki.href} data-test="m1-devam" onClick={devam}><Icon name="play" size={18} /> Devam et</a>
-          : <a class="btn primary block" href="#/garden" data-test="m1-tekrar" onClick={devam}><Icon name="play" size={18} /> Kelime Bahçesi: tekrar et</a>}
-        <div class="stack" style={{ gap: 6 }}>
-          <a class="small" style={{ display: "block" }} href="#/yol" data-test="yol-link">Haftanın yolu</a>
-          {placement ? <a class="small" style={{ display: "block" }} href={`#/assess/result/${placement.id}`} data-test="assess-result">Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>
-            : <a class="small" style={{ display: "block" }} href="#/assess" data-test="assess-link">Almancan varsa: seviyeni gör (seviye tespiti)</a>}
-        </div>
-        {e && cur && !breakOn && <div class="focusrow" data-test="focus-running"><span class="small grow">Süre yalnızca öğrenirken sayılır.</span>
-          <button class="btn sm ghost" onClick={() => focusPause(!e.rt.paused)}>{e.rt.paused ? "Sürdür" : "Duraklat"}</button></div>}
-      </section>
-      ) : (
-      <section class="card nextcard stack" data-test="next-activity">
-        <div class="row" style={{ flexWrap: "nowrap", gap: 14, alignItems: "center" }}>
-          {rec.kind === "scenario" ? <Avatar initials={initials} accent={accent} /> : <span class="avatar" aria-hidden="true" style={{ width: 52, height: 52, background: "var(--himmel)" }}><Icon name={rec.kind === "assess" ? "target" : "raute"} size={24} /></span>}
-          <div class="grow" style={{ minWidth: 0 }}>
-            <div class="small muted">Sıradaki · Seans {n}: {rec.kind === "assess" ? "Seviye tespiti" : rec.kind === "none" ? rec.title_tr : ACTIVITY_TR[rec.activity]}</div>
-            <h2 class="nexttitle">{rec.title_tr}</h2>
-          </div>
-        </div>
-        <p class="small muted" style={{ margin: 0 }}>{rec.why_tr}</p>
-        {rec.kind === "scenario" && rec.draft && <p class="tiny" style={{ margin: 0 }}><span class="chip">Deneme dersi</span></p>}
-        {rec.kind === "assess" && <a class="btn primary block" href="#/assess"><Icon name="play" size={18} /> Seviye tespitine başla</a>}
-        {rec.kind === "scenario" && <a class="btn primary block" href={`#/scenario/${encodeURIComponent(rec.scenarioId)}`}><Icon name="play" size={18} /> Devam et</a>}
-        {rec.kind === "v1" && <a class="btn primary block" href={rec.url} target="_blank" rel="noopener">Eski uygulamada aç <Icon name="out" size={18} /></a>}
-        {e && !breakOn && <FocusPanel />}
-        {placement && <a class="small" href={`#/assess/result/${placement.id}`}>Seviye tespiti sonucun: {placement.overall === "below-A1" ? "A1 öncesi" : placement.overall}</a>}
-      </section>
-      )}
-
-      {/* Şölen 2 / B11b (PM-065 madde 5–6): günlük görevler ve sandık. XP/seri ayrıntısı İlerlemem'de (durum çubuğu her ekranda) */}
-      {m1 && <GunlukGorevler />}
-
-      {/* #58 B3: gün sonu özeti (bugün en az bir adım bittiyse) */}
-      {m1 && <GunSonu plan={m1} />}
-
-      {inSeasonNow.length > 0 && (
-        <section class="card tint orange" data-test="season">
-          <div class="sechead"><span class="ic" aria-hidden="true" style={{ color: "var(--brezel)" }}><Icon name="raute" /></span><div><h2>Mevsimin dersi</h2><div class="tiny muted">{inSeasonNow[0]!.season!.title_tr}</div></div></div>
-          <ul class="list">{inSeasonNow.map((x) => <li><a href={`#/scenario/${encodeURIComponent(x.id)}`} class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }}><span class="grow"><b>{x.title_tr}</b><br /><span class="small muted" lang="de">{x.title_de}</span></span>{x.review !== "reviewed" && <span class="chip">inceleme bekliyor</span>}<Icon name="next" size={18} /></a></li>)}</ul>
-        </section>
-      )}
-
-      {scen && (
-        <section class="plainsec">
-          <h2 class="sectitle">Şu an öğrendiklerin</h2>
-          <div class="tiny muted">{scen.title_tr}</div>
-          <ul class="list">
-            {scen.chunks.filter((c) => scen.essentials.chunks.includes(c.id)).slice(0, 5).map((c) => (
-              <li class="row" style={{ flexWrap: "nowrap" }}><span class="grow"><span class="de" lang="de">{c.layers.hd}</span><br /><span class="small muted">{c.tr}</span></span><SpeakBtn text={c.layers.hd} /></li>
-            ))}
-          </ul>
-        </section>
-      )}
-
       <section class="plainsec" data-test="weak">
         <h2 class="sectitle">Tekrar edilecekler</h2>
         {/* PM-049: kartlar soru olarak döner. EK1: ekranda tek ana eylem "Devam et"; bu ikincil (yeni Bugün A6'da seans 1 olur) */}
-        <a class="btn block" href={m1?.simdi ? `#/garden/${m1.simdi.day}` : "#/garden"} data-test="garden-start">Kelime Bahçesi: tekrar et</a>
+        <a class="btn block" href="#/garden" data-test="tekrar-bahce">Kelime Bahçesi: tekrar et</a>
         <div class="row"><HeardWordBox /></div>
         {bank.length ? (
           <ul class="list">
@@ -188,7 +197,48 @@ export function Today() {
           </ul>
         ) : <p class="small muted">{placement ? "Şu an listede kelime yok." : "Seviye tespitinde bilmediğin kelimeler buraya eklenecek."}</p>}
       </section>
-      <p class="tiny muted" style={{ textAlign: "center", margin: 0 }}>{profile.focus.workMin} dk çalışma, {profile.focus.breakMin} dk mola. Süre yalnızca öğrenirken sayılır.</p>
+  );
+}
+
+/**
+ * Odak (PM 7015070303-E): Bugün'den taşınan süre ayrıntısı. Durum çubuğundaki dakika halkasına dokununca açılır:
+ * 100 dakika halkası, seans x/4, kalan süre, sayacı başlat/duraklat. Eski veri sözleşmesi (gun-halkasi, seans-durum, …) korunur.
+ */
+export function OdakEkrani() {
+  const { profile } = useApp();
+  const e = useFocusTick();
+  const now = Date.now();
+  const min = e ? e.focusMin() : 0;
+  const goal = profile.focus.dailyGoalMin;
+  const sessions = e?.day.sessions || [];
+  const rs = [1, 2, 3, 4].map((k) => { const x = sessions.find((y) => y.n === k && y.status !== "abandoned"); return (x?.status === "completed" ? 1 : x ? 0.5 : 0) as RState; });
+  const done = e?.completedCount || 0;
+  const cur = e?.rt.phase === "focus" ? e.current : undefined;
+  const yarida = e?.rt.resumableId ? e.day.sessions.find((x) => x.id === e.rt.resumableId) : undefined;
+  const sn = (k: number) => (k <= 4 ? `${k}/4` : `${k} (ek)`);
+  const seansDurum = !e ? "" : breakOnNow(e) ? `Mola · ${minLeft(e.breakLeftSec(now))} kaldı`
+    : cur ? `Seans ${sn(cur.n)} sürüyor · ${minLeft(e.focusLeftSec())} kaldı${e.rt.paused ? " (duraklatıldı)" : ""}`
+    : yarida ? `Seans ${sn(yarida.n)} yarıda kaldı · ${minLeft(e.cfg.workMin * 60 - yarida.focusSec)} kaldı`
+    : done >= 4 && min >= goal ? "Bugünkü dört seans tamam" : `Sırada seans ${sn(e.nextN)} · ${e.cfg.workMin} dk`;
+  return (
+    <div class="stack odak-sayfa" data-test="odak">
+      <TopBar title="Bugünkü süre" back="#/today" />
+      {e?.rt.phase === "break" && <BreakCard />}
+      <section class="card stack">
+        <div class="dayring" data-test="gun-halkasi">
+          <Ring value={min} max={goal} size={96} label={`Bugün ${min} / ${goal} dakika`} />
+          <div class="grow stack" style={{ gap: 6, minWidth: 0 }}>
+            <div class="seansdurum" data-test="seans-durum">{seansDurum}</div>
+            <RauteRow states={rs} label={`Bugün ${done}/4 seans`} size={18} test="session-rauten" />
+            <span class="tiny sr-only" data-test="sessions-done">{done}/4 seans</span>
+            <span class="tiny sr-only" data-test="today-min">{min} / {goal} dk</span>
+            <span class="tiny muted" data-test="hedefe">{min < goal ? `Bugünkü hedefe ${goal - min} dk` : "Bugünkü hedef tamam"}</span>
+          </div>
+        </div>
+        {/* süre "Devam et" ile başlar (yoldaki sıradaki düğüm); burada yalnızca süren ya da yarıda kalan seans yönetilir */}
+        {e && e.rt.phase !== "break" && (cur || yarida) && <FocusPanel />}
+      </section>
+      <p class="small muted">{profile.focus.workMin} dk çalışma, {profile.focus.breakMin} dk mola. Süre yalnızca öğrenirken sayılır.</p>
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { useContext, useEffect, useRef, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
 import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
-import { efekt, ustUsteSay, xpUcur } from "../services/efekt.ts";
+import { efekt, ustUsteDizi, ustUsteSay, xpUcur } from "../services/efekt.ts";
 import { Icon } from "./icons.tsx";
 import { gorevSay } from "../services/gorev.ts";
 
@@ -148,7 +148,7 @@ export function FeedbackBand({ kind, title, children, xp, sayac = true }: { kind
   const [ust] = useState(() => (!sayac ? 0 : kind === "ok" ? ustUsteSay(true) : kind === "bad" ? ustUsteSay(false) : 0));
   useEffect(() => {
     if (!sayac) return;
-    if (kind === "ok") { haptic("success"); efekt("dogru"); xpUcur(xp ?? baglamXp); if (ust > 0 && ust % 5 === 0) void gorevSay("ustuste5"); } else if (kind === "bad") { haptic("error"); efekt("yanlis"); }
+    if (kind === "ok") { haptic("success"); efekt("dogru"); xpUcur(xp ?? baglamXp); if (ust > 0 && ust % 5 === 0 && (xp ?? baglamXp) > 0) void gorevSay("ustuste5", `${ustUsteDizi()}:${ust}`); } else if (kind === "bad") { haptic("error"); efekt("yanlis"); }
   }, [kind, title]);
   return (
     <div class={`fb ${kind}`} role="status" aria-live="polite" data-test="feedback">

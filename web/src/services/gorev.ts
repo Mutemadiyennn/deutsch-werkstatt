@@ -17,10 +17,14 @@ const olay = () => { try { window.dispatchEvent(new CustomEvent("dw:gorev")); } 
 
 export const gorevOku = async (gun?: string): Promise<GunSayac> => (await getMeta<GunSayac>(anahtar(gun))) ?? { sayac: {} };
 
-/** Öğrenme eylemi oldu: bugünün sayacını artır (sırayla yazılır) */
-export function gorevSay(olcu: Olcu, n = 1): Promise<void> {
+/**
+ * Öğrenme eylemi oldu: bugünün sayacını artır (sırayla yazılır). `birKez` verilirse aynı eylem (kart, cümle, dikte, tur)
+ * bugün yalnızca bir kez sayılır: tekrar çalışma, "Baştan çalış", gölge tekrar sayacı şişirmez (inceleme #108 P1-1).
+ */
+export function gorevSay(olcu: Olcu, birKez?: string, n = 1): Promise<void> {
   return sirala(async () => {
     const s = await gorevOku();
+    if (birKez) { const k = `${olcu}:${birKez}`; if (s.sayilan?.includes(k)) return; s.sayilan = [...(s.sayilan ?? []), k]; }
     s.sayac[olcu] = (s.sayac[olcu] ?? 0) + n;
     await setMeta(anahtar(), s); olay();
   });
@@ -28,17 +32,23 @@ export function gorevSay(olcu: Olcu, n = 1): Promise<void> {
 
 export const dondurmaHakki = async () => (await getMeta<{ hak: number }>("dondurma"))?.hak ?? 0;
 
-/** Günün görevleri bitince sandık bir kez açılır: XP + seri dondurma hakkı. Açılmışsa null. */
-export function gorevSandigiAc(): Promise<Odul | null> {
+/**
+ * Görev sandığı (görev başına bir kez; PM 7015070303-B/C). Arayüz görevin bittiğini doğrular, burada yeniden
+ * doğrulanır (`tamam`), açılmışsa null. Son açılan sandık seri dondurma hakkı verir (hak doluysa XP).
+ */
+export function gorevSandigiAc(gorevId: string, tamam: boolean, toplamGorev = 3): Promise<Odul | null> {
   return sirala(async () => {
+    if (!tamam) return null;
     const s = await gorevOku();
-    if (s.sandik) return null;
+    if (s.sandiklar?.[gorevId]) return null;
     const hak = await dondurmaHakki();
-    const odul = sandikOdulu(hak);
-    s.sandik = { acildi: new Date().toISOString(), odul };
+    const acilmis = Object.keys(s.sandiklar ?? {}).length;
+    const odul = sandikOdulu(hak, acilmis + 1 >= toplamGorev);
+    s.sandiklar = { ...(s.sandiklar ?? {}), [gorevId]: { acildi: new Date().toISOString(), odul } };
     await setMeta(anahtar(), s);
     if (odul.dondurma) await setMeta("dondurma", { hak: Math.min(DONDURMA_EN_COK, hak + odul.dondurma) });
-    await xpVer(odul.xp); olay();
+    if (odul.xp) await xpVer(odul.xp);
+    olay();
     return odul;
   });
 }

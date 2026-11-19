@@ -40,9 +40,10 @@ describe("sandık ve seri dondurma (madde 6)", () => {
     expect(dondurmaUygula({ toplam: 1, gunler: { [gun(-1, now)]: 1 } }, 1, now)).toBeNull();
     expect(dondurmaUygula({ toplam: 1, gunler: { [gun(-3, now)]: 1 } }, 1, now)).toBeNull();
   });
-  it("sandık ödülü: 10 XP + 1 hak; hak en çok 2 birikir", () => {
-    expect(sandikOdulu(0)).toEqual({ xp: 10, dondurma: 1 });
-    expect(sandikOdulu(DONDURMA_EN_COK).dondurma).toBe(0);
+  it("sandık ödülü tek ve büyük: ara sandıklar +10 XP, son sandık seri dondurma hakkı (hak doluysa +10 XP)", () => {
+    expect(sandikOdulu(0, false)).toEqual({ xp: 10, dondurma: 0 });
+    expect(sandikOdulu(0, true)).toEqual({ xp: 0, dondurma: 1 });
+    expect(sandikOdulu(DONDURMA_EN_COK, true)).toEqual({ xp: 10, dondurma: 0 });
   });
 });
 
@@ -58,5 +59,7 @@ describe("geçen haftaki sen (madde 7)", () => {
     expect(xpRekor(x, now)).toBe(true);
     expect(xpRekor({ ...x, gunler: { ...x.gunler, [gun(-10, now)]: 30 } }, now)).toBe(false);
     expect(xpRekor({ toplam: 0, gunler: {} }, now)).toBe(false);
+    // önceki hafta yokken rekor yok (inceleme #108 P2)
+    expect(xpRekor({ toplam: 50, gunler: { [gun(-1, now)]: 50 } }, now)).toBe(false);
   });
 });

@@ -9,17 +9,20 @@
 import { yerelGun, type XpKayit } from "./gun.ts";
 
 /** Ölçülen öğrenme eylemleri (gün başına sayaç) */
-export type Olcu = "xp" | "dakika" | "bahceIpucusuz" | "tur90" | "ustuste5" | "dikteUsta";
-export interface Gorev { id: string; ad: string; olcu: Olcu; hedef: number }
+export type Olcu = "xp" | "dakika" | "bahceIpucusuz" | "tur90" | "ustuste5" | "dikteUsta" | "sesli";
+/** `kisa`: Görevler sayfasındaki kısa başlık (PM 7015070303-B: en çok 2 satır) */
+export interface Gorev { id: string; ad: string; kisa: string; olcu: Olcu; hedef: number }
 
 /** Görev havuzu: her biri bir öğrenme eylemi. `xp` ve `dakika` "emek" görevi; ötekiler "beceri" görevi. */
 export const GOREV_HAVUZU: Gorev[] = [
-  { id: "xp50", ad: "50 XP topla", olcu: "xp", hedef: 50 },
-  { id: "dk25", ad: "25 dakika odaklan", olcu: "dakika", hedef: 25 },
-  { id: "bahce10", ad: "Bahçede 10 kelimeyi ipucusuz bil", olcu: "bahceIpucusuz", hedef: 10 },
-  { id: "tur90", ad: "Bahçede 2 turu %90 üstü bitir", olcu: "tur90", hedef: 2 },
-  { id: "ustuste5", ad: "3 kez 5 üst üste doğru yap", olcu: "ustuste5", hedef: 3 },
-  { id: "dikte3", ad: "Dikte: duyduğun 3 cümleyi doğru yaz", olcu: "dikteUsta", hedef: 3 }
+  { id: "xp50", ad: "50 XP topla", kisa: "50 XP", olcu: "xp", hedef: 50 },
+  { id: "dk25", ad: "25 dakika odaklan", kisa: "25 dakika", olcu: "dakika", hedef: 25 },
+  { id: "bahce10", ad: "Bahçede 10 kelimeyi ipucusuz bil", kisa: "10 kelime ipucusuz", olcu: "bahceIpucusuz", hedef: 10 },
+  { id: "tur90", ad: "Bahçede 2 turu %90 üstü bitir", kisa: "2 turda %90+", olcu: "tur90", hedef: 2 },
+  { id: "ustuste5", ad: "3 kez 5 üst üste doğru yap", kisa: "3 kez 5 üst üste", olcu: "ustuste5", hedef: 3 },
+  { id: "dikte3", ad: "Dikte: duyduğun 3 cümleyi doğru yaz", kisa: "3 dikte cümlesi", olcu: "dikteUsta", hedef: 3 },
+  // PM-065 + LS-13.5 sesli üretim: gölge konuşmada tanıma ≥ 0,8 (inceleme #108 P1-3)
+  { id: "sesli3", ad: "3 cümleyi sesli ve anlaşılır söyle", kisa: "3 cümle sesli", olcu: "sesli", hedef: 3 }
 ];
 const EMEK: Olcu[] = ["xp", "dakika"];
 
@@ -55,19 +58,23 @@ export function gunGorevleri(gun: string, uygun: Set<Olcu> = new Set(GOREV_HAVUZ
   return bugun;
 }
 
-export interface GunSayac { sayac: Partial<Record<Olcu, number>>; sandik?: { acildi: string; odul: Odul } }
+/** `sayilan`: bugün bir kez sayılmış eylemler (aynı kart/cümle/dikte yeniden sayılmaz; inceleme #108 P1-1);
+ *  `sandiklar`: görev başına sandık (PM 7015070303-B: her görevin çubuğunun ucunda kendi sandığı) */
+export interface GunSayac { sayac: Partial<Record<Olcu, number>>; sayilan?: string[]; sandiklar?: Record<string, { acildi: string; odul: Odul }>; /** eski biçim */ sandik?: { acildi: string; odul: Odul } }
 /** Görevin ilerlemesi (0..hedef) — `xp` ve `dakika` dışarıdan (XP kaydı, odak motoru) gelir */
 export const ilerleme = (g: Gorev, s: GunSayac, dis: { xp: number; dakika: number }) =>
   Math.min(g.hedef, g.olcu === "xp" ? dis.xp : g.olcu === "dakika" ? dis.dakika : s.sayac[g.olcu] ?? 0);
 
 /* ---------- Sandık ve seri dondurma ---------- */
 export interface Odul { xp: number; dondurma: number }
-/** Görev sandığı: 10 XP + 1 seri dondurma hakkı (en çok 2 hak birikir). Basit ve dürüst: rastgele kumar yok. */
+/** Görev sandığı (görev başına, ödül büyük ve tek; PM 7015070303-C): +10 XP; günün son açılan sandığı seri dondurma
+ *  hakkı verir (en çok 2 birikir; doluysa yine +10 XP). Basit ve dürüst: rastgele kumar yok. */
 export const SANDIK_ODUL: Odul = { xp: 10, dondurma: 1 };
 /** Yol sandığı (her 3 düğümde bir): 5 XP */
 export const YOL_SANDIK_XP = 5;
 export const DONDURMA_EN_COK = 2;
-export const sandikOdulu = (hak: number): Odul => ({ xp: SANDIK_ODUL.xp, dondurma: hak >= DONDURMA_EN_COK ? 0 : SANDIK_ODUL.dondurma });
+export const sandikOdulu = (hak: number, sonSandik = true): Odul =>
+  sonSandik && hak < DONDURMA_EN_COK ? { xp: 0, dondurma: 1 } : { xp: SANDIK_ODUL.xp, dondurma: 0 };
 
 /**
  * Seri dondurma: dün hiç çalışılmadıysa, ondan önceki gün çalışıldıysa ve hak varsa dün "dondurulmuş" sayılır (seri
@@ -97,7 +104,8 @@ export function xpRekor(x: XpKayit, now = new Date()): boolean {
   const buHafta = topla(bu);
   if (buHafta <= 0) return false;
   const ilk = Object.keys(x.gunler).sort()[0];
-  if (!ilk) return false;
+  // önceki hafta yoksa (ilk kayıt son 7 gün içinde) rekor denmez (inceleme #108 P2)
+  if (!ilk || ilk >= bu[6]!) return false;
   for (let bas = 7; ; bas += 7) {
     const pencere = Array.from({ length: 7 }, (_, i) => { const d = new Date(now); d.setDate(d.getDate() - bas - i); return yerelGun(d); });
     if (pencere[0]! < ilk) break;          // pencerenin en yeni günü bile ilk kayıttan önce

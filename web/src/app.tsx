@@ -1,6 +1,9 @@
 /** Uygulama kabuğu: giriş kapısı → profil → ilk kurulum (onboarding) → ekranlar */
 import { DurumCubugu } from "./ui/durum.tsx";
 import { RehberEkrani } from "./screens/Rehber.tsx";
+import { GorevlerEkrani } from "./ui/gorev.tsx";
+import { usePlan } from "./screens/Yol.tsx";
+import { dondurmaKontrol } from "./services/gorev.ts";
 import { probeProvider } from "./services/ai.ts";
 import { CallScreen as Call } from "./screens/Call.tsx";
 import { M1Gun, MedyaEkrani } from "./screens/Medya.tsx";
@@ -31,7 +34,7 @@ import { Today } from "./screens/Today.tsx";
 import { Learn, DomainView } from "./screens/Learn.tsx";
 import { PlayerHome, PlayerSection } from "./screens/Player.tsx";
 import { LongPressExplain } from "./ui/learn.tsx";
-import { BreakOverlay } from "./screens/Today.tsx";
+import { BreakOverlay, OdakEkrani } from "./screens/Today.tsx";
 import { AssessRun, AssessResult } from "./screens/Assess.tsx";
 import { Progress } from "./screens/Progress.tsx";
 import { Garden } from "./screens/Garden.tsx";
@@ -99,6 +102,8 @@ export function App() {
       if (p.onboardedAt) void ensurePersist();
       setPlacement(await latestPlacement());
       await startFocus(p);
+      // seri dondurma açılışta (Bugün açılmasa da; inceleme #108 P2): dün boş kaldıysa ve hak varsa seri korunur, söylenir
+      if (p.onboardedAt) void dondurmaKontrol().then((g) => { if (g) toast("Dün çalışamadın; seri dondurma hakkın serini korudu."); });
     })().catch((e) => { recordError("profil", e); setProfileErr("Profilin bu cihazdan okunamadı."); });
     within(loadIndex()).then(setIndex).catch((e) => setIndexError(String(e.message || e)));
   }, [user?.uid]);
@@ -142,6 +147,8 @@ export function App() {
     case "kalip": screen = <KalipEkrani key={route.id ?? "-"} id={route.id} />; break;
     case "m1day": screen = <M1Gun day={route.day} />; break;
     case "rehber": screen = <RehberEkrani day={route.day} />; break;
+    case "gorevler": screen = <GorevlerRota />; break;
+    case "odak": screen = <OdakEkrani />; break;
     case "m1medya": screen = <MedyaEkrani key={route.id} day={route.day} id={route.id} />; break;
     default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : <Today />;
   }
@@ -160,3 +167,6 @@ export function App() {
 
 /** yalnızca e2e: hata sınırını sınamak için bilerek hata veren ekran */
 function Crash(): never { throw new Error("e2e: bilerek hata"); }
+
+/** Görevler sayfası günün planıyla (bugün kayıt adımı yoksa dikte/sesli görev seçilmez) */
+function GorevlerRota() { const { plan } = usePlan(); return <GorevlerEkrani plan={plan} />; }

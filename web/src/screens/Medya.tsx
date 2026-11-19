@@ -267,7 +267,7 @@ function DikteAdimi({ d, sira, cs, oy, onNext }: { d: Dikte; sira: string; cs: M
     if (d.seviye === "orta" || d.seviye === "zor" || d.seviye === "usta") {
       const r = dikteDegerlendir(d, a);
       // B11b günlük görev: dikte merdiveninin puanlı en üst basamağında ("Duyduğun cümleyi yaz") doğru cümle
-      if (r.ok && d.seviye === "usta") void gorevSay("dikteUsta");
+      if (r.ok && d.seviye === "usta") void gorevSay("dikteUsta", d.cumle);
       goster(r.ok, a, d.seviye === "orta" ? d.de.replace("___", r.beklenen) : r.beklenen, r.yazim ? `Yazımı: ${r.yazim}` : undefined);
     } else if (d.seviye === "gercek") {
       const eksik = eksikZorunlu(a, d.zorunlu);
@@ -341,7 +341,7 @@ function GolgeAdimi({ c, sira, oy, onNext }: { c: MedyaCumle; sira: string; oy: 
         <FeedbackBand kind={skor.score >= 0.8 ? "ok" : "info"} title={`Duyduğum: ${duydum}`} xp={iyiSayisi > 1 ? 0 : undefined}>
           {skor.score >= 0.8 ? "Çok iyi." : "Bir daha dene; zorlanılan kelimeyi yavaş dinle."}</FeedbackBand>)}
       <ActionBar>
-        {sttAvailable() ? <MicButton wide label={duydum === null ? "Söyle" : "Tekrar söyle"} onText={(t) => { setDuydum(t); if (scoreHeard(c.de, t).score >= 0.8) setIyiSayisi((n) => n + 1); }} /> : null}
+        {sttAvailable() ? <MicButton wide label={duydum === null ? "Söyle" : "Tekrar söyle"} onText={(t) => { setDuydum(t); if (scoreHeard(c.de, t).score >= 0.8) { setIyiSayisi((n) => n + 1); void gorevSay("sesli", c.id); } }} /> : null}
         {/* konuşma tanıma yanlış duyabilir: öğrenci "doğru söyledim" diyebilir (PM-054.3) */}
         <button class="btn block" data-test="next" onClick={() => onNext(true, iyiSayisi > 0)}>{duydum === null ? "Söyledim" : skor && skor.score >= 0.8 ? "Devam" : "Doğru söyledim, devam"}</button>
       </ActionBar>

@@ -33,7 +33,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | Bahçe değişen cümle (PM-062, #58 B13) | `v2/bahce-donusum` | #92 birleşti (D-111) |
 | Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | #87 birleşti (D-107) |
 | Şölen 2 / B11a yol haritası (PM-065 1–4) | `v2/yol-haritasi` | PR #104 (D-114) |
-| Şölen 2 / B11b görevler ve sandık (PM-065 5–7) | `v2/gunluk-gorev` | PR açıldı (D-115; #104 üstüne yığınlı); sırada B11c tören, Filiz, büyüyen bahçe |
+| Şölen 2 / B11b görevler ve sandık (PM-065 5–7) | `v2/gunluk-gorev` | PR #108 yeniden düzen (PM 7015070303 A–G): Bugün = yol + görev şeridi; Görevler sayfası, görev başına sandık ve tören; Odak ekranı; yerleşim kuralları e2e (D-115 eki); PM "gördüm" bekleniyor; sırada B11c tören, Filiz, büyüyen bahçe |
 | Şölen 2 / B11a yol haritası (PM-065 1–4) | `v2/yol-haritasi` | PR açıldı (D-114); sırada B11b günlük görevler ve sandık, B11c tören ve Filiz |
 | Gün sonu özeti + yerel kullanım ölçümü (#58 B3) | `v2/gun-sonu` | #93 birleşti (D-109) |
 | Doğrulayıcı B4 (#58 B4, #54 D16) | `v2/dogrulayici-b4` | #88 birleşti (D-108) |
