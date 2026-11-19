@@ -13,7 +13,7 @@ BASE = "https://coerll.utexas.edu/dib/"
 UA = "deutsch-werkstatt-katalog/1.0 (egitim; tek seferlik; iletisim: github.com/Mutemadiyennn/deutsch-werkstatt)"
 OUT = sys.argv[1] if len(sys.argv) > 1 else "out"
 os.makedirs(os.path.join(OUT, "html"), exist_ok=True)
-rp = urllib.robotparser.RobotFileParser(BASE + "../robots.txt"); 
+rp = urllib.robotparser.RobotFileParser("https://coerll.utexas.edu/robots.txt")
 try: rp.read()
 except Exception: rp = None
 
