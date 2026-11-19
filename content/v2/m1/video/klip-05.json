@@ -22,15 +22,68 @@
    "neden": "ses uyuşmuyor"
   }
  ],
- "ortam_tr": "Jan yetişkin bir adam. Biri ona her gece kaç saat uyuduğunu soruyor. Sonra bunun yeterli olup olmadığını soruyor.",
+ "kesitler": [
+  {
+   "klip": "07_12_int_ju_schlafen",
+   "konusmaci": "Jan",
+   "bas_tur": 1,
+   "son_tur": 4,
+   "haric": [
+    {
+     "tur": 2,
+     "neden": "ses uyuşmuyor"
+    }
+   ],
+   "kesit_sure_olcum_sn": 21
+  },
+  {
+   "klip": "07_10_int_bg_schlafen",
+   "konusmaci": "Berna",
+   "baslik": "Schlaf, Kindlein, schlaf",
+   "video_url": "https://coerll.utexas.edu/dib/mp4s/07_10_int_bg_schlafen.mp4",
+   "transkript_url": "https://www.coerll.utexas.edu/dib/vidt.php?f=07_10_int_bg_schlafen",
+   "sure_kaynak_sn": 33,
+   "bas_tur": 1,
+   "son_tur": 4,
+   "haric": [],
+   "kesit_sure_tahmin_sn": 14,
+   "turlar": [
+    {
+     "tur": 1,
+     "basi": "Wie viele Stunden",
+     "kim": "soran",
+     "tr": "Her gece kaç saat uyuyorsun?"
+    },
+    {
+     "tur": 2,
+     "basi": "Ich schlafe ungefähr",
+     "kim": "konusmaci",
+     "tr": "Gecede yaklaşık sekiz saat uyuyorum."
+    },
+    {
+     "tur": 3,
+     "basi": "Ist das genug",
+     "kim": "soran",
+     "tr": "Bu senin için yeterli mi?"
+    },
+    {
+     "tur": 4,
+     "basi": "Auf jeden Fall",
+     "kim": "konusmaci",
+     "tr": "Kesinlikle, sekiz saat yeterli."
+    }
+   ]
+  }
+ ],
+ "ortam_tr": "İki kısa konuşma dinleyeceksin. İkisinde de aynı iki soru var: Her gece kaç saat uyuyorsun? Bu senin için yeterli mi? Önce Jan cevap veriyor. Jan'ın kaç saat uyuduğunu söylediği kısmı duymayacaksın. Sonra Berna cevap veriyor. Berna'yı birinci günden tanıyorsun.",
  "on_ogretim": [
   {
    "de": "Wie viele Stunden schläfst du?",
    "tr": "Kaç saat uyuyorsun?"
   },
   {
-   "de": "genug für dich",
-   "tr": "senin için yeterli"
+   "de": "Ist das genug für dich? Auf jeden Fall.",
+   "tr": "Bu senin için yeterli mi? Kesinlikle."
   },
   {
    "de": "ich glaube",
@@ -59,14 +112,14 @@
  ],
  "bolum": {
   "ana_fikir": {
-   "q_tr": "Bu kısa konuşma ne hakkında?",
+   "q_tr": "Bu iki kısa konuşma ne hakkında?",
    "opts": [
     "Yemek saatleri",
     "Uyku",
     "Doktor randevusu"
    ],
    "ans": 1,
-   "why_tr": "Jan'a her gece kaç saat uyuduğu soruluyor. **schläfst** uyuyorsun demektir."
+   "why_tr": "Jan'a ve Berna'ya her gece kaç saat uyudukları soruluyor. **schläfst** uyuyorsun demektir."
   },
   "ayrinti": [
    {
@@ -81,7 +134,7 @@
     "why_tr": "Soruda **jede Nacht** geçiyor. Bu, her gece demektir."
    },
    {
-    "q_tr": "Soran kişi ikinci olarak ne soruyor?",
+    "q_tr": "Jan'a ikinci olarak neyi soruyorlar?",
     "opts": [
      "Jan'ın saat kaçta kalktığını",
      "Jan'ın nerede oturduğunu",
@@ -101,6 +154,18 @@
     "ans": 0,
     "tur": 4,
     "why_tr": "Jan **Ich glaube ja** diyor. Bu, sanırım evet demektir. Sonra **Das ist okay.** diyor. Bu da böyle iyi demektir."
+   },
+   {
+    "q_tr": "Berna her gece yaklaşık kaç saat uyuyor?",
+    "opts": [
+     "Altı saat",
+     "Sekiz saat",
+     "On saat"
+    ],
+    "ans": 1,
+    "kesit": 1,
+    "tur": 2,
+    "why_tr": "Berna **acht Stunden** diyor. Bu, sekiz saat demektir."
    }
   ],
   "dikte": [
@@ -108,7 +173,7 @@
     "id": "d1",
     "tur": 1,
     "seviye": "kolay",
-    "q_tr": "Soruda hangi kelimeyi duydun?",
+    "q_tr": "İlk soruda hangi kelimeyi duydun?",
     "opts": [
      "Woche",
      "Nacht",
@@ -118,13 +183,14 @@
    },
    {
     "id": "d2",
-    "tur": 1,
+    "kesit": 1,
+    "tur": 2,
     "seviye": "orta",
-    "de": "Wie viele ___ schläfst du jede Nacht?",
+    "de": "Ich schlafe ungefähr ___ Stunden pro Nacht.",
     "accepted": [
-     "Stunden",
-     "stunden",
-     "Stunden."
+     "acht",
+     "Acht",
+     "8"
     ]
    },
    {
@@ -153,7 +219,6 @@
     "tur": 3,
     "seviye": "usta",
     "accepted": [
-     "Ist das genug für dich?  Ist das gesund?",
      "Ist das genug für dich? Ist das gesund?",
      "ist das genug für dich ist das gesund",
      "Ist das genug fuer dich? Ist das gesund?"
@@ -162,7 +227,7 @@
    {
     "id": "d5",
     "seviye": "gercek",
-    "gorev_tr": "Jan'a göre uykusu yeterli mi? Cevabı Almanca kısa bir cümleyle yaz.",
+    "gorev_tr": "Jan'a göre uykusu yeterli mi? **genug** (yeterli) kelimesiyle Almanca kısa bir cümle yaz.",
     "ornek_de": "Ja, das ist genug.",
     "accepted": [
      "Ja, das ist genug.",
@@ -170,7 +235,8 @@
      "Ja, genug.",
      "Genug.",
      "Ja, das ist genug für ihn.",
-     "Für Jan ist das genug."
+     "Für Jan ist das genug.",
+     "Ich glaube, das ist genug."
     ],
     "zorunlu": [
      "genug"
@@ -195,22 +261,45 @@
     "Ich schlafe ungefähr acht Stunden.",
     "Ich schlafe jede Nacht acht Stunden."
    ],
-   "why_tr": "**Acht Stunden.** sekiz saat demektir. Kısa cevap yeter."
+   "why_tr": "**Acht Stunden.** sekiz saat demektir. Berna da **acht Stunden** diyor. Kısa cevap yeter."
   },
-  "dikte_notu": "İkinci tur sesle uyuşmadığı için çıkarıldı. Dördüncü turda **doch** (evet, öyle) öğretilmedi, bu yüzden bu tur dikteye girmedi."
+  "dikte_notu": "Jan'ın ikinci turu sesle uyuşmadığı için çıkarıldı. Jan'ın dördüncü turunda **doch** (evet, öyle) öğretilmedi, bu yüzden bu tur dikteye girmedi. Berna'nın ikinci turunda **ungefähr** (yaklaşık) ve **pro Nacht** (gecede) öğretilmedi. O turda yalnızca sayıyı yazıyorsun. Sayıyı harflerle (**acht**) ya da rakamla (**8**) yazmak doğru."
  },
- "kanit": "Jan'a her gece kaç saat uyuduğu soruluyor. Soruda **Stunden** (saat) ve **jede Nacht** (her gece) geçiyor. Jan'ın saatleri söylediği ikinci tur sesle uyuşmadığı için çıkarıldı. Bu yüzden saat okuma bu klipte yok.",
+ "kanit": "Jan'a ve Berna'ya her gece kaç saat uyudukları soruluyor. Soruda **Stunden** (saat) ve **jede Nacht** (her gece) geçiyor. Jan'ın kaç saat uyuduğunu söylediği ikinci tur sesle uyuşmadığı için çıkarıldı. Berna'nın cevabında saat duyuluyor: **acht Stunden** (sekiz saat).",
  "review": {
   "status": "draft",
-  "notes": "#58 A9 PM kararı: ikinci tur sesle uyuşmadığı için çıkarıldı, sorular yeniden yazıldı. Ölçülen süre 21 sn (kisa). Dilbilimci ve okur yeniden bakmalı."
+  "notes": "#58 A9 PM kararı: Jan'ın ikinci turu sesle uyuşmadığı için çıkarıldı. #82 inceleme (P1-2, P2-6): Jan kesitinde soru cevapsız kalıyordu ve süre 20 sn altında olabilir. Aynı sorulara cevap veren Berna'nın 1–4. turları ikinci parça olarak eklendi (kesitler), tahmin 14 sn. Berna kesiti ölçülmedi, transkripti sesle henüz karşılaştırılmadı. Ön öğretimde ikinci madde değişti (auf jeden Fall), madde sayısı aynı. Dilbilimci ve okur yeniden bakmalı."
  },
  "bilinmeyen": {
-  "oran": 0.045,
+  "oran": 0.083,
   "kelimeler": [
-   "doch"
+   "doch",
+   "pro",
+   "schlafe",
+   "ungefähr"
+  ],
+  "kesitler": [
+   {
+    "klip": "07_12_int_ju_schlafen",
+    "kelime": 22,
+    "bilinmeyen": [
+     "doch"
+    ]
+   },
+   {
+    "klip": "07_10_int_bg_schlafen",
+    "kelime": 26,
+    "bilinmeyen": [
+     "pro",
+     "schlafe",
+     "ungefähr"
+    ]
+   }
   ]
  },
  "kesit_sure_tahmin_sn": 14,
  "kesit_sure_olcum_sn": 21,
+ "olcum_notu": "21 sn ölçümünün çıkarılan 2. turu kapsayıp kapsamadığı belli değil. 1., 3. ve 4. turlar ayrıca ölçülmeli.",
+ "toplam_sure_tahmin_sn": 28,
  "sure_kaynak_sn": 42
 }

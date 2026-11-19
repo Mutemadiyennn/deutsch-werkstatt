@@ -67,3 +67,35 @@ Kalan şüpheler:
 - Değişen 2 Türkçe alan okurdan geçmedi. Yollar alan listesinin sonuna eklendi.
 
 Sonuç: içerik hataları KAPANDI. `review.status` `draft` kaldı (ses ve süre bekliyor). Hata oranı: 4/18.
+
+## #82 inceleme düzeltmeleri
+İncelenen: `klip-01, 02, 04, 05, 06, 07.json` içinde 30 Türkçe alan, 13 Almanca alan, klip-04/05/06 `kesit`/`kesitler` yapısı (43 alan). Yeni parça `07_10_int_bg_schlafen` (Berna, 1–4. turlar) kaynak metinle tur tur karşılaştırıldı.
+
+| Yer | Önce → sonra | Gerekçe |
+|---|---|---|
+| klip-05 `ortam_tr` | `Jan'ın saatleri söylediği kısmı` → `Jan'ın kaç saat uyuduğunu söylediği kısmı` | `saatleri söylemek` saatin kaç olduğunu söylemek diye de okunuyor. |
+| klip-05 `kanit` | `Jan'ın saatleri söylediği ikinci tur` → `Jan'ın kaç saat uyuduğunu söylediği ikinci tur` | Aynı gerekçe. |
+| klip-05 ayrıntı 1, soru | `Jan'a ikinci olarak ne soruluyor?` → `Jan'a ikinci olarak neyi soruyorlar?` | Şıklar `kalktığını`, `oturduğunu`, `olmadığını` diye bitiyor. `ne soruluyor` sorusuna bu biçim uymuyor. |
+
+Denetim:
+- Berna'nın dört `basi` değeri kaynak turların gerçek başı, en çok 3 kelime. Dört `tr` doğru.
+- `accepted[0]`: klip-05 `d3` 1. turla birebir. `d4` 3. turla aynı, kaynaktaki çift boşluk tek boşluk oldu. klip-06 `d4` 9. turla birebir. klip-07 `d4` 14. turun son cümlesiyle birebir (**Der Himmel ist blau.**), bilerek tur bütünü değil.
+- Yeni maddelerin cevabı tek: klip-05 ayrıntı 3 (Berna iki kez **acht Stunden** diyor, başka sayı yok; Jan'ın **halb acht** dediği tur yayında değil) ve `d2` (boşluk yalnızca **acht**, rakam da kabul).
+- klip-05 `d5`: görev **genug** kelimesini açıkça istiyor, yedi cevabın hepsi bu kelimeyi içeriyor. `zorunlu` artık görevle uyumlu.
+- `kolay` soruları: klip-01, 02 ve 05'te `İlk soruda`. Çeldiriciler (**gehst**, **hat**, **kommt**, **Woche**, **Tag**) hiçbir yayın turunda geçmiyor. klip-01 ve 05'te iki parçanın ilk sorusu aynı cümle, belirsizlik yok.
+- Öğretilmemiş kelime: istenen her kelime bilinen listede ya da o günün ön öğretiminde. **ungefähr**, **pro**, **schlafe** yalnızca gösteriliyor ya da isteğe bağlı cevapta, zorunlu değil. klip-07 `d4` kelimeleri (**der Himmel**, **blau**) ön öğretimde. Soyadı artık yazdırılmıyor.
+- `kesitler`: klip-05'te ilk eleman üst düzeydeki `klip`/`kesit`/`haric` ile aynı, ikinci eleman kendi `konusmaci`, `video_url`, `turlar` alanını taşıyor, bağlar `"kesit": 1`. klip-04 `kesit` 13–16, `haric` yalnızca 15. klip-06 `haric` boş, `kesit` 7–10. Üçü de FORMAT'a uygun.
+- klip-06 iki `zor` basamağı (`d3` 7. tur, `d4` 9. tur): kabul edilebilir. FORMAT aynı basamaktan iki maddeyi yasaklamıyor, iki cümle farklı, ikisinin bankasında ikişer çeldirici var. 9. tur kolay, orta ve zor basamaklarında art arda geliyor. Bu, merdivenin olağan kullanımı.
+- Dağılım (klip-05): kolay ve zor Jan 1. tur, orta Berna 2. tur, usta Jan 3. tur, gölge 1 ve 3, cevapla 1. Biri Berna'ya geçmiş. Gölge yalnızca Jan'da.
+- Doğrulayıcı 0 hata (klip dosyalarını kapsamıyor). `vcheck.py`: 7 klip `tamam`.
+
+Kalan şüpheler:
+- klip-07 `d4` turun yalnızca son cümlesini istiyor ve `usta` basamağında FORMAT'ta olmayan `q_tr` alanı var. Oynatıcı bu alanı göstermezse ya da turun bütününü çalarsa öğrenci ne yazacağını bilemez. Baş geliştirici bakmalı: alan gösterilecek mi, ses son cümleye kesilecek mi.
+- klip-05 `d4` iki cümle yazdırıyor (FORMAT: `usta` tek cümle). Önceki turdan kalma, dokunulmadı.
+- klip-05 ayrıntı 1'in üçüncü şıkkı `Bu uykunun` diyor. Jan'ın süreyi söylediği tur yayında değil. `Uykusunun` daha açık olurdu. Şık bu turun kapsamında değildi, dokunulmadı.
+- klip-02 `d1` çeldiricisi **kommt**: 5. ve 6. turlarda **angekommen** duyuluyor. Soru ilk soruyu sorduğu için bırakıldı.
+- Berna'nın 07_10 kaydı sesle karşılaştırılmadı, süresi ölçülmedi (tahmin 14 sn). Toplam tahmin 28 sn, `durum: kisa` doğru.
+- PM kararı bekleyenler (P1-1, P2-5, P1-5) bu turun dışında.
+- Değişen 3 Türkçe alan okurdan geçmedi. Yollar alan listesinin sonuna eklendi.
+
+Sonuç: içerik hataları KAPANDI. `review.status` değerlerine dokunulmadı (`draft`; ses ve süre bekliyor). Hata oranı: 3/43.
