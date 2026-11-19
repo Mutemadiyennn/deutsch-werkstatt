@@ -6,7 +6,7 @@ Cloudflare Workers AI REST: POST /accounts/{hesap}/ai/run/@cf/black-forest-labs/
     (429 ya da "neuron" iletisi) iş durur, üretilmiş olanlar yine yüklenir.
   - Bütçe: en çok `--butce` nöron (varsayılan 3.500; PM: görsel için günde en çok 7.000). schnell 4 adım ≈ 58 nöron/görsel.
 Girdi: content/v2/media/uretim/sahne-deneme.json (İÇ: `{ "<kart>:<örnek>": { de, sahne_en } }`).
-Her sahne iki üslupla (PM-063: fotoğraf gerçekçi / yumuşak illüstrasyon), sabit tohumla üretilir.
+Her sahne iki üslupla (PM-063: fotoğraf gerçekçi / yumuşak illüstrasyon), tohum modele gönderilmez (model kabul etmiyor); kayıtta bilgi olarak durur.
 Çıktı (depoya görsel girmez, D-103):
   - OUT_DIR/*.jpg ve OUT_DIR/galeri.html → GitHub Releases `m1-gorsel-deneme`
   - content/v2/media/uretim/deneme-kayit.json: her görselin kaydı (kaynak: uretim, sinif: acik, model, tohum, üslup, tarif)
@@ -30,7 +30,8 @@ def tohum(anahtar: str, uslup: str) -> int:
 
 def uret(hesap: str, jeton: str, istem: str, seed: int) -> bytes:
     url = f"https://api.cloudflare.com/client/v4/accounts/{hesap}/ai/run/{MODEL}"
-    govde = json.dumps({"prompt": istem, "steps": ADIM, "seed": seed}).encode()
+    # flux-1-schnell girişi yalnızca prompt + steps kabul ediyor ("seed" → HTTP 400, koşu 44598893533); tohum kayıtta yalnızca bilgi
+    govde = json.dumps({"prompt": istem, "steps": ADIM}).encode()
     istek = urllib.request.Request(url, data=govde, method="POST", headers={"Authorization": f"Bearer {jeton}", "Content-Type": "application/json"})
     with urllib.request.urlopen(istek, timeout=120) as r:
         d = json.loads(r.read())
