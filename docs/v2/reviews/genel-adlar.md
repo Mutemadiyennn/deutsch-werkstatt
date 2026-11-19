@@ -93,3 +93,6 @@ Lisa, Jan, Jakob, Emil, Finn, Moritz, Eva, David, Sara, Lea.
 
 ### Leon
 - Yetişkin. Nina ile bir süre birlikteydi, ayrıldılar; bir iş arkadaşına âşık oldu. (Tobi'nin ilişkisi WORLD'de yok; bu cümleler Leon'a geçti.)
+
+### Jan
+- Yalnızca kendini tanıtan ses (`lx:duzen`: "Ich bin Jan"). Başka bilgi yok.
