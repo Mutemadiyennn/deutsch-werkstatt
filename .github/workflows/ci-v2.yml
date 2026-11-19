@@ -30,9 +30,12 @@ jobs:
         run: |
           npm run content:build
           npm run build -w web
+          # Worker adresi üretim paketinde olmalı, e2e paketinde olmamalı (inceleme #123 P2-5)
+          A=$(sed -n 's/^VITE_API_BASE=//p' web/.env.production); [ -n "$A" ] && grep -q "$A" web/dist/assets/*.js || { echo "::error::üretim paketinde Worker adresi yok"; exit 1; }
           # e2e paketi: içerikte henüz olmayan M1 günü için örnek gün (yayın paketine girmez)
           DW_E2E_FIXTURES=1 npm run content:build
           (cd web && npx vite build --mode e2e --outDir dist-e2e)
+          ! grep -q "$A" web/dist-e2e/assets/*.js || { echo "::error::e2e paketine gerçek Worker adresi sızdı"; exit 1; }
           T=0; for f in web/dist/assets/*.js; do T=$((T + $(gzip -9c "$f" | wc -c))); done
           echo "JS toplam (gzip): $((T/1024)) KB" | tee -a "$GITHUB_STEP_SUMMARY"
           [ "$T" -le 256000 ] || { echo "JS bütçesi aşıldı"; exit 1; }

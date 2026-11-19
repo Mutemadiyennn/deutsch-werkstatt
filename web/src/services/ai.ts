@@ -60,6 +60,8 @@ export async function ai<T extends AiTaskName>(api: Api, task: T, vars: AiInput<
     if (key) await cachePut(key, out);
     return out;
   } catch (e) {
+    // sunucu "sağlayıcı yok" dedi (ör. açılışta çevrimdışıydı, yoklama yapılamadı): oturum boyunca yapay zekâsız (inceleme #123 P2-1)
+    if (e instanceof ApiError && e.code === "not_configured") { providerOff = true; emit(); throw e; }
     // kullanıcı kotası ve kimlik hataları devre kesiciyi tetiklemez (kalıcı durumlar)
     if (!(e instanceof ApiError) || !["quota_user", "unauthenticated", "forbidden"].includes(e.code)) {
       fails++;
