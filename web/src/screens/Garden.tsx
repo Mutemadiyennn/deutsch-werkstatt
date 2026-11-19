@@ -23,6 +23,7 @@ import { haptic } from "../services/haptics.ts";
 import { ActionBar, AnswerField, FeedbackBand, ListenButton, ProgressHeader, YanlisIci } from "../ui/kit.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Photo } from "../ui/learn.tsx";
+import { Rich } from "../ui/rich.tsx";
 
 const E2E = import.meta.env.MODE === "e2e";
 /** `yazim`: kelime doğru, yalnızca ümlaut/ß eksik (PM 7004537514-1): kart "bilmiyor" sayılmaz, turun sonunda bir kez daha sorulur */
@@ -100,7 +101,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
     setBusy(false);
     // "Emin değilim, geç" sayılmaz: ne doğru ne soru (özet tutarlı, inceleme #59 P2-1)
     if (outcome) setScore((s) => ({ ok: s.ok + (r.ok ? 1 : 0), n: s.n + 1 }));
-    // XP yalnızca ipucusuz doğruda (ipuçlu ya da yazımı eksik doğru tekrar sayılır; uçuş da 0 — inceleme #87 2. tur)
+    // XP yalnızca ipucusuz doğruda (ipucu cevabı gösteriyor; D-102, inceleme #85 P2-2); uçuş da 0 (inceleme #87 2. tur)
     if (outcome === "correct") void xpVer(XP.dogru);
     const r2 = !r.ok && outcome ? requeue(round, q, l) : round;
     // son cevap: günün bütün kartları tanıtıldıysa Seans 1 şimdi işaretlenir (inceleme #66 P1-1)
@@ -146,6 +147,8 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
     </div>
   );
 
+  // ipucu ve boşluk cümlesi yalnızca boşluk sorularında (başka türde öğrencinin görmediği cümlenin ipucu çıkmasın; inceleme #85 P1-1)
+  const form = q.type === "gap" || q.type === "sep_perfekt" ? formFor(l, q.type, q.ex) : undefined;
   // PM (#59 yorumu): cevaptan sonra, doğru ya da yanlış, kelime cümlesiyle görünür — örnek cümle (dinle), fotoğraf, eşdizim
   const colAfter = collocOf(l);
   const verdict = res && (<>
@@ -161,7 +164,9 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
       {res.ok ? <FeedbackBand kind="ok" title="Doğru." xp={hinted ? 0 : XP.dogru}>{res.expected && <span lang="de">{res.expected}</span>}</FeedbackBand>
         : <FeedbackBand kind={res.yazim ? "info" : "bad"} title={res.yazim ? "Kelime doğru, yazımı eksik." : "Doğrusu:"}>
             {/* PM-059 madde 1: önce doğrusu; örnek cümle hemen üstteki kartta (dinlenebilir) */}
-            <YanlisIci dogrusu={res.expected ?? ""} cevap={res.answer}>{res.note && <div class="small">{res.note}</div>}</YanlisIci>
+            <YanlisIci dogrusu={res.expected ?? ""} cevap={res.answer}>{res.note && <div class="small">{res.note}</div>}
+              {/* ipucu yanlış cevaptan sonra açıklama olarak (PM 7004537514-2) */}
+              {form?.hint_tr && <div class="small" data-test="ipucu-sonra"><Rich text={form.hint_tr} /></div>}</YanlisIci>
           </FeedbackBand>}
       <button class="btn primary block" data-test="next" onClick={() => next(res.ok ? (hinted ? "hinted" : "correct") : res.yazim ? "hinted" : "wrong")}>Devam</button>
     </ActionBar></>
@@ -170,10 +175,9 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
   if (q.type === "listen_meaning" || q.type === "article" || q.type === "colloc") return <ChoiceQ q={q} l={l} all={all} ex={ex} show={show} verdict={verdict} />;
 
   // ---- aktif: üretim ----
-  const form = formFor(l, q.type, q.ex);
   const prompt = q.type === "photo_say" ? <><div class="kicker">Fotoğraftaki ne? Artikeliyle söyle ya da yaz</div><Photo q={l.img} /><p class="small muted">{l.tr}</p></>
     : q.type === "tr_de" ? <><div class="kicker">Almanca söyle ya da yaz</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div></>
-    : q.type === "gap" || q.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && <p class="small">{form.hint_tr}</p>}</>
+    : q.type === "gap" || q.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && !res && <IpucuDugmesi metin={form.hint_tr} onAc={() => setHinted(true)} />}</>
     : <><div class="kicker">Bu kelimeyle kendi cümleni kur</div><div class="de-lg" lang="de"><Art art={l.art} de={l.de} /></div><p class="small muted">{l.tr}{ex ? ` · Örnek: ` : ""}{ex && <span lang="de">{ex.de}</span>}</p></>;
 
   const submit = (a: string, mode: "typed" | "voice") => {
@@ -285,4 +289,11 @@ function GardenEmpty({ day, capped }: { day?: number; capped: boolean }) {
         <p>{capped ? "Bugünkü yeni kartların bitti ve vadesi gelen kart yok. Yarın yeni kartlar ve tekrarlar seni bekliyor." : "Şu an vadesi gelen kart yok. Yeni kart da kalmadı."}</p>
         <a class="btn primary block" href="#/today">{day ? "Sıradaki adıma geç" : "Bugün'e dön"}</a></section></div>
   );
+}
+
+/** Boşluk ipucu: soru sırasında kapalı; dokunuşla açılırsa cevap "ipucuyla" sayılır (PM 7004537514-2) */
+function IpucuDugmesi({ metin, onAc }: { metin: string; onAc: () => void }) {
+  const [acik, setAcik] = useState(false);
+  if (acik) return <p class="small" data-test="ipucu"><Rich text={metin} /></p>;
+  return <div><button class="btn ghost sm" data-test="ipucu-ac" onClick={() => { setAcik(true); onAc(); }}>İpucu göster</button><div class="tiny muted">Açarsan bu kart daha sık tekrar gelir.</div></div>;
 }
