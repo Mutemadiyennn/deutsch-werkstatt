@@ -107,6 +107,8 @@ jobs:
         run: cd tests/e2e && python v2_prova.py --shots /tmp/shots
       - name: "Okuma ve yazma (#58 A8): metin + kelime kartı, sorular, zorunlu kelime ve kalıp kontrolü, örnek, kontrol listesi"
         run: cd tests/e2e && python v2_okuma.py --shots /tmp/shots
+      - name: "Dinleme başlangıç hızı (#58 B7): Yavaş seçiliyse ilk çalma yavaş, tekrar normal; Profil'de Normal etkili"
+        run: cd tests/e2e && python v2_hiz.py
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4

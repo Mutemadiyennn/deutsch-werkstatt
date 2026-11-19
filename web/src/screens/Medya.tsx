@@ -17,7 +17,7 @@ import { Rich } from "../ui/rich.tsx";
 import { ADIM_TR, BASLANGIC, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { scoreHeard } from "../core/grading.ts";
-import { speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
+import { baslangicYavas, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { ActionBar, AnswerField, FeedbackBand, MicButton, ProgressHeader } from "../ui/kit.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
@@ -70,7 +70,7 @@ function useOynatici(m: Medya, video: HTMLVideoElement | null, base = ""): Oynat
     for (const c of cs) {
       if (iptal.current !== my) return;
       setCalisiyor(c.id);
-      if (c.audio?.src) await sesDosyasi(/^(https?:|\/)/.test(c.audio.src) ? c.audio.src : base + c.audio.src, yavas, my); else await speak(c.de, "de", yavas ? "slow" : "normal");
+      if (c.audio?.src) await sesDosyasi(/^(https?:|\/)/.test(c.audio.src) ? c.audio.src : base + c.audio.src, yavas, my); else await speak(c.de, "de", yavas ? "slow" : "normal", true);
     }
   };
   const o: Oynatici = {
@@ -192,7 +192,9 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
 /* (a) baştan sona, altyazısız */
 function DinleAdimi({ m, cs, oy, onNext }: { m: Medya; cs: MedyaCumle[]; oy: ReturnType<typeof useOynatici>; onNext: () => void }) {
   const [dinledi, setDinledi] = useState(false);
-  const yavas = m.kind === "ses" && m.hizlar[0] === "slow";
+  // #58 B7: Profil'de başlangıç hızı Yavaş ise ilk dinleme 0,75× ve düğmede yazılı; "Bir daha dinle" normal hızda
+  const ilkYavas = baslangicYavas() && !dinledi;
+  const yavas = (m.kind === "ses" && m.hizlar[0] === "slow") || ilkYavas;
   return (
     <section class="card stack fade" data-test="adim-dinle">
       <div class="kicker">Bölümü baştan sona dinle</div>
@@ -201,7 +203,7 @@ function DinleAdimi({ m, cs, oy, onNext }: { m: Medya; cs: MedyaCumle[]; oy: Ret
         {oy.calisiyor !== null
           ? <button class="btn grow" data-test="durdur" onClick={() => oy.dur()}><Icon name="pause" /> Durdur</button>
           : <button class="btn primary grow" data-test="dinle-bolum" onClick={() => { setDinledi(true); void oy.bolum(cs, yavas); }}>
-              <Icon name="play" /> {dinledi ? "Bir daha dinle" : "Dinle"}</button>}
+              <Icon name="play" /> {dinledi ? "Bir daha dinle" : ilkYavas ? "Dinle (yavaş)" : "Dinle"}</button>}
         {m.hizlar.includes("slow") && m.hizlar.length > 1 && oy.calisiyor === null && <button class="btn grow" onClick={() => { setDinledi(true); void oy.bolum(cs, true); }}>Yavaş</button>}
       </div>
       <ActionBar><button class="btn block" data-test="next" disabled={!dinledi && !E2E} onClick={onNext}>{dinledi ? "Sorulara geç" : "Önce dinle"}</button></ActionBar>
@@ -232,7 +234,8 @@ function EylemSoru({ m, onDone }: { m: Medya; onDone: (ok: boolean) => void }) {
 
 /* (c) cümle cümle: her cümle tek dokunuşla, 0,75× */
 function CumleAdimi({ cs, oy, onNext }: { cs: MedyaCumle[]; oy: ReturnType<typeof useOynatici>; onNext: () => void }) {
-  const [yavas, setYavas] = useState(false);
+  // #58 B7: 0,75× düğmesi Profil'deki başlangıç hızıyla açılır (görünür; öğrenci kapatabilir)
+  const [yavas, setYavas] = useState(baslangicYavas());
   return (
     <section class="card stack fade" data-test="adim-cumle">
       <div class="row"><div class="kicker grow">Cümle cümle dinle</div>

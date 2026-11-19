@@ -108,6 +108,7 @@ export function ProfileView() {
         <h2>Dinleme ve hedefler</h2>
         <label class="lbl">Dinlemeye başlangıç hızı</label>
         <div class="seg" role="group">{(["slow", "normal"] as const).map((s) => <button aria-pressed={profile.listening.startSpeed === s} onClick={() => save((p) => { p.listening.startSpeed = s; })}>{s === "slow" ? "Yavaş" : "Normal"}</button>)}</div>
+        <p class="tiny muted" data-test="hiz-aciklama">{profile.listening.startSpeed === "slow" ? "Her cümle ilk kez yavaş çalınır, tekrarında normal hızda. \"Yavaş\" düğmesi her zaman yavaş çalar." : "Cümleler normal hızda çalınır; \"Yavaş\" düğmesiyle yavaşlatabilirsin."}</p>
         <label class="row" style={{ marginTop: 12 }}><input type="checkbox" checked={profile.goals.examB1.enabled} onChange={(e) => save((p) => { p.goals.examB1.enabled = (e.target as HTMLInputElement).checked; })} /><span>B1 sınavına hazırlık (isteğe bağlı)</span></label>
         {profile.goals.examB1.enabled && <input class="input" type="date" aria-label="Sınav tarihi" value={profile.goals.examB1.date || ""} onChange={(e) => save((p) => { p.goals.examB1.date = (e.target as HTMLInputElement).value || undefined; })} />}
         <p class="small" style={{ marginTop: 12 }}><a href="#/assess">Yeniden ölç (aylık ölçüm)</a></p>
