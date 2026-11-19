@@ -335,12 +335,14 @@ export function formFor(l: Lexeme, t: QType, i = 0) { const list = t === "gap" ?
  * Cevabın her kelimesi şunlardan birinde olmalı: kartın kendi kelimesi ve çekimleri (gövde eşleşmesi), kartın eşdizimleri
  * (tanıtım kartında hepsi gösterilir), öğrencinin daha önce gördüğü (tanıtılmış) kartların kelimeleri (`gorulen`).
  */
+/** Kartta gösterilen çoğul ("-" ya da boşsa yok); Bahçe tanıtım ve cevap kartı bunu basar, boşluk kuralı da bunu sayar (inceleme #122 2. tur) */
+export const gosterilenCogul = (l: Lexeme): string | undefined => (l.pl && l.pl.trim() !== "-" ? l.pl.trim() : undefined);
 export function cevapGosterildi(l: Lexeme, cevap: string, gorulen: Set<string> = new Set()): boolean {
   const kelimeler = tokens(cevap.toLowerCase().replace(/\s*…\s*/g, " "));
   if (!kelimeler.length) return false;
   // kartın kendi kelimesi: yalnızca kartta GÖSTERİLEN biçimler (başlık, artikel, çoğul). Gövde eşleşmesi yok: Perfekt ortacı,
   // Präteritum ve hâl biçimleri tanıtılmadıkça sorulmaz (inceleme #122 P0-1)
-  const kendi = new Set(tokens(`${l.art ?? ""} ${l.de} ${l.pl ?? ""}`.toLowerCase().replace(/[()]/g, " ")));
+  const kendi = new Set(tokens(`${l.art ?? ""} ${l.de} ${gosterilenCogul(l) ?? ""}`.toLowerCase().replace(/[()]/g, " ")));
   const eszizim = new Set(l.collocations.flatMap((c) => tokens(c.de.toLowerCase())));
   return kelimeler.every((x) => kendi.has(x) || eszizim.has(x) || gorulen.has(x));
 }
@@ -362,7 +364,7 @@ export function gorulenKelimeler(lex: Map<string, Lexeme>, tanitilan: Iterable<s
   const g = new Set<string>();
   for (const id of tanitilan) {
     const x = lex.get(id); if (!x) continue;
-    for (const w of tokens([x.de, x.pl ?? "", ...x.collocations.map((c) => c.de)].join(" ").toLowerCase().replace(/[()]/g, " "))) if (!ARTIKEL.has(w)) g.add(w);
+    for (const w of tokens([x.de, gosterilenCogul(x) ?? "", ...x.collocations.map((c) => c.de)].join(" ").toLowerCase().replace(/[()]/g, " "))) if (!ARTIKEL.has(w)) g.add(w);
   }
   return g;
 }

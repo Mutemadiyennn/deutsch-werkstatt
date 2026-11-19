@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { boslukSecimi, cevapGosterildi, gorulenKelimeler, ogretilmisForm, tanitildi } from "./garden.ts";
+import { boslukSecimi, cevapGosterildi, gosterilenCogul, gorulenKelimeler, ogretilmisForm, tanitildi } from "./garden.ts";
 import type { Lexeme } from "@dw/shared";
 
 const kart = (o: Partial<Lexeme>): Lexeme => ({ id: "lx:Mittwoch", de: "Mittwoch", art: "der", pos: "noun", tr: "çarşamba", examples: [], collocations: [], forms: [], ...o } as unknown as Lexeme);
@@ -32,6 +32,13 @@ describe("PM-069 P0: öğretilmeden boşluk sorulmaz", () => {
     expect(cevapGosterildi(fiil, "gehen")).toBe(true);
     // kendi kartın hâl biçimi (dişil isimde "der") gösterilmedi
     expect(cevapGosterildi(kart({ id: "lx:Woche", de: "Woche", art: "die" }), "der")).toBe(false);
+  });
+  it("çoğul yalnızca kartta gösteriliyorsa sayılır; '-' çoğul değildir (inceleme #122 2. tur)", () => {
+    const tag = kart({ id: "lx:Tag", de: "Tag", pl: "Tage" });
+    expect(gosterilenCogul(tag)).toBe("Tage");
+    expect(cevapGosterildi(tag, "Tage")).toBe(true);
+    expect(gosterilenCogul(kart({ pl: "-" }))).toBeUndefined();
+    expect(cevapGosterildi(kart({ pl: "-" }), "-")).toBe(false);
   });
   it("boslukSecimi: sorulabilir biçim varsa o, yoksa Türkçeden Almancaya; sorulabilir sayısı", () => {
     expect(boslukSecimi(l, "gap", 0, new Set())).toEqual({ tip: "gap", fi: 2, sorulabilir: 2 });
