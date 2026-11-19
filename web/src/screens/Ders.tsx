@@ -13,7 +13,7 @@ import { DERS_ADIM_TR, TANIT_GRUP, adimlarDers, altSayisi, dersAnahtari, dersIle
 import { speak, speakDizi, stopSpeaking } from "../services/speech.ts";
 import { adimXpVer, xpVer } from "../services/ilerleme.ts";
 import { XP } from "../core/gun.ts";
-import { ActionBar, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
+import { ActionBar, CevapXp, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
 import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Chips, Rich } from "../ui/rich.tsx";
@@ -26,6 +26,8 @@ export function DersEkrani({ id }: { id: string }) {
   const [t, setT] = useState<TemelDers | null>(null);
   const [p, setP0] = useState<DersIlerleme | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  // kutlama yalnızca ders bu oturumda bittiyse; bitmiş ders yeniden açılınca konfeti ve "+0 XP" yok (inceleme #87 P2)
+  const [simdiBitti, setSimdiBitti] = useState(false);
   const oturumXp = useOturumXp();
   useEffect(() => {
     (async () => {
@@ -43,10 +45,10 @@ export function DersEkrani({ id }: { id: string }) {
 
   if (p.bitti) return (
     <div class="stack" data-test="ders">
-      <ProgressHeader title={t.title_tr} back="#/today" />
+      <ProgressHeader title={t.title_tr} back="#/today" ilerleme={{ n: 1, toplam: 1 }} />
       <section class="card stack" data-test="ders-bitti">
-        <Kutlama><h2>Ders bitti</h2></Kutlama>
-        {p.toplam > 0 && <Ozet dogru={p.dogru} toplam={p.toplam} xp={oturumXp} />}
+        {simdiBitti ? <Kutlama><h2>Ders bitti</h2></Kutlama> : <h2>Ders bitti</h2>}
+        {simdiBitti && p.toplam > 0 && <Ozet dogru={p.dogru} toplam={p.toplam} xp={p.ilkBitti ? undefined : oturumXp} />}
         <p>{p.toplam ? `${p.toplam} soruda ${p.dogru} doğru.` : ""} {t.can_do.tr}</p>
         <div class="row"><a class="btn primary grow" href="#/today" data-test="ders-geri">Sıradaki adıma geç</a>
           <button class="btn grow" onClick={() => setP({ s: 0, k: 0, dogru: 0, toplam: 0, ilkBitti: p.ilkBitti ?? p.bitti })}>Tekrar çalış</button></div>
@@ -61,12 +63,13 @@ export function DersEkrani({ id }: { id: string }) {
     const kazanc = ok === undefined ? 0 : typeof ok === "boolean" ? (ok ? 1 : 0) : ok.dogru;
     // tekrar çalışmada doğru XP'si yok; adım XP'si bir kez (inceleme #66 P2-1)
     if (kazanc && !p.ilkBitti) void xpVer(XP.dogru * kazanc);
-    if (np.bitti) void adimXpVer(`ders:${t.id}`);
+    if (np.bitti) { void adimXpVer(`ders:${t.id}`); setSimdiBitti(true); }
     setP(np);
   };
-  return (
+  // doğru cevabın XP'si cevap anında uçar; tekrar çalışmada XP yok (inceleme #87 P1-2)
+  return (<CevapXp.Provider value={p.ilkBitti ? 0 : XP.dogru}>
     <div class="stack" data-test="ders" data-adim={adim} data-pos={`${p.s}.${p.k}`}>
-      <ProgressHeader title={t.title_tr} back="#/today" right={<FocusChip />} sub={`${DERS_ADIM_TR[adim]}${n > 1 ? ` · ${p.k + 1}/${n}` : ""}`} ilerleme={{ n: p.s + (n > 1 ? p.k / n : 0), toplam: steps.length }} />
+      <ProgressHeader title={t.title_tr} back="#/today" right={<FocusChip />} sub={`${DERS_ADIM_TR[adim]}${n > 1 ? ` · ${p.k + 1}/${n}` : ""}`} ilerleme={{ n: steps.slice(0, p.s).reduce((a, s) => a + altSayisi(t, s), 0) + p.k, toplam: steps.reduce((a, s) => a + altSayisi(t, s), 0) }} />
       {adim === "tanit" && (p.k % 2 === 0
         ? <Tanit key={p.k} t={t} grup={p.k / 2} onNext={() => ileri()} />
         : <Hatirla key={p.k} t={t} grup={(p.k - 1) / 2} onDone={(dogru, toplam) => ileri({ dogru, toplam })} />)}
@@ -84,7 +87,7 @@ export function DersEkrani({ id }: { id: string }) {
         </section>
       )}
     </div>
-  );
+  </CevapXp.Provider>);
 }
 
 /** Öğretim kartları: önce duy (kart açılınca okunur), sonra yazısı ve anlamı, açıklama (OD-9) */

@@ -7,10 +7,16 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import { efekt, hareketAzalt, kutlamaAcik } from "../services/efekt.ts";
 import { seri, yerelGun, type XpKayit } from "../core/gun.ts";
 
-/** Günlük XP hedefi (gösterge için; ilerleme kaydı değil) */
+/** Hafta günlerinin iki harfli kısaltması (Pazar–Pazartesi, Cuma–Cumartesi karışmaz; inceleme #87 P2) */
+const GUN_KISA = ["Pz", "Pt", "Sa", "Ça", "Pe", "Cu", "Ct"];
+
+/**
+ * Günlük XP hedefi (gösterge için; ilerleme kaydı değil). Bilerek küçük: kısa bir oturum da günü "tamam" sayar (alışkanlık
+ * hedefi); bir ders tek başına aşar. Aşılınca sayı oranı yerine "Günlük hedef tamam" yazılır.
+ */
 export const GUNLUK_XP_HEDEF = 50;
 
-/** "+N XP" cevaptan üstteki sayaca uçar: `dw:xp` olayını dinler (ilerleme.ts yazınca gönderir) */
+/** "+N XP" cevap anında uçar: `dw:xp-ucus` olayını dinler (FeedbackBand doğru cevapta gönderir; kayıt "Devam"da — inceleme #87 P1-2) */
 export function XpUcus() {
   const [uc, setUc] = useState<{ id: number; n: number }[]>([]);
   useEffect(() => {
@@ -22,8 +28,8 @@ export function XpUcus() {
       setUc((u) => [...u.slice(-2), { id, n }]);
       setTimeout(() => setUc((u) => u.filter((x) => x.id !== id)), 1000);
     };
-    window.addEventListener("dw:xp", f);
-    return () => window.removeEventListener("dw:xp", f);
+    window.addEventListener("dw:xp-ucus", f);
+    return () => window.removeEventListener("dw:xp-ucus", f);
   }, []);
   return <div class="xp-ucus-kap" aria-hidden="true">{uc.map((x) => <span class="xp-ucus" key={x.id} data-test="xp-ucus"><Mucevher boy={16} />+{x.n} XP</span>)}</div>;
 }
@@ -57,10 +63,13 @@ export function Filiz({ gun, boy = 28 }: { gun: number; boy?: number }) {
   );
 }
 
+/** Son gösterilen XP toplamı: Bugün her açılışta 0'dan saymaz, önceki değerden sayar (ilk açılışta doğrudan değer; inceleme #87 P2) */
+let sonGosterilen: number | null = null;
 /** Sayarak artan sayı (hareket azaltmada doğrudan son değer) */
 function useSayac(hedef: number, ms = 700) {
-  const [v, setV] = useState(hareketAzalt() ? hedef : 0);
-  const once = useRef(0);
+  const [v, setV] = useState(hareketAzalt() || sonGosterilen === null ? hedef : sonGosterilen);
+  const once = useRef(sonGosterilen ?? hedef);
+  sonGosterilen = hedef;
   useEffect(() => {
     if (hareketAzalt()) { setV(hedef); return; }
     const bas = once.current, t0 = performance.now();
@@ -76,14 +85,17 @@ function useSayac(hedef: number, ms = 700) {
 export function XpSeri({ xp, href = "#/yol" }: { xp: XpKayit; href?: string }) {
   const bugun = xp.gunler[yerelGun(new Date())] ?? 0;
   const s = seri(xp);
+  // hedef aşılınca "176 / 50" yazılmaz (RQ-Ş24, inceleme #87 P1-3)
+  const tamam = bugun >= GUNLUK_XP_HEDEF;
+  const hedefYazi = tamam ? `Günlük hedef tamam · bugün ${bugun} XP` : `Bugün ${bugun} / ${GUNLUK_XP_HEDEF} XP`;
   const toplam = useSayac(xp.toplam);
-  const gunler = Array.from({ length: 7 }, (_, i) => { const d = new Date(); d.setDate(d.getDate() - (6 - i)); return { k: yerelGun(d), v: (xp.gunler[yerelGun(d)] ?? 0) > 0, bugun: i === 6, ad: d.toLocaleDateString("tr", { weekday: "narrow" }) }; });
+  const gunler = Array.from({ length: 7 }, (_, i) => { const d = new Date(); d.setDate(d.getDate() - (6 - i)); return { k: yerelGun(d), v: (xp.gunler[yerelGun(d)] ?? 0) > 0, bugun: i === 6, ad: GUN_KISA[d.getDay()]! }; });
   return (
     <a class="xpseri" href={href} data-test="xp-seri" aria-label={`Toplam ${xp.toplam} XP, bugün ${bugun} XP, ${s} gün üst üste. Haftanın yolu`}>
       <div class="xp-sol">
         <div class="row" style={{ gap: 6, flexWrap: "nowrap" }}><Mucevher boy={22} /><b class="xp-sayi" data-test="xp-toplam">{toplam}</b><span class="small muted">XP</span></div>
-        <div class="hedef-cubuk" role="img" aria-label={`Bugün ${bugun} / ${GUNLUK_XP_HEDEF} XP`}><i style={{ width: `${Math.min(100, (bugun / GUNLUK_XP_HEDEF) * 100)}%` }} /></div>
-        <div class="tiny muted">Bugün {bugun} / {GUNLUK_XP_HEDEF} XP</div>
+        <div class="hedef-cubuk" role="img" aria-label={hedefYazi}><i style={{ width: `${Math.min(100, (bugun / GUNLUK_XP_HEDEF) * 100)}%` }} /></div>
+        <div class={`tiny ${tamam ? "goalhit" : "muted"}`} data-test="gunluk-hedef">{hedefYazi}</div>
       </div>
       <div class="xp-sag">
         <div class="row" style={{ gap: 4, flexWrap: "nowrap", justifyContent: "flex-end" }}><Filiz gun={s} /><b data-test="seri-gun">{s}</b><span class="small muted">gün</span></div>
@@ -107,12 +119,13 @@ export function Kutlama({ children }: { children?: preact.ComponentChildren }) {
 }
 
 /** Özet satırı: doğru, XP, seri, öğrenilen kelimeler (çip), yarın */
-export function Ozet({ dogru, toplam, xp, seriGun, kelimeler = [], yarin }: { dogru: number; toplam: number; xp: number; seriGun?: number; kelimeler?: string[]; yarin?: string }) {
+/** `xp` yoksa (tekrar çalışma: XP verilmez) XP kutusu gösterilmez */
+export function Ozet({ dogru, toplam, xp, seriGun, kelimeler = [], yarin }: { dogru: number; toplam: number; xp?: number; seriGun?: number; kelimeler?: string[]; yarin?: string }) {
   return (
     <div class="stack ozet" data-test="ozet">
       <div class="ozet-kutular">
         <div class="ozet-kutu"><b>{dogru}/{toplam}</b><span class="tiny muted">doğru</span></div>
-        <div class="ozet-kutu xp"><b data-test="ozet-xp"><Mucevher boy={16} /> +{xp}</b><span class="tiny muted">XP</span></div>
+        {xp !== undefined && <div class="ozet-kutu xp"><b data-test="ozet-xp"><Mucevher boy={16} /> +{xp}</b><span class="tiny muted">XP</span></div>}
         {seriGun !== undefined && <div class="ozet-kutu seri"><b><Filiz gun={seriGun} boy={18} /> {seriGun}</b><span class="tiny muted">gün üst üste</span></div>}
       </div>
       {kelimeler.length > 0 && <div><div class="tiny muted">Bugün öğrendiğin kelimeler</div><div class="row" style={{ gap: 6 }} data-test="ozet-kelimeler">{kelimeler.map((k) => <span class="cip" lang="de">{k}</span>)}</div></div>}

@@ -16,6 +16,36 @@ export const hareketAzalt = () => typeof matchMedia !== "undefined" && matchMedi
 
 /** Doğru cevapta artar, yanlışta sıfırlanır; değeri döner */
 export function ustUsteSay(dogru: boolean): number { ustUste = dogru ? ustUste + 1 : 0; return ustUste; }
+/** Ekran değişince sayaç sıfırlanır: dersteki seri Bahçe'ye taşınmaz (inceleme #87 P2) */
+export function ustUsteSifirla() { ustUste = 0; }
+
+/** Cevap anında "+N XP" uçuşu: kayıt "Devam"da yazılır, uçuş cevapla birlikte görünür (inceleme #87 P1-2) */
+export function xpUcur(n: number) {
+  if (!n) return;
+  try { window.dispatchEvent(new CustomEvent("dw:xp-ucus", { detail: { n } })); } catch { /* sunucu tarafı/test */ }
+}
+
+function baglam(): AudioContext | null {
+  const AC = (window as unknown as { AudioContext?: typeof AudioContext; webkitAudioContext?: typeof AudioContext }).AudioContext
+    ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+  if (!AC) return null;
+  ac ??= new AC();
+  return ac;
+}
+
+/**
+ * iOS ses kilidi: AudioContext ancak bir dokunuşun içinde oluşturulup sürdürülürse ses çıkar. İlk dokunuşta bir kez
+ * boş bir tampon çalınır (inceleme #87 P2). app.tsx bunu `pointerdown`/`touchend`'e bağlar.
+ */
+export function sesKilidiAc() {
+  if (!ses) return;
+  try {
+    const c = baglam(); if (!c) return;
+    if (c.state === "suspended") void c.resume();
+    const b = c.createBuffer(1, 1, 22050), s = c.createBufferSource();
+    s.buffer = b; s.connect(c.destination); s.start(0);
+  } catch { /* ses yoksa sessiz devam */ }
+}
 
 const NOTALAR: Record<Efekt, { f: number; t: number; d: number; tip: OscillatorType; g: number }[]> = {
   // kısa yükselen iki nota (mi–la), parlak ama yumuşak
@@ -30,10 +60,7 @@ export function efekt(e: Efekt) {
   try { ((window as unknown as { __efekt?: string[] }).__efekt ??= []).push(`${e}:${ses ? "ses" : "sessiz"}`); } catch { /* yok say */ }
   if (!ses) return;
   try {
-    const AC = (window as unknown as { AudioContext?: typeof AudioContext; webkitAudioContext?: typeof AudioContext }).AudioContext
-      ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-    if (!AC) return;
-    ac ??= new AC();
+    const ac = baglam(); if (!ac) return;
     if (ac.state === "suspended") void ac.resume();
     const t0 = ac.currentTime + 0.01;
     for (const n of NOTALAR[e]) {

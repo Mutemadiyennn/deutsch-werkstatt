@@ -19,7 +19,7 @@ import { ruleVerdict } from "../core/answer.ts";
 import { scoreHeard } from "../core/grading.ts";
 import { baslangicYavas, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
-import { ActionBar, AnswerField, FeedbackBand, MicButton, ProgressHeader } from "../ui/kit.tsx";
+import { ActionBar, AnswerField, CevapXp, FeedbackBand, MicButton, ProgressHeader, YanlisIci } from "../ui/kit.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 import { DokunMetin, KelimeSayfasi } from "../ui/kelime.tsx";
@@ -153,7 +153,8 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
   // XP: doğru başına (beyanla geçilen cevapta ve tekrar çalışmada yok); adım XP'si adım başına bir kez (inceleme #66 P1-2, P2-1)
   const sonraki = (alt = 1, ok?: boolean, xp = ok) => { oy.dur(); const np = ileri(p, m, alt); if (xp && !p.ilkBitti) void xpVer(XP.dogru); if (np.bitti) void adimXpVer(`medya:${m.id}`); setP({ ...np, ...(ok === undefined ? {} : { dogru: p.dogru + (ok ? 1 : 0), toplam: p.toplam + 1 }) }); };
 
-  return (
+  // doğru cevabın XP'si cevap anında uçar (ilk çalışmada; tekrar çalışmada XP yok — inceleme #87 P1-2)
+  return (<CevapXp.Provider value={p.ilkBitti ? 0 : XP.dogru}>
     <div class="stack" data-test="medya" data-adim={adim} data-pos={`${p.b}.${p.s}.${p.k}`}>
       <ProgressHeader title={m.title_tr} back={geri} right={<FocusChip />} sub={`Bölüm ${p.b + 1}/${m.bolumler.length} · ${ADIM_TR[adim]}`} />
       {/* PM-053 §4: video üstte sabit, sorular altta akar */}
@@ -186,7 +187,7 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
       {adim === "golge" && <GolgeAdimi key={`${p.b}g${p.k}`} c={cs.find((c) => c.id === b.golge[p.k]) ?? cs[0]!} sira={`${p.k + 1}/${b.golge.length}`} oy={oy} onNext={(ok) => sonraki(b.golge.length, ok)} />}
       {adim === "cevapla" && b.cevapla && <CevaplaAdimi key={`${p.b}c`} d={b.cevapla} onNext={(ok, beyan) => sonraki(1, ok, ok && !beyan)} />}
     </div>
-  );
+  </CevapXp.Provider>);
 }
 
 /* (a) baştan sona, altyazısız */
@@ -290,9 +291,8 @@ function DikteAdimi({ d, sira, cs, oy, onNext }: { d: Dikte; sira: string; cs: M
       {(d.seviye === "orta" || d.seviye === "usta" || d.seviye === "gercek") && !res && <ActionBar><AnswerField onSubmit={(a) => kontrol(a)} voice={d.seviye === "gercek"} /></ActionBar>}
       {res && <ActionBar>
         {res.ok ? <FeedbackBand kind="ok" title="Doğru."><span lang="de">{res.beklenen}</span>{res.not && <div class="small" data-test="yazim">{res.not}</div>}</FeedbackBand>
-          : <FeedbackBand kind={d.seviye === "gercek" ? "info" : "bad"} title={d.seviye === "gercek" ? "Örnek cevap" : "Doğrusu bu."}>
-              <div class="small">Senin cevabın: <span lang="de">{res.cevap || "—"}</span></div>
-              <div><b lang="de">{res.beklenen}</b></div>{res.not && <div class="small">{res.not}</div>}</FeedbackBand>}
+          : <FeedbackBand kind={d.seviye === "gercek" ? "info" : "bad"} title={d.seviye === "gercek" ? "Örnek cevap" : "Doğrusu:"}>
+              <YanlisIci dogrusu={res.beklenen} cevap={res.cevap}>{res.not && <div class="small">{res.not}</div>}</YanlisIci></FeedbackBand>}
         {/* gerçek hayat görevi serbest yazımdır: puana girmez */}
         <button class="btn primary block" data-test="next" onClick={() => onNext(d.seviye === "gercek" ? null : res.ok)}>Devam</button></ActionBar>}
     </section>
@@ -362,7 +362,7 @@ function CevaplaAdimi({ d, onNext }: { d: NonNullable<Bolum["cevapla"]>; onNext:
               <div class="small">Senin cümlen: <span lang="de">{v.a}</span></div>
               <div>Örnek cevap: <b lang="de">{v.best.replace(/\.+$/, ".")}</b></div>
               <div class="small">İkisi aynı şeyi mi söylüyor? Emin değilsen örneği öğren.</div></FeedbackBand>
-          : <FeedbackBand kind="bad" title="Doğrusu bu."><div class="small">Senin cevabın: <span lang="de">{v.a}</span></div><b lang="de">{v.best}</b>{d.why_tr && <div class="small"><Rich text={d.why_tr} /></div>}</FeedbackBand>}
+          : <FeedbackBand kind="bad" title="Doğrusu:"><YanlisIci dogrusu={v.best} cevap={v.a}>{d.why_tr && <div class="small"><Rich text={d.why_tr} /></div>}</YanlisIci></FeedbackBand>}
         {v.kind === "unchecked" ? <><button class="btn primary block" data-test="next" onClick={() => onNext(false)}>Örneği öğrendim, devam</button>
             <button class="btn block" data-test="claim" onClick={() => { void addClaim({ at: new Date().toISOString(), scenarioId: "m1", itemId: d.id, prompt: d.k === "tr_de" ? d.tr : d.situation_tr ?? "", answer: v.a, expected: d.accepted }); onNext(true, true); }}>Benimki de aynı anlamda</button></>
           : <button class="btn primary block" data-test="next" onClick={() => onNext(v.kind === "correct")}>Devam</button>}

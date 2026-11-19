@@ -2,12 +2,12 @@
  * Tasarım sistemi bileşenleri (EK 1 + EK 2 §7): ekranlar yalnızca bunlardan kurulur.
  * Kart, Düğme, Ses düğmesi (yavaş/normal), Cevap alanı + harf şeridi, Geri bildirim bandı, İlerleme çubuğu, Hata paneli, Ana eylem çubuğu, Boş/yükleniyor durumları.
  */
-import type { ComponentChildren } from "preact";
-import { useEffect, useRef, useState } from "preact/hooks";
+import { createContext, type ComponentChildren } from "preact";
+import { useContext, useEffect, useRef, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
 import { speak, stopSpeaking, listenOnce, sttAvailable, audioActive } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
-import { efekt, ustUsteSay } from "../services/efekt.ts";
+import { efekt, ustUsteSay, xpUcur } from "../services/efekt.ts";
 import { Icon } from "./icons.tsx";
 
 /* ---------- Ses düğmesi: büyük, tek dokunuşla yavaş/normal ---------- */
@@ -131,16 +131,40 @@ export function MicButton({ onText, disabled, wide = false, label = "Sesli söyl
  * Cevap anı (Şölen 1, #58 B10): doğru → yeşile yumuşak geçiş, yaylanan onay işareti, kısa ton, üst üste 3+ rozeti;
  * yanlış → hafif sallanma, sakin mercan tonu (azarlamaz). Ses Profil'deki "Efekt sesleri" ile kapanır.
  */
-export function FeedbackBand({ kind, title, children }: { kind: "ok" | "bad" | "info" | "warn"; title: string; children?: ComponentChildren }) {
-  const [ust] = useState(() => (kind === "ok" ? ustUsteSay(true) : kind === "bad" ? ustUsteSay(false) : 0));
-  useEffect(() => { if (kind === "ok") { haptic("success"); efekt("dogru"); } else if (kind === "bad") { haptic("error"); efekt("yanlis"); } }, [kind, title]);
+/**
+ * Doğru cevabın XP'si (ekran sağlar): Ders/Medya ilk çalışmada XP.dogru, tekrar çalışmada 0; Bahçe XP.dogru; Okuma sorusu
+ * daha önce XP almadıysa XP.dogru. Bağlam yoksa 0 (Prova, rapor, kontrol).
+ */
+export const CevapXp = createContext(0);
+
+/**
+ * Cevap bandı. Doğru cevapta XP uçuşu cevap anında başlar (miktar `xp` ya da CevapXp bağlamı), kayıt ekranın "Devam"ında
+ * (inceleme #87 P1-2).
+ * `sayac={false}`: cevap olmayan bantlar (rapor, kontrol) "üst üste" sayacına ve efekt sesine karışmaz.
+ */
+export function FeedbackBand({ kind, title, children, xp, sayac = true }: { kind: "ok" | "bad" | "info" | "warn"; title: string; children?: ComponentChildren; xp?: number; sayac?: boolean }) {
+  const baglamXp = useContext(CevapXp);
+  const [ust] = useState(() => (!sayac ? 0 : kind === "ok" ? ustUsteSay(true) : kind === "bad" ? ustUsteSay(false) : 0));
+  useEffect(() => {
+    if (!sayac) return;
+    if (kind === "ok") { haptic("success"); efekt("dogru"); xpUcur(xp ?? baglamXp); } else if (kind === "bad") { haptic("error"); efekt("yanlis"); }
+  }, [kind, title]);
   return (
     <div class={`fb ${kind}`} role="status" aria-live="polite" data-test="feedback">
-      <div class="fb-bas">{kind === "ok" && <span class="fb-isaret" aria-hidden="true"><Icon name="check" size={18} stroke={3} /></span>}<b>{title}</b>
+      <div class="fb-bas">{kind === "ok" && sayac && <span class="fb-isaret" aria-hidden="true"><Icon name="check" size={18} stroke={3} /></span>}<b>{title}</b>
         {kind === "ok" && ust >= 3 && <span class="ustuste" data-test="ustuste">{ust} üst üste</span>}</div>
       {children && <div class="small" style={{ marginTop: 2 }}>{children}</div>}
     </div>
   );
+}
+
+/** Yanlış cevap bandının içi (PM-059 madde 1): önce doğrusu (metin renginde, büyük), sonra açıklama, en sonda öğrencinin cevabı */
+export function YanlisIci({ dogrusu, cevap, children }: { dogrusu: string; cevap?: string; children?: ComponentChildren }) {
+  return <>
+    <div class="fb-dogrusu" lang="de" data-test="fb-dogrusu">{dogrusu}</div>
+    {children}
+    <div class="fb-seninki">Senin cevabın: <span lang="de">{cevap || "—"}</span></div>
+  </>;
 }
 
 /* ---------- Üst ilerleme: aşama x/6 · seans x/4 · kalan süre ---------- */
@@ -155,8 +179,9 @@ export function ProgressHeader({ title, back, step, steps = 7, doneSteps = [], r
       </div>
       {/* DESIGN §1: ekran başına tek ilerleme göstergesi — ekranın kendi göstergesi (sub) varsa bölüm noktaları ve sayaç gizlenir */}
       {/* Şölen 1: "3 / 10" yazısı yerine dolan çubuk; sayı ekran okuyucu ve testler için (sr-only) */}
-      {ilerleme && ilerleme.toplam > 0 && <div class={`ilerleme${ilerleme.n >= ilerleme.toplam - 1 ? " son" : ""}`} data-test="ilerleme" role="progressbar" aria-valuemin={0} aria-valuemax={ilerleme.toplam} aria-valuenow={Math.min(Math.floor(ilerleme.n) + 1, ilerleme.toplam)}>
-        <i style={{ width: `${Math.min(100, ((ilerleme.n + 1) / ilerleme.toplam) * 100)}%` }} /><span class="sr-only">{Math.min(Math.floor(ilerleme.n) + 1, ilerleme.toplam)} / {ilerleme.toplam}</span></div>}
+      {/* `n`: bitmiş madde sayısı; çubuk bitmişi gösterir (ilk soruda boş, cevaplanıp geçilince dolar; inceleme #87 P2) */}
+      {ilerleme && ilerleme.toplam > 0 && <div class={`ilerleme${ilerleme.n >= ilerleme.toplam ? " son" : ""}`} data-test="ilerleme" role="progressbar" aria-valuemin={0} aria-valuemax={ilerleme.toplam} aria-valuenow={Math.min(Math.floor(ilerleme.n) + 1, ilerleme.toplam)}>
+        <i style={{ width: `${Math.min(100, (ilerleme.n / ilerleme.toplam) * 100)}%` }} /><span class="sr-only">{Math.min(Math.floor(ilerleme.n) + 1, ilerleme.toplam)} / {ilerleme.toplam}</span></div>}
       {sub && <div class="sub">{sub}</div>}
       {!sub && step !== undefined && <div class="steps" data-progress="" aria-label={`Aşama ${Math.min(step, 6)}/6`}>{Array.from({ length: steps }, (_, i) => <i class={doneSteps.includes(i) ? "done" : i === step ? "cur" : ""} />)}</div>}
     </header>

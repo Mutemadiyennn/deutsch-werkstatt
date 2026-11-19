@@ -51,6 +51,8 @@ export function soruXpVer(id: string): Promise<void> {
   kuyruk = p.catch(() => {});
   return p;
 }
+/** Bu soru XP'sini daha önce aldı mı (cevap anındaki uçuş için; inceleme #87 P1-2) */
+export const soruXpAlindi = async (id: string) => !!(await getMeta(`xp:soru:${id}`));
 /** Bekleyen XP yazımları bittikten sonra okur (adım biter bitmez Bugün'e geçilince eski toplam görünmesin) */
 export const xpOku = async () => { await kuyruk; return (await getMeta<XpKayit>("xp")) ?? XP_BOS; };
 /** M1 Seans 1: günün (ve önceki günlerin) yeni kartlarının hepsi tanıtılınca bir kez işaretlenir; adım XP'si bir kez */

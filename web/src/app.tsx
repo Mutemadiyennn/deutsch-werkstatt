@@ -16,7 +16,7 @@ import { loadIndex, within } from "./services/content.ts";
 import { getProfile, latestPlacement, saveProfile } from "./data/db.ts";
 import { setLearning, startFocus, updateFocusConfig } from "./services/focusRuntime.ts";
 import { setBaslangicHizi } from "./services/speech.ts";
-import { efektAyar } from "./services/efekt.ts";
+import { efektAyar, sesKilidiAc, ustUsteSifirla } from "./services/efekt.ts";
 import { XpUcus } from "./ui/solen.tsx";
 import { TabBar, Loading, ErrorPanel } from "./ui/components.tsx";
 import { ErrorBoundary, recordError } from "./ui/ErrorBoundary.tsx";
@@ -62,8 +62,12 @@ export function App() {
   useEffect(() => { if (profile) efektAyar(profile.ui); }, [profile?.ui.sfx, profile?.ui.celebrations]);
 
   useEffect(() => {
-    const on = () => setRoute(parseHash(location.hash));
+    // ekran değişince "üst üste" sayacı sıfırlanır (inceleme #87 P2)
+    const on = () => { ustUsteSifirla(); setRoute(parseHash(location.hash)); };
     addEventListener("hashchange", on);
+    // iOS: efekt sesi için ses bağlamı ilk dokunuşta açılır (inceleme #87 P2)
+    const kilit = () => { sesKilidiAc(); removeEventListener("pointerdown", kilit, true); removeEventListener("touchend", kilit, true); };
+    addEventListener("pointerdown", kilit, true); addEventListener("touchend", kilit, true);
     auth.ready.then(() => { setUser(auth.current()); setAuthReady(true); }).catch(() => setAuthReady(true));
     // inceleme #43 P1-3: giriş durumu 8 sn'de gelmezse öğrenci sonsuz "Yükleniyor"da kalmaz
     const slow = setTimeout(() => setAuthSlow(true), 8000);
@@ -73,7 +77,7 @@ export function App() {
     const onErr = (e: ErrorEvent) => recordError("window", e.error ?? e.message);
     const onRej = (e: PromiseRejectionEvent) => recordError("promise", e.reason);
     addEventListener("error", onErr); addEventListener("unhandledrejection", onRej);
-    return () => { removeEventListener("hashchange", on); removeEventListener("error", onErr); removeEventListener("unhandledrejection", onRej); off(); };
+    return () => { removeEventListener("hashchange", on); removeEventListener("pointerdown", kilit, true); removeEventListener("touchend", kilit, true); removeEventListener("error", onErr); removeEventListener("unhandledrejection", onRej); off(); };
   }, []);
 
   useEffect(() => {

@@ -38,7 +38,7 @@ export function ProvaEkrani({ day }: { day: number }) {
   if (err) return <div class="stack"><ProgressHeader title="Konuşma provası" back="#/today" /><ErrorPanel message={err} onRetry={() => location.reload()} /></div>;
   if (!p) return <Loading />;
   const sub = asama === "hazirlik" ? "Hazırlık" : asama === "konusma" ? "Konuşma" : "Geri bildirim";
-  const sira = asama === "hazirlik" ? 0 : asama === "konusma" ? 1 : 2;
+  const sira = asama === "hazirlik" ? 0 : asama === "konusma" ? 1 : 3; // geri bildirim: iki aşama bitti, çubuk dolu
   return (
     <div class="stack" data-test="prova" data-asama={asama}>
       <ProgressHeader title={p.title_tr} back="#/today" right={<FocusChip />} sub={sub} ilerleme={{ n: sira, toplam: 3 }} />
@@ -200,7 +200,7 @@ function Rapor({ p, kayitlar, again }: { p: ProvaT; kayitlar: Kayit[]; again: ()
     <section class="card stack fade" data-test="prova-rapor">
       <h2>Prova bitti</h2>
       <p><Rich text={p.kapanis_tr} /></p>
-      <FeedbackBand kind="ok" title="İyi yaptığın"><Rich text={r.iyi} /></FeedbackBand>
+      <FeedbackBand kind="ok" title="İyi yaptığın" sayac={false}><Rich text={r.iyi} /></FeedbackBand>
       {r.duzeltmeler.length > 0 && <div class="stack" data-test="duzeltmeler" style={{ gap: 6 }}>
         <div class="kicker">Bir dahaki sefere</div>
         <ol class="list">{r.duzeltmeler.map((d) => <li class="small" data-test="duzeltme"><Rich text={d} /></li>)}</ol>

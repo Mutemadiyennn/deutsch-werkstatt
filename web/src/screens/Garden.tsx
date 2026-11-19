@@ -19,7 +19,7 @@ import { judgeWord, numberWordHint } from "../core/grading.ts";
 import { isDue } from "../core/srs.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
-import { ActionBar, AnswerField, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
+import { ActionBar, AnswerField, FeedbackBand, ListenButton, ProgressHeader, YanlisIci } from "../ui/kit.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Photo } from "../ui/learn.tsx";
 
@@ -109,7 +109,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
 
   return (
     <div class="stack" data-test="garden">
-      <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} ilerleme={{ n: Math.min(i, round.length - 1), toplam: round.length }} />
+      <ProgressHeader title="Kelime Bahçesi" back="#/today" right={<FocusChip />} ilerleme={{ n: i, toplam: round.length }} />
       <Question key={`${i}:${q.lexId}:${q.type}`} q={q} l={l} all={data.all} onDone={finish} />
     </div>
   );
@@ -156,11 +156,10 @@ function Question({ q, l, all, onDone }: { q: GardenQ; l: Lexeme; all: Lexeme[];
     {/* geri bildirim bandı yüksek: kart bandın altında kalmasın diye kaydırma payı */}
     <div aria-hidden="true" style={{ height: 180 }} />
     <ActionBar>
-      {res.ok ? <FeedbackBand kind="ok" title="Doğru.">{res.expected && <span lang="de">{res.expected}</span>}</FeedbackBand>
-        : <FeedbackBand kind={res.yazim ? "info" : "bad"} title={res.yazim ? "Kelime doğru, yazımı eksik." : "Doğrusu bu."}>
-            <div class="small">Senin cevabın: <span lang="de">{res.answer || "—"}</span></div>
-            <div>Doğrusu: <b lang="de">{res.expected}</b></div>
-            {res.note && <div class="small">{res.note}</div>}
+      {res.ok ? <FeedbackBand kind="ok" title="Doğru." xp={hinted ? 0 : XP.dogru}>{res.expected && <span lang="de">{res.expected}</span>}</FeedbackBand>
+        : <FeedbackBand kind={res.yazim ? "info" : "bad"} title={res.yazim ? "Kelime doğru, yazımı eksik." : "Doğrusu:"}>
+            {/* PM-059 madde 1: önce doğrusu; örnek cümle hemen üstteki kartta (dinlenebilir) */}
+            <YanlisIci dogrusu={res.expected ?? ""} cevap={res.answer}>{res.note && <div class="small">{res.note}</div>}</YanlisIci>
           </FeedbackBand>}
       <button class="btn primary block" data-test="next" onClick={() => next(res.ok ? (hinted ? "hinted" : "correct") : res.yazim ? "hinted" : "wrong")}>Devam</button>
     </ActionBar></>
@@ -265,9 +264,9 @@ function GardenDone({ day, score, items, kalan, again, xp, kelimeler }: { day?: 
   const [seriGun, setSeriGun] = useState<number | undefined>();
   useEffect(() => { void xpOku().then((x) => setSeriGun(seri(x))); }, []);
   return (
-    <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" />
+    <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" ilerleme={{ n: 1, toplam: 1 }} />
       <section class="card stack" data-test="garden-done"><Kutlama><h2>Tur bitti</h2></Kutlama>
-        <Ozet dogru={score.ok} toplam={score.n} xp={xp} seriGun={seriGun} kelimeler={kelimeler} yarin={devam ? undefined : tomorrow(items).replace(/^Yarın /, "")} />
+        <Ozet dogru={score.ok} toplam={score.n} xp={xp} seriGun={seriGun} kelimeler={kelimeler} />
         {score.ok < score.n && <p class="small">Yanlış olanlar yarın ya da birkaç gün sonra başka bir soruyla geri gelecek.</p>}
         {devam ? <p data-test="garden-kalan">Bugünün kartlarından <b>{kalan}</b> yeni kelime kaldı.</p> : <p class="small muted" data-test="garden-tomorrow">{tomorrow(items)}</p>}
         {devam ? <ActionBar><button class="btn primary block" data-test="garden-again" onClick={again}>Bir tur daha</button></ActionBar>
