@@ -13,7 +13,8 @@ import { DERS_ADIM_TR, TANIT_GRUP, adimlarDers, altSayisi, dersAnahtari, dersIle
 import { speak, speakDizi, stopSpeaking } from "../services/speech.ts";
 import { adimXpVer, xpVer } from "../services/ilerleme.ts";
 import { XP } from "../core/gun.ts";
-import { ActionBar, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
+import { ActionBar, CevapXp, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
+import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { Art, ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { Chips, Rich } from "../ui/rich.tsx";
 import { DrillView } from "../ui/drill.tsx";
@@ -25,6 +26,9 @@ export function DersEkrani({ id }: { id: string }) {
   const [t, setT] = useState<TemelDers | null>(null);
   const [p, setP0] = useState<DersIlerleme | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  // kutlama yalnızca ders bu oturumda bittiyse; bitmiş ders yeniden açılınca konfeti ve "+0 XP" yok (inceleme #87 P2)
+  const [simdiBitti, setSimdiBitti] = useState(false);
+  const oturumXp = useOturumXp();
   useEffect(() => {
     (async () => {
       const [ham] = await Promise.all([loadTemel(id), loadLexicon().catch(() => null)]);
@@ -41,9 +45,10 @@ export function DersEkrani({ id }: { id: string }) {
 
   if (p.bitti) return (
     <div class="stack" data-test="ders">
-      <ProgressHeader title={t.title_tr} back="#/today" />
+      <ProgressHeader title={t.title_tr} back="#/today" ilerleme={{ n: 1, toplam: 1 }} />
       <section class="card stack" data-test="ders-bitti">
-        <h2>Ders bitti</h2>
+        {simdiBitti ? <Kutlama><h2>Ders bitti</h2></Kutlama> : <h2>Ders bitti</h2>}
+        {simdiBitti && p.toplam > 0 && <Ozet dogru={p.dogru} toplam={p.toplam} xp={p.ilkBitti ? undefined : oturumXp} />}
         <p>{p.toplam ? `${p.toplam} soruda ${p.dogru} doğru.` : ""} {t.can_do.tr}</p>
         <div class="row"><a class="btn primary grow" href="#/today" data-test="ders-geri">Sıradaki adıma geç</a>
           <button class="btn grow" onClick={() => setP({ s: 0, k: 0, dogru: 0, toplam: 0, ilkBitti: p.ilkBitti ?? p.bitti })}>Tekrar çalış</button></div>
@@ -53,26 +58,29 @@ export function DersEkrani({ id }: { id: string }) {
 
   const adim = steps[p.s]!;
   const n = altSayisi(t, adim);
-  const ileri = (ok?: boolean | { dogru: number; toplam: number }) => {
+  /** `xpAdet`: XP alan doğru sayısı (yalnızca gerçekten doğru cevap; "Benimki de aynı" beyanı XP almaz, D-102). Uçan XP ile
+   *  kaydedilen aynı olsun diye her doğru cevap ayrı sayılır (inceleme #87 2. tur). */
+  const ileri = (ok?: boolean | { dogru: number; toplam: number }, xpAdet?: number) => {
     const np = dersIleri(p, t, ok);
-    const kazanc = ok === undefined ? 0 : typeof ok === "boolean" ? (ok ? 1 : 0) : ok.dogru;
+    const kazanc = xpAdet ?? (ok === undefined ? 0 : typeof ok === "boolean" ? (ok ? 1 : 0) : ok.dogru);
     // tekrar çalışmada doğru XP'si yok; adım XP'si bir kez (inceleme #66 P2-1)
     if (kazanc && !p.ilkBitti) void xpVer(XP.dogru * kazanc);
-    if (np.bitti) void adimXpVer(`ders:${t.id}`);
+    if (np.bitti) { void adimXpVer(`ders:${t.id}`); setSimdiBitti(true); }
     setP(np);
   };
-  return (
+  // doğru cevabın XP'si cevap anında uçar; tekrar çalışmada XP yok (inceleme #87 P1-2)
+  return (<CevapXp.Provider value={p.ilkBitti ? 0 : XP.dogru}>
     <div class="stack" data-test="ders" data-adim={adim} data-pos={`${p.s}.${p.k}`}>
-      <ProgressHeader title={t.title_tr} back="#/today" right={<FocusChip />} sub={`${p.s + 1}/${steps.length} · ${DERS_ADIM_TR[adim]}${n > 1 ? ` ${p.k + 1}/${n}` : ""}`} />
+      <ProgressHeader title={t.title_tr} back="#/today" right={<FocusChip />} sub={`${DERS_ADIM_TR[adim]}${n > 1 ? ` · ${p.k + 1}/${n}` : ""}`} ilerleme={{ n: steps.slice(0, p.s).reduce((a, s) => a + altSayisi(t, s), 0) + p.k, toplam: steps.reduce((a, s) => a + altSayisi(t, s), 0) }} />
       {adim === "tanit" && (p.k % 2 === 0
         ? <Tanit key={p.k} t={t} grup={p.k / 2} onNext={() => ileri()} />
-        : <Hatirla key={p.k} t={t} grup={(p.k - 1) / 2} onDone={(dogru, toplam) => ileri({ dogru, toplam })} />)}
+        : <Hatirla key={p.k} t={t} grup={(p.k - 1) / 2} onDone={(dogru, toplam, xpli) => ileri({ dogru, toplam }, xpli)} />)}
       {adim === "tablo" && t.table && <Tablo t={t} onNext={() => ileri()} />}
       {(adim === "anlama" || adim === "kurma" || adim === "konusma") && (
-        <DrillView key={`${adim}${p.k}`} d={maddeler(t, adim)[p.k]!} sira={`${p.k + 1}/${n}`} onDone={(s) => ileri(s !== "wrong")} />
+        <DrillView key={`${adim}${p.k}`} d={maddeler(t, adim)[p.k]!} sira={`${p.k + 1}/${n}`} onDone={(s) => ileri(s !== "wrong", s === "correct" ? 1 : 0)} />
       )}
       {adim === "diyalog" && t.dialogue && <Diyalog d={t.dialogue} onNext={() => ileri()} />}
-      {adim === "dinleme" && <Dinleme key={p.k} l={t.listening[p.k]!} onNext={(ok) => ileri(ok)} />}
+      {adim === "dinleme" && <Dinleme key={p.k} l={t.listening[p.k]!} onNext={(s) => ileri(s)} />}
       {adim === "gorev" && t.mission && (
         <section class="card stack fade" data-test="ders-gorev">
           <div class="kicker">Dışarıda dene</div>
@@ -81,7 +89,7 @@ export function DersEkrani({ id }: { id: string }) {
         </section>
       )}
     </div>
-  );
+  </CevapXp.Provider>);
 }
 
 /** Öğretim kartları: önce duy (kart açılınca okunur), sonra yazısı ve anlamı, açıklama (OD-9) */
@@ -112,7 +120,7 @@ function Tanit({ t, grup, onNext }: { t: TemelDers; grup: number; onNext: () => 
 }
 
 /** Hatırlama turu (phases/09 madde 5): grubun her kartı için dinle → anlamını seç, sonra Türkçe → Almancasını yaz */
-function Hatirla({ t, grup, onDone }: { t: TemelDers; grup: number; onDone: (dogru: number, toplam: number) => void }) {
+function Hatirla({ t, grup, onDone }: { t: TemelDers; grup: number; onDone: (dogru: number, toplam: number, xpli: number) => void }) {
   const items = t.teach.slice(grup * TANIT_GRUP, (grup + 1) * TANIT_GRUP);
   const sorular = items.flatMap((x, i) => [{ x, i, tur: "anlam" as const }, { x, i, tur: "yaz" as const }]);
   const [q, setQ] = useState(0);
@@ -122,18 +130,19 @@ function Hatirla({ t, grup, onDone }: { t: TemelDers; grup: number; onDone: (dog
   useEffect(() => { if (cur?.tur === "anlam") void speak(cur.x.art ? `${cur.x.art} ${cur.x.de}` : cur.x.de, "de", "normal"); }, [q]);
   if (!cur) return null;
   const sayi = `${q + 1}/${sorular.length}`;
-  const bitir = (ok: boolean) => { const d = dogru + (ok ? 1 : 0); if (q + 1 >= sorular.length) onDone(d, sorular.length); else { setDogru(d); setQ(q + 1); } };
+  const [xpli, setXpli] = useState(0);
+  const bitir = (r: string) => { const d = dogru + (r !== "wrong" ? 1 : 0), x = xpli + (r === "correct" ? 1 : 0); if (q + 1 >= sorular.length) onDone(d, sorular.length, x); else { setDogru(d); setXpli(x); setQ(q + 1); } };
   if (cur.tur === "anlam") {
     const sec = hatirlaSecenek(t, grup, cur.x, cur.i);
     const d = { id: `hat:${cur.x.id}`, k: "pick" as const, q_tr: "Dinle: ne demek?", opts: sec, ans: sec.indexOf(cur.x.tr) };
     return <div class="stack fade" data-test="ders-hatirla" data-q={q}>
       <div class="row"><ListenButton text={cur.x.art ? `${cur.x.art} ${cur.x.de}` : cur.x.de} /></div>
-      <DrillView key={`a${q}`} d={d} sira={`Hatırla ${sayi}`} onDone={(r) => bitir(r !== "wrong")} />
+      <DrillView key={`a${q}`} d={d} sira={`Hatırla ${sayi}`} onDone={(r) => bitir(r)} />
     </div>;
   }
   const kabul = hatirlaKabul(t, cur.x);
   return <div data-test="ders-hatirla" data-q={q}><DrillView key={`y${q}`} d={{ id: `hat:${cur.x.id}:y`, k: "tr_de", tr: `${cur.x.tr}${cur.x.art ? " (artikeliyle)" : ""}`, accepted: kabul }}
-    artikel={cur.x.art ? { de: cur.x.de, art: cur.x.art } : undefined} sira={`Hatırla ${sayi}`} onDone={(r) => bitir(r !== "wrong")} /></div>;
+    artikel={cur.x.art ? { de: cur.x.de, art: cur.x.art } : undefined} sira={`Hatırla ${sayi}`} onDone={(r) => bitir(r)} /></div>;
 }
 
 function Tablo({ t, onNext }: { t: TemelDers; onNext: () => void }) {
@@ -186,7 +195,8 @@ function Diyalog({ d, onNext }: { d: NonNullable<TemelDers["dialogue"]>; onNext:
 }
 
 /** Dinleme: önce metinsiz dinle (yavaş/normal), sonra sorular; metin en sonda */
-function Dinleme({ l, onNext }: { l: TemelDers["listening"][number]; onNext: (ok?: boolean) => void }) {
+/** Her soru ayrı sayılır: doğru cevabın XP'si cevap anında uçar ve aynı miktar kaydedilir (inceleme #87 2. tur) */
+function Dinleme({ l, onNext }: { l: TemelDers["listening"][number]; onNext: (s: { dogru: number; toplam: number }) => void }) {
   const [q, setQ] = useState(0);
   const [sec, setSec] = useState<number | null>(null);
   const [dogru, setDogru] = useState(0);
@@ -212,7 +222,7 @@ function Dinleme({ l, onNext }: { l: TemelDers["listening"][number]; onNext: (ok
         <div class="stack" data-test="dinleme-metin">
           <p class="small muted">Şimdi metne bak ve bir daha dinle.</p>
           {l.script.map((c) => <p><span lang="de">{c.de}</span>{c.tr && <><br /><span class="small muted">{c.tr}</span></>}</p>)}
-          <ActionBar><button class="btn primary block" data-test="next" onClick={() => onNext(dogru === l.qs.length)}>Devam</button></ActionBar>
+          <ActionBar><button class="btn primary block" data-test="next" onClick={() => onNext({ dogru, toplam: l.qs.length })}>Devam</button></ActionBar>
         </div>
       )}
     </section>

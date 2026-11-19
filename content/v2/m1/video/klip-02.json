@@ -8,6 +8,7 @@
  "baslik": "Studium & Wohnen",
  "sure_kaynak": "0:33",
  "kesit_sure_tahmin_sn": 33,
+ "kesit_sure_olcum_sn": 31,
  "video_url": "https://coerll.utexas.edu/dib/mp4s/01_24_int_ju_studies-home.mp4",
  "transkript_url": "https://www.coerll.utexas.edu/dib/vidt.php?f=01_24_int_ju_studies-home",
  "lisans": "CC BY 4.0",
@@ -20,81 +21,88 @@
  "haric": [],
  "ortam_tr": "Jan yetişkin bir adam. Biri ona üniversitede hangi bölümü okuduğunu ve nerede yaşadığını soruyor.",
  "bilinmeyen": {
-  "oran": 0.088,
+  "oran": 0.069,
   "kelimeler": [
+   "2004",
    "germanistik",
    "nord",
-   "nordwest",
-   "schon",
-   "zwar"
+   "nordwest"
   ]
  },
  "on_ogretim": [
   {
-   "de": "Was studierst du?",
-   "tr": "Üniversitede ne okuyorsun?"
+   "de": "studiere, du studierst",
+   "tr": "üniversitede okuyorum, üniversitede okuyorsun"
   },
   {
-   "de": "ich studiere",
-   "tr": "üniversitede okuyorum"
+   "de": "wohne, wohnst",
+   "tr": "oturuyorum, oturuyorsun"
   },
   {
-   "de": "Wo wohnst du?",
-   "tr": "Nerede oturuyorsun?"
+   "de": "was, wo",
+   "tr": "ne, nerede"
   },
   {
-   "de": "ich wohne",
-   "tr": "bir yerde oturuyorum"
+   "de": "bin, bist angekommen",
+   "tr": "buraya geldim, buraya geldin"
   },
   {
-   "de": "ich bin angekommen",
-   "tr": "bir yere vardım"
+   "de": "habe gelebt",
+   "tr": "yaşadım"
   },
   {
-   "de": "ich habe gelebt",
-   "tr": "bir yerde yaşadım"
+   "de": "und zwar, schon",
+   "tr": "tam olarak, daha önce"
   }
  ],
  "turlar": [
   {
    "tur": 1,
    "basi": "Was studierst",
-   "kim": "soran"
+   "kim": "soran",
+   "tr": "Üniversitede ne okuyorsun?"
   },
   {
    "tur": 2,
    "basi": "Ich studiere",
-   "kim": "konusmaci"
+   "kim": "konusmaci",
+   "tr": "Üniversitede Alman dili ve edebiyatı okuyorum."
   },
   {
    "tur": 3,
    "basi": "Und wo",
-   "kim": "soran"
+   "kim": "soran",
+   "tr": "Peki nerede oturuyorsun?"
   },
   {
    "tur": 4,
    "basi": "Ich wohne",
-   "kim": "konusmaci"
+   "kim": "konusmaci",
+   "tr": "Austin'de oturuyorum, Teksas'taki Austin'de."
   },
   {
    "tur": 5,
    "basi": "Wann bist",
-   "kim": "soran"
+   "kim": "soran",
+   "tr": "Amerika'ya ne zaman vardın?"
   },
   {
    "tur": 6,
    "basi": "Ich bin im",
-   "kim": "konusmaci"
+   "kim": "konusmaci",
+   "tr": "2004 yılında Amerika'ya vardım, tam olarak ağustosta."
   },
   {
    "tur": 7,
    "basi": "Und wo hast",
-   "kim": "soran"
+   "kim": "soran",
+   "tr": "Peki burada nerelerde yaşadın?"
   },
   {
    "tur": 8,
    "basi": "Ich habe hier",
-   "kim": "konusmaci"
+   "kim": "konusmaci",
+   "tr": "Burada daha önce Lubbock'ta yaşadım, Kuzey Teksas'ta, daha doğrusu Kuzeybatı Teksas'ta. Austin'de de yaşadım."
   }
  ],
  "bolum": {
@@ -157,18 +165,55 @@
   "dikte": [
    {
     "id": "d1",
-    "tur": 1,
-    "seviye": "kolay"
+    "tur": 5,
+    "seviye": "kolay",
+    "q_tr": "Üçüncü soru hangi kelimeyle başlıyor?",
+    "opts": [
+     "Was",
+     "Wo",
+     "Wann"
+    ],
+    "ans": 2
    },
    {
     "id": "d2",
-    "tur": 3,
-    "seviye": "orta"
+    "tur": 7,
+    "seviye": "orta",
+    "de": "Und wo ___ du hier gelebt?",
+    "accepted": [
+     "hast",
+     "Hast",
+     "hast?"
+    ]
    },
    {
     "id": "d3",
-    "tur": 7,
-    "seviye": "zor"
+    "tur": 3,
+    "seviye": "zor",
+    "banka": [
+     "wohnst",
+     "Und",
+     "du",
+     "wohne",
+     "wo",
+     "was",
+     "studierst"
+    ],
+    "accepted": [
+     "Und wo wohnst du?",
+     "und wo wohnst du",
+     "Und wo wohnst du"
+    ]
+   },
+   {
+    "id": "d4",
+    "tur": 1,
+    "seviye": "usta",
+    "accepted": [
+     "Was studierst du?",
+     "was studierst du",
+     "Was studierst du"
+    ]
    },
    {
     "id": "d5",
@@ -181,7 +226,10 @@
      "Er ist im August gekommen.",
      "Jan ist im August gekommen.",
      "Er ist im August angekommen.",
-     "Jan ist im August angekommen."
+     "Jan ist im August angekommen.",
+     "Im August",
+     "im August",
+     "August"
     ],
     "zorunlu": [
      "August"
@@ -189,7 +237,7 @@
    }
   ],
   "golge": [
-   3,
+   5,
    7
   ],
   "cevapla": {
@@ -205,16 +253,13 @@
    ],
    "why_tr": "**In Berlin.** Berlin'de demektir. Kısa cevap yeter."
   },
-  "dikte_notu": "Usta basamağı yok. Beşinci turda **bist** (sensin) henüz öğretilmedi. Sekizinci tur çok uzun."
+  "dikte_notu": "Beşinci turdaki **bist** burada sensin demek değil. **bist angekommen** vardın demektir, **ich bin angekommen** (vardım) gibi. Bu soruyu gölgede tekrar ediyorsun, yazman henüz beklenmiyor. Altıncı turdaki **2004** bugün öğretilmedi. **im Jahre 2004** 2004 yılında demektir. Sekizinci tur çok uzun, dikteye girmedi."
  },
  "kanit": "Jan geldiği ayı ve yılı söylüyor. Bu, ikinci günün ay konusuna uyuyor. Mevsim konusu bu klipte yok.",
  "review": {
-  "status": "reviewed",
-  "by": "dilbilimci-ajan",
-  "at": "2026-11-19",
-  "notes": "docs/v2/reviews/m1-video.md, m1-duzeltme.md; okur: docs/v2/reviews/okur/m1-tekrar7.md, m1-tekrar10.md, m1-tekrar11.md.",
-  "okur": "passed",
-  "okur_at": "2026-11-19"
+  "status": "draft",
+  "notes": "#58 A9 ön öğretim kararı (19.11): ön öğretim en çok 6 madde, madde başına en çok 4, toplam en çok 15 kelime; hiçbir madde bir sorunun cevabı, dikte, gölge ya da kanıt cümlesiyle aynı değil. Ön öğretim 16 kelimeden 14 kelimeye indi; bu yüzden durum yeniden taslak. Önceki inceleme: dilbilimci 2026-11-19, docs/v2/reviews/m1-video.md, m1-duzeltme.md; okur: docs/v2/reviews/okur/m1-tekrar7.md, m1-tekrar10.md, m1-tekrar11.md. Dilbilimci ve okur ön öğretimi yeniden görmeli. Dilbilimci (19.11, ön öğretim): **bist** ikinci günün bilinen listesinde yok, ölçüm aracı onu **bis** kelimesinden bilinen sayıyordu; gerçek oran 6/57 idi. **bin angekommen** maddesi **bin, bist angekommen** oldu. Toplam 15 kelime, bilinmeyen 5/57. #82 2. tur (P1-1): rakamlar da kelime sayıldı (58 kelime). Ön öğretim inceleme önerisiyle yeniden kuruldu: **studiere, du studierst**, **wohne, du wohnst**, **was, wo**, **zwar, schon** (6 madde, 15 kelime). Bilinmeyen 4/58: **Germanistik**, **Nord**, **Nordwest**, **2004**. Eski d2 boşluğu (**Und wo ___ du?**, cevap **wohnst**) **du wohnst** maddesinden okunuyordu; boşluk 7. turda **hast** kelimesine taşındı. d1 beşinci turun soru kelimesini soruyor (**Wann**), d3 üçüncü turu kurduruyor, usta d4 birinci tur. Gölge 5. ve 7. tur. toplam_sure_tahmin_sn ölçümden (31 sn). Dilbilimci (19.11, #82 2. tur): **zwar** tek başına tam olarak demek değil (gerçi demektir); kaynaktaki öbek **und zwar**. Madde **und zwar, schon** oldu, kelime yeri için **wohne, du wohnst** → **wohne, wohnst** (**du** ilk maddede öğretiliyor). 6 madde, 15 kelime, oran aynı (4/58). d1 sorusu tur numarası ve terim yerine sırayı söylüyor. d5 kabul listesine yazım varyantları eklendi."
  },
- "sure_kaynak_sn": 33
+ "sure_kaynak_sn": 33,
+ "toplam_sure_tahmin_sn": 31
 }

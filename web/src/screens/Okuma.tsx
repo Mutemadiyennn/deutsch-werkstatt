@@ -7,19 +7,20 @@ import { useEffect, useState } from "preact/hooks";
 import type { Drill, Lexeme } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadLexicon, loadM1Gun } from "../services/content.ts";
-import { adimXpVer, soruXpVer } from "../services/ilerleme.ts";
+import { adimXpVer, soruXpAlindi, soruXpVer } from "../services/ilerleme.ts";
 import { XP } from "../core/gun.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { cumleler, yazmaKontrol, type OkumaYazmaT, type YazmaSonuc } from "../core/okuma.ts";
 import { getMeta, setMeta } from "../data/db.ts";
 import { stopSpeaking } from "../services/speech.ts";
 import { DrillView } from "../ui/drill.tsx";
-import { ActionBar, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
+import { ActionBar, CevapXp, FeedbackBand, ListenButton, ProgressHeader } from "../ui/kit.tsx";
 import { ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
 import { DokunMetin, KelimeSayfasi } from "../ui/kelime.tsx";
 import { Rich } from "../ui/rich.tsx";
 
 export const okumaAnahtari = (day: number) => `m1:okuma:${day}`;
+const soruKimligi = (o: OkumaYazmaT, i: number) => { const q = o.sorular[i]!; return "k" in q ? q.id : q.id ?? `${o.title_tr}:${i}`; };
 type Asama = { a: "metin" } | { a: "soru"; i: number } | { a: "yaz" } | { a: "ornek" } | { a: "kontrol" } | { a: "bitti" };
 
 export function OkumaEkrani({ day }: { day: number }) {
@@ -32,6 +33,15 @@ export function OkumaEkrani({ day }: { day: number }) {
   const [dogru, setDogru] = useState(0);
   const [yazi, setYazi] = useState("");
   const [kontrol, setKontrol] = useState<YazmaSonuc | null>(null);
+  // doğru cevabın XP'si cevap anında uçar; soru XP'si daha önce alındıysa uçuş yok (D-102, inceleme #87 P1-2)
+  const [soruXp, setSoruXp] = useState(0);
+  const soruId = o && as.a === "soru" ? soruKimligi(o, as.i) : null;
+  useEffect(() => {
+    if (!soruId) return;
+    let iptal = false; setSoruXp(0);
+    void soruXpAlindi(`okuma:${day}:${soruId}`).then((v) => { if (!iptal) setSoruXp(v ? 0 : XP.dogru); });
+    return () => { iptal = true; };
+  }, [soruId]);
   useEffect(() => {
     (async () => {
       const g = personalizeDeep(await loadM1Gun(day), { name: profile.displayName, address: profile.address });
@@ -55,16 +65,16 @@ export function OkumaEkrani({ day }: { day: number }) {
 
   return (
     <div class="stack" data-test="okuma" data-asama={as.a}>
-      <ProgressHeader title={o.title_tr} back="#/today" right={<FocusChip />} sub={`${Math.min(sira, adimlar)}/${adimlar} · ${etiket[as.a]}`} />
+      <ProgressHeader title={o.title_tr} back="#/today" right={<FocusChip />} sub={etiket[as.a]} ilerleme={{ n: as.a === "bitti" ? adimlar : Math.min(sira, adimlar) - 1, toplam: adimlar }} />
       {(as.a === "metin" || as.a === "soru") && o.metin_de && <Metin key={as.a} o={o} lex={lex} kisa={as.a === "soru"} />}
       {as.a === "metin" && <ActionBar><button class="btn primary block" data-test="next" onClick={() => (o.sorular.length ? git({ a: "soru", i: 0 }) : sorulardanSonra())}>{o.sorular.length ? "Sorulara geç" : "Devam"}</button></ActionBar>}
       {as.a === "soru" && (() => {
         const q = o.sorular[as.i]!;
-        const d: Drill = "k" in q ? q : { id: q.id ?? `${o.title_tr}:${as.i}`, k: "pick", q_tr: q.q_tr, opts: q.opts, ans: q.ans };
-        return <DrillView key={`s${as.i}`} d={d} sira={`${as.i + 1}/${o.sorular.length}`} onDone={(r) => {
+        const d: Drill = "k" in q ? q : { id: soruKimligi(o, as.i), k: "pick", q_tr: q.q_tr, opts: q.opts, ans: q.ans };
+        return <CevapXp.Provider value={soruXp}><DrillView key={`s${as.i}`} d={d} sira={`${as.i + 1}/${o.sorular.length}`} onDone={(r) => {
           if (r === "correct") { setDogru(dogru + 1); void soruXpVer(`okuma:${day}:${d.id}`); }
           if (as.i + 1 < o.sorular.length) git({ a: "soru", i: as.i + 1 }); else bitirSonra();
-        }} />;
+        }} /></CevapXp.Provider>;
       })()}
       {as.a === "yaz" && o.yazma && <Yaz o={o} yazi={yazi} setYazi={setYazi} kontrol={kontrol} setKontrol={setKontrol} onNext={() => git({ a: "ornek" })} />}
       {as.a === "ornek" && o.yazma && (
@@ -124,9 +134,9 @@ function Yaz({ o, yazi, setYazi, kontrol, setKontrol, onNext }: { o: OkumaYazmaT
         placeholder="Almanca mesajını yaz…" onInput={(e) => { setYazi((e.target as HTMLTextAreaElement).value); setKontrol(null); }} />
       {kontrol && (
         <div class="stack" style={{ gap: 6 }} data-test="yazi-kontrol">
-          {kontrol.eksik.length > 0 && <FeedbackBand kind="bad" title="Eksik kelime">{kontrol.eksik.map((z, i) => <>{i > 0 && ", "}<b lang="de">{z}</b></>)} yok. Ekleyip tekrar kontrol et.</FeedbackBand>}
+          {kontrol.eksik.length > 0 && <FeedbackBand kind="bad" title="Eksik kelime" sayac={false}>{kontrol.eksik.map((z, i) => <>{i > 0 && ", "}<b lang="de">{z}</b></>)} yok. Ekleyip tekrar kontrol et.</FeedbackBand>}
           {/* yeşil bant yalnızca "tamam"da: zorunlu kelimeler kalıba uyan cümlelerin sabit kısmında (inceleme #70 2. tur P2-A) */}
-          {kontrol.tamam && <FeedbackBand kind="ok" title="Gereken kelimeler tamam.">{kontrol.toplam} cümlenin {kontrol.kalipli} tanesi öğrendiğin kalıplara uyuyor.</FeedbackBand>}
+          {kontrol.tamam && <FeedbackBand kind="ok" title="Gereken kelimeler tamam." sayac={false}>{kontrol.toplam} cümlenin {kontrol.kalipli} tanesi öğrendiğin kalıplara uyuyor.</FeedbackBand>}
           {!kontrol.tamam && kontrol.eksik.length === 0 && <FeedbackBand kind="info" title="Kelimeler var, ama kalıba uyan cümlede değil">Gereken kelimeleri öğrendiğin bir kalıbın içinde kullan; örnek cevaba bakabilirsin.</FeedbackBand>}
           {kontrol.taninmayan.length > 0 && <FeedbackBand kind="info" title="Bunları kontrol edemedim">
             {kontrol.taninmayan.map((c) => <div lang="de">{c}</div>)}
