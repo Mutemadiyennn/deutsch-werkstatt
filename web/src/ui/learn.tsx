@@ -147,22 +147,28 @@ export function HeardWordBox() {
 
 /** Kelime fotoğrafı (yalnızca somut kelimeler; sunucu yoksa gösterilmez). Aynı fotoğraf art arda gösterilmez (v1 kuralı). */
 const lastShown = new Map<string, number>();
-export function Photo({ q }: { q?: string }) {
+/**
+ * `sira` verilirse fotoğraf listedeki sırayla seçilir (PM-062: kartın gösterim sayacı; uygulama yeniden açılınca da döner).
+ * Verilmezse oturum içinde bir önce gösterilenden farklısı.
+ */
+export function Photo({ q, sira }: { q?: string; sira?: number }) {
   const { api } = useApp();
   const [p, setP] = useState<PhotoResult | null>(null);
   useEffect(() => {
-    let live = true; setP(null);
-    if (!q || !api.configured) return;
+    // yenisi seçilene kadar eskisi kalır: cümle değişirken alan boşalıp dolmaz (düzen kayması yok)
+    let live = true;
+    if (!q || !api.configured) { setP(null); return; }
     (async () => {
       let list = await cacheGet<PhotoResult[]>(`photo:${q}`, 30 * 86400_000);
-      if (!list) { try { list = await api.photos(q); await cachePut(`photo:${q}`, list); } catch { return; } }
-      if (!list?.length || !live) return;
+      if (!list) { try { list = await api.photos(q); await cachePut(`photo:${q}`, list); } catch { if (live) setP(null); return; } }
+      if (!live) return;
+      if (!list?.length) { setP(null); return; }
       const prev = lastShown.get(q);
-      const pick = list.find((x) => x.id !== prev) || list[0]!;
+      const pick = sira !== undefined ? list[sira % list.length]! : list.find((x) => x.id !== prev) || list[0]!;
       lastShown.set(q, pick.id); setP(pick);
     })();
     return () => { live = false; };
-  }, [q]);
+  }, [q, sira]);
   if (!p) return null;
   return <figure style={{ margin: 0 }}><img src={p.src} alt={p.alt} style={{ width: "100%", maxHeight: 200, objectFit: "cover", borderRadius: 12 }} loading="lazy" /><figcaption class="tiny muted">Foto: {p.credit} · Pexels</figcaption></figure>;
 }

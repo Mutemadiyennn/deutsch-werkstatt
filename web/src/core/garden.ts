@@ -19,6 +19,8 @@
  *  - Aynı karta art arda aynı tür sorulmaz (`LearnerItem.lastQ` ve tur içi).
  *  - Tur 8–12 soru: önce vadesi gelenler, sonra yeni kartlar (tekrar yükü artınca yeni sayısı düşer).
  *  - Yanlışta kart turun sonunda başka örnek cümle (ve başka fotoğraf) ile yeniden gelir.
+ *  - PM-062: soru cümlesi kartın gösterim sayacından (`exSeen`) kurulur: her gün başka cümle ve onun fotoğrafı. Güçlü kartta
+ *    fotoğraf cevaptan önce gösterilmez (fotoğraf sorusu seçilmez; tanıtımda ve cevap ekranında fotoğraf var).
  */
 import { kartMi, type Lexeme } from "@dw/shared";
 import type { LearnerItem, PersonalWord } from "@dw/shared";
@@ -41,6 +43,19 @@ export interface GardenQ {
 }
 
 export const isNoun = (l: Lexeme) => l.pos === "noun" && !!l.art;
+
+/**
+ * PM-062 4(b): üretim yolunda bu kararlılığa (gün) ulaşan kart "güçlü" sayılır; fotoğraf ezberini kırmak için fotoğraf
+ * sorusu (photo_say) artık seçilmez. `policy.json` gelene kadar sabit (D-111).
+ */
+export const GUCLU_GUN = 10;
+export const guclu = (it: LearnerItem | undefined) => (it?.active.fsrs?.stability ?? 0) >= GUCLU_GUN;
+/** Gösterilen cümleden sonra yazılacak sayaç (geri gitmez): sonraki oturum gösterilenin ardından başlar */
+export const sonrakiExSeen = (it: LearnerItem | undefined, gosterilen: number) => Math.max(it?.exSeen ?? 0, gosterilen + 1);
+/** Kartın sıradaki cümle sırası: gösterim sayacı (havuz kendi uzunluğuna göre döner) */
+export const siradakiEx = (it: LearnerItem | undefined) => it?.exSeen ?? 0;
+/** Soru türüne göre cümle havuzu: boşluk soruları `forms`, ötekiler `examples` */
+export function havuz(l: Lexeme, t: QType): number { return t === "gap" ? otherForms(l).length : t === "sep_perfekt" ? verbForms(l).length : l.examples.length; }
 /** yalnızca çoğul isim (die Daten, die Eltern): artikel sorusu "die"yi cinsiyet gibi öğretmesin (inceleme #59 P2-4) */
 const PLURALIA = new Set(["Eltern", "Großeltern", "Leute", "Geschwister", "Ferien", "Kosten", "Daten", "Personalien", "Masern", "Pommes", "Spaghetti", "Möbel"]);
 export const pluralOnly = (l: Lexeme) => isNoun(l) && PLURALIA.has(l.de);
@@ -140,8 +155,9 @@ export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerI
     if (out.length >= cap || used.has(id)) return;
     // ilk üretim sorusu "kendi cümlen" olmaz: önce kelimeyi söyletir (inceleme #59 2. tur)
     const first = path === "active" && !items.get(id)?.active.fsrs;
-    const t = pickType(lex.get(id)!, path, items.get(id)?.lastQ, rng, first ? ["own_sentence"] : []);
-    if (t) { out.push({ lexId: id, type: t, ex: 0 }); used.add(id); }
+    const it = items.get(id);
+    const t = pickType(lex.get(id)!, path, it?.lastQ, rng, [...(first ? ["own_sentence" as const] : []), ...(guclu(it) ? ["photo_say" as const] : [])]);
+    if (t) { out.push({ lexId: id, type: t, ex: siradakiEx(it) }); used.add(id); }
   };
   const dueA: { id: string; at: number }[] = [], dueP: { id: string; at: number }[] = [], ready: { id: string; at: number }[] = [];
   for (const it of items.values()) {
@@ -206,10 +222,13 @@ export function personalMatch(personal: { de: string }[], all: Lexeme[]): string
 }
 
 /** Yanlış cevap: kart turun sonuna, başka örnek cümleyle ve (aynı yolda) başka türle geri gelir — bir kez */
-export function requeue(round: GardenQ[], q: GardenQ, l: Lexeme, rng: () => number = Math.random): GardenQ[] {
+export function requeue(round: GardenQ[], q: GardenQ, l: Lexeme, rng: () => number = Math.random, it?: LearnerItem): GardenQ[] {
   if (q.retry) return round;
-  const t = pickType(l, pathOf(q.type), q.type, rng) || q.type;
-  const ex = l.examples.length > 1 ? (q.ex + 1) % l.examples.length : q.ex;
+  // güçlü kartta tekrar da fotoğraf sorusu olmaz (PM-062 4b; inceleme #92 P1-2)
+  const t = pickType(l, pathOf(q.type), q.type, rng, guclu(it) ? ["photo_say"] : []) || q.type;
+  // ham sayaç: her havuz (örnekler, boşluklar) kendi uzunluğuna göre döner; mod örnek sayısıyla alınırsa boşluk havuzunda
+  // aynı cümleye düşebilirdi (PM-062 madde 3)
+  const ex = q.ex + 1;
   return [...round, { lexId: q.lexId, type: t, ex, retry: 1 }];
 }
 
