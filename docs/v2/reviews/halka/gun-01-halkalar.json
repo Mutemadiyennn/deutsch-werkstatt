@@ -1,0 +1,502 @@
+{
+ "gun": 1,
+ "not": "PM-078 B öneri (İÇ). AKIS AK-5 halkalar + dersten_sonra (dil noktası bu halkadan önce mi). Şema ANA'da; alan gelince gun-01.json'a taşınır.",
+ "halkalar": [
+  {
+   "id": "m1:01:h1",
+   "title_tr": "Selam ve teşekkür",
+   "kartlar": [
+    "lx:hallo",
+    "lx:danke",
+    "lx:bitte",
+    "lx:Frau",
+    "lx:Herr"
+   ],
+   "dersten_sonra": false,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:hallo",
+     "de": "Hallo, Tobi!",
+     "tr": "Merhaba Tobi!"
+    },
+    {
+     "kart": "lx:hallo",
+     "de": "Hallo? Frau Huber?",
+     "tr": "Alo? Huber Hanım?"
+    },
+    {
+     "kart": "lx:danke",
+     "de": "Danke, Frau Stadler!",
+     "tr": "Teşekkürler Stadler Hanım!"
+    },
+    {
+     "kart": "lx:danke",
+     "de": "Danke für alles, Ioana!",
+     "tr": "Her şey için sağ ol Ioana!"
+    },
+    {
+     "kart": "lx:bitte",
+     "de": "Ja, bitte.",
+     "tr": "Evet, lütfen."
+    },
+    {
+     "kart": "lx:bitte",
+     "de": "Das, bitte.",
+     "tr": "Şunu lütfen."
+    },
+    {
+     "kart": "lx:Frau",
+     "de": "Hallo, Frau Brandl!",
+     "tr": "Merhaba Brandl Hanım!"
+    },
+    {
+     "kart": "lx:Frau",
+     "de": "Ja, Frau Huber.",
+     "tr": "Evet Huber Hanım."
+    },
+    {
+     "kart": "lx:Herr",
+     "de": "Danke, Herr Wimmer!",
+     "tr": "Teşekkürler Wimmer Bey!"
+    },
+    {
+     "kart": "lx:Herr",
+     "de": "Hallo, Herr Pichler!",
+     "tr": "Merhaba Pichler Bey!"
+    }
+   ],
+   "sahne": {
+    "satirlar": [
+     {
+      "r": "ch:stadler",
+      "de": "Hallo! Ja, bitte?",
+      "tr": "Merhaba! Buyurun?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Hallo, Frau Stadler! Das, bitte.",
+      "tr": "Merhaba Stadler Hanım! Şunu lütfen."
+     },
+     {
+      "r": "ch:stadler",
+      "de": "Bitte.",
+      "tr": "Buyurun."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Danke!",
+      "tr": "Teşekkürler!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Stadler Hanım ‘Ja, bitte?’ diyor. Ne demek istiyor?",
+     "opts": [
+      "Buyurun, ne istersiniz?",
+      "Teşekkür ederim.",
+      "Hayır, olmaz.",
+      "Görüşürüz."
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:01:h2",
+   "title_tr": "Hafta içi",
+   "kartlar": [
+    "lx:Montag",
+    "lx:Dienstag",
+    "lx:Mittwoch",
+    "lx:Donnerstag",
+    "lx:Freitag"
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Montag",
+     "de": "Am Montag geht es nicht.",
+     "tr": "Pazartesi günü olmuyor."
+    },
+    {
+     "kart": "lx:Montag",
+     "de": "Montag? Nicht Dienstag?",
+     "tr": "Pazartesi mi? Salı değil mi?"
+    },
+    {
+     "kart": "lx:Dienstag",
+     "de": "Am Dienstag? Ja, bitte.",
+     "tr": "Salı günü mü? Evet, lütfen."
+    },
+    {
+     "kart": "lx:Dienstag",
+     "de": "Heute ist Dienstag, ja?",
+     "tr": "Bugün salı, değil mi?"
+    },
+    {
+     "kart": "lx:Mittwoch",
+     "de": "Ist heute Mittwoch?",
+     "tr": "Bugün çarşamba mı?"
+    },
+    {
+     "kart": "lx:Mittwoch",
+     "de": "Mittwoch geht nicht, aber Donnerstag geht.",
+     "tr": "Çarşamba olmuyor ama perşembe olur."
+    },
+    {
+     "kart": "lx:Donnerstag",
+     "de": "Am Donnerstag? Ja, das geht.",
+     "tr": "Perşembe günü mü? Evet, olur."
+    },
+    {
+     "kart": "lx:Donnerstag",
+     "de": "Bis Donnerstag, Tobi!",
+     "tr": "Perşembe görüşürüz Tobi!"
+    },
+    {
+     "kart": "lx:Freitag",
+     "de": "Geht es am Freitag?",
+     "tr": "Cuma günü olur mu?"
+    },
+    {
+     "kart": "lx:Freitag",
+     "de": "Heute ist Freitag!",
+     "tr": "Bugün cuma!"
+    }
+   ],
+   "sahne": {
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Guten Tag, hier ist {name}.",
+      "tr": "İyi günler, ben {name}.",
+      "de_adsiz": "Guten Tag.",
+      "tr_adsiz": "İyi günler."
+     },
+     {
+      "r": "ch:huber",
+      "de": "Guten Tag! Geht es am Montag?",
+      "tr": "İyi günler! Pazartesi günü olur mu?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Am Montag geht es nicht. Geht Donnerstag?",
+      "tr": "Pazartesi günü olmuyor. Perşembe olur mu?"
+     },
+     {
+      "r": "ch:huber",
+      "de": "Donnerstag, ja. Bis Donnerstag!",
+      "tr": "Perşembe, tamam. Perşembe görüşürüz!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Huber Hanım ile hangi günde anlaşıyorsun?",
+     "opts": [
+      "Pazartesi",
+      "Salı",
+      "Perşembe",
+      "Cuma"
+     ],
+     "ans": 2
+    }
+   }
+  },
+  {
+   "id": "m1:01:h3",
+   "title_tr": "Hafta sonu ve hafta",
+   "kartlar": [
+    "lx:Samstag",
+    "lx:Sonntag",
+    "lx:Wochenende",
+    "lx:Woche",
+    "lx:Tag"
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Samstag",
+     "de": "Samstag? Ja, Samstag geht!",
+     "tr": "Cumartesi mi? Evet, cumartesi olur!"
+    },
+    {
+     "kart": "lx:Samstag",
+     "de": "Ist morgen Samstag?",
+     "tr": "Yarın cumartesi mi?"
+    },
+    {
+     "kart": "lx:Sonntag",
+     "de": "Am Sonntag ist Tobi nicht hier.",
+     "tr": "Tobi pazar günü burada değil."
+    },
+    {
+     "kart": "lx:Sonntag",
+     "de": "Und am Sonntag? Geht das?",
+     "tr": "Peki pazar günü? Olur mu?"
+    },
+    {
+     "kart": "lx:Wochenende",
+     "de": "Heute ist Freitag – Wochenende!",
+     "tr": "Bugün cuma, hafta sonu!"
+    },
+    {
+     "kart": "lx:Wochenende",
+     "de": "Und am Wochenende, Tobi?",
+     "tr": "Peki hafta sonu, Tobi?"
+    },
+    {
+     "kart": "lx:Woche",
+     "de": "Diese Woche geht es nicht.",
+     "tr": "Bu hafta olmuyor."
+    },
+    {
+     "kart": "lx:Woche",
+     "de": "Diese Woche ist Ioana nicht hier.",
+     "tr": "Ioana bu hafta burada değil."
+    },
+    {
+     "kart": "lx:Tag",
+     "de": "Guten Tag, Frau Brandl!",
+     "tr": "İyi günler Brandl Hanım!"
+    },
+    {
+     "kart": "lx:Tag",
+     "de": "Welcher Tag geht?",
+     "tr": "Hangi gün olur?"
+    }
+   ],
+   "sahne": {
+    "satirlar": [
+     {
+      "r": "ch:brandl",
+      "de": "Hallo! Welcher Tag ist heute? Samstag?",
+      "tr": "Merhaba! Bugün günlerden ne? Cumartesi mi?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Nicht Samstag, Frau Brandl. Heute ist Sonntag.",
+      "tr": "Cumartesi değil Brandl Hanım. Bugün pazar."
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Sonntag? Ach ja! Sonntag ist Wochenende.",
+      "tr": "Pazar mı? Ah evet! Pazar hafta sonu."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja. Und morgen ist Montag.",
+      "tr": "Evet. Yarın da pazartesi."
+     }
+    ],
+    "soru": {
+     "q_tr": "Bugün hangi gün?",
+     "opts": [
+      "Cumartesi",
+      "Pazar",
+      "Pazartesi",
+      "Cuma"
+     ],
+     "ans": 1
+    }
+   }
+  },
+  {
+   "id": "m1:01:h4",
+   "title_tr": "Bugün, yarın, dün",
+   "kartlar": [
+    "lx:heute",
+    "lx:morgen",
+    "lx:gestern",
+    "lx:übermorgen",
+    "lx:vorgestern"
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:heute",
+     "de": "Heute geht es nicht.",
+     "tr": "Bugün olmuyor."
+    },
+    {
+     "kart": "lx:heute",
+     "de": "Ist Herr Wimmer heute hier?",
+     "tr": "Wimmer Bey bugün burada mı?"
+    },
+    {
+     "kart": "lx:morgen",
+     "de": "Geht es morgen?",
+     "tr": "Yarın olur mu?"
+    },
+    {
+     "kart": "lx:morgen",
+     "de": "Bis morgen, Ioana!",
+     "tr": "Yarın görüşürüz Ioana!"
+    },
+    {
+     "kart": "lx:gestern",
+     "de": "Gestern war Tobi nicht hier.",
+     "tr": "Tobi dün burada değildi."
+    },
+    {
+     "kart": "lx:gestern",
+     "de": "Gestern? Nicht heute?",
+     "tr": "Dün mü? Bugün değil mi?"
+    },
+    {
+     "kart": "lx:übermorgen",
+     "de": "Morgen geht es nicht, aber übermorgen geht es.",
+     "tr": "Yarın olmuyor ama öbür gün olur."
+    },
+    {
+     "kart": "lx:übermorgen",
+     "de": "Ist übermorgen Freitag?",
+     "tr": "Öbür gün cuma mı?"
+    },
+    {
+     "kart": "lx:vorgestern",
+     "de": "Vorgestern war Montag.",
+     "tr": "Evvelsi gün pazartesiydi."
+    },
+    {
+     "kart": "lx:vorgestern",
+     "de": "Ioana war vorgestern hier.",
+     "tr": "Ioana evvelsi gün buradaydı."
+    }
+   ],
+   "sahne": {
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Hallo {name}! Geht es morgen?",
+      "tr": "Merhaba {name}! Yarın olur mu?",
+      "de_adsiz": "Hallo! Geht es morgen?",
+      "tr_adsiz": "Merhaba! Yarın olur mu?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Morgen geht nicht. Übermorgen?",
+      "tr": "Yarın olmuyor. Öbür gün?"
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Übermorgen ist Freitag. Ja, das geht!",
+      "tr": "Öbür gün cuma. Evet, olur!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, bis Freitag!",
+      "tr": "Tamam, cuma görüşürüz!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Bugün hangi gün?",
+     "opts": [
+      "Pazartesi",
+      "Salı",
+      "Çarşamba",
+      "Perşembe"
+     ],
+     "ans": 2
+    }
+   }
+  },
+  {
+   "id": "m1:01:h5",
+   "title_tr": "Muayenehane kapalı mı?",
+   "kartlar": [
+    "lx:gehen",
+    "lx:ja",
+    "lx:nein",
+    "lx:Praxis",
+    "lx:geschlossen"
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:gehen",
+     "de": "Gehst du heute zu Dr. Weber?",
+     "tr": "Bugün Dr. Weber'e gidiyor musun?"
+    },
+    {
+     "kart": "lx:gehen",
+     "de": "Ja, Mittwoch geht.",
+     "tr": "Evet, çarşamba olur."
+    },
+    {
+     "kart": "lx:ja",
+     "de": "Ja, danke, Frau Huber.",
+     "tr": "Evet, teşekkürler Huber Hanım."
+    },
+    {
+     "kart": "lx:ja",
+     "de": "Ja, bis Montag!",
+     "tr": "Evet, pazartesi görüşürüz!"
+    },
+    {
+     "kart": "lx:nein",
+     "de": "Nein, heute geht es nicht.",
+     "tr": "Hayır, bugün olmuyor."
+    },
+    {
+     "kart": "lx:nein",
+     "de": "Nein, nicht Montag – Dienstag.",
+     "tr": "Hayır, pazartesi değil, salı."
+    },
+    {
+     "kart": "lx:Praxis",
+     "de": "Ist das die Praxis Dr. Weber?",
+     "tr": "Orası Dr. Weber muayenehanesi mi?"
+    },
+    {
+     "kart": "lx:Praxis",
+     "de": "Ich gehe am Montag in die Praxis.",
+     "tr": "Pazartesi günü muayenehaneye gidiyorum."
+    },
+    {
+     "kart": "lx:geschlossen",
+     "de": "Geschlossen? Heute?",
+     "tr": "Kapalı mı? Bugün mü?"
+    },
+    {
+     "kart": "lx:geschlossen",
+     "de": "Heute ist alles geschlossen.",
+     "tr": "Bugün her şey kapalı."
+    }
+   ],
+   "sahne": {
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Guten Tag, hier ist {name}. Geht Samstag?",
+      "tr": "İyi günler, ben {name}. Cumartesi olur mu?",
+      "de_adsiz": "Guten Tag. Geht Samstag?",
+      "tr_adsiz": "İyi günler. Cumartesi olur mu?"
+     },
+     {
+      "r": "ch:huber",
+      "de": "Nein, am Wochenende ist die Praxis geschlossen.",
+      "tr": "Hayır, hafta sonu muayenehane kapalı."
+     },
+     {
+      "r": "ch:huber",
+      "de": "Geht Montag?",
+      "tr": "Pazartesi olur mu?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, Montag geht. Danke!",
+      "tr": "Evet, pazartesi olur. Teşekkürler!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Cumartesi neden olmuyor?",
+     "opts": [
+      "Muayenehane hafta sonu kapalı.",
+      "Doktor hasta.",
+      "Cumartesi bütün randevular dolu.",
+      "Cumartesi günü sen çalışıyorsun."
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ]
+}

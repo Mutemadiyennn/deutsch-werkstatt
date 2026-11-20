@@ -96,7 +96,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | Çevrimdışı medya (#58 A12 son parça) | `v2/cevrimdisi-medya` | PR #74: medya pakette, servis işçisi ayrı önbellek + 206 aralıklı yanıt, uçak modu e2e; 2. tur bulguları düzeltildi |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
 
-## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-20
+## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-20 akşam
 | Seviye | Kelime kartı | Kalıp | Senaryo (tam) | Mini senaryo | Diyalog grafiği | Okuma | Dinleme | Haber | Madde bankası |
 |---|---|---|---|---|---|---|---|---|---|
 | A1 | — / 505 / 505 / 0 | — / 40 / 40 / 0 | — / 1 / 0 / 0 | — / 1 / 0 / 0 | 0 | 0 | 0 | 0 | seviye tespiti 2241 (tüm seviyeler) |
@@ -106,6 +106,8 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 Kalıpların 61'i de onaylı (main, `patterns.json`). Hedef sütunu (günlük: yazar ≥2 ünite parçası, lex 150–200 kart, dilbilimci aynı gün) hat başlayınca günlük doldurulur. BY-8 tükenme tahmini: K2 motoru (R1) gelene kadar hesaplanamaz.
 R0 temel paket: 11 ders, 201 öğretim öğesi, 401 alıştırma; 10'u main'de (#51), r0-11 "Sonu kişiye göre değişir" (Präsens kişi ekleri; M1 2. gün, PM kararı #122 20.11) main (#141). Kelime sayıları `card:false` işlev kelimelerini saymaz.
 B5 (PM 20.11 05:32, ders profili): 1. gün dersi r0-01 "söyle" ağırlıklı (#145; tr_de 10 → 4, listen_and_respond 3 → 9); 2. gün dersi r0-02 "dinle" ağırlıklı (#147; tr_de 9 → 4, listen_and_respond 3 → 11); 3. gün dersi r0-03 "sayı" profili (#155; pick 5 → 3, tr_de 10 → 6, transform 4 → 7, listen_and_respond 3 → 9).
+PM-078 C (cümle kapısı) ölçümü (#161): M1 155 kartın 64'ünde bilinmeyensiz örnek var; görev cümlesi hiç olmayan 42 kart; her karta 2 görev cümlesi için 130 ilk karşılaşma cümlesi gerekiyor (1.–3. gün 102). Rapor `docs/v2/reviews/c-olcum-m1.md`.
+PM-078 B (Halka) 1. gün önerisi: 5 halka × 5 kart, 50 görev cümlesi (bilinmeyen 0), 5 mini sahne + soru; yazar → dilbilimci (7 + 1 düzeltme) → okur (83 satır, 2 tur, GERİ 0). `docs/v2/reviews/halka/gun-01-halkalar.json`; şema (AKIS AK-5) gelince `gun-01.json`'a taşınır.
 B4 kart kuralları (#88, #96): parti dosyalarında K1 isim boşluğu, 3+ eşdizim ve somut kelimede örnek başına fotoğraf sorgusu uyarıları 0 (150 kart kapandı). Doğrulayıcının "görselsiz örnek" sayacında kalan 82 kart eski `lexemes.v1.json` kartları; taban 0 / 0 / 82 (ANA, birleştirmede).
 B5 fotoğraf seçimi (#91): 308 yerin 40'ına açık lisanslı fotoğraf seçildi, 220'si reddedildi, 48'i soyut; 332 kısa ikinci sorgu A10 hattına verildi. Hedef somut kelimelerin %85'i; Openverse sonrası ikinci tur.
 Gün sınavı (#110, PM-066 madde 3): M1'in 7 gününe `gun_sinavi`, gün başına 11 madde (4 dikte, 4 yazılı üretim, 2 sesli üretim, 1 mini prova), toplam 77; yazar → dilbilimci (22 düzeltme) → okur (157 satır, GERİ 0).
