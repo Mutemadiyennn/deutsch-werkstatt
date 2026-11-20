@@ -63,7 +63,7 @@ def main():
         lex = pg.get_attribute("[data-test=after-card]", "data-lex")
         ctx.set_offline(False)
         pg.click("[data-test=next]"); pg.wait_for_timeout(300)
-        # kayıt: kartın sayacı gösterilen (7 kez değiştirilmiş) cümlenin ardından yazıldı → sonraki oturum başka cümleyle açılır
+        # kayıt: kartın sayacı gösterilen (7, 14 ya da 21 kez değiştirilmiş) cümlenin ardından yazıldı → sonraki oturum başka cümleyle açılır
         ex_seen = pg.evaluate("""(id) => new Promise((res) => { const r = indexedDB.open('dw2'); r.onsuccess = () => { const t = r.result.transaction('items').objectStore('items').get(id);
           t.onsuccess = () => res(t.result ? t.result.exSeen : null); t.onerror = () => res(null); }; r.onerror = () => res(null); })""", lex)
         check(ex_seen == dokunus + 1, f"öğrenci kaydında cümle sayacı gösterilenin ardından ({lex}: exSeen={ex_seen}; {dokunus} değişiklik + cevap = {dokunus + 1})")
