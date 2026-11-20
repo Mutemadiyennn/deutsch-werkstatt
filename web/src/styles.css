@@ -76,15 +76,10 @@ input, textarea, .selectable { -webkit-user-select: text; user-select: text; }
 .app, .card { overflow-wrap: anywhere; }
 body {
   margin: 0; color: var(--ink); font-family: var(--font-body); font-size: 1rem; line-height: 1.55; -webkit-text-size-adjust: 100%; overflow-x: hidden;
-  min-height: 100vh; /* zemin rengi html'de (--paper); gövdenin kendi zemini ışık katmanını örterdi */
-}
-/* zemin ışıkları ekrana sabit ayrı katmanda: içerik yüksekliği değişince (ör. "Başka cümle") üç büyük radyal geçiş yeniden
-   boyanmaz. Önceden gövdeye göre konumlandıkları için kayan sayfada her yükseklik değişimi bütün zemini yeniden çizdiriyordu
-   (iPhone 15 görünümünde kare 95–177 ms; inceleme #131) */
-body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
   background: radial-gradient(900px 520px at -10% -8%, var(--glow1), transparent 62%), radial-gradient(760px 460px at 112% 4%, var(--glow2), transparent 60%),
-    radial-gradient(700px 520px at 50% 115%, var(--glow3), transparent 65%);
-  background-repeat: no-repeat; }
+    radial-gradient(700px 520px at 50% 115%, var(--glow3), transparent 65%), var(--paper);
+  background-repeat: no-repeat; min-height: 100vh;
+}
 button, input, select, textarea { font: inherit; color: inherit; }
 a { color: var(--accent); }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 10px; }
