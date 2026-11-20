@@ -19,7 +19,8 @@
   "ch:petrovic",
   "ch:lechner",
   "ch:aksoy",
-  "ch:wimmer"
+  "ch:wimmer",
+  "ch:huber"
  ],
  "requires": {
   "kelimeler": [],
@@ -32,10 +33,10 @@
  "review": {
   "status": "reviewed",
   "by": "dilbilimci-ajan",
-  "at": "2026-11-18",
-  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-01-05.md. Denetim: docs/v2/reviews/temel-r0-denetim.txt. Kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
+  "at": "2026-11-20",
+  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-01-05.md. Denetim: docs/v2/reviews/temel-r0-denetim.txt. Kapanış: docs/v2/reviews/temel-r0-kapanis.md. B5 profil turu (20.11): docs/v2/reviews/temel-profil-01-03.md. Okur B5: docs/v2/reviews/okur/temel-profil-01-03.md.",
   "okur": "passed",
-  "okur_at": "2026-11-18"
+  "okur_at": "2026-11-20"
  },
  "teach": [
   {
@@ -584,57 +585,89 @@
   },
   {
    "id": "r0:01:d15",
-   "k": "tr_de",
-   "tr": "Bugün salı.",
+   "k": "listen_and_respond",
+   "audio_de": "Welcher Tag ist heute?",
+   "speed": "slow",
+   "situation_tr": "Ioana soruyor. Bugün salı.",
    "accepted": [
     "Heute ist Dienstag.",
+    "Dienstag.",
+    "Es ist Dienstag.",
     "Heute haben wir Dienstag.",
     "Wir haben heute Dienstag.",
-    "Dienstag ist heute."
+    "Dienstag ist heute.",
+    "Heute ist es Dienstag."
    ]
   },
   {
    "id": "r0:01:d16",
-   "k": "tr_de",
-   "tr": "Yarın perşembe.",
+   "k": "listen_and_respond",
+   "audio_de": "Welcher Tag ist morgen?",
+   "speed": "normal",
+   "situation_tr": "Tobi soruyor. Yarın perşembe.",
    "accepted": [
     "Morgen ist Donnerstag.",
+    "Donnerstag.",
     "Morgen haben wir Donnerstag.",
     "Wir haben morgen Donnerstag.",
-    "Donnerstag ist morgen."
+    "Donnerstag ist morgen.",
+    "Morgen ist es Donnerstag."
    ]
   },
   {
    "id": "r0:01:d17",
-   "k": "tr_de",
-   "tr": "Dün cumartesiydi.",
+   "k": "listen_and_respond",
+   "audio_de": "War gestern Freitag?",
+   "speed": "normal",
+   "situation_tr": "Derya soruyor. Dün cumartesiydi. Derya'nın yanlışını düzelt.",
    "accepted": [
+    "Nein, gestern war Samstag.",
     "Gestern war Samstag.",
+    "Nein, Samstag.",
+    "Nein, gestern hatten wir Samstag.",
     "Samstag war gestern.",
     "Gestern hatten wir Samstag.",
-    "Wir hatten gestern Samstag."
+    "Wir hatten gestern Samstag.",
+    "Nein, es war Samstag.",
+    "Nein, gestern war es Samstag.",
+    "Nein, wir hatten gestern Samstag.",
+    "Samstag.",
+    "Nein, gestern war Samstag, nicht Freitag.",
+    "Nein, nicht Freitag. Gestern war Samstag.",
+    "Nein, Samstag, nicht Freitag.",
+    "Samstag, nicht Freitag.",
+    "Nein, es war Samstag, nicht Freitag.",
+    "Gestern war Samstag, nicht Freitag."
    ]
   },
   {
    "id": "r0:01:d18",
-   "k": "tr_de",
-   "tr": "Öbür gün pazar.",
+   "k": "guided_response",
+   "situation_tr": "Tobi öbür günü soruyor. Öbür gün pazar.",
+   "prompt_de": "Und übermorgen?",
    "accepted": [
     "Übermorgen ist Sonntag.",
+    "Sonntag.",
     "Übermorgen haben wir Sonntag.",
     "Wir haben übermorgen Sonntag.",
-    "Sonntag ist übermorgen."
+    "Sonntag ist übermorgen.",
+    "Übermorgen ist es Sonntag."
    ]
   },
   {
    "id": "r0:01:d19",
-   "k": "tr_de",
-   "tr": "Evvelsi gün pazartesiydi.",
+   "k": "listen_and_respond",
+   "audio_de": "Welcher Tag war vorgestern?",
+   "speed": "slow",
+   "situation_tr": "Ioana soruyor. Evvelsi gün pazartesiydi.",
    "accepted": [
     "Vorgestern war Montag.",
+    "Montag.",
     "Montag war vorgestern.",
     "Vorgestern hatten wir Montag.",
-    "Wir hatten vorgestern Montag."
+    "Wir hatten vorgestern Montag.",
+    "Es war Montag.",
+    "Vorgestern war es Montag."
    ]
   },
   {
@@ -657,16 +690,33 @@
   },
   {
    "id": "r0:01:d21",
-   "k": "tr_de",
-   "tr": "Çarşamba olmaz.",
+   "k": "listen_and_respond",
+   "audio_de": "Passt Mittwoch?",
+   "speed": "normal",
+   "situation_tr": "Muayenehaneden Frau Huber telefon ediyor. Çarşamba sana uymuyor.",
    "accepted": [
     "Mittwoch geht nicht.",
+    "Nein, Mittwoch geht nicht.",
+    "Nein, Mittwoch passt nicht.",
+    "Nein, Mittwoch geht leider nicht.",
     "Mittwoch passt nicht.",
     "Am Mittwoch geht es nicht.",
     "Mittwoch geht leider nicht.",
     "Am Mittwoch geht's nicht.",
     "Am Mittwoch passt es nicht.",
-    "Mittwoch geht es nicht."
+    "Mittwoch geht es nicht.",
+    "Mittwoch passt leider nicht.",
+    "Nein, Mittwoch passt leider nicht.",
+    "Nein, am Mittwoch geht es nicht.",
+    "Nein, am Mittwoch geht's nicht.",
+    "Nein, am Mittwoch passt es nicht.",
+    "Nein, das geht nicht.",
+    "Nein, das passt nicht.",
+    "Nein, das geht leider nicht.",
+    "Das geht leider nicht.",
+    "Nein, leider nicht.",
+    "Das geht nicht.",
+    "Leider nicht."
    ]
   },
   {
@@ -860,6 +910,144 @@
     "Grüß Gott, hier ist {name}.",
     "Hallo, hier ist {name}."
    ]
+  },
+  {
+   "id": "r0:01:d36",
+   "k": "listen_and_respond",
+   "audio_de": "Geht Donnerstag?",
+   "speed": "normal",
+   "situation_tr": "Frau Huber perşembeyi öneriyor. Perşembe sana uymuyor. Cuma olur mu diye sor.",
+   "accepted": [
+    "Donnerstag geht nicht. Geht Freitag?",
+    "Nein, Donnerstag geht nicht. Geht Freitag?",
+    "Donnerstag geht leider nicht. Geht Freitag?",
+    "Nein, Donnerstag geht leider nicht. Geht Freitag?",
+    "Donnerstag passt nicht. Passt Freitag?",
+    "Donnerstag geht nicht. Passt Freitag?",
+    "Am Donnerstag geht es nicht. Geht es am Freitag?",
+    "Donnerstag geht nicht. Geht es am Freitag?",
+    "Donnerstag geht nicht. Geht's am Freitag?",
+    "Donnerstag geht nicht. Passt es am Freitag?",
+    "Nein, Donnerstag geht nicht. Passt Freitag?",
+    "Nein, Donnerstag geht nicht. Geht es am Freitag?",
+    "Nein, Donnerstag geht nicht. Geht's am Freitag?",
+    "Nein, Donnerstag geht nicht. Passt es am Freitag?",
+    "Donnerstag geht leider nicht. Passt Freitag?",
+    "Donnerstag geht leider nicht. Geht es am Freitag?",
+    "Donnerstag geht leider nicht. Geht's am Freitag?",
+    "Donnerstag geht leider nicht. Passt es am Freitag?",
+    "Nein, Donnerstag geht leider nicht. Passt Freitag?",
+    "Nein, Donnerstag geht leider nicht. Geht es am Freitag?",
+    "Nein, Donnerstag geht leider nicht. Geht's am Freitag?",
+    "Nein, Donnerstag geht leider nicht. Passt es am Freitag?",
+    "Donnerstag passt nicht. Geht Freitag?",
+    "Donnerstag passt nicht. Geht es am Freitag?",
+    "Donnerstag passt nicht. Geht's am Freitag?",
+    "Donnerstag passt nicht. Passt es am Freitag?",
+    "Nein, Donnerstag passt nicht. Geht Freitag?",
+    "Nein, Donnerstag passt nicht. Passt Freitag?",
+    "Nein, Donnerstag passt nicht. Geht es am Freitag?",
+    "Nein, Donnerstag passt nicht. Geht's am Freitag?",
+    "Nein, Donnerstag passt nicht. Passt es am Freitag?",
+    "Donnerstag passt leider nicht. Geht Freitag?",
+    "Donnerstag passt leider nicht. Passt Freitag?",
+    "Donnerstag passt leider nicht. Geht es am Freitag?",
+    "Donnerstag passt leider nicht. Geht's am Freitag?",
+    "Donnerstag passt leider nicht. Passt es am Freitag?",
+    "Nein, Donnerstag passt leider nicht. Geht Freitag?",
+    "Nein, Donnerstag passt leider nicht. Passt Freitag?",
+    "Nein, Donnerstag passt leider nicht. Geht es am Freitag?",
+    "Nein, Donnerstag passt leider nicht. Geht's am Freitag?",
+    "Nein, Donnerstag passt leider nicht. Passt es am Freitag?",
+    "Am Donnerstag geht es nicht. Geht Freitag?",
+    "Am Donnerstag geht es nicht. Passt Freitag?",
+    "Am Donnerstag geht es nicht. Geht's am Freitag?",
+    "Am Donnerstag geht es nicht. Passt es am Freitag?",
+    "Nein, am Donnerstag geht es nicht. Geht Freitag?",
+    "Nein, am Donnerstag geht es nicht. Passt Freitag?",
+    "Nein, am Donnerstag geht es nicht. Geht es am Freitag?",
+    "Nein, am Donnerstag geht es nicht. Geht's am Freitag?",
+    "Nein, am Donnerstag geht es nicht. Passt es am Freitag?",
+    "Das geht nicht. Geht Freitag?",
+    "Das geht nicht. Passt Freitag?",
+    "Das geht nicht. Geht es am Freitag?",
+    "Das geht nicht. Geht's am Freitag?",
+    "Das geht nicht. Passt es am Freitag?",
+    "Nein, das geht nicht. Geht Freitag?",
+    "Nein, das geht nicht. Passt Freitag?",
+    "Nein, das geht nicht. Geht es am Freitag?",
+    "Nein, das geht nicht. Geht's am Freitag?",
+    "Nein, das geht nicht. Passt es am Freitag?",
+    "Das geht leider nicht. Geht Freitag?",
+    "Das geht leider nicht. Passt Freitag?",
+    "Das geht leider nicht. Geht es am Freitag?",
+    "Das geht leider nicht. Geht's am Freitag?",
+    "Das geht leider nicht. Passt es am Freitag?",
+    "Nein, das geht leider nicht. Geht Freitag?",
+    "Nein, das geht leider nicht. Passt Freitag?",
+    "Nein, das geht leider nicht. Geht es am Freitag?",
+    "Nein, das geht leider nicht. Geht's am Freitag?",
+    "Nein, das geht leider nicht. Passt es am Freitag?",
+    "Nein, leider nicht. Geht Freitag?",
+    "Leider nicht. Geht Freitag?",
+    "Nein, leider nicht. Passt Freitag?",
+    "Leider nicht. Passt Freitag?",
+    "Nein, leider nicht. Geht es am Freitag?",
+    "Leider nicht. Geht es am Freitag?",
+    "Nein, leider nicht. Geht's am Freitag?",
+    "Leider nicht. Geht's am Freitag?",
+    "Nein, leider nicht. Passt es am Freitag?",
+    "Leider nicht. Passt es am Freitag?",
+    "Donnerstag geht nicht. Geht es Freitag?",
+    "Nein, Donnerstag geht nicht. Geht es Freitag?",
+    "Donnerstag geht leider nicht. Geht es Freitag?",
+    "Am Donnerstag geht es nicht. Geht es Freitag?"
+   ],
+   "why_tr": "Cuma olur mu diye sorarken **Geht Freitag?** denir."
+  },
+  {
+   "id": "r0:01:d37",
+   "k": "guided_response",
+   "situation_tr": "Herr Wimmer pazartesiyi öneriyor. Pazartesi sana uyuyor.",
+   "prompt_de": "Geht Montag?",
+   "accepted": [
+    "Montag geht.",
+    "Ja, Montag geht.",
+    "Montag passt.",
+    "Ja, Montag passt.",
+    "Ja, das geht.",
+    "Ja, das passt.",
+    "Am Montag geht es.",
+    "Ja, am Montag geht es.",
+    "Montag geht es.",
+    "Ja, Montag geht es."
+   ]
+  },
+  {
+   "id": "r0:01:d38",
+   "k": "gap",
+   "de": "Am ___ ist die Praxis geschlossen.",
+   "tr": "Hafta sonu muayenehane kapalı.",
+   "accepted": [
+    "Wochenende"
+   ],
+   "opts": [
+    "Woche",
+    "Wochenende",
+    "Tag"
+   ],
+   "why_tr": "Hafta sonu derken **am Wochenende** denir."
+  },
+  {
+   "id": "r0:01:d39",
+   "k": "order",
+   "de": "bis / Woche / Sonntag / geht / Die / von / Montag",
+   "tr": "Hafta pazartesiden pazar gününe kadar sürer.",
+   "accepted": [
+    "Die Woche geht von Montag bis Sonntag.",
+    "Von Montag bis Sonntag geht die Woche."
+   ],
+   "why_tr": "Burada **geht**, sürer demektir."
   }
  ],
  "dialogue": {

@@ -13,3 +13,6 @@ if ("serviceWorker" in navigator && (location.protocol === "https:" || location.
       .then(() => navigator.serviceWorker.ready).then((r) => r.active?.postMessage("sync")).catch(() => {});
   });
 }
+
+// e2e derlemesi: öğrenci devam betiği kartları uygulamanın kendi tekrar işleviyle üretir (inceleme #149 P1-1); üretimde yok
+if (import.meta.env.MODE === "e2e") void import("./core/srs.ts").then((m) => { (window as unknown as { __dwTest: unknown }).__dwTest = { review: m.review }; });
