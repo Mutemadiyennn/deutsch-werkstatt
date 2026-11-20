@@ -42,6 +42,8 @@ describe("bilinen küme ve cümle kapısı (AKIS AK-3)", () => {
   it("kalıp bütün olarak bilinir; kalıptaki kendi kartı öğretilmeyen sözcük tek başına bilinmez", () => {
     expect(yaz("Hallo, hier ist {name}.", ["lx:hallo"], ["r0:01-tage"])).toEqual([]);
     expect(yaz("Ist Ioana hier?", [], ["r0:01-tage"])).toEqual(["hier"]);
+    // kartsız çerçeve sözcüğü (ist) ders bitince tek başına bilinir; kartlı sözcük (hier) yalnız kalıbın düz hâlinde
+    expect(yaz("Ist Ioana da?", [], ["r0:01-tage"])).toEqual(["?da"]);
   });
   it("eşlenemeyen sözcük tahmin edilmez; bileşik sayı yalnız sayı dersinden sonra", () => {
     expect(bilinmeyenler(d, "Quatsch", { kart: new Set(), biten: new Set() })[0]).toEqual({ tur: "eslenemedi", sozcuk: "quatsch" });
