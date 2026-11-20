@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import { TopBar } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 import { havuzlar, KALITE_TR, sesKalitesi, type Ses } from "../core/sesSec.ts";
-import { cihazSesleri, onSesler, sesAnahtar, sesBul, sesYolu, hizKaydet, hizKaydi, hizOrani, karakterSesi, listenOnce, olcCal, ORAN_ESIK, RATE, speak, STT_HATA_TR, sttHataTuru, sttYolu, ttsAvailable, YAVAS_SECENEK, type HizOlcum, type YavasOran } from "../services/speech.ts";
+import { cihazSesleri, gecerliOlcum, onSesler, sesAnahtar, sesBul, sesYolu, hizKaydet, hizKaydi, hizOrani, karakterSesi, listenOnce, olcCal, ORAN_ESIK, RATE, speak, STT_HATA_TR, sttHataTuru, sttYolu, ttsAvailable, YAVAS_SECENEK, type HizOlcum, type YavasOran } from "../services/speech.ts";
 import { useApp } from "../state.ts";
 import { loadWorld } from "../services/content.ts";
 import { kabukBilgisi, kabukSatiri, type KabukBilgisi } from "../services/kabuk.ts";
@@ -32,12 +32,13 @@ function SesSatiri({ s, kayit, kaydet }: { s: Ses; kayit: Kayit; kaydet: (ad: st
     if (ms === null) return;
     const y = { ...yarim, ...(o ? { normalMs: o.normalMs, yavasMs: o.yavasMs } : {}), [yavas ? "yavasMs" : "normalMs"]: ms };
     setYarim(y);
-    if (y.normalMs && y.yavasMs) kaydet(sesAnahtar(s), { normalMs: y.normalMs, yavasMs: y.yavasMs, rate: RATE.slow });
+    // yalnız iki geçerli süre birlikte kayda girer (PM 7043447488-1)
+    if (y.normalMs && y.yavasMs && gecerliOlcum({ normalMs: y.normalMs, yavasMs: y.yavasMs })) kaydet(sesAnahtar(s), { normalMs: y.normalMs, yavasMs: y.yavasMs, rate: RATE.slow });
   };
   return (
     <li class="row ses-satir" style={{ flexWrap: "nowrap" }} data-test="ses" data-ad={s.name} data-oran={o ? hizOrani(o).toFixed(2) : ""}>
       <span class="grow" style={{ minWidth: 0 }}><b>{kisaAd(s.name)}</b><span class="chip" style={{ marginLeft: 6 }} data-test="ses-kalite">{KALITE_TR(s)}</span>
-        {o && <><br /><span class={`tiny ${hizOrani(o) < ORAN_ESIK ? "fb-uyari" : "muted"}`} data-test="ses-hiz">{sn(o.normalMs)} · {sn(o.yavasMs)}{hizOrani(o) < ORAN_ESIK ? " · yavaşlamıyor" : ""}</span></>}</span>
+        {o && <><br /><span class={`tiny ${hizOrani(o) < ORAN_ESIK ? "fb-uyari" : "muted"}`} data-test="ses-hiz">normal {sn(o.normalMs).replace(" sn", "")} · yavaş {sn(o.yavasMs)}{hizOrani(o) < ORAN_ESIK ? " · yavaşlamıyor" : ""}</span></>}</span>
       <button class="btn sm" onClick={() => void dinle(false)} data-test="ses-dinle">Dinle</button>
       <button class="btn sm ghost" onClick={() => void dinle(true)} data-test="ses-yavas">Yavaş</button>
     </li>
@@ -48,20 +49,24 @@ function SesSatiri({ s, kayit, kaydet }: { s: Ses; kayit: Kayit; kaydet: (ad: st
 function HizOlcumu({ hedef, kayit, kaydet }: { hedef: Ses[]; kayit: Kayit; kaydet: (ad: string, o: HizOlcum) => void }) {
   const { profile, setProfile, toast } = useApp();
   const [olcuyor, setOlcuyor] = useState(false);
+  const [olculemedi, setOlculemedi] = useState<string[]>([]);
   const secili = profile.listening.slowRate;
   const sec = (r: YavasOran) => { const n = structuredClone(profile); n.listening.slowRate = r; RATE.slow = r; void setProfile(n).then(() => toast("Kaydedildi"), () => toast("Kaydedilmedi")); };
   const olc = async () => {
-    setOlcuyor(true);
+    setOlcuyor(true); setOlculemedi([]);
+    const olmayan: string[] = [];
     for (const s of hedef) {
       const v = sesNesnesi(s);
       const normalMs = await olcCal(ORNEK, v, RATE.normal);
       const yavasMs = normalMs === null ? null : await olcCal(ORNEK, v, RATE.slow);
-      if (normalMs !== null && yavasMs !== null) kaydet(sesAnahtar(s), { normalMs, yavasMs, rate: RATE.slow });
+      // ses hiç çalmadıysa (süre < 0,3 sn) ölçülemedi: oran ve uyarı yazılmaz, kayıt tutulmaz, yedek devreye girmez
+      if (normalMs !== null && yavasMs !== null && gecerliOlcum({ normalMs, yavasMs })) kaydet(sesAnahtar(s), { normalMs, yavasMs, rate: RATE.slow });
+      else olmayan.push(sesAnahtar(s));
     }
-    setOlcuyor(false);
+    setOlculemedi(olmayan); setOlcuyor(false);
   };
   const olculen = hedef.filter((s) => kayit[sesAnahtar(s)]);
-  const yavaslamayan = olculen.filter((s) => hizOrani(kayit[sesAnahtar(s)]!) < ORAN_ESIK);
+  const yavaslamayan = olculen.filter((s) => !olculemedi.includes(sesAnahtar(s)) && hizOrani(kayit[sesAnahtar(s)]!) < ORAN_ESIK);
   return (
     <div class="stack" data-test="hiz-olcum">
       <div class="kicker">Yavaş hızı</div>
@@ -69,8 +74,12 @@ function HizOlcumu({ hedef, kayit, kaydet }: { hedef: Ses[]; kayit: Kayit; kayde
         {YAVAS_SECENEK.map((r) => <button aria-pressed={secili === r} onClick={() => sec(r)} data-oran={r}>{r === 0.6 ? "Biraz yavaş" : r === 0.5 ? "Yavaş" : "Çok yavaş"}</button>)}
       </div>
       <button class="btn block" disabled={olcuyor || !hedef.length} onClick={() => void olc()} data-test="hiz-olc">{olcuyor ? "Ölçülüyor…" : "Hızı ölç"}</button>
-      {olculen.map((s) => { const o = kayit[sesAnahtar(s)]!; return <p class="small" style={{ margin: 0 }} data-test="hiz-sonuc" data-ad={s.name}><b>{kisaAd(s.name)}</b>: Normal {sn(o.normalMs)} · Yavaş {sn(o.yavasMs)} ({kat(hizOrani(o))})</p>; })}
-      {yavaslamayan.length > 0 && <p class="small fb-uyari" role="alert" data-test="hiz-uyari">Bu ses yavaşlamıyor: {yavaslamayan.map((s) => kisaAd(s.name)).join(", ")}. Yavaş istenince yavaşlayan başka bir ses, o da yoksa kelime kelime okuma kullanılır.</p>}
+      {/* ölçüm sürerken yarım satır gösterilmez; sonuçlar düğmeden bir satır aşağıda (PM 7043447488-1, 2) */}
+      {!olcuyor && (olculen.length > 0 || olculemedi.length > 0) && <div class="hiz-sonuclar" style={{ marginTop: 12 }}>
+        {olculen.filter((s) => !olculemedi.includes(sesAnahtar(s))).map((s) => { const o = kayit[sesAnahtar(s)]!; return <p class="small" style={{ margin: 0 }} data-test="hiz-sonuc" data-ad={s.name}><b>{kisaAd(s.name)}</b>: Normal {sn(o.normalMs)} · Yavaş {sn(o.yavasMs)} ({kat(hizOrani(o))})</p>; })}
+        {hedef.filter((s) => olculemedi.includes(sesAnahtar(s))).map((s) => <p class="small" style={{ margin: 0 }} data-test="hiz-olculemedi" data-ad={s.name}><b>{kisaAd(s.name)}</b>: ölçülemedi, yeniden dene.</p>)}
+      </div>}
+      {!olcuyor && yavaslamayan.length > 0 && <p class="small fb-uyari" role="alert" data-test="hiz-uyari">Bu ses yavaşlamıyor: {yavaslamayan.map((s) => kisaAd(s.name)).join(", ")}. Yavaş istenince yavaşlayan başka bir ses, o da yoksa kelime kelime okuma kullanılır.</p>}
     </div>
   );
 }
