@@ -170,6 +170,8 @@ def main():
                   advance(pg); k += 1; continue
               answer_current(pg); k += 1
         check(any(t in ACTIVE for t in types2), f"ikinci turda üretim sorusu var ({sorted(set(types2))})")
+        # PM 7030294523 P0: İlk Hafta bitmeden ve kalıp bitirilmeden "kendi cümleni kur" hiç gelmez
+        check("gq-own_sentence" not in types2, f"kendi cümleni kur İlk Haftada sorulmuyor ({sorted(set(types2))})")
         # köprü (PM-069 madde 3): 1. turda tanıtılan kartın ilk üretim sorusundan (tr_de) önce artikel ya da eşdizim seçmeli
         # (köprü türü olmayan kart — ör. edat, yalnızca çoğul isim — doğrudan üretime geçer)
         # köprü 1. turda da gelmiş olabilir (yanlıştan sonraki tekrar artikel/eşdizim olabilir)
