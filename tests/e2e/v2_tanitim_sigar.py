@@ -64,7 +64,11 @@ def olc(pg):
       function baslik() { const e = k.querySelector('[data-test=kelime-baslik]'); if (!e) return { satir: 0 };
         const cs = getComputedStyle(e); const fs = parseFloat(cs.fontSize); const lh = parseFloat(cs.lineHeight) || fs * 1.15;
         return { satir: Math.round(e.getBoundingClientRect().height / lh), tasma: e.scrollWidth > e.clientWidth + 0.5, boy: Math.round(fs),
-          metin: e.innerText, hy: cs.hyphens || cs.webkitHyphens }; } }""")
+          metin: e.innerText, hy: cs.hyphens || cs.webkitHyphens, ...anlam() }; }
+      // PM 7043428377: kare düzende ayraç noktası yok; çoğulun Almanca kelimesi bölünmez
+      function anlam() { const sol = k.querySelector('.kk-sol'); if (!sol) return {};
+        const pl = sol.querySelector('[data-test=intro-pl] [lang=de]');
+        return { solMetin: sol.innerText, plParca: pl ? new Set([...pl.getClientRects()].map((r) => Math.round(r.top))).size : 0 }; } }""")
 
 
 def main():
@@ -97,6 +101,10 @@ def main():
         tasan_b = [(i, r["boy"]) for i, r in sonuc if r.get("tasma")]
         check(not tasan_b, f"başlık hiçbir kartta kesilmiyor; 21 px'te de sığmayan yok (sığmayan: {tasan_b[:6]})")
         check(all(r["hy"] == "none" for i, r in sonuc), "başlık hecelenmez (hyphens: none)")
+        nokta = [(i, r["solMetin"]) for i, r in sonuc if r["duzen"] == "kare" and "·" in r.get("solMetin", "")]
+        check(not nokta, f"kare düzende anlam ve çoğul ayrı satırda, ayraç noktası yok (noktalı: {nokta[:4]})")
+        bolunen_pl = [i for i, r in sonuc if r["duzen"] == "kare" and r.get("plParca", 0) > 1]
+        check(not bolunen_pl, f"kare düzende çoğul kelimesi bölünmüyor (bölünen: {bolunen_pl[:6]})")
         boylar = {}
         for i, r in sonuc:
             boylar.setdefault(r["boy"], []).append(i)

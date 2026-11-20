@@ -703,6 +703,8 @@ html:has(.actionbar) .toast { bottom: auto; top: calc(var(--safe-top) + 12px); }
 
 /* D-123: sığmayan tanıtım kartında kelime + Dinle solda, görsel sağda kare (ayrı satır tutmaz); atıf sarılır (kesilmez: CC BY) */
 /* PM 7041856903: tanıtım başlığı (iki düzende de) tek satır, hecelenmez; sığmazsa Garden yazı boyunu 28 → 24 → 21 px küçültür */
+.nowrap { white-space: nowrap; }
+.kk-anlam > * + * { margin-top: 2px; }
 .kk-baslik { white-space: nowrap; hyphens: none; -webkit-hyphens: none; overflow: hidden; }
 .kelime-kare { display: grid; grid-template-columns: minmax(0, 1fr) 104px; gap: 12px; align-items: start; }
 .kelime-kare .kk-sol > * + * { margin-top: 8px; }

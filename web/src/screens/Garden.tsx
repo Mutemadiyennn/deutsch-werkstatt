@@ -323,6 +323,9 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
     void document.fonts?.ready.then(sigdir);
   }, [intro, duzen, l.id]);
   const col = collocOf(l);
+  // PM 7043428377: kare düzende anlam 1. satır, çoğul kendi satırında (ayraç noktası yok, daha soluk); Almanca çoğul bölünmez
+  const anlamKare = <div class="kk-anlam"><p style={{ margin: 0 }}><span data-test="intro-tr">{l.tr}</span></p>
+    {gosterilenCogul(l) && <p class="small muted cogul-satir" data-test="intro-pl" style={{ margin: 0 }}>Çoğulu: <span lang="de" class="nowrap">{isNoun(l) ? "die " : ""}{gosterilenCogul(l)}</span></p>}</div>;
   const anlam = <p style={{ margin: 0 }}><span data-test="intro-tr">{l.tr}</span>{gosterilenCogul(l) && <span class="small muted cogul-satir" data-test="intro-pl"> · Çoğulu: <span lang="de">{isNoun(l) ? "die " : ""}{gosterilenCogul(l)}</span></span>}</p>;
   if (intro) return (
     <div class="stack fade" data-test="garden-intro" data-lex={l.id}>
@@ -341,7 +344,7 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
           : <>
             <div class="de-xl kk-baslik" lang="de" ref={baslikRef} data-test="kelime-baslik"><Art art={l.art} de={l.de} /></div>
             <div class="kelime-kare" data-test="kelime-kare">
-              <div class="kk-sol"><ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} />{anlam}</div>
+              <div class="kk-sol"><ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} />{anlamKare}</div>
               <Photo q={l.img} sira={q.ex} yer={[`${l.id}#kart`]} alt={l.tr} enCok={FOTO_KARE} oran="1 / 1" />
             </div>
           </>}
