@@ -38,3 +38,21 @@ Kaynak: inceleme yorumu https://github.com/Mutemadiyennn/deutsch-werkstatt/pull/
 - Ünlüsü değişen fiillerde (lesen → liest) ipucu biçimi gösteriyor ama ünlü değişimini ayrıca söylemiyor; bazı kartlar söylüyor (sehen). Okur bunu bir kez not etti. Biçim kalın yazıldığı için cevap belli; tutarlılık için ayrı bir tur yapılabilir.
 - `lx:zweiter` "Wir wohnen im zweiten Stock.", `lx:nach` "Ich fahre am Wochenende nach Hamburg." birinci kişi ama kişisel bilgi taşımıyor; bırakıldı.
 - `lx:Land` "Wohnt Frau Huber in der Stadt? – Nein, auf dem Land." WORLD'de Huber'in evi yazmıyor; çelişki değil, bırakıldı.
+
+## İnceleme #154 1. tur sonrası
+Kaynak: https://github.com/Mutemadiyennn/deutsch-werkstatt/pull/154#issuecomment-7035842560
+
+- **Wimmer (engel 1):** WORLD'e göre Wimmer ikinci katta oturuyor; "Herr Wimmer wohnt im zweiten Stock." geri kondu. WORLD'de olmayan "auf dem Land" satırları genel adlara verildi: Tom'un babası ve Sophie. Luka'nın köpek korkusu Tom'a geçti.
+- **14 kelimeyi aşan ipuçları (engel 2):** sözlükte 0. Kalın öbek, cevabı içeren kısa öbeğe indirildi.
+- **`genel-adlar.md` (engel 3):** main'deki hâli ve yalnız bu PR'ın ekleri (Emre Aydın, Clara, Sophie, Tom).
+- **Kişiye göre fiil ipuçları:**
+  - "**er** ve **sie** ile söylerken …" artık cümledeki özneyi yazıyor ("**Herr Pichler** ile söylerken …").
+  - Özne cümledeki gibi büyük ya da küçük harfle yazılıyor (sözlük genelinde 312 satır).
+  - Harfi değişen fiillerde değişen parça yazılıyor ("**ehm** yerine **imm** gelir"); değişmeyen biçime not konmuyor.
+  - Önek cümlede yazılıysa kalın biçim yalnız boşluğa gelen kelime.
+  - Mastarsız kalan 25 eski ipucu da çevrildi.
+- **Geçmiş ipuçları:** "Geçmişi sorarken …" biçimindeki 11 ipucu da "<Türkçe> derken **<cümle>** denir." oldu.
+- **Kart içinde tek karşılık:** dilbilimci 32 fiil kartında karşılıkları tekleştirdi. Başka anlama giden cümleler kartın ana anlamına çevrildi (reichen, drehen, treten, klappen, kennen, nehmen, übernehmen, müssen, los, angreifen).
+- **Öğrenci satırı:** "Sag deiner Mutter gute Besserung!" → Anna.
+- **Okur:** değişen her satır okundu (örneklem değil). Kayıt: `docs/v2/reviews/okur/lexicon-142-p2.md`.
+- **Açık kalan (ayrı iş):** `lx:mögen#2` ile `lx:möchten` iki ayrı kart ama ikisi de "möchte" öğretiyor; okur bunu kart düzeyinde not etti. Kart birleştirme ya da ayrıştırma sözlük yapısı kararı olduğu için bu PR'a alınmadı.
