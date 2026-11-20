@@ -28,8 +28,11 @@ let fails = 0, openUntil = 0;
 let providerOff = false;
 export async function probeProvider(api: Api) {
   if (!api.configured) return;
-  try { const h = await api.health(); providerOff = !!h.provider && h.provider !== "gemini"; emit(); } catch { /* bağlantı yoksa devre kesici zaten korur */ }
+  try { const h = await api.health(); saglayici = h.provider || ""; providerOff = !!h.provider && !["gemini", "workers-ai"].includes(h.provider); emit(); } catch { /* bağlantı yoksa devre kesici zaten korur */ }
 }
+/** Sunucunun bildirdiği sağlayıcı; "workers-ai" denemedir (PM 7022002310-5: arayüzde "deneme" etiketi) */
+let saglayici = "";
+export const denemeSaglayici = () => saglayici === "workers-ai" && !providerOff;
 const subs = new Set<() => void>();
 export const onAiState = (f: () => void) => { subs.add(f); return () => { subs.delete(f); }; };
 const emit = () => subs.forEach((f) => f());
@@ -60,6 +63,8 @@ export async function ai<T extends AiTaskName>(api: Api, task: T, vars: AiInput<
     if (key) await cachePut(key, out);
     return out;
   } catch (e) {
+    // sunucu "sağlayıcı yok" dedi (ör. açılışta çevrimdışıydı, yoklama yapılamadı): oturum boyunca yapay zekâsız (inceleme #123 P2-1)
+    if (e instanceof ApiError && e.code === "not_configured") { providerOff = true; emit(); throw e; }
     // kullanıcı kotası ve kimlik hataları devre kesiciyi tetiklemez (kalıcı durumlar)
     if (!(e instanceof ApiError) || !["quota_user", "unauthenticated", "forbidden"].includes(e.code)) {
       fails++;

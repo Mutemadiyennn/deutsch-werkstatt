@@ -11,8 +11,13 @@ compatibility_date = "2026-11-01"
 FIREBASE_PROJECT_ID = "deutsch-sync"
 ALLOWED_ORIGINS = "https://mutemadiyennn.github.io,capacitor://localhost,http://localhost:5173,http://localhost:4173"
 AI_DAILY_LIMIT = "300"
-# PM-019 / D-093: Gemini kapalı (AEA şartı + güvenilmezlik). Açmak yalnızca PM kararıyla: AI_PROVIDER = "gemini".
-AI_PROVIDER = "none"
+# PM-019 / D-093: Gemini kapalı (AEA şartı + güvenilmezlik). PM 7022002310-5: Workers AI (deneme; model ve günlük nöron
+# tavanı worker/policy.json). Kapatmak için: AI_PROVIDER = "none".
+AI_PROVIDER = "workers-ai"
+
+# Workers AI bağlamı: anahtar yok, hesabın ücretsiz payı (Workers Free, ödeme yöntemi yok: pay dolarsa hata, ücret yok)
+[ai]
+binding = "AI"
 
 [[kv_namespaces]]
 binding = "QUOTA"
