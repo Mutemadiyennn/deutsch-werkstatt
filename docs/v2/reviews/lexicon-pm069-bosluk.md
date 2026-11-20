@@ -56,6 +56,9 @@ Sonra kalan 5 IHLAL, betiğin yanlış alarmı. Hepsi kartın kendi kelimesi:
 - **M1, bu dal:** 128 boşluk değişti.
   - 121'inde boşluk aynı cümlede kartın kelimesine taşındı. Örnek: "Ich sehe dort eine ___." → Frau.
   - 7 boşluk yeniden kuruldu: brauchen, warten, arbeiten, Montag, passen#2 ×2, Anfang.
+  - Dört kartta cümle de yenilendi: Stunde ×2, Sonntag, Datum (inceleme cc56f37 turu P2-4).
+  - İnceleme turunda (cc56f37) kalan iki edat boşluğu da kartın kelimesine taşındı: "Es ist ___ vor neun." → Viertel, "Das Büro ist über ___ zu." → Mittag.
+  - Eksik eş anlamlılar eklendi: Arzt'ta Doktor, offen'da auf ve geöffnet, Nummer'da Telefonnummer.
   - İpuçlarını dilbilimci yazdı. Okur 135 satır okudu, 5 GERİ verdi; tekrarda 0.
 - **Sonuç:** M1 kartlarında küçük kelime soran boşluk kalmadı.
 - **Kalan:** M1 dışındaki 779 boşluk `content/k1-6cumle-2` dalında aynı hattan geçecek.
