@@ -6,7 +6,7 @@ PM-062 (#58 B13) — Bahçe'de değişen cümle:
 python3 tests/e2e/v2_bahce_donusum.py [--browser webkit] [--device "iPhone 15"] [--shots DIR]
 """
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow, tanitim_gec
 
 PORT = 4205
 
@@ -50,7 +50,8 @@ def main():
         no_overflow(pg, "tanıtım")
         if shots: shot(pg, "b01-baska-cumle", full=False)
         # düğme ipucu sayılmaz: sonraki doğru cevap "Doğru." (XP'li)
-        pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]")
+        # PM-069 madde 3: kartın ilk sorusu iki tanıtım sonra gelir
+        while pg.locator("[data-test=garden-intro]").count(): tanitim_gec(pg)
         pg.evaluate("window.__ucus = 0; addEventListener('dw:xp-ucus', (e) => { window.__ucus += e.detail.n; })")
         pg.locator("button.opt[data-right]").first.click(); pg.wait_for_selector("[data-test=feedback]")
         pg.wait_for_function("() => window.__ucus > 0", timeout=3000)
@@ -69,7 +70,7 @@ def main():
             if pg.locator("[data-test=gap-cumle]").count() and pg.locator("[data-test=baska-cumle]").count():
                 once = pg.inner_text("[data-test=gap-cumle]"); dom, kare, sonra = degistir(pg, "[data-test=gap-cumle]")
                 check(sonra != once and dom < 150, f"boşluk sorusunda başka cümle ({once[:30]!r} → {sonra[:30]!r}; DOM {round(dom)} ms, kare {round(kare)} ms)"); bosluk = True; break
-            if pg.locator("[data-test=garden-intro]").count(): pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]"); continue
+            if pg.locator("[data-test=garden-intro]").count(): tanitim_gec(pg); continue
             if pg.locator("button.opt:not([disabled])").count(): pg.locator("button.opt[data-right]").first.click()
             else:
                 pg.fill("[data-test=answer]", "xyz falsch"); pg.click("[data-test=submit]"); pg.wait_for_timeout(150)
