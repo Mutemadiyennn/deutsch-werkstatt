@@ -75,3 +75,8 @@ Dil hataları: **KAPANDI**. Açık madde 1 ve okur turu kapandı; `review.status
 - P1-2: `d17` kabul listesinden yalnız ad ("{name}.") çıkarıldı; **heiße** üretilmeden geçilmiyor.
 - P2-4: tek başına "Ja." artık hiçbir maddede yok (`d27`, `d30`'dan çıkarıldı); amaç fiili söyletmek.
 - P2-6: `d16` açıklaması artık dersin konusuna bağlı: "Gidiyorum derken **ich gehe** denir, **ich** ile sonu **-e** olur." (iki dizilim de kabul; okur ilk öneriyi geri çevirdi, ikincisini geçirdi).
+- P2-1: `h2` dinlemesinde öğretilmemiş kelimeler azaldı ("Wollen wir zusammen üben? Nur Deutsch!" satırı çıktı; "in den Kurs" ve "auch" kalktı).
+- P2-3: `d21` Türkçesi "Adınız ne?" (öğeyle aynı; hatırlama turu "Wie ist Ihr Name?" kabul eder), açıklama "Adınız ne derken **Wie heißen Sie?**, adın ne derken **Wie heißt du?** denir."
+- P2-5: `d22`, `d26`, `d29`, `d31` eksik doğru biçimler eklendi.
+- P2-7: yeni `d33` boşluğu "Tobi ___ in die Praxis." → geht (er/sie biçimi artık derste çalışılıyor).
+- Okur: yeni ve değişen Türkçe satırlar 3 turda okundu (2 GERİ → 1 → 0).

@@ -466,6 +466,21 @@
       ]
     },
     {
+      "id": "r0:11:d33",
+      "k": "gap",
+      "de": "Tobi ___ in die Praxis.",
+      "tr": "Tobi muayenehaneye gidiyor.",
+      "accepted": [
+        "geht"
+      ],
+      "opts": [
+        "gehe",
+        "gehst",
+        "geht"
+      ],
+      "why_tr": "**Tobi** için sonu **-t** olur: **geht**."
+    },
+    {
       "id": "r0:11:d11",
       "k": "gap",
       "de": "Wir ___ am Samstag.",
@@ -586,7 +601,7 @@
     {
       "id": "r0:11:d21",
       "k": "tr_de",
-      "tr": "Adınız ne? Kibarca soruyorsun.",
+      "tr": "Adınız ne?",
       "accepted": [
         "Wie heißen Sie?",
         "Wie heissen Sie?",
@@ -594,7 +609,7 @@
         "Und Sie, wie heißen Sie?",
         "Wie ist Ihr Name?"
       ],
-      "why_tr": "Kibarca sorarken **Wie heißen Sie?** denir, **Wie heißt du?** değil."
+      "why_tr": "Adınız ne derken **Wie heißen Sie?**, adın ne derken **Wie heißt du?** denir."
     },
     {
       "id": "r0:11:d22",
@@ -606,7 +621,8 @@
         "Du wohnst hier?",
         "Und du, wohnst du hier?",
         "Wohnst du auch hier?",
-        "Tobi, wohnst du hier?"
+        "Tobi, wohnst du hier?",
+        "Wohnst du hier, Tobi?"
       ],
       "why_tr": "**du** ile **wohnst** denir."
     },
@@ -661,7 +677,8 @@
         "Mein Name ist {name}.",
         "Ich bin {name}.",
         "Hallo Tobi, ich bin {name}.",
-        "Hallo, ich bin {name}."
+        "Hallo, ich bin {name}.",
+        "Hallo, ich heiße {name}. Und du?"
       ]
     },
     {
@@ -706,7 +723,10 @@
         "Nein, morgen komme ich.",
         "Ich komme morgen.",
         "Nein, ich komme erst morgen.",
-        "Morgen komme ich."
+        "Morgen komme ich.",
+        "Nein, heute komme ich nicht. Ich komme morgen.",
+        "Ich komme heute nicht. Ich komme morgen.",
+        "Heute nicht. Ich komme morgen."
       ]
     },
     {
@@ -735,7 +755,11 @@
         "Tobi kommt morgen.",
         "Nein, er kommt heute nicht. Er kommt morgen.",
         "Nein, morgen.",
-        "Morgen kommt er."
+        "Morgen kommt er.",
+        "Nein, Tobi kommt heute nicht. Er kommt morgen.",
+        "Nein, morgen kommt er.",
+        "Morgen kommt Tobi.",
+        "Nein, er kommt erst morgen."
       ],
       "why_tr": "**Tobi** için **er kommt** dersin."
     },
@@ -918,8 +942,8 @@
         {
           "r": "Ioana",
           "speaker": "ch:popescu",
-          "de": "Heute komme ich nicht in den Kurs.",
-          "tr": "Bugün kursa gelmiyorum."
+          "de": "Heute komme ich nicht.",
+          "tr": "Bugün gelmiyorum."
         },
         {
           "r": "Ioana",
@@ -930,14 +954,8 @@
         {
           "r": "Ioana",
           "speaker": "ch:popescu",
-          "de": "Kommst du auch am Mittwoch?",
-          "tr": "Sen de çarşamba günü geliyor musun?"
-        },
-        {
-          "r": "Ioana",
-          "speaker": "ch:popescu",
-          "de": "Wollen wir zusammen üben? Nur Deutsch!",
-          "tr": "Birlikte alıştırma yapalım mı? Sadece Almanca!"
+          "de": "Kommst du am Mittwoch?",
+          "tr": "Sen çarşamba günü geliyor musun?"
         },
         {
           "r": "Ioana",
@@ -959,7 +977,7 @@
         },
         {
           "kind": "detail",
-          "q_tr": "Ioana kursa ne zaman geliyor?",
+          "q_tr": "Ioana ne zaman geliyor?",
           "opts": [
             "bugün",
             "çarşamba günü",
@@ -971,7 +989,7 @@
           "kind": "detail",
           "q_tr": "Ioana sana ne soruyor?",
           "opts": [
-            "Çarşamba günü gelip gelmediğini",
+            "Çarşamba günü gelip gelmeyeceğini",
             "Nerede oturduğunu",
             "Adının ne olduğunu"
           ],
