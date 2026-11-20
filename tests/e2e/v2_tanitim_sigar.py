@@ -38,7 +38,11 @@ def en_uzun():
 
 def ac(pg, base, lid):
     pg.evaluate("(k) => sessionStorage.setItem('e2e-kart', k)", lid)
-    pg.goto(base + "#/today"); pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=garden-intro]")
+    # her kart temiz bir yüklemeyle açılır (WebKit'te art arda iki hash geçişi birleşebiliyor; #152 CI zaman aşımı)
+    pg.goto(base + "#/garden/1"); pg.reload()
+    pg.wait_for_selector("[data-test=garden-intro], [data-test=garden-done], [data-test=garden-empty], [data-test=hizli-oneri]", timeout=15000)
+    if not pg.locator("[data-test=garden-intro]").count():
+        raise AssertionError(f"{lid}: tanıtım yerine başka ekran ({pg.inner_text('main')[:120]!r})")
     # görsel çizilip kart oturana kadar (ResizeObserver küçültmesi dahil)
     pg.wait_for_function("""() => { const k = document.querySelector('[data-test=garden-intro] section.card'); if (!k) return false;
       const f = k.querySelector('[data-test=foto] img'); return k.dataset.fotoH === '0' || (f && f.complete); }""", timeout=8000)
