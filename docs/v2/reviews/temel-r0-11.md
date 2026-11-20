@@ -80,3 +80,4 @@ Dil hataları: **KAPANDI**. Açık madde 1 ve okur turu kapandı; `review.status
 - P2-5: `d22`, `d26`, `d29`, `d31` eksik doğru biçimler eklendi.
 - P2-7: yeni `d33` boşluğu "Tobi ___ in die Praxis." → geht (er/sie biçimi artık derste çalışılıyor).
 - Okur: yeni ve değişen Türkçe satırlar 3 turda okundu (2 GERİ → 1 → 0).
+- P2-2: yeni `d34` (Türkçe → Almanca, "Adamın adı Tobi."); hatırlama turu artık "Sein Name ist Tobi.", "Der Mann heißt Tobi." gibi eşdeğerleri kabul ediyor. Açıklaması d33 ile aynı kalıpta, okurdan geçmiş.
