@@ -77,6 +77,11 @@ Sonra kalan 5 IHLAL, betiğin yanlış alarmı. Hepsi kartın kendi kelimesi:
 - **Kişiye göre fiil ipuçları:** "**ich** ile **träume** olur." biçimindeki 458 ipucu (174 kart) mastarı da gösteriyor. Yeni biçim: "**ich** ile söylerken **träumen**, **träume** olur." Biçim değişmiyorsa: "**wir** ile söylerken **haben** aynı kalır."
   - Okur 40 satırlık örneklemi okudu: kalıp geçti, 1 satırda kalın söz cümledekiyle aynı değildi.
   - 458 satırın hepsi bu açıdan tarandı; o tek satır düzeltildi.
+- **İkinci tarama (inceleme #107 cc56f37 turu sonrası):** tarama listesine `vor, über, unter, gegen, beim, ins, ans, aufs` ve çekimli iyelikler eklendi. K1'de 28 boşluk daha bulundu ve kartın kelimesine taşındı.
+  - Örnekler: "Wir gehen heute ins ___." → Restaurant; "Ich habe ___ vor Hunden." → Angst; "Was ist Ihre ___?" yerine yeni cümle (Meinung).
+  - Dilbilimci yazdı; okur dört turda okudu (9 → 10 → 2 → 0 GERİ).
+  - Kartın kendisi küçük kelimeyse (der, ein, mein, sich…), ayrılan önek ya da kartın adındaki edat (aufhören, warten_(auf)) ihlal sayılmadı.
+- **Kişiye göre fiil ipuçları, ikinci adım:** biçim değişmeyen 121 ipucu artık "**wir** ile söylerken de **reden** denir." ("aynı kalır" neye göre aynı, belli değildi). "**ich** ile **leiden**, **leide** olur." biçimindeki 121 eski ipucuna "söylerken" eklendi.
 - **Denetim:**
   - Sözlükte kural dışı boşluk: 4 (sayacın yanlış alarmı). Küçük kelime soran boşluk: 0.
   - 7.597 ipucunun hepsinde kalın sözde beklenen cevap (ya da bir `also_ok`) geçiyor.
