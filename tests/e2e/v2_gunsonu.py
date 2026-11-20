@@ -70,6 +70,9 @@ def main():
         pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=gun-sonu]", timeout=10000)
         g = pg.inner_text("[data-test=gun-sonu]")
         check("adım bitirdin" in g, f"gün sonu kartı: biten adım ({g[:80]!r})")
+        # çipler sözlük eşzamansız yüklenince gelir: yavaş CI makinesinde kartla aynı anda değil (WebKit iPhone 15, bde4371) → beklenir
+        try: pg.wait_for_selector("[data-test=gun-sonu-kelimeler] .cip", timeout=10_000)
+        except Exception: pass
         check(pg.locator("[data-test=gun-sonu-kelimeler] .cip").count() >= 1, "bugün yeni anladığın kelimeler (çip)")
         cm = pg.inner_text("[data-test=gun-sonu-cumle]") if pg.locator("[data-test=gun-sonu-cumle]").count() else ""
         check("Urlaub" in cm and "Bis morgen!“" not in cm.split("Urlaub")[0][-5:], f"bugün kendi kurduğun cümle: kontrolden geçen mesaj, eksik taslak değil ({cm[:70]!r})")
