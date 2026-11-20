@@ -1,0 +1,21 @@
+# lexicon c6-11: dilbilimci incelemesi (PM-062, 6 cümle)
+
+- **İncelenen:** 50 kart, 304 boşluk, 300 örnek.
+- **Düzeltilen:** 31 kart; 19 kart değişmeden geçti.
+- **Yazar:**
+  - öğrenciyi aileye ya da yere bağlayan eski örnekleri ve boşlukları adsız kişilere verdi (Eltern, besuchen, Papa, früher, bewegen, reisen, Straße);
+  - Marienplatz yerine genel meydan yazdı;
+  - kartın kelimesinde olmayan boşlukları yeniden yazdı.
+- **Başka kartla aynı cümle ve çeviri, farklı cevap:** `lx:geschehen`, `lx:erledigen` ve `lx:bereits` boşlukları değişti. `lx:langsam`, `lx:erledigen` ve `lx:werfen` örnekleri değişti.
+- **Kartın anlamı:**
+  - `lx:hart` "katı yumurta" çıktı.
+  - `lx:süß` b4 büyük harfli Süßes yerine sıfat oldu.
+- **Düzey:** Karton, Knopf, Spielplatz, Kunst, Lösung, Frisur, korrigieren ve Sahne çıktı.
+- **Hata notu ve açıklama:**
+  - `lx:Eltern`, `lx:früher` ve `lx:reisen` hata notları öğrenciden ayrıldı.
+  - `lx:Platz` ipucundaki gerçek yer adı çıktı.
+- **Fotoğraf:** tabela ya da ekran isteyen 5 sorgu değişti.
+- **Açık:**
+  - `lx:Papa`'nın 6 boşluğunun hepsinin cevabı aynı.
+  - `lx:schwarz` b2'nin cevabı büyük harfli "in Schwarz".
+  - "Willkommen in München" gerçek yer adı içeriyor, öğrenciye bağlı değil.
