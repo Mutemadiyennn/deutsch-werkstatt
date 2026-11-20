@@ -444,3 +444,61 @@ Türkçede hepsi "bir avro". Uyarının sınırını çizen söz "tutar" kelimes
 **N9 — Gün 4 `h1` kalıp 2.** Parantezde rakam ve € işareti var. OD-9.2'nin yasakladıkları arasında değil, bana yardım etti.
 
 **N10 — "yine burada" telefonda.** Gün 5 `h5/g4` "Dr. Weber perşembe günü yine burada mı?" Telefonda arayan ben olsam Türkçede "orada" derdim. Görev cümlesinde kim, nereden soruyor yazmıyor; beni durdurmadı. Sahnede "burada" diyen Huber Hanım, muayenehanede. Doğru.
+
+## 2. tur
+
+Kaynak: `docs/v2/reviews/halka/gun-04-yazar.md` ve `gun-05-yazar.md` sonundaki "Okur 1. tur sonrası (İçerik Motoru)" bölümleri; ek olarak `gun-03-yazar.md` sonundaki "#177 takibi". Yalnız değişen satırlar ve aynı halkadaki komşuları okundu (PM-079 md. 3). Bilinen küme 1. turdaki gibi; 3. gün için `halka-gun-02-03.md` 1. turdaki küme.
+
+### Gün 4, Gün 5 ve `lx:Euro` (1. turda geri dönen 11 satır)
+
+| satır | yeni metin | kendi sözlerimle | karar |
+|---|---|---|---|
+| G4 `h1/g9` | Yetmiş avro değil, yetmiş sent! — `Nicht siebzig Euro – siebzig Cent!` | Fiyatı düzeltiyorum: yetmiş avro değil, yetmiş sent. | GEÇTİ. Yazdığım `Nicht siebzig Euro, siebzig Cent!` listede ("… değil" kalıbı, aynı halkanın `g8`'i). Kartın "pek denmez" dediği biçim artık cevap olarak görünmüyor. Kalıp 2 ile aynı yönde. |
+| G4 `h4/g8` | Bir avro yüz sent eder. — `Ein Euro ist hundert Cent.` | Bir avro ile yüz sent aynı para. | GEÇTİ. "eder" fiyat okunuşunu kesiyor, tek okumada oturdu. Yazdığım `Ein Euro ist hundert Cent.` listede. Not 2. |
+| G4 `h4/g10` | Altmış avro. Nakit mi, kartla mı? | Tutarı söylüyorum, nasıl ödeyeceğini soruyorum. | GEÇTİ. Noktalı virgül yok. Aynı halkanın sahne `s1`'iyle aynı düzen. Yazdığım listede. |
+| `lx:Euro` `mistakes_tr[0]` | Üç avro derken **drei Euros** yanlış. Doğrusu **drei Euro**. Sayıdan sonra **Euro** değişmez. | Sayıdan sonra avronun sonuna "s" koymam. | GEÇTİ. Tek fikir, üç kısa cümle. Takip 1. |
+| `lx:Euro` `mistakes_tr[3]` | (çıktı) | — | GEÇTİ. Belirsiz uyarı kalktı; kalan üç uyarı birbiriyle ve sent kartıyla çelişmiyor. Takip 2. |
+| `lx:Euro` `forms[3]` (`tr` ve `hint_tr`) | Beş avro ödüyorum. · Sayıdan sonra **Euro** değişmez: **fünf Euro**. | Beş avro veriyorum; sayıdan sonra kelime aynı kalır. | GEÇTİ. Boşluğa giden tek kelime var, ipucu onu veriyor. `einen`/`ein` sorusu artık yok. Not 3. |
+| G5 `h1/g4` | Saat on mu? Bu çok geç. (+ `Ist es zehn Uhr? Das ist zu spät.`) | Saatin on olduğuna şaşırıyorum, bu bana geç. | GEÇTİ. Soru sırasıyla yazdığım cümle artık listede; `g6` ile aynı. |
+| G5 `h2/g6` | Saat altı mı? Peki, yarın görüşürüz! (+ `Ist es sechs Uhr? Also, bis morgen!`) | Saatin altı olduğunu öğreniyorum, vedalaşıyorum. | GEÇTİ. Yazdığım listede. Not 4. |
+| G5 `h2/kalıp 1` | dokuz buçuk – saat dokuz otuz · `halb zehn – neun Uhr dreißig` | Dokuz buçuğun iki söyleyişi; Almancada biri ondan söz ediyor. | GEÇTİ. Eşittir yok, tek fikir, kısa. "dokuz buçuk"un altında `zehn` görünce tuzağı kendim fark ettim; `g1` ve `g2`'yi doğru yazdım. Not 5. |
+| G5 `h4/g4` | Saati mi? Saat onu çeyrek geçe. | Randevunun saatini söylüyorum: on on beş. | GEÇTİ. "Saat" önde olunca "onu" tek okumada "on" oldu. Aynı halkanın `s1`'i ("saat üçü çeyrek geçe") gibi okudum. Yazdığım `Die Uhrzeit? Um Viertel nach zehn.` listede. Not 1. |
+| G5 `h5/s3` | Memnuniyetle. Saat onu çeyrek geçe mi? | Huber Hanım on on beşi öneriyor. | GEÇTİ. Tek okumada. `s4` "Evet, uyar." ile ve soru şıklarıyla çelişki yok. |
+
+### Gün 3 (#177 takibi, üç satır)
+
+| satır | yeni metin | kendi sözlerimle | karar |
+|---|---|---|---|
+| G3 `h1/g3` | Sıfır mı Huber Hanım? Evet, sıfır. — `Null, Frau Huber? Ja, null.` | Huber Hanım'a rakamın sıfır olduğunu doğruluyorum. | GEÇTİ. Yazdığım `Null, Frau Huber? Ja, null.` listede. "başta" sözü kalktı, yer bildiren küçük kelime istenmiyor. Komşu `g4` ile çakışma yok. |
+| G3 `h5/kalıp 2` | yeni ofis – ofiste · `das neue Büro – im Büro` | "ofiste" derken önüne `im` gelir, `das` gitmez. | GEÇTİ. `h1` kalıp 2 ("üç numara – üç numarada") ile aynı düzende. `g9` ve `g10`'u bu kalıptan `im Büro` diye yazdım, ikisi de listede. |
+| G3 `h4/soru` | On dörtten sonra, senden önce kaç numara çağrılacak? (Hiç / Bir / İki / Üç) | On dört ile benim on altım arasında kaç numara var? | GEÇTİ. Hesaplanıyor: yalnız on beş, cevap Bir. Tek okumada; 1. turdaki iki okuma gerekmedi. Şıklar yalın. |
+
+### Notlar (karar değil)
+
+1. G5 `h4/g4`: "Saat …" ile başlayan Türkçe, `h1` kalıp 1'den (`Saat … – Es ist … Uhr`) `Die Uhrzeit? Es ist Viertel nach zehn.` yoluna da götürebilir. Bu biçim listede yok. Ben "geçe" sözünden `um` yolunu seçtim, o listede.
+2. G4 `h4/g8`: "eder" sözünü sent kartının örneğinden tanıyorum (`Hundert Cent sind ein Euro.`). Oradan kopyalayan biri `Ein Euro sind hundert Cent.` yazabilir. Bu biçim listede yok.
+3. `lx:Euro` `forms[3]`: ipucu `forms[1]`'in ipucuyla aynı şeyi öğretiyor. `zahlen` kartı 4. halkada geliyor, avro kartı 1. halkada. Türkçe tam olduğu için durdurmadı.
+4. G5 `h2/g6`: Saatsiz soru sırası (`Ist es sechs? Also, bis morgen!`) listede yok. Ana cevapta `Uhr` olmadığı için akla gelebilir.
+5. G5 `h2/kalıp 1`: "neden ondan söz ediliyor" açıklaması kalktı. Kalıp yine de işini görüyor; açıklama kartta (`lx:halb`) duruyorsa yeter.
+
+### Takip işleri (eski, değişmemiş alanlar; engel değil)
+
+1. `lx:Euro` `pl: Euros`: Uyarıdaki üçüncü cümle çıkınca kartın başında görünen "Euros" biçimi açıklamasız kaldı. Uyarı da "drei Euros yanlış" diyor.
+2. `lx:Euro` `collocations[2]`: `Das kostet einen Euro.` · "Bu bir avro." `einen` hâlâ görünüyor ve bir açıklaması yok. Sent kartında ve Gün 4 `h2/s1`, `s3` satırlarında `ein Euro …` var. K7'nin kökü bu eşdizimde duruyor; bugün hiçbir görev bunu yazdırmıyor.
+
+### Sonuç, 2. tur
+
+| | Okunan | GEÇTİ | GERİ |
+|---|---|---|---|
+| Gün 4 (`gun-04-halkalar.json`) | 3 | 3 | 0 |
+| Gün 5 (`gun-05-halkalar.json`) | 5 | 5 | 0 |
+| `lx:Euro` (`batch-015.json`) | 3 | 3 | 0 |
+| Gün 3 (`gun-03-halkalar.json`, #177 takibi) | 3 | 3 | 0 |
+| Toplam | 14 | 14 | 0 |
+
+- `gun-04-halkalar.json`: geri dönen yok.
+- `gun-05-halkalar.json`: geri dönen yok.
+- `batch-015.json` (`lx:Euro`, `lx:Cent`): geri dönen yok.
+- `gun-03-halkalar.json` (değişen üç satır): geri dönen yok.
+
+Okur yönünden Gün 4, Gün 5 ve kart dosyası OD-9.4'e göre "reviewed" sayılabilir. 3. gün dosyasının 1. turdan kalan geri dönüşleri bu turun kapsamında değil.
