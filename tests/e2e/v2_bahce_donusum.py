@@ -45,8 +45,12 @@ def main():
         # sonra HER dokunuştan sonra karşılaştırılır (inceleme #136 2. tur P1-2: ilk ve son dokunuş aynı cümleye düşebiliyor)
         # CI #162 iPhone 15: temel 747 alındı, döküm hemen ardından 801 gösterdi (sayfa temelden SONRA oturuyordu; kart aynı) →
         # temel, eylem çubuğu ve belge yüksekliği art arda 5 yoklamada (≈1 sn) değişmeyince alınır
-        pg.wait_for_function("""() => { const v = getComputedStyle(document.documentElement).getPropertyValue('--actionbar-h').trim(), h = document.documentElement.scrollHeight;
-            const ayni = v && window.__abh === v && window.__sh === h; window.__abn = ayni ? (window.__abn || 0) + 1 : 0; window.__abh = v; window.__sh = h; return window.__abn >= 5; }""", polling=200, timeout=8000)
+        # inceleme #167 P1-1: --actionbar-h kökte değil, .app'in satır içi stilinde (kit.tsx ActionBar ResizeObserver'ı yazar); boşsa ölçüm daha gelmedi
+        try:
+            pg.wait_for_function("""() => { const a = document.querySelector('.app'), v = a ? a.style.getPropertyValue('--actionbar-h').trim() : '', h = document.documentElement.scrollHeight;
+                const ayni = v && window.__abh === v && window.__sh === h; window.__abn = ayni ? (window.__abn || 0) + 1 : 0; window.__abh = v; window.__sh = h; return window.__abn >= 5; }""", polling=200, timeout=8000)
+        except Exception:  # inceleme #167 P2-1: çıplak TimeoutError yerine okunur satır
+            check(False, "temel: eylem çubuğu (.app --actionbar-h) ve sayfa yüksekliği 8 sn içinde 5 yoklama boyunca oturmadı")
         boy0 = boy(); boylar = []; dokum0 = dokum(); farkli = None
         goruldu, doms, kareler = [ilk], [], []
         # D-096 yöntemi: DOM her dokunuşta < 150 ms, ilk kare (7 dokunuşun ortancası − boş kare aralığı) < 150 ms. B köprüsü (#131) C ile
