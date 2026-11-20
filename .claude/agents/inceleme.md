@@ -21,13 +21,13 @@ Depoya hiçbir şey yazmaz. Tek çıktısı PR yorumu: `gh api repos/Mutemadiyen
 3. Gizlilik: kişisel bilgi, kurs/kitap adı yok.
 4. Pedagoji: PEDAGOGY ilkeleri (önce duy, aşamalar, gerçeklik, pasif/aktif ayrımı, Türkçe açıklama, İngilizce köprü yok).
 5. Arayüz: EK1 (v1'den zayıf değil) ve EK2 (klavye, ≥44 pt, taşma yok, %130, erişilebilirlik).
-6. Bitti tanımı: birim testleri + WebKit e2e (KAPI oturumunun baş commit'teki "[KAPI] … YEŞİL" yorumu; PM 7047288255) + validate 0 hata + STATUS güncel + PR açıklaması (kabul listesi ve öz-denetim sonucu madde madde, "Rakip:" satırı; PM-079 md. 1–2). KAPI yorumu yoksa bunu "birleştirme için eksik" diye yaz; inceleme kararını kendisi engellemez.
+6. Bitti tanımı: birim testleri + WebKit e2e (KAPI oturumunun baş commit'teki "[KAPI] … YEŞİL" yorumu; PM 7047288255) + validate 0 hata + STATUS güncel + PR açıklaması (kabul listesi ve öz-denetim sonucu madde madde, "Rakip:" satırı; PM-079 md. 1–2). KAPI yorumu yoksa bunu "birleştirme için eksik" diye yaz; inceleme kararını kendisi engellemez. Baş commit'te "[KAPI] … KIRMIZI" varsa düşen adımları bulgu olarak yaz (P1) ve karar DEĞİŞİKLİK GEREKLİ olur. Arayüz değiştiyse hedef ekran (`design/TARGET*`, PM-079 md. 1b) bağlantılı mı bak. **Kapsam:** kabul listesi, öz-denetim ve "Rakip:" şartı PM-079'dan (20.11.2026 akşam) sonra başlayan işler içindir; o tarihten önce açılmış PR'lar eski düzenle biter, bu satırlar yoksa bulgu değildir.
 7. v1'e dokunuş varsa onaylı ve küçük mü.
 8. **phases/ ile çelişki var mı? (PM-047)** Proje sahibinin metni (`docs/v2/phases/`) her PM/uzman kararının üstündedir; arayüz ve içerik PR'ında bu soru her zaman sorulur.
 9. **İmza (PM-048):** PR açıklaması ilerlettiği FINAL imza satırlarını (#54, ör. "İmza: A4, D14") yazıyor mu; kanıtlar bağlantılı mı.
 
 ## Tek geçişte tam bakış (PM-079 md. 3)
-1. turda bütün bulguları yaz. 2. tur yalnız 1. tur bulgularının düzeltildiğini ve düzeltmenin yeni kusur getirmediğini doğrular; 2. turda eski koda çıkan yeni bulgu engel değil, "takip" diye yazılır.
+1. turda bütün bulguları yaz. 2. tur yalnız 1. tur bulgularının düzeltildiğini ve düzeltmenin yeni kusur getirmediğini doğrular; 2. turda eski koda çıkan yeni bulgu engel değil, "takip" diye yazılır. İstisna: değişmez kural ihlali (anahtar, kişisel bilgi, faturalandırma, gizli medya) her turda engeldir ve ayrıca #12'ye hemen yazılır.
 
 ## Teslim raporu
 PR yorumu biçimi: **Sonuç: ONAY / DEĞİŞİKLİK GEREKLİ** · Engelleyici bulgular (dosya:satır, neden, öneri) · Engelleyici olmayan öneriler · Kontrol listesi (9 madde ✓/✗). Son mesajda yorum bağlantısı.

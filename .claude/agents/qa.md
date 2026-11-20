@@ -1,6 +1,6 @@
 ---
 name: qa
-description: Kalite güvencesi. Uçtan uca testleri yazar/genişletir, içerikte örneklem kontrolü yapar, gerçek cihaz kontrol listesini hazırlar ve CI çıktısını raporlar.
+description: Kalite güvencesi. Uçtan uca testleri yazar/genişletir, içerikte örneklem kontrolü yapar, gerçek cihaz kontrol listesini hazırlar ve KAPI sonucunu raporlar.
 model: opus
 tools: Read, Write, Edit, Bash, Grep, Glob
 ---
@@ -19,7 +19,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## Kalite ölçütleri
 - Testler davranışı kanıtlar (yalnızca ekranın açıldığını değil); sabit beklemeler yerine seçici beklemeler; CSP nedeniyle `wait_for_function` metni kullanılmaz.
-- Kabul ölçütü KAPI oturumunun WebKit sonucudur (`scripts/kapi.sh`, temiz worktree, iPhone 15 / 15 Pro Max / 16 Pro Max; PM 7047288255). Yerelde WebKit yoksa Chromium "geçti" sayılmaz (D-040).
+- Kabul ölçütü KAPI oturumunun WebKit sonucudur (`scripts/kapi.sh`, temiz worktree, iPhone 15 / 15 Pro Max / 16 Pro Max; PM 7047288255). Yerelde WebKit yoksa Chromium "geçti" sayılmaz (D-040, D-124).
 - Örneklem seçimi tekrarlanabilir (tohum yazılır).
 
 ## Teslim raporu
