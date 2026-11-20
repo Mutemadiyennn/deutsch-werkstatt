@@ -8,8 +8,9 @@
  */
 import { bilinmeyenler, bilinmeyenYazi, toks, type Drill, type Gun, type KumeDizini, type TemelDers } from "../../packages/shared/src/index.ts";
 
-/** policy.json "akis.halka_kart" ile aynı (AK-8; PM 7043401257) */
-export const HALKA_KART: [number, number] = [4, 6];
+import POLICY from "../../web/src/policy.json" with { type: "json" };
+/** policy.json → akis.halka_kart (AK-8; PM 7043401257) */
+export const HALKA_KART = POLICY.akis.halka_kart as [number, number];
 const GOREV_MIN = 2;
 
 type Cumle = { yer: string; tur: "gorev" | "gosterim"; de: string };
