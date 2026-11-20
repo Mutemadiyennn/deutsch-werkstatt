@@ -120,7 +120,7 @@ if git diff --cached --quiet; then echo "Değişiklik yok; yayın gerekmiyor"; e
 MSG="v2 yayın: $K7"
 git commit -q -m "$MSG"
 D=$(date -u +%Y%m%d); N=1; while git rev-parse -q --verify "refs/tags/v2-$D-$N" >/dev/null; do N=$((N+1)); done
-ONCEKI=$(git tag -l 'v2-*' --sort=-creatordate | head -n 1)
+ONCEKI=$(git for-each-ref --count=1 --sort=-creatordate --format='%(refname:short)' 'refs/tags/v2-*')   # boru yok: SIGPIPE/pipefail riski yok
 git tag -a "v2-$D-$N" -m "$MSG (kaynak $K7)"
 # atomik: dal ve etiket birlikte gider ya da hiçbiri (yetim etiket geri alma ile yayına girmesin)
 if ! git push -q --atomic origin HEAD:gh-pages "v2-$D-$N"; then git tag -d "v2-$D-$N" >/dev/null; echo "itme reddedildi (dal + etiket birlikte); yayın yapılmadı" >&2; exit 1; fi
