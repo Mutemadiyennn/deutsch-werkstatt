@@ -1,7 +1,7 @@
 /** İçerik paketi yükleyici: /content/current.json → /content/<sürüm>/… (şemayla doğrulanır, bellekte önbellek) */
 import { z } from "zod";
 import { bilinenKelimeler } from "../core/persona.ts";
-import { AssessItem, ContentIndex, GrammarNote, Gun, Lexeme, Pattern, Scenario, TemelDers, World } from "@dw/shared";
+import { adsizTasi, AssessItem, ContentIndex, GrammarNote, Gun, Lexeme, Pattern, Scenario, TemelDers, World } from "@dw/shared";
 
 const base = () => `${import.meta.env.BASE_URL}content/`;
 let idx: Promise<ContentIndex> | null = null;
@@ -38,7 +38,7 @@ export function loadIndex(): Promise<ContentIndex> {
   return idx;
 }
 function file<T>(name: string, schema: z.ZodType<T>): Promise<T> {
-  if (!cache.has(name)) cache.set(name, (async () => { const i = await loadIndex(); return schema.parse(await getJson(`${base()}${i.version}/${name}`)); })().catch((e) => { cache.delete(name); throw e; }));
+  if (!cache.has(name)) cache.set(name, (async () => { const i = await loadIndex(); const raw = await getJson(`${base()}${i.version}/${name}`); return adsizTasi(raw, schema.parse(raw)); })().catch((e) => { cache.delete(name); throw e; }));
   return cache.get(name) as Promise<T>;
 }
 /** PM-064: dünya (karakterlerin ses kaydı); içerikte yoksa boş */
