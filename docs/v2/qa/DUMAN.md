@@ -14,6 +14,7 @@ e2e testleri sahte girişle, sahte sunucuyla ve sahte sesle koşar. Aşağıdaki
 | 6 | Profil → Ses ve mikrofon | "Dinle" / "Yavaş" (erkek ve kadın ses), "Söyle: Guten Morgen" | Sesler cinsiyete uygun; Yavaş yalnızca hız; tanınan metin görünür |
 | 7 | Bugün → BAŞLA | ilk düğüm | Bahçe açılır, süre başlar (durum çubuğunda dakika) |
 | 8 | Uçak modu | uygulamayı internetsiz aç | Sekmeler açılır (BY-12) |
+| 9 | **"Başka cümle" gerçek iPhone'da** (PM 7028983301; CI kare ölçüsünün tamamlayıcısı) | Kelime Bahçesi → tanıtım kartında "Başka cümle"ye 3 kez dokun | Her dokunuşta cümle hemen değişir, gecikme hissedilmez; kart zıplamaz |
 
 Kim: ana motor yapamıyorsa (bu oturumda Google hesabı ve canlı adrese tarayıcı erişimi yok) satırı "–" yazar ve PM'den
 proje sahibine iletmesini ister. Yeni bir canlı-yalnız yol eklenince bu tabloya satır eklenir.
