@@ -5,7 +5,7 @@
 #   npm ci → tip → birim → içerik kapısı → (raf testleri, anahtar taraması) → derleme + e2e derlemesi + bütçe
 #   → Worker paketleme → WebKit uçtan uca (iPhone 15, iPhone 15 Pro Max, iPhone 16 Pro Max) → yerleşim bekçisi.
 # Yol süzgeci (PM-079 md. 5) içeride: değişen dosyalara göre
-#   docs    (yalnız docs/, kökteki *.md, PR şablonu)  → tip + içerik kapısı
+#   docs    (yalnız docs/, kökteki *.md, PR şablonu, ajan tanımları) → tip + içerik kapısı
 #   icerik  (yalnız content/, content/tools HARİÇ)       → içerik kapısı + içerik testleri + tek cihaz duman (iPhone 15, v2_core)
 #   kod     (web/, worker/, packages/, tests/, scripts/, .github/, content/tools/ ya da başka her şey) → tam
 # Kural: kabul koşusunu işi yazan değil KAPI oturumu koşar (temiz worktree; PR'a "[KAPI] <commit> — YEŞİL/KIRMIZI";

@@ -16,5 +16,7 @@ t "scripts/kapi.sh" kod
 t ".github/workflows/ci-v2.yml" kod
 t "package.json" kod
 t "app/x.html" kod
+t ".claude/agents/inceleme.md" docs
+t ".claude/settings.json" kod
 t "" kod
 exit $h
