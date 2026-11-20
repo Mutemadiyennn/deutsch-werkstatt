@@ -30,7 +30,8 @@ for d in range(1, gun):
         for hh in json.load(open(pf, encoding='utf8'))['halkalar']:
             for k in hh.get('kaliplar', []):
                 a, b = kalip_parca(k['de'], onceki_kart); kalip_tek |= a; kalip_cok += [tuple(x for x in c if x != 'qqslot') for c in b]
-onceki_tok = {x for i in onceki_kart for x in M['gost'][i]}
+# (b) yalnızca önceki günlerin yeni_kartlar kartları sayılır (ders kartları nicht, bis, welcher değil; inceleme #177 E1)
+onceki_tok = {x for d in range(1, gun) for i in gunler[d]['yeni_kartlar'] for x in M['gost'][i]}
 sorular = []
 tum = [c for h in o['halkalar'] for c in h['kartlar']]
 if sorted(tum) != sorted(gunler[gun]['yeni_kartlar']): print('HATA: halka kartları yeni_kartlar ile aynı değil'); hata += 1
