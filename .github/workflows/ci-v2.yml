@@ -128,6 +128,8 @@ jobs:
         run: cd tests/e2e && python v2_kalip.py --shots /tmp/shots
       - name: "Bahçe değişen cümle (PM-062, #58 B13): Başka cümle 3 dokunuşta 3 cümle, <150 ms, uçak modunda; ipucu sayılmaz"
         run: cd tests/e2e && python v2_bahce_donusum.py --shots /tmp/shots
+      - name: "Üst çubuk başlığı tek satır; medya ve senaryoda tek doğru birincil eylem (PM-074 G2, md. 2–3)"
+        run: cd tests/e2e && python v2_baslik.py --shots /tmp/shots
       - name: "Hızlı şerit (#58 B16, PM-066): Biliyorum sına beni, öneri, tespit A2 varsayılan, tanıma sorusu görmeden tur"
         run: cd tests/e2e && python v2_hizli.py --shots /tmp/shots
       - name: "Şölen 1 (#58 B10): cevap anı, ilerleme çubuğu, XP ve seri, tur sonu kutlaması, efekt sesi ayarı, hareket azaltma"

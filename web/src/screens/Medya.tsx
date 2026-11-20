@@ -196,19 +196,20 @@ function DinleAdimi({ m, cs, oy, onNext }: { m: Medya; cs: MedyaCumle[]; oy: Ret
   const [dinledi, setDinledi] = useState(false);
   // #58 B7: Profil'de başlangıç hızı Yavaş ise ilk dinleme 0,75× ve düğmede yazılı; "Bir daha dinle" normal hızda
   const ilkYavas = baslangicYavas() && !dinledi;
-  const yavas = (m.kind === "ses" && m.hizlar[0] === "slow") || ilkYavas;
+  // PM-074 md. 2: tek oynat düğmesi + hız anahtarı (Yavaş / Normal); "Önce dinle" yazan ikinci bir düğme yok
+  const ikiHiz = m.hizlar.includes("slow") && m.hizlar.length > 1;
+  const [hiz, setHiz] = useState<"slow" | "normal">((m.kind === "ses" && m.hizlar[0] === "slow") || baslangicYavas() ? "slow" : "normal");
+  const yavas = ikiHiz ? hiz === "slow" : (m.kind === "ses" && m.hizlar[0] === "slow") || ilkYavas;
   return (
     <section class="card stack fade" data-test="adim-dinle">
       <div class="kicker">Bölümü baştan sona dinle</div>
       <p class="small">Metin yok: önce kulağınla dene. Ne hakkında olduğunu anlamaya çalış; her kelimeyi anlaman gerekmiyor.</p>
-      <div class="row">
-        {oy.calisiyor !== null
-          ? <button class="btn grow" data-test="durdur" onClick={() => oy.dur()}><Icon name="pause" /> Durdur</button>
-          : <button class="btn primary grow" data-test="dinle-bolum" onClick={() => { setDinledi(true); void oy.bolum(cs, yavas); }}>
-              <Icon name="play" /> {dinledi ? "Bir daha dinle" : ilkYavas ? "Dinle (yavaş)" : "Dinle"}</button>}
-        {m.hizlar.includes("slow") && m.hizlar.length > 1 && oy.calisiyor === null && <button class="btn grow" onClick={() => { setDinledi(true); void oy.bolum(cs, true); }}>Yavaş</button>}
-      </div>
-      <ActionBar><button class="btn block" data-test="next" disabled={!dinledi && !E2E} onClick={onNext}>{dinledi ? "Sorulara geç" : "Önce dinle"}</button></ActionBar>
+      {oy.calisiyor !== null
+        ? <button class="btn block" data-test="durdur" onClick={() => oy.dur()}><Icon name="pause" /> Durdur</button>
+        : <button class="btn primary block" data-test="dinle-bolum" onClick={() => { setDinledi(true); void oy.bolum(cs, yavas); }}>
+            <Icon name="play" /> {dinledi ? "Bir daha dinle" : yavas ? "Dinle (yavaş)" : "Dinle"}</button>}
+      {ikiHiz && <div class="seg" role="group" aria-label="Hız" data-test="hiz">{(["slow", "normal"] as const).map((h) => <button type="button" aria-pressed={hiz === h} onClick={() => setHiz(h)}>{h === "slow" ? "Yavaş" : "Normal"}</button>)}</div>}
+      {(dinledi || E2E) && <ActionBar><button class="btn block" data-test="next" onClick={onNext}>Sorulara geç</button></ActionBar>}
     </section>
   );
 }

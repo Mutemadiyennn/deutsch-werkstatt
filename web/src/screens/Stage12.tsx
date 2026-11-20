@@ -150,11 +150,15 @@ export function HearSection({ ctx, finish, back, setSub }: SP & { setSub: (n: pr
       <section class="card hero stack">
         <div class="kicker">Önce duy · {s.dialogues[0]?.title_tr || s.title_tr}</div>
         <p style={{ margin: 0 }}>{subs ? "Şimdi altyazılı dinle: kelimeleri bağlam içinde gör." : "Önce gerçek konuşmayı altyazısız dinle. Her şeyi anlaman gerekmiyor; ne olduğunu yakalamaya çalış."}</p>
-        <div class="row"><button class="btn" onClick={() => void playAll()} disabled={playing} data-test="play-dialogue">{playing ? "Çalıyor…" : <><Icon name="play" size={18} /> Diyaloğu dinle</>}</button>{playing && <button class="btn ghost sm" onClick={() => { stopSpeaking(); setPlaying(false); setHeard(true); }}>Durdur</button>}</div>
       </section>
       {subs && <section class="card stack" data-test="subtitles">{lines.map((l) => <div class="dline"><div class="grow"><div class="who" style={{ fontSize: "0.8rem", fontWeight: 800, color: "var(--muted)" }}>{s.dialogues[0]!.roles[l.r]}</div><div lang="de" class="de">{l.de}</div><div class="tr2">{l.tr}</div></div><ListenButton text={l.de} speed={l.speed} small slowToggle={false} kim={l.speaker ?? s.dialogues[0]!.roles[l.r]} sahne={lines.map((x) => x.speaker ?? s.dialogues[0]!.roles[x.r])} /></div>)}</section>}
+      {/* PM-074 md. 3: ana eylem dinlemek; altyazıya atlama küçük bağlantı */}
       <ActionBar>{!subs
-        ? <button class="btn primary block" onClick={() => setSubs(true)} data-test="to-subtitles">{heard ? "Altyazılı dinle" : "Dinlemeden altyazıya geç"}</button>
+        ? (playing
+          ? <><button class="btn primary block" disabled data-test="play-dialogue">Çalıyor…</button><button class="linkbtn" onClick={() => { stopSpeaking(); setPlaying(false); setHeard(true); }}>Durdur</button></>
+          : heard
+            ? <><button class="btn primary block" onClick={() => setSubs(true)} data-test="to-subtitles">Altyazılı dinle</button><button class="linkbtn" onClick={() => void playAll()} data-test="play-dialogue">Bir daha dinle</button></>
+            : <><button class="btn primary block" onClick={() => void playAll()} data-test="play-dialogue"><Icon name="play" size={18} /> Diyaloğu dinle</button><button class="linkbtn" onClick={() => setSubs(true)} data-test="to-subtitles">Dinlemeden altyazıya geç</button></>)
         : <button class="btn primary block" onClick={() => setPhase(strong && strong.length ? "quick" : "scan")} disabled={strong === null} data-test="to-scan">Devam: bildiklerini işaretle</button>}</ActionBar>
     </div>
   );
