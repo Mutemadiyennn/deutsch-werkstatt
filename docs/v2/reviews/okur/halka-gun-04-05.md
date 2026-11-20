@@ -502,3 +502,66 @@ Kaynak: `docs/v2/reviews/halka/gun-04-yazar.md` ve `gun-05-yazar.md` sonundaki "
 - `gun-03-halkalar.json` (değişen üç satır): geri dönen yok.
 
 Okur yönünden Gün 4, Gün 5 ve kart dosyası OD-9.4'e göre "reviewed" sayılabilir. 3. gün dosyasının 1. turdan kalan geri dönüşleri bu turun kapsamında değil.
+
+## Ek: zu = fazla (PM 7052062209)
+
+Kapsam: `docs/v2/reviews/halka/gun-05-yazar.md` sonundaki "PM 7052062209 kararları sonrası" bölümünde sayılan satırlar. Bilinen küme 1. turdaki gibi. 4. günde `zu` kelimesini `h3` kalıp 2'den ("Bu fazla pahalı.") öğreniyorum. 5. günde bu kalıp ve 4. günün kartları elimde.
+
+### Değişen satırlar
+
+| yer | metin | kendi sözlerimle | karar |
+|---|---|---|---|
+| G4 `h3/kalıp 2` | Bu fazla pahalı. – Bu pahalı değil. · `Das ist zu teuer. – Das ist nicht teuer.` | Fiyat bana ağır gelince "fazla" için küçük bir kelime koyarım. Pahalı değilse `nicht` derim. | GEÇTİ. "fazla" kelimesi "çok"tan ayrı duruyor: istemediğim kadar demek. Almancada da ayrı bir küçük kelime görünüyor. |
+| G4 `h3/g4` | On avro mu? Bu fazla pahalı Brandl Hanım. | On avroyu Brandl Hanım'a çok buluyorum, ödemek istemiyorum. | GEÇTİ. Kalıptan `Zehn Euro? Das ist zu teuer, Frau Brandl.` yazdım, listede. 1. turda "çok" yazınca `sehr` yoluna gidebiliyordum, artık gitmiyorum. |
+| G4 `h3/s2` | Yetmiş avro mu? Bu fazla pahalı! | Yanlış duyuyorum, yetmiş avroyu fazla buluyorum. | GEÇTİ. Almancayla aynı. Sahnenin sonraki satırı ve soru değişmedi, çelişki yok. |
+| G5 `h1/g4` | Saat on mu? Bu fazla geç. | On benim için geç kalıyor, istemiyorum. | GEÇTİ. `spät` aynı halkanın kartı, `zu` 4. günün kalıbından. `Ist es zehn Uhr? Das ist zu spät.` yazdım, listede. "fazla geç" biraz kitabi ama tek okumada anlaşılıyor. |
+| G5 `h1/g9` | Saat altıda mı? Bu fazla erken! | Altı benim için erken, istemiyorum. | GEÇTİ. `früh` aynı halkanın kartı. `Um sechs Uhr? Das ist zu früh!` yazdım, listede. |
+| G5 `h3/g8` | Akşam mı? Hayır, bu fazla geç. | Akşam benim için geç, olmaz diyorum. | GEÇTİ. "akşam" için kalıp 1'den `am Abend` aldım. `Am Abend? Nein, das ist zu spät.` listede. |
+| G5 `h2/g9` | Elma yalnızca elli sent. | Elma ucuz, sadece elli sent tutuyor. | GEÇTİ. 4. günün "Ekmek … avro" kalıbından `kostet` ekledim, "yalnızca" `nur` kartından. `Der Apfel kostet nur fünfzig Cent.` listede. Fiyat 4. günün `h5/g2` ve sahnesiyle aynı. |
+| `lx:teuer` `collocations[0]` | zu teuer · fazla pahalı | Gereğinden pahalı. | GEÇTİ. |
+| `lx:teuer` `examples[0]` | Bu bana fazla pahalı. | Bu benim için fazla pahalı, almam. | GEÇTİ. `mir` için "bana" yerinde. |
+| `lx:teuer` `examples[3]` | – Ayakkabıları nasıl buldun? – Güzel ama fazlasıyla pahalı. | Ayakkabı güzel ama fiyatı çok aşırı. | GEÇTİ. "fazlasıyla" "fazla"dan daha güçlü okunuyor; `viel zu` için uygun. `collocations[2]` ile aynı. |
+| `lx:spät` `collocations[0]` | zu spät · fazla geç | Gereğinden geç. | GEÇTİ. Aynı kartta `zu spät kommen` "geç kalmak" ayrı bir kalıp, karışmıyor. |
+| `lx:spät` `examples[5]` | – Bugün randevu için fazla mı geç? – Hayır, gelin! | Bugün randevu almak için vakit geçti mi diye soruyorum. Hayır, gel diyor. | GEÇTİ. |
+| `lx:früh` `collocations[1]` | zu früh · fazla erken | Gereğinden erken. | GEÇTİ. |
+| `lx:acht` `examples[1]` | Yedi buçuk bana fazla erken. | Yedi buçuk benim için erken. | GEÇTİ. `halb acht` yedi buçuk, doğru. |
+| `lx:neun` `forms[3].tr` | Dokuz avro, bu fazla pahalı. | Dokuz avroyu fazla buluyorum. | GEÇTİ. İpucu yalnız "dokuz avro"yu soruyor, boşluk tek. |
+| `lx:achtzehn` `forms[3].tr` | Saat on sekiz bana fazla geç. | Saat on sekiz benim için geç. | GEÇTİ. |
+| `lx:sehr` `mistakes_tr[1]` | Çok pahalı derken **zu teuer** yanlış anlaşılır. Doğrusu **sehr teuer**. **zu teuer** fazla pahalı, yani gereğinden çok pahalı demektir. | "çok" demek istersem `sehr` derim. `zu` dersem "fazla, istemiyorum" anlaşılır. | GEÇTİ. Üç kısa cümle, en uzunu 8 kelime. `lx:zu#2` ipucuyla aynı şeyi söylüyor. |
+| `lx:zu#2` `exp.ipucu_tr` | **sehr** çok demektir, **zu** ise fazla, yani gereğinden çok. | `sehr` çok, `zu` fazla demek. | GEÇTİ. 10 kelime, tek fikir. `lx:sehr` uyarısıyla tutarlı: ikisi de "fazla = gereğinden çok" diyor. |
+| `gun-05.json` `prova.dugumler[3].secenekler[2].geri_bildirim_tr` | Bu çok sert duyulur. **Das ist zu früh.** (Bu fazla erken.) de ve başka bir saat öner. | Benim cevabım kaba oldu. Sakin bir cümle kurup başka saat önermeliyim. | GEÇTİ, kendi başına. Ama aynı ekranda iki seçenek aynı Almancaya hâlâ "çok erken" diyor (aşağıda). |
+
+Öğrencinin gözüyle "fazla" ile "çok":
+- "fazla pahalı" doğal geliyor, "çok pahalı"dan ayrı okunuyor: "istemediğim kadar pahalı".
+- "fazla geç" ve "fazla erken" biraz kitabi. Ama tek okumada anlaşılıyor ve "çok"tan ayrı duruyor.
+- `lx:sehr` uyarısı ile `lx:zu#2` ipucu birbirini tutuyor. İkisi de aynı ayrımı aynı sözlerle anlatıyor.
+
+### Değişmemiş, aynı ayrımla çelişen satırlar (kaçmış)
+
+Bu satırlar listede yoktu. Ama `lx:sehr` uyarısı artık "çok derken `zu` yanlış anlaşılır" diyor. Bu satırlarda `zu …` hâlâ "çok …" diye çevrili. Biri 4. ya da 5. günde, aynı ekranda ya da aynı kartta duruyor.
+
+| yer | Almanca · Türkçe | karar | neden |
+|---|---|---|---|
+| `gun-05.json` `prova.dugumler[3].secenekler[1].tr` | `Das ist zu früh. Geht Viertel nach vier?` · Bu çok erken. Dördü çeyrek geçe olur mu? | GERİ | Aynı düğümün geri bildirimi aynı Almancaya "Bu fazla erken" diyor. Bir ekranda tek Almancaya iki Türkçe görüyorum. |
+| `gun-05.json` `prova.dugumler[3].secenekler[2].tr` | `Nein! Zu früh!` · Hayır! Çok erken! | GERİ | Geri bildirimle yan yana okuyunca fark "çok / fazla" sanılıyor. Oysa geri bildirim kabalığı anlatıyor. |
+| `gun-05.json` `sahne.sahneler[4].tr` | `Nein, das ist zu spät! …` · Hayır, bu çok geç! … | GERİ | 5. gün `h1/g4` ve `h3/g8` aynı cümleye "fazla geç" diyor. `lx:sehr` uyarısıyla çelişiyor. |
+| `gun-04.json` `sahne.sahneler[3].tr` | `Vierzig Euro? Das ist zu teuer!` · Kırk avro mu? Bu çok pahalı! | GERİ | 4. gün `h3` kalıbı aynı cümleye "Bu fazla pahalı" diyor. |
+| `gun-04.json` `prova.dugumler[1].secenekler[2].tr` | `Dreißig Euro? Das ist zu teuer!` · Otuz avro mu? Bu çok pahalı! | GERİ | Aynı neden. |
+| `lx:sechzig` `forms[3].tr` (4. gün kartı) | `___ Euro für die Jacke? Zu teuer!` · Ceket için altmış avro mu? Çok pahalı! | GERİ | `lx:neun` `forms[3]` aynı yapıya "fazla pahalı" diyor. |
+| `lx:Nacht` `examples[5]` (5. gün kartı) | `… die Nacht war zu kurz.` · … gece çok kısaydı. | GERİ | `lx:sehr` uyarısıyla çelişiyor. |
+| `lx:vierzehn` `forms[3].tr` (3. gün kartı) | `___ Tage Urlaub sind zu wenig.` · On dört gün izin çok az. | GERİ | Aynı neden. 3. günün öğrencisi `zu` kelimesini henüz bilmiyor, 4. günden sonra çelişki görünür. |
+| `lx:wollen` `examples[5]` (7. gün kartı) | `… aber nicht zu früh!` · … ama çok erken olmasın! | GERİ | Aynı neden. 4–5. günün dışında, M1 içinde. |
+
+Not (karar değil): `lx:zu#2` `examples[2]`'de `Zu viel Arbeit` için "İş çok fazla" yazıyor. İçinde "fazla" olduğu için çelişki saymadım. `zu spät kommen` için "geç kalmak" bir deyim, ayrı kalıp olarak okunuyor; onları da saymadım.
+
+### Sonuç, ek
+
+| | Okunan | GEÇTİ | GERİ |
+|---|---|---|---|
+| Değişen satırlar (listedeki) | 19 | 19 | 0 |
+| Kaçmış satırlar (listede yok) | 9 | 0 | 9 |
+
+- `gun-04-halkalar.json`, `gun-05-halkalar.json`: değişen satırların hepsi geçti, geri dönen yok.
+- Kartlar (`lx:teuer`, `lx:spät`, `lx:früh`, `lx:acht`, `lx:neun`, `lx:achtzehn`, `lx:sehr`, `lx:zu#2`): değişen alanların hepsi geçti.
+- Geri dönen 9 satır: `gun-05.json` (`prova.dugumler[3].secenekler[1]`, `secenekler[2]`, `sahne.sahneler[4]`), `gun-04.json` (`sahne.sahneler[3]`, `prova.dugumler[1].secenekler[2]`), `lx:sechzig` `forms[3]`, `lx:Nacht` `examples[5]`, `lx:vierzehn` `forms[3]`, `lx:wollen` `examples[5]`.
+- OD-9.4: `content/v2/m1/gun-04.json`, `content/v2/m1/gun-05.json` ve bu dört kartın dosyaları (`batch-009.json`, `batch-002.json`, `batch-001.json`) bu hâliyle "reviewed" sayılamaz.
