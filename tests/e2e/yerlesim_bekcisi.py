@@ -115,12 +115,16 @@ KURALLAR = r"""(ana) => {
     if ([...e.children].some((c) => norm(c.innerText || '') === t)) continue;
     if (!tasiyan.has(t)) tasiyan.set(t, []); tasiyan.get(t).push(e);
   }
-  // başlık: h1–h6, [role=heading], ya da satırın (kartın) ilk görünür metin taşıyan öğesi kalın/büyük yazıyla
+  // başlık (PM 7048319359 D1; inceleme #175 P1-1): h1–h6 / [role=heading] ya da kartın ilk BAŞLIK adayı — önde gelen kısa ya da küçük yazılı
+  // öğeler (numara, çip, simge, kicker: ≤ 3 karakter ya da kök yazının altında) atlanır; kalınlık/büyüklük yinelenen metni taşıyan öğede ölçülür
   const baslik = (e, kart) => {
-    if (e.closest('h1, h2, h3, h4, h5, h6, [role=heading]')) return true;
-    const ilk = [...kart.querySelectorAll('*')].find((x) => gorunur(x) && norm(x.innerText || '') && ![...x.children].some((c) => norm(c.innerText || '')));
-    if (!ilk || !(ilk === e || e.contains(ilk) || ilk.contains(e))) return false;
-    const st = getComputedStyle(ilk); return parseInt(st.fontWeight, 10) >= 600 || parseFloat(st.fontSize) >= 18;
+    const H = 'h1, h2, h3, h4, h5, h6, [role=heading]';
+    if (e.closest(H)) return true;
+    const kok = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const ilk = [...kart.querySelectorAll('*')].find((x) => gorunur(x) && norm(x.innerText || '') && ![...x.children].some((c) => norm(c.innerText || ''))
+      && (x.closest(H) || (norm(x.innerText || '').length > 3 && parseFloat(getComputedStyle(x).fontSize) >= kok * 0.95)));
+    if (!ilk || !(ilk === e || e.contains(ilk))) return false;
+    const st = getComputedStyle(e); return parseInt(st.fontWeight, 10) >= 600 || parseFloat(st.fontSize) >= kok * 1.05;
   };
   const satir = (a, b) => {   // a ile b aynı listenin kardeş satırlarında mı
     let x = a; const atalar = new Set(); while (x) { atalar.add(x); x = x.parentElement; }
@@ -213,6 +217,8 @@ OZ = [
   ("B3", False, sayfa("<main><ul><li><b>1. bölüm</b><span class=k>Önceki bölüm bitince açılır</span></li><li><b>2. bölüm</b><span class=k>Önceki bölüm bitince açılır</span></li></ul></main>"), False),
   ("B3", False, sayfa("<main><p>Bugün üç kelime var</p><p>Bugün üç kelime var</p></main>"), True),
   ("B3", False, sayfa("<main><section class=card><h3>Doktordan randevu almak</h3><p>Telefonla</p></section><section class=card><h3>Doktordan randevu almak</h3><p>Yüz yüze</p></section></main>"), True),
+  ("B3", False, sayfa("<main><a class=tile href='#'><span class=num style='font-size:12px'>1</span><b>Doktordan randevu almak</b></a><a class=tile href='#'><span class=num style='font-size:12px'>2</span><b>Doktordan randevu almak</b></a></main>"), True),
+  ("B3", False, sayfa("<main><ul><li><p><b>Not:</b> önceki bölüm bitince açılır</p><span>1. bölüm</span></li><li><p><b>Not:</b> önceki bölüm bitince açılır</p><span>2. bölüm</span></li></ul></main>"), False),
   ("B3", False, sayfa("<main><section class=card><h3>Telefonla</h3><p>Önceki bölüm bitince açılır</p></section><section class=card><h3>Yüz yüze</h3><p>Önceki bölüm bitince açılır</p></section></main>"), False),
   ("B3", False, sayfa("<main><div><b>Doktordan telefonla randevu</b></div><div><h1>Doktordan telefonla randevu</h1></div></main>"), True),
   ("B4", True, sayfa("<main><p class=muted style='width:120px'>Bu açıklama çok uzun olduğu için dar bir kutuda üç satırdan fazla yer kaplar ve kırmızı verir.</p></main>"), True),
