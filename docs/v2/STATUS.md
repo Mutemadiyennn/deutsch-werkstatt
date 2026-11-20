@@ -81,7 +81,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | Çevrimdışı medya (#58 A12 son parça) | `v2/cevrimdisi-medya` | PR #74: medya pakette, servis işçisi ayrı önbellek + 206 aralıklı yanıt, uçak modu e2e; 2. tur bulguları düzeltildi |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
 
-## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-19
+## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-20
 | Seviye | Kelime kartı | Kalıp | Senaryo (tam) | Mini senaryo | Diyalog grafiği | Okuma | Dinleme | Haber | Madde bankası |
 |---|---|---|---|---|---|---|---|---|---|
 | A1 | — / 505 / 505 / 0 | — / 40 / 40 / 0 | — / 1 / 0 / 0 | — / 1 / 0 / 0 | 0 | 0 | 0 | 0 | seviye tespiti 2241 (tüm seviyeler) |
@@ -94,9 +94,9 @@ B4 kart kuralları (#88, #96): parti dosyalarında K1 isim boşluğu, 3+ eşdizi
 B5 fotoğraf seçimi (#91): 308 yerin 40'ına açık lisanslı fotoğraf seçildi, 220'si reddedildi, 48'i soyut; 332 kısa ikinci sorgu A10 hattına verildi. Hedef somut kelimelerin %85'i; Openverse sonrası ikinci tur.
 Gün sınavı (#110, PM-066 madde 3): M1'in 7 gününe `gun_sinavi`, gün başına 11 madde (4 dikte, 4 yazılı üretim, 2 sesli üretim, 1 mini prova), toplam 77; yazar → dilbilimci (22 düzeltme) → okur (157 satır, GERİ 0).
 PM-062 (cümle havuzu): M1'in 155 kartında en az 6 örnek ve en az 6 boşluk (155 × 6 örnek, 936 boşluk); yazar → dilbilimci → okur, 4 grup.
-K1 çekirdeğin kalanı (PM-062 sırası, sıklığa göre): 350/1.050 kart 6 örnek + 6 boşluğa çıktı (grup 05–11); sıradaki gruplar aynı hattan.
+K1 çekirdeğin kalanı (PM-062 sırası, sıklığa göre): K1 çekirdeğin tamamı (1.205 kart: M1 155 + K1 kalanı 1.050) en az 6 örnek + 6 boşluğa çıktı (grup 05–25; 24–25 sıklık listesi dışındaki 106 K1 kartı); sıradaki gruplar aynı hattan. PM-069 boşluk kuralı (cevap yalnızca kartın kelimesi ya da eşdizimi): sözlükte kural dışı boşluk 684 → 4; kalan 4'ü sayacın yanlış alarmı. Küçük kelime boşlukları (PM 20.11 04:20): M1'de 128, K1'in kalanında 779; sözlükte artikel, edat ya da iyelik soran boşluk 0. Kişiye göre fiil ipuçlarının 458'i mastarı da gösteriyor (`docs/v2/reviews/lexicon-pm069-bosluk.md`).
 Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur, M1 kartları 8 tur (hedef tutmadı). Geri dönen türler (hata notunda Türkçe niyet, çelişen ipucu) yazar ve lex görevine eklendi.
-B6 (`forms`, eşdizim, fotoğraf sorgusu; #58): 927 kartın tamamı (#81: 825, #83: 102). Okur turu B6: 13 grupta 32 tur (grup başına 2,5; hedef tutmadı). `forms` alanı boş kalan 17 kart #85'in `also_ok` alanıyla dolduruldu (#102). Sözlükte 1.161 kartta 5.568 boşluk; 171 kartta 514 boşlukta `also_ok` (#102 öncesi 4; #103 M1 cümle havuzu ve K1 6 cümle turuyla). Bahçe ipucu artık soru sırasında kapalı (#85).
+B6 (`forms`, eşdizim, fotoğraf sorgusu; #58): 927 kartın tamamı (#81: 825, #83: 102). Okur turu B6: 13 grupta 32 tur (grup başına 2,5; hedef tutmadı). `forms` alanı boş kalan 17 kart #85'in `also_ok` alanıyla dolduruldu (#102). Sözlükte 1.266 kartta 7.598 boşluk; 342 kartta 1035 boşlukta `also_ok` (#102 öncesi 4; #103 M1 cümle havuzu ve K1 6 cümle turuyla). Bahçe ipucu artık soru sırasında kapalı (#85).
 Sözlüğün tamamı onaylı: taslak partiler 004–008'deki 394 girdi tam incelemeden geçti (Almanca örnekler, eşdizim, kart verisi; 8 grupta 139 kartta düzeltme, kalan 0) ve okurdan geçti. `lx:Million` B1 → A2.
 
 ## Açık PR'lar (2026-11-19 23:40 UTC, geçmiş — güncel tablo yukarıda)

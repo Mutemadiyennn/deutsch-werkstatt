@@ -89,7 +89,7 @@ def main():
                 check(pg.get_attribute("[data-test=ders]", "data-pos") == pos, f"yarıda bırakılan ders kaldığı yerden ({pos})")
                 seen.add("yarida")
             band = step(pg)
-            if a in ("anlama", "kurma", "konusma") and ("Doğrusu" in band or "kontrol edemedim" in band):
+            if a in ("anlama", "kurma", "konusma") and ("Doğrusu" in band or "denetleyemedi" in band):
                 check(False, f"doğru cevap reddedildi ({a}: {band[:60]!r})")
             if a == "tanit" and pg.locator("[data-test=ders-hatirla]").count():
                 if "hatirla" not in seen and shots: shot(pg, "d05-hatirla", full=False)
