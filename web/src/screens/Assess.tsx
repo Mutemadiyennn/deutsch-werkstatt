@@ -163,7 +163,7 @@ function TypeWord({ it, onAnswer }: { it: Extract<AssessItem, { skill: "vocab_ac
   };
   return (
     <div class="stack">
-      <div class="card"><div class="kicker">Almancası nedir?</div><div style={{ fontSize: "1.3rem", fontWeight: 600 }}>{it.tr}</div>{it.art && <p class="small muted" style={{ marginTop: 6 }}>Almancasını yaz. Başına der, die ya da das koy..</p>}</div>
+      <div class="card"><div class="kicker">Almancası nedir?</div><div style={{ fontSize: "1.3rem", fontWeight: 600 }}>{it.tr}</div>{it.art && <p class="small muted" style={{ marginTop: 6 }}>Almancasını yaz. Başına der, die ya da das koy.</p>}</div>
       <form class="stack" onSubmit={(e) => { e.preventDefault(); if (v.trim()) check(); }}>
         <input class="input" lang="de" autocapitalize="off" autocomplete="off" spellcheck={false} value={v} onInput={(e) => setV((e.target as HTMLInputElement).value)} aria-label="Cevabın" data-test="answer" />
         <button class="btn primary block" type="submit" disabled={!v.trim()}>Kontrol et</button>

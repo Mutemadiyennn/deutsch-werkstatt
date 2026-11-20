@@ -178,7 +178,7 @@ def main():
             b2.close()
         check(v2 is not None and "denetleyemedi" in v2, f"C: tanınmayan yakın cevap 'denetleyemedi' ({(v2 or '')[:50]!r})")
         # koşulsuz: düğme yoksa kırmızı (inceleme #43 3. tur)
-        check(pg.locator("[data-test=claim]").count() == 1, "C: 'kontrol edemedim' bandında 'Evet, aynı anlamda' düğmesi var")
+        check(pg.locator("[data-test=claim]").count() == 1, "C: 'denetleyemedi' bandında 'Evet, aynı anlamda' düğmesi var")
         if pg.locator("[data-test=claim]").count():
             pg.click("[data-test=claim]"); pg.wait_for_selector("text=Kaydedildi")
             check(pg.locator("[data-test=next]").count() == 1, "C: 'Evet, aynı anlamda' → kaydedildi, devam edilebilir")
