@@ -58,4 +58,23 @@ Sonra kalan 5 IHLAL, betiğin yanlış alarmı. Hepsi kartın kendi kelimesi:
   - 7 boşluk yeniden kuruldu: brauchen, warten, arbeiten, Montag, passen#2 ×2, Anfang.
   - İpuçlarını dilbilimci yazdı. Okur 135 satır okudu, 5 GERİ verdi; tekrarda 0.
 - **Sonuç:** M1 kartlarında küçük kelime soran boşluk kalmadı.
-- **Kalan:** M1 dışındaki 779 boşluk `content/k1-6cumle-2` dalında aynı hattan geçecek.
+- **Kalan:** M1 dışındaki 779 boşluk `content/k1-6cumle-2` dalında aynı hattan geçti (aşağıda).
+
+### K1, M1 dışı (`content/k1-6cumle-2`)
+- **779 boşluk, 396 kart.**
+  - 723'ünde boşluk aynı cümlede kartın kelimesine taşındı (dilbilimci iki parti).
+  - 56'sı yeniden kuruldu.
+  - İpuçlarını ve çevirileri dilbilimci yazdı.
+- **Eski `also_ok`:** yalnız artikel ya da iyelik olan seçenekler silindi (artık yanlış cevabı doğru sayarlardı). Dilbilimcinin bulduğu iki eksik eş anlamlı eklendi: Freund → Kumpel, Arzt → Doktor.
+- **Okur:**
+  - İlk tur: 835 satır, 27 GERİ.
+  - Tekrar turlarında GERİ sayısı 25 → 13 → 9 → 12 → 0.
+  - Dönenlerin çoğu "kart içinde tek karşılık" ölçütü. Mal artık hep "kez"; Chance "fırsat" ile "şansı yüksek" ayrı; Wahrheit "gerçek", Idiot "salak", Boden "yer", Möglichkeit "imkân", Dienst "nöbet", Verein "dernek", Stelle "iş" ve "yer".
+  - Advent artık çevirisiz kalmıyor: "Noel öncesi haftalar", "Noel'den önceki dört pazar gününün ilki". Adventskranz da "mumlu çelenk" oldu.
+- **Kişiye göre fiil ipuçları:** "**ich** ile **träume** olur." biçimindeki 458 ipucu (174 kart) mastarı da gösteriyor. Yeni biçim: "**ich** ile söylerken **träumen**, **träume** olur." Biçim değişmiyorsa: "**wir** ile söylerken **haben** aynı kalır."
+  - Okur 40 satırlık örneklemi okudu: kalıp geçti, 1 satırda kalın söz cümledekiyle aynı değildi.
+  - 458 satırın hepsi bu açıdan tarandı; o tek satır düzeltildi.
+- **Denetim:**
+  - Sözlükte kural dışı boşluk: 4 (sayacın yanlış alarmı). Küçük kelime soran boşluk: 0.
+  - 7.597 ipucunun hepsinde kalın sözde beklenen cevap (ya da bir `also_ok`) geçiyor.
+  - Doğrulayıcı 0 hata.
