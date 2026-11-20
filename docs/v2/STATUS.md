@@ -6,6 +6,11 @@
 Son güncelleme: 2026-11-20 09:00 UTC · Faz: **M1 İlk Hafta** · Ana dal: `main` (`6ec8173` ve sonrası) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (etiket `v2-20261120-7`) · v1 **2026-11-20a** yayında
 Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DONGUSU → BEYIN → MIMARI → TASARIM …) → bu dosya → `DECISIONS.md`. "Sıradaki adım"dan devam et; hiçbir iş baştan başlatılmaz (PM-007 §4).
 
+## Çalışma düzeni ve kapı (2026-11-20 akşam)
+- **PM-079 "önce ölçüt, sonra iş"** → [`CALISMA_DUZENI.md`](CALISMA_DUZENI.md) (#169): hazır tanımı, öz-denetim, tek geçişte tam bakış; yerleşim bekçisi ve yol süzgeci ayrı PR'lar (hazır tanımı #12 7047348069).
+- **GitHub Actions bu depoda GitHub tarafından kapalı** (16:53 UTC'den beri). Kabul **KAPI oturumunda** (PM 7047288255): temiz worktree, `ci-v2.yml` sırası, WebKit üç cihaz; PR'a "[KAPI] <commit> — YEŞİL/KIRMIZI". Ortak betik `scripts/kapi.sh` (dal `kapi/betik`). Yayın ve medya hatları durdu; kod PR'ları KAPI sırasıyla birleşir.
+- **Hedef ekranlar:** `design/TARGET3c` (kalıp, yapboz + K10, söyle, gün sonu sınaması, Yol, Bahçe boş hâli; TASARIM "Hedef 3c").
+
 ## Sıradaki adım (PM-050: "İlk Hafta" dikey dilimi önce; 2026-11-18 23:45 UTC)
 **İmza yol haritası:** [`docs/v2/IMZA_YOL_HARITASI.md`](IMZA_YOL_HARITASI.md) — #54'ün her satırı için ekran tarifi ve sıra (PM-048).
 1. Birleştirme sırası: #61 (veri). Birleşenler: #60 (02:30), #64 (02:12), #59 (01:57), #43 (01:37), #55 (00:27), #52 (23:05), #48 (23:07), #50 (23:34), #51 (23:54), #49 (23:54).
