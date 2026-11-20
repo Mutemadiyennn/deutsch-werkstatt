@@ -75,7 +75,8 @@ def tohumla(pg, gun, adim=0, simdi=None):
     """Öğrenciyi `gun`. günün `adim`. adımından sonrasına getirir; tohumlanan adımların listesini döndürür"""
     simdi = simdi or datetime.now(timezone.utc)
     if not gun_dosyasi(gun): raise SystemExit(f"--gun {gun}: içerikte bu gün yok")
-    if adim < 0 or adim > len(adimlar(gun_dosyasi(gun))): raise SystemExit(f"--adim {adim}: {gun}. günde 0..{len(adimlar(gun_dosyasi(gun)))} olmalı")
+    # günün son adımı da bitmişse sıradaki adım ertesi gündedir: o durumda --gun N+1 --adim 0 kullanılır (inceleme #149 P2-B)
+    if adim < 0 or adim >= len(adimlar(gun_dosyasi(gun))): raise SystemExit(f"--adim {adim}: {gun}. günde 0..{len(adimlar(gun_dosyasi(gun))) - 1} olmalı (gün bittiyse --gun {gun + 1} --adim 0)")
     # Bahçeye kart olarak giren kimlikler (kartMi: işlev sözcükleri ve sayılar kart değildir; inceleme #149 P2)
     ISLEV = {"det", "pron", "conj", "prep", "particle", "num"}
     kart = {l["id"] for l in content_file("lexemes.json")["lexemes"] if l.get("card", True) is not False and l.get("pos") not in ISLEV}
@@ -85,7 +86,8 @@ def tohumla(pg, gun, adim=0, simdi=None):
         if not g: break
         # o günün yerel öğleni (bugünkü gün için şimdiden 5 dk önce): gece yarısına yakın koşuda tarih kaymaz (inceleme #149 P2)
         yerel = (simdi.astimezone() - timedelta(days=gun - g_no)).replace(hour=12, minute=0, second=0, microsecond=0)
-        zaman = min(yerel, simdi - timedelta(minutes=5)).astimezone(timezone.utc) if g_no == gun else yerel.astimezone(timezone.utc)
+        # bugün: öğlen henüz gelmediyse şimdiden 1 saat önce (tanıma + 20 dk sonra üretim de geçmişte kalır; inceleme #149 P2-C)
+        zaman = min(yerel, simdi - timedelta(hours=1)).astimezone(timezone.utc) if g_no == gun else yerel.astimezone(timezone.utc)
         a = adimlar(g)
         bitenler = a if g_no < gun else a[:adim]
         for tur, kid in bitenler:
@@ -101,7 +103,9 @@ def tohumla(pg, gun, adim=0, simdi=None):
                 meta.append({"key": f"ders:{kid}", "value": {"s": 0, "k": 0, "dogru": 0, "toplam": 0, **bitti}}); xid = f"ders:{kid}"
             elif tur == "medya":
                 # MedyaIlerleme biçimi (core/medya.ts): konum + sayaçlar (inceleme #149 P1-2)
-                meta.append({"key": f"m1:medya:{kid}", "value": {"b": 0, "s": 0, "k": 0, "dogru": 10, "toplam": 10, "bitti": True, "ilkBitti": True}}); xid = f"medya:{kid}"
+                # sesin eylem sorusu da cevaplanmış sayılır (eylem: true; yoksa biten ses açılınca eylem yeniden sorulur; inceleme #149 B-2)
+                ses = any(x.get("id") == kid for x in g.get("sesler", []))
+                meta.append({"key": f"m1:medya:{kid}", "value": {"b": 0, "s": 0, "k": 0, "dogru": 10, "toplam": 10, "bitti": True, "ilkBitti": True, **({"eylem": True} if ses else {})}}); xid = f"medya:{kid}"
             else:
                 meta.append({"key": f"m1:{tur}:{kid}", "value": bitti}); xid = f"{tur}:{kid}"
             meta.append({"key": f"xp:adim:{xid}", "value": ts})
