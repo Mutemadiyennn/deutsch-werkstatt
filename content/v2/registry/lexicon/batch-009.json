@@ -3555,13 +3555,19 @@
      "de": "Mit der ___ stimmt etwas nicht.",
      "answer": "Telefonnummer",
      "tr": "Telefon numarasında bir sorun var.",
-     "hint_tr": "Telefon numarasında bir sorun var derken **Mit der Telefonnummer stimmt etwas nicht** denir."
+     "hint_tr": "Telefon numarasında bir sorun var derken **Mit der Telefonnummer stimmt etwas nicht** denir.",
+     "also_ok": [
+      "Nummer"
+     ]
     },
     {
      "de": "Ich rufe mit einer neuen ___ an.",
      "answer": "Telefonnummer",
      "tr": "Yeni bir telefon numarasıyla telefon ediyorum.",
-     "hint_tr": "Yeni bir telefon numarasıyla derken **mit einer neuen Telefonnummer** denir."
+     "hint_tr": "Yeni bir telefon numarasıyla derken **mit einer neuen Telefonnummer** denir.",
+     "also_ok": [
+      "Nummer"
+     ]
     }
    ],
    "unit": "u:m1:06",
@@ -5113,6 +5119,21 @@
      "layer": "hd",
      "dialog": true,
      "img": "two people looking at handwritten letter K"
+    },
+    {
+     "id": "lx:Buchstabe:5",
+     "de": "Frau Huber schreibt den Namen Buchstabe für Buchstabe auf.",
+     "tr": "Huber Hanım adı harf harf not ediyor.",
+     "layer": "hd",
+     "img": "receptionist writing on notepad at phone"
+    },
+    {
+     "id": "lx:Buchstabe:6",
+     "de": "– Wie viele Buchstaben hat das Wort? – Nur vier, ganz kurz.",
+     "tr": "– Kelime kaç harfli? – Sadece dört, çok kısa.",
+     "layer": "alltag",
+     "dialog": true,
+     "img": "wooden letter blocks on table"
     }
    ],
    "level": "A1",
@@ -5131,16 +5152,16 @@
    },
    "forms": [
     {
-     "de": "Das ist ___ Buchstabe, kein Wort.",
-     "answer": "ein",
+     "de": "Das ist ein ___, kein Wort.",
+     "answer": "Buchstabe",
      "tr": "Bu bir harf, kelime değil.",
-     "hint_tr": "Bir harfi gösterirken **Das ist ein Buchstabe** denir."
+     "hint_tr": "Bir harf derken **ein Buchstabe** denir."
     },
     {
-     "de": "Ich sehe ___ Buchstaben nicht gut.",
-     "answer": "den",
-     "tr": "Harfi iyi göremiyorum.",
-     "hint_tr": "**Ich sehe** dedikten sonra **der Buchstabe**, **den Buchstaben** olur."
+     "de": "Ich sehe den ersten ___ nicht gut.",
+     "answer": "Buchstaben",
+     "tr": "İlk harfi iyi göremiyorum.",
+     "hint_tr": "İlk harfi derken **den ersten Buchstaben** denir."
     },
     {
      "de": "Schreiben Sie bitte einen großen ___.",
@@ -5149,16 +5170,22 @@
      "hint_tr": "**Schreiben Sie** dedikten sonra **ein großer Buchstabe**, **einen großen Buchstaben** olur."
     },
     {
-     "de": "Mein Name hat fünf ___.",
+     "de": "Der Name Anna hat vier ___.",
      "answer": "Buchstaben",
-     "tr": "Adım beş harfli.",
-     "hint_tr": "Harfleri sayarken **fünf Buchstaben** denir."
+     "tr": "Anna adı dört harfli.",
+     "hint_tr": "Dört harf derken **vier Buchstaben** denir."
     },
     {
-     "de": "Das Wort fängt mit ___ Buchstaben K an.",
-     "answer": "dem",
+     "de": "Das Wort fängt mit dem ___ K an.",
+     "answer": "Buchstaben",
      "tr": "Kelime K harfiyle başlıyor.",
      "hint_tr": "K harfiyle derken **mit dem Buchstaben K** denir."
+    },
+    {
+     "de": "Der erste ___ ist ein M.",
+     "answer": "Buchstabe",
+     "tr": "İlk harf M.",
+     "hint_tr": "İlk harf derken **der erste Buchstabe** denir."
     }
    ]
   },
@@ -6866,7 +6893,7 @@
      "de": "Ich bin in Zimmer ___.",
      "answer": "einundzwanzig",
      "tr": "Yirmi bir numaralı odadayım.",
-     "hint_tr": "Yirmi biri tek kelime yazarsın."
+     "hint_tr": "Yirmi bir derken tek kelime **einundzwanzig** yazılır."
     },
     {
      "de": "___ Euro, bitte.",
@@ -7362,10 +7389,10 @@
      "hint_tr": "Altmış avro derken **sechzig Euro** denir."
     },
     {
-     "de": "Meine Mutter ist ___.",
+     "de": "Lenas Mutter ist ___.",
      "answer": "sechzig",
-     "tr": "Annem altmış yaşında.",
-     "hint_tr": "Yaş söylerken sayı yeter: **Meine Mutter ist sechzig.**"
+     "tr": "Lena'nın annesi altmış yaşında.",
+     "hint_tr": "Yaş söylerken sayı yeter: **Lenas Mutter ist sechzig.**"
     },
     {
      "de": "___ Euro für die Jacke? Zu teuer!",
@@ -7480,9 +7507,9 @@
      "hint_tr": "**sieben** içindeki **en** düşer: **siebzig**."
     },
     {
-     "de": "Mein Opa ist über ___.",
+     "de": "Annas Opa ist über ___.",
      "answer": "siebzig",
-     "tr": "Dedem yetmiş yaşın üzerinde.",
+     "tr": "Anna'nın dedesi yetmiş yaşın üzerinde.",
      "hint_tr": "Yetmiş yaşın üzerinde derken **über siebzig** denir."
     },
     {
@@ -7604,10 +7631,10 @@
      "hint_tr": "**acht** ile **zig** birleşir: **achtzig**."
     },
     {
-     "de": "Meine Oma ist ___.",
+     "de": "Annas Oma ist ___.",
      "answer": "achtzig",
-     "tr": "Büyükannem seksen yaşında.",
-     "hint_tr": "Yaş söylerken sayı yeter: **Meine Oma ist achtzig.**"
+     "tr": "Anna'nın büyükannesi seksen yaşında.",
+     "hint_tr": "Yaş söylerken sayı yeter: **Annas Oma ist achtzig.**"
     },
     {
      "de": "Hier fahren alle nur ___.",
@@ -7734,9 +7761,9 @@
      "hint_tr": "Doksan sent derken **neunzig Cent** denir."
     },
     {
-     "de": "Meine Oma ist fast ___.",
+     "de": "Toms Oma ist fast ___.",
      "answer": "neunzig",
-     "tr": "Büyükannem neredeyse doksan yaşında.",
+     "tr": "Tom'un büyükannesi neredeyse doksan yaşında.",
      "hint_tr": "Neredeyse doksan derken **fast neunzig** denir."
     },
     {
@@ -8511,7 +8538,7 @@
      "de": "Was ___ du essen?",
      "answer": "möchtest",
      "tr": "Ne yemek istersin?",
-     "hint_tr": "**du** ile **möchtest** olur."
+     "hint_tr": "**du** ile söylerken **möchten**, **möchtest** olur."
     },
     {
      "de": "Er ___ hier bleiben.",
@@ -8529,13 +8556,13 @@
      "de": "___ ihr etwas trinken?",
      "answer": "Möchtet",
      "tr": "Bir şey içmek ister misiniz?",
-     "hint_tr": "**ihr** ile **möchtet** olur."
+     "hint_tr": "**ihr** ile söylerken **möchten**, **möchtet** olur."
     },
     {
      "de": "Wir ___ bitte zahlen.",
      "answer": "möchten",
      "tr": "Ödemek istiyoruz lütfen.",
-     "hint_tr": "**wir** ile **möchten** olur."
+     "hint_tr": "**wir** ile söylerken de **möchten** denir."
     }
    ],
    "unit": "u:m1:07",
@@ -8618,6 +8645,13 @@
      "tr": "– Bu nasıl yazılıyor? – Bir dakika, size harf harf söyleyeyim.",
      "layer": "hd",
      "dialog": true
+    },
+    {
+     "id": "lx:buchstabieren:6",
+     "de": "– Wie heißt die Straße? – Lindenweg. Soll ich das buchstabieren?",
+     "tr": "– Sokağın adı ne? – Lindenweg. Harf harf söyleyeyim mi?",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A1",
@@ -8644,25 +8678,37 @@
      "de": "Ich ___ meinen Namen.",
      "answer": "buchstabiere",
      "tr": "Adımı harf harf söylüyorum.",
-     "hint_tr": "**ich** ile **buchstabiere** olur."
+     "hint_tr": "Adımı harf harf söylüyorum derken **Ich buchstabiere meinen Namen** denir."
     },
     {
      "de": "Du ___ sehr schnell.",
      "answer": "buchstabierst",
      "tr": "Çok hızlı harf harf söylüyorsun.",
-     "hint_tr": "**du** ile **buchstabierst** olur."
+     "hint_tr": "Harf harf söylüyorsun derken **Du buchstabierst** denir."
     },
     {
      "de": "Frau Yıldız ___ ihren Namen.",
      "answer": "buchstabiert",
      "tr": "Yıldız Hanım adını harf harf söylüyor.",
-     "hint_tr": "**er** ve **sie** ile **buchstabiert** olur."
+     "hint_tr": "Yıldız Hanım harf harf söylüyor derken **Frau Yıldız buchstabiert** denir."
     },
     {
      "de": "Ich habe den Namen schon ___.",
      "answer": "buchstabiert",
      "tr": "Adı zaten harf harf söyledim.",
-     "hint_tr": "Geçmişi anlatırken **habe buchstabiert** denir, başına **ge** gelmez."
+     "hint_tr": "Harf harf söyledim derken **habe buchstabiert** denir."
+    },
+    {
+     "de": "Frau Huber, können Sie den Namen bitte ___?",
+     "answer": "buchstabieren",
+     "tr": "Huber Hanım, adı harf harf söyleyebilir misiniz lütfen?",
+     "hint_tr": "Harf harf söyleyebilir misiniz derken **Können Sie buchstabieren?** denir."
+    },
+    {
+     "de": "Wir ___ das Wort zusammen.",
+     "answer": "buchstabieren",
+     "tr": "Kelimeyi birlikte harf harf söylüyoruz.",
+     "hint_tr": "Harf harf söylüyoruz derken **Wir buchstabieren** denir."
     }
    ]
   }

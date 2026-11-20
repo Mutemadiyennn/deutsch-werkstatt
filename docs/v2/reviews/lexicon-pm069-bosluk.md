@@ -61,4 +61,28 @@ Sonra kalan 5 IHLAL, betiğin yanlış alarmı. Hepsi kartın kendi kelimesi:
   - Eksik eş anlamlılar eklendi: Arzt'ta Doktor, offen'da auf ve geöffnet, Nummer'da Telefonnummer.
   - İpuçlarını dilbilimci yazdı. Okur 135 satır okudu, 5 GERİ verdi; tekrarda 0.
 - **Sonuç:** M1 kartlarında küçük kelime soran boşluk kalmadı.
-- **Kalan:** M1 dışındaki 779 boşluk `content/k1-6cumle-2` dalında aynı hattan geçecek.
+- **Kalan:** M1 dışındaki 779 boşluk `content/k1-6cumle-2` dalında aynı hattan geçti (aşağıda).
+
+### K1, M1 dışı (`content/k1-6cumle-2`)
+- **779 boşluk, 396 kart.**
+  - 723'ünde boşluk aynı cümlede kartın kelimesine taşındı (dilbilimci iki parti).
+  - 56'sı yeniden kuruldu.
+  - İpuçlarını ve çevirileri dilbilimci yazdı.
+- **Eski `also_ok`:** yalnız artikel ya da iyelik olan seçenekler silindi (artık yanlış cevabı doğru sayarlardı). Dilbilimcinin bulduğu iki eksik eş anlamlı eklendi: Freund → Kumpel, Arzt → Doktor.
+- **Okur:**
+  - İlk tur: 835 satır, 27 GERİ.
+  - Tekrar turlarında GERİ sayısı 25 → 13 → 9 → 12 → 0.
+  - Dönenlerin çoğu "kart içinde tek karşılık" ölçütü. Mal artık hep "kez"; Chance "fırsat" ile "şansı yüksek" ayrı; Wahrheit "gerçek", Idiot "salak", Boden "yer", Möglichkeit "imkân", Dienst "nöbet", Verein "dernek", Stelle "iş" ve "yer".
+  - Advent artık çevirisiz kalmıyor: "Noel öncesi haftalar", "Noel'den önceki dört pazar gününün ilki". Adventskranz da "mumlu çelenk" oldu.
+- **Kişiye göre fiil ipuçları:** "**ich** ile **träume** olur." biçimindeki 458 ipucu (174 kart) mastarı da gösteriyor. Yeni biçim: "**ich** ile söylerken **träumen**, **träume** olur." Biçim değişmiyorsa: "**wir** ile söylerken **haben** aynı kalır."
+  - Okur 40 satırlık örneklemi okudu: kalıp geçti, 1 satırda kalın söz cümledekiyle aynı değildi.
+  - 458 satırın hepsi bu açıdan tarandı; o tek satır düzeltildi.
+- **İkinci tarama (inceleme #107 cc56f37 turu sonrası):** tarama listesine `vor, über, unter, gegen, beim, ins, ans, aufs` ve çekimli iyelikler eklendi. K1'de 28 boşluk daha bulundu ve kartın kelimesine taşındı.
+  - Örnekler: "Wir gehen heute ins ___." → Restaurant; "Ich habe ___ vor Hunden." → Angst; "Was ist Ihre ___?" yerine yeni cümle (Meinung).
+  - Dilbilimci yazdı; okur dört turda okudu (9 → 10 → 2 → 0 GERİ).
+  - Kartın kendisi küçük kelimeyse (der, ein, mein, sich…), ayrılan önek ya da kartın adındaki edat (aufhören, warten_(auf)) ihlal sayılmadı.
+- **Kişiye göre fiil ipuçları, ikinci adım:** biçim değişmeyen 121 ipucu artık "**wir** ile söylerken de **reden** denir." ("aynı kalır" neye göre aynı, belli değildi). "**ich** ile **leiden**, **leide** olur." biçimindeki 121 eski ipucuna "söylerken" eklendi.
+- **Denetim:**
+  - Sözlükte kural dışı boşluk: 4 (sayacın yanlış alarmı). Küçük kelime soran boşluk: 0.
+  - 7.597 ipucunun hepsinde kalın sözde beklenen cevap (ya da bir `also_ok`) geçiyor.
+  - Doğrulayıcı 0 hata.
