@@ -30,9 +30,12 @@ jobs:
         run: |
           npm run content:build
           npm run build -w web
+          # Worker adresi üretim paketinde olmalı, e2e paketinde olmamalı (inceleme #123 P2-5)
+          A=$(sed -n 's/^VITE_API_BASE=//p' web/.env.production); [ -n "$A" ] && grep -q "$A" web/dist/assets/*.js || { echo "::error::üretim paketinde Worker adresi yok"; exit 1; }
           # e2e paketi: içerikte henüz olmayan M1 günü için örnek gün (yayın paketine girmez)
           DW_E2E_FIXTURES=1 npm run content:build
           (cd web && npx vite build --mode e2e --outDir dist-e2e)
+          ! grep -q "$A" web/dist-e2e/assets/*.js || { echo "::error::e2e paketine gerçek Worker adresi sızdı"; exit 1; }
           T=0; for f in web/dist/assets/*.js; do T=$((T + $(gzip -9c "$f" | wc -c))); done
           echo "JS toplam (gzip): $((T/1024)) KB" | tee -a "$GITHUB_STEP_SUMMARY"
           [ "$T" -le 256000 ] || { echo "JS bütçesi aşıldı"; exit 1; }
@@ -107,6 +110,8 @@ jobs:
         run: cd tests/e2e && python v2_yol.py --shots /tmp/shots
       - name: "Yol haritası ve durum çubuğu (#58 B11a, PM-065): düğümler, BAŞLA, kilitli, gün bandı ve Rehber, seri/XP/dakika, kontrast"
         run: cd tests/e2e && python v2_yol_harita.py --shots /tmp/shots
+      - name: "Seçilmiş açık fotoğraf (#58 B12 3. parça): kartta atıfla, kayıt yoksa alan yok"
+        run: cd tests/e2e && python v2_foto.py
       - name: "Ses ve mikrofon (#58 B15 1. adım, PM-064): karaktere göre ses, Yavaş yalnızca hız, mikrofon yolu ve Türkçe hata türleri"
         run: cd tests/e2e && python v2_ses.py --shots /tmp/shots
       - name: "Günlük görevler, sandık, seri dondurma, geçen haftaki sen (#58 B11b, PM-065 5–7)"
@@ -123,6 +128,8 @@ jobs:
         run: cd tests/e2e && python v2_kalip.py --shots /tmp/shots
       - name: "Bahçe değişen cümle (PM-062, #58 B13): Başka cümle 3 dokunuşta 3 cümle, <150 ms, uçak modunda; ipucu sayılmaz"
         run: cd tests/e2e && python v2_bahce_donusum.py --shots /tmp/shots
+      - name: "En uzun tanıtım kartı düğmelere değmeden sığar; en çok 3 eşdizim (PM 7024150313)"
+        run: cd tests/e2e && python v2_tanitim_sigar.py --shots /tmp/shots
       - name: "Hızlı şerit (#58 B16, PM-066): Biliyorum sına beni, öneri, tespit A2 varsayılan, tanıma sorusu görmeden tur"
         run: cd tests/e2e && python v2_hizli.py --shots /tmp/shots
       - name: "Şölen 1 (#58 B10): cevap anı, ilerleme çubuğu, XP ve seri, tur sonu kutlaması, efekt sesi ayarı, hareket azaltma"

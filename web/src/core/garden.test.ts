@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { Lexeme } from "@dw/shared";
 import type { LearnerItem } from "@dw/shared";
-import { sinaKabul, sinaTuru, synonymHit, personalMatch, availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak, formFor, guclu, GUCLU_GUN, siradakiEx, sonrakiExSeen } from "./garden.ts";
+import { kendiCumleAcik, sinaKabul, sinaTuru, synonymHit, personalMatch, availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak, formFor, guclu, GUCLU_GUN, siradakiEx, sonrakiExSeen } from "./garden.ts";
 import { review, sessionKey } from "./srs.ts";
 import { turKademe, TUR_BASLIK } from "../ui/solen.tsx";
 
@@ -18,7 +18,8 @@ const seq = (...v: number[]) => { let i = 0; return () => v[i++ % v.length]!; };
 describe("Kelime Bahçesi (PM-049)", () => {
   it("türler içeriğe göre: isimde artikel ve fotoğraf, fiilde ayrılabilir biçim", () => {
     expect(availableTypes(termin, "passive")).toEqual(["listen_meaning", "article", "colloc"]);
-    expect(availableTypes(termin, "active")).toEqual(["tr_de", "photo_say", "gap", "own_sentence"]);
+    expect(availableTypes(termin, "active")).toEqual(["tr_de", "photo_say", "gap"]);
+    expect(availableTypes(termin, "active", true)).toEqual(["tr_de", "photo_say", "gap", "own_sentence"]);
     expect(availableTypes(absagen, "active")).toContain("sep_perfekt");
   });
   it("işlev kelimesi (tanımlık, zamir…) card:false olmasa da ayrı kart olmaz (PM-047 §2)", () => {
@@ -132,7 +133,8 @@ describe("Kelime Bahçesi (PM-049)", () => {
   });
   it("tanıtılmış kart (pasifte doğru) bir sonraki turda ilk üretim sorusunu alır; günlük aktif sınırı uyulur (inceleme #59 P0-2)", () => {
     const t0 = new Date("2026-11-01T10:00:00Z");
-    const it = review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "correct", session: "g@1" }, t0);
+    // köprü (artikel/eşdizim seçmeli) sorulmuş kart; köprüsüz hâli aralik.test.ts'de (PM-069 madde 3)
+    const it = { ...review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "correct", session: "g@1" }, t0), lastQ: "article", kopru: true };
     expect(activatable(it, termin)).toBe(true);
     const r = buildRound(lex, new Map([["lx:Termin", it]]), [], { now: new Date("2026-11-01T10:05:00Z") });
     expect(r[0]!.lexId).toBe("lx:Termin");
@@ -211,6 +213,29 @@ describe("Kelime Bahçesi (PM-049)", () => {
     const t0 = new Date("2026-11-01T10:00:00Z");
     const it = review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "correct", session: "g@1" }, t0);
     for (let k = 0; k < 10; k++) expect(buildRound(lex, new Map([["lx:Termin", it]]), [], { now: t0, rng: () => k / 10 })[0]!.type).not.toBe("own_sentence");
+  });
+  it("PM 7030294523 P0: 'kendi cümleni kur' yalnızca kararlılık ≥ 7 gün + İlk Hafta bitti + kalıp bitti iken", () => {
+    const t0 = new Date("2026-11-01T10:00:00Z");
+    const kararli = (gun: number) => ({ ...review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "correct", session: "g@1" }, t0),
+      active: { n: 5, ok: 5, s: 1, fsrs: { due: t0.toISOString(), stability: gun, difficulty: 5, scheduled_days: gun, reps: 5, lapses: 0, learning_steps: 0, state: 2 } } }) as any;
+    const tamam = { ilkHaftaBitti: true, kalipBitti: true };
+    const hazir = { yeni_ekran: true, kalip_sart: true, kararlilik_gun: 7 };
+    // yeni ekran gelene kadar (policy.json yeni_ekran: false) koşullar sağlansa da kapalı
+    expect(kendiCumleAcik(kararli(30), tamam)).toBe(false);
+    expect(kendiCumleAcik(kararli(10), tamam, hazir)).toBe(true);
+    expect(kendiCumleAcik(kararli(7), tamam, hazir)).toBe(true);
+    expect(kendiCumleAcik(kararli(6.9), tamam, hazir)).toBe(false);
+    expect(kendiCumleAcik(kararli(10), { ilkHaftaBitti: false, kalipBitti: true }, hazir)).toBe(false);
+    expect(kendiCumleAcik(kararli(10), { ilkHaftaBitti: true, kalipBitti: false }, hazir)).toBe(false);
+    expect(kendiCumleAcik(kararli(10), undefined, hazir)).toBe(false);
+    expect(kendiCumleAcik(undefined, tamam, hazir)).toBe(false);
+    // kapı açıkken buildRound türü gerçekten seçebiliyor (pickType'a kapı parametresiyle)
+    expect(availableTypes(termin, "active", kendiCumleAcik(kararli(30), tamam, hazir))).toContain("own_sentence");
+    // koşul verilmeden kurulan turda tür hiç gelmez (100 tur, 10 farklı rng değeri)
+    for (let k = 0; k < 100; k++) {
+      const r = buildRound(lex, new Map([["lx:Termin", kararli(30)]]), [], { now: new Date("2026-12-15T10:00:00Z"), rng: () => (k % 10) / 10 });
+      expect(r.every((q) => q.type !== "own_sentence")).toBe(true);
+    }
   });
   it("3. tur: isimde eş anlamlı kart (Arbeit/Job) tanınır; farklı sözcük türü ve parantezli anlam eşleşmez; 'weh (tun)'", () => {
     const arbeit = L({ id: "lx:Arbeit", de: "Arbeit", tr: "iş", pos: "noun", art: "die" });

@@ -29,12 +29,13 @@ export const ERROR_TR: Record<ErrorCode, { message_tr: string; retryable: boolea
   unauthenticated: { message_tr: "Oturumun sona ermiş. Lütfen yeniden giriş yap.", retryable: false, status: 401 },
   forbidden: { message_tr: "Bu hesabın sunucuya erişim izni yok.", retryable: false, status: 403 },
   quota_user: { message_tr: "Bugünkü yapay zekâ hakkın doldu. Yapay zekâsız alıştırmalarla devam edebilirsin.", retryable: false, status: 429 },
-  quota_upstream: { message_tr: "Google'ın ücretsiz kullanım sınırına ulaşıldı. Biraz sonra tekrar dene.", retryable: true, status: 429 },
-  upstream_busy: { message_tr: "Google sunucusu şu an yoğun (senin sınırın değil). Birazdan tekrar dene.", retryable: true, status: 503 },
+  quota_upstream: { message_tr: "Yapay zekânın ücretsiz kullanım payı doldu. Biraz sonra ya da yarın tekrar dene; şimdilik uygulamanın kendi kuralları geçerli.", retryable: true, status: 429 },
+  upstream_busy: { message_tr: "Yapay zekâ sunucusu şu an yoğun (senin sınırın değil). Birazdan tekrar dene.", retryable: true, status: 503 },
   timeout: { message_tr: "Yanıt çok uzun sürdü. Tekrar deneyebilirsin.", retryable: true, status: 504 },
   bad_output: { message_tr: "Yapay zekâ geçersiz bir yanıt verdi. Tekrar dene.", retryable: true, status: 502 },
   invalid_request: { message_tr: "İstek geçersiz.", retryable: false, status: 400 },
-  not_configured: { message_tr: "Sunucu henüz yapılandırılmamış (anahtar eksik).", retryable: false, status: 503 },
+  // öğrenciye teknik ayrıntı gösterilmez: açılışta sağlık yoklaması yapılamadıysa ilk yapay zekâ isteğinde bu metin görünebilir (web/src/services/ai.ts)
+  not_configured: { message_tr: "Bu özellik şu an kapalı. Yapay zekâsız devam edebilirsin.", retryable: false, status: 503 },
   internal: { message_tr: "Sunucuda beklenmeyen bir hata oldu.", retryable: true, status: 500 }
 };
 
@@ -110,4 +111,4 @@ export interface AiRunResponse<T extends AiTaskName = AiTaskName> { task: T; out
 
 export interface PhotoResult { id: number; src: string; w: number; h: number; alt: string; credit: string; url: string }
 export interface UsageResponse { day: string; ai: { used: number; limit: number } }
-export interface HealthResponse { ok: true; version: string; time: string; provider?: string; configured: { gemini: boolean; pexels?: boolean; allowlist: boolean } }
+export interface HealthResponse { ok: true; version: string; time: string; provider?: string; configured: { gemini: boolean; workers_ai?: boolean; pexels?: boolean; allowlist: boolean } }

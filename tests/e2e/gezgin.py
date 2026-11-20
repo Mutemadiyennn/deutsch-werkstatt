@@ -28,7 +28,7 @@ def screens():
 TAP = "main button:not([disabled]), main a[href], main [role=button], .actionbar button:not([disabled]), .actionbar a[href], .tabbar a, .callscreen a, .callscreen button"
 BAD_TEXT = re.compile(r"\bundefined\b|\bNaN\b|\[object Object\]")
 # dışarı açan bağlantılar ve yıkıcı eylemler basılmaz (yalnızca sayılır)
-SKIP = re.compile(r"Çıkış|Verileri sil|Hesabı sil|target=\"_blank\"|v1'de aç|Arşiv", re.I)
+SKIP = re.compile(r"Çıkış|Verileri sil|Hesabı sil|target=\"_blank\"|v1'de aç|Arşiv|Eski uygulamaya dön", re.I)
 
 def settle(pg, where):
     t0 = time.time()
