@@ -20,7 +20,9 @@ export function setYavasOran(r: number | undefined) { if (r !== undefined && (YA
 export const ORAN_ESIK = 1.25;
 let speakingN = 0;
 let listening = false;
-export const audioActive = () => speakingN > 0 || listening || (typeof speechSynthesis !== "undefined" && speechSynthesis.speaking);
+/** yerel seslendirmede süren çağrılar (her biri kendi işaretiyle; durdurulan eski çağrı yenisinin sayacını düşürmez — inceleme #164 P2) */
+const yerelAktif = new Set<symbol>();
+export const audioActive = () => speakingN > 0 || yerelAktif.size > 0 || listening || (typeof speechSynthesis !== "undefined" && speechSynthesis.speaking);
 
 export const ttsAvailable = () => (typeof window !== "undefined" && "speechSynthesis" in window) || sesYolu() === "yerel";
 
@@ -113,8 +115,8 @@ export function olcCal(text: string, ses: SpeechSynthesisVoice | undefined, rate
   const yt = sesYolu() === "yerel" ? yerelTts() : undefined;
   if (yt) {
     // yerel yolda başlama olayı yok: çağrıdan bitişe (eklenti söz bitince çözülür)
-    const t0 = performance.now(); speakingN++;
-    return soyleYerel(yt, sesMetni(text), "de-DE", ses ?? voiceFor("de"), rate).then((ok) => { speakingN = Math.max(0, speakingN - 1); return ok && no === konusmaNo ? performance.now() - t0 : null; });
+    const t0 = performance.now();
+    return soyleYerel(yt, sesMetni(text), "de-DE", ses ?? voiceFor("de"), rate).then((ok) => (ok && no === konusmaNo ? performance.now() - t0 : null));
   }
   speechSynthesis.cancel();
   return new Promise((res) => {
@@ -231,7 +233,7 @@ export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed
         if (iptalNo !== konusmaNo) return;
       }
       const dil = de ? "de-DE" : "tr-TR", hiz = de ? RATE[speed] : 1, perde = de && atama ? atama.pitch : undefined;
-      if (yt) { speakingN++; await soyleYerel(yt, parcalar[i]!, dil, v, hiz, perde); speakingN = Math.max(0, speakingN - 1); }
+      if (yt) await soyleYerel(yt, parcalar[i]!, dil, v, hiz, perde);
       else await soyle(parcalar[i]!, dil, v, hiz, perde);
     }
   }
@@ -242,8 +244,13 @@ export const sesBul = (s: { name: string; voiceURI?: string }): SpeechSynthesisV
 /** Yerel seslendirme: söz bitince (ya da durdurulunca) çözülür; hata olursa false (sessizce geçilir) */
 async function soyleYerel(yt: YerelTts, text: string, lang: string, v: SpeechSynthesisVoice | undefined, rate: number, pitch?: number): Promise<boolean> {
   const sira = (v as unknown as { sira?: number } | undefined)?.sira;
-  try { await yt.speak({ text, lang, rate, pitch: pitch ?? 1, volume: 1, ...(sira !== undefined ? { voice: sira } : {}), category: "playback", queueStrategy: 0 }); return true; }
-  catch { return false; }
+  const isaret = Symbol("tts"); yerelAktif.add(isaret);
+  // eklenti bitişi bildirmezse de akış kilitlenmez: web yoluyla aynı güvenlik zaman aşımı (inceleme #164 P2)
+  const sure = Math.min(30000, 1500 + (text.length * 120) / Math.min(1, rate));
+  try {
+    const konus = yt.speak({ text, lang, rate, pitch: pitch ?? 1, volume: 1, ...(sira !== undefined ? { voice: sira } : {}), category: "playback", queueStrategy: 0 }).then(() => true, () => false);
+    return await Promise.race([konus, new Promise<boolean>((r) => setTimeout(() => r(false), sure))]);
+  } finally { yerelAktif.delete(isaret); }
 }
 /** `speak` ya da `stopSpeaking` yeniden çağrılınca süren gruplu okuma kesilir */
 let konusmaNo = 0;
@@ -264,7 +271,7 @@ function soyle(text: string, lang: string, v: SpeechSynthesisVoice | undefined, 
   });
 }
 export function stopSpeaking() {
-  konusmaNo++; speakingN = 0;
+  konusmaNo++; speakingN = 0; yerelAktif.clear();
   const yt = sesYolu() === "yerel" ? yerelTts() : undefined;
   if (yt) void yt.stop().catch(() => {}); else if (typeof window !== "undefined" && "speechSynthesis" in window) speechSynthesis.cancel();
 }

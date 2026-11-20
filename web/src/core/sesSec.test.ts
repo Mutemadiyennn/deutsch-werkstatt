@@ -72,4 +72,16 @@ describe("ses seçimi (PM-064, B15 1. adım)", () => {
     for (const x of m.values()) { expect(x.pitch).toBeGreaterThanOrEqual(1 - PERDE_SINIR); expect(x.pitch).toBeLessThanOrEqual(1 + PERDE_SINIR); }
     expect(new Set([...m.values()].map((x) => x.pitch)).size).toBe(3);
   });
+  it("tek sesli cihazda (yalnız Anna) dört konuşan: her biri farklı perde, hepsi ±%8 içinde (inceleme #164 P1-2)", () => {
+    const yalniz = [v("Anna")];
+    const ks = [{ id: "e1", cinsiyet: "erkek" as const, sira: 0 }, { id: "k1", cinsiyet: "kadin" as const, sira: 0 }, { id: "e2", cinsiyet: "erkek" as const, sira: 1 }, { id: "k2", cinsiyet: "kadin" as const, sira: 1 }];
+    const m = sahneAta(ks, yalniz);
+    const p = ks.map((k) => m.get(k.id)!.pitch);
+    expect(new Set(p).size).toBe(4);
+    for (const x of p) { expect(x).toBeGreaterThanOrEqual(1 - PERDE_SINIR); expect(x).toBeLessThanOrEqual(1 + PERDE_SINIR); }
+    // erkek konuşanlar kadından alçak
+    expect(Math.max(m.get("e1")!.pitch, m.get("e2")!.pitch)).toBeLessThan(Math.min(m.get("k1")!.pitch, m.get("k2")!.pitch));
+    const dort = sahneAta([0, 1, 2, 3].map((i) => ({ id: `e${i}`, cinsiyet: "erkek" as const, sira: i })), yalniz);
+    expect(new Set([...dort.values()].map((a) => a.pitch)).size).toBe(4);
+  });
 });

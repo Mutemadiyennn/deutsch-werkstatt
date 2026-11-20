@@ -64,7 +64,14 @@ export function havuzlar(sesler: Ses[]): { kadin: Ses[]; erkek: Ses[]; diger: Se
  * o da yoksa öteki havuzdan + perde (erkek için alçak, kadın için hafif yüksek) ve `cinsiyetYok` işareti (Profil uyarısı).
  * `dolu`: aynı sahnede başka konuşanlara verilmiş ses adları; çakışırsa havuzdaki sonraki, havuz biterse perde farkı.
  */
-export function sesAta(k: Konusan, sesler: Ses[], doluSesler: Iterable<string> = []): Atama {
+/** Perde ızgarası (±%8 içinde): aynı sesi paylaşan konuşanlar bu değerlerden farklı birini alır (inceleme #164 P1-2) */
+const PERDE_IZGARA = [0.92, 0.95, 0.98, 1, 1.02, 1.05, 1.08];
+/** Tabana en yakın, o seste sahnede henüz kullanılmamış perde (eşitlikte alçak olan); hepsi doluysa taban */
+function bosPerde(taban: number, kullanilan: ReadonlySet<number>): number {
+  const aday = PERDE_IZGARA.slice().sort((a, b) => Math.abs(a - taban) - Math.abs(b - taban) || a - b);
+  return aday.find((p) => !kullanilan.has(p)) ?? taban;
+}
+export function sesAta(k: Konusan, sesler: Ses[], doluSesler: Iterable<string> = [], perdeler: ReadonlyMap<string, ReadonlySet<number>> = new Map()): Atama {
   const doluListe = [...doluSesler]; const dolu = new Set(doluListe);
   const h = havuzlar(sesler);
   const kendi = k.cinsiyet ? h[k.cinsiyet] : [...h.kadin, ...h.erkek, ...h.diger];
@@ -79,24 +86,24 @@ export function sesAta(k: Konusan, sesler: Ses[], doluSesler: Iterable<string> =
   const n = havuz.length;
   for (let d = 0; d < n; d++) {
     const s = havuz[(k.sira + d) % n]!;
-    if (!dolu.has(s.name)) return { ses: s, pitch, cinsiyetYok };
+    if (!dolu.has(s.name)) return { ses: s, pitch: bosPerde(pitch, perdeler.get(s.name) ?? new Set()), cinsiyetYok };
   }
   // havuz tükendi: en az kullanılan ses, perde farkı (o sesin sahnedeki kaçıncı kullanımı: alçak, yüksek, daha alçak…)
   const kullanim = (x: Ses) => doluListe.filter((d) => d === x.name).length;
   const s = havuz.slice().sort((a, b) => kullanim(a) - kullanim(b))[0]!;
-  const kat = kullanim(s);
-  const adim = Math.ceil(kat / 2) * 0.05 * (kat % 2 ? -1 : 1);
-  return { ses: s, pitch: perdeSinirla(pitch * (1 + adim)), cinsiyetYok };
+  // o seste sahnede kullanılmamış en yakın perde: aynı (ses, perde) iki konuşana düşmez, perde ±%8 içinde kalır
+  return { ses: s, pitch: bosPerde(perdeSinirla(pitch), perdeler.get(s.name) ?? new Set()), cinsiyetYok };
 }
 
 /** Bir sahnedeki konuşanlara sırayla ses: aynı sahnede iki konuşan aynı (ses, perde) almaz */
 export function sahneAta(konusanlar: Konusan[], sesler: Ses[]): Map<string, Atama> {
   const out = new Map<string, Atama>();
   const dolu: string[] = [];
+  const perdeler = new Map<string, Set<number>>();
   for (const k of konusanlar) {
     if (out.has(k.id)) continue;
-    const a = sesAta(k, sesler, dolu);
-    if (a.ses) dolu.push(a.ses.name);
+    const a = sesAta(k, sesler, dolu, perdeler);
+    if (a.ses) { dolu.push(a.ses.name); let p = perdeler.get(a.ses.name); if (!p) perdeler.set(a.ses.name, (p = new Set())); p.add(a.pitch); }
     out.set(k.id, a);
   }
   return out;

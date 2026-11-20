@@ -3,16 +3,18 @@ import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 /** Kabuk 1.5 (PM 7042267632): kabukta iPhone'un kendi seslendirmesi; perde oyunu yok, hız eklentinin gerçek hızı */
 const cagri: { text: string; lang: string; rate: number; pitch: number; voice?: number }[] = [];
 let durdu = 0;
+let asili = false;
 const SESLER = [
   { name: "Anna", lang: "de-DE", voiceURI: "com.apple.voice.compact.de-DE.Anna" },
   { name: "Anna", lang: "de-DE", voiceURI: "com.apple.voice.premium.de-DE.Anna" },
   { name: "Markus", lang: "de-DE", voiceURI: "com.apple.voice.enhanced.de-DE.Markus" },
   { name: "Yelda", lang: "tr-TR", voiceURI: "com.apple.voice.compact.tr-TR.Yelda" }
 ];
+let liste = () => SESLER;
 beforeAll(() => {
   const tts = {
-    getSupportedVoices: async () => ({ voices: SESLER.map((v) => ({ ...v, localService: true, default: false })) }),
-    speak: async (o: any) => { cagri.push(o); await new Promise((r) => setTimeout(r, 20)); },
+    getSupportedVoices: async () => ({ voices: liste().map((v) => ({ ...v, localService: true, default: false })) }),
+    speak: async (o: any) => { cagri.push(o); if (asili) return new Promise<void>(() => {}); await new Promise((r) => setTimeout(r, 20)); },
     stop: async () => { durdu++; }
   };
   vi.stubGlobal("Capacitor", { isNativePlatform: () => true, isPluginAvailable: (n: string) => n === "TextToSpeech", Plugins: { TextToSpeech: tts } });
@@ -53,5 +55,36 @@ describe("Kabuk 1.5: yerel seslendirme", () => {
     const ms = await olcCal("Guten Morgen.", cihazSesleri()[2], 0.5);
     expect(ms).not.toBeNull(); expect(ms!).toBeGreaterThanOrEqual(15);
     expect(cagri.at(-1)).toMatchObject({ voice: 2, rate: 0.5 });
+  });
+  it("durdur + hemen yeni cümle: yeni cümle sürerken ses etkin sayılır (inceleme #164 P2)", async () => {
+    const { speak, stopSpeaking, audioActive } = await import("./speech.ts");
+    const p1 = speak("Eins zwei drei.", "de", "normal", true);
+    stopSpeaking();
+    await new Promise((r) => setTimeout(r, 12));
+    const p2 = speak("Vier fünf sechs.", "de", "normal", true);
+    await p1;   // eski çağrı (20 ms) yenisi (12 + 20 ms) sürerken biter
+    expect(audioActive()).toBe(true);
+    await p2;
+    expect(audioActive()).toBe(false);
+  });
+  it("eklenti bitişi bildirmezse güvenlik zaman aşımıyla çözülür", async () => {
+    const { speak, audioActive } = await import("./speech.ts");
+    vi.useFakeTimers(); asili = true;
+    try {
+      const p = speak("Hallo.", "de", "normal", true);
+      await vi.advanceTimersByTimeAsync(5000);
+      await p;
+      expect(audioActive()).toBe(false);
+    } finally { asili = false; vi.useRealTimers(); }
+  });
+  it("ses listesi yeniden yüklenince dizin yeni listeden (inceleme #164 P1-1)", async () => {
+    const { yerelSesleriYukle, speak, konusanAta } = await import("./speech.ts");
+    liste = () => [{ name: "Martin", lang: "de-DE", voiceURI: "com.apple.voice.enhanced.de-DE.Martin" }, ...SESLER];
+    await yerelSesleriYukle();
+    cagri.length = 0;
+    await speak("Guten Tag.", "de", "normal", true, konusanAta(["Herr Wimmer"]).get("Herr Wimmer"));
+    const v = cagri[0]!.voice!;
+    expect(["Martin", "Markus"]).toContain(liste()[v]!.name);
+    liste = () => SESLER; await yerelSesleriYukle();
   });
 });
