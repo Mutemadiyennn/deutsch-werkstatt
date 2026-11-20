@@ -132,3 +132,22 @@ GERİ dönenler (hepsi `lx:verlangen`, aynı sebep: "fazla şey istemek" Türkç
 - lx:verlangen .forms[3].hint_tr
 
 Durum (OD-9.4): `batch-007.json` içindeki `lx:verlangen` kartı GERİ olduğu için bu dosya "reviewed" sayılamaz. Öteki partilerde (001, 002, 003, 005, 006, 008, 010, 011, 012, 013, 014) bu turun satırlarında GERİ yok.
+
+## 2. tur
+
+Yalnız 1. turda GERİ dönen 7 satır (`batch-007.json`, `lx:verlangen`) yeniden okundu.
+
+| # | Öğe | Alan | Açıklama | Kendi sözlerimle | Karar | Neden |
+|---|---|---|---|---|---|---|
+| 1 | lx:verlangen | .collocations[0].tr | fazlasını istemek | Hak ettiğinden çok şey istemek. | GEÇTİ | Doğal Türkçe; Almancayla aynı. |
+| 2 | lx:verlangen | .examples[0].tr | Bu fazla bir istek değil ki. | "Bunu istemem çok değil" diyorum. | GEÇTİ | Doğal; "ki" Almancadaki *doch* tonunu veriyor. |
+| 3 | lx:verlangen | .forms[1].tr | Fazlasını istiyorsun. | Karşımdakine "çok istiyorsun" diyorum. | GEÇTİ | |
+| 4 | lx:verlangen | .forms[1].hint_tr | Fazlasını istiyorsun derken **Du verlangst zu viel** denir. | "Çok istiyorsun" böyle söylenir. | GEÇTİ | 8 kelime, tek fikir. |
+| 5 | lx:verlangen | .forms[3].tr | Bu fazla bir istek değil. | İstediğim şey çok değil. | GEÇTİ | |
+| 6 | lx:verlangen | .forms[3].hint_tr | Fazla bir istek değil derken **nicht zu viel verlangt** denir. | "Çok istek değil" böyle söylenir. | GEÇTİ | 10 kelime. |
+| 7 | lx:verlangen | .mistakes_tr[0] | Fazla bir istek değil derken **Das ist nicht zu viel verlangen** yanlış. Doğrusu **Das ist nicht zu viel verlangt**. Sona **verlangt** gelir. | Bu cümlenin sonunda *verlangen* değil *verlangt* olur. | GEÇTİ | Tek fikir (son kelimenin biçimi); en uzun cümle 12 kelime; terim yok. |
+
+### 2. tur sayıları
+
+- Okunan: 7 · GEÇTİ: 7 · GERİ: 0
+- Okur açısından 96 satırın hepsi GEÇTİ. `lx:verlangen` kartı ve `batch-007.json` içinde bu turun satırlarında GERİ kalmadı (OD-9.4 engeli okur tarafında kalktı).
