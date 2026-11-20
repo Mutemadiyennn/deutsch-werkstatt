@@ -184,6 +184,19 @@ def content_file(rel):
     with open(os.path.join(base, h, rel), encoding="utf-8") as f:
         return json.load(f)
 
+def bekle_kosul(page, js, arg=None, timeout=5000, adim=150):
+    """async koşul için yoklama: wait_for_function, async işlevin döndürdüğü Promise'i hemen 'doğru' sayar (inceleme #151 P1-2).
+    `js` sayfada değerlendirilir (async olabilir); doğru dönerse True, süre dolarsa False."""
+    import time
+    son = time.time() + timeout / 1000
+    while True:
+        try:
+            if page.evaluate(js, arg) if arg is not None else page.evaluate(js): return True
+        except Exception: pass
+        if time.time() > son: return False
+        page.wait_for_timeout(adim)
+
+
 def finish():
     print("HATALAR:", "yok" if not ERR else "\n  " + "\n  ".join(ERR))
     sys.exit(1 if ERR else 0)

@@ -174,11 +174,11 @@ def main():
             b2, c2 = launch(p); pg2 = c2.new_page(); pg2.route("https://api.e2e.test/**", api)
             login_onboard(pg2, PORT); pg2.wait_for_selector("[data-tab=today]"); pg2.wait_for_timeout(400)
             v2 = dialogue_answer(pg2, base, near)
-            if v2 and "kontrol edemedim" in v2: pg = pg2; break
+            if v2 and "denetleyemedi" in v2: pg = pg2; break
             b2.close()
-        check(v2 is not None and "kontrol edemedim" in v2, f"C: tanınmayan yakın cevap 'kontrol edemedim' ({(v2 or '')[:50]!r})")
+        check(v2 is not None and "denetleyemedi" in v2, f"C: tanınmayan yakın cevap 'denetleyemedi' ({(v2 or '')[:50]!r})")
         # koşulsuz: düğme yoksa kırmızı (inceleme #43 3. tur)
-        check(pg.locator("[data-test=claim]").count() == 1, "C: 'kontrol edemedim' bandında 'Evet, aynı anlamda' düğmesi var")
+        check(pg.locator("[data-test=claim]").count() == 1, "C: 'denetleyemedi' bandında 'Evet, aynı anlamda' düğmesi var")
         if pg.locator("[data-test=claim]").count():
             pg.click("[data-test=claim]"); pg.wait_for_selector("text=Kaydedildi")
             check(pg.locator("[data-test=next]").count() == 1, "C: 'Evet, aynı anlamda' → kaydedildi, devam edilebilir")
@@ -212,10 +212,15 @@ def main():
         except Exception: pass
 
         # ---------- D) Workers AI (deneme) sağlayıcısı: rol oyununda "deneme" etiketi (PM 7022002310-5) ----------
+        # sağlık cevabı rol oyunu ekranı açılana kadar BEKLETİLİR: yarış her koşuda sınanır (inceleme #151 P1-1)
+        bekleyen = []; tut = {"on": True}
+        HEALTH = json.dumps({"ok": True, "version": "e2e", "time": "", "provider": "workers-ai", "configured": {"gemini": False, "workers_ai": True, "allowlist": True}})
         def api_wa(route):
             u = route.request.url
             if route.request.method == "OPTIONS":
                 return route.fulfill(status=204, headers={**CORS, "Access-Control-Allow-Headers": "Authorization, Content-Type", "Access-Control-Allow-Methods": "GET, POST"})
+            if u.endswith("/v1/health") and tut["on"]:
+                bekleyen.append(route); return
             if u.endswith("/v1/health"):
                 return route.fulfill(status=200, headers=CORS, content_type="application/json", body=json.dumps({"ok": True, "version": "e2e", "time": "", "provider": "workers-ai", "configured": {"gemini": False, "workers_ai": True, "allowlist": True}}))
             if u.endswith("/v1/usage"):
@@ -224,7 +229,12 @@ def main():
         b, ctx = launch(p); pg = ctx.new_page(); pg.route("https://api.e2e.test/**", api_wa)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]"); pg.wait_for_timeout(500)
         pg.goto(base + f"#/scenario/{SC}/roleplay"); pg.wait_for_selector("[data-test=rp-start]")
-        check(pg.locator("[data-test=ai-deneme]").count() == 1 and pg.inner_text("[data-test=ai-deneme]") == "Deneme", "D: Workers AI sağlayıcısında rol oyununda 'Deneme' etiketi (küçük harf, büyük harf dönüşümü yok)")
+        check(pg.locator("[data-test=ai-deneme]").count() == 0 and len(bekleyen) >= 1, f"D: sağlık cevabı gelmeden rozet yok ({len(bekleyen)} bekleyen istek)")
+        tut["on"] = False
+        for r in bekleyen: r.fulfill(status=200, headers=CORS, content_type="application/json", body=HEALTH)
+        try: pg.wait_for_selector("[data-test=ai-deneme]", timeout=5000)
+        except Exception: pass
+        check(pg.locator("[data-test=ai-deneme]").count() == 1 and pg.inner_text("[data-test=ai-deneme]") == "Deneme", "D: Workers AI sağlayıcısında rol oyununda 'Deneme' etiketi; cevap ekran açıldıktan sonra gelse de çizilir (küçük harf)")
         # PM 7026867047: rozet başlık satırında (dikeyde başlıkla kesişir) ve kartın sağ kenarına yaslı
         # PM 7026867047: rozet ekranın başlık satırında (.pbar h1 ile aynı satır), başlığın sağında, satırın sağ ucuna yaslı; kart içinde değil
         g = pg.evaluate("""() => { const c = document.querySelector('[data-test=ai-deneme]'); const row = c.closest('.pbar > .row'); const h = row && row.querySelector('h1');
