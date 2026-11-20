@@ -80,3 +80,70 @@ Tarih: 2026-11-20 · Yalnızca okur turunda değişen satırlar incelendi (3 Alm
 Bu turda: 13 satır incelendi, 1 tutarlılık bulgusu (2 sahne satırı), gerçek dil hatası 0.
 
 **KAPANDI.**
+
+## İnceleme #163 sonrası
+
+Tarih: 2026-11-20 · Yalnızca yazarın „İnceleme #163 sonrası“ listesindeki satırlar incelendi: 15 görev cümlesi, 2 sahne satırı, 3 taşınan cümle (20 madde). Denetim: `halka_kontrol.py` → **0 hata, 2 not** (ikisi de „Guten Tag, hier ist {name}.“ kalıbı, h2 ve h5). Yeni sözcük eklenmedi; **das** zamir olarak yok.
+
+| Satır | Karar | Düzeltme |
+|---|---|---|
+| h1 sahne 2 „Hallo, Frau Stadler! Für Lechner, bitte.“ / Lechner adına, lütfen. | **Düzeltildi (bulgu 9)** | → „Hallo, Frau Stadler! Für Frau Brandl, bitte.“ / „Merhaba Stadler Hanım! Brandl Hanım için, lütfen.“ |
+| h1 bitte „Bitte, Tobi!“ / Rica ederim Tobi! | **Düzeltildi (bulgu 10)** | → „Bitte, Tobi.“ / „Rica ederim Tobi.“ |
+| h1 bitte „Ja, bitte, Frau Stadler.“ | Doğru | yok |
+| h1 ja „Ja, für Ioana.“ / Evet, Ioana için. | Doğru | yok |
+| h2 „Am Donnerstag geht es, Frau Huber.“ | Doğru | yok |
+| h2 „Gestern war Freitag.“ | Doğru | yok |
+| h3 „Gestern war Sonntag, nicht Samstag.“ | Doğru | yok |
+| h3 „Und am Sonntag? Geht es?“ | Doğru, şüphe (aşağıda) | yok |
+| h3 „Nicht diese Woche, Frau Huber.“ | Doğru | yok |
+| h4 „Heute ist Wochenende, Tobi!“ | Doğru | yok |
+| h4 „War gestern Dienstag?“ | Doğru | yok |
+| h4 „Vorgestern war Donnerstag.“ | Doğru | yok |
+| h4 „Heute ist Montag, vorgestern war Samstag.“ | Doğru | yok |
+| h5 „Montag geht nicht, Herr Wimmer.“ | Doğru | yok |
+| h5 „Hallo? Praxis Dr. Weber?“ | Doğru | yok |
+| h5 „Ist die Praxis am Samstag geschlossen?“ | Doğru | yok |
+| h4 sahne 3 „Übermorgen ist Freitag. Ja, Freitag geht!“ | Doğru | yok |
+| Taşınan: „Danke, Herr Wimmer!“, „Hallo, Herr Pichler!“ (h5), „Ja, danke, Frau Huber.“ (h1) | Doğru | yok |
+
+**Bulgu 9: „Für Lechner, bitte.“** Dilbilgisi doğru. WORLD ile de çelişmiyor: Tobi'nin soyadı Lechner (`ch:lechner`). Ama üç sorun var. (1) Bu bir sipariş cümlesi değil; yalnızca önceden ayrılmış bir siparişi teslim alırken söylenir. Sahnede bunu anlatan bağlam yok (`ortam_tr` alanı henüz şemada değil). (2) Öğrenci Tobi'yi adıyla tanıyor; Lechner soyadı 1. günün içeriğinde hiç geçmiyor. İlk halkanın ilk sahnesinde tanımadığı bir ad görüyor. (3) Türkçesi „Lechner adına“ idi; aynı halkada **für** „için“ diye geçiyor („Ja, für Ioana.“). Çözüm: ad Frau Brandl oldu. Öğrenci onu aynı halkadan tanıyor („Hallo, Frau Brandl!“), cümle **Frau** kartını bir kez daha kullandırıyor, Türkçesi „için“ ile tutarlı. Yaşlı komşunun ekmeğini fırından almak bağlamsız da anlaşılıyor; Frau Stadler „müşterisini tanır“ (WORLD). „Für Frau Brandl, bitte.“ `content/v2/**` içinde tek başına cümle olarak yok.
+
+**Bulgu 10: „Bitte, Tobi!“** Ad ve ünlemle tek başına okununca Almancada önce yalvarma anlamı gelir („Lütfen Tobi, hadi!“), „rica ederim“ değil. Nokta ile cümle sakin bir karşılık olur. Türkçesi anlamı zaten sabitliyor. Kalan şüphe: yapboz ya da dikte bağlamsız gelirse cümle yine iki anlama açık. En temiz biçim iki satırlık bir alışveriş olurdu (teşekkür ve karşılığı); görev cümlesi şeması bunu taşıyorsa ANA karar versin.
+
+**Sorulan öteki satırlar:**
+- **„Ja, für Ioana.“** Kısa cevap olarak doğal (soru: „Für Ioana?“). Türkçesi birebir.
+- **„Nicht diese Woche, Frau Huber.“** Doğru ve söylenir; **nicht** olumsuzlanan öğenin önünde. Huber'e soyadla hitap WORLD ile tutarlı.
+- **„Heute ist Montag, vorgestern war Samstag.“** Takvim doğru (pazartesiden iki gün önce cumartesi). İki ana cümle virgülle bağlanabilir. „Evvelsi gün“ kartın karşılığıyla aynı.
+- **„Hallo? Praxis Dr. Weber?“** Hat kötüyken ya da karşı taraf adını söylemeden açınca arayan böyle sorar. Artikelsiz biçim telefon dili; WORLD'deki açılışla („Praxis Dr. Weber, Huber, …“) aynı adlandırma. Türkçesi „Alo? … mi?“ doğru.
+
+**Kalan şüpheler (dil hatası değil):**
+- h3 **„Und am Sonntag? Geht es?“** Doğru ve dosyanın öğrettiği **geht es** kalıbıyla tutarlı. Gündelikte burada **Geht das?** ya da **Geht's da?** daha sık; ikisi de yasak ya da küme dışı. Küme açılınca yenilenebilir.
+- h1 sahnesinde komşunun ekmeğini almak WORLD'de yazılı bir olay değil; çelişmiyor ama yeni bir küçük ayrıntı. BG uygun görmezse eski cümleye dönülmesin: seçenek „Für Tobi, bitte.“ (öğrencinin bildiği ad).
+- Yazarın açık bıraktığı üç madde (iki `accepted` çakışması, **für**'ün ilk geçişi) dil sorunu değil; karar İÇ/ANA'da.
+
+Bu turda: 20 madde, 2 bulgu (hata oranı 2/20 = %10; dilbilgisi hatası 0, doğallık ve anlam 2). İkisi de dosyada düzeltildi.
+
+**KAPANDI.**
+
+## h1 yeni sahne
+
+Tarih: 2026-11-20 · Okur eski sahneyi („Für Frau Brandl, bitte.“, fırın) iki anlamlı bulduğu için BG sahneyi değiştirdi. İncelenen: 3 satır + 1 soru (4 madde). Denetim: `halka_kontrol.py` → **0 hata, 2 not** (ikisi de h2/h5 „hier ist {name}“; h1'de not yok). Dosyada değişiklik yapılmadı.
+
+| Madde | Karar | Düzeltme |
+|---|---|---|
+| ch:brandl „Hallo! Bitte, für Sie.“ / Merhaba! Buyurun, sizin için. | Doğru | yok |
+| ogrenci „Für mich? Danke, Frau Brandl!“ / Benim için mi? Teşekkürler Brandl Hanım! | Doğru | yok |
+| ch:brandl „Bitte!“ / Rica ederim! | Doğru | yok |
+| Soru „Brandl Hanım ne yapıyor?“ (4 şık, doğru: Sana bir şey veriyor.) | Tek doğru cevap | yok |
+
+- **Almanca:** Bir şey uzatırken **Bitte, für Sie.** gündelik ve doğal (uzun biçimi **Bitte schön**; küme dışı, gerekmiyor). **für** + Akkusativ doğru: **Sie**, **mich**. **Für mich?** şaşkınlık sorusu olarak tam böyle söylenir. Teşekkürden sonra tek başına **Bitte!** burada yalnızca „rica ederim“ okunur; bulgu 10'daki iki anlamlılık (ad + ünlem, bağlamsız) bu satırda yok, çünkü önceki satır teşekkür.
+- **Türkçe:** Üç çeviri de doğru ve doğal. **bitte** aynı sahnede iki anlamda geçiyor (buyurun / rica ederim); ikisi de kartın karşılığında var („lütfen, buyurun, rica ederim“), üçüncüsü görev cümlesinde („Ja, bitte, Frau Stadler.“). Halka kartın üç anlamını da göstermiş oluyor.
+- **Kimlik:** Öğrencinin satırında ad ya da cinsiyet yok; Brandl'ın **Sie** hitabı cinsiyetsiz. D-061 ile uyumlu.
+- **WORLD:** Brandl alt kat komşusu, öğrenciyle **Sie** konuşuyor („Kommen S' rein!“, hafta 24 „haben Sie“), bir şeyler getiriyor („Plätzchen getirir“). Sahne verilen şeyi adlandırmıyor; yeni olay, akraba ya da geçmiş eklemiyor. Eski sahnedeki „komşunun ekmeğini alma“ ayrıntısı da böylece kalktı (önceki bölümdeki şüphe kapandı).
+- **Soru:** „Für Sie“ + „Für mich? Danke“ yalnızca „veriyor“ ile bağdaşır. „İstiyor“ çeldiricisi **bitte** = lütfen okumasını, „telefonla arıyor“ **Hallo** = alo okumasını (aynı halkada „Hallo? Frau Huber?“) sınıyor; ikisi de sahnede yanlış. Vedalaşma yok. Tek doğru cevap.
+
+**Kalan şüphe (dil hatası değil, engel değil):** WORLD'de Brandl'ın sık selamı **Grüß Gott!**; 79 yaşında bir Bavyeralının **Sie** dediği komşuya **Hallo** demesi mümkün ve günümüzde yaygın (konuşmasının %40'ı Alltag), ama en tipik selamı değil. h1'de bilinen sözcükler yalnızca hallo, danke, bitte, Frau, ja olduğu için doğru seçim bu; **Grüß Gott** öğretildikten sonra Brandl sahnelerinde o kullanılsın.
+
+Bu turda: 4 madde, 0 bulgu (hata oranı 0/4).
+
+**KAPANDI.**

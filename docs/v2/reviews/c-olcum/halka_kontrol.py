@@ -4,6 +4,7 @@
 Bilinen küme: önceki günlerin kartları ve dersleri + önceki halkalar + bu halkanın kartları (+ dersten sonraysa günün dersi).
 Görev cümlesi: bilinmeyen 0. Sahne satırı: en çok 1. Her kart: en az 2 görev cümlesi (kartın örnek/boşluk cümleleri + öneri)."""
 import runpy, io, contextlib, sys, json, glob
+if len(sys.argv) < 3: sys.exit(__doc__)
 K, P = sys.argv[1], sys.argv[2]
 sys.argv = ['x', K]
 with contextlib.redirect_stdout(io.StringIO()): M = runpy.run_path(f'{K}/docs/v2/reviews/c-olcum/olcum.py')

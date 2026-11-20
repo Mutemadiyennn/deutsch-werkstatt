@@ -21,11 +21,13 @@ cards = {}
 for f in sorted(glob.glob(f'{K}/content/v2/registry/lexicon/batch-*.json')):
     for c in json.load(open(f, encoding='utf8'))['items']: cards[c['id']] = c
 idx = collections.defaultdict(set)
-# 1. geçiş: kartın başlık, artikel ve çoğul sözcükleri
-oz = collections.defaultdict(set)
+# 1. geçiş: kartın başlık ve çoğul sözcükleri (artikel eşlenmez: "das" her nötr adın kartına düşmesin).
+# Bunlar kartın tanıtımda GÖSTERİLEN biçimleridir (gost); kart tanıtılınca bilinen yalnızca bunlardır (garden.ts
+# cevapGosterildi ile aynı). Öteki çekimler (gehe, gehst, gute) ancak bir dersin öğrettiği biçimlerle bilinir.
+oz = collections.defaultdict(set); gost = collections.defaultdict(set)
 for i, c in cards.items():
-    for b in (c['de'], c.get('art', ''), c.get('pl', '')):
-        for x in toks(b): oz[i].add(x); idx[x].add(i)
+    for b in (c['de'], c.get('pl', '')):
+        for x in toks(b): oz[i].add(x); gost[i].add(x); idx[x].add(i)
 # 2. geçiş: boşluk cevapları ve fiil çekimleri.
 #  - Cevaptaki sözcük yalnızca kartın başlığıyla akrabaysa (ilk 3 harfi başlıkta geçiyorsa; ümlaut yok sayılır) karta
 #    eşlenir: lx:Dienstag'ın "___ Dienstag" boşluğundaki "Letzten", "Mitte Juli"deki "Mitte" o karta düşmez.
@@ -96,29 +98,51 @@ adlar |= set(toks(w['town']['name'])) | set(toks(w['town'].get('neighbourhood', 
 dersler = {}
 for f in glob.glob(f'{K}/content/v2/temel/r0-*.json'):
     d = json.load(open(f, encoding='utf8')); dersler[d['id']] = d
+# Eşadlı çerçeve sözcükleri (kapalı liste): çerçeve kartı başka anlamda; görevdeki anlamın kartı tanıtılmadan bilinmez
+HOMOGRAF = {'ja': {'lx:ja'}}
+def _baslik_kart(t):
+    """t'yi başlık sözcüğü olarak taşıyan, fiil olmayan gerçek (card:true) kartlar: lx:hier, lx:ja"""
+    return {i for i in idx.get(t, ()) if i not in cerceve and cards[i].get('pos') != 'verb' and toks(cards[i]['de']) == [t]}
 def ders_bicim(d):
     s, kart = set(), set()
     for t in d.get('teach', []):
-        s |= set(toks(t.get('de', '')));
         if t.get('lexeme'): kart.add(t['lexeme'])
+    for t in d.get('teach', []):
+        tt = toks(t.get('de', ''))
+        # çok sözcüklü kalıptaki sözcük, kendi kartı (fiil değil) bu derste öğretilmiyorsa öğretilmiş sayılmaz:
+        # "Guten Tag, hier ist {name}." "ben {name}" öğretir, "hier" (burada) değil
+        s |= {x for x in tt if len(tt) == 1 or not (_baslik_kart(x) - kart)}
     for row in (d.get('table') or {}).get('satirlar', []):
         for j, cell in enumerate(row):
             if j != 1: s |= set(toks(cell))
     return s, kart
 
+DERS_KALIP = {did: [tuple(toks(t.get('de', ''))) for t in d.get('teach', []) if len(toks(t.get('de', ''))) > 1] for did, d in dersler.items()}
 gunler = [json.load(open(f, encoding='utf8')) for f in sorted(glob.glob(f'{K}/content/v2/m1/gun-0*.json'))]
 
+def _kalip_ortusu(tt, biten):
+    """biten derslerin çok sözcüklü teach kalıpları cümlede aynen (bitişik) geçiyorsa o sözcükler bilinir"""
+    ort = set()
+    for did in biten:
+        for k in DERS_KALIP.get(did, ()):
+            n = len(k)
+            for j in range(len(tt) - n + 1):
+                if tuple(tt[j:j + n]) == k: ort |= set(range(j, j + n))
+    return ort
 def bilinmeyen(cumle, bil_kart, bil_bicim, haric=(), c_onerisi=False, biten=()):
     out, cok = [], []
-    for t in toks(cumle):
+    tt = toks(cumle); ort = _kalip_ortusu(tt, biten)
+    for j, t in enumerate(tt):
+        if j in ort: continue
         if sayi(t, biten): continue
         if c_onerisi and t in SEIN_HABEN: continue
         if t in haric or t.isdigit() or t in adlar or t in bil_bicim: continue
         aday = idx.get(t, set())
         if not aday: out.append(('eslenemedi', t)); continue
-        if aday & (bil_kart | cerceve):
-            if len(aday) > 1 and not aday <= (bil_kart | cerceve): cok.append(t)
-            continue
+        if any(t in gost[i] for i in aday & bil_kart): continue
+        # çerçeve sözcüğü: aynı başlıkta henüz tanıtılmamış gerçek kart yoksa bilinir ("ja" lx:ja#2 ile değil lx:ja ile)
+        if aday & cerceve and not (_baslik_kart(t) - bil_kart): continue
+        if aday & bil_kart: out.append(('bicim', t, sorted(aday & bil_kart))); continue
         out.append(('kart', t, sorted(aday)))
     return out, cok
 
@@ -140,7 +164,7 @@ def gun_cumleleri(g):
 def madde(m, yer):
     r = []
     if m.get('audio_de'): r.append((yer, 'gosterim', m['audio_de']))
-    if m.get('de'): r.append((yer, 'gorev' if '___' in m['de'] else 'gosterim', m['de'].replace('___', ' ')))
+    if m.get('de'): r.append((yer, 'gorev' if '___' in m['de'] else 'gosterim', m['de']))
     if m.get('accepted'): r.append((yer, 'gorev', m['accepted'][0]))
     return r
 def ders_cumleleri(d):
@@ -172,13 +196,13 @@ for g in gunler:
             o0 = o1 = b0 = 0; ornek_bil = []; bos_bil = []
             for e in c['examples']:
                 u, _ = bilinmeyen(e['de'], bk, bb, c_onerisi=ad in 'CD', biten=bt); n = len(u)
-                o0 += n == 0; o1 += n <= 1; ornek_bil.append([e['id'], [x[1] if x[0] == 'kart' else '?' + x[1] for x in u]])
+                o0 += n == 0; o1 += n <= 1; ornek_bil.append([e['id'], [{'kart': '', 'bicim': '~', 'eslenemedi': '?'}[x[0]] + x[1] for x in u]])
                 if ad == 'B':
                     for x in u:
                         if x[0] == 'eslenemedi': sonuc['eslenemeyen'][x[1]] += 1
             for f in c['forms']:
                 u, _ = bilinmeyen(f['de'].replace('___', ' '), bk, bb, haric=set(toks(f['answer'].replace('…', ' '))), c_onerisi=ad in 'CD', biten=bt)
-                b0 += len(u) == 0; bos_bil.append([x[1] if x[0] == 'kart' else '?' + x[1] for x in u])
+                b0 += len(u) == 0; bos_bil.append([{'kart': '', 'bicim': '~', 'eslenemedi': '?'}[x[0]] + x[1] for x in u])
             kayit[ad] = {'ornek_0': o0, 'ornek_le1': o1, 'bosluk_0': b0, 'ornek_bilinmeyen': ornek_bil, 'bosluk_bilinmeyen': bos_bil}
         sonuc['kartlar'].append(kayit)
     bk = onceki_kart | onceki_derskart | bugun_derskart | tanitilan; bb = onceki_bicim | bugun_bicim
@@ -189,7 +213,7 @@ for g in gunler:
         bt = onceki_ders | set(g.get('dersler', []))
         u, _ = bilinmeyen(s, bk, bb, biten=bt); uc, _ = bilinmeyen(s, bk, bb, c_onerisi=True, biten=bt)
         sinir = 0 if tur == 'gorev' else 1
-        gk.append({'yer': yer, 'tur': tur, 'de': s, 'bilinmeyen': [x[1] if x[0] == 'kart' else '?' + x[1] for x in u],
+        gk.append({'yer': yer, 'tur': tur, 'de': s, 'bilinmeyen': [{'kart': '', 'bicim': '~', 'eslenemedi': '?'}[x[0]] + x[1] for x in u],
                    'ihlal': len(u) > sinir, 'ihlal_C': len(uc) > sinir})
     sonuc['gunler'].append({'gun': g['day'], 'cumleler': gk})
     onceki_kart |= tanitilan; onceki_bicim |= bugun_bicim; onceki_derskart |= bugun_derskart; onceki_ders |= set(g.get('dersler', []))

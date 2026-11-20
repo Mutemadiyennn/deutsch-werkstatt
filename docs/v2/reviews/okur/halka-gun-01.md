@@ -236,3 +236,128 @@ Sahnede yalnızca okuyorum, o yüzden 1. turda geçirmiştim, bu turda da geri �
 **N8 — kelime sırası.** h3/g3 Türkçede "Tobi" ile, Almancada günle başlıyor. h5/g8'de ben "Pazartesi günü" ile başlayan bir Almanca cümle de kurabilirim. Aynı durum 1. turda geçen h3/g8 ve h4/g5 satırlarında da vardı. Türkçe bana hangi kelimeyle başlayacağımı söyleyemiyor. Görev tek sıra bekliyorsa doğru yazdığım hâlde yanlış sayılırım.
 
 **N9 — h3/g5 küçük duraksama.** "Bugün cuma, hafta sonu!" cümlesini anladım ve Almancasıyla birebir aynı. Yalnız bir an "cuma hafta sonu mu sayılıyor" diye düşündüm, çünkü aynı halkanın sahnesinde "Pazar hafta sonu" yazıyor. Sevinç cümlesi olduğunu ünlemden çıkardım. Geçirdim.
+
+## İnceleme #163 sonrası
+
+Kapsam: yazarın ve dilbilimcinin "İnceleme #163 sonrası" bölümlerindeki satırlar (15 görev cümlesi, 3 taşınan cümle, 2 sahne satırı), daha önce okumadığım iki sahne satırı (h2/s2, h2/s3) ve h1 sorusunun yeniden kontrolü. Metinleri dosyadaki son hâlinden okudum. Ölçüt aynı: tek okumada anladım mı, Almancayla aynı şeyi mi söylüyor, Türkçeden tek bir Almanca cümleye gidiyor muyum. Önceki turların tabloları kayıt olarak duruyor.
+
+Satır numaraları dosyadaki bugünkü sıraya göredir (kartlar yer değiştirdiği için eski numaralarla aynı değil).
+
+| Satır | Almanca | Türkçe | Kendi sözlerimle | Karar | Gerekçe |
+|---|---|---|---|---|---|
+| h1/g5 | Ja, bitte, Frau Stadler. | Evet, lütfen Stadler Hanım. | Bana bir şey teklif edildi, kibarca kabul ediyorum. | geçer | Açık. Sahnedeki soru işaretli söz ayrı bir satır, Türkçesi de ayrı; karıştırmadım. |
+| h1/g6 | Bitte, Tobi. | Rica ederim Tobi. | Tobi bana teşekkür etmiş, karşılık veriyorum. | geçer | Tek okumada anladım. Bkz. N10. |
+| h1/g9 (taşındı) | Ja, danke, Frau Huber. | Evet, teşekkürler Huber Hanım. | Evet diyorum ve teşekkür ediyorum. | geçer | Metin aynı, yalnızca yeri değişti. |
+| h1/g10 | Ja, für Ioana. | Evet, Ioana için. | Bir şeyin Ioana'ya olduğunu onaylıyorum. | geçer | Kısa cevap olduğu belli. Kelime kelime Almancaya gidiyor. Bkz. N4 (bu kelimenin kartı yok). |
+| h1/s2 | Hallo, Frau Stadler! Für Frau Brandl, bitte. | Merhaba Stadler Hanım! Brandl Hanım için, lütfen. | Stadler Hanım'a selam veriyorum. Sonra Brandl Hanım ile ilgili bir şey istiyorum, ama ne istediğim yazmıyor. | **geri döner** | İki ayrı şey anladım, hangisi olduğunu seçemedim. Aşağıda. |
+| h1/soru | (soru) | Stadler Hanım ‘Ja, bitte?’ diyor. Ne demek istiyor? | Kadının bana ilk söylediği sözün ne demek olduğunu soruyorlar. | geçer | Hâlâ tek cevaplı: ilk şık. Aşağıda. |
+| h2/g7 | Am Donnerstag geht es, Frau Huber. | Perşembe günü olur Huber Hanım. | Perşembe bana uyar diyorum. | geçer | "günü" sözü günün önündeki küçük kelimeyi hatırlatıyor. Bkz. N2. |
+| h2/g10 | Gestern war Freitag. | Dün cumaydı. | Dünkü gün cumaydı. | geçer | Açık, Almancayla birebir. Bkz. N4 ("dün" kartı h4'te). |
+| h2/s2 | Guten Tag! Geht es am Montag? | İyi günler! Pazartesi günü olur mu? | Kadın bana pazartesiyi teklif ediyor. | geçer | g9 "Cuma günü olur mu?" ile aynı kalıp, aynı Türkçe. N7'nin bu yarısı kapandı. |
+| h2/s3 | Am Montag geht es nicht. Geht Donnerstag? | Pazartesi günü olmuyor. Perşembe olur mu? | Pazartesi bana uymuyor, perşembeyi soruyorum. | geçer | İlk cümle g1 ile aynı Almanca, aynı Türkçe. İkinci cümlede "günü" yok, Almancada da küçük kelime yok. N7 tümüyle kapandı. |
+| h3/g3 | Gestern war Sonntag, nicht Samstag. | Dün pazardı, cumartesi değil. | Birini düzeltiyorum: dün cumartesi değil pazardı. | geçer | Sıra Almancayla aynı. "Cumartesi değil" sahnedeki kalıpla aynı kelimeye gidiyor. |
+| h3/g4 | Und am Sonntag? Geht es? | Peki pazar günü? Olur mu? | Pazar günü uyar mı diye soruyorum. | geçer | Türkçe değişmedi. Almancası artık bildiğim kalıp. |
+| h3/g8 | Nicht diese Woche, Frau Huber. | Bu hafta değil Huber Hanım. | Bu hafta olmaz diyorum. | geçer | Açık. Almancada "değil" başta, Türkçede sonda; g3 ve sahnedeki "Cumartesi değil" ile aynı düzen, şaşırmadım. |
+| h4/g2 | Heute ist Wochenende, Tobi! | Bugün hafta sonu Tobi! | Tobi'ye bugünün hafta sonu olduğunu söylüyorum. | geçer | Açık, birebir. |
+| h4/g5 | War gestern Dienstag? | Dün salı mıydı? | Dünün salı olup olmadığını soruyorum. | geçer | Açık. h2/g5 "Bugün çarşamba mı?" ile aynı soru düzeni. |
+| h4/g9 | Vorgestern war Donnerstag. | Evvelsi gün perşembeydi. | İki gün önce perşembeydi. | geçer | Yalnızca gün değişti. |
+| h4/g10 | Heute ist Montag, vorgestern war Samstag. | Bugün pazartesi, evvelsi gün cumartesiydi. | Bugün pazartesi; iki gün önce cumartesiydi. | geçer | İki kısa parça, ikisi de tanıdık. Günleri saydım, tutuyor. |
+| h4/s3 | Übermorgen ist Freitag. Ja, Freitag geht! | Öbür gün cuma. Evet, cuma olur! | Ioana öbür günün cuma olduğunu söylüyor ve kabul ediyor. | geçer | Eskisinden daha açık: neyin "olur" olduğu yazıyor. Soru hâlâ tek cevaplı (Çarşamba); N6 aynen duruyor. |
+| h5/g1 | Montag geht nicht, Herr Wimmer. | Pazartesi olmuyor Wimmer Bey. | Wimmer Bey'e pazartesinin bana uymadığını söylüyorum. | geçer | "günü" yok, Almancada da küçük kelime yok. h2/g1 "Pazartesi günü olmuyor" ile ayrımı tutarlı. |
+| h5/g5 | Hallo? Praxis Dr. Weber? | Alo? Dr. Weber muayenehanesi mi? | Telefondayım, doğru yeri mi aradım diye soruyorum. | geçer | Tek okumada anladım. Bkz. N11. |
+| h5/g6 | Ist die Praxis am Samstag geschlossen? | Muayenehane cumartesi günü kapalı mı? | Doktorun yeri cumartesi açık mı diye soruyorum. | geçer | "günü" ipucu veriyor. Halkanın sahnesiyle aynı konu. Bkz. N4 (baştaki küçük kelimenin kartı yok). |
+| h5/g9 (taşındı) | Danke, Herr Wimmer! | Teşekkürler Wimmer Bey! | Wimmer Bey'e teşekkür ediyorum. | geçer | Metin aynı. Kelimenin kartı artık bu halkada, daha iyi. |
+| h5/g10 (taşındı) | Hallo, Herr Pichler! | Merhaba Pichler Bey! | Pichler Bey'e selam veriyorum. | geçer | Metin aynı. |
+
+### Geri dönen — kendi sözlerimle
+
+**h1/s2 — "Merhaba Stadler Hanım! Brandl Hanım için, lütfen."**
+Almancası: `Hallo, Frau Stadler! Für Frau Brandl, bitte.`
+
+Türkçe Almancayla birebir aynı, çeviri hatası yok. Takıldığım yer başka: bu, uygulamada okuduğum ilk sahnenin benim söylediğim ilk satırı ve ne yaptığımı anlamadım.
+
+- Birinci okuyuşum: Brandl Hanım'ı görmeye gelmişim, onu soruyorum. Stadler Hanım "Buyurun" deyip beni içeri alıyor.
+- İkinci okuyuşum: Brandl Hanım'a götüreceğim bir şeyi alıyorum. Stadler Hanım "Buyurun" deyip onu uzatıyor.
+
+İkisi de sahnenin dört satırına uyuyor. Sahnede nerede olduğumu (fırın, dükkân, kapı) söyleyen bir söz yok. Stadler Hanım'ın kim olduğunu da ilk gün bilmiyorum. Aynı satırda art arda iki "Hanım" olması da bir an kimin kim olduğunu karıştırttı, iki kez okudum.
+
+Eski satırda ("Şunu lütfen.") bir şey gösterip istediğim belliydi, alışverişte olduğumu oradan anlıyordum. Yeni satırda o ipucu gitti.
+
+Not: sorun satırın Türkçesinde değil, sahnenin bağlamsız kalmasında. Türkçe ne kadar düzgün olursa olsun ben ne yaptığımı bu dört satırdan çıkaramıyorum.
+
+### h1 sorusu hâlâ tek cevaplı mı
+
+Evet. Stadler Hanım'ın sözünün Türkçesi sahnede "Buyurun?" diye yazıyor, şıklarda buna uyan tek cevap ilk şık ("Buyurun, ne istersiniz?"). Öbür üç şık (teşekkür, hayır, görüşürüz) hiç uymuyor.
+
+Baktığım tuzak: aynı halkada "Ja, bitte, Frau Stadler." cümlesini "Evet, lütfen" diye öğreniyorum. Şıklarda "Evet, lütfen" olsaydı ona giderdim. Yok, o yüzden şaşırmadım.
+
+Küçük pürüz: h1/s2 yüzünden nerede olduğumu bilmiyorum. "Ne istersiniz?" şıkkı bir dükkânda olduğumu varsayıyor. Yine de doğru şıkkı buldum, çünkü öbürleri açıkça yanlış. Soruyu geçirdim; pürüz h1/s2'nin geri dönüşüne bağlı.
+
+N5 (soruda tırnak içinde Almanca) aynen duruyor.
+
+### Sonuç
+
+| | |
+|---|---|
+| Okunan satır | 23 |
+| Geçer | 22 |
+| Geri döner | 1 |
+
+Geri dönen: `h1/s2`.
+
+Dosyada geri dönen satır olduğu için bu hâliyle "reviewed" sayılamaz (OD-9.4).
+
+Bana bildirilen satırların dışında, dosyanın kalanını önceki turların tablolarıyla karşılaştırdım; bildirilmemiş değişmiş Türkçe görmedim.
+
+### Notlar (karar değil, baş geliştiriciye)
+
+**N7 kapandı.** h2 sahnesinin iki satırı artık görev cümleleriyle aynı Türkçeyi kullanıyor. "günü" olan yerde Almancada küçük kelime var, olmayan yerde yok. Bu kural şimdi beş halkanın hepsinde tutuyor (baktıklarım: h2/g1, g3, g6, g7, g9, s2, s3; h3/g4; h5/g1, g6, s1, s3).
+
+**N2 aynen açık, bir satır eklendi.** "Perşembe günü olur" uzun biçime (h2/g7), "perşembe olur" kısa biçime (h2/g6) gidiyor. "günü" sözü günün önündeki kelimeyi gösteriyor ama sondaki kısa kelimeyi göstermiyor. Türkçeden çevirirken ikisini de yazabilirim; ikisi de kabul edilmeli.
+
+**N4 aynen açık.** Yeni cümlelerle üç kelime daha eklendi: h1'de "için" (üç satırda geçiyor, kartı yok), h2/g10'da "dün" (kartı h4'te) ve "-ydı" anlamındaki kelime (kartı hiçbir halkada yok), h5/g6'da muayenehanenin önündeki küçük kelime.
+
+**N8 aynen açık.** h4/g5 "Dün salı mıydı?" için soruyu düz sırayla, sesimi yükselterek de kurabilirim. Görev tek sıra bekliyorsa yanlış sayılırım.
+
+**N10 — h1'de aynı kelime üç Türkçe.** Aynı Almanca kelime bu halkada "lütfen" (g5, s2), "rica ederim" (g6) ve "buyurun" (s1, s3) oluyor. Kartın amacı bu olabilir, o yüzden geçirdim. Ama g6'yı Türkçeden çevirirken "rica ederim" için ayrı bir kelime aradım, sonra kartı hatırladım. Kart bu üç anlamı açıkça söylemiyorsa ilk gün burada takılırım.
+
+**N11 — h5/g5 kelime sırası.** Türkçede "Dr. Weber muayenehanesi", Almancada muayenehane önce geliyor. Ayrıca Türkçedeki "mi" bana bir soru kelimesi aratıyor, Almancada yok. Anlamada sorun değil. Türkçeden çevirirken sırayı ters yazabilirim.
+
+## h1 yeni sahne
+
+Eski fırın sahnesi kalktı, yerine üç satırlık yeni sahne geldi. Bu turda yalnızca h1 sahnesini ve sorusunu okudum; dosyanın kalanına bu turda yeniden bakmadım.
+
+| Öğe | Alan | Almanca | Türkçe | Kendi sözlerimle | Karar | Neden |
+|---|---|---|---|---|---|---|
+| h1/s1 | sahne, Brandl | Hallo! Bitte, für Sie. | Merhaba! Buyurun, sizin için. | Brandl Hanım selam veriyor ve bana bir şey uzatıyor, "bu sizin" diyor. | GEÇTİ | Tek okumada anladım. Almancayla aynı şeyi söylüyor. |
+| h1/s2 | sahne, ben | Für mich? Danke, Frau Brandl! | Benim için mi? Teşekkürler Brandl Hanım! | Şaşırıyorum, "bana mı?" diye soruyorum, sonra teşekkür ediyorum. | GEÇTİ | Tek okumada anladım. Ne yaptığım artık belli: bir şey alıyorum ve teşekkür ediyorum. Eski geri dönüş kapandı. |
+| h1/s3 | sahne, Brandl | Bitte! | Rica ederim! | Teşekkürüme karşılık veriyor. | GEÇTİ | Tek okumada anladım. h1/g6 ile aynı Türkçe. |
+| h1/soru | soru ve dört şık | | Brandl Hanım ne yapıyor? | Brandl Hanım bana bir şey veriyor. İlk şık. | GEÇTİ | Tek okumada cevapladım. Tek doğru şık var. Soruda tırnak içinde Almanca yok. |
+
+### Soru tek cevaplı mı
+
+Evet. Baktığım tuzaklar:
+
+- "Senden bir şey istiyor": Almancadaki ilk kısa kelimeyi aynı halkada "lütfen" diye de öğreniyorum (g5). Yalnızca Almancaya baksam bir an "benden bir şey mi rica ediyor" diye düşünebilirdim. Ama hemen ardından "sizin için" geliyor ve ben "benim için mi" diye soruyorum. Türkçesi de "Buyurun" diyor. Bu şıkka gitmedim.
+- "Seni telefonla arıyor": aynı halkada selam kelimesini "Alo?" diye de görüyorum (g2). Burada soru işareti yok, Türkçesi "Merhaba", arkasından bir şey veriliyor. Bu şıkka gitmedim.
+- "Sana hoşça kal diyor": sahnede vedalaşma yok. Açıkça yanlış.
+
+### Sonuç (yalnızca h1 yeni sahne)
+
+| | |
+|---|---|
+| Okunan | 4 (3 satır, 1 soru) |
+| Geçer | 4 |
+| Geri döner | 0 |
+
+Önceki turda geri dönen tek satır eski `h1/s2` idi; o satır artık yok, yerine gelen geçti. Benim açımdan bu dosyada açık geri dönüş kalmadı.
+
+### Notlar (karar değil, baş geliştiriciye)
+
+**N5 h1 için kapandı.** Soruda artık tırnak içinde Almanca yok.
+
+**N10 aynen açık.** Aynı kısa kelime bu halkada hâlâ üç Türkçe taşıyor: "lütfen" (g5), "rica ederim" (g6, s3), "buyurun" (s1). Yeni sahnede ikisi art arda geliyor, bu yüzden aslında iyi bir örnek oldu. Kart üç anlamı söylemiyorsa s1'de takılırım.
+
+**N4 aynen açık, iki kelime eklendi.** "için" anlamındaki kelimenin kartı yok. Yeni sahnede "siz" ve "ben/bana" anlamındaki iki kelime de ilk kez geçiyor, kartları bu halkada yok. Okurken Türkçesinden anladım. Bunları benim yazmam ya da söylemem istenirse ilk gün yapamam.
+
+**N12 — ne verildiği belli değil.** Brandl Hanım'ın bana ne verdiğini ve nerede olduğumuzu sahne söylemiyor. Anlamamı ve soruyu cevaplamamı engellemedi, o yüzden geçirdim.
