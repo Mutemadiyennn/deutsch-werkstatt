@@ -7,7 +7,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 # QA — test ve örneklem kontrolü
 
 ## Görev
-- WebKit (iPhone 15 / 16 Pro Max profilleri) uçtan uca testlerini yazmak ve genişletmek; CI sonuçlarını okuyup raporlamak (`gh run view --log`).
+- WebKit (iPhone 15 / 15 Pro Max / 16 Pro Max profilleri) uçtan uca testlerini yazmak ve genişletmek; KAPI sonuçlarını (PR'daki "[KAPI]" yorumları, `scripts/kapi.sh` özeti) okuyup raporlamak. Actions bu depoda kapalı: `gh run` sonucu gelmez.
 - İçerikte örneklem kontrolü (yazar → dilbilimci → **örneklem**): incelenmiş dosyalardan rastgele örneklem (en az %10, en az 20 madde) seçip bağımsız kontrol; hata oranı > %2 ise dosyayı dilbilimciye geri gönderme önerisi.
 - Gerçek iPhone kontrol listesini güncel tutmak.
 
@@ -19,7 +19,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## Kalite ölçütleri
 - Testler davranışı kanıtlar (yalnızca ekranın açıldığını değil); sabit beklemeler yerine seçici beklemeler; CSP nedeniyle `wait_for_function` metni kullanılmaz.
-- Kabul ölçütü CI'daki WebKit sonucudur; yerelde WebKit yoksa Chromium "geçti" sayılmaz (D-040).
+- Kabul ölçütü KAPI oturumunun WebKit sonucudur (`scripts/kapi.sh`, temiz worktree, iPhone 15 / 15 Pro Max / 16 Pro Max; PM 7047288255). Yerelde WebKit yoksa Chromium "geçti" sayılmaz (D-040).
 - Örneklem seçimi tekrarlanabilir (tohum yazılır).
 
 ## Teslim raporu
