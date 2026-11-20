@@ -181,7 +181,7 @@ export function ProgressHeader({ title, back, step, steps = 7, doneSteps = [], r
     <header class="pbar">
       <div class="row" style={{ gap: 8 }}>
         <a class="iconbtn plain" href={back} aria-label="Geri"><Icon name="back" /></a>
-        <h1>{title}</h1>
+        {title ? <h1>{title}</h1> : <span class="grow" />}
         {right}
       </div>
       {/* DESIGN §1: ekran başına tek ilerleme göstergesi — ekranın kendi göstergesi (sub) varsa bölüm noktaları ve sayaç gizlenir */}
