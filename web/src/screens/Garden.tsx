@@ -222,7 +222,7 @@ function Esdizimler({ l, test }: { l: Lexeme; test?: string }) {
   return (
     <div class="small" data-test={test}><span class="muted">Birlikte:</span>
       <ul class="esdizim-liste">{acik.map(satir)}</ul>
-      {kapali.length > 0 && <details class="esdizim-daha" data-test="esdizim-daha"><summary class="linkbtn">Daha fazla ({kapali.length})</summary><ul class="esdizim-liste">{kapali.map(satir)}</ul></details>}
+      {kapali.length > 0 && <details class="esdizim-daha" data-test="esdizim-daha" onToggle={(e) => { const d = e.currentTarget as HTMLDetailsElement; if (d.open) d.querySelector("li:last-child")?.scrollIntoView({ block: "nearest", behavior: "smooth" }); }}><summary class="ikincil-eylem">Daha fazla ({kapali.length})</summary><ul class="esdizim-liste">{kapali.map(satir)}</ul></details>}
     </div>
   );
 }
@@ -256,7 +256,7 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
   const fotoEx = exi, fotoOrnek = ex;
   const show = (r: Result) => { if (sure.current === null) sure.current = Date.now() - basla.t; onCevap?.(); setRes(r); haptic(r.ok ? "success" : "error"); };
   const next = (o: Outcome | null) => onDone(res || { ok: false }, o, exi);
-  const baska = (n: number) => n > 1 ? <button class="btn sm ghost" data-test="baska-cumle" onClick={() => setExi((x) => x + 1)}>Başka cümle</button> : null;
+  const baska = (n: number) => n > 1 ? <button class="ikincil-eylem" data-test="baska-cumle" onClick={() => setExi((x) => x + 1)}>Başka cümle</button> : null;
 
   // önce duy (PM-049 tanıtım): kelime ekrana gelince bir kez okunur (inceleme #59 P2-8)
   useEffect(() => { if (intro) void speak(isNoun(l) ? `${l.art} ${l.de}` : l.de, "de", "normal"); }, [intro]);
@@ -273,10 +273,9 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
           <ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} />
         </div>
         <p style={{ margin: 0 }}><span data-test="intro-tr">{l.tr}</span>{gosterilenCogul(l) && <span class="small muted cogul-satir" data-test="intro-pl"> · Çoğulu: <span lang="de">{isNoun(l) ? "die " : ""}{gosterilenCogul(l)}</span></span>}</p>
-        {ex && <div class="row" style={{ flexWrap: "nowrap", alignItems: "flex-start", gap: 8 }}>
-          <p class="small grow" data-test="intro-ex" style={{ margin: 0, minWidth: 0 }}><span lang="de">{ex.de}</span><br /><span class="muted">{ex.tr}</span></p>
-          {baska(l.examples.length)}
-        </div>}
+        {/* PM 7026866757-1: örnek cümle tam genişlikte, hecelenmez; "Başka cümle" Türkçe satırın altında, kendi satırında */}
+        {ex && <p class="small ornek-cumle" data-test="intro-ex" style={{ margin: 0 }}><span lang="de">{ex.de}</span><br /><span class="muted">{ex.tr}</span></p>}
+        {baska(l.examples.length)}
         <Esdizimler l={l} test="intro-colloc" />
       </section>
       <ActionBar>
