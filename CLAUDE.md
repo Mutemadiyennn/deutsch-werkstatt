@@ -26,6 +26,7 @@ Her ajan ve oturum işe `docs/v2/LEARNER.md`'yi okuyarak başlar. Her kararda te
 15. `docs/v2/DECISIONS.md` — alınmış kararlar ve gerekçeleri (yeniden tartışma)
 16. `docs/v2/PEDAGOGY.md` — içerik standardı, şema ve doğrulayıcı kuralları
 17. `docs/v2/phases/` — proje sahibinin faz metinleri; hatırlamadığın kural buradadır
+18. `docs/v2/CALISMA_DUZENI.md` — çalışma düzeni "önce ölçüt, sonra iş" (PM-079): hazır tanımı, öz-denetim, tek geçişte tam bakış, yerleşim bekçisi, yol süzgeci
 PM belgeleri issue olarak gelir; depoya baş geliştirici alır (PM-011).
 
 ## Değişmez kurallar
@@ -37,10 +38,10 @@ PM belgeleri issue olarak gelir; depoya baş geliştirici alır (PM-011).
 - **Türkçe açıklama, İngilizce köprü yok.** İngilizce yalnızca mistakes_tr içinde kısa "yanlış arkadaş" uyarısı olabilir (D-060).
 - **Kalıp kapısı (D-063):** kalıplar "reviewed" olmadan yeni senaryo/alan yazılmaz. Üretim maddelerinde accepted[] ≥3 (D-064).
 - **Döngüsüzlük (H4 §4):** bir konu yeni bir şey öğretmedikçe tekrar gelmez; tekrarlar farklı bağlam ve karakterle gelir.
-- **WebKit kabul ölçütüdür.** "Bitti" kararı, bağımsız inceleme ajanının temiz kopyada koştuğu `scripts/kapi.sh` WebKit sonucuna göre verilir (iPhone 15, 15 Pro Max, 16 Pro Max; PM 7046691693 "Actionssız düzen"). Chromium'a düşmek yok; yerel Chromium yalnızca hızlı geri bildirimdir.
-- **Hazır tanımı (PM-079 md. 1, `docs/v2/CALISMA_DUZENI.md`):** iş; kabul listesi, arayüz değişiyorsa hedef ekran (`design/TARGET*`) ve tek satır "Rakip:" olmadan başlamaz. Arayüzsüz işte PM 60 dk'da yanıt vermezse motor kendi listesiyle başlar.
+- **WebKit kabul ölçütüdür (KAPI; PM 7047288255, 7046691693 md. 1'in kesin hâli).** Sınamayı **KAPI oturumu** koşar: temiz `git worktree`, `ci-v2.yml` sırası (`scripts/kapi.sh`, yol süzgeci içinde), WebKit iPhone 15 / 15 Pro Max / 16 Pro Max; sonucu PR'a "[KAPI] <commit> — YEŞİL/KIRMIZI" yorumu olarak yazar. **Birleştirme:** PR'ın baş commit'inde "[KAPI] … YEŞİL" + inceleme onayı (+ arayüzse PM finali); belge ve içerik PR'ları da KAPI'dan geçer. Öncelik ya da yeniden koşu: #12'ye "[KAPI-İSTEK] …". Birleşmeden sonra main'in KAPI sonucu yeşil değilse `[PM-KİLİT]`. Chromium'a düşmek yok; yerel Chromium yalnızca hızlı geri bildirimdir.
+- **Hazır tanımı (PM-079 md. 1, `docs/v2/CALISMA_DUZENI.md`):** yeni başlayan iş; kabul listesi, arayüz değişiyorsa hedef ekran (`design/TARGET*`; yoksa önce PM çizer) ve tek satır "Rakip:" olmadan başlamaz. Liste #12'ye ya da PR taslağına konur; arayüzsüz işte PM 60 dk'da yanıt vermezse motor kendi listesiyle başlar. Açık PR'lar eski düzenle biter.
 - **Öz-denetim (PM-079 md. 2):** PR açılmadan önce kabul listesi ve yerleşim bekçisi yerelde koşulur, sonuç PR açıklamasına madde madde yazılır; liste karşılanmadan inceleme ajanı başlatılmaz.
-- **Tek geçişte tam bakış (PM-079 md. 3):** inceleme 1. turda bütün bulguları yazar; 2. tur yalnız düzeltmeyi ve düzeltmenin getirdiği kusuru doğrular. Eski koddaki yeni bulgu engel değil, takip işidir.
+- **Tek geçişte tam bakış (PM-079 md. 3):** inceleme 1. turda bütün bulguları yazar; 2. tur yalnız düzeltmeyi ve düzeltmenin getirdiği kusuru doğrular; 2. turda eski koda çıkan yeni bulgu engel değil, takip işidir (PM bakışı için de aynı).
 - **Bitti tanımı:** kod + birim testleri + WebKit uçtan uca testleri + DN-2 makine kapısının tamamı (gezgin, yükleme bütçesi, uçak modu, TS-4, üç cihaz; `docs/v2/DENETIM.md`) + doğrulayıcı 0 hata + güncel STATUS + PR açıklaması. Biri eksikse "bitti" denmez.
 - **PR sınırı (PM-046 B, PM-052 C.11):** yeni özellik PR'ı için en fazla 4 açık PR; ≤50 satırlık hata düzeltmeleri ve tarihi olan işler muaf.
 - **Küçük PR.** Her teslim ayrı dal ve ayrı PR; bağımlıysa öncekinin üstüne (yığınlı). PR açıklaması kendi başına anlaşılır: ne değişti, nasıl test edildi, arayüz değiştiyse ekran görüntüleri, bilinen eksikler.
@@ -64,7 +65,7 @@ npm run content:validate                      # içerik doğrulayıcı (0 hata �
 # derleme
 npm run content:build && npm run build -w web # web/dist
 (cd web && npx vite build --mode e2e --outDir dist-e2e)   # e2e sürümü (sahte giriş, sahte sunucu)
-# uçtan uca (yerel hızlı geri bildirim; kabul CI'da WebKit)
+# uçtan uca (yerel hızlı geri bildirim; kabul KAPI oturumunda WebKit: scripts/kapi.sh)
 cd tests/e2e && python v2_core.py && python v2_player.py && python gezgin.py && python yukleme.py && python ucak.py && python visual.py --out /tmp/visual
 #   WebKit + cihaz: --browser webkit --device "iPhone 15"
 # v1 kapısı (yalnızca v1 değişince)

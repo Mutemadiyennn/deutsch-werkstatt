@@ -2,7 +2,7 @@
 
 > PM belgesi; metin #12 yorum 7046369083'ten **aynen** alındı (20.11.2026). Değişikliği yalnız PM yapar. CLAUDE.md "Değişmez kurallar"daki üç satır (Hazır tanımı · öz-denetim · tek geçişte tam bakış) bu belgeye bağlıdır.
 >
-> **Sonradan gelen PM kararı (7046691693, "Actionssız düzen"):** GitHub Actions bu depoda GitHub tarafından kapatıldığı sürece madde 4 ve 5'teki "CI" denetimleri `scripts/kapi.sh` ile yürür: kapıyı işi yazan değil, bağımsız inceleme ajanı temiz çalışma ağacında koşar; yol süzgeci betiğin içindedir. "Bitti" kararı bu koşunun WebKit sonucuna göre verilir.
+> **Sonradan gelen PM kararları (Actions GitHub tarafından kapatıldı):** 7046691693 "Actionssız düzen" ve onun kesin hâli **7047288255**: madde 4 ve 5'teki "CI" denetimlerini **KAPI oturumu** koşar (temiz `git worktree`, `ci-v2.yml` sırası, `scripts/kapi.sh`, WebKit üç cihaz; yol süzgeci betiğin içinde) ve sonucu PR'a "[KAPI] <commit> — YEŞİL/KIRMIZI" diye yazar. Birleştirme: baş commit'te KAPI YEŞİL + inceleme onayı (+ arayüzse PM finali).
 
 ---
 
