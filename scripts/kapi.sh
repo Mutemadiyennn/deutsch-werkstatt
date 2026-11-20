@@ -184,7 +184,7 @@ if [ $DUSEN -gt 0 ]; then SONUC="DÜŞTÜ ($DUSEN adım)"; KOD=1
 elif [ $ENGEL -gt 0 ] || [ -n "$EKSIK" ]; then SONUC="ENGEL${EKSIK:+ / $EKSIK}"; KOD=3
 else SONUC="GEÇTİ"; KOD=0; fi
 {
-  echo "**Kapı (\`scripts/kapi.sh\`)** · commit \`${SHA:0:12}\` · taban \`$TABAN\` · süzgeç: **$SINIF** · cihaz: ${CIHAZLAR[*]} · süre $((SURE/60)) dk $((SURE%60)) sn · sonuç: **$SONUC**"
+  echo "**Kapı (\`scripts/kapi.sh\`)** · commit \`${SHA:0:12}\` · taban \`$TABAN\` · süzgeç: **$SINIF** · cihaz: $([ "$SINIF" = docs ] \&\& echo "—" || echo "${CIHAZLAR[*]}") · süre $((SURE/60)) dk $((SURE%60)) sn · sonuç: **$SONUC**"
   echo
   echo "| # | adım | süre | sonuç | not |"
   echo "|---|---|---|---|---|"
