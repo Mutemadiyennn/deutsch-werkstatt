@@ -271,7 +271,8 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
     <div class="stack fade" data-test="garden-intro" data-lex={l.id}>
       <section class="card stack"><div class="kicker">Yeni kelime</div>
         {/* PM 14:05 Berlin madde 1: tanıtımda kelimenin fotoğrafı (sayaçla döner); cümle görseli yalnızca cümlenin yanında */}
-        <Photo q={l.img} sira={q.ex} yer={[`${l.id}#kart`]} alt={l.tr} />
+        {/* C: tanıtımda görsel 160 px (örnek alanı en uzun örnek kadar yer tuttuğu için en uzun kart yine düğmelere değmeden sığar) */}
+        <Photo q={l.img} sira={q.ex} yer={[`${l.id}#kart`]} alt={l.tr} enCok={160} />
         {/* PM 7024150313: görselli en uzun kart da düğmelere değmeden sığar — kelime ile dinle aynı satırda, çoğul anlamın yanında,
             "Başka cümle" cümlenin yanında; eşdizimlerden en çok 3'ü açık */}
         <div class="row" style={{ flexWrap: "nowrap", alignItems: "center", gap: 10 }}>
@@ -280,7 +281,12 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
         </div>
         <p style={{ margin: 0 }}><span data-test="intro-tr">{l.tr}</span>{gosterilenCogul(l) && <span class="small muted cogul-satir" data-test="intro-pl"> · Çoğulu: <span lang="de">{isNoun(l) ? "die " : ""}{gosterilenCogul(l)}</span></span>}</p>
         {/* PM 7026866757-1: örnek cümle tam genişlikte, hecelenmez; "Başka cümle" Türkçe satırın altında, kendi satırında */}
-        {ex && <p class="small ornek-cumle" data-test="intro-ex" style={{ margin: 0 }}><span lang="de">{ex.de}</span><br /><span class="muted">{ex.tr}</span></p>}
+        {/* PM 7030294523 C: örnek alanı kartın en uzun örneği kadar yer tutar (görünmez yer tutucular aynı hücrede); "Başka cümle"de kart da
+            sayfa da zıplamaz. Görünen cümle hep aynı öğe (data-test=intro-ex), yalnızca metni değişir */}
+        {ex && <div class="ornek-yigin">
+          <p class="small ornek-cumle" data-test="intro-ex" style={{ margin: 0 }}><span lang="de">{ex.de}</span><br /><span class="muted">{ex.tr}</span></p>
+          {l.examples.length > 1 && l.examples.map((x) => <p class="small ornek-cumle ornek-yer" aria-hidden="true" style={{ margin: 0 }}><span lang="de">{x.de}</span><br /><span class="muted">{x.tr}</span></p>)}
+        </div>}
         {baska(l.examples.length)}
         <Esdizimler l={l} test="intro-colloc" />
       </section>

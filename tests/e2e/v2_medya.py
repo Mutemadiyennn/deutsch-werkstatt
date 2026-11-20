@@ -74,7 +74,9 @@ def main():
         check("Bölüm 1/3" in pg.inner_text("[data-test=medya] .pbar"), "5 dakikalık kayıt 3 bölüm")
         check(pg.locator("[data-test=adim-dinle] .de, [data-test=adim-dinle] [lang=de]").count() == 0, "(a) ilk dinlemede metin yok")
         # (a) bölümü dinle: video bölümün başından oynar
-        check("yavaş" in pg.inner_text("[data-test=dinle-bolum]"), "(a) başlangıç hızı Yavaş: ilk dinleme düğmesinde yazıyor (B7)")
+        # B7: başlangıç hızı Yavaş — düğmede ya da hız anahtarında (PM-074 md. 2) yazılı
+        yazili = "yavaş" in pg.inner_text("[data-test=dinle-bolum]") or pg.locator("[data-test=hiz] button[aria-pressed=true]").first.inner_text().strip() == "Yavaş" if pg.locator("[data-test=hiz]").count() else "yavaş" in pg.inner_text("[data-test=dinle-bolum]")
+        check(yazili, "(a) başlangıç hızı Yavaş: ilk dinleme düğmede ya da hız anahtarında yazılı (B7)")
         pg.click("[data-test=dinle-bolum]"); pg.wait_for_timeout(1200)
         t = pg.evaluate("(() => { const v = document.querySelector('[data-test=video]'); return { t: v.currentTime, p: v.paused, r: v.playbackRate }; })()")
         check(t["t"] > 0.2 and not t["p"], f"(a) bölüm oynuyor ({t})")

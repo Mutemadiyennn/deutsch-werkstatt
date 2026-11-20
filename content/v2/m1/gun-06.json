@@ -1190,5 +1190,249 @@
     "Sonunda Derya'ya bir soru var mı?"
    ]
   }
+ },
+ "gun_sinavi": {
+  "id": "m1:06:s",
+  "maddeler": [
+   {
+    "id": "m1:06:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Heute ist der zweite April.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Heute ist der zweite April.",
+     "heute ist der zweite april",
+     "Heute ist der zweite April"
+    ],
+    "why_tr": "**der zweite April** iki nisan demektir.",
+    "strictNumberWords": true
+   },
+   {
+    "id": "m1:06:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Am ersten Mai ist die Praxis geschlossen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Am ersten Mai ist die Praxis geschlossen.",
+     "am ersten mai ist die praxis geschlossen",
+     "Am ersten Mai ist die Praxis geschlossen"
+    ],
+    "why_tr": "**am ersten Mai** bir mayısta demektir.",
+    "strictNumberWords": true
+   },
+   {
+    "id": "m1:06:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Wie ist Ihr Nachname, bitte?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wie ist Ihr Nachname, bitte?",
+     "wie ist ihr nachname bitte",
+     "Wie ist Ihr Nachname, bitte"
+    ],
+    "why_tr": "**Nachname** soyadı demektir."
+   },
+   {
+    "id": "m1:06:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Woher kommen Sie und wo wohnen Sie?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Woher kommen Sie und wo wohnen Sie?",
+     "woher kommen sie und wo wohnen sie",
+     "Woher kommen Sie und wo wohnen Sie",
+     "Woher kommen Sie, und wo wohnen Sie?"
+    ],
+    "why_tr": "**Woher** nereden, **wo** nerede demektir."
+   },
+   {
+    "id": "m1:06:s5",
+    "k": "tr_de",
+    "tr": "Ofis nerede?",
+    "accepted": [
+     "Wo ist das Büro?",
+     "Wo ist das Büro, bitte?",
+     "Und wo ist das Büro?",
+     "Entschuldigung, wo ist das Büro?",
+     "Wo ist denn das Büro?",
+     "Wo ist hier das Büro?",
+     "Entschuldigung, wo ist das Büro, bitte?",
+     "Wo ist bitte das Büro?"
+    ],
+    "why_tr": "Nerede derken **Wo** dersin: **Wo ist das Büro?**"
+   },
+   {
+    "id": "m1:06:s6",
+    "k": "tr_de",
+    "tr": "Randevum dört haziranda.",
+    "accepted": [
+     "Mein Termin ist am vierten Juni.",
+     "Ich habe am vierten Juni einen Termin.",
+     "Am vierten Juni ist mein Termin.",
+     "Am vierten Juni habe ich einen Termin.",
+     "Mein Termin ist am vierten Sechsten.",
+     "Ich habe meinen Termin am vierten Juni.",
+     "Am vierten Sechsten ist mein Termin.",
+     "Ich habe am vierten Sechsten einen Termin.",
+     "Ich habe einen Termin am vierten Juni.",
+     "Ich habe einen Termin am vierten Sechsten.",
+     "Der Termin ist am vierten Juni.",
+     "Am vierten Juni habe ich meinen Termin."
+    ],
+    "why_tr": "Dört haziranda derken **am vier Juni** yanlış. Doğrusu **am vierten Juni**.",
+    "strictNumberWords": true
+   },
+   {
+    "id": "m1:06:s7",
+    "k": "tr_de",
+    "tr": "Muayenehane neden kapalı?",
+    "accepted": [
+     "Warum ist die Praxis geschlossen?",
+     "Warum ist die Praxis zu?",
+     "Wieso ist die Praxis geschlossen?",
+     "Warum hat die Praxis geschlossen?",
+     "Wieso ist die Praxis zu?",
+     "Warum ist die Praxis denn geschlossen?",
+     "Weshalb ist die Praxis geschlossen?",
+     "Warum hat die Praxis zu?",
+     "Wieso hat die Praxis geschlossen?",
+     "Wieso hat die Praxis zu?"
+    ],
+    "why_tr": "Muayenehane neden kapalı derken **Warum ist die Praxis geschlossen?** dersin."
+   },
+   {
+    "id": "m1:06:s8",
+    "k": "tr_de",
+    "tr": "Adresinize ihtiyacım var.",
+    "accepted": [
+     "Ich brauche Ihre Adresse.",
+     "Ich brauche bitte Ihre Adresse.",
+     "Ich brauche Ihre Adresse, bitte.",
+     "Ihre Adresse brauche ich.",
+     "Ich brauche noch Ihre Adresse.",
+     "Ich bräuchte Ihre Adresse.",
+     "Ich bräuchte noch Ihre Adresse.",
+     "Ich brauche Ihre Anschrift."
+    ],
+    "why_tr": "İhtiyacım var derken **Ich brauche** dersin."
+   },
+   {
+    "id": "m1:06:s9",
+    "k": "guided_response",
+    "situation_tr": "Ioana ofisin hangi gün kapalı olduğunu soruyor. Ofis 3 Ekim'de kapalı.",
+    "prompt_de": "Wann ist das Büro geschlossen?",
+    "accepted": [
+     "Am dritten Oktober.",
+     "Das Büro ist am dritten Oktober geschlossen.",
+     "Am dritten Oktober ist das Büro geschlossen.",
+     "Am dritten Zehnten.",
+     "Es ist am dritten Oktober geschlossen.",
+     "Am dritten Oktober ist es geschlossen.",
+     "Das Büro ist am dritten Oktober zu.",
+     "Am dritten Oktober ist das Büro zu.",
+     "Das Büro hat am dritten Oktober geschlossen.",
+     "Am dritten Oktober hat das Büro geschlossen.",
+     "Das Büro ist am dritten Zehnten geschlossen.",
+     "Am dritten Oktober ist es zu.",
+     "Das Büro hat am dritten Oktober zu."
+    ],
+    "why_tr": "Üç ekimde derken **am drei Oktober** yanlış. Doğrusu **am dritten Oktober**.",
+    "strictNumberWords": true
+   },
+   {
+    "id": "m1:06:s10",
+    "k": "guided_response",
+    "situation_tr": "Herr Pichler yarın gelemiyor. Nedenini sor.",
+    "prompt_de": "Morgen geht es leider nicht.",
+    "accepted": [
+     "Warum?",
+     "Warum nicht?",
+     "Warum geht es nicht?",
+     "Warum geht es morgen nicht?",
+     "Warum denn nicht?",
+     "Oh, warum nicht?",
+     "Warum geht's nicht?",
+     "Warum geht das nicht?",
+     "Wieso nicht?",
+     "Wieso?",
+     "Warum geht es denn nicht?",
+     "Schade. Warum nicht?",
+     "Und warum nicht?",
+     "Warum nicht morgen?",
+     "Warum geht's morgen nicht?",
+     "Wieso geht es nicht?",
+     "Weshalb nicht?",
+     "Warum denn?",
+     "Schade. Warum?",
+     "Schade, warum?",
+     "Schade! Warum?",
+     "Oh, warum?",
+     "Oh, warum denn?",
+     "Schade. Warum denn?",
+     "Schade. Warum denn nicht?",
+     "Wieso denn?",
+     "Wieso denn nicht?",
+     "Und warum?",
+     "Warum können Sie nicht kommen?",
+     "Warum können Sie morgen nicht kommen?",
+     "Warum können Sie nicht?"
+    ],
+    "why_tr": "Neden derken **Warum?** denir."
+   },
+   {
+    "id": "m1:06:s11",
+    "k": "guided_response",
+    "situation_tr": "Tobi tarihi yanlış söylüyor. Bugün 2 Aralık. Hayır de ve doğru tarihi söyle.",
+    "prompt_de": "Heute ist der dritte Dezember, ja?",
+    "accepted": [
+     "Nein, heute ist der zweite Dezember.",
+     "Nein, der zweite Dezember.",
+     "Nein, der zweite.",
+     "Nein, nicht der dritte. Der zweite.",
+     "Nein, heute ist der zweite.",
+     "Nein, heute ist der zweite Zwölfte.",
+     "Nein, der zweite Zwölfte.",
+     "Nein, heute haben wir den zweiten Dezember.",
+     "Nein, nicht der dritte Dezember. Der zweite Dezember.",
+     "Nein, heute ist nicht der dritte. Heute ist der zweite Dezember.",
+     "Nein, es ist der zweite Dezember.",
+     "Nein, nicht der dritte. Heute ist der zweite Dezember.",
+     "Nein, nicht der dritte, der zweite Dezember.",
+     "Nein, wir haben den zweiten Dezember.",
+     "Nein, heute ist erst der zweite Dezember.",
+     "Nein, erst der zweite.",
+     "Nein, nicht der dritte, sondern der zweite.",
+     "Nein, nicht der dritte, sondern der zweite Dezember.",
+     "Nein. Heute ist der zweite Dezember.",
+     "Nein, heute ist der zweite Dezember, nicht der dritte.",
+     "Nein, heute ist der zweite, nicht der dritte.",
+     "Nein, der zweite, nicht der dritte.",
+     "Nein, heute ist der zweite Dezember. Nicht der dritte.",
+     "Nein, der zweite Dezember, nicht der dritte.",
+     "Nein, heute ist nicht der dritte, sondern der zweite Dezember.",
+     "Nein, heute ist nicht der dritte Dezember. Heute ist der zweite.",
+     "Nein, heute ist nicht der dritte, sondern der zweite.",
+     "Nein, der dritte ist morgen. Heute ist der zweite Dezember.",
+     "Nein, der dritte ist morgen. Heute ist der zweite.",
+     "Nein, heute ist der zweite Dezember. Morgen ist der dritte."
+    ],
+    "why_tr": "İki aralık derken **der zwei Dezember** yanlış. Doğrusu **der zweite Dezember**.",
+    "strictNumberWords": true
+   }
+  ],
+  "sesli": [
+   "m1:06:s9",
+   "m1:06:s10"
+  ],
+  "dikte": [
+   "m1:06:s1",
+   "m1:06:s2",
+   "m1:06:s3",
+   "m1:06:s4"
+  ]
  }
 }
