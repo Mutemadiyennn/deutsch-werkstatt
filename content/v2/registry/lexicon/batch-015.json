@@ -1,7 +1,12 @@
 {
  "batch": "015",
  "review": {
-  "status": "draft"
+  "status": "reviewed",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-20",
+  "notes": "Dilbilimci incelemesi tamam (lx:Euro, lx:Cent): docs/v2/reviews/halka/gun-04-dilbilimci.md, kart bölümü. Okur (OD-9.4) geçince \"reviewed\" yapılır; doğrulayıcı okursuz \"reviewed\" kabul etmiyor. Okur: docs/v2/reviews/okur/halka-gun-04-05.md (1. tur 3 geri, 2. tur 0).",
+  "okur": "passed",
+  "okur_at": "2026-11-20"
  },
  "items": [
   {
@@ -36,10 +41,9 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Üç avro derken **drei Euros** yanlış. Doğrusu **drei Euro**.",
+    "Üç avro derken **drei Euros** yanlış. Doğrusu **drei Euro**. Sayıdan sonra **Euro** değişmez.",
     "Kasada **zwei Euro und fünfzig Cent** pek denmez. Kısaca **zwei Euro fünfzig** denir.",
-    "**Euro** Almancada **oyro** gibi okunur, **evro** diye değil.",
-    "Bir avro tutar derken **Das kostet einen Euro** denir, **ein Euro** değil."
+    "**Euro** Almancada **oyro** gibi okunur, **avro** ya da **yuro** diye değil."
    ],
    "examples": [
     {
@@ -120,10 +124,10 @@
      "hint_tr": "Yirmi avro derken **zwanzig Euro** denir, sonuna **s** gelmez."
     },
     {
-     "de": "Das kostet ___ Euro.",
-     "answer": "einen",
-     "tr": "Bu bir avro.",
-     "hint_tr": "Bir avro tutar derken **einen Euro** denir."
+     "de": "Ich zahle fünf ___.",
+     "answer": "Euro",
+     "tr": "Beş avro ödüyorum.",
+     "hint_tr": "Sayıdan sonra **Euro** değişmez: **fünf Euro**."
     },
     {
      "de": "Eine Semmel kostet sechzig Cent, zehn Semmeln kosten sechs ___.",

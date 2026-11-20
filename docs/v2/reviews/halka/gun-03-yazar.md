@@ -153,3 +153,15 @@ Kalan „Tage“ cümleleri artık kalıptan sonra geliyor: h2/g3, h2/g7, h3/g4,
 - **haben** kartı.
 
 Kabul listesinde „Ist Ihre Nummer neu?“ de var.
+
+## #177 takibi (İçerik Motoru, 4.–5. gün PR'ında)
+
+İnceleme 7049709609'un engelleyici olmayan önerileri 1 ve 2 (hazır tanımı 7049786377 md. 5):
+
+| Yer | Alan | Eski | Yeni |
+|---|---|---|---|
+| h1 g3 (`lx:null`) | de / tr / kabul | Null am Anfang? / Başta sıfır mı? | Null, Frau Huber? Ja, null. / Sıfır mı Huber Hanım? Evet, sıfır. (`am` yer anlamında istenmiyor; kartın ilk cümlesi yalnız `Nummer` ve `null`la) |
+| h5 kalıp 2 | de / tr | das neue Büro / yeni ofis | das neue Büro – im Büro / yeni ofis – ofiste (`im` yer anlamında artık kalıpla öğretiliyor; "Im Büro? …" ve "… heute im Büro?" bu kalıptan sonra) |
+| h4 soru | q / şıklar | Senden önce sırada kaç numara daha var? · Hiç yok / Bir numara: on beş / İki numara / Üç numara | On dörtten sonra, senden önce kaç numara çağrılacak? · Hiç / Bir / İki / Üç (cevap: Bir; tek okuma, yalın şıklar) |
+
+Denetim: `halka_kontrol.py` 1.–5. gün 0 hata; `kucuk_sozcuk.py` 0 hata.

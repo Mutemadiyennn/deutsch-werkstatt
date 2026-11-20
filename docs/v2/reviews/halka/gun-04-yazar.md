@@ -100,3 +100,20 @@ Ek denetim (betik dışı; `content/v2/**` bütün dizgeleri ve 1.–3. gün hal
 ## Sonraki adım
 
 dilbilimci → okur (OD-9). Yazar bu dosyaya artık dokunmaz.
+
+## Okur 1. tur sonrası (İçerik Motoru)
+
+Kaynak: `docs/v2/reviews/okur/halka-gun-04-05.md` (Gün 4'te 3, kartta 3 geri dönüş).
+
+| Yer | Alan | Eski | Yeni |
+|---|---|---|---|
+| h1 g9 (`lx:Cent`) | de / tr / kabul | Drei Euro und siebzig Cent. / Üç avro yetmiş sent. | Nicht siebzig Euro – siebzig Cent! / Yetmiş avro değil, yetmiş sent! · kabul: Siebzig Cent, nicht siebzig Euro! · Nicht siebzig Euro, sondern siebzig Cent! (kartın "kasada pek denmez" dediği biçim artık cevap olarak gösterilmiyor) |
+| h4 g8 (`lx:hundert`) | tr | Bir avro yüz sent. | Bir avro yüz sent eder. (fiyat okunuşuyla karışmıyor) |
+| h4 g10 (`lx:sechzig`) | tr | Altmış avro; nakit mi, kartla mı? | Altmış avro. Nakit mi, kartla mı? |
+| `lx:Euro` mistakes_tr[0] | tr | … **Euros** yalnızca madeni paraların kendisi için söylenir. | üçüncü cümle çıktı (tek fikir) |
+| `lx:Euro` mistakes_tr[3] | tr | Bir avro tutar derken **Das kostet einen Euro** … | çıktı (K7: `einen`/`ein` ayrımı Türkçeden görünmüyor; eşdizim "Das kostet einen Euro." kartta duruyor) |
+| `lx:Euro` forms[3] | de / cevap / ipucu | Das kostet ___ Euro. → einen | Ich zahle fünf ___. → Euro · "Sayıdan sonra **Euro** değişmez: **fünf Euro**." |
+
+Not (okur N, karar değil): h2'de iki küçük ekmek g8'de "heute" 0,90, sahnede 1,10. "heute" indirimi olarak bırakıldı.
+
+Denetim: `halka_kontrol.py` 0 hata, 0 not; `kucuk_sozcuk.py` 0 hata; `content:validate` 0 hata.

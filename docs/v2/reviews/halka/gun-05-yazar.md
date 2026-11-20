@@ -102,3 +102,17 @@ Ek denetim (betik dışı; `content/v2/**`, 1.–4. gün halkaları; büyük har
 ## Sonraki adım
 
 dilbilimci → okur (OD-9). Yazar bu dosyaya artık dokunmaz.
+
+## Okur 1. tur sonrası (İçerik Motoru)
+
+Kaynak: `docs/v2/reviews/okur/halka-gun-04-05.md` (Gün 5'te 5 geri dönüş; kökler K5, K6 ve bir tek).
+
+| Yer | Alan | Eski | Yeni |
+|---|---|---|---|
+| h1 g4 (`lx:spät`) | kabul | (3 öğe) | + Ist es zehn Uhr? Das ist zu spät. (K5: "Saat … mı?" soru sırasıyla; h1 g6'da da kabul) |
+| h2 g6 (`lx:also`) | kabul | (3 öğe) | + Ist es sechs Uhr? Also, bis morgen! (K5) |
+| h2 kalıp 1 | de / tr | halb zehn = neun Uhr dreißig / dokuz buçuk = saat dokuz otuz (Almanca gelecek saati söyler: ona yarım saat var) | halb zehn – neun Uhr dreißig / dokuz buçuk – saat dokuz otuz (eşittir yok, tek fikir) |
+| h4 g4 (`lx:Uhrzeit`) | tr | Saati mi? Onu çeyrek geçe. | Saati mi? Saat onu çeyrek geçe. (K6) |
+| h5 sahne s3 | tr | Memnuniyetle. Onu çeyrek geçe mi? | Memnuniyetle. Saat onu çeyrek geçe mi? (K6) |
+
+Denetim: `halka_kontrol.py` 0 hata, 0 not (4. günün son hâliyle); `kucuk_sozcuk.py` 0 hata.
