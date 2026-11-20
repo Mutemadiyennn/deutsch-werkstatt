@@ -141,7 +141,7 @@ function Hatirla({ t, grup, onDone }: { t: TemelDers; grup: number; onDone: (dog
     </div>;
   }
   const kabul = hatirlaKabul(t, cur.x);
-  return <div data-test="ders-hatirla" data-q={q}><DrillView key={`y${q}`} d={{ id: `hat:${cur.x.id}:y`, k: "tr_de", tr: `${cur.x.tr}${cur.x.art ? " (artikeliyle)" : ""}`, accepted: kabul }}
+  return <div data-test="ders-hatirla" data-q={q}><DrillView key={`y${q}`} d={{ id: `hat:${cur.x.id}:y`, k: "tr_de", tr: `${cur.x.tr}${cur.x.art ? " (der, die ya da das ile)" : ""}`, accepted: kabul }}
     artikel={cur.x.art ? { de: cur.x.de, art: cur.x.art } : undefined} sira={`Hatırla ${sayi}`} onDone={(r) => bitir(r)} /></div>;
 }
 
