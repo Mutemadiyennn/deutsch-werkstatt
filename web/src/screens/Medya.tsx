@@ -194,21 +194,24 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
 /* (a) baştan sona, altyazısız */
 function DinleAdimi({ m, cs, oy, onNext }: { m: Medya; cs: MedyaCumle[]; oy: ReturnType<typeof useOynatici>; onNext: () => void }) {
   const [dinledi, setDinledi] = useState(false);
-  // #58 B7: Profil'de başlangıç hızı Yavaş ise ilk dinleme 0,75× ve düğmede yazılı; "Bir daha dinle" normal hızda
   const ilkYavas = baslangicYavas() && !dinledi;
-  const yavas = (m.kind === "ses" && m.hizlar[0] === "slow") || ilkYavas;
+  // PM-074 md. 2: tek oynat düğmesi + hız anahtarı (Yavaş / Normal). B7: ilk dinleme yavaşsa (kaydın ya da öğrencinin
+  // başlangıç hızı), dinledikten sonra anahtar Normal'e geçer ("Bir daha dinle" normal hızda; öğrenci yeniden Yavaş seçebilir). Çalarken anahtar kapalı.
+  const ikiHiz = m.hizlar.includes("slow") && m.hizlar.length > 1;
+  const [hiz, setHiz] = useState<"slow" | "normal">((m.kind === "ses" && m.hizlar[0] === "slow") || baslangicYavas() ? "slow" : "normal");
+  const yavas = ikiHiz ? hiz === "slow" : (m.kind === "ses" && m.hizlar[0] === "slow") || ilkYavas;
+  const cal = () => { const y = yavas; setDinledi(true); if (ikiHiz && y && !dinledi) setHiz("normal"); void oy.bolum(cs, y); };
   return (
     <section class="card stack fade" data-test="adim-dinle">
       <div class="kicker">Bölümü baştan sona dinle</div>
       <p class="small">Metin yok: önce kulağınla dene. Ne hakkında olduğunu anlamaya çalış; her kelimeyi anlaman gerekmiyor.</p>
-      <div class="row">
-        {oy.calisiyor !== null
-          ? <button class="btn grow" data-test="durdur" onClick={() => oy.dur()}><Icon name="pause" /> Durdur</button>
-          : <button class="btn primary grow" data-test="dinle-bolum" onClick={() => { setDinledi(true); void oy.bolum(cs, yavas); }}>
-              <Icon name="play" /> {dinledi ? "Bir daha dinle" : ilkYavas ? "Dinle (yavaş)" : "Dinle"}</button>}
-        {m.hizlar.includes("slow") && m.hizlar.length > 1 && oy.calisiyor === null && <button class="btn grow" onClick={() => { setDinledi(true); void oy.bolum(cs, true); }}>Yavaş</button>}
-      </div>
-      <ActionBar><button class="btn block" data-test="next" disabled={!dinledi && !E2E} onClick={onNext}>{dinledi ? "Sorulara geç" : "Önce dinle"}</button></ActionBar>
+      {oy.calisiyor !== null
+        ? <button class="btn block" data-test="durdur" onClick={() => oy.dur()}><Icon name="pause" /> Durdur</button>
+        : <button class={`btn block${dinledi ? "" : " primary"}`} data-test="dinle-bolum" onClick={cal}>
+            <Icon name="play" /> {dinledi ? "Bir daha dinle" : !ikiHiz && yavas ? "Dinle (yavaş)" : "Dinle"}</button>}
+      {ikiHiz && <div class="seg" role="group" aria-label="Hız" data-test="hiz">{(["slow", "normal"] as const).map((h) => <button type="button" aria-pressed={hiz === h} disabled={oy.calisiyor !== null} onClick={() => setHiz(h)}>{h === "slow" ? "Yavaş" : "Normal"}</button>)}</div>}
+      {/* E2E kısayolu (dinlemeden ilerleme) sessionStorage "e2e-kapi" ile kapatılır; böylece üretimdeki "dinlemeden görünmez" kapısı da sınanır (inceleme #128 P2-5) */}
+      {(dinledi || (E2E && !sessionStorage.getItem("e2e-kapi"))) && <ActionBar><button class={`btn block${dinledi ? " primary" : ""}`} data-test="next" onClick={onNext}>Sorulara geç</button></ActionBar>}
     </section>
   );
 }
@@ -364,10 +367,10 @@ function CevaplaAdimi({ d, onNext }: { d: NonNullable<Bolum["cevapla"]>; onNext:
       {!v && <ActionBar><AnswerField submitLabel="Söyle" onSubmit={(a) => { const r = ruleVerdict(d.accepted, a); setV({ kind: r.kind === "correct" ? "correct" : r.kind === "ask_ai" ? "unchecked" : "wrong", a, best: r.best || d.accepted[0]! }); haptic(r.kind === "correct" ? "success" : "error"); }} /></ActionBar>}
       {v && <ActionBar>
         {v.kind === "correct" ? <FeedbackBand kind="ok" title="Doğru."><span lang="de">{v.a}</span></FeedbackBand>
-          : v.kind === "unchecked" ? <FeedbackBand kind="info" title="Bu cevabı kendim kontrol edemedim.">
+          : v.kind === "unchecked" ? <FeedbackBand kind="info" title="Uygulama bu cevabı denetleyemedi.">
               <div class="small">Senin cümlen: <span lang="de">{v.a}</span></div>
               <div>Örnek cevap: <b lang="de">{v.best.replace(/\.+$/, ".")}</b></div>
-              <div class="small">İkisi aynı şeyi mi söylüyor? Emin değilsen örneği öğren.</div></FeedbackBand>
+              <div class="small">Senin cümlen ile örnek aynı şeyi söylüyor mu? Emin değilsen örneği öğren.</div></FeedbackBand>
           : <FeedbackBand kind="bad" title="Doğrusu:"><YanlisIci dogrusu={v.best} cevap={v.a}>{d.why_tr && <div class="small"><Rich text={d.why_tr} /></div>}</YanlisIci></FeedbackBand>}
         {v.kind === "unchecked" ? <><button class="btn primary block" data-test="next" onClick={() => onNext(false)}>Örneği öğrendim, devam</button>
             <button class="btn block" data-test="claim" onClick={() => { void addClaim({ at: new Date().toISOString(), scenarioId: "m1", itemId: d.id, prompt: d.k === "tr_de" ? d.tr : d.situation_tr ?? "", answer: v.a, expected: d.accepted }); onNext(true, true); }}>Benimki de aynı anlamda</button></>

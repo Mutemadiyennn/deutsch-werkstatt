@@ -271,7 +271,8 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
     <div class="stack fade" data-test="garden-intro" data-lex={l.id}>
       <section class="card stack"><div class="kicker">Yeni kelime</div>
         {/* PM 14:05 Berlin madde 1: tanıtımda kelimenin fotoğrafı (sayaçla döner); cümle görseli yalnızca cümlenin yanında */}
-        <Photo q={l.img} sira={q.ex} yer={[`${l.id}#kart`]} alt={l.tr} />
+        {/* C: tanıtımda görsel 160 px (örnek alanı en uzun örnek kadar yer tuttuğu için en uzun kart yine düğmelere değmeden sığar) */}
+        <Photo q={l.img} sira={q.ex} yer={[`${l.id}#kart`]} alt={l.tr} enCok={160} />
         {/* PM 7024150313: görselli en uzun kart da düğmelere değmeden sığar — kelime ile dinle aynı satırda, çoğul anlamın yanında,
             "Başka cümle" cümlenin yanında; eşdizimlerden en çok 3'ü açık */}
         <div class="row" style={{ flexWrap: "nowrap", alignItems: "center", gap: 10 }}>
@@ -280,7 +281,12 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
         </div>
         <p style={{ margin: 0 }}><span data-test="intro-tr">{l.tr}</span>{gosterilenCogul(l) && <span class="small muted cogul-satir" data-test="intro-pl"> · Çoğulu: <span lang="de">{isNoun(l) ? "die " : ""}{gosterilenCogul(l)}</span></span>}</p>
         {/* PM 7026866757-1: örnek cümle tam genişlikte, hecelenmez; "Başka cümle" Türkçe satırın altında, kendi satırında */}
-        {ex && <p class="small ornek-cumle" data-test="intro-ex" style={{ margin: 0 }}><span lang="de">{ex.de}</span><br /><span class="muted">{ex.tr}</span></p>}
+        {/* PM 7030294523 C: örnek alanı kartın en uzun örneği kadar yer tutar (görünmez yer tutucular aynı hücrede); "Başka cümle"de kart da
+            sayfa da zıplamaz. Görünen cümle hep aynı öğe (data-test=intro-ex), yalnızca metni değişir */}
+        {ex && <div class="ornek-yigin">
+          <p class="small ornek-cumle" data-test="intro-ex" style={{ margin: 0 }}><span lang="de">{ex.de}</span><br /><span class="muted">{ex.tr}</span></p>
+          {l.examples.length > 1 && l.examples.map((x) => <p class="small ornek-cumle ornek-yer" aria-hidden="true" style={{ margin: 0 }}><span lang="de">{x.de}</span><br /><span class="muted">{x.tr}</span></p>)}
+        </div>}
         {baska(l.examples.length)}
         <Esdizimler l={l} test="intro-colloc" />
       </section>
@@ -334,8 +340,8 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
 
   // ---- aktif: üretim ----
   const prompt = qe.type === "photo_say" ? <><div class="kicker">Fotoğraftaki ne? Artikeliyle söyle ya da yaz</div><Photo q={l.img} sira={exi} yer={[`${l.id}#kart`]} /><p class="small muted">{l.tr}</p></>
-    : qe.type === "tr_de" && sina ? <><div class="kicker" data-test="sina-soru" {...(E2E ? { "data-cevap": sinaKabul(l)[0] } : {})}>Biliyorum, sına beni · ipucu yok</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div>{ex?.tr && <p class="small" data-test="sina-baglam">Cümlede: <span class="muted">{ex.tr}</span></p>}<p class="small muted">Almanca yaz ya da söyle. Bilirsen bu kelime ileri basamaklardan devam eder.</p>{!res && <button class="btn ghost" data-test="sina-bilmiyorum" onClick={() => show({ ok: false, expected: sinaKabul(l)[0] })}>Bilmiyorum, tanıt</button>}</>
-    : qe.type === "tr_de" ? <><div class="kicker">Almanca söyle ya da yaz</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div></>
+    : qe.type === "tr_de" && sina ? <><div class="kicker" data-test="sina-soru" {...(E2E ? { "data-cevap": sinaKabul(l)[0] } : {})}>Biliyorum, sına beni · ipucu yok</div><div class="de-lg">{l.tr}{isNoun(l) ? " (der, die ya da das ile)" : ""}</div>{ex?.tr && <p class="small" data-test="sina-baglam">Cümlede: <span class="muted">{ex.tr}</span></p>}<p class="small muted">Almanca yaz ya da söyle. Bilirsen bu kelime ileri basamaklardan devam eder.</p>{!res && <button class="btn ghost" data-test="sina-bilmiyorum" onClick={() => show({ ok: false, expected: sinaKabul(l)[0] })}>Bilmiyorum, tanıt</button>}</>
+    : qe.type === "tr_de" ? <><div class="kicker">Almanca söyle ya da yaz</div><div class="de-lg">{l.tr}{isNoun(l) ? " (der, die ya da das ile)" : ""}</div></>
     : qe.type === "gap" || qe.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de" data-test="gap-cumle">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && !res && <IpucuDugmesi metin={form.hint_tr} onAc={() => setHinted(true)} />}{!res && bs.sorulabilir > 1 && <button class="btn sm ghost" data-test="baska-cumle" onClick={() => setExi(fi + 1)}>Başka cümle</button>}</>
     : <><div class="kicker">Bu kelimeyle kendi cümleni kur</div><div class="de-lg" lang="de"><Art art={l.art} de={l.de} /></div><p class="small muted">{l.tr}{ex ? ` · Örnek: ` : ""}{ex && <span lang="de" data-test="own-ex">{ex.de}</span>}</p>{!selfCheck && baska(l.examples.length)}</>;
 
@@ -370,9 +376,9 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
   if (selfCheck !== null && !res) return (
     <div class="stack fade" data-test="gq-own-check">
       <section class="card stack">{prompt}<div class="de-lg" lang="de">{selfCheck}</div>
-        <FeedbackBand kind="info" title="Bunu kendim kontrol edemem.">
-          {ownNote && <div class="small" data-test="own-missing">Cümlende bu kelimeyi göremedim. Çekimli hâlini kullandıysan doğru olabilir.</div>}
-          Cümlen kelimeyi doğru kullanıyor mu? Bir kez yüksek sesle oku.{ex && <> Örnek: <span lang="de">{ex.de}</span></>}</FeedbackBand></section>
+        <FeedbackBand kind="info" title="Bu cümleyi uygulama denetleyemez.">
+          {ownNote && <div class="small" data-test="own-missing">Uygulama cümlende bu kelimeyi bulamadı. Kelimeyi biraz farklı yazdıysan cümlen yine doğru olabilir. Örnek: gehen yerine gehe.</div>}
+          Kelimeyi doğru kullandın mı? Cümleni bir kez yüksek sesle oku.{ex && <> Örnek: <span lang="de">{ex.de}</span></>}</FeedbackBand></section>
       <ActionBar>
         <button class="btn primary block" data-test="own-ok" onClick={() => {
           // #58 B3: gün sonu özetine yalnızca öğrencinin doğru dediği ve kelimesi görünen cümle (inceleme #93 P1-3)
@@ -395,7 +401,7 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
 function ChoiceQ({ q, l, all, yakin, ex, show, verdict }: { q: GardenQ; l: Lexeme; all: Lexeme[]; yakin?: Yakinlik; ex?: Lexeme["examples"][number]; show: (r: Result) => void; verdict: preact.ComponentChildren }) {
   const m = useMemo(() => {
     if (q.type === "listen_meaning") { const o = meaningOptions(l, all, Math.random, yakin); return { title: "Dinle: ne demek?", stem: null as string | null, ...o, expected: l.tr }; }
-    if (q.type === "article") { const opts = ["der", "die", "das"]; return { title: "Hangi artikel?", stem: l.de, opts, ans: opts.indexOf(l.art!), expected: `${l.art} ${l.de}` }; }
+    if (q.type === "article") { const opts = ["der", "die", "das"]; return { title: "der, die, das: hangisi?", stem: l.de, opts, ans: opts.indexOf(l.art!), expected: `${l.art} ${l.de}` }; }
     const c = collocQuestion(l, all);
     // yeterli güvenli çeldirici yoksa anlam sorusuna düşer (tek doğru cevap kuralı)
     if (!c) { const o = meaningOptions(l, all, Math.random, yakin); return { title: "Ne demek?", stem: isNoun(l) ? `${l.art} ${l.de}` : l.de, ...o, expected: l.tr }; }
