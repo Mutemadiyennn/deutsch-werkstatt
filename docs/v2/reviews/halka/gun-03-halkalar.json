@@ -1,0 +1,781 @@
+{
+ "gun": 3,
+ "not": "PM-078 B öneri (İÇ), 1. günün onaylı biçimiyle (PM #163 ve #165 kuralları) ve PM 7047720404'ün iki ekiyle: her halkada en az 2 görev cümlesi önceki günlerin bir kartını taşır; günde en az bir çıkarım sorusu var (cikarim: true). Günün dersi (r0-03) varsayılmaz; 1. ve 2. günün dersleri (r0-01, r0-02, r0-11) ve halka kalıpları bilinir. Gruplama önerilenden farklı: Nummer 1. halkaya, wohnen 2. halkaya alındı (gerekçe gun-03-yazar.md). Şema ANA'da (AK-5); alan gelince gun-03.json'a taşınır.",
+ "halkalar": [
+  {
+   "id": "m1:03:h1",
+   "title_tr": "Telefon numarası: sıfırdan üçe",
+   "kartlar": [
+    "lx:Nummer",
+    "lx:null",
+    "lx:eins",
+    "lx:zwei",
+    "lx:drei"
+   ],
+   "kaliplar": [
+    {
+     "de": "Meine Nummer ist … – Wie ist Ihre Nummer?",
+     "tr": "Numaram … – Numaranız ne?"
+    },
+    {
+     "de": "Nummer drei – in Nummer drei",
+     "tr": "üç numara – üç numarada"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Nummer",
+     "de": "Wie ist Ihre Nummer, Herr Pichler?",
+     "tr": "Numaranız ne Pichler Bey?",
+     "accepted": [
+      "Wie ist Ihre Nummer, Herr Pichler?",
+      "Herr Pichler, wie ist Ihre Nummer?",
+      "Ihre Nummer, Herr Pichler?"
+     ]
+    },
+    {
+     "kart": "lx:Nummer",
+     "de": "Ihre Nummer ist null zwei drei?",
+     "tr": "Numaranız sıfır iki üç mü?",
+     "accepted": [
+      "Ihre Nummer ist null zwei drei?",
+      "Ist Ihre Nummer null zwei drei?",
+      "Null zwei drei ist Ihre Nummer?"
+     ]
+    },
+    {
+     "kart": "lx:null",
+     "de": "Null am Anfang?",
+     "tr": "Başta sıfır mı?",
+     "accepted": [
+      "Null am Anfang?",
+      "Am Anfang null?",
+      "Am Anfang eine Null?"
+     ]
+    },
+    {
+     "kart": "lx:null",
+     "de": "Null oder eins?",
+     "tr": "Sıfır mı, bir mi?",
+     "accepted": [
+      "Null oder eins?",
+      "Eins oder null?",
+      "Ist es null oder eins?"
+     ]
+    },
+    {
+     "kart": "lx:eins",
+     "de": "Meine Nummer ist null eins eins.",
+     "tr": "Numaram sıfır bir bir.",
+     "accepted": [
+      "Meine Nummer ist null eins eins.",
+      "Meine Nummer: null eins eins.",
+      "Null eins eins ist meine Nummer."
+     ]
+    },
+    {
+     "kart": "lx:eins",
+     "de": "Nicht null – eins!",
+     "tr": "Sıfır değil, bir!",
+     "accepted": [
+      "Nicht null – eins!",
+      "Eins, nicht null!",
+      "Nicht null, sondern eins!"
+     ]
+    },
+    {
+     "kart": "lx:zwei",
+     "de": "Zwei, nicht eins.",
+     "tr": "İki, bir değil.",
+     "accepted": [
+      "Zwei, nicht eins.",
+      "Nicht eins, zwei.",
+      "Nicht eins, sondern zwei."
+     ]
+    },
+    {
+     "kart": "lx:zwei",
+     "de": "Zwei oder drei, Herr Pichler?",
+     "tr": "İki mi, üç mü Pichler Bey?",
+     "accepted": [
+      "Zwei oder drei, Herr Pichler?",
+      "Herr Pichler, zwei oder drei?",
+      "Drei oder zwei, Herr Pichler?"
+     ]
+    },
+    {
+     "kart": "lx:drei",
+     "de": "Nummer drei? Nein, zwei.",
+     "tr": "Üç numara mı? Hayır, iki.",
+     "accepted": [
+      "Nummer drei? Nein, zwei.",
+      "Nummer drei? Nein, Nummer zwei.",
+      "Drei? Nein, zwei."
+     ]
+    },
+    {
+     "kart": "lx:drei",
+     "de": "Ist die Praxis in Nummer drei?",
+     "tr": "Muayenehane üç numarada mı?",
+     "accepted": [
+      "Ist die Praxis in Nummer drei?",
+      "Die Praxis ist in Nummer drei?",
+      "In Nummer drei ist die Praxis?",
+      "Ist die Praxis in der Nummer drei?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Huber Hanım yeni numaranı muayenehanenin kâğıdına yazıyor. İlk rakamları tekrar ediyor.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Ihre Nummer, bitte?",
+      "tr": "Numaranız, lütfen?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Null eins zwei …",
+      "tr": "Sıfır bir iki …"
+     },
+     {
+      "r": "ch:huber",
+      "de": "Null eins drei?",
+      "tr": "Sıfır bir üç mü?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Drei? Nein – zwei!",
+      "tr": "Üç mü? Hayır, iki!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Senin söylediğin hangi rakamı Huber Hanım yanlış duydu?",
+     "opts": [
+      "Sıfırı",
+      "Biri",
+      "İkiyi",
+      "Üçü"
+     ],
+     "ans": 2
+    }
+   }
+  },
+  {
+   "id": "m1:03:h2",
+   "title_tr": "Adres: dörtten yediye",
+   "kartlar": [
+    "lx:wohnen",
+    "lx:vier",
+    "lx:fünf",
+    "lx:sechs",
+    "lx:sieben"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich wohne in der … – Wo wohnen Sie?",
+     "tr": "…'de oturuyorum (sokak adıyla) – Nerede oturuyorsunuz?"
+    },
+    {
+     "de": "ein Tag – vier Tage",
+     "tr": "bir gün – dört gün"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:wohnen",
+     "de": "Wo wohnen Sie, Herr Wimmer?",
+     "tr": "Nerede oturuyorsunuz Wimmer Bey?",
+     "accepted": [
+      "Wo wohnen Sie, Herr Wimmer?",
+      "Herr Wimmer, wo wohnen Sie?",
+      "Wo wohnen Sie denn, Herr Wimmer?"
+     ]
+    },
+    {
+     "kart": "lx:wohnen",
+     "de": "Wohnt Tobi in der Brunnengasse?",
+     "tr": "Tobi Brunnengasse'de mi oturuyor?",
+     "accepted": [
+      "Wohnt Tobi in der Brunnengasse?",
+      "Tobi wohnt in der Brunnengasse?",
+      "In der Brunnengasse wohnt Tobi?"
+     ]
+    },
+    {
+     "kart": "lx:vier",
+     "de": "Vier Tage, von Montag bis Donnerstag.",
+     "tr": "Dört gün, pazartesiden perşembeye kadar.",
+     "accepted": [
+      "Vier Tage, von Montag bis Donnerstag.",
+      "Von Montag bis Donnerstag, vier Tage.",
+      "Vier Tage: Montag bis Donnerstag."
+     ]
+    },
+    {
+     "kart": "lx:vier",
+     "de": "Wohnen Sie in Nummer vier?",
+     "tr": "Dört numarada mı oturuyorsunuz?",
+     "accepted": [
+      "Wohnen Sie in Nummer vier?",
+      "Sie wohnen in Nummer vier?",
+      "In Nummer vier wohnen Sie?",
+      "Wohnen Sie in der Nummer vier?"
+     ]
+    },
+    {
+     "kart": "lx:fünf",
+     "de": "Vier oder fünf?",
+     "tr": "Dört mü, beş mi?",
+     "accepted": [
+      "Vier oder fünf?",
+      "Fünf oder vier?",
+      "Ist es vier oder fünf?"
+     ]
+    },
+    {
+     "kart": "lx:fünf",
+     "de": "In Nummer fünf? Nein, in Nummer sieben.",
+     "tr": "Beş numarada mı? Hayır, yedi numarada.",
+     "accepted": [
+      "In Nummer fünf? Nein, in Nummer sieben.",
+      "In Nummer fünf? Nein, Nummer sieben.",
+      "In Nummer fünf? Nein, sieben.",
+      "In der Nummer fünf? Nein, in der Nummer sieben."
+     ]
+    },
+    {
+     "kart": "lx:sechs",
+     "de": "Sechs Tage? Nein, vier Tage.",
+     "tr": "Altı gün mü? Hayır, dört gün.",
+     "accepted": [
+      "Sechs Tage? Nein, vier Tage.",
+      "Sechs Tage? Nein, vier.",
+      "Sechs? Nein, vier Tage."
+     ]
+    },
+    {
+     "kart": "lx:sechs",
+     "de": "Nummer sechs? Ja, danke!",
+     "tr": "Altı numara mı? Evet, teşekkürler!",
+     "accepted": [
+      "Nummer sechs? Ja, danke!",
+      "Nummer sechs? Danke, ja!",
+      "Sechs? Ja, danke!"
+     ]
+    },
+    {
+     "kart": "lx:sieben",
+     "de": "Ich wohne in Nummer sieben.",
+     "tr": "Yedi numarada oturuyorum.",
+     "accepted": [
+      "Ich wohne in Nummer sieben.",
+      "In Nummer sieben wohne ich.",
+      "Ich wohne in der Brunnengasse, in Nummer sieben.",
+      "Ich wohne in der Nummer sieben."
+     ]
+    },
+    {
+     "kart": "lx:sieben",
+     "de": "Bis sieben? Nein, bis sechs.",
+     "tr": "Yediye kadar mı? Hayır, altıya kadar.",
+     "accepted": [
+      "Bis sieben? Nein, bis sechs.",
+      "Bis sieben? Nein, sechs.",
+      "Nicht bis sieben – bis sechs."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Ioana ilk kez sana geliyor ve sokağın başında evini arıyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Hallo! Brunnengasse … vier? Oder fünf?",
+      "tr": "Merhaba! Brunnengasse … dört mü? Yoksa beş mi?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Nein, Ioana. Sieben!",
+      "tr": "Hayır Ioana. Yedi!"
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Sieben! Danke!",
+      "tr": "Yedi! Sağ ol!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Ioana hangi kapı numarasına gelmeli?",
+     "opts": [
+      "Dört",
+      "Beş",
+      "Altı",
+      "Yedi"
+     ],
+     "ans": 3
+    }
+   }
+  },
+  {
+   "id": "m1:03:h3",
+   "title_tr": "Saatler: sekizden on ikiye",
+   "kartlar": [
+    "lx:acht",
+    "lx:neun",
+    "lx:zehn",
+    "lx:elf",
+    "lx:zwölf"
+   ],
+   "kaliplar": [
+    {
+     "de": "um …",
+     "tr": "saat …'de, …'da"
+    },
+    {
+     "de": "Wie bitte?",
+     "tr": "Efendim? (anlamadım)"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:acht",
+     "de": "Am Montag um acht?",
+     "tr": "Pazartesi günü saat sekizde mi?",
+     "accepted": [
+      "Am Montag um acht?",
+      "Um acht am Montag?",
+      "Montag um acht?"
+     ]
+    },
+    {
+     "kart": "lx:acht",
+     "de": "Die Praxis ist von acht bis zwölf offen, ja?",
+     "tr": "Muayenehane sekizden on ikiye kadar açık, değil mi?",
+     "accepted": [
+      "Die Praxis ist von acht bis zwölf offen, ja?",
+      "Von acht bis zwölf ist die Praxis offen, ja?",
+      "Die Praxis ist von acht bis zwölf offen, nicht?"
+     ]
+    },
+    {
+     "kart": "lx:neun",
+     "de": "Nicht um acht – um neun.",
+     "tr": "Saat sekizde değil, dokuzda.",
+     "accepted": [
+      "Nicht um acht – um neun.",
+      "Um neun, nicht um acht.",
+      "Nicht um acht, sondern um neun."
+     ]
+    },
+    {
+     "kart": "lx:neun",
+     "de": "Neun Tage Urlaub? Danke, Herr Wimmer!",
+     "tr": "Dokuz gün izin mi? Teşekkürler Wimmer Bey!",
+     "accepted": [
+      "Neun Tage Urlaub? Danke, Herr Wimmer!",
+      "Neun Tage Urlaub? Herr Wimmer, danke!",
+      "Danke, Herr Wimmer! Neun Tage Urlaub?"
+     ]
+    },
+    {
+     "kart": "lx:zehn",
+     "de": "Um zehn geht es, Frau Huber.",
+     "tr": "Saat onda olur Huber Hanım.",
+     "accepted": [
+      "Um zehn geht es, Frau Huber.",
+      "Frau Huber, um zehn geht es.",
+      "Um zehn geht, Frau Huber."
+     ]
+    },
+    {
+     "kart": "lx:zehn",
+     "de": "Nein, nicht neun – zehn!",
+     "tr": "Hayır, dokuz değil, on!",
+     "accepted": [
+      "Nein, nicht neun – zehn!",
+      "Nein, zehn, nicht neun!",
+      "Nein, nicht neun, sondern zehn!"
+     ]
+    },
+    {
+     "kart": "lx:elf",
+     "de": "Heute bis elf, Frau Huber?",
+     "tr": "Bugün on bire kadar mı Huber Hanım?",
+     "accepted": [
+      "Heute bis elf, Frau Huber?",
+      "Frau Huber, heute bis elf?",
+      "Bis elf heute, Frau Huber?"
+     ]
+    },
+    {
+     "kart": "lx:elf",
+     "de": "Heute um elf? Ja, bitte.",
+     "tr": "Bugün saat on birde mi? Evet, lütfen.",
+     "accepted": [
+      "Heute um elf? Ja, bitte.",
+      "Um elf heute? Ja, bitte.",
+      "Heute um elf? Bitte, ja."
+     ]
+    },
+    {
+     "kart": "lx:zwölf",
+     "de": "Bis zwölf? Am Samstag?",
+     "tr": "On ikiye kadar mı? Cumartesi günü mü?",
+     "accepted": [
+      "Bis zwölf? Am Samstag?",
+      "Am Samstag bis zwölf?",
+      "Samstag bis zwölf?"
+     ]
+    },
+    {
+     "kart": "lx:zwölf",
+     "de": "Wie bitte? Um zwölf?",
+     "tr": "Efendim? Saat on ikide mi?",
+     "accepted": [
+      "Wie bitte? Um zwölf?",
+      "Um zwölf? Wie bitte?",
+      "Bitte? Um zwölf?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Huber Hanım yarınki randevunun saatini ayarlıyor.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Morgen um acht?",
+      "tr": "Yarın saat sekizde mi?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Um acht geht nicht. Um zehn, bitte.",
+      "tr": "Saat sekizde olmuyor. Saat onda, lütfen."
+     },
+     {
+      "r": "ch:huber",
+      "de": "Um zehn … nein, aber um elf.",
+      "tr": "Onda … hayır, ama on birde olur."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Elf geht. Danke!",
+      "tr": "On bir olur. Teşekkürler!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Randevu saat kaçta?",
+     "opts": [
+      "Sekizde",
+      "Onda",
+      "On birde",
+      "On ikide"
+     ],
+     "ans": 2
+    }
+   }
+  },
+  {
+   "id": "m1:03:h4",
+   "title_tr": "Sıra numarası: on üçten on yediye",
+   "kartlar": [
+    "lx:dreizehn",
+    "lx:vierzehn",
+    "lx:fünfzehn",
+    "lx:sechzehn",
+    "lx:siebzehn"
+   ],
+   "kaliplar": [
+    {
+     "de": "nicht …, sondern …",
+     "tr": "… değil, …"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:dreizehn",
+     "de": "Dreizehn? Nicht drei?",
+     "tr": "On üç mü? Üç değil mi?",
+     "accepted": [
+      "Dreizehn? Nicht drei?",
+      "Nicht drei? Dreizehn?",
+      "Nicht drei, sondern dreizehn?"
+     ]
+    },
+    {
+     "kart": "lx:dreizehn",
+     "de": "Ich habe Nummer dreizehn.",
+     "tr": "Bende on üç numara var.",
+     "accepted": [
+      "Ich habe Nummer dreizehn.",
+      "Ich habe die Nummer dreizehn.",
+      "Meine Nummer ist dreizehn."
+     ]
+    },
+    {
+     "kart": "lx:vierzehn",
+     "de": "Ich habe vierzehn Tage Urlaub.",
+     "tr": "On dört gün iznim var.",
+     "accepted": [
+      "Ich habe vierzehn Tage Urlaub.",
+      "Ich habe Urlaub, vierzehn Tage.",
+      "Mein Urlaub: vierzehn Tage.",
+      "Vierzehn Tage habe ich Urlaub."
+     ]
+    },
+    {
+     "kart": "lx:vierzehn",
+     "de": "Nicht dreizehn, sondern vierzehn.",
+     "tr": "On üç değil, on dört.",
+     "accepted": [
+      "Nicht dreizehn, sondern vierzehn.",
+      "Nicht dreizehn – vierzehn.",
+      "Vierzehn, nicht dreizehn."
+     ]
+    },
+    {
+     "kart": "lx:fünfzehn",
+     "de": "Fünf oder fünfzehn?",
+     "tr": "Beş mi, on beş mi?",
+     "accepted": [
+      "Fünf oder fünfzehn?",
+      "Fünfzehn oder fünf?",
+      "Ist es fünf oder fünfzehn?"
+     ]
+    },
+    {
+     "kart": "lx:fünfzehn",
+     "de": "Brunnengasse fünfzehn? Nein, sieben.",
+     "tr": "Brunnengasse on beş mi? Hayır, yedi.",
+     "accepted": [
+      "Brunnengasse fünfzehn? Nein, sieben.",
+      "Brunnengasse fünfzehn? Nein, Brunnengasse sieben.",
+      "Fünfzehn? Nein, sieben."
+     ]
+    },
+    {
+     "kart": "lx:sechzehn",
+     "de": "Sechs? Nein, sechzehn!",
+     "tr": "Altı mı? Hayır, on altı!",
+     "accepted": [
+      "Sechs? Nein, sechzehn!",
+      "Nicht sechs, sondern sechzehn!",
+      "Sechs? Nein, nicht sechs – sechzehn!"
+     ]
+    },
+    {
+     "kart": "lx:sechzehn",
+     "de": "Meine Nummer ist sechzehn. Wie ist Ihre Nummer?",
+     "tr": "Benim numaram on altı. Sizin numaranız ne?",
+     "accepted": [
+      "Meine Nummer ist sechzehn. Wie ist Ihre Nummer?",
+      "Ich habe Nummer sechzehn. Wie ist Ihre Nummer?",
+      "Meine Nummer ist sechzehn. Ihre Nummer?"
+     ]
+    },
+    {
+     "kart": "lx:siebzehn",
+     "de": "Tobi wohnt in Nummer siebzehn.",
+     "tr": "Tobi on yedi numarada oturuyor.",
+     "accepted": [
+      "Tobi wohnt in Nummer siebzehn.",
+      "In Nummer siebzehn wohnt Tobi.",
+      "Tobi wohnt in der Brunnengasse, in Nummer siebzehn.",
+      "Tobi wohnt in der Nummer siebzehn."
+     ]
+    },
+    {
+     "kart": "lx:siebzehn",
+     "de": "Siebzehn Tage im August? Schönen Urlaub!",
+     "tr": "Ağustosta on yedi gün mü? İyi tatiller!",
+     "accepted": [
+      "Siebzehn Tage im August? Schönen Urlaub!",
+      "Im August siebzehn Tage? Schönen Urlaub!",
+      "Siebzehn Tage im August? Einen schönen Urlaub!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Belediyedeki vatandaş bürosu. Elindeki kâğıtta 16 yazıyor. Görevli numaraları okuyor.",
+    "satirlar": [
+     {
+      "r": "ch:schneider",
+      "de": "Vierzehn, bitte! Nummer vierzehn!",
+      "tr": "On dört, lütfen! On dört numara!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Vierzehn … ich habe sechzehn.",
+      "tr": "On dört … bende on altı var."
+     }
+    ],
+    "soru": {
+     "q_tr": "Senden önce sırada kaç numara daha var?",
+     "opts": [
+      "Hiç yok",
+      "Bir numara: on beş",
+      "İki numara",
+      "Üç numara"
+     ],
+     "ans": 1,
+     "cikarim": true
+    }
+   }
+  },
+  {
+   "id": "m1:03:h5",
+   "title_tr": "Yeni ofis: on sekizden yirmiye",
+   "kartlar": [
+    "lx:achtzehn",
+    "lx:neunzehn",
+    "lx:zwanzig",
+    "lx:neu",
+    "lx:Büro"
+   ],
+   "kaliplar": [
+    {
+     "de": "eine neue Nummer – die neue Nummer",
+     "tr": "yeni bir numara – yeni numara"
+    },
+    {
+     "de": "das neue Büro",
+     "tr": "yeni ofis"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:achtzehn",
+     "de": "Achtzehn, bitte – eins, acht.",
+     "tr": "On sekiz, lütfen: bir, sekiz.",
+     "accepted": [
+      "Achtzehn, bitte – eins, acht.",
+      "Bitte achtzehn – eins, acht.",
+      "Eins, acht – achtzehn, bitte."
+     ]
+    },
+    {
+     "kart": "lx:achtzehn",
+     "de": "Das neue Büro ist in Nummer achtzehn?",
+     "tr": "Yeni ofis on sekiz numarada mı?",
+     "accepted": [
+      "Das neue Büro ist in Nummer achtzehn?",
+      "Ist das neue Büro in Nummer achtzehn?",
+      "In Nummer achtzehn ist das neue Büro?",
+      "Das neue Büro ist in der Nummer achtzehn?",
+      "Ist das neue Büro in der Nummer achtzehn?"
+     ]
+    },
+    {
+     "kart": "lx:neunzehn",
+     "de": "Achtzehn? Nein, neunzehn.",
+     "tr": "On sekiz mi? Hayır, on dokuz.",
+     "accepted": [
+      "Achtzehn? Nein, neunzehn.",
+      "Nicht achtzehn – neunzehn.",
+      "Nicht achtzehn, sondern neunzehn."
+     ]
+    },
+    {
+     "kart": "lx:neunzehn",
+     "de": "Nummer neunzehn? Wie bitte?",
+     "tr": "On dokuz numara mı? Efendim?",
+     "accepted": [
+      "Nummer neunzehn? Wie bitte?",
+      "Wie bitte? Nummer neunzehn?",
+      "Bitte? Nummer neunzehn?"
+     ]
+    },
+    {
+     "kart": "lx:zwanzig",
+     "de": "Zwanzig? Nein, zwölf!",
+     "tr": "Yirmi mi? Hayır, on iki!",
+     "accepted": [
+      "Zwanzig? Nein, zwölf!",
+      "Nicht zwanzig – zwölf!",
+      "Nicht zwanzig, sondern zwölf!"
+     ]
+    },
+    {
+     "kart": "lx:zwanzig",
+     "de": "Zwanzig Tage Urlaub im Jahr?",
+     "tr": "Yılda yirmi gün izin mi?",
+     "accepted": [
+      "Zwanzig Tage Urlaub im Jahr?",
+      "Im Jahr zwanzig Tage Urlaub?",
+      "Zwanzig Tage im Jahr Urlaub?"
+     ]
+    },
+    {
+     "kart": "lx:neu",
+     "de": "Haben Sie eine neue Nummer?",
+     "tr": "Yeni bir numaranız mı var?",
+     "accepted": [
+      "Haben Sie eine neue Nummer?",
+      "Sie haben eine neue Nummer?",
+      "Ist Ihre Nummer neu?"
+     ]
+    },
+    {
+     "kart": "lx:neu",
+     "de": "Die neue Nummer ist null eins acht.",
+     "tr": "Yeni numara sıfır bir sekiz.",
+     "accepted": [
+      "Die neue Nummer ist null eins acht.",
+      "Null eins acht ist die neue Nummer.",
+      "Die neue Nummer: null eins acht."
+     ]
+    },
+    {
+     "kart": "lx:Büro",
+     "de": "Im Büro? Nein, heute nicht.",
+     "tr": "Ofiste mi? Hayır, bugün değil.",
+     "accepted": [
+      "Im Büro? Nein, heute nicht.",
+      "Im Büro? Heute nicht.",
+      "Im Büro? Nein, nicht heute."
+     ]
+    },
+    {
+     "kart": "lx:Büro",
+     "de": "Ist Herr Wimmer heute im Büro?",
+     "tr": "Wimmer Bey bugün ofiste mi?",
+     "accepted": [
+      "Ist Herr Wimmer heute im Büro?",
+      "Ist heute Herr Wimmer im Büro?",
+      "Herr Wimmer ist heute im Büro?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "İş yerinde koridor. Şefin Wimmer Bey yeni ofisin yerini söylüyor.",
+    "satirlar": [
+     {
+      "r": "ch:wimmer",
+      "de": "Das neue Büro? Nummer achtzehn.",
+      "tr": "Yeni ofis mi? On sekiz numara."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Achtzehn? Nicht acht?",
+      "tr": "On sekiz mi? Sekiz değil mi?"
+     },
+     {
+      "r": "ch:wimmer",
+      "de": "Nein, achtzehn. Eins, acht.",
+      "tr": "Hayır, on sekiz. Bir, sekiz."
+     }
+    ],
+    "soru": {
+     "q_tr": "Yeni ofis kaç numarada?",
+     "opts": [
+      "Sekiz",
+      "On sekiz",
+      "Seksen",
+      "On dokuz"
+     ],
+     "ans": 1
+    }
+   }
+  }
+ ]
+}

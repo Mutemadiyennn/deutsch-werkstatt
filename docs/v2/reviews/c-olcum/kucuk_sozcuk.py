@@ -8,6 +8,12 @@ sys.argv = ['x', K]
 with contextlib.redirect_stdout(io.StringIO()): M = runpy.run_path(f'{K}/docs/v2/reviews/c-olcum/olcum.py')
 o = json.load(open(P, encoding='utf8'))
 ogretilen = set(); hata = 0
+import os
+for d in range(1, o['gun']):
+    pf = os.path.join(os.path.dirname(os.path.abspath(P)), f'gun-{d:02d}-halkalar.json')
+    if os.path.exists(pf):
+        for hh in json.load(open(pf, encoding='utf8'))['halkalar']:
+            for k in hh.get('kaliplar', []): ogretilen |= set(M['toks'](k['de'].replace('…', ' ')))
 for h in o['halkalar']:
     for k in h.get('kaliplar', []): ogretilen |= set(M['toks'](k['de'].replace('…', ' ')))
     say = collections.Counter()

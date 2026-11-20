@@ -22,6 +22,17 @@ def kalip_parca(de, bk):
     """Dersteki gibi: "…" ve bilinen kartların sözcükleri yuvadır ("Heute ist …" → ist; "Guten Tag" → bütün)"""
     yuva = {x for i in bk for x in M['gost'][i]} | {'qqslot'}
     return M['kalip_bol'](M['toks'](de.replace('…', ' QQSLOT ')), yuva)
+# önceki günlerin halka kalıpları da bilinir (aynı klasördeki gun-0N-halkalar.json)
+import os
+for d in range(1, gun):
+    pf = os.path.join(os.path.dirname(os.path.abspath(P)), f'gun-{d:02d}-halkalar.json')
+    if os.path.exists(pf):
+        for hh in json.load(open(pf, encoding='utf8'))['halkalar']:
+            for k in hh.get('kaliplar', []):
+                a, b = kalip_parca(k['de'], onceki_kart); kalip_tek |= a; kalip_cok += [tuple(x for x in c if x != 'qqslot') for c in b]
+# (b) yalnızca önceki günlerin yeni_kartlar kartları sayılır (ders kartları nicht, bis, welcher değil; inceleme #177 E1)
+onceki_tok = {x for d in range(1, gun) for i in gunler[d]['yeni_kartlar'] for x in M['gost'][i]}
+sorular = []
 tum = [c for h in o['halkalar'] for c in h['kartlar']]
 if sorted(tum) != sorted(gunler[gun]['yeni_kartlar']): print('HATA: halka kartları yeni_kartlar ile aynı değil'); hata += 1
 for h in o['halkalar']:
@@ -62,5 +73,14 @@ for h in o['halkalar']:
         u, _ = M['bilinmeyen'](s['de'], bk, bb, biten=bt, kaliplar=kalip_cok)
         if len(u) > 1: print(f"HATA {h['id']} sahne ≥2 bilinmeyen {u}: {s['de']}"); hata += 1
         elif u: print(f"not {h['id']} sahne 1 bilinmeyen (işaretli olmalı) {u}: {s['de']}"); uyari += 1
+    # PM 7047720404 (b): önceki günlerin kartları bilerek geri gelir (2. günden itibaren halka başına en az 2 görev cümlesi)
+    if gun > 1:
+        geri = sum(1 for g in h.get('gorev_cumleleri', []) if set(M['toks'](g['de'])) & onceki_tok)
+        if geri < 2: print(f"HATA {h['id']}: önceki günden kart içeren görev cümlesi {geri} (en az 2)"); hata += 1
+    q = h.get('sahne', {}).get('soru', {})
+    if q.get('q_tr'): sorular.append((q['q_tr'], bool(q.get('cikarim'))))
     gorulen |= set(h['kartlar'])
+# PM 7047720404 (a): günde en az bir çıkarım sorusu (soru.cikarim: true), aynı soru metni iki kez yok
+if len({q for q, _ in sorular}) != len(sorular): print("HATA: aynı sahne sorusu metni iki kez"); hata += 1
+if gun > 1 and not any(c for _, c in sorular): print("HATA: günde çıkarım sorusu yok (soru.cikarim: true)"); hata += 1
 print(f"→ {hata} hata, {uyari} not")
