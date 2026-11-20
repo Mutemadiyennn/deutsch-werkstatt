@@ -45,7 +45,7 @@ Toplam 15–20 dakika sürer. Hiçbir yerde kredi kartı ya da ücretli plan ger
 ## F. Dağıt ve bağla (3 dk)
 19. Depoda **Actions** → solda **"v2 — Worker dağıtımı (Cloudflare)"** → **Run workflow** → **Run workflow**.
 20. 1–2 dakika sonra iş yeşil olur. İşe dokun → **"Adres ve sağlık kontrolü"** adımında `Worker adresi: https://…workers.dev` satırı görünür → adresi kopyala.
-21. **Settings → Secrets and variables → Actions → Variables** sekmesi → **New repository variable**: Name `V2_API_BASE`, Value adım 20'deki adres (sonda / olmadan).
+21. *(Artık gerekmez: adres `web/.env.production` içinde, PM 7022002310-4.)* ~~**Settings → Secrets and variables → Actions → Variables** sekmesi → **New repository variable**: Name `V2_API_BASE`, Value adım 20'deki adres (sonda / olmadan).~~
 22. **Actions → "v2 — web yayını (GitHub Pages /v2/)" → Run workflow.**
 23. Birkaç dakika sonra uygulamada **Profil → Sunucu bağlantısını kontrol et** → "Sunucu çalışıyor … Gemini anahtarı: var · izin listesi: var" görmelisin.
 

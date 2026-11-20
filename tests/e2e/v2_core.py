@@ -30,10 +30,12 @@ def check(cond, msg):
     if not cond: ERR.append(msg)
 
 def serve():
+    # common.serve ile aynı: çok iş parçacıklı (inceleme #129 B1)
     h = functools.partial(http.server.SimpleHTTPRequestHandler, directory=DIST)
     http.server.SimpleHTTPRequestHandler.log_message = lambda *a: None
-    socketserver.TCPServer.allow_reuse_address = True
-    s = socketserver.TCPServer(("127.0.0.1", PORT), h)
+    socketserver.ThreadingTCPServer.allow_reuse_address = True
+    socketserver.ThreadingTCPServer.daemon_threads = True
+    s = socketserver.ThreadingTCPServer(("127.0.0.1", PORT), h)
     threading.Thread(target=s.serve_forever, daemon=True).start()
     return s
 
@@ -235,7 +237,11 @@ def main():
         page.reload()
         page.click("[data-tab=today]")
         page.wait_for_selector("[data-test=today-min]")
-        check("/ 120 dk" in page.inner_text("[data-test=today-min]"), "yeni hedef (120 dk) yeniden yüklemeden sonra korunuyor")
+        # CI'da (WebKit) bir kez öğe göründükten sonra 30 sn kayboldu (inceleme #129 B1): olursa adres ve ekran metni günlüğe düşsün
+        try: hedef_txt = page.inner_text("[data-test=today-min]", timeout=10_000)
+        except Exception:
+            print("TANI (today-min kayboldu):", page.url, "|", page.inner_text("body")[:400].replace("\n", " / ")); raise
+        check("/ 120 dk" in hedef_txt, "yeni hedef (120 dk) yeniden yüklemeden sonra korunuyor")
 
         print("7b) B1 hedefi: SAHTE tarihle (PM-001: gerçek tarih depoda yok)")
         page.click("[data-tab=profile]")
