@@ -155,7 +155,7 @@ export function HearSection({ ctx, finish, back, setSub }: SP & { setSub: (n: pr
   if (phase === "listen") return (
     <div class="stack fade" data-test="stage-intro">
       <section class="card hero stack">
-        <div class="kicker">Önce duy · {s.dialogues[0]?.title_tr || s.title_tr}</div>
+        <div class="kicker icerik">Önce duy · {s.dialogues[0]?.title_tr || s.title_tr}</div>
         <p style={{ margin: 0 }}>{subs ? "Şimdi altyazılı dinle: kelimeleri bağlam içinde gör." : "Önce gerçek konuşmayı altyazısız dinle. Her şeyi anlaman gerekmiyor; ne olduğunu yakalamaya çalış."}</p>
         {/* altyazılı dinleme (phases/09 md. 1): altyazıya geçince diyalog kendiliğinden çalar; burada yeniden çalınır */}
         {subs && <div class="row">{playing

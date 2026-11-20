@@ -110,6 +110,8 @@ p { margin: 0 0 8px; }
 .card.hero .kicker { color: rgba(255, 255, 255, 0.85); }
 .card.err { border: 1px solid var(--bad); }
 .kicker { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; margin-bottom: 4px; }
+/* içerikten gelen başlık (Türkçe + Almanca ad karışık): büyük harfe çevrilmez; Türkçe yerelde "PİCHLER", "HEİSSE" olmasın (inceleme #150 P2) */
+.kicker.icerik { text-transform: none; letter-spacing: 0.02em; }
 
 /* düğmeler (v1: 3B, alt kenar gölgesi, 800 ağırlık) */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 10px 20px; border-radius: 16px; border: 0;
