@@ -7,7 +7,7 @@ python3 tests/e2e/v2_raf.py [--browser webkit] [--device "iPhone 15"] [--shots D
 """
 import os, subprocess, time
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow, bekle_kosul
 
 PORT = 4207
 RAF_PORT = 4208
@@ -70,8 +70,8 @@ def main():
         yedek = open(d.value.path(), encoding="utf-8").read()
         check(ANAHTAR not in yedek and "raf.test" not in yedek, "yedek dosyasında raf adresi ve anahtarı yok")
         pg.click("[data-test=raf-sil]"); pg.wait_for_selector("[data-test=raf-sil]", state="detached")
-        pg.wait_for_function("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
-          const v = await new Promise((ok) => { const g = d.transaction('meta').objectStore('meta').get('raf'); g.onsuccess = () => ok(g.result); }); d.close(); return v === undefined; }""", timeout=5000)
+        check(bekle_kosul(pg, """async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
+          const v = await new Promise((ok) => { const g = d.transaction('meta').objectStore('meta').get('raf'); g.onsuccess = () => ok(g.result); }); d.close(); return v === undefined; }"""), "Sil: raf kaydı veritabanından kalktı")
         pg.reload(); pg.wait_for_selector("[data-test=medya-rafi][data-hazir='1']")
         check(pg.input_value("[data-test=raf-anahtar]") == "", "Sil: anahtar cihazdan kalktı (açık kaynak kipi)")
         b.close()

@@ -67,4 +67,32 @@ jobs:
           A=$(sed -n 's/^VITE_API_BASE=//p' web/.env.production)
           if [ -z "$URL" ]; then echo "adres alınamadı"; exit 0; fi
           echo "adres alındı; web/.env.production ile aynı: $([ "$URL" = "$A" ] && echo evet || echo HAYIR — web/.env.production güncellenmeli)"
-          curl -s "$URL/v1/health" && echo
+      - name: Duman — /v1/health (PM 7032771759)
+        if: steps.chk.outputs.skip != '1'
+        # adres özete/günlüğe yazılmaz; yalnızca provider ve configured
+        run: |
+          URL=$(grep -oE 'https://[A-Za-z0-9.-]+\.workers\.dev' /tmp/deploy.log | head -1)
+          [ -n "$URL" ] && echo "::add-mask::$URL"
+          S="$GITHUB_STEP_SUMMARY"
+          echo "### Worker duman testi" >> "$S"
+          if [ -z "$URL" ]; then echo "::warning::Duman: Worker adresi alınamadı; /v1/health çağrılamadı"; echo "- ⚠️ adres alınamadı; sağlık çağrısı yapılmadı" >> "$S"; exit 0; fi
+          H=""
+          for i in 1 2 3 4 5; do H=$(curl -sf --max-time 10 "$URL/v1/health") && break; H=""; sleep 6; done
+          if [ -z "$H" ]; then echo "::warning::Duman: /v1/health 5 denemede yanıt vermedi"; echo "- ⚠️ /v1/health yanıt vermedi (5 deneme)" >> "$S"; exit 0; fi
+          printf '%s' "$H" | node -e '
+            let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{
+              const fs = require("fs"), ozet = (x) => fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, x + "\n");
+              // yalnızca güvenli karakterler (satır sonu / komut enjeksiyonu yok)
+              const temiz = (v) => String(v ?? "yok").replace(/[^A-Za-z0-9._:+-]/g, "?").slice(0, 40);
+              let h; try { h = JSON.parse(s); } catch { h = null; }
+              if (!h || typeof h !== "object") { console.log("::warning::Duman: /v1/health yanıtı beklenen biçimde değil"); ozet("- ⚠️ /v1/health yanıtı beklenen biçimde değil"); return; }
+              const c = h.configured && typeof h.configured === "object" ? h.configured : {};
+              const p = temiz(h.provider);
+              ozet(["| alan | değer |","|---|---|",
+                "| provider | `" + p + "` |",
+                ...Object.keys(c).map(k => "| configured." + temiz(k) + " | " + (c[k] ? "✅" : "—") + " |"),
+                "| version | `" + temiz(h.version) + "` |"].join("\n"));
+              console.log("provider=" + p);
+              if (h.provider !== "workers-ai") console.log("::warning::Duman: provider=" + p + " (beklenen workers-ai)");
+              else if (!c.workers_ai) console.log("::warning::Duman: provider workers-ai ama configured.workers_ai=false (AI bağlaması yok)");
+            });'

@@ -9,4 +9,6 @@ Okur ajanı, öğrenci gözüyle (A2 Almanca, terim bilmiyor). Yalnız türü de
 
 İnceleme #145 sonrası r0-01'e yalnız Almanca kabul biçimleri eklendi (d17, d21, d36); Türkçe satır değişmedi.
 
+İnceleme #147 sonrası: r0-02 d18 durum cümlesi "Senin iznin yaz mevsiminde." (okur 1/1 GEÇTİ).
+
 Sözlükle aynı söz: r0-03 d02, d36 ve dinleme başlığında "Bürgerbüro" / "belediye bürosu" → "vatandaş bürosu" (okur 3/3 GEÇTİ).

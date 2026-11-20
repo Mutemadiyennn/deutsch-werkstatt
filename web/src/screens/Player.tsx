@@ -18,7 +18,7 @@ import { review, sessionKey, type Outcome } from "../core/srs.ts";
 import { norm, numberWordHint, scoreHeard } from "../core/grading.ts";
 import type { Verdict } from "../core/answer.ts";
 import type { LocalEntry } from "../core/sayit.ts";
-import { ai, aiState, denemeSaglayici, SOFT_WAIT_MS } from "../services/ai.ts";
+import { ai, aiState, denemeSaglayici, onAiState, SOFT_WAIT_MS } from "../services/ai.ts";
 import { personalizeDeep, redact, unredact, type Persona } from "../core/persona.ts";
 import { ApiError } from "../services/api.ts";
 import { baslangicYavas, konusanAta, speak, speakDizi, stopSpeaking } from "../services/speech.ts";
@@ -487,7 +487,10 @@ function RoleplaySection({ ctx, finish, back, setRight }: SP) {
   const [level, setLevel] = useState<1 | 2 | 3>(Math.min(3, 1 + Math.floor(runs / 2)) as 1 | 2 | 3);
   const [mode, setMode] = useState<"ai" | "offline">(aiState(api).available ? "ai" : "offline");
   // PM 7026867047: deneme sağlayıcısı (Workers AI) rozeti ekran başlık satırının sağında, küçük harf "Deneme"; yapay zekâsız moda geçilince kalkar
-  useEffect(() => { setRight?.(mode === "ai" && denemeSaglayici() ? <span class="chip" data-test="ai-deneme">Deneme</span> : null); return () => setRight?.(null); }, [mode]);
+  // sağlayıcı /v1/health cevabıyla belli olur; cevap ekran açıldıktan sonra gelirse rozet de o an çizilir (inceleme #151 P1-1)
+  const [saglayiciTik, setSaglayiciTik] = useState(0);
+  useEffect(() => onAiState(() => setSaglayiciTik((n) => n + 1)), []);
+  useEffect(() => { setRight?.(mode === "ai" && denemeSaglayici() ? <span class="chip" data-test="ai-deneme">Deneme</span> : null); return () => setRight?.(null); }, [mode, saglayiciTik]);
   const [phase, setPhase] = useState<"intro" | "talk" | "report">("intro");
   const [turns, setTurns] = useState<Turn[]>([]);
   const [busy, setBusy] = useState(false);

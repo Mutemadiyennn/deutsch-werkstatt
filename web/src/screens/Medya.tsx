@@ -367,10 +367,10 @@ function CevaplaAdimi({ d, onNext }: { d: NonNullable<Bolum["cevapla"]>; onNext:
       {!v && <ActionBar><AnswerField submitLabel="Söyle" onSubmit={(a) => { const r = ruleVerdict(d.accepted, a); setV({ kind: r.kind === "correct" ? "correct" : r.kind === "ask_ai" ? "unchecked" : "wrong", a, best: r.best || d.accepted[0]! }); haptic(r.kind === "correct" ? "success" : "error"); }} /></ActionBar>}
       {v && <ActionBar>
         {v.kind === "correct" ? <FeedbackBand kind="ok" title="Doğru."><span lang="de">{v.a}</span></FeedbackBand>
-          : v.kind === "unchecked" ? <FeedbackBand kind="info" title="Bu cevabı kendim kontrol edemedim.">
+          : v.kind === "unchecked" ? <FeedbackBand kind="info" title="Uygulama bu cevabı denetleyemedi.">
               <div class="small">Senin cümlen: <span lang="de">{v.a}</span></div>
               <div>Örnek cevap: <b lang="de">{v.best.replace(/\.+$/, ".")}</b></div>
-              <div class="small">İkisi aynı şeyi mi söylüyor? Emin değilsen örneği öğren.</div></FeedbackBand>
+              <div class="small">Senin cümlen ile örnek aynı şeyi söylüyor mu? Emin değilsen örneği öğren.</div></FeedbackBand>
           : <FeedbackBand kind="bad" title="Doğrusu:"><YanlisIci dogrusu={v.best} cevap={v.a}>{d.why_tr && <div class="small"><Rich text={d.why_tr} /></div>}</YanlisIci></FeedbackBand>}
         {v.kind === "unchecked" ? <><button class="btn primary block" data-test="next" onClick={() => onNext(false)}>Örneği öğrendim, devam</button>
             <button class="btn block" data-test="claim" onClick={() => { void addClaim({ at: new Date().toISOString(), scenarioId: "m1", itemId: d.id, prompt: d.k === "tr_de" ? d.tr : d.situation_tr ?? "", answer: v.a, expected: d.accepted }); onNext(true, true); }}>Benimki de aynı anlamda</button></>
