@@ -46,11 +46,18 @@ def main():
             if shots and h in ("#/garden/1", "#/m1/1/m1%3A01%3Aa1"): shot(pg, "b130-" + h.split("/")[-1][:20].replace("%3A", "-"), full=False)
             pg.evaluate("document.documentElement.style.removeProperty('--ts')")
             if shots: shot(pg, "b-" + h.split("/")[-1][:20].replace("%3A", "-"), full=False)
-        # kısa başlık çiple aynı satırda kalır (çip yalnızca başlık sığmayınca alt satıra iner; üst çubuk boşuna uzamaz)
-        pg.goto(base + "#/garden/1"); pg.wait_for_selector(".pbar h1"); pg.wait_for_timeout(300)
-        r = pg.evaluate("""() => { const h = document.querySelector('.pbar h1'), c = h.parentElement.lastElementChild; const a = h.getBoundingClientRect(), b = c.getBoundingClientRect();
-            return { genislik: innerWidth, ayniSatir: c !== h && a.top < b.bottom && b.top < a.bottom }; }""")
-        if r["genislik"] >= 375: check(r["ayniSatir"], f"Kelime Bahçesi: kısa başlık ve seans çipi aynı satırda ({r})")
+        # çip yalnızca başlık sığmayınca alt satıra iner (üst çubuk boşuna uzamaz). Yazı tipinden bağımsız denetim: başlığın tek satırlık
+        # doğal genişliği (hesaplanan yazı tipiyle ölçülür) + çip + boşluklar satıra sığıyorsa aynı satırda olmalı, sığmıyorsa alt satırda
+        # (CI'daki WebKit sistem yazı tipi iPhone'dakinden geniş; "Kelime Bahçesi" orada sığmayabilir — inceleme sonrası, f337f34)
+        for h in ["#/garden/1", "#/prova/1", "#/m1/1/m1%3A01%3Aa1"]:
+            pg.goto(base + h); pg.wait_for_selector(".pbar h1"); pg.wait_for_timeout(300)
+            r = pg.evaluate("""() => { const h = document.querySelector('.pbar h1'), row = h.parentElement, c = row.lastElementChild, g = row.querySelector('a.iconbtn');
+                if (c === h) return { cip: false };
+                const cs = getComputedStyle(h), cx = document.createElement('canvas').getContext('2d'); cx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+                const gap = parseFloat(getComputedStyle(row).columnGap) || 0, a = h.getBoundingClientRect(), b = c.getBoundingClientRect();
+                const gerek = (g ? g.getBoundingClientRect().width + gap : 0) + cx.measureText(h.innerText).width + gap + b.width;
+                return { cip: true, sigar: gerek <= row.clientWidth - 1, ayniSatir: a.top < b.bottom && b.top < a.bottom, gerek: Math.round(gerek), satir: row.clientWidth }; }""")
+            if r["cip"]: check(r["ayniSatir"] == r["sigar"], f"{h}: çip yalnızca başlık sığmayınca alt satırda ({r})")
         # medya: tek birincil düğme + hız anahtarı; "Önce dinle" yok; dinledikten sonra birincil "Sorulara geç"
         pg.goto(base + "#/m1/1/m1%3A01%3Aa1"); pg.wait_for_selector("[data-test=adim-dinle]")
         n_prim = pg.locator("[data-test=adim-dinle] .btn.primary").count()

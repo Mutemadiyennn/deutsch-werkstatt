@@ -185,7 +185,7 @@ select.input { appearance: none; background-image: linear-gradient(45deg, transp
 html { scroll-padding-top: calc(var(--safe-top) + 96px); }
 .pbar .row { flex-wrap: nowrap; } /* (aşağıda .pbar > .row sarılır: PM-074 G2) */
 /* PM-074 G2: başlık tam görünür (normal yazıda 2, büyük yazıda en çok 3 satır), üst çubuğun içinde kalır; sağdaki çip küçülmez */
-.pbar h1 { font-size: 1.05rem; margin: 0; flex: 1; min-width: 0; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.pbar h1 { font-size: 1.05rem; margin: 0; flex: 1; min-width: 0; line-height: 1.25; overflow-wrap: anywhere; } /* kesilmez, satır sınırı yok: -webkit-box (line-clamp) WebKit'te esnek temeli bozuyordu (çip gereksiz yere alta iniyordu) */
 .pbar .row > :last-child:not(h1) { flex-shrink: 0; margin-left: auto; }
 /* yer daralınca (uzun başlık, büyük yazı) sağdaki çip başlığın altına iner; başlık satırı genişler */
 .pbar > .row { flex-wrap: wrap; row-gap: 4px; }
