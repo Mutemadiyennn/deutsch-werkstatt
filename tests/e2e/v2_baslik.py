@@ -5,7 +5,8 @@ dinlemek, altyazıya atlama küçük bağlantı, altyazılı dinleme kendiliğin
 python3 tests/e2e/v2_baslik.py [--browser webkit] [--device "iPhone 15"] [--shots DIR]
 """
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg
+import json
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, content_file
 
 PORT = 4217
 # her cümle 400 ms süren sahte seslendirme; cancel() çalan cümleyi hemen bitirir (gerçek motor gibi)
@@ -17,7 +18,9 @@ YAVAS_SES = """(() => { window.__oku = []; let t = null, u0 = null;
   Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: ss });
   window.SpeechSynthesisUtterance = function (x) { this.text = x; this.rate = 1; this.pitch = 1; this.voice = null; };
 })()"""
-EKRANLAR = ["#/prova/1", "#/m1/1/m1%3A01%3Aa1", "#/m1/1/m1%3A01%3Aa2", "#/okuma/1", "#/garden/1"]
+# senaryo ana sayfaları (yerleşim B3, PM 7048763794): biri en uzun alan adlı
+SENARYO = ["#/scenario/sc:telefon:01-arzttermin", "#/scenario/sc:essen:m1-weihnachtsmarkt"]
+EKRANLAR = ["#/prova/1", "#/m1/1/m1%3A01%3Aa1", "#/m1/1/m1%3A01%3Aa2", "#/okuma/1", "#/garden/1"] + SENARYO
 OLC = """() => { const h = document.querySelector('.pbar h1'), b = h.getBoundingClientRect(), p = h.closest('.pbar').getBoundingClientRect();
   const g = h.parentElement.querySelector('a.iconbtn'), gb = g ? g.getBoundingClientRect() : null;
   return { t: h.innerText, ust: b.top, alt: b.bottom, pAlt: p.bottom, kesik: h.scrollHeight > h.clientHeight + 1, satir: Math.round(b.height / parseFloat(getComputedStyle(h).lineHeight)),
@@ -46,6 +49,26 @@ def main():
             if shots and h in ("#/garden/1", "#/m1/1/m1%3A01%3Aa1"): shot(pg, "b130-" + h.split("/")[-1][:20].replace("%3A", "-"), full=False)
             pg.evaluate("document.documentElement.style.removeProperty('--ts')")
             if shots: shot(pg, "b-" + h.split("/")[-1][:20].replace("%3A", "-"), full=False)
+        # B3 (PM 7048763794): senaryo ana sayfasında üst çubuk = alan adı (domains.json), hero h1 = senaryo adı; ikisi farklı
+        idx = content_file("index.json"); alan = {d["id"]: d["title_tr"] for d in idx["domains"]}
+        sen = {s["id"]: s for s in idx["scenarios"]}
+        for h in SENARYO:
+            pg.goto(base + h); pg.wait_for_selector(".card.hero h1"); pg.wait_for_timeout(200)
+            cubuk = pg.inner_text(".pbar h1").strip() if pg.locator(".pbar h1").count() else ""
+            hero = pg.inner_text(".card.hero h1").strip(); beklenen = alan[sen[h.split("/")[-1]]["domain"]]
+            check(cubuk == beklenen and cubuk != hero, f"{h}: üst çubukta alan adı ('{cubuk}' = '{beklenen}'), sayfa başlığından ('{hero}') farklı")
+        # alan adı senaryo adıyla aynıysa çubukta başlık yok; geri düğmesi ve adım göstergesi yerinde (index.json araya girilir)
+        h = SENARYO[0]; sid = h.split("/")[-1]
+        def ayni_ad(route):
+            r = route.fetch(); d = r.json(); s0 = next(s for s in d["scenarios"] if s["id"] == sid)
+            for dd in d["domains"]:
+                if dd["id"] == s0["domain"]: dd["title_tr"] = s0["title_tr"]
+            route.fulfill(response=r, body=json.dumps(d))
+        pg.route("**/index.json", ayni_ad); pg.goto(base + "#/today"); pg.reload(); pg.wait_for_selector("[data-tab=today]")
+        pg.goto(base + h); pg.wait_for_selector(".card.hero h1"); pg.wait_for_timeout(200)
+        check(pg.locator(".pbar h1").count() == 0 and pg.locator(".pbar a[aria-label=Geri]").count() == 1 and pg.locator(".pbar .steps").count() == 1,
+              f"{h}: alan adı senaryo adıyla aynıyken çubukta başlık yok, geri ve adım göstergesi yerinde")
+        pg.unroute("**/index.json"); pg.reload()
         # çip yalnızca başlık sığmayınca alt satıra iner (üst çubuk boşuna uzamaz). Yazı tipinden bağımsız denetim: başlığın tek satırlık
         # doğal genişliği (hesaplanan yazı tipiyle ölçülür) + çip + boşluklar satıra sığıyorsa aynı satırda olmalı, sığmıyorsa alt satırda
         # (CI'daki WebKit sistem yazı tipi iPhone'dakinden geniş; "Kelime Bahçesi" orada sığmayabilir — inceleme sonrası, f337f34)
