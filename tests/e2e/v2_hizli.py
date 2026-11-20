@@ -90,7 +90,7 @@ def main():
 
         # 2) tanıtımda "Biliyorum, sına beni": doğru → Bildin, yanlış → birlikte bakalım
         b, pg = yeni_sayfa(p); bahce(pg, base); kare(pg, 8)
-        basilan = pg.inner_text("[data-test=garden-intro] .de-xl"); tr_basilan = pg.locator("[data-test=garden-intro] p").first.inner_text()
+        basilan = pg.inner_text("[data-test=garden-intro] .de-xl"); tr_basilan = pg.inner_text("[data-test=intro-tr]")
         pg.click("[data-test=sina-beni]"); pg.wait_for_selector("[data-test=sina-soru]"); kare(pg, 6)
         soru = pg.inner_text("[data-test=gq-tr_de] .de-lg") if pg.locator("[data-test=gq-tr_de] .de-lg").count() else pg.inner_text("main")
         check(tr_basilan in soru, f"basılan kart = sorulan kart ({basilan!r} → {soru[:40]!r}; PM 7018403441-1)")

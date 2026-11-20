@@ -65,7 +65,9 @@ describe("PM-069 madde 3: tanıtım ile ilk soru arası", () => {
     expect(r1.map((q) => q.type)).toEqual(["article"]);
     // köprü cevaplandı → sıradaki turda üretim
     it = review(it, { itemId: l.id, kind: "lexeme", path: "passive", outcome: "correct", session: s, source: "drill", ctx: "article" });
-    it.lastQ = "article";
+    // yanlış cevaplanan köprü geçilmiş sayılmaz: sonraki turda yine köprü
+    expect(kopruGerek({ ...it, lastQ: "article" }, l)).toBe(true);
+    it.lastQ = "article"; it.kopru = true;
     expect(kopruGerek(it, l)).toBe(false);
     const r2 = buildRound(lex, new Map([[l.id, it]]), [], { rng: () => 0, now: new Date(Date.now() + 864e5) });
     expect(r2[0]!.type).toBe("tr_de");
