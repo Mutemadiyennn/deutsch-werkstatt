@@ -106,6 +106,7 @@ Sözlüğün tamamı onaylı: taslak partiler 004–008'deki 394 girdi tam incel
 | #123 | `v2/api-adres` | Worker adresi derleme yapılandırmasında | **[PM-KİLİT]**: alt alan adı nötrleşince (PM 7024109445) |
 | #125 | `v2/workers-ai` (#123 üstüne) | Workers AI sağlayıcısı (deneme), D-120 | 2. tur ONAY; WebKit 3/3 yeşil; #123'ü bekler; PM Gördüm bekler |
 | #126 | `v2/bahce-aralik` (#122 üstüne) | PM-069 madde 3: tanıtım ile ilk soru arası ≥2, köprü | 2. tur düzeltildi; PM Gördüm bekler |
+| #128 | `v2/baslik-dugme` | PM-074 G2 + md. 2–3: üst çubuk başlığı tam (sığmazsa çip alt satıra), medyada tek oynat + hız anahtarı (B7 korunur), senaryoda birincil eylem dinlemek, altyazılı dinleme yeniden çalınır | 1. tur DEĞİŞİKLİK GEREKLİ → P1-1/2/3 ve P2-1…7 düzeltildi; 2. tur inceleme ve PM final bekler |
 | — | `v2/esdizim-uc` | PM 7024150313: en çok 3 eşdizim, "Daha fazla" | #122 birleşince PR |
 | — | `v2/a9-klip` | PM-069 madde 4: klip-02 → 2. günün videosu | şeritte yer açılınca PR |
 | — | `kaynak/gorsel` | B14 boy denemesi (512 / 768×576) | 20.11 00:12 UTC koşusu |
