@@ -258,15 +258,21 @@ export function LearnSection({ ctx, finish, back, setSub }: SP & { setSub: (n: p
 }
 
 /** İfade kartı (DESIGN §4, TARGET 2): sahne, büyük Almanca ifade, Türkçesi, büyük yuvarlak dinle + "Yavaş", gündelik dil paneli, aile çipleri; tek ana eylem "Sesli söyle". */
-/** İfade kartı Almanca başlığı: 0 = CSS boyu; sonra px kademeleri (Bahçe BASLIK_KADEME ile aynı yöntem, #152) */
-const IFADE_KADEME = [0, 26, 22, 19] as const;
+/** İfade kartı Almanca başlığı: CSS boyunun katları (Bahçe BASLIK_KADEME ile aynı yöntem, #152; %130 yazıda oransal) */
+const IFADE_KADEME = [1, 0.84, 0.72, 0.62] as const;
 
 function IfadeCard({ c, accent, onPass }: { c: Card; accent: string; onPass: (how: "repeat" | "known") => void }) {
   // yerleşim B7 (PM 7049695521 C): başlık boyundaki Almanca hecelenmez; en uzun sözcük sığmazsa yazı kademe kademe küçülür
   const wRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     const e = wRef.current; if (!e) return;
-    const sigdir = () => { for (const px of IFADE_KADEME) { e.style.fontSize = px ? `${px}px` : ""; if (e.scrollWidth <= e.clientWidth + 0.5) break; } };
+    // kademe CSS boyuna göre oransal: %130 yazıda da Almanca cümle çevirisinden küçük kalmaz (inceleme #178 P1-2)
+    const sigdir = () => {
+      // ölçerken sözcük kırılmasın (overflow-wrap: normal); seçimden sonra CSS'in son çaresi (anywhere) geri gelir
+      e.style.fontSize = ""; e.style.overflowWrap = "normal"; const taban = parseFloat(getComputedStyle(e).fontSize);
+      for (const k of IFADE_KADEME) { e.style.fontSize = k === 1 ? "" : `${taban * k}px`; if (e.scrollWidth <= e.clientWidth + 0.5) break; }
+      e.style.overflowWrap = "";
+    };
     sigdir(); void document.fonts?.ready.then(sigdir);
   }, [c.de]);
   const [res, setRes] = useState<number | null>(null);

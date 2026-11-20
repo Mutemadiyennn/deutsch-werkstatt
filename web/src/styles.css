@@ -76,7 +76,9 @@ input, textarea, .selectable { -webkit-user-select: text; user-select: text; }
 /* yerleşim B7 (PM 7049695521 C): gövdede kısa sözcük (< 10 harf) hecelenmez ("ein-facher" A1 öğrencisine iki sözcük gibi görünür);
    başlık boyundaki Almanca hiç hecelenmez, sözcük yalnız boşlukta satır atlar (sığmazsa kademe küçülür: IFADE_KADEME / BASLIK_KADEME) */
 [lang="de"] { hyphenate-limit-chars: 10 5 5; -webkit-hyphenate-limit-before: 5; -webkit-hyphenate-limit-after: 5; }
-.wordpanel .w[lang="de"], h1[lang="de"], h2[lang="de"], h3[lang="de"], .de-lg[lang="de"] { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: normal; }
+/* overflow-wrap: anywhere son çare olarak kalır (kademe de sığdıramazsa sözcük kırılır, taşmaz); .de-lg kapsam dışı (sözlük ve soru
+   kartlarında uzun sözcük hecelenerek sığar; inceleme #178 P1-1) */
+.wordpanel .w[lang="de"], h1[lang="de"], h2[lang="de"], h3[lang="de"] { hyphens: manual; -webkit-hyphens: manual; }
 .app, .card { overflow-wrap: anywhere; }
 body {
   margin: 0; color: var(--ink); font-family: var(--font-body); font-size: 1rem; line-height: 1.55; -webkit-text-size-adjust: 100%; overflow-x: hidden;
