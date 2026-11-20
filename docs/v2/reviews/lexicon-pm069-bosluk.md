@@ -50,3 +50,12 @@ Sonra kalan 5 IHLAL, betiğin yanlış alarmı. Hepsi kartın kendi kelimesi:
 
 ## İnceleme sonrası (#107 3. tur)
 - Başka kartla aynı Almanca + aynı Türkçe olup farklı cevap isteyen 3 boşluğa iki yönlü eş anlamlı kabulü eklendi: `lx:Vater` b1 Papa, `lx:Mutter` b2 Mama, `lx:Name` b1 Vorname.
+
+## Küçük kelime boşlukları (öğrenci ajanı B3, PM kararı 20.11 04:20)
+- **Yeni kural:** Bahçe'de bir boşluğun cevabı kartın kelimesi ya da eşdizimin içerik kelimesi olur. Eşdizimden gelse bile artikel, edat, iyelik, jeden, bis gibi küçük kelimeler cevap olmaz.
+- **M1, bu dal:** 128 boşluk değişti.
+  - 121'inde boşluk aynı cümlede kartın kelimesine taşındı. Örnek: "Ich sehe dort eine ___." → Frau.
+  - 7 boşluk yeniden kuruldu: brauchen, warten, arbeiten, Montag, passen#2 ×2, Anfang.
+  - İpuçlarını dilbilimci yazdı. Okur 135 satır okudu, 5 GERİ verdi; tekrarda 0.
+- **Sonuç:** M1 kartlarında küçük kelime soran boşluk kalmadı.
+- **Kalan:** M1 dışındaki 779 boşluk `content/k1-6cumle-2` dalında aynı hattan geçecek.
