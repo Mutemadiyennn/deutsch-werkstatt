@@ -15,7 +15,8 @@
  *    Cümle başında küçük harfli okunuş önceliklidir: "Morgen …" orada "morgen" gösteren kart (varsa) bilinmeli.
  *  - Çok sözcüklü kart başlığı ("wie viel", "recht haben") yalnız BÜTÜN olarak bilinir; parçaları tek tek bilinmez.
  *  - Kalıp (dersin çok sözcüklü `teach`'i, halkanın `kaliplar`ı): KARTSIZ çerçeve sözcükleri (ist, war, geht, guten) ders/halka
- *    bitince tek tek bilinir (AK-3'e PM kararı bekleyen istisna, inceleme #168 2. tur); kendi kartı olan sözcük yalnız kendi kartıyla.
+ *    bitince tek tek TANINIR (AK-3 istisnası, PM-080 §4); kendi kartı olan sözcük yalnız kendi kartıyla. Yalnız anlama içindir:
+ *    üretimde K5 (≥ 2 görme), Türkçesinde K10 (ilk iki görme) planlayıcıda aynen işler; başka anlamdaki kullanımı yazar işaretler.
  *  - Ders tablosu ve tek sözcüklü `teach`: sözcüğü gösteren kendi kartı varsa o kart bu derse bağlı olmalı; kartı olmayan biçim
  *    (bin, habe, kann) dersle bilinir. Türkçe sütun ayırt edilmez: eşlenmeyen sözcük zaten eklenmez.
  *  - Yer tutucu: {name} sayılmaz; {a|b} iki seçeneğiyle sayılır ({Herr|Frau}, {Patient|Patientin}).
@@ -207,8 +208,8 @@ function dersBicimi(d: KumeDizini, t: TemelDers): { bicim: Set<string>; kart: Se
   const bicim = new Set<string>(); const kaliplar: string[][] = [];
   const kendiOk = (s: string) => kendiKarti(d, s).every((k) => kart.has(k));
   for (const x of t.teach) {
-    // çok sözcüklü teach kalıptır: KARTSIZ çerçeve sözcükleri (ist, war, geht, guten) ders bitince bilinir (AK-3 istisnası,
-    // inceleme #168 2. tur); kendi kartı olan sözcük yalnız kendi kartıyla (derse bağlıysa) bilinir
+    // çok sözcüklü teach kalıptır: KARTSIZ çerçeve sözcükleri (ist, war, geht, guten) ders bitince tanınır (AK-3 istisnası,
+    // PM-080 §4); kendi kartı olan sözcük yalnız kendi kartıyla (derse bağlıysa) bilinir
     const kp = kalipToks(x.de);
     if (kp.length > 1) { kaliplar.push(kp); for (const s of kp) if (s !== YUVA && kendiOk(s) && !kendiKarti(d, s).length) bicim.add(s); for (const s of kp) if (s !== YUVA && kendiKarti(d, s).length && kendiOk(s)) bicim.add(s); continue; }
     for (const s of kp) if (s !== YUVA && kendiOk(s)) bicim.add(s);
