@@ -6,7 +6,7 @@
  *            pasif "Anladım" yok: kart sesli/yazılı tekrar ile geçilir ya da "Biliyorum, geç"; her 4 kartta hatırlama turu.
  *  Süre bütçesi ≤ 8 dk, üstte görünür. Ölçüm: aşama 1–2 süresi, kart başına süre, hatırlama başarısı.
  */
-import { useEffect, useMemo, useRef, useState } from "preact/hooks";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Explanation, Lexeme, Scenario } from "@dw/shared";
 import { Chips, Rich, WhySheet } from "../ui/rich.tsx";
 import { getItem } from "../data/db.ts";
@@ -258,7 +258,17 @@ export function LearnSection({ ctx, finish, back, setSub }: SP & { setSub: (n: p
 }
 
 /** İfade kartı (DESIGN §4, TARGET 2): sahne, büyük Almanca ifade, Türkçesi, büyük yuvarlak dinle + "Yavaş", gündelik dil paneli, aile çipleri; tek ana eylem "Sesli söyle". */
+/** İfade kartı Almanca başlığı: 0 = CSS boyu; sonra px kademeleri (Bahçe BASLIK_KADEME ile aynı yöntem, #152) */
+const IFADE_KADEME = [0, 26, 22, 19] as const;
+
 function IfadeCard({ c, accent, onPass }: { c: Card; accent: string; onPass: (how: "repeat" | "known") => void }) {
+  // yerleşim B7 (PM 7049695521 C): başlık boyundaki Almanca hecelenmez; en uzun sözcük sığmazsa yazı kademe kademe küçülür
+  const wRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const e = wRef.current; if (!e) return;
+    const sigdir = () => { for (const px of IFADE_KADEME) { e.style.fontSize = px ? `${px}px` : ""; if (e.scrollWidth <= e.clientWidth + 0.5) break; } };
+    sigdir(); void document.fonts?.ready.then(sigdir);
+  }, [c.de]);
   const [res, setRes] = useState<number | null>(null);
   const [typing, setTyping] = useState(false);
   const [busy, setBusy] = useState<false | "n" | "s" | "a">(false);
@@ -279,7 +289,7 @@ function IfadeCard({ c, accent, onPass }: { c: Card; accent: string; onPass: (ho
       <section class="ifade-card stack" data-test="ifade-card">
         <div class="scenebox"><Scene accent={accent} /></div>
         <div class="wordpanel plain">
-          <div class="w" lang="de">{c.de}</div>
+          <div class="w" lang="de" ref={wRef} data-test="ifade-w">{c.de}</div>
           <div class="tr">{c.tr}</div>
         </div>
         <div class="playrow">

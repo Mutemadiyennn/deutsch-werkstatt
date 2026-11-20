@@ -69,6 +69,22 @@ def main():
         check(pg.locator(".pbar h1").count() == 0 and pg.locator(".pbar a[aria-label=Geri]").count() == 1 and pg.locator(".pbar .steps").count() == 1,
               f"{h}: alan adı senaryo adıyla aynıyken çubukta başlık yok, geri ve adım göstergesi yerinde")
         pg.unroute("**/index.json"); pg.reload()
+        # yerleşim B7 (PM 7049695521 C): ifade kartının Almanca başlığı hecelenmez; en uzun sözcük sığmazsa yazı kademe kademe küçülür
+        UZUN = "Die Krankenversicherungskarte, bitte."
+        def uzun_ifade(route):
+            r = route.fetch(); d = r.json(); d["chunks"][0]["layers"]["hd"] = UZUN
+            route.fulfill(response=r, body=json.dumps(d))
+        pg.route("**/scenarios/sc_arbeit_m1-weihnachtsfeier.json", uzun_ifade)
+        for h, metin in (("#/scenario/sc:arbeit:m1-weihnachtsfeier/chunks", UZUN),):
+            pg.goto(base + "#/today"); pg.reload(); pg.wait_for_selector("[data-tab=today]")
+            pg.goto(base + h); pg.wait_for_selector("[data-test=ifade-w]"); pg.wait_for_timeout(400)
+            r = pg.evaluate("""() => { const e = document.querySelector('[data-test=ifade-w]'), s = getComputedStyle(e);
+              const satir = (rg) => { const m = []; for (const q of rg.getClientRects()) { const c = (q.top + q.bottom) / 2; if (q.width > 0.5 && !m.some((x) => Math.abs(x - c) < q.height / 2)) m.push(c); } return m.length; };
+              const t = e.firstChild, i = t.textContent.indexOf('Krankenversicherungskarte'), rg = document.createRange(); rg.setStart(t, i); rg.setEnd(t, i + 25);
+              return { metin: e.innerText, px: parseFloat(s.fontSize), hy: s.hyphens || s.webkitHyphens, sigar: e.scrollWidth <= e.clientWidth + 0.5, sozcukSatir: satir(rg) }; }""")
+            check(r["metin"] == metin and r["hy"] == "manual" and r["sigar"] and r["sozcukSatir"] == 1 and r["px"] < 31,
+                  f"{h}: uzun Almanca sözcük bölünmez, kart başlığı kademeyle küçülür ve sığar ({r})")
+        pg.unroute("**/scenarios/sc_arbeit_m1-weihnachtsfeier.json")
         # çip yalnızca başlık sığmayınca alt satıra iner (üst çubuk boşuna uzamaz). Yazı tipinden bağımsız denetim: başlığın tek satırlık
         # doğal genişliği (hesaplanan yazı tipiyle ölçülür) + çip + boşluklar satıra sığıyorsa aynı satırda olmalı, sığmıyorsa alt satırda
         # (CI'daki WebKit sistem yazı tipi iPhone'dakinden geniş; "Kelime Bahçesi" orada sığmayabilir — inceleme sonrası, f337f34)

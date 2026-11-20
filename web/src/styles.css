@@ -73,6 +73,10 @@ input, textarea, .selectable { -webkit-user-select: text; user-select: text; }
 [lang="de"] { -webkit-touch-callout: none; }
 /* Almanca bileşik kelimeler taşmaz */
 [lang="de"] { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; word-break: normal; }
+/* yerleşim B7 (PM 7049695521 C): gövdede kısa sözcük (< 10 harf) hecelenmez ("ein-facher" A1 öğrencisine iki sözcük gibi görünür);
+   başlık boyundaki Almanca hiç hecelenmez, sözcük yalnız boşlukta satır atlar (sığmazsa kademe küçülür: IFADE_KADEME / BASLIK_KADEME) */
+[lang="de"] { hyphenate-limit-chars: 10 5 5; -webkit-hyphenate-limit-before: 5; -webkit-hyphenate-limit-after: 5; }
+.wordpanel .w[lang="de"], h1[lang="de"], h2[lang="de"], h3[lang="de"], .de-lg[lang="de"] { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: normal; }
 .app, .card { overflow-wrap: anywhere; }
 body {
   margin: 0; color: var(--ink); font-family: var(--font-body); font-size: 1rem; line-height: 1.55; -webkit-text-size-adjust: 100%; overflow-x: hidden;

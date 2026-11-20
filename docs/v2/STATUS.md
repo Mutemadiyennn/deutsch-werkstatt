@@ -40,6 +40,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 |---|---|---|---|
 | #172 | `qa/yerlesim-bekcisi` | Yerleşim bekçisi B1–B8 (PM-079 md. 4): gezginin ekranları × 844/932; öz-sınama 29 durum; **rapor kipi** (ilk ölçüm 30 ihlal, `docs/v2/qa/yerlesim/ilk-olcum.md`) | inceleme + KAPI |
 | #175 | `v2/yerlesim-b3` (#172 üstüne) | Yerleşim partisi 1 (B3): senaryo ana sayfasında üst çubukta alan adı, h1 senaryo adı; bekçide kart başlığı kuralı (PM D1); `v2_baslik.py` senaryo ana sayfaları | inceleme 2. tur + PM finali + KAPI |
+| #178 | `v2/yerlesim-b7` (#175 üstüne) | Yerleşim partisi 2 (B7): başlık boyundaki Almanca hecelenmez + ifade kartı kademe; gövdede < 10 harfli sözcük hecelenmez; bekçi B7 eşiği kök×1,15; yüklenirken çubuk başlığı boş | inceleme + PM finali + KAPI |
 | #144 | `ci/worker-duman` | Worker dağıtımı sonunda `/v1/health` duman adımı (provider/configured iş özetinde, adres gizli) | ONAY; WebKit kırmızısı test yarışı (#151) → #151 sonrası main alınır |
 | #146 | `v2/ders-bahce-dongusuz` | B5: Bahçede bugün görülen kelime kartı derste yeniden tanıtılmaz; en çok bir kez cümle içinde seçmeli boşluk (D-121) | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor; **PM final** |
 | #148 | `v2/adsiz-cumle` | B7: `_adsiz` alanı + doğrulayıcı; kurulumda ad bir kez nazikçe sorulur (D-122) | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor; **PM final** |
