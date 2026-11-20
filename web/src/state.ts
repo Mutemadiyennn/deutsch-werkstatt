@@ -29,7 +29,9 @@ export type Route =
   | { name: "okuma"; day: number }
   | { name: "sozluk"; q?: string; id?: string }
   | { name: "ses" }
-  | { name: "kalip"; id?: string };
+  | { name: "kalip"; id?: string }
+  /** yalnız e2e derlemesi: AKIS soru türleri önizlemesi (AK-10 3. adım; ekranı 4. adım bağlar) */
+  | { name: "akisSoru"; tur: string; ids: string[] };
 
 export function parseHash(h: string): Route {
   const p = h.replace(/^#\/?/, "").split("/").map(decodeURIComponent);
@@ -52,6 +54,7 @@ export function parseHash(h: string): Route {
     case "gorevler": return { name: "gorevler" };
     case "odak": return { name: "odak" };
     case "kalip": return { name: "kalip", id: p[1] || undefined };
+    case "akis-soru": return { name: "akisSoru", tur: p[1] || "", ids: (p[2] || "").split(",").filter(Boolean) };
     case "m1": return p[2] ? { name: "m1medya", day: Number(p[1]) || 1, id: p[2] } : { name: "m1day", day: Number(p[1]) || 1 };
     default: return { name: "today" };
   }

@@ -716,3 +716,23 @@ html:has(.actionbar) .toast { bottom: auto; top: calc(var(--safe-top) + 12px); }
 .kelime-kare figcaption { grid-column: 1 / -1; grid-row: 2; margin-top: -4px; }
 /* kare düzende kart içi aralık biraz sıkı (yalnızca sığmayan uzun kartlar) */
 section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
+
+/* AKIS AK-10 3. adım: resimden seç ve eşleştir (TARGET3b) */
+.buyuk-ses { width: 72px; height: 72px; border-radius: 50%; padding: 0; display: inline-flex; align-items: center; justify-content: center; background: var(--accent); color: #fff; box-shadow: 0 3px 0 rgba(0, 0, 0, 0.15); }
+.buyuk-ses svg { width: 32px; height: 32px; }
+.dort-resim { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.resim-kare { padding: 0; border: 0; border-radius: 18px; background: var(--card); box-shadow: 0 0 0 1.5px var(--line) inset; overflow: hidden; cursor: pointer; min-height: 44px; }
+.resim-kare figure { margin: 0; }
+.resim-kare figcaption { font-size: 0.62rem; padding: 2px 6px; }
+.resim-kare.sec { box-shadow: 0 0 0 3px var(--accent) inset; }
+.resim-kare.right { box-shadow: 0 0 0 3px var(--ok) inset; }
+.resim-kare.wrong { box-shadow: 0 0 0 3px var(--bad) inset; opacity: 0.8; }
+.es-izgara { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px; }
+.es-kare { min-height: 52px; padding: 10px 12px; border: 0; border-radius: 14px; background: var(--card); box-shadow: 0 2px 0 rgba(0, 0, 0, 0.06), 0 0 0 1.5px var(--line) inset; font: inherit; font-weight: 700; text-align: left; display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.es-kare[lang="de"] { font-family: var(--font-display); }
+.es-kare.sec { box-shadow: 0 0 0 2.5px var(--accent) inset; }
+.es-kare.tamam { background: var(--ok-soft); box-shadow: 0 0 0 2px var(--ok) inset; color: var(--ink); }
+.es-kare.tamam svg { color: var(--ok); width: 18px; height: 18px; flex: none; }
+.es-kare.salla { animation: salla 0.32s; box-shadow: 0 0 0 2px var(--bad) inset; }
+@keyframes salla { 20%, 60% { transform: translateX(-5px); } 40%, 80% { transform: translateX(5px); } }
+@media (prefers-reduced-motion: reduce) { .es-kare.salla { animation: none; } }

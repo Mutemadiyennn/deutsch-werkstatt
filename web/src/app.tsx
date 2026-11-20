@@ -19,6 +19,7 @@ import { Ctx, LEARNING_ROUTES, parseHash, type AppCtx, type Route } from "./stat
 import { auth, type AuthUser } from "./services/auth.ts";
 import { createApi } from "./services/api.ts";
 import { SesDeneme } from "./screens/SesDeneme.tsx";
+import { AkisSoruOnizleme } from "./screens/AkisSoru.tsx";
 import { loadIndex, within, loadWorld } from "./services/content.ts";
 import { getProfile, latestPlacement, saveProfile } from "./data/db.ts";
 import { setLearning, startFocus, updateFocusConfig } from "./services/focusRuntime.ts";
@@ -149,6 +150,7 @@ export function App() {
     case "okuma": screen = <OkumaEkrani key={route.day} day={route.day} />; break;
     case "sozluk": screen = <SozlukEkrani q={route.q} id={route.id} />; break;
     case "ses": screen = <SesDeneme />; break;
+    case "akisSoru": screen = import.meta.env.MODE === "e2e" ? <AkisSoruOnizleme tur={route.tur} ids={route.ids} /> : null; break;
     case "kalip": screen = <KalipEkrani key={route.id ?? "-"} id={route.id} />; break;
     case "m1day": screen = <M1Gun day={route.day} />; break;
     case "rehber": screen = <RehberEkrani day={route.day} />; break;
