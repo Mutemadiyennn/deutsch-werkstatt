@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { Lexeme } from "@dw/shared";
 import type { LearnerItem } from "@dw/shared";
-import { kendiCumleAcik, sinaKabul, sinaTuru, synonymHit, personalMatch, availableTypes, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak, formFor, guclu, GUCLU_GUN, siradakiEx, sonrakiExSeen } from "./garden.ts";
+import { kendiCumleAcik, sinaKabul, sinaTuru, synonymHit, personalMatch, availableTypes, fotoluKartlar, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak, formFor, guclu, GUCLU_GUN, siradakiEx, sonrakiExSeen } from "./garden.ts";
 import { review, sessionKey } from "./srs.ts";
 import { turKademe, TUR_BASLIK } from "../ui/solen.tsx";
 
@@ -21,6 +21,15 @@ describe("Kelime Bahçesi (PM-049)", () => {
     expect(availableTypes(termin, "active")).toEqual(["tr_de", "photo_say", "gap"]);
     expect(availableTypes(termin, "active", true)).toEqual(["tr_de", "photo_say", "gap", "own_sentence"]);
     expect(availableTypes(absagen, "active")).toContain("sep_perfekt");
+  });
+  it("B4 (PM 7030294523): 'Fotoğraftaki ne?' yalnızca seçilmiş fotoğrafı olan kartta", () => {
+    fotoluKartlar(new Set());
+    try {
+      expect(availableTypes(termin, "active")).not.toContain("photo_say");
+      for (let k = 0; k < 10; k++) expect(buildRound(lex, new Map(), ["lx:Termin"], { rng: () => k / 10 }).every((q) => q.type !== "photo_say")).toBe(true);
+      fotoluKartlar(new Set(["lx:Termin"]));
+      expect(availableTypes(termin, "active")).toContain("photo_say");
+    } finally { fotoluKartlar(null); }
   });
   it("işlev kelimesi (tanımlık, zamir…) card:false olmasa da ayrı kart olmaz (PM-047 §2)", () => {
     const kein = L({ id: "lx:kein", de: "kein", tr: "hiç", pos: "det" });
