@@ -5,7 +5,7 @@
  */
 import { gorevSay } from "../services/gorev.ts";
 import { cumleKaydet } from "../services/kullanim.ts";
-import { useEffect, useMemo, useRef, useState } from "preact/hooks";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadFoto, loadLexicon, loadM1Gun } from "../services/content.ts";
@@ -223,6 +223,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
 
 /** Tanıtım kartında görsel: tam genişlikte en çok 160 px; sığmayan kartta kelimenin altında sağda 104 px kare; düğmeye en az 8 px pay */
 const FOTO_TANITIM = 160, FOTO_KARE = 104, FOTO_PAY = 8;
+/** başlık yazı boyu kademesi (0: varsayılan .de-xl); PM 7041856903: 28 → 24 → 21 */
+const BASLIK_KADEME = [0, 28, 24, 21] as const;
 
 /** Eşdizimler: en çok 3 açık, kalanı "Daha fazla (n)" (PM 7024150313); açılır kısım boşlukta sorulmaz */
 function Esdizimler({ l, test }: { l: Lexeme; test?: string }) {
@@ -308,7 +310,20 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
     ro?.observe(k); sonra();
     return () => { ro?.disconnect(); cancelAnimationFrame(kare); };
   }, [intro, duzen, olcuTur]);
+  // PM 7041856903: başlık (artikel + kelime) TEK satır, hecelenmez (iki düzende de); sığmazsa yazı boyu kademeli küçülür
+  const baslikRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const e = baslikRef.current;
+    if (!intro || !e) return;
+    const sigdir = () => {
+      for (const px of BASLIK_KADEME) { e.style.fontSize = px ? `${px}px` : ""; if (e.scrollWidth <= e.clientWidth + 0.5) break; }
+      e.dataset.boy = String(Math.round(parseFloat(getComputedStyle(e).fontSize)));
+    };
+    sigdir();
+    void document.fonts?.ready.then(sigdir);
+  }, [intro, duzen, l.id]);
   const col = collocOf(l);
+  const anlam = <p style={{ margin: 0 }}><span data-test="intro-tr">{l.tr}</span>{gosterilenCogul(l) && <span class="small muted cogul-satir" data-test="intro-pl"> · Çoğulu: <span lang="de">{isNoun(l) ? "die " : ""}{gosterilenCogul(l)}</span></span>}</p>;
   if (intro) return (
     <div class="stack fade" data-test="garden-intro" data-lex={l.id}>
       <section class="card stack" ref={kartRef} data-duzen={duzen}><div class="kicker">Yeni kelime</div>
@@ -318,15 +333,19 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
         {/* PM 7024150313: görselli en uzun kart da düğmelere değmeden sığar — kelime ile dinle aynı satırda, çoğul anlamın yanında,
             "Başka cümle" cümlenin yanında; eşdizimlerden en çok 3'ü açık */}
         {duzen === "tam" ? <div class="row" style={{ flexWrap: "nowrap", alignItems: "center", gap: 10 }}>
-          <div class="de-xl grow" lang="de" style={{ minWidth: 0 }}><Art art={l.art} de={l.de} /></div>
+          <div class="de-xl grow kk-baslik" lang="de" style={{ minWidth: 0 }} ref={baslikRef} data-test="kelime-baslik"><Art art={l.art} de={l.de} /></div>
           <ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} />
         </div>
-          // D-123 kare düzeni: kelime ve Dinle solda alt alta, görsel sağda kare; örnek cümle yine tam genişlikte (PM 7026866757-1)
-          : <div class="kelime-kare" data-test="kelime-kare">
-            <div class="kk-sol"><div class="de-xl" lang="de"><Art art={l.art} de={l.de} /></div><ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} /></div>
-            <Photo q={l.img} sira={q.ex} yer={[`${l.id}#kart`]} alt={l.tr} enCok={FOTO_KARE} oran="1 / 1" />
-          </div>}
-        <p style={{ margin: 0 }}><span data-test="intro-tr">{l.tr}</span>{gosterilenCogul(l) && <span class="small muted cogul-satir" data-test="intro-pl"> · Çoğulu: <span lang="de">{isNoun(l) ? "die " : ""}{gosterilenCogul(l)}</span></span>}</p>
+          // D-123 kare düzeni (PM 7041856903): 1. satır başlık tam genişlikte tek satır; 2. satır solda Dinle + anlam, sağda kare görsel,
+          // atıf altta tek satır; örnek cümle yine tam genişlikte (PM 7026866757-1)
+          : <>
+            <div class="de-xl kk-baslik" lang="de" ref={baslikRef} data-test="kelime-baslik"><Art art={l.art} de={l.de} /></div>
+            <div class="kelime-kare" data-test="kelime-kare">
+              <div class="kk-sol"><ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} />{anlam}</div>
+              <Photo q={l.img} sira={q.ex} yer={[`${l.id}#kart`]} alt={l.tr} enCok={FOTO_KARE} oran="1 / 1" />
+            </div>
+          </>}
+        {duzen === "tam" && anlam}
         {/* PM 7026866757-1: örnek cümle tam genişlikte, hecelenmez; "Başka cümle" Türkçe satırın altında, kendi satırında */}
         {/* PM 7030294523 C: örnek alanı kartın en uzun örneği kadar yer tutar (görünmez yer tutucular aynı hücrede); "Başka cümle"de kart da
             sayfa da zıplamaz. Görünen cümle hep aynı öğe (data-test=intro-ex), yalnızca metni değişir */}

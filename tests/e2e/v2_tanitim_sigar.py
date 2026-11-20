@@ -59,7 +59,12 @@ def olc(pg):
       const ust = Math.min(...[...document.querySelectorAll('[data-test=garden-intro] .actionbar button')].map((b) => b.getBoundingClientRect()).filter((r) => r.height > 0).map((r) => r.top));
       const img = k.querySelector('[data-test=foto] img');
       return { alt: Math.round(k.getBoundingClientRect().bottom + scrollY), ust: Math.round(ust), duzen: k.dataset.duzen,
-        img: Math.round(img?.getBoundingClientRect().height || 0), atif: !!k.querySelector('[data-test=foto-atif]') }; }""")
+        img: Math.round(img?.getBoundingClientRect().height || 0), atif: !!k.querySelector('[data-test=foto-atif]'), ...baslik() };
+      // PM 7041856903: başlık (artikel + kelime) tek satır, taşmaz, hecelenmez
+      function baslik() { const e = k.querySelector('[data-test=kelime-baslik]'); if (!e) return { satir: 0 };
+        const cs = getComputedStyle(e); const fs = parseFloat(cs.fontSize); const lh = parseFloat(cs.lineHeight) || fs * 1.15;
+        return { satir: Math.round(e.getBoundingClientRect().height / lh), tasma: e.scrollWidth > e.clientWidth + 0.5, boy: Math.round(fs),
+          metin: e.innerText, hy: cs.hyphens || cs.webkitHyphens }; } }""")
 
 
 def main():
@@ -86,10 +91,22 @@ def main():
         kare = [i for i, r in sonuc if r["duzen"] == "kare"]
         check(all(r["img"] <= (104 if r["duzen"] == "kare" else 160) + 1 for _, r in sonuc), "görsel boyu düzenin sınırında (tam 160, kare 104)")
         print(f"  · düzen: tam {len(aday) - len(kare)}, kare {len(kare)} {kare[:8]}")
+        # PM 7041856903: başlık her kartta tek satır, taşmaz, tire + satır sonu yok; kare düzende sığmazsa 28 → 24 → 21 px
+        bolunen = [(i, r["satir"], r["metin"]) for i, r in sonuc if r["satir"] != 1 or "\n" in r["metin"]]
+        check(not bolunen, f"başlık {len(sonuc)} kartın hepsinde tek satır, bölünmez (bölünen: {bolunen[:6]})")
+        tasan_b = [(i, r["boy"]) for i, r in sonuc if r.get("tasma")]
+        check(not tasan_b, f"başlık hiçbir kartta kesilmiyor; 21 px'te de sığmayan yok (sığmayan: {tasan_b[:6]})")
+        check(all(r["hy"] == "none" for i, r in sonuc), "başlık hecelenmez (hyphens: none)")
+        boylar = {}
+        for i, r in sonuc:
+            boylar.setdefault(r["boy"], []).append(i)
+        print(f"  · başlık boyu: " + ", ".join(f"{b} px: {len(v)}" + (f" {v[:4]}" if b < 28 else "") for b, v in sorted(boylar.items(), reverse=True)))
         # kısa kart tam düzende 160 px kalır; "Daha fazla" aç/kapat düzeni değiştirmez (inceleme #152 P1-2)
         ac(pg, base, "lx:Montag"); r = olc(pg)
         check(r["duzen"] == "tam" and r["img"] >= 150, f"kısa kart tam düzende, görsel 160 px ({r})")
-        uzun_daha = next((i for i, _ in sonuc if len(next(x for x in aday if x["id"] == i).get("collocations") or []) > 3), None)
+        # tam düzende kalan, 3'ten çok eşdizimli kart (kare düzende ölçüm zaten kapalı; inceleme #152 2. tur P2)
+        uzun_daha = next((i for i, r in sonuc if r["duzen"] == "tam" and len(next(x for x in aday if x["id"] == i).get("collocations") or []) > 3), None)
+        check(uzun_daha is not None, f"'Daha fazla' denetimi için tam düzende 3'ten çok eşdizimli kart var ({uzun_daha})")
         if uzun_daha:
             ac(pg, base, uzun_daha); once = olc(pg)
             pg.click("[data-test=esdizim-daha] > summary"); pg.wait_for_timeout(700)
