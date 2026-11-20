@@ -10,7 +10,7 @@ python3 tests/e2e/v2_gorev.py [--browser webkit] [--device "iPhone 15 Pro Max"] 
 """
 import datetime as dt
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow, tanitim_gec, bekle_kosul
 
 PORT = 4210
 GIF = arg("--gif"); KARELER = []
@@ -59,18 +59,23 @@ def main():
             # 1) Bahçe'de ipucusuz doğru → sayaç (öğrenme eylemi)
             pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=garden], [data-test=garden-empty]")
             for _ in range(12):
-                if pg.locator("[data-test=garden-intro]").count(): pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]")
+                if pg.locator("[data-test=garden-intro]").count(): tanitim_gec(pg); continue
                 if pg.locator("button.opt[data-right]").count(): pg.locator("button.opt[data-right]").first.click(); pg.wait_for_selector("[data-test=next]"); break
                 if pg.locator("[data-test=answer]").count(): pg.fill("[data-test=answer]", "xyz"); pg.click("[data-test=submit]")
                 if pg.locator("[data-test=gq-own-check]").count(): pg.click("[data-test=own-unsure]")
                 elif pg.locator("[data-test=next]").count(): pg.click("[data-test=next]")
                 pg.wait_for_timeout(150)
             pg.click("[data-test=next]")
-            pg.wait_for_function(f"async () => ((await ({META_OKU})('gorev:{gun}')) || {{ sayac: {{}} }}).sayac.bahceIpucusuz >= 1", timeout=5000)
-            check(True, f"[{tema}] Bahçe'de ipucusuz doğru cevap görev sayacını artırdı")
+            ok = bekle_kosul(pg, f"async () => ((await ({META_OKU})('gorev:{gun}')) || {{ sayac: {{}} }}).sayac.bahceIpucusuz >= 1")
+            check(ok, f"[{tema}] Bahçe'de ipucusuz doğru cevap görev sayacını artırdı")
             # 2) görevleri tamamla (sayaçlar + bugünkü XP; dakika görevi yoksa) → görev başına sandık + tören
             if "dk25" not in ids:
-                pg.evaluate(META_YAZ, [f"gorev:{gun}", {"sayac": {"bahceIpucusuz": 10, "tur90": 2, "ustuste5": 3, "dikteUsta": 3, "sesli": 3}}])
+                # uygulamanın kendi sayaç yazımı (Bahçe sonrası) tohumu ezebilir: yazılan değer okununca kalıcı sayılır (CI yarışı, main 7c78751)
+                tohum = {"bahceIpucusuz": 10, "tur90": 2, "ustuste5": 3, "dikteUsta": 3, "sesli": 3}
+                for _ in range(6):
+                    pg.evaluate(META_YAZ, [f"gorev:{gun}", {"sayac": tohum}]); pg.wait_for_timeout(300)
+                    if ((pg.evaluate(META_OKU, f"gorev:{gun}") or {}).get("sayac") or {}).get("tur90") == 2: break
+                check(((pg.evaluate(META_OKU, f"gorev:{gun}") or {}).get("sayac") or {}).get("tur90") == 2, f"[{tema}] görev sayacı tohumu kalıcı")
                 x = pg.evaluate(META_OKU, "xp") or {"toplam": 0, "gunler": {}}
                 x["gunler"][gun] = max(60, x["gunler"].get(gun, 0)); x["toplam"] = max(x["toplam"], 60)
                 pg.evaluate(META_YAZ, ["xp", x])
@@ -105,7 +110,7 @@ def main():
             pg.evaluate(META_YAZ, ["dondurma", {"hak": 1}])
             # açılışta denetlenir (uygulama yeniden açılınca; Bugün'e girmek gerekmez — inceleme #108 P2)
             pg.goto(base + "#/today"); pg.reload(); pg.wait_for_selector("[data-test=gorev-seridi]")
-            pg.wait_for_function(f"async () => ((await ({META_OKU})('xp')) || {{}}).dondurulan?.includes('{g1}')", timeout=5000)
+            check(bekle_kosul(pg, f"async () => ((await ({META_OKU})('xp')) || {{}}).dondurulan?.includes('{g1}')"), f"[{tema}] dondurulan gün xp kaydında")
             pg.wait_for_function("() => document.querySelector('[data-test=durum-seri]').innerText.trim() === '2'", timeout=5000)
             check((pg.evaluate(META_OKU, "dondurma") or {}).get("hak") == 0, f"[{tema}] dün dondurularak seri korundu (2 gün), hak 0")
             # 4) yol sandığı

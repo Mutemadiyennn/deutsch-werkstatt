@@ -1204,5 +1204,217 @@
     "why_tr": "Kısa cevap yeter: **Nummer eins** (bir numara)."
    }
   ]
+ },
+ "gun_sinavi": {
+  "id": "m1:03:s",
+  "maddeler": [
+   {
+    "id": "m1:03:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Das neue Büro hat die Nummer achtzehn.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das neue Büro hat die Nummer achtzehn.",
+     "das neue büro hat die nummer achtzehn",
+     "Das neue Büro hat die Nummer achtzehn",
+     "Das neue Buero hat die Nummer achtzehn.",
+     "das neue buero hat die nummer achtzehn"
+    ],
+    "why_tr": "**achtzehn** on sekiz demektir.",
+    "strictNumberWords": true
+   },
+   {
+    "id": "m1:03:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Die Nummer ist vier sechs drei null.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Nummer ist vier sechs drei null.",
+     "die nummer ist vier sechs drei null",
+     "Die Nummer ist vier sechs drei null"
+    ],
+    "why_tr": "**vier sechs drei null** dört altı üç sıfır demektir.",
+    "strictNumberWords": true
+   },
+   {
+    "id": "m1:03:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Das Büro ist von neun bis elf offen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das Büro ist von neun bis elf offen.",
+     "das büro ist von neun bis elf offen",
+     "Das Büro ist von neun bis elf offen",
+     "Das Buero ist von neun bis elf offen.",
+     "das buero ist von neun bis elf offen"
+    ],
+    "why_tr": "**von neun bis elf** dokuzdan on bire kadar demektir.",
+    "strictNumberWords": true
+   },
+   {
+    "id": "m1:03:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Nein, nicht neunzehn. Ich wohne in Nummer neun.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Nein, nicht neunzehn. Ich wohne in Nummer neun.",
+     "nein nicht neunzehn ich wohne in nummer neun",
+     "Nein, nicht neunzehn. Ich wohne in Nummer neun",
+     "Nein, nicht neunzehn, ich wohne in Nummer neun."
+    ],
+    "why_tr": "**neunzehn** on dokuz, **neun** dokuz demektir.",
+    "strictNumberWords": true
+   },
+   {
+    "id": "m1:03:s5",
+    "k": "tr_de",
+    "tr": "On beş numarada oturuyorum.",
+    "accepted": [
+     "Ich wohne in Nummer fünfzehn.",
+     "Ich wohne in der Nummer fünfzehn.",
+     "In Nummer fünfzehn wohne ich.",
+     "Ich wohne in Hausnummer fünfzehn.",
+     "Ich wohne in der Hausnummer fünfzehn."
+    ],
+    "why_tr": "On beş için **fünfzehn** dersin: önce **fünf** (beş), sonra **zehn** (on).",
+    "strictNumberWords": true
+   },
+   {
+    "id": "m1:03:s6",
+    "k": "tr_de",
+    "tr": "Ofis on bir numarada.",
+    "accepted": [
+     "Das Büro ist in Nummer elf.",
+     "Das Büro ist Nummer elf.",
+     "Das Büro ist in der Nummer elf.",
+     "Das Büro hat die Nummer elf.",
+     "Das Büro hat Nummer elf.",
+     "In Nummer elf ist das Büro."
+    ],
+    "why_tr": "On bir derken **elf** dersin.",
+    "strictNumberWords": true
+   },
+   {
+    "id": "m1:03:s7",
+    "k": "tr_de",
+    "tr": "Hayır, on üç değil. On dört!",
+    "accepted": [
+     "Nein, nicht dreizehn. Vierzehn!",
+     "Nein, nicht dreizehn, vierzehn!",
+     "Nicht dreizehn, vierzehn!",
+     "Nein, vierzehn, nicht dreizehn.",
+     "Vierzehn, nicht dreizehn!",
+     "Nein, nicht dreizehn, sondern vierzehn.",
+     "Nein, das ist nicht dreizehn. Das ist vierzehn!",
+     "Nein, nicht die Dreizehn. Die Vierzehn!"
+    ],
+    "why_tr": "On üç **dreizehn**, on dört **vierzehn** demektir.",
+    "strictNumberWords": true
+   },
+   {
+    "id": "m1:03:s8",
+    "k": "tr_de",
+    "tr": "Numaram sıfır yedi sekiz, iki iki beş.",
+    "accepted": [
+     "Meine Nummer ist null sieben acht, zwei zwei fünf.",
+     "Meine Nummer ist null sieben acht, zwo zwo fünf.",
+     "Null sieben acht, zwei zwei fünf.",
+     "Null sieben acht, zwo zwo fünf.",
+     "Die Nummer ist null sieben acht, zwei zwei fünf.",
+     "Meine Telefonnummer ist null sieben acht, zwei zwei fünf.",
+     "Die Nummer ist null sieben acht, zwo zwo fünf.",
+     "Meine Telefonnummer ist null sieben acht, zwo zwo fünf.",
+     "Meine Handynummer ist null sieben acht, zwei zwei fünf.",
+     "Meine Handynummer ist null sieben acht, zwo zwo fünf.",
+     "Das ist null sieben acht, zwei zwei fünf.",
+     "Das ist null sieben acht, zwo zwo fünf."
+    ],
+    "why_tr": "Telefonda iki için **zwo** da denir.",
+    "strictNumberWords": true
+   },
+   {
+    "id": "m1:03:s9",
+    "k": "guided_response",
+    "situation_tr": "Bürgerbüro'da Frau Schneider sıra numaranı soruyor. Numaran on.",
+    "prompt_de": "Und die Nummer, bitte?",
+    "accepted": [
+     "Nummer zehn.",
+     "Zehn.",
+     "Die Nummer ist zehn.",
+     "Meine Nummer ist zehn.",
+     "Ich habe Nummer zehn.",
+     "Ich habe die Nummer zehn.",
+     "Die Nummer zehn.",
+     "Nummer zehn, bitte.",
+     "Zehn, bitte.",
+     "Das ist Nummer zehn.",
+     "Ich bin Nummer zehn.",
+     "Ich habe die Zehn."
+    ],
+    "why_tr": "On derken **zehn** dersin.",
+    "strictNumberWords": true
+   },
+   {
+    "id": "m1:03:s10",
+    "k": "guided_response",
+    "situation_tr": "Tobi numarayı yanlış duydu. On altı değil, altı. Düzelt.",
+    "prompt_de": "Sechzehn, ja?",
+    "accepted": [
+     "Nein, nicht sechzehn. Sechs!",
+     "Nein, sechs.",
+     "Nicht sechzehn, sechs!",
+     "Nein, sechs, nicht sechzehn.",
+     "Sechs, nicht sechzehn.",
+     "Nein, nicht sechzehn, sechs.",
+     "Nein, Nummer sechs.",
+     "Nein, die Nummer ist sechs.",
+     "Nein, nur sechs.",
+     "Nein, sechs. Nicht sechzehn.",
+     "Nein! Sechs!",
+     "Nicht sechzehn. Sechs.",
+     "Nein, nicht sechzehn, sondern sechs."
+    ],
+    "why_tr": "Altı derken **sechs**, on altı derken **sechzehn** dersin.",
+    "strictNumberWords": true
+   },
+   {
+    "id": "m1:03:s11",
+    "k": "guided_response",
+    "situation_tr": "Herr Pichler yeni telefon numaranı soruyor. Numaran 0176 3581. Rakam rakam söyle.",
+    "prompt_de": "Wie ist Ihre neue Nummer?",
+    "accepted": [
+     "Meine Nummer ist null eins sieben sechs, drei fünf acht eins.",
+     "Null eins sieben sechs, drei fünf acht eins.",
+     "Die Nummer ist null eins sieben sechs, drei fünf acht eins.",
+     "Meine Telefonnummer ist null eins sieben sechs, drei fünf acht eins.",
+     "Meine Handynummer ist null eins sieben sechs, drei fünf acht eins.",
+     "Das ist null eins sieben sechs, drei fünf acht eins.",
+     "Ich habe die Nummer null eins sieben sechs, drei fünf acht eins.",
+     "Meine Nummer ist die null eins sieben sechs, drei fünf acht eins.",
+     "Meine neue Nummer ist null eins sieben sechs, drei fünf acht eins.",
+     "Die Telefonnummer ist null eins sieben sechs, drei fünf acht eins.",
+     "Meine neue Nummer ist die null eins sieben sechs, drei fünf acht eins.",
+     "Die neue Nummer ist null eins sieben sechs, drei fünf acht eins.",
+     "Meine neue Telefonnummer ist null eins sieben sechs, drei fünf acht eins.",
+     "Meine neue Handynummer ist null eins sieben sechs, drei fünf acht eins."
+    ],
+    "why_tr": "Uzun numarayı küçük parçalara böl ve rakam rakam söyle.",
+    "strictNumberWords": true
+   }
+  ],
+  "sesli": [
+   "m1:03:s9",
+   "m1:03:s10"
+  ],
+  "dikte": [
+   "m1:03:s1",
+   "m1:03:s2",
+   "m1:03:s3",
+   "m1:03:s4"
+  ]
  }
 }

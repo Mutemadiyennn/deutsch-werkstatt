@@ -1,6 +1,6 @@
 import { fotoHaritasi, loadFoto, type FotoKayit } from "../services/content.ts";
 /** Oynatıcının ortak parçaları: cevap kutusu, karar gösterimi, "Bu ne demek?", "Almanca nasıl derim?", "Duyduğum kelime", fotoğraf */
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Lexeme, PhotoResult } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { ai, aiState } from "../services/ai.ts";
@@ -54,7 +54,7 @@ export function VerdictView({ v, answer, onNext, onClaim, itemId, scenarioId, pr
       {v.kind === "wrong" && <FeedbackBand kind="bad" title="Şöyle olmalı:"><span class="de" lang="de" style={{ fontSize: "1.05rem" }}>{v.best}</span>
         {v.words && <div style={{ marginTop: 4 }} lang="de">{v.words.map((w) => <span style={{ marginRight: 4, textDecoration: w.st === "miss" ? "underline wavy" : "none", opacity: w.st === "ok" ? 0.7 : 1 }}>{w.w}</span>)}</div>}
         {v.note && <div>{v.note}</div>}</FeedbackBand>}
-      {v.kind === "unchecked" && <FeedbackBand kind="info" title="Bu cevabı kendim kontrol edemedim.">Doğrusu: <span class="de" lang="de" style={{ fontSize: "1.05rem" }}>{v.best}</span><div>Seninki aynı anlama mı geliyordu?</div></FeedbackBand>}
+      {v.kind === "unchecked" && <FeedbackBand kind="info" title="Uygulama bu cevabı denetleyemedi.">Doğrusu: <span class="de" lang="de" style={{ fontSize: "1.05rem" }}>{v.best}</span><div>Senin cümlen de aynı anlama geliyor mu?</div></FeedbackBand>}
       {v.kind === "unchecked" && !claimed ? <>
         <button class="btn block" onClick={claim} data-test="claim">Evet, aynı anlamda</button>
         <button class="btn primary block" onClick={onNext} autoFocus data-test="next">Hayır, doğrusunu öğrendim</button>
@@ -152,9 +152,13 @@ const lastShown = new Map<string, number>();
  * `sira` verilirse fotoğraf listedeki sırayla seçilir (PM-062: kartın gösterim sayacı; uygulama yeniden açılınca da döner).
  * Verilmezse oturum içinde bir önce gösterilenden farklısı.
  */
-export function Photo({ q, sira, yer, alt = "" }: { q?: string; sira?: number; /** B12 3. parça: seçilmiş fotoğrafın yeri ("lx:Kelime#kart", "lx:Kelime#ornekN") */ yer?: string[]; /** Türkçe alt metin (kelimenin anlamı) */ alt?: string }) {
+export function Photo({ q, sira, yer, alt = "", enCok = 200, onYok }: { q?: string; sira?: number; /** B12 3. parça: seçilmiş fotoğrafın yeri ("lx:Kelime#kart", "lx:Kelime#ornekN") */ yer?: string[]; /** Türkçe alt metin (kelimenin anlamı) */ alt?: string; /** en çok yükseklik (px) */ enCok?: number;
+  /** #137 P2-1: fotoğraf yok ya da yüklenemedi (soru başlığı fotoğrafsız biçime döner) */ onYok?: () => void }) {
   const { api } = useApp();
-  const [p, setP] = useState<PhotoResult | null>(null);
+  const [p, setP0] = useState<PhotoResult | null>(null);
+  const yokRef = useRef(onYok); yokRef.current = onYok;
+  // sonuç "yok" olduğunda (bulunamadı, servis kapalı, görsel yüklenemedi) çağıran haberdar edilir
+  const setP = (x: PhotoResult | null) => { setP0(x); if (!x) yokRef.current?.(); };
   // seçilmiş fotoğrafın atfı (CC BY/BY-SA: yazar + kaynak sayfa + lisans bağlantısı; inceleme #121 P1-1)
   const [atif, setAtif] = useState<FotoKayit | null>(null);
   useEffect(() => {
@@ -181,7 +185,7 @@ export function Photo({ q, sira, yer, alt = "" }: { q?: string; sira?: number; /
   if (!p) return null;
   // yüklenemezse (çevrimdışı, kaldırılmış dosya) alan tümden kalkar; yer ayrılır, düzen kaymaz (inceleme #121 P1-3)
   return <figure style={{ margin: 0 }} data-test="foto" data-kaynak={atif ? "secim" : "arama"}>
-    <img src={p.src} alt={alt || p.alt} onError={() => setP(null)} style={{ width: "100%", aspectRatio: "3 / 2", maxHeight: 200, objectFit: "cover", borderRadius: 12, background: "var(--soft)" }} loading="lazy" />
+    <img src={p.src} alt={alt || p.alt} onError={() => setP(null)} style={{ width: "100%", aspectRatio: "3 / 2", maxHeight: enCok, objectFit: "cover", borderRadius: 12, background: "var(--soft)" }} loading="lazy" />
     {atif
       ? <figcaption class="tiny muted foto-atif" data-test="foto-atif">Fotoğraf: {atif.sayfa && /^https:\/\//.test(atif.sayfa) ? <a class="foto-yazar" href={atif.sayfa} target="_blank" rel="noopener noreferrer">{atif.yazar || "kaynak"}</a> : <span class="foto-yazar">{atif.yazar}</span>} · {atif.lisans_url && /^https:\/\//.test(atif.lisans_url) ? <a class="foto-lisans" href={atif.lisans_url} target="_blank" rel="noopener noreferrer">{atif.lisans}</a> : <span class="foto-lisans">{atif.lisans}</span>} · kırpıldı</figcaption>
       : <figcaption class="tiny muted">Foto: {p.credit} · Pexels</figcaption>}

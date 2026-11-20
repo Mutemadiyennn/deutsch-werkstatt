@@ -47,7 +47,8 @@
   "okur_at": "2026-11-19"
  },
  "dersler": [
-  "r0:02-monate"
+  "r0:02-monate",
+  "r0:11-praesens"
  ],
  "yeni_kartlar": [
   "lx:Januar",
@@ -1137,5 +1138,209 @@
     "Ay adından önce **im** yazdın mı?"
    ]
   }
+ },
+ "gun_sinavi": {
+  "id": "m1:02:s",
+  "maddeler": [
+   {
+    "id": "m1:02:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Die Praxis ist Anfang Oktober geschlossen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Praxis ist Anfang Oktober geschlossen.",
+     "die praxis ist anfang oktober geschlossen",
+     "Die Praxis ist Anfang Oktober geschlossen"
+    ],
+    "why_tr": "**Anfang Oktober** ekim başı demektir."
+   },
+   {
+    "id": "m1:02:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Mein Geburtstag ist Ende März.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Mein Geburtstag ist Ende März.",
+     "mein geburtstag ist ende märz",
+     "Mein Geburtstag ist Ende März",
+     "Mein Geburtstag ist Ende Maerz.",
+     "mein geburtstag ist ende maerz"
+    ],
+    "why_tr": "**Ende März** mart sonu demektir."
+   },
+   {
+    "id": "m1:02:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Der Frühling ist im März, April und Mai.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Frühling ist im März, April und Mai.",
+     "der frühling ist im märz april und mai",
+     "Der Frühling ist im März, April und Mai",
+     "Der Fruehling ist im Maerz, April und Mai.",
+     "der fruehling ist im maerz april und mai"
+    ],
+    "why_tr": "**Frühling** ilkbahar demektir."
+   },
+   {
+    "id": "m1:02:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Ich habe im Juni Urlaub, nicht im Juli.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich habe im Juni Urlaub, nicht im Juli.",
+     "ich habe im juni urlaub nicht im juli",
+     "Ich habe im Juni Urlaub, nicht im Juli"
+    ],
+    "why_tr": "**Juni** haziran, **Juli** temmuz demektir."
+   },
+   {
+    "id": "m1:02:s5",
+    "k": "tr_de",
+    "tr": "Muayenehane ocak ayında kapalı.",
+    "accepted": [
+     "Im Januar ist die Praxis geschlossen.",
+     "Die Praxis ist im Januar geschlossen.",
+     "Im Januar ist die Praxis zu.",
+     "Die Praxis ist im Januar zu.",
+     "Im Januar hat die Praxis geschlossen.",
+     "Die Praxis hat im Januar geschlossen.",
+     "Die Praxis hat im Januar zu.",
+     "Im Januar hat die Praxis zu."
+    ],
+    "why_tr": "Ocak ayında derken **im Januar** denir."
+   },
+   {
+    "id": "m1:02:s6",
+    "k": "tr_de",
+    "tr": "Derya'nın doğum günü mart başında.",
+    "accepted": [
+     "Derya hat Anfang März Geburtstag.",
+     "Deryas Geburtstag ist Anfang März.",
+     "Der Geburtstag von Derya ist Anfang März.",
+     "Anfang März hat Derya Geburtstag.",
+     "Anfang März ist Deryas Geburtstag.",
+     "Derya hat Anfang März ihren Geburtstag."
+    ],
+    "why_tr": "Mart başında derken **Anfang März** dersin."
+   },
+   {
+    "id": "m1:02:s7",
+    "k": "tr_de",
+    "tr": "Doğum gününüz ne zaman?",
+    "accepted": [
+     "Wann haben Sie Geburtstag?",
+     "Wann ist Ihr Geburtstag?",
+     "Und wann haben Sie Geburtstag?",
+     "Wann haben Sie denn Geburtstag?",
+     "Und wann ist Ihr Geburtstag?",
+     "Wann ist denn Ihr Geburtstag?"
+    ],
+    "why_tr": "Ne zaman diye sorarken **Wann** ile başlarsın."
+   },
+   {
+    "id": "m1:02:s8",
+    "k": "tr_de",
+    "tr": "Ekimde değil, kasımda.",
+    "accepted": [
+     "Nicht im Oktober, im November.",
+     "Nicht im Oktober, sondern im November.",
+     "Nein, nicht im Oktober. Im November.",
+     "Im November, nicht im Oktober.",
+     "Nicht im Oktober. Im November.",
+     "Nein, im November, nicht im Oktober.",
+     "Nein, nicht im Oktober, sondern im November.",
+     "Im November und nicht im Oktober."
+    ],
+    "why_tr": "Kasımda derken **im November** dersin."
+   },
+   {
+    "id": "m1:02:s9",
+    "k": "guided_response",
+    "situation_tr": "Ioana soruyor: Frau Stadler temmuzda tatilde mi? Hayır de, ağustosta de.",
+    "prompt_de": "Hat Frau Stadler im Juli Urlaub?",
+    "accepted": [
+     "Nein, im August.",
+     "Nein, sie hat im August Urlaub.",
+     "Nein, Frau Stadler hat im August Urlaub.",
+     "Im August.",
+     "Nein, erst im August.",
+     "Nein, nicht im Juli. Im August.",
+     "Nein, nicht im Juli, sondern im August.",
+     "Nein, ihr Urlaub ist im August.",
+     "Nein. Im August.",
+     "Nein, sie hat Urlaub im August.",
+     "Nein, sie hat erst im August Urlaub.",
+     "Nein, im August hat sie Urlaub.",
+     "Nein, nicht im Juli. Sie hat im August Urlaub.",
+     "Nein. Sie hat im August Urlaub.",
+     "Nein, der Urlaub ist im August.",
+     "Nein, im Juli nicht. Im August.",
+     "Frau Stadler hat im August Urlaub."
+    ],
+    "why_tr": "Hayır, ağustosta derken **Nein, im August** dersin."
+   },
+   {
+    "id": "m1:02:s10",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl senin doğum gününü soruyor. Doğum günün eylül sonunda.",
+    "prompt_de": "Und Sie? Haben Sie im Herbst Geburtstag?",
+    "accepted": [
+     "Ja, Ende September.",
+     "Ja, mein Geburtstag ist Ende September.",
+     "Ja, ich habe Ende September Geburtstag.",
+     "Ja, Ende September habe ich Geburtstag.",
+     "Ja, im September. Ende September.",
+     "Ende September.",
+     "Ja, im Herbst. Ende September.",
+     "Ja, Ende September ist mein Geburtstag.",
+     "Mein Geburtstag ist Ende September.",
+     "Ja, ich hab Ende September Geburtstag.",
+     "Ja, im Herbst, Ende September.",
+     "Ja, Ende September!",
+     "Ja. Ende September.",
+     "Ja, im Herbst. Mein Geburtstag ist Ende September.",
+     "Ja, ich habe im Herbst Geburtstag, Ende September.",
+     "Ja, im September.",
+     "Ja. Ich habe Ende September Geburtstag.",
+     "Ja, im Herbst. Ich habe Ende September Geburtstag."
+    ],
+    "why_tr": "Eylül sonu derken **Ende September** dersin."
+   },
+   {
+    "id": "m1:02:s11",
+    "k": "guided_response",
+    "situation_tr": "Fırıncı Frau Stadler senin iznini soruyor. Senin iznin mayısta.",
+    "prompt_de": "Im August haben wir Urlaub. Und Sie?",
+    "accepted": [
+     "Ich habe im Mai Urlaub.",
+     "Im Mai.",
+     "Im Mai habe ich Urlaub.",
+     "Mein Urlaub ist im Mai.",
+     "Ich habe Urlaub im Mai.",
+     "Ich hab im Mai Urlaub.",
+     "Im Mai, im Frühling.",
+     "Im Mai hab ich Urlaub.",
+     "Ich habe im Mai Urlaub, im Frühling.",
+     "Ich im Mai.",
+     "Ich habe schon im Mai Urlaub."
+    ],
+    "why_tr": "Mayısta derken **im Mai** dersin."
+   }
+  ],
+  "sesli": [
+   "m1:02:s9",
+   "m1:02:s10"
+  ],
+  "dikte": [
+   "m1:02:s1",
+   "m1:02:s2",
+   "m1:02:s3",
+   "m1:02:s4"
+  ]
  }
 }

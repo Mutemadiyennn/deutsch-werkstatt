@@ -6,7 +6,7 @@
 python3 tests/e2e/v2_gunsonu.py [--browser webkit] [--device "iPhone 15"] [--shots DIR]
 """
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow, tanitim_gec
 import v2_okuma
 
 PORT = 4201
@@ -19,7 +19,7 @@ def bahce_tur(pg, bitir=True, adim=4):
         if pg.locator("[data-test=garden-again]").count(): pg.click("[data-test=garden-again]"); pg.wait_for_selector("[data-test=garden]"); continue
         if pg.locator("[data-test=garden-done]").count(): return True
         if not bitir and k >= adim: return False
-        if pg.locator("[data-test=garden-intro]").count(): pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]")
+        if pg.locator("[data-test=garden-intro]").count(): tanitim_gec(pg); continue
         if pg.locator("button.opt").count(): pg.locator("button.opt[data-right]").first.click()
         else:
             pg.fill("[data-test=answer]", "xyz falsch"); pg.click("[data-test=submit]")
@@ -70,6 +70,9 @@ def main():
         pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=gun-sonu]", timeout=10000)
         g = pg.inner_text("[data-test=gun-sonu]")
         check("adım bitirdin" in g, f"gün sonu kartı: biten adım ({g[:80]!r})")
+        # çipler sözlük eşzamansız yüklenince gelir: yavaş CI makinesinde kartla aynı anda değil (WebKit iPhone 15, bde4371) → beklenir
+        try: pg.wait_for_selector("[data-test=gun-sonu-kelimeler] .cip", timeout=10_000)
+        except Exception: pass
         check(pg.locator("[data-test=gun-sonu-kelimeler] .cip").count() >= 1, "bugün yeni anladığın kelimeler (çip)")
         cm = pg.inner_text("[data-test=gun-sonu-cumle]") if pg.locator("[data-test=gun-sonu-cumle]").count() else ""
         check("Urlaub" in cm and "Bis morgen!“" not in cm.split("Urlaub")[0][-5:], f"bugün kendi kurduğun cümle: kontrolden geçen mesaj, eksik taslak değil ({cm[:70]!r})")

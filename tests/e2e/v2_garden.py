@@ -7,7 +7,7 @@ PM-049 / #58 A3 Kelime Bahçesi — 10 kartlık bir tur baştan sona (kabul öl�
   python3 tests/e2e/v2_garden.py [--browser webkit] [--device "iPhone 15"] [--shots /tmp/shots]
 """
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow, tanitim_gec
 
 PORT = 4191
 AFTER = []  # cevaptan sonraki kart: (kelime, örnek cümle, örnek sayısı)
@@ -20,7 +20,7 @@ def note_after(pg):
 def answer_current(pg, wrong=False):
     """Ekrandaki soruyu cevaplar; seçmelide doğru şık e2e derlemesinde data-right ile işaretli"""
     if pg.locator("[data-test=garden-intro]").count():
-        pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]")
+        tanitim_gec(pg); return  # PM-069 madde 3: ilk soru sonra gelir
     if pg.locator("button.opt").count():
         sel = "button.opt:not([data-right])" if wrong else "button.opt[data-right]"
         pg.locator(sel).first.click()
@@ -59,15 +59,34 @@ def main():
         check(8 <= total <= 12, f"tur 8–12 soru ({total})")
         no_overflow(pg, "Bahçe ilk soru")
         if shots: shot(pg, "g01-tanitim", full=False)
-        intros, types = [], []
+        intros, types, sira, kopru1 = [], [], [], []
         def note():
+            # ekran sırası (PM-069 madde 3): ("T", kart) tanıtım, ("Q", kart) soru
+            if pg.locator("[data-test=garden-intro]").count(): sira.append(("T", pg.get_attribute("[data-test=garden-intro]", "data-lex")))
+            elif pg.locator("[data-test^=gq-]").count():
+                g1 = pg.locator("[data-test^=gq-]").first; sira.append(("Q", g1.get_attribute("data-lex"))); kopru1.append((g1.get_attribute("data-test"), g1.get_attribute("data-lex")))
             if pg.locator("[data-test=garden-intro]").count(): intros.append(pg.inner_text("[data-test=garden-intro] .de-xl"))
             t = pg.locator("[data-test^=gq-]").first.get_attribute("data-test") if pg.locator("[data-test^=gq-]").count() else None
             if t: types.append(t)
         # 1. soru yanlış: doğrusu ve öğrencinin cevabı yan yana, tur bir soru uzar
         note()
-        if pg.locator("[data-test=garden-intro]").count():
-            pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]"); note()
+        # bildirim balonu (ör. "Listene eklendi") birincil düğmeyi örtmez (PM 7025809386)
+        if pg.locator(".toast").count():
+            ust = pg.evaluate("""() => { const r = (e) => e.getBoundingClientRect(); const t = r(document.querySelector('.toast'));
+              return [...document.querySelectorAll('button.primary, .tabbar')].some((b) => { const k = r(b); return !(t.right <= k.left || t.left >= k.right || t.bottom <= k.top || t.top >= k.bottom); }); }""")
+            check(not ust, "bildirim balonu birincil düğmeyi ve alt çubuğu örtmüyor")
+        # çift dokunuş (inceleme #126 P1-B): "Tamam"a iki kez basmak tam bir adım ilerletir (sonraki tanıtım atlanmaz)
+        if pg.locator("[data-test=garden-intro]").count():  # turun ilk tanıtımı: ardından yine tanıtım gelir
+            pg.wait_for_timeout(500)
+            i0 = int(pg.get_attribute("[data-test=garden]", "data-i"))
+            # tarayıcı içinde iki dokunuş 120 ms arayla (Playwright'ın kendi gecikmesi CI'da 350 ms'yi aşabiliyor)
+            pg.evaluate("""() => new Promise((res) => { const b = () => document.querySelector('[data-test=garden-intro] [data-test=next]');
+              b()?.click(); setTimeout(() => { b()?.click(); setTimeout(res, 600); }, 120); })""")
+            i1 = int(pg.get_attribute("[data-test=garden]", "data-i"))
+            check(i1 == i0 + 1, f"çift dokunuşta yalnızca bir adım ilerledi (i {i0} → {i1})")
+            note()
+        while pg.locator("[data-test=garden-intro]").count():
+            tanitim_gec(pg); note()
         if pg.locator("button.opt").count(): pg.locator("button.opt:not([data-right])").first.click()
         else: pg.fill("[data-test=answer]", "xyz falsch"); pg.click("[data-test=submit]")
         if pg.locator("[data-test=gq-own-check]").count():
@@ -93,10 +112,22 @@ def main():
             lx0, ex0, nex0 = AFTER[0]
             again = [a for a in AFTER[1:] if a[0] == lx0]
             check(bool(again) and (nex0 < 2 or again[-1][1] != ex0), f"yanlış kart başka örnekle geri geldi ({lx0}: {ex0[:30]!r} → {(again[-1][1] if again else '')[:30]!r})")
+        # PM-069 madde 3: her yeni kartın ilk sorusu tanıtımından en az 2 ekran sonra (inceleme #126 P1-2: gerçek arayüz sırası)
+        araliklar = {}
+        for t, (tur_, lx) in enumerate(sira):
+            if tur_ == "T" and lx not in araliklar:
+                s_ = next((k for k in range(t + 1, len(sira)) if sira[k] == ("Q", lx)), None)
+                araliklar[lx] = None if s_ is None else s_ - t - 1
+        check(araliklar and all(v is not None and v >= 2 for v in araliklar.values()), f"tanıtımdan sonra ilk soru en az 2 ekran sonra ({sorted(araliklar.values(), key=lambda v: -1 if v is None else v)[:5]}…, {len(araliklar)} kart)")
+        tanitilan1 = set(araliklar)
         check(any("Daten" in x for x in intros), f"duyduğum kelime (die Daten) bu turda tanıtıldı ({intros[:4]})")
         check(pg.locator("[data-test=garden-done]").count() == 1, f"tur baştan sona bitti ({n} soru)")
         txt = pg.inner_text("[data-test=garden-done]")
         check("doğru" in txt and "undefined" not in txt and "NaN" not in txt, "tur sonu özeti")
+        # PM 7030294523 B9: yanlış varsa metin gerçeği söyler (aynı turun sonunda bir kez daha geldi; "yarın" vaadi yok)
+        if pg.locator("[data-test=tur-yanlis-not]").count():
+            yn = pg.inner_text("[data-test=tur-yanlis-not]")
+            check("bu turun sonunda bir kez daha" in yn and "yarın" not in yn, f"tur sonu: yanlışlar için doğru açıklama ({yn[:60]!r})")
         # M1 günündeyken (Bugün'deki giriş günün Bahçesi'ni açar) günün kartlarından kalan varsa "Bir tur daha" (inceleme #66 P1-3)
         check(pg.locator("[data-test=garden-tomorrow]").count() == 1 or (pg.locator("[data-test=garden-kalan]").count() == 1 and pg.locator("[data-test=garden-again]").count() == 1),
               "tur sonunda yarın ne geleceği ya da günün kalan kartları yazıyor")
@@ -110,33 +141,47 @@ def main():
         pg.wait_for_selector("[data-test=garden], [data-test=garden-empty]")
         check(pg.locator(".card.err, [role=alert]").count() == 0, "ikinci tur hatasız açılıyor")
         ACTIVE = ("gq-tr_de", "gq-photo_say", "gq-gap", "gq-sep_perfekt", "gq-own_sentence")
-        types2 = []; gaps = []; sonra = []; acildi = False; trde_bakildi = False
+        types2 = []; sira2 = []; gaps = []; sonra = []; acildi = False; trde_bakildi = False
         k = 0
-        while pg.locator("[data-test=garden]").count() and not pg.locator("[data-test=garden-done]").count() and k < 25:
-            t = pg.locator("[data-test^=gq-]").first.get_attribute("data-test") if pg.locator("[data-test^=gq-]").count() else "intro"
-            types2.append(t)
-            if t in ACTIVE and shots and not any(x in ACTIVE for x in types2[:-1]):
-                shot(pg, "g04-uretim", full=False)
-            pg.evaluate("document.documentElement.classList.remove('dyn'); document.documentElement.style.setProperty('--ts','1.3')")
-            no_overflow(pg, f"%130 yazı Bahçe {t}")
-            if t in ("gq-gap", "gq-sep_perfekt"):
-                # ipucu soru sırasında kapalı, düğmeyle açılır (PM 7004537514-2); kart metninde ipucu ya da cevap yok
-                kart = pg.inner_text(f"[data-test={t}]")
-                cev = (pg.get_attribute("[data-test=garden]", "data-cevap") or "") if pg.locator("[data-test=garden][data-cevap]").count() else ""
-                gaps.append(pg.locator("[data-test=ipucu-ac]").count() == 1 and pg.locator("[data-test=ipucu]").count() == 0 and (not cev or cev not in kart))
-                if not acildi:
-                    pg.click("[data-test=ipucu-ac]"); acildi = pg.locator("[data-test=ipucu]").count() == 1 and pg.locator("[data-test=ipucu-ac]").count() == 0
-                # yanlış cevaptan sonra ipucu açıklama olarak, cevaptan sonra ipucu düğmesi yok
-                answer_current_wrong_check = True
-                pg.fill("[data-test=answer]", "xyz falsch"); pg.click("[data-test=submit]"); pg.wait_for_selector("[data-test=next]")
-                sonra.append(pg.locator("[data-test=ipucu-sonra]").count() == 1 and pg.locator("[data-test=ipucu-ac]").count() == 0)
-                advance(pg); k += 1; continue
-            if t == "gq-tr_de" and not trde_bakildi:
-                pg.fill("[data-test=answer]", "xyz falsch"); pg.click("[data-test=submit]"); pg.wait_for_selector("[data-test=next]")
-                trde_bakildi = True; check(pg.locator("[data-test=ipucu-sonra]").count() == 0, "tr_de yanlışından sonra boşluk ipucu çıkmıyor (inceleme #85 P1-1)")
-                advance(pg); k += 1; continue
-            answer_current(pg); k += 1
+        for tur_no in range(2):  # boşluk sorusu rastgele türle gelmeyebilir (PM-069 P0 kuralı uygun boşluğu azalttı): gerekirse bir tur daha
+          if tur_no == 1:
+              if gaps or not pg.locator("[data-test=garden-again]").count(): break
+              pg.click("[data-test=garden-again]"); pg.wait_for_selector("[data-test=garden], [data-test=garden-empty]"); k = 0
+          while pg.locator("[data-test=garden]").count() and not pg.locator("[data-test=garden-done]").count() and k < 25:
+              t = pg.locator("[data-test^=gq-]").first.get_attribute("data-test") if pg.locator("[data-test^=gq-]").count() else "intro"
+              types2.append(t)
+              if pg.locator("[data-test^=gq-]").count():
+                  g_ = pg.locator("[data-test^=gq-]").first; sira2.append((t, g_.get_attribute("data-lex"), g_.get_attribute("data-kopru") == "1"))
+              if t in ACTIVE and shots and not any(x in ACTIVE for x in types2[:-1]):
+                  shot(pg, "g04-uretim", full=False)
+              pg.evaluate("document.documentElement.classList.remove('dyn'); document.documentElement.style.setProperty('--ts','1.3')")
+              no_overflow(pg, f"%130 yazı Bahçe {t}")
+              if t in ("gq-gap", "gq-sep_perfekt"):
+                  # ipucu soru sırasında kapalı, düğmeyle açılır (PM 7004537514-2); kart metninde ipucu ya da cevap yok
+                  kart = pg.inner_text(f"[data-test={t}]")
+                  cev = (pg.get_attribute("[data-test=garden]", "data-cevap") or "") if pg.locator("[data-test=garden][data-cevap]").count() else ""
+                  gaps.append(pg.locator("[data-test=ipucu-ac]").count() == 1 and pg.locator("[data-test=ipucu]").count() == 0 and (not cev or cev not in kart))
+                  if not acildi:
+                      pg.click("[data-test=ipucu-ac]"); acildi = pg.locator("[data-test=ipucu]").count() == 1 and pg.locator("[data-test=ipucu-ac]").count() == 0
+                  # yanlış cevaptan sonra ipucu açıklama olarak, cevaptan sonra ipucu düğmesi yok
+                  answer_current_wrong_check = True
+                  pg.fill("[data-test=answer]", "xyz falsch"); pg.click("[data-test=submit]"); pg.wait_for_selector("[data-test=next]")
+                  sonra.append(pg.locator("[data-test=ipucu-sonra]").count() == 1 and pg.locator("[data-test=ipucu-ac]").count() == 0)
+                  advance(pg); k += 1; continue
+              if t == "gq-tr_de" and not trde_bakildi:
+                  pg.fill("[data-test=answer]", "xyz falsch"); pg.click("[data-test=submit]"); pg.wait_for_selector("[data-test=next]")
+                  trde_bakildi = True; check(pg.locator("[data-test=ipucu-sonra]").count() == 0, "tr_de yanlışından sonra boşluk ipucu çıkmıyor (inceleme #85 P1-1)")
+                  advance(pg); k += 1; continue
+              answer_current(pg); k += 1
         check(any(t in ACTIVE for t in types2), f"ikinci turda üretim sorusu var ({sorted(set(types2))})")
+        # PM 7030294523 P0: İlk Hafta bitmeden ve kalıp bitirilmeden "kendi cümleni kur" hiç gelmez
+        check("gq-own_sentence" not in types2, f"kendi cümleni kur İlk Haftada sorulmuyor ({sorted(set(types2))})")
+        # köprü (PM-069 madde 3): 1. turda tanıtılan kartın ilk üretim sorusundan (tr_de) önce artikel ya da eşdizim seçmeli
+        # (köprü türü olmayan kart — ör. edat, yalnızca çoğul isim — doğrudan üretime geçer)
+        # köprü 1. turda da gelmiş olabilir (yanlıştan sonraki tekrar artikel/eşdizim olabilir)
+        kopru_ihlal = [lx for k, (t, lx, kt) in enumerate(sira2) if t == "gq-tr_de" and kt and lx in tanitilan1 and not any(x[1] == lx and x[0] in ("gq-article", "gq-colloc") for x in kopru1 + [y[:2] for y in sira2[:k]])]
+        kopru_var = [lx for t, lx, _ in sira2 if t in ("gq-article", "gq-colloc") and lx in tanitilan1]
+        check(not kopru_ihlal and kopru_var, f"ilk tr_de'den önce artikel/eşdizim köprüsü ({len(kopru_var)} köprü, ihlal {kopru_ihlal[:3]})")
         check(len(gaps) > 0 and all(gaps), f"boşluk sorusunda ipucu soru sırasında kapalı, düğme var, cevap kartta yok ({len(gaps)} soru)")
         check(acildi, "İpucu göster'e dokununca ipucu açılıyor, düğme kalkıyor")
         check(len(sonra) > 0 and all(sonra), f"yanlış cevaptan sonra ipucu açıklama olarak görünüyor, ipucu düğmesi yok ({len(sonra)})")

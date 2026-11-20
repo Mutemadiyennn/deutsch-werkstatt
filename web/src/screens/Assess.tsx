@@ -10,6 +10,7 @@ import { applyAssessment, itemIdFromAssess } from "../core/learner.ts";
 import { judge, judgeWord } from "../core/grading.ts";
 import { speak, sttAvailable, listenOnce } from "../services/speech.ts";
 import { ApiError } from "../services/api.ts";
+import { ai, aiState } from "../services/ai.ts";
 import { ErrorPanel, FocusChip, Loading, SpeakBtn, TopBar } from "../ui/components.tsx";
 
 type Fb = { ok: boolean; skipped?: boolean; right: string; tr?: string; note?: string };
@@ -162,7 +163,7 @@ function TypeWord({ it, onAnswer }: { it: Extract<AssessItem, { skill: "vocab_ac
   };
   return (
     <div class="stack">
-      <div class="card"><div class="kicker">Almancası nedir?</div><div style={{ fontSize: "1.3rem", fontWeight: 600 }}>{it.tr}</div>{it.art && <p class="small muted" style={{ marginTop: 6 }}>İsim: artikeliyle yaz (der / die / das).</p>}</div>
+      <div class="card"><div class="kicker">Almancası nedir?</div><div style={{ fontSize: "1.3rem", fontWeight: 600 }}>{it.tr}</div>{it.art && <p class="small muted" style={{ marginTop: 6 }}>Almancasını yaz. Başına der, die ya da das koy.</p>}</div>
       <form class="stack" onSubmit={(e) => { e.preventDefault(); if (v.trim()) check(); }}>
         <input class="input" lang="de" autocapitalize="off" autocomplete="off" spellcheck={false} value={v} onInput={(e) => setV((e.target as HTMLInputElement).value)} aria-label="Cevabın" data-test="answer" />
         <button class="btn primary block" type="submit" disabled={!v.trim()}>Kontrol et</button>
@@ -213,10 +214,11 @@ function Speak({ it, onAnswer }: { it: Extract<AssessItem, { skill: "speaking" }
     const j = judge(variants, inputs);
     if (j.ok) return onAnswer({ ...base(it), correct: true, given: j.heard, mode }, { ok: true, right: j.best, tr: it.tr });
     // hazır listede olmayan ama doğru olabilecek cevap: sunucudaki öğretmene sorulur (en fazla ~12 sn); sunucu yoksa kural sonucu geçerli
-    if (api.configured && j.heard) {
+    // sağlayıcı kapalıysa ya da devre kesici açıksa sorulmaz (inceleme #123 P1-1; diğer yapay zekâ yüzeyleriyle aynı kapı)
+    if (aiState(api).available && j.heard) {
       setState("checking");
       try {
-        const r = await api.ai("equiv_check", { prompt_tr: it.tr, expected: variants, answer: j.heard }, 13000);
+        const r = await ai(api, "equiv_check", { prompt_tr: it.tr, expected: variants, answer: j.heard });
         setState("idle");
         return onAnswer({ ...base(it), correct: r.ok, given: j.heard, mode, aiAccepted: r.ok }, { ok: r.ok, right: it.de, tr: it.tr, note: r.reason_tr });
       } catch (e) {

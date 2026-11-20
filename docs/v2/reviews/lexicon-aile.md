@@ -1,0 +1,29 @@
+# Dil incelemesi: aile satırları ve WORLD ayrıntıları (#107 2. tur P1-2 + P2)
+
+- **Kapsam:**
+  - Tarama: sözlükte öğrenciye aile kuran birinci kişi satırları ("Mein Bruder …", "Ich habe zwei Brüder", "Meine Oma ist achtzig"), WORLD'de tanımlı olmayan karakter akrabaları ("Tobis Bruder", "Ioanas Mann", "Basti hilft seinem Bruder") ve WORLD'de olmayan karakter geçmişi (Wimmer'in Türkiye yolculuğu, Tobi'nin işe gidişi).
+  - Liste: 82 satır, dilbilimci 20 satır daha ekledi.
+- **Sonuç:** 91 alan değişti (50 örnek, 41 boşluk). 11 satır bilinçli bırakıldı.
+- **Nasıl:**
+  - Kartın kelimesi aile değilse akraba aile dışına verildi (`meine Kollegin`, `bei Freunden`, `Ich kämpfe für mein Recht`).
+  - Aile kelimesi ya da iyelik cevabı gerekiyorsa sözlükte zaten kullanılan genel adlara verildi (Anna, Max, Tom, Paul, Lena, Mia) ya da konuşan adsız biri oldu ("Max sagt: …").
+  - Boşluk cevaplarının hepsi aynı kaldı.
+- **Çelişkiler kapandı:**
+  - `lx:Bruder`: bir ya da iki kardeş.
+  - Öğrencinin büyükannesi: 80 ya da "neredeyse 90".
+  - `lx:Geschwister`: "kardeşim yok" ile "üç kardeşim var".
+  - Anna: hem "bekâr" hem "kocası postanede". Bekâr olan Sophie oldu.
+  - Tobi: işe bisikletle mi otobüsle mi gidiyor; arabası var mı.
+- **Bırakılanlar:**
+  - 9 `mistakes_tr` notu ("Annemle derken **mit meine Mutter** yanlış" türü). Kalıp öğretiyor, öğrencinin hayatını söylemiyor.
+  - `lx:Onkel` ö3 ve ö5: konuşan adlı biri.
+  - Soru–cevap diyalogları ("Was macht dein Vater?"): bilgi soruyor, yüklemiyor.
+  - `lx:ledig`: "Ich bin ledig." resmî dairede gereken kalıp.
+- **Okur:**
+  - 133 satır okundu. 21 GERİ çıktı, hepsi eski "**er** ve **sie** ile … olur" ipuçları. "<Türkçe> derken **…** denir." kalıbına çevrildi.
+  - Tekrar turları: 21 satırda 1 GERİ, sonra 2/2 GEÇTİ.
+- **Açık (WORLD'e ayrıntı olarak yazılmalı ya da genelleştirilmeli; baş geliştirici):**
+  - "Ioana kommt aus Rumänien"
+  - Luka'nın 2008'deki yaşı
+  - "Luka hat Deutsch bei der Arbeit gelernt"
+  - Brandl "seit vierzig/fünfzig Jahren"

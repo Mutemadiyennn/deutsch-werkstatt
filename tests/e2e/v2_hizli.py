@@ -9,7 +9,7 @@ python3 tests/e2e/v2_hizli.py [--browser webkit] [--device "iPhone 15"] [--shots
 """
 import io, os
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow, tanitim_gec, bekle_kosul
 
 PORT = 4211
 OKU = """async ([st, k]) => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
@@ -41,15 +41,17 @@ BUGUN = "() => { const d = new Date(); return `${d.getFullYear()}-${String(d.get
 
 def oneriye_kadar(pg, okuma=300):
     """yeni kartlarda ilk tanıma sorusunu hızlı ve doğru cevapla; öneri gelirse True"""
-    for _ in range(6):
+    for _ in range(14):
         if pg.locator("[data-test=hizli-oneri]").count(): return True
-        if pg.locator("[data-test=garden-intro]").count(): pg.click("[data-test=garden-intro] [data-test=next]")
+        if pg.locator("[data-test=garden-done]").count(): return False
+        # PM-069 madde 3: tanıtımdan sonra ilk soru iki öğe sonra gelir
+        if pg.locator("[data-test=garden-intro]").count(): tanitim_gec(pg); continue
         pg.wait_for_selector("[data-test^=gq-]")
         if not pg.locator("button.opt[data-right]").count(): return False
         pg.locator("button.opt[data-right]").first.click(); pg.wait_for_selector("[data-test=next]")
         pg.wait_for_timeout(okuma)  # cevap kartını okumak öneri süresine girmez (inceleme #113 P1-4)
-        pg.click("[data-test=next]")
-        pg.wait_for_selector("[data-test=garden-intro], [data-test=hizli-oneri], [data-test=garden-done]")
+        old = pg.inner_text("[data-test=garden] .pbar"); pg.click("[data-test=next]")
+        pg.wait_for_function("(o) => document.querySelector('[data-test=garden-done]') || document.querySelector('[data-test=hizli-oneri]') || (document.querySelector('[data-test=garden] .pbar') || {}).innerText !== o", arg=old)
     return pg.locator("[data-test=hizli-oneri]").count() > 0
 
 def main():
@@ -88,7 +90,7 @@ def main():
 
         # 2) tanıtımda "Biliyorum, sına beni": doğru → Bildin, yanlış → birlikte bakalım
         b, pg = yeni_sayfa(p); bahce(pg, base); kare(pg, 8)
-        basilan = pg.inner_text("[data-test=garden-intro] .de-xl"); tr_basilan = pg.locator("[data-test=garden-intro] p").first.inner_text()
+        basilan = pg.inner_text("[data-test=garden-intro] .de-xl"); tr_basilan = pg.inner_text("[data-test=intro-tr]")
         pg.click("[data-test=sina-beni]"); pg.wait_for_selector("[data-test=sina-soru]"); kare(pg, 6)
         soru = pg.inner_text("[data-test=gq-tr_de] .de-lg") if pg.locator("[data-test=gq-tr_de] .de-lg").count() else pg.inner_text("main")
         check(tr_basilan in soru, f"basılan kart = sorulan kart ({basilan!r} → {soru[:40]!r}; PM 7018403441-1)")
@@ -98,8 +100,7 @@ def main():
         check("Bildin" in t, f"doğru üretim: 'Bildin!' ({t[:60]!r})")
         lex = pg.get_attribute("[data-test=after-card]", "data-lex")
         pg.click("[data-test=next]")
-        pg.wait_for_function(f"async () => ((await ({OKU})(['meta', 'xp'])) || {{ value: {{ toplam: 0 }} }}).value.toplam >= {once + 4}", timeout=5000)
-        check(True, "üretimle bilinen kart +4 XP (tanımadan fazla)")
+        check(bekle_kosul(pg, f"async () => ((await ({OKU})(['meta', 'xp'])) || {{ value: {{ toplam: 0 }} }}).value.toplam >= {once + 4}"), "üretimle bilinen kart +4 XP (tanımadan fazla)")
         it = pg.evaluate(OKU, ["items", lex])
         check(it and it["passive"]["fsrs"] and abs(it["passive"]["fsrs"]["stability"] - 7) < 0.01 and it["active"]["ok"] == 1, f"kart tanımayı atladı: pasif kararlılık 7 gün, aktif yol başladı ({lex})")
         pg.wait_for_selector("[data-test=sina-soru], [data-test^=gq-], [data-test=garden-done]")
@@ -127,7 +128,7 @@ def main():
             if pg.locator("[data-test=garden-intro]").count() or pg.locator("[data-test=gq-listen_meaning], [data-test=gq-article], [data-test=gq-colloc]").count(): tanima += 1
             if pg.locator("[data-test=sina-soru]").count(): sina += 1; sina_cevapla(pg, True)
             elif pg.locator("button.opt[data-right]").count(): pg.locator("button.opt[data-right]").first.click()
-            elif pg.locator("[data-test=garden-intro]").count(): pg.click("[data-test=garden-intro] [data-test=next]"); continue
+            elif pg.locator("[data-test=garden-intro]").count(): tanitim_gec(pg); continue
             else: break
             pg.wait_for_selector("[data-test=next]"); old = pg.inner_text("[data-test=garden] .pbar"); pg.click("[data-test=next]")
             pg.wait_for_function("(o) => document.querySelector('[data-test=garden-done]') || (document.querySelector('[data-test=garden] .pbar') || {}).innerText !== o", arg=old)
