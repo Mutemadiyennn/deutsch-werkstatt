@@ -56,8 +56,12 @@ Sütunlar: **Cihazda** (iPhone 15 Pro Max'te var mı) · **Kazanç** · **Ücret
 
 **Girmez:** uzak bildirim, iCloud (kişisel takımda yok), paylaşım eki (ikinci ek), ücretli bulut güncelleme hizmeti.
 
-## 4. Açık sorular (PM'e)
+## 4. PM yanıtları (PM 7032771759, 20.11.2026)
 
-1. Telefondaki iOS sürümü (§1). Kurulum aracı belli: Impactor (Linux).
-2. e maddesi: Kabuk 2'de mi, Kabuk 3'te mi (öneri: Kabuk 3)?
-3. Bildirim sıklığı üst sınırı: günde en çok 2 (öneri).
+1. **iOS 27.0.1.** SpeechAnalyzer ve cihaz üstü dil modeli sürüm olarak uygun. Ancak telefonda Siri/Apple Intelligence şu an kapalı. Köprü `availability` nedenini okuyup kabuk satırına yazar ("yok: Apple Intelligence kapalı"); uygulama sunucu yoluna düşer. Açtırma kararı ölçümden sonra PM'de. iOS 27'deki API değişiklikleri yapım sırasında resmî belgeden doğrulanır.
+2. **e maddesi (paket içi uygulama): Kabuk 3.** Kabuk 2'de canlı adres modeli kalır, açılış adresi `/v2/`. Kabuk 3'ün ön koşulu: yerel Google girişinin ayrı bir deneme derlemesinde çalıştığının gösterilmesi.
+3. **Bildirim:** günde en çok 2; saatleri öğrenci seçer; varsayılan kapalı, 1. gün sonunda sorulur.
+4. **Ek:** Canlı Etkinlik + Kısayollar için tek ek. Aynı koşuda eksiz yedek IPA da üretilir (ek ücretsiz imzalı kurulumu kırarsa).
+5. **Kabul listesi** (≤15 madde) qa'dan; proje sahibine PM götürür.
+
+Kabuk 2 yapımı PM-077 sırasında, 5. maddeden sonra.
