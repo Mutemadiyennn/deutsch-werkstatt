@@ -1,5 +1,9 @@
 import { describe, it, expect } from "vitest";
-import { klipVideo } from "./klip.ts";
+import { klipVideo, klipVideolari } from "./klip.ts";
+import { mkdirSync, mkdtempSync, writeFileSync, rmSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 
 // sentetik klip (gerçek transkript depoya girmez): 3 tur, 3. tur hatta çıkarılmış (hizalı metinde yok)
 const klip = {
@@ -69,5 +73,28 @@ describe("A9 klip → günün videosu (PM-069 madde 4)", () => {
     expect(v.ortam_tr).toBe("Ada bir öğrenci.");
     expect(v.on_ogretim).toEqual([{ de: "wohne, wohnst", tr: "oturuyorum, oturuyorsun" }]);
     expect(klipVideo(klip, metin)!.on_ogretim).toEqual([]);
+  });
+  it("klipVideolari: ölçüm kaydı + sha256 zorunlu; 'birebir' dışı etiket İÇ örneklem onayı ister (inceleme #159 2. tur)", () => {
+    const kok = mkdtempSync(join(tmpdir(), "klip-")); const kd = join(kok, "video"), md = join(kok, "medya");
+    try {
+      for (const d of [kd, md]) { rmSync(d, { recursive: true, force: true }); mkdirSync(d, { recursive: true }); }
+      const ham = JSON.stringify(metin); const sha = createHash("sha256").update(ham).digest("hex");
+      writeFileSync(join(md, "klip-09.metin.json"), ham);
+      const kur = (k: object, olcum: object | null) => {
+        writeFileSync(join(kd, "klip-09.json"), JSON.stringify(k));
+        rmSync(join(kd, "klip-09.olcum.json"), { force: true });
+        if (olcum) writeFileSync(join(kd, "klip-09.olcum.json"), JSON.stringify(olcum));
+        return klipVideolari(kd, [md]).map((x) => x.video.id);
+      };
+      const k = { ...klip, dosya: undefined };
+      const varlik = { varliklar: { "klip-09.metin.json": { sha256: sha } } };
+      expect(kur(k, null)).toEqual([]);                                             // ölçüm yok
+      expect(kur(k, { etiket: "birebir" })).toEqual([]);                            // özet yok
+      expect(kur(k, { etiket: "birebir", varliklar: { "klip-09.metin.json": { sha256: "0".repeat(64) } } })).toEqual([]); // özet farklı
+      expect(kur(k, { etiket: "birebir", ...varlik })).toEqual(["m1:09:rv1"]);
+      expect(kur(k, { etiket: "insan-orneklemi", ...varlik })).toEqual([]);
+      expect(kur(k, { ...varlik })).toEqual([]);                                   // etiketsiz
+      expect(kur({ ...k, orneklem_onay: true }, { etiket: "insan-orneklemi", ...varlik })).toEqual(["m1:09:rv1"]);
+    } finally { rmSync(kok, { recursive: true, force: true }); }
   });
 });

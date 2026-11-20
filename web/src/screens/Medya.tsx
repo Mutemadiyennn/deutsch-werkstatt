@@ -251,8 +251,8 @@ function OnOgretim({ w }: { w: { de: string; tr: string }[] }) {
     <div class="stack" style={{ gap: 6 }} data-test="on-ogretim">
       <p class="small" style={{ margin: 0 }}>Önce şu kelimelere bak; klipte geçiyorlar:</p>
       <div class="cip-dizi" ref={dizi} style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-        {gorunen.map((x) => <button type="button" class="chip on-cip" style={{ whiteSpace: "nowrap" }} data-test="on-ogretim-kelime" onClick={() => void speak(x.de, "de", "normal")}><b lang="de">{x.de}</b><span>· {x.tr}</span></button>)}
-        {gizli > 0 && <button type="button" class="chip" style={{ whiteSpace: "nowrap" }} data-test="on-ogretim-daha" onClick={() => setAcik(true)}>+{gizli}</button>}
+        {gorunen.map((x) => <button type="button" class="chip on-cip" style={{ maxWidth: "100%", minHeight: 44, textAlign: "left", whiteSpace: "normal", borderRadius: 14 }} data-test="on-ogretim-kelime" onClick={() => void speak(x.de, "de", "normal")}><b lang="de">{x.de}</b><span>· {x.tr}</span></button>)}
+        {gizli > 0 && <button type="button" class="chip" style={{ whiteSpace: "nowrap", minHeight: 44 }} data-test="on-ogretim-daha" onClick={() => setAcik(true)}>+{gizli}</button>}
       </div>
     </div>
   );

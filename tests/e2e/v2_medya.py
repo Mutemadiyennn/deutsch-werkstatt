@@ -92,7 +92,14 @@ def main():
         check(acik <= 2, f"açıklama ≤ 2 satır ({acik})")
         lnk = pg.locator("[data-test=adim-dinle] [data-test=next]")
         check(lnk.count() == 1 and lnk.get_attribute("data-baglanti") == "1" and "btn" not in (lnk.get_attribute("class") or ""), "ilk dinlemeden önce 'Sorulara geç' küçük bağlantı (düğme değil)")
+        # inceleme #159 2. tur P1-1: uzun madde (≥ 50 harf) kendi satırında kırılır, hiçbir çip taşmaz; çip ≥ 44 pt
+        pg.set_viewport_size({"width": 393, "height": 852}); pg.wait_for_timeout(250)
         pg.click("[data-test=on-ogretim-daha]")
+        t = pg.evaluate("""() => { const c = document.querySelector('[data-test=on-ogretim] .cip-dizi'); const cr = c.getBoundingClientRect();
+          const cs = [...c.children].map((x) => x.getBoundingClientRect());
+          return { tasan: cs.filter((r) => r.right > cr.right + 0.5 || r.left < cr.left - 0.5).length, alcak: cs.filter((r) => r.height < 43.5).length, uzun: [...c.children].some((x) => x.innerText.length >= 50), sw: c.scrollWidth, cw: c.clientWidth }; }""")
+        check(t["tasan"] == 0 and t["alcak"] == 0 and t["uzun"] and t["sw"] <= t["cw"], f"393 px: uzun ön öğretim maddesi taşmıyor, çipler ≥ 44 pt ({t})")
+        pg.set_viewport_size({"width": 430, "height": 932})
         check(pg.locator("[data-test=on-ogretim-kelime]").count() == 6, f"'{daha}' dokununca bütün kelimeler")
         check(pg.locator("[data-test=video-ortam]").count() == 1 and "adını" in pg.inner_text("[data-test=video-ortam]"), "ortam cümlesi videonun altında")
         # (a) bölümü dinle: video bölümün başından oynar

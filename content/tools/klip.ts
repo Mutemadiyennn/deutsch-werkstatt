@@ -113,11 +113,13 @@ export function klipVideolari(klipDir: string, medyaKaynak: string[]): { day: nu
     const olcum = existsSync(olcumYol) ? JSON.parse(readFileSync(olcumYol, "utf8")) : null;
     // ölçümsüz klip bağlanmaz; hat "insan-orneklemi" dediyse İÇ'in örneklem onayı (`orneklem_onay: true`) gerekir (FORMAT.md A9)
     if (!olcum) { console.warn(`${ad}: ölçüm kaydı yok; bağlanmadı`); continue; }
-    if (olcum.etiket === "insan-orneklemi" && k.orneklem_onay !== true) { console.warn(`${ad}: insan örneklemi bekliyor; bağlanmadı`); continue; }
+    // yalnız hattın "birebir" dediği klip kendiliğinden bağlanır; öteki her etiket (ya da etiketsiz kayıt) İÇ'in örneklem onayını ister (inceleme #159 2. tur P2)
+    if (olcum.etiket !== "birebir" && k.orneklem_onay !== true) { console.warn(`${ad}: örneklem onayı bekliyor (etiket: ${olcum.etiket ?? "yok"}); bağlanmadı`); continue; }
     const ham = readFileSync(metinYol);
     // inceleme #159 P1-1: ölçüm kaydı varsa metin tam o dosya olmalı (Releases'te sonradan değişen metin bağlanmaz)
     const beklenen = olcum?.varliklar?.[`${ad}.metin.json`]?.sha256;
-    if (beklenen && createHash("sha256").update(ham).digest("hex") !== beklenen) { console.warn(`${ad}: metin.json ölçüm kaydıyla aynı değil (sha256); bağlanmadı`); continue; }
+    // özet zorunlu: ölçüm kaydında metnin sha256'sı yoksa da bağlanmaz (inceleme #159 2. tur P2)
+    if (!beklenen || createHash("sha256").update(ham).digest("hex") !== beklenen) { console.warn(`${ad}: metin.json ölçüm kaydıyla doğrulanamadı (sha256 ${beklenen ? "farklı" : "yok"}); bağlanmadı`); continue; }
     const v = klipVideo(k, JSON.parse(ham.toString("utf8")), olcum);
     if (v) out.push({ day: k.day, video: v });
   }
