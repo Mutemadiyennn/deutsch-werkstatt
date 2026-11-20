@@ -75,7 +75,7 @@ function MikrofonDeneme() {
   const akis = useRef<{ stop: () => void } | null>(null);
   const yol = sttYolu();
   const [kabuk, setKabuk] = useState<KabukBilgisi | null>(null);
-  useEffect(() => { void kabukBilgisi().then(setKabuk); }, []);
+  useEffect(() => { void kabukBilgisi().then(setKabuk, () => setKabuk(null)); }, []);
   useEffect(() => {
     const p = (navigator as any).permissions?.query?.({ name: "microphone" });
     p?.then((r: any) => { const f = () => setIzin(r.state === "granted" ? "verildi" : r.state === "denied" ? "reddedildi" : "sorulacak"); f(); r.onchange = f; }).catch(() => {});
