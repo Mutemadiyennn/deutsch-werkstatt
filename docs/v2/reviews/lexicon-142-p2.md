@@ -56,3 +56,21 @@ Kaynak: https://github.com/Mutemadiyennn/deutsch-werkstatt/pull/154#issuecomment
 - **Öğrenci satırı:** "Sag deiner Mutter gute Besserung!" → Anna.
 - **Okur:** değişen her satır okundu (örneklem değil). Kayıt: `docs/v2/reviews/okur/lexicon-142-p2.md`.
 - **Açık kalan (ayrı iş):** `lx:mögen#2` ile `lx:möchten` iki ayrı kart ama ikisi de "möchte" öğretiyor; okur bunu kart düzeyinde not etti. Kart birleştirme ya da ayrıştırma sözlük yapısı kararı olduğu için bu PR'a alınmadı.
+
+## İnceleme #154 2. tur önerileri (P1–P5), ayrı PR
+Kaynak: https://github.com/Mutemadiyennn/deutsch-werkstatt/pull/154#issuecomment-7037294720
+
+- **P1 · harf notu:**
+  - Tek biçim: ", **a** yerine **ä** gelir." Eski "**a** harfi **ä** olur" biçimi sözlükte kalmadı.
+  - Harfi değişen fiillerin eksik notları eklendi (sprechen, fahren, schlafen, fangen, geschehen, behalten, ansehen, aussehen, verraten, empfehlen, versprechen, gefallen, anfangen).
+  - Mastarsız eski biçimdeki ipuçları çevrildi.
+  - Çoğul isim ve karşılaştırma ipuçları da aynı biçimde yazıldı: "Üç adam derken **Drei Männer** denir, **a** yerine **ä** gelir."
+- **P2 · özne:**
+  - Özne cümledeki gibi büyük ya da küçük harfle yazılıyor ("**Die Pflanze**").
+  - "Er ___" cümlelerinde "**er** ve **sie**" yerine "**Er**".
+  - "**er**, **sie** ve **der Bus**" gibi ipuçları yalnız cümlenin öznesini yazıyor.
+- **P3 · yardımcı fiil:** "**Hast** ile söylerken" yazan iki ipucu "<Türkçe> derken **<cümle>** denir." oldu (lügen, küssen).
+- **P4 · los:** b3 "Was ist mit dir ___?" ("Sana ne oldu?"); artık b1 ve b5'in kopyası değil.
+- **P5 · drehen:** "Bitte ___ Sie den Schlüssel langsam." ("Lütfen anahtarı yavaşça çevirin."); kartın tek karşılığı "çevirmek".
+- **P6:** PR #154 açıklamasındaki okur tur sayısı düzeltildi (toplam 14).
+- **Okur:** değişen 116 satırın hepsi okundu. Turlar: 116 satır 11 GERİ → 11 satır 1 GERİ → 1 satır 1 GERİ → 1/1.

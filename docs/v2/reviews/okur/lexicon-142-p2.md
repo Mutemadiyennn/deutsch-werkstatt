@@ -18,3 +18,7 @@ Okur ajanı, öğrenci gözüyle (A2 Almanca, terim bilmiyor). Her turda o turda
 | 154-h | 6 | 2 | mögen#2 ile möchten aynı cümle; anrufen'de özne |
 | 154-i | 2 | 1 | anrufen ipucu 16 kelime |
 | 154-j | 1 | 0 | |
+| p3-1 | 116 | 11 | önek görünmüyor (ansehen, aussehen); büyük harf; "daha genç", "birçok", "iki", "kız" çift okunuyor ya da cümlede yok |
+| p3-2 | 11 | 1 | "Ellerinizi" ile **die Hände** örtüşmüyor |
+| p3-3 | 1 | 1 | harf notu eksik (Händ) |
+| p3-4 | 1 | 0 | |
