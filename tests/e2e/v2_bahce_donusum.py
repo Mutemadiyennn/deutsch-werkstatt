@@ -37,11 +37,15 @@ def main():
         ctx.set_offline(True)
         ilk = pg.inner_text("[data-test=intro-ex]")
         boy = lambda: pg.evaluate("() => [Math.round(document.querySelector('[data-test=garden-intro] section.card').getBoundingClientRect().height), document.documentElement.scrollHeight]")
+        # tanı (CI #145/#150 iPhone 15: kart aynı, sayfa +44): sayfa büyüdüğünde hangi öğenin büyüdüğü günlüğe yazılır
+        dokum = lambda: pg.evaluate("""() => { const out = []; const gez = (e, d) => { if (d > 4) return; for (const c of e.children) { const r = c.getBoundingClientRect();
+          if (r.height > 0) out.push(`${c.tagName.toLowerCase()}${c.dataset.test ? '[' + c.dataset.test + ']' : ''}${c.className && typeof c.className === 'string' ? '.' + c.className.split(' ')[0] : ''}:${Math.round(r.height)}`); if (d < 2) gez(c, d + 1); } };
+          gez(document.body, 0); return out.join(' '); }""")
         # temel ilk dokunuştan ÖNCE, eylem çubuğu yüksekliği (--actionbar-h) yerleştikten sonra alınır (CI e3660ec: sayfa 703 → 757 bu yerleşmeydi);
         # sonra HER dokunuştan sonra karşılaştırılır (inceleme #136 2. tur P1-2: ilk ve son dokunuş aynı cümleye düşebiliyor)
         pg.wait_for_function("""() => { const v = getComputedStyle(document.documentElement).getPropertyValue('--actionbar-h').trim(), h = document.documentElement.scrollHeight;
             const ok = v && window.__abh === v && window.__sh === h; window.__abh = v; window.__sh = h; return ok; }""", polling=200, timeout=5000)
-        boy0 = boy(); boylar = []
+        boy0 = boy(); boylar = []; dokum0 = dokum(); farkli = None
         goruldu, doms, kareler = [ilk], [], []
         # D-096 yöntemi: DOM her dokunuşta < 150 ms, ilk kare (7 dokunuşun ortancası − boş kare aralığı) < 150 ms. B köprüsü (#131) C ile
         # kalktı: örnek alanı sabit olduğu için belge yüksekliği değişmiyor, iPhone 15'te de bütün görünüm yeniden boyanmıyor
@@ -49,10 +53,12 @@ def main():
             dom, kare, metin = degistir(pg, "[data-test=intro-ex]")
             doms.append(dom); kareler.append(kare); goruldu.append(metin)
             boylar.append(boy())
+            if boylar[-1] != boy0 and farkli is None: farkli = dokum()
         kortanca = sorted(kareler)[len(kareler) // 2]; bos = bos_kare(pg); ek = kortanca - bos
         dokunus = 7
         # PM 7030294523 C: örnek alanı en uzun örnek kadar yer tutar → "Başka cümle"de kart ve sayfa yüksekliği değişmez
         check(all(x == boy0 for x in boylar), f"'Başka cümle'de kart ve sayfa zıplamıyor (her dokunuşta; kart, sayfa: {boy0} → {sorted(set(map(tuple, boylar)))})")
+        if farkli: print("  · tanı: önce:", dokum0, "\n  · tanı: sonra:", farkli)
         check(len(set(goruldu[:3])) == 3, f"3 dokunuşta farklı cümleler ({[g[:30] for g in goruldu[:4]]})")
         # C girdi (sayfa zıplamıyor): kare ölçütü üç cihazda geri döner (PM 7030294523; D-096, eşik 150 ms)
         check(max(doms) < 150 and ek < 150, f"değişim < 150 ms, uçak modunda (DOM {[round(x) for x in doms]} ms; kare ortanca {round(kortanca)} − boş kare {round(bos)} = {round(ek)} ms; en kötü {round(max(kareler))} ms)")
