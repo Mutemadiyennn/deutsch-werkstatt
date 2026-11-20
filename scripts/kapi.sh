@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# kapi.sh — Actions'sız sınama kapısı (PM 7046691693 "Actionssız düzen", PM-079 md. 4–5).
+# kapi.sh — Actions'sız sınama kapısı (PM 7046691693 "Actionssız düzen", kesin hâli PM 7047288255; PM-079 md. 4–5).
 #
 # Ne yapar: ci-v2.yml'in koştuğunu AYNI SIRAYLA koşar (adımlar ci-v2.yml'den okunur; scripts/kapi_adimlar.py):
 #   npm ci → tip → birim → içerik kapısı → (raf testleri, anahtar taraması) → derleme + e2e derlemesi + bütçe
@@ -8,7 +8,8 @@
 #   docs    (yalnız docs/, kökteki *.md, PR şablonu)  → tip + içerik kapısı
 #   icerik  (yalnız content/, content/tools HARİÇ)       → içerik kapısı + içerik testleri + tek cihaz duman (iPhone 15, v2_core)
 #   kod     (web/, worker/, packages/, tests/, scripts/, .github/, content/tools/ ya da başka her şey) → tam
-# Kural: kapıyı işi yazan değil, bağımsız inceleme ajanı temiz çalışma ağacında koşar (CLAUDE.md "WebKit kabul ölçütüdür").
+# Kural: kabul koşusunu işi yazan değil KAPI oturumu koşar (temiz worktree; PR'a "[KAPI] <commit> — YEŞİL/KIRMIZI";
+#   CLAUDE.md "WebKit kabul ölçütüdür"). Motorlar aynı betiği yerelde öz-denetim için koşabilir; WebKit yoksa sonuç ENGEL olur.
 # Chromium'a düşülmez: WebKit açılamıyorsa sonuç "ENGEL"dir, "geçti" değildir.
 #
 # Kullanım:
@@ -18,7 +19,7 @@
 #     --taban  değişen dosyalar bu tabana göre bulunur (varsayılan origin/main)
 #     --sinif  süzgeci elle zorlar (yalnız daha GENİŞ sınıf seçilebilir: docs < icerik < kod)
 #     --cihaz  cihaz listesini daraltır; üç cihazın biri eksikse özet "KISMİ" der ve "bitti" sayılmaz
-# Çıktı: <out>/ozet.md (PR'a yapıştırılacak kısa tablo), <out>/ozet.json, <out>/gunluk/NN-*.log
+# Çıktı: <out>/ozet.md (PR'a / [KAPI] yorumuna yapıştırılacak kısa tablo), <out>/ozet.json, <out>/gunluk/NN-*.log
 # Çıkış kodu: 0 = hepsi geçti · 1 = en az bir adım düştü · 3 = düşen yok ama ENGEL/KISMİ var · 2 = kullanım hatası
 #
 # Gizlilik: günlükler /tmp'de kalır; ozet.md'ye yalnız adım adı, süre, sonuç ve düşen testlerin adları girer.
@@ -70,24 +71,7 @@ if git rev-parse --verify -q "$TABAN" >/dev/null; then
 else
   echo "taban bulunamadı ($TABAN); tam koşu" >&2; DEGISEN="__taban_yok__"
 fi
-sinif_bul() {
-  local s=docs f
-  [ -z "$DEGISEN" ] && { echo kod; return; }   # değişiklik yoksa (ör. main'in kendisi) tam koşu
-  while IFS= read -r f; do
-    case "$f" in
-      docs/*|.github/pull_request_template.md) ;;
-      */*) case "$f" in
-             content/tools/*) echo kod; return;;
-             content/*) s=icerik;;
-             *) echo kod; return;;
-           esac;;
-      *.md) ;;
-      *) echo kod; return;;
-    esac
-  done <<< "$DEGISEN"
-  echo "$s"
-}
-SINIF=$(sinif_bul)
+SINIF=$(printf '%s\n' "$DEGISEN" | grep -v "^__taban_yok__$" | "$BETIK_DIZIN/kapi_sinif.sh")
 derece() { case "$1" in docs) echo 0;; icerik) echo 1;; kod) echo 2;; *) echo -1;; esac; }
 if [ -n "$SINIF_ZORLA" ]; then
   [ "$(derece "$SINIF_ZORLA")" -lt 0 ] && { echo "--sinif: docs|icerik|kod" >&2; exit 2; }
