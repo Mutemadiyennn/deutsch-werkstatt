@@ -84,5 +84,7 @@ describe("öğrenci modeli ve planlayıcı", () => {
     const r3 = recommend({ profile: p, index, hasPlacement: true, sessionN: 3 });
     expect(r3).toMatchObject({ kind: "v1", activity: "listening" });
     expect((r3 as any).url).toContain("#shadow");
+    // ayar açıkken v1 kendiliğinden /v2/ye yönlenmesin (inceleme #130 B2)
+    expect((r3 as any).url).toMatch(/\?v1#shadow$/);
   });
 });

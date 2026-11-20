@@ -8,7 +8,8 @@ import { exportAll } from "../data/db.ts";
 import { KullanimTablosu } from "../ui/gunsonu.tsx";
 import { MedyaRafi } from "../ui/raf.tsx";
 import { persistState, type PersistState } from "../services/storage.ts";
-import { ACTIVITY_TR, V1_URL } from "../core/planner.ts";
+import { ACTIVITY_TR } from "../core/planner.ts";
+import { EskiyeDon } from "../ui/EskiyeDon.tsx";
 import { ApiError } from "../services/api.ts";
 import { aiState, onAiState } from "../services/ai.ts";
 import { TopBar } from "../ui/components.tsx";
@@ -157,7 +158,8 @@ export function ProfileView() {
         <p class="small" style={{ marginTop: 8 }} data-test="persist">{persist === "persisted" ? "İlerlemen bu cihazda kalıcı olarak saklanıyor. Telefon değiştirmeden önce yedek indir." : persist === "best-effort" ? "İlerlemen bu cihazda saklanıyor; telefonda yer azalırsa tarayıcı silebilir. Ara sıra yedek indir." : "İlerlemen bu cihazda saklanıyor. Ara sıra yedek indir."}</p>
         <div class="row" style={{ marginTop: 12 }}>
           <button class="btn sm" onClick={download}>Yedeği indir (JSON)</button>
-          <a class="btn sm" href={V1_URL} target="_blank" rel="noopener">Arşiv: v1 uygulaması <Icon name="out" size={16} /></a>
+          {/* PM 7025664499: v1'deki "Her açılışta yeni uygulamayı aç" anahtarını kapatır ve eski uygulamaya geçer (aynı köken) */}
+          <EskiyeDon />
         </div>
       </section>
 

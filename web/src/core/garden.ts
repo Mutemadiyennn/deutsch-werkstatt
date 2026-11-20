@@ -22,6 +22,7 @@
  *  - PM-062: soru cümlesi kartın gösterim sayacından (`exSeen`) kurulur: her gün başka cümle ve onun fotoğrafı. Güçlü kartta
  *    fotoğraf cevaptan önce gösterilmez (fotoğraf sorusu seçilmez; tanıtımda ve cevap ekranında fotoğraf var).
  */
+import POLICY from "../policy.json" with { type: "json" };
 import { kartMi, type Lexeme } from "@dw/shared";
 import type { LearnerItem, PersonalWord } from "@dw/shared";
 import { isDue } from "./srs.ts";
@@ -89,7 +90,16 @@ let fotolu: Set<string> | null = null;
 export function fotoluKartlar(s: Set<string> | null) { fotolu = s; }
 
 /** Bu karta bu yolda sorulabilecek türler (içeriğin taşıdığı veriye göre) */
-export function availableTypes(l: Lexeme, path: "passive" | "active"): QType[] {
+/** "Kendi cümleni kur" kapısı (PM 7030294523 P0): kartın üretim kararlılığı ≥ eşik gün, İlk Hafta bitmiş ve öğrenci en az bir
+ *  kalıbı bitirmiş olmalı; eşikler web/src/policy.json'da. Koşullardan biri eksikse tür hiç seçilmez. */
+export interface KendiCumleKosul { ilkHaftaBitti: boolean; kalipBitti: boolean }
+export function kendiCumleAcik(it: LearnerItem | undefined, k: KendiCumleKosul | undefined, pol: { yeni_ekran: boolean; kalip_sart: boolean; kararlilik_gun: number } = POLICY.own_sentence): boolean {
+  const p = pol;
+  if (!p.yeni_ekran || !k || !k.ilkHaftaBitti || (p.kalip_sart && !k.kalipBitti)) return false;
+  return (it?.active.fsrs?.stability ?? 0) >= p.kararlilik_gun;
+}
+
+export function availableTypes(l: Lexeme, path: "passive" | "active", kendiCumle = false): QType[] {
   if (path === "passive") {
     const t: QType[] = ["listen_meaning"];
     // `tier: passive` yalnızca tanıma: dinle → anlamını seç (a); artikel ve eşdizim üretime yakın (inceleme #55 2. tur kabulü)
@@ -103,13 +113,13 @@ export function availableTypes(l: Lexeme, path: "passive" | "active"): QType[] {
   if (isNoun(l) && (fotolu ? fotolu.has(l.id) : !!l.img)) t.push("photo_say");
   if (otherForms(l).length) t.push("gap");
   if (verbForms(l).length) t.push("sep_perfekt");
-  t.push("own_sentence");
+  if (kendiCumle) t.push("own_sentence");
   return t;
 }
 
 /** Aynı tür art arda gelmez; kalanlar arasında sırayla (rng ile karıştırılabilir) */
-export function pickType(l: Lexeme, path: "passive" | "active", last: string | undefined, rng: () => number = Math.random, exclude: QType[] = []): QType | null {
-  const all0 = availableTypes(l, path);
+export function pickType(l: Lexeme, path: "passive" | "active", last: string | undefined, rng: () => number = Math.random, exclude: QType[] = [], kendiCumle = false): QType | null {
+  const all0 = availableTypes(l, path, kendiCumle);
   const all = all0.filter((t) => !exclude.includes(t)).length ? all0.filter((t) => !exclude.includes(t)) : all0;
   if (!all.length) return null;
   const pool = all.length > 1 ? all.filter((t) => t !== last) : all;
@@ -140,6 +150,8 @@ export function kopruGerek(it: LearnerItem, l: Lexeme): boolean {
 export const introduced = (it: LearnerItem | undefined) => !!it && (it.passive.ok > 0 || it.active.ok > 0 || (it.passive.n > 0 && it.active.n > 0));
 
 export interface RoundOpts {
+  /** "Kendi cümleni kur" koşulları (PM 7030294523 P0); verilmezse tür hiç seçilmez */
+  kendiCumle?: KendiCumleKosul;
   max?: number; min?: number; newMax?: number; rng?: () => number; now?: Date;
   /** öncelikli yeni kartlar ("Duyduğum kelime", "Nasıl derim?"; LS-7.5): tekrar yükü ne olursa olsun en çok 2'si bu turda */
   priority?: string[];
@@ -193,7 +205,7 @@ export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerI
     // ilk üretim sorusu "kendi cümlen" olmaz: önce kelimeyi söyletir (inceleme #59 2. tur)
     const first = path === "active" && !items.get(id)?.active.fsrs;
     const it = items.get(id);
-    const t = pickType(lex.get(id)!, path, it?.lastQ, rng, [...(first ? ["own_sentence" as const] : []), ...(guclu(it) ? ["photo_say" as const] : [])]);
+    const t = pickType(lex.get(id)!, path, it?.lastQ, rng, [...(first ? ["own_sentence" as const] : []), ...(guclu(it) ? ["photo_say" as const] : [])], path === "active" && kendiCumleAcik(it, o.kendiCumle));
     if (t) { out.push({ lexId: id, type: t, ex: siradakiEx(it) }); used.add(id); }
   };
   const kopru: { id: string; at: number }[] = [];

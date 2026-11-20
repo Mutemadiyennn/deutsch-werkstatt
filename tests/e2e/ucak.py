@@ -8,9 +8,9 @@ DN-2 §5 (PM-030, BY-12.1a) — internetsiz, mikrofonsuz ve yapay zekâsız duru
      ekranlarda geliştirici notu yok (PM-035/8).
   python3 tests/e2e/ucak.py [--browser webkit] [--device "iPhone 15"]
 """
-import json, re, urllib.parse
+import json, os, re, urllib.parse
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, ERR, content_file
+from common import CORS, serve, launch, new_page, login_onboard, check, finish, ERR, content_file
 
 PORT = 4189
 SC = "sc:telefon:01-arzttermin"
@@ -206,6 +206,32 @@ def main():
             t = pg.inner_text("body")
             found += [f"{h}: {w}" for w in DEV_NOTES if w in t]
         check(not found, "C: öğrenciye geliştirici notu gösterilmiyor" + (f" — {found}" if found else ""))
+        b.close()
+        # C'nin "kontrol edemedim" denemesinde açık kalan tarayıcı (pg2) da kapanır; yoksa D'nin sayfası sunucuyu bekler (inceleme #125 P0-1)
+        try: b2.close()
+        except Exception: pass
+
+        # ---------- D) Workers AI (deneme) sağlayıcısı: rol oyununda "deneme" etiketi (PM 7022002310-5) ----------
+        def api_wa(route):
+            u = route.request.url
+            if route.request.method == "OPTIONS":
+                return route.fulfill(status=204, headers={**CORS, "Access-Control-Allow-Headers": "Authorization, Content-Type", "Access-Control-Allow-Methods": "GET, POST"})
+            if u.endswith("/v1/health"):
+                return route.fulfill(status=200, headers=CORS, content_type="application/json", body=json.dumps({"ok": True, "version": "e2e", "time": "", "provider": "workers-ai", "configured": {"gemini": False, "workers_ai": True, "allowlist": True}}))
+            if u.endswith("/v1/usage"):
+                return route.fulfill(status=200, headers=CORS, content_type="application/json", body=json.dumps({"ai": {"used": 0, "limit": 300}}))
+            return route.fulfill(status=503, headers=CORS, content_type="application/json", body=json.dumps({"error": {"code": "upstream_busy", "message_tr": "x"}}))
+        b, ctx = launch(p); pg = ctx.new_page(); pg.route("https://api.e2e.test/**", api_wa)
+        login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]"); pg.wait_for_timeout(500)
+        pg.goto(base + f"#/scenario/{SC}/roleplay"); pg.wait_for_selector("[data-test=rp-start]")
+        check(pg.locator("[data-test=ai-deneme]").count() == 1 and pg.inner_text("[data-test=ai-deneme]") == "Deneme", "D: Workers AI sağlayıcısında rol oyununda 'Deneme' etiketi (küçük harf, büyük harf dönüşümü yok)")
+        # PM 7026867047: rozet başlık satırında (dikeyde başlıkla kesişir) ve kartın sağ kenarına yaslı
+        # PM 7026867047: rozet ekranın başlık satırında (.pbar h1 ile aynı satır), başlığın sağında, satırın sağ ucuna yaslı; kart içinde değil
+        g = pg.evaluate("""() => { const c = document.querySelector('[data-test=ai-deneme]'); const row = c.closest('.pbar > .row'); const h = row && row.querySelector('h1');
+            if (!row || !h) return { pbar: false }; const a = c.getBoundingClientRect(), b = h.getBoundingClientRect(), r = row.getBoundingClientRect();
+            return { pbar: true, ayniSatir: a.top < b.bottom && b.top < a.bottom, sag: Math.round(r.right - a.right), solda: b.right <= a.left + 1, kartta: !!c.closest('.card'), tt: getComputedStyle(c).textTransform }; }""")
+        check(g.get("pbar") and g["ayniSatir"] and g["solda"] and abs(g["sag"]) <= 2 and not g["kartta"] and g["tt"] == "none", f"D: 'Deneme' rozeti başlık satırında, sağa yaslı ({g})")
+        if os.environ.get("R01"): pg.wait_for_timeout(600); pg.screenshot(path=os.environ["R01"])
         b.close()
     srv.shutdown()
     check(not [e for e in ERR if e.startswith("sayfa hatası")], "sayfa hatası yok")

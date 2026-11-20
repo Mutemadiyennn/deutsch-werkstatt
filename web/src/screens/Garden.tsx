@@ -12,7 +12,8 @@ import { loadFoto, loadLexicon, loadM1Gun } from "../services/content.ts";
 import { bahceTamam, xpOku, xpVer } from "../services/ilerleme.ts";
 import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { XP, seri, yerelGun } from "../core/gun.ts";
-import { getMeta, itemsMap, personalWords, putItems, setMeta } from "../data/db.ts";
+import { getMeta, itemsMap, metaPrefix, personalWords, putItems, setMeta } from "../data/db.ts";
+import POLICY from "../policy.json" with { type: "json" };
 import { hizliGecis, review, sessionKey, type Outcome } from "../core/srs.ts";
 import { accepted, availableTypes, buildRound, fotoluKartlar, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, boslukSecimi, ertele, esdizimler, gosterilenCogul, tanitildi, gorulenKelimeler, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
@@ -97,7 +98,9 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       // B4: "Fotoğraftaki ne?" yalnızca seçilmiş fotoğrafı olan kartta ve çevrimiçiyken (sunucu araması güvenilir değil, çevrimdışı görsel gelmez)
       const fotoHarita = navigator.onLine === false ? {} : await loadFoto();
       fotoluKartlar(new Set(Object.keys(fotoHarita).filter((k) => k.endsWith("#kart")).map((k) => k.slice(0, -"#kart".length))));
-      let round = buildRound(lex, items, pool, { priority: kisisel, newLeft, activeLeft, yeniAyir: Math.min(8, kalan.length) });
+      // PM 7030294523 P0: "kendi cümleni kur" yalnızca İlk Hafta bitmiş ve en az bir kalıp bitirilmişse (kartın kararlılığı garden.ts'de)
+      const kendiCumle = { ilkHaftaBitti: !!(await getMeta(`m1:gun:${POLICY.own_sentence.ilk_hafta_son_gun}`)), kalipBitti: (await metaPrefix("kalip:bitti:")).length > 0 };
+      let round = buildRound(lex, items, pool, { priority: kisisel, newLeft, activeLeft, yeniAyir: Math.min(8, kalan.length), kendiCumle });
       // e2e: belirli kartın tanıtımı (en uzun kart sığıyor mu ölçümü, PM 7024150313); yalnızca e2e derlemesinde
       if (E2E) { const k = sessionStorage.getItem("e2e-kart"); if (k && lex.has(k)) round = [{ lexId: k, type: "listen_meaning", intro: true, ex: 0 }]; }
       // B16 kapsamı (PM-066; inceleme #113 P1-1/2/3): öğrencinin "sına beni"si o günün kalan kartları için (`hizliGun`);
