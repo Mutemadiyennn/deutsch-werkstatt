@@ -112,7 +112,7 @@
      "de": "Bitte ___ Sie den Zug.",
      "answer": "verlassen",
      "tr": "Lütfen trenden inin.",
-     "hint_tr": "**Sie** ile **verlassen** olur."
+     "hint_tr": "**Sie** ile söylerken de **verlassen** denir."
     },
     {
      "de": "Er ___ um sieben das Haus.",
@@ -234,7 +234,7 @@
       "besiegen"
      ],
      "tr": "Yarın onları yeneriz!",
-     "hint_tr": "**wir** ile **schlagen** aynı kalır."
+     "hint_tr": "**wir** ile söylerken de **schlagen** denir."
     },
     {
      "de": "Du ___ mich immer beim Schach.",
@@ -258,7 +258,7 @@
       "besiegt"
      ],
      "tr": "Adam beni teniste yendi.",
-     "hint_tr": "**hat** ile **schlagen**, **geschlagen** olur."
+     "hint_tr": "**hat** ile söylerken **schlagen**, **geschlagen** olur."
     },
     {
      "de": "Ich ___ dich beim nächsten Mal!",
@@ -267,7 +267,7 @@
       "besiege"
      ],
      "tr": "Bir dahaki sefere seni yenerim!",
-     "hint_tr": "**ich** ile **schlagen**, **schlage** olur, **a** aynı kalır."
+     "hint_tr": "**ich** ile söylerken **schlagen**, **schlage** olur."
     }
    ]
   },
@@ -355,7 +355,7 @@
      "de": "Ich ___ dich!",
      "answer": "rette",
      "tr": "Seni kurtarıyorum!",
-     "hint_tr": "**ich** ile **retten**, **rette** olur."
+     "hint_tr": "**ich** ile söylerken **retten**, **rette** olur."
     },
     {
      "de": "Du ___ mich jedes Mal!",
@@ -367,13 +367,13 @@
      "de": "Der Arzt ___ Leben.",
      "answer": "rettet",
      "tr": "Doktor hayat kurtarıyor.",
-     "hint_tr": "**der Arzt** ile **retten**, **rettet** olur."
+     "hint_tr": "**der Arzt** ile söylerken **retten**, **rettet** olur."
     },
     {
      "de": "Der Arzt hat ihm das Leben ___.",
      "answer": "gerettet",
      "tr": "Doktor adamın hayatını kurtardı.",
-     "hint_tr": "**hat** ile **retten**, **gerettet** olur."
+     "hint_tr": "**hat** ile söylerken **retten**, **gerettet** olur."
     }
    ]
   },
@@ -616,13 +616,13 @@
      "de": "Heute ___ die Sonne.",
      "answer": "scheint",
      "tr": "Bugün güneş parlıyor.",
-     "hint_tr": "**die Sonne** ile **scheint** olur."
+     "hint_tr": "**die Sonne** ile söylerken **scheinen**, **scheint** olur."
     },
     {
      "de": "Du ___ müde zu sein.",
      "answer": "scheinst",
      "tr": "Yorgun gibi görünüyorsun.",
-     "hint_tr": "**du** ile **scheinst** olur."
+     "hint_tr": "**du** ile söylerken **scheinen**, **scheinst** olur."
     },
     {
      "de": "Er ___ krank zu sein.",
@@ -728,37 +728,42 @@
    },
    "forms": [
     {
-     "de": "Er ist ___ netter Kerl.",
-     "answer": "ein",
+     "de": "Er ist ein netter ___.",
+     "answer": "Kerl",
      "tr": "İyi bir adamdır.",
-     "hint_tr": "**Er ist** dedikten sonra **ein Kerl** aynı kalır: **ein netter Kerl**."
+     "hint_tr": "İyi bir adam derken **ein netter Kerl** denir.",
+     "also_ok": [
+      "Mann"
+     ]
     },
     {
-     "de": "Was will ___ Kerl hier?",
-     "answer": "der",
+     "de": "Was will der ___ hier?",
+     "answer": "Kerl",
      "also_ok": [
-      "dieser"
+      "Typ"
      ],
      "tr": "Herif burada ne istiyor?",
-     "hint_tr": "Hep birlikte gördüğümüz adam için **der Kerl** denir."
+     "hint_tr": "Herif derken **der Kerl** denir."
     },
     {
-     "de": "Ich kenne ___ Kerl nicht.",
-     "answer": "den",
+     "de": "Ich kenne den ___ nicht.",
+     "answer": "Kerl",
      "also_ok": [
-      "diesen"
+      "Typen",
+      "Typ"
      ],
      "tr": "Herifi tanımıyorum.",
-     "hint_tr": "**Ich kenne** dedikten sonra **der Kerl**, **den Kerl** olur."
+     "hint_tr": "Herifi derken **den Kerl** denir."
     },
     {
-     "de": "Mit ___ Kerl rede ich nicht.",
-     "answer": "dem",
+     "de": "Mit dem ___ rede ich nicht.",
+     "answer": "Kerl",
      "also_ok": [
-      "diesem"
+      "Typen",
+      "Typ"
      ],
      "tr": "O herifle konuşmam.",
-     "hint_tr": "**mit** dedikten sonra **der Kerl**, **dem Kerl** olur."
+     "hint_tr": "O herifle derken **Mit dem Kerl** denir."
     }
    ]
   },
@@ -836,22 +841,22 @@
    },
    "forms": [
     {
-     "de": "Die Polizei hat ___ Waffe gefunden.",
-     "answer": "eine",
+     "de": "Die Polizei hat eine ___ gefunden.",
+     "answer": "Waffe",
      "tr": "Polis bir silah buldu.",
-     "hint_tr": "**Waffe** ile **ein**, **eine** olur: **eine Waffe**."
+     "hint_tr": "Bir silah derken **eine Waffe** denir."
     },
     {
-     "de": "___ Waffe war nicht echt.",
-     "answer": "Die",
+     "de": "Die ___ war nicht echt.",
+     "answer": "Waffe",
      "tr": "Silah gerçek değildi.",
-     "hint_tr": "Hangi silah olduğu belliyse **die Waffe** denir."
+     "hint_tr": "Silah derken **Die Waffe** denir."
     },
     {
-     "de": "Er war mit ___ Waffe unterwegs.",
-     "answer": "einer",
+     "de": "Er war mit einer ___ unterwegs.",
+     "answer": "Waffe",
      "tr": "Adamın yanında bir silah vardı.",
-     "hint_tr": "**mit** dedikten sonra **eine Waffe**, **einer Waffe** olur."
+     "hint_tr": "Yanında bir silah vardı derken **war mit einer Waffe unterwegs** denir."
     },
     {
      "de": "Hier sind ___ verboten.",
@@ -935,22 +940,22 @@
    },
    "forms": [
     {
-     "de": "Nach ___ Tod seiner Mutter ist er umgezogen.",
-     "answer": "dem",
+     "de": "Nach dem ___ seiner Mutter ist er umgezogen.",
+     "answer": "Tod",
      "tr": "Annesinin ölümünden sonra adam taşındı.",
-     "hint_tr": "**nach** dedikten sonra **der Tod**, **dem Tod** olur."
+     "hint_tr": "Annesinin ölümünden sonra derken **Nach dem Tod seiner Mutter** denir."
     },
     {
-     "de": "___ Tod kam plötzlich.",
-     "answer": "Der",
+     "de": "Der ___ kam plötzlich.",
+     "answer": "Tod",
      "tr": "Ölüm aniden geldi.",
-     "hint_tr": "Ölüm derken **der Tod** denir."
+     "hint_tr": "Ölüm derken **Der Tod** denir."
     },
     {
-     "de": "Das war ___ schneller Tod.",
-     "answer": "ein",
+     "de": "Das war ein schneller ___.",
+     "answer": "Tod",
      "tr": "Bu çabuk bir ölümdü.",
-     "hint_tr": "**Das war** dedikten sonra **ein Tod** aynı kalır: **ein schneller Tod**."
+     "hint_tr": "Çabuk bir ölüm derken **ein schneller Tod** denir."
     },
     {
      "de": "Ich habe mich zu ___ erschrocken.",
@@ -1060,7 +1065,7 @@
       "Leitest"
      ],
      "tr": "Dükkânı tek başına mı işletiyorsun?",
-     "hint_tr": "**du** ile **führst** olur."
+     "hint_tr": "**du** ile söylerken **führen**, **führst** olur."
     },
     {
      "de": "Er ___ ein kleines Restaurant.",
@@ -1075,7 +1080,7 @@
      "de": "Der Weg ___ zum See.",
      "answer": "führt",
      "tr": "Yol göle çıkıyor.",
-     "hint_tr": "**der Weg** ile **führt** olur."
+     "hint_tr": "**der Weg** ile söylerken **führen**, **führt** olur."
     },
     {
      "de": "Herr Koch hat das Hotel zwanzig Jahre ___.",
@@ -1093,13 +1098,13 @@
      "hint_tr": "Yol bir yere çıkıyor mu diye sorarken **Führt der Weg** denir."
     },
     {
-     "de": "Lena und Paul ___ ein kleines Hotel.",
+     "de": "Emma und Paul ___ ein kleines Hotel.",
      "answer": "führen",
      "also_ok": [
       "leiten"
      ],
-     "tr": "Lena ile Paul küçük bir otel işletiyor.",
-     "hint_tr": "**Lena und Paul** ile **führen** olur."
+     "tr": "Emma ile Paul küçük bir otel işletiyor.",
+     "hint_tr": "Otel işletiyor derken **führen ein Hotel** denir."
     }
    ]
   },
@@ -1200,7 +1205,7 @@
      "de": "Ich ___ den Ball.",
      "answer": "fange",
      "tr": "Topu yakalıyorum.",
-     "hint_tr": "**ich** ile **fange** olur."
+     "hint_tr": "**ich** ile söylerken **fangen**, **fange** olur."
     },
     {
      "de": "___ du den Ball?",
@@ -1233,7 +1238,7 @@
      "de": "Wir ___ heute Fische am See.",
      "answer": "fangen",
      "tr": "Bugün gölde balık tutuyoruz.",
-     "hint_tr": "**wir** ile **fangen** olur."
+     "hint_tr": "**wir** ile söylerken de **fangen** denir."
     }
    ]
   },
@@ -1289,8 +1294,8 @@
     },
     {
      "id": "lx:eigen:4",
-     "de": "– Wohnt Max noch bei den Eltern? – Nein, er hat jetzt eine eigene Wohnung.",
-     "tr": "– Max hâlâ annesiyle babasıyla mı oturuyor? – Hayır, artık kendi evi var.",
+     "de": "– Wohnt Felix noch bei den Eltern? – Nein, er hat jetzt eine eigene Wohnung.",
+     "tr": "– Felix hâlâ annesiyle babasıyla mı oturuyor? – Hayır, artık kendi evi var.",
      "layer": "alltag",
      "dialog": true
     },
@@ -1346,10 +1351,10 @@
      "hint_tr": "**in meinem Bett** arasına girince **eigen**, **eigenen** olur."
     },
     {
-     "de": "Max hat jetzt eine ___ Wohnung.",
+     "de": "Felix hat jetzt eine ___ Wohnung.",
      "answer": "eigene",
-     "tr": "Max'in artık kendi evi var.",
-     "hint_tr": "**eine Wohnung** arasına girince **eigen**, **eigene** olur."
+     "tr": "Felix'in artık kendi evi var.",
+     "hint_tr": "Kendi evi derken **eine eigene Wohnung** denir."
     },
     {
      "de": "Die zwei Kinder haben ___ Zimmer.",
@@ -1721,13 +1726,13 @@
      "de": "Bitte ___ Sie mir.",
      "answer": "folgen",
      "tr": "Lütfen beni takip edin.",
-     "hint_tr": "**Sie** ile **folgen** olur."
+     "hint_tr": "**Sie** ile söylerken de **folgen** denir."
     },
     {
      "de": "Ich ___ dir.",
      "answer": "folge",
      "tr": "Seni takip ediyorum.",
-     "hint_tr": "**ich** ile **folge** olur."
+     "hint_tr": "**ich** ile söylerken **folgen**, **folge** olur."
     },
     {
      "de": "Die Katze ___ mir überallhin.",
@@ -1739,7 +1744,7 @@
      "de": "___ ihr mir bitte?",
      "answer": "Folgt",
      "tr": "Beni takip eder misiniz lütfen?",
-     "hint_tr": "**ihr** ile **folgt** olur."
+     "hint_tr": "**ihr** ile söylerken **folgen**, **folgt** olur."
     },
     {
      "de": "Der Hund ist mir nach Hause ___.",
@@ -1832,28 +1837,28 @@
    },
    "forms": [
     {
-     "de": "Der Junge ist ___ kleiner Teufel.",
-     "answer": "ein",
+     "de": "Der Junge ist ein kleiner ___.",
+     "answer": "Teufel",
      "tr": "Oğlan küçük bir şeytan.",
-     "hint_tr": "**ist** dedikten sonra **ein Teufel** aynı kalır: **ein kleiner Teufel**."
+     "hint_tr": "Küçük bir şeytan derken **ein kleiner Teufel** denir."
     },
     {
-     "de": "Im Film spielt er ___ Teufel.",
-     "answer": "den",
+     "de": "Im Film spielt er den ___.",
+     "answer": "Teufel",
      "tr": "Adam filmde şeytanı oynuyor.",
-     "hint_tr": "**Er spielt** dedikten sonra **der Teufel**, **den Teufel** olur."
+     "hint_tr": "Şeytanı derken **den Teufel** denir."
     },
     {
-     "de": "Was ___ Teufel ist hier los?",
-     "answer": "zum",
+     "de": "Was zum ___ ist hier los?",
+     "answer": "Teufel",
      "tr": "Burada ne halt oluyor?",
-     "hint_tr": "**zu** ile **dem** birleşir: **zum Teufel**."
+     "hint_tr": "Burada ne halt oluyor derken **Was zum Teufel ist hier los?** denir."
     },
     {
      "de": "Auf dem Bild sind zwei kleine ___.",
      "answer": "Teufel",
      "tr": "Resimde iki küçük şeytan var.",
-     "hint_tr": "İki şeytan: **zwei Teufel**, kelime aynı kalır."
+     "hint_tr": "İki şeytan derken **zwei Teufel** denir."
     }
    ]
   },
@@ -2368,13 +2373,13 @@
      "de": "Wir ___ Sie um zehn Uhr.",
      "answer": "erwarten",
      "tr": "Sizi saat onda bekliyoruz.",
-     "hint_tr": "**wir** ile **erwarten** olur."
+     "hint_tr": "**wir** ile söylerken de **erwarten** denir."
     },
     {
      "de": "Ich ___ einen Anruf.",
      "answer": "erwarte",
      "tr": "Bir telefon bekliyorum.",
-     "hint_tr": "**ich** ile **erwarte** olur."
+     "hint_tr": "**ich** ile söylerken **erwarten**, **erwarte** olur."
     },
     {
      "de": "Frau Kaya ___ ein Baby.",
@@ -2392,13 +2397,13 @@
      "de": "___ du heute ein Paket?",
      "answer": "Erwartest",
      "tr": "Bugün bir paket bekliyor musun?",
-     "hint_tr": "**du** ile **erwartest** olur."
+     "hint_tr": "**du** ile söylerken **erwarten**, **erwartest** olur."
     },
     {
      "de": "Was ___ Sie von mir?",
      "answer": "erwarten",
      "tr": "Benden ne bekliyorsunuz?",
-     "hint_tr": "**Sie** ile **erwarten** olur."
+     "hint_tr": "**Sie** ile söylerken de **erwarten** denir."
     }
    ]
   },
@@ -2606,25 +2611,25 @@
      "de": "Ich ___ Regen!",
      "answer": "hasse",
      "tr": "Yağmurdan nefret ediyorum!",
-     "hint_tr": "**ich** ile **hassen**, **hasse** olur."
+     "hint_tr": "**ich** ile söylerken **hassen**, **hasse** olur."
     },
     {
      "de": "___ du auch Montage?",
      "answer": "Hasst",
      "tr": "Sen de pazartesilerden nefret ediyor musun?",
-     "hint_tr": "**du** ile **hassen**, **hasst** olur."
+     "hint_tr": "**du** ile söylerken **hassen**, **hasst** olur."
     },
     {
      "de": "Er ___ es, früh aufzustehen.",
      "answer": "hasst",
      "tr": "Adam erken kalkmaktan nefret ediyor.",
-     "hint_tr": "**er** ile **hassen**, **hasst** olur."
+     "hint_tr": "**er** ile söylerken **hassen**, **hasst** olur."
     },
     {
      "de": "Ich habe die Schule immer ___.",
      "answer": "gehasst",
      "tr": "Okuldan hep nefret ettim.",
-     "hint_tr": "**Ich habe** ile **hassen**, **gehasst** olur."
+     "hint_tr": "**Ich habe** ile söylerken **hassen**, **gehasst** olur."
     }
    ]
   },
@@ -2720,16 +2725,19 @@
      "hint_tr": "Ne tür derken **was für eine Art** denir."
     },
     {
-     "de": "Das ist ___ Art Suppe.",
-     "answer": "eine",
+     "de": "Das ist eine ___ Suppe.",
+     "answer": "Art",
      "tr": "Bu bir tür çorba.",
-     "hint_tr": "Bir tür derken **eine Art** denir."
+     "hint_tr": "Bir tür çorba derken **eine Art Suppe** denir."
     },
     {
-     "de": "Ich mache das auf ___ Art.",
-     "answer": "meine",
+     "de": "Ich mache das auf meine ___.",
+     "answer": "Art",
      "tr": "Bunu benim tarzımda yapıyorum.",
-     "hint_tr": "Benim tarzımda derken **auf meine Art** denir."
+     "hint_tr": "Benim tarzımda derken **auf meine Art** denir.",
+     "also_ok": [
+      "Weise"
+     ]
     },
     {
      "de": "Im Zoo leben viele ___ von Tieren.",
@@ -2837,19 +2845,19 @@
      "de": "Ich ___ es dir.",
      "answer": "beweise",
      "tr": "Bunu sana kanıtlıyorum.",
-     "hint_tr": "**ich** ile **beweisen**, **beweise** olur."
+     "hint_tr": "**ich** ile söylerken **beweisen**, **beweise** olur."
     },
     {
      "de": "Wie ___ du das?",
      "answer": "beweist",
      "tr": "Bunu nasıl kanıtlıyorsun?",
-     "hint_tr": "**du** ile **beweisen**, **beweist** olur."
+     "hint_tr": "**du** ile söylerken **beweisen**, **beweist** olur."
     },
     {
      "de": "Das Foto ___ alles.",
      "answer": "beweist",
      "tr": "Fotoğraf her şeyi kanıtlıyor.",
-     "hint_tr": "**das Foto** ile **beweisen**, **beweist** olur."
+     "hint_tr": "**das Foto** ile söylerken **beweisen**, **beweist** olur."
     },
     {
      "de": "Er hat nichts ___.",
@@ -2941,28 +2949,31 @@
    },
    "forms": [
     {
-     "de": "Sie haben ___ Schatz gefunden.",
-     "answer": "einen",
+     "de": "Sie haben einen ___ gefunden.",
+     "answer": "Schatz",
      "tr": "Bir hazine buldular.",
-     "hint_tr": "**Sie haben** dedikten sonra **ein Schatz**, **einen Schatz** olur."
+     "hint_tr": "Bir hazine derken **einen Schatz** denir."
     },
     {
-     "de": "Das ist ___ echter Schatz.",
-     "answer": "ein",
+     "de": "Das ist ein echter ___.",
+     "answer": "Schatz",
      "tr": "Bu gerçek bir hazine.",
-     "hint_tr": "**Das ist** dedikten sonra **ein Schatz** aynı kalır."
+     "hint_tr": "Gerçek bir hazine derken **ein echter Schatz** denir."
     },
     {
-     "de": "Wo ist ___ Schatz versteckt?",
-     "answer": "der",
+     "de": "Wo ist der ___ versteckt?",
+     "answer": "Schatz",
      "tr": "Hazine nerede saklı?",
-     "hint_tr": "Hangi hazine olduğu belliyse **der Schatz** denir."
+     "hint_tr": "Hazine derken **der Schatz** denir."
     },
     {
-     "de": "Danke, ___ Schatz!",
-     "answer": "mein",
+     "de": "Danke, mein ___!",
+     "answer": "Schatz",
      "tr": "Sağ ol, canım!",
-     "hint_tr": "Canım derken **mein Schatz** denir."
+     "hint_tr": "Canım derken **mein Schatz** denir.",
+     "also_ok": [
+      "Liebling"
+     ]
     },
     {
      "de": "Im Museum gibt es alte ___.",
@@ -3263,6 +3274,19 @@
      "tr": "– Hey, bir şey düşürdün! – Ay, teşekkürler!",
      "layer": "alltag",
      "dialog": true
+    },
+    {
+     "id": "lx:he:5",
+     "de": "He, Tobi, hier sind wir!",
+     "tr": "Hey Tobi, buradayız!",
+     "layer": "alltag"
+    },
+    {
+     "id": "lx:he:6",
+     "de": "– He, pass auf, da kommt ein Rad! – Oh, danke!",
+     "tr": "– Hey, dikkat et, bisiklet geliyor! – Ay, teşekkürler!",
+     "layer": "alltag",
+     "dialog": true
     }
    ],
    "level": "A2",
@@ -3271,7 +3295,63 @@
    "domains": [
     "smalltalk"
    ],
-   "card": false
+   "card": false,
+   "forms": [
+    {
+     "de": "___, deine Tasche ist offen!",
+     "answer": "He",
+     "tr": "Hey, çantan açık!",
+     "hint_tr": "Hey, çantan açık derken **He, deine Tasche ist offen!** denir.",
+     "also_ok": [
+      "Hey"
+     ]
+    },
+    {
+     "de": "___, Tobi! Warte mal!",
+     "answer": "He",
+     "tr": "Hey Tobi! Bir bekle!",
+     "hint_tr": "Hey Tobi derken **He, Tobi!** denir.",
+     "also_ok": [
+      "Hey"
+     ]
+    },
+    {
+     "de": "___, hier ist kein Parkplatz!",
+     "answer": "He",
+     "tr": "Hey, burası park yeri değil!",
+     "hint_tr": "Hey, burası park yeri değil derken **He, hier ist kein Parkplatz!** denir.",
+     "also_ok": [
+      "Hey"
+     ]
+    },
+    {
+     "de": "___, du! Komm mal her!",
+     "answer": "He",
+     "tr": "Hey, sen! Buraya gel!",
+     "hint_tr": "Hey, sen derken **He, du!** denir.",
+     "also_ok": [
+      "Hey"
+     ]
+    },
+    {
+     "de": "___, nicht so schnell!",
+     "answer": "He",
+     "tr": "Hey, o kadar hızlı değil!",
+     "hint_tr": "Hey, o kadar hızlı değil derken **He, nicht so schnell!** denir.",
+     "also_ok": [
+      "Hey"
+     ]
+    },
+    {
+     "de": "___, Basti, bist du hier noch dran?",
+     "answer": "He",
+     "tr": "Hey Basti, bu alet hâlâ sende mi?",
+     "hint_tr": "Hey Basti derken **He, Basti** denir.",
+     "also_ok": [
+      "Hey"
+     ]
+    }
+   ]
   },
   {
    "id": "lx:etwa",
