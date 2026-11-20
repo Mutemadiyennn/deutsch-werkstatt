@@ -48,7 +48,8 @@ def main(argv: list[str]) -> int:
     kosu = time.strftime("%Y%m%d-%H%M", time.gmtime())
     harcanan, sonuc, notlar = 0, {}, []
     calisan = {}  # (model, en, boy) -> True/False (yoklama sonucu)
-    adaylar = [(SCHNELL, *b) for b in BOYLAR] + [(KLEIN, *b) for b in BOYLAR]
+    # schnell width/height kabul etmiyor (20.11 HTTP 400, code 5006): yalnız kendi boyu 1024×1024; boy yalnız klein'da denenir
+    adaylar = [(SCHNELL, 1024, 1024)] + [(KLEIN, *b) for b in BOYLAR]
     for k in SAHNELER:
         istem = USLUP + sahne[k]["sahne_en"] + SON
         for model, en, boy in adaylar:
@@ -58,7 +59,7 @@ def main(argv: list[str]) -> int:
             if harcanan + m > butce:
                 notlar.append(f"bütçe doldu: {k} {model.split('/')[-1]} {en}×{boy} atlandı"); continue
             try:
-                veri, gercek = jpeg(istek(hesap, jeton, model, istem, en, boy))
+                veri, gercek = jpeg(istek(hesap, jeton, model, istem, *((0, 0) if model == SCHNELL else (en, boy))))
             except urllib.error.HTTPError as e:
                 g = e.read().decode(errors="replace")[:200]
                 print(f"HATA {k} {model} {en}x{boy}: HTTP {e.code} {g}", flush=True)
