@@ -67,8 +67,16 @@ def main():
         # hız ölçümü (PM 7042161522-1)
         sec = pg.locator("[data-test=yavas-oran] button[aria-pressed=true]").get_attribute("data-oran")
         check(sec == "0.5", f"varsayılan yavaş hızı 0,5 ({sec})")
+        # sıfır süreli ses (hiç çalmıyor): ölçülemedi; oran, uyarı ve kayıt yok (PM 7043447488-1)
+        pg.evaluate("window.__sure = 0"); pg.click("[data-test=hiz-olc]")
+        pg.wait_for_function("() => { const b = document.querySelector('[data-test=hiz-olc]'); return b && !b.disabled && document.querySelectorAll('[data-test=hiz-olculemedi]').length >= 2; }", timeout=15_000)
+        check(pg.locator("[data-test=hiz-sonuc]").count() == 0 and pg.locator("[data-test=hiz-uyari]").count() == 0 and pg.locator("[data-test=ses-hiz]").count() == 0
+              and pg.evaluate("localStorage.getItem('dw2-ses-hiz') || '{}'") == "{}", "sıfır süreli seste 'ölçülemedi, yeniden dene'; oran, uyarı, kayıt yok")
         pg.evaluate("window.__sure = 1; window.__oku = []"); pg.click("[data-test=hiz-olc]")
+        check(pg.locator("[data-test=hiz-sonuc]").count() == 0, "ölçüm sürerken yarım satır yok")
         pg.wait_for_function("() => { const b = document.querySelector('[data-test=hiz-olc]'); return b && !b.disabled && document.querySelectorAll('[data-test=hiz-sonuc]').length >= 2; }", timeout=15_000)
+        ara = pg.evaluate("() => { const b = document.querySelector('[data-test=hiz-olc]').getBoundingClientRect(); const r = document.querySelector('[data-test=hiz-sonuc]').getBoundingClientRect(); return Math.round(r.top - b.bottom); }")
+        check(ara >= 10, f"sonuç satırları düğmeden ayrık (aralık {ara} px)")
         check(pg.evaluate("window.__oku.length") == 4, f"ölçüm iki sesi normal ve yavaş çaldı ({pg.evaluate('window.__oku.length')} çalma)")
         sonuc = {e["ad"]: e["t"] for e in pg.locator("[data-test=hiz-sonuc]").evaluate_all("(xs) => xs.map((x) => ({ ad: x.dataset.ad, t: x.innerText }))")}
         check(set(sonuc) == {"Helena (Erweitert)", "Viktor (Erweitert)"} and all(re.search(r"Normal \d+,\d sn · Yavaş \d+,\d sn \(×\d,\d\d\)", t) for t in sonuc.values()), f"ölçüm: kadın ve erkek havuzunun ilk sesi, 'Normal x sn · Yavaş y sn' ({list(sonuc.values())})")
@@ -77,6 +85,8 @@ def main():
         uy = pg.inner_text("[data-test=hiz-uyari]") if pg.locator("[data-test=hiz-uyari]").count() else ""
         check(uy.startswith("Bu ses yavaşlamıyor: Viktor") and "Helena" not in uy, f"yalnız yavaşlamayan ses için uyarı ({uy[:60]})")
         check("yavaşlamıyor" in pg.locator("[data-test=havuz-erkek] [data-test=ses]").first.inner_text() and "yavaşlamıyor" not in pg.locator("[data-test=havuz-kadin] [data-test=ses]").first.inner_text(), "ses satırında ölçüm ve 'yavaşlamıyor' işareti")
+        satir_hiz = pg.locator("[data-test=havuz-kadin] [data-test=ses-hiz]").first.inner_text()
+        check(re.fullmatch(r"normal \d+,\d · yavaş \d+,\d sn", satir_hiz) is not None, f"ses satırında hangisinin ne olduğu yazılı ({satir_hiz})")
         kab = pg.inner_text("[data-test=kabuk-satir]")
         check(re.search(r"yavaş: Helena ×\d,\d\d, Viktor ×\d,\d\d yavaşlamıyor$", kab) is not None, f"kabuk satırına yavaş notu ({kab[-60:]})")
         if shots: pg.locator("[data-test=hiz-olcum]").scroll_into_view_if_needed(); shot(pg, f"s00-hiz-olcum-{TEMA}", full=False)

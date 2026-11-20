@@ -61,11 +61,16 @@ function voiceFor(lang: "de" | "tr"): SpeechSynthesisVoice | undefined {
  */
 export interface HizOlcum { normalMs: number; yavasMs: number; rate: number }
 const HIZ_KEY = "dw2-ses-hiz";
-export function hizKaydi(): Record<string, HizOlcum> { try { return JSON.parse(localStorage.getItem(HIZ_KEY) || "{}"); } catch { return {}; } }
-export function hizKaydet(ad: string, o: HizOlcum) { try { const k = hizKaydi(); k[ad] = o; localStorage.setItem(HIZ_KEY, JSON.stringify(k)); } catch { /* özel kip: ölçüm yalnız ekranda kalır */ } }
+export function hizKaydi(): Record<string, HizOlcum> {
+  try { const k = JSON.parse(localStorage.getItem(HIZ_KEY) || "{}") as Record<string, HizOlcum>; return Object.fromEntries(Object.entries(k).filter(([, o]) => gecerliOlcum(o))); } catch { return {}; }
+}
+export function hizKaydet(ad: string, o: HizOlcum) { if (!gecerliOlcum(o)) return; try { const k = hizKaydi(); k[ad] = o; localStorage.setItem(HIZ_KEY, JSON.stringify(k)); } catch { /* özel kip: ölçüm yalnız ekranda kalır */ } }
 export const hizOrani = (o: HizOlcum) => o.yavasMs / Math.max(1, o.normalMs);
 /** true: ölçüldü ve yavaşlamıyor; false: ölçüldü ve yavaşlıyor; undefined: ölçülmedi */
-export function yavasliyorMu(ad: string): boolean | undefined { const o = hizKaydi()[ad]; return o ? hizOrani(o) >= ORAN_ESIK : undefined; }
+/** PM 7043447488-1: iki süreden biri 0,3 sn'nin altındaysa ses çalmamış demektir; ölçüm sayılmaz (kayıt yok, hüküm yok) */
+export const OLCUM_ALT_MS = 300;
+export const gecerliOlcum = (o: { normalMs: number; yavasMs: number }) => o.normalMs >= OLCUM_ALT_MS && o.yavasMs >= OLCUM_ALT_MS;
+export function yavasliyorMu(ad: string): boolean | undefined { const o = hizKaydi()[ad]; return o && gecerliOlcum(o) ? hizOrani(o) >= ORAN_ESIK : undefined; }
 /** Tek cümleyi verilen ses ve hızla çalar; onstart→onend milisaniyesi (onstart hiç gelmezse çağrı→onend; zaman aşımında null) */
 export function olcCal(text: string, ses: SpeechSynthesisVoice | undefined, rate: number): Promise<number | null> {
   if (!ttsAvailable()) return Promise.resolve(null);

@@ -45,6 +45,17 @@ describe("Yavaş hızı (PM 7042161522-1)", () => {
     expect(yavasliyorMu("Helena (Erweitert)")).toBe(true);
     expect(Object.keys(hizKaydi())).toHaveLength(2);
   });
+  it("0,3 sn altı süre ölçüm sayılmaz: kayıt yok, hüküm yok (PM 7043447488-1)", async () => {
+    const { hizKaydet, yavasliyorMu, hizKaydi, gecerliOlcum } = await import("./speech.ts");
+    hizKaydet("Anna", { normalMs: 0, yavasMs: 0, rate: 0.5 });
+    hizKaydet("Markus", { normalMs: 2900, yavasMs: 120, rate: 0.5 });
+    expect(hizKaydi()).toEqual({});
+    expect(yavasliyorMu("Anna")).toBeUndefined();
+    // eski sürümün yazdığı geçersiz kayıt da yok sayılır
+    depo.set("dw2-ses-hiz", JSON.stringify({ Anna: { normalMs: 30, yavasMs: 30, rate: 0.5 } }));
+    expect(yavasliyorMu("Anna")).toBeUndefined();
+    expect(gecerliOlcum({ normalMs: 300, yavasMs: 450 })).toBe(true);
+  });
   it("ölçülmemiş ses: davranış değişmez (tek cümle, aynı ses, yavaş hız)", async () => {
     const { speak, RATE } = await import("./speech.ts");
     await speak("Ich hätte gern einen Termin.", "de", "slow", true, ses("Anna"));
