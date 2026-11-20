@@ -4,7 +4,7 @@ v2 çekirdek uygulama uçtan uca testi (Playwright, gerçek Chromium).
 Önkoşul: npm run content:build && (cd web && npx vite build --mode e2e --outDir dist-e2e)
 Sunucu (Worker) Playwright ile taklit edilir: https://api.e2e.test/v1/*
 """
-import json, os, sys, threading, functools, http.server, socketserver, datetime
+import json, os, re, sys, threading, functools, http.server, socketserver, datetime
 from playwright.sync_api import sync_playwright
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -236,12 +236,11 @@ def main():
         no_overflow(page, "Profil")
         page.reload()
         page.click("[data-tab=today]")
-        page.wait_for_selector("[data-test=today-min]")
-        # CI'da (WebKit) bir kez öğe göründükten sonra 30 sn kayboldu (inceleme #129 B1): olursa adres ve ekran metni günlüğe düşsün
-        try: hedef_txt = page.inner_text("[data-test=today-min]", timeout=10_000)
-        except Exception:
-            print("TANI (today-min kayboldu):", page.url, "|", page.inner_text("body")[:400].replace("\n", " / ")); raise
-        check("/ 120 dk" in hedef_txt, "yeni hedef (120 dk) yeniden yüklemeden sonra korunuyor")
+        # Bugün önce eski düzenle (today-min) çizilir, M1 gün planı yüklenince gün görünümüne geçer (today-min yok; CI TANI a29fda2).
+        # Hedef her iki düzende de görünür: eski düzende today-min'de, gün görünümünde durum çubuğunda ("/120 dk")
+        page.wait_for_function("() => /\\/\\s?120 dk/.test(document.body.innerText)", timeout=15_000)
+        hedef_txt = page.inner_text("body")
+        check(re.search(r"/\s?120 dk", hedef_txt) is not None, "yeni hedef (120 dk) yeniden yüklemeden sonra korunuyor")
 
         print("7b) B1 hedefi: SAHTE tarihle (PM-001: gerçek tarih depoda yok)")
         page.click("[data-tab=profile]")

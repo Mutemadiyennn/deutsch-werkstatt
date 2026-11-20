@@ -14,7 +14,8 @@ from common import serve, launch, new_page, login_onboard, check, finish, ERR, c
 
 PORT = 4189
 SC = "sc:telefon:01-arzttermin"
-DEV_NOTES = ["Sunucu adresi", "anahtar", "Cloudflare", "v1'de", "inceleme bekliyor", "undefined", "NaN", "Failed to fetch"]
+# geliştirici notuna özgü ifadeler; çıplak "anahtar" ders içeriğiyle çakışıyordu ("der Schlüssel — anahtar"; inceleme #133)
+DEV_NOTES = ["Sunucu adresi", "anahtar eksik", "API anahtar", "Cloudflare", "v1'de", "inceleme bekliyor", "undefined", "NaN", "Failed to fetch"]
 
 def expected_files(idx):
     n = {"index.json", "lexemes.json", "assess.json", "grammar.json"}
