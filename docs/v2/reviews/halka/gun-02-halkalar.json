@@ -316,18 +316,23 @@
   },
   {
    "id": "m1:02:h3",
-   "title_tr": "Eylülden aralığa, bu yıl",
+   "title_tr": "Eylülden aralığa, bu yıl; Wendlfing'de oturmak",
    "kartlar": [
     "lx:September",
     "lx:Oktober",
     "lx:November",
     "lx:Dezember",
-    "lx:Jahr"
+    "lx:Jahr",
+    "lx:wohnen"
    ],
    "kaliplar": [
     {
      "de": "dieses Jahr",
      "tr": "bu yıl"
+    },
+    {
+     "de": "Ich wohne in … – Wohnen Sie in …?",
+     "tr": "…'de oturuyorum – …'de mi oturuyorsunuz? (şehir adıyla)"
     }
    ],
    "gorev_cumleleri": [
@@ -429,6 +434,26 @@
       "Nicht dieses Jahr – im Januar.",
       "Im Januar, nicht dieses Jahr.",
       "Dieses Jahr nicht, im Januar."
+     ]
+    },
+    {
+     "kart": "lx:wohnen",
+     "de": "Wohnen Sie in Wendlfing, Luka?",
+     "tr": "Wendlfing'de mi oturuyorsunuz Luka?",
+     "accepted": [
+      "Wohnen Sie in Wendlfing, Luka?",
+      "Luka, wohnen Sie in Wendlfing?",
+      "Sie wohnen in Wendlfing, Luka?"
+     ]
+    },
+    {
+     "kart": "lx:wohnen",
+     "de": "Ich wohne in Wendlfing. Und Sie?",
+     "tr": "Ben Wendlfing'de oturuyorum. Ya siz?",
+     "accepted": [
+      "Ich wohne in Wendlfing. Und Sie?",
+      "Und Sie? Ich wohne in Wendlfing.",
+      "Ich wohne in Wendlfing. Wohnen Sie in Wendlfing?"
      ]
     }
    ],
@@ -644,7 +669,7 @@
     "lx:wann",
     "lx:Anfang",
     "lx:Ende",
-    "lx:offen"
+    "lx:kommen"
    ],
    "kaliplar": [
     {
@@ -719,23 +744,23 @@
      ]
     },
     {
-     "kart": "lx:offen",
-     "de": "Ist die Praxis heute offen?",
-     "tr": "Muayenehane bugün açık mı?",
+     "kart": "lx:kommen",
+     "de": "Wann kommen Sie? Am Montag?",
+     "tr": "Ne zaman geliyorsunuz? Pazartesi günü mü?",
      "accepted": [
-      "Ist die Praxis heute offen?",
-      "Ist heute die Praxis offen?",
-      "Heute ist die Praxis offen?"
+      "Wann kommen Sie? Am Montag?",
+      "Am Montag? Wann kommen Sie?",
+      "Wann kommen Sie? Montag?"
      ]
     },
     {
-     "kart": "lx:offen",
-     "de": "Die Praxis ist von Montag bis Freitag offen, aber nicht am Wochenende.",
-     "tr": "Muayenehane pazartesiden cumaya kadar açık, ama hafta sonunda değil.",
+     "kart": "lx:kommen",
+     "de": "Wir kommen Anfang September, Frau Stadler!",
+     "tr": "Eylül başında geliyoruz Stadler Hanım!",
      "accepted": [
-      "Die Praxis ist von Montag bis Freitag offen, aber nicht am Wochenende.",
-      "Von Montag bis Freitag ist die Praxis offen, aber nicht am Wochenende.",
-      "Die Praxis ist von Montag bis Freitag offen, am Wochenende aber nicht."
+      "Wir kommen Anfang September, Frau Stadler!",
+      "Anfang September kommen wir, Frau Stadler!",
+      "Frau Stadler, wir kommen Anfang September!"
      ]
     }
    ],
@@ -759,8 +784,8 @@
      },
      {
       "r": "ch:stadler",
-      "de": "Anfang September? Ja, offen!",
-      "tr": "Eylül başında mı? Evet, açık!"
+      "de": "Anfang September? Nein, im September nicht!",
+      "tr": "Eylül başında mı? Hayır, eylülde değil!"
      }
     ],
     "soru": {

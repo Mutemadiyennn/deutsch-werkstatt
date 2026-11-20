@@ -165,3 +165,29 @@ Kabul listesinde „Ist Ihre Nummer neu?“ de var.
 | h4 soru | q / şıklar | Senden önce sırada kaç numara daha var? · Hiç yok / Bir numara: on beş / İki numara / Üç numara | On dörtten sonra, senden önce kaç numara çağrılacak? · Hiç / Bir / İki / Üç (cevap: Bir; tek okuma, yalın şıklar) |
 
 Denetim: `halka_kontrol.py` 1.–5. gün 0 hata; `kucuk_sozcuk.py` 0 hata.
+
+## Takas (PM 7052062209 İÇ 2)
+
+İlke: kart, sözcüğün ilk öğretildiği gündedir. `wohnen`'i 2. günün dersi r0-11 öğretiyor, kartı 2. güne geçti (yukarıdaki soru 3'ün cevabı). Yerine 2. günden `offen` geldi. Kart sayısı aynı (25). Gerekçenin tamamı `gun-02-yazar.md` → „Takas“ bölümünde. Kısaca:
+
+- **Neden `offen`?** 3. günün kendi içeriği bu sözcüğü kullanıyor: okuma metninde ve günün sınavındaki dikte maddesinde geçiyor („Das Büro ist von neun bis elf offen.“). h3'te de zaten bir görev cümlesi var („Die Praxis ist von acht bis zwölf offen, ja?“). Ayrıca 2. günden çıkıp ders tarafından önceden öğretilmeyen tek kart bu. Öneri `offen`'i 5. güne koyuyordu. O zaman 3. günün sınavı kartı olmayan bir sözcüğü yazdıracaktı.
+- **h3'te başta.** Kartın ilk cümlesi tek başına kuruluyor. `acht`'ın ikinci cümlesi kartı kullandığı için onu `offen` kartından sonraya almak gerekiyordu. İki cümle 2. günün h5'inden aynen geldi (okurdan geçmişlerdi; K3: „ist“ ve özne var).
+- **`wohnen`'in iki cümlesi çıktı.** İkisinde de h2'nin bir kartı (sayı) yok. Sayı eklemek ikisini de yapay yapıyordu („Wo wohnen Sie, Herr Wimmer? In Nummer fünf?“). Ayrıca Tobi'nin adresi 17 (h4 g9 zaten „Tobi wohnt in Nummer siebzehn.“). `wohnen` 3. günde kullanılmaya devam ediyor: h2 kalıbı, h2 g4 „Wohnen Sie in Nummer vier?“, h2 g9 „Ich wohne in Nummer sieben.“, h4 g9. Bu cümleler artık dünün kartını taşıyor. 2. günün yeni h3 kalıbı „Ich wohne in …“ şehir adıyla kullanılıyor, buradaki „Ich wohne in der …“ sokak adıyla. Böylece ikisi art arda geliyor.
+
+| Yer | Alan | Eski | Yeni |
+|---|---|---|---|
+| `gun-03.json`, `curriculum/m1.json` | yeni_kartlar | … `lx:wohnen` … | … `lx:offen` … (aynı sırada) |
+| h2 | kartlar | wohnen, vier, fünf, sechs, sieben | vier, fünf, sechs, sieben |
+| h2 g1 (`lx:wohnen`) | de / tr | Wo wohnen Sie, Herr Wimmer? / Nerede oturuyorsunuz Wimmer Bey? | (çıktı) |
+| h2 g2 (`lx:wohnen`) | de / tr | Wohnt Tobi in der Brunnengasse? / Tobi Brunnengasse'de mi oturuyor? | (çıktı) |
+| h3 | kartlar | acht, neun, zehn, elf, zwölf | offen, acht, neun, zehn, elf, zwölf |
+| h3 g1 (`lx:offen`) | de / tr | (yoktu) | Ist die Praxis heute offen? / Muayenehane bugün açık mı? (2. gün h5 g7'den aynen) |
+| | kabul | | Ist heute die Praxis offen? · Heute ist die Praxis offen? |
+| h3 g2 (`lx:offen`) | de / tr | (yoktu) | Die Praxis ist von Montag bis Freitag offen, aber nicht am Wochenende. / Muayenehane pazartesiden cumaya kadar açık, ama hafta sonunda değil. (2. gün h5 g8'den aynen) |
+| | kabul | | Von Montag bis Freitag ist die Praxis offen, aber nicht am Wochenende. · Die Praxis ist von Montag bis Freitag offen, am Wochenende aber nicht. |
+
+**Okur gözüyle sınama:** „Muayenehane … açık“ → **Die Praxis ist … offen** (2. günden beri tek alışkanlık). „…-den …-e kadar“ → **von … bis …** (2. günün h5 kalıbı). İki satır da kabul listesinde.
+
+**Denetim:** `halka_kontrol.py` 0 hata, 0 not. Rapor (b): dünün kartları 6 cümle, daha eski günler 32 cümle. `kucuk_sozcuk.py` 0 hata, kalıp sayısı 2/2/2/1/2. Halka boyları 5/4/6/5/5. 50 görev cümlesi, her kartta 2. Taşınan iki cümle depoda yalnızca burada var. Dosya içinde tekrar yok.
+
+**Açık kalan:** h2 kalıbının „Wo wohnen Sie?“ yarısı artık hiçbir görev cümlesinde istenmiyor (çıkan g1 istiyordu). Kalıp ekranda öğretiliyor. İstenirse bir sayı kartının ikinci cümlesi buna çevrilebilir.

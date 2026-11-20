@@ -123,3 +123,23 @@ Denetim: `halka_kontrol.py` 0 hata, 0 not (4. günün son hâliyle); `kucuk_sozc
 - **(b) gün toplamı** (İÇ 1, rapor kipi): dünün kartlarından 3 cümle vardı (eşik 4). h2 g9 (`lx:nur`) „Nur zehn Minuten, Ioana!“ → „Der Apfel kostet nur fünfzig Cent.“ / „Elma yalnızca elli sent.“ (4. günün elma fiyatıyla aynı); kabul: „Nur fünfzig Cent kostet der Apfel.“, „Der Apfel? Nur fünfzig Cent.“ Şimdi 4.
 - **"zwo"** (İÇ 2): `lx:zwei` kartının ipucunda zaten var („Telefonda **drei** ile karışmasın diye **zwo** denir.“); 3. günün sahnesi ve provasında duyuluyor. Üretim istenmiyor. Kabul listelerine eklenemiyor (betik eşlemiyor).
 - **Okur ek kontrolü** (`docs/v2/reviews/okur/halka-gun-04-05.md` "Ek: zu = fazla"): 19/19 geçti; aynı kuralla 9 satır daha bulundu ve düzeltildi: `gun-04.json` sahne s4 ve prova n2 („Bu fazla pahalı!“), `gun-05.json` sahne s5 („bu fazla geç!“), prova n4 iki seçenek („Bu fazla erken.“, „Hayır! Fazla erken!“) ve why_tr („Fazla erken derken …“); kartlar `lx:sechzig` forms[3] („Fazla pahalı!“), `lx:Nacht` examples[5] („gece fazla kısaydı“), `lx:wollen` examples[5] („fazla erken olmasın“), `lx:vierzehn` forms[3] (`zu wenig`: „On dört gün izin yetmez.“; „fazla az“ Türkçede doğal değil).
+
+## Takas (PM 7052062209 İÇ 2)
+
+İlke: kart, sözcüğün ilk öğretildiği gündedir. `kommen`'i 2. günün dersi r0-11 öğretiyor, kartı 2. güne geçti. Yerine kart gelmedi: 2. günden çıkabilecek tek kart (`offen`) 3. güne gitti (gerekçe `gun-02-yazar.md` → „Takas“). 5. gün artık 24 kart. Bu günün okuma metni ve `offen` geçen satırları değişmedi, çünkü sözcük 3. günden beri biliniyor.
+
+- **`kommen`'in iki cümlesi korundu.** Her biri h5'te başka bir kartın üçüncü cümlesi oldu, birer sözcük eklendi: „Dann komme ich um halb neun.“ (`dann`) ve „Wann kommt der Arzt wieder, Frau Huber?“ (`wieder`). İkisi de sahnedeki telefona uyuyor. Günde yine 50 görev cümlesi var. `dann` ve `wieder`'de 3 cümle, öteki kartlarda 2.
+- İlk taslakta `Winter` buraya (h3) gelmişti. r0-02 onu 2. günde öğrettiği için geri alındı. h3 eski hâlinde.
+
+| Yer | Alan | Eski | Yeni |
+|---|---|---|---|
+| `gun-05.json`, `curriculum/m1.json` | yeni_kartlar | … `lx:kommen` … (25) | `lx:kommen` çıktı (24) |
+| h5 | kartlar | kommen, wieder, da, dann, gern | wieder, da, dann, gern |
+| h5 g1 (`lx:kommen`) | kart / de / tr | `lx:kommen` / Ich komme um halb neun. / Sekiz buçukta geliyorum. | `lx:dann` (dann'ın 3. cümlesi) / Dann komme ich um halb neun. / O zaman sekiz buçukta geliyorum. |
+| | kabul | Um halb neun komme ich. · Ich komme um acht Uhr dreißig. | Um halb neun komme ich dann. · Dann komme ich um acht Uhr dreißig. |
+| h5 g2 (`lx:kommen`) | kart / de / tr | `lx:kommen` / Wann kommt der Arzt, Frau Huber? / Doktor ne zaman geliyor Huber Hanım? | `lx:wieder` (wieder'in 3. cümlesi) / Wann kommt der Arzt wieder, Frau Huber? / Doktor ne zaman tekrar geliyor Huber Hanım? |
+| | kabul | Frau Huber, wann kommt der Arzt? · Der Arzt, wann kommt er, Frau Huber? | Frau Huber, wann kommt der Arzt wieder? · Der Arzt, wann kommt er wieder, Frau Huber? |
+
+**Okur gözüyle sınama:** „O zaman“ → **dann**. „tekrar“ → **wieder** (kart: „yine, tekrar“). „… geliyorum“ → **komme ich** (dann'dan sonra fiil öne geçiyor; r0-11 tablosu ve 2. günün „Im August habe ich …“ sırası). Çıkan cümleler kabul listesinde.
+
+**Denetim:** `halka_kontrol.py` 0 hata, 0 not. Rapor (b): dünün kartları 4 cümle, daha eski günler 44 cümle. `kucuk_sozcuk.py` 0 hata. Halka boyları 5/5/5/5/4. Değişen iki cümle depoda aynen yok. Dosya içinde tekrar yok.
