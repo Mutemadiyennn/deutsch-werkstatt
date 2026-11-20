@@ -14,11 +14,12 @@ Hedef cihaz: **iPhone 15 Pro Max** (A17 Pro; CI matrisinde var). Proje sahibinin
 
 Bugün CI imzasız bir IPA üretiyor (`CODE_SIGNING_ALLOWED=NO`). Telefona kurulurken IPA, proje sahibinin ücretsiz Apple hesabıyla imzalanıyor (kişisel takım). Bunun sonuçları:
 
-- **İmza 7 gün geçerli; ücretsiz hesapla aynı anda en çok 3 uygulama.** Yenileme şart (AltStore/SideStore kendiliğinden yeniler). Kaynak: [Engadget](https://www.engadget.com/2315074/how-to-sideload-apps-ios-even-in-united-states/), [XDA](https://www.xda-developers.com/how-to-sideload-apps-on-iphone/).
+- **Kurulum aracı:** proje sahibi IPA'yı GitHub Actions'tan alıp **Impactor (Linux)** ile kuruyor; ücretli Apple Developer hesabı yok ve açılmayacak (`phases/02-H2.md`). Yani yenileme elle yapılıyor ve kabuk nadiren değişmeli.
+- **İmza 7 gün geçerli; ücretsiz hesapla aynı anda en çok 3 uygulama.** Yenileme şart: Impactor ile yeniden kurulum gerekiyor. Kaynak: [Engadget](https://www.engadget.com/2315074/how-to-sideload-apps-ios-even-in-united-states/), [XDA](https://www.xda-developers.com/how-to-sideload-apps-on-iphone/).
 - **Kişisel takımda uzak bildirim (Push) ve iCloud yok.** Kaynak: [Apple geliştirici forumu, DTS yanıtı](https://developer.apple.com/forums/thread/811929). Uzak bildirime dayanan her şey (sunucudan Canlı Etkinlik güncellemesi, uzak bildirim) kapsam dışı.
 - **Kişisel takımın yetenek listesi** Apple'ın "Supported capabilities (iOS)" tablosunun "Apple Developer" sütunudur. Kaynak: [Apple](https://developer.apple.com/help/account/reference/supported-capabilities-ios). Tablonun metin çıktısına göre App Groups ve Background Modes bu sütunda var, Push yok. **Ölçü:** Kabuk 2 derlemesinde her eklenen yetenek için ücretsiz imzalı kurulum denenir.
 - **Uygulama eki (widget, Canlı Etkinlik, paylaşım eki) ayrı bir uygulama kimliği ister.** Ücretsiz hesapta kimlik sayısı haftalık sınırlıdır. Ek eklemek kurulumu kırabilir. **Karar önerisi:** Kabuk 2'de en çok **bir** ek (Canlı Etkinlik/widget ortak eki). Paylaşım eki yok.
-- **Kurulum yöntemi:** proje sahibinin hangi araçla kurduğu (AltStore / SideStore / Sideloadly / başka) bu notun kararlarını etkiler. **Soru (PM'e):** hangi araç? Telefondaki iOS sürümü kaç? (Cihaz üstü dil modeli ve yeni konuşma tanıma iOS 26 ister.)
+- **Soru (PM'e):** telefondaki iOS sürümü kaç? Cihaz üstü dil modeli ve yeni konuşma tanıma iOS 26 ister.
 
 ## 2. Yetenek tablosu
 
@@ -35,7 +36,7 @@ Sütunlar: **Cihazda** (iPhone 15 Pro Max'te var mı) · **Kazanç** · **Ücret
 | g | **Yerel bildirim**: günlük hatırlatma, seri tehlikede, "5 dakikalık tekrar hazır"; rozet | Var | Uygulama kapalıyken öğrenciyi geri çağırır (LS-10) | Yerel bildirim özel yetki istemez; uzak bildirim yok (kişisel takım) | Bildirim yorgunluğu; günde en çok 2 | Yok (web'de güvenilir değil) | Ayarlanan saatte gelir; dokununca doğru ekrana açılır; rozet sayısı doğru |
 | h | **Dokunsal geri bildirim, ekranı açık tutma, güvenli alan, klavye** (ä ö ü ß satırı) | Var | Doğru/yanlış hissi; ders sırasında ekran kararmaz | Özel yetki yok | Klavye satırı yerel ek ister; önce web içi satır (zaten var mı bakılacak) | `navigator.vibrate` (iOS'ta yok) | Doğru/yanlış/kutlama üç ayrı titreşim; 25 dk derste ekran kararmaz |
 | i | **Cihaz üstü dil modeli (Foundation Models köprüsü)**: yalnızca çevrimdışı yedek sohbet (kısa tur), anında ipucu, yazılan cümleye ön geri bildirim, beklerken ilk tepki (PM-070) | Var: A17 Pro'da çalışır, iOS 26 ve Apple Intelligence açık olmalı ([kaynak](https://dev.to/arshtechpro/apples-foundation-models-framework-run-ai-on-device-with-just-a-few-lines-of-swift-lbp)) | Ücretsiz, internetsiz, kota yok | Temel kullanım için özel yetki yok (yalnızca özel ayarlı model eki için var; biz kullanmıyoruz) | Bağlam penceresi küçük (≈4.096 belirteç, girdi + çıktı; [InfoQ](https://infoq.com/news/2026/03/apple-foundation-models-context)) → uzun rol oyunu yok; Almanca kalitesi ölçülmeli | Sunucudaki büyük model; o da yoksa yapay zekâsız mod | PM-070'deki 40 hatalı cümle seti: eşik altındaysa yalnızca ipucu/yedek rolü; ilk tepki ≤ 1 sn |
-| j | **Canlı Etkinlik / Dynamic Island** (odak sayacı), **ana ekran widget'ı**, **Kısayollar / Eylem düğmesi** ("5 dakikalık tekrar"), **paylaşım eki** | Var (Dynamic Island, Eylem düğmesi) | Odak seansı kilit ekranında; tek tuşla tekrar | Canlı Etkinlik yerel güncellemeyle çalışır, push gerekmez (Apple: [Live Activities ekibi](https://developer.apple.com/news/?id=qpqf1gru)). Widget ekiyle birlikte **bir ek** gerekir (§1 sınırı). Kısayollar (App Intents) ek istemez. Paylaşım eki: **yapılmaz** (ikinci ek) | Ek, ücretsiz kurulumun kimlik sınırını zorlar | Yok | Odak sayacı kilitte ve adada görünür, mola bitince güncellenir; Eylem düğmesinden 5 dk tekrar açılır |
+| j | **Canlı Etkinlik / Dynamic Island** (odak sayacı), **ana ekran widget'ı**, **Kısayollar / Eylem düğmesi** ("5 dakikalık tekrar"), **paylaşım eki** | Var (Dynamic Island, Eylem düğmesi) | Odak seansı kilit ekranında; tek tuşla tekrar | Canlı Etkinlik yerel güncellemeyle çalışır, push gerekmez (Apple: [Live Activities ekibi](https://developer.apple.com/news/?id=qpqf1gru)). Widget ekiyle birlikte **bir ek** gerekir (§1 sınırı). Kısayollar (App Intents) ek istemez. Paylaşım eki: **yapılmaz** (ikinci ek) | Ek, ücretsiz kurulumun kimlik sınırını zorlar | Yok | Odak sayacı kilitte ve adada görünür (geri sayım `Text(timerInterval:)` ile kendiliğinden işler; "mola bitti" durumuna geçiş push olmadan ancak uygulama açıkken ya da yerel bildirimle olur, ölçülecek); Eylem düğmesinden 5 dk tekrar açılır |
 | k | **Performans**: açılış, kaydırma, ses gecikmesi; **ProMotion 120 Hz** | Var (120 Hz) | Akıcılık | — | Web görünümü 120 Hz'i her zaman vermez | — | Önce/sonra: soğuk açılış (sn), ses başlama gecikmesi (ms), kaydırmada kare düşmesi. Proje sahibinin ölçeceği kısa liste qa'dan |
 
 ## 3. Öneri: Kabuk 2 kapsamı (tek derleme)
@@ -57,6 +58,6 @@ Sütunlar: **Cihazda** (iPhone 15 Pro Max'te var mı) · **Kazanç** · **Ücret
 
 ## 4. Açık sorular (PM'e)
 
-1. Kurulum aracı ve telefondaki iOS sürümü (§1).
+1. Telefondaki iOS sürümü (§1). Kurulum aracı belli: Impactor (Linux).
 2. e maddesi: Kabuk 2'de mi, Kabuk 3'te mi (öneri: Kabuk 3)?
 3. Bildirim sıklığı üst sınırı: günde en çok 2 (öneri).
