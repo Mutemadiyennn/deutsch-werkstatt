@@ -37,7 +37,10 @@ PM belgeleri issue olarak gelir; depoya baş geliştirici alır (PM-011).
 - **Türkçe açıklama, İngilizce köprü yok.** İngilizce yalnızca mistakes_tr içinde kısa "yanlış arkadaş" uyarısı olabilir (D-060).
 - **Kalıp kapısı (D-063):** kalıplar "reviewed" olmadan yeni senaryo/alan yazılmaz. Üretim maddelerinde accepted[] ≥3 (D-064).
 - **Döngüsüzlük (H4 §4):** bir konu yeni bir şey öğretmedikçe tekrar gelmez; tekrarlar farklı bağlam ve karakterle gelir.
-- **WebKit kabul ölçütüdür.** "Bitti" kararı CI'daki WebKit (iPhone 15, iPhone 16 Pro Max) sonucuna göre verilir. Yerelde WebKit kurulamazsa Chromium'a düşülmez; yerel Chromium yalnızca hızlı geri bildirimdir.
+- **WebKit kabul ölçütüdür.** "Bitti" kararı, bağımsız inceleme ajanının temiz kopyada koştuğu `scripts/kapi.sh` WebKit sonucuna göre verilir (iPhone 15, 15 Pro Max, 16 Pro Max; PM 7046691693 "Actionssız düzen"). Chromium'a düşmek yok; yerel Chromium yalnızca hızlı geri bildirimdir.
+- **Hazır tanımı (PM-079 md. 1, `docs/v2/CALISMA_DUZENI.md`):** iş; kabul listesi, arayüz değişiyorsa hedef ekran (`design/TARGET*`) ve tek satır "Rakip:" olmadan başlamaz. Arayüzsüz işte PM 60 dk'da yanıt vermezse motor kendi listesiyle başlar.
+- **Öz-denetim (PM-079 md. 2):** PR açılmadan önce kabul listesi ve yerleşim bekçisi yerelde koşulur, sonuç PR açıklamasına madde madde yazılır; liste karşılanmadan inceleme ajanı başlatılmaz.
+- **Tek geçişte tam bakış (PM-079 md. 3):** inceleme 1. turda bütün bulguları yazar; 2. tur yalnız düzeltmeyi ve düzeltmenin getirdiği kusuru doğrular. Eski koddaki yeni bulgu engel değil, takip işidir.
 - **Bitti tanımı:** kod + birim testleri + WebKit uçtan uca testleri + DN-2 makine kapısının tamamı (gezgin, yükleme bütçesi, uçak modu, TS-4, üç cihaz; `docs/v2/DENETIM.md`) + doğrulayıcı 0 hata + güncel STATUS + PR açıklaması. Biri eksikse "bitti" denmez.
 - **PR sınırı (PM-046 B, PM-052 C.11):** yeni özellik PR'ı için en fazla 4 açık PR; ≤50 satırlık hata düzeltmeleri ve tarihi olan işler muaf.
 - **Küçük PR.** Her teslim ayrı dal ve ayrı PR; bağımlıysa öncekinin üstüne (yığınlı). PR açıklaması kendi başına anlaşılır: ne değişti, nasıl test edildi, arayüz değiştiyse ekran görüntüleri, bilinen eksikler.
