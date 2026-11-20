@@ -2,15 +2,17 @@
 Yerleşim bekçisi (PM-079 md. 4; hazır tanımı #12 7047348069, PM ✓ 7047456551).
 Gezginin yürüdüğü her ekranı (gezgin.screens(), kopya liste yok) iki boyutta açar: 390×844 ve 430×932.
 Her ekranda sekiz kural:
-  B1 birincil düğme (.btn.primary) görüş alanına getirildiğinde tam görünür ve üstüne hiçbir öğe binmez (5 iç nokta elementFromPoint; ata öğe sayılmaz)
+  B1 birincil düğme (.btn.primary) görüş alanına getirildiğinde tam görünür, kırpan atası yok ve üstüne hiçbir öğe binmez
+     (5 nokta elementFromPoint: köşelerden 2 px + yuvarlaklığın 0,3'ü içeride, ve merkez)
   B2 etkileşimli öğeler (button, a[href], [role=button], input, select, textarea) üst üste değil (ata/çocuk hariç; kesişim > 1 px²;
-     kayan içeriğin sabit çubuğun altından geçmesi sayılmaz)
-  B3 ≥ 3 sözcüklü aynı metin bir ekranda iki ayrı blokta yok (aynı listenin kardeş satırlarındaki yineleme bir kez sayılır)
+     kayan içerik sabit çubuğun altından geçiyorsa öğe ortaya getirilip yeniden ölçülür; yalnız kalıcı binme sayılır)
+  B3 ≥ 3 sözcüklü aynı metin bir ekranda iki ayrı blokta yok (aynı listenin kardeş satırlarındaki yineleme bir kez sayılır;
+     kardeş satır = aynı etiket + sınıf ve satır yinelenen metinden fazlasını taşıyor)
   B4 ana ekranlarda (Bugün, Öğren, İlerleme, Profil) açıklama (main p.muted, main p.small, [data-aciklama]) ≤ 2 satır
   B5 "·" satır başında ya da sonunda yalnız kalmaz (önceki ve sonraki görünür karakter aynı satırda)
-  B6 yatay taşma yok (scrollWidth ≤ innerWidth + 1)
-  B7 başlık sözcüğü (h1–h3, .de, .de-lg, [lang=de]; ≥ 18 px) iki satıra bölünmez (heceleme ya da kırma)
-  B8 görüş alanında aynı anda en çok bir birincil düğme (açık pencere/alt sayfa varsa yalnız onun içi)
+  B6 yatay taşma yok: belge (scrollWidth ≤ innerWidth + 1) ve öğe (kutusu ekran dışına taşan öğe; overflow-x:clip altında da; yatay kaydırmalı şerit hariç)
+  B7 başlık sözcüğü (h1–h3; .de, .de-lg, [lang=de] ≥ 17 px) iki satıra bölünmez (heceleme ya da kırma; kısa çizgide kırılma serbest)
+  B8 görüş alanında aynı anda en çok bir birincil düğme (açık pencere/alt sayfa varsa yalnız onun içi) — yalnız ilk konumda (scrollY = 0)
 Kip (PM 7047456551): main'de ilk ölçümde ihlal 5'ten çoksa bekçi RAPOR kipinde girer (ihlal listesi yazılır, çıkış 0);
 düzeltmeler ≤ 5'lik PR'larla gelir, sayı sıfıra inince KIP = "kirmizi" yapılır. İstisna dosyası yoktur.
 Kuralların kendisi her koşuda önce sentetik sayfalarla sınanır (--oz-sina; ihlalli → yakalanmalı, temiz → yakalanmamalı);
@@ -23,7 +25,7 @@ from common import serve, launch, new_page, login_onboard, check, finish, arg, B
 import gezgin
 
 KIP = "rapor"   # PM 7047456551: ilk ölçüm > 5 ihlal → rapor kipi; sıfıra inince "kirmizi"
-PORT = 4231
+PORT = 4237
 BOYUTLAR = [{"width": 390, "height": 844}, {"width": 430, "height": 932}]
 ANA = {"#/today", "#/learn", "#/progress", "#/profile"}
 
@@ -41,8 +43,17 @@ KURALLAR = r"""(ana) => {
   const pencere = [...document.querySelectorAll('dialog[open], [role=dialog], [aria-modal=true], .sheet, .modal')].filter(gorunur).pop() || null;
   const kapsam = pencere || document;
 
-  // B6 yatay taşma
+  // B6 yatay taşma: belge düzeyinde ve öğe düzeyinde (overflow-x: clip/hidden ata taşmayı gizleyebilir; yatay kaydırmalı şerit hariç)
   if (document.documentElement.scrollWidth > innerWidth + 1) ihlal.push(['B6', `yatay taşma ${document.documentElement.scrollWidth} > ${innerWidth}`]);
+  const kaydirmali = (e) => { for (let x = e.parentElement; x; x = x.parentElement) { const o = getComputedStyle(x).overflowX; if (o === 'auto' || o === 'scroll') return true; } return false; };
+  const tasan = [];
+  for (const e of document.body.querySelectorAll('*')) {
+    if (!gorunur(e) || getComputedStyle(e).position === 'fixed') continue;
+    const r = e.getBoundingClientRect(); if (r.right <= innerWidth + 1 && r.left >= -1) continue;
+    if (kaydirmali(e) || tasan.some((t) => t.contains(e))) continue;
+    tasan.push(e);
+  }
+  for (const e of tasan.slice(0, 5)) { const r = e.getBoundingClientRect(); ihlal.push(['B6', `öğe ekran dışına taşıyor: ${ad(e)} (${Math.round(r.left)}–${Math.round(r.right)} / ${innerWidth})`]); }
 
   // B8 tek birincil (görüş alanında, ilk konumda)
   const birincil = [...kapsam.querySelectorAll('.btn.primary')].filter(gorunur);
@@ -55,10 +66,17 @@ KURALLAR = r"""(ana) => {
     b.scrollIntoView({ block: 'center', inline: 'nearest' });
     const r = b.getBoundingClientRect();
     if (r.top < -0.5 || r.left < -0.5 || r.bottom > innerHeight + 0.5 || r.right > innerWidth + 0.5) { ihlal.push(['B1', `birincil düğme görüş alanına sığmıyor: ${ad(b)} (${Math.round(r.top)}–${Math.round(r.bottom)} / ${innerHeight})`]); continue; }
-    // 5 nokta: merkez + yatayda %12, dikeyde %25 içeriden (köşe yuvarlaklığı dışarıda kalır); ata öğe örtü sayılmaz
-    const cx = (r.left + r.right) / 2, cy = (r.top + r.bottom) / 2, dx = r.width * 0.38, dy = r.height * 0.25;
-    const n = [[cx, cy], [cx - dx, cy], [cx + dx, cy], [cx, cy - dy], [cx, cy + dy]];
-    const ortu = n.map(([x, y]) => document.elementFromPoint(x, y)).find((e) => e && e !== b && !b.contains(e) && !e.contains(b));
+    // kırpan ata (overflow ≠ visible): düğme atanın kutusundan taşıyorsa kesik
+    let kesik = null;
+    for (let x = b.parentElement; x && x !== document.body; x = x.parentElement) {
+      const st = getComputedStyle(x); if (st.overflowX === 'visible' && st.overflowY === 'visible') continue;
+      const a = x.getBoundingClientRect(); if (r.top < a.top - 0.5 || r.bottom > a.bottom + 0.5 || r.left < a.left - 0.5 || r.right > a.right + 0.5) { kesik = x; break; }
+    }
+    if (kesik) { ihlal.push(['B1', `birincil düğme atası tarafından kırpılıyor: ${ad(b)} ⊄ ${ad(kesik)}`]); continue; }
+    // 5 nokta: dört köşe (2 px + köşe yuvarlaklığının 0,3'ü içeriden; yay dışı nokta düğmeye düşmez) ve merkez
+    const yc = Math.min(parseFloat(getComputedStyle(b).borderTopLeftRadius) || 0, r.height / 2, r.width / 2), ic = 2 + yc * 0.3;
+    const n = [[r.left + ic, r.top + ic], [r.right - ic, r.top + ic], [r.left + ic, r.bottom - ic], [r.right - ic, r.bottom - ic], [(r.left + r.right) / 2, (r.top + r.bottom) / 2]];
+    const ortu = n.map(([x, y]) => document.elementFromPoint(x, y)).find((e) => e && e !== b && !b.contains(e));
     if (ortu) ihlal.push(['B1', `birincil düğmenin üstünde öğe: ${ad(b)} ← ${ad(ortu)}`]);
   }
   scrollTo(0, sy);
@@ -71,7 +89,15 @@ KURALLAR = r"""(ana) => {
   const kat = dok.map(katman);
   for (let i = 0; i < dok.length; i++) for (let j = i + 1; j < dok.length; j++) {
     if (dok[i].contains(dok[j]) || dok[j].contains(dok[i])) continue;
-    if ((kat[i] === null) !== (kat[j] === null)) continue;
+    if ((kat[i] === null) !== (kat[j] === null)) {
+      // akıştaki öğe sabit çubuğun altında: öğe görüş alanının ortasına getirilince hâlâ binme varsa ihlal (kısa sayfa, son satır)
+      if (ust(kutu[i], kutu[j]) <= 1) continue;
+      const akis = kat[i] === null ? dok[i] : dok[j], sabit = akis === dok[i] ? dok[j] : dok[i];
+      const y0 = scrollY; akis.scrollIntoView({ block: 'center' });
+      const o = ust(akis.getBoundingClientRect(), sabit.getBoundingClientRect()); scrollTo(0, y0);
+      if (o > 1) ihlal.push(['B2', `sabit çubuk kalıcı biniyor: ${ad(akis)} × ${ad(sabit)}`]);
+      continue;
+    }
     if (ust(kutu[i], kutu[j]) > 1) ihlal.push(['B2', `üst üste: ${ad(dok[i])} × ${ad(dok[j])}`]);
   }
 
@@ -89,13 +115,17 @@ KURALLAR = r"""(ana) => {
     let x = a; const atalar = new Set(); while (x) { atalar.add(x); x = x.parentElement; }
     let y = b, oy = null; while (y && !atalar.has(y)) { oy = y; y = y.parentElement; }
     let z = a, oz = null; while (z && z !== y) { oz = z; z = z.parentElement; }
-    return !!(oy && oz && oy !== oz && oy.tagName === oz.tagName && oy.className === oz.className);
+    // kardeş satır: aynı etiket + sınıf, ve satır yinelenen metinden fazlasını taşıyor (ör. "1. bölüm" + "Önceki bölüm bitince açılır");
+    // art arda iki özdeş <p> ya da yalnız başlığı taşıyan iki sarmalayıcı satır sayılmaz
+    if (!(oy && oz && oy !== oz && oy.tagName === oz.tagName && oy.className === oz.className)) return false;
+    const t = norm(a.innerText || '');
+    return norm(oy.innerText || '') !== t && norm(oz.innerText || '') !== t;
   };
   for (const [t, es] of tasiyan) {
     if (es.length < 2) continue;
     let ayri = false;
     for (let i = 0; i < es.length && !ayri; i++) for (let j = i + 1; j < es.length; j++) if (!satir(es[i], es[j])) { ayri = true; break; }
-    if (ayri) ihlal.push(['B3', `aynı metin ${es.length} kez: "${t.slice(0, 60)}"`]);
+    if (ayri) ihlal.push(['B3', `aynı metin ${es.length} kez: "${(es[0].innerText || '').replace(/\s+/g, ' ').trim().slice(0, 60)}"`]);
   }
 
   // satır sayısı: metin kutularının farklı satır ortaları
@@ -105,7 +135,7 @@ KURALLAR = r"""(ana) => {
   // B4 açıklama ≤ 2 satır (yalnız ana ekranlar)
   if (ana) for (const p of document.querySelectorAll('main p.muted, main p.small, main [data-aciklama]')) {
     if (!gorunur(p)) continue; const n = satirlar(kutular(p));
-    if (n > 2) ihlal.push(['B4', `açıklama ${n} satır: "${norm(p.innerText).slice(0, 50)}"`]);
+    if (n > 2) ihlal.push(['B4', `açıklama ${n} satır: "${(p.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 50)}"`]);
   }
 
   // B5 "·" satır başında/sonunda yalnız
@@ -114,7 +144,10 @@ KURALLAR = r"""(ana) => {
   const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   while (w.nextNode()) {
     const n = w.currentNode; if (!n.textContent.includes('·') || !gorunur(n.parentElement)) continue;
-    const b = blok(n); if (!b || gorulen.has(b)) continue; gorulen.add(b);
+    let b = blok(n);
+    // yalnız "·" taşıyan kendi blok/flex öğesi: karakter dizisi bir üst blokta kurulur
+    while (b && b.parentElement && b !== document.body && !/[^\s·]/.test(b.innerText || '')) b = blok(b);
+    if (!b || gorulen.has(b)) continue; gorulen.add(b);
     const harf = [];   // [düğüm, sıra] görünür, boşluk olmayan karakterler
     const w2 = document.createTreeWalker(b, NodeFilter.SHOW_TEXT);
     while (w2.nextNode()) { const m = w2.currentNode; if (!gorunur(m.parentElement)) continue; for (let i = 0; i < m.textContent.length; i++) if (!/\s/.test(m.textContent[i])) harf.push([m, i]); }
@@ -124,20 +157,25 @@ KURALLAR = r"""(ana) => {
       const [m, i] = harf[k]; if (m.textContent[i] !== '·') continue;
       const r = kutu1(harf[k]); if (!r) continue;
       const once = k > 0 ? kutu1(harf[k - 1]) : null, sonra = k < harf.length - 1 ? kutu1(harf[k + 1]) : null;
-      if (!ayniSatir(r, once)) ihlal.push(['B5', `"·" satır başında: "${norm(b.innerText).slice(0, 50)}"`]);
-      else if (!ayniSatir(r, sonra)) ihlal.push(['B5', `"·" satır sonunda: "${norm(b.innerText).slice(0, 50)}"`]);
+      const ozet = (b.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 50);
+      if (!ayniSatir(r, once)) ihlal.push(['B5', `"·" satır başında: "${ozet}"`]);
+      else if (!ayniSatir(r, sonra)) ihlal.push(['B5', `"·" satır sonunda: "${ozet}"`]);
     }
   }
 
   // B7 başlık sözcüğü bölünmez
+  const b7 = new Set();
   for (const h of document.querySelectorAll('h1, h2, h3, .de, .de-lg, [lang=de]')) {
-    if (!gorunur(h) || parseFloat(getComputedStyle(h).fontSize) < 18) continue;
+    // h1–h3 her boyutta; .de/.de-lg/[lang=de] yalnız başlık boyunda (≥ 17 px)
+    if (!gorunur(h) || (!/^H[1-3]$/.test(h.tagName) && parseFloat(getComputedStyle(h).fontSize) < 17)) continue;
     const w3 = document.createTreeWalker(h, NodeFilter.SHOW_TEXT);
     while (w3.nextNode()) {
-      const m = w3.currentNode; const re = /[\p{L}\p{N}­-]{4,}/gu; let x;
+      // sözcük: harf/rakam/yumuşak tire; kısa çizgi (Schleswig-Holstein) sözcük sınırıdır, orada kırılma serbest
+      const m = w3.currentNode; const re = /[\p{L}\p{N}\u00AD]{4,}/gu; let x;
       while ((x = re.exec(m.textContent))) {
         const rg = document.createRange(); rg.setStart(m, x.index); rg.setEnd(m, x.index + x[0].length);
-        if (satirlar([...rg.getClientRects()]) > 1) ihlal.push(['B7', `başlık sözcüğü bölünmüş: "${x[0].replace(/­/g, '')}"`]);
+        const sz = x[0].replace(/\u00AD/g, '');
+        if (satirlar([...rg.getClientRects()]) > 1 && !b7.has(sz)) { b7.add(sz); ihlal.push(['B7', `başlık sözcüğü bölünmüş: "${sz}"`]); }
       }
     }
   }
@@ -151,19 +189,29 @@ OZ = [
   # (kural, ana_ekran, sayfa, ihlal beklenir mi)
   ("B1", False, sayfa("<main><button class='btn primary'>Devam</button><div style='position:fixed;top:0;left:0;width:300px;height:100px;background:red'></div></main>"), True),
   ("B1", False, sayfa("<main><button class='btn primary'>Devam</button></main>"), False),
+  ("B1", False, sayfa("<main><div style='height:30px;overflow:hidden'><button class='btn primary'>Devam</button></div></main>"), True),
+  ("B1", False, sayfa("<main style='padding-bottom:200px'><button class='btn primary' style='border-radius:24px'>Devam</button><nav style='position:fixed;bottom:0;left:0;right:0;height:60px;background:#eee'><a href='#'>Bugün</a></nav></main>"), False),
   ("B2", False, sayfa("<main><button class=btn style='position:absolute;top:10px'>A</button><button class=btn style='position:absolute;top:30px'>B</button></main>"), True),
   ("B2", False, sayfa("<main><button class=btn>A</button><button class=btn style='margin-top:12px'>B</button></main>"), False),
+  ("B2", False, sayfa("<main><button class=btn style='margin-top:30px'>Son</button><nav style='position:fixed;top:20px;left:0;right:0;height:60px'><a href='#' style='display:block;height:60px'>Sekme</a></nav></main>"), True),
+  ("B2", False, sayfa("<main><div style='height:2000px'></div><button class=btn>Liste</button><div style='height:400px'></div><nav style='position:fixed;bottom:0;left:0;right:0;height:60px'><a href='#' style='display:block;height:60px'>Sekme</a></nav></main>"), False),
   ("B3", False, sayfa("<main><h2>Bugün üç kelime var</h2><section><p>Bugün üç kelime var</p></section></main>"), True),
   ("B3", False, sayfa("<main><ul><li><b>1. bölüm</b><span class=k>Önceki bölüm bitince açılır</span></li><li><b>2. bölüm</b><span class=k>Önceki bölüm bitince açılır</span></li></ul></main>"), False),
+  ("B3", False, sayfa("<main><p>Bugün üç kelime var</p><p>Bugün üç kelime var</p></main>"), True),
+  ("B3", False, sayfa("<main><div><b>Doktordan telefonla randevu</b></div><div><h1>Doktordan telefonla randevu</h1></div></main>"), True),
   ("B4", True, sayfa("<main><p class=muted style='width:120px'>Bu açıklama çok uzun olduğu için dar bir kutuda üç satırdan fazla yer kaplar ve kırmızı verir.</p></main>"), True),
   ("B4", True, sayfa("<main><p class=muted>Kısa açıklama.</p></main>"), False),
   ("B5", False, sayfa("<main><p>aaaa<br>· bbbb</p></main>"), True),
   ("B5", False, sayfa("<main><p>aaaa ·<br>bbbb</p></main>"), True),
   ("B5", False, sayfa("<main><p>aaa · bbb · ccc</p></main>"), False),
+  ("B5", False, sayfa("<main><div style='display:flex;gap:6px'><span>aaa</span><span>·</span><span>bbb</span></div></main>"), False),
   ("B6", False, sayfa("<main><div style='width:2000px;height:10px'></div></main>"), True),
   ("B6", False, sayfa("<main><div style='width:100px;height:10px'></div></main>"), False),
+  ("B6", False, sayfa("<main style='overflow-x:clip'><div style='width:2000px;height:10px;background:#ccc'></div></main>"), True),
+  ("B6", False, sayfa("<main><div style='overflow-x:auto'><div style='width:2000px;height:10px'></div></div></main>"), False),
   ("B7", False, sayfa("<main><h1 lang=de style='width:120px;font-size:28px;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:anywhere'>Krankenversicherungskarte</h1></main>"), True),
   ("B7", False, sayfa("<main><h1 lang=de style='font-size:28px'>Die Karte</h1></main>"), False),
+  ("B7", False, sayfa("<main><h1 lang=de style='width:150px;font-size:24px'>Schleswig-Holstein</h1></main>"), False),
   ("B8", False, sayfa("<main><button class='btn primary'>Bir</button><button class='btn primary' style='margin-top:12px'>İki</button></main>"), True),
   ("B8", False, sayfa("<main><button class='btn primary'>Bir</button><button class=btn style='margin-top:12px'>İki</button></main>"), False),
   ("B8", False, sayfa("<main><button class='btn primary'>Arka</button><div role=dialog><button class='btn primary'>Tamam</button></div></main>"), False),
@@ -190,7 +238,14 @@ def main():
             login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
             acilan = 0
             for scr in ekranlar:
-                pg.goto(base + scr); pg.wait_for_timeout(400); gezgin.settle(pg, scr)
+                pg.goto(base + scr); gezgin.settle(pg, scr)
+                # içerik durulana kadar (metin iki ölçümde aynı; en çok 3 sn): sabit beklemenin yarattığı oynamayı keser
+                onceki = None
+                for _ in range(20):
+                    pg.wait_for_timeout(150); simdi = pg.evaluate("(document.querySelector('main, .callscreen') || document.body).innerText")
+                    if simdi == onceki: break
+                    onceki = simdi
+                if len((onceki or "").strip()) <= 20: check(False, f"{scr}: ekran boş açıldı"); continue
                 acilan += 1
                 for k, m in pg.evaluate(KURALLAR, scr in ANA):
                     rap["ihlal"].append({"boy": f"{boy['width']}x{boy['height']}", "ekran": scr, "kural": k, "ayrinti": m})
