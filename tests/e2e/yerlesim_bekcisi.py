@@ -7,7 +7,7 @@ Her ekranda sekiz kural:
   B2 etkileşimli öğeler (button, a[href], [role=button], input, select, textarea) üst üste değil (ata/çocuk hariç; kesişim > 1 px²;
      kayan içerik sabit çubuğun altından geçiyorsa öğe ortaya getirilip yeniden ölçülür; yalnız kalıcı binme sayılır)
   B3 ≥ 3 sözcüklü aynı metin bir ekranda iki ayrı blokta yok (aynı listenin kardeş satırlarındaki yineleme bir kez sayılır;
-     kardeş satır = aynı etiket + sınıf ve satır yinelenen metinden fazlasını taşıyor)
+     kardeş satır = aynı etiket + sınıf ve satır yinelenen metinden fazlasını taşıyor; yinelenen metin kart başlığıysa muafiyet yok)
   B4 ana ekranlarda (Bugün, Öğren, İlerleme, Profil) açıklama (main p.muted, main p.small, [data-aciklama]) ≤ 2 satır
   B5 "·" satır başında ya da sonunda yalnız kalmaz (önceki ve sonraki görünür karakter aynı satırda)
   B6 yatay taşma yok: belge (scrollWidth ≤ innerWidth + 1) ve öğe (kutusu ekran dışına taşan öğe; overflow-x:clip altında da; yatay kaydırmalı şerit hariç)
@@ -115,6 +115,13 @@ KURALLAR = r"""(ana) => {
     if ([...e.children].some((c) => norm(c.innerText || '') === t)) continue;
     if (!tasiyan.has(t)) tasiyan.set(t, []); tasiyan.get(t).push(e);
   }
+  // başlık: h1–h6, [role=heading], ya da satırın (kartın) ilk görünür metin taşıyan öğesi kalın/büyük yazıyla
+  const baslik = (e, kart) => {
+    if (e.closest('h1, h2, h3, h4, h5, h6, [role=heading]')) return true;
+    const ilk = [...kart.querySelectorAll('*')].find((x) => gorunur(x) && norm(x.innerText || '') && ![...x.children].some((c) => norm(c.innerText || '')));
+    if (!ilk || !(ilk === e || e.contains(ilk) || ilk.contains(e))) return false;
+    const st = getComputedStyle(ilk); return parseInt(st.fontWeight, 10) >= 600 || parseFloat(st.fontSize) >= 18;
+  };
   const satir = (a, b) => {   // a ile b aynı listenin kardeş satırlarında mı
     let x = a; const atalar = new Set(); while (x) { atalar.add(x); x = x.parentElement; }
     let y = b, oy = null; while (y && !atalar.has(y)) { oy = y; y = y.parentElement; }
@@ -122,6 +129,8 @@ KURALLAR = r"""(ana) => {
     // kardeş satır: aynı etiket + sınıf, ve satır yinelenen metinden fazlasını taşıyor (ör. "1. bölüm" + "Önceki bölüm bitince açılır");
     // art arda iki özdeş <p> ya da yalnız başlığı taşıyan iki sarmalayıcı satır sayılmaz
     if (!(oy && oz && oy !== oz && oy.tagName === oz.tagName && oy.className === oz.className)) return false;
+    // PM 7048319359 D1: yinelenen metin kartın BAŞLIĞIYSA muafiyet yok (aynı başlıklı iki kart ayırt edilemez)
+    if (baslik(a, oz) || baslik(b, oy)) return false;
     const t = norm(a.innerText || '');
     return norm(oy.innerText || '') !== t && norm(oz.innerText || '') !== t;
   };
@@ -203,6 +212,8 @@ OZ = [
   ("B3", False, sayfa("<main><h2>Bugün üç kelime var</h2><section><p>Bugün üç kelime var</p></section></main>"), True),
   ("B3", False, sayfa("<main><ul><li><b>1. bölüm</b><span class=k>Önceki bölüm bitince açılır</span></li><li><b>2. bölüm</b><span class=k>Önceki bölüm bitince açılır</span></li></ul></main>"), False),
   ("B3", False, sayfa("<main><p>Bugün üç kelime var</p><p>Bugün üç kelime var</p></main>"), True),
+  ("B3", False, sayfa("<main><section class=card><h3>Doktordan randevu almak</h3><p>Telefonla</p></section><section class=card><h3>Doktordan randevu almak</h3><p>Yüz yüze</p></section></main>"), True),
+  ("B3", False, sayfa("<main><section class=card><h3>Telefonla</h3><p>Önceki bölüm bitince açılır</p></section><section class=card><h3>Yüz yüze</h3><p>Önceki bölüm bitince açılır</p></section></main>"), False),
   ("B3", False, sayfa("<main><div><b>Doktordan telefonla randevu</b></div><div><h1>Doktordan telefonla randevu</h1></div></main>"), True),
   ("B4", True, sayfa("<main><p class=muted style='width:120px'>Bu açıklama çok uzun olduğu için dar bir kutuda üç satırdan fazla yer kaplar ve kırmızı verir.</p></main>"), True),
   ("B4", True, sayfa("<main><p class=muted>Kısa açıklama.</p></main>"), False),
