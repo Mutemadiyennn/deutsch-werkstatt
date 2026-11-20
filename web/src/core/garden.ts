@@ -38,6 +38,8 @@ export interface GardenQ {
   intro?: boolean;
   /** örnek cümle sırası (yanlışta bir sonraki örnek) */
   ex: number;
+  /** PM-069 madde 3: tanıtımı ayrı yapılmış yeni kartın ilk sorusu (tanıtımdan en az 2 öğe sonra gelir) */
+  ilkSoru?: boolean;
   /** turda kaçıncı deneme (yanlıştan sonra 1) */
   retry?: number;
   /** B16: yeni kart "Biliyorum, sına beni" — tanıtım yok; tek üretim sorusu (TR→DE, ipucusuz, isimde artikel) */
@@ -109,6 +111,26 @@ export function pickType(l: Lexeme, path: "passive" | "active", last: string | u
   return pool[Math.floor(rng() * pool.length) % pool.length]!;
 }
 
+/**
+ * PM-069 madde 3: tanıtım ile o kartın ilk sorusu arasına en az 2 öğe girer ("tanıt A, tanıt B, tanıt C, sor A, …").
+ * Tanıtım bitince ilk soru `ARALIK` öğe sonrasına eklenir (tur kısaysa sona). `exi`: tanıtımda en son gösterilen cümle.
+ */
+export const ARALIK = 2;
+export function ertele(round: GardenQ[], i: number, exi: number): GardenQ[] {
+  const q = round[i]!;
+  const soru: GardenQ = { lexId: q.lexId, type: "listen_meaning", ex: exi, ilkSoru: true };
+  // sorular sırasını korur ve kümelenmez (tanıt A, tanıt B, tanıt C, sor A, tanıt D, sor B, …): son ilk sorudan en az bir öğe sonra
+  let son = -1; round.forEach((x, k) => { if (k > i && x.ilkSoru) son = k; });
+  const yer = Math.min(Math.max(i + 1 + ARALIK, son + 2), round.length);
+  return [...round.slice(0, yer), soru, ...round.slice(yer)];
+}
+/** İlk üretim sorusundan önce köprü: artikel ya da eşdizim seçmeli (PM-069 madde 3); bu kartta henüz sorulmadıysa */
+export function kopruGerek(it: LearnerItem, l: Lexeme): boolean {
+  const kopru = availableTypes(l, "passive").filter((t) => t !== "listen_meaning");
+  // köprü ancak doğru cevapla geçilir (#126 PM önerisi, 30 dk kuralı); takılan kart en çok 6 tanıma sorusundan sonra yine üretime açılır
+  return !it.active.fsrs && kopru.length > 0 && !it.kopru && it.passive.n < 6;
+}
+
 /** Kart tanıtılmış mı (aktif soru için ön koşul) */
 export const introduced = (it: LearnerItem | undefined) => !!it && (it.passive.ok > 0 || it.active.ok > 0 || (it.passive.n > 0 && it.active.n > 0));
 
@@ -169,18 +191,27 @@ export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerI
     const t = pickType(lex.get(id)!, path, it?.lastQ, rng, [...(first ? ["own_sentence" as const] : []), ...(guclu(it) ? ["photo_say" as const] : [])]);
     if (t) { out.push({ lexId: id, type: t, ex: siradakiEx(it) }); used.add(id); }
   };
+  const kopru: { id: string; at: number }[] = [];
+  const addKopru = (id: string) => {
+    if (out.length >= cap || used.has(id)) return;
+    const t = pickType(lex.get(id)!, "passive", items.get(id)?.lastQ, rng, ["listen_meaning"]);
+    if (t && t !== "listen_meaning") { out.push({ lexId: id, type: t, ex: siradakiEx(items.get(id)) }); used.add(id); }
+  };
   const dueA: { id: string; at: number }[] = [], dueP: { id: string; at: number }[] = [], ready: { id: string; at: number }[] = [];
   for (const it of items.values()) {
     if (it.kind !== "lexeme" || !lex.has(it.itemId)) continue;
     const l = lex.get(it.itemId)!;
     if (!isCard(l)) continue;
     if (introduced(it) && availableTypes(l, "active").length && isDue(it, "active", now)) dueA.push({ id: it.itemId, at: Date.parse(it.active.fsrs!.due) });
+    else if (activatable(it, l) && kopruGerek(it, l)) kopru.push({ id: it.itemId, at: Date.parse(it.passive.last || "0") });
     else if (activatable(it, l)) ready.push({ id: it.itemId, at: Date.parse(it.passive.last || it.passive.fsrs?.due || "0") });
     else if (isDue(it, "passive", now)) dueP.push({ id: it.itemId, at: Date.parse(it.passive.fsrs!.due) });
   }
   // 1) vadesi gelen üretim, 2) tanıtılmış kartların ilk üretim sorusu (günlük ve tur sınırıyla), 3) vadesi gelen tanıma
   for (const d of dueA.sort((a, b) => a.at - b.at)) add(d.id, "active");
   for (const d of ready.sort((a, b) => a.at - b.at).slice(0, Math.min(4, activeLeft))) add(d.id, "active");
+  // köprü: üretime açılacak kartın artikel/eşdizim seçmelisi (tanıma yolunda, dinle-anlam dışında)
+  for (const d of kopru.sort((a, b) => a.at - b.at)) addKopru(d.id);
   for (const d of dueP.sort((a, b) => a.at - b.at)) add(d.id, "passive");
   // 4) yeni kartlar: tanıtım + pasif soru; tekrar yükü arttıkça yeni sayısı düşer; öncelikliler her zaman (ayrılmış yer)
   for (const id of prio) { out.push({ lexId: id, type: "listen_meaning", intro: true, ex: 0 }); used.add(id); }
@@ -196,7 +227,9 @@ export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerI
     if (!l || !isCard(l)) continue;
     out.push({ lexId: id, type: "listen_meaning", intro: true, ex: 0 }); used.add(id); added++;
   }
-  return out;
+  // PM-069 madde 3 (inceleme #126 P1-1): tanıtımlar başa; her tanıtımın ardında ilk sorusundan önce en az ARALIK öğe kalsın
+  // (az yeni kartlı turda tekrarlar araya girer: T1 T2 R1 S1 R2 S2 …)
+  return [...out.filter((q) => q.intro), ...out.filter((q) => !q.intro)];
 }
 
 /**

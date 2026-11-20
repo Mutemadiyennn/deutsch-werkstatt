@@ -691,6 +691,8 @@ summary.ac-baslik h2 { margin: 0; }
 /* "Daha fazla (n)" eşdizim: dokunma alanı 44 pt (PM 7024150313) */
 .esdizim-daha > summary { list-style: none; }
 .esdizim-daha > summary::-webkit-details-marker { display: none; }
+/* bildirim balonu birincil düğmeyi ve alt çubuğu örtmez (PM 7025809386): ekranda alt eylem çubuğu varsa üst kenarda çıkar */
+html:has(.actionbar) .toast { bottom: auto; top: calc(var(--safe-top) + 12px); }
 /* ikincil eylem bağlantısı (PM 7026866757-2): "Başka cümle", "Daha fazla" aynı üslupta — altı çizgisiz, aynı ağırlık, 44 pt */
 .ikincil-eylem { display: inline-flex; align-items: center; align-self: flex-start; min-height: 44px; padding: 0 2px; border: 0; background: none; color: var(--accent); font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; }
 /* örnek cümle tam genişlikte, kelime ortasından bölünmez (PM 7026866757-1) */
