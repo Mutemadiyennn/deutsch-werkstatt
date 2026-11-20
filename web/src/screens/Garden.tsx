@@ -102,7 +102,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       const kendiCumle = { ilkHaftaBitti: !!(await getMeta(`m1:gun:${POLICY.own_sentence.ilk_hafta_son_gun}`)), kalipBitti: (await metaPrefix("kalip:bitti:")).length > 0 };
       let round = buildRound(lex, items, pool, { priority: kisisel, newLeft, activeLeft, yeniAyir: Math.min(8, kalan.length), kendiCumle });
       // e2e: belirli kartın tanıtımı (en uzun kart sığıyor mu ölçümü, PM 7024150313); yalnızca e2e derlemesinde
-      if (E2E) { const k = sessionStorage.getItem("e2e-kart"); if (k && lex.has(k)) round = [{ lexId: k, type: "listen_meaning", intro: true, ex: 0 }]; }
+      // e2e-tur: aynı kartın belirli soru türü (tanıtımsız; #137 P2-2 fotoğraflı soru testi)
+      if (E2E) { const k = sessionStorage.getItem("e2e-kart"), t = sessionStorage.getItem("e2e-tur") as QType | null; if (k && lex.has(k)) round = [t ? { lexId: k, type: t, ex: 0 } : { lexId: k, type: "listen_meaning", intro: true, ex: 0 }]; }
       // B16 kapsamı (PM-066; inceleme #113 P1-1/2/3): öğrencinin "sına beni"si o günün kalan kartları için (`hizliGun`);
       // seviye tespiti A2 ve üstüyse yalnızca İlk Hafta günlerinde varsayılan; "normal akış" seçimi kalıcı (`hizliSerit` = false)
       const bugun = yerelGun(new Date());
@@ -257,6 +258,7 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
   const [hinted, setHinted] = useState(false);
   // PM-062: cümle sırası kartın gösterim sayacından gelir; "Başka cümle" havuzdaki sıradakine geçer (ipucu değil, XP etkilenmez)
   const [exi, setExi] = useState(q.ex);
+  const [fotoYok, setFotoYok] = useState(false);
   // cümlenin fotoğrafı (cevap kartı); fotoğraf bileşeni yenisi hazır olana kadar eskisini tutar (zıplama yok; inceleme #92 2. tur)
   const ex = l.examples[exi % Math.max(1, l.examples.length)];
   const fotoEx = exi, fotoOrnek = ex;
@@ -339,7 +341,8 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
   if (qe.type === "listen_meaning" || qe.type === "article" || qe.type === "colloc") return <ChoiceQ q={qe} l={l} all={all} yakin={yakin} ex={ex} show={show} verdict={verdict} />;
 
   // ---- aktif: üretim ----
-  const prompt = qe.type === "photo_say" ? <><div class="kicker">Fotoğraftaki ne? Artikeliyle söyle ya da yaz</div><Photo q={l.img} sira={exi} yer={[`${l.id}#kart`]} /><p class="small muted">{l.tr}</p></>
+  // #137 P2-1: görsel yüklenemezse başlık fotoğrafsız biçime döner (soru Türkçesinden cevaplanır)
+  const prompt = qe.type === "photo_say" ? <><div class="kicker" data-test="foto-soru-baslik">{fotoYok ? "Almancasını artikeliyle söyle ya da yaz" : "Fotoğraftaki ne? Artikeliyle söyle ya da yaz"}</div><Photo q={l.img} sira={exi} yer={[`${l.id}#kart`]} onYok={() => setFotoYok(true)} /><p class="small muted">{l.tr}</p></>
     : qe.type === "tr_de" && sina ? <><div class="kicker" data-test="sina-soru" {...(E2E ? { "data-cevap": sinaKabul(l)[0] } : {})}>Biliyorum, sına beni · ipucu yok</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div>{ex?.tr && <p class="small" data-test="sina-baglam">Cümlede: <span class="muted">{ex.tr}</span></p>}<p class="small muted">Almanca yaz ya da söyle. Bilirsen bu kelime ileri basamaklardan devam eder.</p>{!res && <button class="btn ghost" data-test="sina-bilmiyorum" onClick={() => show({ ok: false, expected: sinaKabul(l)[0] })}>Bilmiyorum, tanıt</button>}</>
     : qe.type === "tr_de" ? <><div class="kicker">Almanca söyle ya da yaz</div><div class="de-lg">{l.tr}{isNoun(l) ? " (artikeliyle)" : ""}</div></>
     : qe.type === "gap" || qe.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de" data-test="gap-cumle">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && !res && <IpucuDugmesi metin={form.hint_tr} onAc={() => setHinted(true)} />}{!res && bs.sorulabilir > 1 && <button class="btn sm ghost" data-test="baska-cumle" onClick={() => setExi(fi + 1)}>Başka cümle</button>}</>
