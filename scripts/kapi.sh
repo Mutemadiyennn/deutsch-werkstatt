@@ -25,6 +25,14 @@
 # Gizlilik: günlükler /tmp'de kalır; ozet.md'ye yalnız adım adı, süre, sonuç ve düşen testlerin adları girer.
 # Betik hiçbir iş akışını tetiklemez, hiçbir yere itmez, hiçbir yere yayın yapmaz.
 set -uo pipefail
+# Betik koşarken kendi dosyası değişirse bash yarıda bozulur: önce kendini ve yardımcılarını geçici klasöre kopyalayıp oradan koşar.
+if [ -z "${KAPI_KOPYA:-}" ]; then
+  _k=$(mktemp -d /tmp/kapi-betik-XXXXXX); _d=$(cd "$(dirname "$0")" && pwd)
+  cp "$_d/kapi.sh" "$_d/kapi_adimlar.py" "$_d/kapi_sinif.sh" "$_k/" || exit 2
+  KAPI_KOPYA="$_k" KAPI_KOK_YOL="$PWD" exec bash "$_k/kapi.sh" "$@"
+fi
+cd "${KAPI_KOK_YOL:-.}" || exit 2
+trap 'rm -rf "$KAPI_KOPYA"' EXIT
 
 TABAN="origin/main"; REF=""; SINIF_ZORLA=""; OUT=""; CIHAZLAR=()
 TUM_CIHAZLAR=("iPhone 15" "iPhone 15 Pro Max" "iPhone 16 Pro Max")
@@ -49,7 +57,7 @@ if [ -n "$REF" ]; then
   ACILAN_AGAC="/tmp/kapi-agac-${SHA:0:12}-$$"
   git -C "$KOK" worktree add -q --detach "$ACILAN_AGAC" "$SHA" || exit 2
   AGAC="$ACILAN_AGAC"
-  trap 'git -C "$KOK" worktree remove --force "$ACILAN_AGAC" >/dev/null 2>&1' EXIT
+  trap 'git -C "$KOK" worktree remove --force "$ACILAN_AGAC" >/dev/null 2>&1; rm -rf "$KAPI_KOPYA"' EXIT
 else
   AGAC="$KOK"
   if [ -n "$(git -C "$AGAC" status --porcelain --untracked-files=no)" ]; then
