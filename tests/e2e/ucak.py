@@ -184,6 +184,21 @@ def main():
         pg.goto(base + f"#/scenario/{SC}/roleplay"); pg.wait_for_selector("[data-test=rp-start]"); pg.click("[data-test=rp-start]")
         pg.wait_for_timeout(800)
         check(not AI_CALLS, f"C: sağlayıcı kapalıyken yapay zekâ isteği gönderilmedi ({len(AI_CALLS)})")
+        # seviye tespiti: listeyle eşleşmeyen cevap sağlayıcı kapalıyken sunucuya sorulmaz, "Öğretmen kontrolü yapılamadı" çıkmaz (inceleme #123 P1-1)
+        pg.goto(base + "#/assess"); pg.wait_for_selector("[data-test=assess-begin]"); pg.click("[data-test=assess-begin]")
+        notlar = []
+        for i in range(30):
+            pg.wait_for_selector("[data-test=feedback], button.opt[data-opt], [data-chip], [data-test=answer], [data-test=overall]")
+            if pg.locator("[data-test=overall]").count(): break
+            if not pg.locator("[data-test=feedback]").count():
+                if pg.locator("[data-test=answer]").count():
+                    pg.fill("[data-test=answer]", "Ich habe einen Termin"); pg.locator("form button[type=submit]").click()
+                elif pg.locator("button.opt[data-opt]").count(): pg.locator("button.opt[data-opt]").first.click()
+                else: pg.click("[data-test=dunno]")
+                pg.wait_for_selector("[data-test=feedback]")
+            notlar.append(pg.inner_text("[data-test=feedback]"))
+            pg.click("[data-test=next]")
+        check(not AI_CALLS and not any("Öğretmen kontrolü yapılamadı" in n for n in notlar), f"C: tespitte sağlayıcı kapalıyken öğretmene sorulmadı ({len(notlar)} madde, {len(AI_CALLS)} istek)")
         found = []
         for h in ["#/today", "#/learn", "#/profile", f"#/scenario/{SC}", f"#/scenario/{SC}/roleplay"]:
             pg.goto(base + h); pg.wait_for_timeout(600)
