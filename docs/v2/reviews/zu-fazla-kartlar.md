@@ -144,3 +144,15 @@ Liste dışı (`zu` "gereğinden çok" anlamında değil): **yok**. 76 satırın
 ## Sonuç
 
 KAPANDI (liste için). `npm run content:validate`: 0 hata, 142 uyarı.
+
+## Okur 1. tur sonrası (İçerik Motoru)
+
+Okur (`docs/v2/reviews/okur/zu-fazla-kartlar.md`): 96 satırda 7 geri, hepsi `lx:verlangen` ("fazla şey istemek" çeviri gibi duruyor). Yeni karşılık: **zu viel verlangen** = "fazlasını istemek"; **nicht zu viel verlangt** = "fazla bir istek değil".
+
+| Yol | Yeni tr |
+|---|---|
+| collocations[0] | fazlasını istemek |
+| examples[0] | Bu fazla bir istek değil ki. |
+| forms[1] / hint_tr | Fazlasını istiyorsun. / Fazlasını istiyorsun derken **Du verlangst zu viel** denir. |
+| forms[3] / hint_tr | Bu fazla bir istek değil. / Fazla bir istek değil derken **nicht zu viel verlangt** denir. |
+| mistakes_tr[0] | Fazla bir istek değil derken **Das ist nicht zu viel verlangen** yanlış. Doğrusu **Das ist nicht zu viel verlangt**. Sona **verlangt** gelir. |
