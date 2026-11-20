@@ -43,6 +43,6 @@ export function recommend(o: { profile: Profile; index: ContentIndex | null; has
     return { kind: "none", title_tr: "Bu alanların dersleri yakında", why_tr: "Öncelik listendeki alanların dersleri hazırlanıyor." };
   }
   const t = V1_TARGET[activity];
-  if (t) return { kind: "v1", activity, url: V1_URL + t.hash, title_tr: t.tr, why_tr: `Seans ${o.sessionN}: ${ACTIVITY_TR[activity]}. Bu etkinlik için şimdilik eski uygulamadaki karşılığını kullan.` };
+  if (t) return { kind: "v1", activity, url: V1_URL + "?v1" + t.hash, title_tr: t.tr, why_tr: `Seans ${o.sessionN}: ${ACTIVITY_TR[activity]}. Bu etkinlik için şimdilik eski uygulamadaki karşılığını kullan.` };
   return { kind: "none", title_tr: ACTIVITY_TR[activity], why_tr: "" };
 }

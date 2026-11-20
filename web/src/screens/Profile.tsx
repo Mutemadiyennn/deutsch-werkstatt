@@ -8,7 +8,8 @@ import { exportAll } from "../data/db.ts";
 import { KullanimTablosu } from "../ui/gunsonu.tsx";
 import { MedyaRafi } from "../ui/raf.tsx";
 import { persistState, type PersistState } from "../services/storage.ts";
-import { ACTIVITY_TR, V1_URL } from "../core/planner.ts";
+import { ACTIVITY_TR } from "../core/planner.ts";
+import { EskiyeDon } from "../ui/EskiyeDon.tsx";
 import { ApiError } from "../services/api.ts";
 import { aiState, onAiState } from "../services/ai.ts";
 import { TopBar } from "../ui/components.tsx";
@@ -158,7 +159,7 @@ export function ProfileView() {
         <div class="row" style={{ marginTop: 12 }}>
           <button class="btn sm" onClick={download}>Yedeği indir (JSON)</button>
           {/* PM 7025664499: v1'deki "Her açılışta yeni uygulamayı aç" anahtarını kapatır ve eski uygulamaya geçer (aynı köken) */}
-          <a class="btn sm" href={`${V1_URL}?v1`} data-test="v1-don" onClick={() => { try { localStorage.setItem("dw-v2-ac", "0"); } catch { /* özel kip */ } }}>Eski uygulamaya dön</a>
+          <EskiyeDon />
         </div>
       </section>
 

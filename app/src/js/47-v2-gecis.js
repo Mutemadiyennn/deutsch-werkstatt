@@ -10,9 +10,15 @@ function v2AcAyarla(on) { try { localStorage.setItem(V2_AC, on ? "1" : "0"); } c
   const _rV2 = render;
   render = function () {
     const r = _rV2.apply(this, arguments);
-    if (["plan", "seviye", "more", "kurulum"].includes(S.view)) {
+    // seans açıkken gösterilmez; ekranın başlık çubuğu (.fbar/.sbar) varsa onun altına girer: güvenli alana ve
+    // saat/Dynamic Island bölgesine düşmez (inceleme #130 B1, safearea.py)
+    if (["plan", "seviye", "more", "kurulum"].includes(S.view) && !S.sess) {
       const v = $("#view");
-      if (v && !v.querySelector("[data-test=v2-bant]")) v.insertAdjacentHTML("afterbegin", `<a class="v2-bant" href="./v2/" data-test="v2-bant"><b>Yeni uygulama (2.0)</b><span>Aç →</span></a>`);
+      if (v && !v.querySelector("[data-test=v2-bant]")) {
+        const satir = `<a class="v2-bant" href="./v2/" data-test="v2-bant"><b>Yeni uygulama (2.0)</b><b>Aç →</b></a>`;
+        const bas = v.querySelector(".fbar, .sbar");
+        if (bas) bas.insertAdjacentHTML("afterend", satir); else v.insertAdjacentHTML("afterbegin", satir);
+      }
     }
     return r;
   };

@@ -1,6 +1,6 @@
 /* ===== Yenilikler: her önemli sürümde bir kez gösterilir ===== */
 const WHATSNEW = {id:"2026-11-20a", title:"Yenilikler", items:[
-  "🆕 Yeni uygulama (2.0) hazır: her sekmenin en üstündeki satırdan açılır. Kurulum ekranından \"Her açılışta yeni uygulamayı aç\" seçilebilir; buradaki ilerlemen olduğu gibi kalır.",
+  "🆕 Yeni uygulama (2.0) hazır: Bugün, Seviyem ve Daha fazla ekranlarının en üstündeki satırdan açılır. Kurulum ekranından \"Her açılışta yeni uygulamayı aç\" seçilebilir; buradaki ilerlemen olduğu gibi kalır.",
   "🗣️ Gerçek hayat dersleri: telefon, doktor, resmî daire; önce dinle, sonra konuş.",
   "🔁 Yanlış yaptığın kelime aynı turda başka bir cümle ve başka bir fotoğrafla geri geliyor: ezber değil, kalıcı öğrenme.",
   "📝 Her kelimenin 4 örnek cümlesi var; tekrarlarda hep farklı bir cümle görürsün.",

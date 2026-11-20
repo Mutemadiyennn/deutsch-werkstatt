@@ -93,6 +93,11 @@ def main():
 
         print("1) giriş")
         page.wait_for_selector("text=Almancayı gerçek hayat için öğren")
+        # inceleme #130 B3: "her açılışta yeni uygulama" ayarı kapalıyken girişte dönüş bağlantısı yok; açıkken var
+        check(page.locator("[data-test=v1-don]").count() == 0, "giriş: ayar kapalıyken 'Eski uygulamaya dön' yok")
+        page.evaluate("localStorage.setItem('dw-v2-ac', '1')"); page.reload(); page.wait_for_selector("text=Almancayı gerçek hayat için öğren")
+        check(page.locator("[data-test=v1-don]").count() == 1, "giriş: ayar açıkken 'Eski uygulamaya dön' var (kabukta tek dönüş yolu)")
+        page.evaluate("localStorage.removeItem('dw-v2-ac')"); page.reload(); page.wait_for_selector("text=Almancayı gerçek hayat için öğren")
         page.click("summary")
         page.fill("#em", "test@example.com"); page.fill("#pw", "yanlis")
         page.click("button[type=submit]")
@@ -232,6 +237,11 @@ def main():
         check(usage and usage[-1]["auth"] == "Bearer e2e-token", "kullanım isteğinde token var")
         health = [c for c in API_CALLS if c["url"].endswith("/v1/health")]
         check(health and health[-1]["auth"] is None, "health isteğinde token gönderilmiyor")
+        # "Eski uygulamaya dön" (PM 7025664499; inceleme #130 P2): ?v1 ile açar, v1'deki "her açılışta yeni uygulama" ayarını kapatır
+        page.evaluate("localStorage.setItem('dw-v2-ac', '1')")
+        v1 = page.evaluate("""() => { const a = document.querySelector('[data-test=v1-don]'); if (!a) return null;
+            a.addEventListener('click', (e) => e.preventDefault(), { once: true }); a.click(); return { href: a.getAttribute('href'), ayar: localStorage.getItem('dw-v2-ac') }; }""")
+        check(v1 is not None and v1["href"].endswith("?v1") and v1["ayar"] == "0", f"Profil: 'Eski uygulamaya dön' ?v1 ile açar ve ayarı kapatır ({v1})")
         shot(page, "08-profile")
         no_overflow(page, "Profil")
         page.reload()

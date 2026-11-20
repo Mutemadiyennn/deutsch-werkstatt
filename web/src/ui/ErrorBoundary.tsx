@@ -5,6 +5,7 @@
  */
 import { Component, type ComponentChildren } from "preact";
 import { getMeta, setMeta } from "../data/db.ts";
+import { EskiyeDon } from "./EskiyeDon.tsx";
 
 /**
  * Son 5 hata cihazda tutulur (meta "lastError" en sonuncusu, "errors" son 5). NOT: mesaj öğrencinin cevabından parça
@@ -55,6 +56,8 @@ export class RootBoundary extends Component<{ children: ComponentChildren }, { e
         <h2 tabIndex={-1} ref={focusOnce}>Uygulamada bir sorun çıktı</h2>
         <p>İlerlemen bu cihazda kayıtlı. Uygulamayı yeniden açmak çoğu zaman yeter.</p>
         <button class="btn primary block" onClick={() => location.reload()}>Uygulamayı yeniden aç</button>
+        {/* yeni uygulama açılmıyorsa eski uygulamaya dönüş (inceleme #130 B3) */}
+        <EskiyeDon cls="linkbtn" />
       </section></main>
     );
   }
