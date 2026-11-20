@@ -6,9 +6,18 @@
  */
 import type { Speed } from "@dw/shared";
 import { splitForSpeech } from "../core/ttsClean.ts";
-import { konusanBul, sahneAta, type Atama, type KarakterSes, type Konusan } from "../core/sesSec.ts";
+import { almancaMi, konusanBul, sahneAta, sesCinsi, type Atama, type KarakterSes, type Konusan } from "../core/sesSec.ts";
 
-export const RATE: Record<Speed, number> = { slow: 0.72, normal: 0.95, natural: 1.05, fast: 1.2 };
+/**
+ * PM 7042161522-1: iOS WebKit 0,72'yi duyulur biçimde yavaşlatmıyordu. Yavaş hedefi: normalin en az 1,5 katı süre.
+ * `slow` profildeki seçime göre (0,6 / 0,5 / 0,4; varsayılan 0,5) `setYavasOran` ile değişir.
+ */
+export const RATE: Record<Speed, number> = { slow: 0.5, normal: 0.95, natural: 1.05, fast: 1.2 };
+export const YAVAS_SECENEK = [0.6, 0.5, 0.4] as const;
+export type YavasOran = (typeof YAVAS_SECENEK)[number];
+export function setYavasOran(r: number | undefined) { if (r !== undefined && (YAVAS_SECENEK as readonly number[]).includes(r)) RATE.slow = r; }
+/** Ölçülen süre oranı (yavaş ÷ normal) bunun altındaysa ses `rate`i yok sayıyor sayılır */
+export const ORAN_ESIK = 1.25;
 let speakingN = 0;
 let listening = false;
 export const audioActive = () => speakingN > 0 || listening || (typeof speechSynthesis !== "undefined" && speechSynthesis.speaking);
@@ -47,6 +56,68 @@ function voiceFor(lang: "de" | "tr"): SpeechSynthesisVoice | undefined {
 }
 
 /**
+ * Hız ölçümü (Profil → Ses ve mikrofon): aynı cümle normal ve yavaş çalınır, onstart→onend süresi ses adına göre saklanır.
+ * Ölçülmemiş ses için davranış değişmez; ölçülmüş ve yavaşlamayan ses için `speak` yavaşlayan sese ya da gruplu okumaya düşer.
+ */
+export interface HizOlcum { normalMs: number; yavasMs: number; rate: number }
+const HIZ_KEY = "dw2-ses-hiz";
+export function hizKaydi(): Record<string, HizOlcum> {
+  try { const k = JSON.parse(localStorage.getItem(HIZ_KEY) || "{}") as Record<string, HizOlcum>; return Object.fromEntries(Object.entries(k).filter(([, o]) => gecerliOlcum(o))); } catch { return {}; }
+}
+export function hizKaydet(ad: string, o: HizOlcum) { if (!gecerliOlcum(o)) return; try { const k = hizKaydi(); k[ad] = o; localStorage.setItem(HIZ_KEY, JSON.stringify(k)); } catch { /* özel kip: ölçüm yalnız ekranda kalır */ } }
+export const hizOrani = (o: HizOlcum) => o.yavasMs / Math.max(1, o.normalMs);
+/** true: ölçüldü ve yavaşlamıyor; false: ölçüldü ve yavaşlıyor; undefined: ölçülmedi */
+/** PM 7043447488-1: iki süreden biri 0,3 sn'nin altındaysa ses çalmamış demektir; ölçüm sayılmaz (kayıt yok, hüküm yok) */
+export const OLCUM_ALT_MS = 300;
+export const gecerliOlcum = (o: { normalMs: number; yavasMs: number }) => o.normalMs >= OLCUM_ALT_MS && o.yavasMs >= OLCUM_ALT_MS;
+export function yavasliyorMu(ad: string): boolean | undefined { const o = hizKaydi()[ad]; return o && gecerliOlcum(o) ? hizOrani(o) >= ORAN_ESIK : undefined; }
+/** Tek cümleyi verilen ses ve hızla çalar; onstart→onend milisaniyesi (onstart hiç gelmezse çağrı→onend; zaman aşımında null) */
+export function olcCal(text: string, ses: SpeechSynthesisVoice | undefined, rate: number): Promise<number | null> {
+  if (!ttsAvailable()) return Promise.resolve(null);
+  speechSynthesis.cancel();
+  // stopSpeaking ya da yeni bir speak ölçümü geçersiz kılar (yarıda kesilen çalma ölçüm sayılmaz; inceleme #162 P2)
+  const no = ++konusmaNo;
+  return new Promise((res) => {
+    const u = new SpeechSynthesisUtterance(sesMetni(text));
+    u.lang = "de-DE"; if (ses) u.voice = ses; else { const v = voiceFor("de"); if (v) u.voice = v; }
+    u.rate = rate;
+    const t0 = performance.now(); let bas: number | null = null; let fin = false;
+    const bit = (ok: boolean) => { if (fin) return; fin = true; speakingN = Math.max(0, speakingN - 1); res(ok && no === konusmaNo ? performance.now() - (bas ?? t0) : null); };
+    u.onstart = () => { bas = performance.now(); };
+    u.onend = () => bit(true); u.onerror = () => bit(false);
+    speakingN++;
+    speechSynthesis.speak(u);
+    setTimeout(() => bit(false), 30000);
+  });
+}
+/**
+ * Yavaşlamayan sesin yerine: aynı cinsten (cinsi bilinmiyorsa yine cinsi bilinmeyen), ölçülmüş ve yavaşlayan Almanca ses.
+ * `dolu`: sahnedeki öteki konuşanların sesleri — yedek onlardan biri olamaz (PM-064: aynı sahnede iki konuşan aynı sesi almaz;
+ * inceleme #162 P1-2). Uygun ses yoksa undefined (gruplu okumaya düşülür).
+ */
+export function yavaslayanSes(yerine: SpeechSynthesisVoice | undefined, dolu: ReadonlySet<string> = new Set()): SpeechSynthesisVoice | undefined {
+  const cins = yerine ? sesCinsi(yerine) : null;
+  return cihazSesleri().find((v) => almancaMi(v) && v.name !== yerine?.name && !dolu.has(v.name) && yavasliyorMu(v.name) === true && sesCinsi(v) === cins);
+}
+/**
+ * Hiçbir ses yavaşlamıyorsa: cümle kelime gruplarına (noktalama, en çok 3 kelime) bölünür, aralarına duraklama konur.
+ * Sıra sayısı ("3.") ve kısaltma ("Dr.", "z.", "B.") noktası grup sınırı değildir (inceleme #162 P2).
+ */
+const NOKTA_SINIR_DEGIL = /^(\d+|[A-Za-zÄÖÜäöü]{1,3})\.$/;
+export function kelimeGruplari(t: string): string[] {
+  const out: string[] = []; let grup: string[] = [];
+  const bitir = () => { if (grup.length) out.push(grup.join(" ")); grup = []; };
+  for (const k of t.split(/\s+/).filter(Boolean)) {
+    grup.push(k);
+    const sinir = /[,;:!?]$/.test(k) || (k.endsWith(".") && !NOKTA_SINIR_DEGIL.test(k));
+    if (sinir || grup.length === 3) bitir();
+  }
+  bitir();
+  return out;
+}
+export const GRUP_ARA_MS = 350;
+
+/**
  * Seslendirmeden önce gösterim yer tutucuları temizlenir (D-061): ad girilmemişse "(adın)" okunmaz; hitap seçilmemişse
  * "Herr/Frau" gibi çift biçimin ilki okunur. (Metin ekranda kişiselleştirilmiş hâliyle gelir.)
  */
@@ -81,7 +152,10 @@ export async function speakDizi(lines: { de: string; speed?: Speed; kim?: string
   for (const l of lines) {
     if (iptal?.()) return;
     const sp = l.speed ?? speed;
-    await speak(l.de, "de", ilk && sp === "normal" ? "slow" : sp, true, l.kim ? sahne.get(l.kim) : undefined);
+    const kendi = l.kim ? sahne.get(l.kim) : undefined;
+    // yavaşta yedek ses sahnedeki öteki konuşanların sesine düşmesin (inceleme #162 P1-2)
+    const dolu = new Set([...sahne.values()].map((a) => a.ses?.name).filter((x): x is string => !!x && x !== kendi?.ses?.name));
+    await speak(l.de, "de", ilk && sp === "normal" ? "slow" : sp, true, kendi, dolu);
     if (ara) await new Promise((r) => setTimeout(r, ara));
   }
 }
@@ -90,31 +164,54 @@ export async function speakDizi(lines: { de: string; speed?: Speed; kim?: string
  * `kim`: konuşan (karakter kimliği ya da adı) ya da hazır atama; Almanca bölümler o sesle ve perdeyle okunur (PM-064).
  * "Yavaş" yalnızca `rate`i düşürür; ses ve perde değişmez.
  */
-export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed = "normal", kesin = false, kim?: string | Atama): Promise<void> {
+export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed = "normal", kesin = false, kim?: string | Atama, dolu?: ReadonlySet<string>): Promise<void> {
   const atama: Atama | undefined = typeof kim === "string" ? konusanAta([kim]).get(kim) : kim;
   if (!ttsAvailable()) return;
   text = sesMetni(text);
   if (lang === "de" && !kesin) speed = ilkHiz(text, speed);
   speechSynthesis.cancel();
+  const iptalNo = ++konusmaNo;
   for (const seg of splitForSpeech(text, lang)) {
-    await new Promise<void>((res) => {
-      const u = new SpeechSynthesisUtterance(seg.text);
-      u.lang = seg.lang === "de" ? "de-DE" : "tr-TR";
-      const av = seg.lang === "de" && atama?.ses ? cihazSesleri().find((x) => x.name === atama.ses!.name) : undefined;
-      const v = av ?? voiceFor(seg.lang); if (v) u.voice = v;
-      u.rate = seg.lang === "de" ? RATE[speed] : 1;
-      if (seg.lang === "de" && atama) u.pitch = atama.pitch;
-      speakingN++;
-      let fin = false;
-      const done = () => { if (fin) return; fin = true; speakingN = Math.max(0, speakingN - 1); res(); };
-      u.onend = done; u.onerror = done;
-      speechSynthesis.speak(u);
-      // bazı tarayıcılar onend göndermez: güvenlik zaman aşımı
-      setTimeout(done, Math.min(20000, 1500 + seg.text.length * 120));
-    });
+    const de = seg.lang === "de";
+    const av = de && atama?.ses ? cihazSesleri().find((x) => x.name === atama.ses!.name) : undefined;
+    let v = av ?? voiceFor(seg.lang);
+    let gruplu = false;
+    // PM 7042161522-1: ölçülmüş ve yavaşlamayan ses → aynı cinsten yavaşlayan ses; o da yoksa gruplu okuma
+    if (de && speed === "slow" && v && yavasliyorMu(v.name) === false) {
+      const y = yavaslayanSes(v, dolu);
+      if (y) v = y; else gruplu = true;
+    }
+    const parcalar = gruplu ? kelimeGruplari(seg.text) : [seg.text];
+    for (let i = 0; i < parcalar.length; i++) {
+      if (iptalNo !== konusmaNo) return;
+      if (i > 0) {
+        await new Promise((r) => setTimeout(r, GRUP_ARA_MS));
+        // duraklama içinde durdurulduysa ya da yeni konuşma başladıysa sonraki grup okunmaz (inceleme #162 P1-1)
+        if (iptalNo !== konusmaNo) return;
+      }
+      await soyle(parcalar[i]!, de ? "de-DE" : "tr-TR", v, de ? RATE[speed] : 1, de && atama ? atama.pitch : undefined);
+    }
   }
 }
-export function stopSpeaking() { if (ttsAvailable()) speechSynthesis.cancel(); speakingN = 0; }
+/** `speak` ya da `stopSpeaking` yeniden çağrılınca süren gruplu okuma kesilir */
+let konusmaNo = 0;
+function soyle(text: string, lang: string, v: SpeechSynthesisVoice | undefined, rate: number, pitch?: number): Promise<void> {
+  return new Promise<void>((res) => {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang;
+    if (v) u.voice = v;
+    u.rate = rate;
+    if (pitch !== undefined) u.pitch = pitch;
+    speakingN++;
+    let fin = false;
+    const done = () => { if (fin) return; fin = true; speakingN = Math.max(0, speakingN - 1); res(); };
+    u.onend = done; u.onerror = done;
+    speechSynthesis.speak(u);
+    // bazı tarayıcılar onend göndermez: güvenlik zaman aşımı (yavaşta süre uzar)
+    setTimeout(done, Math.min(30000, 1500 + (text.length * 120) / Math.min(1, rate)));
+  });
+}
+export function stopSpeaking() { konusmaNo++; if (ttsAvailable()) speechSynthesis.cancel(); speakingN = 0; }
 
 const SR: any = typeof window !== "undefined" ? (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition : undefined;
 /** iPhone kabuğu: WKWebView'de tarayıcı tanıması yoksa v1'deki yerel eklenti (cihaz üstü tanıma) */

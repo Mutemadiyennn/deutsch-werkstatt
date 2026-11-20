@@ -17,14 +17,14 @@ const DERS = [
   { id: "r0:01-tage", teach: [{ id: "t1", de: "Hallo, hier ist {name}.", tr: "x" }, { id: "t2", de: "gehe", tr: "x" }], table: { baslik_tr: "", sutunlar: ["de", "tr"], satirlar: [["ist", "-dır"]] } },
   { id: "r0:04-zahlen-21-100", teach: [{ id: "t1", de: "zwanzig", tr: "x" }] }
 ] as unknown as TemelDers[];
-const W = { town: { name: "Neustadt", neighbourhood: "Altstadt", places: [{ id: "p1", name: "Café Sonne", domain: "x", tr: "x" }] }, characters: [{ id: "ch:huber", name: "Sabine Huber" }] } as never;
+const W = { town: { name: "Neustadt", neighbourhood: "Altstadt", places: [{ id: "p1", name: "Café Huber", domain: "x", tr: "x" }] }, characters: [{ id: "ch:huber", name: "Sabine Huber" }] } as never;
 const d = kumeDizini(LEX, DERS, W, ["Ioana"]);
 const yaz = (s: string, kart: string[], biten: string[] = []) => bilinmeyenYazi(bilinmeyenler(d, s, { kart: new Set(kart), biten: new Set(biten) }));
 
 describe("bilinen küme ve cümle kapısı (AKIS AK-3)", () => {
   it("yer tutucu ve rakam sayılmaz; adlar (karakter, yer, genel ad) bilinir", () => {
     expect(toks("Hallo, {name}! 3 Tage")).toEqual(["hallo", "3", "tage"]);
-    expect(yaz("Hallo, Frau Huber! Ioana ist im Café Sonne.", ["lx:hallo"], ["r0:01-tage"])).toEqual(["?frau", "?im"]);
+    expect(yaz("Hallo, Frau Huber! Ioana ist im Café Huber.", ["lx:hallo"], ["r0:01-tage"])).toEqual(["?frau", "?im", "?café"]);
   });
   it("kendi kartı olan sözcük yalnız kendi kartı tanıtıldıysa bilinir", () => {
     expect(yaz("Montag", [])).toEqual(["Montag".toLowerCase()]);

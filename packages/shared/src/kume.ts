@@ -10,13 +10,76 @@
  *  - Kalıp bütün olarak bilinir: biten dersin çok sözcüklü `teach` kalıbı cümlede aynen geçerse o sözcükler bilinir;
  *    kalıbın içindeki, kendi kartı bu derste öğretilmeyen sözcük ("hier ist {name}" → "hier") tek başına bilinmez.
  *  - Eşlenemeyen sözcük tahmin edilmez: listelenir ve bilinmez sayılır.
+ * İnceleme #168 1. tur sonrası (AK-3 metnine uyum):
+ *  - Harf büyüklüğü korunur: cümle ortasında "morgen" yalnız "morgen" gösteren kartla, "Morgen" yalnız "Morgen" gösterenle bilinir.
+ *    Cümle başında büyük harf ayırt edici değildir: "Morgen" orada "Morgen" ya da "morgen" gösteren bilinen kartla bilinir.
+ *  - Çok sözcüklü kart başlığı ("wie viel", "recht haben") ve dersin çok sözcüklü kalıbı yalnız BÜTÜN olarak bilinir; parçaları
+ *    tek tek bilinmez. Kalıptaki "…" ve {…} yuvadır (en az bir sözcük; yuvadaki sözcük kendi başına bilinmeli). Dersin örnek
+ *    cümlesinde dersin kendi bağladığı kartın sözcüğü de yuvadır: "Heute ist Montag." → "heute ist …" (gün değişebilir); ders ya
+ *    da halka kalıbında o an BİLİNEN kartın sözcüğü de yuvadır ("Heute ist …" + heute bilinir → "Morgen ist Sonntag").
+ *  - Ders tablosu ve tek sözcüklü `teach`: sözcüğü gösteren kendi kartı varsa o kart bu derse bağlı olmalı; kartı olmayan biçim
+ *    (bin, habe, kann) dersle bilinir. Türkçe sütun ayırt edilmez: eşlenmeyen sözcük zaten eklenmez.
+ *  - Yer tutucu: {name} sayılmaz; {a|b} iki seçeneğiyle sayılır ({Herr|Frau}, {Patient|Patientin}).
+ *  - Adlar yalnız büyük harfle başlayan ve hiçbir kartın başlığı olmayan sözcüklerdir; yer adlarından yalnız kişi ya da kasaba adıyla
+ *    ortak olanlar (Bäckerei Stadler → Stadler; "Sprachkurs" ad değil).
  */
 import type { Lexeme, TemelDers, World } from "./index.ts";
 
 const HARF = "A-Za-zÄÖÜäöüßıİşŞğĞçÇéè";
 const TOK = new RegExp(`[${HARF}]+(?:-[${HARF}]+)*|\\d+`, "g");
-/** Cümleyi küçük harfli sözcüklere böler; yer tutucular ({name}, {Herr|Frau}) sayılmaz */
-export const toks = (s: string | undefined): string[] => (String(s ?? "").replace(/\{[^}]*\}/g, " ").match(TOK) ?? []).map((t) => t.toLowerCase());
+/** Yer tutucular: {name} sayılmaz; {a|b} iki seçeneğiyle sayılır */
+const AD_YERI = "Adyeriqqq";
+const yerTutucu = (s: string | undefined, ad = " ") => String(s ?? "").replace(/\{name\}/gi, ad).replace(/\{([^}]*)\}/g, (_, x: string) => ` ${x.replace(/\|/g, " ")} `);
+/** Cümleyi küçük harfli sözcüklere böler ({name} sayılmaz; {a|b} → a b) */
+export const toks = (s: string | undefined): string[] => (yerTutucu(s).match(TOK) ?? []).map((t) => t.toLowerCase());
+/** Özgün harfli sözcükler ve cümle başı bilgisi (harf büyüklüğü cümle başında ayırt edici değildir) */
+export function toksAsil(s: string | undefined): { t: string; o: string; bas: boolean }[] {
+  // {name} kalıp yuvasını doldurabilsin diye "ad yeri" sözcüğü olarak kalır (YUVA_AD; her zaman bilinir)
+  const x = yerTutucu(s, ` ${AD_YERI} `); const out: { t: string; o: string; bas: boolean }[] = [];
+  for (const m of x.matchAll(TOK)) { const once = x.slice(0, m.index).trimEnd(); const ad = m[0] === AD_YERI; out.push({ t: ad ? YUVA_AD : m[0].toLowerCase(), o: ad ? YUVA_AD : m[0], bas: !once || /[.!?…:„“"»«(–—]$/.test(once) }); }
+  return out;
+}
+/** Kalıp ve çok sözcüklü başlık sözcükleri: "…" ve {…} yuva (YUVA); başlıktaki "(…)" açıklaması ve "/r" eki atılır */
+export const YUVA = "\u0000";
+/** Cümledeki {name}: kalıp yuvasını doldurur, kendisi her zaman bilinir */
+export const YUVA_AD = "\u0001";
+/** Bir kalıp metnindeki seçenekler: "Heute ist … – Ist heute …?" iki ayrı kalıptır (" – " ayırır) */
+export const kalipSecenekleri = (s: string | undefined): string[][] => String(s ?? "").split(/\s[–—]\s/).map(kalipToks).filter((k) => k.some((x) => x !== YUVA));
+export function kalipToks(s: string | undefined): string[] {
+  const x = String(s ?? "").replace(/\([^)]*\)/g, " ").replace(/\/[A-Za-zäöüß]+/g, " ").replace(/…|\.\.\.|\{[^}]*\}/g, ` ${YUVA} `);
+  const out: string[] = [];
+  for (const parca of x.split(YUVA).map((p, i) => [i, p] as const)) {
+    if (parca[0] > 0) out.push(YUVA);
+    out.push(...(parca[1].match(TOK) ?? []).map((t) => t.toLowerCase()));
+  }
+  while (out.length && out[0] === YUVA && out.length > 1 && out[1] === YUVA) out.shift();
+  return out;
+}
+/** Kalıbın cümledeki bütün eşleşmelerinin kapsadığı sabit sözcük konumları (yuva en az bir sözcük alır; yuvadaki sözcük kapsanmaz) */
+export function kalipOrtu(tt: readonly string[], kp: readonly string[]): number[] {
+  const sabit = kp.filter((x) => x !== YUVA).length; if (!sabit) return [];
+  const es = (j: number, i: number): number[] | null => {
+    if (i === kp.length) return [];
+    if (kp[i] === YUVA) { for (let n = 1; j + n <= tt.length; n++) { const r = es(j + n, i + 1); if (r) return r; } return null; }
+    if (j < tt.length && tt[j] === kp[i]) { const r = es(j + 1, i + 1); if (r) return [j, ...r]; }
+    return null;
+  };
+  const out = new Set<number>();
+  for (let j = 0; j < tt.length; j++) for (const k of es(j, 0) ?? []) out.add(k);
+  return [...out];
+}
+/** genel-adlar.md → ad listesi: "### " başlığı yalnız büyük harfli sözcüklerden (ve "ve") oluşuyorsa; parantez içi de öyleyse eklenir */
+export function genelAdlarAyikla(md: string): string[] {
+  const ad = (x: string) => { const w = x.trim().split(/\s+/).filter((y) => y && y !== "ve"); return w.length && w.every((y) => /^\p{Lu}\p{L}{2,}$/u.test(y)) ? w : null; };
+  const out: string[] = [];
+  for (const l of md.split("\n")) {
+    if (!l.startsWith("### ")) continue;
+    const m = l.slice(4).match(/^([^(]*)(?:\(([^)]*)\))?/); if (!m) continue;
+    const dis = ad(m[1] ?? ""); if (!dis) continue;
+    out.push(...dis); const ic = m[2] ? ad(m[2]) : null; if (ic) out.push(...ic);
+  }
+  return [...new Set(out)];
+}
 const umlautsuz = (x: string) => x.replace(/ä/g, "a").replace(/ö/g, "o").replace(/ü/g, "u").replace(/ß/g, "s");
 
 /**
@@ -51,8 +114,12 @@ function sayiMi(t: string, biten: ReadonlySet<string>): boolean {
 export interface KumeDizini {
   /** sözcük → aday kartlar */
   idx: Map<string, Set<string>>;
-  /** kart → tanıtımda gösterilen sözcükler (başlık + çoğul) */
+  /** kart → tanıtımda gösterilen sözcükler (tek sözcüklü başlık + çoğul; küçük harfli) */
   gost: Map<string, Set<string>>;
+  /** kart → gösterilen sözcüklerin özgün harfli biçimi (harf büyüklüğü cümle ortasında ayırt edicidir) */
+  gostAsil: Map<string, Set<string>>;
+  /** kart → çok sözcüklü başlık ve çoğul kalıpları (yalnız bütün olarak bilinir) */
+  coklu: Map<string, string[][]>;
   /** kart → bütün yüzey biçimleri (başlık, çoğul, akraba cevaplar, çekimler) */
   yuzey: Map<string, Set<string>>;
   cerceve: Set<string>;
@@ -66,9 +133,19 @@ export interface KumeDizini {
 export function kumeDizini(lex: readonly Lexeme[], temel: readonly TemelDers[], world?: World | null, genelAdlar: readonly string[] = []): KumeDizini {
   const kartlar = new Map(lex.map((l) => [l.id, l] as const));
   const idx = new Map<string, Set<string>>(), gost = new Map<string, Set<string>>(), yuzey = new Map<string, Set<string>>();
+  const gostAsil = new Map<string, Set<string>>(), coklu = new Map<string, string[][]>();
   const ekle = <K, V>(m: Map<K, Set<V>>, k: K, v: V) => { let s = m.get(k); if (!s) m.set(k, (s = new Set())); s.add(v); };
-  // 1. geçiş: başlık ve çoğul (artikel eşlenmez)
-  for (const l of lex) for (const b of [l.de, l.pl ?? ""]) for (const x of toks(b)) { ekle(yuzey, l.id, x); ekle(gost, l.id, x); ekle(idx, x, l.id); }
+  const ART = new Set(["der", "die", "das"]);
+  // 1. geçiş: başlık ve çoğul (artikel eşlenmez; "-" ve kısaltma çoğul değildir). Tek sözcüklü başlık gösterilen biçimdir,
+  // çok sözcüklü başlık yalnız bütün olarak (kalıp gibi) bilinir; parçaları dizinde aday olarak durur (rapor için)
+  for (const l of lex) for (const b of [l.de, l.pl ?? ""]) {
+    const kp = kalipToks(b).filter((x, i, a) => !(ART.has(x) && i === 0 && b !== l.de && a.length > 1));
+    const sade = kp.filter((x) => x !== YUVA);
+    if (!sade.length || (b !== l.de && sade.every((x) => x.length < 3))) continue;
+    for (const x of sade) { ekle(yuzey, l.id, x); ekle(idx, x, l.id); }
+    if (sade.length === 1 && kp.length === 1) { ekle(gost, l.id, sade[0]!); for (const a of toksAsil(b)) if (a.t === sade[0]) ekle(gostAsil, l.id, a.o); }
+    else { const v = coklu.get(l.id) ?? []; v.push(kp); coklu.set(l.id, v); }
+  }
   // 2. geçiş: boşluk cevapları ve fiil çekimleri; birden çok kartta en çok geçtiği karta (eşitlikte hepsine)
   const sayac = new Map<string, Map<string, number>>();
   for (const l of lex) {
@@ -91,15 +168,19 @@ export function kumeDizini(lex: readonly Lexeme[], temel: readonly TemelDers[], 
     const bicim = (l as { bicimler?: string[] }).bicimler ?? (CERCEVE_CEKIM[l.id] ?? "").split(" ").filter(Boolean);
     for (const t of bicim) ekle(idx, t.toLowerCase(), l.id);
   }
-  // adlar: karakterler, yer adlarının özel ad bölümü (kartı olan cins ad değil), kasaba ve mahalle, genel adlar
+  // adlar: yalnız büyük harfle başlayan ve hiçbir kartın başlığı olmayan sözcükler (inceleme #168 P1-7):
+  // karakterler, kasaba ve mahalle, genel adlar; yer adlarından yalnız kişi ya da kasaba adıyla ortak olanlar
   const basliklar = new Set(lex.flatMap((l) => [...toks(l.de), ...toks(l.pl)]));
-  const adlar = new Set<string>(genelAdlar.flatMap((a) => toks(a)));
+  const adSoz = (s: string | undefined) => toksAsil(s).filter((a) => /^\p{Lu}/u.test(a.o) && !basliklar.has(a.t) && !idx.has(a.t)).map((a) => a.t);
+  const adlar = new Set<string>(genelAdlar.flatMap((a) => adSoz(a)));
   if (world) {
-    for (const ch of world.characters as unknown as Record<string, unknown>[]) for (const k of ["name", "short", "first", "last", "de"]) if (typeof ch[k] === "string") for (const t of toks(ch[k] as string)) adlar.add(t);
-    for (const p of world.town.places) for (const t of toks(p.name)) if (!basliklar.has(t)) adlar.add(t);
-    for (const t of [...toks(world.town.name), ...toks(world.town.neighbourhood)]) adlar.add(t);
+    for (const ch of world.characters as unknown as Record<string, unknown>[]) for (const k of ["name", "short", "first", "last", "de"]) if (typeof ch[k] === "string") for (const t of adSoz(ch[k] as string)) adlar.add(t);
+    for (const t of [...adSoz(world.town.name), ...adSoz(world.town.neighbourhood)]) adlar.add(t);
+    const kisiKasaba = new Set(adlar);
+    // yer adından: kişi/kasaba adıyla ortak sözcük ya da sokak adı (…gasse, …straße, …allee: özel addır); cins ad (Sprachkurs, Stadtplatz) değil
+    for (const p of world.town.places) for (const t of adSoz(p.name)) if (kisiKasaba.has(t) || /(gasse|straße|strasse|allee)$/.test(t)) adlar.add(t);
   }
-  const d: KumeDizini = { idx, gost, yuzey, cerceve, adlar, dersler: new Map(), kartlar };
+  const d: KumeDizini = { idx, gost, gostAsil, coklu, yuzey, cerceve, adlar, dersler: new Map(), kartlar };
   for (const t of temel) d.dersler.set(t.id, dersBicimi(d, t));
   return d;
 }
@@ -111,38 +192,61 @@ function baslikKarti(d: KumeDizini, t: string): Set<string> {
   return out;
 }
 
-/** Bir temel dersin öğrettikleri: `teach` sözcükleri (kalıptaki, kendi kartı bu derste öğretilmeyen sözcük hariç), tablo hücreleri (Türkçe sütun hariç) */
+/** Sözcüğü tanıtımda GÖSTEREN gerçek (card:true) kartlar (tür fark etmez) */
+function kendiKarti(d: KumeDizini, t: string): string[] {
+  return [...(d.idx.get(t) ?? [])].filter((i) => !d.cerceve.has(i) && d.gost.get(i)?.has(t));
+}
+
+/**
+ * Bir temel dersin öğrettikleri (AK-3; inceleme #168 P1-5, P1-6):
+ *  - çok sözcüklü `teach` (yuvalı ya da değil) yalnız kalıp olarak; parçaları tek tek bilinmez;
+ *  - tek sözcüklü `teach` ve tablo hücresi sözcüğü: kendi kartı varsa o kart bu derse bağlı olmalı; kartsız biçim (bin, habe) bilinir;
+ *    hiçbir karta eşlenmeyen hücre sözcüğü (Türkçe sütun, harf adları) eklenmez.
+ */
 function dersBicimi(d: KumeDizini, t: TemelDers): { bicim: Set<string>; kart: Set<string>; kaliplar: string[][] } {
   const kart = new Set(t.teach.map((x) => x.lexeme).filter((x): x is string => !!x));
   const bicim = new Set<string>(); const kaliplar: string[][] = [];
+  const kendiOk = (s: string) => kendiKarti(d, s).every((k) => kart.has(k));
   for (const x of t.teach) {
-    const tt = toks(x.de);
-    if (tt.length > 1) kaliplar.push(tt);
-    for (const s of tt) if (tt.length === 1 || [...baslikKarti(d, s)].every((k) => kart.has(k))) bicim.add(s);
+    // çok sözcüklü teach örnek cümledir ("Heute ist Montag."): dersin kendi bağladığı kartın sözcüğü yuvadır ("heute ist …"),
+    // öteki sözcükler kalıbın sabit parçasıdır ve yalnız kalıp içinde bilinir
+    const kp = kalipToks(x.de).map((s) => (s !== YUVA && kendiKarti(d, s).length && kendiKarti(d, s).every((k) => kart.has(k)) ? YUVA : s));
+    if (kp.length > 1) { if (kp.some((s) => s !== YUVA)) kaliplar.push(kp); continue; }
+    for (const s of kp) if (s !== YUVA && kendiOk(s)) bicim.add(s);
   }
-  for (const row of t.table?.satirlar ?? []) row.forEach((cell, j) => { if (j !== 1) for (const s of toks(cell)) bicim.add(s); });
+  for (const row of t.table?.satirlar ?? []) for (const cell of row) for (const s of toks(cell)) if (d.idx.has(s) && kendiOk(s)) bicim.add(s);
   return { bicim, kart, kaliplar };
 }
 
-/** O an bilinenler: tanıtılmış kartlar, biten dersler (biçimleri ve bağladıkları kartlarla) */
-export interface Bilinen { kart: ReadonlySet<string>; biten: ReadonlySet<string> }
+/** O an bilinenler: tanıtılmış kartlar, biten dersler (biçimleri ve bağladıkları kartlarla), halkanın öğrettiği kalıplar (kalipToks) */
+export interface Bilinen { kart: ReadonlySet<string>; biten: ReadonlySet<string>; kaliplar?: readonly (readonly string[])[] }
 export type Bilinmeyen = { tur: "kart" | "bicim" | "eslenemedi"; sozcuk: string; adaylar?: string[] };
 
 /** Cümlede K(t) dışında kalan sözcükler. `haric`: boşluğun cevabı gibi sayılmayacak sözcükler */
 export function bilinmeyenler(d: KumeDizini, cumle: string, k: Bilinen, haric: Iterable<string> = []): Bilinmeyen[] {
-  const tt = toks(cumle); const har = new Set(haric);
+  const ta = toksAsil(cumle); const tt = ta.map((x) => x.t); const har = new Set(haric);
   const kart = new Set(k.kart); const bicim = new Set<string>();
   for (const id of k.biten) { const b = d.dersler.get(id); if (b) { for (const s of b.bicim) bicim.add(s); for (const x of b.kart) kart.add(x); } }
-  // biten derslerin kalıpları cümlede aynen geçiyorsa o sözcükler bilinir
+  // kalıplar bütün olarak: biten derslerin kalıpları, halkanın kalıpları, tanıtılmış kartların çok sözcüklü başlıkları
   const ortu = new Set<number>();
-  for (const id of k.biten) for (const kp of d.dersler.get(id)?.kaliplar ?? []) for (let j = 0; j + kp.length <= tt.length; j++) if (kp.every((s, i) => tt[j + i] === s)) for (let i = 0; i < kp.length; i++) ortu.add(j + i);
+  // öğretilen kalıplarda (ders ve halka) BİLİNEN kartın sözcüğü yuvadır: "Heute ist …" heute bilinince "… ist …" çerçevesidir
+  // ("Morgen ist Sonntag"); kartsız çerçeve sözcükleri (ist, war, geht) yine yalnız kalıp içinde bilinir
+  const yuvala = (kp: readonly string[]) => { const y = kp.map((x) => (x !== YUVA && kendiKarti(d, x).length && kendiKarti(d, x).every((i) => kart.has(i)) ? YUVA : x)); return y.some((x) => x !== YUVA) ? y : kp; };
+  const kaliplar: (readonly string[])[] = (k.kaliplar ?? []).map(yuvala);
+  for (const id of k.biten) kaliplar.push(...(d.dersler.get(id)?.kaliplar ?? []).map(yuvala));
+  for (const id of kart) kaliplar.push(...(d.coklu.get(id) ?? []));
+  for (const kp of kaliplar) for (const j of kalipOrtu(tt, kp)) ortu.add(j);
   const out: Bilinmeyen[] = [];
   tt.forEach((t, j) => {
-    if (ortu.has(j) || har.has(t) || /^\d+$/.test(t) || d.adlar.has(t) || bicim.has(t) || sayiMi(t, k.biten)) return;
+    if (t === YUVA_AD || ortu.has(j) || har.has(t) || /^\d+$/.test(t) || d.adlar.has(t) || bicim.has(t) || sayiMi(t, k.biten)) return;
     const aday = d.idx.get(t);
     if (!aday?.size) { out.push({ tur: "eslenemedi", sozcuk: t }); return; }
     const bilinenAday = [...aday].filter((i) => kart.has(i));
-    if (bilinenAday.some((i) => d.gost.get(i)?.has(t))) return;
+    // gösterilen biçim: cümle ortasında harf büyüklüğü de tutmalı; cümle başında aynı sözcüğü gösteren bütün kartlar tanıtılmış olmalı
+    const asil = ta[j]!;
+    // cümle başında büyük harf ayırt edici değil: bilinen bir kart sözcüğü bu biçimde ya da küçük harfle gösteriyorsa yeter
+    const kucuk = asil.o.charAt(0).toLowerCase() + asil.o.slice(1);
+    if (bilinenAday.some((i) => d.gostAsil.get(i)?.has(asil.o) || (asil.bas && d.gostAsil.get(i)?.has(kucuk)))) return;
     if ([...aday].some((i) => d.cerceve.has(i)) && [...baslikKarti(d, t)].every((i) => kart.has(i))) return;
     if (bilinenAday.length) out.push({ tur: "bicim", sozcuk: t, adaylar: bilinenAday.sort() });
     else out.push({ tur: "kart", sozcuk: t, adaylar: [...aday].sort() });

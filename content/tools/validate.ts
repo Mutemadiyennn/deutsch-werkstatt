@@ -3,7 +3,7 @@ import { loadContent, checkRules, ROOT } from "./load.ts";
 import { ogretilmemisBosluklar } from "./bosluk.ts";
 import { medyaDenetle } from "./medya.ts";
 import { halkaDenetle } from "./halka.ts";
-import { kumeDizini } from "../../packages/shared/src/index.ts";
+import { genelAdlarAyikla, kumeDizini } from "../../packages/shared/src/index.ts";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -19,7 +19,7 @@ if (bos.length) {
 // AKIS AK-10 1. adım: `halkalar` denetimi (hata) + cümle kapısı sayacı (uyarı); kurallar packages/shared/src/kume.ts
 {
   const ga = join(ROOT, "docs/v2/reviews/genel-adlar.md");
-  const genel = existsSync(ga) ? readFileSync(ga, "utf8").split("\n").filter((l) => l.startsWith("### ")).map((l) => l.slice(4)) : [];
+  const genel = existsSync(ga) ? genelAdlarAyikla(readFileSync(ga, "utf8")) : [];
   const d = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genel);
   const h = halkaDenetle(c.m1, new Map(c.temel.map((t) => [t.data.id, t.data])), d);
   c.errors.push(...h.errors); c.warnings.push(...h.warnings);

@@ -6,7 +6,7 @@
  *    örnek/boşluk cümlesi olmayan kartlar. Sayım İÇ'in "B" kipiyle aynı: günün dersleri yapılmış, günün kartları tanıtılmış.
  * Bilinen küme kuralları packages/shared/src/kume.ts'te (tek kaynak).
  */
-import { bilinmeyenler, bilinmeyenYazi, toks, type Drill, type Gun, type KumeDizini, type TemelDers } from "../../packages/shared/src/index.ts";
+import { bilinmeyenler, bilinmeyenYazi, kalipSecenekleri, toks, type Drill, type Gun, type KumeDizini, type TemelDers } from "../../packages/shared/src/index.ts";
 
 import POLICY from "../../web/src/policy.json" with { type: "json" };
 /** policy.json → akis.halka_kart (AK-8; PM 7043401257) */
@@ -56,12 +56,15 @@ export function halkaDenetle(gunler: { file: string; data: Gun }[], dersler: Map
       const fazla = tum.filter((x) => !yeni.has(x)), eksik = g.yeni_kartlar.filter((x) => !tum.includes(x));
       const cift = tum.filter((x, i) => tum.indexOf(x) !== i);
       if (fazla.length || eksik.length || cift.length) errors.push(`${file}: halkalar yeni_kartlar ile aynı değil (eksik ${eksik.join(", ") || "-"}; fazla ${fazla.join(", ") || "-"}; iki kez ${cift.join(", ") || "-"})`);
-      const gorulen = new Set<string>(); let acceptedEksik = 0, sahneNot = 0;
+      const gorulen = new Set<string>(); const kaliplar: string[][] = []; let acceptedEksik = 0, sahneNot = 0;
       for (const h of g.halkalar) {
         const at = `${file}: ${h.id}`;
         if (h.kartlar.length < HALKA_KART[0] || h.kartlar.length > HALKA_KART[1]) errors.push(`${at}: ${h.kartlar.length} kart (${HALKA_KART[0]}–${HALKA_KART[1]})`);
-        const sonra = h.dersten_sonra !== false;
-        const k = { kart: new Set([...oncekiKart, ...gorulen, ...h.kartlar, ...(sonra ? bugunDersKart : [])]), biten: new Set([...oncekiDers, ...(sonra ? bugunDers : [])]) };
+        // günün dersi varsayılmaz (#165): yalnız `dersten_sonra: true` yazılı halkada sayılır. Halkanın ve önceki halkaların kalıpları bilinir.
+        // Halka içi tanıtım sırası planlayıcının işidir (AK-2; web/src/core/akis.ts): burada halkanın bütün kartları bilinir sayılır.
+        const sonra = h.dersten_sonra === true;
+        for (const kp of h.kaliplar ?? []) kaliplar.push(...kalipSecenekleri(kp.de));
+        const k = { kart: new Set([...oncekiKart, ...gorulen, ...h.kartlar, ...(sonra ? bugunDersKart : [])]), biten: new Set([...oncekiDers, ...(sonra ? bugunDers : [])]), kaliplar: [...kaliplar] };
         for (const c of h.kartlar) {
           const lx = d.kartlar.get(c);
           if (!lx) { errors.push(`${at}: ${c} sözlükte yok`); continue; }
@@ -84,14 +87,13 @@ export function halkaDenetle(gunler: { file: string; data: Gun }[], dersler: Map
           if (u.length > 1) errors.push(`${at}: sahne satırında ${u.length} bilinmeyen (${bilinmeyenYazi(u).join(", ")}): ${s.de}`);
           else if (u.length) sahneNot++;
         }
-        if (h.sahne && (h.sahne.soru.ans >= h.sahne.soru.opts.length)) errors.push(`${at}: sahne sorusunun cevabı şıklarda yok`);
         for (const c of h.kartlar) gorulen.add(c);
       }
       if (acceptedEksik) warnings.push(`${file}: ${acceptedEksik} görev cümlesinde kabul listesi 3'ten kısa (üretim adımında kullanılmadan önce ≥ 3, D-064)`);
       if (sahneNot) warnings.push(`${file}: ${sahneNot} sahne satırında 1 bilinmeyen sözcük (işaretli gösterilir, sorulmaz)`);
     }
     // --- sayaç (uyarı; İÇ "B" kipi) ---
-    const kB = { kart: new Set([...oncekiKart, ...g.yeni_kartlar, ...bugunDersKart]), biten: new Set([...oncekiDers, ...bugunDers]) };
+    const kB = { kart: new Set([...oncekiKart, ...g.yeni_kartlar, ...bugunDersKart]), biten: new Set([...oncekiDers, ...bugunDers]), kaliplar: (g.halkalar ?? []).flatMap((h) => (h.kaliplar ?? []).flatMap((kp) => kalipSecenekleri(kp.de))) };
     const cs = gunCumleleri(g, dersler).filter((c) => c.tur === "gorev");
     const ihlal = cs.filter((c) => bilinmeyenler(d, c.de, kB).length > 0).length;
     const kartsiz = g.yeni_kartlar.filter((c) => {
