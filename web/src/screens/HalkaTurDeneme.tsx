@@ -8,7 +8,8 @@ import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Lexeme } from "@dw/shared";
 import { loadFoto, loadLexicon, type FotoKayit } from "../services/content.ts";
 import { resimSecenekleri } from "../core/halkaTur.ts";
-import { Eslestir, ResimSec } from "../ui/halkaTur.tsx";
+import { ResimSec } from "../ui/soru/ResimdenSec.tsx";
+import { Eslestir } from "../ui/soru/Eslestir.tsx";
 import { ProgressHeader } from "../ui/kit.tsx";
 import { Loading } from "../ui/components.tsx";
 

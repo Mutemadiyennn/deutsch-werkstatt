@@ -3,7 +3,7 @@
  *  - `resimden_sec`: kelime duyulur, dört görselden doğrusu seçilir. Görseller yalnız seçilmiş açık fotoğraflardan (atıflı, çevrimdışı
  *    önbellekte); sunucu araması kullanılmaz. Kartın kendi fotoğrafı ya da 3 fotoğraflı çeldirici yoksa tür bu kart için uygun değildir.
  *  - `eslestir`: 4–6 Almanca kelime Türkçesiyle eşleşir. "Kontrol et" yok; yanlışta ceza yok, kart halkada bir kez daha gelir.
- * Ekran yok (AK-10 4. adım); bileşenler `ui/halkaTur.tsx`.
+ * Ekran yok (AK-10 4. adım); bileşenler `ui/soru/ResimdenSec.tsx`, `ui/soru/Eslestir.tsx` (AK-7).
  */
 import type { Lexeme } from "@dw/shared";
 import { isCard, isNoun, trAnahtar } from "./garden.ts";
