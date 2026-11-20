@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { loadContent, checkRules, checkScenario, icerikGuvenligi, b4Uyarilar, guvenlikTara, boslukCakismasi, ornekteKelime, essesliOrnek } from "./load.ts";
+import { checkPattern, loadContent, checkRules, checkScenario, icerikGuvenligi, b4Uyarilar, guvenlikTara, boslukCakismasi, ornekteKelime, essesliOrnek } from "./load.ts";
 import { importV1, sameSense } from "./import-v1.ts";
 import { AiTasks } from "../../packages/shared/src/api.ts";
 
@@ -176,4 +176,12 @@ describe("PM-062 anlam güvenliği (doğrulayıcı)", () => {
     const f = (de: string) => ({ de, answer: "x" });
     expect(essesliOrnek([{ id: "lx:p", de: "passen", examples: [], forms: [f("Passt ___ das am Montag?")] }, { id: "lx:p#2", de: "passen", examples: [], forms: [f("Passt ___ das am Montag?")] }] as never)).toHaveLength(1);
   });
+  it("kalıp dolgu anlamları (fills_tr) dolgularla aynı uzunlukta olmalı (İÇ 7014566898)", () => {
+    const p = { id: "pt:x", frame: "x", level: "A1", core: false, grammar_tr: "Not yazısı.", kurallar_tr: [], examples: [{ de: "a", tr: "b", layer: "hd" }], transforms: {}, mistakes_tr: [],
+      slots: [{ name: "yer", fills: ["im Büro", "zu Hause"], fills_tr: ["ofiste"] }] } as unknown as Parameters<typeof checkPattern>[0];
+    expect(checkPattern(p).some((e) => e.includes("fills_tr"))).toBe(true);
+    (p.slots[0] as { fills_tr?: string[] }).fills_tr = ["ofiste", "evde"];
+    expect(checkPattern(p)).toEqual([]);
+  });
 });
+

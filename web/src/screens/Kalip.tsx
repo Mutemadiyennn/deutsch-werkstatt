@@ -99,7 +99,9 @@ export function KalipKarti({ p, lex = [], back = "#/kalip", kapat, donus }: { p:
   const [secili, setSecili] = useState<string | null>(null);
   const donusum = DONUSUM_SIRA.filter((k) => p.transforms[k]);
   const eslesen = secili ? p.examples.find((e) => ornekteGecer(e.de, secili)) : undefined;
-  const anlam = secili && !eslesen ? yerelAcikla(secili, lex) : null;
+  // dolgunun anlamı: içerikteki `fills_tr` (İÇ 7014566898) önce, yoksa cihazdaki sözlük
+  const dolguTr = (() => { if (!secili) return null; for (const s of p.slots) { const i = s.fills.indexOf(secili); if (i >= 0 && s.fills_tr?.[i]) return s.fills_tr[i]!; } return null; })();
+  const anlam = secili ? (dolguTr ? { tr: dolguTr } : !eslesen ? yerelAcikla(secili, lex) : null) : null;
   const govde = (
     <>
       <section class="card stack">
@@ -130,10 +132,10 @@ export function KalipKarti({ p, lex = [], back = "#/kalip", kapat, donus }: { p:
           ))}
           {secili && <div class="stack kalip-secili" style={{ gap: 6 }} data-test="kalip-secili" aria-live="polite"
             ref={(el) => { if (el && el.dataset.k !== secili) { el.dataset.k = secili; requestAnimationFrame(() => el.scrollIntoView({ block: "nearest", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" })); } }}>
-            <div class="row" style={{ flexWrap: "nowrap" }}><b class="grow de" lang="de">{secili}</b><ListenButton text={secili} small /></div>
+            <div class="row" style={{ flexWrap: "nowrap" }}><span class="grow"><b class="de" lang="de">{secili}</b>{dolguTr && <><br /><span class="small muted" data-test="kalip-dolgu-tr">{dolguTr}</span></>}</span><ListenButton text={secili} small /></div>
             {eslesen ? <div class="row" style={{ flexWrap: "nowrap", alignItems: "flex-start" }} data-test="kalip-secili-ornek">
                 <span class="grow"><span lang="de">{eslesen.de}</span><br /><span class="small muted">{eslesen.tr}</span></span><ListenButton text={eslesen.de} small /></div>
-              : <p class="small muted" data-test="kalip-secili-yok">Bu öbekle hazır bir örnek yok. Yukarıdaki örneklerden birinde boşluğa koyarak söyle.{anlam?.tr ? <> Anlamı: <b>{anlam.tr}</b></> : null}</p>}
+              : <p class="small muted" data-test="kalip-secili-yok">Bu öbekle hazır bir örnek yok. Yukarıdaki örneklerden birinde boşluğa koyarak söyle.{anlam?.tr && !dolguTr ? <> Anlamı: <b>{anlam.tr}</b></> : null}</p>}
           </div>}
         </section>
       )}

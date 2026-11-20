@@ -8,6 +8,9 @@ import { localDate } from "../core/focus.ts";
 import { ACTIVITY_TR } from "../core/planner.ts";
 import { SKILL_TR } from "../core/assess.ts";
 import { TopBar, useFocusTick } from "../ui/components.tsx";
+import { XpSeri } from "../ui/solen.tsx";
+import { GecenHaftakiSen } from "../ui/gorev.tsx";
+import { useXp } from "../ui/durum.tsx";
 
 const addDays = (d: Date, n: number) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
 const DOW = ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"];
@@ -15,6 +18,7 @@ const DOW = ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"];
 export function Progress() {
   const { profile, placement } = useApp();
   const e = useFocusTick();
+  const xp = useXp();
   const [days, setDays] = useState<FocusDay[]>([]);
   const [stats, setStats] = useState<Awaited<ReturnType<typeof itemStats>> | null>(null);
   const [assessments, setAssessments] = useState<Assessment[]>([]);
@@ -53,6 +57,9 @@ export function Progress() {
   return (
     <div class="stack">
       <TopBar title="İlerlemem" />
+      {/* Şölen 1 XP ve seri kartı (Bugün'den taşındı; durum çubuğu her ekranda) ve B11b "Geçen haftaki sen" */}
+      {xp && <XpSeri xp={xp} href="#/yol" />}
+      <GecenHaftakiSen />
 
       <section class="card hero purple stack" data-test="hero">
         <div class="kicker">İlerlemem · {today.toLocaleDateString("tr-TR", { day: "numeric", month: "short" })}</div>

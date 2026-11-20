@@ -15,9 +15,14 @@ export const kutlamaAcik = () => kutlama;
 export const hareketAzalt = () => typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /** Doğru cevapta artar, yanlışta sıfırlanır; değeri döner */
-export function ustUsteSay(dogru: boolean): number { ustUste = dogru ? ustUste + 1 : 0; return ustUste; }
+/** üst üste dizisinin kimliği: dizi her kırıldığında değişir (görev sayımı aynı eşiği bir kez sayar; inceleme #108 P1-1) */
+/** dizi kimliği: oturumlar arasında da tekil (açılış zamanı + sıra); "5 üst üste" günde bir kez sayılırken yeniden açılış eski anahtarlarla çakışmasın (inceleme #108 2. tur P1-4) */
+const oturum = Date.now().toString(36);
+let dizi = 0;
+export const ustUsteDizi = () => `${oturum}.${dizi}`;
+export function ustUsteSay(dogru: boolean): number { if (!dogru && ustUste) dizi++; ustUste = dogru ? ustUste + 1 : 0; return ustUste; }
 /** Ekran değişince sayaç sıfırlanır: dersteki seri Bahçe'ye taşınmaz (inceleme #87 P2) */
-export function ustUsteSifirla() { ustUste = 0; }
+export function ustUsteSifirla() { if (ustUste) dizi++; ustUste = 0; }
 
 /** Cevap anında "+N XP" uçuşu: kayıt "Devam"da yazılır, uçuş cevapla birlikte görünür (inceleme #87 P1-2) */
 export function xpUcur(n: number) {

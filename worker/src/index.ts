@@ -18,7 +18,7 @@ export async function handle(req: Request, env: Env): Promise<Response> {
   if (req.method === "OPTIONS") return new Response(null, { status: Object.keys(cors).length ? 204 : 403, headers: cors });
   try {
     if (url.pathname === "/v1/health" && req.method === "GET") {
-      const body: HealthResponse = { ok: true, version: VERSION, time: new Date().toISOString(), provider: (env.AI_PROVIDER || "none").trim(), configured: { gemini: !!env.GEMINI_KEY && (env.AI_PROVIDER || "").trim() === "gemini", pexels: !!env.PEXELS_KEY, allowlist: !!(env.ALLOWED_UIDS || "").trim() } };
+      const body: HealthResponse = { ok: true, version: VERSION, time: new Date().toISOString(), provider: (env.AI_PROVIDER || "none").trim(), configured: { gemini: !!env.GEMINI_KEY && (env.AI_PROVIDER || "").trim() === "gemini", workers_ai: !!env.AI && (env.AI_PROVIDER || "").trim() === "workers-ai", pexels: !!env.PEXELS_KEY, allowlist: !!(env.ALLOWED_UIDS || "").trim() } };
       return json(body, 200, cors);
     }
     if (url.pathname === "/v1/usage" && req.method === "GET") {
@@ -40,7 +40,8 @@ export async function handle(req: Request, env: Env): Promise<Response> {
       const p = AiRunRequest.safeParse(body);
       if (!p.success) throw new HttpError("invalid_request");
       // İnceleme #41 P1-3: sağlayıcı kapalıysa kota sayacına hiç yazılmaz
-      if ((env.AI_PROVIDER || "none").trim() !== "gemini") throw new HttpError("not_configured", "ai_disabled");
+      const prov = (env.AI_PROVIDER || "none").trim();
+      if (!(prov === "gemini" || (prov === "workers-ai" && env.AI))) throw new HttpError("not_configured", "ai_disabled");
       await takeAi(env, u.uid);
       const t0 = Date.now();
       const r = await runTask(env, p.data.task, p.data.vars);

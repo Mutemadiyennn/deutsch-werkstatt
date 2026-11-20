@@ -7,10 +7,14 @@
 import { delMeta, getMeta, setMeta } from "../data/db.ts";
 
 export interface RafAyar { adres: string; anahtar: string }
-export type RafDurum = "bagli" | "anahtar-yanlis" | "ulasilamiyor" | "ayar-yok" | "adres-gecersiz" | "eksik";
+export type RafDurum = "parola-kisa" | "dosya-yok" | "bagli" | "anahtar-yanlis" | "ulasilamiyor" | "ayar-yok" | "adres-gecersiz" | "eksik" | "anahtar-tanimsiz" | "koruma-yok";
 export const RAF_DURUM_TR: Record<RafDurum, string> = {
   bagli: "Bağlandı: raf çalışıyor.",
+  "parola-kisa": "Parola en az 32 karakter olmalı (rafa girilenle aynı). Kaydedilmedi; istek gönderilmedi.",
+  "dosya-yok": "Parola doğru, raf boş: sınama dosyası henüz yüklenmemiş.",
   "anahtar-yanlis": "Parola yanlış (ya da adres başka bir rafı gösteriyor).",
+  "anahtar-tanimsiz": "Raf hazır değil: rafın parolası Pages ayarlarında tanımlı değil ya da tanımlandıktan sonra yeniden dağıtılmadı.",
+  "koruma-yok": "Raf hazır değil: rafın koruması dağıtılmamış. Pages'te son dağıtımın en yeni sürümü içerdiğini kontrol et.",
   ulasilamiyor: "Ulaşılamıyor: internet yok ya da adres yanlış.",
   "ayar-yok": "Adres ve parola girilmedi; açık kaynaklı medya gösteriliyor.",
   "eksik": "Adres ve parolanın ikisi de gerekli. Bir şey değiştirilmedi.",
@@ -45,6 +49,8 @@ export async function rafYaz(a: RafAyar | null): Promise<boolean> {
   await setMeta("raf", { adres, anahtar: a.anahtar.trim() });
   return true;
 }
+/** rafın kabul ettiği en kısa parola (worker/src/raf.ts ANAHTAR_EN_AZ ile aynı) */
+export const PAROLA_EN_AZ = 32;
 const istek = (a: RafAyar, yol: string, zaman = 10_000) => {
   const adres = rafAdres(a.adres);
   if (!adres) return Promise.reject(new Error("raf adresi geçersiz"));
@@ -66,8 +72,20 @@ export async function rafSina(a?: RafAyar | null): Promise<RafDurum> {
   if (!ayar) return "ayar-yok";
   if (!rafAdres(ayar.adres)) return "adres-gecersiz";
   try {
-    const r = await istek(ayar, SAGLIK);
-    return r.ok ? "bagli" : r.status === 404 || r.status === 401 || r.status === 403 ? "anahtar-yanlis" : "ulasilamiyor";
+    let r = await istek(ayar, SAGLIK);
+    let isaret = r.headers.get("X-Raf");
+    if (r.ok) return isaret === "1" ? "bagli" : "koruma-yok";
+    if (r.status === 503 && isaret === "anahtar-yok") return "anahtar-tanimsiz";
+    if (r.status === 404 && isaret === "1") return "dosya-yok";
+    if (r.status === 404) {
+      // korumanın yanlış parolaya cevabı bilerek gecikmeli (1,2 sn). Süre ikinci (bağlantısı ısınmış) istekte ölçülür:
+      // ilk istekte DNS/TLS/ön uçuş soğuk hücresel ağda hızlı 404'ü de geciktirebilir (inceleme #118 P1-2)
+      const t0 = Date.now();
+      r = await istek(ayar, SAGLIK); isaret = r.headers.get("X-Raf");
+      if (r.status === 404 && isaret === "1") return "dosya-yok";
+      return Date.now() - t0 >= 900 ? "anahtar-yanlis" : "koruma-yok";
+    }
+    return r.status === 401 || r.status === 403 ? "anahtar-yanlis" : "ulasilamiyor";
   } catch { return "ulasilamiyor"; }
 }
 

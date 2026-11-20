@@ -4,6 +4,7 @@ import { useApp } from "../state.ts";
 import { V1_URL } from "../core/planner.ts";
 import { visibleScenarios } from "../core/season.ts";
 import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
+import { MevsimKarti, TekrarListesi } from "./Today.tsx";
 
 export function Learn() {
   const { index, indexError, profile } = useApp();
@@ -14,6 +15,8 @@ export function Learn() {
   return (
     <div class="stack">
       <TopBar title="Öğren"><a class="btn sm" href="#/kalip" data-test="kalip-ac">Kalıplar</a> <a class="btn sm" href="#/sozluk" data-test="sozluk-ac">Sözlük</a></TopBar>
+      <MevsimKarti />
+      <TekrarListesi />
       {index.temel.length > 0 && (
         <section class="card" data-test="temel-liste">
           <div class="kicker">Temel dersler</div>
@@ -76,7 +79,7 @@ export function DomainView({ id }: { id: string }) {
       <section class="card">
         <div class="kicker">Eski uygulamadaki üniteler</div>
         <p class="small muted">Eski uygulamada açılır.</p>
-        <div class="row">{d.legacyUnits.map((u) => <a class="chip" href={`${V1_URL}#kurs`} target="_blank" rel="noopener">{u.toUpperCase()} <Icon name="out" size={14} /></a>)}</div>
+        <div class="row">{d.legacyUnits.map((u) => <a class="chip" href={`${V1_URL}?v1#kurs`} target="_blank" rel="noopener">{u.toUpperCase()} <Icon name="out" size={14} /></a>)}</div>
       </section>
     </div>
   );
