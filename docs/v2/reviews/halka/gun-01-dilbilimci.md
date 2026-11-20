@@ -233,3 +233,29 @@ Hata oranı: **1 bulgu / 11 madde ≈ %9** (noktalama; dil ya da içerik hatası
 Hata oranı: **1 hata / 9 madde ≈ %11**. `halka_kontrol.py` ve `content:validate` düzeltmeden sonra çalıştırıldı.
 
 **KAPANDI.**
+
+## PM #165 küçük sözcükler
+
+İncelenen: 25 madde (12 görev cümlesi kabul listeleriyle, 2 sahne satırı, 10 kalıp ve çevirisi, `lx:bitte` `exp.anlam_tr`). Yalnızca yazar raporunun aynı başlıklı bölümünde değişen satırlara bakıldı.
+
+**Hatalar (2, dosyada düzeltildi):**
+1. h3 sahne, Huber: „Hallo! Geht morgen, am Donnerstag?“ → **„Hallo! Geht es morgen, am Donnerstag?“**. Yazarın sorusunun cevabı: tek başına **Geht morgen?** gündelik konuşmada söylenir, ama **am Donnerstag** eklenince cümle öznesiz ve kesik kalıyor; muayenehane sekreterinin telefonda kurduğu cümle değil. Sahne satırı öğrencinin duyduğu örnek olduğu için tam biçim kaldı. **es** sayısı artmasın diye değiş tokuş yapıldı: h3 `lx:morgen` görev cümlesi „Geht es morgen?“ → **„Geht morgen?“** (kabul: „Geht morgen?“, „Geht es morgen?“, „Morgen? Geht es?“). Böylece görev cümlesi „Geht …?“ kalıbının yuvasını birebir dolduruyor (h3 „Geht Freitag?“ ile aynı yapı), **es** halkada yine 1 kez, **am** 1 kez.
+2. h5 `lx:gehen` kabul öğesi „Gehen Sie morgen in die Praxis, Herr Wimmer?“ → **„Morgen gehen Sie, Herr Wimmer?“**. Eski öğe Türkçe görevde olmayan bilgiyi („muayenehaneye“) ekliyordu; başka bir cümlenin çevirisi doğru sayılıyordu. Yenisi aynı anlamın tonlamayla sorulan biçimi (dosyadaki „Heute ist die Praxis geschlossen?“ türü öğelerle aynı).
+
+**Doğru bulundu, değiştirilmedi:**
+- Görev cümleleri: „Guten Tag, Frau Brandl!“, „Hallo, Ioana! Danke!“, „Dienstag, bitte.“, „Donnerstag geht, Frau Huber.“, „Geht Freitag?“, „Geht Sonntag, Tobi?“, „Wochenende! Bis Montag, Tobi!“, „Diese Woche geht nicht.“, „Guten Tag, Herr Wimmer!“, „Morgen geht nicht, aber übermorgen geht.“, „Ist die Praxis heute geschlossen?“, „Gehen Sie morgen, Herr Wimmer?“. Gün adı ya da **diese Woche** burada özne olduğu için **es** olmadan tam cümledir; konuşulan biçim. Şefe **Sie** doğru.
+- Kabul listeleri: öbür öğelerin hepsi doğru Almanca ve aynı anlam („geht“ / „geht es“, „Montag“ / „am Montag“, kelime sırası). Yanlış cevabı kabul eden öğe kalmadı; yalnızca noktalama farkı olan öğe yok.
+- h4 sahne „Ja, Sonntag geht.“: doğru.
+- Türkçe: 14 satırın çevirileri doğru ve doğal („Perşembe olur Huber Hanım.“, „Pazar olur mu Tobi?“, „Yarın gidiyor musunuz Wimmer Bey?“).
+- Kalıplar: „Guten Tag“ / İyi günler, „Für …“ / … için, „Heute ist …“ / Bugün …, „nicht …“ / … değil, „Geht …?“ / … olur mu?, „Bis …!“ / … görüşürüz!, „Welcher Tag ist heute?“ / Bugün günlerden ne?, „diese Woche“ / bu hafta, „Gestern war …“ / Dün … idi, „…, aber …“ / …, ama …: doğru.
+- `lx:bitte` `exp.anlam_tr` „İsterken lütfen, verirken buyurun, teşekküre karşılık rica ederim demek.“: üç kullanım da doğru, tek cümle, 10 kelime, sembol ve terim yok (OD-9.1, OD-9.2). Kartın `tr` alanı ve h1 cümleleriyle („Rica ederim Tobi.“, „Evet, lütfen …“, sahnede „Buyurun!“) örtüşüyor. Eskisinden açık.
+- WORLD: karakterler ve hitaplar aynı (Huber sekreter, Wimmer şef, Tobi ve Ioana adla). h3 ve h5 sahneleri yine çarşambaya oturuyor.
+
+**Kalan şüpheler (engel değil; karar PM'de):**
+1. „… geht nicht.“ kalıbı kalktı. Öğrenci artık „Freitag geht nicht“, „Diese Woche geht nicht“, „Morgen geht nicht, aber …“ cümlelerini „Geht …?“ ile „nicht …“ (… değil) kalıplarından kurmak zorunda. h2 kalıbı **nicht**'i öne koyuyor, burada fiilden sonra geliyor; Türkçe konuşan için beklenen hata „Freitag nicht geht“. Kalıp bütçesi 2 olduğu için eklenmedi. Çıkış yolu: ilk „geht nicht“ cümlesi üretimden önce gösterimde gelsin (h3 sahnesinde „Nein, morgen geht nicht.“ var, sıra buna göre kurulabilir).
+2. h2'de „Danke, heute nicht.“ cümlesinde **nicht** sonda, kalıp „nicht …“ diye yazılı. Çeviri („bugün değil“) doğru; yuva yönü ekranda yanıltabilir.
+3. h3'te **es** artık yalnızca sahnede (dinlemede) geçiyor; K10 ile altında Türkçesi gösterilmeli.
+
+Hata oranı: **2 hata / 25 madde = %8**. Düzeltmeden sonra `halka_kontrol.py` → 0 hata, 0 not; `kucuk_sozcuk.py` → 0 hata; `npm run content:validate` → 0 hata.
+
+**KAPANDI.**

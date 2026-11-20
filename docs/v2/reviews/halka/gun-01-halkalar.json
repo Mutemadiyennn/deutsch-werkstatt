@@ -12,7 +12,16 @@
     "lx:bitte",
     "lx:ja"
    ],
-   "kaliplar": [],
+   "kaliplar": [
+    {
+     "de": "Guten Tag",
+     "tr": "İyi günler"
+    },
+    {
+     "de": "Für …",
+     "tr": "… için"
+    }
+   ],
    "gorev_cumleleri": [
     {
      "kart": "lx:hallo",
@@ -36,12 +45,12 @@
     },
     {
      "kart": "lx:Frau",
-     "de": "Hallo, Frau Brandl!",
-     "tr": "Merhaba Brandl Hanım!",
+     "de": "Guten Tag, Frau Brandl!",
+     "tr": "İyi günler Brandl Hanım!",
      "accepted": [
-      "Hallo, Frau Brandl!",
-      "Frau Brandl, hallo!",
-      "Ja, hallo, Frau Brandl!"
+      "Guten Tag, Frau Brandl!",
+      "Frau Brandl, guten Tag!",
+      "Ja, guten Tag, Frau Brandl!"
      ]
     },
     {
@@ -66,12 +75,12 @@
     },
     {
      "kart": "lx:danke",
-     "de": "Danke für alles, Ioana!",
-     "tr": "Her şey için sağ ol Ioana!",
+     "de": "Hallo, Ioana! Danke!",
+     "tr": "Merhaba Ioana! Sağ ol!",
      "accepted": [
-      "Danke für alles, Ioana!",
-      "Ioana, danke für alles!",
-      "Danke, Ioana, für alles!"
+      "Hallo, Ioana! Danke!",
+      "Ioana, hallo! Danke!",
+      "Hallo! Danke, Ioana!"
      ]
     },
     {
@@ -148,7 +157,7 @@
   },
   {
    "id": "m1:01:h2",
-   "title_tr": "Bugün hangi gün?",
+   "title_tr": "Bugün ve hafta başı",
    "kartlar": [
     "lx:heute",
     "lx:Montag",
@@ -160,6 +169,10 @@
     {
      "de": "Heute ist …",
      "tr": "Bugün …"
+    },
+    {
+     "de": "nicht …",
+     "tr": "… değil"
     }
    ],
    "gorev_cumleleri": [
@@ -175,12 +188,12 @@
     },
     {
      "kart": "lx:heute",
-     "de": "Danke, heute nicht.",
-     "tr": "Sağ olun, bugün değil.",
+     "de": "Nicht heute, danke.",
+     "tr": "Bugün değil, sağ olun.",
      "accepted": [
-      "Danke, heute nicht.",
-      "Heute nicht, danke.",
-      "Heute nicht. Danke."
+      "Nicht heute, danke.",
+      "Danke, nicht heute.",
+      "Heute nicht, danke."
      ]
     },
     {
@@ -205,12 +218,12 @@
     },
     {
      "kart": "lx:Dienstag",
-     "de": "Am Dienstag? Ja, bitte.",
-     "tr": "Salı günü mü? Evet, lütfen.",
+     "de": "Dienstag, bitte.",
+     "tr": "Salı, lütfen.",
      "accepted": [
-      "Am Dienstag? Ja, bitte.",
-      "Dienstag? Ja, bitte.",
-      "Am Dienstag? Ja, am Dienstag, bitte."
+      "Dienstag, bitte.",
+      "Bitte Dienstag.",
+      "Am Dienstag, bitte."
      ]
     },
     {
@@ -306,16 +319,8 @@
    ],
    "kaliplar": [
     {
-     "de": "Geht …?",
-     "tr": "… olur mu?"
-    },
-    {
-     "de": "… geht.",
-     "tr": "… olur."
-    },
-    {
-     "de": "… geht nicht.",
-     "tr": "… olmuyor."
+     "de": "Geht …? – … geht. – … geht nicht.",
+     "tr": "… olur mu? – … olur. – … olmuyor."
     },
     {
      "de": "Bis …!",
@@ -325,11 +330,11 @@
    "gorev_cumleleri": [
     {
      "kart": "lx:morgen",
-     "de": "Geht es morgen?",
+     "de": "Geht morgen?",
      "tr": "Yarın olur mu?",
      "accepted": [
-      "Geht es morgen?",
       "Geht morgen?",
+      "Geht es morgen?",
       "Morgen? Geht es?"
      ]
     },
@@ -345,12 +350,12 @@
     },
     {
      "kart": "lx:Donnerstag",
-     "de": "Am Donnerstag geht es, Frau Huber.",
-     "tr": "Perşembe günü olur Huber Hanım.",
+     "de": "Donnerstag geht, Frau Huber.",
+     "tr": "Perşembe olur Huber Hanım.",
      "accepted": [
-      "Am Donnerstag geht es, Frau Huber.",
       "Donnerstag geht, Frau Huber.",
-      "Frau Huber, am Donnerstag geht es."
+      "Frau Huber, Donnerstag geht.",
+      "Am Donnerstag geht es, Frau Huber."
      ]
     },
     {
@@ -365,11 +370,11 @@
     },
     {
      "kart": "lx:Freitag",
-     "de": "Geht es am Freitag?",
-     "tr": "Cuma günü olur mu?",
+     "de": "Geht Freitag?",
+     "tr": "Cuma olur mu?",
      "accepted": [
-      "Geht es am Freitag?",
       "Geht Freitag?",
+      "Geht es am Freitag?",
       "Geht es Freitag?"
      ]
     },
@@ -452,8 +457,12 @@
    ],
    "kaliplar": [
     {
-     "de": "Guten Tag",
-     "tr": "İyi günler"
+     "de": "Welcher Tag ist heute?",
+     "tr": "Bugün günlerden ne?"
+    },
+    {
+     "de": "diese Woche",
+     "tr": "bu hafta"
     }
    ],
    "gorev_cumleleri": [
@@ -489,12 +498,12 @@
     },
     {
      "kart": "lx:Sonntag",
-     "de": "Und am Sonntag? Geht es?",
-     "tr": "Peki pazar günü? Olur mu?",
+     "de": "Geht Sonntag, Tobi?",
+     "tr": "Pazar olur mu Tobi?",
      "accepted": [
-      "Und am Sonntag? Geht es?",
-      "Und geht es am Sonntag?",
-      "Und Sonntag? Geht es?"
+      "Geht Sonntag, Tobi?",
+      "Tobi, geht Sonntag?",
+      "Geht es am Sonntag, Tobi?"
      ]
     },
     {
@@ -509,21 +518,21 @@
     },
     {
      "kart": "lx:Wochenende",
-     "de": "Und am Wochenende, Tobi?",
-     "tr": "Peki hafta sonunda, Tobi?",
+     "de": "Wochenende! Bis Montag, Tobi!",
+     "tr": "Hafta sonu! Pazartesi görüşürüz Tobi!",
      "accepted": [
-      "Und am Wochenende, Tobi?",
-      "Tobi, und am Wochenende?",
-      "Und, Tobi, am Wochenende?"
+      "Wochenende! Bis Montag, Tobi!",
+      "Bis Montag, Tobi! Wochenende!",
+      "Tobi, bis Montag! Wochenende!"
      ]
     },
     {
      "kart": "lx:Woche",
-     "de": "Diese Woche geht es nicht.",
+     "de": "Diese Woche geht nicht.",
      "tr": "Bu hafta olmuyor.",
      "accepted": [
-      "Diese Woche geht es nicht.",
       "Diese Woche geht nicht.",
+      "Diese Woche geht es nicht.",
       "Es geht diese Woche nicht."
      ]
     },
@@ -539,12 +548,12 @@
     },
     {
      "kart": "lx:Tag",
-     "de": "Guten Tag, Frau Brandl!",
-     "tr": "İyi günler Brandl Hanım!",
+     "de": "Guten Tag, Herr Wimmer!",
+     "tr": "İyi günler Wimmer Bey!",
      "accepted": [
-      "Guten Tag, Frau Brandl!",
-      "Frau Brandl, guten Tag!",
-      "Ja, guten Tag, Frau Brandl!"
+      "Guten Tag, Herr Wimmer!",
+      "Herr Wimmer, guten Tag!",
+      "Ja, guten Tag, Herr Wimmer!"
      ]
     },
     {
@@ -578,8 +587,8 @@
      },
      {
       "r": "ogrenci",
-      "de": "Ja, am Sonntag geht es.",
-      "tr": "Evet, pazar günü olur."
+      "de": "Ja, Sonntag geht.",
+      "tr": "Evet, pazar olur."
      }
     ],
     "soru": {
@@ -609,6 +618,10 @@
     {
      "de": "Gestern war …",
      "tr": "Dün … idi"
+    },
+    {
+     "de": "…, aber …",
+     "tr": "…, ama …"
     }
    ],
    "gorev_cumleleri": [
@@ -634,11 +647,11 @@
     },
     {
      "kart": "lx:übermorgen",
-     "de": "Morgen geht es nicht, aber übermorgen geht es.",
+     "de": "Morgen geht nicht, aber übermorgen geht.",
      "tr": "Yarın olmuyor ama öbür gün olur.",
      "accepted": [
-      "Morgen geht es nicht, aber übermorgen geht es.",
       "Morgen geht nicht, aber übermorgen geht.",
+      "Morgen geht es nicht, aber übermorgen geht es.",
       "Morgen nicht, aber übermorgen geht es."
      ]
     },
@@ -684,12 +697,12 @@
     },
     {
      "kart": "lx:Praxis",
-     "de": "Ist die Praxis am Samstag geschlossen?",
-     "tr": "Muayenehane cumartesi günü kapalı mı?",
+     "de": "Ist die Praxis heute geschlossen?",
+     "tr": "Muayenehane bugün kapalı mı?",
      "accepted": [
-      "Ist die Praxis am Samstag geschlossen?",
-      "Ist am Samstag die Praxis geschlossen?",
-      "Am Samstag ist die Praxis geschlossen?"
+      "Ist die Praxis heute geschlossen?",
+      "Ist heute die Praxis geschlossen?",
+      "Heute ist die Praxis geschlossen?"
      ]
     },
     {
@@ -704,12 +717,12 @@
     },
     {
      "kart": "lx:gehen",
-     "de": "Gehen Sie morgen in die Praxis, Herr Wimmer?",
-     "tr": "Yarın muayenehaneye gidiyor musunuz Wimmer Bey?",
+     "de": "Gehen Sie morgen, Herr Wimmer?",
+     "tr": "Yarın gidiyor musunuz Wimmer Bey?",
      "accepted": [
-      "Gehen Sie morgen in die Praxis, Herr Wimmer?",
-      "Herr Wimmer, gehen Sie morgen in die Praxis?",
-      "Gehen Sie morgen zur Praxis, Herr Wimmer?"
+      "Gehen Sie morgen, Herr Wimmer?",
+      "Herr Wimmer, gehen Sie morgen?",
+      "Morgen gehen Sie, Herr Wimmer?"
      ]
     },
     {

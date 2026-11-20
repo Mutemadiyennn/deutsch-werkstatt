@@ -607,3 +607,141 @@ Geri dönen yok. Önceki geri dönüşlerim (`h4/g6`, `lx:Herr` `ne_zaman_tr`) k
 **N20 — erkek kartında iki alan birbirine çok yakın.** `anlam_tr` "saygıyla seslenirken soyadının önüne gelir" diyor, `ne_zaman_tr` "soyadıyla kibarca seslenirken" diyor. Aynı şeyi iki kez okudum gibi geldi. Yeni olan yalnızca üç kişi örneği. Beni durdurmadı. Sıra bilgisi hem `anlam_tr` içinde hem uyarıda var; çelişmiyor.
 
 **N21 — sahne satırında üç nokta.** h4/s1'de Türkçede de Almancada da üç nokta var. Konuşan kişinin duraksaması olarak okudum, anlamı bozmuyor. OD-9.2 üç noktayı açıklama alanlarında yasaklıyor; sahne satırı açıklama sayılıyorsa takılır. Önceki turlarda da böyleydi, geçirmiştim.
+
+## PM #165 küçük sözcükler
+
+Okunan: yazar ve dilbilimci raporlarının aynı başlıklı bölümlerinde değişen satırlar, dosyadaki son hâlleriyle (`gun-01-halkalar.json`). Altı yeni kalıp, h3'ten çıkan iki kalıbın bıraktığı boşluk, 13 görev cümlesi (yazarın 12'si ve dilbilimcinin değiştirdiği `h3/g1`), 2 sahne satırı, `lx:bitte` `exp.anlam_tr` (`batch-001.json`). Öbür satırlar yeniden okunmadı.
+
+Kalıplarda ek soru: bu çeviri bana ne öğretiyor, Türkçeden yazarken beni doğru yere götürüyor mu?
+
+| Öğe | Alan | Açıklama | Kendi sözlerimle | Karar | Gerekçe |
+|---|---|---|---|---|---|
+| h1 | kalıp | Guten Tag / İyi günler | Birine kibarca selam veriyorum. | geçer | Tek okumada anladım. İki görev cümlesinde aynı Türkçe aynı Almancaya gidiyor (`h1/g3`, `h4/g9`). N16 aynen: Türkçede ayrılırken de söylerim, kalıp bunu ayırmıyor. |
+| h1 | kalıp | Für … / … için | Boşluğa kimin için olduğunu koyarım. Almancada kelime başa geliyor, Türkçede sona. | geçer | Yuvanın yeri iki dilde ters ve bu ekranda görünüyor. "Ioana için", "Tobi için" tek cümleye gidiyor. N4'ün "için" maddesi kapandı. |
+| h2 | kalıp | nicht … / … değil | Bir şeyin öyle olmadığını söylerim. Kelime, değil dediğim şeyin önüne gelir. | **geri döner** | Kalıp kelimeyi öne koyuyor. `h2/g2` "Sağ olun, bugün değil." cümlesini kalıba göre yazınca kelime "bugün"ün önüne geliyor. Kabul listesindeki üç biçimin üçünde de kelime "bugün"den sonra. Kalıba uyduğum hâlde yanlış sayılırım. "Salı değil mi?" ve "pazartesi değil" cümlelerinde kalıp tutuyor. |
+| h3 | kalıplar (çıkan: "… olur.", "… olmuyor.") | Geht …? / … olur mu? ve Bis …! / … görüşürüz! | Soru sormayı ve vedalaşmayı öğreniyorum. Bir şeyin olduğunu ya da olmadığını söylemeyi bu halkada gören yok. | **geri döner** | `h3/g6` "Cuma olmuyor Pichler Bey." cümlesini yazmam isteniyor. Elimde yalnızca "… olur mu?" ve h2'den "… değil" var. Türkçede "değil" sözü yok; iki kalıbı nasıl birleştireceğimi bilemedim. Sahnedeki örnek ("yarın olmuyor") görev cümlelerinden sonra geliyorsa ilk kez kendim uydurmuş olurum. |
+| h4 | kalıp | Welcher Tag ist heute? / Bugün günlerden ne? | Bugünün hangi gün olduğunu soruyorum. | geçer | Tek okumada anladım, Türkçesi doğal. Bütün cümle tek parça, yuva yok. Hangi kelimenin "hangi" olduğunu öğrenmiyorum, cümleyi ezber olarak alıyorum. `h4/g10` ile birebir aynı; tek cümleye gidiyorum. Bkz. N22. |
+| h4 | kalıp | diese Woche / bu hafta | İçinde olduğumuz haftayı söylüyorum. | geçer | Açık, kelime kelime gidiyor. `h4/g7` ve `h4/g8` ile tutuyor. N4'ün "bu" maddesi bu söz için kapandı. |
+| h5 | kalıp | …, aber … / …, ama … | İki şeyi karşı karşıya koyuyorum: biri öyle, öbürü değil. | geçer | Kelime iki dilde de ortada. `h5/g3` ile tutuyor. N4'ün "ama" maddesi kapandı. |
+| h1/g3 | görev cümlesi (tr) | İyi günler Brandl Hanım! | Komşuma kibarca selam veriyorum. | geçer | Halkanın kalıbı ve kadın kartıyla kuruluyor. Tek cümle. |
+| h1/g6 | görev cümlesi (tr) | Merhaba Ioana! Sağ ol! | Ioana'yı selamlayıp teşekkür ediyorum. | geçer | Yalnızca bu halkanın kelimeleri. "Sağ ol" ile "teşekkürler" aynı Almancaya gidiyor; kartın Türkçesinde ikisi de var, durmadım. |
+| h2/g5 | görev cümlesi (tr) | Salı, lütfen. | Salıyı istiyorum. | geçer | "günü" yok, Almancada da küçük kelime yok. Kural tutuyor. |
+| h3/g1 | görev cümlesi (tr) | Yarın olur mu? | Yarın uyar mı diye soruyorum. | geçer | Kalıbın yuvasına birebir oturuyor. N2 bu satır için kapandı: kısa kelime artık beklenen cümlede yok, yazarsam da kabul ediliyor. |
+| h3/g3 | görev cümlesi (tr) | Perşembe olur Huber Hanım. | Perşembe bana uyuyor diyorum. | **geri döner** | Elimdeki tek kalıp soru biçimi. Soru olmayan cümlede kelimelerin yer değiştirdiğini gösteren bir şey yok. Kalıptaki sırayla yazıp soru işaretini atıyorum; o biçim kabul listesinde yok. Bu, halkada soru olmayan ilk "olur" cümlesi. |
+| h3/g5 | görev cümlesi (tr) | Cuma olur mu? | Cuma uyar mı diye soruyorum. | geçer | Kalıba birebir oturuyor. "günü" yok, küçük kelime yok. |
+| h3/s1 | sahne satırı (tr) | Merhaba! Yarın, perşembe günü olur mu? | Sekreter yarını öneriyor, yarın perşembe. | geçer | Yalnızca okuyorum. "günü" Almancadaki küçük kelimeyle eşleşiyor. Almancada kalıpta olmayan kısa bir kelime var (N2); okurken beni durdurmadı. |
+| h4/g4 | görev cümlesi (tr) | Pazar olur mu Tobi? | Tobi'ye pazarın uyup uymadığını soruyorum. | geçer | h3'ün kalıbı, tek cümle. |
+| h4/g6 | görev cümlesi (tr) | Hafta sonu! Pazartesi görüşürüz Tobi! | Hafta sonu geldi diye seviniyorum, Tobi'ye pazartesiye kadar veda ediyorum. | geçer | Önceki geri dönüşüm kapalı kalıyor: "sonunda" yok, küçük kelime de yok. "Hafta sonu!" tek başına biraz çıplak; üstündeki "Bugün cuma, hafta sonu!" satırından sonra okuyunca oturdu. |
+| h4/g7 | görev cümlesi (tr) | Bu hafta olmuyor. | Bu hafta bana uymuyor. | geçer | h3'te "olmuyor"u bir kez yazmış olarak geliyorum; kalıp "bu hafta"yı veriyor. Tek cümle. h3'teki boşluk kapanmazsa burada da takılırım. |
+| h4/g9 | görev cümlesi (tr) | İyi günler Wimmer Bey! | Şefime kibarca selam veriyorum. | geçer | h1'in kalıbı, başka kişiyle. |
+| h4/s4 | sahne satırı (tr) | Evet, pazar olur. | Pazar günü çalışabilirim. | geçer | Yalnızca okuyorum. "günü" yok, küçük kelime yok. Sahne sorusunun cevabı yine tek: pazar. |
+| h5/g3 | görev cümlesi (tr) | Yarın olmuyor ama öbür gün olur. | Yarın uymuyor, ondan sonraki gün uyuyor. | geçer | Halkanın yeni kalıbıyla kuruluyor. N2 kapandı: beklenen cümlede kısa kelime yok, yazarsam kabul ediliyor. |
+| h5/g8 | görev cümlesi (tr) | Muayenehane bugün kapalı mı? | Doktorun yeri bugün açık mı diye soruyorum. | geçer | "günü" yok, küçük kelime yok. Tek cümle. |
+| h5/g10 | görev cümlesi (tr) | Yarın gidiyor musunuz Wimmer Bey? | Şefime yarın gidip gitmediğini soruyorum. | geçer | "Siz" diye sorduğum Türkçeden belli. Nereye gittiği yok, Almancada da yok. N4 aynen: "siz" anlamındaki kelimenin ne kartı ne kalıbı var. |
+| lx:bitte | anlam_tr | İsterken lütfen, verirken buyurun, teşekküre karşılık rica ederim demek. | Bu tek kelimeyi üç yerde söylerim: bir şey isterken, bir şey uzatırken, biri teşekkür edince. | geçer | Tek okumada anladım. Tek cümle, 10 kelime, sembol ve terim yok. Üç kullanım tek kelimenin anlamı olarak okunuyor, ayrı fikir gibi gelmedi. Halkadaki cümlelerle tutuyor. Bkz. N23. |
+
+### Sonuç
+
+| | |
+|---|---|
+| Okunan satır | 23 (6 yeni kalıp, 1 kalıp listesi, 13 görev cümlesi, 2 sahne satırı, 1 kart açıklaması) |
+| Geçer | 20 |
+| Geri döner | 3 |
+
+Geri dönenler: h2 kalıbı `nicht …`, h3 kalıp listesi (çıkan iki kalıp), `h3/g3`.
+
+Dosyada geri dönen satır olduğu için bu hâliyle "reviewed" sayılamaz (OD-9.4).
+
+### Geri dönenler — kendi sözlerimle
+
+- **h2 `nicht …` / … değil.** Kalıp bana "kelime öne gelir" diyor. "Salı değil mi?" ve "pazartesi değil" cümlelerinde öyle. "Bugün değil" cümlesinde beklenen Almancada kelime sonda. Aynı halkada aynı kalıp bir cümlede tutuyor, öbüründe tutmuyor; kalıba uyan cevabım kabul listesinde yok.
+- **h3 kalıp listesi.** Önceki turda "… olmuyor." kalıbı için "üç kalıp birlikte okununca çok açık" demiştim. Şimdi "olur" ile "olmuyor"u gösteren kalıp yok. "Cuma olmuyor" cümlesinde Türkçe "değil" demiyor; h2'nin kalıbını buraya taşıyacağımı kendiliğimden çıkaramadım, taşısam da kelimeyi nereye koyacağımı bilemedim.
+- **`h3/g3` Perşembe olur Huber Hanım.** Soru kalıbındaki sırayı aynen kullandım. Beklenen cümlede iki kelime yer değiştirmiş. Bunu bana gösteren ilk yer sahne; görev cümlesi ondan önce geliyorsa yanlış yazarım.
+
+### Notlar (karar değil, baş geliştiriciye)
+
+**N22 — aynı soruya iki Türkçe.** h2'nin başlığı "Bugün hangi gün?", h4'ün kalıbı "Bugün günlerden ne?". İkisi aynı şeyi soruyor. h2'de başlığı okuyunca bu soruyu orada öğreneceğimi sandım; Almancası h4'te geliyor.
+
+**N23 — "buyurun" iki işte.** Açıklama "verirken buyurun" diyor. h1 sahnesinde Stadler Hanım'ın ilk sözü de "Buyurun?" diye çevrilmiş, ama orada bir şey vermiyor, ne istediğimi soruyor. Sahne sorusu tam bu sözü soruyor. Açıklamadaki üç kullanımdan hiçbiri bu değil; doğru şıkkı açıklamadan değil, sahnenin gidişinden buldum. N5 aynen (soruda tırnak içinde Almanca).
+
+**N4 daraldı.** "için", "değil", "bu", "ama" artık kalıp. Kalanlar: günün önündeki küçük kelime (dört halkada birer kez), "peki", "biz", "siz", muayenehanenin önündeki küçük kelimeler, "her şey". "günü" ipucu her yerde tutarlı: olduğu yerde küçük kelime var, olmadığı yerde yok.
+
+**N2 görev cümlelerinde kapandı.** Kısa kelime artık yalnızca `h3/s1` sahne satırında; yazmam beklenmiyor.
+
+**N14, N16 aynen.**
+
+## PM #165 geri dönüşler
+
+Okunan: son turda geri dönen üç satırın ve iki notun (N22, N23) düzeltilmiş hâlleri, dosyadaki son metinle (`gun-01-halkalar.json`, `batch-001.json` `lx:bitte` `exp.anlam_tr`). h2 kalıbı yuvasız olduğu için o kalıbı kullanan "değil" cümlelerinin hepsini yeniden yazmayı denedim (h2/g2, g4, g10, h4/g8, h5/g2). Öbür satırlar yeniden okunmadı.
+
+Kalıplarda ek soru aynı: Türkçeden yazarken beni doğru yere götürüyor mu?
+
+| Öğe | Alan | Açıklama | Kendi sözlerimle | Karar | Gerekçe |
+|---|---|---|---|---|---|
+| h2 | kalıp | nicht / değil | Bir şeyin öyle olmadığını bu kelimeyle söylerim. | geçer | Tek okumada anladım. Kalıp artık kelimenin yerini söylemiyor; bu yüzden iki cümleyle de çelişmiyor. Ama yerini de öğretmiyor: aşağıdaki üç satıra bakınız. |
+| h2/g2 | görev cümlesi (tr) | Sağ olun, bugün değil. | Teşekkür edip bugün istemediğimi söylüyorum. | geçer | Kelimeyi Türkçedeki yerine, "bugün"den sonra koydum. Kabul listesinin ilk cümlesi çıktı. Önceki geri dönüşüm kapandı. |
+| h2/g4 | görev cümlesi (tr) | Pazartesi mi? Salı değil mi? | Günü yanlış mı duydum diye soruyorum. | **geri döner** | g2'deki gibi kelimeyi günden sonra koydum. Kabul listesindeki üç biçimin üçünde de kelime günden önce. Kalıp bana yer göstermiyor; bir önceki cümlede işe yarayan sıra burada yanlış sayılıyor. |
+| h2/g10 | görev cümlesi (tr) | Hayır, pazartesi değil, salı. | Günü düzeltiyorum. | **geri döner** | Aynı durum. "Pazartesi"den sonra koydum; listede kelime hep "pazartesi"den önce. |
+| h5/g2 | görev cümlesi (tr) | Dün mü? Bugün değil mi? | Şaşırıp günü soruyorum. | **geri döner** | h2/g2'de "bugün değil"i kelime sonda olarak yazıp doğru saymıştım. Aynı iki kelimeyi aynı sırayla yazdım; burada kabul listesinde yalnızca öbür sıra var. |
+| h3 | kalıp | Geht …? – … geht. – … geht nicht. / … olur mu? – … olur. – … olmuyor. | Bir günün uyup uymadığını sorarım. Uyuyorsa ikinciyi, uymuyorsa üçüncüyü söylerim. Soruda gün sonda, cevapta başta. | geçer | Soru ve iki cevap olarak okudum, tek okumada oturdu. Kelimenin soruda öne, cevapta arkaya geçtiği yan yana görünüyor. Türkçe "olmuyor"un Almancada iki kelime olduğu da görünüyor. Telefonda satır uzun; çizgileri "sonra karşıdaki söyler" diye okudum. |
+| h3/g3 | görev cümlesi (tr) | Perşembe olur Huber Hanım. | Perşembe bana uyuyor diyorum. | geçer | Kalıbın ikinci parçasına günü koydum, hitabı sona ekledim. Kabul listesinin ilk cümlesi çıktı. Önceki geri dönüşüm kapandı. |
+| h3/g6 | görev cümlesi (tr) | Cuma olmuyor Pichler Bey. | Cuma bana uymuyor diyorum. | geçer | Kalıbın üçüncü parçasına günü koydum, hitabı ekledim. Kabul listesinin ilk cümlesi çıktı. h2'nin kalıbını buraya taşımam gerekmedi. Önceki geri dönüşüm kapandı. |
+| lx:bitte | anlam_tr | Lütfen, buyurun ya da teşekküre karşılık rica ederim demek. | Bu tek kelime üç Türkçe söze karşılık geliyor: lütfen, buyurun, biri teşekkür edince rica ederim. | geçer | Tek cümle, 8 kelime, sembol ve terim yok. "Buyurun" artık "verirken" diye daraltılmamış. h1 sahnesinde hem ilk satırdaki "Buyurun?" hem son satırdaki "Buyurun!" bu söze oturuyor. Sahne sorusunun doğru şıkkı da "Buyurun" diye başlıyor; açıklamadan bulabildim. |
+| h2 | başlık | Bugün ve hafta başı | Bu halkada bugünü ve haftanın ilk günlerini söylemeyi öğreneceğim. | geçer | Artık bir soru vaat etmiyor; h4'teki soruyla karışmıyor. Kartlarla tutuyor (bugün, pazartesi, salı, çarşamba). Çarşamba bana hafta başından çok hafta ortası; beni durdurmadı. |
+
+### Sonuç
+
+| | |
+|---|---|
+| Okunan satır | 10 (2 kalıp, 6 görev cümlesi, 1 kart açıklaması, 1 başlık) |
+| Geçer | 7 |
+| Geri döner | 3 |
+
+Geri dönenler: `h2/g4`, `h2/g10`, `h5/g2`.
+
+Son turun üç geri dönüşü (h2 kalıbı, h3 kalıp listesi, `h3/g3`) kapandı. Yerlerine aynı kökten üç yeni geri dönüş geldi. Dosyada geri dönen satır olduğu için bu hâliyle "reviewed" sayılamaz (OD-9.4).
+
+### Geri dönenler — kendi sözlerimle
+
+- **`h2/g4`, `h2/g10`, `h5/g2` — "değil" kelimesinin yeri.** Kalıp yuvasız olunca kelimeyi nereye koyacağımı Türkçeden aldım: Türkçede "değil" sonda, ben de sona koydum. "Bugün değil" cümlesinde bu doğru sayılıyor. "Salı değil mi?", "pazartesi değil, salı" ve h5'teki "Bugün değil mi?" cümlelerinde aynı sırayı yazınca kabul listesinde bulamıyorum. En çok h5/g2'de şaşırdım: h2'de doğru saydığım iki kelimenin aynısı, aynı sırayla, orada yanlış. `h4/g8` "Bu hafta değil" cümlesinde iki sıra da kabul ediliyor; orada takılmadım.
+
+### Notlar (karar değil, baş geliştiriciye)
+
+**N22 kapandı.** h2 başlığı artık soru değil.
+
+**N23 kapandı.** Açıklamadaki "buyurun" sahnedeki iki kullanımı da karşılıyor.
+
+**N24 — h3 kalıbı tek satırda üç söz.** Soru, olur cevabı ve olmuyor cevabı tek öğede. Ben konuşma gibi okudum ve geçirdim. "Bir alan bir fikir" harfiyen uygulanırsa üç fikir sayılabilir; ayrıca tek satırda altı tane üç nokta var. Yuva işareti olduğunu önceki kalıplardan biliyordum, o yüzden durmadım.
+
+**N5 aynen.** h1 sorusunda tırnak içinde Almanca duruyor.
+
+**N2, N4, N14, N16 bu turda okunmadı, durumları aynen.**
+
+## nicht kalıbı son hâl
+
+Kalıp yeniden yuvalı: "nicht …" / "… değil". Okuduğum şey: Türkçede "değil" sözden sonra gelir, Almancada bu kelime sözden önce gelir. Beş Türkçe cümleyi yalnızca bu kalıba ve kartlara bakarak çevirdim, sonra kabul listesine baktım. Nokta, virgül ve çizgi farkını saymadım.
+
+| Öğe | Alan | Açıklama | Kendi sözlerimle | Benim yazdığım | Karar | Gerekçe |
+|---|---|---|---|---|---|---|
+| h2 | kalıp | nicht … / … değil | Bir şeyin öyle olmadığını söylerim. Kelimeyi sözün önüne koyarım. | | geçer | Tek okumada anladım. Üç noktanın yeri iki dilde ters; kelimenin yerini artık kalıptan alıyorum. |
+| h2/g2 | görev cümlesi (tr) | Bugün değil, sağ olun. | Teşekkür edip bugün istemediğimi söylüyorum. | Nicht heute, danke. | geçer | Kabul listesinin ilk cümlesi. Kalıpla aynı sıra. |
+| h2/g4 | görev cümlesi (tr) | Pazartesi mi? Salı değil mi? | Günü yanlış mı duydum diye soruyorum. | Montag? Nicht Dienstag? | geçer | Kabul listesinin ilk cümlesi. Önceki geri dönüşüm kapandı. |
+| h2/g10 | görev cümlesi (tr) | Hayır, pazartesi değil, salı. | Günü düzeltiyorum. | Nein, nicht Montag, Dienstag. | geçer | Listedeki ilk cümleyle aynı kelimeler, aynı sıra. Ben çizgi yerine virgül koydum. Önceki geri dönüşüm kapandı. |
+| h5/g2 | görev cümlesi (tr) | Dün mü? Bugün değil mi? | Şaşırıp günü soruyorum. | Gestern? Nicht heute? | geçer | Kabul listesinin ilk cümlesi. h2/g2 ile aynı sıra; iki halka artık birbirini tutuyor. Önceki geri dönüşüm kapandı. |
+| h4/g8 | görev cümlesi (tr) | Bu hafta değil Huber Hanım. | Bu hafta olmayacağını söylüyorum. | Nicht diese Woche Frau Huber. | geçer | Listedeki ilk cümleyle aynı kelimeler, aynı sıra. Ben virgül koymadım. |
+
+### Sonuç
+
+| | |
+|---|---|
+| Okunan satır | 6 (1 kalıp, 5 görev cümlesi) |
+| Geçer | 6 |
+| Geri döner | 0 |
+
+Geri dönenler: yok. Son turun üç geri dönüşü (`h2/g4`, `h2/g10`, `h5/g2`) kapandı. Bu turda yalnızca bu altı satırı okudum; dosyanın geri kalanını yeniden okumadım.
+
+### Notlar (karar değil, baş geliştiriciye)
+
+**N25 — h2/g6 "Bugün salı, değil mi?" kalıbın dışında kalıyor.** Bu cümlede "değil mi" sondaki kısa "ja" sözüne gidiyor. Kalıba uyup kelimeyi günün önüne koyarsam ("Heute ist nicht Dienstag?") kabul listesinde bulamam. Kelimeyi sona koyarsam ("Heute ist Dienstag, nicht?") listede var. Bu satırı bu turda yeniden karara bağlamadım; eski kararım "geçer" ve eski notum duruyor. Yeni kalıpla tuzak biraz büyüdü.
+
+**Virgül ve çizgi.** h2/g10'da çizgi yerine virgül, h4/g8'de virgülsüz yazdım. Karşılaştırma noktalamayı atıyorsa ikisi de eşleşir; ben öyle saydım.

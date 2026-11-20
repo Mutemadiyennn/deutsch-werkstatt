@@ -130,3 +130,52 @@ Notlar:
   Kural yalnızca „Geht …?“ ve „… geht nicht.“ kalıplarına izin veriyorsa bunlar kalıp dışında kalır. Öneri: h3'e „… geht.“ kalıbı da eklensin, ya da kalıp „… geht (nicht).“ yazılsın. Bu karar İÇ'in.
 - **Noktalamasız eşleşme.** Geçen ve dokunulmayan iki cümle, noktalama yok sayılınca depodaki kabul listelerinde var: „Hallo? Frau Huber?“ (gun-03 ve gun-07'de „Hallo, Frau Huber!“) ve „Geht es am Freitag?“ (r0-01'in `accepted` listesi). İkisi de örnek cevap (accepted[0]) değil, dokunmadım.
 - **Frau/Herr açıklaması.** `lx:Frau` ve `lx:Herr` kart açıklamasına eklenecek Hanım/Bey sırası cümlesi lex'in alanında. Bu dosyada yazılmadı.
+
+## PM #165 küçük sözcükler
+
+Kural: bir halkada (görev cümleleri ve sahne birlikte) 2 ya da daha çok geçen çerçeve sözcüğü o halkanın ya da önceki bir halkanın kalıbıdır. Halka başına en çok 2 kalıp vardır.
+
+### Kalıplar (eski → yeni)
+
+| Halka | Eski | Yeni | Neden |
+|---|---|---|---|
+| h1 | — | „Guten Tag“ (İyi günler), „Für …“ (… için) | `für` 3 kez geçiyor. „Guten Tag“ h4'ten selam halkasına geldi. h4'e PM'in istediği iki kalıp sığsın diye taşındı. |
+| h2 | „Heute ist …“ | „Heute ist …“, „nicht …“ (… değil) | `nicht` 3 kez geçiyor: „heute nicht“, „Nicht Dienstag?“, „nicht Montag“. |
+| h3 | „Geht …?“, „… geht.“, „… geht nicht.“, „Bis …!“ | „Geht …?“, „Bis …!“ | „Geht …?“ `geht`'i tek başına öğretiyor. `nicht` de h2'den biliniyor. Bu yüzden „… geht.“ ve „… geht nicht.“ gereksiz kaldı. |
+| h4 | „Guten Tag“ | „Welcher Tag ist heute?“ (Bugün günlerden ne?), „diese Woche“ (bu hafta) | `diese` 2 kez geçiyor. „Welcher Tag ist heute?“ dersin kendi öğesi. |
+| h5 | „Gestern war …“ | „Gestern war …“, „…, aber …“ (…, ama …) | `aber` 2 kez geçiyor: görev cümlesinde ve sahnede. |
+
+### Cümleler (eski → yeni)
+
+| Halka · kart | Eski | Yeni | Neden |
+|---|---|---|---|
+| h1 · lx:Frau | „Hallo, Frau Brandl!“ / Merhaba Brandl Hanım! | „Guten Tag, Frau Brandl!“ / İyi günler Brandl Hanım! | h1'in yeni kalıbı „Guten Tag“ görevde de geçsin; `hallo`nun zaten iki cümlesi var |
+| h1 · lx:danke | „Danke für alles, Ioana!“ / Her şey için sağ ol Ioana! | „Hallo, Ioana! Danke!“ / Merhaba Ioana! Sağ ol! | PM: h1'den çıksın (öğretilmemiş `für` + `alles`); yalnız h1 sözcükleri |
+| h2 · lx:Dienstag | „Am Dienstag? Ja, bitte.“ / Salı günü mü? Evet, lütfen. | „Dienstag, bitte.“ / Salı, lütfen. | h2'de `am` 2 → 1 |
+| h3 · lx:Donnerstag | „Am Donnerstag geht es, Frau Huber.“ / Perşembe günü olur Huber Hanım. | „Donnerstag geht, Frau Huber.“ / Perşembe olur Huber Hanım. | h3'te `es` 4 → 1, `am` 3 → 1 |
+| h3 · lx:Freitag | „Geht es am Freitag?“ / Cuma günü olur mu? | „Geht Freitag?“ / Cuma olur mu? | aynı neden |
+| h3 · sahne ch:huber | „Hallo! Geht es morgen, am Donnerstag?“ / Merhaba! Yarın, perşembe günü olur mu? | „Hallo! Geht morgen, am Donnerstag?“ / Merhaba! Yarın, perşembe günü olur mu? | aynı neden (`am` tek geçiş burada) |
+| h4 · lx:Sonntag | „Und am Sonntag? Geht es?“ / Peki pazar günü? Olur mu? | „Geht Sonntag, Tobi?“ / Pazar olur mu Tobi? | h4'te `und` 3 → 1, `am` 4 → 1, `es` 3 → 0 |
+| h4 · lx:Wochenende | „Und am Wochenende, Tobi?“ / Peki hafta sonunda, Tobi? | „Wochenende! Bis Montag, Tobi!“ / Hafta sonu! Pazartesi görüşürüz Tobi! | aynı neden; h3'ün „Bis …!“ kalıbı tekrar kullanıldı |
+| h4 · lx:Woche | „Diese Woche geht es nicht.“ / Bu hafta olmuyor. | „Diese Woche geht nicht.“ / Bu hafta olmuyor. | h4'te `es` azaltıldı |
+| h4 · lx:Tag | „Guten Tag, Frau Brandl!“ / İyi günler Brandl Hanım! | „Guten Tag, Herr Wimmer!“ / İyi günler Wimmer Bey! | bu cümle h1'e (`Frau`) geçti; `Tag` kartı aynı kalıbı Wimmer Bey'le kullanıyor |
+| h4 · sahne ogrenci | „Ja, am Sonntag geht es.“ / Evet, pazar günü olur. | „Ja, Sonntag geht.“ / Evet, pazar olur. | h4'te `am`, `es` azaltıldı |
+| h5 · lx:übermorgen | „Morgen geht es nicht, aber übermorgen geht es.“ / Yarın olmuyor ama öbür gün olur. | „Morgen geht nicht, aber übermorgen geht.“ / Yarın olmuyor ama öbür gün olur. | h5'te `es` 2 → 0 |
+| h5 · lx:Praxis | „Ist die Praxis am Samstag geschlossen?“ / Muayenehane cumartesi günü kapalı mı? | „Ist die Praxis heute geschlossen?“ / Muayenehane bugün kapalı mı? | h5'te `am` 2 → 1; sahnedeki „am Freitag“ çıkarım sorusu için gerekli, o kaldı |
+| h5 · lx:gehen | „Gehen Sie morgen in die Praxis, Herr Wimmer?“ / Yarın muayenehaneye gidiyor musunuz Wimmer Bey? | „Gehen Sie morgen, Herr Wimmer?“ / Yarın gidiyor musunuz Wimmer Bey? | h5'te `in` 2 → 1; „in die Praxis“ ilk `gehen` cümlesinde kaldı |
+
+Toplam: 14 satır değişti (12 görev cümlesi, 2 sahne satırı). Değişen görev cümlelerinin kabul listeleri yeniden yazıldı. Hepsinde 3 öğe var. Hiçbirine doldurmak için yineleme eklenmedi. Listelerde kelime sırası değişiyor ya da eş söyleyişler var: „geht“ / „geht es“, „Montag“ / „am Montag“, „Ja,“ ile açılan selam. Eski cümlelerin kabul listeleri olduğu gibi kaldı.
+
+### Denetim
+
+- `halka_kontrol.py`: 0 hata, 0 not. Her kartta 2 görev cümlesi var. Her kartın ilk cümlesi, halkada kendisine kadar gelen kartlarla kurulabiliyor.
+- `kucuk_sozcuk.py`: 0 hata. Her halkada 2 kalıp var.
+- Aynı cümle iki kez geçmiyor. Bairisch yok, kişisel bilgi yok.
+
+### PM'e notlar
+
+- **`am` hiçbir halkada kalıp değil.** h2–h5'in her birinde 1 kez geçiyor: „Ja, am Montag“, „Geht morgen, am Donnerstag?“, „Am Wochenende …“, „übermorgen, am Freitag“. Bu kurala uyuyor ama dört halkada tek tek geçiyor. Ekranda K10 ile (ilk iki görünüşte altında Türkçesi) karşılanacak. „am …“ (… günü) kalıbı istenirse halkaların kalıp bütçesi dolu. O durumda ya bütçe 3'e çıkar ya da „am“ ilk geçtiği yer olarak h2'nin kalıbı „nicht …“ yerine geçer. İkincisinde h2'deki `nicht` cümleleri h3'e taşınır.
+- **Tek geçen çerçeve sözcükleri (K10 ile ekranda):** h2 `ach` (sahne), h3 `es`, h4 `und` (sahne), h5 `wir`, `Sie`, `in`, `alles`.
+- **`alles`, `diese`, `welcher` için Türkçeli `card:false` girdisi** lex'in işi. Bu dosyada yapılmadı.
+- **Kabul listelerinde 3'ten az öğe yok.** Bunun için doldurma yinelemesi gerekmedi.
+- **Dilbilimci baksın:** „Hallo! Geht morgen, am Donnerstag?“. Telefonda gündelik konuşmada olur, ama „Geht es …“ biçiminden daha gevşek. `es` kalıp bütçesine sığmadığı için kısaltıldı.
