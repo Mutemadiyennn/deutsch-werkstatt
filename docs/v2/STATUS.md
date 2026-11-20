@@ -3,7 +3,7 @@
 **Şu anki taş: M1 İlk Hafta** ([YOL_HARITASI](YOL_HARITASI.md), #56 v1.1). M1'in açık işleri (#56 "Eski talimatların bu yoldaki yeri" + PM-052 A + PM-054 M1):
 1. Şema (#55; PM-042 A3/A6, PM-045 §4, PM-047 §2, `forms`/fotoğraf/eşdizim) · 2. Kelime Bahçesi (PM-049; dal `v2/bahce`, kişisel banka tek tabloda, "duyduğum kelime" bağlı) · 3. Video ve ses soru oynatıcısı + dikte merdiveni (PM-050, PM-053) · 4. Ders yolu, XP ve seri; planlayıcı: tamamlanan senaryo yeniden önerilmez, seans 2–4 v1'e gitmez, günlük 12 aktif + 25 pasif (PM-052 A.3) · 5. Yeni Bugün + Pomodoro (PM-047; halka, seans x/4, "Devam et" süreyi başlatır, mola zili ve yerel bildirim PM-054.1) · 6. Konuşma provası; yapay zekâsız tam çalışma (yerel sözlük, dallanan çevrimdışı diyalog, kelime sırası esnekliği, sayı/tarih kabulü; PM-052 A.2) · 7. Yazım düzeltmesi ("Doğru. Yazımı: Arzt", PM-054.2), "Doğru söyledim" (PM-054.3), çevrimdışı DE↔TR sözlük araması (PM-054.4), yazma görevi çevrimdışı kontrolü (PM-054.5) · 8. Kart ve kalıp bilgisi görünür (örnekler, forms, sık hata; PM-052 A.5), fotoğraf bileşeni (A.4) · 9. Çevrimdışı (#43 servis işçisi), veri güvenliği, hata ekranı (PM-039 parçası) · 10. Gün sonu özeti ve yerel kullanım ölçümü (PM-052 A.8), içerik güvenliği süzgeci (A.10), hazırlık atlama kilidi (A.11) · 11. #45 arayüz P0'ları M1 ekranlarında · 12. Mevsim dersi ana yolda değil (✓ #49).
 
-Son güncelleme: 2026-11-20 06:10 UTC · Faz: **M1 İlk Hafta** · Ana dal: `main` (`5a3dfc6` ve sonrası) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ · v1 **2026-11-20a** yayında
+Son güncelleme: 2026-11-20 06:10 UTC · Faz: **M1 İlk Hafta** · Ana dal: `main` (`5a3dfc6` ve sonrası) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (etiket `v2-20261120-7`) · v1 **2026-11-20a** yayında
 Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DONGUSU → BEYIN → MIMARI → TASARIM …) → bu dosya → `DECISIONS.md`. "Sıradaki adım"dan devam et; hiçbir iş baştan başlatılmaz (PM-007 §4).
 
 ## Sıradaki adım (PM-050: "İlk Hafta" dikey dilimi önce; 2026-11-18 23:45 UTC)
@@ -14,6 +14,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 4. Sonra: heceleme yuvaları (İçerik Motoru isteği), PM-039.1 (deploy-v2 CI'a bağlı), #45 arayüz P0'ları.
 
 ## Birleşenler (2026-11-20, gece)
+- **#123** Worker adresi derleme yapılandırmasında; tespit ekranı sağlayıcı kapısında (00:15, `431419f`)
 - **#122** PM-069 P0: öğretilmemiş boşluk sorulmaz; tanıtımda en çok 3 eşdizim, "Daha fazla", örnek cümle tam genişlikte (D-119)
 - **#134** (#126'nın içeriği) tanıtım ile ilk soru arası ≥ 2, köprü sorusu. #126 yanlışlıkla eski taban dalına birleşmişti; #134 ile main'e geldi.
 - **#125** Workers AI sağlayıcısı (deneme), D-120; Worker dağıtımı 05:37
@@ -28,16 +29,18 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 ## Açık PR'lar (2026-11-20 06:10 UTC)
 | PR | Dal | Teslim | Durum |
 |---|---|---|---|
-| #128 | `v2/baslik-dugme` | PM-074 G2 + md. 2–3: başlık tam, medyada tek oynat + hız anahtarı, senaryoda birincil eylem dinlemek, "Durdur" döngüyü durdurur | 2 tur inceleme, WebKit 3/3; **PM final bekler** |
-| #136 | `v2/ornek-sabit` | C: örnek alanı sabit (kart ve sayfa zıplamaz), tanıtımda görsel 160 px, kare ölçütü geri (iPhone 15: −3 ms) | 1. tur inceleme; CI koşuyor; PM görmeli |
+| #128 | `v2/baslik-dugme` | PM-074 G2 + md. 2–3: başlık tam, medyada tek oynat + hız anahtarı, senaryoda birincil eylem dinlemek, "Durdur" döngüyü durdurur | 2 tur inceleme (ikisi de DEĞİŞİKLİK GEREKLİ, bulgular kapandı), WebKit 3/3; **PM final bekler** |
+| #110 | `content/gun-sinavi` (İÇ) | gün sınavı | ONAY; ANA anlık görüntüyü yeniledi (`eaa2cfc`); CI yeşilse İÇ birleştirir |
+| #107, #116, #79 | İÇ dalları | içerik | İÇ şeridi; PM 7031411450'deki adımlar |
+| #136 | `v2/ornek-sabit` | C: örnek alanı sabit (kart ve sayfa zıplamaz), tanıtımda görsel 160 px, kare ölçütü geri (iPhone 15: −3 ms) | PM final (7031426806) var; 2. tur inceleme ve WebKit bekler |
 | #137 | `v2/foto-soru` | B4: "Fotoğraftaki ne?" yalnızca seçilmiş fotoğrafla ve çevrimiçiyken | ONAY; #135 çakışması çözüldü, CI koşuyor |
-| #138 | `v2/tur-sonu-metin` | B9: tur sonu metni gerçeği söyler | inceleme sürüyor |
-| — | `v2/kabuk-gorunurluk` | Kabuk 1. adım (`kabuk.json`, sessiz eklenti çıkarma yok, "Kabuk" satırı) + `docs/v2/KABUK.md` taslağı | şerit açılınca PR |
+| #138 | `v2/tur-sonu-metin` | B9: tur sonu metni gerçeği söyler | ONAY; WebKit bekler |
+| #140 | `v2/kabuk-gorunurluk` | Kabuk 1. adım + `KABUK.md` taslağı | inceleme sürüyor; PM görmeli |
 | — | `v2/a9-klip` | A9 klip → gün videosu | sırada |
 
-**Sıra (PM-077 + PM 7030294523 4b):** #128 ve #136 PM final → Kabuk 1. adım PR → 4b: B5 (ders tekrarında döngüsüzlük), B7 (adsız cümle biçimi), (g) anlaşılmayan Türkçe (İÇ ile), öğrenci devam betiği → "en uzun kart" testinin gerçek en uzun kartı seçmesi (inceleme #136 P2-4: 119 karttan 29'u gerçek görselle düğmeye değiyor) → PM-076 md. 2–7.
+**Sıra (PM-077 + PM 7030294523 4b + PM 7031411450):** #110 anlık görüntüsü (yapıldı) → #128 PM final, #136 inceleme → Kabuk 1. adım (#140) → 4b: B5 (ders tekrarında döngüsüzlük; ANA kısmı onaylı, PM 7031411450), B7 (adsız cümle biçimi), (g) anlaşılmayan Türkçe (İÇ ile), öğrenci devam betiği → "en uzun kart" testinin gerçek en uzun kartı seçmesi (inceleme #136 P2-4: 119 karttan 29'u gerçek görselle düğmeye değiyor) → PM-076 md. 2–7.
 **Bekleyen kararlar:**
-- B14 kota: 21.11 00:05 denemesi kurulu, 20.11 18:00 UTC tek istekli yoklama kurulu (PM 7028983301).
+- B14 kota: 21.11 00:05 UTC denemesi kurulu, 20.11 18:00 UTC tek istekli yoklama kurulu (PM 7028983301).
 - Canlı `/v1/health` provider değerini bu oturum okuyamıyor (ağ izni); PM'e bırakıldı.
 
 ## Birleşenler (2026-11-19)
