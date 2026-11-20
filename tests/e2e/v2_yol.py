@@ -52,9 +52,15 @@ def main():
         check("Seans 2" in na and "Temel ders" in na, f"Bugün: Seans 2 temel ders ({na[:80]!r})")
         check("Seans 1 ·" not in na and "Kelime Bahçesi" not in na, "biten Seans 1 yeniden önerilmiyor")
         pg.click("[data-test=m1-devam]"); pg.wait_for_selector("[data-test=ders]")
-        k = 0
+        k = 0; bahce_not = ""; bahce_soru = 0
         while not pg.locator("[data-test=ders-bitti]").count() and k < 120:
+            if pg.locator("[data-test=ders-bahce-not]").count(): bahce_not = pg.inner_text("[data-test=ders-bahce-not]")
+            if pg.locator("[data-test=ders-bahce]").count(): bahce_soru += 1
             v2_ders.step(pg); k += 1
+        # B5: aynı gün Bahçede görülen kelimeler derste yeniden tanıtılmaz; her biri en çok bir soru
+        import re as _re
+        atlanan = int((_re.search(r"(\d+) kelime", bahce_not) or [0, 0])[1])
+        check(atlanan > 0 and 1 <= bahce_soru <= atlanan, f"B5: 1. gün Bahçede görülenler derste yeniden tanıtılmadı ({atlanan} kelime; Bahçe turu {bahce_soru} soru ≤ {atlanan})")
         check(pg.locator("[data-test=ders-bitti]").count() == 1, f"Seans 2 bitti ({k} adım)")
         # Seans 3: video + sesler
         n3 = 0

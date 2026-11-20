@@ -56,3 +56,43 @@ Kaynak: https://github.com/Mutemadiyennn/deutsch-werkstatt/pull/154#issuecomment
 - **Öğrenci satırı:** "Sag deiner Mutter gute Besserung!" → Anna.
 - **Okur:** değişen her satır okundu (örneklem değil). Kayıt: `docs/v2/reviews/okur/lexicon-142-p2.md`.
 - **Açık kalan (ayrı iş):** `lx:mögen#2` ile `lx:möchten` iki ayrı kart ama ikisi de "möchte" öğretiyor; okur bunu kart düzeyinde not etti. Kart birleştirme ya da ayrıştırma sözlük yapısı kararı olduğu için bu PR'a alınmadı.
+
+## İnceleme #154 2. tur önerileri (P1–P5), ayrı PR
+Kaynak: https://github.com/Mutemadiyennn/deutsch-werkstatt/pull/154#issuecomment-7037294720
+
+- **P1 · harf notu:**
+  - Tek biçim: ", **a** yerine **ä** gelir." Eski "**a** harfi **ä** olur" biçimi sözlükte kalmadı.
+  - Harfi değişen fiillerin eksik notları eklendi (sprechen, fahren, schlafen, fangen, geschehen, behalten, ansehen, aussehen, verraten, empfehlen, versprechen, gefallen, anfangen).
+  - Mastarsız eski biçimdeki ipuçları çevrildi.
+  - Çoğul isim ve karşılaştırma ipuçları da aynı biçimde yazıldı: "Üç adam derken **Drei Männer** denir, **a** yerine **ä** gelir."
+- **P2 · özne:**
+  - Özne cümledeki gibi büyük ya da küçük harfle yazılıyor ("**Die Pflanze**").
+  - "Er ___" cümlelerinde "**er** ve **sie**" yerine "**Er**".
+  - "**er**, **sie** ve **der Bus**" gibi ipuçları yalnız cümlenin öznesini yazıyor.
+- **P3 · yardımcı fiil:** "**Hast** ile söylerken" yazan iki ipucu "<Türkçe> derken **<cümle>** denir." oldu (lügen, küssen).
+- **P4 · los:** b3 "Was ist mit dir ___?" ("Sana ne oldu?"); artık b1 ve b5'in kopyası değil.
+- **P5 · drehen:** "Bitte ___ Sie den Schlüssel langsam." ("Lütfen anahtarı yavaşça çevirin."); kartın tek karşılığı "çevirmek".
+- **P6:** PR #154 açıklamasındaki okur tur sayısı düzeltildi (toplam 14).
+- **Okur:** değişen 116 satırın hepsi okundu. Turlar: 116 satır 11 GERİ → 11 satır 1 GERİ → 1 satır 1 GERİ → 1/1.
+
+## #156 drehen yeni cümle
+- İncelenen: `lx:drehen` boşluk cümlesi **Luka ___ den Stuhl zum Fenster.** (cevap **dreht**), Türkçesi "Luka sandalyeyi pencereye doğru çeviriyor.", ipucu "**Luka** ile söylerken **drehen**, **dreht** olur." ve aynı cümleyi taşıyan örnek `lx:drehen:5`.
+- Almanca: doğru ve doğal. **etwas zu etwas drehen** yön bildiren olağan kullanım (**den Stuhl zum Fenster drehen**); Akkusativ nesne ve **zum** doğru. Kuaför Luka'nın (WORLD) salon koltuğunu çevirmesi sahneye uygun.
+- Türkçe: karşılık doğru; "pencereye doğru çevirmek" **zum Fenster drehen** ile örtüşüyor. Kartın tek karşılığı "çevirmek" korunuyor.
+- İpucu: özne cümledeki gibi yazılmış (P2 kuralı), biçim öteki ipuçlarıyla aynı.
+- Not: "Er ___ den Schlüssel zweimal." ile aynı çekimi (**dreht**) soruyor; nesne ve bağlam farklı olduğu için kopya sayılmadı.
+- Değişiklik yok. **KAPANDI** (1 madde, 0 hata).
+
+## İnceleme #156 1. tur sonrası (7041850539)
+
+Baş geliştirici düzeltmeleri; okur kaydı `okur/lexicon-142-p2.md` "#156 2. parti" ve "2. parti ek" (45/45 geçti).
+
+- **E1 · çoğulda son ek:** harf değişimiyle birlikte son ek alan çoğullar tek biçimde: "İki oğul derken **zwei Söhne** denir, **o** yerine **ö** gelir, sona **e** eklenir." Aynı not: Hände, Männer, Häuser, Nächte, Schätze, Plätze, Bücher, Kämpfe, Städte, Länder, Gründe, Pläne. Son eki olmayanlar (Brüder, Väter, Mütter, Töchter, Läden) yalnız harf notuyla kalır. Eski "**o** harfi **ö** olur" biçimi boşluk ipuçlarında kalmadı.
+- **E1 · söylerken kalıbı:** schlagen (2), retten, verraten ipuçları "**Du** / **Die Uhr** ile söylerken …" kalıbına geçti; özne cümledeki gibi.
+- **E2 · özne:** zahlen "**er** ile söylerken"; gehen "**Luka** ile söylerken".
+- **E3 · drehen:** yinelenen b3 yerine "Luka ___ den Stuhl zum Fenster." (dilbilimci yukarıda, KAPANDI).
+- **Ö1 · yardımcı fiil özne gibi yazılmıyor:** 21 ipucu (töten, schlagen, retten, beweisen, schuld ×2, schießen, schreien, kämpfen, verstecken, umbringen, zerstören, angreifen, erschießen ×2, schwören, erwischen, wetten, schnappen, verhaften, verfolgen) "<Türkçe> derken **<tam cümle>** denir." oldu. En uzunu 14 kelime.
+- **Ö3 · Bruder:** "İki erkek kardeş derken **zwei Brüder** denir, **u** yerine **ü** gelir."
+- **Ö5 · aussehen:** "Yorgun görünüyorsunuz derken **Sie sehen müde aus** denir."
+- **Schatz, Kampf:** iki nokta üst üsteli eski biçim "derken … denir" kalıbına geçti ("**alte Schätze**", "**viele Kämpfe**").
+- **Ö4 · jung b3** değişmedi: "Derya'dan daha genç derken **jünger als Derya** denir" cümledeki öbekle aynı; sayı notu yok.
