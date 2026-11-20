@@ -119,11 +119,12 @@ export function PlayerSection({ id, section }: { id: string; section: string }) 
   const { ctx, err, reload } = useScenario(id);
   const sec = SECTIONS[idx(section)];
   const [sub, setSub] = useState<preact.ComponentChildren>(null);
-  useEffect(() => setSub(null), [section]);
+  const [right, setRight] = useState<preact.ComponentChildren>(null);
+  useEffect(() => { setSub(null); setRight(null); }, [section]);
   useEffect(() => { if (sec) setLearning(true, sec.act as any, id); return () => setLearning(false); }, [id, section]);
   if (!sec) return <Empty title="Bölüm bulunamadı" action={<a class="btn sm" href={`#/scenario/${encodeURIComponent(id)}`}>Senaryoya dön</a>} />;
   const back = `#/scenario/${encodeURIComponent(id)}`;
-  const header = (step: number) => <ProgressHeader sub={sub} title={`${/\d/.test(sec.n) ? `${sec.n}/6 · ` : ""}${sec.title}`} back={back} step={step} doneSteps={ctx ? SECTIONS.map((x, i) => (ctx.prog.done.includes(x.k) ? i : -1)).filter((i) => i >= 0) : []} />;
+  const header = (step: number) => <ProgressHeader sub={sub} right={right} title={`${/\d/.test(sec.n) ? `${sec.n}/6 · ` : ""}${sec.title}`} back={back} step={step} doneSteps={ctx ? SECTIONS.map((x, i) => (ctx.prog.done.includes(x.k) ? i : -1)).filter((i) => i >= 0) : []} />;
   if (err) return <div class="stack">{header(idx(section))}<div class="card err"><p><b>Yüklenemedi.</b> {err}</p><button class="btn sm" onClick={reload}>Tekrar dene</button></div></div>;
   if (!ctx) return <div class="stack">{header(idx(section))}<LoadingCard lines={4} /></div>;
   const finish = async (score: number, total: number, extra: Partial<ScenarioProgress["runs"][number]> = {}, mut?: (p: ScenarioProgress) => void) => {
@@ -140,7 +141,7 @@ export function PlayerSection({ id, section }: { id: string; section: string }) 
     if (sec.k === "roleplay" && ratio >= 0.6) p.completedIndependentAt = new Date().toISOString();
     await ctx.setProg(p);
   };
-  const props = { ctx, finish, back, setSub };
+  const props = { ctx, finish, back, setSub, setRight };
   return (
     <div class="stack">
       {header(idx(section))}
@@ -154,7 +155,7 @@ export function PlayerSection({ id, section }: { id: string; section: string }) 
     </div>
   );
 }
-export type SP = { ctx: Ctx; finish: (score: number, total: number, extra?: Partial<ScenarioProgress["runs"][number]>, mut?: (p: ScenarioProgress) => void) => Promise<void>; back: string; setSub?: (n: preact.ComponentChildren) => void };
+export type SP = { ctx: Ctx; finish: (score: number, total: number, extra?: Partial<ScenarioProgress["runs"][number]>, mut?: (p: ScenarioProgress) => void) => Promise<void>; back: string; setSub?: (n: preact.ComponentChildren) => void; setRight?: (n: preact.ComponentChildren) => void };
 
 export function Done({ score, total, back, ctx, title, note, plain, production }: { score: number; total: number; back: string; ctx: Ctx; title: string; note?: string; plain?: string; production?: boolean }) {
   // PM-035 §5: tanıma aşamasında puan/oran yok; yalnızca ne öğrenileceği
@@ -478,13 +479,15 @@ function ChatEnd({ dep }: { dep: number }) {
 /* ============================ 6 Rol oyunu ============================ */
 const NON_GERMAN = /\b(the|and|you|please|sorry|yes|what|i'm|can|evet|hayır|lütfen|tamam|anlamadım|ne)\b/i;
 type Turn = { r: "partner" | "learner"; de: string };
-function RoleplaySection({ ctx, finish, back }: SP) {
+function RoleplaySection({ ctx, finish, back, setRight }: SP) {
   const { api, profile } = useApp();
   const persona: Persona = { name: profile.displayName, address: profile.address };
   const s = ctx.s;
   const runs = ctx.prog.runs.filter((x) => x.section === "roleplay").length;
   const [level, setLevel] = useState<1 | 2 | 3>(Math.min(3, 1 + Math.floor(runs / 2)) as 1 | 2 | 3);
   const [mode, setMode] = useState<"ai" | "offline">(aiState(api).available ? "ai" : "offline");
+  // PM 7026867047: deneme sağlayıcısı (Workers AI) rozeti ekran başlık satırının sağında, küçük harf "Deneme"; yapay zekâsız moda geçilince kalkar
+  useEffect(() => { setRight?.(mode === "ai" && denemeSaglayici() ? <span class="chip" data-test="ai-deneme">Deneme</span> : null); return () => setRight?.(null); }, [mode]);
   const [phase, setPhase] = useState<"intro" | "talk" | "report">("intro");
   const [turns, setTurns] = useState<Turn[]>([]);
   const [busy, setBusy] = useState(false);
@@ -568,7 +571,7 @@ function RoleplaySection({ ctx, finish, back }: SP) {
   if (phase === "intro") return (
     <div class="stack fade">
       <section class="card stack">
-        <div class="kicker">Rol oyunu · bağımsız konuşma{mode === "ai" && denemeSaglayici() && <span class="chip" style={{ marginLeft: 6 }} data-test="ai-deneme">deneme</span>}</div>
+        <div class="kicker">Rol oyunu · bağımsız konuşma</div>
         <p><b>{s.roleplay.scene_tr}</b></p>
         <div class="small">Görevin:</div>
         <ul class="small" style={{ margin: 0, paddingLeft: 20 }}>{s.roleplay.goals.map((g) => <li>{g.tr}</li>)}</ul>
