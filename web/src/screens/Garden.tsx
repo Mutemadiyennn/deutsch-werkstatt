@@ -442,7 +442,8 @@ function GardenDone({ day, score, items, kalan, again, xp, kelimeler, gorevTur, 
     <div class="stack"><ProgressHeader title="Kelime Bahçesi" back="#/today" ilerleme={{ n: 1, toplam: 1 }} />
       <section class="card stack" data-test="garden-done"><Kutlama><div class="kicker">Tur bitti</div></Kutlama>
         <Ozet dogru={score.ok} toplam={score.n} xp={xp} seriGun={seriGun} kelimeler={kelimeler} />
-        {score.ok < score.n && <p class="small">Yanlış olanlar yarın ya da birkaç gün sonra başka bir soruyla geri gelecek.</p>}
+        {/* PM 7030294523 B9: metin gerçeği söyler — yanlışlar aynı turun sonunda bir kez daha sorulur (requeue), sonra aralıklı tekrar */}
+        {score.ok < score.n && <p class="small" data-test="tur-yanlis-not">Yanlış yaptıkların bu turun sonunda bir kez daha geldi; sonra aralıklarla yine karşına çıkacak.</p>}
         {devam ? <p data-test="garden-kalan">Bugünün kartlarından <b>{kalan}</b> yeni kelime kaldı.</p> : <p class="small muted" data-test="garden-tomorrow">{tomorrow(items)}</p>}
         {devam ? <ActionBar><button class="btn primary block" data-test="garden-again" onClick={again}>Bir tur daha</button></ActionBar>
           : <a class="btn primary block" href="#/today" data-test="garden-back">{day ? "Sıradaki adıma geç" : "Bugün'e dön"}</a>}</section></div>
