@@ -220,6 +220,9 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   );
 }
 
+/** Tanıtım kartında görsel: en çok / sığmazsa en az (altında gösterilmez) */
+const FOTO_TANITIM = 160, FOTO_EN_AZ = 96;
+
 /** Eşdizimler: en çok 3 açık, kalanı "Daha fazla (n)" (PM 7024150313); açılır kısım boşlukta sorulmaz */
 function Esdizimler({ l, test }: { l: Lexeme; test?: string }) {
   const { acik, kapali } = esdizimler(l);
@@ -266,13 +269,36 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
 
   // önce duy (PM-049 tanıtım): kelime ekrana gelince bir kez okunur (inceleme #59 P2-8)
   useEffect(() => { if (intro) void speak(isNoun(l) ? `${l.art} ${l.de}` : l.de, "de", "normal"); }, [intro]);
+  // PM 7024150313 + #12 7033396085/7033585915: tanıtım kartı düğmelere değmeden sığar. Tek esneyen parça görsel: kart düğmeye
+  // değiyorsa görsel 160 px'ten FOTO_EN_AZ'a kadar küçülür, yine sığmıyorsa bu kartta gösterilmez (kelime, örnek ve 3 eşdizim
+  // aynen kalır; boşluk kuralı açık eşdizimleri "gösterilmiş" saydığı için eşdizim sayısına dokunulmaz, D-119). Yalnızca küçülür.
+  const kartRef = useRef<HTMLElement>(null);
+  const [fotoH, setFotoH] = useState(FOTO_TANITIM);
+  useEffect(() => {
+    const k = kartRef.current;
+    if (!intro || !k) return;
+    const olc = () => {
+      const btn = [...document.querySelectorAll<HTMLElement>(".actionbar button")];
+      if (!btn.length) return;
+      const ust = Math.min(...btn.map((x) => x.getBoundingClientRect().top));
+      const tas = Math.ceil(k.getBoundingClientRect().bottom + window.scrollY - ust);
+      if (tas <= 0) return;
+      const img = k.querySelector<HTMLElement>("[data-test=foto] img");
+      if (!img) return;
+      const h = img.getBoundingClientRect().height;
+      setFotoH((cur) => { if (!cur) return 0; const y = Math.floor(Math.min(cur, h || cur) - tas); return y >= FOTO_EN_AZ ? y : 0; });
+    };
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(olc) : null;
+    ro?.observe(k); olc();
+    return () => ro?.disconnect();
+  }, [intro]);
   const col = collocOf(l);
   if (intro) return (
     <div class="stack fade" data-test="garden-intro" data-lex={l.id}>
-      <section class="card stack"><div class="kicker">Yeni kelime</div>
+      <section class="card stack" ref={kartRef} data-foto-h={fotoH}><div class="kicker">Yeni kelime</div>
         {/* PM 14:05 Berlin madde 1: tanıtımda kelimenin fotoğrafı (sayaçla döner); cümle görseli yalnızca cümlenin yanında */}
         {/* C: tanıtımda görsel 160 px (örnek alanı en uzun örnek kadar yer tuttuğu için en uzun kart yine düğmelere değmeden sığar) */}
-        <Photo q={l.img} sira={q.ex} yer={[`${l.id}#kart`]} alt={l.tr} enCok={160} />
+        {fotoH > 0 && <Photo q={l.img} sira={q.ex} yer={[`${l.id}#kart`]} alt={l.tr} enCok={fotoH} />}
         {/* PM 7024150313: görselli en uzun kart da düğmelere değmeden sığar — kelime ile dinle aynı satırda, çoğul anlamın yanında,
             "Başka cümle" cümlenin yanında; eşdizimlerden en çok 3'ü açık */}
         <div class="row" style={{ flexWrap: "nowrap", alignItems: "center", gap: 10 }}>
