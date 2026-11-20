@@ -34,6 +34,8 @@ export function ResimSec({ soru, lex, harita, onBitti, onYok }: { soru: ResimSor
   useEffect(() => { void speak(metin, "de", "normal"); }, [soru.kart]);
   const kontrol = () => { if (secim === null) return; const ok = secim === soru.dogru; setSonuc(ok ? "dogru" : "yanlis"); haptic(ok ? "success" : "error"); };
   const bitti = sonuc !== null;
+  // PM 7052062209 md. 4: cevaptan önce görselde Almanca içeren alt/erişilebilirlik etiketi yok (VoiceOver cevabı okumasın); cevaptan sonra var
+  const etiket = (i: number) => { if (!bitti) return `Görsel ${i + 1}`; const x = lex.get(soru.secenekler[i]!.kart); return x ? `${duyulan(x)}: ${x.tr}` : `Görsel ${i + 1}`; };
   return (
     <section class="stack fade" data-test="resim-sec" data-kart={E2E ? soru.kart : undefined}>
       <div>
@@ -46,8 +48,8 @@ export function ResimSec({ soru, lex, harita, onBitti, onYok }: { soru: ResimSor
           const dur = !bitti ? (secim === i ? " sel" : "") : i === soru.dogru ? " right" : i === secim ? " wrong" : " soluk";
           return (
             <button type="button" role="radio" aria-checked={secim === i} class={`resim-secenek${dur}`} disabled={bitti} data-test="resim-secenek" data-i={i}
-              {...(E2E ? { "data-right": i === soru.dogru ? "1" : undefined } : {})} aria-label={`Görsel ${i + 1}`} onClick={() => { setSecim(i); haptic("selection"); }}>
-              <img src={s.gorsel} alt="" loading="eager" decoding="async" onError={() => onYok?.()} />
+              {...(E2E ? { "data-right": i === soru.dogru ? "1" : undefined } : {})} aria-label={etiket(i)} onClick={() => { setSecim(i); haptic("selection"); }}>
+              <img src={s.gorsel} alt={bitti ? etiket(i) : ""} loading="eager" decoding="async" onError={() => onYok?.()} />
               {bitti && i === soru.dogru && <span class="resim-isaret" aria-hidden="true"><Icon name="check" /></span>}
             </button>
           );
