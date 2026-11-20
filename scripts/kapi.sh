@@ -32,6 +32,37 @@ if [ -z "${KAPI_KOPYA:-}" ]; then
   KAPI_KOPYA="$_k" KAPI_KOK_YOL="$PWD" exec bash "$_k/kapi.sh" "$@"
 fi
 cd "${KAPI_KOK_YOL:-.}" || exit 2
+
+# ---- iç kip: tek cihazın WebKit adımları (paralel koşuda her cihaz kendi ağ ad alanında; bkz. "cihaz_baslat") ----
+# Ortam: AGAC, ADIMLAR, CIHAZ, CIHAZ_DIR. Çıktı: $CIHAZ_DIR/sonuc.tsv (\x1f ayrılmış: ad, süre, sonuç, not, komut-b64, günlük), $CIHAZ_DIR/gunluk/*.log
+if [ "${1:-}" = "--_cihaz" ]; then
+  set -uo pipefail
+  if [ "${KAPI_AG_AYRI:-0}" = 1 ]; then python3 - <<'PY' || { echo "lo açılamadı" >&2; exit 4; }
+import fcntl, socket, struct
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+f = struct.unpack("16sH14s", fcntl.ioctl(s, 0x8913, struct.pack("16sH14s", b"lo", 0, b"\0" * 14)))[1]
+fcntl.ioctl(s, 0x8914, struct.pack("16sH14s", b"lo", f | 1, b"\0" * 14))
+PY
+  fi
+  mkdir -p "$CIHAZ_DIR/tmp" "$CIHAZ_DIR/gunluk"; : > "$CIHAZ_DIR/sonuc.tsv"
+  i=0
+  while IFS=$'\t' read -r is ad b64; do
+    [ "$is" = webkit ] || continue
+    i=$((i+1)); komut=$(printf %s "$b64" | base64 -d)
+    komut=${komut//'${{ matrix.device }}'/$CIHAZ}
+    komut=${komut//\/tmp\//$CIHAZ_DIR\/tmp\/}   # cihaza özel geçici klasör (/tmp/shots, /tmp/visual, /tmp/ogrenci-durum.json)
+    log="$CIHAZ_DIR/gunluk/$(printf %02d $i)-$(echo "$ad" | tr -cs 'A-Za-z0-9' '-' | cut -c1-50).log"
+    bas=$(date +%s)
+    if ( cd "$AGAC" && export E2E_BROWSER=webkit E2E_DEVICE="$CIHAZ" && bash --noprofile --norc -eo pipefail -c "$komut" ) </dev/null >"$log" 2>&1; then sonuc="geçti"; not=""
+    else sonuc="DÜŞTÜ"
+      not=$(grep -E '^ *(FAIL|×|✗) |AssertionError|^(HATA|FAIL)[: ]|Error:' "$log" | sed -E 's/\x1b\[[0-9;]*m//g; s/^ +//' | cut -c1-140 | awk '!g[$0]++' | head -6 | paste -sd ';' -)
+      [ -z "$not" ] && not=$(tail -n 2 "$log" | sed -E 's/\x1b\[[0-9;]*m//g' | cut -c1-140 | paste -sd ';' -)
+    fi
+    # alan ayırıcı \x1f (boş "not" alanı sekmede olduğu gibi yutulmasın)
+    printf '%s\x1f%s\x1f%s\x1f%s\x1f%s\x1f%s\n' "$ad" "$(( $(date +%s) - bas ))" "$sonuc" "$not" "$(printf %s "$komut" | base64 -w0)" "$log" >> "$CIHAZ_DIR/sonuc.tsv"
+  done < "$ADIMLAR"
+  exit 0
+fi
 trap 'rm -rf "$KAPI_KOPYA"' EXIT
 
 TABAN="origin/main"; REF=""; SINIF_ZORLA=""; OUT=""; CIHAZLAR=()
@@ -108,7 +139,7 @@ fi
 [ "$SINIF" = icerik ] && CIHAZLAR=("iPhone 15")
 
 # ---- adım koşucusu ----
-N=0; DUSEN=0; ENGEL=0
+N=0; DUSEN=0; ENGEL=0; SALLANTI=(); DUZEN=""
 SATIRLAR=()      # "ad|süre|sonuç|not"
 kos() {          # kos <ad> <komut> [cihaz]
   local ad="$1" komut="$2" cihaz="${3:-}" log bas sure sonuc not=""
@@ -172,23 +203,58 @@ if [ "$SINIF" != docs ]; then
   elif [ "$SINIF" = icerik ]; then
     kos "Duman: çekirdek akış" "cd tests/e2e && python3 v2_core.py" "iPhone 15"
   else
-    WK=$(awk -F'\t' '$1=="webkit"' "$ADIMLAR")
-    for c in "${CIHAZLAR[@]}"; do
-      # Actions'ta her cihaz ayrı makinede: ortak /tmp yolları her cihazdan önce boşaltılır, sonra kanıt <out>'a kopyalanır
-      rm -rf /tmp/shots /tmp/visual; mkdir -p /tmp/shots
-      k=0
-      while IFS=$'\t' read -r is ad b64; do
-        komut=$(printf %s "$b64" | base64 -d)
-        komut=${komut//'${{ matrix.device }}'/$c}
-        k=$((k+1)); kos "$ad" "$komut" "$c"
-      done <<< "$WK"
-      [ "$k" -eq "$N_WEBKIT" ] || { N=$((N+1)); DUSEN=$((DUSEN+1)); SATIRLAR+=("webkit adım sayısı · $c|0|DÜŞTÜ|$k / $N_WEBKIT koştu"); }
-      # yerleşim bekçisi (PM-079 md. 4): ci-v2.yml'e henüz girmediyse burada ayrıca koşar
-      if [ -f tests/e2e/yerlesim_bekcisi.py ] && ! grep -q yerlesim_bekcisi .github/workflows/ci-v2.yml; then
-        kos "Yerleşim bekçisi (PM-079 md. 4)" "cd tests/e2e && python3 yerlesim_bekcisi.py" "$c"
+    # yerleşim bekçisi (PM-079 md. 4): ci-v2.yml'e henüz girmediyse her cihazda ayrıca koşar
+    if [ -f tests/e2e/yerlesim_bekcisi.py ] && ! grep -q yerlesim_bekcisi .github/workflows/ci-v2.yml; then
+      printf 'webkit\t%s\t%s\n' "Yerleşim bekçisi (PM-079 md. 4)" "$(printf %s 'cd tests/e2e && python yerlesim_bekcisi.py --out /tmp/shots/yerlesim.json' | base64 -w0)" >> "$ADIMLAR"
+      N_WEBKIT=$((N_WEBKIT+1))
+    fi
+    # PM 7048319359 A: cihazlar aynı anda (her biri kendi ağ ad alanında: aynı port çakışmaz; kendi geçici klasöründe).
+    # Ad alanı açılamazsa ya da çekirdek azsa sırayla. KAPI_PARALEL ile elle (1–3).
+    AYRI=0; unshare -rn true 2>/dev/null && AYRI=1
+    CEKIRDEK=$(nproc 2>/dev/null || echo 1)
+    PARALEL=${KAPI_PARALEL:-$([ "$CEKIRDEK" -ge 6 ] && echo 3 || { [ "$CEKIRDEK" -ge 4 ] && echo 2 || echo 1; })}
+    [ "$AYRI" = 1 ] || PARALEL=1
+    [ "$PARALEL" -gt ${#CIHAZLAR[@]} ] && PARALEL=${#CIHAZLAR[@]}
+    DUZEN="$([ "$PARALEL" -gt 1 ] && echo "paralel $PARALEL (ağ ad alanı)" || echo "sıralı")"
+    printf '▶ WebKit uçtan uca: %s cihaz, %s\n' "${#CIHAZLAR[@]}" "$DUZEN"
+    cihaz_dir() { echo "$OUT/cihaz/$(echo "$1" | tr ' ' '-')"; }
+    cihaz_baslat() {
+      local c="$1" d; d=$(cihaz_dir "$c"); mkdir -p "$d"
+      if [ "$AYRI" = 1 ]; then
+        AGAC="$AGAC" ADIMLAR="$ADIMLAR" CIHAZ="$c" CIHAZ_DIR="$d" KAPI_AG_AYRI=1 CI=true unshare -rn bash "$KAPI_KOPYA/kapi.sh" --_cihaz
+      else
+        AGAC="$AGAC" ADIMLAR="$ADIMLAR" CIHAZ="$c" CIHAZ_DIR="$d" KAPI_AG_AYRI=0 CI=true bash "$KAPI_KOPYA/kapi.sh" --_cihaz
       fi
-      kanit="$OUT/kanit/$(echo "$c" | tr ' ' '-')"; mkdir -p "$kanit"
-      cp -r /tmp/shots "$kanit/" 2>/dev/null || true; cp -r /tmp/visual "$kanit/" 2>/dev/null || true
+    }
+    mkdir -p "$OUT/cihaz"; calisan=0
+    for c in "${CIHAZLAR[@]}"; do
+      printf '  ▷ %s başladı\n' "$c"
+      cihaz_baslat "$c" > "$(cihaz_dir "$c").out" 2>&1 &
+      calisan=$((calisan+1))
+      if [ "$calisan" -ge "$PARALEL" ]; then wait -n; calisan=$((calisan-1)); fi
+    done
+    wait
+    # sonuçlar + sallantı kuralı (PM 7048319359 A2): paralelde düşen adım tek başına bir kez yeniden koşar
+    SALLANTI=()
+    for c in "${CIHAZLAR[@]}"; do
+      d=$(cihaz_dir "$c"); k=0
+      while IFS=$'\x1f' read -r ad sure sonuc not kb64 log; do
+        k=$((k+1))
+        if [ "$sonuc" = "DÜŞTÜ" ] && [ "$PARALEL" -gt 1 ]; then
+          printf '  ↻ %s [%s]: paralelde düştü, tek başına yeniden\n' "$ad" "$c"
+          b2=$(date +%s)
+          if ( cd "$AGAC" && export E2E_BROWSER=webkit E2E_DEVICE="$c" && bash --noprofile --norc -eo pipefail -c "$(printf %s "$kb64" | base64 -d)" ) </dev/null >"$log.yeniden" 2>&1; then
+            sonuc="geçti"; not="paralelde sallantılı (tek başına geçti)"; SALLANTI+=("$ad · $c")
+          else
+            not="tek başına da düştü · $not"
+          fi
+          sure=$((sure + $(date +%s) - b2))
+        fi
+        N=$((N+1)); [ "$sonuc" = "DÜŞTÜ" ] && DUSEN=$((DUSEN+1))
+        SATIRLAR+=("$ad · $c|$sure|$sonuc|${not//|/\/}")
+      done < "$d/sonuc.tsv" 2>/dev/null
+      [ "$k" -eq "$N_WEBKIT" ] || { N=$((N+1)); DUSEN=$((DUSEN+1)); SATIRLAR+=("webkit adım sayısı · $c|0|DÜŞTÜ|$k / $N_WEBKIT koştu ($(tail -n 1 "$d.out" 2>/dev/null | cut -c1-80))"); }
+      mkdir -p "$OUT/kanit"; [ -d "$d/tmp" ] && cp -r "$d/tmp" "$OUT/kanit/$(echo "$c" | tr ' ' '-')" 2>/dev/null || true
     done
     [ -f tests/e2e/yerlesim_bekcisi.py ] || atla "Yerleşim bekçisi (PM-079 md. 4)" "depoda henüz yok"
   fi
@@ -206,7 +272,8 @@ SURUM="node $(node -v 2>/dev/null | tr -d v) · python $(python3 -c 'import plat
 {
   echo "**Kapı (\`scripts/kapi.sh\`)** · commit \`${SHA:0:12}\` · taban \`$TABAN\` · süzgeç: **$SINIF** · cihaz: $([ "$SINIF" = docs ] && echo "—" || echo "${CIHAZLAR[*]}") · süre $((SURE/60)) dk $((SURE%60)) sn · sonuç: **$SONUC**"
   echo
-  echo "<sub>$YER · $SURUM · CI'dan fark: Actions PR'da birleştirme commit'ini, kapı baş commit'i sınar</sub>"
+  echo "<sub>$YER · WebKit ${DUZEN:-—} · $SURUM · CI'dan fark: Actions PR'da birleştirme commit'ini, kapı baş commit'i sınar</sub>"
+  [ ${#SALLANTI[@]} -gt 0 ] && { echo; echo "**Paralelde sallantılı** (tek başına geçti): $(IFS=,; echo "${SALLANTI[*]}" | sed "s/,/, /g")"; }
   echo
   echo "| # | adım | süre | sonuç | not |"
   echo "|---|---|---|---|---|"
