@@ -131,8 +131,8 @@ export const OkumaYazma = z.object({
 
 /**
  * AKIS AK-5 (PM-078 B; PM #160): günün "halkaları" — İÇ'in grupladığı 4–6 yeni kart, kapıdan geçen görev cümleleri ve mini sahne.
- * Alan yoksa gün bugünkü düzenle çalışır. `dersten_sonra` İÇ önerisindeki bayraktır: planlayıcı sırayı K(t)'den hesaplar (K8);
- * doğrulayıcı bugün yalnız kapı sayımında kullanır.
+ * Alan yoksa gün bugünkü düzenle çalışır. Halka kendi kalıplarını öğretir (`kaliplar`; "…" yuvadır) ve günün dersi VARSAYILMAZ
+ * (#165 kuralı): `dersten_sonra: true` yalnız halka bilerek dersten sonra konduysa yazılır (planlayıcı sırayı K(t)'den hesaplar, K8).
  */
 export const HalkaCumle = z.object({
   kart: LexemeId, de: z.string().min(1), tr: z.string().min(1),
@@ -142,12 +142,14 @@ export const HalkaCumle = z.object({
 export const HalkaSahne = z.object({
   ortam_tr: z.string().min(1).optional(),
   satirlar: z.array(z.object({ r: z.string().min(1), de: z.string().min(1), tr: z.string().min(1) })).min(2).max(4),
-  soru: z.object({ q_tr: z.string().min(1), opts: z.array(z.string().min(1)).min(2), ans: z.number().int().min(0) })
+  soru: z.object({ q_tr: z.string().min(1), opts: z.array(z.string().min(1)).min(2).max(4), ans: z.number().int().min(0) }).refine((q) => q.ans < q.opts.length, "cevap şıklarda yok")
 });
 export const Halka = z.object({
   id: z.string().regex(/^m1:\d{2}:h\d+$/),
   title_tr: z.string().min(1),
-  kartlar: z.array(LexemeId).min(1),
+  kartlar: z.array(LexemeId).min(1).max(8),
+  /** halkanın öğrettiği kalıplar: bütün olarak bilinir, parçaları tek tek bilinmez ("Guten Tag", "Für …") */
+  kaliplar: z.array(z.object({ de: z.string().min(1), tr: z.string().min(1) })).default([]),
   dersten_sonra: z.boolean().optional(),
   gorev_cumleleri: z.array(HalkaCumle).default([]),
   sahne: HalkaSahne.optional()
