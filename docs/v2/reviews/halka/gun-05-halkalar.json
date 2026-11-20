@@ -1,0 +1,786 @@
+{
+ "gun": 5,
+ "not": "PM-078 B öneri (İÇ), 3. günün onaylı biçimiyle (PM #163, #165, PM 7047720404 a/b, PM-080 §3–§4). Günün dersi (r0-05) varsayılmaz; 1.–4. günün dersleri (r0-01, r0-02, r0-11, r0-03, r0-04) ve 1.–4. günün halka kalıpları (gun-04-halkalar.json dahil) bilinir. Saatler Dr. Weber muayenehanesinin çalışma saatleriyle (5. gün okuma metni) ve 5. gün sesli mesajıyla (Dr. Weber perşembe döner, perşembe 10:15) tutarlı. Gerekçe ve sınama gun-05-yazar.md. Şema ANA'da (AK-5); alan gelince gun-05.json'a taşınır.",
+ "halkalar": [
+  {
+   "id": "m1:05:h1",
+   "title_tr": "Saat kaç? Kaç saat?",
+   "kartlar": [
+    "lx:Uhr",
+    "lx:spät",
+    "lx:Stunde",
+    "lx:Minute",
+    "lx:früh"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wie spät ist es? – Es ist … Uhr.",
+     "tr": "Saat kaç? – Saat …"
+    },
+    {
+     "de": "vier Uhr – vier Stunden",
+     "tr": "saat dört – dört saat"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Uhr",
+     "de": "Es ist sieben Uhr, Tobi!",
+     "tr": "Saat yedi Tobi!",
+     "accepted": [
+      "Es ist sieben Uhr, Tobi!",
+      "Tobi, es ist sieben Uhr!",
+      "Es ist sieben, Tobi!"
+     ]
+    },
+    {
+     "kart": "lx:Uhr",
+     "de": "Um neun Uhr? Nicht um zehn?",
+     "tr": "Saat dokuzda mı? Onda değil mi?",
+     "accepted": [
+      "Um neun Uhr? Nicht um zehn?",
+      "Um neun Uhr? Nicht um zehn Uhr?",
+      "Nicht um zehn? Um neun Uhr?",
+      "Um neun? Nicht um zehn?"
+     ]
+    },
+    {
+     "kart": "lx:spät",
+     "de": "Wie spät ist es, Derya?",
+     "tr": "Saat kaç Derya?",
+     "accepted": [
+      "Wie spät ist es, Derya?",
+      "Derya, wie spät ist es?",
+      "Derya, wie spät?"
+     ]
+    },
+    {
+     "kart": "lx:spät",
+     "de": "Zehn Uhr? Das ist zu spät.",
+     "tr": "Saat on mu? Bu çok geç.",
+     "accepted": [
+      "Zehn Uhr? Das ist zu spät.",
+      "Um zehn Uhr? Das ist zu spät.",
+      "Es ist zehn Uhr? Das ist zu spät."
+     ]
+    },
+    {
+     "kart": "lx:Stunde",
+     "de": "Vier Stunden, von acht bis zwölf.",
+     "tr": "Dört saat, sekizden on ikiye kadar.",
+     "accepted": [
+      "Vier Stunden, von acht bis zwölf.",
+      "Von acht bis zwölf, vier Stunden.",
+      "Vier Stunden: acht bis zwölf."
+     ]
+    },
+    {
+     "kart": "lx:Stunde",
+     "de": "Drei Uhr oder drei Stunden?",
+     "tr": "Saat üç mü, üç saat mi?",
+     "accepted": [
+      "Drei Uhr oder drei Stunden?",
+      "Drei Stunden oder drei Uhr?",
+      "Ist es drei Uhr oder drei Stunden?"
+     ]
+    },
+    {
+     "kart": "lx:Minute",
+     "de": "Noch zehn Minuten, Frau Huber?",
+     "tr": "On dakika daha mı Huber Hanım?",
+     "accepted": [
+      "Noch zehn Minuten, Frau Huber?",
+      "Frau Huber, noch zehn Minuten?",
+      "Zehn Minuten noch, Frau Huber?"
+     ]
+    },
+    {
+     "kart": "lx:Minute",
+     "de": "Fünf Minuten? Das ist nicht spät.",
+     "tr": "Beş dakika mı? Bu geç değil.",
+     "accepted": [
+      "Fünf Minuten? Das ist nicht spät.",
+      "Fünf Minuten? Nicht spät.",
+      "Das ist nicht spät: fünf Minuten."
+     ]
+    },
+    {
+     "kart": "lx:früh",
+     "de": "Um sechs? Das ist zu früh!",
+     "tr": "Saat altıda mı? Bu çok erken!",
+     "accepted": [
+      "Um sechs? Das ist zu früh!",
+      "Um sechs Uhr? Das ist zu früh!",
+      "Sechs Uhr? Das ist zu früh!"
+     ]
+    },
+    {
+     "kart": "lx:früh",
+     "de": "Es ist noch früh, Tobi.",
+     "tr": "Daha saat erken Tobi.",
+     "accepted": [
+      "Es ist noch früh, Tobi.",
+      "Tobi, es ist noch früh.",
+      "Noch früh, Tobi."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "İş yeri, öğleden sonra. Tobi saati soruyor. İş saat kaçta bitiyor, o biliyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Wie spät ist es, {name}?",
+      "tr": "Saat kaç {name}?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Es ist vier Uhr.",
+      "tr": "Saat dört."
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Vier Uhr? Noch zwei Stunden!",
+      "tr": "Saat dört mü? İki saat daha!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi'ye göre iş saat kaçta bitiyor?",
+     "opts": [
+      "16:00",
+      "17:00",
+      "18:00",
+      "20:00"
+     ],
+     "ans": 2,
+     "cikarim": true
+    }
+   }
+  },
+  {
+   "id": "m1:05:h2",
+   "title_tr": "Buçuk ve çeyrek: halb zehn tuzağı",
+   "kartlar": [
+    "lx:halb",
+    "lx:Viertel",
+    "lx:also",
+    "lx:schon",
+    "lx:nur"
+   ],
+   "kaliplar": [
+    {
+     "de": "halb zehn = neun Uhr dreißig",
+     "tr": "dokuz buçuk = saat dokuz otuz (Almanca bir sonraki saati söyler: on)"
+    },
+    {
+     "de": "Viertel nach neun – Viertel vor zehn",
+     "tr": "dokuzu çeyrek geçe – ona çeyrek kala"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:halb",
+     "de": "Um halb zehn, nicht um zehn.",
+     "tr": "Dokuz buçukta, onda değil.",
+     "accepted": [
+      "Um halb zehn, nicht um zehn.",
+      "Nicht um zehn, sondern um halb zehn.",
+      "Halb zehn, nicht zehn."
+     ]
+    },
+    {
+     "kart": "lx:halb",
+     "de": "Halb acht? Also sieben Uhr dreißig?",
+     "tr": "Yedi buçuk mu? Yani saat yedi otuz mu?",
+     "accepted": [
+      "Halb acht? Also sieben Uhr dreißig?",
+      "Halb acht? Also um sieben Uhr dreißig?",
+      "Also sieben Uhr dreißig? Halb acht?"
+     ]
+    },
+    {
+     "kart": "lx:Viertel",
+     "de": "Es ist Viertel nach elf.",
+     "tr": "Saat on biri çeyrek geçiyor.",
+     "accepted": [
+      "Es ist Viertel nach elf.",
+      "Viertel nach elf.",
+      "Es ist elf Uhr fünfzehn."
+     ]
+    },
+    {
+     "kart": "lx:Viertel",
+     "de": "Viertel vor acht? Nein, Viertel nach acht!",
+     "tr": "Sekize çeyrek kala mı? Hayır, sekizi çeyrek geçe!",
+     "accepted": [
+      "Viertel vor acht? Nein, Viertel nach acht!",
+      "Nicht Viertel vor acht, sondern Viertel nach acht!",
+      "Viertel vor acht? Nein, acht Uhr fünfzehn!"
+     ]
+    },
+    {
+     "kart": "lx:also",
+     "de": "Also um Viertel nach acht, Frau Huber?",
+     "tr": "Yani sekizi çeyrek geçe mi Huber Hanım?",
+     "accepted": [
+      "Also um Viertel nach acht, Frau Huber?",
+      "Frau Huber, also um Viertel nach acht?",
+      "Also Viertel nach acht, Frau Huber?"
+     ]
+    },
+    {
+     "kart": "lx:also",
+     "de": "Es ist sechs? Also, bis morgen!",
+     "tr": "Saat altı mı? Peki, yarın görüşürüz!",
+     "accepted": [
+      "Es ist sechs? Also, bis morgen!",
+      "Es ist sechs Uhr? Also, bis morgen!",
+      "Sechs Uhr? Also bis morgen!"
+     ]
+    },
+    {
+     "kart": "lx:schon",
+     "de": "Es ist schon halb zehn!",
+     "tr": "Saat çoktan dokuz buçuk olmuş!",
+     "accepted": [
+      "Es ist schon halb zehn!",
+      "Schon halb zehn!",
+      "Es ist schon neun Uhr dreißig!"
+     ]
+    },
+    {
+     "kart": "lx:schon",
+     "de": "Es ist schon spät, Ioana.",
+     "tr": "Artık geç oldu Ioana.",
+     "accepted": [
+      "Es ist schon spät, Ioana.",
+      "Ioana, es ist schon spät.",
+      "Schon spät, Ioana."
+     ]
+    },
+    {
+     "kart": "lx:nur",
+     "de": "Nur zehn Minuten, Ioana!",
+     "tr": "Yalnızca on dakika Ioana!",
+     "accepted": [
+      "Nur zehn Minuten, Ioana!",
+      "Ioana, nur zehn Minuten!",
+      "Zehn Minuten nur, Ioana!"
+     ]
+    },
+    {
+     "kart": "lx:nur",
+     "de": "Die Praxis ist am Mittwoch nur vier Stunden offen.",
+     "tr": "Muayenehane çarşamba günü yalnızca dört saat açık.",
+     "accepted": [
+      "Die Praxis ist am Mittwoch nur vier Stunden offen.",
+      "Am Mittwoch ist die Praxis nur vier Stunden offen.",
+      "Die Praxis ist nur vier Stunden offen, am Mittwoch."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Huber Hanım yarınki randevunun saatini söylüyor.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Morgen um halb zehn, ja?",
+      "tr": "Yarın dokuz buçukta, tamam mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Um zehn Uhr, Frau Huber?",
+      "tr": "Saat onda mı Huber Hanım?"
+     },
+     {
+      "r": "ch:huber",
+      "de": "Nein, nicht um zehn – um halb zehn!",
+      "tr": "Hayır, onda değil: dokuz buçukta!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Yarın muayenehanede saat kaçta olmalısın?",
+     "opts": [
+      "9:00",
+      "9:30",
+      "10:00",
+      "10:30"
+     ],
+     "ans": 1,
+     "cikarim": true
+    }
+   }
+  },
+  {
+   "id": "m1:05:h3",
+   "title_tr": "Sabahtan geceye",
+   "kartlar": [
+    "lx:Vormittag",
+    "lx:Mittag",
+    "lx:Nachmittag",
+    "lx:Abend",
+    "lx:Nacht"
+   ],
+   "kaliplar": [
+    {
+     "de": "am Vormittag – am Abend – in der Nacht",
+     "tr": "öğleden önce – akşam – gece"
+    },
+    {
+     "de": "heute Abend – morgen früh",
+     "tr": "bu akşam – yarın sabah"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Vormittag",
+     "de": "Am Vormittag geht es nicht.",
+     "tr": "Öğleden önce olmuyor.",
+     "accepted": [
+      "Am Vormittag geht es nicht.",
+      "Am Vormittag geht nicht.",
+      "Es geht nicht am Vormittag."
+     ]
+    },
+    {
+     "kart": "lx:Vormittag",
+     "de": "Heute Vormittag, um zehn?",
+     "tr": "Bugün öğleden önce, saat onda mı?",
+     "accepted": [
+      "Heute Vormittag, um zehn?",
+      "Um zehn, heute Vormittag?",
+      "Heute Vormittag um zehn Uhr?",
+      "Heute am Vormittag, um zehn?"
+     ]
+    },
+    {
+     "kart": "lx:Mittag",
+     "de": "Heute Mittag ist die Praxis geschlossen.",
+     "tr": "Bugün öğlen muayenehane kapalı.",
+     "accepted": [
+      "Heute Mittag ist die Praxis geschlossen.",
+      "Die Praxis ist heute Mittag geschlossen.",
+      "Heute Mittag ist die Praxis nicht offen."
+     ]
+    },
+    {
+     "kart": "lx:Mittag",
+     "de": "Bis Mittag, Tobi!",
+     "tr": "Öğlen görüşürüz Tobi!",
+     "accepted": [
+      "Bis Mittag, Tobi!",
+      "Tobi, bis Mittag!",
+      "Bis heute Mittag, Tobi!"
+     ]
+    },
+    {
+     "kart": "lx:Nachmittag",
+     "de": "Am Nachmittag um drei?",
+     "tr": "Öğleden sonra saat üçte mi?",
+     "accepted": [
+      "Am Nachmittag um drei?",
+      "Um drei, am Nachmittag?",
+      "Am Nachmittag um drei Uhr?"
+     ]
+    },
+    {
+     "kart": "lx:Nachmittag",
+     "de": "Ist die Praxis am Dienstag am Nachmittag offen?",
+     "tr": "Muayenehane salı günü öğleden sonra açık mı?",
+     "accepted": [
+      "Ist die Praxis am Dienstag am Nachmittag offen?",
+      "Am Dienstag ist die Praxis am Nachmittag offen?",
+      "Die Praxis ist am Dienstag am Nachmittag offen?"
+     ]
+    },
+    {
+     "kart": "lx:Abend",
+     "de": "Heute Abend um sieben?",
+     "tr": "Bu akşam saat yedide mi?",
+     "accepted": [
+      "Heute Abend um sieben?",
+      "Um sieben, heute Abend?",
+      "Heute Abend um sieben Uhr?"
+     ]
+    },
+    {
+     "kart": "lx:Abend",
+     "de": "Am Abend? Nein, das ist zu spät.",
+     "tr": "Akşam mı? Hayır, bu çok geç.",
+     "accepted": [
+      "Am Abend? Nein, das ist zu spät.",
+      "Am Abend? Das ist zu spät.",
+      "Nein, nicht am Abend. Das ist zu spät."
+     ]
+    },
+    {
+     "kart": "lx:Nacht",
+     "de": "In der Nacht? Nein, danke!",
+     "tr": "Gece mi? Hayır, teşekkürler!",
+     "accepted": [
+      "In der Nacht? Nein, danke!",
+      "In der Nacht? Danke, nein!",
+      "Nein, danke, nicht in der Nacht!"
+     ]
+    },
+    {
+     "kart": "lx:Nacht",
+     "de": "Heute Nacht? Nein, morgen früh.",
+     "tr": "Bu gece mi? Hayır, yarın sabah.",
+     "accepted": [
+      "Heute Nacht? Nein, morgen früh.",
+      "Nicht heute Nacht, sondern morgen früh.",
+      "Nicht heute Nacht – morgen früh."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "İş yeri, koridor. Şefin Wimmer Bey seninle kısa bir görüşme saati arıyor.",
+    "satirlar": [
+     {
+      "r": "ch:wimmer",
+      "de": "Heute Nachmittag um drei?",
+      "tr": "Bugün öğleden sonra saat üçte mi?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Am Nachmittag geht es nicht. Morgen früh?",
+      "tr": "Öğleden sonra olmuyor. Yarın sabah?"
+     },
+     {
+      "r": "ch:wimmer",
+      "de": "Okay, morgen früh um acht.",
+      "tr": "Tamam, yarın sabah saat sekizde."
+     }
+    ],
+    "soru": {
+     "q_tr": "Wimmer Bey'le ne zaman görüşeceksin?",
+     "opts": [
+      "Bugün öğleden sonra üçte",
+      "Yarın sabah sekizde",
+      "Bu akşam",
+      "Yarın öğlen"
+     ],
+     "ans": 1
+    }
+   }
+  },
+  {
+   "id": "m1:05:h4",
+   "title_tr": "Randevu saati uyuyor mu?",
+   "kartlar": [
+    "lx:Termin",
+    "lx:Uhrzeit",
+    "lx:passen#2",
+    "lx:leider",
+    "lx:Arzt"
+   ],
+   "kaliplar": [
+    {
+     "de": "Passt Ihnen …? – … passt leider nicht.",
+     "tr": "… size uyar mı? – … maalesef uymuyor."
+    },
+    {
+     "de": "die Uhrzeit – Um wie viel Uhr?",
+     "tr": "saati (vakti) – Saat kaçta?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Termin",
+     "de": "Mein Termin ist am Donnerstag.",
+     "tr": "Randevum perşembe günü.",
+     "accepted": [
+      "Mein Termin ist am Donnerstag.",
+      "Am Donnerstag ist mein Termin.",
+      "Mein Termin: am Donnerstag."
+     ]
+    },
+    {
+     "kart": "lx:Termin",
+     "de": "Wann ist mein Termin, Frau Huber? Am Dienstag?",
+     "tr": "Randevum ne zaman Huber Hanım? Salı günü mü?",
+     "accepted": [
+      "Wann ist mein Termin, Frau Huber? Am Dienstag?",
+      "Frau Huber, wann ist mein Termin? Am Dienstag?",
+      "Wann ist mein Termin, Frau Huber? Ist er am Dienstag?"
+     ]
+    },
+    {
+     "kart": "lx:Uhrzeit",
+     "de": "Die Uhrzeit passt mir, Frau Huber.",
+     "tr": "Saati bana uyar Huber Hanım.",
+     "accepted": [
+      "Die Uhrzeit passt mir, Frau Huber.",
+      "Frau Huber, die Uhrzeit passt mir.",
+      "Die Uhrzeit passt, Frau Huber."
+     ]
+    },
+    {
+     "kart": "lx:Uhrzeit",
+     "de": "Die Uhrzeit? Viertel nach zehn.",
+     "tr": "Saati mi? Onu çeyrek geçe.",
+     "accepted": [
+      "Die Uhrzeit? Viertel nach zehn.",
+      "Die Uhrzeit? Um Viertel nach zehn.",
+      "Die Uhrzeit ist Viertel nach zehn."
+     ]
+    },
+    {
+     "kart": "lx:passen#2",
+     "de": "Passt Ihnen Montag um acht?",
+     "tr": "Pazartesi saat sekizde size uyar mı?",
+     "accepted": [
+      "Passt Ihnen Montag um acht?",
+      "Passt Ihnen Montag um acht Uhr?",
+      "Montag um acht, passt Ihnen das?"
+     ]
+    },
+    {
+     "kart": "lx:passen#2",
+     "de": "Donnerstag passt, aber Freitag nicht.",
+     "tr": "Perşembe uyar ama cuma uymuyor.",
+     "accepted": [
+      "Donnerstag passt, aber Freitag nicht.",
+      "Donnerstag passt, aber Freitag passt nicht.",
+      "Donnerstag passt, Freitag nicht."
+     ]
+    },
+    {
+     "kart": "lx:leider",
+     "de": "Am Freitag geht es leider nicht.",
+     "tr": "Cuma günü maalesef olmuyor.",
+     "accepted": [
+      "Am Freitag geht es leider nicht.",
+      "Leider geht es am Freitag nicht.",
+      "Am Freitag geht leider nicht."
+     ]
+    },
+    {
+     "kart": "lx:leider",
+     "de": "Acht Uhr passt leider nicht. Neun Uhr passt.",
+     "tr": "Saat sekiz maalesef uymuyor. Saat dokuz uyar.",
+     "accepted": [
+      "Acht Uhr passt leider nicht. Neun Uhr passt.",
+      "Leider passt acht Uhr nicht. Neun Uhr passt.",
+      "Acht Uhr passt leider nicht, aber neun Uhr passt."
+     ]
+    },
+    {
+     "kart": "lx:Arzt",
+     "de": "Der Arzt? Nein, heute nicht.",
+     "tr": "Doktor mu? Hayır, bugün değil.",
+     "accepted": [
+      "Der Arzt? Nein, heute nicht.",
+      "Der Arzt? Heute nicht.",
+      "Der Arzt? Nein, nicht heute."
+     ]
+    },
+    {
+     "kart": "lx:Arzt",
+     "de": "Der Arzt kommt um zehn, nicht um neun.",
+     "tr": "Doktor saat onda geliyor, dokuzda değil.",
+     "accepted": [
+      "Der Arzt kommt um zehn, nicht um neun.",
+      "Der Arzt kommt nicht um neun, sondern um zehn.",
+      "Um zehn kommt der Arzt, nicht um neun."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Huber Hanım randevu için bir saat öneriyor.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Passt Ihnen Dienstag um Viertel nach drei?",
+      "tr": "Salı saat üçü çeyrek geçe size uyar mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Dienstag passt leider nicht. Donnerstag?",
+      "tr": "Salı maalesef uymuyor. Perşembe?"
+     },
+     {
+      "r": "ch:huber",
+      "de": "Donnerstag um vier. Passt das?",
+      "tr": "Perşembe saat dörtte. Uyar mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Donnerstag um vier passt. Danke!",
+      "tr": "Perşembe saat dörtte uyar. Teşekkürler!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Randevu ne zaman?",
+     "opts": [
+      "Salı 15:15",
+      "Perşembe 16:00",
+      "Perşembe 15:15",
+      "Salı 16:00"
+     ],
+     "ans": 1
+    }
+   }
+  },
+  {
+   "id": "m1:05:h5",
+   "title_tr": "Doktor yine burada",
+   "kartlar": [
+    "lx:kommen",
+    "lx:wieder",
+    "lx:da",
+    "lx:dann",
+    "lx:gern"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ist … da? – … ist wieder da.",
+     "tr": "… burada mı? – … yine burada."
+    },
+    {
+     "de": "Dann bis …!",
+     "tr": "O zaman … görüşürüz!"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:kommen",
+     "de": "Ich komme um halb neun.",
+     "tr": "Sekiz buçukta geliyorum.",
+     "accepted": [
+      "Ich komme um halb neun.",
+      "Um halb neun komme ich.",
+      "Ich komme um acht Uhr dreißig."
+     ]
+    },
+    {
+     "kart": "lx:kommen",
+     "de": "Wann kommt der Arzt, Frau Huber?",
+     "tr": "Doktor ne zaman geliyor Huber Hanım?",
+     "accepted": [
+      "Wann kommt der Arzt, Frau Huber?",
+      "Frau Huber, wann kommt der Arzt?",
+      "Der Arzt, wann kommt er, Frau Huber?"
+     ]
+    },
+    {
+     "kart": "lx:wieder",
+     "de": "Am Donnerstag komme ich wieder.",
+     "tr": "Perşembe günü yine geliyorum.",
+     "accepted": [
+      "Am Donnerstag komme ich wieder.",
+      "Ich komme am Donnerstag wieder.",
+      "Ich komme wieder am Donnerstag."
+     ]
+    },
+    {
+     "kart": "lx:wieder",
+     "de": "Ist Dr. Weber am Donnerstag wieder da?",
+     "tr": "Dr. Weber perşembe günü yine burada mı?",
+     "accepted": [
+      "Ist Dr. Weber am Donnerstag wieder da?",
+      "Ist Dr. Weber wieder da, am Donnerstag?",
+      "Dr. Weber ist am Donnerstag wieder da?"
+     ]
+    },
+    {
+     "kart": "lx:da",
+     "de": "Ist Frau Huber heute da?",
+     "tr": "Huber Hanım bugün burada mı?",
+     "accepted": [
+      "Ist Frau Huber heute da?",
+      "Ist heute Frau Huber da?",
+      "Frau Huber ist heute da?"
+     ]
+    },
+    {
+     "kart": "lx:da",
+     "de": "Ich bin um acht da.",
+     "tr": "Ben saat sekizde oradayım.",
+     "accepted": [
+      "Ich bin um acht da.",
+      "Ich bin um acht Uhr da.",
+      "Ich bin da, um acht."
+     ]
+    },
+    {
+     "kart": "lx:dann",
+     "de": "Dann bis Donnerstag, Frau Huber!",
+     "tr": "O zaman perşembe görüşürüz Huber Hanım!",
+     "accepted": [
+      "Dann bis Donnerstag, Frau Huber!",
+      "Frau Huber, dann bis Donnerstag!",
+      "Also dann bis Donnerstag, Frau Huber!"
+     ]
+    },
+    {
+     "kart": "lx:dann",
+     "de": "Heute geht es nicht? Dann morgen früh.",
+     "tr": "Bugün olmuyor mu? O zaman yarın sabah.",
+     "accepted": [
+      "Heute geht es nicht? Dann morgen früh.",
+      "Heute geht nicht? Dann morgen früh.",
+      "Geht es heute nicht? Dann morgen früh."
+     ]
+    },
+    {
+     "kart": "lx:gern",
+     "de": "Um zehn? Ja, gern!",
+     "tr": "Saat onda mı? Evet, memnuniyetle!",
+     "accepted": [
+      "Um zehn? Ja, gern!",
+      "Um zehn Uhr? Ja, gern!",
+      "Ja, gern, um zehn!"
+     ]
+    },
+    {
+     "kart": "lx:gern",
+     "de": "Ja, gern, Ioana! Am Samstag?",
+     "tr": "Evet, memnuniyetle Ioana! Cumartesi günü mü?",
+     "accepted": [
+      "Ja, gern, Ioana! Am Samstag?",
+      "Gern, Ioana! Am Samstag?",
+      "Ja, gern! Am Samstag, Ioana?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Muayenehaneyi arıyorsun. Huber Hanım Dr. Weber'in ne zaman döneceğini söylüyor.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Dr. Weber ist am Donnerstag wieder da.",
+      "tr": "Dr. Weber perşembe günü yine burada."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Dann komme ich am Donnerstag.",
+      "tr": "O zaman perşembe günü geliyorum."
+     },
+     {
+      "r": "ch:huber",
+      "de": "Gern. Um Viertel nach zehn?",
+      "tr": "Memnuniyetle. Onu çeyrek geçe olur mu?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, das passt. Bis Donnerstag!",
+      "tr": "Evet, uyar. Perşembe görüşürüz!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Bugün Dr. Weber muayenehanede mi?",
+     "opts": [
+      "Evet, saat onda",
+      "Hayır, perşembe günü dönüyor",
+      "Evet, öğleden sonra",
+      "Hayır, cuma günü dönüyor"
+     ],
+     "ans": 1,
+     "cikarim": true
+    }
+   }
+  }
+ ]
+}

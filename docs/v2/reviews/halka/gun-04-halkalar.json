@@ -1,0 +1,788 @@
+{
+ "gun": 4,
+ "not": "PM-078 B öneri (İÇ), 3. günün onaylı biçimiyle (PM #163, #165, PM 7047720404 a/b, PM-080 §3–§4). Günün dersi (r0-04) varsayılmaz; 1.–3. günün dersleri (r0-01, r0-02, r0-11, r0-03) ve 1.–3. günün halka kalıpları bilinir. Bileşik sayılar (vierunddreißig …) dersle geldiği için halkada yalnız einundzwanzig kartıyla var. Fiyatlar 4. gün sahnesiyle tutarlı: ekmek 3,70, iki küçük ekmek 1,10, poşet 0,10, elma 0,50, bir kilo elma 2,90, bir kilo peynir 18. Gerekçe ve sınama gun-04-yazar.md. Şema ANA'da (AK-5); alan gelince gun-04.json'a taşınır.",
+ "halkalar": [
+  {
+   "id": "m1:04:h1",
+   "title_tr": "Fırında: ekmek ne kadar?",
+   "kartlar": [
+    "lx:Brot",
+    "lx:kosten",
+    "lx:Euro",
+    "lx:siebzig",
+    "lx:Cent"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wie viel kostet …? – Das Brot kostet … Euro.",
+     "tr": "… ne kadar? – Ekmek … avro."
+    },
+    {
+     "de": "drei Euro siebzig – siebzig Cent",
+     "tr": "üç avro yetmiş (3,70 €) – yetmiş sent (0,70 €)"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Brot",
+     "de": "Ein Brot, bitte, Frau Stadler.",
+     "tr": "Bir ekmek, lütfen Stadler Hanım.",
+     "accepted": [
+      "Ein Brot, bitte, Frau Stadler.",
+      "Frau Stadler, ein Brot, bitte.",
+      "Bitte ein Brot, Frau Stadler."
+     ]
+    },
+    {
+     "kart": "lx:Brot",
+     "de": "Das Brot? Drei Euro siebzig.",
+     "tr": "Ekmek mi? Üç avro yetmiş.",
+     "accepted": [
+      "Das Brot? Drei Euro siebzig.",
+      "Das Brot? Das kostet drei Euro siebzig.",
+      "Ein Brot? Drei Euro siebzig.",
+      "Das Brot? Es kostet drei Euro siebzig."
+     ]
+    },
+    {
+     "kart": "lx:kosten",
+     "de": "Wie viel kostet das Brot, Frau Stadler?",
+     "tr": "Ekmek ne kadar Stadler Hanım?",
+     "accepted": [
+      "Wie viel kostet das Brot, Frau Stadler?",
+      "Frau Stadler, wie viel kostet das Brot?",
+      "Wie viel kostet ein Brot, Frau Stadler?"
+     ]
+    },
+    {
+     "kart": "lx:kosten",
+     "de": "Kostet das Brot zwei Euro?",
+     "tr": "Ekmek iki avro mu?",
+     "accepted": [
+      "Kostet das Brot zwei Euro?",
+      "Das Brot kostet zwei Euro?",
+      "Kostet ein Brot zwei Euro?"
+     ]
+    },
+    {
+     "kart": "lx:Euro",
+     "de": "Zwei Euro? Nein, drei Euro.",
+     "tr": "İki avro mu? Hayır, üç avro.",
+     "accepted": [
+      "Zwei Euro? Nein, drei Euro.",
+      "Zwei Euro? Nein, drei.",
+      "Nicht zwei Euro, sondern drei Euro."
+     ]
+    },
+    {
+     "kart": "lx:Euro",
+     "de": "Heute kostet ein Brot drei Euro siebzig.",
+     "tr": "Bugün bir ekmek üç avro yetmiş.",
+     "accepted": [
+      "Heute kostet ein Brot drei Euro siebzig.",
+      "Ein Brot kostet heute drei Euro siebzig.",
+      "Heute kostet ein Brot drei Euro und siebzig Cent."
+     ]
+    },
+    {
+     "kart": "lx:siebzig",
+     "de": "Siebzehn Euro? Nein, drei Euro siebzig!",
+     "tr": "On yedi avro mu? Hayır, üç avro yetmiş!",
+     "accepted": [
+      "Siebzehn Euro? Nein, drei Euro siebzig!",
+      "Siebzehn Euro? Nein, drei siebzig!",
+      "Nicht siebzehn Euro, sondern drei Euro siebzig!"
+     ]
+    },
+    {
+     "kart": "lx:siebzig",
+     "de": "Siebzig, nicht siebzehn: sieben, null.",
+     "tr": "Yetmiş, on yedi değil: yedi, sıfır.",
+     "accepted": [
+      "Siebzig, nicht siebzehn: sieben, null.",
+      "Nicht siebzehn, sondern siebzig: sieben, null.",
+      "Siebzig – sieben, null – nicht siebzehn."
+     ]
+    },
+    {
+     "kart": "lx:Cent",
+     "de": "Drei Euro und siebzig Cent.",
+     "tr": "Üç avro yetmiş sent.",
+     "accepted": [
+      "Drei Euro und siebzig Cent.",
+      "Drei Euro siebzig Cent.",
+      "Drei Euro siebzig."
+     ]
+    },
+    {
+     "kart": "lx:Cent",
+     "de": "Zwanzig Cent? Danke, Frau Stadler!",
+     "tr": "Yirmi sent mi? Teşekkürler Stadler Hanım!",
+     "accepted": [
+      "Zwanzig Cent? Danke, Frau Stadler!",
+      "Zwanzig Cent? Frau Stadler, danke!",
+      "Danke, Frau Stadler! Zwanzig Cent?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Stadler fırını, sabah. Tezgâhta ekmeğin fiyatını soruyorsun.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Guten Tag, Frau Stadler! Wie viel kostet ein Brot?",
+      "tr": "İyi günler Stadler Hanım! Bir ekmek ne kadar?"
+     },
+     {
+      "r": "ch:stadler",
+      "de": "Drei Euro siebzig.",
+      "tr": "Üç avro yetmiş."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Siebzig Cent?",
+      "tr": "Yetmiş sent mi?"
+     },
+     {
+      "r": "ch:stadler",
+      "de": "Nein, nein! Drei Euro – drei Euro siebzig.",
+      "tr": "Hayır, hayır! Üç avro: üç avro yetmiş."
+     }
+    ],
+    "soru": {
+     "q_tr": "Bir ekmek kaç para?",
+     "opts": [
+      "70 sent",
+      "3,17 avro",
+      "3,70 avro",
+      "17 avro"
+     ],
+     "ans": 2
+    }
+   }
+  },
+  {
+   "id": "m1:04:h2",
+   "title_tr": "Küçük ekmek ve poşet: sentler",
+   "kartlar": [
+    "lx:Semmel",
+    "lx:noch",
+    "lx:Tüte",
+    "lx:neunzig",
+    "lx:fünfzig"
+   ],
+   "kaliplar": [
+    {
+     "de": "eine Semmel – zwei Semmeln",
+     "tr": "bir küçük ekmek – iki küçük ekmek"
+    },
+    {
+     "de": "Noch etwas? – noch eine Semmel",
+     "tr": "Başka bir şey? – bir küçük ekmek daha"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Semmel",
+     "de": "Eine Semmel oder zwei?",
+     "tr": "Bir küçük ekmek mi, iki mi?",
+     "accepted": [
+      "Eine Semmel oder zwei?",
+      "Eine Semmel oder zwei Semmeln?",
+      "Zwei Semmeln oder eine?"
+     ]
+    },
+    {
+     "kart": "lx:Semmel",
+     "de": "Vier Semmeln, bitte, Frau Stadler.",
+     "tr": "Dört küçük ekmek, lütfen Stadler Hanım.",
+     "accepted": [
+      "Vier Semmeln, bitte, Frau Stadler.",
+      "Frau Stadler, vier Semmeln, bitte.",
+      "Bitte vier Semmeln, Frau Stadler."
+     ]
+    },
+    {
+     "kart": "lx:noch",
+     "de": "Noch eine Semmel, bitte.",
+     "tr": "Bir küçük ekmek daha, lütfen.",
+     "accepted": [
+      "Noch eine Semmel, bitte.",
+      "Bitte noch eine Semmel.",
+      "Eine Semmel noch, bitte."
+     ]
+    },
+    {
+     "kart": "lx:noch",
+     "de": "Ja, noch zwei Semmeln.",
+     "tr": "Evet, iki küçük ekmek daha.",
+     "accepted": [
+      "Ja, noch zwei Semmeln.",
+      "Ja, zwei Semmeln noch.",
+      "Noch zwei Semmeln, ja."
+     ]
+    },
+    {
+     "kart": "lx:Tüte",
+     "de": "Eine Tüte? Ja, bitte.",
+     "tr": "Bir poşet mi? Evet, lütfen.",
+     "accepted": [
+      "Eine Tüte? Ja, bitte.",
+      "Eine Tüte? Bitte, ja.",
+      "Ja, bitte, eine Tüte."
+     ]
+    },
+    {
+     "kart": "lx:Tüte",
+     "de": "Kostet die Tüte zehn Cent?",
+     "tr": "Poşet on sent mi?",
+     "accepted": [
+      "Kostet die Tüte zehn Cent?",
+      "Die Tüte kostet zehn Cent?",
+      "Kostet eine Tüte zehn Cent?"
+     ]
+    },
+    {
+     "kart": "lx:neunzig",
+     "de": "Neunzehn Cent? Nein, neunzig!",
+     "tr": "On dokuz sent mi? Hayır, doksan!",
+     "accepted": [
+      "Neunzehn Cent? Nein, neunzig!",
+      "Neunzehn? Nein, neunzig Cent!",
+      "Nicht neunzehn Cent, sondern neunzig!"
+     ]
+    },
+    {
+     "kart": "lx:neunzig",
+     "de": "Zwei Semmeln? Heute neunzig Cent.",
+     "tr": "İki küçük ekmek mi? Bugün doksan sent.",
+     "accepted": [
+      "Zwei Semmeln? Heute neunzig Cent.",
+      "Zwei Semmeln? Das kostet heute neunzig Cent.",
+      "Zwei Semmeln? Neunzig Cent heute."
+     ]
+    },
+    {
+     "kart": "lx:fünfzig",
+     "de": "Fünfzig Cent, Frau Stadler? Für eine Semmel?",
+     "tr": "Elli sent mi Stadler Hanım? Bir küçük ekmek için mi?",
+     "accepted": [
+      "Fünfzig Cent, Frau Stadler? Für eine Semmel?",
+      "Frau Stadler, fünfzig Cent? Für eine Semmel?",
+      "Fünfzig Cent für eine Semmel, Frau Stadler?"
+     ]
+    },
+    {
+     "kart": "lx:fünfzig",
+     "de": "Fünf Euro fünfzig, bitte.",
+     "tr": "Beş avro elli, lütfen.",
+     "accepted": [
+      "Fünf Euro fünfzig, bitte.",
+      "Bitte fünf Euro fünfzig.",
+      "Fünf Euro und fünfzig Cent, bitte."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Stadler fırını. İki küçük ekmek aldın. Stadler Hanım kasada.",
+    "satirlar": [
+     {
+      "r": "ch:stadler",
+      "de": "Zwei Semmeln: ein Euro zehn. Noch etwas?",
+      "tr": "İki küçük ekmek: bir avro on. Başka bir şey?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, eine Tüte, bitte.",
+      "tr": "Evet, bir poşet, lütfen."
+     },
+     {
+      "r": "ch:stadler",
+      "de": "Ein Euro zwanzig, bitte.",
+      "tr": "Bir avro yirmi, lütfen."
+     }
+    ],
+    "soru": {
+     "q_tr": "Poşet kaç sent?",
+     "opts": [
+      "On sent",
+      "Yirmi sent",
+      "Elli sent",
+      "Bir avro on"
+     ],
+     "ans": 0,
+     "cikarim": true
+    }
+   }
+  },
+  {
+   "id": "m1:04:h3",
+   "title_tr": "Kasada: toplam ve pahalı",
+   "kartlar": [
+    "lx:machen",
+    "lx:teuer",
+    "lx:vierzig",
+    "lx:achtzig",
+    "lx:dreißig"
+   ],
+   "kaliplar": [
+    {
+     "de": "Das macht …",
+     "tr": "Toplam … (kasada)"
+    },
+    {
+     "de": "Das ist zu teuer. – Das ist nicht teuer.",
+     "tr": "Bu çok pahalı. – Bu pahalı değil."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:machen",
+     "de": "Das macht zwei Euro neunzig.",
+     "tr": "Toplam iki avro doksan.",
+     "accepted": [
+      "Das macht zwei Euro neunzig.",
+      "Das macht zwei Euro und neunzig Cent.",
+      "Das kostet zwei Euro neunzig."
+     ]
+    },
+    {
+     "kart": "lx:machen",
+     "de": "Das macht zwanzig Euro? Nicht zwölf?",
+     "tr": "Toplam yirmi avro mu? On iki değil mi?",
+     "accepted": [
+      "Das macht zwanzig Euro? Nicht zwölf?",
+      "Das macht zwanzig Euro? Nicht zwölf Euro?",
+      "Nicht zwölf? Das macht zwanzig Euro?"
+     ]
+    },
+    {
+     "kart": "lx:teuer",
+     "de": "Das ist nicht teuer, Ioana!",
+     "tr": "Bu pahalı değil Ioana!",
+     "accepted": [
+      "Das ist nicht teuer, Ioana!",
+      "Ioana, das ist nicht teuer!",
+      "Nicht teuer, Ioana!"
+     ]
+    },
+    {
+     "kart": "lx:teuer",
+     "de": "Zehn Euro? Das ist zu teuer, Frau Brandl.",
+     "tr": "On avro mu? Bu çok pahalı Brandl Hanım.",
+     "accepted": [
+      "Zehn Euro? Das ist zu teuer, Frau Brandl.",
+      "Frau Brandl, zehn Euro? Das ist zu teuer.",
+      "Zehn Euro, Frau Brandl? Das ist zu teuer."
+     ]
+    },
+    {
+     "kart": "lx:vierzig",
+     "de": "Vierzig Euro? Nein, vier Euro!",
+     "tr": "Kırk avro mu? Hayır, dört avro!",
+     "accepted": [
+      "Vierzig Euro? Nein, vier Euro!",
+      "Vierzig Euro? Nein, vier!",
+      "Nicht vierzig Euro, sondern vier Euro!"
+     ]
+    },
+    {
+     "kart": "lx:vierzig",
+     "de": "Das macht vierzig Euro, nicht vierzehn.",
+     "tr": "Toplam kırk avro, on dört değil.",
+     "accepted": [
+      "Das macht vierzig Euro, nicht vierzehn.",
+      "Das macht vierzig Euro, nicht vierzehn Euro.",
+      "Das macht nicht vierzehn, sondern vierzig Euro."
+     ]
+    },
+    {
+     "kart": "lx:achtzig",
+     "de": "Achtzig Cent? Das ist nicht teuer.",
+     "tr": "Seksen sent mi? Bu pahalı değil.",
+     "accepted": [
+      "Achtzig Cent? Das ist nicht teuer.",
+      "Achtzig Cent? Nicht teuer.",
+      "Das ist nicht teuer: achtzig Cent."
+     ]
+    },
+    {
+     "kart": "lx:achtzig",
+     "de": "Achtzehn? Nein, achtzig Cent!",
+     "tr": "On sekiz mi? Hayır, seksen sent!",
+     "accepted": [
+      "Achtzehn? Nein, achtzig Cent!",
+      "Achtzehn Cent? Nein, achtzig!",
+      "Nicht achtzehn, sondern achtzig Cent!"
+     ]
+    },
+    {
+     "kart": "lx:dreißig",
+     "de": "Dreißig oder dreizehn?",
+     "tr": "Otuz mu, on üç mü?",
+     "accepted": [
+      "Dreißig oder dreizehn?",
+      "Dreizehn oder dreißig?",
+      "Ist es dreißig oder dreizehn?"
+     ]
+    },
+    {
+     "kart": "lx:dreißig",
+     "de": "Das macht dreißig Euro, bitte.",
+     "tr": "Toplam otuz avro, lütfen.",
+     "accepted": [
+      "Das macht dreißig Euro, bitte.",
+      "Bitte, das macht dreißig Euro.",
+      "Dreißig Euro, bitte."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Stadler fırını, cumartesi. İki ekmek aldın. Stadler Hanım toplamı söylüyor.",
+    "satirlar": [
+     {
+      "r": "ch:stadler",
+      "de": "Zwei Brote. Das macht sieben Euro vierzig.",
+      "tr": "İki ekmek. Toplam yedi avro kırk."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Siebzig Euro? Das ist zu teuer!",
+      "tr": "Yetmiş avro mu? Bu çok pahalı!"
+     },
+     {
+      "r": "ch:stadler",
+      "de": "Nein, nein – sieben Euro vierzig!",
+      "tr": "Hayır, hayır: yedi avro kırk!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Bir ekmek kaç avro?",
+     "opts": [
+      "3,70 avro",
+      "7,40 avro",
+      "35 avro",
+      "70 avro"
+     ],
+     "ans": 0,
+     "cikarim": true
+    }
+   }
+  },
+  {
+   "id": "m1:04:h4",
+   "title_tr": "Nakit mi, kart mı?",
+   "kartlar": [
+    "lx:Karte",
+    "lx:bar",
+    "lx:zahlen",
+    "lx:hundert",
+    "lx:sechzig"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich zahle … – Bar oder mit Karte?",
+     "tr": "… ödüyorum – Nakit mi, kartla mı?"
+    },
+    {
+     "de": "Heute zahle ich!",
+     "tr": "Bugün ben ödüyorum!"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Karte",
+     "de": "Geht es mit Karte, Frau Stadler?",
+     "tr": "Kartla olur mu Stadler Hanım?",
+     "accepted": [
+      "Geht es mit Karte, Frau Stadler?",
+      "Frau Stadler, geht es mit Karte?",
+      "Geht mit Karte, Frau Stadler?",
+      "Geht Karte, Frau Stadler?"
+     ]
+    },
+    {
+     "kart": "lx:Karte",
+     "de": "Ich zahle mit Karte, nicht bar.",
+     "tr": "Kartla ödüyorum, nakit değil.",
+     "accepted": [
+      "Ich zahle mit Karte, nicht bar.",
+      "Ich zahle nicht bar, sondern mit Karte.",
+      "Ich zahle mit Karte, nicht in bar."
+     ]
+    },
+    {
+     "kart": "lx:bar",
+     "de": "Bar? Ja, das geht.",
+     "tr": "Nakit mi? Evet, olur.",
+     "accepted": [
+      "Bar? Ja, das geht.",
+      "Bar? Ja, geht.",
+      "Bar? Ja, bar geht."
+     ]
+    },
+    {
+     "kart": "lx:bar",
+     "de": "Ich zahle bar, Luka.",
+     "tr": "Nakit ödüyorum Luka.",
+     "accepted": [
+      "Ich zahle bar, Luka.",
+      "Luka, ich zahle bar.",
+      "Ich zahle in bar, Luka."
+     ]
+    },
+    {
+     "kart": "lx:zahlen",
+     "de": "Zahlen Sie mit Karte, Herr Wimmer?",
+     "tr": "Kartla mı ödüyorsunuz Wimmer Bey?",
+     "accepted": [
+      "Zahlen Sie mit Karte, Herr Wimmer?",
+      "Herr Wimmer, zahlen Sie mit Karte?",
+      "Zahlen Sie mit der Karte, Herr Wimmer?"
+     ]
+    },
+    {
+     "kart": "lx:zahlen",
+     "de": "Heute zahle ich, Ioana!",
+     "tr": "Bugün ben ödüyorum Ioana!",
+     "accepted": [
+      "Heute zahle ich, Ioana!",
+      "Ioana, heute zahle ich!",
+      "Ich zahle heute, Ioana!"
+     ]
+    },
+    {
+     "kart": "lx:hundert",
+     "de": "Hundert Euro? Bar? Nein, mit Karte.",
+     "tr": "Yüz avro mu? Nakit mi? Hayır, kartla.",
+     "accepted": [
+      "Hundert Euro? Bar? Nein, mit Karte.",
+      "Hundert Euro in bar? Nein, mit Karte.",
+      "Hundert Euro? Nicht bar, mit Karte."
+     ]
+    },
+    {
+     "kart": "lx:hundert",
+     "de": "Ein Euro ist hundert Cent.",
+     "tr": "Bir avro yüz sent.",
+     "accepted": [
+      "Ein Euro ist hundert Cent.",
+      "Ein Euro, das ist hundert Cent.",
+      "Hundert Cent, das ist ein Euro.",
+      "Ein Euro: hundert Cent."
+     ]
+    },
+    {
+     "kart": "lx:sechzig",
+     "de": "Sechzig Euro? Ich zahle mit Karte.",
+     "tr": "Altmış avro mu? Kartla ödüyorum.",
+     "accepted": [
+      "Sechzig Euro? Ich zahle mit Karte.",
+      "Sechzig Euro? Ich zahle mit der Karte.",
+      "Ich zahle mit Karte: sechzig Euro."
+     ]
+    },
+    {
+     "kart": "lx:sechzig",
+     "de": "Sechzig Euro, bar oder mit Karte?",
+     "tr": "Altmış avro; nakit mi, kartla mı?",
+     "accepted": [
+      "Sechzig Euro, bar oder mit Karte?",
+      "Bar oder mit Karte? Sechzig Euro.",
+      "Das macht sechzig Euro. Bar oder mit Karte?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Stadler fırını, kasa. İki ekmeği kartla ödemek istiyorsun.",
+    "satirlar": [
+     {
+      "r": "ch:stadler",
+      "de": "Sieben Euro vierzig. Bar oder mit Karte?",
+      "tr": "Yedi avro kırk. Nakit mi, kartla mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Mit Karte, bitte, Frau Stadler.",
+      "tr": "Kartla, lütfen Stadler Hanım."
+     },
+     {
+      "r": "ch:stadler",
+      "de": "Heute geht Karte nicht.",
+      "tr": "Bugün kart olmuyor."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Okay, ich zahle bar.",
+      "tr": "Tamam, nakit ödüyorum."
+     }
+    ],
+    "soru": {
+     "q_tr": "Sonunda nasıl ödüyorsun?",
+     "opts": [
+      "Kartla",
+      "Nakit",
+      "Ödemiyorsun",
+      "Ioana ödüyor"
+     ],
+     "ans": 1
+    }
+   }
+  },
+  {
+   "id": "m1:04:h5",
+   "title_tr": "Pazarda: elma, peynir ve yaş",
+   "kartlar": [
+    "lx:Apfel",
+    "lx:Kilo",
+    "lx:Käse",
+    "lx:alt",
+    "lx:einundzwanzig"
+   ],
+   "kaliplar": [
+    {
+     "de": "ein Kilo Äpfel – zwei Kilo Äpfel",
+     "tr": "bir kilo elma – iki kilo elma"
+    },
+    {
+     "de": "Ich bin … Jahre alt. – Wie alt sind Sie?",
+     "tr": "… yaşındayım. – Kaç yaşındasınız?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Apfel",
+     "de": "Ein Apfel? Nein, zwei Äpfel, bitte.",
+     "tr": "Bir elma mı? Hayır, iki elma lütfen.",
+     "accepted": [
+      "Ein Apfel? Nein, zwei Äpfel, bitte.",
+      "Ein Apfel? Nein, bitte zwei Äpfel.",
+      "Ein Apfel? Nein, zwei, bitte."
+     ]
+    },
+    {
+     "kart": "lx:Apfel",
+     "de": "Der Apfel kostet fünfzig Cent? Nicht teuer!",
+     "tr": "Elma elli sent mi? Pahalı değil!",
+     "accepted": [
+      "Der Apfel kostet fünfzig Cent? Nicht teuer!",
+      "Kostet der Apfel fünfzig Cent? Nicht teuer!",
+      "Der Apfel kostet fünfzig Cent? Das ist nicht teuer!",
+      "Ein Apfel kostet fünfzig Cent? Nicht teuer!"
+     ]
+    },
+    {
+     "kart": "lx:Kilo",
+     "de": "Ein Kilo Äpfel? Zwei Euro neunzig.",
+     "tr": "Bir kilo elma mı? İki avro doksan.",
+     "accepted": [
+      "Ein Kilo Äpfel? Zwei Euro neunzig.",
+      "Ein Kilo Äpfel? Das kostet zwei Euro neunzig.",
+      "Ein Kilo Äpfel? Das macht zwei Euro neunzig."
+     ]
+    },
+    {
+     "kart": "lx:Kilo",
+     "de": "Drei Kilo? Nein, ein Kilo, bitte.",
+     "tr": "Üç kilo mu? Hayır, bir kilo lütfen.",
+     "accepted": [
+      "Drei Kilo? Nein, ein Kilo, bitte.",
+      "Drei Kilo? Nein, bitte ein Kilo.",
+      "Nicht drei Kilo, sondern ein Kilo, bitte."
+     ]
+    },
+    {
+     "kart": "lx:Käse",
+     "de": "Wie viel kostet der Käse, bitte?",
+     "tr": "Peynir ne kadar, lütfen?",
+     "accepted": [
+      "Wie viel kostet der Käse, bitte?",
+      "Bitte, wie viel kostet der Käse?",
+      "Wie viel kostet bitte der Käse?"
+     ]
+    },
+    {
+     "kart": "lx:Käse",
+     "de": "Ein Kilo Käse kostet achtzehn Euro? Das ist teuer!",
+     "tr": "Bir kilo peynir on sekiz avro mu? Bu pahalı!",
+     "accepted": [
+      "Ein Kilo Käse kostet achtzehn Euro? Das ist teuer!",
+      "Kostet ein Kilo Käse achtzehn Euro? Das ist teuer!",
+      "Ein Kilo Käse kostet achtzehn Euro? Teuer!"
+     ]
+    },
+    {
+     "kart": "lx:alt",
+     "de": "Luka ist vierzig Jahre alt.",
+     "tr": "Luka kırk yaşında.",
+     "accepted": [
+      "Luka ist vierzig Jahre alt.",
+      "Luka ist vierzig.",
+      "Vierzig Jahre alt ist Luka."
+     ]
+    },
+    {
+     "kart": "lx:alt",
+     "de": "Wie alt sind Sie, Luka? Vierzig?",
+     "tr": "Kaç yaşındasınız Luka? Kırk mı?",
+     "accepted": [
+      "Wie alt sind Sie, Luka? Vierzig?",
+      "Luka, wie alt sind Sie? Vierzig?",
+      "Wie alt sind Sie, Luka? Sind Sie vierzig?"
+     ]
+    },
+    {
+     "kart": "lx:einundzwanzig",
+     "de": "Zwölf? Nein, einundzwanzig – zwei, eins.",
+     "tr": "On iki mi? Hayır, yirmi bir: iki, bir.",
+     "accepted": [
+      "Zwölf? Nein, einundzwanzig – zwei, eins.",
+      "Nicht zwölf, sondern einundzwanzig – zwei, eins.",
+      "Nein, nicht zwölf – einundzwanzig. Zwei, eins."
+     ]
+    },
+    {
+     "kart": "lx:einundzwanzig",
+     "de": "Ich bin nicht einundzwanzig, Tobi!",
+     "tr": "Yirmi bir yaşında değilim Tobi!",
+     "accepted": [
+      "Ich bin nicht einundzwanzig, Tobi!",
+      "Tobi, ich bin nicht einundzwanzig!",
+      "Ich bin nicht einundzwanzig Jahre alt, Tobi!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Şehir meydanında meyve tezgâhı. Brandl Hanım elma alıyor ve sana fiyatları söylüyor.",
+    "satirlar": [
+     {
+      "r": "ch:brandl",
+      "de": "Ein Apfel: fünfzig Cent. Ein Kilo: zwei Euro neunzig.",
+      "tr": "Bir elma elli sent. Bir kilo iki avro doksan."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Sechs Äpfel? Oder ein Kilo?",
+      "tr": "Altı elma mı? Yoksa bir kilo mu?"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Ein Kilo! Das ist nicht teuer.",
+      "tr": "Bir kilo! O pahalı değil."
+     }
+    ],
+    "soru": {
+     "q_tr": "Altı elmayı tek tek alırsan kaç para ödersin?",
+     "opts": [
+      "2,90 avro",
+      "3 avro",
+      "50 sent",
+      "6 avro"
+     ],
+     "ans": 1,
+     "cikarim": true
+    }
+   }
+  }
+ ]
+}
