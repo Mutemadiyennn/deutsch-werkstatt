@@ -196,7 +196,7 @@ function Tablo({ t, onNext }: { t: TemelDers; onNext: () => void }) {
   const tb = t.table!;
   return (
     <section class="card stack fade" data-test="ders-tablo">
-      <div class="kicker">{tb.baslik_tr}</div>
+      <div class="kicker icerik">{tb.baslik_tr}</div>
       <div style={{ overflowX: "auto" }}>
         <table class="tbl"><thead><tr>{tb.sutunlar.map((c) => <th>{c}</th>)}</tr></thead>
           <tbody>{tb.satirlar.map((r) => <tr>{r.map((c, j) => <td lang={j === 0 ? "de" : undefined}>{j === 0 ? <button class="wordtap" onClick={() => void speak(c, "de", "normal")}>{c}</button> : c}</td>)}</tr>)}</tbody></table>
@@ -224,7 +224,7 @@ function Diyalog({ d, onNext }: { d: NonNullable<TemelDers["dialogue"]>; onNext:
   const [altyazi, setAltyazi] = useState(false);
   return (
     <section class="card stack fade" data-test="ders-diyalog">
-      <div class="kicker">{d.title_tr}</div>
+      <div class="kicker icerik">{d.title_tr}</div>
       <p class="small">{altyazi ? "Şimdi metinle birlikte dinle." : "Önce yalnızca dinle: kim ne istiyor? Kelimelerin hepsini anlaman gerekmiyor."}</p>
       <div class="row"><button class="btn primary grow" data-test="diyalog-dinle" onClick={() => { setDinledi(true); void cal(d.lines.map((l) => l.de)); }}>{dinledi ? "Bir daha dinle" : "Dinle"}</button>
         <button class="btn grow" onClick={() => { setDinledi(true); void cal(d.lines.map((l) => l.de), "slow"); }}>Yavaş</button></div>
@@ -253,7 +253,7 @@ function Dinleme({ l, onNext }: { l: TemelDers["listening"][number]; onNext: (s:
   const soru = l.qs[q];
   return (
     <section class="card stack fade" data-test="ders-dinleme">
-      <div class="kicker">{l.title_tr}</div>
+      <div class="kicker icerik">{l.title_tr}</div>
       <div class="row"><button class="btn primary grow" data-test="dinle" onClick={() => cal(l.speed === "slow" ? "slow" : "normal")}>Dinle</button>
         {l.speeds.includes("slow") && l.speeds.length > 1 && <button class="btn grow" onClick={() => cal("slow")}>Yavaş</button>}</div>
       {!dinledi && !E2E ? <p class="small muted">Önce dinle; sorular sonra gelecek.</p> : soru ? (

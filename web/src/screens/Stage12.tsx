@@ -155,7 +155,7 @@ export function HearSection({ ctx, finish, back, setSub }: SP & { setSub: (n: pr
   if (phase === "listen") return (
     <div class="stack fade" data-test="stage-intro">
       <section class="card hero stack">
-        <div class="kicker">Önce duy · {s.dialogues[0]?.title_tr || s.title_tr}</div>
+        <div class="kicker icerik">Önce duy · {s.dialogues[0]?.title_tr || s.title_tr}</div>
         <p style={{ margin: 0 }}>{subs ? "Şimdi altyazılı dinle: kelimeleri bağlam içinde gör." : "Önce gerçek konuşmayı altyazısız dinle. Her şeyi anlaman gerekmiyor; ne olduğunu yakalamaya çalış."}</p>
         {/* altyazılı dinleme (phases/09 md. 1): altyazıya geçince diyalog kendiliğinden çalar; burada yeniden çalınır */}
         {subs && <div class="row">{playing
@@ -289,7 +289,7 @@ function IfadeCard({ c, accent, onPass }: { c: Card; accent: string; onPass: (ho
         {!c.alltag && c.exp && <Chips parts={c.exp.parcalar} />}
         {c.alltag && <AlltagPanel de={c.alltag} note={c.use} exp={c.alltagExp} playing={busy === "a"} onPlay={() => play(c.alltag!, "natural", "a")} onWhy={tips.length ? () => setWhy(true) : undefined} />}
         {!c.alltag && tips.length > 0 && <button class="whylink" onClick={() => setWhy(true)} data-test="why-open">Neden böyle?</button>}
-        {c.bair && <div class="row bairline" style={{ flexWrap: "nowrap" }}><span class="badge bair">Bairisch</span><span class="grow de" lang="de">{c.bair.text}</span>{c.bair.status === "uncertain" && <span class="tiny muted">bölgeye göre değişebilir</span>}</div>}
+        {c.bair && <div class="row bairline" style={{ flexWrap: "nowrap" }}><span class="badge bair" lang="de">Bairisch</span><span class="grow de" lang="de">{c.bair.text}</span>{c.bair.status === "uncertain" && <span class="tiny muted">bölgeye göre değişebilir</span>}</div>}
         {!c.alltag && !c.exp && c.use && <p class="small muted" style={{ margin: 0 }}><Rich text={c.use} /></p>}
         {c.family.length > 0 && <div><div class="famlbl">Aynı aileden</div><div class="famchips">{c.family.map((f, k) => <span class={`chip${k === 0 ? " cur" : ""}`} lang="de">{f}</span>)}</div></div>}
         {c.words.length > 0 && <div class="wordinfo" data-test="word-info">{c.words.map((w) => <div lang="de">{w}</div>)}</div>}

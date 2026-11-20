@@ -201,6 +201,10 @@ def main():
             if page.locator("[data-test=section-done]").count(): break
             if page.locator("[data-test=play-all]").count():
                 check(not page.locator(".card .de-lg[lang=de]").count(), "dinleme öncesi metin gösterilmiyor")
+                if li_i == 0 and q_i == 0:
+                    # inceleme #158 P1: dinleme başlığı içerikten gelir; büyük harfe çevrilmez
+                    tt = page.evaluate("() => { const k = [...document.querySelectorAll('.kicker')].find((x) => x.textContent.startsWith('Dinle ·')); return k ? [k.className, getComputedStyle(k).textTransform] : null; }")
+                    check(tt is not None and "icerik" in tt[0] and tt[1] == "none", f"dinleme başlığı içerik kicker'ı, büyük harf dönüşümü yok ({tt})")
                 page.click("[data-test=to-questions]"); q_i = 0; continue
             if page.locator("button.opt[data-opt]:not([disabled])").count():
                 kick = page.locator(".card .kicker").first.text_content()

@@ -110,6 +110,8 @@ p { margin: 0 0 8px; }
 .card.hero .kicker { color: rgba(255, 255, 255, 0.85); }
 .card.err { border: 1px solid var(--bad); }
 .kicker { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; margin-bottom: 4px; }
+/* içerikten gelen başlık (Türkçe + Almanca ad karışık): büyük harfe çevrilmez; Türkçe yerelde "PİCHLER", "HEİSSE" olmasın (inceleme #150 P2) */
+.kicker.icerik { text-transform: none; letter-spacing: 0.02em; }
 
 /* düğmeler (v1: 3B, alt kenar gölgesi, 800 ağırlık) */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 10px 20px; border-radius: 16px; border: 0;
@@ -700,3 +702,17 @@ html:has(.actionbar) .toast { bottom: auto; top: calc(var(--safe-top) + 12px); }
 .ornek-cumle [lang="de"] { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: normal; }
 /* "Daha fazla" açılınca son satır eylem çubuğunun üstünde tam görünür (PM 7026866757-3) */
 .esdizim-daha li { scroll-margin-bottom: calc(var(--actionbar-h) + var(--safe-bottom) + 16px); }
+
+/* D-123: sığmayan tanıtım kartında kelime + Dinle solda, görsel sağda kare (ayrı satır tutmaz); atıf sarılır (kesilmez: CC BY) */
+/* PM 7041856903: tanıtım başlığı (iki düzende de) tek satır, hecelenmez; sığmazsa Garden yazı boyunu 28 → 24 → 21 px küçültür */
+.nowrap { white-space: nowrap; }
+.kk-anlam > * + * { margin-top: 2px; }
+.kk-baslik { white-space: nowrap; hyphens: none; -webkit-hyphens: none; overflow: hidden; }
+.kelime-kare { display: grid; grid-template-columns: minmax(0, 1fr) 104px; gap: 12px; align-items: start; }
+.kelime-kare .kk-sol > * + * { margin-top: 8px; }
+/* görsel sağ sütunda; atıf satırı ızgaranın altında tam genişlikte tek satır (figure kutusu açılır) */
+.kelime-kare figure { display: contents; }
+.kelime-kare figure img { grid-column: 2; grid-row: 1; }
+.kelime-kare figcaption { grid-column: 1 / -1; grid-row: 2; margin-top: -4px; }
+/* kare düzende kart içi aralık biraz sıkı (yalnızca sığmayan uzun kartlar) */
+section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }

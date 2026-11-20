@@ -134,10 +134,11 @@ def launch(p, color_scheme="light", viewport=None, service_workers="block"):
 IPTAL = []
 def _sayfa_hatasi(page, e):
     """WebKit, test sayfayı yeniden yüklerken ya da gezinirken iptal ettiği içerik isteğini (yalnızca /content/ altındaki
-    JSON) "due to access control checks" sayfa hatası olarak bildirir; uygulama hatası değildir (inceleme #66 3. tur).
+    JSON ve sahte sunucunun /v1/health yoklaması) "due to access control checks" sayfa hatası olarak bildirir; uygulama hatası değildir (inceleme #66 3. tur).
     Bunlar ayrı sayılır ve raporlanır; başka her sayfa hatası testi kırar."""
     m = str(e)
-    if re.search(r"/content/\S+\.json due to access control checks", m):
+    # sahte sunucunun sağlık yoklaması (GET /v1/health) da sayfa yeniden yüklenirken aynı biçimde iptal edilir (#152, #159 CI)
+    if re.search(r"/content/\S+\.json due to access control checks", m) or re.search(r"/api\.e2e\.test/v1/health due to access control checks", m):
         IPTAL.append(m); print("   (iptal edilen içerik isteği, WebKit:", m[-90:], ")"); return
     ERR.append("sayfa hatası: " + m)
 

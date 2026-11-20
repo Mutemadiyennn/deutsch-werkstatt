@@ -29,7 +29,7 @@ export function DeLine({ de, tr, layer, size = "lg", speed, showTr = true }: { d
   return (
     <div class="row" style={{ flexWrap: "nowrap", alignItems: "flex-start" }}>
       <div class="grow">
-        {layer && <span class={`badge ${layer}`}>{layer === "hd" ? "Hochdeutsch" : layer === "alltag" ? "Alltag" : "Bairisch"}</span>}
+        {layer && <span class={`badge ${layer}`} lang="de">{layer === "hd" ? "Hochdeutsch" : layer === "alltag" ? "Alltag" : "Bairisch"}</span>}
         <div lang="de" class={size === "xl" ? "de-xl" : size === "lg" ? "de-lg" : "de"}>{de}</div>
         {showTr && tr && <div class="tr2">{tr}</div>}
       </div>
