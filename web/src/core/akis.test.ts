@@ -116,3 +116,39 @@ describe("Halka planlayıcısı (AKIS AK-2, AK-3, AK-9)", () => {
     for (const t of TOHUMLAR.slice(0, 10)) for (const d of plan(t, "yuzde30").duraklar.filter((x) => x.tur === "halka")) expect(d.adimlar.at(-1)!.tur, `${t} ${d.id}`).toBe("sahne");
   });
 });
+
+/** PM 7046461673: 1. gün plan dökümü (durak durak, adım adım). K1 süre ölçütü cihaz ölçümüne kadar YALNIZ RAPOR: test düşürmez.
+ *  Dökümü yazmak için: DW_PLAN_DOKUM=docs/v2/qa/akis/gun-01-plan.md npx vitest run web/src/core/akis.test.ts -t dökümü */
+describe("1. gün plan dökümü (PM 7046461673)", () => {
+  it("dökümü üretilir; K1 süreleri yalnız raporlanır", async () => {
+    const p = plan("1:dokum", "sifir");
+    const sat: string[] = [];
+    sat.push(`# 1. gün planı: döküm (tohum \`${p.tohum}\`, öğrenci durumu: sıfır)`, "");
+    sat.push(`> Kendiliğinden üretildi: \`web/src/core/akis.test.ts\` ("1. gün plan dökümü"). Girdi: gerçek içerik + İÇ'in 1. gün halka önerisi (\`content/tools/fixtures/m1/halkalar-gun-01.json\`, #165). Süreler \`policy.akis.adim_sn\` tahminidir; **K1 ölçütü ilk cihaz ölçümüne kadar yalnız rapor** (PM 7046461673). Video ve ısınma durakları henüz yok.`, "");
+    const seans = new Map<number, number>();
+    for (const d of p.duraklar) seans.set(d.seans, (seans.get(d.seans) ?? 0) + d.tahmini_dk);
+    sat.push(`**Toplam:** ${p.toplam_dk.toFixed(1)} dk · ${[...seans].map(([s, dk]) => `seans ${s}: ${dk.toFixed(1)} dk`).join(" · ")} · politika seans aralığı ${POLITIKA.seans_dk[0]}–${POLITIKA.seans_dk[1]} dk (rapor)`, "");
+    if (p.gevseme.length) sat.push(`**Gevşeme (K4):** ${p.gevseme.map((g) => `${g.kural}${g.kart ? ` (${g.kart})` : ""} @ ${g.yer}`).join(" · ")}`, "");
+    if (p.neden.length) sat.push(`**Plan notları:** ${p.neden.join(" · ")}`, "");
+    let n = 0;
+    for (const d of p.duraklar) {
+      sat.push(`## Seans ${d.seans} · ${d.tur} · ${d.title_tr}${d.parca ? ` (parça ${d.parca})` : ""}: ${d.tahmini_dk.toFixed(1)} dk`, "");
+      sat.push(`_${d.neden}_${d.eski_anahtar ? ` · eski anahtar \`${d.eski_anahtar}\`` : ""}`, "");
+      if (!d.adimlar.length) { sat.push("(adımsız durak: mevcut ekran)", ""); continue; }
+      sat.push("| # | tür | kip | kart(lar) | cümle | sn | kaynak | neden |", "|---|---|---|---|---|---|---|---|");
+      for (const a of d.adimlar) {
+        n++;
+        sat.push(`| ${n} | ${a.tur} | ${a.kip} | ${a.kartlar.join(", ")} | ${(a.cumle ?? "").replace(/\|/g, "/")} | ${a.sn} | ${a.kaynak}${a.ders ? ` (${a.ders.id})` : ""} | ${a.neden.replace(/\|/g, "/")} |`);
+      }
+      sat.push("");
+    }
+    expect(n).toBeGreaterThan(0);
+    const hedef = process.env.DW_PLAN_DOKUM;
+    if (hedef) {
+      const { writeFileSync, mkdirSync } = await import("node:fs");
+      const { dirname } = await import("node:path");
+      mkdirSync(dirname(join(ROOT, hedef)), { recursive: true });
+      writeFileSync(join(ROOT, hedef), sat.join("\n"));
+    }
+  });
+});
