@@ -19,10 +19,12 @@ export interface Env {
   /** İsteğe bağlı sabit model tercihi (virgülle, öncelik sırası); boşsa listeden en yeni flash seçilir */
   GEMINI_MODELS?: string;
   /**
-   * Yapay zekâ sağlayıcısı (PM-019, D-093). "gemini" dışındaki her değer (boş dahil) = kapalı:
-   * Gemini AEA şartı ve güvenilmezlik nedeniyle kapatıldı; kod silinmedi. Katman 2 (Workers AI) doğrulanınca ayrı değer alır.
+   * Yapay zekâ sağlayıcısı (PM-019, D-093): "workers-ai" (PM 7022002310-5, deneme) ya da "gemini" (kapalı; kod duruyor).
+   * Başka her değer (boş dahil) = kapalı.
    */
   AI_PROVIDER?: string;
+  /** Workers AI bağlamı (wrangler.toml [ai]); anahtar gerekmez, ücretsiz pay (PM 7022002310-5) */
+  AI?: { run(model: string, input: unknown): Promise<any> };
   /** Kota sayaçları */
   QUOTA: KV;
 }
