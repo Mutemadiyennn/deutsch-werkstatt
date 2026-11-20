@@ -100,9 +100,9 @@ export function DrillView({ d, sira, onDone, artikel }: { d: Drill; sira?: strin
       {!v && (d.k === "order" ? <OrderChips target={d.accepted[0]!} given={d.de} onSubmit={(a) => submit(a, "typed")} /> : <ActionBar><AnswerField onSubmit={submit} /></ActionBar>)}
       {v && <ActionBar>
         {v.kind === "correct" ? <FeedbackBand kind="ok" title="Doğru."><span lang="de">{v.a}</span>{v.note && <div class="small" data-test="yazim-notu">{v.note}</div>}</FeedbackBand>
-          : v.kind === "unchecked" ? <FeedbackBand kind="info" title="Bu cevabı kendim kontrol edemedim.">
+          : v.kind === "unchecked" ? <FeedbackBand kind="info" title="Uygulama bu cevabı denetleyemedi.">
               <div class="small">Senin cevabın: <span lang="de">{v.a}</span></div><div>Örnek: <b lang="de">{v.best}</b></div>
-              <div class="small">İkisi aynı şeyi mi söylüyor? Emin değilsen örneği öğren.</div></FeedbackBand>
+              <div class="small">Senin cümlen ile örnek aynı şeyi söylüyor mu? Emin değilsen örneği öğren.</div></FeedbackBand>
           : <FeedbackBand kind="bad" title="Doğrusu:"><YanlisIci dogrusu={v.best} cevap={v.a}>
               {v.note && <div class="small">{v.note}</div>}{d.why_tr && <div class="small"><Rich text={d.why_tr} /></div>}</YanlisIci></FeedbackBand>}
         {v.kind === "unchecked"
