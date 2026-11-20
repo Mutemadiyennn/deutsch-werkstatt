@@ -2,7 +2,7 @@ import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vites
 
 /** PM 7042161522-1: "Yavaş" duyulur olsun; yavaşlamayan ses yedeğe ya da gruplu okumaya düşer */
 const oku: { text: string; rate: number; ses: string | null }[] = [];
-const V = [["Anna", "de-DE"], ["Helena (Erweitert)", "de-DE"], ["Markus", "de-DE"], ["Yelda", "tr-TR"]].map(([name, lang]) => ({ name, lang, voiceURI: name, localService: true, default: false }));
+const V = [["Anna", "de-DE"], ["Helena (Erweitert)", "de-DE"], ["Markus", "de-DE"], ["Viktor", "de-DE"], ["Deutsch X", "de-DE"], ["Yelda", "tr-TR"]].map(([name, lang]) => ({ name, lang, voiceURI: name, localService: true, default: false }));
 const depo = new Map<string, string>();
 beforeAll(() => {
   class U {
@@ -83,6 +83,51 @@ describe("Yavaş hızı (PM 7042161522-1)", () => {
     const p = speak("eins zwei drei vier fünf sechs sieben acht neun", "de", "slow", true, ses("Markus"));
     await new Promise((r) => setTimeout(r, 10)); stopSpeaking(); await p;
     expect(oku.length).toBe(1);
+  });
+  it("gruplu okuma: duraklama içinde durdurulunca ya da yeni konuşma gelince sonraki grup okunmaz (inceleme #162 P1-1)", async () => {
+    const { speak, stopSpeaking, hizKaydet, GRUP_ARA_MS } = await import("./speech.ts");
+    hizKaydet("Markus", { normalMs: 3000, yavasMs: 3000, rate: 0.5 });
+    // ilk grup ~25 ms çalar; durdurma duraklamanın ortasında
+    const p = speak("eins zwei drei vier fünf sechs", "de", "slow", true, ses("Markus"));
+    await new Promise((r) => setTimeout(r, 25 + GRUP_ARA_MS / 2)); stopSpeaking(); await p;
+    expect(oku.map((o) => o.text)).toEqual(["eins zwei drei"]);
+    oku.length = 0;
+    const q = speak("eins zwei drei vier fünf sechs", "de", "slow", true, ses("Markus"));
+    await new Promise((r) => setTimeout(r, 25 + GRUP_ARA_MS / 2));
+    await speak("Hallo.", "de", "normal", true, ses("Anna")); await q;
+    expect(oku.map((o) => o.text)).toEqual(["eins zwei drei", "Hallo."]);
+  });
+  it("yedek ses sahnedeki öteki konuşanın sesi olamaz; cinsi bilinmeyen ses öteki cinse düşmez (inceleme #162 P1-2)", async () => {
+    const { speakDizi, hizKaydet, yavaslayanSes, cihazSesleri } = await import("./speech.ts");
+    hizKaydet("Markus", { normalMs: 3000, yavasMs: 3000, rate: 0.5 });
+    hizKaydet("Viktor", { normalMs: 3000, yavasMs: 4800, rate: 0.5 });
+    const v = (ad: string) => cihazSesleri().find((x) => x.name === ad);
+    expect(yavaslayanSes(v("Markus"))!.name).toBe("Viktor");
+    expect(yavaslayanSes(v("Markus"), new Set(["Viktor"]))).toBeUndefined();
+    // cinsi bilinmeyen ses yavaşlamıyorsa kadın/erkek sese düşmez
+    hizKaydet("Anna", { normalMs: 3000, yavasMs: 4800, rate: 0.5 });
+    hizKaydet("Deutsch X", { normalMs: 3000, yavasMs: 3000, rate: 0.5 });
+    expect(yavaslayanSes(v("Deutsch X"))).toBeUndefined();
+    // dizi: iki erkek konuşan Markus ve Viktor'da → Markus'un satırı Viktor'a düşmez (gruplu, Markus), Viktor'unki Viktor
+    const { konusanAta } = await import("./speech.ts");
+    const m = konusanAta(["Herr Lechner", "Herr Weber"]);
+    const markusKim = [...m].find(([, a]) => a.ses?.name === "Markus")?.[0];
+    const viktorKim = [...m].find(([, a]) => a.ses?.name === "Viktor")?.[0];
+    expect(markusKim && viktorKim).toBeTruthy();
+    oku.length = 0;
+    await speakDizi([{ de: "Guten Morgen.", kim: markusKim }, { de: "Morgen.", kim: viktorKim }], "slow");
+    expect(oku.map((o) => [o.text, o.ses])).toEqual([["Guten Morgen.", "Markus"], ["Morgen.", "Viktor"]]);
+  });
+  it("ölçüm durdurulursa geçersiz (null)", async () => {
+    const { olcCal, stopSpeaking } = await import("./speech.ts");
+    const p = olcCal("Guten Morgen.", V[0] as unknown as SpeechSynthesisVoice, 0.5);
+    stopSpeaking();
+    expect(await p).toBeNull();
+  });
+  it("kelimeGruplari: sıra sayısı ve kısaltma noktası grup sınırı değil", async () => {
+    const { kelimeGruplari } = await import("./speech.ts");
+    expect(kelimeGruplari("Der Termin ist am 3. Mai.")).toEqual(["Der Termin ist", "am 3. Mai."]);
+    expect(kelimeGruplari("Dr. Weber kommt z. B. morgen.")).toEqual(["Dr. Weber kommt", "z. B. morgen."]);
   });
   it("kelimeGruplari: noktalamada ve en çok 3 kelimede böler", async () => {
     const { kelimeGruplari } = await import("./speech.ts");

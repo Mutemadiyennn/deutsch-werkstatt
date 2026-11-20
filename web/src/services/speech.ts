@@ -108,11 +108,13 @@ export function yavasliyorMu(ad: string): boolean | undefined { const o = hizKay
 /** Tek cümleyi verilen ses ve hızla çalar; onstart→onend milisaniyesi (onstart hiç gelmezse çağrı→onend; zaman aşımında null) */
 export function olcCal(text: string, ses: SpeechSynthesisVoice | undefined, rate: number): Promise<number | null> {
   if (!ttsAvailable()) return Promise.resolve(null);
+  // stopSpeaking ya da yeni bir speak ölçümü geçersiz kılar (yarıda kesilen çalma ölçüm sayılmaz; inceleme #162 P2)
+  const no = ++konusmaNo;
   const yt = sesYolu() === "yerel" ? yerelTts() : undefined;
   if (yt) {
     // yerel yolda başlama olayı yok: çağrıdan bitişe (eklenti söz bitince çözülür)
     const t0 = performance.now(); speakingN++;
-    return soyleYerel(yt, sesMetni(text), "de-DE", ses ?? voiceFor("de"), rate).then((ok) => { speakingN = Math.max(0, speakingN - 1); return ok ? performance.now() - t0 : null; });
+    return soyleYerel(yt, sesMetni(text), "de-DE", ses ?? voiceFor("de"), rate).then((ok) => { speakingN = Math.max(0, speakingN - 1); return ok && no === konusmaNo ? performance.now() - t0 : null; });
   }
   speechSynthesis.cancel();
   return new Promise((res) => {
@@ -120,7 +122,7 @@ export function olcCal(text: string, ses: SpeechSynthesisVoice | undefined, rate
     u.lang = "de-DE"; if (ses) u.voice = ses; else { const v = voiceFor("de"); if (v) u.voice = v; }
     u.rate = rate;
     const t0 = performance.now(); let bas: number | null = null; let fin = false;
-    const bit = (ok: boolean) => { if (fin) return; fin = true; speakingN = Math.max(0, speakingN - 1); res(ok ? performance.now() - (bas ?? t0) : null); };
+    const bit = (ok: boolean) => { if (fin) return; fin = true; speakingN = Math.max(0, speakingN - 1); res(ok && no === konusmaNo ? performance.now() - (bas ?? t0) : null); };
     u.onstart = () => { bas = performance.now(); };
     u.onend = () => bit(true); u.onerror = () => bit(false);
     speakingN++;
@@ -128,18 +130,29 @@ export function olcCal(text: string, ses: SpeechSynthesisVoice | undefined, rate
     setTimeout(() => bit(false), 30000);
   });
 }
-/** Yavaşlamayan sesin yerine: aynı cinsten, ölçülmüş ve yavaşlayan Almanca ses (cinsiyet korunur; yoksa undefined) */
-export function yavaslayanSes(yerine: SpeechSynthesisVoice | undefined): SpeechSynthesisVoice | undefined {
+/**
+ * Yavaşlamayan sesin yerine: aynı cinsten (cinsi bilinmiyorsa yine cinsi bilinmeyen), ölçülmüş ve yavaşlayan Almanca ses.
+ * `dolu`: sahnedeki öteki konuşanların sesleri — yedek onlardan biri olamaz (PM-064: aynı sahnede iki konuşan aynı sesi almaz;
+ * inceleme #162 P1-2). Uygun ses yoksa undefined (gruplu okumaya düşülür).
+ */
+export function yavaslayanSes(yerine: SpeechSynthesisVoice | undefined, dolu: ReadonlySet<string> = new Set()): SpeechSynthesisVoice | undefined {
   const cins = yerine ? sesCinsi(yerine) : null;
-  return cihazSesleri().find((v) => almancaMi(v) && sesAnahtar(v) !== (yerine && sesAnahtar(yerine)) && yavasliyorMu(sesAnahtar(v)) === true && (cins === null || sesCinsi(v) === cins));
+  return cihazSesleri().find((v) => almancaMi(v) && sesAnahtar(v) !== (yerine && sesAnahtar(yerine)) && !dolu.has(v.name) && yavasliyorMu(sesAnahtar(v)) === true && sesCinsi(v) === cins);
 }
-/** Hiçbir ses yavaşlamıyorsa: cümle kelime gruplarına (noktalama, en çok 3 kelime) bölünür, aralarına duraklama konur */
+/**
+ * Hiçbir ses yavaşlamıyorsa: cümle kelime gruplarına (noktalama, en çok 3 kelime) bölünür, aralarına duraklama konur.
+ * Sıra sayısı ("3.") ve kısaltma ("Dr.", "z.", "B.") noktası grup sınırı değildir (inceleme #162 P2).
+ */
+const NOKTA_SINIR_DEGIL = /^(\d+|[A-Za-zÄÖÜäöü]{1,3})\.$/;
 export function kelimeGruplari(t: string): string[] {
-  const out: string[] = [];
-  for (const parca of t.split(/(?<=[,;:.!?])\s+/)) {
-    const k = parca.split(/\s+/).filter(Boolean);
-    for (let i = 0; i < k.length; i += 3) out.push(k.slice(i, i + 3).join(" "));
+  const out: string[] = []; let grup: string[] = [];
+  const bitir = () => { if (grup.length) out.push(grup.join(" ")); grup = []; };
+  for (const k of t.split(/\s+/).filter(Boolean)) {
+    grup.push(k);
+    const sinir = /[,;:!?]$/.test(k) || (k.endsWith(".") && !NOKTA_SINIR_DEGIL.test(k));
+    if (sinir || grup.length === 3) bitir();
   }
+  bitir();
   return out;
 }
 export const GRUP_ARA_MS = 350;
@@ -179,7 +192,10 @@ export async function speakDizi(lines: { de: string; speed?: Speed; kim?: string
   for (const l of lines) {
     if (iptal?.()) return;
     const sp = l.speed ?? speed;
-    await speak(l.de, "de", ilk && sp === "normal" ? "slow" : sp, true, l.kim ? sahne.get(l.kim) : undefined);
+    const kendi = l.kim ? sahne.get(l.kim) : undefined;
+    // yavaşta yedek ses sahnedeki öteki konuşanların sesine düşmesin (inceleme #162 P1-2)
+    const dolu = new Set([...sahne.values()].map((a) => a.ses?.name).filter((x): x is string => !!x && x !== kendi?.ses?.name));
+    await speak(l.de, "de", ilk && sp === "normal" ? "slow" : sp, true, kendi, dolu);
     if (ara) await new Promise((r) => setTimeout(r, ara));
   }
 }
@@ -188,7 +204,7 @@ export async function speakDizi(lines: { de: string; speed?: Speed; kim?: string
  * `kim`: konuşan (karakter kimliği ya da adı) ya da hazır atama; Almanca bölümler o sesle ve perdeyle okunur (PM-064).
  * "Yavaş" yalnızca `rate`i düşürür; ses ve perde değişmez.
  */
-export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed = "normal", kesin = false, kim?: string | Atama): Promise<void> {
+export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed = "normal", kesin = false, kim?: string | Atama, dolu?: ReadonlySet<string>): Promise<void> {
   const atama: Atama | undefined = typeof kim === "string" ? konusanAta([kim]).get(kim) : kim;
   if (!ttsAvailable()) return;
   text = sesMetni(text);
@@ -203,13 +219,17 @@ export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed
     let gruplu = false;
     // PM 7042161522-1: ölçülmüş ve yavaşlamayan ses → aynı cinsten yavaşlayan ses; o da yoksa gruplu okuma
     if (de && speed === "slow" && v && yavasliyorMu(sesAnahtar(v)) === false) {
-      const y = yavaslayanSes(v);
+      const y = yavaslayanSes(v, dolu);
       if (y) v = y; else gruplu = true;
     }
     const parcalar = gruplu ? kelimeGruplari(seg.text) : [seg.text];
     for (let i = 0; i < parcalar.length; i++) {
       if (iptalNo !== konusmaNo) return;
-      if (i > 0) await new Promise((r) => setTimeout(r, GRUP_ARA_MS));
+      if (i > 0) {
+        await new Promise((r) => setTimeout(r, GRUP_ARA_MS));
+        // duraklama içinde durdurulduysa ya da yeni konuşma başladıysa sonraki grup okunmaz (inceleme #162 P1-1)
+        if (iptalNo !== konusmaNo) return;
+      }
       const dil = de ? "de-DE" : "tr-TR", hiz = de ? RATE[speed] : 1, perde = de && atama ? atama.pitch : undefined;
       if (yt) { speakingN++; await soyleYerel(yt, parcalar[i]!, dil, v, hiz, perde); speakingN = Math.max(0, speakingN - 1); }
       else await soyle(parcalar[i]!, dil, v, hiz, perde);
