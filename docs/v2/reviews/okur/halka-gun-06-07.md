@@ -298,3 +298,36 @@ Neden geri: "Dr. Weber'le" için `mit` yazdım; `sprechen` kartında "doktorla k
 **N6 — Gün 7 `h1/g4`.** Türkçe "Ben" ile başladığı için `Ich bin …` yazdım, listede. `müde` kartının örneği ("İşten sonra hep yorgun oluyorum") zamanla başlıyor; o yoldan giden biri `Am Abend bin ich oft müde.` yazabilir. Bu biçim listede yok.
 
 **N7 — Gün 6 `h3/kalıp 2`.** "Muayenehaneye" ve "Doktora" için iki ayrı küçük kelime var, Türkçe ikisini ayırmıyor. Bu günün görevlerinde yalnız "Doktora" yazdırılıyor; iki söz hazır blok olarak işini görüyor.
+
+## 2. tur
+
+Kaynak: `docs/v2/reviews/halka/gun-06-halkalar.json`, `gun-07-halkalar.json`; düzeltme listesi `gun-06-yazar.md` ve `gun-07-yazar.md` sonundaki "Okur 1. tur sonrası" bölümleri.
+Yalnız düzeltilen 6 satırı okudum. Bilinen küme 1. turdaki gibi. Her satırda ayrıca baktım: aynı halkadaki komşu satırlarla çelişki var mı, Türkçeden Almancaya yeni bir ikinci yol açıldı mı. Mekanik tarama: 6 satırda `=`, `;`, tırnak içinde Almanca yok, 14 kelimeden uzun cümle yok.
+
+| Gün | Satır | Yeni metin | Kendi sözlerimle | Karar | Gerekçe |
+|---|---|---|---|---|---|
+| 6 | h2/kalıp 2 | Ön adınız ne? – Soyadınız ne? | Birinin ön adını ve soyadını soruyorum. | geçer | Parantez, eşittir ve tırnak gitti; satırda tek fikir. "ne" için `Wie` geldiğini kalıbın Almancası gösteriyor. `wie` kartı da "Ad sorarken Wie denir, Was denmez" diyor. Uyarı kaybolmadı, yalnız yeri değişti. |
+| 6 | h2/g2 | Bu ne demek Pichler Bey? | Pichler Bey'e bir şeyin anlamını soruyorum. | geçer | `was` kartında "Bu ne demek?" `Was heißt das?` diye hazır; kalıp 1 de aynı. Yazdığım `Was heißt das, Herr Pichler?` listede. Başlık "Bu ne demek?" ile de uyuyor. |
+| 6 | h3/g5 | Nereye Brandl Hanım? Muayenehaneye mi? | Brandl Hanım'a nereye gittiğini soruyorum, muayenehaneye mi diye. | geçer | Kalıp 2 birebir: "Nereye? – Muayenehaneye." Yazdığım `Wohin, Frau Brandl? In die Praxis?` listede. Türkçede "gidiyorsunuz" yok, kartın `fahren` cümlesine gitmiyorum. "Muayenehaneye" için bildiğim tek yol `In die Praxis`; `Praxis` kartı da öyle veriyor. Komşu g6 ve sahne `gehst du` ile çelişmiyor. |
+| 6 | h5/g2 | Pazartesi günü neden olmuyor? (Türkçe aynı, kabul listesi büyüdü) | Pazartesinin neden uygun olmadığını soruyorum. | geçer | Yazdığım `Warum geht am Montag nicht?` artık listede. 1., 2. ve 5. günle aynı düzen. |
+| 6 | h5/g7 | Wimmer Bey çok sık ofiste. | Wimmer Bey neredeyse hep ofiste oluyor. | geçer | "çok sık" kalıp 1'de `Sehr oft`; "ofiste" 3. günden `im Büro`. Türkçenin sırasıyla yazınca `Herr Wimmer ist sehr oft im Büro.` çıkıyor, listede. "sık sık" (g5, `oft`) ile "çok sık" (`sehr oft`) ayrı duruyor, karışmadı. 1. günün `danke schön` kartına artık görev yolu yok. |
+| 7 | h3/g7 | Dr. Weber'le konuşabilir miyim lütfen? (Türkçe aynı, kabul listesi büyüdü) | Telefonda kibarca Dr. Weber'le görüşmek istiyorum. | geçer | Yazdığım `Kann ich mit Dr. Weber sprechen, bitte?` artık listede. |
+
+### 2. tur sonucu
+
+| | Gün 6 | Gün 7 | Toplam |
+|---|---|---|---|
+| 2. turda okunan | 5 | 1 | 6 |
+| Geçer | 5 | 1 | 6 |
+| Geri döner | 0 | 0 | 0 |
+| Dosyanın tamamı (1. tur + 2. tur) | 82 / 82 geçer | 67 / 67 geçer | 149 / 149 |
+
+Gün 6 (`gun-06-halkalar.json`): geri dönen satır yok, okur açısından "reviewed" olabilir (OD-9.4).
+Gün 7 (`gun-07-halkalar.json`): geri dönen satır yok, okur açısından "reviewed" olabilir (OD-9.4).
+
+### Takip (engel değil)
+
+- **T1 — G6 `h5/kalıp 2`** (değişmedi): "Çok teşekkürler!" karşısında hâlâ `Danke sehr`; 1. günün kartında aynı Türkçe `danke schön`. Bu Türkçeyi isteyen görev artık yok. İleride bir görev isterse K8 geri gelir.
+- **T2 — `lx:wohin` kartı:** "Nereye gidiyorsunuz?" karşısında `Wohin fahren Sie?` duruyor. İleride "Nereye gidiyorsunuz …?" diye bir görev gelirse K8 geri gelir.
+- **T3 — G6 `h2/g2`:** Almancası `bitte` taşıyor, Türkçede "lütfen" yok. Türkçenin sırasıyla yazılan `bitte`siz biçim listede, o yüzden engel değil. Adı başa alıp `bitte`siz yazan biri (`Herr Pichler, was heißt das?`) listede yok.
+- 1. turun N1–N7 notları değişmeden duruyor; tekrar yazmadım.
