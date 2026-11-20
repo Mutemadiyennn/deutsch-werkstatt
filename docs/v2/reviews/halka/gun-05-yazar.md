@@ -116,3 +116,9 @@ Kaynak: `docs/v2/reviews/okur/halka-gun-04-05.md` (Gün 5'te 5 geri dönüş; k�
 | h5 sahne s3 | tr | Memnuniyetle. Onu çeyrek geçe mi? | Memnuniyetle. Saat onu çeyrek geçe mi? (K6) |
 
 Denetim: `halka_kontrol.py` 0 hata, 0 not (4. günün son hâliyle); `kucuk_sozcuk.py` 0 hata.
+
+## PM 7052062209 kararları sonrası (İçerik Motoru)
+
+- **`zu` = "fazla"** (İÇ 5): h1 g4 „Saat on mu? Bu fazla geç.“, h1 g9 „Saat altıda mı? Bu fazla erken!“, h3 g8 „Akşam mı? Hayır, bu fazla geç.“ (4. günde h3 kalıbı, h3 g? ve h3 sahnesi aynı biçimde). Kartlar: `lx:teuer`, `lx:spät`, `lx:früh`, `lx:acht`, `lx:neun`, `lx:achtzehn` içindeki `zu …` Türkçeleri "fazla …"; `lx:sehr` uyarısı "fazla pahalı, yani gereğinden çok pahalı"; `lx:zu#2` ipucu "**sehr** çok demektir, **zu** ise fazla, yani gereğinden çok."; `gun-05.json` geri bildiriminde „(Bu fazla erken.)“. M1 dışındaki ≈40 kart örneği ayrı dilbilimci partisinde.
+- **(b) gün toplamı** (İÇ 1, rapor kipi): dünün kartlarından 3 cümle vardı (eşik 4). h2 g9 (`lx:nur`) „Nur zehn Minuten, Ioana!“ → „Der Apfel kostet nur fünfzig Cent.“ / „Elma yalnızca elli sent.“ (4. günün elma fiyatıyla aynı); kabul: „Nur fünfzig Cent kostet der Apfel.“, „Der Apfel? Nur fünfzig Cent.“ Şimdi 4.
+- **"zwo"** (İÇ 2): `lx:zwei` kartının ipucunda zaten var („Telefonda **drei** ile karışmasın diye **zwo** denir.“); 3. günün sahnesi ve provasında duyuluyor. Üretim istenmiyor. Kabul listelerine eklenemiyor (betik eşlemiyor).
