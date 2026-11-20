@@ -687,6 +687,7 @@ summary.ac-baslik h2 { margin: 0; }
 /* ikincil eylem bağlantısı (PM 7026866757-2): "Başka cümle", "Daha fazla" aynı üslupta — altı çizgisiz, aynı ağırlık, 44 pt */
 .ikincil-eylem { display: inline-flex; align-items: center; align-self: flex-start; min-height: 44px; padding: 0 2px; border: 0; background: none; color: var(--accent); font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; }
 /* örnek cümle tam genişlikte, kelime ortasından bölünmez (PM 7026866757-1) */
+.ornek-yigin { display: grid; } .ornek-yigin > * { grid-area: 1 / 1; } .ornek-yer { visibility: hidden; pointer-events: none; }
 .ornek-cumle [lang="de"] { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: normal; }
 /* "Daha fazla" açılınca son satır eylem çubuğunun üstünde tam görünür (PM 7026866757-3) */
 .esdizim-daha li { scroll-margin-bottom: calc(var(--actionbar-h) + var(--safe-bottom) + 16px); }

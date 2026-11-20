@@ -36,10 +36,14 @@ def main():
         check(pg.locator("[data-test=baska-cumle]").count() == 1, "tanıtımda 'Başka cümle' düğmesi")
         ctx.set_offline(True)
         ilk = pg.inner_text("[data-test=intro-ex]")
+        boy = lambda: pg.evaluate("() => [Math.round(document.querySelector('[data-test=garden-intro] section.card').getBoundingClientRect().height), document.documentElement.scrollHeight]")
+        boy0 = boy()
         goruldu, doms, kareler = [ilk], [], []
         for _ in range(7):  # ortanca 7 dokunuştan (CI'da tek tük yavaş kare; PM-069 P2-d)
             dom, kare, metin = degistir(pg, "[data-test=intro-ex]")
             doms.append(dom); kareler.append(kare); goruldu.append(metin)
+        # PM 7030294523 C: örnek alanı en uzun örnek kadar yer tutar → "Başka cümle"de kart ve sayfa yüksekliği değişmez
+        check(boy() == boy0, f"'Başka cümle'de kart ve sayfa zıplamıyor (kart, sayfa: {boy0} → {boy()})")
         check(len(set(goruldu[:3])) == 3, f"3 dokunuşta farklı cümleler ({[g[:30] for g in goruldu[:4]]})")
         # D-096 yöntemi: DOM her dokunuşta < 150 ms (sert), ilk kare 7 dokunuşun ortancası < 150 ms; en kötü kare raporda
         kortanca = sorted(kareler)[len(kareler) // 2]
