@@ -1,6 +1,6 @@
 import { fotoHaritasi, loadFoto, type FotoKayit } from "../services/content.ts";
 /** Oynatıcının ortak parçaları: cevap kutusu, karar gösterimi, "Bu ne demek?", "Almanca nasıl derim?", "Duyduğum kelime", fotoğraf */
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Lexeme, PhotoResult } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { ai, aiState } from "../services/ai.ts";
@@ -152,9 +152,13 @@ const lastShown = new Map<string, number>();
  * `sira` verilirse fotoğraf listedeki sırayla seçilir (PM-062: kartın gösterim sayacı; uygulama yeniden açılınca da döner).
  * Verilmezse oturum içinde bir önce gösterilenden farklısı.
  */
-export function Photo({ q, sira, yer, alt = "", enCok = 200, oran = "3 / 2" }: { q?: string; sira?: number; /** B12 3. parça: seçilmiş fotoğrafın yeri ("lx:Kelime#kart", "lx:Kelime#ornekN") */ yer?: string[]; /** Türkçe alt metin (kelimenin anlamı) */ alt?: string; /** en çok yükseklik (px) */ enCok?: number; /** en-boy oranı (tanıtımda sığmayan kartta kare, D-123) */ oran?: string }) {
+export function Photo({ q, sira, yer, alt = "", enCok = 200, oran = "3 / 2", onYok }: { q?: string; sira?: number; /** B12 3. parça: seçilmiş fotoğrafın yeri ("lx:Kelime#kart", "lx:Kelime#ornekN") */ yer?: string[]; /** Türkçe alt metin (kelimenin anlamı) */ alt?: string; /** en çok yükseklik (px) */ enCok?: number; /** en-boy oranı (tanıtımda sığmayan kartta kare, D-123) */ oran?: string;
+  /** #137 P2-1: fotoğraf yok ya da yüklenemedi (soru başlığı fotoğrafsız biçime döner) */ onYok?: () => void }) {
   const { api } = useApp();
-  const [p, setP] = useState<PhotoResult | null>(null);
+  const [p, setP0] = useState<PhotoResult | null>(null);
+  const yokRef = useRef(onYok); yokRef.current = onYok;
+  // sonuç "yok" olduğunda (bulunamadı, servis kapalı, görsel yüklenemedi) çağıran haberdar edilir
+  const setP = (x: PhotoResult | null) => { setP0(x); if (!x) yokRef.current?.(); };
   // seçilmiş fotoğrafın atfı (CC BY/BY-SA: yazar + kaynak sayfa + lisans bağlantısı; inceleme #121 P1-1)
   const [atif, setAtif] = useState<FotoKayit | null>(null);
   useEffect(() => {
