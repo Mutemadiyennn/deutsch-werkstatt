@@ -60,7 +60,7 @@ def main():
         # B5: aynı gün Bahçede görülen kelimeler derste yeniden tanıtılmaz; her biri en çok bir soru
         import re as _re
         atlanan = int((_re.search(r"(\d+) kelime", bahce_not) or [0, 0])[1])
-        check(atlanan > 0 and bahce_soru <= atlanan, f"B5: 1. gün Bahçede görülenler derste yeniden tanıtılmadı ({atlanan} kelime; Bahçe turu {bahce_soru} soru ≤ {atlanan})")
+        check(atlanan > 0 and 1 <= bahce_soru <= atlanan, f"B5: 1. gün Bahçede görülenler derste yeniden tanıtılmadı ({atlanan} kelime; Bahçe turu {bahce_soru} soru ≤ {atlanan})")
         check(pg.locator("[data-test=ders-bitti]").count() == 1, f"Seans 2 bitti ({k} adım)")
         # Seans 3: video + sesler
         n3 = 0

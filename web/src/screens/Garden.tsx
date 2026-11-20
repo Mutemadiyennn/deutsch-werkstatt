@@ -12,7 +12,7 @@ import { loadFoto, loadLexicon, loadM1Gun } from "../services/content.ts";
 import { bahceTamam, xpOku, xpVer } from "../services/ilerleme.ts";
 import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { XP, seri, yerelGun } from "../core/gun.ts";
-import { getMeta, itemsMap, metaPrefix, personalWords, putItems, setMeta } from "../data/db.ts";
+import { bahceGorulenEkle, getMeta, itemsMap, metaPrefix, personalWords, putItems, setMeta } from "../data/db.ts";
 import POLICY from "../policy.json" with { type: "json" };
 import { hizliGecis, review, sessionKey, type Outcome } from "../core/srs.ts";
 import { accepted, availableTypes, buildRound, fotoluKartlar, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, boslukSecimi, ertele, esdizimler, gosterilenCogul, tanitildi, gorulenKelimeler, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
@@ -149,6 +149,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
         const next = sinaBildi ? hizliGecis(data.items.get(q.lexId), q.lexId, sessionKey("garden", startedAt))
           : review(data.items.get(q.lexId), { itemId: q.lexId, kind: "lexeme", path: pathOf(tip), outcome, session: sessionKey("garden", startedAt), source: "drill", ctx: tip });
         next.lastQ = tip;
+        // B5: bugün Bahçede görülen kart derste yeniden tanıtılmaz (D-121)
+        void bahceGorulenEkle(q.lexId);
         if ((tip === "article" || tip === "colloc") && outcome === "correct") next.kopru = true;
         // PM-062: sonraki oturum gösterilen cümlenin ardından başlar (aynı cümleyle art arda açılmaz)
         next.exSeen = sonrakiExSeen(next, exi);

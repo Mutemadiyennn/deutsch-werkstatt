@@ -142,9 +142,10 @@ function Hatirla({ t, grup, onDone }: { t: DersGorunum; grup: number; onDone: (d
   const cur = sorular[q];
   // dinle → anlamını seç: kelime soru açılınca bir kez okunur
   useEffect(() => { if (cur?.tur === "anlam") void speak(cur.x.art ? `${cur.x.art} ${cur.x.de}` : cur.x.de, "de", "normal"); }, [q]);
+  // hook'lar erken dönüşten önce (inceleme #146 P2)
+  const [xpli, setXpli] = useState(0);
   if (!cur) return null;
   const sayi = `${q + 1}/${sorular.length}`;
-  const [xpli, setXpli] = useState(0);
   const bitir = (r: string) => { const d = dogru + (r !== "wrong" ? 1 : 0), x = xpli + (r === "correct" ? 1 : 0); if (q + 1 >= sorular.length) onDone(d, sorular.length, x); else { setDogru(d); setXpli(x); setQ(q + 1); } };
   if (cur.tur === "anlam") {
     const sec = hatirlaSecenek(t, grup, cur.x, cur.i);

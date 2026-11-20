@@ -176,6 +176,30 @@ describe("B5 döngüsüzlük: Bahçe → ders", () => {
     }
   });
 
+  it("inceleme #146: yalnız kelime kartı atlanır; cümle/kalıp kartı tanıtılır; tek doğru cevap; cevap cümlede bir kez", () => {
+    const nk = (x: string) => x.toLocaleLowerCase("tr").trim();
+    let cumleKarti = 0;
+    for (const d of dersler) {
+      const hepsi = new Set(d.teach.map((x) => x.lexeme!).filter(Boolean));
+      const plan = bahcePlani(d, hepsi, lex);
+      for (const id of plan.atla) { const x = d.teach.find((y) => y.id === id)!; expect(nk(x.de)).toBe(nk(lex.get(x.lexeme!)!.de)); }
+      cumleKarti += d.teach.filter((x) => x.lexeme && !plan.atla.includes(x.id)).length;
+      for (const b of plan.bahce) {
+        expect(b.opts.length).toBe(3);
+        const tr = (de: string) => d.teach.find((y) => y.de === de)!.tr;
+        const cev = nk(tr(b.cevap));
+        for (const o of b.opts.filter((o) => o !== b.cevap)) { expect(nk(tr(o))).not.toBe(cev); expect(b.de).not.toContain(o); }
+        expect(b.de.split("___").length).toBe(2);
+      }
+    }
+    // kelimeye bağlı cümle/kalıp kartları atlanmadı (ör. "Heute ist Montag.", saat kalıpları)
+    expect(cumleKarti).toBeGreaterThan(0);
+    // Stunde/Uhrzeit gibi Türkçesi iç içe kartlar birbirinin çeldiricisi olmaz
+    const saat = dersler.find((d) => d.id.includes("uhrzeit"))!;
+    const p = bahcePlani(saat, new Set(saat.teach.map((x) => x.lexeme!).filter(Boolean)), lex);
+    for (const b of p.bahce) if (b.cevap === "Stunde") expect(b.opts).not.toContain("Uhrzeit");
+  });
+
   it("hatırlama çeldiricileri az kart kalınca atlananlardan tamamlanır", () => {
     const plan = { atla: tage.teach.slice(1).map((x) => x.id), bahce: [] };
     const g = dersGorunum(tage, plan);

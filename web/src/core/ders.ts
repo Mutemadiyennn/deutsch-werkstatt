@@ -40,20 +40,31 @@ const kelimeRe = (w: string) => new RegExp(`(?<![\\p{L}\\p{N}])${w.replace(/[.*+
  * kurulur (Bahçenin ilk gösterdiği örnekten başka bir cümle: sondan seçilir). Geçmiyorsa soru yok (en çok bir kez = sıfır olabilir).
  */
 export function bahcePlani(t: TemelDers, bugun: ReadonlySet<string>, lex: ReadonlyMap<string, Lexeme> | null): { atla: string[]; bahce: BahceSoru[] } {
-  const atlanan = t.teach.filter((x) => x.lexeme && bugun.has(x.lexeme));
+  // inceleme #146 P1-1: yalnızca KELİME kartı atlanır (kartın kendisi sözlük kelimesi); kelimeye bağlı cümle/kalıp kartları
+  // ("Heute ist Montag.", "halb zehn") Bahçede görülmedi, derste tanıtılır. Sözlük yoksa hiçbir kart atlanmaz.
+  const kelimeKarti = (x: Kart) => { const l = x.lexeme ? lex?.get(x.lexeme) : undefined; return !!l && nk(x.de) === nk(l.de); };
+  const atlanan = t.teach.filter((x) => x.lexeme && bugun.has(x.lexeme) && kelimeKarti(x));
   const bahce: BahceSoru[] = [];
   atlanan.forEach((x, i) => {
     const l = x.lexeme ? lex?.get(x.lexeme) : undefined;
     const re = kelimeRe(x.de);
     // cümle bağlamı şart: boşluktan sonra en az iki kelime kalmalı (bütün cümle tek kart olan kalıplarda boşluk anlamsız)
     const baglam = (de: string) => (de.replace(re, " ").match(/\p{L}+/gu) ?? []).length >= 2;
-    const ex = [...(l?.examples ?? [])].reverse().find((e) => re.test(e.de) && baglam(e.de));
+    // cevap cümlede tek kez geçmeli (cümlenin başka yerinde görünürse soru cevabı ele verir)
+    const tekKez = (de: string) => (de.match(new RegExp(re.source, "gu")) ?? []).length === 1;
+    const ex = [...(l?.examples ?? [])].reverse().find((e) => re.test(e.de) && baglam(e.de) && tekKez(e.de));
     if (!ex) return;
     // çeldirici: aynı dersin öteki kartları (öğrenci bugün gördü ya da derste görecek), cevapla iç içe olmayanlar, yakındakiler önce
     const j = t.teach.indexOf(x);
-    const uygun = t.teach.filter((y) => y !== x && y.de !== x.de && !y.de.includes(x.de) && !x.de.includes(y.de) && !re.test(y.de) && y.de.split(" ").length === x.de.split(" ").length);
+    // tek doğru cevap (inceleme #146 P1-3): çeldiricinin Türkçesi cevabınkiyle aynı ya da iç içe olamaz (zwo/zwei, Stunde/Uhrzeit);
+    // çeldirici cümlede de geçmez
+    const trK = (s: string) => nk(s).split(" ").filter((w) => w.length >= 3);
+    // ortak anlamlı kelime (≥3 harf) yeter: "saat (süre)" / "saat, vakit" Türkçe çeviride ayırt edilemez
+    const icIce = (a: string, b: string) => { const q = trK(b); return nk(a) === nk(b) || trK(a).some((w) => q.includes(w)); };
+    const uygun = t.teach.filter((y) => y !== x && y.de !== x.de && !y.de.includes(x.de) && !x.de.includes(y.de) && !re.test(y.de) && !kelimeRe(y.de).test(ex.de)
+      && y.de.split(" ").length === x.de.split(" ").length && !icIce(y.tr, x.tr));
     const cel = [...uygun].sort((a, b) => Math.abs(t.teach.indexOf(a) - j) - Math.abs(t.teach.indexOf(b) - j)).slice(0, 2).map((y) => y.de);
-    if (cel.length < 1) return;
+    if (cel.length < 2) return;
     const opts = [x.de, ...cel];
     const rot = i % opts.length;
     bahce.push({ id: x.id, de: ex.de.replace(re, "___"), tr: ex.tr, cevap: x.de, opts: [...opts.slice(rot), ...opts.slice(0, rot)] });

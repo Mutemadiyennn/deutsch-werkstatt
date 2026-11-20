@@ -4,7 +4,7 @@ B5 (PM 7030294523, döngüsüzlük H4 §4): Bahçede bugün görülen kelime der
   - tanıtımda bu kartlar yok; not "Bahçede bugün gördüğün 3 kelime …" görünür
   - hatırlama turunda bu kelimeler sorulmaz; tanıtımın sonunda her biri EN ÇOK BİR kez, cümle içinde seçmeli boşlukla gelir
   - yarıda yeniden açılan ders aynı konumdan ve aynı planla sürer
-  - karşılaştırma: tohumsuz profilde ders eskisi gibi (not yok, Montag tanıtılır, Bahçe turu yok)
+  - karşılaştırma: kart bugün yalnızca Bahçe dışında (tespit/senaryo) cevaplanmışsa ders eskisi gibi (inceleme #146 P1-2)
   python3 tests/e2e/v2_ders_bahce.py [--browser webkit] [--device "iPhone 15"] [--shots /tmp/shots] [--scheme dark]
 """
 from datetime import datetime, timezone
@@ -56,6 +56,10 @@ def main():
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         simdi = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
         for de in GORULEN: pg.evaluate(YAZ, ["items", kart(de, simdi)])
+        # Bahçe her cevapta kartı günün listesine yazar (inceleme #146 P1-2: yalnızca Bahçe sayılır)
+        pg.evaluate("""async (ids) => { const d = new Date(), k = `bahce:gorulen:${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+          const db = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
+          await new Promise((ok, no) => { const t = db.transaction('meta', 'readwrite'); t.objectStore('meta').put({ key: k, value: ids }); t.oncomplete = ok; t.onerror = no; }); db.close(); }""", [f"lx:{d}" for d in GORULEN])
         pg.goto(base + DERS); pg.wait_for_selector("[data-test=ders-diyalog]")
         step(pg)  # diyalog → tanıtım (plan ilerlemeyle birlikte saklanır)
         pg.wait_for_selector("[data-test=ders-tanit]")
@@ -80,14 +84,15 @@ def main():
         check(pg.get_attribute("[data-test=ders]", "data-adim") != "tanit", "tanıtımdan sonra ders sürüyor")
         ctx.close(); b.close()
 
-        # 2) karşılaştırma: tohumsuz profil
+        # 2) karşılaştırma: Bahçe listesi yok; kartlar bugün başka yerde (seviye tespiti, senaryo) cevaplanmış → atlanmaz
         b, ctx = launch(p, color_scheme=arg("--scheme") or "light"); pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
+        for de in GORULEN: pg.evaluate(YAZ, ["items", kart(de, simdi)])
         pg.goto(base + DERS); pg.wait_for_selector("[data-test=ders-diyalog]")
         step(pg); pg.wait_for_selector("[data-test=ders-tanit]")
-        check(pg.locator("[data-test=ders-bahce-not]").count() == 0, "tohumsuz: Bahçe notu yok")
+        check(pg.locator("[data-test=ders-bahce-not]").count() == 0, "Bahçe dışında görülen: Bahçe notu yok")
         tanit, _, bahce = tanitim_boyunca(pg, None, "b")
-        check(any(t.split()[-1] == "Montag" for t in tanit) and len(tanit) == 23 and not bahce, f"tohumsuz: 23 kart tanıtıldı, Bahçe turu yok ({len(tanit)}, {len(bahce)})")
+        check(any(t.split()[-1] == "Montag" for t in tanit) and len(tanit) == 23 and not bahce, f"Bahçe dışında görülen: 23 kart tanıtıldı, Bahçe turu yok ({len(tanit)}, {len(bahce)})")
         ctx.close(); b.close()
     srv.shutdown()
     finish()

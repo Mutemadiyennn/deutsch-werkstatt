@@ -75,12 +75,24 @@ export async function getMeta<T>(key: string): Promise<T | undefined> { return (
 export async function setMeta(key: string, value: unknown) { await db.meta.put({ key, value }); }
 export async function delMeta(key: string) { await db.meta.delete(key); }
 /** Bu zamandan sonra ilk kez tanıtılan (pasif) öğeler: gün sonu özetinde "yeni anladığın kelimeler" (#58 B3) */
-/** B5: bugün (yerel gün) cevaplanmış kelime kartları: passive/active `last` bugün */
+/**
+ * B5 (inceleme #146 P1-2): bugün (yerel gün) BAHÇEDE cevaplanmış kartlar. Seviye tespiti ve senaryo da kart yazar; onlar sayılmaz.
+ * Bahçe her cevapta kartı `bahce:gorulen:<YYYY-MM-DD>` listesine ekler.
+ */
+const yerel = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+export const bahceGorulenAnahtari = (now = new Date()) => `bahce:gorulen:${yerel(now)}`;
+let bahceKuyruk: Promise<unknown> = Promise.resolve();
+export function bahceGorulenEkle(lexId: string, now = new Date()): Promise<void> {
+  const p = bahceKuyruk.then(async () => {
+    const k = bahceGorulenAnahtari(now), l = (await getMeta<string[]>(k)) ?? [];
+    if (!l.includes(lexId)) await setMeta(k, [...l, lexId]);
+  });
+  bahceKuyruk = p.catch(() => {});
+  return p;
+}
 export async function bugunGorulenler(now = new Date()): Promise<Set<string>> {
-  const gun = (iso?: string) => { if (!iso) return ""; const d = new Date(iso); return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`; };
-  const bugun = gun(now.toISOString());
-  const l = await db.items.filter((it) => it.kind === "lexeme" && (gun(it.passive?.last) === bugun || gun(it.active?.last) === bugun)).toArray();
-  return new Set(l.map((x) => x.itemId));
+  await bahceKuyruk;
+  return new Set((await getMeta<string[]>(bahceGorulenAnahtari(now))) ?? []);
 }
 export async function tanitilanlar(sonra: string): Promise<LearnerItem[]> { return db.items.filter((it) => (it.firstAt?.passive ?? "") >= sonra).toArray(); }
 
