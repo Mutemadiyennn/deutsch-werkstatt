@@ -43,6 +43,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 ## Açık PR'lar (2026-11-20 09:00 UTC)
 | PR | Dal | Teslim | Durum |
 |---|---|---|---|
+| #172 | `qa/yerlesim-bekcisi` | Yerleşim bekçisi B1–B8 (PM-079 md. 4): gezginin ekranları × 844/932; öz-sınama 29 durum; **rapor kipi** (ilk ölçüm 30 ihlal, `docs/v2/qa/yerlesim/ilk-olcum.md`) | inceleme + KAPI |
 | #144 | `ci/worker-duman` | Worker dağıtımı sonunda `/v1/health` duman adımı (provider/configured iş özetinde, adres gizli) | ONAY; WebKit kırmızısı test yarışı (#151) → #151 sonrası main alınır |
 | #146 | `v2/ders-bahce-dongusuz` | B5: Bahçede bugün görülen kelime kartı derste yeniden tanıtılmaz; en çok bir kez cümle içinde seçmeli boşluk (D-121) | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor; **PM final** |
 | #148 | `v2/adsiz-cumle` | B7: `_adsiz` alanı + doğrulayıcı; kurulumda ad bir kez nazikçe sorulur (D-122) | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor; **PM final** |
