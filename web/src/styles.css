@@ -670,9 +670,6 @@ svg.sandik { overflow: visible; }
 .esdizim-liste { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 2px; }
 /* kısa öbekler (eşdizim listesi, çoğul satırı) hecelenmez: WebKit'te her lang="de" öğesi için heceleme düzeni "Başka cümle" karesini 150 ms üstüne çıkarıyordu (#122 CI) */
 .esdizim-liste [lang="de"], .cogul-satir [lang="de"] { hyphens: manual; -webkit-hyphens: manual; }
-/* "Başka cümle": cümle değişince kartın geri kalanı kaymasın ve yeniden boyanmasın (yaygın cümle 4 satıra kadar yer ayrılır;
-   CI WebKit'te kare 150 ms'yi aşıyordu (#122) */
-[data-test=intro-ex] { min-height: calc(4 * 1.5em); }
 /* fotoğraf atfı: tek satır, soluk, altı çizgisiz; yazar "…" ile kısalır, lisans bölünmez (PM 7022084920) */
 .foto-atif { display: flex; gap: 4px; align-items: baseline; white-space: nowrap; overflow: hidden; }
 .foto-atif a { color: inherit; text-decoration: none; }
@@ -685,5 +682,11 @@ summary.ac-baslik::before { content: "▸"; color: var(--muted); transition: tra
 details[open] > summary.ac-baslik::before { transform: rotate(90deg); }
 summary.ac-baslik h2 { margin: 0; }
 /* "Daha fazla (n)" eşdizim: dokunma alanı 44 pt (PM 7024150313) */
-.esdizim-daha > summary { display: inline-flex; align-items: center; min-height: 44px; cursor: pointer; list-style: none; }
+.esdizim-daha > summary { list-style: none; }
 .esdizim-daha > summary::-webkit-details-marker { display: none; }
+/* ikincil eylem bağlantısı (PM 7026866757-2): "Başka cümle", "Daha fazla" aynı üslupta — altı çizgisiz, aynı ağırlık, 44 pt */
+.ikincil-eylem { display: inline-flex; align-items: center; align-self: flex-start; min-height: 44px; padding: 0 2px; border: 0; background: none; color: var(--accent); font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; }
+/* örnek cümle tam genişlikte, kelime ortasından bölünmez (PM 7026866757-1) */
+.ornek-cumle [lang="de"] { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: normal; }
+/* "Daha fazla" açılınca son satır eylem çubuğunun üstünde tam görünür (PM 7026866757-3) */
+.esdizim-daha li { scroll-margin-bottom: calc(var(--actionbar-h) + var(--safe-bottom) + 16px); }

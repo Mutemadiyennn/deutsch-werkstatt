@@ -40,6 +40,22 @@ def main():
         ust = pg.evaluate("() => Math.min(...[...document.querySelectorAll('.actionbar button')].map((b) => b.getBoundingClientRect().top))")
         check(alt <= ust, f"tanıtım kartı düğmelere değmeden sığıyor (kart altı {round(alt)} px ≤ düğme üstü {round(ust)} px; görselli, {l['id']})")
         if shots: shot(pg, "t01-en-uzun-kart", full=False)
+        # PM 7026866757: (1) örnek cümle tam genişlikte, hecelenmez; (2) "Başka cümle" ve "Daha fazla" aynı üslup;
+        # (3) "Daha fazla" açılınca son satır görünür ve birincil düğmeyle kesişmez
+        r = pg.evaluate("""() => { const p = document.querySelector('[data-test=intro-ex]'), k = p.closest('section.card'), cs = getComputedStyle(k);
+          const ic = k.getBoundingClientRect().width - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+          return { gen: Math.round(p.getBoundingClientRect().width), ic: Math.round(ic), hy: getComputedStyle(p.querySelector('[lang=de]')).webkitHyphens || getComputedStyle(p.querySelector('[lang=de]')).hyphens }; }""")
+        check(abs(r["gen"] - r["ic"]) <= 2 and r["hy"] == "manual", f"örnek cümle tam genişlikte ve hecelenmez ({r})")
+        if pg.locator("[data-test=baska-cumle]").count() and pg.locator("[data-test=esdizim-daha]").count():
+            u = pg.evaluate("""() => ['[data-test=baska-cumle]', '[data-test=esdizim-daha] > summary'].map((q) => { const c = getComputedStyle(document.querySelector(q)); return [c.textDecorationLine, c.fontWeight, c.color]; })""")
+            check(u[0] == u[1], f"'Başka cümle' ve 'Daha fazla' aynı üslupta ({u})")
+        if pg.locator("[data-test=esdizim-daha]").count():
+            pg.click("[data-test=esdizim-daha] > summary"); pg.wait_for_timeout(900)
+            k = pg.evaluate("""() => { const li = document.querySelector('[data-test=esdizim-daha] li:last-child').getBoundingClientRect();
+              const ust = Math.min(...[...document.querySelectorAll('.actionbar button')].map((b) => b.getBoundingClientRect().top));
+              return { alt: Math.round(li.bottom), ust: Math.round(ust), gor: li.top >= 0 && li.bottom <= innerHeight }; }""")
+            check(k["gor"] and k["alt"] <= k["ust"], f"'Daha fazla' açıkken son eşdizim satırı görünür, düğmelerin üstünde ({k})")
+            if shots: shot(pg, "t02-daha-fazla-acik", full=False)
         b.close()
     srv.shutdown()
     finish()
