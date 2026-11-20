@@ -2,16 +2,11 @@
  "klip": "klip-02",
  "kaynak_klip": "01_24_int_ju_studies-home",
  "durum": "hazir",
- "tarih": "2026-11-19",
+ "tarih": "2026-11-20",
  "modeller": {
   "asr1": "faster-whisper large-v3-turbo",
   "asr2": "jonatasgrosman/wav2vec2-large-xlsr-53-german"
  },
- "video_adresi": "https://media.la.utexas.edu/dib/video/01_24_int_ju_studies-home.mp4",
- "whisper_kayma_ms": [
-  -495,
-  -44
- ],
  "etiket": "birebir",
  "olcum": {
   "wer": 0.0345,
@@ -123,18 +118,57 @@
    ]
   }
  ],
+ "whisper_kayma_ms": [
+  -495,
+  -44
+ ],
+ "kesitler": [
+  {
+   "sira": 0,
+   "klip": "01_24_int_ju_studies-home",
+   "etiket": "birebir",
+   "olcum": {
+    "wer": 0.0345,
+    "eksik_metin": 0.0,
+    "fazla_metin": 0.0,
+    "wer_asr1": 0.1897,
+    "wer_asr2": 0.1379,
+    "cumle_wer": [
+     0.0,
+     0.0,
+     0.0,
+     0.167,
+     0.0,
+     0.083,
+     0.0,
+     0.0
+    ]
+   },
+   "dislanan": [
+    {
+     "tur": 8,
+     "neden": "iki ASR zaman sapması 423 ms"
+    }
+   ],
+   "sure_sn": 31.006,
+   "kesit_kaynak_sn": [
+    0.21,
+    31.216
+   ]
+  }
+ ],
  "varliklar": {
   "klip-02.mp4": {
-   "sha256": "86ff85603e24a24f98049845731be6563ea3bacacda8ae1ce12c271d9b5d2523",
-   "bayt": 483749
+   "sha256": "9ab48bff8c937fa251be9867f9d5c30fc7d615490930a07d9d30d27b2b5dc949",
+   "bayt": 538492
   },
   "klip-02.jpg": {
-   "sha256": "f81a94793e1b016de665d646c4217dbc52074bf1d82bfac0da35f35f48309cb2",
-   "bayt": 7259
+   "sha256": "6bcc58ac3959fd69b866b32a86b2879d29412529a2687cc8b9bae925e28a7261",
+   "bayt": 12107
   },
   "klip-02.metin.json": {
-   "sha256": "7e17a09da6ba6cce1d823fdd34e6f2df01a29cfc7864c371de3e0949b162af74",
-   "bayt": 1175
+   "sha256": "04808f055c63306020e49010fc88ca940a322fd54bcc2adcd10b04664e485bf7",
+   "bayt": 1335
   }
  }
 }

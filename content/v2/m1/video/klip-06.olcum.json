@@ -2,71 +2,35 @@
  "klip": "klip-06",
  "kaynak_klip": "05_26_int_ek_geburtstag",
  "durum": "kisa",
- "tarih": "2026-11-19",
+ "tarih": "2026-11-20",
  "modeller": {
   "asr1": "faster-whisper large-v3-turbo",
   "asr2": "jonatasgrosman/wav2vec2-large-xlsr-53-german"
  },
- "video_adresi": "https://media.la.utexas.edu/dib/video/05_26_int_ek_geburtstag.mp4",
- "whisper_kayma_ms": [
-  -266,
-  -37
- ],
  "etiket": "insan-orneklemi",
  "olcum": {
-  "wer": 0.0784,
-  "eksik_metin": 0.04,
-  "fazla_metin": 0.0196,
-  "wer_asr1": 0.2157,
-  "wer_asr2": 0.4314,
+  "wer": 0.05,
+  "eksik_metin": 0.0513,
+  "fazla_metin": 0.0,
+  "wer_asr1": 0.175,
+  "wer_asr2": 0.4,
   "cumle_wer": [
-   0.167,
-   0.2,
    0.143,
    0.053,
    0.0,
    0.0
   ]
  },
- "dislanan": [
-  {
-   "tur": 3,
-   "neden": "iki ASR zaman sapması 516 ms"
-  },
-  {
-   "tur": 4,
-   "neden": "iki ASR zaman sapması 426 ms"
-  }
- ],
- "sure_sn": 19.9,
+ "dislanan": [],
+ "sure_sn": 21.96,
  "kesit_kaynak_sn": [
-  18.553,
+  35.375,
   52.258
  ],
  "tur_zamanlari": [
   {
-   "tur": 3,
-   "sapma_ms": 516,
-   "ham_w_ctc": [
-    18.02,
-    20.18,
-    18.8,
-    20.08
-   ]
-  },
-  {
-   "tur": 4,
-   "sapma_ms": 426,
-   "ham_w_ctc": [
-    20.22,
-    20.86,
-    20.2,
-    21.32
-   ]
-  },
-  {
    "tur": 7,
-   "sapma_ms": 139,
+   "sapma_ms": 119,
    "ham_w_ctc": [
     35.22,
     37.78,
@@ -78,7 +42,7 @@
    "tur": 8,
    "sapma_ms": 30,
    "ham_w_ctc": [
-    37.94,
+    37.96,
     46.28,
     38.23,
     46.29
@@ -86,7 +50,7 @@
   },
   {
    "tur": 9,
-   "sapma_ms": 260,
+   "sapma_ms": 280,
    "ham_w_ctc": [
     46.42,
     47.38,
@@ -96,27 +60,79 @@
   },
   {
    "tur": 10,
-   "sapma_ms": 111,
+   "sapma_ms": 91,
    "ham_w_ctc": [
-    47.88,
-    51.86,
+    47.82,
+    51.88,
     48.13,
     52.01
    ]
   }
  ],
+ "whisper_kayma_ms": [
+  -286,
+  -37
+ ],
+ "kesitler": [
+  {
+   "sira": 0,
+   "klip": "05_26_int_ek_geburtstag",
+   "etiket": "insan-orneklemi",
+   "olcum": {
+    "wer": 0.05,
+    "eksik_metin": 0.0513,
+    "fazla_metin": 0.0,
+    "wer_asr1": 0.175,
+    "wer_asr2": 0.4,
+    "cumle_wer": [
+     0.143,
+     0.053,
+     0.0,
+     0.0
+    ]
+   },
+   "dislanan": [],
+   "sure_sn": 16.883,
+   "kesit_kaynak_sn": [
+    35.375,
+    52.258
+   ]
+  },
+  {
+   "sira": 1,
+   "klip": "05_25_int_ju_geburtstag",
+   "etiket": "birebir",
+   "olcum": {
+    "wer": 0.0,
+    "eksik_metin": 0.0,
+    "fazla_metin": 0.0,
+    "wer_asr1": 0.25,
+    "wer_asr2": 0.1667,
+    "cumle_wer": [
+     0.0,
+     0.0
+    ]
+   },
+   "dislanan": [],
+   "sure_sn": 5.082,
+   "kesit_kaynak_sn": [
+    0.01,
+    5.092
+   ]
+  }
+ ],
  "varliklar": {
   "klip-06.mp4": {
-   "sha256": "09c79c844297819e4ccad967c8c26561f2a0de830239b60ba638183053cc55fc",
-   "bayt": 356550
+   "sha256": "b9abc0171c315e2c93f1c11e357d38947e8f83eff12b6ff63d3002e28b7eb589",
+   "bayt": 436152
   },
   "klip-06.jpg": {
-   "sha256": "7d807cdb380fe0fc7c6cc65cac4160bca5a31bac08a7175c37f45c7f00263dff",
-   "bayt": 8817
+   "sha256": "519f2b30fce1e760459d905fdcfdf78e21c56e723ee09b1c247327305dff8017",
+   "bayt": 14274
   },
   "klip-06.metin.json": {
-   "sha256": "d69400ffcb185daaec7a92665ab271ab3b640ae92cb1b82a7974dece1851b2a9",
-   "bayt": 882
+   "sha256": "ec6146e72aedbcf7a32ba26325c2701a52c6aae174c9066f4c1eba1485ae8fff",
+   "bayt": 1346
   }
  }
 }

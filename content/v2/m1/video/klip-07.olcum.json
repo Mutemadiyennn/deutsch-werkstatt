@@ -1,166 +1,174 @@
 {
  "klip": "klip-07",
- "kaynak_klip": "01_26_int_ph_who",
- "durum": "hazir",
- "tarih": "2026-11-19",
+ "kaynak_klip": "01_22_int_hb_who",
+ "durum": "kisa",
+ "tarih": "2026-11-20",
  "modeller": {
   "asr1": "faster-whisper large-v3-turbo",
   "asr2": "jonatasgrosman/wav2vec2-large-xlsr-53-german"
  },
- "video_adresi": "https://media.la.utexas.edu/dib/video/01_26_int_ph_who.mp4",
- "whisper_kayma_ms": [
-  -210,
-  -21
- ],
- "etiket": "kisaltilmis",
+ "etiket": "insan-orneklemi",
  "olcum": {
-  "wer": 0.1714,
+  "wer": 0.0926,
   "eksik_metin": 0.0,
-  "fazla_metin": 0.0143,
-  "wer_asr1": 0.2857,
-  "wer_asr2": 0.3571,
+  "fazla_metin": 0.0,
+  "wer_asr1": 0.1296,
+  "wer_asr2": 0.3333,
   "cumle_wer": [
    0.0,
    0.0,
    0.0,
    0.0,
+   0.167,
    0.0,
    0.0,
-   0.0,
-   0.0,
-   0.0,
-   0.375
+   0.167
   ]
  },
  "dislanan": [
   {
-   "tur": 11,
-   "neden": "iki ASR zaman sapması 315 ms"
-  },
-  {
    "tur": 14,
-   "neden": "iki ASR zaman sapması 387 ms"
+   "neden": "iki ASR zaman sapması 664 ms"
   }
  ],
- "sure_sn": 30.16,
+ "sure_sn": 24.89,
  "kesit_kaynak_sn": [
-  0.07,
-  55.537
+  2.271,
+  40.414
  ],
  "tur_zamanlari": [
   {
-   "tur": 1,
-   "sapma_ms": 110,
-   "ham_w_ctc": [
-    0.0,
-    0.86,
-    0.32,
-    0.8
-   ]
-  },
-  {
-   "tur": 2,
-   "sapma_ms": 60,
-   "ham_w_ctc": [
-    1.1,
-    1.78,
-    1.34,
-    1.74
-   ]
-  },
-  {
    "tur": 3,
-   "sapma_ms": 30,
+   "sapma_ms": 79,
    "ham_w_ctc": [
-    2.18,
-    2.96,
-    2.36,
-    2.98
+    2.32,
+    3.18,
+    2.52,
+    3.14
    ]
   },
   {
    "tur": 4,
-   "sapma_ms": 30,
+   "sapma_ms": 43,
    "ham_w_ctc": [
-    3.18,
-    4.26,
-    3.36,
-    4.26
+    3.34,
+    5.04,
+    3.48,
+    5.06
    ]
   },
   {
    "tur": 5,
-   "sapma_ms": 70,
+   "sapma_ms": 44,
    "ham_w_ctc": [
-    4.86,
-    6.0,
-    5.0,
-    6.02
+    5.76,
+    6.82,
+    5.86,
+    6.84
    ]
   },
   {
    "tur": 6,
-   "sapma_ms": 151,
+   "sapma_ms": 61,
    "ham_w_ctc": [
-    6.22,
-    11.26,
-    6.58,
-    11.36
+    7.04,
+    12.44,
+    7.22,
+    12.47
    ]
   },
   {
    "tur": 11,
-   "sapma_ms": 315,
+   "sapma_ms": 207,
    "ham_w_ctc": [
-    36.64,
-    38.48,
-    37.16,
-    38.44
+    26.3,
+    28.32,
+    26.22,
+    28.32
    ]
   },
   {
    "tur": 12,
-   "sapma_ms": 105,
+   "sapma_ms": 114,
    "ham_w_ctc": [
-    38.72,
-    38.98,
-    38.83,
-    39.03
+    28.58,
+    29.16,
+    28.82,
+    29.1
    ]
   },
   {
    "tur": 13,
-   "sapma_ms": 85,
+   "sapma_ms": 105,
    "ham_w_ctc": [
-    39.66,
-    39.98,
-    39.81,
-    40.09
+    30.0,
+    30.62,
+    30.02,
+    30.56
    ]
   },
   {
    "tur": 14,
-   "sapma_ms": 387,
+   "sapma_ms": 664,
    "ham_w_ctc": [
-    41.2,
-    54.88,
-    41.71,
-    55.29
+    31.9,
+    40.2,
+    31.36,
+    40.16
+   ]
+  }
+ ],
+ "whisper_kayma_ms": [
+  -123,
+  20
+ ],
+ "kesitler": [
+  {
+   "sira": 0,
+   "klip": "01_22_int_hb_who",
+   "etiket": "insan-orneklemi",
+   "olcum": {
+    "wer": 0.0926,
+    "eksik_metin": 0.0,
+    "fazla_metin": 0.0,
+    "wer_asr1": 0.1296,
+    "wer_asr2": 0.3333,
+    "cumle_wer": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.167,
+     0.0,
+     0.0,
+     0.167
+    ]
+   },
+   "dislanan": [
+    {
+     "tur": 14,
+     "neden": "iki ASR zaman sapması 664 ms"
+    }
+   ],
+   "sure_sn": 24.895,
+   "kesit_kaynak_sn": [
+    2.271,
+    40.414
    ]
   }
  ],
  "varliklar": {
   "klip-07.mp4": {
-   "sha256": "65cb76e4e6dfdab1624d790083994e7e560769941b1a1cb799bd669c65a15ea3",
-   "bayt": 580345
+   "sha256": "6c8ccc72ce018481f51cee956525e98b32cbaa3980be6b1aa80255ed5aebb870",
+   "bayt": 642329
   },
   "klip-07.jpg": {
-   "sha256": "aedcfcf5c03ad459122ba489973b1c3188e7525dd7264b3a8e43ae717ce02c2b",
-   "bayt": 15706
+   "sha256": "178f1c3eb6114f55e552bcd004ff15471679fcf3430bedf2658133eb4fd91f55",
+   "bayt": 27647
   },
   "klip-07.metin.json": {
-   "sha256": "c38a3d24dff0d9a22d68fb09c0eebb6cda8e3cde54f747573b29470b662b70d1",
-   "bayt": 1266
+   "sha256": "7e68921e238d064ed89d36d0e1f14dae98cc77e40d8312cbd792ecd95eb55c12",
+   "bayt": 1337
   }
  }
 }
