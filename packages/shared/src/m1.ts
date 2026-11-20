@@ -129,6 +129,31 @@ export const OkumaYazma = z.object({
   yazma: z.object({ gorev_tr: z.string(), ornek_de: z.string(), zorunlu: z.array(z.string()).default([]), accepted_kaliplar: z.array(z.string()).default([]), kontrol_tr: z.array(z.string()).min(1) }).optional()
 });
 
+/**
+ * AKIS AK-5 (PM-078 B; PM #160): günün "halkaları" — İÇ'in grupladığı 4–6 yeni kart, kapıdan geçen görev cümleleri ve mini sahne.
+ * Alan yoksa gün bugünkü düzenle çalışır. `dersten_sonra` İÇ önerisindeki bayraktır: planlayıcı sırayı K(t)'den hesaplar (K8);
+ * doğrulayıcı bugün yalnız kapı sayımında kullanır.
+ */
+export const HalkaCumle = z.object({
+  kart: LexemeId, de: z.string().min(1), tr: z.string().min(1),
+  /** TR→DE ve söyle görevinde kabul edilen biçimler (üretimde ≥ 3, D-064) */
+  accepted: z.array(z.string().min(1)).default([])
+});
+export const HalkaSahne = z.object({
+  ortam_tr: z.string().min(1).optional(),
+  satirlar: z.array(z.object({ r: z.string().min(1), de: z.string().min(1), tr: z.string().min(1) })).min(2).max(4),
+  soru: z.object({ q_tr: z.string().min(1), opts: z.array(z.string().min(1)).min(2), ans: z.number().int().min(0) })
+});
+export const Halka = z.object({
+  id: z.string().regex(/^m1:\d{2}:h\d+$/),
+  title_tr: z.string().min(1),
+  kartlar: z.array(LexemeId).min(1),
+  dersten_sonra: z.boolean().optional(),
+  gorev_cumleleri: z.array(HalkaCumle).default([]),
+  sahne: HalkaSahne.optional()
+});
+export type Halka = z.infer<typeof Halka>;
+
 export const Gun = z.object({
   schema: z.literal(1),
   /** m1:gun:NN (dosya adı gun-NN.json ile birebir) */
@@ -148,6 +173,7 @@ export const Gun = z.object({
   review: ReviewState,
   dersler: z.array(z.string().regex(/^r0:\d{2}-[a-z0-9-]+$/)).default([]),
   yeni_kartlar: z.array(LexemeId).default([]),
+  halkalar: z.array(Halka).optional(),
   video: Video.optional(),
   sahne: Sahne.optional(),
   sesler: z.array(Ses).default([]),
