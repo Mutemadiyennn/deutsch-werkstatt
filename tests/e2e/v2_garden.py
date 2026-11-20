@@ -124,6 +124,10 @@ def main():
         check(pg.locator("[data-test=garden-done]").count() == 1, f"tur baştan sona bitti ({n} soru)")
         txt = pg.inner_text("[data-test=garden-done]")
         check("doğru" in txt and "undefined" not in txt and "NaN" not in txt, "tur sonu özeti")
+        # PM 7030294523 B9: yanlış varsa metin gerçeği söyler (aynı turun sonunda bir kez daha geldi; "yarın" vaadi yok)
+        if pg.locator("[data-test=tur-yanlis-not]").count():
+            yn = pg.inner_text("[data-test=tur-yanlis-not]")
+            check("bu turun sonunda bir kez daha" in yn and "yarın" not in yn, f"tur sonu: yanlışlar için doğru açıklama ({yn[:60]!r})")
         # M1 günündeyken (Bugün'deki giriş günün Bahçesi'ni açar) günün kartlarından kalan varsa "Bir tur daha" (inceleme #66 P1-3)
         check(pg.locator("[data-test=garden-tomorrow]").count() == 1 or (pg.locator("[data-test=garden-kalan]").count() == 1 and pg.locator("[data-test=garden-again]").count() == 1),
               "tur sonunda yarın ne geleceği ya da günün kalan kartları yazıyor")
