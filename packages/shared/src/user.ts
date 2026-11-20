@@ -57,7 +57,11 @@ export const Profile = z.object({
     weekly: z.object({ days: z.number().int().min(1).max(7).default(5), minPerDay: z.number().int().min(15).max(240).default(100) }).default({ days: 5, minPerDay: 100 })
   }),
   domains: z.object({ priority: z.array(z.string()).min(1), paused: z.array(z.string()).default([]) }),
-  listening: z.object({ startSpeed: z.enum(["slow", "normal"]).default("slow") }),
+  listening: z.object({
+    startSpeed: z.enum(["slow", "normal"]).default("slow"),
+    /** "Yavaş" düğmesinin cihaz sesi hızı (PM 7042161522-1; Ses ve mikrofon ekranında kulakla seçilir) */
+    slowRate: z.union([z.literal(0.6), z.literal(0.5), z.literal(0.4)]).default(0.5)
+  }),
   goals: z.object({
     examB1: z.object({ enabled: z.boolean(), date: z.string().optional() }).default({ enabled: false }),
     /** dil kursuna gidiyor mu (kurum adı tutulmaz, PM-036 A) */
