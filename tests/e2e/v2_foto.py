@@ -39,6 +39,35 @@ def main():
                 pg.wait_for_timeout(800)
                 check(pg.locator("[data-test=garden-intro] [data-test=foto]").count() == 0, "kayıt yoksa fotoğraf alanı yok")
             b.close()
+        # #137 P2-2: "Fotoğraftaki ne?" sorusunda seçilmiş fotoğraf görünür; P2-1: görsel yüklenemezse başlık fotoğrafsız biçime döner
+        for bozuk in (False, True):
+            b, ctx = launch(p); pg = new_page(ctx)
+            pg.route("**/foto.json", lambda r: r.fulfill(status=200, content_type="application/json", body=json.dumps({"surum": 1, "foto": KAYIT})))
+            pg.route("https://foto.example/**", (lambda r: r.fulfill(status=404, body="")) if bozuk else (lambda r: r.fulfill(status=200, content_type="image/jpeg", body=JPEG)))
+            login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
+            pg.evaluate("() => { sessionStorage.setItem('e2e-kart', 'lx:Montag'); sessionStorage.setItem('e2e-tur', 'photo_say'); }")
+            pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=gq-photo_say]")
+            if bozuk:
+                try: pg.wait_for_function("() => /^Almanca söyle ya da yaz$/.test(document.querySelector('[data-test=foto-soru-baslik]')?.textContent || '')", timeout=8000)
+                except Exception: pass
+                bas = pg.text_content("[data-test=foto-soru-baslik]")
+                ipucu = pg.text_content("[data-test=gq-photo_say] .de-lg") if pg.locator("[data-test=gq-photo_say] .de-lg").count() else ""
+                check(pg.locator("[data-test=gq-photo_say] [data-test=foto]").count() == 0 and bas == "Almanca söyle ya da yaz" and "(der, die ya da das ile)" in ipucu,
+                      f"görsel yüklenemezse soru Türkçe → Almanca biçiminde ({bas!r}, {ipucu!r})")
+            else:
+                pg.wait_for_selector("[data-test=gq-photo_say] [data-test=foto]")
+                f = pg.locator("[data-test=gq-photo_say] [data-test=foto]")
+                bas = pg.text_content("[data-test=foto-soru-baslik]")
+                check(f.get_attribute("data-kaynak") == "secim" and "Fotoğraftaki ne?" in bas, f"soruda seçilmiş fotoğraf, başlık 'Fotoğraftaki ne?' ({f.get_attribute('data-kaynak')}, {bas!r})")
+            b.close()
+        # inceleme #150 P2: artikel sorusu başlığı büyük harfte "DIE" (Almanca kısım lang="de"; Türkçe yerelde "DİE" olmaz)
+        b, ctx = launch(p); pg = new_page(ctx)
+        login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
+        pg.evaluate("() => { sessionStorage.setItem('e2e-kart', 'lx:Montag'); sessionStorage.setItem('e2e-tur', 'article'); }")
+        pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=gq-article]")
+        bas = pg.inner_text("[data-test=gq-article] .kicker")
+        check("DIE" in bas and "DİE" not in bas, f"artikel sorusu başlığı büyük harfte 'DIE' ({bas!r})")
+        b.close()
         # gerçek Releases fotoğrafı uygulamanın kökeninde (CSP dahil) çiziliyor mu (inceleme #121 P1-4); ağ yalnızca CI'da kesin
         b, ctx = launch(p); pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         w = pg.evaluate("""async () => { const v = (await (await fetch('content/current.json')).json()).version;
