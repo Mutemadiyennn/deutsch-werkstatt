@@ -14,6 +14,8 @@
 # Geri alma: scripts/v2-rollback.sh v2-YYYYMMDD-n (Actions kapalıyken yerel yoldan).
 #
 # Kullanım: scripts/yayin.sh [--commit <sha>] [--kuru] [--yorum-yok]
+# Çıkış: 0 yayın (ya da kuru) · 1 derleme/itme düştü · 2 kullanım/okuma · 3 KAPI YEŞİL yok ya da son karar KIRMIZI · 4 yayın yapıldı, #12 yazılamadı
+# Fark (deploy-v2.yml'den): medya indirilemezse iş akışı uyarıp sürerdi, bu betik durur (eksik videolu yayın olmasın).
 #   --kuru       derler ve damgayı söyler; gh-pages'e itmez, etiket atmaz, yorum yazmaz
 # Gizlilik: Worker adresi derleme paketine girer (web/.env.production) ama günlüğe/yoruma basılmaz.
 set -euo pipefail
@@ -35,12 +37,33 @@ git -C "$KOK" fetch -q origin +refs/heads/main:refs/remotes/origin/main +refs/he
 [ -z "$COMMIT" ] && COMMIT=$(git -C "$KOK" rev-parse origin/main)
 COMMIT=$(git -C "$KOK" rev-parse --verify "$COMMIT^{commit}")
 git -C "$KOK" merge-base --is-ancestor "$COMMIT" origin/main || { echo "$COMMIT main'de değil; yalnız main yayınlanır" >&2; exit 2; }
+[ "$COMMIT" = "$(git -C "$KOK" rev-parse origin/main)" ] || echo "UYARI: $COMMIT main'in başı değil; daha eski bir sürüm yayınlanacak (sürüm düşürme)." >&2
 K7=${COMMIT:0:7}
 
 # ---- 2. KAPI YEŞİL ----
+# İlk satır "[KAPI] … <commit-öneki> … — YEŞİL" (öneki ≥ 7 hane, tam belirteç olarak commit'in başı; KIRMIZI geçmiyor),
+# yazar depo sahibi hesabı (OWNER; açık depoda başkası "[KAPI]" yazabilir). Aynı commit için EN SON karar esastır:
+# sonradan KIRMIZI yazılmışsa YEŞİL geçersizdir.
 SINCE=$(date -u -d '-7 days' +%Y-%m-%dT%H:%M:%SZ)
-KAPI=$(gh api --paginate "repos/$DEPO/issues/comments?since=$SINCE&per_page=100" \
-  --jq ".[] | select(.body | startswith(\"[KAPI]\")) | select((.body | split(\"\n\")[0]) | (contains(\"$K7\") and contains(\"YEŞİL\"))) | .html_url" | head -1)
+YORUMLAR=$(mktemp /tmp/yayin-yorum-XXXXXX.json)
+gh api --paginate "repos/$DEPO/issues/comments?since=$SINCE&per_page=100" --jq '.[] | {u: .html_url, t: .created_at, a: .author_association, b: (.body | split("\n")[0])}' > "$YORUMLAR"
+KAPI=$(python3 - "$COMMIT" "$YORUMLAR" <<'PY'
+import json, re, sys
+sha, yol = sys.argv[1], sys.argv[2]
+son = None
+for satir in open(yol, encoding="utf-8"):
+    y = json.loads(satir)
+    if y["a"] != "OWNER" or not y["b"].startswith("[KAPI]"): continue
+    # sınanan commit ilk satırdaki İLK hex belirteçtir ("[KAPI] <commit> — …"); sonraki belirteçler (taban vb.) sayılmaz
+    bel = re.findall(r"(?<![0-9a-f])[0-9a-f]{7,40}(?![0-9a-f])", y["b"])
+    if not bel or not sha.startswith(bel[0]): continue
+    karar = "KIRMIZI" if "KIRMIZI" in y["b"] else ("YEŞİL" if re.search(r"—\s*YEŞİL", y["b"]) else None)
+    if karar and (son is None or y["t"] >= son[0]): son = (y["t"], karar, y["u"])
+print(son[2] if son and son[1] == "YEŞİL" else ("KIRMIZI " + son[2] if son else ""))
+PY
+)
+rm -f "$YORUMLAR"
+if [ "${KAPI#KIRMIZI }" != "$KAPI" ]; then echo "KAPI son kararı KIRMIZI: ${KAPI#KIRMIZI }. Yayın yapılmadı." >&2; [ "$KURU" = 1 ] || exit 3; KAPI=""; fi
 if [ -z "$KAPI" ]; then
   echo "KAPI YEŞİL yok: $K7 için \"[KAPI] $K7 … YEŞİL\" yorumu bulunamadı. Yayın yapılmadı. (#12'ye \"[KAPI-İSTEK] main $K7\" yazın.)" >&2
   [ "$KURU" = 1 ] || exit 3
@@ -62,24 +85,27 @@ medya = next((a for n, a in adim.items() if n.startswith("M1 medyası")), None)
 derle = adim.get("Derle")
 if not medya or not derle: sys.exit("deploy-v2.yml'de 'M1 medyası' ya da 'Derle' adımı yok; yayin.sh güncellenmeli")
 desen = re.findall(r"--pattern '([^']+)'", medya["run"])
-etiket = re.search(r"release download (\S+)", medya["run"]).group(1)
+m = re.search(r"release download (\S+)", medya["run"])
+if not desen or not m: sys.exit("deploy-v2.yml 'M1 medyası' adımından sürüm adı ya da --pattern okunamadı; yayin.sh güncellenmeli")
+etiket = m.group(1)
 print(json.dumps({"etiket": etiket, "desen": desen, "derle": derle["run"]}))
 PY
-ADIMLAR=$(python3 -c "$ADIMLAR_PY")
+ADIMLAR=$(python3 -c "$ADIMLAR_PY") || exit 2
 ETIKET=$(python3 -c 'import json,sys;print(json.loads(sys.argv[1])["etiket"])' "$ADIMLAR")
 mkdir -p .medya
-python3 -c 'import json,sys;print("\n".join(json.loads(sys.argv[1])["desen"]))' "$ADIMLAR" > /tmp/yayin-desen.$$
+DESEN=$(mktemp /tmp/yayin-desen-XXXXXX); DERLE=$(mktemp /tmp/yayin-derle-XXXXXX); DLOG="$AGAC.derle.log"
+python3 -c 'import json,sys;print("\n".join(json.loads(sys.argv[1])["desen"]))' "$ADIMLAR" > "$DESEN"
 gh api "repos/$DEPO/releases/tags/$ETIKET" --jq '.assets[] | "\(.id)\t\(.name)"' | while IFS=$'\t' read -r id ad; do
   while IFS= read -r d; do
     # shellcheck disable=SC2053
     if [[ "$ad" == $d ]]; then gh api -H "Accept: application/octet-stream" "repos/$DEPO/releases/assets/$id" > ".medya/$ad"; break; fi
-  done < /tmp/yayin-desen.$$
+  done < "$DESEN"
 done
-rm -f /tmp/yayin-desen.$$
+rm -f "$DESEN"
 echo "medya: $(ls .medya | wc -l) dosya ($ETIKET)"
-python3 -c 'import json,sys;print(json.loads(sys.argv[1])["derle"])' "$ADIMLAR" > /tmp/yayin-derle.$$
-bash --noprofile --norc -eo pipefail /tmp/yayin-derle.$$ > /tmp/yayin-derle.log 2>&1 || { rm -f /tmp/yayin-derle.$$; echo "derleme düştü: /tmp/yayin-derle.log" >&2; exit 1; }
-rm -f /tmp/yayin-derle.$$
+python3 -c 'import json,sys;print(json.loads(sys.argv[1])["derle"])' "$ADIMLAR" > "$DERLE"
+bash --noprofile --norc -e "$DERLE" > "$DLOG" 2>&1 || { rm -f "$DERLE"; echo "derleme düştü: $DLOG" >&2; exit 1; }
+rm -f "$DERLE"; echo "derleme günlüğü: $DLOG"
 DAMGA=$(python3 -c 'import json;print(json.load(open("web/dist/sw-assets.json"))["build"])')
 echo "derlendi: kaynak $K7 · sürüm damgası $DAMGA"
 [ "$KURU" = 1 ] && { echo "(--kuru: itilmedi)"; exit 0; }
@@ -94,13 +120,17 @@ if git diff --cached --quiet; then echo "Değişiklik yok; yayın gerekmiyor"; e
 MSG="v2 yayın: $K7"
 git commit -q -m "$MSG"
 D=$(date -u +%Y%m%d); N=1; while git rev-parse -q --verify "refs/tags/v2-$D-$N" >/dev/null; do N=$((N+1)); done
+ONCEKI=$(git tag -l 'v2-*' --sort=-creatordate | head -n 1)
 git tag -a "v2-$D-$N" -m "$MSG (kaynak $K7)"
-git push -q origin HEAD:gh-pages "v2-$D-$N"
+# atomik: dal ve etiket birlikte gider ya da hiçbiri (yetim etiket geri alma ile yayına girmesin)
+if ! git push -q --atomic origin HEAD:gh-pages "v2-$D-$N"; then git tag -d "v2-$D-$N" >/dev/null; echo "itme reddedildi (dal + etiket birlikte); yayın yapılmadı" >&2; exit 1; fi
 GHC=$(git rev-parse --short HEAD); SAAT=$(date -u +%H:%M)
 echo "yayınlandı: gh-pages $GHC · etiket v2-$D-$N · damga $DAMGA · $SAAT UTC"
 
 # ---- 5. #12 ----
-GOVDE="[ANA] $SAAT UTC — **v2 yayını** (\`scripts/yayin.sh\`): kaynak main \`$K7\` (KAPI YEŞİL: $KAPI) → gh-pages \`$GHC\`, etiket \`v2-$D-$N\`, sürüm damgası \`$DAMGA\` (\`/v2/sw-assets.json\` → \`build\`). Geri alma: \`scripts/v2-rollback.sh v2-$D-$N\` öncesi etikete.
+GOVDE="[ANA] $SAAT UTC — **v2 yayını** (\`scripts/yayin.sh\`): kaynak main \`$K7\` (KAPI YEŞİL: $KAPI) → gh-pages \`$GHC\`, etiket \`v2-$D-$N\`, sürüm damgası \`$DAMGA\` (\`/v2/sw-assets.json\` → \`build\`). Geri alma (önceki yayına): \`scripts/v2-rollback.sh ${ONCEKI:-<önceki-etiket>}\`.
 
 [KAPI-İSTEK] yayın denetimi: beklenen sürüm $DAMGA (\`/v2/sw-assets.json\` → \`build\`), gh-pages \`$GHC\`, kaynak \`$K7\`"
-if [ "$YORUM" = 1 ]; then gh api "repos/$DEPO/issues/12/comments" -f body="$GOVDE" --jq .html_url; else printf '%s\n' "$GOVDE"; fi
+if [ "$YORUM" = 1 ]; then
+  gh api "repos/$DEPO/issues/12/comments" -f body="$GOVDE" --jq .html_url || { echo "YAYIN YAPILDI ama #12 yorumu yazılamadı; aşağıdaki metni elle yazın:" >&2; printf '%s\n' "$GOVDE" >&2; exit 4; }
+else printf '%s\n' "$GOVDE"; fi
