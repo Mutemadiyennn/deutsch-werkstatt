@@ -229,10 +229,18 @@ function OnOgretim({ w }: { w: { de: string; tr: string }[] }) {
   /** gösterilecek çiplerin dizinleri (null: hepsi, ölçüm öncesi) */
   const [secili, setSecili] = useState<number[] | null>(null);
   const dizi = useRef<HTMLDivElement>(null);
+  /** seçimin ölçüldüğü genişlik: genişlik değişirse (döndürme, pencere, yazı boyu) yeniden ölçülür (KAPI 64e3c0c, 440 → 430 px'te 3 satır) */
+  const olcG = useRef(0);
+  useEffect(() => {
+    const el = dizi.current; if (!el || typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(() => { if (olcG.current && Math.abs(el.clientWidth - olcG.current) > 0.5) { olcG.current = 0; setSecili(null); } });
+    ro.observe(el); return () => ro.disconnect();
+  }, []);
   // önce hepsi çizilir, genişlikler ölçülür; sırayla, iki satıra ilk sığan yere yerleştirilir ("+n" için son satırda yer ayrılır)
   useLayoutEffect(() => {
     if (acik || secili || !dizi.current) return;
     const G = dizi.current.clientWidth, ARA = 6, DAHA = 48;
+    olcG.current = G;
     const gen = [...dizi.current.querySelectorAll<HTMLElement>("[data-test=on-ogretim-kelime]")].map((c) => c.offsetWidth);
     const yerlestir = (pay: number) => {
       const satir = [0, 0]; const al: number[][] = [[], []];
