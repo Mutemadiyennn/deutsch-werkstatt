@@ -9,7 +9,7 @@ python3 tests/e2e/v2_hizli.py [--browser webkit] [--device "iPhone 15"] [--shots
 """
 import io, os
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow, tanitim_gec
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow, tanitim_gec, bekle_kosul
 
 PORT = 4211
 OKU = """async ([st, k]) => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
@@ -100,8 +100,7 @@ def main():
         check("Bildin" in t, f"doğru üretim: 'Bildin!' ({t[:60]!r})")
         lex = pg.get_attribute("[data-test=after-card]", "data-lex")
         pg.click("[data-test=next]")
-        pg.wait_for_function(f"async () => ((await ({OKU})(['meta', 'xp'])) || {{ value: {{ toplam: 0 }} }}).value.toplam >= {once + 4}", timeout=5000)
-        check(True, "üretimle bilinen kart +4 XP (tanımadan fazla)")
+        check(bekle_kosul(pg, f"async () => ((await ({OKU})(['meta', 'xp'])) || {{ value: {{ toplam: 0 }} }}).value.toplam >= {once + 4}"), "üretimle bilinen kart +4 XP (tanımadan fazla)")
         it = pg.evaluate(OKU, ["items", lex])
         check(it and it["passive"]["fsrs"] and abs(it["passive"]["fsrs"]["stability"] - 7) < 0.01 and it["active"]["ok"] == 1, f"kart tanımayı atladı: pasif kararlılık 7 gün, aktif yol başladı ({lex})")
         pg.wait_for_selector("[data-test=sina-soru], [data-test^=gq-], [data-test=garden-done]")

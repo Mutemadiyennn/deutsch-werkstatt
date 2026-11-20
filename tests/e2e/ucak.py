@@ -212,10 +212,15 @@ def main():
         except Exception: pass
 
         # ---------- D) Workers AI (deneme) sağlayıcısı: rol oyununda "deneme" etiketi (PM 7022002310-5) ----------
+        # sağlık cevabı rol oyunu ekranı açılana kadar BEKLETİLİR: yarış her koşuda sınanır (inceleme #151 P1-1)
+        bekleyen = []; tut = {"on": True}
+        HEALTH = json.dumps({"ok": True, "version": "e2e", "time": "", "provider": "workers-ai", "configured": {"gemini": False, "workers_ai": True, "allowlist": True}})
         def api_wa(route):
             u = route.request.url
             if route.request.method == "OPTIONS":
                 return route.fulfill(status=204, headers={**CORS, "Access-Control-Allow-Headers": "Authorization, Content-Type", "Access-Control-Allow-Methods": "GET, POST"})
+            if u.endswith("/v1/health") and tut["on"]:
+                bekleyen.append(route); return
             if u.endswith("/v1/health"):
                 return route.fulfill(status=200, headers=CORS, content_type="application/json", body=json.dumps({"ok": True, "version": "e2e", "time": "", "provider": "workers-ai", "configured": {"gemini": False, "workers_ai": True, "allowlist": True}}))
             if u.endswith("/v1/usage"):
@@ -224,10 +229,12 @@ def main():
         b, ctx = launch(p); pg = ctx.new_page(); pg.route("https://api.e2e.test/**", api_wa)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]"); pg.wait_for_timeout(500)
         pg.goto(base + f"#/scenario/{SC}/roleplay"); pg.wait_for_selector("[data-test=rp-start]")
-        # sağlayıcı /v1/health cevabıyla belli olur; rozet ondan sonra çizilir (CI'da yarış: #144 WebKit 16 Pro Max)
-        try: pg.wait_for_selector("[data-test=ai-deneme]", timeout=8000)
+        check(pg.locator("[data-test=ai-deneme]").count() == 0 and len(bekleyen) >= 1, f"D: sağlık cevabı gelmeden rozet yok ({len(bekleyen)} bekleyen istek)")
+        tut["on"] = False
+        for r in bekleyen: r.fulfill(status=200, headers=CORS, content_type="application/json", body=HEALTH)
+        try: pg.wait_for_selector("[data-test=ai-deneme]", timeout=5000)
         except Exception: pass
-        check(pg.locator("[data-test=ai-deneme]").count() == 1 and pg.inner_text("[data-test=ai-deneme]") == "Deneme", "D: Workers AI sağlayıcısında rol oyununda 'Deneme' etiketi (küçük harf, büyük harf dönüşümü yok)")
+        check(pg.locator("[data-test=ai-deneme]").count() == 1 and pg.inner_text("[data-test=ai-deneme]") == "Deneme", "D: Workers AI sağlayıcısında rol oyununda 'Deneme' etiketi; cevap ekran açıldıktan sonra gelse de çizilir (küçük harf)")
         # PM 7026867047: rozet başlık satırında (dikeyde başlıkla kesişir) ve kartın sağ kenarına yaslı
         # PM 7026867047: rozet ekranın başlık satırında (.pbar h1 ile aynı satır), başlığın sağında, satırın sağ ucuna yaslı; kart içinde değil
         g = pg.evaluate("""() => { const c = document.querySelector('[data-test=ai-deneme]'); const row = c.closest('.pbar > .row'); const h = row && row.querySelector('h1');
