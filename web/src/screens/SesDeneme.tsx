@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import { TopBar } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 import { havuzlar, sesKalitesi, type Ses } from "../core/sesSec.ts";
-import { cihazSesleri, gecerliOlcum, hizKaydet, hizKaydi, hizOrani, karakterSesi, listenOnce, olcCal, ORAN_ESIK, RATE, speak, STT_HATA_TR, sttHataTuru, sttYolu, ttsAvailable, YAVAS_SECENEK, type HizOlcum, type YavasOran } from "../services/speech.ts";
+import { cihazSesleri, gecerliOlcum, hizKaydet, stopSpeaking, hizKaydi, hizOrani, karakterSesi, listenOnce, olcCal, ORAN_ESIK, RATE, speak, STT_HATA_TR, sttHataTuru, sttYolu, ttsAvailable, YAVAS_SECENEK, type HizOlcum, type YavasOran } from "../services/speech.ts";
 import { useApp } from "../state.ts";
 import { loadWorld } from "../services/content.ts";
 import { kabukBilgisi, kabukSatiri, type KabukBilgisi } from "../services/kabuk.ts";
@@ -45,17 +45,21 @@ function SesSatiri({ s, kayit, kaydet }: { s: Ses; kayit: Kayit; kaydet: (ad: st
   );
 }
 
-/** Hız ölçümü: kadın ve erkek havuzunun ilk sesi (karakterlerin çoğu bunlarla konuşur) normal ve yavaş çalınır */
+/** Hız ölçümü: kadın ve erkek havuzunun ilk iki sesi (karakterlerin çoğu bunlarla konuşur) normal ve yavaş çalınır */
 function HizOlcumu({ hedef, kayit, kaydet }: { hedef: Ses[]; kayit: Kayit; kaydet: (ad: string, o: HizOlcum) => void }) {
   const { profile, setProfile, toast } = useApp();
   const [olcuyor, setOlcuyor] = useState(false);
   const [olculemedi, setOlculemedi] = useState<string[]>([]);
+  // ekrandan çıkınca ölçüm durur, başka ekranın sesini kesmez (inceleme #162 P2)
+  const canli = useRef(true);
+  useEffect(() => () => { canli.current = false; stopSpeaking(); }, []);
   const secili = profile.listening.slowRate;
   const sec = (r: YavasOran) => { const n = structuredClone(profile); n.listening.slowRate = r; RATE.slow = r; void setProfile(n).then(() => toast("Kaydedildi"), () => toast("Kaydedilmedi")); };
   const olc = async () => {
     setOlcuyor(true); setOlculemedi([]);
     const olmayan: string[] = [];
     for (const s of hedef) {
+      if (!canli.current) return;
       const v = sesNesnesi(s.name);
       const normalMs = await olcCal(ORNEK, v, RATE.normal);
       const yavasMs = normalMs === null ? null : await olcCal(ORNEK, v, RATE.slow);
@@ -63,6 +67,7 @@ function HizOlcumu({ hedef, kayit, kaydet }: { hedef: Ses[]; kayit: Kayit; kayde
       if (normalMs !== null && yavasMs !== null && gecerliOlcum({ normalMs, yavasMs })) kaydet(s.name, { normalMs, yavasMs, rate: RATE.slow });
       else olmayan.push(s.name);
     }
+    if (!canli.current) return;
     setOlculemedi(olmayan); setOlcuyor(false);
   };
   const olculen = hedef.filter((s) => kayit[s.name]);
@@ -98,7 +103,8 @@ export function SesDeneme() {
   const kaliteYok = ![...h.kadin, ...h.erkek].some((s) => sesKalitesi(s) >= 2);
   const [kayit, setKayit] = useState<Kayit>(() => hizKaydi());
   const kaydet = (ad: string, o: HizOlcum) => { hizKaydet(ad, o); setKayit((k) => ({ ...k, [ad]: o })); };
-  const hedef = [h.kadin[0], h.erkek[0]].filter((x): x is Ses => !!x);
+  // her cinsten ilk iki ses: yavaşlamayan seste aynı cinsten ölçülmüş bir yedek olabilsin (inceleme #162 P2)
+  const hedef = [...h.kadin.slice(0, 2), ...h.erkek.slice(0, 2)];
   const yavasNot = hedef.filter((s) => kayit[s.name]).map((s) => { const o = kayit[s.name]!; return `${kisaAd(s.name)} ${kat(hizOrani(o))}${hizOrani(o) < ORAN_ESIK ? " yavaşlamıyor" : ""}`; }).join(", ");
   return (
     <div class="stack ses-deneme" data-test="ses-deneme">
