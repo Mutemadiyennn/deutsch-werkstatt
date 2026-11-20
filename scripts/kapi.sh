@@ -53,6 +53,10 @@ PY
     komut=${komut//'${{ matrix.device }}'/$CIHAZ}
     komut=${komut//\/tmp\//$CIHAZ_DIR\/tmp\/}   # cihaza özel geçici klasör (/tmp/shots, /tmp/visual, /tmp/ogrenci-durum.json)
     log="$CIHAZ_DIR/gunluk/$(printf %02d $i)-$(echo "$ad" | tr -cs 'A-Za-z0-9' '-' | cut -c1-50).log"
+    # dış ağ isteyen adım (KAPI_DIS_AG; ör. CI'da gerçek Releases fotoğrafı) ağ ad alanında koşamaz: ertelenir, üst süreç ad alanı dışında koşar
+    if [ "${KAPI_AG_AYRI:-0}" = 1 ] && printf %s "$komut" | grep -qE "${KAPI_DIS_AG:-v2_foto\.py}"; then
+      printf '%s\x1f%s\x1f%s\x1f%s\x1f%s\x1f%s\n' "$ad" 0 "ERTELE" "" "$(printf %s "$komut" | base64 -w0)" "$log" >> "$CIHAZ_DIR/sonuc.tsv"; continue
+    fi
     bas=$(date +%s)
     if ( cd "$AGAC" && export E2E_BROWSER=webkit E2E_DEVICE="$CIHAZ" && bash --noprofile --norc -eo pipefail -c "$komut" ) </dev/null >"$log" 2>&1; then sonuc="geçti"; not=""
     else sonuc="DÜŞTÜ"
@@ -210,7 +214,7 @@ if [ "$SINIF" != docs ]; then
       N_WEBKIT=$((N_WEBKIT+1))
     fi
     # PM 7048319359 A: cihazlar aynı anda (her biri kendi ağ ad alanında: aynı port çakışmaz; kendi geçici klasöründe).
-    # Ad alanı açılamazsa ya da çekirdek azsa sırayla. KAPI_PARALEL ile elle (1–3).
+    # Ad alanı açılamazsa ya da çekirdek azsa sırayla. KAPI_PARALEL ile elle (1–3). Dış ağ adımları (KAPI_DIS_AG, varsayılan v2_foto.py) ad alanı dışında.
     AYRI=0; unshare -rn true 2>/dev/null && AYRI=1
     CEKIRDEK=$(nproc 2>/dev/null || echo 1)
     PARALEL=${KAPI_PARALEL:-$([ "$CEKIRDEK" -ge 6 ] && echo 3 || { [ "$CEKIRDEK" -ge 4 ] && echo 2 || echo 1; })}
@@ -242,7 +246,13 @@ if [ "$SINIF" != docs ]; then
       d=$(cihaz_dir "$c"); k=0
       while IFS=$'\x1f' read -r ad sure sonuc not kb64 log; do
         k=$((k+1))
-        if [ "$sonuc" = "DÜŞTÜ" ] && [ "$PARALEL" -gt 1 ]; then
+        if [ "$sonuc" = "ERTELE" ]; then
+          printf '  ↻ %s [%s]: dış ağ adımı, ad alanı dışında\n' "$ad" "$c"
+          b2=$(date +%s)
+          if ( cd "$AGAC" && export E2E_BROWSER=webkit E2E_DEVICE="$c" && bash --noprofile --norc -eo pipefail -c "$(printf %s "$kb64" | base64 -d)" ) </dev/null >"$log" 2>&1; then sonuc="geçti"; not="dış ağ adımı: ad alanı dışında koştu"
+          else sonuc="DÜŞTÜ"; not="dış ağ adımı (ad alanı dışında) · $(grep -E '✗|Error:|AssertionError' "$log" | head -3 | cut -c1-140 | paste -sd ';' -)"; fi
+          sure=$(( $(date +%s) - b2 ))
+        elif [ "$sonuc" = "DÜŞTÜ" ] && [ "$PARALEL" -gt 1 ]; then
           # ad alanında dış ağ yok: ağ hatasıyla düşen adım (ör. CI'da gerçek Releases fotoğrafı) ad alanı dışında koşar, sallantı sayılmaz
           agli=0; grep -qiE 'Network is unreachable|Name or service not known|Temporary failure in name resolution|getaddrinfo|ENETUNREACH|EAI_AGAIN' "$log" && agli=1
           printf '  ↻ %s [%s]: paralelde düştü, tek başına yeniden%s\n' "$ad" "$c" "$([ $agli = 1 ] && echo ' (dış ağ)')"
