@@ -70,7 +70,11 @@ def main():
             check(True, f"[{tema}] Bahçe'de ipucusuz doğru cevap görev sayacını artırdı")
             # 2) görevleri tamamla (sayaçlar + bugünkü XP; dakika görevi yoksa) → görev başına sandık + tören
             if "dk25" not in ids:
-                pg.evaluate(META_YAZ, [f"gorev:{gun}", {"sayac": {"bahceIpucusuz": 10, "tur90": 2, "ustuste5": 3, "dikteUsta": 3, "sesli": 3}}])
+                # uygulamanın kendi sayaç yazımı (Bahçe sonrası) tohumu ezebilir: yazılan değer okununca kalıcı sayılır (CI yarışı, main 7c78751)
+                tohum = {"bahceIpucusuz": 10, "tur90": 2, "ustuste5": 3, "dikteUsta": 3, "sesli": 3}
+                for _ in range(6):
+                    pg.evaluate(META_YAZ, [f"gorev:{gun}", {"sayac": tohum}]); pg.wait_for_timeout(300)
+                    if ((pg.evaluate(META_OKU, f"gorev:{gun}") or {}).get("sayac") or {}).get("tur90") == 2: break
                 x = pg.evaluate(META_OKU, "xp") or {"toplam": 0, "gunler": {}}
                 x["gunler"][gun] = max(60, x["gunler"].get(gun, 0)); x["toplam"] = max(x["toplam"], 60)
                 pg.evaluate(META_YAZ, ["xp", x])
