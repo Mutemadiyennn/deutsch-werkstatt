@@ -11,7 +11,7 @@
   python3 tests/e2e/v2_solen.py [--browser webkit] [--device "iPhone 15"] [--shots DIR]
 """
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow, tanitim_gec
 
 PORT = 4199
 
@@ -132,7 +132,7 @@ def main():
             ucus, ilk_dogru, kaydirma = False, True, []
             for _ in range(40):
                 if pg.locator("[data-test=garden-done]").count(): break
-                if pg.locator("[data-test=garden-intro]").count(): pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]")
+                if pg.locator("[data-test=garden-intro]").count(): tanitim_gec(pg); continue
                 if pg.locator("button.opt").count(): pg.locator("button.opt[data-right]").first.click()
                 else:
                     pg.fill("[data-test=answer]", "xyz falsch"); pg.click("[data-test=submit]")
