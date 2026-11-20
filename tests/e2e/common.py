@@ -187,3 +187,12 @@ def content_file(rel):
 def finish():
     print("HATALAR:", "yok" if not ERR else "\n  " + "\n  ".join(ERR))
     sys.exit(1 if ERR else 0)
+
+
+def tanitim_gec(pg):
+    """Bahçe tanıtım kartında "Tamam": ilk soru sonra gelir (PM-069 madde 3); sonraki ekran (başka tanıtım, soru ya da tur sonu) gelene kadar bekler"""
+    eski = pg.inner_text("[data-test=garden-intro] .de-xl")
+    pg.wait_for_timeout(400)  # ekran açıldıktan sonraki 350 ms'deki dokunuş sayılmaz (çift dokunuş koruması)
+    pg.click("[data-test=garden-intro] [data-test=next]")
+    pg.wait_for_function("(eski) => { const t = document.querySelector('[data-test=garden-intro] .de-xl'); return !t || t.innerText !== eski; }", arg=eski)
+    pg.wait_for_selector("[data-test^=gq-], [data-test=garden-intro], [data-test=garden-done], [data-test=hizli-oneri]")

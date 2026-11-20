@@ -6,7 +6,7 @@ PM-062 (#58 B13) — Bahçe'de değişen cümle:
 python3 tests/e2e/v2_bahce_donusum.py [--browser webkit] [--device "iPhone 15"] [--shots DIR]
 """
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow, tanitim_gec
 
 PORT = 4205
 
@@ -37,20 +37,22 @@ def main():
         ctx.set_offline(True)
         ilk = pg.inner_text("[data-test=intro-ex]")
         goruldu, doms, kareler = [ilk], [], []
-        for _ in range(7):  # ortanca 7 dokunuştan (CI'da tek tük yavaş kare; PM-069 P2-d)
+        # D-096 yöntemi: DOM her dokunuşta < 150 ms (sert). Kare (7 dokunuşun ortancası − boş kare aralığı) PM 7030294523 B gereği
+        # CI'da yalnızca günlüğe yazılır: iPhone 15 görünümünde sayfa kayarken belge yüksekliği değişince WebKit bütün görünümü yeniden
+        # boyuyor (95–177 ms, kalıcı). Köprü: C (örnek alanı en uzun örnek kadar, kart zıplamaz) girince kare ölçütü üç cihazda geri döner.
+        for _ in range(7):
             dom, kare, metin = degistir(pg, "[data-test=intro-ex]")
             doms.append(dom); kareler.append(kare); goruldu.append(metin)
+        kortanca = sorted(kareler)[len(kareler) // 2]; bos = bos_kare(pg)
+        print(f"  (kare, yalnızca günlük: ortanca {round(kortanca)} − boş kare {round(bos)} = {round(kortanca - bos)} ms; en kötü {round(max(kareler))} ms)")
+        dokunus = 7
         check(len(set(goruldu[:3])) == 3, f"3 dokunuşta farklı cümleler ({[g[:30] for g in goruldu[:4]]})")
-        # D-096 yöntemi: DOM her dokunuşta < 150 ms (sert), ilk kare 7 dokunuşun ortancası < 150 ms; en kötü kare raporda
-        kortanca = sorted(kareler)[len(kareler) // 2]
-        # kare ölçütü (PM-069 P2-d): bizim eklediğimiz gecikme = ilk kare − tarayıcının boş kare aralığı; DOM ölçütü değişmedi (sert)
-        bos = bos_kare(pg); ek = kortanca - bos
-        print(f"  (boş kare aralığı {round(bos)} ms; eklenen {round(ek)} ms)")
-        check(max(doms) < 150 and ek < 150, f"değişim < 150 ms, uçak modunda (DOM {[round(x) for x in doms]} ms; kare ortanca {round(kortanca)} − boş kare {round(bos)} = {round(ek)} ms; en kötü {round(max(kareler))} ms)")
+        check(max(doms) < 150, f"değişim DOM'da < 150 ms, uçak modunda (DOM {[round(x) for x in doms]} ms; kare gerçek cihazda: DUMAN madde 9)")
         no_overflow(pg, "tanıtım")
         if shots: shot(pg, "b01-baska-cumle", full=False)
         # düğme ipucu sayılmaz: sonraki doğru cevap "Doğru." (XP'li)
-        pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]")
+        # PM-069 madde 3: kartın ilk sorusu iki tanıtım sonra gelir
+        while pg.locator("[data-test=garden-intro]").count(): tanitim_gec(pg)
         pg.evaluate("window.__ucus = 0; addEventListener('dw:xp-ucus', (e) => { window.__ucus += e.detail.n; })")
         pg.locator("button.opt[data-right]").first.click(); pg.wait_for_selector("[data-test=feedback]")
         pg.wait_for_function("() => window.__ucus > 0", timeout=3000)
@@ -61,7 +63,7 @@ def main():
         # kayıt: kartın sayacı gösterilen (7 kez değiştirilmiş) cümlenin ardından yazıldı → sonraki oturum başka cümleyle açılır
         ex_seen = pg.evaluate("""(id) => new Promise((res) => { const r = indexedDB.open('dw2'); r.onsuccess = () => { const t = r.result.transaction('items').objectStore('items').get(id);
           t.onsuccess = () => res(t.result ? t.result.exSeen : null); t.onerror = () => res(null); }; r.onerror = () => res(null); })""", lex)
-        check(ex_seen == 8, f"öğrenci kaydında cümle sayacı gösterilenin ardından ({lex}: exSeen={ex_seen}; 7 değişiklik + cevap = 8)")
+        check(ex_seen == dokunus + 1, f"öğrenci kaydında cümle sayacı gösterilenin ardından ({lex}: exSeen={ex_seen}; {dokunus} değişiklik + cevap = {dokunus + 1})")
         # boşluk sorusu: başka boşluk cümlesi (bir tur içinde bulunursa)
         bosluk = False
         for _ in range(60):
@@ -69,7 +71,7 @@ def main():
             if pg.locator("[data-test=gap-cumle]").count() and pg.locator("[data-test=baska-cumle]").count():
                 once = pg.inner_text("[data-test=gap-cumle]"); dom, kare, sonra = degistir(pg, "[data-test=gap-cumle]")
                 check(sonra != once and dom < 150, f"boşluk sorusunda başka cümle ({once[:30]!r} → {sonra[:30]!r}; DOM {round(dom)} ms, kare {round(kare)} ms)"); bosluk = True; break
-            if pg.locator("[data-test=garden-intro]").count(): pg.click("[data-test=next]"); pg.wait_for_selector("[data-test^=gq-]"); continue
+            if pg.locator("[data-test=garden-intro]").count(): tanitim_gec(pg); continue
             if pg.locator("button.opt:not([disabled])").count(): pg.locator("button.opt[data-right]").first.click()
             else:
                 pg.fill("[data-test=answer]", "xyz falsch"); pg.click("[data-test=submit]"); pg.wait_for_timeout(150)
