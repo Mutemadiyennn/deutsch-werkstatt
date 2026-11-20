@@ -51,6 +51,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | #151 | `qa/ci-yaris` | "Deneme" rozeti sağlık cevabını dinler (ürün hatası); async beklemeler gerçek yoklama | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor |
 | #152 | `v2/kart-sigar` | En uzun kart sığar: görsel 160→96 px, gerekirse yok; test en uzun 40 kart (D-123) | CI (ResizeObserver düzeltmesi fe67cb2); inceleme sırada; **PM final** |
 | #162 | `v2/yavas` | P1 "Yavaş" duyulur: RATE.slow 0,5 (0,6/0,5/0,4 seçimi), Ses ve mikrofon'da hız ölçümü (0,3 sn altı ölçülemedi), yavaşlamayan seste aynı cinsten ve sahnede boş yedek ses, yoksa kelime grupları (PM 7042161522-1, 7043447488) | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi (P1-1 duraklamada kesilme, P1-2 sahnedeki ses); **PM final** |
+| #164 | `v2/kabuk-ses` | Kabuk 1.5: kabukta iPhone'un kendi seslendirmesi (TextToSpeech 8.0.0; premium > gelişmiş > standart; gerçek cinsiyetli ses, perde 1; ses listesi uygulama öne gelince yenilenir); web yolunda perde ±%8 ızgarası (aynı sahnede aynı ses+perde yok), aynı ad tek satır (PM 7042267632, 7042302480, 7044942991) | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; ios-build yeşil; **PM final**; #162 birleşti (f6ee482), main birleştirildi |
 | #145, #147 | İÇ dalları | B5 içerik (1. ve 2. gün ders profili) | İÇ şeridi; anlık görüntüler ANA'dan |
 
 **Bilinen CI kırmızıları:**
