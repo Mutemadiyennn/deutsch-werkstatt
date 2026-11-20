@@ -31,10 +31,10 @@
  "review": {
   "status": "reviewed",
   "by": "dilbilimci-ajan",
-  "at": "2026-11-18",
-  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-01-05.md. Denetim: docs/v2/reviews/temel-r0-denetim.txt. Kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
+  "at": "2026-11-20",
+  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-01-05.md. Denetim: docs/v2/reviews/temel-r0-denetim.txt. Kapanış: docs/v2/reviews/temel-r0-kapanis.md. B5 profil turu (20.11): docs/v2/reviews/temel-profil-01-03.md. Okur B5: docs/v2/reviews/okur/temel-profil-01-03.md.",
   "okur": "passed",
-  "okur_at": "2026-11-18"
+  "okur_at": "2026-11-20"
  },
  "teach": [
   {
@@ -505,14 +505,25 @@
   },
   {
    "id": "r0:03:d02",
-   "k": "pick",
-   "q_tr": "**sechzehn** kaç eder?",
-   "opts": [
-    "6",
+   "k": "listen_and_respond",
+   "audio_de": "Bitte in Büro sechzehn.",
+   "speed": "normal",
+   "situation_tr": "Vatandaş bürosunda Frau Schneider seni bir odaya gönderiyor. Oda numarasını yaz.",
+   "accepted": [
     "16",
-    "7"
+    "sechzehn",
+    "Büro sechzehn",
+    "Büro 16",
+    "In Büro sechzehn.",
+    "Bitte in Büro sechzehn.",
+    "Nummer sechzehn.",
+    "In Büro sechzehn, bitte.",
+    "Zimmer sechzehn",
+    "Büro Nummer 16",
+    "Büro Nummer sechzehn",
+    "Bitte ins Büro sechzehn."
    ],
-   "ans": 1
+   "strictNumberWords": false
   },
   {
    "id": "r0:03:d03",
@@ -528,14 +539,22 @@
   },
   {
    "id": "r0:03:d04",
-   "k": "pick",
-   "q_tr": "Bekleme salonunda **Nummer siebzehn** diye çağırıyorlar. Sıra numarası kaç?",
-   "opts": [
-    "7",
-    "19",
-    "17"
+   "k": "listen_and_respond",
+   "audio_de": "Nummer siebzehn, bitte.",
+   "speed": "slow",
+   "situation_tr": "Bekleme salonunda Frau Schneider numara çağırıyor. Çağrılan numarayı yaz.",
+   "accepted": [
+    "17",
+    "siebzehn",
+    "Nummer siebzehn",
+    "Nummer 17",
+    "Nummer siebzehn, bitte.",
+    "Die Nummer siebzehn.",
+    "Bitte, Nummer siebzehn.",
+    "Die Nummer ist siebzehn.",
+    "Die Nummer ist 17."
    ],
-   "ans": 2
+   "strictNumberWords": false
   },
   {
    "id": "r0:03:d05",
@@ -676,15 +695,17 @@
   },
   {
    "id": "r0:03:d16",
-   "k": "tr_de",
-   "tr": "Numara on altı.",
+   "k": "transform",
+   "instr_tr": "Rakamı kelimeyle yaz.",
+   "from_de": "Nummer 16.",
    "accepted": [
     "Nummer sechzehn.",
     "Die Nummer sechzehn.",
     "Sechzehn.",
     "Die Nummer ist sechzehn."
    ],
-   "why_tr": "**sechs** burada **sech** olur."
+   "strictNumberWords": true,
+   "why_tr": "On altı derken **sechzehn** yazılır, **sechs** sonundaki **s** düşer."
   },
   {
    "id": "r0:03:d17",
@@ -699,35 +720,50 @@
   },
   {
    "id": "r0:03:d18",
-   "k": "tr_de",
-   "tr": "Numara on iki.",
+   "k": "listen_and_respond",
+   "audio_de": "Welche Wohnung haben Sie?",
+   "speed": "normal",
+   "situation_tr": "Herr Pichler dairenin numarasını soruyor. Dairen on iki numara. Numarayı kelimeyle yaz.",
    "accepted": [
     "Nummer zwölf.",
     "Die Nummer zwölf.",
     "Zwölf.",
-    "Die Nummer ist zwölf."
+    "Die Nummer ist zwölf.",
+    "Ich habe Nummer zwölf.",
+    "Ich habe die Nummer zwölf.",
+    "Wohnung zwölf.",
+    "Ich habe Wohnung zwölf.",
+    "Wohnung Nummer zwölf.",
+    "Ich habe die Wohnung zwölf.",
+    "Die Wohnung zwölf.",
+    "Meine Wohnung ist Nummer zwölf.",
+    "Ich wohne in Wohnung zwölf."
    ]
   },
   {
    "id": "r0:03:d19",
-   "k": "tr_de",
-   "tr": "Numara yirmi.",
+   "k": "transform",
+   "instr_tr": "Rakamı kelimeyle yaz.",
+   "from_de": "Nummer 20.",
    "accepted": [
     "Nummer zwanzig.",
     "Die Nummer zwanzig.",
     "Zwanzig.",
     "Die Nummer ist zwanzig."
-   ]
+   ],
+   "strictNumberWords": true
   },
   {
    "id": "r0:03:d20",
-   "k": "tr_de",
-   "tr": "Brunnengasse on üç numarada oturuyorum.",
+   "k": "transform",
+   "instr_tr": "Ev numarasını bir artır.",
+   "from_de": "Ich wohne in der Brunnengasse zwölf.",
    "accepted": [
     "Ich wohne in der Brunnengasse dreizehn.",
     "In der Brunnengasse dreizehn wohne ich.",
     "Ich wohne Brunnengasse dreizehn.",
-    "Brunnengasse dreizehn."
+    "Brunnengasse dreizehn.",
+    "In der Brunnengasse dreizehn."
    ]
   },
   {
@@ -940,6 +976,89 @@
     "Zwo, bitte.",
     "Zwei, bitte."
    ]
+  },
+  {
+   "id": "r0:03:d36",
+   "k": "listen_and_respond",
+   "audio_de": "Die Nummer ist null acht sieben, vier fünf zwo.",
+   "speed": "slow",
+   "situation_tr": "Frau Schneider vatandaş bürosunun telefon numarasını söylüyor. Numarayı rakamla yaz.",
+   "accepted": [
+    "087 452",
+    "087452",
+    "null acht sieben vier fünf zwo",
+    "null acht sieben vier fünf zwei",
+    "Die Nummer ist 087 452.",
+    "Die Nummer ist 087452.",
+    "Die Nummer ist null acht sieben vier fünf zwo.",
+    "Die Nummer ist null acht sieben vier fünf zwei."
+   ],
+   "strictNumberWords": false
+  },
+  {
+   "id": "r0:03:d37",
+   "k": "listen_and_respond",
+   "audio_de": "Ihre Nummer ist null eins sieben eins, drei neun drei?",
+   "speed": "normal",
+   "situation_tr": "Frau Huber numaranı tekrar ediyor. Senin numaran 0171 392. Yanlışı düzelt.",
+   "accepted": [
+    "Nein, drei neun zwo.",
+    "Nein, drei neun zwei.",
+    "Drei neun zwo.",
+    "Drei neun zwei.",
+    "Nein, null eins sieben eins, drei neun zwo.",
+    "Nein, null eins sieben eins, drei neun zwei.",
+    "Nein, meine Nummer ist null eins sieben eins, drei neun zwo.",
+    "Nein, meine Nummer ist null eins sieben eins, drei neun zwei.",
+    "Meine Nummer ist null eins sieben eins, drei neun zwo.",
+    "Meine Nummer ist null eins sieben eins, drei neun zwei.",
+    "Null eins sieben eins, drei neun zwo.",
+    "Null eins sieben eins, drei neun zwei.",
+    "Nein, 0171 392.",
+    "0171 392.",
+    "Nein, meine Nummer ist 0171 392.",
+    "Nein, 392.",
+    "392.",
+    "Nein, zwo.",
+    "Nein, zwo, nicht drei.",
+    "Nein, nicht drei, zwo.",
+    "Zwo, nicht drei.",
+    "Nein, am Ende zwo.",
+    "Nein, drei neun zwo, nicht drei neun drei.",
+    "Die Nummer ist null eins sieben eins, drei neun zwo.",
+    "Nein, zwei.",
+    "Nein, zwei, nicht drei.",
+    "Nein, nicht drei, zwei.",
+    "Zwei, nicht drei.",
+    "Nein, am Ende zwei.",
+    "Nein, drei neun zwei, nicht drei neun drei.",
+    "Die Nummer ist null eins sieben eins, drei neun zwei.",
+    "Meine Nummer ist 0171 392.",
+    "Nein, die Nummer ist 0171 392.",
+    "Die Nummer ist 0171 392."
+   ],
+   "why_tr": "Son rakam yanlış, iki değil üç dedi. Son üç rakamı yeniden söylemen yeter."
+  },
+  {
+   "id": "r0:03:d38",
+   "k": "listen_and_respond",
+   "audio_de": "Meine Nummer ist null eins sechs null, acht acht drei.",
+   "speed": "normal",
+   "situation_tr": "Herr Pichler telefon numarasını veriyor. Numarayı rakamla yaz.",
+   "accepted": [
+    "0160 883",
+    "0160883",
+    "null eins sechs null acht acht drei",
+    "null eins sechs null, acht acht drei",
+    "Die Nummer ist 0160 883.",
+    "Seine Nummer ist 0160 883.",
+    "Die Nummer ist null eins sechs null acht acht drei.",
+    "Meine Nummer ist 0160 883.",
+    "Meine Nummer ist null eins sechs null, acht acht drei.",
+    "Ihre Nummer ist 0160 883.",
+    "Seine Nummer ist null eins sechs null acht acht drei."
+   ],
+   "strictNumberWords": false
   }
  ],
  "dialogue": {
@@ -998,7 +1117,7 @@
  "listening": [
   {
    "id": "r0:03:h1",
-   "title_tr": "Bürgerbüro bekleme salonu",
+   "title_tr": "Vatandaş bürosunun bekleme salonu",
    "speed": "slow",
    "speeds": [
     "slow",
