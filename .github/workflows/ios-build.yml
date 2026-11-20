@@ -6,6 +6,9 @@ name: Build Unsigned iOS IPA
 
 on:
   workflow_dispatch:
+  # PM-071: kabuk değişikliği PR'da derlenir (kırmızıysa birleşmez); IPA yapıt olarak iner
+  pull_request:
+    paths: [".github/workflows/ios-build.yml"]
 
 jobs:
   build-ios:
@@ -27,10 +30,10 @@ jobs:
           npm install @capacitor/core @capacitor/cli @capacitor/ios
           # Yerel eklentiler: klavyedeki ^ v ✓ çubuğunu gizleme, doğru/yanlışta titreşim
           npm install @capacitor/keyboard @capacitor/haptics @capacitor/status-bar @capacitor/local-notifications @capacitor/app @capawesome/capacitor-badge @capacitor/share
-          # İnternetsiz/kota dolunca yedek: Apple'ın cihaz üstü konuşma tanıma (topluluk eklentisi; derlenmezse aşağıda otomatik çıkarılır)
-          npm install @capacitor-community/speech-recognition || true
+          # Apple'ın cihaz üstü konuşma tanıma (topluluk eklentisi). PM-071 1. adım: kurulamaz ya da derlenmezse iş kırmızı; sessizce çıkarılmaz
+          npm install @capacitor-community/speech-recognition
           # Mikrofon kaydı uygulamanın içinde (iPhone'un kendi kaydedicisi; web görünümünün mikrofon hatalarına takılmaz)
-          npm install @independo/capacitor-voice-recorder@^8 || true
+          npm install @independo/capacitor-voice-recorder@^8
 
       - name: Prepare Web Directory
         run: |
@@ -118,6 +121,30 @@ jobs:
               open(f, "wb").write(data)
           PY
 
+      - name: Shell version and plugin list (kabuk.json)
+        run: |
+          # PM-071 1. adım: kabuk sürümü Info.plist'e yazılır (uygulamada Profil → Ses ve mikrofon → "Kabuk" satırı okur);
+          # içerideki eklentiler sürümleriyle günlüğe ve pakete (kabuk.json) yazılır
+          SURUM="$(date -u +%Y.%m.%d)"; YAPI="${{ github.run_number }}"
+          P=ios/App/App/Info.plist
+          /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $SURUM" $P
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $YAPI" $P
+          echo "== npx cap ls ios (yerel projeye giren eklentiler)"; npx cap ls ios
+          SURUM="$SURUM" YAPI="$YAPI" node -e '
+            const fs = require("fs"); const d = require("./package.json").dependencies || {};
+            const ad = Object.keys(d).filter((k) => k !== "@capacitor/cli").sort();
+            const surum = (k) => JSON.parse(fs.readFileSync(`node_modules/${k}/package.json`, "utf8")).version;
+            // yerel projeye bağlanan eklentiler: CocoaPods (ios/App/Podfile) ya da Swift Package Manager (ios/App/CapApp-SPM/Package.swift)
+            const kaynak = ["ios/App/Podfile", "ios/App/CapApp-SPM/Package.swift"].filter((f) => fs.existsSync(f));
+            const metin = kaynak.map((f) => fs.readFileSync(f, "utf8")).join("\n");
+            const eksik = ad.filter((k) => k !== "@capacitor/core" && k !== "@capacitor/ios" && !metin.includes(`node_modules/${k}`));
+            const j = { kabuk: `${process.env.SURUM} (${process.env.YAPI})`, ios_hedef: "15.0", adres: "https://mutemadiyennn.github.io/deutsch-werkstatt/",
+              capacitor: surum("@capacitor/core"), paket_yoneticisi: kaynak, eklentiler: Object.fromEntries(ad.map((k) => [k, surum(k)])), baglanmayan: eksik };
+            fs.writeFileSync("kabuk.json", JSON.stringify(j, null, 2) + "\n");
+            if (!kaynak.length || eksik.length) { console.error("::error::Yerel projeye baglanmayan eklenti: " + (eksik.join(", ") || "Podfile ya da Package.swift yok")); process.exit(1); }'
+          echo "== kabuk.json"; cat kabuk.json
+          { echo "### Kabuk"; echo '```json'; cat kabuk.json; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Build iOS App (Unsigned)
         run: |
           build() {
@@ -127,17 +154,21 @@ jobs:
               xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGNING_ALLOWED=NO
             fi
           }
-          # Topluluk eklentisi derlemeyi bozarsa onu çıkarıp yeniden dene; uygulama yine kurulabilir olsun
-          build || { echo "::warning::Derleme başarısız; konuşma tanıma eklentisi çıkarılıp yeniden deneniyor"; npm uninstall @capacitor-community/speech-recognition; npx cap sync ios; rm -rf build; build; } || { echo "::warning::Hâlâ başarısız; ses kaydedici eklentisi de çıkarılıp yeniden deneniyor"; npm uninstall @independo/capacitor-voice-recorder; npx cap sync ios; rm -rf build; build; }
+          # PM-071 1. adım: eklenti çıkarıp yeniden deneme yok; derleme kırılırsa iş kırmızı (telefondaki kabukta ne olduğu hep belli)
+          build
 
       - name: Package into IPA
         run: |
           mkdir -p Payload
           mv build/Build/Products/Release-iphoneos/App.app Payload/
+          # kabuk.json pakete de girer (Payload/App.app/kabuk.json)
+          cp kabuk.json Payload/App.app/
           zip -r App.ipa Payload
 
       - name: Upload IPA Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ios-ipa
-          path: App.ipa
+          path: |
+            App.ipa
+            kabuk.json

@@ -10,6 +10,7 @@ import { Icon } from "../ui/icons.tsx";
 import { havuzlar, sesKalitesi, type Ses } from "../core/sesSec.ts";
 import { cihazSesleri, karakterSesi, listenOnce, speak, STT_HATA_TR, sttHataTuru, sttYolu, ttsAvailable } from "../services/speech.ts";
 import { loadWorld } from "../services/content.ts";
+import { kabukBilgisi, kabukSatiri, type KabukBilgisi } from "../services/kabuk.ts";
 
 const ORNEK = "Guten Morgen! Ich hätte gern einen Termin am Montag.";
 
@@ -73,6 +74,8 @@ function MikrofonDeneme() {
   const [hata, setHata] = useState<string | null>(null);
   const akis = useRef<{ stop: () => void } | null>(null);
   const yol = sttYolu();
+  const [kabuk, setKabuk] = useState<KabukBilgisi | null>(null);
+  useEffect(() => { void kabukBilgisi().then(setKabuk, () => setKabuk(null)); }, []);
   useEffect(() => {
     const p = (navigator as any).permissions?.query?.({ name: "microphone" });
     p?.then((r: any) => { const f = () => setIzin(r.state === "granted" ? "verildi" : r.state === "denied" ? "reddedildi" : "sorulacak"); f(); r.onchange = f; }).catch(() => {});
@@ -112,6 +115,8 @@ function MikrofonDeneme() {
       {hata && <p class="small fb-uyari" role="alert" data-test="mic-hata">{hata}</p>}
       {/* kabukta izin yoksa tek dokunuşla iPhone Ayarları (PM 7017526063); cihazda doğrulanacak */}
       {hata && yol === "yerel" && izin === "reddedildi" && <button class="btn" data-test="ayarlari-ac" onClick={() => { location.href = "app-settings:"; }}>Ayarları aç</button>}
+      {/* PM-071 1. adım: telefondaki kabuğun sürümü ve içinde gerçekten bulunan eklentiler (sayfa 3 blokta kalsın diye mikrofon kartında) */}
+      {kabuk && <p class="tiny muted" data-test="kabuk-satir" style={{ margin: 0 }}>{kabukSatiri(kabuk)}</p>}
     </section>
   );
 }
