@@ -9,6 +9,7 @@ import { usePlan, YolHarita } from "./Yol.tsx";
 import { adimAdi, seri } from "../core/gun.ts";
 import { seasonal } from "../core/season.ts";
 import { bankItems } from "../data/db.ts";
+import { personalizeDeep } from "../core/persona.ts";
 import { loadIndex, loadLexicon, loadScenario } from "../services/content.ts";
 import { focusPause, focusResume, focusSkipBreak, focusStart } from "../services/focusRuntime.ts";
 import { Art, ErrorPanel, Ring, SpeakBtn, TopBar, minLeft, useFocusTick } from "../ui/components.tsx";
@@ -33,7 +34,8 @@ export function Today() {
   const m1 = plan;
 
   useEffect(() => {
-    if (rec.kind === "scenario") loadScenario(rec.scenarioId).then(setScen).catch(() => setScen(null));
+    // B7: "Şu an öğrendiklerin" de kişiselleştirilir (ad yuvası görünmez/okunmaz)
+    if (rec.kind === "scenario") loadScenario(rec.scenarioId).then((s) => setScen(personalizeDeep(s, { name: profile.displayName, address: profile.address }))).catch(() => setScen(null));
   }, [rec.kind === "scenario" ? rec.scenarioId : ""]);
 
   const min = e ? e.focusMin() : 0;
@@ -158,7 +160,7 @@ export function MevsimKarti() {
 
 /** "Tekrar edilecekler" (PM-035 §3): zayıf kartlar, "Duyduğum kelime", Bahçe tekrarı. M1'de Bugün = yol olduğundan Öğren'de. */
 export function TekrarListesi() {
-  const { placement } = useApp();
+  const { placement, profile } = useApp();
   // PM-035 §3: tekrar listesinde ham kimlik yok; kelime, ifade ve kalıp çözülür, çözülemeyen gösterilmez
   const [bank, setBank] = useState<{ it: LearnerItem; de: string; tr: string; art?: string }[]>([]);
   useEffect(() => {
@@ -171,11 +173,13 @@ export function TekrarListesi() {
       const chunkMap = new Map<string, { de: string; tr: string }>();
       const doms = [...new Set(items.filter((x) => x.itemId.startsWith("ch:")).map((x) => x.itemId.split(":")[1]))];
       const idx = await loadIndex();
-      for (const sc of idx.scenarios.filter((x) => doms.includes(x.domain))) { try { const s = await loadScenario(sc.id); for (const c of s.chunks) chunkMap.set(c.id, { de: c.layers.hd, tr: c.tr }); } catch { /* çevrimdışı: atla */ } }
+      // B7 (inceleme #148 P1-1): ad yuvası ekranda ve seste kişiselleştirilir (adsız profilde `_adsiz` biçimi)
+      const kisi = { name: profile.displayName, address: profile.address };
+      for (const sc of idx.scenarios.filter((x) => doms.includes(x.domain))) { try { const s = personalizeDeep(await loadScenario(sc.id), kisi); for (const c of s.chunks) chunkMap.set(c.id, { de: c.layers.hd, tr: c.tr }); } catch { /* çevrimdışı: atla */ } }
       setBank(items.flatMap((it) => {
         const l = m.get(it.itemId); if (l) return [{ it, de: l.de, tr: l.tr, art: l.art }];
         const c = chunkMap.get(it.itemId); if (c) return [{ it, ...c }];
-        const p = pm.get(it.itemId); if (p?.examples[0]) return [{ it, de: p.examples[0].de, tr: p.examples[0].tr }];
+        const p = pm.get(it.itemId); if (p?.examples[0]) { const e = personalizeDeep(p.examples[0], kisi); return [{ it, de: e.de, tr: e.tr }]; }
         return [];
       }));
     })().catch(() => setBank([]));
