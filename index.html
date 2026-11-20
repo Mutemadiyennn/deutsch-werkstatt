@@ -1135,6 +1135,8 @@ body.lesson main, body.lesson.insess main, body.lesson.focus main{padding-top:ca
 @keyframes kuShim{to{background-position:-200% 0}}
 
 .ku-retry{font-size:12.5px;color:var(--muted);margin:-4px 0 8px;font-weight:600}
+/* v2'ye geçiş satırı (PM 7025664499): Bugün, Seviyem, Daha fazla ve Kurulum'un üstünde (başlık çubuğunun altında), belirgin tek satır */
+.v2-bant { display: flex; justify-content: space-between; align-items: center; min-height: 44px; margin: 0 0 10px; padding: 0 14px; border-radius: 12px; background: var(--accent); color: var(--accent-ink); text-decoration: none; font-size: 15px; }
 
 .lvfix{width:100%;max-width:460px;margin:0 auto}
 .lvfix-c{padding:10px 14px;border-radius:16px;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.5);color:#fff;display:flex;flex-direction:column;gap:4px}
@@ -5829,7 +5831,7 @@ const GeminiAI = {
 };
 
 /* yapay zekâ isteklerinin süresi (içerik ve anahtar kaydedilmez): yavaşlığın nedenini görmek için */
-const APP_VER = "2026-11-18c";
+const APP_VER = "2026-11-20a";
 const _gemCall0 = gemCall;
 const GEMQ = {n:0, w:[]};
 function gemSlot(){ if(GEMQ.n < 2){ GEMQ.n++; return Promise.resolve(); } return new Promise(r=>GEMQ.w.push(()=>{ GEMQ.n++; r(); })); }
@@ -11455,6 +11457,44 @@ function kuDay(){ const k = kSt(); const d = k.day || (k.day = {}); return d[day
   VIEWS.plan = () => renderPlan();
 }
 
+/* ---- src/js/47-v2-gecis.js ---- */
+/* ===== v2'ye geçiş (PM 7025664499, onaylı küçük v1 dokunuşu): v1 verisine dokunmaz.
+   1) Bugün, Seviyem, Daha fazla ve Kurulum'un en üstünde (başlık çubuğunun altında) tek satır "Yeni uygulama (2.0) → Aç".
+   2) Kurulum'un ilk kartı (PM 7028993866): "Her açılışta yeni uygulamayı aç" (varsayılan kapalı). Açıksa kök adres /v2/'ye yönlenir;
+      v2 Profil'deki "Eski uygulamaya dön" anahtarı kapatıp köke gelir (aynı köken, aynı localStorage). ===== */
+const V2_AC = "dw-v2-ac";
+const v2Ac = () => { try { return localStorage.getItem(V2_AC) === "1"; } catch { return false; } };
+if (v2Ac() && !/[?&]v1\b/.test(location.search) && !/\/v2\//.test(location.pathname)) location.replace("./v2/");
+function v2AcAyarla(on) { try { localStorage.setItem(V2_AC, on ? "1" : "0"); } catch {} }
+{
+  const _rV2 = render;
+  render = function () {
+    const r = _rV2.apply(this, arguments);
+    // seans açıkken gösterilmez; ekranın başlık çubuğu (.fbar/.sbar) varsa onun altına girer: güvenli alana ve
+    // saat/Dynamic Island bölgesine düşmez (inceleme #130 B1, safearea.py)
+    if (["plan", "seviye", "more", "kurulum"].includes(S.view) && !S.sess) {
+      const v = $("#view");
+      if (v && !v.querySelector("[data-test=v2-bant]")) {
+        const satir = `<a class="v2-bant" href="./v2/" data-test="v2-bant"><b>Yeni uygulama (2.0)</b><b>Aç →</b></a>`;
+        const bas = v.querySelector(".fbar, .sbar");
+        if (bas) bas.insertAdjacentHTML("afterend", satir); else v.insertAdjacentHTML("afterbegin", satir);
+      }
+    }
+    // Kurulum: ayar kartı ilk kart (satırın hemen altında; PM 7028993866)
+    if (S.view === "kurulum") {
+      const v = $("#view");
+      if (v && !v.querySelector("[data-test=v2-ac-ayar]")) {
+        const kart = `<section class="card" data-test="v2-ac-ayar"><label class="row" style="gap:12px;flex-wrap:nowrap;min-height:44px;align-items:center">
+      <input type="checkbox" data-test="v2-ac" ${v2Ac() ? "checked" : ""} onchange="v2AcAyarla(this.checked)" style="width:24px;height:24px">
+      <span><b>Her açılışta yeni uygulamayı aç</b><br><span class="small muted">Açıksa uygulama doğrudan 2.0 ile açılır. Eskiye 2.0'ın Profil ekranından dönersin.</span></span></label></section>`;
+        const once = v.querySelector("[data-test=v2-bant]") || v.querySelector(".fbar, .sbar");
+        if (once) once.insertAdjacentHTML("afterend", kart); else v.insertAdjacentHTML("afterbegin", kart);
+      }
+    }
+    return r;
+  };
+}
+
 /* ---- src/js/50-ai-context.js ---- */
 /* ===== Yapay zekâya giden bağlam: kişisel ayrıntı yok, odak = kurstaki ünite ===== */
 function artDedup(o){
@@ -11642,8 +11682,9 @@ checkDict = async function(){
 
 /* ---- src/js/90-whatsnew.js ---- */
 /* ===== Yenilikler: her önemli sürümde bir kez gösterilir ===== */
-const WHATSNEW = {id:"2026-11-17b", title:"Yenilikler", items:[
-  "🗣️ Yeni: Gerçek hayat dersleri. Bugün ekranındaki karttan açılır: telefon, doktor, resmî daire; önce dinle, sonra konuş.",
+const WHATSNEW = {id:"2026-11-20a", title:"Yenilikler", items:[
+  "🆕 Yeni uygulama (2.0) hazır: Bugün, Seviyem ve Daha fazla ekranlarının en üstündeki satırdan açılır. Kurulum ekranından \"Her açılışta yeni uygulamayı aç\" seçilebilir; buradaki ilerlemen olduğu gibi kalır.",
+  "🗣️ Gerçek hayat dersleri: telefon, doktor, resmî daire; önce dinle, sonra konuş.",
   "🔁 Yanlış yaptığın kelime aynı turda başka bir cümle ve başka bir fotoğrafla geri geliyor: ezber değil, kalıcı öğrenme.",
   "📝 Her kelimenin 4 örnek cümlesi var; tekrarlarda hep farklı bir cümle görürsün.",
   "📈 Seviyem yenilendi: ünite ilerlemesi, kalıcı kelimeler, zayıf kurallar ve tek dokunuşla o kurala özel alıştırma.",
