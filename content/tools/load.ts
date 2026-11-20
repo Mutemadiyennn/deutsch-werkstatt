@@ -15,6 +15,7 @@ import { Domain, Lexeme, LexiconBatch, Pattern, GrammarNote, Scenario, AssessIte
 import { Gun } from "../../packages/shared/src/m1.ts";
 import { checkGun } from "./m1check.ts";
 import { explanationIssues, textIssues } from "../../packages/shared/src/explain.ts";
+import { adsizDenetle, adsizTasi } from "../../packages/shared/src/adsiz.ts";
 import { untaught } from "./teach.ts";
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -48,6 +49,8 @@ export function parseFile<T>(file: string, schema: z.ZodType<T>, errors: string[
   try { raw = JSON.parse(readFileSync(file, "utf8")); } catch (e) { errors.push(`${rel(file)}: JSON okunamadı (${(e as Error).message})`); return null; }
   const r = schema.safeParse(raw);
   if (!r.success) { for (const i of r.error.issues.slice(0, 25)) errors.push(`${rel(file)}: ${i.path.join(".")} — ${i.message}`); return null; }
+  // B7: `k_adsiz` alanları şemadan geçmez; asıl alan varsa geri konur (derlemeye ve uygulamaya gider)
+  adsizTasi(raw, r.data);
   // PM-042 A.3: şemada olmayan alan sessizce atılmaz → hata (İçerik Motoru şema isteğini #12'ye yazar)
   const unk = unknownKeys(raw, r.data);
   for (const k of unk.slice(0, 25)) errors.push(`${rel(file)}: ${k} — şemada olmayan alan`);
@@ -370,6 +373,12 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
       errors.push(...r.errors.map((e) => `${file}: ${e}`));
       (g.review.status === "reviewed" ? errors : warnings).push(...r.warnings.map((w) => `${file}: ${w}`));
     } }
+  // B7: ad yuvası ({name}) olan alanın adsız biçimi (`_adsiz`): yanlış kullanım hata, eksik biçim dosya başına tek uyarı
+  for (const [file, data] of [...c.m1.map((x) => [x.file, x.data] as const), ...c.temel.map((x) => [x.file, x.data] as const), ...c.scenarios.map((x) => [x.file, x.data] as const), ["registry/patterns.json", c.patterns] as const]) {
+    const a = adsizDenetle(data);
+    errors.push(...a.hata.map((h) => `${file}: ${h}`));
+    if (a.eksik.length) warnings.push(`${file}: B7 ad yuvası olup adsız biçimi (_adsiz) olmayan ${a.eksik.length} alan (ilk: ${a.eksik.slice(0, 3).join(", ")})`);
+  }
   // K1 listesi (PM-045 §3a): pasif kart çekirdekte olamaz; pasif listedeki kartın tier'ı passive olmalı
   if (c.k1) {
     const core = new Set(c.k1.cekirdek);

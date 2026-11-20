@@ -171,6 +171,9 @@ def login_onboard(page, port, assess=False, hizli_serit=False):
     page.click("button[type=submit]")
     page.wait_for_selector("text=Hoş geldin")
     page.click("text=Başlayalım")
+    # B7: ad boşsa bir kez nazikçe sorulur; testler adsız profille sürer
+    page.wait_for_selector("[data-test=ad-tekrar], [data-struggle]")
+    if page.locator("[data-test=ad-gec]").count(): page.click("[data-test=ad-gec]")
     page.click("[data-struggle=phone]")
     page.click("text=Devam"); page.wait_for_selector("text=Öncelik sırası")
     page.click("text=Devam"); page.click("text=Devam")
@@ -183,6 +186,19 @@ def content_file(rel):
     h = [d for d in os.listdir(base) if os.path.isdir(os.path.join(base, d))][0]
     with open(os.path.join(base, h, rel), encoding="utf-8") as f:
         return json.load(f)
+
+def bekle_kosul(page, js, arg=None, timeout=5000, adim=150):
+    """async koşul için yoklama: wait_for_function, async işlevin döndürdüğü Promise'i hemen 'doğru' sayar (inceleme #151 P1-2).
+    `js` sayfada değerlendirilir (async olabilir); doğru dönerse True, süre dolarsa False."""
+    import time
+    son = time.time() + timeout / 1000
+    while True:
+        try:
+            if page.evaluate(js, arg) if arg is not None else page.evaluate(js): return True
+        except Exception: pass
+        if time.time() > son: return False
+        page.wait_for_timeout(adim)
+
 
 def finish():
     print("HATALAR:", "yok" if not ERR else "\n  " + "\n  ".join(ERR))

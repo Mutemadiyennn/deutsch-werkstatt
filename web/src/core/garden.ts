@@ -6,7 +6,7 @@
  *  a listen_meaning  dinle → anlamını seç                 (pasif)
  *  e article         der / die / das seç                  (pasif; renk cevaptan sonra)
  *  f colloc          eşdizimi tamamla (fiil seç)           (pasif)
- *  b photo_say       fotoğraf → artikeliyle söyle/yaz      (aktif; yalnızca isim + fotoğraf sorgusu)
+ *  b photo_say       fotoğraf → artikeliyle söyle/yaz      (aktif; yalnızca isim, seçilmiş fotoğrafı olan kart ve çevrimiçi — B4, `fotoluKartlar`)
  *  c tr_de           Türkçe → Almanca söyle/yaz            (aktif)
  *  d gap             boşluk doldur (forms)                 (aktif)
  *  h sep_perfekt     ayrılabilir fiil / Perfekt (forms)    (aktif; yalnızca fiil)
