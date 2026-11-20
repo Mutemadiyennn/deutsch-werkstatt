@@ -288,9 +288,12 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
       const h = img.getBoundingClientRect().height;
       setFotoH((cur) => { if (!cur) return 0; const y = Math.floor(Math.min(cur, h || cur) - tas); return y >= FOTO_EN_AZ ? y : 0; });
     };
-    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(olc) : null;
-    ro?.observe(k); olc();
-    return () => ro?.disconnect();
+    // ölçüm bir sonraki karede: gözlemci içinden düzen değiştirmek WebKit'te "ResizeObserver loop" hatası verir (#152 CI)
+    let kare = 0;
+    const sonra = () => { cancelAnimationFrame(kare); kare = requestAnimationFrame(olc); };
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(sonra) : null;
+    ro?.observe(k); sonra();
+    return () => { ro?.disconnect(); cancelAnimationFrame(kare); };
   }, [intro]);
   const col = collocOf(l);
   if (intro) return (
