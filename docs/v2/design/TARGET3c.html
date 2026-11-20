@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8"><title>Deutsch Werkstatt 2.0 — Hedef ekranlar 3c: kalıp, yapboz, söyle, gün sonu sınavı, Yol, Bahçe</title>
+<style>
+
+
+:root{--himmel:#1C6FD6;--himmel2:#E3EEFB;--tinte:#14233B;--tinte2:#5A6B82;--papier:#F5F8FC;--brezel:#C27A2C;--wiese:#2F9E6B;--minze:#2BA89A;--rot:#D6453D;
+--praxis:#2BA89A;--cafe:#C27A2C;--arbeit:#4F6683;--amt:#6E5BC7;--bank:#1F8A9E;--wohnung:#B5577A;--friseur:#9A5BB0;--fitness:#D39A1B;--verkehr:#3E7CB1;--frei:#2F9E6B;
+--line:#DCE5F0;--card:#FFFFFF}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Inter","SF Pro Text",system-ui,sans-serif;background:#DCE3EC;color:var(--tinte);padding:36px;display:flex;gap:36px;align-items:flex-start;width:max-content}
+.col{display:flex;flex-direction:column;gap:14px;align-items:center}
+.cap{font:600 22px/1.3 "Inter";color:#33445C}
+.phone{width:430px;height:932px;border-radius:54px;background:var(--papier);position:relative;overflow:hidden;box-shadow:0 0 0 10px #0E1622,0 30px 60px rgba(14,22,34,.35)}
+.status{height:54px;display:flex;justify-content:space-between;align-items:flex-end;padding:0 34px 6px;font:600 16px "Inter"}
+.de{font-family:"Inter Display","SF Pro Rounded",sans-serif;letter-spacing:-.01em}
+svg.i{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* Raute */
+.r{width:22px;height:22px;transform:rotate(45deg) scaleY(.82);border-radius:3px;background:var(--himmel2);display:inline-block}
+.r.on{background:var(--himmel)} .r.half{background:linear-gradient(90deg,var(--himmel) 50%,var(--himmel2) 50%)}
+.rrow{display:flex;gap:14px;align-items:center}
+.btn{height:62px;border-radius:20px;background:var(--himmel);color:#fff;font:700 19px "Inter";display:flex;align-items:center;justify-content:center;gap:10px;border:0;width:100%}
+.ghost{background:none;color:var(--himmel);font:600 17px "Inter";border:0}
+.tabs{position:absolute;bottom:0;left:0;right:0;height:96px;background:rgba(255,255,255,.96);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding-top:12px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:5px;font:600 13px "Inter";color:#8696AB}
+.tab.on{color:var(--himmel)}
+.av{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font:700 18px "Inter";flex:none}
+/* Bugün */
+.sky{height:290px;background:linear-gradient(180deg,#9CC6F2 0%,#CFE3F8 58%,#F5F8FC 100%);position:relative}
+.sky svg.town{position:absolute;bottom:0;left:0;width:430px;height:150px}
+.hello{position:absolute;top:70px;left:28px}
+.hello h1{font-size:40px;font-weight:800;line-height:1.05}
+.hello p{font-size:17px;color:#35506F;margin-top:6px}
+.inbox{position:absolute;top:66px;right:24px;width:52px;height:52px;border-radius:18px;background:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;color:var(--tinte)}
+.badge{position:absolute;top:-4px;right:-4px;min-width:22px;height:22px;border-radius:11px;background:var(--brezel);color:#fff;font:700 13px/22px "Inter";text-align:center;padding:0 6px}
+.next{margin:-28px 20px 0;position:relative;background:#fff;border-radius:28px;padding:22px;box-shadow:0 10px 30px rgba(20,35,59,.10)}
+.next .scene{height:118px;border-radius:20px;background:#F6EBDD;position:relative;overflow:hidden;margin-bottom:18px}
+.kicker{font:600 15px "Inter";color:var(--brezel)}
+.next h2{font-size:25px;line-height:1.2;margin:4px 0 6px}
+.next p{color:var(--tinte2);font-size:16px;line-height:1.45}
+.line{margin:18px 24px 0;font-size:16px;color:var(--tinte2);line-height:1.45;display:flex;gap:12px;align-items:flex-start}
+/* Yol */
+.head{padding:8px 26px 0}
+.head h1{font-size:32px;font-weight:800}
+.head p{color:var(--tinte2);font-size:16px;margin-top:4px}
+.path{position:relative;margin:14px 0 0;height:640px}
+.node{position:absolute;display:flex;align-items:center;gap:16px;width:330px}
+.big{width:66px;height:66px;transform:rotate(45deg) scaleY(.82);border-radius:10px;background:var(--himmel);flex:none;box-shadow:0 8px 18px rgba(28,111,214,.35)}
+.big.done{background:var(--wiese);box-shadow:none}
+.big.lock{background:#fff;border:3px dashed #B9C7D8;box-shadow:none}
+.node h3{font-size:18px;line-height:1.25}
+.node small{display:block;color:var(--tinte2);font-size:14px;margin-top:3px;font-weight:500}
+.cur{background:#fff;border-radius:24px;padding:18px;box-shadow:0 10px 30px rgba(20,35,59,.12);width:300px}
+/* Köy */
+.map{margin:16px 18px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.place{background:#fff;border-radius:22px;height:132px;padding:14px 12px;display:flex;flex-direction:column;justify-content:space-between;position:relative;border:1px solid var(--line)}
+.place .ic{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff}
+.place b{font-size:15px;line-height:1.2}
+.place span{font-size:12.5px;color:var(--tinte2);font-weight:500}
+.place.lock{opacity:.55;background:#F0F3F7}
+.place .glow{position:absolute;top:14px;right:14px;width:12px;height:12px;border-radius:50%;background:#F2B544;box-shadow:0 0 0 6px rgba(242,181,68,.25)}
+.wide{grid-column:span 3;height:96px;flex-direction:row;align-items:center;justify-content:flex-start;gap:14px}
+/* Telefon */
+.top{display:flex;align-items:center;gap:14px;padding:8px 22px 14px;border-bottom:1px solid var(--line)}
+.top h2{font-size:20px}
+.top small{display:block;color:var(--tinte2);font-size:14px;font-weight:500}
+.msgs{padding:22px 20px;display:flex;flex-direction:column;gap:16px}
+.vb{background:#fff;border-radius:22px 22px 22px 6px;padding:14px 16px;width:330px;border:1px solid var(--line)}
+.vb .row{display:flex;align-items:center;gap:12px}
+.play{width:46px;height:46px;border-radius:50%;background:var(--himmel);color:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+.wave{display:flex;align-items:center;gap:3px;height:34px;flex:1}
+.wave i{display:block;width:4px;border-radius:2px;background:#9DB9DE}
+.wave i.p{background:var(--himmel)}
+.vb .meta{display:flex;justify-content:space-between;margin-top:10px;font:600 14px "Inter";color:var(--himmel)}
+.tr{background:var(--himmel2);border-radius:16px;padding:12px 14px;font-size:16px;line-height:1.45;margin-top:12px}
+.me{align-self:flex-end;background:var(--himmel);color:#fff;border-radius:22px 22px 6px 22px;padding:14px 16px;width:250px}
+.bottom{position:absolute;left:20px;right:20px;bottom:40px;display:flex;flex-direction:column;gap:12px;align-items:center}
+/* Posta */
+.letter{margin:18px 20px 0;background:#FFFDF8;border-radius:10px;padding:24px 22px;box-shadow:0 2px 0 #E9E2D2,0 12px 28px rgba(20,35,59,.12);position:relative;font-size:15.5px;line-height:1.5}
+.letter .from{display:flex;justify-content:space-between;font-size:13px;color:#6B6455;margin-bottom:16px}
+.letter h3{font-size:18px;margin-bottom:10px}
+.mark{background:#FCE7B5;border-radius:4px;padding:0 3px}
+.q{margin:20px 20px 0}
+.q h3{font-size:19px;margin-bottom:12px}
+.opt{background:#fff;border:2px solid var(--line);border-radius:18px;padding:14px 16px;font-size:16px;margin-bottom:10px;line-height:1.35}
+.opt.sel{border-color:var(--himmel);background:var(--himmel2)}
+/* Oynatıcı */
+.ptop{display:flex;align-items:center;gap:18px;padding:10px 22px}
+.phrase{margin:30px 26px 0}
+.phrase .de{font-size:34px;font-weight:800;line-height:1.18}
+.phrase .tr2{font-size:18px;color:var(--tinte2);margin-top:14px}
+.listen{display:flex;align-items:center;gap:18px;margin:30px 26px 0}
+.lbtn{width:64px;height:64px;border-radius:50%;background:var(--himmel2);color:var(--himmel);display:flex;align-items:center;justify-content:center}
+.alltag{margin:26px 20px 0;background:#FBF1E4;border-radius:22px;padding:18px}
+.alltag .kicker{margin-bottom:6px}
+.alltag .de{font-size:21px;font-weight:700}
+.alltag p{color:#7A5B36;font-size:15px;margin-top:6px}
+.sec{display:flex;gap:34px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chips span{background:#fff;border-radius:12px;padding:7px 11px;font-size:13.5px;color:#7A5B36;display:flex;flex-direction:column;line-height:1.25}
+.chips b{font-size:16px;color:var(--tinte)}
+
+/* ---- Hedef 3 ekleri (aynı dil: Raute, papier, mekân aksanları, çizgi ikon; emoji yok) ---- */
+.sol{position:absolute;top:58px;left:20px;right:20px;display:flex;gap:8px;align-items:center}
+.pill{height:38px;border-radius:19px;background:rgba(255,255,255,.9);display:flex;align-items:center;gap:7px;padding:0 13px;font:700 15px "Inter";box-shadow:0 2px 8px rgba(20,35,59,.08)}
+.pill svg{width:18px;height:18px}
+.sky.kisa{height:262px}
+.sky.kisa .hello{top:108px}
+.sky.kisa .hello h1{font-size:34px}
+.yol{position:relative;height:404px;margin-top:-22px}
+.dug{position:absolute;display:flex;flex-direction:column;align-items:center;gap:7px;width:120px;font:600 13.5px/1.2 "Inter";text-align:center;color:var(--tinte)}
+.dug .o{width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 5px 0 rgba(20,35,59,.16)}
+.dug.bitti .o{background:var(--wiese)}
+.dug.kilit .o{background:#E3E9F1;color:#9AA9BC;box-shadow:0 5px 0 #D2DBE6}
+.dug.kilit{color:#8C9BAE}
+.dug.sim .o{width:78px;height:78px;box-shadow:0 6px 0 rgba(20,35,59,.18),0 0 0 8px rgba(28,111,214,.14)}
+.bal{position:absolute;background:#fff;border-radius:20px;padding:12px 14px;box-shadow:0 10px 26px rgba(20,35,59,.14);width:214px}
+.bal b{font-size:16px;line-height:1.25;display:block}
+.bal small{color:var(--tinte2);font-size:13.5px;display:block;margin:3px 0 10px}
+.bal .btn{height:46px;border-radius:15px;font-size:16px;box-shadow:0 4px 0 #1257AE}
+.gor{margin:0 20px;background:#fff;border-radius:20px;border:1px solid var(--line);padding:12px 14px;display:flex;align-items:center;gap:12px;font-size:15px}
+.gor .ic{width:40px;height:40px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
+.gor b{display:block;font-size:15.5px}.gor span{color:var(--tinte2);font-size:13.5px}
+.sandik{margin-left:auto;width:42px;height:36px;border-radius:9px;background:#C98A3A;position:relative;box-shadow:0 3px 0 #9B6520}
+.sandik:before{content:"";position:absolute;left:0;right:0;top:12px;height:4px;background:#8A5718}
+.sandik:after{content:"";position:absolute;left:17px;top:9px;width:8px;height:10px;border-radius:2px;background:#F4C84A}
+/* video */
+.vid{margin:6px 16px 0;height:244px;border-radius:24px;background:linear-gradient(160deg,#39506E,#22344D);position:relative;overflow:hidden}
+.vid .kisi{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:210px;height:200px}
+.vid .alt{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(10,18,30,.72);color:#fff;border-radius:14px;padding:10px 12px;font:600 17px/1.3 "Inter Display","Inter"}
+.vid .alt u{text-decoration:none;background:#F2B544;color:#14233B;border-radius:5px;padding:0 4px}
+.vid .et{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.92);border-radius:11px;padding:5px 10px;font:600 13px "Inter";color:var(--tinte)}
+.vid .hiz{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.92);border-radius:11px;padding:5px 10px;font:700 13px "Inter";color:var(--himmel)}
+.zc{margin:10px 22px 0;height:6px;border-radius:3px;background:var(--himmel2);position:relative}
+.zc i{position:absolute;left:0;top:0;bottom:0;width:46%;background:var(--himmel);border-radius:3px}
+.zc b{position:absolute;top:-4px;width:3px;height:14px;border-radius:2px;background:var(--brezel)}
+.atif{margin:8px 22px 0;font-size:12.5px;color:#7C8CA1}
+.soru{margin:14px 16px 0;background:#fff;border-radius:22px;border:1px solid var(--line);padding:16px}
+.soru .kicker{color:var(--himmel)}
+.soru h3{font-size:20px;line-height:1.25;margin:4px 0 12px}
+.soru .opt{padding:12px 14px;font-size:16px;margin-bottom:8px;border-radius:16px}
+.kelime{position:absolute;left:36px;top:196px;background:#fff;border-radius:16px;padding:10px 12px;box-shadow:0 10px 26px rgba(20,35,59,.22);font-size:14px;width:206px}
+.kelime b{font-size:17px}.kelime span{color:var(--tinte2)}
+.kelime em{font-style:normal;color:var(--himmel);font-weight:700;display:block;margin-top:6px}
+/* kelime kartı */
+.cizim{margin:8px 20px 0;height:236px;border-radius:26px;background:#F6EBDD;position:relative;overflow:hidden}
+.bos{margin:22px 24px 0}
+.bos .de{font-size:29px;font-weight:800;line-height:1.25}
+.bos .de i{display:inline-block;min-width:118px;border-bottom:4px solid var(--himmel);height:30px;vertical-align:bottom;margin:0 4px;border-radius:2px;background:var(--himmel2)}
+.bos p{font-size:17px;color:var(--tinte2);margin-top:10px}
+.ipucu{margin:16px 24px 0;display:flex;gap:10px;flex-wrap:wrap}
+.ipucu span{background:#fff;border:2px solid var(--line);border-radius:16px;padding:10px 16px;font:700 18px "Inter Display","Inter"}
+.ipucu span.s{border-color:var(--himmel);background:var(--himmel2)}
+.ikili{display:flex;gap:22px;justify-content:center}
+/* tören */
+.toren{height:100%;background:linear-gradient(180deg,#1C6FD6 0%,#3C86E3 46%,#F5F8FC 46.1%)}
+.toren .ust{height:430px;position:relative;color:#fff;text-align:center;padding-top:74px}
+.toren h1{font-size:34px;font-weight:800;margin-top:14px}
+.toren .ust p{font-size:17px;opacity:.92;margin-top:6px}
+.konf i{position:absolute;width:12px;height:12px;transform:rotate(45deg) scaleY(.82);border-radius:2px}
+.kutu3{display:flex;gap:10px;margin:-56px 20px 0;position:relative}
+.kutu3 div{flex:1;background:#fff;border-radius:20px;padding:14px 8px;text-align:center;box-shadow:0 10px 26px rgba(20,35,59,.12)}
+.kutu3 b{display:block;font-size:24px;font-weight:800}.kutu3 span{font-size:13px;color:var(--tinte2)}
+.soyle{margin:18px 20px 0;background:#fff;border-radius:22px;border:1px solid var(--line);padding:16px}
+.soyle .kicker{color:var(--wiese)}
+.soyle .de{font-size:21px;font-weight:800;line-height:1.25;margin-top:6px}
+.soyle p{color:var(--tinte2);font-size:15px;margin-top:4px}
+/* ben */
+.cando{margin:14px 20px 0;background:#fff;border-radius:22px;border:1px solid var(--line);padding:6px 16px}
+.cd{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:16px;line-height:1.3}
+.cd:last-child{border:0}
+.dots{margin-left:auto;display:flex;gap:5px;flex:none}
+.dots i{width:11px;height:11px;border-radius:50%;background:var(--himmel2)}.dots i.d{background:var(--wiese)}
+.iki{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 20px 0}
+.iki .place{height:118px}
+.hafta{margin:14px 20px 0;border-radius:22px;padding:16px;background:#FBF1E4}
+.hafta b{font-size:17px;display:block}.hafta p{color:#7A5B36;font-size:15px;margin-top:4px;line-height:1.4}
+.place .ic{flex:none}
+.place{height:auto;min-height:132px;gap:10px}
+.place.wide{min-height:96px}
+.vid .kisi{left:66%}
+
+/* ---- Hedef 3'ten aynen (Bugün için) ---- */
+.sol{position:absolute;top:58px;left:20px;right:20px;display:flex;gap:8px;align-items:center}
+.pill{height:38px;border-radius:19px;background:rgba(255,255,255,.9);display:flex;align-items:center;gap:7px;padding:0 13px;font:700 15px "Inter";box-shadow:0 2px 8px rgba(20,35,59,.08)}
+.pill svg{width:18px;height:18px}
+.sky.kisa{height:262px}
+.sky.kisa .hello{top:108px}
+.sky.kisa .hello h1{font-size:34px}
+.yol{position:relative;height:428px;margin-top:-22px}
+.dug{position:absolute;display:flex;flex-direction:column;align-items:center;gap:7px;width:120px;font:600 13.5px/1.2 "Inter";text-align:center;color:var(--tinte)}
+.dug .o{width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 5px 0 rgba(20,35,59,.16)}
+.dug.bitti .o{background:var(--wiese)}
+.dug.kilit .o{background:#E3E9F1;color:#9AA9BC;box-shadow:0 5px 0 #D2DBE6}
+.dug.kilit{color:#8C9BAE}
+.dug.sim .o{width:78px;height:78px;box-shadow:0 6px 0 rgba(20,35,59,.18),0 0 0 8px rgba(28,111,214,.14)}
+.bal{position:absolute;background:#fff;border-radius:20px;padding:12px 14px;box-shadow:0 10px 26px rgba(20,35,59,.14);width:214px}
+.bal b{font-size:16px;line-height:1.25;display:block}
+.bal small{color:var(--tinte2);font-size:13.5px;display:block;margin:3px 0 10px}
+.bal .btn{height:46px;border-radius:15px;font-size:16px;box-shadow:0 4px 0 #1257AE}
+.gor{margin:0 20px;background:#fff;border-radius:20px;border:1px solid var(--line);padding:12px 14px;display:flex;align-items:center;gap:12px;font-size:15px}
+.gor .ic{width:40px;height:40px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
+.gor b{display:block;font-size:15.5px}.gor span{color:var(--tinte2);font-size:13.5px}
+.sandik{margin-left:auto;width:42px;height:36px;border-radius:9px;background:#C98A3A;position:relative;box-shadow:0 3px 0 #9B6520}
+.sandik:before{content:"";position:absolute;left:0;right:0;top:12px;height:4px;background:#8A5718}
+.sandik:after{content:"";position:absolute;left:17px;top:9px;width:8px;height:10px;border-radius:2px;background:#F4C84A}
+.cizim{margin:8px 20px 0;height:236px;border-radius:26px;background:#F6EBDD;position:relative;overflow:hidden}
+.cizim svg{position:absolute;inset:0;width:100%;height:100%}
+.atif{margin:8px 22px 0;font-size:12.5px;color:#7C8CA1;line-height:1.4}
+.ikili{display:flex;gap:22px;justify-content:center}
+.soru{margin:14px 16px 0;background:#fff;border-radius:22px;border:1px solid var(--line);padding:16px}
+.soru .kicker{color:var(--himmel)}
+.soru h3{font-size:20px;line-height:1.25;margin:4px 0 12px}
+.soru .opt{padding:11px 14px;font-size:16px;margin-bottom:8px;border-radius:16px}
+.soru .opt:last-child{margin-bottom:0}
+.dots{margin-left:auto;display:flex;gap:5px;flex:none}
+.dots i{width:11px;height:11px;border-radius:50%;background:var(--himmel2)}.dots i.d{background:var(--wiese)}
+/* ---- Hedef 3b ekleri: Halka ---- */
+.ptop .rrow{gap:9px}
+.neden{margin-left:auto;font:600 14px "Inter";color:var(--himmel)}
+.tanit{margin:20px 24px 0}
+.tanit .kicker{color:var(--himmel)}
+.tanit .de{font-size:32px;font-weight:800;line-height:1.2;margin-top:6px}
+.tanit .tr2{font-size:17px;color:var(--tinte2);margin-top:10px}
+.vurgu{background:#FCE7B5;border-radius:6px;padding:0 4px;margin:0 -2px 0 -4px}
+.bilinmeyen{border-bottom:3px dotted #8FA0B5}
+.soz{margin:18px 20px 0;background:#fff;border:1px solid var(--line);border-radius:22px;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.soz b{font:800 23px "Inter Display","Inter";display:block}
+.soz span{color:var(--tinte2);font-size:16px}
+.dinle{margin-left:auto;display:flex;gap:10px;align-items:center}
+.yavas{height:40px;border-radius:20px;border:2px solid var(--line);background:#fff;padding:0 16px;font:700 15px "Inter";color:var(--himmel);display:flex;align-items:center}
+.dinle div{display:flex;flex-direction:column;align-items:center;gap:4px;font:600 12.5px "Inter";color:var(--tinte2)}
+.dinle .lbtn{width:50px;height:50px}
+.bas{margin:14px 24px 0}
+.bas .kicker{color:var(--himmel)}
+.bas h2{font-size:26px;line-height:1.2;margin-top:4px}
+.cal{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:18px}
+.cal .buyuk{width:78px;height:78px;border-radius:50%;background:var(--himmel);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 0 #1257AE}
+.cal .buyuk svg{width:34px;height:34px}
+.dort{margin:18px 20px 0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dort div{height:188px;border-radius:22px;border:3px solid #fff;overflow:hidden;position:relative;box-shadow:0 2px 8px rgba(20,35,59,.08)}
+.dort div.sec{border-color:var(--himmel);box-shadow:0 0 0 4px rgba(28,111,214,.18)}
+.dort svg{position:absolute;inset:0;width:100%;height:100%}
+.es{margin:18px 20px 0;display:grid;grid-template-columns:1fr 1fr;gap:10px 12px}
+.es div{height:72px;border-radius:18px;border:2px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:17px;text-align:center;padding:0 10px}
+.es div.de{font-size:21px;font-weight:700}
+.es div.sec{border-color:var(--himmel);background:var(--himmel2)}
+.es div.tamam{border-color:#BFE3CF;background:#E9F6EE;color:#2A7A55}
+.es div.tamam svg{width:18px;height:18px;stroke-width:3}
+.yer{margin:4px 22px 0;display:flex;align-items:center;gap:10px;font:600 15px "Inter";color:var(--tinte2)}
+.yer .ic{width:32px;height:32px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff}
+.yer .ic svg{width:19px;height:19px}
+.cizim.kisa{height:150px}
+.kon{margin:12px 20px 0;display:flex;flex-direction:column;gap:10px}
+.kb{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:20px 20px 20px 6px;padding:11px 14px;width:336px}
+.kb.sag{align-self:flex-end;border-radius:20px 20px 6px 20px;background:#EEF4FC}
+.kb .play{width:40px;height:40px}
+.kb .play svg{width:18px;height:18px}
+.kb .de{font-size:17.5px;font-weight:700;line-height:1.3}
+.kb small{display:block;font:600 12.5px "Inter";color:var(--tinte2);margin-bottom:2px}
+.son{text-align:center;padding:26px 30px 0}
+.son .rrow{justify-content:center;gap:12px}
+.son h1{font-size:32px;font-weight:800;margin-top:18px}
+.son p{font-size:17px;color:var(--tinte2);line-height:1.4;margin-top:8px}
+.liste{margin:20px 20px 0;background:#fff;border-radius:22px;border:1px solid var(--line);padding:4px 16px}
+.liste .sr{display:flex;align-items:baseline;gap:8px;padding:12px 0;border-bottom:1px solid var(--line)}
+.liste .sr:last-child{border:0}
+.liste b{font:700 18px "Inter Display","Inter"}
+.liste span{color:var(--tinte2);font-size:15px}
+.liste .dots{align-self:center}
+
+/* ---- Hedef 3c ekleri ---- */
+.kal{margin:26px 24px 0}
+.kal .kicker{color:var(--himmel)}
+.kal .de{font-size:31px;font-weight:800;line-height:1.25;margin-top:8px}
+.kal .de s{text-decoration:none;display:inline-block;min-width:92px;border-radius:10px;background:var(--himmel2);color:var(--himmel);padding:0 10px;text-align:center}
+.kal .tr2{font-size:17px;color:var(--tinte2);margin:4px 0 16px}
+.kural{margin:8px 20px 0;background:#FBF1E4;border-radius:20px;padding:14px 16px;font-size:16px;line-height:1.4;color:#5E4526}
+.kural b{color:var(--tinte)}
+.orn{margin:14px 20px 0;background:#fff;border:1px solid var(--line);border-radius:22px;padding:4px 16px}
+.orn .sr{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.orn .sr:last-child{border:0}
+.orn .de{font-size:19px;font-weight:700}
+.orn span{display:block;color:var(--tinte2);font-size:14.5px;margin-top:2px}
+.orn .lbtn{display:flex;width:44px;height:44px;margin-left:auto;flex:none;margin-top:0}
+.orn .lbtn svg{width:22px;height:22px}
+.istek{margin:18px 24px 0}
+.istek .kicker{color:var(--himmel)}
+.istek h2{font-size:25px;line-height:1.25;margin-top:6px}
+.yuva{margin:22px 20px 0;min-height:132px;border-radius:22px;background:#fff;border:2px dashed #C9D9EC;padding:14px;display:flex;gap:10px;flex-wrap:wrap;align-content:flex-start}
+.tas{background:#fff;border:2px solid var(--line);border-radius:16px;padding:9px 15px;font:700 19px "Inter Display","Inter";box-shadow:0 3px 0 #DCE5F0;display:flex;flex-direction:column;align-items:center;line-height:1.15}
+.tas small{font:500 12px "Inter";color:#7C8CA1;margin-top:3px}
+.tas.bos{visibility:hidden}
+.tas.gitti{background:#EEF2F7;border-color:#EEF2F7;color:transparent;box-shadow:none}
+.tas.gitti small{color:transparent}
+.banka{margin:18px 20px 0;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.mikb{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:34px}
+.mikb .buyuk{width:104px;height:104px;border-radius:50%;background:var(--himmel);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 7px 0 #1257AE,0 0 0 12px rgba(28,111,214,.12)}
+.mikb .buyuk svg{width:44px;height:44px}
+.mikb span{font:600 15px "Inter";color:var(--tinte2)}
+.duy{margin:30px 20px 0;background:#E9F6EE;border:1px solid #BFE3CF;border-radius:22px;padding:14px 16px}
+.duy small{font:600 13.5px "Inter";color:#2A7A55}
+.duy .de{font-size:22px;font-weight:800;margin-top:4px}
+.duy .olcu{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.duy .olcu i{font-style:normal;background:#fff;border-radius:12px;padding:6px 10px;font:600 13.5px "Inter";color:#2A7A55}
+.alan{margin:22px 20px 0;height:64px;border-radius:18px;border:2px solid var(--himmel);background:#fff;display:flex;align-items:center;padding:0 16px;font:700 22px "Inter Display","Inter"}
+.alan u{text-decoration:none;width:2px;height:28px;background:var(--himmel);margin-left:3px}
+.umlaut{margin:12px 20px 0;display:flex;gap:10px}
+.umlaut span{flex:1;height:48px;border-radius:14px;background:#fff;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font:700 20px "Inter Display","Inter"}
+.hft{margin:16px 20px 0;background:#fff;border-radius:26px;padding:18px;box-shadow:0 10px 30px rgba(20,35,59,.10)}
+.hft h3{font-size:19px}
+.hft p{color:var(--tinte2);font-size:15px;margin-top:3px}
+.gunler{display:flex;justify-content:space-between;margin:16px 4px 14px}
+.gunler div{display:flex;flex-direction:column;align-items:center;gap:8px;font:600 12.5px "Inter";color:var(--tinte2)}
+.gunler .r{width:24px;height:24px}
+.gunler .r.bitti{background:var(--wiese)}
+.gunler .r.sim{box-shadow:0 0 0 5px rgba(28,111,214,.18)}
+.hft .btn{height:54px;border-radius:17px;font-size:17px}
+.kilitli{margin:12px 20px 0;border-radius:22px;border:2px dashed #C9D4E2;padding:14px 16px;display:flex;gap:12px;align-items:center;color:#7C8CA1;font-size:15px}
+.kilitli b{display:block;color:#5A6B82;font-size:16px}
+.kilitli svg{flex:none}
+.sev{margin:18px 20px 0;display:flex;align-items:center;gap:6px;font:700 12.5px "Inter";color:#8C9BAE}
+.sev span{flex:1;text-align:center;padding:8px 0;border-radius:10px;background:#EEF2F7}
+.sev span.s{background:var(--himmel);color:#fff}
+.bosb{text-align:center;padding:36px 34px 0}
+.bosb .yuv{width:112px;height:112px;border-radius:50%;background:#E4F4EC;color:var(--wiese);display:flex;align-items:center;justify-content:center;margin:0 auto}
+.bosb .yuv svg{width:54px;height:54px}
+.bosb h2{font-size:24px;margin-top:20px;line-height:1.25}
+.bosb p{color:var(--tinte2);font-size:16.5px;line-height:1.45;margin-top:8px}
+.ucl{display:flex;gap:10px;margin:24px 20px 0}
+.ucl div{flex:1;background:#fff;border-radius:20px;border:1px solid var(--line);padding:14px 8px;text-align:center}
+.ucl b{display:block;font-size:24px;font-weight:800}.ucl span{font-size:13px;color:var(--tinte2)}
+</style></head><body>
+<script>
+const P={
+ film:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/>',
+ saat:'<path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3 2"/>', yol:'<path d="M5 20c4-1 2-7 7-8s4-6 7-8"/><circle cx="5" cy="20" r="1.5"/><circle cx="19" cy="4" r="1.5"/>',
+ koy:'<path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M10 21v-6h4v6"/>', ben:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/>',
+ tik:'<path d="M5 12l5 5 9-10"/>', ses:'<path d="M4 10v4h4l5 4V6L8 10z"/><path d="M16 9a4 4 0 0 1 0 6"/>',
+ oynat:'<path d="M8 5l11 7-11 7z"/>', carpi:'<path d="M6 6l12 12M18 6L6 18"/>', alev:'<path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/>',
+ elmas:'<path d="M6 4h12l3 5-9 11L3 9z"/><path d="M3 9h18"/>', filiz:'<path d="M12 22V12"/><path d="M12 12c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/>',
+ kalem:'<path d="M14 6l4 4-9 9H5v-4z"/>', mik:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>', kilit:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>', arti:'<path d="M12 5v14M5 12h14"/>', pazar:'<path d="M4 21V9l8-5 8 5v12"/><path d="M9 13h6M9 17h6"/>'};
+const i=(n,st='')=>`<svg class="i" viewBox="0 0 24 24" style="${st}">${P[n]}</svg>`;
+const tabs=on=>`<div class="tabs">${[['saat','Bugün'],['yol','Yol'],['koy','Köy'],['ben','Ben']].map(([a,b])=>`<div class="tab ${b==on?'on':''}">${i(a)}${b}</div>`).join('')}</div>`;
+const st=t=>`<div class="status"><span>${t}</span><span>100%</span></div>`;
+const col=(cap,inner)=>`<div class="col"><div class="cap">${cap}</div><div class="phone">${inner}</div></div>`;
+const r=(on,n)=>Array.from({length:n},(_,k)=>`<span class="r ${k<on?'on':''}"></span>`).join('');
+const ptop=(on,n)=>`<div class="ptop">${i('carpi')}<div class="rrow">${r(on,n)}</div><span class="neden">Neden bu?</span></div>`;
+const filiz=(w,ek='')=>`<svg viewBox="0 0 120 130" style="width:${w}px;${ek}"><ellipse cx="60" cy="122" rx="30" ry="6" fill="rgba(20,35,59,.10)"/><path d="M60 118V70" stroke="#3C8C5A" stroke-width="9" stroke-linecap="round"/><path d="M60 74C60 44 84 26 108 26c0 30-20 50-48 48z" fill="#2F9E6B"/><path d="M60 82C60 58 42 44 18 44c0 24 16 40 42 38z" fill="#4CB884"/><circle cx="60" cy="98" r="22" fill="#F7E6C8"/><circle cx="52" cy="95" r="3.2" fill="#14233B"/><circle cx="68" cy="95" r="3.2" fill="#14233B"/><path d="M52 104q8 7 16 0" stroke="#14233B" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="46" cy="102" r="3.5" fill="#F2B8A0"/><circle cx="74" cy="102" r="3.5" fill="#F2B8A0"/></svg>`;
+// çizimler: düz, geometrik; çizim cümleye bağlıdır, tek kelimeye değil
+const ev=(x,y,c='#fff',d='#E6EEF7')=>`<rect x="${x}" y="${y}" width="46" height="38" fill="${c}"/><path d="M${x-5} ${y+2} L${x+23} ${y-22} L${x+51} ${y+2}Z" fill="${d}"/>`;
+const sabahSahne=`<svg viewBox="0 0 390 236" preserveAspectRatio="xMidYMid slice"><rect width="390" height="236" fill="#FBE7C6"/><circle cx="300" cy="150" r="46" fill="#F2B544"/><g stroke="#F2B544" stroke-width="6" stroke-linecap="round"><path d="M300 84v-18M246 104l-13-13M354 104l13-13M228 150h-18M372 150h14"/></g><path d="M0 162 Q110 124 220 152 T390 140 V236 H0Z" fill="#CFE6D4"/><rect x="0" y="196" width="390" height="40" fill="#E9D6BD"/>${ev(34,128)}<rect x="50" y="144" width="14" height="22" fill="#C27A2C"/><circle cx="150" cy="128" r="22" fill="#B5577A"/><rect x="124" y="150" width="52" height="62" rx="18" fill="#B5577A"/><path d="M176 166l26-20" stroke="#B5577A" stroke-width="12" stroke-linecap="round"/><circle cx="244" cy="136" r="20" fill="#4F6683"/><rect x="220" y="156" width="48" height="56" rx="17" fill="#4F6683"/></svg>`;
+const kare={
+ sabah:`<svg viewBox="0 0 190 168" preserveAspectRatio="xMidYMid slice"><rect width="190" height="168" fill="#FBE7C6"/><circle cx="95" cy="112" r="34" fill="#F2B544"/><g stroke="#F2B544" stroke-width="5" stroke-linecap="round"><path d="M95 62v-14M55 78l-10-10M135 78l10-10"/></g><path d="M0 116 Q50 96 100 112 T190 104 V168 H0Z" fill="#CFE6D4"/>${ev(22,96)}</svg>`,
+ gun:`<svg viewBox="0 0 190 168" preserveAspectRatio="xMidYMid slice"><rect width="190" height="168" fill="#CFE3F8"/><circle cx="138" cy="42" r="24" fill="#F4C84A"/><ellipse cx="52" cy="46" rx="26" ry="11" fill="#fff"/><ellipse cx="72" cy="38" rx="18" ry="10" fill="#fff"/><path d="M0 116 Q50 96 100 112 T190 104 V168 H0Z" fill="#9FD3B4"/>${ev(22,96)}</svg>`,
+ aksam:`<svg viewBox="0 0 190 168" preserveAspectRatio="xMidYMid slice"><rect width="190" height="168" fill="#F4B79A"/><rect width="190" height="70" fill="#D98BA0"/><circle cx="120" cy="112" r="30" fill="#E8681E"/><path d="M0 116 Q50 96 100 112 T190 104 V168 H0Z" fill="#4F6683"/>${ev(22,96,'#3B4E68','#2F4059')}<rect x="38" y="108" width="12" height="12" fill="#F4C84A"/></svg>`,
+ gece:`<svg viewBox="0 0 190 168" preserveAspectRatio="xMidYMid slice"><rect width="190" height="168" fill="#22344D"/><circle cx="132" cy="46" r="22" fill="#F7E6C8"/><circle cx="142" cy="40" r="20" fill="#22344D"/><g fill="#F7E6C8"><circle cx="40" cy="30" r="2.5"/><circle cx="76" cy="54" r="2"/><circle cx="168" cy="84" r="2"/><circle cx="28" cy="74" r="2"/></g><path d="M0 116 Q50 96 100 112 T190 104 V168 H0Z" fill="#14233B"/>${ev(22,96,'#2C3F5A','#1B2A40')}<rect x="38" y="108" width="12" height="12" fill="#F4C84A"/></svg>`};
+const pazarSahne=`<svg viewBox="0 0 390 150" preserveAspectRatio="xMidYMid slice"><rect width="390" height="150" fill="#FBF1E4"/><rect x="0" y="118" width="390" height="32" fill="#E9D6BD"/><rect x="214" y="70" width="150" height="56" rx="8" fill="#D39A1B"/><path d="M204 44h170l-12 28H216z" fill="#fff"/><path d="M204 44h170" stroke="#D39A1B" stroke-width="6"/><g fill="#D6453D"><circle cx="240" cy="66" r="8"/><circle cx="262" cy="66" r="8"/></g><g fill="#2F9E6B"><circle cx="300" cy="66" r="8"/><circle cx="322" cy="66" r="8"/></g><circle cx="290" cy="30" r="0" /><circle cx="116" cy="62" r="20" fill="#B5577A"/><rect x="92" y="82" width="48" height="56" rx="17" fill="#B5577A"/><circle cx="178" cy="66" r="19" fill="#4F6683"/><rect x="155" y="85" width="46" height="53" rx="16" fill="#4F6683"/><path d="M140 96l16-8" stroke="#B5577A" stroke-width="10" stroke-linecap="round"/></svg>`;
+
+document.body.innerHTML=
+// 1 KALIP
+col('Halka: yeni kalıp',`${st('8:03')}${ptop(2,8)}
+ <div class="kal"><div class="kicker">Yeni kalıp</div>
+  <div class="de" lang="de">Heute ist <s>Dienstag</s>.</div><div class="tr2">Bugün salı.</div>
+  <div class="de" lang="de">Ist heute <s>Dienstag</s>?</div><div class="tr2">Bugün salı mı?</div></div>
+ <div class="kural">Soru sorarken <b lang="de">ist</b> başa geçer. Gerisi aynı kalır.</div>
+ <div class="orn">
+  <div class="sr"><div><div class="de" lang="de">Heute ist Montag.</div><span>Bugün pazartesi.</span></div><span class="lbtn">${i('ses')}</span></div>
+  <div class="sr"><div><div class="de" lang="de">Ist heute Mittwoch?</div><span>Bugün çarşamba mı?</span></div><span class="lbtn">${i('ses')}</span></div>
+ </div>
+ <div class="atif">Mavi yuvaya bildiğin her günü koyabilirsin.</div>
+ <div class="bottom"><button class="btn">Anladım</button></div>`)+
+// 2 YAPBOZ + çerçeve sözcüğü
+col('Halka: cümleyi kur',`${st('8:05')}${ptop(4,8)}
+ <div class="istek"><div class="kicker">Cümleyi kur</div><h2>Evet, pazartesi günü Huber Hanım.</h2></div>
+ <div class="yuva"><span class="tas de" lang="de">Ja</span><span class="tas de" lang="de">am<small>… günü</small></span></div>
+ <div class="banka"><span class="tas de" lang="de">Huber</span><span class="tas gitti de">Ja</span><span class="tas de" lang="de">Montag</span><span class="tas gitti de">am<small>… günü</small></span><span class="tas de" lang="de">Frau</span><span class="tas de" lang="de">nicht<small>değil</small></span></div>
+ <div class="atif" style="margin-top:18px">Küçük sözcükler ilk iki görüşünde altında Türkçesiyle gelir.</div>
+ <div class="bottom"><button class="btn">Kontrol et</button><div class="ikili"><button class="ghost">Dinle</button><button class="ghost">Bilmiyorum</button></div></div>`)+
+// 3 SÖYLE
+col('Halka: sen söyle',`${st('8:07')}${ptop(6,8)}
+ <div class="istek"><div class="kicker">Sen söyle</div><h2>Huber Hanım'a sor: Cuma olur mu?</h2></div>
+ <div class="mikb"><span class="buyuk">${i('mik')}</span><span>Dokun ve konuş</span></div>
+ <div class="duy"><small>Duyduğum</small><div class="de" lang="de">Geht Freitag?</div><div class="olcu"><i>Anlaşıldı</i><i>1,8 saniyede başladın</i></div></div>
+ <div class="atif" style="margin-top:14px">Soru bittikten sonra konuşmaya ne kadar çabuk başladığını da ölçeriz. Hedef iki saniyenin altı.</div>
+ <div class="bottom"><button class="btn">Devam et</button><div class="ikili"><button class="ghost">Tekrar söyle</button><button class="ghost">Yazarak cevapla</button></div></div>`)+
+// 4 GÜN SONU SINAVI
+col('Gün sonu: kendini dene',`${st('8:52')}
+ <div class="ptop">${i('carpi')}<div class="rrow">${r(1,4)}</div><span class="neden">2 / 4</span></div>
+ <div class="bas"><div class="kicker">Duyduğunu yaz</div><h2>Huber Hanım ne dedi?</h2></div>
+ <div class="cal"><span class="buyuk">${i('ses')}</span><span class="yavas">Yavaş</span></div>
+ <div class="alan de" lang="de">Montag geht ni<u></u></div>
+ <div class="umlaut"><span>ä</span><span>ö</span><span>ü</span><span>ß</span></div>
+ <div class="atif" style="margin-top:14px">Geçme kalma yok. Yanlışların yarın ısınmada yeniden gelir.</div>
+ <div class="bottom" style="bottom:300px"><button class="btn">Kontrol et</button></div>
+ <div style="position:absolute;left:0;right:0;bottom:0;height:280px;background:#D5DBE4;border-top:1px solid #C3CBD6;display:flex;align-items:center;justify-content:center;font:600 15px Inter;color:#7C8CA1">iPhone klavyesi</div>`)+
+// 5 YOL
+col('Yol',`${st('9:05')}
+ <div class="head"><h1>Yol</h1><p>A1 yolunun ilk haftası. Yedi günün üçüncüsündesin.</p></div>
+ <div class="sev"><span class="s">A1.1</span><span>A1.2</span><span>A2.1</span><span>A2.2</span><span>B1.1</span><span>B1.2</span><span>B2</span></div>
+ <div class="hft"><h3>1. hafta: merhaba, günler, sayılar</h3><p>Hafta sonunda: telefonla randevu günü ayarlarsın.</p>
+  <div class="gunler"><div><span class="r bitti"></span>Pzt</div><div><span class="r bitti"></span>Sal</div><div><span class="r half sim"></span>Çar</div><div><span class="r"></span>Per</div><div><span class="r"></span>Cum</div><div><span class="r"></span>Cmt</div><div><span class="r"></span>Paz</div></div>
+  <div class="btn">${i('oynat','width:20px;height:20px;fill:#fff')}3. gün: sayılar ve numaran</div>
+  <p style="margin-top:10px;text-align:center">Dört seanstan biri tamam. Sıradaki durak 7 dakika.</p></div>
+ <div class="kilitli">${i('kilit')}<div><b>Hafta sonu sınaması</b>Yedinci günün sonunda açılır. Görmediğin üç durumu sesle halledersin.</div></div>
+ <div class="kilitli">${i('kilit')}<div><b>2. hafta: saat, tarih, randevu</b>Birinci hafta bitince açılır.</div></div>
+ <div class="kilitli">${i('kilit')}<div><b>3. hafta: fırın, market, para</b></div></div>
+ ${tabs('Yol')}`)+
+// 6 BAHÇE (akış günü, tekrar yok)
+col('Köy: Bahçe, tekrar yokken',`${st('9:10')}
+ <div class="ptop">${i('carpi')}<b style="font-size:19px">Bahçe</b></div>
+ <div class="bosb"><div class="yuv">${i('filiz')}</div><h2>Bugünün kelimeleri yolda</h2><p>Yeni kelimeler günün duraklarında geliyor. Şu an bekleyen tekrarın yok.</p></div>
+ <div class="ucl"><div><b style="color:var(--wiese)">42</b><span>kelime filizlendi</span></div><div><b style="color:var(--himmel)">9</b><span>yarın geri gelecek</span></div><div><b style="color:var(--brezel)">3</b><span>kalıcı oldu</span></div></div>
+ <div class="gor" style="margin-top:16px"><div class="ic" style="background:var(--frei)">${i('arti')}</div><div><b>Duyduğum kelimeyi ekle</b><span>Dışarıda duyduğunu yaz ya da söyle; bahçene girsin.</span></div></div>
+ <div class="bottom"><button class="btn">Bugüne dön</button><button class="ghost">Serbest çalış</button></div>`);
+</script></body></html>
