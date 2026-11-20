@@ -1,6 +1,6 @@
 {
  "gun": 6,
- "not": "PM-078 B öneri (İÇ), 3. günün onaylı biçimiyle (PM #163, #165, PM 7047720404 a/b, PM-080 §3–§4). Günün dersleri (r0-06, r0-07) varsayılmaz; 1.–5. günün dersleri (r0-01, r0-02, r0-11, r0-03, r0-04, r0-05) ve 1.–5. günün halka kalıpları (gun-04, gun-05 taslakları dahil) bilinir. Tarihler yalnız ayın 1–4'ü (sıra sayıları kartla, „am …-ten“ h1 kalıbıyla). Olgular: Bürgerbüro randevusu 3 aralık perşembe saat dokuz (gün 6 sesi a2), yeni hasta için ad, soyad, doğum tarihi, telefon (gün 6 sesi a1), Brandl'ın doğum günü 2 mayıs (WORLD), Derya Wendlfing'li (WORLD), öğrencinin adresi Brunnengasse 7 (WORLD), 1 mayıs tatil (WORLD takvimi). Gerekçe ve sınama gun-06-yazar.md. Şema ANA'da (AK-5); alan gelince gun-06.json'a taşınır.",
+ "not": "PM-078 B öneri (İÇ), 3. günün onaylı biçimiyle (PM #163, #165, PM 7047720404 a/b, PM-080 §3–§4). Günün dersleri (r0-06, r0-07) varsayılmaz; 1.–5. günün dersleri (r0-01, r0-02, r0-11, r0-03, r0-04, r0-05) ve 1.–5. günün halka kalıpları (gun-04, gun-05 taslakları dahil) bilinir. Tarihler yalnız ayın 1–4'ü (sıra sayıları kartla, „am …-ten“ h1 kalıbıyla). Olgular: Bürgerbüro randevusu 3 aralık perşembe saat dokuz (gün 6 sesi a2), yeni hasta için ad, soyad, doğum tarihi, telefon (gün 6 sesi a1), Brandl'ın doğum günü 2 mayıs (WORLD), Derya Wendlfing'li (WORLD), öğrencinin adresi Brunnengasse 7 (WORLD), 1 mayıs tatil (WORLD takvimi; 2027'de cumartesi, bu yüzden muayenehane pazartesi açılır). Gerekçe ve sınama gun-06-yazar.md. Şema ANA'da (AK-5); alan gelince gun-06.json'a taşınır.",
  "halkalar": [
   {
    "id": "m1:06:h1",
@@ -60,7 +60,7 @@
      "accepted": [
       "Am ersten Mai ist das Büro geschlossen.",
       "Das Büro ist am ersten Mai geschlossen.",
-      "Am ersten Mai ist das neue Büro geschlossen."
+      "Am ersten Mai ist das Büro nicht offen."
      ]
     },
     {
@@ -80,7 +80,8 @@
      "accepted": [
       "Ihr Geburtstag ist am zweiten Mai, Frau Brandl?",
       "Ist Ihr Geburtstag am zweiten Mai, Frau Brandl?",
-      "Frau Brandl, ist Ihr Geburtstag am zweiten Mai?"
+      "Frau Brandl, ist Ihr Geburtstag am zweiten Mai?",
+      "Haben Sie am zweiten Mai Geburtstag, Frau Brandl?"
      ]
     },
     {
@@ -110,7 +111,7 @@
      "accepted": [
       "Der vierte Dezember ist ein Freitag.",
       "Der vierte Dezember ist Freitag.",
-      "Ist der vierte Dezember ein Freitag? Ja."
+      "Am vierten Dezember ist Freitag."
      ]
     },
     {
@@ -214,7 +215,7 @@
      "accepted": [
       "Wie heißt die Praxis? Dr. Weber?",
       "Wie heißt die Praxis? Praxis Dr. Weber?",
-      "Die Praxis heißt Dr. Weber?"
+      "Wie heißt die Praxis? Heißt die Praxis Dr. Weber?"
      ]
     },
     {
@@ -316,7 +317,7 @@
    "kaliplar": [
     {
      "de": "Woher kommst du? – Aus …",
-     "tr": "Nerelisin? – …'den, …'dan."
+     "tr": "Nerelisin? (kelimesi kelimesine: nereden geliyorsun?) – …'den, …'dan."
     },
     {
      "de": "Wohin? – In die Praxis. – Zum Arzt.",
@@ -351,7 +352,7 @@
      "accepted": [
       "Wo ist die Praxis, Frau Huber?",
       "Frau Huber, wo ist die Praxis?",
-      "Wo ist die Praxis Dr. Weber, Frau Huber?"
+      "Wo ist denn die Praxis, Frau Huber?"
      ]
     },
     {
@@ -361,7 +362,7 @@
      "accepted": [
       "Wo ist Tobi heute?",
       "Wo ist heute Tobi?",
-      "Heute? Wo ist Tobi?"
+      "Wo ist denn Tobi heute?"
      ]
     },
     {
@@ -371,7 +372,7 @@
      "accepted": [
       "Wohin gehen Sie, Frau Brandl?",
       "Frau Brandl, wohin gehen Sie?",
-      "Wohin gehen Sie heute, Frau Brandl?"
+      "Wohin gehen Sie denn, Frau Brandl?"
      ]
     },
     {
@@ -473,7 +474,7 @@
      "accepted": [
       "Brauchen Sie meine Nummer?",
       "Meine Nummer, brauchen Sie die?",
-      "Brauchen Sie noch meine Nummer?"
+      "Sie brauchen meine Nummer?"
      ]
     },
     {
@@ -503,7 +504,7 @@
      "accepted": [
       "Brauchen Sie mein Geburtsdatum?",
       "Mein Geburtsdatum, brauchen Sie das?",
-      "Brauchen Sie noch mein Geburtsdatum?"
+      "Sie brauchen mein Geburtsdatum?"
      ]
     },
     {
@@ -557,7 +558,7 @@
      }
     ],
     "soru": {
-     "q_tr": "Huber Hanım'ın kâğıdında hangi bilgi daha eksik?",
+     "q_tr": "Huber Hanım'ın kâğıdında hangi bilgi hâlâ eksik?",
      "opts": [
       "Adresin",
       "Telefon numaran",
@@ -585,7 +586,7 @@
     },
     {
      "de": "Danke sehr! – Sehr gern!",
-     "tr": "Çok teşekkürler! – Çok memnuniyetle!"
+     "tr": "Çok teşekkürler! – Seve seve! (çok memnuniyetle)"
     }
    ],
    "gorev_cumleleri": [
@@ -615,7 +616,7 @@
      "tr": "Ne kadar izniniz var?",
      "accepted": [
       "Wie viel Urlaub haben Sie?",
-      "Wie viel Urlaub haben Sie im Jahr?",
+      "Wie viel Urlaub haben Sie denn?",
       "Sie haben wie viel Urlaub?"
      ]
     },
@@ -636,7 +637,8 @@
      "accepted": [
       "Haben Sie oft Urlaub, Frau Huber?",
       "Frau Huber, haben Sie oft Urlaub?",
-      "Sie haben oft Urlaub, Frau Huber?"
+      "Sie haben oft Urlaub, Frau Huber?",
+      "Machen Sie oft Urlaub, Frau Huber?"
      ]
     },
     {
@@ -645,7 +647,7 @@
      "tr": "Ne sıklıkla doktora gidiyorsunuz?",
      "accepted": [
       "Wie oft gehen Sie zum Arzt?",
-      "Wie oft gehen Sie in die Praxis?",
+      "Wie oft gehen Sie denn zum Arzt?",
       "Zum Arzt, wie oft gehen Sie?"
      ]
     },
@@ -662,7 +664,7 @@
     {
      "kart": "lx:sehr",
      "de": "Sehr gern, Herr Wimmer!",
-     "tr": "Çok memnuniyetle Wimmer Bey!",
+     "tr": "Seve seve Wimmer Bey!",
      "accepted": [
       "Sehr gern, Herr Wimmer!",
       "Herr Wimmer, sehr gern!",
@@ -671,7 +673,7 @@
     }
    ],
    "sahne": {
-    "ortam_tr": "Muayenehanenin kapısı kapalı. Telefonla Huber Hanım'ı arıyorsun.",
+    "ortam_tr": "Muayenehanenin kapısı kapalı. Eve dönünce merdivende Brandl Hanım'a soruyorsun.",
     "satirlar": [
      {
       "r": "ogrenci",
@@ -679,20 +681,20 @@
       "tr": "Muayenehane bugün neden kapalı?"
      },
      {
-      "r": "ch:huber",
-      "de": "Heute ist der erste Mai. Morgen ist die Praxis wieder offen.",
-      "tr": "Bugün bir mayıs. Yarın muayenehane yine açık."
+      "r": "ch:brandl",
+      "de": "Heute ist der erste Mai. Am Montag ist die Praxis wieder offen.",
+      "tr": "Bugün bir mayıs. Pazartesi günü muayenehane yine açık."
      }
     ],
     "soru": {
-     "q_tr": "Muayenehane ayın kaçında yine açık?",
+     "q_tr": "Muayenehane bugün neden kapalı?",
      "opts": [
-      "Bir mayısta",
-      "İki mayısta",
-      "Üç mayısta",
-      "Dört mayısta"
+      "Bugün resmî tatil",
+      "Dr. Weber izinde",
+      "Öğle arası",
+      "Bugün çarşamba, öğleden sonra kapalı"
      ],
-     "ans": 1,
+     "ans": 0,
      "cikarim": true
     }
    }
