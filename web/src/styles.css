@@ -736,3 +736,8 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 .esles-hucre.gosterildi { background: var(--soft); color: var(--muted); cursor: default; }
 .esles-hucre.salla { background: var(--bad-soft); box-shadow: 0 0 0 2px var(--bad) inset; animation: fbSalla 360ms ease-out; }
 @media (prefers-reduced-motion: reduce) { .esles-hucre.salla { animation: none; } }
+
+/* AKIS durak oynatıcısı (AK-10 4. adım iskeleti; TARGET3b üst çubuk): durağın adımları elmas dizisi */
+.akis-elmas { width: 14px; height: 14px; transform: rotate(45deg) scale(0.75); border-radius: 3px; background: var(--line); flex: none; }
+.akis-elmas.dolu { background: var(--accent); }
+.akis-elmas.simdi { background: var(--accent); box-shadow: 0 0 0 3px var(--soft); }
