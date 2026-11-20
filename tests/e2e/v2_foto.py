@@ -48,9 +48,12 @@ def main():
             pg.evaluate("() => { sessionStorage.setItem('e2e-kart', 'lx:Montag'); sessionStorage.setItem('e2e-tur', 'photo_say'); }")
             pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=gq-photo_say]")
             if bozuk:
-                pg.wait_for_function("() => /Almancasını artikeliyle/.test(document.querySelector('[data-test=foto-soru-baslik]')?.textContent || '')", timeout=8000)
+                try: pg.wait_for_function("() => /^Almanca söyle ya da yaz$/.test(document.querySelector('[data-test=foto-soru-baslik]')?.textContent || '')", timeout=8000)
+                except Exception: pass
                 bas = pg.text_content("[data-test=foto-soru-baslik]")
-                check(pg.locator("[data-test=gq-photo_say] [data-test=foto]").count() == 0 and "Fotoğraftaki" not in bas, f"görsel yüklenemezse soru fotoğrafsız başlıkla ({bas!r})")
+                ipucu = pg.text_content("[data-test=gq-photo_say] .de-lg") if pg.locator("[data-test=gq-photo_say] .de-lg").count() else ""
+                check(pg.locator("[data-test=gq-photo_say] [data-test=foto]").count() == 0 and bas == "Almanca söyle ya da yaz" and "(der, die ya da das ile)" in ipucu,
+                      f"görsel yüklenemezse soru Türkçe → Almanca biçiminde ({bas!r}, {ipucu!r})")
             else:
                 pg.wait_for_selector("[data-test=gq-photo_say] [data-test=foto]")
                 f = pg.locator("[data-test=gq-photo_say] [data-test=foto]")
