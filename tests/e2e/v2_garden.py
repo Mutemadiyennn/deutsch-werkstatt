@@ -141,6 +141,8 @@ def main():
                   advance(pg); k += 1; continue
               answer_current(pg); k += 1
         check(any(t in ACTIVE for t in types2), f"ikinci turda üretim sorusu var ({sorted(set(types2))})")
+        # PM 7030294523 P0: İlk Hafta bitmeden ve kalıp bitirilmeden "kendi cümleni kur" hiç gelmez
+        check("gq-own_sentence" not in types2, f"kendi cümleni kur İlk Haftada sorulmuyor ({sorted(set(types2))})")
         check(len(gaps) > 0 and all(gaps), f"boşluk sorusunda ipucu soru sırasında kapalı, düğme var, cevap kartta yok ({len(gaps)} soru)")
         check(acildi, "İpucu göster'e dokununca ipucu açılıyor, düğme kalkıyor")
         check(len(sonra) > 0 and all(sonra), f"yanlış cevaptan sonra ipucu açıklama olarak görünüyor, ipucu düğmesi yok ({len(sonra)})")
