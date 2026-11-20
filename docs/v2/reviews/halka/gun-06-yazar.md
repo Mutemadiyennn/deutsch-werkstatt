@@ -114,3 +114,19 @@ Ek denetim (betik dışı; `content/v2/**`, 1.–5. gün halkaları; büyük har
 ## Sonraki adım
 
 dilbilimci → okur (OD-9). Yazar bu dosyaya artık dokunmaz.
+
+## Okur 1. tur sonrası (İçerik Motoru)
+
+Kaynak: `docs/v2/reviews/okur/halka-gun-06-07.md` (Gün 6'da 5 geri dönüş; kökler K8, K9 ve bir tek).
+
+| Yer | Alan | Eski | Yeni |
+|---|---|---|---|
+| h2 kalıp 2 | tr | Ön adınız ne? – Soyadınız ne? (burada „ne“ = wie) | Ön adınız ne? – Soyadınız ne? (K9: Türkçe satırda Almanca ve eşittir yok) |
+| h2 g2 (`lx:was`) | de / tr / kabul | Was heißt „leider“? / „leider“ ne demek? | Was heißt das bitte, Herr Pichler? / Bu ne demek Pichler Bey? · kabul: Herr Pichler, was heißt das bitte? · Was heißt das, Herr Pichler? (K9) |
+| h3 g5 (`lx:wohin`) | de / tr / kabul | Wohin gehen Sie, Frau Brandl? / Nereye gidiyorsunuz Brandl Hanım? | Wohin, Frau Brandl? In die Praxis? / Nereye Brandl Hanım? Muayenehaneye mi? · kabul: Frau Brandl, wohin? In die Praxis? · Wohin gehen Sie, Frau Brandl? In die Praxis? (K8: kartın örneğindeki `fahren` betikte bilinmiyor, kabul listesine eklenemedi; fiilsiz kalıp biçimi seçildi) |
+| h5 g2 (`lx:warum`) | kabul | (3 öğe) | + Warum geht am Montag nicht? (1., 2. ve 5. gündeki "olmuyor" satırlarıyla aynı: `es`li ve `es`siz) |
+| h5 g7 (`lx:sehr`) | de / tr / kabul | Danke sehr, Frau Stadler! / Çok teşekkürler Stadler Hanım! | Herr Wimmer ist sehr oft im Büro. / Wimmer Bey çok sık ofiste. · kabul: Im Büro ist Herr Wimmer sehr oft. · Sehr oft ist Herr Wimmer im Büro. (K8: "çok teşekkürler" 1. günün kartında `danke schön`; `schön` betikte bilinmiyor, kabul listesine eklenemedi) |
+
+Okur notu N2 (karar değil): `lx:sehr` kartı "çok pahalı" için `zu teuer` demiyor; 4. gün h3 kalıbı "Das ist zu teuer." = "Bu çok pahalı". `zu` = "fazla" önerisi PM'de (#12 7051719457 soru 5).
+
+Denetim: `halka_kontrol.py` 6. ve 7. gün 0 hata, 0 not; `kucuk_sozcuk.py` 0 hata.

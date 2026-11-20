@@ -110,3 +110,13 @@ Ek denetim (betik dışı; `content/v2/**`, 1.–6. gün halkaları; büyük har
 ## Sonraki adım
 
 dilbilimci → okur (OD-9). Yazar bu dosyaya artık dokunmaz.
+
+## Okur 1. tur sonrası (İçerik Motoru)
+
+Kaynak: `docs/v2/reviews/okur/halka-gun-06-07.md` (Gün 7'de 1 geri dönüş).
+
+| Yer | Alan | Eski | Yeni |
+|---|---|---|---|
+| h3 g7 (`lx:sprechen`) | kabul | (3 öğe) | + Kann ich mit Dr. Weber sprechen, bitte? (`mit` ve sondaki `bitte` birlikte) |
+
+Denetim: `halka_kontrol.py` 0 hata, 0 not; `kucuk_sozcuk.py` 0 hata.
