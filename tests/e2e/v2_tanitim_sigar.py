@@ -10,7 +10,9 @@ from common import serve, launch, new_page, login_onboard, check, finish, shot, 
 
 PORT = 4216
 ADAY = 80  # tahminen en uzun kartlar; her biri görselli ölçülür (inceleme #136 P2-4, #152 P2-5)
-PAY = 8    # kart altı ile düğme üstü arasında en az (eylem çubuğunun saydam geçişi; inceleme #152 P2-6)
+PAY = 8    # kart altı ile düğme üstü arasında en az: tam düzende 8 px (eylem çubuğunun saydam geçişi; inceleme #152 P2-6)
+PAY_KARE = 4  # kare düzende 4 px (#12 7036694275 md. 3)
+pay = lambda r: PAY_KARE if r.get("duzen") == "kare" else PAY
 JPEG = base64.b64decode("/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/yQALCAABAAEBAREA/8wABgAQEAX/2gAIAQEAAD8A0s8g/9k=")
 
 
@@ -77,8 +79,8 @@ def main():
         sonuc = []
         for x in aday:
             ac(pg, base, x["id"]); r = olc(pg); sonuc.append((x["id"], r))
-        tasan = [(i, r["alt"] + PAY - r["ust"]) for i, r in sonuc if r["alt"] + PAY > r["ust"]]
-        check(not tasan, f"en uzun {len(aday)} aday kart düğmelere en az {PAY} px kala sığıyor (taşan: {tasan[:6]})")
+        tasan = [(i, r["alt"] + pay(r) - r["ust"]) for i, r in sonuc if r["alt"] + pay(r) > r["ust"]]
+        check(not tasan, f"en uzun {len(aday)} aday kart düğmelere en az {PAY} px (kare düzende {PAY_KARE}) kala sığıyor (taşan: {tasan[:6]})")
         gorselsiz = [i for i, r in sonuc if not r["img"] or not r["atif"]]
         check(not gorselsiz, f"görsel ve atıf hiçbir kartta gizlenmiyor (görselsiz: {gorselsiz[:6]})")
         kare = [i for i, r in sonuc if r["duzen"] == "kare"]
@@ -102,7 +104,7 @@ def main():
         if n_top > 3:
             check(pg.inner_text("[data-test=esdizim-daha] > summary").strip() == f"Daha fazla ({n_top - 3})", "kalanı 'Daha fazla (n)'")
         r = olc(pg)
-        check(r["alt"] + PAY <= r["ust"], f"tanıtım kartı düğmelere değmeden sığıyor (kart altı {r['alt']} px + {PAY} ≤ düğme üstü {r['ust']} px; düzen {r['duzen']}, {l['id']})")
+        check(r["alt"] + pay(r) <= r["ust"], f"tanıtım kartı düğmelere değmeden sığıyor (kart altı {r['alt']} px + {pay(r)} ≤ düğme üstü {r['ust']} px; düzen {r['duzen']}, {l['id']})")
         if shots: shot(pg, "t01-en-uzun-kart", full=False)
         # PM 7026866757: (1) örnek cümle tam genişlikte, hecelenmez; (2) "Başka cümle" ve "Daha fazla" aynı üslup;
         # (3) "Daha fazla" açılınca son satır görünür ve birincil düğmeyle kesişmez
