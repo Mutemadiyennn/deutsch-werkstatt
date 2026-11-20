@@ -745,3 +745,40 @@ Geri dönenler: yok. Son turun üç geri dönüşü (`h2/g4`, `h2/g10`, `h5/g2`)
 **N25 — h2/g6 "Bugün salı, değil mi?" kalıbın dışında kalıyor.** Bu cümlede "değil mi" sondaki kısa "ja" sözüne gidiyor. Kalıba uyup kelimeyi günün önüne koyarsam ("Heute ist nicht Dienstag?") kabul listesinde bulamam. Kelimeyi sona koyarsam ("Heute ist Dienstag, nicht?") listede var. Bu satırı bu turda yeniden karara bağlamadım; eski kararım "geçer" ve eski notum duruyor. Yeni kalıpla tuzak biraz büyüdü.
 
 **Virgül ve çizgi.** h2/g10'da çizgi yerine virgül, h4/g8'de virgülsüz yazdım. Karşılaştırma noktalamayı atıyorsa ikisi de eşleşir; ben öyle saydım.
+
+## Soru kalıpları (PM final)
+
+İki kalıp artık çift: önce düz söz, sonra sorusu. Okuduğum şey: düz sözde ortadaki kısa kelime soruda en başa geçiyor. Dört Türkçe cümleyi yalnızca kalıplara ve kartlara bakarak çevirdim, sonra kabul listesine baktım (`gun-01-halkalar.json`, son hâl). Öbür satırlar yeniden okunmadı.
+
+| Öğe | Alan | Açıklama | Kendi sözlerimle | Benim yazdığım | Karar | Gerekçe |
+|---|---|---|---|---|---|---|
+| h2 | kalıp | Heute ist … – Ist heute …? / Bugün … – Bugün … mı? | Önce bugünün hangi gün olduğunu söylerim. Sorarken aynı üç kelimeyi kullanırım, ortadaki kısa kelime başa geçer. | | geçer | Tek okumada anladım. Çizginin solu düz söz, sağı sorusu; iki dilde de aynı sırada duruyor. Kelimenin yer değiştirdiği Almancada gözle görülüyor. Bkz. N26, N27. |
+| h5 | kalıp | Gestern war … – War gestern …? / Dün … idi – Dün … mıydı? | Dünün hangi gün olduğunu söylerim. Sorarken yine kısa kelime başa geçer. | | geçer | Tek okumada anladım. h2 ile aynı düzen, bu yüzden ikinci kez görünce hemen oturdu. "idi" ve "mıydı" Almancadaki kelimenin geçmişi gösterdiğini söylüyor. |
+| h2/g7 | görev cümlesi (tr) | Bugün çarşamba mı? | Bugünün çarşamba olup olmadığını soruyorum. | Ist heute Mittwoch? | geçer | Kalıbın soru yarısına günü koydum. Kabul listesinin ilk cümlesi. |
+| h4/g2 | görev cümlesi (tr) | Yarın cumartesi mi? | Yarının cumartesi olup olmadığını soruyorum. | Ist morgen Samstag? | geçer | Kabul listesinin ilk cümlesi. h4'te bu iş için kalıp yok; h2'nin kalıbını aldım, "bugün" yerine "yarın" kartını koydum. Bkz. N28. |
+| h5/g4 | görev cümlesi (tr) | Öbür gün cuma mı? | Öbür günün cuma olup olmadığını soruyorum. | Ist übermorgen Freitag? | geçer | Kabul listesinin ilk cümlesi. Türkçede "mıydı" yok, "mı" var; bu yüzden h5'in değil h2'nin kalıbına gittim. Bkz. N28. |
+| h5/g1 | görev cümlesi (tr) | Dün salı mıydı? | Dünün salı olup olmadığını soruyorum. | War gestern Dienstag? | geçer | Kalıbın soru yarısına günü koydum. Kabul listesinin ilk cümlesi. |
+
+### Sonuç
+
+| | |
+|---|---|
+| Okunan satır | 6 (2 kalıp, 4 görev cümlesi) |
+| Geçer | 6 |
+| Geri döner | 0 |
+
+Geri dönenler: yok. Dört cümlenin dördünde de yazdığım Almanca kabul listesinin ilk cümlesi. Kelimeyi başa almayı unutup düz sırayla soru işareti koysaydım o biçim de dört listede var; yanlış sayılmazdım.
+
+Bu turda yalnızca bu altı satırı okudum.
+
+### Notlar (karar değil, baş geliştiriciye)
+
+**N14 kapandı.** İki kalıp artık aynı biçimde. "Bugün" kalıbında ortadaki kelimenin Türkçe karşılığı yine yok, ama Almanca çift onu iki yerde gösteriyor; "nereye gitti" diye sormadım.
+
+**N8 bu dört cümle için kapandı.** İki sıra da kabul ediliyor.
+
+**N26 — tek satırda iki söz ve işaretler.** Kalıp satırında düz söz ile soru birlikte duruyor, arada çizgi, iki tane de üç nokta var. h3 kalıbında olduğu gibi (N24) konuşma gibi okudum ve geçirdim. "Bir alan bir fikir" ve "üç nokta yok" harfiyen uygulanırsa takılır.
+
+**N27 — "mı" tek biçimde.** Kalıpta "Bugün … mı?" yazıyor. Çarşamba, salı, cuma için tutuyor; pazartesi, perşembe, cumartesi için Türkçede "mi" olur. Türkçe bildiğim için durmadım.
+
+**N28 — kalıbı başka güne taşımak.** "Yarın" ve "öbür gün" soruları için ayrı kalıp yok. h2'nin kalıbındaki "bugün" kelimesini kendim değiştirdim. İki halka sonra hatırlamam gerekiyor; ben hatırladım, çünkü h5'in kalıbı aynı düzeni yeniden gösteriyor. h5/g4'te h5'in kendi kalıbına uyup geçmiş kelimesiyle yazarsam ("War übermorgen Freitag?") kabul listesinde yok; Türkçedeki "mı" ile "mıydı" farkı beni bundan korudu.
