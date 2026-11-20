@@ -9,6 +9,7 @@ type Cap = { isNativePlatform?: () => boolean; isPluginAvailable?: (ad: string) 
 export const KABUK_EKLENTILERI: readonly (readonly [string, string])[] = [
   ["SpeechRecognition", "konuşma tanıma"],
   ["VoiceRecorder", "ses kaydı"],
+  ["TextToSpeech", "seslendirme"],
   ["Haptics", "titreşim"],
   ["LocalNotifications", "bildirim"],
   ["Keyboard", "klavye"],

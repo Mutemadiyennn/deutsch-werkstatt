@@ -30,15 +30,29 @@ export function sesCinsi(s: Ses): Cins | null {
 export function sesKalitesi(s: Ses): number {
   const n = s.name.toLowerCase();
   if (OYUNCAK.some((o) => n.startsWith(o))) return -1;
-  if (/premium|enhanced|erweitert|verbessert|neural|natural|online/.test(n)) return 2;
+  // iOS yerel seslerde kalite adda değil kimlikte (com.apple.voice.premium.de-DE.Anna; PM 7042267632)
+  const k = `${n} ${(s.voiceURI ?? "").toLowerCase()}`;
+  if (/premium/.test(k)) return 3;
+  if (/enhanced|erweitert|verbessert|neural|natural|online/.test(k)) return 2;
   return 1;
 }
+/** Satırdaki kalite etiketi (PM 7042302480) */
+export const KALITE_TR = (s: Ses) => (sesKalitesi(s) >= 3 ? "premium" : sesKalitesi(s) === 2 ? "gelişmiş" : "standart");
+/** Aynı adlı sesler tek (WKWebView aynı sesi iki kez verebiliyor; PM 7042302480): kalitesi yüksek olan kalır, sıra korunur */
+export function tekillestir<T extends Ses>(sesler: T[]): T[] {
+  const en = new Map<string, T>();
+  for (const s of sesler) { const k = `${s.name}|${s.lang}`; const o = en.get(k); if (!o || sesKalitesi(s) > sesKalitesi(o)) en.set(k, s); }
+  return sesler.filter((s) => en.get(`${s.name}|${s.lang}`) === s);
+}
+/** Perde oyunu en çok ±%8 (PM 7042267632 md. 5): gerçek cinsiyetli ses yoksa bile ses robotlaşmasın */
+export const PERDE_SINIR = 0.08;
+const perdeSinirla = (p: number) => Math.min(1 + PERDE_SINIR, Math.max(1 - PERDE_SINIR, Math.round(p * 100) / 100));
 export const almancaMi = (s: Ses) => /^de([-_]|$)/i.test(s.lang);
 
 /** Havuzlar: Almanca sesler, cinsiyete göre; her havuz kaliteye, sonra ada göre sıralı (kararlı) */
 export function havuzlar(sesler: Ses[]): { kadin: Ses[]; erkek: Ses[]; diger: Ses[] } {
   // eğlence sesleri (Eddy, Grandma…) yalnızca o cinsiyette başka ses yoksa (inceleme #117 P1-2)
-  const tum = sesler.filter(almancaMi);
+  const tum = tekillestir(sesler.filter(almancaMi));
   const oyun = (s: Ses) => sesKalitesi(s) < 0;
   const de = tum.filter((s) => !oyun(s) || !tum.some((x) => !oyun(x) && sesCinsi(x) === sesCinsi(s)));
   const sirala = (xs: Ses[]) => xs.slice().sort((a, b) => sesKalitesi(b) - sesKalitesi(a) || (a.lang.startsWith("de-DE") ? 0 : 1) - (b.lang.startsWith("de-DE") ? 0 : 1) || a.name.localeCompare(b.name));
@@ -59,7 +73,7 @@ export function sesAta(k: Konusan, sesler: Ses[], doluSesler: Iterable<string> =
   if (!havuz.length) {
     havuz = k.cinsiyet === "erkek" ? h.kadin : h.erkek;
     if (!havuz.length) havuz = [...h.kadin, ...h.erkek];
-    cinsiyetYok = !!k.cinsiyet; pitch = k.cinsiyet === "erkek" ? 0.75 : k.cinsiyet === "kadin" ? 1.2 : 1;
+    cinsiyetYok = !!k.cinsiyet; pitch = k.cinsiyet === "erkek" ? 1 - PERDE_SINIR : k.cinsiyet === "kadin" ? 1 + PERDE_SINIR : 1;
   }
   if (!havuz.length) return { pitch, cinsiyetYok: !!k.cinsiyet };
   const n = havuz.length;
@@ -71,8 +85,8 @@ export function sesAta(k: Konusan, sesler: Ses[], doluSesler: Iterable<string> =
   const kullanim = (x: Ses) => doluListe.filter((d) => d === x.name).length;
   const s = havuz.slice().sort((a, b) => kullanim(a) - kullanim(b))[0]!;
   const kat = kullanim(s);
-  const adim = Math.ceil(kat / 2) * 0.09 * (kat % 2 ? -1 : 1);
-  return { ses: s, pitch: Math.min(1.5, Math.max(0.6, Math.round(pitch * (1 + adim) * 100) / 100)), cinsiyetYok };
+  const adim = Math.ceil(kat / 2) * 0.05 * (kat % 2 ? -1 : 1);
+  return { ses: s, pitch: perdeSinirla(pitch * (1 + adim)), cinsiyetYok };
 }
 
 /** Bir sahnedeki konuşanlara sırayla ses: aynı sahnede iki konuşan aynı (ses, perde) almaz */

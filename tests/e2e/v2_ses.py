@@ -57,6 +57,9 @@ def main():
         erkek = pg.locator("[data-test=havuz-erkek] [data-test=ses]").evaluate_all("(xs) => xs.map((x) => x.dataset.ad)")
         kare(pg, 8)
         check(kadin == ["Helena (Erweitert)", "Anna"] and erkek == ["Viktor (Erweitert)", "Markus"], f"havuzlar: kadın {kadin}, erkek {erkek}; gelişmiş önce, başka dil yok")
+        kal = pg.locator("[data-test=havuz-kadin] [data-test=ses-kalite]").all_inner_texts()
+        check(kal == ["gelişmiş", "standart"], f"satırda kalite etiketi ({kal})")
+        check(pg.inner_text("[data-test=ses-yol]").strip() == "Ses: tarayıcının sesleri", "tarayıcıda ses yolu yazılı")
         # Dinle ve Yavaş: aynı ses, aynı perde, hız ≥ %20 düşük
         pg.evaluate("window.__oku = []")
         pg.locator("[data-test=havuz-erkek] [data-test=ses-dinle]").first.click(); pg.wait_for_function("() => window.__oku.length >= 1")
@@ -151,6 +154,8 @@ def main():
         pg.goto(base + "#/ses"); pg.wait_for_selector("[data-test=mikrofon-deneme]")
         check(pg.inner_text("[data-test=stt-yol]").strip() == "Bu cihazda: iPhone'un kendi tanıması", "kabukta tanıma yolu: iPhone'un kendi tanıması")
         # PM-071 1. adım: kabuk sürümü ve gerçekten bulunan eklentiler (sahte kabukta yalnızca konuşma tanıma var, sürüm bilinmiyor)
+        # kabuk var, seslendirme eklentisi yok: web yolu yedek; yönerge menü adı uydurmaz (PM 7042302480)
+        check(pg.inner_text("[data-test=ses-yol]").strip() == "Ses: görünümün sesleri (yedek yol)" and pg.inner_text("[data-test=ses-indir]").strip() == "Bu görünüm telefondaki sesleri göremiyor; güncel kabukla düzelir.", "eklentisiz kabukta: yedek yol ve doğru yönerge")
         pg.wait_for_selector("[data-test=kabuk-satir]"); ks = pg.inner_text("[data-test=kabuk-satir]")
         check(ks.startswith("Kabuk sürümü bilinmiyor · eklentiler: konuşma tanıma · eksik: ses kaydı"), f"kabuk satırı: bulunan ve eksik eklentiler ({ks[:90]})")
         pg.click("[data-test=mic-dene]"); pg.wait_for_selector("[data-test=mic-sonuc]")
@@ -162,6 +167,38 @@ def main():
         check("yerel" in pg.inner_text("[data-test=mic-sonuc]") and pg.locator("[data-test=mic-hata]").count() == 0, "önceki oturumun zamanlayıcısı sonrakini kesmiyor")
         pg.evaluate("window.__yerelIzin = 'denied'"); pg.click("[data-test=mic-dene]"); pg.wait_for_selector("[data-test=mic-hata]")
         check("izni yok" in pg.inner_text("[data-test=mic-hata]") and pg.locator("[data-test=ayarlari-ac]").count() == 1, "kabukta tanıma izni yok: Türkçe neden + 'Ayarları aç'")
+        b.close()
+        # Kabuk 1.5 (PM 7042267632): seslendirme eklentili kabuk — iPhone'un kendi sesleri, gerçek erkek sesi, perde 1, gerçek hız
+        b, ctx = launch(p, color_scheme=TEMA); ctx.add_init_script(SAHTE)
+        ctx.add_init_script("""(() => { window.__tts = [];
+          const V = [["Anna","com.apple.voice.compact.de-DE.Anna"],["Anna","com.apple.voice.premium.de-DE.Anna"],["Petra","com.apple.voice.premium.de-DE.Petra"],
+            ["Markus","com.apple.voice.enhanced.de-DE.Markus"],["Martin","com.apple.voice.enhanced.de-DE.Martin"],["Yelda","com.apple.voice.compact.tr-TR.Yelda"]]
+            .map(([name, id]) => ({ name, lang: id.split('.').slice(-2, -1)[0], voiceURI: id, localService: true, default: false }));
+          window.Capacitor = { isNativePlatform: () => sessionStorage.getItem('kabuk') === '1', isPluginAvailable: (n) => n === 'TextToSpeech' || n === 'SpeechRecognition', Plugins: {
+            TextToSpeech: { getSupportedVoices: async () => ({ voices: V }), stop: async () => {},
+              speak: (o) => { window.__tts.push(o); return new Promise((r) => setTimeout(r, window.__sure ? Math.round(600 / o.rate) : 30)); } },
+            SpeechRecognition: { checkPermissions: async () => ({ speechRecognition: 'granted' }), requestPermissions: async () => ({ speechRecognition: 'granted' }),
+              start: async () => ({ matches: ['Guten Morgen'] }), stop: async () => {} } } }; })()""")
+        pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
+        # giriş web gibi; sonra kabuk olarak yeniden açılış (seslendirme eklentisi açılışta yüklenir)
+        pg.evaluate("sessionStorage.setItem('kabuk', '1')"); pg.goto(base + "#/ses"); pg.reload(); pg.wait_for_selector("[data-test=havuz-erkek] [data-test=ses]")
+        check(pg.inner_text("[data-test=ses-yol]").strip() == "Ses: iPhone'un kendi sesleri", "kabukta yerel yol: iPhone'un kendi sesleri")
+        kad = pg.locator("[data-test=havuz-kadin] [data-test=ses]").evaluate_all("(xs) => xs.map((x) => x.dataset.ad + ' ' + x.querySelector('[data-test=ses-kalite]').innerText)")
+        erk = pg.locator("[data-test=havuz-erkek] [data-test=ses]").evaluate_all("(xs) => xs.map((x) => x.dataset.ad)")
+        check(kad == ["Anna premium", "Petra premium"] and erk == ["Markus", "Martin"], f"yerel sesler: aynı ad tek satır (premium kalır), kalite etiketi, erkek sesleri var ({kad}, {erk})")
+        check(pg.locator("[data-test=ses-indir]").count() == 0, "yerel yolda ses varken yönerge yok")
+        pg.click("[data-test=karakter-ac]"); pg.wait_for_selector("[data-test=karakter-ses]")
+        ks3 = {e["id"]: e for e in pg.locator("[data-test=karakter-ses]").evaluate_all("(xs) => xs.map((x) => ({ id: x.dataset.id, ses: x.dataset.ses, pitch: x.dataset.pitch }))")}
+        check(all(ks3[i]["ses"] in ("Markus", "Martin") and ks3[i]["pitch"] == "1" for i in ("ch:weber", "ch:pichler") if i in ks3), f"erkek karakter gerçek erkek sesi, perde 1 ({[ks3.get(i) for i in ('ch:weber', 'ch:pichler')]})")
+        pg.evaluate("window.__tts = []"); pg.locator("[data-test=karakter-ses][data-id='ch:weber'] button").click(); pg.wait_for_function("() => window.__tts.length >= 1")
+        t = pg.evaluate("window.__tts[0]")
+        check(t["lang"] == "de-DE" and t["pitch"] == 1 and t["voice"] in (3, 4) and abs(t["rate"] - 0.95) < 1e-6, f"Dinle eklentiye: gerçek ses dizini, perde 1, hız 0,95 ({t})")
+        pg.evaluate("window.__sure = 1; window.__tts = []"); pg.click("[data-test=hiz-olc]")
+        pg.wait_for_function("() => { const b = document.querySelector('[data-test=hiz-olc]'); return b && !b.disabled && document.querySelectorAll('[data-test=hiz-sonuc]').length >= 2; }", timeout=15_000)
+        rates = sorted({round(x["rate"], 2) for x in pg.evaluate("window.__tts")})
+        sonuc3 = pg.locator("[data-test=hiz-sonuc]").all_inner_texts()
+        check(rates == [0.5, 0.95] and all("Yavaş" in x for x in sonuc3) and pg.locator("[data-test=hiz-uyari]").count() == 0, f"yerel yolda hız ölçümü: gerçek hız, yavaşlıyor ({rates}; {sonuc3})")
+        if shots: pg.locator("[data-test=ses-deneme]").scroll_into_view_if_needed(); shot(pg, f"s03-yerel-{TEMA}", full=False)
         b.close()
     srv.shutdown()
     if GIF and KARELER:

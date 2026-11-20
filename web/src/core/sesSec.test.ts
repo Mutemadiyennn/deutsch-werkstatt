@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { havuzlar, konusanBul, sahneAta, sesAta, sesCinsi, sesKalitesi, type Ses } from "./sesSec.ts";
+import { havuzlar, KALITE_TR, konusanBul, PERDE_SINIR, sahneAta, sesAta, sesCinsi, sesKalitesi, tekillestir, type Ses } from "./sesSec.ts";
 import { RATE } from "../services/speech.ts";
 
 const v = (name: string, lang = "de-DE"): Ses => ({ name, lang });
@@ -21,7 +21,8 @@ describe("ses seçimi (PM-064, B15 1. adım)", () => {
     expect(sesKalitesi(v("Eddy (Deutsch (Deutschland))"))).toBeLessThan(0);
     const h = havuzlar(IPHONE);
     // eğlence sesi (Grandma) havuzda yok: kadın havuzunda daha iyi sesler var (inceleme #117 P1-2)
-    expect(h.kadin.map((x) => x.name)).toEqual(["Helena (Erweitert)", "Petra (Premium)", "Anna"]);
+    // premium > gelişmiş > standart (PM 7042267632)
+    expect(h.kadin.map((x) => x.name)).toEqual(["Petra (Premium)", "Helena (Erweitert)", "Anna"]);
     expect(havuzlar([v("Grandma (Deutsch (Deutschland))"), v("Markus")]).kadin.map((x) => x.name)).toEqual(["Grandma (Deutsch (Deutschland))"]);
     expect(h.erkek[0]!.name).toBe("Viktor (Erweitert)");
     expect([...h.kadin, ...h.erkek, ...h.diger].some((x) => !x.lang.startsWith("de"))).toBe(false);
@@ -55,5 +56,20 @@ describe("ses seçimi (PM-064, B15 1. adım)", () => {
   });
   it("Yavaş yalnızca hızı düşürür: normalden en az %20 yavaş (perde ve ses atamadan bağımsız)", () => {
     expect(RATE.slow).toBeLessThanOrEqual(RATE.normal * 0.8);
+  });
+  it("yerel iOS sesleri: kalite kimlikten; aynı ad tek satır; perde en çok ±%8 (PM 7042267632, 7042302480)", () => {
+    const anna = { name: "Anna", lang: "de-DE", voiceURI: "com.apple.voice.premium.de-DE.Anna" };
+    const anna2 = { name: "Anna", lang: "de-DE", voiceURI: "com.apple.voice.compact.de-DE.Anna" };
+    const helena = { name: "Helena", lang: "de-DE", voiceURI: "com.apple.voice.enhanced.de-DE.Helena" };
+    expect([anna, anna2, helena].map(KALITE_TR)).toEqual(["premium", "standart", "gelişmiş"]);
+    expect(tekillestir([anna2, anna, helena]).map((x) => x.voiceURI)).toEqual([anna.voiceURI, helena.voiceURI]);
+    expect(havuzlar([anna2, anna, helena]).kadin.map((x) => x.voiceURI)).toEqual([anna.voiceURI, helena.voiceURI]);
+    // erkek sesi yok: kadın sesi, perde en çok %8 aşağı (bugün 0,75 robotlaştırıyordu)
+    const a = sesAta(konusanBul("Herr Pichler", [])!, [anna])!;
+    expect(a.pitch).toBeGreaterThanOrEqual(1 - PERDE_SINIR); expect(a.pitch).toBeLessThan(1);
+    // tek erkek sesli sahnede üç erkek: perde farkı yine ±%8 içinde
+    const m = sahneAta([{ id: "a", cinsiyet: "erkek", sira: 0 }, { id: "b", cinsiyet: "erkek", sira: 0 }, { id: "c", cinsiyet: "erkek", sira: 0 }], [v("Markus")]);
+    for (const x of m.values()) { expect(x.pitch).toBeGreaterThanOrEqual(1 - PERDE_SINIR); expect(x.pitch).toBeLessThanOrEqual(1 + PERDE_SINIR); }
+    expect(new Set([...m.values()].map((x) => x.pitch)).size).toBe(3);
   });
 });
