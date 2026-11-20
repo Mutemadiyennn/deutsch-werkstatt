@@ -13,7 +13,7 @@ import { bahceTamam, xpOku, xpVer } from "../services/ilerleme.ts";
 import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { XP, seri, yerelGun } from "../core/gun.ts";
 import { getMeta, itemsMap, metaPrefix, personalWords, putItems, setMeta } from "../data/db.ts";
-import POLICY from "../policy.json";
+import POLICY from "../policy.json" with { type: "json" };
 import { hizliGecis, review, sessionKey, type Outcome } from "../core/srs.ts";
 import { accepted, buildRound, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, boslukSecimi, esdizimler, gosterilenCogul, tanitildi, gorulenKelimeler, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";

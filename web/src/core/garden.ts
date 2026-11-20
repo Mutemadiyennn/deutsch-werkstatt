@@ -22,7 +22,7 @@
  *  - PM-062: soru cümlesi kartın gösterim sayacından (`exSeen`) kurulur: her gün başka cümle ve onun fotoğrafı. Güçlü kartta
  *    fotoğraf cevaptan önce gösterilmez (fotoğraf sorusu seçilmez; tanıtımda ve cevap ekranında fotoğraf var).
  */
-import POLICY from "../policy.json";
+import POLICY from "../policy.json" with { type: "json" };
 import { kartMi, type Lexeme } from "@dw/shared";
 import type { LearnerItem, PersonalWord } from "@dw/shared";
 import { isDue } from "./srs.ts";
@@ -86,9 +86,9 @@ const otherForms = (l: Lexeme) => l.forms.filter(() => l.pos !== "verb");
 /** "Kendi cümleni kur" kapısı (PM 7030294523 P0): kartın üretim kararlılığı ≥ eşik gün, İlk Hafta bitmiş ve öğrenci en az bir
  *  kalıbı bitirmiş olmalı; eşikler web/src/policy.json'da. Koşullardan biri eksikse tür hiç seçilmez. */
 export interface KendiCumleKosul { ilkHaftaBitti: boolean; kalipBitti: boolean }
-export function kendiCumleAcik(it: LearnerItem | undefined, k: KendiCumleKosul | undefined): boolean {
-  const p = POLICY.own_sentence;
-  if (!k || !k.ilkHaftaBitti || (p.kalip_sart && !k.kalipBitti)) return false;
+export function kendiCumleAcik(it: LearnerItem | undefined, k: KendiCumleKosul | undefined, pol: { yeni_ekran: boolean; kalip_sart: boolean; kararlilik_gun: number } = POLICY.own_sentence): boolean {
+  const p = pol;
+  if (!p.yeni_ekran || !k || !k.ilkHaftaBitti || (p.kalip_sart && !k.kalipBitti)) return false;
   return (it?.active.fsrs?.stability ?? 0) >= p.kararlilik_gun;
 }
 

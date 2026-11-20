@@ -218,13 +218,19 @@ describe("Kelime Bahçesi (PM-049)", () => {
     const kararli = (gun: number) => ({ ...review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "correct", session: "g@1" }, t0),
       active: { n: 5, ok: 5, s: 1, fsrs: { due: t0.toISOString(), stability: gun, difficulty: 5, scheduled_days: gun, reps: 5, lapses: 0, learning_steps: 0, state: 2 } } }) as any;
     const tamam = { ilkHaftaBitti: true, kalipBitti: true };
-    expect(kendiCumleAcik(kararli(10), tamam)).toBe(true);
-    expect(kendiCumleAcik(kararli(6.9), tamam)).toBe(false);
-    expect(kendiCumleAcik(kararli(10), { ilkHaftaBitti: false, kalipBitti: true })).toBe(false);
-    expect(kendiCumleAcik(kararli(10), { ilkHaftaBitti: true, kalipBitti: false })).toBe(false);
-    expect(kendiCumleAcik(kararli(10), undefined)).toBe(false);
-    expect(kendiCumleAcik(undefined, tamam)).toBe(false);
-    // koşul verilmeden kurulan turda tür hiç gelmez (100 tohum)
+    const hazir = { yeni_ekran: true, kalip_sart: true, kararlilik_gun: 7 };
+    // yeni ekran gelene kadar (policy.json yeni_ekran: false) koşullar sağlansa da kapalı
+    expect(kendiCumleAcik(kararli(30), tamam)).toBe(false);
+    expect(kendiCumleAcik(kararli(10), tamam, hazir)).toBe(true);
+    expect(kendiCumleAcik(kararli(7), tamam, hazir)).toBe(true);
+    expect(kendiCumleAcik(kararli(6.9), tamam, hazir)).toBe(false);
+    expect(kendiCumleAcik(kararli(10), { ilkHaftaBitti: false, kalipBitti: true }, hazir)).toBe(false);
+    expect(kendiCumleAcik(kararli(10), { ilkHaftaBitti: true, kalipBitti: false }, hazir)).toBe(false);
+    expect(kendiCumleAcik(kararli(10), undefined, hazir)).toBe(false);
+    expect(kendiCumleAcik(undefined, tamam, hazir)).toBe(false);
+    // kapı açıkken buildRound türü gerçekten seçebiliyor (pickType'a kapı parametresiyle)
+    expect(availableTypes(termin, "active", kendiCumleAcik(kararli(30), tamam, hazir))).toContain("own_sentence");
+    // koşul verilmeden kurulan turda tür hiç gelmez (100 tur, 10 farklı rng değeri)
     for (let k = 0; k < 100; k++) {
       const r = buildRound(lex, new Map([["lx:Termin", kararli(30)]]), [], { now: new Date("2026-12-15T10:00:00Z"), rng: () => (k % 10) / 10 });
       expect(r.every((q) => q.type !== "own_sentence")).toBe(true);
