@@ -4,7 +4,7 @@
  *   - Hat (kaynak/video, scripts/video/m1_video.py): Releases `m1-medya` → klip-NN.mp4, klip-NN.jpg, klip-NN.metin.json
  *     (Almanca cümleler + iki ASR ile hizalanmış zamanlar; sapma > 300 ms olan tur zaten çıkarılmış). Deploy `.medya/`ya indirir.
  * Transkript metni depoya girmez (FORMAT.md A9); yalnızca yayın paketine (CC BY 4.0, atıf ekranda).
- * Yalnızca `durum: "hazir"` ve tek parçalı klip bağlanır; çok parçalı (`kesitler`) ve `kisa` klip ayrı karar bekler.
+ * `durum` hazir | kisa bağlanır (PM-078 F); çok parçalı (`kesitler`) klip hattın birleştirdiği tek videoyla, cümle kimliği t{tur} / k{sira}t{tur}.
  * Hizalı cümlesi olmayan tura bağlı soru, dikte ve gölge pakete girmez (öğrenci o cümleyi metinde göremez).
  */
 import { existsSync, readdirSync, readFileSync } from "node:fs";
@@ -12,21 +12,47 @@ import { join } from "node:path";
 import { Video, type Video as VideoT } from "../../packages/shared/src/m1.ts";
 
 interface Tur { tur: number; tr?: string }
-interface MetinCumle { id: string; tur: number; speaker?: string; de: string; t0: number; t1: number }
+interface MetinCumle { id: string; tur: number; kesit?: number; speaker?: string; de: string; t0: number; t1: number }
+interface Metin { sure_sn: number; kaynak_klip?: string; kaynak_klipler?: string[]; cumleler: MetinCumle[] }
+type Ref = number | { kesit?: number; tur: number };
 
-export function klipVideo(k: any, metin: { sure_sn: number; cumleler: MetinCumle[] }, olcum?: { kesit_kaynak_sn?: [number, number] } | null): VideoT | null {
-  if (k?.durum !== "hazir" || k.kesitler || !metin?.cumleler?.length) return null;
+/** Klibin parçaları (FORMAT.md A9 `kesitler`): sıra 0 üst düzey alanlarla aynıdır */
+const parcalar = (k: any): { klip: string; turlar: Tur[]; konusmaci?: string; url?: string }[] => {
+  const ust = { klip: k.klip, turlar: k.turlar ?? [], konusmaci: k.konusmaci, url: k.transkript_url || k.video_url };
+  const ks: any[] = k.kesitler ?? [];
+  return ks.length ? ks.map((x, i) => (i === 0 ? { ...ust, konusmaci: x.konusmaci ?? ust.konusmaci } : { klip: x.klip, turlar: x.turlar ?? [], konusmaci: x.konusmaci, url: x.transkript_url || x.video_url })) : [ust];
+};
+
+/**
+ * Klip + hattın hizalı metni → günün videosu. Bağlanır: `durum` hazir | kisa (PM-078 F) ve metin bu klibin GÜNCEL parçalarından
+ * kesilmişse (`kaynak_klipler`/`kaynak_klip` eşleşmesi; eski kesimli medya bağlanmaz). Soru, dikte, gölge ve cevap (kesit, tur) ile
+ * cümleye bağlanır; hizalı cümlesi olmayan tura bağlı madde pakete girmez.
+ */
+export function klipVideo(k: any, metin: Metin, olcum?: { kesit_kaynak_sn?: [number, number] } | null): VideoT | null {
+  if (!["hazir", "kisa"].includes(k?.durum) || !metin?.cumleler?.length) return null;
+  const ps = parcalar(k);
+  const beklenen = ps.map((p) => p.klip);
+  const gelen = metin.kaynak_klipler ?? (metin.kaynak_klip ? [metin.kaynak_klip] : []);
+  if (gelen.length !== beklenen.length || gelen.some((x, i) => x !== beklenen[i])) return null;
   const ad = String(k.dosya ?? "").replace(/\.json$/, "") || null;
-  const trOf = new Map<number, string>((k.turlar as Tur[]).map((t) => [t.tur, t.tr ?? ""]));
-  const cumleler = metin.cumleler.filter((c) => trOf.get(c.tur)).map((c) => ({ id: c.id, de: c.de, tr: trOf.get(c.tur)!, speaker: c.speaker, t0: c.t0, t1: c.t1 }));
+  const anahtar = (kesit: number, tur: number) => `${kesit}:${tur}`;
+  const trOf = new Map<string, string>(); ps.forEach((p, i) => p.turlar.forEach((t) => trOf.set(anahtar(i, t.tur), t.tr ?? "")));
+  const idOf = new Map<string, string>(metin.cumleler.map((c) => [anahtar(c.kesit ?? 0, c.tur), c.id]));
+  const cumleler = metin.cumleler.filter((c) => trOf.get(anahtar(c.kesit ?? 0, c.tur))).map((c) => ({ id: c.id, de: c.de, tr: trOf.get(anahtar(c.kesit ?? 0, c.tur))!, speaker: c.speaker, t0: c.t0, t1: c.t1 }));
   if (!cumleler.length || !ad) return null;
-  const idOf = new Map(metin.cumleler.map((c) => [c.tur, c.id]));
-  const var_ = (tur?: number) => tur != null && cumleler.some((c) => c.id === idOf.get(tur));
+  const var_ = new Set(cumleler.map((c) => c.id));
+  const idRef = (r: Ref | undefined, kesit?: number): string | undefined => {
+    if (r == null) return undefined;
+    const [ks, tur] = typeof r === "number" ? [kesit ?? 0, r] : [r.kesit ?? 0, r.tur];
+    const id = idOf.get(anahtar(ks, tur));
+    return id && var_.has(id) ? id : undefined;
+  };
   const b = k.bolum ?? {};
   const tum = cumleler.map((c) => c.id);
-  const ayrinti = (b.ayrinti ?? []).filter((q: any) => var_(q.tur)).map((q: any, i: number) => ({ id: `a${i + 1}`, kind: "detail" as const, q_tr: q.q_tr, opts: q.opts, ans: q.ans, kanit: [idOf.get(q.tur)!] }));
-  const dikte = (b.dikte ?? []).filter((d: any) => d.seviye === "gercek" || var_(d.tur)).map((d: any) => {
-    const cumle = d.tur != null ? idOf.get(d.tur)! : "";
+  const ayrinti = (b.ayrinti ?? []).map((q: any) => ({ q, id: idRef(q.tur, q.kesit) })).filter((x: any) => x.id)
+    .map(({ q, id }: any, i: number) => ({ id: `a${i + 1}`, kind: "detail" as const, q_tr: q.q_tr, opts: q.opts, ans: q.ans, kanit: [id] }));
+  const dikte = (b.dikte ?? []).filter((d: any) => d.seviye === "gercek" || idRef(d.tur, d.kesit)).map((d: any) => {
+    const cumle = d.tur != null ? idRef(d.tur, d.kesit) ?? "" : "";
     switch (d.seviye) {
       case "kolay": return { id: d.id, seviye: "kolay", cumle, q_tr: d.q_tr, opts: d.opts, ans: d.ans };
       case "orta": return { id: d.id, seviye: "orta", cumle, de: d.de, accepted: d.accepted };
@@ -35,17 +61,20 @@ export function klipVideo(k: any, metin: { sure_sn: number; cumleler: MetinCumle
       default: return { id: d.id, seviye: "gercek", gorev_tr: d.gorev_tr, ornek_de: d.ornek_de, zorunlu: d.zorunlu ?? [] };
     }
   });
-  const golge = (b.golge ?? []).filter((t: number) => var_(t)).map((t: number) => idOf.get(t)!);
+  const golge = (b.golge ?? []).map((r: Ref) => idRef(r)).filter((x: string | undefined): x is string => !!x);
   const cv = b.cevapla;
-  const cevapla = cv && var_(cv.soru_tur) ? { id: cv.id, k: "guided_response" as const, situation_tr: cv.situation_tr, prompt_de: metin.cumleler.find((c) => c.tur === cv.soru_tur)!.de, accepted: cv.accepted, why_tr: cv.why_tr } : undefined;
+  const cvId = cv ? idRef(cv.soru_tur, cv.kesit) : undefined;
+  const cevapla = cv && cvId ? { id: cv.id, k: "guided_response" as const, situation_tr: cv.situation_tr, prompt_de: metin.cumleler.find((c) => c.id === cvId)!.de, accepted: cv.accepted, why_tr: cv.why_tr } : undefined;
   const kesit = olcum?.kesit_kaynak_sn;
+  const konusmacilar = [...new Set(ps.map((p) => p.konusmaci).filter(Boolean))];
   const v = {
     id: k.id,
     tur: "roportaj" as const,
-    title_tr: `Gerçek röportaj: ${k.konusmaci}`,
+    title_tr: `Gerçek röportaj: ${konusmacilar.join(", ") || k.konusmaci}`,
     sure_sn: metin.sure_sn,
     gercek_insan: true as const,
-    kaynak: { url: k.transkript_url || k.video_url, lisans: k.lisans, atif: k.atif, bas_sn: kesit?.[0] ?? 0, bit_sn: kesit?.[1] ?? metin.sure_sn },
+    // çok parçalı klipte kaynak aralığı ilk parçanın; atıf bütün parçaları kapsar (aynı eser dizisi, CC BY 4.0)
+    kaynak: { url: ps[0]!.url, lisans: k.lisans, atif: k.atif, bas_sn: ps.length === 1 ? kesit?.[0] ?? 0 : 0, bit_sn: ps.length === 1 ? kesit?.[1] ?? metin.sure_sn : metin.sure_sn },
     medya: [{ src: `media/${ad}.mp4`, type: "video/mp4" }],
     poster: `media/${ad}.jpg`,
     cumleler,
