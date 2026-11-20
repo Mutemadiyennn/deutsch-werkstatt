@@ -43,6 +43,8 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 ## Açık PR'lar (2026-11-20 09:00 UTC)
 | PR | Dal | Teslim | Durum |
 |---|---|---|---|
+| #172 | `qa/yerlesim-bekcisi` | Yerleşim bekçisi B1–B8 (PM-079 md. 4): gezginin ekranları × 844/932; öz-sınama 29 durum; **rapor kipi** (ilk ölçüm 30 ihlal, `docs/v2/qa/yerlesim/ilk-olcum.md`) | inceleme + KAPI |
+| #175 | `v2/yerlesim-b3` (#172 üstüne) | Yerleşim partisi 1 (B3): senaryo ana sayfasında üst çubukta alan adı, h1 senaryo adı; bekçide kart başlığı kuralı (PM D1); `v2_baslik.py` senaryo ana sayfaları | inceleme 2. tur + PM finali + KAPI |
 | #144 | `ci/worker-duman` | Worker dağıtımı sonunda `/v1/health` duman adımı (provider/configured iş özetinde, adres gizli) | ONAY; WebKit kırmızısı test yarışı (#151) → #151 sonrası main alınır |
 | #146 | `v2/ders-bahce-dongusuz` | B5: Bahçede bugün görülen kelime kartı derste yeniden tanıtılmaz; en çok bir kez cümle içinde seçmeli boşluk (D-121) | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor; **PM final** |
 | #148 | `v2/adsiz-cumle` | B7: `_adsiz` alanı + doğrulayıcı; kurulumda ad bir kez nazikçe sorulur (D-122) | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor; **PM final** |
@@ -51,6 +53,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | #151 | `qa/ci-yaris` | "Deneme" rozeti sağlık cevabını dinler (ürün hatası); async beklemeler gerçek yoklama | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor |
 | #152 | `v2/kart-sigar` | En uzun kart sığar: görsel 160→96 px, gerekirse yok; test en uzun 40 kart (D-123) | CI (ResizeObserver düzeltmesi fe67cb2); inceleme sırada; **PM final** |
 | #162 | `v2/yavas` | P1 "Yavaş" duyulur: RATE.slow 0,5 (0,6/0,5/0,4 seçimi), Ses ve mikrofon'da hız ölçümü (0,3 sn altı ölçülemedi), yavaşlamayan seste aynı cinsten ve sahnede boş yedek ses, yoksa kelime grupları (PM 7042161522-1, 7043447488) | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi (P1-1 duraklamada kesilme, P1-2 sahnedeki ses); **PM final** |
+| #164 | `v2/kabuk-ses` | Kabuk 1.5: kabukta iPhone'un kendi seslendirmesi (TextToSpeech 8.0.0; premium > gelişmiş > standart; gerçek cinsiyetli ses, perde 1; ses listesi uygulama öne gelince yenilenir); web yolunda perde ±%8 ızgarası (aynı sahnede aynı ses+perde yok), aynı ad tek satır (PM 7042267632, 7042302480, 7044942991) | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; ios-build yeşil; **PM final**; #162 birleşti (f6ee482), main birleştirildi |
 | #145, #147 | İÇ dalları | B5 içerik (1. ve 2. gün ders profili) | İÇ şeridi; anlık görüntüler ANA'dan |
 
 **Bilinen CI kırmızıları:**
