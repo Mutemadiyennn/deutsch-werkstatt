@@ -3,7 +3,7 @@ name: v2 — web yayını (GitHub Pages /v2/)
 # Her yayın etiketlenir: v2-YYYYMMDD-n (gh-pages'teki yayın commit'ine). v1 kökte aynen kalır.
 # Geri alma (tek komut):  gh workflow run deploy-v2.yml -f rollback_to=v2-20261117-1
 #   ya da yerelde:         scripts/v2-rollback.sh v2-20261117-1
-# Sunucu adresi: depo değişkeni V2_API_BASE. Yoksa uygulama yapay zekâsız çalışır.
+# Sunucu adresi: web/.env.production (depoda; PM 7022002310-4). Depo değişkeni V2_API_BASE artık kullanılmıyor.
 on:
   push:
     branches: [main]
@@ -33,7 +33,6 @@ jobs:
           ls -la .medya || true
       - name: Derle
         if: ${{ !inputs.rollback_to }}
-        env: { VITE_API_BASE: "${{ vars.V2_API_BASE }}" }
         run: |
           npm ci
           npm run content:validate && npm test

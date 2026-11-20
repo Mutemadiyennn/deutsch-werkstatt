@@ -60,8 +60,11 @@ class RangeHandler(http.server.SimpleHTTPRequestHandler):
 def serve(port):
     h = functools.partial(RangeHandler, directory=DIST)
     http.server.SimpleHTTPRequestHandler.log_message = lambda *a: None
-    socketserver.TCPServer.allow_reuse_address = True
-    s = socketserver.TCPServer(("127.0.0.1", port), h)
+    # çok iş parçacıklı: WebKit'in boş bekleyen (önceden açılmış) bağlantısı ya da yarıda kalan medya isteği tek iş parçacıklı
+    # sunucuyu kilitleyip sayfanın "load" olayını geciktiriyordu (CI'da ara sıra Page.reload/inner_text 30 sn zaman aşımı)
+    socketserver.ThreadingTCPServer.allow_reuse_address = True
+    socketserver.ThreadingTCPServer.daemon_threads = True
+    s = socketserver.ThreadingTCPServer(("127.0.0.1", port), h)
     threading.Thread(target=s.serve_forever, daemon=True).start()
     return s
 
@@ -148,13 +151,19 @@ def shot(page, name, full=True):
     if SHOTS:
         os.makedirs(SHOTS, exist_ok=True)
         page.wait_for_timeout(350)  # geçişler (≤200 ms) bitsin
-        page.screenshot(path=os.path.join(SHOTS, name + ".png"), full_page=full)
+        # hesap kimliği (UID) ekran görüntüsünde maskeli
+        page.screenshot(path=os.path.join(SHOTS, name + ".png"), full_page=full, mask=[page.locator("[data-test=uid]")])
 
 def no_overflow(page, where):
     sw, iw = page.evaluate("[document.documentElement.scrollWidth, window.innerWidth]")
     check(sw <= iw, f"{where}: yatay taşma yok (scrollWidth {sw} ≤ {iw})")
 
-def login_onboard(page, port, assess=False):
+# B16 (PM-066): e2e botları cevabı anında verdiği için "Bunları biliyor gibisin" önerisi her testte çıkardı. Testler
+# varsayılan olarak hızlı şeridi kapalı başlatır (öğrencinin "Normal akış" tercihi); hızlı şeridi sınayan test hizli_serit=None verir.
+HIZLI_KAPAT = """async () => { const d = await new Promise((ok, no) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); q.onerror = no; });
+  await new Promise((ok, no) => { const t = d.transaction('meta', 'readwrite'); t.objectStore('meta').put({ key: 'hizliSerit', value: false }); t.oncomplete = ok; t.onerror = no; }); d.close(); }"""
+
+def login_onboard(page, port, assess=False, hizli_serit=False):
     page.goto(f"http://127.0.0.1:{port}/")
     page.wait_for_selector("text=Almancayı gerçek hayat için öğren")
     page.click("summary")
@@ -165,6 +174,7 @@ def login_onboard(page, port, assess=False):
     page.click("[data-struggle=phone]")
     page.click("text=Devam"); page.wait_for_selector("text=Öncelik sırası")
     page.click("text=Devam"); page.click("text=Devam")
+    if hizli_serit is False: page.evaluate(HIZLI_KAPAT)
     if assess: page.click("[data-test=start-assess]")
     else: page.click("text=Sonra yaparım")
 
@@ -177,3 +187,12 @@ def content_file(rel):
 def finish():
     print("HATALAR:", "yok" if not ERR else "\n  " + "\n  ".join(ERR))
     sys.exit(1 if ERR else 0)
+
+
+def tanitim_gec(pg):
+    """Bahçe tanıtım kartında "Tamam": ilk soru sonra gelir (PM-069 madde 3); sonraki ekran (başka tanıtım, soru ya da tur sonu) gelene kadar bekler"""
+    eski = pg.inner_text("[data-test=garden-intro] .de-xl")
+    pg.wait_for_timeout(400)  # ekran açıldıktan sonraki 350 ms'deki dokunuş sayılmaz (çift dokunuş koruması)
+    pg.click("[data-test=garden-intro] [data-test=next]")
+    pg.wait_for_function("(eski) => { const t = document.querySelector('[data-test=garden-intro] .de-xl'); return !t || t.innerText !== eski; }", arg=eski)
+    pg.wait_for_selector("[data-test^=gq-], [data-test=garden-intro], [data-test=garden-done], [data-test=hizli-oneri]")

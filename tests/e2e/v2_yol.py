@@ -46,7 +46,7 @@ def main():
         check(pg.locator("[data-test=garden-back]").count() == 1 and k >= 1, f"Seans 1 bitti: günün kartları tanıtıldı ({k} soru, {turlar} tur)")
         pg.click("[data-test=garden-back]"); pg.wait_for_selector("[data-test=next-activity][data-m1]")
         if shots:
-            pg.goto(base + "#/yol"); pg.wait_for_selector("[data-test=yol-sonraki]"); shot(pg, "y03-yol-acik", full=False)
+            pg.goto(base + "#/yol"); pg.wait_for_selector("[data-test=yol] [data-test=next-activity]"); shot(pg, "y03-yol-acik", full=False)
         # Seans 2
         na = next_card(pg, base)
         check("Seans 2" in na and "Temel ders" in na, f"Bugün: Seans 2 temel ders ({na[:80]!r})")

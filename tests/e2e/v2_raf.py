@@ -45,6 +45,7 @@ def main():
         check(sina("raf.test", ANAHTAR) == "adres-gecersiz", "şemasız adres: kaydedilmedi, 'https:// ile başlamalı'")
         check(giden == [], f"şemasız adreste anahtar hiçbir yere gitmedi ({giden})")
         t0 = time.monotonic()
+        check(sina(RAF, "kisa-parola") == "parola-kisa", "32 karakterden kısa parola girerken söylenir, istek gitmez (PM 7020257764)")
         check(sina(RAF, "yanlis-anahtar-0123456789abcdef-0123456789") == "anahtar-yanlis", "yanlış parola: 'Parola yanlış' (gerçek Function 404)")
         check(time.monotonic() - t0 >= 1.2, f"yanlış anahtarda sabit gecikme ({time.monotonic() - t0:.2f} sn ≥ 1,2)")
         check(sina("https://raf-yok.test", ANAHTAR) == "ulasilamiyor", "kapalı adres: 'Ulaşılamıyor'")

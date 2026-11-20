@@ -27,8 +27,7 @@ Anahtarları yalnızca sen girersin; depoda ve uygulamada bulunmazlar.
 2. `npx wrangler kv namespace create QUOTA` → çıkan id'yi `worker/wrangler.toml` içindeki `REPLACE_WITH_KV_NAMESPACE_ID` yerine yaz.
 3. `npx wrangler secret put GEMINI_KEY` (Google AI Studio anahtarın)
 4. `npx wrangler secret put ALLOWED_UIDS` (Firebase Console → Authentication → Users → kendi kullanıcının UID'si)
-5. `npx wrangler deploy` → çıkan adresi (`https://deutsch-werkstatt-api.<hesap>.workers.dev`) web derlemesinde `VITE_API_BASE` olarak ver:
-   `VITE_API_BASE=https://… npm run build -w web`
+5. `npx wrangler deploy` → çıkan adres web derlemesinde `web/.env.production` dosyasındaki `VITE_API_BASE`'tir (PM 7022002310-4); adres değişirse orayı güncelle.
 6. Kontrol: uygulamada Profil → "Sunucu bağlantısını kontrol et".
 
 Sunucu ayarlanmadan da uygulama çalışır; yalnızca yapay zekâ ile cevap kontrolü devre dışı kalır (kural tabanlı değerlendirme sürer).

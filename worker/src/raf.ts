@@ -27,7 +27,7 @@ function esit(a: string, b: string): boolean {
 function cors(origin: string | null, env: RafEnv): Record<string, string> {
   const izin = [...RAF_KOKENLER, ...(env.KOKENLER ?? "").split(",").map((x) => x.trim()).filter(Boolean)];
   if (!origin || !izin.includes(origin)) return {};
-  return { "Access-Control-Allow-Origin": origin, "Access-Control-Allow-Headers": "Authorization, Range", "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS", "Access-Control-Max-Age": "600" };
+  return { "Access-Control-Allow-Origin": origin, "Access-Control-Allow-Headers": "Authorization, Range", "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS", "Access-Control-Max-Age": "600", "Access-Control-Expose-Headers": "X-Raf" };
 }
 
 /** Pages Function gövdesi: `dosya` = `ctx.next()` ya da `env.ASSETS.fetch(request)`; `bekle` testte sıfırlanabilir */
@@ -38,10 +38,13 @@ export async function rafYanit(req: Request, env: RafEnv, dosya: () => Promise<R
   if (req.method !== "GET" && req.method !== "HEAD") return yok();
   const anahtar = (env.MEDYA_ANAHTARI ?? "").trim();   // panele yapıştırırken gelen boşluk/satır sonu
   const m = /^Bearer\s+(.+)$/.exec(req.headers.get("Authorization") ?? "");
-  if (!anahtar || anahtar.length < ANAHTAR_EN_AZ || !m || !esit(m[1]!.trim(), anahtar)) { await bekle(YANLIS_GECIKME_MS); return yok(); }
+  // anahtar tanımsız/kısa: hiçbir dosya verilmez; "Rafı sına" bunu parola hatasından ayırsın diye 503 + işaret (PM 7019082199)
+  if (!anahtar || anahtar.length < ANAHTAR_EN_AZ) return new Response(null, { status: 503, headers: { ...c, "Cache-Control": "no-store", Vary: "Origin", "X-Raf": "anahtar-yok" } });
+  if (!m || !esit(m[1]!.trim(), anahtar)) { await bekle(YANLIS_GECIKME_MS); return yok(); }
   const r = await dosya();
   // 200, 206 (aralık) ve 304 (koşullu istek) olduğu gibi geçer; öteki her şey 404 (yönlendirme dahil; inceleme #98 P2)
-  if (!(r.status === 200 || r.status === 206 || r.status === 304)) return yok();
+  // doğrulanmış ama dosya yok: koruma çalışıyor işaretiyle 404 (parola doğru; inceleme #118 P1-1)
+  if (!(r.status === 200 || r.status === 206 || r.status === 304)) { const y = yok(); y.headers.set("X-Raf", "1"); return y; }
   const h = new Headers(r.headers);
   for (const [k, v] of Object.entries(c)) h.set(k, v);
   const vary = (h.get("Vary") ?? "").split(",").map((x) => x.trim()).filter(Boolean);
@@ -49,6 +52,7 @@ export async function rafYanit(req: Request, env: RafEnv, dosya: () => Promise<R
   h.set("Vary", vary.join(", "));
   h.set("Cache-Control", "private, max-age=31536000, immutable");
   h.delete("Set-Cookie");
+  h.set("X-Raf", "1");   // koruma çalışıyor (statik sunum bu işareti taşımaz)
   return new Response(req.method === "HEAD" || r.status === 304 ? null : r.body, { status: r.status, headers: h });
 }
 

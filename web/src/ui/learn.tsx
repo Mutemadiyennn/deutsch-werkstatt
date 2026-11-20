@@ -1,3 +1,4 @@
+import { fotoHaritasi, loadFoto, type FotoKayit } from "../services/content.ts";
 /** Oynatıcının ortak parçaları: cevap kutusu, karar gösterimi, "Bu ne demek?", "Almanca nasıl derim?", "Duyduğum kelime", fotoğraf */
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Lexeme, PhotoResult } from "@dw/shared";
@@ -151,14 +152,22 @@ const lastShown = new Map<string, number>();
  * `sira` verilirse fotoğraf listedeki sırayla seçilir (PM-062: kartın gösterim sayacı; uygulama yeniden açılınca da döner).
  * Verilmezse oturum içinde bir önce gösterilenden farklısı.
  */
-export function Photo({ q, sira }: { q?: string; sira?: number }) {
+export function Photo({ q, sira, yer, alt = "" }: { q?: string; sira?: number; /** B12 3. parça: seçilmiş fotoğrafın yeri ("lx:Kelime#kart", "lx:Kelime#ornekN") */ yer?: string[]; /** Türkçe alt metin (kelimenin anlamı) */ alt?: string }) {
   const { api } = useApp();
   const [p, setP] = useState<PhotoResult | null>(null);
+  // seçilmiş fotoğrafın atfı (CC BY/BY-SA: yazar + kaynak sayfa + lisans bağlantısı; inceleme #121 P1-1)
+  const [atif, setAtif] = useState<FotoKayit | null>(null);
   useEffect(() => {
     // yenisi seçilene kadar eskisi kalır: cümle değişirken alan boşalıp dolmaz (düzen kayması yok)
     let live = true;
-    if (!q || !api.configured) { setP(null); return; }
     (async () => {
+      // önce seçilmiş açık fotoğraf (atıflı); yoksa eski yol (sunucu araması). Harita çözülmüşse beklemeden (eşzamanlı)
+      const harita = !yer?.length ? {} : fotoHaritasi() ?? await loadFoto();
+      const f = (yer ?? []).map((y) => harita[y]).find(Boolean);
+      if (!live) return;
+      if (f) { setAtif(f); setP({ id: 0, src: f.src, w: 0, h: 0, alt, credit: f.yazar || "Wikimedia/Openverse", url: f.sayfa || f.src }); return; }
+      setAtif(null);
+      if (!q || !api.configured) { setP(null); return; }
       let list = await cacheGet<PhotoResult[]>(`photo:${q}`, 30 * 86400_000);
       if (!list) { try { list = await api.photos(q); await cachePut(`photo:${q}`, list); } catch { if (live) setP(null); return; } }
       if (!live) return;
@@ -168,9 +177,15 @@ export function Photo({ q, sira }: { q?: string; sira?: number }) {
       lastShown.set(q, pick.id); setP(pick);
     })();
     return () => { live = false; };
-  }, [q, sira]);
+  }, [q, sira, yer?.join("|")]);
   if (!p) return null;
-  return <figure style={{ margin: 0 }}><img src={p.src} alt={p.alt} style={{ width: "100%", maxHeight: 200, objectFit: "cover", borderRadius: 12 }} loading="lazy" /><figcaption class="tiny muted">Foto: {p.credit} · Pexels</figcaption></figure>;
+  // yüklenemezse (çevrimdışı, kaldırılmış dosya) alan tümden kalkar; yer ayrılır, düzen kaymaz (inceleme #121 P1-3)
+  return <figure style={{ margin: 0 }} data-test="foto" data-kaynak={atif ? "secim" : "arama"}>
+    <img src={p.src} alt={alt || p.alt} onError={() => setP(null)} style={{ width: "100%", aspectRatio: "3 / 2", maxHeight: 200, objectFit: "cover", borderRadius: 12, background: "var(--soft)" }} loading="lazy" />
+    {atif
+      ? <figcaption class="tiny muted foto-atif" data-test="foto-atif">Fotoğraf: {atif.sayfa && /^https:\/\//.test(atif.sayfa) ? <a class="foto-yazar" href={atif.sayfa} target="_blank" rel="noopener noreferrer">{atif.yazar || "kaynak"}</a> : <span class="foto-yazar">{atif.yazar}</span>} · {atif.lisans_url && /^https:\/\//.test(atif.lisans_url) ? <a class="foto-lisans" href={atif.lisans_url} target="_blank" rel="noopener noreferrer">{atif.lisans}</a> : <span class="foto-lisans">{atif.lisans}</span>} · kırpıldı</figcaption>
+      : <figcaption class="tiny muted">Foto: {p.credit} · Pexels</figcaption>}
+  </figure>;
 }
 
 /**

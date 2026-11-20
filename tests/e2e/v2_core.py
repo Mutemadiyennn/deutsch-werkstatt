@@ -4,7 +4,7 @@ v2 çekirdek uygulama uçtan uca testi (Playwright, gerçek Chromium).
 Önkoşul: npm run content:build && (cd web && npx vite build --mode e2e --outDir dist-e2e)
 Sunucu (Worker) Playwright ile taklit edilir: https://api.e2e.test/v1/*
 """
-import json, os, sys, threading, functools, http.server, socketserver, datetime
+import json, os, re, sys, threading, functools, http.server, socketserver, datetime
 from playwright.sync_api import sync_playwright
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -30,10 +30,12 @@ def check(cond, msg):
     if not cond: ERR.append(msg)
 
 def serve():
+    # common.serve ile aynı: çok iş parçacıklı (inceleme #129 B1)
     h = functools.partial(http.server.SimpleHTTPRequestHandler, directory=DIST)
     http.server.SimpleHTTPRequestHandler.log_message = lambda *a: None
-    socketserver.TCPServer.allow_reuse_address = True
-    s = socketserver.TCPServer(("127.0.0.1", PORT), h)
+    socketserver.ThreadingTCPServer.allow_reuse_address = True
+    socketserver.ThreadingTCPServer.daemon_threads = True
+    s = socketserver.ThreadingTCPServer(("127.0.0.1", PORT), h)
     threading.Thread(target=s.serve_forever, daemon=True).start()
     return s
 
@@ -91,6 +93,13 @@ def main():
 
         print("1) giriş")
         page.wait_for_selector("text=Almancayı gerçek hayat için öğren")
+        # inceleme #130 B3: "her açılışta yeni uygulama" ayarı kapalıyken girişte dönüş bağlantısı yok; açıkken var
+        check(page.locator("[data-test=v1-don]").count() == 0, "giriş: ayar kapalıyken 'Eski uygulamaya dön' yok")
+        page.evaluate("localStorage.setItem('dw-v2-ac', '1')"); page.reload(); page.wait_for_selector("text=Almancayı gerçek hayat için öğren")
+        yuk = page.locator("[data-test=v1-don]").bounding_box()["height"] if page.locator("[data-test=v1-don]").count() else 0
+        check(page.locator("[data-test=v1-don]").count() == 1 and yuk >= 44, f"giriş: ayar açıkken 'Eski uygulamaya dön' var, dokunma alanı ≥ 44 pt ({yuk})")
+        page.wait_for_timeout(500); shot(page, "01b-giris-eskiye-don")
+        page.evaluate("localStorage.removeItem('dw-v2-ac')"); page.reload(); page.wait_for_selector("text=Almancayı gerçek hayat için öğren")
         page.click("summary")
         page.fill("#em", "test@example.com"); page.fill("#pw", "yanlis")
         page.click("button[type=submit]")
@@ -160,9 +169,12 @@ def main():
             check("Seans 1" in na and STRAT_TITLE in na, f"sıradaki etkinlik: seans 1 → strateji senaryosu ({na[:60]!r})")
             draft = STRAT_REVIEW != "reviewed"
             check(("Deneme dersi" in na) == draft, f"inceleme etiketi içerik durumuna uygun ({STRAT_REVIEW})")
+        # M1'de Bugün = yol: "Tekrar edilecekler" Öğren'de, günlük süre Odak'ta (PM 7015070303-E)
+        if M1: page.goto(f"http://127.0.0.1:{PORT}/#/learn")
         page.wait_for_selector("[data-test=weak] li")
         weak = page.inner_text("[data-test=weak]")
         check("Seviye tespitinde" not in weak and "Şu an listede kelime yok" not in weak, "bilinmeyen kelimeler zayıflık listesinde")
+        if M1: page.goto(f"http://127.0.0.1:{PORT}/#/odak"); page.wait_for_selector("[data-test=today-min]")
         check("0 / 100 dk" in page.inner_text("[data-test=today-min]") or "/ 100 dk" in page.inner_text("[data-test=today-min]"), "günlük 100 dk hedefi görünüyor")
         shot(page, "04-today")
         no_overflow(page, "Bugün")
@@ -186,7 +198,8 @@ def main():
             page.clock.run_for(60_000)
         page.wait_for_selector(".breakov [data-test=break]")
         check(True, "öğrenme ekranında mola başlayınca mola kartı ekranı kapladı (v1 gibi)")
-        page.goto(f"http://127.0.0.1:{PORT}/#/today")
+        # M1'de seans ve süre Odak ekranında (Bugün = yol; PM 7015070303-E)
+        page.goto(f"http://127.0.0.1:{PORT}/#/{'odak' if M1 else 'today'}")
         page.wait_for_selector("[data-test=break]")
         check("1. seans tamam" in page.inner_text("[data-test=break]").lower(), "25 dk aktif çalışmadan sonra mola başladı")
         check("1/4 seans" in page.inner_text("[data-test=sessions-done]"), "tamamlanan seans 1/4")
@@ -212,6 +225,7 @@ def main():
         print("7) Profil: hedef değişikliği kalıcı; sunucu iletişimi")
         page.clock.resume()
         page.click("[data-tab=profile]")
+        check(page.inner_text("[data-test=uid]") == "e2e-user" and page.locator("[data-test=uid-kopyala]").count() == 1, "Profil: hesap kimliği ve 'Kopyala' (ALLOWED_UIDS için)")
         page.select_option("[data-test=goal]", "120")
         page.wait_for_selector("text=Kaydedildi")
         page.click("text=Sunucu bağlantısını kontrol et")
@@ -225,12 +239,20 @@ def main():
         check(usage and usage[-1]["auth"] == "Bearer e2e-token", "kullanım isteğinde token var")
         health = [c for c in API_CALLS if c["url"].endswith("/v1/health")]
         check(health and health[-1]["auth"] is None, "health isteğinde token gönderilmiyor")
+        # "Eski uygulamaya dön" (PM 7025664499; inceleme #130 P2): ?v1 ile açar, v1'deki "her açılışta yeni uygulama" ayarını kapatır
+        page.evaluate("localStorage.setItem('dw-v2-ac', '1')")
+        v1 = page.evaluate("""() => { const a = document.querySelector('[data-test=v1-don]'); if (!a) return null;
+            a.addEventListener('click', (e) => e.preventDefault(), { once: true }); a.click(); return { href: a.getAttribute('href'), ayar: localStorage.getItem('dw-v2-ac') }; }""")
+        check(v1 is not None and v1["href"].endswith("?v1") and v1["ayar"] == "0", f"Profil: 'Eski uygulamaya dön' ?v1 ile açar ve ayarı kapatır ({v1})")
         shot(page, "08-profile")
         no_overflow(page, "Profil")
         page.reload()
         page.click("[data-tab=today]")
-        page.wait_for_selector("[data-test=today-min]")
-        check("/ 120 dk" in page.inner_text("[data-test=today-min]"), "yeni hedef (120 dk) yeniden yüklemeden sonra korunuyor")
+        # Bugün önce eski düzenle (today-min) çizilir, M1 gün planı yüklenince gün görünümüne geçer (today-min yok; CI TANI a29fda2).
+        # Hedef her iki düzende de görünür: eski düzende today-min'de, gün görünümünde durum çubuğunda ("/120 dk")
+        page.wait_for_function("() => /\\/\\s?120 dk/.test(document.body.innerText)", timeout=15_000)
+        hedef_txt = page.inner_text("body")
+        check(re.search(r"/\s?120 dk", hedef_txt) is not None, "yeni hedef (120 dk) yeniden yüklemeden sonra korunuyor")
 
         print("7b) B1 hedefi: SAHTE tarihle (PM-001: gerçek tarih depoda yok)")
         page.click("[data-tab=profile]")

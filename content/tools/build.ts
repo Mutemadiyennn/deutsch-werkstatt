@@ -72,6 +72,10 @@ const w = (p: string, v: unknown) => writeFileSync(join(dir, p), JSON.stringify(
 w("lexemes.json", { lexemes: c.lexemes, patterns: c.patterns });
 w("grammar.json", c.grammar);
 w("assess.json", c.assess);
+// B12 3. parça: seçilmiş açık fotoğraflar (kapalı medya pakete girmez; raftan gelir, D-112)
+{ const f = join(ROOT, "content/v2/media/foto/acik.json"); if (existsSync(f)) w("foto.json", JSON.parse(readFileSync(f, "utf8"))); }
+// PM-064: karakterlerin sesi (cinsiyet, yaş, sıra) uygulamada ses ataması için
+if (c.world) { mkdirSync(join(dir, "world"), { recursive: true }); w("world/world.json", c.world); }
 const scenFiles: Record<string, string> = {};
 for (const s of c.scenarios) {
   const f = `scenarios/${s.data.id.replace(/[^a-z0-9-]/gi, "_")}.json`;

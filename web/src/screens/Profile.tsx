@@ -8,7 +8,8 @@ import { exportAll } from "../data/db.ts";
 import { KullanimTablosu } from "../ui/gunsonu.tsx";
 import { MedyaRafi } from "../ui/raf.tsx";
 import { persistState, type PersistState } from "../services/storage.ts";
-import { ACTIVITY_TR, V1_URL } from "../core/planner.ts";
+import { ACTIVITY_TR } from "../core/planner.ts";
+import { EskiyeDon } from "../ui/EskiyeDon.tsx";
 import { ApiError } from "../services/api.ts";
 import { aiState, onAiState } from "../services/ai.ts";
 import { TopBar } from "../ui/components.tsx";
@@ -157,12 +158,19 @@ export function ProfileView() {
         <p class="small" style={{ marginTop: 8 }} data-test="persist">{persist === "persisted" ? "İlerlemen bu cihazda kalıcı olarak saklanıyor. Telefon değiştirmeden önce yedek indir." : persist === "best-effort" ? "İlerlemen bu cihazda saklanıyor; telefonda yer azalırsa tarayıcı silebilir. Ara sıra yedek indir." : "İlerlemen bu cihazda saklanıyor. Ara sıra yedek indir."}</p>
         <div class="row" style={{ marginTop: 12 }}>
           <button class="btn sm" onClick={download}>Yedeği indir (JSON)</button>
-          <a class="btn sm" href={V1_URL} target="_blank" rel="noopener">Arşiv: v1 uygulaması <Icon name="out" size={16} /></a>
+          {/* PM 7025664499: v1'deki "Her açılışta yeni uygulamayı aç" anahtarını kapatır ve eski uygulamaya geçer (aynı köken) */}
+          <EskiyeDon />
         </div>
       </section>
 
       <section class="card">
+        <a class="btn sm" href="#/ses" data-test="ses-deneme-ac" style={{ marginBottom: 12 }}>Ses ve mikrofon denemesi</a>
         <p class="small muted">Giriş yapılan hesap: {user?.email || "Google hesabı"}</p>
+        {/* Hesap kimliği (UID): sunucu izin listesine (ALLOWED_UIDS) proje sahibi ekler; ekran görüntüsü testlerinde maskelenir */}
+        {user && <div class="row" style={{ flexWrap: "nowrap", marginBottom: 8 }}>
+          <span class="small grow" style={{ minWidth: 0, overflowWrap: "anywhere" }}>Hesap kimliği: <code data-test="uid" class="selectable" style={{ userSelect: "text", WebkitUserSelect: "text" }}>{user.uid}</code></span>
+          <button class="btn sm" data-test="uid-kopyala" onClick={() => (navigator.clipboard ? navigator.clipboard.writeText(user.uid) : Promise.reject()).then(() => toast("Hesap kimliği kopyalandı."), () => toast("Kopyalanamadı; kimliği seçip kopyala."))}>Kopyala</button>
+        </div>}
         <div class="row">
           <a class="btn sm" href="#/onboarding">Kurulumu yeniden yap</a>
           <button class="btn sm" onClick={() => auth.signOut()}>Çıkış yap</button>
