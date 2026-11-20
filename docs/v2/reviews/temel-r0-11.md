@@ -47,7 +47,7 @@ Hepsi ekleme; hiçbir varyant silinmedi, ilk cevaplar değişmedi.
 - Bütün üretim maddelerinin ilk cevabı yalnızca şu kaynaklardan: bu dersin öğeleri ve tablosu, 1.–2. gün kartları, r0-01 ve r0-02 öğeleri (**hier**, **am Samstag**, **nicht**, **heute**, **morgen**, **Freitag**). **gehst** yalnızca tabloda öğretiliyor (`d25`); görev tanımı tablo biçimlerini sayıyor.
 - **aus** 1.–2. günde yok; bu derste `b:derya-kommt` öğesinin Türkçesiyle ("Derya Wendlfing'li.") veriliyor; `parcalar` okur turunda boşaltıldı. Öğrenciden kendi yeri için **Ich komme aus …** istenmiyor.
 - **Mein Name ist {name}.**, **Ich bin {name}.**, **Wie ist Ihr Name?**, **erst**, **auch**: yalnızca `accepted` içinde, hiçbir örnekte ya da ilk cevapta değil. Bu varyantlar kabul listesinde kalmalı (doğru cevap reddedilmesin); uygulama "görülmüş" sayımını `accepted` listesinden değil `teach` ve tablodan yapmalı.
-- Dinleme metinlerinde kalan öğretilmemiş kelimeler (**Kurs**, **auch**, **Wollen wir zusammen üben**, **Nur Deutsch**, **Tschüs**, **Grüß Gott**, **Gut**, **das ist**): hiçbir sorunun cevabı bunlara dayanmıyor; hepsi Türkçe satırıyla veriliyor.
+- Dinleme metinlerinde kalan öğretilmemiş kelimeler: inceleme #141 sonrası `h2`'de **Kurs**, **auch**, **Wollen wir zusammen üben**, **Nur Deutsch** çıkarıldı; `h1` ve `h2`'de kalanlar (**Tschüs**, **Grüß Gott**, **Gut**, **das ist**) hiçbir sorunun cevabı değil, hepsi Türkçe satırıyla veriliyor.
 
 ## Dünya ve gerçeklik
 
@@ -81,3 +81,4 @@ Dil hataları: **KAPANDI**. Açık madde 1 ve okur turu kapandı; `review.status
 - P2-7: yeni `d33` boşluğu "Tobi ___ in die Praxis." → geht (er/sie biçimi artık derste çalışılıyor).
 - Okur: yeni ve değişen Türkçe satırlar 3 turda okundu (2 GERİ → 1 → 0).
 - P2-2: yeni `d34` (Türkçe → Almanca, "Adamın adı Tobi."); hatırlama turu artık "Sein Name ist Tobi.", "Der Mann heißt Tobi." gibi eşdeğerleri kabul ediyor. Açıklaması d33 ile aynı kalıpta, okurdan geçmiş.
+- Sayılar inceleme sonrası: 34 alıştırma (30 üretim), R0 toplamı 389 alıştırma. `d30`'a `d27` ile aynı açıklama eklendi; `d34` öteki Türkçe → Almanca maddelerinin yanına alındı.
