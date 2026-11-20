@@ -27,9 +27,10 @@ describe("AK-3 kapısı, gerçek içerik (inceleme #168 P1-2…P1-8)", () => {
     expect(yaz("Viel! Wie?", ["lx:wie_viel"])).toEqual(expect.arrayContaining(["wie", "viel"].map((x) => expect.stringContaining(x))));
     expect(yaz("Wie viel?", ["lx:wie_viel"])).toEqual([]);
   });
-  it("P1-5 dersin kalıbı: parçalar tek tek bilinmez, dersin kartı yuvadır", () => {
-    expect(yaz("Heute ist Mittwoch.", ["lx:Mittwoch"], ["r0:01-tage"]).filter((x) => x.includes("heute") || x.includes("ist"))).toEqual([]);
-    expect(yaz("Ist das gut?", [], ["r0:01-tage"])).toContain("ist");
+  it("P1-5 (2. tur Y-1): dersin kalıbında kartsız çerçeve sözcüğü bilinir, kartlı sözcük yalnız kalıbın düz hâliyle ya da kendi kartıyla", () => {
+    expect(yaz("Das ist gut.", [], ["r0:01-tage"]).join()).not.toContain("ist");
+    expect(yaz("Einen Kaffee, bitte.", [], ["r0:07-fragewoerter"]).join()).toContain("bitte");
+    expect(yaz("Um zehn.", [], ["r0:05-uhrzeit"]).join()).toContain("zehn");
   });
   it("P1-6 tablo hücresi: kendi kartı derse bağlı değilse bilinmez (r0:07 örnek cevapları, r0:10 şehir adları)", () => {
     for (const w of ["Termin", "Arbeit", "Woche"]) expect(yaz(w, [], ["r0:07-fragewoerter"]).join()).toContain(w.toLowerCase());
@@ -48,8 +49,10 @@ describe("AK-3 kapısı, gerçek içerik (inceleme #168 P1-2…P1-8)", () => {
     expect(kalipOrtu(toks("Für Tobi"), kalipToks("Für …"))).toEqual([0]);
     expect(kalipOrtu(toks("Für"), kalipToks("Für …"))).toEqual([]);
     expect(kalipSecenekleri("Heute ist … – Ist heute …?").length).toBe(2);
-    expect(yaz("Ist heute Montag?", ["lx:Montag"], [], ["Heute ist … – Ist heute …?"]).filter((x) => /ist|heute/.test(x))).toEqual([]);
+    expect(yaz("Ist heute Montag?", ["lx:Montag"], [], ["Heute ist … – Ist heute …?"])).toEqual([]);
+    expect(yaz("Ist morgen Montag?", ["lx:Montag"], [], ["Heute ist … – Ist heute …?"]).join()).toContain("morgen");
     expect(yaz("Guten Tag, Frau Huber!", ["lx:Frau"], [], ["Guten Tag"])).toEqual([]);
-    expect(yaz("Guten Morgen!", [], [], ["Guten Tag"]).join()).toContain("guten");
+    // halka kalıbının kartsız sözcüğü (guten) bilinir; kartlı sözcük (Morgen) bilinmez
+    expect(yaz("Guten Morgen!", [], [], ["Guten Tag"])).toEqual(["morgen"]);
   });
 });

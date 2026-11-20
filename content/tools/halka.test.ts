@@ -74,7 +74,7 @@ describe("#165 içeriği (main: docs/v2/reviews/halka/gun-01-halkalar.json) şem
     const { loadContent, ROOT } = await import("./load.ts");
     const { Halka, genelAdlarAyikla } = await import("../../packages/shared/src/index.ts");
     const f = join(ROOT, "docs/v2/reviews/halka/gun-01-halkalar.json");
-    if (!existsSync(f)) return;
+    expect(existsSync(f), "#165 içeriği yok").toBe(true);
     const c = loadContent();
     const dz = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genelAdlarAyikla(readFileSync(join(ROOT, "docs/v2/reviews/genel-adlar.md"), "utf8")));
     const h = (JSON.parse(readFileSync(f, "utf8")).halkalar as unknown[]).map((x) => Halka.parse(x));

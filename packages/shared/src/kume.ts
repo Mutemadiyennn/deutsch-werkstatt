@@ -12,11 +12,10 @@
  *  - Eşlenemeyen sözcük tahmin edilmez: listelenir ve bilinmez sayılır.
  * İnceleme #168 1. tur sonrası (AK-3 metnine uyum):
  *  - Harf büyüklüğü korunur: cümle ortasında "morgen" yalnız "morgen" gösteren kartla, "Morgen" yalnız "Morgen" gösterenle bilinir.
- *    Cümle başında büyük harf ayırt edici değildir: "Morgen" orada "Morgen" ya da "morgen" gösteren bilinen kartla bilinir.
- *  - Çok sözcüklü kart başlığı ("wie viel", "recht haben") ve dersin çok sözcüklü kalıbı yalnız BÜTÜN olarak bilinir; parçaları
- *    tek tek bilinmez. Kalıptaki "…" ve {…} yuvadır (en az bir sözcük; yuvadaki sözcük kendi başına bilinmeli). Dersin örnek
- *    cümlesinde dersin kendi bağladığı kartın sözcüğü de yuvadır: "Heute ist Montag." → "heute ist …" (gün değişebilir); ders ya
- *    da halka kalıbında o an BİLİNEN kartın sözcüğü de yuvadır ("Heute ist …" + heute bilinir → "Morgen ist Sonntag").
+ *    Cümle başında küçük harfli okunuş önceliklidir: "Morgen …" orada "morgen" gösteren kart (varsa) bilinmeli.
+ *  - Çok sözcüklü kart başlığı ("wie viel", "recht haben") yalnız BÜTÜN olarak bilinir; parçaları tek tek bilinmez.
+ *  - Kalıp (dersin çok sözcüklü `teach`'i, halkanın `kaliplar`ı): KARTSIZ çerçeve sözcükleri (ist, war, geht, guten) ders/halka
+ *    bitince tek tek bilinir (AK-3'e PM kararı bekleyen istisna, inceleme #168 2. tur); kendi kartı olan sözcük yalnız kendi kartıyla.
  *  - Ders tablosu ve tek sözcüklü `teach`: sözcüğü gösteren kendi kartı varsa o kart bu derse bağlı olmalı; kartı olmayan biçim
  *    (bin, habe, kann) dersle bilinir. Türkçe sütun ayırt edilmez: eşlenmeyen sözcük zaten eklenmez.
  *  - Yer tutucu: {name} sayılmaz; {a|b} iki seçeneğiyle sayılır ({Herr|Frau}, {Patient|Patientin}).
@@ -208,10 +207,10 @@ function dersBicimi(d: KumeDizini, t: TemelDers): { bicim: Set<string>; kart: Se
   const bicim = new Set<string>(); const kaliplar: string[][] = [];
   const kendiOk = (s: string) => kendiKarti(d, s).every((k) => kart.has(k));
   for (const x of t.teach) {
-    // çok sözcüklü teach örnek cümledir ("Heute ist Montag."): dersin kendi bağladığı kartın sözcüğü yuvadır ("heute ist …"),
-    // öteki sözcükler kalıbın sabit parçasıdır ve yalnız kalıp içinde bilinir
-    const kp = kalipToks(x.de).map((s) => (s !== YUVA && kendiKarti(d, s).length && kendiKarti(d, s).every((k) => kart.has(k)) ? YUVA : s));
-    if (kp.length > 1) { if (kp.some((s) => s !== YUVA)) kaliplar.push(kp); continue; }
+    // çok sözcüklü teach kalıptır: KARTSIZ çerçeve sözcükleri (ist, war, geht, guten) ders bitince bilinir (AK-3 istisnası,
+    // inceleme #168 2. tur); kendi kartı olan sözcük yalnız kendi kartıyla (derse bağlıysa) bilinir
+    const kp = kalipToks(x.de);
+    if (kp.length > 1) { kaliplar.push(kp); for (const s of kp) if (s !== YUVA && kendiOk(s) && !kendiKarti(d, s).length) bicim.add(s); for (const s of kp) if (s !== YUVA && kendiKarti(d, s).length && kendiOk(s)) bicim.add(s); continue; }
     for (const s of kp) if (s !== YUVA && kendiOk(s)) bicim.add(s);
   }
   for (const row of t.table?.satirlar ?? []) for (const cell of row) for (const s of toks(cell)) if (d.idx.has(s) && kendiOk(s)) bicim.add(s);
@@ -229,13 +228,14 @@ export function bilinmeyenler(d: KumeDizini, cumle: string, k: Bilinen, haric: I
   for (const id of k.biten) { const b = d.dersler.get(id); if (b) { for (const s of b.bicim) bicim.add(s); for (const x of b.kart) kart.add(x); } }
   // kalıplar bütün olarak: biten derslerin kalıpları, halkanın kalıpları, tanıtılmış kartların çok sözcüklü başlıkları
   const ortu = new Set<number>();
-  // öğretilen kalıplarda (ders ve halka) BİLİNEN kartın sözcüğü yuvadır: "Heute ist …" heute bilinince "… ist …" çerçevesidir
-  // ("Morgen ist Sonntag"); kartsız çerçeve sözcükleri (ist, war, geht) yine yalnız kalıp içinde bilinir
-  const yuvala = (kp: readonly string[]) => { const y = kp.map((x) => (x !== YUVA && kendiKarti(d, x).length && kendiKarti(d, x).every((i) => kart.has(i)) ? YUVA : x)); return y.some((x) => x !== YUVA) ? y : kp; };
-  const kaliplar: (readonly string[])[] = (k.kaliplar ?? []).map(yuvala);
-  for (const id of k.biten) kaliplar.push(...(d.dersler.get(id)?.kaliplar ?? []).map(yuvala));
-  for (const id of kart) kaliplar.push(...(d.coklu.get(id) ?? []));
-  for (const kp of kaliplar) for (const j of kalipOrtu(tt, kp)) ortu.add(j);
+  // halkanın öğrettiği kalıpların KARTSIZ çerçeve sözcükleri bilinir (dersle aynı istisna); kartlı sözcük yalnız kendi kartıyla
+  for (const kp of k.kaliplar ?? []) for (const s of kp) if (s !== YUVA && !kendiKarti(d, s).length) bicim.add(s);
+  // kalıp düz hâliyle (yalnız yazılı yuvalarıyla) cümlede geçerse bütün sabit sözcükleri bilinir ("Guten Tag" → tag da);
+  // çok sözcüklü kart başlığı yalnız bütün olarak (tanıtılmış kartın başlığı cümlede aynen geçerse)
+  const duz: (readonly string[])[] = [...(k.kaliplar ?? [])];
+  for (const id of k.biten) duz.push(...(d.dersler.get(id)?.kaliplar ?? []));
+  for (const id of kart) duz.push(...(d.coklu.get(id) ?? []));
+  for (const kp of duz) for (const j of kalipOrtu(tt, kp)) ortu.add(j);
   const out: Bilinmeyen[] = [];
   tt.forEach((t, j) => {
     if (t === YUVA_AD || ortu.has(j) || har.has(t) || /^\d+$/.test(t) || d.adlar.has(t) || bicim.has(t) || sayiMi(t, k.biten)) return;
@@ -244,9 +244,11 @@ export function bilinmeyenler(d: KumeDizini, cumle: string, k: Bilinen, haric: I
     const bilinenAday = [...aday].filter((i) => kart.has(i));
     // gösterilen biçim: cümle ortasında harf büyüklüğü de tutmalı; cümle başında aynı sözcüğü gösteren bütün kartlar tanıtılmış olmalı
     const asil = ta[j]!;
-    // cümle başında büyük harf ayırt edici değil: bilinen bir kart sözcüğü bu biçimde ya da küçük harfle gösteriyorsa yeter
+    // cümle başında büyük harf ayırt edici değil: küçük harfle gösteren kart varsa o (öncelikli okunuş) bilinmeli; yoksa büyük harfli kart
     const kucuk = asil.o.charAt(0).toLowerCase() + asil.o.slice(1);
-    if (bilinenAday.some((i) => d.gostAsil.get(i)?.has(asil.o) || (asil.bas && d.gostAsil.get(i)?.has(kucuk)))) return;
+    const kucukKart = asil.bas ? kendiKarti(d, t).filter((i) => d.gostAsil.get(i)?.has(kucuk)) : [];
+    if (asil.bas && kucukKart.length) { if (kucukKart.some((i) => kart.has(i))) return; }
+    else if (bilinenAday.some((i) => d.gostAsil.get(i)?.has(asil.o))) return;
     if ([...aday].some((i) => d.cerceve.has(i)) && [...baslikKarti(d, t)].every((i) => kart.has(i))) return;
     if (bilinenAday.length) out.push({ tur: "bicim", sozcuk: t, adaylar: bilinenAday.sort() });
     else out.push({ tur: "kart", sozcuk: t, adaylar: [...aday].sort() });
