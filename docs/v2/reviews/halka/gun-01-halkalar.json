@@ -7,10 +7,10 @@
    "title_tr": "Selam ve teşekkür",
    "kartlar": [
     "lx:hallo",
+    "lx:Frau",
     "lx:danke",
     "lx:bitte",
-    "lx:ja",
-    "lx:Frau"
+    "lx:ja"
    ],
    "kaliplar": [],
    "gorev_cumleleri": [
@@ -35,6 +35,26 @@
      ]
     },
     {
+     "kart": "lx:Frau",
+     "de": "Hallo, Frau Brandl!",
+     "tr": "Merhaba Brandl Hanım!",
+     "accepted": [
+      "Hallo, Frau Brandl!",
+      "Frau Brandl, hallo!",
+      "Ja, hallo, Frau Brandl!"
+     ]
+    },
+    {
+     "kart": "lx:Frau",
+     "de": "Ja, Frau Huber.",
+     "tr": "Evet Huber Hanım.",
+     "accepted": [
+      "Ja, Frau Huber.",
+      "Frau Huber, ja.",
+      "Ja, Frau Huber, ja."
+     ]
+    },
+    {
      "kart": "lx:danke",
      "de": "Danke, Frau Stadler!",
      "tr": "Teşekkürler Stadler Hanım!",
@@ -56,22 +76,22 @@
     },
     {
      "kart": "lx:bitte",
-     "de": "Ja, bitte, Frau Stadler.",
-     "tr": "Evet, lütfen Stadler Hanım.",
-     "accepted": [
-      "Ja, bitte, Frau Stadler.",
-      "Frau Stadler, ja, bitte.",
-      "Bitte, ja, Frau Stadler."
-     ]
-    },
-    {
-     "kart": "lx:bitte",
      "de": "Bitte, Tobi.",
      "tr": "Rica ederim Tobi.",
      "accepted": [
       "Bitte, Tobi.",
       "Bitte, bitte, Tobi.",
       "Tobi, bitte."
+     ]
+    },
+    {
+     "kart": "lx:bitte",
+     "de": "Ja, bitte, Frau Stadler.",
+     "tr": "Evet, lütfen Stadler Hanım.",
+     "accepted": [
+      "Ja, bitte, Frau Stadler.",
+      "Frau Stadler, ja, bitte.",
+      "Bitte, ja, Frau Stadler."
      ]
     },
     {
@@ -92,26 +112,6 @@
       "Ja, für Ioana.",
       "Für Ioana, ja.",
       "Ja, ja, für Ioana."
-     ]
-    },
-    {
-     "kart": "lx:Frau",
-     "de": "Hallo, Frau Brandl!",
-     "tr": "Merhaba Brandl Hanım!",
-     "accepted": [
-      "Hallo, Frau Brandl!",
-      "Frau Brandl, hallo!",
-      "Ja, hallo, Frau Brandl!"
-     ]
-    },
-    {
-     "kart": "lx:Frau",
-     "de": "Ja, Frau Huber.",
-     "tr": "Evet Huber Hanım.",
-     "accepted": [
-      "Ja, Frau Huber.",
-      "Frau Huber, ja.",
-      "Ja, Frau Huber, ja."
      ]
     }
    ],
@@ -180,17 +180,7 @@
      "accepted": [
       "Danke, heute nicht.",
       "Heute nicht, danke.",
-      "Nein, danke, heute nicht."
-     ]
-    },
-    {
-     "kart": "lx:Montag",
-     "de": "Montag? Nicht Dienstag?",
-     "tr": "Pazartesi mi? Salı değil mi?",
-     "accepted": [
-      "Montag? Nicht Dienstag?",
-      "Am Montag? Nicht am Dienstag?",
-      "Nicht Dienstag? Montag?"
+      "Heute nicht. Danke."
      ]
     },
     {
@@ -201,6 +191,16 @@
       "Ja, am Montag, Frau Huber.",
       "Am Montag, ja, Frau Huber.",
       "Ja, Montag, Frau Huber."
+     ]
+    },
+    {
+     "kart": "lx:Montag",
+     "de": "Montag? Nicht Dienstag?",
+     "tr": "Pazartesi mi? Salı değil mi?",
+     "accepted": [
+      "Montag? Nicht Dienstag?",
+      "Am Montag? Nicht am Dienstag?",
+      "Nicht Dienstag? Montag?"
      ]
     },
     {
@@ -549,12 +549,12 @@
     },
     {
      "kart": "lx:Tag",
-     "de": "Welcher Tag geht?",
-     "tr": "Hangi gün olur?",
+     "de": "Welcher Tag ist heute?",
+     "tr": "Bugün günlerden ne?",
      "accepted": [
-      "Welcher Tag geht?",
-      "Welcher Tag geht denn?",
-      "Und welcher Tag geht?"
+      "Welcher Tag ist heute?",
+      "Welcher Tag ist denn heute?",
+      "Welcher Tag ist heute, bitte?"
      ]
     }
    ],
@@ -601,8 +601,8 @@
     "lx:gestern",
     "lx:übermorgen",
     "lx:vorgestern",
-    "lx:gehen",
     "lx:Praxis",
+    "lx:gehen",
     "lx:geschlossen"
    ],
    "kaliplar": [
@@ -673,26 +673,6 @@
      ]
     },
     {
-     "kart": "lx:gehen",
-     "de": "Wir gehen heute in die Praxis.",
-     "tr": "Bugün muayenehaneye gidiyoruz.",
-     "accepted": [
-      "Wir gehen heute in die Praxis.",
-      "Heute gehen wir in die Praxis.",
-      "Wir gehen heute zur Praxis."
-     ]
-    },
-    {
-     "kart": "lx:gehen",
-     "de": "Gehen Sie morgen in die Praxis, Herr Wimmer?",
-     "tr": "Yarın muayenehaneye gidiyor musunuz Wimmer Bey?",
-     "accepted": [
-      "Gehen Sie morgen in die Praxis, Herr Wimmer?",
-      "Herr Wimmer, gehen Sie morgen in die Praxis?",
-      "Gehen Sie morgen zur Praxis, Herr Wimmer?"
-     ]
-    },
-    {
      "kart": "lx:Praxis",
      "de": "Hallo? Praxis Dr. Weber?",
      "tr": "Alo? Dr. Weber muayenehanesi mi?",
@@ -710,6 +690,26 @@
       "Ist die Praxis am Samstag geschlossen?",
       "Ist am Samstag die Praxis geschlossen?",
       "Am Samstag ist die Praxis geschlossen?"
+     ]
+    },
+    {
+     "kart": "lx:gehen",
+     "de": "Wir gehen heute in die Praxis.",
+     "tr": "Bugün muayenehaneye gidiyoruz.",
+     "accepted": [
+      "Wir gehen heute in die Praxis.",
+      "Heute gehen wir in die Praxis.",
+      "Wir gehen heute zur Praxis."
+     ]
+    },
+    {
+     "kart": "lx:gehen",
+     "de": "Gehen Sie morgen in die Praxis, Herr Wimmer?",
+     "tr": "Yarın muayenehaneye gidiyor musunuz Wimmer Bey?",
+     "accepted": [
+      "Gehen Sie morgen in die Praxis, Herr Wimmer?",
+      "Herr Wimmer, gehen Sie morgen in die Praxis?",
+      "Gehen Sie morgen zur Praxis, Herr Wimmer?"
      ]
     },
     {

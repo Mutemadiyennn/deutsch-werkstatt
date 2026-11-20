@@ -98,8 +98,8 @@ genel = set()
 if os.path.exists(ga):
     for line in open(ga, encoding='utf8'):
         if line.startswith('### '): genel |= set(toks(line[4:]))
-adlar |= genel
-adlar |= set(toks(w['town']['name'])) | set(toks(w['town'].get('neighbourhood', '')))
+adlar |= genel - oz_bas
+adlar |= set(toks(w['town']['name'])) - oz_bas | set(toks(w['town'].get('neighbourhood', '')))
 
 dersler = {}
 for f in glob.glob(f'{K}/content/v2/temel/r0-*.json'):
@@ -107,21 +107,36 @@ for f in glob.glob(f'{K}/content/v2/temel/r0-*.json'):
 def _baslik_kart(t):
     """t'yi başlık sözcüğü olarak taşıyan, fiil olmayan gerçek (card:true) kartlar: lx:hier, lx:ja"""
     return {i for i in idx.get(t, ()) if i not in cerceve and cards[i].get('pos') != 'verb' and toks(cards[i]['de']) == [t]}
+def ogretir_tek(x):
+    """Kalıptan tek başına kalan sözcük ancak fiil biçimi ya da çerçeve sözcüğüyse tek başına öğretilmiş olur
+    (ist, war, geht, von); öteki sözcük (guten, wie) yalnızca kalıbın bütünü içinde bilinir (PM #163 karar 2)."""
+    a = idx.get(x, set())
+    return bool(a) and any(cards[i].get('pos') == 'verb' or i in cerceve for i in a) and not (_baslik_kart(x) - {i for i in a if cards[i].get('pos') == 'verb'})
+def kalip_bol(tt, yuva):
+    """Kalıbı yuvalardan böler: (tek başına öğretilen sözcükler, bütün olarak bilinen diziler). Tek başına öğretmeyen
+    tek sözcük (guten, wie) komşu yuvasıyla birlikte bütün olur: "Guten Tag" → ("guten", "tag")."""
+    tek, cok, run, bas = set(), [], [], 0
+    tt = list(tt)
+    for j, x in enumerate(tt + [None]):
+        if x is None or x in yuva:
+            if len(run) == 1 and ogretir_tek(run[0]): tek.add(run[0])
+            elif len(run) == 1:
+                if x is not None and x != 'qqslot': cok.append((run[0], x))
+                elif bas > 0 and tt[bas - 1] != 'qqslot': cok.append((tt[bas - 1], run[0]))
+            elif run: cok.append(tuple(run))
+            run = []; bas = j + 1
+        else: run.append(x)
+    return tek, cok
 def _cekirdek(d):
-    """Dersin çok sözcüklü teach öğelerinin çekirdekleri (PM #163 karar 2): dersin kendi kelimeleri (teach.lexeme
-    başlıkları) yuva sayılır, kalan bitişik sözcük dizileri kalıptır. "Heute ist Montag." → ("ist",);
-    "Guten Tag, hier ist {name}." → ("guten",), ("hier", "ist"); "Vielen Dank!" → ("vielen", "dank")."""
+    """Dersin çok sözcüklü teach öğeleri (PM #163 karar 2): dersin kendi kelimeleri (teach.lexeme başlıkları) yuvadır.
+    "Heute ist Montag." → ist; "Guten Tag, hier ist {name}." → ("guten", "tag", "hier", "ist") bütün, ("hier", "ist") bütün."""
     yuva = {x for t in d.get('teach', []) if t.get('lexeme') in cards for x in gost[t['lexeme']]}
-    out = []
+    tek, cok = set(), []
     for t in d.get('teach', []):
         tt = toks(t.get('de', ''))
         if len(tt) < 2: continue
-        run = []
-        for x in tt + [None]:
-            if x is None or x in yuva:
-                if run: out.append(tuple(run)); run = []
-            else: run.append(x)
-    return out
+        a, b = kalip_bol(tt, yuva); tek |= a; cok += b
+    return tek, cok
 def ders_bicim(d):
     s, kart = set(), set()
     for t in d.get('teach', []):
@@ -129,13 +144,13 @@ def ders_bicim(d):
         tt = toks(t.get('de', ''))
         if len(tt) == 1: s |= set(tt)
     # tek sözcüklü çekirdek o sözcüğü öğretir (ist, war, geht); çok sözcüklü çekirdek yalnızca bütün olarak (DERS_KALIP)
-    s |= {k[0] for k in _cekirdek(d) if len(k) == 1}
+    s |= _cekirdek(d)[0]
     for row in (d.get('table') or {}).get('satirlar', []):
         for j, cell in enumerate(row):
             if j != 1: s |= set(toks(cell))
     return s, kart
 
-DERS_KALIP = {did: [k for k in _cekirdek(d) if len(k) > 1] for did, d in dersler.items()}
+DERS_KALIP = {did: _cekirdek(d)[1] for did, d in dersler.items()}
 gunler = [json.load(open(f, encoding='utf8')) for f in sorted(glob.glob(f'{K}/content/v2/m1/gun-0*.json'))]
 
 def _kalip_ortusu(tt, biten, ek=(), bil_kart=()):
@@ -183,7 +198,10 @@ def gun_cumleleri(g):
 def madde(m, yer):
     r = []
     if m.get('audio_de'): r.append((yer, 'gosterim', m['audio_de']))
-    if m.get('de'): r.append((yer, 'gorev' if '___' in m['de'] else 'gosterim', m['de']))
+    if m.get('de'):
+        # boşluklu cümle cevabıyla doldurulup okunur (kalıp bütün olarak tanınsın: "Wie ___ du?" + heißt)
+        de = m['de'].replace('___', m['accepted'][0]) if '___' in m['de'] and m.get('accepted') and len(toks(m['accepted'][0])) <= 2 else m['de']
+        r.append((yer, 'gorev' if '___' in m['de'] else 'gosterim', de))
     if m.get('accepted'): r.append((yer, 'gorev', m['accepted'][0]))
     return r
 def ders_cumleleri(d):

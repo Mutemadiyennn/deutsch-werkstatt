@@ -19,21 +19,15 @@ for d in range(1, gun):
         b, k = M['ders_bicim'](M['dersler'][did]); onceki_bicim |= b; onceki_kart |= k; onceki_ders.add(did)
 hata = 0; uyari = 0; gorulen = set(); kalip_tek, kalip_cok = set(), []
 def kalip_parca(de, bk):
-    """Dersteki gibi: "…" ve bilinen kartların sözcükleri yuvadır, kalan bitişik dizi kalıptır ("Heute ist …" → ("ist",))"""
-    yuva = {x for i in bk for x in M['gost'][i]}
-    out, run = [], []
-    for x in M['toks'](de.replace('…', ' QQSLOT ')) + ['qqslot']:
-        if x == 'qqslot' or x in yuva:
-            if run: out.append(tuple(run)); run = []
-        else: run.append(x)
-    return out
+    """Dersteki gibi: "…" ve bilinen kartların sözcükleri yuvadır ("Heute ist …" → ist; "Guten Tag" → bütün)"""
+    yuva = {x for i in bk for x in M['gost'][i]} | {'qqslot'}
+    return M['kalip_bol'](M['toks'](de.replace('…', ' QQSLOT ')), yuva)
 tum = [c for h in o['halkalar'] for c in h['kartlar']]
 if sorted(tum) != sorted(gunler[gun]['yeni_kartlar']): print('HATA: halka kartları yeni_kartlar ile aynı değil'); hata += 1
 for h in o['halkalar']:
     bk = onceki_kart | gorulen | set(h['kartlar'])
     for k in h.get('kaliplar', []):
-        for p in kalip_parca(k['de'], bk):
-            (kalip_tek.add(p[0]) if len(p) == 1 else kalip_cok.append(p))
+        a, b = kalip_parca(k['de'], bk); kalip_tek |= a; kalip_cok += [tuple(x for x in c if x != 'qqslot') for c in b]
     bb = onceki_bicim | kalip_tek
     bt = onceki_ders
     if not 4 <= len(h['kartlar']) <= 6: print(f"HATA {h['id']}: {len(h['kartlar'])} kart"); hata += 1
@@ -56,6 +50,11 @@ for h in o['halkalar']:
             if u: print(f"HATA {h['id']} {c} görev cümlesi bilinmeyen {u}: {g['de']}"); hata += 1
             elif set(M['toks'](g['de'])) & (M['yuzey'](C) - set(M['toks'](C.get('art', '')))): n += 1; liste.append(g['de'])
             else: print(f"HATA {h['id']} {c}: cümlede kartın kelimesi yok: {g['de']}"); hata += 1
+        # bağımlılık sırası (PM-078 C, AK-2): kartın en az bir görev cümlesi, halkada kendisine kadarki kartlarla kurulabilmeli
+        kadar = onceki_kart | gorulen | set(h['kartlar'][:h['kartlar'].index(c) + 1])
+        ilk = next((g for g in h.get('gorev_cumleleri', []) if g['kart'] == c), None)
+        if ilk and M['bilinmeyen'](ilk['de'], kadar, bb, biten=bt, kaliplar=kalip_cok)[0]:
+            print(f"HATA {h['id']} {c}: sıra — kartın ilk görev cümlesi halkada sonraki bir karta bağlı: {ilk['de']}"); hata += 1
         durum = 'tamam' if n >= 2 else 'EKSİK'
         if n < 2: hata += 1
         print(f"{h['id']} {c}: {n} görev cümlesi [{durum}] {liste}")

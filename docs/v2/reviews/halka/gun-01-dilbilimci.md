@@ -209,3 +209,27 @@ Tarih: 2026-11-20 · Kapsam: baş geliştiricinin 5. şüphe („perşembe“) i
 Hata oranı: **1 bulgu / 11 madde ≈ %9** (noktalama; dil ya da içerik hatası yok). Dosyada düzeltildi.
 
 **KAPANDI.**
+
+## İnceleme #165 1. tur sonrası
+
+İncelenen: 9 madde (`lx:Frau` ve `lx:Herr` yeni `mistakes_tr` öğeleri, `lx:Herr` `exp.ne_zaman_tr`, h4 `lx:Tag` yeni görev cümlesi ve 3 kabul öğesi, h2 `lx:heute` 3. kabul öğesi, h1 kart sırası ve „Bitte, Tobi.“, h2 „Ja, am Montag, Frau Huber.“).
+
+**Hata (1, dosyada düzeltildi):**
+1. h4 `lx:Tag` kabul öğesi „Heute ist welcher Tag?“ → **„Welcher Tag ist heute, bitte?“**. Soru sözcüğü yerinde kalan biçim Almancada yalnızca yankı sorusudur (duyduğunu tekrar ettirme, şaşkınlık) ya da bilgi yarışması sorusudur; „Bugün günlerden ne?“ gibi yansız bir bilgi sorusunun karşılığı değildir. Ayrıca Türkçe sırayı birebir taşıyan („Bugün hangi gün?“) tipik aktarım hatasıdır; kabul edilirse öğrencinin tam düzeltilmesi gereken sıra doğru sayılır. Yenisi küme içinde, kibar ve söylenir.
+
+**Doğru bulundu, değiştirilmedi:**
+- „Welcher Tag ist heute?“ / „Bugün günlerden ne?“: Almanca doğru ve gündelik, Türkçe doğal. „Welcher Tag ist denn heute?“ doğru (**denn** soruyu yumuşatır).
+- „Danke, heute nicht.“ için „Heute nicht. Danke.“: doğru, söylenir.
+- „Bitte, Tobi.“ / „Rica ederim Tobi.“: teşekkürün karşılığı olarak doğru; kart sırası (hallo, Frau, danke, bitte, ja) cümleyle tutarlı, **danke** önce geliyor.
+- „Ja, am Montag, Frau Huber.“ / „Evet, pazartesi günü Huber Hanım.“ ve „Ja, Montag, Frau Huber.“: doğru.
+- `mistakes_tr`: „Huber Hanım derken **Huber Frau** denmez. **Frau** soyadından önce gelir: **Frau Huber**.“ ve **Herr** karşılığı: doğru, doğal, Türkçe konuşana özgü (sıra aktarımı); İngilizce köprü yok. Önceki turdaki 7. şüpheyi (ön adla hitap) aynı listelerin eski öğeleri karşılıyor.
+- `exp.ne_zaman_tr` „Bir erkeğe soyadıyla kibarca seslenirken: şefine, komşuna, tanımadığına.“: doğru.
+
+**Kalan şüpheler (engel değil):**
+1. „tanımadığına“ doğru ama kısaltılmış; „tanımadığın birine“ daha doğal okunur. Üslup, lex'in kararı.
+2. `lx:Herr` `mistakes_tr` içinde nokta yeri tutarsız: eski iki öğede kalının içinde („**mit Herrn Weber.**“), yenisinde dışında. Biçim, dil hatası değil.
+3. „Tobi, bitte.“ (kabul öğesi) için önceki 3. şüphe geçerli.
+
+Hata oranı: **1 hata / 9 madde ≈ %11**. `halka_kontrol.py` ve `content:validate` düzeltmeden sonra çalıştırıldı.
+
+**KAPANDI.**
