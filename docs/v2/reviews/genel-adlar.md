@@ -2,7 +2,7 @@
 
 Sözlükte WORLD dışı adlar her kartta aynı kişidir. Yeni cümle yazmadan önce buradan oku.
 Kimliğe uymayan bir bilgi gerekiyorsa o adı kullanma; "boş adlar" listesinden yeni bir ad al ve buraya ekle.
-Durum: genel ad tutarlılık turundan (47 cümle, 3 hata notu, okur 4 tur) ve sonraki gruplardan sonraki hâl. Yazar ve dilbilimci görevleri bu dosyaya bağlıdır.
+Durum: `work/genelad.dil.json` (47 cümle) ve `work/genelad.dil.ek.json` (3 hata notu) uygulandıktan sonraki hâl.
 
 ## Ana adlar
 
@@ -145,3 +145,14 @@ Sara, Lea. (Lisa, Jan, Finn, Moritz, Jakob, Emil, David, Eva artık dolu; aşağ
 - Paul'un ağabeyi şoför.
 - Anna bebeği dört gözle bekliyor; işini bir arkadaşı sayesinde buldu.
 - Julia bir yıldır Almanca öğreniyor.
+
+### Herr Novak (ek)
+- Mesleği hemşire (Krankenpfleger, `pt:ich-bin`).
+
+### Emre Aydın
+- Dr. Weber'in muayenehanesine telefon eden tek seferlik hasta (r0-11 dinleme); Wendlfing'de oturuyor. Başka bilgi yok.
+
+### Ek (inceleme #142 P2, 20.11)
+- Clara on yedi yaşında; odasını paylaştığı kız kardeşi ablası, ondan iki yaş büyük.
+- Herr Novak ikinci katta oturuyor.
+- Tom'un babası kırsalda büyüdü; Tom'un büyükannesi çocukluğunda bir çiftlikte yaşadı.
