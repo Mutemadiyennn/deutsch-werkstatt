@@ -4,7 +4,7 @@ değmeden sığar; kartta en çok 3 eşdizim açık, kalanı "Daha fazla (n)" il
 python3 tests/e2e/v2_tanitim_sigar.py [--browser webkit] [--device "iPhone 15"] [--shots DIR]
 """
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, content_file, DEVICE
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, content_file
 
 PORT = 4216
 GORSEL = 250  # görsel alanı (≈250 px; PM): görsel yoksa aynı yükseklikte yer tutucu konur
@@ -21,7 +21,8 @@ def main():
     shots = arg("--shots")
     l = en_uzun()
     with sync_playwright() as p:
-        b, ctx = launch(p, viewport=None if DEVICE else {"width": 430, "height": 932}); pg = new_page(ctx)
+        # PM ölçütü 430×932 (kabukta tam ekran); cihaz öykünmesinin Safari çubuklu görünümü değil
+        b, ctx = launch(p, viewport={"width": 430, "height": 932}); pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         pg.evaluate("(k) => sessionStorage.setItem('e2e-kart', k)", l["id"])
         pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=garden-intro]")

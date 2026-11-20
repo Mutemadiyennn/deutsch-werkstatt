@@ -37,11 +37,11 @@ def main():
         ctx.set_offline(True)
         ilk = pg.inner_text("[data-test=intro-ex]")
         goruldu, doms, kareler = [ilk], [], []
-        for _ in range(5):
+        for _ in range(7):  # ortanca 7 dokunuştan (CI'da tek tük yavaş kare; PM-069 P2-d)
             dom, kare, metin = degistir(pg, "[data-test=intro-ex]")
             doms.append(dom); kareler.append(kare); goruldu.append(metin)
         check(len(set(goruldu[:3])) == 3, f"3 dokunuşta farklı cümleler ({[g[:30] for g in goruldu[:4]]})")
-        # D-096 yöntemi: DOM her dokunuşta < 150 ms (sert), ilk kare 5 dokunuşun ortancası < 150 ms; en kötü kare raporda
+        # D-096 yöntemi: DOM her dokunuşta < 150 ms (sert), ilk kare 7 dokunuşun ortancası < 150 ms; en kötü kare raporda
         kortanca = sorted(kareler)[len(kareler) // 2]
         # kare ölçütü (PM-069 P2-d): bizim eklediğimiz gecikme = ilk kare − tarayıcının boş kare aralığı; DOM ölçütü değişmedi (sert)
         bos = bos_kare(pg); ek = kortanca - bos
@@ -59,10 +59,10 @@ def main():
         lex = pg.get_attribute("[data-test=after-card]", "data-lex")
         ctx.set_offline(False)
         pg.click("[data-test=next]"); pg.wait_for_timeout(300)
-        # kayıt: kartın sayacı gösterilen (5 kez değiştirilmiş) cümlenin ardından yazıldı → sonraki oturum başka cümleyle açılır
+        # kayıt: kartın sayacı gösterilen (7 kez değiştirilmiş) cümlenin ardından yazıldı → sonraki oturum başka cümleyle açılır
         ex_seen = pg.evaluate("""(id) => new Promise((res) => { const r = indexedDB.open('dw2'); r.onsuccess = () => { const t = r.result.transaction('items').objectStore('items').get(id);
           t.onsuccess = () => res(t.result ? t.result.exSeen : null); t.onerror = () => res(null); }; r.onerror = () => res(null); })""", lex)
-        check(ex_seen == 6, f"öğrenci kaydında cümle sayacı gösterilenin ardından ({lex}: exSeen={ex_seen}; 5 değişiklik + cevap = 6)")
+        check(ex_seen == 8, f"öğrenci kaydında cümle sayacı gösterilenin ardından ({lex}: exSeen={ex_seen}; 7 değişiklik + cevap = 8)")
         # boşluk sorusu: başka boşluk cümlesi (bir tur içinde bulunursa)
         bosluk = False
         for _ in range(60):
