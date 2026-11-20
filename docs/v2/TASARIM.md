@@ -151,3 +151,7 @@ Bütün ekranlar yalnızca şu bileşenlerle kurulur (`web/src/ui`):
 
 ## Ek: hedef ekranlar
 Kaynak: `docs/v2/design/TARGET2.html` (Playwright ile 2900×1100 görüntülenir → `docs/v2/design/TARGET2.png`).
+
+**Hedef 3 (proje sahibi onayı, 20.11; PM 7041982489):** `docs/v2/design/TARGET3.html` → `TARGET3.png` (2900×1100). TARGET2'nin yerine geçmez, üstüne gelir: aynı görsel dil, sekmeler (Bugün, Yol, Köy, Ben), video ekranı ve gün sonu. Yeni iş bu sayfaya bakarak yapılır ("üstüne koya koya devam").
+
+**Hedef 3b (Halka ekranları; PM 7042589346, AKIS.md AK-12 K7):** `docs/v2/design/TARGET3b.html` → `TARGET3b.png` (2832×1047; stil TARGET3.html'in ilk bloğu). Altı ekran: Bugün (seans ve duraklar) · Halka: yeni kelime · resimden seç · eşleştir · mini sahne · halka sonu. Arayüzde kavramın adı **seans**tır (PM 7043484702). AK-10'un 3. ve 4. adımı (yeni soru türleri, durak oynatıcısı) için kabul ölçütü bu sayfadır.

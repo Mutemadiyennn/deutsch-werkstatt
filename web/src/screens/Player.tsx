@@ -355,7 +355,7 @@ function ListeningItem({ li, progress, onDone }: { li: Scenario["listening"][num
   useEffect(() => () => stopSpeaking(), []);
   if (phase === "listen") return (
     <div class="stack fade">{progress}
-      <section class="card stack"><div class="kicker">Dinle · {li.title_tr}</div><p class="small">Önce metni görmeden dinle. İstediğin kadar tekrar dinleyebilirsin.</p>
+      <section class="card stack"><div class="kicker icerik">Dinle · {li.title_tr}</div><p class="small">Önce metni görmeden dinle. İstediğin kadar tekrar dinleyebilirsin.</p>
         <div class="row"><button class="btn primary" onClick={() => playAll(li.speed)} disabled={playing} data-test="play-all">{playing ? "Çalıyor…" : <><Icon name="play" size={18} /> Dinle</>}</button>
           {li.speeds.filter((x) => x !== li.speed).map((sp) => <button class="btn" onClick={() => playAll(sp)} disabled={playing} data-speed={sp}>{SPEED_TR[sp]}</button>)}</div>
         <p class="tiny muted">Cihaz sesi · {li.speed === "fast" ? "hızlı" : li.speed === "natural" ? "doğal hız" : li.speed === "slow" ? "yavaş" : baslangicYavas() ? "normal (ilk dinleme yavaş; Profil)" : "normal"}</p></section>
