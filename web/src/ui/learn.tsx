@@ -152,7 +152,7 @@ const lastShown = new Map<string, number>();
  * `sira` verilirse fotoğraf listedeki sırayla seçilir (PM-062: kartın gösterim sayacı; uygulama yeniden açılınca da döner).
  * Verilmezse oturum içinde bir önce gösterilenden farklısı.
  */
-export function Photo({ q, sira, yer, alt = "", enCok = 200 }: { q?: string; sira?: number; /** B12 3. parça: seçilmiş fotoğrafın yeri ("lx:Kelime#kart", "lx:Kelime#ornekN") */ yer?: string[]; /** Türkçe alt metin (kelimenin anlamı) */ alt?: string; /** en çok yükseklik (px) */ enCok?: number }) {
+export function Photo({ q, sira, yer, alt = "", enCok = 200, oran = "3 / 2" }: { q?: string; sira?: number; /** B12 3. parça: seçilmiş fotoğrafın yeri ("lx:Kelime#kart", "lx:Kelime#ornekN") */ yer?: string[]; /** Türkçe alt metin (kelimenin anlamı) */ alt?: string; /** en çok yükseklik (px) */ enCok?: number; /** en-boy oranı (tanıtımda sığmayan kartta kare, D-123) */ oran?: string }) {
   const { api } = useApp();
   const [p, setP] = useState<PhotoResult | null>(null);
   // seçilmiş fotoğrafın atfı (CC BY/BY-SA: yazar + kaynak sayfa + lisans bağlantısı; inceleme #121 P1-1)
@@ -181,7 +181,7 @@ export function Photo({ q, sira, yer, alt = "", enCok = 200 }: { q?: string; sir
   if (!p) return null;
   // yüklenemezse (çevrimdışı, kaldırılmış dosya) alan tümden kalkar; yer ayrılır, düzen kaymaz (inceleme #121 P1-3)
   return <figure style={{ margin: 0 }} data-test="foto" data-kaynak={atif ? "secim" : "arama"}>
-    <img src={p.src} alt={alt || p.alt} onError={() => setP(null)} style={{ width: "100%", aspectRatio: "3 / 2", maxHeight: enCok, objectFit: "cover", borderRadius: 12, background: "var(--soft)" }} loading="lazy" />
+    <img src={p.src} alt={alt || p.alt} onError={() => setP(null)} style={{ width: "100%", aspectRatio: oran, maxHeight: enCok, objectFit: "cover", borderRadius: 12, background: "var(--soft)" }} loading="lazy" />
     {atif
       ? <figcaption class="tiny muted foto-atif" data-test="foto-atif">Fotoğraf: {atif.sayfa && /^https:\/\//.test(atif.sayfa) ? <a class="foto-yazar" href={atif.sayfa} target="_blank" rel="noopener noreferrer">{atif.yazar || "kaynak"}</a> : <span class="foto-yazar">{atif.yazar}</span>} · {atif.lisans_url && /^https:\/\//.test(atif.lisans_url) ? <a class="foto-lisans" href={atif.lisans_url} target="_blank" rel="noopener noreferrer">{atif.lisans}</a> : <span class="foto-lisans">{atif.lisans}</span>} · kırpıldı</figcaption>
       : <figcaption class="tiny muted">Foto: {p.credit} · Pexels</figcaption>}
