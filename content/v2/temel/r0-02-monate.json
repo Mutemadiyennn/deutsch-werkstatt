@@ -34,10 +34,10 @@
  "review": {
   "status": "reviewed",
   "by": "dilbilimci-ajan",
-  "at": "2026-11-18",
-  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-01-05.md. Denetim: docs/v2/reviews/temel-r0-denetim.txt. Kapanış: docs/v2/reviews/temel-r0-kapanis.md.",
+  "at": "2026-11-20",
+  "notes": "Dil incelemesi: docs/v2/reviews/temel-r0-01-05.md. Denetim: docs/v2/reviews/temel-r0-denetim.txt. Kapanış: docs/v2/reviews/temel-r0-kapanis.md. B5 profil turu (20.11): docs/v2/reviews/temel-profil-01-03.md. Okur B5: docs/v2/reviews/okur/temel-profil-01-03.md.",
   "okur": "passed",
-  "okur_at": "2026-11-18"
+  "okur_at": "2026-11-20"
  },
  "teach": [
   {
@@ -609,13 +609,17 @@
   },
   {
    "id": "r0:02:d16",
-   "k": "tr_de",
-   "tr": "Doğum günüm şubatta.",
+   "k": "listen_and_respond",
+   "audio_de": "Wann hast du Geburtstag?",
+   "speed": "slow",
+   "situation_tr": "Ioana soruyor. Doğum günün şubatta.",
    "accepted": [
     "Mein Geburtstag ist im Februar.",
+    "Im Februar.",
     "Ich habe im Februar Geburtstag.",
     "Im Februar habe ich Geburtstag.",
-    "Im Februar ist mein Geburtstag."
+    "Im Februar ist mein Geburtstag.",
+    "Ich habe Geburtstag im Februar."
    ]
   },
   {
@@ -630,36 +634,58 @@
   },
   {
    "id": "r0:02:d18",
-   "k": "tr_de",
-   "tr": "Yazın iznim var.",
+   "k": "listen_and_respond",
+   "audio_de": "Wann haben Sie Urlaub?",
+   "speed": "normal",
+   "situation_tr": "Herr Wimmer senin iznini soruyor. Senin iznin yaz mevsiminde.",
    "accepted": [
     "Ich habe im Sommer Urlaub.",
+    "Im Sommer.",
     "Im Sommer habe ich Urlaub.",
     "Ich habe Urlaub im Sommer."
    ]
   },
   {
    "id": "r0:02:d19",
-   "k": "tr_de",
-   "tr": "Sonbaharda iznim var.",
+   "k": "listen_and_respond",
+   "audio_de": "Hast du im Herbst Urlaub?",
+   "speed": "normal",
+   "situation_tr": "Derya soruyor. Evet, sonbaharda iznin var.",
    "accepted": [
+    "Ja, ich habe im Herbst Urlaub.",
+    "Ja, im Herbst habe ich Urlaub.",
+    "Ja, im Herbst.",
     "Ich habe im Herbst Urlaub.",
     "Im Herbst habe ich Urlaub.",
-    "Ich habe Urlaub im Herbst."
+    "Ich habe Urlaub im Herbst.",
+    "Ja, ich habe Urlaub im Herbst."
    ]
   },
   {
    "id": "r0:02:d20",
-   "k": "tr_de",
-   "tr": "Şimdi aralık.",
+   "k": "listen_and_respond",
+   "audio_de": "Haben wir November?",
+   "speed": "slow",
+   "situation_tr": "Ioana soruyor. Şimdi aralık. Ioana'nın yanlışını düzelt.",
    "accepted": [
+    "Nein, wir haben Dezember.",
+    "Nein, Dezember.",
+    "Nein, jetzt ist Dezember.",
+    "Nein, es ist Dezember.",
     "Wir haben Dezember.",
     "Jetzt ist Dezember.",
     "Es ist Dezember.",
     "Wir haben jetzt Dezember.",
     "Jetzt haben wir Dezember.",
     "Es ist jetzt Dezember.",
-    "Jetzt ist es Dezember."
+    "Jetzt ist es Dezember.",
+    "Nein, wir haben jetzt Dezember.",
+    "Nein, jetzt haben wir Dezember.",
+    "Nein, es ist jetzt Dezember.",
+    "Nein, jetzt ist es Dezember.",
+    "Nein, wir haben Dezember, nicht November.",
+    "Nein, nicht November. Wir haben Dezember.",
+    "Nein, wir haben nicht November, wir haben Dezember."
    ]
   },
   {
@@ -676,14 +702,23 @@
   },
   {
    "id": "r0:02:d22",
-   "k": "tr_de",
-   "tr": "Mart başı olur.",
+   "k": "listen_and_respond",
+   "audio_de": "Geht Anfang März?",
+   "speed": "normal",
+   "situation_tr": "Muayenehaneden Frau Huber telefon ediyor. Mart başı sana uyuyor.",
    "accepted": [
     "Anfang März geht.",
+    "Ja, Anfang März geht.",
+    "Ja, Anfang März passt.",
+    "Ja, das geht.",
     "Anfang März passt.",
     "Anfang März geht es.",
     "Anfang März geht's.",
-    "Anfang März passt es."
+    "Anfang März passt es.",
+    "Ja, das passt.",
+    "Ja, Anfang März geht es.",
+    "Ja, Anfang März geht's.",
+    "Ja, Anfang März."
    ]
   },
   {
@@ -807,7 +842,7 @@
    "k": "listen_and_respond",
    "audio_de": "Wann ist dein Geburtstag?",
    "speed": "slow",
-   "situation_tr": "Doğum günün ne zaman diye soruyor. Doğum günün haziranda.",
+   "situation_tr": "Derya soruyor. Doğum günün haziranda.",
    "accepted": [
     "Mein Geburtstag ist im Juni.",
     "Im Juni.",
@@ -820,7 +855,7 @@
    "k": "listen_and_respond",
    "audio_de": "Geht Ende April?",
    "speed": "slow",
-   "situation_tr": "Nisan sonu sana uyuyor.",
+   "situation_tr": "Herr Wimmer soruyor. Nisan sonu sana uyuyor.",
    "accepted": [
     "Ende April geht.",
     "Ja, Ende April geht.",
@@ -835,14 +870,90 @@
    "k": "listen_and_respond",
    "audio_de": "Welche Jahreszeit ist im Juli?",
    "speed": "normal",
-   "situation_tr": "Temmuzun mevsimini söyle.",
+   "situation_tr": "Ioana soruyor. Temmuz hangi mevsimde? Mevsimi Almanca yaz.",
    "accepted": [
     "Im Juli ist Sommer.",
     "Sommer.",
     "Der Sommer.",
     "Es ist Sommer.",
     "Im Juli ist es Sommer.",
-    "Im Juli haben wir Sommer."
+    "Im Juli haben wir Sommer.",
+    "Im Sommer."
+   ]
+  },
+  {
+   "id": "r0:02:d35",
+   "k": "listen_and_respond",
+   "audio_de": "Mein Geburtstag ist im Frühling. Im März!",
+   "speed": "normal",
+   "situation_tr": "Derya doğum gününü söylüyor. Hangi ayda? Ayı Almanca yaz.",
+   "accepted": [
+    "Im März.",
+    "März.",
+    "Derya hat im März Geburtstag.",
+    "Ihr Geburtstag ist im März.",
+    "Deryas Geburtstag ist im März.",
+    "Sie hat im März Geburtstag.",
+    "Dein Geburtstag ist im März.",
+    "Du hast im März Geburtstag.",
+    "Im Frühling, im März.",
+    "Sie hat Geburtstag im März."
+   ]
+  },
+  {
+   "id": "r0:02:d36",
+   "k": "listen_and_respond",
+   "audio_de": "Ich habe im Juni Geburtstag.",
+   "speed": "normal",
+   "situation_tr": "Frau Huber doğum gününü söylüyor. O ay hangi mevsimde? Mevsimi Almanca yaz.",
+   "accepted": [
+    "Im Sommer.",
+    "Sommer.",
+    "Der Sommer.",
+    "Im Juni ist Sommer.",
+    "Es ist Sommer.",
+    "Im Juni ist es Sommer.",
+    "Im Juni haben wir Sommer.",
+    "Sie haben im Sommer Geburtstag."
+   ]
+  },
+  {
+   "id": "r0:02:d37",
+   "k": "listen_and_respond",
+   "audio_de": "Ende Dezember ist die Praxis geschlossen. Anfang Januar ist die Praxis offen.",
+   "speed": "normal",
+   "situation_tr": "Muayenehanenin telesekreterinde Frau Huber konuşuyor. Muayenehane ne zaman yine açık? Almanca yaz.",
+   "accepted": [
+    "Anfang Januar.",
+    "Anfang Januar ist die Praxis offen.",
+    "Die Praxis ist Anfang Januar offen.",
+    "Ab Anfang Januar.",
+    "Anfang Januar ist die Praxis wieder offen.",
+    "Die Praxis ist Anfang Januar wieder offen."
+   ]
+  },
+  {
+   "id": "r0:02:d38",
+   "k": "gap",
+   "de": "Das ___ geht von Januar bis Dezember.",
+   "tr": "Yıl ocaktan aralığa kadar sürer.",
+   "accepted": [
+    "Jahr"
+   ],
+   "opts": [
+    "Monat",
+    "Jahr",
+    "Wochenende"
+   ],
+   "why_tr": "Yıl derken **das Jahr** denir."
+  },
+  {
+   "id": "r0:02:d39",
+   "k": "order",
+   "de": "nicht / September / geht / Ende",
+   "tr": "Eylül sonu olmaz.",
+   "accepted": [
+    "Ende September geht nicht."
    ]
   }
  ],
