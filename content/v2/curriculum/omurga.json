@@ -3,7 +3,7 @@
  "review": {
   "status": "draft"
  },
- "note_tr": "52 haftalık omurga taslağı (PM-078 D, PM-079 md. 9: yalnız plan). Omurga bir SIRADIR, takvim değildir: 'hafta' içerik birimidir; öğrenci geride kalırsa planlayıcı kaydırır; kapıdan geçiş hafta sayısıyla değil beceriyle olur (PM 7049695521 F1). Küçük sözcükler (noch, schon, nur, gern, dann, oft, sehr) ve Euro, Cent PM kararıyla 4.–6. güne girer; m1.json eki o günlerin halka PR'ıyla gelir, o zamana kadar burada 8. günde (F2). 'ay' içerik ayıdır (≈4,3 hafta). Mevsim ve gerçek takvim içeriği (Advent, Silvester, Fasching, Ostern, Maibaum, Dult …) haftaya değil tarihe bağlı koldan gelir (WORLD §6, cal:*); takvim kartları bu yüzden haftalık kelime planında yok (takvim_kolu_kartlari). 1.–7. gün m1.json ile birebir; 2.–8. hafta gün gün yalnız başlık, ders ve kelime aralığı; 9. haftadan sonrası hafta düzeyinde. Kart sayıları sözlük kartıdır; birimlerin kalıp ve ifadeleri (birim başına 8–12) ayrıca sayılır. Ayrıntı 4 hafta önden yazılır. Öğrenciye gösterilebilir alanlar: yapabiliyorum_tr, gorev_tr, kapi_tr (konuşma sınavı), kulak_kapi_tr (dinleme sınavı), durum.tr, kol_mekan.tr, gunler[].title_tr; hepsi OD-9.2'ye uyar (tek cümle, ≤14 kelime, noktalı virgül, üç nokta, tırnak ve iç söz yok). durum.tr birim başlıklarının listesidir: her cümlesi tek fikir ve ≤14 kelime, ekranda alt alta gösterilir. kapi_ek teknik nottur, öğrenciye gösterilmez: seviye sınavının üç durumu, kayıt karşılaştırması, beklenmedik gelişme (surpriz), kaynak.",
+ "note_tr": "52 haftalık omurga taslağı (PM-078 D, PM-079 md. 9: yalnız plan). Omurga bir SIRADIR, takvim değildir: 'hafta' içerik birimidir; öğrenci geride kalırsa planlayıcı kaydırır; kapıdan geçiş hafta sayısıyla değil beceriyle olur (PM 7049695521 F1). Küçük sözcükler (noch, schon, nur, gern, dann, oft, sehr) ve Euro, Cent PM kararıyla 4.–6. güne girer; m1.json eki o günlerin halka PR'ıyla gelir, o zamana kadar burada 8. günde (F2). 'ay' içerik ayıdır (≈4,3 hafta). Mevsim ve gerçek takvim içeriği (Advent, Silvester, Fasching, Ostern, Maibaum, Dult …) haftaya değil tarihe bağlı koldan gelir (WORLD §6, cal:*); takvim kartları bu yüzden haftalık kelime planında yok (takvim_kolu_kartlari). 1.–7. gün m1.json ve m1/gun-0N.json ile birebir (dersler, başlık, kart sayısı); 2.–8. hafta gün gün yalnız başlık, ders ve kelime aralığı; 9. haftadan sonrası hafta düzeyinde. Kart sayıları sözlük kartıdır; birimlerin kalıp ve ifadeleri (birim başına 8–12) ayrıca sayılır. Ayrıntı 4 hafta önden yazılır. Öğrenciye gösterilebilir alanlar: yapabiliyorum_tr, gorev_tr, kapi_tr (konuşma sınavı), kulak_kapi_tr (dinleme sınavı), durum.tr, kol_mekan.tr, gunler[].title_tr; hepsi OD-9.2'ye uyar (tek cümle, ≤14 kelime, noktalı virgül, üç nokta, tırnak ve iç söz yok). durum.tr birim başlıklarının listesidir: her cümlesi tek fikir ve ≤14 kelime, ekranda alt alta gösterilir. kapi_ek teknik nottur, öğrenciye gösterilmez: seviye sınavının üç durumu, kayıt karşılaştırması, beklenmedik gelişme (surpriz), kaynak.",
  "seviye_listeleri": {
   "A1": {
    "basvuru": 650,
@@ -61,22 +61,81 @@
  ],
  "pm_kararlari": [
   {
-   "karar": "Küçük sözcükler kart olarak öne (noch, schon, nur, da, dann, gern, sehr, oft, leider, wann, Uhr, Termin)",
-   "kaynak": "PM 7043400862 karar 3",
+   "karar": "Seviye dilimleri: 1. hafta İlk Hafta, A1 2–8, A2 9–24, B1 25–52; 8., 24. ve 52. hafta pekiştirme ve seviye sınavı",
+   "kaynak": "PM 7049695521 F1",
    "yer": {
-    "hafta": 2,
-    "gun": 8
+    "seviye_dilimleri": true
    },
-   "not_tr": "da, leider, wann, Uhr, Termin zaten m1.json'da (gün 2 ve 5). Kalan yedisi (noch, schon, nur, gern, oft, sehr, dann) tıkama sırasıyla 8. günün başında; ardından listede olmayan en çok tıkayan 13 küçük sözcük. 4.–7. günün boş yuvalarına (3+4+5+8 = 20) koymak m1.json'u değiştirir: PM kararına."
+   "not_tr": "Karar: dilimler onaylandı. #56 (YOL_HARITASI) ile çelişki yok: M3 A2'nin tamamı, M4 B1'in tamamı, hedef 6 ayda dışarıda rahat konuşmak. Kapıdan geçiş hafta sayısıyla değil beceriyle olur; geride kalan öğrenciyi planlayıcı kaydırır."
+  },
+  {
+   "karar": "Küçük sözcükler kart olarak öne (noch, schon, nur, da, dann, gern, sehr, oft, leider, wann, Uhr, Termin)",
+   "kaynak": "PM 7043400862 karar 3; PM 7049695521 F2",
+   "yer": {
+    "hafta": 1,
+    "gunler": [
+     4,
+     5,
+     6
+    ],
+    "simdilik": {
+     "hafta": 2,
+     "gun": 8
+    }
+   },
+   "hedef": {
+    "4": [
+     "lx:noch"
+    ],
+    "5": [
+     "lx:schon",
+     "lx:nur",
+     "lx:gern",
+     "lx:dann"
+    ],
+    "6": [
+     "lx:oft",
+     "lx:sehr"
+    ]
+   },
+   "kosul_tr": "Ekleme, silme değil. O günün halka denetimi (K1–K10) ve 100 dk tahmini tutmalı; tutmazsa taşan sözcük 8. güne gider. m1.json eki o günün halka PR'ıyla gelir.",
+   "not_tr": "Karar: 4. gün noch, 5. gün schon, nur, gern, dann, 6. gün oft, sehr. Gerekçe: C ölçümünde cümle kapısını tıkayan bunlardı, ilk hafta doğal cümle onlarsız kurulmuyor. da, leider, wann, Uhr, Termin zaten m1.json'da (2. ve 5. gün). Listede olmayan en çok tıkayan 13 küçük sözcük (lange, erst, viel, gleich, echt, Zeit, gut, klar, kurz, immer, jetzt, mehr, ganz) 8. günde ve sonrasında. Halka PR'ları gelene kadar yedisi omurgada 8. günde durur, çünkü 1.–7. gün m1.json ile birebir."
   },
   {
    "karar": "Euro ve Cent",
-   "kaynak": "PM 7043400862 karar 3",
+   "kaynak": "PM 7043400862 karar 3; PM 7049695521 F2 ve F3",
    "yer": {
-    "hafta": 2,
-    "gun": 8
+    "hafta": 1,
+    "gun": 4,
+    "simdilik": {
+     "hafta": 2,
+     "gun": 8
+    }
    },
-   "not_tr": "Kartları yok: lex işi. PM 4. günü istedi; 4. gün m1.json'da sabit. Lex kartı yazınca 4. güne alınması PM kararına; o zamana kadar 8. günde."
+   "hedef": {
+    "4": [
+     "lx:Euro",
+     "lx:Cent"
+    ]
+   },
+   "kosul_tr": "Ekleme, silme değil. O günün halka denetimi (K1–K10) ve 100 dk tahmini tutmalı; tutmazsa taşan sözcük 8. güne gider. m1.json eki o günün halka PR'ıyla gelir.",
+   "not_tr": "Karar: 4. gün (Fiyat ve yaş). Kartları yok; K1 dışı kartlarda lex önce Euro ve Cent'i yazar (F3). Kart ve 4. günün halka PR'ı gelene kadar omurgada 8. günde."
+  },
+  {
+   "karar": "K1 dışı kartlar (17. haftadan sonra A2'de 285, B1'de yaklaşık 900)",
+   "kaynak": "PM 7049695521 F3; PM-079 md. 9",
+   "yer": {
+    "hafta_bas": 17
+   },
+   "not_tr": "Karar: sıraya girer, şimdi değil. Önce Euro ve Cent; genişletme 2.–7. gün halkalarından sonra. Seçim yalnız sıklıktan değil, A2 durum ailelerinin ihtiyaç listesinden."
+  },
+  {
+   "karar": "Omurgayı içerik doğrulayıcısına ekleme (şema isteği)",
+   "kaynak": "PM 7049695521 F4",
+   "yer": {
+    "arac": "docs/v2/reviews/omurga/denetim.py"
+   },
+   "not_tr": "Karar: sonra. PM taslağı okuyup alanlar durulunca; o zamana kadar denetim.py yeter. Baş geliştiricinin önünde AK-10 var."
   },
   {
    "karar": "am + gün kalıbı",
@@ -116,7 +175,7 @@
      "hafta": 17
     }
    },
-   "not_tr": "Mikro ders 1 13. günde (sein/haben 7. günde, fiil sonları 9. günde öğretildikten sonra); mikro ders 2 17. haftada."
+   "not_tr": "Mikro ders 1 13. günde (fiil sonları 2. günde, sein ve haben 7. günde öğretildikten sonra); mikro ders 2 17. haftada."
   },
   {
    "karar": "#56'nın dört eksiği (sesli kurma, kelime ailesi, kaydet-dinle, yeniden anlatma)",
@@ -469,6 +528,10 @@
   "gr:a1-07:t1": "r0:09-modalverben",
   "gr:a1-09:t1": "r0:09-modalverben"
  },
+ "gramer_tekrar_karsiligi": {
+  "gr:b1-07:t1": "gr:a2-11:t3"
+ },
+ "gramer_tekrar_notu_tr": "Aynı konu iki birimde: obwohl 21. haftada (gr:a2-11:t3) öğretilir; 31. hafta (b1-07) yeni bir şey öğretmediği için gr:b1-07:t1'i yeniden vermez, kira ve komşu örneklerini 21. haftanın kuralına bağlar (döngüsüzlük, dilbilimci A6, inceleme #179).",
  "haftalar": [
   {
    "no": 1,
@@ -487,7 +550,7 @@
     "r0:07-fragewoerter",
     "r0:08-sein-haben",
     "r0:09-modalverben",
-    "r0:10-buchstabieren",
+    "r0:11-praesens",
     "dn:kal-am-gun",
     "dn:kal-alles-gute"
    ],
@@ -567,13 +630,13 @@
    "sure_dk": {
     "kelime": 186,
     "tekrar": 70,
-    "dil": 190,
+    "dil": 210,
     "kulak": 40,
     "konusma": 84,
     "oku_yaz": 60,
     "kapi": 30
    },
-   "tahmini_dk": 660
+   "tahmini_dk": 680
   },
   {
    "no": 2,
@@ -585,7 +648,7 @@
    "dil_noktalari": [
     "gr:a1-03:t5",
     "dn:kucuk-sozcukler",
-    "r0:11-praesens",
+    "gr:a1-04:t1",
     "gr:a1-03:t1",
     "gr:a1-03:t2",
     "gr:a1-03:t3",
@@ -667,7 +730,8 @@
     ],
     "dil_noktalari": [
      "r0:08-sein-haben",
-     "r0:04-zahlen-21-100"
+     "r0:04-zahlen-21-100",
+     "r0:11-praesens"
     ]
    },
    "kapsam_56": [
@@ -686,13 +750,13 @@
    "sure_dk": {
     "kelime": 138,
     "tekrar": 105,
-    "dil": 175,
+    "dil": 170,
     "kulak": 80,
     "konusma": 48,
     "oku_yaz": 60,
     "kapi": 30
    },
-   "tahmini_dk": 636
+   "tahmini_dk": 631
   },
   {
    "no": 3,
@@ -704,6 +768,7 @@
    "dil_noktalari": [
     "gr:a1-02:t3",
     "gr:a1-12:t5",
+    "r0:10-buchstabieren",
     "gr:a1-12:t1",
     "gr:a1-05:t3",
     "gr:a1-12:t3",
@@ -789,7 +854,6 @@
      2
     ],
     "dil_noktalari": [
-     "r0:10-buchstabieren",
      "r0:05-uhrzeit",
      "r0:06-datum",
      "dn:kal-am-gun"
@@ -810,13 +874,13 @@
    "sure_dk": {
     "kelime": 114,
     "tekrar": 105,
-    "dil": 120,
+    "dil": 140,
     "kulak": 80,
     "konusma": 48,
     "oku_yaz": 60,
     "kapi": 30
    },
-   "tahmini_dk": 557
+   "tahmini_dk": 577
   },
   {
    "no": 4,
@@ -826,7 +890,6 @@
    "yapabiliyorum_tr": "Komşuma evimi ve nerede oturduğumu anlatırım.",
    "gorev_tr": "Apartmanda bir komşuya selam verip kendimi tanıtırım.",
    "dil_noktalari": [
-    "gr:a1-04:t1",
     "gr:a1-04:t2",
     "gr:a1-04:t3",
     "gr:a1-04:t4",
@@ -908,7 +971,8 @@
     ],
     "dil_noktalari": [
      "r0:03-zahlen-0-20",
-     "r0:08-sein-haben"
+     "r0:08-sein-haben",
+     "gr:a1-04:t1"
     ]
    },
    "kapsam_56": [
@@ -926,13 +990,13 @@
    "sure_dk": {
     "kelime": 108,
     "tekrar": 105,
-    "dil": 150,
+    "dil": 135,
     "kulak": 80,
     "konusma": 48,
     "oku_yaz": 60,
     "kapi": 30
    },
-   "tahmini_dk": 581
+   "tahmini_dk": 566
   },
   {
    "no": 5,
@@ -1365,7 +1429,14 @@
     "haftalar": [
      7
     ],
-    "dil_noktalari": []
+    "dil_noktalari": [
+     "r0:11-praesens",
+     "gr:a1-02:t3",
+     "gr:a1-03:t5",
+     "gr:a1-12:t2",
+     "gr:a1-12:t5",
+     "gr:a1-11:t1"
+    ]
    },
    "kapsam_56": [
     1,
@@ -2942,7 +3013,13 @@
     "haftalar": [
      23
     ],
-    "dil_noktalari": []
+    "dil_noktalari": [
+     "gr:a1-12:t5",
+     "gr:a2-12:t1",
+     "gr:a2-07:t3",
+     "gr:a2-09:t2",
+     "dn:relativ-basit"
+    ]
    },
    "kapsam_56": [
     1,
@@ -3486,7 +3563,6 @@
    "yapabiliyorum_tr": "Kira ve yan giderlerle ilgili bir soruyu sorarım.",
    "gorev_tr": "Ev sahibine ya da yönetime yazılı bir soru sorarım.",
    "dil_noktalari": [
-    "gr:b1-07:t1",
     "gr:b1-07:t2",
     "gr:b1-07:t4"
    ],
@@ -3555,13 +3631,13 @@
    "sure_dk": {
     "kelime": 48,
     "tekrar": 140,
-    "dil": 45,
+    "dil": 30,
     "kulak": 180,
     "konusma": 60,
     "oku_yaz": 90,
     "kapi": 30
    },
-   "tahmini_dk": 593
+   "tahmini_dk": 578
   },
   {
    "no": 32,
@@ -3625,7 +3701,7 @@
      31
     ],
     "dil_noktalari": [
-     "gr:b1-07:t1",
+     "gr:a2-11:t3",
      "dn:bairisch-1"
     ]
    },
@@ -5169,7 +5245,13 @@
     "haftalar": [
      51
     ],
-    "dil_noktalari": []
+    "dil_noktalari": [
+     "gr:b1-04:t1",
+     "gr:b1-02:t5",
+     "gr:b1-11:t4",
+     "gr:b1-06:t5",
+     "gr:a2-12:t1"
+    ]
    },
    "kapsam_56": [
     1,
@@ -5217,7 +5299,8 @@
    "id": "m1:gun:02",
    "title_tr": "Aylar ve mevsimler",
    "dersler": [
-    "r0:02-monate"
+    "r0:02-monate",
+    "r0:11-praesens"
    ],
    "can_do": {
     "id": "cd:m1:02",
@@ -5353,15 +5436,15 @@
      "lx:Euro",
      "lx:Cent"
     ],
-    "not_tr": "PM kararı 3: küçük sözcükler kart olarak, tıkama sırasıyla; lx:Euro ve lx:Cent kartı yok (lex işi)."
+    "not_tr": "PM kararı 3 ve F2: Euro, Cent, noch, schon, nur, gern, dann, oft, sehr 4.–6. günün kartlarıdır (pm_kararlari[].hedef); m1.json eki o günün halka PR'ıyla gelir, o zamana kadar burada durur. Listede olmayan 13 küçük sözcük 8. günde kalır. lx:Euro ve lx:Cent kartı yok (lex işi)."
    }
   },
   {
    "day": 9,
    "id": "om:gun:09",
-   "title_tr": "Ben ve sen derken: ich wohne, du wohnst",
+   "title_tr": "Fırında der, die, das: das Brot, die Semmel, der Kuchen",
    "dersler": [
-    "r0:11-praesens"
+    "gr:a1-04:t1"
    ],
    "kelime": {
     "adet": 20,
@@ -5467,9 +5550,10 @@
   {
    "day": 16,
    "id": "om:gun:16",
-   "title_tr": "Telefonda kendini tanıtmak",
+   "title_tr": "Telefonda kendini tanıtmak ve adını hecelemek",
    "dersler": [
-    "gr:a1-12:t5"
+    "gr:a1-12:t5",
+    "r0:10-buchstabieren"
    ],
    "kelime": {
     "adet": 16,
@@ -5557,9 +5641,9 @@
   {
    "day": 22,
    "id": "om:gun:22",
-   "title_tr": "Evdeki eşyalar: der Tisch, die Tür, das Bett",
+   "title_tr": "Evdeki eşyalar: Wo ist der Schlüssel? Er ist hier",
    "dersler": [
-    "gr:a1-04:t1"
+    "gr:a1-04:t2"
    ],
    "kelime": {
     "adet": 19,
@@ -5574,7 +5658,6 @@
    "id": "om:gun:23",
    "title_tr": "Eşyayı tarif etmek: Er ist groß und weiß",
    "dersler": [
-    "gr:a1-04:t2",
     "gr:a1-04:t3"
    ],
    "kelime": {

@@ -3,13 +3,26 @@
 Durum: taslak, 20.11. Bu not planın kısa hâlidir.
 Teknik ayrıntılar ayrı bir dosyada: `teknik.md`.
 
-## PM'e sorular
+<!-- sorular:başla -->
+## Karara bağlananlar
 
-1. **Seviyeler:** A2 9. ile 24. hafta arasında, B1 25. ile 52. hafta arasında. Onaylıyor musun?
-2. **Küçük sözcükler** (noch, schon, nur gibi): 8. günde mi kalsın? Yoksa ilk haftanın 4.–7. günlerine mi dağıtılsın? İkincisi ilk haftanın hazır dosyasını değiştirir.
-3. **B1 dilbilgisi sırası:** Dilbilgisi kaydındaki sıradan ayrılıyor. Dilbilimci onayladı. Bu sırayla mı gidelim?
-4. **Eksik kelime kartları:** 17. haftadan sonra hazır listede olmayan kartlar gerekiyor. A2'de 285, B1'de yaklaşık 900 kart. Sözlük ajanına bir iş açılsın mı?
-5. **Doğrulama:** İçerik doğrulayıcı bu planı henüz okumuyor. Kendi denetim betiğimiz var. Baş geliştiriciye "doğrulayıcıya ekle" isteği yazılsın mı?
+- **Seviyeler:** 1. hafta İlk Hafta, A1 2.–8., A2 9.–24., B1 25.–52. hafta. Sonraki seviyeye beceriyle geçilir, hafta sayısıyla değil.
+- **Küçük sözcükler:** 4. gün Euro, Cent, noch. 5. gün schon, nur, gern, dann. 6. gün oft, sehr. Sığmayan 8. güne gider.
+- **Eksik kelime kartları:** sıraya girer, şimdi değil. Önce Euro ve Cent, sonra 2.–7. gün bitince.
+- **Doğrulayıcıya ekleme:** sonra. O zamana kadar kendi denetim betiğimiz yeter.
+
+## Açık sorular
+
+1. **B1 dilbilgisi sırası:** Dilbilgisi kaydındaki sıradan ayrılıyor. Dilbilimci onayladı. Bu sırayla mı gidelim?
+2. **Videolar:** Lisansı ve yalnız ana dili Almanca olan konuşmacıların seçilmesi kontrol edilecek.
+3. **Bavyera ağzı:** Açık lisanslı ikinci bir ses kaynağı yok. Bulunmazsa 17. ve 32. haftada video azalır.
+4. **Kelime listeleri:** Hazır listemiz ile Goethe listeleri ne kadar örtüşüyor? Sözlük ajanı ölçecek.
+5. **Hızlı konuşma:** Planda "ham wir" yazıyor. Kuzeyde "ham wa" denir. Hangisi kalsın?
+6. **Konu uyumu:** Okul sistemi (15. hafta) ve otel (21. hafta) haftanın durumuna uymuyor.
+7. **Yük:** Dilbilimcinin üç yük önerisi. B1 sınavındaki üç durum gerçekten yeni olmalı.
+
+Dilbilimcinin notları: `dilbilimci.md` bölüm 7. Heceleme ve obwohl notları bu turda çözüldü (`teknik.md`).
+<!-- sorular:bitti -->
 
 ## Bu plan nedir
 
@@ -49,7 +62,9 @@ Goethe sayılarını dilbilimci resmî listelerden doğruladı. Sayının tutmas
 
 ## Süre
 
-Haftada 505 ile 660 dakika arası. Sınır 700 dakika, yani günde 100 dakika.
+<!-- sure:başla -->
+Haftada 505 ile 680 dakika arası. Sınır 700 dakika, yani günde 100 dakika.
+<!-- sure:bitti -->
 
 ## Ay ay plan
 

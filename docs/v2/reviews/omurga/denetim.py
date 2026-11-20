@@ -2,8 +2,9 @@
 
 Kullanım: python3 docs/v2/reviews/omurga/denetim.py [depo_kökü]
 Çıktı: bulgu listesi ve özet; hata varsa çıkış kodu 1.
-Denetlenen: yapı, 1–7. gün = m1.json, kimlikler, requires (döngü, sıra, var olmayan kimlik),
-A2 birimlerinin gramer önkoşulu, kelime birikimi, süre (≤ 700 dk), kulak (2. haftadan sonra "yok" yok),
+Denetlenen: yapı, 1–7. gün = m1.json = m1/gun-0N.json (dersler, başlık, kart), kimlikler, requires (döngü, sıra,
+var olmayan kimlik; A1 ve B1 haftalarında ve birimsiz haftalarda boş değil), isteğe bağlı ders öğretildi sayılmaz,
+A2 birimlerinin gramer önkoşulu, kelime birikimi, süre (≤ 700 dk), kulak (2. haftadan sonra kaynak ya da aday "yok" değil),
 kol ve mekân kimlikleri, #56 kapsamı (25 madde), seviye kapıları, yapabiliyorum/görev cümlelerinin kısalığı,
 öğrenciye görünen alanlar (OD-9.2): kapi_tr ve kulak_kapi_tr var, tek cümle, ≤14 kelime, fiille biter;
 hiçbir görünen alanda noktalı virgül, üç nokta, tırnak, dosya adı ve iç söz (kapı, Kulak:, sahne, sürpriz, kademe, kesit,
@@ -20,6 +21,7 @@ J = lambda p: json.load(open(os.path.join(ROOT, p), encoding="utf-8"))
 
 om = J("content/v2/curriculum/omurga.json")
 m1 = J("content/v2/curriculum/m1.json")
+gun_dosya = {d: J(f"content/v2/m1/gun-{d:02d}.json") for d in range(1, 8)}
 a2 = J("content/v2/curriculum/a2.json")
 k1 = {e["id"] for e in J("content/v2/curriculum/k1.json")["cekirdek"]}
 gram = {g["id"] for g in J("content/v2/registry/grammar.json")}
@@ -87,6 +89,16 @@ for g, m in zip(G[:7], m1["gunler"]):
             hata.append(f"gün {g['day']}: '{f}' m1.json ile aynı değil")
     if g["kelime"]["adet"] != len(m["yeni_kartlar"]):
         hata.append(f"gün {g['day']}: kart sayısı m1.json ile aynı değil")
+    # gerçek gün dosyası (uygulamanın okuduğu): m1.json eskiyebilir (#141 → inceleme #179 E1)
+    d = gun_dosya[g["day"]]
+    for f in ("id", "title_tr", "dersler"):
+        if g.get(f) != d.get(f):
+            hata.append(f"gün {g['day']}: '{f}' m1/gun-{g['day']:02d}.json ile aynı değil")
+    if g["kelime"]["adet"] != len(d.get("yeni_kartlar", [])):
+        hata.append(f"gün {g['day']}: kart sayısı m1/gun-{g['day']:02d}.json ile aynı değil")
+    for f in ("dersler", "yeni_kartlar", "title_tr"):
+        if m.get(f) != d.get(f):
+            hata.append(f"gün {g['day']}: m1.json '{f}' gun-{g['day']:02d}.json ile aynı değil")
 for g in G[7:]:
     for f in ("title_tr", "dersler", "kelime"):
         if f not in g:
@@ -104,11 +116,19 @@ for no in range(1, 9):
         hata.append(f"hafta {no}: günlerin kart toplamı ≠ planlanan_yeni")
 
 # 3–5. Kimlikler, tek tanıtım, requires
+# İsteğe bağlı ek ders (zorunlu: false) öğretildi sayılmaz: ona dayanan hafta onu kendisi plana almalı.
+istege_bagli = {}  # ders → hafta
+for e in [m1.get("ek_ders")] + [g.get("ek_ders") for g in G]:
+    if e and not e.get("zorunlu", True):
+        istege_bagli[e["ders"]] = (e["day"] - 1) // 7 + 1
 tanit = {}
 for h in H:
     for i in h["dil_noktalari"]:
         if not kimlik_var(i):
             hata.append(f"hafta {h['no']}: dil noktası '{i}' yok")
+        if istege_bagli.get(i) == h["no"]:
+            uyari.append(f"hafta {h['no']}: '{i}' isteğe bağlı ek ders; öğretildi sayılmadı")
+            continue
         if i in tanit:
             hata.append(f"hafta {h['no']}: '{i}' daha önce {tanit[i]}. haftada tanıtıldı")
         tanit.setdefault(i, h["no"])
@@ -120,7 +140,17 @@ r0k = om.get("gramer_r0_karsiligi", {})
 for g, r in r0k.items():
     if g not in gram or r not in tanit:
         hata.append(f"gramer_r0_karsiligi: '{g}' → '{r}' geçersiz")
-acik = sorted(g for g in gram if g not in tanit and g not in r0k)
+# aynı konunun ikinci birimdeki kopyası: yeniden tanıtılmaz (döngüsüzlük), ilkine bağlanır
+tekrar_k = om.get("gramer_tekrar_karsiligi", {})
+for g, r in tekrar_k.items():
+    if g not in gram or r not in gram or r not in tanit:
+        hata.append(f"gramer_tekrar_karsiligi: '{g}' → '{r}' geçersiz")
+    if g in tanit:
+        hata.append(f"gramer_tekrar_karsiligi: '{g}' {tanit[g]}. haftada yeniden tanıtılıyor")
+    for h in H:
+        if g in h["requires"]["dil_noktalari"]:
+            hata.append(f"hafta {h['no']}: requires '{g}' yerine '{r}' olmalı")
+acik = sorted(g for g in gram if g not in tanit and g not in r0k and g not in tekrar_k)
 if acik:
     hata.append(f"grammar.json'da omurgaya girmeyen konu: {acik}")
 kullanilmayan = [i for i in dn_oneri if i not in tanit]
@@ -144,6 +174,10 @@ for h in H:
             hata.append(f"hafta {no}: requires '{i}' {tanit[i]}. haftada tanıtılıyor (sonra)")
     if no > 1 and no - 1 not in r["haftalar"]:
         uyari.append(f"hafta {no}: bir önceki haftayı istemiyor")
+    # A2 birimlerinin gramer önkoşulu makineyle sınanır (bölüm 6); A1, B1 ve birimsiz haftalarda elle yazılmış liste boş olamaz
+    a2_birimli = any(b.startswith("u:a2:") for b in h["durum"]["birimler"])
+    if no > 1 and not r["dil_noktalari"] and not a2_birimli:
+        hata.append(f"hafta {no} ({h['seviye']}): requires.dil_noktalari boş")
 
 # döngü (DFS)
 renk = {}
@@ -227,6 +261,19 @@ for c in g8:
     if c not in k1 and c not in ("lx:Euro", "lx:Cent"):
         hata.append(f"gün 8: '{c}' K1'de yok")
 
+# PM 7049695521 F2: hedef günlerin kartları ya o günün dosyasında ya da (halka PR'ı gelene kadar) 8. günde
+for k in om.get("pm_kararlari", []):
+    for gun, kartlar in k.get("hedef", {}).items():
+        d = int(gun)
+        if not 1 <= d <= 7:
+            hata.append(f"pm_kararlari '{k['karar']}': hedef gün {gun} 1–7 dışında")
+            continue
+        for c in kartlar:
+            if c not in gun_dosya[d].get("yeni_kartlar", []) and c not in g8:
+                hata.append(f"pm_kararlari: '{c}' ne {d}. günde ne 8. günde")
+            if c in gun_dosya[d].get("yeni_kartlar", []) and c in g8:
+                hata.append(f"pm_kararlari: '{c}' hem {d}. günde hem 8. günde (döngü)")
+
 # 8. Süre
 for h in H:
     if h["tahmini_dk"] > 700:
@@ -247,6 +294,11 @@ for h in H:
                 hata.append(f"hafta {no}: klip '{x}' yok")
     elif vk != "aranacak":
         hata.append(f"hafta {no}: video_kaynak klip kimliği ya da 'aranacak' olmalı")
+    aday = str(ku.get("video_aday") or "").strip().lower()
+    if no > 2 and aday in ("", "yok", "none", "-"):
+        hata.append(f"hafta {no}: video_aday 'yok'")
+    elif vk == "aranacak" and aday in ("", "yok", "none", "-"):
+        hata.append(f"hafta {no}: video_kaynak 'aranacak' ama video_aday yok")
     if ku["video_adet"] < 1 or ku["dinleme_dk"] <= 0 or ku["durum_adet"] < 1:
         hata.append(f"hafta {no}: kulak sayıları eksik")
     if not str(h.get("kulak_kapi_tr", "")).strip():

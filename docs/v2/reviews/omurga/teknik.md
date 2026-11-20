@@ -6,7 +6,7 @@ Kaynak: PM-078 D (omurga işi), PM-079 md. 9 (yalnız plan). Durum: taslak.
 ## Dosyalar
 
 - `content/v2/curriculum/omurga.json`: plan. Elle değiştirilmez.
-- `docs/v2/reviews/omurga/uret.py`: üretici. JSON'u ve iki nottaki üretilen bölümleri (ay ay plan, gün başlıkları) yazar.
+- `docs/v2/reviews/omurga/uret.py`: üretici. JSON'u ve iki nottaki üretilen bölümleri yazar: `taslak.md`'de karara bağlananlar ve açık sorular, süre, ay ay plan; `teknik.md`'de PM kararlarının yeri, süre, gün başlıkları.
 - `docs/v2/reviews/omurga/denetim.py`: denetim. 0 hata şart.
 - Çalıştırma sırası: önce `python3 docs/v2/reviews/omurga/uret.py <depo_kökü>`, sonra `python3 docs/v2/reviews/omurga/denetim.py`.
 
@@ -36,6 +36,15 @@ Denetimin yeni kuralları (okur 1. tur):
 - gün başlıklarında eğik çizgi yok;
 - seviye sınavında `kapi_tr` "üç yeni durum" der ve `kapi_ek.durumlar` üç öğedir.
 
+Denetimin kuralları (inceleme #179 1. tur):
+- 1.–7. gün hem `m1.json` hem uygulamanın okuduğu `content/v2/m1/gun-0N.json` ile karşılaştırılır (`dersler`, `title_tr`, kart sayısı); `m1.json` ile gün dosyası ayrışırsa da hata.
+- İsteğe bağlı ek ders (`zorunlu: false`, şimdi `r0:10-buchstabieren` 7. günde) öğretildi sayılmaz; ona dayanan hafta onu kendi planına almalıdır.
+- `requires.dil_noktalari` A1 ve B1 haftalarında ve birimsiz haftalarda (24) boş olamaz. Sınır: bu liste elle yazılır. Makine yalnız A2 birimlerinin gramer etiketini `requires`'a karşı sınar; A1 ve B1 haftalarında listenin doğruluğu elle seçime dayanır.
+- 2. haftadan sonra `video_aday` "yok" olamaz; `video_kaynak: "aranacak"` iken aday boş olamaz.
+- `gramer_tekrar_karsiligi`: aynı konunun ikinci birimdeki kopyası yeniden tanıtılmaz ve `requires`'ta ilkine bağlanır (obwohl).
+- `pm_kararlari[].hedef` (F2): her kart ya hedef gününün dosyasında ya da 8. günde; ikisinde birden değil.
+- Taranmayanlar: görünen alanlarda rakamlı tarih; `yapabiliyorum_tr` ve `gorev_tr`'de "tek cümle" yalnız uyarıdır.
+
 ## Kelime ve K1 çekirdeği
 
 - Haftalık planlanan yeni kart: A1 60–115, A2 45 (17. hafta 30), B1 40. Üst sınır 175 aşılmıyor.
@@ -47,13 +56,23 @@ Denetimin yeni kuralları (okur 1. tur):
 
 ## PM kararlarının yeri
 
-- **Küçük sözcükler** (PM 7043400862, karar 3): da, leider, wann, Uhr ve Termin zaten m1.json'da (2. ve 5. gün). Kalan yedisi (noch, schon, nur, gern, oft, sehr, dann) tıkama sırasıyla 8. günün başında. Ardından listede olmayan en çok tıkayan 13 küçük sözcük: lange, erst, viel, gleich, echt, Zeit, gut, klar, kurz, immer, jetzt, mehr, ganz.
-- **Euro ve Cent:** kartları yok (lex işi). Şimdilik 8. günde.
-- **4.–7. gün seçeneği** (PM sorusu 2): boş yuvalar 3 + 4 + 5 + 8 = 20. Yerleşim: 4. gün Euro, Cent, noch. 5. gün schon, nur, gern, dann. 6. gün oft, sehr, lange, erst, viel. 7. gün gleich, echt, Zeit, gut, klar, kurz, immer, jetzt. 8. günde yalnız mehr ve ganz kalır.
+<!-- kararlar:başla -->
+- **Seviyeler** (F1): dilimler onaylandı. #56 (YOL_HARITASI) ile çelişki yok: M3 A2'nin tamamı, M4 B1'in tamamı, hedef 6 ayda dışarıda rahat konuşmak. Kapıdan geçiş hafta sayısıyla değil beceriyle olur; geride kalan öğrenciyi planlayıcı kaydırır.
+- **Küçük sözcükler, Euro ve Cent** (karar 3, F2): 4. gün Euro, Cent, noch. 5. gün schon, nur, gern, dann. 6. gün oft, sehr. Ekleme, silme değil. O günün halka denetimi (K1–K10) ve 100 dk tahmini tutmalı; tutmazsa taşan sözcük 8. güne gider. m1.json eki o günün halka PR'ıyla gelir. Halka PR'ları gelene kadar dokuzu 8. günün başında. Listede olmayan 13 sözcük (lange, erst, viel, gleich, echt, Zeit, gut, klar, kurz, immer, jetzt, mehr, ganz) 6.–7. güne girmez, 8. günde ve sonrasında. Yapılı hâli: `pm_kararlari[].hedef`.
+- **Euro ve Cent** (F3): kartları yok, K1 dışı kartlarda lex önce bunları yazar. O zamana kadar 8. günde.
+- **K1 dışı kartlar** (F3): sıraya girer, şimdi değil. Önce Euro ve Cent; genişletme 2.–7. gün halkalarından sonra. Seçim yalnız sıklıktan değil, A2 durum ailelerinin ihtiyaç listesinden.
+- **Doğrulayıcı** (F4): sonra. PM taslağı okuyup alanlar durulunca; o zamana kadar denetim.py yeter. Baş geliştiricinin önünde AK-10 var.
 - **am + gün** (PM 7046461200): kalıp 2. gün halkasında. Kuralı 18. günde (`gr:a1-05:t3`).
 - **Alles Gute zum Geburtstag** (karar 2): 2. gün halkasında kalıp. Tebrikler 33. günde (`gr:a1-14:t5`).
-- **Konuşma kısaltmaları** (LS-8.3): mikro ders 1 13. günde (hab, komm, geh, geht's, 'n), sein ve haben (7. gün) ve fiil sonlarından (9. gün) sonra. Mikro ders 2 17. haftada.
+- **Konuşma kısaltmaları** (LS-8.3): mikro ders 1 13. günde (hab, komm, geh, geht's, 'n), fiil sonları (2. gün) ve sein ile haben (7. gün) öğretildikten sonra. Mikro ders 2 17. haftada.
 - **#56'nın dört eksiği 6. haftada açılır:** sesli kurma 37. gün, kaydet ve yan yana dinle 38. gün, kelime ailesi 40. gün, yeniden anlatma 41. gün. Sonra kollarda sürer: kelime ailesi 14., 22. ve 40. hafta; yeniden anlatma sınavlarda; sesli kurma araba modunda.
+
+İnceleme #179 1. tur düzeltmeleri:
+- Fiil sonları (`r0:11-praesens`) 2. günde (gun-02.json). 9. gün artık der, die, das (`gr:a1-04:t1`): 12. günün Akkusativ'inden önce cinsiyet öğretilir. 22. gün er, sie, es (`gr:a1-04:t2`), 23. gün yalnız sıfat ve renk (`gr:a1-04:t3`).
+- Heceleme (`r0:10-buchstabieren`) 7. günde isteğe bağlı; öğretildi sayılmaz. Zorunlu ders olarak 16. günde, 21. günün sınavından önce.
+- obwohl yalnız 21. haftada (`gr:a2-11:t3`). 31. hafta `gr:b1-07:t1`'i vermez (`gramer_tekrar_karsiligi`), 32. hafta 21. haftayı ister.
+- 8., 24. ve 52. haftanın `requires.dil_noktalari`'sı seviye sınavının üç durumuna göre dolduruldu.
+<!-- kararlar:bitti -->
 
 ## #56 kapsamı
 
@@ -90,7 +109,7 @@ Her hafta: 1 dinleme, 3 ifade olarak kelime, 4 aralıklı tekrar, 11 videoya ses
 
 ## Dil noktası sırası (dilbilimci 20.11)
 
-- Akkusativ 12. güne, sein ile Perfekt 38. güne alındı.
+- Akkusativ 12. güne, sein ile Perfekt 38. güne alındı. der, die, das 9. günde (Akkusativ'den önce; inceleme #179).
 - A2: `gr:a2-07` (Dativ edatları) sağlık haftası için 12. haftaya, `a2-04`'ün önüne alındı. `a2-12` (dolaylı soru) `a2-11`'in önünde.
 - B1 birim sırası: b1-02, 03, 04, 07, 10, 05, 06, 09, 01, 08, 12, 11, 13, 14. İlgi cümlesi ve fikir bildirme önce. Plusquamperfekt (b1-01) 41. haftada; KUTUPHANE KT-4.1 bunu B2'ye koyuyor (PM'e bildirildi).
 - Her birim çiftinde iletişim konusu kendi senaryosunun haftasında (D3).
@@ -99,7 +118,9 @@ Her hafta: 1 dinleme, 3 ifade olarak kelime, 4 aralıklı tekrar, 11 videoya ses
 
 ## Süre
 
-Haftalık 505–660 dk; sınır 700 dk. Kalan pay planlayıcının yedeği. Ayrıntı her haftada `sure_dk`. Yük önerileri: `dilbilimci.md` bölüm 6.
+<!-- sure:başla -->
+Haftalık 505–680 dk; sınır 700 dk. Kalan pay planlayıcının yedeği. Ayrıntı her haftada `sure_dk`. Yük önerileri: `dilbilimci.md` bölüm 6.
+<!-- sure:bitti -->
 
 ## Gün başlıkları (1–56)
 
@@ -116,20 +137,20 @@ Haftalık 505–660 dk; sınır 700 dk. Kalan pay planlayıcının yedeği. Ayr�
 | 6 | Tarih ve sorular |
 | 7 | Kendimi anlatıyorum, randevu istiyorum |
 | 8 | Sık duyulan küçük sözcükler: noch, schon, nur |
-| 9 | Ben ve sen derken: ich wohne, du wohnst |
+| 9 | Fırında der, die, das: das Brot, die Semmel, der Kuchen |
 | 10 | Bir, hiç: ein, kein |
 | 11 | İki tane istemek: Ich möchte zwei Brötchen |
 | 12 | Kibarca istemek: Ich hätte gern einen Kaffee |
 | 13 | Benim ve senin: mein, dein |
 | 14 | Haftanın sınavı: fırında alışveriş |
 | 15 | Evet ya da hayır soruları: Haben Sie Zeit? |
-| 16 | Telefonda kendini tanıtmak |
+| 16 | Telefonda kendini tanıtmak ve adını hecelemek |
 | 17 | Kibar rica: Könnten Sie das wiederholen? |
 | 18 | Ne zaman? um, am, im |
 | 19 | Sen ve o derken değişen harf: du sprichst, er fährt |
 | 20 | Ayın kaçında? am ersten Mai |
 | 21 | Haftanın sınavı: muayenehaneyi aramak |
-| 22 | Evdeki eşyalar: der Tisch, die Tür, das Bett |
+| 22 | Evdeki eşyalar: Wo ist der Schlüssel? Er ist hier |
 | 23 | Eşyayı tarif etmek: Er ist groß und weiß |
 | 24 | Çok, fazla, değil: sehr, zu, nicht |
 | 25 | Hangisi? Daha ucuz |
@@ -168,15 +189,17 @@ Haftalık 505–660 dk; sınır 700 dk. Kalan pay planlayıcının yedeği. Ayr�
 
 ## Denetim sonucu
 
-`python3 docs/v2/reviews/omurga/denetim.py` (20.11, okur 1. tur düzeltmesinden sonra):
-- haftalar 52, günler 56, dil noktası 220 (önerilen 17)
+`python3 docs/v2/reviews/omurga/denetim.py` (20.11, inceleme #179 1. tur düzeltmesinden sonra):
+- haftalar 52, günler 56, dil noktası 219 (önerilen 17; obwohl tek haftada)
 - A2 birimi 32/32, B1 birim önerisi 32/32
-- tahmini_dk en çok 660, en az 505
+- tahmini_dk en çok 680 (1. hafta), en az 505
 - #56 kapsamı 25/25 madde
 - A1 sonu 695 / 650 (+7%), A2 sonu 1370 / 1300 (+5%), B1 sonu 2425 / 2400 (+1%)
 - sonuç: 0 hata, 0 uyarı
 
-Eski JSON'la denendi. Yeni kurallar 404 hata buldu:
+1. tur kuralları kopya üzerinde sekiz bozmayla denendi: eski `m1.json` 2. günü, omurgada eski 2. gün, 3. ve 30. haftada boş `requires`, 20. haftada aday "yok", hecelemenin yalnız isteğe bağlı ders olması, obwohl'ün 31. haftaya dönmesi, F2 kartının kaybolması. Sekizi de hata verdi.
+
+Okur 1. tur kuralları eski JSON'la denendi. 404 hata buldu:
 - `kulak_kapi_tr` yok: 156 (52 hafta × 3 kural);
 - `kapi_tr`: 100 iç söz ya da işaret, 52 tek cümle değil, 20 uzun satır;
 - gün başlığı: 26;

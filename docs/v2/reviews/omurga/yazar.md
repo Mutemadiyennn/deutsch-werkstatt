@@ -426,3 +426,22 @@ Her haftada `kapi_tr` ikiye ayrıldı: `kapi_tr` (konuşma) ve `kulak_kapi_tr` (
 - B1 birim önerisi `u:b1:kulak-1`: Doğal konuşmayı genel olarak anlamak (sokak röportajı) → **Sokak röportajında doğal konuşmayı anlamak** (32. ve 25. haftanın `durum.tr` satırına girer)
 - B1 birim önerisi `u:b1:kulak-3`: Bavyera ağzıyla sohbeti takip etmek (kaynaklı) → **Bavyera ağzıyla sohbeti takip etmek** (32. ve 25. haftanın `durum.tr` satırına girer)
 - `note_tr`: öğrenciye gösterilebilir alanların listesi ve `kapi_ek` açıklaması eklendi.
+
+## İnceleme #179 1. tur sonrası
+
+Öğrenciye görünen alanlarda yalnız üç gün başlığı değişti. Yapabiliyorum, görev, konuşma sınavı, dinleme sınavı, `durum.tr` ve `kol_mekan.tr` satırlarının hiçbiri değişmedi (3. haftanın "adını hecelersin" sınavı aynı kaldı, artık 16. günün zorunlu dersine dayanıyor).
+
+### Gün başlıkları
+
+- gün 9: Ben ve sen derken: ich wohne, du wohnst → **Fırında der, die, das: das Brot, die Semmel, der Kuchen** (fiil sonları 2. günde öğretiliyor; 9. gün yeni konuya geçti, Akkusativ'den önce cinsiyet)
+- gün 16: Telefonda kendini tanıtmak → **Telefonda kendini tanıtmak ve adını hecelemek** (heceleme 7. günde isteğe bağlıydı, burada zorunlu)
+- gün 22: Evdeki eşyalar: der Tisch, die Tür, das Bett → **Evdeki eşyalar: Wo ist der Schlüssel? Er ist hier** (der, die, das 9. güne geçti; 22. gün er, sie, es)
+
+### Öğrenciye görünmeyen
+
+- 2. gün `dersler`: `r0:02-monate` → `r0:02-monate`, `r0:11-praesens` (`m1.json` gun-02.json ile eşitlendi).
+- 23. gün `dersler`: `gr:a1-04:t2`, `gr:a1-04:t3` → `gr:a1-04:t3` (başlık aynı).
+- 31. hafta `dil_noktalari`: `gr:b1-07:t1` (obwohl) çıktı; 32. hafta `requires` `gr:a2-11:t3`'ü ister.
+- 8., 24. ve 52. hafta `requires.dil_noktalari` boştu, dolduruldu.
+- `pm_kararlari`: F1–F4 karar olarak yazıldı; F2'nin hedef günleri `hedef` alanında.
+- `taslak.md`: "PM'e sorular" → "Karara bağlananlar" (dört satır) ve "Açık sorular" (yedi madde).

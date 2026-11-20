@@ -94,21 +94,21 @@ def gr(u, ts): return [f"gr:{u}:t{t}" for t in ts]
 # ---------- A1 günleri (8–56) ----------
 A1G = {
  2: [("Sık duyulan küçük sözcükler: noch, schon, nur", gr("a1-03", [5]) + ["dn:kucuk-sozcukler"]),
-     ("Ben ve sen derken: ich wohne, du wohnst", ["r0:11-praesens"]),
+     ("Fırında der, die, das: das Brot, die Semmel, der Kuchen", gr("a1-04", [1])),  # r0-11 2. günde (gun-02.json); Akkusativ (12. gün) öncesi cinsiyet
      ("Bir, hiç: ein, kein", gr("a1-03", [1, 2])),
      ("İki tane istemek: Ich möchte zwei Brötchen", gr("a1-03", [3, 4])),
      ("Kibarca istemek: Ich hätte gern einen Kaffee", gr("a1-12", [2]) + gr("a1-06", [1]) + gr("a1-01", [1])),
      ("Benim ve senin: mein, dein", gr("a1-02", [1]) + ["dn:kisaltma-1"]),
      ("Haftanın sınavı: fırında alışveriş", [])],
  3: [("Evet ya da hayır soruları: Haben Sie Zeit?", gr("a1-02", [3])),
-     ("Telefonda kendini tanıtmak", gr("a1-12", [5])),
+     ("Telefonda kendini tanıtmak ve adını hecelemek", gr("a1-12", [5]) + ["r0:10-buchstabieren"]),
      ("Kibar rica: Könnten Sie das wiederholen?", gr("a1-12", [1])),
      ("Ne zaman? um, am, im", gr("a1-05", [3]) + gr("a1-12", [3])),
      ("Sen ve o derken değişen harf: du sprichst, er fährt", gr("a1-02", [4]) + gr("a1-06", [2])),
      ("Ayın kaçında? am ersten Mai", gr("a1-12", [4])),
      ("Haftanın sınavı: muayenehaneyi aramak", [])],
- 4: [("Evdeki eşyalar: der Tisch, die Tür, das Bett", gr("a1-04", [1])),
-     ("Eşyayı tarif etmek: Er ist groß und weiß", gr("a1-04", [2, 3])),
+ 4: [("Evdeki eşyalar: Wo ist der Schlüssel? Er ist hier", gr("a1-04", [2])),
+     ("Eşyayı tarif etmek: Er ist groß und weiß", gr("a1-04", [3])),
      ("Çok, fazla, değil: sehr, zu, nicht", gr("a1-04", [4])),
      ("Hangisi? Daha ucuz", gr("a1-13", [1, 2])),
      ("Ev ilanında en ucuzunu bulmak", gr("a1-13", [3]) + gr("a1-04", [5])),
@@ -156,7 +156,7 @@ KAPI_SEVIYE = "Uygulamada hiç karşılaşmadığın üç yeni durumda yardıms�
 W(no=1, yap="Gün ve saat konuşarak basit bir randevu isterim.",
   gorev="Bir dükkânın kapısındaki açılış saatlerini Almanca okurum.",
   dn=["r0:01-tage", "r0:02-monate", "r0:03-zahlen-0-20", "r0:04-zahlen-21-100", "r0:05-uhrzeit", "r0:06-datum",
-      "r0:07-fragewoerter", "r0:08-sein-haben", "r0:09-modalverben", "r0:10-buchstabieren", "dn:kal-am-gun", "dn:kal-alles-gute"],
+      "r0:07-fragewoerter", "r0:08-sein-haben", "r0:09-modalverben", "r0:11-praesens", "dn:kal-am-gun", "dn:kal-alles-gute"],
   aileler=["telefon", "saglik", "hizmet", "bag"], birimler=[], durum_tr="Randevu için gün ve saat konuşmak, fiyat, numara, tarih ve kendini tanıtmak",
   kol=["bahce", "atolye", "sinema"], mekan="pl:praxis", kol_tr="Bahçe, Atölye ve Sinema açılır",
   kapi=("Yedinci gün Frau Huber'i arar, adını söyler ve randevu istersin.",
@@ -181,7 +181,7 @@ W(no=3, yap="Telefonda randevunun gün ve saatini doğrularım.",
   kol=["telefon"], mekan="pl:telefon", kol_tr="Telefon: sesli mesajlar açılır",
   kapi=("Telefonda Frau Huber'e adını hecelersin, gün ve saati söylersin.",
         "Frau Huber'in hızlı sesli mesajından gün ve saati yazarsın."),
-  req_dn=["r0:10-buchstabieren", "r0:05-uhrzeit", "r0:06-datum", "dn:kal-am-gun"],
+  req_dn=["r0:05-uhrzeit", "r0:06-datum", "dn:kal-am-gun"],
   kota=[("r0", 7), ("ihtiyac:telefon", 7), ("senaryo", 20), ("siklik-A1", 40), ("v1-A1", 21)],
   kulak=dict(video=5, aday="Deutsch im Blick Kap. 2 (An der Uni): ders saatleri, günler", dk=80, durum=4),
   kapsam=[1, 3, 4, 10, 15], alan="telefon; zaman sözcükleri")
@@ -352,7 +352,7 @@ B1P = [
    {"surpriz": "iki beklenmedik gelişme"}), [10, 13]),
  (30, "b1-04", [4, 5], ["is-1"], "İzin, vardiya ve fazla mesaiyi konuşurum.", "Bir iş arkadaşıma gelecek hafta hangi vardiyada çalıştığını sorarım.", ["kafe"], "pl:firma", "İş yerinde yeni konuşmalar",
   ("Şefinden izin ister, istediğin gün olmazsa başka bir gün önerirsin.", "Bir ekip toplantısı kaydından tarihleri yakalayıp söylersin."), [13, 21]),
- (31, "b1-07", [1, 2, 4], ["resmi-4"], "Kira ve yan giderlerle ilgili bir soruyu sorarım.", "Ev sahibine ya da yönetime yazılı bir soru sorarım.", ["posta"], "pl:haus", "Posta kutusu: kira yazışmaları",
+ (31, "b1-07", [2, 4], ["resmi-4"], "Kira ve yan giderlerle ilgili bir soruyu sorarım.", "Ev sahibine ya da yönetime yazılı bir soru sorarım.", ["posta"], "pl:haus", "Posta kutusu: kira yazışmaları",
   ("Yan gider yazısını okuyup anlamadığın bir şeyi telefonla sorarsın.", "Yan giderleri anlatan bir kayıttan ne kadar ödeyeceğini söylersin."), [17, 18]),
  (32, "b1-07", [3, 5], ["kulak-3"], "Bavyera ağzıyla konuşan komşumun derdini genel olarak anlarım.", "Bir komşuyla ev kuralları ya da küçük bir sorun hakkında konuşurum.", ["radyo"], "pl:haus", "Kulak Salonu'nda Bavyera ağzının ikinci bölümü açılır",
   ("Bir komşuyla gürültü gibi küçük bir sorunu sakin bir dille konuşursun.", "Bavyera ağzıyla konuşan birinin kısa kaydından ana fikri söylersin.",
@@ -402,18 +402,21 @@ B1P = [
 
 # Haftaların elle seçilmiş dil noktası önkoşulları (birim gramer eşlemesine ek)
 REQ_DN = {
- 2: ["r0:08-sein-haben", "r0:04-zahlen-21-100"], 4: ["r0:03-zahlen-0-20", "r0:08-sein-haben"], 5: ["r0:05-uhrzeit", "gr:a1-05:t3"],
- 6: ["r0:08-sein-haben", "gr:a1-05:t4"], 7: ["r0:09-modalverben", "gr:a1-06:t1"], 8: [],
+ 2: ["r0:08-sein-haben", "r0:04-zahlen-21-100", "r0:11-praesens"], 4: ["r0:03-zahlen-0-20", "r0:08-sein-haben", "gr:a1-04:t1"], 5: ["r0:05-uhrzeit", "gr:a1-05:t3"],
+ 6: ["r0:08-sein-haben", "gr:a1-05:t4"], 7: ["r0:09-modalverben", "gr:a1-06:t1"],
+ 8: ["r0:11-praesens", "gr:a1-02:t3", "gr:a1-03:t5", "gr:a1-12:t2", "gr:a1-12:t5", "gr:a1-11:t1"],
  9: ["gr:a1-07:t2", "gr:a2-01:t1", "gr:a1-12:t1"], 10: ["gr:a1-11:t1"], 11: ["gr:a1-12:t2", "gr:a1-06:t1"], 12: ["gr:a1-10:t1", "gr:a1-13:t4"],
  13: ["gr:a2-01:t4"], 14: ["dn:kelime-ailesi-1", "gr:a1-05:t4", "gr:a1-09:t5"], 15: ["dn:yeniden-anlatma", "gr:a1-08:t3"],
  16: ["gr:a2-03:t4"], 17: ["dn:kisaltma-1", "gr:a1-12:t1"], 18: ["gr:a1-13:t2"], 19: ["gr:a2-02:t1"], 20: ["gr:a2-04:t1"],
  21: ["gr:a2-07:t3"], 22: ["dn:kelime-ailesi-2", "gr:a2-06:t1"], 23: ["gr:a2-08:t1"],
+ 24: ["gr:a1-12:t5", "gr:a2-12:t1", "gr:a2-07:t3", "gr:a2-09:t2", "dn:relativ-basit"],
  25: ["dn:relativ-basit", "gr:a2-04:t2"], 26: ["gr:b1-02:t1"], 27: ["gr:a2-14:t4"], 28: ["gr:b1-03:t1"],
- 29: ["gr:a2-05:t3"], 30: ["gr:b1-04:t1"], 31: ["gr:a2-11:t3"], 32: ["gr:b1-07:t1", "dn:bairisch-1"],
+ 29: ["gr:a2-05:t3"], 30: ["gr:b1-04:t1"], 31: ["gr:a2-11:t3"], 32: ["gr:a2-11:t3", "dn:bairisch-1"],
  33: ["gr:a2-04:t1"], 34: ["gr:b1-10:t1"], 35: ["gr:a2-14:t1"], 36: ["gr:b1-05:t1", "gr:b1-10:t1"], 37: ["gr:b1-05:t1", "gr:a2-13:t1"],
  38: ["gr:b1-06:t1"], 39: ["gr:a2-08:t2", "gr:a1-07:t2"], 40: ["gr:b1-09:t1", "gr:b1-09:t2", "dn:kelime-ailesi-3"], 41: ["gr:a2-13:t2", "gr:a2-01:t1"],
  42: ["gr:b1-01:t1"], 43: ["gr:a2-09:t1"], 44: ["gr:b1-08:t1"], 45: ["gr:a2-13:t3"], 46: ["gr:b1-12:t1"],
  47: ["dn:kelime-ailesi-3"], 48: ["gr:b1-11:t2"], 49: ["gr:b1-02:t1"], 50: ["gr:b1-05:t1", "gr:b1-02:t1", "gr:a2-08:t1"],
+ 52: ["gr:b1-04:t1", "gr:b1-02:t5", "gr:b1-11:t4", "gr:b1-06:t5", "gr:a2-12:t1"],
 }
 
 # ---------- yardımcılar ----------
@@ -432,8 +435,6 @@ DAKIKA = {"r0": 20, "gr": 15, "dn": 10}
 def dil_dk(ids, no):
     t = 0
     for i in ids:
-        if i == "r0:10-buchstabieren" and no == 1:
-            continue  # isteğe bağlı ek ders
         if i.startswith("dn:kal-"):
             t += 5
         else:
@@ -556,7 +557,9 @@ for w in H[1:]:
             kel["k1_aralik"] = [min(SIRA[c] for c in k1p), max(SIRA[c] for c in k1p)]
         if no == 2 and k == 0:
             kel["kartlar"] = parca
-            kel["not_tr"] = "PM kararı 3: küçük sözcükler kart olarak, tıkama sırasıyla; lx:Euro ve lx:Cent kartı yok (lex işi)."
+            kel["not_tr"] = ("PM kararı 3 ve F2: Euro, Cent, noch, schon, nur, gern, dann, oft, sehr 4.–6. günün kartlarıdır (pm_kararlari[].hedef); "
+                             "m1.json eki o günün halka PR'ıyla gelir, o zamana kadar burada durur. Listede olmayan 13 küçük sözcük 8. günde kalır. "
+                             "lx:Euro ve lx:Cent kartı yok (lex işi).")
         gunler.append({"day": day, "id": f"om:gun:{day:02d}", "title_tr": title, "dersler": ds, "kelime": kel})
 
 # A2 haftaları 9–23
@@ -568,7 +571,7 @@ for (no, gu, bir, yap, gorev, kol, mekan, kol_tr, kapi, req_h, ek_dn, aday, kaps
           kapi, req_h, REQ_DN.get(no, []), kota, k, kapsam, alan)
 no, yap, gorev, kapi = A2KAPI
 hafta(no, yap, gorev, [], ["telefon", "saglik", "resmi", "is", "hizmet", "bag", "kulak", "okuma"], [], "A2 tekrarı ve seviye sınavı",
-      ["pazar"], "pl:marktplatz", "Köy haritasında A2 mekânları ışıklanır", kapi, [], [], [("k1_disi", 15)],
+      ["pazar"], "pl:marktplatz", "Köy haritasında A2 mekânları ışıklanır", kapi, [], REQ_DN[24], [("k1_disi", 15)],
       dict(video=3, aday="Deutsch im Blick: kullanılmamış A2 kesitleri", dk=120, durum=6), [9, 19, 24, 25], "eksik kalanlar; zayıf kartlar",
       seviye_kapisi=True)
 
@@ -600,7 +603,7 @@ hafta(52, "Telefonda bir sorunu çözer, toplantıda fikrimi savunur, yüz yüze
        {"durumlar": ["telefonda bir sorunu çözmek", "toplantıda fikir savunmak", "yüz yüze bir şikâyeti çözmek"],
         "kayit_karsilastirma": "bir yıl önceki (1. hafta) kayıtla karşılaştırma (#56 madde 24)",
         "not": "Bairisch kayıt yalnız kaynaklı; ana fikir ve ayrıntı ölçülür"}),
-      [], [], [("k1_disi", 5)], dict(video=4, aday="aranacak: kapı için görülmemiş doğal kayıt", dk=150, durum=6),
+      [], REQ_DN[52], [("k1_disi", 5)], dict(video=4, aday="aranacak: kapı için görülmemiş doğal kayıt", dk=150, durum=6),
       [1, 19, 24, 25], "eksik kalanlar", seviye_kapisi=True)
 
 # Hafta 8'i seviye kapısı olarak işaretle (hafta() çağrısı yukarıda)
@@ -615,13 +618,50 @@ for h in out_h:
 
 GR_IDS = {g["id"] for g in J("content/v2/registry/grammar.json")}
 
+# PM kararları (PM 7043400862, 7046461200, 7049695521 F1–F4). hedef: gün → kartlar (halka PR'ları buradan okur).
+F2_HEDEF = {"4": ["lx:Euro", "lx:Cent", "lx:noch"], "5": ["lx:schon", "lx:nur", "lx:gern", "lx:dann"], "6": ["lx:oft", "lx:sehr"]}
+F2_KOSUL = ("Ekleme, silme değil. O günün halka denetimi (K1–K10) ve 100 dk tahmini tutmalı; tutmazsa taşan sözcük 8. güne gider. "
+            "m1.json eki o günün halka PR'ıyla gelir.")
+PM_KARARLARI = [
+ {"karar": "Seviye dilimleri: 1. hafta İlk Hafta, A1 2–8, A2 9–24, B1 25–52; 8., 24. ve 52. hafta pekiştirme ve seviye sınavı",
+  "kaynak": "PM 7049695521 F1", "yer": {"seviye_dilimleri": True},
+  "not_tr": "Karar: dilimler onaylandı. #56 (YOL_HARITASI) ile çelişki yok: M3 A2'nin tamamı, M4 B1'in tamamı, hedef 6 ayda dışarıda rahat konuşmak. Kapıdan geçiş hafta sayısıyla değil beceriyle olur; geride kalan öğrenciyi planlayıcı kaydırır."},
+ {"karar": "Küçük sözcükler kart olarak öne (noch, schon, nur, da, dann, gern, sehr, oft, leider, wann, Uhr, Termin)",
+  "kaynak": "PM 7043400862 karar 3; PM 7049695521 F2",
+  "yer": {"hafta": 1, "gunler": [4, 5, 6], "simdilik": {"hafta": 2, "gun": 8}},
+  "hedef": {g: [c for c in v if c not in ("lx:Euro", "lx:Cent")] for g, v in F2_HEDEF.items()},
+  "kosul_tr": F2_KOSUL,
+  "not_tr": ("Karar: 4. gün noch, 5. gün schon, nur, gern, dann, 6. gün oft, sehr. Gerekçe: C ölçümünde cümle kapısını tıkayan bunlardı, ilk hafta doğal cümle onlarsız kurulmuyor. "
+             "da, leider, wann, Uhr, Termin zaten m1.json'da (2. ve 5. gün). Listede olmayan en çok tıkayan 13 küçük sözcük "
+             "(lange, erst, viel, gleich, echt, Zeit, gut, klar, kurz, immer, jetzt, mehr, ganz) 8. günde ve sonrasında. "
+             "Halka PR'ları gelene kadar yedisi omurgada 8. günde durur, çünkü 1.–7. gün m1.json ile birebir.")},
+ {"karar": "Euro ve Cent", "kaynak": "PM 7043400862 karar 3; PM 7049695521 F2 ve F3",
+  "yer": {"hafta": 1, "gun": 4, "simdilik": {"hafta": 2, "gun": 8}},
+  "hedef": {"4": ["lx:Euro", "lx:Cent"]}, "kosul_tr": F2_KOSUL,
+  "not_tr": "Karar: 4. gün (Fiyat ve yaş). Kartları yok; K1 dışı kartlarda lex önce Euro ve Cent'i yazar (F3). Kart ve 4. günün halka PR'ı gelene kadar omurgada 8. günde."},
+ {"karar": "K1 dışı kartlar (17. haftadan sonra A2'de 285, B1'de yaklaşık 900)", "kaynak": "PM 7049695521 F3; PM-079 md. 9",
+  "yer": {"hafta_bas": 17},
+  "not_tr": "Karar: sıraya girer, şimdi değil. Önce Euro ve Cent; genişletme 2.–7. gün halkalarından sonra. Seçim yalnız sıklıktan değil, A2 durum ailelerinin ihtiyaç listesinden."},
+ {"karar": "Omurgayı içerik doğrulayıcısına ekleme (şema isteği)", "kaynak": "PM 7049695521 F4",
+  "yer": {"arac": "docs/v2/reviews/omurga/denetim.py"},
+  "not_tr": "Karar: sonra. PM taslağı okuyup alanlar durulunca; o zamana kadar denetim.py yeter. Baş geliştiricinin önünde AK-10 var."},
+ {"karar": "am + gün kalıbı", "kaynak": "PM 7046461200", "yer": {"hafta": 1, "gun": 2, "kural": {"hafta": 3, "gun": 18, "dil_noktasi": "gr:a1-05:t3"}},
+  "not_tr": "Kalıp 2. gün halkasında 'am … – im …' olarak (halka önerisi); kuralı 18. günde (Ne zaman? um, am, im)."},
+ {"karar": "Alles Gute zum Geburtstag", "kaynak": "PM 7043400862 karar 2", "yer": {"hafta": 1, "gun": 2, "genisleme": {"hafta": 5, "gun": 33, "dil_noktasi": "gr:a1-14:t5"}},
+  "not_tr": "2. gün provasından önce halkada kalıp olarak öğretilir; tebrikler 33. günde genişler."},
+ {"karar": "Konuşma kısaltmaları (hab, komm, geh, 's, 'n)", "kaynak": "PM 7043400862; LS-8.3", "yer": {"hafta": 2, "gun": 13, "ikinci": {"hafta": 17}},
+  "not_tr": "Mikro ders 1 13. günde (fiil sonları 2. günde, sein ve haben 7. günde öğretildikten sonra); mikro ders 2 17. haftada."},
+ {"karar": "#56'nın dört eksiği (sesli kurma, kelime ailesi, kaydet-dinle, yeniden anlatma)", "kaynak": "#56 Ek",
+  "yer": {"hafta": 6, "gunler": [37, 38, 40, 41]}, "not_tr": "Dördü 6. haftada açılır, sonra kollarda sürer: kelime ailesi 2–4 (hafta 14, 22, 40), yeniden anlatma her hafta kapısında."},
+]
+
 doc = {
  "schema": 1,
  "review": {"status": "draft"},
  "note_tr": ("52 haftalık omurga taslağı (PM-078 D, PM-079 md. 9: yalnız plan). Omurga bir SIRADIR, takvim değildir: 'hafta' içerik birimidir; "
              "öğrenci geride kalırsa planlayıcı kaydırır; kapıdan geçiş hafta sayısıyla değil beceriyle olur (PM 7049695521 F1). Küçük sözcükler (noch, schon, nur, gern, dann, oft, sehr) ve Euro, Cent PM kararıyla 4.–6. güne girer; m1.json eki o günlerin halka PR'ıyla gelir, o zamana kadar burada 8. günde (F2). 'ay' içerik ayıdır (≈4,3 hafta). Mevsim ve gerçek takvim içeriği (Advent, Silvester, Fasching, "
              "Ostern, Maibaum, Dult …) haftaya değil tarihe bağlı koldan gelir (WORLD §6, cal:*); takvim kartları bu yüzden haftalık kelime planında yok "
-             "(takvim_kolu_kartlari). 1.–7. gün m1.json ile birebir; 2.–8. hafta gün gün yalnız başlık, ders ve kelime aralığı; 9. haftadan sonrası "
+             "(takvim_kolu_kartlari). 1.–7. gün m1.json ve m1/gun-0N.json ile birebir (dersler, başlık, kart sayısı); 2.–8. hafta gün gün yalnız başlık, ders ve kelime aralığı; 9. haftadan sonrası "
              "hafta düzeyinde. Kart sayıları sözlük kartıdır; birimlerin kalıp ve ifadeleri (birim başına 8–12) ayrıca sayılır. Ayrıntı 4 hafta önden yazılır. "
              "Öğrenciye gösterilebilir alanlar: yapabiliyorum_tr, gorev_tr, kapi_tr (konuşma sınavı), kulak_kapi_tr (dinleme sınavı), durum.tr, kol_mekan.tr, "
              "gunler[].title_tr; hepsi OD-9.2'ye uyar (tek cümle, ≤14 kelime, noktalı virgül, üç nokta, tırnak ve iç söz yok). durum.tr birim başlıklarının listesidir: her cümlesi tek fikir ve ≤14 kelime, ekranda alt alta gösterilir. kapi_ek teknik nottur, "
@@ -635,20 +675,7 @@ doc = {
  "k1_cekirdek": {"toplam": len(k1), "m1_de": sum(1 for c in m1c if c in SIRA), "takvim_kolunda": len(TAKVIM), "bitis_haftasi": k1_bitis,
                  "not_tr": "B1 dışı K1 kartları 21. haftada biter; 17. haftadan sonra A2 birimlerinin K1 dışı alan kartları gerekir (lex işi). siklik-B1 25. haftadan başlar."},
  "takvim_kolu_kartlari": TAKVIM,
- "pm_kararlari": [
-   {"karar": "Küçük sözcükler kart olarak öne (noch, schon, nur, da, dann, gern, sehr, oft, leider, wann, Uhr, Termin)", "kaynak": "PM 7043400862 karar 3",
-    "yer": {"hafta": 2, "gun": 8}, "not_tr": "da, leider, wann, Uhr, Termin zaten m1.json'da (gün 2 ve 5). Kalan yedisi (noch, schon, nur, gern, oft, sehr, dann) tıkama sırasıyla 8. günün başında; ardından listede olmayan en çok tıkayan 13 küçük sözcük. 4.–7. günün boş yuvalarına (3+4+5+8 = 20) koymak m1.json'u değiştirir: PM kararına."},
-   {"karar": "Euro ve Cent", "kaynak": "PM 7043400862 karar 3", "yer": {"hafta": 2, "gun": 8},
-    "not_tr": "Kartları yok: lex işi. PM 4. günü istedi; 4. gün m1.json'da sabit. Lex kartı yazınca 4. güne alınması PM kararına; o zamana kadar 8. günde."},
-   {"karar": "am + gün kalıbı", "kaynak": "PM 7046461200", "yer": {"hafta": 1, "gun": 2, "kural": {"hafta": 3, "gun": 18, "dil_noktasi": "gr:a1-05:t3"}},
-    "not_tr": "Kalıp 2. gün halkasında 'am … – im …' olarak (halka önerisi); kuralı 18. günde (Ne zaman? um, am, im)."},
-   {"karar": "Alles Gute zum Geburtstag", "kaynak": "PM 7043400862 karar 2", "yer": {"hafta": 1, "gun": 2, "genisleme": {"hafta": 5, "gun": 33, "dil_noktasi": "gr:a1-14:t5"}},
-    "not_tr": "2. gün provasından önce halkada kalıp olarak öğretilir; tebrikler 33. günde genişler."},
-   {"karar": "Konuşma kısaltmaları (hab, komm, geh, 's, 'n)", "kaynak": "PM 7043400862; LS-8.3", "yer": {"hafta": 2, "gun": 13, "ikinci": {"hafta": 17}},
-    "not_tr": "Mikro ders 1 13. günde (sein/haben 7. günde, fiil sonları 9. günde öğretildikten sonra); mikro ders 2 17. haftada."},
-   {"karar": "#56'nın dört eksiği (sesli kurma, kelime ailesi, kaydet-dinle, yeniden anlatma)", "kaynak": "#56 Ek",
-    "yer": {"hafta": 6, "gunler": [37, 38, 40, 41]}, "not_tr": "Dördü 6. haftada açılır, sonra kollarda sürer: kelime ailesi 2–4 (hafta 14, 22, 40), yeniden anlatma her hafta kapısında."},
- ],
+ "pm_kararlari": PM_KARARLARI,
  "dil_noktasi_onerileri": [{"id": i, "ad_tr": a, "seviye": s, "gramer": g, "kaynak": k, "durum": "önerilen"} for i, a, s, g, k in DN],
  "b1_birim_onerileri": [{"id": f"u:b1:{i}", "title_tr": t, "durum": "önerilen (b1.json yok)"} for i, t in B1U],
  "a2_gramer_eslemesi": GR_MAP,
@@ -656,6 +683,9 @@ doc = {
                          "gr:a1-01:t5": "r0:03-zahlen-0-20", "gr:a1-02:t2": "r0:08-sein-haben", "gr:a1-02:t5": "r0:04-zahlen-21-100",
                          "gr:a1-05:t1": "r0:05-uhrzeit", "gr:a1-05:t2": "r0:05-uhrzeit", "gr:a1-07:t1": "r0:09-modalverben",
                          "gr:a1-09:t1": "r0:09-modalverben"},
+ "gramer_tekrar_karsiligi": {"gr:b1-07:t1": "gr:a2-11:t3"},
+ "gramer_tekrar_notu_tr": ("Aynı konu iki birimde: obwohl 21. haftada (gr:a2-11:t3) öğretilir; 31. hafta (b1-07) yeni bir şey öğretmediği için gr:b1-07:t1'i "
+                           "yeniden vermez, kira ve komşu örneklerini 21. haftanın kuralına bağlar (döngüsüzlük, dilbilimci A6, inceleme #179)."),
  "haftalar": out_h,
  "gunler": gunler,
 }
@@ -707,6 +737,55 @@ yerlestir("taslak.md", "aylar", "\n".join(satir))
 
 gs = ["| Gün | Başlık |", "|---|---|"] + [f"| {g['day']} | {g['title_tr']} |" for g in gunler]
 yerlestir("teknik.md", "gunler", "\n".join(gs))
+
+# Süre satırı (iki notta aynı sayı)
+dk = [h["tahmini_dk"] for h in out_h]
+yerlestir("taslak.md", "sure", f"Haftada {min(dk)} ile {max(dk)} dakika arası. Sınır 700 dakika, yani günde 100 dakika.")
+yerlestir("teknik.md", "sure", f"Haftalık {min(dk)}–{max(dk)} dk; sınır 700 dk. Kalan pay planlayıcının yedeği. Ayrıntı her haftada `sure_dk`. Yük önerileri: `dilbilimci.md` bölüm 6.")
+
+# Karara bağlananlar ve açık sorular (taslak.md, PM'in okuduğu ilk ekran)
+def gun_listesi(h): return ". ".join(f"{g}. gün {', '.join(c[3:] for c in v)}" for g, v in h.items())
+yerlestir("taslak.md", "sorular", "\n".join([
+ "## Karara bağlananlar",
+ "",
+ "- **Seviyeler:** 1. hafta İlk Hafta, A1 2.–8., A2 9.–24., B1 25.–52. hafta. Sonraki seviyeye beceriyle geçilir, hafta sayısıyla değil.",
+ f"- **Küçük sözcükler:** {gun_listesi(F2_HEDEF)}. Sığmayan 8. güne gider.",
+ "- **Eksik kelime kartları:** sıraya girer, şimdi değil. Önce Euro ve Cent, sonra 2.–7. gün bitince.",
+ "- **Doğrulayıcıya ekleme:** sonra. O zamana kadar kendi denetim betiğimiz yeter.",
+ "",
+ "## Açık sorular",
+ "",
+ "1. **B1 dilbilgisi sırası:** Dilbilgisi kaydındaki sıradan ayrılıyor. Dilbilimci onayladı. Bu sırayla mı gidelim?",
+ "2. **Videolar:** Lisansı ve yalnız ana dili Almanca olan konuşmacıların seçilmesi kontrol edilecek.",
+ "3. **Bavyera ağzı:** Açık lisanslı ikinci bir ses kaynağı yok. Bulunmazsa 17. ve 32. haftada video azalır.",
+ "4. **Kelime listeleri:** Hazır listemiz ile Goethe listeleri ne kadar örtüşüyor? Sözlük ajanı ölçecek.",
+ "5. **Hızlı konuşma:** Planda \"ham wir\" yazıyor. Kuzeyde \"ham wa\" denir. Hangisi kalsın?",
+ "6. **Konu uyumu:** Okul sistemi (15. hafta) ve otel (21. hafta) haftanın durumuna uymuyor.",
+ "7. **Yük:** Dilbilimcinin üç yük önerisi. B1 sınavındaki üç durum gerçekten yeni olmalı.",
+ "",
+ "Dilbilimcinin notları: `dilbilimci.md` bölüm 7. Heceleme ve obwohl notları bu turda çözüldü (`teknik.md`).",
+]))
+
+# PM kararlarının yeri (teknik.md), pm_kararlari'ndan
+tk = [
+ "- **Seviyeler** (F1): " + PM_KARARLARI[0]["not_tr"].removeprefix("Karar: "),
+ "- **Küçük sözcükler, Euro ve Cent** (karar 3, F2): " + gun_listesi(F2_HEDEF) + ". " + F2_KOSUL
+ + " Halka PR'ları gelene kadar dokuzu 8. günün başında. Listede olmayan 13 sözcük (lange, erst, viel, gleich, echt, Zeit, gut, klar, kurz, immer, jetzt, mehr, ganz) 6.–7. güne girmez, 8. günde ve sonrasında. Yapılı hâli: `pm_kararlari[].hedef`.",
+ "- **Euro ve Cent** (F3): kartları yok, K1 dışı kartlarda lex önce bunları yazar. O zamana kadar 8. günde.",
+ "- **K1 dışı kartlar** (F3): " + PM_KARARLARI[3]["not_tr"].removeprefix("Karar: "),
+ "- **Doğrulayıcı** (F4): " + PM_KARARLARI[4]["not_tr"].removeprefix("Karar: "),
+ "- **am + gün** (PM 7046461200): kalıp 2. gün halkasında. Kuralı 18. günde (`gr:a1-05:t3`).",
+ "- **Alles Gute zum Geburtstag** (karar 2): 2. gün halkasında kalıp. Tebrikler 33. günde (`gr:a1-14:t5`).",
+ "- **Konuşma kısaltmaları** (LS-8.3): mikro ders 1 13. günde (hab, komm, geh, geht's, 'n), fiil sonları (2. gün) ve sein ile haben (7. gün) öğretildikten sonra. Mikro ders 2 17. haftada.",
+ "- **#56'nın dört eksiği 6. haftada açılır:** sesli kurma 37. gün, kaydet ve yan yana dinle 38. gün, kelime ailesi 40. gün, yeniden anlatma 41. gün. Sonra kollarda sürer: kelime ailesi 14., 22. ve 40. hafta; yeniden anlatma sınavlarda; sesli kurma araba modunda.",
+ "",
+ "İnceleme #179 1. tur düzeltmeleri:",
+ "- Fiil sonları (`r0:11-praesens`) 2. günde (gun-02.json). 9. gün artık der, die, das (`gr:a1-04:t1`): 12. günün Akkusativ'inden önce cinsiyet öğretilir. 22. gün er, sie, es (`gr:a1-04:t2`), 23. gün yalnız sıfat ve renk (`gr:a1-04:t3`).",
+ "- Heceleme (`r0:10-buchstabieren`) 7. günde isteğe bağlı; öğretildi sayılmaz. Zorunlu ders olarak 16. günde, 21. günün sınavından önce.",
+ "- obwohl yalnız 21. haftada (`gr:a2-11:t3`). 31. hafta `gr:b1-07:t1`'i vermez (`gramer_tekrar_karsiligi`), 32. hafta 21. haftayı ister.",
+ "- 8., 24. ve 52. haftanın `requires.dil_noktalari`'sı seviye sınavının üç durumuna göre dolduruldu.",
+]
+yerlestir("teknik.md", "kararlar", "\n".join(tk))
 
 for h in out_h:
     print(h["no"], h["seviye"], h["kelime"]["planlanan_yeni"], h["kelime"]["birikimli"], h["tahmini_dk"], h["kelime"]["k1_disi"])
