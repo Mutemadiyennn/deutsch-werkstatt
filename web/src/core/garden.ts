@@ -22,6 +22,7 @@
  *  - PM-062: soru cümlesi kartın gösterim sayacından (`exSeen`) kurulur: her gün başka cümle ve onun fotoğrafı. Güçlü kartta
  *    fotoğraf cevaptan önce gösterilmez (fotoğraf sorusu seçilmez; tanıtımda ve cevap ekranında fotoğraf var).
  */
+import POLICY from "../policy.json" with { type: "json" };
 import { kartMi, type Lexeme } from "@dw/shared";
 import type { LearnerItem, PersonalWord } from "@dw/shared";
 import { isDue } from "./srs.ts";
@@ -38,6 +39,8 @@ export interface GardenQ {
   intro?: boolean;
   /** örnek cümle sırası (yanlışta bir sonraki örnek) */
   ex: number;
+  /** PM-069 madde 3: tanıtımı ayrı yapılmış yeni kartın ilk sorusu (tanıtımdan en az 2 öğe sonra gelir) */
+  ilkSoru?: boolean;
   /** turda kaçıncı deneme (yanlıştan sonra 1) */
   retry?: number;
   /** B16: yeni kart "Biliyorum, sına beni" — tanıtım yok; tek üretim sorusu (TR→DE, ipucusuz, isimde artikel) */
@@ -81,8 +84,22 @@ export const isCard = (l: Lexeme) => kartMi(l);
 const verbForms = (l: Lexeme) => l.forms.filter(() => l.pos === "verb");
 const otherForms = (l: Lexeme) => l.forms.filter(() => l.pos !== "verb");
 
+/** PM 7030294523 B4: "Fotoğraftaki ne?" yalnızca kartın seçilmiş fotoğrafı varken (foto.json `<id>#kart`) ve çevrimiçiyken.
+ *  Uygulama tur kurmadan önce `fotoluKartlar` ile bildirir; bildirilmezse (birim testleri) eski kural: fotoğraf sorgusu (`img`) varsa. */
+let fotolu: Set<string> | null = null;
+export function fotoluKartlar(s: Set<string> | null) { fotolu = s; }
+
 /** Bu karta bu yolda sorulabilecek türler (içeriğin taşıdığı veriye göre) */
-export function availableTypes(l: Lexeme, path: "passive" | "active"): QType[] {
+/** "Kendi cümleni kur" kapısı (PM 7030294523 P0): kartın üretim kararlılığı ≥ eşik gün, İlk Hafta bitmiş ve öğrenci en az bir
+ *  kalıbı bitirmiş olmalı; eşikler web/src/policy.json'da. Koşullardan biri eksikse tür hiç seçilmez. */
+export interface KendiCumleKosul { ilkHaftaBitti: boolean; kalipBitti: boolean }
+export function kendiCumleAcik(it: LearnerItem | undefined, k: KendiCumleKosul | undefined, pol: { yeni_ekran: boolean; kalip_sart: boolean; kararlilik_gun: number } = POLICY.own_sentence): boolean {
+  const p = pol;
+  if (!p.yeni_ekran || !k || !k.ilkHaftaBitti || (p.kalip_sart && !k.kalipBitti)) return false;
+  return (it?.active.fsrs?.stability ?? 0) >= p.kararlilik_gun;
+}
+
+export function availableTypes(l: Lexeme, path: "passive" | "active", kendiCumle = false): QType[] {
   if (path === "passive") {
     const t: QType[] = ["listen_meaning"];
     // `tier: passive` yalnızca tanıma: dinle → anlamını seç (a); artikel ve eşdizim üretime yakın (inceleme #55 2. tur kabulü)
@@ -93,26 +110,48 @@ export function availableTypes(l: Lexeme, path: "passive" | "active"): QType[] {
   }
   if (!isCard(l) || l.tier === "passive") return [];
   const t: QType[] = ["tr_de"];
-  if (isNoun(l) && l.img) t.push("photo_say");
+  if (isNoun(l) && (fotolu ? fotolu.has(l.id) : !!l.img)) t.push("photo_say");
   if (otherForms(l).length) t.push("gap");
   if (verbForms(l).length) t.push("sep_perfekt");
-  t.push("own_sentence");
+  if (kendiCumle) t.push("own_sentence");
   return t;
 }
 
 /** Aynı tür art arda gelmez; kalanlar arasında sırayla (rng ile karıştırılabilir) */
-export function pickType(l: Lexeme, path: "passive" | "active", last: string | undefined, rng: () => number = Math.random, exclude: QType[] = []): QType | null {
-  const all0 = availableTypes(l, path);
+export function pickType(l: Lexeme, path: "passive" | "active", last: string | undefined, rng: () => number = Math.random, exclude: QType[] = [], kendiCumle = false): QType | null {
+  const all0 = availableTypes(l, path, kendiCumle);
   const all = all0.filter((t) => !exclude.includes(t)).length ? all0.filter((t) => !exclude.includes(t)) : all0;
   if (!all.length) return null;
   const pool = all.length > 1 ? all.filter((t) => t !== last) : all;
   return pool[Math.floor(rng() * pool.length) % pool.length]!;
 }
 
+/**
+ * PM-069 madde 3: tanıtım ile o kartın ilk sorusu arasına en az 2 öğe girer ("tanıt A, tanıt B, tanıt C, sor A, …").
+ * Tanıtım bitince ilk soru `ARALIK` öğe sonrasına eklenir (tur kısaysa sona). `exi`: tanıtımda en son gösterilen cümle.
+ */
+export const ARALIK = 2;
+export function ertele(round: GardenQ[], i: number, exi: number): GardenQ[] {
+  const q = round[i]!;
+  const soru: GardenQ = { lexId: q.lexId, type: "listen_meaning", ex: exi, ilkSoru: true };
+  // sorular sırasını korur ve kümelenmez (tanıt A, tanıt B, tanıt C, sor A, tanıt D, sor B, …): son ilk sorudan en az bir öğe sonra
+  let son = -1; round.forEach((x, k) => { if (k > i && x.ilkSoru) son = k; });
+  const yer = Math.min(Math.max(i + 1 + ARALIK, son + 2), round.length);
+  return [...round.slice(0, yer), soru, ...round.slice(yer)];
+}
+/** İlk üretim sorusundan önce köprü: artikel ya da eşdizim seçmeli (PM-069 madde 3); bu kartta henüz sorulmadıysa */
+export function kopruGerek(it: LearnerItem, l: Lexeme): boolean {
+  const kopru = availableTypes(l, "passive").filter((t) => t !== "listen_meaning");
+  // köprü ancak doğru cevapla geçilir (#126 PM önerisi, 30 dk kuralı); takılan kart en çok 6 tanıma sorusundan sonra yine üretime açılır
+  return !it.active.fsrs && kopru.length > 0 && !it.kopru && it.passive.n < 6;
+}
+
 /** Kart tanıtılmış mı (aktif soru için ön koşul) */
 export const introduced = (it: LearnerItem | undefined) => !!it && (it.passive.ok > 0 || it.active.ok > 0 || (it.passive.n > 0 && it.active.n > 0));
 
 export interface RoundOpts {
+  /** "Kendi cümleni kur" koşulları (PM 7030294523 P0); verilmezse tür hiç seçilmez */
+  kendiCumle?: KendiCumleKosul;
   max?: number; min?: number; newMax?: number; rng?: () => number; now?: Date;
   /** öncelikli yeni kartlar ("Duyduğum kelime", "Nasıl derim?"; LS-7.5): tekrar yükü ne olursa olsun en çok 2'si bu turda */
   priority?: string[];
@@ -166,8 +205,14 @@ export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerI
     // ilk üretim sorusu "kendi cümlen" olmaz: önce kelimeyi söyletir (inceleme #59 2. tur)
     const first = path === "active" && !items.get(id)?.active.fsrs;
     const it = items.get(id);
-    const t = pickType(lex.get(id)!, path, it?.lastQ, rng, [...(first ? ["own_sentence" as const] : []), ...(guclu(it) ? ["photo_say" as const] : [])]);
+    const t = pickType(lex.get(id)!, path, it?.lastQ, rng, [...(first ? ["own_sentence" as const] : []), ...(guclu(it) ? ["photo_say" as const] : [])], path === "active" && kendiCumleAcik(it, o.kendiCumle));
     if (t) { out.push({ lexId: id, type: t, ex: siradakiEx(it) }); used.add(id); }
+  };
+  const kopru: { id: string; at: number }[] = [];
+  const addKopru = (id: string) => {
+    if (out.length >= cap || used.has(id)) return;
+    const t = pickType(lex.get(id)!, "passive", items.get(id)?.lastQ, rng, ["listen_meaning"]);
+    if (t && t !== "listen_meaning") { out.push({ lexId: id, type: t, ex: siradakiEx(items.get(id)) }); used.add(id); }
   };
   const dueA: { id: string; at: number }[] = [], dueP: { id: string; at: number }[] = [], ready: { id: string; at: number }[] = [];
   for (const it of items.values()) {
@@ -175,12 +220,15 @@ export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerI
     const l = lex.get(it.itemId)!;
     if (!isCard(l)) continue;
     if (introduced(it) && availableTypes(l, "active").length && isDue(it, "active", now)) dueA.push({ id: it.itemId, at: Date.parse(it.active.fsrs!.due) });
+    else if (activatable(it, l) && kopruGerek(it, l)) kopru.push({ id: it.itemId, at: Date.parse(it.passive.last || "0") });
     else if (activatable(it, l)) ready.push({ id: it.itemId, at: Date.parse(it.passive.last || it.passive.fsrs?.due || "0") });
     else if (isDue(it, "passive", now)) dueP.push({ id: it.itemId, at: Date.parse(it.passive.fsrs!.due) });
   }
   // 1) vadesi gelen üretim, 2) tanıtılmış kartların ilk üretim sorusu (günlük ve tur sınırıyla), 3) vadesi gelen tanıma
   for (const d of dueA.sort((a, b) => a.at - b.at)) add(d.id, "active");
   for (const d of ready.sort((a, b) => a.at - b.at).slice(0, Math.min(4, activeLeft))) add(d.id, "active");
+  // köprü: üretime açılacak kartın artikel/eşdizim seçmelisi (tanıma yolunda, dinle-anlam dışında)
+  for (const d of kopru.sort((a, b) => a.at - b.at)) addKopru(d.id);
   for (const d of dueP.sort((a, b) => a.at - b.at)) add(d.id, "passive");
   // 4) yeni kartlar: tanıtım + pasif soru; tekrar yükü arttıkça yeni sayısı düşer; öncelikliler her zaman (ayrılmış yer)
   for (const id of prio) { out.push({ lexId: id, type: "listen_meaning", intro: true, ex: 0 }); used.add(id); }
@@ -196,7 +244,9 @@ export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerI
     if (!l || !isCard(l)) continue;
     out.push({ lexId: id, type: "listen_meaning", intro: true, ex: 0 }); used.add(id); added++;
   }
-  return out;
+  // PM-069 madde 3 (inceleme #126 P1-1): tanıtımlar başa; her tanıtımın ardında ilk sorusundan önce en az ARALIK öğe kalsın
+  // (az yeni kartlı turda tekrarlar araya girer: T1 T2 R1 S1 R2 S2 …)
+  return [...out.filter((q) => q.intro), ...out.filter((q) => !q.intro)];
 }
 
 /**
@@ -329,6 +379,67 @@ export function accepted(l: Lexeme, t: QType, formIdx = 0): string[] {
   }
 }
 export function formFor(l: Lexeme, t: QType, i = 0) { const list = t === "gap" ? otherForms(l) : verbForms(l); return list.length ? list[i % list.length] : undefined; }
+
+/**
+ * PM-069 P0 ("öğretilmeden isteme yok"): boşluğun cevabı öğrenciye gösterilmiş mi?
+ * Cevabın her kelimesi şunlardan birinde olmalı: kartın kendi kelimesi ve çekimleri (gövde eşleşmesi), kartın eşdizimleri
+ * (tanıtım kartında hepsi gösterilir), öğrencinin daha önce gördüğü (tanıtılmış) kartların kelimeleri (`gorulen`).
+ */
+/** Kartta gösterilen çoğul ("-" ya da boşsa yok); Bahçe tanıtım ve cevap kartı bunu basar, boşluk kuralı da bunu sayar (inceleme #122 2. tur) */
+export const gosterilenCogul = (l: Lexeme): string | undefined => (l.pl && l.pl.trim() !== "-" && l.pl.trim() !== l.de ? l.pl.trim() : undefined);
+/**
+ * PM 7024150313: kartta en çok 3 eşdizim açık durur (boşlukta cevabı geçenler önce, sonra içerikteki sıra); kalanı "Daha fazla".
+ * Boşluk kuralı yalnızca açık duranları "gösterilmiş" sayar.
+ */
+export const ESDIZIM_ACIK = 3;
+export function esdizimler(l: Lexeme): { acik: Lexeme["collocations"]; kapali: Lexeme["collocations"] } {
+  const kendi = new Set(tokens(`${l.art ?? ""} ${l.de}`.toLowerCase()));
+  const cevap = new Set((l.forms ?? []).flatMap((f) => tokens(f.answer.toLowerCase().replace(/\s*…\s*/g, " "))).filter((w) => !kendi.has(w)));
+  const sirali = l.collocations.map((c, k) => ({ c, k, p: tokens(c.de.toLowerCase()).some((w) => cevap.has(w)) ? 1 : 0 }))
+    .sort((a, b) => b.p - a.p || a.k - b.k).map((x) => x.c);
+  return { acik: sirali.slice(0, ESDIZIM_ACIK), kapali: sirali.slice(ESDIZIM_ACIK) };
+}
+export function cevapGosterildi(l: Lexeme, cevap: string, gorulen: Set<string> = new Set()): boolean {
+  const kelimeler = tokens(cevap.toLowerCase().replace(/\s*…\s*/g, " "));
+  if (!kelimeler.length) return false;
+  // kartın kendi kelimesi: yalnızca kartta GÖSTERİLEN biçimler (başlık, artikel, çoğul). Gövde eşleşmesi yok: Perfekt ortacı,
+  // Präteritum ve hâl biçimleri tanıtılmadıkça sorulmaz (inceleme #122 P0-1)
+  const kendi = new Set(tokens(`${l.art ?? ""} ${l.de} ${gosterilenCogul(l) ?? ""}`.toLowerCase().replace(/[()]/g, " ")));
+  const eszizim = new Set(esdizimler(l).acik.flatMap((c) => tokens(c.de.toLowerCase())));
+  return kelimeler.every((x) => kendi.has(x) || eszizim.has(x) || gorulen.has(x));
+}
+/**
+ * Sorulabilir boşluk: `i`'den başlayarak cevabı gösterilmiş ilk biçim; hiçbiri yoksa null (soru türü değişir).
+ */
+export function ogretilmisForm(l: Lexeme, t: QType, i = 0, gorulen: Set<string> = new Set()): number | null {
+  const list = t === "gap" ? otherForms(l) : verbForms(l);
+  for (let d = 0; d < list.length; d++) {
+    const k = (i + d) % list.length;
+    if (cevapGosterildi(l, list[k]!.answer, gorulen)) return k;
+  }
+  return null;
+}
+/** Artikel ve hâl biçimleri: başka kartın artikeli bu kartın hâl boşluğunu "görülmüş" yapmaz (inceleme #122 P1-1) */
+const ARTIKEL = new Set(["der", "die", "das", "den", "dem", "des", "ein", "eine", "einen", "einem", "einer", "eines"]);
+/** Öğrencinin gördüğü kelimeler: tanıtılmış kartların başlık kelimeleri ve eşdizimleri (artikeller hariç), küçük harf */
+export function gorulenKelimeler(lex: Map<string, Lexeme>, tanitilan: Iterable<string>): Set<string> {
+  const g = new Set<string>();
+  for (const id of tanitilan) {
+    const x = lex.get(id); if (!x) continue;
+    for (const w of tokens([x.de, gosterilenCogul(x) ?? "", ...esdizimler(x).acik.map((c) => c.de)].join(" ").toLowerCase().replace(/[()]/g, " "))) if (!ARTIKEL.has(w)) g.add(w);
+  }
+  return g;
+}
+/** Tanıtılmış kart: Bahçe'de değerlendirilmiş (FSRS kaydı) ya da doğru cevaplanmış; tespitte yalnızca yanlış görülen sayılmaz (P1-2) */
+export const tanitildi = (it: LearnerItem) => !!(it.passive.fsrs || it.active.fsrs || it.passive.ok > 0 || it.active.ok > 0);
+/** Boşluk sorusunun gerçekleşen türü ve biçimi (Garden bunu kullanır; birim testli) */
+export function boslukSecimi(l: Lexeme, t: QType, ex: number, gorulen: Set<string>): { tip: QType; fi: number; sorulabilir: number } {
+  if (t !== "gap" && t !== "sep_perfekt") return { tip: t, fi: ex, sorulabilir: 0 };
+  const list = t === "gap" ? otherForms(l) : verbForms(l);
+  const sorulabilir = list.filter((f) => cevapGosterildi(l, f.answer, gorulen)).length;
+  const fi = ogretilmisForm(l, t, ex, gorulen);
+  return fi === null ? { tip: "tr_de", fi: ex, sorulabilir } : { tip: t, fi, sorulabilir };
+}
 
 /** Ayrılabilir fiil önekleri (absagen → sage … ab) */
 const SEP = ["ab", "an", "auf", "aus", "bei", "ein", "fest", "fort", "her", "hin", "los", "mit", "nach", "vor", "weg", "zu", "zurück", "zusammen"];

@@ -60,8 +60,11 @@ class RangeHandler(http.server.SimpleHTTPRequestHandler):
 def serve(port):
     h = functools.partial(RangeHandler, directory=DIST)
     http.server.SimpleHTTPRequestHandler.log_message = lambda *a: None
-    socketserver.TCPServer.allow_reuse_address = True
-    s = socketserver.TCPServer(("127.0.0.1", port), h)
+    # çok iş parçacıklı: WebKit'in boş bekleyen (önceden açılmış) bağlantısı ya da yarıda kalan medya isteği tek iş parçacıklı
+    # sunucuyu kilitleyip sayfanın "load" olayını geciktiriyordu (CI'da ara sıra Page.reload/inner_text 30 sn zaman aşımı)
+    socketserver.ThreadingTCPServer.allow_reuse_address = True
+    socketserver.ThreadingTCPServer.daemon_threads = True
+    s = socketserver.ThreadingTCPServer(("127.0.0.1", port), h)
     threading.Thread(target=s.serve_forever, daemon=True).start()
     return s
 
@@ -184,3 +187,12 @@ def content_file(rel):
 def finish():
     print("HATALAR:", "yok" if not ERR else "\n  " + "\n  ".join(ERR))
     sys.exit(1 if ERR else 0)
+
+
+def tanitim_gec(pg):
+    """Bahçe tanıtım kartında "Tamam": ilk soru sonra gelir (PM-069 madde 3); sonraki ekran (başka tanıtım, soru ya da tur sonu) gelene kadar bekler"""
+    eski = pg.inner_text("[data-test=garden-intro] .de-xl")
+    pg.wait_for_timeout(400)  # ekran açıldıktan sonraki 350 ms'deki dokunuş sayılmaz (çift dokunuş koruması)
+    pg.click("[data-test=garden-intro] [data-test=next]")
+    pg.wait_for_function("(eski) => { const t = document.querySelector('[data-test=garden-intro] .de-xl'); return !t || t.innerText !== eski; }", arg=eski)
+    pg.wait_for_selector("[data-test^=gq-], [data-test=garden-intro], [data-test=garden-done], [data-test=hizli-oneri]")
