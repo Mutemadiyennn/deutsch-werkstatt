@@ -124,6 +124,10 @@ def main():
         check(pg.locator("[data-test=garden-done]").count() == 1, f"tur baştan sona bitti ({n} soru)")
         txt = pg.inner_text("[data-test=garden-done]")
         check("doğru" in txt and "undefined" not in txt and "NaN" not in txt, "tur sonu özeti")
+        # PM 7030294523 B9: yanlış varsa metin gerçeği söyler (aynı turun sonunda bir kez daha geldi; "yarın" vaadi yok)
+        if pg.locator("[data-test=tur-yanlis-not]").count():
+            yn = pg.inner_text("[data-test=tur-yanlis-not]")
+            check("bu turun sonunda bir kez daha" in yn and "yarın" not in yn, f"tur sonu: yanlışlar için doğru açıklama ({yn[:60]!r})")
         # M1 günündeyken (Bugün'deki giriş günün Bahçesi'ni açar) günün kartlarından kalan varsa "Bir tur daha" (inceleme #66 P1-3)
         check(pg.locator("[data-test=garden-tomorrow]").count() == 1 or (pg.locator("[data-test=garden-kalan]").count() == 1 and pg.locator("[data-test=garden-again]").count() == 1),
               "tur sonunda yarın ne geleceği ya da günün kalan kartları yazıyor")
@@ -170,6 +174,8 @@ def main():
                   advance(pg); k += 1; continue
               answer_current(pg); k += 1
         check(any(t in ACTIVE for t in types2), f"ikinci turda üretim sorusu var ({sorted(set(types2))})")
+        # PM 7030294523 P0: İlk Hafta bitmeden ve kalıp bitirilmeden "kendi cümleni kur" hiç gelmez
+        check("gq-own_sentence" not in types2, f"kendi cümleni kur İlk Haftada sorulmuyor ({sorted(set(types2))})")
         # köprü (PM-069 madde 3): 1. turda tanıtılan kartın ilk üretim sorusundan (tr_de) önce artikel ya da eşdizim seçmeli
         # (köprü türü olmayan kart — ör. edat, yalnızca çoğul isim — doğrudan üretime geçer)
         # köprü 1. turda da gelmiş olabilir (yanlıştan sonraki tekrar artikel/eşdizim olabilir)
