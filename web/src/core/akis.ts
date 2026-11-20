@@ -12,7 +12,7 @@
  * Kısıt sağlanamazsa en yakın çözüm alınır ve `gevseme` kaydına yazılır; plan hiçbir zaman boş olmaz (BY-12).
  */
 import POLICY from "../policy.json" with { type: "json" };
-import { bilinmeyenler, toks, type Bilinen, type Gun, type Halka, type KumeDizini, type LearnerItem, type Lexeme, type TemelDers } from "@dw/shared";
+import { bilinmeyenler, kalipSecenekleri, toks, type Bilinen, type Gun, type Halka, type KumeDizini, type LearnerItem, type Lexeme, type TemelDers } from "@dw/shared";
 
 export type Kip = "gor" | "duy" | "kur" | "soyle";
 export type AdimTuru =
@@ -90,7 +90,9 @@ export function planGun(g: PlanGirdi): GunPlani {
   const cerceveGorulen = new Map<string, number>();
   const cerceveGor = (cumle: string | undefined) => { for (const t of new Set(toks(cumle))) if (cerceveMi(g.dizin, t)) cerceveGorulen.set(t, (cerceveGorulen.get(t) ?? 0) + 1); };
   const uretimeHazir = (cumle: string) => toks(cumle).every((t) => !cerceveMi(g.dizin, t) || (cerceveGorulen.get(t) ?? 0) >= pol.cerceve_uretim_min);
-  const K = (): Bilinen => ({ kart: tanitilan, biten });
+  /** öğretilmiş kalıplar (halka `kaliplar` ve günün ders kalıpları, yerleştikçe): kartsız çerçeve sözcükleri bilinir (#168) */
+  const ogretilenKalip: string[][] = [];
+  const K = (): Bilinen => ({ kart: tanitilan, biten, kaliplar: ogretilenKalip });
   const gorevGecer = (de: string, haric: string[] = []) => bilinmeyenler(g.dizin, de, K(), haric).length === 0;
   const gosterimGecer = (de: string) => bilinmeyenler(g.dizin, de, K()).length <= 1;
 
@@ -227,8 +229,15 @@ export function planGun(g: PlanGirdi): GunPlani {
       }
       adaylar.push(...tanit);
       // kalıp: parçaları bilinir olduğu anda (K8) — tanıtım sayısına girer; grupta yer varsa
-      const kalip = tanit.length < pol.tanitim_art_arda ? kaliplar.find((k) => !k.yerlesti && gosterimGecer(k.de) && bilinmeyenler(g.dizin, k.de, K()).length === 0) : undefined;
-      if (kalip) { kalip.yerlesti = true; adaylar.push({ tur: "kalip", kartlar: [], cumle: kalip.de, kaynak: "ders", ders: { id: kalip.ders, oge: kalip.oge }, neden: "kalıp: parçalarını artık biliyorsun" }); }
+      // halkanın kendi kalıpları (#165; TARGET3c "yeni kalıp"): halkanın ilk öbeğinde, tanıtımdan hemen sonra
+      if (i === 0) for (const kp of h.kaliplar ?? []) {
+        adaylar.push({ tur: "kalip", kartlar: [], cumle: kp.de, kaynak: "halka", neden: `kalıp: ${kp.tr}` });
+        ogretilenKalip.push(...kalipSecenekleri(kp.de));
+      }
+      // dersin kalıbı: kalıbın kendi çerçeve sözcükleri öğretileceği için onlar sayılmaz; kartlı parçaları bilinir olduğu anda (K8)
+      const kalipK = (de: string): Bilinen => ({ ...K(), kaliplar: [...ogretilenKalip, ...kalipSecenekleri(de)] });
+      const kalip = tanit.length < pol.tanitim_art_arda ? kaliplar.find((k) => !k.yerlesti && bilinmeyenler(g.dizin, k.de, kalipK(k.de)).length === 0) : undefined;
+      if (kalip) { kalip.yerlesti = true; ogretilenKalip.push(...kalipSecenekleri(kalip.de)); adaylar.push({ tur: "kalip", kartlar: [], cumle: kalip.de, kaynak: "ders", ders: { id: kalip.ders, oge: kalip.oge }, neden: "kalıp: parçalarını artık biliyorsun" }); }
       const pay = Math.ceil(tasinan.length / Math.max(1, obekSayisi - i / pol.tanitim_art_arda));
       adaylar.push(...sirala([...kullan, ...tasinan.splice(0, pay)], durakId));
     }

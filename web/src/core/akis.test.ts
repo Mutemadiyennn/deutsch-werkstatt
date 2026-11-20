@@ -6,16 +6,16 @@ import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { z } from "zod";
-import { Halka, bilinmeyenler, kumeDizini, toks, type LearnerItem } from "@dw/shared";
+import { Halka, bilinmeyenler, genelAdlarAyikla, kalipSecenekleri, kumeDizini, toks, type LearnerItem } from "@dw/shared";
 import { loadContent, ROOT } from "../../../content/tools/load.ts";
 import { planGun, POLITIKA, KIP, type GunPlani } from "./akis.ts";
 
 const c = loadContent();
-const genel = readFileSync(join(ROOT, "docs/v2/reviews/genel-adlar.md"), "utf8").split("\n").filter((l) => l.startsWith("### ")).map((l) => l.slice(4));
+const genel = genelAdlarAyikla(readFileSync(join(ROOT, "docs/v2/reviews/genel-adlar.md"), "utf8"));
 const dizin = kumeDizini(c.lexemes, c.temel.map((t) => t.data), c.world, genel);
 const dersler = new Map(c.temel.map((t) => [t.data.id, t.data]));
 const g1 = c.m1.find((x) => x.data.day === 1)!.data;
-const halkalar = z.array(Halka).parse(JSON.parse(readFileSync(join(ROOT, "content/tools/fixtures/m1/halkalar-gun-01.json"), "utf8")).halkalar);
+const halkalar = z.array(Halka).parse(JSON.parse(readFileSync(join(ROOT, "docs/v2/reviews/halka/gun-01-halkalar.json"), "utf8")).halkalar);
 const gun = { ...g1, halkalar };
 
 const fsrs = (due: string) => ({ due, stability: 3, difficulty: 5, scheduled_days: 1, reps: 2, lapses: 0, learning_steps: 0, state: 2 });
@@ -78,11 +78,13 @@ describe("Halka planlayıcısı (AKIS AK-2, AK-3, AK-9)", () => {
   });
   it("AK-3: görev adımında K(t) dışında sözcük 0 (kapı hiç gevşemez)", () => {
     for (const durum of DURUMLAR) for (const t of TOHUMLAR.slice(0, 10)) {
-      const p = plan(t, durum); const bil = new Set(DURUM[durum]!.onceki);
+      const p = plan(t, durum); const bil = new Set(DURUM[durum]!.onceki); const kp: string[][] = [];
       for (const d of p.duraklar) for (const a of d.adimlar) {
         if (a.tur === "tanit") a.kartlar.forEach((k) => bil.add(k));
+        if (a.tur === "kalip" && a.cumle) kp.push(...kalipSecenekleri(a.cumle));   // öğretilen kalıbın kartsız çerçeve sözcükleri bilinir (#168)
         if (!a.cumle || ["tanit", "kalip", "sahne", "eslestir", "listen_meaning", "resimden_sec"].includes(a.tur)) continue;
-        expect(bilinmeyenler(dizin, a.cumle, { kart: bil, biten: new Set() }), `${t} ${d.id} ${a.tur}: ${a.cumle} ${JSON.stringify(bilinmeyenler(dizin, a.cumle, { kart: bil, biten: new Set() }))}`).toEqual([]);
+        const K = { kart: bil, biten: new Set<string>(), kaliplar: kp };
+        expect(bilinmeyenler(dizin, a.cumle, K), `${t} ${d.id} ${a.tur}: ${a.cumle} ${JSON.stringify(bilinmeyenler(dizin, a.cumle, K))}`).toEqual([]);
       }
     }
   });
@@ -124,7 +126,7 @@ describe("1. gün plan dökümü (PM 7046461673)", () => {
     const p = plan("1:dokum", "sifir");
     const sat: string[] = [];
     sat.push(`# 1. gün planı: döküm (tohum \`${p.tohum}\`, öğrenci durumu: sıfır)`, "");
-    sat.push(`> Kendiliğinden üretildi: \`web/src/core/akis.test.ts\` ("1. gün plan dökümü"). Girdi: gerçek içerik + İÇ'in 1. gün halka önerisi (\`content/tools/fixtures/m1/halkalar-gun-01.json\`, #165). Süreler \`policy.akis.adim_sn\` tahminidir; **K1 ölçütü ilk cihaz ölçümüne kadar yalnız rapor** (PM 7046461673). Video ve ısınma durakları henüz yok.`, "");
+    sat.push(`> Kendiliğinden üretildi: \`web/src/core/akis.test.ts\` ("1. gün plan dökümü"). Girdi: gerçek içerik + İÇ'in 1. gün halka önerisi (\`docs/v2/reviews/halka/gun-01-halkalar.json\`, #165 2. sürüm; halka kalıpları dahil). Süreler \`policy.akis.adim_sn\` tahminidir; **K1 ölçütü ilk cihaz ölçümüne kadar yalnız rapor** (PM 7046461673). Video ve ısınma durakları henüz yok.`, "");
     const seans = new Map<number, number>();
     for (const d of p.duraklar) seans.set(d.seans, (seans.get(d.seans) ?? 0) + d.tahmini_dk);
     sat.push(`**Toplam:** ${p.toplam_dk.toFixed(1)} dk · ${[...seans].map(([s, dk]) => `seans ${s}: ${dk.toFixed(1)} dk`).join(" · ")} · politika seans aralığı ${POLITIKA.seans_dk[0]}–${POLITIKA.seans_dk[1]} dk (rapor)`, "");
