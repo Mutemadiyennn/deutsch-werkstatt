@@ -75,6 +75,13 @@ export async function getMeta<T>(key: string): Promise<T | undefined> { return (
 export async function setMeta(key: string, value: unknown) { await db.meta.put({ key, value }); }
 export async function delMeta(key: string) { await db.meta.delete(key); }
 /** Bu zamandan sonra ilk kez tanıtılan (pasif) öğeler: gün sonu özetinde "yeni anladığın kelimeler" (#58 B3) */
+/** B5: bugün (yerel gün) cevaplanmış kelime kartları: passive/active `last` bugün */
+export async function bugunGorulenler(now = new Date()): Promise<Set<string>> {
+  const gun = (iso?: string) => { if (!iso) return ""; const d = new Date(iso); return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`; };
+  const bugun = gun(now.toISOString());
+  const l = await db.items.filter((it) => it.kind === "lexeme" && (gun(it.passive?.last) === bugun || gun(it.active?.last) === bugun)).toArray();
+  return new Set(l.map((x) => x.itemId));
+}
 export async function tanitilanlar(sonra: string): Promise<LearnerItem[]> { return db.items.filter((it) => (it.firstAt?.passive ?? "") >= sonra).toArray(); }
 
 export async function saveFocus(day: FocusDay, rt: Runtime, previous?: FocusDay) {

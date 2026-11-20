@@ -106,6 +106,8 @@ jobs:
         run: cd tests/e2e && python v2_veri.py
       - name: "Temel ders oynatıcısı (#58 A5, Seans 2): R0 dersi baştan sona"
         run: cd tests/e2e && python v2_ders.py --shots /tmp/shots
+      - name: "Ders ve Bahçe döngüsüzlüğü (B5, PM 7030294523): bugün Bahçede görülen kelime derste yeniden tanıtılmaz, en çok bir kez cümle içinde sorulur"
+        run: cd tests/e2e && python v2_ders_bahce.py --shots /tmp/shots
       - name: "Ders yolu (#58 A5b): 1. gün Bugün'den baştan sona (Bahçe → temel ders → video + sesler), XP ve seri"
         run: cd tests/e2e && python v2_yol.py --shots /tmp/shots
       - name: "Yol haritası ve durum çubuğu (#58 B11a, PM-065): düğümler, BAŞLA, kilitli, gün bandı ve Rehber, seri/XP/dakika, kontrast"
