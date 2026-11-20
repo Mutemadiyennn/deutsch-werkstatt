@@ -174,9 +174,9 @@ def main():
             b2, c2 = launch(p); pg2 = c2.new_page(); pg2.route("https://api.e2e.test/**", api)
             login_onboard(pg2, PORT); pg2.wait_for_selector("[data-tab=today]"); pg2.wait_for_timeout(400)
             v2 = dialogue_answer(pg2, base, near)
-            if v2 and "kontrol edemedim" in v2: pg = pg2; break
+            if v2 and "denetleyemedi" in v2: pg = pg2; break
             b2.close()
-        check(v2 is not None and "kontrol edemedim" in v2, f"C: tanınmayan yakın cevap 'kontrol edemedim' ({(v2 or '')[:50]!r})")
+        check(v2 is not None and "denetleyemedi" in v2, f"C: tanınmayan yakın cevap 'denetleyemedi' ({(v2 or '')[:50]!r})")
         # koşulsuz: düğme yoksa kırmızı (inceleme #43 3. tur)
         check(pg.locator("[data-test=claim]").count() == 1, "C: 'kontrol edemedim' bandında 'Evet, aynı anlamda' düğmesi var")
         if pg.locator("[data-test=claim]").count():
