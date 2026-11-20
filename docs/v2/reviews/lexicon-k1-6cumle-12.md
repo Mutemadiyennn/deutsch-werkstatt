@@ -1,0 +1,21 @@
+# lexicon c6-12: dilbilimci incelemesi (PM-062, 6 cümle)
+
+- **İncelenen:** 50 kart, 303 boşluk, 300 örnek.
+- **Düzeltilen:** 44 kart yamada; 32 kartta içerik düzeltmesi var, 12'sinde yalnızca unvan düzeni değişti. 6 kart değişmeden geçti.
+- **Unvan:** Türkçede "Frau Brandl" yerine "Brandl Hanım" (30 kart).
+- **Kişisel bilgi:**
+  - `lx:Onkel` hata notları ve b4 öğrenciden ayrıldı.
+  - `lx:vorstellen` ve `lx:erkennen` örneklerindeki Türk adları Ioana ve Marta oldu.
+- **WORLD'de olmayan ayrıntılar** adsız kişilere verildi: Derya'nın arabası, Basti'nin salonu, Tobi'nin dağ evi.
+- **Siyaset:** `lx:Wahl` boşlukları "tercih" anlamına çekildi.
+- **Başka kartla çakışma:**
+  - `lx:total` b5 ve `lx:deswegen` b1 değişti.
+  - `lx:hängen`, `lx:Kaffee` ve `lx:Person` örnekleri değişti.
+- **Anlam ve doğallık:** reich, raten, fassen, Million, laden, krank, träumen, steigen ve fehlen düzeltildi.
+- **Düzey:** 8 zor kelime çıktı.
+- **İpucu ve açıklama:** iki nokta ve ikinci fikir kaldırıldı; tek karşılık sağlandı.
+- **Fotoğraf:** `lx:krank`'ın beş örneğine sorgu eklendi; yazı ya da çocuk yüzü isteyen sorgular değişti.
+- **Açık:**
+  - `lx:total` "çok" çevirisi.
+  - `lx:steigen` ö6 "ateş artıyor".
+  - `lx:hängen`'de `ist` de giriyor.

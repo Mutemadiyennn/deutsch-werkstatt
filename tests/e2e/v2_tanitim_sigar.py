@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, content_file
 
 PORT = 4216
-GORSEL = 250  # görsel alanı (≈250 px; PM): görsel yoksa aynı yükseklikte yer tutucu konur
+GORSEL = 210  # görsel alanı: PM'in 250 px'i (görsel 200 + atıf + aralık) − 40; C (PM 7030294523) tanıtımda görseli en çok 160 px yapar
 
 
 def en_uzun():
