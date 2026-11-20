@@ -83,6 +83,11 @@ export const isCard = (l: Lexeme) => kartMi(l);
 const verbForms = (l: Lexeme) => l.forms.filter(() => l.pos === "verb");
 const otherForms = (l: Lexeme) => l.forms.filter(() => l.pos !== "verb");
 
+/** PM 7030294523 B4: "Fotoğraftaki ne?" yalnızca kartın seçilmiş fotoğrafı varken (foto.json `<id>#kart`) ve çevrimiçiyken.
+ *  Uygulama tur kurmadan önce `fotoluKartlar` ile bildirir; bildirilmezse (birim testleri) eski kural: fotoğraf sorgusu (`img`) varsa. */
+let fotolu: Set<string> | null = null;
+export function fotoluKartlar(s: Set<string> | null) { fotolu = s; }
+
 /** Bu karta bu yolda sorulabilecek türler (içeriğin taşıdığı veriye göre) */
 export function availableTypes(l: Lexeme, path: "passive" | "active"): QType[] {
   if (path === "passive") {
@@ -95,7 +100,7 @@ export function availableTypes(l: Lexeme, path: "passive" | "active"): QType[] {
   }
   if (!isCard(l) || l.tier === "passive") return [];
   const t: QType[] = ["tr_de"];
-  if (isNoun(l) && l.img) t.push("photo_say");
+  if (isNoun(l) && (fotolu ? fotolu.has(l.id) : !!l.img)) t.push("photo_say");
   if (otherForms(l).length) t.push("gap");
   if (verbForms(l).length) t.push("sep_perfekt");
   t.push("own_sentence");
