@@ -50,8 +50,8 @@ export interface GardenQ {
 /** B16 sına kabulü: isimde artikel zorunlu (artikelsiz kabul edilmez), öteki türlerde TR→DE kabulü */
 export const sinaKabul = (l: Lexeme): string[] => (isNoun(l) ? [`${l.art} ${l.de}`] : accepted(l, "tr_de"));
 /** Kendiliğinden öneri: art arda bu kadar yeni kart ilk tanıma sorusunda hızlı (≤ HIZLI_SN) ve doğru bilinince */
-export const ONERI_ART_ARDA = 3;
-export const HIZLI_SN = 8;
+export const ONERI_ART_ARDA = POLICY.garden.oneri_art_arda;
+export const HIZLI_SN = POLICY.garden.hizli_sn;
 /** Tura hızlı şerit uygula: yeni kartların tanıtımı sına sorusuna döner (tekrar kartları ve yanlış tekrarları aynen) */
 export const sinaTuru = (round: GardenQ[], bas = 0): GardenQ[] => round.map((q, i) => (i >= bas && q.intro && !q.retry ? { ...q, intro: false, sina: true, type: "tr_de" as QType } : q));
 
@@ -59,9 +59,9 @@ export const isNoun = (l: Lexeme) => l.pos === "noun" && !!l.art;
 
 /**
  * PM-062 4(b): üretim yolunda bu kararlılığa (gün) ulaşan kart "güçlü" sayılır; fotoğraf ezberini kırmak için fotoğraf
- * sorusu (photo_say) artık seçilmez. `policy.json` gelene kadar sabit (D-111).
+ * sorusu (photo_say) artık seçilmez. Eşik `policy.json` → garden.guclu_gun (D-111, PM-078 H4).
  */
-export const GUCLU_GUN = 10;
+export const GUCLU_GUN = POLICY.garden.guclu_gun;
 export const guclu = (it: LearnerItem | undefined) => (it?.active.fsrs?.stability ?? 0) >= GUCLU_GUN;
 /** Gösterilen cümleden sonra yazılacak sayaç (geri gitmez): sonraki oturum gösterilenin ardından başlar */
 export const sonrakiExSeen = (it: LearnerItem | undefined, gosterilen: number) => Math.max(it?.exSeen ?? 0, gosterilen + 1);
@@ -177,7 +177,7 @@ export function startedToday(items: Iterable<LearnerItem>, now = new Date()): { 
   return { passive, active };
 }
 const localDay = (d: Date) => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
-export const DAILY_NEW = 25, DAILY_ACTIVE = 12;
+export const DAILY_NEW = POLICY.garden.gunluk_yeni, DAILY_ACTIVE = POLICY.garden.gunluk_aktif;
 
 /**
  * M1 günü yeni kart hakkı (inceleme #66): günün kartları takvim sınırına takılmaz; kişisel kelimeler (duyduğum, nasıl derim)
