@@ -1,44 +1,135 @@
 """
 PM 7024150313: Bahçe tanıtım kartı en uzun kartta da (en çok eşdizim, en uzun örnek cümle, görselli) 430×932'de düğmelere
-değmeden sığar; kartta en çok 3 eşdizim açık, kalanı "Daha fazla (n)" ile açılır.
+değmeden sığar; kartta en çok 3 eşdizim açık, kalanı "Daha fazla (n)" ile açılır. Tahminen en uzun 40 kart gerçek görsel düzeniyle
+(seçilmiş fotoğraf + atıf) ölçülür; görsel gizlenmez, sığmayan kartta kelimenin yanında kare (D-123, #12 7035903811).
 python3 tests/e2e/v2_tanitim_sigar.py [--browser webkit] [--device "iPhone 15"] [--shots DIR]
 """
+import base64, json, math
 from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, content_file
 
 PORT = 4216
-GORSEL = 210  # görsel alanı: PM'in 250 px'i (görsel 200 + atıf + aralık) − 40; C (PM 7030294523) tanıtımda görseli en çok 160 px yapar
+ADAY = 80  # tahminen en uzun kartlar; her biri görselli ölçülür (inceleme #136 P2-4, #152 P2-5)
+PAY = 8    # kart altı ile düğme üstü arasında en az: tam düzende 8 px (eylem çubuğunun saydam geçişi; inceleme #152 P2-6)
+PAY_KARE = 4  # kare düzende 4 px (#12 7036694275 md. 3)
+pay = lambda r: PAY_KARE if r.get("duzen") == "kare" else PAY
+JPEG = base64.b64decode("/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/yQALCAABAAEBAREA/8wABgAQEAX/2gAIAQEAAD8A0s8g/9k=")
+
+
+def satir(n, w):
+    return max(1, math.ceil(n / w))
+
+
+def tahmin(l):
+    """kabaca kart yüksekliği: kelime (büyük yazı, ~13 harf/satır), anlam + çoğul, en uzun örnek, ilk 3 eşdizim (~40 harf/satır)"""
+    kelime = satir(len((l.get("art") or "") + " " + l["de"]), 13)
+    anlam = satir(len(l.get("tr", "")) + len(l.get("pl") or "") + 12, 40)
+    # örnek alanı en uzun örnek kadar yer tutar (#136 C): bütün örneklerin en uzunu
+    ornek = max(satir(len(e["de"]), 40) + satir(len(e.get("tr", "")), 40) for e in l["examples"])
+    cogul = satir(len(l.get("pl") or ""), 30) if l.get("pl") else 0
+    esd = sum(satir(len(c["de"]) + len(c.get("tr", "")) + 3, 40) for c in (l.get("collocations") or [])[:3])
+    return 62 * kelime + 24 * (anlam + ornek + esd + cogul) + (40 if len(l.get("collocations") or []) > 3 else 0) + (44 if len(l["examples"]) > 1 else 0)
+
+
+def adaylar():
+    lex = content_file("lexemes.json")["lexemes"]
+    kart = [l for l in lex if l.get("card", True) is not False and l.get("tier") != "passive" and l.get("examples")]
+    return sorted(kart, key=lambda l: -tahmin(l))[:ADAY]
 
 
 def en_uzun():
-    lex = content_file("lexemes.json")["lexemes"]
-    kart = [l for l in lex if l.get("card", True) is not False and l.get("tier") != "passive" and l.get("examples")]
-    return max(kart, key=lambda l: (len(l.get("collocations") or []), max(len(e["de"]) + len(e.get("tr", "")) for e in l["examples"][:1])))
+    return max(adaylar(), key=lambda l: (len(l.get("collocations") or []), tahmin(l)))
+
+
+def ac(pg, base, lid):
+    pg.evaluate("(k) => sessionStorage.setItem('e2e-kart', k)", lid)
+    # her kart temiz bir yüklemeyle açılır (WebKit'te art arda iki hash geçişi birleşebiliyor; #152 CI zaman aşımı)
+    pg.goto(base + "#/garden/1"); pg.reload()
+    pg.wait_for_selector("[data-test=garden-intro], [data-test=garden-done], [data-test=garden-empty], [data-test=hizli-oneri]", timeout=15000)
+    if not pg.locator("[data-test=garden-intro]").count():
+        raise AssertionError(f"{lid}: tanıtım yerine başka ekran ({pg.inner_text('main')[:120]!r})")
+    # görsel çizilip kart oturana kadar (düzen kararı dahil)
+    pg.wait_for_function("""() => { const k = document.querySelector('[data-test=garden-intro] section.card'); if (!k) return false;
+      const f = k.querySelector('[data-test=foto] img'); return !!(f && f.complete); }""", timeout=8000)
+    pg.wait_for_timeout(300); pg.evaluate("window.scrollTo(0, 0)")
+
+
+def olc(pg):
+    return pg.evaluate("""() => { const k = document.querySelector('[data-test=garden-intro] section.card');
+      const ust = Math.min(...[...document.querySelectorAll('[data-test=garden-intro] .actionbar button')].map((b) => b.getBoundingClientRect()).filter((r) => r.height > 0).map((r) => r.top));
+      const img = k.querySelector('[data-test=foto] img');
+      return { alt: Math.round(k.getBoundingClientRect().bottom + scrollY), ust: Math.round(ust), duzen: k.dataset.duzen,
+        img: Math.round(img?.getBoundingClientRect().height || 0), atif: !!k.querySelector('[data-test=foto-atif]'), ...baslik() };
+      // PM 7041856903: başlık (artikel + kelime) tek satır, taşmaz, hecelenmez
+      function baslik() { const e = k.querySelector('[data-test=kelime-baslik]'); if (!e) return { satir: 0 };
+        const cs = getComputedStyle(e); const fs = parseFloat(cs.fontSize); const lh = parseFloat(cs.lineHeight) || fs * 1.15;
+        return { satir: Math.round(e.getBoundingClientRect().height / lh), tasma: e.scrollWidth > e.clientWidth + 0.5, boy: Math.round(fs),
+          metin: e.innerText, hy: cs.hyphens || cs.webkitHyphens, ...anlam() }; }
+      // PM 7043428377: kare düzende ayraç noktası yok; çoğulun Almanca kelimesi bölünmez
+      function anlam() { const sol = k.querySelector('.kk-sol'); if (!sol) return {};
+        const pl = sol.querySelector('[data-test=intro-pl] [lang=de]');
+        return { solMetin: sol.innerText, plParca: pl ? new Set([...pl.getClientRects()].map((r) => Math.round(r.top))).size : 0 }; } }""")
 
 
 def main():
     srv = serve(PORT); base = f"http://127.0.0.1:{PORT}/"
     shots = arg("--shots")
-    l = en_uzun()
+    aday = adaylar(); l = en_uzun()
+    # her adaya seçilmiş açık fotoğraf (gerçek düzen: görsel + atıf); görsel isteği sahte JPEG
+    kayit = {f"{x['id']}#kart": {"src": f"https://foto.example/{i}.jpg", "sinif": "acik", "yazar": "Örnek Yazar", "lisans": "CC BY 2.0",
+             "lisans_url": "https://creativecommons.org/licenses/by/2.0", "sayfa": "https://commons.wikimedia.org/wiki/File:X.jpg"} for i, x in enumerate(aday + [{"id": "lx:Montag"}])}
     with sync_playwright() as p:
         # PM ölçütü 430×932 (kabukta tam ekran); cihaz öykünmesinin Safari çubuklu görünümü değil
         b, ctx = launch(p, viewport={"width": 430, "height": 932}); pg = new_page(ctx)
+        pg.route("**/foto.json", lambda r: r.fulfill(status=200, content_type="application/json", body=json.dumps({"surum": 1, "foto": kayit})))
+        pg.route("https://foto.example/**", lambda r: r.fulfill(status=200, content_type="image/jpeg", body=JPEG))
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
-        pg.evaluate("(k) => sessionStorage.setItem('e2e-kart', k)", l["id"])
-        pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=garden-intro]")
+        # 1) en uzun 80 aday: hepsi düğmelere en az PAY px kala sığar; görsel HİÇ gizlenmez (LS §1); sığmayan kartta kare düzen
+        sonuc = []
+        for x in aday:
+            ac(pg, base, x["id"]); r = olc(pg); sonuc.append((x["id"], r))
+        tasan = [(i, r["alt"] + pay(r) - r["ust"]) for i, r in sonuc if r["alt"] + pay(r) > r["ust"]]
+        check(not tasan, f"en uzun {len(aday)} aday kart düğmelere en az {PAY} px (kare düzende {PAY_KARE}) kala sığıyor (taşan: {tasan[:6]})")
+        gorselsiz = [i for i, r in sonuc if not r["img"] or not r["atif"]]
+        check(not gorselsiz, f"görsel ve atıf hiçbir kartta gizlenmiyor (görselsiz: {gorselsiz[:6]})")
+        kare = [i for i, r in sonuc if r["duzen"] == "kare"]
+        check(all(r["img"] <= (104 if r["duzen"] == "kare" else 160) + 1 for _, r in sonuc), "görsel boyu düzenin sınırında (tam 160, kare 104)")
+        print(f"  · düzen: tam {len(aday) - len(kare)}, kare {len(kare)} {kare[:8]}")
+        # PM 7041856903: başlık her kartta tek satır, taşmaz, tire + satır sonu yok; kare düzende sığmazsa 28 → 24 → 21 px
+        bolunen = [(i, r["satir"], r["metin"]) for i, r in sonuc if r["satir"] != 1 or "\n" in r["metin"]]
+        check(not bolunen, f"başlık {len(sonuc)} kartın hepsinde tek satır, bölünmez (bölünen: {bolunen[:6]})")
+        tasan_b = [(i, r["boy"]) for i, r in sonuc if r.get("tasma")]
+        check(not tasan_b, f"başlık hiçbir kartta kesilmiyor; 21 px'te de sığmayan yok (sığmayan: {tasan_b[:6]})")
+        check(all(r["hy"] == "none" for i, r in sonuc), "başlık hecelenmez (hyphens: none)")
+        nokta = [(i, r["solMetin"]) for i, r in sonuc if r["duzen"] == "kare" and "·" in r.get("solMetin", "")]
+        check(not nokta, f"kare düzende anlam ve çoğul ayrı satırda, ayraç noktası yok (noktalı: {nokta[:4]})")
+        bolunen_pl = [i for i, r in sonuc if r["duzen"] == "kare" and r.get("plParca", 0) > 1]
+        check(not bolunen_pl, f"kare düzende çoğul kelimesi bölünmüyor (bölünen: {bolunen_pl[:6]})")
+        boylar = {}
+        for i, r in sonuc:
+            boylar.setdefault(r["boy"], []).append(i)
+        print(f"  · başlık boyu: " + ", ".join(f"{b} px: {len(v)}" + (f" {v[:4]}" if b < 28 else "") for b, v in sorted(boylar.items(), reverse=True)))
+        # kısa kart tam düzende 160 px kalır; "Daha fazla" aç/kapat düzeni değiştirmez (inceleme #152 P1-2)
+        ac(pg, base, "lx:Montag"); r = olc(pg)
+        check(r["duzen"] == "tam" and r["img"] >= 150, f"kısa kart tam düzende, görsel 160 px ({r})")
+        # tam düzende kalan, 3'ten çok eşdizimli kart (kare düzende ölçüm zaten kapalı; inceleme #152 2. tur P2)
+        uzun_daha = next((i for i, r in sonuc if r["duzen"] == "tam" and len(next(x for x in aday if x["id"] == i).get("collocations") or []) > 3), None)
+        check(uzun_daha is not None, f"'Daha fazla' denetimi için tam düzende 3'ten çok eşdizimli kart var ({uzun_daha})")
+        if uzun_daha:
+            ac(pg, base, uzun_daha); once = olc(pg)
+            pg.click("[data-test=esdizim-daha] > summary"); pg.wait_for_timeout(700)
+            pg.click("[data-test=esdizim-daha] > summary"); pg.wait_for_timeout(500)
+            sonra = olc(pg)
+            check(once["duzen"] == sonra["duzen"] and abs(once["img"] - sonra["img"]) <= 1, f"'Daha fazla' aç/kapat düzeni ve görseli değiştirmiyor ({uzun_daha}: {once['duzen']}/{once['img']} → {sonra['duzen']}/{sonra['img']})")
+        # 2) eşdizim kuralı ve ayrıntı ölçütleri en çok eşdizimli aday üzerinde
+        ac(pg, base, l["id"])
         n_acik = pg.locator("[data-test=intro-colloc] > ul.esdizim-liste > li").count()
         n_top = len(l.get("collocations") or [])
         check(n_acik == min(3, n_top), f"en çok 3 eşdizim açık ({n_acik}/{n_top}; {l['id']})")
         if n_top > 3:
             check(pg.inner_text("[data-test=esdizim-daha] > summary").strip() == f"Daha fazla ({n_top - 3})", "kalanı 'Daha fazla (n)'")
-        # görselli en kötü durum: görsel yoksa aynı yerde 250 px yer tutucu
-        if not pg.locator("[data-test=garden-intro] figure").count():
-            pg.evaluate(f"""() => {{ const k = document.querySelector('[data-test=garden-intro] .kicker'); const d = document.createElement('div');
-              d.style.height = '{GORSEL}px'; d.setAttribute('data-test', 'gorsel-yer'); k.after(d); }}""")
-        pg.evaluate("window.scrollTo(0, 0)"); pg.wait_for_timeout(200)
-        alt = pg.evaluate("() => document.querySelector('[data-test=garden-intro] section.card').getBoundingClientRect().bottom")
-        ust = pg.evaluate("() => Math.min(...[...document.querySelectorAll('.actionbar button')].map((b) => b.getBoundingClientRect().top))")
-        check(alt <= ust, f"tanıtım kartı düğmelere değmeden sığıyor (kart altı {round(alt)} px ≤ düğme üstü {round(ust)} px; görselli, {l['id']})")
+        r = olc(pg)
+        check(r["alt"] + pay(r) <= r["ust"], f"tanıtım kartı düğmelere değmeden sığıyor (kart altı {r['alt']} px + {pay(r)} ≤ düğme üstü {r['ust']} px; düzen {r['duzen']}, {l['id']})")
         if shots: shot(pg, "t01-en-uzun-kart", full=False)
         # PM 7026866757: (1) örnek cümle tam genişlikte, hecelenmez; (2) "Başka cümle" ve "Daha fazla" aynı üslup;
         # (3) "Daha fazla" açılınca son satır görünür ve birincil düğmeyle kesişmez
