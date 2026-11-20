@@ -68,9 +68,12 @@ KURALLAR = r"""(ana) => {
     if (r.top < -0.5 || r.left < -0.5 || r.bottom > innerHeight + 0.5 || r.right > innerWidth + 0.5) { ihlal.push(['B1', `birincil düğme görüş alanına sığmıyor: ${ad(b)} (${Math.round(r.top)}–${Math.round(r.bottom)} / ${innerHeight})`]); continue; }
     // kırpan ata (overflow ≠ visible): düğme atanın kutusundan taşıyorsa kesik
     let kesik = null;
-    for (let x = b.parentElement; x && x !== document.body; x = x.parentElement) {
-      const st = getComputedStyle(x); if (st.overflowX === 'visible' && st.overflowY === 'visible') continue;
-      const a = x.getBoundingClientRect(); if (r.top < a.top - 0.5 || r.bottom > a.bottom + 0.5 || r.left < a.left - 0.5 || r.right > a.right + 0.5) { kesik = x; break; }
+    // eksen eksen: yalnız o eksende kırpan ata o eksendeki taşmayla karşılaştırılır; fixed düğme ata kutusuna bağlı değildir
+    if (getComputedStyle(b).position !== 'fixed') for (let x = b.parentElement; x && x !== document.body; x = x.parentElement) {
+      const st = getComputedStyle(x), a = x.getBoundingClientRect();
+      const kx = st.overflowX !== 'visible' && (r.left < a.left - 0.5 || r.right > a.right + 0.5);
+      const ky = st.overflowY !== 'visible' && (r.top < a.top - 0.5 || r.bottom > a.bottom + 0.5);
+      if (kx || ky) { kesik = x; break; }
     }
     if (kesik) { ihlal.push(['B1', `birincil düğme atası tarafından kırpılıyor: ${ad(b)} ⊄ ${ad(kesik)}`]); continue; }
     // 5 nokta: dört köşe (2 px + köşe yuvarlaklığının 0,3'ü içeriden; yay dışı nokta düğmeye düşmez) ve merkez
@@ -91,7 +94,8 @@ KURALLAR = r"""(ana) => {
     if (dok[i].contains(dok[j]) || dok[j].contains(dok[i])) continue;
     if ((kat[i] === null) !== (kat[j] === null)) {
       // akıştaki öğe sabit çubuğun altında: öğe görüş alanının ortasına getirilince hâlâ binme varsa ihlal (kısa sayfa, son satır)
-      if (ust(kutu[i], kutu[j]) <= 1) continue;
+      // yatayda örtüşmüyorsa kaydırma binme yaratamaz; örtüşüyorsa (ilk konumda görüş alanı dışında olsa da) yeniden ölçülür
+      if (Math.min(kutu[i].right, kutu[j].right) - Math.max(kutu[i].left, kutu[j].left) <= 1) continue;
       const akis = kat[i] === null ? dok[i] : dok[j], sabit = akis === dok[i] ? dok[j] : dok[i];
       const y0 = scrollY; akis.scrollIntoView({ block: 'center' });
       const o = ust(akis.getBoundingClientRect(), sabit.getBoundingClientRect()); scrollTo(0, y0);
@@ -194,6 +198,7 @@ OZ = [
   ("B2", False, sayfa("<main><button class=btn style='position:absolute;top:10px'>A</button><button class=btn style='position:absolute;top:30px'>B</button></main>"), True),
   ("B2", False, sayfa("<main><button class=btn>A</button><button class=btn style='margin-top:12px'>B</button></main>"), False),
   ("B2", False, sayfa("<main><button class=btn style='margin-top:30px'>Son</button><nav style='position:fixed;top:20px;left:0;right:0;height:60px'><a href='#' style='display:block;height:60px'>Sekme</a></nav></main>"), True),
+  ("B2", False, sayfa("<main style='padding:0'><div style='height:1500px'></div><button class=btn>Son</button><nav style='position:fixed;bottom:0;left:0;right:0;height:60px'><a href='#' style='display:block;height:60px'>Sekme</a></nav></main>"), True),
   ("B2", False, sayfa("<main><div style='height:2000px'></div><button class=btn>Liste</button><div style='height:400px'></div><nav style='position:fixed;bottom:0;left:0;right:0;height:60px'><a href='#' style='display:block;height:60px'>Sekme</a></nav></main>"), False),
   ("B3", False, sayfa("<main><h2>Bugün üç kelime var</h2><section><p>Bugün üç kelime var</p></section></main>"), True),
   ("B3", False, sayfa("<main><ul><li><b>1. bölüm</b><span class=k>Önceki bölüm bitince açılır</span></li><li><b>2. bölüm</b><span class=k>Önceki bölüm bitince açılır</span></li></ul></main>"), False),
