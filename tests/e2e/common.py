@@ -60,8 +60,11 @@ class RangeHandler(http.server.SimpleHTTPRequestHandler):
 def serve(port):
     h = functools.partial(RangeHandler, directory=DIST)
     http.server.SimpleHTTPRequestHandler.log_message = lambda *a: None
-    socketserver.TCPServer.allow_reuse_address = True
-    s = socketserver.TCPServer(("127.0.0.1", port), h)
+    # çok iş parçacıklı: WebKit'in boş bekleyen (önceden açılmış) bağlantısı ya da yarıda kalan medya isteği tek iş parçacıklı
+    # sunucuyu kilitleyip sayfanın "load" olayını geciktiriyordu (CI'da ara sıra Page.reload/inner_text 30 sn zaman aşımı)
+    socketserver.ThreadingTCPServer.allow_reuse_address = True
+    socketserver.ThreadingTCPServer.daemon_threads = True
+    s = socketserver.ThreadingTCPServer(("127.0.0.1", port), h)
     threading.Thread(target=s.serve_forever, daemon=True).start()
     return s
 
