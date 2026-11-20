@@ -8,7 +8,8 @@ describe("B7: ad yoksa adsız biçim", () => {
     const o = personalizeDeep(x, {}) as Record<string, unknown>;
     expect(o.de).toBe("Guten Tag. Geht Dienstag?");
     expect(o.tr).toBe("İyi günler.");
-    expect(o.accepted).toEqual(["Guten Tag."]);
+    // adsız biçim önce; asıl biçim de kalır (öğrenci kendi adını yazarsa fillName doldurur)
+    expect(o.accepted).toEqual(["Guten Tag.", "Guten Tag, hier ist {name}."]);
     expect(Object.keys(o).some((k) => k.endsWith("_adsiz"))).toBe(false);
     expect(JSON.stringify(o)).not.toContain("(adın)");
   });

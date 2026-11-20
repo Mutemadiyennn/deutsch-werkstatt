@@ -104,7 +104,9 @@ export function personalizeDeep<T>(x: T, p: Persona, key = ""): T {
     for (const [k, v] of Object.entries(src)) {
       if (k.endsWith(ADSIZ) && k.slice(0, -ADSIZ.length) in src) continue;
       const adsiz = src[`${k}${ADSIZ}`];
-      o[k] = personalizeDeep(!ad && adsiz !== undefined ? adsiz : v, p, k);
+      // kabul listesinde adsız biçim ASIL biçime eklenir: adsız profilde öğrenci kendi adını yazarsa da doğru sayılır (inceleme #148 P2)
+      const sec = !ad && adsiz !== undefined ? (Array.isArray(adsiz) && Array.isArray(v) && k === "accepted" ? [...adsiz, ...v] : adsiz) : v;
+      o[k] = personalizeDeep(sec, p, k);
     }
     return o as T;
   }

@@ -20,10 +20,15 @@ describe("B7 adsız biçim: taşıma", () => {
 
 describe("B7 adsız biçim: doğrulayıcı", () => {
   it("eksik biçim uyarı listesine, yanlış kullanım hataya", () => {
-    const r = adsizDenetle({ a: { de: "Hallo {name}!", tr: "Merhaba {name}!", tr_adsiz: "Merhaba!" }, b: [{ de: "Ja.", de_adsiz: "Ja." }], c: { de: "Ich bin {name}.", de_adsiz: "Ich bin {name}." }, d: { accepted: ["{name}"], accepted_adsiz: "x" } });
+    const r = adsizDenetle({ a: { de: "Hallo {name}!" }, e: { tr: "Merhaba {name}!", tr_adsiz: "Merhaba!" }, b: [{ de: "Ja.", de_adsiz: "Ja." }], c: { de: "Ich bin {name}.", de_adsiz: "Ich bin {name}." }, d: { accepted: ["{name}"], accepted_adsiz: "x" } });
     expect(r.eksik).toEqual(["a.de"]);
     expect(r.hata.some((h) => h.startsWith("b[0].de_adsiz") && h.includes("gereksiz"))).toBe(true);
     expect(r.hata.some((h) => h.startsWith("c.de_adsiz") && h.includes("ad yuvası var"))).toBe(true);
     expect(r.hata.some((h) => h.startsWith("d.accepted_adsiz") && h.includes("tür"))).toBe(true);
+  });
+  it("yarım kullanım hata: de_adsiz var, accepted_adsiz yok", () => {
+    const r = adsizDenetle({ d: { de: "Hier ist {name}.", de_adsiz: "Hallo.", accepted: ["Hier ist {name}."] } });
+    expect(r.hata.some((h) => h.startsWith("d.accepted") && h.includes("accepted_adsiz"))).toBe(true);
+    expect(r.eksik).toEqual([]);
   });
 });

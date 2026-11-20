@@ -34,6 +34,9 @@ export function adsizDenetle(x: unknown, yol = ""): { hata: string[]; eksik: str
   const gez = (v: unknown, p: string) => {
     if (Array.isArray(v)) { v.forEach((y, i) => { if (!metinMi(v)) gez(y, `${p}[${i}]`); }); return; }
     if (!nesne(v)) return;
+    // inceleme #148 P1-2: nesnede bir `_adsiz` varsa ad yuvalı bütün kardeş alanların da adsız biçimi olmalı (yarım kullanım:
+    // ekranda adsız cümle görünür ama kabul listesi ad bekler → öğrenci gördüğünü yazınca yanlış sayılır)
+    const kismi = Object.keys(v).some((k) => k.endsWith(ADSIZ));
     for (const [k, w] of Object.entries(v)) {
       const kp = p ? `${p}.${k}` : k;
       if (k.endsWith(ADSIZ)) {
@@ -43,7 +46,7 @@ export function adsizDenetle(x: unknown, yol = ""): { hata: string[]; eksik: str
         if (Array.isArray(w) !== Array.isArray(v[asil])) out.hata.push(`${kp}: asıl alanla tür uyuşmuyor (metin/liste)`);
         continue;
       }
-      if (adYuvali(w) && !(`${k}${ADSIZ}` in v)) out.eksik.push(kp);
+      if (adYuvali(w) && !(`${k}${ADSIZ}` in v)) { if (kismi) out.hata.push(`${kp}: aynı nesnede adsız biçim var ama bu alanın yok (${k}${ADSIZ})`); else out.eksik.push(kp); }
       else if (!metinMi(w)) gez(w, kp);
     }
   };
