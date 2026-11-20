@@ -337,13 +337,25 @@ export function formFor(l: Lexeme, t: QType, i = 0) { const list = t === "gap" ?
  */
 /** Kartta gösterilen çoğul ("-" ya da boşsa yok); Bahçe tanıtım ve cevap kartı bunu basar, boşluk kuralı da bunu sayar (inceleme #122 2. tur) */
 export const gosterilenCogul = (l: Lexeme): string | undefined => (l.pl && l.pl.trim() !== "-" && l.pl.trim() !== l.de ? l.pl.trim() : undefined);
+/**
+ * PM 7024150313: kartta en çok 3 eşdizim açık durur (boşlukta cevabı geçenler önce, sonra içerikteki sıra); kalanı "Daha fazla".
+ * Boşluk kuralı yalnızca açık duranları "gösterilmiş" sayar.
+ */
+export const ESDIZIM_ACIK = 3;
+export function esdizimler(l: Lexeme): { acik: Lexeme["collocations"]; kapali: Lexeme["collocations"] } {
+  const kendi = new Set(tokens(`${l.art ?? ""} ${l.de}`.toLowerCase()));
+  const cevap = new Set((l.forms ?? []).flatMap((f) => tokens(f.answer.toLowerCase().replace(/\s*…\s*/g, " "))).filter((w) => !kendi.has(w)));
+  const sirali = l.collocations.map((c, k) => ({ c, k, p: tokens(c.de.toLowerCase()).some((w) => cevap.has(w)) ? 1 : 0 }))
+    .sort((a, b) => b.p - a.p || a.k - b.k).map((x) => x.c);
+  return { acik: sirali.slice(0, ESDIZIM_ACIK), kapali: sirali.slice(ESDIZIM_ACIK) };
+}
 export function cevapGosterildi(l: Lexeme, cevap: string, gorulen: Set<string> = new Set()): boolean {
   const kelimeler = tokens(cevap.toLowerCase().replace(/\s*…\s*/g, " "));
   if (!kelimeler.length) return false;
   // kartın kendi kelimesi: yalnızca kartta GÖSTERİLEN biçimler (başlık, artikel, çoğul). Gövde eşleşmesi yok: Perfekt ortacı,
   // Präteritum ve hâl biçimleri tanıtılmadıkça sorulmaz (inceleme #122 P0-1)
   const kendi = new Set(tokens(`${l.art ?? ""} ${l.de} ${gosterilenCogul(l) ?? ""}`.toLowerCase().replace(/[()]/g, " ")));
-  const eszizim = new Set(l.collocations.flatMap((c) => tokens(c.de.toLowerCase())));
+  const eszizim = new Set(esdizimler(l).acik.flatMap((c) => tokens(c.de.toLowerCase())));
   return kelimeler.every((x) => kendi.has(x) || eszizim.has(x) || gorulen.has(x));
 }
 /**
@@ -364,7 +376,7 @@ export function gorulenKelimeler(lex: Map<string, Lexeme>, tanitilan: Iterable<s
   const g = new Set<string>();
   for (const id of tanitilan) {
     const x = lex.get(id); if (!x) continue;
-    for (const w of tokens([x.de, gosterilenCogul(x) ?? "", ...x.collocations.map((c) => c.de)].join(" ").toLowerCase().replace(/[()]/g, " "))) if (!ARTIKEL.has(w)) g.add(w);
+    for (const w of tokens([x.de, gosterilenCogul(x) ?? "", ...esdizimler(x).acik.map((c) => c.de)].join(" ").toLowerCase().replace(/[()]/g, " "))) if (!ARTIKEL.has(w)) g.add(w);
   }
   return g;
 }

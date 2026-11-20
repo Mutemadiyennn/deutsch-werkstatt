@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { boslukSecimi, cevapGosterildi, gosterilenCogul, gorulenKelimeler, ogretilmisForm, tanitildi } from "./garden.ts";
+import { boslukSecimi, cevapGosterildi, esdizimler, gosterilenCogul, gorulenKelimeler, ogretilmisForm, tanitildi } from "./garden.ts";
 import type { Lexeme } from "@dw/shared";
 
 const kart = (o: Partial<Lexeme>): Lexeme => ({ id: "lx:Mittwoch", de: "Mittwoch", art: "der", pos: "noun", tr: "çarşamba", examples: [], collocations: [], forms: [], ...o } as unknown as Lexeme);
@@ -57,5 +57,28 @@ describe("PM-069 P0: öğretilmeden boşluk sorulmaz", () => {
     const g = gorulenKelimeler(new Map([["lx:Woche", kart({ id: "lx:Woche", de: "Woche", art: "die" })]]), ["lx:Woche", "yok"]);
     // başka kartın artikeli görülmüş sayılmaz (hâl boşluğu açılmaz; inceleme #122 P1-1)
     expect([...g].sort()).toEqual(["woche"]);
+  });
+});
+
+describe("PM 7024150313: kartta en çok 3 eşdizim; açılır kısım boşlukta sorulmaz", () => {
+  const l = kart({
+    collocations: [
+      { de: "am Mittwoch", tr: "çarşamba günü" }, { de: "jeden Mittwoch", tr: "her çarşamba" }, { de: "Mittwoch früh", tr: "çarşamba sabahı" },
+      { de: "bis Mittwoch", tr: "çarşambaya kadar" }, { de: "ab Mittwoch", tr: "çarşambadan itibaren" }
+    ],
+    forms: [{ de: "___ Mittwoch habe ich frei.", answer: "Ab" }]
+  });
+  it("en çok 3 açık; boşlukta cevabı geçen öbek öne alınır, öteki sıra korunur", () => {
+    const { acik, kapali } = esdizimler(l);
+    expect(acik.map((c) => c.de)).toEqual(["ab Mittwoch", "am Mittwoch", "jeden Mittwoch"]);
+    expect(kapali.map((c) => c.de)).toEqual(["Mittwoch früh", "bis Mittwoch"]);
+  });
+  it("açık öbek gösterilmiş sayılır, 'Daha fazla'daki sayılmaz", () => {
+    expect(cevapGosterildi(l, "Ab")).toBe(true);
+    expect(cevapGosterildi(l, "bis")).toBe(false);
+    expect(cevapGosterildi(l, "früh")).toBe(false);
+    // başka kartın kapalı öbeği de görülmüş sayılmaz
+    const g = gorulenKelimeler(new Map([[l.id, l]]), [l.id]);
+    expect(g.has("ab") && g.has("jeden")).toBe(true); expect(g.has("bis") || g.has("früh")).toBe(false);
   });
 });
