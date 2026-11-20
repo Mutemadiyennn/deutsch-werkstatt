@@ -1,6 +1,7 @@
 /* ===== Yenilikler: her önemli sürümde bir kez gösterilir ===== */
-const WHATSNEW = {id:"2026-11-17b", title:"Yenilikler", items:[
-  "🗣️ Yeni: Gerçek hayat dersleri. Bugün ekranındaki karttan açılır: telefon, doktor, resmî daire; önce dinle, sonra konuş.",
+const WHATSNEW = {id:"2026-11-20a", title:"Yenilikler", items:[
+  "🆕 Yeni uygulama (2.0) hazır: her sekmenin en üstündeki satırdan açılır. Kurulum ekranından \"Her açılışta yeni uygulamayı aç\" seçilebilir; buradaki ilerlemen olduğu gibi kalır.",
+  "🗣️ Gerçek hayat dersleri: telefon, doktor, resmî daire; önce dinle, sonra konuş.",
   "🔁 Yanlış yaptığın kelime aynı turda başka bir cümle ve başka bir fotoğrafla geri geliyor: ezber değil, kalıcı öğrenme.",
   "📝 Her kelimenin 4 örnek cümlesi var; tekrarlarda hep farklı bir cümle görürsün.",
   "📈 Seviyem yenilendi: ünite ilerlemesi, kalıcı kelimeler, zayıf kurallar ve tek dokunuşla o kurala özel alıştırma.",
