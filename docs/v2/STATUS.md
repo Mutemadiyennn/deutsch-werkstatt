@@ -59,7 +59,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | B1 | — / 192 / 192 / 0 | — / 11 / 11 / 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | B2, C1, C2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 Kalıpların 61'i de onaylı (main, `patterns.json`). Hedef sütunu (günlük: yazar ≥2 ünite parçası, lex 150–200 kart, dilbilimci aynı gün) hat başlayınca günlük doldurulur. BY-8 tükenme tahmini: K2 motoru (R1) gelene kadar hesaplanamaz.
-R0 temel paket: 11 ders, 201 öğretim öğesi, 387 alıştırma; 10'u main'de (#51), r0-11 "Sonu kişiye göre değişir" (Präsens kişi ekleri; M1 2. gün, PM kararı #122 20.11) `content/praesens-ders` dalında. Kelime sayıları `card:false` işlev kelimelerini saymaz.
+R0 temel paket: 11 ders, 201 öğretim öğesi, 387 alıştırma; 10'u main'de (#51), r0-11 "Sonu kişiye göre değişir" (Präsens kişi ekleri; M1 2. gün, PM kararı #122 20.11) PR #141. Kelime sayıları `card:false` işlev kelimelerini saymaz.
 B4 kart kuralları (#88, #96): parti dosyalarında K1 isim boşluğu, 3+ eşdizim ve somut kelimede örnek başına fotoğraf sorgusu uyarıları 0 (150 kart kapandı). Doğrulayıcının "görselsiz örnek" sayacında kalan 82 kart eski `lexemes.v1.json` kartları; taban 0 / 0 / 82 (ANA, birleştirmede).
 B5 fotoğraf seçimi (#91): 308 yerin 40'ına açık lisanslı fotoğraf seçildi, 220'si reddedildi, 48'i soyut; 332 kısa ikinci sorgu A10 hattına verildi. Hedef somut kelimelerin %85'i; Openverse sonrası ikinci tur.
 PM-062 (cümle havuzu): M1'in 155 kartında en az 6 örnek ve en az 6 boşluk (155 × 6 örnek, 936 boşluk); yazar → dilbilimci → okur, 4 grup.

@@ -11,7 +11,7 @@ Madde tanımı (R0 raporlarıyla aynı): öğretim öğesi + alıştırma + yerl
 | 59 (12 öğe + 32 alıştırma + 5 yerleştirme + 8 diyalog satırı + 2 dinleme) | 11 | 9 | 20 |
 
 Hata oranı: 20/59 = 0,34 (accepted eksikleri dahil). Yalnızca içerik: 11/59 = 0,19 (dördü madde dışı üst alan: başlık, hedef, can_do, tablo başlığı).
-Almanca dilbilgisi hatası, yanlış `accepted` varyantı, sabit öğrenci adı ya da cinsiyeti, yanıltıcı `parcalar`, İngilizce köprü, kaynaksız Bairisch bulunmadı. Tablo (6 satır × 4 sütun) doğru; **du heißt** doğru. `npm run content:validate`: 0 hata.
+Almanca dilbilgisi hatası, yanlış `accepted` varyantı, sabit öğrenci adı ya da cinsiyeti, yanıltıcı `parcalar`, İngilizce köprü, kaynaksız Bairisch bulunmadı. Tablo (okur turundan sonra 5 satır × 6 sütun) doğru; **du heißt** doğru. `npm run content:validate`: 0 hata.
 
 ## İçerik düzeltmeleri (önce → sonra)
 
@@ -45,7 +45,7 @@ Hepsi ekleme; hiçbir varyant silinmedi, ilk cevaplar değişmedi.
 ## Öğretmeden isteme denetimi
 
 - Bütün üretim maddelerinin ilk cevabı yalnızca şu kaynaklardan: bu dersin öğeleri ve tablosu, 1.–2. gün kartları, r0-01 ve r0-02 öğeleri (**hier**, **am Samstag**, **nicht**, **heute**, **morgen**, **Freitag**). **gehst** yalnızca tabloda öğretiliyor (`d25`); görev tanımı tablo biçimlerini sayıyor.
-- **aus** 1.–2. günde yok; bu derste `b:derya-kommt` öğesinde çipiyle öğretiliyor. Öğrenciden kendi yeri için **Ich komme aus …** istenmiyor.
+- **aus** 1.–2. günde yok; bu derste `b:derya-kommt` öğesinin Türkçesiyle ("Derya Wendlfing'li.") veriliyor; `parcalar` okur turunda boşaltıldı. Öğrenciden kendi yeri için **Ich komme aus …** istenmiyor.
 - **Mein Name ist {name}.**, **Ich bin {name}.**, **Wie ist Ihr Name?**, **erst**, **auch**: yalnızca `accepted` içinde, hiçbir örnekte ya da ilk cevapta değil. Bu varyantlar kabul listesinde kalmalı (doğru cevap reddedilmesin); uygulama "görülmüş" sayımını `accepted` listesinden değil `teach` ve tablodan yapmalı.
 - Dinleme metinlerinde kalan öğretilmemiş kelimeler (**Kurs**, **auch**, **Wollen wir zusammen üben**, **Nur Deutsch**, **Tschüs**, **Grüß Gott**, **Gut**, **das ist**): hiçbir sorunun cevabı bunlara dayanmıyor; hepsi Türkçe satırıyla veriliyor.
 
@@ -57,16 +57,21 @@ Hepsi ekleme; hiçbir varyant silinmedi, ilk cevaplar değişmedi.
 
 ## Kalan açık maddeler (baş geliştiriciye)
 
-1. **1. gün klibi bağlı değil.** `content/v2/m1/video/klip-01.json` `durum: "kisa"` ve `gun-01.json`'da `video` alanı yok (doğrulayıcı uyarısı: gerçek insan videosu yok). `a:ich-heisse` öğesindeki "ilk günün videosundaki Berna gibi" sözü klip yayına girerse doğru; girmezse bu yarım cümle silinmeli. `d01` klipten bağımsız hâle getirildi.
+1. **1. gün klibi bağlı değil.** `content/v2/m1/video/klip-01.json` `durum: "kisa"` ve `gun-01.json`'da `video` alanı yok (doğrulayıcı uyarısı: gerçek insan videosu yok). `a:ich-heisse` öğesindeki "ilk günün videosundaki Berna gibi" sözü klip yayına girerse doğru; girmezse bu yarım cümle silinmeli. `d01` klipten bağımsız hâle getirildi. **Kapandı (inceleme #141 P1-1):** yarım cümle silindi, `ne_zaman_tr` artık "Tanışırken."
 2. **Emre Aydın** (`h1`): tek seferlik hasta, Wendlfing'de oturuyor, Dr. Weber'in muayenehanesine telefon ediyor. `GENEL_ADLAR.md` dilbilimcinin yazma yolunda değil; Elif Yılmaz gibi tek satırla eklenmesi önerilir ("yalnızca telefonda kendini tanıtan ses; başka bilgi yazma").
 3. `d30` hızı `fast` (Tobi'nin WORLD hızı). A1 ikinci gün için sert olabilir; üç kelimelik soru olduğu için bırakıldı, karar baş geliştiricide.
 4. Okur turu bekliyor; girdi: `/home/claude/cm/work/praesens-re.txt` (193 satır).
 
 ## Sonuç
 
-Dil hataları: **KAPANDI**. `review.status` görev gereği `draft` (`by: dilbilimci-ajan`, `at: 2026-11-20`); açık madde 1 ve okur turu kapanınca `reviewed` olur.
+Dil hataları: **KAPANDI**. Açık madde 1 ve okur turu kapandı; `review.status` `reviewed`.
 
 ## Okur turları
 - 1. tur: 193 satır, 11 GERİ (çift okunan "evinin", "bir gün"; tabloda öğretilmemiş "onlar" satırı; iki açıklama cümlesi; görev cümlesi 16 kelime). Düzeltildi: tablo 5 satır, `parcalar` boşaltıldı, açıklamalar "<Türkçe> derken **…** denir." kalıbında.
 - 2. tur: 10 satır, 1 GERİ (d06). 3. tur: 1/1 GEÇTİ.
 - Ek: d30 hızı `fast` → `normal` (2. gün).
+
+## İnceleme #141, 1. tur sonrası
+- P1-2: `d17` kabul listesinden yalnız ad ("{name}.") çıkarıldı; **heiße** üretilmeden geçilmiyor.
+- P2-4: tek başına "Ja." artık hiçbir maddede yok (`d27`, `d30`'dan çıkarıldı); amaç fiili söyletmek.
+- P2-6: `d16` açıklaması artık dersin konusuna bağlı: "Gidiyorum derken **ich gehe** denir, **ich** ile sonu **-e** olur." (iki dizilim de kabul; okur ilk öneriyi geri çevirdi, ikincisini geçirdi).
