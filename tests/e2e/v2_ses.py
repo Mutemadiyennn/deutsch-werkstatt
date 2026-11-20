@@ -80,18 +80,20 @@ def main():
         pg.wait_for_function("() => { const b = document.querySelector('[data-test=hiz-olc]'); return b && !b.disabled && document.querySelectorAll('[data-test=hiz-sonuc]').length >= 4; }", timeout=20_000)
         ara = pg.evaluate("() => { const b = document.querySelector('[data-test=hiz-olc]').getBoundingClientRect(); const r = document.querySelector('[data-test=hiz-sonuc]').getBoundingClientRect(); return Math.round(r.top - b.bottom); }")
         check(ara >= 10, f"sonuç satırları düğmeden ayrık (aralık {ara} px)")
+        tek = pg.evaluate("() => [...document.querySelectorAll('[data-test=hiz-sonuc]')].map((p) => { const lh = parseFloat(getComputedStyle(p).lineHeight); return [Math.round(p.getBoundingClientRect().height / lh), p.scrollWidth <= p.parentElement.clientWidth + 0.5]; })")
+        check(all(n == 1 and sig for n, sig in tek), f"sonuç satırları tek satır, taşmıyor; başlıkta bir kez 'normal → yavaş' ({tek}; {pg.inner_text('[data-test=hiz-baslik]')})")
         check(pg.evaluate("window.__oku.length") == 8, f"ölçüm her cinsten ilk iki sesi normal ve yavaş çaldı ({pg.evaluate('window.__oku.length')} çalma)")
         sonuc = {e["ad"]: e["t"] for e in pg.locator("[data-test=hiz-sonuc]").evaluate_all("(xs) => xs.map((x) => ({ ad: x.dataset.ad, t: x.innerText }))")}
-        check(set(sonuc) == {"Helena (Erweitert)", "Anna", "Viktor (Erweitert)", "Markus"} and all(re.search(r"Normal \d+,\d sn · Yavaş \d+,\d sn \(×\d,\d\d\)", t) for t in sonuc.values()), f"ölçüm: kadın ve erkek havuzunun ilk iki sesi, 'Normal x sn · Yavaş y sn' ({list(sonuc.values())})")
-        KAT = lambda t: float(re.search(r"×(\d,\d\d)", t).group(1).replace(",", ".")) if re.search(r"×(\d,\d\d)", t) else 0
-        check("Normal 0,6 sn" in sonuc.get("Viktor (Erweitert)", "") and KAT(sonuc.get("Helena (Erweitert)", "")) >= 1.6 and 0.85 <= KAT(sonuc.get("Viktor (Erweitert)", "")) < 1.25, f"yavaşlayan ses ≈1,9 kat, yavaşlamayan ≈1,0 kat ölçülüyor ({[KAT(t) for t in sonuc.values()]})")
+        check(set(sonuc) == {"Helena (Erweitert)", "Anna", "Viktor (Erweitert)", "Markus"} and all(re.fullmatch(r"\S+: \d+,\d → \d+,\d sn \(×\d,\d\)", t.strip()) for t in sonuc.values()), f"ölçüm: kadın ve erkek havuzunun ilk iki sesi, 'Ad: x → y sn (×k)' ({list(sonuc.values())})")
+        KAT = lambda t: float(re.search(r"×(\d,\d)", t).group(1).replace(",", ".")) if re.search(r"×(\d,\d)", t) else 0
+        check("0,6 → 0,6 sn" in sonuc.get("Viktor (Erweitert)", "") and KAT(sonuc.get("Helena (Erweitert)", "")) >= 1.6 and 0.85 <= KAT(sonuc.get("Viktor (Erweitert)", "")) < 1.25, f"yavaşlayan ses ≈1,9 kat, yavaşlamayan ≈1,0 kat ölçülüyor ({[KAT(t) for t in sonuc.values()]})")
         uy = pg.inner_text("[data-test=hiz-uyari]") if pg.locator("[data-test=hiz-uyari]").count() else ""
         check(uy.startswith("Bu ses yavaşlamıyor: Viktor") and "Helena" not in uy, f"yalnız yavaşlamayan ses için uyarı ({uy[:60]})")
         check("yavaşlamıyor" in pg.locator("[data-test=havuz-erkek] [data-test=ses]").first.inner_text() and "yavaşlamıyor" not in pg.locator("[data-test=havuz-kadin] [data-test=ses]").first.inner_text(), "ses satırında ölçüm ve 'yavaşlamıyor' işareti")
         satir_hiz = pg.locator("[data-test=havuz-kadin] [data-test=ses-hiz]").first.inner_text()
         check(re.fullmatch(r"normal \d+,\d · yavaş \d+,\d sn", satir_hiz) is not None, f"ses satırında hangisinin ne olduğu yazılı ({satir_hiz})")
         kab = pg.inner_text("[data-test=kabuk-satir]")
-        check(re.search(r"yavaş: Helena ×\d,\d\d, Anna ×\d,\d\d, Viktor ×\d,\d\d yavaşlamıyor, Markus ×\d,\d\d$", kab) is not None, f"kabuk satırına yavaş notu ({kab[-60:]})")
+        check(re.search(r"yavaş: Helena ×\d,\d, Anna ×\d,\d, Viktor ×\d,\d yavaşlamıyor, Markus ×\d,\d$", kab) is not None, f"kabuk satırına yavaş notu ({kab[-60:]})")
         if shots: pg.locator("[data-test=hiz-olcum]").scroll_into_view_if_needed(); shot(pg, f"s00-hiz-olcum-{TEMA}", full=False)
         no_overflow(pg, "hız ölçümü")
         pg.locator("[data-test=yavas-oran] button[data-oran='0.4']").click(); pg.wait_for_timeout(300)
@@ -210,7 +212,7 @@ def main():
         pg.wait_for_function("() => { const b = document.querySelector('[data-test=hiz-olc]'); return b && !b.disabled && document.querySelectorAll('[data-test=hiz-sonuc]').length >= 2; }", timeout=15_000)
         rates = sorted({round(x["rate"], 2) for x in pg.evaluate("window.__tts")})
         sonuc3 = pg.locator("[data-test=hiz-sonuc]").all_inner_texts()
-        check(rates == [0.5, 0.95] and all("Yavaş" in x for x in sonuc3) and pg.locator("[data-test=hiz-uyari]").count() == 0, f"yerel yolda hız ölçümü: gerçek hız, yavaşlıyor ({rates}; {sonuc3})")
+        check(rates == [0.5, 0.95] and all("→" in x for x in sonuc3) and pg.locator("[data-test=hiz-uyari]").count() == 0, f"yerel yolda hız ölçümü: gerçek hız, yavaşlıyor ({rates}; {sonuc3})")
         if shots: pg.locator("[data-test=ses-deneme]").scroll_into_view_if_needed(); shot(pg, f"s03-yerel-{TEMA}", full=False)
         b.close()
     srv.shutdown()
