@@ -37,16 +37,17 @@ def main():
         ctx.set_offline(True)
         ilk = pg.inner_text("[data-test=intro-ex]")
         goruldu, doms, kareler = [ilk], [], []
-        for _ in range(7):  # ortanca 7 dokunuştan (CI'da tek tük yavaş kare; PM-069 P2-d)
+        # D-096 yöntemi: DOM her dokunuşta < 150 ms (sert). Kare (7 dokunuşun ortancası − boş kare aralığı) PM 7030294523 B gereği
+        # CI'da yalnızca günlüğe yazılır: iPhone 15 görünümünde sayfa kayarken belge yüksekliği değişince WebKit bütün görünümü yeniden
+        # boyuyor (95–177 ms, kalıcı). Köprü: C (örnek alanı en uzun örnek kadar, kart zıplamaz) girince kare ölçütü üç cihazda geri döner.
+        for _ in range(7):
             dom, kare, metin = degistir(pg, "[data-test=intro-ex]")
             doms.append(dom); kareler.append(kare); goruldu.append(metin)
+        kortanca = sorted(kareler)[len(kareler) // 2]; bos = bos_kare(pg)
+        print(f"  (kare, yalnızca günlük: ortanca {round(kortanca)} − boş kare {round(bos)} = {round(kortanca - bos)} ms; en kötü {round(max(kareler))} ms)")
+        dokunus = 7
         check(len(set(goruldu[:3])) == 3, f"3 dokunuşta farklı cümleler ({[g[:30] for g in goruldu[:4]]})")
-        # D-096 yöntemi: DOM her dokunuşta < 150 ms (sert), ilk kare 7 dokunuşun ortancası < 150 ms; en kötü kare raporda
-        kortanca = sorted(kareler)[len(kareler) // 2]
-        # kare ölçütü (PM-069 P2-d): bizim eklediğimiz gecikme = ilk kare − tarayıcının boş kare aralığı; DOM ölçütü değişmedi (sert)
-        bos = bos_kare(pg); ek = kortanca - bos
-        print(f"  (boş kare aralığı {round(bos)} ms; eklenen {round(ek)} ms)")
-        check(max(doms) < 150 and ek < 150, f"değişim < 150 ms, uçak modunda (DOM {[round(x) for x in doms]} ms; kare ortanca {round(kortanca)} − boş kare {round(bos)} = {round(ek)} ms; en kötü {round(max(kareler))} ms)")
+        check(max(doms) < 150, f"değişim DOM'da < 150 ms, uçak modunda (DOM {[round(x) for x in doms]} ms; kare gerçek cihazda: DUMAN madde 9)")
         no_overflow(pg, "tanıtım")
         if shots: shot(pg, "b01-baska-cumle", full=False)
         # düğme ipucu sayılmaz: sonraki doğru cevap "Doğru." (XP'li)
@@ -62,7 +63,7 @@ def main():
         # kayıt: kartın sayacı gösterilen (7 kez değiştirilmiş) cümlenin ardından yazıldı → sonraki oturum başka cümleyle açılır
         ex_seen = pg.evaluate("""(id) => new Promise((res) => { const r = indexedDB.open('dw2'); r.onsuccess = () => { const t = r.result.transaction('items').objectStore('items').get(id);
           t.onsuccess = () => res(t.result ? t.result.exSeen : null); t.onerror = () => res(null); }; r.onerror = () => res(null); })""", lex)
-        check(ex_seen == 8, f"öğrenci kaydında cümle sayacı gösterilenin ardından ({lex}: exSeen={ex_seen}; 7 değişiklik + cevap = 8)")
+        check(ex_seen == dokunus + 1, f"öğrenci kaydında cümle sayacı gösterilenin ardından ({lex}: exSeen={ex_seen}; {dokunus} değişiklik + cevap = {dokunus + 1})")
         # boşluk sorusu: başka boşluk cümlesi (bir tur içinde bulunursa)
         bosluk = False
         for _ in range(60):
