@@ -21,13 +21,23 @@ cards = {}
 for f in sorted(glob.glob(f'{K}/content/v2/registry/lexicon/batch-*.json')):
     for c in json.load(open(f, encoding='utf8'))['items']: cards[c['id']] = c
 idx = collections.defaultdict(set)
-def yuzey(c):
-    s = [c['de'], c.get('art', ''), c.get('pl', '')] + [f['answer'] for f in c.get('forms', [])]
-    v = c.get('verb') or {}
-    s += [x for x in v.values() if isinstance(x, str)]
-    return {t for x in s for t in toks(x.replace('…', ' '))}
+# 1. geçiş: kartın başlık, artikel ve çoğul sözcükleri
+oz = collections.defaultdict(set)
 for i, c in cards.items():
-    for t in yuzey(c): idx[t].add(i)
+    for b in (c['de'], c.get('art', ''), c.get('pl', '')):
+        for x in toks(b): oz[i].add(x); idx[x].add(i)
+# 2. geçiş: boşluk cevapları ve fiil çekimleri. Bir sözcük birden çok kartın cevabında geçiyorsa en çok geçtiği karta
+# eşlenir (eşitlikte hepsine): "ist" lx:sein'e, "letzten" lx:letzter'e gider, lx:passieren / lx:Dienstag'a değil.
+sayac = collections.defaultdict(collections.Counter)
+for i, c in cards.items():
+    v = c.get('verb') or {}
+    for a in [f['answer'] for f in c.get('forms', [])] + [x for k, x in v.items() if isinstance(x, str) and k != 'aux']:
+        for x in toks(a.replace('…', ' ')): sayac[x][i] += 1
+for x, cnt in sayac.items():
+    en = max(cnt.values())
+    for i, n in cnt.items():
+        if n == en: oz[i].add(x); idx[x].add(i)
+def yuzey(c): return oz[c['id']]
 cerceve = {i for i, c in cards.items() if c.get('card') is False}
 # card:false kartların forms dizininde olmayan çekimleri (artikel, zamir, iyelik). Kartta yok; burada açıkça yazıldı,
 # ANA'nın sayacı bunları karttan okumalı (öneri: card:false kartlara `bicimler` alanı). Tahmin değil, kapalı liste.

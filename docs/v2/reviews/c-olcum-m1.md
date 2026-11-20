@@ -1,6 +1,6 @@
 # PM-078 C ölçümü: M1 1.–7. gün, cümle kapısı
 
-Ölçüm: İÇ, 20.11. Betik `c-olcum/olcum.py` (kod değil, rapor aracı; ANA'nın doğrulayıcı sayacına örnek). Ham sonuç `c-olcum/sonuc.json`. Taban: `main` (266e2cf).
+Ölçüm: İÇ, 20.11. Betik `c-olcum/olcum.py` (kod değil, rapor aracı; ANA'nın doğrulayıcı sayacına örnek). Ham sonuç `c-olcum/sonuc.json`. Halka önerilerinin denetimi `c-olcum/halka_kontrol.py` (aynı küme). Taban: `main` (266e2cf).
 
 ## Kural (PM-078 C, olduğu gibi uygulandı)
 
@@ -10,7 +10,7 @@
   - `card:false` çerçeve kartları;
   - WORLD kişi ve yer adları ve `genel-adlar.md` başlıklarındaki adlar;
   - rakamlar; r0-04 bitince bileşik sayılar, r0-06 bitince sıra sayıları.
-- **Sözcük → kart:** kartın `de`, `art`, `pl`, `forms[].answer` ve `verb` alanları. Eşlenemeyen sözcük tahmin edilmedi, ayrı listelendi (aşağıda `?` ile).
+- **Sözcük → kart:** kartın `de`, `art`, `pl`, `forms[].answer` ve `verb` alanları (`aux` hariç). Bir cevap sözcüğü birden çok kartın boşluğunda geçiyorsa en çok geçtiği karta eşlenir, eşitlikte hepsine ("ist" lx:sein'e gider, lx:passieren'e değil). Eşlenemeyen sözcük tahmin edilmedi, ayrı listelendi (aşağıda `?` ile).
 - **Ek (kapalı liste, betikte açık):** `card:false` kartlarının `forms` dizininde olmayan artikel, zamir ve iyelik çekimleri (den, dem, mir, dir, ihn, ihnen, meinen …). Bunlar kartta yok; sayaç karttan okuyabilsin diye **şema isteği** aşağıda.
 - **Biçimler:**
   - **A:** günün dersi henüz yapılmamış (bugünkü düzen: Bahçe önce).
