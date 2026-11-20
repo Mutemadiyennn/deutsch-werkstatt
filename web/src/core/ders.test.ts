@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
-import { TemelDers } from "@dw/shared";
-import { adimlarDers, altSayisi, dersIleri, dersKonum, hatirlaKabul, hatirlaSecenek, maddeler, DERS_BASLANGIC, TANIT_GRUP } from "./ders.ts";
+import { Lexeme, TemelDers } from "@dw/shared";
+import { adimlarDers, altSayisi, bahcePlani, dersBaslamadi, dersGorunum, dersIleri, dersKonum, hatirlaKabul, hatirlaSecenek, maddeler, DERS_BASLANGIC, TANIT_GRUP } from "./ders.ts";
 import { personalizeDeep } from "./persona.ts";
 import { drillVerdict } from "../ui/drill.tsx";
 
@@ -106,5 +106,104 @@ describe("Temel ders akışı (#58 A5)", () => {
       for (const o of s) if (o !== x.tr && ((!gosterilen.has(o) && g > 0) || alt(nk(o), nk(x.tr)) || alt(nk(x.tr), nk(o)))) sorun.push(`${x.id}: ${o}`);
     });
     expect(sorun).toEqual([]);
+  });
+});
+
+/* ---------- B5: Bahçede bugün görülen kelime derste yeniden tanıtılmaz ---------- */
+const lexDir = join(import.meta.dirname, "../../../content/v2/registry/lexicon");
+const lex = new Map(readdirSync(lexDir).filter((f) => /^batch-\d+\.json$/.test(f)).flatMap((f) => {
+  const d = JSON.parse(readFileSync(join(lexDir, f), "utf8"));
+  return (Array.isArray(d) ? d : d.items) as unknown[];
+}).map((x) => Lexeme.parse(x)).map((l) => [l.id, l] as const));
+
+describe("B5 döngüsüzlük: Bahçe → ders", () => {
+  const tage = dersler.find((d) => d.id.includes("tage"))!;
+  const bugun = new Set(tage.teach.slice(0, 3).map((x) => x.lexeme!).filter(Boolean));
+
+  it("bugün görülen kart tanıtılmaz ve hatırlatılmaz; en çok bir soru, cümle içinde", () => {
+    const plan = bahcePlani(tage, bugun, lex);
+    expect(plan.atla).toEqual(tage.teach.slice(0, 3).map((x) => x.id));
+    const g = dersGorunum(tage, plan);
+    expect(g.teach.some((x) => plan.atla.includes(x.id))).toBe(false);
+    expect(g.bahce.length).toBeLessThanOrEqual(plan.atla.length);
+    for (const b of g.bahce) {
+      expect(b.de).toContain("___");
+      expect(b.opts).toContain(b.cevap);
+      expect(new Set(b.opts).size).toBe(b.opts.length);
+      expect(b.opts.length).toBeGreaterThanOrEqual(2);
+      // cümlede cevap yerinde (bütün kelime)
+      expect(b.de.replace("___", b.cevap)).not.toContain("___");
+      expect((b.de.replace("___", " ").match(/\p{L}+/gu) ?? []).length).toBeGreaterThanOrEqual(2);
+    }
+    // her kart en çok bir kez
+    expect(new Set(g.bahce.map((b) => b.id)).size).toBe(g.bahce.length);
+  });
+
+  it("alt adım sayısı: tanıtım grupları + Bahçe turu; konum ilerledikçe plan korunur", () => {
+    const plan = bahcePlani(tage, bugun, lex);
+    const g = dersGorunum(tage, plan);
+    const gr = Math.ceil(g.teach.length / TANIT_GRUP) * 2;
+    expect(altSayisi(g, "tanit")).toBe(gr + (g.bahce.length ? 1 : 0));
+    let p = { ...DERS_BASLANGIC, ...plan };
+    expect(dersBaslamadi(p)).toBe(true);
+    const ti = adimlarDers(g).indexOf("tanit");
+    for (let i = 0; i < 200 && !(p.s === ti && p.k === altSayisi(g, "tanit") - 1) && !p.bitti; i++) p = dersIleri(p, tage);
+    expect(p.atla).toEqual(plan.atla);
+    expect(dersBaslamadi(p)).toBe(false);
+    // ertesi gün açılış: saklanan plan aynı konumu verir
+    expect(dersKonum(JSON.parse(JSON.stringify(p)), tage)).toEqual(p);
+  });
+
+  it("hiç görülmemişse ders eskisi gibi (plan boş, adımlar aynı)", () => {
+    const plan = bahcePlani(tage, new Set(), lex);
+    expect(plan).toEqual({ atla: [], bahce: [] });
+    expect(adimlarDers(dersGorunum(tage, plan))).toEqual(adimlarDers(tage));
+    expect(altSayisi(dersGorunum(tage, plan), "tanit")).toBe(Math.ceil(tage.teach.length / TANIT_GRUP) * 2);
+  });
+
+  it("bütün kartlar bugün görüldüyse: tanıtım yok, yalnızca Bahçe turu (ya da hiç)", () => {
+    for (const d of dersler) {
+      const hepsi = new Set(d.teach.map((x) => x.lexeme!).filter(Boolean));
+      const plan = bahcePlani(d, hepsi, lex);
+      const g = dersGorunum(d, plan);
+      const n = altSayisi(g, "tanit");
+      expect(n).toBe(Math.ceil(g.teach.length / TANIT_GRUP) * 2 + (g.bahce.length ? 1 : 0));
+      expect(adimlarDers(g).includes("tanit")).toBe(n > 0);
+      // ders sonuna kadar yürür
+      let p = { ...DERS_BASLANGIC, ...plan };
+      for (let i = 0; i < 500 && !p.bitti; i++) p = dersIleri(p, d);
+      expect(p.bitti).toBeTruthy();
+    }
+  });
+
+  it("inceleme #146: yalnız kelime kartı atlanır; cümle/kalıp kartı tanıtılır; tek doğru cevap; cevap cümlede bir kez", () => {
+    const nk = (x: string) => x.toLocaleLowerCase("tr").trim();
+    let cumleKarti = 0;
+    for (const d of dersler) {
+      const hepsi = new Set(d.teach.map((x) => x.lexeme!).filter(Boolean));
+      const plan = bahcePlani(d, hepsi, lex);
+      for (const id of plan.atla) { const x = d.teach.find((y) => y.id === id)!; expect(nk(x.de)).toBe(nk(lex.get(x.lexeme!)!.de)); }
+      cumleKarti += d.teach.filter((x) => x.lexeme && !plan.atla.includes(x.id)).length;
+      for (const b of plan.bahce) {
+        expect(b.opts.length).toBe(3);
+        const tr = (de: string) => d.teach.find((y) => y.de === de)!.tr;
+        const cev = nk(tr(b.cevap));
+        for (const o of b.opts.filter((o) => o !== b.cevap)) { expect(nk(tr(o))).not.toBe(cev); expect(b.de).not.toContain(o); }
+        expect(b.de.split("___").length).toBe(2);
+      }
+    }
+    // kelimeye bağlı cümle/kalıp kartları atlanmadı (ör. "Heute ist Montag.", saat kalıpları)
+    expect(cumleKarti).toBeGreaterThan(0);
+    // Stunde/Uhrzeit gibi Türkçesi iç içe kartlar birbirinin çeldiricisi olmaz
+    const saat = dersler.find((d) => d.id.includes("uhrzeit"))!;
+    const p = bahcePlani(saat, new Set(saat.teach.map((x) => x.lexeme!).filter(Boolean)), lex);
+    for (const b of p.bahce) if (b.cevap === "Stunde") expect(b.opts).not.toContain("Uhrzeit");
+  });
+
+  it("hatırlama çeldiricileri az kart kalınca atlananlardan tamamlanır", () => {
+    const plan = { atla: tage.teach.slice(1).map((x) => x.id), bahce: [] };
+    const g = dersGorunum(tage, plan);
+    expect(g.teach.length).toBe(1);
+    expect(hatirlaSecenek(g, 0, g.teach[0]!, 0).length).toBeGreaterThanOrEqual(3);
   });
 });

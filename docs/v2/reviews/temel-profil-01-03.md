@@ -56,3 +56,23 @@ Yanlış kabul bulunmadı; hiçbir kabul silinmedi.
 - `npm run content:validate`: 0 hata (122 uyarının hiçbiri bu üç dosyadan değil).
 - `review`: üç dosyada "reviewed" kaldı, tarih 2026-11-20, nota bu rapor eklendi.
 - **KAPANDI** (yukarıdaki şüpheler engel değil; 1–3 için karar baş geliştiricide). Sıradaki: okur (OD-9) turu.
+
+## #155 inceleme 1. tur sonrası kabul satırları
+Kapsam: r0-03 d02, d04, d18, d37, d38'in `accepted` listeleri (bütün satırlar, sese ve durum cümlesine göre) ve d18'in yeni durum cümlesi. Yöntem notu: dilbilimci git komutu çalıştırmadığı için yeni satırlar `git diff` ile değil, bu raporun önceki turdaki ekleme listesiyle karşılaştırılarak ayrıldı.
+
+| Madde | Yeni satırlar | Karar |
+|---|---|---|
+| d02 | **In Büro sechzehn, bitte.** · **Zimmer sechzehn** · **Büro Nummer 16** · **Büro Nummer sechzehn** · **Bitte ins Büro sechzehn.** | Onay. **ins Büro sechzehn** sesteki **in Büro sechzehn** kadar yaygın değil ama doğru ve konuşmada duyulur (krş. **ins Zimmer 16**); dinleme maddesinde hoşgörü satırı olarak kalabilir. |
+| d04 | **Bitte, Nummer siebzehn.** · **Die Nummer ist siebzehn.** · **Die Nummer ist 17.** | Onay. |
+| d18 | **Ich habe die Wohnung zwölf.** · **Die Wohnung zwölf.** · **Meine Wohnung ist Nummer zwölf.** · **Ich wohne in Wohnung zwölf.** | Onay. Hepsi **Welche Wohnung haben Sie?** sorusuna doğru ve doğal cevap. |
+| d37 | **Nein, zwo.** · **Nein, zwo, nicht drei.** · **Nein, nicht drei, zwo.** · **Zwo, nicht drei.** · **Nein, am Ende zwo.** · **Nein, drei neun zwo, nicht drei neun drei.** · **Die Nummer ist …** ve bunların **zwei** ve rakamlı eşleri | Onay. Doğru rakam 392, ses 393; düzeltmeler olguya uygun. **Nein, am Ende zwo.** telefonda gerçekten söylenen eksiltili biçim (tam hâli **am Ende eine Zwei**, eş anlamlısı **hinten zwo**). **zwo**, **drei** ile karışmasın diye tam da bu durumda kullanılır. |
+| d38 | **Meine Nummer ist 0160 883.** · **Meine Nummer ist null eins sechs null, acht acht drei.** · **Ihre Nummer ist 0160 883.** · **Seine Nummer ist null eins sechs null acht acht drei.** | Onay. **Meine Nummer …** öğrencinin ağzından anlamca Herr Pichler'in numarası değildir; yalnızca duyulanın birebir yazımı olarak kabul. Dinleme maddesinde zararsız, haksız reddi önler. **Ihre Nummer …** numarayı karşı tarafa teyit etmek, doğal. |
+
+Düzeltme (1):
+- d18 `situation_tr`: "… Dairen on iki numara. Kelimeyle yaz." → "… Dairen on iki numara. **Numarayı** kelimeyle yaz." Gerekçe: nesnesiz "Kelimeyle yaz." "tek kelimeyle yaz" diye de okunabiliyor; d36 ve d38'in "Numarayı rakamla yaz." yönergesiyle aynı kalıba getirildi. Listede rakamlı satır yok, yönergeyle tutarlı.
+
+Silinen ya da değiştirilen kabul satırı yok. Yanlış kabul bulunmadı.
+
+Kalan not (engel değil): d38'de durum cümlesi "rakamla yaz" diyor, liste kelimeli yazımı da kabul ediyor (`strictNumberWords: false`); bilinçli hoşgörü, d36 ile tutarlı.
+
+Sonuç: 5 madde incelendi, 1 düzeltme (0,2 hata/madde), doğrulayıcı sonucu son mesajda. **KAPANDI**.
