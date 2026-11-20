@@ -14,7 +14,7 @@ Bütçe: --butce kadar (gece payından); tahmin üstten (karo = her kenar 512'ye
 Kullanım: python scripts/gorsel/boy.py OUT_DIR [--butce NÖRON]
 """
 from __future__ import annotations
-import html, io, json, math, os, sys, time, urllib.error
+import html, io, json, math, os, sys, time, unicodedata, urllib.error
 
 KOK = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -100,7 +100,7 @@ def main(argv: list[str]) -> int:
          f"<p><small>{'<br>'.join(html.escape(n) for n in notlar) or 'not yok'}</small></p>"]
     for k in SAHNELER:
         de = html.escape(sahne[k]["de"])
-        hucre = [("flux-1-schnell 1024×1024 (deneme, elde)", DENEME_URL + k.replace("lx:", "").replace(":", "_") + "-cizim.jpg", "≈173 nöron")]
+        hucre = [("flux-1-schnell 1024×1024 (deneme, elde)", DENEME_URL + unicodedata.normalize("NFKD", k.replace("lx:", "").replace(":", "_")).encode("ascii", "ignore").decode() + "-cizim.jpg", "≈173 nöron")]
         hucre += [(f"{r['model'].split('/')[-1]} {r['en']}×{r['boy']}", r["dosya"], f"≈{r['noron']} nöron · {r['bayt'] // 1024} KB") for r in sonuc.get(k, [])]
         for sinif in ("", " genis"):
             p.append(f"<section class='{sinif.strip()}'><h3>{html.escape(k)} — {de}</h3><div class='sira'>" if not sinif else "<div class='sira genis'>")
