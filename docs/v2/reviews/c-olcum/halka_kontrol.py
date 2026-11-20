@@ -38,7 +38,7 @@ for h in o['halkalar']:
             if g['kart'] != c: continue
             u, _ = M['bilinmeyen'](g['de'], bk, bb, biten=bt)
             if u: print(f"HATA {h['id']} {c} görev cümlesi bilinmeyen {u}: {g['de']}"); hata += 1
-            elif set(M['toks'](g['de'])) & M['yuzey'](C): n += 1; liste.append(g['de'])
+            elif set(M['toks'](g['de'])) & (M['yuzey'](C) - set(M['toks'](C.get('art', '')))): n += 1; liste.append(g['de'])
             else: print(f"HATA {h['id']} {c}: cümlede kartın kelimesi yok: {g['de']}"); hata += 1
         durum = 'tamam' if n >= 2 else 'EKSİK'
         if n < 2: hata += 1

@@ -26,18 +26,28 @@ oz = collections.defaultdict(set)
 for i, c in cards.items():
     for b in (c['de'], c.get('art', ''), c.get('pl', '')):
         for x in toks(b): oz[i].add(x); idx[x].add(i)
-# 2. geçiş: boşluk cevapları ve fiil çekimleri. Bir sözcük birden çok kartın cevabında geçiyorsa en çok geçtiği karta
-# eşlenir (eşitlikte hepsine): "ist" lx:sein'e, "letzten" lx:letzter'e gider, lx:passieren / lx:Dienstag'a değil.
+# 2. geçiş: boşluk cevapları ve fiil çekimleri.
+#  - Cevaptaki sözcük yalnızca kartın başlığıyla akrabaysa (ilk 3 harfi başlıkta geçiyorsa; ümlaut yok sayılır) karta
+#    eşlenir: lx:Dienstag'ın "___ Dienstag" boşluğundaki "Letzten", "Mitte Juli"deki "Mitte" o karta düşmez.
+#  - İstisna: fiil kartlarında tek sözcüklü cevap ve çekim akrabalık aranmadan eşlenir (düzensiz çekim: ist, war, ging).
+#  - Bir sözcük birden çok kartın cevabında geçiyorsa en çok geçtiği karta eşlenir, eşitlikte hepsine ("ist" lx:sein'e).
+def _n(x): return x.translate(str.maketrans('äöüß', 'aous'))
 sayac = collections.defaultdict(collections.Counter)
 for i, c in cards.items():
     v = c.get('verb') or {}
+    bas = _n(' '.join(toks(c['de'])))
     for a in [f['answer'] for f in c.get('forms', [])] + [x for k, x in v.items() if isinstance(x, str) and k != 'aux']:
-        for x in toks(a.replace('…', ' ')): sayac[x][i] += 1
+        at = toks(a.replace('…', ' '))
+        for x in at:
+            serbest = c.get('pos') == 'verb' and len(at) == 1
+            if not serbest and x not in oz[i] and _n(x)[:3] not in bas: continue
+            sayac[x][i] += 1
 for x, cnt in sayac.items():
     en = max(cnt.values())
     for i, n in cnt.items():
         if n == en: oz[i].add(x); idx[x].add(i)
 def yuzey(c): return oz[c['id']]
+oz_bas = {x for i, c in cards.items() for b in (c['de'], c.get('pl', '')) for x in toks(b)}
 cerceve = {i for i, c in cards.items() if c.get('card') is False}
 # card:false kartların forms dizininde olmayan çekimleri (artikel, zamir, iyelik). Kartta yok; burada açıkça yazıldı,
 # ANA'nın sayacı bunları karttan okumalı (öneri: card:false kartlara `bicimler` alanı). Tahmin değil, kapalı liste.
@@ -72,7 +82,8 @@ adlar = set()
 for ch in w.get('characters', []):
     for k in ('name', 'short', 'first', 'last', 'de'):
         if isinstance(ch.get(k), str): adlar |= set(toks(ch[k]))
-for p in w['town'].get('places', []): adlar |= set(toks(p.get('name', '')))
+# yer adlarında yalnızca özel ad bölümü ad sayılır: kartı olan cins ad (Bäckerei, Bürgerbüro, Rathaus …) ad değildir
+for p in w['town'].get('places', []): adlar |= {t for t in toks(p.get('name', '')) if t not in oz_bas}
 import os
 ga = f'{K}/docs/v2/reviews/genel-adlar.md'
 genel = set()
@@ -129,7 +140,7 @@ def gun_cumleleri(g):
 def madde(m, yer):
     r = []
     if m.get('audio_de'): r.append((yer, 'gosterim', m['audio_de']))
-    if m.get('de'): r.append((yer, 'gosterim', m['de']))
+    if m.get('de'): r.append((yer, 'gorev' if '___' in m['de'] else 'gosterim', m['de'].replace('___', ' ')))
     if m.get('accepted'): r.append((yer, 'gorev', m['accepted'][0]))
     return r
 def ders_cumleleri(d):
