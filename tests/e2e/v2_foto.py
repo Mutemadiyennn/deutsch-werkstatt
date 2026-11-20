@@ -60,6 +60,14 @@ def main():
                 bas = pg.text_content("[data-test=foto-soru-baslik]")
                 check(f.get_attribute("data-kaynak") == "secim" and "Fotoğraftaki ne?" in bas, f"soruda seçilmiş fotoğraf, başlık 'Fotoğraftaki ne?' ({f.get_attribute('data-kaynak')}, {bas!r})")
             b.close()
+        # inceleme #150 P2: artikel sorusu başlığı büyük harfte "DIE" (Almanca kısım lang="de"; Türkçe yerelde "DİE" olmaz)
+        b, ctx = launch(p); pg = new_page(ctx)
+        login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
+        pg.evaluate("() => { sessionStorage.setItem('e2e-kart', 'lx:Montag'); sessionStorage.setItem('e2e-tur', 'article'); }")
+        pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=gq-article]")
+        bas = pg.inner_text("[data-test=gq-article] .kicker")
+        check("DIE" in bas and "DİE" not in bas, f"artikel sorusu başlığı büyük harfte 'DIE' ({bas!r})")
+        b.close()
         # gerçek Releases fotoğrafı uygulamanın kökeninde (CSP dahil) çiziliyor mu (inceleme #121 P1-4); ağ yalnızca CI'da kesin
         b, ctx = launch(p); pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         w = pg.evaluate("""async () => { const v = (await (await fetch('content/current.json')).json()).version;

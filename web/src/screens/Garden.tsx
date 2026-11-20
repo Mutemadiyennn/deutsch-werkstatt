@@ -414,7 +414,8 @@ function ChoiceQ({ q, l, all, yakin, ex, show, verdict }: { q: GardenQ; l: Lexem
   useEffect(() => { if (q.type === "listen_meaning") void speak(isNoun(l) ? `${l.art} ${l.de}` : l.de, "de", "normal"); }, []);
   return (
     <div class="stack fade" data-test={`gq-${q.type}`} data-lex={l.id}>
-      <section class="card stack"><div class="kicker">{m.title}</div>
+      {/* inceleme #150 P2: .kicker büyük harfe çevrilir; Almanca artikeller Türkçe yerelde "DİE" olmasın diye lang="de" içinde */}
+      <section class="card stack"><div class="kicker">{q.type === "article" ? <><span lang="de">der, die, das</span>: hangisi?</> : m.title}</div>
         {q.type === "listen_meaning" ? <div class="row"><ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} /><span class="small muted">Kelime cevaptan sonra görünür</span></div>
           : <div class="de-lg" lang="de">{m.stem}</div>}
         {picked !== null && q.type !== "colloc" && <div class="de-lg" lang="de"><Art art={l.art} de={l.de} /></div>}
