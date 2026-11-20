@@ -55,7 +55,9 @@
     {
       "id": "r0:11:a:ich-heisse",
       "de": "Ich heiße {name}.",
+      "de_adsiz": "Hallo, ich heiße Tobi.",
       "tr": "Adım {name}.",
+      "tr_adsiz": "Merhaba, adım Tobi.",
       "lexeme": "lx:heißen",
       "exp": {
         "anlam_tr": "Kendi adını söyler.",
@@ -379,7 +381,9 @@
       "id": "r0:11:d05",
       "k": "gap",
       "de": "Ich ___ {name}.",
+      "de_adsiz": "Hallo, ich ___ Tobi.",
       "tr": "Adım {name}.",
+      "tr_adsiz": "Merhaba, adım Tobi.",
       "accepted": [
         "heiße",
         "heisse"
@@ -558,11 +562,18 @@
       "id": "r0:11:d17",
       "k": "tr_de",
       "tr": "Adım {name}.",
+      "tr_adsiz": "Senin adın ne?",
       "accepted": [
         "Ich heiße {name}.",
         "Ich heisse {name}.",
         "Mein Name ist {name}.",
         "Ich bin {name}."
+      ],
+      "accepted_adsiz": [
+        "Wie heißt du?",
+        "Wie ist dein Name?",
+        "Und wie heißt du?",
+        "Wie heißt du denn?"
       ]
     },
     {
@@ -693,6 +704,13 @@
         "Hallo Tobi, ich bin {name}.",
         "Hallo, ich bin {name}.",
         "Hallo, ich heiße {name}. Und du?"
+      ],
+      "accepted_adsiz": [
+        "Hallo Tobi! Ich bin neu hier.",
+        "Hallo Tobi, ich bin neu hier.",
+        "Hallo! Ich bin neu hier.",
+        "Hallo Tobi! Ich bin neu.",
+        "Ich bin neu hier."
       ]
     },
     {
@@ -811,13 +829,17 @@
         "speaker": "ogrenci",
         "r": "B",
         "de": "Ich heiße {name}.",
-        "tr": "Adım {name}."
+        "de_adsiz": "Hallo Tobi! Ich bin neu hier.",
+        "tr": "Adım {name}.",
+        "tr_adsiz": "Merhaba Tobi! Burada yeniyim."
       },
       {
         "speaker": "ch:lechner",
         "r": "A",
         "de": "Hallo, {name}! Und das ist Derya.",
-        "tr": "Merhaba {name}! Bu da Derya."
+        "de_adsiz": "Schön! Und das ist Derya.",
+        "tr": "Merhaba {name}! Bu da Derya.",
+        "tr_adsiz": "Ne güzel! Bu da Derya."
       },
       {
         "speaker": "ch:aksoy",
@@ -952,7 +974,9 @@
           "r": "Ioana",
           "speaker": "ch:popescu",
           "de": "Hallo {name}, hier ist Ioana.",
-          "tr": "Merhaba {name}, ben Ioana."
+          "de_adsiz": "Hallo, hier ist Ioana.",
+          "tr": "Merhaba {name}, ben Ioana.",
+          "tr_adsiz": "Merhaba, ben Ioana."
         },
         {
           "r": "Ioana",

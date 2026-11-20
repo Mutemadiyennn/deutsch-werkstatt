@@ -46,7 +46,9 @@
   {
    "id": "r0:10:a:name",
    "de": "Mein Name ist {name}.",
+   "de_adsiz": "Mein Name ist nicht einfach.",
    "tr": "Benim adım {name}.",
+   "tr_adsiz": "Adım kolay değil.",
    "lexeme": "lx:Name",
    "exp": {
     "anlam_tr": "Kendini tanıtır.",
@@ -62,7 +64,9 @@
   {
    "id": "r0:10:a:vorname",
    "de": "Mein Vorname ist {name}.",
+   "de_adsiz": "Wie ist Ihr Vorname?",
    "tr": "Benim ön adım {name}.",
+   "tr_adsiz": "Ön adınız nedir?",
    "lexeme": "lx:Vorname",
    "exp": {
     "anlam_tr": "Soyadın dışındaki adını söyler.",
@@ -78,7 +82,9 @@
   {
    "id": "r0:10:a:nachname",
    "de": "Mein Nachname ist {name}.",
+   "de_adsiz": "Wie ist Ihr Nachname?",
    "tr": "Benim soyadım {name}.",
+   "tr_adsiz": "Soyadınız nedir?",
    "lexeme": "lx:Nachname",
    "exp": {
     "anlam_tr": "Soyadını söyler.",
@@ -772,23 +778,37 @@
    "id": "r0:10:d14",
    "k": "tr_de",
    "tr": "Benim adım {name}.",
+   "tr_adsiz": "Adım kolay değil.",
    "accepted": [
     "Mein Name ist {name}.",
     "Ich heiße {name}.",
     "Ich bin {name}.",
     "{name} ist mein Name."
+   ],
+   "accepted_adsiz": [
+    "Mein Name ist nicht einfach.",
+    "Mein Name ist nicht leicht.",
+    "Mein Name ist schwer.",
+    "Mein Name ist schwierig."
    ]
   },
   {
    "id": "r0:10:d15",
    "k": "tr_de",
    "tr": "Benim soyadım {name}.",
+   "tr_adsiz": "Soyadınız nedir?",
    "accepted": [
     "Mein Nachname ist {name}.",
     "Mein Familienname ist {name}.",
     "{name} ist mein Nachname.",
     "Mein Name ist {name}.",
     "Ich heiße {name}."
+   ],
+   "accepted_adsiz": [
+    "Wie ist Ihr Nachname?",
+    "Wie ist Ihr Familienname?",
+    "Wie ist Ihr Nachname, bitte?",
+    "Wie ist Ihr Familienname, bitte?"
    ]
   },
   {
@@ -1075,7 +1095,9 @@
     "speaker": "ogrenci",
     "r": "B",
     "de": "Mein Name ist {name}.",
-    "tr": "Benim adım {name}."
+    "de_adsiz": "Mein Name ist nicht einfach.",
+    "tr": "Benim adım {name}.",
+    "tr_adsiz": "Adım kolay değil."
    },
    {
     "speaker": "ch:schneider",
@@ -1093,7 +1115,9 @@
     "speaker": "ch:schneider",
     "r": "A",
     "de": "Danke, {Herr|Frau} {name}. Und Ihre Adresse?",
-    "tr": "Teşekkürler, {Herr|Frau} {name}. Adresiniz?"
+    "de_adsiz": "Danke. Und Ihre Adresse?",
+    "tr": "Teşekkürler, {Herr|Frau} {name}. Adresiniz?",
+    "tr_adsiz": "Teşekkürler. Adresiniz?"
    },
    {
     "speaker": "ogrenci",
