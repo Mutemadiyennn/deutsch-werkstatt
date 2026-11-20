@@ -145,3 +145,12 @@ Sara, Lea. (Lisa, Jan, Finn, Moritz, Jakob, Emil, David, Eva artık dolu; aşağ
 - Paul'un ağabeyi şoför.
 - Anna bebeği dört gözle bekliyor; işini bir arkadaşı sayesinde buldu.
 - Julia bir yıldır Almanca öğreniyor.
+
+### Emre Aydın
+- Dr. Weber'in muayenehanesine telefon eden tek seferlik hasta (r0-11 dinleme); Wendlfing'de oturuyor. Başka bilgi yok.
+
+### Ek (inceleme #142 P2, 20.11)
+- Clara on yedi yaşında; odasını paylaştığı kız kardeşi ablası, ondan iki yaş büyük.
+- Sophie kırsalda oturuyor.
+- Tom'un babası kırsalda büyüdü; Tom'un büyükannesi çocukluğunda bir çiftlikte yaşadı.
+- Tom köpeklerden korkuyor.
