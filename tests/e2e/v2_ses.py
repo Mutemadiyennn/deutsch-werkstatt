@@ -5,6 +5,8 @@ B15 1. adım (PM-064 + PM 7016783246-2, 7017526063): karaktere göre ses, "Yava�
   - Profil → Ses ve mikrofon: kadın/erkek havuzu; "Dinle" ve "Yavaş": aynı ses, aynı perde, hız ≥ %20 düşük
   - karakterlerin sesi: erkek karakter erkek, kadın karakter kadın sesi; yeniden açılışta aynı (sabit)
   - iki konuşanlı kayıt (M1 1. gün, iki kişilik sahne ya da ses): iki farklı ses/perde
+  - hız ölçümü (PM 7042161522-1): "Hızı ölç" normal/yavaş süreyi yazar; yavaşlamayan ses uyarısı ve kabuk satırı notu;
+    yavaş hızı 0,6/0,5/0,4 seçilir, yeniden açılışta kalır ve "Yavaş" o hızla çalar
   - mikrofon: kullanılan yol yazılı; sahte tanıma "Guten Morgen" → ekranda; izin reddi → Türkçe neden
 python3 tests/e2e/v2_ses.py [--browser webkit] [--device "iPhone 15"] [--shots DIR]
 """
@@ -24,7 +26,10 @@ SAHTE = """(() => {
     .map(([name, lang]) => ({ name, lang, voiceURI: name, localService: true, default: false }));
   window.__oku = [];
   const ss = { speaking: false, pending: false, paused: false, getVoices: () => V, cancel() {}, addEventListener() {}, removeEventListener() {},
-    speak(u) { window.__oku.push({ text: u.text, ses: u.voice ? u.voice.name : null, rate: u.rate, pitch: u.pitch }); setTimeout(() => u.onend && u.onend(), 30); } };
+    speak(u) { window.__oku.push({ text: u.text, ses: u.voice ? u.voice.name : null, rate: u.rate, pitch: u.pitch }); u.onstart && u.onstart();
+      // __sure: süre hıza bağlı; Viktor iOS'taki gibi hızı yok sayar (PM 7042161522-1)
+      const ms = !window.__sure ? 30 : (u.voice && u.voice.name.startsWith('Viktor')) ? 600 : Math.round(600 / u.rate);
+      setTimeout(() => u.onend && u.onend(), ms); } };
   Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: ss });
   window.SpeechSynthesisUtterance = function (t) { this.text = t; this.rate = 1; this.pitch = 1; this.voice = null; };
   // sahte mikrofon akışı (seviye göstergesi); window.__gumHata ayarlıysa izin reddi
@@ -58,6 +63,31 @@ def main():
         pg.locator("[data-test=havuz-erkek] [data-test=ses-yavas]").first.click(); pg.wait_for_function("() => window.__oku.length >= 2")
         n, y = pg.evaluate("window.__oku.slice(-2)")
         check(n["ses"] == y["ses"] == "Viktor (Erweitert)" and n["pitch"] == y["pitch"] and y["rate"] <= n["rate"] * 0.8, f"Yavaş yalnızca hız: {n['ses']} {n['rate']}→{y['rate']}, perde {n['pitch']}={y['pitch']}")
+        check(y["rate"] <= n["rate"] / 1.5 + 0.01, f"Yavaş hızı normalin en az 1,5 katı süre hedefler ({n['rate']}→{y['rate']})")
+        # hız ölçümü (PM 7042161522-1)
+        sec = pg.locator("[data-test=yavas-oran] button[aria-pressed=true]").get_attribute("data-oran")
+        check(sec == "0.5", f"varsayılan yavaş hızı 0,5 ({sec})")
+        pg.evaluate("window.__sure = 1; window.__oku = []"); pg.click("[data-test=hiz-olc]")
+        pg.wait_for_function("() => { const b = document.querySelector('[data-test=hiz-olc]'); return b && !b.disabled && document.querySelectorAll('[data-test=hiz-sonuc]').length >= 2; }", timeout=15_000)
+        check(pg.evaluate("window.__oku.length") == 4, f"ölçüm iki sesi normal ve yavaş çaldı ({pg.evaluate('window.__oku.length')} çalma)")
+        sonuc = {e["ad"]: e["t"] for e in pg.locator("[data-test=hiz-sonuc]").evaluate_all("(xs) => xs.map((x) => ({ ad: x.dataset.ad, t: x.innerText }))")}
+        check(set(sonuc) == {"Helena (Erweitert)", "Viktor (Erweitert)"} and all(re.search(r"Normal \d+,\d sn · Yavaş \d+,\d sn \(×\d,\d\d\)", t) for t in sonuc.values()), f"ölçüm: kadın ve erkek havuzunun ilk sesi, 'Normal x sn · Yavaş y sn' ({list(sonuc.values())})")
+        KAT = lambda t: float(re.search(r"×(\d,\d\d)", t).group(1).replace(",", ".")) if re.search(r"×(\d,\d\d)", t) else 0
+        check("Normal 0,6 sn" in sonuc.get("Viktor (Erweitert)", "") and KAT(sonuc.get("Helena (Erweitert)", "")) >= 1.6 and 0.85 <= KAT(sonuc.get("Viktor (Erweitert)", "")) < 1.25, f"yavaşlayan ses ≈1,9 kat, yavaşlamayan ≈1,0 kat ölçülüyor ({[KAT(t) for t in sonuc.values()]})")
+        uy = pg.inner_text("[data-test=hiz-uyari]") if pg.locator("[data-test=hiz-uyari]").count() else ""
+        check(uy.startswith("Bu ses yavaşlamıyor: Viktor") and "Helena" not in uy, f"yalnız yavaşlamayan ses için uyarı ({uy[:60]})")
+        check("yavaşlamıyor" in pg.locator("[data-test=havuz-erkek] [data-test=ses]").first.inner_text() and "yavaşlamıyor" not in pg.locator("[data-test=havuz-kadin] [data-test=ses]").first.inner_text(), "ses satırında ölçüm ve 'yavaşlamıyor' işareti")
+        kab = pg.inner_text("[data-test=kabuk-satir]")
+        check(re.search(r"yavaş: Helena ×\d,\d\d, Viktor ×\d,\d\d yavaşlamıyor$", kab) is not None, f"kabuk satırına yavaş notu ({kab[-60:]})")
+        if shots: pg.locator("[data-test=hiz-olcum]").scroll_into_view_if_needed(); shot(pg, f"s00-hiz-olcum-{TEMA}", full=False)
+        no_overflow(pg, "hız ölçümü")
+        pg.locator("[data-test=yavas-oran] button[data-oran='0.4']").click(); pg.wait_for_timeout(300)
+        pg.reload(); pg.wait_for_selector("[data-test=yavas-oran]")
+        check(pg.locator("[data-test=yavas-oran] button[aria-pressed=true]").get_attribute("data-oran") == "0.4", "yavaş hızı seçimi yeniden açılışta kalıyor")
+        check(pg.locator("[data-test=hiz-sonuc]").count() == 2, "ölçüm sonuçları yeniden açılışta kalıyor")
+        pg.evaluate("window.__sure = 0; window.__oku = []")
+        pg.locator("[data-test=havuz-kadin] [data-test=ses-yavas]").first.click(); pg.wait_for_function("() => window.__oku.length >= 1")
+        check(pg.evaluate("window.__oku[0].rate") == 0.4, f"'Yavaş' seçilen hızla çalıyor ({pg.evaluate('window.__oku[0].rate')})")
         # karakterler: liste kapalı başlar (PM 7022085356-4); açınca cinsiyete uygun, sabit; satırda teknik dil yok
         pg.wait_for_selector("[data-test=karakter-sesleri]")
         check(not pg.locator("[data-test=karakter-ses]").first.is_visible(), "karakter listesi kapalı başlıyor")

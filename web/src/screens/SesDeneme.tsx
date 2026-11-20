@@ -3,25 +3,75 @@
  * Sesler: cihazdaki Almanca sesler kadın/erkek ve kaliteye göre; her biri için "Dinle" ve "Yavaş dinle" (yalnızca hız
  * düşer). Karakterler: her kalıcı karaktere düşen ses. Mikrofon: izin durumu ve tek dokunuşla izin, kullanılan tanıma
  * yolu, canlı ses seviyesi, "Şunu söyle: Guten Morgen" → tanınan metin; hata türleri ayrı ve Türkçe.
+ * Hız ölçümü (PM 7042161522-1): "Dinle"/"Yavaş" süresi onstart→onend ölçülür; oran < 1,25 ise "Bu ses yavaşlamıyor".
+ * Yavaş hızı 0,6 / 0,5 / 0,4 kulakla seçilir, profilde saklanır.
  */
 import { useEffect, useRef, useState } from "preact/hooks";
 import { TopBar } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 import { havuzlar, sesKalitesi, type Ses } from "../core/sesSec.ts";
-import { cihazSesleri, karakterSesi, listenOnce, speak, STT_HATA_TR, sttHataTuru, sttYolu, ttsAvailable } from "../services/speech.ts";
+import { cihazSesleri, hizKaydet, hizKaydi, hizOrani, karakterSesi, listenOnce, olcCal, ORAN_ESIK, RATE, speak, STT_HATA_TR, sttHataTuru, sttYolu, ttsAvailable, YAVAS_SECENEK, type HizOlcum, type YavasOran } from "../services/speech.ts";
+import { useApp } from "../state.ts";
 import { loadWorld } from "../services/content.ts";
 import { kabukBilgisi, kabukSatiri, type KabukBilgisi } from "../services/kabuk.ts";
 
 const ORNEK = "Guten Morgen! Ich hätte gern einen Termin am Montag.";
 
-function SesSatiri({ s }: { s: Ses }) {
-  const dinle = (yavas: boolean) => void speak(ORNEK, "de", yavas ? "slow" : "normal", true, { ses: s, pitch: 1 });
+const sn = (ms: number) => `${(ms / 1000).toFixed(1).replace(".", ",")} sn`;
+const kat = (x: number) => `×${x.toFixed(2).replace(".", ",")}`;
+const kisaAd = (n: string) => n.replace(/\s*\(.*\)$/, "");
+const sesNesnesi = (ad: string) => cihazSesleri().find((v) => v.name === ad);
+type Kayit = Record<string, HizOlcum>;
+
+/** Bir ses: "Dinle" normal, "Yavaş" seçili yavaş hızla, ikisi de ölçülerek (ses olduğu gibi; yedek ses ya da gruplama yok) */
+function SesSatiri({ s, kayit, kaydet }: { s: Ses; kayit: Kayit; kaydet: (ad: string, o: HizOlcum) => void }) {
+  const [yarim, setYarim] = useState<{ normalMs?: number; yavasMs?: number }>({});
+  const o = kayit[s.name];
+  const dinle = async (yavas: boolean) => {
+    const ms = await olcCal(ORNEK, sesNesnesi(s.name), yavas ? RATE.slow : RATE.normal);
+    if (ms === null) return;
+    const y = { ...yarim, ...(o ? { normalMs: o.normalMs, yavasMs: o.yavasMs } : {}), [yavas ? "yavasMs" : "normalMs"]: ms };
+    setYarim(y);
+    if (y.normalMs && y.yavasMs) kaydet(s.name, { normalMs: y.normalMs, yavasMs: y.yavasMs, rate: RATE.slow });
+  };
   return (
-    <li class="row ses-satir" style={{ flexWrap: "nowrap" }} data-test="ses" data-ad={s.name}>
-      <span class="grow" style={{ minWidth: 0 }}><b>{s.name.replace(/\s*\(.*\)$/, "")}</b>{sesKalitesi(s) >= 2 && <span class="chip" style={{ marginLeft: 6 }}>gelişmiş</span>}</span>
-      <button class="btn sm" onClick={() => dinle(false)} data-test="ses-dinle">Dinle</button>
-      <button class="btn sm ghost" onClick={() => dinle(true)} data-test="ses-yavas">Yavaş</button>
+    <li class="row ses-satir" style={{ flexWrap: "nowrap" }} data-test="ses" data-ad={s.name} data-oran={o ? hizOrani(o).toFixed(2) : ""}>
+      <span class="grow" style={{ minWidth: 0 }}><b>{kisaAd(s.name)}</b>{sesKalitesi(s) >= 2 && <span class="chip" style={{ marginLeft: 6 }}>gelişmiş</span>}
+        {o && <><br /><span class={`tiny ${hizOrani(o) < ORAN_ESIK ? "fb-uyari" : "muted"}`} data-test="ses-hiz">{sn(o.normalMs)} · {sn(o.yavasMs)}{hizOrani(o) < ORAN_ESIK ? " · yavaşlamıyor" : ""}</span></>}</span>
+      <button class="btn sm" onClick={() => void dinle(false)} data-test="ses-dinle">Dinle</button>
+      <button class="btn sm ghost" onClick={() => void dinle(true)} data-test="ses-yavas">Yavaş</button>
     </li>
+  );
+}
+
+/** Hız ölçümü: kadın ve erkek havuzunun ilk sesi (karakterlerin çoğu bunlarla konuşur) normal ve yavaş çalınır */
+function HizOlcumu({ hedef, kayit, kaydet }: { hedef: Ses[]; kayit: Kayit; kaydet: (ad: string, o: HizOlcum) => void }) {
+  const { profile, setProfile, toast } = useApp();
+  const [olcuyor, setOlcuyor] = useState(false);
+  const secili = profile.listening.slowRate;
+  const sec = (r: YavasOran) => { const n = structuredClone(profile); n.listening.slowRate = r; RATE.slow = r; void setProfile(n).then(() => toast("Kaydedildi"), () => toast("Kaydedilmedi")); };
+  const olc = async () => {
+    setOlcuyor(true);
+    for (const s of hedef) {
+      const v = sesNesnesi(s.name);
+      const normalMs = await olcCal(ORNEK, v, RATE.normal);
+      const yavasMs = normalMs === null ? null : await olcCal(ORNEK, v, RATE.slow);
+      if (normalMs !== null && yavasMs !== null) kaydet(s.name, { normalMs, yavasMs, rate: RATE.slow });
+    }
+    setOlcuyor(false);
+  };
+  const olculen = hedef.filter((s) => kayit[s.name]);
+  const yavaslamayan = olculen.filter((s) => hizOrani(kayit[s.name]!) < ORAN_ESIK);
+  return (
+    <div class="stack" data-test="hiz-olcum">
+      <div class="kicker">Yavaş hızı</div>
+      <div class="seg" role="group" aria-label="Yavaş hızı" data-test="yavas-oran">
+        {YAVAS_SECENEK.map((r) => <button aria-pressed={secili === r} onClick={() => sec(r)} data-oran={r}>{r === 0.6 ? "Biraz yavaş" : r === 0.5 ? "Yavaş" : "Çok yavaş"}</button>)}
+      </div>
+      <button class="btn block" disabled={olcuyor || !hedef.length} onClick={() => void olc()} data-test="hiz-olc">{olcuyor ? "Ölçülüyor…" : "Hızı ölç"}</button>
+      {olculen.map((s) => { const o = kayit[s.name]!; return <p class="small" style={{ margin: 0 }} data-test="hiz-sonuc" data-ad={s.name}><b>{kisaAd(s.name)}</b>: Normal {sn(o.normalMs)} · Yavaş {sn(o.yavasMs)} ({kat(hizOrani(o))})</p>; })}
+      {yavaslamayan.length > 0 && <p class="small fb-uyari" role="alert" data-test="hiz-uyari">Bu ses yavaşlamıyor: {yavaslamayan.map((s) => kisaAd(s.name)).join(", ")}. Yavaş istenince yavaşlayan başka bir ses, o da yoksa kelime kelime okuma kullanılır.</p>}
+    </div>
   );
 }
 
@@ -37,22 +87,27 @@ export function SesDeneme() {
   }, []);
   const h = havuzlar(sesler);
   const kaliteYok = ![...h.kadin, ...h.erkek].some((s) => sesKalitesi(s) >= 2);
+  const [kayit, setKayit] = useState<Kayit>(() => hizKaydi());
+  const kaydet = (ad: string, o: HizOlcum) => { hizKaydet(ad, o); setKayit((k) => ({ ...k, [ad]: o })); };
+  const hedef = [h.kadin[0], h.erkek[0]].filter((x): x is Ses => !!x);
+  const yavasNot = hedef.filter((s) => kayit[s.name]).map((s) => { const o = kayit[s.name]!; return `${kisaAd(s.name)} ${kat(hizOrani(o))}${hizOrani(o) < ORAN_ESIK ? " yavaşlamıyor" : ""}`; }).join(", ");
   return (
     <div class="stack ses-deneme" data-test="ses-deneme">
       <TopBar title="Ses ve mikrofon" back="#/profile" />
       <section class="card stack">
         <h2>Sesler</h2>
         <p class="small muted">Bu cihazdaki Almanca sesler. Erkek karakter erkek, kadın karakter kadın sesiyle konuşur; her karakter hep aynı sesle. Yavaş: aynı ses, daha ağır.</p>
+        <HizOlcumu hedef={hedef} kayit={kayit} kaydet={kaydet} />
         {(["kadin", "erkek"] as const).map((c) => (
           <div data-test={`havuz-${c}`}>
             <div class="kicker">{c === "kadin" ? "Kadın sesleri" : "Erkek sesleri"} · {h[c].length}</div>
-            {h[c].length ? <ul class="list">{h[c].map((s) => <SesSatiri s={s} />)}</ul> : <p class="small" data-test={`havuz-bos-${c}`}>Bu cihazda {c === "kadin" ? "kadın" : "erkek"} Almanca ses yok.</p>}
+            {h[c].length ? <ul class="list">{h[c].map((s) => <SesSatiri s={s} kayit={kayit} kaydet={kaydet} />)}</ul> : <p class="small" data-test={`havuz-bos-${c}`}>Bu cihazda {c === "kadin" ? "kadın" : "erkek"} Almanca ses yok.</p>}
           </div>
         ))}
-        {h.diger.length > 0 && <details><summary class="small">Öteki Almanca sesler · {h.diger.length}</summary><ul class="list">{h.diger.map((s) => <SesSatiri s={s} />)}</ul></details>}
+        {h.diger.length > 0 && <details><summary class="small">Öteki Almanca sesler · {h.diger.length}</summary><ul class="list">{h.diger.map((s) => <SesSatiri s={s} kayit={kayit} kaydet={kaydet} />)}</ul></details>}
         {(!h.erkek.length || kaliteYok) && <p class="small bilgi" data-test="ses-indir">Daha doğal ses için iPhone'da: Ayarlar → Erişilebilirlik → Seslendirilen İçerik → Sesler → Almanca. "Anna", "Helena" (kadın) ve "Markus", "Viktor" (erkek) seslerinin "Gelişmiş" sürümünü indir; sonra bu sayfayı yeniden aç.</p>}
       </section>
-      <MikrofonDeneme />
+      <MikrofonDeneme yavasNot={yavasNot} />
       {karakter.length > 0 && <details class="card stack" data-test="karakter-sesleri">
         <summary class="ac-baslik" data-test="karakter-ac"><h2>Karakterlerin sesi · {karakter.length}</h2></summary>
         <ul class="list">{karakter.map((c) => { const a = karakterSesi(c.id); return (
@@ -66,7 +121,7 @@ export function SesDeneme() {
 }
 
 type Izin = "verildi" | "reddedildi" | "sorulacak" | "bilinmiyor";
-function MikrofonDeneme() {
+function MikrofonDeneme({ yavasNot }: { yavasNot: string }) {
   const [izin, setIzin] = useState<Izin>("bilinmiyor");
   const [seviye, setSeviye] = useState(0);
   const [durum, setDurum] = useState<"bos" | "dinliyor" | "sonuc">("bos");
@@ -116,7 +171,7 @@ function MikrofonDeneme() {
       {/* kabukta izin yoksa tek dokunuşla iPhone Ayarları (PM 7017526063); cihazda doğrulanacak */}
       {hata && yol === "yerel" && izin === "reddedildi" && <button class="btn" data-test="ayarlari-ac" onClick={() => { location.href = "app-settings:"; }}>Ayarları aç</button>}
       {/* PM-071 1. adım: telefondaki kabuğun sürümü ve içinde gerçekten bulunan eklentiler (sayfa 3 blokta kalsın diye mikrofon kartında) */}
-      {kabuk && <p class="tiny muted" data-test="kabuk-satir" style={{ margin: 0 }}>{kabukSatiri(kabuk)}</p>}
+      {kabuk && <p class="tiny muted" data-test="kabuk-satir" style={{ margin: 0 }}>{kabukSatiri(kabuk)}{yavasNot ? ` · yavaş: ${yavasNot}` : ""}</p>}
     </section>
   );
 }
