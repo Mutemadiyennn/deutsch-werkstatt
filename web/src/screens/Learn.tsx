@@ -79,7 +79,7 @@ export function DomainView({ id }: { id: string }) {
       <section class="card">
         <div class="kicker">Eski uygulamadaki üniteler</div>
         <p class="small muted">Eski uygulamada açılır.</p>
-        <div class="row">{d.legacyUnits.map((u) => <a class="chip" href={`${V1_URL}#kurs`} target="_blank" rel="noopener">{u.toUpperCase()} <Icon name="out" size={14} /></a>)}</div>
+        <div class="row">{d.legacyUnits.map((u) => <a class="chip" href={`${V1_URL}?v1#kurs`} target="_blank" rel="noopener">{u.toUpperCase()} <Icon name="out" size={14} /></a>)}</div>
       </section>
     </div>
   );
