@@ -90,6 +90,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | B2, C1, C2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 Kalıpların 61'i de onaylı (main, `patterns.json`). Hedef sütunu (günlük: yazar ≥2 ünite parçası, lex 150–200 kart, dilbilimci aynı gün) hat başlayınca günlük doldurulur. BY-8 tükenme tahmini: K2 motoru (R1) gelene kadar hesaplanamaz.
 R0 temel paket: 10 ders, 189 öğretim öğesi, 353 alıştırma; main'de (#51). Kelime sayıları `card:false` işlev kelimelerini saymaz.
+B5 (PM 20.11 05:32, ders profili): 1. gün dersi r0-01 "söyle" ağırlıklı (#145; tr_de 10 → 4, listen_and_respond 3 → 9); 2. gün (aylar, "dinle") ve 3. gün (sayılar) `content/ders-profil-02`, `-03` dallarında.
 B4 kart kuralları (#88, #96): parti dosyalarında K1 isim boşluğu, 3+ eşdizim ve somut kelimede örnek başına fotoğraf sorgusu uyarıları 0 (150 kart kapandı). Doğrulayıcının "görselsiz örnek" sayacında kalan 82 kart eski `lexemes.v1.json` kartları; taban 0 / 0 / 82 (ANA, birleştirmede).
 B5 fotoğraf seçimi (#91): 308 yerin 40'ına açık lisanslı fotoğraf seçildi, 220'si reddedildi, 48'i soyut; 332 kısa ikinci sorgu A10 hattına verildi. Hedef somut kelimelerin %85'i; Openverse sonrası ikinci tur.
 Gün sınavı (#110, PM-066 madde 3): M1'in 7 gününe `gun_sinavi`, gün başına 11 madde (4 dikte, 4 yazılı üretim, 2 sesli üretim, 1 mini prova), toplam 77; yazar → dilbilimci (22 düzeltme) → okur (157 satır, GERİ 0).
