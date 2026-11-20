@@ -6,7 +6,7 @@
  * Kaldığı yer cihazda saklanır (yarıda bırakılıp sürdürülebilir). Uzun kayıt hiçbir zaman baştan sona yazdırılmaz.
  */
 import { gorevSay } from "../services/gorev.ts";
-import { useEffect, useMemo, useRef, useState } from "preact/hooks";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Gun, medyalar, type AnlamaQ, type Bolum, type Dikte, type Lexeme, type Medya, type MedyaCumle } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { adimXpVer, xpVer } from "../services/ilerleme.ts";
@@ -202,25 +202,59 @@ function DinleAdimi({ m, cs, oy, onNext, onOgretim }: { m: Medya; cs: MedyaCumle
   const [hiz, setHiz] = useState<"slow" | "normal">((m.kind === "ses" && m.hizlar[0] === "slow") || baslangicYavas() ? "slow" : "normal");
   const yavas = ikiHiz ? hiz === "slow" : (m.kind === "ses" && m.hizlar[0] === "slow") || ilkYavas;
   const cal = () => { const y = yavas; setDinledi(true); if (ikiHiz && y && !dinledi) setHiz("normal"); void oy.bolum(cs, y); };
+  // PM 7043484263: tek birincil düğme ekranın altında sabit (eylem çubuğu). İlk dinlemeden önce "Sorulara geç" küçük bağlantı;
+  // dinleme bitince birincil "Sorulara geç", "Bir daha dinle" ikincil. Kart başlığı yok (üst çubukta yazıyor); açıklama ≤ 2 satır.
   return (
     <section class="card stack fade" data-test="adim-dinle">
-      <div class="kicker">Bölümü baştan sona dinle</div>
-      {/* A9 (inceleme #159 P1-2): klipte geçen, henüz öğretilmemiş kelimeler dinlemeden önce; transkript değil, kelime listesi */}
-      {!!onOgretim?.length && <div class="stack" data-test="on-ogretim">
-        <p class="small" style={{ margin: 0 }}>Önce şu kelimelere bak; klipte geçiyorlar:</p>
-        <ul class="list">{onOgretim.map((w) => <li class="row" style={{ flexWrap: "nowrap" }}>
-          <span class="grow" style={{ minWidth: 0 }}><b lang="de">{w.de}</b> <span class="muted">· {w.tr}</span></span>
-          <button class="btn sm ghost" aria-label={`${w.de}: dinle`} onClick={() => void speak(w.de, "de", "normal")}><Icon name="play" /></button></li>)}</ul>
-      </div>}
-      <p class="small">Metin yok: önce kulağınla dene. Ne hakkında olduğunu anlamaya çalış; her kelimeyi anlaman gerekmiyor.</p>
-      {oy.calisiyor !== null
-        ? <button class="btn block" data-test="durdur" onClick={() => oy.dur()}><Icon name="pause" /> Durdur</button>
-        : <button class={`btn block${dinledi ? "" : " primary"}`} data-test="dinle-bolum" onClick={cal}>
-            <Icon name="play" /> {dinledi ? "Bir daha dinle" : !ikiHiz && yavas ? "Dinle (yavaş)" : "Dinle"}</button>}
+      {!!onOgretim?.length && <OnOgretim w={onOgretim} />}
+      <p class="small" style={{ marginBottom: 0 }}>Önce kulağınla dene. Her kelimeyi anlaman gerekmiyor.</p>
       {ikiHiz && <div class="seg" role="group" aria-label="Hız" data-test="hiz">{(["slow", "normal"] as const).map((h) => <button type="button" aria-pressed={hiz === h} disabled={oy.calisiyor !== null} onClick={() => setHiz(h)}>{h === "slow" ? "Yavaş" : "Normal"}</button>)}</div>}
-      {/* E2E kısayolu (dinlemeden ilerleme) sessionStorage "e2e-kapi" ile kapatılır; böylece üretimdeki "dinlemeden görünmez" kapısı da sınanır (inceleme #128 P2-5) */}
-      {(dinledi || (E2E && !sessionStorage.getItem("e2e-kapi"))) && <ActionBar><button class={`btn block${dinledi ? " primary" : ""}`} data-test="next" onClick={onNext}>Sorulara geç</button></ActionBar>}
+      <ActionBar>
+        {oy.calisiyor !== null
+          ? <button class="btn block" data-test="durdur" onClick={() => oy.dur()}><Icon name="pause" /> Durdur</button>
+          : dinledi
+            ? <><button class="btn primary block" data-test="next" onClick={onNext}>Sorulara geç</button>
+                <button class="btn block" data-test="dinle-bolum" onClick={cal}><Icon name="play" /> Bir daha dinle</button></>
+            : <button class="btn primary block" data-test="dinle-bolum" onClick={cal}><Icon name="play" /> {!ikiHiz && yavas ? "Dinle (yavaş)" : "Dinle"}</button>}
+        {/* E2E kısayolu (dinlemeden ilerleme) sessionStorage "e2e-kapi" ile kapatılır; üretimde dinlemeden önce yalnız küçük bağlantı */}
+        {(!dinledi || oy.calisiyor !== null) && <div style={{ textAlign: "center" }}><button class="ikincil-eylem" style={{ alignSelf: "center" }} data-test="next" data-baglanti="1" onClick={onNext}>Sorulara geç</button></div>}
+      </ActionBar>
     </section>
+  );
+}
+
+/** A9 ön öğretim: dokununca seslenen çipler; en çok iki satır (sırayla, ilk sığan yere), sığmayanlar "+n" ile açılır (PM 7043484263) */
+function OnOgretim({ w }: { w: { de: string; tr: string }[] }) {
+  const [acik, setAcik] = useState(false);
+  /** gösterilecek çiplerin dizinleri (null: hepsi, ölçüm öncesi) */
+  const [secili, setSecili] = useState<number[] | null>(null);
+  const dizi = useRef<HTMLDivElement>(null);
+  // önce hepsi çizilir, genişlikler ölçülür; sırayla, iki satıra ilk sığan yere yerleştirilir ("+n" için son satırda yer ayrılır)
+  useLayoutEffect(() => {
+    if (acik || secili || !dizi.current) return;
+    const G = dizi.current.clientWidth, ARA = 6, DAHA = 48;
+    const gen = [...dizi.current.querySelectorAll<HTMLElement>("[data-test=on-ogretim-kelime]")].map((c) => c.offsetWidth);
+    const yerlestir = (pay: number) => {
+      const satir = [0, 0]; const al: number[][] = [[], []];
+      gen.forEach((g, i) => {
+        for (let r = 0; r < 2; r++) { const sinir = r === 1 ? G - pay : G; const ek = satir[r]! ? ARA + g : g; if (satir[r]! + ek <= sinir) { satir[r] = satir[r]! + ek; al[r]!.push(i); return; } }
+      });
+      // satır satır sırayla çizilir (esnek kutu da aynı iki satıra böler)
+      return [...al[0]!, ...al[1]!];
+    };
+    const hepsi = yerlestir(0);
+    setSecili(hepsi.length === gen.length ? hepsi : yerlestir(DAHA + ARA));
+  }, [acik, secili, w.length]);
+  const gorunen = acik || !secili ? w : secili.map((i) => w[i]!);
+  const gizli = acik || !secili ? 0 : w.length - secili.length;
+  return (
+    <div class="stack" style={{ gap: 6 }} data-test="on-ogretim">
+      <p class="small" style={{ margin: 0 }}>Önce şu kelimelere bak; klipte geçiyorlar:</p>
+      <div class="cip-dizi" ref={dizi} style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+        {gorunen.map((x) => <button type="button" class="chip on-cip" style={{ whiteSpace: "nowrap" }} data-test="on-ogretim-kelime" onClick={() => void speak(x.de, "de", "normal")}><b lang="de">{x.de}</b><span>· {x.tr}</span></button>)}
+        {gizli > 0 && <button type="button" class="chip" style={{ whiteSpace: "nowrap" }} data-test="on-ogretim-daha" onClick={() => setAcik(true)}>+{gizli}</button>}
+      </div>
+    </div>
   );
 }
 
