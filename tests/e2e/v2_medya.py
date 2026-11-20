@@ -72,7 +72,11 @@ def main():
         check(abs(dur - 300) < 2, f"örnek kayıt 5 dakika ({dur:.0f} sn)")
         check("CC BY" in pg.inner_text("[data-test=atif]"), "atıf satırı ve lisans görünüyor")
         check("Bölüm 1/3" in pg.inner_text("[data-test=medya] .pbar"), "5 dakikalık kayıt 3 bölüm")
-        check(pg.locator("[data-test=adim-dinle] .de, [data-test=adim-dinle] [lang=de]").count() == 0, "(a) ilk dinlemede metin yok")
+        check(pg.locator("[data-test=adim-dinle] .de, [data-test=adim-dinle] [lang=de]:not([data-test=on-ogretim] *)").count() == 0, "(a) ilk dinlemede metin yok (ön öğretim kelimeleri dışında)")
+        # A9 (inceleme #159 P1-2): klipte geçen yeni kelimeler ve ortam dinlemeden önce görünür (transkript değil)
+        oo = pg.locator("[data-test=on-ogretim] li").all_inner_texts()
+        check(len(oo) == 2 and "ursprünglich" in oo[0] and "aslen" in oo[0], f"ön öğretim: yeni kelimeler Türkçesiyle dinlemeden önce ({oo})")
+        check(pg.locator("[data-test=video-ortam]").count() == 1 and "adını" in pg.inner_text("[data-test=video-ortam]"), "ortam cümlesi videonun altında")
         # (a) bölümü dinle: video bölümün başından oynar
         # B7: başlangıç hızı Yavaş — düğmede ya da hız anahtarında (PM-074 md. 2) yazılı
         yazili = "yavaş" in pg.inner_text("[data-test=dinle-bolum]") or pg.locator("[data-test=hiz] button[aria-pressed=true]").first.inner_text().strip() == "Yavaş" if pg.locator("[data-test=hiz]").count() else "yavaş" in pg.inner_text("[data-test=dinle-bolum]")

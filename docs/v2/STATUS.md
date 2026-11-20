@@ -124,7 +124,7 @@ Sözlüğün tamamı onaylı: taslak partiler 004–008'deki 394 girdi tam incel
 | #126 | `v2/bahce-aralik` (#122 üstüne) | PM-069 madde 3: tanıtım ile ilk soru arası ≥2, köprü | 2. tur düzeltildi; PM Gördüm bekler |
 | #128 | `v2/baslik-dugme` | PM-074 G2 + md. 2–3: üst çubuk başlığı tam (sığmazsa çip alt satıra), medyada tek oynat + hız anahtarı (B7 korunur), senaryoda birincil eylem dinlemek, altyazılı dinleme yeniden çalınır | 1. tur DEĞİŞİKLİK GEREKLİ → P1-1/2/3 ve P2-1…7 düzeltildi; 2. tur inceleme ve PM final bekler |
 | — | `v2/esdizim-uc` | PM 7024150313: en çok 3 eşdizim, "Daha fazla" | #122 birleşince PR |
-| — | `v2/a9-klip` | PM-069 madde 4: klip-02 → 2. günün videosu | şeritte yer açılınca PR |
+| #159 | `v2/a9-klip` | PM-069 madde 4 + PM-078 F: hattın ölçtüğü klipler günün videosu (bugün 2., 4., 5. gün; 1., 6., 7. gün İÇ örneklem onayı bekliyor); ön öğretim dinlemeden önce | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi, 2. tur |
 | — | `kaynak/gorsel` | B14 boy denemesi (512 / 768×576) | 20.11 00:12 UTC koşusu |
 
 ### Birleştirme turu (PM-007, 2026-11-17)

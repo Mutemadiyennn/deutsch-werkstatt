@@ -7,21 +7,27 @@
  * `durum` hazir | kisa bağlanır (PM-078 F); çok parçalı (`kesitler`) klip hattın birleştirdiği tek videoyla, cümle kimliği t{tur} / k{sira}t{tur}.
  * Hizalı cümlesi olmayan tura bağlı soru, dikte ve gölge pakete girmez (öğrenci o cümleyi metinde göremez).
  */
+import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { Video, type Video as VideoT } from "../../packages/shared/src/m1.ts";
 
-interface Tur { tur: number; tr?: string }
+interface Tur { tur: number; tr?: string; basi?: string }
 interface MetinCumle { id: string; tur: number; kesit?: number; speaker?: string; de: string; t0: number; t1: number }
 interface Metin { sure_sn: number; kaynak_klip?: string; kaynak_klipler?: string[]; cumleler: MetinCumle[] }
 type Ref = number | { kesit?: number; tur: number };
 
+interface Parca { klip: string; turlar: Tur[]; konusmaci?: string; url?: string; bas?: number; son?: number; haric: Set<number> }
+const haricSet = (h: any[] | undefined) => new Set<number>((h ?? []).map((x) => (typeof x === "number" ? x : x?.tur)).filter((x): x is number => typeof x === "number"));
 /** Klibin parçaları (FORMAT.md A9 `kesitler`): sıra 0 üst düzey alanlarla aynıdır */
-const parcalar = (k: any): { klip: string; turlar: Tur[]; konusmaci?: string; url?: string }[] => {
-  const ust = { klip: k.klip, turlar: k.turlar ?? [], konusmaci: k.konusmaci, url: k.transkript_url || k.video_url };
+const parcalar = (k: any): Parca[] => {
+  const ust: Parca = { klip: k.klip, turlar: k.turlar ?? [], konusmaci: k.konusmaci, url: k.transkript_url || k.video_url, bas: k.kesit?.bas_tur, son: k.kesit?.son_tur, haric: haricSet(k.haric) };
   const ks: any[] = k.kesitler ?? [];
-  return ks.length ? ks.map((x, i) => (i === 0 ? { ...ust, konusmaci: x.konusmaci ?? ust.konusmaci } : { klip: x.klip, turlar: x.turlar ?? [], konusmaci: x.konusmaci, url: x.transkript_url || x.video_url })) : [ust];
+  return ks.length ? ks.map((x, i) => (i === 0 ? { ...ust, konusmaci: x.konusmaci ?? ust.konusmaci }
+    : { klip: x.klip, turlar: x.turlar ?? [], konusmaci: x.konusmaci, url: x.transkript_url || x.video_url, bas: x.bas_tur, son: x.son_tur, haric: haricSet(x.haric) })) : [ust];
 };
+/** `basi` denetimi için: küçük harf, noktalama yok, tek boşluk */
+const sade = (t: string) => t.toLowerCase().normalize("NFC").replace(/[^\p{L}\p{N}\s]/gu, " ").replace(/\s+/g, " ").trim();
 
 /**
  * Klip + hattın hizalı metni → günün videosu. Bağlanır: `durum` hazir | kisa (PM-078 F) ve metin bu klibin GÜNCEL parçalarından
@@ -34,6 +40,13 @@ export function klipVideo(k: any, metin: Metin, olcum?: { kesit_kaynak_sn?: [num
   const beklenen = ps.map((p) => p.klip);
   const gelen = metin.kaynak_klipler ?? (metin.kaynak_klip ? [metin.kaynak_klip] : []);
   if (gelen.length !== beklenen.length || gelen.some((x, i) => x !== beklenen[i])) return null;
+  // inceleme #159 P1-1: her hizalı cümle kendi turunun `basi`siyle başlamalı; kesit aralığı dışı ve `haric` tur pakete girmez
+  for (const c of metin.cumleler) {
+    const p = ps[c.kesit ?? 0]; const t = p?.turlar.find((x) => x.tur === c.tur);
+    if (t?.basi && !sade(c.de).startsWith(sade(t.basi))) { console.warn(`${k.dosya}: ${c.id} "basi" tutmuyor; klip bağlanmadı`); return null; }
+  }
+  const icinde = (c: MetinCumle) => { const p = ps[c.kesit ?? 0]; return !!p && !p.haric.has(c.tur) && (p.bas == null || c.tur >= p.bas) && (p.son == null || c.tur <= p.son); };
+  metin = { ...metin, cumleler: metin.cumleler.filter(icinde) };
   const ad = String(k.dosya ?? "").replace(/\.json$/, "") || null;
   const anahtar = (kesit: number, tur: number) => `${kesit}:${tur}`;
   const trOf = new Map<string, string>(); ps.forEach((p, i) => p.turlar.forEach((t) => trOf.set(anahtar(i, t.tur), t.tr ?? "")));
@@ -77,6 +90,8 @@ export function klipVideo(k: any, metin: Metin, olcum?: { kesit_kaynak_sn?: [num
     kaynak: { url: ps[0]!.url, lisans: k.lisans, atif: k.atif, bas_sn: ps.length === 1 ? kesit?.[0] ?? 0 : 0, bit_sn: ps.length === 1 ? kesit?.[1] ?? metin.sure_sn : metin.sure_sn },
     medya: [{ src: `media/${ad}.mp4`, type: "video/mp4" }],
     poster: `media/${ad}.jpg`,
+    ...(k.ortam_tr ? { ortam_tr: k.ortam_tr } : {}),
+    on_ogretim: (k.on_ogretim ?? []).map((x: any) => ({ de: x.de, tr: x.tr })),
     cumleler,
     bolumler: [{ id: "b1", cumleler: tum, ana_fikir: { id: "g1", kind: "gist" as const, q_tr: b.ana_fikir.q_tr, opts: b.ana_fikir.opts, ans: b.ana_fikir.ans, kanit: tum }, ayrinti, dikte, golge, ...(cevapla ? { cevapla } : {}) }]
   };
@@ -95,7 +110,15 @@ export function klipVideolari(klipDir: string, medyaKaynak: string[]): { day: nu
     if (!metinYol) continue;
     const k = { ...JSON.parse(readFileSync(join(klipDir, f), "utf8")), dosya: f };
     const olcumYol = join(klipDir, `${ad}.olcum.json`);
-    const v = klipVideo(k, JSON.parse(readFileSync(metinYol, "utf8")), existsSync(olcumYol) ? JSON.parse(readFileSync(olcumYol, "utf8")) : null);
+    const olcum = existsSync(olcumYol) ? JSON.parse(readFileSync(olcumYol, "utf8")) : null;
+    // ölçümsüz klip bağlanmaz; hat "insan-orneklemi" dediyse İÇ'in örneklem onayı (`orneklem_onay: true`) gerekir (FORMAT.md A9)
+    if (!olcum) { console.warn(`${ad}: ölçüm kaydı yok; bağlanmadı`); continue; }
+    if (olcum.etiket === "insan-orneklemi" && k.orneklem_onay !== true) { console.warn(`${ad}: insan örneklemi bekliyor; bağlanmadı`); continue; }
+    const ham = readFileSync(metinYol);
+    // inceleme #159 P1-1: ölçüm kaydı varsa metin tam o dosya olmalı (Releases'te sonradan değişen metin bağlanmaz)
+    const beklenen = olcum?.varliklar?.[`${ad}.metin.json`]?.sha256;
+    if (beklenen && createHash("sha256").update(ham).digest("hex") !== beklenen) { console.warn(`${ad}: metin.json ölçüm kaydıyla aynı değil (sha256); bağlanmadı`); continue; }
+    const v = klipVideo(k, JSON.parse(ham.toString("utf8")), olcum);
     if (v) out.push({ day: k.day, video: v });
   }
   return out;

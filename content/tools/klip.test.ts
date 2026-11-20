@@ -51,4 +51,23 @@ describe("A9 klip → günün videosu (PM-069 madde 4)", () => {
     expect(b.golge).toEqual(["t2", "k1t4"]);
     expect(b.dikte.map((d) => (d as any).cumle)).toEqual(["k1t4"]);
   });
+  it("yanlış metin bağlanmaz: tur `basi` ile başlamayan cümle varsa klip bağlanmaz (inceleme #159 P1-1)", () => {
+    const yanlis = { ...metin, cumleler: [metin.cumleler[0]!, { ...metin.cumleler[1]!, de: "Ich komme aus München." }] };
+    expect(klipVideo(klip, yanlis)).toBeNull();
+    // büyük/küçük harf ve noktalama farkı sorun değil
+    expect(klipVideo(klip, { ...metin, cumleler: [{ ...metin.cumleler[0]!, de: "wie heißt du?" }, metin.cumleler[1]!] })).not.toBeNull();
+  });
+  it("`haric` ve kesit aralığı dışındaki tur pakete girmez; ona bağlı soru da düşer", () => {
+    const v = klipVideo({ ...klip, haric: [{ tur: 2, neden: "soyad" }] }, metin)!;
+    expect(v.cumleler.map((c) => c.id)).toEqual(["t1"]);
+    expect(v.bolumler[0]!.ayrinti).toEqual([]);
+    const v2 = klipVideo({ ...klip, kesit: { bas_tur: 2, son_tur: 3 } }, metin)!;
+    expect(v2.cumleler.map((c) => c.id)).toEqual(["t2"]);
+  });
+  it("ön öğretim ve ortam pakete girer (dinlemeden önce gösterilir; inceleme #159 P1-2)", () => {
+    const v = klipVideo({ ...klip, ortam_tr: "Ada bir öğrenci.", on_ogretim: [{ de: "wohne, wohnst", tr: "oturuyorum, oturuyorsun" }] }, metin)!;
+    expect(v.ortam_tr).toBe("Ada bir öğrenci.");
+    expect(v.on_ogretim).toEqual([{ de: "wohne, wohnst", tr: "oturuyorum, oturuyorsun" }]);
+    expect(klipVideo(klip, metin)!.on_ogretim).toEqual([]);
+  });
 });

@@ -173,13 +173,14 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
                   <a class="btn sm ghost" href={m.video.kaynak.url} target="_blank" rel="noopener">Kaynakta izle</a></div></div>
             )}
             <div class="tiny muted" data-test="atif">{m.video.kaynak.atif} · {m.video.kaynak.lisans}</div>
+            {m.ortam_tr && adim === "dinle" && <p class="small" style={{ margin: 0 }} data-test="video-ortam">{m.ortam_tr}</p>}
           </>
         ) : (
           <div class="card row medya-ses" data-test="ses-kart"><Icon name={m.kind === "ses" ? "phone" : "play"} /><span class="grow"><b>{m.title_tr}</b>{m.ortam_tr && <><br /><span class="small muted">{m.ortam_tr}</span></>}</span></div>
         )}
       </div>
 
-      {adim === "dinle" && <DinleAdimi key={`${p.b}d`} m={m} cs={cs} oy={oy} onNext={() => sonraki()} />}
+      {adim === "dinle" && <DinleAdimi key={`${p.b}d`} m={m} cs={cs} oy={oy} onNext={() => sonraki()} onOgretim={p.b === 0 ? m.video?.on_ogretim : undefined} />}
       {adim === "ana" && <SecmeliSoru key={`${p.b}a`} q={b.ana_fikir} onNext={(ok) => sonraki(1, ok)} tekrar={() => void oy.bolum(cs, false)} />}
       {adim === "ayrinti" && <SecmeliSoru key={`${p.b}y${p.k}`} q={b.ayrinti[p.k]!} sira={`${p.k + 1}/${b.ayrinti.length}`} onNext={(ok) => sonraki(b.ayrinti.length, ok)} tekrar={() => void oy.bolum(cs, false)} />}
       {adim === "cumle" && <CumleAdimi cs={cs} oy={oy} onNext={() => sonraki()} />}
@@ -192,7 +193,7 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
 }
 
 /* (a) baştan sona, altyazısız */
-function DinleAdimi({ m, cs, oy, onNext }: { m: Medya; cs: MedyaCumle[]; oy: ReturnType<typeof useOynatici>; onNext: () => void }) {
+function DinleAdimi({ m, cs, oy, onNext, onOgretim }: { m: Medya; cs: MedyaCumle[]; oy: ReturnType<typeof useOynatici>; onNext: () => void; onOgretim?: { de: string; tr: string }[] }) {
   const [dinledi, setDinledi] = useState(false);
   const ilkYavas = baslangicYavas() && !dinledi;
   // PM-074 md. 2: tek oynat düğmesi + hız anahtarı (Yavaş / Normal). B7: ilk dinleme yavaşsa (kaydın ya da öğrencinin
@@ -204,6 +205,13 @@ function DinleAdimi({ m, cs, oy, onNext }: { m: Medya; cs: MedyaCumle[]; oy: Ret
   return (
     <section class="card stack fade" data-test="adim-dinle">
       <div class="kicker">Bölümü baştan sona dinle</div>
+      {/* A9 (inceleme #159 P1-2): klipte geçen, henüz öğretilmemiş kelimeler dinlemeden önce; transkript değil, kelime listesi */}
+      {!!onOgretim?.length && <div class="stack" data-test="on-ogretim">
+        <p class="small" style={{ margin: 0 }}>Önce şu kelimelere bak; klipte geçiyorlar:</p>
+        <ul class="list">{onOgretim.map((w) => <li class="row" style={{ flexWrap: "nowrap" }}>
+          <span class="grow" style={{ minWidth: 0 }}><b lang="de">{w.de}</b> <span class="muted">· {w.tr}</span></span>
+          <button class="btn sm ghost" aria-label={`${w.de}: dinle`} onClick={() => void speak(w.de, "de", "normal")}><Icon name="play" /></button></li>)}</ul>
+      </div>}
       <p class="small">Metin yok: önce kulağınla dene. Ne hakkında olduğunu anlamaya çalış; her kelimeyi anlaman gerekmiyor.</p>
       {oy.calisiyor !== null
         ? <button class="btn block" data-test="durdur" onClick={() => oy.dur()}><Icon name="pause" /> Durdur</button>
