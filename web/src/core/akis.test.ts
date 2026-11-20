@@ -7,7 +7,7 @@ import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { z } from "zod";
-import { Halka, bilinmeyenler, genelAdlarAyikla, kalipOrtu, kalipSecenekleri, kumeDizini, toks, YUVA, type Bilinen, type LearnerItem } from "@dw/shared";
+import { Halka, bilinmeyenler, genelAdlarAyikla, kalipOrtu, kartsizMi, kalipSecenekleri, kumeDizini, toks, YUVA, type Bilinen, type LearnerItem } from "@dw/shared";
 import { loadContent, ROOT } from "../../../content/tools/load.ts";
 import { ADIM_TURLERI, GOSTERIM, KIP, planGun, politikaHatalari, POLITIKA, type Adim, type AkisPolitikasi, type GunPlani, type PlanGirdi } from "./akis.ts";
 
@@ -168,7 +168,7 @@ describe("Halka planlayıcısı (AKIS AK-2, AK-3, AK-9) — 50 tohum × 4 durum"
       const dizi = x.p.duraklar.flatMap((d) => d.adimlar);
       dizi.forEach((k, i) => {
         if (k.tur !== "kalip") return;
-        const sabit = new Set(kalipSecenekleri(k.cumle).flat().filter((t) => t !== YUVA && [...(dizin.idx.get(t) ?? [])].every((id) => dizin.cerceve.has(id))));
+        const sabit = new Set(kalipSecenekleri(k.cumle).flat().filter((t) => t !== YUVA && kartsizMi(dizin, t)));
         const dahaOnce = dizi.slice(0, i).filter((a) => a.cumle && !GOSTERIM.has(a.tur) && toks(a.cumle).some((t) => sabit.has(t)));
         // aynı sözcük daha önce başka bir kalıpla öğretilmiş olabilir
         for (const a of dahaOnce) expect(dizi.slice(0, dizi.indexOf(a)).some((b) => b.tur === "kalip" && toks(a.cumle).some((t) => sabit.has(t) && kalipSecenekleri(b.cumle).flat().includes(t))) || x.p.gevseme.some((g) => g.kural === "kalip_sira"), etiket(x, k.cumle, "önce:", a.cumle)).toBe(true);

@@ -15,7 +15,7 @@
  * Halkasız gün akış günü değildir: `planGun` null döner, çağıran eski düzene düşer (AK-5).
  */
 import POLICY from "../policy.json" with { type: "json" };
-import { bilinmeyenler, kalipOrtu, kalipSecenekleri, toks, YUVA, type Bilinen, type Drill, type Gun, type Halka, type KumeDizini, type LearnerItem, type Lexeme, type TemelDers } from "@dw/shared";
+import { bilinmeyenler, kalipOrtu, kartsizMi, kalipSecenekleri, toks, YUVA, type Bilinen, type Drill, type Gun, type Halka, type KumeDizini, type LearnerItem, type Lexeme, type TemelDers } from "@dw/shared";
 
 export type Kip = "gor" | "duy" | "kur" | "soyle";
 export type AdimTuru =
@@ -178,7 +178,7 @@ class Planlayici {
   private bilinmeyen(de: string, haric: string[] = [], ek: string[][] = []): number { return bilinmeyenler(this.g.dizin, de, this.K(ek), haric).length; }
   private gorevGecer(de: string, haric: string[] = []): boolean { return this.bilinmeyen(de, haric) <= this.pol.gorev_bilinmeyen_max; }
   private gosterimGecer(de: string, ek: string[][] = []): boolean { return this.bilinmeyen(de, [], ek) <= this.pol.gosterim_bilinmeyen_max; }
-  private cerceveMi(t: string): boolean { const a = this.g.dizin.idx.get(t); return !!a && [...a].every((i) => this.g.dizin.cerceve.has(i)); }
+  private cerceveMi(t: string): boolean { return kartsizMi(this.g.dizin, t); }
   private uretimeHazir(de: string): boolean { return toks(de).every((t) => !this.cerceveMi(t) || (this.cerceveGorulen.get(t) ?? 0) >= this.pol.cerceve_uretim_min); }
   /** cümlede kartın kendi sözcüğü (artikel hariç) geçiyor mu */
   private kendiSozcugu(c: string, de: string): boolean {

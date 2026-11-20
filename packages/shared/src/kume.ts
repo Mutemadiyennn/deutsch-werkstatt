@@ -192,6 +192,10 @@ function baslikKarti(d: KumeDizini, t: string): Set<string> {
   return out;
 }
 
+/** Dizinde olan ve kendisini gösteren gerçek kartı olmayan sözcük (kalıbın kartsız çerçeve sözcüğü: ist, war, geht, nicht, von).
+ *  Planlayıcı ve testleri aynı tanımı kullanır (inceleme #176 fark doğrulaması B-1: "nicht" çok sözcüklü kart başlığında da geçer) */
+export const kartsizMi = (d: KumeDizini, t: string): boolean => !!d.idx.get(t)?.size && kendiKarti(d, t).length === 0;
+
 /** Sözcüğü tanıtımda GÖSTEREN gerçek (card:true) kartlar (tür fark etmez) */
 function kendiKarti(d: KumeDizini, t: string): string[] {
   return [...(d.idx.get(t) ?? [])].filter((i) => !d.cerceve.has(i) && d.gost.get(i)?.has(t));
