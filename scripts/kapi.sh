@@ -37,6 +37,7 @@ cd "${KAPI_KOK_YOL:-.}" || exit 2
 # Ortam: AGAC, ADIMLAR, CIHAZ, CIHAZ_DIR. Çıktı: $CIHAZ_DIR/sonuc.tsv (\x1f ayrılmış: ad, süre, sonuç, not, komut-b64, günlük), $CIHAZ_DIR/gunluk/*.log
 if [ "${1:-}" = "--_cihaz" ]; then
   set -uo pipefail
+  [ -n "${CIHAZ_DIR:-}" ] && [ -n "${AGAC:-}" ] && [ -n "${ADIMLAR:-}" ] && [ -n "${CIHAZ:-}" ] || { echo "--_cihaz yalnız kapi.sh içinden çağrılır" >&2; rm -rf "${KAPI_KOPYA:-/nonexistent}"; exit 2; }
   if [ "${KAPI_AG_AYRI:-0}" = 1 ]; then python3 - <<'PY' || { echo "lo açılamadı" >&2; exit 4; }
 import fcntl, socket, struct
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -220,7 +221,7 @@ if [ "$SINIF" != docs ]; then
     cihaz_dir() { echo "$OUT/cihaz/$(echo "$1" | tr ' ' '-')"; }
     cihaz_baslat() {
       local c="$1" d; d=$(cihaz_dir "$c"); mkdir -p "$d"
-      if [ "$AYRI" = 1 ]; then
+      if [ "$PARALEL" -gt 1 ]; then
         AGAC="$AGAC" ADIMLAR="$ADIMLAR" CIHAZ="$c" CIHAZ_DIR="$d" KAPI_AG_AYRI=1 CI=true unshare -rn bash "$KAPI_KOPYA/kapi.sh" --_cihaz
       else
         AGAC="$AGAC" ADIMLAR="$ADIMLAR" CIHAZ="$c" CIHAZ_DIR="$d" KAPI_AG_AYRI=0 CI=true bash "$KAPI_KOPYA/kapi.sh" --_cihaz
@@ -229,6 +230,7 @@ if [ "$SINIF" != docs ]; then
     mkdir -p "$OUT/cihaz"; calisan=0
     for c in "${CIHAZLAR[@]}"; do
       printf '  ▷ %s başladı\n' "$c"
+      rm -rf "$(cihaz_dir "$c")" "$(cihaz_dir "$c").out"   # bayat sonuç ve kanıt okunmasın (aynı --out yeniden kullanılırsa)
       cihaz_baslat "$c" > "$(cihaz_dir "$c").out" 2>&1 &
       calisan=$((calisan+1))
       if [ "$calisan" -ge "$PARALEL" ]; then wait -n; calisan=$((calisan-1)); fi
@@ -241,10 +243,14 @@ if [ "$SINIF" != docs ]; then
       while IFS=$'\x1f' read -r ad sure sonuc not kb64 log; do
         k=$((k+1))
         if [ "$sonuc" = "DÜŞTÜ" ] && [ "$PARALEL" -gt 1 ]; then
-          printf '  ↻ %s [%s]: paralelde düştü, tek başına yeniden\n' "$ad" "$c"
+          # ad alanında dış ağ yok: ağ hatasıyla düşen adım (ör. CI'da gerçek Releases fotoğrafı) ad alanı dışında koşar, sallantı sayılmaz
+          agli=0; grep -qiE 'Network is unreachable|Name or service not known|Temporary failure in name resolution|getaddrinfo|ENETUNREACH|EAI_AGAIN' "$log" && agli=1
+          printf '  ↻ %s [%s]: paralelde düştü, tek başına yeniden%s\n' "$ad" "$c" "$([ $agli = 1 ] && echo ' (dış ağ)')"
           b2=$(date +%s)
           if ( cd "$AGAC" && export E2E_BROWSER=webkit E2E_DEVICE="$c" && bash --noprofile --norc -eo pipefail -c "$(printf %s "$kb64" | base64 -d)" ) </dev/null >"$log.yeniden" 2>&1; then
-            sonuc="geçti"; not="paralelde sallantılı (tek başına geçti)"; SALLANTI+=("$ad · $c")
+            sonuc="geçti"
+            if [ $agli = 1 ]; then not="dış ağ gerektiriyor: ad alanı dışında tek başına koştu"
+            else not="paralelde sallantılı (tek başına geçti)"; SALLANTI+=("$ad · $c"); fi
           else
             not="tek başına da düştü · $not"
           fi
@@ -254,7 +260,8 @@ if [ "$SINIF" != docs ]; then
         SATIRLAR+=("$ad · $c|$sure|$sonuc|${not//|/\/}")
       done < "$d/sonuc.tsv" 2>/dev/null
       [ "$k" -eq "$N_WEBKIT" ] || { N=$((N+1)); DUSEN=$((DUSEN+1)); SATIRLAR+=("webkit adım sayısı · $c|0|DÜŞTÜ|$k / $N_WEBKIT koştu ($(tail -n 1 "$d.out" 2>/dev/null | cut -c1-80))"); }
-      mkdir -p "$OUT/kanit"; [ -d "$d/tmp" ] && cp -r "$d/tmp" "$OUT/kanit/$(echo "$c" | tr ' ' '-')" 2>/dev/null || true
+      mkdir -p "$OUT/kanit"; rm -rf "$OUT/kanit/$(echo "$c" | tr ' ' '-')"
+      [ -d "$d/tmp" ] && cp -r "$d/tmp" "$OUT/kanit/$(echo "$c" | tr ' ' '-')" 2>/dev/null || true
     done
     [ -f tests/e2e/yerlesim_bekcisi.py ] || atla "Yerleşim bekçisi (PM-079 md. 4)" "depoda henüz yok"
   fi
