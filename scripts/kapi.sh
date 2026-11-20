@@ -35,19 +35,21 @@ cd "${KAPI_KOK_YOL:-.}" || exit 2
 trap 'rm -rf "$KAPI_KOPYA"' EXIT
 
 TABAN="origin/main"; REF=""; SINIF_ZORLA=""; OUT=""; CIHAZLAR=()
-TUM_CIHAZLAR=("iPhone 15" "iPhone 15 Pro Max" "iPhone 16 Pro Max")
+deger() { [ -n "${2:-}" ] && [ "${2#--}" = "$2" ] || { echo "$1 bir değer ister" >&2; exit 2; }; }
 while [ $# -gt 0 ]; do
+  case "$1" in
+    --ref|--taban|--sinif|--cihaz|--out) deger "$1" "${2:-}";;
+  esac
   case "$1" in
     --ref) REF="$2"; shift 2;;
     --taban) TABAN="$2"; shift 2;;
     --sinif) SINIF_ZORLA="$2"; shift 2;;
     --cihaz) CIHAZLAR+=("$2"); shift 2;;
     --out) OUT="$2"; shift 2;;
-    -h|--help) sed -n '2,30p' "$0"; exit 0;;
+    -h|--help) awk 'NR>1 && /^#/ {sub(/^# ?/,""); print; next} NR>1 {exit}' "$KAPI_KOPYA/kapi.sh"; exit 0;;
     *) echo "bilinmeyen seçenek: $1" >&2; exit 2;;
   esac
 done
-[ ${#CIHAZLAR[@]} -eq 0 ] && CIHAZLAR=("${TUM_CIHAZLAR[@]}")
 
 KOK=$(git rev-parse --show-toplevel 2>/dev/null) || { echo "git deposu içinde çalıştırın" >&2; exit 2; }
 BETIK_DIZIN=$(cd "$(dirname "$0")" && pwd)
@@ -67,15 +69,30 @@ else
 fi
 cd "$AGAC" || exit 2
 SHA=$(git rev-parse HEAD)
+YER=$([ -n "$ACILAN_AGAC" ] && echo "temiz worktree" || echo "yerinde (temiz ağaç)")
 BASLA=$(date -u +%s)
 OUT=${OUT:-/tmp/kapi/${SHA:0:12}-$(date -u +%Y%m%d-%H%M%S)}
 mkdir -p "$OUT/gunluk"
 export GITHUB_STEP_SUMMARY="$OUT/gunluk/adim-ozeti.txt"; : > "$GITHUB_STEP_SUMMARY"
+export CI=true   # Actions'taki gibi: CI'ya özgü iddialar (ör. v2_foto gerçek fotoğraf) kapıda da koşar
+
+# ---- ci-v2.yml'den adımlar ve cihaz matrisi (tek kaynak; okunamazsa DÜŞTÜ) ----
+ADIMLAR="$OUT/gunluk/adimlar.tsv"
+ADIM_HATA=""
+python3 "$BETIK_DIZIN/kapi_adimlar.py" "$AGAC/.github/workflows/ci-v2.yml" >"$ADIMLAR" 2>"$OUT/gunluk/adimlar.err" || ADIM_HATA=$(tail -n 1 "$OUT/gunluk/adimlar.err")
+N_CHECK=$(awk -F'\t' '$1=="check"' "$ADIMLAR" | wc -l); N_WEBKIT=$(awk -F'\t' '$1=="webkit"' "$ADIMLAR" | wc -l)
+mapfile -t TUM_CIHAZLAR < <(awk -F'\t' '$1=="cihaz"{print $2}' "$ADIMLAR")
+[ -z "$ADIM_HATA" ] && { [ "$N_CHECK" -eq 0 ] || [ "$N_WEBKIT" -eq 0 ] || [ ${#TUM_CIHAZLAR[@]} -eq 0 ]; } && ADIM_HATA="adım listesi boş (check $N_CHECK, webkit $N_WEBKIT, cihaz ${#TUM_CIHAZLAR[@]})"
+if [ ${#CIHAZLAR[@]} -eq 0 ]; then CIHAZLAR=("${TUM_CIHAZLAR[@]}")
+else
+  mapfile -t CIHAZLAR < <(printf '%s\n' "${CIHAZLAR[@]}" | awk '!g[$0]++')
+  for c in "${CIHAZLAR[@]}"; do printf '%s\n' "${TUM_CIHAZLAR[@]}" | grep -qxF "$c" || { echo "--cihaz '$c' ci-v2.yml matrisinde yok (${TUM_CIHAZLAR[*]})" >&2; exit 2; }; done
+fi
 
 # ---- yol süzgeci ----
 if git rev-parse --verify -q "$TABAN" >/dev/null; then
   MB=$(git merge-base HEAD "$TABAN")
-  DEGISEN=$(git diff --name-only "$MB" HEAD)
+  DEGISEN=$(git -c core.quotepath=false diff --no-renames --name-only "$MB" HEAD)
 else
   echo "taban bulunamadı ($TABAN); tam koşu" >&2; DEGISEN="__taban_yok__"
 fi
@@ -100,7 +117,7 @@ kos() {          # kos <ad> <komut> [cihaz]
   printf '▶ %s%s\n' "$ad" "${cihaz:+ [$cihaz]}"
   if ( cd "$AGAC" || exit 1
        if [ -n "$cihaz" ]; then export E2E_BROWSER=webkit E2E_DEVICE="$cihaz"; fi
-       bash -o pipefail -c "$komut" ) >"$log" 2>&1; then
+       bash --noprofile --norc -eo pipefail -c "$komut" ) </dev/null >"$log" 2>&1; then
     sonuc="geçti"
   else
     sonuc="DÜŞTÜ"; DUSEN=$((DUSEN+1))
@@ -125,6 +142,7 @@ PY
 
 # ---- koşu ----
 kos "npm ci" "npm ci --no-audit --no-fund"
+if [ -n "$ADIM_HATA" ]; then N=$((N+1)); DUSEN=$((DUSEN+1)); SATIRLAR+=("ci-v2.yml adımları okunamadı|0|DÜŞTÜ|${ADIM_HATA//|/\/}"); printf '▶ ci-v2.yml adımları\n  DÜŞTÜ: %s\n' "$ADIM_HATA"; fi
 
 if [ "$SINIF" = docs ]; then
   kos "Tip denetimi" "npm run typecheck"
@@ -135,10 +153,13 @@ elif [ "$SINIF" = icerik ]; then
   kos "İçerik testleri" "npx vitest run content/"
   kos "e2e derlemesi" "DW_E2E_FIXTURES=1 npm run content:build && (cd web && npx vite build --mode e2e --outDir dist-e2e)"
 else
+  k=0
   while IFS=$'\t' read -r is ad b64; do
     [ "$is" = check ] || continue
-    kos "$ad" "$(printf %s "$b64" | base64 -d)"
-  done < <(python3 "$BETIK_DIZIN/kapi_adimlar.py" "$AGAC/.github/workflows/ci-v2.yml")
+    k=$((k+1)); kos "$ad" "$(printf %s "$b64" | base64 -d)"
+  done < "$ADIMLAR"
+  [ "$k" -eq "$N_CHECK" ] || { N=$((N+1)); DUSEN=$((DUSEN+1)); SATIRLAR+=("check adım sayısı|0|DÜŞTÜ|$k / $N_CHECK koştu"); }
+  [ -x scripts/kapi_sinif_test.sh ] && kos "Kapı sınıflandırıcı sınaması" "bash scripts/kapi_sinif_test.sh"
 fi
 
 if [ "$SINIF" != docs ]; then
@@ -151,18 +172,23 @@ if [ "$SINIF" != docs ]; then
   elif [ "$SINIF" = icerik ]; then
     kos "Duman: çekirdek akış" "cd tests/e2e && python3 v2_core.py" "iPhone 15"
   else
-    mkdir -p /tmp/shots
-    WK=$(python3 "$BETIK_DIZIN/kapi_adimlar.py" "$AGAC/.github/workflows/ci-v2.yml" | awk -F'\t' '$1=="webkit"')
+    WK=$(awk -F'\t' '$1=="webkit"' "$ADIMLAR")
     for c in "${CIHAZLAR[@]}"; do
+      # Actions'ta her cihaz ayrı makinede: ortak /tmp yolları her cihazdan önce boşaltılır, sonra kanıt <out>'a kopyalanır
+      rm -rf /tmp/shots /tmp/visual; mkdir -p /tmp/shots
+      k=0
       while IFS=$'\t' read -r is ad b64; do
         komut=$(printf %s "$b64" | base64 -d)
         komut=${komut//'${{ matrix.device }}'/$c}
-        kos "$ad" "$komut" "$c"
+        k=$((k+1)); kos "$ad" "$komut" "$c"
       done <<< "$WK"
+      [ "$k" -eq "$N_WEBKIT" ] || { N=$((N+1)); DUSEN=$((DUSEN+1)); SATIRLAR+=("webkit adım sayısı · $c|0|DÜŞTÜ|$k / $N_WEBKIT koştu"); }
       # yerleşim bekçisi (PM-079 md. 4): ci-v2.yml'e henüz girmediyse burada ayrıca koşar
       if [ -f tests/e2e/yerlesim_bekcisi.py ] && ! grep -q yerlesim_bekcisi .github/workflows/ci-v2.yml; then
         kos "Yerleşim bekçisi (PM-079 md. 4)" "cd tests/e2e && python3 yerlesim_bekcisi.py" "$c"
       fi
+      kanit="$OUT/kanit/$(echo "$c" | tr ' ' '-')"; mkdir -p "$kanit"
+      cp -r /tmp/shots "$kanit/" 2>/dev/null || true; cp -r /tmp/visual "$kanit/" 2>/dev/null || true
     done
     [ -f tests/e2e/yerlesim_bekcisi.py ] || atla "Yerleşim bekçisi (PM-079 md. 4)" "depoda henüz yok"
   fi
@@ -171,12 +197,16 @@ fi
 # ---- özet ----
 SURE=$(( $(date -u +%s) - BASLA ))
 EKSIK=""
-if [ "$SINIF" = kod ] && [ ${#CIHAZLAR[@]} -lt ${#TUM_CIHAZLAR[@]} ]; then EKSIK="KISMİ (cihaz listesi daraltıldı)"; fi
+if [ "$SINIF" = kod ] && [ "$(printf '%s\n' "${CIHAZLAR[@]}" | sort)" != "$(printf '%s\n' "${TUM_CIHAZLAR[@]}" | sort -u)" ]; then EKSIK="KISMİ (cihaz listesi matristen dar)"; fi
 if [ $DUSEN -gt 0 ]; then SONUC="DÜŞTÜ ($DUSEN adım)"; KOD=1
-elif [ $ENGEL -gt 0 ] || [ -n "$EKSIK" ]; then SONUC="ENGEL${EKSIK:+ / $EKSIK}"; KOD=3
+elif [ $ENGEL -gt 0 ]; then SONUC="ENGEL${EKSIK:+ / $EKSIK}"; KOD=3
+elif [ -n "$EKSIK" ]; then SONUC="$EKSIK"; KOD=3
 else SONUC="GEÇTİ"; KOD=0; fi
+SURUM="node $(node -v 2>/dev/null | tr -d v) · python $(python3 -c 'import platform;print(platform.python_version())') · playwright $(python3 -c 'import importlib.metadata as m;print(m.version("playwright"))' 2>/dev/null || echo yok)"
 {
   echo "**Kapı (\`scripts/kapi.sh\`)** · commit \`${SHA:0:12}\` · taban \`$TABAN\` · süzgeç: **$SINIF** · cihaz: $([ "$SINIF" = docs ] && echo "—" || echo "${CIHAZLAR[*]}") · süre $((SURE/60)) dk $((SURE%60)) sn · sonuç: **$SONUC**"
+  echo
+  echo "<sub>$YER · $SURUM · CI'dan fark: Actions PR'da birleştirme commit'ini, kapı baş commit'i sınar</sub>"
   echo
   echo "| # | adım | süre | sonuç | not |"
   echo "|---|---|---|---|---|"
