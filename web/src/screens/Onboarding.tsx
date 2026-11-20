@@ -30,6 +30,8 @@ export function derivePriority(struggles: Struggle[]): string[] {
 export function Onboarding() {
   const { profile, setProfile, index } = useApp();
   const [step, setStep] = useState(0);
+  // B7 (PM 7032771759): ad boş bırakılırsa bir kez daha, nazikçe sorulur; ikinci kez sorulmaz
+  const [adSor, setAdSor] = useState<"yok" | "soruluyor" | "soruldu">("yok");
   const [p, setLocal] = useState<Profile>(structuredClone(profile));
   const set = (f: (x: Profile) => void) => setLocal((old) => { const n = structuredClone(old); f(n); return n; });
   const dTitle = (id: string) => index?.domains.find((d) => d.id === id)?.title_tr || id;
@@ -46,7 +48,21 @@ export function Onboarding() {
       <div class="row between"><div class="kicker">Kurulum · {step + 1}/{steps}</div>{step > 0 && <button class="btn ghost sm" onClick={() => setStep(step - 1)}>‹ Geri</button>}</div>
       <div class="progress" aria-hidden="true" data-progress=""><i style={{ width: `${((step + 1) / steps) * 100}%` }} /></div>
 
-      {step === 0 && (
+      {step === 0 && adSor === "soruluyor" && (
+        <section class="stack fade" data-test="ad-tekrar">
+          <h1>Sana nasıl hitap edelim?</h1>
+          <p>Yalnız bu telefonda kalır.</p>
+          <section class="card stack" style={{ gap: 6 }}>
+            <label class="lbl" for="onm2" style={{ margin: 0 }}>Adın</label>
+            <input id="onm2" class="input" maxLength={40} autoComplete="off" autoFocus value={p.displayName || ""} onInput={(e) => set((x) => { const v = (e.target as HTMLInputElement).value; x.displayName = v.trim() ? v : undefined; })} />
+            <p class="tiny muted" style={{ margin: 0 }}>Adını yazmazsan diyaloglarda adsız cümleler kullanılır. Sonra Profil'den de ekleyebilirsin.</p>
+          </section>
+          <button class="btn primary block" data-test="ad-tamam" disabled={!p.displayName?.trim()} onClick={() => { setAdSor("soruldu"); setStep(1); }}>Devam</button>
+          <button class="btn ghost block" data-test="ad-gec" onClick={() => { set((x) => { x.displayName = undefined; }); setAdSor("soruldu"); setStep(1); }}>Adsız devam et</button>
+        </section>
+      )}
+
+      {step === 0 && adSor !== "soruluyor" && (
         <section class="stack">
           <h1>Hoş geldin</h1>
           <p>Bu uygulama Almancayı gerçek hayatta konuşabilmen için hazırlandı: telefon, doktor, resmî daire, iş, komşular… Önce kelime ve kalıpları öğrenirsin, sonra cümle kurarsın, en sonunda da hazırlıksız konuşursun.</p>
@@ -60,7 +76,7 @@ export function Onboarding() {
             <div class="seg" role="group" aria-label="Hitap">{([[undefined, "Seçme"], ["Herr", "Herr"], ["Frau", "Frau"]] as const).map(([k, l]) => <button aria-pressed={p.address === k} onClick={() => set((x) => { x.address = k; })}>{l}</button>)}</div>
             <p class="tiny muted" style={{ margin: 0 }}>Yalnızca bu cihazda kalır; sunucuya ve yapay zekâya ad gönderilmez.</p>
           </section>
-          <button class="btn primary block" onClick={() => setStep(1)}>Başlayalım</button>
+          <button class="btn primary block" onClick={() => { if (!p.displayName?.trim() && adSor === "yok") setAdSor("soruluyor"); else setStep(1); }}>Başlayalım</button>
         </section>
       )}
 

@@ -171,6 +171,9 @@ def login_onboard(page, port, assess=False, hizli_serit=False):
     page.click("button[type=submit]")
     page.wait_for_selector("text=Hoş geldin")
     page.click("text=Başlayalım")
+    # B7: ad boşsa bir kez nazikçe sorulur; testler adsız profille sürer
+    page.wait_for_selector("[data-test=ad-tekrar], [data-struggle]")
+    if page.locator("[data-test=ad-gec]").count(): page.click("[data-test=ad-gec]")
     page.click("[data-struggle=phone]")
     page.click("text=Devam"); page.wait_for_selector("text=Öncelik sırası")
     page.click("text=Devam"); page.click("text=Devam")

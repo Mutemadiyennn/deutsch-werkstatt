@@ -4,6 +4,7 @@
  *   {A|B}        → A = Herr hitabı, B = Frau hitabı (ör. {Patient|Patientin}, {Herr|Frau})
  * Ad depoya, loglara ve yapay zekâya gitmez: yapay zekâya giden metinde ad "[Name]" olur.
  */
+import { ADSIZ } from "@dw/shared";
 export interface Persona { name?: string; address?: "Herr" | "Frau" }
 const ALT = /\{([^{}|]+)\|([^{}|]+)\}/g;
 
@@ -96,6 +97,16 @@ export function personalizeDeep<T>(x: T, p: Persona, key = ""): T {
     if (key === "accepted" && x.every((v) => typeof v === "string")) return expandAccepted(x as string[], p) as unknown as T;
     return x.map((v) => personalizeDeep(v, p)) as unknown as T;
   }
-  if (x && typeof x === "object") { const o: Record<string, unknown> = {}; for (const [k, v] of Object.entries(x)) o[k] = personalizeDeep(v, p, k); return o as T; }
+  if (x && typeof x === "object") {
+    // B7: ad yoksa `k_adsiz` biçimi `k`nın yerine geçer (yuva görünmez ve okunmaz); `_adsiz` alanları çıktıda kalmaz
+    const src = x as Record<string, unknown>, ad = !!p.name?.trim();
+    const o: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(src)) {
+      if (k.endsWith(ADSIZ) && k.slice(0, -ADSIZ.length) in src) continue;
+      const adsiz = src[`${k}${ADSIZ}`];
+      o[k] = personalizeDeep(!ad && adsiz !== undefined ? adsiz : v, p, k);
+    }
+    return o as T;
+  }
   return x;
 }
