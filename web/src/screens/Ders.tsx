@@ -4,12 +4,12 @@
  * yeniden önermez (meta `ders:<id>.bitti`).
  */
 import { useEffect, useRef, useState } from "preact/hooks";
-import type { TemelDers } from "@dw/shared";
+import type { Lexeme, TemelDers } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadLexicon, loadTemel } from "../services/content.ts";
-import { getMeta, setMeta } from "../data/db.ts";
+import { bugunGorulenler, getMeta, setMeta } from "../data/db.ts";
 import { personalizeDeep } from "../core/persona.ts";
-import { DERS_ADIM_TR, TANIT_GRUP, adimlarDers, altSayisi, dersAnahtari, dersIleri, dersKonum, hatirlaKabul, hatirlaSecenek, maddeler, type DersIlerleme } from "../core/ders.ts";
+import { DERS_ADIM_TR, TANIT_GRUP, adimlarDers, altSayisi, bahcePlani, dersAnahtari, dersBaslamadi, dersGorunum, dersIleri, dersKonum, hatirlaKabul, hatirlaSecenek, maddeler, type BahceSoru, type DersGorunum, type DersIlerleme } from "../core/ders.ts";
 import { speak, speakDizi, stopSpeaking } from "../services/speech.ts";
 import { adimXpVer, xpVer } from "../services/ilerleme.ts";
 import { XP } from "../core/gun.ts";
@@ -29,19 +29,29 @@ export function DersEkrani({ id }: { id: string }) {
   // kutlama yalnızca ders bu oturumda bittiyse; bitmiş ders yeniden açılınca konfeti ve "+0 XP" yok (inceleme #87 P2)
   const [simdiBitti, setSimdiBitti] = useState(false);
   const oturumXp = useOturumXp();
+  const lexRef = useRef<Map<string, Lexeme> | null>(null);
+  /** B5: başlamamış derste plan bugünkü Bahçe kayıtlarından kurulur (başlamış derste saklanan plan kalır) */
+  const planla = async (d: TemelDers, x: DersIlerleme): Promise<DersIlerleme> => {
+    if (!dersBaslamadi(x)) return x;
+    const bugun = await bugunGorulenler().catch(() => new Set<string>());
+    return { ...x, ...bahcePlani(d, bugun, lexRef.current) };
+  };
   useEffect(() => {
     (async () => {
-      const [ham] = await Promise.all([loadTemel(id), loadLexicon().catch(() => null)]);
+      const [ham, lex] = await Promise.all([loadTemel(id), loadLexicon().catch(() => null)]);
+      lexRef.current = lex ? new Map(lex.lexemes.map((l) => [l.id, l])) : null;
       const d = personalizeDeep(ham, { name: profile.displayName, address: profile.address });
+      const pr = await planla(d, dersKonum(await getMeta<DersIlerleme>(dersAnahtari(id)), d));
       setT(d);
-      setP0(dersKonum(await getMeta<DersIlerleme>(dersAnahtari(id)), d));
+      setP0(pr);
     })().catch((e) => setErr(String(e?.message || e)));
     return () => stopSpeaking();
   }, [id]);
   if (err) return <ErrorPanel message={err} onRetry={() => location.reload()} />;
   if (!t || !p) return <Loading />;
   const setP = (x: DersIlerleme) => { stopSpeaking(); setP0(x); void setMeta(dersAnahtari(id), x); window.scrollTo(0, 0); };
-  const steps = adimlarDers(t);
+  const g = dersGorunum(t, p);
+  const steps = adimlarDers(g);
 
   if (p.bitti) return (
     <div class="stack" data-test="ders">
@@ -51,13 +61,14 @@ export function DersEkrani({ id }: { id: string }) {
         {simdiBitti && p.toplam > 0 && <Ozet dogru={p.dogru} toplam={p.toplam} xp={p.ilkBitti ? undefined : oturumXp} baglam="ders" />}
         <p>{p.toplam && !simdiBitti ? `${p.toplam} soruda ${p.dogru} doğru. ` : ""}{t.can_do.tr}</p>
         <div class="row"><a class="btn primary grow" href="#/today" data-test="ders-geri">Sıradaki adıma geç</a>
-          <button class="btn grow" onClick={() => setP({ s: 0, k: 0, dogru: 0, toplam: 0, ilkBitti: p.ilkBitti ?? p.bitti })}>Tekrar çalış</button></div>
+          <button class="btn grow" onClick={() => void planla(t, { s: 0, k: 0, dogru: 0, toplam: 0, ilkBitti: p.ilkBitti ?? p.bitti }).then(setP)}>Tekrar çalış</button></div>
       </section>
     </div>
   );
 
   const adim = steps[p.s]!;
-  const n = altSayisi(t, adim);
+  const n = altSayisi(g, adim);
+  const tanitGrup = Math.ceil(g.teach.length / TANIT_GRUP) * 2;
   /** `xpAdet`: XP alan doğru sayısı (yalnızca gerçekten doğru cevap; "Benimki de aynı" beyanı XP almaz, D-102). Uçan XP ile
    *  kaydedilen aynı olsun diye her doğru cevap ayrı sayılır (inceleme #87 2. tur). */
   const ileri = (ok?: boolean | { dogru: number; toplam: number }, xpAdet?: number) => {
@@ -71,10 +82,12 @@ export function DersEkrani({ id }: { id: string }) {
   // doğru cevabın XP'si cevap anında uçar; tekrar çalışmada XP yok (inceleme #87 P1-2)
   return (<CevapXp.Provider value={p.ilkBitti ? 0 : XP.dogru}>
     <div class="stack" data-test="ders" data-adim={adim} data-pos={`${p.s}.${p.k}`}>
-      <ProgressHeader title={t.title_tr} back="#/today" right={<FocusChip />} sub={`${DERS_ADIM_TR[adim]}${n > 1 ? ` · ${p.k + 1}/${n}` : ""}`} ilerleme={{ n: steps.slice(0, p.s).reduce((a, s) => a + altSayisi(t, s), 0) + p.k, toplam: steps.reduce((a, s) => a + altSayisi(t, s), 0) }} />
-      {adim === "tanit" && (p.k % 2 === 0
-        ? <Tanit key={p.k} t={t} grup={p.k / 2} onNext={() => ileri()} />
-        : <Hatirla key={p.k} t={t} grup={(p.k - 1) / 2} onDone={(dogru, toplam, xpli) => ileri({ dogru, toplam }, xpli)} />)}
+      <ProgressHeader title={t.title_tr} back="#/today" right={<FocusChip />} sub={`${DERS_ADIM_TR[adim]}${n > 1 ? ` · ${p.k + 1}/${n}` : ""}`} ilerleme={{ n: steps.slice(0, p.s).reduce((a, s) => a + altSayisi(g, s), 0) + p.k, toplam: steps.reduce((a, s) => a + altSayisi(g, s), 0) }} />
+      {adim === "tanit" && (p.k >= tanitGrup
+        ? <BahceTekrar key={p.k} t={g} onDone={(dogru, toplam, xpli) => ileri({ dogru, toplam }, xpli)} />
+        : p.k % 2 === 0
+        ? <Tanit key={p.k} t={g} grup={p.k / 2} onNext={() => ileri()} />
+        : <Hatirla key={p.k} t={g} grup={(p.k - 1) / 2} onDone={(dogru, toplam, xpli) => ileri({ dogru, toplam }, xpli)} />)}
       {adim === "tablo" && t.table && <Tablo t={t} onNext={() => ileri()} />}
       {(adim === "anlama" || adim === "kurma" || adim === "konusma") && (
         <DrillView key={`${adim}${p.k}`} d={maddeler(t, adim)[p.k]!} sira={`${p.k + 1}/${n}`} onDone={(s) => ileri(s !== "wrong", s === "correct" ? 1 : 0)} />
@@ -93,12 +106,13 @@ export function DersEkrani({ id }: { id: string }) {
 }
 
 /** Öğretim kartları: önce duy (kart açılınca okunur), sonra yazısı ve anlamı, açıklama (OD-9) */
-function Tanit({ t, grup, onNext }: { t: TemelDers; grup: number; onNext: () => void }) {
+function Tanit({ t, grup, onNext }: { t: DersGorunum; grup: number; onNext: () => void }) {
   const items = t.teach.slice(grup * TANIT_GRUP, (grup + 1) * TANIT_GRUP);
   useEffect(() => { void speak(items[0] ? (items[0].art ? `${items[0].art} ${items[0].de}` : items[0].de) : "", "de", "normal"); }, [grup]);
   return (
     <div class="stack fade" data-test="ders-tanit">
       {grup === 0 && <p class="small">{t.goal_tr}</p>}
+      {grup === 0 && t.bilinen.length > 0 && <p class="small muted" data-test="ders-bahce-not">Bahçede bugün gördüğün {t.bilinen.length} kelime burada yeniden tanıtılmıyor.</p>}
       {items.map((x) => (
         <section class="card stack" data-test="teach">
           <div class="row" style={{ flexWrap: "nowrap", alignItems: "center" }}>
@@ -120,7 +134,7 @@ function Tanit({ t, grup, onNext }: { t: TemelDers; grup: number; onNext: () => 
 }
 
 /** Hatırlama turu (phases/09 madde 5): grubun her kartı için dinle → anlamını seç, sonra Türkçe → Almancasını yaz */
-function Hatirla({ t, grup, onDone }: { t: TemelDers; grup: number; onDone: (dogru: number, toplam: number, xpli: number) => void }) {
+function Hatirla({ t, grup, onDone }: { t: DersGorunum; grup: number; onDone: (dogru: number, toplam: number, xpli: number) => void }) {
   const items = t.teach.slice(grup * TANIT_GRUP, (grup + 1) * TANIT_GRUP);
   const sorular = items.flatMap((x, i) => [{ x, i, tur: "anlam" as const }, { x, i, tur: "yaz" as const }]);
   const [q, setQ] = useState(0);
@@ -128,9 +142,10 @@ function Hatirla({ t, grup, onDone }: { t: TemelDers; grup: number; onDone: (dog
   const cur = sorular[q];
   // dinle → anlamını seç: kelime soru açılınca bir kez okunur
   useEffect(() => { if (cur?.tur === "anlam") void speak(cur.x.art ? `${cur.x.art} ${cur.x.de}` : cur.x.de, "de", "normal"); }, [q]);
+  // hook'lar erken dönüşten önce (inceleme #146 P2)
+  const [xpli, setXpli] = useState(0);
   if (!cur) return null;
   const sayi = `${q + 1}/${sorular.length}`;
-  const [xpli, setXpli] = useState(0);
   const bitir = (r: string) => { const d = dogru + (r !== "wrong" ? 1 : 0), x = xpli + (r === "correct" ? 1 : 0); if (q + 1 >= sorular.length) onDone(d, sorular.length, x); else { setDogru(d); setXpli(x); setQ(q + 1); } };
   if (cur.tur === "anlam") {
     const sec = hatirlaSecenek(t, grup, cur.x, cur.i);
@@ -145,11 +160,43 @@ function Hatirla({ t, grup, onDone }: { t: TemelDers; grup: number; onDone: (dog
     artikel={cur.x.art ? { de: cur.x.de, art: cur.x.art } : undefined} sira={`Hatırla ${sayi}`} onDone={(r) => bitir(r)} /></div>;
 }
 
+/**
+ * B5: Bahçede bugün görülen kelimeler için tek tur: her kelimeye en çok bir soru, cümle içinde seçmeli boşluk
+ * (Bahçenin ve hatırlama turunun türlerinden başka). Yanlış cevap Bahçede zaten aralıklı tekrar alır; burada yeniden sorulmaz.
+ */
+function BahceTekrar({ t, onDone }: { t: DersGorunum; onDone: (dogru: number, toplam: number, xpli: number) => void }) {
+  const [q, setQ] = useState(0);
+  const [sec, setSec] = useState<number | null>(null);
+  const [dogru, setDogru] = useState(0);
+  const soru: BahceSoru | undefined = t.bahce[q];
+  if (!soru) return null;
+  const ans = soru.opts.indexOf(soru.cevap);
+  const son = q + 1 >= t.bahce.length;
+  return (
+    <section class="card stack fade" data-test="ders-bahce" data-q={q}>
+      <div class="kicker">Bahçede bugün gördüklerin · {q + 1}/{t.bahce.length}</div>
+      {!t.teach.length && q === 0 && <p class="small">{t.goal_tr}</p>}
+      <div class="de-lg" lang="de">{soru.de.split("___").map((x, j) => {
+        // boşluktan hemen sonraki noktalama boşlukla aynı satırda kalır (tek başına alt satıra düşmesin)
+        const nk = j > 0 ? /^[.,!?;:…]+/.exec(x)?.[0] ?? "" : "";
+        return <>{j > 0 && <span style={{ whiteSpace: "nowrap" }}><span class="gapblank" aria-label="boşluk" />{nk}</span>}{x.slice(nk.length)}</>;
+      })}</div>
+      <p class="small muted">{soru.tr}</p>
+      <p class="small">Boşluğa hangisi gelir?</p>
+      <div role="group">{soru.opts.map((o, k) => <button class={`opt${sec === null ? "" : k === ans ? " right" : k === sec ? " wrong" : ""}`} lang="de" disabled={sec !== null} data-opt={k}
+        {...(E2E ? { "data-right": k === ans ? "1" : undefined } : {})} onClick={() => { setSec(k); if (k === ans) setDogru(dogru + 1); void speak(soru.de.replace("___", soru.cevap), "de", "normal"); }}>{o}</button>)}</div>
+      {sec !== null && <ActionBar>
+        <FeedbackBand kind={sec === ans ? "ok" : "bad"} title={sec === ans ? "Doğru." : `Doğrusu: ${soru.cevap}`} />
+        <button class="btn primary block" data-test="next" onClick={() => { const d = dogru; if (son) onDone(d, t.bahce.length, d); else { setSec(null); setQ(q + 1); } }}>Devam</button></ActionBar>}
+    </section>
+  );
+}
+
 function Tablo({ t, onNext }: { t: TemelDers; onNext: () => void }) {
   const tb = t.table!;
   return (
     <section class="card stack fade" data-test="ders-tablo">
-      <div class="kicker">{tb.baslik_tr}</div>
+      <div class="kicker icerik">{tb.baslik_tr}</div>
       <div style={{ overflowX: "auto" }}>
         <table class="tbl"><thead><tr>{tb.sutunlar.map((c) => <th>{c}</th>)}</tr></thead>
           <tbody>{tb.satirlar.map((r) => <tr>{r.map((c, j) => <td lang={j === 0 ? "de" : undefined}>{j === 0 ? <button class="wordtap" onClick={() => void speak(c, "de", "normal")}>{c}</button> : c}</td>)}</tr>)}</tbody></table>
@@ -177,7 +224,7 @@ function Diyalog({ d, onNext }: { d: NonNullable<TemelDers["dialogue"]>; onNext:
   const [altyazi, setAltyazi] = useState(false);
   return (
     <section class="card stack fade" data-test="ders-diyalog">
-      <div class="kicker">{d.title_tr}</div>
+      <div class="kicker icerik">{d.title_tr}</div>
       <p class="small">{altyazi ? "Şimdi metinle birlikte dinle." : "Önce yalnızca dinle: kim ne istiyor? Kelimelerin hepsini anlaman gerekmiyor."}</p>
       <div class="row"><button class="btn primary grow" data-test="diyalog-dinle" onClick={() => { setDinledi(true); void cal(d.lines.map((l) => l.de)); }}>{dinledi ? "Bir daha dinle" : "Dinle"}</button>
         <button class="btn grow" onClick={() => { setDinledi(true); void cal(d.lines.map((l) => l.de), "slow"); }}>Yavaş</button></div>
@@ -206,7 +253,7 @@ function Dinleme({ l, onNext }: { l: TemelDers["listening"][number]; onNext: (s:
   const soru = l.qs[q];
   return (
     <section class="card stack fade" data-test="ders-dinleme">
-      <div class="kicker">{l.title_tr}</div>
+      <div class="kicker icerik">{l.title_tr}</div>
       <div class="row"><button class="btn primary grow" data-test="dinle" onClick={() => cal(l.speed === "slow" ? "slow" : "normal")}>Dinle</button>
         {l.speeds.includes("slow") && l.speeds.length > 1 && <button class="btn grow" onClick={() => cal("slow")}>Yavaş</button>}</div>
       {!dinledi && !E2E ? <p class="small muted">Önce dinle; sorular sonra gelecek.</p> : soru ? (

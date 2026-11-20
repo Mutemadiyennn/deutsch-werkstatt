@@ -13,17 +13,19 @@ from common import serve, launch, new_page, login_onboard, check, finish, shot, 
 PORT = 4195
 
 def state(pg):
-    return pg.evaluate("""() => { const m = document.querySelector('[data-test=ders]'); return m ? (m.dataset.adim || '') + (m.dataset.pos || '') + ((document.querySelector('[data-test=ders-hatirla]') || {dataset: {}}).dataset.q || '') + (document.querySelector('[data-test=ders-bitti]') ? 'B' : '') : ''; }""")
+    return pg.evaluate("""() => { const m = document.querySelector('[data-test=ders]'); return m ? (m.dataset.adim || '') + (m.dataset.pos || '') + ((document.querySelector('[data-test=ders-hatirla]') || {dataset: {}}).dataset.q || '') + 'b' + ((document.querySelector('[data-test=ders-bahce]') || {dataset: {}}).dataset.q || '') + (document.querySelector('[data-test=ders-bitti]') ? 'B' : '') : ''; }""")
 
 def wait_change(pg, before):
     pg.wait_for_function("""(b) => { const m = document.querySelector('[data-test=ders]'); if (!m) return true;
-      return (m.dataset.adim || '') + (m.dataset.pos || '') + ((document.querySelector('[data-test=ders-hatirla]') || {dataset: {}}).dataset.q || '') + (document.querySelector('[data-test=ders-bitti]') ? 'B' : '') !== b; }""", arg=before)
+      return (m.dataset.adim || '') + (m.dataset.pos || '') + ((document.querySelector('[data-test=ders-hatirla]') || {dataset: {}}).dataset.q || '') + 'b' + ((document.querySelector('[data-test=ders-bahce]') || {dataset: {}}).dataset.q || '') + (document.querySelector('[data-test=ders-bitti]') ? 'B' : '') !== b; }""", arg=before)
 
 def step(pg, wrong=False, donustur=None):
     before = state(pg)
     if pg.locator("[data-test=altyazi]").count():
         pg.click("[data-test=altyazi]"); pg.wait_for_selector("[data-test=diyalog-metin]")
-    if pg.locator("[data-test=drill-pick]").count():
+    if pg.locator("[data-test=ders-bahce]").count():  # B5: Bahçede bugün görülen kelimenin cümle içi seçmeli boşluğu
+        pg.locator("[data-test=ders-bahce] button.opt:not([data-right])" if wrong else "[data-test=ders-bahce] button.opt[data-right]").first.click()
+    elif pg.locator("[data-test=drill-pick]").count():
         pg.locator("button.opt:not([data-right])" if wrong else "button.opt[data-right]").first.click()
     elif pg.locator("[data-test=drill-order]").count():
         cev = pg.get_attribute("[data-test=drill-order]", "data-cevap")
@@ -58,6 +60,9 @@ def main():
           addEventListener('dw:xp', (e) => { window.__kayit += e.detail.n; }); }""")
         pg.locator("[data-test=temel-ders]").first.click(); pg.wait_for_selector("[data-test=ders-diyalog]")
         check(pg.locator("[data-test=diyalog-metin]").count() == 0, "önce dinle: diyalog metni ilk dinlemede kapalı (phases/09)")
+        # inceleme #150 P2: içerikten gelen başlık büyük harfe çevrilmez (Türkçe yerelde Almanca adlar "PİCHLER" olmasın)
+        tt = pg.evaluate("() => { const k = document.querySelector('[data-test=ders-diyalog] .kicker'); return k ? [k.className, getComputedStyle(k).textTransform] : null; }")
+        check(tt is not None and "icerik" in tt[0] and tt[1] == "none", f"diyalog başlığı içerik kicker'ı, büyük harf dönüşümü yok ({tt})")
         step(pg); pg.wait_for_selector("[data-test=ders-tanit]")
         n_teach = pg.locator("[data-test=teach]").count()
         check(1 <= n_teach <= 4, f"tanıtım 4'lük gruplarla ({n_teach} kart)")

@@ -5,14 +5,14 @@
  */
 import { gorevSay } from "../services/gorev.ts";
 import { cumleKaydet } from "../services/kullanim.ts";
-import { useEffect, useMemo, useRef, useState } from "preact/hooks";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Lexeme, LearnerItem } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { loadFoto, loadLexicon, loadM1Gun } from "../services/content.ts";
 import { bahceTamam, xpOku, xpVer } from "../services/ilerleme.ts";
 import { Kutlama, Ozet, useOturumXp } from "../ui/solen.tsx";
 import { XP, seri, yerelGun } from "../core/gun.ts";
-import { getMeta, itemsMap, metaPrefix, personalWords, putItems, setMeta } from "../data/db.ts";
+import { bahceGorulenEkle, getMeta, itemsMap, metaPrefix, personalWords, putItems, setMeta } from "../data/db.ts";
 import POLICY from "../policy.json" with { type: "json" };
 import { hizliGecis, review, sessionKey, type Outcome } from "../core/srs.ts";
 import { accepted, availableTypes, buildRound, fotoluKartlar, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, boslukSecimi, ertele, esdizimler, gosterilenCogul, tanitildi, gorulenKelimeler, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
@@ -150,6 +150,8 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
         const next = sinaBildi ? hizliGecis(data.items.get(q.lexId), q.lexId, sessionKey("garden", startedAt))
           : review(data.items.get(q.lexId), { itemId: q.lexId, kind: "lexeme", path: pathOf(tip), outcome, session: sessionKey("garden", startedAt), source: "drill", ctx: tip });
         next.lastQ = tip;
+        // B5: bugün Bahçede görülen kart derste yeniden tanıtılmaz (D-121)
+        void bahceGorulenEkle(q.lexId);
         if ((tip === "article" || tip === "colloc") && outcome === "correct") next.kopru = true;
         // PM-062: sonraki oturum gösterilen cümlenin ardından başlar (aynı cümleyle art arda açılmaz)
         next.exSeen = sonrakiExSeen(next, exi);
@@ -221,6 +223,11 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   );
 }
 
+/** Tanıtım kartında görsel: tam genişlikte en çok 160 px; sığmayan kartta kelimenin altında sağda 104 px kare; düğmeye en az 8 px pay */
+const FOTO_TANITIM = 160, FOTO_KARE = 104, FOTO_PAY = 8;
+/** başlık yazı boyu kademesi (0: varsayılan .de-xl); PM 7041856903: 28 → 24 → 21 */
+const BASLIK_KADEME = [0, 28, 24, 21] as const;
+
 /** Eşdizimler: en çok 3 açık, kalanı "Daha fazla (n)" (PM 7024150313); açılır kısım boşlukta sorulmaz */
 function Esdizimler({ l, test }: { l: Lexeme; test?: string }) {
   const { acik, kapali } = esdizimler(l);
@@ -268,20 +275,82 @@ function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, o
 
   // önce duy (PM-049 tanıtım): kelime ekrana gelince bir kez okunur (inceleme #59 P2-8)
   useEffect(() => { if (intro) void speak(isNoun(l) ? `${l.art} ${l.de}` : l.de, "de", "normal"); }, [intro]);
+  // PM 7024150313 + #12 7035903811 (D-123): tanıtım kartı görselli en uzun kartta da düğmelere değmeden sığar. Görsel GİZLENMEZ
+  // (LS §1 ikili kodlama). Sığmayan kartta düzen bir kez değişir: görsel tam genişlik yerine kelimenin altında sağa yaslı küçük kare
+  // olur, metin yanından akar. Karar kart oturunca (2 kare sonra) verilir; "Daha fazla" ya da sonradan gelen düğme kararı
+  // değiştirmez. Pencere boyu/yön ya da yazı boyu değişince karar yeniden verilir. Eşdizim sayısı sabit (D-119).
+  const kartRef = useRef<HTMLElement>(null);
+  const [duzen, setDuzen] = useState<"tam" | "kare">("tam");
+  const [olcuTur, setOlcuTur] = useState(0);
+  useEffect(() => {
+    if (!intro) return;
+    const yeniden = () => { setDuzen("tam"); setOlcuTur((n) => n + 1); };
+    window.addEventListener("resize", yeniden);
+    const ts = typeof MutationObserver !== "undefined" ? new MutationObserver(yeniden) : null;
+    ts?.observe(document.documentElement, { attributes: true, attributeFilter: ["style"] });
+    return () => { window.removeEventListener("resize", yeniden); ts?.disconnect(); };
+  }, [intro]);
+  useEffect(() => {
+    const k = kartRef.current;
+    if (!intro || !k || duzen !== "tam") return;
+    // görsel ve örnek alanı geç oturabilir: kart boyu değiştikçe (kare kararı verilene kadar) bir sonraki karede ölçülür;
+    // gözlemci içinden düzen değiştirmek WebKit'te "ResizeObserver loop" hatası verir (#152 CI)
+    let kare = 0;
+    const olc = () => {
+      // yalnızca bu tanıtımın eylem çubuğu; görünmeyen (0 boyutlu) düğmeler sayılmaz
+      const btn = [...(k.closest("[data-test=garden-intro]")?.querySelectorAll<HTMLElement>(".actionbar button") ?? [])].map((x) => x.getBoundingClientRect()).filter((r) => r.height > 0);
+      if (!btn.length) return;
+      const ust = Math.min(...btn.map((r) => r.top));
+      // "Daha fazla" açıksa onun yüksekliği karara girmez
+      const daha = k.querySelector<HTMLDetailsElement>("[data-test=esdizim-daha]");
+      const ek = daha?.open ? (daha.getBoundingClientRect().height - (daha.querySelector("summary")?.getBoundingClientRect().height ?? 0)) : 0;
+      const tas = Math.ceil(k.getBoundingClientRect().bottom - ek + window.scrollY - ust + FOTO_PAY);
+      if (tas > 0 && k.querySelector("[data-test=foto]")) setDuzen("kare");
+    };
+    const sonra = () => { cancelAnimationFrame(kare); kare = requestAnimationFrame(olc); };
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(sonra) : null;
+    ro?.observe(k); sonra();
+    return () => { ro?.disconnect(); cancelAnimationFrame(kare); };
+  }, [intro, duzen, olcuTur]);
+  // PM 7041856903: başlık (artikel + kelime) TEK satır, hecelenmez (iki düzende de); sığmazsa yazı boyu kademeli küçülür
+  const baslikRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const e = baslikRef.current;
+    if (!intro || !e) return;
+    const sigdir = () => {
+      for (const px of BASLIK_KADEME) { e.style.fontSize = px ? `${px}px` : ""; if (e.scrollWidth <= e.clientWidth + 0.5) break; }
+      e.dataset.boy = String(Math.round(parseFloat(getComputedStyle(e).fontSize)));
+    };
+    sigdir();
+    void document.fonts?.ready.then(sigdir);
+  }, [intro, duzen, l.id]);
   const col = collocOf(l);
+  // PM 7043428377: kare düzende anlam 1. satır, çoğul kendi satırında (ayraç noktası yok, daha soluk); Almanca çoğul bölünmez
+  const anlamKare = <div class="kk-anlam"><p style={{ margin: 0 }}><span data-test="intro-tr">{l.tr}</span></p>
+    {gosterilenCogul(l) && <p class="small muted cogul-satir" data-test="intro-pl" style={{ margin: 0 }}>Çoğulu: <span lang="de" class="nowrap">{isNoun(l) ? "die " : ""}{gosterilenCogul(l)}</span></p>}</div>;
+  const anlam = <p style={{ margin: 0 }}><span data-test="intro-tr">{l.tr}</span>{gosterilenCogul(l) && <span class="small muted cogul-satir" data-test="intro-pl"> · Çoğulu: <span lang="de">{isNoun(l) ? "die " : ""}{gosterilenCogul(l)}</span></span>}</p>;
   if (intro) return (
     <div class="stack fade" data-test="garden-intro" data-lex={l.id}>
-      <section class="card stack"><div class="kicker">Yeni kelime</div>
+      <section class="card stack" ref={kartRef} data-duzen={duzen}><div class="kicker">Yeni kelime</div>
         {/* PM 14:05 Berlin madde 1: tanıtımda kelimenin fotoğrafı (sayaçla döner); cümle görseli yalnızca cümlenin yanında */}
         {/* C: tanıtımda görsel 160 px (örnek alanı en uzun örnek kadar yer tuttuğu için en uzun kart yine düğmelere değmeden sığar) */}
-        <Photo q={l.img} sira={q.ex} yer={[`${l.id}#kart`]} alt={l.tr} enCok={160} />
+        {duzen === "tam" && <Photo q={l.img} sira={q.ex} yer={[`${l.id}#kart`]} alt={l.tr} enCok={FOTO_TANITIM} />}
         {/* PM 7024150313: görselli en uzun kart da düğmelere değmeden sığar — kelime ile dinle aynı satırda, çoğul anlamın yanında,
             "Başka cümle" cümlenin yanında; eşdizimlerden en çok 3'ü açık */}
-        <div class="row" style={{ flexWrap: "nowrap", alignItems: "center", gap: 10 }}>
-          <div class="de-xl grow" lang="de" style={{ minWidth: 0 }}><Art art={l.art} de={l.de} /></div>
+        {duzen === "tam" ? <div class="row" style={{ flexWrap: "nowrap", alignItems: "center", gap: 10 }}>
+          <div class="de-xl grow kk-baslik" lang="de" style={{ minWidth: 0 }} ref={baslikRef} data-test="kelime-baslik"><Art art={l.art} de={l.de} /></div>
           <ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} />
         </div>
-        <p style={{ margin: 0 }}><span data-test="intro-tr">{l.tr}</span>{gosterilenCogul(l) && <span class="small muted cogul-satir" data-test="intro-pl"> · Çoğulu: <span lang="de">{isNoun(l) ? "die " : ""}{gosterilenCogul(l)}</span></span>}</p>
+          // D-123 kare düzeni (PM 7041856903): 1. satır başlık tam genişlikte tek satır; 2. satır solda Dinle + anlam, sağda kare görsel,
+          // atıf altta tek satır; örnek cümle yine tam genişlikte (PM 7026866757-1)
+          : <>
+            <div class="de-xl kk-baslik" lang="de" ref={baslikRef} data-test="kelime-baslik"><Art art={l.art} de={l.de} /></div>
+            <div class="kelime-kare" data-test="kelime-kare">
+              <div class="kk-sol"><ListenButton text={isNoun(l) ? `${l.art} ${l.de}` : l.de} />{anlamKare}</div>
+              <Photo q={l.img} sira={q.ex} yer={[`${l.id}#kart`]} alt={l.tr} enCok={FOTO_KARE} oran="1 / 1" />
+            </div>
+          </>}
+        {duzen === "tam" && anlam}
         {/* PM 7026866757-1: örnek cümle tam genişlikte, hecelenmez; "Başka cümle" Türkçe satırın altında, kendi satırında */}
         {/* PM 7030294523 C: örnek alanı kartın en uzun örneği kadar yer tutar (görünmez yer tutucular aynı hücrede); "Başka cümle"de kart da
             sayfa da zıplamaz. Görünen cümle hep aynı öğe (data-test=intro-ex), yalnızca metni değişir */}
