@@ -62,3 +62,17 @@ Yöntem:
 - **klip-04 ve klip-05 `ortam_tr`:** "… günden tanıyorsun" cümleleri çıkarıldı. 3. ve 1. günün videoları bağlı değil.
 - **klip-07 `ortam_tr` "Onu dördüncü günden tanıyorsun":** doğru; 4. gün klibi Harald'ı içeriyor ve bağlı.
 - **`bolum.dikte_notu` (okur GERİ):** alan `web/src` ve `content/tools` içinde okunmuyor, öğrenciye gösterilmiyor; hazırlayan notu. Okurun bulgusu öğrenci ekranını etkilemiyor. Alan ileride gösterilecekse önce yeniden yazılmalı.
+
+## Dilbilimci: d3 10. tur
+
+Tarih: 2026-11-20 · İnceleyen: dilbilimci-ajan · Dosya: `content/v2/m1/video/klip-06.json`, `bolum.dikte` d3 (düzeltme yok)
+
+- **Cümle doğru.** „Die wohnen in einer anderen Region.“: **die** konuşma dilinde „onlar“ (çoğul), fiil **wohnen**; **in** + yer bildiren -de hâli, dişil: **einer anderen Region**. 10. turun kaynak metniyle („… also die wohnen in einer anderen Region.“) sözcük sözcük aynı.
+- **Çeldiriciler uygun.** Üçü de yalnızca dinleyerek elenir: **wohnt** (-t / -en), **Stadt** (Region ile aynı cins, dilbilgisi ele vermez), **eine** (**einer** ile tek ses fark). Banka 9 sözcük, hedef 6.
+- **Tek doğru dizi: evet, dikte olarak.** Bankadan dilbilgisi doğru başka cümleler de kurulabiliyor („Die wohnt in einer anderen Region.“, „Die wohnen in einer anderen Stadt.“, „In einer anderen Region wohnen die.“), ama hiçbiri seste yok; görev „duyduğunu kur“ olduğu için reddedilmeleri doğru. Kabul listesine eklenmemeli.
+- **Kabul listesi çalışıyor.** Uygulama seçilen sözcükleri boşlukla birleştiriyor (`bankadan`): „die wohnen in einer anderen Region“ → 2. öğeyle birebir.
+- **Kalan şüphe (dil değil, ekran):** öğrenci turun tamamını duyuyor („Leider nein, weil... also die wohnen …“), bankada ise yalnızca son bölüm var; **also** bankada yok. `hedefSira` ipucu („Bu kayıtta 2 cümle var; 2. cümleyi …“) çıkmıyor, çünkü metindeki ikinci parça **also** ile başlıyor ve hedefle eşleşmiyor. Banka zaten yalnızca son bölümü kurduruyor, bu yüzden engel değil. İstenirse iki yol: (a) `q_tr`/yönerge „**also**'dan sonrasını kur“ desin; (b) **also** bankaya, „Also die wohnen in einer anderen Region.“ kabul listesinin başına girsin (o zaman ipucu kendiliğinden çıkar; **also** ön öğretimde yok, eklenmesi gerekir). Karar ANA/okurda.
+- `on_ogretim` „eine andere Region“ (yalın) gösteriyor, cümlede **einer anderen** geçiyor; **eine** çeldiricisi bu farkı yokluyor. Hata değil; ön öğretime „in einer anderen Region = başka bir bölgede“ eklenirse basamak daha adil olur.
+- `npm run content:validate` → 0 hata, 142 uyarı (klip dosyalarına ait değil).
+
+Sonuç: **KAPANDI** (düzeltme yok, 0/1).
