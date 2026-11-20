@@ -43,6 +43,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 ## Açık PR'lar (2026-11-20 09:00 UTC)
 | PR | Dal | Teslim | Durum |
 |---|---|---|---|
+| #168 | `v2/kume` | AKIS AK-10 1. adım: Halka şeması (kaliplar dahil), bilinen küme K(t) ve cümle kapısı (AK-3, packages/shared/src/kume.ts), halka denetçisi + sayaç (content/tools/halka.ts); #165 içeriği 0 hata | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur + KAPI |
 | #144 | `ci/worker-duman` | Worker dağıtımı sonunda `/v1/health` duman adımı (provider/configured iş özetinde, adres gizli) | ONAY; WebKit kırmızısı test yarışı (#151) → #151 sonrası main alınır |
 | #146 | `v2/ders-bahce-dongusuz` | B5: Bahçede bugün görülen kelime kartı derste yeniden tanıtılmaz; en çok bir kez cümle içinde seçmeli boşluk (D-121) | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor; **PM final** |
 | #148 | `v2/adsiz-cumle` | B7: `_adsiz` alanı + doğrulayıcı; kurulumda ad bir kez nazikçe sorulur (D-122) | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor; **PM final** |

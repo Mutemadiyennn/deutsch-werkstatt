@@ -4,8 +4,8 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { loadContent, ROOT } from "../../../content/tools/load.ts";
-import { bilinmeyenler, bilinmeyenYazi, genelAdlarAyikla, kalipOrtu, kalipSecenekleri, kalipToks, kumeDizini, toks } from "./kume.ts";
+import { loadContent, ROOT } from "./load.ts";
+import { bilinmeyenler, bilinmeyenYazi, genelAdlarAyikla, kalipOrtu, kalipSecenekleri, kalipToks, kumeDizini, toks } from "../../packages/shared/src/kume.ts";
 
 const c = loadContent();
 const genel = genelAdlarAyikla(readFileSync(join(ROOT, "docs/v2/reviews/genel-adlar.md"), "utf8"));
