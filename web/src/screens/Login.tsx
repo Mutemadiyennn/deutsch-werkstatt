@@ -37,7 +37,7 @@ export function Login() {
         </details>
         {err && <div class="fb bad" role="alert">{err}</div>}
         {/* ayar açıkken eski uygulama her açılışta buraya yönlenir: giriş olmazsa da geri dönüş yolu (inceleme #130 B3) */}
-        {v2AcAcik() && <EskiyeDon cls="linkbtn" />}
+        {v2AcAcik() && <EskiyeDon cls="btn sm ghost block" />}
       </div>
     </main>
   );

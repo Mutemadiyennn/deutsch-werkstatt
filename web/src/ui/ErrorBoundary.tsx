@@ -57,7 +57,7 @@ export class RootBoundary extends Component<{ children: ComponentChildren }, { e
         <p>İlerlemen bu cihazda kayıtlı. Uygulamayı yeniden açmak çoğu zaman yeter.</p>
         <button class="btn primary block" onClick={() => location.reload()}>Uygulamayı yeniden aç</button>
         {/* yeni uygulama açılmıyorsa eski uygulamaya dönüş (inceleme #130 B3) */}
-        <EskiyeDon cls="linkbtn" />
+        <EskiyeDon cls="btn sm ghost block" />
       </section></main>
     );
   }

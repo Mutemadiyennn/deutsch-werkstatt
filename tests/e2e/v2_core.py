@@ -96,7 +96,9 @@ def main():
         # inceleme #130 B3: "her açılışta yeni uygulama" ayarı kapalıyken girişte dönüş bağlantısı yok; açıkken var
         check(page.locator("[data-test=v1-don]").count() == 0, "giriş: ayar kapalıyken 'Eski uygulamaya dön' yok")
         page.evaluate("localStorage.setItem('dw-v2-ac', '1')"); page.reload(); page.wait_for_selector("text=Almancayı gerçek hayat için öğren")
-        check(page.locator("[data-test=v1-don]").count() == 1, "giriş: ayar açıkken 'Eski uygulamaya dön' var (kabukta tek dönüş yolu)")
+        yuk = page.locator("[data-test=v1-don]").bounding_box()["height"] if page.locator("[data-test=v1-don]").count() else 0
+        check(page.locator("[data-test=v1-don]").count() == 1 and yuk >= 44, f"giriş: ayar açıkken 'Eski uygulamaya dön' var, dokunma alanı ≥ 44 pt ({yuk})")
+        page.wait_for_timeout(500); shot(page, "01b-giris-eskiye-don")
         page.evaluate("localStorage.removeItem('dw-v2-ac')"); page.reload(); page.wait_for_selector("text=Almancayı gerçek hayat için öğren")
         page.click("summary")
         page.fill("#em", "test@example.com"); page.fill("#pw", "yanlis")
