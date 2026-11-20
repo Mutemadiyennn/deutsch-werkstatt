@@ -1,7 +1,8 @@
 """
 M1 gerçek insan videosu hattı (#58 A9, #42 §4). CI'da çalışır (ücretsiz GitHub Actions; anahtar yok, ücretli servis yok).
 
-Her `content/v2/m1/video/klip-NN.json` (durum: hazir | kisa) için:
+Her `content/v2/m1/video/klip-NN.json` (durum: hazir | kisa) için; çok parçalı klipte (`kesitler`) her parça ayrı indirilir,
+ölçülür, kesilir ve tek videoda birleşir (cümle kimliği: ilk parça `t{tur}`, sonrakiler `k{sira}t{tur}`):
   1. Kaynak (Deutsch im Blick, COERLL, CC BY 4.0): bölüm RSS'inden klibin mp4 adresi ve insan transkripti. Transkriptin
      yalnızca ALMANCA yarısı alınır (RSS önce Almanca, sonra İngilizce verir), konuşmacı etiketi ("Jan: ") ayrılır.
      İçerik dosyasındaki `turlar[].basi` her turun başıyla doğrulanır; uyuşmazsa klip yayına girmez.
@@ -238,56 +239,62 @@ def sha(p: str) -> str:
         for b in iter(lambda: f.read(1 << 20), b""): h.update(b)
     return h.hexdigest()
 
-def isle(klip_yolu: str, out: str, rss_onbellek: dict) -> dict:
-    k = json.load(open(klip_yolu))
-    ad = os.path.basename(klip_yolu)[:-5]  # klip-NN
-    sonuc = {"klip": ad, "kaynak_klip": k["klip"], "durum": k["durum"], "tarih": datetime.date.today().isoformat(),
-             "modeller": {"asr1": f"faster-whisper {WHISPER_MODEL}", "asr2": W2V_MODEL}}
-    bolum = int(k["klip"].split("_", 1)[0])
+def parcalar(k: dict) -> list[dict]:
+    """Klibin kaynak parçaları (FORMAT.md A9 `kesitler`): ilk parça üst düzey alanlarla aynıdır; tek parçalı klipte liste tek elemanlı."""
+    ust = {"klip": k["klip"], "bas_tur": k["kesit"]["bas_tur"], "son_tur": k["kesit"]["son_tur"], "haric": k.get("haric", []),
+           "turlar": k.get("turlar", []), "video_url": k.get("video_url")}
+    ks = k.get("kesitler") or []
+    if not ks: return [ust]
+    out = []
+    for i, x in enumerate(ks):
+        if i == 0: out.append({**ust, **{a: x[a] for a in ("bas_tur", "son_tur", "haric") if a in x}})
+        else: out.append({"klip": x["klip"], "bas_tur": x["bas_tur"], "son_tur": x["son_tur"], "haric": x.get("haric", []),
+                          "turlar": x.get("turlar", []), "video_url": x.get("video_url")})
+    return out
+
+
+def kimlik(sira: int, tur: int) -> str:
+    """Cümle kimliği: ilk parça `t{tur}` (geriye uyum), sonrakiler `k{sira}t{tur}`; klip.ts aynı kuralla bağlar"""
+    return f"t{tur}" if sira == 0 else f"k{sira}t{tur}"
+
+
+def kesit_isle(ad: str, sira: int, p: dict, out: str, rss_onbellek: dict) -> dict:
+    """Bir kaynak parçası: indir, iki ASR ile ölç, hizala, kes. Dönüş: kesilen dosyalar, cümleler (parça içi zaman), ölçüm."""
+    bolum = int(p["klip"].split("_", 1)[0])
     if bolum not in rss_onbellek: rss_onbellek[bolum] = rss_bolum(bolum)
-    item = rss_onbellek[bolum].get(k["klip"])
-    if not item: return {**sonuc, "hata": "RSS'te klip yok"}
+    item = rss_onbellek[bolum].get(p["klip"])
+    if not item: return {"hata": f"RSS'te klip yok ({p['klip']})"}
     de = almanca_yari(item["satirlar"])
-    bas, son = k["kesit"]["bas_tur"], k["kesit"]["son_tur"]
-    haric = {h["tur"] for h in k.get("haric", [])}
-    secili = [n for n in range(bas, son + 1) if n not in haric and 1 <= n <= len(de)]
-    # basi doğrulaması
-    uyusmaz = [t["tur"] for t in k.get("turlar", []) if t["tur"] in secili and not basi_uyar(de[t["tur"] - 1]["de"], t["basi"])]
-    if uyusmaz: return {**sonuc, "hata": f"transkript turları içerikle uyuşmuyor: {uyusmaz}"}
-    # indir, ses
-    mp4 = os.path.join(out, f"{ad}.kaynak.mp4"); wav = os.path.join(out, f"{ad}.wav")
-    # video adresi: RSS bağlantısı, enclosure, https ve www biçimleri (kaynak site adres düzenini değiştirmiş olabilir)
+    haric = {h["tur"] for h in p.get("haric", [])}
+    secili = [n for n in range(p["bas_tur"], p["son_tur"] + 1) if n not in haric and 1 <= n <= len(de)]
+    uyusmaz = [t["tur"] for t in p.get("turlar", []) if t["tur"] in secili and not basi_uyar(de[t["tur"] - 1]["de"], t["basi"])]
+    if uyusmaz: return {"hata": f"{p['klip']}: transkript turları içerikle uyuşmuyor: {uyusmaz}"}
+    mp4 = os.path.join(out, f"{ad}.k{sira}.kaynak.mp4"); wav = os.path.join(out, f"{ad}.k{sira}.wav")
     # kaynağın oynatıcısı videoyu media.la.utexas.edu'dan çeker (vid.php: video_loc + dosya adı + ".mp4"); RSS adresi 404
-    adaylar = [f"https://media.la.utexas.edu/dib/video/{k['klip']}.mp4"]
-    for u in [item.get("enc"), item["mp4"], k.get("video_url")]:
+    adaylar = [f"https://media.la.utexas.edu/dib/video/{p['klip']}.mp4"]
+    for u in [item.get("enc"), item["mp4"], p.get("video_url")]:
         if not u: continue
         for v in (u, u.replace("http://", "https://"), u.replace("://coerll.", "://www.coerll."), u.replace("http://coerll.", "https://www.coerll.")):
             if v not in adaylar: adaylar.append(v)
-    hatalar = []
+    hatalar, adres = [], None
     for u in adaylar:
-        try: open(mp4, "wb").write(get(u)); sonuc["video_adresi"] = u; break
+        try: open(mp4, "wb").write(get(u)); adres = u; break
         except Exception as e: hatalar.append(str(e)[:160])
     else:
-        return {**sonuc, "hata": "video indirilemedi", "denenen": hatalar}
+        return {"hata": f"{p['klip']}: video indirilemedi", "denenen": hatalar}
     ses_cikar(mp4, wav)
     tum = [norm_kelimeler(x["de"]) for x in de]
-    # ASR'ler bütün kayıtta; ölçüm seçili turların kelimelerine göre
     wk = whisper_kelimeler(wav)
     lp, kare = w2v_emisyon(wav)
     z1 = whisper_tur_zamanlari(wk, tum)
     z2 = w2v_hizala(lp, kare, tum)
-    # seçili turların süresi içindeki ASR kelimeleri
     def aralikta(t0, t1): return [x["w"] for x in wk if x["t0"] >= t0 - 0.2 and x["t1"] <= t1 + 0.2]
-    tur_z = []
-    dislanan = []
-    # Whisper'ın kelime zamanları dikkat ağırlıklarından gelir ve sistematik bir kayma taşır (genelde 0,3–0,6 sn);
-    # CTC zorunlu hizalaması kare düzeyinde doğrudur. Sapma, iki ASR'nin başlangıç ve bitiş farklarının ORTANCASI
-    # (sistematik kayma) çıkarıldıktan sonra ölçülür; kalan sapma > 300 ms olan tur yayına girmez. Zamanlar CTC'den.
+    # Whisper'ın sistematik kayması (ortanca) çıkarılarak sapma ölçülür; kalan > 300 ms tur yayına girmez; zamanlar CTC'den
     import statistics
     ciftler = [(n, z1[n - 1], z2[n - 1]) for n in secili if z1[n - 1] and z2[n - 1]]
     k0 = statistics.median([a[0] - b[0] for _, a, b in ciftler]) if ciftler else 0.0
     k1 = statistics.median([a[1] - b[1] for _, a, b in ciftler]) if ciftler else 0.0
-    sonuc["whisper_kayma_ms"] = [round(k0 * 1000), round(k1 * 1000)]
+    tur_z, dislanan = [], []
     for n in secili:
         a, b = z1[n - 1], z2[n - 1]
         if not a or not b: dislanan.append({"tur": n, "neden": "hizalanamadı"}); tur_z.append(None); continue
@@ -295,8 +302,7 @@ def isle(klip_yolu: str, out: str, rss_onbellek: dict) -> dict:
         if sapma > SAPMA_MS: dislanan.append({"tur": n, "neden": f"iki ASR zaman sapması {sapma:.0f} ms"})
         tur_z.append({"tur": n, "t0": round(b[0], 3), "t1": round(b[1], 3), "sapma_ms": round(sapma), "ham": [round(a[0], 2), round(a[1], 2), round(b[0], 2), round(b[1], 2)]})
     gecerli = [z for z in tur_z if z]
-    if not gecerli: return {**sonuc, "hata": "hiçbir tur hizalanamadı", "dislanan": dislanan}
-    # ölçüm yalnızca seçili turların aralıklarında (çıkarılan turların sesi ölçüme girmez)
+    if not gecerli: return {"hata": f"{p['klip']}: hiçbir tur hizalanamadı", "dislanan": dislanan}
     import torch
     _, proc, _m = w2v()
     h1, h2k = [], []
@@ -305,41 +311,72 @@ def isle(klip_yolu: str, out: str, rss_onbellek: dict) -> dict:
         h2k += norm_kelimeler(proc.decode(torch.argmax(lp[max(0, int((z["t0"] - 0.1) / kare)): int((z["t1"] + 0.1) / kare) + 1], dim=-1)))
     o = olc([tum[z["tur"] - 1] for z in gecerli], h1, h2k)
     hizasiz = sum(1 for d in dislanan if d["neden"] == "hizalanamadı") / max(1, len(secili))
-    et = etiket(o, hizasiz)
-    # kesit: haric turlar varsa parçalar birleştirilir
-    parca = []
+    # kesit: haric turlar varsa alt parçalar
+    alt = []
     for n, z in zip(secili, tur_z):
         if not z: continue
-        if parca and n == parca[-1]["son"] + 1: parca[-1].update(son=n, t1=z["t1"])
-        else: parca.append({"bas": n, "son": n, "t0": z["t0"], "t1": z["t1"]})
+        if alt and n == alt[-1]["son"] + 1: alt[-1].update(son=n, t1=z["t1"])
+        else: alt.append({"bas": n, "son": n, "t0": z["t0"], "t1": z["t1"]})
     pay = 0.25
-    dosyalar, kayma, cumleler, gecen = [], 0.0, [], 0.0
-    for i, pc in enumerate(parca):
+    dosyalar, cumleler, gecen = [], [], 0.0
+    for i, pc in enumerate(alt):
         a, b = max(0.0, pc["t0"] - pay), pc["t1"] + pay
-        f = os.path.join(out, f"{ad}.p{i}.mp4")
-        ffmpeg("-ss", f"{a:.3f}", "-to", f"{b:.3f}", "-i", mp4, "-vf", "scale='min(640,iw)':-2", "-c:v", "libx264", "-preset", "veryfast",
-               "-crf", "28", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "96k", "-movflags", "+faststart", f)
+        f = os.path.join(out, f"{ad}.k{sira}.p{i}.mp4")
+        # bütün parçalar aynı çerçeve (640×360, 30 fps, 44,1 kHz stereo): farklı kaynak klipler tek videoda birleşir
+        ffmpeg("-ss", f"{a:.3f}", "-to", f"{b:.3f}", "-i", mp4, "-vf", "scale=640:360:force_original_aspect_ratio=decrease,pad=640:360:(ow-iw)/2:(oh-ih)/2,setsar=1",
+               "-c:v", "libx264", "-preset", "veryfast", "-crf", "28", "-pix_fmt", "yuv420p", "-r", "30",
+               "-c:a", "aac", "-ar", "44100", "-ac", "2", "-b:a", "96k", "-movflags", "+faststart", f)
         dosyalar.append(f)
         for n, z in zip(secili, tur_z):
             if z and pc["bas"] <= n <= pc["son"] and not any(d["tur"] == n for d in dislanan):
-                cumleler.append({"id": f"t{n}", "tur": n, "speaker": de[n - 1]["speaker"], "de": de[n - 1]["de"],
+                cumleler.append({"id": kimlik(sira, n), "kesit": sira, "tur": n, "speaker": de[n - 1]["speaker"], "de": de[n - 1]["de"],
                                  "t0": round(gecen + z["t0"] - a, 3), "t1": round(gecen + z["t1"] - a, 3)})
         gecen += b - a
+    for x in (mp4, wav): os.remove(x)
+    return {"klip": p["klip"], "video_adresi": adres, "dosyalar": dosyalar, "cumleler": cumleler, "sure_sn": round(gecen, 3),
+            "olcum": o, "etiket": etiket(o, hizasiz), "dislanan": dislanan, "whisper_kayma_ms": [round(k0 * 1000), round(k1 * 1000)],
+            "kesit_kaynak_sn": [round(max(0.0, alt[0]["t0"] - pay), 3), round(alt[-1]["t1"] + pay, 3)],
+            "tur_zamanlari": [{"tur": z["tur"], "sapma_ms": z["sapma_ms"], "ham_w_ctc": z["ham"]} for z in tur_z if z]}
+
+
+ETIKET_SIRA = ["birebir", "insan-orneklemi", "kisaltilmis"]
+
+
+def isle(klip_yolu: str, out: str, rss_onbellek: dict) -> dict:
+    """Klibin bütün parçaları (`kesitler`) sırayla işlenir, tek videoda birleşir; metin tek zaman çizgisinde (kesit, tur)"""
+    k = json.load(open(klip_yolu))
+    ad = os.path.basename(klip_yolu)[:-5]  # klip-NN
+    sonuc = {"klip": ad, "kaynak_klip": k["klip"], "durum": k["durum"], "tarih": datetime.date.today().isoformat(),
+             "modeller": {"asr1": f"faster-whisper {WHISPER_MODEL}", "asr2": W2V_MODEL}}
+    ps = parcalar(k)
+    sonuclar, dosyalar, cumleler, gecen = [], [], [], 0.0
+    for sira, p in enumerate(ps):
+        r = kesit_isle(ad, sira, p, out, rss_onbellek)
+        if r.get("hata"): return {**sonuc, **r, "kesit": sira}
+        for c in r["cumleler"]: cumleler.append({**c, "t0": round(c["t0"] + gecen, 3), "t1": round(c["t1"] + gecen, 3)})
+        dosyalar += r["dosyalar"]; gecen += r["sure_sn"]
+        sonuclar.append({x: r[x] for x in r if x not in ("dosyalar", "cumleler")})
     son_mp4 = os.path.join(out, f"{ad}.mp4")
     if len(dosyalar) == 1: os.replace(dosyalar[0], son_mp4)
     else:
+        # parçalar aynı çerçeveyle kesildi; birleştirmede yeniden kodlanır (zaman damgaları parçalar arasında kaymasın)
         lst = os.path.join(out, f"{ad}.txt"); open(lst, "w").write("".join(f"file '{os.path.basename(x)}'\n" for x in dosyalar))
-        ffmpeg("-f", "concat", "-safe", "0", "-i", lst, "-c", "copy", "-movflags", "+faststart", son_mp4)
+        ffmpeg("-f", "concat", "-safe", "0", "-i", lst, "-c:v", "libx264", "-preset", "veryfast", "-crf", "28", "-pix_fmt", "yuv420p", "-r", "30",
+               "-c:a", "aac", "-ar", "44100", "-ac", "2", "-b:a", "96k", "-movflags", "+faststart", son_mp4)
+        for x in dosyalar: os.remove(x)
+        os.remove(lst)
     poster = os.path.join(out, f"{ad}.jpg")
     ffmpeg("-ss", "1", "-i", son_mp4, "-frames:v", "1", "-q:v", "4", poster)
     metin = os.path.join(out, f"{ad}.metin.json")
-    json.dump({"klip": ad, "kaynak_klip": k["klip"], "atif": k.get("atif"), "lisans": k.get("lisans"), "sure_sn": round(gecen, 2), "cumleler": cumleler},
-              open(metin, "w"), ensure_ascii=False, indent=1)
-    for x in (mp4, wav): os.remove(x)
-    return {**sonuc, "etiket": et, "olcum": o, "dislanan": dislanan, "sure_sn": round(gecen, 2),
-            "kesit_kaynak_sn": [round(max(0.0, parca[0]["t0"] - pay), 3), round(parca[-1]["t1"] + pay, 3)],
-            "tur_zamanlari": [{"tur": z["tur"], "sapma_ms": z["sapma_ms"], "ham_w_ctc": z["ham"]} for z in tur_z if z],
+    json.dump({"klip": ad, "kaynak_klip": k["klip"], "kaynak_klipler": [p["klip"] for p in ps], "atif": k.get("atif"), "lisans": k.get("lisans"),
+               "sure_sn": round(gecen, 2), "cumleler": cumleler}, open(metin, "w"), ensure_ascii=False, indent=1)
+    et = max((r["etiket"] for r in sonuclar), key=ETIKET_SIRA.index)
+    ilk = sonuclar[0]
+    return {**sonuc, "etiket": et, "olcum": ilk["olcum"], "dislanan": ilk["dislanan"], "sure_sn": round(gecen, 2),
+            "kesit_kaynak_sn": ilk["kesit_kaynak_sn"], "tur_zamanlari": ilk["tur_zamanlari"], "whisper_kayma_ms": ilk["whisper_kayma_ms"],
+            "kesitler": [{"sira": i, **{x: r[x] for x in ("klip", "etiket", "olcum", "dislanan", "sure_sn", "kesit_kaynak_sn")}} for i, r in enumerate(sonuclar)],
             "varliklar": {os.path.basename(x): {"sha256": sha(x), "bayt": os.path.getsize(x)} for x in (son_mp4, poster, metin)}}
+
 
 def kesif(klip: str):
     """Kaynak sayfada video adresini arar (RSS'teki mp4 adresi 404 veriyor): sayfadaki medya bağlantılarını günlüğe yazar"""
