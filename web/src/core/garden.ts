@@ -330,6 +330,67 @@ export function accepted(l: Lexeme, t: QType, formIdx = 0): string[] {
 }
 export function formFor(l: Lexeme, t: QType, i = 0) { const list = t === "gap" ? otherForms(l) : verbForms(l); return list.length ? list[i % list.length] : undefined; }
 
+/**
+ * PM-069 P0 ("öğretilmeden isteme yok"): boşluğun cevabı öğrenciye gösterilmiş mi?
+ * Cevabın her kelimesi şunlardan birinde olmalı: kartın kendi kelimesi ve çekimleri (gövde eşleşmesi), kartın eşdizimleri
+ * (tanıtım kartında hepsi gösterilir), öğrencinin daha önce gördüğü (tanıtılmış) kartların kelimeleri (`gorulen`).
+ */
+/** Kartta gösterilen çoğul ("-" ya da boşsa yok); Bahçe tanıtım ve cevap kartı bunu basar, boşluk kuralı da bunu sayar (inceleme #122 2. tur) */
+export const gosterilenCogul = (l: Lexeme): string | undefined => (l.pl && l.pl.trim() !== "-" && l.pl.trim() !== l.de ? l.pl.trim() : undefined);
+/**
+ * PM 7024150313: kartta en çok 3 eşdizim açık durur (boşlukta cevabı geçenler önce, sonra içerikteki sıra); kalanı "Daha fazla".
+ * Boşluk kuralı yalnızca açık duranları "gösterilmiş" sayar.
+ */
+export const ESDIZIM_ACIK = 3;
+export function esdizimler(l: Lexeme): { acik: Lexeme["collocations"]; kapali: Lexeme["collocations"] } {
+  const kendi = new Set(tokens(`${l.art ?? ""} ${l.de}`.toLowerCase()));
+  const cevap = new Set((l.forms ?? []).flatMap((f) => tokens(f.answer.toLowerCase().replace(/\s*…\s*/g, " "))).filter((w) => !kendi.has(w)));
+  const sirali = l.collocations.map((c, k) => ({ c, k, p: tokens(c.de.toLowerCase()).some((w) => cevap.has(w)) ? 1 : 0 }))
+    .sort((a, b) => b.p - a.p || a.k - b.k).map((x) => x.c);
+  return { acik: sirali.slice(0, ESDIZIM_ACIK), kapali: sirali.slice(ESDIZIM_ACIK) };
+}
+export function cevapGosterildi(l: Lexeme, cevap: string, gorulen: Set<string> = new Set()): boolean {
+  const kelimeler = tokens(cevap.toLowerCase().replace(/\s*…\s*/g, " "));
+  if (!kelimeler.length) return false;
+  // kartın kendi kelimesi: yalnızca kartta GÖSTERİLEN biçimler (başlık, artikel, çoğul). Gövde eşleşmesi yok: Perfekt ortacı,
+  // Präteritum ve hâl biçimleri tanıtılmadıkça sorulmaz (inceleme #122 P0-1)
+  const kendi = new Set(tokens(`${l.art ?? ""} ${l.de} ${gosterilenCogul(l) ?? ""}`.toLowerCase().replace(/[()]/g, " ")));
+  const eszizim = new Set(esdizimler(l).acik.flatMap((c) => tokens(c.de.toLowerCase())));
+  return kelimeler.every((x) => kendi.has(x) || eszizim.has(x) || gorulen.has(x));
+}
+/**
+ * Sorulabilir boşluk: `i`'den başlayarak cevabı gösterilmiş ilk biçim; hiçbiri yoksa null (soru türü değişir).
+ */
+export function ogretilmisForm(l: Lexeme, t: QType, i = 0, gorulen: Set<string> = new Set()): number | null {
+  const list = t === "gap" ? otherForms(l) : verbForms(l);
+  for (let d = 0; d < list.length; d++) {
+    const k = (i + d) % list.length;
+    if (cevapGosterildi(l, list[k]!.answer, gorulen)) return k;
+  }
+  return null;
+}
+/** Artikel ve hâl biçimleri: başka kartın artikeli bu kartın hâl boşluğunu "görülmüş" yapmaz (inceleme #122 P1-1) */
+const ARTIKEL = new Set(["der", "die", "das", "den", "dem", "des", "ein", "eine", "einen", "einem", "einer", "eines"]);
+/** Öğrencinin gördüğü kelimeler: tanıtılmış kartların başlık kelimeleri ve eşdizimleri (artikeller hariç), küçük harf */
+export function gorulenKelimeler(lex: Map<string, Lexeme>, tanitilan: Iterable<string>): Set<string> {
+  const g = new Set<string>();
+  for (const id of tanitilan) {
+    const x = lex.get(id); if (!x) continue;
+    for (const w of tokens([x.de, gosterilenCogul(x) ?? "", ...esdizimler(x).acik.map((c) => c.de)].join(" ").toLowerCase().replace(/[()]/g, " "))) if (!ARTIKEL.has(w)) g.add(w);
+  }
+  return g;
+}
+/** Tanıtılmış kart: Bahçe'de değerlendirilmiş (FSRS kaydı) ya da doğru cevaplanmış; tespitte yalnızca yanlış görülen sayılmaz (P1-2) */
+export const tanitildi = (it: LearnerItem) => !!(it.passive.fsrs || it.active.fsrs || it.passive.ok > 0 || it.active.ok > 0);
+/** Boşluk sorusunun gerçekleşen türü ve biçimi (Garden bunu kullanır; birim testli) */
+export function boslukSecimi(l: Lexeme, t: QType, ex: number, gorulen: Set<string>): { tip: QType; fi: number; sorulabilir: number } {
+  if (t !== "gap" && t !== "sep_perfekt") return { tip: t, fi: ex, sorulabilir: 0 };
+  const list = t === "gap" ? otherForms(l) : verbForms(l);
+  const sorulabilir = list.filter((f) => cevapGosterildi(l, f.answer, gorulen)).length;
+  const fi = ogretilmisForm(l, t, ex, gorulen);
+  return fi === null ? { tip: "tr_de", fi: ex, sorulabilir } : { tip: t, fi, sorulabilir };
+}
+
 /** Ayrılabilir fiil önekleri (absagen → sage … ab) */
 const SEP = ["ab", "an", "auf", "aus", "bei", "ein", "fest", "fort", "her", "hin", "los", "mit", "nach", "vor", "weg", "zu", "zurück", "zusammen"];
 /**
