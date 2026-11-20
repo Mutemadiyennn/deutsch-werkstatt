@@ -87,3 +87,13 @@ Geri dönen yok. Karar değiştirmeyen üç not: 4 (Türkçe cümle "ölmedi", k
 Toplam 2 · geçer 2 · geri döner 0.
 
 Geri dönen yok. Karar değiştirmeyen bir not: a satırında **alte** kelimesindeki a ve sondaki e, ipucunun hangi kelimeyi anlattığını bir anlığına bulandırıyor.
+
+## #156 2. tur sonrası (hassen)
+
+| # | Kart | Cümle | İpucu | Kendi sözlerimle | Boşluğu doldurabilir miyim | Karar | Not |
+|---|---|---|---|---|---|---|---|
+| a | lx:hassen | Ich habe die Schule immer ___. | Okuldan hep nefret ettim derken **Ich habe die Schule immer gehasst** denir. | "Okuldan hep nefret ettim" demek istediğimde Almancası bu cümle. Sondaki kelime gehasst, boşluğa o gelir. | Evet, gehasst. Cümlenin tamamı ipucunda duruyor, ekrandaki cümleyle kelime kelime aynı, eksik olan tek kelime sondaki. | geçer | 12 kelime. Tek fikir, işaret yok, bilmediğim terim yok. Türkçe ile Almanca bire bir. Anlaşılmayan bir şey yok. Kelimenin neden ge ile başladığını ipucu söylemiyor, ama boşluğu doldurmak için gerekmedi. |
+
+Toplam 1 · geçer 1 · geri döner 0.
+
+Geri dönen yok.
