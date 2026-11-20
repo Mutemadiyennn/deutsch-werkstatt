@@ -37,13 +37,14 @@ def main():
         ctx.set_offline(True)
         ilk = pg.inner_text("[data-test=intro-ex]")
         boy = lambda: pg.evaluate("() => [Math.round(document.querySelector('[data-test=garden-intro] section.card').getBoundingClientRect().height), document.documentElement.scrollHeight]")
-        boy0 = boy()
+        boy0 = None  # temel ilk dokunuştan sonra alınır: eylem çubuğu yüksekliği (--actionbar-h) ilk çizimden sonra yerleşir (CI e3660ec: sayfa 703 → 757, kart sabit)
         goruldu, doms, kareler = [ilk], [], []
         # D-096 yöntemi: DOM her dokunuşta < 150 ms, ilk kare (7 dokunuşun ortancası − boş kare aralığı) < 150 ms. B köprüsü (#131) C ile
         # kalktı: örnek alanı sabit olduğu için belge yüksekliği değişmiyor, iPhone 15'te de bütün görünüm yeniden boyanmıyor
         for _ in range(7):
             dom, kare, metin = degistir(pg, "[data-test=intro-ex]")
             doms.append(dom); kareler.append(kare); goruldu.append(metin)
+            if boy0 is None: pg.wait_for_timeout(300); boy0 = boy()
         kortanca = sorted(kareler)[len(kareler) // 2]; bos = bos_kare(pg); ek = kortanca - bos
         dokunus = 7
         # PM 7030294523 C: örnek alanı en uzun örnek kadar yer tutar → "Başka cümle"de kart ve sayfa yüksekliği değişmez
