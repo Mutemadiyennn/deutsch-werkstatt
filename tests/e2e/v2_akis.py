@@ -99,6 +99,20 @@ def main():
         check(len(turler) >= 4, f"ilk halkada en az 4 tür ({turler})")
         check(k2["sonuc"] > 10 and k2["items"] > 0, f"sonuçlar kayda ve kart kaydına yazıldı ({k2['sonuc']} sonuç, {k2['items']} kart)")
         check(yanlis_kart is not None and any(v for v in k2["geri"].values()), f"'Bilmiyorum' denen kart halkada bir kez daha geldi ({k2['geri']})")
+        if "--tam" in __import__("sys").argv:
+            # AK-10 5. adım: günün kalanı baştan sona; hiçbir adımda takılmaz, sonda gün bitişi ve eski anahtarlar yazılır
+            turler2, n = set(), 0
+            for n in range(600):
+                if pg.locator("[data-test=akis-bitti]").count(): break
+                if pg.locator("[data-test=halka-sonu]").count(): pg.click("[data-test=halka-sonu-devam]"); pg.wait_for_timeout(150); continue
+                t = adim_gec(pg)
+                if t is None: check(False, f"günde takıldı: {pg.get_attribute('[data-test=akis]', 'data-tur')}"); break
+                turler2.add(t)
+            check(pg.locator("[data-test=akis-bitti]").count() == 1, f"gün baştan sona yürüdü ({n} adım; türler {sorted(turler2)})")
+            anahtar = pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
+              const al = (k) => new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get(k); t.onsuccess = () => ok(!!t.result); });
+              const r = { bahce: await al('m1:bahce:2'), gun: await al('m1:gun:2'), ders: await al('ders:r0:02-monate') }; d.close(); return r; }""")
+            check(all(anahtar.values()), f"eski anahtarlar yazıldı: Bahçe, ders, gün ({anahtar})")
         b.close()
     srv.shutdown()
     finish()
