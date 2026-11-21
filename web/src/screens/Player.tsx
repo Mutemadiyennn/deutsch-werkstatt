@@ -11,6 +11,7 @@ import { isRepeatRequest, offlineDialogueIndex } from "../core/offline.ts";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Chunk, Drill, Lexeme, Pattern, Scenario, ScenarioProgress, Speed } from "@dw/shared";
 import { useApp } from "../state.ts";
+import { ustBaslik } from "../core/baslik.ts";
 import { loadLexicon, loadScenario } from "../services/content.ts";
 import { getItem, getScenarioProgress, putItem, saveScenarioProgress, addPersonal } from "../data/db.ts";
 import { focus, setLearning } from "../services/focusRuntime.ts";
@@ -78,16 +79,20 @@ const outcomeOf = (v: Verdict, hinted = false): Outcome => (v.kind === "correct"
 /* ============================ Senaryo ana sayfası ============================ */
 export function PlayerHome({ id }: { id: string }) {
   const { ctx, err, reload } = useScenario(id);
+  const { index } = useApp();
   useEffect(() => { setLearning(false); }, []);
   if (err) return <div class="stack"><ProgressHeader title="Senaryo" back="#/learn" /><div class="card err"><p><b>Senaryo yüklenemedi.</b> {err}</p><button class="btn sm" onClick={reload}>Tekrar dene</button></div></div>;
-  if (!ctx) return <div class="stack"><ProgressHeader title="Senaryo" back="#/learn" /><LoadingCard lines={4} /><LoadingCard /></div>;
+  // #175 ardılı (PM 7049695521 C): yüklenirken çubukta başlık yok (alan adı henüz bilinmiyor; "Senaryo" yer tutucusu kalmaz)
+  if (!ctx) return <div class="stack"><ProgressHeader title="" back="#/learn" /><LoadingCard lines={4} /><LoadingCard /></div>;
   const { s, prog } = ctx;
   const unlocked = (i: number) => SECTIONS.slice(0, i).every((x) => prog.done.includes(x.k));
   const next = SECTIONS.find((x, i) => !prog.done.includes(x.k) && unlocked(i));
   const doneIdx = SECTIONS.map((x, i) => (prog.done.includes(x.k) ? i : -1)).filter((i) => i >= 0);
   return (
     <div class="stack">
-      <ProgressHeader title={s.title_tr} back={`#/learn/${s.domain}`} step={next ? idx(next.k) : 7} doneSteps={doneIdx} />
+      {/* PM 7048763794 (B3): üst çubuk nerede olduğunu söyler (alan adı, domains.json), başlık ne yapıldığını (h1 senaryo adı);
+          alan adı yoksa ya da senaryo adıyla aynıysa üst çubukta başlık yok */}
+      <ProgressHeader title={ustBaslik(index?.domains.find((d) => d.id === s.domain)?.title_tr, s.title_tr)} back={`#/learn/${s.domain}`} step={next ? idx(next.k) : 7} doneSteps={doneIdx} />
       <section class="card hero fade">
         <div class="row between"><span class="chip">{s.level}</span>{s.review.status !== "reviewed" && <span class="chip">deneme dersi</span>}</div>
         <h1 style={{ marginTop: 8 }}>{s.title_tr}</h1>

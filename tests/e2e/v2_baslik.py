@@ -5,7 +5,8 @@ dinlemek, altyazıya atlama küçük bağlantı, altyazılı dinleme kendiliğin
 python3 tests/e2e/v2_baslik.py [--browser webkit] [--device "iPhone 15"] [--shots DIR]
 """
 from playwright.sync_api import sync_playwright
-from common import serve, launch, new_page, login_onboard, check, finish, shot, arg
+import json
+from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, content_file
 
 PORT = 4217
 # her cümle 400 ms süren sahte seslendirme; cancel() çalan cümleyi hemen bitirir (gerçek motor gibi)
@@ -17,7 +18,9 @@ YAVAS_SES = """(() => { window.__oku = []; let t = null, u0 = null;
   Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: ss });
   window.SpeechSynthesisUtterance = function (x) { this.text = x; this.rate = 1; this.pitch = 1; this.voice = null; };
 })()"""
-EKRANLAR = ["#/prova/1", "#/m1/1/m1%3A01%3Aa1", "#/m1/1/m1%3A01%3Aa2", "#/okuma/1", "#/garden/1"]
+# senaryo ana sayfaları (yerleşim B3, PM 7048763794): biri en uzun alan adlı
+SENARYO = ["#/scenario/sc:telefon:01-arzttermin", "#/scenario/sc:essen:m1-weihnachtsmarkt"]
+EKRANLAR = ["#/prova/1", "#/m1/1/m1%3A01%3Aa1", "#/m1/1/m1%3A01%3Aa2", "#/okuma/1", "#/garden/1"] + SENARYO
 OLC = """() => { const h = document.querySelector('.pbar h1'), b = h.getBoundingClientRect(), p = h.closest('.pbar').getBoundingClientRect();
   const g = h.parentElement.querySelector('a.iconbtn'), gb = g ? g.getBoundingClientRect() : null;
   return { t: h.innerText, ust: b.top, alt: b.bottom, pAlt: p.bottom, kesik: h.scrollHeight > h.clientHeight + 1, satir: Math.round(b.height / parseFloat(getComputedStyle(h).lineHeight)),
@@ -46,6 +49,55 @@ def main():
             if shots and h in ("#/garden/1", "#/m1/1/m1%3A01%3Aa1"): shot(pg, "b130-" + h.split("/")[-1][:20].replace("%3A", "-"), full=False)
             pg.evaluate("document.documentElement.style.removeProperty('--ts')")
             if shots: shot(pg, "b-" + h.split("/")[-1][:20].replace("%3A", "-"), full=False)
+        # B3 (PM 7048763794): senaryo ana sayfasında üst çubuk = alan adı (domains.json), hero h1 = senaryo adı; ikisi farklı
+        idx = content_file("index.json"); alan = {d["id"]: d["title_tr"] for d in idx["domains"]}
+        sen = {s["id"]: s for s in idx["scenarios"]}
+        for h in SENARYO:
+            pg.goto(base + h); pg.wait_for_selector(".card.hero h1"); pg.wait_for_timeout(200)
+            cubuk = pg.inner_text(".pbar h1").strip() if pg.locator(".pbar h1").count() else ""
+            hero = pg.inner_text(".card.hero h1").strip(); beklenen = alan[sen[h.split("/")[-1]]["domain"]]
+            check(cubuk == beklenen and cubuk != hero, f"{h}: üst çubukta alan adı ('{cubuk}' = '{beklenen}'), sayfa başlığından ('{hero}') farklı")
+        # alan adı senaryo adıyla aynıysa çubukta başlık yok; geri düğmesi ve adım göstergesi yerinde (index.json araya girilir)
+        h = SENARYO[0]; sid = h.split("/")[-1]
+        def ayni_ad(route):
+            r = route.fetch(); d = r.json(); s0 = next(s for s in d["scenarios"] if s["id"] == sid)
+            for dd in d["domains"]:
+                if dd["id"] == s0["domain"]: dd["title_tr"] = s0["title_tr"]
+            route.fulfill(response=r, body=json.dumps(d))
+        pg.route("**/index.json", ayni_ad); pg.goto(base + "#/today"); pg.reload(); pg.wait_for_selector("[data-tab=today]")
+        pg.goto(base + h); pg.wait_for_selector(".card.hero h1"); pg.wait_for_timeout(200)
+        check(pg.locator(".pbar h1").count() == 0 and pg.locator(".pbar a[aria-label=Geri]").count() == 1 and pg.locator(".pbar .steps").count() == 1,
+              f"{h}: alan adı senaryo adıyla aynıyken çubukta başlık yok, geri ve adım göstergesi yerinde")
+        pg.unroute("**/index.json"); pg.reload()
+        # yerleşim B7 (PM 7049695521 C): ifade kartının Almanca başlığı hecelenmez; en uzun sözcük sığmazsa yazı kademe kademe küçülür
+        UZUN = "Die Krankenversicherungskarte, bitte."
+        def uzun_ifade(route):
+            r = route.fetch(); d = r.json(); d["chunks"][0]["layers"]["hd"] = UZUN
+            route.fulfill(response=r, body=json.dumps(d))
+        pg.route("**/scenarios/sc_arbeit_m1-weihnachtsfeier.json", uzun_ifade)
+        for h, metin in (("#/scenario/sc:arbeit:m1-weihnachtsfeier/chunks", UZUN),):
+            pg.goto(base + "#/today"); pg.reload(); pg.wait_for_selector("[data-tab=today]")
+            pg.goto(base + h); pg.wait_for_selector("[data-test=ifade-w]"); pg.wait_for_timeout(400)
+            r = pg.evaluate("""() => { const e = document.querySelector('[data-test=ifade-w]'), s = getComputedStyle(e);
+              const satir = (rg) => { const m = []; for (const q of rg.getClientRects()) { const c = (q.top + q.bottom) / 2; if (q.width > 0.5 && !m.some((x) => Math.abs(x - c) < q.height / 2)) m.push(c); } return m.length; };
+              const t = e.firstChild, i = t.textContent.indexOf('Krankenversicherungskarte'), rg = document.createRange(); rg.setStart(t, i); rg.setEnd(t, i + 25);
+              return { metin: e.innerText, px: parseFloat(s.fontSize), hy: s.hyphens || s.webkitHyphens, sigar: e.scrollWidth <= e.clientWidth + 0.5, sozcukSatir: satir(rg) }; }""")
+            check(r["metin"] == metin and r["hy"] == "manual" and r["sigar"] and r["sozcukSatir"] == 1 and r["px"] < 31,
+                  f"{h}: uzun Almanca sözcük bölünmez, kart başlığı kademeyle küçülür ve sığar ({r})")
+        # %130 yazıda da kademe oransal: Almanca cümle Türkçe çevirisinden küçük değil (inceleme #178 P1-2)
+        pg.evaluate("document.documentElement.classList.remove('dyn'); document.documentElement.style.setProperty('--ts','1.3')"); pg.wait_for_timeout(300)
+        pg.goto(base + "#/today"); pg.goto(base + "#/scenario/sc:arbeit:m1-weihnachtsfeier/chunks"); pg.wait_for_selector("[data-test=ifade-w]"); pg.wait_for_timeout(400)
+        r = pg.evaluate("() => { const e = document.querySelector('[data-test=ifade-w]'), t = e.parentElement.querySelector('.tr'); return { de: parseFloat(getComputedStyle(e).fontSize), tr: parseFloat(getComputedStyle(t).fontSize), sigar: e.scrollWidth <= e.clientWidth + 0.5, tasma: document.documentElement.scrollWidth <= innerWidth + 1 }; }")
+        check(r["de"] >= r["tr"] and r["sigar"] and r["tasma"], f"%130 yazı: ifade kartında Almanca cümle çevirisinden küçük değil, sığıyor, yatay taşma yok ({r})")
+        pg.evaluate("document.documentElement.style.removeProperty('--ts')")
+        pg.unroute("**/scenarios/sc_arbeit_m1-weihnachtsfeier.json")
+        # gövdede < 10 harfli Almanca sözcük hecelenmez (PM 7049695521 C); karşı denetim: uzun sözcük aynı kutuda hecelenir.
+        # Karşı denetim tutmazsa (tarayıcıda Almanca heceleme sözlüğü yok) sonuç "doğrulanamadı" yazılır, kırmızı verilmez (bilinen sınır)
+        r = pg.evaluate("""() => { const kut = (m) => { const d = document.createElement('div'); d.lang = 'de'; d.style.cssText = 'width:64px;font-size:17px;overflow-wrap:normal;position:absolute;left:0;top:0'; d.textContent = m; document.body.appendChild(d);
+            const t = d.firstChild, rg = document.createRange(); rg.setStart(t, 0); rg.setEnd(t, m.length); const n = new Set([...rg.getClientRects()].map((q) => Math.round(q.top))).size; d.remove(); return n; };
+          return { kisa: kut('einfacher'), uzun: kut('Krankenversicherungskarte') }; }""")
+        if r["uzun"] > 1: check(r["kisa"] == 1, f"gövdede kısa sözcük (einfacher) hecelenmez; uzun sözcük hecelenir ({r})")
+        else: print(f"  ! gövde heceleme sınırı doğrulanamadı: bu tarayıcıda Almanca heceleme yok ({r}) — bilinen sınır")
         # çip yalnızca başlık sığmayınca alt satıra iner (üst çubuk boşuna uzamaz). Yazı tipinden bağımsız denetim: başlığın tek satırlık
         # doğal genişliği (hesaplanan yazı tipiyle ölçülür) + çip + boşluklar satıra sığıyorsa aynı satırda olmalı, sığmıyorsa alt satırda
         # (CI'daki WebKit sistem yazı tipi iPhone'dakinden geniş; "Kelime Bahçesi" orada sığmayabilir — inceleme sonrası, f337f34)
@@ -67,7 +119,8 @@ def main():
             check(pg.locator("[data-test=hiz] button[aria-pressed=true]").inner_text().strip() == "Normal", "medya: hız anahtarı Normal'e geçer")
         # üretim kapısı: dinlemeden "Sorulara geç" görünmez (E2E kısayolu kapalı; inceleme #128 P2-5)
         pg.evaluate("sessionStorage.setItem('e2e-kapi', '1')"); pg.reload(); pg.wait_for_selector("[data-test=dinle-bolum]")
-        check(pg.locator("[data-test=next]").count() == 0, "medya: dinlemeden 'Sorulara geç' görünmez (üretim kapısı)")
+        # PM 7043484263: dinlemeden önce "Sorulara geç" yalnız küçük bağlantı (birincil düğme değil)
+        check(pg.locator("[data-test=next].btn").count() == 0 and pg.locator("[data-test=next][data-baglanti]").count() == 1, "medya: dinlemeden 'Sorulara geç' yalnız küçük bağlantı")
         pg.click("[data-test=dinle-bolum]"); pg.wait_for_timeout(400)
         if pg.locator("[data-test=durdur]").count(): pg.click("[data-test=durdur]")
         pg.wait_for_selector("[data-test=dinle-bolum]")

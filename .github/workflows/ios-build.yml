@@ -34,6 +34,9 @@ jobs:
           npm install @capacitor-community/speech-recognition
           # Mikrofon kaydı uygulamanın içinde (iPhone'un kendi kaydedicisi; web görünümünün mikrofon hatalarına takılmaz)
           npm install @independo/capacitor-voice-recorder@^8
+          # Kabuk 1.5 (PM 7042267632): iPhone'un kendi seslendirmesi (AVSpeechSynthesizer). Web görünümü yüklü premium/gelişmiş
+          # sesleri vermiyor; bu eklenti hepsini listeler, gerçek hızla ve perdesiz okur. Sürüm sabit; kurulamazsa iş kırmızı.
+          npm install @capacitor-community/text-to-speech@8.0.0
 
       - name: Prepare Web Directory
         run: |
