@@ -6,7 +6,8 @@
 #   2. KAPI YEŞİL denetimi: depodaki bir issue/PR yorumunda "[KAPI] <commit> … YEŞİL" (ilk satır; en az 7 hane) yoksa DURUR.
 #      Atlama seçeneği yoktur (PM: "yalnız KAPI YEŞİL main için").
 #   3. Temiz worktree'de deploy-v2.yml'deki adımları koşar (tek kaynak; adımlar oradan okunur):
-#        "M1 medyası" adımının --pattern listesi → Releases m1-medya varlıkları REST ile .medya/'ya (GraphQL bu ortamda kapalı)
+#        "M1 medyası" adımının --pattern listesi → Releases m1-medya varlıkları REST ile .medya/'ya (GraphQL bu ortamda kapalı),
+#        sonra `medya` dalı (varsa) üstüne açılır: aynı adda dosyada dal kazanır (PM-081 A2)
 #        "Derle" adımının run: metni aynen (npm ci, doğrulayıcı + birim, içerik + web derlemesi)
 #   4. gh-pages/v2/ klasörünü web/dist ile değiştirir, commit'ler, iter. Her yayın v2-YYYYMMDD-n adını alır (phases/07): ad varsayılan
 #      olarak gh-pages commit iletisine yazılır, git etiketi atılmaz (PM 7053100321: vekil etiket itmesini reddediyor);
@@ -104,8 +105,23 @@ gh api "repos/$DEPO/releases/tags/$ETIKET" --jq '.assets[] | "\(.id)\t\(.name)"'
     if [[ "$ad" == $d ]]; then gh api -H "Accept: application/octet-stream" "repos/$DEPO/releases/assets/$id" > ".medya/$ad"; break; fi
   done < "$DESEN"
 done
+# PM-081 A1–A2: yeni ve değişen derlenmiş medya `medya` dalında durur (main'e birleşmez); Releases'in ÜSTÜNE açılır, aynı adda dal kazanır.
+# Daldaki her dosya (alt klasör fark etmez) adıyla .medya/'ya gelir; yalnız deploy-v2.yml'in --pattern listesine uyanlar alınır.
+DAL_SAY=0
+if git -C "$KOK" fetch -q origin +refs/heads/medya:refs/remotes/origin/medya 2>/dev/null; then
+  MD=$(mktemp -d /tmp/yayin-medya-XXXXXX)
+  git -C "$KOK" archive origin/medya | tar -x -C "$MD"
+  while IFS= read -r -d '' f; do
+    ad=$(basename "$f")
+    while IFS= read -r d; do
+      # shellcheck disable=SC2053
+      if [[ "$ad" == $d ]]; then cp "$f" ".medya/$ad"; DAL_SAY=$((DAL_SAY+1)); break; fi
+    done < "$DESEN"
+  done < <(find "$MD" -type f -print0)
+  rm -rf "$MD"
+fi
 rm -f "$DESEN"
-echo "medya: $(ls .medya | wc -l) dosya ($ETIKET)"
+echo "medya: $(ls .medya | wc -l) dosya ($ETIKET; medya dalından $DAL_SAY)"
 python3 -c 'import json,sys;print(json.loads(sys.argv[1])["derle"])' "$ADIMLAR" > "$DERLE"
 bash --noprofile --norc -e "$DERLE" > "$DLOG" 2>&1 || { rm -f "$DERLE"; echo "derleme düştü: $DLOG" >&2; exit 1; }
 rm -f "$DERLE"; echo "derleme günlüğü: $DLOG"
