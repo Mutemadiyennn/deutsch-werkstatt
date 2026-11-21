@@ -84,9 +84,11 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
     // 4a: adımsız durak (ses, video, prova, okuma, dil) — 4b'de var olan ekrana gidip dönecek
     <DurakGecis adim={adim} hedef={baglam.hedef(durakOf(adim))} bitir={() => bitir([])} />);
   const kartlar = adim.kartlar.map((k) => lex.get(k)).filter((x): x is Lexeme => !!x);
+  const [gorselYok, setGorselYok] = useState(false);
   const soru = useMemo(() => (adim.tur === "resimden_sec" && kartlar[0] ? resimSecenekleri(kartlar[0], [...lex.values()], harita, tohum) : null), [adim.id]);
   if (adim.tur === "eslestir" && kartlar.length >= 4) return <Eslestir kartlar={kartlar} tohum={tohum} onBitti={bitir} />;
-  if (adim.tur === "resimden_sec" && soru) return <ResimSec soru={soru} lex={lex} harita={harita} onBitti={(ok) => bitir([{ kart: soru.kart, dogru: ok }])} />;
+  // görsel gelmezse (çevrimdışı, önbellekte yok) resimden seç o adımda dinle-anlam sorusuna düşer (tek doğru cevap; inceleme #183 P1-2)
+  if (adim.tur === "resimden_sec" && soru && !gorselYok) return <ResimSec soru={soru} lex={lex} harita={harita} onYok={() => setGorselYok(true)} onBitti={(ok) => bitir([{ kart: soru.kart, dogru: ok }])} />;
   // dersin alıştırma maddesi (K8 `kaynak: "ders"`): Ders oynatıcısının bileşeniyle, aynı denetimle
   const drill = adim.ders ? baglam.drill(adim.ders.id, adim.ders.oge) : undefined;
   if (drill && adim.tur !== "kalip" && adim.tur !== "tanit") return <DrillView key={adim.id} d={drill} onDone={(r) => bitir(adim.kartlar.map((kart) => ({ kart, dogru: r !== "wrong" })))} />;
@@ -116,10 +118,10 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
   }
   // Bahçe'nin soru bileşeni (AK-7 ortak): tanıtım ve tek kartlı soru türleri; cümle, kartın örneklerinden seçilir (planlayıcının seçtiği)
   const l = kartlar[0];
-  if (l && (adim.tur === "tanit" || SORU.has(adim.tur))) {
+  if (l && (adim.tur === "tanit" || SORU.has(adim.tur) || adim.tur === "resimden_sec")) {
     const ex = Math.max(0, l.examples.findIndex((e) => e.de === adim.cumle));
     const tanit = adim.tur === "tanit";
-    return <Question key={adim.id} q={{ lexId: l.id, type: tanit ? "listen_meaning" : (adim.tur as QType), intro: tanit, ex }} l={l} all={[...lex.values()]}
+    return <Question key={adim.id} q={{ lexId: l.id, type: tanit || adim.tur === "resimden_sec" ? "listen_meaning" : (adim.tur as QType), intro: tanit, ex }} l={l} all={[...lex.values()]}
       onTanitimBitti={tanit ? () => bitir([{ kart: l.id, dogru: true }]) : undefined}
       onDone={(r) => bitir([{ kart: l.id, dogru: r.ok }])} />;
   }
