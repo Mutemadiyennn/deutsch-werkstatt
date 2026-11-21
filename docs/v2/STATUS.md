@@ -124,6 +124,7 @@ PM-078 B (Halka) 2. ve 3. gün önerisi: 2. gün 5 halka (aylar, doğum günü, 
 B4 kart kuralları (#88, #96): parti dosyalarında K1 isim boşluğu, 3+ eşdizim ve somut kelimede örnek başına fotoğraf sorgusu uyarıları 0 (150 kart kapandı). Doğrulayıcının "görselsiz örnek" sayacında kalan 82 kart eski `lexemes.v1.json` kartları; taban 0 / 0 / 82 (ANA, birleştirmede).
 B5 fotoğraf seçimi (#91): 308 yerin 40'ına açık lisanslı fotoğraf seçildi, 220'si reddedildi, 48'i soyut; 332 kısa ikinci sorgu A10 hattına verildi. Hedef somut kelimelerin %85'i; Openverse sonrası ikinci tur.
 Gün sınavı (#110, PM-066 madde 3): M1'in 7 gününe `gun_sinavi`, gün başına 11 madde (4 dikte, 4 yazılı üretim, 2 sesli üretim, 1 mini prova), toplam 77; yazar → dilbilimci (22 düzeltme) → okur (157 satır, GERİ 0).
+A9 örneklem (#173): klip-01 ve klip-07 metni eksik turlu (ANA elle hizalama), klip-06 iki sözcük makine kulağı bekliyor; üçünde `orneklem_onay` açık. klip-06 7. tur diktesi ve gölgesi çıktı; klip-04/05 `ortam_tr` bağlı olmayan günü anmıyor.
 PM-062 (cümle havuzu): M1'in 155 kartında en az 6 örnek ve en az 6 boşluk (155 × 6 örnek, 936 boşluk); yazar → dilbilimci → okur, 4 grup.
 K1 çekirdeğin kalanı (PM-062 sırası, sıklığa göre): K1 çekirdeğin tamamı (1.205 kart: M1 155 + K1 kalanı 1.050) en az 6 örnek + 6 boşluğa çıktı (grup 05–25; 24–25 sıklık listesi dışındaki 106 K1 kartı); sıradaki gruplar aynı hattan. PM-069 boşluk kuralı (cevap yalnızca kartın kelimesi ya da eşdizimi): sözlükte kural dışı boşluk 684 → 4; kalan 4'ü sayacın yanlış alarmı. Küçük kelime boşlukları (PM 20.11 04:20): M1'de 128, K1'in kalanında 779; sözlükte artikel, edat ya da iyelik soran boşluk 0. Kişiye göre fiil ipuçlarının 458'i mastarı da gösteriyor (`docs/v2/reviews/lexicon-pm069-bosluk.md`).
 Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur, M1 kartları 8 tur (hedef tutmadı). Geri dönen türler (hata notunda Türkçe niyet, çelişen ipucu) yazar ve lex görevine eklendi.
@@ -139,7 +140,7 @@ Sözlüğün tamamı onaylı: taslak partiler 004–008'deki 394 girdi tam incel
 | #126 | `v2/bahce-aralik` (#122 üstüne) | PM-069 madde 3: tanıtım ile ilk soru arası ≥2, köprü | 2. tur düzeltildi; PM Gördüm bekler |
 | #128 | `v2/baslik-dugme` | PM-074 G2 + md. 2–3: üst çubuk başlığı tam (sığmazsa çip alt satıra), medyada tek oynat + hız anahtarı (B7 korunur), senaryoda birincil eylem dinlemek, altyazılı dinleme yeniden çalınır | 1. tur DEĞİŞİKLİK GEREKLİ → P1-1/2/3 ve P2-1…7 düzeltildi; 2. tur inceleme ve PM final bekler |
 | — | `v2/esdizim-uc` | PM 7024150313: en çok 3 eşdizim, "Daha fazla" | #122 birleşince PR |
-| — | `v2/a9-klip` | PM-069 madde 4: klip-02 → 2. günün videosu | şeritte yer açılınca PR |
+| #159 | `v2/a9-klip` | PM-069 madde 4 + PM-078 F: hattın ölçtüğü klipler günün videosu (bugün 2., 4., 5. gün; 1., 6., 7. gün İÇ örneklem onayı bekliyor); ön öğretim dinlemeden önce | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi, 2. tur |
 | — | `kaynak/gorsel` | B14 boy denemesi (512 / 768×576) | 20.11 00:12 UTC koşusu |
 
 ### Birleştirme turu (PM-007, 2026-11-17)
