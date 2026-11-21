@@ -89,6 +89,8 @@ def main():
             ("build", "[data-test=answer], [data-chip], [data-test=section-done]"), ("drills", "[data-test=answer], [data-chip], button.opt"),
             ("listening", "[data-test=to-questions], button.opt"), ("dialogue", "[data-test=next], [data-test=answer]"), ("roleplay", "[data-test=rp-start]")]]
         walk += [(f"#/call/{SC}", "[data-test=call]")]
+        # 5. toplu (JS bütçesi): akış ekranı ayrı parçada (`import()`); parça kabuk önbelleğinden internetsiz gelir
+        walk += [("#/akis/2", "[data-test=akis], [data-test=akis-degil]")]
         bad = []
         for h, sel in walk:
             pg.goto(base + h)
