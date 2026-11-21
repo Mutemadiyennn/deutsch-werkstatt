@@ -102,6 +102,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | Çevrimdışı medya (#58 A12 son parça) | `v2/cevrimdisi-medya` | PR #74: medya pakette, servis işçisi ayrı önbellek + 206 aralıklı yanıt, uçak modu e2e; 2. tur bulguları düzeltildi |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
 | AKIS AK-10 3. adım: `resimden_sec`, `eslestir` (TARGET3b 3–4) | `v2/halka-turleri` | PR #183: çekirdek + bileşenler + e2e (`v2_halka_tur.py`); yalnız e2e'de `#/__halka-turleri`; görülen fotoğraf servis işçisi önbelleğinde (`dw2-foto`); ekrana bağlanması #184 |
+| Ses: kabukta yavaş kademeleri duraklarla, hız ölçümü (gecikme + üç kademe), üst güvenli alan şeridi (PM 7061304527, 7061337043) | `v2/ses-olcum` | PR #194: 1. tur DEĞİŞİKLİK GEREKLİ (7063836097) → P1-1 taşma, P1-2 kabukta karar/uyarı, P1-3 STATUS düzeltildi; fark doğrulaması |
 
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-20
 | Seviye | Kelime kartı | Kalıp | Senaryo (tam) | Mini senaryo | Diyalog grafiği | Okuma | Dinleme | Haber | Madde bankası |

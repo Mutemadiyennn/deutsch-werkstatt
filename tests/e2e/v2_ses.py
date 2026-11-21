@@ -81,11 +81,14 @@ def main():
         ara = pg.evaluate("() => { const b = document.querySelector('[data-test=hiz-olc]').getBoundingClientRect(); const r = document.querySelector('[data-test=hiz-sonuc]').getBoundingClientRect(); return Math.round(r.top - b.bottom); }")
         check(ara >= 10, f"sonuç satırları düğmeden ayrık (aralık {ara} px)")
         tek = pg.evaluate("() => [...document.querySelectorAll('[data-test=hiz-sonuc]')].map((p) => { const lh = parseFloat(getComputedStyle(p).lineHeight); return [Math.round(p.getBoundingClientRect().height / lh), p.scrollWidth <= p.parentElement.clientWidth + 0.5]; })")
-        check(all(n == 1 and sig for n, sig in tek), f"sonuç satırları tek satır, taşmıyor; başlıkta bir kez 'normal → yavaş' ({tek}; {pg.inner_text('[data-test=hiz-baslik]')})")
+        check(all(n <= 2 and sig for n, sig in tek), f"sonuç satırları en çok iki satır, taşmıyor (inceleme #194 P1-1: kırılabilir); başlıkta bir kez 'normal → yavaş' ({tek}; {pg.inner_text('[data-test=hiz-baslik]')})")
         check(pg.evaluate("window.__oku.length") == 24, f"ölçüm her cinsten ilk iki sesi ısıtır, gecikmeyi ölçer, normal ve üç yavaş kademeyi çalar ({pg.evaluate('window.__oku.length')} çalma)")
-        sonuc = {e["ad"]: e["t"] for e in pg.locator("[data-test=hiz-sonuc]").evaluate_all("(xs) => xs.map((x) => ({ ad: x.dataset.ad, t: x.innerText }))")}
+        sonuc = {e["ad"]: e["t"].replace("\xa0", " ") for e in pg.locator("[data-test=hiz-sonuc]").evaluate_all("(xs) => xs.map((x) => ({ ad: x.dataset.ad, t: x.innerText }))")}
         check(set(sonuc) == {"Helena (Erweitert)", "Anna", "Viktor (Erweitert)", "Markus"} and all(re.fullmatch(r"\S+: \d+,\d sn · ×\d,\d · ×\d,\d · ×\d,\d · \d+ ms", t.strip()) for t in sonuc.values()), f"ölçüm: kadın ve erkek havuzunun ilk iki sesi, 'Ad: normal · üç kademe · başlangıç' ({sonuc})")
-        check("normal · Biraz yavaş · Yavaş · Çok yavaş · başlangıç" in pg.inner_text("[data-test=hiz-baslik]"), "başlıkta kademelerin adı bir kez")
+        check("normal · Biraz yavaş · Yavaş · Çok yavaş · başlangıç" in pg.inner_text("[data-test=hiz-baslik]").replace("\xa0", " "), "başlıkta kademelerin adı bir kez")
+        # EK2: %130 yazıda da sonuç satırları ve başlık taşmaz; "·" satır başına düşmez (inceleme #194 P1-1)
+        buyuk = pg.evaluate("""() => { document.documentElement.style.fontSize = '130%'; const r = [...document.querySelectorAll('[data-test=hiz-sonuc], [data-test=hiz-baslik]')].map((p) => [p.scrollWidth <= p.clientWidth + 1 && p.getBoundingClientRect().right <= innerWidth + 1, /\\n\\s*·/.test(p.innerText)]); document.documentElement.style.fontSize = ''; return r; }""")
+        check(all(sig and not bas for sig, bas in buyuk), f"%130 yazıda sonuç satırları taşmıyor, '·' satır başında değil ({buyuk})")
         KAT = lambda t: float(re.findall(r"×(\d,\d)", t)[1].replace(",", ".")) if len(re.findall(r"×(\d,\d)", t)) > 1 else 0  # Yavaş kademesi
         check("0,6 sn · ×1,0 · ×1,0 · ×1,0" in sonuc.get("Viktor (Erweitert)", "") and KAT(sonuc.get("Helena (Erweitert)", "")) >= 1.6 and 0.85 <= KAT(sonuc.get("Viktor (Erweitert)", "")) < 1.25, f"yavaşlayan ses ≈1,9 kat, yavaşlamayan ≈1,0 kat ölçülüyor ({[KAT(t) for t in sonuc.values()]})")
         uy = pg.inner_text("[data-test=hiz-uyari]") if pg.locator("[data-test=hiz-uyari]").count() else ""
@@ -213,7 +216,7 @@ def main():
         tts = pg.evaluate("window.__tts")
         rates = sorted({round(x["rate"], 2) for x in tts})
         sonuc3 = pg.locator("[data-test=hiz-sonuc]").all_inner_texts()
-        check(rates == [0.4, 0.5, 0.6, 0.95] and all(re.search(r"sn · ×\d,\d · ×\d,\d · ×\d,\d · \d+ ms", x) for x in sonuc3) and pg.locator("[data-test=hiz-uyari]").count() == 0, f"yerel yolda hız ölçümü: üç kademe, gecikme, yavaşlıyor ({rates}; {sonuc3})")
+        check(rates == [0.4, 0.5, 0.6, 0.95] and all(re.search(r"sn · ×\d,\d · ×\d,\d · ×\d,\d · \d+ ms", x.replace("\xa0", " ")) for x in sonuc3) and pg.locator("[data-test=hiz-uyari]").count() == 0, f"yerel yolda hız ölçümü: üç kademe, gecikme, yavaşlıyor ({rates}; {sonuc3})")
         # PM 7061337043: kabukta kademeyi duraklar ayırır — Çok yavaş sözcük sözcük, Yavaş en çok 3 sözcüklük gruplar
         cy = [x["text"] for x in tts if abs(x["rate"] - 0.4) < 1e-6]; ya = [x["text"] for x in tts if abs(x["rate"] - 0.5) < 1e-6]
         check(cy and all(len(t.split()) == 1 for t in cy) and ya and all(len(t.split()) <= 3 for t in ya) and len(cy) > len(ya), f"yerel yolda Çok yavaş sözcük sözcük, Yavaş gruplu ({len(cy)} / {len(ya)} parça)")

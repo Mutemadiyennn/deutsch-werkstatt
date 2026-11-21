@@ -20,6 +20,10 @@ const ORNEK = "Guten Morgen! Ich hätte gern einen Termin am Montag, wenn mögli
 /** Başlangıç gecikmesi bunun üstündeyse her "Dinle"de öğrenci bekler (PM 7061304527 Bulgu 1 d: ayrı P1) */
 const GECIKME_ESIK_MS = 800;
 const KADEME_AD: Record<YavasOran, string> = { 0.6: "Biraz yavaş", 0.5: "Yavaş", 0.4: "Çok yavaş" };
+/** satır kırılabilir ayraç: "·" önceki sözcüğe bağlı (satır başına düşmez, B5), ardından kırılır — büyük yazıda taşma yok (inceleme #194 P1-1) */
+const KIRIK = "\u00A0· ";
+/** Kabuk yolu: kademeler duraklarla okunur (YAVAS_PLAN); karar "yavaşlıyor mu" değil "kademeler sırayla ayrışıyor mu" (inceleme #194 P1-2) */
+const ayrismiyor = (o: HizOlcum) => !!o.kademe && !YAVAS_SECENEK.every((r, i) => i === 0 || (o.kademe![r] ?? 0) > (o.kademe![YAVAS_SECENEK[i - 1]!] ?? 0));
 
 const sn = (ms: number) => `${(ms / 1000).toFixed(1).replace(".", ",")} sn`;
 const kat = (x: number) => `×${x.toFixed(1).replace(".", ",")}`;
@@ -84,7 +88,8 @@ function HizOlcumu({ hedef, kayit, kaydet }: { hedef: Ses[]; kayit: Kayit; kayde
   };
   const olculen = hedef.filter((s) => kayit[sesAnahtar(s)]);
   const geciken = olculen.filter((s) => !olculemedi.includes(sesAnahtar(s)) && (kayit[sesAnahtar(s)]!.gecikmeMs ?? 0) > GECIKME_ESIK_MS);
-  const yavaslamayan = olculen.filter((s) => !olculemedi.includes(sesAnahtar(s)) && hizOrani(kayit[sesAnahtar(s)]!) < ORAN_ESIK);
+  const yavaslamayan = yerelYol ? [] : olculen.filter((s) => !olculemedi.includes(sesAnahtar(s)) && hizOrani(kayit[sesAnahtar(s)]!) < ORAN_ESIK);
+  const ayrismayan = yerelYol ? olculen.filter((s) => !olculemedi.includes(sesAnahtar(s)) && ayrismiyor(kayit[sesAnahtar(s)]!)) : [];
   return (
     <div class="stack" data-test="hiz-olcum">
       <div class="kicker">Yavaş hızı</div>
@@ -95,13 +100,14 @@ function HizOlcumu({ hedef, kayit, kaydet }: { hedef: Ses[]; kayit: Kayit; kayde
       {/* ölçüm sürerken yarım satır gösterilmez; sonuçlar düğmeden bir satır aşağıda (PM 7043447488-1, 2) */}
       {!olcuyor && (olculen.length > 0 || olculemedi.length > 0) && <div class="hiz-sonuclar" style={{ marginTop: 12 }}>
         {/* PM 7044942991: biçim kısa ve tek satır; başlık bir kez */}
-        <p class="tiny muted" style={{ margin: 0 }} data-test="hiz-baslik">{olculen.some((s) => kayit[sesAnahtar(s)]!.kademe) ? `Süre: normal · ${YAVAS_SECENEK.map((r) => KADEME_AD[r]).join(" · ")} · başlangıç` : "Süre: normal → yavaş"}</p>
-        {olculen.filter((s) => !olculemedi.includes(sesAnahtar(s))).map((s) => { const o = kayit[sesAnahtar(s)]!; return <p class="small" style={{ margin: 0, whiteSpace: "nowrap" }} data-test="hiz-sonuc" data-ad={s.name} data-gecikme={o.gecikmeMs ?? ""}><b>{kisaAd(s.name)}</b>: {o.kademe
-          ? <>{sn(o.normalMs)} · {YAVAS_SECENEK.map((r) => kat((o.kademe![r] ?? 0) / Math.max(1, o.normalMs))).join(" · ")} · {o.gecikmeMs ?? 0} ms</>
+        <p class="tiny muted" style={{ margin: 0 }} data-test="hiz-baslik">{olculen.some((s) => kayit[sesAnahtar(s)]!.kademe) ? ["Süre: normal", ...YAVAS_SECENEK.map((r) => KADEME_AD[r]), "başlangıç"].join(KIRIK) : "Süre: normal → yavaş"}</p>
+        {olculen.filter((s) => !olculemedi.includes(sesAnahtar(s))).map((s) => { const o = kayit[sesAnahtar(s)]!; return <p class="small" style={{ margin: 0 }} data-test="hiz-sonuc" data-ad={s.name} data-gecikme={o.gecikmeMs ?? ""}><b>{kisaAd(s.name)}</b>: {o.kademe
+          ? <>{[sn(o.normalMs), ...YAVAS_SECENEK.map((r) => kat((o.kademe![r] ?? 0) / Math.max(1, o.normalMs))), `${o.gecikmeMs ?? 0} ms`].join(KIRIK)}</>
           : <>{sn(o.normalMs).replace(" sn", "")} → {sn(o.yavasMs)} ({kat(hizOrani(o))})</>}</p>; })}
         {hedef.filter((s) => olculemedi.includes(sesAnahtar(s))).map((s) => <p class="small" style={{ margin: 0 }} data-test="hiz-olculemedi" data-ad={s.name}><b>{kisaAd(s.name)}</b>: ölçülemedi, yeniden dene.</p>)}
       </div>}
       {!olcuyor && geciken.length > 0 && <p class="small fb-uyari" role="alert" data-test="hiz-gecikme">Ses başlamadan önce bekleme var: {geciken.map((s) => `${kisaAd(s.name)} ${kayit[sesAnahtar(s)]!.gecikmeMs} ms`).join(", ")}.</p>}
+      {!olcuyor && ayrismayan.length > 0 && <p class="small fb-uyari" role="alert" data-test="hiz-uyari">Bu seste yavaş kademeleri ayrışmıyor: {ayrismayan.map((s) => kisaAd(s.name)).join(", ")}. Kademeler aynı sesle, duraklarla okunur; ölçümü bir kez daha dene.</p>}
       {!olcuyor && yavaslamayan.length > 0 && <p class="small fb-uyari" role="alert" data-test="hiz-uyari">Bu ses yavaşlamıyor: {yavaslamayan.map((s) => kisaAd(s.name)).join(", ")}. Yavaş istenince yavaşlayan başka bir ses, o da yoksa kelime kelime okuma kullanılır.</p>}
     </div>
   );
@@ -126,7 +132,7 @@ export function SesDeneme() {
   const kaydet = (ad: string, o: HizOlcum) => { hizKaydet(ad, o); setKayit((k) => ({ ...k, [ad]: o })); };
   // her cinsten ilk iki ses: yavaşlamayan seste aynı cinsten ölçülmüş bir yedek olabilsin (inceleme #162 P2)
   const hedef = [...h.kadin.slice(0, 2), ...h.erkek.slice(0, 2)];
-  const yavasNot = hedef.filter((s) => kayit[sesAnahtar(s)]).map((s) => { const o = kayit[sesAnahtar(s)]!; return `${kisaAd(s.name)} ${kat(hizOrani(o))}${hizOrani(o) < ORAN_ESIK ? " yavaşlamıyor" : ""}`; }).join(", ");
+  const yavasNot = hedef.filter((s) => kayit[sesAnahtar(s)]).map((s) => { const o = kayit[sesAnahtar(s)]!; return `${kisaAd(s.name)} ${kat(hizOrani(o))}${(yol === "yerel" ? ayrismiyor(o) : hizOrani(o) < ORAN_ESIK) ? " yavaşlamıyor" : ""}`; }).join(", ");
   return (
     <div class="stack ses-deneme" data-test="ses-deneme">
       <TopBar title="Ses ve mikrofon" back="#/profile" />
