@@ -112,3 +112,22 @@ Bu dosya grubu, bu iki GERİ kapanmadan "reviewed" sayılamaz (OD-9.4). Kapsamda
 
 - `r0-10 teach[1].exp.ne_zaman_tr` → „Formda ön adın sorulunca söylenir.“; `teach[2].exp.ne_zaman_tr` → „Muayenehanede soyadın sorulunca söylenir.“ (kart artık cevap cümlesi; açıklama cevabı ne zaman söyleyeceğini anlatıyor).
 - Gün 7 d5 (Ç): `ornek_de_adsiz` „Hier ist Ioana Popescu. …“ → „Guten Tag. Ich möchte einen Termin machen. Ist Dr. Weber am Montag da?“ (öğrenci başkasının adını kendi adı gibi görmüyor; `zorunlu` „ist“, „einen Termin“ karşılanıyor; sözcüklerin hepsi 1.–7. günde öğretildi). Yönergedeki „adın“ çelişkisi Ç listesinde ANA'ya gidiyor.
+
+## 2. tur
+
+Okunan: yalnız "1. tur sonrası" bölümündeki üç değişiklik.
+
+| # | dosya | yol | Türkçe / ekranda | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|---|
+| 54 | r0-10 | `teach[1].exp.ne_zaman_tr` | Formda ön adın sorulunca söylenir. | Formda ön adımı sorarlarsa bu cümleyi söylerim. | GEÇTİ | 5 kelime, tek fikir. Kartın cevap cümlesi olduğunu ve ne zaman söyleneceğini anlatıyor |
+| 58 | r0-10 | `teach[2].exp.ne_zaman_tr` | Muayenehanede soyadın sorulunca söylenir. | Doktorda soyadımı sorarlarsa bunu söylerim. | GEÇTİ | 4 kelime, tek fikir. 54 ile aynı çerçeve |
+| 27b | gun-07 | `sahne.bolumler[0].dikte[4]`: `gorev_tr` + `ornek_de_adsiz` | Yönerge: "…söyleyeceğin ilk iki cümleyi Almanca yaz: adın ve isteğin." · Örnek: "Guten Tag. Ich möchte einen Termin machen. Ist Dr. Weber am Montag da?" | Benden iki cümle isteniyor, örnekte üç cümle var. Üçüncüsü pazartesi doktorun orada olup olmadığını soruyor. | **GERİ** | Yönerge "ilk iki cümle" diyor, örnek üç cümle. Üçüncü cümle görevin istemediği bir şeyi soruyor. Sahnede randevu "yarın" ve kişi ateşli; pazartesi sorusu duruma uymuyor. Başkasının adı sorunu (Ç4) kapandı. Örnekte adın olmaması (Ç5) ANA'da duruyor |
+
+Not: "Ist … da?" kalıbı r0-08'de geçiyor, kelimeler öğretilmiş. Sorun dil değil, örneğin yönergeye ve sahneye uymaması. Bu çelişki içerikte çözülebilir; ANA'ya gitmez.
+
+2. tur sonucu: 3 okundu, 2 GEÇTİ, 1 GERİ (gun-07 d5).
+Toplam (1. + 2. tur): 73 satır, 72 GEÇTİ, 1 GERİ. GERİ: `gun-07.json · sahne.bolumler[0].dikte[4]` (örnek, yönergeyle birlikte). r0-10 artık GERİ'siz. gun-07 bu GERİ kapanmadan "reviewed" sayılamaz (OD-9.4).
+
+## 2. tur sonrası (İçerik Motoru)
+
+Gün 7 d5 `ornek_de_adsiz` → „Guten Tag, ist das die Praxis Dr. Weber? Ich möchte einen Termin machen.“ İki cümle (yönerge "ilk iki cümle"); ad yerine telefonun gerçek ilk sorusu, sonra istek; sözcüklerin hepsi 1.–7. günde öğretildi; `zorunlu` „ist“, „einen Termin“ karşılanıyor. Okurun 2 tur sınırı dolduğu için bu satır PR'da "okur 3. bakış gerekmez mi?" sorusuyla incelemeye açık bırakıldı.
