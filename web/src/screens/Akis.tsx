@@ -183,7 +183,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
     // akışta çeldirici yalnız halkadan ve bilinenlerden: 3 şık çıkmıyorsa anlam sorusu sorulmaz, kart tanıtımla dinlenir, kanıt yazılmaz (inceleme #186 P1-1)
     const azSik = adim.tur !== "tanit" && tur === "listen_meaning" && meaningOptions(l, hepsiL, () => 0.5, yakin).opts.length < 3;
     const tanit = adim.tur === "tanit" || azSik;
-    return <div class="akis-soru" data-az-sik={azSik ? "1" : undefined}><Question key={adim.id} q={{ lexId: l.id, type: tur, intro: tanit, ex }} l={l} all={hepsiL}
+    return <div class="akis-soru" data-az-sik={azSik ? "1" : undefined}><Question key={adim.id} akis q={{ lexId: l.id, type: tur, intro: tanit, ex }} l={l} all={hepsiL}
       yakin={yakin}
       onTanitimBitti={tanit ? () => bitir(azSik ? [] : [{ kart: l.id, dogru: true }]) : undefined}
       onDone={(r) => bitir([{ kart: l.id, dogru: r.ok }])} /></div>;
@@ -346,7 +346,8 @@ export function AkisEkrani({ day }: { day: number }) {
             const kaliplarK = once.filter((a) => a.tur === "kalip" && a.cumle).flatMap((a) => kalipSecenekleri(a.cumle));
             return bilinmeyenler(dizin, de, { kart, biten: bitenD, kaliplar: kaliplarK }).map((u) => ({ sozcuk: u.sozcuk, tr: u.adaylar?.map((x) => lex.get(x)?.tr).find(Boolean) }));
           },
-          ipucu: (w) => { const k = w.toLowerCase(); const tr = cerceve.get(k); return tr && (k10[k] ?? 0) < 2 ? tr : undefined; },
+          // K10 ipucu tek ve kısa anlam: "veya, ya da, değil mi" → "veya" (PM 7055715440 md. 8)
+          ipucu: (w) => { const k = w.toLowerCase(); const tr = cerceve.get(k); return tr && (k10[k] ?? 0) < 2 ? ilkAnlam(tr) : undefined; },
           gordu: (ws) => { for (const w of ws) { const k = w.replace(/[.,!?;:]/g, "").toLowerCase(); if (cerceve.has(k)) k10[k] = (k10[k] ?? 0) + 1; } void setMeta("akis:k10", k10); }
         };
         setV({ kayit, lex, harita, items, baglam });
@@ -401,11 +402,16 @@ function HalkaSonu({ ozet, lex, sonraki, seans, devam, mola }: { ozet: ReturnTyp
       <h1 style={{ textAlign: "center", margin: 0 }}>Halka tamam</h1>
       <p class="small muted" style={{ textAlign: "center", margin: 0 }}>Her nokta bir beceri: gördün, duydun, kurdun, söyledin.</p>
       <section class="card stack" style={{ gap: 0 }} data-test="halka-sonu-liste">
+        {/* dört noktanın adı sütun başlığında (PM 7055715440 md. 12) */}
+        <div class="row" style={{ flexWrap: "nowrap", gap: 8 }} aria-hidden="true" data-test="halka-sonu-basliklar">
+          <span class="grow" />
+          <span class="row" style={{ gap: 0 }}>{["gör", "duy", "kur", "söyle"].map((x) => <span class="kip-hucre tiny muted">{x}</span>)}</span>
+        </div>
         {ozet.map((o) => { const l = lex.get(o.kart); return (
           <div class="row" style={{ flexWrap: "nowrap", alignItems: "center", minHeight: 44, gap: 8 }} data-kart={o.kart}>
             <span class="grow"><b lang="de">{l ? (l.art && l.pos === "noun" ? `${l.art} ${l.de}` : l.de) : o.kart}</b> <span class="small muted">{l?.tr}</span></span>
-            <span class="row" style={{ gap: 4 }} aria-label={`gördün ${o.kip.gor ? "evet" : "henüz değil"}, duydun ${o.kip.duy ? "evet" : "henüz değil"}, kurdun ${o.kip.kur ? "evet" : "henüz değil"}, söyledin ${o.kip.soyle ? "evet" : "henüz değil"}`}>
-              {(["gor", "duy", "kur", "soyle"] as const).map((k) => <i class={`kip-nokta${o.kip[k] ? " dolu" : ""}`} data-kip={k} />)}
+            <span class="row" style={{ gap: 0 }} aria-label={`gördün ${o.kip.gor ? "evet" : "henüz değil"}, duydun ${o.kip.duy ? "evet" : "henüz değil"}, kurdun ${o.kip.kur ? "evet" : "henüz değil"}, söyledin ${o.kip.soyle ? "evet" : "henüz değil"}`}>
+              {(["gor", "duy", "kur", "soyle"] as const).map((k) => <span class="kip-hucre"><i class={`kip-nokta${o.kip[k] ? " dolu" : ""}`} data-kip={k} /></span>)}
             </span>
           </div>); })}
       </section>
@@ -439,6 +445,9 @@ function AkisTablo({ sutunlar, satirlar }: { sutunlar: string[]; satirlar: strin
     </>
   );
 }
+
+/** "veya, ya da, değil mi" → "veya"; parantezli açıklama atılır */
+export const ilkAnlam = (tr: string) => tr.split(/[,;/]|\s\(/)[0]!.trim() || tr.trim();
 
 /** gösterilecek bir şeyi olmayan adım: ekran çizmeden geçer */
 function Gec({ bitir }: { bitir: () => void }) { useEffect(() => { bitir(); }, []); return null; }
