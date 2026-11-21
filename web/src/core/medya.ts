@@ -150,5 +150,10 @@ export function dikteCevabi(d: Dikte): string {
  * öğrencinin o ana kadar bilmediği sözcük geçen dikte basamağı atlanır. Kart ve halka ilerledikçe basamaklar geri gelir.
  */
 export function dikteSuz(m: Medya, bilinmiyor: (de: string) => boolean): Medya {
-  return { ...m, bolumler: m.bolumler.map((b) => ({ ...b, dikte: b.dikte.filter((d) => !bilinmiyor(dikteCevabi(d))) })) };
+  // "Sen ne derdin?" (cevapla) da üretimdir: kabul edilen ilk cevap bilinmeyen sözcük taşıyorsa o gün sorulmaz
+  const cevap = (c: NonNullable<Bolum["cevapla"]>) => ((c as { accepted?: string[] }).accepted?.[0] ?? "");
+  return { ...m, bolumler: m.bolumler.map((b) => {
+    const { cevapla, ...geri } = b;
+    return { ...geri, dikte: b.dikte.filter((d) => !bilinmiyor(dikteCevabi(d))), ...(cevapla && !bilinmiyor(cevap(cevapla)) ? { cevapla } : {}) };
+  }) };
 }
