@@ -738,8 +738,14 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 @media (prefers-reduced-motion: reduce) { .esles-hucre.salla { animation: none; } }
 
 /* AKIS durak oynatıcısı (AK-10 4. adım iskeleti; TARGET3b üst çubuk): durağın adımları elmas dizisi */
-.akis-elmas { width: 14px; height: 14px; transform: rotate(45deg) scale(0.75); border-radius: 3px; background: var(--line); flex: none; }
+.akis-elmaslar { flex: 1 1 auto; min-width: 0; display: flex; gap: 4px; align-items: center; overflow: hidden; }
+/* çok adımlı durakta elmaslar küçülür (14 → 4 px), dizi çubuğu taşmaz */
+.akis-elmas { flex: 0 1 14px; min-width: 4px; aspect-ratio: 1; transform: rotate(45deg) scale(0.75); border-radius: 3px; background: var(--line); }
 .akis-elmas.dolu { background: var(--accent); }
 .akis-elmas.simdi { background: var(--accent); box-shadow: 0 0 0 3px var(--soft); }
 .kalip-yuva { display: inline-block; min-width: 2.2em; padding: 0 6px; margin: 0 2px; border-radius: 8px; background: var(--soft); color: var(--accent); text-align: center; }
 .bosluk { display: inline-block; min-width: 3em; border-bottom: 3px solid var(--accent); color: transparent; margin: 0 2px; }
+.tanit-vurgu { background: #ffe58a; color: inherit; border-radius: 6px; padding: 0 3px; }
+:root[data-theme="dark"] .tanit-vurgu { background: #6b5a12; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tanit-vurgu { background: #6b5a12; } }
+.tanit-isaret { font: inherit; color: inherit; background: none; border: 0; padding: 0; min-height: 0; text-decoration: underline dotted; text-underline-offset: 6px; text-decoration-thickness: 2px; cursor: pointer; }

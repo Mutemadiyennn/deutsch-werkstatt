@@ -137,3 +137,34 @@ export function KalipAdimi({ kalip, ornekler, onBitti }: { kalip: { de: string; 
     </section>
   );
 }
+
+/**
+ * Yeni kelime (TARGET3b 2, K10): Almanca cümle en büyük öğe; kartın sözcüğü vurgulu; K(t) dışındaki tek sözcük altı noktalı,
+ * dokununca Türkçesi (sorulmaz). Altta kelime kutusu: Almanca + Türkçe + ses (Yavaş). "Anladım" tek birincil düğme.
+ */
+export function TanitAdimi({ bilgi, kelime, tr, vurgu, isaretli, onBitti }: { bilgi: CumleBilgi; kelime: string; tr: string; vurgu: string[]; isaretli: { sozcuk: string; tr?: string }[]; onBitti: () => void }) {
+  const [acik, setAcik] = useState<string | null>(null);
+  const v = new Set(vurgu.map((x) => x.toLowerCase())), isr = new Map(isaretli.map((x) => [x.sozcuk.toLowerCase(), x.tr]));
+  const parcalar = bilgi.de.split(/(\s+|[.,!?;:„“"»«]+)/).filter((x) => x !== "");
+  return (
+    <section class="stack fade" data-test="akis-tanit">
+      <div class="kicker icerik" style={{ color: "var(--accent)" }}>Yeni kelime</div>
+      <div class="de-lg" lang="de" style={{ fontSize: "1.7rem" }} data-test="tanit-cumle">
+        {parcalar.map((p) => {
+          const k = p.toLowerCase();
+          if (v.has(k)) return <mark class="tanit-vurgu">{p}</mark>;
+          if (isr.has(k)) return <button type="button" class="tanit-isaret" data-test="tanit-isaret" aria-label={`${p}: Türkçesini göster`} onClick={() => setAcik(acik === k ? null : k)}>{p}</button>;
+          return p;
+        })}
+      </div>
+      {acik && <p class="small" style={{ margin: 0 }} data-test="tanit-isaret-tr"><b lang="de">{acik}</b>: {isr.get(acik) ?? "—"}</p>}
+      <p class="small muted" style={{ margin: 0 }}>{bilgi.tr}</p>
+      <section class="card row" style={{ flexWrap: "nowrap", gap: 10, alignItems: "center" }} data-test="tanit-kelime">
+        <span class="grow"><b lang="de" style={{ fontSize: "1.15rem" }}>{kelime}</b><br /><span class="small muted">{tr}</span></span>
+        <ListenButton text={kelime} small />
+      </section>
+      {isaretli.length > 0 && <p class="tiny muted" style={{ margin: 0 }}>Altı noktalı kelimeyi henüz öğrenmedin. Dokununca Türkçesini görürsün; sana sorulmaz.</p>}
+      <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-devam" onClick={onBitti}>Anladım</button></ActionBar>
+    </section>
+  );
+}

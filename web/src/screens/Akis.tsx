@@ -8,7 +8,7 @@
  * halka sonu ekranı (TARGET3b 6), mini sahne (Ders `Diyalog`), seans halkası (K9).
  */
 import { useEffect, useMemo, useState } from "preact/hooks";
-import { kumeDizini, type Drill, type Lexeme, type LearnerItem } from "@dw/shared";
+import { bilinmeyenler, kalipSecenekleri, kumeDizini, type Drill, type Lexeme, type LearnerItem } from "@dw/shared";
 import { loadFoto, loadGenelAdlar, loadIndex, loadLexicon, loadM1Gun, loadTemeller, loadWorld, type FotoKayit } from "../services/content.ts";
 import { getMeta, itemsMap, putItems, setMeta } from "../data/db.ts";
 import { review } from "../core/srs.ts";
@@ -26,7 +26,7 @@ import { Eslestir } from "../ui/soru/Eslestir.tsx";
 import { ActionBar } from "../ui/kit.tsx";
 import { Question } from "../ui/soru/Soru.tsx";
 import { DrillView } from "../ui/drill.tsx";
-import { BoslukAdimi, KalipAdimi, UretAdimi, YapbozAdimi, type CumleBilgi } from "../ui/soru/AkisAdim.tsx";
+import { BoslukAdimi, KalipAdimi, TanitAdimi, UretAdimi, YapbozAdimi, type CumleBilgi } from "../ui/soru/AkisAdim.tsx";
 import type { QType } from "../core/garden.ts";
 
 /** Bahçe soru bileşeninin karşıladığı tek kartlı adım türleri */
@@ -45,7 +45,7 @@ export interface AkisOynaticiProps {
 }
 
 /** Planın cümlesinden ekranda çözülenler: Türkçe + kabul (halka görev cümleleri → kart örnekleri), kalıbın Türkçesi, K10 ipucu */
-export interface AkisBaglam { cumle: (de: string) => CumleBilgi; drill: (dersId: string, oge: string) => Drill | undefined; kalipTr: (de: string) => string; ipucu: (sozcuk: string) => string | undefined; gordu: (sozcukler: string[]) => void }
+export interface AkisBaglam { cumle: (de: string) => CumleBilgi; isaretli: (de: string, adimId: string) => { sozcuk: string; tr?: string }[]; vurgu: (kart: string) => string[]; drill: (dersId: string, oge: string) => Drill | undefined; kalipTr: (de: string) => string; ipucu: (sozcuk: string) => string | undefined; gordu: (sozcukler: string[]) => void }
 
 export function AkisOynatici({ kayit, lex, harita, baglam, kaydet, cik }: AkisOynaticiProps) {
   const [neden, setNeden] = useState(false);
@@ -56,10 +56,10 @@ export function AkisOynatici({ kayit, lex, harita, baglam, kaydet, cik }: AkisOy
     <section class="stack" data-test="akis" data-durak={s.durak.id} data-adim={s.adim.id} data-tur={s.adim.tur}>
       <header class="row" style={{ gap: 10, flexWrap: "nowrap", alignItems: "center" }}>
         <button class="iconbtn plain" aria-label="Çık" data-test="akis-cik" onClick={cik}><Icon name="x" /></button>
-        <div class="grow row" style={{ gap: 4, flexWrap: "nowrap" }} role="progressbar" aria-valuemin={0} aria-valuemax={s.toplam} aria-valuenow={s.sira}>
+        <div class="akis-elmaslar" role="progressbar" aria-valuemin={0} aria-valuemax={s.toplam} aria-valuenow={s.sira}>
           {Array.from({ length: s.toplam }, (_, i) => <i class={`akis-elmas${i < s.sira ? " dolu" : i === s.sira ? " simdi" : ""}`} />)}
         </div>
-        <button class="ikincil-eylem tiny" data-test="akis-neden" aria-expanded={neden} onClick={() => setNeden((x) => !x)}>Neden bu?</button>
+        <button class="ikincil-eylem tiny" style={{ flex: "none", whiteSpace: "nowrap" }} data-test="akis-neden" aria-expanded={neden} onClick={() => setNeden((x) => !x)}>Neden bu?</button>
       </header>
       {neden && <p class="small muted" data-test="akis-neden-metin" style={{ margin: 0 }}>{s.adim.neden}</p>}
       <AdimGovdesi key={s.adim.id} adim={s.adim} lex={lex} harita={harita} baglam={baglam} tohum={`${kayit.plan.tohum}|${s.adim.id}`} bitir={bitir} />
@@ -94,6 +94,12 @@ function AdimGovdesi({ adim, lex, harita, baglam, tohum, bitir }: { adim: Adim; 
   if (adim.tur === "kalip" && adim.cumle) {
     const parcalar = adim.cumle.split(/\s[–—]\s/);
     return <KalipAdimi key={adim.id} kalip={parcalar.map((de) => ({ de, tr: baglam.kalipTr(de) }))} ornekler={[]} onBitti={() => hepsi(true)} />;
+  }
+  // yeni kelime (TARGET3b 2): planın seçtiği cümleyle; cümlesiz tanıtımda Bahçe'nin tanıtımı
+  if (adim.tur === "tanit" && kartlar[0] && adim.cumle && baglam.cumle(adim.cumle).tr) {
+    const l0 = kartlar[0];
+    return <TanitAdimi key={adim.id} bilgi={baglam.cumle(adim.cumle)} kelime={l0.art && l0.pos === "noun" ? `${l0.art} ${l0.de}` : l0.de} tr={l0.tr}
+      vurgu={baglam.vurgu(l0.id)} isaretli={baglam.isaretli(adim.cumle, adim.id)} onBitti={() => hepsi(true)} />;
   }
   // Bahçe'nin soru bileşeni (AK-7 ortak): tanıtım ve tek kartlı soru türleri; cümle, kartın örneklerinden seçilir (planlayıcının seçtiği)
   const l = kartlar[0];
@@ -151,11 +157,23 @@ export function AkisEkrani({ day }: { day: number }) {
         const cerceve = new Map(lexemes.filter((l) => l.card === false).map((l) => [l.de.toLowerCase(), l.tr]));
         const k10 = (await getMeta<Record<string, number>>("akis:k10")) ?? {};
         const kisi = { name: profile.displayName, address: profile.address };
+        // gösterimde K(t): bu adımdan önceki tanıtım ve kalıp adımları + önceki günler (planlayıcının kapısıyla aynı kaynak, yaklaşık)
+        const dizin = kumeDizini(lexemes, temel, world, genel);
+        const sira = kayit.plan.duraklar.flatMap((d) => d.adimlar);
+        const bitenD = new Set(await oncekiDersler(idx.m1.filter((g) => g.day < day).map((g) => g.day)));
+        const oncekiK = new Set(idx.m1.filter((g) => g.day < day).flatMap((g) => g.kartlar).filter((k) => items.get(k)?.passive?.fsrs));
         const baglam: AkisBaglam = {
           // gösterimde ad ve hitap yerleşir (Ders ekranıyla aynı: personalizeDeep); plan ham metinle kurulur (yer tutucu sayılmaz)
           cumle: (de) => personalizeDeep(cumleler.get(de) ?? { de, tr: "", accepted: [de] }, kisi),
           drill: (id, oge) => { const d = temel.find((t) => t.id === id)?.drills.find((x) => x.id === oge); return d && personalizeDeep(d, kisi); },
           kalipTr: (de) => kaliplar.get(de) ?? "",
+          vurgu: (kart) => [...(dizin.yuzey.get(kart) ?? [])],
+          isaretli: (de, adimId) => {
+            const i = sira.findIndex((a) => a.id === adimId); const once = i < 0 ? sira : sira.slice(0, i + 1);
+            const kart = new Set([...oncekiK, ...once.filter((a) => a.tur === "tanit").flatMap((a) => a.kartlar)]);
+            const kaliplarK = once.filter((a) => a.tur === "kalip" && a.cumle).flatMap((a) => kalipSecenekleri(a.cumle));
+            return bilinmeyenler(dizin, de, { kart, biten: bitenD, kaliplar: kaliplarK }).map((u) => ({ sozcuk: u.sozcuk, tr: u.adaylar?.map((x) => lex.get(x)?.tr).find(Boolean) }));
+          },
           ipucu: (w) => { const k = w.toLowerCase(); const tr = cerceve.get(k); return tr && (k10[k] ?? 0) < 2 ? tr : undefined; },
           gordu: (ws) => { for (const w of ws) { const k = w.replace(/[.,!?;:]/g, "").toLowerCase(); if (cerceve.has(k)) k10[k] = (k10[k] ?? 0) + 1; } void setMeta("akis:k10", k10); }
         };
