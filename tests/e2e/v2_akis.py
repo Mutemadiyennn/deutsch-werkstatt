@@ -7,6 +7,7 @@ AKIS AK-10 4a duman testi: `#/akis/2` (e2e paketinde 2. güne İÇ'in halka öne
   - halkada yanlış (Bilmiyorum) kart, durağın sonunda bir kez daha gelir
 python3 tests/e2e/v2_akis.py [--browser webkit] [--device "iPhone 15"] [--scheme dark] [--shots DIR]
 """
+import os, sys
 from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
 
@@ -74,7 +75,8 @@ def ekran_denetle(pg, kalip_ornek):
     ilr = pg.evaluate("() => { const e = document.querySelector('[data-test=akis] [role=progressbar]'); return e ? [e.className, +e.getAttribute('aria-valuemax')] : null; }")
     if ilr and ((ilr[1] > 8) != ("akis-cubuk" in ilr[0])): check(False, f"ilerleme: >8 adımda çubuk, ≤8'de elmas ({ilr})")
     if pg.locator("[data-test=akis-kalip]").count():
-        kalip_ornek.append(pg.locator("[data-test=kalip-ornekler] b").count())
+        kalip_ornek.append((pg.locator("[data-test=kalip-cerceve]").count(), pg.locator("[data-test=kalip-ornek]").count()))
+        if kalip_ornek[-1][1] < kalip_ornek[-1][0] and os.environ.get("KALIP_DOKUM"): print("EKSIK", pg.inner_text("[data-test=akis-kalip]").replace("\n", " | ")[:200])
     if pg.locator("[data-test=durak-cumle]").count():
         dc = pg.inner_text("[data-test=durak-cumle]").strip()
         if not (dc[:1].isupper() and dc.endswith("dakika.")): check(False, f"durak girişi tek cümle + süre değil: {dc!r}")
@@ -152,7 +154,12 @@ def main():
                 if t is None: check(False, f"günde takıldı: {pg.get_attribute('[data-test=akis]', 'data-tur')}"); break
                 turler2.add(t)
             check(pg.locator("[data-test=akis-bitti]").count() == 1, f"gün baştan sona yürüdü ({n} adım; türler {sorted(turler2)})")
-            check(kalip_ornek and sum(1 for k in kalip_ornek if k >= 1) * 10 >= len(kalip_ornek) * 7, f"yeni kalıpların çoğunda 1–2 örnek; örnek yalnız o anda bilinen sözcüklerle (PM md. 2, inceleme #186 P1-2; {kalip_ornek})")
+            eksik = [k for k in kalip_ornek if k[1] < k[0]]
+            # PM 7059008858 md. 2 "örneksiz kalıp kalmaz": --kalip-sert ile kesin (bayrak PR'ı; İÇ'in K(t) içi örnekleri gelince varsayılan olur).
+            # Şimdilik çerçevelerin en az %70'i örnekli olmalı; eksikler yazılır.
+            cerceve, ornekli = sum(k[0] for k in kalip_ornek), sum(min(k[0], k[1]) for k in kalip_ornek)
+            if "--kalip-sert" in sys.argv: check(kalip_ornek and not eksik, f"her kalıp çerçevesine en az bir örnek (çerçeve/örnek {kalip_ornek}; eksik {eksik})")
+            else: check(kalip_ornek and ornekli * 10 >= cerceve * 7, f"kalıp çerçevelerinin {ornekli}/{cerceve}'i örnekli (≥ %70; eksik {len(eksik)} kalıp, PM 7059008858 md. 2)")
             check("akis-tablo" in govdeler, "dil noktasının tablosu gerçek gövdeyle (PM md. 4)")
             check(bool(TABLO), f"dil noktası tablosu görüldü ve ekrana sığdı; seçicili tablolar {TABLO} (PM 7059008858 md. 1)")
             plan = pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });

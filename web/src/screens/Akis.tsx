@@ -284,34 +284,51 @@ export function AkisEkrani({ day }: { day: number }) {
             const durakCumle = new Set(d.adimlar.map((a) => a.cumle).filter((x): x is string => !!x));
             // önce halka görev cümleleri, yoksa planın kendi (kapıdan geçmiş) cümleleri — Türkçesi bilinenler
             const planCumle = sira.map((a) => a.cumle).filter((x): x is string => !!x).map((de) => cumleler.get(de)).filter((x): x is CumleBilgi => !!x && !!x.tr);
-            const tekil = new Map([...gun.halkalar.flatMap((h) => h.gorev_cumleleri).map((g) => ({ de: g.de, tr: g.tr })), ...planCumle.map((g) => ({ de: g.de, tr: g.tr }))].map((g) => [g.de, g]));
+            // son sırada sözlük kartlarının örnek cümleleri: günün havuzunda kapıdan geçen örnek yoksa çerçeve yine örneksiz kalmasın (PM 7059008858 md. 2)
+            const kartOrnek = [...lex.values()].flatMap((l) => (l.examples ?? []).filter((e) => e.de && e.tr).map((e) => ({ de: e.de, tr: e.tr })));
+            const kartCumle = new Set(kartOrnek.map((g) => g.de).filter((de) => !gun.halkalar.some((h) => h.gorev_cumleleri.some((x) => x.de === de))));
+            const tekil = new Map([...gun.halkalar.flatMap((h) => h.gorev_cumleleri).map((g) => ({ de: g.de, tr: g.tr })), ...planCumle.map((g) => ({ de: g.de, tr: g.tr })), ...kartOrnek].map((g) => [g.de, g]));
             // kalıbın sabit sözcüklerinin hepsi cümlede geçiyorsa örnek; sıra şart değil (devrik sıra kalıbın konusu olabilir: "Im Frühling habe ich …")
             const kapsar = (de: string, kp: string[]) => { const w = new Set(toks(de)); const sb = kp.filter((x) => x !== YUVA); return sb.length > 0 && sb.every((t) => w.has(t)); };
             // örnek o adımda bilinenlerle kurulmuş olmalı: bu kalıp dahil K(t) dışında sözcük 0 (inceleme #186 P1-2)
             const kNow = { kart: kartlarOnce(adimId), biten: bitenD, kaliplar: [...sira.slice(0, Math.max(0, sira.findIndex((a) => a.id === adimId)) + 1).filter((a) => a.tur === "kalip" && a.cumle).flatMap((a) => kalipSecenekleri(a.cumle))] };
-            const aday = [...tekil.values()].filter((g) => !g.de.includes("{name}") && bilinmeyenler(dizin, g.de, kNow).length === 0)
-              .filter((g) => parcalar.some((kp) => kapsar(g.de, kp)) && !parcalar.some((kp) => kp.every((t) => t !== YUVA) && toks(g.de).join(" ") === kp.join(" ")))
-              .sort((a, b) => Number(durakCumle.has(b.de)) - Number(durakCumle.has(a.de)));
             // vurgu: yalnız yuvanın yerine giren sözcük — sabit parçanın bitişik geçtiği yerde yuvanın komşusu ("im …" → "im"den sonraki sözcük)
-            const yuvaSozcuk = (de: string): string[] => {
+            const temiz = (x: string) => x.replace(/^[„“"»«(]+|[.,!?;:„“"»«)]+$/g, "");  // vurgu noktalamasız (inceleme #186 P2-3)
+            const yuvaKp = (de: string, kp: string[]): string[] => {
               const w = de.split(/\s+/), n = w.map((x) => x.replace(/[.,!?;:„“"]/g, "").toLowerCase());
-              for (const kp of parcalar) {
-                const y = kp.indexOf(YUVA); if (y < 0) continue;
-                const once = kp.slice(0, y), sonra = kp.slice(y + 1).filter((t) => t !== YUVA);
-                for (let i = 0; i + once.length <= n.length; i++) {
-                  if (!once.every((t, k) => n[i + k] === t)) continue;
-                  const j = i + once.length; if (j >= w.length) continue;
-                  const temiz = (x: string) => x.replace(/^[„“"»«(]+|[.,!?;:„“"»«)]+$/g, "");  // vurgu noktalamasız (inceleme #186 P2-3)
-                  if (!sonra.length) return [temiz(w[j]!)];
-                  const son = n.indexOf(sonra[0]!, j + 1); if (son > j) return w.slice(j, son).map(temiz);
-                }
+              const y = kp.indexOf(YUVA); if (y < 0) return [];
+              const once = kp.slice(0, y), sonra = kp.slice(y + 1).filter((t) => t !== YUVA);
+              for (let i = 0; i + once.length <= n.length; i++) {
+                if (!once.every((t, k) => n[i + k] === t)) continue;
+                const j = i + once.length; if (j >= w.length) continue;
+                if (!sonra.length) return [temiz(w[j]!)];
+                const son = n.indexOf(sonra[0]!, j + 1); if (son > j) return w.slice(j, son).map(temiz);
               }
               return [];
             };
-            const ornek = aday.slice(0, 2).map((g) => ({ de: g.de, tr: g.tr, accepted: [g.de], vurgu: yuvaSozcuk(g.de) }));
-            // yuvasız tam ifade ("Wir haben November.", "Anfang Mai") ve örnek yoksa: kalıbın kendisi sesli örnek olur
-            if (!ornek.length) for (const x of kalip.split(/\s[–—]\s/)) if (!/…|\{/.test(x)) ornek.push({ de: x, tr: kaliplar.get(x) ?? "", accepted: [x], vurgu: [] });
-            return ornek.slice(0, 2).map((o) => personalizeDeep(o, kisi));
+            // PM 7059008858 md. 2: her çerçeveye kendi örneği. Örnek o adımda bilinenlerle kurulur (inceleme #186 P1-2); tek istisna yuvaya giren
+            // sözcük: K(t) dışında olabilir, altında Türkçesiyle, örnek başına en çok bir tane ve sorulmaz. Bilinenle kurulan örnek önce gelir.
+            const ornek: CumleBilgi[] = [];
+            for (const kp of parcalar) {
+              const tamAyni = (de: string) => kp.every((t) => t !== YUVA) && toks(de).join(" ") === kp.join(" ");
+              const adaylar = [...tekil.values()].filter((g) => !g.de.includes("{name}") && kapsar(g.de, kp) && !tamAyni(g.de) && !ornek.some((o) => o.de === g.de))
+                .map((g) => {
+                  const yuva = yuvaKp(g.de, kp).map((x) => x.toLowerCase()), bil = bilinmeyenler(dizin, g.de, kNow);
+                  const uygun = bil.length === 0 || (bil.length === 1 && yuva.includes(bil[0]!.sozcuk.toLowerCase()));
+                  return { g, bil, uygun, yuva };
+                }).filter((x) => x.uygun)
+                .sort((a, b) => a.bil.length - b.bil.length || Number(durakCumle.has(b.g.de)) - Number(durakCumle.has(a.g.de)) || Number(kartCumle.has(a.g.de)) - Number(kartCumle.has(b.g.de)));
+              const x = adaylar[0];
+              if (x) {
+                const yeni = x.bil[0] ? { sozcuk: x.bil[0].sozcuk, tr: x.bil[0].adaylar?.map((id) => lex.get(id)?.tr).find(Boolean) } : undefined;
+                ornek.push({ de: x.g.de, tr: x.g.tr, accepted: [x.g.de], vurgu: yuvaKp(x.g.de, kp), ...(yeni ? { yeni } : {}) });
+              } else {
+                // örneksiz çerçeve kalmaz: yuvasız tam ifade ("Wir haben November.", "Anfang Mai") kendi sesli örneği olur
+                const ham = kalip.split(/\s[–—]\s/)[parcalar.indexOf(kp)] ?? "";
+                if (ham && !/…|\{/.test(ham)) ornek.push({ de: ham, tr: kaliplar.get(ham) ?? "", accepted: [ham], vurgu: [] });
+              }
+            }
+            return ornek.slice(0, 3).map((o) => personalizeDeep(o, kisi));
           },
           yakin: (adimId, d) => ({ tur: new Set(d.adimlar.flatMap((a) => a.kartlar)), bilinen: kartlarOnce(adimId), yalniz: true }),
           hedef,

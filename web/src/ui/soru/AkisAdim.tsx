@@ -11,7 +11,7 @@ import { speak, speakDizi } from "../../services/speech.ts";
 import { haptic } from "../../services/haptics.ts";
 import { ActionBar, AnswerField, FeedbackBand, ListenButton, MicButton } from "../kit.tsx";
 
-export interface CumleBilgi { de: string; tr: string; accepted: string[]; /** kalıp örneğinde yuvaya giren sözcükler (vurgulu) */ vurgu?: string[] }
+export interface CumleBilgi { de: string; tr: string; accepted: string[]; /** kalıp örneğinde yuvaya giren sözcükler (vurgulu) */ vurgu?: string[]; /** yuvaya giren, henüz öğretilmemiş tek sözcük: altında Türkçesi, sorulmaz (PM 7059008858 md. 2) */ yeni?: { sozcuk: string; tr?: string } }
 
 const sozcukler = (de: string) => de.replace(/[.,!?;:„“"»«]/g, " ").split(/\s+/).filter(Boolean);
 
@@ -137,9 +137,9 @@ export function KalipAdimi({ kalip, ornekler, onBitti }: { kalip: { de: string; 
   return (
     <section class="stack fade" data-test="akis-kalip">
       <div class="kicker icerik" style={{ color: "var(--accent)" }}>Yeni kalıp</div>
-      {kalip.map((k) => <div><div class="de-lg" lang="de">{yuvali(k.de)}</div><p class="small muted" style={{ margin: 0 }}>{k.tr}</p></div>)}
+      {kalip.map((k) => <div data-test="kalip-cerceve"><div class="de-lg" lang="de">{yuvali(k.de)}</div><p class="small muted" style={{ margin: 0 }}>{k.tr}</p></div>)}
       {ornekler.length > 0 && <section class="card stack" style={{ gap: 6 }} data-test="kalip-ornekler">
-        {ornekler.slice(0, 2).map((o) => <div class="row" style={{ flexWrap: "nowrap", gap: 10, alignItems: "center" }}><span class="grow"><b lang="de">{vurgulu(o)}</b><br /><span class="small muted">{o.tr}</span></span><ListenButton text={o.de} small slowToggle={false} /></div>)}
+        {ornekler.slice(0, 3).map((o) => <div class="row" data-test="kalip-ornek" style={{ flexWrap: "nowrap", gap: 10, alignItems: "center" }}><span class="grow"><b lang="de">{vurgulu(o)}</b><br /><span class="small muted">{o.tr}</span>{o.yeni && <><br /><span class="small" data-test="kalip-yeni"><b lang="de">{o.yeni.sozcuk}</b>: {o.yeni.tr ?? "yeni sözcük"}</span></>}</span><ListenButton text={o.de} small slowToggle={false} /></div>)}
       </section>}
       <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-devam" onClick={onBitti}>Anladım</button></ActionBar>
     </section>
