@@ -768,3 +768,7 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 .akis-tablo-t th, .akis-tablo-t td { white-space: nowrap; }
 .akis-tablo-t th, .akis-tablo-t td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
 .akis-tablo-t th { color: var(--muted); font-weight: 700; font-size: 0.85rem; }
+/* PM 7059008858 md. 1: tablo telefonda sığar; geniş tabloda sütun seçici (çipler satır kırar, kaydırma yok) */
+.akis-tablo-sec { flex-wrap: wrap; gap: 8px; }
+.akis-tablo-sec .chip { min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font-weight: 700; }
+.akis-tablo-sec .chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }

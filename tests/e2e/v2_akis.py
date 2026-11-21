@@ -52,9 +52,19 @@ def adim_gec(pg, yanlis=False):
     pg.wait_for_timeout(250)
     return tur
 
+TABLO = []  # görülen tabloların seçici düğme sayısı
+
 def ekran_denetle(pg, kalip_ornek):
     """her akış ekranında: çıplak yer tutucu, iskelet, <3 şık, ilerleme türü, kalıp örneği sayısı, durak girişi (inceleme #186)"""
     metin = pg.inner_text("[data-test=akis]") if pg.locator("[data-test=akis]").count() else ""
+    if pg.locator("[data-test=akis-tablo-t]").count():
+        # PM 7059008858 md. 1: dil noktası tablosu ekrana sığar (kaydırma yok); seçici varsa her sütun seçilince de sığar
+        sig = lambda: pg.evaluate("() => { const t = document.querySelector('[data-test=akis-tablo-t]').getBoundingClientRect(); return t.right <= innerWidth - 8 && t.left >= 8; }")
+        if not sig(): check(False, f"dil noktası tablosu ekrana sığmıyor: {metin[:60]!r}")
+        for k in range(pg.locator("[data-test=akis-tablo-sec] button").count()):
+            pg.locator("[data-test=akis-tablo-sec] button").nth(k).click()
+            if not sig(): check(False, f"tablo seçicide {k}. sütun sığmıyor")
+        TABLO.append(pg.locator("[data-test=akis-tablo-sec] button").count())
     if "**" in metin: check(False, f"ekranda ham ** işareti (fark doğrulaması #186 Y-P1-1): {metin[:80]!r}")
     if "{" in metin and "}" in metin: check(False, f"ekranda çıplak yer tutucu: {metin[:80]!r}")
     if pg.locator("[data-test=akis-yer-tutucu]").count(): check(False, f"iskelet ekran (akis-yer-tutucu) görünüyor: {metin[:80]!r}")
@@ -144,6 +154,7 @@ def main():
             check(pg.locator("[data-test=akis-bitti]").count() == 1, f"gün baştan sona yürüdü ({n} adım; türler {sorted(turler2)})")
             check(kalip_ornek and sum(1 for k in kalip_ornek if k >= 1) * 10 >= len(kalip_ornek) * 7, f"yeni kalıpların çoğunda 1–2 örnek; örnek yalnız o anda bilinen sözcüklerle (PM md. 2, inceleme #186 P1-2; {kalip_ornek})")
             check("akis-tablo" in govdeler, "dil noktasının tablosu gerçek gövdeyle (PM md. 4)")
+            check(bool(TABLO), f"dil noktası tablosu görüldü ve ekrana sığdı; seçicili tablolar {TABLO} (PM 7059008858 md. 1)")
             plan = pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
               const m = await new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get('akis:2'); t.onsuccess = () => ok(t.result.value); }); d.close();
               const a = m.plan.duraklar.flatMap((x) => x.adimlar); const say = (f) => a.filter(f).length;

@@ -9,6 +9,7 @@
  */
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Rich } from "../ui/rich.tsx";
+import { hucreDili, tabloBol } from "../core/tablo.ts";
 import { bilinmeyenler, kalipOrtu, kalipSecenekleri, kalipToks, kumeDizini, toks, YUVA, type Drill, type Lexeme, type LearnerItem } from "@dw/shared";
 import { loadFoto, loadGenelAdlar, loadIndex, loadLexicon, loadM1Gun, loadTemeller, loadWorld, type FotoKayit } from "../services/content.ts";
 import { getMeta, itemsMap, putItems, setMeta } from "../data/db.ts";
@@ -123,9 +124,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
       <section class="stack fade" data-test="akis-tablo">
         <div class="kicker icerik" style={{ color: "var(--accent)" }}>Dil noktası</div>
         <h2 style={{ margin: 0 }}>{tb.baslik_tr}</h2>
-        <div style={{ overflowX: "auto" }}><table class="akis-tablo-t"><thead><tr>{tb.sutunlar.map((c) => <th>{c}</th>)}</tr></thead>
-          {/* başlıklar ve "Türkçe" sütunu Türkçe; öteki hücreler Almanca (inceleme #186 P1-5) */}
-          <tbody>{tb.satirlar.map((r) => <tr>{r.map((c, i) => <td lang={/^türkçe$/i.test(tb.sutunlar[i] ?? "") ? "tr" : "de"}>{c}</td>)}</tr>)}</tbody></table></div>
+        <AkisTablo sutunlar={tb.sutunlar} satirlar={tb.satirlar} />
         <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-devam" onClick={() => bitir([])}>Anladım</button></ActionBar>
       </section>);
   }
@@ -405,6 +404,25 @@ function HalkaSonu({ ozet, lex, sonraki, seans, devam, mola }: { ozet: ReturnTyp
 }
 
 /** Adımsız durak (AK-6): var olan ekrana gider; o ekran bitince (`bitti`/`ilkBitti`) akış dönüşte kendiliğinden ilerler */
+/**
+ * Dil noktası tablosu (PM 7059008858 md. 1): 4 sütundan genişse sabit sütunlar + seçilen tek sütun; üstte sütun seçici.
+ * Telefonda yatay kaydırma gerekmez; başlıklar ve "Türkçe" sütunu Türkçe, öteki hücreler Almanca.
+ */
+function AkisTablo({ sutunlar, satirlar }: { sutunlar: string[]; satirlar: string[][] }) {
+  const bol = tabloBol(sutunlar);
+  const [sec, setSec] = useState(bol?.secilebilir[0] ?? -1);
+  const goster = bol ? [...bol.sabit, sec] : sutunlar.map((_, i) => i);
+  return (
+    <>
+      {bol && <div class="row akis-tablo-sec" role="group" aria-label="Sütun seç" data-test="akis-tablo-sec">
+        {bol.secilebilir.map((i) => <button type="button" lang="de" class={`chip${i === sec ? " on" : ""}`} aria-pressed={i === sec} data-sutun={i} onClick={() => setSec(i)}>{sutunlar[i]}</button>)}
+      </div>}
+      <table class="akis-tablo-t" data-test="akis-tablo-t"><thead><tr>{goster.map((i) => <th lang={bol && !bol.sabit.includes(i) ? "de" : undefined}>{sutunlar[i]}</th>)}</tr></thead>
+        <tbody>{satirlar.map((r) => <tr>{goster.map((i) => <td lang={hucreDili(sutunlar[i] ?? "")}>{r[i]}</td>)}</tr>)}</tbody></table>
+    </>
+  );
+}
+
 /** gösterilecek bir şeyi olmayan adım: ekran çizmeden geçer */
 function Gec({ bitir }: { bitir: () => void }) { useEffect(() => { bitir(); }, []); return null; }
 
