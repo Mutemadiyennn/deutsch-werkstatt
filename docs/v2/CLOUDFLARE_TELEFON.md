@@ -63,7 +63,7 @@ GitHub Actions bu depoda kapalı olduğu için A–F'deki "Run workflow" adımla
     - `ALLOWED_UIDS`: Profil → Hesap kimliği (virgülle birden çok);
     - gerekirse `PEXELS_KEY`.
     - Önceden girilmiş secret'lar yerinde kalır; `wrangler deploy` onları silmez. Yalnız eksik olanı ekle.
-27b. **Kapalı medya rafı koruması bir Worker değişkeni değildir** (D-112 a). Raf Pages projesinde: **Workers & Pages → raf projesi → Settings → Functions** → kota dolunca davranış **Fail closed** seçili olmalı. Doldurma hattının bildirim değişkeni (`RAF_FAIL_CLOSED`) Actions'la birlikte kullanılmıyor. Bu ayar rafın kendisini korur.
+27b. **Kapalı medya rafı koruması bir Worker değişkeni değildir** (D-112 a). Raf Pages projesinde: **Workers & Pages → raf projesi → Settings → Functions** → kota dolunca davranış **Fail closed** seçili olmalı; ayarı değiştirdiysen rafı bir kez yeniden dağıt (D-112 a: ayar yeniden dağıtımla etkinleşir). Eski `RAF_FAIL_CLOSED` değişkeni yalnız Actions'taki doldurma hattının bildirimiydi; artık girilmez. Rafı bu ayar korur.
 28. **Save and deploy.** Bundan sonra `main`'e her birleşmede Cloudflare kendisi derler. Derleme günlüğü panelde **Deployments** altında görünür.
 29. Uygulamada **Profil → Sunucu bağlantısını kontrol et** → "Sunucu çalışıyor".
 
