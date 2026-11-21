@@ -152,6 +152,8 @@ jobs:
         run: cd tests/e2e && python v2_hiz.py
       - name: "Halka adım türleri (AKIS AK-10 3. adım): resimden seç, eşleştir; açık + koyu, 932/844, ağ kesik"
         run: cd tests/e2e && python v2_halka_tur.py --shots /tmp/shots
+      - name: "Akış (AKIS AK-10 4a): #/akis/2 ilk halka baştan sona, yeniden açınca aynı adım, yanlış kart bir kez daha"
+        run: cd tests/e2e && python v2_akis.py --shots /tmp/shots
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4
