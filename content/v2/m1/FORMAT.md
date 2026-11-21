@@ -109,7 +109,8 @@ Ayrı dosya `content/v2/m1/hafta-sonu-testi.json`, `maddeler` alanı: 10–12 ma
 
 Günün videosu ayrı dosyadadır: `content/v2/m1/video/klip-NN.json`. Kaynak Deutsch im Blick (COERLL, UT Austin; CC BY 4.0). Çizimli `sahne` bunun yerine geçmez.
 
-- Transkript depoda tutulmaz. Dosyada klip kimliği, `video_url`, `transkript_url`, `kesit`, `haric` ve `turlar[{tur, basi, kim}]` bulunur. `basi` turun ilk kelimeleridir (en çok 4). Derleme adımı metni kaynaktan alır, `basi` ile doğrular, videoyla hizalar.
+- Transkript **main'de** tutulmaz. Derlenmiş `metin.json` (`klip-NN.metin.json`) **`medya` dalında** durur (ürün dalı, `gh-pages` gibi; main'e hiç birleşmez). Yayın önce Releases'ten indirir, sonra `medya` dalını üstüne açar; aynı adda dosyada dal kazanır (PM-081 A1–A2).
+- Dosyada klip kimliği, `video_url`, `transkript_url`, `kesit`, `haric` ve `turlar[{tur, basi, kim}]` bulunur. `basi` turun ilk kelimeleridir (en çok 4). Derleme adımı metni kaynaktan alır, `basi` ile doğrular, videoyla hizalar.
 - `haric`: kesitten çıkarılan turlar. Telefon numarası, adres ve tam doğum tarihi yayına girmez.
 - Derleme bağlama kuralı (inceleme #159 P1-1): klip yalnızca hattın ölçüm kaydı (`klip-NN.olcum.json`) varsa ve metin dosyasının sha256'sı o kayıtla aynıysa bağlanır; her hizalı cümle kendi turunun `basi`siyle başlamalıdır; `haric` ve `kesit` aralığı dışındaki turlar pakete girmez. Hat `etiket: "insan-orneklemi"` yazdıysa klip dosyasında `"orneklem_onay": true` (İÇ'in örneklem kontrolünden sonra) gerekir.
 - `on_ogretim` ve `ortam_tr` pakete girer; oynatıcıda dinlemeden önce gösterilir.
