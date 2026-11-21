@@ -63,7 +63,15 @@ export function AkisOynatici({ kayit, lex, harita, emojiHarita, baglam, kaydet, 
   const s = simdiki(kayit);
   if (ozet) return <HalkaSonu ozet={halkaOzeti(ozet.kayit, ozet.durak)} lex={lex} sonraki={ozet.kayit.plan.duraklar[ozet.kayit.durak]} seans={seansDurumu(ozet.kayit)}
     devam={() => setOzet(null)} mola={cik} />;
-  if (!s) return <section class="stack" data-test="akis-bitti"><p class="card">Bugünün durakları bitti.</p></section>;
+  // gün bitti: çıkmaz sayfa yok — tek birincil eylem Bugün'e döner; gün sonu özeti (kurduğun cümle, yeni kelimeler) orada (#58 B3)
+  if (!s) return (
+    <section class="stack fade" data-test="akis-bitti">
+      <div class="kicker icerik" style={{ color: "var(--accent)" }}>Gün sonu</div>
+      <h2 style={{ margin: 0 }}>Bugünün durakları bitti</h2>
+      <p class="muted" style={{ margin: 0 }}>Bugün kurduğun cümleyi ve yeni kelimelerini Bugün ekranında görürsün.</p>
+      <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-bugune" onClick={() => { location.hash = "#/today"; }}>Bugün'e dön</button></ActionBar>
+    </section>
+  );
   /** `atla`: adımsız durak "şimdi geç" ile geçildi — o durağın anahtarı yazılmaz (öğrenci sonra yine ulaşır; inceleme #184 P1-2) */
   const bitir = (sonuc: { kart: string; dogru: boolean }[], atla = false) => {
     // çift dokunuşta aynı adım iki kez işlenmez (inceleme #184 P2)

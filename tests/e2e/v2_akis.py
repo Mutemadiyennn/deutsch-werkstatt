@@ -99,6 +99,8 @@ def main():
     with sync_playwright() as p:
         b, ctx = launch(p, color_scheme=sema); ctx.add_init_script(f"window.GUN_ = {GUN};"); pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
+        # bayrak PR'ı md. 7: Bugün (seanslar) — bayraklı günde Bahçe adımı akışa gider
+        if GUN == 1 and "--tam" in sys.argv: pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=next-activity]"); shot(pg, f"akis-bugun-{sema}", full=False)
         pg.goto(base + f"#/akis/{GUN}"); pg.wait_for_selector("[data-test=akis]", timeout=20000)
         k = pg.evaluate(KAYIT)
         check(k and k["ilkDurak"] == "ses" and k["halka"] == 1, f"plan kuruldu ve saklandı; ilk durak ses, sonra halka ({k})")
@@ -166,10 +168,18 @@ def main():
                     r = pg.evaluate("() => { const i = [...document.querySelectorAll('[data-test=resim-secenek] img')]; return { n: i.length, emoji: i.filter((x) => x.classList.contains('emoji')).length }; }")
                     check(r["n"] == 4 and r["emoji"] in (0, 4), f"resimden seç: dört görsel yüklendi, tek üslupta ({r})")
                     RESIM.append("resim"); shot(pg, f"akis-resimden-sec-{sema}", full=False)
+                tn = pg.get_attribute("[data-test=akis]", "data-tur")
+                if tn and tn not in turler and tn not in turler2: shot(pg, f"akis-{tn}-{sema}", full=False)  # md. 7: her türün ilk ekranı
                 t = adim_gec(pg)
                 if t is None: check(False, f"günde takıldı: {pg.get_attribute('[data-test=akis]', 'data-tur')}"); break
                 turler2.add(t)
+            if pg.locator("[data-test=akis-bitti]").count(): shot(pg, f"akis-gun-sonu-{sema}", full=False)
             check(pg.locator("[data-test=akis-bitti]").count() == 1, f"gün baştan sona yürüdü ({n} adım; türler {sorted(turler2)})")
+            if pg.locator("[data-test=akis-bitti]").count():
+                # gün sonu çıkmaz sayfa değil: tek birincil eylem Bugün'e döner (bayrak PR'ı md. 4)
+                check(pg.locator("[data-test=akis-bitti] .btn.primary").count() == 1, "gün sonu: tek birincil eylem 'Bugün'e dön'")
+                pg.click("[data-test=akis-bugune]"); pg.wait_for_selector("[data-test=next-activity], [data-tab=today]", timeout=10000)
+                check(pg.url.endswith("#/today"), f"'Bugün'e dön' Bugün'e götürür ({pg.url[-20:]})")
             eksik = [k for k in kalip_ornek if k[1] < k[0]]
             # PM 7059008858 md. 2 "örneksiz kalıp kalmaz": --kalip-sert ile kesin (bayrak PR'ı; İÇ'in K(t) içi örnekleri gelince varsayılan olur).
             # Şimdilik çerçevelerin en az %70'i örnekli olmalı; eksikler yazılır.

@@ -30,8 +30,8 @@ if (process.env.DW_E2E_FIXTURES === "1") {
   for (const f of readdirSync(fx).filter((x) => /^gun-\d{2}\.json$/.test(x))) {
     const g = parseFile(join(fx, f), Gun, c.errors);
     // e2e paketinde örnek gün aynı numaralı gerçek günün YERİNE geçer: oynatıcı testi içerik değişince kırılmaz (inceleme #60 P1-8)
-    // bayrak PR'ı md. 9: halkasız fikstür gerçek günün halkalarını alır (1. günün akışı e2e'de, uçak modunda ve yükleme ölçümünde sınanır)
-    if (g) { const i = days.findIndex((d) => d.data.day === g.day); const gercek = i >= 0 ? days[i]!.data.halkalar : undefined; if (i >= 0) days.splice(i, 1); days.push({ file: `fixtures/m1/${f}`, data: !g.halkalar?.length && gercek?.length ? { ...g, halkalar: gercek } : g }); }
+    // bayrak PR'ı md. 9: halkasız fikstür gerçek günün halkalarını (ve günün sınavını: gün sonu 'kendini dene') alır (1. günün akışı e2e'de, uçak modunda ve yükleme ölçümünde sınanır)
+    if (g) { const i = days.findIndex((d) => d.data.day === g.day); const gercek = i >= 0 ? days[i]!.data : undefined; if (i >= 0) days.splice(i, 1); days.push({ file: `fixtures/m1/${f}`, data: !g.halkalar?.length && gercek?.halkalar?.length ? { ...g, halkalar: gercek.halkalar, ...(!g.gun_sinavi && gercek.gun_sinavi ? { gun_sinavi: gercek.gun_sinavi } : {}) } : g }); }
   }
   // AKIS AK-10 4. adım: `halkalar` henüz gün dosyalarında değil (İÇ taşıyacak). e2e paketinde, fikstürle değiştirilmemiş
   // günlere İÇ'in halka önerisi (docs/v2/reviews/halka/gun-NN-halkalar.json) eklenir — yayın paketine girmez
