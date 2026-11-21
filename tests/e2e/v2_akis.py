@@ -114,7 +114,8 @@ def main():
                 if pg.locator("[data-test=halka-sonu]").count(): pg.click("[data-test=halka-sonu-devam]"); pg.wait_for_timeout(150); continue
                 for g in ("akis-tr-de", "akis-dikte", "akis-soyle", "akis-bosluk", "akis-yapboz", "akis-kalip", "akis-tanit", "akis-dil-oge", "akis-sahne", "akis-durak-gecis", "eslestir"):
                     if pg.locator(f"[data-test={g}]").count(): govdeler.add(g)
-                if pg.locator("[data-test=akis] .kicker").count() and any(x in pg.inner_text("[data-test=akis] .kicker").lower() for x in ("tablo", "hatirlat", "ders_madde")): check(False, "ekranda iç tür adı görünüyor")
+                ic = ("tablo", "hatirlat", "ders_madde", "soyle", "tr_de", "gap", "order", "dikte", "listen_meaning", "resimden_sec", "eslestir", "kalip", "tanit", "colloc", "article", "sahne", "tekrar")
+                if pg.locator("[data-test=akis] .kicker").count() and any(x == pg.inner_text("[data-test=akis] .kicker").strip().lower() for x in ic): check(False, f"ekranda iç tür adı görünüyor: {pg.inner_text('[data-test=akis] .kicker')}")
                 t = adim_gec(pg)
                 if t is None: check(False, f"günde takıldı: {pg.get_attribute('[data-test=akis]', 'data-tur')}"); break
                 turler2.add(t)

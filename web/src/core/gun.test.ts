@@ -73,8 +73,8 @@ describe("AKIS pilot bayrağı (AK-6, 4b)", () => {
     const g = { ...g1, halkalar: [halka] } as typeof g1;
     expect(akisAcik(g, bos(), [1])).toBe(true);
     const ad = gunAdimlari(g, bos(), {}, [1]).adimlar;
-    expect(ad.filter((a) => a.tur === "bahce" || a.tur === "ders").every((a) => a.href === "#/akis/1")).toBe(true);
-    expect(ad.filter((a) => a.tur === "prova" || a.tur === "okuma" || a.tur === "medya").every((a) => !a.href.startsWith("#/akis"))).toBe(true);
+    expect(ad.filter((a) => a.tur === "bahce").every((a) => a.href === "#/akis/1")).toBe(true);
+    expect(ad.filter((a) => a.tur !== "bahce").every((a) => !a.href.startsWith("#/akis"))).toBe(true);
   });
   it("bayraksız, halkasız ya da eski düzenle başlanmış gün eski düzende kalır; akış başladıysa akışla biter", () => {
     const g = { ...g1, halkalar: [halka] } as typeof g1;

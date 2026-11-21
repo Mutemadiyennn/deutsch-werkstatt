@@ -41,7 +41,7 @@ export interface AkisOynaticiProps {
   /** cümle/kalıp çözümü ve K10 ipucu (ekran kurar) */
   baglam: AkisBaglam;
   /** kayıt değişti (çağıran `akis:<gün>`e yazar); `eski`: biten durağın eski ilerleme anahtarı (AK-6) */
-  kaydet: (k: AkisKaydi, eski: string | null) => void;
+  kaydet: (k: AkisKaydi, eski: string | null, atla: boolean) => void;
   cik: () => void;
 }
 
@@ -66,7 +66,7 @@ export function AkisOynatici({ kayit, lex, harita, baglam, kaydet, cik }: AkisOy
     if (son.current === s.adim.id) return; son.current = s.adim.id;
     const r = ilerle(kayit, sonuc); setNeden(false);
     if (s.durak.tur === "halka" && r.kayit.durak !== kayit.durak) setOzet({ durak: s.durak, kayit: r.kayit });
-    kaydet(r.kayit, atla ? null : r.yazilacak);
+    kaydet(r.kayit, atla ? null : r.yazilacak, atla);
   };
   return (
     <section class="stack" data-test="akis" data-durak={s.durak.id} data-adim={s.adim.id} data-tur={s.adim.tur}>
@@ -89,7 +89,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
   const [gorselYok, setGorselYok] = useState(false);
   const soru = useMemo(() => (adim.tur === "resimden_sec" && kartlar[0] ? resimSecenekleri(kartlar[0], [...lex.values()], harita, tohum) : null), [adim.id]);
   // adımsız durak (ses, video, prova, okuma): var olan ekrana gider, dönüşte akış ilerler (AK-6)
-  if (durakGecisi(adim)) return <DurakGecis adim={adim} hedef={baglam.hedef(durakOf(adim))} bitir={() => bitir([], true)} />;
+  if (durakGecisi(adim)) return <DurakGecis adim={adim} baslik={durakOf(adim).title_tr} hedef={baglam.hedef(durakOf(adim))} bitir={() => bitir([], true)} />;
   if (adim.tur === "eslestir" && kartlar.length >= 4) return <Eslestir kartlar={kartlar} tohum={tohum} onBitti={bitir} />;
   // görsel gelmezse (çevrimdışı, önbellekte yok) resimden seç o adımda dinle-anlam sorusuna düşer (tek doğru cevap; inceleme #183 P1-2)
   if (adim.tur === "resimden_sec" && soru && !gorselYok) return <ResimSec soru={soru} lex={lex} harita={harita} onYok={() => setGorselYok(true)} onBitti={(ok) => bitir([{ kart: soru.kart, dogru: ok }])} />;
@@ -136,14 +136,14 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
   if (l && (adim.tur === "tanit" || SORU.has(adim.tur) || adim.tur === "resimden_sec" || adim.tur === "tr_de" || adim.tur === "gap" || adim.tur === "order" || adim.tur === "soyle" || adim.tur === "dikte")) {
     const ex = Math.max(0, l.examples.findIndex((e) => e.de === adim.cumle));
     const tanit = adim.tur === "tanit";
-    return <Question key={adim.id} q={{ lexId: l.id, type: tanit || !SORU.has(adim.tur) ? "listen_meaning" : (adim.tur as QType), intro: tanit, ex }} l={l} all={[...lex.values()]}
+    return <Question key={adim.id} q={{ lexId: l.id, type: tanit || !(SORU.has(adim.tur) || adim.tur === "tr_de") ? "listen_meaning" : (adim.tur as QType), intro: tanit, ex }} l={l} all={[...lex.values()]}
       onTanitimBitti={tanit ? () => bitir([{ kart: l.id, dogru: true }]) : undefined}
       onDone={(r) => bitir([{ kart: l.id, dogru: r.ok }])} />;
   }
   // İSKELET: öteki türler (tanit, kalip, listen_meaning, gap, order, tr_de, dikte, soyle, sahne, ders_madde, …) ui/soru/ ortaklaşınca
   return (
     <section class="card stack" data-test="akis-yer-tutucu">
-      <div class="kicker icerik">{adim.tur}</div>
+      <div class="kicker icerik">{adim.kaynak === "ders" ? "Dil noktası" : "Sıradaki adım"}</div>
       {adim.cumle && <div class="de-lg" lang="de">{adim.cumle}</div>}
       <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-devam" onClick={() => bitir(adim.kartlar.map((kart) => ({ kart, dogru: true })))}>Devam et</button></ActionBar>
     </section>
@@ -195,7 +195,6 @@ export function AkisEkrani({ day }: { day: number }) {
         const hedef = (d: Durak): DurakHedef | null => {
           if (d.tur === "prova") return { href: `#/prova/${day}`, anahtarlar: [`m1:prova:${day}`] };
           if (d.tur === "okuma") return { href: `#/okuma/${day}`, anahtarlar: [`m1:okuma:${day}`] };
-          if (d.tur === "dil" && d.eski_anahtar?.startsWith("ders:")) { const id = d.eski_anahtar.slice(5); return { href: `#/ders/${encodeURIComponent(id)}`, anahtarlar: [d.eski_anahtar] }; }
           if (d.tur === "video" && gun.video) return { href: `#/m1/${day}/${encodeURIComponent(gun.video.id)}`, anahtarlar: [`m1:medya:${gun.video.id}`] };
           // ses durağı günün bütün seslerini kapsar; sıradaki bitmemiş sese gider (inceleme #184 P1-3)
           if (d.tur === "ses" && sesler.length) { const s1 = sesler.find((x) => !sesBitti.has(x)) ?? sesler[0]!; return { href: `#/m1/${day}/${encodeURIComponent(s1)}`, anahtarlar: sesler.map((x) => `m1:medya:${x}`) }; }
@@ -239,11 +238,12 @@ export function AkisEkrani({ day }: { day: number }) {
   if (hata) return <ErrorPanel message={hata} onRetry={() => location.reload()} />;
   if (!v) return <Loading />;
   if (v === "degil") return <section class="stack"><ProgressHeader title={`${day}. gün`} back="#/" /><p class="card small" data-test="akis-degil">Bu gün henüz yeni akışla açılmıyor.</p></section>;
-  const kaydet = async (k: AkisKaydi, eski: string | null) => {
+  const kaydet = async (k: AkisKaydi, eski: string | null, atla = false) => {
     // yeni sonuçlar kart kaydına: son ilerleme ile önceki arasındaki fark
     const yeni = k.sonuclar.slice(v.kayit.sonuclar.length);
     const adim = v.kayit.plan.duraklar[v.kayit.durak]?.adimlar.find((a) => yeni[0] && a.id === yeni[0].adim);
-    const yol = adim && (KIP[adim.tur] === "kur" || KIP[adim.tur] === "soyle") ? "active" : "passive";
+    // etkin kanıt yalnız gerçekten üretim istenen adımda: cümlesiz yedeği anlama sorusu olan adım edilgen yazılır (inceleme #184 Y-1)
+    const yol = adim && (KIP[adim.tur] === "kur" || KIP[adim.tur] === "soyle") && (adim.cumle || adim.tur === "tr_de" || adim.ders) ? "active" : "passive";
     const degisen: LearnerItem[] = [];
     for (const r of yeni) {
       // XP: her doğru cevap bir kez (akış adımı + kart); tanıtım değerlendirme değildir, kart kaydına yazılmaz (Bahçe gibi; inceleme #184 P1-5, P2)
@@ -255,7 +255,7 @@ export function AkisEkrani({ day }: { day: number }) {
     await putItems(degisen);
     await setMeta(akisAnahtar(day), k);
     // durak bitişi bir adım XP'si (Yol/Bugün'deki adım XP'siyle aynı ölçü; seri bugünkü etkinlikten sayılır)
-    if (k.durak !== v.kayit.durak) { const biten = v.kayit.plan.duraklar[v.kayit.durak]; if (biten) void adimXpVer(`akis:${day}:${biten.id}`); }
+    if (k.durak !== v.kayit.durak && !atla) { const biten = v.kayit.plan.duraklar[v.kayit.durak]; if (biten) void adimXpVer(`akis:${day}:${biten.id}`); }
     // AK-6 uyumluluk: biten durağın eski anahtarı (Yol, Bugün, XP, seri, gün sonu değişmeden çalışsın)
     if (eski) {
       if (eski.startsWith("m1:bahce:")) await bahceTamam(day);
@@ -264,7 +264,7 @@ export function AkisEkrani({ day }: { day: number }) {
     }
     setV({ ...v, kayit: k });
   };
-  return <AkisOynatici kayit={v.kayit} lex={v.lex} harita={v.harita} baglam={v.baglam} kaydet={(k, e) => void kaydet(k, e)} cik={() => { location.hash = `#/m1/${day}`; }} />;
+  return <AkisOynatici kayit={v.kayit} lex={v.lex} harita={v.harita} baglam={v.baglam} kaydet={(k, e, a) => void kaydet(k, e, a)} cik={() => { location.hash = `#/m1/${day}`; }} />;
 }
 
 /** önceki günlerin bitmiş temel dersleri (`ders:<id>` ilerlemesi) */
@@ -303,11 +303,12 @@ function HalkaSonu({ ozet, lex, sonraki, seans, devam, mola }: { ozet: ReturnTyp
 }
 
 /** Adımsız durak (AK-6): var olan ekrana gider; o ekran bitince (`bitti`/`ilkBitti`) akış dönüşte kendiliğinden ilerler */
-function DurakGecis({ adim, hedef, bitir }: { adim: Adim; hedef: DurakHedef | null; bitir: () => void }) {
+function DurakGecis({ adim, baslik, hedef, bitir }: { adim: Adim; baslik: string; hedef: DurakHedef | null; bitir: () => void }) {
   return (
     <section class="card stack" data-test="akis-durak-gecis" data-hedef={hedef?.href}>
       <div class="kicker icerik">Sıradaki durak</div>
-      <p style={{ margin: 0 }}>{adim.neden}</p>
+      <h2 style={{ margin: 0 }}>{baslik}</h2>
+      <p class="small muted" style={{ margin: 0 }}>{adim.neden}</p>
       <ActionBar>
         {hedef
           ? <a class="btn primary" style={{ width: "100%" }} href={hedef.href} data-test="akis-durak-basla">Başla</a>
