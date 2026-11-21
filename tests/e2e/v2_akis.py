@@ -171,7 +171,9 @@ def main():
             plan = pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
               const m = await new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get('akis:2'); t.onsuccess = () => ok(t.result.value); }); d.close();
               const a = m.plan.duraklar.flatMap((x) => x.adimlar); const say = (f) => a.filter(f).length;
-              return { halkaUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && !x.ders && x.cumle), dersUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && x.ders) }; }""")
+              return { halkaUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && !x.ders && x.cumle), dersUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && x.ders),
+                kendiniDene: (m.plan.duraklar.find((x) => x.tur === 'gunsonu')?.adimlar ?? []).filter((x) => x.ders && x.ders.id === 'gun_sinavi').length }; }""")
+            check(1 <= plan["kendiniDene"] <= 4, f"gün sonu 'kendini dene': günün sınavından {plan['kendiniDene']} madde oynandı (PM 7059008858 md. 4)")
             beklenen = {"akis-bosluk", "akis-yapboz", "akis-tanit", "akis-tablo", "akis-hatirlatma", "akis-gorev"} | ({"akis-tr-de"} if plan["halkaUret"] else set())
             check(beklenen <= govdeler, f"halka cümlesi kendi gövdesiyle oynandı, Bahçe sorusuna düşmedi (gövdeler {sorted(govdeler)}; üretim halka {plan['halkaUret']}, ders {plan['dersUret']})")
             anahtar = pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });

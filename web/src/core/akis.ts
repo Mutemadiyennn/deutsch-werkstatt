@@ -42,6 +42,8 @@ export interface Adim {
   /** dersin öğesi (K8): kelime/kalıp `teach` ya da `drills` maddesi; birleşen kalıpta bütün `teach` kimlikleri `ogeler`de */
   ders?: { id: string; oge: string; ogeler?: string[] };
 }
+/** gün sonu "kendini dene" maddeleri dersin değil günün sınavından gelir (`Adim.ders.id`) */
+export const GUN_SINAVI = "gun_sinavi";
 export type DurakTuru = "isinma" | "ses" | "halka" | "dil" | "video" | "prova" | "okuma" | "gunsonu";
 export interface Durak {
   id: string; tur: DurakTuru; seans: number; title_tr: string; tahmini_dk: number; adimlar: Adim[];
@@ -176,6 +178,20 @@ class Planlayici {
   // ---------- kapı ----------
   private K(ek: string[][] = []): Bilinen { return { kart: this.tanitilan, biten: this.g.bitenDersler, kaliplar: [...this.ogretilenKalip, ...ek] }; }
   private bilinmeyen(de: string, haric: string[] = [], ek: string[][] = []): number { return bilinmeyenler(this.g.dizin, de, this.K(ek), haric).length; }
+
+  /**
+   * Gün sonu "kendini dene" (PM 7059008858 md. 4): günün sınav maddelerinden en çok 4'ü, önce her türden biri (duy, Türkçeden
+   * Almancaya, cevap ver). Madde gün sonundaki K(t) kapısından geçmelidir (öğretilmeyen istenmez); geçen yoksa durak boş kalır.
+   */
+  private kendiniDene(gun: { day: number; gun_sinavi?: { maddeler: Drill[] } }): Adim[] {
+    const metin = (m: Drill) => (m.k === "listen_and_respond" ? m.audio_de : "accepted" in m ? m.accepted[0] : undefined) ?? "";
+    const uygun = (gun.gun_sinavi?.maddeler ?? []).filter((m) => (m.k === "listen_and_respond" || m.k === "tr_de" || m.k === "guided_response") && metin(m) && this.bilinmeyen(metin(m)) === 0);
+    const sec: Drill[] = [];
+    for (const k of ["listen_and_respond", "tr_de", "guided_response"]) { const m = uygun.find((x) => x.k === k); if (m) sec.push(m); }
+    for (const m of uygun) { if (sec.length >= 4) break; if (!sec.includes(m)) sec.push(m); }
+    return sec.slice(0, 4).map((m) => ({ id: `gunsonu:${gun.day}:${m.id}`, tur: "ders_madde" as AdimTuru, kip: KIP.ders_madde, kartlar: [], kaynak: "ders" as const, sn: 45,
+      neden: "kendini dene: bugün öğrendiklerinle", ders: { id: GUN_SINAVI, oge: m.id } }));
+  }
   private gorevGecer(de: string, haric: string[] = []): boolean { return this.bilinmeyen(de, haric) <= this.pol.gorev_bilinmeyen_max; }
   private gosterimGecer(de: string, ek: string[][] = []): boolean { return this.bilinmeyen(de, [], ek) <= this.pol.gosterim_bilinmeyen_max; }
   private cerceveMi(t: string): boolean { return kartsizMi(this.g.dizin, t); }
@@ -594,7 +610,7 @@ class Planlayici {
       if (hi < halkalar.length - 1) duraklar.push(...bekleyen.splice(0));
     });
     duraklar.push(...bekleyen.splice(0), ...Object.entries(ara).filter(([k]) => +k >= halkalar.length).flatMap(([, d]) => d));
-    const gs = this.yerlestir(gunSonuEk, "gunsonu", halkalar.at(-1)?.adimlar ?? []);
+    const gs = [...this.yerlestir(gunSonuEk, "gunsonu", halkalar.at(-1)?.adimlar ?? []), ...this.kendiniDene(gun)];
     duraklar.push({ ...sabit("gunsonu", `gunsonu:${gun.day}`, "Gün sonu", Math.max(pol.sabit_dk.gunsonu_ek, dk(gs) + pol.sabit_dk.gunsonu_ek), `m1:gun:${gun.day}`, "bugün neyi yapabiliyorsun: 4 kısa madde"), adimlar: gs });
     // son halka eski Bahçe anahtarını yazar (AK-6)
     const sonHalka = [...duraklar].reverse().find((d) => d.tur === "halka");

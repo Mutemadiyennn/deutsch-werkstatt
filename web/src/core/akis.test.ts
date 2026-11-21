@@ -9,7 +9,7 @@ import { join } from "node:path";
 import { z } from "zod";
 import { Halka, bilinmeyenler, genelAdlarAyikla, kalipOrtu, kartsizMi, kalipSecenekleri, kumeDizini, toks, YUVA, type Bilinen, type LearnerItem } from "@dw/shared";
 import { loadContent, ROOT } from "../../../content/tools/load.ts";
-import { ADIM_TURLERI, GOSTERIM, KIP, planGun, politikaHatalari, POLITIKA, type Adim, type AkisPolitikasi, type GunPlani, type PlanGirdi } from "./akis.ts";
+import { ADIM_TURLERI, GOSTERIM, GUN_SINAVI, KIP, planGun, politikaHatalari, POLITIKA, type Adim, type AkisPolitikasi, type GunPlani, type PlanGirdi } from "./akis.ts";
 
 const c = loadContent();
 const genel = genelAdlarAyikla(readFileSync(join(ROOT, "docs/v2/reviews/genel-adlar.md"), "utf8"));
@@ -280,6 +280,22 @@ describe("1. gün plan dökümü (PM 7046461673)", () => {
       const { dirname } = await import("node:path");
       mkdirSync(dirname(join(ROOT, hedef)), { recursive: true });
       writeFileSync(join(ROOT, hedef), sat.join("\n"));
+    }
+  });
+});
+
+describe("gün sonu: kendini dene (PM 7059008858 md. 4)", () => {
+  it("en çok 4 madde, günün sınavından; her biri gün sonu kapısından geçer ve türler önce birer kez", () => {
+    for (const t of TOHUMLAR.slice(0, 10)) {
+      const p = plan(t, "sifir");
+      const gs = p.duraklar.find((d) => d.tur === "gunsonu")!;
+      const kd = gs.adimlar.filter((a) => a.ders?.id === GUN_SINAVI);
+      expect(kd.length).toBe(4);  // 1. günde her türden en az bir madde gün sonu kapısından geçiyor
+      const ids = kd.map((a) => a.ders!.oge);
+      expect(new Set(ids).size).toBe(ids.length);
+      for (const id of ids) expect(gun.gun_sinavi.maddeler.some((m) => m.id === id)).toBe(true);
+      const turler = kd.map((a) => gun.gun_sinavi.maddeler.find((m) => m.id === a.ders!.oge)!.k);
+      if (turler.length >= 2) expect(new Set(turler.slice(0, Math.min(3, turler.length))).size).toBeGreaterThan(1);
     }
   });
 });

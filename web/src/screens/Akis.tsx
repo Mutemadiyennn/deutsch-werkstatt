@@ -17,7 +17,7 @@ import { review } from "../core/srs.ts";
 import { adimXpVer, bahceTamam, gunBittiYaz, soruXpVer } from "../services/ilerleme.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { useApp } from "../state.ts";
-import { akisGunu, KIP, planGun } from "../core/akis.ts";
+import { akisGunu, GUN_SINAVI, KIP, planGun } from "../core/akis.ts";
 import { akisAnahtar, yeniKayit } from "../core/akisKayit.ts";
 import { ProgressHeader } from "../ui/kit.tsx";
 import { ErrorPanel, Loading } from "../ui/components.tsx";
@@ -335,7 +335,8 @@ export function AkisEkrani({ day }: { day: number }) {
           teach: (id, oge) => { const t = temel.find((x) => x.id === id)?.teach.find((x) => x.id === oge); return t && personalizeDeep({ de: t.de, tr: t.tr, ipucu: t.exp?.ipucu_tr }, kisi); },
           // gösterimde ad ve hitap yerleşir (Ders ekranıyla aynı: personalizeDeep); plan ham metinle kurulur (yer tutucu sayılmaz)
           cumle: (de) => personalizeDeep(cumleler.get(de) ?? { de, tr: "", accepted: [de] }, kisi),
-          drill: (id, oge) => { const d = temel.find((t) => t.id === id)?.drills.find((x) => x.id === oge); return d && personalizeDeep(d, kisi); },
+          // gün sonu "kendini dene": günün sınav maddesi (PM 7059008858 md. 4)
+          drill: (id, oge) => { const d = id === GUN_SINAVI ? gun.gun_sinavi?.maddeler.find((x) => x.id === oge) : temel.find((t) => t.id === id)?.drills.find((x) => x.id === oge); return d && personalizeDeep(d, kisi); },
           // kalıbın Türkçesinde yer tutucu çıplak görünmez: {name} yuva "…", {a|b} hitaba göre (inceleme #186 P1-3)
           kalipTr: (de) => personalizeDeep((kaliplar.get(de) ?? "").replace(/\(adın\)|\{name\}/g, "…"), kisi),  // ad yuvası iki satırda da boş (Y-P2-5)
           sahne: (satirlar) => { const h = gun.halkalar.find((x) => x.sahne && x.sahne.satirlar.map((y) => y.de).join("\n") === satirlar.join("\n")); return h?.sahne && personalizeDeep(h.sahne, kisi); },
