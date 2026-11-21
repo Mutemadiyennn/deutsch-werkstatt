@@ -110,6 +110,7 @@ export interface PlanGirdi {
 }
 
 /** Akış günü mü (AK-5): `halkalar` boş değilse. Değilse planGun null döner ve çağıran eski düzene düşer. */
+const ARTIKEL_TOK = new Set(["der", "die", "das", "den", "dem", "des", "ein", "eine", "einen", "einem", "einer"]);
 export const akisGunu = (gun: Gun): gun is Gun & { halkalar: Halka[] } => Array.isArray(gun.halkalar) && gun.halkalar.length > 0;
 
 export function planGun(g: PlanGirdi): GunPlani | null {
@@ -236,7 +237,10 @@ class Planlayici {
     if (a.kartlar.some((c) => this.yeni.has(c) && !this.tanitilan.has(c))) return false;
     // cümlesinde bugünün tanıtılmamış kartı geçen adım (ders maddesi, sahne gibi kartsız adımlar dahil) bekler
     const metin = [a.cumle, ...(a.satirlar ?? [])].filter((x): x is string => !!x);
-    if (metin.some((de) => this.bugunKartiBekler(de, this.tanitilan, this.ogretilenKalip))) return false;
+    // tek sözcüklük öğe ("der Herr") kalıp örtüsüyle bilinmiş sayılmaz: AK-3 istisnası yalnız kartsız çerçeve sözcüğü için
+    // (PM-080 §4); bugünün yeni kartı soruluyorsa önce tanıtılır (1. gün öğrenci simülasyonu P1-2: a59 "der Herr" a62'den önce)
+    const tek = (de: string) => toks(de).filter((t) => !ARTIKEL_TOK.has(t)).length === 1;
+    if (metin.some((de) => this.bugunKartiBekler(de, this.tanitilan, tek(de) ? [] : this.ogretilenKalip))) return false;
     if (bekleyenKalip.size && metin.some((de) => toks(de).some((t) => bekleyenKalip.has(t)))) return false;
     if ((a.satirlar ?? []).some((s) => !this.gosterimGecer(s))) return false;
     if (!a.cumle) return true;
