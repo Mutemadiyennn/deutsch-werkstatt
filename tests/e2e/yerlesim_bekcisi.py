@@ -227,6 +227,10 @@ OZ = [
   ("B5", False, sayfa("<main><p>aaaa ·<br>bbbb</p></main>"), True),
   ("B5", False, sayfa("<main><p>aaa · bbb · ccc</p></main>"), False),
   ("B5", False, sayfa("<main><div style='display:flex;gap:6px'><span>aaa</span><span>·</span><span>bbb</span></div></main>"), False),
+  # B5 düzeltmesi (core/ayrac.ts): dar kutuda düz boşluklu ayraç satır başına düşer; bölünmez boşluklu ayraç (ayrac()) düşmez
+  ("B5", False, sayfa("<main><p style='font:16px monospace;width:8ch'>cc aaaa · bbbb</p></main>"), True),
+  ("B5", False, sayfa("<main><p style='font:16px monospace;width:8ch'>cc aaaa\u00A0·\u00A0bb</p></main>"), False),
+  ("B5", False, sayfa("<main><button style='display:flex;font:16px monospace;width:12ch;padding:0;border:0'><span>aaaa bbbb\u00A0·\u00A0<b>cccc</b> dd</span></button></main>"), False),
   ("B6", False, sayfa("<main><div style='width:2000px;height:10px'></div></main>"), True),
   ("B6", False, sayfa("<main><div style='width:100px;height:10px'></div></main>"), False),
   ("B6", False, sayfa("<main style='overflow-x:clip'><div style='width:2000px;height:10px;background:#ccc'></div></main>"), True),
@@ -268,6 +272,10 @@ def main():
                     pg.wait_for_timeout(150); simdi = pg.evaluate("(document.querySelector('main, .callscreen') || document.body).innerText")
                     if simdi == onceki: break
                     onceki = simdi
+                # giriş animasyonları (fadein/pop) bitmeden ölçülürse opaklığı 0 olan açıklamalar atlanır (inceleme #185 P1-1)
+                # yalnız sonlu animasyonlar beklenir (iskelet parıltısı gibi sonsuz döngüler hiç bitmez); en çok 2 sn
+                pg.evaluate("""() => Promise.race([new Promise((ok) => setTimeout(ok, 2000)),
+                  Promise.all(document.getAnimations().filter((a) => (a.effect?.getTiming?.().iterations ?? 1) !== Infinity).map((a) => a.finished.catch(() => null)))])""")
                 if len((onceki or "").strip()) <= 20: check(False, f"{scr}: ekran boş açıldı"); continue
                 acilan += 1
                 for k, m in pg.evaluate(KURALLAR, scr in ANA):

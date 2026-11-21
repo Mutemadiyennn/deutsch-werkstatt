@@ -5,6 +5,7 @@ import { V1_URL } from "../core/planner.ts";
 import { visibleScenarios } from "../core/season.ts";
 import { ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
 import { MevsimKarti, TekrarListesi } from "./Today.tsx";
+import { AYRAC, ayrac } from "../core/ayrac.ts";
 
 export function Learn() {
   const { index, indexError, profile } = useApp();
@@ -22,7 +23,7 @@ export function Learn() {
           <div class="kicker">Temel dersler</div>
           <ul class="list">{index.temel.map((t) => (
             <li><a href={`#/ders/${encodeURIComponent(t.id)}`} class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }} data-test="temel-ders">
-              <span class="grow"><b>{t.title_tr}</b> <span class="small muted">· {t.title_de}</span></span><span aria-hidden="true">›</span></a></li>))}</ul>
+              <span class="grow"><b>{t.title_tr}</b>{AYRAC}<span class="small muted">{t.title_de}</span></span><span aria-hidden="true">›</span></a></li>))}</ul>
         </section>
       )}
       {index.m1.length > 0 && (
@@ -30,10 +31,10 @@ export function Learn() {
           <div class="kicker">İlk Hafta</div>
           <ul class="list">{index.m1.map((g) => (
             <li><a href={`#/m1/${g.day}`} class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }} data-test={`m1-gun-${g.day}`}>
-              <span class="grow"><b>{g.day}. gün</b> <span class="small muted">· {g.title_tr}</span></span><span aria-hidden="true">›</span></a></li>))}</ul>
+              <span class="grow"><b>{g.day}. gün</b>{AYRAC}<span class="small muted">{g.title_tr}</span></span><span aria-hidden="true">›</span></a></li>))}</ul>
         </section>
       )}
-      <p class="small muted">Gerçek hayattaki {domains.length} durum, senin öncelik sırana göre. Her durumda önce kelime ve ifadeler, sonra cümle kurma, en sonunda konuşma.</p>
+      <p class="small muted">Gerçek hayattan {domains.length} durum, senin öncelik sıranla. Önce kelime, sonra cümle, en son konuşma.</p>
       <ul class="list card">
         {domains.map((d) => {
           const n = visibleScenarios(index.scenarios, Date.now()).filter((s) => s.domain === d.id).length;
@@ -41,14 +42,14 @@ export function Learn() {
           return (
             <li>
               <a href={`#/learn/${d.id}`} class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }} data-domain={d.id}>
-                <span class="grow"><b>{d.title_tr}</b> <span class="muted small">· {d.title_de}</span><br /><span class="small muted">{n ? `${n} ders` : "Dersler yakında"}{paused ? " · duraklatıldı" : ""}</span></span>
+                <span class="grow"><b>{d.title_tr}</b>{AYRAC}<span class="muted small">{d.title_de}</span><br /><span class="small muted">{ayrac(n ? `${n} ders` : "Dersler yakında", paused && "duraklatıldı")}</span></span>
                 <span aria-hidden="true">›</span>
               </a>
             </li>
           );
         })}
       </ul>
-      <p class="tiny muted">İçerik: {index.counts.lexemes} kelime · {index.counts.grammar} dilbilgisi notu · {visibleScenarios(index.scenarios, Date.now()).length} ders · sürüm {index.version}</p>
+      <p class="tiny muted">İçerik: {ayrac(`${index.counts.lexemes} kelime`, `${index.counts.grammar} dilbilgisi notu`, `${visibleScenarios(index.scenarios, Date.now()).length} ders`, `sürüm ${index.version}`)}</p>
     </div>
   );
 }
@@ -69,7 +70,7 @@ export function DomainView({ id }: { id: string }) {
           <ul class="list">
             {sc.map((s) => (
               <li><a href={`#/scenario/${encodeURIComponent(s.id)}`} class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }}>
-                <span class="grow"><b>{s.title_tr}</b><br /><span class="small muted">{s.title_de} · {s.level}</span></span>
+                <span class="grow"><b>{s.title_tr}</b><br /><span class="small muted">{ayrac(s.title_de, s.level)}</span></span>
                 {s.review !== "reviewed" && <span class="chip">deneme dersi</span>}
               </a></li>
             ))}
