@@ -24,6 +24,7 @@ def ust_cubuk(pg, ne):
 def adim_gec(pg, yanlis=False):
     """Şimdiki adımı geçer; yanlis=True ise 'Bilmiyorum' yolu (varsa). Dönen: adım türü"""
     tur = pg.get_attribute("[data-test=akis]", "data-tur")
+    if pg.locator("[data-test=akis-durak-gec]").count(): pg.click("[data-test=akis-durak-gec]"); pg.wait_for_timeout(250); return tur
     if yanlis and pg.locator("[data-test=akis-bilmiyorum]").count():
         pg.click("[data-test=akis-bilmiyorum]"); pg.click("[data-test=akis-devam]")
     elif pg.locator("[data-test=akis-bilmiyorum]").count() and tur == "order":
@@ -61,7 +62,13 @@ def main():
         k = pg.evaluate(KAYIT)
         check(k and k["ilkDurak"] == "ses" and k["halka"] == 1, f"plan kuruldu ve saklandı; ilk durak ses, sonra halka ({k})")
         check(pg.locator("[data-test=akis-durak-gecis]").count() == 1 and pg.locator("[data-tab=today]").count() == 0, "adımsız durak: tek geçiş adımı; sekme çubuğu yok")
-        adim_gec(pg)
+        hedef = pg.get_attribute("[data-test=akis-durak-gecis]", "data-hedef") or ""
+        check(hedef.startswith("#/m1/2/") and pg.locator("[data-test=akis-durak-basla]").count() == 1, f"ses durağı var olan medya ekranına gider ({hedef})")
+        # dönüş (AK-6): medya ekranı bitmiş sayılınca akış yeniden açılışta kendiliğinden ilerler
+        mid = hedef.rsplit("/", 1)[-1]
+        pg.evaluate("""async (k) => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
+          await new Promise((ok) => { const t = d.transaction('meta', 'readwrite'); t.objectStore('meta').put({ key: k, value: { bitti: new Date().toISOString() } }); t.oncomplete = ok; }); d.close(); }""", "m1:medya:" + mid.replace("%3A", ":"))
+        pg.reload(); pg.wait_for_selector("[data-test=akis]", timeout=20000)
         # yeni kelime (TARGET3b 2)
         pg.wait_for_selector("[data-test=akis-tanit]")
         check(pg.locator("[data-test=tanit-cumle] mark.tanit-vurgu").count() >= 1, "yeni kelime: cümlede kartın sözcüğü vurgulu")

@@ -7,6 +7,7 @@
  */
 import type { Gun } from "@dw/shared";
 import { medyalar } from "@dw/shared";
+import POLICY from "../policy.json" with { type: "json" };
 
 export type SeansNo = 1 | 2 | 3 | 4;
 /** `alt`: medya adımında kayıt türü (video / ses) — yol düğümünün simgesi ayrışsın (#104 PM notu 4) */
@@ -15,6 +16,8 @@ export interface GunDurum { day: number; title_tr: string; adimlar: Adim[]; bitt
 /** Cihazda saklanan ilerlemeden okunanlar (meta anahtarları ekranda doldurulur) */
 export interface Ilerleme {
   dersBitti: Set<string>; medyaBitti: Set<string>;
+  /** akış (AKIS) kaydı olan günler (`akis:<gün>`; AK-6): bayraklı günde akış başladıysa gün akışla biter */
+  akisBasladi?: Set<number>;
   /** Seans 4 konuşma provası bitti (m1:prova:<gün>, A7) */
   provaBitti?: Set<number>;
   /** Seans 4 okuma/yazma bitti (m1:okuma:<gün>, A8) */
@@ -34,7 +37,14 @@ export const bahceAnahtari = (day: number) => `m1:bahce:${day}`;
 /** Adımın etiketi: seansın adı; Seans 4'te okuma/yazma kendi adıyla */
 export const adimAdi = (a: Pick<Adim, "seans" | "tur">) => (a.tur === "okuma" ? "Okuma ve yazma" : SEANS_TR[a.seans]);
 
-export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<string, string> = {}): GunDurum {
+/** AKIS AK-6 pilot bayrağı (`policy.akis.gunler`): halkası olan bayraklı gün akışla açılır; eski düzenle başlanmış gün eski düzenle biter */
+export function akisAcik(g: Gun, ilr: Ilerleme, gunler: readonly number[] = POLICY.akis.gunler): boolean {
+  if (!gunler.includes(g.day) || !g.halkalar?.length) return false;
+  if (ilr.akisBasladi?.has(g.day)) return true;
+  return !ilr.bahceBitti.has(g.day) && !g.dersler.some((d) => ilr.dersBitti.has(d));
+}
+
+export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<string, string> = {}, akisGunler: readonly number[] = POLICY.akis.gunler): GunDurum {
   const a: Adim[] = [];
   const bahceBitti = ilr.bahceBitti.has(g.day);
   const kalan = bahceBitti ? 0 : g.yeni_kartlar.filter((id) => (!ilr.kartlar || ilr.kartlar.has(id)) && !ilr.tanitilan?.has(id)).length;
@@ -43,6 +53,8 @@ export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<strin
   for (const m of medyalar(g)) if (m.kind !== "sahne") a.push({ seans: 3, tur: "medya", alt: m.kind === "video" ? "video" : "ses", id: m.id, title_tr: m.title_tr, href: `#/m1/${g.day}/${encodeURIComponent(m.id)}`, bitti: ilr.medyaBitti.has(m.id), hazir: true });
   if (g.prova) a.push({ seans: 4, tur: "prova", id: `prova:${g.day}`, title_tr: g.prova.title_tr, href: `#/prova/${g.day}`, bitti: !!ilr.provaBitti?.has(g.day), hazir: true });
   if (g.okuma_yazma) a.push({ seans: 4, tur: "okuma", id: `okuma:${g.day}`, title_tr: g.okuma_yazma.title_tr, href: `#/okuma/${g.day}`, bitti: !!ilr.okumaBitti?.has(g.day), hazir: true });
+  // akış günü: bütün adımlar tek yoldan, akış ekranından (eski anahtarlar akış durak bitince yazılır; Yol ve Bugün aynen okur)
+  if (akisAcik(g, ilr, akisGunler)) for (const x of a) x.href = `#/akis/${g.day}`;
   // gün, hazır olan bütün adımlar bitince biter (hazırlanmakta olan adım öğrenciyi bekletmez)
   const bitti = !!ilr.gunBitti?.has(g.day) || a.filter((x) => x.hazir).every((x) => x.bitti);
   return { day: g.day, title_tr: g.title_tr, adimlar: a, bitti };
