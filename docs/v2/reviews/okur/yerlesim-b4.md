@@ -56,3 +56,20 @@ Bağlam notu (baş geliştirici): inceleme bazı metinlerin 390 genişlikte 3 sa
 - GEÇ: 3 (1, 2, 3) · GERİ: 1 (4)
 - GERİ: **4** ("yapay zekâ gerekmez" anlamı düşmüş).
 - OD-9.4 gereği bu set, 4 düzeltilip yeniden okunana kadar "reviewed" sayılamaz. 1'in 2 satıra sığdığı ekranda doğrulanmalı (104 karakter, sınıra en yakın metin).
+
+## 4. tur (PM metni)
+
+Bağlam notu (baş geliştirici): Profil → Medya rafı kartı; metin "Raf adresi" ve "Parola" alanlarının hemen üstünde küçük gri açıklama. Metin PM'den (PM #185 7055715826 md. 1). 3. turdaki biçim 104 karakterdi, 390 genişlikte 3 satır tuttu.
+
+| No | Yer | Açıklama (4. tur) | Kendi sözlerimle | Takıldığım yer | Karar | Neden / öneri |
+|---|---|---|---|---|---|---|
+| 1 | Profil, medya rafı | Sana özel fotoğraflar. Adres ve parola yalnız bu cihazda kalır. Boşsa açık görseller gelir. | Burası bana özel fotoğraflar için. Adres ve parola yalnız bu telefonda kalıyor. Boş bırakırsam bir tür "açık" resimler geliyor, ama ne olduğunu tam bilmiyorum. | **"açık görseller":** "herkese" düşünce "açık" kelimesi tek başına kalıyor. Yorgun bir akşam okuyunca aklıma önce "açık renkli resimler" geliyor, sonra "açık saçık resimler". Bu ikinci okuma kaygı da verir. "Herkese açık" olunca anlam tekti. **"Boşsa":** neyin boş olduğu yazmıyor. Ama hemen alttaki "Raf adresi" ve "Parola" kutuları bunu çözüyor, bir önceki cümle de adres ile parolayı anıyor. Geçer. **Yedek:** "yedeğe girmez" düşmüş, yerine "yalnız" gelmiş. "Yalnız bu cihazda" bana "başka yere gitmez" diyor. Yedekle telefon değiştirirsem adres ile parolayı yeniden yazmam gerektiğini buradan çıkarabiliyorum. Biraz düşünmem gerekiyor ama yanlış yola götürmüyor. Geçer. Cümleler 3, 7 ve 4 kelime, yasak sembol yok, 91 karakter. | GERİ | "açık görseller" iki türlü okunuyor: açık renkli ya da açık saçık. Öneri (93 karakter): "Sana özel fotoğraflar. Adres ve parola yalnız bu cihazda. Boşsa herkese açık görseller gelir." |
+
+### 4. tur sonucu
+
+- Okunan: 1 (Profil 1, PM metni)
+- GEÇ: 0 · GERİ: 1
+- GERİ: **1** ("herkese" düşünce "açık görseller" belirsiz kaldı).
+- OD-9.4 gereği bu metin düzeltilip yeniden okunana kadar set "reviewed" sayılamaz. Önerilen biçim 93 karakter; 2 satıra sığdığı ekranda doğrulanmalı.
+
+**ANA notu (4. tur sonrası):** okurun önerisi 390 genişlikte 3 satır ölçüldü; "gelir" düşürüldü: "Sana özel fotoğraflar. Adres ve parola yalnız bu cihazda. Boşsa herkese açık görseller." (390 ve 430'da 2 satır). Anlam okurun önerisiyle aynı ("herkese açık").
