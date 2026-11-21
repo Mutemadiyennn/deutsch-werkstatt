@@ -69,6 +69,35 @@ def main():
         check(pg.locator(".pbar h1").count() == 0 and pg.locator(".pbar a[aria-label=Geri]").count() == 1 and pg.locator(".pbar .steps").count() == 1,
               f"{h}: alan adı senaryo adıyla aynıyken çubukta başlık yok, geri ve adım göstergesi yerinde")
         pg.unroute("**/index.json"); pg.reload()
+        # yerleşim B7 (PM 7049695521 C): ifade kartının Almanca başlığı hecelenmez; en uzun sözcük sığmazsa yazı kademe kademe küçülür
+        UZUN = "Die Krankenversicherungskarte, bitte."
+        def uzun_ifade(route):
+            r = route.fetch(); d = r.json(); d["chunks"][0]["layers"]["hd"] = UZUN
+            route.fulfill(response=r, body=json.dumps(d))
+        pg.route("**/scenarios/sc_arbeit_m1-weihnachtsfeier.json", uzun_ifade)
+        for h, metin in (("#/scenario/sc:arbeit:m1-weihnachtsfeier/chunks", UZUN),):
+            pg.goto(base + "#/today"); pg.reload(); pg.wait_for_selector("[data-tab=today]")
+            pg.goto(base + h); pg.wait_for_selector("[data-test=ifade-w]"); pg.wait_for_timeout(400)
+            r = pg.evaluate("""() => { const e = document.querySelector('[data-test=ifade-w]'), s = getComputedStyle(e);
+              const satir = (rg) => { const m = []; for (const q of rg.getClientRects()) { const c = (q.top + q.bottom) / 2; if (q.width > 0.5 && !m.some((x) => Math.abs(x - c) < q.height / 2)) m.push(c); } return m.length; };
+              const t = e.firstChild, i = t.textContent.indexOf('Krankenversicherungskarte'), rg = document.createRange(); rg.setStart(t, i); rg.setEnd(t, i + 25);
+              return { metin: e.innerText, px: parseFloat(s.fontSize), hy: s.hyphens || s.webkitHyphens, sigar: e.scrollWidth <= e.clientWidth + 0.5, sozcukSatir: satir(rg) }; }""")
+            check(r["metin"] == metin and r["hy"] == "manual" and r["sigar"] and r["sozcukSatir"] == 1 and r["px"] < 31,
+                  f"{h}: uzun Almanca sözcük bölünmez, kart başlığı kademeyle küçülür ve sığar ({r})")
+        # %130 yazıda da kademe oransal: Almanca cümle Türkçe çevirisinden küçük değil (inceleme #178 P1-2)
+        pg.evaluate("document.documentElement.classList.remove('dyn'); document.documentElement.style.setProperty('--ts','1.3')"); pg.wait_for_timeout(300)
+        pg.goto(base + "#/today"); pg.goto(base + "#/scenario/sc:arbeit:m1-weihnachtsfeier/chunks"); pg.wait_for_selector("[data-test=ifade-w]"); pg.wait_for_timeout(400)
+        r = pg.evaluate("() => { const e = document.querySelector('[data-test=ifade-w]'), t = e.parentElement.querySelector('.tr'); return { de: parseFloat(getComputedStyle(e).fontSize), tr: parseFloat(getComputedStyle(t).fontSize), sigar: e.scrollWidth <= e.clientWidth + 0.5, tasma: document.documentElement.scrollWidth <= innerWidth + 1 }; }")
+        check(r["de"] >= r["tr"] and r["sigar"] and r["tasma"], f"%130 yazı: ifade kartında Almanca cümle çevirisinden küçük değil, sığıyor, yatay taşma yok ({r})")
+        pg.evaluate("document.documentElement.style.removeProperty('--ts')")
+        pg.unroute("**/scenarios/sc_arbeit_m1-weihnachtsfeier.json")
+        # gövdede < 10 harfli Almanca sözcük hecelenmez (PM 7049695521 C); karşı denetim: uzun sözcük aynı kutuda hecelenir.
+        # Karşı denetim tutmazsa (tarayıcıda Almanca heceleme sözlüğü yok) sonuç "doğrulanamadı" yazılır, kırmızı verilmez (bilinen sınır)
+        r = pg.evaluate("""() => { const kut = (m) => { const d = document.createElement('div'); d.lang = 'de'; d.style.cssText = 'width:64px;font-size:17px;overflow-wrap:normal;position:absolute;left:0;top:0'; d.textContent = m; document.body.appendChild(d);
+            const t = d.firstChild, rg = document.createRange(); rg.setStart(t, 0); rg.setEnd(t, m.length); const n = new Set([...rg.getClientRects()].map((q) => Math.round(q.top))).size; d.remove(); return n; };
+          return { kisa: kut('einfacher'), uzun: kut('Krankenversicherungskarte') }; }""")
+        if r["uzun"] > 1: check(r["kisa"] == 1, f"gövdede kısa sözcük (einfacher) hecelenmez; uzun sözcük hecelenir ({r})")
+        else: print(f"  ! gövde heceleme sınırı doğrulanamadı: bu tarayıcıda Almanca heceleme yok ({r}) — bilinen sınır")
         # çip yalnızca başlık sığmayınca alt satıra iner (üst çubuk boşuna uzamaz). Yazı tipinden bağımsız denetim: başlığın tek satırlık
         # doğal genişliği (hesaplanan yazı tipiyle ölçülür) + çip + boşluklar satıra sığıyorsa aynı satırda olmalı, sığmıyorsa alt satırda
         # (CI'daki WebKit sistem yazı tipi iPhone'dakinden geniş; "Kelime Bahçesi" orada sığmayabilir — inceleme sonrası, f337f34)

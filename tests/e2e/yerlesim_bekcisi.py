@@ -11,7 +11,7 @@ Her ekranda sekiz kural:
   B4 ana ekranlarda (Bugün, Öğren, İlerleme, Profil) açıklama (main p.muted, main p.small, [data-aciklama]) ≤ 2 satır
   B5 "·" satır başında ya da sonunda yalnız kalmaz (önceki ve sonraki görünür karakter aynı satırda)
   B6 yatay taşma yok: belge (scrollWidth ≤ innerWidth + 1) ve öğe (kutusu ekran dışına taşan öğe; overflow-x:clip altında da; yatay kaydırmalı şerit hariç)
-  B7 başlık sözcüğü (h1–h3; .de, .de-lg, [lang=de] ≥ 17 px) iki satıra bölünmez (heceleme ya da kırma; kısa çizgide kırılma serbest)
+  B7 başlık sözcüğü (h1–h3; .de, .de-lg, [lang=de] ≥ kök yazının 1,15 katı) iki satıra bölünmez (heceleme ya da kırma; kısa çizgide kırılma serbest)
   B8 görüş alanında aynı anda en çok bir birincil düğme (açık pencere/alt sayfa varsa yalnız onun içi) — yalnız ilk konumda (scrollY = 0)
 Kip (PM 7047456551): main'de ilk ölçümde ihlal 5'ten çoksa bekçi RAPOR kipinde girer (ihlal listesi yazılır, çıkış 0);
 düzeltmeler ≤ 5'lik PR'larla gelir, sayı sıfıra inince KIP = "kirmizi" yapılır. İstisna dosyası yoktur.
@@ -183,8 +183,8 @@ KURALLAR = r"""(ana) => {
   // B7 başlık sözcüğü bölünmez
   const b7 = new Set();
   for (const h of document.querySelectorAll('h1, h2, h3, .de, .de-lg, [lang=de]')) {
-    // h1–h3 her boyutta; .de/.de-lg/[lang=de] yalnız başlık boyunda (≥ 17 px)
-    if (!gorunur(h) || (!/^H[1-3]$/.test(h.tagName) && parseFloat(getComputedStyle(h).fontSize) < 17)) continue;
+    // h1–h3 her boyutta; .de/.de-lg/[lang=de] yalnız başlık boyunda: kök yazının ≥ 1,15 katı (PM 7049695521 C; 17 px gövde başlık değil)
+    if (!gorunur(h) || (!/^H[1-3]$/.test(h.tagName) && parseFloat(getComputedStyle(h).fontSize) < 1.15 * parseFloat(getComputedStyle(document.documentElement).fontSize))) continue;
     const w3 = document.createTreeWalker(h, NodeFilter.SHOW_TEXT);
     while (w3.nextNode()) {
       // sözcük: harf/rakam/yumuşak tire; kısa çizgi (Schleswig-Holstein) sözcük sınırıdır, orada kırılma serbest
@@ -234,6 +234,7 @@ OZ = [
   ("B7", False, sayfa("<main><h1 lang=de style='width:120px;font-size:28px;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:anywhere'>Krankenversicherungskarte</h1></main>"), True),
   ("B7", False, sayfa("<main><h1 lang=de style='font-size:28px'>Die Karte</h1></main>"), False),
   ("B7", False, sayfa("<main><h1 lang=de style='width:150px;font-size:24px'>Schleswig-Holstein</h1></main>"), False),
+  ("B7", False, sayfa("<main><div class=de lang=de style='width:120px;font-size:17px'>Können Sie das bitte einfacher sagen?</div></main>"), False),
   ("B8", False, sayfa("<main><button class='btn primary'>Bir</button><button class='btn primary' style='margin-top:12px'>İki</button></main>"), True),
   ("B8", False, sayfa("<main><button class='btn primary'>Bir</button><button class=btn style='margin-top:12px'>İki</button></main>"), False),
   ("B8", False, sayfa("<main><button class='btn primary'>Arka</button><div role=dialog><button class='btn primary'>Tamam</button></div></main>"), False),
