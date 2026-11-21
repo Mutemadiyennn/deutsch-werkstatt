@@ -49,7 +49,26 @@ Toplam 15–20 dakika sürer. Hiçbir yerde kredi kartı ya da ücretli plan ger
 22. **Actions → "v2 — web yayını (GitHub Pages /v2/)" → Run workflow.**
 23. Birkaç dakika sonra uygulamada **Profil → Sunucu bağlantısını kontrol et** → "Sunucu çalışıyor … Gemini anahtarı: var · izin listesi: var" görmelisin.
 
+## G. Kalıcı yol: Cloudflare Workers Builds (Actions yerine; PM-081 C)
+GitHub Actions bu depoda kapalı olduğu için A–F'deki "Run workflow" adımları artık çalışmaz. Worker, Cloudflare'in kendi Git bağlantısıyla derlenir. Ücretsiz planda ayda 3.000 derleme dakikası; aşılırsa derleme durur, ücret kesilmez. Anahtarlar Cloudflare'de kalır; motor oturumları görmez.
+24. Cloudflare panelinde **Workers & Pages** → var olan **deutsch-werkstatt-api** → **Settings** → **Build** → **Connect** → GitHub'ı bağla, depo `Mutemadiyennn/deutsch-werkstatt`, dal `main`.
+25. **Build configuration:**
+    - **Root directory:** boş bırak (deponun kökü). Worker `worker/` klasöründe, ama ortak paket (`packages/shared`) kökteki çalışma alanından kurulur. Kök `worker/` olursa kurulum düşer.
+    - **Build command:** `npm ci && npm run cf:hazirla -w worker`
+    - **Deploy command:** `npx wrangler deploy --config worker/wrangler.toml`
+26. **Build variables:** **Add** → Name `QUOTA_KV_ID`, Value: KV ad alanının kimliği.
+    - Kimliği bulmak için: **Storage & Databases → KV → QUOTA** → Namespace ID.
+    - Değişken yoksa derleme bilerek durur; kotasız Worker yayına girmez.
+27. **Gizli değerler doğrudan Cloudflare panelinden girilir** (GitHub secret'ları artık kullanılmaz). Worker → **Settings → Variables and Secrets** → **Add** → tür **Secret**:
+    - `ALLOWED_UIDS`: Profil → Hesap kimliği (virgülle birden çok);
+    - `RAF_FAIL_CLOSED`: kapalı medya rafının "erişemezsem kapat" anahtarı; değer `1`;
+    - gerekirse `PEXELS_KEY`.
+28. **Save and deploy.** Bundan sonra `main`'e her birleşmede Cloudflare kendisi derler. Derleme günlüğü panelde **Deployments** altında görünür.
+29. Uygulamada **Profil → Sunucu bağlantısını kontrol et** → "Sunucu çalışıyor".
+
+Bağlantı kurulana kadar Worker'a dokunan PR birleşmez (PM-081 C).
+
 ## Güvenlik ve maliyet
 - Workers'ın ücretsiz planında sınır aşılırsa ücret kesilmez; işlem hata verir ve uygulama yapay zekâsız devam eder.
-- Anahtarları değiştirmek: GitHub'da secret'ı güncelle → adım 19'u tekrarla.
-- Erişimi kapatmak: Cloudflare'de token'ı sil (My Profile → API Tokens) ya da `ALLOWED_UIDS`'i boşalt ve adım 19'u tekrarla.
+- Anahtarları değiştirmek: Cloudflare panelinde secret'ı güncelle (adım 27); Worker bir sonraki derlemeyle ya da panelden **Redeploy** ile alır.
+- Erişimi kapatmak: Cloudflare panelinde `ALLOWED_UIDS`'i boşalt (adım 27) ya da Worker'ı devre dışı bırak.
