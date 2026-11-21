@@ -49,7 +49,7 @@ export interface AkisOynaticiProps {
 export interface DurakHedef { href: string; /** hepsi bitince durak biter (ses durağında günün bütün sesleri) */ anahtarlar: string[] }
 
 /** Planın cümlesinden ekranda çözülenler: Türkçe + kabul (halka görev cümleleri → kart örnekleri), kalıbın Türkçesi, K10 ipucu */
-export interface AkisBaglam { adGerekli: (a: Adim) => boolean; tablo: (dersId: string) => { baslik_tr: string; sutunlar: string[]; satirlar: string[][] } | undefined; kalipOrnek: (kalip: string, d: Durak) => CumleBilgi[]; yakin: (adimId: string, d: Durak) => Yakinlik; teach: (dersId: string, oge: string) => { de: string; tr: string; ipucu?: string } | undefined; hedef: (d: Durak) => DurakHedef | null; cumle: (de: string) => CumleBilgi; sahne: (satirlar: string[]) => SahneVeri | undefined; isaretli: (de: string, adimId: string) => { sozcuk: string; tr?: string }[]; vurgu: (kart: string) => string[]; drill: (dersId: string, oge: string) => Drill | undefined; kalipTr: (de: string) => string; ipucu: (sozcuk: string) => string | undefined; gordu: (sozcukler: string[]) => void }
+export interface AkisBaglam { gorev: (dersId: string) => string | undefined; hatirlatma: (dersId: string, adimId: string) => { de: string; tr: string }[]; adGerekli: (a: Adim) => boolean; tablo: (dersId: string) => { baslik_tr: string; sutunlar: string[]; satirlar: string[][] } | undefined; kalipOrnek: (kalip: string, d: Durak, adimId: string) => CumleBilgi[]; yakin: (adimId: string, d: Durak) => Yakinlik; teach: (dersId: string, oge: string) => { de: string; tr: string; ipucu?: string } | undefined; hedef: (d: Durak) => DurakHedef | null; cumle: (de: string) => CumleBilgi; sahne: (satirlar: string[]) => SahneVeri | undefined; isaretli: (de: string, adimId: string) => { sozcuk: string; tr?: string }[]; vurgu: (kart: string) => string[]; drill: (dersId: string, oge: string) => Drill | undefined; kalipTr: (de: string) => string; ipucu: (sozcuk: string) => string | undefined; gordu: (sozcukler: string[]) => void }
 
 export function AkisOynatici({ kayit, lex, harita, baglam, kaydet, cik }: AkisOynaticiProps) {
   const [neden, setNeden] = useState(false);
@@ -96,7 +96,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
   useEffect(() => { if (adli) bitir([], true); }, [adim.id]);
   if (adli) return null;
   // adımsız durak (ses, video, prova, okuma): var olan ekrana gider, dönüşte akış ilerler (AK-6)
-  if (durakGecisi(adim)) return <DurakGecis adim={adim} baslik={durakOf(adim).title_tr} dk={durakOf(adim).tahmini_dk} hedef={baglam.hedef(durakOf(adim))} bitir={() => bitir([], true)} />;
+  if (durakGecisi(adim)) return <DurakGecis adim={adim} tur={durakOf(adim).tur} baslik={durakOf(adim).title_tr} dk={durakOf(adim).tahmini_dk} hedef={baglam.hedef(durakOf(adim))} bitir={() => bitir([], true)} />;
   if (adim.tur === "eslestir" && kartlar.length >= 4) return <Eslestir kartlar={kartlar} tohum={tohum} onBitti={bitir} />;
   // görsel gelmezse (çevrimdışı, önbellekte yok) resimden seç o adımda dinle-anlam sorusuna düşer (tek doğru cevap; inceleme #183 P1-2)
   if (adim.tur === "resimden_sec" && soru && !gorselYok) return <ResimSec soru={soru} lex={lex} harita={harita} onYok={() => setGorselYok(true)} onBitti={(ok) => bitir([{ kart: soru.kart, dogru: ok }])} />;
@@ -127,6 +127,28 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
         <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-devam" onClick={() => bitir([])}>Anladım</button></ActionBar>
       </section>);
   }
+  // dersin görevi: gerçek hayatta yapılacak iş (değerlendirme yok)
+  if (adim.ders?.oge === "gorev") {
+    const g = baglam.gorev(adim.ders.id);
+    if (g) return (
+      <section class="stack fade" data-test="akis-gorev">
+        <div class="kicker icerik" style={{ color: "var(--accent)" }}>Bugünün görevi</div>
+        <h2 style={{ margin: 0 }}>{g}</h2>
+        <p class="small muted" style={{ margin: 0 }}>Bunu bugün gerçek hayatta bir kez dene.</p>
+        <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-devam" onClick={() => bitir([])}>Tamam</button></ActionBar>
+      </section>);
+  }
+  // dil noktasının ikinci parçasına giriş: ilk parçada görülenlerin kısa hatırlatması
+  if (adim.ders?.oge === "hatirlatma") {
+    const h = baglam.hatirlatma(adim.ders.id, adim.id);
+    return (
+      <section class="stack fade" data-test="akis-hatirlatma">
+        <div class="kicker icerik" style={{ color: "var(--accent)" }}>Hatırla</div>
+        <h2 style={{ margin: 0 }}>İlk parçada bunları gördün</h2>
+        <section class="card stack" style={{ gap: 6 }}>{h.map((x) => <div><b lang="de">{x.de}</b><br /><span class="small muted">{x.tr}</span></div>)}</section>
+        <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-devam" onClick={() => bitir([])}>Devam et</button></ActionBar>
+      </section>);
+  }
   if (adim.tur === "tablo" || adim.tur === "hatirlat") {
     const t = adim.ders ? baglam.teach(adim.ders.id, adim.ders.oge) : undefined;
     return (
@@ -139,7 +161,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
   }
   if (adim.tur === "kalip" && adim.cumle) {
     const parcalar = adim.cumle.split(/\s[–—]\s/);
-    return <KalipAdimi key={adim.id} kalip={parcalar.map((de) => ({ de, tr: baglam.kalipTr(de) }))} ornekler={baglam.kalipOrnek(adim.cumle, durakOf(adim))} onBitti={() => hepsi(true)} />;
+    return <KalipAdimi key={adim.id} kalip={parcalar.map((de) => ({ de, tr: baglam.kalipTr(de) }))} ornekler={baglam.kalipOrnek(adim.cumle, durakOf(adim), adim.id)} onBitti={() => hepsi(true)} />;
   }
   // mini sahne (TARGET3b 5, K6)
   if (adim.tur === "sahne" && adim.satirlar) { const sv = baglam.sahne(adim.satirlar); if (sv) return <SahneAdimi key={adim.id} sahne={sv} onBitti={hepsi} />; }
@@ -241,9 +263,16 @@ export function AkisEkrani({ day }: { day: number }) {
         const baglam: AkisBaglam = {
           // ad girilmemişse adlı madde geçilir (tanıtım ve kalıp hariç: kalıpta {name} yuva olarak çizilir; D-122, PM 7055715440 md. 3)
           adGerekli: (a) => adsiz && a.tur !== "kalip" && a.tur !== "tanit" && [a.cumle ?? "", ...(a.satirlar ?? []), a.ders ? JSON.stringify(hamDrill(a.ders.id, a.ders.oge) ?? "") : ""].some((x) => x.includes("{name}")),
+          gorev: (id) => { const t = temel.find((x) => x.id === id)?.mission?.task_tr; return t && personalizeDeep(t, kisi); },
+          // bu adımdan önce akışta tanıtılan, bu dersin öğretim öğeleri (en çok 4)
+          hatirlatma: (id, adimId) => {
+            const once = new Set(sira.slice(0, Math.max(0, sira.findIndex((a) => a.id === adimId))).filter((a) => a.ders?.id === id).flatMap((a) => [a.ders!.oge, ...(a.ders!.ogeler ?? [])]));
+            const t = temel.find((x) => x.id === id);
+            return (t?.teach ?? []).filter((x) => once.has(x.id) && !x.de.includes("{name}")).slice(0, 4).map((x) => personalizeDeep({ de: x.de, tr: x.tr }, kisi));
+          },
           tablo: (id) => { const t = temel.find((x) => x.id === id)?.table; return t && personalizeDeep(t, kisi); },
           // kalıbın altında bu halkanın görev cümlelerinden kalıbı taşıyan 1–2 örnek (PM 7055715440 md. 2); yuvaya giren sözcük vurgulu
-          kalipOrnek: (kalip, d) => {
+          kalipOrnek: (kalip, d, adimId) => {
             const parcalar = kalip.split(/\s[–—]\s/).map((x) => kalipToks(x));
             const durakCumle = new Set(d.adimlar.map((a) => a.cumle).filter((x): x is string => !!x));
             // önce halka görev cümleleri, yoksa planın kendi (kapıdan geçmiş) cümleleri — Türkçesi bilinenler
@@ -251,7 +280,9 @@ export function AkisEkrani({ day }: { day: number }) {
             const tekil = new Map([...gun.halkalar.flatMap((h) => h.gorev_cumleleri).map((g) => ({ de: g.de, tr: g.tr })), ...planCumle.map((g) => ({ de: g.de, tr: g.tr }))].map((g) => [g.de, g]));
             // kalıbın sabit sözcüklerinin hepsi cümlede geçiyorsa örnek; sıra şart değil (devrik sıra kalıbın konusu olabilir: "Im Frühling habe ich …")
             const sirali = (de: string, kp: string[]) => { const w = new Set(toks(de)); const sb = kp.filter((x) => x !== YUVA); return sb.length > 0 && sb.every((t) => w.has(t)); };
-            const aday = [...tekil.values()].filter((g) => !g.de.includes("{name}") || !adsiz)
+            // örnek o adımda bilinenlerle kurulmuş olmalı: bu kalıp dahil K(t) dışında sözcük 0 (inceleme #186 P1-2)
+            const kNow = { kart: kartlarOnce(adimId), biten: bitenD, kaliplar: [...sira.slice(0, Math.max(0, sira.findIndex((a) => a.id === adimId)) + 1).filter((a) => a.tur === "kalip" && a.cumle).flatMap((a) => kalipSecenekleri(a.cumle))] };
+            const aday = [...tekil.values()].filter((g) => !g.de.includes("{name}") && bilinmeyenler(dizin, g.de, kNow).length === 0)
               .filter((g) => parcalar.some((kp) => sirali(g.de, kp)) && !parcalar.some((kp) => kp.every((t) => t !== YUVA) && toks(g.de).join(" ") === kp.join(" ")))
               .sort((a, b) => Number(durakCumle.has(b.de)) - Number(durakCumle.has(a.de)));
             const sabit = new Set(parcalar.flat().filter((t) => t !== YUVA));
@@ -282,7 +313,8 @@ export function AkisEkrani({ day }: { day: number }) {
           // gösterimde ad ve hitap yerleşir (Ders ekranıyla aynı: personalizeDeep); plan ham metinle kurulur (yer tutucu sayılmaz)
           cumle: (de) => personalizeDeep(cumleler.get(de) ?? { de, tr: "", accepted: [de] }, kisi),
           drill: (id, oge) => { const d = temel.find((t) => t.id === id)?.drills.find((x) => x.id === oge); return d && personalizeDeep(d, kisi); },
-          kalipTr: (de) => kaliplar.get(de) ?? "",
+          // kalıbın Türkçesinde yer tutucu çıplak görünmez: {name} yuva "…", {a|b} hitaba göre (inceleme #186 P1-3)
+          kalipTr: (de) => personalizeDeep(kaliplar.get(de) ?? "", kisi).replace(/\(adın\)|\{name\}/g, "…"),
           sahne: (satirlar) => { const h = gun.halkalar.find((x) => x.sahne && x.sahne.satirlar.map((y) => y.de).join("\n") === satirlar.join("\n")); return h?.sahne && personalizeDeep(h.sahne, kisi); },
           vurgu: (kart) => [...(dizin.yuzey.get(kart) ?? [])],
           isaretli: (de, adimId) => {
@@ -369,13 +401,20 @@ function HalkaSonu({ ozet, lex, sonraki, seans, devam, mola }: { ozet: ReturnTyp
 /** "önce duy: sesleri ayırt et" → "Önce duy: sesleri ayırt et." */
 const cumleYap = (t: string) => { const x = t.trim(); return x ? x[0]!.toLocaleUpperCase("tr") + x.slice(1) + (/[.!?]$/.test(x) ? "" : ".") : ""; };
 
-function DurakGecis({ adim, baslik, dk, hedef, bitir }: { adim: Adim; baslik: string; dk: number; hedef: DurakHedef | null; bitir: () => void }) {
+/** durak girişinin öğrenciye dönük tek cümlesi (planlayıcının iç notu değil; PM 7055715440 md. 4, inceleme #186 P1-4) */
+const DURAK_CUMLE: Record<string, string> = {
+  ses: "Bugünün telefon kaydını ve sesli mesajlarını dinleyeceksin.", video: "Günün kısa videosunu izleyeceksin.",
+  prova: "Bugünkü kelimelerle kısa bir telefon konuşması yapacaksın.", okuma: "Kısa bir metin okuyup birkaç cümle yazacaksın.",
+  dil: "Bugünün dil noktasını göreceksin.", gunsonu: "Günü kısa bir sınamayla bitireceksin."
+};
+
+function DurakGecis({ adim, tur, baslik, dk, hedef, bitir }: { adim: Adim; tur: string; baslik: string; dk: number; hedef: DurakHedef | null; bitir: () => void }) {
   return (
     <section class="card stack" data-test="akis-durak-gecis" data-hedef={hedef?.href}>
       <div class="kicker icerik">Sıradaki durak</div>
       <h2 style={{ margin: 0 }}>{baslik}</h2>
       {/* PM 7055715440 md. 4: tek cümle (büyük harfle başlar, noktayla biter) ve yaklaşık süre; iç not değil */}
-      <p class="small muted" style={{ margin: 0 }} data-test="durak-cumle">{cumleYap(adim.neden)} Yaklaşık {Math.max(1, Math.round(dk))} dakika.</p>
+      <p class="small muted" style={{ margin: 0 }} data-test="durak-cumle">{DURAK_CUMLE[tur] ?? cumleYap(adim.neden)} Yaklaşık {Math.max(1, Math.round(dk))} dakika.</p>
       <ActionBar>
         {hedef
           ? <a class="btn primary" style={{ width: "100%" }} href={hedef.href} data-test="akis-durak-basla">Başla</a>

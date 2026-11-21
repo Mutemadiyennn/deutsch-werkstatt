@@ -763,7 +763,8 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 .akis-cubuk > i { display: block; height: 100%; border-radius: 999px; background: var(--accent); transition: width var(--t); }
 /* md. 6: akışta Bahçe ve ders soruları da yeni dilde — düz yazılı mavi etiket, kart sarmalı yok */
 .akis-soru .kicker { text-transform: none; letter-spacing: 0.02em; color: var(--accent); }
-.akis-soru section.card { background: none; box-shadow: none; padding: 0; }
-.akis-tablo-t { border-collapse: collapse; width: 100%; font-size: 1rem; }
+.akis-soru section.card { background: none; box-shadow: none; border: 0; padding: 0; }
+.akis-tablo-t { border-collapse: collapse; width: 100%; font-size: 1rem; overflow-wrap: normal; hyphens: manual; }
+.akis-tablo-t th, .akis-tablo-t td { white-space: nowrap; }
 .akis-tablo-t th, .akis-tablo-t td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
 .akis-tablo-t th { color: var(--muted); font-weight: 700; font-size: 0.85rem; }

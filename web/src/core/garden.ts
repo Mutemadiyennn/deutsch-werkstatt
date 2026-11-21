@@ -318,7 +318,9 @@ export function meaningOptions(l: Lexeme, all: Lexeme[], rng: () => number = Mat
   const yakinSayi = pick.length;
   // uzak: yakın ≥2 ise en çok 1 (toplam 3); tanıdık kart önce
   const uzak = uygun.filter((x) => derece(x) === 0).sort((a, b) => Number(!!y.bilinen?.has(b.id)) - Number(!!y.bilinen?.has(a.id)) || uzaklik(a) - uzaklik(b)).slice(0, 12);
+  // yalniz: yakın çeldirici hiç yoksa tek şıklı soru olmasın; bilinen öğrenci kartlarından (tanıdık) uzak çeldiriciyle en az iki şık (inceleme #186 P1-1)
   if (!y.yalniz) al(uzak, yakinSayi >= 2 ? Math.min(3, yakinSayi + 1) : 3);
+  else if (!pick.length) al(uzak.filter((x) => y.bilinen?.has(x.id)).length ? uzak.filter((x) => y.bilinen?.has(x.id)) : uzak, 2);
   const opts = [...pick];
   const ans = Math.floor(rng() * (opts.length + 1)) % (opts.length + 1);
   opts.splice(ans, 0, l.tr);

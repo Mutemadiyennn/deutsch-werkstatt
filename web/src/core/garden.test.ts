@@ -353,4 +353,11 @@ describe("anlam çeldiricileri, akış (PM 7055715440 md. 5)", () => {
     expect(meaningOptions(jan, [jan, feb, mar, feu, buch], () => 0.3, { tur: new Set(["lx:Februar"]) }).opts).toHaveLength(4);
   });
 });
+describe("akış çeldiricisi, yakın yoksa (inceleme #186 P1-1)", () => {
+  const L3 = (id: string, de: string, tr: string) => Lexeme.parse({ id, de, tr, pos: "noun", art: "der" });
+  it("yakın çeldirici yoksa tek şık değil: en az iki şık", () => {
+    const a = L3("lx:A", "Arzt", "doktor"), b = L3("lx:B", "Brot", "ekmek"), c = L3("lx:C", "Bus", "otobüs");
+    expect(meaningOptions(a, [a, b, c], () => 0.1, { tur: new Set(), bilinen: new Set(), yalniz: true }).opts.length).toBeGreaterThanOrEqual(2);
+  });
+});
 
