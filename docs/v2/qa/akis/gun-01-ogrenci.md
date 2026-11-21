@@ -155,3 +155,10 @@ Yani bu bulgu fikstürden kaynaklanmıyor. Ayrıca ses 1'in 3 anlama sorusu ve s
 python3 tests/e2e/ogrenci_akis.py --tohum ogrenci-gun1 --port 4317 --out /tmp/ogrenci_akis
 # çıktı: kayit.json (ekran ekran: gereken sözcükler, eksik, cevap), ozet.json, bilinen.json, ekranlar.txt (her ekranın metni)
 ```
+
+## Ek: baş commit koşusu (ANA, 21.11 — PR #193 inceleme 1. tur P1-3)
+`v2/akis-bayrak` `79be188` + e2e fikstürlü paket (1. gün gerçek halkalar ve günün sınavıyla), WebKit iPhone 15, `python3 tests/e2e/ogrenci_akis.py --tohum ogrenci-gun1 --port 4317`.
+- Öğretilmeden istenen: **kesin 0**, sınırda 0 (önceki koşu 4: ses durağındaki dikte ve "Sen ne derdin?"; akış günü K(t) süzgeci `dikteSuz`).
+- Takılan adım 0 · reddedilen doğru cevap 0 · sayfa hatası 0.
+- Seans (ekran tahmini / plan `adim_sn`): 25,3 / 23,9 · 26,4 / 19,1 · 25,5 / 28,7 · 12,2 / 10,5 dk.
+- Açık: "der Herr" anlamı tanıtımından önce (P1-2) — bkz. ilk koşu.
