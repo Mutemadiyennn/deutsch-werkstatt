@@ -26,7 +26,7 @@ import { Eslestir } from "../ui/soru/Eslestir.tsx";
 import { ActionBar } from "../ui/kit.tsx";
 import { Question } from "../ui/soru/Soru.tsx";
 import { DrillView } from "../ui/drill.tsx";
-import { BoslukAdimi, KalipAdimi, TanitAdimi, UretAdimi, YapbozAdimi, type CumleBilgi } from "../ui/soru/AkisAdim.tsx";
+import { BoslukAdimi, KalipAdimi, SahneAdimi, TanitAdimi, UretAdimi, YapbozAdimi, type CumleBilgi, type SahneVeri } from "../ui/soru/AkisAdim.tsx";
 import type { QType } from "../core/garden.ts";
 
 /** Bahçe soru bileşeninin karşıladığı tek kartlı adım türleri */
@@ -45,7 +45,7 @@ export interface AkisOynaticiProps {
 }
 
 /** Planın cümlesinden ekranda çözülenler: Türkçe + kabul (halka görev cümleleri → kart örnekleri), kalıbın Türkçesi, K10 ipucu */
-export interface AkisBaglam { cumle: (de: string) => CumleBilgi; isaretli: (de: string, adimId: string) => { sozcuk: string; tr?: string }[]; vurgu: (kart: string) => string[]; drill: (dersId: string, oge: string) => Drill | undefined; kalipTr: (de: string) => string; ipucu: (sozcuk: string) => string | undefined; gordu: (sozcukler: string[]) => void }
+export interface AkisBaglam { cumle: (de: string) => CumleBilgi; sahne: (satirlar: string[]) => SahneVeri | undefined; isaretli: (de: string, adimId: string) => { sozcuk: string; tr?: string }[]; vurgu: (kart: string) => string[]; drill: (dersId: string, oge: string) => Drill | undefined; kalipTr: (de: string) => string; ipucu: (sozcuk: string) => string | undefined; gordu: (sozcukler: string[]) => void }
 
 export function AkisOynatici({ kayit, lex, harita, baglam, kaydet, cik }: AkisOynaticiProps) {
   const [neden, setNeden] = useState(false);
@@ -103,6 +103,8 @@ function AdimGovdesi({ adim, lex, harita, baglam, tohum, bitir }: { adim: Adim; 
     const parcalar = adim.cumle.split(/\s[–—]\s/);
     return <KalipAdimi key={adim.id} kalip={parcalar.map((de) => ({ de, tr: baglam.kalipTr(de) }))} ornekler={[]} onBitti={() => hepsi(true)} />;
   }
+  // mini sahne (TARGET3b 5, K6)
+  if (adim.tur === "sahne" && adim.satirlar) { const sv = baglam.sahne(adim.satirlar); if (sv) return <SahneAdimi key={adim.id} sahne={sv} onBitti={hepsi} />; }
   // yeni kelime (TARGET3b 2): planın seçtiği cümleyle; cümlesiz tanıtımda Bahçe'nin tanıtımı
   if (adim.tur === "tanit" && kartlar[0] && adim.cumle && baglam.cumle(adim.cumle).tr) {
     const l0 = kartlar[0];
@@ -175,6 +177,7 @@ export function AkisEkrani({ day }: { day: number }) {
           cumle: (de) => personalizeDeep(cumleler.get(de) ?? { de, tr: "", accepted: [de] }, kisi),
           drill: (id, oge) => { const d = temel.find((t) => t.id === id)?.drills.find((x) => x.id === oge); return d && personalizeDeep(d, kisi); },
           kalipTr: (de) => kaliplar.get(de) ?? "",
+          sahne: (satirlar) => { const h = gun.halkalar.find((x) => x.sahne && x.sahne.satirlar.map((y) => y.de).join("\n") === satirlar.join("\n")); return h?.sahne && personalizeDeep(h.sahne, kisi); },
           vurgu: (kart) => [...(dizin.yuzey.get(kart) ?? [])],
           isaretli: (de, adimId) => {
             const i = sira.findIndex((a) => a.id === adimId); const once = i < 0 ? sira : sira.slice(0, i + 1);

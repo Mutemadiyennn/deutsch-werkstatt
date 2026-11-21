@@ -7,7 +7,7 @@ import { useMemo, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
 import { ruleVerdict, type Verdict } from "../../core/answer.ts";
 import { tohumluRng } from "../../core/halkaTur.ts";
-import { speak } from "../../services/speech.ts";
+import { speak, speakDizi } from "../../services/speech.ts";
 import { haptic } from "../../services/haptics.ts";
 import { ActionBar, AnswerField, FeedbackBand, ListenButton, MicButton } from "../kit.tsx";
 
@@ -165,6 +165,51 @@ export function TanitAdimi({ bilgi, kelime, tr, vurgu, isaretli, onBitti }: { bi
       </section>
       {isaretli.length > 0 && <p class="tiny muted" style={{ margin: 0 }}>Altı noktalı kelimeyi henüz öğrenmedin. Dokununca Türkçesini görürsün; sana sorulmaz.</p>}
       <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-devam" onClick={onBitti}>Anladım</button></ActionBar>
+    </section>
+  );
+}
+
+export interface SahneVeri { ortam_tr?: string; satirlar: { r: string; de: string; tr: string }[]; soru: { q_tr: string; opts: string[]; ans: number } }
+
+/** Mini sahne (TARGET3b 5, K6): önce ses (karakter sesleriyle), metin sonra açılır; tek anlama sorusu, seçilince "Kontrol et" */
+export function SahneAdimi({ sahne, onBitti }: { sahne: SahneVeri; onBitti: (dogru: boolean) => void }) {
+  const [dinledi, setDinledi] = useState(false);
+  const [calisiyor, setCalisiyor] = useState(false);
+  const [metin, setMetin] = useState(false);
+  const [secim, setSecim] = useState<number | null>(null);
+  const [bitti, setBitti] = useState(false);
+  const kimler = sahne.satirlar.map((s) => s.r);
+  const dinle = async () => { setCalisiyor(true); try { await speakDizi(sahne.satirlar.map((s) => ({ de: s.de, kim: s.r })), "normal", 400); } finally { setCalisiyor(false); setDinledi(true); } };
+  const ok = secim === sahne.soru.ans;
+  return (
+    <section class="stack fade" data-test="akis-sahne" data-dinledi={dinledi ? "1" : "0"}>
+      {sahne.ortam_tr && <p class="small" style={{ margin: 0 }} data-test="sahne-ortam">{sahne.ortam_tr} Önce dinle, sonra oku.</p>}
+      <div class="row" style={{ justifyContent: "center", gap: 12 }}>
+        <ListenButton text={sahne.satirlar.map((s) => s.de).join(" ")} label="Sahneyi dinle" slowToggle={false} />
+        <button class="btn sm" data-test="sahne-dinle" disabled={calisiyor} onClick={() => void dinle()}>{calisiyor ? "Dinleniyor…" : dinledi ? "Yeniden dinle" : "Sesleriyle dinle"}</button>
+      </div>
+      {(dinledi || metin) ? (
+        <section class="card stack" style={{ gap: 8 }} data-test="sahne-metin">
+          {sahne.satirlar.map((s) => (
+            <div class="row" style={{ flexWrap: "nowrap", gap: 8, alignItems: "flex-start" }}>
+              <span class="grow"><span class="tiny muted">{s.r}</span><br /><b lang="de">{s.de}</b><br /><span class="small muted">{s.tr}</span></span>
+              <ListenButton text={s.de} small slowToggle={false} kim={s.r} sahne={kimler} />
+            </div>))}
+        </section>
+      ) : <div style={{ textAlign: "center" }}><button class="ikincil-eylem" style={{ alignSelf: "center" }} data-test="sahne-metni-ac" onClick={() => setMetin(true)}>Metni göster</button></div>}
+      <section class="stack" style={{ gap: 8 }} data-test="sahne-soru">
+        <div class="kicker icerik" style={{ color: "var(--accent)" }}>Sahne bitti. Anladın mı?</div>
+        <h2 style={{ margin: 0 }}>{sahne.soru.q_tr}</h2>
+        <div role="group">{sahne.soru.opts.map((o, k) => (
+          <button class={`opt${!bitti ? (secim === k ? " sel" : "") : k === sahne.soru.ans ? " right" : k === secim ? " wrong" : ""}`} disabled={bitti} data-opt={k}
+            {...(import.meta.env.MODE === "e2e" ? { "data-right": k === sahne.soru.ans ? "1" : undefined } : {})} onClick={() => setSecim(k)}>{o}</button>))}</div>
+      </section>
+      {bitti && <FeedbackBand kind={ok ? "ok" : "bad"} title={ok ? "Doğru" : `Doğrusu: ${sahne.soru.opts[sahne.soru.ans]}`} />}
+      <ActionBar>
+        {!bitti
+          ? <button class="btn primary" style={{ width: "100%" }} data-test="sahne-kontrol" disabled={secim === null} onClick={() => { setBitti(true); setMetin(true); haptic(ok ? "success" : "error"); }}>Kontrol et</button>
+          : <button class="btn primary" style={{ width: "100%" }} data-test="akis-devam" onClick={() => onBitti(ok)}>Devam et</button>}
+      </ActionBar>
     </section>
   );
 }

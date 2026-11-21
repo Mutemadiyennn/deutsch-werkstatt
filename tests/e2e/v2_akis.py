@@ -36,6 +36,14 @@ def adim_gec(pg, yanlis=False):
     elif pg.locator("[data-cevap] input").count():
         pg.fill("[data-cevap] input", pg.get_attribute("[data-cevap]", "data-cevap") or "x"); pg.locator(".actionbar .btn.primary").first.click(); pg.wait_for_timeout(250)
         if pg.locator(".actionbar .btn.primary").count(): pg.locator(".actionbar .btn.primary").first.click()
+    elif pg.locator("[data-test=drill-order]").count():
+        # ders maddesi yapbozu (DrillView): doğru dizilim e2e derlemesinde data-cevap'ta
+        n = pg.locator("[data-test=drill-order] button[data-chip]").count()
+        for k in range(n): pg.locator("[data-test=drill-order] button[data-chip]:not([disabled])").first.click()
+        pg.click("[data-test=drill-order] [data-test=submit]"); pg.wait_for_selector("[data-test=next]", timeout=5000); pg.click("[data-test=next]")
+    elif pg.locator("[data-test=answer]").count():
+        # Bahçe soru bileşeni (TR→DE, boşluk): yanlış cevapla geçilir; kart halkada bir kez daha gelir
+        pg.fill("[data-test=answer]", "xyz"); pg.click("[data-test=submit]"); pg.wait_for_selector("[data-test=next]", timeout=5000); pg.click("[data-test=next]")
     else:
         b = pg.locator(".actionbar .btn.primary").first
         if not (b.count() and b.is_enabled()): return None
