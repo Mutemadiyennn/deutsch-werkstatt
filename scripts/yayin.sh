@@ -120,7 +120,7 @@ cd "$GHP"
 rm -rf v2 && mkdir -p v2 && cp -r "$AGAC/web/dist/." v2/
 git add -A v2
 if git diff --cached --quiet; then echo "Değişiklik yok; yayın gerekmiyor"; exit 0; fi
-D=$(date -u +%Y%m%d); N=1; while git rev-parse -q --verify "refs/tags/v2-$D-$N" >/dev/null || git log -1 --format=%H --grep="^\[v2-$D-$N\]" origin/gh-pages | grep -q .; do N=$((N+1)); done
+D=$(date -u +%Y%m%d); N=1; while git rev-parse -q --verify "refs/tags/v2-$D-$N" >/dev/null || git log -1 --basic-regexp --format=%H --grep="^\[v2-$D-$N\]" origin/gh-pages | grep -q .; do N=$((N+1)); done
 AD="v2-$D-$N"; MSG="[$AD] v2 yayın: $K7 (damga $DAMGA)"
 git commit -q -m "$MSG"
 ONCEKI=$(git rev-parse --short=12 HEAD~1)   # geri alma: önceki gh-pages commit'i
