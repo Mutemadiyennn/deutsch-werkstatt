@@ -8,6 +8,7 @@
  * halka sonu ekranı (TARGET3b 6), mini sahne (Ders `Diyalog`), seans halkası (K9).
  */
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
+import { Rich } from "../ui/rich.tsx";
 import { bilinmeyenler, kalipOrtu, kalipSecenekleri, kalipToks, kumeDizini, toks, YUVA, type Drill, type Lexeme, type LearnerItem } from "@dw/shared";
 import { loadFoto, loadGenelAdlar, loadIndex, loadLexicon, loadM1Gun, loadTemeller, loadWorld, type FotoKayit } from "../services/content.ts";
 import { getMeta, itemsMap, putItems, setMeta } from "../data/db.ts";
@@ -134,7 +135,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
     if (g) return (
       <section class="stack fade" data-test="akis-gorev">
         <div class="kicker icerik" style={{ color: "var(--accent)" }}>Bugünün görevi</div>
-        <h2 style={{ margin: 0 }}>{g}</h2>
+        <h2 style={{ margin: 0 }}><Rich text={g} /></h2>
         <p class="small muted" style={{ margin: 0 }}>Bunu bugün gerçek hayatta bir kez dene.</p>
         <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-devam" onClick={() => bitir([])}>Tamam</button></ActionBar>
       </section>);
@@ -142,6 +143,8 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
   // dil noktasının ikinci parçasına giriş: ilk parçada görülenlerin kısa hatırlatması
   if (adim.ders?.oge === "hatirlatma") {
     const h = baglam.hatirlatma(adim.ders.id, adim.id);
+    // hatırlatacak öğe yoksa boş kart gösterilmez: adım kendiliğinden geçer (fark doğrulaması #186 Y-P2-6)
+    if (!h.length) return <Gec bitir={() => bitir([])} />;
     return (
       <section class="stack fade" data-test="akis-hatirlatma">
         <div class="kicker icerik" style={{ color: "var(--accent)" }}>Hatırla</div>
@@ -318,7 +321,7 @@ export function AkisEkrani({ day }: { day: number }) {
           cumle: (de) => personalizeDeep(cumleler.get(de) ?? { de, tr: "", accepted: [de] }, kisi),
           drill: (id, oge) => { const d = temel.find((t) => t.id === id)?.drills.find((x) => x.id === oge); return d && personalizeDeep(d, kisi); },
           // kalıbın Türkçesinde yer tutucu çıplak görünmez: {name} yuva "…", {a|b} hitaba göre (inceleme #186 P1-3)
-          kalipTr: (de) => personalizeDeep(kaliplar.get(de) ?? "", kisi).replace(/\(adın\)|\{name\}/g, "…"),
+          kalipTr: (de) => personalizeDeep((kaliplar.get(de) ?? "").replace(/\(adın\)|\{name\}/g, "…"), kisi),  // ad yuvası iki satırda da boş (Y-P2-5)
           sahne: (satirlar) => { const h = gun.halkalar.find((x) => x.sahne && x.sahne.satirlar.map((y) => y.de).join("\n") === satirlar.join("\n")); return h?.sahne && personalizeDeep(h.sahne, kisi); },
           vurgu: (kart) => [...(dizin.yuzey.get(kart) ?? [])],
           isaretli: (de, adimId) => {
@@ -402,13 +405,16 @@ function HalkaSonu({ ozet, lex, sonraki, seans, devam, mola }: { ozet: ReturnTyp
 }
 
 /** Adımsız durak (AK-6): var olan ekrana gider; o ekran bitince (`bitti`/`ilkBitti`) akış dönüşte kendiliğinden ilerler */
+/** gösterilecek bir şeyi olmayan adım: ekran çizmeden geçer */
+function Gec({ bitir }: { bitir: () => void }) { useEffect(() => { bitir(); }, []); return null; }
+
 /** "önce duy: sesleri ayırt et" → "Önce duy: sesleri ayırt et." */
 const cumleYap = (t: string) => { const x = t.trim(); return x ? x[0]!.toLocaleUpperCase("tr") + x.slice(1) + (/[.!?]$/.test(x) ? "" : ".") : ""; };
 
 /** durak girişinin öğrenciye dönük tek cümlesi (planlayıcının iç notu değil; PM 7055715440 md. 4, inceleme #186 P1-4) */
 const DURAK_CUMLE: Record<string, string> = {
-  ses: "Bugünün telefon kaydını ve sesli mesajlarını dinleyeceksin.", video: "Günün kısa videosunu izleyeceksin.",
-  prova: "Bugünkü kelimelerle kısa bir telefon konuşması yapacaksın.", okuma: "Kısa bir metin okuyup birkaç cümle yazacaksın.",
+  ses: "Bugünün kısa ses kayıtlarını dinleyeceksin.", video: "Günün kısa videosunu izleyeceksin.",
+  prova: "Bugünkü kelimelerle kısa bir konuşma yapacaksın.", okuma: "Kısa bir metin okuyup birkaç cümle yazacaksın.",
   dil: "Bugünün dil noktasını göreceksin.", gunsonu: "Günü kısa bir sınamayla bitireceksin."
 };
 

@@ -55,6 +55,7 @@ def adim_gec(pg, yanlis=False):
 def ekran_denetle(pg, kalip_ornek):
     """her akış ekranında: çıplak yer tutucu, iskelet, <3 şık, ilerleme türü, kalıp örneği sayısı, durak girişi (inceleme #186)"""
     metin = pg.inner_text("[data-test=akis]") if pg.locator("[data-test=akis]").count() else ""
+    if "**" in metin: check(False, f"ekranda ham ** işareti (fark doğrulaması #186 Y-P1-1): {metin[:80]!r}")
     if "{" in metin and "}" in metin: check(False, f"ekranda çıplak yer tutucu: {metin[:80]!r}")
     if pg.locator("[data-test=akis-yer-tutucu]").count(): check(False, f"iskelet ekran (akis-yer-tutucu) görünüyor: {metin[:80]!r}")
     sik = pg.locator("[data-test=akis] [role=group] button.opt").count()
