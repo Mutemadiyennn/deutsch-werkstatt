@@ -66,6 +66,11 @@ GitHub Actions bu depoda kapalı olduğu için A–F'deki "Run workflow" adımla
 27b. **Kapalı medya rafı koruması bir Worker değişkeni değildir** (D-112 a). Raf Pages projesinde: **Workers & Pages → raf projesi → Settings → Functions** → kota dolunca davranış **Fail closed** seçili olmalı; ayarı değiştirdiysen rafı bir kez yeniden dağıt (D-112 a: ayar yeniden dağıtımla etkinleşir). Eski `RAF_FAIL_CLOSED` değişkeni yalnız Actions'taki doldurma hattının bildirimiydi; artık girilmez. Rafı bu ayar korur.
 28. **Save and deploy.** Bundan sonra `main`'e her birleşmede Cloudflare kendisi derler. Derleme günlüğü panelde **Deployments** altında görünür.
 29. Uygulamada **Profil → Sunucu bağlantısını kontrol et** → "Sunucu çalışıyor".
+30. **Pixabay aracı (MEDYA'nın fotoğraf avı; PM 7055725467 md. 2).** Uç `main`'e girip kendiliğinden dağıtıldıktan sonra, adım 27'deki yerden iki **Secret**:
+    - `PIXABAY_KEY`: pixabay.com → hesabın → **API** sayfasındaki anahtar.
+    - `RAF_ARAC_JETONU`: en az 32 karakterlik rastgele dizi (ör. parola yöneticisinin ürettiği 40 karakter); medya rafının parolasından **farklı**. Uygulamaya girmez. MEDYA'ya kimlik kartıyla verilir.
+    - Worker'da **Traces/Logs** açıksa istek adresleri kayda geçebilir; Pixabay anahtarı giden istek adresinde durur. Bu ayarları açmayın.
+    - Denetim: `https://<worker adresi>/v1/health` → `configured.pixabay: true`. Anahtar ve jeton yanıtta görünmez.
 
 Bağlantı kurulana kadar Worker'a dokunan PR birleşmez (PM-081 C).
 

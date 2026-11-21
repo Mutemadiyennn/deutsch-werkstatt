@@ -111,4 +111,4 @@ export interface AiRunResponse<T extends AiTaskName = AiTaskName> { task: T; out
 
 export interface PhotoResult { id: number; src: string; w: number; h: number; alt: string; credit: string; url: string }
 export interface UsageResponse { day: string; ai: { used: number; limit: number } }
-export interface HealthResponse { ok: true; version: string; time: string; provider?: string; configured: { gemini: boolean; workers_ai?: boolean; pexels?: boolean; allowlist: boolean } }
+export interface HealthResponse { ok: true; version: string; time: string; provider?: string; configured: { gemini: boolean; workers_ai?: boolean; pexels?: boolean; pixabay?: boolean; allowlist: boolean } }
