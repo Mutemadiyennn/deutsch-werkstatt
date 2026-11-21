@@ -80,12 +80,12 @@ export function AkisOynatici({ kayit, lex, harita, baglam, kaydet, cik }: AkisOy
 }
 
 function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adim: Adim; durakOf: (a: Adim) => Durak; lex: ReadonlyMap<string, Lexeme>; harita: Readonly<Record<string, FotoKayit>>; baglam: AkisBaglam; tohum: string; bitir: (s: { kart: string; dogru: boolean }[]) => void }) {
-  if (durakGecisi(adim)) return (
-    // 4a: adımsız durak (ses, video, prova, okuma, dil) — 4b'de var olan ekrana gidip dönecek
-    <DurakGecis adim={adim} hedef={baglam.hedef(durakOf(adim))} bitir={() => bitir([])} />);
+  // kancalar koşulsuz en üstte (adımsız durağın erken dönüşünden önce)
   const kartlar = adim.kartlar.map((k) => lex.get(k)).filter((x): x is Lexeme => !!x);
   const [gorselYok, setGorselYok] = useState(false);
   const soru = useMemo(() => (adim.tur === "resimden_sec" && kartlar[0] ? resimSecenekleri(kartlar[0], [...lex.values()], harita, tohum) : null), [adim.id]);
+  // adımsız durak (ses, video, prova, okuma): var olan ekrana gider, dönüşte akış ilerler (AK-6)
+  if (durakGecisi(adim)) return <DurakGecis adim={adim} hedef={baglam.hedef(durakOf(adim))} bitir={() => bitir([])} />;
   if (adim.tur === "eslestir" && kartlar.length >= 4) return <Eslestir kartlar={kartlar} tohum={tohum} onBitti={bitir} />;
   // görsel gelmezse (çevrimdışı, önbellekte yok) resimden seç o adımda dinle-anlam sorusuna düşer (tek doğru cevap; inceleme #183 P1-2)
   if (adim.tur === "resimden_sec" && soru && !gorselYok) return <ResimSec soru={soru} lex={lex} harita={harita} onYok={() => setGorselYok(true)} onBitti={(ok) => bitir([{ kart: soru.kart, dogru: ok }])} />;
