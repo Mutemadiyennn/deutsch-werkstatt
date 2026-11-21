@@ -307,7 +307,14 @@ export function AkisEkrani({ day }: { day: number }) {
             // planın derslerinin öğretim cümleleri ("Gestern war Montag." r0-01-tage'de): K(t) süzgeci aşağıda aynen işler
             const dersIds = new Set(sira.map((a) => a.ders?.id).filter((x): x is string => !!x));
             const dersCumle = temel.filter((t) => dersIds.has(t.id)).flatMap((t) => t.teach).filter((x) => x.de && x.tr).map((x) => ({ de: x.de, tr: x.tr }));
-            const tekil = new Map([...gun.halkalar.flatMap((h) => h.gorev_cumleleri).map((g) => ({ de: g.de, tr: g.tr })), ...planCumle.map((g) => ({ de: g.de, tr: g.tr })), ...dersCumle, ...kartOrnek].map((g) => [g.de, g]));
+            // ad yuvalı cümle ("Guten Tag, hier ist {name}." r0-01-tage) öğrencinin adı biliniyorsa adıyla örnek olur; ad bilinen sayılır.
+            // (1. gün öğrenci simülasyonu P1-3)
+            // adsız profilde günün ilk karakterinin adı (dünya adları bilinen kümede; PM 7062986071 md. 2: "Guten Tag, hier ist Tobi." türü)
+            const ad = kisi.name || world?.characters.find((c) => c.id === gun.characters?.[0])?.name.split(" ")[0];
+            const adli = (x: { de: string; tr: string }) => (!x.de.includes("{name}") ? x : ad ? { de: x.de.replace(/\{name\}/g, ad), tr: x.tr.replace(/\{name\}/g, ad) } : null);
+            const adTok = new Set(ad ? toks(ad) : []);
+            const tekil = new Map([...gun.halkalar.flatMap((h) => h.gorev_cumleleri).map((g) => ({ de: g.de, tr: g.tr })), ...planCumle.map((g) => ({ de: g.de, tr: g.tr })), ...dersCumle, ...kartOrnek]
+              .map(adli).filter((g): g is { de: string; tr: string } => !!g).map((g) => [g.de, g]));
             // kalıbın sabit sözcüklerinin hepsi cümlede geçiyorsa örnek; sıra şart değil (devrik sıra kalıbın konusu olabilir: "Im Frühling habe ich …")
             const kapsar = (de: string, kp: string[]) => { const w = new Set(toks(de)); const sb = kp.filter((x) => x !== YUVA); return sb.length > 0 && sb.every((t) => w.has(t)); };
             // örnek o adımda bilinenlerle kurulmuş olmalı: bu kalıp dahil K(t) dışında sözcük 0 (inceleme #186 P1-2)
@@ -337,7 +344,7 @@ export function AkisEkrani({ day }: { day: number }) {
               const baskasinin = (de: string) => !sirali(de, kp) && parcalar.some((p2) => p2 !== kp && sirali(de, p2));
               const adaylar = [...tekil.values()].filter((g) => !g.de.includes("{name}") && kapsar(g.de, kp) && !tamAyni(g.de) && !baskasinin(g.de) && !ornek.some((o) => o.de === g.de))
                 .map((g) => {
-                  const yuva = yuvaKp(g.de, kp).map((x) => x.toLowerCase()), bil = bilinmeyenler(dizin, g.de, kNow);
+                  const yuva = yuvaKp(g.de, kp).map((x) => x.toLowerCase()), bil = bilinmeyenler(dizin, g.de, kNow).filter((b) => !adTok.has(b.sozcuk.toLowerCase()));
                   const uygun = bil.length === 0 || (bil.length === 1 && yuva.includes(bil[0]!.sozcuk.toLowerCase()));
                   return { g, bil, uygun, yuva };
                 }).filter((x) => x.uygun)

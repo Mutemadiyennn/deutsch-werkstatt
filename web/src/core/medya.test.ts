@@ -80,3 +80,19 @@ describe("Medya bölüm oynatıcısı (#58 A4, PM-053)", () => {
     expect(gecerliKonum({ ...bastan, b: 99 }, m)).toEqual({ ...BASLANGIC, ilkBitti: true });
   });
 });
+
+describe("dikteSuz (1. gün öğrenci simülasyonu P0-1)", () => {
+  it("cevabında bilinmeyen sözcük geçen dikte basamağı atlanır; öteki basamaklar ve bölümler aynen", async () => {
+    const { dikteSuz, dikteCevabi } = await import("./medya.ts");
+    const dk = [
+      { seviye: "kolay", cumle: "c1", q_tr: "x", opts: ["Freitag", "Montag"], ans: 0 },
+      { seviye: "usta", cumle: "c2", accepted: ["Guten Tag."] },
+      { seviye: "gercek", gorev_tr: "x", ornek_de: "Danke und schönes Wochenende!", zorunlu: [] }
+    ];
+    const m = { bolumler: [{ id: "b1", dikte: dk }] } as never;
+    expect(dk.map((d) => dikteCevabi(d as never))).toEqual(["Freitag", "Guten Tag.", "Danke und schönes Wochenende!"]);
+    const bilinen = new Set(["guten", "tag"]);
+    const s = dikteSuz(m, (de) => de.toLowerCase().replace(/[.!?,]/g, "").split(/\s+/).some((w) => !bilinen.has(w)));
+    expect((s as { bolumler: { dikte: { seviye: string }[] }[] }).bolumler[0]!.dikte.map((d) => d.seviye)).toEqual(["usta"]);
+  });
+});
