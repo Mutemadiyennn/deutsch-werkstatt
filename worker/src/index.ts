@@ -34,7 +34,7 @@ export async function handle(req: Request, env: Env): Promise<Response> {
       return json({ photos }, 200, { ...cors, "Cache-Control": "private, max-age=86400" });
     }
     if (url.pathname === "/v1/pixabay" && req.method === "GET") {
-      // yanlış jeton: genel "bulunamadı" ile aynı yanıt (uç var mı belli olmaz)
+      // yanlış jeton: gövdesi genel "bulunamadı" ile aynı 404; sabit gecikme jeton denemeyi yavaşlatır (uç gizlenmez)
       if (!(await aracJetonu(req, env))) return json({ error: { code: "invalid_request", message_tr: "Bulunamadı.", retryable: false } }, 404, cors);
       const hits = await pixabayAra(env, url.searchParams.get("q") || "", Number(url.searchParams.get("n") || 20), url.searchParams.get("lang") || "en");
       return json({ hits }, 200, cors);

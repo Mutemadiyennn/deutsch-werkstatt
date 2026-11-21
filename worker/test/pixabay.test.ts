@@ -37,9 +37,10 @@ describe("Pixabay aracı (PM 7055725467 md. 2)", () => {
     vi.useRealTimers();
     expect(r.status).toBe(404); expect(f).not.toHaveBeenCalled();
   });
-  it("jeton tanımsız ya da 32 karakterden kısa: hizmet kapalı (503)", async () => {
+  it("jeton tanımsız ya da 32 karakterden kısa, ya da anahtar yok: hizmet kapalı (503)", async () => {
     sahte();
     expect((await handle(istek("Brot", "kisa"), env({ RAF_ARAC_JETONU: "kisa" }))).status).toBe(503);
+    expect((await handle(istek("Brot", JETON), env({ RAF_ARAC_JETONU: undefined }))).status).toBe(503);
     expect((await handle(istek("Brot", JETON), env({ PIXABAY_KEY: undefined }))).status).toBe(503);
   });
   it("24 saat önbellek: aynı sorgu ikinci kez Pixabay'e gitmez ve sayaca yazılmaz", async () => {
@@ -59,5 +60,23 @@ describe("Pixabay aracı (PM 7055725467 md. 2)", () => {
   it("sağlık yanıtı yalnız yapılandırma durumunu söyler", async () => {
     const r = await handle(new Request("https://api.test/v1/health"), env());
     const b = await r.text(); expect(JSON.parse(b).configured.pixabay).toBe(true); expect(b).not.toContain(ANAHTAR); expect(b).not.toContain(JETON);
+  });
+  it("yanlış jetonun 404 gövdesi var olmayan yolunkiyle aynı", async () => {
+    sahte(); vi.useFakeTimers();
+    const p = handle(istek("Brot", "yanlis"), env()); await vi.advanceTimersByTimeAsync(1200); const a = await (await p).text();
+    vi.useRealTimers();
+    expect(a).toBe(await (await handle(new Request("https://api.test/v1/yok"), env())).text());
+  });
+  it("istek: safesearch, foto, dil küçük harf, n kenarları; önbellek 24 saat", async () => {
+    const f = sahte(); const puts: [string, number | undefined][] = []; const e = env();
+    const kv = e.QUOTA; e.QUOTA = { get: (k) => kv.get(k), put: async (k, v, o) => { puts.push([k, o?.expirationTtl]); await kv.put(k, v); } };
+    const r = await handle(new Request("https://api.test/v1/pixabay?q=Brot&n=0&lang=DE", { headers: { Authorization: `Bearer ${JETON}` } }), e);
+    const u = new URL(String(f.mock.calls[0]![0]));
+    expect([u.searchParams.get("safesearch"), u.searchParams.get("image_type"), u.searchParams.get("lang")]).toEqual(["true", "photo", "de"]);
+    expect(((await r.json()) as { hits: unknown[] }).hits).toHaveLength(1);
+    expect(puts.find(([k]) => k.startsWith("pxb:"))![1]).toBe(86400);
+  });
+  it("hata eşlemesi: 429 → 429, 400 (anahtar) → 503, 500 → 503 meşgul", async () => {
+    for (const [up, want] of [[429, 429], [400, 503], [500, 503]] as const) { sahte(up); expect((await handle(istek("Brot" + up, JETON), env())).status).toBe(want); }
   });
 });

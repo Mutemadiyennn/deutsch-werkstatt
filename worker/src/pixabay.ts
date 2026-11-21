@@ -29,15 +29,17 @@ export async function pixabayAra(env: Env, q: string, n = 20, lang = "en"): Prom
   const sorgu = q.trim().toLowerCase().replace(/\s+/g, " ").slice(0, 100);
   if (!sorgu) throw new HttpError("invalid_request", "q");
   if (!env.PIXABAY_KEY) throw new HttpError("not_configured", "PIXABAY_KEY");
-  const dil = ["de", "en", "tr"].includes(lang) ? lang : "en", adet = Math.max(1, Math.min(50, Math.floor(n) || 20));
+  const l = lang.trim().toLowerCase(), sayi = Math.floor(n);
+  const dil = ["de", "en", "tr"].includes(l) ? l : "en", adet = Number.isFinite(sayi) ? Math.max(1, Math.min(50, sayi)) : 20;
   const onbellek = `pxb:${dil}:${sorgu}`;
   const hit = await env.QUOTA.get(onbellek);
   if (hit) { try { return (JSON.parse(hit) as PixabayHit[]).slice(0, adet); } catch { /* bozuk kayıt: yeniden sor */ } }
   const gun = `q:pxb:${new Date().toISOString().slice(0, 10)}`, say = Number((await env.QUOTA.get(gun)) || 0);
   if (say >= PIXABAY_GUNLUK) throw new HttpError("quota_user", "pixabay günlük");
-  await env.QUOTA.put(gun, String(say + 1), { expirationTtl: 2 * 86400 });
   const ac = new AbortController(), t = setTimeout(() => ac.abort(), 8000);
   try {
+    // KV yazma sınırı (ücretsiz plan) dolarsa "meşgul, sonra dene" döner, 500 değil (inceleme #189 P2-2); sayaç yaklaşık, tek kullanıcı
+    await env.QUOTA.put(gun, String(say + 1), { expirationTtl: 2 * 86400 });
     const u = `https://pixabay.com/api/?key=${encodeURIComponent(env.PIXABAY_KEY)}&q=${encodeURIComponent(sorgu)}&lang=${dil}&image_type=photo&safesearch=true&per_page=50`;
     const r = await fetch(u, { signal: ac.signal });
     if (r.status === 429) throw new HttpError("quota_upstream");
@@ -45,7 +47,8 @@ export async function pixabayAra(env: Env, q: string, n = 20, lang = "en"): Prom
     if (!r.ok) throw new HttpError("upstream_busy", `pixabay ${r.status}`);
     const j = (await r.json()) as { hits?: Record<string, unknown>[] };
     const out: PixabayHit[] = (j.hits ?? []).map((h) => ({ id: Number(h.id), pageURL: String(h.pageURL ?? ""), webformatURL: String(h.webformatURL ?? ""), largeImageURL: String(h.largeImageURL ?? ""), user: String(h.user ?? ""), tags: String(h.tags ?? "") }));
-    await env.QUOTA.put(onbellek, JSON.stringify(out), { expirationTtl: 86400 });
+    // adresler geçicidir: MEDYA sonucu hemen indirir; önbellek Pixabay şartı gereği en çok 24 saat (inceleme #189 P2-3)
+    await env.QUOTA.put(onbellek, JSON.stringify(out), { expirationTtl: 86400 }).catch(() => {});
     return out.slice(0, adet);
   } catch (e) {
     if (e instanceof HttpError) throw e;
