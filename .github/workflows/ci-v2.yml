@@ -161,6 +161,8 @@ jobs:
         run: cd tests/e2e && python v2_halka_tur.py --shots /tmp/shots
       - name: "Akış (AKIS AK-10 4a): #/akis/2 ilk halka baştan sona, yeniden açınca aynı adım, yanlış kart bir kez daha"
         run: cd tests/e2e && python v2_akis.py --shots /tmp/shots
+      - name: "Pilot 1. gün (bayrak #193): #/akis/1 baştan sona, her kalıp çerçevesine örnek, gün sonu ve Bugün'e dönüş"
+        run: cd tests/e2e && python v2_akis.py --tam --kalip-sert --gun 1
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4

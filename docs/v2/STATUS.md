@@ -102,6 +102,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | Çevrimdışı medya (#58 A12 son parça) | `v2/cevrimdisi-medya` | PR #74: medya pakette, servis işçisi ayrı önbellek + 206 aralıklı yanıt, uçak modu e2e; 2. tur bulguları düzeltildi |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
 | AKIS AK-10 4. adım: Halka ekranı + 5. adım e2e | `v2/akis-ekran` | PR #184 (#183 üstüne): `#/akis/<gün>`; bayrak `policy.akis.gunler` boş (1. gün halkaları `gun-01.json`'a İÇ taşıyınca açılır); dersin kalanı DersEkrani'nda; LS-16.3 simülasyonu sırada |
+| AKIS bayrak (pilot, PM 7059008858 + 7061394696 md. 5) | `v2/akis-bayrak` | PR #193 (#186 üstüne): `policy.akis.gunler [1]` — 1. gün akışla; 1. tur DEĞİŞİKLİK GEREKLİ (7063588812, 7 P1); PM finali istendi (7063429444) |
 | AKIS pilot düzeltmeleri (PM 7055715440 md. 1–6, TARGET3c) | `v2/akis-pilot` | PR #186 (#184 üstüne): çubuk/elmas ilerleme, kalıp yuvası ve K(t) içi örnekler, adsız profilde ad maddesi geçilir, durak girişi öğrenci cümlesi, tablo/hatırlatma/görev gövdeleri, akışta çeldirici yalnız halka ve bilinenlerden (3 şık yoksa tanıtım, kanıt yok); 1. tur P1-1…P1-6 düzeltildi, fark doğrulaması |
 | AKIS AK-10 3. adım: `resimden_sec`, `eslestir` (TARGET3b 3–4) | `v2/halka-turleri` | PR #183: çekirdek + bileşenler + e2e (`v2_halka_tur.py`); yalnız e2e'de `#/__halka-turleri`; görülen fotoğraf servis işçisi önbelleğinde (`dw2-foto`); ekrana bağlanması #184 |
 
