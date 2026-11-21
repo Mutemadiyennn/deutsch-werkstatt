@@ -19,12 +19,17 @@ export interface AkisKaydi {
   biten: string[];
 }
 
+/** adımsız durağın geçiş adımı mı */
+export const durakGecisi = (a: Adim) => a.id.endsWith(":git");
+
 export const akisAnahtar = (gun: number) => `akis:${gun}`;
 
 export const yeniKayit = (plan: GunPlani): AkisKaydi => ({ surum: 1, plan, durak: 0, adim: 0, sonuclar: [], geri: {}, biten: [] });
 
 /** Durağın oynanacak adımları: planlananlar + bu halkada yanlış yapılan kartların bir kez daha gelişi */
 export function durakAdimlari(k: AkisKaydi, d: Durak): Adim[] {
+  // adımsız durak (ses, video, prova, okuma, dil): var olan ekrana giden tek geçiş adımı (`:git`); bağlama 4b'de
+  if (!d.adimlar.length) return [{ id: `${d.id}:git`, tur: "hatirlat", kip: "gor", kartlar: [], kaynak: "halka", sn: 0, neden: d.neden }];
   const geri = k.geri[d.id] ?? [];
   if (d.tur !== "halka" || !geri.length) return d.adimlar;
   return [...d.adimlar, ...geri.map((kart, i): Adim => ({ id: `${d.id}:geri${i}`, tur: "listen_meaning", kip: "duy", kartlar: [kart], kaynak: "halka", sn: 12, neden: "bu halkada yanlış yaptın; bir kez daha" }))];

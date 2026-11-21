@@ -76,6 +76,13 @@ export async function loadM1Gun(day: number): Promise<Gun> {
   if (!f) throw new Error("Bu günün içeriği henüz hazır değil.");
   return file(f, Gun);
 }
+/** AKIS AK-3: bilinen kümenin genel adlar listesi (doğrulayıcıyla tek kaynak; yoksa boş) */
+export const loadGenelAdlar = () => within(file("genel-adlar.json", z.array(z.string()))).catch(() => [] as string[]);
+/** Akış planı için bütün incelenmiş temel dersler (kumeDizini ve planGun girdisi) */
+export async function loadTemeller(): Promise<TemelDers[]> {
+  const i = await loadIndex();
+  return Promise.all(Object.keys(i.files.temel).map((id) => loadTemel(id)));
+}
 /** R0 temel ders (#58 A5, Seans 2) */
 export async function loadTemel(id: string): Promise<TemelDers> {
   const i = await loadIndex();

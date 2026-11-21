@@ -9,6 +9,8 @@ import { loadContent, checkRules, ROOT, parseFile } from "./load.ts";
 import { Gun, medyalar } from "../../packages/shared/src/m1.ts";
 import { readdirSync } from "node:fs";
 import { kartMi, type ContentIndex } from "../../packages/shared/src/content.ts";
+import { Halka, genelAdlarAyikla } from "../../packages/shared/src/index.ts";
+import { z } from "zod";
 
 const c = checkRules(loadContent());
 if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
@@ -26,8 +28,20 @@ if (process.env.DW_E2E_FIXTURES === "1") {
     // e2e paketinde örnek gün aynı numaralı gerçek günün YERİNE geçer: oynatıcı testi içerik değişince kırılmaz (inceleme #60 P1-8)
     if (g) { const i = days.findIndex((d) => d.data.day === g.day); if (i >= 0) days.splice(i, 1); days.push({ file: `fixtures/m1/${f}`, data: g }); }
   }
+  // AKIS AK-10 4. adım: `halkalar` henüz gün dosyalarında değil (İÇ taşıyacak). e2e paketinde, fikstürle değiştirilmemiş
+  // günlere İÇ'in halka önerisi (docs/v2/reviews/halka/gun-NN-halkalar.json) eklenir — yayın paketine girmez
+  const hk = join(ROOT, "docs/v2/reviews/halka");
+  for (const d of days) {
+    const f = join(hk, `gun-${String(d.data.day).padStart(2, "0")}-halkalar.json`);
+    if (d.file.startsWith("fixtures/") || d.data.halkalar?.length || !existsSync(f)) continue;
+    const r = z.array(Halka).safeParse(JSON.parse(readFileSync(f, "utf8")).halkalar);
+    if (r.success) d.data = { ...d.data, halkalar: r.data }; else { console.error(`${f}: ${r.error.message}`); process.exit(1); }
+  }
   if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
 }
+// AKIS AK-3: istemcideki bilinen küme (kumeDizini) aynı genel adlar listesini kullanır (doğrulayıcıyla tek kaynak)
+const gaYol = join(ROOT, "docs/v2/reviews/genel-adlar.md");
+const genelAdlar = existsSync(gaYol) ? genelAdlarAyikla(readFileSync(gaYol, "utf8")) : [];
 days.sort((a, b) => a.data.day - b.data.day);
 
 const payload = {
@@ -37,7 +51,8 @@ const payload = {
   grammar: c.grammar,
   assess: c.assess,
   patterns: c.patterns,
-  scenarios: Object.fromEntries(c.scenarios.map((s) => [s.data.id, s.data]))
+  scenarios: Object.fromEntries(c.scenarios.map((s) => [s.data.id, s.data])),
+  genelAdlar
 };
 // Medya (A9/A12): günlerin başvurduğu "media/<ad>" dosyaları içerik paketine kopyalanır (Pages'ten aynı kaynaktan sunulur,
 // servis işçisi önbelleğe alır; Safari aralıklı istek ister). Kaynak: `.medya/` (deploy adımı GitHub Releases'ten indirir;
@@ -104,6 +119,7 @@ const index: ContentIndex = {
   counts: { lexemes: c.lexemes.length, grammar: c.grammar.length, assess: c.assess.length, scenarios: c.scenarios.length },
   files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles }
 };
+w("genel-adlar.json", genelAdlar);
 w("index.json", index);
 writeFileSync(join(base, "current.json"), JSON.stringify({ version }));
 console.log(`içerik paketi ${version} → web/public/content/${version}/ (${c.scenarios.length} senaryo, ${c.lexemes.length} kelime, ${c.assess.length} tespit maddesi)`);

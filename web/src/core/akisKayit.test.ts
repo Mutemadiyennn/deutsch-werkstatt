@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { Adim, Durak, GunPlani } from "./akis.ts";
-import { akisAnahtar, durakAdimlari, eskiAnahtar, ilerle, seansDurumu, simdiki, yeniKayit } from "./akisKayit.ts";
+import { akisAnahtar, durakAdimlari, durakGecisi, eskiAnahtar, ilerle, seansDurumu, simdiki, yeniKayit } from "./akisKayit.ts";
 
 const A = (id: string, kartlar: string[] = ["lx:a"]): Adim => ({ id, tur: "listen_meaning", kip: "duy", kartlar, kaynak: "halka", sn: 12, neden: "" });
 const D = (id: string, tur: Durak["tur"], seans: number, adimlar: Adim[], eski?: string): Durak => ({ id, tur, seans, title_tr: id, tahmini_dk: 5, adimlar, neden: "", ...(eski ? { eski_anahtar: eski } : {}) });
@@ -9,8 +9,16 @@ const plan: GunPlani = { gun: 1, surum: 1, tohum: "t", toplam_dk: 30, neden: [],
   D("dil", "dil", 1, [A("dil:1")], "ders:r0:01"),
   D("h2", "halka", 2, [A("h2:1", ["lx:e"])]),
 ] };
+const sesli: GunPlani = { ...plan, duraklar: [D("ses", "ses", 1, []), ...plan.duraklar] };
 
 describe("akış kaydı (AK-6, AK-10 4. adım iskeleti)", () => {
+  it("adımsız durak tek geçiş adımıyla oynanır (boş plan 'bitti' sayılmaz)", () => {
+    const k = yeniKayit(sesli);
+    const s = simdiki(k)!;
+    expect(s.adim.id).toBe("ses:git"); expect(durakGecisi(s.adim)).toBe(true);
+    const r = ilerle(k, []);
+    expect(r.bitti).toBe(false); expect(simdiki(r.kayit)!.adim.id).toBe("h1:1");
+  });
   it("anahtar ve başlangıç", () => {
     expect(akisAnahtar(3)).toBe("akis:3");
     const k = yeniKayit(plan);
