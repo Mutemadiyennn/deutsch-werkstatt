@@ -11,6 +11,7 @@
 3. **Almanca tipografi:** hyphens:auto; 320 ve 390 px'te taşma yok (en uzun 50 kelimeyle test).
 4. **Ses ve mikrofon:** izin isteminden önce Türkçe açıklama; görünür kayıt göstergesi; bas-konuş ve dokun-başlat/dokun-bitir; kesintilerin yönetimi; hazır seslerde oynatma gecikmesi ≤300 ms.
 5. **Performans:** etkileşime hazır olma ilk açılışta ≤2 sn, sonra ≤1 sn; 60 fps; uzun listelerde sanallaştırma; JS ≤250 KB (gzip); içerik ve fotoğraflar tembel yüklenir.
+   > Not (baş geliştirici, PM 7061394696; D-126): "JS ≤250 KB" ilk açılış JS'idir (giriş parçası + statik bağımlıları); toplam JS ≤ 300 KB büyüme bekçisidir.
 6. **Erişilebilirlik:** %130'a kadar yazı boyutu; azaltılmış hareket; WCAG AA kontrast; VoiceOver etiketleri.
 7. **Tasarım sistemi:** belirteçler (token); 4/8 boşluk ızgarası; yalnızca ortak bileşenler; haptik eşlemesi: başarı / hata / seçim.
 8. **Test:** iPhone 15/16 profilleriyle WebKit uçtan uca testleri zorunlu; CI'da görsel regresyon; gerçek iPhone kontrol listesi.

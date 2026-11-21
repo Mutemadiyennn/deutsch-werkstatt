@@ -26,7 +26,7 @@ jobs:
       - name: Gizli anahtar taraması (Firebase web yapılandırması hariç)
         run: |
           if git grep -nE 'AIza[0-9A-Za-z_-]{35}' -- ':!app/legacy.html' ':!web/src/services/auth.ts' ':!app/tests/*' | grep -v 'AIzaSyDU2GSwCowKMKWBOvTZdKQjCtxLsQFTlDg'; then echo "Anahtar bulundu"; exit 1; fi
-      - name: Derleme + paket bütçesi (JS ≤ 250 KB gzip)
+      - name: Derleme + paket bütçesi (ilk açılış JS ≤ 250 KB, toplam JS ≤ 300 KB gzip)
         run: |
           npm run content:build
           npm run build -w web
@@ -38,9 +38,14 @@ jobs:
           DW_E2E_FIXTURES=1 npm run content:build
           (cd web && npx vite build --mode e2e --outDir dist-e2e)
           ! grep -q "$A" web/dist-e2e/assets/*.js || { echo "::error::e2e paketine gerçek Worker adresi sızdı"; exit 1; }
+          # D-126 (PM 7061394696, phases/05 md. 5): ilk açılış JS'i = index.html'in bağladığı giriş parçası + statik bağımlıları
+          # (modulepreload); liste derleme çıktısından okunur. Toplam (tembel parçalar dahil) büyüme bekçisidir; sınırı PM kararıyla değişir.
+          I=0; for f in $(grep -oE '(src|href)="\./assets/[^"]+\.js"' web/dist/index.html | sed -E 's/^[a-z]+="\.\///; s/"$//' | sort -u); do I=$((I + $(gzip -9c "web/dist/$f" | wc -c))); done
           T=0; for f in web/dist/assets/*.js; do T=$((T + $(gzip -9c "$f" | wc -c))); done
-          echo "JS toplam (gzip): $((T/1024)) KB" | tee -a "$GITHUB_STEP_SUMMARY"
-          [ "$T" -le 256000 ] || { echo "JS bütçesi aşıldı"; exit 1; }
+          echo "JS ilk açılış (gzip): $((I/1024)) KB ($I B; sınır 256000) · JS toplam (gzip): $((T/1024)) KB ($T B; sınır 307200)" | tee -a "$GITHUB_STEP_SUMMARY"
+          [ "$I" -gt 0 ] || { echo "ilk açılış JS listesi index.html'den okunamadı"; exit 1; }
+          [ "$I" -le 256000 ] || { echo "JS bütçesi aşıldı (ilk açılış)"; exit 1; }
+          [ "$T" -le 307200 ] || { echo "JS bütçesi aşıldı (toplam)"; exit 1; }
       - name: Worker paketlenebilir mi
         run: (cd worker && npx wrangler deploy --dry-run --outdir /tmp/wb)
       - uses: actions/upload-artifact@v4
