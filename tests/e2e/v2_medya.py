@@ -23,8 +23,16 @@ def install_media():
         os.makedirs(os.path.join(os.path.dirname(d), "media"), exist_ok=True)
         shutil.copy(os.path.join(os.path.dirname(__file__), "fixtures", "m1-01-v1.webm"), os.path.join(os.path.dirname(d), "media", "m1-01-v1.webm"))
 
+YILDIZ = []  # öğrenci günlüğü N4, inceleme #188 P1-1: medya ekranlarının hiçbirinde ham ** yok (her adımda bakılır)
+
+def yildiz(pg, ne):
+    t = pg.inner_text("main") if pg.locator("main").count() else ""
+    if "**" in t and ne not in YILDIZ: YILDIZ.append(ne)
+
 def adim(pg):
-    return pg.get_attribute("[data-test=medya]", "data-adim") if pg.locator("[data-test=medya][data-adim]").count() else None
+    a = pg.get_attribute("[data-test=medya]", "data-adim") if pg.locator("[data-test=medya][data-adim]").count() else None
+    yildiz(pg, a or "medya")
+    return a
 
 def wait_change(pg, before):
     pg.wait_for_function("""(b) => { const m = document.querySelector('[data-test=medya]'); if (!m) return true;
@@ -64,6 +72,7 @@ def main():
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         pg.goto(base + "#/learn"); pg.wait_for_selector("[data-test=m1-liste]")
         pg.click("[data-test=m1-gun-1]"); pg.wait_for_selector("[data-test=m1-gun]")
+        yildiz(pg, "gün listesi")
         check(pg.locator("[data-test=medya-video]").count() == 1 and pg.locator("[data-test=medya-ses]").count() >= 2, "gün sayfası: 1 video + en az 2 ses")
         pg.click("[data-test=medya-video]"); pg.wait_for_selector("[data-test=medya][data-adim=dinle]")
         pg.wait_for_selector("[data-test=video]")
@@ -102,6 +111,8 @@ def main():
         pg.set_viewport_size({"width": 430, "height": 932})
         check(pg.locator("[data-test=on-ogretim-kelime]").count() == 6, f"'{daha}' dokununca bütün kelimeler")
         check(pg.locator("[data-test=video-ortam]").count() == 1 and "adını" in pg.inner_text("[data-test=video-ortam]"), "ortam cümlesi videonun altında")
+        # öğrenci günlüğü 7057160147 N4: açıklamadaki **kalın** yıldızla görünmez, Almanca kelime kalın (lang="de")
+        check("**" not in pg.inner_text("[data-test=video-ortam]") and pg.locator("[data-test=video-ortam] b[lang=de]").count() == 1, "ortam cümlesinde yıldız yok, Almanca kelime kalın")
         # (a) bölümü dinle: video bölümün başından oynar
         # B7: başlangıç hızı Yavaş — düğmede ya da hız anahtarında (PM-074 md. 2) yazılı
         yazili = "yavaş" in pg.inner_text("[data-test=dinle-bolum]") or pg.locator("[data-test=hiz] button[aria-pressed=true]").first.inner_text().strip() == "Yavaş" if pg.locator("[data-test=hiz]").count() else "yavaş" in pg.inner_text("[data-test=dinle-bolum]")
@@ -159,6 +170,12 @@ def main():
         check(seen == ["kolay", "orta", "zor", "usta", "gercek"], f"(d) dikte merdiveni sırayla ({seen})")
         # (e) metin + kelimeye dokununca kart
         check(adim(pg) == "transkript", f"(e) metin açılıyor ({adim(pg)})")
+        # öğrenci günlüğü 7057160147 N8: dinle düğmesi cümlenin sağında, alt satıra tek başına düşmez
+        yan = pg.evaluate("""() => [...document.querySelectorAll('[data-test=adim-transkript] p.transkript-satir')].map((p) => {
+          const m = p.querySelector('.grow').getBoundingClientRect(), b = p.querySelector('[data-test=transkript-dinle]').getBoundingClientRect();
+          return b.left >= m.right - 1 && b.top < m.bottom; })""")
+        check(yan and all(yan), f"(e) her cümlenin dinle düğmesi cümlenin sağında ({yan})")
+        if shots: shot(pg, f"m03-transkript-{arg('--scheme') or 'light'}", full=False)
         pg.locator("[data-test=kelime]", has_text="Tag").first.click(); pg.wait_for_selector("[data-test=kelime-kart]")
         kk = pg.inner_text("[data-test=kelime-kart]")
         check("henüz yok" not in kk and "Tag" in kk, f"(e) sözlükteki kelimenin kartı açılıyor ({kk[:40]!r})")
@@ -187,6 +204,7 @@ def main():
         # anons: aynı akış, tek bölüm, sonunda "Ne yapmalısın?"
         pg.click("[data-test=medya-geri]"); pg.wait_for_selector("[data-test=m1-gun]")
         pg.locator("[data-test=medya-ses]").first.click(); pg.wait_for_selector("[data-test=ses-kart]")
+        yildiz(pg, "ses kartı")
         check(pg.locator("[data-test=video]").count() == 0, "anons: video yok, ses kartı var")
         if shots: shot(pg, "m04-anons", full=False)
         k = 0
@@ -204,6 +222,7 @@ def main():
         no_overflow(pg, "%130 yazı medya")
         b.close()
     srv.shutdown()
+    check(not YILDIZ, f"medya ekranlarında ham ** yok (sorunlu: {YILDIZ})")
     finish()
 
 if __name__ == "__main__":

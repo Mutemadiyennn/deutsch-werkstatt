@@ -14,8 +14,7 @@ import { XP, seri, yerelGun } from "../core/gun.ts";
 import { bahceGorulenEkle, getMeta, itemsMap, metaPrefix, personalWords, putItems, setMeta } from "../data/db.ts";
 import POLICY from "../policy.json" with { type: "json" };
 import { hizliGecis, review, sessionKey, type Outcome } from "../core/srs.ts";
-import { buildRound, fotoluKartlar, isCard, personalMatch, ertele, tanitildi, gorulenKelimeler, sonrakiExSeen, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
-import { isDue } from "../core/srs.ts";
+import { buildRound, fotoluKartlar, isCard, personalMatch, ertele, tanitildi, gorulenKelimeler, sonrakiExSeen, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaTuru, yarinKartSayisi, yarinMetni, type GardenQ, type QType } from "../core/garden.ts";
 import { stopSpeaking } from "../services/speech.ts";
 import { ActionBar, ProgressHeader } from "../ui/kit.tsx";
 import { ErrorPanel, FocusChip, Loading } from "../ui/components.tsx";
@@ -85,8 +84,10 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       const hak = m1Hak(takvim, kalan.length, priority.length);
       const kisisel = !day || hak.kisiselIzin ? priority : [];
       const newLeft = day ? hak.newLeft : takvim, activeLeft = DAILY_ACTIVE - t.active;
-      // B4: "Fotoğraftaki ne?" yalnızca seçilmiş fotoğrafı olan kartta ve çevrimiçiyken (sunucu araması güvenilir değil, çevrimdışı görsel gelmez)
-      const fotoHarita = navigator.onLine === false ? {} : await loadFoto();
+      // B4: "Fotoğraftaki ne?" yalnızca seçilmiş fotoğrafı olan kartta; çevrimdışında yalnız paketteki (yerel yollu) fotoğraflar
+      // (dış adres çevrimdışı gelmez; pakettekini servis işçisi önbelleğe alır — inceleme #187 P2-5)
+      const fotoTum = await loadFoto();
+      const fotoHarita = navigator.onLine === false ? Object.fromEntries(Object.entries(fotoTum).filter(([, f]) => f.src.startsWith("content/"))) : fotoTum;
       fotoluKartlar(new Set(Object.keys(fotoHarita).filter((k) => k.endsWith("#kart")).map((k) => k.slice(0, -"#kart".length))));
       // PM 7030294523 P0: "kendi cümleni kur" yalnızca İlk Hafta bitmiş ve en az bir kalıp bitirilmişse (kartın kararlılığı garden.ts'de)
       const kendiCumle = { ilkHaftaBitti: !!(await getMeta(`m1:gun:${POLICY.own_sentence.ilk_hafta_son_gun}`)), kalipBitti: (await metaPrefix("kalip:bitti:")).length > 0 };
@@ -118,7 +119,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   const { round } = data;
   const kalanSayi = data.gunKartlari.filter((id) => !data.items.has(id)).length;
   if (!round.length) return <GardenEmpty day={day} capped={data.capped} />;
-  if (i >= round.length) return <GardenDone day={day} score={score} items={data.items} kalan={kalanSayi} again={again} xp={turXp} gorevTur={gorevTur} turKimlik={`tur@${startedAt}`}
+  if (i >= round.length) return <GardenDone day={day} score={score} items={data.items} lex={data.lex} kalan={kalanSayi} again={again} xp={turXp} gorevTur={gorevTur} turKimlik={`tur@${startedAt}`}
     kelimeler={[...new Set(round.filter((q) => q.intro || q.sina).map((q) => { const l = data.lex.get(q.lexId); return l ? (l.art ? `${l.art} ${l.de}` : l.de) : ""; }).filter(Boolean))]} />;
   const q = round[i]!;
   const l = data.lex.get(q.lexId)!;
@@ -214,18 +215,13 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
 }
 
 /** Tanıtım kartında görsel: tam genişlikte en çok 160 px; sığmayan kartta kelimenin altında sağda 104 px kare; düğmeye en az 8 px pay */
-/** Tur sonu: yarın kaç kart dönecek (somut "sırada ne var") */
-function tomorrow(items: Map<string, LearnerItem>): string {
-  const t = new Date(Date.now() + 24 * 3600_000);
-  let n = 0;
-  for (const it of items.values()) if (isDue(it, "passive", t) || isDue(it, "active", t)) n++;
-  return n ? `Yarın ${n} kart seni bekliyor.` : "Yarın yeni kartlar gelecek.";
-}
 
 /** Tur sonu. M1 gününde günün kartlarından tanıtılmamış kalan varsa ana eylem "Bir tur daha" (Seans 1 henüz bitmedi) */
-function GardenDone({ day, score, items, kalan, again, xp, kelimeler, gorevTur, turKimlik }: { day?: number; score: { ok: number; n: number }; items: Map<string, LearnerItem>; kalan: number; again: () => void; xp: number; kelimeler: string[]; gorevTur: { temiz: number; toplam: number }; turKimlik: string }) {
+function GardenDone({ day, score, items, lex, kalan, again, xp, kelimeler, gorevTur, turKimlik }: { day?: number; score: { ok: number; n: number }; items: Map<string, LearnerItem>; lex: Map<string, Lexeme>; kalan: number; again: () => void; xp: number; kelimeler: string[]; gorevTur: { temiz: number; toplam: number }; turKimlik: string }) {
   const devam = !!day && kalan > 0;
   const [seriGun, setSeriGun] = useState<number | undefined>();
+  // yalnız Bahçe kartları (ders ve medya öğeleri sayılmaz); `items` tur boyunca güncellenir (öğrenci günlüğü 7057160147 N6)
+  const yarin = useMemo(() => yarinKartSayisi(items, lex, new Date()), []);
   // tur sonu sayfanın başından açılır: son cevap kartının kaydırması "Tur bitti" ve halkayı ekran dışında bırakmasın (inceleme #100 2. tur)
   // önceki cevap kartının yumuşak kaydırması sürüyor olabilir: hemen ve bir kare sonra başa
   useEffect(() => {
@@ -240,7 +236,7 @@ function GardenDone({ day, score, items, kalan, again, xp, kelimeler, gorevTur, 
         <Ozet dogru={score.ok} toplam={score.n} xp={xp} seriGun={seriGun} kelimeler={kelimeler} />
         {/* PM 7030294523 B9: metin gerçeği söyler — yanlışlar aynı turun sonunda bir kez daha sorulur (requeue), sonra aralıklı tekrar */}
         {score.ok < score.n && <p class="small" data-test="tur-yanlis-not">Yanlış yaptıkların bu turun sonunda bir kez daha geldi; sonra aralıklarla yine karşına çıkacak.</p>}
-        {devam ? <p data-test="garden-kalan">Bugünün kartlarından <b>{kalan}</b> yeni kelime kaldı.</p> : <p class="small muted" data-test="garden-tomorrow">{tomorrow(items)}</p>}
+        {devam ? <p data-test="garden-kalan">Bugünün kartlarından <b>{kalan}</b> yeni kelime kaldı.</p> : <p class="small muted" data-test="garden-tomorrow">{yarinMetni(yarin)}</p>}
         {devam ? <ActionBar><button class="btn primary block" data-test="garden-again" onClick={again}>Bir tur daha</button></ActionBar>
           : <a class="btn primary block" href="#/today" data-test="garden-back">{day ? "Sıradaki adıma geç" : "Bugün'e dön"}</a>}</section></div>
   );
