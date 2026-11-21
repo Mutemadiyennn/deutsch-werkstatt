@@ -1,7 +1,7 @@
 """
 Yerleşim bekçisi (PM-079 md. 4; hazır tanımı #12 7047348069, PM ✓ 7047456551).
 Gezginin yürüdüğü her ekranı (gezgin.screens(), kopya liste yok) iki boyutta açar: 390×844 ve 430×932.
-Her ekranda sekiz kural:
+Her ekranda dokuz kural:
   B1 birincil düğme (.btn.primary) görüş alanına getirildiğinde tam görünür, kırpan atası yok ve üstüne hiçbir öğe binmez
      (5 nokta elementFromPoint: köşelerden 2 px + yuvarlaklığın 0,3'ü içeride, ve merkez)
   B2 etkileşimli öğeler (button, a[href], [role=button], input, select, textarea) üst üste değil (ata/çocuk hariç; kesişim > 1 px²;
@@ -12,6 +12,8 @@ Her ekranda sekiz kural:
   B5 "·" satır başında ya da sonunda yalnız kalmaz (önceki ve sonraki görünür karakter aynı satırda)
   B6 yatay taşma yok: belge (scrollWidth ≤ innerWidth + 1) ve öğe (kutusu ekran dışına taşan öğe; overflow-x:clip altında da; yatay kaydırmalı şerit hariç)
   B7 başlık sözcüğü (h1–h3; .de, .de-lg, [lang=de] ≥ kök yazının 1,15 katı) iki satıra bölünmez (heceleme ya da kırma; kısa çizgide kırılma serbest)
+  B10 yatay kaydırma kabı (overflow-x auto/scroll, içerik kabın genişliğinden geniş) görünür bir işaret taşır: kabın içinde ya da
+     ebeveyninde görünür `.kaydir-ipucu` (PM 7059008858 md. 1; işaretsiz kaydırılabilir tablo öğrenciye "kesik" görünür)
   B8 görüş alanında aynı anda en çok bir birincil düğme (açık pencere/alt sayfa varsa yalnız onun içi) — yalnız ilk konumda (scrollY = 0)
 Kip (PM 7047456551): main'de ilk ölçümde ihlal 5'ten çoksa bekçi RAPOR kipinde girer (ihlal listesi yazılır, çıkış 0);
 düzeltmeler ≤ 5'lik PR'larla gelir, sayı sıfıra inince KIP = "kirmizi" yapılır. İstisna dosyası yoktur.
@@ -196,6 +198,13 @@ KURALLAR = r"""(ana) => {
       }
     }
   }
+  // B10 yatay kaydırma kabında görünür işaret
+  for (const e of document.querySelectorAll('main *, .callscreen *')) {
+    const cs = getComputedStyle(e);
+    if (!/(auto|scroll)/.test(cs.overflowX) || e.scrollWidth <= e.clientWidth + 1 || !gorunur(e)) continue;
+    const ipucu = [...e.querySelectorAll('.kaydir-ipucu'), ...(e.parentElement ? e.parentElement.querySelectorAll(':scope > .kaydir-ipucu') : [])].some(gorunur);
+    if (!ipucu) ihlal.push(['B10', `işaretsiz yatay kaydırma kabı (${e.scrollWidth} > ${e.clientWidth} px): ${ad(e)}`]);
+  }
   return ihlal;
 }"""
 
@@ -241,6 +250,9 @@ OZ = [
   ("B7", False, sayfa("<main><div class=de lang=de style='width:120px;font-size:17px'>Können Sie das bitte einfacher sagen?</div></main>"), False),
   ("B8", False, sayfa("<main><button class='btn primary'>Bir</button><button class='btn primary' style='margin-top:12px'>İki</button></main>"), True),
   ("B8", False, sayfa("<main><button class='btn primary'>Bir</button><button class=btn style='margin-top:12px'>İki</button></main>"), False),
+  ("B10", False, sayfa("<main><div style='overflow-x:auto;width:200px'><table><tr><td style='min-width:600px'>Montag Dienstag</td></tr></table></div></main>"), True),
+  ("B10", False, sayfa("<main><div><div style='overflow-x:auto;width:200px'><table><tr><td style='min-width:600px'>Montag Dienstag</td></tr></table></div><span class=kaydir-ipucu>Kaydır →</span></div></main>"), False),
+  ("B10", False, sayfa("<main><div style='overflow-x:auto;width:200px'><p>Kısa</p></div></main>"), False),
   ("B8", False, sayfa("<main><button class='btn primary'>Arka</button><div role=dialog><button class='btn primary'>Tamam</button></div></main>"), False),
 ]
 
