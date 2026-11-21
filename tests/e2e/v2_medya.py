@@ -102,6 +102,8 @@ def main():
         pg.set_viewport_size({"width": 430, "height": 932})
         check(pg.locator("[data-test=on-ogretim-kelime]").count() == 6, f"'{daha}' dokununca bütün kelimeler")
         check(pg.locator("[data-test=video-ortam]").count() == 1 and "adını" in pg.inner_text("[data-test=video-ortam]"), "ortam cümlesi videonun altında")
+        # öğrenci günlüğü 7057160147 N4: açıklamadaki **kalın** yıldızla görünmez, Almanca kelime kalın (lang="de")
+        check("**" not in pg.inner_text("[data-test=video-ortam]") and pg.locator("[data-test=video-ortam] b[lang=de]").count() == 1, "ortam cümlesinde yıldız yok, Almanca kelime kalın")
         # (a) bölümü dinle: video bölümün başından oynar
         # B7: başlangıç hızı Yavaş — düğmede ya da hız anahtarında (PM-074 md. 2) yazılı
         yazili = "yavaş" in pg.inner_text("[data-test=dinle-bolum]") or pg.locator("[data-test=hiz] button[aria-pressed=true]").first.inner_text().strip() == "Yavaş" if pg.locator("[data-test=hiz]").count() else "yavaş" in pg.inner_text("[data-test=dinle-bolum]")

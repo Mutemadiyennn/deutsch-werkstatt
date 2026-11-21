@@ -14,7 +14,7 @@ import { XP } from "../core/gun.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { loadIndex, loadLexicon, loadM1Gun, contentUrl } from "../services/content.ts";
 import { addClaim, getMeta, setMeta } from "../data/db.ts";
-import { Rich } from "../ui/rich.tsx";
+import { plain, Rich } from "../ui/rich.tsx";
 import { ADIM_TR, BASLANGIC, adimlar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { scoreHeard } from "../core/grading.ts";
@@ -173,10 +173,10 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
                   <a class="btn sm ghost" href={m.video.kaynak.url} target="_blank" rel="noopener">Kaynakta izle</a></div></div>
             )}
             <div class="tiny muted" data-test="atif">{m.video.kaynak.atif} · {m.video.kaynak.lisans}</div>
-            {m.ortam_tr && adim === "dinle" && <p class="small" style={{ margin: 0 }} data-test="video-ortam">{m.ortam_tr}</p>}
+            {m.ortam_tr && adim === "dinle" && <p class="small" style={{ margin: 0 }} data-test="video-ortam"><Rich text={m.ortam_tr} /></p>}
           </>
         ) : (
-          <div class="card row medya-ses" data-test="ses-kart"><Icon name={m.kind === "ses" ? "phone" : "play"} /><span class="grow"><b>{m.title_tr}</b>{m.ortam_tr && <><br /><span class="small muted">{m.ortam_tr}</span></>}</span></div>
+          <div class="card row medya-ses" data-test="ses-kart"><Icon name={m.kind === "ses" ? "phone" : "play"} /><span class="grow"><b>{m.title_tr}</b>{m.ortam_tr && <><br /><span class="small muted"><Rich text={m.ortam_tr} /></span></>}</span></div>
         )}
       </div>
 
@@ -272,12 +272,12 @@ function SecmeliSoru({ q, sira, onNext, tekrar }: { q: AnlamaQ | { q_tr: string;
   return (
     <section class="card stack fade" data-test="adim-soru">
       <div class="kicker">{sira ? `Soru ${sira}` : "Soru"}</div>
-      <h3>{q.q_tr}</h3>
+      <h3><Rich text={q.q_tr} /></h3>
       <div role="group">{q.opts.map((o, k) => <button class={`opt${sec === null ? "" : k === q.ans ? " right" : k === sec ? " wrong" : ""}`} disabled={sec !== null} data-opt={k}
-        {...(E2E ? { "data-right": k === q.ans ? "1" : undefined } : {})} onClick={() => { setSec(k); haptic(k === q.ans ? "success" : "error"); }}>{o}</button>)}</div>
+        {...(E2E ? { "data-right": k === q.ans ? "1" : undefined } : {})} onClick={() => { setSec(k); haptic(k === q.ans ? "success" : "error"); }}><Rich text={o} /></button>)}</div>
       {sec === null && tekrar && <button class="btn sm ghost" onClick={tekrar}>Bir daha dinle</button>}
       {sec !== null && <ActionBar>
-        <FeedbackBand kind={sec === q.ans ? "ok" : "bad"} title={sec === q.ans ? "Doğru." : `Doğrusu: ${q.opts[q.ans]}`}>{"why_tr" in q && q.why_tr ? <Rich text={q.why_tr} /> : null}</FeedbackBand>
+        <FeedbackBand kind={sec === q.ans ? "ok" : "bad"} title={sec === q.ans ? "Doğru." : `Doğrusu: ${plain(q.opts[q.ans])}`}>{"why_tr" in q && q.why_tr ? <Rich text={q.why_tr} /> : null}</FeedbackBand>
         <button class="btn primary block" data-test="next" onClick={() => onNext(sec === q.ans)}>Devam</button></ActionBar>}
     </section>
   );
@@ -343,7 +343,7 @@ function DikteAdimi({ d, sira, cs, oy, onNext }: { d: Dikte; sira: string; cs: M
           <button class="btn primary block" data-test="submit" disabled={!secim.length} onClick={() => kontrol(secim.map((k) => banka[k]).join(" "))}>Kontrol et</button>
         </div>
       )}
-      {d.seviye === "gercek" && <p>{d.gorev_tr}</p>}
+      {d.seviye === "gercek" && <p><Rich text={d.gorev_tr} /></p>}
       {(d.seviye === "orta" || d.seviye === "usta" || d.seviye === "gercek") && !res && <ActionBar><AnswerField onSubmit={(a) => kontrol(a)} voice={d.seviye === "gercek"} /></ActionBar>}
       {res && <ActionBar>
         {res.ok ? <FeedbackBand kind="ok" title="Doğru."><span lang="de">{res.beklenen}</span>{res.not && <div class="small" data-test="yazim">{res.not}</div>}</FeedbackBand>
@@ -412,7 +412,7 @@ function CevaplaAdimi({ d, onNext }: { d: NonNullable<Bolum["cevapla"]>; onNext:
   return (
     <section class="card stack fade" data-test="adim-cevapla" {...(E2E ? { "data-cevap": d.accepted[0] } : {})}>
       <div class="kicker">Sen ne derdin? Söyle ya da yaz</div>
-      {durum && <p>{durum}</p>}
+      {durum && <p><Rich text={durum} /></p>}
       {prompt && <div class="row"><button class="btn sm" onClick={() => void speak(prompt, "de", "normal")}><Icon name="play" /> Dinle</button>{d.k === "guided_response" && <span class="de" lang="de">„{prompt}“</span>}</div>}
       {!v && <ActionBar><AnswerField submitLabel="Söyle" onSubmit={(a) => { const r = ruleVerdict(d.accepted, a); setV({ kind: r.kind === "correct" ? "correct" : r.kind === "ask_ai" ? "unchecked" : "wrong", a, best: r.best || d.accepted[0]! }); haptic(r.kind === "correct" ? "success" : "error"); }} /></ActionBar>}
       {v && <ActionBar>
@@ -441,7 +441,7 @@ export function M1Gun({ day }: { day: number }) {
   return (
     <div class="stack" data-test="m1-gun">
       <ProgressHeader title={`${gun.day}. gün: ${gun.title_tr}`} back="#/learn" />
-      <p class="small">{gun.goal_tr}</p>
+      <p class="small"><Rich text={gun.goal_tr} /></p>
       <ul class="list card">{medyalar(gun).map((m) => (
         <li><a class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }} href={`#/m1/${gun.day}/${encodeURIComponent(m.id)}`} data-test={`medya-${m.kind}`}>
           <span class="grow"><span class="tiny muted">{ad[m.kind]} · {m.bolumler.length} bölüm</span><br /><b>{m.title_tr}</b></span><span aria-hidden="true">›</span></a></li>))}</ul>
