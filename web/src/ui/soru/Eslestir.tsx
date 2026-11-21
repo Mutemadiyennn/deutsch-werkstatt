@@ -16,7 +16,10 @@ const E2E = import.meta.env.MODE === "e2e";
 export function Eslestir({ kartlar, tohum, onBitti }: { kartlar: readonly Lexeme[]; tohum: string; onBitti: (sonuc: { kart: string; dogru: boolean }[]) => void }) {
   const lex = useMemo(() => new Map(kartlar.map((l) => [l.id, l])), [kartlar]);
   const [d, setD] = useState<EslestirDurum | null>(() => eslestirKur(kartlar, tohum));
-  if (!d) return null;
+  // 4'ten az uygun kart: eşleştirme kurulamaz; ekran takılmasın, adım geçilir (sonuç yok; inceleme #183 P2)
+  if (!d) return (
+    <section class="stack" data-test="eslestir-yok"><p class="small muted" style={{ margin: 0 }}>Bu halkada eşleştirme için yeterli kelime yok.</p>
+      <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="esles-devam" onClick={() => onBitti([])}>Devam et</button></ActionBar></section>);
   const dokun = (yan: "sol" | "sag", kart: string) => {
     const l = lex.get(kart)!;
     if (yan === "sol" && !d.bitti.includes(kart)) void speak(duyulan(l), "de", "normal");

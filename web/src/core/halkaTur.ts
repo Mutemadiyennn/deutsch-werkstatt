@@ -1,7 +1,8 @@
 /**
  * AKIS AK-10 3. adım (TARGET3b 3. ve 4. ekran): halkanın iki yeni adım türü, saf çekirdek.
- *  - `resimden_sec`: kelime duyulur, dört görselden doğrusu seçilir. Görseller yalnız seçilmiş açık fotoğraflardan (atıflı, çevrimdışı
- *    önbellekte); sunucu araması kullanılmaz. Kartın kendi fotoğrafı ya da 3 fotoğraflı çeldirici yoksa tür bu kart için uygun değildir.
+ *  - `resimden_sec`: kelime duyulur, dört görselden doğrusu seçilir. Görseller yalnız seçilmiş açık fotoğraflardan (atıflı); sunucu
+ *    araması kullanılmaz. Bir kez görülen fotoğraf servis işçisi önbelleğinden çevrimdışı da gelir; hiç yüklenmemiş görsel
+ *    çevrimdışında gelmez ve tür o adımda düşer (tek doğru cevap kuralı bozulmaz). Kartın kendi fotoğrafı ya da 3 fotoğraflı çeldirici yoksa tür bu kart için uygun değildir.
  *  - `eslestir`: 4–6 Almanca kelime Türkçesiyle eşleşir. "Kontrol et" yok; yanlışta ceza yok, kart halkada bir kez daha gelir.
  * Ekran yok (AK-10 4. adım); bileşenler `ui/soru/ResimdenSec.tsx`, `ui/soru/Eslestir.tsx` (AK-7).
  */
