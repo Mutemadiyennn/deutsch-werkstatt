@@ -57,6 +57,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | #164 | `v2/kabuk-ses` | Kabuk 1.5: kabukta iPhone'un kendi seslendirmesi (TextToSpeech 8.0.0; premium > gelişmiş > standart; gerçek cinsiyetli ses, perde 1; ses listesi uygulama öne gelince yenilenir); web yolunda perde ±%8 ızgarası (aynı sahnede aynı ses+perde yok), aynı ad tek satır (PM 7042267632, 7042302480, 7044942991) | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; ios-build yeşil; **PM final**; #162 birleşti (f6ee482), main birleştirildi |
 | #145, #147 | İÇ dalları | B5 içerik (1. ve 2. gün ders profili) | İÇ şeridi; anlık görüntüler ANA'dan |
 | #168 | `v2/kume` | AKIS AK-10 1. adım: Halka şeması (kaliplar dahil), bilinen küme K(t) ve cümle kapısı (AK-3, packages/shared/src/kume.ts), halka denetçisi + sayaç (content/tools/halka.ts); #165 içeriği 0 hata | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur + KAPI |
+| #176 | `v2/akis` | AKIS AK-10 2. adım: `planGun` (web/src/core/akis.ts) + `policy.akis` eşikleri + 200 planlık özellik testleri + 1. gün dökümü (docs/v2/qa/akis/gun-01-plan.md, ≈ 94 dk) | 1. tur DEĞİŞİKLİK GEREKLİ → hepsi düzeltildi (dil durağı K(t) kapısında, tohum etkili, K8 sınıflaması, kalıp sırası, gevşeme son diziden); fark doğrulaması + toplu KAPI |
 
 **Bilinen CI kırmızıları:**
 - `v2_bahce_donusum` "Başka cümle zıplamıyor", yalnız iPhone 15 (#145, #150): kart aynı, sayfa 757 → 801 (+44). Neden bilinmiyor; #151'e tanı dökümü eklendi.
