@@ -5,7 +5,7 @@ AKIS AK-10 3. adım: halkanın iki yeni türü (hedef design/TARGET3b 3. ve 4. e
   Eşleştir: "Kontrol et" yok · yanlışta sallanma, ceza yok, iki kart "bir kez daha" · doğru çift ✓ kilitli · "Bilmiyorum, göster"
     kalanları açar, yanlış sayar · hücre ≥ 44 pt
   Yerleşim (PM-079 md. 4): 932 ve 844 yükseklikte birincil düğme tam görünür ve kesişmiyor · etkileşimli öğeler üst üste değil ·
-    yatay taşma yok · açık + koyu · uygulama açıkken ağ kesilince iki tür de çalışır
+    yatay taşma yok · açık + koyu · görsel yüklenemezse tür düşer
 python3 tests/e2e/v2_halka_tur.py [--browser webkit] [--device "iPhone 15"] [--shots DIR]
 """
 import io, json
@@ -64,6 +64,8 @@ def resim_akisi(pg, sema):
     etiketler = pg.evaluate("() => [...document.querySelectorAll('[data-test=resim-secenek]')].flatMap((b) => [b.getAttribute('aria-label') || '', b.querySelector('img')?.getAttribute('alt') || ''])")
     check(lang_de == 0 and "Winter" not in metin, f"cevaptan önce Almanca metin yok (lang=de {lang_de})")
     check(all(e == "" or e.startswith("Görsel ") for e in etiketler), f"cevaptan önce görsel alt/etiketinde Almanca yok (PM 7052062209 md. 4; {etiketler})")
+    tum = pg.evaluate("() => [...document.querySelectorAll('[data-test=resim-sec] [aria-label], [data-test=resim-sec] img[alt]')].map((e) => (e.getAttribute('aria-label') || '') + ' ' + (e.getAttribute('alt') || ''))")
+    check(not any("Winter" in t for t in tum), f"cevaptan önce hiçbir erişilebilirlik etiketinde Almanca kelime yok (dinle düğmeleri dahil; inceleme #183 P1-1; {tum})")
     check(pg.locator("[data-test=listen]").count() >= 1 and pg.locator("[data-test=listen-slow]").count() >= 1, "dinle düğmesi ve 'Yavaş'")
     check(pg.locator("[data-test=resim-kontrol]").is_disabled(), "seçim yapılmadan 'Kontrol et' pasif")
     check(pg.locator("[data-test=resim-yeniden]").count() == 1 and pg.locator("[data-test=resim-bilmiyorum]").count() == 1, "altta 'Yeniden dinle' ve 'Bilmiyorum'")
@@ -83,6 +85,8 @@ def resim_akisi(pg, sema):
     atif = pg.locator("[data-test=resim-atif]")
     atif.locator("summary").click()
     check("CC BY 2.0" in atif.inner_text() and atif.locator("a[href*='creativecommons.org']").count() == 4, "atıf: dört görselin yazarı ve lisansı 'Fotoğraf kaynakları'nda")
+    yazarlar = atif.locator("li").all_inner_texts()
+    check(yazarlar == sorted(yazarlar, key=lambda x: x.lower()) and not any(t[:2].strip().rstrip(".").isdigit() for t in yazarlar), f"atıf listesi ızgara sırasını ele vermez: yazara göre sıralı, numarasız ({yazarlar})")
     pg.click("[data-test=resim-devam]")
 
 def esles_akisi(pg, sema):
@@ -128,12 +132,12 @@ def main():
             beklenen = {f"{k}:{0 if k in (a, yanlis) else 1}" for k in ["lx:hallo", "lx:Frau", "lx:danke", "lx:bitte", "lx:ja"]}
             check(beklenen <= set(son), f"eşleştir sonucu: yalnız yanlış denenen iki kart 'bir kez daha' ({son})")
             if sema == "light":
-                # Bilmiyorum (resim) ve göster (eşleştir), ağ kesikken (uygulama açık, içerik ve görseller bellekte)
-                ctx.set_offline(True)
+                # Bilmiyorum (resim) ve göster (eşleştir). Not: WebKit'te sahte sunucu ağ kesikken de yanıt verdiği için uçak modu burada
+                # SINANMAZ (inceleme #183 P1-2); çevrimdışı davranış: görülen fotoğraf servis işçisi önbelleğinden, gelmeyen görselde tür düşer (aşağıda)
                 pg.evaluate("location.hash = '#/__halka-turleri/resim/lx:Herbst'"); pg.wait_for_timeout(50)
                 pg.wait_for_selector("[data-test=resim-sec][data-kart='lx:Herbst']", timeout=8000)
                 pg.click("[data-test=resim-bilmiyorum]"); pg.wait_for_selector("[data-test=resim-cevap]")
-                check("der Herbst" in pg.inner_text("[data-test=resim-cevap]") and pg.locator("[data-test=resim-secenek][data-right].right").count() == 1, "ağ kesik: 'Bilmiyorum' cevabı ve doğru görseli gösterir")
+                check("der Herbst" in pg.inner_text("[data-test=resim-cevap]") and pg.locator("[data-test=resim-secenek][data-right].right").count() == 1, "'Bilmiyorum' cevabı ve doğru görseli gösterir")
                 pg.click("[data-test=resim-devam]"); pg.wait_for_selector("[data-test=deneme-sonuc]")
                 check("lx:Herbst:0" in pg.inner_text("[data-test=deneme-sonuc]"), "'Bilmiyorum' yanlış sayılır")
                 pg.evaluate("location.hash = '#/__halka-turleri/esles/lx:heute,lx:Montag,lx:Dienstag,lx:Mittwoch,lx:nein'")
@@ -141,11 +145,10 @@ def main():
                 ilk = pg.locator("[data-test=esles-sol]").first.get_attribute("data-kart")
                 pg.click(f"[data-test=esles-sol][data-kart='{ilk}']"); pg.click(f"[data-test=esles-sag][data-kart='{ilk}']")
                 pg.click("[data-test=esles-goster]")
-                check(pg.locator(".esles-hucre.gosterildi").count() == 8 and pg.locator(".esles-hucre.right").count() == 2, "ağ kesik: 'göster' kalan dört çifti açar")
+                check(pg.locator(".esles-hucre.gosterildi").count() == 8 and pg.locator(".esles-hucre.right").count() == 2, "'göster' kalan dört çifti açar")
                 pg.click("[data-test=esles-devam]"); pg.wait_for_selector("[data-test=deneme-sonuc]")
                 son = pg.inner_text("[data-test=deneme-sonuc]").split()
                 check(f"{ilk}:1" in son and sum(x.endswith(":0") for x in son) == 4, f"'göster' ile açılanlar yanlış sayılır ({son})")
-                ctx.set_offline(False)
                 # görsel yüklenemezse tür düşer (tek doğru cevap kuralı)
                 pg2 = new_page(ctx); yonlendir(pg2, bozuk=("apfel", "käse", "frau", "urlaub", "winter", "nacht", "herbst", "frühling"))
                 pg2.goto(base + "#/__halka-turleri/resim/lx:Nacht")

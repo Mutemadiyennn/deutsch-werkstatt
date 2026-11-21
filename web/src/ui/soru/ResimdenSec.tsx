@@ -15,8 +15,8 @@ function Atiflar({ kayitlar }: { kayitlar: FotoKayit[] }) {
   return (
     <details class="tiny muted" data-test="resim-atif">
       <summary class="ikincil-eylem tiny">Fotoğraf kaynakları</summary>
-      <ul style={{ margin: "4px 0 0", paddingLeft: 18 }}>
-        {kayitlar.map((a, i) => <li>{i + 1}. {a.sayfa && /^https:\/\//.test(a.sayfa) ? <a href={a.sayfa} target="_blank" rel="noopener noreferrer">{a.yazar || "kaynak"}</a> : (a.yazar || "kaynak")} · {a.lisans_url && /^https:\/\//.test(a.lisans_url) ? <a href={a.lisans_url} target="_blank" rel="noopener noreferrer">{a.lisans}</a> : a.lisans} · kırpıldı</li>)}
+      <ul style={{ margin: "4px 0 0", paddingLeft: 18 }} data-sira="yazar">
+        {[...kayitlar].sort((x, y) => (x.yazar ?? "").localeCompare(y.yazar ?? "", "tr")).map((a) => <li>{a.sayfa && /^https:\/\//.test(a.sayfa) ? <a href={a.sayfa} target="_blank" rel="noopener noreferrer">{a.yazar || "kaynak"}</a> : (a.yazar || "kaynak")} · {a.lisans_url && /^https:\/\//.test(a.lisans_url) ? <a href={a.lisans_url} target="_blank" rel="noopener noreferrer">{a.lisans}</a> : a.lisans} · kırpıldı</li>)}
       </ul>
     </details>
   );
@@ -30,6 +30,8 @@ export function ResimSec({ soru, lex, harita, onBitti, onYok }: { soru: ResimSor
   const l = lex.get(soru.kart)!;
   const metin = duyulan(l);
   const [secim, setSecim] = useState<number | null>(null);
+  /** yüklenen görsel sayısı: dördü de gelmeden seçim yapılamaz (inceleme #183 P2) */
+  const [yuklu, setYuklu] = useState(0);
   const [sonuc, setSonuc] = useState<null | "dogru" | "yanlis" | "bilmiyorum">(null);
   useEffect(() => { void speak(metin, "de", "normal"); }, [soru.kart]);
   const kontrol = () => { if (secim === null) return; const ok = secim === soru.dogru; setSonuc(ok ? "dogru" : "yanlis"); haptic(ok ? "success" : "error"); };
@@ -42,14 +44,14 @@ export function ResimSec({ soru, lex, harita, onBitti, onYok }: { soru: ResimSor
         <div class="kicker icerik" style={{ color: "var(--accent)" }}>Dinle ve seç</div>
         <h2 style={{ margin: 0 }}>Hangisini duydun?</h2>
       </div>
-      <div class="row" style={{ justifyContent: "center" }}><ListenButton text={metin} label="Kelimeyi dinle" /></div>
+      <div class="row" style={{ justifyContent: "center" }}><ListenButton text={metin} label="Kelimeyi dinle" metinGizli={!bitti} /></div>
       <div class="resim-izgara" role="radiogroup" aria-label="Dört görsel">
         {soru.secenekler.map((s, i) => {
           const dur = !bitti ? (secim === i ? " sel" : "") : i === soru.dogru ? " right" : i === secim ? " wrong" : " soluk";
           return (
-            <button type="button" role="radio" aria-checked={secim === i} class={`resim-secenek${dur}`} disabled={bitti} data-test="resim-secenek" data-i={i}
+            <button type="button" role="radio" aria-checked={secim === i} class={`resim-secenek${dur}`} disabled={bitti || yuklu < soru.secenekler.length} data-test="resim-secenek" data-i={i}
               {...(E2E ? { "data-right": i === soru.dogru ? "1" : undefined } : {})} aria-label={etiket(i)} onClick={() => { setSecim(i); haptic("selection"); }}>
-              <img src={s.gorsel} alt={bitti ? etiket(i) : ""} loading="eager" decoding="async" onError={() => onYok?.()} />
+              <img src={s.gorsel} alt={bitti ? etiket(i) : ""} loading="eager" decoding="async" onLoad={() => setYuklu((n) => n + 1)} onError={() => onYok?.()} />
               {bitti && i === soru.dogru && <span class="resim-isaret" aria-hidden="true"><Icon name="check" /></span>}
             </button>
           );
