@@ -89,6 +89,8 @@ def main():
             ("build", "[data-test=answer], [data-chip], [data-test=section-done]"), ("drills", "[data-test=answer], [data-chip], button.opt"),
             ("listening", "[data-test=to-questions], button.opt"), ("dialogue", "[data-test=next], [data-test=answer]"), ("roleplay", "[data-test=rp-start]")]]
         walk += [(f"#/call/{SC}", "[data-test=call]")]
+        # 5. toplu (JS bütçesi): akış ekranı ayrı parçada (`import()`); parça kabuk önbelleğinden internetsiz gelir
+        walk += [("#/akis/2", "[data-test=akis], [data-test=akis-degil]")]
         bad = []
         for h, sel in walk:
             pg.goto(base + h)
@@ -101,6 +103,17 @@ def main():
         pg.goto(base + "#/sozluk"); pg.wait_for_selector("[data-test=sozluk-q]"); pg.fill("[data-test=sozluk-q]", "Termin")
         pg.wait_for_selector("[data-test=sozluk-satir], [data-test=sozluk-yok]")
         check(pg.locator("[data-test=sozluk-satir]").count() >= 1, "A: sözlük araması internetsiz sonuç veriyor (Termin)")
+        # PM 7055725467 md. 4, inceleme #187 P1-1: paketteki (yerel yollu) açık fotoğraf internetsiz gelir — e2e paketinde lx:Winter
+        foto = pg.evaluate("""async (v) => { const r = await caches.match(`content/${v}/foto.json`); if (!r) return null;
+          const f = (await r.json()).foto['lx:Winter#kart']; return f ? f.src : null; }""", idx["version"])
+        check(bool(foto) and foto.startswith(f"content/{idx['version']}/media/"), f"A: foto.json önceden önbellekte, yerel yollu kayıt var ({foto})")
+        pg.evaluate("() => { sessionStorage.setItem('e2e-kart', 'lx:Winter'); sessionStorage.removeItem('e2e-tur'); }")
+        pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=garden-intro]", timeout=10_000)
+        try: pg.wait_for_function("() => { const i = document.querySelector('[data-test=garden-intro] [data-test=foto] img'); return !!i && i.complete && i.naturalWidth > 0; }", timeout=8000); fy = True
+        except Exception: fy = False
+        fsrc = pg.get_attribute("[data-test=garden-intro] [data-test=foto] img", "src") if pg.locator("[data-test=garden-intro] [data-test=foto] img").count() else None
+        check(fy and (fsrc or "").startswith("content/"), f"A: kartın fotoğrafı internetsiz çizildi ({fsrc})")
+        pg.evaluate("() => sessionStorage.removeItem('e2e-kart')")
         v = dialogue_answer(pg, base, ans)
         check(v is not None and "Şöyle olmalı" not in v, f"A: diyalogda doğru cevap internetsiz değerlendirildi ({(v or '')[:40]!r})")
         if medya:

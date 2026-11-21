@@ -188,12 +188,26 @@ export function m1Hak(takvim: number, kalan: number, kisisel: number): { newLeft
   return { newLeft: kalan + (izin ? Math.min(2, takvim, kisisel) : 0), kisiselIzin: izin };
 }
 
+/** Bir Bahçe turunun en çok soru sayısı (buildRound varsayılanı) */
+export const TUR_EN_COK = 12;
+
+/** Tur sonu "Yarın N kart": yarın bu saate kadar vadesi gelen Bahçe kartları (yalnız sözcük kartı; ders ve cümle öğeleri sayılmaz) */
+export function yarinKartSayisi(items: ReadonlyMap<string, LearnerItem>, lex: ReadonlyMap<string, Lexeme>, now: Date): number {
+  const t = new Date(now.getTime() + 24 * 3600_000);
+  let n = 0;
+  for (const it of items.values()) { const l = it.kind === "lexeme" ? lex.get(it.itemId) : undefined; if (l && isCard(l) && (isDue(it, "passive", t) || isDue(it, "active", t))) n++; }
+  return n;
+}
+
+/** Tur sonu cümlesi: sayı bir turun sınırını aşarsa yarın kaçla başlanacağı ve sıradaki toplam (inceleme #188 P2-3) */
+export const yarinMetni = (n: number) => (!n ? "Yarın yeni kartlar gelecek." : n > TUR_EN_COK ? `Yarın ${TUR_EN_COK} kartla başlarsın; sırada toplam ${n} kart var.` : `Yarın ${n} kart seni bekliyor.`);
+
 /**
  * Bir tur kurar. `items`: öğrenci modeli (yalnızca lexeme türü kullanılır). `pool`: yeni kart adayları sırasıyla.
  * Sıra: vadesi gelen aktif → üretime açılan (tanıtılmış) kartlar → vadesi gelen pasif → öncelikli yeni (duyduğum) → yeni.
  */
 export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerItem>, pool: string[], o: RoundOpts = {}): GardenQ[] {
-  const max = o.max ?? 12, min = o.min ?? 8, rng = o.rng ?? Math.random, now = o.now ?? new Date();
+  const max = o.max ?? TUR_EN_COK, min = o.min ?? 8, rng = o.rng ?? Math.random, now = o.now ?? new Date();
   const newLeft = Math.max(0, o.newLeft ?? DAILY_NEW), activeLeft = Math.max(0, o.activeLeft ?? DAILY_ACTIVE);
   const prio = (o.priority ?? []).filter((id) => !items.has(id) && lex.has(id) && isCard(lex.get(id)!)).slice(0, Math.min(2, newLeft));
   const ayir = Math.max(0, Math.min(o.yeniAyir ?? 0, newLeft - prio.length));

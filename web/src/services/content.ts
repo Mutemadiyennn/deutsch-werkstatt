@@ -54,7 +54,7 @@ let resimSoz: Promise<Record<string, FotoKayit>> | null = null;
 export const loadResim = (): Promise<Record<string, FotoKayit>> => (resimSoz ??= within(file("resim.json", z.object({ kaynak: z.string(), lisans: z.string(), kartlar: z.record(z.string(), z.object({ src: z.string().regex(/^content\/[\w-]+\/media\/noto-[0-9a-f-]+\.svg$/) })) })))
   .then((x) => Object.fromEntries(Object.entries(x.kartlar).map(([id, r]) => [`${id}#kart`, { src: r.src, sinif: "acik", yazar: x.kaynak, lisans: x.lisans, lisans_url: "https://www.apache.org/licenses/LICENSE-2.0", sayfa: "https://github.com/googlefonts/noto-emoji", emoji: true } as FotoKayit])))
   .catch(() => ({} as Record<string, FotoKayit>)));
-const fotoYukle = () => within(file("foto.json", z.object({ foto: z.record(z.string(), z.object({ src: z.string().url(), sinif: z.literal("acik"), yazar: z.string().nullish(), lisans: z.string(), lisans_url: z.string().nullish(), sayfa: z.string().nullish() }).passthrough()) }))).then((x) => x.foto as Record<string, FotoKayit>).catch(() => ({} as Record<string, FotoKayit>));
+const fotoYukle = () => within(file("foto.json", z.object({ foto: z.record(z.string(), z.object({ src: z.string().refine((x) => /^https:\/\//.test(x) || /^content\/[\w-]+\/media\/[\w.-]+$/.test(x)), sinif: z.literal("acik"), yazar: z.string().nullish(), lisans: z.string(), lisans_url: z.string().nullish(), sayfa: z.string().nullish() }).passthrough()) }))).then((x) => x.foto as Record<string, FotoKayit>).catch(() => ({} as Record<string, FotoKayit>));
 export const loadWorld = () => within(file("world/world.json", World)).catch(() => null);
 export const loadAssessBank = () => within(file("assess.json", z.array(AssessItem)));
 let kayitli = false;

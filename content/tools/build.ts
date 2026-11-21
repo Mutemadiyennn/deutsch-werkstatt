@@ -14,6 +14,7 @@ import { z } from "zod";
 import { klipVideolari } from "./klip.ts";
 import { notoDosya, notoSvg } from "./emoji.ts";
 import { tmpdir } from "node:os";
+import { fotoPaketle, type FotoKaydi } from "./medya.ts";
 
 const c = checkRules(loadContent());
 if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
@@ -97,12 +98,22 @@ if (resimHarita) {
   }
   if (resimEksik.length) console.warn(`uyarı: Noto'da bulunmayan emoji kodu (${resimEksik.length}): ${resimEksik.slice(0, 5).join(", ")}`);
 }
+// PM 7055725467 md. 4: `medya` dalındaki açık fotoğraflar (acik.json `src: "medya:foto/<ad>"`; eski kayıtta dalın raw adresi) pakete girer ve
+// yerel yoldan sunulur (uçak modu: servis işçisi `files.medya` ve `files.foto` ile önbelleğe alır). Dosyası yoksa kayıt pakete girmez.
+// e2e paketinde bir kart (fixtures/foto/acik-e2e.json) yerel fotoğrafla gelir: uçak modu testi gerçek dosyayla (inceleme #187 P1-1)
+const acikYol = join(ROOT, "content/v2/media/foto/acik.json");
+const acik = existsSync(acikYol) ? (JSON.parse(readFileSync(acikYol, "utf8")) as { foto: Record<string, FotoKaydi> }) : null;
+if (acik && process.env.DW_E2E_FIXTURES === "1") Object.assign(acik.foto, (JSON.parse(readFileSync(join(ROOT, "content/tools/fixtures/foto/acik-e2e.json"), "utf8")) as { foto: Record<string, FotoKaydi> }).foto);
+const fotoPaket = fotoPaketle(acik?.foto ?? {}, medyaKaynak);
+for (const d of fotoPaket.dosyalar) if (!medyaBul.some((m) => m.src === d.src)) medyaBul.push({ ...d, ozet: createHash("sha1").update(readFileSync(d.yol)).digest("hex") });
+if (fotoPaket.eksik.length) console.warn(`uyarı: dosyası .medya/foto/ altında olmayan açık fotoğraf pakete girmez (${fotoPaket.eksik.length}): ${fotoPaket.eksik.slice(0, 5).join(", ")}`);
 if (medyaEksik.length) console.warn(`uyarı: pakete girmeyen medya (${medyaEksik.length}): ${medyaEksik.slice(0, 5).join(", ")}`);
 const toplamMedya = medyaBul.reduce((n, m) => n + statSync(m.yol).size, 0);
 // D-103 PM koşulu (7002348227): M1 medyası toplam ≤ 60 MB; aşılırsa yayın günlüğünde görünür uyarı, PM'e yazılır
 if (toplamMedya > 60 * 1024 * 1024) console.warn(`::warning::paketteki medya ${Math.round(toplamMedya / 1048576)} MB > 60 MB (D-103 sınırı; PM'e yaz)`);
 else if (toplamMedya > 50 * 1024 * 1024) console.warn(`uyarı: paketteki medya ${Math.round(toplamMedya / 1048576)} MB, D-103 sınırına (60 MB) yaklaşıyor`);
-const version = createHash("sha1").update(JSON.stringify([c.domains, payload, medyaBul.map((m) => [m.src, m.ozet])])).digest("hex").slice(0, 12);
+// acik.json da sürüme katılır: yalnız atıf düzeltmesi de yeni sürümle önbelleğe girer (inceleme #187 P2-2)
+const version = createHash("sha1").update(JSON.stringify([c.domains, payload, medyaBul.map((m) => [m.src, m.ozet]), acik])).digest("hex").slice(0, 12);
 const base = join(ROOT, "web/public/content");
 if (existsSync(base)) rmSync(base, { recursive: true });
 const dir = join(base, version);
@@ -112,7 +123,7 @@ w("lexemes.json", { lexemes: c.lexemes, patterns: c.patterns });
 w("grammar.json", c.grammar);
 w("assess.json", c.assess);
 // B12 3. parça: seçilmiş açık fotoğraflar (kapalı medya pakete girmez; raftan gelir, D-112)
-{ const f = join(ROOT, "content/v2/media/foto/acik.json"); if (existsSync(f)) w("foto.json", JSON.parse(readFileSync(f, "utf8"))); }
+if (acik) w("foto.json", { ...acik, foto: fotoPaket.yaz(version) });
 if (resimHarita) w("resim.json", { kaynak: resimHarita.kaynak ?? "Noto Emoji", lisans: resimHarita.lisans ?? "Apache-2.0", kartlar: Object.fromEntries([...resimKart].map(([id, src]) => [id, { src: `content/${version}/${src}` }])) });
 // PM-064: karakterlerin sesi (cinsiyet, yaş, sıra) uygulamada ses ataması için
 if (c.world) { mkdirSync(join(dir, "world"), { recursive: true }); w("world/world.json", c.world); }
@@ -142,7 +153,7 @@ const index: ContentIndex = {
     kartlar: g.yeni_kartlar.filter((id) => { const l = lexById.get(id); return !!l && kartMi(l); }), medya: medyalar(g).map((m) => ({ id: m.id, kind: m.kind, title_tr: m.title_tr })) })),
   temel: temel.map((t) => ({ id: t.id, order: t.order, title_tr: t.title_tr, title_de: t.title_de, review: t.review.status })),
   counts: { lexemes: c.lexemes.length, grammar: c.grammar.length, assess: c.assess.length, scenarios: c.scenarios.length },
-  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles, ...(resimHarita ? { resim: "resim.json" } : {}) }
+  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles, ...(acik ? { foto: "foto.json" } : {}), ...(resimHarita ? { resim: "resim.json" } : {}), genelAdlar: "genel-adlar.json" }
 };
 w("genel-adlar.json", genelAdlar);
 w("index.json", index);
