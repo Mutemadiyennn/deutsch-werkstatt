@@ -339,3 +339,18 @@ describe("Kelime Bahçesi (PM-049)", () => {
   });
 });
 
+describe("anlam çeldiricileri, akış (PM 7055715440 md. 5)", () => {
+  const L2 = (id: string, de: string, tr: string, domains: string[] = []) => Lexeme.parse({ id, de, tr, pos: "noun", art: "der", domains });
+  const jan = L2("lx:Januar", "Januar", "ocak"), feb = L2("lx:Februar", "Februar", "şubat"), mar = L2("lx:März", "März", "mart"),
+    feu = L2("lx:Feuerwehr", "Feuerwehr", "itfaiye", ["acil"]), buch = L2("lx:Buchstabe", "Buchstabe", "harf", ["okul"]);
+  it("yalnız: çeldiriciler halkadan ve bilinenlerden; yetmezse şık azalır, uzak sözcük gelmez", () => {
+    for (let k = 0; k < 20; k++) {
+      const o = meaningOptions(jan, [jan, feb, mar, feu, buch], () => (k * 0.37) % 1, { tur: new Set(["lx:Februar"]), bilinen: new Set(["lx:März"]), yalniz: true });
+      expect(o.opts.sort()).toEqual(["mart", "ocak", "şubat"]);
+    }
+  });
+  it("yalnız değilse Bahçe davranışı aynı: uzak sözcükle 4 şık", () => {
+    expect(meaningOptions(jan, [jan, feb, mar, feu, buch], () => 0.3, { tur: new Set(["lx:Februar"]) }).opts).toHaveLength(4);
+  });
+});
+

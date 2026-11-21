@@ -293,7 +293,7 @@ export function requeue(round: GardenQ[], q: GardenQ, l: Lexeme, rng: () => numb
 }
 
 /** Çeldirici yakınlığı (PM 7011722598 madde 5): `tur` = bu turun ve M1 gününün kartları; `bilinen` = öğrencinin tanıdığı kartlar */
-export interface Yakinlik { tur?: Set<string>; bilinen?: Set<string> }
+export interface Yakinlik { tur?: Set<string>; bilinen?: Set<string>; /** yalnız tur ve bilinen kartlardan; yetmezse şık azalır, rastgele uzak sözcük gelmez (akış, PM 7055715440 md. 5) */ yalniz?: boolean }
 
 /**
  * Anlam seçenekleri: doğru + aynı türden 3 çeldirici. Çeldirici eleme ile değil ayırt ederek bilinsin: önce **aynı turun /
@@ -306,7 +306,7 @@ export function meaningOptions(l: Lexeme, all: Lexeme[], rng: () => number = Mat
   const benim = trAnahtar(l.tr), deKucuk = l.de.toLowerCase();
   const uygun = all.filter((x) => x.id !== l.id && x.pos === l.pos && x.tr !== l.tr && isCard(x) && x.de.toLowerCase() !== deKucuk && ![...trAnahtar(x.tr)].some((k) => benim.has(k)));
   const alan = new Set(l.domains ?? []);
-  const derece = (x: Lexeme) => (y.tur?.has(x.id) ? 2 : y.bilinen?.has(x.id) && (x.domains ?? []).some((d) => alan.has(d)) ? 1 : 0);
+  const derece = (x: Lexeme) => (y.tur?.has(x.id) ? 2 : y.bilinen?.has(x.id) && (y.yalniz || (x.domains ?? []).some((d) => alan.has(d))) ? 1 : 0);
   const uzaklik = (x: Lexeme) => Math.abs((x.freqRank ?? 9e9) - (l.freqRank ?? 9e9));
   const pick: string[] = [];
   const al = (havuz: Lexeme[], n: number) => {
@@ -318,7 +318,7 @@ export function meaningOptions(l: Lexeme, all: Lexeme[], rng: () => number = Mat
   const yakinSayi = pick.length;
   // uzak: yakın ≥2 ise en çok 1 (toplam 3); tanıdık kart önce
   const uzak = uygun.filter((x) => derece(x) === 0).sort((a, b) => Number(!!y.bilinen?.has(b.id)) - Number(!!y.bilinen?.has(a.id)) || uzaklik(a) - uzaklik(b)).slice(0, 12);
-  al(uzak, yakinSayi >= 2 ? Math.min(3, yakinSayi + 1) : 3);
+  if (!y.yalniz) al(uzak, yakinSayi >= 2 ? Math.min(3, yakinSayi + 1) : 3);
   const opts = [...pick];
   const ans = Math.floor(rng() * (opts.length + 1)) % (opts.length + 1);
   opts.splice(ans, 0, l.tr);
