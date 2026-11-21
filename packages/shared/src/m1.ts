@@ -77,6 +77,10 @@ export const Video = z.object({
   /** paketlenmiş medya (göreli yol, içerik paketine göre) — tarayıcı ilk oynatabildiğini seçer */
   medya: z.array(z.object({ src: z.string().min(1), type: z.string().min(1) })).default([]),
   poster: z.string().optional(),
+  /** kim, nerede, ne soruluyor (Türkçe, dinlemeden önce; FORMAT.md A9) */
+  ortam_tr: z.string().min(1).optional(),
+  /** klipte geçen, o güne kadar öğretilmemiş kelimeler: dinlemeden önce gösterilir (FORMAT.md A9; inceleme #159 P1-2) */
+  on_ogretim: z.array(z.object({ de: z.string().min(1), tr: z.string().min(1) })).max(6).default([]),
   cumleler: z.array(MedyaCumle).min(1),
   bolumler: z.array(Bolum).min(1)
 });
@@ -129,6 +133,33 @@ export const OkumaYazma = z.object({
   yazma: z.object({ gorev_tr: z.string(), ornek_de: z.string(), zorunlu: z.array(z.string()).default([]), accepted_kaliplar: z.array(z.string()).default([]), kontrol_tr: z.array(z.string()).min(1) }).optional()
 });
 
+/**
+ * AKIS AK-5 (PM-078 B; PM #160): günün "halkaları" — İÇ'in grupladığı 4–6 yeni kart, kapıdan geçen görev cümleleri ve mini sahne.
+ * Alan yoksa gün bugünkü düzenle çalışır. Halka kendi kalıplarını öğretir (`kaliplar`; "…" yuvadır) ve günün dersi VARSAYILMAZ
+ * (#165 kuralı): `dersten_sonra: true` yalnız halka bilerek dersten sonra konduysa yazılır (planlayıcı sırayı K(t)'den hesaplar, K8).
+ */
+export const HalkaCumle = z.object({
+  kart: LexemeId, de: z.string().min(1), tr: z.string().min(1),
+  /** TR→DE ve söyle görevinde kabul edilen biçimler (üretimde ≥ 3, D-064) */
+  accepted: z.array(z.string().min(1)).default([])
+});
+export const HalkaSahne = z.object({
+  ortam_tr: z.string().min(1).optional(),
+  satirlar: z.array(z.object({ r: z.string().min(1), de: z.string().min(1), tr: z.string().min(1) })).min(2).max(4),
+  soru: z.object({ q_tr: z.string().min(1), opts: z.array(z.string().min(1)).min(2).max(4), ans: z.number().int().min(0) }).refine((q) => q.ans < q.opts.length, "cevap şıklarda yok")
+});
+export const Halka = z.object({
+  id: z.string().regex(/^m1:\d{2}:h\d+$/),
+  title_tr: z.string().min(1),
+  kartlar: z.array(LexemeId).min(1).max(8),
+  /** halkanın öğrettiği kalıplar: bütün olarak bilinir, parçaları tek tek bilinmez ("Guten Tag", "Für …") */
+  kaliplar: z.array(z.object({ de: z.string().min(1), tr: z.string().min(1) })).default([]),
+  dersten_sonra: z.boolean().optional(),
+  gorev_cumleleri: z.array(HalkaCumle).default([]),
+  sahne: HalkaSahne.optional()
+});
+export type Halka = z.infer<typeof Halka>;
+
 export const Gun = z.object({
   schema: z.literal(1),
   /** m1:gun:NN (dosya adı gun-NN.json ile birebir) */
@@ -148,6 +179,7 @@ export const Gun = z.object({
   review: ReviewState,
   dersler: z.array(z.string().regex(/^r0:\d{2}-[a-z0-9-]+$/)).default([]),
   yeni_kartlar: z.array(LexemeId).default([]),
+  halkalar: z.array(Halka).optional(),
   video: Video.optional(),
   sahne: Sahne.optional(),
   sesler: z.array(Ses).default([]),
@@ -175,7 +207,7 @@ export interface Medya {
 }
 export function medyalar(g: Gun): Medya[] {
   const out: Medya[] = [];
-  if (g.video) out.push({ id: g.video.id, kind: "video", title_tr: g.video.title_tr, cumleler: g.video.cumleler, bolumler: g.video.bolumler, hizlar: ["normal"], video: g.video });
+  if (g.video) out.push({ id: g.video.id, kind: "video", title_tr: g.video.title_tr, ortam_tr: g.video.ortam_tr, cumleler: g.video.cumleler, bolumler: g.video.bolumler, hizlar: ["normal"], video: g.video });
   for (const s of g.sesler) out.push({ id: s.id, kind: "ses", title_tr: s.title_tr, ortam_tr: s.ortam_tr, cumleler: s.script.map((c) => (c.speaker || !s.speaker ? c : { ...c, speaker: s.speaker })), bolumler: s.bolumler, hizlar: s.hizlar, eylem: s.eylem });
   if (g.sahne && g.sahne.bolumler.length) out.push({ id: g.sahne.id, kind: "sahne", title_tr: g.sahne.title_tr, cumleler: g.sahne.sahneler, bolumler: g.sahne.bolumler, hizlar: ["slow", "normal"] });
   return out;

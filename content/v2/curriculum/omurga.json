@@ -1,0 +1,6156 @@
+{
+ "schema": 1,
+ "review": {
+  "status": "draft"
+ },
+ "note_tr": "52 haftalık omurga taslağı (PM-078 D, PM-079 md. 9: yalnız plan). Omurga bir SIRADIR, takvim değildir: 'hafta' içerik birimidir; öğrenci geride kalırsa planlayıcı kaydırır; kapıdan geçiş hafta sayısıyla değil beceriyle olur (PM 7049695521 F1). Küçük sözcükler (noch, schon, nur, gern, dann, oft, sehr) ve Euro, Cent PM kararıyla 4.–6. güne girer; m1.json eki o günlerin halka PR'ıyla gelir, o zamana kadar burada 8. günde (F2). 'ay' içerik ayıdır (≈4,3 hafta). Mevsim ve gerçek takvim içeriği (Advent, Silvester, Fasching, Ostern, Maibaum, Dult …) haftaya değil tarihe bağlı koldan gelir (WORLD §6, cal:*); takvim kartları bu yüzden haftalık kelime planında yok (takvim_kolu_kartlari). 1.–7. gün m1.json ve m1/gun-0N.json ile birebir (dersler, başlık, kart sayısı); 2.–8. hafta gün gün yalnız başlık, ders ve kelime aralığı; 9. haftadan sonrası hafta düzeyinde. Kart sayıları sözlük kartıdır; birimlerin kalıp ve ifadeleri (birim başına 8–12) ayrıca sayılır. Ayrıntı 4 hafta önden yazılır. Öğrenciye gösterilebilir alanlar: yapabiliyorum_tr, gorev_tr, kapi_tr (konuşma sınavı), kulak_kapi_tr (dinleme sınavı), durum.tr, kol_mekan.tr, gunler[].title_tr; hepsi OD-9.2'ye uyar (tek cümle, ≤14 kelime, noktalı virgül, üç nokta, tırnak ve iç söz yok). durum.tr birim başlıklarının listesidir: her cümlesi tek fikir ve ≤14 kelime, ekranda alt alta gösterilir. kapi_ek teknik nottur, öğrenciye gösterilmez: seviye sınavının üç durumu, kayıt karşılaştırması, beklenmedik gelişme (surpriz), kaynak.",
+ "seviye_listeleri": {
+  "A1": {
+   "basvuru": 650,
+   "kaynak": "Goethe-Zertifikat A1: Start Deutsch 1, Wortliste, önsöz: 'circa 650 Wörter'; yarısı etkin, tamamı edilgin (goethe.de/pro/relaunch/prf/ca/A1_SD1_Wortliste_02.pdf; dilbilimci 20.11 doğruladı)",
+   "omurga_hafta": 8
+  },
+  "A2": {
+   "basvuru": 1300,
+   "kaynak": "Goethe-Zertifikat A2, Wortliste, önsöz: 'circa 1300 lexikalische Einheiten', en az tanıma düzeyinde; A1 içinde (goethe.de/pro/relaunch/prf/de/Goethe-Zertifikat_A2_Wortliste.pdf; dilbilimci 20.11 doğruladı)",
+   "omurga_hafta": 24
+  },
+  "B1": {
+   "basvuru": 2400,
+   "kaynak": "Goethe-Zertifikat B1, Wortliste, önsöz: 'circa 2400 lexikalische Einheiten', en az tanıma düzeyinde; A1 ve A2 içinde (goethe.de/pro/relaunch/prf/da/Goethe-Zertifikat_B1_Wortliste.pdf; dilbilimci 20.11 doğruladı)",
+   "omurga_hafta": 52
+  }
+ },
+ "seviye_dilimleri": {
+  "M1": [
+   1,
+   1
+  ],
+  "A1": [
+   2,
+   8
+  ],
+  "A2": [
+   9,
+   24
+  ],
+  "B1": [
+   25,
+   52
+  ]
+ },
+ "k1_cekirdek": {
+  "toplam": 1249,
+  "m1_de": 154,
+  "takvim_kolunda": 11,
+  "bitis_haftasi": 32,
+  "not_tr": "B1 dışı K1 kartları 21. haftada biter; 17. haftadan sonra A2 birimlerinin K1 dışı alan kartları gerekir (lex işi). siklik-B1 25. haftadan başlar."
+ },
+ "takvim_kolu_kartlari": [
+  "lx:Weihnachten",
+  "lx:Kerze",
+  "lx:Advent",
+  "lx:Adventskranz",
+  "lx:Glühwein",
+  "lx:Kinderpunsch",
+  "lx:Plätzchen",
+  "lx:Weihnachtsfeier",
+  "lx:Weihnachtsmarkt",
+  "lx:Wichteln",
+  "lx:Mandel"
+ ],
+ "pm_kararlari": [
+  {
+   "karar": "Seviye dilimleri: 1. hafta İlk Hafta, A1 2–8, A2 9–24, B1 25–52; 8., 24. ve 52. hafta pekiştirme ve seviye sınavı",
+   "kaynak": "PM 7049695521 F1",
+   "yer": {
+    "seviye_dilimleri": true
+   },
+   "not_tr": "Karar: dilimler onaylandı. #56 (YOL_HARITASI) ile çelişki yok: M3 A2'nin tamamı, M4 B1'in tamamı, hedef 6 ayda dışarıda rahat konuşmak. Kapıdan geçiş hafta sayısıyla değil beceriyle olur; geride kalan öğrenciyi planlayıcı kaydırır."
+  },
+  {
+   "karar": "Küçük sözcükler kart olarak öne (noch, schon, nur, da, dann, gern, sehr, oft, leider, wann, Uhr, Termin)",
+   "kaynak": "PM 7043400862 karar 3; PM 7049695521 F2",
+   "yer": {
+    "hafta": 1,
+    "gunler": [
+     4,
+     5,
+     6
+    ],
+    "simdilik": {
+     "hafta": 2,
+     "gun": 8
+    }
+   },
+   "hedef": {
+    "4": [
+     "lx:noch"
+    ],
+    "5": [
+     "lx:schon",
+     "lx:nur",
+     "lx:gern",
+     "lx:dann"
+    ],
+    "6": [
+     "lx:oft",
+     "lx:sehr"
+    ]
+   },
+   "kosul_tr": "Ekleme, silme değil. O günün halka denetimi (K1–K10) ve 100 dk tahmini tutmalı; tutmazsa taşan sözcük 8. güne gider. m1.json eki o günün halka PR'ıyla gelir.",
+   "not_tr": "Karar: 4. gün noch, 5. gün schon, nur, gern, dann, 6. gün oft, sehr. Gerekçe: C ölçümünde cümle kapısını tıkayan bunlardı, ilk hafta doğal cümle onlarsız kurulmuyor. da, leider, wann, Uhr, Termin zaten m1.json'da (2. ve 5. gün). Listede olmayan en çok tıkayan 13 küçük sözcük (lange, erst, viel, gleich, echt, Zeit, gut, klar, kurz, immer, jetzt, mehr, ganz) 8. günde ve sonrasında. Halka PR'ları gelene kadar yedisi omurgada 8. günde durur, çünkü 1.–7. gün m1.json ile birebir."
+  },
+  {
+   "karar": "Euro ve Cent",
+   "kaynak": "PM 7043400862 karar 3; PM 7049695521 F2 ve F3",
+   "yer": {
+    "hafta": 1,
+    "gun": 4,
+    "simdilik": {
+     "hafta": 2,
+     "gun": 8
+    }
+   },
+   "hedef": {
+    "4": [
+     "lx:Euro",
+     "lx:Cent"
+    ]
+   },
+   "kosul_tr": "Ekleme, silme değil. O günün halka denetimi (K1–K10) ve 100 dk tahmini tutmalı; tutmazsa taşan sözcük 8. güne gider. m1.json eki o günün halka PR'ıyla gelir.",
+   "not_tr": "Karar: 4. gün (Fiyat ve yaş). Kartları yok; K1 dışı kartlarda lex önce Euro ve Cent'i yazar (F3). Kart ve 4. günün halka PR'ı gelene kadar omurgada 8. günde."
+  },
+  {
+   "karar": "K1 dışı kartlar (17. haftadan sonra A2'de 285, B1'de yaklaşık 900)",
+   "kaynak": "PM 7049695521 F3; PM-079 md. 9",
+   "yer": {
+    "hafta_bas": 17
+   },
+   "not_tr": "Karar: sıraya girer, şimdi değil. Önce Euro ve Cent; genişletme 2.–7. gün halkalarından sonra. Seçim yalnız sıklıktan değil, A2 durum ailelerinin ihtiyaç listesinden."
+  },
+  {
+   "karar": "Omurgayı içerik doğrulayıcısına ekleme (şema isteği)",
+   "kaynak": "PM 7049695521 F4",
+   "yer": {
+    "arac": "docs/v2/reviews/omurga/denetim.py"
+   },
+   "not_tr": "Karar: sonra. PM taslağı okuyup alanlar durulunca; o zamana kadar denetim.py yeter. Baş geliştiricinin önünde AK-10 var."
+  },
+  {
+   "karar": "am + gün kalıbı",
+   "kaynak": "PM 7046461200",
+   "yer": {
+    "hafta": 1,
+    "gun": 2,
+    "kural": {
+     "hafta": 3,
+     "gun": 18,
+     "dil_noktasi": "gr:a1-05:t3"
+    }
+   },
+   "not_tr": "Kalıp 2. gün halkasında 'am … – im …' olarak (halka önerisi); kuralı 18. günde (Ne zaman? um, am, im)."
+  },
+  {
+   "karar": "Alles Gute zum Geburtstag",
+   "kaynak": "PM 7043400862 karar 2",
+   "yer": {
+    "hafta": 1,
+    "gun": 2,
+    "genisleme": {
+     "hafta": 5,
+     "gun": 33,
+     "dil_noktasi": "gr:a1-14:t5"
+    }
+   },
+   "not_tr": "2. gün provasından önce halkada kalıp olarak öğretilir; tebrikler 33. günde genişler."
+  },
+  {
+   "karar": "Konuşma kısaltmaları (hab, komm, geh, 's, 'n)",
+   "kaynak": "PM 7043400862; LS-8.3",
+   "yer": {
+    "hafta": 2,
+    "gun": 13,
+    "ikinci": {
+     "hafta": 17
+    }
+   },
+   "not_tr": "Mikro ders 1 13. günde (fiil sonları 2. günde, sein ve haben 7. günde öğretildikten sonra); mikro ders 2 17. haftada."
+  },
+  {
+   "karar": "#56'nın dört eksiği (sesli kurma, kelime ailesi, kaydet-dinle, yeniden anlatma)",
+   "kaynak": "#56 Ek",
+   "yer": {
+    "hafta": 6,
+    "gunler": [
+     37,
+     38,
+     40,
+     41
+    ]
+   },
+   "not_tr": "Dördü 6. haftada açılır, sonra kollarda sürer: kelime ailesi 2–4 (hafta 14, 22, 40), yeniden anlatma her hafta kapısında."
+  }
+ ],
+ "dil_noktasi_onerileri": [
+  {
+   "id": "dn:kal-am-gun",
+   "ad_tr": "Kalıp: am + gün – im + ay (am Montag, im Mai)",
+   "seviye": "A1",
+   "gramer": [
+    "gr:a1-05:t3"
+   ],
+   "kaynak": "PM 7046461200: 2. gün halkasında kalıp; kural 3. haftada (gr:a1-05:t3)",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:kal-alles-gute",
+   "ad_tr": "Kalıp: Alles Gute zum Geburtstag!",
+   "seviye": "A1",
+   "gramer": [
+    "gr:a1-14:t5"
+   ],
+   "kaynak": "PM 7043400862 karar 2: 2. gün provasından önce halkada öğretilir",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:kucuk-sozcukler",
+   "ad_tr": "Küçük sözcükler halkası: noch, schon, nur, gern, oft, sehr, dann …",
+   "seviye": "A1",
+   "gramer": [],
+   "kaynak": "PM 7043400862 karar 3: kart olarak, C ölçümündeki tıkama sırasıyla",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:kisaltma-1",
+   "ad_tr": "Hızlı konuşma 1: hab, komm, geh, geht's, 'n (LS-8.3 mikro ders)",
+   "seviye": "A1",
+   "gramer": [],
+   "kaynak": "PM 7043400862: mikro ders görülmeden görev cümlesinde kısaltma yok",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:kisaltma-2",
+   "ad_tr": "Hızlı konuşma 2: haste, isses, gibt's, 'nen, ham wir, nö (LS-8.3 mikro ders)",
+   "seviye": "A2",
+   "gramer": [],
+   "kaynak": "LS-8.3",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:sesli-kurma",
+   "ad_tr": "Sesli kurma dersi: Türkçe sor, bekle, sen kur (araba modu)",
+   "seviye": "A1",
+   "gramer": [],
+   "kaynak": "#56 eksik 1",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:kelime-ailesi-1",
+   "ad_tr": "Kelime ailesi 1: birleşik isimler (Haus + Arzt)",
+   "seviye": "A1",
+   "gramer": [],
+   "kaynak": "#56 eksik 2",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:kelime-ailesi-2",
+   "ad_tr": "Kelime ailesi 2: ön ekler an-, ab-, um-, ein-, aus-",
+   "seviye": "A2",
+   "gramer": [
+    "gr:a1-05:t4"
+   ],
+   "kaynak": "#56 eksik 2",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:kelime-ailesi-3",
+   "ad_tr": "Kelime ailesi 3: -ung, -heit, -keit ile isim",
+   "seviye": "A2",
+   "gramer": [],
+   "kaynak": "#56 eksik 2",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:kelime-ailesi-4",
+   "ad_tr": "Kelime ailesi 4: -lich, -bar, un- ile sıfat",
+   "seviye": "B1",
+   "gramer": [],
+   "kaynak": "#56 eksik 2",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:kaydet-dinle",
+   "ad_tr": "Kaydet ve yan yana dinle (telaffuz atölyesi)",
+   "seviye": "A1",
+   "gramer": [],
+   "kaynak": "#56 eksik 3",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:yeniden-anlatma",
+   "ad_tr": "Yeniden anlatma: dinlediğini 3–5 cümleyle anlat",
+   "seviye": "A1",
+   "gramer": [],
+   "kaynak": "#56 eksik 4",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:akicilik-432",
+   "ad_tr": "Akıcılık: aynı şeyi 4, 3, 2 dakikada anlat",
+   "seviye": "A2",
+   "gramer": [],
+   "kaynak": "#56 madde 16",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:bairisch-1",
+   "ad_tr": "Bavyera sözleri 1: Grüß Gott, Servus, gell, Ja mei, Passt scho (WORLD §5, kaynaklı)",
+   "seviye": "A2",
+   "gramer": [],
+   "kaynak": "WORLD §5",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:bairisch-2",
+   "ad_tr": "Bavyera kulağı 2: doğal kayıtta sık biçimleri tanımak (ses: Wikitongues; yazılı örnek: MaiBaam; kaynaklı)",
+   "seviye": "B1",
+   "gramer": [],
+   "kaynak": "KAYNAKLAR §1, §7",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:relativ-basit",
+   "ad_tr": "İlgi cümlesi, ilk adım: tanımak ve iki kalıpla tarif etmek (Das ist ein Ding, das … / jemand, der …)",
+   "seviye": "A2",
+   "gramer": [
+    "gr:b1-02:t1"
+   ],
+   "kaynak": "a2.json kulak-3 gr:relativ-basit ister; grammar.json bunu B1'de öğretir",
+   "durum": "önerilen"
+  },
+  {
+   "id": "dn:sinav-provasi",
+   "ad_tr": "B1 sınav biçimi provası: dört bölüm, süreli (biçim referansı, C)",
+   "seviye": "B1",
+   "gramer": [
+    "gr:b1-14:t4",
+    "gr:b1-14:t5"
+   ],
+   "kaynak": "KAYNAKLAR §3",
+   "durum": "önerilen"
+  }
+ ],
+ "b1_birim_onerileri": [
+  {
+   "id": "u:b1:telefon-1",
+   "title_tr": "Bir sorunu telefonda baştan sona çözmek",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:telefon-2",
+   "title_tr": "Telefonda mesaj bırakmak, geri arama istemek",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:telefon-3",
+   "title_tr": "Bir aboneliği telefonla sormak ya da iptal etmek",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:telefon-4",
+   "title_tr": "Hazırlıksız gelen aramada işi halletmek",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:saglik-1",
+   "title_tr": "Doktorun açıklamasını anlamak, ek soru sormak",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:saglik-2",
+   "title_tr": "Uzmana sevk ve randevu",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:saglik-3",
+   "title_tr": "Acil bir durumda ne olduğunu anlatmak",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:saglik-4",
+   "title_tr": "Sağlık sigortasına soru sormak",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:resmi-1",
+   "title_tr": "Resmî mektuba yazılı cevap vermek",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:resmi-2",
+   "title_tr": "Bir karara yazılı itiraz etmek",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:resmi-3",
+   "title_tr": "Bankada bir sorunu çözmek",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:resmi-4",
+   "title_tr": "Kira ve yan giderler hakkında sormak",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:is-1",
+   "title_tr": "İzin, vardiya ve fazla mesai konuşmak",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:is-2",
+   "title_tr": "Toplantıda kısa durum özeti vermek",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:is-3",
+   "title_tr": "İş görüşmesinde kendini anlatmak",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:is-4",
+   "title_tr": "Bir sorunu şefe anlatıp çözüm önermek",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:hizmet-1",
+   "title_tr": "Şikâyet etmek, ürünü iade etmek",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:hizmet-2",
+   "title_tr": "Bir işi ustaya ya da tamirhaneye yaptırmak",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:hizmet-3",
+   "title_tr": "İki teklifi karşılaştırmak, pazarlık etmek",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:hizmet-4",
+   "title_tr": "Teknik bir sorunu anlatmak",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:bag-1",
+   "title_tr": "Fikir bildirmek, katılmadığını söylemek",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:bag-2",
+   "title_tr": "Bir olayı sırasıyla anlatmak",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:bag-3",
+   "title_tr": "Bir anlaşmazlığı konuşmak, yardım teklif etmek",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:bag-4",
+   "title_tr": "Dernek ve gönüllülük",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:kulak-1",
+   "title_tr": "Sokak röportajında doğal konuşmayı anlamak",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:kulak-2",
+   "title_tr": "Radyo haberini anlamak",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:kulak-3",
+   "title_tr": "Bavyera ağzıyla sohbeti takip etmek",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:kulak-4",
+   "title_tr": "Sesli mesaj ve anonsta ayrıntı yakalamak",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:okuma-1",
+   "title_tr": "Kısa haber okumak ve özetlemek",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:okuma-2",
+   "title_tr": "Resmî e-posta yazmak",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:okuma-3",
+   "title_tr": "İlan ve yorum okumak, yorum yazmak",
+   "durum": "önerilen (b1.json yok)"
+  },
+  {
+   "id": "u:b1:okuma-4",
+   "title_tr": "Kullanım talimatını okumak",
+   "durum": "önerilen (b1.json yok)"
+  }
+ ],
+ "a2_gramer_eslemesi": {
+  "gr:modal": "r0:09-modalverben",
+  "gr:trennbar": "gr:a1-05:t4",
+  "gr:perfekt": "gr:a1-07:t2",
+  "gr:dativ": "gr:a1-10:t1",
+  "gr:imperativ": "gr:a1-09:t4",
+  "gr:nebensatz": "gr:a2-01:t4",
+  "gr:akkusativ": "gr:a1-06:t1",
+  "gr:vergleich": "gr:a1-13:t2",
+  "gr:verbzweit": "gr:a1-05:t5",
+  "gr:zeit": "gr:a1-12:t3",
+  "gr:relativ-basit": "dn:relativ-basit"
+ },
+ "gramer_r0_karsiligi": {
+  "gr:a1-01:t2": "r0:08-sein-haben",
+  "gr:a1-01:t3": "r0:11-praesens",
+  "gr:a1-01:t4": "r0:07-fragewoerter",
+  "gr:a1-01:t5": "r0:03-zahlen-0-20",
+  "gr:a1-02:t2": "r0:08-sein-haben",
+  "gr:a1-02:t5": "r0:04-zahlen-21-100",
+  "gr:a1-05:t1": "r0:05-uhrzeit",
+  "gr:a1-05:t2": "r0:05-uhrzeit",
+  "gr:a1-07:t1": "r0:09-modalverben",
+  "gr:a1-09:t1": "r0:09-modalverben"
+ },
+ "gramer_tekrar_karsiligi": {
+  "gr:b1-07:t1": "gr:a2-11:t3"
+ },
+ "gramer_tekrar_notu_tr": "Aynı konu iki birimde: obwohl 21. haftada (gr:a2-11:t3) öğretilir; 31. hafta (b1-07) yeni bir şey öğretmediği için gr:b1-07:t1'i yeniden vermez, kira ve komşu örneklerini 21. haftanın kuralına bağlar (döngüsüzlük, dilbilimci A6, inceleme #179).",
+ "haftalar": [
+  {
+   "no": 1,
+   "ay": 1,
+   "seviye": "A1",
+   "tas": "M1",
+   "yapabiliyorum_tr": "Gün ve saat konuşarak basit bir randevu isterim.",
+   "gorev_tr": "Bir dükkânın kapısındaki açılış saatlerini Almanca okurum.",
+   "dil_noktalari": [
+    "r0:01-tage",
+    "r0:02-monate",
+    "r0:03-zahlen-0-20",
+    "r0:04-zahlen-21-100",
+    "r0:05-uhrzeit",
+    "r0:06-datum",
+    "r0:07-fragewoerter",
+    "r0:08-sein-haben",
+    "r0:09-modalverben",
+    "r0:11-praesens",
+    "dn:kal-am-gun",
+    "dn:kal-alles-gute"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "m1.json yeni_kartlar",
+      "sira": [
+       1,
+       1087
+      ],
+      "adet": 155
+     }
+    ],
+    "k1_disi": 0,
+    "alan": "M1: gün, ay, sayı, saat, tarih, soru, fiil",
+    "planlanan_yeni": 155,
+    "birikimli": 155
+   },
+   "durum": {
+    "aileler": [
+     "telefon",
+     "saglik",
+     "hizmet",
+     "bag"
+    ],
+    "birimler": [],
+    "tr": "Randevu için gün ve saat konuşmak, fiyat, numara, tarih ve kendini tanıtmak"
+   },
+   "kulak": {
+    "video_adet": 7,
+    "video_kaynak": [
+     "m1:01:rv1",
+     "m1:02:rv1",
+     "m1:03:rv1",
+     "m1:04:rv1",
+     "m1:05:rv1",
+     "m1:06:rv1",
+     "m1:07:rv1"
+    ],
+    "video_aday": "Deutsch im Blick (CC BY 4.0), 7 hazır klip",
+    "dinleme_dk": 40,
+    "durum_adet": 7
+   },
+   "kol_mekan": {
+    "kollar": [
+     "bahce",
+     "atolye",
+     "sinema"
+    ],
+    "mekan": "pl:praxis",
+    "tr": "Bahçe, Atölye ve Sinema açılır"
+   },
+   "kapi_tr": "Yedinci gün Frau Huber'i arar, adını söyler ve randevu istersin.",
+   "kulak_kapi_tr": "Yeni kısa bir kayıtta gün ve saati duyup yazarsın.",
+   "kapi_ek": {
+    "kaynak": "m1/hafta-sonu-testi.json (12 madde)"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [],
+    "dil_noktalari": []
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    5,
+    11,
+    12,
+    14,
+    19,
+    20,
+    24,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 186,
+    "tekrar": 70,
+    "dil": 210,
+    "kulak": 40,
+    "konusma": 84,
+    "oku_yaz": 60,
+    "kapi": 30
+   },
+   "tahmini_dk": 680
+  },
+  {
+   "no": 2,
+   "ay": 1,
+   "seviye": "A1",
+   "tas": "M2",
+   "yapabiliyorum_tr": "Fırında istediğimi söyler, fiyatını sorarım.",
+   "gorev_tr": "Fırında iki şey isteyip fiyatını sorarım.",
+   "dil_noktalari": [
+    "gr:a1-03:t5",
+    "dn:kucuk-sozcukler",
+    "gr:a1-04:t1",
+    "gr:a1-03:t1",
+    "gr:a1-03:t2",
+    "gr:a1-03:t3",
+    "gr:a1-03:t4",
+    "gr:a1-12:t2",
+    "gr:a1-06:t1",
+    "gr:a1-01:t1",
+    "gr:a1-02:t1",
+    "dn:kisaltma-1"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "öne çekilen küçük sözcükler (gün 8)",
+      "sira": [
+       624,
+       909
+      ],
+      "adet": 20
+     },
+     {
+      "grup": "senaryo",
+      "sira": [
+       110,
+       142
+      ],
+      "adet": 25
+     },
+     {
+      "grup": "siklik-A1",
+      "sira": [
+       600,
+       664
+      ],
+      "adet": 45
+     },
+     {
+      "grup": "v1-A1",
+      "sira": [
+       221,
+       263
+      ],
+      "adet": 23
+     }
+    ],
+    "k1_disi": 2,
+    "alan": "sık küçük sözcükler; fırın ve fiyat",
+    "planlanan_yeni": 115,
+    "birikimli": 270
+   },
+   "durum": {
+    "aileler": [
+     "hizmet",
+     "bag"
+    ],
+    "birimler": [],
+    "tr": "Fırında sipariş vermek ve tanışırken samimi ya da resmî hitap etmek"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 4 (Freizeit und Ausgehen): kafe, yemek",
+    "dinleme_dk": 80,
+    "durum_adet": 4
+   },
+   "kol_mekan": {
+    "kollar": [
+     "pazar"
+    ],
+    "mekan": "pl:baeckerei",
+    "tr": "Gerçek Görevler panosu ilk dış görevle açılır"
+   },
+   "kapi_tr": "Fırında yardımsız iki şey ister, sayısını ve fiyatını sorarsın.",
+   "kulak_kapi_tr": "Hızlı söylenen bir fiyatı duyup yazarsın.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     1
+    ],
+    "dil_noktalari": [
+     "r0:08-sein-haben",
+     "r0:04-zahlen-21-100",
+     "r0:11-praesens"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    11,
+    12,
+    14,
+    21,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 138,
+    "tekrar": 105,
+    "dil": 170,
+    "kulak": 80,
+    "konusma": 48,
+    "oku_yaz": 60,
+    "kapi": 30
+   },
+   "tahmini_dk": 631
+  },
+  {
+   "no": 3,
+   "ay": 1,
+   "seviye": "A1",
+   "tas": "M2",
+   "yapabiliyorum_tr": "Telefonda randevunun gün ve saatini doğrularım.",
+   "gorev_tr": "Bir dükkânı arayıp yalnızca açılış saatini sorarım.",
+   "dil_noktalari": [
+    "gr:a1-02:t3",
+    "gr:a1-12:t5",
+    "r0:10-buchstabieren",
+    "gr:a1-12:t1",
+    "gr:a1-05:t3",
+    "gr:a1-12:t3",
+    "gr:a1-02:t4",
+    "gr:a1-06:t2",
+    "gr:a1-12:t4"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "r0",
+      "sira": [
+       9,
+       109
+      ],
+      "adet": 7
+     },
+     {
+      "grup": "ihtiyac:telefon",
+      "sira": [
+       484,
+       582
+      ],
+      "adet": 7
+     },
+     {
+      "grup": "senaryo",
+      "sira": [
+       145,
+       170
+      ],
+      "adet": 20
+     },
+     {
+      "grup": "siklik-A1",
+      "sira": [
+       665,
+       724
+      ],
+      "adet": 40
+     },
+     {
+      "grup": "v1-A1",
+      "sira": [
+       265,
+       308
+      ],
+      "adet": 21
+     }
+    ],
+    "k1_disi": 0,
+    "alan": "telefon; zaman sözcükleri",
+    "planlanan_yeni": 95,
+    "birikimli": 365
+   },
+   "durum": {
+    "aileler": [
+     "telefon",
+     "saglik"
+    ],
+    "birimler": [],
+    "tr": "Muayenehaneyi aramak: Frau Huber'e adını hecelemek, gün ve saat konuşmak, tekrar istemek"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 2 (An der Uni): ders saatleri, günler",
+    "dinleme_dk": 80,
+    "durum_adet": 4
+   },
+   "kol_mekan": {
+    "kollar": [
+     "telefon"
+    ],
+    "mekan": "pl:telefon",
+    "tr": "Telefon: sesli mesajlar açılır"
+   },
+   "kapi_tr": "Telefonda Frau Huber'e adını hecelersin, gün ve saati söylersin.",
+   "kulak_kapi_tr": "Frau Huber'in hızlı sesli mesajından gün ve saati yazarsın.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     2
+    ],
+    "dil_noktalari": [
+     "r0:05-uhrzeit",
+     "r0:06-datum",
+     "dn:kal-am-gun"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    5,
+    10,
+    11,
+    12,
+    14,
+    15,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 114,
+    "tekrar": 105,
+    "dil": 140,
+    "kulak": 80,
+    "konusma": 48,
+    "oku_yaz": 60,
+    "kapi": 30
+   },
+   "tahmini_dk": 577
+  },
+  {
+   "no": 4,
+   "ay": 1,
+   "seviye": "A1",
+   "tas": "M2",
+   "yapabiliyorum_tr": "Komşuma evimi ve nerede oturduğumu anlatırım.",
+   "gorev_tr": "Apartmanda bir komşuya selam verip kendimi tanıtırım.",
+   "dil_noktalari": [
+    "gr:a1-04:t2",
+    "gr:a1-04:t3",
+    "gr:a1-04:t4",
+    "gr:a1-13:t1",
+    "gr:a1-13:t2",
+    "gr:a1-13:t3",
+    "gr:a1-04:t5",
+    "gr:a1-11:t1",
+    "gr:a1-11:t2"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "ihtiyac:wohnen",
+      "sira": [
+       487,
+       551
+      ],
+      "adet": 8
+     },
+     {
+      "grup": "senaryo",
+      "sira": [
+       171,
+       187
+      ],
+      "adet": 12
+     },
+     {
+      "grup": "siklik-A1",
+      "sira": [
+       726,
+       808
+      ],
+      "adet": 45
+     },
+     {
+      "grup": "v1-A1",
+      "sira": [
+       311,
+       360
+      ],
+      "adet": 25
+     }
+    ],
+    "k1_disi": 0,
+    "alan": "ev ve eşya; sıfatlar",
+    "planlanan_yeni": 90,
+    "birikimli": 455
+   },
+   "durum": {
+    "aileler": [
+     "bag",
+     "okuma"
+    ],
+    "birimler": [],
+    "tr": "Merdivende Frau Brandl ile tanışmak, Herr Pichler'in duyurusu ve ev ilanı"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 8 (Wohnen bölümü)",
+    "dinleme_dk": 80,
+    "durum_adet": 4
+   },
+   "kol_mekan": {
+    "kollar": [
+     "kutuphane"
+    ],
+    "mekan": "pl:haus",
+    "tr": "Okuma Salonu açılır (ev ilanı, duyuru)"
+   },
+   "kapi_tr": "Merdivende Frau Brandl'a kim olduğunu, nerede oturduğunu ve evini anlatırsın.",
+   "kulak_kapi_tr": "Herr Pichler'in duyurusunu dinleyip senden ne istediğini söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     3
+    ],
+    "dil_noktalari": [
+     "r0:03-zahlen-0-20",
+     "r0:08-sein-haben",
+     "gr:a1-04:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    5,
+    7,
+    11,
+    12,
+    14,
+    17,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 108,
+    "tekrar": 105,
+    "dil": 135,
+    "kulak": 80,
+    "konusma": 48,
+    "oku_yaz": 60,
+    "kapi": 30
+   },
+   "tahmini_dk": 566
+  },
+  {
+   "no": 5,
+   "ay": 2,
+   "seviye": "A1",
+   "tas": "M2",
+   "yapabiliyorum_tr": "Günümü saat saat anlatırım.",
+   "gorev_tr": "Bir tanıdığa yarınki planımı üç cümleyle anlatırım.",
+   "dil_noktalari": [
+    "gr:a1-05:t4",
+    "gr:a1-05:t5",
+    "gr:a1-08:t1",
+    "gr:a1-08:t2",
+    "gr:a1-06:t3",
+    "gr:a1-14:t4",
+    "gr:a1-14:t5",
+    "gr:a1-11:t3",
+    "gr:a1-11:t4",
+    "gr:a1-11:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "ihtiyac:verkehr",
+      "sira": [
+       497,
+       587
+      ],
+      "adet": 8
+     },
+     {
+      "grup": "ihtiyac:arbeit",
+      "sira": [
+       506,
+       567
+      ],
+      "adet": 5
+     },
+     {
+      "grup": "senaryo",
+      "sira": [
+       188,
+       204
+      ],
+      "adet": 10
+     },
+     {
+      "grup": "siklik-A1",
+      "sira": [
+       809,
+       889
+      ],
+      "adet": 42
+     },
+     {
+      "grup": "v1-A1",
+      "sira": [
+       361,
+       381
+      ],
+      "adet": 20
+     }
+    ],
+    "k1_disi": 0,
+    "alan": "gün planı, iş, yol",
+    "planlanan_yeni": 85,
+    "birikimli": 540
+   },
+   "durum": {
+    "aileler": [
+     "is",
+     "bag",
+     "kulak"
+    ],
+    "birimler": [],
+    "tr": "İş yerinde ilk gün. Tobi ile ve Herr Wimmer ile konuşmak. Günün planı. Davet ve otobüs."
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 3 (Der Alltag)",
+    "dinleme_dk": 80,
+    "durum_adet": 4
+   },
+   "kol_mekan": {
+    "kollar": [
+     "kafe"
+    ],
+    "mekan": "pl:firma",
+    "tr": "Sohbet Saati (kafe) açılır"
+   },
+   "kapi_tr": "Molada yarınki planını önce Tobi'ye samimi, sonra Herr Wimmer'e kibarca anlatırsın.",
+   "kulak_kapi_tr": "Bir otobüs anonsunda hangi otobüsün kaçta kalktığını söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     4
+    ],
+    "dil_noktalari": [
+     "r0:05-uhrzeit",
+     "gr:a1-05:t3"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    5,
+    7,
+    11,
+    12,
+    14,
+    21,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 102,
+    "tekrar": 105,
+    "dil": 150,
+    "kulak": 80,
+    "konusma": 48,
+    "oku_yaz": 60,
+    "kapi": 30
+   },
+   "tahmini_dk": 575
+  },
+  {
+   "no": 6,
+   "ay": 2,
+   "seviye": "A1",
+   "tas": "M2",
+   "yapabiliyorum_tr": "Dün ne yaptığımı kısa cümlelerle anlatırım.",
+   "gorev_tr": "Birine dün ne yaptığımı iki cümleyle anlatırım.",
+   "dil_noktalari": [
+    "gr:a1-07:t2",
+    "gr:a1-07:t3",
+    "dn:sesli-kurma",
+    "gr:a1-07:t4",
+    "gr:a2-01:t1",
+    "dn:kaydet-dinle",
+    "gr:a1-08:t3",
+    "gr:a1-14:t3",
+    "dn:kelime-ailesi-1",
+    "gr:a1-06:t4",
+    "dn:yeniden-anlatma",
+    "gr:a1-08:t4"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "senaryo",
+      "sira": [
+       206,
+       213
+      ],
+      "adet": 5
+     },
+     {
+      "grup": "siklik-A1",
+      "sira": [
+       893,
+       1020
+      ],
+      "adet": 40
+     },
+     {
+      "grup": "v1-A1",
+      "sira": [
+       382,
+       393
+      ],
+      "adet": 11
+     },
+     {
+      "grup": "v1-A2",
+      "sira": [
+       219,
+       226
+      ],
+      "adet": 4
+     }
+    ],
+    "k1_disi": 0,
+    "alan": "geçmiş; hafta sonu; birleşik isimler",
+    "planlanan_yeni": 60,
+    "birikimli": 600
+   },
+   "durum": {
+    "aileler": [
+     "bag",
+     "is"
+    ],
+    "birimler": [],
+    "tr": "Pazartesi molasında hafta sonunu anlatmak"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 5 (Feste und Feiertage): geçmişi anlatma",
+    "dinleme_dk": 80,
+    "durum_adet": 4
+   },
+   "kol_mekan": {
+    "kollar": [
+     "tiyatro"
+    ],
+    "mekan": "pl:sprachkurs",
+    "tr": "Hikâye (sesli drama) ve araba modu açılır"
+   },
+   "kapi_tr": "Hafta sonunda ne yaptığını üç cümleyle anlatırsın.",
+   "kulak_kapi_tr": "Kısa bir hikâyeyi dinleyip üç cümleyle yeniden anlatırsın.",
+   "kapi_ek": {
+    "kayit_karsilastirma": "konuşma kaydı bir hafta önceki kayıtla yan yana dinlenir (#56 madde 9)"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     5
+    ],
+    "dil_noktalari": [
+     "r0:08-sein-haben",
+     "gr:a1-05:t4"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    11,
+    12,
+    14,
+    16,
+    20,
+    23,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 72,
+    "tekrar": 105,
+    "dil": 160,
+    "kulak": 80,
+    "konusma": 48,
+    "oku_yaz": 60,
+    "kapi": 30
+   },
+   "tahmini_dk": 555
+  },
+  {
+   "no": 7,
+   "ay": 2,
+   "seviye": "A1",
+   "tas": "M2",
+   "yapabiliyorum_tr": "Doktora neremin ağrıdığını söylerim.",
+   "gorev_tr": "Eczanede bir şey isteyip nasıl kullanılacağını sorarım.",
+   "dil_noktalari": [
+    "gr:a1-10:t1",
+    "gr:a1-09:t2",
+    "gr:a1-09:t3",
+    "gr:a1-09:t4",
+    "gr:a1-10:t4",
+    "gr:a1-10:t2",
+    "gr:a1-09:t5",
+    "gr:a1-13:t4",
+    "gr:a1-13:t5",
+    "gr:a1-14:t1",
+    "gr:a1-14:t2",
+    "gr:a1-10:t3"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "ihtiyac:arzt",
+      "sira": [
+       491,
+       522
+      ],
+      "adet": 12
+     },
+     {
+      "grup": "senaryo",
+      "sira": [
+       214,
+       218
+      ],
+      "adet": 5
+     },
+     {
+      "grup": "siklik-A1",
+      "sira": [
+       1021,
+       1089
+      ],
+      "adet": 24
+     },
+     {
+      "grup": "v1-A2",
+      "sira": [
+       227,
+       310
+      ],
+      "adet": 39
+     }
+    ],
+    "k1_disi": 0,
+    "alan": "sağlık: vücut, şikâyet, ilaç",
+    "planlanan_yeni": 80,
+    "birikimli": 680
+   },
+   "durum": {
+    "aileler": [
+     "saglik"
+    ],
+    "birimler": [],
+    "tr": "Dr. Weber'de muayene, Vils-Apotheke'de ilaç almak ve kullanımını sormak"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 7 (Gesundheit und Fitness)",
+    "dinleme_dk": 80,
+    "durum_adet": 4
+   },
+   "kol_mekan": {
+    "kollar": [
+     "radyo"
+    ],
+    "mekan": "pl:apotheke",
+    "tr": "Kulak Salonu (radyo) açılır"
+   },
+   "kapi_tr": "Dr. Weber'e neyin ne zamandan beri ağrıdığını anlatırsın.",
+   "kulak_kapi_tr": "Eczacının talimatından ilacı günde kaç kez ve ne zaman alacağını söylersin.",
+   "kapi_ek": {
+    "not": "muayenede doktorun bir talimatını tekrarlamak da istenir"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     6
+    ],
+    "dil_noktalari": [
+     "r0:09-modalverben",
+     "gr:a1-06:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    5,
+    11,
+    12,
+    14,
+    22,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 96,
+    "tekrar": 105,
+    "dil": 180,
+    "kulak": 80,
+    "konusma": 48,
+    "oku_yaz": 60,
+    "kapi": 30
+   },
+   "tahmini_dk": 599
+  },
+  {
+   "no": 8,
+   "ay": 2,
+   "seviye": "A1",
+   "tas": "M2",
+   "yapabiliyorum_tr": "Telefonda masa ayırtır, dükkânda ürün sorar, yeni biriyle tanışırım.",
+   "gorev_tr": "Markette aradığım bir ürünün nerede olduğunu Almanca sorarım.",
+   "dil_noktalari": [],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "v1-A2",
+      "sira": [
+       314,
+       335
+      ],
+      "adet": 15
+     }
+    ],
+    "k1_disi": 0,
+    "alan": "eksik kalanlar; zayıf kartlar",
+    "planlanan_yeni": 15,
+    "birikimli": 695
+   },
+   "durum": {
+    "aileler": [
+     "telefon",
+     "saglik",
+     "hizmet",
+     "bag"
+    ],
+    "birimler": [],
+    "tr": "A1 tekrarı ve seviye sınavı"
+   },
+   "kulak": {
+    "video_adet": 3,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 1–7: kullanılmamış kesitler",
+    "dinleme_dk": 70,
+    "durum_adet": 6
+   },
+   "kol_mekan": {
+    "kollar": [
+     "pazar"
+    ],
+    "mekan": "pl:marktplatz",
+    "tr": "Köy haritasında A1 mekânları ışıklanır"
+   },
+   "kapi_tr": "Uygulamada hiç karşılaşmadığın üç yeni durumda yardımsız konuşursun.",
+   "kulak_kapi_tr": "Hiç duymadığın iki kısa kayıtta ana fikri ve bir ayrıntıyı söylersin.",
+   "kapi_ek": {
+    "durumlar": [
+     "telefonda masa ayırtmak",
+     "dükkânda ürün sormak",
+     "yeni biriyle tanışmak"
+    ]
+   },
+   "seviye_kapisi": true,
+   "requires": {
+    "haftalar": [
+     7
+    ],
+    "dil_noktalari": [
+     "r0:11-praesens",
+     "gr:a1-02:t3",
+     "gr:a1-03:t5",
+     "gr:a1-12:t2",
+     "gr:a1-12:t5",
+     "gr:a1-11:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    5,
+    11,
+    12,
+    14,
+    19,
+    24,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 18,
+    "tekrar": 105,
+    "dil": 0,
+    "kulak": 70,
+    "konusma": 72,
+    "oku_yaz": 60,
+    "kapi": 30,
+    "pekistirme": 150
+   },
+   "tahmini_dk": 505
+  },
+  {
+   "no": 9,
+   "ay": 3,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "Telefonla doktordan randevu alırım.",
+   "gorev_tr": "Bir muayenehaneyi ya da dükkânı arayıp randevu sorarım.",
+   "dil_noktalari": [
+    "gr:a2-01:t2",
+    "gr:a2-01:t3",
+    "gr:a2-01:t4",
+    "gr:a2-01:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "v1-A2",
+      "sira": [
+       337,
+       401
+      ],
+      "adet": 18
+     },
+     {
+      "grup": "siklik-A2",
+      "sira": [
+       619,
+       769
+      ],
+      "adet": 27
+     }
+    ],
+    "k1_disi": 0,
+    "alan": "telefon; mola",
+    "planlanan_yeni": 45,
+    "birikimli": 740
+   },
+   "durum": {
+    "aileler": [
+     "bag",
+     "is",
+     "telefon"
+    ],
+    "birimler": [
+     "u:a2:telefon-1",
+     "u:a2:bag-2",
+     "u:a2:is-1"
+    ],
+    "tr": "Doktordan telefonla randevu almak. Hafta sonunu anlatmak. Molada küçük sohbet etmek"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 5: hafta sonu ve kutlama",
+    "dinleme_dk": 140,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "kafe",
+     "telefon"
+    ],
+    "mekan": "pl:telefon",
+    "tr": "Telefonda sana gelen ilk aramalar ve mola sohbeti açılır"
+   },
+   "kapi_tr": "Frau Huber'den randevu alırsın, istediğin saat doluysa başka bir saat bulursun.",
+   "kulak_kapi_tr": "Hızlı bir mola sohbetinde kimin hafta sonu ne yaptığını söylersin.",
+   "kapi_ek": {
+    "surpriz": "istenen saat dolu"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     3,
+     6,
+     8
+    ],
+    "dil_noktalari": [
+     "gr:a1-07:t2",
+     "gr:a2-01:t1",
+     "gr:a1-12:t1",
+     "r0:09-modalverben"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    10,
+    11,
+    12,
+    13,
+    14,
+    21,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 54,
+    "tekrar": 140,
+    "dil": 60,
+    "kulak": 140,
+    "konusma": 60,
+    "oku_yaz": 70,
+    "kapi": 30
+   },
+   "tahmini_dk": 554
+  },
+  {
+   "no": 10,
+   "ay": 3,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "Randevumu telefonla başka bir güne alırım.",
+   "gorev_tr": "Bir randevumu ya da buluşmamı telefonla başka güne alırım.",
+   "dil_noktalari": [
+    "gr:a2-02:t1",
+    "gr:a2-02:t2",
+    "gr:a2-02:t3",
+    "gr:a2-02:t4",
+    "gr:a2-02:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "ihtiyac:wohnen",
+      "sira": [
+       552,
+       558
+      ],
+      "adet": 7
+     },
+     {
+      "grup": "v1-A2",
+      "sira": [
+       402,
+       417
+      ],
+      "adet": 15
+     },
+     {
+      "grup": "siklik-A2",
+      "sira": [
+       770,
+       832
+      ],
+      "adet": 23
+     }
+    ],
+    "k1_disi": 0,
+    "alan": "ev, komşu, randevu",
+    "planlanan_yeni": 45,
+    "birikimli": 785
+   },
+   "durum": {
+    "aileler": [
+     "bag",
+     "okuma",
+     "telefon"
+    ],
+    "birimler": [
+     "u:a2:telefon-2",
+     "u:a2:bag-4",
+     "u:a2:okuma-2"
+    ],
+    "tr": "Randevuyu kaydırmak ve iptal etmek. Komşuyla rica ve küçük sorun konuşmak. Apartman duyurusunu ve ilanı anlamak"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 8: Wohnen",
+    "dinleme_dk": 140,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "kutuphane"
+    ],
+    "mekan": "pl:haus",
+    "tr": "Okuma Salonu: apartman duyuruları"
+   },
+   "kapi_tr": "Randevunu telefonla başka güne alırsın, önerilen gün uymazsa yeni gün istersin.",
+   "kulak_kapi_tr": "Sesli okunan bir apartman duyurusundan ne zaman ne olacağını söylersin.",
+   "kapi_ek": {
+    "surpriz": "önerilen gün de uymuyor"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     4,
+     9
+    ],
+    "dil_noktalari": [
+     "gr:a1-11:t1",
+     "r0:09-modalverben",
+     "gr:a1-05:t4",
+     "gr:a2-01:t4"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    17,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 54,
+    "tekrar": 140,
+    "dil": 75,
+    "kulak": 140,
+    "konusma": 60,
+    "oku_yaz": 70,
+    "kapi": 30
+   },
+   "tahmini_dk": 569
+  },
+  {
+   "no": 11,
+   "ay": 3,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "Kafede ve markette istediğimi kibarca söylerim.",
+   "gorev_tr": "Kafede bir şey ısmarlayıp bir soru sorarım.",
+   "dil_noktalari": [
+    "gr:a2-03:t1",
+    "gr:a2-03:t2",
+    "gr:a2-03:t3",
+    "gr:a2-03:t4",
+    "gr:a2-03:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "ihtiyac:einkaufen",
+      "sira": [
+       486,
+       578
+      ],
+      "adet": 7
+     },
+     {
+      "grup": "v1-A2",
+      "sira": [
+       418,
+       432
+      ],
+      "adet": 15
+     },
+     {
+      "grup": "siklik-A2",
+      "sira": [
+       836,
+       876
+      ],
+      "adet": 23
+     }
+    ],
+    "k1_disi": 0,
+    "alan": "alışveriş, kafe",
+    "planlanan_yeni": 45,
+    "birikimli": 830
+   },
+   "durum": {
+    "aileler": [
+     "hizmet"
+    ],
+    "birimler": [
+     "u:a2:hizmet-1",
+     "u:a2:hizmet-2"
+    ],
+    "tr": "Fırında ve kafede sipariş vermek. Markette ürün sormak, kasada konuşmak"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 4: Ausgehen",
+    "dinleme_dk": 140,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "pazar"
+    ],
+    "mekan": "pl:marktplatz",
+    "tr": "Pazar meydanı: alışveriş görevleri"
+   },
+   "kapi_tr": "Market kasasında kartın çalışmayınca başka bir ödeme yolu sorarsın.",
+   "kulak_kapi_tr": "Market anonsundan hangi ürünün indirimde olduğunu söylersin.",
+   "kapi_ek": {
+    "surpriz": "kart çalışmıyor; kasada Pfand (depozito) soruluyor"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     2,
+     10
+    ],
+    "dil_noktalari": [
+     "gr:a1-12:t2",
+     "gr:a1-06:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 54,
+    "tekrar": 140,
+    "dil": 75,
+    "kulak": 140,
+    "konusma": 60,
+    "oku_yaz": 70,
+    "kapi": 30
+   },
+   "tahmini_dk": 569
+  },
+  {
+   "no": 12,
+   "ay": 3,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "Doktora şikâyetimi ayrıntılı anlatırım.",
+   "gorev_tr": "Eczanede nezleye karşı ne önerdiklerini sorarım.",
+   "dil_noktalari": [
+    "gr:a2-07:t1",
+    "gr:a2-07:t2",
+    "gr:a2-07:t3",
+    "gr:a2-07:t4"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "ihtiyac:arzt",
+      "sira": [
+       523,
+       532
+      ],
+      "adet": 10
+     },
+     {
+      "grup": "ihtiyac:notfall",
+      "sira": [
+       481,
+       593
+      ],
+      "adet": 6
+     },
+     {
+      "grup": "v1-A2",
+      "sira": [
+       433,
+       444
+      ],
+      "adet": 12
+     },
+     {
+      "grup": "siklik-A2",
+      "sira": [
+       877,
+       901
+      ],
+      "adet": 17
+     }
+    ],
+    "k1_disi": 0,
+    "alan": "sağlık; acil",
+    "planlanan_yeni": 45,
+    "birikimli": 875
+   },
+   "durum": {
+    "aileler": [
+     "saglik"
+    ],
+    "birimler": [
+     "u:a2:saglik-1",
+     "u:a2:saglik-3"
+    ],
+    "tr": "Şikâyetini anlatmak. Muayenede doktorun söylediklerini anlamak"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 7: Gesundheit",
+    "dinleme_dk": 140,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "radyo"
+    ],
+    "mekan": "pl:praxis",
+    "tr": "Muayenehanede daha uzun konuşmalar"
+   },
+   "kapi_tr": "Dr. Weber'in sorularına cevap verip şikâyetini ayrıntılı anlatırsın.",
+   "kulak_kapi_tr": "Doktorun hızlı açıklamasından iki talimatı yakalayıp söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     7,
+     11
+    ],
+    "dil_noktalari": [
+     "gr:a1-10:t1",
+     "gr:a1-13:t4",
+     "gr:a1-07:t2",
+     "gr:a1-09:t4"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    7,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 54,
+    "tekrar": 140,
+    "dil": 60,
+    "kulak": 140,
+    "konusma": 60,
+    "oku_yaz": 70,
+    "kapi": 30
+   },
+   "tahmini_dk": 554
+  },
+  {
+   "no": 13,
+   "ay": 3,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "Hasta olduğumu işe telefonla bildiririm.",
+   "gorev_tr": "İş yerinde hastalığı kime ve nasıl bildireceğimi sorarım.",
+   "dil_noktalari": [
+    "gr:a2-04:t1",
+    "gr:a2-04:t2",
+    "gr:a2-04:t3",
+    "gr:a2-04:t4",
+    "gr:a2-04:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "ihtiyac:arbeit",
+      "sira": [
+       568,
+       573
+      ],
+      "adet": 6
+     },
+     {
+      "grup": "v1-A2",
+      "sira": [
+       445,
+       456
+      ],
+      "adet": 12
+     },
+     {
+      "grup": "siklik-A2",
+      "sira": [
+       903,
+       941
+      ],
+      "adet": 27
+     }
+    ],
+    "k1_disi": 0,
+    "alan": "iş, izin, eczane",
+    "planlanan_yeni": 45,
+    "birikimli": 920
+   },
+   "durum": {
+    "aileler": [
+     "is",
+     "saglik"
+    ],
+    "birimler": [
+     "u:a2:saglik-2",
+     "u:a2:saglik-4",
+     "u:a2:is-3"
+    ],
+    "tr": "Eczanede ilaç istemek ve kullanımı sormak. Hasta olduğunu bildirmek, rapor almak. İzin ve vardiya değişikliği istemek"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 7 ve 8: sağlık, iş",
+    "dinleme_dk": 140,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "pazar"
+    ],
+    "mekan": "pl:apotheke",
+    "tr": "Eczane ve iş yeri görevleri"
+   },
+   "kapi_tr": "Sabah işi arayıp hasta olduğunu ve raporu ne zaman getireceğini söylersin.",
+   "kulak_kapi_tr": "Şefin sesli mesajından raporu ne zamana kadar getireceğini söylersin.",
+   "kapi_ek": {
+    "surpriz": "şef rapor ister",
+    "not": "eczanedeki kullanım talimatından doğru seçeneği seçmek birim içinde"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     12
+    ],
+    "dil_noktalari": [
+     "gr:a2-01:t4",
+     "gr:a1-10:t1",
+     "gr:a1-07:t2"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 54,
+    "tekrar": 140,
+    "dil": 75,
+    "kulak": 140,
+    "konusma": 60,
+    "oku_yaz": 70,
+    "kapi": 30
+   },
+   "tahmini_dk": 569
+  },
+  {
+   "no": 14,
+   "ay": 4,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "Bürgerbüro'da sıramın geldiğini ve gereken belgeleri anlarım.",
+   "gorev_tr": "Bir resmî kurumun açılış saatini ve gereken belgeleri sorarım.",
+   "dil_noktalari": [
+    "gr:a2-05:t1",
+    "gr:a2-05:t2",
+    "gr:a2-05:t3",
+    "gr:a2-05:t4",
+    "dn:kelime-ailesi-2"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "ihtiyac:amt",
+      "sira": [
+       492,
+       548
+      ],
+      "adet": 18
+     },
+     {
+      "grup": "v1-A2",
+      "sira": [
+       457,
+       468
+      ],
+      "adet": 12
+     },
+     {
+      "grup": "siklik-A2",
+      "sira": [
+       942,
+       966
+      ],
+      "adet": 15
+     }
+    ],
+    "k1_disi": 0,
+    "alan": "resmî işler, form",
+    "planlanan_yeni": 45,
+    "birikimli": 965
+   },
+   "durum": {
+    "aileler": [
+     "resmi"
+    ],
+    "birimler": [
+     "u:a2:resmi-1",
+     "u:a2:resmi-2"
+    ],
+    "tr": "Bürgerbüro'da sırayı ve evrakı anlamak. Adres kaydı yaptırmak ve form doldurmak"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Amt konusu Deutsch im Blick'te yok; DW Nicos Weg A2 (yalnız bağlantı, C)",
+    "dinleme_dk": 140,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "pazar"
+    ],
+    "mekan": "pl:buergerbuero",
+    "tr": "Bürgerbüro açılır"
+   },
+   "kapi_tr": "Bürgerbüro'da işini anlatır, eksik bir belge için ne yapacağını sorarsın.",
+   "kulak_kapi_tr": "Numara çağırma anonsunu ve memurun senden istediğini duyup söylersin.",
+   "kapi_ek": {
+    "surpriz": "bir belge eksik"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     6,
+     13
+    ],
+    "dil_noktalari": [
+     "dn:kelime-ailesi-1",
+     "gr:a1-05:t4",
+     "gr:a1-09:t5",
+     "r0:09-modalverben",
+     "gr:a1-07:t2"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    8,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 54,
+    "tekrar": 140,
+    "dil": 70,
+    "kulak": 140,
+    "konusma": 60,
+    "oku_yaz": 70,
+    "kapi": 30
+   },
+   "tahmini_dk": 564
+  },
+  {
+   "no": 15,
+   "ay": 4,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "Geç kaldığımı ve neden geç kaldığımı söylerim.",
+   "gorev_tr": "Bir gecikmeyi ya da hatayı birine Almanca açıklarım.",
+   "dil_noktalari": [
+    "gr:a2-06:t1",
+    "gr:a2-06:t2",
+    "gr:a2-06:t3",
+    "gr:a2-06:t4",
+    "dn:akicilik-432"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "v1-A2",
+      "sira": [
+       469,
+       480
+      ],
+      "adet": 12
+     },
+     {
+      "grup": "siklik-A2",
+      "sira": [
+       968,
+       1015
+      ],
+      "adet": 33
+     }
+    ],
+    "k1_disi": 0,
+    "alan": "iş; geçmiş",
+    "planlanan_yeni": 45,
+    "birikimli": 1010
+   },
+   "durum": {
+    "aileler": [
+     "bag",
+     "is"
+    ],
+    "birimler": [
+     "u:a2:is-4",
+     "u:a2:bag-1"
+    ],
+    "tr": "Hata ya da gecikmeyi bildirmek, özür dilemek. Kendini ve işini anlatmak"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 8: Karriere",
+    "dinleme_dk": 140,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "tiyatro"
+    ],
+    "mekan": "pl:firma",
+    "tr": "Hikâye: iş yeri bölümleri"
+   },
+   "kapi_tr": "Toplantıya neden geç kaldığını üç kez, her seferinde daha kısa anlatırsın.",
+   "kulak_kapi_tr": "Herr Wimmer'in hızlı talimatını dinleyip iki cümleyle özetlersin.",
+   "kapi_ek": {
+    "not": "akıcılık 4/3/2: aynı anlatım 4, 3, 2 dakikada (dn:akicilik-432)"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     9,
+     14
+    ],
+    "dil_noktalari": [
+     "dn:yeniden-anlatma",
+     "gr:a1-08:t3",
+     "gr:a1-07:t2",
+     "gr:a2-01:t4",
+     "gr:a1-05:t5"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    16,
+    22,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 54,
+    "tekrar": 140,
+    "dil": 70,
+    "kulak": 140,
+    "konusma": 60,
+    "oku_yaz": 70,
+    "kapi": 30
+   },
+   "tahmini_dk": 564
+  },
+  {
+   "no": 16,
+   "ay": 4,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "Bir davete kibarca evet ya da hayır derim.",
+   "gorev_tr": "Birini bir şeye davet eder ya da bir daveti kibarca reddederim.",
+   "dil_noktalari": [
+    "gr:a2-08:t1",
+    "gr:a2-08:t2",
+    "gr:a2-08:t3",
+    "gr:a2-08:t4",
+    "gr:a2-08:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "siklik-A2",
+      "sira": [
+       1017,
+       1085
+      ],
+      "adet": 45
+     }
+    ],
+    "k1_disi": 0,
+    "alan": "davet; ev arızası",
+    "planlanan_yeni": 45,
+    "birikimli": 1055
+   },
+   "durum": {
+    "aileler": [
+     "bag",
+     "telefon"
+    ],
+    "birimler": [
+     "u:a2:bag-3",
+     "u:a2:telefon-4"
+    ],
+    "tr": "Davet etmek, kabul etmek, kibarca reddetmek. Evdeki arızayı telefonla bildirmek"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 4: davet ve buluşma",
+    "dinleme_dk": 140,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "telefon"
+    ],
+    "mekan": "pl:haus",
+    "tr": "Telefon: Herr Pichler arar"
+   },
+   "kapi_tr": "Bir daveti kibarca reddeder, nedenini söyler ve başka bir gün önerirsin.",
+   "kulak_kapi_tr": "Bir sesli mesajı dinleyip kim, ne zaman ve nerede sorularını cevaplarsın.",
+   "kapi_ek": {
+    "not": "kalorifer arızasını Herr Pichler'e telefonda anlatmak (telefon-4) birim içinde"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     10,
+     15
+    ],
+    "dil_noktalari": [
+     "gr:a2-03:t4",
+     "r0:09-modalverben",
+     "gr:a1-07:t2"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    10,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 54,
+    "tekrar": 140,
+    "dil": 75,
+    "kulak": 140,
+    "konusma": 60,
+    "oku_yaz": 70,
+    "kapi": 30
+   },
+   "tahmini_dk": 569
+  },
+  {
+   "no": 17,
+   "ay": 4,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "Hızlı konuşanı durdurup yavaş söylemesini isterim.",
+   "gorev_tr": "Anlamadığımda karşımdakinden yavaş ve tekrar söylemesini isterim.",
+   "dil_noktalari": [
+    "dn:kisaltma-2",
+    "dn:bairisch-1"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "siklik-A2",
+      "sira": [
+       1088,
+       1093
+      ],
+      "adet": 5
+     }
+    ],
+    "k1_disi": 25,
+    "alan": "strateji; Bavyera sözleri",
+    "planlanan_yeni": 30,
+    "birikimli": 1085
+   },
+   "durum": {
+    "aileler": [
+     "kulak"
+    ],
+    "birimler": [
+     "u:a2:kulak-2",
+     "u:a2:kulak-4"
+    ],
+    "tr": "Hızlı konuşanı durdurmak, anladığını kontrol etmek. Bavyera ağzında sık sözleri tanımak"
+   },
+   "kulak": {
+    "video_adet": 7,
+    "video_kaynak": "aranacak",
+    "video_aday": "Wikitongues Bairisch (CC BY-SA 4.0, A) + BR yapımları (yalnız bağlantı, C)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "radyo"
+    ],
+    "mekan": "pl:marktplatz",
+    "tr": "Kulak Salonu'nda Bavyera ağzı bölümü açılır"
+   },
+   "kapi_tr": "Hızlı konuşan Frau Brandl'ı durdurup yavaş ve tekrar söylemesini istersin.",
+   "kulak_kapi_tr": "Frau Brandl'ın Bavyera ağzıyla söylediği üç sözün anlamını söylersin.",
+   "kapi_ek": {
+    "not": "Bairisch sözler yalnız WORLD §5'ten (kaynaklı); hızlı konuşmada yutulan sesleri tam biçimiyle yazmak da ölçülür"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     2,
+     5,
+     16
+    ],
+    "dil_noktalari": [
+     "dn:kisaltma-1",
+     "gr:a1-12:t1",
+     "gr:a1-05:t5"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    2,
+    3,
+    4,
+    11,
+    12,
+    14,
+    15,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 36,
+    "tekrar": 140,
+    "dil": 20,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 70,
+    "kapi": 30
+   },
+   "tahmini_dk": 536
+  },
+  {
+   "no": 18,
+   "ay": 5,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "Kuaförde ve spor salonunda ne istediğimi tarif ederim.",
+   "gorev_tr": "Kuaförde ya da bir dükkânda ne istediğimi tarif ederim.",
+   "dil_noktalari": [
+    "gr:a2-09:t1",
+    "gr:a2-09:t2",
+    "gr:a2-09:t3",
+    "gr:a2-09:t4",
+    "gr:a2-09:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "ihtiyac:friseur",
+      "sira": [
+       482,
+       596
+      ],
+      "adet": 5
+     },
+     {
+      "grup": "ihtiyac:sport",
+      "sira": [
+       597,
+       599
+      ],
+      "adet": 3
+     }
+    ],
+    "k1_disi": 37,
+    "alan": "kuaför, spor; sıfatlar",
+    "planlanan_yeni": 45,
+    "birikimli": 1130
+   },
+   "durum": {
+    "aileler": [
+     "hizmet"
+    ],
+    "birimler": [
+     "u:a2:hizmet-3",
+     "u:a2:hizmet-4"
+    ],
+    "tr": "Kuaförde istediğini anlatmak. Spor salonunda üyelik ve aletler"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 7: Fitness",
+    "dinleme_dk": 140,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "kafe"
+    ],
+    "mekan": "pl:friseur",
+    "tr": "Kuaför ve spor salonu açılır"
+   },
+   "kapi_tr": "Kuaförde Luka'ya istediğin kesimi tarif edersin.",
+   "kulak_kapi_tr": "Bir aletin kullanımını anlatan kayıttan adımları sırayla söylersin.",
+   "kapi_ek": {
+    "not": "koltukta Luka'nın sohbetine katılmak da istenir"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     11,
+     17
+    ],
+    "dil_noktalari": [
+     "gr:a1-13:t2",
+     "r0:09-modalverben"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    7,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 54,
+    "tekrar": 140,
+    "dil": 75,
+    "kulak": 140,
+    "konusma": 60,
+    "oku_yaz": 70,
+    "kapi": 30
+   },
+   "tahmini_dk": 569
+  },
+  {
+   "no": 19,
+   "ay": 5,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "İstasyonda gecikme anonsunu anlarım.",
+   "gorev_tr": "Durakta ya da istasyonda bir anonsu dinleyip ne dediğini yazarım.",
+   "dil_noktalari": [
+    "gr:a2-10:t1",
+    "gr:a2-10:t2",
+    "gr:a2-10:t3",
+    "gr:a2-10:t4",
+    "gr:a2-10:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 45,
+    "alan": "yolculuk; kısa mesaj",
+    "planlanan_yeni": 45,
+    "birikimli": 1175
+   },
+   "durum": {
+    "aileler": [
+     "kulak",
+     "okuma"
+    ],
+    "birimler": [
+     "u:a2:kulak-1",
+     "u:a2:okuma-1"
+    ],
+    "tr": "İstasyon anonslarını anlamak. Kısa mesaj okumak ve yazmak"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 6: Reisen",
+    "dinleme_dk": 140,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "radyo"
+    ],
+    "mekan": "pl:bahnhof",
+    "tr": "Tren istasyonu açılır"
+   },
+   "kapi_tr": "Tren iptal olunca istasyonda başka bir yolu sorarsın.",
+   "kulak_kapi_tr": "Gürültülü bir anonsta peronu ve saati duyup söylersin.",
+   "kapi_ek": {
+    "not": "gecikmeyi kısa mesajla haber vermek (yazma) birim içinde"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     17,
+     18
+    ],
+    "dil_noktalari": [
+     "gr:a2-02:t1",
+     "gr:a1-12:t3",
+     "gr:a1-05:t5"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    17,
+    18,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 54,
+    "tekrar": 140,
+    "dil": 75,
+    "kulak": 140,
+    "konusma": 60,
+    "oku_yaz": 70,
+    "kapi": 30
+   },
+   "tahmini_dk": 569
+  },
+  {
+   "no": 20,
+   "ay": 5,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "Bir şirketi aradığımda otomatik sesi anlayıp doğru tuşa basarım.",
+   "gorev_tr": "Bir kurumu arayıp bir bilgiyi sorarım.",
+   "dil_noktalari": [
+    "gr:a2-12:t1",
+    "gr:a2-12:t2",
+    "gr:a2-12:t3",
+    "gr:a2-12:t4",
+    "gr:a2-12:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "ihtiyac:bank",
+      "sira": [
+       488,
+       591
+      ],
+      "adet": 6
+     }
+    ],
+    "k1_disi": 39,
+    "alan": "telefon menüsü; banka; iş",
+    "planlanan_yeni": 45,
+    "birikimli": 1220
+   },
+   "durum": {
+    "aileler": [
+     "is",
+     "telefon"
+    ],
+    "birimler": [
+     "u:a2:telefon-3",
+     "u:a2:is-2"
+    ],
+    "tr": "Telefonla bilgi almak ve otomatik sesi anlamak. İş talimatını anlamak ve sormak."
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: telefon menüsü kaydı (kendi seslendirmemiz ya da açık lisanslı)",
+    "dinleme_dk": 140,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "telefon"
+    ],
+    "mekan": "pl:telefon",
+    "tr": "Telefonda sana gelen aramalar biraz zorlaşır"
+   },
+   "kapi_tr": "Bankayı arar, görevliye hesabınla ilgili bir bilgiyi sorarsın.",
+   "kulak_kapi_tr": "Otomatik sesin söylediklerinden hangi tuşa basacağını seçersin.",
+   "kapi_ek": {
+    "not": "iş talimatını kibar bir soruyla netleştirmek (is-2) birim içinde"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     9,
+     13,
+     19
+    ],
+    "dil_noktalari": [
+     "gr:a2-04:t1",
+     "r0:09-modalverben",
+     "gr:a1-09:t4"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    10,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 54,
+    "tekrar": 140,
+    "dil": 75,
+    "kulak": 140,
+    "konusma": 60,
+    "oku_yaz": 70,
+    "kapi": 30
+   },
+   "tahmini_dk": 569
+  },
+  {
+   "no": 21,
+   "ay": 5,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "Resmî bir mektubun benden ne istediğini anlarım.",
+   "gorev_tr": "Posta kutuma gelen bir mektubun ne istediğini Almanca not ederim.",
+   "dil_noktalari": [
+    "gr:a2-11:t1",
+    "gr:a2-11:t2",
+    "gr:a2-11:t3",
+    "gr:a2-11:t4",
+    "gr:a2-11:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "ihtiyac:post",
+      "sira": [
+       483,
+       563
+      ],
+      "adet": 11
+     }
+    ],
+    "k1_disi": 34,
+    "alan": "posta, kargo, mektup",
+    "planlanan_yeni": 45,
+    "birikimli": 1265
+   },
+   "durum": {
+    "aileler": [
+     "okuma",
+     "resmi"
+    ],
+    "birimler": [
+     "u:a2:okuma-3",
+     "u:a2:resmi-3"
+    ],
+    "tr": "Kargo bildirimini okumak, paketi almak. Resmî mektubun ne istediğini anlamak"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: kargo ve posta (DW Nicos Weg A2, yalnız bağlantı, C)",
+    "dinleme_dk": 140,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "posta"
+    ],
+    "mekan": "pl:posta",
+    "tr": "Posta kutusu açılır"
+   },
+   "kapi_tr": "Bir resmî mektubun senden ne istediğini ve son tarihini söylersin.",
+   "kulak_kapi_tr": "Kuryenin sesli mesajından paketin nerede olduğunu söylersin.",
+   "kapi_ek": {
+    "not": "kargo bildirimi de okunur: ne, ne zamana kadar, nereye"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     14,
+     20
+    ],
+    "dil_noktalari": [
+     "gr:a2-07:t3",
+     "gr:a1-07:t2",
+     "gr:a1-05:t4"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    17,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 54,
+    "tekrar": 140,
+    "dil": 75,
+    "kulak": 140,
+    "konusma": 60,
+    "oku_yaz": 70,
+    "kapi": 30
+   },
+   "tahmini_dk": 569
+  },
+  {
+   "no": 22,
+   "ay": 6,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "Kısa bir e-postayla ek süre isterim.",
+   "gorev_tr": "Birine kısa bir Almanca e-posta ya da mesaj yazarım.",
+   "dil_noktalari": [
+    "gr:a2-13:t1",
+    "gr:a2-13:t2",
+    "gr:a2-13:t3",
+    "gr:a2-13:t4",
+    "gr:a2-13:t5",
+    "dn:kelime-ailesi-3"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 45,
+    "alan": "resmî yazı; iş e-postası",
+    "planlanan_yeni": 45,
+    "birikimli": 1310
+   },
+   "durum": {
+    "aileler": [
+     "okuma",
+     "resmi"
+    ],
+    "birimler": [
+     "u:a2:resmi-4",
+     "u:a2:okuma-4"
+    ],
+    "tr": "Son tarih için ek süre istemek. Kısa iş e-postası yazmak"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 8: Karriere",
+    "dinleme_dk": 140,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "kutuphane"
+    ],
+    "mekan": "pl:buergerbuero",
+    "tr": "Okuma Salonu: yazma görevleri"
+   },
+   "kapi_tr": "Ek süre isteyen kısa bir e-posta yazar, telefonda nedenini söylersin.",
+   "kulak_kapi_tr": "Bir hayat hikâyesi kaydında yılları sırayla söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     21
+    ],
+    "dil_noktalari": [
+     "dn:kelime-ailesi-2",
+     "gr:a2-06:t1",
+     "gr:a1-07:t2",
+     "gr:a2-01:t4"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    8,
+    11,
+    12,
+    13,
+    14,
+    18,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 54,
+    "tekrar": 140,
+    "dil": 85,
+    "kulak": 140,
+    "konusma": 60,
+    "oku_yaz": 70,
+    "kapi": 30
+   },
+   "tahmini_dk": 579
+  },
+  {
+   "no": 23,
+   "ay": 6,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "Bilmediğim bir kelimeyi tarif ederek anlatırım.",
+   "gorev_tr": "Adını bilmediğim bir şeyi dükkânda tarif ederek isterim.",
+   "dil_noktalari": [
+    "gr:a2-14:t1",
+    "gr:a2-14:t2",
+    "gr:a2-14:t3",
+    "gr:a2-14:t4",
+    "dn:relativ-basit"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 45,
+    "alan": "strateji; plan",
+    "planlanan_yeni": 45,
+    "birikimli": 1355
+   },
+   "durum": {
+    "aileler": [
+     "kulak"
+    ],
+    "birimler": [
+     "u:a2:kulak-3"
+    ],
+    "tr": "Yanlış anlaşılmayı düzeltmek, kelimeyi tarif etmek"
+   },
+   "kulak": {
+    "video_adet": 5,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick Kap. 9 (Was ist Deutsch?)",
+    "dinleme_dk": 140,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "kafe"
+    ],
+    "mekan": "pl:marktplatz",
+    "tr": "Sohbet Saati: serbest konuşma"
+   },
+   "kapi_tr": "Adını bilmediğin üç eşyayı Almanca tarif edersin.",
+   "kulak_kapi_tr": "Bir planı anlatan sesli mesajı dinleyip kendi sözlerinle anlatırsın.",
+   "kapi_ek": {
+    "not": "gelecek haftanı anlatmak da istenir"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     17,
+     22
+    ],
+    "dil_noktalari": [
+     "gr:a2-08:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 54,
+    "tekrar": 140,
+    "dil": 70,
+    "kulak": 140,
+    "konusma": 60,
+    "oku_yaz": 70,
+    "kapi": 30
+   },
+   "tahmini_dk": 564
+  },
+  {
+   "no": 24,
+   "ay": 6,
+   "seviye": "A2",
+   "tas": "M3",
+   "yapabiliyorum_tr": "Habersiz gelen bir aramada, eczanede ve kayıp eşya bürosunda derdimi anlatırım.",
+   "gorev_tr": "Bir mağazayı arayıp bir ürünün stokta olup olmadığını sorarım.",
+   "dil_noktalari": [],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 15,
+    "alan": "eksik kalanlar; zayıf kartlar",
+    "planlanan_yeni": 15,
+    "birikimli": 1370
+   },
+   "durum": {
+    "aileler": [
+     "telefon",
+     "saglik",
+     "resmi",
+     "is",
+     "hizmet",
+     "bag",
+     "kulak",
+     "okuma"
+    ],
+    "birimler": [],
+    "tr": "A2 tekrarı ve seviye sınavı"
+   },
+   "kulak": {
+    "video_adet": 3,
+    "video_kaynak": "aranacak",
+    "video_aday": "Deutsch im Blick: kullanılmamış A2 kesitleri",
+    "dinleme_dk": 120,
+    "durum_adet": 6
+   },
+   "kol_mekan": {
+    "kollar": [
+     "pazar"
+    ],
+    "mekan": "pl:marktplatz",
+    "tr": "Köy haritasında A2 mekânları ışıklanır"
+   },
+   "kapi_tr": "Uygulamada hiç karşılaşmadığın üç yeni durumda yardımsız konuşursun.",
+   "kulak_kapi_tr": "Hiç duymadığın bir anons ve sesli mesajda ana fikri ve iki ayrıntıyı söylersin.",
+   "kapi_ek": {
+    "durumlar": [
+     "habersiz gelen arama",
+     "eczanede beklenmedik soru",
+     "kayıp eşya bürosunda kaybettiğin bir şeyi sormak"
+    ],
+    "kayit_karsilastirma": "ilk haftaki 60 saniyelik kayıtla karşılaştırma (#56 madde 24)"
+   },
+   "seviye_kapisi": true,
+   "requires": {
+    "haftalar": [
+     23
+    ],
+    "dil_noktalari": [
+     "gr:a1-12:t5",
+     "gr:a2-12:t1",
+     "gr:a2-07:t3",
+     "gr:a2-09:t2",
+     "dn:relativ-basit"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    9,
+    11,
+    12,
+    14,
+    19,
+    24,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 18,
+    "tekrar": 140,
+    "dil": 0,
+    "kulak": 120,
+    "konusma": 72,
+    "oku_yaz": 70,
+    "kapi": 30,
+    "pekistirme": 150
+   },
+   "tahmini_dk": 600
+  },
+  {
+   "no": 25,
+   "ay": 6,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Bir konuda ne düşündüğümü ve nedenini söylerim.",
+   "gorev_tr": "Bir sohbette bir konu hakkındaki fikrimi Almanca söylerim.",
+   "dil_noktalari": [
+    "gr:b1-02:t1",
+    "gr:b1-02:t2",
+    "gr:b1-02:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "siklik-B1",
+      "sira": [
+       1094,
+       1113
+      ],
+      "adet": 20
+     }
+    ],
+    "k1_disi": 20,
+    "alan": "sık sözcük B1 + birimin alanı",
+    "planlanan_yeni": 40,
+    "birikimli": 1410
+   },
+   "durum": {
+    "aileler": [
+     "bag",
+     "kulak"
+    ],
+    "birimler": [
+     "u:b1:bag-1",
+     "u:b1:kulak-1"
+    ],
+    "tr": "Fikir bildirmek, katılmadığını söylemek. Sokak röportajında doğal konuşmayı anlamak"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "gazete"
+    ],
+    "mekan": null,
+    "tr": "Haber Odası açılır"
+   },
+   "kapi_tr": "Bir konuda katılıp katılmadığını ve nedenini söylersin.",
+   "kulak_kapi_tr": "Sokak röportajında kimin ne düşündüğünü söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     24
+    ],
+    "dil_noktalari": [
+     "dn:relativ-basit",
+     "gr:a2-04:t2"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    16,
+    21,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 45,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 593
+  },
+  {
+   "no": 26,
+   "ay": 6,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Kısa bir haberi okuyup iki cümleyle özetlerim.",
+   "gorev_tr": "Okuduğum bir haberi birine iki cümleyle anlatırım.",
+   "dil_noktalari": [
+    "gr:b1-02:t3",
+    "gr:b1-02:t4"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "siklik-B1",
+      "sira": [
+       1114,
+       1133
+      ],
+      "adet": 20
+     }
+    ],
+    "k1_disi": 20,
+    "alan": "sık sözcük B1 + birimin alanı",
+    "planlanan_yeni": 40,
+    "birikimli": 1450
+   },
+   "durum": {
+    "aileler": [
+     "okuma"
+    ],
+    "birimler": [
+     "u:b1:okuma-1"
+    ],
+    "tr": "Kısa haber okumak ve özetlemek"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "gazete"
+    ],
+    "mekan": null,
+    "tr": "Haber Odası: kısa haber"
+   },
+   "kapi_tr": "Kısa bir haberi okuyup iki cümleyle özetlersin.",
+   "kulak_kapi_tr": "Aynı haberin sesli hâlinden iki ayrıntı söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     25
+    ],
+    "dil_noktalari": [
+     "gr:b1-02:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    17,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 30,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 578
+  },
+  {
+   "no": 27,
+   "ay": 7,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Doktorun açıklamasını anlamadığımda ek soru sorarım.",
+   "gorev_tr": "Eczanede bir ilacın ne işe yaradığını sorar, anlamadığım yeri tekrar sorarım.",
+   "dil_noktalari": [
+    "gr:b1-03:t1",
+    "gr:b1-03:t2",
+    "gr:b1-03:t3"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "siklik-B1",
+      "sira": [
+       1134,
+       1153
+      ],
+      "adet": 20
+     }
+    ],
+    "k1_disi": 20,
+    "alan": "sık sözcük B1 + birimin alanı",
+    "planlanan_yeni": 40,
+    "birikimli": 1490
+   },
+   "durum": {
+    "aileler": [
+     "saglik"
+    ],
+    "birimler": [
+     "u:b1:saglik-1"
+    ],
+    "tr": "Doktorun açıklamasını anlamak, ek soru sormak"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "radyo"
+    ],
+    "mekan": "pl:praxis",
+    "tr": "Muayenehanede yeni konuşmalar"
+   },
+   "kapi_tr": "Dr. Weber bir tedaviyi açıklayınca anlamadığın iki şeyi sorarsın.",
+   "kulak_kapi_tr": "Doktorun açıklamasından üç bilgiyi yakalayıp söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     26
+    ],
+    "dil_noktalari": [
+     "gr:a2-14:t4"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 45,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 593
+  },
+  {
+   "no": 28,
+   "ay": 7,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Uzman doktor için sevk ve randevu işini hallederim.",
+   "gorev_tr": "Bir göz doktorunu arayıp yeni hasta alıp almadığını sorarım.",
+   "dil_noktalari": [
+    "gr:b1-03:t4",
+    "gr:b1-03:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "siklik-B1",
+      "sira": [
+       1154,
+       1173
+      ],
+      "adet": 20
+     }
+    ],
+    "k1_disi": 20,
+    "alan": "sık sözcük B1 + birimin alanı",
+    "planlanan_yeni": 40,
+    "birikimli": 1530
+   },
+   "durum": {
+    "aileler": [
+     "saglik"
+    ],
+    "birimler": [
+     "u:b1:saglik-2"
+    ],
+    "tr": "Uzmana sevk ve randevu"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "telefon"
+    ],
+    "mekan": "pl:telefon",
+    "tr": "Telefon: uzman randevusu"
+   },
+   "kapi_tr": "Uzman doktoru arar, ilk boş gün çok uzaksa daha erken bir gün istersin.",
+   "kulak_kapi_tr": "Bir muayenehanenin sesli mesajından ne zaman açık olduğunu söylersin.",
+   "kapi_ek": {
+    "surpriz": "ilk boş gün çok uzak"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     27
+    ],
+    "dil_noktalari": [
+     "gr:b1-03:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    10,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 30,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 578
+  },
+  {
+   "no": 29,
+   "ay": 7,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Bir sorunu telefonda baştan sona çözerim.",
+   "gorev_tr": "Belediyeyi arayıp eski bir eşyayı nasıl atacağımı sorarım.",
+   "dil_noktalari": [
+    "gr:b1-04:t1",
+    "gr:b1-04:t2",
+    "gr:b1-04:t3"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "siklik-B1",
+      "sira": [
+       1174,
+       1193
+      ],
+      "adet": 20
+     }
+    ],
+    "k1_disi": 20,
+    "alan": "sık sözcük B1 + birimin alanı",
+    "planlanan_yeni": 40,
+    "birikimli": 1570
+   },
+   "durum": {
+    "aileler": [
+     "telefon"
+    ],
+    "birimler": [
+     "u:b1:telefon-1"
+    ],
+    "tr": "Bir sorunu telefonda baştan sona çözmek"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "telefon"
+    ],
+    "mekan": "pl:telefon",
+    "tr": "Telefonda sana gelen aramalar daha da zorlaşır"
+   },
+   "kapi_tr": "Bir faturadaki hatayı telefonda anlatır, çözüm için ne yapılacağını sorarsın.",
+   "kulak_kapi_tr": "Hızlı konuşan bir çağrı merkezi görevlisinden ne yapman gerektiğini söylersin.",
+   "kapi_ek": {
+    "surpriz": "iki beklenmedik gelişme"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     28
+    ],
+    "dil_noktalari": [
+     "gr:a2-05:t3"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    10,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 45,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 593
+  },
+  {
+   "no": 30,
+   "ay": 7,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "İzin, vardiya ve fazla mesaiyi konuşurum.",
+   "gorev_tr": "Bir iş arkadaşıma gelecek hafta hangi vardiyada çalıştığını sorarım.",
+   "dil_noktalari": [
+    "gr:b1-04:t4",
+    "gr:b1-04:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "siklik-B1",
+      "sira": [
+       1194,
+       1213
+      ],
+      "adet": 20
+     }
+    ],
+    "k1_disi": 20,
+    "alan": "sık sözcük B1 + birimin alanı",
+    "planlanan_yeni": 40,
+    "birikimli": 1610
+   },
+   "durum": {
+    "aileler": [
+     "is"
+    ],
+    "birimler": [
+     "u:b1:is-1"
+    ],
+    "tr": "İzin, vardiya ve fazla mesai konuşmak"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "kafe"
+    ],
+    "mekan": "pl:firma",
+    "tr": "İş yerinde yeni konuşmalar"
+   },
+   "kapi_tr": "Şefinden izin ister, istediğin gün olmazsa başka bir gün önerirsin.",
+   "kulak_kapi_tr": "Bir ekip toplantısı kaydından tarihleri yakalayıp söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     29
+    ],
+    "dil_noktalari": [
+     "gr:b1-04:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    21,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 30,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 578
+  },
+  {
+   "no": 31,
+   "ay": 8,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Kira ve yan giderlerle ilgili bir soruyu sorarım.",
+   "gorev_tr": "Ev sahibine ya da yönetime yazılı bir soru sorarım.",
+   "dil_noktalari": [
+    "gr:b1-07:t2",
+    "gr:b1-07:t4"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "siklik-B1",
+      "sira": [
+       1214,
+       1233
+      ],
+      "adet": 20
+     }
+    ],
+    "k1_disi": 20,
+    "alan": "sık sözcük B1 + birimin alanı",
+    "planlanan_yeni": 40,
+    "birikimli": 1650
+   },
+   "durum": {
+    "aileler": [
+     "resmi"
+    ],
+    "birimler": [
+     "u:b1:resmi-4"
+    ],
+    "tr": "Kira ve yan giderler hakkında sormak"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "posta"
+    ],
+    "mekan": "pl:haus",
+    "tr": "Posta kutusu: kira yazışmaları"
+   },
+   "kapi_tr": "Yan gider yazısını okuyup anlamadığın bir şeyi telefonla sorarsın.",
+   "kulak_kapi_tr": "Yan giderleri anlatan bir kayıttan ne kadar ödeyeceğini söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     30
+    ],
+    "dil_noktalari": [
+     "gr:a2-11:t3"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    17,
+    18,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 30,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 578
+  },
+  {
+   "no": 32,
+   "ay": 8,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Bavyera ağzıyla konuşan komşumun derdini genel olarak anlarım.",
+   "gorev_tr": "Bir komşuyla ev kuralları ya da küçük bir sorun hakkında konuşurum.",
+   "dil_noktalari": [
+    "gr:b1-07:t3",
+    "gr:b1-07:t5",
+    "dn:bairisch-2"
+   ],
+   "kelime": {
+    "k1_aralik": [
+     {
+      "grup": "siklik-B1",
+      "sira": [
+       1234,
+       1249
+      ],
+      "adet": 16
+     }
+    ],
+    "k1_disi": 24,
+    "alan": "sık sözcük B1 + birimin alanı",
+    "planlanan_yeni": 40,
+    "birikimli": 1690
+   },
+   "durum": {
+    "aileler": [
+     "kulak"
+    ],
+    "birimler": [
+     "u:b1:kulak-3"
+    ],
+    "tr": "Bavyera ağzıyla sohbeti takip etmek"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "Wikitongues Bairisch (CC BY-SA 4.0, A; tek kayıt) + BR yapımları (yalnız bağlantı, C); başka açık lisanslı Bairisch ses kaydı aranacak. MaiBaam yalnız yazılıdır, ses değildir.",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "radyo"
+    ],
+    "mekan": "pl:haus",
+    "tr": "Kulak Salonu'nda Bavyera ağzının ikinci bölümü açılır"
+   },
+   "kapi_tr": "Bir komşuyla gürültü gibi küçük bir sorunu sakin bir dille konuşursun.",
+   "kulak_kapi_tr": "Bavyera ağzıyla konuşan birinin kısa kaydından ana fikri söylersin.",
+   "kapi_ek": {
+    "not": "Bairisch kayıt yalnız kaynaklı (KAYNAKLAR §7)"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     31
+    ],
+    "dil_noktalari": [
+     "gr:a2-11:t3",
+     "dn:bairisch-1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    2,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    21,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 40,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 588
+  },
+  {
+   "no": 33,
+   "ay": 8,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Telefonda kısa ve net bir mesaj bırakırım.",
+   "gorev_tr": "Birine telefonda ya da sesli mesajla bir haber bırakırım.",
+   "dil_noktalari": [
+    "gr:b1-10:t1",
+    "gr:b1-10:t5",
+    "gr:b1-10:t3"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 1730
+   },
+   "durum": {
+    "aileler": [
+     "resmi",
+     "telefon"
+    ],
+    "birimler": [
+     "u:b1:telefon-2",
+     "u:b1:resmi-1"
+    ],
+    "tr": "Telefonda mesaj bırakmak, geri arama istemek. Resmî mektuba yazılı cevap vermek"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "telefon"
+    ],
+    "mekan": "pl:telefon",
+    "tr": "Telefon: mesaj bırakma"
+   },
+   "kapi_tr": "Sesli mesaja kim olduğunu, ne istediğini ve numaranı bırakırsın.",
+   "kulak_kapi_tr": "İki sesli mesajı dinleyip aralarındaki farkı söylersin.",
+   "kapi_ek": {
+    "not": "duyduğun bir mesajı başkasına aktarmak da istenir"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     32
+    ],
+    "dil_noktalari": [
+     "gr:a2-04:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    10,
+    11,
+    12,
+    13,
+    14,
+    18,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 45,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 593
+  },
+  {
+   "no": 34,
+   "ay": 8,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Resmî bir e-posta yazarım.",
+   "gorev_tr": "Bir kuruma kısa ve resmî bir e-posta yazarım.",
+   "dil_noktalari": [
+    "gr:b1-10:t4"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 1770
+   },
+   "durum": {
+    "aileler": [
+     "okuma"
+    ],
+    "birimler": [
+     "u:b1:okuma-2"
+    ],
+    "tr": "Resmî e-posta yazmak"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "kutuphane"
+    ],
+    "mekan": "pl:buergerbuero",
+    "tr": "Okuma Salonu: resmî yazı"
+   },
+   "kapi_tr": "Bir kuruma resmî bir e-posta yazar, sonra telefonda gelip gelmediğini sorarsın.",
+   "kulak_kapi_tr": "Memurun telefondaki cevabından ne yapman gerektiğini söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     33
+    ],
+    "dil_noktalari": [
+     "gr:b1-10:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    18,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 15,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 563
+  },
+  {
+   "no": 35,
+   "ay": 9,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Bir iş görüşmesinde kendimi anlatırım.",
+   "gorev_tr": "Bir ilanı okuyup ilan verene bir soru sorarım.",
+   "dil_noktalari": [
+    "gr:b1-05:t4",
+    "gr:b1-05:t5",
+    "gr:b1-05:t1"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 1810
+   },
+   "durum": {
+    "aileler": [
+     "is"
+    ],
+    "birimler": [
+     "u:b1:is-3"
+    ],
+    "tr": "İş görüşmesinde kendini anlatmak"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "kutuphane"
+    ],
+    "mekan": "pl:firma",
+    "tr": "İlanlar"
+   },
+   "kapi_tr": "Bir iş görüşmesinde kendini ve deneyimini iki dakika anlatırsın.",
+   "kulak_kapi_tr": "Görüşmecinin sorularını dinleyip neyi sorduğunu söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     34
+    ],
+    "dil_noktalari": [
+     "gr:a2-14:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    22,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 45,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 593
+  },
+  {
+   "no": 36,
+   "ay": 9,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Radyo haberinin konusunu ve ana bilgisini anlarım.",
+   "gorev_tr": "Radyoda bir haberi dinleyip konusunu birine söylerim.",
+   "dil_noktalari": [
+    "gr:b1-05:t2",
+    "gr:b1-05:t3",
+    "gr:b1-10:t2"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 1850
+   },
+   "durum": {
+    "aileler": [
+     "kulak"
+    ],
+    "birimler": [
+     "u:b1:kulak-2"
+    ],
+    "tr": "Radyo haberini anlamak"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "radyo"
+    ],
+    "mekan": null,
+    "tr": "Kulak Salonu: haber"
+   },
+   "kapi_tr": "Dinlediğin bir radyo haberini birine iki cümleyle anlatırsın.",
+   "kulak_kapi_tr": "İki kısa haberde ana fikri ve birer ayrıntıyı söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     35
+    ],
+    "dil_noktalari": [
+     "gr:b1-05:t1",
+     "gr:b1-10:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    16,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 45,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 593
+  },
+  {
+   "no": 37,
+   "ay": 9,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Bozuk bir ürünü iade eder, şikâyetimi söylerim.",
+   "gorev_tr": "Bir dükkânda bir ürünü değiştirmeyi ya da iadeyi sorarım.",
+   "dil_noktalari": [
+    "gr:b1-06:t5",
+    "gr:b1-06:t1",
+    "gr:b1-06:t2"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 1890
+   },
+   "durum": {
+    "aileler": [
+     "hizmet"
+    ],
+    "birimler": [
+     "u:b1:hizmet-1"
+    ],
+    "tr": "Şikâyet etmek, ürünü iade etmek"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "pazar"
+    ],
+    "mekan": "pl:marktplatz",
+    "tr": "Gerçek Görevler: iade"
+   },
+   "kapi_tr": "Fişin olmadan bozuk bir ürünü dükkâna iade etmeye çalışırsın.",
+   "kulak_kapi_tr": "Satıcının anlattığı iade koşullarını söylersin.",
+   "kapi_ek": {
+    "surpriz": "fiş yok"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     36
+    ],
+    "dil_noktalari": [
+     "gr:b1-05:t1",
+     "gr:a2-13:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 45,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 593
+  },
+  {
+   "no": 38,
+   "ay": 9,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Bir işi ustaya ya da tamirhaneye yaptırırım.",
+   "gorev_tr": "Bir tamir ya da hizmet için fiyat ve süre sorarım.",
+   "dil_noktalari": [
+    "gr:b1-06:t3",
+    "gr:b1-06:t4"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 1930
+   },
+   "durum": {
+    "aileler": [
+     "hizmet"
+    ],
+    "birimler": [
+     "u:b1:hizmet-2"
+    ],
+    "tr": "Bir işi ustaya ya da tamirhaneye yaptırmak"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "pazar"
+    ],
+    "mekan": null,
+    "tr": "Hizmetler: tamirhane"
+   },
+   "kapi_tr": "Tamirhanede sorunu anlatır, fiyatı ve ne zaman biteceğini sorarsın.",
+   "kulak_kapi_tr": "Ustanın açıklamasından neyin bozuk olduğunu söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     37
+    ],
+    "dil_noktalari": [
+     "gr:b1-06:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 30,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 578
+  },
+  {
+   "no": 39,
+   "ay": 9,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Teknik bir sorunu adım adım anlatırım.",
+   "gorev_tr": "Bir telefon dükkânında hangi kablonun telefonuma uyduğunu sorarım.",
+   "dil_noktalari": [
+    "gr:b1-09:t5",
+    "gr:b1-09:t1",
+    "gr:b1-09:t2"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 1970
+   },
+   "durum": {
+    "aileler": [
+     "hizmet"
+    ],
+    "birimler": [
+     "u:b1:hizmet-4"
+    ],
+    "tr": "Teknik bir sorunu anlatmak"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "telefon"
+    ],
+    "mekan": null,
+    "tr": "Telefon: teknik destek"
+   },
+   "kapi_tr": "Teknik desteği arayıp internetin çalışmadığını adım adım anlatırsın.",
+   "kulak_kapi_tr": "Telefondaki adım adım talimatı dinleyip sırayla uygularsın.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     38
+    ],
+    "dil_noktalari": [
+     "gr:a2-08:t2",
+     "gr:a1-07:t2"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    10,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 45,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 593
+  },
+  {
+   "no": 40,
+   "ay": 10,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Bir kullanım talimatını okuyup uygularım.",
+   "gorev_tr": "Almanca bir talimatı okuyup bir şeyi kurarım ya da ayarlarım.",
+   "dil_noktalari": [
+    "gr:b1-09:t4",
+    "gr:b1-09:t3",
+    "dn:kelime-ailesi-4"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 2010
+   },
+   "durum": {
+    "aileler": [
+     "okuma"
+    ],
+    "birimler": [
+     "u:b1:okuma-4"
+    ],
+    "tr": "Kullanım talimatını okumak"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "kutuphane"
+    ],
+    "mekan": null,
+    "tr": "Okuma Salonu: talimat"
+   },
+   "kapi_tr": "Bir kullanım talimatını okuyup adımları sırayla anlatırsın.",
+   "kulak_kapi_tr": "Sesli bir talimatı dinleyip kendi sözlerinle yeniden anlatırsın.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     39
+    ],
+    "dil_noktalari": [
+     "gr:b1-09:t1",
+     "gr:b1-09:t2",
+     "dn:kelime-ailesi-3"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    8,
+    11,
+    12,
+    13,
+    14,
+    17,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 40,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 588
+  },
+  {
+   "no": 41,
+   "ay": 10,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Başımdan geçen bir olayı sırasıyla anlatırım.",
+   "gorev_tr": "Başımdan geçen bir olayı birine Almanca anlatırım.",
+   "dil_noktalari": [
+    "gr:b1-01:t1",
+    "gr:b1-01:t2",
+    "gr:b1-01:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 2050
+   },
+   "durum": {
+    "aileler": [
+     "bag"
+    ],
+    "birimler": [
+     "u:b1:bag-2"
+    ],
+    "tr": "Bir olayı sırasıyla anlatmak"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "tiyatro"
+    ],
+    "mekan": null,
+    "tr": "Hikâye: dedektif dizisi"
+   },
+   "kapi_tr": "Başından geçen bir olayı üç kez, her seferinde daha kısa anlatırsın.",
+   "kulak_kapi_tr": "Hikâyenin yeni bölümünü dinleyip kendi sözlerinle anlatırsın.",
+   "kapi_ek": {
+    "not": "akıcılık 4/3/2 (dn:akicilik-432)"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     40
+    ],
+    "dil_noktalari": [
+     "gr:a2-13:t2",
+     "gr:a2-01:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    16,
+    20,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 45,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 593
+  },
+  {
+   "no": 42,
+   "ay": 10,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Acil bir durumda ne olduğunu anlatırım.",
+   "gorev_tr": "En yakın nöbetçi eczaneyi Almanca bir sayfadan bulurum.",
+   "dil_noktalari": [
+    "gr:b1-01:t3",
+    "gr:b1-01:t4"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 2090
+   },
+   "durum": {
+    "aileler": [
+     "saglik"
+    ],
+    "birimler": [
+     "u:b1:saglik-3"
+    ],
+    "tr": "Acil bir durumda ne olduğunu anlatmak"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "radyo"
+    ],
+    "mekan": "pl:apotheke",
+    "tr": "Acil durum alıştırmaları"
+   },
+   "kapi_tr": "Canlandırılan bir acil aramada ne olduğunu ve adresini söylersin.",
+   "kulak_kapi_tr": "Acil hattı görevlisinin sorduğu soruları sırayla söylersin.",
+   "kapi_ek": {
+    "not": "simülasyon; gerçek acil hat aratılmaz"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     41
+    ],
+    "dil_noktalari": [
+     "gr:b1-01:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    10,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 30,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 578
+  },
+  {
+   "no": 43,
+   "ay": 10,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Bir anlaşmazlığı sakin bir dille konuşurum.",
+   "gorev_tr": "Bir arkadaşıma ya da komşuma yardım teklif ederim.",
+   "dil_noktalari": [
+    "gr:b1-08:t5",
+    "gr:b1-08:t1",
+    "gr:b1-08:t2"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 2130
+   },
+   "durum": {
+    "aileler": [
+     "bag"
+    ],
+    "birimler": [
+     "u:b1:bag-3"
+    ],
+    "tr": "Bir anlaşmazlığı konuşmak, yardım teklif etmek"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "kafe"
+    ],
+    "mekan": null,
+    "tr": "Sohbet Saati: zor konuşmalar"
+   },
+   "kapi_tr": "Bir arkadaşınla bir anlaşmazlığı sakin bir dille konuşursun.",
+   "kulak_kapi_tr": "İki kişinin konuşmasından kimin ne düşündüğünü söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     42
+    ],
+    "dil_noktalari": [
+     "gr:a2-09:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    21,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 45,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 593
+  },
+  {
+   "no": 44,
+   "ay": 11,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Bir karara yazılı olarak itiraz ederim.",
+   "gorev_tr": "Bir kuruma ya da şirkete kısa bir itiraz yazısı hazırlarım.",
+   "dil_noktalari": [
+    "gr:b1-08:t3",
+    "gr:b1-08:t4"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 2170
+   },
+   "durum": {
+    "aileler": [
+     "resmi"
+    ],
+    "birimler": [
+     "u:b1:resmi-2"
+    ],
+    "tr": "Bir karara yazılı itiraz etmek"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "posta"
+    ],
+    "mekan": "pl:posta",
+    "tr": "Posta kutusu: kararlar"
+   },
+   "kapi_tr": "Bir karara kısa bir itiraz yazar, telefonda nedenini anlatırsın.",
+   "kulak_kapi_tr": "Memurun açıklamasından itirazının ne olacağını söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     43
+    ],
+    "dil_noktalari": [
+     "gr:b1-08:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    18,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 30,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 578
+  },
+  {
+   "no": 45,
+   "ay": 11,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "İki teklifi karşılaştırıp hangisini seçtiğimi söylerim.",
+   "gorev_tr": "İki ürünün ya da tarifenin farkını bir satıcıya sorarım.",
+   "dil_noktalari": [
+    "gr:b1-12:t4",
+    "gr:b1-12:t3",
+    "gr:b1-12:t1"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 2210
+   },
+   "durum": {
+    "aileler": [
+     "hizmet",
+     "saglik"
+    ],
+    "birimler": [
+     "u:b1:hizmet-3",
+     "u:b1:saglik-4"
+    ],
+    "tr": "İki teklifi karşılaştırmak, pazarlık etmek. Sağlık sigortasına soru sormak"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "pazar"
+    ],
+    "mekan": null,
+    "tr": "Hizmetler: karşılaştırma"
+   },
+   "kapi_tr": "İki teklifi karşılaştırır, hangisini neden seçtiğini söylersin.",
+   "kulak_kapi_tr": "Satıcının hızlı anlatımından iki teklifin farkını söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     44
+    ],
+    "dil_noktalari": [
+     "gr:a2-13:t3"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 45,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 593
+  },
+  {
+   "no": 46,
+   "ay": 11,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Bir aboneliği telefonla sorar ya da iptal ederim.",
+   "gorev_tr": "Bir sözleşme ya da abonelik hakkında telefonla bilgi alırım.",
+   "dil_noktalari": [
+    "gr:b1-12:t2",
+    "gr:b1-12:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 2250
+   },
+   "durum": {
+    "aileler": [
+     "telefon"
+    ],
+    "birimler": [
+     "u:b1:telefon-3"
+    ],
+    "tr": "Bir aboneliği telefonla sormak ya da iptal etmek"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "telefon"
+    ],
+    "mekan": "pl:telefon",
+    "tr": "Telefon: sözleşmeler"
+   },
+   "kapi_tr": "Bir aboneliği telefonla iptal eder, yeni bir teklifi kibarca geri çevirirsin.",
+   "kulak_kapi_tr": "Sözleşme koşullarından iptal süresini yakalayıp söylersin.",
+   "kapi_ek": {
+    "surpriz": "karşı teklif"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     45
+    ],
+    "dil_noktalari": [
+     "gr:b1-12:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    10,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 30,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 578
+  },
+  {
+   "no": 47,
+   "ay": 11,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Toplantıda kısa bir durum özeti veririm.",
+   "gorev_tr": "Bir iş arkadaşıma dünkü işimi üç cümleyle özetlerim.",
+   "dil_noktalari": [
+    "gr:b1-11:t5",
+    "gr:b1-11:t2",
+    "gr:b1-11:t3"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 2290
+   },
+   "durum": {
+    "aileler": [
+     "bag",
+     "is"
+    ],
+    "birimler": [
+     "u:b1:bag-4",
+     "u:b1:is-2"
+    ],
+    "tr": "Dernek ve gönüllülük. Toplantıda kısa durum özeti vermek"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "kafe"
+    ],
+    "mekan": "pl:firma",
+    "tr": "İş yeri: toplantı"
+   },
+   "kapi_tr": "Toplantıda iki dakikalık bir özet verir, bir soruya cevap verirsin.",
+   "kulak_kapi_tr": "Bir toplantı kaydından alınan kararları söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     46
+    ],
+    "dil_noktalari": [
+     "dn:kelime-ailesi-3"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    16,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 45,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 593
+  },
+  {
+   "no": 48,
+   "ay": 12,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Bir ilana ya da yazıya kısa bir yorum yazarım.",
+   "gorev_tr": "Bir ilana ya da gönderiye Almanca kısa bir yorum yazarım.",
+   "dil_noktalari": [
+    "gr:b1-11:t4",
+    "gr:b1-11:t1"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 2330
+   },
+   "durum": {
+    "aileler": [
+     "okuma"
+    ],
+    "birimler": [
+     "u:b1:okuma-3"
+    ],
+    "tr": "İlan ve yorum okumak, yorum yazmak"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "gazete"
+    ],
+    "mekan": null,
+    "tr": "Haber Odası: yorum"
+   },
+   "kapi_tr": "Bir ilana yorum yazar, fikrini birine sözlü olarak savunursun.",
+   "kulak_kapi_tr": "Bir tartışma kaydında iki görüşü ayırıp söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     47
+    ],
+    "dil_noktalari": [
+     "gr:b1-11:t2"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    17,
+    18,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 30,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 578
+  },
+  {
+   "no": 49,
+   "ay": 12,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Bir sorunu şefe bir çözüm önerisiyle anlatırım.",
+   "gorev_tr": "Bankada kartımın yurt dışında çalışıp çalışmadığını sorarım.",
+   "dil_noktalari": [
+    "gr:b1-13:t1",
+    "gr:b1-13:t2",
+    "gr:b1-13:t3",
+    "gr:b1-13:t4",
+    "gr:b1-13:t5"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 2370
+   },
+   "durum": {
+    "aileler": [
+     "is",
+     "resmi"
+    ],
+    "birimler": [
+     "u:b1:is-4",
+     "u:b1:resmi-3"
+    ],
+    "tr": "Bir sorunu şefe anlatıp çözüm önermek. Bankada bir sorunu çözmek"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "pazar"
+    ],
+    "mekan": "pl:firma",
+    "tr": "Gerçek Görevler: sorun çözme"
+   },
+   "kapi_tr": "Şefe iş yerindeki bir sorunu anlatır, bir çözüm önerirsin.",
+   "kulak_kapi_tr": "Şefin cevabındaki koşulu yakalayıp söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     48
+    ],
+    "dil_noktalari": [
+     "gr:b1-02:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    13,
+    14,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 75,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 623
+  },
+  {
+   "no": 50,
+   "ay": 12,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Hazırlıksız gelen bir aramada işimi hallederim.",
+   "gorev_tr": "Hiç hazırlanmadan bir yeri arayıp bir bilgiyi Almanca sorarım.",
+   "dil_noktalari": [
+    "gr:b1-14:t1",
+    "gr:b1-14:t2",
+    "gr:b1-14:t3"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 40,
+    "alan": "B1 alan kartları (K1 dışı)",
+    "planlanan_yeni": 40,
+    "birikimli": 2410
+   },
+   "durum": {
+    "aileler": [
+     "kulak",
+     "telefon"
+    ],
+    "birimler": [
+     "u:b1:telefon-4",
+     "u:b1:kulak-4"
+    ],
+    "tr": "Hazırlıksız gelen aramada işi halletmek. Sesli mesaj ve anonsta ayrıntı yakalamak"
+   },
+   "kulak": {
+    "video_adet": 6,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: Easy German ve DW Nicos Weg B1 (yalnız bağlantı, C); YouTube CC (video başına kayıt)",
+    "dinleme_dk": 180,
+    "durum_adet": 5
+   },
+   "kol_mekan": {
+    "kollar": [
+     "telefon"
+    ],
+    "mekan": "pl:telefon",
+    "tr": "Telefon artık habersiz de çalar"
+   },
+   "kapi_tr": "Beklemediğin bir anda gelen aramayı açıp işini halledersin.",
+   "kulak_kapi_tr": "Bir sesli mesaj ve bir anonstan birer ayrıntı yakalayıp söylersin.",
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     49
+    ],
+    "dil_noktalari": [
+     "gr:b1-05:t1",
+     "gr:b1-02:t1",
+     "gr:a2-08:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 48,
+    "tekrar": 140,
+    "dil": 45,
+    "kulak": 180,
+    "konusma": 60,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 593
+  },
+  {
+   "no": 51,
+   "ay": 12,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Dört bölümlü bir B1 deneme sınavını süre içinde bitiririm.",
+   "gorev_tr": "Bir tanıdıkla on dakika hiç Türkçe ya da İngilizce kullanmadan konuşurum.",
+   "dil_noktalari": [
+    "gr:b1-14:t4",
+    "gr:b1-14:t5",
+    "dn:sinav-provasi"
+   ],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 10,
+    "alan": "eksik kalanlar",
+    "planlanan_yeni": 10,
+    "birikimli": 2420
+   },
+   "durum": {
+    "aileler": [
+     "okuma",
+     "kulak",
+     "bag"
+    ],
+    "birimler": [],
+    "tr": "B1 deneme sınavı: dinleme, okuma, yazma ve konuşma"
+   },
+   "kulak": {
+    "video_adet": 4,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: sınav biçiminde dinleme (kendi seslendirmemiz)",
+    "dinleme_dk": 180,
+    "durum_adet": 4
+   },
+   "kol_mekan": {
+    "kollar": [
+     "atolye"
+    ],
+    "mekan": "pl:sprachkurs",
+    "tr": "Atölye: deneme sınavı"
+   },
+   "kapi_tr": "Deneme sınavının konuşma bölümünü süre içinde yaparsın.",
+   "kulak_kapi_tr": "Deneme sınavının dinleme bölümünü süre içinde yaparsın.",
+   "kapi_ek": {
+    "not": "okuma ve yazma bölümleri de süreli; dinleme bölümü puanı kaydedilir"
+   },
+   "seviye_kapisi": false,
+   "requires": {
+    "haftalar": [
+     50
+    ],
+    "dil_noktalari": [
+     "gr:b1-14:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    14,
+    17,
+    18,
+    19,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 12,
+    "tekrar": 140,
+    "dil": 40,
+    "kulak": 180,
+    "konusma": 48,
+    "oku_yaz": 90,
+    "kapi": 30
+   },
+   "tahmini_dk": 540
+  },
+  {
+   "no": 52,
+   "ay": 12,
+   "seviye": "B1",
+   "tas": "M4",
+   "yapabiliyorum_tr": "Telefonda bir sorunu çözer, toplantıda fikrimi savunur, yüz yüze şikâyet ederim.",
+   "gorev_tr": "Aynı hizmet için üç yeri arayıp fiyatları karşılaştırırım.",
+   "dil_noktalari": [],
+   "kelime": {
+    "k1_aralik": [],
+    "k1_disi": 5,
+    "alan": "eksik kalanlar",
+    "planlanan_yeni": 5,
+    "birikimli": 2425
+   },
+   "durum": {
+    "aileler": [
+     "telefon",
+     "saglik",
+     "resmi",
+     "is",
+     "hizmet",
+     "bag",
+     "kulak",
+     "okuma"
+    ],
+    "birimler": [],
+    "tr": "B1 tekrarı ve seviye sınavı"
+   },
+   "kulak": {
+    "video_adet": 4,
+    "video_kaynak": "aranacak",
+    "video_aday": "aranacak: kapı için görülmemiş doğal kayıt",
+    "dinleme_dk": 150,
+    "durum_adet": 6
+   },
+   "kol_mekan": {
+    "kollar": [
+     "pazar"
+    ],
+    "mekan": "pl:marktplatz",
+    "tr": "Köy haritasında B1 mekânları ışıklanır"
+   },
+   "kapi_tr": "Uygulamada hiç karşılaşmadığın üç yeni durumda yardımsız konuşursun.",
+   "kulak_kapi_tr": "Hiç duymadığın bir sohbetten ve Bavyera ağzıyla bir kayıttan ana fikri söylersin.",
+   "kapi_ek": {
+    "durumlar": [
+     "telefonda bir sorunu çözmek",
+     "toplantıda fikir savunmak",
+     "yüz yüze bir şikâyeti çözmek"
+    ],
+    "kayit_karsilastirma": "bir yıl önceki (1. hafta) kayıtla karşılaştırma (#56 madde 24)",
+    "not": "Bairisch kayıt yalnız kaynaklı; ana fikir ve ayrıntı ölçülür"
+   },
+   "seviye_kapisi": true,
+   "requires": {
+    "haftalar": [
+     51
+    ],
+    "dil_noktalari": [
+     "gr:b1-04:t1",
+     "gr:b1-02:t5",
+     "gr:b1-11:t4",
+     "gr:b1-06:t5",
+     "gr:a2-12:t1"
+    ]
+   },
+   "kapsam_56": [
+    1,
+    3,
+    4,
+    11,
+    12,
+    14,
+    19,
+    24,
+    25
+   ],
+   "sure_dk": {
+    "kelime": 6,
+    "tekrar": 140,
+    "dil": 0,
+    "kulak": 150,
+    "konusma": 72,
+    "oku_yaz": 90,
+    "kapi": 30,
+    "pekistirme": 150
+   },
+   "tahmini_dk": 638
+  }
+ ],
+ "gunler": [
+  {
+   "day": 1,
+   "id": "m1:gun:01",
+   "title_tr": "Merhaba ve günler",
+   "dersler": [
+    "r0:01-tage"
+   ],
+   "can_do": {
+    "id": "cd:m1:01",
+    "tr": "Selam verir, bugünün hangi gün olduğunu söylerim."
+   },
+   "kelime": {
+    "adet": 25,
+    "kaynak": "m1.json yeni_kartlar"
+   }
+  },
+  {
+   "day": 2,
+   "id": "m1:gun:02",
+   "title_tr": "Aylar ve mevsimler",
+   "dersler": [
+    "r0:02-monate",
+    "r0:11-praesens"
+   ],
+   "can_do": {
+    "id": "cd:m1:02",
+    "tr": "Bir şeyin hangi ayda olduğunu söylerim."
+   },
+   "kelime": {
+    "adet": 25,
+    "kaynak": "m1.json yeni_kartlar"
+   }
+  },
+  {
+   "day": 3,
+   "id": "m1:gun:03",
+   "title_tr": "Sayılar ve numaram",
+   "dersler": [
+    "r0:03-zahlen-0-20"
+   ],
+   "can_do": {
+    "id": "cd:m1:03",
+    "tr": "Telefon numaramı ve ev numaramı söylerim."
+   },
+   "kelime": {
+    "adet": 25,
+    "kaynak": "m1.json yeni_kartlar"
+   }
+  },
+  {
+   "day": 4,
+   "id": "m1:gun:04",
+   "title_tr": "Fiyat ve yaş",
+   "dersler": [
+    "r0:04-zahlen-21-100"
+   ],
+   "can_do": {
+    "id": "cd:m1:04",
+    "tr": "Fiyat sorar, yaşımı söylerim."
+   },
+   "kelime": {
+    "adet": 22,
+    "kaynak": "m1.json yeni_kartlar"
+   }
+  },
+  {
+   "day": 5,
+   "id": "m1:gun:05",
+   "title_tr": "Saat",
+   "dersler": [
+    "r0:05-uhrzeit"
+   ],
+   "can_do": {
+    "id": "cd:m1:05",
+    "tr": "Saati sorar, randevu saatini doğrularım."
+   },
+   "kelime": {
+    "adet": 21,
+    "kaynak": "m1.json yeni_kartlar"
+   }
+  },
+  {
+   "day": 6,
+   "id": "m1:gun:06",
+   "title_tr": "Tarih ve sorular",
+   "dersler": [
+    "r0:06-datum",
+    "r0:07-fragewoerter"
+   ],
+   "can_do": {
+    "id": "cd:m1:06",
+    "tr": "Tarih söyler, kim, ne, nerede diye sorarım."
+   },
+   "kelime": {
+    "adet": 20,
+    "kaynak": "m1.json yeni_kartlar"
+   }
+  },
+  {
+   "day": 7,
+   "id": "m1:gun:07",
+   "title_tr": "Kendimi anlatıyorum, randevu istiyorum",
+   "dersler": [
+    "r0:08-sein-haben",
+    "r0:09-modalverben"
+   ],
+   "can_do": {
+    "id": "cd:m1:07",
+    "tr": "Kendimi tanıtır, basit bir randevu isterim."
+   },
+   "kelime": {
+    "adet": 17,
+    "kaynak": "m1.json yeni_kartlar"
+   },
+   "ek_ders": {
+    "day": 7,
+    "ders": "r0:10-buchstabieren",
+    "zorunlu": false
+   }
+  },
+  {
+   "day": 8,
+   "id": "om:gun:08",
+   "title_tr": "Sık duyulan küçük sözcükler: noch, schon, nur",
+   "dersler": [
+    "gr:a1-03:t5",
+    "dn:kucuk-sozcukler"
+   ],
+   "kelime": {
+    "adet": 22,
+    "k1_aralik": [
+     624,
+     909
+    ],
+    "kartlar": [
+     "lx:noch",
+     "lx:schon",
+     "lx:nur",
+     "lx:gern",
+     "lx:oft",
+     "lx:sehr",
+     "lx:dann",
+     "lx:lange",
+     "lx:erst",
+     "lx:viel",
+     "lx:gleich",
+     "lx:echt",
+     "lx:Zeit",
+     "lx:gut",
+     "lx:klar",
+     "lx:kurz",
+     "lx:immer",
+     "lx:jetzt",
+     "lx:mehr",
+     "lx:ganz",
+     "lx:Euro",
+     "lx:Cent"
+    ],
+    "not_tr": "PM kararı 3 ve F2: Euro, Cent, noch, schon, nur, gern, dann, oft, sehr 4.–6. günün kartlarıdır (pm_kararlari[].hedef); m1.json eki o günün halka PR'ıyla gelir, o zamana kadar burada durur. Listede olmayan 13 küçük sözcük 8. günde kalır. lx:Euro ve lx:Cent kartı yok (lex işi)."
+   }
+  },
+  {
+   "day": 9,
+   "id": "om:gun:09",
+   "title_tr": "Fırında der, die, das: das Brot, die Semmel, der Kuchen",
+   "dersler": [
+    "gr:a1-04:t1"
+   ],
+   "kelime": {
+    "adet": 20,
+    "k1_aralik": [
+     110,
+     137
+    ]
+   }
+  },
+  {
+   "day": 10,
+   "id": "om:gun:10",
+   "title_tr": "Bir, hiç: ein, kein",
+   "dersler": [
+    "gr:a1-03:t1",
+    "gr:a1-03:t2"
+   ],
+   "kelime": {
+    "adet": 20,
+    "k1_aralik": [
+     138,
+     614
+    ]
+   }
+  },
+  {
+   "day": 11,
+   "id": "om:gun:11",
+   "title_tr": "İki tane istemek: Ich möchte zwei Brötchen",
+   "dersler": [
+    "gr:a1-03:t3",
+    "gr:a1-03:t4"
+   ],
+   "kelime": {
+    "adet": 18,
+    "k1_aralik": [
+     615,
+     643
+    ]
+   }
+  },
+  {
+   "day": 12,
+   "id": "om:gun:12",
+   "title_tr": "Kibarca istemek: Ich hätte gern einen Kaffee",
+   "dersler": [
+    "gr:a1-12:t2",
+    "gr:a1-06:t1",
+    "gr:a1-01:t1"
+   ],
+   "kelime": {
+    "adet": 16,
+    "k1_aralik": [
+     221,
+     664
+    ]
+   }
+  },
+  {
+   "day": 13,
+   "id": "om:gun:13",
+   "title_tr": "Benim ve senin: mein, dein",
+   "dersler": [
+    "gr:a1-02:t1",
+    "dn:kisaltma-1"
+   ],
+   "kelime": {
+    "adet": 14,
+    "k1_aralik": [
+     229,
+     255
+    ]
+   }
+  },
+  {
+   "day": 14,
+   "id": "om:gun:14",
+   "title_tr": "Haftanın sınavı: fırında alışveriş",
+   "dersler": [],
+   "kelime": {
+    "adet": 5,
+    "k1_aralik": [
+     257,
+     263
+    ]
+   }
+  },
+  {
+   "day": 15,
+   "id": "om:gun:15",
+   "title_tr": "Evet ya da hayır soruları: Haben Sie Zeit?",
+   "dersler": [
+    "gr:a1-02:t3"
+   ],
+   "kelime": {
+    "adet": 20,
+    "k1_aralik": [
+     9,
+     582
+    ]
+   }
+  },
+  {
+   "day": 16,
+   "id": "om:gun:16",
+   "title_tr": "Telefonda kendini tanıtmak ve adını hecelemek",
+   "dersler": [
+    "gr:a1-12:t5",
+    "r0:10-buchstabieren"
+   ],
+   "kelime": {
+    "adet": 16,
+    "k1_aralik": [
+     153,
+     669
+    ]
+   }
+  },
+  {
+   "day": 17,
+   "id": "om:gun:17",
+   "title_tr": "Kibar rica: Könnten Sie das wiederholen?",
+   "dersler": [
+    "gr:a1-12:t1"
+   ],
+   "kelime": {
+    "adet": 16,
+    "k1_aralik": [
+     670,
+     692
+    ]
+   }
+  },
+  {
+   "day": 18,
+   "id": "om:gun:18",
+   "title_tr": "Ne zaman? um, am, im",
+   "dersler": [
+    "gr:a1-05:t3",
+    "gr:a1-12:t3"
+   ],
+   "kelime": {
+    "adet": 14,
+    "k1_aralik": [
+     693,
+     712
+    ]
+   }
+  },
+  {
+   "day": 19,
+   "id": "om:gun:19",
+   "title_tr": "Sen ve o derken değişen harf: du sprichst, er fährt",
+   "dersler": [
+    "gr:a1-02:t4",
+    "gr:a1-06:t2"
+   ],
+   "kelime": {
+    "adet": 13,
+    "k1_aralik": [
+     265,
+     724
+    ]
+   }
+  },
+  {
+   "day": 20,
+   "id": "om:gun:20",
+   "title_tr": "Ayın kaçında? am ersten Mai",
+   "dersler": [
+    "gr:a1-12:t4"
+   ],
+   "kelime": {
+    "adet": 12,
+    "k1_aralik": [
+     271,
+     298
+    ]
+   }
+  },
+  {
+   "day": 21,
+   "id": "om:gun:21",
+   "title_tr": "Haftanın sınavı: muayenehaneyi aramak",
+   "dersler": [],
+   "kelime": {
+    "adet": 4,
+    "k1_aralik": [
+     301,
+     308
+    ]
+   }
+  },
+  {
+   "day": 22,
+   "id": "om:gun:22",
+   "title_tr": "Evdeki eşyalar: Wo ist der Schlüssel? Er ist hier",
+   "dersler": [
+    "gr:a1-04:t2"
+   ],
+   "kelime": {
+    "adet": 19,
+    "k1_aralik": [
+     171,
+     551
+    ]
+   }
+  },
+  {
+   "day": 23,
+   "id": "om:gun:23",
+   "title_tr": "Eşyayı tarif etmek: Er ist groß und weiß",
+   "dersler": [
+    "gr:a1-04:t3"
+   ],
+   "kelime": {
+    "adet": 15,
+    "k1_aralik": [
+     187,
+     743
+    ]
+   }
+  },
+  {
+   "day": 24,
+   "id": "om:gun:24",
+   "title_tr": "Çok, fazla, değil: sehr, zu, nicht",
+   "dersler": [
+    "gr:a1-04:t4"
+   ],
+   "kelime": {
+    "adet": 15,
+    "k1_aralik": [
+     744,
+     774
+    ]
+   }
+  },
+  {
+   "day": 25,
+   "id": "om:gun:25",
+   "title_tr": "Hangisi? Daha ucuz",
+   "dersler": [
+    "gr:a1-13:t1",
+    "gr:a1-13:t2"
+   ],
+   "kelime": {
+    "adet": 13,
+    "k1_aralik": [
+     775,
+     803
+    ]
+   }
+  },
+  {
+   "day": 26,
+   "id": "om:gun:26",
+   "title_tr": "Ev ilanında en ucuzunu bulmak",
+   "dersler": [
+    "gr:a1-13:t3",
+    "gr:a1-04:t5"
+   ],
+   "kelime": {
+    "adet": 13,
+    "k1_aralik": [
+     311,
+     808
+    ]
+   }
+  },
+  {
+   "day": 27,
+   "id": "om:gun:27",
+   "title_tr": "Nerede? in, an, auf, neben",
+   "dersler": [
+    "gr:a1-11:t1",
+    "gr:a1-11:t2"
+   ],
+   "kelime": {
+    "adet": 11,
+    "k1_aralik": [
+     336,
+     355
+    ]
+   }
+  },
+  {
+   "day": 28,
+   "id": "om:gun:28",
+   "title_tr": "Haftanın sınavı: merdivende komşuyla",
+   "dersler": [],
+   "kelime": {
+    "adet": 4,
+    "k1_aralik": [
+     356,
+     360
+    ]
+   }
+  },
+  {
+   "day": 29,
+   "id": "om:gun:29",
+   "title_tr": "Sabah kalkmak: Ich stehe um sieben auf",
+   "dersler": [
+    "gr:a1-05:t4"
+   ],
+   "kelime": {
+    "adet": 18,
+    "k1_aralik": [
+     188,
+     587
+    ]
+   }
+  },
+  {
+   "day": 30,
+   "id": "om:gun:30",
+   "title_tr": "Cümleye zamanla başlamak: Am Montag arbeite ich",
+   "dersler": [
+    "gr:a1-05:t5"
+   ],
+   "kelime": {
+    "adet": 14,
+    "k1_aralik": [
+     197,
+     817
+    ]
+   }
+  },
+  {
+   "day": 31,
+   "id": "om:gun:31",
+   "title_tr": "Meslek sormak: Was sind Sie von Beruf?",
+   "dersler": [
+    "gr:a1-08:t1",
+    "gr:a1-08:t2"
+   ],
+   "kelime": {
+    "adet": 14,
+    "k1_aralik": [
+     819,
+     838
+    ]
+   }
+  },
+  {
+   "day": 32,
+   "id": "om:gun:32",
+   "title_tr": "Sevdiğini söylemek: gern, lieber",
+   "dersler": [
+    "gr:a1-06:t3"
+   ],
+   "kelime": {
+    "adet": 14,
+    "k1_aralik": [
+     840,
+     865
+    ]
+   }
+  },
+  {
+   "day": 33,
+   "id": "om:gun:33",
+   "title_tr": "Doğum gününe davet etmek",
+   "dersler": [
+    "gr:a1-14:t4",
+    "gr:a1-14:t5"
+   ],
+   "kelime": {
+    "adet": 12,
+    "k1_aralik": [
+     361,
+     889
+    ]
+   }
+  },
+  {
+   "day": 34,
+   "id": "om:gun:34",
+   "title_tr": "Yol tarif etmek: die zweite Straße links",
+   "dersler": [
+    "gr:a1-11:t3",
+    "gr:a1-11:t4",
+    "gr:a1-11:t5"
+   ],
+   "kelime": {
+    "adet": 10,
+    "k1_aralik": [
+     369,
+     378
+    ]
+   }
+  },
+  {
+   "day": 35,
+   "id": "om:gun:35",
+   "title_tr": "Haftanın sınavı: molada sohbet",
+   "dersler": [],
+   "kelime": {
+    "adet": 3,
+    "k1_aralik": [
+     379,
+     381
+    ]
+   }
+  },
+  {
+   "day": 36,
+   "id": "om:gun:36",
+   "title_tr": "Dün ne yaptığını söylemek: Ich habe gekocht",
+   "dersler": [
+    "gr:a1-07:t2"
+   ],
+   "kelime": {
+    "adet": 13,
+    "k1_aralik": [
+     206,
+     913
+    ]
+   }
+  },
+  {
+   "day": 37,
+   "id": "om:gun:37",
+   "title_tr": "Kelimeyi geçmişe çevirmek: kaufen, gekauft",
+   "dersler": [
+    "gr:a1-07:t3",
+    "dn:sesli-kurma"
+   ],
+   "kelime": {
+    "adet": 10,
+    "k1_aralik": [
+     918,
+     946
+    ]
+   }
+  },
+  {
+   "day": 38,
+   "id": "om:gun:38",
+   "title_tr": "Gitmek ve gelmek geçmişte: Ich bin gegangen",
+   "dersler": [
+    "gr:a1-07:t4",
+    "gr:a2-01:t1",
+    "dn:kaydet-dinle"
+   ],
+   "kelime": {
+    "adet": 10,
+    "k1_aralik": [
+     951,
+     979
+    ]
+   }
+  },
+  {
+   "day": 39,
+   "id": "om:gun:39",
+   "title_tr": "Eskiden nasıldı: Ich war, ich hatte",
+   "dersler": [
+    "gr:a1-08:t3",
+    "gr:a1-14:t3"
+   ],
+   "kelime": {
+    "adet": 10,
+    "k1_aralik": [
+     984,
+     1014
+    ]
+   }
+  },
+  {
+   "day": 40,
+   "id": "om:gun:40",
+   "title_tr": "İki kelimeden bir kelime: Hausarzt",
+   "dersler": [
+    "dn:kelime-ailesi-1",
+    "gr:a1-06:t4"
+   ],
+   "kelime": {
+    "adet": 8,
+    "k1_aralik": [
+     382,
+     1020
+    ]
+   }
+  },
+  {
+   "day": 41,
+   "id": "om:gun:41",
+   "title_tr": "Dinlediğini kendi sözlerinle anlatmak",
+   "dersler": [
+    "dn:yeniden-anlatma",
+    "gr:a1-08:t4"
+   ],
+   "kelime": {
+    "adet": 7,
+    "k1_aralik": [
+     219,
+     393
+    ]
+   }
+  },
+  {
+   "day": 42,
+   "id": "om:gun:42",
+   "title_tr": "Haftanın sınavı: hafta sonunu anlatmak",
+   "dersler": [],
+   "kelime": {
+    "adet": 2,
+    "k1_aralik": [
+     223,
+     226
+    ]
+   }
+  },
+  {
+   "day": 43,
+   "id": "om:gun:43",
+   "title_tr": "Başım ağrıyor",
+   "dersler": [
+    "gr:a1-10:t1"
+   ],
+   "kelime": {
+    "adet": 17,
+    "k1_aralik": [
+     214,
+     522
+    ]
+   }
+  },
+  {
+   "day": 44,
+   "id": "om:gun:44",
+   "title_tr": "Gerek yok mu, yasak mı: nicht müssen, nicht dürfen",
+   "dersler": [
+    "gr:a1-09:t2",
+    "gr:a1-09:t3"
+   ],
+   "kelime": {
+    "adet": 14,
+    "k1_aralik": [
+     1021,
+     1056
+    ]
+   }
+  },
+  {
+   "day": 45,
+   "id": "om:gun:45",
+   "title_tr": "Doktorun talimatı: Nehmen Sie die Tabletten",
+   "dersler": [
+    "gr:a1-09:t4",
+    "gr:a1-10:t4"
+   ],
+   "kelime": {
+    "adet": 13,
+    "k1_aralik": [
+     227,
+     1089
+    ]
+   }
+  },
+  {
+   "day": 46,
+   "id": "om:gun:46",
+   "title_tr": "Form doldurmak: Vorname, Geburtsdatum",
+   "dersler": [
+    "gr:a1-10:t2",
+    "gr:a1-09:t5"
+   ],
+   "kelime": {
+    "adet": 12,
+    "k1_aralik": [
+     233,
+     258
+    ]
+   }
+  },
+  {
+   "day": 47,
+   "id": "om:gun:47",
+   "title_tr": "Beğendiğini söylemek: Das gefällt mir",
+   "dersler": [
+    "gr:a1-13:t4",
+    "gr:a1-13:t5"
+   ],
+   "kelime": {
+    "adet": 11,
+    "k1_aralik": [
+     261,
+     286
+    ]
+   }
+  },
+  {
+   "day": 48,
+   "id": "om:gun:48",
+   "title_tr": "Bir arkadaşa öğüt vermek: Trink viel Wasser!",
+   "dersler": [
+    "gr:a1-14:t1",
+    "gr:a1-14:t2",
+    "gr:a1-10:t3"
+   ],
+   "kelime": {
+    "adet": 10,
+    "k1_aralik": [
+     288,
+     303
+    ]
+   }
+  },
+  {
+   "day": 49,
+   "id": "om:gun:49",
+   "title_tr": "Haftanın sınavı: doktorda muayene",
+   "dersler": [],
+   "kelime": {
+    "adet": 3,
+    "k1_aralik": [
+     304,
+     310
+    ]
+   }
+  },
+  {
+   "day": 50,
+   "id": "om:gun:50",
+   "title_tr": "Pekiştirme: telefon ve randevu",
+   "dersler": [],
+   "kelime": {
+    "adet": 3,
+    "k1_aralik": [
+     314,
+     316
+    ]
+   }
+  },
+  {
+   "day": 51,
+   "id": "om:gun:51",
+   "title_tr": "Pekiştirme: alışveriş ve fiyat",
+   "dersler": [],
+   "kelime": {
+    "adet": 3,
+    "k1_aralik": [
+     318,
+     322
+    ]
+   }
+  },
+  {
+   "day": 52,
+   "id": "om:gun:52",
+   "title_tr": "Pekiştirme: mahallede konuşmak",
+   "dersler": [],
+   "kelime": {
+    "adet": 3,
+    "k1_aralik": [
+     323,
+     325
+    ]
+   }
+  },
+  {
+   "day": 53,
+   "id": "om:gun:53",
+   "title_tr": "Pekiştirme: dün ve hafta sonu",
+   "dersler": [],
+   "kelime": {
+    "adet": 3,
+    "k1_aralik": [
+     326,
+     332
+    ]
+   }
+  },
+  {
+   "day": 54,
+   "id": "om:gun:54",
+   "title_tr": "Pekiştirme: doktor ve eczane",
+   "dersler": [],
+   "kelime": {
+    "adet": 3,
+    "k1_aralik": [
+     333,
+     335
+    ]
+   }
+  },
+  {
+   "day": 55,
+   "id": "om:gun:55",
+   "title_tr": "A1 sınavı: duyduğunu ve okuduğunu anlamak",
+   "dersler": [],
+   "kelime": {
+    "adet": 0
+   }
+  },
+  {
+   "day": 56,
+   "id": "om:gun:56",
+   "title_tr": "A1 sınavı: üç yeni durumda konuşmak",
+   "dersler": [],
+   "kelime": {
+    "adet": 0
+   }
+  }
+ ]
+}
