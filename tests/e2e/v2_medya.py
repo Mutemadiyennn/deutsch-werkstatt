@@ -72,7 +72,36 @@ def main():
         check(abs(dur - 300) < 2, f"örnek kayıt 5 dakika ({dur:.0f} sn)")
         check("CC BY" in pg.inner_text("[data-test=atif]"), "atıf satırı ve lisans görünüyor")
         check("Bölüm 1/3" in pg.inner_text("[data-test=medya] .pbar"), "5 dakikalık kayıt 3 bölüm")
-        check(pg.locator("[data-test=adim-dinle] .de, [data-test=adim-dinle] [lang=de]").count() == 0, "(a) ilk dinlemede metin yok")
+        check(pg.locator("[data-test=adim-dinle] .de, [data-test=adim-dinle] [lang=de]:not([data-test=on-ogretim] *)").count() == 0, "(a) ilk dinlemede metin yok (ön öğretim kelimeleri dışında)")
+        # A9 (inceleme #159 P1-2): klipte geçen yeni kelimeler ve ortam dinlemeden önce görünür (transkript değil)
+        oo = pg.locator("[data-test=on-ogretim-kelime]").all_inner_texts()
+        daha = pg.inner_text("[data-test=on-ogretim-daha]").strip() if pg.locator("[data-test=on-ogretim-daha]").count() else "+0"
+        check(1 <= len(oo) < 6 and "ursprünglich" in oo[0] and "aslen" in oo[0] and daha == f"+{6 - len(oo)}", f"ön öğretim: dokununca seslenen çipler; sığmayanlar '{daha}' ({oo})")
+        # PM 7043484263: 6 kelimeyle bile tek birincil düğme 932 ve 844 yükseklikte tam görünür, üstünde başka şey yok; kart başlığı yok; açıklama ≤ 2 satır
+        for yuk in (932, 844):
+            pg.set_viewport_size({"width": 430, "height": yuk}); pg.wait_for_timeout(250)
+            r = pg.evaluate("""() => { const b = document.querySelector('[data-test=dinle-bolum]'); const q = b.getBoundingClientRect();
+              const ust = document.elementFromPoint(q.left + q.width / 2, q.top + q.height / 2); const c = document.querySelector('[data-test=on-ogretim] .cip-dizi');
+              const cip = document.querySelector('[data-test=on-ogretim-kelime]').getBoundingClientRect().height;
+              return { alt: Math.round(q.bottom), ust: Math.round(q.top), h: innerHeight, birincil: b.classList.contains('primary'), ustteki: b.contains(ust),
+                cipSatir: Math.round(c.getBoundingClientRect().height / cip) }; }""")
+            check(r["birincil"] and r["ustteki"] and r["ust"] >= 0 and r["alt"] <= r["h"] and r["cipSatir"] <= 2, f"{yuk} px: birincil 'Dinle' tam görünür, üstünde başka öğe yok, çipler ≤ 2 satır ({r})")
+        pg.set_viewport_size({"width": 430, "height": 932})
+        check(pg.locator("[data-test=adim-dinle] .kicker").count() == 0, "dinle kartında başlık yok (üst çubukla aynı metin iki kez değil)")
+        acik = pg.evaluate("() => { const p = [...document.querySelectorAll('[data-test=adim-dinle] p.small')].at(-1); return Math.round(p.getBoundingClientRect().height / parseFloat(getComputedStyle(p).lineHeight)); }")
+        check(acik <= 2, f"açıklama ≤ 2 satır ({acik})")
+        lnk = pg.locator("[data-test=adim-dinle] [data-test=next]")
+        check(lnk.count() == 1 and lnk.get_attribute("data-baglanti") == "1" and "btn" not in (lnk.get_attribute("class") or ""), "ilk dinlemeden önce 'Sorulara geç' küçük bağlantı (düğme değil)")
+        # inceleme #159 2. tur P1-1: uzun madde (≥ 50 harf) kendi satırında kırılır, hiçbir çip taşmaz; çip ≥ 44 pt
+        pg.set_viewport_size({"width": 393, "height": 852}); pg.wait_for_timeout(250)
+        pg.click("[data-test=on-ogretim-daha]")
+        t = pg.evaluate("""() => { const c = document.querySelector('[data-test=on-ogretim] .cip-dizi'); const cr = c.getBoundingClientRect();
+          const cs = [...c.children].map((x) => x.getBoundingClientRect());
+          return { tasan: cs.filter((r) => r.right > cr.right + 0.5 || r.left < cr.left - 0.5).length, alcak: cs.filter((r) => r.height < 43.5).length, uzun: [...c.children].some((x) => x.innerText.length >= 50), sw: c.scrollWidth, cw: c.clientWidth }; }""")
+        check(t["tasan"] == 0 and t["alcak"] == 0 and t["uzun"] and t["sw"] <= t["cw"], f"393 px: uzun ön öğretim maddesi taşmıyor, çipler ≥ 44 pt ({t})")
+        pg.set_viewport_size({"width": 430, "height": 932})
+        check(pg.locator("[data-test=on-ogretim-kelime]").count() == 6, f"'{daha}' dokununca bütün kelimeler")
+        check(pg.locator("[data-test=video-ortam]").count() == 1 and "adını" in pg.inner_text("[data-test=video-ortam]"), "ortam cümlesi videonun altında")
         # (a) bölümü dinle: video bölümün başından oynar
         # B7: başlangıç hızı Yavaş — düğmede ya da hız anahtarında (PM-074 md. 2) yazılı
         yazili = "yavaş" in pg.inner_text("[data-test=dinle-bolum]") or pg.locator("[data-test=hiz] button[aria-pressed=true]").first.inner_text().strip() == "Yavaş" if pg.locator("[data-test=hiz]").count() else "yavaş" in pg.inner_text("[data-test=dinle-bolum]")

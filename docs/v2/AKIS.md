@@ -64,6 +64,9 @@ Ardından açgözlü bir yerleştirme yapılır. Her adımda kısıtları (1–3
 - **Kelime → kart eşlemesi:** sözlüğün `de` + `forms` + çekim dizini (`core/kume.ts`, yeni, saf). Eşlenemeyen biçim **listelenir, tahmin edilmez**. Kurallar (PM 7043401257):
   - Kendi kartı olan sözcük yalnız **kendi kartı tanıtıldıysa** bilinir (başka kartın cevabında geçmesi bilinir yapmaz).
   - Kalıp **bütün olarak** bilinir; parçaları tek tek bilinir sayılmaz.
+  - **İstisna (PM-080 §4, #12 7050620303):** kalıbın **kartsız** çerçeve sözcüğü (ist, war, geht, guten), kalıp öğretildikten sonra (ders ya da halka bitince) tek başına **tanınır** sayılır. Kendi kartı olan sözcük yalnız kalıbın düz hâliyle ya da kendi kartıyla bilinir. İki koşul:
+    - Bu yalnız **anlamadır**; üretim için K5 (≥ 2 görme) ve Türkçesi için K10 (ilk iki görme) aynen işler.
+    - Sözcük kalıbın dışında **başka anlamda** kullanılıyorsa (geht: "olur" → "gidiyor") yeni sözcük sayılır: yazar halkada notta işaretler, dilbilimci denetler. Makine bunu göremez.
   - Eşadlı ayrımı (`zu` edat / `zu` kapalı) sayaçta yoksa o sözcük "eşlenemeyen" listesine düşer, bilinir sayılmaz.
 - **Görev cümlesi** (boşluk, yapboz, TR→DE, söyle, dikte): K(t) dışında kelime **0**.
 - **Gösterim/dinleme cümlesi:** K(t) dışında **≤1**. O kelime işaretli, dokununca Türkçe; sorulmaz.
