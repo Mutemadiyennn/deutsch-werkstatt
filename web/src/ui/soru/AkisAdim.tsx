@@ -11,7 +11,7 @@ import { speak, speakDizi } from "../../services/speech.ts";
 import { haptic } from "../../services/haptics.ts";
 import { ActionBar, AnswerField, FeedbackBand, ListenButton, MicButton } from "../kit.tsx";
 
-export interface CumleBilgi { de: string; tr: string; accepted: string[] }
+export interface CumleBilgi { de: string; tr: string; accepted: string[]; /** kalıp örneğinde yuvaya giren sözcükler (vurgulu) */ vurgu?: string[] }
 
 const sozcukler = (de: string) => de.replace(/[.,!?;:„“"»«]/g, " ").split(/\s+/).filter(Boolean);
 
@@ -129,13 +129,17 @@ export function YapbozAdimi({ bilgi, tohum, ipucu, onBitti }: { bilgi: CumleBilg
 
 /** Yeni kalıp (TARGET3c 1): kalıp büyük, yuva vurgulu; Türkçesi; örnekler sesli; tek birincil "Anladım" */
 export function KalipAdimi({ kalip, ornekler, onBitti }: { kalip: { de: string; tr: string }[]; ornekler: CumleBilgi[]; onBitti: () => void }) {
-  const yuvali = (s: string) => s.split(/(…|\{[^}]*\})/).map((p) => (p === "…" || /^\{/.test(p) ? <span class="kalip-yuva">…</span> : p));
+  // yuva: altı çizili boşluk (TARGET3c 1); "…" hapı yükleniyor göstergesine benziyordu (PM 7055715440 md. 2)
+  const yuvali = (s: string) => s.split(/(…|\{[^}]*\})/).map((p) => (p === "…" || /^\{/.test(p) ? <span class="kalip-yuva" aria-label="boşluk">{"\u00A0".repeat(6)}</span> : p));
+  // "önce duy": girişte ilk örnek kendiliğinden okunur
+  useEffect(() => { if (ornekler[0]) void speak(ornekler[0].de, "de", "normal"); }, []);
+  const vurgulu = (o: CumleBilgi) => { const v = new Set(o.vurgu ?? []); return o.de.split(/(\s+|[.,!?;:„“"»«]+)/).filter((w) => w !== "").map((w) => (v.has(w) ? <mark class="tanit-vurgu">{w}</mark> : w)); };
   return (
     <section class="stack fade" data-test="akis-kalip">
       <div class="kicker icerik" style={{ color: "var(--accent)" }}>Yeni kalıp</div>
       {kalip.map((k) => <div><div class="de-lg" lang="de">{yuvali(k.de)}</div><p class="small muted" style={{ margin: 0 }}>{k.tr}</p></div>)}
-      {ornekler.length > 0 && <section class="card stack" style={{ gap: 6 }}>
-        {ornekler.slice(0, 2).map((o) => <div class="row" style={{ flexWrap: "nowrap", gap: 10, alignItems: "center" }}><span class="grow"><b lang="de">{o.de}</b><br /><span class="small muted">{o.tr}</span></span><ListenButton text={o.de} small slowToggle={false} /></div>)}
+      {ornekler.length > 0 && <section class="card stack" style={{ gap: 6 }} data-test="kalip-ornekler">
+        {ornekler.slice(0, 2).map((o) => <div class="row" style={{ flexWrap: "nowrap", gap: 10, alignItems: "center" }}><span class="grow"><b lang="de">{vurgulu(o)}</b><br /><span class="small muted">{o.tr}</span></span><ListenButton text={o.de} small slowToggle={false} /></div>)}
       </section>}
       <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-devam" onClick={onBitti}>Anladım</button></ActionBar>
     </section>

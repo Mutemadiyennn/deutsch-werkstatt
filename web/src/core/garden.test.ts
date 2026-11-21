@@ -338,6 +338,35 @@ describe("Kelime Bahçesi (PM-049)", () => {
     expect(sinaKabul(absagen)).toContain("absagen");
   });
 });
+
+describe("anlam çeldiricileri, akış (PM 7055715440 md. 5)", () => {
+  const L2 = (id: string, de: string, tr: string, domains: string[] = []) => Lexeme.parse({ id, de, tr, pos: "noun", art: "der", domains });
+  const jan = L2("lx:Januar", "Januar", "ocak"), feb = L2("lx:Februar", "Februar", "şubat"), mar = L2("lx:März", "März", "mart"),
+    feu = L2("lx:Feuerwehr", "Feuerwehr", "itfaiye", ["acil"]), buch = L2("lx:Buchstabe", "Buchstabe", "harf", ["okul"]);
+  it("yalnız: çeldiriciler halkadan ve bilinenlerden; yetmezse şık azalır, uzak sözcük gelmez", () => {
+    for (let k = 0; k < 20; k++) {
+      const o = meaningOptions(jan, [jan, feb, mar, feu, buch], () => (k * 0.37) % 1, { tur: new Set(["lx:Februar"]), bilinen: new Set(["lx:März"]), yalniz: true });
+      expect(o.opts.sort()).toEqual(["mart", "ocak", "şubat"]);
+    }
+  });
+  it("yalnız değilse Bahçe davranışı aynı: uzak sözcükle 4 şık", () => {
+    expect(meaningOptions(jan, [jan, feb, mar, feu, buch], () => 0.3, { tur: new Set(["lx:Februar"]) }).opts).toHaveLength(4);
+  });
+});
+describe("akış çeldiricisi, yakın yoksa (inceleme #186 P1-1)", () => {
+  const L3 = (id: string, de: string, tr: string) => Lexeme.parse({ id, de, tr, pos: "noun", art: "der" });
+  it("havuz boşsa uzak sözcük gelmez (akış bu adımı soru olarak sormaz)", () => {
+    const a = L3("lx:A", "Arzt", "doktor"), b = L3("lx:B", "Brot", "ekmek"), c = L3("lx:C", "Bus", "otobüs");
+    expect(meaningOptions(a, [a, b, c], () => 0.1, { tur: new Set(), bilinen: new Set(), yalniz: true }).opts).toEqual(["doktor"]);
+  });
+  it("sayıların çeldiricisi aynı halkanın sayıları (kart sayılmasalar da): 3 şık ve üstü", () => {
+    const N = (id: string, de: string, tr: string) => Lexeme.parse({ id, de, tr, pos: "num" });
+    const s = [N("lx:eins", "eins", "bir"), N("lx:zwei", "zwei", "iki"), N("lx:drei", "drei", "üç"), N("lx:vier", "vier", "dört")];
+    const o = meaningOptions(s[0]!, s, () => 0.2, { tur: new Set(s.map((x) => x.id)), bilinen: new Set(), yalniz: true }).opts;
+    expect(o.length).toBeGreaterThanOrEqual(3); expect(o).toContain("bir");
+  });
+});
+
 describe("tur sonu 'Yarın N kart' (öğrenci günlüğü 7057160147 N6)", () => {
   it("yalnız sözcük kartları; ders/cümle öğesi ve kart sayılmayan sözcük sayılmaz; uzak vadeli kart sayılmaz", () => {
     const t0 = new Date("2026-11-01T10:00:00Z"), s = sessionKey("g", t0.getTime());
