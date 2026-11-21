@@ -2,7 +2,7 @@
 
 **Dosya:** `content/v2/media/resim/harita.json` · **Tarih:** 2026-11-21 · **Sonuç: KAPANDI** (iki küçük şüphe aşağıda; ikisi de birleştirmeyi engellemez)
 
-**İncelenen:** 142 kart, hepsi. **Hata:** 10 (8 çıkarıldı, 2 resim değişti). Hata oranı 10/142 = %7. Kalan: 134 kart.
+**İncelenen:** 142 kart, hepsi. **Hata:** 10 (8 çıkarıldı, 2 resim değişti). Hata oranı 10/142 = %7. Kalan: 134 kart. (Ek sonrası: 135; sondaki "Ek" bölümüne bak.)
 
 **Yöntem.** 142 emoji yerel `NotoColorEmoji.ttf` ile çizildi ve resme bakılarak karar verildi; yalnız Unicode adına göre değil. Her satırda iki soru soruldu: resim başka bir K1 kartıyla karışıyor mu, ve Almanya'da bu sözcük bu nesneyi mi gösteriyor. Karışma, sözlükteki 1099 K1 kartına karşı denetlendi.
 
@@ -58,3 +58,29 @@ Yazarın listesinden yeni gruplar: krank/Schnupfen/Übelkeit (üçü de "hasta y
 - `ad_tr` her kartta sözlükteki `tr` ile aynı.
 - `npm run content:validate` → 0 hata (142 uyarı, hepsi bu dosyanın dışında).
 - `review: {status: "reviewed", by: "dilbilimci-ajan", at: "2026-11-21"}` eklendi.
+
+## Ek: MEDYA'nın beş adayı (PM 7055725467)
+
+**Sonuç: 1 kabul, 4 ret.** Beş emoji yine yerel `NotoColorEmoji.ttf` ile çizilip resme bakılarak değerlendirildi. Harita 134 → 135 kart.
+
+| Aday | Gün | Karar | Neden |
+|---|---:|---|---|
+| Tüte 🛍️ `1f6cd` | 4 | **Kabul** | Resim iki saplı alışveriş poşeti; Almancası tam olarak "Einkaufstüte" (karttaki eşdizim). Tasche 👜 (deri el çantası) ile resim olarak açıkça ayrılıyor; kartın `mistakes_tr`'si zaten Tasche/Tüte ayrımını öğretiyor, resim bunu destekliyor. `not`: Tasche, einkaufen 🛒 ile aynı halkada çıkmasın (iki yönlü; Tasche ve einkaufen'e de yazıldı). |
+| Fieber 🤒 `1f912` | 7 | Ret | 🤒 hâlâ `lx:krank` kartında; aynı kod iki karta gidemez. Taşımak da doğru değil: resim önce "hasta yüz"dür, krank üst kavramdır ve krank/Schnupfen/Übelkeit grubunun çapası odur. Fieber'e geçerse krank resimsiz kalır (🤕 "verletzt", 😷 "Maske" okunur). Fieber fotoğraf bekler (ateş ölçer). |
+| Karte 💳 `1f4b3` | 4 | Ret | 💳 `lx:Bankkarte` kartında; kod çakışır. 4. gün kartının öğrettiği anlam gerçekten ödeme kartı (`anlam_tr`: "Ödeme yaparken kullandığın kart"; "mit Karte zahlen"), ama kartın kendisi çok anlamlı: `tr` "kart, harita, menü", ipucu "Die Karte, bitte" = menü. Ayrıca Fahrkarte 🎫 ve Gesundheitskarte de "Karte"dir; resim halkasında birden çok doğru cevap çıkar. Tam karşılık Bankkarte'de kalır; Karte'ye fotoğraf (ödeme cihazında kart) uygun. |
+| Kilo ⚖️ `2696` | 4 | Ret | Resim iki kefeli terazi: "Waage" diye okunur, simge olarak da adalet/hukuk (Recht, Anwalt K1'de). Ölçü birimi resimle gösterilemez; "Kilo" duyan öğrenci bu resmi seçmez. Uyarı: sözlükteki fotoğraf tarifi de "kitchen scale"; fotoğraf seçilirken aynı sorun çıkar (üstünde "1 kg" okunan ağırlık ya da bir kiloluk paket daha doğru). |
+| hallo 👋 `1f44b` | 1 | Ret | El sallama hem selam hem veda: "tschüss" ve "auf Wiedersehen" (`lx:Wiedersehen` K1'de) için de aynı ölçüde doğru. Resim ayrıca Hand ✋ ile neredeyse aynı (açık sarı el; fark yalnız hareket çizgileri). hallo'nun ikinci anlamı "alo" (telefon) da resimde yok. |
+
+**Kapsam (ek sonrası).** Fotoğraflı = `media/foto/secim.json`'da kart düzeyinde seçilmiş 8 fotoğraf.
+
+| Küme | Kart | Emoji eşlenen | Fotoğraflı | Fotoğraf ya da emoji | İkisi de yok |
+|---|---:|---:|---:|---:|---:|
+| 1.–7. gün | 155 | 27 (önce 26) | 8 | 28 | 127 |
+| K1 (hepsi) | 1099* | 135 (önce 134) | 8 | 136 | 963 |
+| K1, gün dışı | 944* | 108 | 0 | 108 | 836 |
+
+Gün başına emoji: 2 · 5 · 11 · **4** · 3 · 0 · 2. 6. gün hâlâ sıfır.
+
+\* Payda ilk incelemedeki sayıdır. Doğrulayıcı bugün 1205 K1 sözcüğü sayıyor; 1099'un hangi süzgeçle çıktığını bu oturumda yeniden üretemedim. Paylar (135, 8, 136) ve 1.–7. gün satırı betikle yeniden hesaplandı; K1 paydası ve "ikisi de yok" sütunu baş geliştirici tarafından teyit edilmeli.
+
+**Denetim (ek).** JSON geçerli; 135 kod ve 135 emoji tekil (betikle); her `kod` emoji kod noktalarından yeniden üretildi (küçük harf, `_`, FE0F'siz); `npm run content:validate` → 0 hata (142 uyarı, bu dosyanın dışında). `review` alanı "reviewed" olarak kaldı.
