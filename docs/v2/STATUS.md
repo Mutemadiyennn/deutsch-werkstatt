@@ -84,6 +84,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | Kalıp kartı (#58 B2) | `v2/kalip-karti` | #94 birleşti (D-110). 957/957 dolguda Türkçe anlam (`fills_tr`, #116) |
 | Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | PR #87: 1. tur 5 P1 + 9 P2 düzeltildi (D-107 sonu); 2. tur bekliyor |
 | Doğrulayıcı B4 (#58 B4, #54 D16) | `v2/dogrulayici-b4` | PR #88: 1. tur 5 P1 düzeltildi (D-108); 0 hata, 126 uyarı; İÇ iş listesi: 7 şiddet tanıma kartında kullanım uyarısı, 46/119/167 kart kuralı; 2. tur bekliyor |
+| Öğrenci günlüğü N4, N6, N8 (7057160147) | `v2/medya-rich` | PR #188: medyada `**` ham görünmez (Rich/plain; e2e her adımda), metin adımında dinle düğmesi sağda, Bahçe "Yarın N kart" yalnız kartlar ve tur sınırıyla |
 | Bahçe değişen cümle (PM-062, #58 B13) | `v2/bahce-donusum` | #92 birleşti (D-111) |
 | Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | #87 birleşti (D-107) |
 | Şema: gün sınavı + kalıp dolgu anlamı (İÇ 7014566898; PM-066.3, PM-067.1) | `v2/sema-sinav-dolgu` | #109 birleşti; PR #109 geçmişi: (2. tur P1-A: fills_tr e2e diskten; `gun_sinavi.dikte` eklendi); İÇ içeriği bu alanlarla yazıyor |
@@ -96,6 +97,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | Değerlendirme doğruluğu (#58 A11) | `v2/degerlendirme` | PR #76: 1. tur P0 (V2 aşırı kabul) ve P1'ler düzeltildi; kalıcı permütasyon taraması; 2. tur bekliyor (D-104) |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | `v2/degerlendirme` | #76 içinde (D-104 madde 3) |
 | Sözlük arama (#58 B1) | `v2/sozluk-ara` | PR açıldı: çevrimdışı DE↔TR, kart, "Duyduğum kelime" olarak Bahçe'ye |
+| Açık fotoğraf yerel yoldan (PM 7055725467 md. 4) | `v2/foto-yerel` | PR açıldı: `medya` dalının fotoğrafları `yayin.sh` ile `.medya/foto/`'ya, derleme `medya:foto/<ad>` (ve dalın eski raw adresi) kayıtlarını pakete alır (`content/<sürüm>/media/`, uçak modu); `acik.py` dalın `atif.json`'unu okur |
 | Dinleme hızı ayarı etkili (#58 B7) | `v2/dinleme-hizi` | PR açıldı: Yavaş seçiliyse her cümle ilk kez yavaş, tekrarında normal; medya 0,75× |
 | Çevrimdışı medya (#58 A12 son parça) | `v2/cevrimdisi-medya` | PR #74: medya pakette, servis işçisi ayrı önbellek + 206 aralıklı yanıt, uçak modu e2e; 2. tur bulguları düzeltildi |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |

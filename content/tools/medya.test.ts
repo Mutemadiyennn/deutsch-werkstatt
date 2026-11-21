@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { mkdtempSync, mkdirSync, writeFileSync } from "node:fs";
+import { mkdtempSync, mkdirSync, symlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
-import { medyaDenetle } from "./medya.ts";
+import { fotoPaketle, medyaDenetle, yerelFotoAdi } from "./medya.ts";
 
 const kur = (dosyalar: Record<string, string>) => {
   const r = mkdtempSync(join(tmpdir(), "medya-"));
@@ -33,5 +33,23 @@ describe("medya doğrulayıcısı (B12 3. parça, D-112)", () => {
     expect(h.some((x) => x.includes('sinif "acik"'))).toBe(true);
     expect(h.some((x) => x.includes("atıf"))).toBe(true);
     expect(h.some((x) => x.includes("ikili medya"))).toBe(true);
+  });
+  it("medya dalının yerel fotoğrafı (PM 7055725467 md. 4): medya:foto/<ad> ve dalın eski raw adresi geçerli, alt klasör ve .. değil", () => {
+    expect(yerelFotoAdi("medya:foto/ab12.jpg")).toBe("ab12.jpg");
+    expect(yerelFotoAdi("https://raw.githubusercontent.com/Mutemadiyennn/deutsch-werkstatt/medya/foto/ab12.jpg")).toBe("ab12.jpg");
+    expect(yerelFotoAdi("https://github.com/Mutemadiyennn/deutsch-werkstatt/releases/download/m1-foto/x.jpg")).toBeUndefined();
+    for (const k of ["medya:foto/a/b.jpg", "medya:foto/../x.jpg", "medya:foto/x", "medya:foto/x.mp4"]) expect(yerelFotoAdi(k)).toBe("");
+    expect(medyaDenetle(kur({ "foto/acik.json": JSON.stringify({ foto: { a: { ...iyi, src: "medya:foto/ab12.jpg" }, b: { ...iyi, src: "foto/ab12.jpg" } } }) }))).toEqual([expect.stringContaining("b: src https")]);
+  });
+  it("fotoPaketle (inceleme #187 P2-1): medya:foto ve raw adres yerel yola, Releases aynen, eksik ve sembolik bağ düşer, aynı dosya bir kez", () => {
+    const kok = mkdtempSync(join(tmpdir(), "foto-")); mkdirSync(join(kok, "foto"));
+    writeFileSync(join(kok, "foto", "a.jpg"), "x"); writeFileSync(join(kok, "gizli"), "anahtar"); symlinkSync(join(kok, "gizli"), join(kok, "foto", "bag.jpg"));
+    mkdirSync(join(kok, "foto", "klasor.jpg"));
+    const rel = "https://github.com/Mutemadiyennn/deutsch-werkstatt/releases/download/m1-foto/r.jpg";
+    const p = fotoPaketle({ y: { src: "medya:foto/a.jpg" }, r: { src: "https://raw.githubusercontent.com/Mutemadiyennn/deutsch-werkstatt/medya/foto/a.jpg" }, d: { src: rel },
+      e: { src: "medya:foto/yok.jpg" }, s: { src: "medya:foto/bag.jpg" }, k: { src: "medya:foto/klasor.jpg" } }, [kok]);
+    expect(p.dosyalar).toEqual([{ src: "media/a.jpg", yol: join(kok, "foto", "a.jpg") }]);
+    expect(p.eksik.sort()).toEqual(["e", "k", "s"]);
+    expect(p.yaz("v1")).toEqual({ y: { src: "content/v1/media/a.jpg" }, r: { src: "content/v1/media/a.jpg" }, d: { src: rel } });
   });
 });

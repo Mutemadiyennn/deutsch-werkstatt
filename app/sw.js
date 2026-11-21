@@ -8,7 +8,8 @@ self.addEventListener("install", e => {
   e.waitUntil(caches.open(STATIC).then(c => c.addAll(CORE).catch(() => {})).then(() => self.skipWaiting()));
 });
 self.addEventListener("activate", e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== STATIC && k !== RUNTIME).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+  // yalnız v1'in kendi eski önbellekleri (dw-…): v2'nin aynı kökendeki önbelleklerine (dw2-…) dokunulmaz (PM 7059014921)
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith("dw-") && k !== STATIC && k !== RUNTIME).map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
 const timeout = (p, ms) => new Promise((res, rej) => { const t = setTimeout(() => rej(new Error("timeout")), ms); p.then(v => { clearTimeout(t); res(v); }, err => { clearTimeout(t); rej(err); }); });
 async function pageFirst(req){

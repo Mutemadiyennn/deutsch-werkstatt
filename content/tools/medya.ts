@@ -3,10 +3,10 @@
  *  - content/v2/media altındaki her JSON taranır: `sinif: "kapali"` olan kayıtta herkese açık adres (http/https `src`) olamaz
  *    (kapalı dosyanın adresi yalnızca raf yoludur, ör. "foto/x.jpg").
  *  - Açık fotoğraf kaydı (foto/acik.json): her kayıt `sinif: "acik"`, lisansı açık (CC0, kamu malı, CC BY, CC BY-SA),
- *    `src` https ve atıf (yazar ya da sayfa) var.
+ *    `src` https ya da `medya` dalının yerel yolu (`medya:foto/<ad>`; derleme pakete alır) ve atıf (yazar ya da sayfa) var.
  *  - Depoda ikili medya dosyası (jpg, png, webp, mp3, mp4…) content/v2/media altında olamaz (D-103: Releases/dağıtım dalı).
  */
-import { readdirSync, readFileSync, statSync } from "node:fs";
+import { lstatSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 
 /** açık lisanslar: tam biçim (NC/ND ya da ekli tuhaflık geçmez; inceleme #121 P2) */
@@ -23,6 +23,39 @@ function dosyalar(kok: string): string[] {
   const gez = (d: string) => { for (const a of readdirSync(d)) { const p = join(d, a); if (statSync(p).isDirectory()) gez(p); else out.push(p); } };
   try { gez(kok); } catch { /* klasör yok */ }
   return out;
+}
+
+const DAL_RAW = "https://raw.githubusercontent.com/Mutemadiyennn/deutsch-werkstatt/medya/foto/";
+/**
+ * Açık fotoğrafın `medya` dalındaki dosya adı (PM 7055725467 md. 4): `medya:foto/<ad>` ya da dalın eski raw adresi → `<ad>`;
+ * öteki adresler (Releases) → undefined (olduğu gibi kalır); geçersiz ad (alt klasör, `..`, uzantısız) → "".
+ */
+export function yerelFotoAdi(src: string): string | undefined {
+  const ad = src.startsWith("medya:foto/") ? src.slice("medya:foto/".length) : src.startsWith(DAL_RAW) ? src.slice(DAL_RAW.length) : undefined;
+  if (ad === undefined) return undefined;
+  return /^[\w-][\w.-]*\.(jpe?g|png|webp)$/i.test(ad) && !ad.includes("..") ? ad : "";
+}
+
+export interface FotoKaydi { src: string; [k: string]: unknown }
+/**
+ * Açık fotoğrafların paketlenmesi (PM 7055725467 md. 4; inceleme #187 P2-1): `medya:foto/<ad>` ve dalın raw adresli kayıtları
+ * `kaynaklar` içindeki `foto/<ad>` dosyasından pakete girer (`media/<ad>`), `foto.json`'da `content/<sürüm>/media/<ad>` olur.
+ * Dosya yoksa ya da düz dosya değilse (sembolik bağ, klasör; inceleme #187 P1-2) kayıt düşer. Releases adresli kayıt olduğu gibi kalır.
+ */
+export function fotoPaketle(foto: Record<string, FotoKaydi>, kaynaklar: string[]): { dosyalar: { src: string; yol: string }[]; eksik: string[]; yaz: (surum: string) => Record<string, FotoKaydi> } {
+  const yerel = new Map<string, string>(), eksik: string[] = [], dosyalar: { src: string; yol: string }[] = [];
+  const duzDosya = (p: string) => { try { return lstatSync(p).isFile(); } catch { return false; } };
+  for (const [k, f] of Object.entries(foto)) {
+    const ad = yerelFotoAdi(f.src);
+    if (ad === undefined) continue;
+    const yol = ad ? kaynaklar.map((m) => join(m, "foto", ad)).find(duzDosya) : undefined;
+    if (!ad || !yol) { eksik.push(k); continue; }
+    yerel.set(k, `media/${ad}`);
+    if (!dosyalar.some((d) => d.src === `media/${ad}`)) dosyalar.push({ src: `media/${ad}`, yol });
+  }
+  const yaz = (surum: string) => Object.fromEntries(Object.entries(foto).filter(([k]) => !eksik.includes(k))
+    .map(([k, f]) => [k, yerel.has(k) ? { ...f, src: `content/${surum}/${yerel.get(k)}` } : f]));
+  return { dosyalar, eksik, yaz };
 }
 
 export function medyaDenetle(root: string): string[] {
@@ -50,7 +83,7 @@ export function medyaDenetle(root: string): string[] {
       for (const [yer, r] of Object.entries(((v as { foto?: Record<string, Record<string, unknown>> }).foto) ?? {})) {
         if (r.sinif !== "acik") hata.push(`${ad} ${yer}: açık kayıtta sinif "acik" olmalı`);
         if (!ACIK_LISANS.test(String(r.lisans ?? ""))) hata.push(`${ad} ${yer}: lisans açık değil (${r.lisans})`);
-        if (!/^https:\/\//.test(String(r.src ?? ""))) hata.push(`${ad} ${yer}: src https olmalı`);
+        if (!/^https:\/\//.test(String(r.src ?? "")) && !yerelFotoAdi(String(r.src ?? ""))) hata.push(`${ad} ${yer}: src https ya da "medya:foto/<ad>" olmalı`);
         if (!String(r.yazar ?? "").trim() && !String(r.sayfa ?? "").trim()) hata.push(`${ad} ${yer}: atıf (yazar ya da sayfa) yok`);
         if (r.lisans_url && !/^https:\/\//.test(String(r.lisans_url))) hata.push(`${ad} ${yer}: lisans bağlantısı https olmalı`);
       }

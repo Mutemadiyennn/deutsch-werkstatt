@@ -477,6 +477,8 @@ html.callmode body { background: #121C30; }
 .wordtap:active { background: var(--soft); }
 .kelime-sheet { position: fixed; left: 12px; right: 12px; bottom: calc(var(--safe-bottom) + 12px); z-index: 70; max-width: 616px; margin: 0 auto; box-shadow: var(--shadow); }
 [data-test=adim-transkript] p { line-height: 2.2; }
+[data-test=adim-transkript] p.transkript-satir { display: flex; align-items: flex-start; gap: 8px; }
+[data-test=adim-transkript] p.transkript-satir > .btn { flex: none; margin-top: 4px; }
 [data-test=error-boundary] h2:focus, [data-test=root-error] h2:focus { outline: none; }
 /* M1 A5 temel ders tablosu */
 .tbl { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
