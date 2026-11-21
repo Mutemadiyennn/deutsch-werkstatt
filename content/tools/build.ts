@@ -87,8 +87,10 @@ for (const src of [...medyaAdlari].sort()) {
 }
 // PM-081 B: kart → Noto Emoji (İÇ haritası). SVG'ler pakete girer (`media/noto-<kod>.svg`, çevrimdışı); `resim.json` kart → yerel yol
 const resimYol = join(ROOT, "content/v2/media/resim/harita.json");
-const resimHarita = existsSync(resimYol) ? (JSON.parse(readFileSync(resimYol, "utf8")) as { lisans?: string; kaynak?: string; kartlar: Record<string, { kod: string; emoji?: string }> }) : null;
+const resimHarita = existsSync(resimYol) ? (JSON.parse(readFileSync(resimYol, "utf8")) as { lisans?: string; kaynak?: string; kartlar: Record<string, { kod: string; emoji?: string; not?: string }> }) : null;
 const resimKart = new Map<string, string>(), resimEksik: string[] = [];
+// İÇ haritasındaki "Aynı halkada çıkmasın: X, Y." notu → `ayri` (Almanca sözcükler): bu kartlar birbirine çeldirici olmaz (inceleme #193 P1-1)
+const resimAyri = new Map<string, string[]>();
 if (resimHarita) {
   const gecici = join(tmpdir(), `dw-noto-${process.pid}`); mkdirSync(gecici, { recursive: true });
   for (const [id, r] of Object.entries(resimHarita.kartlar)) {
@@ -96,7 +98,10 @@ if (resimHarita) {
     const ad = notoDosya(r.kod), yol = join(gecici, ad);
     if (!medyaBul.some((m) => m.src === `media/${ad}`)) { writeFileSync(yol, svg); medyaBul.push({ src: `media/${ad}`, yol, ozet: createHash("sha1").update(svg).digest("hex") }); }
     resimKart.set(id, `media/${ad}`);
+    const ayri = r.not?.match(/Aynı halkada çıkmasın:\s*([^.]+)/)?.[1]?.split(/\s*,\s*/).map((x) => x.trim()).filter(Boolean);
+    if (ayri?.length) resimAyri.set(id, ayri);
   }
+  process.on("exit", () => rmSync(gecici, { recursive: true, force: true }));  // geçici SVG klasörü derleme sonunda silinir (inceleme #193 P2)
   if (resimEksik.length) console.warn(`uyarı: Noto'da bulunmayan emoji kodu (${resimEksik.length}): ${resimEksik.slice(0, 5).join(", ")}`);
 }
 // PM 7055725467 md. 4: `medya` dalındaki açık fotoğraflar (acik.json `src: "medya:foto/<ad>"`; eski kayıtta dalın raw adresi) pakete girer ve
@@ -114,7 +119,8 @@ const toplamMedya = medyaBul.reduce((n, m) => n + statSync(m.yol).size, 0);
 if (toplamMedya > 60 * 1024 * 1024) console.warn(`::warning::paketteki medya ${Math.round(toplamMedya / 1048576)} MB > 60 MB (D-103 sınırı; PM'e yaz)`);
 else if (toplamMedya > 50 * 1024 * 1024) console.warn(`uyarı: paketteki medya ${Math.round(toplamMedya / 1048576)} MB, D-103 sınırına (60 MB) yaklaşıyor`);
 // acik.json da sürüme katılır: yalnız atıf düzeltmesi de yeni sürümle önbelleğe girer (inceleme #187 P2-2)
-const version = createHash("sha1").update(JSON.stringify([c.domains, payload, medyaBul.map((m) => [m.src, m.ozet]), acik])).digest("hex").slice(0, 12);
+// resim.json (kart → emoji, ayri) da sürüme girer: harita değişince kurulu cihaz yeni dosyayı alır
+const version = createHash("sha1").update(JSON.stringify([c.domains, payload, medyaBul.map((m) => [m.src, m.ozet]), acik, [...resimKart], [...resimAyri]])).digest("hex").slice(0, 12);
 const base = join(ROOT, "web/public/content");
 if (existsSync(base)) rmSync(base, { recursive: true });
 const dir = join(base, version);
@@ -125,7 +131,7 @@ w("grammar.json", c.grammar);
 w("assess.json", c.assess);
 // B12 3. parça: seçilmiş açık fotoğraflar (kapalı medya pakete girmez; raftan gelir, D-112)
 if (acik) w("foto.json", { ...acik, foto: fotoPaket.yaz(version) });
-if (resimHarita) w("resim.json", { kaynak: resimHarita.kaynak ?? "Noto Emoji", lisans: resimHarita.lisans ?? "Apache-2.0", kartlar: Object.fromEntries([...resimKart].map(([id, src]) => [id, { src: `content/${version}/${src}` }])) });
+if (resimHarita) w("resim.json", { kaynak: resimHarita.kaynak ?? "Noto Emoji", lisans: resimHarita.lisans ?? "Apache-2.0", kartlar: Object.fromEntries([...resimKart].map(([id, src]) => [id, { src: `content/${version}/${src}`, ...(resimAyri.get(id) ? { ayri: resimAyri.get(id) } : {}) }])) });
 // PM-064: karakterlerin sesi (cinsiyet, yaş, sıra) uygulamada ses ataması için
 if (c.world) { mkdirSync(join(dir, "world"), { recursive: true }); w("world/world.json", c.world); }
 const scenFiles: Record<string, string> = {};
