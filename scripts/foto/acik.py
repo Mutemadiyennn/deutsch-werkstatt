@@ -21,6 +21,9 @@ def temiz_yazar(y):
 
 def atif_oku(yol):
     if yol: return json.load(open(yol))
+    # bayat ref okunmasın: önce dal güncellenir (inceleme #187 P2-4); ağ yoksa uyarıyla yereldekiyle sürer
+    f = subprocess.run(["git", "-C", KOK, "fetch", "-q", "origin", "+refs/heads/medya:refs/remotes/origin/medya"], capture_output=True, text=True)
+    if f.returncode: print("uyarı: medya dalı güncellenemedi; yereldeki origin/medya okunuyor", file=sys.stderr)
     r = subprocess.run(["git", "-C", KOK, "show", "origin/medya:foto/atif.json"], capture_output=True, text=True)
     if r.returncode: sys.exit("medya dalının foto/atif.json'u okunamadı (git fetch origin medya); kayıtlar silinmesin diye durdum")
     return json.loads(r.stdout)
@@ -55,10 +58,14 @@ def main(adaylar_yol: str, varlik_yol: str, atif_yol=None) -> None:
         out[yer] = {"src": f"{DEPO}/{surum}/{d}", "sinif": "acik", "kaynak": a["kaynak"], "yazar": yazar,
                     "lisans": a["lisans"], "lisans_url": lurl, "sayfa": a.get("sayfa"), "baslik": a.get("baslik")}
     dal = dal_kayitlari(atif_oku(atif_yol))
+    hedef = os.path.join(KOK, "content/v2/media/foto/acik.json")
+    onceki = set(json.load(open(hedef)).get("foto", {})) if os.path.exists(hedef) else set()
     ezilen = sorted(set(dal) & set(out))
     out.update(dal); out = dict(sorted(out.items()))
     json.dump({"surum": 1, "not": "Üretilir: scripts/foto/acik.py. Yalnızca açık lisanslı seçilmiş fotoğraflar; kapalı medya raftan (D-112).", "foto": out},
               open(os.path.join(KOK, "content/v2/media/foto/acik.json"), "w"), ensure_ascii=False, indent=1)
+    dusen = sorted(onceki - set(out))
+    if dusen: print(f"uyarı: önceki acik.json'da olup bu çıktıda olmayan {len(dusen)} kayıt: {dusen[:10]}", file=sys.stderr)
     print(f"{len(out)} fotoğraf (medya dalından {len(dal)}, dalın ezdiği {len(ezilen)}: {ezilen[:5]}); atlanan {len(atla)}: {atla[:5]}")
 
 if __name__ == "__main__":

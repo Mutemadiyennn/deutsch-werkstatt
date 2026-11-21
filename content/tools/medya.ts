@@ -6,7 +6,7 @@
  *    `src` https ya da `medya` dalının yerel yolu (`medya:foto/<ad>`; derleme pakete alır) ve atıf (yazar ya da sayfa) var.
  *  - Depoda ikili medya dosyası (jpg, png, webp, mp3, mp4…) content/v2/media altında olamaz (D-103: Releases/dağıtım dalı).
  */
-import { readdirSync, readFileSync, statSync } from "node:fs";
+import { lstatSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 
 /** açık lisanslar: tam biçim (NC/ND ya da ekli tuhaflık geçmez; inceleme #121 P2) */
@@ -34,6 +34,28 @@ export function yerelFotoAdi(src: string): string | undefined {
   const ad = src.startsWith("medya:foto/") ? src.slice("medya:foto/".length) : src.startsWith(DAL_RAW) ? src.slice(DAL_RAW.length) : undefined;
   if (ad === undefined) return undefined;
   return /^[\w-][\w.-]*\.(jpe?g|png|webp)$/i.test(ad) && !ad.includes("..") ? ad : "";
+}
+
+export interface FotoKaydi { src: string; [k: string]: unknown }
+/**
+ * Açık fotoğrafların paketlenmesi (PM 7055725467 md. 4; inceleme #187 P2-1): `medya:foto/<ad>` ve dalın raw adresli kayıtları
+ * `kaynaklar` içindeki `foto/<ad>` dosyasından pakete girer (`media/<ad>`), `foto.json`'da `content/<sürüm>/media/<ad>` olur.
+ * Dosya yoksa ya da düz dosya değilse (sembolik bağ, klasör; inceleme #187 P1-2) kayıt düşer. Releases adresli kayıt olduğu gibi kalır.
+ */
+export function fotoPaketle(foto: Record<string, FotoKaydi>, kaynaklar: string[]): { dosyalar: { src: string; yol: string }[]; eksik: string[]; yaz: (surum: string) => Record<string, FotoKaydi> } {
+  const yerel = new Map<string, string>(), eksik: string[] = [], dosyalar: { src: string; yol: string }[] = [];
+  const duzDosya = (p: string) => { try { return lstatSync(p).isFile(); } catch { return false; } };
+  for (const [k, f] of Object.entries(foto)) {
+    const ad = yerelFotoAdi(f.src);
+    if (ad === undefined) continue;
+    const yol = ad ? kaynaklar.map((m) => join(m, "foto", ad)).find(duzDosya) : undefined;
+    if (!ad || !yol) { eksik.push(k); continue; }
+    yerel.set(k, `media/${ad}`);
+    if (!dosyalar.some((d) => d.src === `media/${ad}`)) dosyalar.push({ src: `media/${ad}`, yol });
+  }
+  const yaz = (surum: string) => Object.fromEntries(Object.entries(foto).filter(([k]) => !eksik.includes(k))
+    .map(([k, f]) => [k, yerel.has(k) ? { ...f, src: `content/${surum}/${yerel.get(k)}` } : f]));
+  return { dosyalar, eksik, yaz };
 }
 
 export function medyaDenetle(root: string): string[] {

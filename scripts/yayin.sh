@@ -120,9 +120,11 @@ if git -C "$KOK" fetch -q origin +refs/heads/medya:refs/remotes/origin/medya 2>/
   done < <(find "$MD" -type f -print0)
   # PM 7055725467 md. 4: dalın açık fotoğrafları (foto/*.jpg|png|webp) .medya/foto/'ya; derleme acik.json'daki "medya:foto/<ad>"
   # kayıtlarını pakete alır ve yerel yoldan sunar (uçak modu)
-  if [ -d "$MD/foto" ]; then
+  # yalnız düz dosya: sembolik bağ ve klasör alınmaz (bağ yayın makinesindeki bir dosyayı pakete sokabilirdi; inceleme #187 P1-2)
+  if [ -d "$MD/foto" ] && [ ! -L "$MD/foto" ]; then
     mkdir -p .medya/foto
-    for f in "$MD"/foto/*; do case "${f,,}" in *.jpg|*.jpeg|*.png|*.webp) cp "$f" .medya/foto/; FOTO_SAY=$((FOTO_SAY+1));; esac; done
+    while IFS= read -r -d '' f; do cp -P "$f" .medya/foto/; FOTO_SAY=$((FOTO_SAY+1))
+    done < <(find "$MD/foto" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) -print0)
   fi
   rm -rf "$MD"
 fi
