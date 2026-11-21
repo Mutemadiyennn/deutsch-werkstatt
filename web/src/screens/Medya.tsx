@@ -367,10 +367,11 @@ function TranskriptAdimi({ cs, lex, oy, onNext }: { cs: MedyaCumle[]; lex: Lexem
     <section class="card stack fade" data-test="adim-transkript">
       <div class="kicker">Metin · bilmediğin kelimeye dokun</div>
       {cs.map((c) => (
-        <p class={oy.calisiyor === c.id ? "on" : ""}>
-          <DokunMetin de={c.de} onKelime={setKelime} />
-          {" "}<button class="btn ghost sm" aria-label="Bu cümleyi dinle" onClick={() => void oy.cumle(c, false)}><Icon name="play" /></button>
-          <br /><span class="small muted">{c.tr}</span></p>))}
+        // dinle düğmesi cümlenin sağında sabit: uzun cümlede alt satıra tek başına düşmez (öğrenci günlüğü 7057160147 N8)
+        <p class={`transkript-satir${oy.calisiyor === c.id ? " on" : ""}`}>
+          <span class="grow"><DokunMetin de={c.de} onKelime={setKelime} />
+            <br /><span class="small muted">{c.tr}</span></span>
+          <button class="btn ghost sm" aria-label="Bu cümleyi dinle" data-test="transkript-dinle" onClick={() => void oy.cumle(c, false)}><Icon name="play" /></button></p>))}
       {kelime && <KelimeSayfasi kelime={kelime} lex={lex} onClose={() => setKelime(null)} />}
       {!kelime && <ActionBar><button class="btn primary block" data-test="next" onClick={onNext}>Devam</button></ActionBar>}
     </section>

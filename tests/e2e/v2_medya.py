@@ -161,6 +161,12 @@ def main():
         check(seen == ["kolay", "orta", "zor", "usta", "gercek"], f"(d) dikte merdiveni sırayla ({seen})")
         # (e) metin + kelimeye dokununca kart
         check(adim(pg) == "transkript", f"(e) metin açılıyor ({adim(pg)})")
+        # öğrenci günlüğü 7057160147 N8: dinle düğmesi cümlenin sağında, alt satıra tek başına düşmez
+        yan = pg.evaluate("""() => [...document.querySelectorAll('[data-test=adim-transkript] p.transkript-satir')].map((p) => {
+          const m = p.querySelector('.grow').getBoundingClientRect(), b = p.querySelector('[data-test=transkript-dinle]').getBoundingClientRect();
+          return b.left >= m.right - 1 && b.top < m.bottom; })""")
+        check(yan and all(yan), f"(e) her cümlenin dinle düğmesi cümlenin sağında ({yan})")
+        if shots: shot(pg, f"m03-transkript-{arg('--scheme') or 'light'}", full=False)
         pg.locator("[data-test=kelime]", has_text="Tag").first.click(); pg.wait_for_selector("[data-test=kelime-kart]")
         kk = pg.inner_text("[data-test=kelime-kart]")
         check("henüz yok" not in kk and "Tag" in kk, f"(e) sözlükteki kelimenin kartı açılıyor ({kk[:40]!r})")
