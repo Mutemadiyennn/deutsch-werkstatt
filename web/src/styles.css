@@ -727,6 +727,8 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 .resim-izgara { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; max-width: 344px; margin: 0 auto; }
 .resim-secenek { position: relative; padding: 0; border: 0; border-radius: 18px; overflow: hidden; aspect-ratio: 1 / 1; background: var(--soft); box-shadow: 0 3px 0 rgba(0, 0, 0, 0.08), 0 0 0 1.5px var(--line) inset; cursor: pointer; transition: transform var(--t), opacity var(--t); }
 .resim-secenek img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* PM-081 B: Noto Emoji çizimi kırpılmaz, kutunun ortasında (dört seçenek aynı üslupta) */
+.resim-secenek img.emoji { object-fit: contain; padding: 18%; box-sizing: border-box; background: var(--card); }
 .resim-secenek:active { transform: translateY(2px); }
 .resim-secenek.sel { box-shadow: 0 0 0 3px var(--accent); }
 .resim-secenek.right { box-shadow: 0 0 0 3px var(--ok); }

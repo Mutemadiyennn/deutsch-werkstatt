@@ -299,3 +299,15 @@ describe("gün sonu: kendini dene (PM 7059008858 md. 4)", () => {
     }
   });
 });
+
+describe("resimden seç yalnız görselli kartta (PM 7059008858 md. 5)", () => {
+  it("görselli kart verilince bazı tohumlarda 'resimden_sec' çıkar; yalnız o kartlarda", () => {
+    const halkaKart = [...new Set(gun.halkalar.flatMap((h) => h.kartlar))];
+    const gorselli = new Set(halkaKart.slice(0, 8));
+    let n = 0;
+    for (const t of TOHUMLAR) for (const a of plan(t, "sifir", { gorselli }).duraklar.flatMap((d) => d.adimlar)) if (a.tur === "resimden_sec") {
+      n++; expect(a.kartlar.every((k) => gorselli.has(k) || !!c.lexemes.find((l) => l.id === k)?.img)).toBe(true);
+    }
+    expect(n).toBeGreaterThan(0);
+  });
+});

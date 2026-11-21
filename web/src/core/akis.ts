@@ -105,6 +105,8 @@ export interface PlanGirdi {
   tohum: string;
   simdi: Date;
   politika?: AkisPolitikasi;
+  /** görseli olan kartlar (seçilmiş açık fotoğraf ya da Noto Emoji): `resimden_sec` yalnız bunlarda (PM 7059008858 md. 5) */
+  gorselli?: ReadonlySet<string>;
 }
 
 /** Akış günü mü (AK-5): `halkalar` boş değilse. Değilse planGun null döner ve çağıran eski düzene düşer. */
@@ -427,7 +429,7 @@ class Planlayici {
       if (form) secenek.push({ tur: "gap", kartlar: [c], cumle: form.de.replace(/___/g, form.answer), haric: toks(form.answer.replace(/…/g, " ")), kaynak: "halka", neden: `${l.de}: cümlede boşluk` });
       const orderC = gorev.find((de) => toks(de).length >= pol.yapboz_min_sozcuk);
       if (orderC) secenek.push({ tur: "order", kartlar: [c], cumle: orderC, kaynak: "halka", neden: `${l.de}: cümleyi kur` });
-      for (const t2 of turleri(l)) secenek.push({ tur: t2, kartlar: [c], kaynak: "halka", neden: `${l.de}: ${TUR_NEDEN[t2]}` });
+      for (const t2 of turleri(l, this.g.gorselli)) secenek.push({ tur: t2, kartlar: [c], kaynak: "halka", neden: `${l.de}: ${TUR_NEDEN[t2]}` });
       // üretim cümleleri: tanıtım ve yapboz cümlesinden farklı (P2-5); söyle de aday (P1-5)
       const uretim = gorev.filter((de) => de !== orderC);
       if (uretim[0]) secenek.push({ tur: "dikte", kartlar: [c], cumle: uretim[0], kaynak: "halka", neden: `${l.de}: duyduğunu yaz` });
@@ -641,9 +643,9 @@ class Planlayici {
 const TUR_NEDEN: Partial<Record<AdimTuru, string>> = {
   listen_meaning: "duy, anlamını seç", resimden_sec: "duy, resmini seç", article: "artikeli", colloc: "birlikte geldiği sözcük", tr_de: "Almancasını kur"
 };
-function turleri(l: Lexeme): AdimTuru[] {
-  const t: AdimTuru[] = ["listen_meaning"];
-  if (l.img) t.push("resimden_sec");
+function turleri(l: Lexeme, gorselli?: ReadonlySet<string>): AdimTuru[] {
+  // görseli olan kartta "duy" kipinin ilk adayı resimden seç (TARGET3b 3; görsel gelmezse adım dinle-anlama düşer)
+  const t: AdimTuru[] = l.img || gorselli?.has(l.id) ? ["resimden_sec", "listen_meaning"] : ["listen_meaning"];
   if (l.pos === "noun" && l.art) t.push("article");
   if (l.collocations?.length) t.push("colloc");
   t.push("tr_de");

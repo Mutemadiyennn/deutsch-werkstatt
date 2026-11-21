@@ -11,7 +11,7 @@ import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Rich } from "../ui/rich.tsx";
 import { hucreDili, tabloBol } from "../core/tablo.ts";
 import { bilinmeyenler, kalipOrtu, kalipSecenekleri, kalipToks, kumeDizini, toks, YUVA, type Drill, type Lexeme, type LearnerItem } from "@dw/shared";
-import { loadFoto, loadGenelAdlar, loadIndex, loadLexicon, loadM1Gun, loadTemeller, loadWorld, type FotoKayit } from "../services/content.ts";
+import { loadFoto, loadGenelAdlar, loadResim, loadIndex, loadLexicon, loadM1Gun, loadTemeller, loadWorld, type FotoKayit } from "../services/content.ts";
 import { getMeta, itemsMap, putItems, setMeta } from "../data/db.ts";
 import { review } from "../core/srs.ts";
 import { adimXpVer, bahceTamam, gunBittiYaz, soruXpVer } from "../services/ilerleme.ts";
@@ -40,6 +40,8 @@ export interface AkisOynaticiProps {
   kayit: AkisKaydi;
   lex: ReadonlyMap<string, Lexeme>;
   harita: Readonly<Record<string, FotoKayit>>;
+  /** kart → Noto Emoji (PM-081 B) */
+  emojiHarita: Readonly<Record<string, FotoKayit>>;
   /** cümle/kalıp çözümü ve K10 ipucu (ekran kurar) */
   baglam: AkisBaglam;
   /** kayıt değişti (çağıran `akis:<gün>`e yazar); `eski`: biten durağın eski ilerleme anahtarı (AK-6) */
@@ -53,7 +55,7 @@ export interface DurakHedef { href: string; /** hepsi bitince durak biter (ses d
 /** Planın cümlesinden ekranda çözülenler: Türkçe + kabul (halka görev cümleleri → kart örnekleri), kalıbın Türkçesi, K10 ipucu */
 export interface AkisBaglam { gorev: (dersId: string) => string | undefined; hatirlatma: (dersId: string, adimId: string) => { de: string; tr: string }[]; adGerekli: (a: Adim) => boolean; tablo: (dersId: string) => { baslik_tr: string; sutunlar: string[]; satirlar: string[][] } | undefined; kalipOrnek: (kalip: string, d: Durak, adimId: string) => CumleBilgi[]; yakin: (adimId: string, d: Durak) => Yakinlik; teach: (dersId: string, oge: string) => { de: string; tr: string; ipucu?: string } | undefined; hedef: (d: Durak) => DurakHedef | null; cumle: (de: string) => CumleBilgi; sahne: (satirlar: string[]) => SahneVeri | undefined; isaretli: (de: string, adimId: string) => { sozcuk: string; tr?: string }[]; vurgu: (kart: string) => string[]; drill: (dersId: string, oge: string) => Drill | undefined; kalipTr: (de: string) => string; ipucu: (sozcuk: string) => string | undefined; gordu: (sozcukler: string[]) => void }
 
-export function AkisOynatici({ kayit, lex, harita, baglam, kaydet, cik }: AkisOynaticiProps) {
+export function AkisOynatici({ kayit, lex, harita, emojiHarita, baglam, kaydet, cik }: AkisOynaticiProps) {
   const [neden, setNeden] = useState(false);
   const son = useRef<string | null>(null);
   /** az önce biten halka (halka sonu ekranı; TARGET3b 6) */
@@ -83,16 +85,22 @@ export function AkisOynatici({ kayit, lex, harita, baglam, kaydet, cik }: AkisOy
         <button class="ikincil-eylem tiny" style={{ flex: "none", whiteSpace: "nowrap" }} data-test="akis-neden" aria-expanded={neden} onClick={() => setNeden((x) => !x)}>Neden bu?</button>
       </header>
       {neden && <p class="small muted" data-test="akis-neden-metin" style={{ margin: 0 }}>{s.adim.neden}</p>}
-      <AdimGovdesi key={s.adim.id} adim={s.adim} durakOf={() => s.durak} lex={lex} harita={harita} baglam={baglam} tohum={`${kayit.plan.tohum}|${s.adim.id}`} bitir={bitir} />
+      <AdimGovdesi key={s.adim.id} adim={s.adim} durakOf={() => s.durak} lex={lex} harita={harita} emojiHarita={emojiHarita} baglam={baglam} tohum={`${kayit.plan.tohum}|${s.adim.id}`} bitir={bitir} />
     </section>
   );
 }
 
-function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adim: Adim; durakOf: (a: Adim) => Durak; lex: ReadonlyMap<string, Lexeme>; harita: Readonly<Record<string, FotoKayit>>; baglam: AkisBaglam; tohum: string; bitir: (s: { kart: string; dogru: boolean }[], atla?: boolean) => void }) {
+function AdimGovdesi({ adim, durakOf, lex, harita, emojiHarita, baglam, tohum, bitir }: { adim: Adim; durakOf: (a: Adim) => Durak; lex: ReadonlyMap<string, Lexeme>; harita: Readonly<Record<string, FotoKayit>>; emojiHarita: Readonly<Record<string, FotoKayit>>; baglam: AkisBaglam; tohum: string; bitir: (s: { kart: string; dogru: boolean }[], atla?: boolean) => void }) {
   // kancalar koşulsuz en üstte (adımsız durağın erken dönüşünden önce)
   const kartlar = adim.kartlar.map((k) => lex.get(k)).filter((x): x is Lexeme => !!x);
   const [gorselYok, setGorselYok] = useState(false);
-  const soru = useMemo(() => (adim.tur === "resimden_sec" && kartlar[0] ? resimSecenekleri(kartlar[0], [...lex.values()], harita, tohum) : null), [adim.id]);
+  // PM 7059008858 md. 5: dörtlü tek üslupta — önce dört fotoğraf, olmazsa dört emoji (karışık dörtlü yok)
+  const resim = useMemo(() => {
+    if (adim.tur !== "resimden_sec" || !kartlar[0]) return null;
+    for (const h of [harita, emojiHarita]) { const q = resimSecenekleri(kartlar[0], [...lex.values()], h, tohum); if (q) return { soru: q, h }; }
+    return null;
+  }, [adim.id]);
+  const soru = resim?.soru ?? null;
   // PM 7055715440 md. 3 (D-122): ad girilmemişse adlı cümle sorulmaz/gösterilmez; `_adsiz` biçimi gelene kadar o madde geçilir (sonuç yazılmaz)
   const adli = baglam.adGerekli(adim);
   useEffect(() => { if (adli) bitir([]); }, [adim.id]);  // atla değil: durağın son adımıysa durak anahtarı yine yazılır (inceleme #186 P2-1)
@@ -101,7 +109,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
   if (durakGecisi(adim)) return <DurakGecis adim={adim} tur={durakOf(adim).tur} baslik={durakOf(adim).title_tr} dk={durakOf(adim).tahmini_dk} hedef={baglam.hedef(durakOf(adim))} bitir={() => bitir([], true)} />;
   if (adim.tur === "eslestir" && kartlar.length >= 4) return <Eslestir kartlar={kartlar} tohum={tohum} onBitti={bitir} />;
   // görsel gelmezse (çevrimdışı, önbellekte yok) resimden seç o adımda dinle-anlam sorusuna düşer (tek doğru cevap; inceleme #183 P1-2)
-  if (adim.tur === "resimden_sec" && soru && !gorselYok) return <ResimSec soru={soru} lex={lex} harita={harita} onYok={() => setGorselYok(true)} onBitti={(ok) => bitir([{ kart: soru.kart, dogru: ok }])} />;
+  if (adim.tur === "resimden_sec" && soru && !gorselYok) return <ResimSec soru={soru} lex={lex} harita={resim!.h} onYok={() => setGorselYok(true)} onBitti={(ok) => bitir([{ kart: soru.kart, dogru: ok }])} />;
   // dersin alıştırma maddesi (K8 `kaynak: "ders"`): Ders oynatıcısının bileşeniyle, aynı denetimle
   const drill = adim.ders ? baglam.drill(adim.ders.id, adim.ders.oge) : undefined;
   if (drill && adim.tur !== "kalip" && adim.tur !== "tanit") return <div class="akis-soru"><DrillView key={adim.id} d={drill} onDone={(r) => bitir(adim.kartlar.map((kart) => ({ kart, dogru: r !== "wrong" })))} /></div>;
@@ -205,12 +213,12 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
  */
 export function AkisEkrani({ day }: { day: number }) {
   const { profile } = useApp();
-  const [v, setV] = useState<{ kayit: AkisKaydi; lex: Map<string, Lexeme>; harita: Record<string, FotoKayit>; items: Map<string, LearnerItem>; baglam: AkisBaglam } | null | "degil">(null);
+  const [v, setV] = useState<{ kayit: AkisKaydi; lex: Map<string, Lexeme>; harita: Record<string, FotoKayit>; emojiHarita: Record<string, FotoKayit>; items: Map<string, LearnerItem>; baglam: AkisBaglam } | null | "degil">(null);
   const [hata, setHata] = useState<string | null>(null);
   useEffect(() => {
     void (async () => {
       try {
-        const [gun, { lexemes }, temel, world, genel, harita, idx] = await Promise.all([loadM1Gun(day), loadLexicon(), loadTemeller(), loadWorld(), loadGenelAdlar(), loadFoto(), loadIndex()]);
+        const [gun, { lexemes }, temel, world, genel, harita, idx, emojiHarita] = await Promise.all([loadM1Gun(day), loadLexicon(), loadTemeller(), loadWorld(), loadGenelAdlar(), loadFoto(), loadIndex(), loadResim()]);
         if (!akisGunu(gun)) { setV("degil"); return; }
         const lex = new Map(lexemes.map((l) => [l.id, l]));
         const ids = [...new Set([...gun.yeni_kartlar, ...lexemes.filter((l) => l.card !== false).map((l) => l.id)])];
@@ -220,7 +228,8 @@ export function AkisEkrani({ day }: { day: number }) {
           const oncekiGunler = idx.m1.filter((g) => g.day < day);
           const oncekiKartlar = new Set(oncekiGunler.flatMap((g) => g.kartlar).filter((k) => items.get(k)?.passive?.fsrs));
           const plan = planGun({ gun, dersler: new Map(temel.map((t) => [t.id, t])), dizin: kumeDizini(lexemes, temel, world, genel), items, oncekiKartlar,
-            bitenDersler: new Set(await oncekiDersler(oncekiGunler.map((g) => g.day))), tohum: `akis:${day}`, simdi: new Date() });
+            bitenDersler: new Set(await oncekiDersler(oncekiGunler.map((g) => g.day))), tohum: `akis:${day}`, simdi: new Date(),
+            gorselli: new Set([...Object.keys(harita), ...Object.keys(emojiHarita)].filter((k) => k.endsWith("#kart")).map((k) => k.slice(0, -"#kart".length))) });
           if (!plan) { setV("degil"); return; }
           kayit = yeniKayit(plan); await setMeta(akisAnahtar(day), kayit);
         }
@@ -351,7 +360,7 @@ export function AkisEkrani({ day }: { day: number }) {
           ipucu: (w) => { const k = w.toLowerCase(); const tr = cerceve.get(k); return tr && (k10[k] ?? 0) < 2 ? ilkAnlam(tr) : undefined; },
           gordu: (ws) => { for (const w of ws) { const k = w.replace(/[.,!?;:]/g, "").toLowerCase(); if (cerceve.has(k)) k10[k] = (k10[k] ?? 0) + 1; } void setMeta("akis:k10", k10); }
         };
-        setV({ kayit, lex, harita, items, baglam });
+        setV({ kayit, lex, harita, emojiHarita, items, baglam });
       } catch (e) { setHata(e instanceof Error ? e.message : String(e)); }
     })();
   }, [day]);
@@ -384,7 +393,7 @@ export function AkisEkrani({ day }: { day: number }) {
     }
     setV({ ...v, kayit: k });
   };
-  return <AkisOynatici kayit={v.kayit} lex={v.lex} harita={v.harita} baglam={v.baglam} kaydet={(k, e, a) => void kaydet(k, e, a)} cik={() => { location.hash = `#/m1/${day}`; }} />;
+  return <AkisOynatici kayit={v.kayit} lex={v.lex} harita={v.harita} emojiHarita={v.emojiHarita} baglam={v.baglam} kaydet={(k, e, a) => void kaydet(k, e, a)} cik={() => { location.hash = `#/m1/${day}`; }} />;
 }
 
 /** önceki günlerin bitmiş temel dersleri (`ders:<id>` ilerlemesi) */

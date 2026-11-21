@@ -54,6 +54,7 @@ def adim_gec(pg, yanlis=False):
     return tur
 
 TABLO = []  # görülen tabloların seçici düğme sayısı
+RESIM = []  # resimden seç görüldü mü
 
 def ekran_denetle(pg, kalip_ornek):
     """her akış ekranında: çıplak yer tutucu, iskelet, <3 şık, ilerleme türü, kalıp örneği sayısı, durak girişi (inceleme #186)"""
@@ -156,6 +157,12 @@ def main():
                     if pg.locator(f"[data-test={g}]").count(): govdeler.add(g)
                 ic = ("tablo", "hatirlat", "ders_madde", "soyle", "tr_de", "gap", "order", "dikte", "listen_meaning", "resimden_sec", "eslestir", "kalip", "tanit", "colloc", "article", "sahne", "tekrar")
                 if pg.locator("[data-test=akis] .kicker").count() and any(x == pg.inner_text("[data-test=akis] .kicker").strip().lower() for x in ic): check(False, f"ekranda iç tür adı görünüyor: {pg.inner_text('[data-test=akis] .kicker')}")
+                if pg.locator("[data-test=resim-sec]").count() and "resim" not in RESIM:
+                    # PM 7059008858 md. 5: resimden seç gerçek görselle, dörtlü tek üslupta (dört fotoğraf ya da dört emoji)
+                    pg.wait_for_function("() => [...document.querySelectorAll('[data-test=resim-secenek] img')].every((i) => i.complete && i.naturalWidth > 0)", timeout=8000)
+                    r = pg.evaluate("() => { const i = [...document.querySelectorAll('[data-test=resim-secenek] img')]; return { n: i.length, emoji: i.filter((x) => x.classList.contains('emoji')).length }; }")
+                    check(r["n"] == 4 and r["emoji"] in (0, 4), f"resimden seç: dört görsel yüklendi, tek üslupta ({r})")
+                    RESIM.append("resim"); shot(pg, f"akis-resimden-sec-{sema}", full=False)
                 t = adim_gec(pg)
                 if t is None: check(False, f"günde takıldı: {pg.get_attribute('[data-test=akis]', 'data-tur')}"); break
                 turler2.add(t)

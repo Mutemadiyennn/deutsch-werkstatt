@@ -43,12 +43,17 @@ function file<T>(name: string, schema: z.ZodType<T>): Promise<T> {
 }
 /** PM-064: dünya (karakterlerin ses kaydı); içerikte yoksa boş */
 /** B12 3. parça: seçilmiş açık fotoğraflar; anahtar "lx:Kelime#kart" ya da "lx:Kelime#ornekN" */
-export interface FotoKayit { src: string; sinif: "acik"; yazar?: string | null; lisans: string; lisans_url?: string | null; sayfa?: string | null }
+export interface FotoKayit { src: string; sinif: "acik"; yazar?: string | null; lisans: string; lisans_url?: string | null; sayfa?: string | null; /** Noto Emoji çizimi (fotoğraf değil): kırpılmaz, ortalanır */ emoji?: boolean }
 /** Fotoğraf haritası oturum boyunca bir kez çözülür; hata olursa boş harita saklanır (her dokunuşta ağ/çözüm yok; inceleme #121 P1-5) */
 let fotoHarita: Record<string, FotoKayit> | null = null;
 let fotoSoz: Promise<Record<string, FotoKayit>> | null = null;
 export const fotoHaritasi = () => fotoHarita;
 export const loadFoto = (): Promise<Record<string, FotoKayit>> => fotoHarita ? Promise.resolve(fotoHarita) : (fotoSoz ??= fotoYukle().then((h) => (fotoHarita = h)));
+/** PM-081 B: kart → Noto Emoji (paketteki SVG, çevrimdışı). Anahtar fotoğraf haritası gibi `<kart>#kart`; atıf tek satır (Apache-2.0) */
+let resimSoz: Promise<Record<string, FotoKayit>> | null = null;
+export const loadResim = (): Promise<Record<string, FotoKayit>> => (resimSoz ??= within(file("resim.json", z.object({ kaynak: z.string(), lisans: z.string(), kartlar: z.record(z.string(), z.object({ src: z.string().regex(/^content\/[\w-]+\/media\/noto-[0-9a-f-]+\.svg$/) })) })))
+  .then((x) => Object.fromEntries(Object.entries(x.kartlar).map(([id, r]) => [`${id}#kart`, { src: r.src, sinif: "acik", yazar: x.kaynak, lisans: x.lisans, lisans_url: "https://www.apache.org/licenses/LICENSE-2.0", sayfa: "https://github.com/googlefonts/noto-emoji", emoji: true } as FotoKayit])))
+  .catch(() => ({} as Record<string, FotoKayit>)));
 const fotoYukle = () => within(file("foto.json", z.object({ foto: z.record(z.string(), z.object({ src: z.string().url(), sinif: z.literal("acik"), yazar: z.string().nullish(), lisans: z.string(), lisans_url: z.string().nullish(), sayfa: z.string().nullish() }).passthrough()) }))).then((x) => x.foto as Record<string, FotoKayit>).catch(() => ({} as Record<string, FotoKayit>));
 export const loadWorld = () => within(file("world/world.json", World)).catch(() => null);
 export const loadAssessBank = () => within(file("assess.json", z.array(AssessItem)));

@@ -12,6 +12,8 @@ import { kartMi, type ContentIndex } from "../../packages/shared/src/content.ts"
 import { Halka, genelAdlarAyikla } from "../../packages/shared/src/index.ts";
 import { z } from "zod";
 import { klipVideolari } from "./klip.ts";
+import { notoDosya, notoSvg } from "./emoji.ts";
+import { tmpdir } from "node:os";
 
 const c = checkRules(loadContent());
 if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
@@ -81,6 +83,20 @@ for (const src of [...medyaAdlari].sort()) {
   if (!yol) { medyaEksik.push(src); continue; }
   medyaBul.push({ src, yol, ozet: createHash("sha1").update(readFileSync(yol)).digest("hex") });
 }
+// PM-081 B: kart → Noto Emoji (İÇ haritası). SVG'ler pakete girer (`media/noto-<kod>.svg`, çevrimdışı); `resim.json` kart → yerel yol
+const resimYol = join(ROOT, "content/v2/media/resim/harita.json");
+const resimHarita = existsSync(resimYol) ? (JSON.parse(readFileSync(resimYol, "utf8")) as { lisans?: string; kaynak?: string; kartlar: Record<string, { kod: string; emoji?: string }> }) : null;
+const resimKart = new Map<string, string>(), resimEksik: string[] = [];
+if (resimHarita) {
+  const gecici = join(tmpdir(), `dw-noto-${process.pid}`); mkdirSync(gecici, { recursive: true });
+  for (const [id, r] of Object.entries(resimHarita.kartlar)) {
+    const svg = notoSvg(r.kod); if (!svg) { resimEksik.push(id); continue; }
+    const ad = notoDosya(r.kod), yol = join(gecici, ad);
+    if (!medyaBul.some((m) => m.src === `media/${ad}`)) { writeFileSync(yol, svg); medyaBul.push({ src: `media/${ad}`, yol, ozet: createHash("sha1").update(svg).digest("hex") }); }
+    resimKart.set(id, `media/${ad}`);
+  }
+  if (resimEksik.length) console.warn(`uyarı: Noto'da bulunmayan emoji kodu (${resimEksik.length}): ${resimEksik.slice(0, 5).join(", ")}`);
+}
 if (medyaEksik.length) console.warn(`uyarı: pakete girmeyen medya (${medyaEksik.length}): ${medyaEksik.slice(0, 5).join(", ")}`);
 const toplamMedya = medyaBul.reduce((n, m) => n + statSync(m.yol).size, 0);
 // D-103 PM koşulu (7002348227): M1 medyası toplam ≤ 60 MB; aşılırsa yayın günlüğünde görünür uyarı, PM'e yazılır
@@ -97,6 +113,7 @@ w("grammar.json", c.grammar);
 w("assess.json", c.assess);
 // B12 3. parça: seçilmiş açık fotoğraflar (kapalı medya pakete girmez; raftan gelir, D-112)
 { const f = join(ROOT, "content/v2/media/foto/acik.json"); if (existsSync(f)) w("foto.json", JSON.parse(readFileSync(f, "utf8"))); }
+if (resimHarita) w("resim.json", { kaynak: resimHarita.kaynak ?? "Noto Emoji", lisans: resimHarita.lisans ?? "Apache-2.0", kartlar: Object.fromEntries([...resimKart].map(([id, src]) => [id, { src: `content/${version}/${src}` }])) });
 // PM-064: karakterlerin sesi (cinsiyet, yaş, sıra) uygulamada ses ataması için
 if (c.world) { mkdirSync(join(dir, "world"), { recursive: true }); w("world/world.json", c.world); }
 const scenFiles: Record<string, string> = {};
@@ -125,7 +142,7 @@ const index: ContentIndex = {
     kartlar: g.yeni_kartlar.filter((id) => { const l = lexById.get(id); return !!l && kartMi(l); }), medya: medyalar(g).map((m) => ({ id: m.id, kind: m.kind, title_tr: m.title_tr })) })),
   temel: temel.map((t) => ({ id: t.id, order: t.order, title_tr: t.title_tr, title_de: t.title_de, review: t.review.status })),
   counts: { lexemes: c.lexemes.length, grammar: c.grammar.length, assess: c.assess.length, scenarios: c.scenarios.length },
-  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles }
+  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles, ...(resimHarita ? { resim: "resim.json" } : {}) }
 };
 w("genel-adlar.json", genelAdlar);
 w("index.json", index);
