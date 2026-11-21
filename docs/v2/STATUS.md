@@ -3,7 +3,7 @@
 **Şu anki taş: M1 İlk Hafta** ([YOL_HARITASI](YOL_HARITASI.md), #56 v1.1). M1'in açık işleri (#56 "Eski talimatların bu yoldaki yeri" + PM-052 A + PM-054 M1):
 1. Şema (#55; PM-042 A3/A6, PM-045 §4, PM-047 §2, `forms`/fotoğraf/eşdizim) · 2. Kelime Bahçesi (PM-049; dal `v2/bahce`, kişisel banka tek tabloda, "duyduğum kelime" bağlı) · 3. Video ve ses soru oynatıcısı + dikte merdiveni (PM-050, PM-053) · 4. Ders yolu, XP ve seri; planlayıcı: tamamlanan senaryo yeniden önerilmez, seans 2–4 v1'e gitmez, günlük 12 aktif + 25 pasif (PM-052 A.3) · 5. Yeni Bugün + Pomodoro (PM-047; halka, seans x/4, "Devam et" süreyi başlatır, mola zili ve yerel bildirim PM-054.1) · 6. Konuşma provası; yapay zekâsız tam çalışma (yerel sözlük, dallanan çevrimdışı diyalog, kelime sırası esnekliği, sayı/tarih kabulü; PM-052 A.2) · 7. Yazım düzeltmesi ("Doğru. Yazımı: Arzt", PM-054.2), "Doğru söyledim" (PM-054.3), çevrimdışı DE↔TR sözlük araması (PM-054.4), yazma görevi çevrimdışı kontrolü (PM-054.5) · 8. Kart ve kalıp bilgisi görünür (örnekler, forms, sık hata; PM-052 A.5), fotoğraf bileşeni (A.4) · 9. Çevrimdışı (#43 servis işçisi), veri güvenliği, hata ekranı (PM-039 parçası) · 10. Gün sonu özeti ve yerel kullanım ölçümü (PM-052 A.8), içerik güvenliği süzgeci (A.10), hazırlık atlama kilidi (A.11) · 11. #45 arayüz P0'ları M1 ekranlarında · 12. Mevsim dersi ana yolda değil (✓ #49).
 
-Son güncelleme: 2026-11-20 09:00 UTC · Faz: **M1 İlk Hafta** · Ana dal: `main` (`6ec8173` ve sonrası) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (etiket `v2-20261120-7`) · v1 **2026-11-20a** yayında
+Son güncelleme: 2026-11-21 02:20 UTC · Faz: **M1 İlk Hafta** · Ana dal: `main` (`2e2229b`) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (`v2-20261121-1`, gh-pages `010848884a22`, damga `mwprdkmd`; etiketsiz yayın, ad gh-pages iletisinde — PM 7053100321) · v1 **2026-11-20a** yayında
 Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DONGUSU → BEYIN → MIMARI → TASARIM …) → bu dosya → `DECISIONS.md`. "Sıradaki adım"dan devam et; hiçbir iş baştan başlatılmaz (PM-007 §4).
 
 ## Çalışma düzeni ve kapı (2026-11-20 akşam)
@@ -40,31 +40,22 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
   - #133 `ucak` C içerik çakışması ve `v2_core` Bugün düzen geçişi ("today-min kayboldu" çözüldü) + sade `not_configured` metni;
   - #131 "Başka cümle" kare ölçüsü köprü (B): CI'da DOM, kare günlükte; #136 (C) ile geri dönecek.
 
-## Açık PR'lar (2026-11-20 09:00 UTC)
+## Birleşenler (2026-11-20/21 gece; iki toplu KAPI, ağaç eşitliği)
+- **1. toplu** (7051559435 → main `02759eb`): #164 Kabuk 1.5 seslendirme · #171 `kapi.sh` · #174 `yayin.sh` · #172 yerleşim bekçisi (rapor kipi) · #175 yerleşim B3.
+- **2. toplu** (7054668007 → main `2e2229b`): #178 yerleşim B7 · #168 AK-10 1. adım (küme, cümle kapısı; AK-3 istisnası PM-080 §4) · #176 AK-10 2. adım (planlayıcı `planGun`) · #159 A9 gerçek insan klibi (2., 4., 5. gün) + #173 · #167 bahçe dönüşüm testi · #179 omurga taslağı.
+- Yayın: `02759eb` (gh-pages `739ad26`, etiketsiz ilk) → `2e2229b` (`v2-20261121-1`, gh-pages `010848884a22`). Etiket itmesi vekilde kapalı (#12 7052720939); ad gh-pages iletisinde (#180).
+
+## Açık PR'lar (2026-11-21 02:20 UTC)
 | PR | Dal | Teslim | Durum |
 |---|---|---|---|
-| #172 | `qa/yerlesim-bekcisi` | Yerleşim bekçisi B1–B8 (PM-079 md. 4): gezginin ekranları × 844/932; öz-sınama 29 durum; **rapor kipi** (ilk ölçüm 30 ihlal, `docs/v2/qa/yerlesim/ilk-olcum.md`) | inceleme + KAPI |
-| #175 | `v2/yerlesim-b3` (#172 üstüne) | Yerleşim partisi 1 (B3): senaryo ana sayfasında üst çubukta alan adı, h1 senaryo adı; bekçide kart başlığı kuralı (PM D1); `v2_baslik.py` senaryo ana sayfaları | inceleme 2. tur + PM finali + KAPI |
-| #178 | `v2/yerlesim-b7` (#175 üstüne) | Yerleşim partisi 2 (B7): başlık boyundaki Almanca hecelenmez + ifade kartı kademe; gövdede < 10 harfli sözcük hecelenmez; bekçi B7 eşiği kök×1,15; yüklenirken çubuk başlığı boş | inceleme + PM finali + KAPI |
-| #144 | `ci/worker-duman` | Worker dağıtımı sonunda `/v1/health` duman adımı (provider/configured iş özetinde, adres gizli) | ONAY; WebKit kırmızısı test yarışı (#151) → #151 sonrası main alınır |
-| #146 | `v2/ders-bahce-dongusuz` | B5: Bahçede bugün görülen kelime kartı derste yeniden tanıtılmaz; en çok bir kez cümle içinde seçmeli boşluk (D-121) | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor; **PM final** |
-| #148 | `v2/adsiz-cumle` | B7: `_adsiz` alanı + doğrulayıcı; kurulumda ad bir kez nazikçe sorulur (D-122) | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor; **PM final** |
-| #149 | `qa/ogrenci-devam` | öğrenci devam betiği (gün/adım tohumu, IndexedDB durumu) | WebKit 3/3; inceleme sırada |
-| #150 | `v2/foto-soru-p2` | #137 P2: görsel yüklenemezse başlık fotoğrafsız biçime döner | inceleme sırada; iPhone 15 kırmızısı "Başka cümle" zıplaması (aşağıda) |
-| #151 | `qa/ci-yaris` | "Deneme" rozeti sağlık cevabını dinler (ürün hatası); async beklemeler gerçek yoklama | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor |
-| #152 | `v2/kart-sigar` | En uzun kart sığar: görsel 160→96 px, gerekirse yok; test en uzun 40 kart (D-123) | CI (ResizeObserver düzeltmesi fe67cb2); inceleme sırada; **PM final** |
-| #162 | `v2/yavas` | P1 "Yavaş" duyulur: RATE.slow 0,5 (0,6/0,5/0,4 seçimi), Ses ve mikrofon'da hız ölçümü (0,3 sn altı ölçülemedi), yavaşlamayan seste aynı cinsten ve sahnede boş yedek ses, yoksa kelime grupları (PM 7042161522-1, 7043447488) | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi (P1-1 duraklamada kesilme, P1-2 sahnedeki ses); **PM final** |
-| #164 | `v2/kabuk-ses` | Kabuk 1.5: kabukta iPhone'un kendi seslendirmesi (TextToSpeech 8.0.0; premium > gelişmiş > standart; gerçek cinsiyetli ses, perde 1; ses listesi uygulama öne gelince yenilenir); web yolunda perde ±%8 ızgarası (aynı sahnede aynı ses+perde yok), aynı ad tek satır (PM 7042267632, 7042302480, 7044942991) | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; ios-build yeşil; **PM final**; #162 birleşti (f6ee482), main birleştirildi |
-| #145, #147 | İÇ dalları | B5 içerik (1. ve 2. gün ders profili) | İÇ şeridi; anlık görüntüler ANA'dan |
-| #168 | `v2/kume` | AKIS AK-10 1. adım: Halka şeması (kaliplar dahil), bilinen küme K(t) ve cümle kapısı (AK-3, packages/shared/src/kume.ts), halka denetçisi + sayaç (content/tools/halka.ts); #165 içeriği 0 hata | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur + KAPI |
-| #176 | `v2/akis` | AKIS AK-10 2. adım: `planGun` (web/src/core/akis.ts) + `policy.akis` eşikleri + 200 planlık özellik testleri + 1. gün dökümü (docs/v2/qa/akis/gun-01-plan.md, ≈ 94 dk) | 1. tur DEĞİŞİKLİK GEREKLİ → hepsi düzeltildi (dil durağı K(t) kapısında, tohum etkili, K8 sınıflaması, kalıp sırası, gevşeme son diziden); fark doğrulaması + toplu KAPI |
+| #180 | `kapi/yayin-etiketsiz` | `yayin.sh` etiketsiz (ad iletide), `medya` dalı Releases'in üstüne; `v2-rollback.sh` ad/commit | inceleme + 2 fark doğrulaması ONAY; KAPI |
+| #181 | `cf/workers-builds` | Worker Cloudflare Workers Builds komutu + telefon adımları + D-125 (PM-081 C, D) | 1. tur → fark ONAY; KAPI; bağlantıyı proje sahibi kurar |
+| #182 | `medya-kart-foto-1` | MEDYA: 1.–7. gün kart fotoğrafları (14 kart) | MEDYA oturumu |
+| #183 | `v2/halka-turleri` | AK-10 3. adım: `resimden_sec`, `eslestir` (TARGET3b 3–4) | inceleme 1. tur; PM final |
+| #184 | `v2/akis-ekran` (#183 üstüne) | AK-10 4. adım: Halka ekranı `#/akis/<gün>` (4a + 4b) + 5. adım e2e (`v2_akis.py --tam`) | inceleme sırada; PM final |
+| #185 | `v2/yerlesim-b5b4` | Yerleşim B5 + B4 (+ B7 ardılı) | inceleme 1. tur; PM final |
 
-**Bilinen CI kırmızıları:**
-- `v2_bahce_donusum` "Başka cümle zıplamıyor", yalnız iPhone 15 (#145, #150): kart aynı, sayfa 757 → 801 (+44). Neden bilinmiyor; #151'e tanı dökümü eklendi.
-- `ucak` D "Deneme" rozeti: ürün hatası, #151 düzeltiyor.
-- `v2_gorev` [dark] tohum: #151.
-
-**Sıra (PM-077 + PM 7030294523 4b):** 4b işlerinin hepsi PR'da (B5 #146, B7 #148, (g) #143 ✓, öğrenci devam #149, en uzun kart #152, #137 P2 #150) → PM-076 md. 2–7 (sekme çerçevesi Bugün·Yol·Köy·Ben, Köy, Ben, Bugün gökyüzü bandı, oynatıcı bileşenleri, tipografi) → Kabuk 2 (md. 5'ten sonra) → A9 → B14.
+**Sıradaki (ANA):** inceleme turları → toplu KAPI (#180, #181, #183, #184, #185) → birleştir, yayınla. Sonra: `klip-01` ölçüm kaydı `medya` dalındaki metne (sha `46bc784c…`; örneklem onayı İÇ), Noto Emoji katmanı (PM-081 B; İÇ haritası `content/resim-harita`), LS-16.3 öğrenci simülasyonu (AK-10 5. adım), bekçiyi kırmızı kipe alma (#185 sonrası).
 
 **Bekleyen kararlar:**
 - B14 kota: 21.11 00:05 UTC denemesi kurulu, 20.11 18:00 UTC tek istekli yoklama kurulu (PM 7028983301).
