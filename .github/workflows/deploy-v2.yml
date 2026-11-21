@@ -29,7 +29,7 @@ jobs:
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
           mkdir -p .medya
-          gh release download m1-medya --dir .medya --pattern '*.mp4' --pattern '*.jpg' --pattern '*.m4a' --clobber || echo "::warning::m1-medya indirilemedi; bu yayında video yok (oynatıcı kaynağa bağlantı gösterir)"
+          gh release download m1-medya --dir .medya --pattern '*.mp4' --pattern '*.jpg' --pattern '*.m4a' --pattern '*.metin.json' --clobber || echo "::warning::m1-medya indirilemedi; bu yayında video yok (oynatıcı kaynağa bağlantı gösterir)"
           ls -la .medya || true
       - name: Derle
         if: ${{ !inputs.rollback_to }}
