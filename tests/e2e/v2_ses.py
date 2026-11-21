@@ -82,16 +82,16 @@ def main():
         check(ara >= 10, f"sonuç satırları düğmeden ayrık (aralık {ara} px)")
         tek = pg.evaluate("() => [...document.querySelectorAll('[data-test=hiz-sonuc]')].map((p) => { const lh = parseFloat(getComputedStyle(p).lineHeight); return [Math.round(p.getBoundingClientRect().height / lh), p.scrollWidth <= p.parentElement.clientWidth + 0.5]; })")
         check(all(n == 1 and sig for n, sig in tek), f"sonuç satırları tek satır, taşmıyor; başlıkta bir kez 'normal → yavaş' ({tek}; {pg.inner_text('[data-test=hiz-baslik]')})")
-        check(pg.evaluate("window.__oku.length") == 8, f"ölçüm her cinsten ilk iki sesi normal ve yavaş çaldı ({pg.evaluate('window.__oku.length')} çalma)")
+        check(pg.evaluate("window.__oku.length") == 24, f"ölçüm her cinsten ilk iki sesi ısıtır, gecikmeyi ölçer, normal ve üç yavaş kademeyi çalar ({pg.evaluate('window.__oku.length')} çalma)")
         sonuc = {e["ad"]: e["t"] for e in pg.locator("[data-test=hiz-sonuc]").evaluate_all("(xs) => xs.map((x) => ({ ad: x.dataset.ad, t: x.innerText }))")}
-        check(set(sonuc) == {"Helena (Erweitert)", "Anna", "Viktor (Erweitert)", "Markus"} and all(re.fullmatch(r"\S+: \d+,\d → \d+,\d sn \(×\d,\d\)", t.strip()) for t in sonuc.values()), f"ölçüm: kadın ve erkek havuzunun ilk iki sesi, 'Ad: x → y sn (×k)' ({list(sonuc.values())})")
-        KAT = lambda t: float(re.search(r"×(\d,\d)", t).group(1).replace(",", ".")) if re.search(r"×(\d,\d)", t) else 0
-        check("0,6 → 0,6 sn" in sonuc.get("Viktor (Erweitert)", "") and KAT(sonuc.get("Helena (Erweitert)", "")) >= 1.6 and 0.85 <= KAT(sonuc.get("Viktor (Erweitert)", "")) < 1.25, f"yavaşlayan ses ≈1,9 kat, yavaşlamayan ≈1,0 kat ölçülüyor ({[KAT(t) for t in sonuc.values()]})")
+        check(set(sonuc) == {"Helena (Erweitert)", "Anna", "Viktor (Erweitert)", "Markus"} and all(re.fullmatch(r"\S+: \d+,\d sn · ×\d,\d · ×\d,\d · ×\d,\d · \d+ ms", t.strip()) for t in sonuc.values()), f"ölçüm: kadın ve erkek havuzunun ilk iki sesi, 'Ad: normal · üç kademe · başlangıç' ({sonuc})")
+        check("normal · Biraz yavaş · Yavaş · Çok yavaş · başlangıç" in pg.inner_text("[data-test=hiz-baslik]"), "başlıkta kademelerin adı bir kez")
+        KAT = lambda t: float(re.findall(r"×(\d,\d)", t)[1].replace(",", ".")) if len(re.findall(r"×(\d,\d)", t)) > 1 else 0  # Yavaş kademesi
+        check("0,6 sn · ×1,0 · ×1,0 · ×1,0" in sonuc.get("Viktor (Erweitert)", "") and KAT(sonuc.get("Helena (Erweitert)", "")) >= 1.6 and 0.85 <= KAT(sonuc.get("Viktor (Erweitert)", "")) < 1.25, f"yavaşlayan ses ≈1,9 kat, yavaşlamayan ≈1,0 kat ölçülüyor ({[KAT(t) for t in sonuc.values()]})")
         uy = pg.inner_text("[data-test=hiz-uyari]") if pg.locator("[data-test=hiz-uyari]").count() else ""
         check(uy.startswith("Bu ses yavaşlamıyor: Viktor") and "Helena" not in uy, f"yalnız yavaşlamayan ses için uyarı ({uy[:60]})")
-        check("yavaşlamıyor" in pg.locator("[data-test=havuz-erkek] [data-test=ses]").first.inner_text() and "yavaşlamıyor" not in pg.locator("[data-test=havuz-kadin] [data-test=ses]").first.inner_text(), "ses satırında ölçüm ve 'yavaşlamıyor' işareti")
-        satir_hiz = pg.locator("[data-test=havuz-kadin] [data-test=ses-hiz]").first.inner_text()
-        check(re.fullmatch(r"normal \d+,\d · yavaş \d+,\d sn", satir_hiz) is not None, f"ses satırında hangisinin ne olduğu yazılı ({satir_hiz})")
+        check(pg.locator("[data-test=ses-hiz]").count() == 0 and not re.search(r"\d,\d", pg.locator("[data-test=havuz-kadin] [data-test=ses]").first.inner_text()), "PM 7061304527 Bulgu 2: ses satırında sayı yok, yalnız listede")
+        check(pg.locator("[data-test=hiz-gecikme]").count() == 0, "başlangıç gecikmesi eşiğin altında: uyarı yok")
         kab = pg.inner_text("[data-test=kabuk-satir]")
         check(re.search(r"yavaş: Helena ×\d,\d, Anna ×\d,\d, Viktor ×\d,\d yavaşlamıyor, Markus ×\d,\d$", kab) is not None, f"kabuk satırına yavaş notu ({kab[-60:]})")
         if shots: pg.locator("[data-test=hiz-olcum]").scroll_into_view_if_needed(); shot(pg, f"s00-hiz-olcum-{TEMA}", full=False)
@@ -191,7 +191,7 @@ def main():
             .map(([name, id]) => ({ name, lang: id.split('.').slice(-2, -1)[0], voiceURI: id, localService: true, default: false }));
           window.Capacitor = { isNativePlatform: () => sessionStorage.getItem('kabuk') === '1', isPluginAvailable: (n) => n === 'TextToSpeech' || n === 'SpeechRecognition', Plugins: {
             TextToSpeech: { getSupportedVoices: async () => ({ voices: V }), stop: async () => {},
-              speak: (o) => { window.__tts.push(o); return new Promise((r) => setTimeout(r, window.__sure ? Math.round(600 / o.rate) : 30)); } },
+              speak: (o) => { window.__tts.push(o); return new Promise((r) => setTimeout(r, window.__sure ? Math.round(o.text.length * 8 / o.rate) : 30)); } },
             SpeechRecognition: { checkPermissions: async () => ({ speechRecognition: 'granted' }), requestPermissions: async () => ({ speechRecognition: 'granted' }),
               start: async () => ({ matches: ['Guten Morgen'] }), stop: async () => {} } } }; })()""")
         pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
@@ -209,10 +209,16 @@ def main():
         t = pg.evaluate("window.__tts[0]")
         check(t["lang"] == "de-DE" and t["pitch"] == 1 and t["voice"] in (3, 4) and abs(t["rate"] - 0.95) < 1e-6, f"Dinle eklentiye: gerçek ses dizini, perde 1, hız 0,95 ({t})")
         pg.evaluate("window.__sure = 1; window.__tts = []"); pg.click("[data-test=hiz-olc]")
-        pg.wait_for_function("() => { const b = document.querySelector('[data-test=hiz-olc]'); return b && !b.disabled && document.querySelectorAll('[data-test=hiz-sonuc]').length >= 2; }", timeout=15_000)
-        rates = sorted({round(x["rate"], 2) for x in pg.evaluate("window.__tts")})
+        pg.wait_for_function("() => { const b = document.querySelector('[data-test=hiz-olc]'); return b && !b.disabled && document.querySelectorAll('[data-test=hiz-sonuc]').length >= 2; }", timeout=90_000)
+        tts = pg.evaluate("window.__tts")
+        rates = sorted({round(x["rate"], 2) for x in tts})
         sonuc3 = pg.locator("[data-test=hiz-sonuc]").all_inner_texts()
-        check(rates == [0.5, 0.95] and all("→" in x for x in sonuc3) and pg.locator("[data-test=hiz-uyari]").count() == 0, f"yerel yolda hız ölçümü: gerçek hız, yavaşlıyor ({rates}; {sonuc3})")
+        check(rates == [0.4, 0.5, 0.6, 0.95] and all(re.search(r"sn · ×\d,\d · ×\d,\d · ×\d,\d · \d+ ms", x) for x in sonuc3) and pg.locator("[data-test=hiz-uyari]").count() == 0, f"yerel yolda hız ölçümü: üç kademe, gecikme, yavaşlıyor ({rates}; {sonuc3})")
+        # PM 7061337043: kabukta kademeyi duraklar ayırır — Çok yavaş sözcük sözcük, Yavaş en çok 3 sözcüklük gruplar
+        cy = [x["text"] for x in tts if abs(x["rate"] - 0.4) < 1e-6]; ya = [x["text"] for x in tts if abs(x["rate"] - 0.5) < 1e-6]
+        check(cy and all(len(t.split()) == 1 for t in cy) and ya and all(len(t.split()) <= 3 for t in ya) and len(cy) > len(ya), f"yerel yolda Çok yavaş sözcük sözcük, Yavaş gruplu ({len(cy)} / {len(ya)} parça)")
+        kat3 = [[float(k.replace(",", ".")) for k in re.findall(r"×(\d,\d)", x)] for x in sonuc3]
+        check(all(a < b < c for a, b, c in kat3), f"yerel yolda üç kademe ayrı süre ölçülüyor ({kat3})")
         if shots: pg.locator("[data-test=ses-deneme]").scroll_into_view_if_needed(); shot(pg, f"s03-yerel-{TEMA}", full=False)
         b.close()
     srv.shutdown()
