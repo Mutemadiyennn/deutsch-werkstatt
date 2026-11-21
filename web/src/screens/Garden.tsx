@@ -95,8 +95,10 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
       const hak = m1Hak(takvim, kalan.length, priority.length);
       const kisisel = !day || hak.kisiselIzin ? priority : [];
       const newLeft = day ? hak.newLeft : takvim, activeLeft = DAILY_ACTIVE - t.active;
-      // B4: "Fotoğraftaki ne?" yalnızca seçilmiş fotoğrafı olan kartta ve çevrimiçiyken (sunucu araması güvenilir değil, çevrimdışı görsel gelmez)
-      const fotoHarita = navigator.onLine === false ? {} : await loadFoto();
+      // B4: "Fotoğraftaki ne?" yalnızca seçilmiş fotoğrafı olan kartta; çevrimdışında yalnız paketteki (yerel yollu) fotoğraflar
+      // (dış adres çevrimdışı gelmez; pakettekini servis işçisi önbelleğe alır — inceleme #187 P2-5)
+      const fotoTum = await loadFoto();
+      const fotoHarita = navigator.onLine === false ? Object.fromEntries(Object.entries(fotoTum).filter(([, f]) => f.src.startsWith("content/"))) : fotoTum;
       fotoluKartlar(new Set(Object.keys(fotoHarita).filter((k) => k.endsWith("#kart")).map((k) => k.slice(0, -"#kart".length))));
       // PM 7030294523 P0: "kendi cümleni kur" yalnızca İlk Hafta bitmiş ve en az bir kalıp bitirilmişse (kartın kararlılığı garden.ts'de)
       const kendiCumle = { ilkHaftaBitti: !!(await getMeta(`m1:gun:${POLICY.own_sentence.ilk_hafta_son_gun}`)), kalipBitti: (await metaPrefix("kalip:bitti:")).length > 0 };

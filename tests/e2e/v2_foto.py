@@ -2,6 +2,7 @@
 B12 3. parça: seçilmiş açık fotoğraf (content/v2/media/foto/acik.json → paket foto.json) kartta atıfla görünür.
   - foto.json yönlendirmeyle 1. günün ilk kartına ("der Montag") bir kayıt verir; görsel isteği sahte JPEG'le cevaplanır
   - tanıtım kartında fotoğraf `data-kaynak=secim`, altında yazar ve lisans (Pexels yazmaz)
+  - medya dalının fotoğrafı yerel yoldan (content/<sürüm>/media/<ad>) gelir (PM 7055725467 md. 4)
   - kayıt yoksa (boş foto.json) fotoğraf alanı yok (sunucu yapılandırılmamış e2e'de arama da yok)
 python3 tests/e2e/v2_foto.py [--browser webkit] [--device "iPhone 15"]
 """
@@ -60,6 +61,19 @@ def main():
                 bas = pg.text_content("[data-test=foto-soru-baslik]")
                 check(f.get_attribute("data-kaynak") == "secim" and "Fotoğraftaki ne?" in bas, f"soruda seçilmiş fotoğraf, başlık 'Fotoğraftaki ne?' ({f.get_attribute('data-kaynak')}, {bas!r})")
             b.close()
+        # PM 7055725467 md. 4: medya dalının fotoğrafı pakette, yerel yoldan (content/<sürüm>/media/<ad>); şema göreli yolu kabul eder
+        b, ctx = launch(p); pg = new_page(ctx)
+        yerel = {"lx:Montag#kart": {**KAYIT["lx:Montag#kart"], "src": "content/e2eyerel/media/montag.jpg"}}
+        pg.route("**/foto.json", lambda r: r.fulfill(status=200, content_type="application/json", body=json.dumps({"surum": 1, "foto": yerel})))
+        pg.route("**/content/e2eyerel/media/montag.jpg", lambda r: r.fulfill(status=200, content_type="image/jpeg", body=JPEG))
+        login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
+        pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=garden-intro]")
+        try: pg.wait_for_selector("[data-test=garden-intro] [data-test=foto] img", timeout=8000)
+        except Exception: pass
+        f = pg.locator("[data-test=garden-intro] [data-test=foto]")
+        src = f.locator("img").get_attribute("src") if f.count() else None
+        check(f.count() == 1 and f.get_attribute("data-kaynak") == "secim" and (src or "").endswith("content/e2eyerel/media/montag.jpg"), f"yerel yollu açık fotoğraf kartta ({src})")
+        b.close()
         # inceleme #150 P2: artikel sorusu başlığı büyük harfte "DIE" (Almanca kısım lang="de"; Türkçe yerelde "DİE" olmaz)
         b, ctx = launch(p); pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
