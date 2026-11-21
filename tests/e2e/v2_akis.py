@@ -27,7 +27,7 @@ def adim_gec(pg, yanlis=False):
     if pg.locator("[data-test=akis-durak-gec]").count(): pg.click("[data-test=akis-durak-gec]"); pg.wait_for_timeout(250); return tur
     if yanlis and pg.locator("[data-test=akis-bilmiyorum]").count():
         pg.click("[data-test=akis-bilmiyorum]"); pg.click("[data-test=akis-devam]")
-    elif pg.locator("[data-test=akis-bilmiyorum]").count() and tur == "order":
+    elif pg.locator("[data-test=akis-bilmiyorum]").count():
         pg.click("[data-test=akis-bilmiyorum]"); pg.click("[data-test=akis-devam]")
     elif pg.locator("[data-test=akis-devam]").count(): pg.click("[data-test=akis-devam]")
     elif pg.locator("[data-test=esles-goster]").count(): pg.click("[data-test=esles-goster]"); pg.click("[data-test=esles-devam]")
@@ -65,9 +65,16 @@ def main():
         hedef = pg.get_attribute("[data-test=akis-durak-gecis]", "data-hedef") or ""
         check(hedef.startswith("#/m1/2/") and pg.locator("[data-test=akis-durak-basla]").count() == 1, f"ses durağı var olan medya ekranına gider ({hedef})")
         # dönüş (AK-6): medya ekranı bitmiş sayılınca akış yeniden açılışta kendiliğinden ilerler
-        mid = hedef.rsplit("/", 1)[-1]
-        pg.evaluate("""async (k) => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
-          await new Promise((ok) => { const t = d.transaction('meta', 'readwrite'); t.objectStore('meta').put({ key: k, value: { bitti: new Date().toISOString() } }); t.oncomplete = ok; }); d.close(); }""", "m1:medya:" + mid.replace("%3A", ":"))
+        # ses durağı günün BÜTÜN sesleri bitince biter (inceleme #184 P1-3): önce biri, sonra hepsi
+        sesler = pg.evaluate("""async () => { const v = (await (await fetch('content/current.json')).json()).version;
+          const g = await (await fetch('content/' + v + '/m1/gun-02.json')).json(); return g.sesler.map((x) => x.id); }""")
+        yaz = """async (ks) => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
+          await new Promise((ok) => { const t = d.transaction('meta', 'readwrite'); for (const k of ks) t.objectStore('meta').put({ key: k, value: { bitti: new Date().toISOString() } }); t.oncomplete = ok; }); d.close(); }"""
+        pg.evaluate(yaz, ["m1:medya:" + sesler[0]]); pg.reload(); pg.wait_for_selector("[data-test=akis]", timeout=20000)
+        if len(sesler) > 1:
+            h2 = pg.get_attribute("[data-test=akis-durak-gecis]", "data-hedef") or ""
+            check(pg.locator("[data-test=akis-durak-gecis]").count() == 1 and h2 != hedef, f"biri bitince durak sürer, sıradaki sese gider ({hedef} → {h2})")
+        pg.evaluate(yaz, ["m1:medya:" + x for x in sesler])
         pg.reload(); pg.wait_for_selector("[data-test=akis]", timeout=20000)
         # yeni kelime (TARGET3b 2)
         pg.wait_for_selector("[data-test=akis-tanit]")
@@ -101,18 +108,27 @@ def main():
         check(yanlis_kart is not None and any(v for v in k2["geri"].values()), f"'Bilmiyorum' denen kart halkada bir kez daha geldi ({k2['geri']})")
         if "--tam" in __import__("sys").argv:
             # AK-10 5. adım: günün kalanı baştan sona; hiçbir adımda takılmaz, sonda gün bitişi ve eski anahtarlar yazılır
-            turler2, n = set(), 0
+            turler2, n, govdeler = set(), 0, set()
             for n in range(600):
                 if pg.locator("[data-test=akis-bitti]").count(): break
                 if pg.locator("[data-test=halka-sonu]").count(): pg.click("[data-test=halka-sonu-devam]"); pg.wait_for_timeout(150); continue
+                for g in ("akis-tr-de", "akis-dikte", "akis-soyle", "akis-bosluk", "akis-yapboz", "akis-kalip", "akis-tanit", "akis-dil-oge", "akis-sahne", "akis-durak-gecis", "eslestir"):
+                    if pg.locator(f"[data-test={g}]").count(): govdeler.add(g)
+                if pg.locator("[data-test=akis] .kicker").count() and any(x in pg.inner_text("[data-test=akis] .kicker").lower() for x in ("tablo", "hatirlat", "ders_madde")): check(False, "ekranda iç tür adı görünüyor")
                 t = adim_gec(pg)
                 if t is None: check(False, f"günde takıldı: {pg.get_attribute('[data-test=akis]', 'data-tur')}"); break
                 turler2.add(t)
             check(pg.locator("[data-test=akis-bitti]").count() == 1, f"gün baştan sona yürüdü ({n} adım; türler {sorted(turler2)})")
+            plan = pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
+              const m = await new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get('akis:2'); t.onsuccess = () => ok(t.result.value); }); d.close();
+              const a = m.plan.duraklar.flatMap((x) => x.adimlar); const say = (f) => a.filter(f).length;
+              return { halkaUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && !x.ders && x.cumle), dersUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && x.ders) }; }""")
+            beklenen = {"akis-bosluk", "akis-yapboz", "akis-tanit", "akis-dil-oge"} | ({"akis-tr-de"} if plan["halkaUret"] else set())
+            check(beklenen <= govdeler, f"halka cümlesi kendi gövdesiyle oynandı, Bahçe sorusuna düşmedi (gövdeler {sorted(govdeler)}; üretim halka {plan['halkaUret']}, ders {plan['dersUret']})")
             anahtar = pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
               const al = (k) => new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get(k); t.onsuccess = () => ok(!!t.result); });
               const r = { bahce: await al('m1:bahce:2'), gun: await al('m1:gun:2'), ders: await al('ders:r0:02-monate') }; d.close(); return r; }""")
-            check(all(anahtar.values()), f"eski anahtarlar yazıldı: Bahçe, ders, gün ({anahtar})")
+            check(anahtar["bahce"] and anahtar["gun"] and not anahtar["ders"], f"akış Bahçe ve gün anahtarını yazar; dersin anahtarını ders ekranı yazar, 'şimdi geç' denen dersin değil ({anahtar})")
         b.close()
     srv.shutdown()
     finish()

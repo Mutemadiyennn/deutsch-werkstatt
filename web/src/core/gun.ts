@@ -53,8 +53,9 @@ export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<strin
   for (const m of medyalar(g)) if (m.kind !== "sahne") a.push({ seans: 3, tur: "medya", alt: m.kind === "video" ? "video" : "ses", id: m.id, title_tr: m.title_tr, href: `#/m1/${g.day}/${encodeURIComponent(m.id)}`, bitti: ilr.medyaBitti.has(m.id), hazir: true });
   if (g.prova) a.push({ seans: 4, tur: "prova", id: `prova:${g.day}`, title_tr: g.prova.title_tr, href: `#/prova/${g.day}`, bitti: !!ilr.provaBitti?.has(g.day), hazir: true });
   if (g.okuma_yazma) a.push({ seans: 4, tur: "okuma", id: `okuma:${g.day}`, title_tr: g.okuma_yazma.title_tr, href: `#/okuma/${g.day}`, bitti: !!ilr.okumaBitti?.has(g.day), hazir: true });
-  // akış günü: bütün adımlar tek yoldan, akış ekranından (eski anahtarlar akış durak bitince yazılır; Yol ve Bugün aynen okur)
-  if (akisAcik(g, ilr, akisGunler)) for (const x of a) x.href = `#/akis/${g.day}`;
+  // akış günü: Bahçe ve ders adımları akış ekranından (eski anahtarlar akış durak bitince yazılır; Yol ve Bugün aynen okur)
+  // prova, okuma ve medya kendi ekranlarında kalır: akışta "şimdi geç" denen durağa Yol'dan yine ulaşılır (inceleme #184 P1-2)
+  if (akisAcik(g, ilr, akisGunler)) for (const x of a) if (x.tur === "bahce" || x.tur === "ders") x.href = `#/akis/${g.day}`;
   // gün, hazır olan bütün adımlar bitince biter (hazırlanmakta olan adım öğrenciyi bekletmez)
   const bitti = !!ilr.gunBitti?.has(g.day) || a.filter((x) => x.hazir).every((x) => x.bitti);
   return { day: g.day, title_tr: g.title_tr, adimlar: a, bitti };

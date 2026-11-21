@@ -41,8 +41,10 @@ describe("akış kaydı (AK-6, AK-10 4. adım iskeleti)", () => {
     expect(eskiAnahtar(plan, plan.duraklar[2]!)).toBe("m1:bahce:1");
     expect(eskiAnahtar(plan, plan.duraklar[0]!)).toBeNull();
     let k = { ...yeniKayit(plan), durak: 1 };
+    // dil durağının sonunda dersin kalanına geçiş adımı; ders anahtarını akış değil ders ekranı yazar (inceleme #184 P1-4)
     let r = ilerle(k, [{ kart: "lx:a", dogru: true }]);
-    expect(r.yazilacak).toBe("ders:r0:01"); k = r.kayit;
+    expect(r.yazilacak).toBeNull(); expect(durakGecisi(simdiki(r.kayit)!.adim)).toBe(true); k = r.kayit;
+    r = ilerle(k, []); expect(r.yazilacak).toBeNull(); k = r.kayit;
     r = ilerle(k, [{ kart: "lx:e", dogru: true }]);
     expect(r.yazilacak).toBe("m1:bahce:1"); expect(r.bitti).toBe(true);
     expect(simdiki(r.kayit)).toBeNull();

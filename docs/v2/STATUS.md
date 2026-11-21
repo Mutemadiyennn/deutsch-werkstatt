@@ -47,8 +47,6 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | #176 | `v2/akis` | AKIS AK-10 2. adım: `planGun` (web/src/core/akis.ts) + `policy.akis` eşikleri + 200 planlık özellik testleri + 1. gün dökümü (docs/v2/qa/akis/gun-01-plan.md, ≈ 94 dk) | 1. tur DEĞİŞİKLİK GEREKLİ → hepsi düzeltildi (dil durağı K(t) kapısında, tohum etkili, K8 sınıflaması, kalıp sırası, gevşeme son diziden); fark doğrulaması + toplu KAPI |
 | #172 | `qa/yerlesim-bekcisi` | Yerleşim bekçisi B1–B8 (PM-079 md. 4): gezginin ekranları × 844/932; öz-sınama 29 durum; **rapor kipi** (ilk ölçüm 30 ihlal, `docs/v2/qa/yerlesim/ilk-olcum.md`) | inceleme + KAPI |
 | #175 | `v2/yerlesim-b3` (#172 üstüne) | Yerleşim partisi 1 (B3): senaryo ana sayfasında üst çubukta alan adı, h1 senaryo adı; bekçide kart başlığı kuralı (PM D1); `v2_baslik.py` senaryo ana sayfaları | inceleme 2. tur + PM finali + KAPI |
-| #172 | `qa/yerlesim-bekcisi` | Yerleşim bekçisi B1–B8 (PM-079 md. 4): gezginin ekranları × 844/932; öz-sınama 29 durum; **rapor kipi** (ilk ölçüm 30 ihlal, `docs/v2/qa/yerlesim/ilk-olcum.md`) | inceleme + KAPI |
-| #175 | `v2/yerlesim-b3` (#172 üstüne) | Yerleşim partisi 1 (B3): senaryo ana sayfasında üst çubukta alan adı, h1 senaryo adı; bekçide kart başlığı kuralı (PM D1); `v2_baslik.py` senaryo ana sayfaları | inceleme 2. tur + PM finali + KAPI |
 | #178 | `v2/yerlesim-b7` (#175 üstüne) | Yerleşim partisi 2 (B7): başlık boyundaki Almanca hecelenmez + ifade kartı kademe; gövdede < 10 harfli sözcük hecelenmez; bekçi B7 eşiği kök×1,15; yüklenirken çubuk başlığı boş | inceleme + PM finali + KAPI |
 | #144 | `ci/worker-duman` | Worker dağıtımı sonunda `/v1/health` duman adımı (provider/configured iş özetinde, adres gizli) | ONAY; WebKit kırmızısı test yarışı (#151) → #151 sonrası main alınır |
 | #146 | `v2/ders-bahce-dongusuz` | B5: Bahçede bugün görülen kelime kartı derste yeniden tanıtılmaz; en çok bir kez cümle içinde seçmeli boşluk (D-121) | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor; **PM final** |
@@ -111,6 +109,7 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | Dinleme hızı ayarı etkili (#58 B7) | `v2/dinleme-hizi` | PR açıldı: Yavaş seçiliyse her cümle ilk kez yavaş, tekrarında normal; medya 0,75× |
 | Çevrimdışı medya (#58 A12 son parça) | `v2/cevrimdisi-medya` | PR #74: medya pakette, servis işçisi ayrı önbellek + 206 aralıklı yanıt, uçak modu e2e; 2. tur bulguları düzeltildi |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
+| AKIS AK-10 4. adım: Halka ekranı + 5. adım e2e | `v2/akis-ekran` | PR #184 (#183 üstüne): `#/akis/<gün>`; bayrak `policy.akis.gunler` boş (1. gün halkaları `gun-01.json`'a İÇ taşıyınca açılır); dersin kalanı DersEkrani'nda; LS-16.3 simülasyonu sırada |
 | AKIS AK-10 3. adım: `resimden_sec`, `eslestir` (TARGET3b 3–4) | `v2/halka-turleri` | PR #183: çekirdek + bileşenler + e2e (`v2_halka_tur.py`); yalnız e2e'de `#/__halka-turleri`; görülen fotoğraf servis işçisi önbelleğinde (`dw2-foto`); ekrana bağlanması #184 |
 
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-20

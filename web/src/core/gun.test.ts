@@ -69,10 +69,12 @@ describe("M1 ders yolu (#58 A5b)", () => {
 
 describe("AKIS pilot bayrağı (AK-6, 4b)", () => {
   const halka = { id: "m1:01:h1", title_tr: "x", kartlar: ["lx:hallo"], kaliplar: [], gorev_cumleleri: [] };
-  it("bayraklı ve halkalı gün akışla açılır; bütün adımlar #/akis/<gün>'e gider", () => {
+  it("bayraklı ve halkalı gün akışla açılır; Bahçe ve ders adımları #/akis/<gün>'e, prova/okuma/medya kendi ekranına", () => {
     const g = { ...g1, halkalar: [halka] } as typeof g1;
     expect(akisAcik(g, bos(), [1])).toBe(true);
-    expect(gunAdimlari(g, bos(), {}, [1]).adimlar.every((a) => a.href === "#/akis/1")).toBe(true);
+    const ad = gunAdimlari(g, bos(), {}, [1]).adimlar;
+    expect(ad.filter((a) => a.tur === "bahce" || a.tur === "ders").every((a) => a.href === "#/akis/1")).toBe(true);
+    expect(ad.filter((a) => a.tur === "prova" || a.tur === "okuma" || a.tur === "medya").every((a) => !a.href.startsWith("#/akis"))).toBe(true);
   });
   it("bayraksız, halkasız ya da eski düzenle başlanmış gün eski düzende kalır; akış başladıysa akışla biter", () => {
     const g = { ...g1, halkalar: [halka] } as typeof g1;

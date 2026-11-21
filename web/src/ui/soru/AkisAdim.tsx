@@ -3,7 +3,7 @@
  * ekranda çözülür (`CumleBilgi`: halka görev cümleleri → kart örnekleri). Bahçe'nin soru bileşeni kartın kendi örneğini sorar;
  * bunlar ise planlayıcının kapıdan geçirdiği cümleyi sorar (bilinmeyen 0, AK-3).
  */
-import { useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Speed } from "@dw/shared";
 import { ruleVerdict, type Verdict } from "../../core/answer.ts";
 import { tohumluRng } from "../../core/halkaTur.ts";
@@ -32,16 +32,20 @@ function Sonuc({ v, cevap, bilgi, onDevam }: { v: Verdict | "bilmiyorum"; cevap:
 }
 
 /** TR→DE yaz ya da sesli söyle (`soyle`; TARGET3c 3: büyük mikrofon, "Yazarak cevapla") */
-export function UretAdimi({ bilgi, sesli, onBitti }: { bilgi: CumleBilgi; sesli: boolean; onBitti: (dogru: boolean) => void }) {
+export function UretAdimi({ bilgi, kip, onBitti }: { bilgi: CumleBilgi; /** yaz: TR→DE · soyle: TR→DE sesli · duy: dikte (önce duy, sonra yaz; Türkçesi yoksa da) */ kip: "yaz" | "soyle" | "duy"; onBitti: (dogru: boolean) => void }) {
+  const sesli = kip === "soyle";
   const [v, setV] = useState<Verdict | "bilmiyorum" | null>(null);
   const [cevap, setCevap] = useState("");
   const [yazarak, setYazarak] = useState(!sesli);
+  useEffect(() => { if (kip === "duy") void speak(bilgi.de, "de", "normal"); }, [bilgi.de]);
   const kontrol = (s: string) => { const r = ruleVerdict(bilgi.accepted, s); setCevap(s); setV(r); haptic(r.kind === "correct" ? "success" : "error"); };
   return (
-    <section class="stack fade" data-test={sesli ? "akis-soyle" : "akis-tr-de"}>
+    <section class="stack fade" data-test={kip === "duy" ? "akis-dikte" : sesli ? "akis-soyle" : "akis-tr-de"}>
       <div>
-        <div class="kicker icerik" style={{ color: "var(--accent)" }}>{sesli ? "Sen söyle" : "Almancasını yaz"}</div>
-        <h2 style={{ margin: 0 }}>{bilgi.tr}</h2>
+        <div class="kicker icerik" style={{ color: "var(--accent)" }}>{kip === "duy" ? "Duyduğunu yaz" : sesli ? "Sen söyle" : "Almancasını yaz"}</div>
+        {kip === "duy"
+          ? <div class="row" style={{ justifyContent: "center", marginTop: 8 }}><ListenButton text={bilgi.de} label="Cümleyi dinle" metinGizli={v === null} /></div>
+          : <h2 style={{ margin: 0 }}>{bilgi.tr}</h2>}
       </div>
       {v === null && !yazarak && (
         <div class="stack" style={{ alignItems: "center", gap: 8 }}>
@@ -66,14 +70,14 @@ export function BoslukAdimi({ bilgi, bosluk, onBitti }: { bilgi: CumleBilgi; bos
     const i = t.findIndex((x) => k.has(x.replace(/[.,!?;:]/g, "").toLowerCase()));
     return i < 0 ? null : { once: t.slice(0, i).join(""), dogru: t[i]!.replace(/[.,!?;:]/g, ""), sonra: t[i]!.replace(/^[^.,!?;:]*/, "") + t.slice(i + 1).join("") };
   }, [bilgi.de]);
-  if (!parca) return <UretAdimi bilgi={bilgi} sesli={false} onBitti={onBitti} />;
+  if (!parca) return <UretAdimi bilgi={bilgi} kip={bilgi.tr ? "yaz" : "duy"} onBitti={onBitti} />;
   const kontrol = (s: string) => { const r = ruleVerdict([parca.dogru], s.trim()); setCevap(s); setV(r); haptic(r.kind === "correct" ? "success" : "error"); };
   return (
     <section class="stack fade" data-test="akis-bosluk">
       <div>
         <div class="kicker icerik" style={{ color: "var(--accent)" }}>Boşluğu doldur</div>
         <div class="de-lg" lang="de">{parca.once}<span class="bosluk" aria-label="boşluk">____</span>{parca.sonra}</div>
-        <p class="small muted" style={{ margin: 0 }}>{bilgi.tr}</p>
+        {bilgi.tr && <p class="small muted" style={{ margin: 0 }}>{bilgi.tr}</p>}
       </div>
       {v === null && <AnswerField onSubmit={(s) => kontrol(s)} voice={false} placeholder="Eksik kelime…" />}
       {v === null && <div style={{ textAlign: "center" }}><button class="ikincil-eylem" style={{ alignSelf: "center" }} data-test="akis-bilmiyorum" onClick={() => setV("bilmiyorum")}>Bilmiyorum</button></div>}
@@ -98,8 +102,8 @@ export function YapbozAdimi({ bilgi, tohum, ipucu, onBitti }: { bilgi: CumleBilg
   return (
     <section class="stack fade" data-test="akis-yapboz">
       <div>
-        <div class="kicker icerik" style={{ color: "var(--accent)" }}>Cümleyi kur</div>
-        <h2 style={{ margin: 0 }}>{bilgi.tr}</h2>
+        <div class="kicker icerik" style={{ color: "var(--accent)" }}>{bilgi.tr ? "Cümleyi kur" : "Dinle, sonra kur"}</div>
+        {bilgi.tr ? <h2 style={{ margin: 0 }}>{bilgi.tr}</h2> : <div class="row" style={{ justifyContent: "center", marginTop: 8 }}><ListenButton text={bilgi.de} label="Cümleyi dinle" metinGizli={v === null} /></div>}
       </div>
       <div class="slot" data-test="yapboz-cumle" aria-label="Kurduğun cümle">
         {secilen.map((k, n) => <button type="button" class="wchip" lang="de" disabled={v !== null} onClick={() => setSecilen(secilen.filter((_, m) => m !== n))}>{taslar[k]!.t}</button>)}
@@ -185,7 +189,7 @@ export function SahneAdimi({ sahne, onBitti }: { sahne: SahneVeri; onBitti: (dog
     <section class="stack fade" data-test="akis-sahne" data-dinledi={dinledi ? "1" : "0"}>
       {sahne.ortam_tr && <p class="small" style={{ margin: 0 }} data-test="sahne-ortam">{sahne.ortam_tr} Önce dinle, sonra oku.</p>}
       <div class="row" style={{ justifyContent: "center", gap: 12 }}>
-        <ListenButton text={sahne.satirlar.map((s) => s.de).join(" ")} label="Sahneyi dinle" slowToggle={false} />
+        <ListenButton text={sahne.satirlar.map((s) => s.de).join(" ")} label="Sahneyi dinle" slowToggle={false} metinGizli={!bitti} />
         <button class="btn sm" data-test="sahne-dinle" disabled={calisiyor} onClick={() => void dinle()}>{calisiyor ? "Dinleniyor…" : dinledi ? "Yeniden dinle" : "Sesleriyle dinle"}</button>
       </div>
       {(dinledi || metin) ? (

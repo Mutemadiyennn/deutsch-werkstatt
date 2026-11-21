@@ -30,6 +30,8 @@ export const yeniKayit = (plan: GunPlani): AkisKaydi => ({ surum: 1, plan, durak
 export function durakAdimlari(k: AkisKaydi, d: Durak): Adim[] {
   // adımsız durak (ses, video, prova, okuma, dil): var olan ekrana giden tek geçiş adımı (`:git`); bağlama 4b'de
   if (!d.adimlar.length) return [{ id: `${d.id}:git`, tur: "hatirlat", kip: "gor", kartlar: [], kaynak: "halka", sn: 0, neden: d.neden }];
+  // dil noktasının son parçası: dersin kalanı (diyalog, dinleme, görev) DersEkrani'nda; ders anahtarını o ekran yazar (AK-7; inceleme #184 P1-4)
+  if (d.tur === "dil" && d.eski_anahtar?.startsWith("ders:")) return [...d.adimlar, { id: `${d.id}:git`, tur: "hatirlat", kip: "gor", kartlar: [], kaynak: "ders", sn: 0, neden: "dersin kalanı: diyalog ve dinleme" }];
   const geri = k.geri[d.id] ?? [];
   if (d.tur !== "halka" || !geri.length) return d.adimlar;
   return [...d.adimlar, ...geri.map((kart, i): Adim => ({ id: `${d.id}:geri${i}`, tur: "listen_meaning", kip: "duy", kartlar: [kart], kaynak: "halka", sn: 12, neden: "bu halkada yanlış yaptın; bir kez daha" }))];
@@ -45,6 +47,8 @@ export function simdiki(k: AkisKaydi): { durak: Durak; adim: Adim; sira: number;
 
 /** Eski ilerleme anahtarı (AK-6 uyumluluk): son halka → m1:bahce:<g>; dil → ders:<id>; video → m1:medya:<id>; prova/okuma aynen */
 export function eskiAnahtar(plan: GunPlani, d: Durak): string | null {
+  // ders, prova, okuma ve medya anahtarlarını kendi ekranları yazar (akış yalnız Bahçe ve gün anahtarını yazar)
+  if (d.eski_anahtar && /^(ders|m1:prova|m1:okuma|m1:medya):/.test(d.eski_anahtar)) return null;
   if (d.eski_anahtar) return d.eski_anahtar;
   if (d.tur === "halka") { const son = [...plan.duraklar].reverse().find((x) => x.tur === "halka"); return son?.id === d.id ? `m1:bahce:${plan.gun}` : null; }
   return null;
