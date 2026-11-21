@@ -1,13 +1,18 @@
 #!/bin/sh
 # v2'yi belirtilen yayına geri alır (gh-pages/v2/). Kullanım: scripts/v2-rollback.sh <gh-pages commit> | v2-YYYYMMDD-n
-# Etiketsiz yayında (PM 7053100321) hedef, yayin.sh'ın #12'ye yazdığı önceki gh-pages commit'idir.
+# Etiketsiz yayında (PM 7053100321) ad gh-pages commit iletisinde "[v2-YYYYMMDD-n]" olarak durur; betik onu bulur.
 # Varsayılan yerel yol (Actions bu depoda kapalı; PM 7048162182). DW_GERI_AL_ACTIONS=1 ise deploy-v2.yml iş akışını tetikler.
 set -e
 TAG="$1"; [ -n "$TAG" ] || { echo "Kullanım: $0 <gh-pages commit> | v2-YYYYMMDD-n"; exit 2; }
 case "$TAG" in v2-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9]*) TUR=etiket;; *) printf %s "$TAG" | grep -Eq '^[0-9a-f]{7,40}$' && TUR=commit || { echo "Hedef v2-YYYYMMDD-n etiketi ya da gh-pages commit'i olmalı: $TAG"; exit 2; };; esac
-if [ "${DW_GERI_AL_ACTIONS:-0}" = 1 ] && command -v gh >/dev/null 2>&1; then gh workflow run deploy-v2.yml -f rollback_to="$TAG"; echo "Geri alma iş akışı başlatıldı: $TAG"; exit 0; fi
+if [ "${DW_GERI_AL_ACTIONS:-0}" = 1 ] && [ "$TUR" = etiket ] && command -v gh >/dev/null 2>&1; then gh workflow run deploy-v2.yml -f rollback_to="$TAG"; echo "Geri alma iş akışı başlatıldı: $TAG"; exit 0; fi
 git fetch origin +refs/heads/gh-pages:refs/remotes/origin/gh-pages --tags
-if [ "$TUR" = etiket ]; then git rev-parse -q --verify "refs/tags/$TAG" >/dev/null || { echo "Etiket yok: $TAG"; exit 1; }
+if [ "$TUR" = etiket ]; then
+  # etiket yoksa ad gh-pages commit iletisinde aranır (etiketsiz yayın, PM 7053100321; phases/07 adı korunur)
+  if ! git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+    C=$(git log -1 --format=%H --grep="^\[$TAG\]" origin/gh-pages); [ -n "$C" ] || { echo "Yayın bulunamadı (etiket de commit iletisi de yok): $TAG"; exit 1; }
+    TAG="$C"
+  fi
 else git merge-base --is-ancestor "$TAG" origin/gh-pages 2>/dev/null || { echo "gh-pages geçmişinde değil: $TAG"; exit 1; }; fi
 D=$(mktemp -d); rmdir "$D"; git worktree add -q --detach "$D" origin/gh-pages
 trap 'git worktree remove --force "$D" >/dev/null 2>&1 || true' EXIT

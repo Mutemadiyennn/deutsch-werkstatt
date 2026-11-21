@@ -8,11 +8,12 @@
 #   3. Temiz worktree'de deploy-v2.yml'deki adımları koşar (tek kaynak; adımlar oradan okunur):
 #        "M1 medyası" adımının --pattern listesi → Releases m1-medya varlıkları REST ile .medya/'ya (GraphQL bu ortamda kapalı)
 #        "Derle" adımının run: metni aynen (npm ci, doğrulayıcı + birim, içerik + web derlemesi)
-#   4. gh-pages/v2/ klasörünü web/dist ile değiştirir, commit'ler, iter. Etiket YOK (varsayılan; PM 7053100321: vekil etiket itmesini
-#      reddediyor); sürüm kimliği gh-pages commit iletisinde ve sw-assets.json damgasında. --etiketli: eski v2-YYYYMMDD-n etiketi.
+#   4. gh-pages/v2/ klasörünü web/dist ile değiştirir, commit'ler, iter. Her yayın v2-YYYYMMDD-n adını alır (phases/07): ad varsayılan
+#      olarak gh-pages commit iletisine yazılır, git etiketi atılmaz (PM 7053100321: vekil etiket itmesini reddediyor);
+#      --etiketli: ad ayrıca git etiketi olarak atomik itilir (eski yol).
 #   5. Sürüm damgasını (dist/sw-assets.json "build") ve gh-pages commit'ini #12'ye yazar, aynı yoruma
 #      "[KAPI-İSTEK] yayın denetimi: beklenen sürüm <damga>" ekler (--yorum-yok ile yalnız ekrana basar).
-# Geri alma: scripts/v2-rollback.sh <gh-pages commit> (ya da eski yayınlarda v2-YYYYMMDD-n etiketi).
+# Geri alma: scripts/v2-rollback.sh v2-YYYYMMDD-n (etiket ya da gh-pages commit iletisindeki ad) | <gh-pages commit>.
 #
 # Kullanım: scripts/yayin.sh [--commit <sha>] [--kuru] [--yorum-yok] [--etiketli]
 # Çıkış: 0 yayın (ya da kuru) · 1 derleme/itme düştü · 2 kullanım/okuma · 3 KAPI YEŞİL yok ya da son karar KIRMIZI · 4 yayın yapıldı, #12 yazılamadı
@@ -119,19 +120,19 @@ cd "$GHP"
 rm -rf v2 && mkdir -p v2 && cp -r "$AGAC/web/dist/." v2/
 git add -A v2
 if git diff --cached --quiet; then echo "Değişiklik yok; yayın gerekmiyor"; exit 0; fi
-MSG="v2 yayın: $K7 (damga $DAMGA)"
+D=$(date -u +%Y%m%d); N=1; while git rev-parse -q --verify "refs/tags/v2-$D-$N" >/dev/null || git log -1 --format=%H --grep="^\[v2-$D-$N\]" origin/gh-pages | grep -q .; do N=$((N+1)); done
+AD="v2-$D-$N"; MSG="[$AD] v2 yayın: $K7 (damga $DAMGA)"
 git commit -q -m "$MSG"
-ONCEKI=$(git rev-parse --short HEAD~1)   # geri alma: önceki gh-pages commit'i
+ONCEKI=$(git rev-parse --short=12 HEAD~1)   # geri alma: önceki gh-pages commit'i
 if [ "$ETIKET_AT" = 1 ]; then
-  D=$(date -u +%Y%m%d); N=1; while git rev-parse -q --verify "refs/tags/v2-$D-$N" >/dev/null; do N=$((N+1)); done
-  ET="v2-$D-$N"; git tag -a "$ET" -m "$MSG (kaynak $K7)"
+  ET="$AD"; git tag -a "$ET" -m "$MSG (kaynak $K7)"
   # atomik: dal ve etiket birlikte gider ya da hiçbiri (yetim etiket geri alma ile yayına girmesin)
   if ! git push -q --atomic origin HEAD:gh-pages "$ET"; then git tag -d "$ET" >/dev/null; echo "itme reddedildi (dal + etiket birlikte); yayın yapılmadı" >&2; exit 1; fi
 else
-  ET="yok"
+  ET="yok (ad commit iletisinde: $AD)"
   if ! git push -q origin HEAD:gh-pages; then echo "itme reddedildi (gh-pages dalı); yayın yapılmadı" >&2; exit 1; fi
 fi
-GHC=$(git rev-parse --short HEAD); SAAT=$(date -u +%H:%M)
+GHC=$(git rev-parse --short=12 HEAD); SAAT=$(date -u +%H:%M)
 echo "yayınlandı: gh-pages $GHC · etiket $ET · damga $DAMGA · $SAAT UTC"
 
 # ---- 5. #12 ----
