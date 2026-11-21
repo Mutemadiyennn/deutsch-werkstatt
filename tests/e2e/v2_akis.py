@@ -14,6 +14,10 @@ from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
 
 PORT = 4243
+MIKROFON = """(() => { navigator.mediaDevices = navigator.mediaDevices || {};
+  navigator.mediaDevices.getUserMedia = async () => { const ac = new (window.AudioContext || window.webkitAudioContext)(); const o = ac.createOscillator(); const d = ac.createMediaStreamDestination(); o.connect(d); o.start(); return d.stream; };
+  window.webkitSpeechRecognition = function () { const r = this; r.start = () => setTimeout(() => { r.onresult && r.onresult({ results: [[{ transcript: "Guten Tag" }]] }); r.onend && r.onend(); }, 80); r.stop = () => {}; };
+  window.SpeechRecognition = window.webkitSpeechRecognition; })()"""
 GUN = int(arg("--gun") or 2)
 KAYIT = """async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
   const m = await new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get('akis:' + GUN_); t.onsuccess = () => ok(t.result && t.result.value); });
@@ -98,7 +102,27 @@ def main():
     sema = arg("--scheme") or "light"
     with sync_playwright() as p:
         b, ctx = launch(p, color_scheme=sema); ctx.add_init_script(f"window.GUN_ = {GUN};"); pg = new_page(ctx)
+        if "--mikrofon" in sys.argv: ctx.add_init_script(MIKROFON)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
+        if "--mikrofon" in sys.argv:
+            # bayrak PR'ı md. 3/7 (inceleme #193 P1-7): mikrofon varken akışta büyük mikrofon ve "Yazarak cevapla" yedeği
+            pg.goto(base + f"#/akis/{GUN}"); pg.wait_for_selector("[data-test=akis]", timeout=20000); bulundu = False
+            for _ in range(160):
+                if pg.locator("[data-test=akis-mikrofon]").count():
+                    bulundu = True; break
+                if pg.locator("[data-test=akis-durak-gecis]").count():
+                    pg.evaluate("""async () => { const v = (await (await fetch('content/current.json')).json()).version;
+                      const g = await (await fetch('content/' + v + '/m1/gun-' + String(GUN_).padStart(2, '0') + '.json')).json();
+                      const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
+                      await new Promise((ok) => { const t = d.transaction('meta', 'readwrite'); for (const x of g.sesler) t.objectStore('meta').put({ key: 'm1:medya:' + x.id, value: { bitti: new Date().toISOString() } }); t.oncomplete = ok; }); d.close(); }""")
+                    pg.reload(); pg.wait_for_selector("[data-test=akis]", timeout=20000); continue
+                if pg.locator("[data-test=halka-sonu]").count(): pg.click("[data-test=halka-sonu-devam]"); pg.wait_for_timeout(150); continue
+                if adim_gec(pg) is None: break
+            check(bulundu, "mikrofon varken akışta büyük mikrofon görünüyor")
+            if bulundu:
+                check("Dokun ve konuş" in pg.inner_text("[data-test=akis-mikrofon]"), "büyük mikrofon: 'Dokun ve konuş'")
+                no_overflow(pg, "büyük mikrofon"); shot(pg, f"akis-mikrofon-{sema}", full=False)
+            b.close(); srv.shutdown(); finish(); return
         # bayrak PR'ı md. 7: Bugün (seanslar) — bayraklı günde Bahçe adımı akışa gider
         if GUN == 1 and "--tam" in sys.argv: pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=next-activity]"); shot(pg, f"akis-bugun-{sema}", full=False)
         pg.goto(base + f"#/akis/{GUN}"); pg.wait_for_selector("[data-test=akis]", timeout=20000)
