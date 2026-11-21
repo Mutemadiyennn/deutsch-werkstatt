@@ -11,6 +11,7 @@ import { readdirSync } from "node:fs";
 import { kartMi, type ContentIndex } from "../../packages/shared/src/content.ts";
 import { Halka, genelAdlarAyikla } from "../../packages/shared/src/index.ts";
 import { z } from "zod";
+import { klipVideolari } from "./klip.ts";
 
 const c = checkRules(loadContent());
 if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
@@ -43,6 +44,14 @@ if (process.env.DW_E2E_FIXTURES === "1") {
 const gaYol = join(ROOT, "docs/v2/reviews/genel-adlar.md");
 const genelAdlar = existsSync(gaYol) ? genelAdlarAyikla(readFileSync(gaYol, "utf8")) : [];
 days.sort((a, b) => a.data.day - b.data.day);
+const medyaKaynak = [join(ROOT, ".medya"), ...(process.env.DW_E2E_FIXTURES === "1" ? [join(ROOT, "tests/e2e/fixtures")] : [])];
+// A9 (PM-069 madde 4): gerçek insan klibi günün videosu olur — İÇ'in klip dosyası + hattın hizalı metni (.medya, Releases m1-medya)
+try {
+  for (const v of klipVideolari(join(ROOT, "content/v2/m1/video"), medyaKaynak)) {
+    const d = days.find((x) => x.data.day === v.day);
+    if (d && !d.data.video) { d.data = { ...d.data, video: v.video }; console.log(`video: ${v.day}. gün ← ${v.video.id} (${v.video.cumleler.length} cümle)`); }
+  }
+} catch (e) { console.error(String(e)); process.exit(1); }
 
 const payload = {
   m1: days.map((d) => d.data),
@@ -59,7 +68,6 @@ const payload = {
 // ses ve video depoya girmez, #42 §4.6) ve e2e'de tests/e2e/fixtures. Bulunamayan dosya pakete girmez; oynatıcı kaynağa
 // bağlantı gösterir (Video şeması). Medya adları ve içerik özetleri SÜRÜME katılır: medyasız ve medyalı paket aynı
 // sürümü almaz, yeniden kesilen klip yeni sürümle önbelleğe girer (inceleme #74 P1-1).
-const medyaKaynak = [join(ROOT, ".medya"), ...(process.env.DW_E2E_FIXTURES === "1" ? [join(ROOT, "tests/e2e/fixtures")] : [])];
 const medyaBul: { src: string; yol: string; ozet: string }[] = [], medyaEksik: string[] = [];
 const medyaAdlari = new Set<string>();
 for (const { data: g } of days) for (const m of medyalar(g)) {
