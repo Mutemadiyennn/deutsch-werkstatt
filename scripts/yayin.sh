@@ -107,7 +107,7 @@ gh api "repos/$DEPO/releases/tags/$ETIKET" --jq '.assets[] | "\(.id)\t\(.name)"'
 done
 # PM-081 A1–A2: yeni ve değişen derlenmiş medya `medya` dalında durur (main'e birleşmez); Releases'in ÜSTÜNE açılır, aynı adda dal kazanır.
 # Daldaki her dosya (alt klasör fark etmez) adıyla .medya/'ya gelir; yalnız deploy-v2.yml'in --pattern listesine uyanlar alınır.
-DAL_SAY=0
+DAL_SAY=0; FOTO_SAY=0
 if git -C "$KOK" fetch -q origin +refs/heads/medya:refs/remotes/origin/medya 2>/dev/null; then
   MD=$(mktemp -d /tmp/yayin-medya-XXXXXX)
   git -C "$KOK" archive origin/medya | tar -x -C "$MD"
@@ -118,10 +118,16 @@ if git -C "$KOK" fetch -q origin +refs/heads/medya:refs/remotes/origin/medya 2>/
       if [[ "$ad" == $d ]]; then cp "$f" ".medya/$ad"; DAL_SAY=$((DAL_SAY+1)); break; fi
     done < "$DESEN"
   done < <(find "$MD" -type f -print0)
+  # PM 7055725467 md. 4: dalın açık fotoğrafları (foto/*.jpg|png|webp) .medya/foto/'ya; derleme acik.json'daki "medya:foto/<ad>"
+  # kayıtlarını pakete alır ve yerel yoldan sunar (uçak modu)
+  if [ -d "$MD/foto" ]; then
+    mkdir -p .medya/foto
+    for f in "$MD"/foto/*; do case "${f,,}" in *.jpg|*.jpeg|*.png|*.webp) cp "$f" .medya/foto/; FOTO_SAY=$((FOTO_SAY+1));; esac; done
+  fi
   rm -rf "$MD"
 fi
 rm -f "$DESEN"
-echo "medya: $(ls .medya | wc -l) dosya ($ETIKET; medya dalından $DAL_SAY)"
+echo "medya: $(find .medya -maxdepth 1 -type f | wc -l) dosya ($ETIKET; medya dalından $DAL_SAY), açık fotoğraf $FOTO_SAY"
 python3 -c 'import json,sys;print(json.loads(sys.argv[1])["derle"])' "$ADIMLAR" > "$DERLE"
 bash --noprofile --norc -e "$DERLE" > "$DLOG" 2>&1 || { rm -f "$DERLE"; echo "derleme düştü: $DLOG" >&2; exit 1; }
 rm -f "$DERLE"; echo "derleme günlüğü: $DLOG"

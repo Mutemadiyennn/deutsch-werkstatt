@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { mkdtempSync, mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
-import { medyaDenetle } from "./medya.ts";
+import { medyaDenetle, yerelFotoAdi } from "./medya.ts";
 
 const kur = (dosyalar: Record<string, string>) => {
   const r = mkdtempSync(join(tmpdir(), "medya-"));
@@ -33,5 +33,12 @@ describe("medya doğrulayıcısı (B12 3. parça, D-112)", () => {
     expect(h.some((x) => x.includes('sinif "acik"'))).toBe(true);
     expect(h.some((x) => x.includes("atıf"))).toBe(true);
     expect(h.some((x) => x.includes("ikili medya"))).toBe(true);
+  });
+  it("medya dalının yerel fotoğrafı (PM 7055725467 md. 4): medya:foto/<ad> ve dalın eski raw adresi geçerli, alt klasör ve .. değil", () => {
+    expect(yerelFotoAdi("medya:foto/ab12.jpg")).toBe("ab12.jpg");
+    expect(yerelFotoAdi("https://raw.githubusercontent.com/Mutemadiyennn/deutsch-werkstatt/medya/foto/ab12.jpg")).toBe("ab12.jpg");
+    expect(yerelFotoAdi("https://github.com/Mutemadiyennn/deutsch-werkstatt/releases/download/m1-foto/x.jpg")).toBeUndefined();
+    for (const k of ["medya:foto/a/b.jpg", "medya:foto/../x.jpg", "medya:foto/x", "medya:foto/x.mp4"]) expect(yerelFotoAdi(k)).toBe("");
+    expect(medyaDenetle(kur({ "foto/acik.json": JSON.stringify({ foto: { a: { ...iyi, src: "medya:foto/ab12.jpg" }, b: { ...iyi, src: "foto/ab12.jpg" } } }) }))).toEqual([expect.stringContaining("b: src https")]);
   });
 });

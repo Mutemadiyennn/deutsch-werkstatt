@@ -10,6 +10,7 @@ import { Gun, medyalar } from "../../packages/shared/src/m1.ts";
 import { readdirSync } from "node:fs";
 import { kartMi, type ContentIndex } from "../../packages/shared/src/content.ts";
 import { klipVideolari } from "./klip.ts";
+import { yerelFotoAdi } from "./medya.ts";
 
 const c = checkRules(loadContent());
 if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
@@ -66,6 +67,20 @@ for (const src of [...medyaAdlari].sort()) {
   if (!yol) { medyaEksik.push(src); continue; }
   medyaBul.push({ src, yol, ozet: createHash("sha1").update(readFileSync(yol)).digest("hex") });
 }
+// PM 7055725467 md. 4: `medya` dalındaki açık fotoğraflar (acik.json `src: "medya:foto/<ad>"`; eski kayıtta dalın raw adresi) pakete girer ve
+// yerel yoldan sunulur (uçak modu: servis işçisi medya listesiyle önbelleğe alır). Dosya `.medya/foto/` altında yoksa kayıt pakete girmez.
+const acikYol = join(ROOT, "content/v2/media/foto/acik.json");
+const acik = existsSync(acikYol) ? (JSON.parse(readFileSync(acikYol, "utf8")) as { foto: Record<string, { src: string }> }) : null;
+const fotoYerel = new Map<string, string>(), fotoEksik: string[] = [];
+for (const [k, f] of Object.entries(acik?.foto ?? {})) {
+  const ad = yerelFotoAdi(f.src);
+  if (ad === undefined) continue; // dış adres (Releases): olduğu gibi
+  const yol = ad && medyaKaynak.map((m) => join(m, "foto", ad)).find((p) => existsSync(p));
+  if (!ad || !yol) { fotoEksik.push(k); continue; }
+  fotoYerel.set(k, `media/${ad}`);
+  if (!medyaBul.some((m) => m.src === `media/${ad}`)) medyaBul.push({ src: `media/${ad}`, yol, ozet: createHash("sha1").update(readFileSync(yol)).digest("hex") });
+}
+if (fotoEksik.length) console.warn(`uyarı: dosyası .medya/foto/ altında olmayan açık fotoğraf pakete girmez (${fotoEksik.length}): ${fotoEksik.slice(0, 5).join(", ")}`);
 if (medyaEksik.length) console.warn(`uyarı: pakete girmeyen medya (${medyaEksik.length}): ${medyaEksik.slice(0, 5).join(", ")}`);
 const toplamMedya = medyaBul.reduce((n, m) => n + statSync(m.yol).size, 0);
 // D-103 PM koşulu (7002348227): M1 medyası toplam ≤ 60 MB; aşılırsa yayın günlüğünde görünür uyarı, PM'e yazılır
@@ -81,7 +96,7 @@ w("lexemes.json", { lexemes: c.lexemes, patterns: c.patterns });
 w("grammar.json", c.grammar);
 w("assess.json", c.assess);
 // B12 3. parça: seçilmiş açık fotoğraflar (kapalı medya pakete girmez; raftan gelir, D-112)
-{ const f = join(ROOT, "content/v2/media/foto/acik.json"); if (existsSync(f)) w("foto.json", JSON.parse(readFileSync(f, "utf8"))); }
+if (acik) w("foto.json", { ...acik, foto: Object.fromEntries(Object.entries(acik.foto).filter(([k]) => !fotoEksik.includes(k)).map(([k, f]) => [k, fotoYerel.has(k) ? { ...f, src: `content/${version}/${fotoYerel.get(k)}` } : f])) });
 // PM-064: karakterlerin sesi (cinsiyet, yaş, sıra) uygulamada ses ataması için
 if (c.world) { mkdirSync(join(dir, "world"), { recursive: true }); w("world/world.json", c.world); }
 const scenFiles: Record<string, string> = {};
