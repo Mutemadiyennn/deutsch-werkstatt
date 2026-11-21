@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { Adim, Durak, GunPlani } from "./akis.ts";
-import { akisAnahtar, durakAdimlari, durakGecisi, eskiAnahtar, ilerle, seansDurumu, simdiki, yeniKayit } from "./akisKayit.ts";
+import { akisAnahtar, durakAdimlari, durakGecisi, halkaOzeti, eskiAnahtar, ilerle, seansDurumu, simdiki, yeniKayit } from "./akisKayit.ts";
 
 const A = (id: string, kartlar: string[] = ["lx:a"]): Adim => ({ id, tur: "listen_meaning", kip: "duy", kartlar, kaynak: "halka", sn: 12, neden: "" });
 const D = (id: string, tur: Durak["tur"], seans: number, adimlar: Adim[], eski?: string): Durak => ({ id, tur, seans, title_tr: id, tahmini_dk: 5, adimlar, neden: "", ...(eski ? { eski_anahtar: eski } : {}) });
@@ -47,5 +47,13 @@ describe("akış kaydı (AK-6, AK-10 4. adım iskeleti)", () => {
     expect(r.yazilacak).toBe("m1:bahce:1"); expect(r.bitti).toBe(true);
     expect(simdiki(r.kayit)).toBeNull();
     expect(seansDurumu(r.kayit)).toEqual([{ seans: 1, biten: 1, toplam: 2 }, { seans: 2, biten: 1, toplam: 1 }]);
+  });
+  it("halka özeti: tanıtılan her kart için doğru yapılan kipler", () => {
+    const t: GunPlani = { ...plan, duraklar: [D("h", "halka", 1, [{ ...A("t1", ["lx:a"]), tur: "tanit", kip: "gor" }, A("d1", ["lx:a"]), { ...A("k1", ["lx:a"]), tur: "order", kip: "kur" }])] };
+    let k = yeniKayit(t);
+    k = ilerle(k, [{ kart: "lx:a", dogru: true }]).kayit;
+    k = ilerle(k, [{ kart: "lx:a", dogru: true }]).kayit;
+    k = ilerle(k, [{ kart: "lx:a", dogru: false }]).kayit;
+    expect(halkaOzeti(k, t.duraklar[0]!)).toEqual([{ kart: "lx:a", kip: { gor: true, duy: true, kur: false, soyle: false } }]);
   });
 });

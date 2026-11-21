@@ -63,7 +63,7 @@ def main():
         # ilk halka baştan sona; üçüncü üretim adımında 'Bilmiyorum' (yanlış → bir kez daha)
         durak0 = pg.get_attribute("[data-test=akis]", "data-durak"); turler, yanlis_kart, yeniden = [], None, False
         for i in range(80):
-            if pg.get_attribute("[data-test=akis]", "data-durak") != durak0: break
+            if pg.locator("[data-test=halka-sonu]").count() or pg.get_attribute("[data-test=akis]", "data-durak") != durak0: break
             if i == 6 and not yeniden:
                 once = pg.get_attribute("[data-test=akis]", "data-adim"); pg.reload(); pg.wait_for_selector("[data-test=akis]", timeout=20000)
                 check(pg.get_attribute("[data-test=akis]", "data-adim") == once, f"yeniden açınca aynı adımdan sürer ({once})"); yeniden = True
@@ -72,6 +72,14 @@ def main():
             ilk_yanlis = yanlis_kart is None and pg.locator("[data-test=akis-bilmiyorum]").count() > 0
             if ilk_yanlis: yanlis_kart = pg.get_attribute("[data-test=akis]", "data-adim")
             if adim_gec(pg, yanlis=ilk_yanlis) is None: check(False, f"halka adımı geçilemedi: {tur}"); break
+        # halka sonu (TARGET3b 6): kelime başına dört nokta, sıradaki durak, Devam/Mola
+        pg.wait_for_selector("[data-test=halka-sonu]", timeout=5000)
+        satir = pg.locator("[data-test=halka-sonu-liste] [data-kart]")
+        check(satir.count() >= 3 and pg.locator("[data-test=halka-sonu-liste] .kip-nokta").count() == satir.count() * 4, f"halka sonu: {satir.count()} kelime × 4 nokta")
+        check(pg.locator("[data-test=halka-sonu-liste] .kip-nokta.dolu").count() >= satir.count(), "halka sonu: her kelimede en az bir dolu nokta (gördün)")
+        check(pg.locator("[data-test=halka-sonu-sonraki]").count() == 1 and pg.locator("[data-test=halka-sonu-mola]").count() == 1, "halka sonu: sıradaki durak ve 'Mola ver'")
+        no_overflow(pg, "halka sonu"); shot(pg, f"akis-halka-sonu-{sema}", full=False)
+        pg.click("[data-test=halka-sonu-devam]"); pg.wait_for_selector("[data-test=akis]")
         k2 = pg.evaluate(KAYIT)
         check(len(turler) >= 4, f"ilk halkada en az 4 tür ({turler})")
         check(k2["sonuc"] > 10 and k2["items"] > 0, f"sonuçlar kayda ve kart kaydına yazıldı ({k2['sonuc']} sonuç, {k2['items']} kart)")

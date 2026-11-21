@@ -749,3 +749,5 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 :root[data-theme="dark"] .tanit-vurgu { background: #6b5a12; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tanit-vurgu { background: #6b5a12; } }
 .tanit-isaret { font: inherit; color: inherit; background: none; border: 0; padding: 0; min-height: 0; text-decoration: underline dotted; text-underline-offset: 6px; text-decoration-thickness: 2px; cursor: pointer; }
+.kip-nokta { width: 10px; height: 10px; border-radius: 50%; background: var(--line); display: inline-block; }
+.kip-nokta.dolu { background: var(--ok); }

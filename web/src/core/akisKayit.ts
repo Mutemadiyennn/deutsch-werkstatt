@@ -78,3 +78,14 @@ export function seansDurumu(k: AkisKaydi): { seans: number; biten: number; topla
   for (const d of k.plan.duraklar) { const x = m.get(d.seans) ?? { biten: 0, toplam: 0 }; x.toplam++; if (k.biten.includes(d.id)) x.biten++; m.set(d.seans, x); }
   return [...m.entries()].sort((a, b) => a[0] - b[0]).map(([seans, x]) => ({ seans, ...x }));
 }
+
+/** Halka sonu (TARGET3b 6): halkanın her kartı için dört kip noktası (gördün, duydun, kurdun, söyledin) — doğru yapılan adımlardan */
+export function halkaOzeti(k: AkisKaydi, d: Durak): { kart: string; kip: Record<"gor" | "duy" | "kur" | "soyle", boolean> }[] {
+  const adimlar = new Map(durakAdimlari(k, d).map((a) => [a.id, a]));
+  const kartlar = [...new Set(d.adimlar.filter((a) => a.tur === "tanit").flatMap((a) => a.kartlar))];
+  return kartlar.map((kart) => {
+    const kip = { gor: false, duy: false, kur: false, soyle: false };
+    for (const r of k.sonuclar) { const a = adimlar.get(r.adim); if (a && r.kart === kart && r.dogru) kip[a.kip] = true; }
+    return { kart, kip };
+  });
+}
