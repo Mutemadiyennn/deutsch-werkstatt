@@ -355,9 +355,15 @@ describe("anlam çeldiricileri, akış (PM 7055715440 md. 5)", () => {
 });
 describe("akış çeldiricisi, yakın yoksa (inceleme #186 P1-1)", () => {
   const L3 = (id: string, de: string, tr: string) => Lexeme.parse({ id, de, tr, pos: "noun", art: "der" });
-  it("yakın çeldirici yoksa tek şık değil: en az iki şık", () => {
+  it("havuz boşsa uzak sözcük gelmez (akış bu adımı soru olarak sormaz)", () => {
     const a = L3("lx:A", "Arzt", "doktor"), b = L3("lx:B", "Brot", "ekmek"), c = L3("lx:C", "Bus", "otobüs");
-    expect(meaningOptions(a, [a, b, c], () => 0.1, { tur: new Set(), bilinen: new Set(), yalniz: true }).opts.length).toBeGreaterThanOrEqual(2);
+    expect(meaningOptions(a, [a, b, c], () => 0.1, { tur: new Set(), bilinen: new Set(), yalniz: true }).opts).toEqual(["doktor"]);
+  });
+  it("sayıların çeldiricisi aynı halkanın sayıları (kart sayılmasalar da): 3 şık ve üstü", () => {
+    const N = (id: string, de: string, tr: string) => Lexeme.parse({ id, de, tr, pos: "num" });
+    const s = [N("lx:eins", "eins", "bir"), N("lx:zwei", "zwei", "iki"), N("lx:drei", "drei", "üç"), N("lx:vier", "vier", "dört")];
+    const o = meaningOptions(s[0]!, s, () => 0.2, { tur: new Set(s.map((x) => x.id)), bilinen: new Set(), yalniz: true }).opts;
+    expect(o.length).toBeGreaterThanOrEqual(3); expect(o).toContain("bir");
   });
 });
 

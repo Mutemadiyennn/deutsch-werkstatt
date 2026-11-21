@@ -28,7 +28,7 @@ import { ActionBar } from "../ui/kit.tsx";
 import { Question } from "../ui/soru/Soru.tsx";
 import { DrillView } from "../ui/drill.tsx";
 import { BoslukAdimi, KalipAdimi, SahneAdimi, TanitAdimi, UretAdimi, YapbozAdimi, type CumleBilgi, type SahneVeri } from "../ui/soru/AkisAdim.tsx";
-import type { QType, Yakinlik } from "../core/garden.ts";
+import { meaningOptions, type QType, type Yakinlik } from "../core/garden.ts";
 
 /** Bahçe soru bileşeninin karşıladığı tek kartlı adım türleri */
 const SORU = new Set<string>(["listen_meaning", "article", "colloc"]);
@@ -93,7 +93,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
   const soru = useMemo(() => (adim.tur === "resimden_sec" && kartlar[0] ? resimSecenekleri(kartlar[0], [...lex.values()], harita, tohum) : null), [adim.id]);
   // PM 7055715440 md. 3 (D-122): ad girilmemişse adlı cümle sorulmaz/gösterilmez; `_adsiz` biçimi gelene kadar o madde geçilir (sonuç yazılmaz)
   const adli = baglam.adGerekli(adim);
-  useEffect(() => { if (adli) bitir([], true); }, [adim.id]);
+  useEffect(() => { if (adli) bitir([]); }, [adim.id]);  // atla değil: durağın son adımıysa durak anahtarı yine yazılır (inceleme #186 P2-1)
   if (adli) return null;
   // adımsız durak (ses, video, prova, okuma): var olan ekrana gider, dönüşte akış ilerler (AK-6)
   if (durakGecisi(adim)) return <DurakGecis adim={adim} tur={durakOf(adim).tur} baslik={durakOf(adim).title_tr} dk={durakOf(adim).tahmini_dk} hedef={baglam.hedef(durakOf(adim))} bitir={() => bitir([], true)} />;
@@ -122,8 +122,9 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
       <section class="stack fade" data-test="akis-tablo">
         <div class="kicker icerik" style={{ color: "var(--accent)" }}>Dil noktası</div>
         <h2 style={{ margin: 0 }}>{tb.baslik_tr}</h2>
-        <div style={{ overflowX: "auto" }}><table class="akis-tablo-t" lang="de"><thead><tr>{tb.sutunlar.map((c) => <th>{c}</th>)}</tr></thead>
-          <tbody>{tb.satirlar.map((r) => <tr>{r.map((c) => <td>{c}</td>)}</tr>)}</tbody></table></div>
+        <div style={{ overflowX: "auto" }}><table class="akis-tablo-t"><thead><tr>{tb.sutunlar.map((c) => <th>{c}</th>)}</tr></thead>
+          {/* başlıklar ve "Türkçe" sütunu Türkçe; öteki hücreler Almanca (inceleme #186 P1-5) */}
+          <tbody>{tb.satirlar.map((r) => <tr>{r.map((c, i) => <td lang={/^türkçe$/i.test(tb.sutunlar[i] ?? "") ? "tr" : "de"}>{c}</td>)}</tr>)}</tbody></table></div>
         <ActionBar><button class="btn primary" style={{ width: "100%" }} data-test="akis-devam" onClick={() => bitir([])}>Anladım</button></ActionBar>
       </section>);
   }
@@ -175,10 +176,14 @@ function AdimGovdesi({ adim, durakOf, lex, harita, baglam, tohum, bitir }: { adi
   const l = kartlar[0];
   if (l && (adim.tur === "tanit" || SORU.has(adim.tur) || adim.tur === "resimden_sec" || adim.tur === "tr_de" || adim.tur === "gap" || adim.tur === "order" || adim.tur === "soyle" || adim.tur === "dikte")) {
     const ex = Math.max(0, l.examples.findIndex((e) => e.de === adim.cumle));
-    const tanit = adim.tur === "tanit";
-    return <div class="akis-soru"><Question key={adim.id} q={{ lexId: l.id, type: tanit || !(SORU.has(adim.tur) || adim.tur === "tr_de") ? "listen_meaning" : (adim.tur as QType), intro: tanit, ex }} l={l} all={[...lex.values()]}
-      yakin={baglam.yakin(adim.id, durakOf(adim))}
-      onTanitimBitti={tanit ? () => bitir([{ kart: l.id, dogru: true }]) : undefined}
+    const tur: QType = adim.tur === "tanit" || !(SORU.has(adim.tur) || adim.tur === "tr_de") ? "listen_meaning" : (adim.tur as QType);
+    const yakin = baglam.yakin(adim.id, durakOf(adim)), hepsiL = [...lex.values()];
+    // akışta çeldirici yalnız halkadan ve bilinenlerden: 3 şık çıkmıyorsa anlam sorusu sorulmaz, kart tanıtımla dinlenir, kanıt yazılmaz (inceleme #186 P1-1)
+    const azSik = adim.tur !== "tanit" && tur === "listen_meaning" && meaningOptions(l, hepsiL, () => 0.5, yakin).opts.length < 3;
+    const tanit = adim.tur === "tanit" || azSik;
+    return <div class="akis-soru" data-az-sik={azSik ? "1" : undefined}><Question key={adim.id} q={{ lexId: l.id, type: tur, intro: tanit, ex }} l={l} all={hepsiL}
+      yakin={yakin}
+      onTanitimBitti={tanit ? () => bitir(azSik ? [] : [{ kart: l.id, dogru: true }]) : undefined}
       onDone={(r) => bitir([{ kart: l.id, dogru: r.ok }])} /></div>;
   }
   // İSKELET: öteki türler (tanit, kalip, listen_meaning, gap, order, tr_de, dikte, soyle, sahne, ders_madde, …) ui/soru/ ortaklaşınca
@@ -279,13 +284,12 @@ export function AkisEkrani({ day }: { day: number }) {
             const planCumle = sira.map((a) => a.cumle).filter((x): x is string => !!x).map((de) => cumleler.get(de)).filter((x): x is CumleBilgi => !!x && !!x.tr);
             const tekil = new Map([...gun.halkalar.flatMap((h) => h.gorev_cumleleri).map((g) => ({ de: g.de, tr: g.tr })), ...planCumle.map((g) => ({ de: g.de, tr: g.tr }))].map((g) => [g.de, g]));
             // kalıbın sabit sözcüklerinin hepsi cümlede geçiyorsa örnek; sıra şart değil (devrik sıra kalıbın konusu olabilir: "Im Frühling habe ich …")
-            const sirali = (de: string, kp: string[]) => { const w = new Set(toks(de)); const sb = kp.filter((x) => x !== YUVA); return sb.length > 0 && sb.every((t) => w.has(t)); };
+            const kapsar = (de: string, kp: string[]) => { const w = new Set(toks(de)); const sb = kp.filter((x) => x !== YUVA); return sb.length > 0 && sb.every((t) => w.has(t)); };
             // örnek o adımda bilinenlerle kurulmuş olmalı: bu kalıp dahil K(t) dışında sözcük 0 (inceleme #186 P1-2)
             const kNow = { kart: kartlarOnce(adimId), biten: bitenD, kaliplar: [...sira.slice(0, Math.max(0, sira.findIndex((a) => a.id === adimId)) + 1).filter((a) => a.tur === "kalip" && a.cumle).flatMap((a) => kalipSecenekleri(a.cumle))] };
             const aday = [...tekil.values()].filter((g) => !g.de.includes("{name}") && bilinmeyenler(dizin, g.de, kNow).length === 0)
-              .filter((g) => parcalar.some((kp) => sirali(g.de, kp)) && !parcalar.some((kp) => kp.every((t) => t !== YUVA) && toks(g.de).join(" ") === kp.join(" ")))
+              .filter((g) => parcalar.some((kp) => kapsar(g.de, kp)) && !parcalar.some((kp) => kp.every((t) => t !== YUVA) && toks(g.de).join(" ") === kp.join(" ")))
               .sort((a, b) => Number(durakCumle.has(b.de)) - Number(durakCumle.has(a.de)));
-            const sabit = new Set(parcalar.flat().filter((t) => t !== YUVA));
             // vurgu: yalnız yuvanın yerine giren sözcük — sabit parçanın bitişik geçtiği yerde yuvanın komşusu ("im …" → "im"den sonraki sözcük)
             const yuvaSozcuk = (de: string): string[] => {
               const w = de.split(/\s+/), n = w.map((x) => x.replace(/[.,!?;:„“"]/g, "").toLowerCase());
@@ -295,13 +299,13 @@ export function AkisEkrani({ day }: { day: number }) {
                 for (let i = 0; i + once.length <= n.length; i++) {
                   if (!once.every((t, k) => n[i + k] === t)) continue;
                   const j = i + once.length; if (j >= w.length) continue;
-                  if (!sonra.length) return [w[j]!];
-                  const son = n.indexOf(sonra[0]!, j + 1); if (son > j) return w.slice(j, son);
+                  const temiz = (x: string) => x.replace(/^[„“"»«(]+|[.,!?;:„“"»«)]+$/g, "");  // vurgu noktalamasız (inceleme #186 P2-3)
+                  if (!sonra.length) return [temiz(w[j]!)];
+                  const son = n.indexOf(sonra[0]!, j + 1); if (son > j) return w.slice(j, son).map(temiz);
                 }
               }
               return [];
             };
-            void sabit;
             const ornek = aday.slice(0, 2).map((g) => ({ de: g.de, tr: g.tr, accepted: [g.de], vurgu: yuvaSozcuk(g.de) }));
             // yuvasız tam ifade ("Wir haben November.", "Anfang Mai") ve örnek yoksa: kalıbın kendisi sesli örnek olur
             if (!ornek.length) for (const x of kalip.split(/\s[–—]\s/)) if (!/…|\{/.test(x)) ornek.push({ de: x, tr: kaliplar.get(x) ?? "", accepted: [x], vurgu: [] });
@@ -410,7 +414,7 @@ const DURAK_CUMLE: Record<string, string> = {
 
 function DurakGecis({ adim, tur, baslik, dk, hedef, bitir }: { adim: Adim; tur: string; baslik: string; dk: number; hedef: DurakHedef | null; bitir: () => void }) {
   return (
-    <section class="card stack" data-test="akis-durak-gecis" data-hedef={hedef?.href}>
+    <section class="card stack" data-test="akis-durak-gecis" data-hedef={hedef?.href} data-neden={adim.neden}>
       <div class="kicker icerik">Sıradaki durak</div>
       <h2 style={{ margin: 0 }}>{baslik}</h2>
       {/* PM 7055715440 md. 4: tek cümle (büyük harfle başlar, noktayla biter) ve yaklaşık süre; iç not değil */}

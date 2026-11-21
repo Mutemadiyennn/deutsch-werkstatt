@@ -133,7 +133,7 @@ export function KalipAdimi({ kalip, ornekler, onBitti }: { kalip: { de: string; 
   const yuvali = (s: string) => s.split(/(…|\{[^}]*\})/).map((p) => (p === "…" || /^\{/.test(p) ? <span class="kalip-yuva" aria-label="boşluk">{"\u00A0".repeat(6)}</span> : p));
   // "önce duy": girişte ilk örnek kendiliğinden okunur
   useEffect(() => { if (ornekler[0]) void speak(ornekler[0].de, "de", "normal"); }, []);
-  const vurgulu = (o: CumleBilgi) => { const v = new Set(o.vurgu ?? []); return o.de.split(/(\s+)/).map((w) => (v.has(w) ? <mark class="tanit-vurgu">{w}</mark> : w)); };
+  const vurgulu = (o: CumleBilgi) => { const v = new Set(o.vurgu ?? []); return o.de.split(/(\s+|[.,!?;:„“"»«]+)/).filter((w) => w !== "").map((w) => (v.has(w) ? <mark class="tanit-vurgu">{w}</mark> : w)); };
   return (
     <section class="stack fade" data-test="akis-kalip">
       <div class="kicker icerik" style={{ color: "var(--accent)" }}>Yeni kalıp</div>
