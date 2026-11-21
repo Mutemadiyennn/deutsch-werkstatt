@@ -26,7 +26,7 @@ export function MedyaRafi() {
   const sil = async () => { setAdres(""); setAnahtar(""); setDurum(null); await rafYaz(null); };
   return (
     <div class="stack" style={{ gap: 8 }} data-test="medya-rafi" data-hazir={hazir ? "1" : undefined}>
-      <p class="small muted" id="raf-bilgi">Sana özel fotoğraflar. Raf adresi ve parola cihazda kalır, yedeğe girmez. Boş bırakırsan herkese açık görseller gelir.</p>
+      <p class="small muted" id="raf-bilgi">Sana özel fotoğraflar. Adres ve parola cihazda kalır, yedeğe girmez.</p>
       <label class="lbl" for="raf-adres">Raf adresi</label>
       <input id="raf-adres" class="input" type="url" inputMode="url" autoComplete="off" autoCapitalize="off" spellcheck={false} value={adres}
         onInput={(e) => { setAdres((e.target as HTMLInputElement).value); setDurum(null); }} placeholder="https://…" data-test="raf-adres" />

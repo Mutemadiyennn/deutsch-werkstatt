@@ -24,6 +24,8 @@ def screens():
     out = ["#/today", "#/learn", "#/progress", "#/profile", "#/assess"] + [f"#/learn/{d}" for d in doms] + [f"#/scenario/{s}" for s in sc]
     for s in [SC] + ([mini] if mini else []):
         out += [f"#/scenario/{s}/{x}" for x in SECTIONS]
+    # Kalıplar listesi ve kalıp bağı olan bir sözlük kartı (yerleşim B5; inceleme #185 P1-3)
+    out += ["#/kalip", "#/sozluk/wo/lx%3Awo"]
     return out + [f"#/call/{SC}"]
 TAP = "main button:not([disabled]), main a[href], main [role=button], .actionbar button:not([disabled]), .actionbar a[href], .tabbar a, .callscreen a, .callscreen button"
 BAD_TEXT = re.compile(r"\bundefined\b|\bNaN\b|\[object Object\]")

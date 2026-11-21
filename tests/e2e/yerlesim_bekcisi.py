@@ -272,6 +272,10 @@ def main():
                     pg.wait_for_timeout(150); simdi = pg.evaluate("(document.querySelector('main, .callscreen') || document.body).innerText")
                     if simdi == onceki: break
                     onceki = simdi
+                # giriş animasyonları (fadein/pop) bitmeden ölçülürse opaklığı 0 olan açıklamalar atlanır (inceleme #185 P1-1)
+                # yalnız sonlu animasyonlar beklenir (iskelet parıltısı gibi sonsuz döngüler hiç bitmez); en çok 2 sn
+                pg.evaluate("""() => Promise.race([new Promise((ok) => setTimeout(ok, 2000)),
+                  Promise.all(document.getAnimations().filter((a) => (a.effect?.getTiming?.().iterations ?? 1) !== Infinity).map((a) => a.finished.catch(() => null)))])""")
                 if len((onceki or "").strip()) <= 20: check(False, f"{scr}: ekran boş açıldı"); continue
                 acilan += 1
                 for k, m in pg.evaluate(KURALLAR, scr in ANA):

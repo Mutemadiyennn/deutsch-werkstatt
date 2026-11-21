@@ -38,3 +38,21 @@ Bağlam notu (baş geliştirici): 5'in hemen altında alan etiketleri "Raf adres
 - Okunan: 4 (1, 3, 4, 5); 2 numara 1. turda GEÇ.
 - GEÇ: 4 · GERİ: 0
 - Beş metnin hepsi GEÇ: okur açısından bu set "reviewed" sayılabilir (OD-9.4). Satır sayısının (≤ 2) ekranda doğrulanması baş geliştiricidedir.
+
+## 3. tur (kısaltma)
+
+Bağlam notu (baş geliştirici): inceleme bazı metinlerin 390 genişlikte 3 satır olduğunu buldu; Profil'deki dört metin kısaltıldı. 1'in hemen altında alan etiketleri "Raf adresi" ve "Parola". 4, yapay zekânın kapalı olduğu sürümde ("Sunucu ve veriler" kartı) görünür. Korunması gereken: 1'de "adres ve parola yedeğe girmez", 4'te "internet ve yapay zekâ gerekmez".
+
+| No | Yer | Açıklama (3. tur) | Kendi sözlerimle | Takıldığım yer | Karar | Neden / öneri |
+|---|---|---|---|---|---|---|
+| 1 | Profil, medya rafı | Sana özel fotoğraflar. Adres ve parola cihazda kalır, yedeğe girmez. Boşsa herkese açık görseller gelir. | Burası bana özel fotoğraflar için; adres ve parola telefonda kalıyor, yedeğe girmiyor; boş bırakırsam herkese açık resimler geliyor. | Küçük: "Adres" tek başına (ev adresi mi?) ve "Boşsa" (ne boş?) yalnız okununca belirsiz; ama hemen alttaki "Raf adresi" / "Parola" etiketleri ikisini de çözüyor. "Boşsa" bir an "raf boşsa" diye de okunabilir; o okuma da öğrenciyi yanlış bir şey yapmaya götürmüyor. Güvence ("adres ve parola yedeğe girmez") açık. Cümleler 3, 7, 5 kelime. | GEÇ | Not: 104 karakter, dört metnin en uzunu; 2 satır sınırına en yakın olan bu. Ekranda doğrulanmalı. |
+| 2 | Profil, depolama (kalıcı izin var) | İlerlemen bu cihazda kalıcı. Telefonu değiştirmeden önce yedek indir. | İlerlemem bu telefonda silinmeden duruyor; telefon değiştireceksem önce yedek almalıyım. | Yok. "Kalıcı" ile "yedek indir" birbirini açıklıyor: burada kalır, yeni telefona kendiliğinden gitmez. Cümleler 4 ve 6 kelime, 69 karakter. | GEÇ | — |
+| 3 | Profil, depolama (durum bilinmiyor) | İlerlemen bu cihazda. Ara sıra yedek indir. | İlerlemem bu telefonda duruyor; arada bir yedek almalıyım. | Yok. "Saklanıyor" düşünce anlam kaybolmamış. Cümleler 3 ve 4 kelime, 43 karakter. | GEÇ | — |
+| 4 | Profil, "Sunucu ve veriler" (sunucu yok) | Dersler, cevap denetimi ve rol oyunu internetsiz, bu cihazda çalışır. | Dersler, cevaplarımın kontrolü ve rol oyunu internet olmadan telefonumda çalışıyor. | "Yapay zekâ" kelimesi düşmüş. Okur olarak rol oyununun normalde yapay zekâ istediğini bilmiyorum; bu metinden "bu sürümde yapay zekâ yok/gerekmez" bilgisini çıkaramadım. Korunması istenen anlamın yarısı (internet) var, yarısı (yapay zekâ) yok. "Cevap denetimi" biraz resmî ama anlaşılıyor. 11 kelime, 69 karakter. | GERİ | Yapay zekâ gerekmez bilgisi kayboldu. Öneri (73 karakter): "İnternet ve yapay zekâ gerekmez. Dersler ve rol oyunu bu cihazda çalışır." |
+
+### 3. tur sonucu
+
+- Okunan: 4 (Profil 1–4)
+- GEÇ: 3 (1, 2, 3) · GERİ: 1 (4)
+- GERİ: **4** ("yapay zekâ gerekmez" anlamı düşmüş).
+- OD-9.4 gereği bu set, 4 düzeltilip yeniden okunana kadar "reviewed" sayılamaz. 1'in 2 satıra sığdığı ekranda doğrulanmalı (104 karakter, sınıra en yakın metin).

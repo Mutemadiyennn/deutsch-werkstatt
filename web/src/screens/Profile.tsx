@@ -153,9 +153,9 @@ export function ProfileView() {
         {aiState(api).available ? <>
           <p class="small muted">Yapay zekânın gizli anahtarı uygulamada değil, güvenli sunucuda saklı.</p>
           <button class="btn sm" onClick={checkServer}>Sunucu bağlantısını kontrol et</button>
-        </> : <p class="small muted" data-test="no-server">Bu sürüm internete ve yapay zekâya ihtiyaç duymaz: dersler, cevap değerlendirmesi ve rol oyunu bu cihazda çalışır.</p>}
+        </> : <p class="small muted" data-test="no-server">İnternet ve yapay zekâ gerekmez. Dersler ve rol oyunu bu cihazda çalışır.</p>}
         {srv && <p class="small" style={{ marginTop: 8 }} data-test="server">{srv}</p>}
-        <p class="small" style={{ marginTop: 8 }} data-test="persist">{persist === "persisted" ? "İlerlemen bu cihazda kalıcı olarak saklanıyor. Telefon değiştirmeden önce yedek indir." : persist === "best-effort" ? "İlerlemen bu cihazda. Telefonda yer azalırsa silinebilir: ara sıra yedek indir." : "İlerlemen bu cihazda saklanıyor. Ara sıra yedek indir."}</p>
+        <p class="small" style={{ marginTop: 8 }} data-test="persist">{persist === "persisted" ? "İlerlemen bu cihazda kalıcı. Telefonu değiştirmeden önce yedek indir." : persist === "best-effort" ? "İlerlemen bu cihazda. Telefonda yer azalırsa silinebilir: ara sıra yedek indir." : "İlerlemen bu cihazda. Ara sıra yedek indir."}</p>
         <div class="row" style={{ marginTop: 12 }}>
           <button class="btn sm" onClick={download}>Yedeği indir (JSON)</button>
           {/* PM 7025664499: v1'deki "Her açılışta yeni uygulamayı aç" anahtarını kapatır ve eski uygulamaya geçer (aynı köken) */}
