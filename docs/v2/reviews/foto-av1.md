@@ -24,19 +24,23 @@ Soyut sözcüklere, sayılara, günlere ve aylara fotoğraf zorlanmadı.
 | Somut kart | 36 |
 | Önceden fotoğraflı (B5) | 8 (Frau, Frühling, Herbst, Winter, Urlaub, Apfel, Käse, Nacht) |
 | Bu turda aranan | 28 |
-| Bu turda seçilen | **18** |
-| Fotoğraflı toplam | **26 / 36 = %72** (hedef %80; 3 kart eksik) |
-| Fotoğrafsız kalan | 10: Praxis, hallo, offen, wohnen, Semmel, Tüte, zahlen, Fieber, warten, müde |
+| Bu turda qa'nın seçtiği | 18 |
+| Bağımsız incelemede (#182, 1. tur) geri çevrilen | 4: Karte, geschlossen, Kilo, sprechen |
+| Bu turda kabul edilen | **14** |
+| Fotoğraflı toplam | **22 / 36 = %61** (hedef %80; 7 kart eksik) |
+| Fotoğrafsız kalan | 14: Praxis, geschlossen, hallo, offen, wohnen, Semmel, Tüte, Kilo, Karte, zahlen, Fieber, sprechen, warten, müde |
 
-**Seçilen 18 kart:**
-- **1. gün:** gehen, Herr, geschlossen.
+**Kabul edilen 14 kart:**
+- **1. gün:** gehen, Herr.
 - **2. gün:** Sommer, Geburtstag.
 - **3. gün:** Büro.
-- **4. gün:** Kilo, bar, Karte, Brot, alt.
+- **4. gün:** bar, Brot, alt.
 - **5. gün:** Uhr, Arzt, Abend.
-- **7. gün:** essen, Hausarzt, sprechen, arbeiten.
+- **7. gün:** essen, Hausarzt, arbeiten.
 
-**Kaynak:** Openverse; seçilenlerin 11'i StockSnap, 7'si Rawpixel'den. Lisanslar CC0 1.0. Atıf `acik.json`'da ve `medya` dalındaki `foto/atif.json`'da.
+**Kaynak:** Openverse; kabul edilenlerin 10'u StockSnap, 4'ü Rawpixel'den. Lisanslar CC0 1.0.
+- İnceleme notu: bar fotoğrafı büyük olasılıkla Pixabay'in eski CC0 döneminden StockSnap'e geçmiş; Herr ve arbeiten Burst imzalı.
+- Openverse bunları CC0 1.0 olarak veriyor. D-112'deki "Pixabay Content License" sınıfına girmiyorlar. Atıf `acik.json`'da ve `medya` dalındaki `foto/atif.json`'da.
 
 ## Yöntem
 - **Aday toplama:** kart başına 2–3 İngilizce sorgu, üç tur (uzun sorgu, kısa sorgu, hedefli sorgu). Kart başına en çok 8 aday, yan yana tek sayfada.
@@ -49,7 +53,7 @@ Soyut sözcüklere, sayılara, günlere ve aylara fotoğraf zorlanmadı.
   - Praxis'e doktor yüzü konmadı.
   - bar, Karte ve zahlen birbirinden ayrı.
   - alt ve Herr birbirinden ayrı.
-- **Kırpma:** kare, ortadan, büyütme yok. Dosyalar 400 px kare, birkaçı daha büyük. Asıl dosya sunucuları bu ortamda kapalı olduğundan Openverse'in 600 px küçük resmi kullanıldı (aşağıda "Açık noktalar").
+- **Kırpma:** kare, ortadan, büyütme yok. Kabul edilen dosyaların hepsi 400 px kare. Asıl dosya sunucuları bu ortamda kapalı olduğundan Openverse'in 600 px küçük resmi kullanıldı (aşağıda "Açık noktalar").
 - **Dosyalar:** `medya` dalında `foto/<sha16>.jpg` (main'e birleşmez). Kayıt bu PR'da: `secim.json` ve `acik.json`. `src` adresi `raw.githubusercontent.com/…/medya/foto/…`.
 
 ## Ret nedenleri (bu tur, ana nedene göre)
@@ -59,21 +63,26 @@ Soyut sözcüklere, sayılara, günlere ve aylara fotoğraf zorlanmadı.
 | Okunur yazı, tabela ya da filigran | offen ("THIS DOOR OPENS"), warten (COVID tabelası, filigran) |
 | Yanlış ülke izlenimi | Fieber (termometreler °F gösteriyor) |
 | Eski fotoğraf ya da gravür | Praxis (19. yüzyıl muayene odası, müze) |
+| İncelemede geri çevrilen (okunur yazı ya da marka) | Karte ("Tap / Insert / Swipe Your Card"), geschlossen (kilitte "SECURITY"; ayrıca "kilitli" diye okunuyor), Kilo (kadranda marka adı; gram gösteriyor) |
+| İncelemede geri çevrilen (karışır, yanlış ülke) | sprechen (ellerde telefon, "telefonieren" diye okunuyor; Kuzey Amerika sokağı) |
 
 Adaylar düzeyinde de en sık iki ret nedeni okunur yazı ve eski fotoğraf ya da yağlı boya portre oldu. 1. turda Herr'in bütün adayları 19. yüzyıldan kalmaydı. Seçilen adaylar kısa sorgu turlarından geldi.
 
 ## Gerçek cihazda bakılacaklar
-- **Karte:** ödeme cihazının ekranındaki küçük "Tap / Insert / Swipe" yazısı kart boyunda okunmamalı.
-- **Kilo:** terazideki küçük logo kart boyunda okunmamalı.
-- **Kare kırpma:** Kilo'da terazinin ayağı, arbeiten'de sol el, sprechen'de sağdaki dinleyici kısmen kesiliyor.
+- **Kare kırpma:** arbeiten'de sol el kısmen kesiliyor.
 - **Herr, alt ve Hausarzt yan yana:** Hausarzt'taki doktor da beyaz sakallı; önlük ve muayene masası ayırıyor.
-- **Brot:** fotoğraf soluk; koyu temada bakılmalı. Daha iyi bir somun bulunursa değiştirilir.
+- **İncelemenin P2 notları** (engel değil; daha iyi aday bulunursa değiştirilir):
+  - Herr düşünür pozunda.
+  - Büro bilgisayar laboratuvarı gibi.
+  - essen İngiliz kahvaltısı.
+  - Hausarzt'ta klinik ya da bakımevi havası var.
+  - Brot soluk; koyu temada bakılmalı.
 - **Abend:** gün batımı; gün doğumuyla ayrımı tek fotoğrafta kesin değil.
 
 ## Açık noktalar
-- **%80 hedefi tutmadı (%72).**
+- **%80 hedefi tutmadı (%61).**
   - Eksik 10 kart için sıra: önce raf (Pixabay; D-112, anahtar yolu #12'de 7054483582), sonra Noto Emoji yedeği (PM-081 B).
-  - Emoji haritası için en uygun adaylar: Fieber (🤒/🌡), Tüte (🛍), Semmel (🥯 değil; dilbilimci baksın), hallo (👋).
+  - Emoji haritası için en uygun adaylar: Fieber (🤒/🌡), Tüte (🛍), Karte (💳), Kilo (⚖), hallo (👋); Semmel için 🥯 uygun değil, dilbilimci baksın.
 - **Ortam engelleri** (bu oturumun ağı):
   - Wikimedia Commons API'si ve dosya sunucusu bu çıkışa 429 veriyor. `thumb.wikimedia.org` kapalı. Bu yüzden PM'in tarif ettiği Commons "Quality/Featured/Valued" havuzu bu turda **kullanılamadı**.
   - `cdn.stocksnap.io` ve `images.rawpixel.com` kapalı, asıl boyut alınamadı. Seçilenler Openverse'in 600 px küçük resminden.
@@ -82,3 +91,4 @@ Adaylar düzeyinde de en sık iki ret nedeni okunur yazı ve eski fotoğraf ya d
   - Yayın (`yayin.sh`, #180) `medya` dalını pakete alacaksa bu adresler yayında yerel yola çevrilmeli.
   - Uygulamanın CSP'si `raw.githubusercontent.com`'a izin vermiyorsa da aynı çevirme gerekir.
   - Karar ANA'nın.
+- **`acik.py`:** `acik.json` başlığı "Üretilir: scripts/foto/acik.py" diyor, ama betik `medya/foto/atif.json`'u okumuyor. Betik bu hâliyle yeniden koşulursa bu turun 14 kaydı kaybolur. Betik ANA'nın: ya `atif.json`'u okumalı ya da elle eklenen kayıtları korumalı.
