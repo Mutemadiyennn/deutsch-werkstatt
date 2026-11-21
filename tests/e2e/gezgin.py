@@ -26,7 +26,9 @@ def screens():
         out += [f"#/scenario/{s}/{x}" for x in SECTIONS]
     # Kalıplar listesi ve kalıp bağı olan bir sözlük kartı (yerleşim B5; inceleme #185 P1-3)
     out += ["#/kalip", "#/sozluk/wo/lx%3Awo"]
-    return out + [f"#/call/{SC}"]
+    # AKIS AK-10 4a: akış günü (e2e paketinde 2. gün halkalı) ve halka adım türleri (yalnız e2e yolu)
+    akis = ["#/akis/2"] if any(g.get("day") == 2 for g in idx.get("m1", [])) else []
+    return out + [f"#/call/{SC}"] + akis + ["#/__halka-turleri"]
 TAP = "main button:not([disabled]), main a[href], main [role=button], .actionbar button:not([disabled]), .actionbar a[href], .tabbar a, .callscreen a, .callscreen button"
 BAD_TEXT = re.compile(r"\bundefined\b|\bNaN\b|\[object Object\]")
 # dışarı açan bağlantılar ve yıkıcı eylemler basılmaz (yalnızca sayılır)

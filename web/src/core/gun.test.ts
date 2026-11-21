@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { Gun } from "@dw/shared";
-import { gunAdimlari, yol, siradaki, xpEkle, seri, XP_BOS } from "./gun.ts";
+import { akisAcik, gunAdimlari, yol, siradaki, xpEkle, seri, XP_BOS } from "./gun.ts";
 
 const g1 = Gun.parse(JSON.parse(readFileSync(join(import.meta.dirname, "../../../content/tools/fixtures/m1/gun-01.json"), "utf8")));
 const g2 = { ...g1, id: "m1:gun:02", day: 2, title_tr: "İkinci gün" } as Gun;
@@ -66,3 +66,24 @@ describe("M1 ders yolu (#58 A5b)", () => {
     expect(y.simdi!.day).toBe(2);
   });
 });
+
+describe("AKIS pilot bayrağı (AK-6, 4b)", () => {
+  const halka = { id: "m1:01:h1", title_tr: "x", kartlar: ["lx:hallo"], kaliplar: [], gorev_cumleleri: [] };
+  it("bayraklı ve halkalı gün akışla açılır; Bahçe ve ders adımları #/akis/<gün>'e, prova/okuma/medya kendi ekranına", () => {
+    const g = { ...g1, halkalar: [halka] } as typeof g1;
+    expect(akisAcik(g, bos(), [1])).toBe(true);
+    const ad = gunAdimlari(g, bos(), {}, [1]).adimlar;
+    expect(ad.filter((a) => a.tur === "bahce").every((a) => a.href === "#/akis/1")).toBe(true);
+    expect(ad.filter((a) => a.tur !== "bahce").every((a) => !a.href.startsWith("#/akis"))).toBe(true);
+  });
+  it("bayraksız, halkasız ya da eski düzenle başlanmış gün eski düzende kalır; akış başladıysa akışla biter", () => {
+    const g = { ...g1, halkalar: [halka] } as typeof g1;
+    expect(akisAcik(g, bos(), [])).toBe(false);
+    expect(akisAcik(g1, bos(), [1])).toBe(false);
+    const eski = { ...bos(), bahceBitti: new Set([1]) };
+    expect(akisAcik(g, eski, [1])).toBe(false);
+    expect(gunAdimlari(g, eski, {}, [1]).adimlar[0]!.href).toBe("#/garden/1");
+    expect(akisAcik(g, { ...eski, akisBasladi: new Set([1]) }, [1])).toBe(true);
+  });
+});
+
