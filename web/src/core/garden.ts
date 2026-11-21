@@ -199,6 +199,9 @@ export function yarinKartSayisi(items: ReadonlyMap<string, LearnerItem>, lex: Re
   return n;
 }
 
+/** Tur sonu cümlesi: sayı bir turun sınırını aşarsa yarın kaçla başlanacağı ve sıradaki toplam (inceleme #188 P2-3) */
+export const yarinMetni = (n: number) => (!n ? "Yarın yeni kartlar gelecek." : n > TUR_EN_COK ? `Yarın ${TUR_EN_COK} kartla başlarsın; sırada toplam ${n} kart var.` : `Yarın ${n} kart seni bekliyor.`);
+
 /**
  * Bir tur kurar. `items`: öğrenci modeli (yalnızca lexeme türü kullanılır). `pool`: yeni kart adayları sırasıyla.
  * Sıra: vadesi gelen aktif → üretime açılan (tanıtılmış) kartlar → vadesi gelen pasif → öncelikli yeni (duyduğum) → yeni.

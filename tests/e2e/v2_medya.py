@@ -30,8 +30,9 @@ def yildiz(pg, ne):
     if "**" in t and ne not in YILDIZ: YILDIZ.append(ne)
 
 def adim(pg):
-    yildiz(pg, pg.get_attribute("[data-test=medya]", "data-adim") or "medya")
-    return pg.get_attribute("[data-test=medya]", "data-adim") if pg.locator("[data-test=medya][data-adim]").count() else None
+    a = pg.get_attribute("[data-test=medya]", "data-adim") if pg.locator("[data-test=medya][data-adim]").count() else None
+    yildiz(pg, a or "medya")
+    return a
 
 def wait_change(pg, before):
     pg.wait_for_function("""(b) => { const m = document.querySelector('[data-test=medya]'); if (!m) return true;
@@ -203,6 +204,7 @@ def main():
         # anons: aynı akış, tek bölüm, sonunda "Ne yapmalısın?"
         pg.click("[data-test=medya-geri]"); pg.wait_for_selector("[data-test=m1-gun]")
         pg.locator("[data-test=medya-ses]").first.click(); pg.wait_for_selector("[data-test=ses-kart]")
+        yildiz(pg, "ses kartı")
         check(pg.locator("[data-test=video]").count() == 0, "anons: video yok, ses kartı var")
         if shots: shot(pg, "m04-anons", full=False)
         k = 0

@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { Lexeme } from "@dw/shared";
 import type { LearnerItem } from "@dw/shared";
-import { kendiCumleAcik, sinaKabul, sinaTuru, synonymHit, personalMatch, availableTypes, fotoluKartlar, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak, formFor, guclu, GUCLU_GUN, siradakiEx, sonrakiExSeen, yarinKartSayisi } from "./garden.ts";
+import { kendiCumleAcik, sinaKabul, sinaTuru, synonymHit, personalMatch, availableTypes, fotoluKartlar, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak, formFor, guclu, GUCLU_GUN, siradakiEx, sonrakiExSeen, yarinKartSayisi, yarinMetni } from "./garden.ts";
 import { review, sessionKey } from "./srs.ts";
 import { turKademe, TUR_BASLIK } from "../ui/solen.tsx";
 
@@ -354,5 +354,12 @@ describe("tur sonu 'Yarın N kart' (öğrenci günlüğü 7057160147 N6)", () =>
     expect(Date.parse(iyi.passive.fsrs!.due) - t0.getTime()).toBeGreaterThan(24 * 3600_000);
     const kotu = review(undefined, { itemId: "lx:absagen", kind: "lexeme", path: "passive", outcome: "wrong", session: s(t0) }, t0);
     expect(yarinKartSayisi(new Map([["lx:Termin", iyi], ["lx:absagen", kotu]]), lex, t0)).toBe(1);
+  });
+});
+describe("tur sonu cümlesi (inceleme #188 P2-3)", () => {
+  it("0, ≤ 12 ve 12'yi aşan sayı", () => {
+    expect(yarinMetni(0)).toBe("Yarın yeni kartlar gelecek.");
+    expect(yarinMetni(12)).toBe("Yarın 12 kart seni bekliyor.");
+    expect(yarinMetni(29)).toBe("Yarın 12 kartla başlarsın; sırada toplam 29 kart var.");
   });
 });
