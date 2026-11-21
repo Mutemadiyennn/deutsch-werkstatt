@@ -136,7 +136,7 @@ const index: ContentIndex = {
     kartlar: g.yeni_kartlar.filter((id) => { const l = lexById.get(id); return !!l && kartMi(l); }), medya: medyalar(g).map((m) => ({ id: m.id, kind: m.kind, title_tr: m.title_tr })) })),
   temel: temel.map((t) => ({ id: t.id, order: t.order, title_tr: t.title_tr, title_de: t.title_de, review: t.review.status })),
   counts: { lexemes: c.lexemes.length, grammar: c.grammar.length, assess: c.assess.length, scenarios: c.scenarios.length },
-  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles, ...(acik ? { foto: "foto.json" } : {}) }
+  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles, ...(acik ? { foto: "foto.json" } : {}), genelAdlar: "genel-adlar.json" }
 };
 w("genel-adlar.json", genelAdlar);
 w("index.json", index);
