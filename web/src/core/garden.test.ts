@@ -346,6 +346,13 @@ describe("tur sonu 'Yarın N kart' (öğrenci günlüğü 7057160147 N6)", () =>
     const kartDegil = review(undefined, { itemId: "lx:der", kind: "lexeme", path: "passive", outcome: "wrong", session: s }, t0);
     const m = new Map<string, LearnerItem>([["lx:Termin", yeni], ["ders:x:1", cumle], ["lx:der", kartDegil]]);
     expect(yarinKartSayisi(m, lex, t0)).toBe(1);
-    expect(yarinKartSayisi(m, lex, new Date("2026-10-01T10:00:00Z"))).toBe(0);
+  });
+  it("bugün doğru cevaplanıp aralığı bir günü aşan kart sayılmaz, bugün yanlış cevaplanan sayılır (inceleme #188 P2-2)", () => {
+    const t0 = new Date("2026-11-01T10:00:00Z"), s = (d: Date) => sessionKey("g", d.getTime());
+    let iyi = review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "correct", session: s(new Date("2026-10-01T10:00:00Z")) }, new Date("2026-10-01T10:00:00Z"));
+    for (const g of ["2026-10-05", "2026-10-15", "2026-11-01"]) iyi = review(iyi, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "correct", session: s(new Date(g + "T10:00:00Z")) }, new Date(g + "T10:00:00Z"));
+    expect(Date.parse(iyi.passive.fsrs!.due) - t0.getTime()).toBeGreaterThan(24 * 3600_000);
+    const kotu = review(undefined, { itemId: "lx:absagen", kind: "lexeme", path: "passive", outcome: "wrong", session: s(t0) }, t0);
+    expect(yarinKartSayisi(new Map([["lx:Termin", iyi], ["lx:absagen", kotu]]), lex, t0)).toBe(1);
   });
 });

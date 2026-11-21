@@ -23,7 +23,14 @@ def install_media():
         os.makedirs(os.path.join(os.path.dirname(d), "media"), exist_ok=True)
         shutil.copy(os.path.join(os.path.dirname(__file__), "fixtures", "m1-01-v1.webm"), os.path.join(os.path.dirname(d), "media", "m1-01-v1.webm"))
 
+YILDIZ = []  # öğrenci günlüğü N4, inceleme #188 P1-1: medya ekranlarının hiçbirinde ham ** yok (her adımda bakılır)
+
+def yildiz(pg, ne):
+    t = pg.inner_text("main") if pg.locator("main").count() else ""
+    if "**" in t and ne not in YILDIZ: YILDIZ.append(ne)
+
 def adim(pg):
+    yildiz(pg, pg.get_attribute("[data-test=medya]", "data-adim") or "medya")
     return pg.get_attribute("[data-test=medya]", "data-adim") if pg.locator("[data-test=medya][data-adim]").count() else None
 
 def wait_change(pg, before):
@@ -64,6 +71,7 @@ def main():
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         pg.goto(base + "#/learn"); pg.wait_for_selector("[data-test=m1-liste]")
         pg.click("[data-test=m1-gun-1]"); pg.wait_for_selector("[data-test=m1-gun]")
+        yildiz(pg, "gün listesi")
         check(pg.locator("[data-test=medya-video]").count() == 1 and pg.locator("[data-test=medya-ses]").count() >= 2, "gün sayfası: 1 video + en az 2 ses")
         pg.click("[data-test=medya-video]"); pg.wait_for_selector("[data-test=medya][data-adim=dinle]")
         pg.wait_for_selector("[data-test=video]")
@@ -212,6 +220,7 @@ def main():
         no_overflow(pg, "%130 yazı medya")
         b.close()
     srv.shutdown()
+    check(not YILDIZ, f"medya ekranlarında ham ** yok (sorunlu: {YILDIZ})")
     finish()
 
 if __name__ == "__main__":

@@ -136,7 +136,7 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
 
   if (p.bitti) return (
     <div class="stack" data-test="medya">
-      <ProgressHeader title={m.title_tr} back={geri} right={<FocusChip />} sub={baslik} />
+      <ProgressHeader title={plain(m.title_tr)} back={geri} right={<FocusChip />} sub={baslik} />
       {m.eylem && !p.eylem ? <EylemSoru m={m} onDone={(ok) => setP({ ...p, eylem: true, dogru: p.dogru + (ok ? 1 : 0), toplam: p.toplam + 1 })} />
         : <section class="card stack" data-test="medya-bitti"><h2>Bitti</h2>
             <p>{p.toplam} soruda {p.dogru} doğru. {m.bolumler.length > 1 ? `${m.bolumler.length} bölümün hepsini çalıştın.` : ""}</p>
@@ -157,14 +157,14 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
   // doğru cevabın XP'si cevap anında uçar (ilk çalışmada; tekrar çalışmada XP yok — inceleme #87 P1-2)
   return (<CevapXp.Provider value={p.ilkBitti ? 0 : XP.dogru}>
     <div class="stack" data-test="medya" data-adim={adim} data-pos={`${p.b}.${p.s}.${p.k}`}>
-      <ProgressHeader title={m.title_tr} back={geri} right={<FocusChip />} sub={`Bölüm ${p.b + 1}/${m.bolumler.length} · ${ADIM_TR[adim]}`} />
+      <ProgressHeader title={plain(m.title_tr)} back={geri} right={<FocusChip />} sub={`Bölüm ${p.b + 1}/${m.bolumler.length} · ${ADIM_TR[adim]}`} />
       {/* PM-053 §4: video üstte sabit, sorular altta akar */}
       <div class="medya-ust" data-test="medya-ust">
         {m.kind === "video" && m.video ? (
           <>
             {m.video.medya.length && !vidHata ? (
               <video ref={setVideo} playsInline preload="auto" poster={m.video.poster ? base + m.video.poster : undefined} data-test="video"
-                onError={() => setVidHata(true)} aria-label={m.title_tr}>
+                onError={() => setVidHata(true)} aria-label={plain(m.title_tr)}>
                 {m.video.medya.map((s) => <source src={base + s.src} type={s.type} onError={(e) => { const v = (e.target as HTMLElement).parentElement as HTMLVideoElement | null; if (v && v.networkState === 3) setVidHata(true); }} />)}
               </video>
             ) : (
@@ -176,7 +176,7 @@ function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; ba
             {m.ortam_tr && adim === "dinle" && <p class="small" style={{ margin: 0 }} data-test="video-ortam"><Rich text={m.ortam_tr} /></p>}
           </>
         ) : (
-          <div class="card row medya-ses" data-test="ses-kart"><Icon name={m.kind === "ses" ? "phone" : "play"} /><span class="grow"><b>{m.title_tr}</b>{m.ortam_tr && <><br /><span class="small muted"><Rich text={m.ortam_tr} /></span></>}</span></div>
+          <div class="card row medya-ses" data-test="ses-kart"><Icon name={m.kind === "ses" ? "phone" : "play"} /><span class="grow"><b><Rich text={m.title_tr} /></b>{m.ortam_tr && <><br /><span class="small muted"><Rich text={m.ortam_tr} /></span></>}</span></div>
         )}
       </div>
 
@@ -370,7 +370,7 @@ function TranskriptAdimi({ cs, lex, oy, onNext }: { cs: MedyaCumle[]; lex: Lexem
         // dinle düğmesi cümlenin sağında sabit: uzun cümlede alt satıra tek başına düşmez (öğrenci günlüğü 7057160147 N8)
         <p class={`transkript-satir${oy.calisiyor === c.id ? " on" : ""}`}>
           <span class="grow"><DokunMetin de={c.de} onKelime={setKelime} />
-            <br /><span class="small muted">{c.tr}</span></span>
+            <br /><span class="small muted"><Rich text={c.tr} /></span></span>
           <button class="btn ghost sm" aria-label="Bu cümleyi dinle" data-test="transkript-dinle" onClick={() => void oy.cumle(c, false)}><Icon name="play" /></button></p>))}
       {kelime && <KelimeSayfasi kelime={kelime} lex={lex} onClose={() => setKelime(null)} />}
       {!kelime && <ActionBar><button class="btn primary block" data-test="next" onClick={onNext}>Devam</button></ActionBar>}
@@ -388,7 +388,7 @@ function GolgeAdimi({ c, sira, oy, onNext }: { c: MedyaCumle; sira: string; oy: 
   return (
     <section class="card stack fade" data-test="adim-golge">
       <div class="kicker">Gölge konuşma {sira}: dinle, hemen aynısını söyle</div>
-      <div class="de-lg" lang="de">{c.de}</div><p class="small muted">{c.tr}</p>
+      <div class="de-lg" lang="de">{c.de}</div><p class="small muted"><Rich text={c.tr} /></p>
       <div class="row"><button class="btn primary grow" data-test="golge-dinle" onClick={() => void oy.cumle(c, false)}><Icon name="play" /> Dinle</button>
         <button class="btn grow" onClick={() => void oy.cumle(c, true)}>0,75×</button></div>
       {duydum !== null && skor && (
@@ -441,11 +441,11 @@ export function M1Gun({ day }: { day: number }) {
   const ad = { video: "Video", ses: "Dinle", sahne: "Köy dizisi" } as const;
   return (
     <div class="stack" data-test="m1-gun">
-      <ProgressHeader title={`${gun.day}. gün: ${gun.title_tr}`} back="#/learn" />
+      <ProgressHeader title={`${gun.day}. gün: ${plain(gun.title_tr)}`} back="#/learn" />
       <p class="small"><Rich text={gun.goal_tr} /></p>
       <ul class="list card">{medyalar(gun).map((m) => (
         <li><a class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }} href={`#/m1/${gun.day}/${encodeURIComponent(m.id)}`} data-test={`medya-${m.kind}`}>
-          <span class="grow"><span class="tiny muted">{ad[m.kind]} · {m.bolumler.length} bölüm</span><br /><b>{m.title_tr}</b></span><span aria-hidden="true">›</span></a></li>))}</ul>
+          <span class="grow"><span class="tiny muted">{ad[m.kind]} · {m.bolumler.length} bölüm</span><br /><b><Rich text={m.title_tr} /></b></span><span aria-hidden="true">›</span></a></li>))}</ul>
     </div>
   );
 }
