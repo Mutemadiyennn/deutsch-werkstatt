@@ -3,6 +3,7 @@
  *   GET  /v1/health   — kimlik gerekmez; yalnızca yapılandırma durumu (gizli değer döndürmez)
  *   GET  /v1/usage    — günlük yapay zekâ kullanımı
  *   POST /v1/ai/run   — { task, vars } → { task, output, model, ms }
+ *   GET  /v1/pixabay  — MEDYA aracı: yalnız RAF_ARAC_JETONU ile (pixabay.ts)
  */
 import { AiRunRequest, type HealthResponse } from "@dw/shared";
 import { authenticate } from "./auth.ts";
@@ -10,6 +11,7 @@ import { HttpError, corsHeaders, errorResponse, json } from "./http.ts";
 import { aiUsage, takeAi } from "./quota.ts";
 import { runTask } from "./ai/tasks.ts";
 import { searchPhotos } from "./photos.ts";
+import { aracJetonu, pixabayAra } from "./pixabay.ts";
 import { VERSION, type Env } from "./env.ts";
 
 export async function handle(req: Request, env: Env): Promise<Response> {
@@ -18,7 +20,7 @@ export async function handle(req: Request, env: Env): Promise<Response> {
   if (req.method === "OPTIONS") return new Response(null, { status: Object.keys(cors).length ? 204 : 403, headers: cors });
   try {
     if (url.pathname === "/v1/health" && req.method === "GET") {
-      const body: HealthResponse = { ok: true, version: VERSION, time: new Date().toISOString(), provider: (env.AI_PROVIDER || "none").trim(), configured: { gemini: !!env.GEMINI_KEY && (env.AI_PROVIDER || "").trim() === "gemini", workers_ai: !!env.AI && (env.AI_PROVIDER || "").trim() === "workers-ai", pexels: !!env.PEXELS_KEY, allowlist: !!(env.ALLOWED_UIDS || "").trim() } };
+      const body: HealthResponse = { ok: true, version: VERSION, time: new Date().toISOString(), provider: (env.AI_PROVIDER || "none").trim(), configured: { gemini: !!env.GEMINI_KEY && (env.AI_PROVIDER || "").trim() === "gemini", workers_ai: !!env.AI && (env.AI_PROVIDER || "").trim() === "workers-ai", pexels: !!env.PEXELS_KEY, pixabay: !!env.PIXABAY_KEY && (env.RAF_ARAC_JETONU ?? "").trim().length >= 32, allowlist: !!(env.ALLOWED_UIDS || "").trim() } };
       return json(body, 200, cors);
     }
     if (url.pathname === "/v1/usage" && req.method === "GET") {
@@ -30,6 +32,12 @@ export async function handle(req: Request, env: Env): Promise<Response> {
       await authenticate(req, env);
       const photos = await searchPhotos(env, url.searchParams.get("q") || "", Math.min(8, Number(url.searchParams.get("n") || 8)));
       return json({ photos }, 200, { ...cors, "Cache-Control": "private, max-age=86400" });
+    }
+    if (url.pathname === "/v1/pixabay" && req.method === "GET") {
+      // yanlış jeton: genel "bulunamadı" ile aynı yanıt (uç var mı belli olmaz)
+      if (!(await aracJetonu(req, env))) return json({ error: { code: "invalid_request", message_tr: "Bulunamadı.", retryable: false } }, 404, cors);
+      const hits = await pixabayAra(env, url.searchParams.get("q") || "", Number(url.searchParams.get("n") || 20), url.searchParams.get("lang") || "en");
+      return json({ hits }, 200, cors);
     }
     if (url.pathname === "/v1/ai/run" && req.method === "POST") {
       const u = await authenticate(req, env);

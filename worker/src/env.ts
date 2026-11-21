@@ -8,6 +8,10 @@ export interface Env {
   GEMINI_KEY?: string;
   /** Gizli: Pexels API anahtarı (fotoğraflar) */
   PEXELS_KEY?: string;
+  /** Gizli: Pixabay API anahtarı (yalnız MEDYA aracı /v1/pixabay; PM 7055725467 md. 2) */
+  PIXABAY_KEY?: string;
+  /** Gizli: MEDYA aracının jetonu (≥ 32 karakter; Firebase kimliğinden ayrı) */
+  RAF_ARAC_JETONU?: string;
   /** Gizli: izinli Firebase uid listesi (virgülle) */
   ALLOWED_UIDS?: string;
   /** Firebase proje kimliği (gizli değil) */
