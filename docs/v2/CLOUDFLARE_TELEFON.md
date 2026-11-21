@@ -1,6 +1,6 @@
 # Sunucuyu (Cloudflare Worker) telefondan kurmak
 
-Toplam 15–20 dakika sürer. Hiçbir yerde kredi kartı ya da ücretli plan gerekmez. Anahtarları yalnızca sen girersin; GitHub'ın şifreli "secret" alanında dururlar ve hiç kimseye (bana da) gösterilmezler.
+Toplam 15–20 dakika sürer. Hiçbir yerde kredi kartı ya da ücretli plan gerekmez. Anahtarları yalnızca sen girersin ve hiç kimseye (bana da) gösterilmezler. **Actions kapalı olduğundan güncel yol G bölümüdür** (Cloudflare Workers Builds; anahtarlar Cloudflare panelinde). A–F, Worker'ın ilk kurulumu ve geçmiş için duruyor.
 
 > Cloudflare ve GitHub zaman zaman ekranlarındaki adları değiştirir. Bir düğmeyi bulamazsan, aynı anlama gelen yakın bir adı ara. Takılırsan ekran görüntüsünü bana gönder.
 
@@ -61,8 +61,9 @@ GitHub Actions bu depoda kapalı olduğu için A–F'deki "Run workflow" adımla
     - Değişken yoksa derleme bilerek durur; kotasız Worker yayına girmez.
 27. **Gizli değerler doğrudan Cloudflare panelinden girilir** (GitHub secret'ları artık kullanılmaz). Worker → **Settings → Variables and Secrets** → **Add** → tür **Secret**:
     - `ALLOWED_UIDS`: Profil → Hesap kimliği (virgülle birden çok);
-    - `RAF_FAIL_CLOSED`: kapalı medya rafının "erişemezsem kapat" anahtarı; değer `1`;
     - gerekirse `PEXELS_KEY`.
+    - Önceden girilmiş secret'lar yerinde kalır; `wrangler deploy` onları silmez. Yalnız eksik olanı ekle.
+27b. **Kapalı medya rafı koruması bir Worker değişkeni değildir** (D-112 a). Raf Pages projesinde: **Workers & Pages → raf projesi → Settings → Functions** → kota dolunca davranış **Fail closed** seçili olmalı. Doldurma hattının bildirim değişkeni (`RAF_FAIL_CLOSED`) Actions'la birlikte kullanılmıyor. Bu ayar rafın kendisini korur.
 28. **Save and deploy.** Bundan sonra `main`'e her birleşmede Cloudflare kendisi derler. Derleme günlüğü panelde **Deployments** altında görünür.
 29. Uygulamada **Profil → Sunucu bağlantısını kontrol et** → "Sunucu çalışıyor".
 
