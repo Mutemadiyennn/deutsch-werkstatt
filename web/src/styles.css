@@ -722,3 +722,23 @@ html:has(.actionbar) .toast { bottom: auto; top: calc(var(--safe-top) + 12px); }
 .kelime-kare figcaption { grid-column: 1 / -1; grid-row: 2; margin-top: -4px; }
 /* kare düzende kart içi aralık biraz sıkı (yalnızca sığmayan uzun kartlar) */
 section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
+
+/* AKIS AK-10 3. adım (TARGET3b 3–4): resimden seç ve eşleştir */
+.resim-izgara { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; max-width: 344px; margin: 0 auto; }
+.resim-secenek { position: relative; padding: 0; border: 0; border-radius: 18px; overflow: hidden; aspect-ratio: 1 / 1; background: var(--soft); box-shadow: 0 3px 0 rgba(0, 0, 0, 0.08), 0 0 0 1.5px var(--line) inset; cursor: pointer; transition: transform var(--t), opacity var(--t); }
+.resim-secenek img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.resim-secenek:active { transform: translateY(2px); }
+.resim-secenek.sel { box-shadow: 0 0 0 3px var(--accent); }
+.resim-secenek.right { box-shadow: 0 0 0 3px var(--ok); }
+.resim-secenek.wrong { box-shadow: 0 0 0 3px var(--bad); }
+.resim-secenek.soluk { opacity: 0.45; }
+.resim-isaret { position: absolute; top: 8px; right: 8px; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--ok); color: #fff; }
+.esles-izgara { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.esles-hucre { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 56px; padding: 8px 10px; border: 0; border-radius: 16px; background: var(--card); color: var(--ink); box-shadow: 0 3px 0 rgba(0, 0, 0, 0.08), 0 0 0 1.5px var(--line) inset; font: inherit; font-weight: 700; text-align: center; overflow-wrap: anywhere; hyphens: manual; cursor: pointer; transition: background var(--t), transform var(--t); }
+.esles-hucre.sol { font-size: 1.05rem; }
+.esles-hucre.sag { font-weight: 600; }
+.esles-hucre.sel { background: var(--soft); box-shadow: 0 0 0 2px var(--accent) inset; color: var(--ink); }
+.esles-hucre.right { background: var(--ok-soft); box-shadow: 0 0 0 2px var(--ok) inset; color: var(--ok); cursor: default; }
+.esles-hucre.gosterildi { background: var(--soft); color: var(--muted); cursor: default; }
+.esles-hucre.salla { background: var(--bad-soft); box-shadow: 0 0 0 2px var(--bad) inset; animation: fbSalla 360ms ease-out; }
+@media (prefers-reduced-motion: reduce) { .esles-hucre.salla { animation: none; } }

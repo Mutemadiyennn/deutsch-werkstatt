@@ -8,7 +8,7 @@
    - current.json: önce ağ (3 sn), olmazsa önbellek; içerik dosyaları sürüm yollu olduğu için önbellekten gelir.
    Başka bir işçi (ör. v1) önbellekleri silerse bir sonraki açılışta "sync" hepsini yeniden kurar. */
 const BUILD = new URL(self.location.href).searchParams.get("b") || "dev";
-const SHELL = `dw2-shell-${BUILD}`, CUR = "dw2-cur", DONE = "__complete";
+const SHELL = `dw2-shell-${BUILD}`, CUR = "dw2-cur", DONE = "__complete", FOTO = "dw2-foto";
 const scope = new URL(self.registration.scope);
 const inScope = (u) => u.origin === scope.origin && u.pathname.startsWith(scope.pathname);
 const rel = (u) => u.pathname.slice(scope.pathname.length);
@@ -124,7 +124,17 @@ self.addEventListener("fetch", (e) => {
   const req = e.request;
   if (req.method !== "GET") return;
   const u = new URL(req.url);
-  if (!inScope(u)) return; // Worker, Firebase, fotoğraflar: doğrudan ağ
+  // seçilmiş açık fotoğraflar (Releases; AK-10 3. adım, inceleme #183 P1-2): görüldükçe saklanır, çevrimdışında önbellekten gelir.
+  // Yalnız depo Releases adresleri; arama fotoğrafları ve öteki dış adresler önbelleğe girmez.
+  if (req.destination === "image" && u.hostname === "github.com" && u.pathname.includes("/releases/download/")) {
+    e.respondWith((async () => {
+      const c = await caches.open(FOTO);
+      const h = await c.match(req.url); if (h) return h;
+      try { const r = await fetch(req); if (r.ok || r.type === "opaque") c.put(req.url, r.clone()); return r; } catch { return Response.error(); }
+    })());
+    return;
+  }
+  if (!inScope(u)) return; // Worker, Firebase, arama fotoğrafları: doğrudan ağ
   if (req.mode === "navigate") {
     e.respondWith((async () => {
       const c = await caches.open(SHELL);

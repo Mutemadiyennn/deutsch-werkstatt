@@ -19,6 +19,7 @@ import { Ctx, LEARNING_ROUTES, parseHash, type AppCtx, type Route } from "./stat
 import { auth, type AuthUser } from "./services/auth.ts";
 import { createApi } from "./services/api.ts";
 import { SesDeneme } from "./screens/SesDeneme.tsx";
+import { HalkaTurDeneme } from "./screens/HalkaTurDeneme.tsx";
 import { loadIndex, within, loadWorld } from "./services/content.ts";
 import { getProfile, latestPlacement, saveProfile } from "./data/db.ts";
 import { setLearning, startFocus, updateFocusConfig } from "./services/focusRuntime.ts";
@@ -164,9 +165,10 @@ export function App() {
     case "gorevler": screen = <GorevlerRota />; break;
     case "odak": screen = <OdakEkrani />; break;
     case "m1medya": screen = <MedyaEkrani key={route.id} day={route.day} id={route.id} />; break;
-    default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : <Today />;
+    // yalnız e2e: AK-10 3. adımın iki türü, ekran (4. adım) gelene kadar (üretimde bu dal ve modül paketten düşer)
+    default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__halka-turleri") ? <HalkaTurDeneme key={location.hash} /> : <Today />;
   }
-  const tabs = !!profile.onboardedAt && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma";
+  const tabs = !!profile.onboardedAt && !(import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__halka-turleri")) && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma";
   return (
     <Ctx.Provider value={ctx}>
       <main class={`app${tabs ? "" : " notabs"}`}>{tabs && <DurumCubugu />}<ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>

@@ -32,6 +32,8 @@ jobs:
           npm run build -w web
           # Worker adresi üretim paketinde olmalı, e2e paketinde olmamalı (inceleme #123 P2-5)
           A=$(sed -n 's/^VITE_API_BASE=//p' web/.env.production); [ -n "$A" ] && grep -q "$A" web/dist/assets/*.js || { echo "::error::üretim paketinde Worker adresi yok"; exit 1; }
+          # yalnız e2e'deki deneme yolları üretim paketine girmez (AK-10 3. adım #/__halka-turleri, #/__crash)
+          ! grep -lE "__halka-turleri|e2e: bilerek hata" web/dist/assets/*.js || { echo "::error::e2e deneme yolu üretim paketinde"; exit 1; }
           # e2e paketi: içerikte henüz olmayan M1 günü için örnek gün (yayın paketine girmez)
           DW_E2E_FIXTURES=1 npm run content:build
           (cd web && npx vite build --mode e2e --outDir dist-e2e)
@@ -150,6 +152,8 @@ jobs:
         run: cd tests/e2e && python v2_sozluk.py
       - name: "Dinleme başlangıç hızı (#58 B7): Yavaş seçiliyse ilk çalma yavaş, tekrar normal; Profil'de Normal etkili"
         run: cd tests/e2e && python v2_hiz.py
+      - name: "Halka adım türleri (AKIS AK-10 3. adım): resimden seç, eşleştir; açık + koyu, 932/844, ağ kesik"
+        run: cd tests/e2e && python v2_halka_tur.py --shots /tmp/shots
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4
