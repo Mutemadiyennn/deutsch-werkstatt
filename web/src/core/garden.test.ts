@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { Lexeme } from "@dw/shared";
 import type { LearnerItem } from "@dw/shared";
-import { kendiCumleAcik, sinaKabul, sinaTuru, synonymHit, personalMatch, availableTypes, fotoluKartlar, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak, formFor, guclu, GUCLU_GUN, siradakiEx, sonrakiExSeen } from "./garden.ts";
+import { kendiCumleAcik, sinaKabul, sinaTuru, synonymHit, personalMatch, availableTypes, fotoluKartlar, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak, formFor, guclu, GUCLU_GUN, siradakiEx, sonrakiExSeen, yarinKartSayisi } from "./garden.ts";
 import { review, sessionKey } from "./srs.ts";
 import { turKademe, TUR_BASLIK } from "../ui/solen.tsx";
 
@@ -338,4 +338,14 @@ describe("Kelime Bahçesi (PM-049)", () => {
     expect(sinaKabul(absagen)).toContain("absagen");
   });
 });
-
+describe("tur sonu 'Yarın N kart' (öğrenci günlüğü 7057160147 N6)", () => {
+  it("yalnız sözcük kartları; ders/cümle öğesi ve kart sayılmayan sözcük sayılmaz; uzak vadeli kart sayılmaz", () => {
+    const t0 = new Date("2026-11-01T10:00:00Z"), s = sessionKey("g", t0.getTime());
+    const yeni = review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "wrong", session: s }, t0);
+    const cumle = { ...review(undefined, { itemId: "ders:x:1", kind: "lexeme", path: "passive", outcome: "wrong", session: s }, t0) };
+    const kartDegil = review(undefined, { itemId: "lx:der", kind: "lexeme", path: "passive", outcome: "wrong", session: s }, t0);
+    const m = new Map<string, LearnerItem>([["lx:Termin", yeni], ["ders:x:1", cumle], ["lx:der", kartDegil]]);
+    expect(yarinKartSayisi(m, lex, t0)).toBe(1);
+    expect(yarinKartSayisi(m, lex, new Date("2026-10-01T10:00:00Z"))).toBe(0);
+  });
+});

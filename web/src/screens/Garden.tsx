@@ -15,11 +15,10 @@ import { XP, seri, yerelGun } from "../core/gun.ts";
 import { bahceGorulenEkle, getMeta, itemsMap, metaPrefix, personalWords, putItems, setMeta } from "../data/db.ts";
 import POLICY from "../policy.json" with { type: "json" };
 import { hizliGecis, review, sessionKey, type Outcome } from "../core/srs.ts";
-import { accepted, availableTypes, buildRound, fotoluKartlar, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, boslukSecimi, ertele, esdizimler, gosterilenCogul, tanitildi, gorulenKelimeler, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, type GardenQ, type QType } from "../core/garden.ts";
+import { accepted, availableTypes, buildRound, fotoluKartlar, isCard, personalMatch, collocOf, synonymHit, collocQuestion, formFor, boslukSecimi, ertele, esdizimler, gosterilenCogul, tanitildi, gorulenKelimeler, havuz, isNoun, sonrakiExSeen, meaningOptions, ownSentenceCheck, type Yakinlik, pathOf, requeue, startedToday, m1Hak, DAILY_ACTIVE, DAILY_NEW, HIZLI_SN, ONERI_ART_ARDA, sinaKabul, sinaTuru, yarinKartSayisi, type GardenQ, type QType } from "../core/garden.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { umlautEksik } from "../core/esdeger.ts";
 import { judgeWord, numberWordHint } from "../core/grading.ts";
-import { isDue } from "../core/srs.ts";
 import { speak, stopSpeaking } from "../services/speech.ts";
 import { haptic } from "../services/haptics.ts";
 import { ActionBar, AnswerField, FeedbackBand, ListenButton, ProgressHeader, YanlisIci } from "../ui/kit.tsx";
@@ -128,7 +127,7 @@ function GardenTur({ day, again }: { day?: number; again: () => void }) {
   const { round } = data;
   const kalanSayi = data.gunKartlari.filter((id) => !data.items.has(id)).length;
   if (!round.length) return <GardenEmpty day={day} capped={data.capped} />;
-  if (i >= round.length) return <GardenDone day={day} score={score} items={data.items} kalan={kalanSayi} again={again} xp={turXp} gorevTur={gorevTur} turKimlik={`tur@${startedAt}`}
+  if (i >= round.length) return <GardenDone day={day} score={score} items={data.items} lex={data.lex} kalan={kalanSayi} again={again} xp={turXp} gorevTur={gorevTur} turKimlik={`tur@${startedAt}`}
     kelimeler={[...new Set(round.filter((q) => q.intro || q.sina).map((q) => { const l = data.lex.get(q.lexId); return l ? (l.art ? `${l.art} ${l.de}` : l.de) : ""; }).filter(Boolean))]} />;
   const q = round[i]!;
   const l = data.lex.get(q.lexId)!;
@@ -497,18 +496,16 @@ function ChoiceQ({ q, l, all, yakin, ex, show, verdict }: { q: GardenQ; l: Lexem
   );
 }
 
-/** Tur sonu: yarın kaç kart dönecek (somut "sırada ne var") */
-function tomorrow(items: Map<string, LearnerItem>): string {
-  const t = new Date(Date.now() + 24 * 3600_000);
-  let n = 0;
-  for (const it of items.values()) if (isDue(it, "passive", t) || isDue(it, "active", t)) n++;
-  return n ? `Yarın ${n} kart seni bekliyor.` : "Yarın yeni kartlar gelecek.";
-}
+/** Tur sonu: yarın kaç Bahçe kartı dönecek (somut "sırada ne var") */
+const tomorrow = (n: number) => (n ? `Yarın ${n} kart seni bekliyor.` : "Yarın yeni kartlar gelecek.");
 
 /** Tur sonu. M1 gününde günün kartlarından tanıtılmamış kalan varsa ana eylem "Bir tur daha" (Seans 1 henüz bitmedi) */
-function GardenDone({ day, score, items, kalan, again, xp, kelimeler, gorevTur, turKimlik }: { day?: number; score: { ok: number; n: number }; items: Map<string, LearnerItem>; kalan: number; again: () => void; xp: number; kelimeler: string[]; gorevTur: { temiz: number; toplam: number }; turKimlik: string }) {
+function GardenDone({ day, score, items, lex, kalan, again, xp, kelimeler, gorevTur, turKimlik }: { day?: number; score: { ok: number; n: number }; items: Map<string, LearnerItem>; lex: Map<string, Lexeme>; kalan: number; again: () => void; xp: number; kelimeler: string[]; gorevTur: { temiz: number; toplam: number }; turKimlik: string }) {
   const devam = !!day && kalan > 0;
   const [seriGun, setSeriGun] = useState<number | undefined>();
+  // turun başındaki anlık görüntü değil, turdan sonraki kayıt: bugün cevaplanan kart "yarın" sayılmaz (öğrenci günlüğü 7057160147 N6)
+  const [yarin, setYarin] = useState<number | undefined>();
+  useEffect(() => { void itemsMap([...items.keys()]).then((m) => setYarin(yarinKartSayisi(m, lex, new Date()))); }, []);
   // tur sonu sayfanın başından açılır: son cevap kartının kaydırması "Tur bitti" ve halkayı ekran dışında bırakmasın (inceleme #100 2. tur)
   // önceki cevap kartının yumuşak kaydırması sürüyor olabilir: hemen ve bir kare sonra başa
   useEffect(() => {
@@ -523,7 +520,7 @@ function GardenDone({ day, score, items, kalan, again, xp, kelimeler, gorevTur, 
         <Ozet dogru={score.ok} toplam={score.n} xp={xp} seriGun={seriGun} kelimeler={kelimeler} />
         {/* PM 7030294523 B9: metin gerçeği söyler — yanlışlar aynı turun sonunda bir kez daha sorulur (requeue), sonra aralıklı tekrar */}
         {score.ok < score.n && <p class="small" data-test="tur-yanlis-not">Yanlış yaptıkların bu turun sonunda bir kez daha geldi; sonra aralıklarla yine karşına çıkacak.</p>}
-        {devam ? <p data-test="garden-kalan">Bugünün kartlarından <b>{kalan}</b> yeni kelime kaldı.</p> : <p class="small muted" data-test="garden-tomorrow">{tomorrow(items)}</p>}
+        {devam ? <p data-test="garden-kalan">Bugünün kartlarından <b>{kalan}</b> yeni kelime kaldı.</p> : <p class="small muted" data-test="garden-tomorrow">{yarin === undefined ? "\u00A0" : tomorrow(yarin)}</p>}
         {devam ? <ActionBar><button class="btn primary block" data-test="garden-again" onClick={again}>Bir tur daha</button></ActionBar>
           : <a class="btn primary block" href="#/today" data-test="garden-back">{day ? "Sıradaki adıma geç" : "Bugün'e dön"}</a>}</section></div>
   );

@@ -188,6 +188,14 @@ export function m1Hak(takvim: number, kalan: number, kisisel: number): { newLeft
   return { newLeft: kalan + (izin ? Math.min(2, takvim, kisisel) : 0), kisiselIzin: izin };
 }
 
+/** Tur sonu "Yarın N kart": yarın bu saate kadar vadesi gelen Bahçe kartları (yalnız sözcük kartı; ders ve cümle öğeleri sayılmaz) */
+export function yarinKartSayisi(items: ReadonlyMap<string, LearnerItem>, lex: ReadonlyMap<string, Lexeme>, now: Date): number {
+  const t = new Date(now.getTime() + 24 * 3600_000);
+  let n = 0;
+  for (const it of items.values()) { const l = it.kind === "lexeme" ? lex.get(it.itemId) : undefined; if (l && isCard(l) && (isDue(it, "passive", t) || isDue(it, "active", t))) n++; }
+  return n;
+}
+
 /**
  * Bir tur kurar. `items`: öğrenci modeli (yalnızca lexeme türü kullanılır). `pool`: yeni kart adayları sırasıyla.
  * Sıra: vadesi gelen aktif → üretime açılan (tanıtılmış) kartlar → vadesi gelen pasif → öncelikli yeni (duyduğum) → yeni.
