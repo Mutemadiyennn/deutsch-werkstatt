@@ -27,13 +27,16 @@ L = ["# PM-078 C ölçümü: M1 1.–7. gün, cümle kapısı\n",
 "## Kural ve ekler\n",
 "PM-078 C'deki küme uygulandı; betiğin eklediği ya da yorumladığı her şey aşağıda **ek** diye işaretli.\n",
 "- **Bilinen küme(t):**\n  - o ana kadar tanıtılmış kartlar (`yeni_kartlar` sırası, gün içinde de sıra);\n  - biten temel derslerin `teach.de` biçimleri, tablo hücreleri ve `teach.lexeme` kartları;\n  - `card:false` çerçeve kartları;\n  - WORLD kişi adları;\n  - **ek:** WORLD yer adlarının özel ad bölümü (Stadler, Weber; kartı olan Bäckerei, Bürgerbüro, Rathaus ad sayılmaz) ve `genel-adlar.md` başlıklarındaki adlar;\n  - **ek:** rakamlar; r0-04 bitince bileşik sayılar, r0-06 bitince sıra sayıları.",
-"- **Sözcük → kart:** kartın `de`, `art`, `pl`, `forms[].answer` ve `verb` alanları (`aux` hariç). Bir kartın bütün çekimleri o kart tanıtılınca bilinir sayılır.",
+"- **Sözcük → kart:** kartın `de`, `pl`, `forms[].answer` ve `verb` alanları (`aux` hariç; artikel eşlenmez).",
+"  - **ek (2. sürüm, inceleme #163):** kart tanıtılınca yalnızca tanıtımda **gösterilen** biçimler bilinir: başlık ve çoğul (`garden.ts` `cevapGosterildi` ile aynı). Öteki çekimler (gehe, gehst, gute) bir dersin öğrettiği biçimlerle açılır; raporda `~` ile.",
+"  - **ek:** kapalı eşadlı listesi: \"ja\" (evet) lx:ja kartı tanıtılınca bilinir; çerçevedeki lx:ja#2 (ya, işte) başka anlam.",
+"  - **ek:** dersin çok sözcüklü kalıbındaki sözcük, kendi kartı (fiil değil) o derste öğretilmiyorsa öğretilmiş sayılmaz (\"Guten Tag, hier ist {name}.\" \"hier\"i öğretmez). Ama kalıbın kendisi cümlede aynen geçerse sözcükleri bilinir (\"Guten Tag, hier ist {name}. Geht Samstag?\").",
 "  - **ek:** cevaptaki sözcük yalnızca kartın başlığıyla akrabaysa (ilk 3 harfi başlıkta geçiyorsa) o karta eşlenir. Böylece lx:Dienstag'ın \"___ Dienstag\" boşluğundaki \"Letzten\" lx:Dienstag'a düşmez. Fiil kartlarında tek sözcüklü cevap akrabalık aranmadan eşlenir (ist, war, ging).",
 "  - **ek:** birden çok kartın cevabında geçen sözcük en çok geçtiği karta eşlenir, eşitlikte hepsine (\"ist\" lx:sein'e gider, lx:passieren'e değil).",
-"  - **ek:** birden çok karta eşlenen sözcük, adaylardan biri biliniyorsa bilinir sayılır.",
+"  - **ek:** birden çok karta eşlenen sözcük, bilinen adaylardan birinde gösterilen biçimse bilinir.",
 "  - Eşlenemeyen sözcük tahmin edilmedi, ayrı listelendi (aşağıda `?` ile).",
 "- **ek (kapalı liste, betikte açık):** `card:false` kartlarının `forms` dizininde olmayan artikel, zamir ve iyelik çekimleri (den, dem, mir, dir, ihn, ihnen, meinen …). Bunlar kartta yok; sayaç karttan okuyabilsin diye **şema isteği** aşağıda.",
-"- **Biçimler:**\n  - **A:** günün dersi henüz yapılmamış (bugünkü düzen: Bahçe önce).\n  - **B:** günün dersi önce yapılmış (Halka'da dil noktası kelime halkasından önce gelirse).\n  - **C:** B + sein ve haben şimdiki zaman biçimleri 1. günden çerçeve (öneri, PM kararına).\n  - **D:** C + günün bütün kartları bilinir. Gün içi sıra en iyi kurulsa bile ulaşılabilecek **üst sınırdır**.\n",
+"- **Biçimler:**\n  - **A:** günün dersi henüz yapılmamış (bugünkü düzen: Bahçe önce).\n  - **B:** günün dersi önce yapılmış (Halka'da dil noktası kelime halkasından önce gelirse).\n  - **C:** B + sein ve haben şimdiki zaman biçimleri 1. günden çerçeve. PM bunu reddetti (#163); karşılaştırma için duruyor.\n  - **D:** C + günün bütün kartları bilinir. Gün içi sıra en iyi kurulsa bile ulaşılabilecek **üst sınırdır**.\n",
 "## 1. Kart cümleleri, tanıtıldığı anda\n",
 "Sütunlar:\n- **örnek 0:** 6 örnekten en az biri bilinmeyensiz olan kart.\n- **örnek ≤1:** gösterim sınırı (en çok 1 bilinmeyen).\n- **boşluk 0:** boşluk cümlelerinden en az biri bilinmeyensiz (cevap hariç).\n- **hiç yok:** görev cümlesi (örnek ya da boşluk) bilinmeyensiz hiçbir cümlesi olmayan kart.\n- **eksik cümle:** her kartın en az 2 görev cümlesi olması için yazılması gereken cümle (Halka kural 2).\n"]
 for ad in 'ABCD':
@@ -48,13 +51,15 @@ hic = collections.defaultdict(list)
 for k in K:
     if k['B']['ornek_0'] + k['B']['bosluk_0'] == 0: hic[k['gun']].append(k['kart'][3:])
 for g in sorted(hic): L.append(f"- **{g}. gün ({len(hic[g])}):** {', '.join(hic[g])}")
-blk = collections.Counter(); unm = collections.Counter()
+blk = collections.Counter(); unm = collections.Counter(); bic = collections.Counter()
 for k in K:
     for _, u in k['B']['ornek_bilinmeyen']:
-        for t in set(u): (unm if t.startswith('?') else blk)[t.lstrip('?')] += 1
+        for t in set(u): (unm if t[0] == '?' else bic if t[0] == '~' else blk)[t.lstrip('?~')] += 1
 L.append("\n### Kart örneklerini en çok tıkayan sözcükler (B)\n")
 L.append("Kartı olan ama henüz tanıtılmamış sözcükler. Sayı, o sözcüğün tıkadığı örnek cümle sayısıdır:\n")
 L.append(", ".join(f"{w} {n}" for w, n in blk.most_common(30)) + ".\n")
+L.append("Kartı tanıtılmış ama bu biçimi henüz gösterilmemiş sözcükler (`~`; çekim dersi gelince açılır):\n")
+L.append(", ".join(f"{w} {n}" for w, n in bic.most_common(30)) + ".\n")
 L.append("Bunların çoğu sık kullanılan küçük sözcük: noch, schon, nur, da, erst, wieder, gleich, dann, gern, sehr, oft, leider, echt. Ayrıca wann, Uhr, Termin, sind ve bin. Önerim (PM kararı): bunların bir kısmı 1.–2. güne alınsın ya da çerçeveye girsin (dokununca Türkçe).\n")
 L.append("## 2. Gün cümleleri (sahne, ses, prova, okuma, sınav, ders)\n")
 L.append("Bilinen küme: günün bütün kartları ve günün dersi. Görevde sınır 0 bilinmeyen, gösterimde en çok 1. Görev: öğrencinin ürettiği cümle (kabul listesinin ilki, prova seçenekleri, diyalogda öğrenci satırı, boşluklu alıştırma cümlesi). Seçmeli soruların (`pick`) seçenekleri sayılmadı.\n")
@@ -71,7 +76,7 @@ L.append(", ".join(f"{w} {n}" for w, n in unm.most_common(40)) + ".\n")
 L.append("Üç türlü:\n- **Konuşma kısaltması:** hab, komm, geh, glaub, grad, s (geht's), n, nen.\n- **Çekim ya da türetme:** abends, sonntags, Mittwochnachmittag, monats, schönes, gute, hohes.\n- **Sözlükte kartı olmayan kelime:** Euro, Cent, Stock, Post, Brille, Bäcker, Fußball, Schnee.\n\nBunlar bilinene dönmeden o cümle hiçbir gün açılmaz.\n")
 L.append("## 4. İstekler ve sıradaki adım\n")
 L.append("- **[İÇERİK] şema isteği (ANA):**\n  - (a) `card:false` kartlara kapalı `bicimler` listesi (artikel, zamir, iyelik çekimleri), sayaç karttan okusun.\n  - (b) Kart örneğine isteğe bağlı `ilk: true` (ilk karşılaşma cümlesi; 6 örnek sınırının dışında ya da içinde, ANA seçer).\n  - (c) Konuşma kısaltmaları için `forms` dışında bir eşleme (ör. kartta `kisaltma: [\"hab\"]`).")
-L.append(f"- **PM kararı istenen:**\n  - (1) C biçimi: sein ve haben şimdiki zaman 1. günden çerçeve mi?\n  - (2) Kalıplar bilinen kümeye girsin mi?\n  - (3) Sık küçük sözcükler (noch, schon, nur, da, dann, gern …) erkene mi alınsın, çerçeveye mi girsin?\n  - Kararlar cümle sayısını {tot['B'][5]}'in altına çeker; karar beklenmeden 1. gün cümleleri en sıkı biçimle yazılıyor.")
+L.append(f"- **PM kararları (#163, 7043400862):**\n  - (1) sein ve haben çerçeve değil; fiil biçimi kartıyla ya da kalıbıyla gelir.\n  - (2) Kalıplar bütün olarak bilinir, sözcükleri tek tek bilinmez (bu raporda uygulandı).\n  - (3) Sık küçük sözcükler kart olarak 4.–7. günün boş yuvalarına öne çekilir (omurga taslağı). Euro ve Cent için lex işi önce, 4. güne.")
 L.append("- **İÇ sıradaki adım:** 1. gün `halkalar` önerisi (PM-078 B) ve 1. günün ilk karşılaşma cümleleri. Yazar → dilbilimci → okur.")
 open(f'{D}/c-olcum-m1.md', 'w', encoding='utf8').write("\n".join(L) + "\n")
 print('B', tot['B'], 'D', tot['D'], 'görev', gorev_ihlal, 'gösterim', gost_ihlal, 'eşlenemeyen', len(unm))

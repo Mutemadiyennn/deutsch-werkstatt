@@ -22,7 +22,7 @@ import { SesDeneme } from "./screens/SesDeneme.tsx";
 import { loadIndex, within, loadWorld } from "./services/content.ts";
 import { getProfile, latestPlacement, saveProfile } from "./data/db.ts";
 import { setLearning, startFocus, updateFocusConfig } from "./services/focusRuntime.ts";
-import { setBaslangicHizi, setKarakterler, setOgrenciHitap } from "./services/speech.ts";
+import { setBaslangicHizi, setKarakterler, setOgrenciHitap, setYavasOran, yerelSesleriYukle } from "./services/speech.ts";
 import { efektAyar, sesKilidiAc, ustUsteSifirla } from "./services/efekt.ts";
 import { kullanimIzle } from "./services/kullanim.ts";
 import { TabBar, Loading, ErrorPanel } from "./ui/components.tsx";
@@ -67,6 +67,15 @@ export function App() {
   const [profileErr, setProfileErr] = useState<string | null>(null);
   // #58 B7: Profil'deki dinleme başlangıç hızı ses servisine
   useEffect(() => { if (profile) setBaslangicHizi(profile.listening.startSpeed); }, [profile?.listening.startSpeed]);
+  useEffect(() => { if (profile) setYavasOran(profile.listening.slowRate); }, [profile?.listening.slowRate]);
+  // Kabuk 1.5 (PM 7042267632): kabukta iPhone'un kendi sesleri (yoksa web yolu sürer)
+  // ses listesi uygulama öne her gelişinde yeniden alınır: arada indirilen ya da silinen ses, eklentinin dizinini kaydırmasın (inceleme #164 P1-1)
+  useEffect(() => {
+    void yerelSesleriYukle();
+    const yenile = () => { if (document.visibilityState === "visible") void yerelSesleriYukle(); };
+    document.addEventListener("visibilitychange", yenile);
+    return () => document.removeEventListener("visibilitychange", yenile);
+  }, []);
   // Şölen 1 (#58 B10): efekt sesleri ve kutlamalar Profil'den
   useEffect(() => { if (profile) efektAyar(profile.ui); }, [profile?.ui.sfx, profile?.ui.celebrations]);
 

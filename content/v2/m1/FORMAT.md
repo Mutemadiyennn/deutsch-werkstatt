@@ -111,6 +111,8 @@ Günün videosu ayrı dosyadadır: `content/v2/m1/video/klip-NN.json`. Kaynak De
 
 - Transkript depoda tutulmaz. Dosyada klip kimliği, `video_url`, `transkript_url`, `kesit`, `haric` ve `turlar[{tur, basi, kim}]` bulunur. `basi` turun ilk kelimeleridir (en çok 4). Derleme adımı metni kaynaktan alır, `basi` ile doğrular, videoyla hizalar.
 - `haric`: kesitten çıkarılan turlar. Telefon numarası, adres ve tam doğum tarihi yayına girmez.
+- Derleme bağlama kuralı (inceleme #159 P1-1): klip yalnızca hattın ölçüm kaydı (`klip-NN.olcum.json`) varsa ve metin dosyasının sha256'sı o kayıtla aynıysa bağlanır; her hizalı cümle kendi turunun `basi`siyle başlamalıdır; `haric` ve `kesit` aralığı dışındaki turlar pakete girmez. Hat `etiket: "insan-orneklemi"` yazdıysa klip dosyasında `"orneklem_onay": true` (İÇ'in örneklem kontrolünden sonra) gerekir.
+- `on_ogretim` ve `ortam_tr` pakete girer; oynatıcıda dinlemeden önce gösterilir.
 - `durum`: `hazir` | `kisa` (30 sn altı, PM kararı bekler) | `sinir-asimi` (bilinmeyen %10 üstü) | `bulunamadi`. Dosya adı `klip-NN.json`: gün şemasının `gun-NN.json` deseniyle karışmaz.
 - `bolum`: `ana_fikir`, `ayrinti[]`, `dikte[]`, `golge[]`, `cevapla`; dikte ve gölge tur numarasına bağlıdır.
 - `kesitler`: 20 sn altı kesite ikinci parça gerekince `[{klip, bas_tur, son_tur, haric}]` sırayla oynatılır; ilk eleman üst düzeydeki `klip`/`kesit`/`haric`/`turlar` ile aynıdır, sonrakiler kendi `konusmaci`, `video_url` ve `turlar` alanını taşır, sorular ve dikte onlara `"kesit": 1` (sıra numarası) ile, gölge `{kesit, tur}` ile bağlanır.

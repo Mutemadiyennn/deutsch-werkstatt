@@ -6,6 +6,11 @@
 Son güncelleme: 2026-11-20 09:00 UTC · Faz: **M1 İlk Hafta** · Ana dal: `main` (`6ec8173` ve sonrası) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (etiket `v2-20261120-7`) · v1 **2026-11-20a** yayında
 Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DONGUSU → BEYIN → MIMARI → TASARIM …) → bu dosya → `DECISIONS.md`. "Sıradaki adım"dan devam et; hiçbir iş baştan başlatılmaz (PM-007 §4).
 
+## Çalışma düzeni ve kapı (2026-11-20 akşam)
+- **PM-079 "önce ölçüt, sonra iş"** → [`CALISMA_DUZENI.md`](CALISMA_DUZENI.md) (#169): hazır tanımı, öz-denetim, tek geçişte tam bakış; yerleşim bekçisi ve yol süzgeci ayrı PR'lar (hazır tanımı #12 7047348069).
+- **GitHub Actions bu depoda GitHub tarafından kapalı** (16:53 UTC'den beri). Kabul **KAPI oturumunda** (PM 7047288255): temiz worktree, `ci-v2.yml` sırası, WebKit üç cihaz; PR'a "[KAPI] <commit> — YEŞİL/KIRMIZI". Ortak betik `scripts/kapi.sh` (dal `kapi/betik`). Yayın ve medya hatları durdu; kod PR'ları KAPI sırasıyla birleşir.
+- **Hedef ekranlar:** `design/TARGET3c` (kalıp, yapboz + K10, söyle, gün sonu sınaması, Yol, Bahçe boş hâli; TASARIM "Hedef 3c").
+
 ## Sıradaki adım (PM-050: "İlk Hafta" dikey dilimi önce; 2026-11-18 23:45 UTC)
 **İmza yol haritası:** [`docs/v2/IMZA_YOL_HARITASI.md`](IMZA_YOL_HARITASI.md) — #54'ün her satırı için ekran tarifi ve sıra (PM-048).
 1. Birleştirme sırası: #61 (veri). Birleşenler: #60 (02:30), #64 (02:12), #59 (01:57), #43 (01:37), #55 (00:27), #52 (23:05), #48 (23:07), #50 (23:34), #51 (23:54), #49 (23:54).
@@ -48,7 +53,11 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | #150 | `v2/foto-soru-p2` | #137 P2: görsel yüklenemezse başlık fotoğrafsız biçime döner | inceleme sırada; iPhone 15 kırmızısı "Başka cümle" zıplaması (aşağıda) |
 | #151 | `qa/ci-yaris` | "Deneme" rozeti sağlık cevabını dinler (ürün hatası); async beklemeler gerçek yoklama | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor |
 | #152 | `v2/kart-sigar` | En uzun kart sığar: görsel 160→96 px, gerekirse yok; test en uzun 40 kart (D-123) | CI (ResizeObserver düzeltmesi fe67cb2); inceleme sırada; **PM final** |
+| #162 | `v2/yavas` | P1 "Yavaş" duyulur: RATE.slow 0,5 (0,6/0,5/0,4 seçimi), Ses ve mikrofon'da hız ölçümü (0,3 sn altı ölçülemedi), yavaşlamayan seste aynı cinsten ve sahnede boş yedek ses, yoksa kelime grupları (PM 7042161522-1, 7043447488) | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi (P1-1 duraklamada kesilme, P1-2 sahnedeki ses); **PM final** |
+| #164 | `v2/kabuk-ses` | Kabuk 1.5: kabukta iPhone'un kendi seslendirmesi (TextToSpeech 8.0.0; premium > gelişmiş > standart; gerçek cinsiyetli ses, perde 1; ses listesi uygulama öne gelince yenilenir); web yolunda perde ±%8 ızgarası (aynı sahnede aynı ses+perde yok), aynı ad tek satır (PM 7042267632, 7042302480, 7044942991) | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; ios-build yeşil; **PM final**; #162 birleşti (f6ee482), main birleştirildi |
 | #145, #147 | İÇ dalları | B5 içerik (1. ve 2. gün ders profili) | İÇ şeridi; anlık görüntüler ANA'dan |
+| #168 | `v2/kume` | AKIS AK-10 1. adım: Halka şeması (kaliplar dahil), bilinen küme K(t) ve cümle kapısı (AK-3, packages/shared/src/kume.ts), halka denetçisi + sayaç (content/tools/halka.ts); #165 içeriği 0 hata | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur + KAPI |
+| #176 | `v2/akis` | AKIS AK-10 2. adım: `planGun` (web/src/core/akis.ts) + `policy.akis` eşikleri + 200 planlık özellik testleri + 1. gün dökümü (docs/v2/qa/akis/gun-01-plan.md, ≈ 94 dk) | 1. tur DEĞİŞİKLİK GEREKLİ → hepsi düzeltildi (dil durağı K(t) kapısında, tohum etkili, K8 sınıflaması, kalıp sırası, gevşeme son diziden); fark doğrulaması + toplu KAPI |
 
 **Bilinen CI kırmızıları:**
 - `v2_bahce_donusum` "Başka cümle zıplamıyor", yalnız iPhone 15 (#145, #150): kart aynı, sayfa 757 → 801 (+44). Neden bilinmiyor; #151'e tanı dökümü eklendi.
@@ -109,9 +118,14 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 Kalıpların 61'i de onaylı (main, `patterns.json`). Hedef sütunu (günlük: yazar ≥2 ünite parçası, lex 150–200 kart, dilbilimci aynı gün) hat başlayınca günlük doldurulur. BY-8 tükenme tahmini: K2 motoru (R1) gelene kadar hesaplanamaz.
 R0 temel paket: 11 ders, 201 öğretim öğesi, 401 alıştırma; 10'u main'de (#51), r0-11 "Sonu kişiye göre değişir" (Präsens kişi ekleri; M1 2. gün, PM kararı #122 20.11) main (#141). Kelime sayıları `card:false` işlev kelimelerini saymaz.
 B5 (PM 20.11 05:32, ders profili): 1. gün dersi r0-01 "söyle" ağırlıklı (#145; tr_de 10 → 4, listen_and_respond 3 → 9); 2. gün dersi r0-02 "dinle" ağırlıklı (#147; tr_de 9 → 4, listen_and_respond 3 → 11); 3. gün dersi r0-03 "sayı" profili (#155; pick 5 → 3, tr_de 10 → 6, transform 4 → 7, listen_and_respond 3 → 9).
+PM-078 D omurga taslağı: `content/v2/curriculum/omurga.json` (52 hafta; 1 / 2–8 A1 / 9–24 A2 / 25–52 B1; ilk 8 hafta gün gün; birikimli kelime A1 695, A2 1370, B1 2425, Goethe ≈650/1300/2400). Yazar → dilbilimci (11 düzeltme) → okur (2 tur, 49 → 0, 2. turda 3 satır düzeltildi). PM okuması bekliyor.
+PM-078 C (cümle kapısı) ölçümü (#161; kural 2. sürüm PM #163 kararlarıyla: yalnızca gösterilen biçim bilinir, kalıp bütün olarak, kendi kartı olan sözcük kartıyla): M1 155 kartın 46'sında bilinmeyensiz örnek; görev cümlesi hiç olmayan 58 kart; her karta 2 görev cümlesi için 168 ilk karşılaşma cümlesi (1.–3. gün 115); gün cümlelerinde görev ihlali 65. Rapor `docs/v2/reviews/c-olcum-m1.md`.
+PM-078 B (Halka) 1. gün önerisi, 2. sürüm: 5 halka (5/5/4/5/6 kart; kart ilk kullanıldığı halkada), halka kalıpları, 50 görev cümlesi (bilinmeyen 0, her birinde accepted 3), 5 mini sahne (ortam + soru). Yazar → dilbilimci (son metin KAPANDI) → okur (GERİ 0). `docs/v2/reviews/halka/gun-01-halkalar.json`; şema (AKIS AK-5) gelince `gun-01.json`'a taşınır.
+PM-078 B (Halka) 2. ve 3. gün önerisi: 2. gün 5 halka (aylar, doğum günü, mevsim ve izin, açık/kapalı), 3. gün 5 halka (sayılar, numara, adres, yeni ofis); her gün 50 görev cümlesi (bilinmeyen 0, accepted ≥3), halka başına önceki günden ≥2 cümle, günde bir çıkarım sorusu. Yazar → dilbilimci (KAPANDI) → okur (2 tur, 22 → 0). `docs/v2/reviews/halka/gun-0{2,3}-halkalar.json`.
 B4 kart kuralları (#88, #96): parti dosyalarında K1 isim boşluğu, 3+ eşdizim ve somut kelimede örnek başına fotoğraf sorgusu uyarıları 0 (150 kart kapandı). Doğrulayıcının "görselsiz örnek" sayacında kalan 82 kart eski `lexemes.v1.json` kartları; taban 0 / 0 / 82 (ANA, birleştirmede).
 B5 fotoğraf seçimi (#91): 308 yerin 40'ına açık lisanslı fotoğraf seçildi, 220'si reddedildi, 48'i soyut; 332 kısa ikinci sorgu A10 hattına verildi. Hedef somut kelimelerin %85'i; Openverse sonrası ikinci tur.
 Gün sınavı (#110, PM-066 madde 3): M1'in 7 gününe `gun_sinavi`, gün başına 11 madde (4 dikte, 4 yazılı üretim, 2 sesli üretim, 1 mini prova), toplam 77; yazar → dilbilimci (22 düzeltme) → okur (157 satır, GERİ 0).
+A9 örneklem (#173): klip-01 ve klip-07 metni eksik turlu (ANA elle hizalama), klip-06 iki sözcük makine kulağı bekliyor; üçünde `orneklem_onay` açık. klip-06 7. tur diktesi ve gölgesi çıktı; klip-04/05 `ortam_tr` bağlı olmayan günü anmıyor.
 PM-062 (cümle havuzu): M1'in 155 kartında en az 6 örnek ve en az 6 boşluk (155 × 6 örnek, 936 boşluk); yazar → dilbilimci → okur, 4 grup.
 K1 çekirdeğin kalanı (PM-062 sırası, sıklığa göre): K1 çekirdeğin tamamı (1.205 kart: M1 155 + K1 kalanı 1.050) en az 6 örnek + 6 boşluğa çıktı (grup 05–25; 24–25 sıklık listesi dışındaki 106 K1 kartı); sıradaki gruplar aynı hattan. PM-069 boşluk kuralı (cevap yalnızca kartın kelimesi ya da eşdizimi): sözlükte kural dışı boşluk 684 → 4; kalan 4'ü sayacın yanlış alarmı. Küçük kelime boşlukları (PM 20.11 04:20): M1'de 128, K1'in kalanında 779; sözlükte artikel, edat ya da iyelik soran boşluk 0. Kişiye göre fiil ipuçlarının 458'i mastarı da gösteriyor (`docs/v2/reviews/lexicon-pm069-bosluk.md`).
 Okur turu (PM-046, hedef ≤1,5): kelime 001–003 5 tur, R0 6 tur, M1 kartları 8 tur (hedef tutmadı). Geri dönen türler (hata notunda Türkçe niyet, çelişen ipucu) yazar ve lex görevine eklendi.
@@ -127,7 +141,7 @@ Sözlüğün tamamı onaylı: taslak partiler 004–008'deki 394 girdi tam incel
 | #126 | `v2/bahce-aralik` (#122 üstüne) | PM-069 madde 3: tanıtım ile ilk soru arası ≥2, köprü | 2. tur düzeltildi; PM Gördüm bekler |
 | #128 | `v2/baslik-dugme` | PM-074 G2 + md. 2–3: üst çubuk başlığı tam (sığmazsa çip alt satıra), medyada tek oynat + hız anahtarı (B7 korunur), senaryoda birincil eylem dinlemek, altyazılı dinleme yeniden çalınır | 1. tur DEĞİŞİKLİK GEREKLİ → P1-1/2/3 ve P2-1…7 düzeltildi; 2. tur inceleme ve PM final bekler |
 | — | `v2/esdizim-uc` | PM 7024150313: en çok 3 eşdizim, "Daha fazla" | #122 birleşince PR |
-| — | `v2/a9-klip` | PM-069 madde 4: klip-02 → 2. günün videosu | şeritte yer açılınca PR |
+| #159 | `v2/a9-klip` | PM-069 madde 4 + PM-078 F: hattın ölçtüğü klipler günün videosu (bugün 2., 4., 5. gün; 1., 6., 7. gün İÇ örneklem onayı bekliyor); ön öğretim dinlemeden önce | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi, 2. tur |
 | — | `kaynak/gorsel` | B14 boy denemesi (512 / 768×576) | 20.11 00:12 UTC koşusu |
 
 ### Birleştirme turu (PM-007, 2026-11-17)

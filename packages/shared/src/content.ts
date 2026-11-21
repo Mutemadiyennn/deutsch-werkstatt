@@ -65,6 +65,8 @@ export const Example = z.object({
   layer: z.enum(["hd", "alltag"]).default("hd"),
   /** Diyalog içinden örnek ("– … – …" biçiminde iki konuşmacı) */
   dialog: z.boolean().optional(),
+  /** AKIS AK-5 (İÇ isteği, PM #160 7043401257): kartın ilk karşılaşma cümlesi; halka bunu tanıtımda gösterir, tekrar turları da kullanır */
+  ilk: z.boolean().optional(),
   audio: Audio.optional(),
   sued: Sued
 });
@@ -110,6 +112,8 @@ export const Lexeme = z.object({
   head: z.object({ de: z.string().min(1), tr: z.string().min(1) }).optional(),
   /** PM-047 §2: false → öğrenciye ayrı kart olarak gösterilmez (işlev kelimeleri); ifadelerin içinde öğretilir */
   card: z.boolean().optional(),
+  /** AKIS AK-3 (PM #160 7043401257): `card:false` kartın kapalı biçim listesi (der → der die das den dem des); sayaç bunu kullanır */
+  bicimler: z.array(z.string().min(1)).optional(),
   /** PM-049 (d, h): boşluk doldurma biçimleri — "Ich habe ___ Termin." → einen; ayrılabilir fiilde iki boşluk "sage … ab" */
   /** Boşluk biçimleri. `hint_tr`: yanlış cevaptan sonraki açıklama (soru sırasında yalnızca dokunuşla açılır; PM 7004537514-2).
    *  `also_ok`: boşluğa giren eş anlamlı başka doğru cevaplar (kriegen/bekommen; İÇ 7003635425-2) */
