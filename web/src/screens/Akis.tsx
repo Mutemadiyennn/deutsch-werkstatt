@@ -296,7 +296,10 @@ export function AkisEkrani({ day }: { day: number }) {
             // son sırada sözlük kartlarının örnek cümleleri: günün havuzunda kapıdan geçen örnek yoksa çerçeve yine örneksiz kalmasın (PM 7059008858 md. 2)
             const kartOrnek = [...lex.values()].flatMap((l) => (l.examples ?? []).filter((e) => e.de && e.tr).map((e) => ({ de: e.de, tr: e.tr })));
             const kartCumle = new Set(kartOrnek.map((g) => g.de).filter((de) => !gun.halkalar.some((h) => h.gorev_cumleleri.some((x) => x.de === de))));
-            const tekil = new Map([...gun.halkalar.flatMap((h) => h.gorev_cumleleri).map((g) => ({ de: g.de, tr: g.tr })), ...planCumle.map((g) => ({ de: g.de, tr: g.tr })), ...kartOrnek].map((g) => [g.de, g]));
+            // planın derslerinin öğretim cümleleri ("Gestern war Montag." r0-01-tage'de): K(t) süzgeci aşağıda aynen işler
+            const dersIds = new Set(sira.map((a) => a.ders?.id).filter((x): x is string => !!x));
+            const dersCumle = temel.filter((t) => dersIds.has(t.id)).flatMap((t) => t.teach).filter((x) => x.de && x.tr).map((x) => ({ de: x.de, tr: x.tr }));
+            const tekil = new Map([...gun.halkalar.flatMap((h) => h.gorev_cumleleri).map((g) => ({ de: g.de, tr: g.tr })), ...planCumle.map((g) => ({ de: g.de, tr: g.tr })), ...dersCumle, ...kartOrnek].map((g) => [g.de, g]));
             // kalıbın sabit sözcüklerinin hepsi cümlede geçiyorsa örnek; sıra şart değil (devrik sıra kalıbın konusu olabilir: "Im Frühling habe ich …")
             const kapsar = (de: string, kp: string[]) => { const w = new Set(toks(de)); const sb = kp.filter((x) => x !== YUVA); return sb.length > 0 && sb.every((t) => w.has(t)); };
             // örnek o adımda bilinenlerle kurulmuş olmalı: bu kalıp dahil K(t) dışında sözcük 0 (inceleme #186 P1-2)
@@ -318,15 +321,19 @@ export function AkisEkrani({ day }: { day: number }) {
             // PM 7059008858 md. 2: her çerçeveye kendi örneği. Örnek o adımda bilinenlerle kurulur (inceleme #186 P1-2); tek istisna yuvaya giren
             // sözcük: K(t) dışında olabilir, altında Türkçesiyle, örnek başına en çok bir tane ve sorulmaz. Bilinenle kurulan örnek önce gelir.
             const ornek: CumleBilgi[] = [];
+            // çerçevenin kendi sırasıyla geçen cümle önce gelir; başka bir çerçeveye sırasıyla uyan cümle bu çerçeveye örnek olmaz
+            // ("Gestern war … – War gestern …?": soru cümlesi düz çerçeveyi değil soru çerçevesini örnekler; bayrak PR'ı, 1. gün e2e)
+            const sirali = (de: string, kp: string[]) => (kp.includes(YUVA) ? yuvaKp(de, kp).length > 0 : ` ${toks(de).join(" ")} `.includes(` ${kp.join(" ")} `));
             for (const kp of parcalar) {
               const tamAyni = (de: string) => kp.every((t) => t !== YUVA) && toks(de).join(" ") === kp.join(" ");
-              const adaylar = [...tekil.values()].filter((g) => !g.de.includes("{name}") && kapsar(g.de, kp) && !tamAyni(g.de) && !ornek.some((o) => o.de === g.de))
+              const baskasinin = (de: string) => !sirali(de, kp) && parcalar.some((p2) => p2 !== kp && sirali(de, p2));
+              const adaylar = [...tekil.values()].filter((g) => !g.de.includes("{name}") && kapsar(g.de, kp) && !tamAyni(g.de) && !baskasinin(g.de) && !ornek.some((o) => o.de === g.de))
                 .map((g) => {
                   const yuva = yuvaKp(g.de, kp).map((x) => x.toLowerCase()), bil = bilinmeyenler(dizin, g.de, kNow);
                   const uygun = bil.length === 0 || (bil.length === 1 && yuva.includes(bil[0]!.sozcuk.toLowerCase()));
                   return { g, bil, uygun, yuva };
                 }).filter((x) => x.uygun)
-                .sort((a, b) => a.bil.length - b.bil.length || Number(durakCumle.has(b.g.de)) - Number(durakCumle.has(a.g.de)) || Number(kartCumle.has(a.g.de)) - Number(kartCumle.has(b.g.de)));
+                .sort((a, b) => Number(sirali(b.g.de, kp)) - Number(sirali(a.g.de, kp)) || a.bil.length - b.bil.length || Number(durakCumle.has(b.g.de)) - Number(durakCumle.has(a.g.de)) || Number(kartCumle.has(a.g.de)) - Number(kartCumle.has(b.g.de)));
               const x = adaylar[0];
               if (x) {
                 const yeni = x.bil[0] ? { sozcuk: x.bil[0].sozcuk, tr: x.bil[0].adaylar?.map((id) => lex.get(id)?.tr).find(Boolean) } : undefined;
