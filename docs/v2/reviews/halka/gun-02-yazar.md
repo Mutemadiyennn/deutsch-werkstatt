@@ -155,3 +155,53 @@ Kaynak: `docs/v2/reviews/okur/halka-gun-02-03.md` (Gün 2'de 7 geri dönüş) ve
 **Denetim:** `halka_kontrol.py` 0 hata, 0 not; `kucuk_sozcuk.py` 0 hata. h1/g10 artık „bir“ sözcüğünü istemiyor. Her halkada önceki günden ≥2 cümle var. Çıkarım sorusu h2'de.
 
 **WORLD:** h2/g9'daki „muayenehane ocakta kapalı“ gun-02 sınavıyla ve h1 sahnesiyle aynı olgu. Ağustosta kapalı olan fırın; muayenehaneye ağustos için kapalılık yazılmadı.
+
+## Takas (PM 7052062209 İÇ 2)
+
+İlke: kart, sözcüğün ilk öğretildiği gündedir; ders bir sözcüğü kartından önce öğretemez. 2. günün dersi r0-11 `wohnen` ve `kommen`'i öğretiyor. İkisi 2. güne geldi. 2. günden yalnız `offen` çıktı.
+
+| Kart | Eski gün | Yeni gün |
+|---|---|---|
+| `lx:wohnen` | 3 | 2 (h3) |
+| `lx:kommen` | 5 | 2 (h5) |
+| `lx:offen` | 2 | 3 (h3) |
+
+Kart sayıları: 2. gün 26, 3. gün 25, 5. gün 24.
+
+### Seçim gerekçesi
+
+- **Neden 2. gün 26 kart?** 2. günün 25 kartından 23'ünü 2. günün dersi r0-02 de öğretiyor. Çıkabilecek kart yalnız `offen` ve `wann`. `wann` r0-11'in ön koşulu, 2. günde kalmak zorunda. İlke sayı eşitliğinden önce geliyor (İçerik Motoru kararı). Bu yüzden 2. gün 26 kart. Doğrulayıcının „15–25“ hedef uyarısı bilerek kabul edildi. İlk taslakta `Winter` 5. güne gitmişti. r0-02 onu 2. günde öğrettiği için geri alındı. h4 eski hâline döndü.
+- **`offen` 3. güne (öneri 5. gündü).** 3. günün kendi içeriği bu sözcüğü kullanıyor: okuma metninde ve günün sınavındaki dikte maddesinde geçiyor („Das Büro ist von neun bis elf offen.“). 3. günün h3'ünde zaten bir görev cümlesi var („Die Praxis ist von acht bis zwölf offen, ja?“). 5. güne gitseydi 3. günün sınavı kartı olmayan bir sözcüğü yazdıracaktı. 2. günün iki `offen` cümlesi okurdan geçmişti, kartla birlikte 3. güne aynen taşındı.
+
+### `wohnen` ve `kommen` nereye, nasıl
+
+- **`wohnen` h3'te (kuaförde Luka ile sohbet).** Kart yalnızca „wohnen“ biçimini gösteriyor. Bir halkada „Sie“ ve „in“ kalıpsız yalnızca bir kez geçebilir. Bu yüzden h3'e ikinci kalıp girdi: „Ich wohne in … – Wohnen Sie in …?“ (şehir adıyla). 3. günün „Ich wohne in der …“ kalıbı (sokak adıyla) bunun devamı. Hafta sonu testi de „Ich wohne in Wendlfing.“ cümlesini bekliyor.
+- **`kommen` h5'te, `wann`'ın yanında.** „Wann kommen Sie?“ r0-11'in dinleme maddesi, dersin amacı da „ne zaman geleceğimi söylerim“. İkinci cümle h5 sahnesindeki fırına bağlanıyor (ağustosta kapalı, eylül başında geliyoruz). h5'te „Sie“ birinci cümlede kullanıldı, bu yüzden ikinci cümle „wir“ ile kuruldu.
+- **h5 sahnesi s4.** `offen` artık 2. günde bilinmiyor. Satır „Nein, im September nicht!“ oldu: eylülde kapalı değil. Sorunun cevabı aynı kaldı (bütün ağustos). „von … bis …“ kalıbı h5'te artık yalnızca sahnede geçiyor (s2).
+
+| Yer | Alan | Eski | Yeni |
+|---|---|---|---|
+| `gun-02.json`, `curriculum/m1.json` | yeni_kartlar | … `lx:offen` … (25) | … `lx:kommen`, `lx:wohnen` … (26) |
+| h3 | title_tr | Eylülden aralığa, bu yıl | Eylülden aralığa, bu yıl; Wendlfing'de oturmak |
+| h3 | kartlar | September … Jahr (5) | + `lx:wohnen` (sonda; 6) |
+| h3 kalıp 2 | de / tr | (yoktu) | Ich wohne in … – Wohnen Sie in …? / …'de oturuyorum – …'de mi oturuyorsunuz? (şehir adıyla) |
+| h3 g11 (`lx:wohnen`) | de / tr | (yoktu) | Wohnen Sie in Wendlfing, Luka? / Wendlfing'de mi oturuyorsunuz Luka? |
+| | kabul | | Luka, wohnen Sie in Wendlfing? · Sie wohnen in Wendlfing, Luka? |
+| h3 g12 (`lx:wohnen`) | de / tr | (yoktu) | Ich wohne in Wendlfing. Und Sie? / Ben Wendlfing'de oturuyorum. Ya siz? |
+| | kabul | | Und Sie? Ich wohne in Wendlfing. · Ich wohne in Wendlfing. Wohnen Sie in Wendlfing? |
+| h5 | kartlar | wann, Anfang, Ende, offen | wann, Anfang, Ende, kommen |
+| h5 g7 (`lx:offen`) | de | Ist die Praxis heute offen? | 3. günün h3'üne taşındı (aynen) |
+| h5 g8 (`lx:offen`) | de | Die Praxis ist von Montag bis Freitag offen, aber nicht am Wochenende. | 3. günün h3'üne taşındı (aynen) |
+| h5 g7 (`lx:kommen`) | de / tr | (yoktu) | Wann kommen Sie? Am Montag? / Ne zaman geliyorsunuz? Pazartesi günü mü? |
+| | kabul | | Am Montag? Wann kommen Sie? · Wann kommen Sie? Montag? |
+| h5 g8 (`lx:kommen`) | de / tr | (yoktu) | Wir kommen Anfang September, Frau Stadler! / Eylül başında geliyoruz Stadler Hanım! |
+| | kabul | | Anfang September kommen wir, Frau Stadler! · Frau Stadler, wir kommen Anfang September! |
+| h5 sahne s4 | de / tr | Anfang September? Ja, offen! / Eylül başında mı? Evet, açık! | Anfang September? Nein, im September nicht! / Eylül başında mı? Hayır, eylülde değil! |
+
+**Okur gözüyle sınama (yalnızca kartlar ve kalıplarla).** Her yeni Türkçeyi kendim çevirdim. Çıkan cümle her satırda kabul listesinde.
+- „Wendlfing'de mi oturuyorsunuz …?“ → **Wohnen Sie in …?** (h3 kalıbı).
+- „Ben … oturuyorum. Ya siz?“ → **Ich wohne in …** + **Und Sie?**
+- „Ne zaman geliyorsunuz?“ → **Wann** + **kommen Sie**. „Pazartesi günü“ → **am Montag**.
+- „Eylül başında geliyoruz“ → **Wir kommen Anfang September**. Zamanla başlarsa („Anfang September kommen wir“, h4 kalıbındaki sıra) o da kabul listesinde.
+
+**Denetim:** `halka_kontrol.py` 0 hata, 0 not. Rapor (b): dünün kartları 33 cümle. `kucuk_sozcuk.py` 0 hata, kalıp sayısı 2/2/2/2/2. Halka boyları 5/5/6/6/4. 52 görev cümlesi, her kartta 2. Yeni cümlelerin ve sahne satırının hiçbiri depoda aynen yok. Dosya içinde tekrar yok. Aynı Türkçe iki ayrı Almancaya gitmiyor.
