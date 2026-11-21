@@ -14,6 +14,7 @@ import { yerelAcikla } from "../core/sozluk.ts";
 import { Icon } from "../ui/icons.tsx";
 import { ErrorPanel, Loading } from "../ui/components.tsx";
 import { Rich } from "../ui/rich.tsx";
+import { ayracBagla } from "../core/ayrac.ts";
 
 export function useKaliplar() {
   const { profile } = useApp();
@@ -48,7 +49,7 @@ function KalipListesi({ ps }: { ps: Pattern[] }) {
       <p class="small muted">Cümle kurmanın kalıpları: kuralı, örnekleri, boşluğa ne gelir, başka biçimleri.</p>
       <ul class="list card">{kalipSirasi(ps).map((p) => (
         <li key={p.id}><a href={`#/kalip/${encodeURIComponent(p.id)}`} onClick={() => { try { sessionStorage.removeItem(KALIP_GERI); } catch { /* yok */ } }} class="row" style={{ textDecoration: "none", color: "inherit", flexWrap: "nowrap" }} data-test="kalip-satir">
-          <span class="grow">{p.frame_tr ? <Rich text={p.frame_tr} /> : <span lang="de">{p.frame}</span>}<br />
+          <span class="grow">{p.frame_tr ? <Rich text={ayracBagla(p.frame_tr)} /> : <span lang="de">{ayracBagla(p.frame)}</span>}<br />
             <span class="small muted" lang="de">{p.examples[0]?.de}</span></span>
           <span class="chip">{p.level}</span><span aria-hidden="true">›</span></a></li>))}</ul>
     </div>

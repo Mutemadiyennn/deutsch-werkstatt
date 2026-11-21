@@ -269,8 +269,10 @@ function IfadeCard({ c, accent, onPass }: { c: Card; accent: string; onPass: (ho
     // kademe CSS boyuna göre oransal: %130 yazıda da Almanca cümle çevirisinden küçük kalmaz (inceleme #178 P1-2)
     const sigdir = () => {
       // ölçerken sözcük kırılmasın (overflow-wrap: normal); seçimden sonra CSS'in son çaresi (anywhere) geri gelir
-      e.style.fontSize = ""; e.style.overflowWrap = "normal"; const taban = parseFloat(getComputedStyle(e).fontSize);
+      e.style.fontSize = ""; e.style.overflowWrap = "normal"; e.style.hyphens = ""; e.style.setProperty("-webkit-hyphens", ""); const taban = parseFloat(getComputedStyle(e).fontSize);
       for (const k of IFADE_KADEME) { e.style.fontSize = k === 1 ? "" : `${taban * k}px`; if (e.scrollWidth <= e.clientWidth + 0.5) break; }
+      // PM #178 finali ardılı: son kademe de sığdıramazsa zorunlu kırılma tireyle (tiresiz kırık sözcük iki sözcük gibi okunur)
+      if (e.scrollWidth > e.clientWidth + 0.5) { e.style.hyphens = "auto"; e.style.setProperty("-webkit-hyphens", "auto"); }
       e.style.overflowWrap = "";
     };
     sigdir(); void document.fonts?.ready.then(sigdir);

@@ -1,0 +1,75 @@
+# Okur kontrolü (OD-9.3): yerleşim B4, kısa arayüz metinleri
+
+Kapsam: Öğren ve Profil ekranlarındaki beş küçük gri açıklama satırı (yeni metinler; PM 7049695521 E taslakları).
+Okuyan: Türkçe konuşan, A2 Almanca bilen, dilbilgisi terimi bilmeyen yetişkin; telefonda, yorgun bir akşamda, ilk okuma.
+Ölçüt: OD-9.2 (bir fikir, cümle ≤ 14 kelime, `=` `;` `…` ve tırnak içinde Almanca yok, terim yok, ekrandakini anlatır) + B4 (≤ 2 satır).
+
+| No | Yer | Açıklama (yeni) | Kendi sözlerimle | Takıldığım yer | Karar | Neden / öneri |
+|---|---|---|---|---|---|---|
+| 1 | Öğren, başlık altı | Gerçek hayattan 20 durum, senin öncelik sıranla. Her birinde önce kelime, sonra cümle, en son konuşma. | Burada gerçek hayattan 20 durum var, benim seçtiğim sırayla; her durumda kelimeyle başlıyorum, cümleye geçiyorum, en sonda konuşuyorum. | Yok denecek kadar az. "en son konuşma" tek başına "son yapılan konuşma" diye de okunabilir ama "önce… sonra…" dizisi bunu hemen düzeltiyor. Cümleler 7 ve 9 kelime. | GEÇ | — |
+| 2 | Profil, ad ve hitap altı | Adın bu cihazdan çıkmaz. Sunucuya ve yapay zekâya yalnız hitap (Herr/Frau) gider. | Adım telefonumda kalıyor; dışarıya, yapay zekâya bile, yalnızca Herr ya da Frau gidiyor. | Yok. "hitap" kelimesi bazı okurlara ağır gelebilir ama parantezdeki Herr/Frau anlamı hemen veriyor; tırnak yok, eğik çizgi yasak listesinde değil. Güvence korunmuş: "adın yapay zekâya gitmez, yalnız hitap gider" iki cümlenin toplamından açıkça çıkıyor. Kaybolan bilgi (adın diyaloglarda senin satırlarına yerleşmesi) güvence değil, eksikliği anlamayı bozmuyor. Cümleler 5 ve 9 kelime. | GEÇ | — |
+| 3 | Profil, yapay zekâ | Yapay zekâ, anahtarı güvenle tutan sunucu üzerinden çalışır; anahtar uygulamada yok. | Yapay zekâyı açan gizli bir şifre var; o şifre telefonumdaki uygulamada değil, güvenli bir sunucuda duruyor. | (a) `;` var: OD-9.2'de açıkça yasak. (b) Bir cümlede iki fikir var: "sunucu üzerinden çalışır" ve "anahtar uygulamada yok". (c) "anahtar" tek başına belirsiz: neyin anahtarı? İlk okumada "bir kilit mi, benim bir şey mi girmem lazım?" diye duraksadım. Güvence ("anahtar uygulamada yok") anlaşılıyor. | GERİ | `;` ve iki fikir. Öneri: "Yapay zekânın gizli anahtarı uygulamada değil, güvenli sunucuda saklı." (tek fikir, 9 kelime, güvence korunur) |
+| 4 | Profil, depolama (kalıcı izin yoksa) | İlerlemen bu cihazda. Yer azalırsa silinebilir: ara sıra yedek indir. | İlerlemem telefonda duruyor; telefonda yer kalmazsa silinebilir, o yüzden arada bir yedek almalıyım. | Küçük: "Yer azalırsa" nerede yer olduğunu söylemiyor; bağlamdan telefon olduğu anlaşılıyor. İki nokta yasak listesinde değil; "silinebilir" ile "yedek indir" neden-sonuç olarak tek mesaj gibi okunuyor. Cümleler 3 ve 7 kelime. | GEÇ | İsteğe bağlı küçük iyileştirme: "Telefonda yer azalırsa silinebilir: ara sıra yedek indir." |
+| 5 | Profil, medya rafı | Sana özel medya rafı. Adres ve parola bu cihazda kalır, yedeğe girmez. Boşsa açık medya gösterilir. | Burası bana özel bir şey; girdiğim adres ve parola telefonda kalıyor, yedeğe girmiyor; boşsa… başka bir şey gösteriliyor. | (a) "Sana özel medya rafı" ne olduğunu anlatmıyor: rafta ne var, neden bana özel? Eski metindeki "fotoğraflar" kaybolmuş. (b) "Adres": bir an ev adresim mi diye düşündüm; hangi adres olduğu belli değil. (c) "Boşsa": raf mı boş, alan mı boş? Benim bir şeyi boş bırakmam mı kastediliyor, belli değil. (d) "açık medya" günlük Türkçede yok; "açık" ışıklı/açılmış/açık seçik diye de okunabilir. Ekrandaki alanın ne işe yaradığını tek okumada anlamadım. Güvence ("adres ve parola yedeğe girmez") anlaşılıyor. | GERİ | Anlaşılmayan üç yer (raf ne, boş olan ne, açık medya ne). Öneri: "Sana özel fotoğraflar. Adres ve parola cihazda kalır, yedeğe girmez. Boş bırakırsan herkese açık görseller gelir." (Varsayılan raf yalnız görsel değilse "görseller" yerine doğru kelime konmalı; "Adres" alan etiketiyle birlikte görünmüyorsa "Raf adresi" denmeli.) |
+
+## Sonuç
+
+- Toplam: 5
+- GEÇ: 3 (1, 2, 4)
+- GERİ: 2 (3, 5)
+
+GERİ olanlar: **3** (`;` + iki fikir), **5** (rafın ne olduğu, "Boşsa" ve "açık medya" belirsiz).
+
+OD-9.4 gereği bu set, 3 ve 5 düzeltilip yeniden okunana kadar "reviewed" sayılamaz.
+
+## 2. tur (yalnız düzeltilenler; OD-9.4)
+
+Bağlam notu (baş geliştirici): 5'in hemen altında alan etiketleri "Raf adresi" ve "Parola"; varsayılan rafta yalnız fotoğraf var. 1, 390 genişlikte 3 satır olduğu için kısaltıldı.
+
+| No | Açıklama (2. tur) | Kendi sözlerimle | Takıldığım yer | Karar | Neden |
+|---|---|---|---|---|---|
+| 1 | Gerçek hayattan 20 durum, senin öncelik sıranla. Önce kelime, sonra cümle, en son konuşma. | Benim seçtiğim sırayla 20 gerçek durum var; kelimeyle başlıyorum, cümleye geçiyorum, en sonda konuşuyorum. | "Her birinde" düşünce bu sıranın her durum için mi, bütün liste için mi olduğu söylenmiyor. İki okuma da öğrenciyi yanlış bir şey yapmaya götürmüyor, yöntem aynı anlaşılıyor. Cümleler 7 ve 7 kelime. | GEÇ | — |
+| 3 | Yapay zekânın gizli anahtarı uygulamada değil, güvenli sunucuda saklı. | Yapay zekâyı açan gizli şifre telefonumdaki uygulamada değil, güvenli bir sunucuda duruyor. | Yok. Tek fikir, 9 kelime, yasak sembol yok. "Anahtar uygulamada yok" güvencesi açık. | GEÇ | — |
+| 4 | İlerlemen bu cihazda. Telefonda yer azalırsa silinebilir: ara sıra yedek indir. | İlerlemem telefonda; telefonda yer kalmazsa silinebilir, o yüzden arada bir yedek almalıyım. | Yok. Hangi yerin azaldığı artık belli. Cümleler 3 ve 9 kelime. | GEÇ | — |
+| 5 | Sana özel fotoğraflar. Raf adresi ve parola cihazda kalır, yedeğe girmez. Boş bırakırsan herkese açık görseller gelir. | Bu bölüm bana özel fotoğraflar için; raf adresi ve parola telefonda kalıyor, yedeğe girmiyor; ikisini boş bırakırsam herkese açık resimler geliyor. | Yok denecek kadar az. Hemen alttaki "Raf adresi" ve "Parola" etiketleri, "Raf adresi" ile "Boş bırakırsan"ın neyi kastettiğini netleştiriyor. "fotoğraflar" ve "görseller" arasındaki fark okurken soru doğurmuyor. "Adres ve parola yedeğe girmez" güvencesi açık. Cümleler 3, 9 ve 7 kelime. | GEÇ | — |
+
+### 2. tur sonucu
+
+- Okunan: 4 (1, 3, 4, 5); 2 numara 1. turda GEÇ.
+- GEÇ: 4 · GERİ: 0
+- Beş metnin hepsi GEÇ: okur açısından bu set "reviewed" sayılabilir (OD-9.4). Satır sayısının (≤ 2) ekranda doğrulanması baş geliştiricidedir.
+
+## 3. tur (kısaltma)
+
+Bağlam notu (baş geliştirici): inceleme bazı metinlerin 390 genişlikte 3 satır olduğunu buldu; Profil'deki dört metin kısaltıldı. 1'in hemen altında alan etiketleri "Raf adresi" ve "Parola". 4, yapay zekânın kapalı olduğu sürümde ("Sunucu ve veriler" kartı) görünür. Korunması gereken: 1'de "adres ve parola yedeğe girmez", 4'te "internet ve yapay zekâ gerekmez".
+
+| No | Yer | Açıklama (3. tur) | Kendi sözlerimle | Takıldığım yer | Karar | Neden / öneri |
+|---|---|---|---|---|---|---|
+| 1 | Profil, medya rafı | Sana özel fotoğraflar. Adres ve parola cihazda kalır, yedeğe girmez. Boşsa herkese açık görseller gelir. | Burası bana özel fotoğraflar için; adres ve parola telefonda kalıyor, yedeğe girmiyor; boş bırakırsam herkese açık resimler geliyor. | Küçük: "Adres" tek başına (ev adresi mi?) ve "Boşsa" (ne boş?) yalnız okununca belirsiz; ama hemen alttaki "Raf adresi" / "Parola" etiketleri ikisini de çözüyor. "Boşsa" bir an "raf boşsa" diye de okunabilir; o okuma da öğrenciyi yanlış bir şey yapmaya götürmüyor. Güvence ("adres ve parola yedeğe girmez") açık. Cümleler 3, 7, 5 kelime. | GEÇ | Not: 104 karakter, dört metnin en uzunu; 2 satır sınırına en yakın olan bu. Ekranda doğrulanmalı. |
+| 2 | Profil, depolama (kalıcı izin var) | İlerlemen bu cihazda kalıcı. Telefonu değiştirmeden önce yedek indir. | İlerlemem bu telefonda silinmeden duruyor; telefon değiştireceksem önce yedek almalıyım. | Yok. "Kalıcı" ile "yedek indir" birbirini açıklıyor: burada kalır, yeni telefona kendiliğinden gitmez. Cümleler 4 ve 6 kelime, 69 karakter. | GEÇ | — |
+| 3 | Profil, depolama (durum bilinmiyor) | İlerlemen bu cihazda. Ara sıra yedek indir. | İlerlemem bu telefonda duruyor; arada bir yedek almalıyım. | Yok. "Saklanıyor" düşünce anlam kaybolmamış. Cümleler 3 ve 4 kelime, 43 karakter. | GEÇ | — |
+| 4 | Profil, "Sunucu ve veriler" (sunucu yok) | Dersler, cevap denetimi ve rol oyunu internetsiz, bu cihazda çalışır. | Dersler, cevaplarımın kontrolü ve rol oyunu internet olmadan telefonumda çalışıyor. | "Yapay zekâ" kelimesi düşmüş. Okur olarak rol oyununun normalde yapay zekâ istediğini bilmiyorum; bu metinden "bu sürümde yapay zekâ yok/gerekmez" bilgisini çıkaramadım. Korunması istenen anlamın yarısı (internet) var, yarısı (yapay zekâ) yok. "Cevap denetimi" biraz resmî ama anlaşılıyor. 11 kelime, 69 karakter. | GERİ | Yapay zekâ gerekmez bilgisi kayboldu. Öneri (73 karakter): "İnternet ve yapay zekâ gerekmez. Dersler ve rol oyunu bu cihazda çalışır." |
+
+### 3. tur sonucu
+
+- Okunan: 4 (Profil 1–4)
+- GEÇ: 3 (1, 2, 3) · GERİ: 1 (4)
+- GERİ: **4** ("yapay zekâ gerekmez" anlamı düşmüş).
+- OD-9.4 gereği bu set, 4 düzeltilip yeniden okunana kadar "reviewed" sayılamaz. 1'in 2 satıra sığdığı ekranda doğrulanmalı (104 karakter, sınıra en yakın metin).
+
+## 4. tur (PM metni)
+
+Bağlam notu (baş geliştirici): Profil → Medya rafı kartı; metin "Raf adresi" ve "Parola" alanlarının hemen üstünde küçük gri açıklama. Metin PM'den (PM #185 7055715826 md. 1). 3. turdaki biçim 104 karakterdi, 390 genişlikte 3 satır tuttu.
+
+| No | Yer | Açıklama (4. tur) | Kendi sözlerimle | Takıldığım yer | Karar | Neden / öneri |
+|---|---|---|---|---|---|---|
+| 1 | Profil, medya rafı | Sana özel fotoğraflar. Adres ve parola yalnız bu cihazda kalır. Boşsa açık görseller gelir. | Burası bana özel fotoğraflar için. Adres ve parola yalnız bu telefonda kalıyor. Boş bırakırsam bir tür "açık" resimler geliyor, ama ne olduğunu tam bilmiyorum. | **"açık görseller":** "herkese" düşünce "açık" kelimesi tek başına kalıyor. Yorgun bir akşam okuyunca aklıma önce "açık renkli resimler" geliyor, sonra "açık saçık resimler". Bu ikinci okuma kaygı da verir. "Herkese açık" olunca anlam tekti. **"Boşsa":** neyin boş olduğu yazmıyor. Ama hemen alttaki "Raf adresi" ve "Parola" kutuları bunu çözüyor, bir önceki cümle de adres ile parolayı anıyor. Geçer. **Yedek:** "yedeğe girmez" düşmüş, yerine "yalnız" gelmiş. "Yalnız bu cihazda" bana "başka yere gitmez" diyor. Yedekle telefon değiştirirsem adres ile parolayı yeniden yazmam gerektiğini buradan çıkarabiliyorum. Biraz düşünmem gerekiyor ama yanlış yola götürmüyor. Geçer. Cümleler 3, 7 ve 4 kelime, yasak sembol yok, 91 karakter. | GERİ | "açık görseller" iki türlü okunuyor: açık renkli ya da açık saçık. Öneri (93 karakter): "Sana özel fotoğraflar. Adres ve parola yalnız bu cihazda. Boşsa herkese açık görseller gelir." |
+
+### 4. tur sonucu
+
+- Okunan: 1 (Profil 1, PM metni)
+- GEÇ: 0 · GERİ: 1
+- GERİ: **1** ("herkese" düşünce "açık görseller" belirsiz kaldı).
+- OD-9.4 gereği bu metin düzeltilip yeniden okunana kadar set "reviewed" sayılamaz. Önerilen biçim 93 karakter; 2 satıra sığdığı ekranda doğrulanmalı.
+
+**ANA notu (4. tur sonrası):** okurun önerisi 390 genişlikte 3 satır ölçüldü; "gelir" düşürüldü: "Sana özel fotoğraflar. Adres ve parola yalnız bu cihazda. Boşsa herkese açık görseller." (390 ve 430'da 2 satır). Anlam okurun önerisiyle aynı ("herkese açık").
