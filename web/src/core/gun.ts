@@ -15,7 +15,8 @@ export type SeansNo = 1 | 2 | 3 | 4;
 const isaretsiz = (t: string) => t.replace(/\*\*(.+?)\*\*/g, "$1");
 
 export interface Adim { seans: SeansNo; tur: "bahce" | "ders" | "medya" | "prova" | "okuma"; id: string; title_tr: string; href: string; bitti: boolean; hazir: boolean; alt?: "video" | "ses" }
-export interface GunDurum { day: number; title_tr: string; adimlar: Adim[]; bitti: boolean }
+/** `akis`: bayraklı günde akış bitmeden "BAŞLA" bu adrese gider (akış durakları sırayla açar; öğrenci simülasyonu P1-1) */
+export interface GunDurum { day: number; title_tr: string; adimlar: Adim[]; bitti: boolean; akis?: string }
 /** Cihazda saklanan ilerlemeden okunanlar (meta anahtarları ekranda doldurulur) */
 export interface Ilerleme {
   dersBitti: Set<string>; medyaBitti: Set<string>;
@@ -40,14 +41,20 @@ export const bahceAnahtari = (day: number) => `m1:bahce:${day}`;
 /** Adımın etiketi: seansın adı; Seans 4'te okuma/yazma kendi adıyla */
 export const adimAdi = (a: Pick<Adim, "seans" | "tur">) => (a.tur === "okuma" ? "Okuma ve yazma" : SEANS_TR[a.seans]);
 
+/** Bayraklı günler (`policy.akis.gunler`). Yalnız e2e paketinde `sessionStorage["e2e-akis-gunler"]` (JSON dizi) geçersiz kılar:
+ *  eski düzenin testleri (v2_bugun, v2_yol) 1. günü bayraksız sınar; üretimde okunmaz */
+export function bayrakliGunler(): readonly number[] {
+  if (import.meta.env.MODE === "e2e") { try { const x: unknown = JSON.parse(sessionStorage.getItem("e2e-akis-gunler") ?? "null"); if (Array.isArray(x)) return x as number[]; } catch { /* geçersiz: policy */ } }
+  return POLICY.akis.gunler;
+}
 /** AKIS AK-6 pilot bayrağı (`policy.akis.gunler`): halkası olan bayraklı gün akışla açılır; eski düzenle başlanmış gün eski düzenle biter */
-export function akisAcik(g: Gun, ilr: Ilerleme, gunler: readonly number[] = POLICY.akis.gunler): boolean {
+export function akisAcik(g: Gun, ilr: Ilerleme, gunler: readonly number[] = bayrakliGunler()): boolean {
   if (!gunler.includes(g.day) || !g.halkalar?.length) return false;
   if (ilr.akisBasladi?.has(g.day)) return true;
   return !ilr.bahceBitti.has(g.day) && !g.dersler.some((d) => ilr.dersBitti.has(d));
 }
 
-export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<string, string> = {}, akisGunler: readonly number[] = POLICY.akis.gunler): GunDurum {
+export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<string, string> = {}, akisGunler: readonly number[] = bayrakliGunler()): GunDurum {
   const a: Adim[] = [];
   const bahceBitti = ilr.bahceBitti.has(g.day);
   const kalan = bahceBitti ? 0 : g.yeni_kartlar.filter((id) => (!ilr.kartlar || ilr.kartlar.has(id)) && !ilr.tanitilan?.has(id)).length;
@@ -58,10 +65,11 @@ export function gunAdimlari(g: Gun, ilr: Ilerleme, temelBasliklari: Record<strin
   if (g.okuma_yazma) a.push({ seans: 4, tur: "okuma", id: `okuma:${g.day}`, title_tr: isaretsiz(g.okuma_yazma.title_tr), href: `#/okuma/${g.day}`, bitti: !!ilr.okumaBitti?.has(g.day), hazir: true });
   // akış günü: Bahçe adımı akış ekranından; ders, prova, okuma ve medya kendi ekranlarında (inceleme #184 Y-3) (eski anahtarlar akış durak bitince yazılır; Yol ve Bugün aynen okur)
   // prova, okuma ve medya kendi ekranlarında kalır: akışta "şimdi geç" denen durağa Yol'dan yine ulaşılır (inceleme #184 P1-2)
-  if (akisAcik(g, ilr, akisGunler)) for (const x of a) if (x.tur === "bahce") x.href = `#/akis/${g.day}`;
+  const akis = akisAcik(g, ilr, akisGunler);
+  if (akis) for (const x of a) if (x.tur === "bahce") x.href = `#/akis/${g.day}`;
   // gün, hazır olan bütün adımlar bitince biter (hazırlanmakta olan adım öğrenciyi bekletmez)
   const bitti = !!ilr.gunBitti?.has(g.day) || a.filter((x) => x.hazir).every((x) => x.bitti);
-  return { day: g.day, title_tr: isaretsiz(g.title_tr), adimlar: a, bitti };
+  return { day: g.day, title_tr: isaretsiz(g.title_tr), adimlar: a, bitti, ...(akis && !bitti ? { akis: `#/akis/${g.day}` } : {}) };
 }
 
 /** Yol: günler sırayla; şu anki gün = ilk bitmemiş gün. Sonraki günler kilitli (bir önceki bitmeden açılmaz). */
@@ -76,7 +84,10 @@ export function yol(gunler: GunDurum[]): { gunler: (GunDurum & { durum: "bitti" 
 
 /** Sıradaki adım: şu anki günün ilk hazır ve bitmemiş adımı (seans sırasıyla) */
 export function siradaki(g: GunDurum | null): Adim | null {
-  return g?.adimlar.find((x) => x.hazir && !x.bitti) ?? null;
+  const x = g?.adimlar.find((y) => y.hazir && !y.bitti) ?? null;
+  // akış günü: Bahçe bitince BAŞLA eski derse değil akışa döner; akış ders, ses, video, prova ve okuma duraklarını kendisi açar
+  // (öğrenci simülasyonu 1. gün P1-1). Yol düğümleri kendi ekranlarında kalır (inceleme #184 Y-3)
+  return x && g?.akis ? { ...x, href: g.akis } : x;
 }
 
 /* ---------- XP ve seri (motivasyon; seviye kanıtla atlanır, XP ile değil) ---------- */

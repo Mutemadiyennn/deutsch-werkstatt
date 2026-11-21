@@ -5,14 +5,18 @@ AKIS AK-10 4a duman testi: `#/akis/2` (e2e paketinde 2. güne İÇ'in halka öne
   - yeni kelime: cümle, kart sözcüğü vurgulu; "Neden bu?" adımın nedenini açar
   - sayfa yeniden açılınca aynı adımdan sürer (AK-6); her adımın sonucu kayda ve kart kaydına (srs) yazılır
   - halkada yanlış (Bilmiyorum) kart, durağın sonunda bir kez daha gelir
-python3 tests/e2e/v2_akis.py [--browser webkit] [--device "iPhone 15"] [--scheme dark] [--shots DIR]
+python3 tests/e2e/v2_akis.py [--browser webkit] [--device "iPhone 15"] [--scheme dark] [--shots DIR] [--gun N]
+  --gun 1 (bayrak PR'ı, PM 7059008858 md. 4): 1. günün gerçek içeriği; e2e paketi fikstürsüz derlenir
+  (`npm run content:build && (cd web && npx vite build --mode e2e --outDir dist-e2e)`), çünkü fikstür 1. günün yerine geçer
 """
+import os, sys
 from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow
 
 PORT = 4243
+GUN = int(arg("--gun") or 2)
 KAYIT = """async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
-  const m = await new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get('akis:2'); t.onsuccess = () => ok(t.result && t.result.value); });
+  const m = await new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get('akis:' + GUN_); t.onsuccess = () => ok(t.result && t.result.value); });
   const n = await new Promise((ok) => { const t = d.transaction('items').objectStore('items').count(); t.onsuccess = () => ok(t.result); });
   d.close(); return m ? { durak: m.durak, adim: m.adim, sonuc: m.sonuclar.length, geri: m.geri, ilkDurak: m.plan.duraklar[0].tur, halka: m.plan.duraklar.findIndex((x) => x.tur === 'halka'), items: n } : null; }"""
 
@@ -52,19 +56,36 @@ def adim_gec(pg, yanlis=False):
     pg.wait_for_timeout(250)
     return tur
 
+TABLO = []  # görülen tabloların seçici düğme sayısı
+RESIM = []  # resimden seç görüldü mü
+
 def ekran_denetle(pg, kalip_ornek):
     """her akış ekranında: çıplak yer tutucu, iskelet, <3 şık, ilerleme türü, kalıp örneği sayısı, durak girişi (inceleme #186)"""
     metin = pg.inner_text("[data-test=akis]") if pg.locator("[data-test=akis]").count() else ""
+    if pg.locator("[data-test=akis-tablo-t]").count():
+        # PM 7059008858 md. 1: dil noktası tablosu ekrana sığar (kaydırma yok); seçici varsa her sütun seçilince de sığar
+        sig = lambda: pg.evaluate("() => { const t = document.querySelector('[data-test=akis-tablo-t]').getBoundingClientRect(); return t.right <= innerWidth - 8 && t.left >= 8; }")
+        if not sig(): check(False, f"dil noktası tablosu ekrana sığmıyor: {metin[:60]!r}")
+        for k in range(pg.locator("[data-test=akis-tablo-sec] button").count()):
+            pg.locator("[data-test=akis-tablo-sec] button").nth(k).click()
+            if not sig(): check(False, f"tablo seçicide {k}. sütun sığmıyor")
+        TABLO.append(pg.locator("[data-test=akis-tablo-sec] button").count())
     if "**" in metin: check(False, f"ekranda ham ** işareti (fark doğrulaması #186 Y-P1-1): {metin[:80]!r}")
     if "{" in metin and "}" in metin: check(False, f"ekranda çıplak yer tutucu: {metin[:80]!r}")
     if pg.locator("[data-test=akis-yer-tutucu]").count(): check(False, f"iskelet ekran (akis-yer-tutucu) görünüyor: {metin[:80]!r}")
+    # PM 7055715440 md. 9–11: seçenek bloğu alt yarıda; "Yeni kelime"de cümlenin dinle düğmesi; mikrofon yoksa "Almanca yaz"
+    alt = pg.evaluate("() => { const b = document.querySelector('[data-test=akis] .akis-soru [role=group] button.opt:not([disabled])'); return b ? b.getBoundingClientRect().top / innerHeight : null; }")
+    if alt is not None and alt < 0.4: check(False, f"seçenek bloğu ekranın üst yarısında (üst kenar %{round(alt * 100)}): {metin[:50]!r}")
+    if pg.locator("[data-test=akis-tanit]").count() and not pg.locator("[data-test=tanit-cumle-dinle]").count(): check(False, "yeni kelimede cümlenin dinle düğmesi yok")
+    if "Almanca söyle" in metin and not pg.evaluate("() => !!(window.SpeechRecognition || window.webkitSpeechRecognition)"): check(False, f"mikrofon yokken 'Almanca söyle' etiketi: {metin[:50]!r}")
     sik = pg.locator("[data-test=akis] [role=group] button.opt").count()
     if 0 < sik < 3: check(False, f"akışta {sik} şıklı soru (en az 3; inceleme #186 P1-1): {metin[:60]!r}")
     if "(adın)" in metin: check(False, f"ad girilmemiş profilde '(adın)' görünüyor (PM 7055715440 md. 3): {metin[:80]!r}")
     ilr = pg.evaluate("() => { const e = document.querySelector('[data-test=akis] [role=progressbar]'); return e ? [e.className, +e.getAttribute('aria-valuemax')] : null; }")
     if ilr and ((ilr[1] > 8) != ("akis-cubuk" in ilr[0])): check(False, f"ilerleme: >8 adımda çubuk, ≤8'de elmas ({ilr})")
     if pg.locator("[data-test=akis-kalip]").count():
-        kalip_ornek.append(pg.locator("[data-test=kalip-ornekler] b").count())
+        kalip_ornek.append((pg.locator("[data-test=kalip-cerceve]").count(), pg.locator("[data-test=kalip-ornek]").count(), pg.get_attribute("[data-test=akis]", "data-adim"), " / ".join(pg.locator("[data-test=kalip-cerceve] .de-lg").all_inner_texts())))
+        if kalip_ornek[-1][1] < kalip_ornek[-1][0] and os.environ.get("KALIP_DOKUM"): print("EKSIK", pg.inner_text("[data-test=akis-kalip]").replace("\n", " | ")[:200])
     if pg.locator("[data-test=durak-cumle]").count():
         dc = pg.inner_text("[data-test=durak-cumle]").strip()
         if not (dc[:1].isupper() and dc.endswith("dakika.")): check(False, f"durak girişi tek cümle + süre değil: {dc!r}")
@@ -76,18 +97,20 @@ def main():
     srv = serve(PORT); base = f"http://127.0.0.1:{PORT}/"
     sema = arg("--scheme") or "light"
     with sync_playwright() as p:
-        b, ctx = launch(p, color_scheme=sema); pg = new_page(ctx)
+        b, ctx = launch(p, color_scheme=sema); ctx.add_init_script(f"window.GUN_ = {GUN};"); pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
-        pg.goto(base + "#/akis/2"); pg.wait_for_selector("[data-test=akis]", timeout=20000)
+        # bayrak PR'ı md. 7: Bugün (seanslar) — bayraklı günde Bahçe adımı akışa gider
+        if GUN == 1 and "--tam" in sys.argv: pg.goto(base + "#/today"); pg.wait_for_selector("[data-test=next-activity]"); shot(pg, f"akis-bugun-{sema}", full=False)
+        pg.goto(base + f"#/akis/{GUN}"); pg.wait_for_selector("[data-test=akis]", timeout=20000)
         k = pg.evaluate(KAYIT)
         check(k and k["ilkDurak"] == "ses" and k["halka"] == 1, f"plan kuruldu ve saklandı; ilk durak ses, sonra halka ({k})")
         check(pg.locator("[data-test=akis-durak-gecis]").count() == 1 and pg.locator("[data-tab=today]").count() == 0, "adımsız durak: tek geçiş adımı; sekme çubuğu yok")
         hedef = pg.get_attribute("[data-test=akis-durak-gecis]", "data-hedef") or ""
-        check(hedef.startswith("#/m1/2/") and pg.locator("[data-test=akis-durak-basla]").count() == 1, f"ses durağı var olan medya ekranına gider ({hedef})")
+        check(hedef.startswith(f"#/m1/{GUN}/") and pg.locator("[data-test=akis-durak-basla]").count() == 1, f"ses durağı var olan medya ekranına gider ({hedef})")
         # dönüş (AK-6): medya ekranı bitmiş sayılınca akış yeniden açılışta kendiliğinden ilerler
         # ses durağı günün BÜTÜN sesleri bitince biter (inceleme #184 P1-3): önce biri, sonra hepsi
         sesler = pg.evaluate("""async () => { const v = (await (await fetch('content/current.json')).json()).version;
-          const g = await (await fetch('content/' + v + '/m1/gun-02.json')).json(); return g.sesler.map((x) => x.id); }""")
+          const g = await (await fetch('content/' + v + '/m1/gun-' + String(GUN_).padStart(2, '0') + '.json')).json(); return g.sesler.map((x) => x.id); }""")
         yaz = """async (ks) => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
           await new Promise((ok) => { const t = d.transaction('meta', 'readwrite'); for (const k of ks) t.objectStore('meta').put({ key: k, value: { bitti: new Date().toISOString() } }); t.oncomplete = ok; }); d.close(); }"""
         pg.evaluate(yaz, ["m1:medya:" + sesler[0]]); pg.reload(); pg.wait_for_selector("[data-test=akis]", timeout=20000)
@@ -120,6 +143,7 @@ def main():
         satir = pg.locator("[data-test=halka-sonu-liste] [data-kart]")
         check(satir.count() >= 3 and pg.locator("[data-test=halka-sonu-liste] .kip-nokta").count() == satir.count() * 4, f"halka sonu: {satir.count()} kelime × 4 nokta")
         check(pg.locator("[data-test=halka-sonu-liste] .kip-nokta.dolu").count() >= satir.count(), "halka sonu: her kelimede en az bir dolu nokta (gördün)")
+        check(pg.locator("[data-test=halka-sonu-basliklar] .kip-hucre").all_inner_texts() == ["gör", "duy", "kur", "söyle"], "halka sonu: dört noktanın adı sütun başlığında (PM 7055715440 md. 12)")
         check(pg.locator("[data-test=halka-sonu-sonraki]").count() == 1 and pg.locator("[data-test=halka-sonu-mola]").count() == 1, "halka sonu: sıradaki durak ve 'Mola ver'")
         no_overflow(pg, "halka sonu"); shot(pg, f"akis-halka-sonu-{sema}", full=False)
         pg.click("[data-test=halka-sonu-devam]"); pg.wait_for_selector("[data-test=akis]")
@@ -138,21 +162,43 @@ def main():
                     if pg.locator(f"[data-test={g}]").count(): govdeler.add(g)
                 ic = ("tablo", "hatirlat", "ders_madde", "soyle", "tr_de", "gap", "order", "dikte", "listen_meaning", "resimden_sec", "eslestir", "kalip", "tanit", "colloc", "article", "sahne", "tekrar")
                 if pg.locator("[data-test=akis] .kicker").count() and any(x == pg.inner_text("[data-test=akis] .kicker").strip().lower() for x in ic): check(False, f"ekranda iç tür adı görünüyor: {pg.inner_text('[data-test=akis] .kicker')}")
+                if pg.locator("[data-test=resim-sec]").count() and "resim" not in RESIM:
+                    # PM 7059008858 md. 5: resimden seç gerçek görselle, dörtlü tek üslupta (dört fotoğraf ya da dört emoji)
+                    pg.wait_for_function("() => [...document.querySelectorAll('[data-test=resim-secenek] img')].every((i) => i.complete && i.naturalWidth > 0)", timeout=8000)
+                    r = pg.evaluate("() => { const i = [...document.querySelectorAll('[data-test=resim-secenek] img')]; return { n: i.length, emoji: i.filter((x) => x.classList.contains('emoji')).length }; }")
+                    check(r["n"] == 4 and r["emoji"] in (0, 4), f"resimden seç: dört görsel yüklendi, tek üslupta ({r})")
+                    RESIM.append("resim"); shot(pg, f"akis-resimden-sec-{sema}", full=False)
+                tn = pg.get_attribute("[data-test=akis]", "data-tur")
+                if tn and tn not in turler and tn not in turler2: shot(pg, f"akis-{tn}-{sema}", full=False)  # md. 7: her türün ilk ekranı
                 t = adim_gec(pg)
                 if t is None: check(False, f"günde takıldı: {pg.get_attribute('[data-test=akis]', 'data-tur')}"); break
                 turler2.add(t)
+            if pg.locator("[data-test=akis-bitti]").count(): shot(pg, f"akis-gun-sonu-{sema}", full=False)
             check(pg.locator("[data-test=akis-bitti]").count() == 1, f"gün baştan sona yürüdü ({n} adım; türler {sorted(turler2)})")
-            check(kalip_ornek and sum(1 for k in kalip_ornek if k >= 1) * 10 >= len(kalip_ornek) * 7, f"yeni kalıpların çoğunda 1–2 örnek; örnek yalnız o anda bilinen sözcüklerle (PM md. 2, inceleme #186 P1-2; {kalip_ornek})")
+            if pg.locator("[data-test=akis-bitti]").count():
+                # gün sonu çıkmaz sayfa değil: tek birincil eylem Bugün'e döner (bayrak PR'ı md. 4)
+                check(pg.locator("[data-test=akis-bitti] .btn.primary").count() == 1, "gün sonu: tek birincil eylem 'Bugün'e dön'")
+                pg.click("[data-test=akis-bugune]"); pg.wait_for_selector("[data-test=next-activity], [data-tab=today]", timeout=10000)
+                check(pg.url.endswith("#/today"), f"'Bugün'e dön' Bugün'e götürür ({pg.url[-20:]})")
+            eksik = [k for k in kalip_ornek if k[1] < k[0]]
+            # PM 7059008858 md. 2 "örneksiz kalıp kalmaz": --kalip-sert ile kesin (bayrak PR'ı; İÇ'in K(t) içi örnekleri gelince varsayılan olur).
+            # Şimdilik çerçevelerin en az %70'i örnekli olmalı; eksikler yazılır.
+            cerceve, ornekli = sum(k[0] for k in kalip_ornek), sum(min(k[0], k[1]) for k in kalip_ornek)
+            if "--kalip-sert" in sys.argv: check(kalip_ornek and not eksik, f"her kalıp çerçevesine en az bir örnek (çerçeve/örnek {kalip_ornek}; eksik {eksik})")
+            else: check(kalip_ornek and ornekli * 10 >= cerceve * 7, f"kalıp çerçevelerinin {ornekli}/{cerceve}'i örnekli (≥ %70; eksik {len(eksik)} kalıp, PM 7059008858 md. 2)")
             check("akis-tablo" in govdeler, "dil noktasının tablosu gerçek gövdeyle (PM md. 4)")
+            check(bool(TABLO), f"dil noktası tablosu görüldü ve ekrana sığdı; seçicili tablolar {TABLO} (PM 7059008858 md. 1)")
             plan = pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
-              const m = await new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get('akis:2'); t.onsuccess = () => ok(t.result.value); }); d.close();
+              const m = await new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get('akis:' + GUN_); t.onsuccess = () => ok(t.result.value); }); d.close();
               const a = m.plan.duraklar.flatMap((x) => x.adimlar); const say = (f) => a.filter(f).length;
-              return { halkaUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && !x.ders && x.cumle), dersUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && x.ders) }; }""")
+              return { halkaUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && !x.ders && x.cumle), dersUret: say((x) => ['tr_de', 'soyle', 'dikte'].includes(x.tur) && x.ders),
+                kendiniDene: (m.plan.duraklar.find((x) => x.tur === 'gunsonu')?.adimlar ?? []).filter((x) => x.ders && x.ders.id === 'gun_sinavi').length }; }""")
+            check(1 <= plan["kendiniDene"] <= 4, f"gün sonu 'kendini dene': günün sınavından {plan['kendiniDene']} madde oynandı (PM 7059008858 md. 4)")
             beklenen = {"akis-bosluk", "akis-yapboz", "akis-tanit", "akis-tablo", "akis-hatirlatma", "akis-gorev"} | ({"akis-tr-de"} if plan["halkaUret"] else set())
             check(beklenen <= govdeler, f"halka cümlesi kendi gövdesiyle oynandı, Bahçe sorusuna düşmedi (gövdeler {sorted(govdeler)}; üretim halka {plan['halkaUret']}, ders {plan['dersUret']})")
             anahtar = pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
               const al = (k) => new Promise((ok) => { const t = d.transaction('meta').objectStore('meta').get(k); t.onsuccess = () => ok(!!t.result); });
-              const r = { bahce: await al('m1:bahce:2'), gun: await al('m1:gun:2'), ders: await al('ders:r0:02-monate') }; d.close(); return r; }""")
+              const r = { bahce: await al('m1:bahce:' + GUN_), gun: await al('m1:gun:' + GUN_), ders: GUN_ === 2 ? await al('ders:r0:02-monate') : null }; d.close(); return r; }""")
             check(anahtar["bahce"] and anahtar["gun"] and not anahtar["ders"], f"akış Bahçe ve gün anahtarını yazar; dersin anahtarını ders ekranı yazar, 'şimdi geç' denen dersin değil ({anahtar})")
         b.close()
     srv.shutdown()

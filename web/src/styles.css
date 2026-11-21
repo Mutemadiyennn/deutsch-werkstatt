@@ -729,6 +729,8 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 .resim-izgara { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; max-width: 344px; margin: 0 auto; }
 .resim-secenek { position: relative; padding: 0; border: 0; border-radius: 18px; overflow: hidden; aspect-ratio: 1 / 1; background: var(--soft); box-shadow: 0 3px 0 rgba(0, 0, 0, 0.08), 0 0 0 1.5px var(--line) inset; cursor: pointer; transition: transform var(--t), opacity var(--t); }
 .resim-secenek img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* PM-081 B: Noto Emoji çizimi kırpılmaz, kutunun ortasında (dört seçenek aynı üslupta) */
+.resim-secenek img.emoji { object-fit: contain; padding: 18%; box-sizing: border-box; background: var(--card); }
 .resim-secenek:active { transform: translateY(2px); }
 .resim-secenek.sel { box-shadow: 0 0 0 3px var(--accent); }
 .resim-secenek.right { box-shadow: 0 0 0 3px var(--ok); }
@@ -759,6 +761,7 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 .tanit-isaret { font: inherit; color: inherit; background: none; border: 0; padding: 0; min-height: 0; text-decoration: underline dotted; text-underline-offset: 6px; text-decoration-thickness: 2px; cursor: pointer; }
 .kip-nokta { width: 10px; height: 10px; border-radius: 50%; background: var(--line); display: inline-block; }
 .kip-nokta.dolu { background: var(--ok); }
+.kip-hucre { width: 38px; display: inline-flex; justify-content: center; align-items: center; }
 
 /* PM 7055715440 md. 1: 8 adımdan uzun durakta dolan çubuk (yükseklik 8 px, dolu kısım belirgin) */
 .akis-cubuk { flex: 1 1 auto; min-width: 0; height: 8px; border-radius: 999px; background: var(--line); overflow: hidden; }
@@ -766,7 +769,16 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 /* md. 6: akışta Bahçe ve ders soruları da yeni dilde — düz yazılı mavi etiket, kart sarmalı yok */
 .akis-soru .kicker { text-transform: none; letter-spacing: 0.02em; color: var(--accent); }
 .akis-soru section.card { background: none; box-shadow: none; border: 0; padding: 0; }
+/* PM 7055715440 md. 9: seçenekli adımda soru üstte, seçenek bloğu alt yarıda (eylem çubuğunun hemen üstü, başparmağa yakın) */
+[data-test=akis] { display: flex; flex-direction: column; min-height: calc(100dvh - var(--safe-top) - var(--safe-bottom) - var(--actionbar-h) - 70px); }
+[data-test=akis] > .akis-soru { flex: 1 1 auto; display: flex; flex-direction: column; }
+.akis-soru > .stack { flex: 1 1 auto; display: flex; flex-direction: column; }
+.akis-soru > .stack > [role=group] { margin-top: auto; padding-top: 14px; }
 .akis-tablo-t { border-collapse: collapse; width: 100%; font-size: 1rem; overflow-wrap: normal; hyphens: manual; }
 .akis-tablo-t th, .akis-tablo-t td { white-space: nowrap; }
 .akis-tablo-t th, .akis-tablo-t td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
 .akis-tablo-t th { color: var(--muted); font-weight: 700; font-size: 0.85rem; }
+/* PM 7059008858 md. 1: tablo telefonda sığar; geniş tabloda sütun seçici (çipler satır kırar, kaydırma yok) */
+.akis-tablo-sec { flex-wrap: wrap; gap: 8px; }
+.akis-tablo-sec .chip { min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font-weight: 700; }
+.akis-tablo-sec .chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }

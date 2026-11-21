@@ -85,5 +85,18 @@ describe("AKIS pilot bayrağı (AK-6, 4b)", () => {
     expect(gunAdimlari(g, eski, {}, [1]).adimlar[0]!.href).toBe("#/garden/1");
     expect(akisAcik(g, { ...eski, akisBasladi: new Set([1]) }, [1])).toBe(true);
   });
+  it("akış günü bitmeden BAŞLA akışa döner, Bahçe bitmiş olsa da; Yol düğümleri kendi ekranında (öğrenci simülasyonu P1-1)", () => {
+    const g = { ...g1, halkalar: [halka] } as typeof g1;
+    const ilr = { ...bos(), bahceBitti: new Set([1]), akisBasladi: new Set([1]) };
+    const basliklar = Object.fromEntries(g1.dersler.map((d) => [d, "Ders"]));
+    const d = gunAdimlari(g, ilr, basliklar, [1]);
+    const s = siradaki(d)!;
+    expect(s.tur).not.toBe("bahce"); expect(s.href).toBe("#/akis/1");
+    expect(d.adimlar.filter((x) => x.tur !== "bahce").every((x) => !x.href.startsWith("#/akis"))).toBe(true);
+    // gün bitince (akış gün anahtarı) BAŞLA yok; bayraksız günde eski davranış
+    const biten = gunAdimlari(g, { ...ilr, gunBitti: new Set([1]) }, basliklar, [1]);
+    expect(biten.bitti).toBe(true); expect(biten.akis).toBeUndefined();
+    expect(siradaki(gunAdimlari(g, ilr, basliklar, []))!.href.startsWith("#/akis")).toBe(false);
+  });
 });
 
