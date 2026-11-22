@@ -11,6 +11,10 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 - **GitHub Actions bu depoda GitHub tarafından kapalı** (16:53 UTC'den beri). Kabul **KAPI oturumunda** (PM 7047288255): temiz worktree, `ci-v2.yml` sırası, WebKit üç cihaz; PR'a "[KAPI] <commit> — YEŞİL/KIRMIZI". Ortak betik `scripts/kapi.sh` (dal `kapi/betik`). Yayın ve medya hatları durdu; kod PR'ları KAPI sırasıyla birleşir.
 - **Hedef ekranlar:** `design/TARGET3c` (kalıp, yapboz + K10, söyle, gün sonu sınaması, Yol, Bahçe boş hâli; TASARIM "Hedef 3c").
 
+## Hat B (ANA-B): Hedef 3 kabuğu (PM-084; 2026-11-22)
+- **Sekme çerçevesi** (dal `v2/sekme-cercevesi`): dört sekme **Bugün · Yol · Köy · Ben** (`#/today`, `#/yol`, `#/koy`, `#/ben`; ayarlar `#/ben/ayarlar`), simgeler ve etkin durum `design/TARGET3`. Eski `#/learn`, `#/progress`, `#/profile` adresleri yeni yerlerine yönlenir. Köy ve Ben ekranları gelene kadar sekmeler bugünkü Öğren ve İlerlemem ekranlarını açar. Sınama: `tests/e2e/v2_sekme.py`.
+- Sıradaki (aynı hat, yığınlı PR'lar): Köy (PM-084 md. 4) → Ben (md. 5). Birleştirme sırası hat A'da (`[TOPLU-ADAY]`).
+
 ## Sıradaki adım (PM-050: "İlk Hafta" dikey dilimi önce; 2026-11-18 23:45 UTC)
 **İmza yol haritası:** [`docs/v2/IMZA_YOL_HARITASI.md`](IMZA_YOL_HARITASI.md) — #54'ün her satırı için ekran tarifi ve sıra (PM-048).
 1. Birleştirme sırası: #61 (veri). Birleşenler: #60 (02:30), #64 (02:12), #59 (01:57), #43 (01:37), #55 (00:27), #52 (23:05), #48 (23:07), #50 (23:34), #51 (23:54), #49 (23:54).

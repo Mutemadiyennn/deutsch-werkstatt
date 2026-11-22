@@ -5,24 +5,33 @@ import type { Route } from "../state.ts";
 import { focus, subscribeFocus } from "../services/focusRuntime.ts";
 import { speak } from "../services/speech.ts";
 import type { Speed } from "@dw/shared";
-import { Icon } from "./icons.tsx";
+import { Icon, type IconName } from "./icons.tsx";
 
-const ICONS = { today: <Icon name="raute" size={24} />, learn: <Icon name="list" size={24} />, progress: <Icon name="chart" size={24} />, profile: <Icon name="user" size={24} /> };
+/** Hedef 3 sekmeleri (TARGET3; PM-084 md. 3): Bugün · Yol · Köy · Ben */
+const SEKMELER: [string, string, IconName, string][] = [
+  ["today", "#/today", "saat", "Bugün"],
+  ["yol", "#/yol", "yol", "Yol"],
+  ["koy", "#/koy", "koy", "Köy"],
+  ["ben", "#/ben", "ben", "Ben"]
+];
+/** Ekranın bağlı olduğu sekme: Köy'ün mekânları (durumlar, senaryo, sözlük, kalıplar) Köy'de, ayarlar Ben'de kalır */
+export function sekme(r: Route["name"]): string {
+  switch (r) {
+    case "yol": case "rehber": return "yol";
+    case "koy": case "domain": case "scenario": case "sozluk": case "kalip": return "koy";
+    case "ben": case "profile": case "ses": return "ben";
+    default: return "today";
+  }
+}
 
 export function TabBar({ route }: { route: Route }) {
-  const tab = route.name === "learn" || route.name === "domain" || route.name === "scenario" || route.name === "sozluk" || route.name === "kalip" ? "learn" : route.name === "progress" ? "progress" : route.name === "profile" ? "profile" : "today";
-  const items: [string, string, keyof typeof ICONS, string][] = [
-    ["today", "#/today", "today", "Bugün"],
-    ["learn", "#/learn", "learn", "Öğren"],
-    ["progress", "#/progress", "progress", "İlerlemem"],
-    ["profile", "#/profile", "profile", "Profil"]
-  ];
+  const tab = sekme(route.name);
   return (
     <div class="tabbar" role="navigation" aria-label="Ana menü">
       <nav>
-        {items.map(([k, href, ic, label]) => (
+        {SEKMELER.map(([k, href, ic, label]) => (
           <a href={href} aria-current={tab === k ? "page" : undefined} data-tab={k}>
-            <span class="ic" aria-hidden="true">{ICONS[ic]}</span>
+            <span class="ic" aria-hidden="true"><Icon name={ic} size={26} /></span>
             <span>{label}</span>
           </a>
         ))}

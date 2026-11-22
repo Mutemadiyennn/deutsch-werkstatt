@@ -82,9 +82,9 @@ export function PlayerHome({ id }: { id: string }) {
   const { ctx, err, reload } = useScenario(id);
   const { index } = useApp();
   useEffect(() => { setLearning(false); }, []);
-  if (err) return <div class="stack"><ProgressHeader title="Senaryo" back="#/learn" /><div class="card err"><p><b>Senaryo yüklenemedi.</b> {err}</p><button class="btn sm" onClick={reload}>Tekrar dene</button></div></div>;
+  if (err) return <div class="stack"><ProgressHeader title="Senaryo" back="#/koy" /><div class="card err"><p><b>Senaryo yüklenemedi.</b> {err}</p><button class="btn sm" onClick={reload}>Tekrar dene</button></div></div>;
   // #175 ardılı (PM 7049695521 C): yüklenirken çubukta başlık yok (alan adı henüz bilinmiyor; "Senaryo" yer tutucusu kalmaz)
-  if (!ctx) return <div class="stack"><ProgressHeader title="" back="#/learn" /><LoadingCard lines={4} /><LoadingCard /></div>;
+  if (!ctx) return <div class="stack"><ProgressHeader title="" back="#/koy" /><LoadingCard lines={4} /><LoadingCard /></div>;
   const { s, prog } = ctx;
   const unlocked = (i: number) => SECTIONS.slice(0, i).every((x) => prog.done.includes(x.k));
   const next = SECTIONS.find((x, i) => !prog.done.includes(x.k) && unlocked(i));

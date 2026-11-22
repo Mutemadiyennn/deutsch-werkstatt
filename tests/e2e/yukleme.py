@@ -23,13 +23,15 @@ def main():
         # her hedefin seçicisi yalnızca o ekranda var (önceki ekranda eşleşip sahte geçiş vermesin). Süre sayfanın içinde
         # ölçülür: dokunuştan hedef içeriğin DOM'a girişine (dom) ve çizildiği ilk kareye (kare) kadar; Playwright'ın
         # tıklama hazırlığı ve süreçler arası gecikme sayılmaz
-        TABS = [("learn", "[data-domain]"), ("progress", "[data-test=panel-focus]"), ("profile", "[data-test=goal]"), ("today", "[data-test=next-activity]")]
+        # Hedef 3 sekmeleri (PM-084 md. 3): Köy, Ben, Yol, Bugün. Yol'un haritası Bugün'de de (yalnız bugünle) çizilir; Yol'a özgü
+        # işaret, başlığın hemen altındaki haritadır. Ayarlar artık sekme değil (Ben'in içinde), v2_sekme.py'de sınanır.
+        TABS = [("koy", "[data-domain]"), ("ben", "[data-test=panel-focus]"), ("yol", ".topbar + [data-test=yol]"), ("today", "[data-test=next-activity]")]
         # Kapı (PM-044.7, D-096): her sekme için 5 geçiş; DOM'a giriş sert sınır (≤300 ms, her geçiş), ilk kare 5 geçişin
         # ORTANCASI ≤300 ms (paylaşılan CI koşucusunda tek en kötü ölçüm kapı olmaz; en kötü değer rapora yazılır)
         def measure(n=5, tabs=TABS):
             out = []
             for tab, sel in tabs:
-                other = "learn" if tab == "today" else "today"
+                other = "today" if tab in ("koy", "ben") else "koy"
                 for _ in range(n):
                     pg.click(f"[data-tab={other}]"); pg.wait_for_selector(sel, state="detached"); pg.wait_for_timeout(200)
                     dom, frame = pg.evaluate("""async ([tab, sel]) => {
