@@ -10,7 +10,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/ho
 import { Gun, bilinmeyenler, kumeDizini, medyalar, type AnlamaQ, type Bolum, type Dikte, type Lexeme, type Medya, type MedyaCumle } from "@dw/shared";
 import { useApp } from "../state.ts";
 import { adimXpVer, xpVer } from "../services/ilerleme.ts";
-import { XP, bayrakliGunler } from "../core/gun.ts";
+import { XP, bayrakli } from "../core/gun.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { loadIndex, loadLexicon, loadM1Gun, contentUrl, loadTemeller, loadWorld, loadGenelAdlar } from "../services/content.ts";
 import { addClaim, getMeta, itemsMap, setMeta } from "../data/db.ts";
@@ -107,7 +107,7 @@ export function MedyaEkrani({ day, id }: { day: number; id: string }) {
       const [{ lexemes }, i] = await Promise.all([loadLexicon(), loadIndex()]);
       // akış günü: öğretilmemiş sözcük isteyen dikte basamağı atlanır (P0-1). Bilinen: cihazda görülmüş kartlar, ders, dünya ve genel adlar
       let mm = m;
-      if (bayrakliGunler().includes(day) && gun.halkalar?.length) {
+      if (bayrakli(day) && gun.halkalar?.length) {
         const [temel, world, genel, items] = await Promise.all([loadTemeller(), loadWorld(), loadGenelAdlar(), itemsMap(lexemes.map((l) => l.id))]);
         const dizin = kumeDizini(lexemes, temel, world, genel);
         const kart = new Set([...items].filter(([, x]) => x.passive?.fsrs).map(([k]) => k));
