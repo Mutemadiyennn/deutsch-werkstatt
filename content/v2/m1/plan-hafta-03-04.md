@@ -1,8 +1,8 @@
 # 3. ve 4. hafta planı (İÇ-4, PM-089)
 
 Kaynak: `curriculum/omurga.json` (haftalar 3–4, gunler 15–28). Kelimeler yalnız `curriculum/a1-kesin.json`'dan (PM-089 EK, PM-090); bu planda kelime ataması yok.
-Dersler: omurganın `gunler[].dersler` kimlikleri. Şema bugün yalnız `r0:*` kabul ettiği için (İÇ-6 7087571211, İÇ-5 7087573119) karar gelene kadar `gr:*` kimlikleri `requires.gramer`'de durur, dil noktası halkanın `kaliplar` satırında ve sahnede öğretilir.
-Dosya adları İÇ-5'in önerisiyle aynı (7087583754): `gun-NN.json`, `hafta-sonu-testi-03.json`, `gorulmemis-03.json`.
+Dersler: omurganın `gunler[].dersler` kimlikleri aynen `dersler` alanında (PM-092 md. 1: `gr:` konusu dil noktası durağı olarak gösterilir). Alıştırma halkadan: günün her yeni dil noktası o gün ≥ 6 görev cümlesiyle (2 tanıma, 2 kurma, 2 üretme), ertesi gün ≥ 2 görevle çalışılır; hepsi K(t) içinde.
+Dosya adları PM-092 md. 2: `gun-NN.json`, `hafta-sonu-testi-03.json`, `gorulmemis-03.json`.
 
 ## Döngüsüzlük (H4 §4)
 1. hafta telefonu, muayenehaneyi ve saati zaten gördü. 3. hafta yeni olarak şunu öğretir: evet/hayır sorusu kurmak, adı harf harf hecelemek, kibar rica (Könnten Sie …?), um/am/im ayrımı, ünlüsü değişen fiiller, tarih (am ersten …). Her gün başka karakter ve başka yer; Frau Huber yalnız 16., 20. ve 21. günde.
