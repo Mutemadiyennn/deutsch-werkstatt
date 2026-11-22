@@ -7,8 +7,9 @@
  * Kurallar (her biri ayrı sayılır; toplam ihlal 0 olmalı):
  *  (a) günün `yeni_kartlar` kümesi = tablodaki o günün kümesi (eksik yok, fazla yok).
  *  (b) günün her adımında sorulan ya da cevabı olan her kart, tabloda o günden ÖNCEKİ günlerde ya da o günde o adımdan önce
- *      tanıtılmış. "Sorulan/cevabı olan": öğrencinin ürettiği ya da seçtiği Almanca (görev cümlesi ve ilk kabul, dikte cevabı,
- *      cevapla, gölge cümlesi, resimden seç, provanın uygun seçenekleri, yazma örneği ve zorunlu sözcükler, gün sınavı).
+ *      tanıtılmış. "Sorulan/cevabı olan": öğrencinin ürettiği ya da seçtiği Almanca (halka görev cümlesi ve ilk kabul; dikte
+ *      cevabı: kolayda doğru seçenek, ortada yalnız boşluğun cevabı, zor/ustada cümle, gerçekte örnek + zorunlu; gölge cümlesi;
+ *      cevapla; resimden seç; provanın uygun seçenekleri; yazma örneği ve zorunlu sözcükler; gün sınavı maddeleri).
  *      Gün içi sıra: halkalar sırayla (halka kendi kartlarını tanıtır; `dersten_sonra` halkası günün derslerini bilir);
  *      halka dışı adımlar günün bütün kartlarından ve derslerinden sonra sayılır (yerlerini planlayıcı K(t)'ye göre seçer).
  *      Yalnız KART eksikliği sayılır (kume.ts `tur: "kart"`): biçim ve eşlenemeyen sözcük halka denetiminin (halka.ts) işidir.
@@ -69,7 +70,7 @@ export function halkaDisiGorevler(g: GunHam): Cumle[] {
       for (const d0 of dizi(b.dikte)) {
         const d = nesne(d0); const dat = `${bat}/dikte ${String(d.id ?? "?")}`;
         if (d.seviye === "kolay") { const o = dizi(d.opts); ekle(dat, typeof d.ans === "number" ? o[d.ans] : undefined); }
-        else if (d.seviye === "orta") { ekle(dat, ilkKabul(d)); ekle(dat, typeof d.de === "string" ? d.de.replace(/___/g, " ") : undefined); }
+        else if (d.seviye === "orta") ekle(dat, ilkKabul(d));   // yalnız boşluğun cevabı (m1check ile aynı); çevresi dinlenen cümledir
         else if (d.seviye === "gercek") { ekle(dat, d.ornek_de); for (const z of dizi(d.zorunlu)) ekle(dat, z); }
         else ekle(dat, ilkKabul(d));
       }
