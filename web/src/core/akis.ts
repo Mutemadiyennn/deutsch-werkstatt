@@ -173,7 +173,10 @@ class Planlayici {
   constructor(private readonly g: PlanGirdi, private readonly H: Halka[], private readonly pol: AkisPolitikasi) {
     this.lex = g.dizin.kartlar;
     this.r = rng(g.tohum);
-    this.yeni = new Set(g.gun.yeni_kartlar.filter((c) => this.lex.has(c)));
+    // bugünün kartı = günün listesi + halkaların kartları. Halkada tanıtılan her kart kapıda "bugünün kartı"dır: liste ile halkalar
+    // uyuşmasa da (e2e fikstürü gerçek günün halkalarını alır) hiçbir kart kendi tanıtımından önce sorulmaz (PM 7067321013 F1).
+    // Sıra: önce günün listesi (içerikte ikisi aynı küme; plan değişmez).
+    this.yeni = new Set([...g.gun.yeni_kartlar, ...H.flatMap((h) => h.kartlar)].filter((c) => this.lex.has(c)));
     this.tanitilan = new Set(g.oncekiKartlar);
   }
 
