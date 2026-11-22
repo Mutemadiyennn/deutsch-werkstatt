@@ -2,8 +2,8 @@
   "schema": 1,
   "id": "assess:a1-deneme:1",
   "seviye": "A1",
-  "review": { "status": "draft" },
-  "note_tr": "Derslerden bağımsız yazıldı (PM-087 B.2); kaynak yalnız A1 yapabiliyorum listesi ve resmî A1 sınav düzeni. 'kanit': dinlemede ses satırının sırası, okumada metnin cümle sırası (0'dan; cümle . ! ? ile biter, son satırdaki imza da bir cümle sayılır). İkili seçimde (okuma kısım 2) 'kanit' doğru seçenek metnindeki cümleleri gösterir. Konuşma cevaplarında '…' öğrencinin kendi bilgisinin yeridir.",
+  "review": { "status": "reviewed", "by": "dilbilimci-ajan", "at": "2026-11-22" },
+  "note_tr": "Derslerden bağımsız yazıldı (PM-087 B.2); kaynak yalnız A1 yapabiliyorum listesi ve resmî A1 sınav düzeni. 'kanit': dinlemede ses satırının sırası, okumada metnin cümle sırası (0'dan; cümle . ! ? ile biter, son satırdaki imza da bir cümle sayılır). İkili seçimde (okuma kısım 2) 'kanit' doğru seçenek metnindeki cümleleri gösterir. Konuşma cevaplarında '…' öğrencinin kendi bilgisinin yeridir. Konuşma bölümündeki 'accepted' listeleri örnek cevaplardır; sınavdan önce gösterilmez, puan 'degerlendirme_tr' ölçütüyle verilir (k1:01, k1:02, k1:03 ve k3:04 öğrencinin kendi bilgisini ister, hazır cevapla birebir karşılaştırılmaz).",
   "gecme": { "toplam": 0.6, "konusma": 0.6 },
   "puanlama_tr": "Her bölümün ham puanı 25 üzerinden ölçeklenir (ham puan / en yüksek ham puan × 25). Geçmek için toplam en az 60 ve konuşma bölümünden ayrıca en az 15 puan gerekir; konuşma eksiği başka bölümle kapatılamaz.",
   "bolumler": [
@@ -38,7 +38,7 @@
                 { "r": "kadin", "de": "Praxis Albers, guten Tag." },
                 { "r": "erkek", "de": "Guten Tag. Ich möchte bitte einen Termin." },
                 { "r": "kadin", "de": "Geht es am Donnerstag um zehn Uhr?" },
-                { "r": "erkek", "de": "Donnerstag geht leider nicht. Haben Sie am Freitag Zeit?" },
+                { "r": "erkek", "de": "Donnerstag geht leider nicht. Geht es am Freitag?" },
                 { "r": "kadin", "de": "Ja, am Freitag um halb neun." },
                 { "r": "erkek", "de": "Gut, das passt." }
               ],
@@ -87,7 +87,7 @@
               "id": "a1d:d1:06", "k": "pick", "hafta": 8, "speed": "normal",
               "ses": [
                 { "r": "kadin", "de": "Entschuldigung, wo finde ich hier Reis?" },
-                { "r": "erkek", "de": "Reis ist in Gang drei, neben den Nudeln." },
+                { "r": "erkek", "de": "Der Reis ist in Gang drei, neben den Nudeln." },
                 { "r": "kadin", "de": "Und die Milch?" },
                 { "r": "erkek", "de": "Die Milch ist ganz hinten links." }
               ],
@@ -130,7 +130,7 @@
                 { "r": "anons", "de": "Guten Tag, hier ist die Praxis Doktor Wagner." },
                 { "r": "anons", "de": "Unsere Sprechzeiten sind Montag bis Freitag von acht bis zwölf Uhr." },
                 { "r": "anons", "de": "Am Montag, Dienstag und Donnerstag sind wir auch von fünfzehn bis achtzehn Uhr für Sie da." },
-                { "r": "anons", "de": "Für einen Termin rufen Sie bitte während der Sprechzeiten an." }
+                { "r": "anons", "de": "Für einen Termin rufen Sie bitte am Vormittag an." }
               ],
               "q_tr": "Muayenehane cuma günü öğleden sonra da açık.",
               "opts": ["Doğru", "Yanlış"],
@@ -139,7 +139,7 @@
             {
               "id": "a1d:d2:04", "k": "pick", "hafta": 5, "speed": "normal",
               "ses": [
-                { "r": "anons", "de": "Information zum Regionalzug nach Bergheim, Abfahrt vierzehn Uhr zehn." },
+                { "r": "anons", "de": "Achtung, eine Information zum Zug nach Bergheim, Abfahrt vierzehn Uhr zehn." },
                 { "r": "anons", "de": "Der Zug fährt heute nicht von Gleis drei, sondern von Gleis fünf." },
                 { "r": "anons", "de": "Ich wiederhole: Der Zug nach Bergheim fährt heute von Gleis fünf." }
               ],
@@ -172,9 +172,9 @@
                 { "r": "erkek", "de": "Hallo, hier ist die Bäckerei Lang." },
                 { "r": "erkek", "de": "Ihre Torte für Samstag ist fertig." },
                 { "r": "erkek", "de": "Sie kostet achtundzwanzig Euro fünfzig." },
-                { "r": "erkek", "de": "Sie können sie ab neun Uhr abholen. Bis dann!" }
+                { "r": "erkek", "de": "Sie können sie am Samstag ab neun Uhr abholen. Bis dann!" }
               ],
-              "q_tr": "Pasta kaç para?",
+              "q_tr": "Pasta ne kadar?",
               "opts": ["28,50 €", "82,50 €", "28,15 €"],
               "ans": 0, "kanit": [2], "puan": 1
             },
@@ -196,16 +196,16 @@
                 { "r": "erkek", "de": "Guten Tag, hier spricht Brandl, der Hausmeister." },
                 { "r": "erkek", "de": "Am Montag kommt ein Techniker und kontrolliert die Heizung in allen Wohnungen." },
                 { "r": "erkek", "de": "Er kommt zwischen acht und zwölf Uhr." },
-                { "r": "erkek", "de": "Bitte bleiben Sie in dieser Zeit zu Hause. Wenn das nicht geht, rufen Sie mich bitte an." }
+                { "r": "erkek", "de": "Bitte bleiben Sie in dieser Zeit zu Hause. Geht das nicht? Dann rufen Sie mich bitte an." }
               ],
-              "q_tr": "Kapıcı senden ne istiyor?",
+              "q_tr": "Apartman görevlisi senden ne istiyor?",
               "opts": ["Pazartesi saat 8 ile 12 arasında evde olmanı", "Kaloriferi kendin kontrol etmeni", "Pazartesi saat 12'de onu aramanı"],
-              "ans": 0, "kanit": [2, 3], "puan": 1
+              "ans": 0, "kanit": [1, 2, 3], "puan": 1
             },
             {
               "id": "a1d:d3:05", "k": "pick", "hafta": 1, "speed": "natural",
               "ses": [
-                { "r": "kadin", "de": "Hi, hier ist Jana." },
+                { "r": "kadin", "de": "Hallo, hier ist Jana." },
                 { "r": "kadin", "de": "Mein Handy ist kaputt, ich habe jetzt eine neue Nummer." },
                 { "r": "kadin", "de": "Sie ist: null eins sieben null, vierundvierzig, achtunddreißig, zwölf." },
                 { "r": "kadin", "de": "Ruf mich doch heute Abend an! Tschüss!" }
@@ -231,35 +231,35 @@
           "maddeler": [
             {
               "id": "a1o:o1:01", "k": "pick", "hafta": 1, "grup": "mesaj-1",
-              "metin_de": "Hallo Tarek, wie geht's? Am Samstag habe ich Geburtstag! Ich mache eine kleine Party bei mir zu Hause. Sie beginnt um sieben Uhr. Ich wohne jetzt in der Gartenstraße 14, im ersten Stock. Kannst du bitte Saft mitbringen? Bis Samstag! Lena",
+              "metin_de": "Hallo Tarek, wie geht's? Ich habe Geburtstag! Am Samstag mache ich eine kleine Party bei mir zu Hause. Sie beginnt um sieben Uhr. Ich wohne jetzt in der Gartenstraße 14, im ersten Stock. Kannst du bitte Saft mitbringen? Bis Samstag! Lena",
               "q_tr": "Lena'nın partisi cumartesi saat yedide başlıyor.",
               "opts": ["Doğru", "Yanlış"],
-              "ans": 0, "kanit": [1, 3], "puan": 1
+              "ans": 0, "kanit": [2, 3], "puan": 1
             },
             {
               "id": "a1o:o1:02", "k": "pick", "hafta": 4, "grup": "mesaj-1",
-              "metin_de": "Hallo Tarek, wie geht's? Am Samstag habe ich Geburtstag! Ich mache eine kleine Party bei mir zu Hause. Sie beginnt um sieben Uhr. Ich wohne jetzt in der Gartenstraße 14, im ersten Stock. Kannst du bitte Saft mitbringen? Bis Samstag! Lena",
+              "metin_de": "Hallo Tarek, wie geht's? Ich habe Geburtstag! Am Samstag mache ich eine kleine Party bei mir zu Hause. Sie beginnt um sieben Uhr. Ich wohne jetzt in der Gartenstraße 14, im ersten Stock. Kannst du bitte Saft mitbringen? Bis Samstag! Lena",
               "q_tr": "Lena ikinci katta oturuyor.",
               "opts": ["Doğru", "Yanlış"],
               "ans": 1, "kanit": [4], "puan": 1
             },
             {
               "id": "a1o:o1:03", "k": "pick", "hafta": 6, "grup": "mesaj-2",
-              "metin_de": "Liebe Frau Schäfer, gestern war ich beim Arzt. Ich habe eine Grippe und muss bis Freitag zu Hause bleiben. Am Montag bin ich wieder im Büro. Können Sie bitte morgen um zehn Uhr Herrn Wolf anrufen? Vielen Dank und viele Grüße, Stefan Huber",
+              "metin_de": "Liebe Frau Schäfer, gestern war ich beim Arzt. Ich bin krank und muss bis Freitag zu Hause bleiben. Am Montag bin ich wieder im Büro. Können Sie bitte morgen um zehn Uhr Herrn Wolf anrufen? Vielen Dank und viele Grüße, Stefan Huber",
               "q_tr": "Stefan Huber dün doktora gitti.",
               "opts": ["Doğru", "Yanlış"],
               "ans": 0, "kanit": [0], "puan": 1
             },
             {
               "id": "a1o:o1:04", "k": "pick", "hafta": 5, "grup": "mesaj-2",
-              "metin_de": "Liebe Frau Schäfer, gestern war ich beim Arzt. Ich habe eine Grippe und muss bis Freitag zu Hause bleiben. Am Montag bin ich wieder im Büro. Können Sie bitte morgen um zehn Uhr Herrn Wolf anrufen? Vielen Dank und viele Grüße, Stefan Huber",
+              "metin_de": "Liebe Frau Schäfer, gestern war ich beim Arzt. Ich bin krank und muss bis Freitag zu Hause bleiben. Am Montag bin ich wieder im Büro. Können Sie bitte morgen um zehn Uhr Herrn Wolf anrufen? Vielen Dank und viele Grüße, Stefan Huber",
               "q_tr": "Stefan cuma günü yeniden işe geliyor.",
               "opts": ["Doğru", "Yanlış"],
               "ans": 1, "kanit": [1, 2], "puan": 1
             },
             {
               "id": "a1o:o1:05", "k": "pick", "hafta": 5, "grup": "mesaj-2",
-              "metin_de": "Liebe Frau Schäfer, gestern war ich beim Arzt. Ich habe eine Grippe und muss bis Freitag zu Hause bleiben. Am Montag bin ich wieder im Büro. Können Sie bitte morgen um zehn Uhr Herrn Wolf anrufen? Vielen Dank und viele Grüße, Stefan Huber",
+              "metin_de": "Liebe Frau Schäfer, gestern war ich beim Arzt. Ich bin krank und muss bis Freitag zu Hause bleiben. Am Montag bin ich wieder im Büro. Können Sie bitte morgen um zehn Uhr Herrn Wolf anrufen? Vielen Dank und viele Grüße, Stefan Huber",
               "q_tr": "Frau Schäfer yarın saat 10'da Herr Wolf'u aramalı.",
               "opts": ["Doğru", "Yanlış"],
               "ans": 0, "kanit": [3], "puan": 1
@@ -284,11 +284,11 @@
               "id": "a1o:o2:02", "k": "pick", "hafta": 7,
               "q_tr": "Bugün çarşamba, saat 15:00. Boğazın çok ağrıyor ve bugün bir doktora gitmek istiyorsun. Hangi muayenehaneye gidersin?",
               "secenekler_de": [
-                "Hausarztpraxis Lindner. Sprechzeiten: Montag bis Freitag 8 bis 12 Uhr. Dienstag und Donnerstag auch 15 bis 18 Uhr.",
-                "Praxis Okafor, Allgemeinmedizin. Sprechzeiten: Montag, Mittwoch und Freitag 14 bis 19 Uhr."
+                "Praxis Okafor, Hausärztin. Sprechzeiten: Montag, Mittwoch und Freitag 14 bis 19 Uhr.",
+                "Hausarztpraxis Lindner. Sprechzeiten: Montag bis Freitag 8 bis 12 Uhr. Dienstag und Donnerstag auch 15 bis 18 Uhr."
               ],
               "opts": ["a", "b"],
-              "ans": 1, "kanit": [1], "puan": 1
+              "ans": 0, "kanit": [1], "puan": 1
             },
             {
               "id": "a1o:o2:03", "k": "pick", "hafta": 4,
@@ -314,11 +314,11 @@
               "id": "a1o:o2:05", "k": "pick", "hafta": 7,
               "q_tr": "Bugün pazar. Öksürüğün var ve eczaneden ilaç almak istiyorsun. Hangi eczaneye gidersin?",
               "secenekler_de": [
-                "Löwen-Apotheke. Montag bis Freitag 8 bis 19 Uhr. Samstag 8 bis 14 Uhr.",
-                "Heute, Sonntag, Notdienst: Stadt-Apotheke, Bahnhofstraße 3. Geöffnet bis Montag 8 Uhr."
+                "Heute, Sonntag, Notdienst: Stadt-Apotheke, Bahnhofstraße 3. Geöffnet bis Montag 8 Uhr.",
+                "Löwen-Apotheke. Montag bis Freitag 8 bis 19 Uhr. Samstag 8 bis 14 Uhr. Sonntag geschlossen."
               ],
               "opts": ["a", "b"],
-              "ans": 1, "kanit": [0, 1], "puan": 1
+              "ans": 0, "kanit": [0, 1], "puan": 1
             }
           ]
         },
@@ -335,14 +335,14 @@
             },
             {
               "id": "a1o:o3:02", "k": "pick", "hafta": 7,
-              "metin_de": "Liebe Patientinnen und Patienten, heute Nachmittag ist die Praxis geschlossen. Ab morgen, 8 Uhr, sind wir wieder für Sie da.",
+              "metin_de": "Liebe Patientinnen und Patienten, heute Nachmittag ist die Praxis geschlossen. Morgen ab 8 Uhr sind wir wieder für Sie da.",
               "q_tr": "Muayenehane yarın sabah saat 8'den itibaren yine açık.",
               "opts": ["Doğru", "Yanlış"],
               "ans": 0, "kanit": [1], "puan": 1
             },
             {
               "id": "a1o:o3:03", "k": "pick", "hafta": 4,
-              "metin_de": "Liebe Mieterinnen und Mieter, am Mittwoch gibt es von 9 bis 12 Uhr kein Wasser. Wir arbeiten an den Leitungen im Keller. Vielen Dank, Ihre Hausverwaltung",
+              "metin_de": "Liebe Mieterinnen und Mieter, am Mittwoch gibt es von 9 bis 12 Uhr kein Wasser. Wir müssen im Keller etwas reparieren. Vielen Dank, Ihre Hausverwaltung",
               "q_tr": "Çarşamba öğleden sonra evlerde su yok.",
               "opts": ["Doğru", "Yanlış"],
               "ans": 1, "kanit": [0], "puan": 1
@@ -350,7 +350,7 @@
             {
               "id": "a1o:o3:04", "k": "pick", "hafta": 5,
               "metin_de": "Achtung! Die Linie 7 hält bis Ende Mai nicht an dieser Haltestelle. Bitte nehmen Sie die Linie 9 ab Marktplatz.",
-              "q_tr": "Mayıs sonuna kadar 7 numaralı otobüs bu durakta durmuyor.",
+              "q_tr": "Mayıs sonuna kadar 7 numaralı hat bu durakta durmuyor.",
               "opts": ["Doğru", "Yanlış"],
               "ans": 0, "kanit": [1], "puan": 1
             },
@@ -387,10 +387,10 @@
               ],
               "alanlar": [
                 { "id": "familienname", "etiket_de": "Familienname", "hafta": 3, "puan": 1, "accepted": ["Kowalski", "kowalski", "KOWALSKI"] },
-                { "id": "strasse", "etiket_de": "Straße, Hausnummer", "hafta": 4, "puan": 1, "accepted": ["Bergstraße 12", "Bergstrasse 12", "Bergstr. 12", "Bergstraße 12, Lindach"] },
-                { "id": "telefon", "etiket_de": "Telefon (mobil)", "hafta": 1, "puan": 1, "accepted": ["0176 23 45 81", "0176 234581", "0176234581", "0176/234581"] },
-                { "id": "beruf", "etiket_de": "Beruf", "hafta": 8, "puan": 1, "accepted": ["Verkäuferin", "Verkäuferin im Supermarkt", "Verkaeuferin", "verkäuferin"] },
-                { "id": "beschwerden", "etiket_de": "Was fehlt Ihnen? (Beschwerden)", "hafta": 7, "puan": 1, "accepted": ["Halsschmerzen", "starke Halsschmerzen", "Halsschmerzen seit drei Tagen", "Halsschmerzen seit 3 Tagen", "Mein Hals tut weh."] }
+                { "id": "strasse", "etiket_de": "Straße, Hausnummer", "hafta": 4, "puan": 1, "accepted": ["Bergstraße 12", "Bergstrasse 12", "Bergstr. 12", "Bergstr 12", "Bergstraße Nr. 12", "Bergstraße 12, Lindach"] },
+                { "id": "telefon", "etiket_de": "Telefon (mobil)", "hafta": 1, "puan": 1, "accepted": ["0176 23 45 81", "0176 234581", "0176234581", "0176/234581", "0176-234581", "0176 / 23 45 81", "0176 234 581"] },
+                { "id": "beruf", "etiket_de": "Beruf", "hafta": 8, "puan": 1, "accepted": ["Verkäuferin", "Verkäuferin im Supermarkt", "Verkäuferin in einem Supermarkt", "Verkaeuferin", "verkäuferin"] },
+                { "id": "beschwerden", "etiket_de": "Was fehlt Ihnen? (Beschwerden)", "hafta": 7, "puan": 1, "accepted": ["Halsschmerzen", "starke Halsschmerzen", "Halsschmerzen seit drei Tagen", "Halsschmerzen seit 3 Tagen", "starke Halsschmerzen seit drei Tagen", "Ich habe Halsschmerzen.", "Ich habe starke Halsschmerzen.", "Halsweh", "Mein Hals tut weh."] }
               ]
             }
           ]
@@ -409,10 +409,10 @@
               ],
               "ornek_de": "Sehr geehrte Damen und Herren, ich habe am Donnerstag um 10 Uhr einen Termin. Leider kann ich nicht kommen, denn ich muss arbeiten. Haben Sie am Freitag oder am Montag einen Termin für mich? Am besten am Nachmittag. Mit freundlichen Grüßen {name}",
               "zorunlu": [
-                "Sehr geehrte|Guten Tag|Hallo|Liebe",
+                "Sehr geehrte|Guten Tag|Guten Morgen|Hallo|Liebe",
                 "Termin",
-                "nicht kommen|kann nicht|leider nicht|absagen",
-                "Grüße|Gruß|Vielen Dank|Danke"
+                "nicht kommen|kann nicht|komme nicht|leider nicht|geht nicht|keine Zeit|absagen|verschieben",
+                "Grüße|Gruß|Grüsse|Gruss|Gruesse|Vielen Dank|Danke"
               ],
               "degerlendirme_tr": [
                 "Görev (6 puan): her nokta için 2 puan. Nokta yazılmış ve anlaşılıyorsa 2; yazılmış ama tam anlaşılmıyorsa 1; yoksa 0.",
@@ -465,7 +465,7 @@
             {
               "id": "a1k:k1:03", "k": "listen_and_respond", "hafta": 3, "puan": 1, "speed": "normal",
               "audio_de": "Wie schreibt man Ihren Familiennamen? Buchstabieren Sie bitte.",
-              "situation_tr": "Görevli soyadını harf harf söylemeni istiyor. Kendi soyadını hecele. (Aşağıdaki örnek cevaplar 'Berger' soyadı içindir.)",
+              "situation_tr": "Görevli soyadını harf harf söylemeni istiyor. Kendi soyadını harf harf söyle. (Örnek cevaplar 'Berger' soyadı içindir; senin cevabın kendi soyadınla, ölçüte göre puanlanır.)",
               "accepted": [
                 "B – E – R – G – E – R.",
                 "B wie Berta, E wie Emil, R wie Richard, G wie Gustav, E wie Emil, R wie Richard.",
@@ -501,7 +501,7 @@
             {
               "id": "a1k:k2:02", "k": "listen_and_respond", "hafta": 2, "puan": 1, "speed": "normal",
               "audio_de": "Was kaufst du in der Bäckerei?",
-              "situation_tr": "Konu: Yemek ve içmek. Partnerin kartı 'Bäckerei' ve sana soru soruyor. Cevap ver.",
+              "situation_tr": "Konu: Yemek ve içmek. Partnerinin kartında 'Bäckerei' (fırın) yazıyor ve sana soru soruyor. Cevap ver.",
               "accepted": [
                 "Ich kaufe Brot und Brötchen.",
                 "In der Bäckerei kaufe ich meistens Brezeln.",
@@ -533,7 +533,7 @@
             {
               "id": "a1k:k2:05", "k": "listen_and_respond", "hafta": 6, "puan": 1, "speed": "normal",
               "audio_de": "Was hast du gestern Abend gemacht?",
-              "situation_tr": "Konu: Benim günüm. Partnerin kartı 'gestern' ve sana soru soruyor. Cevap ver.",
+              "situation_tr": "Konu: Benim günüm. Partnerinin kartında 'gestern' (dün) yazıyor ve sana soru soruyor. Cevap ver.",
               "accepted": [
                 "Gestern Abend habe ich gekocht.",
                 "Ich war zu Hause und habe ferngesehen.",
@@ -545,7 +545,7 @@
             {
               "id": "a1k:k2:06", "k": "listen_and_respond", "hafta": 5, "puan": 1, "speed": "normal",
               "audio_de": "Wann stehst du morgen auf?",
-              "situation_tr": "Konu: Benim günüm. Partnerin kartı 'aufstehen' ve sana soru soruyor. Cevap ver.",
+              "situation_tr": "Konu: Benim günüm. Partnerinin kartında 'aufstehen' (kalkmak) yazıyor ve sana soru soruyor. Cevap ver.",
               "accepted": [
                 "Morgen stehe ich um sechs Uhr auf.",
                 "Ich stehe um halb sieben auf.",
@@ -568,34 +568,37 @@
           "maddeler": [
             {
               "id": "a1k:k3:01", "k": "guided_response", "hafta": 8, "puan": 1,
-              "situation_tr": "Resim: bir telefon ve restoranda dört kişilik bir masa; altında 'Samstag'. Restoranı arıyorsun. Masa ayırt.",
-              "prompt_de": "Restaurant Olivo, guten Tag.",
+              "situation_tr": "Resim: bir telefon ve restoranda iki kişilik bir masa; altında 'Samstag'. Restoranı arıyorsun. Masa ayırt.",
+              "prompt_de": "Restaurant Adria, guten Tag.",
               "accepted": [
-                "Guten Tag, ich möchte bitte einen Tisch für vier Personen am Samstag reservieren.",
-                "Haben Sie am Samstag einen Tisch für vier Personen frei?",
-                "Ich hätte gern einen Tisch für vier Personen, am Samstag um sieben Uhr.",
-                "Kann ich für Samstag einen Tisch für vier Personen reservieren?"
+                "Guten Tag, ich möchte bitte für Samstag einen Tisch für zwei Personen reservieren.",
+                "Haben Sie am Samstag einen Tisch für zwei Personen frei?",
+                "Ich hätte gern einen Tisch für zwei Personen, am Samstag um sieben Uhr.",
+                "Kann ich für Samstag einen Tisch für zwei Personen reservieren?",
+                "Guten Tag, ich möchte bitte einen Tisch für zwei reservieren, am Samstagabend."
               ]
             },
             {
               "id": "a1k:k3:02", "k": "guided_response", "hafta": 7, "puan": 1,
-              "situation_tr": "Resim: eczane ve başını tutan biri. Eczacıdan baş ağrısı için bir ilaç iste.",
+              "situation_tr": "Resim: eczane ve öksüren biri. Eczacıdan öksürük için bir ilaç iste.",
               "prompt_de": "Guten Tag, was kann ich für Sie tun?",
               "accepted": [
-                "Ich hätte gern etwas gegen Kopfschmerzen, bitte.",
-                "Haben Sie bitte Tabletten gegen Kopfschmerzen?",
-                "Ich brauche bitte etwas gegen Kopfschmerzen.",
-                "Können Sie mir bitte etwas gegen Kopfschmerzen geben?"
+                "Ich hätte gern etwas gegen Husten, bitte.",
+                "Haben Sie bitte etwas gegen Husten?",
+                "Ich brauche bitte etwas gegen Husten.",
+                "Können Sie mir bitte etwas gegen Husten geben?",
+                "Guten Tag, ich habe Husten. Haben Sie bitte ein Medikament?"
               ]
             },
             {
               "id": "a1k:k3:03", "k": "guided_response", "hafta": 1, "puan": 1,
               "situation_tr": "Resim: bir kol saati. Sokakta birine saati sor.",
-              "prompt_de": "Ja, bitte?",
+              "prompt_de": "Bild: Uhr",
               "accepted": [
                 "Entschuldigung, wie spät ist es?",
                 "Wie spät ist es, bitte?",
-                "Entschuldigung, wie viel Uhr ist es?"
+                "Entschuldigung, wie viel Uhr ist es?",
+                "Entschuldigung, können Sie mir bitte sagen, wie spät es ist?"
               ]
             },
             {
@@ -612,13 +615,14 @@
             },
             {
               "id": "a1k:k3:05", "k": "listen_and_respond", "hafta": 4, "puan": 1, "speed": "normal",
-              "audio_de": "Können Sie morgen bitte mein Paket annehmen? Ich bin nicht zu Hause.",
-              "situation_tr": "Partnerin kartında bir koli resmi var. Komşun senden bir şey istiyor. Cevap ver.",
+              "audio_de": "Morgen kommt ein Paket für mich, aber ich bin nicht zu Hause. Können Sie es bitte annehmen?",
+              "situation_tr": "Partnerinin kartında bir koli resmi var. Komşun olarak senden bir şey istiyor. Cevap ver.",
               "accepted": [
                 "Ja, gern. Kein Problem.",
                 "Natürlich, das mache ich gern.",
                 "Ja, klar. Ich bin morgen zu Hause.",
-                "Tut mir leid, morgen bin ich auch nicht zu Hause."
+                "Tut mir leid, morgen bin ich auch nicht zu Hause.",
+                "Ja, das mache ich gern. Ich bin morgen den ganzen Tag da."
               ]
             },
             {
