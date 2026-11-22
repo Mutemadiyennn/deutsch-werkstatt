@@ -66,7 +66,7 @@ def main():
                 check(k_etkin >= 4.5 and k_diger >= 4.5, f"{ad} sekme yazısı kontrastı: etkin {k_etkin:.2f}:1, diğer {k_diger:.2f}:1 (≥ 4,5)")
                 if tema == "light" and vp["width"] == 390:
                     print("eski adresler yeni yerlerine yönlenir")
-                    for eski, yeni, sekme, isaret in (("#/learn", "#/koy", "koy", "[data-test=sozluk-ac]"), ("#/progress", "#/ben", "ben", "[data-test=ayarlar-ac]"), ("#/profile", "#/ben/ayarlar", "ben", "[data-test=goal]")):
+                    for eski, yeni, sekme, isaret in (("#/learn", "#/koy", "koy", "[data-test=koy]"), ("#/progress", "#/ben", "ben", "[data-test=ayarlar-ac]"), ("#/profile", "#/ben/ayarlar", "ben", "[data-test=goal]")):
                         pg.goto(base + "#/today"); pg.wait_for_selector("[data-tab=today][aria-current=page]")
                         pg.evaluate("(h) => { location.hash = h; }", eski)
                         pg.wait_for_selector(f"[data-tab={sekme}][aria-current=page]"); pg.wait_for_selector(isaret)

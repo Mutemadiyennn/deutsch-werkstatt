@@ -49,7 +49,7 @@ def main():
         pg.wait_for_selector("[data-test=garden-start]")
         check(pg.locator("[data-test=garden-start]").count() == 1, "Bugün: yolun sonunda 'Tekrar' düğümü (Bahçe girişi; ana eylem sıradaki düğüm)")
         # "Duyduğum kelime" ve "Tekrar edilecekler" Öğren'de (PM 7015070303-E)
-        pg.goto(base + "#/learn"); pg.wait_for_selector("[data-test=heard]")
+        pg.goto(base + "#/koy/bahce"); pg.wait_for_selector("[data-test=heard]")
         # kişisel banka (#58 A3, LS-7.5): "Duyduğum kelime" kutusundan eklenen kelime turda öncelikli yeni kart olur
         pg.click("[data-test=heard]"); pg.fill("[data-test=heard-de]", "die Daten"); pg.click("form >> text=Ekle")
         pg.wait_for_selector("[data-test=heard]")

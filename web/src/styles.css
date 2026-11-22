@@ -219,6 +219,31 @@ html { scroll-padding-top: calc(var(--safe-top) + 96px); }
 .tabbar a .ic { line-height: 0; }
 .tabbar a[aria-current="page"] { color: var(--accent); font-weight: 800; }
 
+/* Köy (Hedef 3, TARGET3 "Köy"): başlık + mekân ızgarası. Üç sütun (390 ve 430 genişlikte); yazı büyüyünce (≈ %115 üstü, dar ekran)
+   mekân adı bölünmesin diye iki sütuna iner. Mekân renkleri hedefteki alan renkleri. */
+.koy { --m-bahce: #2F9E6B; --m-sinema: #B5577A; --m-radyo: #3E7CB1; --m-atolye: #4F6683; --m-kutuphane: #6E5BC7; --m-pazar: #D39A1B; --m-kilitli: #8FA0B5; --m-nokta: #F2B544; }
+.koy-bas { padding: 4px 6px 0; }
+.koy-bas h1 { font-size: 1.9rem; margin: 0; }
+.koy-bas p { margin: 4px 0 0; color: var(--muted); font-size: 0.95rem; }
+.koy-izgara { display: grid; grid-template-columns: repeat(auto-fit, minmax(max(6.2rem, (100% - 24px) / 3 - 0.5px), 1fr)); gap: 12px; margin-top: 16px; }
+.mekan { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; min-height: 7.75rem; width: 100%; padding: 14px 12px; border-radius: 22px; background: var(--card); border: 1px solid var(--line); color: var(--ink); text-decoration: none; text-align: left; font: inherit; cursor: pointer; appearance: none; -webkit-appearance: none; overflow-wrap: break-word; transition: transform var(--t); }
+.mekan:active { transform: scale(0.98); }
+.mekan-ic { width: 48px; height: 48px; border-radius: 16px; display: grid; place-items: center; flex: none; color: #fff; background: var(--mc, var(--himmel)); }
+.mekan[data-mekan="bahce"] { --mc: var(--m-bahce); } .mekan[data-mekan="sinema"] { --mc: var(--m-sinema); } .mekan[data-mekan="radyo"] { --mc: var(--m-radyo); }
+.mekan[data-mekan="atolye"] { --mc: var(--m-atolye); } .mekan[data-mekan="kutuphane"] { --mc: var(--m-kutuphane); } .mekan[data-mekan="pazar"] { --mc: var(--m-pazar); }
+.mekan-yazi { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.mekan-yazi b { font-size: 0.9rem; line-height: 1.2; }
+.mekan-yazi span { font-size: 0.76rem; line-height: 1.3; font-weight: 500; color: var(--muted); }
+/* kilitli mekân soluk ama okunur: "ne zaman açılır" satırı öğrenciye bilgidir (bütün karta saydamlık verilmez) */
+.mekan.kilitli { --mc: var(--m-kilitli); background: color-mix(in srgb, var(--card) 45%, var(--paper)); cursor: default; }
+.mekan.kilitli .mekan-ic { opacity: 0.7; }
+.mekan.kilitli .mekan-yazi b { color: var(--muted); }
+.mekan-nokta { position: absolute; top: 14px; right: 14px; width: 12px; height: 12px; border-radius: 50%; background: var(--m-nokta); box-shadow: 0 0 0 6px color-mix(in srgb, var(--m-nokta) 25%, transparent); }
+.mekan.genis { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: flex-start; gap: 14px; min-height: 5.6rem; background: var(--sky-b); }
+.mekan.genis .mekan-yazi b { font-size: 1rem; }
+.mekan.genis .mekan-yazi span { font-size: 0.82rem; }
+.mekan-gun { display: block; padding: 6px 0; text-decoration: none; }
+
 .topbar { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; min-height: 46px; }
 .topbar h1 { margin: 0; font-size: 1.25rem; flex: 1; min-width: 0; }
 .focuschip { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px; background: var(--soft); font-size: 0.84rem; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--accent); }

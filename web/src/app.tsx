@@ -31,7 +31,8 @@ import { ensurePersist } from "./services/storage.ts";
 import { Login } from "./screens/Login.tsx";
 import { Onboarding } from "./screens/Onboarding.tsx";
 import { Today } from "./screens/Today.tsx";
-import { Learn, DomainView } from "./screens/Learn.tsx";
+import { DomainView } from "./screens/Learn.tsx";
+import { KoyEkrani, MekanEkrani } from "./screens/Koy.tsx";
 import { PlayerHome, PlayerSection } from "./screens/Player.tsx";
 import { LongPressExplain } from "./ui/learn.tsx";
 import { BreakOverlay, OdakEkrani } from "./screens/Today.tsx";
@@ -169,11 +170,12 @@ export function App() {
   let screen;
   if (!profile.onboardedAt || route.name === "onboarding") screen = <Onboarding />;
   else switch (route.name) {
-    // Köy ve Ben ekranları gelene kadar sekmeler bugünkü Öğren ve İlerlemem ekranlarını açar (PM-084 md. 3.2)
-    case "koy": screen = <Learn />; break;
+    case "koy": screen = <KoyEkrani />; break;
+    case "mekan": screen = <MekanEkrani key={route.id} id={route.id} />; break;
     case "domain": screen = <DomainView id={route.id} />; break;
     case "scenario": screen = <PlayerHome id={route.id} />; break;
     case "section": screen = <PlayerSection id={route.id} section={route.section} />; break;
+    // Ben ekranı gelene kadar sekme bugünkü İlerlemem ekranını açar (PM-084 md. 3.2)
     case "ben": screen = <Progress />; break;
     case "profile": screen = <ProfileView />; break;
     case "assess": screen = <AssessRun />; break;
