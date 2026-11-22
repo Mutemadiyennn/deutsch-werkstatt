@@ -21,7 +21,7 @@
 | RQ-S08 | "Kelimeyi bilmiyorsam, cümle kuramıyorsam nasıl konuşacağım?" → yöntem | LS-6 (kurma merdiveni), LS-6.3 | R1 | ? |
 | RQ-S09 | Günlük hayatta karşılaşılacak kelimelerin tamamına hazırlık; 500–600 kelime yetersiz | LS-7, PEDAGOGY §2 (5.000 lemma) | R1–R4 | ? |
 | RQ-S10 | Kelimeler fotoğrafla ve cümle içinde; yanlış yapılan kelime **başka cümle ve başka fotoğrafla** geri gelsin | PM-003, LS-7 | R1 | ✗ (v2'de yok) |
-| RQ-S11 | Pixabay anahtarı var; fotoğraflar Pixabay'dan da gelebilsin | PM-003 | R1 | ✗ |
+| RQ-S11 | Pixabay anahtarı var; fotoğraflar Pixabay'dan da gelebilsin | PM-003 | R1 | kısmen (MEDYA aracı `/v1/pixabay`, PR #189) |
 | RQ-S12 | Pomodoro: 25/5, günlük 100 dk hedef, v1'deki takip korunsun | LS-5.1, H3, AUDIT §11 | R1 | ~ |
 | RQ-S13 | Günde 2–3 saat çalışabilme (100 dk varsayılan + ek seans) | LS-5.1 | R1 | ? |
 | RQ-S14 | Açıklama dili Türkçe; İngilizce öğretim dili değil | PEDAGOGY, D-kararı (yanlış arkadaş istisnası) | R1+ | ? |

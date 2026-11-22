@@ -1,7 +1,7 @@
 """
 Yerleşim bekçisi (PM-079 md. 4; hazır tanımı #12 7047348069, PM ✓ 7047456551).
 Gezginin yürüdüğü her ekranı (gezgin.screens(), kopya liste yok) iki boyutta açar: 390×844 ve 430×932.
-Her ekranda sekiz kural:
+Her ekranda dokuz kural:
   B1 birincil düğme (.btn.primary) görüş alanına getirildiğinde tam görünür, kırpan atası yok ve üstüne hiçbir öğe binmez
      (5 nokta elementFromPoint: köşelerden 2 px + yuvarlaklığın 0,3'ü içeride, ve merkez)
   B2 etkileşimli öğeler (button, a[href], [role=button], input, select, textarea) üst üste değil (ata/çocuk hariç; kesişim > 1 px²;
@@ -12,6 +12,8 @@ Her ekranda sekiz kural:
   B5 "·" satır başında ya da sonunda yalnız kalmaz (önceki ve sonraki görünür karakter aynı satırda)
   B6 yatay taşma yok: belge (scrollWidth ≤ innerWidth + 1) ve öğe (kutusu ekran dışına taşan öğe; overflow-x:clip altında da; yatay kaydırmalı şerit hariç)
   B7 başlık sözcüğü (h1–h3; .de, .de-lg, [lang=de] ≥ kök yazının 1,15 katı) iki satıra bölünmez (heceleme ya da kırma; kısa çizgide kırılma serbest)
+  B9 üst güvenli alanda (durum çubuğu) metin okunmaz: --safe-top 47 px'e zorlanır, sayfa kaydırılmış hâle getirilir (html.kaydi;
+     uygulamada kaydırma dinleyicisi koyar) ve güvenli alana giren her metin öğesinin orada üstte olmadığı denetlenir (PM 7061304527 Bulgu 2)
   B8 görüş alanında aynı anda en çok bir birincil düğme (açık pencere/alt sayfa varsa yalnız onun içi) — yalnız ilk konumda (scrollY = 0)
 Kip (PM 7047456551): main'de ilk ölçümde ihlal 5'ten çoksa bekçi RAPOR kipinde girer (ihlal listesi yazılır, çıkış 0);
 düzeltmeler ≤ 5'lik PR'larla gelir, sayı sıfıra inince KIP = "kirmizi" yapılır. İstisna dosyası yoktur.
@@ -196,6 +198,26 @@ KURALLAR = r"""(ana) => {
       }
     }
   }
+  // B9 üst güvenli alanda metin yok (kaydırılmış hâl): en son; kaydırma, sınıf ve değişken geri alınır
+  const kok = document.documentElement, sy9 = window.scrollY, vardi = kok.classList.contains('kaydi'), eskiSafe = kok.style.getPropertyValue('--safe-top');
+  const SAFE = 47;
+  if (document.scrollingElement.scrollHeight > innerHeight + 2 * SAFE) {
+    kok.style.setProperty('--safe-top', SAFE + 'px'); window.scrollTo(0, Math.min(240, document.scrollingElement.scrollHeight - innerHeight)); kok.classList.add('kaydi');
+    const b9 = new Set();
+    const w9 = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    while (w9.nextNode()) {
+      const t = w9.currentNode, e = t.parentElement; if (!t.textContent.trim() || !e || !gorunur(e)) continue;
+      const rg = document.createRange(); rg.selectNodeContents(t);
+      for (const r of rg.getClientRects()) {
+        if (r.bottom <= 1 || r.top >= SAFE - 1 || r.width < 1) continue;
+        const x = r.left + r.width / 2, y = Math.max(1, (Math.max(0, r.top) + Math.min(SAFE, r.bottom)) / 2);
+        const hit = document.elementFromPoint(x, y);
+        if (hit && (hit === e || e.contains(hit)) && !b9.has(e)) { b9.add(e); ihlal.push(['B9', `üst güvenli alanda metin görünüyor: ${ad(e)}`]); }
+      }
+    }
+    window.scrollTo(0, sy9); if (!vardi) kok.classList.remove('kaydi');
+    if (eskiSafe) kok.style.setProperty('--safe-top', eskiSafe); else kok.style.removeProperty('--safe-top');
+  }
   return ihlal;
 }"""
 
@@ -227,6 +249,10 @@ OZ = [
   ("B5", False, sayfa("<main><p>aaaa ·<br>bbbb</p></main>"), True),
   ("B5", False, sayfa("<main><p>aaa · bbb · ccc</p></main>"), False),
   ("B5", False, sayfa("<main><div style='display:flex;gap:6px'><span>aaa</span><span>·</span><span>bbb</span></div></main>"), False),
+  # B5 düzeltmesi (core/ayrac.ts): dar kutuda düz boşluklu ayraç satır başına düşer; bölünmez boşluklu ayraç (ayrac()) düşmez
+  ("B5", False, sayfa("<main><p style='font:16px monospace;width:8ch'>cc aaaa · bbbb</p></main>"), True),
+  ("B5", False, sayfa("<main><p style='font:16px monospace;width:8ch'>cc aaaa\u00A0·\u00A0bb</p></main>"), False),
+  ("B5", False, sayfa("<main><button style='display:flex;font:16px monospace;width:12ch;padding:0;border:0'><span>aaaa bbbb\u00A0·\u00A0<b>cccc</b> dd</span></button></main>"), False),
   ("B6", False, sayfa("<main><div style='width:2000px;height:10px'></div></main>"), True),
   ("B6", False, sayfa("<main><div style='width:100px;height:10px'></div></main>"), False),
   ("B6", False, sayfa("<main style='overflow-x:clip'><div style='width:2000px;height:10px;background:#ccc'></div></main>"), True),
@@ -237,6 +263,8 @@ OZ = [
   ("B7", False, sayfa("<main><div class=de lang=de style='width:120px;font-size:17px'>Können Sie das bitte einfacher sagen?</div></main>"), False),
   ("B8", False, sayfa("<main><button class='btn primary'>Bir</button><button class='btn primary' style='margin-top:12px'>İki</button></main>"), True),
   ("B8", False, sayfa("<main><button class='btn primary'>Bir</button><button class=btn style='margin-top:12px'>İki</button></main>"), False),
+  ("B9", False, sayfa("<style>:root{--safe-top:0px}.app{padding-top:var(--safe-top)}</style><div class=app><main><p>Satır 0 burada uzun bir metin</p><p>Satır 1 burada uzun bir metin</p><p>Satır 2 burada uzun bir metin</p><p>Satır 3 burada uzun bir metin</p><p>Satır 4 burada uzun bir metin</p><p>Satır 5 burada uzun bir metin</p><p>Satır 6 burada uzun bir metin</p><p>Satır 7 burada uzun bir metin</p><p>Satır 8 burada uzun bir metin</p><p>Satır 9 burada uzun bir metin</p><p>Satır 10 burada uzun bir metin</p><p>Satır 11 burada uzun bir metin</p><p>Satır 12 burada uzun bir metin</p><p>Satır 13 burada uzun bir metin</p><p>Satır 14 burada uzun bir metin</p><p>Satır 15 burada uzun bir metin</p><p>Satır 16 burada uzun bir metin</p><p>Satır 17 burada uzun bir metin</p><p>Satır 18 burada uzun bir metin</p><p>Satır 19 burada uzun bir metin</p><p>Satır 20 burada uzun bir metin</p><p>Satır 21 burada uzun bir metin</p><p>Satır 22 burada uzun bir metin</p><p>Satır 23 burada uzun bir metin</p><p>Satır 24 burada uzun bir metin</p><p>Satır 25 burada uzun bir metin</p><p>Satır 26 burada uzun bir metin</p><p>Satır 27 burada uzun bir metin</p><p>Satır 28 burada uzun bir metin</p><p>Satır 29 burada uzun bir metin</p><p>Satır 30 burada uzun bir metin</p><p>Satır 31 burada uzun bir metin</p><p>Satır 32 burada uzun bir metin</p><p>Satır 33 burada uzun bir metin</p><p>Satır 34 burada uzun bir metin</p><p>Satır 35 burada uzun bir metin</p><p>Satır 36 burada uzun bir metin</p><p>Satır 37 burada uzun bir metin</p><p>Satır 38 burada uzun bir metin</p><p>Satır 39 burada uzun bir metin</p><p>Satır 40 burada uzun bir metin</p><p>Satır 41 burada uzun bir metin</p><p>Satır 42 burada uzun bir metin</p><p>Satır 43 burada uzun bir metin</p><p>Satır 44 burada uzun bir metin</p><p>Satır 45 burada uzun bir metin</p><p>Satır 46 burada uzun bir metin</p><p>Satır 47 burada uzun bir metin</p><p>Satır 48 burada uzun bir metin</p><p>Satır 49 burada uzun bir metin</p><p>Satır 50 burada uzun bir metin</p><p>Satır 51 burada uzun bir metin</p><p>Satır 52 burada uzun bir metin</p><p>Satır 53 burada uzun bir metin</p><p>Satır 54 burada uzun bir metin</p><p>Satır 55 burada uzun bir metin</p><p>Satır 56 burada uzun bir metin</p><p>Satır 57 burada uzun bir metin</p><p>Satır 58 burada uzun bir metin</p><p>Satır 59 burada uzun bir metin</p><p>Satır 60 burada uzun bir metin</p><p>Satır 61 burada uzun bir metin</p><p>Satır 62 burada uzun bir metin</p><p>Satır 63 burada uzun bir metin</p><p>Satır 64 burada uzun bir metin</p><p>Satır 65 burada uzun bir metin</p><p>Satır 66 burada uzun bir metin</p><p>Satır 67 burada uzun bir metin</p><p>Satır 68 burada uzun bir metin</p><p>Satır 69 burada uzun bir metin</p><p>Satır 70 burada uzun bir metin</p><p>Satır 71 burada uzun bir metin</p><p>Satır 72 burada uzun bir metin</p><p>Satır 73 burada uzun bir metin</p><p>Satır 74 burada uzun bir metin</p><p>Satır 75 burada uzun bir metin</p><p>Satır 76 burada uzun bir metin</p><p>Satır 77 burada uzun bir metin</p><p>Satır 78 burada uzun bir metin</p><p>Satır 79 burada uzun bir metin</p></main></div>"), True),
+  ("B9", False, sayfa("<style>:root{--safe-top:0px}.app{padding-top:var(--safe-top)}html.kaydi .app::before{content:'';position:fixed;top:0;left:0;right:0;height:var(--safe-top);background:#fff;z-index:60}</style><div class=app><main><p>Satır 0 burada uzun bir metin</p><p>Satır 1 burada uzun bir metin</p><p>Satır 2 burada uzun bir metin</p><p>Satır 3 burada uzun bir metin</p><p>Satır 4 burada uzun bir metin</p><p>Satır 5 burada uzun bir metin</p><p>Satır 6 burada uzun bir metin</p><p>Satır 7 burada uzun bir metin</p><p>Satır 8 burada uzun bir metin</p><p>Satır 9 burada uzun bir metin</p><p>Satır 10 burada uzun bir metin</p><p>Satır 11 burada uzun bir metin</p><p>Satır 12 burada uzun bir metin</p><p>Satır 13 burada uzun bir metin</p><p>Satır 14 burada uzun bir metin</p><p>Satır 15 burada uzun bir metin</p><p>Satır 16 burada uzun bir metin</p><p>Satır 17 burada uzun bir metin</p><p>Satır 18 burada uzun bir metin</p><p>Satır 19 burada uzun bir metin</p><p>Satır 20 burada uzun bir metin</p><p>Satır 21 burada uzun bir metin</p><p>Satır 22 burada uzun bir metin</p><p>Satır 23 burada uzun bir metin</p><p>Satır 24 burada uzun bir metin</p><p>Satır 25 burada uzun bir metin</p><p>Satır 26 burada uzun bir metin</p><p>Satır 27 burada uzun bir metin</p><p>Satır 28 burada uzun bir metin</p><p>Satır 29 burada uzun bir metin</p><p>Satır 30 burada uzun bir metin</p><p>Satır 31 burada uzun bir metin</p><p>Satır 32 burada uzun bir metin</p><p>Satır 33 burada uzun bir metin</p><p>Satır 34 burada uzun bir metin</p><p>Satır 35 burada uzun bir metin</p><p>Satır 36 burada uzun bir metin</p><p>Satır 37 burada uzun bir metin</p><p>Satır 38 burada uzun bir metin</p><p>Satır 39 burada uzun bir metin</p><p>Satır 40 burada uzun bir metin</p><p>Satır 41 burada uzun bir metin</p><p>Satır 42 burada uzun bir metin</p><p>Satır 43 burada uzun bir metin</p><p>Satır 44 burada uzun bir metin</p><p>Satır 45 burada uzun bir metin</p><p>Satır 46 burada uzun bir metin</p><p>Satır 47 burada uzun bir metin</p><p>Satır 48 burada uzun bir metin</p><p>Satır 49 burada uzun bir metin</p><p>Satır 50 burada uzun bir metin</p><p>Satır 51 burada uzun bir metin</p><p>Satır 52 burada uzun bir metin</p><p>Satır 53 burada uzun bir metin</p><p>Satır 54 burada uzun bir metin</p><p>Satır 55 burada uzun bir metin</p><p>Satır 56 burada uzun bir metin</p><p>Satır 57 burada uzun bir metin</p><p>Satır 58 burada uzun bir metin</p><p>Satır 59 burada uzun bir metin</p><p>Satır 60 burada uzun bir metin</p><p>Satır 61 burada uzun bir metin</p><p>Satır 62 burada uzun bir metin</p><p>Satır 63 burada uzun bir metin</p><p>Satır 64 burada uzun bir metin</p><p>Satır 65 burada uzun bir metin</p><p>Satır 66 burada uzun bir metin</p><p>Satır 67 burada uzun bir metin</p><p>Satır 68 burada uzun bir metin</p><p>Satır 69 burada uzun bir metin</p><p>Satır 70 burada uzun bir metin</p><p>Satır 71 burada uzun bir metin</p><p>Satır 72 burada uzun bir metin</p><p>Satır 73 burada uzun bir metin</p><p>Satır 74 burada uzun bir metin</p><p>Satır 75 burada uzun bir metin</p><p>Satır 76 burada uzun bir metin</p><p>Satır 77 burada uzun bir metin</p><p>Satır 78 burada uzun bir metin</p><p>Satır 79 burada uzun bir metin</p></main></div>"), False),
   ("B8", False, sayfa("<main><button class='btn primary'>Arka</button><div role=dialog><button class='btn primary'>Tamam</button></div></main>"), False),
 ]
 
@@ -268,6 +296,10 @@ def main():
                     pg.wait_for_timeout(150); simdi = pg.evaluate("(document.querySelector('main, .callscreen') || document.body).innerText")
                     if simdi == onceki: break
                     onceki = simdi
+                # giriş animasyonları (fadein/pop) bitmeden ölçülürse opaklığı 0 olan açıklamalar atlanır (inceleme #185 P1-1)
+                # yalnız sonlu animasyonlar beklenir (iskelet parıltısı gibi sonsuz döngüler hiç bitmez); en çok 2 sn
+                pg.evaluate("""() => Promise.race([new Promise((ok) => setTimeout(ok, 2000)),
+                  Promise.all(document.getAnimations().filter((a) => (a.effect?.getTiming?.().iterations ?? 1) !== Infinity).map((a) => a.finished.catch(() => null)))])""")
                 if len((onceki or "").strip()) <= 20: check(False, f"{scr}: ekran boş açıldı"); continue
                 acilan += 1
                 for k, m in pg.evaluate(KURALLAR, scr in ANA):

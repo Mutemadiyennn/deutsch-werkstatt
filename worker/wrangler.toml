@@ -2,7 +2,8 @@
 # Gizli değerler depoya YAZILMAZ; şu komutlarla girilir:
 #   npx wrangler secret put GEMINI_KEY
 #   npx wrangler secret put ALLOWED_UIDS      # Firebase uid (virgülle)
-# KV: npx wrangler kv namespace create QUOTA  → çıkan id'yi aşağıya yaz.
+# KV: kimlik depoya yazılmaz; Cloudflare Workers Builds derlemesinde QUOTA_KV_ID derleme değişkeninden doldurulur
+#     (npm run cf:hazirla -w worker; docs/v2/CLOUDFLARE_TELEFON.md G). Gizliler Cloudflare panelinden (PM-081 C).
 name = "deutsch-werkstatt-api"
 main = "src/index.ts"
 compatibility_date = "2026-11-01"

@@ -15,6 +15,7 @@ import { personalMatch } from "../core/garden.ts";
 import { Art, ErrorPanel, Loading, TopBar } from "../ui/components.tsx";
 import { ListenButton } from "../ui/kit.tsx";
 import { Rich } from "../ui/rich.tsx";
+import { ayracBagla } from "../core/ayrac.ts";
 
 const aramaAdresi = (q: string) => `#/sozluk/${encodeURIComponent(q.trim() || "-")}`;
 
@@ -63,7 +64,7 @@ export function SozlukEkrani({ q: ilk = "", id }: { q?: string; id?: string }) {
           {/* #58 B2: kelimenin kullanıldığı kalıplar → kalıp kartı */}
           {sec.patterns.some((id) => kaliplar.has(id)) && <div class="small" data-test="sozluk-kaliplar"><div class="kicker">Kalıpları</div>
             {sec.patterns.filter((id) => kaliplar.has(id)).map((id) => <a key={id} class="kalip-link" href={`#/kalip/${encodeURIComponent(id)}`}
-              onClick={() => { try { sessionStorage.setItem(KALIP_GERI, location.hash); } catch { /* yok */ } }}><Rich text={kaliplar.get(id)!.frame_tr ?? kaliplar.get(id)!.frame} /></a>)}</div>}
+              onClick={() => { try { sessionStorage.setItem(KALIP_GERI, location.hash); } catch { /* yok */ } }}><span><Rich text={ayracBagla(kaliplar.get(id)!.frame_tr ?? kaliplar.get(id)!.frame)} /></span></a>)}</div>}
           <button class="btn primary block" disabled={var_} data-test="sozluk-ekle" onClick={() => void ekle(de, sec.tr, sec)}>{var_ ? (bahceye ? "Bahçende ✓" : "Listende ✓") : "Duyduğum kelime olarak ekle"}</button>
           <p class="tiny muted" data-test="sozluk-ekle-not">{bahceye ? "Bahçe'de tekrarlarda öne alınır." : "Kişisel listene girer; bu kelimenin Bahçe kartı yok."}</p>
           <a class="btn block" href={aramaAdresi(q)} data-test="sozluk-geri">Aramaya dön</a>

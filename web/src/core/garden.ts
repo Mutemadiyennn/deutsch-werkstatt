@@ -188,12 +188,26 @@ export function m1Hak(takvim: number, kalan: number, kisisel: number): { newLeft
   return { newLeft: kalan + (izin ? Math.min(2, takvim, kisisel) : 0), kisiselIzin: izin };
 }
 
+/** Bir Bahçe turunun en çok soru sayısı (buildRound varsayılanı) */
+export const TUR_EN_COK = 12;
+
+/** Tur sonu "Yarın N kart": yarın bu saate kadar vadesi gelen Bahçe kartları (yalnız sözcük kartı; ders ve cümle öğeleri sayılmaz) */
+export function yarinKartSayisi(items: ReadonlyMap<string, LearnerItem>, lex: ReadonlyMap<string, Lexeme>, now: Date): number {
+  const t = new Date(now.getTime() + 24 * 3600_000);
+  let n = 0;
+  for (const it of items.values()) { const l = it.kind === "lexeme" ? lex.get(it.itemId) : undefined; if (l && isCard(l) && (isDue(it, "passive", t) || isDue(it, "active", t))) n++; }
+  return n;
+}
+
+/** Tur sonu cümlesi: sayı bir turun sınırını aşarsa yarın kaçla başlanacağı ve sıradaki toplam (inceleme #188 P2-3) */
+export const yarinMetni = (n: number) => (!n ? "Yarın yeni kartlar gelecek." : n > TUR_EN_COK ? `Yarın ${TUR_EN_COK} kartla başlarsın; sırada toplam ${n} kart var.` : `Yarın ${n} kart seni bekliyor.`);
+
 /**
  * Bir tur kurar. `items`: öğrenci modeli (yalnızca lexeme türü kullanılır). `pool`: yeni kart adayları sırasıyla.
  * Sıra: vadesi gelen aktif → üretime açılan (tanıtılmış) kartlar → vadesi gelen pasif → öncelikli yeni (duyduğum) → yeni.
  */
 export function buildRound(lex: Map<string, Lexeme>, items: Map<string, LearnerItem>, pool: string[], o: RoundOpts = {}): GardenQ[] {
-  const max = o.max ?? 12, min = o.min ?? 8, rng = o.rng ?? Math.random, now = o.now ?? new Date();
+  const max = o.max ?? TUR_EN_COK, min = o.min ?? 8, rng = o.rng ?? Math.random, now = o.now ?? new Date();
   const newLeft = Math.max(0, o.newLeft ?? DAILY_NEW), activeLeft = Math.max(0, o.activeLeft ?? DAILY_ACTIVE);
   const prio = (o.priority ?? []).filter((id) => !items.has(id) && lex.has(id) && isCard(lex.get(id)!)).slice(0, Math.min(2, newLeft));
   const ayir = Math.max(0, Math.min(o.yeniAyir ?? 0, newLeft - prio.length));
@@ -293,7 +307,7 @@ export function requeue(round: GardenQ[], q: GardenQ, l: Lexeme, rng: () => numb
 }
 
 /** Çeldirici yakınlığı (PM 7011722598 madde 5): `tur` = bu turun ve M1 gününün kartları; `bilinen` = öğrencinin tanıdığı kartlar */
-export interface Yakinlik { tur?: Set<string>; bilinen?: Set<string> }
+export interface Yakinlik { tur?: Set<string>; bilinen?: Set<string>; /** yalnız tur ve bilinen kartlardan; yetmezse şık azalır, rastgele uzak sözcük gelmez (akış, PM 7055715440 md. 5) */ yalniz?: boolean }
 
 /**
  * Anlam seçenekleri: doğru + aynı türden 3 çeldirici. Çeldirici eleme ile değil ayırt ederek bilinsin: önce **aynı turun /
@@ -304,9 +318,11 @@ export function meaningOptions(l: Lexeme, all: Lexeme[], rng: () => number = Mat
   // tek doğru cevap: aynı Almanca kelime (eşsesli kart) ve Türkçe anlamı kesişen kart çeldirici olamaz (inceleme #100 P1-1:
   // Uhr "saat" ↔ Stunde "saat, ders saati")
   const benim = trAnahtar(l.tr), deKucuk = l.de.toLowerCase();
-  const uygun = all.filter((x) => x.id !== l.id && x.pos === l.pos && x.tr !== l.tr && isCard(x) && x.de.toLowerCase() !== deKucuk && ![...trAnahtar(x.tr)].some((k) => benim.has(k)));
+  // akışta (yalniz) sayı ve edat gibi kart sayılmayan sözcüklerin çeldiricisi aynı halkanın / bilinenlerin aynı türden sözcükleridir (inceleme #186 P1-1)
+  const kartOlur = (x: Lexeme) => isCard(x) || (!!y.yalniz && (!!y.tur?.has(x.id) || !!y.bilinen?.has(x.id)));
+  const uygun = all.filter((x) => x.id !== l.id && x.pos === l.pos && x.tr !== l.tr && kartOlur(x) && x.de.toLowerCase() !== deKucuk && ![...trAnahtar(x.tr)].some((k) => benim.has(k)));
   const alan = new Set(l.domains ?? []);
-  const derece = (x: Lexeme) => (y.tur?.has(x.id) ? 2 : y.bilinen?.has(x.id) && (x.domains ?? []).some((d) => alan.has(d)) ? 1 : 0);
+  const derece = (x: Lexeme) => (y.tur?.has(x.id) ? 2 : y.bilinen?.has(x.id) && (y.yalniz || (x.domains ?? []).some((d) => alan.has(d))) ? 1 : 0);
   const uzaklik = (x: Lexeme) => Math.abs((x.freqRank ?? 9e9) - (l.freqRank ?? 9e9));
   const pick: string[] = [];
   const al = (havuz: Lexeme[], n: number) => {
@@ -318,7 +334,8 @@ export function meaningOptions(l: Lexeme, all: Lexeme[], rng: () => number = Mat
   const yakinSayi = pick.length;
   // uzak: yakın ≥2 ise en çok 1 (toplam 3); tanıdık kart önce
   const uzak = uygun.filter((x) => derece(x) === 0).sort((a, b) => Number(!!y.bilinen?.has(b.id)) - Number(!!y.bilinen?.has(a.id)) || uzaklik(a) - uzaklik(b)).slice(0, 12);
-  al(uzak, yakinSayi >= 2 ? Math.min(3, yakinSayi + 1) : 3);
+  // yalniz: uzak sözcük gelmez; şık 3'ten azsa akış adımı soru olarak sormaz, tanıtıma döner (Akis.tsx; inceleme #186 P1-1)
+  if (!y.yalniz) al(uzak, yakinSayi >= 2 ? Math.min(3, yakinSayi + 1) : 3);
   const opts = [...pick];
   const ans = Math.floor(rng() * (opts.length + 1)) % (opts.length + 1);
   opts.splice(ans, 0, l.tr);

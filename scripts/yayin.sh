@@ -6,14 +6,17 @@
 #   2. KAPI YEŞİL denetimi: depodaki bir issue/PR yorumunda "[KAPI] <commit> … YEŞİL" (ilk satır; en az 7 hane) yoksa DURUR.
 #      Atlama seçeneği yoktur (PM: "yalnız KAPI YEŞİL main için").
 #   3. Temiz worktree'de deploy-v2.yml'deki adımları koşar (tek kaynak; adımlar oradan okunur):
-#        "M1 medyası" adımının --pattern listesi → Releases m1-medya varlıkları REST ile .medya/'ya (GraphQL bu ortamda kapalı)
+#        "M1 medyası" adımının --pattern listesi → Releases m1-medya varlıkları REST ile .medya/'ya (GraphQL bu ortamda kapalı),
+#        sonra `medya` dalı (varsa) üstüne açılır: aynı adda dosyada dal kazanır (PM-081 A2)
 #        "Derle" adımının run: metni aynen (npm ci, doğrulayıcı + birim, içerik + web derlemesi)
-#   4. gh-pages/v2/ klasörünü web/dist ile değiştirir, commit'ler, deploy-v2.yml'deki gibi v2-YYYYMMDD-n etiketi atar, iter.
+#   4. gh-pages/v2/ klasörünü web/dist ile değiştirir, commit'ler, iter. Her yayın v2-YYYYMMDD-n adını alır (phases/07): ad varsayılan
+#      olarak gh-pages commit iletisine yazılır, git etiketi atılmaz (PM 7053100321: vekil etiket itmesini reddediyor);
+#      --etiketli: ad ayrıca git etiketi olarak atomik itilir (eski yol).
 #   5. Sürüm damgasını (dist/sw-assets.json "build") ve gh-pages commit'ini #12'ye yazar, aynı yoruma
 #      "[KAPI-İSTEK] yayın denetimi: beklenen sürüm <damga>" ekler (--yorum-yok ile yalnız ekrana basar).
-# Geri alma: scripts/v2-rollback.sh v2-YYYYMMDD-n (Actions kapalıyken yerel yoldan).
+# Geri alma: scripts/v2-rollback.sh v2-YYYYMMDD-n (etiket ya da gh-pages commit iletisindeki ad) | <gh-pages commit>.
 #
-# Kullanım: scripts/yayin.sh [--commit <sha>] [--kuru] [--yorum-yok]
+# Kullanım: scripts/yayin.sh [--commit <sha>] [--kuru] [--yorum-yok] [--etiketli]
 # Çıkış: 0 yayın (ya da kuru) · 1 derleme/itme düştü · 2 kullanım/okuma · 3 KAPI YEŞİL yok ya da son karar KIRMIZI · 4 yayın yapıldı, #12 yazılamadı
 # Fark (deploy-v2.yml'den): medya indirilemezse iş akışı uyarıp sürerdi, bu betik durur (eksik videolu yayın olmasın).
 #   --kuru       derler ve damgayı söyler; gh-pages'e itmez, etiket atmaz, yorum yazmaz
@@ -21,12 +24,13 @@
 set -euo pipefail
 
 DEPO="Mutemadiyennn/deutsch-werkstatt"
-COMMIT=""; KURU=0; YORUM=1
+COMMIT=""; KURU=0; YORUM=1; ETIKET_AT=0
 while [ $# -gt 0 ]; do
   case "$1" in
     --commit) [ -n "${2:-}" ] || { echo "--commit bir değer ister" >&2; exit 2; }; COMMIT="$2"; shift 2;;
     --kuru) KURU=1; shift;;
     --yorum-yok) YORUM=0; shift;;
+    --etiketli) ETIKET_AT=1; shift;;
     -h|--help) awk 'NR>1 && /^#/ {sub(/^# ?/,""); print; next} NR>1 {exit}' "$0"; exit 0;;
     *) echo "bilinmeyen seçenek: $1" >&2; exit 2;;
   esac
@@ -101,8 +105,31 @@ gh api "repos/$DEPO/releases/tags/$ETIKET" --jq '.assets[] | "\(.id)\t\(.name)"'
     if [[ "$ad" == $d ]]; then gh api -H "Accept: application/octet-stream" "repos/$DEPO/releases/assets/$id" > ".medya/$ad"; break; fi
   done < "$DESEN"
 done
+# PM-081 A1–A2: yeni ve değişen derlenmiş medya `medya` dalında durur (main'e birleşmez); Releases'in ÜSTÜNE açılır, aynı adda dal kazanır.
+# Daldaki her dosya (alt klasör fark etmez) adıyla .medya/'ya gelir; yalnız deploy-v2.yml'in --pattern listesine uyanlar alınır.
+DAL_SAY=0; FOTO_SAY=0
+if git -C "$KOK" fetch -q origin +refs/heads/medya:refs/remotes/origin/medya 2>/dev/null; then
+  MD=$(mktemp -d /tmp/yayin-medya-XXXXXX)
+  git -C "$KOK" archive origin/medya | tar -x -C "$MD"
+  while IFS= read -r -d '' f; do
+    ad=$(basename "$f")
+    while IFS= read -r d; do
+      # shellcheck disable=SC2053
+      if [[ "$ad" == $d ]]; then cp "$f" ".medya/$ad"; DAL_SAY=$((DAL_SAY+1)); break; fi
+    done < "$DESEN"
+  done < <(find "$MD" -type f -print0)
+  # PM 7055725467 md. 4: dalın açık fotoğrafları (foto/*.jpg|png|webp) .medya/foto/'ya; derleme acik.json'daki "medya:foto/<ad>"
+  # kayıtlarını pakete alır ve yerel yoldan sunar (uçak modu)
+  # yalnız düz dosya: sembolik bağ ve klasör alınmaz (bağ yayın makinesindeki bir dosyayı pakete sokabilirdi; inceleme #187 P1-2)
+  if [ -d "$MD/foto" ] && [ ! -L "$MD/foto" ]; then
+    mkdir -p .medya/foto
+    while IFS= read -r -d '' f; do cp -P "$f" .medya/foto/; FOTO_SAY=$((FOTO_SAY+1))
+    done < <(find "$MD/foto" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) -print0)
+  fi
+  rm -rf "$MD"
+fi
 rm -f "$DESEN"
-echo "medya: $(ls .medya | wc -l) dosya ($ETIKET)"
+echo "medya: $(find .medya -maxdepth 1 -type f | wc -l) dosya ($ETIKET; medya dalından $DAL_SAY), açık fotoğraf $FOTO_SAY"
 python3 -c 'import json,sys;print(json.loads(sys.argv[1])["derle"])' "$ADIMLAR" > "$DERLE"
 bash --noprofile --norc -e "$DERLE" > "$DLOG" 2>&1 || { rm -f "$DERLE"; echo "derleme düştü: $DLOG" >&2; exit 1; }
 rm -f "$DERLE"; echo "derleme günlüğü: $DLOG"
@@ -117,18 +144,23 @@ cd "$GHP"
 rm -rf v2 && mkdir -p v2 && cp -r "$AGAC/web/dist/." v2/
 git add -A v2
 if git diff --cached --quiet; then echo "Değişiklik yok; yayın gerekmiyor"; exit 0; fi
-MSG="v2 yayın: $K7"
+D=$(date -u +%Y%m%d); N=1; while git rev-parse -q --verify "refs/tags/v2-$D-$N" >/dev/null || git log -1 --basic-regexp --format=%H --grep="^\[v2-$D-$N\]" origin/gh-pages | grep -q .; do N=$((N+1)); done
+AD="v2-$D-$N"; MSG="[$AD] v2 yayın: $K7 (damga $DAMGA)"
 git commit -q -m "$MSG"
-D=$(date -u +%Y%m%d); N=1; while git rev-parse -q --verify "refs/tags/v2-$D-$N" >/dev/null; do N=$((N+1)); done
-ONCEKI=$(git for-each-ref --count=1 --sort=-creatordate --format='%(refname:short)' 'refs/tags/v2-*')   # boru yok: SIGPIPE/pipefail riski yok
-git tag -a "v2-$D-$N" -m "$MSG (kaynak $K7)"
-# atomik: dal ve etiket birlikte gider ya da hiçbiri (yetim etiket geri alma ile yayına girmesin)
-if ! git push -q --atomic origin HEAD:gh-pages "v2-$D-$N"; then git tag -d "v2-$D-$N" >/dev/null; echo "itme reddedildi (dal + etiket birlikte); yayın yapılmadı" >&2; exit 1; fi
-GHC=$(git rev-parse --short HEAD); SAAT=$(date -u +%H:%M)
-echo "yayınlandı: gh-pages $GHC · etiket v2-$D-$N · damga $DAMGA · $SAAT UTC"
+ONCEKI=$(git rev-parse --short=12 HEAD~1)   # geri alma: önceki gh-pages commit'i
+if [ "$ETIKET_AT" = 1 ]; then
+  ET="$AD"; git tag -a "$ET" -m "$MSG (kaynak $K7)"
+  # atomik: dal ve etiket birlikte gider ya da hiçbiri (yetim etiket geri alma ile yayına girmesin)
+  if ! git push -q --atomic origin HEAD:gh-pages "$ET"; then git tag -d "$ET" >/dev/null; echo "itme reddedildi (dal + etiket birlikte); yayın yapılmadı" >&2; exit 1; fi
+else
+  ET="yok (ad commit iletisinde: $AD)"
+  if ! git push -q origin HEAD:gh-pages; then echo "itme reddedildi (gh-pages dalı); yayın yapılmadı" >&2; exit 1; fi
+fi
+GHC=$(git rev-parse --short=12 HEAD); SAAT=$(date -u +%H:%M)
+echo "yayınlandı: gh-pages $GHC · etiket $ET · damga $DAMGA · $SAAT UTC"
 
 # ---- 5. #12 ----
-GOVDE="[ANA] $SAAT UTC — **v2 yayını** (\`scripts/yayin.sh\`): kaynak main \`$K7\` (KAPI YEŞİL: $KAPI) → gh-pages \`$GHC\`, etiket \`v2-$D-$N\`, sürüm damgası \`$DAMGA\` (\`/v2/sw-assets.json\` → \`build\`). Geri alma (önceki yayına): \`scripts/v2-rollback.sh ${ONCEKI:-<önceki-etiket>}\`.
+GOVDE="[ANA] $SAAT UTC — **v2 yayını** (\`scripts/yayin.sh\`): kaynak main \`$K7\` (KAPI YEŞİL: $KAPI) → gh-pages \`$GHC\`, etiket \`$ET\`, sürüm damgası \`$DAMGA\` (\`/v2/sw-assets.json\` → \`build\`). Geri alma (önceki yayına): \`scripts/v2-rollback.sh $ONCEKI\`.
 
 [KAPI-İSTEK] yayın denetimi: beklenen sürüm $DAMGA (\`/v2/sw-assets.json\` → \`build\`), gh-pages \`$GHC\`, kaynak \`$K7\`"
 if [ "$YORUM" = 1 ]; then

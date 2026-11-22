@@ -29,6 +29,7 @@ import { Icon } from "../ui/icons.tsx";
 import { ActionBar, AnswerField, DeLine, Empty, FeedbackBand, ListenButton, LoadingCard, MicButton, ProgressHeader } from "../ui/kit.tsx";
 import { ExplainBtn, SayItBox, VerdictView, useGrader } from "../ui/learn.tsx";
 import { HearSection, LearnSection } from "./Stage12.tsx";
+import { ayracBagla } from "../core/ayrac.ts";
 
 export const SECTIONS = [
   { k: "words", n: "1", title: "Dinle ve tara", act: "vocab" },
@@ -266,7 +267,7 @@ function BuildSection({ ctx, finish, back, setSub }: SP) {
     <div class="stack" key={b.id}>
       {kalipAcik !== false && p && <KalipKarti p={p} donus={kalipAcik} kapat={() => setKalipAcik(false)} />}
       <ProduceItem ctx={ctx} itemId={b.id} accepted={b.accepted} hint={b.prompt_tr} chips={r.i % 3 === 0 && !b.accepted[0]!.includes("{name}")}
-        prompt={<><div class="kicker">Almanca kur · {r.i + 1}/{r.total}</div><div class="de-lg">{b.prompt_tr}</div>{p?.frame_tr && <div class="tiny muted">Kalıp: <button class="kalip-bag-btn" data-test="kalip-bag" onClick={(e) => setKalipAcik(e.currentTarget as HTMLElement)}><Rich text={p.frame_tr} /></button></div>}</>}
+        prompt={<><div class="kicker">Almanca kur · {r.i + 1}/{r.total}</div><div class="de-lg">{b.prompt_tr}</div>{p?.frame_tr && <div class="tiny muted">Kalıp: <button class="kalip-bag-btn" data-test="kalip-bag" onClick={(e) => setKalipAcik(e.currentTarget as HTMLElement)}><span><Rich text={ayracBagla(p.frame_tr)} /></span></button></div>}</>}
         onDone={(ok) => { if (p) void rec(p.id, "pattern", "active", ok ? "correct" : "wrong"); r.next(ok); }} />
     </div>
   );

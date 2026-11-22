@@ -13,13 +13,13 @@ import { gorevSay } from "../services/gorev.ts";
 import { Mucevher } from "./solen.tsx";
 
 /* ---------- Ses düğmesi: büyük, tek dokunuşla yavaş/normal ---------- */
-export function ListenButton({ text, speed = "normal", label = "Dinle", slowToggle = true, small = false, kim, sahne }: { text: string; speed?: Speed; label?: string; slowToggle?: boolean; small?: boolean; /** konuşan: karakterin sabit sesi (PM-064) */ kim?: string; /** sahnedeki bütün konuşanlar: aynı sahnede iki kişi aynı sesi almasın (2. tur P1-B) */ sahne?: (string | undefined)[] }) {
+export function ListenButton({ text, speed = "normal", label = "Dinle", slowToggle = true, small = false, kim, sahne, metinGizli = false }: { text: string; /** erişilebilirlik etiketinde Almanca metin yok (cevabı ele vermesin; PM 7052062209 md. 4) */ metinGizli?: boolean; speed?: Speed; label?: string; slowToggle?: boolean; small?: boolean; /** konuşan: karakterin sabit sesi (PM-064) */ kim?: string; /** sahnedeki bütün konuşanlar: aynı sahnede iki kişi aynı sesi almasın (2. tur P1-B) */ sahne?: (string | undefined)[] }) {
   const [busy, setBusy] = useState<false | "n" | "s">(false);
   const play = async (s: Speed, k: "n" | "s") => { if (busy) { stopSpeaking(); setBusy(false); return; } setBusy(k); try { await speak(text, "de", s, false, kim && sahne ? konusanAta(sahne).get(kim) ?? kim : kim); } finally { setBusy(false); } };
   return (
     <span class={`listen${small ? " sm" : ""}`} role="group" aria-label={label}>
-      <button type="button" onClick={() => play(speed, "n")} aria-label={`${label}: ${text}`} data-test="listen">{busy === "n" ? <Icon name="stop" /> : <Icon name="volume" />}</button>
-      {slowToggle && <button type="button" class="spd" onClick={() => play("slow", "s")} aria-label={`Yavaş dinle: ${text}`} data-test="listen-slow">{busy === "s" ? <Icon name="stop" /> : "Yavaş"}</button>}
+      <button type="button" onClick={() => play(speed, "n")} aria-label={metinGizli ? label : `${label}: ${text}`} data-test="listen">{busy === "n" ? <Icon name="stop" /> : <Icon name="volume" />}</button>
+      {slowToggle && <button type="button" class="spd" onClick={() => play("slow", "s")} aria-label={metinGizli ? "Yavaş dinle" : `Yavaş dinle: ${text}`} data-test="listen-slow">{busy === "s" ? <Icon name="stop" /> : "Yavaş"}</button>}
     </span>
   );
 }

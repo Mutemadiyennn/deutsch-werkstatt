@@ -98,6 +98,7 @@ p { margin: 0 0 8px; }
 .de-xl { font-family: var(--font-display); font-size: 1.9rem; font-weight: 800; line-height: 1.15; }
 .tr2 { font-size: 0.92rem; color: var(--muted); }
 .app { min-height: 100vh; padding: calc(var(--safe-top) + 12px) 16px calc(var(--tabbar-h) + var(--actionbar-h) + var(--safe-bottom) + 22px); max-width: 640px; margin: 0 auto; }
+html.kaydi .app::before { content: ""; position: fixed; top: 0; left: 0; right: 0; height: var(--safe-top); background: var(--paper); z-index: 60; }
 .app.notabs { padding-bottom: calc(var(--actionbar-h) + var(--safe-bottom) + 24px); }
 .app.hasbar { --actionbar-h: 84px; }
 .stack > * + * { margin-top: 14px; }
@@ -477,6 +478,8 @@ html.callmode body { background: #121C30; }
 .wordtap:active { background: var(--soft); }
 .kelime-sheet { position: fixed; left: 12px; right: 12px; bottom: calc(var(--safe-bottom) + 12px); z-index: 70; max-width: 616px; margin: 0 auto; box-shadow: var(--shadow); }
 [data-test=adim-transkript] p { line-height: 2.2; }
+[data-test=adim-transkript] p.transkript-satir { display: flex; align-items: flex-start; gap: 8px; }
+[data-test=adim-transkript] p.transkript-satir > .btn { flex: none; margin-top: 4px; }
 [data-test=error-boundary] h2:focus, [data-test=root-error] h2:focus { outline: none; }
 /* M1 A5 temel ders tablosu */
 .tbl { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
@@ -722,3 +725,49 @@ html:has(.actionbar) .toast { bottom: auto; top: calc(var(--safe-top) + 12px); }
 .kelime-kare figcaption { grid-column: 1 / -1; grid-row: 2; margin-top: -4px; }
 /* kare düzende kart içi aralık biraz sıkı (yalnızca sığmayan uzun kartlar) */
 section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
+
+/* AKIS AK-10 3. adım (TARGET3b 3–4): resimden seç ve eşleştir */
+.resim-izgara { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; max-width: 344px; margin: 0 auto; }
+.resim-secenek { position: relative; padding: 0; border: 0; border-radius: 18px; overflow: hidden; aspect-ratio: 1 / 1; background: var(--soft); box-shadow: 0 3px 0 rgba(0, 0, 0, 0.08), 0 0 0 1.5px var(--line) inset; cursor: pointer; transition: transform var(--t), opacity var(--t); }
+.resim-secenek img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.resim-secenek:active { transform: translateY(2px); }
+.resim-secenek.sel { box-shadow: 0 0 0 3px var(--accent); }
+.resim-secenek.right { box-shadow: 0 0 0 3px var(--ok); }
+.resim-secenek.wrong { box-shadow: 0 0 0 3px var(--bad); }
+.resim-secenek.soluk { opacity: 0.45; }
+.resim-isaret { position: absolute; top: 8px; right: 8px; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--ok); color: #fff; }
+.esles-izgara { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.esles-hucre { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 56px; padding: 8px 10px; border: 0; border-radius: 16px; background: var(--card); color: var(--ink); box-shadow: 0 3px 0 rgba(0, 0, 0, 0.08), 0 0 0 1.5px var(--line) inset; font: inherit; font-weight: 700; text-align: center; overflow-wrap: anywhere; hyphens: manual; cursor: pointer; transition: background var(--t), transform var(--t); }
+.esles-hucre.sol { font-size: 1.05rem; }
+.esles-hucre.sag { font-weight: 600; }
+.esles-hucre.sel { background: var(--soft); box-shadow: 0 0 0 2px var(--accent) inset; color: var(--ink); }
+.esles-hucre.right { background: var(--ok-soft); box-shadow: 0 0 0 2px var(--ok) inset; color: var(--ok); cursor: default; }
+.esles-hucre.gosterildi { background: var(--soft); color: var(--muted); cursor: default; }
+.esles-hucre.salla { background: var(--bad-soft); box-shadow: 0 0 0 2px var(--bad) inset; animation: fbSalla 360ms ease-out; }
+@media (prefers-reduced-motion: reduce) { .esles-hucre.salla { animation: none; } }
+
+/* AKIS durak oynatıcısı (AK-10 4. adım iskeleti; TARGET3b üst çubuk): durağın adımları elmas dizisi */
+.akis-elmaslar { flex: 1 1 auto; min-width: 0; display: flex; gap: 4px; align-items: center; overflow: hidden; }
+/* çok adımlı durakta elmaslar küçülür (14 → 4 px), dizi çubuğu taşmaz */
+.akis-elmas { flex: 0 1 14px; min-width: 4px; aspect-ratio: 1; transform: rotate(45deg) scale(0.75); border-radius: 3px; background: var(--line); }
+.akis-elmas.dolu { background: var(--accent); }
+.akis-elmas.simdi { background: var(--accent); box-shadow: 0 0 0 3px var(--soft); }
+.kalip-yuva { display: inline-block; min-width: 2.4em; margin: 0 4px; border-bottom: 3px solid var(--accent); line-height: 1; }
+.bosluk { display: inline-block; min-width: 3em; border-bottom: 3px solid var(--accent); color: transparent; margin: 0 2px; }
+.tanit-vurgu { background: #ffe58a; color: inherit; border-radius: 6px; padding: 0 3px; }
+:root[data-theme="dark"] .tanit-vurgu { background: #6b5a12; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tanit-vurgu { background: #6b5a12; } }
+.tanit-isaret { font: inherit; color: inherit; background: none; border: 0; padding: 0; min-height: 0; text-decoration: underline dotted; text-underline-offset: 6px; text-decoration-thickness: 2px; cursor: pointer; }
+.kip-nokta { width: 10px; height: 10px; border-radius: 50%; background: var(--line); display: inline-block; }
+.kip-nokta.dolu { background: var(--ok); }
+
+/* PM 7055715440 md. 1: 8 adımdan uzun durakta dolan çubuk (yükseklik 8 px, dolu kısım belirgin) */
+.akis-cubuk { flex: 1 1 auto; min-width: 0; height: 8px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.akis-cubuk > i { display: block; height: 100%; border-radius: 999px; background: var(--accent); transition: width var(--t); }
+/* md. 6: akışta Bahçe ve ders soruları da yeni dilde — düz yazılı mavi etiket, kart sarmalı yok */
+.akis-soru .kicker { text-transform: none; letter-spacing: 0.02em; color: var(--accent); }
+.akis-soru section.card { background: none; box-shadow: none; border: 0; padding: 0; }
+.akis-tablo-t { border-collapse: collapse; width: 100%; font-size: 1rem; overflow-wrap: normal; hyphens: manual; }
+.akis-tablo-t th, .akis-tablo-t td { white-space: nowrap; }
+.akis-tablo-t th, .akis-tablo-t td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+.akis-tablo-t th { color: var(--muted); font-weight: 700; font-size: 0.85rem; }

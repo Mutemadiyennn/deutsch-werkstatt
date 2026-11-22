@@ -3,7 +3,7 @@
 **Şu anki taş: M1 İlk Hafta** ([YOL_HARITASI](YOL_HARITASI.md), #56 v1.1). M1'in açık işleri (#56 "Eski talimatların bu yoldaki yeri" + PM-052 A + PM-054 M1):
 1. Şema (#55; PM-042 A3/A6, PM-045 §4, PM-047 §2, `forms`/fotoğraf/eşdizim) · 2. Kelime Bahçesi (PM-049; dal `v2/bahce`, kişisel banka tek tabloda, "duyduğum kelime" bağlı) · 3. Video ve ses soru oynatıcısı + dikte merdiveni (PM-050, PM-053) · 4. Ders yolu, XP ve seri; planlayıcı: tamamlanan senaryo yeniden önerilmez, seans 2–4 v1'e gitmez, günlük 12 aktif + 25 pasif (PM-052 A.3) · 5. Yeni Bugün + Pomodoro (PM-047; halka, seans x/4, "Devam et" süreyi başlatır, mola zili ve yerel bildirim PM-054.1) · 6. Konuşma provası; yapay zekâsız tam çalışma (yerel sözlük, dallanan çevrimdışı diyalog, kelime sırası esnekliği, sayı/tarih kabulü; PM-052 A.2) · 7. Yazım düzeltmesi ("Doğru. Yazımı: Arzt", PM-054.2), "Doğru söyledim" (PM-054.3), çevrimdışı DE↔TR sözlük araması (PM-054.4), yazma görevi çevrimdışı kontrolü (PM-054.5) · 8. Kart ve kalıp bilgisi görünür (örnekler, forms, sık hata; PM-052 A.5), fotoğraf bileşeni (A.4) · 9. Çevrimdışı (#43 servis işçisi), veri güvenliği, hata ekranı (PM-039 parçası) · 10. Gün sonu özeti ve yerel kullanım ölçümü (PM-052 A.8), içerik güvenliği süzgeci (A.10), hazırlık atlama kilidi (A.11) · 11. #45 arayüz P0'ları M1 ekranlarında · 12. Mevsim dersi ana yolda değil (✓ #49).
 
-Son güncelleme: 2026-11-20 09:00 UTC · Faz: **M1 İlk Hafta** · Ana dal: `main` (`6ec8173` ve sonrası) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (etiket `v2-20261120-7`) · v1 **2026-11-20a** yayında
+Son güncelleme: 2026-11-21 02:20 UTC · Faz: **M1 İlk Hafta** · Ana dal: `main` (`2e2229b`) · /v2/ yayında: https://mutemadiyennn.github.io/deutsch-werkstatt/v2/ (`v2-20261121-1`, gh-pages `010848884a22`, damga `mwprdkmd`; etiketsiz yayın, ad gh-pages iletisinde — PM 7053100321) · v1 **2026-11-20a** yayında
 Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DONGUSU → BEYIN → MIMARI → TASARIM …) → bu dosya → `DECISIONS.md`. "Sıradaki adım"dan devam et; hiçbir iş baştan başlatılmaz (PM-007 §4).
 
 ## Çalışma düzeni ve kapı (2026-11-20 akşam)
@@ -40,31 +40,22 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
   - #133 `ucak` C içerik çakışması ve `v2_core` Bugün düzen geçişi ("today-min kayboldu" çözüldü) + sade `not_configured` metni;
   - #131 "Başka cümle" kare ölçüsü köprü (B): CI'da DOM, kare günlükte; #136 (C) ile geri dönecek.
 
-## Açık PR'lar (2026-11-20 09:00 UTC)
+## Birleşenler (2026-11-20/21 gece; iki toplu KAPI, ağaç eşitliği)
+- **1. toplu** (7051559435 → main `02759eb`): #164 Kabuk 1.5 seslendirme · #171 `kapi.sh` · #174 `yayin.sh` · #172 yerleşim bekçisi (rapor kipi) · #175 yerleşim B3.
+- **2. toplu** (7054668007 → main `2e2229b`): #178 yerleşim B7 · #168 AK-10 1. adım (küme, cümle kapısı; AK-3 istisnası PM-080 §4) · #176 AK-10 2. adım (planlayıcı `planGun`) · #159 A9 gerçek insan klibi (2., 4., 5. gün) + #173 · #167 bahçe dönüşüm testi · #179 omurga taslağı.
+- Yayın: `02759eb` (gh-pages `739ad26`, etiketsiz ilk) → `2e2229b` (`v2-20261121-1`, gh-pages `010848884a22`). Etiket itmesi vekilde kapalı (#12 7052720939); ad gh-pages iletisinde (#180).
+
+## Açık PR'lar (2026-11-21 02:20 UTC)
 | PR | Dal | Teslim | Durum |
 |---|---|---|---|
-| #172 | `qa/yerlesim-bekcisi` | Yerleşim bekçisi B1–B8 (PM-079 md. 4): gezginin ekranları × 844/932; öz-sınama 29 durum; **rapor kipi** (ilk ölçüm 30 ihlal, `docs/v2/qa/yerlesim/ilk-olcum.md`) | inceleme + KAPI |
-| #175 | `v2/yerlesim-b3` (#172 üstüne) | Yerleşim partisi 1 (B3): senaryo ana sayfasında üst çubukta alan adı, h1 senaryo adı; bekçide kart başlığı kuralı (PM D1); `v2_baslik.py` senaryo ana sayfaları | inceleme 2. tur + PM finali + KAPI |
-| #178 | `v2/yerlesim-b7` (#175 üstüne) | Yerleşim partisi 2 (B7): başlık boyundaki Almanca hecelenmez + ifade kartı kademe; gövdede < 10 harfli sözcük hecelenmez; bekçi B7 eşiği kök×1,15; yüklenirken çubuk başlığı boş | inceleme + PM finali + KAPI |
-| #144 | `ci/worker-duman` | Worker dağıtımı sonunda `/v1/health` duman adımı (provider/configured iş özetinde, adres gizli) | ONAY; WebKit kırmızısı test yarışı (#151) → #151 sonrası main alınır |
-| #146 | `v2/ders-bahce-dongusuz` | B5: Bahçede bugün görülen kelime kartı derste yeniden tanıtılmaz; en çok bir kez cümle içinde seçmeli boşluk (D-121) | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor; **PM final** |
-| #148 | `v2/adsiz-cumle` | B7: `_adsiz` alanı + doğrulayıcı; kurulumda ad bir kez nazikçe sorulur (D-122) | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor; **PM final** |
-| #149 | `qa/ogrenci-devam` | öğrenci devam betiği (gün/adım tohumu, IndexedDB durumu) | WebKit 3/3; inceleme sırada |
-| #150 | `v2/foto-soru-p2` | #137 P2: görsel yüklenemezse başlık fotoğrafsız biçime döner | inceleme sırada; iPhone 15 kırmızısı "Başka cümle" zıplaması (aşağıda) |
-| #151 | `qa/ci-yaris` | "Deneme" rozeti sağlık cevabını dinler (ürün hatası); async beklemeler gerçek yoklama | 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur sürüyor |
-| #152 | `v2/kart-sigar` | En uzun kart sığar: görsel 160→96 px, gerekirse yok; test en uzun 40 kart (D-123) | CI (ResizeObserver düzeltmesi fe67cb2); inceleme sırada; **PM final** |
-| #162 | `v2/yavas` | P1 "Yavaş" duyulur: RATE.slow 0,5 (0,6/0,5/0,4 seçimi), Ses ve mikrofon'da hız ölçümü (0,3 sn altı ölçülemedi), yavaşlamayan seste aynı cinsten ve sahnede boş yedek ses, yoksa kelime grupları (PM 7042161522-1, 7043447488) | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi (P1-1 duraklamada kesilme, P1-2 sahnedeki ses); **PM final** |
-| #164 | `v2/kabuk-ses` | Kabuk 1.5: kabukta iPhone'un kendi seslendirmesi (TextToSpeech 8.0.0; premium > gelişmiş > standart; gerçek cinsiyetli ses, perde 1; ses listesi uygulama öne gelince yenilenir); web yolunda perde ±%8 ızgarası (aynı sahnede aynı ses+perde yok), aynı ad tek satır (PM 7042267632, 7042302480, 7044942991) | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; ios-build yeşil; **PM final**; #162 birleşti (f6ee482), main birleştirildi |
-| #145, #147 | İÇ dalları | B5 içerik (1. ve 2. gün ders profili) | İÇ şeridi; anlık görüntüler ANA'dan |
-| #168 | `v2/kume` | AKIS AK-10 1. adım: Halka şeması (kaliplar dahil), bilinen küme K(t) ve cümle kapısı (AK-3, packages/shared/src/kume.ts), halka denetçisi + sayaç (content/tools/halka.ts); #165 içeriği 0 hata | inceleme 1. tur DEĞİŞİKLİK GEREKLİ → düzeltildi; 2. tur + KAPI |
-| #176 | `v2/akis` | AKIS AK-10 2. adım: `planGun` (web/src/core/akis.ts) + `policy.akis` eşikleri + 200 planlık özellik testleri + 1. gün dökümü (docs/v2/qa/akis/gun-01-plan.md, ≈ 94 dk) | 1. tur DEĞİŞİKLİK GEREKLİ → hepsi düzeltildi (dil durağı K(t) kapısında, tohum etkili, K8 sınıflaması, kalıp sırası, gevşeme son diziden); fark doğrulaması + toplu KAPI |
+| #180 | `kapi/yayin-etiketsiz` | `yayin.sh` etiketsiz (ad iletide), `medya` dalı Releases'in üstüne; `v2-rollback.sh` ad/commit | inceleme + 2 fark doğrulaması ONAY; KAPI |
+| #181 | `cf/workers-builds` | Worker Cloudflare Workers Builds komutu + telefon adımları + D-125 (PM-081 C, D) | 1. tur → fark ONAY; KAPI; bağlantıyı proje sahibi kurar |
+| #182 | `medya-kart-foto-1` | MEDYA: 1.–7. gün kart fotoğrafları (14 kart) | MEDYA oturumu |
+| #183 | `v2/halka-turleri` | AK-10 3. adım: `resimden_sec`, `eslestir` (TARGET3b 3–4) | inceleme 1. tur; PM final |
+| #184 | `v2/akis-ekran` (#183 üstüne) | AK-10 4. adım: Halka ekranı `#/akis/<gün>` (4a + 4b) + 5. adım e2e (`v2_akis.py --tam`) | inceleme sırada; PM final |
+| #185 | `v2/yerlesim-b5b4` | Yerleşim B5 + B4 (+ B7 ardılı) | inceleme 1. tur; PM final |
 
-**Bilinen CI kırmızıları:**
-- `v2_bahce_donusum` "Başka cümle zıplamıyor", yalnız iPhone 15 (#145, #150): kart aynı, sayfa 757 → 801 (+44). Neden bilinmiyor; #151'e tanı dökümü eklendi.
-- `ucak` D "Deneme" rozeti: ürün hatası, #151 düzeltiyor.
-- `v2_gorev` [dark] tohum: #151.
-
-**Sıra (PM-077 + PM 7030294523 4b):** 4b işlerinin hepsi PR'da (B5 #146, B7 #148, (g) #143 ✓, öğrenci devam #149, en uzun kart #152, #137 P2 #150) → PM-076 md. 2–7 (sekme çerçevesi Bugün·Yol·Köy·Ben, Köy, Ben, Bugün gökyüzü bandı, oynatıcı bileşenleri, tipografi) → Kabuk 2 (md. 5'ten sonra) → A9 → B14.
+**Sıradaki (ANA):** inceleme turları → toplu KAPI (#180, #181, #183, #184, #185) → birleştir, yayınla. Sonra: `klip-01` ölçüm kaydı `medya` dalındaki metne (sha `46bc784c…`; örneklem onayı İÇ), Noto Emoji katmanı (PM-081 B; İÇ haritası `content/resim-harita`), LS-16.3 öğrenci simülasyonu (AK-10 5. adım), bekçiyi kırmızı kipe alma (#185 sonrası).
 
 **Bekleyen kararlar:**
 - B14 kota: 21.11 00:05 UTC denemesi kurulu, 20.11 18:00 UTC tek istekli yoklama kurulu (PM 7028983301).
@@ -87,11 +78,13 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | Konuşma provası, yapay zekâsız (#58 A7) | `v2/prova` | #68 birleşti |
 | Ses 1. adım + mikrofon (#58 B15, PM-064) | `v2/ses-b15` | #117 birleşti (D-117; 2 inceleme turu, P1'ler kapandı): karaktere göre sabit ses, Yavaş yalnızca hız, Profil → Ses ve mikrofon, kabukta yerel tanıma önce. Bilinen: aynı günün iki kaydı arasında doğrudan adres değişince Medya yeniden yüklenmiyor (ayrı iş); 2. adım doğal ses denemesi |
 | Öğretilmeden boşluk yok (PM-069 P0) | `v2/bosluk-ogretim` | PR açıldı (D-119): Bahçe yalnızca cevabı gösterilmiş boşluğu sorar, tanıtımda bütün eşdizimler; doğrulayıcı sayacı 184 (1. tur sonrası sıkı ölçü; İÇ iş listesi). Sırada PM-069 P1 #3 (tanıtım–soru aralığı), #2 (ders tekrarı), #4 (A9 video), #5 (görselle anlam) |
+| Yerleşim B5 + B4 (+ B7 ardılı) | `v2/yerlesim-b5b4` | PR #185: `core/ayrac.ts` (Öğren, alan, kalıp bağı, Sözlük, Kalıplar), Profil ve Öğren açıklamaları ≤ 2 satır (okur), bekçi giriş animasyonunu bekler; bilinen sınır: test WebKit'inde Almanca heceleme sözlüğü yok, son kademedeki tire yalnız cihazda görülür |
 | Kapalı medya rafı (#58 B12) | `v2/medya-rafi`, `v2/raf-doldur` | 1. parça #98 birleşti (D-112); 2. parça PR #99 doldurma hattı (Pixabay → gizli depo; "Fail closed" onayı `RAF_FAIL_CLOSED=1` olmadan itmez); sırada fotoğraf yolu ve doğrulayıcı; proje sahibinin adımları bekleniyor; iskelet kipi #115 birleşti (Function + saglik.txt gizli depoda, koşu 44585624937 başarılı); raf durumu ayrımı #118 birleşti (bağlandı / parola doğru raf boş / parola yanlış / parola Pages'te yok / koruma yok / ulaşılamıyor); 3. parça PR açıldı (D-118): 40 seçilmiş açık fotoğraf kartta atıfla, kapalı medya doğrulayıcı kuralı; kapalı fotoğrafın raftan bağlanması ilk doldurma koşusundan sonra |
 | Google girişi onarımı + hesap kimliği (PM 7017264235, 7017394092) | `v2/giris-uid` | #114 birleşti: `initializeAuth`'a web'de `popupRedirectResolver` (kök neden: `auth/argument-error`); engellenince yönlendirme; bilinmeyen hatada kod; Profil → Hesap kimliği + Kopyala. Bilinen: Safari'de yönlendirme sonucu sessiz düşebilir (ayrı iş) |
 | Kalıp kartı (#58 B2) | `v2/kalip-karti` | #94 birleşti (D-110). 957/957 dolguda Türkçe anlam (`fills_tr`, #116) |
 | Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | PR #87: 1. tur 5 P1 + 9 P2 düzeltildi (D-107 sonu); 2. tur bekliyor |
 | Doğrulayıcı B4 (#58 B4, #54 D16) | `v2/dogrulayici-b4` | PR #88: 1. tur 5 P1 düzeltildi (D-108); 0 hata, 126 uyarı; İÇ iş listesi: 7 şiddet tanıma kartında kullanım uyarısı, 46/119/167 kart kuralı; 2. tur bekliyor |
+| Öğrenci günlüğü N4, N6, N8 (7057160147) | `v2/medya-rich` | PR #188: medyada `**` ham görünmez (Rich/plain; e2e her adımda), metin adımında dinle düğmesi sağda, Bahçe "Yarın N kart" yalnız kartlar ve tur sınırıyla |
 | Bahçe değişen cümle (PM-062, #58 B13) | `v2/bahce-donusum` | #92 birleşti (D-111) |
 | Şölen 1 (#58 B10, PM-059) | `v2/solen-1` | #87 birleşti (D-107) |
 | Şema: gün sınavı + kalıp dolgu anlamı (İÇ 7014566898; PM-066.3, PM-067.1) | `v2/sema-sinav-dolgu` | #109 birleşti; PR #109 geçmişi: (2. tur P1-A: fills_tr e2e diskten; `gun_sinavi.dikte` eklendi); İÇ içeriği bu alanlarla yazıyor |
@@ -104,9 +97,14 @@ Yeni oturum: `CLAUDE.md` (okuma listesi: AHTAPOT → YOL_HARITASI → OGRETIM_DO
 | Değerlendirme doğruluğu (#58 A11) | `v2/degerlendirme` | PR #76: 1. tur P0 (V2 aşırı kabul) ve P1'ler düzeltildi; kalıcı permütasyon taraması; 2. tur bekliyor (D-104) |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | `v2/degerlendirme` | #76 içinde (D-104 madde 3) |
 | Sözlük arama (#58 B1) | `v2/sozluk-ara` | PR açıldı: çevrimdışı DE↔TR, kart, "Duyduğum kelime" olarak Bahçe'ye |
+| Açık fotoğraf yerel yoldan (PM 7055725467 md. 4) | `v2/foto-yerel` | PR açıldı: `medya` dalının fotoğrafları `yayin.sh` ile `.medya/foto/`'ya, derleme `medya:foto/<ad>` (ve dalın eski raw adresi) kayıtlarını pakete alır (`content/<sürüm>/media/`, uçak modu); `acik.py` dalın `atif.json`'unu okur |
 | Dinleme hızı ayarı etkili (#58 B7) | `v2/dinleme-hizi` | PR açıldı: Yavaş seçiliyse her cümle ilk kez yavaş, tekrarında normal; medya 0,75× |
 | Çevrimdışı medya (#58 A12 son parça) | `v2/cevrimdisi-medya` | PR #74: medya pakette, servis işçisi ayrı önbellek + 206 aralıklı yanıt, uçak modu e2e; 2. tur bulguları düzeltildi |
 | Heceleme yuvaları (harf yuvalı değerlendirme, ad/soyad) | — | tasarım bekliyor |
+| AKIS AK-10 4. adım: Halka ekranı + 5. adım e2e | `v2/akis-ekran` | PR #184 (#183 üstüne): `#/akis/<gün>`; bayrak `policy.akis.gunler` boş (1. gün halkaları `gun-01.json`'a İÇ taşıyınca açılır); dersin kalanı DersEkrani'nda; LS-16.3 simülasyonu sırada |
+| AKIS pilot düzeltmeleri (PM 7055715440 md. 1–6, TARGET3c) | `v2/akis-pilot` | PR #186 (#184 üstüne): çubuk/elmas ilerleme, kalıp yuvası ve K(t) içi örnekler, adsız profilde ad maddesi geçilir, durak girişi öğrenci cümlesi, tablo/hatırlatma/görev gövdeleri, akışta çeldirici yalnız halka ve bilinenlerden (3 şık yoksa tanıtım, kanıt yok); 1. tur P1-1…P1-6 düzeltildi, fark doğrulaması |
+| AKIS AK-10 3. adım: `resimden_sec`, `eslestir` (TARGET3b 3–4) | `v2/halka-turleri` | PR #183: çekirdek + bileşenler + e2e (`v2_halka_tur.py`); yalnız e2e'de `#/__halka-turleri`; görülen fotoğraf servis işçisi önbelleğinde (`dw2-foto`); ekrana bağlanması #184 |
+| Ses: kabukta yavaş kademeleri duraklarla, hız ölçümü (gecikme + üç kademe), üst güvenli alan şeridi (PM 7061304527, 7061337043) | `v2/ses-olcum` | PR #194: 1. tur DEĞİŞİKLİK GEREKLİ (7063836097) → P1-1 taşma, P1-2 kabukta karar/uyarı, P1-3 STATUS düzeltildi; fark doğrulaması |
 
 ## İçerik sayacı (PM-015; hedef / taslak / onaylı / yayında) — 2026-11-20
 | Seviye | Kelime kartı | Kalıp | Senaryo (tam) | Mini senaryo | Diyalog grafiği | Okuma | Dinleme | Haber | Madde bankası |
@@ -126,6 +124,7 @@ PM-078 B (Halka) 4. ve 5. gün önerisi: 4. gün 5 halka (fırında fiyat, küç
 PM-078 B (Halka) 6. ve 7. gün önerisi: 6. gün 5 halka (tarih ve sıra sayıları, ad ve soyad, soru sözcükleri, form bilgileri, neden/ne sıklıkla/ne kadar; 22 kart, F2 ekleri oft, sehr), 7. gün M1 kapısı 4 halka (kendimi anlatıyorum, randevu istiyorum, tekrar eder misiniz, yiyebilir miyim; 17 kart, görev cümlelerinin çoğu 1.–6. günün tekrarı); 44 + 34 görev cümlesi (bilinmeyen 0, accepted ≥3). Yazar → dilbilimci (KAPANDI) → okur (2 tur, 6 → 0).
 PM 7052062209 (İÇ 2, 5): `wohnen` ve `kommen` kartları 2. güne (r0-11 onları 2. günde öğretiyor), `offen` 3. güne; 2. gün 26, 3. gün 25, 5. gün 24 kart (2. günün öteki 23 kartını r0-02 öğretiyor, ilke sayı eşitliğinden önce). `zu` = "fazla": M1 halkaları, gün dosyaları, r0-05 ve 12 partide 120'yi aşkın Türkçe satır; okur 96/96. Gün toplamı (b) ölçümü denetçide rapor kipinde (2.–7. gün dünün kartları 33/6/26/4/7/10).
 B7 adsız biçimler (hazır tanımı 7050003328): M1 gün dosyaları ve 7 temel derste 98 `_adsiz` alanı (50 nesne, 18'i adsız hâlde yeniden kuruldu); kapsamdaki 14 dosyada B7 uyarısı 0. Yazar → dilbilimci (10 bulgu, KAPANDI) → okur (73 satırda 2 geri, kapandı). Yuvasız kardeş alanlardaki "adını söyle" çelişkileri (Ç1–Ç6) ANA'da. Senaryolar ve `patterns.json` sonraki parti.
+PM-081 B kelime resmi 2. katman: `content/v2/media/resim/harita.json` kart → Noto Emoji (Apache 2.0); yalnız tek anlama gelen somut kartlar, 135 kart (1.–7. gün 27; açık fotoğraf ya da emoji 28/155, medya dalındaki yeni fotoğraflarla 34), 48 kartta "aynı halkada çıkmasın" notu. Yazar → dilbilimci (142'den 8 çıkarıldı, 2 değişti; MEDYA adaylarından Tüte; KAPANDI). Paketleme ve `resimSecenekleri` ANA'da. PM-081 A1: FORMAT.md A9 "derlenmiş metin.json medya dalında".
 B4 kart kuralları (#88, #96): parti dosyalarında K1 isim boşluğu, 3+ eşdizim ve somut kelimede örnek başına fotoğraf sorgusu uyarıları 0 (150 kart kapandı). Doğrulayıcının "görselsiz örnek" sayacında kalan 82 kart eski `lexemes.v1.json` kartları; taban 0 / 0 / 82 (ANA, birleştirmede).
 B5 fotoğraf seçimi (#91): 308 yerin 40'ına açık lisanslı fotoğraf seçildi, 220'si reddedildi, 48'i soyut; 332 kısa ikinci sorgu A10 hattına verildi. Hedef somut kelimelerin %85'i; Openverse sonrası ikinci tur.
 Gün sınavı (#110, PM-066 madde 3): M1'in 7 gününe `gun_sinavi`, gün başına 11 madde (4 dikte, 4 yazılı üretim, 2 sesli üretim, 1 mini prova), toplam 77; yazar → dilbilimci (22 düzeltme) → okur (157 satır, GERİ 0).
@@ -190,7 +189,7 @@ Sözlüğün tamamı onaylı: taslak partiler 004–008'deki 394 girdi tam incel
 | R1-23 | /v2/ yayını + v1 Bugün'e "Yeni: Gerçek hayat dersleri" kartı (v1 17b, tam v1 kapısı) | H2 hızlı hat, PM-007 | sürüyor (/v2/ yayında; v1 17b PR'da) |
 | R1-24 | LS-16.3 öğrenci simülasyonu (qa, bilgi kısıtlı): 6 madde, ekran görüntüleriyle | LS-16.3 | yapılacak |
 | R1-25 | Kelime çeşitliliği: yanlış öğe ~4 madde sonra başka cümle + başka fotoğrafla (en çok 3 kez), sonraki oturumlarda da farklı; son 3 cümle ve son fotoğraf tekrar etmez; kart yüzleri döner (tanıma / üretme / dinleme); birim + e2e (v1 vartest eşdeğeri) | PM-003, RQ-S10, RQ-Ş07 | yapılacak |
-| R1-26 | Fotoğraf: Worker /photos Pixabay → Pexels → fotoğrafsız; PIXABAY_KEY yalnızca Worker'da; kullanım şartları + atıf DECISIONS'a; somut kelime = kelimenin kendisi, soyut = cümlenin sahnesi; düşük güvende fotoğraf yok | PM-003, RQ-S11 | yapılacak |
+| R1-26 | Fotoğraf: Worker /photos Pixabay → Pexels → fotoğrafsız; PIXABAY_KEY yalnızca Worker'da; kullanım şartları + atıf DECISIONS'a; somut kelime = kelimenin kendisi, soyut = cümlenin sahnesi; düşük güvende fotoğraf yok | PM-003, RQ-S11 | kısmen: PR #189 Worker `/v1/pixabay` MEDYA aracı (jetonlu; fotoğraflar seçilip açık depoya girer, uygulama Pixabay'e doğrudan gitmez). Uygulama içi Pixabay → Pexels sırası yok (PM 7055725467 md. 2) |
 | R1-27 | YZ dayanıklılığı: Cloudflare Workers AI ikincil sağlayıcı (yalnızca ücretsiz pay aşımında **reddettiği** doğrulanırsa; yalnızca equiv/explain/say_it); sıra kural → Gemini → (Workers AI) → YZ'siz; Profil'de "yapay zekâ durumu" satırı; iki sağlayıcı için dayanıklılık testleri | PM-004, RQ-S19, RQ-S20, LS-14 | yapılacak |
 | R1-28 | iOS yerel veri kalıcılığı: gerçek iPhone'da doğrula; eşitleme + haftalık otomatik yedek; veri kaybı testi | RQ-P01, RQ-V23 | yapılacak |
 | R1-29 | Mikrofon izninin tekrar sorulması (WKWebView): gerçek iPhone'da doğrula; gerekirse kabukta kalıcı izin | RQ-P02 | yapılacak |

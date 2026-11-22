@@ -52,6 +52,30 @@ function applyTheme(p: Profile) {
   de.classList.toggle("dyn", p.ui.textScale === 1);
 }
 
+/** Akış ekranı (ve yalnız e2e'deki halka türleri denemesi) ayrı parçada (`import()`): ilk açılış paketine girmez
+ *  (5. toplu, JS bütçesi). Servis işçisi parçayı kurulumda önbelleğe alır (sw-assets.json bütün dosyaları sayar);
+ *  yüklenemezse sayfa yenilenerek yeniden denenir. */
+type AkisModul = typeof import("./screens/Akis.tsx");
+let akisModul: Promise<AkisModul> | null = null;
+function useModul<T>(yukle: () => Promise<T>): T | null | "hata" {
+  const [m, setM] = useState<T | null | "hata">(null);
+  useEffect(() => {
+    let canli = true;
+    yukle().then((x) => { if (canli) setM(x); }, () => { if (canli) setM("hata"); });
+    return () => { canli = false; };
+  }, []);
+  return m;
+}
+const yuklenemedi = <ErrorPanel message="Ekran yüklenemedi. İnternet bağlantını kontrol edip tekrar dene." onRetry={() => location.reload()} />;
+function AkisRota({ day }: { day: number }) {
+  const m = useModul(() => (akisModul ??= import("./screens/Akis.tsx").catch((e) => { akisModul = null; throw e; })));
+  return m === "hata" ? yuklenemedi : m ? <m.AkisEkrani day={day} /> : <Loading />;
+}
+function HalkaTurRota() {
+  const m = useModul(() => import("./screens/HalkaTurDeneme.tsx"));
+  return m === "hata" ? yuklenemedi : m ? <m.HalkaTurDeneme /> : <Loading />;
+}
+
 export function App() {
   const [authReady, setAuthReady] = useState(false);
   const [user, setUser] = useState<AuthUser | null>(null);
@@ -163,10 +187,12 @@ export function App() {
     case "rehber": screen = <RehberEkrani day={route.day} />; break;
     case "gorevler": screen = <GorevlerRota />; break;
     case "odak": screen = <OdakEkrani />; break;
+    case "akis": screen = <AkisRota key={route.day} day={route.day} />; break;
     case "m1medya": screen = <MedyaEkrani key={route.id} day={route.day} id={route.id} />; break;
-    default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : <Today />;
+    // yalnız e2e: AK-10 3. adımın iki türü, ekran (4. adım) gelene kadar (üretimde bu dal ve modül paketten düşer)
+    default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__halka-turleri") ? <HalkaTurRota key={location.hash} /> : <Today />;
   }
-  const tabs = !!profile.onboardedAt && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma";
+  const tabs = !!profile.onboardedAt && !(import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__halka-turleri")) && route.name !== "onboarding" && route.name !== "assess" && route.name !== "section" && route.name !== "call" && route.name !== "garden" && route.name !== "m1medya" && route.name !== "akis" && route.name !== "ders" && route.name !== "prova" && route.name !== "okuma";
   return (
     <Ctx.Provider value={ctx}>
       <main class={`app${tabs ? "" : " notabs"}`}>{tabs && <DurumCubugu />}<ErrorBoundary resetKey={location.hash}>{screen}</ErrorBoundary></main>

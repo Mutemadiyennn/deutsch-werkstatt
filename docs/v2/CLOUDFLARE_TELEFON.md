@@ -1,6 +1,6 @@
 # Sunucuyu (Cloudflare Worker) telefondan kurmak
 
-Toplam 15–20 dakika sürer. Hiçbir yerde kredi kartı ya da ücretli plan gerekmez. Anahtarları yalnızca sen girersin; GitHub'ın şifreli "secret" alanında dururlar ve hiç kimseye (bana da) gösterilmezler.
+Toplam 15–20 dakika sürer. Hiçbir yerde kredi kartı ya da ücretli plan gerekmez. Anahtarları yalnızca sen girersin ve hiç kimseye (bana da) gösterilmezler. **Actions kapalı olduğundan güncel yol G bölümüdür** (Cloudflare Workers Builds; anahtarlar Cloudflare panelinde). A–F, Worker'ın ilk kurulumu ve geçmiş için duruyor.
 
 > Cloudflare ve GitHub zaman zaman ekranlarındaki adları değiştirir. Bir düğmeyi bulamazsan, aynı anlama gelen yakın bir adı ara. Takılırsan ekran görüntüsünü bana gönder.
 
@@ -49,7 +49,32 @@ Toplam 15–20 dakika sürer. Hiçbir yerde kredi kartı ya da ücretli plan ger
 22. **Actions → "v2 — web yayını (GitHub Pages /v2/)" → Run workflow.**
 23. Birkaç dakika sonra uygulamada **Profil → Sunucu bağlantısını kontrol et** → "Sunucu çalışıyor … Gemini anahtarı: var · izin listesi: var" görmelisin.
 
+## G. Kalıcı yol: Cloudflare Workers Builds (Actions yerine; PM-081 C)
+GitHub Actions bu depoda kapalı olduğu için A–F'deki "Run workflow" adımları artık çalışmaz. Worker, Cloudflare'in kendi Git bağlantısıyla derlenir. Ücretsiz planda ayda 3.000 derleme dakikası; aşılırsa derleme durur, ücret kesilmez. Anahtarlar Cloudflare'de kalır; motor oturumları görmez.
+24. Cloudflare panelinde **Workers & Pages** → var olan **deutsch-werkstatt-api** → **Settings** → **Build** → **Connect** → GitHub'ı bağla, depo `Mutemadiyennn/deutsch-werkstatt`, dal `main`.
+25. **Build configuration:**
+    - **Root directory:** boş bırak (deponun kökü). Worker `worker/` klasöründe, ama ortak paket (`packages/shared`) kökteki çalışma alanından kurulur. Kök `worker/` olursa kurulum düşer.
+    - **Build command:** `npm ci && npm run cf:hazirla -w worker`
+    - **Deploy command:** `npx wrangler deploy --config worker/wrangler.toml`
+26. **Build variables:** **Add** → Name `QUOTA_KV_ID`, Value: KV ad alanının kimliği.
+    - Kimliği bulmak için: **Storage & Databases → KV → QUOTA** → Namespace ID.
+    - Değişken yoksa derleme bilerek durur; kotasız Worker yayına girmez.
+27. **Gizli değerler doğrudan Cloudflare panelinden girilir** (GitHub secret'ları artık kullanılmaz). Worker → **Settings → Variables and Secrets** → **Add** → tür **Secret**:
+    - `ALLOWED_UIDS`: Profil → Hesap kimliği (virgülle birden çok);
+    - gerekirse `PEXELS_KEY`.
+    - Önceden girilmiş secret'lar yerinde kalır; `wrangler deploy` onları silmez. Yalnız eksik olanı ekle.
+27b. **Kapalı medya rafı koruması bir Worker değişkeni değildir** (D-112 a). Raf Pages projesinde: **Workers & Pages → raf projesi → Settings → Functions** → kota dolunca davranış **Fail closed** seçili olmalı; ayarı değiştirdiysen rafı bir kez yeniden dağıt (D-112 a: ayar yeniden dağıtımla etkinleşir). Eski `RAF_FAIL_CLOSED` değişkeni yalnız Actions'taki doldurma hattının bildirimiydi; artık girilmez. Rafı bu ayar korur.
+28. **Save and deploy.** Bundan sonra `main`'e her birleşmede Cloudflare kendisi derler. Derleme günlüğü panelde **Deployments** altında görünür.
+29. Uygulamada **Profil → Sunucu bağlantısını kontrol et** → "Sunucu çalışıyor".
+30. **Pixabay aracı (MEDYA'nın fotoğraf avı; PM 7055725467 md. 2).** Uç `main`'e girip kendiliğinden dağıtıldıktan sonra, adım 27'deki yerden iki **Secret**:
+    - `PIXABAY_KEY`: pixabay.com → hesabın → **API** sayfasındaki anahtar.
+    - `RAF_ARAC_JETONU`: en az 32 karakterlik rastgele dizi (ör. parola yöneticisinin ürettiği 40 karakter); medya rafının parolasından **farklı**. Uygulamaya girmez. MEDYA'ya kimlik kartıyla verilir.
+    - Worker'da **Traces/Logs** açıksa istek adresleri kayda geçebilir; Pixabay anahtarı giden istek adresinde durur. Bu ayarları açmayın.
+    - Denetim: `https://<worker adresi>/v1/health` → `configured.pixabay: true`. Anahtar ve jeton yanıtta görünmez.
+
+Bağlantı kurulana kadar Worker'a dokunan PR birleşmez (PM-081 C).
+
 ## Güvenlik ve maliyet
 - Workers'ın ücretsiz planında sınır aşılırsa ücret kesilmez; işlem hata verir ve uygulama yapay zekâsız devam eder.
-- Anahtarları değiştirmek: GitHub'da secret'ı güncelle → adım 19'u tekrarla.
-- Erişimi kapatmak: Cloudflare'de token'ı sil (My Profile → API Tokens) ya da `ALLOWED_UIDS`'i boşalt ve adım 19'u tekrarla.
+- Anahtarları değiştirmek: Cloudflare panelinde secret'ı güncelle (adım 27); Worker bir sonraki derlemeyle ya da panelden **Redeploy** ile alır.
+- Erişimi kapatmak: Cloudflare panelinde `ALLOWED_UIDS`'i boşalt (adım 27) ya da Worker'ı devre dışı bırak.

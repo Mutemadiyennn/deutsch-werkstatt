@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { Lexeme } from "@dw/shared";
 import type { LearnerItem } from "@dw/shared";
-import { kendiCumleAcik, sinaKabul, sinaTuru, synonymHit, personalMatch, availableTypes, fotoluKartlar, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak, formFor, guclu, GUCLU_GUN, siradakiEx, sonrakiExSeen } from "./garden.ts";
+import { kendiCumleAcik, sinaKabul, sinaTuru, synonymHit, personalMatch, availableTypes, fotoluKartlar, pickType, buildRound, requeue, meaningOptions, accepted, ownSentenceCheck, introduced, collocQuestion, startedToday, activatable, m1Hak, formFor, guclu, GUCLU_GUN, siradakiEx, sonrakiExSeen, yarinKartSayisi, yarinMetni } from "./garden.ts";
 import { review, sessionKey } from "./srs.ts";
 import { turKademe, TUR_BASLIK } from "../ui/solen.tsx";
 
@@ -339,3 +339,56 @@ describe("Kelime Bahçesi (PM-049)", () => {
   });
 });
 
+describe("anlam çeldiricileri, akış (PM 7055715440 md. 5)", () => {
+  const L2 = (id: string, de: string, tr: string, domains: string[] = []) => Lexeme.parse({ id, de, tr, pos: "noun", art: "der", domains });
+  const jan = L2("lx:Januar", "Januar", "ocak"), feb = L2("lx:Februar", "Februar", "şubat"), mar = L2("lx:März", "März", "mart"),
+    feu = L2("lx:Feuerwehr", "Feuerwehr", "itfaiye", ["acil"]), buch = L2("lx:Buchstabe", "Buchstabe", "harf", ["okul"]);
+  it("yalnız: çeldiriciler halkadan ve bilinenlerden; yetmezse şık azalır, uzak sözcük gelmez", () => {
+    for (let k = 0; k < 20; k++) {
+      const o = meaningOptions(jan, [jan, feb, mar, feu, buch], () => (k * 0.37) % 1, { tur: new Set(["lx:Februar"]), bilinen: new Set(["lx:März"]), yalniz: true });
+      expect(o.opts.sort()).toEqual(["mart", "ocak", "şubat"]);
+    }
+  });
+  it("yalnız değilse Bahçe davranışı aynı: uzak sözcükle 4 şık", () => {
+    expect(meaningOptions(jan, [jan, feb, mar, feu, buch], () => 0.3, { tur: new Set(["lx:Februar"]) }).opts).toHaveLength(4);
+  });
+});
+describe("akış çeldiricisi, yakın yoksa (inceleme #186 P1-1)", () => {
+  const L3 = (id: string, de: string, tr: string) => Lexeme.parse({ id, de, tr, pos: "noun", art: "der" });
+  it("havuz boşsa uzak sözcük gelmez (akış bu adımı soru olarak sormaz)", () => {
+    const a = L3("lx:A", "Arzt", "doktor"), b = L3("lx:B", "Brot", "ekmek"), c = L3("lx:C", "Bus", "otobüs");
+    expect(meaningOptions(a, [a, b, c], () => 0.1, { tur: new Set(), bilinen: new Set(), yalniz: true }).opts).toEqual(["doktor"]);
+  });
+  it("sayıların çeldiricisi aynı halkanın sayıları (kart sayılmasalar da): 3 şık ve üstü", () => {
+    const N = (id: string, de: string, tr: string) => Lexeme.parse({ id, de, tr, pos: "num" });
+    const s = [N("lx:eins", "eins", "bir"), N("lx:zwei", "zwei", "iki"), N("lx:drei", "drei", "üç"), N("lx:vier", "vier", "dört")];
+    const o = meaningOptions(s[0]!, s, () => 0.2, { tur: new Set(s.map((x) => x.id)), bilinen: new Set(), yalniz: true }).opts;
+    expect(o.length).toBeGreaterThanOrEqual(3); expect(o).toContain("bir");
+  });
+});
+
+describe("tur sonu 'Yarın N kart' (öğrenci günlüğü 7057160147 N6)", () => {
+  it("yalnız sözcük kartları; ders/cümle öğesi ve kart sayılmayan sözcük sayılmaz; uzak vadeli kart sayılmaz", () => {
+    const t0 = new Date("2026-11-01T10:00:00Z"), s = sessionKey("g", t0.getTime());
+    const yeni = review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "wrong", session: s }, t0);
+    const cumle = { ...review(undefined, { itemId: "ders:x:1", kind: "lexeme", path: "passive", outcome: "wrong", session: s }, t0) };
+    const kartDegil = review(undefined, { itemId: "lx:der", kind: "lexeme", path: "passive", outcome: "wrong", session: s }, t0);
+    const m = new Map<string, LearnerItem>([["lx:Termin", yeni], ["ders:x:1", cumle], ["lx:der", kartDegil]]);
+    expect(yarinKartSayisi(m, lex, t0)).toBe(1);
+  });
+  it("bugün doğru cevaplanıp aralığı bir günü aşan kart sayılmaz, bugün yanlış cevaplanan sayılır (inceleme #188 P2-2)", () => {
+    const t0 = new Date("2026-11-01T10:00:00Z"), s = (d: Date) => sessionKey("g", d.getTime());
+    let iyi = review(undefined, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "correct", session: s(new Date("2026-10-01T10:00:00Z")) }, new Date("2026-10-01T10:00:00Z"));
+    for (const g of ["2026-10-05", "2026-10-15", "2026-11-01"]) iyi = review(iyi, { itemId: "lx:Termin", kind: "lexeme", path: "passive", outcome: "correct", session: s(new Date(g + "T10:00:00Z")) }, new Date(g + "T10:00:00Z"));
+    expect(Date.parse(iyi.passive.fsrs!.due) - t0.getTime()).toBeGreaterThan(24 * 3600_000);
+    const kotu = review(undefined, { itemId: "lx:absagen", kind: "lexeme", path: "passive", outcome: "wrong", session: s(t0) }, t0);
+    expect(yarinKartSayisi(new Map([["lx:Termin", iyi], ["lx:absagen", kotu]]), lex, t0)).toBe(1);
+  });
+});
+describe("tur sonu cümlesi (inceleme #188 P2-3)", () => {
+  it("0, ≤ 12 ve 12'yi aşan sayı", () => {
+    expect(yarinMetni(0)).toBe("Yarın yeni kartlar gelecek.");
+    expect(yarinMetni(12)).toBe("Yarın 12 kart seni bekliyor.");
+    expect(yarinMetni(29)).toBe("Yarın 12 kartla başlarsın; sırada toplam 29 kart var.");
+  });
+});

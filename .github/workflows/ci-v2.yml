@@ -26,19 +26,26 @@ jobs:
       - name: Gizli anahtar taraması (Firebase web yapılandırması hariç)
         run: |
           if git grep -nE 'AIza[0-9A-Za-z_-]{35}' -- ':!app/legacy.html' ':!web/src/services/auth.ts' ':!app/tests/*' | grep -v 'AIzaSyDU2GSwCowKMKWBOvTZdKQjCtxLsQFTlDg'; then echo "Anahtar bulundu"; exit 1; fi
-      - name: Derleme + paket bütçesi (JS ≤ 250 KB gzip)
+      - name: Derleme + paket bütçesi (ilk açılış JS ≤ 250 KB, toplam JS ≤ 300 KB gzip)
         run: |
           npm run content:build
           npm run build -w web
           # Worker adresi üretim paketinde olmalı, e2e paketinde olmamalı (inceleme #123 P2-5)
           A=$(sed -n 's/^VITE_API_BASE=//p' web/.env.production); [ -n "$A" ] && grep -q "$A" web/dist/assets/*.js || { echo "::error::üretim paketinde Worker adresi yok"; exit 1; }
+          # yalnız e2e'deki deneme yolları üretim paketine girmez (AK-10 3. adım #/__halka-turleri, #/__crash)
+          ! grep -lE "__halka-turleri|e2e: bilerek hata" web/dist/assets/*.js || { echo "::error::e2e deneme yolu üretim paketinde"; exit 1; }
           # e2e paketi: içerikte henüz olmayan M1 günü için örnek gün (yayın paketine girmez)
           DW_E2E_FIXTURES=1 npm run content:build
           (cd web && npx vite build --mode e2e --outDir dist-e2e)
           ! grep -q "$A" web/dist-e2e/assets/*.js || { echo "::error::e2e paketine gerçek Worker adresi sızdı"; exit 1; }
+          # D-126 (PM 7061394696, phases/05 md. 5): ilk açılış JS'i = index.html'in bağladığı giriş parçası + statik bağımlıları
+          # (modulepreload); liste derleme çıktısından okunur. Toplam (tembel parçalar dahil) büyüme bekçisidir; sınırı PM kararıyla değişir.
+          I=0; for f in $(grep -oE '(src|href)="\./assets/[^"]+\.js"' web/dist/index.html | sed -E 's/^[a-z]+="\.\///; s/"$//' | sort -u); do I=$((I + $(gzip -9c "web/dist/$f" | wc -c))); done
           T=0; for f in web/dist/assets/*.js; do T=$((T + $(gzip -9c "$f" | wc -c))); done
-          echo "JS toplam (gzip): $((T/1024)) KB" | tee -a "$GITHUB_STEP_SUMMARY"
-          [ "$T" -le 256000 ] || { echo "JS bütçesi aşıldı"; exit 1; }
+          echo "JS ilk açılış (gzip): $((I/1024)) KB ($I B; sınır 256000) · JS toplam (gzip): $((T/1024)) KB ($T B; sınır 307200)" | tee -a "$GITHUB_STEP_SUMMARY"
+          [ "$I" -gt 0 ] || { echo "ilk açılış JS listesi index.html'den okunamadı"; exit 1; }
+          [ "$I" -le 256000 ] || { echo "JS bütçesi aşıldı (ilk açılış)"; exit 1; }
+          [ "$T" -le 307200 ] || { echo "JS bütçesi aşıldı (toplam)"; exit 1; }
       - name: Worker paketlenebilir mi
         run: (cd worker && npx wrangler deploy --dry-run --outdir /tmp/wb)
       - uses: actions/upload-artifact@v4
@@ -150,6 +157,10 @@ jobs:
         run: cd tests/e2e && python v2_sozluk.py
       - name: "Dinleme başlangıç hızı (#58 B7): Yavaş seçiliyse ilk çalma yavaş, tekrar normal; Profil'de Normal etkili"
         run: cd tests/e2e && python v2_hiz.py
+      - name: "Halka adım türleri (AKIS AK-10 3. adım): resimden seç, eşleştir; açık + koyu, 932/844, ağ kesik"
+        run: cd tests/e2e && python v2_halka_tur.py --shots /tmp/shots
+      - name: "Akış (AKIS AK-10 4a): #/akis/2 ilk halka baştan sona, yeniden açınca aynı adım, yanlış kart bir kez daha"
+        run: cd tests/e2e && python v2_akis.py --shots /tmp/shots
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4

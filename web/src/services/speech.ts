@@ -93,7 +93,8 @@ function voiceFor(lang: "de" | "tr"): SpeechSynthesisVoice | undefined {
  * Hız ölçümü (Profil → Ses ve mikrofon): aynı cümle normal ve yavaş çalınır, onstart→onend süresi ses adına göre saklanır.
  * Ölçülmemiş ses için davranış değişmez; ölçülmüş ve yavaşlamayan ses için `speak` yavaşlayan sese ya da gruplu okumaya düşer.
  */
-export interface HizOlcum { normalMs: number; yavasMs: number; rate: number }
+/** `gecikmeMs`: ısıtılmış seste tek sözcüğün başlama gecikmesi; `kademe`: üç yavaş kademenin süresi (oran → ms; PM 7061304527 Bulgu 1) */
+export interface HizOlcum { normalMs: number; yavasMs: number; rate: number; gecikmeMs?: number; kademe?: Record<string, number> }
 const HIZ_KEY = "dw2-ses-hiz";
 export function hizKaydi(): Record<string, HizOlcum> {
   try { const k = JSON.parse(localStorage.getItem(HIZ_KEY) || "{}") as Record<string, HizOlcum>; return Object.fromEntries(Object.entries(k).filter(([, o]) => gecerliOlcum(o))); } catch { return {}; }
@@ -114,9 +115,18 @@ export function olcCal(text: string, ses: SpeechSynthesisVoice | undefined, rate
   const no = ++konusmaNo;
   const yt = sesYolu() === "yerel" ? yerelTts() : undefined;
   if (yt) {
-    // yerel yolda başlama olayı yok: çağrıdan bitişe (eklenti söz bitince çözülür)
+    // yerel yolda başlama olayı yok (eklentinin iOS tarafı yalnız bitişi bildirir): çağrıdan bitişe. Yavaş kademede uygulamanın
+    // gerçekten okuduğu biçim ölçülür: parçalar ve aralarındaki duraklar (YAVAS_PLAN)
+    const v = ses ?? voiceFor("de");
+    const plan = rate < RATE.normal ? yavasParcalar(sesMetni(text), rate) : { parcalar: [sesMetni(text)], araMs: 0 };
     const t0 = performance.now();
-    return soyleYerel(yt, sesMetni(text), "de-DE", ses ?? voiceFor("de"), rate).then((ok) => (ok && no === konusmaNo ? performance.now() - t0 : null));
+    return (async () => {
+      for (let i = 0; i < plan.parcalar.length; i++) {
+        if (i > 0) { await new Promise((r) => setTimeout(r, plan.araMs)); if (no !== konusmaNo) return null; }
+        if (!(await soyleYerel(yt, plan.parcalar[i]!, "de-DE", v, rate)) || no !== konusmaNo) return null;
+      }
+      return performance.now() - t0;
+    })();
   }
   speechSynthesis.cancel();
   return new Promise((res) => {
@@ -133,6 +143,26 @@ export function olcCal(text: string, ses: SpeechSynthesisVoice | undefined, rate
   });
 }
 /**
+ * Başlangıç gecikmesi (PM 7061304527 Bulgu 1 b, d): ses önce bir kez ısıtılır, sonra tek sözcük okunur. Yerel yolda
+ * başlama olayı olmadığından tek sözcüğün çağrı→bitiş süresi gecikme sayılır (konuşmanın kendisi birkaç yüz ms; üst sınır).
+ * Tarayıcı yolunda çağrı→onstart. Çalmazsa null.
+ */
+export async function olcGecikme(ses: SpeechSynthesisVoice | undefined): Promise<number | null> {
+  if (!ttsAvailable()) return null;
+  if ((await olcCal("Ja.", ses, RATE.normal)) === null) return null;
+  const no = konusmaNo;
+  if (sesYolu() === "yerel") return olcCal("Ja.", ses, RATE.normal);
+  speechSynthesis.cancel();
+  return new Promise((res) => {
+    const u = new SpeechSynthesisUtterance("Ja.");
+    u.lang = "de-DE"; if (ses) u.voice = ses; u.rate = RATE.normal;
+    const t0 = performance.now(); let fin = false;
+    const bit = (ms: number | null) => { if (fin) return; fin = true; speakingN = Math.max(0, speakingN - 1); res(no === konusmaNo ? ms : null); };
+    u.onstart = () => bit(performance.now() - t0); u.onend = () => bit(performance.now() - t0); u.onerror = () => bit(null);
+    speakingN++; speechSynthesis.speak(u); setTimeout(() => bit(null), 10000);
+  });
+}
+/**
  * Yavaşlamayan sesin yerine: aynı cinsten (cinsi bilinmiyorsa yine cinsi bilinmeyen), ölçülmüş ve yavaşlayan Almanca ses.
  * `dolu`: sahnedeki öteki konuşanların sesleri — yedek onlardan biri olamaz (PM-064: aynı sahnede iki konuşan aynı sesi almaz;
  * inceleme #162 P1-2). Uygun ses yoksa undefined (gruplu okumaya düşülür).
@@ -146,18 +176,29 @@ export function yavaslayanSes(yerine: SpeechSynthesisVoice | undefined, dolu: Re
  * Sıra sayısı ("3.") ve kısaltma ("Dr.", "z.", "B.") noktası grup sınırı değildir (inceleme #162 P2).
  */
 const NOKTA_SINIR_DEGIL = /^(\d+|[A-Za-zÄÖÜäöü]{1,3})\.$/;
-export function kelimeGruplari(t: string): string[] {
+export function kelimeGruplari(t: string, enCok = 3): string[] {
   const out: string[] = []; let grup: string[] = [];
   const bitir = () => { if (grup.length) out.push(grup.join(" ")); grup = []; };
   for (const k of t.split(/\s+/).filter(Boolean)) {
     grup.push(k);
     const sinir = /[,;:!?]$/.test(k) || (k.endsWith(".") && !NOKTA_SINIR_DEGIL.test(k));
-    if (sinir || grup.length === 3) bitir();
+    if (sinir || grup.length >= enCok) bitir();
   }
   bitir();
   return out;
 }
 export const GRUP_ARA_MS = 350;
+/**
+ * PM 7061304527, 7061337043: kabukta (AVSpeechSynthesizer; eklenti rate × 0,5 gönderir) yerel hız 0,30'un altında premium
+ * seslerde doyuyor; üç kademe cihazda ayırt edilmiyordu. Kabuk yolunda kademeyi duraklar ayırır: Biraz yavaş yalnız noktalamada,
+ * Yavaş en çok üç kelimelik gruplarda, Çok yavaş sözcük sözcük. Hedef süre oranı ×1,2 / ×1,45 / ×1,75 (cihazda ölçülür).
+ * Tarayıcı yolu değişmez (ölçüme bağlı yedek ses / gruplu okuma).
+ */
+export const YAVAS_PLAN: Record<YavasOran, { enCok: number; araMs: number }> = { 0.6: { enCok: Infinity, araMs: 250 }, 0.5: { enCok: 3, araMs: 350 }, 0.4: { enCok: 1, araMs: 300 } };
+export function yavasParcalar(t: string, oran: number): { parcalar: string[]; araMs: number } {
+  const p = YAVAS_PLAN[oran as YavasOran];
+  return p ? { parcalar: kelimeGruplari(t, p.enCok), araMs: p.araMs } : { parcalar: [t], araMs: 0 };
+}
 
 /**
  * Seslendirmeden önce gösterim yer tutucuları temizlenir (D-061): ad girilmemişse "(adın)" okunmaz; hitap seçilmemişse
@@ -219,16 +260,18 @@ export async function speak(text: string, lang: "de" | "tr" = "de", speed: Speed
     const av = de && atama?.ses ? sesBul(atama.ses) : undefined;
     let v = av ?? voiceFor(seg.lang);
     let gruplu = false;
-    // PM 7042161522-1: ölçülmüş ve yavaşlamayan ses → aynı cinsten yavaşlayan ses; o da yoksa gruplu okuma
-    if (de && speed === "slow" && v && yavasliyorMu(sesAnahtar(v)) === false) {
+    // PM 7042161522-1: ölçülmüş ve yavaşlamayan ses → aynı cinsten yavaşlayan ses; o da yoksa gruplu okuma (tarayıcı yolu)
+    if (!yt && de && speed === "slow" && v && yavasliyorMu(sesAnahtar(v)) === false) {
       const y = yavaslayanSes(v, dolu);
       if (y) v = y; else gruplu = true;
     }
-    const parcalar = gruplu ? kelimeGruplari(seg.text) : [seg.text];
+    // kabuk yolunda yavaş her zaman kademenin planıyla (YAVAS_PLAN): aynı ses, duraklar
+    const plan = yt && de && speed === "slow" ? yavasParcalar(seg.text, RATE.slow) : { parcalar: gruplu ? kelimeGruplari(seg.text) : [seg.text], araMs: GRUP_ARA_MS };
+    const parcalar = plan.parcalar;
     for (let i = 0; i < parcalar.length; i++) {
       if (iptalNo !== konusmaNo) return;
       if (i > 0) {
-        await new Promise((r) => setTimeout(r, GRUP_ARA_MS));
+        await new Promise((r) => setTimeout(r, plan.araMs));
         // duraklama içinde durdurulduysa ya da yeni konuşma başladıysa sonraki grup okunmaz (inceleme #162 P1-1)
         if (iptalNo !== konusmaNo) return;
       }
