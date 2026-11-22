@@ -308,11 +308,20 @@ def dril(pg, kap, notlar, tur_adi="dril"):
     return kaydet(tur_adi, "drill-" + k, cevap="dogru" if bil else "bilmiyorum", gerekli=toks(alt) + anla, kesin=kes, sinirda=sin, yazilan=alt if bil else "", geri=sonuc, notlar=notlar)
 
 def akis_adim(pg):
-    a_id = pg.get_attribute("[data-test=akis]", "data-adim"); did = pg.get_attribute("[data-test=akis]", "data-durak")
+    pg.wait_for_timeout(380)  # çift dokunuş koruması (ekran açıldıktan sonraki 350 ms)
+    # Adım kimliği ekran yerleştikten SONRA okunur ve iki okuma aynı olana kadar beklenir: "Devam"dan hemen sonra okunan kimlik
+    # önceki adımınki olabiliyordu (Chromium'da yarış: önceki adımın cümlesi yeni adımın boşluğuna yazılıp "reddedildi" sayılıyordu)
+    oku = lambda: pg.evaluate("() => { const e = document.querySelector('[data-test=akis]'); return e ? [e.getAttribute('data-adim'), e.getAttribute('data-durak')] : null; }")
+    kim = oku()
+    for _ in range(8):
+        pg.wait_for_timeout(120); y = oku()
+        if y == kim: break
+        kim = y
+    if not kim: return None
+    a_id, did = kim
     d, a = plan_adim(a_id)
     d = d or durak_bilgi(did)
     DURUM.update(yer="akis", durak=did, seans=(d or {}).get("seans"))
-    pg.wait_for_timeout(380)  # çift dokunuş koruması (ekran açıldıktan sonraki 350 ms)
     notlar = ekran_not(pg)
     ptur = (a or {}).get("tur")
     ek = {"adim": a_id, "plan_tur": ptur, "plan_sn": (a or {}).get("sn"), "notlar": notlar}
@@ -712,6 +721,8 @@ def main():
                 elif var(pg, "[data-test=prova]"): prova_adim(pg)
                 elif var(pg, "[data-test=okuma]"): okuma_adim(pg)
                 elif var(pg, "[data-test=m1-devam]") or var(pg, "[data-tab=today]") and "#/today" in pg.evaluate("location.hash") + "#/today":
+                    # Bugün'ün yolu plan yüklenince çizilir: geçişten hemen sonra BAŞLA henüz yokken "BAŞLA yok" denmesin (Chromium'da yarış)
+                    if not var(pg, "[data-test=m1-devam]"): bekle(pg, lambda: var(pg, "[data-test=m1-devam], [data-test=hafta-bitti]"), 10, 100)
                     DURUM.update(yer="bugun"); ekran_not(pg)
                     if var(pg, "[data-test=m1-devam]"):
                         href = pg.get_attribute("[data-test=m1-devam]", "href")

@@ -162,3 +162,13 @@ python3 tests/e2e/ogrenci_akis.py --tohum ogrenci-gun1 --port 4317 --out /tmp/og
 - Takılan adım 0 · reddedilen doğru cevap 0 · sayfa hatası 0.
 - Seans (ekran tahmini / plan `adim_sn`): 25,3 / 23,9 · 26,4 / 19,1 · 25,5 / 28,7 · 12,2 / 10,5 dk.
 - Açık: "der Herr" anlamı tanıtımından önce (P1-2) — bkz. ilk koşu.
+
+## Ek 2: F1 düzeltmesinden sonraki koşu (ANA MOTOR-4, 22.11 — PM 7067321013 F1 + F2)
+`v2/akis-bayrak` `19ffa7f` (main `987f6ae` birleşik) + e2e fikstürlü paket, **Chromium** iPhone 15 ölçüsü (bu oturumda WebKit kurulamıyor; kabul KAPI'nın WebKit koşusu), `python3 tests/e2e/ogrenci_akis.py --browser chromium --device "iPhone 15" --gun 1`.
+- Gün baştan sona yürüdü (246 ekran, akış bitti). Öğretilmeden istenen: **kesin 0, sınırda 0**.
+- Takılan adım 0 · reddedilen doğru cevap 0 · sayfa hatası 0.
+- Seans (ekran tahmini / plan `adim_sn`): 25,3 / 23,9 · 26,2 / 19,2 · 25,5 / 28,7 · 12,2 / 10,4 dk.
+- **P1-2 kapandı:** "der Herr" artık önce tanıtılıyor: `m1:01:h3:a58` yeni kelime ("Danke, Herr Wimmer!") → `a59` dinle: ne demek? → `a62` cümleyi kur.
+  - Kök neden: e2e paketi fikstür günün `yeni_kartlar`'ını (`lx:und` var, `lx:Herr` yok) gerçek günün halkalarıyla birleştiriyor; planlayıcı "bugünün kartı"nı yalnız `yeni_kartlar`'dan kurduğu için `lx:Herr` kapıda beklemiyordu. Gerçek `gun-01.json`'da liste ile halkalar aynı küme: yayın paketinin planında sıra zaten doğruydu (`a58` tanıtım → `a59`), düzeltmeden önce ve sonra bayt bayt aynı.
+  - Düzeltme: planlayıcıda bugünün kartı = `yeni_kartlar` ∪ halka kartları. Değişmez kural testi `web/src/core/akis.test.ts` ("hiçbir kart kendi tanıtım adımından önce sorulmaz").
+- Betikte iki yarış düzeltildi (Chromium'da görüldü; uygulama kusuru değil): Bugün'ün yolu yüklenmeden "BAŞLA yok" denmesi; "Devam"dan hemen sonra önceki adımın kimliğinin okunması (önceki adımın cümlesi yeni boşluğa yazılıp "reddedildi" sayılıyordu).
