@@ -20,7 +20,8 @@ export async function ilerlemeOku(kartlar: string[] = []): Promise<Ilerleme> {
     gunBitti: sayi(g, "m1:gun:"),
     provaBitti: sayi(pr.filter(bitmis), "m1:prova:"),
     okumaBitti: sayi(ok.filter(bitmis), "m1:okuma:"),
-    tanitilan: new Set(it.keys())
+    tanitilan: new Set(it.keys()),
+    akisBasladi: sayi((await metaPrefix<unknown>("akis:")).filter((x) => /^akis:\d+$/.test(x.key)), "akis:")
   };
 }
 let kuyruk: Promise<unknown> = Promise.resolve();
