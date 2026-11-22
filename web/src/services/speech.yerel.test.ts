@@ -56,6 +56,27 @@ describe("Kabuk 1.5: yerel seslendirme", () => {
     expect(ms).not.toBeNull(); expect(ms!).toBeGreaterThanOrEqual(15);
     expect(cagri.at(-1)).toMatchObject({ voice: 2, rate: 0.5 });
   });
+  it("PM 7061337043: kabukta yavaş kademeyi duraklar ayırır (Biraz yavaş noktalamada, Yavaş ≤ 3 sözcük, Çok yavaş sözcük sözcük)", async () => {
+    const { speak, setYavasOran, cihazSesleri, olcCal, yavasParcalar } = await import("./speech.ts");
+    const T = "Guten Morgen! Ich hätte gern einen Termin am Montag.";
+    expect(yavasParcalar(T, 0.6).parcalar).toEqual(["Guten Morgen!", "Ich hätte gern einen Termin am Montag."]);
+    expect(yavasParcalar(T, 0.5).parcalar).toEqual(["Guten Morgen!", "Ich hätte gern", "einen Termin am", "Montag."]);
+    expect(yavasParcalar(T, 0.4).parcalar).toHaveLength(9);
+    expect(yavasParcalar(T, 0.95).parcalar).toEqual([T]);
+    const a = { ses: cihazSesleri()[2]!, pitch: 1 };
+    for (const [oran, n] of [[0.6, 2], [0.5, 4], [0.4, 9]] as const) {
+      setYavasOran(oran); cagri.length = 0;
+      await speak(T, "de", "slow", true, a);
+      expect(cagri.map((c) => c.rate)).toEqual(Array(n).fill(oran));
+      expect(new Set(cagri.map((c) => c.voice))).toEqual(new Set([2]));
+    }
+    // ölçüm uygulamadaki okumayı ölçer (aynı parçalar ve duraklar); normal tek parça
+    setYavasOran(0.4); cagri.length = 0;
+    const yavas = await olcCal(T, cihazSesleri()[2], 0.4);
+    expect(cagri).toHaveLength(9); expect(yavas!).toBeGreaterThanOrEqual(8 * 300);
+    cagri.length = 0; await olcCal(T, cihazSesleri()[2], 0.95); expect(cagri).toHaveLength(1);
+    setYavasOran(0.5);
+  }, 20_000);
   it("durdur + hemen yeni cümle: yeni cümle sürerken ses etkin sayılır (inceleme #164 P2)", async () => {
     const { speak, stopSpeaking, audioActive } = await import("./speech.ts");
     const p1 = speak("Eins zwei drei.", "de", "normal", true);

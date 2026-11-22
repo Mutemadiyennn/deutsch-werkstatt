@@ -65,7 +65,7 @@ describe("health ve CORS", () => {
     const r = await handle(req("/v1/health"), env());
     expect(r.status).toBe(200);
     const t = await r.text();
-    expect(JSON.parse(t).configured).toEqual({ gemini: true, workers_ai: false, pexels: false, allowlist: true });
+    expect(JSON.parse(t).configured).toEqual({ gemini: true, workers_ai: false, pexels: false, pixabay: false, allowlist: true });
     expect(t).not.toContain("test-gemini-key");
     expect(r.headers.get("Access-Control-Allow-Origin")).toBe("https://app.test");
   });

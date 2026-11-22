@@ -1,7 +1,7 @@
 """
 Yerleşim bekçisi (PM-079 md. 4; hazır tanımı #12 7047348069, PM ✓ 7047456551).
 Gezginin yürüdüğü her ekranı (gezgin.screens(), kopya liste yok) iki boyutta açar: 390×844 ve 430×932.
-Her ekranda dokuz kural:
+Her ekranda on kural:
   B1 birincil düğme (.btn.primary) görüş alanına getirildiğinde tam görünür, kırpan atası yok ve üstüne hiçbir öğe binmez
      (5 nokta elementFromPoint: köşelerden 2 px + yuvarlaklığın 0,3'ü içeride, ve merkez)
   B2 etkileşimli öğeler (button, a[href], [role=button], input, select, textarea) üst üste değil (ata/çocuk hariç; kesişim > 1 px²;
@@ -12,6 +12,8 @@ Her ekranda dokuz kural:
   B5 "·" satır başında ya da sonunda yalnız kalmaz (önceki ve sonraki görünür karakter aynı satırda)
   B6 yatay taşma yok: belge (scrollWidth ≤ innerWidth + 1) ve öğe (kutusu ekran dışına taşan öğe; overflow-x:clip altında da; yatay kaydırmalı şerit hariç)
   B7 başlık sözcüğü (h1–h3; .de, .de-lg, [lang=de] ≥ kök yazının 1,15 katı) iki satıra bölünmez (heceleme ya da kırma; kısa çizgide kırılma serbest)
+  B9 üst güvenli alanda (durum çubuğu) metin okunmaz: --safe-top 47 px'e zorlanır, sayfa kaydırılmış hâle getirilir (html.kaydi;
+     uygulamada kaydırma dinleyicisi koyar) ve güvenli alana giren her metin öğesinin orada üstte olmadığı denetlenir (PM 7061304527 Bulgu 2)
   B10 yatay kaydırma kabı (overflow-x auto/scroll, içerik kabın genişliğinden geniş) görünür bir işaret taşır: kabın içinde ya da
      ebeveyninde görünür `.kaydir-ipucu` (PM 7059008858 md. 1; işaretsiz kaydırılabilir tablo öğrenciye "kesik" görünür)
   B8 görüş alanında aynı anda en çok bir birincil düğme (açık pencere/alt sayfa varsa yalnız onun içi) — yalnız ilk konumda (scrollY = 0)
@@ -205,6 +207,26 @@ KURALLAR = r"""(ana) => {
     const ipucu = [...e.querySelectorAll('.kaydir-ipucu'), ...(e.parentElement ? e.parentElement.querySelectorAll(':scope > .kaydir-ipucu') : [])].some(gorunur);
     if (!ipucu) ihlal.push(['B10', `işaretsiz yatay kaydırma kabı (${e.scrollWidth} > ${e.clientWidth} px): ${ad(e)}`]);
   }
+  // B9 üst güvenli alanda metin yok (kaydırılmış hâl): en son; kaydırma, sınıf ve değişken geri alınır
+  const kok = document.documentElement, sy9 = window.scrollY, vardi = kok.classList.contains('kaydi'), eskiSafe = kok.style.getPropertyValue('--safe-top');
+  const SAFE = 47;
+  if (document.scrollingElement.scrollHeight > innerHeight + 2 * SAFE) {
+    kok.style.setProperty('--safe-top', SAFE + 'px'); window.scrollTo(0, Math.min(240, document.scrollingElement.scrollHeight - innerHeight)); kok.classList.add('kaydi');
+    const b9 = new Set();
+    const w9 = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    while (w9.nextNode()) {
+      const t = w9.currentNode, e = t.parentElement; if (!t.textContent.trim() || !e || !gorunur(e)) continue;
+      const rg = document.createRange(); rg.selectNodeContents(t);
+      for (const r of rg.getClientRects()) {
+        if (r.bottom <= 1 || r.top >= SAFE - 1 || r.width < 1) continue;
+        const x = r.left + r.width / 2, y = Math.max(1, (Math.max(0, r.top) + Math.min(SAFE, r.bottom)) / 2);
+        const hit = document.elementFromPoint(x, y);
+        if (hit && (hit === e || e.contains(hit)) && !b9.has(e)) { b9.add(e); ihlal.push(['B9', `üst güvenli alanda metin görünüyor: ${ad(e)}`]); }
+      }
+    }
+    window.scrollTo(0, sy9); if (!vardi) kok.classList.remove('kaydi');
+    if (eskiSafe) kok.style.setProperty('--safe-top', eskiSafe); else kok.style.removeProperty('--safe-top');
+  }
   return ihlal;
 }"""
 
@@ -253,6 +275,8 @@ OZ = [
   ("B10", False, sayfa("<main><div style='overflow-x:auto;width:200px'><table><tr><td style='min-width:600px'>Montag Dienstag</td></tr></table></div></main>"), True),
   ("B10", False, sayfa("<main><div><div style='overflow-x:auto;width:200px'><table><tr><td style='min-width:600px'>Montag Dienstag</td></tr></table></div><span class=kaydir-ipucu>Kaydır →</span></div></main>"), False),
   ("B10", False, sayfa("<main><div style='overflow-x:auto;width:200px'><p>Kısa</p></div></main>"), False),
+  ("B9", False, sayfa("<style>:root{--safe-top:0px}.app{padding-top:var(--safe-top)}</style><div class=app><main><p>Satır 0 burada uzun bir metin</p><p>Satır 1 burada uzun bir metin</p><p>Satır 2 burada uzun bir metin</p><p>Satır 3 burada uzun bir metin</p><p>Satır 4 burada uzun bir metin</p><p>Satır 5 burada uzun bir metin</p><p>Satır 6 burada uzun bir metin</p><p>Satır 7 burada uzun bir metin</p><p>Satır 8 burada uzun bir metin</p><p>Satır 9 burada uzun bir metin</p><p>Satır 10 burada uzun bir metin</p><p>Satır 11 burada uzun bir metin</p><p>Satır 12 burada uzun bir metin</p><p>Satır 13 burada uzun bir metin</p><p>Satır 14 burada uzun bir metin</p><p>Satır 15 burada uzun bir metin</p><p>Satır 16 burada uzun bir metin</p><p>Satır 17 burada uzun bir metin</p><p>Satır 18 burada uzun bir metin</p><p>Satır 19 burada uzun bir metin</p><p>Satır 20 burada uzun bir metin</p><p>Satır 21 burada uzun bir metin</p><p>Satır 22 burada uzun bir metin</p><p>Satır 23 burada uzun bir metin</p><p>Satır 24 burada uzun bir metin</p><p>Satır 25 burada uzun bir metin</p><p>Satır 26 burada uzun bir metin</p><p>Satır 27 burada uzun bir metin</p><p>Satır 28 burada uzun bir metin</p><p>Satır 29 burada uzun bir metin</p><p>Satır 30 burada uzun bir metin</p><p>Satır 31 burada uzun bir metin</p><p>Satır 32 burada uzun bir metin</p><p>Satır 33 burada uzun bir metin</p><p>Satır 34 burada uzun bir metin</p><p>Satır 35 burada uzun bir metin</p><p>Satır 36 burada uzun bir metin</p><p>Satır 37 burada uzun bir metin</p><p>Satır 38 burada uzun bir metin</p><p>Satır 39 burada uzun bir metin</p><p>Satır 40 burada uzun bir metin</p><p>Satır 41 burada uzun bir metin</p><p>Satır 42 burada uzun bir metin</p><p>Satır 43 burada uzun bir metin</p><p>Satır 44 burada uzun bir metin</p><p>Satır 45 burada uzun bir metin</p><p>Satır 46 burada uzun bir metin</p><p>Satır 47 burada uzun bir metin</p><p>Satır 48 burada uzun bir metin</p><p>Satır 49 burada uzun bir metin</p><p>Satır 50 burada uzun bir metin</p><p>Satır 51 burada uzun bir metin</p><p>Satır 52 burada uzun bir metin</p><p>Satır 53 burada uzun bir metin</p><p>Satır 54 burada uzun bir metin</p><p>Satır 55 burada uzun bir metin</p><p>Satır 56 burada uzun bir metin</p><p>Satır 57 burada uzun bir metin</p><p>Satır 58 burada uzun bir metin</p><p>Satır 59 burada uzun bir metin</p><p>Satır 60 burada uzun bir metin</p><p>Satır 61 burada uzun bir metin</p><p>Satır 62 burada uzun bir metin</p><p>Satır 63 burada uzun bir metin</p><p>Satır 64 burada uzun bir metin</p><p>Satır 65 burada uzun bir metin</p><p>Satır 66 burada uzun bir metin</p><p>Satır 67 burada uzun bir metin</p><p>Satır 68 burada uzun bir metin</p><p>Satır 69 burada uzun bir metin</p><p>Satır 70 burada uzun bir metin</p><p>Satır 71 burada uzun bir metin</p><p>Satır 72 burada uzun bir metin</p><p>Satır 73 burada uzun bir metin</p><p>Satır 74 burada uzun bir metin</p><p>Satır 75 burada uzun bir metin</p><p>Satır 76 burada uzun bir metin</p><p>Satır 77 burada uzun bir metin</p><p>Satır 78 burada uzun bir metin</p><p>Satır 79 burada uzun bir metin</p></main></div>"), True),
+  ("B9", False, sayfa("<style>:root{--safe-top:0px}.app{padding-top:var(--safe-top)}html.kaydi .app::before{content:'';position:fixed;top:0;left:0;right:0;height:var(--safe-top);background:#fff;z-index:60}</style><div class=app><main><p>Satır 0 burada uzun bir metin</p><p>Satır 1 burada uzun bir metin</p><p>Satır 2 burada uzun bir metin</p><p>Satır 3 burada uzun bir metin</p><p>Satır 4 burada uzun bir metin</p><p>Satır 5 burada uzun bir metin</p><p>Satır 6 burada uzun bir metin</p><p>Satır 7 burada uzun bir metin</p><p>Satır 8 burada uzun bir metin</p><p>Satır 9 burada uzun bir metin</p><p>Satır 10 burada uzun bir metin</p><p>Satır 11 burada uzun bir metin</p><p>Satır 12 burada uzun bir metin</p><p>Satır 13 burada uzun bir metin</p><p>Satır 14 burada uzun bir metin</p><p>Satır 15 burada uzun bir metin</p><p>Satır 16 burada uzun bir metin</p><p>Satır 17 burada uzun bir metin</p><p>Satır 18 burada uzun bir metin</p><p>Satır 19 burada uzun bir metin</p><p>Satır 20 burada uzun bir metin</p><p>Satır 21 burada uzun bir metin</p><p>Satır 22 burada uzun bir metin</p><p>Satır 23 burada uzun bir metin</p><p>Satır 24 burada uzun bir metin</p><p>Satır 25 burada uzun bir metin</p><p>Satır 26 burada uzun bir metin</p><p>Satır 27 burada uzun bir metin</p><p>Satır 28 burada uzun bir metin</p><p>Satır 29 burada uzun bir metin</p><p>Satır 30 burada uzun bir metin</p><p>Satır 31 burada uzun bir metin</p><p>Satır 32 burada uzun bir metin</p><p>Satır 33 burada uzun bir metin</p><p>Satır 34 burada uzun bir metin</p><p>Satır 35 burada uzun bir metin</p><p>Satır 36 burada uzun bir metin</p><p>Satır 37 burada uzun bir metin</p><p>Satır 38 burada uzun bir metin</p><p>Satır 39 burada uzun bir metin</p><p>Satır 40 burada uzun bir metin</p><p>Satır 41 burada uzun bir metin</p><p>Satır 42 burada uzun bir metin</p><p>Satır 43 burada uzun bir metin</p><p>Satır 44 burada uzun bir metin</p><p>Satır 45 burada uzun bir metin</p><p>Satır 46 burada uzun bir metin</p><p>Satır 47 burada uzun bir metin</p><p>Satır 48 burada uzun bir metin</p><p>Satır 49 burada uzun bir metin</p><p>Satır 50 burada uzun bir metin</p><p>Satır 51 burada uzun bir metin</p><p>Satır 52 burada uzun bir metin</p><p>Satır 53 burada uzun bir metin</p><p>Satır 54 burada uzun bir metin</p><p>Satır 55 burada uzun bir metin</p><p>Satır 56 burada uzun bir metin</p><p>Satır 57 burada uzun bir metin</p><p>Satır 58 burada uzun bir metin</p><p>Satır 59 burada uzun bir metin</p><p>Satır 60 burada uzun bir metin</p><p>Satır 61 burada uzun bir metin</p><p>Satır 62 burada uzun bir metin</p><p>Satır 63 burada uzun bir metin</p><p>Satır 64 burada uzun bir metin</p><p>Satır 65 burada uzun bir metin</p><p>Satır 66 burada uzun bir metin</p><p>Satır 67 burada uzun bir metin</p><p>Satır 68 burada uzun bir metin</p><p>Satır 69 burada uzun bir metin</p><p>Satır 70 burada uzun bir metin</p><p>Satır 71 burada uzun bir metin</p><p>Satır 72 burada uzun bir metin</p><p>Satır 73 burada uzun bir metin</p><p>Satır 74 burada uzun bir metin</p><p>Satır 75 burada uzun bir metin</p><p>Satır 76 burada uzun bir metin</p><p>Satır 77 burada uzun bir metin</p><p>Satır 78 burada uzun bir metin</p><p>Satır 79 burada uzun bir metin</p></main></div>"), False),
   ("B8", False, sayfa("<main><button class='btn primary'>Arka</button><div role=dialog><button class='btn primary'>Tamam</button></div></main>"), False),
 ]
 

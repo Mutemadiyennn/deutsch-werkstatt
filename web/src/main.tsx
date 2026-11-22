@@ -5,6 +5,11 @@ import { RootBoundary } from "./ui/ErrorBoundary.tsx";
 
 render(<RootBoundary><App /></RootBoundary>, document.getElementById("app")!);
 
+// PM 7061304527 Bulgu 2: kaydırılınca içerik durum çubuğunun (üst güvenli alan) altından okunmasın: opak şerit (styles.css
+// `html.kaydi .app::before`). Yalnız kaydırılmışken: Bugün'ün gökyüzü başlığı ilk konumda durum çubuğunun arkasına uzanır.
+const kaydiMi = () => document.documentElement.classList.toggle("kaydi", window.scrollY > 2);
+window.addEventListener("scroll", kaydiMi, { passive: true }); kaydiMi();
+
 // Uçak modu (DN-2 §5): servis işçisi bu klasörü ve içerik paketini çevrimdışı tutar
 if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "127.0.0.1" || location.hostname === "localhost")) {
   // Her derleme farklı adres → yeni işçi kurulur (D-096). Her açılışta "sync": eksik ya da silinmiş önbellek yeniden kurulur.

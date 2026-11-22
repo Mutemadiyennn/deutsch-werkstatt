@@ -10,12 +10,20 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import { TopBar } from "../ui/components.tsx";
 import { Icon } from "../ui/icons.tsx";
 import { havuzlar, KALITE_TR, sesKalitesi, type Ses } from "../core/sesSec.ts";
-import { cihazSesleri, gecerliOlcum, onSesler, stopSpeaking, sesAnahtar, sesBul, sesYolu, hizKaydet, hizKaydi, hizOrani, karakterSesi, listenOnce, olcCal, ORAN_ESIK, RATE, speak, STT_HATA_TR, sttHataTuru, sttYolu, ttsAvailable, YAVAS_SECENEK, type HizOlcum, type YavasOran } from "../services/speech.ts";
+import { cihazSesleri, gecerliOlcum, onSesler, stopSpeaking, sesAnahtar, sesBul, sesYolu, hizKaydet, hizKaydi, hizOrani, karakterSesi, listenOnce, olcCal, olcGecikme, ORAN_ESIK, RATE, speak, STT_HATA_TR, sttHataTuru, sttYolu, ttsAvailable, YAVAS_SECENEK, type HizOlcum, type YavasOran } from "../services/speech.ts";
 import { useApp } from "../state.ts";
 import { loadWorld } from "../services/content.ts";
 import { kabukBilgisi, kabukSatiri, type KabukBilgisi } from "../services/kabuk.ts";
 
-const ORNEK = "Guten Morgen! Ich hätte gern einen Termin am Montag.";
+// PM 7061304527 Bulgu 1 (c): ölçüm cümlesi en az 12 sözcük
+const ORNEK = "Guten Morgen! Ich hätte gern einen Termin am Montag, wenn möglich am Vormittag.";
+/** Başlangıç gecikmesi bunun üstündeyse her "Dinle"de öğrenci bekler (PM 7061304527 Bulgu 1 d: ayrı P1) */
+const GECIKME_ESIK_MS = 800;
+const KADEME_AD: Record<YavasOran, string> = { 0.6: "Biraz yavaş", 0.5: "Yavaş", 0.4: "Çok yavaş" };
+/** satır kırılabilir ayraç: "·" önceki sözcüğe bağlı (satır başına düşmez, B5), ardından kırılır — büyük yazıda taşma yok (inceleme #194 P1-1) */
+const KIRIK = "\u00A0· ";
+/** Kabuk yolu: kademeler duraklarla okunur (YAVAS_PLAN); karar "yavaşlıyor mu" değil "kademeler sırayla ayrışıyor mu" (inceleme #194 P1-2) */
+const ayrismiyor = (o: HizOlcum) => !!o.kademe && !YAVAS_SECENEK.every((r, i) => i === 0 || (o.kademe![r] ?? 0) > (o.kademe![YAVAS_SECENEK[i - 1]!] ?? 0));
 
 const sn = (ms: number) => `${(ms / 1000).toFixed(1).replace(".", ",")} sn`;
 const kat = (x: number) => `×${x.toFixed(1).replace(".", ",")}`;
@@ -23,7 +31,8 @@ const kisaAd = (n: string) => n.replace(/\s*\(.*\)$/, "");
 const sesNesnesi = (s: Ses) => sesBul(s);
 type Kayit = Record<string, HizOlcum>;
 
-/** Bir ses: "Dinle" normal, "Yavaş" seçili yavaş hızla, ikisi de ölçülerek (ses olduğu gibi; yedek ses ya da gruplama yok) */
+/** Bir ses: "Dinle" normal, "Yavaş" seçili yavaş hızla, ikisi de ölçülerek (tarayıcıda ses olduğu gibi; kabukta kademenin duraklarıyla,
+ *  uygulamadaki okuma gibi — YAVAS_PLAN). "Hızı ölç"ün tam kaydı (kademe, gecikme) satır dinlemesiyle ezilmez. */
 function SesSatiri({ s, kayit, kaydet }: { s: Ses; kayit: Kayit; kaydet: (ad: string, o: HizOlcum) => void }) {
   const [yarim, setYarim] = useState<{ normalMs?: number; yavasMs?: number }>({});
   const o = kayit[sesAnahtar(s)];
@@ -33,12 +42,12 @@ function SesSatiri({ s, kayit, kaydet }: { s: Ses; kayit: Kayit; kaydet: (ad: st
     const y = { ...yarim, ...(o ? { normalMs: o.normalMs, yavasMs: o.yavasMs } : {}), [yavas ? "yavasMs" : "normalMs"]: ms };
     setYarim(y);
     // yalnız iki geçerli süre birlikte kayda girer (PM 7043447488-1)
-    if (y.normalMs && y.yavasMs && gecerliOlcum({ normalMs: y.normalMs, yavasMs: y.yavasMs })) kaydet(sesAnahtar(s), { normalMs: y.normalMs, yavasMs: y.yavasMs, rate: RATE.slow });
+    if (!o?.kademe && y.normalMs && y.yavasMs && gecerliOlcum({ normalMs: y.normalMs, yavasMs: y.yavasMs })) kaydet(sesAnahtar(s), { normalMs: y.normalMs, yavasMs: y.yavasMs, rate: RATE.slow });
   };
   return (
     <li class="row ses-satir" style={{ flexWrap: "nowrap" }} data-test="ses" data-ad={s.name} data-oran={o ? hizOrani(o).toFixed(2) : ""}>
       <span class="grow" style={{ minWidth: 0 }}><b>{kisaAd(s.name)}</b><span class="chip" style={{ marginLeft: 6 }} data-test="ses-kalite">{KALITE_TR(s)}</span>
-        {o && <><br /><span class={`tiny ${hizOrani(o) < ORAN_ESIK ? "fb-uyari" : "muted"}`} data-test="ses-hiz">normal {sn(o.normalMs).replace(" sn", "")} · yavaş {sn(o.yavasMs)}{hizOrani(o) < ORAN_ESIK ? " · yavaşlamıyor" : ""}</span></>}</span>
+        {/* PM 7061304527 Bulgu 2: sayılar yalnız "Hızı ölç" listesinde; satırda tekrar yok */}</span>
       <button class="btn sm" onClick={() => void dinle(false)} data-test="ses-dinle">Dinle</button>
       <button class="btn sm ghost" onClick={() => void dinle(true)} data-test="ses-yavas">Yavaş</button>
     </li>
@@ -47,6 +56,7 @@ function SesSatiri({ s, kayit, kaydet }: { s: Ses; kayit: Kayit; kaydet: (ad: st
 
 /** Hız ölçümü: kadın ve erkek havuzunun ilk iki sesi (karakterlerin çoğu bunlarla konuşur) normal ve yavaş çalınır */
 function HizOlcumu({ hedef, kayit, kaydet }: { hedef: Ses[]; kayit: Kayit; kaydet: (ad: string, o: HizOlcum) => void }) {
+  const yerelYol = sesYolu() === "yerel";
   const { profile, setProfile, toast } = useApp();
   const [olcuyor, setOlcuyor] = useState(false);
   const [olculemedi, setOlculemedi] = useState<string[]>([]);
@@ -61,17 +71,25 @@ function HizOlcumu({ hedef, kayit, kaydet }: { hedef: Ses[]; kayit: Kayit; kayde
     for (const s of hedef) {
       if (!canli.current) return;
       const v = sesNesnesi(s);
-      const normalMs = await olcCal(ORNEK, v, RATE.normal);
-      const yavasMs = normalMs === null ? null : await olcCal(ORNEK, v, RATE.slow);
+      // PM 7061304527 Bulgu 1: ses önce ısıtılır; başlangıç gecikmesi ayrı ölçülür. Kabuk yolunda başlama olayı olmadığından
+      // konuşma süresi = okuma süresi − gecikme (tarayıcı yolunda süre zaten onstart'tan)
+      const g = await olcGecikme(v);
+      const net = (ms: number | null) => (ms === null ? null : yerelYol && g !== null ? Math.max(0, ms - g) : ms);
+      const normalMs = g === null ? null : net(await olcCal(ORNEK, v, RATE.normal));
+      const kademe: Record<string, number> = {};
+      if (normalMs !== null) for (const r of YAVAS_SECENEK) { const ms = net(await olcCal(ORNEK, v, r)); if (ms === null) break; kademe[r] = ms; }
+      const yavasMs = kademe[RATE.slow] ?? null;
       // ses hiç çalmadıysa (süre < 0,3 sn) ölçülemedi: oran ve uyarı yazılmaz, kayıt tutulmaz, yedek devreye girmez
-      if (normalMs !== null && yavasMs !== null && gecerliOlcum({ normalMs, yavasMs })) kaydet(sesAnahtar(s), { normalMs, yavasMs, rate: RATE.slow });
+      if (normalMs !== null && yavasMs !== null && Object.keys(kademe).length === YAVAS_SECENEK.length && gecerliOlcum({ normalMs, yavasMs })) kaydet(sesAnahtar(s), { normalMs, yavasMs, rate: RATE.slow, gecikmeMs: Math.round(g!), kademe });
       else olmayan.push(sesAnahtar(s));
     }
     if (!canli.current) return;
     setOlculemedi(olmayan); setOlcuyor(false);
   };
   const olculen = hedef.filter((s) => kayit[sesAnahtar(s)]);
-  const yavaslamayan = olculen.filter((s) => !olculemedi.includes(sesAnahtar(s)) && hizOrani(kayit[sesAnahtar(s)]!) < ORAN_ESIK);
+  const geciken = olculen.filter((s) => !olculemedi.includes(sesAnahtar(s)) && (kayit[sesAnahtar(s)]!.gecikmeMs ?? 0) > GECIKME_ESIK_MS);
+  const yavaslamayan = yerelYol ? [] : olculen.filter((s) => !olculemedi.includes(sesAnahtar(s)) && hizOrani(kayit[sesAnahtar(s)]!) < ORAN_ESIK);
+  const ayrismayan = yerelYol ? olculen.filter((s) => !olculemedi.includes(sesAnahtar(s)) && ayrismiyor(kayit[sesAnahtar(s)]!)) : [];
   return (
     <div class="stack" data-test="hiz-olcum">
       <div class="kicker">Yavaş hızı</div>
@@ -82,10 +100,14 @@ function HizOlcumu({ hedef, kayit, kaydet }: { hedef: Ses[]; kayit: Kayit; kayde
       {/* ölçüm sürerken yarım satır gösterilmez; sonuçlar düğmeden bir satır aşağıda (PM 7043447488-1, 2) */}
       {!olcuyor && (olculen.length > 0 || olculemedi.length > 0) && <div class="hiz-sonuclar" style={{ marginTop: 12 }}>
         {/* PM 7044942991: biçim kısa ve tek satır; başlık bir kez */}
-        <p class="tiny muted" style={{ margin: 0 }} data-test="hiz-baslik">Süre: normal → yavaş</p>
-        {olculen.filter((s) => !olculemedi.includes(sesAnahtar(s))).map((s) => { const o = kayit[sesAnahtar(s)]!; return <p class="small" style={{ margin: 0, whiteSpace: "nowrap" }} data-test="hiz-sonuc" data-ad={s.name}><b>{kisaAd(s.name)}</b>: {sn(o.normalMs).replace(" sn", "")} → {sn(o.yavasMs)} ({kat(hizOrani(o))})</p>; })}
+        <p class="tiny muted" style={{ margin: 0 }} data-test="hiz-baslik">{olculen.some((s) => kayit[sesAnahtar(s)]!.kademe) ? ["Süre: normal", ...YAVAS_SECENEK.map((r) => KADEME_AD[r]), "başlangıç"].join(KIRIK) : "Süre: normal → yavaş"}</p>
+        {olculen.filter((s) => !olculemedi.includes(sesAnahtar(s))).map((s) => { const o = kayit[sesAnahtar(s)]!; return <p class="small" style={{ margin: 0 }} data-test="hiz-sonuc" data-ad={s.name} data-gecikme={o.gecikmeMs ?? ""}><b>{kisaAd(s.name)}</b>: {o.kademe
+          ? <>{[sn(o.normalMs), ...YAVAS_SECENEK.map((r) => kat((o.kademe![r] ?? 0) / Math.max(1, o.normalMs))), `${o.gecikmeMs ?? 0} ms`].join(KIRIK)}</>
+          : <>{sn(o.normalMs).replace(" sn", "")} → {sn(o.yavasMs)} ({kat(hizOrani(o))})</>}</p>; })}
         {hedef.filter((s) => olculemedi.includes(sesAnahtar(s))).map((s) => <p class="small" style={{ margin: 0 }} data-test="hiz-olculemedi" data-ad={s.name}><b>{kisaAd(s.name)}</b>: ölçülemedi, yeniden dene.</p>)}
       </div>}
+      {!olcuyor && geciken.length > 0 && <p class="small fb-uyari" role="alert" data-test="hiz-gecikme">Ses başlamadan önce bekleme var: {geciken.map((s) => `${kisaAd(s.name)} ${kayit[sesAnahtar(s)]!.gecikmeMs} ms`).join(", ")}.</p>}
+      {!olcuyor && ayrismayan.length > 0 && <p class="small fb-uyari" role="alert" data-test="hiz-uyari">Bu seste yavaş kademeleri ayrışmıyor: {ayrismayan.map((s) => kisaAd(s.name)).join(", ")}. Kademeler aynı sesle, duraklarla okunur; ölçümü bir kez daha dene.</p>}
       {!olcuyor && yavaslamayan.length > 0 && <p class="small fb-uyari" role="alert" data-test="hiz-uyari">Bu ses yavaşlamıyor: {yavaslamayan.map((s) => kisaAd(s.name)).join(", ")}. Yavaş istenince yavaşlayan başka bir ses, o da yoksa kelime kelime okuma kullanılır.</p>}
     </div>
   );
@@ -110,7 +132,7 @@ export function SesDeneme() {
   const kaydet = (ad: string, o: HizOlcum) => { hizKaydet(ad, o); setKayit((k) => ({ ...k, [ad]: o })); };
   // her cinsten ilk iki ses: yavaşlamayan seste aynı cinsten ölçülmüş bir yedek olabilsin (inceleme #162 P2)
   const hedef = [...h.kadin.slice(0, 2), ...h.erkek.slice(0, 2)];
-  const yavasNot = hedef.filter((s) => kayit[sesAnahtar(s)]).map((s) => { const o = kayit[sesAnahtar(s)]!; return `${kisaAd(s.name)} ${kat(hizOrani(o))}${hizOrani(o) < ORAN_ESIK ? " yavaşlamıyor" : ""}`; }).join(", ");
+  const yavasNot = hedef.filter((s) => kayit[sesAnahtar(s)]).map((s) => { const o = kayit[sesAnahtar(s)]!; return `${kisaAd(s.name)} ${kat(hizOrani(o))}${(yol === "yerel" ? ayrismiyor(o) : hizOrani(o) < ORAN_ESIK) ? " yavaşlamıyor" : ""}`; }).join(", ");
   return (
     <div class="stack ses-deneme" data-test="ses-deneme">
       <TopBar title="Ses ve mikrofon" back="#/profile" />
