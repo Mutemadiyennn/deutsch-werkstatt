@@ -210,13 +210,14 @@ html { scroll-padding-top: calc(var(--safe-top) + 96px); }
 .actionbar > div > .btn + .btn { margin-top: 12px; }
 .actionbar .umlauts { margin-bottom: 0; }
 
-/* sekme çubuğu (v1 biçimi: etkin sekme yumuşak hap) */
+/* sekme çubuğu */
 .tabbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: color-mix(in srgb, var(--card) 97%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--card-edge); padding-bottom: var(--safe-bottom); }
 .tabbar nav { display: grid; grid-template-columns: repeat(4, 1fr); max-width: 640px; margin: 0 auto; height: var(--tabbar-h); padding: 6px 8px; gap: 6px; }
-/* Hedef 3 (TARGET3): dört sekme; etkin sekme yalnız renkle ayrılır (zemin hapı yok) */
-.tabbar a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: var(--muted); font-size: 0.8rem; font-weight: 600; border-radius: 16px; transition: color var(--t); }
+/* Hedef 3 (TARGET3): dört sekme; zemin hapı yok. Etkin sekme renkle ve (renk ayırt edemeyen göz için) kalın yazıyla ayrılır.
+   line-height: %130 yazıda da hücre satırına sığar (inceleme #195). */
+.tabbar a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: var(--muted); font-size: 0.8rem; line-height: 1.2; font-weight: 600; border-radius: 16px; transition: color var(--t); }
 .tabbar a .ic { line-height: 0; }
-.tabbar a[aria-current="page"] { color: var(--accent); }
+.tabbar a[aria-current="page"] { color: var(--accent); font-weight: 800; }
 
 .topbar { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; min-height: 46px; }
 .topbar h1 { margin: 0; font-size: 1.25rem; flex: 1; min-width: 0; }

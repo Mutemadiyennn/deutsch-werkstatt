@@ -27,7 +27,7 @@ KONTRAST = """(sel) => {
 
 def sekmeler(pg):
     return pg.evaluate("""() => [...document.querySelectorAll('.tabbar nav a')].map((a) => { const r = a.getBoundingClientRect(), s = a.querySelector('svg').getBoundingClientRect(), st = getComputedStyle(a);
-      return { k: a.dataset.tab, ad: a.innerText.trim(), href: a.getAttribute('href'), etkin: a.getAttribute('aria-current') === 'page', renk: st.color, zemin: st.backgroundColor,
+      return { k: a.dataset.tab, ad: a.innerText.trim(), href: a.getAttribute('href'), etkin: a.getAttribute('aria-current') === 'page', renk: st.color, kalin: parseInt(st.fontWeight, 10), zemin: st.backgroundColor,
                w: r.width, h: r.height, sol: r.left, sag: r.right, simge: s.width }; })""")
 
 def main():
@@ -52,13 +52,21 @@ def main():
                     check(len(etkin) == 1 and etkin[0]["k"] == k and pg.evaluate("location.hash") == href, f"{ad} {etiket}: yalnız kendi sekmesi etkin, adres {href}")
                     check(all(x["renk"] != etkin[0]["renk"] for x in diger) and len({x["renk"] for x in diger}) == 1, f"{ad} {etiket}: etkin sekme renkle ayrılıyor")
                     check(all(x["zemin"] in ("rgba(0, 0, 0, 0)", "transparent") for x in s), f"{ad} {etiket}: sekmede zemin hapı yok (hedef 3)")
+                    check(etkin[0]["kalin"] >= 700 and all(x["kalin"] < 700 for x in diger), f"{ad} {etiket}: etkin sekme yalnız renkle değil, kalın yazıyla da ayrılıyor")
                     no_overflow(pg, f"{ad} {etiket}")
                     if vp["width"] == 430: shot(pg, f"sekme-{k}-{tema}", full=False)
+                # %130 yazı (EK2): sekme hücresi satırına sığar, yazı kırpılmaz ve kesişmez (inceleme #195)
+                pg.evaluate("document.documentElement.classList.remove('dyn'); document.documentElement.style.setProperty('--ts','1.3')"); pg.wait_for_timeout(150)
+                buyuk = pg.evaluate("""() => { const n = document.querySelector('.tabbar nav').getBoundingClientRect(), s = getComputedStyle(document.querySelector('.tabbar nav'));
+                  const ic = n.height - parseFloat(s.paddingTop) - parseFloat(s.paddingBottom);
+                  return [...document.querySelectorAll('.tabbar nav a')].map((a) => { const r = a.getBoundingClientRect(); return { h: r.height, sigar: a.scrollHeight <= a.clientHeight + 0.5 && a.scrollWidth <= a.clientWidth + 0.5, ic, yazi: parseFloat(getComputedStyle(a).fontSize) }; }); }""")
+                check(all(x["h"] <= x["ic"] + 0.5 and x["sigar"] for x in buyuk) and buyuk[0]["yazi"] > 15, f"{ad} %130 yazıda sekme hücresi satırına sığıyor ({buyuk[0]['h']:.1f} ≤ {buyuk[0]['ic']:.1f} px; yazı {buyuk[0]['yazi']:.1f} px)")
+                pg.evaluate("document.documentElement.style.setProperty('--ts','1'); document.documentElement.classList.add('dyn')"); pg.wait_for_timeout(100)
                 k_etkin = pg.evaluate(KONTRAST, ".tabbar a[aria-current=page]"); k_diger = pg.evaluate(KONTRAST, ".tabbar a:not([aria-current])")
                 check(k_etkin >= 4.5 and k_diger >= 4.5, f"{ad} sekme yazısı kontrastı: etkin {k_etkin:.2f}:1, diğer {k_diger:.2f}:1 (≥ 4,5)")
                 if tema == "light" and vp["width"] == 390:
                     print("eski adresler yeni yerlerine yönlenir")
-                    for eski, yeni, sekme, isaret in (("#/learn", "#/koy", "koy", "main"), ("#/progress", "#/ben", "ben", "main"), ("#/profile", "#/ben/ayarlar", "ben", "[data-test=goal]")):
+                    for eski, yeni, sekme, isaret in (("#/learn", "#/koy", "koy", "[data-test=sozluk-ac]"), ("#/progress", "#/ben", "ben", "[data-test=ayarlar-ac]"), ("#/profile", "#/ben/ayarlar", "ben", "[data-test=goal]")):
                         pg.goto(base + "#/today"); pg.wait_for_selector("[data-tab=today][aria-current=page]")
                         pg.evaluate("(h) => { location.hash = h; }", eski)
                         pg.wait_for_selector(f"[data-tab={sekme}][aria-current=page]"); pg.wait_for_selector(isaret)
@@ -80,6 +88,8 @@ def main():
                     if idx.get("temel"): tam.append(("ders", "#/ders/" + idx["temel"][0]["id"]))
                     if m1 and m1[0].get("medya"): tam.append(("medya", f"#/m1/{m1[0]['day']}/{m1[0]['medya'][0]['id']}"))
                     if any(g.get("day") == 2 for g in m1): tam.append(("akış", "#/akis/2"))
+                    # e2e paketinde ders, medya ya da akış günü yoksa madde sessizce atlanmasın (inceleme #195)
+                    check({e for e, _ in tam} == {"bahçe", "okuma", "prova", "ders", "medya", "akış"}, f"tam ekran akışların altısı da sınanıyor ({[e for e, _ in tam]})")
                     for etiket, h in tam:
                         pg.goto(base + "#/today"); pg.wait_for_selector(".tabbar")
                         pg.goto(base + h); pg.wait_for_function("() => document.querySelector('main.app.notabs') && !document.querySelector('.tabbar')", timeout=5000)

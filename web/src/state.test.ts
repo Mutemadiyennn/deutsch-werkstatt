@@ -29,7 +29,7 @@ describe("sekme adresleri", () => {
     expect(sekme("gorevler")).toBe("today");
     expect(sekme("yol")).toBe("yol");
     expect(sekme("rehber")).toBe("yol");
-    for (const r of ["koy", "domain", "scenario", "sozluk", "kalip"] as const) expect(sekme(r)).toBe("koy");
+    for (const r of ["koy", "domain", "scenario", "sozluk", "kalip", "m1day"] as const) expect(sekme(r)).toBe("koy");
     for (const r of ["ben", "profile", "ses"] as const) expect(sekme(r)).toBe("ben");
   });
 });

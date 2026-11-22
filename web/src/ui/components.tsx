@@ -14,11 +14,11 @@ const SEKMELER: [string, string, IconName, string][] = [
   ["koy", "#/koy", "koy", "Köy"],
   ["ben", "#/ben", "ben", "Ben"]
 ];
-/** Ekranın bağlı olduğu sekme: Köy'ün mekânları (durumlar, senaryo, sözlük, kalıplar) Köy'de, ayarlar Ben'de kalır */
+/** Ekranın bağlı olduğu sekme: Köy'ün mekânları (durumlar, senaryo, sözlük, kalıplar, günün kayıtları) Köy'de, ayarlar Ben'de kalır */
 export function sekme(r: Route["name"]): string {
   switch (r) {
     case "yol": case "rehber": return "yol";
-    case "koy": case "domain": case "scenario": case "sozluk": case "kalip": return "koy";
+    case "koy": case "domain": case "scenario": case "sozluk": case "kalip": case "m1day": return "koy";
     case "ben": case "profile": case "ses": return "ben";
     default: return "today";
   }
