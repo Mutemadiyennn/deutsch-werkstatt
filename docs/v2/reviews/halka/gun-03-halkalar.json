@@ -1,6 +1,6 @@
 {
  "gun": 3,
- "not": "PM-078 B öneri (İÇ), 1. günün onaylı biçimiyle (PM #163 ve #165 kuralları) ve PM 7047720404'ün iki ekiyle: her halkada en az 2 görev cümlesi önceki günlerin bir kartını taşır; günde en az bir çıkarım sorusu var (cikarim: true). Günün dersi (r0-03) varsayılmaz; 1. ve 2. günün dersleri (r0-01, r0-02, r0-11) ve halka kalıpları bilinir. Gruplama önerilenden farklı: Nummer 1. halkaya, wohnen 2. halkaya alındı (gerekçe gun-03-yazar.md). Şema ANA'da (AK-5); alan gelince gun-03.json'a taşınır.",
+ "not": "PM-078 B öneri (İÇ), 1. günün onaylı biçimiyle (PM #163 ve #165 kuralları) ve PM 7047720404'ün iki ekiyle: her halkada en az 2 görev cümlesi önceki günlerin bir kartını taşır; günde en az bir çıkarım sorusu var (cikarim: true). Günün dersi (r0-03) varsayılmaz; 1. ve 2. günün dersleri (r0-01, r0-02, r0-11) ve halka kalıpları bilinir. Gruplama önerilenden farklı: Nummer 1. halkaya alındı; wohnen kartı 2. güne geçti, yerine offen 3. halkaya geldi (gerekçe gun-03-yazar.md). Şema ANA'da (AK-5); alan gelince gun-03.json'a taşınır.",
  "halkalar": [
   {
    "id": "m1:03:h1",
@@ -45,12 +45,12 @@
     },
     {
      "kart": "lx:null",
-     "de": "Null am Anfang?",
-     "tr": "Başta sıfır mı?",
+     "de": "Null, Frau Huber? Ja, null.",
+     "tr": "Sıfır mı Huber Hanım? Evet, sıfır.",
      "accepted": [
-      "Null am Anfang?",
-      "Am Anfang null?",
-      "Am Anfang eine Null?"
+      "Null, Frau Huber? Ja, null.",
+      "Frau Huber, null? Ja, null.",
+      "Null? Ja, null, Frau Huber."
      ]
     },
     {
@@ -165,7 +165,6 @@
    "id": "m1:03:h2",
    "title_tr": "Adres: dörtten yediye",
    "kartlar": [
-    "lx:wohnen",
     "lx:vier",
     "lx:fünf",
     "lx:sechs",
@@ -182,26 +181,6 @@
     }
    ],
    "gorev_cumleleri": [
-    {
-     "kart": "lx:wohnen",
-     "de": "Wo wohnen Sie, Herr Wimmer?",
-     "tr": "Nerede oturuyorsunuz Wimmer Bey?",
-     "accepted": [
-      "Wo wohnen Sie, Herr Wimmer?",
-      "Herr Wimmer, wo wohnen Sie?",
-      "Wo wohnen Sie denn, Herr Wimmer?"
-     ]
-    },
-    {
-     "kart": "lx:wohnen",
-     "de": "Wohnt Tobi in der Brunnengasse?",
-     "tr": "Tobi Brunnengasse'de mi oturuyor?",
-     "accepted": [
-      "Wohnt Tobi in der Brunnengasse?",
-      "Tobi wohnt in der Brunnengasse?",
-      "In der Brunnengasse wohnt Tobi?"
-     ]
-    },
     {
      "kart": "lx:vier",
      "de": "Vier Tage, von Montag bis Donnerstag.",
@@ -319,8 +298,9 @@
   },
   {
    "id": "m1:03:h3",
-   "title_tr": "Saatler: sekizden on ikiye",
+   "title_tr": "Açılış saatleri",
    "kartlar": [
+    "lx:offen",
     "lx:acht",
     "lx:neun",
     "lx:zehn",
@@ -338,6 +318,26 @@
     }
    ],
    "gorev_cumleleri": [
+    {
+     "kart": "lx:offen",
+     "de": "Ist die Praxis heute offen?",
+     "tr": "Muayenehane bugün açık mı?",
+     "accepted": [
+      "Ist die Praxis heute offen?",
+      "Ist heute die Praxis offen?",
+      "Heute ist die Praxis offen?"
+     ]
+    },
+    {
+     "kart": "lx:offen",
+     "de": "Die Praxis ist von Montag bis Freitag offen, aber nicht am Wochenende.",
+     "tr": "Muayenehane pazartesiden cumaya kadar açık, ama hafta sonunda değil.",
+     "accepted": [
+      "Die Praxis ist von Montag bis Freitag offen, aber nicht am Wochenende.",
+      "Von Montag bis Freitag ist die Praxis offen, aber nicht am Wochenende.",
+      "Die Praxis ist von Montag bis Freitag offen, am Wochenende aber nicht."
+     ]
+    },
     {
      "kart": "lx:acht",
      "de": "Am Montag um acht?",
@@ -610,12 +610,12 @@
      }
     ],
     "soru": {
-     "q_tr": "Senden önce sırada kaç numara daha var?",
+     "q_tr": "On dörtten sonra, senden önce kaç numara çağrılacak?",
      "opts": [
-      "Hiç yok",
-      "Bir numara: on beş",
-      "İki numara",
-      "Üç numara"
+      "Hiç",
+      "Bir",
+      "İki",
+      "Üç"
      ],
      "ans": 1,
      "cikarim": true
@@ -638,8 +638,8 @@
      "tr": "yeni bir numara – yeni numara"
     },
     {
-     "de": "das neue Büro",
-     "tr": "yeni ofis"
+     "de": "das neue Büro – im Büro",
+     "tr": "yeni ofis – ofiste"
     }
    ],
    "gorev_cumleleri": [
