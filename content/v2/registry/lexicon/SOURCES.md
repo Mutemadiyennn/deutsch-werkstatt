@@ -44,5 +44,7 @@ Sözlük kartlarında (batch-*.json) geçen olgusal bilgiler ve kaynakları.
 | Jobcenter, geçimini sağlayamayan çalışabilir kişilere bakar | lx:Jobcenter | https://www.betanet.de/jobcenter.html |
 | Dolmetscher sözlü, Übersetzer yazılı çevirir | lx:Dolmetscher | https://www.duden.de/rechtschreibung/Dolmetscher · https://wissen.de/artikel/dolmetscher-in-oder-uebersetzer-in |
 | Silvester, 31 Aralık | lx:Silvester | https://www.duden.de/rechtschreibung/Silvester_Tag |
+| **Lohn** çoğu zaman işçi ücreti, **Gehalt** memur ve çalışanın aylık maaşı | lx:Lohn | Duden, Lohn maddesi: https://www.duden.de/rechtschreibung/Lohn |
+| Bazı biletler binmeden önce damgalanır (**entwerten**) | lx:Fahrschein | Duden, entwerten maddesi: https://www.duden.de/rechtschreibung/entwerten |
 
 Sıklık verisi: FrequencyWords 2018 de (OpenSubtitles), H. Dave, CC BY-SA 4.0 — bkz. registry/frequency/lemmas.json.
