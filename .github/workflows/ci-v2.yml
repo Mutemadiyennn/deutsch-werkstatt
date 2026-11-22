@@ -165,6 +165,8 @@ jobs:
         run: cd tests/e2e && python v2_akis.py --tam --kalip-sert --gun 1
       - name: "Pilot 1. gün: mikrofon varken akışta büyük mikrofon ve 'Yazarak cevapla' (bayrak #193 md. 3)"
         run: cd tests/e2e && python v2_akis.py --mikrofon --gun 1
+      - name: "Akış bayrağı 'hepsi' (PM-090 md. 3): 1. gün bitince 2. günün BAŞLA'sı akışa gider; [1] ve [] ile eski düzen"
+        run: cd tests/e2e && python v2_akis_hepsi.py
       - name: Görsel regresyon (açık + koyu)
         run: cd tests/e2e && python visual.py --out /tmp/visual --baseline "visual-baseline/${{ matrix.device }}"
       - uses: actions/upload-artifact@v4

@@ -15,7 +15,8 @@ PORT = 4247
 def basla(pg, base, deger):
     """bayrağı yazar, Bugün'ü yeniden açar, BAŞLA'nın hedefini döndürür"""
     pg.evaluate("(v) => sessionStorage.setItem('e2e-akis-gunler', v)", deger)
-    pg.goto(base + "#/learn"); pg.reload(); pg.goto(base + "#/today")
+    # Bugün'de yeniden yükle: uygulama bayrağı açılışta okur (yüklemenin hemen ardından adres değiştirmek yönlendiriciyle yarışır)
+    pg.goto(base + "#/today"); pg.reload(); pg.wait_for_selector("[data-tab=today]")
     pg.wait_for_selector("[data-test=m1-devam]", timeout=15000)
     return pg.evaluate(SIRADAKI)
 
