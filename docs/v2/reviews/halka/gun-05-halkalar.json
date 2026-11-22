@@ -1,6 +1,6 @@
 {
  "gun": 5,
- "not": "PM-078 B öneri (İÇ), 3. günün onaylı biçimiyle (PM #163, #165, PM 7047720404 a/b, PM-080 §3–§4). Günün dersi (r0-05) varsayılmaz; 1.–4. günün dersleri (r0-01, r0-02, r0-11, r0-03, r0-04) ve 1.–4. günün halka kalıpları (gun-04-halkalar.json dahil) bilinir. Saatler Dr. Weber muayenehanesinin çalışma saatleriyle (5. gün okuma metni) ve 5. gün sesli mesajıyla (Dr. Weber perşembe döner, perşembe 10:15) tutarlı. Gerekçe ve sınama gun-05-yazar.md. Şema ANA'da (AK-5); alan gelince gun-05.json'a taşınır.",
+ "not": "PM-078 B öneri (İÇ), 3. günün onaylı biçimiyle (PM #163, #165, PM 7047720404 a/b, PM-080 §3–§4). Günün dersi (r0-05) varsayılmaz; 1.–4. günün dersleri (r0-01, r0-02, r0-11, r0-03, r0-04) ve 1.–4. günün halka kalıpları (gun-04-halkalar.json dahil) bilinir. Saatler Dr. Weber muayenehanesinin çalışma saatleriyle (5. gün okuma metni) ve 5. gün sesli mesajıyla (Dr. Weber perşembe döner, perşembe 10:15) tutarlı. Gerekçe ve sınama gun-05-yazar.md. Şema ANA'da (AK-5); alan gelince gun-05.json'a taşınır. Halkalar artık gun-05.json içinde (PM-084); bu dosya Python denetçilerinin (halka_kontrol.py, kucuk_sozcuk.py) girdisi olarak gün dosyasıyla eşit tutulur.",
  "halkalar": [
   {
    "id": "m1:05:h1",
@@ -132,7 +132,9 @@
      {
       "r": "ch:lechner",
       "de": "Wie spät ist es, {name}?",
-      "tr": "Saat kaç {name}?"
+      "de_adsiz": "Wie spät ist es?",
+      "tr": "Saat kaç {name}?",
+      "tr_adsiz": "Saat kaç?"
      },
      {
       "r": "ogrenci",

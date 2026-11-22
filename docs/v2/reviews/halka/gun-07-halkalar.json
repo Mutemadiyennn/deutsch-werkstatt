@@ -1,6 +1,6 @@
 {
  "gun": 7,
- "not": "PM-078 B öneri (İÇ), 3. günün onaylı biçimiyle (PM #163, #165, PM 7047720404 a/b, PM-080 §3–§4). M1 kapısı: 4 halka, yeni kalıp yalnız kip fiillerinin ilk biçimleri ve „Ich verstehe nicht.“ için; görev cümlelerinin çoğu 1.–6. günün kalıplarıyla. Günün dersleri (r0-08, r0-09) varsayılmaz; 1.–6. günün dersleri (r0-01, r0-02, r0-11, r0-03, r0-04, r0-05, r0-06, r0-07) ve 1.–6. günün halka kalıpları (gun-04/05/06 taslakları dahil) bilinir. Olgular: Derya hasta, pazartesiye kadar yok (gün 7 sesi a2); ateşi olan hasta bugün on bire kadar gelebilir (gün 7 sesi a1); Huber Hanım hızlı konuşur (WORLD); öğrencinin adresi Brunnengasse 7 (WORLD); 4 aralık cuma, muayenehane cuma 12'ye kadar açık (gün 5 okuması). Gerekçe ve sınama gun-07-yazar.md. Şema ANA'da (AK-5); alan gelince gun-07.json'a taşınır.",
+ "not": "PM-078 B öneri (İÇ), 3. günün onaylı biçimiyle (PM #163, #165, PM 7047720404 a/b, PM-080 §3–§4). M1 kapısı: 4 halka, yeni kalıp yalnız kip fiillerinin ilk biçimleri ve „Ich verstehe nicht.“ için; görev cümlelerinin çoğu 1.–6. günün kalıplarıyla. Günün dersleri (r0-08, r0-09) varsayılmaz; 1.–6. günün dersleri (r0-01, r0-02, r0-11, r0-03, r0-04, r0-05, r0-06, r0-07) ve 1.–6. günün halka kalıpları (gun-04/05/06 taslakları dahil) bilinir. Olgular: Derya hasta, pazartesiye kadar yok (gün 7 sesi a2); ateşi olan hasta bugün on bire kadar gelebilir (gün 7 sesi a1); Huber Hanım hızlı konuşur (WORLD); öğrencinin adresi Brunnengasse 7 (WORLD); 4 aralık cuma, muayenehane cuma 12'ye kadar açık (gün 5 okuması). Gerekçe ve sınama gun-07-yazar.md. Şema ANA'da (AK-5); alan gelince gun-07.json'a taşınır. Halkalar artık gun-07.json içinde (PM-084); bu dosya Python denetçilerinin (halka_kontrol.py, kucuk_sozcuk.py) girdisi olarak gün dosyasıyla eşit tutulur.",
  "halkalar": [
   {
    "id": "m1:07:h1",
@@ -22,12 +22,21 @@
     {
      "kart": "lx:sein",
      "de": "Ich bin {name}. Meine Adresse ist Brunnengasse sieben.",
+     "de_adsiz": "Meine Adresse ist Brunnengasse sieben.",
      "tr": "Ben {name}. Adresim Brunnengasse yedi.",
+     "tr_adsiz": "Adresim Brunnengasse yedi.",
      "accepted": [
       "Ich bin {name}. Meine Adresse ist Brunnengasse sieben.",
       "Ich heiße {name}. Meine Adresse ist Brunnengasse sieben.",
       "Ich bin {name}. Ich wohne in der Brunnengasse, in Nummer sieben.",
-      "Hier ist {name}. Meine Adresse ist Brunnengasse sieben."
+      "Hier ist {name}. Meine Adresse ist Brunnengasse sieben.",
+      "Ich bin {name}. Ich wohne in der Brunnengasse sieben."
+     ],
+     "accepted_adsiz": [
+      "Meine Adresse ist Brunnengasse sieben.",
+      "Ich wohne in der Brunnengasse, in Nummer sieben.",
+      "Meine Adresse ist Brunnengasse Nummer sieben.",
+      "Ich wohne in der Brunnengasse sieben."
      ]
     },
     {
@@ -265,7 +274,9 @@
      {
       "r": "ogrenci",
       "de": "Hier ist {name}. Ich habe Fieber und ich möchte einen Termin.",
-      "tr": "Ben {name}. Ateşim var ve bir randevu istiyorum."
+      "de_adsiz": "Guten Tag. Ich habe Fieber und ich möchte einen Termin.",
+      "tr": "Ben {name}. Ateşim var ve bir randevu istiyorum.",
+      "tr_adsiz": "İyi günler. Ateşim var ve bir randevu istiyorum."
      },
      {
       "r": "ch:huber",

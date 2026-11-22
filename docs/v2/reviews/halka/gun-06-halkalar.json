@@ -1,6 +1,6 @@
 {
  "gun": 6,
- "not": "PM-078 B öneri (İÇ), 3. günün onaylı biçimiyle (PM #163, #165, PM 7047720404 a/b, PM-080 §3–§4). Günün dersleri (r0-06, r0-07) varsayılmaz; 1.–5. günün dersleri (r0-01, r0-02, r0-11, r0-03, r0-04, r0-05) ve 1.–5. günün halka kalıpları (gun-04, gun-05 taslakları dahil) bilinir. Tarihler yalnız ayın 1–4'ü (sıra sayıları kartla, „am …-ten“ h1 kalıbıyla). Olgular: Bürgerbüro randevusu 3 aralık perşembe saat dokuz (gün 6 sesi a2), yeni hasta için ad, soyad, doğum tarihi, telefon (gün 6 sesi a1), Brandl'ın doğum günü 2 mayıs (WORLD), Derya Wendlfing'li (WORLD), öğrencinin adresi Brunnengasse 7 (WORLD), 1 mayıs tatil (WORLD takvimi; 2027'de cumartesi, bu yüzden muayenehane pazartesi açılır). Gerekçe ve sınama gun-06-yazar.md. Şema ANA'da (AK-5); alan gelince gun-06.json'a taşınır.",
+ "not": "PM-078 B öneri (İÇ), 3. günün onaylı biçimiyle (PM #163, #165, PM 7047720404 a/b, PM-080 §3–§4). Günün dersleri (r0-06, r0-07) varsayılmaz; 1.–5. günün dersleri (r0-01, r0-02, r0-11, r0-03, r0-04, r0-05) ve 1.–5. günün halka kalıpları (gun-04, gun-05 taslakları dahil) bilinir. Tarihler yalnız ayın 1–4'ü (sıra sayıları kartla, „am …-ten“ h1 kalıbıyla). Olgular: Bürgerbüro randevusu 3 aralık perşembe saat dokuz (gün 6 sesi a2), yeni hasta için ad, soyad, doğum tarihi, telefon (gün 6 sesi a1), Brandl'ın doğum günü 2 mayıs (WORLD), Derya Wendlfing'li (WORLD), öğrencinin adresi Brunnengasse 7 (WORLD), 1 mayıs tatil (WORLD takvimi; 2027'de cumartesi, bu yüzden muayenehane pazartesi açılır). Gerekçe ve sınama gun-06-yazar.md. Şema ANA'da (AK-5); alan gelince gun-06.json'a taşınır. Halkalar artık gun-06.json içinde (PM-084); bu dosya Python denetçilerinin (halka_kontrol.py, kucuk_sozcuk.py) girdisi olarak gün dosyasıyla eşit tutulur.",
  "halkalar": [
   {
    "id": "m1:06:h1",
@@ -222,11 +222,18 @@
     {
      "kart": "lx:heißen",
      "de": "Ich heiße {name}. Wie heißen Sie?",
+     "de_adsiz": "Und Sie? Wie heißen Sie?",
      "tr": "Adım {name}. Sizin adınız ne?",
+     "tr_adsiz": "Ya siz? Sizin adınız ne?",
      "accepted": [
       "Ich heiße {name}. Wie heißen Sie?",
       "Ich heiße {name}. Und wie heißen Sie?",
       "Ich heiße {name}. Und Sie?"
+     ],
+     "accepted_adsiz": [
+      "Und Sie? Wie heißen Sie?",
+      "Und wie heißen Sie?",
+      "Wie heißen Sie?"
      ]
     },
     {
@@ -413,7 +420,9 @@
      {
       "r": "ch:lechner",
       "de": "Wohin gehst du, {name}? Es ist noch früh!",
-      "tr": "Nereye gidiyorsun {name}? Daha saat erken!"
+      "de_adsiz": "Wohin gehst du? Es ist noch früh!",
+      "tr": "Nereye gidiyorsun {name}? Daha saat erken!",
+      "tr_adsiz": "Nereye gidiyorsun? Daha saat erken!"
      },
      {
       "r": "ogrenci",
@@ -609,7 +618,11 @@
       "Warum geht es am Montag nicht?",
       "Warum geht Montag nicht?",
       "Am Montag geht es nicht? Warum?",
-      "Warum geht am Montag nicht?"
+      "Warum geht's am Montag nicht?",
+      "Warum geht es Montag nicht?",
+      "Warum geht das am Montag nicht?",
+      "Warum geht es denn am Montag nicht?",
+      "Warum geht es nicht am Montag?"
      ]
     },
     {
