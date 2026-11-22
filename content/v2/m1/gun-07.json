@@ -86,6 +86,568 @@
   "lx:arbeiten",
   "lx:müde"
  ],
+ "halkalar": [
+  {
+   "id": "m1:07:h1",
+   "title_tr": "Kendimi anlatıyorum: kimim, nasılım",
+   "kartlar": [
+    "lx:sein",
+    "lx:müde",
+    "lx:Fieber",
+    "lx:arbeiten",
+    "lx:sagen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Was sagt …? – … sagt: …",
+     "tr": "… ne diyor? – … diyor ki: …"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:sein",
+     "de": "Ich bin {name}. Meine Adresse ist Brunnengasse sieben.",
+     "tr": "Ben {name}. Adresim Brunnengasse yedi.",
+     "accepted": [
+      "Ich bin {name}. Meine Adresse ist Brunnengasse sieben.",
+      "Ich heiße {name}. Meine Adresse ist Brunnengasse sieben.",
+      "Ich bin {name}. Ich wohne in der Brunnengasse, in Nummer sieben.",
+      "Hier ist {name}. Meine Adresse ist Brunnengasse sieben."
+     ]
+    },
+    {
+     "kart": "lx:sein",
+     "de": "Sind Sie heute da, Frau Schneider?",
+     "tr": "Bugün burada mısınız Schneider Hanım?",
+     "accepted": [
+      "Sind Sie heute da, Frau Schneider?",
+      "Frau Schneider, sind Sie heute da?",
+      "Sind Sie heute da?"
+     ]
+    },
+    {
+     "kart": "lx:müde",
+     "de": "Sind Sie müde, Herr Wimmer?",
+     "tr": "Yorgun musunuz Wimmer Bey?",
+     "accepted": [
+      "Sind Sie müde, Herr Wimmer?",
+      "Herr Wimmer, sind Sie müde?",
+      "Sind Sie müde?"
+     ]
+    },
+    {
+     "kart": "lx:müde",
+     "de": "Ich bin am Abend oft müde.",
+     "tr": "Ben akşam sık sık yorgun oluyorum.",
+     "accepted": [
+      "Ich bin am Abend oft müde.",
+      "Ich bin oft am Abend müde.",
+      "Ich bin oft müde am Abend."
+     ]
+    },
+    {
+     "kart": "lx:Fieber",
+     "de": "Ich habe Fieber, Frau Huber.",
+     "tr": "Ateşim var Huber Hanım.",
+     "accepted": [
+      "Ich habe Fieber, Frau Huber.",
+      "Frau Huber, ich habe Fieber.",
+      "Ich habe Fieber."
+     ]
+    },
+    {
+     "kart": "lx:Fieber",
+     "de": "Haben Sie Fieber, Herr Pichler?",
+     "tr": "Ateşiniz var mı Pichler Bey?",
+     "accepted": [
+      "Haben Sie Fieber, Herr Pichler?",
+      "Herr Pichler, haben Sie Fieber?",
+      "Sie haben Fieber, Herr Pichler?"
+     ]
+    },
+    {
+     "kart": "lx:arbeiten",
+     "de": "Arbeiten Sie am Sonntag, Frau Stadler?",
+     "tr": "Pazar günü çalışıyor musunuz Stadler Hanım?",
+     "accepted": [
+      "Arbeiten Sie am Sonntag, Frau Stadler?",
+      "Frau Stadler, arbeiten Sie am Sonntag?",
+      "Arbeiten Sie am Sonntag?"
+     ]
+    },
+    {
+     "kart": "lx:arbeiten",
+     "de": "Heute arbeiten? Ich habe Fieber!",
+     "tr": "Bugün çalışmak mı? Ateşim var!",
+     "accepted": [
+      "Heute arbeiten? Ich habe Fieber!",
+      "Arbeiten? Heute? Ich habe Fieber!",
+      "Heute arbeiten? Nein, ich habe Fieber!"
+     ]
+    },
+    {
+     "kart": "lx:sagen",
+     "de": "Was sagt Frau Huber?",
+     "tr": "Huber Hanım ne diyor?",
+     "accepted": [
+      "Was sagt Frau Huber?",
+      "Was sagt denn Frau Huber?",
+      "Frau Huber sagt was?"
+     ]
+    },
+    {
+     "kart": "lx:sagen",
+     "de": "Herr Wimmer sagt: Am Freitag um zehn.",
+     "tr": "Wimmer Bey diyor ki: Cuma günü saat onda.",
+     "accepted": [
+      "Herr Wimmer sagt: Am Freitag um zehn.",
+      "Herr Wimmer sagt: Am Freitag um zehn Uhr.",
+      "Am Freitag um zehn, sagt Herr Wimmer."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "İş yeri, sabah. Derya'nın masası boş. Derya'nın sesli mesajını dinledin. Wimmer Bey soruyor.",
+    "satirlar": [
+     {
+      "r": "ch:wimmer",
+      "de": "Wo ist Frau Aksoy heute?",
+      "tr": "Aksoy Hanım bugün nerede?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Derya sagt: Ich habe Fieber. Bis Montag!",
+      "tr": "Derya diyor ki: Ateşim var. Pazartesi görüşürüz!"
+     },
+     {
+      "r": "ch:wimmer",
+      "de": "Fieber? Dann ist Frau Aksoy bis Montag nicht da.",
+      "tr": "Ateş mi? O zaman Aksoy Hanım pazartesiye kadar burada değil."
+     }
+    ],
+    "soru": {
+     "q_tr": "Derya ne zaman yine işte?",
+     "opts": [
+      "Yarın",
+      "Cuma günü",
+      "Pazartesi günü",
+      "Salı günü"
+     ],
+     "ans": 2
+    }
+   }
+  },
+  {
+   "id": "m1:07:h2",
+   "title_tr": "Doktora gitmem gerekiyor: randevu istiyorum",
+   "kartlar": [
+    "lx:müssen",
+    "lx:Hausarzt",
+    "lx:möchten",
+    "lx:warten"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich muss … – Muss ich …?",
+     "tr": "…-mem gerekiyor. – …-mem gerekiyor mu?"
+    },
+    {
+     "de": "Ich möchte … – Möchten Sie …?",
+     "tr": "… istiyorum. – … ister misiniz?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:müssen",
+     "de": "Wie oft muss ich kommen?",
+     "tr": "Ne sıklıkla gelmem gerekiyor?",
+     "accepted": [
+      "Wie oft muss ich kommen?",
+      "Wie oft muss ich denn kommen?",
+      "Wie oft muss ich kommen, bitte?"
+     ]
+    },
+    {
+     "kart": "lx:müssen",
+     "de": "Ich muss heute zum Arzt.",
+     "tr": "Bugün doktora gitmem gerekiyor.",
+     "accepted": [
+      "Ich muss heute zum Arzt.",
+      "Heute muss ich zum Arzt.",
+      "Ich muss heute zum Arzt gehen.",
+      "Heute muss ich zum Arzt gehen."
+     ]
+    },
+    {
+     "kart": "lx:Hausarzt",
+     "de": "Mein Hausarzt ist Dr. Weber.",
+     "tr": "Aile hekimim Dr. Weber.",
+     "accepted": [
+      "Mein Hausarzt ist Dr. Weber.",
+      "Dr. Weber ist mein Hausarzt.",
+      "Mein Hausarzt heißt Dr. Weber."
+     ]
+    },
+    {
+     "kart": "lx:Hausarzt",
+     "de": "Wie heißt Ihr Hausarzt, Frau Brandl?",
+     "tr": "Aile hekiminizin adı ne Brandl Hanım?",
+     "accepted": [
+      "Wie heißt Ihr Hausarzt, Frau Brandl?",
+      "Frau Brandl, wie heißt Ihr Hausarzt?",
+      "Wie heißt denn Ihr Hausarzt, Frau Brandl?"
+     ]
+    },
+    {
+     "kart": "lx:möchten",
+     "de": "Ich möchte am zweiten Dezember kommen.",
+     "tr": "İki aralıkta gelmek istiyorum.",
+     "accepted": [
+      "Ich möchte am zweiten Dezember kommen.",
+      "Ich möchte am zweiten Dezember kommen, bitte.",
+      "Ich möchte bitte am zweiten Dezember kommen."
+     ]
+    },
+    {
+     "kart": "lx:möchten",
+     "de": "Ich möchte nicht bis Freitag warten.",
+     "tr": "Cumaya kadar beklemek istemiyorum.",
+     "accepted": [
+      "Ich möchte nicht bis Freitag warten.",
+      "Ich möchte bis Freitag nicht warten.",
+      "Ich möchte nicht bis Freitag warten, bitte."
+     ]
+    },
+    {
+     "kart": "lx:warten",
+     "de": "Warum muss ich warten, Frau Huber?",
+     "tr": "Neden beklemem gerekiyor Huber Hanım?",
+     "accepted": [
+      "Warum muss ich warten, Frau Huber?",
+      "Frau Huber, warum muss ich warten?",
+      "Warum muss ich denn warten, Frau Huber?"
+     ]
+    },
+    {
+     "kart": "lx:warten",
+     "de": "Sie müssen bis halb neun warten.",
+     "tr": "Sekiz buçuğa kadar beklemeniz gerekiyor.",
+     "accepted": [
+      "Sie müssen bis halb neun warten.",
+      "Bis halb neun müssen Sie warten.",
+      "Sie müssen bis acht Uhr dreißig warten."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Ateşin var. Muayenehaneyi arıyorsun.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Guten Tag, Praxis Dr. Weber!",
+      "tr": "İyi günler, Dr. Weber muayenehanesi!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Hier ist {name}. Ich habe Fieber und ich möchte einen Termin.",
+      "tr": "Ben {name}. Ateşim var ve bir randevu istiyorum."
+     },
+     {
+      "r": "ch:huber",
+      "de": "Fieber? Dann kommen Sie heute bis elf.",
+      "tr": "Ateş mi? O zaman bugün saat on bire kadar gelin."
+     }
+    ],
+    "soru": {
+     "q_tr": "Huber Hanım ne diyor?",
+     "opts": [
+      "Bugün saat on bire kadar gel",
+      "Yarın saat on birde gel",
+      "Pazartesiye kadar bekle",
+      "Bir saat sonra yine ara"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:07:h3",
+   "title_tr": "Anlamıyorum: tekrar eder misiniz?",
+   "kartlar": [
+    "lx:können",
+    "lx:verstehen",
+    "lx:wiederholen",
+    "lx:sprechen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich verstehe nicht. – Können Sie das wiederholen?",
+     "tr": "Anlamıyorum. – Bunu tekrar edebilir misiniz?"
+    },
+    {
+     "de": "Ich kann … – Kann ich …?",
+     "tr": "…-ebilirim. – …-ebilir miyim?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:können",
+     "de": "Ich kann am dritten nicht kommen.",
+     "tr": "Ayın üçünde gelemem.",
+     "accepted": [
+      "Ich kann am dritten nicht kommen.",
+      "Am dritten kann ich nicht kommen.",
+      "Ich kann nicht am dritten kommen."
+     ]
+    },
+    {
+     "kart": "lx:können",
+     "de": "Kann ich morgen um acht kommen?",
+     "tr": "Yarın saat sekizde gelebilir miyim?",
+     "accepted": [
+      "Kann ich morgen um acht kommen?",
+      "Kann ich morgen um acht Uhr kommen?",
+      "Morgen um acht, kann ich kommen?"
+     ]
+    },
+    {
+     "kart": "lx:verstehen",
+     "de": "Ich verstehe nicht, Frau Huber.",
+     "tr": "Anlamıyorum Huber Hanım.",
+     "accepted": [
+      "Ich verstehe nicht, Frau Huber.",
+      "Frau Huber, ich verstehe nicht.",
+      "Ich verstehe das nicht, Frau Huber."
+     ]
+    },
+    {
+     "kart": "lx:verstehen",
+     "de": "Ich verstehe nicht. Am dritten oder am vierten?",
+     "tr": "Anlamıyorum. Ayın üçünde mi, dördünde mi?",
+     "accepted": [
+      "Ich verstehe nicht. Am dritten oder am vierten?",
+      "Ich verstehe das nicht. Am dritten oder am vierten?",
+      "Am dritten oder am vierten? Ich verstehe nicht."
+     ]
+    },
+    {
+     "kart": "lx:wiederholen",
+     "de": "Können Sie die Telefonnummer wiederholen?",
+     "tr": "Telefon numarasını tekrar edebilir misiniz?",
+     "accepted": [
+      "Können Sie die Telefonnummer wiederholen?",
+      "Können Sie bitte die Telefonnummer wiederholen?",
+      "Die Telefonnummer, können Sie das wiederholen?"
+     ]
+    },
+    {
+     "kart": "lx:wiederholen",
+     "de": "Am vierten? Können Sie das Datum wiederholen?",
+     "tr": "Ayın dördünde mi? Tarihi tekrar edebilir misiniz?",
+     "accepted": [
+      "Am vierten? Können Sie das Datum wiederholen?",
+      "Am vierten? Können Sie bitte das Datum wiederholen?",
+      "Am vierten? Können Sie das wiederholen, das Datum?"
+     ]
+    },
+    {
+     "kart": "lx:sprechen",
+     "de": "Kann ich bitte Dr. Weber sprechen?",
+     "tr": "Dr. Weber'le konuşabilir miyim lütfen?",
+     "accepted": [
+      "Kann ich bitte Dr. Weber sprechen?",
+      "Kann ich bitte mit Dr. Weber sprechen?",
+      "Kann ich Dr. Weber sprechen, bitte?",
+      "Kann ich mit Dr. Weber sprechen, bitte?"
+     ]
+    },
+    {
+     "kart": "lx:sprechen",
+     "de": "Ich möchte Frau Huber sprechen.",
+     "tr": "Huber Hanım'la konuşmak istiyorum.",
+     "accepted": [
+      "Ich möchte Frau Huber sprechen.",
+      "Ich möchte bitte Frau Huber sprechen.",
+      "Ich möchte mit Frau Huber sprechen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon. Huber Hanım randevu veriyor, çok hızlı konuşuyor.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Am vierten Dezember um Viertel nach zehn, passt das?",
+      "tr": "Dört aralıkta saat onu çeyrek geçe, uyar mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Wie bitte? Ich verstehe nicht. Können Sie das wiederholen?",
+      "tr": "Efendim? Anlamıyorum. Bunu tekrar edebilir misiniz?"
+     },
+     {
+      "r": "ch:huber",
+      "de": "Am vierten. Um Viertel nach zehn.",
+      "tr": "Ayın dördünde. Saat onu çeyrek geçe."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Gut, danke! Bis Freitag!",
+      "tr": "Tamam, teşekkürler! Cuma görüşürüz!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Randevun ne zaman?",
+     "opts": [
+      "Perşembe 10:15",
+      "Cuma 9:45",
+      "Cuma 10:15",
+      "Cuma 10:45"
+     ],
+     "ans": 2
+    }
+   }
+  },
+  {
+   "id": "m1:07:h4",
+   "title_tr": "Yiyebilir miyim? Yiyelim mi?",
+   "kartlar": [
+    "lx:essen",
+    "lx:dürfen",
+    "lx:sollen",
+    "lx:wollen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Darf ich …? – Soll ich …?",
+     "tr": "…-ebilir miyim? (izin isterken) – …-eyim mi?"
+    },
+    {
+     "de": "Wollen wir …?",
+     "tr": "…-elim mi?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:essen",
+     "de": "Essen Sie Käse, Frau Brandl?",
+     "tr": "Peynir yer misiniz Brandl Hanım?",
+     "accepted": [
+      "Essen Sie Käse, Frau Brandl?",
+      "Frau Brandl, essen Sie Käse?",
+      "Sie essen Käse, Frau Brandl?"
+     ]
+    },
+    {
+     "kart": "lx:essen",
+     "de": "Was möchten Sie essen?",
+     "tr": "Ne yemek istersiniz?",
+     "accepted": [
+      "Was möchten Sie essen?",
+      "Was möchten Sie denn essen?",
+      "Was möchten Sie heute essen?"
+     ]
+    },
+    {
+     "kart": "lx:dürfen",
+     "de": "Darf ich heute essen, Herr Dr. Weber?",
+     "tr": "Bugün yemek yiyebilir miyim Dr. Weber?",
+     "accepted": [
+      "Darf ich heute essen, Herr Dr. Weber?",
+      "Herr Dr. Weber, darf ich heute essen?",
+      "Darf ich heute essen, Dr. Weber?",
+      "Kann ich heute essen, Herr Dr. Weber?",
+      "Kann ich heute essen, Dr. Weber?"
+     ]
+    },
+    {
+     "kart": "lx:dürfen",
+     "de": "Darf ich am Montag wieder arbeiten?",
+     "tr": "Pazartesi günü yine çalışabilir miyim?",
+     "accepted": [
+      "Darf ich am Montag wieder arbeiten?",
+      "Am Montag, darf ich wieder arbeiten?",
+      "Kann ich am Montag wieder arbeiten?"
+     ]
+    },
+    {
+     "kart": "lx:sollen",
+     "de": "Soll ich am Freitag kommen?",
+     "tr": "Cuma günü geleyim mi?",
+     "accepted": [
+      "Soll ich am Freitag kommen?",
+      "Soll ich Freitag kommen?",
+      "Am Freitag, soll ich kommen?"
+     ]
+    },
+    {
+     "kart": "lx:sollen",
+     "de": "Soll ich warten, Frau Huber?",
+     "tr": "Bekleyeyim mi Huber Hanım?",
+     "accepted": [
+      "Soll ich warten, Frau Huber?",
+      "Frau Huber, soll ich warten?",
+      "Soll ich warten?"
+     ]
+    },
+    {
+     "kart": "lx:wollen",
+     "de": "Wollen wir heute Abend essen?",
+     "tr": "Bu akşam yemek yiyelim mi?",
+     "accepted": [
+      "Wollen wir heute Abend essen?",
+      "Heute Abend, wollen wir essen?",
+      "Wollen wir heute am Abend essen?"
+     ]
+    },
+    {
+     "kart": "lx:wollen",
+     "de": "Wohin wollen wir gehen, Tobi?",
+     "tr": "Nereye gidelim Tobi?",
+     "accepted": [
+      "Wohin wollen wir gehen, Tobi?",
+      "Tobi, wohin wollen wir gehen?",
+      "Wohin wollen wir denn gehen, Tobi?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Mola. Tobi akşam için plan yapıyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Wollen wir heute Abend essen gehen?",
+      "tr": "Bu akşam yemeğe gidelim mi?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Heute nicht, ich bin müde. Am Freitag?",
+      "tr": "Bugün olmaz, yorgunum. Cuma günü?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Freitag geht! Um halb acht?",
+      "tr": "Cuma olur! Yedi buçukta?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Um halb acht? Ja, gern!",
+      "tr": "Yedi buçukta mı? Evet, memnuniyetle!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi'yle ne zaman yemeğe gidiyorsun?",
+     "opts": [
+      "Bugün 19:30",
+      "Cuma 19:30",
+      "Cuma 20:30",
+      "Cuma 18:30"
+     ],
+     "ans": 1
+    }
+   }
+  }
+ ],
  "sahne": {
   "id": "m1:07:v1",
   "title_tr": "Telefonla nasıl randevu alınır?",
