@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { esdegerBicim, expandTaught, hitapsiz, isSameAsGiven, REGISTER_HINT, ruleVerdict } from "./answer.ts";
+import { dikteKarar, esdegerBicim, expandTaught, hitapsiz, isSameAsGiven, REGISTER_HINT, ruleVerdict } from "./answer.ts";
 
 describe("PM-032 §4: doğru cevabın reddi 0", () => {
   const chunks = [{ layers: { hd: "In Ordnung, vielen Dank.", alltag: "In Ordnung, danke." } }, { layers: { hd: "Geht es auch früher?", alltag: "Geht's auch früher?" } }];
@@ -100,9 +100,32 @@ describe("PM-101 md. 6 (İÇ-6 7089902512): üç eşdeğerlik", () => {
     expect(v.kind).toBe("correct");
     expect(v.best).toBe("Um drei Uhr bei Dr. Weber.");
   });
-  it("siki (dikte): eşdeğerlik uygulanmaz", () => {
-    expect(ruleVerdict(["Um drei Uhr."], "Um drei.", { siki: true }).kind).not.toBe("correct");
-    expect(ruleVerdict(["Ich habe einen Termin."], "Guten Tag, ich habe einen Termin.", { siki: true }).kind).not.toBe("correct");
+  it("inceleme #227 P1-1: selamdan sonraki büyük harfli sözcük her zaman ad değildir", () => {
+    expect(ruleVerdict(["Ich komme."], "Hallo! Nein, ich komme.").kind).not.toBe("correct");
+    expect(ruleVerdict(["Ich komme heute."], "Hallo! Morgen, ich komme heute.").kind).not.toBe("correct");
+    expect(ruleVerdict(["Ich komme."], "Hallo! Ja, ich komme.").kind).toBe("correct");
+    expect(ruleVerdict(["Ich komme heute."], "Hallo Tobi, ich komme heute.").kind).toBe("correct");
+  });
+  it("inceleme #227 P2: kabulün kendisi selamsa selam soyulmaz; yanlış saat biçimleri dönüşmez", () => {
+    expect(ruleVerdict(["Guten Morgen!"], "Guten Tag, guten Morgen!").kind).not.toBe("correct");
+    expect(ruleVerdict(["Guten Morgen, Frau Brandl!", "Ich habe einen Termin."], "Guten Tag, Frau Brandl, ich habe einen Termin.").kind).toBe("correct");
+    expect(ruleVerdict(["Um acht Uhr dreißig."], "Um acht dreißig Uhr.").kind).not.toBe("correct");
+  });
+  it("dikte (PM-102 md. 4): yalnız duyulan cümle", () => {
+    expect(dikteKarar("Ich bin zu Hause.", "ich bin zu hause").kind).toBe("correct");
+    expect(dikteKarar("Ich bin zu Hause.", "Ich bin daheim.").kind).toBe("wrong");
+    expect(dikteKarar("Ich komme morgen.", "Morgen komme ich.").kind).toBe("wrong");
+    expect(dikteKarar("Ich komme morgen.", "Ja, ich komme morgen.").kind).toBe("wrong");
+    expect(dikteKarar("Um drei Uhr.", "Um drei.").kind).toBe("wrong");
+    expect(dikteKarar("Ich habe einen Termin.", "Guten Tag, ich habe einen Termin.").kind).toBe("wrong");
+    expect(dikteKarar("Ich habe einen Termin.", "").kind).toBe("wrong");
+    // ümlaut yazımı ve rakam farkı doğru, yazım notuyla
+    const v = dikteKarar("Übermorgen um 3.", "Uebermorgen um drei");
+    expect(v.kind).toBe("correct");
+    // hitapsız profilde ekrandaki "Patient/Patientin": iki biçim de doğru
+    expect(dikteKarar("Der Patient/Patientin wartet.", "Der Patient wartet.").kind).toBe("correct");
+    expect(dikteKarar("Der Patient/Patientin wartet.", "Der Patientin wartet.").kind).toBe("correct");
+    expect(dikteKarar("Der Patient/Patientin wartet.", "Der Arzt wartet.").kind).toBe("wrong");
   });
   it("esdegerBicim ve hitapsiz", () => {
     expect(esdegerBicim("um drei Uhr bei Dr. Weber")).toBe("um drei bei Doktor Weber");
