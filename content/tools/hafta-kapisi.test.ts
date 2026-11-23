@@ -88,6 +88,21 @@ describe("hafta kapısı: 2. hafta (önceki hafta öğretilmiş)", () => {
     const r2 = kos(hafta2((gs) => Object.assign(gs[gn - 8]!, { gun_sinavi: { maddeler: [{ id: "s1", prompt_de: "Hallo!", accepted: [`Hallo, ${k8}!`] }] } })));
     expect(r2.ogretilmedenKesin).toBe(0);
   });
+  it("medya maddesinin cevabı biliniyor, sorusu bilinmiyorsa süzülmez: öğretilmeden istenen (inceleme 7088959856 P1-6)", () => {
+    const ses = { sesler: [{ id: "a1", script: [], bolumler: [{ id: "b1", cevapla: { prompt_de: `Hallo, ${H3}?`, accepted: ["Hallo!"] } }] }] };
+    const r = kos(hafta2((gs) => Object.assign(gs[0]!, ses)));
+    expect(r.adimlar.filter((a) => a.sonuc === "kesin").map((a) => a.eksik)).toEqual([[`soru:${H3.toLowerCase()}`]]);
+    expect(r.suzulen).toBe(0);
+  });
+  it("önceki haftanın çerçeve biçimi: o haftanın 7 günü daldaysa sınanır, bir günü eksikse sınanmaz (P1-2)", () => {
+    const t = structuredClone(tablo); t.haftalar = [{ no: 2, cerceve: ["lx:kein"] }];
+    const g15 = (): GunHam => gun(15, [g("Hallo, keinem heute!")]);
+    const k3 = (gs: GunHam[]) => haftaKapisi({ hafta: 3, gunler: gs.map((data) => ({ file: `gun-${data.day}.json`, data })), tablo: t, omurga, dizin, dersler, test: TEST([["Hallo!"]]), gorulmemis: GOR([]) });
+    const tam = [...hafta2(), g15()];
+    expect(k3(tam).adimlar.filter((a) => a.gun === 15 && a.sonuc === "kesin").map((a) => a.eksik)).toEqual([["çerçeve:keinem"]]);
+    const eksik = [...hafta2((gs) => gs.splice(3, 1)), g15()];
+    expect(k3(eksik).adimlar.filter((a) => a.gun === 15 && a.sonuc === "kesin")).toEqual([]);
+  });
   it("karşı tarafın sorusu da anlaşılmalı (ogrenci_akis ile aynı)", () => {
     const r = kos(hafta2((gs) => Object.assign(gs[0]!, { gun_sinavi: { maddeler: [{ id: "s1", prompt_de: `Hallo, ${H3}?`, accepted: ["Hallo!"] }] } })));
     expect(r.adimlar.find((a) => a.sonuc === "kesin")!.eksik).toEqual([`soru:${H3.toLowerCase()}`]);

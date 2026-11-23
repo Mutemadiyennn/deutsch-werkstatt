@@ -185,8 +185,8 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     // karşı tarafın sorusu da anlaşılmalı (ogrenci_akis.py: prompt_de / audio_de / from_de öğretilmeden istenene girer)
     if (m.soru && !m.anlama && en.sonuc !== "suzuldu") {
       const e = eksikler(m.soru, b); en.soruEksik = [...e.kesin, ...e.sinirda];
-      if (m.suzulur && en.soruEksik.length) en.sonuc = "suzuldu";
-      else if (e.kesin.length && en.sonuc !== "kesin") en.sonuc = "kesin"; else if (e.sinirda.length && en.sonuc === "tamam") en.sonuc = "sinirda";
+      // süzgeç (dikteSuz) yalnız CEVABA bakar: cevabı bilinen maddenin bilinmeyen sorusu uygulamada sorulur → öğretilmeden istenen
+      if (e.kesin.length && en.sonuc !== "kesin") en.sonuc = "kesin"; else if (e.sinirda.length && en.sonuc === "tamam") en.sonuc = "sinirda";
       en.eksik.push(...en.soruEksik.map((x) => `soru:${x}`));
     }
     return en;
@@ -212,7 +212,8 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     const yeni = new Set(yazilar(f.yeni_kartlar)), dersler = yazilar(f.dersler);
     // durak sırası uygulamanın planlayıcısıyla aynı (web/src/core/akis.ts, K1 dizisi): ısınma · ses · h1 · h2 · (sahne/video) · h3 · h4 ·
     // prova · h5 · okuma · gün sonu; az halkalı günde sabit duraklar sona kalır. Dil noktası: `dersten_sonra` olan ilk halkadan önce
-    // (yoksa son halkadan sonra); planlayıcı dil durağını çizince (hat A) buradaki yaklaşık yer onunla değişir.
+    // (yoksa son halkadan sonra). Yaklaşıktır: planlayıcı dil durağını K(t)'den yerleştirir (akis.ts ~560–580; gr:/dn: dersleri
+    // dersler haritasına girince); `sahne` (köy dizisi) planlayıcıda ayrı durak değil, burada video yerinde sayılır.
     const gunB = kopya(b), halkalar = dizi(f.halkalar).map(nesne);
     // medya durağı (ses, sahne, video): uygulama bilinmeyen sözcük isteyen dikte ve "Sen ne derdin?" maddesini sormaz
     // (Medya.tsx `dikteSuz`, 1. gün öğrenci simülasyonu P0-1): öğretilmeden istenen değil, "süzülen" sayılır
