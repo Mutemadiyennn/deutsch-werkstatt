@@ -1153,9 +1153,9 @@
     "lx:Auskunft",
     "lx:Hotline",
     "lx:Kundenservice",
+    "lx:drücken",
     "lx:Menü",
     "lx:eingeben",
-    "lx:Werktag",
     "lx:Raute",
     "lx:Stern"
    ],
@@ -1191,9 +1191,9 @@
    "planlanan_yeni": 45,
    "k1": 11,
    "k1_disi_omurga": 34,
-   "k1_disi_kesin": 0,
-   "k1_disi_bekleyen": 34,
-   "kesin": 11,
+   "k1_disi_kesin": 1,
+   "k1_disi_bekleyen": 33,
+   "kesin": 12,
    "kesin_arti_bekleyen": 45,
    "fark": 0,
    "omurga_birikimli": 1265,
@@ -1209,7 +1209,8 @@
     "lx:Absender",
     "lx:Empfänger",
     "lx:Briefmarke",
-    "lx:zustellen"
+    "lx:zustellen",
+    "lx:Werktag"
    ],
    "cerceve": [],
    "sozlukte_yok": [
@@ -3389,9 +3390,9 @@
     "lx:Auskunft",
     "lx:Hotline",
     "lx:Kundenservice",
+    "lx:drücken",
     "lx:Menü",
-    "lx:eingeben",
-    "lx:Werktag"
+    "lx:eingeben"
    ],
    "cerceve": [],
    "sozlukte_yok": []
@@ -3533,11 +3534,13 @@
    "dersler": [],
    "adet": 6,
    "yuva": 6,
-   "kart": 0,
+   "kart": 1,
    "cerceve_adet": 0,
-   "bekleyen": 6,
+   "bekleyen": 5,
    "derse_ait": 0,
-   "kartlar": [],
+   "kartlar": [
+    "lx:Werktag"
+   ],
    "cerceve": [],
    "sozlukte_yok": []
   },
@@ -4262,8 +4265,8 @@
    "dagitilmamis_k1_karti": 156,
    "birim_haftasindan_tasinan_k1_disi": []
   },
-  "lex_doldurulan": 146,
-  "kalan_bekleyen": 139
+  "lex_doldurulan": 147,
+  "kalan_bekleyen": 138
  },
  "lex_doldurma": {
   "not_tr": "Bekleyen (kimliksiz) yuvalar lex hattıyla dolduruldu (PM-095 md. 4, İÇ-K2): sözcük günün konusuna göre seçildi, kart yazıldı, dilbilimci + okur turundan geçti. Gün ataması öneridir (hafta bağlayıcı).",
@@ -4490,18 +4493,21 @@
       "lx:Auskunft",
       "lx:Hotline",
       "lx:Kundenservice",
+      "lx:drücken",
       "lx:Menü",
-      "lx:eingeben",
-      "lx:Werktag"
+      "lx:eingeben"
      ],
      "140": [
       "lx:Raute",
       "lx:Stern"
+     ],
+     "146": [
+      "lx:Werktag"
      ]
     }
    }
   ],
-  "kalan_bekleyen": 139,
-  "gun_sirasi_notu_tr": "İnceleme #210 P2: hafta içi ileri göndermeyi azaltmak için gün takası (öneri): bayerisch↔typisch, Akzent↔Ausdruck#2 (114/118), aussprechen↔deutlich (113/117), freundlich↔Café (120/122), witzig↔praktisch (121/122), Möbel↔Oma (122/123). lx:gewöhnen (B1'deki v1 kartıyla aynı sözcük) çıktı, yerine lx:Süden."
+  "kalan_bekleyen": 138,
+  "gun_sirasi_notu_tr": "İnceleme #210 P2: hafta içi ileri göndermeyi azaltmak için gün takası (öneri): bayerisch↔typisch, Akzent↔Ausdruck#2 (114/118), aussprechen↔deutlich (113/117), freundlich↔Café (120/122), witzig↔praktisch (121/122), Möbel↔Oma (122/123). lx:gewöhnen (B1'deki v1 kartıyla aynı sözcük) çıktı, yerine lx:Süden. İnceleme #246 P1: lx:Raute, lx:Stern, lx:Menü öğretilmemiş drücken'e dayanıyordu; lx:drücken (öneri kartı, A1) 139. güne Menü'den önce girdi, lx:Werktag 139'dan 21. haftanın 146. gününe (kargo bildirimi) geçti."
  }
 }
