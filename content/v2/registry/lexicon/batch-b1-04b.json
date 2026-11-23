@@ -89,19 +89,28 @@
      "de": "Heute Abend soll es ein ___ geben.",
      "answer": "Gewitter",
      "tr": "Bu akşam fırtına olacakmış.",
-     "hint_tr": "Gök gürültülü fırtına **das Gewitter** olur."
+     "hint_tr": "Gök gürültülü fırtına **das Gewitter** olur.",
+     "also_ok": [
+      "Unwetter"
+     ]
     },
     {
      "de": "Haben Sie das ___ heute Nacht gehört?",
      "answer": "Gewitter",
      "tr": "Dün gece fırtınayı duydunuz mu?",
-     "hint_tr": "Gök gürültülü fırtına **das Gewitter** olur."
+     "hint_tr": "Gök gürültülü fırtına **das Gewitter** olur.",
+     "also_ok": [
+      "Unwetter"
+     ]
     },
     {
      "de": "Das ___ letzte Nacht war echt laut!",
      "answer": "Gewitter",
      "tr": "Dün geceki fırtına gerçekten çok gürültülüydü!",
-     "hint_tr": "Fırtına **das Gewitter** ile söylenir."
+     "hint_tr": "Fırtına **das Gewitter** ile söylenir.",
+     "also_ok": [
+      "Unwetter"
+     ]
     },
     {
      "de": "Nach ___ Gewitter gestern hatten wir keinen Strom.",
@@ -458,125 +467,6 @@
      "answer": "auf",
      "tr": "Cevabınızı bekliyorum.",
      "hint_tr": "Beklemek **warten auf** ile söylenir."
-    }
-   ]
-  },
-  {
-   "id": "lx:korrigieren",
-   "de": "korrigieren",
-   "tr": "düzeltmek (hatayı)",
-   "pos": "verb",
-   "verb": {
-    "praesens3": "korrigiert",
-    "praeteritum": "korrigierte",
-    "perfekt": "hat korrigiert",
-    "aux": "haben",
-    "case": [
-     "akk"
-    ]
-   },
-   "collocations": [
-    {
-     "de": "einen Fehler korrigieren",
-     "tr": "bir hatayı düzeltmek"
-    },
-    {
-     "de": "die Rechnung korrigieren",
-     "tr": "faturayı düzeltmek"
-    },
-    {
-     "de": "Bitte korrigieren Sie mich.",
-     "tr": "Lütfen beni düzeltin."
-    }
-   ],
-   "patterns": [
-    "pt:koennten-sie",
-    "pt:perfekt-haben",
-    "pt:ich-moechte"
-   ],
-   "register": "neutral",
-   "mistakes_tr": [
-    "Geçmişte **gekorrigiert** yanlış, başına **ge** gelmez. Doğrusu **Ich habe das korrigiert.**",
-    "Odayı düzeltmek **das Zimmer korrigieren** olmaz, **aufräumen** olur. **korrigieren** hatayı düzeltir."
-   ],
-   "examples": [
-    {
-     "id": "lx:korrigieren:1",
-     "de": "Könnten Sie bitte die Rechnung korrigieren? Der Betrag stimmt nicht.",
-     "tr": "Faturayı düzeltebilir misiniz lütfen? Tutar doğru değil.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:korrigieren:2",
-     "de": "Ich möchte meine Adresse korrigieren: Die Hausnummer ist 12, nicht 21.",
-     "tr": "Adresimi düzeltmek istiyorum: Kapı numarası 21 değil, 12.",
-     "layer": "hd"
-    },
-    {
-     "id": "lx:korrigieren:3",
-     "de": "Sag's einfach, wenn ich was falsch sag – du darfst mich gern korrigieren.",
-     "tr": "Yanlış bir şey söylersem söyle yeter, beni rahatça düzeltebilirsin.",
-     "layer": "alltag"
-    },
-    {
-     "id": "lx:korrigieren:4",
-     "de": "– Ihr Name ist hier falsch geschrieben. – Oh, danke! Können Sie das bitte korrigieren?",
-     "tr": "– Adınız burada yanlış yazılmış. – Ah, teşekkürler! Bunu düzeltebilir misiniz lütfen?",
-     "layer": "hd",
-     "dialog": true
-    },
-    {
-     "id": "lx:korrigieren:5",
-     "de": "– Hast du den Fehler im Plan gesehen? – Ja, hab ihn schon korrigiert.",
-     "tr": "– Plandaki hatayı gördün mü? – Evet, çoktan düzelttim.",
-     "layer": "alltag",
-     "dialog": true
-    }
-   ],
-   "level": "B1",
-   "tier": "K2",
-   "freqRank": 2793,
-   "domains": [
-    "amt",
-    "strategie",
-    "arbeit"
-   ],
-   "exp": {
-    "anlam_tr": "Yanlış bir bilgiyi ya da hatayı doğrusuyla değiştirmeyi anlatır.",
-    "ne_zaman_tr": "Faturada, formda ya da e-postada hata görünce.",
-    "parcalar": [],
-    "ipucu_tr": "Konuşurken kendin için de iste: **Bitte korrigieren Sie mich.**"
-   },
-   "forms": [
-    {
-     "de": "Könnten Sie bitte die Rechnung ___?",
-     "answer": "korrigieren",
-     "tr": "Faturayı düzeltebilir misiniz lütfen?",
-     "hint_tr": "**Könnten Sie** ile **korrigieren** sona gelir."
-    },
-    {
-     "de": "Ich habe den Fehler schon ___.",
-     "answer": "korrigiert",
-     "tr": "Hatayı çoktan düzelttim.",
-     "hint_tr": "Geçmişte **korrigiert** olur, başında **ge** yok.",
-     "also_ok": [
-      "verbessert"
-     ]
-    },
-    {
-     "de": "Du darfst mich gern ___.",
-     "answer": "korrigieren",
-     "tr": "Beni rahatça düzeltebilirsin.",
-     "hint_tr": "**darfst** ile **korrigieren** sona gelir.",
-     "also_ok": [
-      "verbessern"
-     ]
-    },
-    {
-     "de": "Ich möchte meine Adresse ___.",
-     "answer": "korrigieren",
-     "tr": "Adresimi düzeltmek istiyorum.",
-     "hint_tr": "**möchte** ile **korrigieren** sona gelir."
     }
    ]
   },
@@ -2020,7 +1910,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "Türkçede bilgi hem haber hem beceridir. Beceri için **Informationen** değil **Kenntnisse** denir.",
+    "Türkçede bilgi hem haber hem bildiğin şeydir. Bir dilde, bir işte bildiklerin için **Informationen** değil **Kenntnisse** denir.",
     "Almanca bilgim iyi derken **eine gute Deutschkenntnis** denmez. Hep **gute Deutschkenntnisse** denir."
    ],
    "examples": [

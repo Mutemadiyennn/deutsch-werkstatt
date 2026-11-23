@@ -95,3 +95,32 @@ GERİ kimlikleri:
 8. lx:Gehaltsvorstellung exp.ipucu_tr
 
 `batch-b1-04a.json` (1 GERİ) ve `batch-b1-04b.json` (7 GERİ) bu hâliyle "reviewed" sayılamaz (OD-9.4).
+
+## 2. tur (yalnız doğrulama)
+
+Girdi: dilbilimcinin düzelttiği 8 GERİ alanı ve rakamsız yeniden yazılan lx:Gehaltsvorstellung alanları (`docs/v2/reviews/lexicon-b1-04.md`, "Okur düzeltmeleri" ve "B kararları"). Çelişki olmasın diye aynı kartın öbür notlarına da bakıldı. Mekanik bakış: sembol, tırnak, 14 kelimeden uzun cümle, terim yok.
+
+| kart | alan | yeni açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| lx:verspätet | mistakes_tr[0] | Geç kaldım derken **Ich habe verspätet** yanlış, **mich** eksik. Doğrusu **Ich habe mich verspätet.** | geç kaldım derken mich unutulmaz | GEÇTİ | tek fikir, yanlış söz yazılmış, çelişki kalktı |
+| lx:verreisen | exp.ipucu_tr | Yolculuktaysan, şehir dışındaysan **Ich bin verreist** dersin. | yolculuktayken, şehir dışındayken Ich bin verreist | GEÇTİ | |
+| lx:verreisen | forms[1].hint_tr | Yolculukta, şehir dışında olan **verreist** olur. | yolculuktaki kişi verreist | GEÇTİ | |
+| lx:verreisen | forms[2].hint_tr | Yolculukta, şehir dışında olanlar için **verreist** denir. | yolculuktaki komşular verreist | GEÇTİ | |
+| lx:Mühe | forms[3].hint_tr | **Mühe geben** önüne **mir** gelir: **Ich habe mir Mühe gegeben.** | Mühe'nin önüne mir gelir | GEÇTİ | boşluğa gelen söz artık anılıyor |
+| lx:Kenntnis | forms[2].hint_tr | Dil bilmek **Sprachkenntnisse haben** ile söylenir. | hangi dilleri bildiğini Sprachkenntnisse ile söylersin | GEÇTİ | gramer diye okunmuyor |
+| lx:teamfähig | mistakes_tr[1] | Ekip çalışmasına yatkınım derken **Ich bin fähig für Team** olmaz. Doğrusu **Ich bin teamfähig.** | fähig für Team değil, tek kelime teamfähig | GEÇTİ | kartın kelimesini anlatıyor |
+| lx:Gehaltsvorstellung | exp.ipucu_tr | Görüşmede şöyle sorulur: **Was ist Ihre Gehaltsvorstellung?** | görüşmede maaş beklentin böyle sorulur | GEÇTİ | |
+| lx:Gehaltsvorstellung | mistakes_tr[1] | Maaş beklentimi sordular derken **meine Gehaltsvorstellung gefragt** eksik. Doğrusu **nach meiner Gehaltsvorstellung gefragt**. | sordular derken başa nach gelir | GEÇTİ | örnek 3 ve boşluk 4 ile uyumlu |
+| lx:Gehaltsvorstellung | examples[1].tr | Lütfen başvurunuzda maaş beklentinizi de belirtin. | | GEÇTİ | |
+| lx:Gehaltsvorstellung | forms[1].tr | Lütfen başvurunuzda maaş beklentinizi de belirtin. | | GEÇTİ | |
+| lx:Gehaltsvorstellung | forms[1].hint_tr | Maaş beklentisi **die Gehaltsvorstellung** olur. | | GEÇTİ | |
+| lx:Gehaltsvorstellung | forms[3].tr | Hemen maaş beklentimi sordular. | | GEÇTİ | |
+| lx:Gehaltsvorstellung | forms[3].hint_tr | Bir şeyi sormak **fragen nach** ile söylenir. | bir şeyi sorarken nach | GEÇTİ | ekrandaki boşluğu (**nach**) anlatıyor |
+
+Kartta rakam ve **brutto** kalmadı; 1. turun B takip notundaki lx:Gehaltsvorstellung forms[3] (**brutto**) maddesi de kendiliğinden kapandı.
+
+### 2. tur sonucu
+
+- Okunan: 14 alan · GEÇTİ: 14 · GERİ: 0
+
+`batch-b1-04a.json` ve `batch-b1-04b.json`'da okur GERİ'si kalmadı (OD-9.3 okur katmanı geçti).

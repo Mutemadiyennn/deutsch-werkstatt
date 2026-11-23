@@ -139,3 +139,20 @@ Yalnız geri dönen 8 alan değişti (b1-04a 1, b1-04b 7). Okur bu alanları yen
 | lx:Gehaltsvorstellung | exp.ipucu_tr | Görüşmede şöyle sorulur: **Was ist Ihre Gehaltsvorstellung?** | İpucu **brutto** sözcüğünü anlatıyordu. |
 
 Okurun takip notu (lx:verreisen eşdizim 3 çevirisi "seyahatte olmak, evde olmamak") GERİ değildi, dokunulmadı. `npm run content:validate` → **0 hata, 156 uyarı**. `review` iki dosyada `draft`.
+
+## Çakışma silme (2026-11-23)
+
+A2 hattı lx:Geduld, lx:korrigieren ve lx:höflich kartlarını önce yazdı (#210). Üç kart bu partiden silindi: b1-04a 24 → **22** kart (lx:Geduld, lx:höflich), b1-04b 26 → **25** kart (lx:korrigieren). Toplam 47 kart; yerlerine gelecek üç yedek kart `batch-b1-04c.json` içinde ayrı incelenecek.
+
+Kalan 47 kartın notları, ipuçları, boşluk ipuçları ve `also_ok` listeleri üç sözcük için makinede tarandı: gönderme **yok**, düzeltme gerekmedi. Tek geçiş bir örnek cümlede sözcük olarak (lx:Schwäche ö4 **ungeduldig**); sorun değil. Yukarıdaki bölümlerde bu üç karta ait satırlar (A-1, A-2, A-3, A-4, C) artık geçersiz.
+
+## Örneklem düzeltmeleri (2026-11-23, örneklem raporu: `docs/v2/reviews/ornek-lexicon-b1-04.md`, 4 alan GERİ)
+
+Yalnız geri dönen 4 alan değişti (hepsi b1-04b).
+
+| Kart | Alan | Sonra | Neyi çözüyor |
+|---|---|---|---|
+| lx:Gewitter | forms[0], forms[1], forms[2] | `also_ok`: **Unwetter** | Çeviri "fırtına" diyor, **das Unwetter** artikel ve anlamla uyuyor; lx:Unwetter boşlukları da **Gewitter** kabul ediyor. Kabul artık iki yönlü. Çeviri ve ipucu değişmedi. |
+| lx:Kenntnis | mistakes_tr[0] | Türkçede bilgi hem haber hem bildiğin şeydir. Bir dilde, bir işte bildiklerin için **Informationen** değil **Kenntnisse** denir. | Eski not "beceri" diyordu; beceri komşu kart lx:Fähigkeit'ın karşılığı. |
+
+**Unwetter** kartın notlarında yanlış diye geçmiyor (makinede bakıldı). `npm run content:validate` → 0 hata. `review` iki dosyada `draft`.
