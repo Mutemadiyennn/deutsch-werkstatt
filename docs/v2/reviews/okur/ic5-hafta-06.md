@@ -1322,3 +1322,5 @@ GERİ:
 Yan gözlem (kapsam dışı, karar değil): 1. turun 28 GERİ alanından bir kısmına bugünkü dosyalarda baktım (`can_do.tr` 36/39/40, `goal_tr` 38, `kontrol_tr[1]` 38/40, 41 a2 `ayrinti[1].q_tr`, 42 `prova.title_tr`, 42 s11 `why_tr`, `gr:a1-08:t4`). Hepsi 1. turdaki öneri yönünde düzelmiş. Açıklama alanlarında `…` kalmamış.
 
 **Karar (OD-9.4):** `gun-39.json` bu fark turunda tek GERİ yüzünden "reviewed" sayılamaz. Bu turda okunan alanlara göre `gun-36`, `gun-37`, `gun-38`, `gun-40`, `gun-41`, `gun-42`, `dn-06` ve `grammar.json` (`gr:a1-07:t3`) için okur engeli kalmadı. F10 düzelince yalnız o alan yeniden okunur.
+
+**Yeniden okuma (İÇ-15, 2026-11-23):** `gun-39.json` · `m1:39:s3` · `why_tr` «Otobüs için **ist** gelir: **ist spät gekommen**, geç geldi.» · **GEÇTİ** (öneri aynen uygulanmış; artık genel kural gibi okunmuyor, g3 ile çelişmiyor). `gun-39.json` için okur engeli kalmadı.
