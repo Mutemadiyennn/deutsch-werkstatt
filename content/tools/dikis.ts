@@ -305,7 +305,7 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
     // çerçeve: bu adıma kadar gösterilenler (önceki günler: dosya varsa dersleri + halka kalıpları, yoksa omurganın dersleri)
     const cerceveVar = cerceveHafta.size > 0;
     const onceGoster = new Set<string>();
-    if (cerceveVar) for (let gn = 1; gn < n; gn++) {
+    for (let gn = 1; gn < n; gn++) {   // gösterim çekim kuralı için de gerekir (PM-097 md. 2)
       const f = dosyaGun.get(gn);
       if (f) { for (const x of yazilar(f.dersler)) dersGoster(onceGoster, x); for (const h of dizi(f.halkalar)) halkaGoster(onceGoster, nesne(h)); }
       else for (const x of omurgaDers.get(gn) ?? []) dersGoster(onceGoster, x);
@@ -331,7 +331,8 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
       const bilinenKart = new Set(k.kart); for (const id of k.biten) for (const x of g.dizin.dersler.get(id)?.kart ?? []) bilinenKart.add(x);
       const ckBildirilen = new Set<string>();
       for (const x of bilinmeyenler(g.dizin, c.de, k)) {
-        if (x.tur === "kart" || ckBildirilen.has(x.sozcuk)) continue;
+        // gösterilmiş biçim (kalıp satırı, tanıtım, dil noktası tablosu) serbesttir: düzensiz biçim de "ancak gösterilince"
+        if (x.tur === "kart" || ckBildirilen.has(x.sozcuk) || S.has(x.sozcuk)) continue;
         const j = tt.findIndex((t, i) => t === x.sozcuk && !ic.has(i) && !dis.has(i)); if (j < 0) continue;
         const ck = cekimKarari(g.dizin, tt, j, bilinenKart, C, x.tur === "bicim" ? x.adaylar : []);
         if (ck?.karar !== "engel") continue;
@@ -361,18 +362,18 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
     const gunGoster = new Set(onceGoster);
     for (const h of halkalar) {
       for (const kp of dizi(h.kaliplar)) kaliplar.push(...kalipSecenekleri(String(nesne(kp).de ?? "")));
-      if (cerceveVar) halkaGoster(gunGoster, h);
+      halkaGoster(gunGoster, h);
       const kartlar = yazilar(h.kartlar).filter((x) => yeniSet.has(x));
       const sonra = h.dersten_sonra === true;
       const kart = new Set([...onceKart, ...gorulenKart, ...kartlar, ...(sonra ? bugunDersKart : [])]), biten = new Set([...onceDers, ...(sonra ? bugunDers : [])]);
       const gos = gosterilenKaliplar(g.dizin, kart, biten, g.dersler);
-      const S = new Set(gunGoster); if (cerceveVar && sonra) for (const x of bugunDers) dersGoster(S, x);
+      const S = new Set(gunGoster); if (sonra) for (const x of bugunDers) dersGoster(S, x);
       for (const c of halkaGorevleri(h)) denetle(c, { kart, biten, kaliplar: [...kaliplar] }, gos, S, sonra ? bugunCekim : onceCekim);
       for (const x of kartlar) gorulenKart.add(x);
     }
     const kartG = new Set([...onceKart, ...yeni, ...bugunDersKart]), bitenG = new Set([...onceDers, ...bugunDers]);
     const gosG = gosterilenKaliplar(g.dizin, kartG, bitenG, g.dersler);
-    if (cerceveVar) for (const x of bugunDers) dersGoster(gunGoster, x);
+    for (const x of bugunDers) dersGoster(gunGoster, x);
     for (const c of halkaDisiGorevler(gun)) denetle(c, { kart: kartG, biten: bitenG, kaliplar }, gosG, gunGoster, bugunCekim);
     if (ortulen) satir.not.push(`${ortulen} adım gösterilmiş kalıpla (eşdizim/ders parçası) geçti`);
     if (cerceve1) satir.not.push(`1. hafta (tablo öncesi, sayılmadı): ${cerceve1} çerçeve biçimi gösterilmeden kullanılıyor`);
