@@ -28,3 +28,34 @@ Toplam: 3 · GEÇTİ: 3 · GERİ: 0
 GERİ kimlikleri: yok.
 
 Bu ek turdaki üç satır OD-9.4 açısından engel değildir.
+
+## Ek tur 2 — adsız hâller ve bir yeni görev cümlesi
+
+Kapsam: 6 yeni Türkçe satır. 10–14, adını girmemiş öğrenciye gösterilen hâller (alan `tr_adsiz`; yanındaki `tr`, adı olan hâl). 15, Gün 2'deki yeni görev cümlesi (alan `tr`).
+Dosyadaki metin, koordinatörün verdiği metinle aynı.
+
+Bulunan fark (15. satırla ilgili): `gun-02.json` m1:02:h4'te, `lx:haben` kartlı görev cümlesi eskiden "Im August habe ich Urlaub." / "Ağustosta iznim var." idi. İlk turdaki 3. satır buydu. O yerde artık 15. satır duruyor. "Im August habe ich Urlaub." dosyada yalnızca başka bir yerde, bir kabul listesinde (satır 1850) geçiyor. Yani 3. satır görev cümlesi olarak artık ekranda yok. Kararı bundan etkilenmiyor.
+
+### Sonuç (Ek tur 2)
+
+| Okunan satır | GEÇTİ | GERİ |
+|---|---|---|
+| 6 | 6 | 0 |
+
+### Satırlar
+
+| # | Öğe | Alan | Almanca | Türkçe (açıklama) | Kendi sözlerimle | Karar | Neden |
+|---|---|---|---|---|---|---|---|
+| 10 | m1:05:h1 sahne satırı 0 (Tobi) | tr_adsiz | Wie spät ist es? | Saat kaç? | Tobi bana saatin kaç olduğunu soruyor. | GEÇTİ | İki kelime, tek fikir. Ad olmadan da eksik durmuyor. |
+| 11 | m1:06:h2 görev cümlesi (kart heißen) | tr_adsiz | Und Sie? Wie heißen Sie? | Ya siz? Sizin adınız ne? | Karşımdakine sırayı veriyorum ve kibarca adını soruyorum. | GEÇTİ | İki kısa soru, aynı fikir. "Ya siz?" karşı tarafa dönüşü tek okumada anlatıyor. Not (engel değil): "Sizin" bir parça fazla duruyor ("Ya siz? Adınız ne?" daha doğal) ama anlamı bozmuyor. |
+| 12 | m1:06:h3 sahne satırı 0 (Tobi) | tr_adsiz | Wohin gehst du? Es ist noch früh! | Nereye gidiyorsun? Daha saat erken! | Tobi beni çıkarken görüyor, "nereye, daha erken" diye şaşırıyor. | GEÇTİ | İki kısa cümle, tek durum. "Daha saat erken" konuşma dili ama tek okumada anlaşılıyor; ortam satırı (saat dört, mont giyiyorsun) ile uyumlu. |
+| 13 | m1:07:h1 görev cümlesi (kart sein) | tr_adsiz | Meine Adresse ist Brunnengasse sieben. | Adresim Brunnengasse yedi. | Adresimi söylüyorum: Brunnengasse sokağı, 7 numara. | GEÇTİ | Tek fikir. Sokak adı Almanca kalıyor; bu bir yer adı, ekranda tırnak içinde değil, sorun değil. |
+| 14 | m1:07:h2 sahne satırı 1 (sen, telefonda) | tr_adsiz | Guten Tag. Ich habe Fieber und ich möchte einen Termin. | İyi günler. Ateşim var ve bir randevu istiyorum. | Muayenehaneyi arıyorum, selam veriyorum, ateşim olduğunu söyleyip randevu istiyorum. | GEÇTİ | Selam + tek istek (ateş yüzünden randevu). İkinci cümle 6 kelime. Ad olmayınca "Ben …" yerine "İyi günler" gelmiş; telefon açılışı olarak doğal. |
+| 15 | m1:02:h4 görev cümlesi (kart haben) | tr | Im August habe ich Geburtstag. | Ağustosta doğum günüm var. | Doğum günüm ağustos ayında diyorum. | GEÇTİ | Tek fikir, 4 kelime. Almancayla aynı şeyi söylüyor. |
+
+Toplam (Ek tur 2): 6 · GEÇTİ: 6 · GERİ: 0
+GERİ kimlikleri: yok.
+
+## Güncel toplam (bu rapor)
+
+Toplam: 9 · GEÇTİ: 9 · GERİ: 0 · GERİ kimlikleri: yok.

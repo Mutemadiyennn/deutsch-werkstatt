@@ -110,6 +110,16 @@ $ npx vitest run content packages/shared/src/adsiz
 
 Betik denetimi (üç görev cümlesi, adlı ve adsız): kartın sözcüğü gösterilen cümlede var; listenin ilk öğesi = gösterilen cümle; `norm()` sonrası liste içi tekrar 0; adsız alanlarda `{name}` kalıntısı 0; kabul listeleri ≥ 3 (D-064). Gün dosyası ile öneri dosyasının `halkalar` bölümü üç günde de eşit (`cikarim` alanı hariç, bkz. şüphe 4). `gun-05.json` ve `gun-05-halkalar.json` değişmedi.
 
+## Ek tur (2026-11-23): gun-02 · m1:02:h4 `lx:haben`, „Im August habe ich Geburtstag.“
+
+#196 incelemesinin (P2-3) ardından değişen tek cümle. Almanca doğru ve söylenir; Türkçe („Ağustosta doğum günüm var.“) doğal ve halkanın kalıbındaki **var** karşılığını koruyor (kardeşleri „İlkbaharda / Bugün doğum günüm var“ ile aynı çizgi). Dört kabul öğesi doğru. Cümle haftada ve r0-02'de başka hiçbir gösterilen cümleyle aynı değil; `kt.ts cumle 2 4` TAMAM, çerçeve örneği iki kipte de bu cümle.
+
+- **Düzeltme (P3, eksik varyant):** kabul listesine „Ich habe Geburtstag im August.“ eklendi (4 → 5). Günün dersi aynı sırayı kabul ediyor (r0-02: „Ich habe Geburtstag im Februar.“), aynı halkadaki kardeş cümle de („Ich habe Urlaub am Montag. …“); burada reddedilmesi tutarsız olurdu. Kardeş „Im Frühling habe ich Geburtstag.“ listesinde aynı öğe yok; kapsam dışı olduğu için dokunulmadı, aynı ekleme önerilir.
+- **„Heute habe ich Geburtstag!“ ile:** aynı metin değil, dilbilgisi çakışması yok. `lx:haben`'in üç cümlesinden ikisi artık „… habe ich Geburtstag“ ile bitiyor (halkada „Im Frühling …“ ile üç); çeşitlilik biraz azaldı, hata değil.
+- **h2 „Mein Geburtstag ist im August, nicht im Mai.“ ile:** aynı olgu, yeni fiille (sein → haben); yineleme değil, yeni yapı öğretiyor. Kalan gözlem (bu değişiklikten önce de vardı): günün içinde „ben“in doğum günü iki ayrı ayda geçiyor (h2 „Mein Geburtstag? Im Mai.“, h4 „Im Frühling habe ich Geburtstag.“, yazma örneği „Mein Geburtstag ist im Mai.“ ↔ h2 ve h4'te ağustos). Görev cümleleri bağımsız alıştırma olduğu için hata sayılmadı.
+
+Doğrulama: `npm run content:validate` → 0 hata, 131 uyarı; gün ve öneri dosyasının `halkalar` bölümü eşit (`cikarim` hariç). Sonuç: **KAPANDI**.
+
 ## Sonuç
 
 6 madde incelendi, 2 bulgu (P3), ikisi de düzeltildi; hata oranı 2/6. Görev cümlesi ve sahne satırı metinleri (`de`, `tr`, `de_adsiz`, `tr_adsiz`) değişmedi, yalnız kabul listeleri genişledi.
