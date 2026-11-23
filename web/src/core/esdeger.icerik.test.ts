@@ -10,8 +10,9 @@
  *  3. Dolgu: cümlenin başındaki ya da sonundaki nezaket/onay sözcükleri (bitte, danke, ja, nein, also …; başta gern/gerne/dann,
  *     sonda gut/toll/super/prima/klar/genau ve yalın "schön" hariç: "Gern ich …", "Gut das ist sehr" V3'tür) düşer; "Uhr" her yerden düşer (PM-101 md. 6); geri kalan sıra aynıdır.
  * Kuralların açıklamadığı kabul derecelendiricinin gevşekliğidir: test kırmızı olur. Çözüm ya derecelendiricide (web/) ya da,
- * sıra doğru Almancaysa, o sıranın kabul listesine yazılmasıdır (listede olan sıra taranmaz). İSTISNA: #76 incelemesinde
- * görülüp bırakılmış kabuller; yalnız azalır.
+ * sıra doğru Almancaysa, o sıranın kabul listesine yazılmasıdır (listede olan sıra taranmaz). ISTISNA: #76 incelemesinde ve
+ * PM-117 A.3 ön sınamasında görülüp inceleme kararıyla bırakılmış kabuller; yeni satır yalnız inceleme kararıyla; derecelendirici
+ * düzelince silinir.
  */
 import { describe, expect, it } from "vitest";
 import { readFileSync, readdirSync, statSync } from "node:fs";
@@ -113,17 +114,21 @@ const UNLEM_CEKIRDEK = new Set("ja nein okay ok ach also".split(" "));
 function unlemKumesi(p: string[], r: string[]): boolean {
   let k = 0; while (k < p.length && UNLEM.has(p[k]!)) k++;
   if (k < 2 || !p.slice(0, k).some((w) => UNLEM_CEKIRDEK.has(w)) || torba(p) !== torba(r)) return false;
-  const kalan = [...r];
-  for (const w of p.slice(0, k)) { const i = kalan.indexOf(w); if (i < 0) return false; kalan.splice(i, 1); }
-  return ayni(p.slice(k), kalan);
+  // küme r'nin baştaki ünlem dizisinden ve sondaki dolgudan gelir; cümle içinden sözcük (dann, so, gern, gut) çekilmez
+  let m = 0; while (m < r.length && UNLEM.has(r[m]!)) m++;
+  for (let t = 0; m + t <= r.length && (t === 0 || sonDolgu(r, r.length - t + 1)); t++) {
+    const son = r.slice(r.length - t);
+    if (torba(p.slice(0, k)) === torba([...r.slice(0, m), ...son]) && ayni(p.slice(k), r.slice(m, r.length - t))) return true;
+  }
+  return false;
 }
 /** Evet/hayır sorusunda (fiil başta) bir öbek başa alınıp düz cümle olur: "Dann geht er aufs Gymnasium." ← "Geht er dann aufs Gymnasium?" */
 function sorudanOne(p: string[], r: string[]): boolean {
-  if (ZAMIR.has(r[0] ?? "") || torba(p) !== torba(r)) return false;
+  if (ZAMIR.has(r[0] ?? "") || /^w(ann|o|ie|as|er|em|en|arum|eshalb|oher|ohin|elch\p{L}*)$/u.test(r[0] ?? "") || torba(p) !== torba(r)) return false;
   for (let i = 1; i < p.length; i++) {
     if (p[i] !== r[0]) continue;
     const X = p.slice(0, i), B = r.slice(1);
-    if ((X.length > 1 && X.some((w) => ZAMIR.has(w))) || BAGLI.has(X.at(-1)!)) continue;
+    if ((X.length > 1 && (X.some((w) => ZAMIR.has(w)) || !BAGLI.has(X[0]!))) || BAGLI.has(X.at(-1)!)) continue;
     for (let a = 0; a + X.length <= B.length; a++) if (ayni(B.slice(a, a + X.length), X) && !KOPAN.has(B[a - 1] ?? "") && ayni([...B.slice(0, a), ...B.slice(a + X.length)], p.slice(i + 1))) return true;
   }
   return false;
@@ -155,7 +160,9 @@ const ISTISNA = new Set<string>([
   // PM-117 A.3 ön sınamasında (16 içerik haftası birleşik) görülen, aynı türden derecelendirici toleransı ("so"/"dann" başa); web/ takibi
   "m1/gun-59.json m1:59:s9: Weil mein Rücken so wehtut. → so Weil mein Rücken wehtut.",
   "m1/gun-77.json m1:77:v1:c1: Ja, dann zahle ich bar. → dann Ja, ich zahle bar.",
-  "m1/gun-104.json m1:104:s6: Du siehst so müde aus. → so Du siehst müde aus."
+  "m1/gun-104.json m1:104:s6: Du siehst so müde aus. → so Du siehst müde aus.",
+  // doğru Almanca ("Gern, ja, ich komme mit."), sondaki "mit" yüzünden kurala girmiyor; #216 kabul listesine yazınca silinir
+  "m1/gun-15.json m1:15:s10: Ja, ich komme gern mit. → gern Ja, ich komme mit."
 ]);
 
 describe("kurallar", () => {
@@ -189,6 +196,14 @@ describe("kurallar", () => {
     expect(aciklanir("Dann ja, ich zahle bar.", ["Ja, dann zahle ich bar."])).toBe(false);
     expect(aciklanir("Morgen ich habe Zeit.", ["Habe ich morgen Zeit?"])).toBe(false);
     expect(aciklanir("Gern, ich komme.", ["Ich komme gern."])).toBe(false);
+    expect(aciklanir("Ja dann ich gehe nach Hause.", ["Ja, ich gehe dann nach Hause."])).toBe(false);
+    expect(aciklanir("Nein gut ich finde das.", ["Nein, ich finde das gut."])).toBe(false);
+    expect(aciklanir("Ja so ich bin müde.", ["Ja, ich bin so müde."])).toBe(false);
+    expect(aciklanir("Ja gern ich hätte einen Termin.", ["Ja, ich hätte gern einen Termin."])).toBe(false);
+    expect(aciklanir("Gern, ja, ich komme.", ["Ja, ich komme gern."])).toBe(true);
+    expect(aciklanir("Der Bus wann kommt?", ["Wann kommt der Bus?"])).toBe(false);
+    expect(aciklanir("Kommt wann der Bus?", ["Wann kommt der Bus?"])).toBe(false);
+    expect(aciklanir("Heute Zeit hast du.", ["Hast du heute Zeit?"])).toBe(false);
   });
 });
 
