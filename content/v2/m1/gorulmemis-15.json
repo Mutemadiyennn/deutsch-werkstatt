@@ -1,0 +1,124 @@
+{
+ "id": "m1:gorulmemis:15",
+ "hafta": 15,
+ "durumlar": [
+  {
+   "id": "m1:h15:g1",
+   "can_do": "cd:m1:99",
+   "durum_tr": "Bürgerbüro'da saat onda randevun vardı, ama on buçukta geliyorsun. Otobüs gelmedi, yürümek zorunda kaldın. Frau Schneider'e nedenini söyle.",
+   "karsi": "ch:schneider",
+   "yer": "pl:buergerbuero",
+   "prompt_de": "Guten Tag. Ihr Termin war um zehn Uhr. Jetzt ist es halb elf.",
+   "accepted": [
+    "Entschuldigung. Der Bus ist nicht gekommen, ich musste zu Fuß gehen. Ich konnte nicht früher kommen.",
+    "Entschuldigen Sie bitte. Der Bus ist nicht gekommen, deswegen musste ich zu Fuß gehen.",
+    "Das tut mir leid. Ich musste zu Fuß gehen, der Bus ist nicht gekommen.",
+    "Entschuldigung, ich musste zu Fuß gehen. Ich konnte nicht pünktlich kommen.",
+    "Entschuldigung. Der Bus ist nicht gekommen. Ich musste zu Fuß gehen."
+   ],
+   "kalip": "Ich musste … – Ich konnte nicht …",
+   "why_tr": "Resmî yerde önce özür, sonra geçmişteki zorunluluk: **Ich musste zu Fuß gehen.**"
+  },
+  {
+   "id": "m1:h15:g2",
+   "can_do": "cd:m1:100",
+   "durum_tr": "Spor salonunda Basti, ocakta neden her gün geldiğini soruyor. Ocakta her gün spor yapmak istiyordun; olmadı.",
+   "karsi": "ch:kraus",
+   "yer": "pl:fitness",
+   "prompt_de": "Im Januar warst du jeden Tag hier. Und jetzt?",
+   "accepted": [
+    "Im Januar wollte ich jeden Tag Sport machen. Das hat nicht geklappt.",
+    "Tja, im Januar wollte ich jeden Tag Sport machen. Aber das hat nicht geklappt.",
+    "Ich wollte im Januar jeden Tag Sport machen, aber das hat nicht geklappt.",
+    "Im Januar wollte ich jeden Tag kommen. Das hat leider nicht geklappt.",
+    "Ja, ich wollte jeden Tag Sport machen. Das hat nicht geklappt."
+   ],
+   "kalip": "Ich wollte … – Das hat nicht geklappt.",
+   "why_tr": "Geçmişteki istek **wollte**, olmayan şey **hat nicht geklappt**."
+  },
+  {
+   "id": "m1:h15:g3",
+   "can_do": "cd:m1:101",
+   "durum_tr": "Akşam kursunda bir kadın soruyor: kızı dördüncü sınıfta, sonra hangi okul geliyor? İlkokuldan sonra üç yol olduğunu söyle.",
+   "karsi": "eine Kursteilnehmerin",
+   "yer": "pl:sprachkurs",
+   "prompt_de": "Meine Tochter ist in der vierten Klasse. Was kommt danach?",
+   "accepted": [
+    "Nach der Grundschule kommt die Mittelschule, die Realschule oder das Gymnasium.",
+    "Danach kommt die Mittelschule, die Realschule oder das Gymnasium.",
+    "Nach der Grundschule geht sie in die Mittelschule, in die Realschule oder ins Gymnasium.",
+    "Danach geht sie auf die Realschule, auf die Mittelschule oder auf das Gymnasium."
+   ],
+   "kalip": "Nach der Grundschule kommt …",
+   "why_tr": "Bavyera'da ilkokul dört yıl; sonra **Mittelschule**, **Realschule** ya da **Gymnasium**."
+  },
+  {
+   "id": "m1:h15:g4",
+   "can_do": "cd:m1:102",
+   "durum_tr": "Kuaförde Luka çocukken ne olmak istediğini soruyor. Çocukken zengin olmak ve her yere seyahat etmek istiyordun.",
+   "karsi": "ch:petrovic",
+   "yer": "pl:friseur",
+   "prompt_de": "Was wolltest du als Kind werden?",
+   "accepted": [
+    "Als Kind wollte ich reich werden und überall reisen!",
+    "Als Kind wollte ich reich werden.",
+    "Ich wollte als Kind reich werden und viel reisen.",
+    "Als Kind? Ich wollte reich werden und überall reisen.",
+    "Früher wollte ich reich werden und überall reisen."
+   ],
+   "kalip": "Als Kind wollte ich …",
+   "why_tr": "**Als Kind** başta, **wollte** ikinci yerde, **werden** en sonda."
+  },
+  {
+   "id": "m1:h15:g5",
+   "can_do": "cd:m1:103",
+   "durum_tr": "Fırında Gerti Stadler bugün neden bu kadar geç geldiğini soruyor. Kısaca anlat: önce bisikletinin lastiği inikti, ondan sonra otobüs gelmedi.",
+   "karsi": "ch:stadler",
+   "yer": "pl:baeckerei",
+   "prompt_de": "Grüß Gott! Heute so spät? Was war denn los?",
+   "accepted": [
+    "Zuerst hatte mein Fahrrad keine Luft. Danach ist der Bus nicht gekommen.",
+    "Kurz gesagt: Zuerst hatte mein Fahrrad keine Luft, danach ist der Bus nicht gekommen.",
+    "Zuerst hatte das Fahrrad keine Luft, und danach ist der Bus nicht gekommen.",
+    "Mein Fahrrad hatte keine Luft. Danach ist der Bus nicht gekommen, deswegen bin ich spät.",
+    "Zuerst hatte mein Fahrrad keine Luft, danach ist der Bus nicht gekommen. Deswegen bin ich so spät."
+   ],
+   "kalip": "Zuerst … – Danach … – Deswegen …",
+   "why_tr": "Kısa sıra: **Zuerst …, danach …** İki sözcükten de sonra fiil hemen gelir."
+  },
+  {
+   "id": "m1:h15:g6",
+   "can_do": "cd:m1:104",
+   "durum_tr": "Eczanedesin. Dün aldığın tabletler senin tabletlerin değil: yanlış tabletleri almışsın. Eczacıya hatayı bildir.",
+   "karsi": "die Apothekerin",
+   "yer": "pl:apotheke",
+   "prompt_de": "Guten Tag, was kann ich für Sie tun?",
+   "accepted": [
+    "Guten Tag. Ich muss einen Fehler melden: Das sind nicht meine Tabletten.",
+    "Guten Tag. Ich habe gestern die falschen Tabletten bekommen. Das war ein Fehler.",
+    "Ich muss einen Fehler melden. Ich habe gestern falsche Tabletten bekommen.",
+    "Guten Tag, das sind nicht meine Tabletten. Ich muss einen Fehler melden.",
+    "Entschuldigung, ich muss einen Fehler melden: Das sind die falschen Tabletten."
+   ],
+   "kalip": "Ich muss einen Fehler melden: …",
+   "why_tr": "Hatayı açık bildir: **Ich muss einen Fehler melden.** Sonra ne olduğunu söyle."
+  },
+  {
+   "id": "m1:h15:g7",
+   "can_do": "cd:m1:105",
+   "durum_tr": "Akşam kursuna yirmi dakika geç kaldın. Bisikletinin lastiği inikti, yürümek zorunda kaldın. Öğretmene özür dileyip kısaca açıkla.",
+   "karsi": "die Kursleiterin",
+   "yer": "pl:sprachkurs",
+   "prompt_de": "Guten Abend! Sie sind heute spät. Ist alles in Ordnung?",
+   "accepted": [
+    "Entschuldigung! Mein Fahrrad hatte keine Luft, deswegen musste ich zu Fuß gehen.",
+    "Entschuldigung, mein Fahrrad hatte keine Luft. Ich musste zu Fuß gehen.",
+    "Ja, danke. Mein Fahrrad hatte keine Luft, deswegen bin ich zu spät.",
+    "Entschuldigen Sie. Mein Fahrrad hatte keine Luft, deswegen bin ich zu Fuß gekommen.",
+    "Es tut mir leid. Mein Fahrrad hatte keine Luft, deswegen musste ich zu Fuß gehen."
+   ],
+   "kalip": "Entschuldigung! …, deswegen …",
+   "why_tr": "Önce özür, sonra neden ve sonuç: **…, deswegen musste ich zu Fuß gehen.**"
+  }
+ ]
+}

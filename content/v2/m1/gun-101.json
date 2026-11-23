@@ -1,0 +1,1534 @@
+{
+ "schema": 1,
+ "id": "m1:gun:101",
+ "day": 101,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Almanya'da okul: Grundschule, Gymnasium",
+ "goal_tr": "Bir çocuğun hangi okula ve hangi sınıfa gittiğini sorar, cevabı anlarsın. Okul sisteminin ana adlarını tanırsın.",
+ "can_do": {
+  "id": "cd:m1:101",
+  "tr": "Bir çocuğun hangi okula gittiğini sorar ve anlarım."
+ },
+ "unit": "u:a2:bag-1",
+ "arm": "tiyatro",
+ "place": "pl:haus",
+ "characters": [
+  "ch:brandl"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "yazar-ajan",
+  "at": "2026-11-23",
+  "notes": "Okul sistemi bilgisi yalnız grammar.json gr:a2-06:t3'ten (ilkokul Bavyera'da 4 yıl; sonra Mittelschule, Realschule, Gymnasium; Gymnasium sonunda Abitur; not 1 en iyi). Okulun telefon bandı ve duyuru kurgusal; tarih/saat gerçek bir okul kuralı iddiası değildir. Frau Brandl'ın torunu iskeletten (adsız; WORLD'de akraba tanımlı değil, baş geliştirici onayı gerekir)."
+ },
+ "dersler": [
+  "gr:a2-06:t3"
+ ],
+ "yeni_kartlar": [
+  "lx:vorstellen",
+  "lx:perfekt",
+  "lx:direkt",
+  "lx:bauen",
+  "lx:steigen",
+  "lx:laden",
+  "lx:hängen"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:101:h1",
+   "title_tr": "Merdivende tanışma: kim, ne yapıyor?",
+   "kartlar": [
+    "lx:vorstellen",
+    "lx:perfekt",
+    "lx:direkt",
+    "lx:bauen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Darf ich vorstellen? Das ist … – Darf ich Ihnen … vorstellen?",
+     "tr": "Tanıştırayım: bu … – Size …'ı tanıştırabilir miyim?"
+    },
+    {
+     "de": "Ich stelle mich kurz vor. – Das konnte ich mir nicht vorstellen.",
+     "tr": "Kendimi kısaca tanıtayım. – Bunu hayal edemiyordum."
+    },
+    {
+     "de": "Das ist perfekt! – Das passt perfekt.",
+     "tr": "Mükemmel! – Bu tam uyuyor."
+    },
+    {
+     "de": "direkt neben … – direkt nach der Arbeit",
+     "tr": "…'ın hemen yanında – işten hemen sonra"
+    },
+    {
+     "de": "Er baut ein Haus. – Ich baue … – Wir haben … gebaut.",
+     "tr": "Ev yapıyor. – … yapıyorum. – … yaptık."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:vorstellen",
+     "de": "Darf ich Ihnen Ioana vorstellen? Wir sind zusammen im Kurs.",
+     "tr": "Size Ioana'yı tanıştırabilir miyim? Kursta birlikteyiz.",
+     "accepted": [
+      "Darf ich Ihnen Ioana vorstellen? Wir sind zusammen im Kurs.",
+      "Darf ich Ihnen Ioana vorstellen? Wir sind im Kurs zusammen.",
+      "Darf ich vorstellen? Das ist Ioana. Wir sind zusammen im Kurs."
+     ]
+    },
+    {
+     "kart": "lx:vorstellen",
+     "de": "Das konnte ich mir nicht vorstellen.",
+     "tr": "Bunu hayal edemiyordum.",
+     "accepted": [
+      "Das konnte ich mir nicht vorstellen.",
+      "Das konnte ich mir gar nicht vorstellen.",
+      "Ich konnte mir das nicht vorstellen."
+     ]
+    },
+    {
+     "kart": "lx:perfekt",
+     "de": "Ich wollte alles perfekt machen.",
+     "tr": "Her şeyi mükemmel yapmak istiyordum.",
+     "accepted": [
+      "Ich wollte alles perfekt machen.",
+      "Ich wollte immer alles perfekt machen.",
+      "Alles wollte ich perfekt machen."
+     ]
+    },
+    {
+     "kart": "lx:perfekt",
+     "de": "Das passt perfekt.",
+     "tr": "Bu tam uyuyor.",
+     "accepted": [
+      "Das passt perfekt.",
+      "Das passt perfekt, danke.",
+      "Perfekt, das passt."
+     ]
+    },
+    {
+     "kart": "lx:direkt",
+     "de": "Die Schule ist direkt neben dem Rathaus.",
+     "tr": "Okul belediyenin hemen yanında.",
+     "accepted": [
+      "Die Schule ist direkt neben dem Rathaus.",
+      "Die Schule ist gleich neben dem Rathaus.",
+      "Direkt neben dem Rathaus ist die Schule."
+     ]
+    },
+    {
+     "kart": "lx:direkt",
+     "de": "Ich komme direkt nach der Arbeit.",
+     "tr": "İşten hemen sonra geliyorum.",
+     "accepted": [
+      "Ich komme direkt nach der Arbeit.",
+      "Direkt nach der Arbeit komme ich.",
+      "Ich komme direkt nach der Arbeit zu Ihnen."
+     ]
+    },
+    {
+     "kart": "lx:bauen",
+     "de": "Als Kind wollte ich immer Häuser bauen.",
+     "tr": "Çocukken hep ev yapmak istiyordum.",
+     "accepted": [
+      "Als Kind wollte ich immer Häuser bauen.",
+      "Als Kind wollte ich Häuser bauen.",
+      "Ich wollte als Kind immer Häuser bauen."
+     ]
+    },
+    {
+     "kart": "lx:bauen",
+     "de": "Wir haben zusammen ein Regal gebaut.",
+     "tr": "Birlikte bir raf yaptık.",
+     "accepted": [
+      "Wir haben zusammen ein Regal gebaut.",
+      "Wir haben ein Regal zusammen gebaut.",
+      "Zusammen haben wir ein Regal gebaut."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Çarşamba öğleden sonra, apartmanın merdiveni. Frau Brandl'ın yanında on yaşlarında bir çocuk var: torunu.",
+    "satirlar": [
+     {
+      "r": "ch:brandl",
+      "de": "Guten Tag! Darf ich vorstellen? Er ist heute bei mir.",
+      "tr": "İyi günler! Tanıştırayım: bugün bende kalıyor."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Hallo! Freut mich. Was ist das?",
+      "tr": "Merhaba! Memnun oldum. Bu ne?"
+     },
+     {
+      "r": "ein Junge",
+      "de": "Ich baue ein Haus. Das ist mein Haus!",
+      "tr": "Bir ev yapıyorum. Bu benim evim!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Perfekt! Das sieht toll aus.",
+      "tr": "Mükemmel! Çok güzel görünüyor."
+     }
+    ],
+    "soru": {
+     "q_tr": "Çocuk ne yapıyor?",
+     "opts": [
+      "Bir ev yapıyor",
+      "Ders çalışıyor",
+      "Telefonla oynuyor"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:101:h2",
+   "title_tr": "Okul yolu: otobüse binmek, şarj etmek, duvarda asılı",
+   "kartlar": [
+    "lx:steigen",
+    "lx:laden",
+    "lx:hängen"
+   ],
+   "kaliplar": [
+    {
+     "de": "in die … Klasse gehen – aufs Gymnasium gehen – in die Grundschule gehen – eine neue Schule",
+     "tr": "… sınıfa gitmek – Gymnasium'a gitmek – ilkokula gitmek – yeni bir okul"
+    },
+    {
+     "de": "in den Bus steigen – aus dem Bus steigen – Er steigt … – Ich steige …",
+     "tr": "otobüse binmek – otobüsten inmek – O biniyor … – Ben biniyorum …"
+    },
+    {
+     "de": "das Handy laden – Er lädt sein Handy.",
+     "tr": "telefonu şarj etmek – Telefonunu şarj ediyor."
+    },
+    {
+     "de": "Das Foto hängt an der Wand. – Ich hänge das Bild an die Wand.",
+     "tr": "Fotoğraf duvarda asılı. – Resmi duvara asıyorum."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:steigen",
+     "de": "Die Kinder steigen vor der Grundschule aus dem Bus.",
+     "tr": "Çocuklar ilkokulun önünde otobüsten iniyor.",
+     "accepted": [
+      "Die Kinder steigen vor der Grundschule aus dem Bus.",
+      "Vor der Grundschule steigen die Kinder aus dem Bus.",
+      "Die Kinder steigen direkt vor der Grundschule aus dem Bus."
+     ]
+    },
+    {
+     "kart": "lx:steigen",
+     "de": "Er steigt jeden Morgen in den Bus zum Gymnasium.",
+     "tr": "Her sabah Gymnasium'a giden otobüse biniyor.",
+     "accepted": [
+      "Er steigt jeden Morgen in den Bus zum Gymnasium.",
+      "Jeden Morgen steigt er in den Bus zum Gymnasium.",
+      "Er steigt jeden Morgen in den Bus zur Schule."
+     ]
+    },
+    {
+     "kart": "lx:laden",
+     "de": "Im Gymnasium dürfen die Kinder ihr Handy nicht laden.",
+     "tr": "Gymnasium'da çocukların telefonlarını şarj etmesi yasak.",
+     "accepted": [
+      "Im Gymnasium dürfen die Kinder ihr Handy nicht laden.",
+      "Die Kinder dürfen im Gymnasium ihr Handy nicht laden.",
+      "Im Gymnasium dürfen die Kinder das Handy nicht laden."
+     ]
+    },
+    {
+     "kart": "lx:laden",
+     "de": "In der Grundschule hatte er kein Handy. Jetzt muss er es jeden Tag laden.",
+     "tr": "İlkokulda telefonu yoktu. Şimdi her gün şarj etmesi lazım.",
+     "accepted": [
+      "In der Grundschule hatte er kein Handy. Jetzt muss er es jeden Tag laden.",
+      "In der Grundschule hatte er kein Handy, jetzt muss er es jeden Tag laden.",
+      "In der Grundschule hatte er gar kein Handy. Jetzt muss er es jeden Tag laden."
+     ]
+    },
+    {
+     "kart": "lx:hängen",
+     "de": "Das Foto von der Grundschule hängt an der Wand.",
+     "tr": "İlkokul fotoğrafı duvarda asılı.",
+     "accepted": [
+      "Das Foto von der Grundschule hängt an der Wand.",
+      "An der Wand hängt das Foto von der Grundschule.",
+      "Das Foto von der Grundschule hängt da an der Wand."
+     ]
+    },
+    {
+     "kart": "lx:hängen",
+     "de": "An der Wand hängt ein Foto von der ersten Klasse.",
+     "tr": "Duvarda birinci sınıftan bir fotoğraf asılı.",
+     "accepted": [
+      "An der Wand hängt ein Foto von der ersten Klasse.",
+      "Ein Foto von der ersten Klasse hängt an der Wand.",
+      "Da an der Wand hängt ein Foto von der ersten Klasse."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Frau Brandl seni kahveye çağırdı. Oturma odasının duvarında eski bir sınıf fotoğrafı asılı.",
+    "satirlar": [
+     {
+      "r": "ch:brandl",
+      "de": "Im September geht er aufs Gymnasium. Das ist direkt neben dem Rathaus.",
+      "tr": "Eylülde Gymnasium'a başlıyor. Okul belediyenin hemen yanında."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Super! Steigt er jeden Morgen in den Bus?",
+      "tr": "Süper! O zaman her sabah otobüse mi binecek?"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Ja, am Bahnhof. Und das Foto da an der Wand? Das ist meine Klasse, früher.",
+      "tr": "Evet, istasyonda. Şu duvardaki fotoğraf mı? O benim sınıfım, eskiden."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Toll! Das Foto ist schön.",
+      "tr": "Harika! Fotoğraf çok güzel."
+     }
+    ],
+    "soru": {
+     "q_tr": "Çocuk eylülde hangi okula başlıyor?",
+     "opts": [
+      "Gymnasium'a",
+      "İlkokula",
+      "Anaokuluna"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:101:v1",
+  "title_tr": "Çarşamba: Frau Brandl'ın torunu ve okul",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Çarşamba, öğleden sonra dört. Merdivende Frau Brandl ve on yaşlarında bir çocuk. Frau Brandl gururla çocuğun omzuna dokunuyor.",
+    "de": "Guten Tag! Darf ich vorstellen? Er ist heute bei mir.",
+    "tr": "İyi günler! Tanıştırayım: bugün bende."
+   },
+   {
+    "id": "s2",
+    "speaker": "ein Junge",
+    "sahne_tr": "Çocuğun elinde tahta parçaları var.",
+    "de": "Hallo! Ich baue gerade ein Haus.",
+    "tr": "Merhaba! Şu an bir ev yapıyorum."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl gülüyor.",
+    "de": "Er baut immer etwas. Er möchte Häuser bauen, sagt er.",
+    "tr": "Hep bir şey yapıyor. Ev yapmak istiyormuş, öyle diyor."
+   },
+   {
+    "id": "s4",
+    "speaker": "ein Junge",
+    "sahne_tr": "Çocuk telefonunu gösteriyor; ekran kırmızı yanıyor.",
+    "de": "Darf ich hier mein Handy laden? Es geht gleich aus.",
+    "tr": "Telefonumu burada şarj edebilir miyim? Neredeyse kapanacak."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl kapıyı açıp içeriyi gösteriyor.",
+    "de": "Natürlich, da unten an der Wand.",
+    "tr": "Tabii, orada, duvarın altında."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Oturma odası. Duvarda siyah beyaz bir sınıf fotoğrafı asılı.",
+    "de": "Sehen Sie das Foto an der Wand? Das ist meine Schule, früher hier in Wendlfing.",
+    "tr": "Duvardaki fotoğrafı görüyor musunuz? Bu benim okulum, eskiden burada, Wendlfing'de."
+   },
+   {
+    "id": "s7",
+    "speaker": "ein Junge",
+    "sahne_tr": "Çocuk koltuğa oturuyor.",
+    "de": "Ich gehe jetzt in die vierte Klasse. Im September komme ich aufs Gymnasium.",
+    "tr": "Ben şimdi dördüncü sınıftayım. Eylülde Gymnasium'a geçiyorum."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl kahve dolduruyor.",
+    "de": "Das Gymnasium ist direkt neben dem Rathaus. Er kann mit dem Bus fahren.",
+    "tr": "Gymnasium belediyenin hemen yanında. Otobüsle gidebilir."
+   },
+   {
+    "id": "s9",
+    "speaker": "ein Junge",
+    "sahne_tr": "Çocuk heyecanla anlatıyor.",
+    "de": "Ab September steige ich jeden Morgen in den Bus.",
+    "tr": "Eylülden itibaren her sabah otobüse bineceğim."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl göz kırpıyor.",
+    "de": "Er ist sehr gut in Mathe. Er hat eine Eins!",
+    "tr": "Matematikte çok iyi. Notu bir, en iyi not!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu bölümde ne oluyor?",
+     "opts": [
+      "Frau Brandl torununu tanıştırıyor; çocuk telefonunu şarj etmek istiyor",
+      "Frau Brandl'ın telefonu bozuldu",
+      "Çocuk okula geç kaldı"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s4"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Çocuk ne yapıyor?",
+      "opts": [
+       "Bir ev yapıyor",
+       "Kitap okuyor",
+       "Futbol oynuyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Çocuğun telefonunda ne sorun var?",
+      "opts": [
+       "Neredeyse kapanacak",
+       "Ekranı kırık",
+       "Kayboldu"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s2",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Haus",
+       "Hund",
+       "Hut"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s4",
+      "seviye": "orta",
+      "de": "Darf ich hier mein Handy ___?",
+      "accepted": [
+       "laden",
+       "Laden",
+       "laden."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s3",
+      "seviye": "zor",
+      "banka": [
+       "Er",
+       "möchte",
+       "Häuser",
+       "bauen",
+       "sagt",
+       "er",
+       "Haus",
+       "baut"
+      ],
+      "accepted": [
+       "Er möchte Häuser bauen, sagt er.",
+       "er möchte häuser bauen sagt er",
+       "Er möchte Häuser bauen, sagt er"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s1",
+      "seviye": "usta",
+      "accepted": [
+       "Darf ich vorstellen?",
+       "darf ich vorstellen",
+       "Darf ich vorstellen"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Bu bölümde ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Der Junge baut ein Haus. Er möchte sein Handy laden.",
+      "zorunlu": [
+       "baut",
+       "laden"
+      ]
+     }
+    ],
+    "golge": [
+     "s1",
+     "s4"
+    ],
+    "cevapla": {
+     "id": "m1:101:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Çocuk telefonunu şarj etmek istiyor. Sen de telefonunu şarj etmek istiyorsun; Frau Brandl'a kibarca sor.",
+     "prompt_de": "Und Sie? Brauchen Sie auch etwas?",
+     "accepted": [
+      "Darf ich auch mein Handy laden?",
+      "Darf ich hier auch mein Handy laden?",
+      "Ja, darf ich bitte auch mein Handy laden?",
+      "Kann ich auch mein Handy laden?",
+      "Ja, bitte. Darf ich auch mein Handy laden?"
+     ],
+     "why_tr": "Kibarca izin: **Darf ich …?** Mastar **laden** sonda."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu bölümde ne konuşuluyor?",
+     "opts": [
+      "Çocuğun okulu ve eylülde geçeceği yeni okul",
+      "Frau Brandl'ın tatili",
+      "Belediyedeki bir randevu"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s7",
+      "s8"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Çocuk şimdi kaçıncı sınıfta?",
+      "opts": [
+       "Üçüncü",
+       "Dördüncü",
+       "Beşinci"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s7"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Gymnasium nerede?",
+      "opts": [
+       "İstasyonun yanında",
+       "Belediyenin hemen yanında",
+       "Kilisenin arkasında"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s8"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Çocuğun matematik notu ne?",
+      "opts": [
+       "Bir, yani en iyi not",
+       "Altı, yani en kötü not",
+       "Üç"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s7",
+      "seviye": "kolay",
+      "q_tr": "Hangi ayı duydun?",
+      "opts": [
+       "September",
+       "Oktober",
+       "November"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s8",
+      "seviye": "orta",
+      "de": "Das Gymnasium ist ___ neben dem Rathaus.",
+      "accepted": [
+       "direkt",
+       "Direkt",
+       "direkt."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s9",
+      "seviye": "zor",
+      "banka": [
+       "Ab",
+       "September",
+       "steige",
+       "ich",
+       "jeden",
+       "Morgen",
+       "in",
+       "den",
+       "Bus",
+       "steigt",
+       "Zug"
+      ],
+      "accepted": [
+       "Ab September steige ich jeden Morgen in den Bus.",
+       "ab september steige ich jeden morgen in den bus",
+       "Ab September steige ich jeden Morgen in den Bus"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s7",
+      "seviye": "usta",
+      "accepted": [
+       "Ich gehe jetzt in die vierte Klasse.",
+       "ich gehe jetzt in die vierte klasse",
+       "Ich gehe jetzt in die vierte Klasse"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Çocuğun okulunu Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Er geht in die vierte Klasse. Im September geht er aufs Gymnasium.",
+      "zorunlu": [
+       "Klasse",
+       "Gymnasium"
+      ]
+     }
+    ],
+    "golge": [
+     "s7",
+     "s8"
+    ],
+    "cevapla": {
+     "id": "m1:101:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Çocuğa Gymnasium'un nerede olduğunu sor.",
+     "prompt_de": "Im September komme ich aufs Gymnasium.",
+     "accepted": [
+      "Toll! Wo ist das Gymnasium?",
+      "Super! Wo ist dein Gymnasium?",
+      "Wo ist das Gymnasium?",
+      "Toll! Und wo ist das Gymnasium?",
+      "Prima! Wo ist das Gymnasium denn?"
+     ],
+     "why_tr": "Çocukla **du** konuşursun: **dein Gymnasium**. Soru kelimesi **wo** başta."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:101:a1",
+   "tur": "anons",
+   "title_tr": "Gymnasium'un telefon bandı",
+   "ortam_tr": "Frau Brandl rica etti: okulu arayıp veliler için bilgi akşamının saatini soracaksın. Okulda kimse açmıyor; bir bant konuşuyor.",
+   "speaker": "Gymnasium Wendlfing",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, hier ist das Gymnasium Wendlfing.",
+     "tr": "İyi günler, burası Wendlfing Gymnasium'u."
+    },
+    {
+     "id": "c2",
+     "de": "Im Moment ist niemand da.",
+     "tr": "Şu anda kimse yok."
+    },
+    {
+     "id": "c3",
+     "de": "Das Büro ist von acht bis zwölf Uhr offen.",
+     "tr": "Büro sekizden on ikiye kadar açık."
+    },
+    {
+     "id": "c4",
+     "de": "Am Donnerstag um sieben Uhr ist ein Abend für Eltern.",
+     "tr": "Perşembe saat yedide veliler için bir akşam var."
+    },
+    {
+     "id": "c5",
+     "de": "Wir stellen die Schule vor.",
+     "tr": "Okulu tanıtıyoruz."
+    },
+    {
+     "id": "c6",
+     "de": "Die Schule ist direkt neben dem Rathaus.",
+     "tr": "Okul belediyenin hemen yanında."
+    },
+    {
+     "id": "c7",
+     "de": "Bitte rufen Sie bis Freitag an. Vielen Dank!",
+     "tr": "Lütfen cumaya kadar arayın. Çok teşekkürler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Bant ne söylüyor?",
+      "opts": [
+       "Kimse yok; büro saatleri ve perşembe akşamki veli toplantısı",
+       "Okul bugün kapalı, yarın da kapalı",
+       "Kayıtlar bitti"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Büro saat kaça kadar açık?",
+       "opts": [
+        "On ikiye kadar",
+        "Sekize kadar",
+        "Yediye kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Veliler için akşam ne zaman?",
+       "opts": [
+        "Perşembe saat yedide",
+        "Cuma saat sekizde",
+        "Salı saat yedide"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi günü duydun?",
+       "opts": [
+        "Donnerstag",
+        "Dienstag",
+        "Freitag"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c5",
+       "seviye": "orta",
+       "de": "Wir stellen die Schule ___.",
+       "accepted": [
+        "vor",
+        "Vor",
+        "vor."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Die",
+        "Schule",
+        "ist",
+        "direkt",
+        "neben",
+        "dem",
+        "Rathaus",
+        "Bahnhof",
+        "der"
+       ],
+       "accepted": [
+        "Die Schule ist direkt neben dem Rathaus.",
+        "die schule ist direkt neben dem rathaus",
+        "Die Schule ist direkt neben dem Rathaus"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Das Büro ist von acht bis zwölf Uhr offen.",
+        "das büro ist von acht bis zwölf uhr offen",
+        "Das Büro ist von acht bis zwölf Uhr offen"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Frau Brandl'a bandı Almanca iki kısa cümleyle anlat.",
+       "ornek_de": "Am Donnerstag um sieben ist ein Abend für Eltern. Die Schule ist direkt neben dem Rathaus.",
+       "zorunlu": [
+        "Donnerstag",
+        "Rathaus"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:101:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Frau Brandl bantta ne dendiğini soruyor. Perşembe saat yedide veli akşamı var.",
+      "prompt_de": "Und? Wann ist der Abend für Eltern?",
+      "accepted": [
+       "Am Donnerstag um sieben Uhr.",
+       "Der Abend ist am Donnerstag um sieben.",
+       "Am Donnerstag um sieben. Die Schule stellt sich vor.",
+       "Am Donnerstag, um sieben Uhr.",
+       "Donnerstag um sieben Uhr."
+      ],
+      "why_tr": "Gün ve saat: **am Donnerstag um sieben Uhr**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:101:a1:e1",
+    "k": "pick",
+    "q_tr": "Okulda biriyle konuşmak için ne zaman yeniden aramalısın?",
+    "opts": [
+     "Sabah sekizle on iki arasında",
+     "Akşam yediden sonra",
+     "Pazar günü"
+    ],
+    "ans": 0,
+    "why_tr": "Bant büronun sekizden on ikiye kadar açık olduğunu söylüyor.",
+    "kanit": [
+     "c3"
+    ]
+   }
+  },
+  {
+   "id": "m1:101:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Frau Brandl'dan sesli mesaj",
+   "ortam_tr": "Akşam eve geldin. Telefonunda Frau Brandl'dan bir sesli mesaj var.",
+   "speaker": "ch:brandl",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Abend, hier ist Brandl, von unten.",
+     "tr": "İyi akşamlar, ben Brandl, alt kattan."
+    },
+    {
+     "id": "c2",
+     "de": "Können Sie mir morgen helfen?",
+     "tr": "Yarın bana yardım edebilir misiniz?"
+    },
+    {
+     "id": "c3",
+     "de": "Ich möchte ein Bild an die Wand hängen.",
+     "tr": "Duvara bir resim asmak istiyorum."
+    },
+    {
+     "id": "c4",
+     "de": "Aber ich kann nicht mehr auf den Stuhl steigen.",
+     "tr": "Ama artık sandalyeye çıkamıyorum."
+    },
+    {
+     "id": "c5",
+     "de": "Das Bild ist von der Schule, die vierte Klasse.",
+     "tr": "Resim okuldan, dördüncü sınıf."
+    },
+    {
+     "id": "c6",
+     "de": "Kommen S' doch morgen um fünf. Es gibt Kaffee und Kuchen!",
+     "tr": "Yarın beşte bir uğrayın. Kahve ve pasta var!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Frau Brandl ne istiyor?",
+      "opts": [
+       "Yarın bir resmi duvara asmasına yardım etmeni",
+       "Okula telefon etmeni",
+       "Torununu okuldan almanı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Resim neyin resmi?",
+       "opts": [
+        "Okuldan, dördüncü sınıf",
+        "Wendlfing'in eski hâli",
+        "Bir düğün"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Saat kaçta gitmelisin?",
+       "opts": [
+        "Dörtte",
+        "Beşte",
+        "Altıda"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c6"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c6",
+       "seviye": "kolay",
+       "q_tr": "Hangi saati duydun?",
+       "opts": [
+        "fünf",
+        "vier",
+        "sechs"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Ich möchte ein Bild an die Wand ___.",
+       "accepted": [
+        "hängen",
+        "Hängen",
+        "hängen."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Aber",
+        "ich",
+        "kann",
+        "nicht",
+        "mehr",
+        "auf",
+        "den",
+        "Stuhl",
+        "steigen",
+        "steigt",
+        "dem"
+       ],
+       "accepted": [
+        "Aber ich kann nicht mehr auf den Stuhl steigen.",
+        "aber ich kann nicht mehr auf den stuhl steigen",
+        "Aber ich kann nicht mehr auf den Stuhl steigen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Können Sie mir morgen helfen?",
+        "können sie mir morgen helfen",
+        "Können Sie mir morgen helfen"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajı Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Frau Brandl möchte ein Bild an die Wand hängen. Ich soll morgen um fünf kommen.",
+       "zorunlu": [
+        "Bild",
+        "hängen"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:101:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Frau Brandl'ı geri ara. Yarın beşte gelip resmi asacağını söyle.",
+      "prompt_de": "Brandl?",
+      "accepted": [
+       "Guten Abend, Frau Brandl! Ich komme morgen um fünf und hänge das Bild an die Wand.",
+       "Guten Abend! Ja, ich komme morgen um fünf.",
+       "Guten Abend, Frau Brandl. Morgen um fünf passt perfekt.",
+       "Hallo, Frau Brandl! Ich helfe Ihnen gern. Ich komme morgen um fünf.",
+       "Guten Abend! Morgen um fünf, das passt perfekt."
+      ],
+      "why_tr": "Saat: **um fünf**. Asmak: **Ich hänge das Bild an die Wand.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:101:a2:e1",
+    "k": "pick",
+    "q_tr": "Yarın ne yapmalısın?",
+    "opts": [
+     "Saat beşte Frau Brandl'a gidip resmi as",
+     "Okulu ara",
+     "Sandalye satın al"
+    ],
+    "ans": 0,
+    "why_tr": "Frau Brandl yarın beşte gelmeni ve resmi asmanı istiyor.",
+    "kanit": [
+     "c3",
+     "c6"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:101:g1",
+   "de": "laden",
+   "dogru_img": "smartphone charging with a cable on a table",
+   "celdirici_img": [
+    "smartphone with a broken screen",
+    "person taking a photo with a phone",
+    "phone ringing on a desk"
+   ]
+  },
+  {
+   "id": "m1:101:g2",
+   "de": "hängen",
+   "dogru_img": "framed picture hanging on a living room wall",
+   "celdirici_img": [
+    "picture lying on a table",
+    "books on a shelf",
+    "window with curtains"
+   ]
+  },
+  {
+   "id": "m1:101:g3",
+   "de": "bauen",
+   "dogru_img": "boy building a small house with wooden blocks",
+   "celdirici_img": [
+    "boy reading a book",
+    "boy playing football",
+    "boy sleeping in bed"
+   ]
+  },
+  {
+   "id": "m1:101:g4",
+   "de": "in den Bus steigen",
+   "dogru_img": "schoolchildren getting on a yellow bus",
+   "celdirici_img": [
+    "children walking to school",
+    "children riding bicycles",
+    "children waiting at a train station"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:101:p1",
+  "title_tr": "Frau Brandl'a torununun okulunu sor",
+  "durum_tr": "Ertesi gün merdivende Frau Brandl'a rastlıyorsun. Torunu yine onda. Çocuğun hangi okula gittiğini ve yeni okulun nerede olduğunu öğrenmek istiyorsun.",
+  "karsi": "ch:brandl",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Guten Tag! Er ist heute wieder bei mir.",
+    "tr": "İyi günler! Bugün yine bende.",
+    "secenekler": [
+     {
+      "de": "Schön! In welche Klasse geht er?",
+      "tr": "Ne güzel! Kaçıncı sınıfa gidiyor?",
+      "accepted": [
+       "Schön! In welche Klasse geht er?",
+       "In welche Klasse geht er?",
+       "Schön! In welche Klasse geht er denn?",
+       "Toll! In welche Klasse geht er?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru soru: **In welche Klasse geht er?**"
+     },
+     {
+      "de": "Geht er noch in die Grundschule?",
+      "tr": "Hâlâ ilkokula mı gidiyor?",
+      "accepted": [
+       "Geht er noch in die Grundschule?",
+       "Geht er noch in die Grundschule?",
+       "Schön! Geht er noch in die Grundschule?",
+       "Geht er jetzt in die Grundschule?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: **in die Grundschule gehen**."
+     },
+     {
+      "de": "Wie alt sind Sie?",
+      "tr": "(uygunsuz) Kaç yaşındasınız?",
+      "accepted": [
+       "Wie alt sind Sie?",
+       "Wie alt sind Sie?",
+       "Wie alt sind Sie denn?",
+       "Sind Sie alt?"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Çocuğu sormak istiyorsun, Frau Brandl'ı değil. **In welche Klasse geht er?** de."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "In die vierte. Im September kommt er aufs Gymnasium.",
+    "tr": "Dördüncüye. Eylülde Gymnasium'a geçiyor.",
+    "secenekler": [
+     {
+      "de": "Toll! Wo ist das Gymnasium?",
+      "tr": "Harika! Gymnasium nerede?",
+      "accepted": [
+       "Toll! Wo ist das Gymnasium?",
+       "Wo ist das Gymnasium?",
+       "Super! Wo ist das Gymnasium?",
+       "Toll! Und wo ist das Gymnasium?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "İyi: **wo** ile yer soruyorsun."
+     },
+     {
+      "de": "Super! Ist das Gymnasium weit?",
+      "tr": "Süper! Gymnasium uzak mı?",
+      "accepted": [
+       "Super! Ist das Gymnasium weit?",
+       "Ist das Gymnasium weit?",
+       "Super! Ist das weit?",
+       "Toll! Ist das Gymnasium weit?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğal bir soru."
+     },
+     {
+      "de": "Geht er dann in den Kindergarten?",
+      "tr": "(yanlış) O zaman anaokuluna mı gidiyor?",
+      "accepted": [
+       "Geht er dann in den Kindergarten?",
+       "Geht er dann in den Kindergarten?",
+       "In den Kindergarten?",
+       "Geht er in den Kindergarten?"
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Anaokulu küçük çocuklar için. Dördüncü sınıftan sonra **Gymnasium** gelir."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Nein, es ist direkt neben dem Rathaus. Er kann mit dem Bus fahren.",
+    "tr": "Hayır, belediyenin hemen yanında. Otobüsle gidebilir.",
+    "secenekler": [
+     {
+      "de": "Perfekt! Dann muss er nicht weit fahren.",
+      "tr": "Mükemmel! O zaman uzağa gitmesi gerekmiyor.",
+      "accepted": [
+       "Perfekt! Dann muss er nicht weit fahren.",
+       "Perfekt! Dann muss er nicht weit fahren.",
+       "Perfekt, dann muss er nicht weit fahren.",
+       "Das ist perfekt! Er muss nicht weit fahren."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "**perfekt** tam yerinde; **muss nicht** = gerek yok."
+     },
+     {
+      "de": "Das ist gut. Wo steigt er in den Bus?",
+      "tr": "Bu iyi. Otobüse nerede biniyor?",
+      "accepted": [
+       "Das ist gut. Wo steigt er in den Bus?",
+       "Wo steigt er in den Bus?",
+       "Gut! Wo steigt er in den Bus?",
+       "Das ist gut. Und wo steigt er in den Bus?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: **in den Bus steigen**."
+     },
+     {
+      "de": "Er darf nicht mit dem Bus fahren.",
+      "tr": "(yanlış) Otobüsle gitmesi yasak.",
+      "accepted": [
+       "Er darf nicht mit dem Bus fahren.",
+       "Er darf nicht mit dem Bus fahren.",
+       "Er darf nicht fahren.",
+       "Er darf keinen Bus nehmen."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Frau Brandl otobüsle **gidebilir** dedi. **darf nicht** yasak demek."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Am Bahnhof. Er ist schon groß!",
+    "tr": "İstasyonda. Artık büyüdü!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Bir çocuğun hangi sınıfa ve hangi okula gittiğini sordun, cevabı anladın. **In welche Klasse geht er?** ve **Wo ist das Gymnasium?** kalıpları her yerde işe yarar."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "İlkokulun duyurusu: dördüncü sınıftan sonra",
+  "metin_de": "Liebe Eltern! Nach der vierten Klasse gehen die Kinder in eine neue Schule. Das ist die Mittelschule, die Realschule oder das Gymnasium. Am Gymnasium machen die Kinder am Ende das Abitur. Wir möchten Ihnen die Schulen vorstellen. Der Abend ist am Donnerstag um sieben Uhr hier in der Grundschule. Bitte rufen Sie bis Dienstag an. Ihre Grundschule am Rathaus",
+  "metin_tr": "Sevgili veliler! Dördüncü sınıftan sonra çocuklar yeni bir okula gider. Bu okul Mittelschule, Realschule ya da Gymnasium'dur. Gymnasium'da çocuklar sonunda Abitur yapar. Size bu okulları tanıtmak istiyoruz. Akşam toplantısı perşembe saat yedide, burada, ilkokulda. Lütfen salıya kadar arayın. Belediye yanındaki ilkokulunuz",
+  "sorular": [
+   {
+    "id": "m1:101:o1",
+    "kind": "gist",
+    "q_tr": "Bu duyuru ne hakkında?",
+    "opts": [
+     "Dördüncü sınıftan sonraki okullar için bilgi akşamı",
+     "Okulun yaz tatili",
+     "Yeni bir anaokulu"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     4
+    ]
+   },
+   {
+    "id": "m1:101:o2",
+    "kind": "detail",
+    "q_tr": "Hangi okulun sonunda Abitur yapılır?",
+    "opts": [
+     "Mittelschule",
+     "Realschule",
+     "Gymnasium"
+    ],
+    "ans": 2,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:101:o3",
+    "kind": "detail",
+    "q_tr": "Bilgi akşamı ne zaman?",
+    "opts": [
+     "Perşembe saat yedide",
+     "Salı saat yedide",
+     "Perşembe saat sekizde"
+    ],
+    "ans": 0,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:101:o4",
+    "kind": "detail",
+    "q_tr": "Veliler ne zamana kadar aramalı?",
+    "opts": [
+     "Pazartesiye kadar",
+     "Salıya kadar",
+     "Perşembeye kadar"
+    ],
+    "ans": 1,
+    "kanit": [
+     6
+    ]
+   },
+   {
+    "id": "m1:101:o5",
+    "k": "guided_response",
+    "situation_tr": "Ioana duyuruyu soruyor. Dördüncü sınıftan sonra çocukların yeni bir okula gittiğini söyle.",
+    "prompt_de": "Was steht da?",
+    "accepted": [
+     "Nach der vierten Klasse gehen die Kinder in eine neue Schule.",
+     "Die Kinder gehen nach der vierten Klasse in eine neue Schule.",
+     "Nach der vierten Klasse kommt eine neue Schule.",
+     "Nach der vierten Klasse gehen die Kinder aufs Gymnasium oder in eine andere Schule.",
+     "Nach der vierten Klasse gehen die Kinder in eine neue Schule. Am Donnerstag ist ein Abend für Eltern."
+    ],
+    "why_tr": "**Nach der vierten Klasse** başta, fiil **gehen** ikinci yerde."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Frau Brandl'ın kapısına kısa bir not yaz. Yarın beşte geleceğini ve resmi duvara asacağını söyle.",
+   "ornek_de": "Guten Tag, Frau Brandl, ich komme morgen um fünf. Ich hänge das Bild an die Wand.",
+   "zorunlu": [
+    "morgen",
+    "Wand"
+   ],
+   "accepted_kaliplar": [
+    "Guten Tag, Frau Brandl, ich komme morgen um ___.",
+    "Ich hänge das Bild an die ___."
+   ],
+   "kontrol_tr": [
+    "Günü ve saati yazdın mı?",
+    "Asmak için **hänge … an die Wand** yazdın mı?",
+    "Frau Brandl'a **Sie** ile mi yazdın?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:101:s",
+  "maddeler": [
+   {
+    "id": "m1:101:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Das Gymnasium ist direkt neben dem Rathaus.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das Gymnasium ist direkt neben dem Rathaus.",
+     "das gymnasium ist direkt neben dem rathaus",
+     "Das Gymnasium ist direkt neben dem Rathaus"
+    ],
+    "why_tr": "**direkt neben** = hemen yanında; **dem Rathaus**."
+   },
+   {
+    "id": "m1:101:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Ich muss mein Handy laden.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich muss mein Handy laden.",
+     "ich muss mein handy laden",
+     "Ich muss mein Handy laden"
+    ],
+    "why_tr": "**muss** ikinci yerde, **laden** sonda."
+   },
+   {
+    "id": "m1:101:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Das Foto hängt an der Wand.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das Foto hängt an der Wand.",
+     "das foto hängt an der wand",
+     "Das Foto hängt an der Wand"
+    ],
+    "why_tr": "Duvarda asılı: **an der Wand**."
+   },
+   {
+    "id": "m1:101:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Nach der vierten Klasse kommt eine neue Schule.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Nach der vierten Klasse kommt eine neue Schule.",
+     "nach der vierten klasse kommt eine neue schule",
+     "Nach der vierten Klasse kommt eine neue Schule"
+    ],
+    "why_tr": "**Nach der vierten Klasse** başta, fiil **kommt** ikinci yerde."
+   },
+   {
+    "id": "m1:101:s5",
+    "k": "tr_de",
+    "tr": "Çocuk ilkokula gidiyor.",
+    "accepted": [
+     "Das Kind geht in die Grundschule.",
+     "Das Kind geht noch in die Grundschule.",
+     "Der Junge geht in die Grundschule."
+    ],
+    "why_tr": "İlkokul: **in die Grundschule gehen**."
+   },
+   {
+    "id": "m1:101:s6",
+    "k": "tr_de",
+    "tr": "Otobüse biniyoruz.",
+    "accepted": [
+     "Wir steigen in den Bus.",
+     "Wir steigen jetzt in den Bus.",
+     "Wir steigen in den Bus ein."
+    ],
+    "why_tr": "Binmek: **in den Bus steigen**."
+   },
+   {
+    "id": "m1:101:s7",
+    "k": "tr_de",
+    "tr": "Kızım Gymnasium'a gidiyor.",
+    "accepted": [
+     "Meine Tochter geht aufs Gymnasium.",
+     "Meine Tochter geht auf das Gymnasium.",
+     "Meine Tochter ist auf dem Gymnasium."
+    ],
+    "why_tr": "**aufs Gymnasium gehen** sabit bir kalıp."
+   },
+   {
+    "id": "m1:101:s8",
+    "k": "tr_de",
+    "tr": "Çocukken hep ev yapmak istiyordum.",
+    "accepted": [
+     "Als Kind wollte ich immer Häuser bauen.",
+     "Ich wollte als Kind immer Häuser bauen.",
+     "Als Kind wollte ich Häuser bauen."
+    ],
+    "why_tr": "Geçmişteki istek: **wollte**; **bauen** sonda."
+   },
+   {
+    "id": "m1:101:s9",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl torununun eylülde yeni bir okula geçtiğini söylüyor. Hangi okula gideceğini sor.",
+    "prompt_de": "Im September kommt er in eine neue Schule.",
+    "accepted": [
+     "In welche Schule geht er dann?",
+     "Geht er dann aufs Gymnasium?",
+     "Welche Schule ist das?",
+     "Toll! In welche Schule geht er dann?",
+     "Geht er aufs Gymnasium?"
+    ],
+    "why_tr": "Okulu sormak için: **In welche Schule geht er?**"
+   },
+   {
+    "id": "m1:101:s10",
+    "k": "listen_and_respond",
+    "audio_de": "In welche Klasse geht der Junge?",
+    "speed": "normal",
+    "situation_tr": "Ioana soruyor. Frau Brandl'ın torunu dördüncü sınıfta.",
+    "accepted": [
+     "Er geht in die vierte Klasse.",
+     "In die vierte Klasse.",
+     "Er geht jetzt in die vierte Klasse.",
+     "In die vierte.",
+     "Der Junge geht in die vierte Klasse."
+    ],
+    "why_tr": "Sınıf: **in die vierte Klasse gehen**."
+   },
+   {
+    "id": "m1:101:s11",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl'a torununun okulunu sor; sonra okulun nerede olduğunu sor.",
+    "prompt_de": "Er ist heute wieder bei mir.",
+    "accepted": [
+     "In welche Klasse geht er? Und wo ist die Schule?",
+     "In welche Klasse geht er?",
+     "Schön! In welche Klasse geht er? Wo ist die Schule?",
+     "Geht er noch in die Grundschule? Wo ist die Schule?",
+     "In welche Klasse geht er denn? Und wo ist seine Schule?"
+    ],
+    "why_tr": "İki kısa soru: **In welche Klasse geht er?** ve **Wo ist die Schule?**"
+   }
+  ],
+  "sesli": [
+   "m1:101:s9",
+   "m1:101:s10"
+  ],
+  "dikte": [
+   "m1:101:s1",
+   "m1:101:s2",
+   "m1:101:s3",
+   "m1:101:s4"
+  ]
+ }
+}

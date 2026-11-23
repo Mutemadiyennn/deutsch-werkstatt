@@ -1,0 +1,1620 @@
+{
+ "schema": 1,
+ "id": "m1:gun:104",
+ "day": 104,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Hata ya da gecikmeyi bildirmek, özür dilemek",
+ "goal_tr": "Yanlış havaleyi Lena'ya bildirir, özür dilersin. Derya'ya geç geleceğini nedeniyle yazarsın.",
+ "can_do": {
+  "id": "cd:m1:104",
+  "tr": "Bir hatayı ya da gecikmeyi bildirir, özür dilerim."
+ },
+ "unit": "u:a2:is-4",
+ "arm": "tiyatro",
+ "place": "pl:haus",
+ "characters": [
+  "ch:brandl",
+  "ch:popescu",
+  "ch:aksoy"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "yazar-ajan",
+  "at": "2026-11-23",
+  "notes": "Olgu: 116 116 Almanya'da merkezi kart kapatma hattı (Sperr-Notruf): https://www.vzhh.de/themen/finanzen/konto/karte-gestohlen-verloren-das-ist-zu-tun · şifreyi telefonda soran dolandırıcılar için uyarı: https://www.test.de/Anrufe-vom-Sperr-Notruf-6274234-0/ . Banka adı yazılmadı (bankanın telefon bandı kurgusal)."
+ },
+ "dersler": [],
+ "yeni_kartlar": [
+  "lx:melden",
+  "lx:Luft",
+  "lx:aussehen",
+  "lx:schrecklich",
+  "lx:komisch",
+  "lx:Witz"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:104:h1",
+   "title_tr": "Bir hatayı bildirmek: Ich muss dir einen Fehler melden",
+   "kartlar": [
+    "lx:melden",
+    "lx:Luft",
+    "lx:aussehen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich muss dir einen Fehler melden. – Ich melde mich morgen. – Ich habe den Fehler gemeldet.",
+     "tr": "Sana bir hatayı bildirmem lazım. – Yarın haber veririm. – Hatayı bildirdim."
+    },
+    {
+     "de": "Ich habe … überwiesen. – Ich habe fünfzig Euro überwiesen, nicht fünf.",
+     "tr": "… havale ettim. – Beş değil, elli euro havale ettim."
+    },
+    {
+     "de": "Ich überweise dir das Geld zurück. – Lena überweist mir das Geld zurück.",
+     "tr": "Parayı sana geri havale ediyorum. – Lena parayı bana geri havale ediyor."
+    },
+    {
+     "de": "Das tut mir leid. – Entschuldige! – Das war mein Fehler.",
+     "tr": "Üzgünüm. – Kusura bakma! – Benim hatamdı."
+    },
+    {
+     "de": "Das Fahrrad hat keine Luft. – Ich fahre mit dem Bus. – Ich brauche frische Luft.",
+     "tr": "Bisikletin havası yok (lastiği inik). – Otobüsle gidiyorum. – Temiz havaya ihtiyacım var."
+    },
+    {
+     "de": "Ich komme ein bisschen später.",
+     "tr": "Biraz geç geleceğim."
+    },
+    {
+     "de": "Du siehst müde aus. – Das sieht gut aus. – Früher hat es neu ausgesehen.",
+     "tr": "Yorgun görünüyorsun. – Bu iyi görünüyor. – Eskiden yeni görünüyordu."
+    },
+    {
+     "de": "Was ist passiert? – Ich habe den Fehler gesehen.",
+     "tr": "Ne oldu? – Hatayı gördüm."
+    },
+    {
+     "de": "Bring nichts mit! – Schreib mir kurz!",
+     "tr": "Bir şey getirme! – Bana kısaca yaz!"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:melden",
+     "de": "Ich muss dir einen Fehler melden.",
+     "tr": "Sana bir hatayı bildirmem lazım.",
+     "accepted": [
+      "Ich muss dir einen Fehler melden.",
+      "Ich muss dir leider einen Fehler melden.",
+      "Lena, ich muss dir einen Fehler melden."
+     ]
+    },
+    {
+     "kart": "lx:melden",
+     "de": "Zuerst habe ich den Fehler gesehen, danach habe ich ihn gemeldet.",
+     "tr": "Önce hatayı gördüm, ondan sonra onu bildirdim.",
+     "accepted": [
+      "Zuerst habe ich den Fehler gesehen, danach habe ich ihn gemeldet.",
+      "Zuerst habe ich den Fehler gesehen. Danach habe ich ihn gemeldet.",
+      "Zuerst habe ich den Fehler gesehen, und danach habe ich ihn gemeldet."
+     ]
+    },
+    {
+     "kart": "lx:melden",
+     "de": "Ich melde mich morgen bei dir.",
+     "tr": "Yarın sana haber veririm.",
+     "accepted": [
+      "Ich melde mich morgen bei dir.",
+      "Morgen melde ich mich bei dir.",
+      "Ich melde mich morgen."
+     ]
+    },
+    {
+     "kart": "lx:Luft",
+     "de": "Mein Fahrrad hat keine Luft.",
+     "tr": "Bisikletimin lastiği inik.",
+     "accepted": [
+      "Mein Fahrrad hat keine Luft.",
+      "Mein Fahrrad hat keine Luft mehr.",
+      "Das Fahrrad hat keine Luft."
+     ]
+    },
+    {
+     "kart": "lx:Luft",
+     "de": "Das Fahrrad hat keine Luft, deswegen fahre ich mit dem Bus.",
+     "tr": "Bisikletin lastiği inik, bu yüzden otobüsle gidiyorum.",
+     "accepted": [
+      "Das Fahrrad hat keine Luft, deswegen fahre ich mit dem Bus.",
+      "Das Fahrrad hat keine Luft. Deswegen fahre ich mit dem Bus.",
+      "Mein Fahrrad hat keine Luft, deswegen fahre ich mit dem Bus."
+     ]
+    },
+    {
+     "kart": "lx:Luft",
+     "de": "Ich brauche frische Luft.",
+     "tr": "Temiz havaya ihtiyacım var.",
+     "accepted": [
+      "Ich brauche frische Luft.",
+      "Ich brauche jetzt frische Luft.",
+      "Ich brauche ein bisschen frische Luft."
+     ]
+    },
+    {
+     "kart": "lx:aussehen",
+     "de": "Früher hat mein Fahrrad ganz neu ausgesehen.",
+     "tr": "Eskiden bisikletim yepyeni görünüyordu.",
+     "accepted": [
+      "Früher hat mein Fahrrad ganz neu ausgesehen.",
+      "Mein Fahrrad hat früher ganz neu ausgesehen.",
+      "Früher hat das Fahrrad ganz neu ausgesehen."
+     ]
+    },
+    {
+     "kart": "lx:aussehen",
+     "de": "Wie soll der Blumenstrauß für Derya aussehen?",
+     "tr": "Derya'nın çiçek buketi nasıl olmalı?",
+     "accepted": [
+      "Wie soll der Blumenstrauß für Derya aussehen?",
+      "Wie soll denn der Blumenstrauß für Derya aussehen?",
+      "Wie soll der Blumenstrauß aussehen?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cumartesi sabahı. Telefonundaki hesap ekranına bakıyorsun: Lena'ya 5 değil 50 euro gönderdin. Hemen Lena'yı arıyorsun.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Hallo Lena! Ich muss dir einen Fehler melden.",
+      "tr": "Merhaba Lena! Sana bir hatayı bildirmem lazım."
+     },
+     {
+      "r": "Lena",
+      "de": "Einen Fehler? Was ist passiert?",
+      "tr": "Bir hata mı? Ne oldu?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ich habe fünfzig Euro überwiesen, nicht fünf. Das tut mir leid.",
+      "tr": "Beş değil, elli euro havale ettim. Üzgünüm."
+     },
+     {
+      "r": "Lena",
+      "de": "Keine Sorge! Ich überweise dir das Geld zurück.",
+      "tr": "Merak etme! Parayı sana geri havale ediyorum."
+     }
+    ],
+    "soru": {
+     "q_tr": "Lena ne yapacak?",
+     "opts": [
+      "Parayı sana geri havale edecek",
+      "Parayı Derya'nın hediyesine ekleyecek",
+      "Bankayı arayacak"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:104:h2",
+   "title_tr": "Berbat, tuhaf, şaka: bir şeyin nasıl olduğunu söylemek",
+   "kartlar": [
+    "lx:schrecklich",
+    "lx:komisch",
+    "lx:Witz"
+   ],
+   "kaliplar": [
+    {
+     "de": "Das ist schrecklich! – Das war schrecklich.",
+     "tr": "Bu berbat! – Berbattı."
+    },
+    {
+     "de": "Das ist komisch. – Komisch, oder? – Das sieht komisch aus, gell?",
+     "tr": "Bu tuhaf. – Tuhaf, değil mi? – Bu tuhaf görünüyor, değil mi? (gell: Bavyera'da 'değil mi?')"
+    },
+    {
+     "de": "Das ist doch ein Witz! – Machst du Witze? – Ich erzähle einen Witz.",
+     "tr": "Bu şaka olmalı! – Şaka mı yapıyorsun? – Bir fıkra anlatıyorum."
+    },
+    {
+     "de": "Als Kind war … – Als Kind konnte ich … – Früher bin ich … gefahren.",
+     "tr": "Çocukken … idi. – Çocukken … yapabiliyordum. – Eskiden …'e giderdim."
+    },
+    {
+     "de": "Am Ende haben wir gelacht.",
+     "tr": "Sonunda güldük."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:schrecklich",
+     "de": "Zuerst war es schrecklich, aber am Ende haben wir gelacht.",
+     "tr": "Önce berbattı, ama sonunda güldük.",
+     "accepted": [
+      "Zuerst war es schrecklich, aber am Ende haben wir gelacht.",
+      "Zuerst war es schrecklich. Aber am Ende haben wir gelacht.",
+      "Zuerst war das schrecklich, aber am Ende haben wir gelacht."
+     ]
+    },
+    {
+     "kart": "lx:schrecklich",
+     "de": "Als Kind war Mathe für mich schrecklich.",
+     "tr": "Çocukken matematik benim için berbattı.",
+     "accepted": [
+      "Als Kind war Mathe für mich schrecklich.",
+      "Mathe war für mich als Kind schrecklich.",
+      "Als Kind war Mathe schrecklich für mich."
+     ]
+    },
+    {
+     "kart": "lx:komisch",
+     "de": "Komisch, auf meinem Konto fehlen fünfzig Euro.",
+     "tr": "Tuhaf, hesabımda elli euro eksik.",
+     "accepted": [
+      "Komisch, auf meinem Konto fehlen fünfzig Euro.",
+      "Komisch! Auf meinem Konto fehlen fünfzig Euro.",
+      "Das ist komisch, auf meinem Konto fehlen fünfzig Euro."
+     ]
+    },
+    {
+     "kart": "lx:komisch",
+     "de": "Das Fahrrad sieht komisch aus.",
+     "tr": "Bisiklet tuhaf görünüyor.",
+     "accepted": [
+      "Das Fahrrad sieht komisch aus.",
+      "Dein Fahrrad sieht komisch aus.",
+      "Das Fahrrad sieht aber komisch aus."
+     ]
+    },
+    {
+     "kart": "lx:Witz",
+     "de": "Fünfzig Euro? Das ist doch ein Witz!",
+     "tr": "Elli euro mu? Bu şaka olmalı!",
+     "accepted": [
+      "Fünfzig Euro? Das ist doch ein Witz!",
+      "Fünfzig Euro? Das ist ein Witz!",
+      "Fünfzig Euro? Machst du Witze?"
+     ]
+    },
+    {
+     "kart": "lx:Witz",
+     "de": "Als Kind konnte ich keine Witze erzählen.",
+     "tr": "Çocukken fıkra anlatamazdım.",
+     "accepted": [
+      "Als Kind konnte ich keine Witze erzählen.",
+      "Ich konnte als Kind keine Witze erzählen.",
+      "Als Kind konnte ich nie Witze erzählen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cumartesi öğleden sonra, apartmanın girişi. Bisikletini çıkarıyorsun. Frau Brandl merdivenden iniyor.",
+    "satirlar": [
+     {
+      "r": "ch:brandl",
+      "de": "Ihr Fahrrad sieht aber komisch aus, gell?",
+      "tr": "Bisikletiniz tuhaf görünüyor, değil mi?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, es hat keine Luft. Das ist schrecklich, morgen ist Sonntag!",
+      "tr": "Evet, lastiği inik. Berbat, yarın pazar!"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Früher bin ich überall zu Fuß gegangen. Das war auch schön.",
+      "tr": "Eskiden her yere yürüyerek giderdim. O da güzeldi."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Machen Sie Witze, Frau Brandl? Zu Derya ist es weit!",
+      "tr": "Şaka mı yapıyorsunuz Frau Brandl? Derya'nın evi uzak!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Frau Brandl ne öneriyor gibi?",
+     "opts": [
+      "Yürüyerek gitmeyi; eskiden o da her yere yürürmüş",
+      "Taksiye binmeyi",
+      "Bisikleti tamir ettirmeyi"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:104:v1",
+  "title_tr": "Cumartesi: Frau Brandl'ın eski bisikleti ve Ioana'nın planı",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Cumartesi öğleden sonra, apartmanın girişi. Frau Brandl elinde alışveriş çantasıyla duruyor, bisikletinin lastiğine bakıyor.",
+    "de": "Keine Luft, das sieht man gleich.",
+    "tr": "Havası yok, hemen belli oluyor."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl gülümsüyor, çantasını yere bırakıyor.",
+    "de": "Früher hatte ich auch ein Fahrrad. Ich bin überall mit dem Fahrrad gefahren, auch im Winter.",
+    "tr": "Eskiden benim de bir bisikletim vardı. Her yere bisikletle giderdim, kışın bile."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl eliyle uzağı gösteriyor.",
+    "de": "Einmal hatte mein Fahrrad auch keine Luft, ganz weit weg von zu Hause.",
+    "tr": "Bir keresinde benim bisikletimin de havası kaçmıştı, evden çok uzakta."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl başını sallıyor.",
+    "de": "Ich musste zwei Stunden zu Fuß gehen. Das war schrecklich!",
+    "tr": "İki saat yürümek zorunda kaldım. Berbattı!"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl gülüyor.",
+    "de": "Aber dann hat mir ein junger Mann geholfen. Das war schön.",
+    "tr": "Ama sonra genç bir adam bana yardım etti. Güzeldi."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl sana bakıyor.",
+    "de": "Und Sie? Wohin wollen Sie denn mit dem Fahrrad?",
+    "tr": "Ya siz? Bisikletle nereye gitmek istiyorsunuz?"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Sen 'Yarın Derya'nın doğum günü' diyorsun. Frau Brandl çantasını yeniden alıyor.",
+    "de": "Am Sonntag fährt der Bus nur jede Stunde. Schauen Sie lieber gleich auf den Fahrplan!",
+    "tr": "Pazar günü otobüs yalnızca saatte bir geçiyor. Hemen tarifeye baksanız iyi olur!"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Akşam. Telefonun çalıyor: Ioana. Hoparlörü açıyorsun.",
+    "de": "Hallo! Hier ist Ioana. Wie fährst du morgen zu Derya?",
+    "tr": "Merhaba! Ben Ioana. Yarın Derya'ya nasıl gidiyorsun?"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Sen bisikletin lastiğinin inik olduğunu söylüyorsun. Ioana gülüyor.",
+    "de": "Dein Fahrrad hat keine Luft? Dann fahren wir zusammen mit dem Bus!",
+    "tr": "Bisikletinin lastiği mi inik? O zaman birlikte otobüsle gideriz!"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana bir şey arıyor; sayfa sesi geliyor.",
+    "de": "Der Bus fährt um zwei Uhr und um drei Uhr. Der Kaffee bei Derya ist um drei.",
+    "tr": "Otobüs saat ikide ve üçte kalkıyor. Derya'daki kahve saat üçte."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana düşünüyor.",
+    "de": "Mit dem Bus um zwei sind wir zu früh. Mit dem Bus um drei sind wir zu spät.",
+    "tr": "İkideki otobüsle çok erken oluruz. Üçteki otobüsle geç kalırız."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana kararını veriyor.",
+    "de": "Wir nehmen den Bus um drei. Ein bisschen zu spät ist nicht schlimm, oder?",
+    "tr": "Üçteki otobüse bineriz. Biraz geç kalmak kötü değil, değil mi?"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana gülüyor.",
+    "de": "Und ich erzähle Derya einen Witz. Auf Deutsch! Das wird komisch.",
+    "tr": "Bir de Derya'ya bir fıkra anlatacağım. Almanca! Komik olacak."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Frau Brandl ne anlatıyor?",
+     "opts": [
+      "Eskiden bisikletinin de havasının kaçtığını ve uzun yürüdüğünü",
+      "Yeni bir bisiklet aldığını",
+      "Otobüsle hiç gitmediğini"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s3",
+      "s4"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Frau Brandl eskiden nereye bisikletle giderdi?",
+      "opts": [
+       "Her yere, kışın bile",
+       "Yalnızca fırına",
+       "Hiçbir yere"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Frau Brandl kaç saat yürümek zorunda kaldı?",
+      "opts": [
+       "İki saat",
+       "Yarım saat",
+       "Bir gün"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Pazar günü otobüs ne sıklıkla geçiyor?",
+      "opts": [
+       "Saatte bir",
+       "On dakikada bir",
+       "Hiç geçmiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s7"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s4",
+      "seviye": "kolay",
+      "q_tr": "Hangi sayıyı duydun?",
+      "opts": [
+       "zwei",
+       "drei",
+       "zehn"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s1",
+      "seviye": "orta",
+      "de": "Keine ___, das sieht man gleich.",
+      "accepted": [
+       "Luft",
+       "luft",
+       "Luft."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s4",
+      "seviye": "zor",
+      "banka": [
+       "Ich",
+       "musste",
+       "zwei",
+       "Stunden",
+       "zu",
+       "Fuß",
+       "gehen",
+       "musste",
+       "Fahrrad"
+      ],
+      "accepted": [
+       "Ich musste zwei Stunden zu Fuß gehen.",
+       "ich musste zwei stunden zu fuß gehen",
+       "Ich musste zwei Stunden zu Fuß gehen"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s2",
+      "seviye": "usta",
+      "accepted": [
+       "Früher hatte ich auch ein Fahrrad.",
+       "früher hatte ich auch ein fahrrad",
+       "Früher hatte ich auch ein Fahrrad"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Frau Brandl'ın eski hikâyesini Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Früher hatte Frau Brandl ein Fahrrad. Einmal hatte es keine Luft, deswegen musste sie zwei Stunden zu Fuß gehen.",
+      "zorunlu": [
+       "Früher",
+       "Luft"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s4"
+    ],
+    "cevapla": {
+     "id": "m1:104:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Frau Brandl soruyor: bisikletle nereye gitmek istiyorsun? Yarın Derya'nın doğum günü kahvesine gitmek istiyorsun.",
+     "prompt_de": "Und Sie? Wohin wollen Sie denn mit dem Fahrrad?",
+     "accepted": [
+      "Morgen will ich zu Derya. Sie hat Geburtstag.",
+      "Morgen möchte ich zu Derya fahren. Sie hat Geburtstag.",
+      "Zu Derya. Sie hat morgen Geburtstag.",
+      "Morgen will ich zu Derya fahren, sie hat Geburtstag.",
+      "Ich will morgen zu Derya. Sie hat Geburtstag."
+     ],
+     "why_tr": "Nereye: **zu Derya** (Derya'ya, onun evine). Neden: **Sie hat Geburtstag.**"
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Ioana ne öneriyor?",
+     "opts": [
+      "Yarın birlikte otobüsle gitmeyi",
+      "Yarın Derya'ya gitmemeyi",
+      "Bisikleti birlikte tamir etmeyi"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s9"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Derya'daki kahve saat kaçta?",
+      "opts": [
+       "Üçte",
+       "İkide",
+       "Dörtte"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Hangi otobüse biniyorlar?",
+      "opts": [
+       "Üçteki otobüse",
+       "İkideki otobüse",
+       "Dörtteki otobüse"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s12"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Ioana Derya'ya ne anlatacak?",
+      "opts": [
+       "Almanca bir fıkra",
+       "Pazartesi hikâyesini",
+       "Hiçbir şey"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s13"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s10",
+      "seviye": "kolay",
+      "q_tr": "Hangi saati duydun?",
+      "opts": [
+       "drei",
+       "vier",
+       "sechs"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s12",
+      "seviye": "orta",
+      "de": "Wir nehmen den Bus um drei. Ein bisschen zu spät ist nicht ___, oder?",
+      "accepted": [
+       "schlimm",
+       "Schlimm",
+       "schlimm."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s9",
+      "seviye": "zor",
+      "banka": [
+       "Dann",
+       "fahren",
+       "wir",
+       "zusammen",
+       "mit",
+       "dem",
+       "Bus",
+       "fahrt",
+       "Auto"
+      ],
+      "accepted": [
+       "Dann fahren wir zusammen mit dem Bus!",
+       "dann fahren wir zusammen mit dem bus",
+       "Dann fahren wir zusammen mit dem Bus"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s13",
+      "seviye": "usta",
+      "accepted": [
+       "Und ich erzähle Derya einen Witz.",
+       "und ich erzähle derya einen witz",
+       "Und ich erzähle Derya einen Witz"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Ioana'nın planını Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Wir fahren zusammen mit dem Bus um drei. Deswegen sind wir ein bisschen zu spät.",
+      "zorunlu": [
+       "Bus",
+       "spät"
+      ]
+     }
+    ],
+    "golge": [
+     "s9",
+     "s12"
+    ],
+    "cevapla": {
+     "id": "m1:104:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Ioana'ya cevap ver: Üçteki otobüs sana da uyar. Biraz geç kalmak kötü değil.",
+     "prompt_de": "Wir nehmen den Bus um drei, okay?",
+     "accepted": [
+      "Ja, der Bus um drei passt mir. Ein bisschen zu spät ist nicht schlimm.",
+      "Okay, der Bus um drei passt. Das ist nicht schlimm.",
+      "Ja, gut. Der Bus um drei passt mir.",
+      "Ja, um drei passt mir gut.",
+      "Okay! Ein bisschen zu spät ist nicht schlimm."
+     ],
+     "why_tr": "Kime uyuyor: **mir**. **Der Bus um drei passt mir.**"
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:104:a1",
+   "tur": "bekleme-anonsu",
+   "title_tr": "Bankanın telefon bandı: cumartesi kapalı",
+   "ortam_tr": "Cumartesi sabahı yanlış havale için bankanı arıyorsun. Kimse açmıyor; bir kayıt çalıyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag und willkommen. Heute ist Samstag, unser Büro ist geschlossen.",
+     "tr": "İyi günler, hoş geldiniz. Bugün cumartesi, ofisimiz kapalı."
+    },
+    {
+     "id": "c2",
+     "de": "Sie haben einen Fehler bei einer Überweisung gemacht?",
+     "tr": "Bir havalede hata mı yaptınız?"
+    },
+    {
+     "id": "c3",
+     "de": "Dann rufen Sie bitte am Montag ab acht Uhr wieder an.",
+     "tr": "O zaman lütfen pazartesi saat sekizden itibaren yeniden arayın."
+    },
+    {
+     "id": "c4",
+     "de": "Ist Ihre Bankkarte weg? Dann rufen Sie sofort die Nummer eins, eins, sechs, eins, eins, sechs an.",
+     "tr": "Banka kartınız mı kayıp? O zaman hemen 116 116 numarasını arayın."
+    },
+    {
+     "id": "c5",
+     "de": "Und bitte: Sagen Sie Ihre Geheimzahl nie am Telefon!",
+     "tr": "Ve lütfen: Şifrenizi asla telefonda söylemeyin!"
+    },
+    {
+     "id": "c6",
+     "de": "Danke und schönes Wochenende!",
+     "tr": "Teşekkürler, iyi hafta sonları!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Kayıt ne söylüyor?",
+      "opts": [
+       "Ofis bugün kapalı; havale için pazartesi ara, kart kaybında hemen 116 116",
+       "Havalen geri gönderildi",
+       "Bugün saat sekize kadar açıklar"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1",
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Havale hatası için ne zaman aramalısın?",
+       "opts": [
+        "Pazartesi saat sekizden sonra",
+        "Bugün öğlen",
+        "Pazar sabahı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Kartın kaybolursa hangi numarayı ararsın?",
+       "opts": [
+        "116 116",
+        "116 117",
+        "112"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Telefonda neyi asla söylememelisin?",
+       "opts": [
+        "Şifreni",
+        "Adını",
+        "Adresini"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c1",
+       "seviye": "kolay",
+       "q_tr": "Hangi günü duydun?",
+       "opts": [
+        "Samstag",
+        "Sonntag",
+        "Montag"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Dann rufen Sie bitte am ___ ab acht Uhr wieder an.",
+       "accepted": [
+        "Montag",
+        "montag",
+        "Montag."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Und",
+        "bitte",
+        "Sagen",
+        "Sie",
+        "Ihre",
+        "Geheimzahl",
+        "nie",
+        "am",
+        "Telefon",
+        "nie",
+        "immer"
+       ],
+       "accepted": [
+        "Und bitte: Sagen Sie Ihre Geheimzahl nie am Telefon!",
+        "und bitte sagen sie ihre geheimzahl nie am telefon",
+        "Und bitte: Sagen Sie Ihre Geheimzahl nie am Telefon"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Sie haben einen Fehler bei einer Überweisung gemacht?",
+        "sie haben einen fehler bei einer überweisung gemacht",
+        "Sie haben einen Fehler bei einer Überweisung gemacht"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Kayıttaki iki bilgiyi Almanca yaz.",
+       "ornek_de": "Das Büro ist heute geschlossen. Ich soll am Montag ab acht Uhr wieder anrufen.",
+       "zorunlu": [
+        "Montag",
+        "geschlossen"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:104:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Derya mesaj yazıyor: Bankayı aradın mı? Ne dediler? Kısaca söyle: bugün kapalı, pazartesi yeniden arayacaksın.",
+      "prompt_de": "Hast du die Bank angerufen?",
+      "accepted": [
+       "Ja, aber das Büro ist heute geschlossen. Ich rufe am Montag wieder an.",
+       "Ja. Heute ist geschlossen, deswegen rufe ich am Montag wieder an.",
+       "Das Büro ist heute geschlossen. Am Montag rufe ich wieder an.",
+       "Ja, aber heute ist Samstag. Am Montag rufe ich wieder an.",
+       "Ja, das Büro ist zu. Ich rufe am Montag ab acht Uhr wieder an."
+      ],
+      "why_tr": "**anrufen** ayrılır: **Ich rufe … wieder an.** **an** en sona gider."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:104:a1:e1",
+    "k": "pick",
+    "q_tr": "Senin sorunun yanlış havale. Ne yapmalısın?",
+    "opts": [
+     "Pazartesi saat sekizden sonra yeniden ara",
+     "Hemen 116 116'yı ara",
+     "Şifreni telefona söyle"
+    ],
+    "ans": 0,
+    "why_tr": "Havale hatası için kayıt **am Montag ab acht Uhr** diyor. 116 116 yalnızca kart kaybolunca, kartı kapatmak için.",
+    "kanit": [
+     "c2",
+     "c3"
+    ]
+   }
+  },
+  {
+   "id": "m1:104:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Derya'nın sesli mesajı: yarın saat üçte",
+   "ortam_tr": "Cumartesi akşamı. Ioana Derya'ya biraz geç geleceğinizi söylemiş. Derya sana sesli mesaj bırakıyor.",
+   "speaker": "ch:aksoy",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Derya. Ganz kurz zu morgen.",
+     "tr": "Merhaba, ben Derya. Yarın için çok kısaca."
+    },
+    {
+     "id": "c2",
+     "de": "Der Kaffee ist um drei Uhr bei mir zu Hause.",
+     "tr": "Kahve saat üçte bende, evde."
+    },
+    {
+     "id": "c3",
+     "de": "Ioana kommt auch, und Tobi ruft vielleicht an.",
+     "tr": "Ioana da geliyor, Tobi de belki arar."
+    },
+    {
+     "id": "c4",
+     "de": "Bitte bring nichts mit, ich habe genug Kuchen!",
+     "tr": "Lütfen bir şey getirme, yeterince pastam var!"
+    },
+    {
+     "id": "c5",
+     "de": "Und du kommst ein bisschen später? Kein Problem. Schreib mir einfach kurz.",
+     "tr": "Biraz geç mi geleceksin? Sorun değil. Bana kısaca yazman yeter."
+    },
+    {
+     "id": "c6",
+     "de": "Bis morgen, ich freue mich!",
+     "tr": "Yarın görüşürüz, seviniyorum!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Derya ne söylüyor?",
+      "opts": [
+       "Kahve yarın üçte; geç kalman sorun değil, kısaca yaz",
+       "Kahve iptal oldu",
+       "Pasta getirmeni istiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Kahve nerede?",
+       "opts": [
+        "Derya'nın evinde",
+        "Bir kafede",
+        "Firmada"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ne getirmelisin?",
+       "opts": [
+        "Hiçbir şey",
+        "Pasta",
+        "Çiçek"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Kim belki arayacak?",
+       "opts": [
+        "Tobi",
+        "Herr Wimmer",
+        "Lena"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi saati duydun?",
+       "opts": [
+        "drei",
+        "zwei",
+        "vier"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Bitte bring nichts mit, ich habe genug ___!",
+       "accepted": [
+        "Kuchen",
+        "kuchen",
+        "Kuchen."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Bis",
+        "morgen",
+        "ich",
+        "freue",
+        "mich",
+        "mich",
+        "dich"
+       ],
+       "accepted": [
+        "Bis morgen, ich freue mich!",
+        "bis morgen ich freue mich",
+        "Bis morgen, ich freue mich"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Der Kaffee ist um drei Uhr bei mir zu Hause.",
+        "der kaffee ist um drei uhr bei mir zu hause",
+        "Der Kaffee ist um drei Uhr bei mir zu Hause"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Derya'nın mesajını Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Der Kaffee ist morgen um drei Uhr bei Derya. Ich soll nichts mitbringen.",
+       "zorunlu": [
+        "drei",
+        "Kaffee"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:104:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Derya'ya sesli cevap ver: Yarın üçteki otobüsle geliyorsun, biraz geç. Bisikletinin lastiği inik.",
+      "prompt_de": "Und du kommst ein bisschen später?",
+      "accepted": [
+       "Ja, ich komme mit dem Bus um drei. Mein Fahrrad hat keine Luft.",
+       "Ja, ein bisschen später. Mein Fahrrad hat keine Luft, deswegen fahre ich mit dem Bus.",
+       "Ja, leider. Mein Fahrrad hat keine Luft, deswegen komme ich mit dem Bus.",
+       "Ja, ich komme um drei mit dem Bus. Das Fahrrad hat keine Luft.",
+       "Ja. Mein Fahrrad hat keine Luft, ich nehme den Bus um drei."
+      ],
+      "why_tr": "Önce ne olacak (**ein bisschen später**), sonra neden (**Mein Fahrrad hat keine Luft**)."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:104:a2:e1",
+    "k": "pick",
+    "q_tr": "Derya'nın mesajından sonra ne yapmalısın?",
+    "opts": [
+     "Ona kısaca yazıp geç geleceğini söyle",
+     "Pasta al",
+     "Lena'yı ara"
+    ],
+    "ans": 0,
+    "why_tr": "Derya **Schreib mir einfach kurz** diyor: geç kalacaksan kısaca yaz.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:104:g1",
+   "de": "Luft",
+   "dogru_img": "person pumping air into a flat bicycle tyre",
+   "celdirici_img": [
+    "person washing a car",
+    "person changing a light bulb",
+    "person filling a water bottle"
+   ]
+  },
+  {
+   "id": "m1:104:g2",
+   "de": "Witz",
+   "dogru_img": "group of friends laughing at a joke",
+   "celdirici_img": [
+    "people arguing",
+    "person crying",
+    "people sleeping on a sofa"
+   ]
+  },
+  {
+   "id": "m1:104:g3",
+   "de": "Überweisung",
+   "dogru_img": "bank transfer form on a smartphone screen",
+   "celdirici_img": [
+    "shopping list on paper",
+    "train ticket on a phone",
+    "calendar on a laptop"
+   ]
+  },
+  {
+   "id": "m1:104:g4",
+   "de": "Fahrrad",
+   "dogru_img": "old bicycle with a flat tyre in front of a house",
+   "celdirici_img": [
+    "new car in a garage",
+    "scooter on a street",
+    "bus at a bus stop"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:104:p1",
+  "title_tr": "Lena'yı ara, hatayı bildir",
+  "durum_tr": "Cumartesi sabahı. Çiçek için Lena'ya 5 euro yerine 50 euro havale ettin. Lena'yı ara: hatayı bildir, özür dile, ne olduğunu açıkla. Yarın Derya'nın kahvesine biraz geç gideceksin, çünkü bisikletinin lastiği inik.",
+  "karsi": "Lena",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Hallo? Hier ist Lena.",
+    "tr": "Alo? Ben Lena.",
+    "secenekler": [
+     {
+      "de": "Hallo Lena! Entschuldige, ich muss dir einen Fehler melden.",
+      "tr": "Merhaba Lena! Kusura bakma, sana bir hatayı bildirmem lazım.",
+      "accepted": [
+       "Hallo Lena! Entschuldige, ich muss dir einen Fehler melden.",
+       "Hallo Lena! Ich muss dir einen Fehler melden.",
+       "Hallo Lena, entschuldige. Ich muss dir leider einen Fehler melden.",
+       "Hallo Lena! Entschuldige, ich muss dir etwas sagen. Ich habe einen Fehler gemacht."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: önce selam, sonra konu. **einen Fehler melden**: bir hatayı bildirmek."
+     },
+     {
+      "de": "Hallo Lena! Wie geht es dir? Ich habe ein Problem.",
+      "tr": "Merhaba Lena! Nasılsın? Bir sorunum var.",
+      "accepted": [
+       "Hallo Lena! Wie geht es dir? Ich habe ein Problem.",
+       "Hallo Lena, wie geht es dir? Ich habe da ein Problem.",
+       "Hallo! Wie geht es dir, Lena? Ich habe ein Problem."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: Lena hasta, nasıl olduğunu sorman kibar."
+     },
+     {
+      "de": "Hallo Lena! Alles gut. Tschüss!",
+      "tr": "(konuyu söylemedin) Merhaba Lena! Her şey yolunda. Hoşça kal!",
+      "accepted": [
+       "Hallo Lena! Alles gut. Tschüss!",
+       "Hallo, alles gut. Tschüss!",
+       "Alles gut, Lena. Tschüss!"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Hatayı söylemedin. Açık söyle: **Ich muss dir einen Fehler melden.**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Einen Fehler? Was ist passiert?",
+    "tr": "Bir hata mı? Ne oldu?",
+    "secenekler": [
+     {
+      "de": "Ich habe fünfzig Euro überwiesen, nicht fünf. Das tut mir leid.",
+      "tr": "Beş değil, elli euro havale ettim. Üzgünüm.",
+      "accepted": [
+       "Ich habe fünfzig Euro überwiesen, nicht fünf. Das tut mir leid.",
+       "Ich habe fünfzig Euro überwiesen, nicht fünf. Entschuldige!",
+       "Ich habe dir fünfzig Euro überwiesen, nicht fünf. Das tut mir leid.",
+       "Für den Blumenstrauß habe ich fünfzig Euro überwiesen, nicht fünf. Das tut mir leid."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Tam ve açık: ne oldu (**fünfzig, nicht fünf**) ve özür (**Das tut mir leid**)."
+     },
+     {
+      "de": "Zuerst wollte ich fünf Euro überweisen. Danach habe ich gesehen: Das waren fünfzig!",
+      "tr": "Önce beş euro havale etmek istedim. Sonra gördüm: elli olmuş!",
+      "accepted": [
+       "Zuerst wollte ich fünf Euro überweisen. Danach habe ich gesehen: Das waren fünfzig!",
+       "Zuerst wollte ich fünf Euro überweisen, danach habe ich gesehen: Das waren fünfzig Euro!",
+       "Ich wollte fünf Euro überweisen. Danach habe ich gesehen: Das waren fünfzig!"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok güzel: **zuerst** ve **danach** ile sırayla anlattın."
+     },
+     {
+      "de": "Ich habe fünf Euro überwiesen.",
+      "tr": "(hata yok gibi) Beş euro havale ettim.",
+      "accepted": [
+       "Ich habe fünf Euro überwiesen.",
+       "Fünf Euro, ich habe überwiesen.",
+       "Ich habe dir fünf Euro überwiesen."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Hata ne? Tutarı söyle: **fünfzig Euro, nicht fünf.**"
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Fünfzig Euro? Das ist doch ein Witz! Keine Sorge, ich überweise dir fünfundvierzig Euro zurück.",
+    "tr": "Elli euro mu? Şaka olmalı! Merak etme, sana kırk beş euro geri havale ediyorum.",
+    "secenekler": [
+     {
+      "de": "Danke, Lena! Und entschuldige noch einmal.",
+      "tr": "Teşekkürler Lena! Bir kez daha kusura bakma.",
+      "accepted": [
+       "Danke, Lena! Und entschuldige noch einmal.",
+       "Danke schön, Lena! Entschuldige noch einmal.",
+       "Danke! Und entschuldige noch einmal, Lena.",
+       "Vielen Dank, Lena! Und noch einmal: Entschuldige!"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar: teşekkür ettin ve bir kez daha özür diledin."
+     },
+     {
+      "de": "Super, danke! Das war wirklich mein Fehler.",
+      "tr": "Süper, teşekkürler! Gerçekten benim hatamdı.",
+      "accepted": [
+       "Super, danke! Das war wirklich mein Fehler.",
+       "Super, danke! Das war mein Fehler.",
+       "Danke, super! Das war wirklich mein Fehler, Lena."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Hatayı üstlenmek iyi: **Das war mein Fehler.**"
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Kein Problem. Kommst du morgen auch zu Derya?",
+    "tr": "Sorun değil. Yarın sen de Derya'ya geliyor musun?",
+    "secenekler": [
+     {
+      "de": "Ja, aber ich komme ein bisschen später. Mein Fahrrad hat keine Luft.",
+      "tr": "Evet, ama biraz geç geleceğim. Bisikletimin lastiği inik.",
+      "accepted": [
+       "Ja, aber ich komme ein bisschen später. Mein Fahrrad hat keine Luft.",
+       "Ja, aber ein bisschen später. Mein Fahrrad hat keine Luft.",
+       "Ja, aber später. Mein Fahrrad hat keine Luft, deswegen fahre ich mit dem Bus.",
+       "Ja, aber ich komme ein bisschen später, mein Fahrrad hat keine Luft."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: geç geleceğini ve nedenini söyledin."
+     },
+     {
+      "de": "Ja, mit Ioana. Das Fahrrad hat keine Luft, deswegen fahren wir mit dem Bus.",
+      "tr": "Evet, Ioana ile. Bisikletin lastiği inik, bu yüzden otobüsle gidiyoruz.",
+      "accepted": [
+       "Ja, mit Ioana. Das Fahrrad hat keine Luft, deswegen fahren wir mit dem Bus.",
+       "Ja, mit Ioana. Mein Fahrrad hat keine Luft, deswegen fahren wir mit dem Bus.",
+       "Ja, zusammen mit Ioana. Wir fahren mit dem Bus, mein Fahrrad hat keine Luft."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel: **deswegen**'den sonra fiil hemen geldi: **deswegen fahren wir**."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Ich bin leider noch krank, ich komme nicht. Sag Derya alles Gute von mir!",
+    "tr": "Ben maalesef hâlâ hastayım, gelmiyorum. Derya'ya benden her şeyin en iyisini söyle!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Bir hatayı telefonda bildirdin: ne olduğunu açıkça söyledin, özür diledin, teşekkür ettin. Geç kalacağını da nedeniyle söyledin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Lena'nın grup mesajı ve senin mesajın",
+  "metin_de": "Hallo zusammen! Für Derya kaufen wir einen Blumenstrauß und einen Gutschein. Für den Blumenstrauß fehlen fünf Euro von jedem. Bitte überweist mir das Geld bis Samstag. Und bitte nichts zu Derya sagen! Danke, Lena",
+  "metin_tr": "Herkese merhaba! Derya için bir buket çiçek ve bir hediye çeki alıyoruz. Çiçek için herkesten beşer euro eksik. Lütfen parayı cumartesiye kadar bana havale edin. Ve lütfen Derya'ya bir şey söylemeyin! Teşekkürler, Lena",
+  "sorular": [
+   {
+    "id": "m1:104:o1",
+    "kind": "gist",
+    "q_tr": "Lena neden yazıyor?",
+    "opts": [
+     "Derya'nın hediyesi için para topluyor",
+     "Hasta olduğunu bildiriyor",
+     "Toplantıyı anlatıyor"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     2
+    ]
+   },
+   {
+    "id": "m1:104:o2",
+    "kind": "detail",
+    "q_tr": "Herkes ne kadar havale etmeli?",
+    "opts": [
+     "Beş euro",
+     "Elli euro",
+     "On euro"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:104:o3",
+    "kind": "detail",
+    "q_tr": "Ne zamana kadar?",
+    "opts": [
+     "Cumartesiye kadar",
+     "Pazartesiye kadar",
+     "Bugün öğlene kadar"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:104:o4",
+    "kind": "detail",
+    "q_tr": "Lena ne istemiyor?",
+    "opts": [
+     "Derya'nın bir şey duymasını",
+     "Çiçek alınmasını",
+     "Hediye çeki alınmasını"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:104:o5",
+    "k": "guided_response",
+    "situation_tr": "Lena'nın mesajına yazılı cevap ver: hata yaptın, beş değil elli euro havale ettin. Özür dile.",
+    "prompt_de": "Danke für das Geld!",
+    "accepted": [
+     "Entschuldige, Lena! Ich habe fünfzig Euro überwiesen, nicht fünf.",
+     "Lena, ich muss dir einen Fehler melden: Ich habe fünfzig Euro überwiesen, nicht fünf.",
+     "Das tut mir leid, ich habe fünfzig Euro überwiesen, nicht fünf.",
+     "Entschuldige! Ich habe fünfzig Euro überwiesen, nicht fünf. Das war mein Fehler.",
+     "Lena, das war ein Fehler: fünfzig Euro, nicht fünf. Entschuldige!"
+    ],
+    "why_tr": "Önce özür (**Entschuldige**), sonra hata: **fünfzig Euro, nicht fünf**."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Derya'ya kısa bir mesaj yaz: Yarın biraz geç geleceksin. Nedenini söyle (bisiklet, otobüs). Özür dile.",
+   "ornek_de": "Hallo Derya! Ich komme morgen ein bisschen später. Mein Fahrrad hat keine Luft, deswegen fahre ich mit dem Bus. Entschuldige! Bis morgen!",
+   "zorunlu": [
+    "später",
+    "deswegen"
+   ],
+   "accepted_kaliplar": [
+    "Hallo …!",
+    "Ich komme morgen …",
+    "Mein Fahrrad hat keine Luft, deswegen …",
+    "Entschuldige!",
+    "Bis morgen!"
+   ],
+   "kontrol_tr": [
+    "Geç geleceğini (**später**) yazdın mı?",
+    "Nedeni **deswegen** ile bağladın mı, ve fiil hemen arkasından geldi mi?",
+    "Derya'ya **du** ile yazıp özür diledin mi (**Entschuldige!**)?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:104:s",
+  "maddeler": [
+   {
+    "id": "m1:104:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Ich muss dir einen Fehler melden.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich muss dir einen Fehler melden.",
+     "ich muss dir einen fehler melden",
+     "Ich muss dir einen Fehler melden"
+    ],
+    "why_tr": "**einen Fehler melden**: bir hatayı bildirmek. **melden** en sonda."
+   },
+   {
+    "id": "m1:104:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Mein Fahrrad hat keine Luft.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Mein Fahrrad hat keine Luft.",
+     "mein fahrrad hat keine luft",
+     "Mein Fahrrad hat keine Luft"
+    ],
+    "why_tr": "**keine Luft**: havası yok, lastik inik."
+   },
+   {
+    "id": "m1:104:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Das ist doch ein Witz!",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das ist doch ein Witz!",
+     "das ist doch ein witz",
+     "Das ist doch ein Witz"
+    ],
+    "why_tr": "**Das ist doch ein Witz!**: Bu şaka olmalı! (şaşırınca)"
+   },
+   {
+    "id": "m1:104:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Früher hat mein Fahrrad neu ausgesehen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Früher hat mein Fahrrad neu ausgesehen.",
+     "früher hat mein fahrrad neu ausgesehen",
+     "Früher hat mein Fahrrad neu ausgesehen"
+    ],
+    "why_tr": "**hat … ausgesehen**: görünüyordu. **ausgesehen** en sonda."
+   },
+   {
+    "id": "m1:104:s5",
+    "k": "tr_de",
+    "tr": "Beş değil, elli euro havale ettim.",
+    "accepted": [
+     "Ich habe fünfzig Euro überwiesen, nicht fünf.",
+     "Ich habe nicht fünf, sondern fünfzig Euro überwiesen.",
+     "Ich habe fünfzig Euro überwiesen und nicht fünf."
+    ],
+    "why_tr": "**habe … überwiesen**: **überwiesen** en sonda."
+   },
+   {
+    "id": "m1:104:s6",
+    "k": "tr_de",
+    "tr": "Yorgun görünüyorsun.",
+    "accepted": [
+     "Du siehst müde aus.",
+     "Du siehst aber müde aus.",
+     "Du siehst so müde aus."
+    ],
+    "why_tr": "**aussehen** ayrılır: **Du siehst … aus.**"
+   },
+   {
+    "id": "m1:104:s7",
+    "k": "tr_de",
+    "tr": "Çocukken matematik benim için berbattı.",
+    "accepted": [
+     "Als Kind war Mathe für mich schrecklich.",
+     "Mathe war für mich als Kind schrecklich.",
+     "Als Kind fand ich Mathe schrecklich."
+    ],
+    "why_tr": "**Als Kind** başta, fiil (**war**) ikinci yerde."
+   },
+   {
+    "id": "m1:104:s8",
+    "k": "tr_de",
+    "tr": "Tuhaf, hesabımda elli euro eksik.",
+    "accepted": [
+     "Komisch, auf meinem Konto fehlen fünfzig Euro.",
+     "Komisch! Auf meinem Konto fehlen fünfzig Euro.",
+     "Das ist komisch, auf meinem Konto fehlen fünfzig Euro."
+    ],
+    "why_tr": "Birden çok şey eksikse **fehlen**: **fünfzig Euro fehlen**."
+   },
+   {
+    "id": "m1:104:s9",
+    "k": "guided_response",
+    "situation_tr": "Lena'ya telefonda hatayı bildir: beş değil elli euro havale ettin. Özür dile.",
+    "prompt_de": "Hallo? Was ist los?",
+    "accepted": [
+     "Ich muss dir einen Fehler melden. Ich habe fünfzig Euro überwiesen, nicht fünf. Das tut mir leid.",
+     "Entschuldige, ich habe fünfzig Euro überwiesen, nicht fünf.",
+     "Ich habe fünfzig Euro überwiesen, nicht fünf. Das tut mir leid.",
+     "Lena, ich muss dir einen Fehler melden: fünfzig Euro, nicht fünf. Entschuldige!",
+     "Das tut mir leid, ich habe einen Fehler gemacht. Ich habe fünfzig Euro überwiesen, nicht fünf."
+    ],
+    "why_tr": "Sıra: bildir (**einen Fehler melden**), açıkla (**fünfzig, nicht fünf**), özür dile."
+   },
+   {
+    "id": "m1:104:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Wann kommst du morgen?",
+    "speed": "normal",
+    "situation_tr": "Derya soruyor. Biraz geç geleceksin, çünkü bisikletinin lastiği inik.",
+    "accepted": [
+     "Ich komme ein bisschen später. Mein Fahrrad hat keine Luft.",
+     "Ein bisschen später, mein Fahrrad hat keine Luft.",
+     "Später, mein Fahrrad hat keine Luft. Deswegen fahre ich mit dem Bus.",
+     "Ich komme später, mein Fahrrad hat keine Luft."
+    ],
+    "why_tr": "Önce ne zaman (**ein bisschen später**), sonra neden."
+   },
+   {
+    "id": "m1:104:s11",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl'a kısaca anlat: önce bisikletin lastiği inikti, ondan sonra otobüsü bekledin, bu yüzden geç kaldın.",
+    "prompt_de": "Warum sind Sie so spät?",
+    "accepted": [
+     "Zuerst hatte mein Fahrrad keine Luft. Danach habe ich auf den Bus gewartet. Deswegen bin ich so spät.",
+     "Zuerst hatte mein Fahrrad keine Luft, danach habe ich auf den Bus gewartet. Deswegen bin ich spät.",
+     "Mein Fahrrad hatte keine Luft. Danach habe ich lange auf den Bus gewartet, deswegen bin ich spät.",
+     "Zuerst hatte das Fahrrad keine Luft, danach habe ich auf den Bus gewartet, deswegen bin ich zu spät.",
+     "Kurz gesagt: Fahrrad ohne Luft, deswegen bin ich spät."
+    ],
+    "why_tr": "Sıra sözcükleri: **Zuerst … Danach … Deswegen …**; her birinden sonra fiil hemen gelir."
+   }
+  ],
+  "sesli": [
+   "m1:104:s9",
+   "m1:104:s10"
+  ],
+  "dikte": [
+   "m1:104:s1",
+   "m1:104:s2",
+   "m1:104:s3",
+   "m1:104:s4"
+  ]
+ }
+}
