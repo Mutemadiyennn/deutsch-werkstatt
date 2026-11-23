@@ -534,7 +534,7 @@ export function DilNoktasiVitrin({ id }: { id: string }) {
   const [n, setN] = useState<DilNoktasiVeri | null | "yok">(null);
   useEffect(() => { void loadDilNoktalari().then((m) => { const x = m.get(id); setN(x ? { h_tr: x.h_tr, tr: x.tr, ...(x.table ? { table: x.table } : {}), ex: x.ex } : "yok"); }); }, [id]);
   if (n === "yok") return <p data-test="dil-noktasi-yok">yok</p>;
-  return n ? <section class="stack" data-test="akis"><DilNoktasiAdimi n={n} onBitti={() => undefined} /></section> : <Loading />;
+  return n ? <section class="stack" data-test="akis" data-dil-noktasi={id}><DilNoktasiAdimi n={n} onBitti={() => undefined} /></section> : <Loading />;
 }
 
 /** dil noktası tablosunun örnek cümle sütunu ("örnek", "örnek cevap", "örnek (Wo?)"); yoksa undefined */
