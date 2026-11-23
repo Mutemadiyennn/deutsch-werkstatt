@@ -242,7 +242,9 @@ html { scroll-padding-top: calc(var(--safe-top) + 96px); }
 .tile.done .num { background: var(--c-green); color: #fff; }
 .tile.cur .num { background: var(--accent); color: #fff; }
 .tile + .tile { margin-top: 10px; }
-.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 14px); background: var(--ink); color: var(--paper); padding: 11px 18px; border-radius: 14px; z-index: 50; max-width: calc(100% - 32px); font-weight: 700; box-shadow: var(--shadow); animation: fadein var(--t) ease-out; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 14px); background: var(--ink); color: var(--paper); padding: 11px 18px; border-radius: 14px; z-index: 50; max-width: calc(100% - 32px); font-weight: 700; box-shadow: var(--shadow); animation: fadein var(--t) ease-out;
+  /* yalnız yazı taşır: altındaki düğmeye dokunuş geçer (balon kalkana kadar "Kurulumu yeniden yap" gibi düğmeler ölü kalmasın; gezgin #/ben/ayarlar öğe 55) */
+  pointer-events: none; }
 .seg { display: inline-flex; border-radius: 14px; overflow: hidden; box-shadow: 0 0 0 1.5px var(--line) inset; }
 .seg button { border: 0; background: transparent; padding: 8px 14px; min-height: 44px; cursor: pointer; font-weight: 700; }
 .seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
