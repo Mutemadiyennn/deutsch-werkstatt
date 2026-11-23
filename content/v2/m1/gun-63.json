@@ -46,7 +46,7 @@
    "kaliplar": [
     {
      "de": "Ich habe noch eine Sache: …",
-     "tr": "Bir şeyim daha var: …"
+     "tr": "Bir şey daha var: …"
     },
     {
      "de": "Wie geht es weiter? – Erzähl weiter!",
@@ -57,7 +57,7 @@
     {
      "kart": "lx:Sache",
      "de": "Ich habe noch eine Sache: Ich brauche auch ein Rezept.",
-     "tr": "Bir şeyim daha var: Reçeteye de ihtiyacım var.",
+     "tr": "Bir şey daha var: Reçeteye de ihtiyacım var.",
      "accepted": [
       "Ich habe noch eine Sache: Ich brauche auch ein Rezept.",
       "Ich habe noch eine Sache. Ich brauche auch ein Rezept.",
@@ -115,8 +115,8 @@
      },
      {
       "r": "ch:aksoy",
-      "de": "Gut! Und sag ihr: Um acht kannst du nicht, weil du arbeiten musst.",
-      "tr": "İyi! Ona şunu da söyle: Sekizde olmaz, çünkü çalışman gerek."
+      "de": "Gut! Und sag ihr: Am Mittwoch kannst du nicht, weil du arbeiten musst.",
+      "tr": "İyi! Ona şunu da söyle: Çarşamba olmaz, çünkü çalışman gerek."
      }
     ],
     "soru": {
@@ -337,7 +337,8 @@
       "accepted": [
        "So, und jetzt arbeiten wir weiter.",
        "so und jetzt arbeiten wir weiter",
-       "So, und jetzt arbeiten wir weiter"
+       "So, und jetzt arbeiten wir weiter",
+       "Gute Besserung, Tobi! So, und jetzt arbeiten wir weiter."
       ]
      },
      {
@@ -359,7 +360,7 @@
     "cevapla": {
      "id": "m1:63:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Tobi sana dönüyor. Cumartesi rafı bodruma koydun, pazar akşam Basti ile spor yaptın.",
+     "situation_tr": "Tobi sana dönüyor. Cumartesi rafı bodruma koydun, pazar Basti ile spor yaptın.",
      "prompt_de": "Und du? Was hast du so gemacht?",
      "accepted": [
       "Am Samstag habe ich ein Regal in den Keller gestellt, und am Sonntag war ich mit Basti beim Sport.",
@@ -604,7 +605,7 @@
     {
      "id": "c4",
      "de": "Zum Bahnhof nehmen Sie bitte die Nummer fünf.",
-     "tr": "Gar için lütfen beş numarayı kullanın."
+     "tr": "Gar için lütfen beş numaraya binin."
     },
     {
      "id": "c5",
@@ -912,12 +913,12 @@
       "geri_bildirim_tr": "Harika. Vazgeçmedin, başka bir saat sordun."
      },
      {
-      "de": "Und am Mittwoch? Geht es da am Nachmittag?",
-      "tr": "Peki çarşamba? Öğleden sonra olur mu?",
+      "de": "Und am Mittwoch? Haben Sie da noch etwas frei?",
+      "tr": "Peki çarşamba? O gün boş yeriniz var mı?",
       "accepted": [
-       "Und am Mittwoch? Geht es da am Nachmittag?",
-       "Und am Mittwoch am Nachmittag?",
-       "Geht es dann am Mittwoch am Nachmittag?"
+       "Und am Mittwoch? Haben Sie da noch etwas frei?",
+       "Und am Mittwoch?",
+       "Haben Sie am Mittwoch noch etwas frei?"
       ],
       "sonraki": "n4",
       "uygun": true,
@@ -939,8 +940,8 @@
    },
    {
     "id": "n4",
-    "de": "Moment … Dienstag um Viertel nach drei oder Mittwoch um halb acht.",
-    "tr": "Bir saniye … salı üçü çeyrek geçe ya da çarşamba yedi buçuk.",
+    "de": "Moment … Dienstag um Viertel nach drei oder Mittwoch um halb neun.",
+    "tr": "Bir saniye … salı üçü çeyrek geçe ya da çarşamba sekiz buçuk.",
     "secenekler": [
      {
       "de": "Dienstag um Viertel nach drei passt gut.",
@@ -956,28 +957,28 @@
       "geri_bildirim_tr": "Doğru seçim. Salı bütün gün serbestsin."
      },
      {
-      "de": "Mittwoch um halb acht geht leider nicht, weil ich um acht arbeiten muss. Ich nehme Dienstag.",
-      "tr": "Çarşamba yedi buçuk maalesef olmaz, çünkü sekizde çalışmam gerek. Salıyı alıyorum.",
+      "de": "Mittwoch um halb neun geht leider nicht, weil ich am Mittwoch arbeiten muss. Ich nehme Dienstag.",
+      "tr": "Çarşamba sekiz buçuk maalesef olmaz, çünkü çarşamba çalışmam gerek. Salıyı alıyorum.",
       "accepted": [
-       "Mittwoch um halb acht geht leider nicht, weil ich um acht arbeiten muss. Ich nehme Dienstag.",
+       "Mittwoch um halb neun geht leider nicht, weil ich am Mittwoch arbeiten muss. Ich nehme Dienstag.",
        "Mittwoch geht nicht, weil ich arbeiten muss. Dann Dienstag, bitte.",
-       "Halb acht geht leider nicht, weil ich arbeiten muss. Ich nehme den Dienstag."
+       "Halb neun geht leider nicht, weil ich arbeiten muss. Ich nehme den Dienstag."
       ],
       "sonraki": "n5",
       "uygun": true,
       "geri_bildirim_tr": "Çok iyi. Sebebini **weil** ile söyleyip seçtin."
      },
      {
-      "de": "Mittwoch um halb acht? Gut, um acht Uhr dreißig.",
-      "tr": "Çarşamba yedi buçuk mu? Tamam, sekiz otuzda.",
+      "de": "Mittwoch um halb neun? Gut, um neun Uhr dreißig.",
+      "tr": "Çarşamba sekiz buçuk mu? Tamam, dokuz otuzda.",
       "accepted": [
-       "Mittwoch um halb acht? Gut, um acht Uhr dreißig.",
-       "Halb acht, also acht Uhr dreißig?",
-       "Gut, Mittwoch um acht Uhr dreißig."
+       "Mittwoch um halb neun? Gut, um neun Uhr dreißig.",
+       "Halb neun, also neun Uhr dreißig?",
+       "Gut, Mittwoch um neun Uhr dreißig."
       ],
       "sonraki": "n4",
       "uygun": false,
-      "geri_bildirim_tr": "Dikkat: **halb acht** yedi buçuk demek, sekiz buçuk değil. Hem çarşamba sekizde işin var."
+      "geri_bildirim_tr": "Dikkat: **halb neun** sekiz buçuk demek, dokuz buçuk değil. Hem çarşamba sekizde işin başlıyor."
      }
     ]
    },
@@ -988,7 +989,7 @@
     "secenekler": [
      {
       "de": "Ja, ich habe noch eine Sache: Ich brauche ein neues Rezept.",
-      "tr": "Evet, bir şeyim daha var: Yeni bir reçeteye ihtiyacım var.",
+      "tr": "Evet, bir şey daha var: Yeni bir reçeteye ihtiyacım var.",
       "accepted": [
        "Ja, ich habe noch eine Sache: Ich brauche ein neues Rezept.",
        "Ja, noch eine Sache: Ich brauche ein neues Rezept.",
@@ -1043,8 +1044,8 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Muayenehaneden kısa mesaj",
-  "metin_de": "Praxis Dr. Weber: Ihr Termin ist am Dienstag um Viertel nach drei. Bitte kommen Sie um drei Uhr. Vergessen Sie bitte Ihre Versichertenkarte nicht. Ihr Rezept liegt am Dienstag hier. Sie können nicht kommen? Dann rufen Sie uns bitte bis Montag an.",
-  "metin_tr": "Dr. Weber muayenehanesi: Randevunuz salı üçü çeyrek geçe. Lütfen saat üçte gelin. Lütfen sağlık kartınızı unutmayın. Reçeteniz salı günü burada hazır. Gelemiyor musunuz? O zaman lütfen pazartesiye kadar bizi arayın.",
+  "metin_de": "Praxis Dr. Weber: Ihr Termin ist am Dienstag um Viertel nach drei. Bitte kommen Sie um drei Uhr. Vergessen Sie bitte Ihre Versichertenkarte nicht. Ihr Rezept liegt am Dienstag hier. Sie können nicht kommen? Dann rufen Sie uns bitte heute noch an.",
+  "metin_tr": "Dr. Weber muayenehanesi: Randevunuz salı üçü çeyrek geçe. Lütfen saat üçte gelin. Lütfen sağlık kartınızı unutmayın. Reçeteniz salı günü burada hazır. Gelemiyor musunuz? O zaman lütfen bugün içinde bizi arayın.",
   "sorular": [
    {
     "id": "m1:63:o1",
@@ -1093,7 +1094,7 @@
     "kind": "detail",
     "q_tr": "Gelemezsen ne yapmalısın?",
     "opts": [
-     "Pazartesiye kadar aramalısın",
+     "Bugün içinde aramalısın",
      "Hiçbir şey",
      "Salı sabah gitmelisin"
     ],
@@ -1124,13 +1125,13 @@
    {
     "id": "m1:63:s1",
     "k": "listen_and_respond",
-    "audio_de": "Der Termin am Freitag um neun ist leider schon voll.",
+    "audio_de": "Am Freitag um neun ist leider schon alles voll.",
     "speed": "normal",
     "situation_tr": "Duyduğunu yaz.",
     "accepted": [
-     "Der Termin am Freitag um neun ist leider schon voll.",
-     "der termin am freitag um neun ist leider schon voll",
-     "Der Termin am Freitag um neun ist leider schon voll"
+     "Am Freitag um neun ist leider schon alles voll.",
+     "am freitag um neun ist leider schon alles voll",
+     "Am Freitag um neun ist leider schon alles voll"
     ],
     "why_tr": "**voll** dolu demek: o saat boş değil."
    },
@@ -1176,12 +1177,13 @@
    {
     "id": "m1:63:s5",
     "k": "tr_de",
-    "tr": "Bir şeyim daha var: Hastalık raporuna da ihtiyacım var.",
+    "tr": "Bir şey daha var: Hastalık raporuna da ihtiyacım var.",
     "accepted": [
      "Ich habe noch eine Sache: Ich brauche auch eine Krankschreibung.",
      "Noch eine Sache: Ich brauche auch eine Krankschreibung.",
      "Ich habe noch eine Sache. Ich brauche auch eine Krankschreibung.",
-     "Eine Sache noch: Ich brauche auch eine Krankschreibung."
+     "Eine Sache noch: Ich brauche auch eine Krankschreibung.",
+     "Ich habe noch eine Sache: Ich brauche auch eine Krankmeldung."
     ],
     "why_tr": "İkinci bir isteği **noch eine Sache** ile eklersin."
    },
@@ -1190,9 +1192,9 @@
     "k": "tr_de",
     "tr": "Dokuz dolu mu? O zaman onda olur mu?",
     "accepted": [
-     "Um neun ist voll? Geht es dann um zehn?",
-     "Neun ist voll? Geht es dann um zehn?",
      "Um neun ist alles voll? Geht es dann um zehn?",
+     "Neun ist voll? Geht es dann um zehn?",
+     "Um neun ist voll? Geht es dann um zehn?",
      "Um neun ist voll? Und um zehn?"
     ],
     "why_tr": "Başka bir saat sorarken **Geht es dann um zehn?** dersin."
