@@ -62,6 +62,8 @@ export interface GunPlani { gun: number; surum: 1; tohum: string; duraklar: Dura
 
 export interface AkisPolitikasi {
   seans_dk: [number, number]; durak_dk: [number, number]; gun_dk: [number, number]; halka_kart: [number, number];
+  /** halka sonu eşleştir adımı için kart sayısı (halka sınırından ayrı: 2–3 kartlık halkada eşleştirme yok; PM-098 md. 2, inceleme #234 P1-1) */
+  eslestir_kart: [number, number];
   tanitim_art_arda: number; kelime_tur_min: number; kelime_cumle_min: number; kip_art_arda: number; isinma_dk: number;
   halka_tekrar: [number, number]; gosterim_bilinmeyen_max: number; gorev_bilinmeyen_max: number; cerceve_uretim_min: number;
   /** sıralayıcının baktığı aday sayısı (girdi sırasından) */
@@ -77,7 +79,7 @@ export interface AkisPolitikasi {
 const ikili = (a: readonly number[]): [number, number] => [a[0] ?? NaN, a[1] ?? NaN];
 const PA = POLICY.akis;
 export const POLITIKA: AkisPolitikasi = {
-  ...PA, seans_dk: ikili(PA.seans_dk), durak_dk: ikili(PA.durak_dk), gun_dk: ikili(PA.gun_dk), halka_kart: ikili(PA.halka_kart), halka_tekrar: ikili(PA.halka_tekrar)
+  ...PA, seans_dk: ikili(PA.seans_dk), durak_dk: ikili(PA.durak_dk), gun_dk: ikili(PA.gun_dk), halka_kart: ikili(PA.halka_kart), eslestir_kart: ikili(PA.eslestir_kart), halka_tekrar: ikili(PA.halka_tekrar)
 };
 
 /** Politika girişte doğrulanır (bozuk eşik sonsuz döngü ya da boş plan üretmesin; BY-12) */
@@ -89,7 +91,7 @@ export function politikaHatalari(p: AkisPolitikasi): string[] {
   tam("kelime_tur_min", p.kelime_tur_min, 0); tam("kelime_cumle_min", p.kelime_cumle_min, 0); tam("cerceve_uretim_min", p.cerceve_uretim_min, 0);
   tam("gosterim_bilinmeyen_max", p.gosterim_bilinmeyen_max, 0); tam("gorev_bilinmeyen_max", p.gorev_bilinmeyen_max, 0);
   tam("halka_ders_madde", p.halka_ders_madde, 0); tam("yapboz_min_sozcuk", p.yapboz_min_sozcuk, 2);
-  for (const k of ["seans_dk", "durak_dk", "gun_dk", "halka_kart", "halka_tekrar"] as const) aralik(k, p[k]);
+  for (const k of ["seans_dk", "durak_dk", "gun_dk", "halka_kart", "eslestir_kart", "halka_tekrar"] as const) aralik(k, p[k]);
   if (!(p.isinma_dk >= 0)) h.push("isinma_dk ≥ 0 olmalı");
   for (const t of ADIM_TURLERI) if (!(p.adim_sn?.[t]! > 0)) h.push(`adim_sn.${t} > 0 olmalı`);
   for (const k of ["ses", "prova", "okuma", "gunsonu_ek", "dil_noktasi"] as const) if (!(p.sabit_dk?.[k] >= 0)) h.push(`sabit_dk.${k} ≥ 0 olmalı`);
@@ -515,7 +517,7 @@ class Planlayici {
     for (const m of dm) { m.kullanildi = true; havuz.push({ ...m.a, neden: `${m.a.neden}: bildiğin sözcüklerle` }); }
     // halka sonu: eşleştir sondan bir önce, mini sahne en son (AK-2 kural 4–5; K6 önce ses)
     const son: Aday[] = [];
-    if (kartlar.length >= pol.halka_kart[0]) son.push({ tur: "eslestir", kartlar: kartlar.slice(0, pol.halka_kart[1]), kaynak: "halka", neden: "halkanın kelimelerini anlamlarıyla eşleştir" });
+    if (kartlar.length >= pol.eslestir_kart[0]) son.push({ tur: "eslestir", kartlar: kartlar.slice(0, pol.eslestir_kart[1]), kaynak: "halka", neden: "halkanın kelimelerini anlamlarıyla eşleştir" });
     if (h.sahne) son.push({ tur: "sahne", kartlar: kartlar.filter((c) => h.sahne!.satirlar.some((s) => this.kendiSozcugu(c, s.de))), cumle: h.sahne.satirlar.map((s) => s.de).join(" "), satirlar: h.sahne.satirlar.map((s) => s.de), kaynak: "halka", neden: "kelimeler bir sahnede: önce dinle" });
     return { havuz, son, ertelenen };
   }

@@ -49,7 +49,7 @@ def main():
         pg.wait_for_selector("[data-test=garden-start]")
         check(pg.locator("[data-test=garden-start]").count() == 1, "Bugün: yolun sonunda 'Tekrar' düğümü (Bahçe girişi; ana eylem sıradaki düğüm)")
         # "Duyduğum kelime" ve "Tekrar edilecekler" Öğren'de (PM 7015070303-E)
-        pg.goto(base + "#/learn"); pg.wait_for_selector("[data-test=heard]")
+        pg.goto(base + "#/koy/bahce"); pg.wait_for_selector("[data-test=heard]")
         # kişisel banka (#58 A3, LS-7.5): "Duyduğum kelime" kutusundan eklenen kelime turda öncelikli yeni kart olur
         pg.click("[data-test=heard]"); pg.fill("[data-test=heard-de]", "die Daten"); pg.click("form >> text=Ekle")
         pg.wait_for_selector("[data-test=heard]")
@@ -75,6 +75,7 @@ def main():
             ust = pg.evaluate("""() => { const r = (e) => e.getBoundingClientRect(); const t = r(document.querySelector('.toast'));
               return [...document.querySelectorAll('button.primary, .tabbar')].some((b) => { const k = r(b); return !(t.right <= k.left || t.left >= k.right || t.bottom <= k.top || t.top >= k.bottom); }); }""")
             check(not ust, "bildirim balonu birincil düğmeyi ve alt çubuğu örtmüyor")
+            check(pg.evaluate("getComputedStyle(document.querySelector('.toast')).pointerEvents") == "none", "bildirim balonu dokunuşu yutmaz: altındaki düğmeye basılır (gezgin #/ben/ayarlar öğe 55)")
         # çift dokunuş (inceleme #126 P1-B): "Tamam"a iki kez basmak tam bir adım ilerletir (sonraki tanıtım atlanmaz)
         if pg.locator("[data-test=garden-intro]").count():  # turun ilk tanıtımı: ardından yine tanıtım gelir
             pg.wait_for_timeout(500)

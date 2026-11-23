@@ -36,16 +36,19 @@ def main():
         b, ctx = launch(p, color_scheme=sema, viewport={"width": GENISLIK, "height": 568} if GENISLIK else None); pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         for i, n in enumerate(liste):
-            pg.goto(base + "#/__dil-noktasi/" + n["id"]); pg.wait_for_selector("[data-test=akis-dil-noktasi]", timeout=15000)
+            # seçici o konunun kimliğini taşır: rota her konuda yeniden kurulur (key = adres), önceki konunun gövdesi yeni konu
+            # yerine yakalanmasın (WebKit'te bekleme eski gövdeyi bulup evaluate'te null'a düşüyordu; KAPI-İŞ 7114613762)
+            sec = '[data-dil-noktasi="%s"] [data-test=akis-dil-noktasi]' % n["id"]
+            pg.goto(base + "#/__dil-noktasi/" + n["id"]); pg.wait_for_selector(sec, timeout=15000)
             # uygulamanın yazı boyutu ayarı (--ts; v2_baslik/v2_ders ile aynı yöntem): EK2 md. 3 büyük yazıda da taşma yok
             if TS != 1: pg.evaluate("(ts) => { document.documentElement.classList.remove('dyn'); document.documentElement.style.setProperty('--ts', String(ts)); }", TS); pg.wait_for_timeout(80)
-            r = pg.evaluate("""() => { const s = document.querySelector('[data-test=akis-dil-noktasi]'); const t = s.querySelector('[data-test=akis-tablo-t]');
+            r = pg.evaluate("""(sec) => { const s = document.querySelector(sec); const t = s.querySelector('[data-test=akis-tablo-t]');
               const tr = t ? t.getBoundingClientRect() : null;
               return { w: innerWidth, sw: document.documentElement.scrollWidth, sol: tr ? tr.left : null, sag: tr ? tr.right : null,
                 th: t ? t.querySelectorAll('thead th').length : 0, alt: t ? t.querySelectorAll('tr.alt').length : 0, secici: s.querySelectorAll('[data-test=akis-tablo-sec]').length,
                 baslik: (s.querySelector('h2')?.innerText || '').length, ornek: s.querySelectorAll('[data-test=dil-noktasi-ornek]').length,
                 dinle: s.querySelectorAll('[data-test=dil-noktasi-ornek] button').length, birincil: s.querySelectorAll('.btn.primary').length,
-                soru: s.querySelectorAll('button.opt, input, textarea').length, metin: s.innerText }; }""")
+                soru: s.querySelectorAll('button.opt, input, textarea').length, metin: s.innerText }; }""", sec)
             tab = n.get("table") or {}
             if tab.get("rows"):
                 tablolu += 1

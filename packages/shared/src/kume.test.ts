@@ -87,3 +87,18 @@ describe("dil noktası tablo biçimleri (PM-092 md. 1; PR A)", () => {
     expect([...(dz.dersler.get("r0:01-tage")?.bicim ?? [])].sort()).toEqual([...(d.dersler.get("r0:01-tage")?.bicim ?? [])].sort());
   });
 });
+
+describe("cümle başı, tek sözcüklü cümle (ANA-D2 devri takibi: 34. gün \"Arm\")", () => {
+  const AL = [L({ id: "lx:Arm", de: "Arm", pos: "noun", art: "der", pl: "Arme" }), L({ id: "lx:arm", de: "arm", pos: "adj" }), L({ id: "lx:ist", de: "ist", pos: "verb", card: false }), L({ id: "lx:er", de: "er", pos: "pron", card: false })];
+  const ad = kumeDizini(AL, [], null, []);
+  const y = (s: string, kart: string[]) => bilinmeyenYazi(bilinmeyenler(ad, s, { kart: new Set(kart), biten: new Set() }));
+  it("tek sözcük: iki okunuştan biri bilinirse bilinir", () => {
+    expect(y("Arm", ["lx:Arm"])).toEqual([]);
+    expect(y("Arm", ["lx:arm"])).toEqual([]);
+    expect(y("Arm", [])).toEqual(["arm"]);
+  });
+  it("çok sözcüklü cümlede cümle başı küçük harfli okunuş öncelikli (değişmedi)", () => {
+    expect(y("Arm ist er.", ["lx:Arm"])).toEqual(["~arm"]);
+    expect(y("Arm ist er.", ["lx:arm"])).toEqual([]);
+  });
+});
