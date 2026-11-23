@@ -76,3 +76,7 @@ Okunan alanlar: kart verisi, 120 eşdizim, 180 örnek, 150 boşluk (`forms`), `e
 Düzeltme sayısı: 24. Dil açısından bulunan bütün hatalar dosyada düzeltildi, doğrulayıcı 0 hata. Parti `draft` kalıyor.
 
 Sonuç: KAPALI — okur bekliyor
+
+## Kapanış (İÇ-K2, 2026-11-23)
+
+Okur GEÇTİ (docs/v2/reviews/okur/lexicon-batch-a2-03.md); parti `reviewed`, `okur: passed`. **Sonuç: KAPALI.**
