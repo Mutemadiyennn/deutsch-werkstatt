@@ -99,12 +99,13 @@ def roleplay_turn(ctx, durum):
         # yeniden deneme: sunucu düzeldi → Tekrar dene → karşı taraf cevap verir (beklenen metin)
         srv.bozuk = False
         pg.locator("[data-test=rp-retry]").first.click()
-        try: pg.wait_for_function("() => document.querySelector('[data-test=rp-chat]').innerText.includes('Versichertenkarte')", timeout=8000); yeniden = True
+        # iskelet balonu sayılmaz: ikinci gerçek cevap balonu ancak cevap gelince çizilir
+        try: pg.wait_for_function(f"() => document.querySelectorAll('{CEVAP}').length === 2 && !document.querySelector('[data-test=rp-chat] .bubble[aria-label]')", timeout=8000); yeniden = True
         except Exception: yeniden = False
-        check(yeniden and pg.locator(CEVAP).count() == 2, f"{ad}: Tekrar dene → cevap geldi ({pg.locator(CEVAP).count()} cevap balonu)")
-        if durum == "gec15":  # eski istek 15 sn'de gelir: ikinci kez eklenmez
+        check(yeniden, f"{ad}: Tekrar dene → cevap geldi ({pg.locator(CEVAP).count()} cevap balonu)")
+        if durum == "gec15":  # eski istek (cevabı 'Versichertenkarte') 15 sn'de gelir: konuşmaya eklenmez
             gec_birak(pg, 15); pg.wait_for_timeout(800)
-            check(pg.locator(CEVAP).count() == 2, f"{ad}: 15 sn'de gelen eski cevap konuşmaya eklenmedi")
+            check(pg.locator(CEVAP).count() == 2 and "Versichertenkarte" not in pg.inner_text("[data-test=rp-chat]"), f"{ad}: 15 sn'de gelen eski cevap konuşmaya eklenmedi")
         srv.bozuk = True
         gonder(pg, "Ja, ich bin schon Patient bei Ihnen.")
         pg.wait_for_selector("[data-test=rp-offline]", timeout=15000)
