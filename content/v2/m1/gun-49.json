@@ -1,0 +1,399 @@
+{
+  "schema": 1,
+  "id": "m1:gun:49",
+  "day": 49,
+  "level": "A1",
+  "format": "gun",
+  "title_tr": "Haftanın sınavı: doktorda muayene",
+  "goal_tr": "Tren tünelde kalıyor, muayeneye geç kalıyorsun. Dr. Weber'e neyin ne zamandan beri ağrıdığını anlatırsın, doktor tansiyonunu ölçer, sen de talimatı **Ich soll …** ile tekrar edersin. Sonra eczanenin mesajından ilacı günde kaç kez ve ne zaman alacağını çıkarırsın.",
+  "can_do": { "id": "cd:m1:49", "tr": "Doktora ne zamandan beri neremin ağrıdığını anlatır, talimatı tekrar ederim." },
+  "unit": "u:m1:49",
+  "arm": "pazar",
+  "place": "pl:praxis",
+  "characters": ["ch:weber", "ch:huber", "ch:kraus", "ch:brandl", "ch:aksoy"],
+  "requires": { "kelimeler": [], "kaliplar": [], "gramer": ["gr:a1-10:t1", "gr:a1-09:t2", "gr:a1-09:t3", "gr:a1-09:t4", "gr:a1-10:t4", "gr:a1-10:t2", "gr:a1-09:t5", "gr:a1-13:t4", "gr:a1-13:t5", "gr:a1-14:t1", "gr:a1-14:t2", "gr:a1-10:t3"], "tur": [], "baglayicilar": [], "akicilik": [] },
+  "review": { "status": "draft" },
+  "dersler": [],
+  "yeni_kartlar": ["lx:Blutdruck", "lx:Bier", "lx:Zug", "lx:Tunnel", "lx:ankommen"],
+  "halkalar": [
+    {
+      "id": "m1:49:h1",
+      "title_tr": "Muayene günü: tren, tansiyon, talimat",
+      "kartlar": ["lx:Blutdruck", "lx:Bier", "lx:Zug", "lx:Tunnel", "lx:ankommen"],
+      "kaliplar": [
+        { "de": "Was fehlt Ihnen? – Seit wann …?", "tr": "Neyiniz var? – Ne zamandan beri …?" },
+        { "de": "Mir tut … weh. – Mein … tut weh. – Mir tun die … weh.", "tr": "…m ağrıyor. – …m ağrıyor. – …larım ağrıyor (ağrıyan yer birden çok)." },
+        { "de": "Ich habe Kopfschmerzen. – Ich habe seit … Kopfschmerzen. – Ich habe Halsschmerzen.", "tr": "Başım ağrıyor. – … beri başım ağrıyor. – Boğazım ağrıyor." },
+        { "de": "seit gestern – seit Montag – seit zwei Tagen", "tr": "dünden beri – pazartesiden beri – iki gündür" },
+        { "de": "Ich messe … Blutdruck. – … Blutdruck messen", "tr": "… tansiyonu ölçüyorum. – tansiyon ölçmek" },
+        { "de": "Nehmen Sie … – Trinken Sie … – Bleiben Sie …", "tr": "… alın – … için – … kalın" },
+        { "de": "einmal am Tag – zweimal am Tag – vor dem Essen – nach dem Essen", "tr": "günde bir kez – günde iki kez – yemekten önce – yemekten sonra" },
+        { "de": "Wie oft …? – Ich soll … – Soll ich …? – Der Arzt sagt, ich soll …", "tr": "Ne sıklıkla …? – …mem gerekiyor, biri öyle dedi – …eyim mi? – Doktor …mem gerektiğini söylüyor." },
+        { "de": "Sie müssen nicht … – Sie dürfen nicht … – Ich darf kein …", "tr": "…meniz gerekmiyor – …meniz yasak – … bana yasak" },
+        { "de": "Ich möchte … – Ich will …", "tr": "… istiyorum, kibar – … istiyorum, güçlü" },
+        { "de": "Trink …! – Bleib …! – Nimm …! – Geh …! – Warte …!", "tr": "… iç! – … kal! – … al! – … git! – … bekle!" },
+        { "de": "Ruf … an! – Ich rufe … an. – mich – dich – ihn", "tr": "…yı ara! – …yı arıyorum. – beni – seni – onu (erkek)" },
+        { "de": "für dich – für mich – ohne dich – ohne mich", "tr": "senin için – benim için – sensiz – bensiz" },
+        { "de": "Der Zug kommt um … an. – Wann kommst du an? – Ich bin … angekommen. – Der Zug fährt …", "tr": "Tren saat …de varıyor. – Ne zaman varıyorsun? – … vardım. – Tren … gidiyor." },
+        { "de": "… gefällt mir. – … passt mir. – … steht dir gut.", "tr": "…yı beğeniyorum. – … bana uyuyor. – … sana yakışıyor." },
+        { "de": "Wie ist Ihr …? – Wo ist … geboren? – Er ist in … geboren.", "tr": "…nız ne? – … nerede doğdu? – O (erkek) …de doğdu." },
+        { "de": "sein … – ihr … – unser …", "tr": "onun (erkek) … – onun (kadın) … – bizim …" }
+      ],
+      "gorev_cumleleri": [
+        { "kart": "lx:Blutdruck", "de": "Können Sie bitte meinen Blutdruck messen?", "tr": "Lütfen tansiyonumu ölçebilir misiniz?",
+          "accepted": ["Können Sie bitte meinen Blutdruck messen?", "Können Sie meinen Blutdruck messen?", "Bitte, können Sie meinen Blutdruck messen?"] },
+        { "kart": "lx:Blutdruck", "de": "Der Arzt sagt, ich soll jeden Morgen den Blutdruck messen.", "tr": "Doktor her sabah tansiyonumu ölçmem gerektiğini söylüyor.",
+          "accepted": ["Der Arzt sagt, ich soll jeden Morgen den Blutdruck messen.", "Der Arzt sagt, ich soll den Blutdruck jeden Morgen messen.", "Der Arzt sagt, ich soll jeden Morgen meinen Blutdruck messen."] },
+        { "kart": "lx:Blutdruck", "de": "Wie ist mein Blutdruck, Herr Doktor?", "tr": "Tansiyonum nasıl, doktor bey?",
+          "accepted": ["Wie ist mein Blutdruck, Herr Doktor?", "Herr Doktor, wie ist mein Blutdruck?", "Wie ist mein Blutdruck?"] },
+        { "kart": "lx:Bier", "de": "Ich soll eine Woche kein Bier trinken.", "tr": "Bir hafta bira içmemem gerekiyor (doktor öyle dedi).",
+          "accepted": ["Ich soll eine Woche kein Bier trinken.", "Eine Woche soll ich kein Bier trinken.", "Ich soll eine Woche lang kein Bier trinken."] },
+        { "kart": "lx:Bier", "de": "Kein Bier für mich, danke. Ich möchte ein Wasser.", "tr": "Bana bira yok, teşekkürler. Bir su istiyorum.",
+          "accepted": ["Kein Bier für mich, danke. Ich möchte ein Wasser.", "Für mich kein Bier, danke. Ich möchte ein Wasser.", "Kein Bier für mich, danke! Ich möchte ein Wasser, bitte."] },
+        { "kart": "lx:Bier", "de": "Trink kein Bier, du bist krank!", "tr": "Bira içme, hastasın!",
+          "accepted": ["Trink kein Bier, du bist krank!", "Du bist krank, trink kein Bier!", "Trink bitte kein Bier, du bist krank!"] },
+        { "kart": "lx:Bier", "de": "Das Bier ist für dich, nicht für mich.", "tr": "Bira senin için, benim için değil.",
+          "accepted": ["Das Bier ist für dich, nicht für mich.", "Das Bier ist nicht für mich, es ist für dich.", "Das Bier ist für dich und nicht für mich."] },
+        { "kart": "lx:Zug", "de": "Mein Zug war im Tunnel, ich komme zu spät.", "tr": "Trenim tüneldeydi, geç kalıyorum.",
+          "accepted": ["Mein Zug war im Tunnel, ich komme zu spät.", "Mein Zug war im Tunnel. Ich komme zu spät.", "Ich komme zu spät, mein Zug war im Tunnel."] },
+        { "kart": "lx:Zug", "de": "Nimm den Zug um acht, nicht um neun!", "tr": "Dokuzdakini değil, sekizdeki treni al!",
+          "accepted": ["Nimm den Zug um acht, nicht um neun!", "Nimm den Zug um acht und nicht um neun!", "Nimm nicht den Zug um neun, nimm den Zug um acht!"] },
+        { "kart": "lx:Zug", "de": "Der Zug um sieben passt mir.", "tr": "Yedideki tren bana uyuyor.",
+          "accepted": ["Der Zug um sieben passt mir.", "Der Zug um sieben passt mir gut.", "Mir passt der Zug um sieben."] },
+        { "kart": "lx:Zug", "de": "Ach nein, der Zug fährt ohne mich!", "tr": "Eyvah, tren bensiz gidiyor!",
+          "accepted": ["Ach nein, der Zug fährt ohne mich!", "Ach nein! Der Zug fährt ohne mich!", "Oh nein, der Zug fährt ohne mich!"] },
+        { "kart": "lx:Tunnel", "de": "Ich bin jetzt im Tunnel. Ich rufe dich in zehn Minuten an.", "tr": "Şu an tüneldeyim. Seni on dakika sonra arıyorum.",
+          "accepted": ["Ich bin jetzt im Tunnel. Ich rufe dich in zehn Minuten an.", "Ich bin jetzt im Tunnel, ich rufe dich in zehn Minuten an.", "Ich bin im Tunnel. Ich rufe dich in zehn Minuten an."] },
+        { "kart": "lx:Tunnel", "de": "Der Zug steht im Tunnel. Bitte warte auf mich!", "tr": "Tren tünelde duruyor. Lütfen beni bekle!",
+          "accepted": ["Der Zug steht im Tunnel. Bitte warte auf mich!", "Der Zug steht im Tunnel, bitte warte auf mich!", "Bitte warte auf mich! Der Zug steht im Tunnel."] },
+        { "kart": "lx:ankommen", "de": "Ich komme um neun Uhr am Bahnhof an.", "tr": "Saat dokuzda istasyona varıyorum.",
+          "accepted": ["Ich komme um neun Uhr am Bahnhof an.", "Ich komme um neun am Bahnhof an.", "Um neun Uhr komme ich am Bahnhof an."] },
+        { "kart": "lx:ankommen", "de": "Ich bin zu spät angekommen, Entschuldigung!", "tr": "Geç vardım, özür dilerim!",
+          "accepted": ["Ich bin zu spät angekommen, Entschuldigung!", "Entschuldigung, ich bin zu spät angekommen!", "Ich bin zu spät angekommen. Entschuldigung!"] },
+        { "kart": "lx:ankommen", "de": "Wann kommst du an? Ich warte am Bahnhof auf dich.", "tr": "Ne zaman varıyorsun? Seni istasyonda bekliyorum.",
+          "accepted": ["Wann kommst du an? Ich warte am Bahnhof auf dich.", "Wann kommst du an? Ich warte auf dich am Bahnhof.", "Ich warte am Bahnhof auf dich. Wann kommst du an?"] }
+      ],
+      "sahne": {
+        "ortam_tr": "Muayenehanenin kayıt masası. Randevun dokuzu çeyrek geçeydi, şimdi saat dokuz buçuk. Koşarak içeri giriyorsun.",
+        "satirlar": [
+          { "r": "ch:huber", "de": "Da sind Sie ja! Ihr Termin war um Viertel nach neun.", "tr": "Geldiniz sonunda! Randevunuz dokuzu çeyrek geçeydi." },
+          { "r": "ogrenci", "de": "Entschuldigung! Mein Zug war fünfzehn Minuten im Tunnel.", "tr": "Özür dilerim! Trenim on beş dakika tüneldeydi." },
+          { "r": "ch:huber", "de": "Ach so, kein Problem. Gehen Sie bitte ins Wartezimmer.", "tr": "Anladım, sorun değil. Lütfen bekleme odasına geçin." }
+        ],
+        "soru": { "q_tr": "Neden geç kaldın?", "opts": ["Tren tünelde kaldı", "Otobüs gelmedi", "Randevu saatini unuttun"], "ans": 0 }
+      }
+    }
+  ],
+  "sahne": {
+    "id": "m1:49:v1",
+    "title_tr": "Aynı tren, aynı muayenehane",
+    "sahneler": [
+      { "id": "s1", "speaker": "ch:kraus", "sahne_tr": "Sabah. Bölge treni bir tünelin içinde duruyor, ışıklar loş. Yan koltukta Basti oturuyor, spor çantası kucağında.", "de": "Ach nein, wir stehen im Tunnel!", "tr": "Olamaz, tünelde duruyoruz!" },
+      { "id": "s2", "speaker": "ch:kraus", "sahne_tr": "Basti saatine bakıyor.", "de": "Ich habe um neun einen Termin bei Dr. Weber.", "tr": "Saat dokuzda Dr. Weber'de randevum var." },
+      { "id": "s3", "speaker": "ch:huber", "sahne_tr": "Muayenehane. Basti nefes nefese kayıt masasına geliyor. Huber Hanım saate bakıyor.", "de": "Herr Kraus! Ihr Termin war um neun Uhr.", "tr": "Kraus Bey! Randevunuz saat dokuzdaydı." },
+      { "id": "s4", "speaker": "ch:kraus", "sahne_tr": "Basti ellerini iki yana açıyor.", "de": "Ich weiß. Der Zug war lange im Tunnel.", "tr": "Biliyorum. Tren uzun süre tüneldeydi." },
+      { "id": "s5", "speaker": "ch:weber", "sahne_tr": "Muayene odasının kapısı açılıyor. Dr. Weber başını uzatıyor.", "de": "Herr Kraus, bitte! Was fehlt Ihnen?", "tr": "Kraus Bey, buyurun! Neyiniz var?" },
+      { "id": "s6", "speaker": "ch:kraus", "sahne_tr": "Basti elini beline koyuyor, yüzünü buruşturuyor.", "de": "Mir tut seit Samstag der Rücken weh.", "tr": "Cumartesiden beri sırtım ağrıyor." },
+      { "id": "s7", "speaker": "ch:weber", "sahne_tr": "Dr. Weber kaşını kaldırıyor.", "de": "Vom Training?", "tr": "Antrenmandan mı?" },
+      { "id": "s8", "speaker": "ch:kraus", "sahne_tr": "Basti başını sallıyor.", "de": "Ja, das Training am Samstag war lang.", "tr": "Evet, cumartesi antrenmanı uzundu." },
+      { "id": "s9", "speaker": "ch:weber", "sahne_tr": "Dr. Weber tansiyon aletinin kolluğunu Basti'nin koluna sarıyor.", "de": "So, jetzt messe ich Ihren Blutdruck.", "tr": "Evet, şimdi tansiyonunuzu ölçüyorum." },
+      { "id": "s10", "speaker": "ch:weber", "sahne_tr": "Aletin ekranına bakıp başını iki yana sallıyor.", "de": "Der Blutdruck ist nicht gut. Trinken Sie viel Bier?", "tr": "Tansiyon iyi değil. Çok bira içer misiniz?" },
+      { "id": "s11", "speaker": "ch:kraus", "sahne_tr": "Basti biraz utanıyor.", "de": "Am Wochenende. Nach dem Training.", "tr": "Hafta sonu. Antrenmandan sonra." },
+      { "id": "s12", "speaker": "ch:weber", "sahne_tr": "Dr. Weber parmağını kaldırıyor.", "de": "Bitte trinken Sie zwei Wochen kein Bier. Und kein Training!", "tr": "Lütfen iki hafta bira içmeyin. Antrenman da yok!" },
+      { "id": "s13", "speaker": "ch:kraus", "sahne_tr": "Basti şaşkın.", "de": "Kein Bier und kein Training? Was soll ich denn machen?", "tr": "Ne bira ne antrenman mı? Peki ne yapayım?" },
+      { "id": "s14", "speaker": "ch:weber", "sahne_tr": "Dr. Weber gülümsüyor.", "de": "Sie sollen jeden Tag laufen. Aber langsam!", "tr": "Her gün yürümeniz gerekiyor. Ama yavaş!" },
+      { "id": "s15", "speaker": "ch:kraus", "sahne_tr": "Basti iç çekiyor.", "de": "Langsam laufen? Na gut, Herr Doktor.", "tr": "Yavaş yürümek mi? Peki, doktor bey." }
+    ],
+    "bolumler": [
+      {
+        "id": "b1",
+        "cumleler": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"],
+        "ana_fikir": { "kind": "gist", "q_tr": "Basti'nin sabahı nasıl geçiyor?", "opts": ["Tren tünelde kalıyor, geç geliyor; doktor ona bira ve antrenmanı yasaklıyor", "Treni kaçırıyor, randevusunu iptal ediyor", "Doktor ona yeni bir spor öneriyor"], "ans": 0, "kanit": ["s1", "s4", "s12"] },
+        "ayrinti": [
+          { "kind": "detail", "q_tr": "Basti'nin neresi, ne zamandan beri ağrıyor?", "opts": ["Sırtı, cumartesiden beri", "Başı, dünden beri", "Bacağı, pazartesiden beri"], "ans": 0, "kanit": ["s6"] },
+          { "kind": "detail", "q_tr": "Dr. Weber neyi ölçüyor?", "opts": ["Tansiyonu", "Ateşi", "Kilosunu"], "ans": 0, "kanit": ["s9"] },
+          { "kind": "detail", "q_tr": "Basti ne zaman bira içiyor?", "opts": ["Hafta sonu, antrenmandan sonra", "Her akşam", "Hiç içmiyor"], "ans": 0, "kanit": ["s11"] },
+          { "kind": "detail", "q_tr": "Doktor Basti'den ne istiyor?", "opts": ["İki hafta bira yok, antrenman yok", "Bir hafta yatakta kalmasını", "Her gün antrenman yapmasını"], "ans": 0, "kanit": ["s12"] }
+        ],
+        "dikte": [
+          { "id": "d1", "cumle": "s2", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Termin", "Zahnarzt", "Rezept"], "ans": 0 },
+          { "id": "d2", "cumle": "s12", "seviye": "orta", "de": "Bitte trinken Sie zwei Wochen kein ___. Und kein Training!", "accepted": ["Bier", "bier", "Bier."] },
+          { "id": "d3", "cumle": "s4", "seviye": "zor", "banka": ["Der", "Zug", "war", "lange", "im", "Tunnel", "Bus", "heute"], "accepted": ["Der Zug war lange im Tunnel.", "der zug war lange im tunnel", "Der Zug war lange im Tunnel"] },
+          { "id": "d4", "cumle": "s6", "seviye": "usta", "accepted": ["Mir tut seit Samstag der Rücken weh.", "mir tut seit samstag der rücken weh", "Mir tut seit Samstag der Rücken weh"] },
+          { "id": "d5", "seviye": "gercek", "gorev_tr": "Doktor Basti'ye ne dedi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Kein Bier und kein Training. Er soll jeden Tag langsam laufen.", "zorunlu": ["kein Bier"] }
+        ],
+        "golge": ["s6", "s12"],
+        "cevapla": {
+          "id": "m1:49:v1:c1",
+          "k": "guided_response",
+          "situation_tr": "Sıra sende. Dr. Weber sana da soruyor. Başının iki gündür ağrıdığını söyle.",
+          "prompt_de": "So, und Sie? Was fehlt Ihnen?",
+          "accepted": ["Mein Kopf tut seit zwei Tagen weh.", "Mir tut seit zwei Tagen der Kopf weh.", "Ich habe seit zwei Tagen Kopfschmerzen.", "Seit zwei Tagen tut mir der Kopf weh."],
+          "why_tr": "Ağrıyı **Mein Kopf tut weh** ya da **Ich habe Kopfschmerzen** ile, süreyi **seit zwei Tagen** ile söylersin."
+        }
+      }
+    ]
+  },
+  "sesler": [
+    {
+      "id": "m1:49:a1",
+      "tur": "anons",
+      "title_tr": "Trende anons",
+      "ortam_tr": "Sabah trendesin, muayenehaneye gidiyorsun. Tren bir tünelde duruyor. Hoparlörden bir anons geliyor.",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Guten Morgen! Unser Zug steht im Moment im Tunnel.", "tr": "Günaydın! Trenimiz şu an tünelde duruyor." },
+        { "id": "c2", "de": "Vor uns steht ein Zug.", "tr": "Önümüzde bir tren duruyor." },
+        { "id": "c3", "de": "Wir müssen zehn Minuten warten.", "tr": "On dakika beklememiz gerekiyor." },
+        { "id": "c4", "de": "Wir kommen fünfzehn Minuten zu spät in Wendlfing an.", "tr": "Wendlfing'e on beş dakika geç varıyoruz." },
+        { "id": "c5", "de": "Bitte bleiben Sie im Zug.", "tr": "Lütfen trende kalın." }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Anons ne söylüyor?", "opts": ["Tren tünelde bekliyor, Wendlfing'e geç varacak", "Tren iptal edildi", "Herkes trenden inmeli"], "ans": 0, "kanit": ["c1", "c4"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Tren kaç dakika bekleyecek?", "opts": ["On dakika", "Beş dakika", "Bir saat"], "ans": 0, "kanit": ["c3"] },
+            { "kind": "detail", "q_tr": "Tren Wendlfing'e ne kadar geç varacak?", "opts": ["On beş dakika", "Yirmi dakika", "Bir saat"], "ans": 0, "kanit": ["c4"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c2", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Bus", "Zug", "Auto"], "ans": 1 },
+            { "id": "d2", "cumle": "c3", "seviye": "orta", "de": "Wir müssen zehn Minuten ___.", "accepted": ["warten", "Warten", "warten."] },
+            { "id": "d3", "cumle": "c5", "seviye": "zor", "banka": ["Bitte", "bleiben", "Sie", "im", "Zug", "Bus", "jetzt"], "accepted": ["Bitte bleiben Sie im Zug.", "bitte bleiben sie im zug", "Bitte bleiben Sie im Zug"] },
+            { "id": "d4", "cumle": "c4", "seviye": "usta", "accepted": ["Wir kommen fünfzehn Minuten zu spät in Wendlfing an.", "wir kommen fünfzehn minuten zu spät in wendlfing an", "Wir kommen fünfzehn Minuten zu spät in Wendlfing an"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Anonsta ne dendi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Der Zug steht im Tunnel. Wir kommen zu spät an.", "zorunlu": ["Tunnel", "zu spät"] }
+          ],
+          "golge": ["c3", "c5"],
+          "cevapla": {
+            "id": "m1:49:a1:c1",
+            "k": "guided_response",
+            "situation_tr": "Frau Huber'i arıyorsun. Trenin tünelde olduğunu ve on beş dakika geç kalacağını söyle.",
+            "prompt_de": "Praxis Dr. Weber, guten Morgen!",
+            "accepted": ["Guten Morgen, Frau Huber! Mein Zug steht im Tunnel. Ich komme fünfzehn Minuten zu spät.", "Guten Morgen! Der Zug steht im Tunnel, ich komme fünfzehn Minuten zu spät.", "Guten Morgen, Frau Huber. Ich bin im Zug, im Tunnel. Ich komme zu spät.", "Guten Morgen! Mein Zug steht im Tunnel. Ich komme fünfzehn Minuten zu spät an."],
+            "why_tr": "Önce nerede olduğunu söylersin: **Mein Zug steht im Tunnel**. Sonra ne kadar geç kalacağını: **Ich komme fünfzehn Minuten zu spät**."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:49:a1:e1", "k": "pick", "q_tr": "Ne yapmalısın?", "opts": ["Trende kal; muayenehaneyi arayıp geç kalacağını söyle.", "Trenden in, yürüyerek git.", "Randevunu iptal et."], "ans": 0, "why_tr": "Anons trende kalmanı istiyor ve tren on beş dakika geç varacak.", "kanit": ["c4", "c5"] }
+    },
+    {
+      "id": "m1:49:a2",
+      "tur": "sesli-mesaj",
+      "title_tr": "Eczaneden sesli mesaj",
+      "ortam_tr": "Muayeneden sonra telefonuna bakıyorsun. Eczane, Dr. Weber'in yazdığı tabletler için mesaj bırakmış.",
+      "speaker": "die Apothekerin",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Guten Tag, hier ist die Vils-Apotheke.", "tr": "İyi günler, Vils Eczanesi'nden arıyoruz." },
+        { "id": "c2", "de": "Ihre Tabletten von Dr. Weber sind jetzt da.", "tr": "Dr. Weber'in yazdığı tabletleriniz geldi." },
+        { "id": "c3", "de": "Bitte nehmen Sie zweimal am Tag eine Tablette.", "tr": "Lütfen günde iki kez bir tablet alın." },
+        { "id": "c4", "de": "Eine am Morgen und eine am Abend, immer nach dem Essen.", "tr": "Biri sabah, biri akşam, hep yemekten sonra." },
+        { "id": "c5", "de": "Und mit den Tabletten bitte kein Bier!", "tr": "Bir de tabletlerle birlikte bira yok, lütfen!" },
+        { "id": "c6", "de": "Wir sind heute bis achtzehn Uhr da.", "tr": "Bugün saat on sekize kadar buradayız." }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5", "c6"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Eczane neden arıyor?", "opts": ["Tabletlerin geldi; nasıl alacağını söylüyor", "Tabletler bitti", "Reçete yanlış"], "ans": 0, "kanit": ["c2", "c3"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Tableti günde kaç kez almalısın?", "opts": ["İki kez", "Bir kez", "Üç kez"], "ans": 0, "kanit": ["c3"] },
+            { "kind": "detail", "q_tr": "Ne zaman almalısın?", "opts": ["Sabah ve akşam, yemekten sonra", "Öğlen, yemekten önce", "Yalnız akşam"], "ans": 0, "kanit": ["c4"] },
+            { "kind": "detail", "q_tr": "Eczane bugün saat kaça kadar açık?", "opts": ["18.00", "20.00", "12.00"], "ans": 0, "kanit": ["c6"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c5", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Wasser", "Bier", "Kaffee"], "ans": 1 },
+            { "id": "d2", "cumle": "c2", "seviye": "orta", "de": "Ihre ___ von Dr. Weber sind jetzt da.", "accepted": ["Tabletten", "tabletten", "Tabletten."] },
+            { "id": "d3", "cumle": "c3", "seviye": "zor", "banka": ["Bitte", "nehmen", "Sie", "zweimal", "am", "Tag", "eine", "Tablette", "dreimal", "Abend"], "accepted": ["Bitte nehmen Sie zweimal am Tag eine Tablette.", "bitte nehmen sie zweimal am tag eine tablette", "Bitte nehmen Sie zweimal am Tag eine Tablette"] },
+            { "id": "d4", "cumle": "c4", "seviye": "usta", "accepted": ["Eine am Morgen und eine am Abend, immer nach dem Essen.", "eine am morgen und eine am abend immer nach dem essen", "Eine am Morgen und eine am Abend immer nach dem Essen"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Tableti nasıl alacaksın? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Zweimal am Tag eine Tablette, nach dem Essen. Und kein Bier!", "zorunlu": ["zweimal am Tag", "nach dem Essen"] }
+          ],
+          "golge": ["c3", "c4"],
+          "cevapla": {
+            "id": "m1:49:a2:c1",
+            "k": "guided_response",
+            "situation_tr": "Akşam Brandl Hanım merdivende soruyor: tabletleri nasıl alacaksın? Eczacının talimatını söyle.",
+            "prompt_de": "Und? Wie oft sollen Sie die Tabletten nehmen?",
+            "accepted": ["Ich soll zweimal am Tag eine Tablette nehmen.", "Zweimal am Tag, am Morgen und am Abend.", "Zweimal am Tag, nach dem Essen.", "Ich soll am Morgen und am Abend eine Tablette nehmen, nach dem Essen."],
+            "why_tr": "Başkasının talimatını **Ich soll …** ile aktarırsın: **Ich soll zweimal am Tag eine Tablette nehmen**."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:49:a2:e1", "k": "pick", "q_tr": "Tableti günde kaç kez ve ne zaman almalısın?", "opts": ["Günde iki kez: sabah ve akşam, yemekten sonra", "Günde iki kez: sabah ve akşam, yemekten önce", "Günde bir kez: akşam, yemekten sonra"], "ans": 0, "why_tr": "Eczacı **zweimal am Tag** ve **nach dem Essen** diyor: biri sabah, biri akşam, yemekten sonra.", "kanit": ["c3", "c4"] }
+    }
+  ],
+  "gorsel": [
+    { "id": "m1:49:g1", "de": "Blutdruck", "dogru_img": "a blood pressure monitor with the cuff on a patient's arm", "celdirici_img": ["a thermometer", "a stethoscope on a desk", "a bathroom scale"] },
+    { "id": "m1:49:g2", "de": "Bier", "dogru_img": "a glass of beer on a wooden table", "celdirici_img": ["a glass of water", "a cup of tea", "a glass of orange juice"] },
+    { "id": "m1:49:g3", "de": "Zug", "dogru_img": "a red regional train at a station platform", "celdirici_img": ["a city bus at a bus stop", "a tram in a street", "a car on a road"] },
+    { "id": "m1:49:g4", "de": "Tunnel", "dogru_img": "a train going into a tunnel in a mountain", "celdirici_img": ["a bridge over a river", "a train station hall", "a mountain road"] },
+    { "id": "m1:49:g5", "de": "Rücken", "dogru_img": "a person holding their lower back in pain", "celdirici_img": ["a person holding their head", "a person holding their knee", "a person holding their stomach"] }
+  ],
+  "prova": {
+    "id": "m1:49:p1",
+    "title_tr": "Muayene: haftanın kapısı",
+    "durum_tr": "Dr. Weber'in muayene odasındasın. Tren yüzünden geç kaldın. İki gündür başın ağrıyor. Neyin ne zamandan beri ağrıdığını anlat, talimatı dinle ve tekrar et.",
+    "karsi": "ch:weber",
+    "baslangic": "n1",
+    "dugumler": [
+      {
+        "id": "n1",
+        "de": "Guten Morgen! Bitte, kommen Sie.",
+        "tr": "Günaydın! Buyurun, gelin.",
+        "secenekler": [
+          { "de": "Guten Morgen, Herr Doktor! Entschuldigung, ich komme zu spät.", "tr": "Günaydın, doktor bey! Özür dilerim, geç kaldım.",
+            "accepted": ["Guten Morgen, Herr Doktor! Entschuldigung, ich komme zu spät.", "Guten Morgen! Entschuldigung, ich komme zu spät.", "Entschuldigung, ich komme zu spät, Herr Doktor."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Geç kaldığında önce özür dilersin: **Entschuldigung**." },
+          { "de": "Guten Morgen! Der Zug war im Tunnel, Entschuldigung.", "tr": "Günaydın! Tren tüneldeydi, özür dilerim.",
+            "accepted": ["Guten Morgen! Der Zug war im Tunnel, Entschuldigung.", "Guten Morgen! Entschuldigung, der Zug war im Tunnel.", "Entschuldigung, der Zug war im Tunnel."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Nedenini de söyledin: **Der Zug war im Tunnel**." },
+          { "de": "Hallo.", "tr": "Selam.",
+            "accepted": ["Hallo.", "Hallo!", "Hi."],
+            "sonraki": "n1", "uygun": false, "geri_bildirim_tr": "Doktora **Guten Morgen** de ve geç kaldığın için özür dile." }
+        ]
+      },
+      {
+        "id": "n2",
+        "de": "Ach, der Tunnel! Kein Problem. Was fehlt Ihnen?",
+        "tr": "Ah, şu tünel! Sorun değil. Neyiniz var?",
+        "secenekler": [
+          { "de": "Ich habe seit zwei Tagen Kopfschmerzen, Herr Doktor.", "tr": "İki gündür başım ağrıyor, doktor bey.",
+            "accepted": ["Ich habe seit zwei Tagen Kopfschmerzen, Herr Doktor.", "Ich habe seit zwei Tagen Kopfschmerzen.", "Seit zwei Tagen habe ich Kopfschmerzen."],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Neyin ve ne zamandan beri ağrıdığını tek cümlede söyledin." },
+          { "de": "Mir tut der Kopf so weh. Seit zwei Tagen.", "tr": "Başım çok ağrıyor. İki gündür.",
+            "accepted": ["Mir tut der Kopf so weh. Seit zwei Tagen.", "Mir tut seit zwei Tagen der Kopf weh.", "Seit zwei Tagen tut mir der Kopf so weh."],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "**Mir tut der Kopf weh** ve **seit zwei Tagen**: ikisi de var." },
+          { "de": "Mir tut der Kopf so weh.", "tr": "Başım çok ağrıyor.",
+            "accepted": ["Mir tut der Kopf so weh.", "Mein Kopf tut so weh.", "Ich habe Kopfschmerzen."],
+            "sonraki": "n2b", "uygun": true, "geri_bildirim_tr": "Doğru. Doktor şimdi ne zamandan beri olduğunu soracak." },
+          { "de": "Kopf.", "tr": "Baş.",
+            "accepted": ["Kopf.", "Kopf!", "Der Kopf."],
+            "sonraki": "n2", "uygun": false, "geri_bildirim_tr": "Tam cümle kur: **Mir tut der Kopf weh**. Ne zamandan beri olduğunu da ekle: **seit zwei Tagen**." }
+        ]
+      },
+      {
+        "id": "n2b",
+        "de": "Seit wann denn?",
+        "tr": "Ne zamandan beri peki?",
+        "secenekler": [
+          { "de": "Seit zwei Tagen, Herr Doktor.", "tr": "İki gündür, doktor bey.",
+            "accepted": ["Seit zwei Tagen, Herr Doktor.", "Seit zwei Tagen.", "Ich habe seit zwei Tagen Kopfschmerzen."],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "**seit** ile ne zamandan beri olduğunu söyledin." },
+          { "de": "Zwei Tage.", "tr": "İki gün.",
+            "accepted": ["Zwei Tage.", "Zwei Tage!", "Zwei."],
+            "sonraki": "n2b", "uygun": false, "geri_bildirim_tr": "Başına **seit** ekle: **Seit zwei Tagen**." }
+        ]
+      },
+      {
+        "id": "n3",
+        "de": "Gut. Ich messe jetzt den Blutdruck. Er ist nicht so gut.",
+        "tr": "Peki. Şimdi tansiyonu ölçüyorum. Pek iyi değil.",
+        "secenekler": [
+          { "de": "Ist das schlimm, Herr Doktor?", "tr": "Bu kötü mü, doktor bey?",
+            "accepted": ["Ist das schlimm, Herr Doktor?", "Ist das schlimm?", "Herr Doktor, ist das schlimm?"],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Endişeni kısa bir soruyla söyledin." },
+          { "de": "Ach nein. Was soll ich jetzt machen?", "tr": "Eyvah. Şimdi ne yapayım?",
+            "accepted": ["Ach nein. Was soll ich jetzt machen?", "Ach nein! Was soll ich jetzt machen?", "Was soll ich jetzt machen, Herr Doktor?"],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Talimat isterken **Was soll ich machen?** dersin." }
+        ]
+      },
+      {
+        "id": "n4",
+        "de": "Nicht schlimm. Nehmen Sie zweimal am Tag eine Tablette. Und bitte zwei Wochen kein Bier!",
+        "tr": "Kötü değil. Günde iki kez bir tablet alın. Bir de lütfen iki hafta bira yok!",
+        "secenekler": [
+          { "de": "Also ich soll zweimal am Tag eine Tablette nehmen und kein Bier trinken?", "tr": "Yani günde iki kez bir tablet alacağım ve bira içmeyeceğim, öyle mi?",
+            "accepted": ["Also ich soll zweimal am Tag eine Tablette nehmen und kein Bier trinken?", "Ich soll zweimal am Tag eine Tablette nehmen und kein Bier trinken.", "Also zweimal am Tag eine Tablette und kein Bier?"],
+            "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Talimatı **Ich soll …** ile tekrar ettin. Doktor doğru anladığını görür." },
+          { "de": "Ich soll zwei Wochen kein Bier trinken. Und eine Tablette zweimal am Tag.", "tr": "İki hafta bira içmemem gerekiyor. Bir de günde iki kez bir tablet.",
+            "accepted": ["Ich soll zwei Wochen kein Bier trinken. Und eine Tablette zweimal am Tag.", "Zwei Wochen kein Bier, und zweimal am Tag eine Tablette.", "Ich soll zwei Wochen kein Bier trinken und zweimal am Tag eine Tablette nehmen."],
+            "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "İki talimatı da tekrar ettin." },
+          { "de": "Eine Tablette und ein Bier am Tag?", "tr": "Günde bir tablet ve bir bira mı?",
+            "accepted": ["Eine Tablette und ein Bier am Tag?", "Ein Bier am Tag?", "Ein Bier und eine Tablette?"],
+            "sonraki": "n4b", "uygun": false, "geri_bildirim_tr": "Yanlış anladın. Doktor **kein Bier** dedi: hiç bira yok." }
+        ]
+      },
+      {
+        "id": "n4b",
+        "de": "Nein, nein! Kein Bier. Zwei Wochen kein Bier.",
+        "tr": "Hayır, hayır! Bira yok. İki hafta bira yok.",
+        "secenekler": [
+          { "de": "Ach so. Zwei Wochen kein Bier und zweimal am Tag eine Tablette.", "tr": "Anladım. İki hafta bira yok ve günde iki kez bir tablet.",
+            "accepted": ["Ach so. Zwei Wochen kein Bier und zweimal am Tag eine Tablette.", "Ach so! Ich soll zwei Wochen kein Bier trinken.", "Ach so, kein Bier. Und zweimal am Tag eine Tablette."],
+            "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Düzelttin ve talimatı tekrar ettin." }
+        ]
+      },
+      {
+        "id": "n5",
+        "de": "Genau. Kommen Sie bitte in zwei Wochen wieder.",
+        "tr": "Aynen. Lütfen iki hafta sonra tekrar gelin.",
+        "secenekler": [
+          { "de": "Gut. Soll ich am Montag kommen?", "tr": "Peki. Pazartesi mi geleyim?",
+            "accepted": ["Gut. Soll ich am Montag kommen?", "Soll ich am Montag kommen?", "Gut! Soll ich am Montag wiederkommen?"],
+            "sonraki": "n6", "uygun": true, "geri_bildirim_tr": "Öneri isterken **Soll ich …?** dersin." },
+          { "de": "Alles klar. Danke, Herr Doktor! Auf Wiedersehen.", "tr": "Tamam. Teşekkürler, doktor bey! Hoşça kalın.",
+            "accepted": ["Alles klar. Danke, Herr Doktor! Auf Wiedersehen.", "Danke, Herr Doktor! Auf Wiedersehen.", "Alles klar, danke! Auf Wiedersehen."],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Kibar bir kapanış." }
+        ]
+      },
+      {
+        "id": "n6",
+        "de": "Ja, Montag um neun. Und nehmen Sie den Zug um acht!",
+        "tr": "Evet, pazartesi saat dokuzda. Ve sekizdeki treni alın!",
+        "secenekler": [
+          { "de": "Ja, den Zug um acht! Danke, auf Wiedersehen!", "tr": "Evet, sekizdeki treni! Teşekkürler, hoşça kalın!",
+            "accepted": ["Ja, den Zug um acht! Danke, auf Wiedersehen!", "Okay, den Zug um acht. Danke!", "Gut, den Zug um acht. Auf Wiedersehen!"],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Doktorun şakasına kısa ve sıcak bir cevap verdin." }
+        ]
+      },
+      { "id": "n9", "de": "Auf Wiedersehen und gute Besserung!", "tr": "Hoşça kalın, geçmiş olsun!", "son": true }
+    ],
+    "kapanis_tr": "Geç kaldığın için özür diledin, doktora neyin ne zamandan beri ağrıdığını anlattın ve talimatı **Ich soll …** ile tekrar ettin. Haftanın kapısı bu konuşmaydı."
+  },
+  "okuma_yazma": {
+    "tur": "okuma",
+    "title_tr": "Basti'nin mesajı",
+    "metin_de": "Hallo! Hier ist Basti. Wie war es beim Arzt? Ich darf zwei Wochen kein Bier trinken. Und kein Training! Am Samstag gehe ich mit Derya zum See. Kommst du mit? Ohne Bier, aber mit Kuchen! Basti",
+    "metin_tr": "Merhaba! Ben Basti. Doktorda nasıl geçti? İki hafta bira içmem yasak. Antrenman da yok! Cumartesi Derya'yla göle gidiyorum. Sen de geliyor musun? Birasız ama kekli! Basti",
+    "sorular": [
+      { "id": "m1:49:o1", "kind": "gist", "q_tr": "Basti neden yazıyor?", "opts": ["Doktorun ne dediğini anlatıyor ve seni cumartesi göle çağırıyor", "Treni kaçırdığını söylüyor", "Seni antrenmana çağırıyor"], "ans": 0, "kanit": [3, 5, 6] },
+      { "id": "m1:49:o2", "kind": "detail", "q_tr": "Basti iki hafta ne yapamaz?", "opts": ["Bira içemez ve antrenman yapamaz", "Göle gidemez", "Kek yiyemez"], "ans": 0, "kanit": [3, 4] },
+      { "id": "m1:49:o3", "kind": "detail", "q_tr": "Cumartesi Basti kiminle göle gidiyor?", "opts": ["Derya'yla", "Tobi'yle", "Ioana'yla"], "ans": 0, "kanit": [5] },
+      { "id": "m1:49:o4", "k": "guided_response",
+        "situation_tr": "Basti'ye cevap ver. Cumartesi geliyorsun. Doktorun sana ne dediğini de **Ich soll …** ile söyle.",
+        "prompt_de": "Und du? Kommst du am Samstag?",
+        "accepted": ["Ja, ich komme! Ich soll auch kein Bier trinken.", "Ja, am Samstag komme ich. Ich soll auch kein Bier trinken.", "Klar, ich komme mit! Ich soll zweimal am Tag eine Tablette nehmen.", "Ja, ich komme. Ich darf auch kein Bier trinken."],
+        "why_tr": "Doktorun sözünü **Ich soll …** ile aktarırsın: **Ich soll kein Bier trinken**." }
+    ]
+  },
+  "gun_sinavi": {
+    "id": "m1:49:s",
+    "maddeler": [
+      { "id": "m1:49:s1", "k": "listen_and_respond", "audio_de": "Der Zug steht seit zehn Minuten im Tunnel.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Der Zug steht seit zehn Minuten im Tunnel.", "der zug steht seit zehn minuten im tunnel", "Der Zug steht seit zehn Minuten im Tunnel"], "why_tr": "**seit zehn Minuten** on dakikadır demektir." },
+      { "id": "m1:49:s2", "k": "listen_and_respond", "audio_de": "Ich komme um halb zehn an.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Ich komme um halb zehn an.", "ich komme um halb zehn an", "Ich komme um halb zehn an"], "why_tr": "**ankommen** ikiye ayrılır: **komme** ikinci sırada, **an** en sonda." },
+      { "id": "m1:49:s3", "k": "listen_and_respond", "audio_de": "Ihr Blutdruck ist wieder gut.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Ihr Blutdruck ist wieder gut.", "ihr blutdruck ist wieder gut", "Ihr Blutdruck ist wieder gut"], "why_tr": "Doktor resmî konuşur: **Ihr Blutdruck**, sizin tansiyonunuz." },
+      { "id": "m1:49:s4", "k": "listen_and_respond", "audio_de": "Geh mit dem Zug, nicht mit dem Auto!", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Geh mit dem Zug, nicht mit dem Auto!", "geh mit dem zug nicht mit dem auto", "Geh mit dem Zug, nicht mit dem Auto."], "why_tr": "Arkadaşa öğütte **Geh** başa gelir, **du** söylenmez." },
+      { "id": "m1:49:s5", "k": "tr_de", "tr": "Dünden beri boğazım ağrıyor.",
+        "accepted": ["Mir tut seit gestern der Hals weh.", "Seit gestern tut mir der Hals weh.", "Ich habe seit gestern Halsschmerzen."], "why_tr": "Ağrıyan yer **der Hals**, başlangıç **seit gestern**: **Mir tut seit gestern der Hals weh**." },
+      { "id": "m1:49:s6", "k": "tr_de", "tr": "Doktor bira içmemem gerektiğini söylüyor.",
+        "accepted": ["Der Arzt sagt, ich soll kein Bier trinken.", "Der Doktor sagt, ich soll kein Bier trinken.", "Der Arzt sagt, ich darf kein Bier trinken."], "why_tr": "Doktorun sözünü **Der Arzt sagt, ich soll …** ile aktarırsın; bira yoksa **kein Bier**." },
+      { "id": "m1:49:s7", "k": "tr_de", "tr": "Saat ondan sonra varıyorum. Beni bekleme!",
+        "accepted": ["Ich komme nach zehn an. Warte nicht auf mich!", "Ich komme nach zehn Uhr an. Warte nicht auf mich!", "Warte nicht auf mich! Ich komme nach zehn an."], "why_tr": "**komme … an** ikiye ayrılır. Arkadaşa öğütte **Warte** başa gelir; beni **mich** olur." },
+      { "id": "m1:49:s8", "k": "tr_de", "tr": "Onu (erkek) ara, treni tünelde!",
+        "accepted": ["Ruf ihn an, sein Zug ist im Tunnel!", "Ruf ihn an! Sein Zug ist im Tunnel.", "Sein Zug ist im Tunnel. Ruf ihn an!"], "why_tr": "Onu (erkek) **ihn** olur, onun treni **sein Zug**. **Ruf … an** başa gelir." },
+      { "id": "m1:49:s9", "k": "guided_response", "situation_tr": "Frau Huber telefonda nerede olduğunu soruyor. Trende olduğunu, trenin tünelde durduğunu söyle.", "prompt_de": "Hallo? Wo sind Sie denn?",
+        "accepted": ["Ich bin im Zug. Er steht im Tunnel.", "Ich bin im Zug, und der Zug steht im Tunnel.", "Mein Zug steht im Tunnel. Ich komme zu spät.", "Ich bin im Zug, im Tunnel. Ich komme zu spät.", "Der Zug steht im Tunnel, ich komme zu spät."], "why_tr": "Önce yerini söylersin: **Ich bin im Zug**. **der Zug** için **er** dersin: **Er steht im Tunnel**." },
+      { "id": "m1:49:s10", "k": "listen_and_respond", "audio_de": "Nehmen Sie die Tabletten am Abend, nach dem Essen.", "speed": "normal", "situation_tr": "Doktorun talimatını doğru anladığını göstermek için **Ich soll …** ile tekrar et.",
+        "accepted": ["Ich soll die Tabletten am Abend nehmen, nach dem Essen.", "Ich soll die Tabletten am Abend nach dem Essen nehmen.", "Also ich soll die Tabletten am Abend nach dem Essen nehmen?", "Am Abend, nach dem Essen. Ich soll die Tabletten am Abend nehmen."], "why_tr": "Talimatı tekrar ederken **Ich soll** başa, **nehmen** en sona gelir." },
+      { "id": "m1:49:s11", "k": "guided_response", "situation_tr": "Dr. Weber soruyor. Sırtın pazartesiden beri ağrıyor, ateşin yok. İkisini de söyle.", "prompt_de": "Was fehlt Ihnen? Haben Sie Fieber?",
+        "accepted": ["Mir tut seit Montag der Rücken weh, aber ich habe kein Fieber.", "Mir tut seit Montag der Rücken weh. Ich habe kein Fieber.", "Seit Montag tut mir der Rücken weh. Fieber habe ich nicht.", "Ich habe seit Montag Rückenschmerzen, aber kein Fieber."], "why_tr": "Ağrıyı ve süresini söylersin: **Mir tut seit Montag der Rücken weh**. Ateş yoksa **kein Fieber**." }
+    ],
+    "sesli": ["m1:49:s9", "m1:49:s10"],
+    "dikte": ["m1:49:s1", "m1:49:s2", "m1:49:s3", "m1:49:s4"]
+  }
+}

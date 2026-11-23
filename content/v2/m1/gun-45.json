@@ -14,21 +14,25 @@
   "requires": { "kelimeler": [], "kaliplar": [], "gramer": [], "tur": [], "baglayicilar": [], "akicilik": [] },
   "review": { "status": "draft" },
   "dersler": ["gr:a1-09:t4", "gr:a1-10:t4"],
-  "yeni_kartlar": ["lx:Tropfen", "lx:Salbe", "lx:empfehlen", "lx:Tasche", "lx:Impfung", "lx:Fenster", "lx:Schlüssel", "lx:pünktlich", "lx:Nähe", "lx:gegenüber", "lx:entlang", "lx:vorschlagen", "lx:Vorschlag"],
+  "yeni_kartlar": ["lx:Tropfen", "lx:Salbe", "lx:empfehlen", "lx:Tasche", "lx:Impfung", "lx:Fenster", "lx:Schlüssel", "lx:pünktlich", "lx:Nähe", "lx:vorschlagen", "lx:Vorschlag"],
   "halkalar": [
     {
       "id": "m1:45:h1",
-      "title_tr": "Eczanede: nasıl kullanılır?",
-      "kartlar": ["lx:Tropfen", "lx:Salbe", "lx:empfehlen", "lx:Tasche"],
+      "title_tr": "Eczaneyi bulmak, ilacı sormak",
+      "kartlar": ["lx:Tropfen", "lx:Salbe", "lx:empfehlen", "lx:Tasche", "lx:Nähe"],
       "kaliplar": [
         { "de": "Nehmen Sie … – Warten Sie bitte … – Vergessen Sie … nicht!", "tr": "… alın – Lütfen … bekleyin – …i unutmayın!" },
         { "de": "einmal am Tag – zweimal am Tag – dreimal am Tag", "tr": "günde bir kez – günde iki kez – günde üç kez" },
         { "de": "Wie oft soll … nehmen? – vor dem Essen – nach dem Essen", "tr": "… ne sıklıkla almalı? – yemekten önce – yemekten sonra" },
-        { "de": "Tragen Sie die Salbe … auf.", "tr": "Merhemi … sürün." }
+        { "de": "Tragen Sie die Salbe … auf.", "tr": "Merhemi … sürün." },
+        { "de": "Gehen Sie die Straße entlang. – … ist gegenüber vom …", "tr": "Caddeden düz gidin. – … …in karşısında." },
+        { "de": "Man muss nicht … – Man darf nicht …", "tr": "… gerekmiyor – … yasak (dünün kalıbı)" }
       ],
       "gorev_cumleleri": [
         { "kart": "lx:Tropfen", "de": "Nehmen Sie bitte zweimal am Tag fünf Tropfen.", "tr": "Lütfen günde iki kez beş damla alın.",
           "accepted": ["Nehmen Sie bitte zweimal am Tag fünf Tropfen.", "Nehmen Sie zweimal am Tag fünf Tropfen.", "Bitte nehmen Sie zweimal am Tag fünf Tropfen."] },
+        { "kart": "lx:Tropfen", "de": "Die Tropfen muss man nicht vor dem Essen nehmen.", "tr": "Damlayı yemekten önce almak gerekmiyor.",
+          "accepted": ["Die Tropfen muss man nicht vor dem Essen nehmen.", "Man muss die Tropfen nicht vor dem Essen nehmen.", "Die Tropfen muss man nicht vor dem Essen nehmen, das ist egal."] },
         { "kart": "lx:Tropfen", "de": "Wie oft soll Frau Brandl die Tropfen nehmen?", "tr": "Brandl Hanım damlayı ne sıklıkla almalı?",
           "accepted": ["Wie oft soll Frau Brandl die Tropfen nehmen?", "Wie oft soll sie die Tropfen nehmen?", "Wie oft muss Frau Brandl die Tropfen nehmen?"] },
         { "kart": "lx:Salbe", "de": "Tragen Sie die Salbe zweimal am Tag auf.", "tr": "Merhemi günde iki kez sürün.",
@@ -42,7 +46,11 @@
         { "kart": "lx:Tasche", "de": "Die Tropfen sind in meiner Tasche.", "tr": "Damla çantamda.",
           "accepted": ["Die Tropfen sind in meiner Tasche.", "Die Tropfen sind in der Tasche.", "In meiner Tasche sind die Tropfen."] },
         { "kart": "lx:Tasche", "de": "Vergessen Sie Ihre Tasche nicht!", "tr": "Çantanızı unutmayın!",
-          "accepted": ["Vergessen Sie Ihre Tasche nicht!", "Vergessen Sie die Tasche nicht!", "Bitte vergessen Sie Ihre Tasche nicht!"] }
+          "accepted": ["Vergessen Sie Ihre Tasche nicht!", "Vergessen Sie die Tasche nicht!", "Bitte vergessen Sie Ihre Tasche nicht!"] },
+        { "kart": "lx:Nähe", "de": "Ist hier in der Nähe eine Apotheke?", "tr": "Buralarda bir eczane var mı?",
+          "accepted": ["Ist hier in der Nähe eine Apotheke?", "Ist eine Apotheke hier in der Nähe?", "Entschuldigung, ist hier in der Nähe eine Apotheke?"] },
+        { "kart": "lx:Nähe", "de": "Man muss nicht weit gehen, die Apotheke ist in der Nähe.", "tr": "Uzağa gitmek gerekmiyor, eczane yakında.",
+          "accepted": ["Man muss nicht weit gehen, die Apotheke ist in der Nähe.", "Die Apotheke ist in der Nähe, man muss nicht weit gehen.", "Man muss nicht weit gehen. Die Apotheke ist in der Nähe."] }
       ],
       "sahne": {
         "ortam_tr": "Eczanede tezgâh. Eczacı damlanın kutusunu uzatıyor.",
@@ -56,12 +64,14 @@
     },
     {
       "id": "m1:45:h2",
-      "title_tr": "Doktor ne dedi?",
-      "kartlar": ["lx:Impfung", "lx:Fenster", "lx:Schlüssel", "lx:pünktlich"],
+      "title_tr": "Doktor ne dedi? Randevu ve öneri",
+      "kartlar": ["lx:Impfung", "lx:Fenster", "lx:Schlüssel", "lx:pünktlich", "lx:vorschlagen", "lx:Vorschlag"],
       "kaliplar": [
         { "de": "Ich soll … – Sie soll … – Soll ich …?", "tr": "…mem gerekiyor, biri öyle dedi – …mesi gerekiyor – …eyim mi?" },
         { "de": "Der Arzt sagt, ich soll …", "tr": "Doktor …mem gerektiğini söylüyor." },
-        { "de": "Seien Sie bitte pünktlich. – Machen Sie bitte … auf.", "tr": "Lütfen dakik olun. – Lütfen …i açın." }
+        { "de": "Seien Sie bitte pünktlich. – Machen Sie bitte … auf.", "tr": "Lütfen dakik olun. – Lütfen …i açın." },
+        { "de": "Was schlagen Sie vor? – Was schlagen Sie … vor? – Ich schlage … vor.", "tr": "Ne önerirsiniz? – … için ne önerirsiniz? – … öneriyorum." },
+        { "de": "Ich möchte … – Ich will …", "tr": "… istiyorum, kibar – … istiyorum, güçlü (dünün kalıbı)" }
       ],
       "gorev_cumleleri": [
         { "kart": "lx:Impfung", "de": "Ich soll eine Impfung bekommen.", "tr": "Aşı olmam gerekiyor (doktor öyle dedi).",
@@ -79,41 +89,7 @@
         { "kart": "lx:pünktlich", "de": "Seien Sie bitte morgen pünktlich.", "tr": "Lütfen yarın dakik olun.",
           "accepted": ["Seien Sie bitte morgen pünktlich.", "Bitte seien Sie morgen pünktlich.", "Seien Sie morgen bitte pünktlich."] },
         { "kart": "lx:pünktlich", "de": "Ich soll pünktlich um acht da sein.", "tr": "Saat sekizde tam vaktinde orada olmam gerekiyor.",
-          "accepted": ["Ich soll pünktlich um acht da sein.", "Ich soll um acht pünktlich da sein.", "Ich soll um acht Uhr pünktlich da sein."] }
-      ],
-      "sahne": {
-        "ortam_tr": "Muayenehanenin kayıt masası. Huber Hanım sana aşı randevusu veriyor.",
-        "satirlar": [
-          { "r": "ch:huber", "de": "Ihre Impfung ist am Montag um acht.", "tr": "Aşınız pazartesi saat sekizde." },
-          { "r": "ogrenci", "de": "Um acht? Soll ich früh kommen?", "tr": "Sekizde mi? Erken mi geleyim?" },
-          { "r": "ch:huber", "de": "Nein. Aber seien Sie bitte pünktlich.", "tr": "Hayır. Ama lütfen tam vaktinde gelin." }
-        ],
-        "soru": { "q_tr": "Aşı ne zaman?", "opts": ["Pazartesi saat sekizde", "Pazartesi saat onda", "Salı saat sekizde"], "ans": 0 }
-      }
-    },
-    {
-      "id": "m1:45:h3",
-      "title_tr": "Yol tarifi ve öneri",
-      "kartlar": ["lx:Nähe", "lx:gegenüber", "lx:entlang", "lx:vorschlagen", "lx:Vorschlag"],
-      "kaliplar": [
-        { "de": "Was schlagen Sie vor? – Was schlagen Sie … vor? – Ich schlage … vor.", "tr": "Ne önerirsiniz? – … için ne önerirsiniz? – … öneriyorum." },
-        { "de": "Gehen Sie die Straße entlang. – … ist gegenüber vom …", "tr": "Caddeden düz gidin. – … …in karşısında." },
-        { "de": "Man muss nicht … – Man darf nicht …", "tr": "… gerekmiyor – … yasak (dünün kalıbı)" },
-        { "de": "Ich möchte … – Ich will …", "tr": "… istiyorum, kibar – … istiyorum, güçlü (dünün kalıbı)" }
-      ],
-      "gorev_cumleleri": [
-        { "kart": "lx:Nähe", "de": "Ist hier in der Nähe eine Apotheke?", "tr": "Buralarda bir eczane var mı?",
-          "accepted": ["Ist hier in der Nähe eine Apotheke?", "Ist eine Apotheke hier in der Nähe?", "Entschuldigung, ist hier in der Nähe eine Apotheke?"] },
-        { "kart": "lx:Nähe", "de": "Man muss nicht weit gehen, die Apotheke ist in der Nähe.", "tr": "Uzağa gitmek gerekmiyor, eczane yakında.",
-          "accepted": ["Man muss nicht weit gehen, die Apotheke ist in der Nähe.", "Die Apotheke ist in der Nähe, man muss nicht weit gehen.", "Man muss nicht weit gehen. Die Apotheke ist in der Nähe."] },
-        { "kart": "lx:gegenüber", "de": "Die Apotheke ist gegenüber vom Bahnhof.", "tr": "Eczane tren istasyonunun karşısında.",
-          "accepted": ["Die Apotheke ist gegenüber vom Bahnhof.", "Die Apotheke ist gegenüber dem Bahnhof.", "Gegenüber vom Bahnhof ist die Apotheke."] },
-        { "kart": "lx:gegenüber", "de": "In der Apotheke gegenüber muss man nicht lange warten.", "tr": "Karşıdaki eczanede uzun beklemek gerekmiyor.",
-          "accepted": ["In der Apotheke gegenüber muss man nicht lange warten.", "In der Apotheke gegenüber muss man nicht so lange warten.", "Man muss in der Apotheke gegenüber nicht lange warten."] },
-        { "kart": "lx:entlang", "de": "Gehen Sie die Straße entlang.", "tr": "Caddeden düz gidin.",
-          "accepted": ["Gehen Sie die Straße entlang.", "Gehen Sie bitte die Straße entlang.", "Gehen Sie hier die Straße entlang."] },
-        { "kart": "lx:entlang", "de": "Fahren Sie die Straße entlang bis zur Apotheke.", "tr": "Eczaneye kadar caddeden düz gidin.",
-          "accepted": ["Fahren Sie die Straße entlang bis zur Apotheke.", "Fahren Sie bis zur Apotheke die Straße entlang.", "Fahren Sie bitte die Straße entlang bis zur Apotheke."] },
+          "accepted": ["Ich soll pünktlich um acht da sein.", "Ich soll um acht pünktlich da sein.", "Ich soll um acht Uhr pünktlich da sein."] },
         { "kart": "lx:vorschlagen", "de": "Was schlagen Sie gegen Husten vor?", "tr": "Öksürüğe karşı ne önerirsiniz?",
           "accepted": ["Was schlagen Sie gegen Husten vor?", "Was schlagen Sie mir gegen Husten vor?", "Was schlagen Sie vor? Ich habe Husten."] },
         { "kart": "lx:vorschlagen", "de": "Ich schlage Dienstag um zehn vor.", "tr": "Salı saat onu öneriyorum.",
@@ -124,14 +100,13 @@
           "accepted": ["Ihr Vorschlag ist gut. Ich möchte am Freitag kommen.", "Ihr Vorschlag ist gut, ich möchte am Freitag kommen.", "Der Vorschlag ist gut. Ich möchte am Freitag kommen."] }
       ],
       "sahne": {
-        "ortam_tr": "Apartmanın önü. Pichler Bey kapının önünü süpürüyor. Ona eczaneyi soruyorsun.",
+        "ortam_tr": "Muayenehanenin kayıt masası. Huber Hanım sana aşı randevusu veriyor.",
         "satirlar": [
-          { "r": "ogrenci", "de": "Herr Pichler, wo ist hier eine Apotheke?", "tr": "Pichler Bey, buralarda eczane nerede?" },
-          { "r": "ch:pichler", "de": "Immer die Straße entlang. Die Apotheke ist gegenüber vom Rathaus.", "tr": "Caddeden hep düz gidin. Eczane belediye binasının karşısında." },
-          { "r": "ogrenci", "de": "Danke! Ist das weit?", "tr": "Teşekkürler! Uzak mı?" },
-          { "r": "ch:pichler", "de": "Nein, das ist ganz in der Nähe.", "tr": "Hayır, çok yakında." }
+          { "r": "ch:huber", "de": "Ihre Impfung ist am Montag um acht.", "tr": "Aşınız pazartesi saat sekizde." },
+          { "r": "ogrenci", "de": "Um acht? Soll ich früh kommen?", "tr": "Sekizde mi? Erken mi geleyim?" },
+          { "r": "ch:huber", "de": "Nein. Aber seien Sie bitte pünktlich.", "tr": "Hayır. Ama lütfen tam vaktinde gelin." }
         ],
-        "soru": { "q_tr": "Eczane nerede?", "opts": ["Belediye binasının karşısında", "Tren istasyonunun yanında", "Fırının arkasında"], "ans": 0 }
+        "soru": { "q_tr": "Aşı ne zaman?", "opts": ["Pazartesi saat sekizde", "Pazartesi saat onda", "Salı saat sekizde"], "ans": 0 }
       }
     }
   ],
