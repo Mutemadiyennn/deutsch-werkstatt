@@ -1,0 +1,1441 @@
+{
+ "schema": 1,
+ "id": "m1:gun:57",
+ "day": 57,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Hafta sonunu anlatmak: Ich bin früh aufgestanden",
+ "goal_tr": "Pazartesi molasında hafta sonu ne yaptığını anlatır, iş arkadaşına sorarsın.",
+ "can_do": {
+  "id": "cd:m1:57",
+  "tr": "Molada hafta sonu ne yaptığımı anlatırım: kalktım, alışveriş yaptım, aradım."
+ },
+ "unit": "u:a2:57",
+ "arm": "kafe",
+ "place": "pl:firma",
+ "characters": [
+  "ch:lechner",
+  "ch:aksoy",
+  "ch:wimmer",
+  "ch:popescu",
+  "ch:huber"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a2-01:t2"
+ ],
+ "yeni_kartlar": [
+  "lx:Ausstellung",
+  "lx:Studium",
+  "lx:Mathe",
+  "lx:regelmäßig",
+  "lx:Chefin",
+  "lx:Besprechung",
+  "lx:Überstunde"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:57:h1",
+   "title_tr": "Pazartesi sabahı: hafta sonu nasıldı?",
+   "kartlar": [
+    "lx:Ausstellung",
+    "lx:Studium",
+    "lx:Mathe",
+    "lx:regelmäßig"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wir reden über …",
+     "tr": "… hakkında konuşuyoruz."
+    },
+    {
+     "de": "… ist inklusive.",
+     "tr": "… dahil."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Ausstellung",
+     "de": "Am Samstag war ich in einer Ausstellung.",
+     "tr": "Cumartesi bir sergideydim.",
+     "accepted": [
+      "Am Samstag war ich in einer Ausstellung.",
+      "Ich war am Samstag in einer Ausstellung.",
+      "Am Samstag bin ich in einer Ausstellung gewesen."
+     ]
+    },
+    {
+     "kart": "lx:Ausstellung",
+     "de": "Die Ausstellung kostet fünf Euro, der Kaffee ist inklusive.",
+     "tr": "Sergi beş avro, kahve dahil.",
+     "accepted": [
+      "Die Ausstellung kostet fünf Euro, der Kaffee ist inklusive.",
+      "Die Ausstellung kostet fünf Euro und der Kaffee ist inklusive.",
+      "Die Ausstellung kostet fünf Euro. Der Kaffee ist inklusive."
+     ]
+    },
+    {
+     "kart": "lx:Studium",
+     "de": "Tobis Schwester ist noch im Studium.",
+     "tr": "Tobi'nin kız kardeşi hâlâ üniversitede okuyor.",
+     "accepted": [
+      "Tobis Schwester ist noch im Studium.",
+      "Die Schwester von Tobi ist noch im Studium.",
+      "Tobis Schwester ist jetzt noch im Studium."
+     ]
+    },
+    {
+     "kart": "lx:Studium",
+     "de": "Wie lange dauert das Studium?",
+     "tr": "Üniversite eğitimi ne kadar sürüyor?",
+     "accepted": [
+      "Wie lange dauert das Studium?",
+      "Wie lange dauert dein Studium?",
+      "Wie viele Jahre dauert das Studium?"
+     ]
+    },
+    {
+     "kart": "lx:Mathe",
+     "de": "Ich war nie gut in Mathe.",
+     "tr": "Matematikte hiç iyi değildim.",
+     "accepted": [
+      "Ich war nie gut in Mathe.",
+      "In Mathe war ich nie gut.",
+      "Ich war in Mathe nie gut."
+     ]
+    },
+    {
+     "kart": "lx:Mathe",
+     "de": "Tobi hilft seiner Schwester in Mathe.",
+     "tr": "Tobi kız kardeşine matematikte yardım ediyor.",
+     "accepted": [
+      "Tobi hilft seiner Schwester in Mathe.",
+      "Tobi hilft seiner Schwester bei Mathe.",
+      "In Mathe hilft Tobi seiner Schwester."
+     ]
+    },
+    {
+     "kart": "lx:regelmäßig",
+     "de": "Ich mache regelmäßig Sport.",
+     "tr": "Düzenli spor yapıyorum.",
+     "accepted": [
+      "Ich mache regelmäßig Sport.",
+      "Regelmäßig mache ich Sport.",
+      "Ich mache auch regelmäßig Sport."
+     ]
+    },
+    {
+     "kart": "lx:regelmäßig",
+     "de": "Tobi spielt regelmäßig Fußball.",
+     "tr": "Tobi düzenli olarak futbol oynuyor.",
+     "accepted": [
+      "Tobi spielt regelmäßig Fußball.",
+      "Tobi spielt am Wochenende regelmäßig Fußball.",
+      "Regelmäßig spielt Tobi Fußball."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Firmanın küçük mutfağı, pazartesi sabahı. Derya kahve yapıyor.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Guten Morgen! Wir reden gerade über das Wochenende. Wie war deins?",
+      "tr": "Günaydın! Şu an hafta sonunu konuşuyoruz. Seninki nasıldı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Gut, danke! Ich war in der Ausstellung im Rathaus.",
+      "tr": "İyiydi, sağ ol! Belediye binasındaki sergideydim."
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Ach, die Ausstellung! Ist der Kaffee da inklusive?",
+      "tr": "Ha, o sergi! Orada kahve dahil mi?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, Kaffee und Kuchen sind inklusive.",
+      "tr": "Evet, kahve ve kek dahil."
+     }
+    ],
+    "soru": {
+     "q_tr": "Sergide ne dahil?",
+     "opts": [
+      "Kahve ve kek",
+      "Otobüs bileti",
+      "Bir kitap"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:57:h2",
+   "title_tr": "Molada: hafta sonu ve iş",
+   "kartlar": [
+    "lx:Chefin",
+    "lx:Besprechung",
+    "lx:Überstunde"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich bin um … aufgestanden.",
+     "tr": "Saat …'te kalktım."
+    },
+    {
+     "de": "Hast du schon … angerufen?",
+     "tr": "…'ı aradın mı?"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Chefin",
+     "de": "Ioanas Chefin hat am Sonntag angerufen.",
+     "tr": "Ioana'nın patronu pazar günü aradı.",
+     "accepted": [
+      "Ioanas Chefin hat am Sonntag angerufen.",
+      "Am Sonntag hat Ioanas Chefin angerufen.",
+      "Die Chefin von Ioana hat am Sonntag angerufen."
+     ]
+    },
+    {
+     "kart": "lx:Chefin",
+     "de": "Die neue Chefin hat heute angefangen.",
+     "tr": "Yeni patron bugün işe başladı.",
+     "accepted": [
+      "Die neue Chefin hat heute angefangen.",
+      "Heute hat die neue Chefin angefangen.",
+      "Die neue Chefin hat heute hier angefangen."
+     ]
+    },
+    {
+     "kart": "lx:Besprechung",
+     "de": "Die Besprechung hat um neun angefangen.",
+     "tr": "Toplantı dokuzda başladı.",
+     "accepted": [
+      "Die Besprechung hat um neun angefangen.",
+      "Die Besprechung hat um neun Uhr angefangen.",
+      "Um neun hat die Besprechung angefangen."
+     ]
+    },
+    {
+     "kart": "lx:Besprechung",
+     "de": "Nach der Besprechung habe ich die Praxis angerufen.",
+     "tr": "Toplantıdan sonra muayenehaneyi aradım.",
+     "accepted": [
+      "Nach der Besprechung habe ich die Praxis angerufen.",
+      "Ich habe nach der Besprechung die Praxis angerufen.",
+      "Nach der Besprechung habe ich bei der Praxis angerufen."
+     ]
+    },
+    {
+     "kart": "lx:Überstunde",
+     "de": "Nach den Überstunden habe ich noch eingekauft.",
+     "tr": "Fazla mesaiden sonra bir de alışveriş yaptım.",
+     "accepted": [
+      "Nach den Überstunden habe ich noch eingekauft.",
+      "Ich habe nach den Überstunden noch eingekauft.",
+      "Nach den Überstunden habe ich noch schnell eingekauft."
+     ]
+    },
+    {
+     "kart": "lx:Überstunde",
+     "de": "Am Samstag habe ich zwei Überstunden gemacht und dann aufgeräumt.",
+     "tr": "Cumartesi iki saat fazla mesai yaptım, sonra evi topladım.",
+     "accepted": [
+      "Am Samstag habe ich zwei Überstunden gemacht und dann aufgeräumt.",
+      "Ich habe am Samstag zwei Überstunden gemacht und dann aufgeräumt.",
+      "Am Samstag habe ich zwei Überstunden gemacht, dann habe ich aufgeräumt."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Öğle arası, firmanın mutfağı. Tobi elinde kahveyle geliyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Mahlzeit! Was hast du am Wochenende gemacht?",
+      "tr": "İyi öğlenler! Hafta sonu ne yaptın?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ich habe lange geschlafen und dann eingekauft. Und du?",
+      "tr": "Uzun uzun uyudum, sonra alışveriş yaptım. Ya sen?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Ich? Zwei Überstunden am Samstag. Und dann Fußball!",
+      "tr": "Ben mi? Cumartesi iki saat fazla mesai. Sonra da futbol!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi cumartesi ne yaptı?",
+     "opts": [
+      "Fazla mesai yaptı, sonra futbol",
+      "Bütün gün uyudu",
+      "Alışveriş yaptı"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:57:v1",
+  "title_tr": "Pazartesi molası: kim ne yaptı?",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Firmanın mutfağı. Tobi kahve makinesinin önünde, iki arkadaşına dönüyor.",
+    "de": "Mahlzeit! Na, wie war euer Wochenende?",
+    "tr": "İyi öğlenler! Eee, hafta sonunuz nasıldı?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya fincanını alıyor, gülümsüyor.",
+    "de": "Schön! Am Samstag bin ich früh aufgestanden und habe in der Stadt eingekauft.",
+    "tr": "Güzeldi! Cumartesi erken kalktım ve şehirde alışveriş yaptım."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya telefonunda bir fotoğraf gösteriyor.",
+    "de": "Am Sonntag war ich mit meiner Schwester in einer Ausstellung.",
+    "tr": "Pazar günü kız kardeşimle bir sergideydim."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi telefona eğiliyor.",
+    "de": "Eine Ausstellung? Wo denn?",
+    "tr": "Sergi mi? Nerede?"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya fotoğrafı büyütüyor: belediye binasının salonu.",
+    "de": "Im Rathaus. Fünf Euro, und der Kaffee ist inklusive.",
+    "tr": "Belediye binasında. Beş avro, kahve de dahil."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi esniyor, kahvesini içiyor.",
+    "de": "Nicht schlecht. Ich habe am Samstag drei Überstunden gemacht.",
+    "tr": "Fena değil. Ben cumartesi üç saat fazla mesai yaptım."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kanepeye çöküyormuş gibi yapıyor.",
+    "de": "Dann bin ich nach Hause gefahren und habe ferngesehen.",
+    "tr": "Sonra eve gittim ve televizyon izledim."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Kapıda Herr Wimmer beliriyor, elinde dosyalar.",
+    "de": "Entschuldigung, haben Sie kurz Zeit? Die Besprechung fängt heute schon um zehn an.",
+    "tr": "Affedersiniz, bir dakikanız var mı? Toplantı bugün daha saat onda başlıyor."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya saatine bakıyor, telaşlanıyor.",
+    "de": "Um zehn? Ich habe die Praxis noch nicht angerufen!",
+    "tr": "Onda mı? Muayenehaneyi daha aramadım!"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer başıyla telefonu gösteriyor.",
+    "de": "Dann rufen Sie jetzt kurz an. Wir reden um zehn über die Überstunden.",
+    "tr": "O zaman şimdi kısaca arayın. Saat onda fazla mesaileri konuşacağız."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi'nin kaşları kalkıyor.",
+    "de": "Über die Überstunden? Echt jetzt?",
+    "tr": "Fazla mesailer hakkında mı? Ciddi misiniz?"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer dosyadan bir liste çıkarıyor.",
+    "de": "Ja. Sie haben im Januar sehr viele gemacht, Herr Lechner.",
+    "tr": "Evet. Ocakta çok fazla yaptınız, Lechner Bey."
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi gururla göğsünü kabartıyor.",
+    "de": "Stimmt. Ich bin jeden Tag um fünf aufgestanden!",
+    "tr": "Doğru. Her gün beşte kalktım!"
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülerek Tobi'nin omzuna vuruyor.",
+    "de": "Dann bekommst du mehr Geld!",
+    "tr": "O zaman daha çok para alırsın!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu sahnede ne konuşuluyor?",
+     "opts": [
+      "Hafta sonu ve bugünkü toplantı",
+      "Tobi'nin yeni işi",
+      "Derya'nın hastalığı"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s8"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Derya pazar günü nereye gitti?",
+      "opts": [
+       "Bir sergiye",
+       "Bir futbol maçına",
+       "Doktora"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s3"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Toplantı bugün kaçta başlıyor?",
+      "opts": [
+       "Dokuzda",
+       "Onda",
+       "On birde"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s8"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Toplantıda ne konuşulacak?",
+      "opts": [
+       "Tatil",
+       "Fazla mesailer",
+       "Yeni patron"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s10"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s7",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "ferngesehen",
+       "eingekauft",
+       "aufgeräumt"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s2",
+      "seviye": "orta",
+      "de": "Am Samstag bin ich früh ___ und habe in der Stadt eingekauft.",
+      "accepted": [
+       "aufgestanden",
+       "Aufgestanden",
+       "aufgestanden."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s13",
+      "seviye": "zor",
+      "banka": [
+       "Ich",
+       "bin",
+       "jeden",
+       "Tag",
+       "um",
+       "fünf",
+       "aufgestanden",
+       "habe",
+       "sechs"
+      ],
+      "accepted": [
+       "Ich bin jeden Tag um fünf aufgestanden!",
+       "ich bin jeden tag um fünf aufgestanden",
+       "Ich bin jeden Tag um fünf aufgestanden"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s6",
+      "seviye": "usta",
+      "accepted": [
+       "Ich habe am Samstag drei Überstunden gemacht.",
+       "ich habe am samstag drei überstunden gemacht",
+       "Ich habe am Samstag drei Überstunden gemacht"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Derya ile Tobi hafta sonu ne yaptı? Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Derya war in einer Ausstellung. Tobi hat Überstunden gemacht.",
+      "zorunlu": [
+       "Ausstellung",
+       "Überstunden"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s13"
+    ],
+    "cevapla": {
+     "id": "m1:57:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Derya sana dönüp soruyor. Sen cumartesi erken kalktın ve alışveriş yaptın.",
+     "prompt_de": "Und du? Was hast du gemacht?",
+     "accepted": [
+      "Ich bin am Samstag früh aufgestanden und habe eingekauft.",
+      "Am Samstag bin ich früh aufgestanden und habe eingekauft.",
+      "Ich bin früh aufgestanden. Dann habe ich eingekauft.",
+      "Ich bin am Samstag früh aufgestanden. Dann habe ich eingekauft.",
+      "Früh aufgestanden und eingekauft.",
+      "Ich bin früh aufgestanden und habe dann eingekauft."
+     ],
+     "why_tr": "**ge** ortaya girer: **auf-ge-standen**, **ein-ge-kauft**. Kalkmak için **bin**, alışveriş için **habe** dersin."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:57:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Muayenehaneden sesli mesaj",
+   "ortam_tr": "Toplantıdan çıkınca telefonuna bakıyorsun. Aile hekiminin sekreteri Frau Huber mesaj bırakmış.",
+   "speaker": "ch:huber",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Grüß Gott, hier ist Huber von der Praxis Dr. Weber.",
+     "tr": "İyi günler, Dr. Weber muayenehanesinden Huber."
+    },
+    {
+     "id": "c2",
+     "de": "Sie haben am Freitag bei uns angerufen.",
+     "tr": "Cuma günü bizi aradınız."
+    },
+    {
+     "id": "c3",
+     "de": "Leider war der Doktor nicht da.",
+     "tr": "Maalesef doktor burada değildi."
+    },
+    {
+     "id": "c4",
+     "de": "Jetzt haben wir einen Termin für Sie: am Mittwoch um halb neun.",
+     "tr": "Şimdi sizin için bir randevumuz var: çarşamba sekiz buçukta."
+    },
+    {
+     "id": "c5",
+     "de": "Bitte rufen Sie uns bis morgen zurück. Vielen Dank!",
+     "tr": "Lütfen yarına kadar bizi geri arayın. Çok teşekkürler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Frau Huber neden arıyor?",
+      "opts": [
+       "Sana bir randevu veriyor",
+       "Randevunu iptal ediyor",
+       "Reçeten hazır"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Randevu ne zaman?",
+       "opts": [
+        "Çarşamba sekiz buçukta",
+        "Cuma dokuzda",
+        "Çarşamba dokuz buçukta"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ne zamana kadar geri aramalısın?",
+       "opts": [
+        "Bugün öğlene kadar",
+        "Yarına kadar",
+        "Cumaya kadar"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "angerufen",
+        "eingekauft",
+        "aufgestanden"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Jetzt haben wir einen Termin für Sie: am Mittwoch um ___ neun.",
+       "accepted": [
+        "halb",
+        "Halb",
+        "halb."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Leider",
+        "war",
+        "der",
+        "Doktor",
+        "nicht",
+        "da",
+        "ist",
+        "hier"
+       ],
+       "accepted": [
+        "Leider war der Doktor nicht da.",
+        "leider war der doktor nicht da",
+        "Leider war der Doktor nicht da"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Sie haben am Freitag bei uns angerufen.",
+        "sie haben am freitag bei uns angerufen",
+        "Sie haben am Freitag bei uns angerufen"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajı Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Frau Huber hat angerufen. Der Termin ist am Mittwoch um halb neun.",
+       "zorunlu": [
+        "angerufen",
+        "Mittwoch"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:57:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Frau Huber'i geri arıyorsun. Çarşamba sekiz buçuk sana uyuyor.",
+      "prompt_de": "Praxis Dr. Weber, Huber, guten Tag?",
+      "accepted": [
+       "Guten Tag, Frau Huber. Sie haben mich angerufen. Mittwoch um halb neun passt gut.",
+       "Guten Tag, hier ist {name}. Sie haben mich angerufen. Der Termin am Mittwoch passt.",
+       "Hallo, hier ist {name}. Mittwoch um halb neun passt gut, danke.",
+       "Guten Tag, Frau Huber. Der Termin am Mittwoch um halb neun passt.",
+       "Guten Tag, hier ist {name}. Sie haben angerufen. Mittwoch passt gut."
+      ],
+      "why_tr": "Önce kim olduğunu söyle. **Sie haben mich angerufen** ile neden aradığını anlatırsın."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:57:a1:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Yarına kadar muayenehaneyi geri ara.",
+     "Çarşamba doğrudan git, aramana gerek yok.",
+     "Cuma günü yeniden ara."
+    ],
+    "ans": 0,
+    "why_tr": "Frau Huber yarına kadar geri aramanı istiyor.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:57:a2",
+   "tur": "radyo",
+   "title_tr": "Sabah radyosu: yeni sergi",
+   "ortam_tr": "Sabah işe giderken otobüste yerel radyo açık.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Morgen, Wendlfing! Es ist Montag, sieben Uhr.",
+     "tr": "Günaydın Wendlfing! Bugün pazartesi, saat yedi."
+    },
+    {
+     "id": "c2",
+     "de": "Im Rathaus gibt es jetzt eine neue Ausstellung: alte Fotos von Wendlfing.",
+     "tr": "Belediye binasında şimdi yeni bir sergi var: Wendlfing'in eski fotoğrafları."
+    },
+    {
+     "id": "c3",
+     "de": "Die Ausstellung ist von Dienstag bis Sonntag offen.",
+     "tr": "Sergi salıdan pazara kadar açık."
+    },
+    {
+     "id": "c4",
+     "de": "Das kostet vier Euro, Kaffee und Kuchen sind inklusive.",
+     "tr": "Fiyatı dört avro, kahve ve kek dahil."
+    },
+    {
+     "id": "c5",
+     "de": "Am Montag ist die Ausstellung geschlossen.",
+     "tr": "Pazartesi sergi kapalı."
+    },
+    {
+     "id": "c6",
+     "de": "Und jetzt kommt Musik.",
+     "tr": "Ve şimdi müzik."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo neyi anlatıyor?",
+      "opts": [
+       "Belediye binasındaki yeni bir sergiyi",
+       "Yeni bir kafeyi",
+       "Hafta sonunun havasını"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Sergi hangi gün kapalı?",
+       "opts": [
+        "Pazartesi",
+        "Pazar",
+        "Salı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Dört avroya ne dahil?",
+       "opts": [
+        "Kahve ve kek",
+        "Otobüs bileti",
+        "Bir fotoğraf"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c5",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "geschlossen",
+        "offen",
+        "Sonntag"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Das kostet vier Euro, Kaffee und Kuchen sind ___.",
+       "accepted": [
+        "inklusive",
+        "Inklusive",
+        "inklusive."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Die",
+        "Ausstellung",
+        "ist",
+        "von",
+        "Dienstag",
+        "bis",
+        "Sonntag",
+        "offen",
+        "Montag",
+        "geschlossen"
+       ],
+       "accepted": [
+        "Die Ausstellung ist von Dienstag bis Sonntag offen.",
+        "die ausstellung ist von dienstag bis sonntag offen",
+        "Die Ausstellung ist von Dienstag bis Sonntag offen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Am Montag ist die Ausstellung geschlossen.",
+        "am montag ist die ausstellung geschlossen",
+        "Am Montag ist die Ausstellung geschlossen"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyoda ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Im Rathaus gibt es eine Ausstellung. Kaffee und Kuchen sind inklusive.",
+       "zorunlu": [
+        "Ausstellung",
+        "inklusive"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:57:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi bugün, pazartesi, sergiye gitmek istiyor. Sergi bugün kapalı. Salıyı öner.",
+      "prompt_de": "Ich gehe heute in die Ausstellung. Kommst du mit?",
+      "accepted": [
+       "Heute ist sie leider geschlossen. Gehen wir am Dienstag?",
+       "Leider nicht, heute ist sie geschlossen. Gehen wir am Dienstag?",
+       "Heute ist die Ausstellung geschlossen. Am Dienstag?",
+       "Die Ausstellung ist heute geschlossen. Gehen wir am Dienstag?",
+       "Heute ist sie geschlossen. Am Dienstag geht es."
+      ],
+      "why_tr": "Kapalı derken **geschlossen** dersin. Başka bir gün önermek için **Gehen wir am Dienstag?**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:57:a2:e1",
+    "k": "pick",
+    "q_tr": "Sergiye pazar günü gitmek istiyorsun. Ne yaparsın?",
+    "opts": [
+     "Pazar günü gider, dört avro ödersin.",
+     "Pazar kapalı, cumartesiyi beklersin.",
+     "Önce telefonla randevu alırsın."
+    ],
+    "ans": 0,
+    "why_tr": "Sergi salıdan pazara açık. Dört avroya kahve ve kek de dahil.",
+    "kanit": [
+     "c3",
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:57:g1",
+   "de": "Ausstellung",
+   "dogru_img": "photo exhibition in a town hall",
+   "celdirici_img": [
+    "supermarket aisle",
+    "doctor's waiting room",
+    "train platform"
+   ]
+  },
+  {
+   "id": "m1:57:g2",
+   "de": "Mathe",
+   "dogru_img": "math formulas on a school blackboard",
+   "celdirici_img": [
+    "map on a classroom wall",
+    "piano keys",
+    "football field"
+   ]
+  },
+  {
+   "id": "m1:57:g3",
+   "de": "Besprechung",
+   "dogru_img": "colleagues in a meeting around a table",
+   "celdirici_img": [
+    "people waiting at a bus stop",
+    "family dinner at home",
+    "cashier at a supermarket"
+   ]
+  },
+  {
+   "id": "m1:57:g4",
+   "de": "Überstunde",
+   "dogru_img": "office worker at desk late in the evening, clock shows nine",
+   "celdirici_img": [
+    "worker on lunch break in the sun",
+    "man sleeping in bed",
+    "people dancing at a party"
+   ]
+  },
+  {
+   "id": "m1:57:g5",
+   "de": "Chefin",
+   "dogru_img": "female manager talking to an employee in an office",
+   "celdirici_img": [
+    "young students in a classroom",
+    "waiter carrying plates",
+    "doctor with a stethoscope"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:57:p1",
+  "title_tr": "Molada hafta sonu sohbeti",
+  "durum_tr": "Pazartesi öğle arası. Tobi hafta sonunu soruyor. Sen cumartesi erken kalkıp alışveriş yaptın, pazar belediyedeki sergiye gittin.",
+  "karsi": "ch:lechner",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Mahlzeit! Und, wie war dein Wochenende?",
+    "tr": "İyi öğlenler! Eee, hafta sonun nasıldı?",
+    "secenekler": [
+     {
+      "de": "Gut! Ich bin am Samstag früh aufgestanden und habe eingekauft.",
+      "tr": "İyiydi! Cumartesi erken kalktım ve alışveriş yaptım.",
+      "accepted": [
+       "Gut! Ich bin am Samstag früh aufgestanden und habe eingekauft.",
+       "Gut, danke! Ich bin am Samstag früh aufgestanden und habe eingekauft.",
+       "Gut! Am Samstag bin ich früh aufgestanden und habe eingekauft.",
+       "Schön! Ich bin am Samstag früh aufgestanden und habe eingekauft."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **auf-ge-standen** ve **ein-ge-kauft**: ge ortada."
+     },
+     {
+      "de": "Ja.",
+      "tr": "Evet.",
+      "accepted": [
+       "Ja.",
+       "Ja, gut.",
+       "Ja, ja.",
+       "Gut."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Molada tek kelime az kalır. Ne yaptığını bir cümleyle anlat."
+     }
+    ]
+   },
+   {
+    "id": "n1b",
+    "de": "Ja? Und? Was hast du gemacht?",
+    "tr": "Evet mi? Eee? Ne yaptın?",
+    "secenekler": [
+     {
+      "de": "Ich habe eingekauft und aufgeräumt.",
+      "tr": "Alışveriş yaptım ve evi topladım.",
+      "accepted": [
+       "Ich habe eingekauft und aufgeräumt.",
+       "Ich habe am Samstag eingekauft und aufgeräumt.",
+       "Eingekauft und aufgeräumt.",
+       "Ich habe aufgeräumt und eingekauft."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Şimdi oldu. İki işi de ge ortada söyledin."
+     },
+     {
+      "de": "Nichts.",
+      "tr": "Hiçbir şey.",
+      "accepted": [
+       "Nichts.",
+       "Nichts, Tobi.",
+       "Ich habe nichts gemacht.",
+       "Nichts gemacht."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Bir şey anlat, örneğin **eingekauft** ya da **aufgeräumt**."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Echt? Am Samstag so früh? Und am Sonntag?",
+    "tr": "Gerçekten mi? Cumartesi o kadar erken mi? Ya pazar?",
+    "secenekler": [
+     {
+      "de": "Am Sonntag bin ich in die Ausstellung im Rathaus gegangen.",
+      "tr": "Pazar günü belediyedeki sergiye gittim.",
+      "accepted": [
+       "Am Sonntag bin ich in die Ausstellung im Rathaus gegangen.",
+       "Am Sonntag war ich in der Ausstellung im Rathaus.",
+       "Ich bin am Sonntag in die Ausstellung gegangen.",
+       "Am Sonntag war ich in einer Ausstellung."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Gitmek için **bin gegangen** dersin."
+     },
+     {
+      "de": "Am Sonntag habe ich meine Familie angerufen.",
+      "tr": "Pazar günü ailemi aradım.",
+      "accepted": [
+       "Am Sonntag habe ich meine Familie angerufen.",
+       "Ich habe am Sonntag meine Familie angerufen.",
+       "Am Sonntag habe ich die Familie angerufen.",
+       "Am Sonntag habe ich mit meiner Familie telefoniert."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **an-ge-rufen**: ge yine ortada."
+     },
+     {
+      "de": "Am Sonntag stehe ich früh auf.",
+      "tr": "Pazar günü erken kalkıyorum.",
+      "accepted": [
+       "Am Sonntag stehe ich früh auf.",
+       "Am Sonntag stehe ich auch früh auf.",
+       "Ich stehe am Sonntag früh auf.",
+       "Sonntag stehe ich früh auf."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Pazar geçti. Geçmiş için **Ich bin aufgestanden** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Ich habe am Samstag Überstunden gemacht. Und heute ist auch noch Besprechung.",
+    "tr": "Ben cumartesi fazla mesai yaptım. Bugün bir de toplantı var.",
+    "secenekler": [
+     {
+      "de": "Und wann fängt die Besprechung an?",
+      "tr": "Peki toplantı kaçta başlıyor?",
+      "accepted": [
+       "Und wann fängt die Besprechung an?",
+       "Wann fängt die Besprechung an?",
+       "Wann fängt die Besprechung heute an?",
+       "Um wie viel Uhr fängt die Besprechung an?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "İyi soru. **fängt** ikinci yerde, **an** en sonda."
+     },
+     {
+      "de": "Wie viele Überstunden hast du gemacht?",
+      "tr": "Kaç saat fazla mesai yaptın?",
+      "accepted": [
+       "Wie viele Überstunden hast du gemacht?",
+       "Wie viele Überstunden hast du denn gemacht?",
+       "Wie viele Überstunden?",
+       "Wie viele Überstunden hast du am Samstag gemacht?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Soruyla sohbeti sürdürdün."
+     },
+     {
+      "de": "Ich habe keine Besprechung.",
+      "tr": "Benim toplantım yok.",
+      "accepted": [
+       "Ich habe keine Besprechung.",
+       "Ich habe heute keine Besprechung.",
+       "Keine Besprechung.",
+       "Ich habe keine."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Tobi kendi gününü anlatıyor. Ona bir soru sor."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Drei Stunden! Und die Besprechung fängt um zehn an. Ich muss los!",
+    "tr": "Üç saat! Toplantı da onda başlıyor. Gitmem lazım!",
+    "secenekler": [
+     {
+      "de": "Okay, bis später, Tobi!",
+      "tr": "Tamam, sonra görüşürüz Tobi!",
+      "accepted": [
+       "Okay, bis später, Tobi!",
+       "Okay, bis später!",
+       "Alles klar, bis später, Tobi!",
+       "Bis später, Tobi!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve doğal bir kapanış."
+     },
+     {
+      "de": "Viel Glück in der Besprechung!",
+      "tr": "Toplantıda bol şans!",
+      "accepted": [
+       "Viel Glück in der Besprechung!",
+       "Viel Glück!",
+       "Viel Glück in der Besprechung, Tobi!",
+       "Viel Glück, Tobi!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok güzel. **Viel Glück** iyi dilektir."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Danke! Bis dann!",
+    "tr": "Sağ ol! Görüşürüz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Hafta sonunu geçmiş zamanla anlattın, Tobi'ye soru sordun ve sohbeti kibarca bitirdin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Ioana'dan mesaj",
+  "metin_de": "Hallo {name}! Wie war dein Wochenende? Am Samstag habe ich gearbeitet. Meine Chefin hat um sieben angerufen: Eine Kollegin war krank. Also habe ich vier Überstunden gemacht. Am Sonntag habe ich lange geschlafen und dann mit meinem Bruder Mathe gelernt. Er ist jetzt im Studium. Bis Mittwoch im Kurs!",
+  "metin_tr": "Merhaba {name}! Hafta sonun nasıldı? Ben cumartesi çalıştım. Patronum yedide aradı: Bir iş arkadaşı hastaymış. Ben de dört saat fazla mesai yaptım. Pazar günü uzun uzun uyudum, sonra erkek kardeşimle matematik çalıştım. O şimdi üniversitede okuyor. Çarşamba kursta görüşürüz!",
+  "sorular": [
+   {
+    "id": "m1:57:o1",
+    "kind": "gist",
+    "q_tr": "Ioana mesajda ne anlatıyor?",
+    "opts": [
+     "Hafta sonunu",
+     "Yeni evini",
+     "Doktor randevusunu"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     2
+    ]
+   },
+   {
+    "id": "m1:57:o2",
+    "kind": "detail",
+    "q_tr": "Ioana'yı cumartesi kim aradı?",
+    "opts": [
+     "Patronu",
+     "Erkek kardeşi",
+     "Doktoru"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:57:o3",
+    "kind": "detail",
+    "q_tr": "Ioana kaç saat fazla mesai yaptı?",
+    "opts": [
+     "İki",
+     "Dört",
+     "Altı"
+    ],
+    "ans": 1,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:57:o4",
+    "kind": "detail",
+    "q_tr": "Ioana pazar günü kiminle matematik çalıştı?",
+    "opts": [
+     "Erkek kardeşiyle",
+     "Patronuyla",
+     "Seninle"
+    ],
+    "ans": 0,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:57:o5",
+    "k": "guided_response",
+    "situation_tr": "Ioana'ya hafta sonunu yaz: cumartesi evi topladın, pazar Derya'yı aradın.",
+    "prompt_de": "Wie war dein Wochenende?",
+    "accepted": [
+     "Am Samstag habe ich aufgeräumt, und am Sonntag habe ich Derya angerufen.",
+     "Am Samstag habe ich aufgeräumt und am Sonntag Derya angerufen.",
+     "Ich habe am Samstag aufgeräumt. Am Sonntag habe ich Derya angerufen.",
+     "Gut! Am Samstag habe ich aufgeräumt, am Sonntag habe ich Derya angerufen.",
+     "Samstag aufgeräumt, Sonntag Derya angerufen."
+    ],
+    "why_tr": "İki fiilde de **ge** ortaya girer: **auf-ge-räumt**, **an-ge-rufen**."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:57:s",
+  "maddeler": [
+   {
+    "id": "m1:57:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Derya hat am Sonntag ihre Mutter angerufen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Derya hat am Sonntag ihre Mutter angerufen.",
+     "derya hat am sonntag ihre mutter angerufen",
+     "Derya hat am Sonntag ihre Mutter angerufen"
+    ],
+    "why_tr": "**an-ge-rufen**: ge ortada, kelime bitişik yazılır."
+   },
+   {
+    "id": "m1:57:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Die Besprechung hat heute pünktlich angefangen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Besprechung hat heute pünktlich angefangen.",
+     "die besprechung hat heute pünktlich angefangen",
+     "Die Besprechung hat heute pünktlich angefangen"
+    ],
+    "why_tr": "**an-ge-fangen** tek kelime, cümlenin sonunda."
+   },
+   {
+    "id": "m1:57:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Tobi ist am Montag um halb sechs aufgestanden.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Tobi ist am Montag um halb sechs aufgestanden.",
+     "tobi ist am montag um halb sechs aufgestanden",
+     "Tobi ist am Montag um halb sechs aufgestanden"
+    ],
+    "why_tr": "Kalkmak için **ist** kullanılır: **ist aufgestanden**."
+   },
+   {
+    "id": "m1:57:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Der Kaffee ist in der Ausstellung inklusive.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Kaffee ist in der Ausstellung inklusive.",
+     "der kaffee ist in der ausstellung inklusive",
+     "Der Kaffee ist in der Ausstellung inklusive"
+    ],
+    "why_tr": "Dahil derken **inklusive** dersin."
+   },
+   {
+    "id": "m1:57:s5",
+    "k": "tr_de",
+    "tr": "Cumartesi erken kalktım.",
+    "accepted": [
+     "Ich bin am Samstag früh aufgestanden.",
+     "Am Samstag bin ich früh aufgestanden.",
+     "Ich bin Samstag früh aufgestanden."
+    ],
+    "why_tr": "Kalkmak için **bin** gelir, **aufgestanden** en sona gider."
+   },
+   {
+    "id": "m1:57:s6",
+    "k": "tr_de",
+    "tr": "Fazla mesaiden sonra alışveriş yaptın mı?",
+    "accepted": [
+     "Hast du nach den Überstunden eingekauft?",
+     "Hast du nach der Überstunde eingekauft?",
+     "Hast du nach den Überstunden noch eingekauft?"
+    ],
+    "why_tr": "Alışveriş için **hast** gelir, **eingekauft** en sona gider."
+   },
+   {
+    "id": "m1:57:s7",
+    "k": "tr_de",
+    "tr": "Toplantıdan önce patronu aradım.",
+    "accepted": [
+     "Vor der Besprechung habe ich die Chefin angerufen.",
+     "Ich habe vor der Besprechung die Chefin angerufen.",
+     "Vor der Besprechung habe ich den Chef angerufen.",
+     "Ich habe vor der Besprechung den Chef angerufen."
+    ],
+    "why_tr": "Kadın patron **die Chefin**, erkek patron **der Chef**. **angerufen** en sonda."
+   },
+   {
+    "id": "m1:57:s8",
+    "k": "tr_de",
+    "tr": "Düzenli spor yapıyor musun?",
+    "accepted": [
+     "Machst du regelmäßig Sport?",
+     "Machen Sie regelmäßig Sport?",
+     "Machst du auch regelmäßig Sport?"
+    ],
+    "why_tr": "Düzenli derken **regelmäßig** dersin."
+   },
+   {
+    "id": "m1:57:s9",
+    "k": "guided_response",
+    "situation_tr": "Herr Wimmer, Frau Huber'i arayıp aramadığını soruyor. Bu sabah aradın.",
+    "prompt_de": "Haben Sie Frau Huber schon angerufen?",
+    "accepted": [
+     "Ja, ich habe sie heute Morgen angerufen.",
+     "Ja, ich habe Frau Huber heute Morgen angerufen.",
+     "Ja, heute Morgen.",
+     "Ja, ich habe sie schon angerufen.",
+     "Ja, ich habe Frau Huber schon angerufen."
+    ],
+    "why_tr": "**habe** ikinci yerde, **angerufen** en sonda."
+   },
+   {
+    "id": "m1:57:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Wann bist du heute aufgestanden?",
+    "speed": "normal",
+    "situation_tr": "Bugün altıda kalktın. Cevap ver.",
+    "accepted": [
+     "Ich bin um sechs aufgestanden.",
+     "Um sechs.",
+     "Ich bin heute um sechs Uhr aufgestanden.",
+     "Um sechs Uhr.",
+     "Ich bin heute um sechs aufgestanden."
+    ],
+    "why_tr": "**bin** ikinci yerde, **aufgestanden** en sonda."
+   },
+   {
+    "id": "m1:57:s11",
+    "k": "guided_response",
+    "situation_tr": "Molada Derya hafta sonunu soruyor. Cumartesi alışveriş yaptın, pazar bir sergiye gittin.",
+    "prompt_de": "Na, wie war dein Wochenende?",
+    "accepted": [
+     "Gut! Am Samstag habe ich eingekauft, und am Sonntag war ich in einer Ausstellung.",
+     "Am Samstag habe ich eingekauft. Am Sonntag war ich in einer Ausstellung.",
+     "Schön! Ich habe am Samstag eingekauft und war am Sonntag in einer Ausstellung.",
+     "Gut, danke! Samstag eingekauft, Sonntag Ausstellung.",
+     "Am Samstag habe ich eingekauft und am Sonntag bin ich in eine Ausstellung gegangen."
+    ],
+    "why_tr": "Önce cumartesiyi, sonra pazarı anlat. **eingekauft** ve **war** yeter."
+   }
+  ],
+  "sesli": [
+   "m1:57:s9",
+   "m1:57:s10"
+  ],
+  "dikte": [
+   "m1:57:s1",
+   "m1:57:s2",
+   "m1:57:s3",
+   "m1:57:s4"
+  ]
+ }
+}

@@ -1,0 +1,1368 @@
+{
+ "schema": 1,
+ "id": "m1:gun:59",
+ "day": 59,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Nedenini söylemek: Ich rufe an, weil ich krank bin",
+ "goal_tr": "Telefonda neden aradığını, neden gelemediğini söylersin; kafede garsona seslenirsin.",
+ "can_do": {
+  "id": "cd:m1:59",
+  "tr": "Telefonda neden aradığımı söylerim: Ich rufe an, weil ich Fieber habe."
+ },
+ "unit": "u:a2:59",
+ "arm": "telefon",
+ "place": "pl:praxis",
+ "characters": [
+  "ch:huber",
+  "ch:lechner",
+  "ch:aksoy",
+  "ch:weber",
+  "ch:wimmer",
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a2-01:t4"
+ ],
+ "yeni_kartlar": [
+  "lx:Kellner",
+  "lx:rufen"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:59:h1",
+   "title_tr": "Kafede: garson nerede?",
+   "kartlar": [
+    "lx:Kellner"
+   ],
+   "kaliplar": [
+    {
+     "de": "Das ist ja …!",
+     "tr": "Bu ne kadar … ya!"
+    },
+    {
+     "de": "Wir möchten zahlen, bitte.",
+     "tr": "Hesabı ödemek istiyoruz, lütfen."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Kellner",
+     "de": "Der Kellner hat die Rechnung vergessen.",
+     "tr": "Garson hesabı unuttu.",
+     "accepted": [
+      "Der Kellner hat die Rechnung vergessen.",
+      "Der Kellner hat unsere Rechnung vergessen.",
+      "Die Rechnung hat der Kellner vergessen."
+     ]
+    },
+    {
+     "kart": "lx:Kellner",
+     "de": "Ich habe den Kellner nicht verstanden.",
+     "tr": "Garsonu anlamadım.",
+     "accepted": [
+      "Ich habe den Kellner nicht verstanden.",
+      "Den Kellner habe ich nicht verstanden.",
+      "Ich habe den Kellner leider nicht verstanden."
+     ]
+    },
+    {
+     "kart": "lx:Kellner",
+     "de": "Entschuldigung, sind Sie der Kellner?",
+     "tr": "Affedersiniz, garson siz misiniz?",
+     "accepted": [
+      "Entschuldigung, sind Sie der Kellner?",
+      "Entschuldigung, sind Sie hier der Kellner?",
+      "Sind Sie der Kellner?"
+     ]
+    },
+    {
+     "kart": "lx:Kellner",
+     "de": "Der Kellner ist ja sehr schnell!",
+     "tr": "Garson ne kadar hızlı ya!",
+     "accepted": [
+      "Der Kellner ist ja sehr schnell!",
+      "Der Kellner ist ja schnell!",
+      "Der Kellner ist aber sehr schnell!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Meydandaki küçük kafe, cumartesi öğleden sonra. Ioana ile kahve içtiniz.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Wo ist denn der Kellner? Wir warten schon zwanzig Minuten.",
+      "tr": "Garson nerede? Yirmi dakikadır bekliyoruz."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Da ist er! Entschuldigung, wir möchten zahlen, bitte.",
+      "tr": "İşte orada! Affedersiniz, hesabı ödemek istiyoruz, lütfen."
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Das ist ja lustig. Er hat uns vergessen!",
+      "tr": "Bu ne komik ya. Bizi unutmuş!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Neden bu kadar beklediler?",
+     "opts": [
+      "Garson onları unuttu",
+      "Kafe kapalıydı",
+      "Kahve çok sıcaktı"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:59:h2",
+   "title_tr": "Neden? Çünkü…",
+   "kartlar": [
+    "lx:rufen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich rufe an, weil …",
+     "tr": "Arıyorum, çünkü …"
+    },
+    {
+     "de": "Warum? – Weil …",
+     "tr": "Neden? – Çünkü …"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:rufen",
+     "de": "Ich rufe ein Taxi, weil der Bus nicht kommt.",
+     "tr": "Taksi çağırıyorum, çünkü otobüs gelmiyor.",
+     "accepted": [
+      "Ich rufe ein Taxi, weil der Bus nicht kommt.",
+      "Ich rufe ein Taxi, weil kein Bus kommt.",
+      "Weil der Bus nicht kommt, rufe ich ein Taxi."
+     ]
+    },
+    {
+     "kart": "lx:rufen",
+     "de": "Ich rufe den Kellner, weil der Kaffee kalt ist.",
+     "tr": "Garsonu çağırıyorum, çünkü kahve soğuk.",
+     "accepted": [
+      "Ich rufe den Kellner, weil der Kaffee kalt ist.",
+      "Ich rufe den Kellner, weil mein Kaffee kalt ist.",
+      "Ich rufe den Kellner, weil der Kaffee so kalt ist."
+     ]
+    },
+    {
+     "kart": "lx:rufen",
+     "de": "Frau Brandl ruft Herrn Pichler, weil die Heizung kaputt ist.",
+     "tr": "Frau Brandl Herr Pichler'e sesleniyor, çünkü kalorifer bozuk.",
+     "accepted": [
+      "Frau Brandl ruft Herrn Pichler, weil die Heizung kaputt ist.",
+      "Frau Brandl ruft Herrn Pichler, weil ihre Heizung kaputt ist.",
+      "Weil die Heizung kaputt ist, ruft Frau Brandl Herrn Pichler."
+     ]
+    },
+    {
+     "kart": "lx:rufen",
+     "de": "Wir rufen einen Krankenwagen, weil es Tobi sehr schlecht geht.",
+     "tr": "Ambulans çağırıyoruz, çünkü Tobi çok kötü.",
+     "accepted": [
+      "Wir rufen einen Krankenwagen, weil es Tobi sehr schlecht geht.",
+      "Wir rufen einen Krankenwagen, weil es Tobi schlecht geht.",
+      "Wir rufen den Krankenwagen, weil es Tobi sehr schlecht geht."
+     ]
+    },
+    {
+     "kart": "lx:rufen",
+     "de": "Ich rufe die Polizei, weil mein Fahrrad weg ist.",
+     "tr": "Polisi çağırıyorum, çünkü bisikletim yok olmuş.",
+     "accepted": [
+      "Ich rufe die Polizei, weil mein Fahrrad weg ist.",
+      "Ich rufe die Polizei, weil mein Fahrrad nicht mehr da ist.",
+      "Weil mein Fahrrad weg ist, rufe ich die Polizei."
+     ]
+    },
+    {
+     "kart": "lx:rufen",
+     "de": "Ich rufe die Kinder, weil der Kuchen fertig ist.",
+     "tr": "Çocuklara sesleniyorum, çünkü kek hazır.",
+     "accepted": [
+      "Ich rufe die Kinder, weil der Kuchen fertig ist.",
+      "Ich rufe die Kinder, weil der Kuchen jetzt fertig ist.",
+      "Weil der Kuchen fertig ist, rufe ich die Kinder."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Sabah, firmanın önü. Derya telefonda, sen yanındasın.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Ich rufe ein Taxi. Kommst du mit?",
+      "tr": "Taksi çağırıyorum. Benimle geliyor musun?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Warum denn ein Taxi?",
+      "tr": "Neden taksi?"
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Weil heute kein Bus fährt. Und um neun haben wir einen Kunden!",
+      "tr": "Çünkü bugün otobüs çalışmıyor. Saat dokuzda da bir müşterimiz var!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Derya neden taksi çağırıyor?",
+     "opts": [
+      "Bugün otobüs çalışmıyor",
+      "Hasta",
+      "Çok yağmur yağıyor"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:59:v1",
+  "title_tr": "Muayenehanede yoğun bir sabah",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:huber",
+    "sahne_tr": "Dr. Weber'in muayenehanesi, sabah sekiz. Telefon çalıyor, Frau Huber hemen açıyor.",
+    "de": "Praxis Dr. Weber, Huber, grüß Gott. Einen Moment, bitte!",
+    "tr": "Dr. Weber muayenehanesi, Huber, iyi günler. Bir dakika, lütfen!"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi yatakta, burnu kıpkırmızı, sesi kısık.",
+    "de": "Hallo, hier ist Tobias Lechner. Ich rufe an, weil ich seit gestern Fieber habe.",
+    "tr": "Merhaba, ben Tobias Lechner. Arıyorum, çünkü dünden beri ateşim var."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:huber",
+    "sahne_tr": "Frau Huber bilgisayara bakıyor.",
+    "de": "Fieber? Haben Sie auch Husten?",
+    "tr": "Ateş mi? Öksürüğünüz de var mı?"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi alnını tutuyor.",
+    "de": "Ja, und ich kann nicht arbeiten, weil mein Kopf so wehtut.",
+    "tr": "Evet, bir de çalışamıyorum, çünkü başım çok ağrıyor."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:huber",
+    "sahne_tr": "Frau Huber hızla bir şey yazıyor.",
+    "de": "Kommen Sie heute um elf. Haben Sie Ihre Versichertenkarte?",
+    "tr": "Bugün saat on birde gelin. Sağlık kartınız var mı?"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi başını sallıyor.",
+    "de": "Ja. Um elf, gut. Danke!",
+    "tr": "Evet. On birde, tamam. Teşekkürler!"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:huber",
+    "sahne_tr": "Telefon yeniden çalıyor.",
+    "de": "Praxis Dr. Weber, Huber?",
+    "tr": "Dr. Weber muayenehanesi, Huber?"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya ofiste, elinde dosyalar.",
+    "de": "Guten Morgen, hier ist Derya Aksoy. Ich muss meinen Termin heute absagen.",
+    "tr": "Günaydın, ben Derya Aksoy. Bugünkü randevumu iptal etmem gerekiyor."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:huber",
+    "sahne_tr": "Frau Huber kalemini kaldırıyor.",
+    "de": "Warum denn?",
+    "tr": "Neden?"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya saate bakıyor.",
+    "de": "Weil wir heute eine wichtige Besprechung haben.",
+    "tr": "Çünkü bugün önemli bir toplantımız var."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:huber",
+    "sahne_tr": "Frau Huber takvimi çeviriyor.",
+    "de": "Kein Problem. Passt es Ihnen am Freitag um neun?",
+    "tr": "Sorun değil. Cuma dokuz size uyar mı?"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya rahatlıyor.",
+    "de": "Ja, das passt. Vielen Dank!",
+    "tr": "Evet, uyar. Çok teşekkürler!"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:weber",
+    "sahne_tr": "Dr. Weber odasından çıkıyor, şaşkın.",
+    "de": "Frau Huber, warum rufen heute so viele Leute an?",
+    "tr": "Frau Huber, bugün neden bu kadar çok insan arıyor?"
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:huber",
+    "sahne_tr": "Frau Huber gülerek telefonu gösteriyor.",
+    "de": "Weil alle krank sind, Herr Doktor! Es ist ja Januar.",
+    "tr": "Çünkü herkes hasta, doktor bey! Ocak ayındayız ya."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Muayenehanede ne oluyor?",
+     "opts": [
+      "İnsanlar arayıp randevu alıyor ya da iptal ediyor",
+      "Dr. Weber tatile gidiyor",
+      "Frau Huber hasta"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2",
+      "s8"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Tobi neden arıyor?",
+      "opts": [
+       "Dünden beri ateşi var",
+       "Randevusunu iptal ediyor",
+       "Reçete istiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi kaçta muayenehaneye gidecek?",
+      "opts": [
+       "On birde",
+       "Dokuzda",
+       "Sekizde"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya neden randevusunu iptal ediyor?",
+      "opts": [
+       "Önemli bir toplantısı var",
+       "Hasta",
+       "Tatile gidiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s4",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "wehtut",
+       "Fieber",
+       "Husten"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s2",
+      "seviye": "orta",
+      "de": "Hallo, hier ist Tobias Lechner. Ich rufe an, weil ich seit gestern Fieber ___.",
+      "accepted": [
+       "habe",
+       "Habe",
+       "habe."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s10",
+      "seviye": "zor",
+      "banka": [
+       "Weil",
+       "wir",
+       "heute",
+       "eine",
+       "wichtige",
+       "Besprechung",
+       "haben",
+       "sind",
+       "morgen"
+      ],
+      "accepted": [
+       "Weil wir heute eine wichtige Besprechung haben.",
+       "weil wir heute eine wichtige besprechung haben",
+       "Weil wir heute eine wichtige Besprechung haben"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s14",
+      "seviye": "usta",
+      "accepted": [
+       "Weil alle krank sind, Herr Doktor!",
+       "weil alle krank sind herr doktor",
+       "Weil alle krank sind, Herr Doktor"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Tobi ve Derya neden arıyor? Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Tobi ruft an, weil er Fieber hat. Derya sagt den Termin ab, weil sie eine Besprechung hat.",
+      "zorunlu": [
+       "weil",
+       "Fieber"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s10"
+    ],
+    "cevapla": {
+     "id": "m1:59:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Muayenehaneyi arıyorsun. Boğazın ağrıyor, bir randevu istiyorsun.",
+     "prompt_de": "Praxis Dr. Weber, Huber, guten Morgen?",
+     "accepted": [
+      "Guten Morgen, hier ist {name}. Ich rufe an, weil mein Hals wehtut.",
+      "Guten Morgen. Ich rufe an, weil mein Hals wehtut. Haben Sie heute einen Termin?",
+      "Hier ist {name}. Ich rufe an, weil ich Halsschmerzen habe.",
+      "Guten Morgen, ich rufe an, weil mein Hals so wehtut.",
+      "Hallo, hier ist {name}. Ich brauche einen Termin, weil mein Hals wehtut."
+     ],
+     "why_tr": "**weil** fiili en sona gönderir: **weil mein Hals wehtut**."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:59:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Şefin telesekreteri",
+   "ortam_tr": "Sabah yedi. Hastasın, Herr Wimmer'i arıyorsun ama telesekreter açılıyor.",
+   "speaker": "ch:wimmer",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hier ist der Anrufbeantworter von Stefan Wimmer, Firma Kerschbaum.",
+     "tr": "Burası Firma Kerschbaum'dan Stefan Wimmer'in telesekreteri."
+    },
+    {
+     "id": "c2",
+     "de": "Ich bin heute nicht im Büro, weil ich bei einem Kunden in Passau bin.",
+     "tr": "Bugün ofiste değilim, çünkü Passau'da bir müşterinin yanındayım."
+    },
+    {
+     "id": "c3",
+     "de": "Morgen bin ich wieder da.",
+     "tr": "Yarın yine buradayım."
+    },
+    {
+     "id": "c4",
+     "de": "Bitte sprechen Sie nach dem Ton. Ich rufe zurück.",
+     "tr": "Lütfen sinyal sesinden sonra konuşun. Sizi geri ararım."
+    },
+    {
+     "id": "c5",
+     "de": "Bei Problemen rufen Sie bitte Frau Aksoy an.",
+     "tr": "Bir sorun olursa lütfen Aksoy Hanım'ı arayın."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Bu kayıt ne söylüyor?",
+      "opts": [
+       "Herr Wimmer bugün ofiste yok",
+       "Herr Wimmer hasta",
+       "Toplantı iptal oldu"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Herr Wimmer neden ofiste değil?",
+       "opts": [
+        "Passau'da bir müşterinin yanında",
+        "Hasta",
+        "Tatilde"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Sorun olursa kimi aramalısın?",
+       "opts": [
+        "Frau Aksoy'u",
+        "Tobi'yi",
+        "Frau Huber'i"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Kunden",
+        "Kollegen",
+        "Doktor"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Morgen bin ich wieder ___.",
+       "accepted": [
+        "da",
+        "Da",
+        "da."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Ich",
+        "bin",
+        "heute",
+        "nicht",
+        "im",
+        "Büro",
+        "weil",
+        "ich",
+        "bei",
+        "einem",
+        "Kunden",
+        "in",
+        "Passau",
+        "bin",
+        "habe",
+        "München"
+       ],
+       "accepted": [
+        "Ich bin heute nicht im Büro, weil ich bei einem Kunden in Passau bin.",
+        "ich bin heute nicht im büro weil ich bei einem kunden in passau bin",
+        "Ich bin heute nicht im Büro, weil ich bei einem Kunden in Passau bin"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Bei Problemen rufen Sie bitte Frau Aksoy an.",
+        "bei problemen rufen sie bitte frau aksoy an",
+        "Bei Problemen rufen Sie bitte Frau Aksoy an"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajda ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Herr Wimmer ist nicht im Büro, weil er in Passau ist. Morgen ist er wieder da.",
+       "zorunlu": [
+        "weil",
+        "Passau"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:59:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Herr Wimmer'e mesaj bırak: bugün gelemiyorsun, çünkü hastasın.",
+      "prompt_de": "Bitte sprechen Sie nach dem Ton.",
+      "accepted": [
+       "Guten Morgen, Herr Wimmer, hier ist {name}. Ich komme heute nicht, weil ich krank bin.",
+       "Hallo, Herr Wimmer. Hier ist {name}. Ich kann heute nicht kommen, weil ich krank bin.",
+       "Guten Morgen, hier ist {name}. Ich bin heute nicht da, weil ich krank bin.",
+       "Herr Wimmer, hier ist {name}. Ich komme heute nicht, weil ich Fieber habe.",
+       "Guten Tag, Herr Wimmer, {name} hier. Ich komme heute nicht, weil ich krank bin."
+      ],
+      "why_tr": "Önce adını söyle. Sonra **weil** ile nedenini: **weil ich krank bin**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:59:a1:e1",
+    "k": "pick",
+    "q_tr": "Herr Wimmer bugün yok ve iş yerinde acil bir sorun var. Ne yaparsın?",
+    "opts": [
+     "Frau Aksoy'u ararsın.",
+     "Yarına kadar beklersin.",
+     "Passau'ya gidersin."
+    ],
+    "ans": 0,
+    "why_tr": "Mesaja göre sorun olursa Frau Aksoy'u aramalısın.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:59:a2",
+   "tur": "radyo",
+   "title_tr": "Radyoda sokak soruları: neden burada?",
+   "ortam_tr": "Akşam mutfakta yerel radyo açık. Muhabir sokakta insanlara soru soruyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Heute fragen wir in Wendlfing: Warum wohnen Sie hier?",
+     "tr": "Bugün Wendlfing'de soruyoruz: Neden burada oturuyorsunuz?"
+    },
+    {
+     "id": "c2",
+     "de": "Ich wohne hier, weil meine Familie hier lebt.",
+     "tr": "Burada oturuyorum, çünkü ailem burada yaşıyor."
+    },
+    {
+     "id": "c3",
+     "de": "Ich bin hier, weil ich bei einer Firma in der Stadt arbeite.",
+     "tr": "Buradayım, çünkü şehirde bir firmada çalışıyorum."
+    },
+    {
+     "id": "c4",
+     "de": "Und ich? Ich mag Wendlfing, weil die Leute so nett sind.",
+     "tr": "Ya ben mi? Wendlfing'i seviyorum, çünkü insanlar çok nazik."
+    },
+    {
+     "id": "c5",
+     "de": "Und weil das Bier gut ist!",
+     "tr": "Bir de bira iyi olduğu için!"
+    },
+    {
+     "id": "c6",
+     "de": "Danke! Und jetzt kommt das Wetter.",
+     "tr": "Teşekkürler! Şimdi hava durumu."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo insanlara ne soruyor?",
+      "opts": [
+       "Neden Wendlfing'de oturduklarını",
+       "Ne iş yaptıklarını",
+       "Hafta sonu ne yaptıklarını"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "İkinci kişi neden burada?",
+       "opts": [
+        "Şehirde bir firmada çalışıyor",
+        "Ailesi burada",
+        "Birayı seviyor"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Üçüncü kişi Wendlfing'i neden seviyor?",
+       "opts": [
+        "İnsanlar çok nazik",
+        "Şehir büyük",
+        "Çok iş var"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Familie",
+        "Firma",
+        "Freunde"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Und ich? Ich mag Wendlfing, weil die Leute so nett ___.",
+       "accepted": [
+        "sind",
+        "Sind",
+        "sind."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Ich",
+        "bin",
+        "hier",
+        "weil",
+        "ich",
+        "bei",
+        "einer",
+        "Firma",
+        "in",
+        "der",
+        "Stadt",
+        "arbeite",
+        "habe",
+        "Büro"
+       ],
+       "accepted": [
+        "Ich bin hier, weil ich bei einer Firma in der Stadt arbeite.",
+        "ich bin hier weil ich bei einer firma in der stadt arbeite",
+        "Ich bin hier, weil ich bei einer Firma in der Stadt arbeite"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Ich wohne hier, weil meine Familie hier lebt.",
+        "ich wohne hier weil meine familie hier lebt",
+        "Ich wohne hier, weil meine Familie hier lebt"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "İki kişinin nedenini Almanca yaz.",
+       "ornek_de": "Eine Frau wohnt hier, weil ihre Familie hier lebt. Ein Mann mag Wendlfing, weil die Leute nett sind.",
+       "zorunlu": [
+        "weil",
+        "Familie"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:59:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Molada Tobi soruyor: Neden Almanca öğreniyorsun? Burada çalışıyorsun.",
+      "prompt_de": "Warum lernst du Deutsch?",
+      "accepted": [
+       "Ich lerne Deutsch, weil ich hier arbeite.",
+       "Weil ich hier arbeite.",
+       "Weil ich hier wohne und arbeite.",
+       "Ich lerne Deutsch, weil ich hier lebe und arbeite.",
+       "Weil ich hier arbeite und lebe."
+      ],
+      "why_tr": "Kısa cevap doğrudan **Weil** ile başlayabilir. Fiil yine sonda: **weil ich hier arbeite**."
+     }
+    }
+   ]
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:59:g1",
+   "de": "Kellner",
+   "dogru_img": "waiter carrying a tray with coffee cups in a cafe",
+   "celdirici_img": [
+    "cook in a kitchen",
+    "cashier at a supermarket",
+    "bus driver"
+   ]
+  },
+  {
+   "id": "m1:59:g2",
+   "de": "Krankenwagen",
+   "dogru_img": "ambulance on a street with blue lights",
+   "celdirici_img": [
+    "police car",
+    "city bus",
+    "delivery van"
+   ]
+  },
+  {
+   "id": "m1:59:g3",
+   "de": "Rechnung",
+   "dogru_img": "restaurant bill on a small plate",
+   "celdirici_img": [
+    "menu card on a table",
+    "train ticket",
+    "shopping list"
+   ]
+  },
+  {
+   "id": "m1:59:g4",
+   "de": "Polizei",
+   "dogru_img": "police officers next to a police car",
+   "celdirici_img": [
+    "firefighters at a fire truck",
+    "doctors in a hospital",
+    "postman with letters"
+   ]
+  },
+  {
+   "id": "m1:59:g5",
+   "de": "Versichertenkarte",
+   "dogru_img": "health insurance card in a hand",
+   "celdirici_img": [
+    "bank card at an ATM",
+    "train ticket",
+    "library card"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:59:p1",
+  "title_tr": "Şefi arayıp hasta olduğunu söylemek",
+  "durum_tr": "Sabah yedi. Ateşin var, işe gidemiyorsun. Şefin Herr Wimmer'i arıyorsun.",
+  "karsi": "ch:wimmer",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Wimmer, guten Morgen?",
+    "tr": "Wimmer, günaydın?",
+    "secenekler": [
+     {
+      "de": "Guten Morgen, Herr Wimmer. Hier ist {name}. Ich rufe an, weil ich krank bin.",
+      "tr": "Günaydın Wimmer Bey. Ben {name}. Arıyorum, çünkü hastayım.",
+      "accepted": [
+       "Guten Morgen, Herr Wimmer. Hier ist {name}. Ich rufe an, weil ich krank bin.",
+       "Guten Morgen, Herr Wimmer, hier ist {name}. Ich rufe an, weil ich krank bin.",
+       "Guten Morgen, hier ist {name}. Ich rufe an, weil ich krank bin.",
+       "Guten Morgen, Herr Wimmer. {name} hier. Ich rufe an, weil ich krank bin."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Adını ve nedenini tek seferde söyledin."
+     },
+     {
+      "de": "Guten Morgen. Ich komme heute nicht.",
+      "tr": "Günaydın. Bugün gelmiyorum.",
+      "accepted": [
+       "Guten Morgen. Ich komme heute nicht.",
+       "Guten Morgen, ich komme heute nicht.",
+       "Guten Morgen, Herr Wimmer. Ich komme heute nicht.",
+       "Ich komme heute nicht, Herr Wimmer."
+      ],
+      "sonraki": "n1b",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur, ama nedenini de söyle."
+     },
+     {
+      "de": "Ich bin krank, weil ich komme nicht.",
+      "tr": "Hastayım, çünkü gelmiyorum.",
+      "accepted": [
+       "Ich bin krank, weil ich komme nicht.",
+       "Ich bin krank, weil ich komme heute nicht.",
+       "Weil ich komme nicht.",
+       "Ich komme nicht, weil ich bin krank."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "**weil** cümlesinde fiil sona gider. Önce adını, sonra **weil ich krank bin** de."
+     }
+    ]
+   },
+   {
+    "id": "n1b",
+    "de": "Oh. Warum denn nicht?",
+    "tr": "Aa. Neden peki?",
+    "secenekler": [
+     {
+      "de": "Weil ich Fieber habe.",
+      "tr": "Çünkü ateşim var.",
+      "accepted": [
+       "Weil ich Fieber habe.",
+       "Weil ich krank bin.",
+       "Weil ich seit gestern Fieber habe.",
+       "Weil ich Fieber habe, Herr Wimmer."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Fiil **habe** en sonda."
+     },
+     {
+      "de": "Weil ich habe Fieber.",
+      "tr": "Çünkü ateşim var.",
+      "accepted": [
+       "Weil ich habe Fieber.",
+       "Weil ich bin krank.",
+       "Weil habe ich Fieber.",
+       "Weil ich habe seit gestern Fieber."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Fiil sona gider: **weil ich Fieber habe**."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Oh, das tut mir leid. Was haben Sie denn?",
+    "tr": "Ah, çok üzüldüm. Neyiniz var?",
+    "secenekler": [
+     {
+      "de": "Ich habe Fieber und mein Kopf tut weh.",
+      "tr": "Ateşim var ve başım ağrıyor.",
+      "accepted": [
+       "Ich habe Fieber und mein Kopf tut weh.",
+       "Ich habe Fieber, und mein Kopf tut weh.",
+       "Fieber, und mein Kopf tut weh.",
+       "Ich habe Fieber und Kopfschmerzen."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Açık ve kısa."
+     },
+     {
+      "de": "Ich habe seit gestern Fieber und Husten.",
+      "tr": "Dünden beri ateşim ve öksürüğüm var.",
+      "accepted": [
+       "Ich habe seit gestern Fieber und Husten.",
+       "Seit gestern Fieber und Husten.",
+       "Ich habe Fieber und Husten, seit gestern.",
+       "Ich habe seit gestern Husten und Fieber."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **seit gestern** ne zamandan beri olduğunu söyler."
+     },
+     {
+      "de": "Ich weiß nicht.",
+      "tr": "Bilmiyorum.",
+      "accepted": [
+       "Ich weiß nicht.",
+       "Weiß ich nicht.",
+       "Ich weiß es nicht.",
+       "Keine Ahnung."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Bir belirti söyle, örneğin **Fieber** ya da **Husten**."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Gehen Sie heute zum Arzt? Wir brauchen eine Krankmeldung.",
+    "tr": "Bugün doktora gidiyor musunuz? Bize bir rapor lazım.",
+    "secenekler": [
+     {
+      "de": "Ja, ich rufe gleich die Praxis an, weil ich einen Termin brauche.",
+      "tr": "Evet, hemen muayenehaneyi arıyorum, çünkü randevuya ihtiyacım var.",
+      "accepted": [
+       "Ja, ich rufe gleich die Praxis an, weil ich einen Termin brauche.",
+       "Ja, ich rufe gleich die Praxis an.",
+       "Ja, ich rufe jetzt die Praxis an, weil ich einen Termin brauche.",
+       "Ja, ich rufe gleich beim Arzt an, weil ich einen Termin brauche."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. **an** ana cümlede sonda, **brauche** da **weil** cümlesinin sonunda."
+     },
+     {
+      "de": "Ja, ich habe um elf einen Termin.",
+      "tr": "Evet, saat on birde randevum var.",
+      "accepted": [
+       "Ja, ich habe um elf einen Termin.",
+       "Ja, um elf habe ich einen Termin.",
+       "Ja, ich habe heute um elf einen Termin.",
+       "Ja, um elf."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Saat bilgisi şefin işine yarar."
+     },
+     {
+      "de": "Nein, ich gehe nicht zum Arzt.",
+      "tr": "Hayır, doktora gitmiyorum.",
+      "accepted": [
+       "Nein, ich gehe nicht zum Arzt.",
+       "Nein.",
+       "Nein, heute nicht.",
+       "Nein, ich gehe nicht."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "İş yeri rapor istiyor. Doktora gideceğini söyle."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gut. Gute Besserung! Rufen Sie mich morgen an, ja?",
+    "tr": "Peki. Geçmiş olsun! Yarın beni arayın, olur mu?",
+    "secenekler": [
+     {
+      "de": "Ja, mache ich. Danke, Herr Wimmer!",
+      "tr": "Evet, ararım. Teşekkürler Wimmer Bey!",
+      "accepted": [
+       "Ja, mache ich. Danke, Herr Wimmer!",
+       "Ja, mache ich. Danke!",
+       "Ja, gern. Danke, Herr Wimmer!",
+       "Mache ich. Vielen Dank!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar bir kapanış."
+     },
+     {
+      "de": "Danke! Ich rufe Sie morgen an.",
+      "tr": "Teşekkürler! Yarın sizi ararım.",
+      "accepted": [
+       "Danke! Ich rufe Sie morgen an.",
+       "Danke, ich rufe Sie morgen an.",
+       "Vielen Dank! Ich rufe Sie morgen an.",
+       "Danke! Morgen rufe ich Sie an."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **an** en sonda."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Gut. Bis morgen!",
+    "tr": "Tamam. Yarın görüşürüz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Şefini aradın, neden gelemediğini söyledin ve doktora gideceğini anlattın."
+ },
+ "okuma_yazma": {
+  "tur": "yazma",
+  "title_tr": "Şefe kısa mesaj",
+  "metin_de": "Guten Morgen! Heute um zehn haben wir eine Besprechung mit einem Kunden. Bitte seien Sie pünktlich. Stefan Wimmer",
+  "metin_tr": "Günaydın! Bugün saat onda bir müşteriyle toplantımız var. Lütfen dakik olun. Stefan Wimmer",
+  "sorular": [
+   {
+    "id": "m1:59:o1",
+    "kind": "gist",
+    "q_tr": "Herr Wimmer ne yazıyor?",
+    "opts": [
+     "Bugün onda bir müşteriyle toplantı var",
+     "Bugün iş yok",
+     "Toplantı yarın"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:59:o2",
+    "kind": "detail",
+    "q_tr": "Herr Wimmer senden ne istiyor?",
+    "opts": [
+     "Dakik olmanı",
+     "Erken çıkmanı",
+     "Onu aramanı"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Herr Wimmer'e cevap yaz. Bugün ancak saat on ikide gelebilirsin, çünkü saat dokuzda doktorda randevun var.",
+   "ornek_de": "Guten Morgen, Herr Wimmer. Leider komme ich heute erst um zwölf, weil ich um neun einen Termin beim Arzt habe. Danke!",
+   "zorunlu": [
+    "weil",
+    "Termin"
+   ],
+   "accepted_kaliplar": [
+    "Guten Morgen, ___.",
+    "Leider komme ich heute erst um ___, weil ___.",
+    "Danke!"
+   ],
+   "kontrol_tr": [
+    "Selamla başladın mı?",
+    "**weil** cümlesinde fiil en sonda mı?",
+    "Saati ve nedeni yazdın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:59:s",
+  "maddeler": [
+   {
+    "id": "m1:59:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Derya ruft an, weil sie heute später kommt.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Derya ruft an, weil sie heute später kommt.",
+     "derya ruft an weil sie heute später kommt",
+     "Derya ruft an, weil sie heute später kommt"
+    ],
+    "why_tr": "**weil** gelince fiil **kommt** en sona gider."
+   },
+   {
+    "id": "m1:59:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Der Kellner kommt nicht, weil das Café so voll ist.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Kellner kommt nicht, weil das Café so voll ist.",
+     "der kellner kommt nicht weil das café so voll ist",
+     "Der Kellner kommt nicht, weil das Café so voll ist"
+    ],
+    "why_tr": "**weil** cümlesinde **ist** en sonda."
+   },
+   {
+    "id": "m1:59:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Ich bleibe zu Hause, weil ich Fieber habe.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich bleibe zu Hause, weil ich Fieber habe.",
+     "ich bleibe zu hause weil ich fieber habe",
+     "Ich bleibe zu Hause, weil ich Fieber habe"
+    ],
+    "why_tr": "**habe** en sonda: **weil ich Fieber habe**."
+   },
+   {
+    "id": "m1:59:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Tobi kommt heute nicht, weil er beim Arzt ist.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Tobi kommt heute nicht, weil er beim Arzt ist.",
+     "tobi kommt heute nicht weil er beim arzt ist",
+     "Tobi kommt heute nicht, weil er beim Arzt ist"
+    ],
+    "why_tr": "**weil** öncesinde virgül var, fiil **ist** en sonda."
+   },
+   {
+    "id": "m1:59:s5",
+    "k": "tr_de",
+    "tr": "Arıyorum, çünkü bir randevuya ihtiyacım var.",
+    "accepted": [
+     "Ich rufe an, weil ich einen Termin brauche.",
+     "Ich rufe an, weil ich einen neuen Termin brauche.",
+     "Ich rufe an, weil ich bitte einen Termin brauche."
+    ],
+    "why_tr": "**weil** cümlesinde **brauche** en sona gider."
+   },
+   {
+    "id": "m1:59:s6",
+    "k": "tr_de",
+    "tr": "Garsonu çağır, çünkü hesap yanlış.",
+    "accepted": [
+     "Ruf den Kellner, weil die Rechnung falsch ist.",
+     "Ruf bitte den Kellner, weil die Rechnung falsch ist.",
+     "Rufen Sie den Kellner, weil die Rechnung falsch ist."
+    ],
+    "why_tr": "Garsonu çağırmak **den Kellner rufen**. **ist** en sonda."
+   },
+   {
+    "id": "m1:59:s7",
+    "k": "tr_de",
+    "tr": "Bugün işe gelmiyorum, çünkü hastayım.",
+    "accepted": [
+     "Ich komme heute nicht zur Arbeit, weil ich krank bin.",
+     "Heute komme ich nicht zur Arbeit, weil ich krank bin.",
+     "Ich komme heute nicht, weil ich krank bin."
+    ],
+    "why_tr": "**bin** en sona gider: **weil ich krank bin**."
+   },
+   {
+    "id": "m1:59:s8",
+    "k": "tr_de",
+    "tr": "Çünkü otobüs gelmiyor.",
+    "accepted": [
+     "Weil der Bus nicht kommt.",
+     "Weil kein Bus kommt.",
+     "Weil der Bus heute nicht kommt."
+    ],
+    "why_tr": "Kısa cevap **Weil** ile başlar, fiil yine sonda."
+   },
+   {
+    "id": "m1:59:s9",
+    "k": "guided_response",
+    "situation_tr": "Frau Huber neden randevu istediğini soruyor. Sırtın ağrıyor.",
+    "prompt_de": "Warum möchten Sie einen Termin?",
+    "accepted": [
+     "Weil mein Rücken wehtut.",
+     "Ich möchte einen Termin, weil mein Rücken wehtut.",
+     "Weil ich Rückenschmerzen habe.",
+     "Weil mein Rücken so wehtut.",
+     "Weil mir der Rücken wehtut."
+    ],
+    "why_tr": "**wehtut** birleşik yazılır ve en sona gider."
+   },
+   {
+    "id": "m1:59:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Warum kommst du heute nicht mit?",
+    "speed": "normal",
+    "situation_tr": "Bugün gelemiyorsun, çünkü çok yorgunsun. Cevap ver.",
+    "accepted": [
+     "Weil ich sehr müde bin.",
+     "Ich komme nicht mit, weil ich sehr müde bin.",
+     "Weil ich so müde bin.",
+     "Weil ich heute sehr müde bin.",
+     "Ich bin heute sehr müde."
+    ],
+    "why_tr": "**weil** ile başla, **bin** en sonda."
+   },
+   {
+    "id": "m1:59:s11",
+    "k": "guided_response",
+    "situation_tr": "Muayenehaneyi arıyorsun. Adını söyle ve ateşin olduğu için aradığını anlat.",
+    "prompt_de": "Praxis Dr. Weber, Sie sprechen mit Huber?",
+    "accepted": [
+     "Guten Tag, hier ist {name}. Ich rufe an, weil ich Fieber habe.",
+     "Guten Tag, Frau Huber. Hier ist {name}. Ich rufe an, weil ich seit gestern Fieber habe.",
+     "Hallo, hier ist {name}. Ich rufe an, weil ich Fieber habe und einen Termin brauche.",
+     "Guten Tag, {name} hier. Ich rufe an, weil ich Fieber habe."
+    ],
+    "why_tr": "Önce adın, sonra **Ich rufe an, weil** ile nedenin."
+   }
+  ],
+  "sesli": [
+   "m1:59:s9",
+   "m1:59:s10"
+  ],
+  "dikte": [
+   "m1:59:s1",
+   "m1:59:s2",
+   "m1:59:s3",
+   "m1:59:s4"
+  ]
+ }
+}

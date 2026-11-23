@@ -1,0 +1,1251 @@
+{
+ "schema": 1,
+ "id": "m1:gun:62",
+ "day": 62,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Hafta sonunu anlatmak",
+ "goal_tr": "Bugün ne yaptığını anlatırsın, birine hak verirsin, bir şeyi kendin yaptığını söylersin.",
+ "can_do": {
+  "id": "cd:m1:62",
+  "tr": "Hafta sonunda ne yaptığımı anlatır, karşımdakine hak verir ve onun hafta sonunu sorarım."
+ },
+ "unit": "u:a2:62",
+ "arm": "kafe",
+ "place": "pl:haus",
+ "characters": [
+  "ch:brandl",
+  "ch:pichler",
+  "ch:popescu",
+  "ch:kraus",
+  "ch:aksoy",
+  "ch:lechner"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [],
+ "yeni_kartlar": [
+  "lx:stellen",
+  "lx:her",
+  "lx:Recht"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:62:h1",
+   "title_tr": "Cumartesi sabahı: merdivende bir raf",
+   "kartlar": [
+    "lx:stellen",
+    "lx:her"
+   ],
+   "kaliplar": [
+    {
+     "de": "Das habe ich selbst …",
+     "tr": "Onu kendim …"
+    },
+    {
+     "de": "Wie lange ist das her? – Das ist schon lange her.",
+     "tr": "Ne kadar oldu? – Çok oldu."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:stellen",
+     "de": "Ich habe das Regal selbst in den Keller gestellt.",
+     "tr": "Rafı bodruma kendim koydum.",
+     "accepted": [
+      "Ich habe das Regal selbst in den Keller gestellt.",
+      "Das Regal habe ich selbst in den Keller gestellt.",
+      "Ich habe das Regal in den Keller gestellt, selbst."
+     ]
+    },
+    {
+     "kart": "lx:stellen",
+     "de": "Darf ich Ihnen eine Frage stellen, Herr Pichler?",
+     "tr": "Size bir soru sorabilir miyim Pichler Bey?",
+     "accepted": [
+      "Darf ich Ihnen eine Frage stellen, Herr Pichler?",
+      "Herr Pichler, darf ich Ihnen eine Frage stellen?",
+      "Darf ich Ihnen bitte eine Frage stellen, Herr Pichler?"
+     ]
+    },
+    {
+     "kart": "lx:her",
+     "de": "Mein Umzug ist erst zwei Monate her.",
+     "tr": "Taşınmamın üstünden daha iki ay geçti.",
+     "accepted": [
+      "Mein Umzug ist erst zwei Monate her.",
+      "Mein Umzug ist jetzt erst zwei Monate her.",
+      "Der Umzug ist erst zwei Monate her."
+     ]
+    },
+    {
+     "kart": "lx:her",
+     "de": "Frau Brandl, kommen Sie mal her!",
+     "tr": "Brandl Hanım, bir buraya gelin!",
+     "accepted": [
+      "Frau Brandl, kommen Sie mal her!",
+      "Kommen Sie mal her, Frau Brandl!",
+      "Frau Brandl, kommen Sie bitte mal her!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cumartesi sabahı, apartmanın merdiveni. Herr Pichler merdivendeki rafa bakıyor.",
+    "satirlar": [
+     {
+      "r": "ch:pichler",
+      "de": "Wer hat das Regal ins Treppenhaus gestellt?",
+      "tr": "Rafı merdivene kim koydu?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ich glaube, Frau Brandl. Ich stelle es gleich in den Keller.",
+      "tr": "Sanırım Brandl Hanım. Hemen bodruma koyuyorum."
+     },
+     {
+      "r": "ch:pichler",
+      "de": "Danke. Das Treppenhaus muss frei sein.",
+      "tr": "Teşekkürler. Merdiven boş olmalı."
+     }
+    ],
+    "soru": {
+     "q_tr": "Raf nereye gidiyor?",
+     "opts": [
+      "Bodruma",
+      "Mutfağa",
+      "Balkona"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:62:h2",
+   "title_tr": "Akşam: Ioana ile telefonda",
+   "kartlar": [
+    "lx:Recht"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wir haben beide … – Wir waren beide …",
+     "tr": "İkimiz de … – İkimiz de … idik."
+    },
+    {
+     "de": "Das war gar nicht … – Ich habe gar nichts gemacht.",
+     "tr": "Hiç de … değildi. – Hiçbir şey yapmadım."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Recht",
+     "de": "Du hast recht, ich bin müde, weil ich heute so viel gemacht habe.",
+     "tr": "Haklısın, yorgunum, çünkü bugün çok şey yaptım.",
+     "accepted": [
+      "Du hast recht, ich bin müde, weil ich heute so viel gemacht habe.",
+      "Du hast recht. Ich bin müde, weil ich heute so viel gemacht habe.",
+      "Da hast du recht, ich bin müde, weil ich heute so viel gemacht habe."
+     ]
+    },
+    {
+     "kart": "lx:Recht",
+     "de": "Du hast recht, wir haben beide zu viel gearbeitet.",
+     "tr": "Haklısın, ikimiz de çok fazla çalıştık.",
+     "accepted": [
+      "Du hast recht, wir haben beide zu viel gearbeitet.",
+      "Da hast du recht, wir haben beide zu viel gearbeitet.",
+      "Du hast recht. Wir haben beide zu viel gearbeitet."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cumartesi akşamı. Kurstan arkadaşın Ioana arıyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Hallo! Ich habe heute gar nichts gemacht. Und du?",
+      "tr": "Merhaba! Ben bugün hiçbir şey yapmadım. Ya sen?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ich habe der Nachbarin geholfen. Das war gar nicht so schwer.",
+      "tr": "Komşuya yardım ettim. Hiç de o kadar zor değildi."
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Toll! Wir waren beide fleißig, oder?",
+      "tr": "Harika! İkimiz de çalışkandık, değil mi?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Na ja, du hast heute nur geschlafen!",
+      "tr": "Eh, sen bugün sadece uyudun!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Ioana bugün ne yaptı?",
+     "opts": [
+      "Hiçbir şey yapmadı",
+      "Brandl Hanım'a yardım etti",
+      "Çok çalıştı"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:62:v1",
+  "title_tr": "Merdivendeki raf",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Cumartesi sabahı. Merdivenin ortasında eski, ahşap bir raf duruyor. Herr Pichler elleri belinde.",
+    "de": "Grüß Gott! Wer hat denn das Regal ins Treppenhaus gestellt?",
+    "tr": "İyi günler! Rafı merdivene kim koydu?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl kapısını açıp başını uzatıyor.",
+    "de": "Das war ich, Herr Pichler. Das ist mein Regal.",
+    "tr": "Bendim Pichler Bey. O benim rafım."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler duvardaki apartman kurallarını gösteriyor.",
+    "de": "Frau Brandl, das geht so nicht. Lesen Sie mal die Hausordnung!",
+    "tr": "Brandl Hanım, böyle olmaz. Apartman kurallarını bir okuyun!"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl rafa dokunuyor, omuz silkiyor.",
+    "de": "Ich bin neunundsiebzig. Ich kann das Regal nicht selbst in den Keller tragen.",
+    "tr": "Ben yetmiş dokuz yaşındayım. Rafı bodruma kendim taşıyamam."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler bir an düşünüyor, sonra yumuşuyor.",
+    "de": "Da haben Sie recht. Ich helfe Ihnen.",
+    "tr": "Haklısınız. Size yardım ederim."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl rafın öbür ucunu tutuyor.",
+    "de": "Danke! Das Regal ist gar nicht schwer.",
+    "tr": "Teşekkürler! Raf hiç de ağır değil."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Bodrumda. Herr Pichler rafı duvara yaslıyor.",
+    "de": "So, jetzt steht es im Keller.",
+    "tr": "İşte, şimdi bodrumda duruyor."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl rafı okşuyor, gülümsüyor.",
+    "de": "Wissen Sie, das Regal hat mein Mann selbst gemacht.",
+    "tr": "Biliyor musunuz, bu rafı kocam kendisi yaptı."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler rafa yeniden, bu kez dikkatle bakıyor.",
+    "de": "Wirklich? Wie lange ist das her?",
+    "tr": "Gerçekten mi? Ne kadar oldu?"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl'ın gözleri uzaklara dalıyor.",
+    "de": "Oh, das ist lange her. Fünfzig Jahre!",
+    "tr": "Ah, çok oldu. Elli yıl!"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl merdivenden yukarı çıkarken el sallıyor.",
+    "de": "Und jetzt trinken wir beide einen Kaffee, Herr Pichler!",
+    "tr": "Şimdi de ikimiz bir kahve içiyoruz Pichler Bey!"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler homurdanıyor ama peşinden gidiyor.",
+    "de": "Na gut, aber nur kurz.",
+    "tr": "Peki, ama sadece kısaca."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu sahnede ne oluyor?",
+     "opts": [
+      "Herr Pichler rafı bodruma taşımaya yardım ediyor",
+      "Frau Brandl yeni bir raf alıyor",
+      "Herr Pichler rafı atıyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s5",
+      "s7"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Rafı kim yaptı?",
+      "opts": [
+       "Herr Pichler",
+       "Frau Brandl'ın kocası",
+       "Frau Brandl'ın kızı"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s8"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Raf kaç yıl önce yapıldı?",
+      "opts": [
+       "elli yıl önce",
+       "on beş yıl önce",
+       "beş yıl önce"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s10"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Sonunda ikisi ne yapıyor?",
+      "opts": [
+       "Kahve içiyorlar",
+       "Alışverişe gidiyorlar",
+       "Bodrumu temizliyorlar"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s5",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "recht",
+       "leid",
+       "Zeit"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s9",
+      "seviye": "orta",
+      "de": "Wirklich? Wie lange ist das ___?",
+      "accepted": [
+       "her",
+       "Her",
+       "her?"
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s7",
+      "seviye": "zor",
+      "banka": [
+       "So",
+       "jetzt",
+       "steht",
+       "es",
+       "im",
+       "Keller",
+       "Bad",
+       "ist"
+      ],
+      "accepted": [
+       "So, jetzt steht es im Keller.",
+       "so jetzt steht es im keller",
+       "So, jetzt steht es im Keller"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s8",
+      "seviye": "usta",
+      "accepted": [
+       "Wissen Sie, das Regal hat mein Mann selbst gemacht.",
+       "wissen sie das regal hat mein mann selbst gemacht",
+       "Wissen Sie, das Regal hat mein Mann selbst gemacht"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Sahnede ne olduğunu Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Herr Pichler und Frau Brandl haben das Regal in den Keller gestellt. Dann haben sie Kaffee getrunken.",
+      "zorunlu": [
+       "Regal",
+       "Keller"
+      ]
+     }
+    ],
+    "golge": [
+     "s5",
+     "s10"
+    ],
+    "cevapla": {
+     "id": "m1:62:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Frau Brandl merdivende sana soruyor. Bu sabah fırından ekmek aldın ve Ioana'yı aradın.",
+     "prompt_de": "Und Sie? Was haben Sie heute schon gemacht?",
+     "accepted": [
+      "Ich habe Brot gekauft und Ioana angerufen.",
+      "Heute habe ich schon Brot gekauft und Ioana angerufen.",
+      "Ich habe in der Bäckerei eingekauft und Ioana angerufen.",
+      "Ich habe Brot gekauft, und dann habe ich Ioana angerufen.",
+      "Ich habe schon eingekauft und Ioana angerufen.",
+      "Ich habe Ioana angerufen und Brot gekauft."
+     ],
+     "why_tr": "**angerufen**: **ge** ortaya girer. **habe** ikinci yerde kalır."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:62:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Basti'den sesli mesaj",
+   "ortam_tr": "Cumartesi öğleden sonra. Spor salonundan Basti bir mesaj bırakmış.",
+   "speaker": "ch:kraus",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hey, hier ist Basti vom VilsFit.",
+     "tr": "Selam, ben VilsFit'ten Basti."
+    },
+    {
+     "id": "c2",
+     "de": "Du warst heute gar nicht da!",
+     "tr": "Bugün hiç gelmedin!"
+    },
+    {
+     "id": "c3",
+     "de": "Ich habe auf dich gewartet.",
+     "tr": "Seni bekledim."
+    },
+    {
+     "id": "c4",
+     "de": "Morgen um zehn bin ich wieder da.",
+     "tr": "Yarın onda yine oradayım."
+    },
+    {
+     "id": "c5",
+     "de": "Dann trainieren wir beide zusammen, okay?",
+     "tr": "O zaman ikimiz birlikte çalışırız, tamam mı?"
+    },
+    {
+     "id": "c6",
+     "de": "Schreib mir kurz. Ciao!",
+     "tr": "Bana kısaca yaz. Hadi görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Basti ne istiyor?",
+      "opts": [
+       "Yarın birlikte spor yapmak",
+       "Bugün kahve içmek",
+       "Seni yemeğe çağırmak"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Basti yarın saat kaçta orada?",
+       "opts": [
+        "onda",
+        "dokuzda",
+        "on ikide"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Bugün ne oldu?",
+       "opts": [
+        "Sen gelmedin, Basti seni bekledi",
+        "Basti gelmedi",
+        "Salon kapalıydı"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2",
+        "c3"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "zehn",
+        "elf",
+        "zwei"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Ich habe auf dich ___.",
+       "accepted": [
+        "gewartet",
+        "Gewartet",
+        "gewartet."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Morgen",
+        "um",
+        "zehn",
+        "bin",
+        "ich",
+        "wieder",
+        "da",
+        "habe",
+        "hier"
+       ],
+       "accepted": [
+        "Morgen um zehn bin ich wieder da.",
+        "morgen um zehn bin ich wieder da",
+        "Morgen um zehn bin ich wieder da"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Du warst heute gar nicht da!",
+        "du warst heute gar nicht da",
+        "Du warst heute gar nicht da."
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Basti'nin mesajını Almanca iki kısa cümleyle anlat.",
+       "ornek_de": "Basti hat auf mich gewartet. Morgen um zehn ist er wieder da.",
+       "zorunlu": [
+        "gewartet",
+        "zehn"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:62:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Basti'ye cevap ver: Özür dile, bugün komşuna yardım ettin. Yarın onda geliyorsun.",
+      "prompt_de": "Du warst heute gar nicht da!",
+      "accepted": [
+       "Tut mir leid, ich habe heute meiner Nachbarin geholfen. Morgen um zehn komme ich.",
+       "Entschuldigung! Ich habe meiner Nachbarin geholfen. Ich komme morgen um zehn.",
+       "Tut mir leid, ich war nicht da, weil ich meiner Nachbarin geholfen habe. Morgen komme ich um zehn.",
+       "Entschuldigung, ich habe heute meiner Nachbarin geholfen. Bis morgen um zehn!",
+       "Tut mir leid! Ich habe meiner Nachbarin geholfen. Morgen um zehn, okay?"
+      ],
+      "why_tr": "Önce özür dile. Sonra ne yaptığını söyle: **Ich habe meiner Nachbarin geholfen.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:62:a1:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Yarın saat onda spor salonuna git.",
+     "Bugün akşam spor salonuna git.",
+     "Basti'yi pazartesi ara."
+    ],
+    "ans": 0,
+    "why_tr": "Basti yarın onda orada olacak ve birlikte çalışmak istiyor.",
+    "kanit": [
+     "c4"
+    ]
+   }
+  },
+  {
+   "id": "m1:62:a2",
+   "tur": "radyo",
+   "title_tr": "Radyo: Hafta sonunuz nasıldı?",
+   "ortam_tr": "Pazar akşamı yerel radyo. Dinleyiciler arayıp hafta sonlarını anlatıyor. Hızlı konuşuyorlar.",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Abend, Wendlfing! Heute fragen wir: Wie war Ihr Wochenende?",
+     "tr": "İyi akşamlar Wendlfing! Bugün soruyoruz: Hafta sonunuz nasıldı?"
+    },
+    {
+     "id": "c2",
+     "de": "Hier ist Monika. Ich habe mit meinen Kindern einen Kuchen gebacken.",
+     "tr": "Ben Monika. Çocuklarımla kek yaptım."
+    },
+    {
+     "id": "c3",
+     "de": "Den Kuchen haben wir dann selbst gegessen!",
+     "tr": "Keki sonra kendimiz yedik!"
+    },
+    {
+     "id": "c4",
+     "de": "Und jetzt ist Kemal am Telefon. Hallo, Kemal!",
+     "tr": "Şimdi telefonda Kemal var. Merhaba Kemal!"
+    },
+    {
+     "id": "c5",
+     "de": "Hallo! Ich? Gar nichts. Ich habe nur geschlafen.",
+     "tr": "Merhaba! Ben mi? Hiçbir şey. Sadece uyudum."
+    },
+    {
+     "id": "c6",
+     "de": "Da haben Sie recht, das ist auch schön!",
+     "tr": "Haklısınız, bu da güzel!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyoda konu ne?",
+      "opts": [
+       "Dinleyicilerin hafta sonu",
+       "Hava durumu",
+       "Yeni bir dükkân"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Monika ne yaptı?",
+       "opts": [
+        "Çocuklarıyla kek yaptı",
+        "Sadece uyudu",
+        "Alışverişe gitti"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Kemal ne yaptı?",
+       "opts": [
+        "Kek yaptı",
+        "Hiçbir şey yapmadı, uyudu",
+        "Çalıştı"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Kuchen",
+        "Kaffee",
+        "Keller"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c5",
+       "seviye": "orta",
+       "de": "Hallo! Ich? Gar nichts. Ich habe nur ___.",
+       "accepted": [
+        "geschlafen",
+        "Geschlafen",
+        "geschlafen."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Den",
+        "Kuchen",
+        "haben",
+        "wir",
+        "dann",
+        "selbst",
+        "gegessen",
+        "sind",
+        "getrunken"
+       ],
+       "accepted": [
+        "Den Kuchen haben wir dann selbst gegessen!",
+        "den kuchen haben wir dann selbst gegessen",
+        "Den Kuchen haben wir dann selbst gegessen."
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c6",
+       "seviye": "usta",
+       "accepted": [
+        "Da haben Sie recht, das ist auch schön!",
+        "da haben sie recht das ist auch schön",
+        "Da haben Sie recht, das ist auch schön."
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Kim ne yaptı? Almanca iki kısa cümleyle söyle.",
+       "ornek_de": "Monika hat einen Kuchen gebacken. Kemal hat nur geschlafen.",
+       "zorunlu": [
+        "Monika",
+        "Kemal"
+       ]
+      }
+     ],
+     "golge": [
+      "c5",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:62:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Radyo seni de arıyor. Cumartesi komşuna yardım ettin, pazar uzun uzun uyudun.",
+      "prompt_de": "Und Sie? Wie war Ihr Wochenende?",
+      "accepted": [
+       "Am Samstag habe ich meiner Nachbarin geholfen, und am Sonntag habe ich lange geschlafen.",
+       "Am Samstag habe ich meiner Nachbarin geholfen. Am Sonntag habe ich lange geschlafen.",
+       "Gut! Am Samstag habe ich meiner Nachbarin geholfen, am Sonntag habe ich lange geschlafen.",
+       "Am Samstag habe ich einer Nachbarin geholfen, und am Sonntag habe ich lange geschlafen.",
+       "Schön. Ich habe am Samstag meiner Nachbarin geholfen und am Sonntag lange geschlafen.",
+       "Am Samstag habe ich meiner Nachbarin geholfen. Und am Sonntag habe ich nur geschlafen."
+      ],
+      "why_tr": "Günle başla, **habe** ikinci yerde kalsın: **Am Samstag habe ich geholfen.**"
+     }
+    }
+   ]
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:62:g1",
+   "de": "Regal",
+   "dogru_img": "wooden shelf with books",
+   "celdirici_img": [
+    "wooden table",
+    "armchair",
+    "wardrobe with doors"
+   ]
+  },
+  {
+   "id": "m1:62:g2",
+   "de": "Keller",
+   "dogru_img": "basement storage room with stairs going down",
+   "celdirici_img": [
+    "attic with a roof window",
+    "balcony with plants",
+    "garage with a car"
+   ]
+  },
+  {
+   "id": "m1:62:g3",
+   "de": "Treppenhaus",
+   "dogru_img": "stairwell in an apartment building",
+   "celdirici_img": [
+    "elevator door",
+    "hotel lobby",
+    "office corridor"
+   ]
+  },
+  {
+   "id": "m1:62:g4",
+   "de": "Kuchen",
+   "dogru_img": "homemade cake on a plate",
+   "celdirici_img": [
+    "loaf of bread",
+    "bowl of soup",
+    "pretzel"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:62:p1",
+  "title_tr": "Ioana akşam arıyor",
+  "durum_tr": "Cumartesi akşamı. Ioana arıyor ve gününü soruyor. Bugün Frau Brandl'a yardım ettin: Herr Pichler'le birlikte rafı bodruma koydunuz.",
+  "karsi": "ch:popescu",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Hallo, ich bin's, Ioana! Nur Deutsch, okay? Was hast du heute gemacht?",
+    "tr": "Merhaba, ben Ioana! Sadece Almanca, tamam mı? Bugün ne yaptın?",
+    "secenekler": [
+     {
+      "de": "Ich habe Frau Brandl geholfen. Wir haben ihr Regal in den Keller gestellt.",
+      "tr": "Brandl Hanım'a yardım ettim. Rafını bodruma koyduk.",
+      "accepted": [
+       "Ich habe Frau Brandl geholfen. Wir haben ihr Regal in den Keller gestellt.",
+       "Ich habe Frau Brandl geholfen, wir haben das Regal in den Keller gestellt.",
+       "Ich habe heute Frau Brandl geholfen. Wir haben ihr Regal in den Keller gestellt."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **geholfen** ve **gestellt** ile ikisini de geçmişte anlattın."
+     },
+     {
+      "de": "Am Vormittag habe ich meiner Nachbarin geholfen.",
+      "tr": "Öğleden önce komşuma yardım ettim.",
+      "accepted": [
+       "Am Vormittag habe ich meiner Nachbarin geholfen.",
+       "Ich habe am Vormittag meiner Nachbarin geholfen.",
+       "Am Vormittag habe ich der Nachbarin geholfen."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Zamanla başladın, **habe** yine ikinci yerde."
+     },
+     {
+      "de": "Ich helfe Frau Brandl.",
+      "tr": "Brandl Hanım'a yardım ediyorum.",
+      "accepted": [
+       "Ich helfe Frau Brandl.",
+       "Ich helfe heute Frau Brandl.",
+       "Ich helfe der Nachbarin."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu şimdiki zaman. Bugün olan bitmiş bir şey: **Ich habe Frau Brandl geholfen.**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Ein Regal? Hast du das allein gemacht?",
+    "tr": "Raf mı? Tek başına mı yaptın?",
+    "secenekler": [
+     {
+      "de": "Nein, wir haben es beide gemacht, Herr Pichler und ich.",
+      "tr": "Hayır, ikimiz yaptık, Pichler Bey ve ben.",
+      "accepted": [
+       "Nein, wir haben es beide gemacht, Herr Pichler und ich.",
+       "Nein, Herr Pichler und ich, wir haben es beide gemacht.",
+       "Nein, Herr Pichler hat auch geholfen. Wir haben es beide gemacht."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. **beide** ikimiz de demek."
+     },
+     {
+      "de": "Nein, Herr Pichler hat mir geholfen.",
+      "tr": "Hayır, Pichler Bey bana yardım etti.",
+      "accepted": [
+       "Nein, Herr Pichler hat mir geholfen.",
+       "Nein, der Hausmeister hat mir geholfen.",
+       "Nein, Herr Pichler hat auch geholfen."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **hat mir geholfen**: bana yardım etti."
+     },
+     {
+      "de": "Ja, ich mache das allein.",
+      "tr": "Evet, onu tek başıma yapıyorum.",
+      "accepted": [
+       "Ja, ich mache das allein.",
+       "Ja, allein.",
+       "Ich mache das allein."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Hem şimdiki zaman, hem de Herr Pichler yardım etti. Geçmişle anlat."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Toll! Ich habe den ganzen Tag Deutsch gelernt. Das Wochenende ist viel zu kurz!",
+    "tr": "Harika! Ben bütün gün Almanca çalıştım. Hafta sonu çok kısa!",
+    "secenekler": [
+     {
+      "de": "Du hast recht, das Wochenende ist viel zu kurz!",
+      "tr": "Haklısın, hafta sonu çok kısa!",
+      "accepted": [
+       "Du hast recht, das Wochenende ist viel zu kurz!",
+       "Da hast du recht, das Wochenende ist viel zu kurz.",
+       "Du hast recht! Das Wochenende ist zu kurz."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Hak verirken **Du hast recht** dersin."
+     },
+     {
+      "de": "Da hast du recht. Was machst du morgen?",
+      "tr": "Orada haklısın. Yarın ne yapıyorsun?",
+      "accepted": [
+       "Da hast du recht. Was machst du morgen?",
+       "Du hast recht. Was machst du morgen?",
+       "Da hast du recht! Und was machst du morgen?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Hak verdin ve sohbeti sürdürdün."
+     },
+     {
+      "de": "Nein, das Wochenende ist lang.",
+      "tr": "Hayır, hafta sonu uzun.",
+      "accepted": [
+       "Nein, das Wochenende ist lang.",
+       "Das Wochenende ist lang.",
+       "Nein, es ist lang."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Ioana yorgun ve hafta sonu ona kısa geliyor. Ona hak ver: **Du hast recht.**"
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Morgen gehe ich mit meiner Schwester in die Stadt. Möchtest du mitkommen?",
+    "tr": "Yarın kız kardeşimle şehre gidiyorum. Sen de gelmek ister misin?",
+    "secenekler": [
+     {
+      "de": "Gern! Wann treffen wir uns?",
+      "tr": "Seve seve! Kaçta buluşuyoruz?",
+      "accepted": [
+       "Gern! Wann treffen wir uns?",
+       "Gerne! Wann treffen wir uns?",
+       "Ja, gern! Wann treffen wir uns?"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Kabul edip saati sordun."
+     },
+     {
+      "de": "Leider nicht, weil ich morgen meine Eltern besuchen muss.",
+      "tr": "Maalesef olmaz, çünkü yarın annemle babamı ziyaret etmem gerek.",
+      "accepted": [
+       "Leider nicht, weil ich morgen meine Eltern besuchen muss.",
+       "Leider nicht. Ich muss morgen meine Eltern besuchen.",
+       "Morgen kann ich leider nicht, weil ich meine Eltern besuchen muss."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **weil** ile iki fiil en sonda: **besuchen muss**."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Okay! Dann bis Montag im Kurs. Tschüss!",
+    "tr": "Tamam! O zaman pazartesi kursta görüşürüz. Hoşça kal!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Bugün ne yaptığını geçmiş zamanla anlattın, Ioana'ya hak verdin ve yarın için cevap verdin."
+ },
+ "okuma_yazma": {
+  "tur": "yazma",
+  "title_tr": "Derya'ya hafta sonunu yaz",
+  "metin_de": "Hallo! Na, wie war's am Wochenende? Was hast du alles gemacht? Ich war mit meiner Familie am See. Es war kalt, aber schön!",
+  "metin_tr": "Merhaba! Eee, hafta sonu nasıldı? Ne yaptın? Ben ailemle göldeydim. Soğuktu ama güzeldi!",
+  "sorular": [
+   {
+    "id": "m1:62:o1",
+    "kind": "detail",
+    "q_tr": "Derya hafta sonu nerede?",
+    "opts": [
+     "Ailesiyle gölde",
+     "İş yerinde",
+     "Evde"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Derya'ya üç kısa cümle yaz: cumartesi ne yaptın, pazar ne yaptın, neden yorgunsun?",
+   "ornek_de": "Am Samstag habe ich Frau Brandl geholfen. Am Sonntag bin ich zu Hause geblieben. Ich bin müde, weil ich viel gearbeitet habe.",
+   "zorunlu": [
+    "Samstag",
+    "weil"
+   ],
+   "accepted_kaliplar": [
+    "Am Samstag habe ich ___.",
+    "Am Sonntag bin ich ___.",
+    "Am Sonntag habe ich ___.",
+    "Am Samstag bin ich ___.",
+    "Ich bin müde, weil ich ___ habe."
+   ],
+   "kontrol_tr": [
+    "Günle başladın mı? **habe** ya da **bin** ikinci yerde mi?",
+    "Gitmek ve kalmak için **bin**, öbürleri için **habe** kullandın mı?",
+    "**weil** cümlesinde **habe** en sonda mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:62:s",
+  "maddeler": [
+   {
+    "id": "m1:62:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Ich habe die Stühle in die Küche gestellt.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich habe die Stühle in die Küche gestellt.",
+     "ich habe die stühle in die küche gestellt",
+     "Ich habe die Stühle in die Küche gestellt"
+    ],
+    "why_tr": "**gestellt** stellen fiilinin geçmişi, en sonda."
+   },
+   {
+    "id": "m1:62:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Wir waren am Sonntag beide zu Hause.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir waren am Sonntag beide zu Hause.",
+     "wir waren am sonntag beide zu hause",
+     "Wir waren am Sonntag beide zu Hause"
+    ],
+    "why_tr": "**beide** ikimiz de demek."
+   },
+   {
+    "id": "m1:62:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Mein Urlaub in Italien ist schon ein Jahr her.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Mein Urlaub in Italien ist schon ein Jahr her.",
+     "mein urlaub in italien ist schon ein jahr her",
+     "Mein Urlaub in Italien ist schon ein Jahr her"
+    ],
+    "why_tr": "**Das ist ein Jahr her**: üstünden bir yıl geçti."
+   },
+   {
+    "id": "m1:62:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Frau Brandl hat recht, der Keller ist voll.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Frau Brandl hat recht, der Keller ist voll.",
+     "frau brandl hat recht der keller ist voll",
+     "Frau Brandl hat recht, der Keller ist voll"
+    ],
+    "why_tr": "**recht haben**: haklı olmak."
+   },
+   {
+    "id": "m1:62:s5",
+    "k": "tr_de",
+    "tr": "Yemeği kendim pişirdim.",
+    "accepted": [
+     "Ich habe das Essen selbst gekocht.",
+     "Das Essen habe ich selbst gekocht.",
+     "Ich habe selbst gekocht.",
+     "Das habe ich selbst gekocht."
+    ],
+    "why_tr": "Kendim derken **selbst** dersin."
+   },
+   {
+    "id": "m1:62:s6",
+    "k": "tr_de",
+    "tr": "Hafta sonu hiçbir şey yapmadım.",
+    "accepted": [
+     "Am Wochenende habe ich gar nichts gemacht.",
+     "Ich habe am Wochenende gar nichts gemacht.",
+     "Am Wochenende habe ich nichts gemacht.",
+     "Ich habe am Wochenende nichts gemacht."
+    ],
+    "why_tr": "**gar nichts** hiçbir şey demek ve vurgulu."
+   },
+   {
+    "id": "m1:62:s7",
+    "k": "tr_de",
+    "tr": "Haklısın, saat çok geç oldu.",
+    "accepted": [
+     "Du hast recht, es ist schon sehr spät.",
+     "Du hast recht, es ist sehr spät.",
+     "Da hast du recht, es ist schon sehr spät.",
+     "Du hast recht. Es ist schon sehr spät."
+    ],
+    "why_tr": "Hak verirken **Du hast recht** dersin."
+   },
+   {
+    "id": "m1:62:s8",
+    "k": "tr_de",
+    "tr": "Bisikleti bodruma koydum.",
+    "accepted": [
+     "Ich habe das Fahrrad in den Keller gestellt.",
+     "Das Fahrrad habe ich in den Keller gestellt.",
+     "Ich habe mein Fahrrad in den Keller gestellt."
+    ],
+    "why_tr": "Nereye sorusunda **in den Keller** dersin."
+   },
+   {
+    "id": "m1:62:s9",
+    "k": "guided_response",
+    "situation_tr": "Derya hafta sonunu soruyor. Cumartesi aileni ziyaret ettin, pazar evde kaldın.",
+    "prompt_de": "Und, wie war das Wochenende?",
+    "accepted": [
+     "Am Samstag habe ich meine Familie besucht, und am Sonntag bin ich zu Hause geblieben.",
+     "Am Samstag habe ich meine Familie besucht. Am Sonntag bin ich zu Hause geblieben.",
+     "Schön! Am Samstag habe ich meine Familie besucht, am Sonntag bin ich zu Hause geblieben.",
+     "Ich habe am Samstag meine Familie besucht und bin am Sonntag zu Hause geblieben.",
+     "Gut. Am Samstag habe ich meine Familie besucht. Und am Sonntag bin ich zu Hause geblieben."
+    ],
+    "why_tr": "**besucht** ile **habe**, **geblieben** ile **bin** kullanırsın."
+   },
+   {
+    "id": "m1:62:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Warum bist du heute so müde?",
+    "speed": "normal",
+    "situation_tr": "Tobi soruyor. Dün bir arkadaşına taşınmada yardım ettin.",
+    "accepted": [
+     "Weil ich gestern beim Umzug geholfen habe.",
+     "Ich bin müde, weil ich gestern beim Umzug geholfen habe.",
+     "Weil ich gestern einem Freund beim Umzug geholfen habe.",
+     "Weil ich gestern einer Freundin beim Umzug geholfen habe.",
+     "Ich habe gestern beim Umzug geholfen."
+    ],
+    "why_tr": "**weil** ile **habe** en sona gider: **geholfen habe**."
+   },
+   {
+    "id": "m1:62:s11",
+    "k": "guided_response",
+    "situation_tr": "Molada Tobi hafta sonunu soruyor. Cumartesi komşunla rafı bodruma koydunuz. Pazar hiçbir şey yapmadın. Ona da sor.",
+    "prompt_de": "Na, was hast du am Wochenende gemacht?",
+    "accepted": [
+     "Am Samstag haben wir ein Regal in den Keller gestellt. Am Sonntag habe ich gar nichts gemacht. Und du?",
+     "Am Samstag habe ich meiner Nachbarin geholfen, wir haben ein Regal in den Keller gestellt. Am Sonntag habe ich nichts gemacht. Und du?",
+     "Ich habe am Samstag mit meiner Nachbarin ein Regal in den Keller gestellt. Und am Sonntag habe ich gar nichts gemacht. Und du?",
+     "Am Samstag habe ich mit der Nachbarin ein Regal in den Keller gestellt, am Sonntag gar nichts. Und du?",
+     "Samstag habe ich meiner Nachbarin geholfen. Sonntag habe ich gar nichts gemacht. Was hast du gemacht?"
+    ],
+    "why_tr": "İki gün için iki cümle kur, **habe** ikinci yerde. Sonra **Und du?** diye sor."
+   }
+  ],
+  "sesli": [
+   "m1:62:s9",
+   "m1:62:s10"
+  ],
+  "dikte": [
+   "m1:62:s1",
+   "m1:62:s2",
+   "m1:62:s3",
+   "m1:62:s4"
+  ]
+ }
+}
