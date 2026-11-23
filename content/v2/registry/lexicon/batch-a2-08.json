@@ -43,8 +43,8 @@
         "lx:Formular"
       ],
       "mistakes_tr": [
-        "Belge lazım derken **Ich brauche ein Bescheinigung** yanlış. Doğrusu **Ich brauche eine Bescheinigung**: **die Bescheinigung**.",
-        "Doktordan belge isterken **ein Papier vom Arzt** demek resmî daireye yetmez. Doğrusu **eine Bescheinigung vom Arzt**."
+        "Belge lazım derken **Ich brauche ein Bescheinigung** yanlış. Doğrusu **Ich brauche eine Bescheinigung**.",
+        "Doktordan kâğıt derken **ein Papier vom Arzt** anlaşılır. Resmî yerde doğrusu **eine Bescheinigung vom Arzt**."
       ],
       "examples": [
         {
@@ -57,14 +57,14 @@
         {
           "id": "lx:Bescheinigung:2",
           "de": "Könnten Sie mir bitte eine Bescheinigung für die Arbeit geben?",
-          "tr": "İş yerim için bana bir belge verebilir misiniz?",
+          "tr": "İş yerim için bana lütfen bir belge verebilir misiniz?",
           "layer": "hd",
           "img": "receptionist giving document"
         },
         {
           "id": "lx:Bescheinigung:3",
-          "de": "– Hast du die Bescheinigung dabei? – Ja, klar, die ist in meiner Tasche.",
-          "tr": "– Belge yanında mı? – Evet, tabii, çantamda.",
+          "de": "– Hast du die Bescheinigung? – Ja, klar, die ist in meiner Tasche.",
+          "tr": "– Belge sende mi? – Evet, tabii, çantamda.",
           "layer": "alltag",
           "dialog": true,
           "img": "woman taking paper from bag"
@@ -110,7 +110,7 @@
         {
           "de": "Könnten Sie mir bitte eine ___ für die Arbeit geben?",
           "answer": "Bescheinigung",
-          "tr": "İş yerim için bana bir belge verebilir misiniz?",
+          "tr": "İş yerim için bana lütfen bir belge verebilir misiniz?",
           "hint_tr": "İş yeri için belge derken **eine Bescheinigung für die Arbeit** denir.",
           "also_ok": [
             "Bestätigung"
@@ -120,7 +120,7 @@
           "de": "Ich brauche ___ Bescheinigung.",
           "answer": "eine",
           "tr": "Bir belge lazım.",
-          "hint_tr": "**die Bescheinigung** olduğu için **eine Bescheinigung** denir."
+          "hint_tr": "Bu kelime **eine** ile gelir: **eine Bescheinigung**."
         },
         {
           "de": "Die Firma will eine ___, obwohl ich nur einen Tag krank war.",
@@ -171,7 +171,7 @@
         "lx:Formular"
       ],
       "mistakes_tr": [
-        "Posta kodunuz nedir derken **Was ist Ihr Postleitzahl?** yanlış. Doğrusu **Was ist Ihre Postleitzahl?**: **die Postleitzahl**.",
+        "Posta kodunuz nedir derken **Was ist Ihr Postleitzahl?** yanlış. Doğrusu **Was ist Ihre Postleitzahl?**",
         "Posta kodu derken **Postkode** yanlış. Doğrusu **die Postleitzahl**, kısaca **PLZ**."
       ],
       "examples": [
@@ -245,7 +245,7 @@
           "de": "Wie ist Ihre ___, bitte?",
           "answer": "Postleitzahl",
           "tr": "Posta kodunuz nedir, lütfen?",
-          "hint_tr": "Posta kodu **die Postleitzahl**.",
+          "hint_tr": "Posta kodunuz derken **Ihre Postleitzahl** denir.",
           "also_ok": [
             "PLZ"
           ]
@@ -254,7 +254,7 @@
           "de": "Was ist ___ Postleitzahl?",
           "answer": "Ihre",
           "tr": "Posta kodunuz nedir?",
-          "hint_tr": "**die Postleitzahl** olduğu için **Ihre Postleitzahl** denir."
+          "hint_tr": "Posta kodunuz derken **Ihre Postleitzahl** denir."
         },
         {
           "de": "Ich habe die falsche ___ geschrieben.",
@@ -269,7 +269,7 @@
           "de": "Das Paket ist nicht angekommen, obwohl die ___ richtig war.",
           "answer": "Postleitzahl",
           "tr": "Posta kodu doğru olmasına rağmen paket ulaşmadı.",
-          "hint_tr": "Posta kodu doğruydu derken **die Postleitzahl war richtig** denir.",
+          "hint_tr": "Posta kodu doğru olmasına rağmen derken **obwohl die Postleitzahl richtig war** denir.",
           "also_ok": [
             "PLZ"
           ]
@@ -315,7 +315,7 @@
         "lx:Sendung"
       ],
       "mistakes_tr": [
-        "Bildirim kâğıdını getirin derken **Bringen Sie die Benachrichtigung** yarım kalır. Doğrusu **Bringen Sie die Benachrichtigung mit**.",
+        "Kâğıdı getiriyorum derken **Ich bringe mit die Benachrichtigung** yanlış. **mit** sona gider: **Ich bringe die Benachrichtigung mit**.",
         "Kâğıtta komşuda yazıyor derken **Auf der Benachrichtigung schreibt: beim Nachbarn** yanlış. Doğrusu **Auf der Benachrichtigung steht: beim Nachbarn**."
       ],
       "examples": [
@@ -363,7 +363,7 @@
         "post"
       ],
       "exp": {
-        "anlam_tr": "**die Benachrichtigung** kargocu seni evde bulamayınca posta kutusuna bıraktığı haber kâğıdıdır.",
+        "anlam_tr": "**die Benachrichtigung** bildirimdir: bir SMS ya da kargocunun bıraktığı kâğıt.",
         "ne_zaman_tr": "Paket teslim edilemeyince ya da telefona kargo mesajı gelince.",
         "parcalar": [
           {
@@ -378,13 +378,13 @@
           "de": "In meinem Briefkasten war eine ___ von der Post.",
           "answer": "Benachrichtigung",
           "tr": "Posta kutumda postaneden bir bildirim kâğıdı vardı.",
-          "hint_tr": "Bildirim kâğıdı **die Benachrichtigung**."
+          "hint_tr": "Bir bildirim kâğıdı derken **eine Benachrichtigung** denir."
         },
         {
           "de": "Bitte bringen Sie die ___ und Ihren Ausweis mit.",
           "answer": "Benachrichtigung",
           "tr": "Lütfen bildirim kâğıdını ve kimliğinizi getirin.",
-          "hint_tr": "Kâğıdı getirin derken **Bringen Sie die Benachrichtigung mit** denir."
+          "hint_tr": "Bildirim kâğıdını getirin derken **bringen Sie die Benachrichtigung** denir, **mit** sona gider."
         },
         {
           "de": "Auf der Benachrichtigung ___: beim Nachbarn.",
@@ -442,7 +442,7 @@
         "lx:Benachrichtigung"
       ],
       "mistakes_tr": [
-        "Kargocu zili çaldı derken **Der Zusteller hat die Tür geklopft** yanlış. Doğrusu **Der Zusteller hat geklingelt**."
+        "Kapıyı çaldı derken Türkçedeki gibi **Der Zusteller hat die Tür geklopft** yanlış. Zile bastıysa **Er hat geklingelt**, kapıya vurduysa **Er hat an die Tür geklopft**."
       ],
       "examples": [
         {
@@ -514,7 +514,7 @@
           "de": "Der Zusteller hat nicht ___, obwohl ich zu Hause war.",
           "answer": "geklingelt",
           "tr": "Evde olmama rağmen kargocu zili çalmadı.",
-          "hint_tr": "Zili çalmak **klingeln**: **hat geklingelt**."
+          "hint_tr": "Zili çalmadı derken **hat nicht geklingelt** denir."
         },
         {
           "de": "Wann kommt ___ Zusteller normalerweise?",
@@ -632,13 +632,20 @@
           "de": "Sie können das Paket ab morgen in der ___ abholen.",
           "answer": "Filiale",
           "tr": "Paketi yarından itibaren şubeden alabilirsiniz.",
-          "hint_tr": "Şubeden almak derken **in der Filiale abholen** denir."
+          "hint_tr": "Şubeden almak derken **in der Filiale abholen** denir.",
+          "also_ok": [
+            "Postfiliale"
+          ]
         },
         {
           "de": "Entschuldigung, wo ist hier die nächste ___?",
           "answer": "Filiale",
           "tr": "Affedersiniz, buradaki en yakın şube nerede?",
-          "hint_tr": "En yakın şube derken **die nächste Filiale** denir."
+          "hint_tr": "En yakın şube derken **die nächste Filiale** denir.",
+          "also_ok": [
+            "Postfiliale",
+            "Post"
+          ]
         },
         {
           "de": "Ich gehe in ___ Filiale.",
@@ -686,7 +693,7 @@
       ],
       "mistakes_tr": [
         "Erkeğe yazarken **Sehr geehrte Herr Wimmer** yanlış. Doğrusu **Sehr geehrter Herr Wimmer**.",
-        "Türkçedeki gibi ilk adla **Sehr geehrte Sabine** yazılmaz. Soyadıyla yazılır: **Sehr geehrte Frau Huber**."
+        "Türkçedeki Sabine Hanım gibi ilk adla **Sehr geehrte Frau Sabine** yazılmaz. Doğrusu soyadıyla: **Sehr geehrte Frau Huber**."
       ],
       "examples": [
         {
@@ -710,21 +717,21 @@
         {
           "id": "lx:geehrt:4",
           "de": "– Wie fang ich die Mail an? – Schreib einfach „Sehr geehrte Damen und Herren“, das passt immer.",
-          "tr": "– E-postaya nasıl başlayayım? – „Sayın yetkili\" yaz gitsin, bu her zaman olur.",
+          "tr": "– E-postaya nasıl başlayayım? – “Sayın yetkili” yaz gitsin, bu her zaman uyar.",
           "layer": "alltag",
           "dialog": true
         },
         {
           "id": "lx:geehrt:5",
-          "de": "– Kennst du die Frau? – Nein, deshalb schreibe ich „Sehr geehrte Frau Huber“.",
-          "tr": "– O kadını tanıyor musun? – Hayır, o yüzden „Sayın Huber Hanım\" yazıyorum.",
+          "de": "– Kennst du die Frau? – Nein, deshalb schreibe ich „Sehr geehrte Frau Berger“.",
+          "tr": "– O kadını tanıyor musun? – Hayır, o yüzden “Sayın Berger Hanım” yazıyorum.",
           "layer": "hd",
           "dialog": true
         },
         {
           "id": "lx:geehrt:6",
           "de": "Ich schreibe „Sehr geehrter Herr Wimmer“, obwohl ich ihn gut kenne.",
-          "tr": "Wimmer Bey'i iyi tanımama rağmen „Sayın Wimmer Bey\" yazıyorum.",
+          "tr": "Wimmer Bey'i iyi tanımama rağmen “Sayın Wimmer Bey” yazıyorum.",
           "layer": "hd"
         }
       ],
@@ -770,10 +777,10 @@
           "hint_tr": "Kadına **Sehr geehrte Frau Schneider** gibi yazılır."
         },
         {
-          "de": "Nein, deshalb schreibe ich „Sehr ___ Frau Huber“.",
+          "de": "Nein, deshalb schreibe ich „Sehr ___ Frau Berger“.",
           "answer": "geehrte",
-          "tr": "Hayır, o yüzden „Sayın Huber Hanım\" yazıyorum.",
-          "hint_tr": "Kadına **Sehr geehrte Frau Huber** gibi yazılır."
+          "tr": "Hayır, o yüzden “Sayın Berger Hanım” yazıyorum.",
+          "hint_tr": "Kadına **Sehr geehrte Frau Berger** gibi yazılır."
         }
       ]
     },
@@ -816,7 +823,7 @@
         "lx:Empfänger"
       ],
       "mistakes_tr": [
-        "Yeni adresim derken **mein neue Anschrift** yanlış. Doğrusu **meine neue Anschrift**: **die Anschrift**."
+        "Yeni adresim derken **mein neue Anschrift** yanlış. Doğrusu **meine neue Anschrift**."
       ],
       "examples": [
         {
@@ -834,13 +841,13 @@
         {
           "id": "lx:Anschrift:3",
           "de": "„Anschrift“? Das ist einfach die Adresse, ne.",
-          "tr": "„Anschrift\" mı? Bu düpedüz adres işte.",
+          "tr": "**Anschrift** mı? Bu düpedüz adres işte.",
           "layer": "alltag"
         },
         {
           "id": "lx:Anschrift:4",
           "de": "– Was bedeutet „Anschrift“? – Das ist die Adresse: Straße, Hausnummer, Postleitzahl und Ort.",
-          "tr": "– „Anschrift\" ne demek? – Adres demek: sokak, kapı numarası, posta kodu ve yer.",
+          "tr": "– **Anschrift** ne demek? – Adres demek: sokak, kapı numarası, posta kodu ve yer.",
           "layer": "hd",
           "dialog": true
         },
@@ -878,7 +885,7 @@
           "de": "Bitte schreiben Sie hier Ihre neue ___.",
           "answer": "Anschrift",
           "tr": "Lütfen buraya yeni adresinizi yazın.",
-          "hint_tr": "Formdaki adres **die Anschrift**.",
+          "hint_tr": "Yeni adresiniz derken **Ihre neue Anschrift** denir.",
           "also_ok": [
             "Adresse"
           ]
@@ -896,7 +903,7 @@
           "de": "Der Brief ist zurückgekommen, obwohl die ___ richtig war.",
           "answer": "Anschrift",
           "tr": "Adres doğru olmasına rağmen mektup geri geldi.",
-          "hint_tr": "Adres doğruydu derken **die Anschrift war richtig** denir.",
+          "hint_tr": "Adres doğru olmasına rağmen derken **obwohl die Anschrift richtig war** denir.",
           "also_ok": [
             "Adresse"
           ]
@@ -905,7 +912,7 @@
           "de": "Das ist ___ neue Anschrift.",
           "answer": "meine",
           "tr": "Bu benim yeni adresim.",
-          "hint_tr": "**die Anschrift** olduğu için **meine neue Anschrift** denir."
+          "hint_tr": "Benim yeni adresim derken **meine neue Anschrift** denir."
         }
       ]
     },
@@ -1020,7 +1027,7 @@
           "de": "Meine Oma ___ früher täglich in der Bäckerei.",
           "answer": "arbeitete",
           "tr": "Büyükannem eskiden her gün fırında çalışırdı.",
-          "hint_tr": "Yazıda **arbeiten** böyle görünür: **sie arbeitete**."
+          "hint_tr": "Yazıda **Meine Oma arbeitete** denir."
         },
         {
           "de": "Das Café hat ___ auf.",
@@ -1067,8 +1074,7 @@
       "register": "neutral",
       "related": [
         "lx:lesen",
-        "lx:Nachricht",
-        "lx:berichten"
+        "lx:Nachricht"
       ],
       "mistakes_tr": [
         "Gazetede yazıyor derken **Das schreibt in der Zeitung** yanlış. Doğrusu **Das steht in der Zeitung**."
@@ -1083,10 +1089,10 @@
         },
         {
           "id": "lx:Zeitung:2",
-          "de": "Die Zeitung berichtete über das Fest auf dem Stadtplatz.",
-          "tr": "Gazete meydandaki şenliği haber yaptı.",
+          "de": "Mein Vater suchte damals in der Zeitung eine Wohnung.",
+          "tr": "Babam o zamanlar gazetede ev aradı.",
           "layer": "hd",
-          "img": "local newspaper page"
+          "img": "man reading housing ads in newspaper"
         },
         {
           "id": "lx:Zeitung:3",
@@ -1136,7 +1142,7 @@
           "de": "Früher ___ mein Vater jeden Morgen eine Zeitung.",
           "answer": "kaufte",
           "tr": "Eskiden babam her sabah bir gazete alırdı.",
-          "hint_tr": "Yazıda **kaufen** böyle görünür: **er kaufte**."
+          "hint_tr": "Yazıda **Früher kaufte mein Vater** denir."
         },
         {
           "de": "Das steht heute in der ___.",
@@ -1154,7 +1160,7 @@
           "de": "Das ___ heute in der Zeitung.",
           "answer": "steht",
           "tr": "Bu bugün gazetede yazıyor.",
-          "hint_tr": "Gazetede yazıyor derken **steht** denir, **schreibt** değil."
+          "hint_tr": "Gazetede yazıyor derken **Das steht heute in der Zeitung** denir."
         }
       ]
     },
@@ -1261,13 +1267,13 @@
           "de": "Mein Opa ___ vierzig Jahre in einer Fabrik.",
           "answer": "arbeitete",
           "tr": "Dedem kırk yıl bir fabrikada çalıştı.",
-          "hint_tr": "Yazıda **arbeiten** böyle görünür: **er arbeitete**."
+          "hint_tr": "Yazıda **Mein Opa arbeitete** denir."
         },
         {
           "de": "Am Wochenende fahren wir zu Oma und ___.",
           "answer": "Opa",
           "tr": "Hafta sonu büyükannemle dedemin yanına gidiyoruz.",
-          "hint_tr": "Dede **der Opa**."
+          "hint_tr": "Büyükannemle dedem derken **Oma und Opa** denir."
         },
         {
           "de": "Ich war am Sonntag ___ meinem Opa.",
@@ -1279,7 +1285,7 @@
           "de": "Früher ___ ich mit Opa jeden Sonntag Karten.",
           "answer": "spielte",
           "tr": "Eskiden dedemle her pazar kâğıt oynardım.",
-          "hint_tr": "Yazıda **spielen** böyle görünür: **ich spielte**."
+          "hint_tr": "Yazıda **Früher spielte ich** denir."
         }
       ]
     },
@@ -1385,7 +1391,7 @@
           "de": "Meine Großeltern ___ auf einem Bauernhof.",
           "answer": "wohnten",
           "tr": "Büyükannemle dedem bir çiftlikte otururdu.",
-          "hint_tr": "Yazıda **wohnen** böyle görünür: **sie wohnten**.",
+          "hint_tr": "Yazıda **Meine Großeltern wohnten** denir.",
           "also_ok": [
             "lebten"
           ]
@@ -1394,19 +1400,19 @@
           "de": "In den Ferien war ich immer bei meinen ___.",
           "answer": "Großeltern",
           "tr": "Tatillerde hep büyükannemlerdeydim.",
-          "hint_tr": "Büyükanne ile dede birlikte **die Großeltern**."
+          "hint_tr": "Büyükannemlerde derken **bei meinen Großeltern** denir."
         },
         {
           "de": "Wo wohnen deine ___?",
           "answer": "Großeltern",
           "tr": "Büyükannenle deden nerede oturuyor?",
-          "hint_tr": "Büyükanne ile dede birlikte **die Großeltern**."
+          "hint_tr": "Büyükannenle deden derken **deine Großeltern** denir."
         },
         {
           "de": "Besuchst du oft ___ Großeltern?",
           "answer": "deine",
           "tr": "Büyükannenle dedeni sık ziyaret ediyor musun?",
-          "hint_tr": "**die Großeltern** için **deine Großeltern** denir."
+          "hint_tr": "Büyükannenle deden derken **deine Großeltern** denir."
         }
       ]
     },
@@ -1521,7 +1527,7 @@
           "de": "Wir ___ jeden Sommer Urlaub auf einem Bauernhof.",
           "answer": "machten",
           "tr": "Her yaz bir çiftlikte tatil yapardık.",
-          "hint_tr": "Yazıda **machen** böyle görünür: **wir machten**."
+          "hint_tr": "Yazıda **Wir machten** denir."
         },
         {
           "de": "Die Eier sind vom ___.",
@@ -1632,7 +1638,7 @@
           "de": "Mein Vater ___ zwanzig Jahre in einer Fabrik.",
           "answer": "arbeitete",
           "tr": "Babam yirmi yıl bir fabrikada çalıştı.",
-          "hint_tr": "Yazıda **arbeiten** böyle görünür: **er arbeitete**."
+          "hint_tr": "Yazıda **Mein Vater arbeitete** denir."
         },
         {
           "de": "Ich arbeite in einer ___.",
@@ -1644,13 +1650,13 @@
           "de": "Das alte Gebäude war früher eine ___.",
           "answer": "Fabrik",
           "tr": "Eski bina eskiden bir fabrikaydı.",
-          "hint_tr": "Fabrika **die Fabrik**: **eine Fabrik**."
+          "hint_tr": "Bir fabrika derken **eine Fabrik** denir."
         },
         {
           "de": "Die Fabrik ___ damals viele Leute.",
           "answer": "brauchte",
           "tr": "Fabrikanın o zamanlar çok insana ihtiyacı vardı.",
-          "hint_tr": "Yazıda **brauchen** böyle görünür: **sie brauchte**."
+          "hint_tr": "Yazıda **Die Fabrik brauchte** denir."
         }
       ]
     },
@@ -1682,8 +1688,8 @@
           "tr": "dernek kurmak"
         },
         {
-          "de": "ein eigenes Geschäft gründen",
-          "tr": "kendi işyerini kurmak"
+          "de": "ein Geschäft gründen",
+          "tr": "bir işyeri kurmak"
         }
       ],
       "patterns": [
@@ -1716,14 +1722,14 @@
         },
         {
           "id": "lx:gründen:3",
-          "de": "Er will 'ne eigene Firma gründen, aber das kostet halt viel Geld.",
-          "tr": "Kendi şirketini kurmak istiyor ama bu da çok para tutuyor.",
+          "de": "Er will 'ne Firma gründen, aber das kostet halt viel Geld.",
+          "tr": "Bir şirket kurmak istiyor ama bu da çok para tutuyor.",
           "layer": "alltag"
         },
         {
           "id": "lx:gründen:4",
           "de": "– Wann habt ihr die Firma gegründet? – Vor fünf Jahren, zu zweit.",
-          "tr": "– Şirketi ne zaman kurdunuz? – Beş yıl önce, iki kişi.",
+          "tr": "– Şirketi ne zaman kurdunuz? – Beş yıl önce, ikimiz birlikte.",
           "layer": "hd",
           "dialog": true
         },
@@ -1757,7 +1763,7 @@
           "de": "Mein Opa ___ damals eine kleine Firma.",
           "answer": "gründete",
           "tr": "Dedem o zamanlar küçük bir şirket kurdu.",
-          "hint_tr": "Yazıda **gründen** böyle görünür: **er gründete**."
+          "hint_tr": "Yazıda **Mein Opa gründete** denir."
         },
         {
           "de": "Wann habt ihr die Firma ___?",
@@ -1769,12 +1775,12 @@
           "de": "Zwei Freunde ___ zusammen ein Café.",
           "answer": "gründeten",
           "tr": "İki arkadaş birlikte bir kafe kurdu.",
-          "hint_tr": "Yazıda birden çok kişi için **sie gründeten** denir."
+          "hint_tr": "Yazıda **Zwei Freunde gründeten** denir."
         },
         {
-          "de": "Er will eine eigene Firma ___.",
+          "de": "Er will eine Firma ___.",
           "answer": "gründen",
-          "tr": "Kendi şirketini kurmak istiyor.",
+          "tr": "Bir şirket kurmak istiyor.",
           "hint_tr": "Şirket kurmak **eine Firma gründen**.",
           "also_ok": [
             "aufmachen"
@@ -1849,8 +1855,8 @@
         },
         {
           "id": "lx:sammeln:4",
-          "de": "– Wir sammeln Geld für ein Geschenk für Derya. Bist du dabei? – Klar, wie viel?",
-          "tr": "– Derya'ya hediye için para topluyoruz. Sen de var mısın? – Tabii, ne kadar?",
+          "de": "– Wir sammeln Geld für ein Geschenk für Derya. Gibst du auch was? – Klar, wie viel?",
+          "tr": "– Derya'ya hediye için para topluyoruz. Sen de bir şey verir misin? – Tabii, ne kadar?",
           "layer": "hd",
           "dialog": true
         },
@@ -1879,25 +1885,25 @@
           "de": "Früher ___ ich Briefmarken.",
           "answer": "sammelte",
           "tr": "Eskiden pul biriktirirdim.",
-          "hint_tr": "Yazıda **sammeln** böyle görünür: **ich sammelte**."
+          "hint_tr": "Yazıda **Früher sammelte ich** denir."
         },
         {
           "de": "Im Herbst ___ wir im Wald Pilze.",
           "answer": "sammelten",
           "tr": "Sonbaharda ormanda mantar toplardık.",
-          "hint_tr": "Yazıda **wir sammelten** denir."
+          "hint_tr": "Yazıda **sammelten wir** denir."
         },
         {
           "de": "___ Sie Punkte?",
           "answer": "Sammeln",
           "tr": "Puan topluyor musunuz?",
-          "hint_tr": "Puan toplamak **Punkte sammeln**."
+          "hint_tr": "Puan topluyor musunuz derken **Sammeln Sie Punkte** denir."
         },
         {
           "de": "Wir ___ Geld für ein Geschenk für Derya.",
           "answer": "sammeln",
           "tr": "Derya'ya hediye için para topluyoruz.",
-          "hint_tr": "Birkaç kişiden para toplamak **Geld sammeln**."
+          "hint_tr": "Para topluyoruz derken **Wir sammeln Geld** denir."
         }
       ]
     },
@@ -2006,7 +2012,7 @@
           "de": "Ich bin heute um fünf ___.",
           "answer": "aufgewacht",
           "tr": "Bugün beşte uyandım.",
-          "hint_tr": "Uyandım derken **ich bin aufgewacht** denir."
+          "hint_tr": "Konuşurken önce **Ich bin**, sonda **aufgewacht** gelir."
         },
         {
           "de": "Wie oft ___ Sie nachts auf?",
@@ -2018,7 +2024,7 @@
           "de": "In der Nacht wachte das Baby oft ___.",
           "answer": "auf",
           "tr": "Bebek gece sık sık uyanıyordu.",
-          "hint_tr": "Yazıda da **auf** sona gider: **Das Baby wachte oft auf**."
+          "hint_tr": "Yazıda da **auf** sona gider: **wachte das Baby oft auf**."
         },
         {
           "de": "Nein, ich bin gerade erst ___.",
@@ -2072,7 +2078,7 @@
       ],
       "mistakes_tr": [
         "Uyuyakaldım, işe geç kaldım derken **Ich bin eingeschlafen** başka şey anlatır. Doğrusu **Ich habe verschlafen**.",
-        "Uyuyakaldım derken **Ich habe eingeschlafen** yanlış. Doğrusu **Ich bin eingeschlafen**."
+        "Uykuya daldım derken **Ich habe eingeschlafen** yanlış. Doğrusu **Ich bin eingeschlafen**."
       ],
       "examples": [
         {
@@ -2141,25 +2147,25 @@
           "de": "Ich kann abends nicht ___.",
           "answer": "einschlafen",
           "tr": "Akşamları uykuya dalamıyorum.",
-          "hint_tr": "Uykuya dalamıyorum derken **Ich kann nicht einschlafen** denir."
+          "hint_tr": "Uykuya dalamıyorum derken **Ich kann abends nicht einschlafen** denir."
         },
         {
           "de": "Das Kind war so müde, es ___ sofort ein.",
           "answer": "schlief",
           "tr": "Çocuk çok yorgundu, hemen uykuya daldı.",
-          "hint_tr": "Yazıda **einschlafen** böyle görünür: **es schlief sofort ein**."
+          "hint_tr": "Yazıda **es schlief sofort ein** denir."
         },
         {
           "de": "Gestern bin ich vorm Fernseher ___.",
           "answer": "eingeschlafen",
           "tr": "Dün televizyonun önünde uyuyakaldım.",
-          "hint_tr": "Konuşurken **ich bin eingeschlafen** denir."
+          "hint_tr": "Konuşurken önce **bin ich**, sonda **eingeschlafen** gelir."
         },
         {
           "de": "Nach dem langen Tag schlief sie im Zug ___.",
           "answer": "ein",
           "tr": "Uzun günün ardından trende uykuya daldı.",
-          "hint_tr": "**ein** sona gider: **sie schlief im Zug ein**."
+          "hint_tr": "**ein** sona gider: **schlief sie im Zug ein**."
         }
       ]
     },
@@ -2285,13 +2291,13 @@
           "de": "Die Firma ___ ihm eine Stelle in München an.",
           "answer": "bot",
           "tr": "Şirket ona Münih'te bir iş teklif etti.",
-          "hint_tr": "Yazıda **anbieten** böyle görünür: **Die Firma bot ihm eine Stelle an**."
+          "hint_tr": "Yazıda **Die Firma bot ihm** denir, **an** sona gider."
         },
         {
           "de": "Sie hat mir sofort ihre Hilfe ___.",
           "answer": "angeboten",
           "tr": "Bana hemen yardım teklif etti.",
-          "hint_tr": "Konuşurken **Sie hat mir ihre Hilfe angeboten** denir."
+          "hint_tr": "Konuşurken önce **Sie hat mir**, sonda **angeboten** gelir."
         },
         {
           "de": "Darf ich ___ einen Kaffee anbieten?",
@@ -2348,7 +2354,7 @@
         "lx:Brief"
       ],
       "mistakes_tr": [
-        "Bana mektubu okur musunuz derken **Können Sie mir den Brief lesen?** eksik kalır. Birine sesli okumak **vorlesen**: **Könnten Sie mir den Brief vorlesen?**"
+        "Bana mektubu okur musunuz derken **Können Sie mir den Brief lesen?** eksik kalır. Doğrusu **Können Sie mir den Brief vorlesen?**"
       ],
       "examples": [
         {
@@ -2365,8 +2371,8 @@
         },
         {
           "id": "lx:vorlesen:3",
-          "de": "Lies mal vor, was da steht, ich hab meine Brille nicht dabei.",
-          "tr": "Orada ne yazıyorsa bir okusana, gözlüğüm yanımda değil.",
+          "de": "Lies mal vor, was da steht, ich seh von hier nix.",
+          "tr": "Orada ne yazıyor, bir okusana, buradan hiçbir şey göremiyorum.",
           "layer": "alltag"
         },
         {
@@ -2417,7 +2423,7 @@
           "de": "Jeden Abend ___ Opa uns eine Geschichte vor.",
           "answer": "las",
           "tr": "Her akşam dedem bize bir hikâye okurdu.",
-          "hint_tr": "Yazıda **vorlesen** böyle görünür: **Opa las uns vor**."
+          "hint_tr": "Yazıda **las Opa uns** denir, **vor** sona gider."
         },
         {
           "de": "Soll ich den Text laut ___?",
@@ -2429,7 +2435,7 @@
           "de": "Opa hat uns jeden Abend eine Geschichte ___.",
           "answer": "vorgelesen",
           "tr": "Dedem bize her akşam bir hikâye okurdu.",
-          "hint_tr": "Konuşurken **Opa hat uns vorgelesen** denir."
+          "hint_tr": "Konuşurken önce **Opa hat uns**, sonda **vorgelesen** gelir."
         }
       ]
     },
@@ -2537,7 +2543,7 @@
           "de": "Er ist vor zehn Minuten ___.",
           "answer": "weggegangen",
           "tr": "On dakika önce çıktı.",
-          "hint_tr": "Konuşurken **er ist weggegangen** denir.",
+          "hint_tr": "Konuşurken önce **Er ist**, sonda **weggegangen** gelir.",
           "also_ok": [
             "gegangen"
           ]
@@ -2546,7 +2552,7 @@
           "de": "Viele junge Leute ___ damals aus dem Dorf weg.",
           "answer": "gingen",
           "tr": "O zamanlar birçok genç köyden ayrıldı.",
-          "hint_tr": "Yazıda **weggehen** böyle görünür: **Viele gingen weg**."
+          "hint_tr": "Yazıda **Viele junge Leute gingen** denir, **weg** sona gider."
         },
         {
           "de": "Gehst du heute Abend noch ___?",
@@ -2561,7 +2567,7 @@
           "de": "Geh bitte nicht ___, ich bin gleich zurück.",
           "answer": "weg",
           "tr": "Lütfen gitme, hemen dönüyorum.",
-          "hint_tr": "Gitme derken **Geh nicht weg** denir."
+          "hint_tr": "Gitme derken **Geh bitte nicht weg** denir."
         }
       ]
     },
@@ -2626,7 +2632,7 @@
         {
           "id": "lx:zurückfahren:3",
           "de": "Ich fahr heut schon um vier zurück, sonst steh ich im Stau.",
-          "tr": "Bugün saat dörtte dönüyorum, yoksa trafiğe takılırım.",
+          "tr": "Bugün erkenden, saat dörtte dönüyorum, yoksa trafiğe takılırım.",
           "layer": "alltag"
         },
         {
@@ -2676,13 +2682,13 @@
           "de": "Nach zwei Wochen ___ wir mit dem Zug nach Hause zurück.",
           "answer": "fuhren",
           "tr": "İki hafta sonra trenle eve döndük.",
-          "hint_tr": "Yazıda **zurückfahren** böyle görünür: **Wir fuhren nach Hause zurück**."
+          "hint_tr": "Yazıda **fuhren wir** denir, **zurück** sona gider."
         },
         {
           "de": "Wir sind mit dem Taxi ___.",
           "answer": "zurückgefahren",
           "tr": "Taksiyle döndük.",
-          "hint_tr": "Konuşurken **wir sind zurückgefahren** denir."
+          "hint_tr": "Konuşurken önce **Wir sind**, sonda **zurückgefahren** gelir."
         },
         {
           "de": "Ende August fahre ich ___.",
@@ -2732,7 +2738,7 @@
       ],
       "mistakes_tr": [
         "Zaman geçti derken **Die Zeit hat vergangen** yanlış. Doğrusu **Die Zeit ist vergangen**.",
-        "Sınavı geçtim derken **vergehen** kullanılmaz. Doğrusu **Ich habe die Prüfung bestanden**."
+        "Postanenin önünden geçtim derken **Ich bin an der Post vergangen** yanlış. Doğrusu **Ich bin an der Post vorbeigegangen**."
       ],
       "examples": [
         {
@@ -2784,7 +2790,7 @@
             "tr": "gitmek"
           }
         ],
-        "ipucu_tr": "Sınavı geçmek için **vergehen** değil **die Prüfung bestehen** dersin."
+        "ipucu_tr": "Zamanın ne çabuk geçtiğini söylerken **Wie die Zeit vergeht!** dersin."
       },
       "forms": [
         {
@@ -2797,15 +2803,16 @@
           "de": "Die Jahre ___, und die Kinder wurden groß.",
           "answer": "vergingen",
           "tr": "Yıllar geçti, çocuklar büyüdü.",
-          "hint_tr": "Yazıda **vergehen** böyle görünür: **sie vergingen**."
+          "hint_tr": "Yazıda **Die Jahre vergingen** denir."
         },
         {
           "de": "Die zwei Wochen sind so schnell ___.",
           "answer": "vergangen",
           "tr": "İki hafta çok çabuk geçti.",
-          "hint_tr": "Konuşurken **Die Wochen sind vergangen** denir.",
+          "hint_tr": "Konuşurken önce **Die zwei Wochen sind**, sonda **vergangen** gelir.",
           "also_ok": [
-            "vorbeigegangen"
+            "vorbeigegangen",
+            "vorbei"
           ]
         },
         {
@@ -2860,7 +2867,7 @@
       ],
       "mistakes_tr": [
         "Tatilin tadını çıkardım derken **Ich habe den Urlaub genießt** yanlış. Doğrusu **Ich habe den Urlaub genossen**.",
-        "**genießen** ile neyin keyfini çıkardığını söylersin: **Ich genieße die Ruhe**. Tek başına **Ich genieße** yarım kalır."
+        "Keyif yapıyorum derken tek başına **Ich genieße** yarım kalır. Neyin keyfini çıkardığını da söylersin: **Ich genieße die Ruhe**."
       ],
       "examples": [
         {
@@ -2914,19 +2921,19 @@
           "de": "Am Wochenende ___ ich die Ruhe.",
           "answer": "genieße",
           "tr": "Hafta sonu sessizliğin tadını çıkarıyorum.",
-          "hint_tr": "Ben için **ich genieße** denir."
+          "hint_tr": "Ben için **genieße ich** denir."
         },
         {
           "de": "Wir saßen am Meer und ___ die Sonne.",
           "answer": "genossen",
           "tr": "Deniz kenarında oturup güneşin tadını çıkardık.",
-          "hint_tr": "Yazıda **genießen** böyle görünür: **wir genossen**."
+          "hint_tr": "Yazıda **und genossen die Sonne** denir."
         },
         {
           "de": "Wir haben den Abend richtig ___.",
           "answer": "genossen",
           "tr": "Akşamın tadını iyice çıkardık.",
-          "hint_tr": "Konuşurken **Wir haben den Abend genossen** denir."
+          "hint_tr": "Konuşurken önce **Wir haben**, sonda **genossen** gelir."
         },
         {
           "de": "___ den Urlaub, du hast ihn dir verdient!",
@@ -2953,8 +2960,8 @@
       },
       "collocations": [
         {
-          "de": "auf der Treppe hinfallen",
-          "tr": "merdivende düşmek"
+          "de": "auf der Straße hinfallen",
+          "tr": "sokakta düşmek"
         },
         {
           "de": "auf dem Eis hinfallen",
@@ -2982,13 +2989,13 @@
       ],
       "mistakes_tr": [
         "Düştüm derken **Ich habe hingefallen** yanlış. Doğrusu **Ich bin hingefallen**.",
-        "Fiyat düştü derken **hinfallen** kullanılmaz. Doğrusu **Der Preis ist gesunken**."
+        "Fiyat düştü derken **Der Preis ist hingefallen** yanlış. Doğrusu **Der Preis ist gesunken**."
       ],
       "examples": [
         {
           "id": "lx:hinfallen:1",
-          "de": "Ich bin auf der Treppe hingefallen.",
-          "tr": "Merdivende düştüm.",
+          "de": "Ich bin auf der Straße hingefallen.",
+          "tr": "Sokakta düştüm.",
           "layer": "hd"
         },
         {
@@ -3041,19 +3048,20 @@
       },
       "forms": [
         {
-          "de": "Ich bin gestern auf der Treppe ___.",
+          "de": "Ich bin gestern auf der Straße ___.",
           "answer": "hingefallen",
-          "tr": "Dün merdivende düştüm.",
-          "hint_tr": "Düştüm derken **ich bin hingefallen** denir.",
+          "tr": "Dün sokakta düştüm.",
+          "hint_tr": "Konuşurken önce **Ich bin**, sonda **hingefallen** gelir.",
           "also_ok": [
-            "gefallen"
+            "gefallen",
+            "gestürzt"
           ]
         },
         {
           "de": "Auf dem Weg nach Hause ___ er auf dem Eis hin.",
           "answer": "fiel",
           "tr": "Eve giderken buzda düştü.",
-          "hint_tr": "Yazıda **hinfallen** böyle görünür: **Er fiel auf dem Eis hin**."
+          "hint_tr": "Yazıda **fiel er** denir, **hin** sona gider."
         },
         {
           "de": "Pass auf, sonst fällst du ___!",
@@ -3065,9 +3073,10 @@
           "de": "Ich bin ___, und jetzt tut mir das Knie weh.",
           "answer": "hingefallen",
           "tr": "Düştüm, şimdi de dizim ağrıyor.",
-          "hint_tr": "Düştüm derken **ich bin hingefallen** denir.",
+          "hint_tr": "Düştüm derken **Ich bin hingefallen** denir.",
           "also_ok": [
-            "gefallen"
+            "gefallen",
+            "gestürzt"
           ]
         }
       ]

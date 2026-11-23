@@ -108,13 +108,13 @@
           "de": "Wir machen im Sommer eine ___ in die Türkei.",
           "answer": "Reise",
           "tr": "Yazın Türkiye'ye seyahate çıkıyoruz.",
-          "hint_tr": "Seyahate çıkıyoruz derken **eine Reise machen** denir."
+          "hint_tr": "Bir seyahat derken **eine Reise** denir, çıkmak için **machen** gelir."
         },
         {
           "de": "Gute ___ und meld dich mal!",
           "answer": "Reise",
           "tr": "İyi yolculuklar, bir haber ver!",
-          "hint_tr": "İyi yolculuklar derken **Gute Reise!** denir."
+          "hint_tr": "İyi yolculuklar derken **Gute Reise** denir."
         },
         {
           "de": "Wohin geht die ___?",
@@ -126,7 +126,7 @@
           "de": "Wir haben die ___ schon im Januar gebucht.",
           "answer": "Reise",
           "tr": "Seyahati daha ocakta ayırttık.",
-          "hint_tr": "Seyahati ayırttık derken **die Reise gebucht** denir."
+          "hint_tr": "Seyahati ayırttık derken **die Reise** ve sonda **gebucht** denir."
         }
       ]
     },
@@ -516,7 +516,7 @@
           "de": "Wo ___ ihr in Rom?",
           "answer": "übernachtet",
           "tr": "Roma'da nerede kalıyorsunuz?",
-          "hint_tr": "Siz için **ihr übernachtet** denir.",
+          "hint_tr": "Birden çok kişiye sorarken **übernachtet ihr** denir.",
           "also_ok": [
             "wohnt",
             "schlaft"
@@ -630,7 +630,7 @@
           "de": "Wir haben einen ___ nach Istanbul gebucht.",
           "answer": "Flug",
           "tr": "İstanbul'a uçak bileti aldık.",
-          "hint_tr": "Uçak bileti aldık derken **einen Flug gebucht** denir."
+          "hint_tr": "Uçak bileti aldık derken **einen Flug** ve sonda **gebucht** denir."
         },
         {
           "de": "Der ___ dauert ungefähr drei Stunden.",
@@ -903,7 +903,7 @@
           "de": "Die Altstadt ist die wichtigste ___ hier.",
           "answer": "Sehenswürdigkeit",
           "tr": "Eski şehir buradaki en önemli turistik yer.",
-          "hint_tr": "Tek bir yer için **die Sehenswürdigkeit** denir."
+          "hint_tr": "Tek bir yer için **die wichtigste Sehenswürdigkeit** denir."
         },
         {
           "de": "Habt ihr viele ___ gesehen?",
@@ -1146,7 +1146,8 @@
           "hint_tr": "Ücretsiz derken **Eintritt frei** denir.",
           "also_ok": [
             "kostenlos",
-            "gratis"
+            "gratis",
+            "umsonst"
           ]
         },
         {
@@ -1302,7 +1303,7 @@
         },
         {
           "de": "ein bisschen enttäuscht",
-          "tr": "biraz hayal kırıklığı içinde"
+          "tr": "biraz hayal kırıklığına uğramış"
         }
       ],
       "patterns": [
@@ -1368,7 +1369,7 @@
         "freizeit"
       ],
       "exp": {
-        "anlam_tr": "**enttäuscht** beklediğini bulamayınca hissettiğin duygudur, yani hayal kırıklığı.",
+        "anlam_tr": "**enttäuscht** beklediğini bulamamış, yani hayal kırıklığına uğramış demektir.",
         "ne_zaman_tr": "Tatil, yemek ya da bir yer beklediğin gibi çıkmayınca.",
         "parcalar": [],
         "ipucu_tr": "Hayal kırıklığına uğradım derken **Ich bin enttäuscht** ya da **Ich war enttäuscht** dersin."
@@ -1378,7 +1379,7 @@
           "de": "Ich war vom Essen ein bisschen ___.",
           "answer": "enttäuscht",
           "tr": "Yemekten biraz hayal kırıklığına uğradım.",
-          "hint_tr": "Hayal kırıklığına uğradım derken **Ich war enttäuscht** denir."
+          "hint_tr": "Hayal kırıklığına uğradım derken **Ich war** ve sonda **enttäuscht** denir."
         },
         {
           "de": "Obwohl das Hotel teuer war, ___ wir enttäuscht.",
@@ -1503,13 +1504,16 @@
           "de": "Im Urlaub habe ich ___ sehr gut erholt.",
           "answer": "mich",
           "tr": "Tatilde çok iyi dinlendim.",
-          "hint_tr": "Kendinden söz ederken **mich** gelir: **habe mich erholt**."
+          "hint_tr": "Kendinden söz ederken **ich** ile birlikte **mich** gelir."
         },
         {
           "de": "Obwohl der Urlaub kurz war, haben wir uns gut ___.",
           "answer": "erholt",
           "tr": "Tatil kısa olmasına rağmen iyice dinlendik.",
-          "hint_tr": "Geçmişte **erholt** denir, başına **ge-** gelmez."
+          "hint_tr": "Geçmişte **erholt** denir, başına **ge-** gelmez.",
+          "also_ok": [
+            "entspannt"
+          ]
         },
         {
           "de": "Erholen Sie ___ gut!",
@@ -1521,7 +1525,10 @@
           "de": "Am Meer kann ich mich am besten ___.",
           "answer": "erholen",
           "tr": "En iyi deniz kenarında dinlenebiliyorum.",
-          "hint_tr": "**kann** ile sona **erholen** gelir."
+          "hint_tr": "**kann** ile sona **erholen** gelir.",
+          "also_ok": [
+            "entspannen"
+          ]
         }
       ]
     },
@@ -1628,7 +1635,7 @@
           "de": "Obwohl die Fahrt lang war, hat es sich ___.",
           "answer": "gelohnt",
           "tr": "Yolculuk uzun olmasına rağmen değdi.",
-          "hint_tr": "Değdi derken **Es hat sich gelohnt** denir."
+          "hint_tr": "Değdi derken burada **hat es sich gelohnt** denir."
         },
         {
           "de": "Für zwei Tage? Das lohnt ___ nicht.",
@@ -1646,7 +1653,7 @@
           "de": "Es hat ___ echt gelohnt.",
           "answer": "sich",
           "tr": "Gerçekten değdi.",
-          "hint_tr": "**sich** düşmez: **Es hat sich gelohnt**."
+          "hint_tr": "**sich** düşmez: **Es hat sich echt gelohnt**."
         }
       ]
     },
@@ -1715,7 +1722,7 @@
         },
         {
           "id": "lx:Frühstück:4",
-          "de": "– Ist das Frühstück inklusive? – Ja, das Frühstück ist im Preis inklusive.",
+          "de": "– Ist das Frühstück inklusive? – Ja, das ist im Preis inklusive.",
           "tr": "– Kahvaltı dahil mi? – Evet, kahvaltı fiyata dahil.",
           "layer": "hd",
           "dialog": true,
@@ -1796,7 +1803,7 @@
       "collocations": [
         {
           "de": "mit Halbpension",
-          "tr": "yarım pansiyon"
+          "tr": "yarım pansiyonlu"
         },
         {
           "de": "Halbpension buchen",
@@ -1853,7 +1860,7 @@
         {
           "id": "lx:Halbpension:5",
           "de": "– Was kostet das Zimmer mit Halbpension? – Hundertzwanzig Euro pro Nacht.",
-          "tr": "– Oda yarım pansiyon ne kadar? – Gecesi yüz yirmi avro.",
+          "tr": "– Yarım pansiyonlu oda ne kadar? – Gecesi yüz yirmi avro.",
           "layer": "hd",
           "dialog": true,
           "img": "hotel price list"
@@ -1903,7 +1910,7 @@
         {
           "de": "Was kostet das Zimmer ___ Halbpension?",
           "answer": "mit",
-          "tr": "Oda yarım pansiyon ne kadar?",
+          "tr": "Yarım pansiyonlu oda ne kadar?",
           "hint_tr": "Yarım pansiyonlu derken **mit Halbpension** denir."
         },
         {
@@ -1960,15 +1967,15 @@
         },
         {
           "id": "lx:Ferienwohnung:2",
-          "de": "Haben Sie im August noch eine Ferienwohnung frei?",
-          "tr": "Ağustosta hâlâ boş tatil eviniz var mı?",
+          "de": "Haben Sie vom ersten bis zum achten August noch eine Ferienwohnung frei?",
+          "tr": "1-8 Ağustos arası hâlâ boş tatil eviniz var mı?",
           "layer": "hd",
           "img": "woman calling to book apartment"
         },
         {
           "id": "lx:Ferienwohnung:3",
           "de": "Mit Kindern ist 'ne Ferienwohnung einfach praktischer als ein Hotel.",
-          "tr": "Çocuklarla tatil evi otelden çok daha pratik.",
+          "tr": "Çocuklarla tatil evi otelden düpedüz daha pratik.",
           "layer": "alltag",
           "img": "family in holiday apartment"
         },
@@ -2022,7 +2029,7 @@
           "de": "Wir haben eine ___ am See gebucht.",
           "answer": "Ferienwohnung",
           "tr": "Göl kenarında bir tatil evi ayırttık.",
-          "hint_tr": "Tatil evi derken **die Ferienwohnung** denir."
+          "hint_tr": "Bir tatil evi derken **eine Ferienwohnung** denir."
         },
         {
           "de": "Haben Sie im August noch eine ___ frei?",
@@ -2082,7 +2089,7 @@
       ],
       "mistakes_tr": [
         "Fiyatlar derken **die Preisen** yanlış. Doğrusu **die Preise**.",
-        "Fiyat yüksek derken en doğalı **Der Preis ist hoch** dersin. Pahalı olan şeyin kendisidir: **Das Zimmer ist teuer**."
+        "Fiyatı pahalı derken **Der Preis ist teuer** denmez. Fiyat **hoch** olur: **Der Preis ist hoch**. Pahalı olan şeyin kendisidir: **Das Zimmer ist teuer**."
       ],
       "examples": [
         {
@@ -2132,7 +2139,7 @@
       ],
       "level": "A2",
       "tier": "K1",
-      "freqRank": 3983,
+      "freqRank": 916,
       "domains": [
         "einkaufen",
         "freizeit"
@@ -2207,7 +2214,7 @@
         "lx:Hotel"
       ],
       "mistakes_tr": [
-        "Otelin yeri çok iyi derken **Der Platz vom Hotel ist gut** yanlış. Doğrusu **Das Hotel hat eine gute Lage**."
+        "Otelin yeri iyi derken **Der Platz vom Hotel ist gut** yanlış. Doğrusu **Das Hotel hat eine gute Lage**."
       ],
       "examples": [
         {
@@ -2267,7 +2274,7 @@
           "de": "Das Hotel hat eine sehr gute ___.",
           "answer": "Lage",
           "tr": "Otelin konumu çok iyi.",
-          "hint_tr": "Konumu iyi derken **eine gute Lage** denir."
+          "hint_tr": "Konumu çok iyi derken **eine sehr gute Lage** denir."
         },
         {
           "de": "Ich hätte gern ein Hotel in ruhiger ___.",
@@ -2351,15 +2358,15 @@
         },
         {
           "id": "lx:Aufenthalt:5",
-          "de": "– Wie lange dauert Ihr Aufenthalt? – Eine Woche, bis Sonntag.",
-          "tr": "– Ne kadar kalacaksınız? – Bir hafta, pazara kadar.",
+          "de": "– Wie lange dauert Ihr Aufenthalt? – Eine Woche, vom dritten bis zum zehnten Juli.",
+          "tr": "– Ne kadar kalacaksınız? – Bir hafta, 3-10 Temmuz arası.",
           "layer": "hd",
           "dialog": true
         },
         {
           "id": "lx:Aufenthalt:6",
-          "de": "Für einen längeren Aufenthalt ist eine Ferienwohnung billiger.",
-          "tr": "Daha uzun bir kalış için tatil evi daha ucuz.",
+          "de": "Für einen längeren Aufenthalt ist eine Ferienwohnung oft billiger.",
+          "tr": "Daha uzun bir kalış için tatil evi çoğu zaman daha ucuz.",
           "layer": "hd"
         }
       ],
@@ -2479,8 +2486,8 @@
         },
         {
           "id": "lx:auschecken:6",
-          "de": "Am letzten Tag checken wir um zehn aus.",
-          "tr": "Son gün saat onda çıkış yapıyoruz.",
+          "de": "Wir haben für zwei Nächte gebucht und checken am Sonntag um zehn aus.",
+          "tr": "İki gece için yer ayırttık, pazar günü saat onda çıkış yapıyoruz.",
           "layer": "hd"
         }
       ],
@@ -2569,7 +2576,7 @@
         "lx:Techniker"
       ],
       "mistakes_tr": [
-        "İnternet var mı derken **Hat es WLAN?** yanlış. Doğrusu **Gibt es hier WLAN?**",
+        "Ücretsiz internet derken **kostenlos WLAN** yanlış. Doğrusu **kostenloses WLAN**.",
         "İnternet çalışmıyor derken **Das WLAN funktioniert kein** yanlış. Doğrusu **Das WLAN funktioniert nicht**."
       ],
       "examples": [
@@ -2635,13 +2642,19 @@
           "de": "In meinem Zimmer funktioniert das ___ nicht.",
           "answer": "WLAN",
           "tr": "Odamda internet çalışmıyor.",
-          "hint_tr": "İnternet derken **das WLAN** denir."
+          "hint_tr": "İnternet derken **das WLAN** denir.",
+          "also_ok": [
+            "Internet"
+          ]
         },
         {
           "de": "Gibt es im Hotel kostenloses ___?",
           "answer": "WLAN",
           "tr": "Otelde ücretsiz internet var mı?",
-          "hint_tr": "Ücretsiz internet derken **kostenloses WLAN** denir."
+          "hint_tr": "Ücretsiz internet derken **kostenloses WLAN** denir.",
+          "also_ok": [
+            "Internet"
+          ]
         },
         {
           "de": "___ es hier WLAN?",
@@ -2693,7 +2706,7 @@
       ],
       "mistakes_tr": [
         "Duş çalışmıyor derken **Die Dusche ist nicht funktioniert** yanlış. Doğrusu **Die Dusche funktioniert nicht**.",
-        "Duş alıyorum derken **Ich nehme Dusche** yanlış. Kısaca **Ich dusche** dersin."
+        "Duş alıyorum derken **Ich nehme Dusche** yanlış. Doğrusu **Ich dusche**."
       ],
       "examples": [
         {
@@ -2884,13 +2897,19 @@
           "de": "Kann ich das Zimmer ___?",
           "answer": "wechseln",
           "tr": "Odayı değiştirebilir miyim?",
-          "hint_tr": "Oda değiştirmek derken **das Zimmer wechseln** denir."
+          "hint_tr": "Oda değiştirmek derken **das Zimmer wechseln** denir.",
+          "also_ok": [
+            "tauschen"
+          ]
         },
         {
           "de": "Habt ihr das Zimmer ___?",
           "answer": "gewechselt",
           "tr": "Odayı değiştirdiniz mi?",
-          "hint_tr": "Geçmişte **haben** ile **gewechselt** denir."
+          "hint_tr": "Geçmişte **Habt ihr** ve sonda **gewechselt** denir.",
+          "also_ok": [
+            "getauscht"
+          ]
         },
         {
           "de": "Wir ___ die Handtücher jeden zweiten Tag.",
@@ -2998,7 +3017,7 @@
         "freizeit"
       ],
       "exp": {
-        "anlam_tr": "**das Handtuch** yıkandıktan sonra kurulandığın havludur.",
+        "anlam_tr": "**das Handtuch** elini yüzünü yıkadıktan ya da duştan sonra kurulandığın havludur.",
         "ne_zaman_tr": "Otelde, spor salonunda ya da havuzda.",
         "parcalar": [
           {
@@ -3035,7 +3054,7 @@
           "de": "Hast du ein ___ für mich?",
           "answer": "Handtuch",
           "tr": "Bana verecek bir havlun var mı?",
-          "hint_tr": "Havlu derken **das Handtuch** denir."
+          "hint_tr": "Bir havlu derken **ein Handtuch** denir."
         }
       ]
     },
@@ -3077,7 +3096,7 @@
         {
           "id": "lx:sauber:1",
           "de": "Das Zimmer ist nicht sauber, das Bad auch nicht.",
-          "tr": "Oda temiz değil, banyo da öyle.",
+          "tr": "Oda temiz değil, banyo da temiz değil.",
           "layer": "hd"
         },
         {
@@ -3137,13 +3156,16 @@
           "de": "Ich hätte gern ein ___ Handtuch, bitte.",
           "answer": "sauberes",
           "tr": "Temiz bir havlu istiyorum lütfen.",
-          "hint_tr": "**ein** ile **das Handtuch** önünde **sauberes** olur."
+          "hint_tr": "Temiz bir havlu derken **ein sauberes Handtuch** denir.",
+          "also_ok": [
+            "frisches"
+          ]
         },
         {
           "de": "Mach mal das Bad ___!",
           "answer": "sauber",
           "tr": "Banyoyu bir temizlesene!",
-          "hint_tr": "Temizlemek derken **sauber machen** denir."
+          "hint_tr": "Temizlesene derken başta **Mach**, sonda **sauber** denir."
         },
         {
           "de": "Das Zimmer ist ___ sauber.",
@@ -3225,7 +3247,7 @@
         {
           "id": "lx:Fernseher:5",
           "de": "– Was machst du heute Abend? – Nix, ich lieg nur vor dem Fernseher.",
-          "tr": "– Bu akşam ne yapıyorsun? – Hiç, televizyonun karşısında yatıyorum.",
+          "tr": "– Bu akşam ne yapıyorsun? – Hiçbir şey, sadece televizyonun karşısında yatıyorum.",
           "layer": "alltag",
           "dialog": true,
           "img": "person on sofa in front of tv"
@@ -3272,12 +3294,12 @@
           "de": "Mach mal den Fernseher ___, wir essen jetzt.",
           "answer": "aus",
           "tr": "Televizyonu bir kapatsana, şimdi yemek yiyoruz.",
-          "hint_tr": "Kapatsana derken sona **aus** gelir: **Mach den Fernseher aus**."
+          "hint_tr": "Kapatsana derken sona **aus** gelir: **Mach mal den Fernseher aus**."
         },
         {
           "de": "Ich liege nur vor dem ___.",
           "answer": "Fernseher",
-          "tr": "Televizyonun karşısında yatıyorum.",
+          "tr": "Sadece televizyonun karşısında yatıyorum.",
           "hint_tr": "Televizyonun karşısında derken **vor dem Fernseher** denir."
         },
         {
