@@ -29,7 +29,7 @@
   "status": "draft",
   "by": "dilbilimci-ajan",
   "at": "2026-11-23",
-  "notes": "docs/v2/reviews/ic16/dilbilimci-h14.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
+  "notes": "docs/v2/reviews/ic16/dilbilimci-h14.md; dil incelemesi ONAY, #254 fark turu kapandı. Video ve kart sayısı kapıları açık olduğu için draft."
  },
  "dersler": [
   "gr:a2-05:t2"
@@ -64,8 +64,8 @@
      "tr": "bankamatikte – Hemen bankamatikten para alıyorum."
     },
     {
-     "de": "eine Überweisung machen – Ich mache die Überweisung online.",
-     "tr": "havale yapmak – Havaleyi internetten yapıyorum."
+     "de": "eine Überweisung machen – Ich mache die Überweisung online. – Ich habe die Überweisung gemacht.",
+     "tr": "havale yapmak – Havaleyi internetten yapıyorum. – Havaleyi yaptım."
     },
     {
      "de": "Ich habe eine Mahnung bekommen. – ich vergesse – Ich habe die Rechnung vergessen.",
@@ -229,7 +229,7 @@
    "kaliplar": [
     {
      "de": "wir treffen uns – Wir treffen uns um fünf. – Um fünf treffen wir uns.",
-     "tr": "buluşuyoruz – Beşte buluşuyoruz. – Saatle başlayınca da anlam aynı."
+     "tr": "buluşuyoruz – Beşte buluşuyoruz. – Beşte buluşuyoruz."
     },
     {
      "de": "ich fühle mich – du fühlst dich – er fühlt sich – gestresst – Ich fühle mich gestresst.",
@@ -596,7 +596,7 @@
       "id": "d5",
       "seviye": "gercek",
       "gorev_tr": "Bankada ne olduğunu Almanca iki kısa cümleyle özetle.",
-      "ornek_de": "Tobis Bankkarte geht nicht. Er hat eine Mahnung bekommen.",
+      "ornek_de": "Die Bankkarte von Tobi geht nicht. Er hat eine Mahnung bekommen.",
       "zorunlu": [
        "Bankkarte",
        "Mahnung"
@@ -785,7 +785,7 @@
    "id": "m1:93:a1",
    "tur": "bekleme-anonsu",
    "title_tr": "Bankanın telefon menüsü",
-   "ortam_tr": "Pazartesi akşamı, evdesin. Tobi'nin banka kartı çalışmıyor. Tobi seni arıyor ve bankanın kaydını hoparlörden sana da dinletiyor.",
+   "ortam_tr": "Salı öğleden sonra ofistesin. Tobi bankayı arıyor ve hoparlörü açıyor. Kayıt sana da duyuluyor.",
    "speaker": "Vilsbank",
    "hizlar": [
     "slow",
@@ -963,8 +963,8 @@
      "cevapla": {
       "id": "m1:93:a1:c1",
       "k": "guided_response",
-      "situation_tr": "Tobi soruyor: banka kartımı kaybettim, hangi tuşa basayım? Bire basmasını söyle.",
-      "prompt_de": "Meine Bankkarte ist weg. Was muss ich drücken?",
+      "situation_tr": "Tobi soruyor: kartım çalışmıyor, hangi tuşa basayım? Bire basmasını söyle.",
+      "prompt_de": "Meine Bankkarte geht nicht. Was muss ich drücken?",
       "accepted": [
        "Drück die Eins.",
        "Die Eins. Drück die Eins.",
@@ -979,14 +979,14 @@
    "eylem": {
     "id": "m1:93:a1:e1",
     "k": "pick",
-    "q_tr": "Tobi'nin kartı çalışmıyor, ödeme uyarısı da var. Bugün pazartesi, saat on dokuz. Ne yapmalı?",
+    "q_tr": "Tobi'nin kartı çalışmıyor, ödeme uyarısı da var. İş beşte bitiyor. Ne zaman bankaya gidebilir?",
     "opts": [
-     "Yarın dokuzdan sonra bankaya gitmeli",
-     "Hemen bankaya gitmeli, banka açık",
-     "Pazar günü bankaya gitmeli"
+     "Ancak pazar günü",
+     "Bugün işten sonra, altıdan önce",
+     "Yarın sabah sekizde"
     ],
-    "ans": 0,
-    "why_tr": "Banka pazartesiden cumaya dokuzdan on sekize kadar açık. Saat on dokuzda kapalı.",
+    "ans": 1,
+    "why_tr": "Banka pazartesiden cumaya dokuzdan on sekize kadar açık. Saat beşte açık.",
     "kanit": [
      "c5"
     ]

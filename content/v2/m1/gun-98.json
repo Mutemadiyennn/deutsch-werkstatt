@@ -32,7 +32,7 @@
   "status": "draft",
   "by": "dilbilimci-ajan",
   "at": "2026-11-23",
-  "notes": "docs/v2/reviews/ic16/dilbilimci-h14.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
+  "notes": "docs/v2/reviews/ic16/dilbilimci-h14.md; dil incelemesi ONAY, #254 fark turu kapandı. Video ve kart sayısı kapıları açık olduğu için draft."
  },
  "dersler": [],
  "yeni_kartlar": [
@@ -574,7 +574,7 @@
    "id": "m1:98:a1",
    "tur": "anons",
    "title_tr": "Dinleme: numara anonsu ve memurun isteği",
-   "ortam_tr": "Pazartesi sabahı vatandaş bürosundasın, Frau Brandl'ın işi için geldin. Elinde 52 numara var. Anonslar ve memur doğal hızda konuşuyor.",
+   "ortam_tr": "Pazartesi öğleden sonra vatandaş bürosuna geri geldin. Vekâletname, Frau Brandl'ın kimliği ve kendi kimliğin ya da pasaportun yanında. Elinde 52 numara var. Anonslar ve memur doğal hızda konuşuyor.",
    "speaker": "die Ansage",
    "hizlar": [
     "natural",
@@ -593,13 +593,13 @@
     },
     {
      "id": "c3",
-     "de": "Guten Morgen. Bitte nehmen Sie Platz. Was kann ich für Sie tun?",
-     "tr": "Günaydın. Lütfen oturun. Sizin için ne yapabilirim?"
+     "de": "Guten Tag. Bitte nehmen Sie Platz. Was kann ich für Sie tun?",
+     "tr": "İyi günler. Lütfen oturun. Sizin için ne yapabilirim?"
     },
     {
      "id": "c4",
-     "de": "Eine Meldebescheinigung? Gern. Zuerst brauche ich Ihren Ausweis oder Pass.",
-     "tr": "İkamet belgesi mi? Memnuniyetle. Önce kimliğinizi ya da pasaportunuzu istiyorum."
+     "de": "Eine Meldebescheinigung für Frau Brandl? Gern. Zuerst brauche ich die Vollmacht und Ihren Ausweis oder Pass.",
+     "tr": "Frau Brandl için ikamet belgesi mi? Memnuniyetle. Önce vekâletnameyi ve kimliğinizi ya da pasaportunuzu istiyorum."
     },
     {
      "id": "c5",
@@ -656,7 +656,7 @@
        "q_tr": "Memur önce ne istiyor?",
        "opts": [
         "Sıra numarası",
-        "Kimlik ya da pasaport",
+        "Vekâletname ve kimlik ya da pasaport",
         "Banka kartı"
        ],
        "ans": 1,
@@ -695,7 +695,7 @@
        "id": "d2",
        "cumle": "c4",
        "seviye": "orta",
-       "de": "Eine Meldebescheinigung? Gern. Zuerst brauche ich Ihren ___ oder Pass.",
+       "de": "Eine Meldebescheinigung für Frau Brandl? Gern. Zuerst brauche ich die Vollmacht und Ihren ___ oder Pass.",
        "accepted": [
         "Ausweis",
         "ausweis",
@@ -736,7 +736,7 @@
        "id": "d5",
        "seviye": "gercek",
        "gorev_tr": "Duyduğunu Almanca iki kısa cümleyle özetle.",
-       "ornek_de": "Meine Nummer ist zweiundfünfzig, ich gehe zu Platz vier. Zuerst braucht sie meinen Ausweis.",
+       "ornek_de": "Meine Nummer ist zweiundfünfzig, ich gehe zu Platz vier. Zuerst braucht sie die Vollmacht und meinen Ausweis.",
        "zorunlu": [
         "Platz vier",
         "Ausweis"
@@ -750,16 +750,17 @@
      "cevapla": {
       "id": "m1:98:a1:c1",
       "k": "guided_response",
-      "situation_tr": "Frau Brandl telefonda soruyor: memur ne istiyor? Önce kimliğini ya da pasaportunu istediğini söyle.",
+      "situation_tr": "Frau Brandl telefonda soruyor: memur ne istiyor? Önce vekâletnameyi ve kimliğini ya da pasaportunu istediğini söyle.",
       "prompt_de": "Was braucht die Dame?",
       "accepted": [
-       "Zuerst braucht sie meinen Ausweis oder Pass.",
-       "Sie braucht zuerst meinen Ausweis.",
-       "Zuerst meinen Ausweis oder meinen Pass.",
-       "Meinen Ausweis oder Pass. Dann fülle ich ein Formular aus.",
-       "Sie braucht zuerst meinen Ausweis, dann unterschreibe ich das Formular."
+       "Zuerst braucht sie die Vollmacht und meinen Ausweis oder Pass.",
+       "Sie braucht zuerst die Vollmacht und meinen Ausweis.",
+       "Die Vollmacht und meinen Ausweis oder meinen Pass.",
+       "Zuerst die Vollmacht und meinen Pass.",
+       "Sie braucht die Vollmacht und meinen Ausweis. Dann fülle ich ein Formular aus.",
+       "Zuerst braucht sie die Vollmacht und meinen Pass."
       ],
-      "why_tr": "Memurun istediğini aktar: **Zuerst braucht sie meinen Ausweis.**"
+      "why_tr": "Memurun istediğini aktar: **Zuerst braucht sie die Vollmacht und meinen Ausweis.**"
      }
     }
    ],
@@ -770,10 +771,10 @@
     "opts": [
      "2 numaralı masaya giderim",
      "Yeni bir numara alırım",
-     "4 numaralı masaya gidip kimliğimi veririm"
+     "4 numaralı masaya gidip belgeleri veririm"
     ],
     "ans": 2,
-    "why_tr": "52 numara 4 numaralı masaya çağrıldı. Memur önce kimlik ya da pasaport istiyor.",
+    "why_tr": "52 numara 4 numaralı masaya çağrıldı. Memur önce vekâletnameyi ve kimliği istiyor.",
     "kanit": [
      "c2",
      "c4"
@@ -1119,8 +1120,8 @@
    },
    {
     "id": "n3",
-    "de": "Frau Brandl schreibt die Vollmacht und unterschreibt. Dann bringen Sie die Vollmacht, den Ausweis von Frau Brandl und Ihren eigenen Ausweis.",
-    "tr": "Frau Brandl vekâletnameyi yazar ve imzalar. Sonra vekâletnameyi, Frau Brandl'ın kimliğini ve kendi kimliğinizi getirirsiniz.",
+    "de": "Frau Brandl schreibt die Vollmacht und unterschreibt. Dann bringen Sie die Vollmacht, den Ausweis von Frau Brandl und Ihren eigenen Ausweis oder Pass.",
+    "tr": "Frau Brandl vekâletnameyi yazar ve imzalar. Sonra vekâletnameyi, Frau Brandl'ın kimliğini ve kendi kimliğinizi ya da pasaportunuzu getirirsiniz.",
     "secenekler": [
      {
       "de": "Gut. Brauche ich dann einen neuen Termin?",
@@ -1176,7 +1177,10 @@
        "Vielen Dank. Also: Vollmacht, ihr Ausweis und mein Ausweis.",
        "Danke. Also: Vollmacht, ihr Ausweis und mein Ausweis.",
        "Vielen Dank. Die Vollmacht, ihr Ausweis und mein Ausweis.",
-       "Also die Vollmacht und zwei Ausweise. Danke!"
+       "Also die Vollmacht und zwei Ausweise. Danke!",
+       "Vielen Dank. Also: Vollmacht, ihr Ausweis und mein Pass.",
+       "Danke. Also: Vollmacht, ihr Ausweis und mein Pass.",
+       "Also die Vollmacht, ihr Ausweis und mein Pass. Danke!"
       ],
       "sonraki": "n5",
       "uygun": true,
@@ -1410,7 +1414,7 @@
     "k": "listen_and_respond",
     "audio_de": "Zuerst brauche ich Ihren Ausweis oder Pass.",
     "speed": "normal",
-    "situation_tr": "Memur bunu söyledi. Frau Brandl telefonda. Ona memurun ne istediğini söyle.",
+    "situation_tr": "Öğleden sonra vekâletnameyle geri geldin. Memur bunu söyledi. Frau Brandl telefonda. Ona memurun ne istediğini söyle.",
     "accepted": [
      "Sie braucht zuerst meinen Ausweis oder Pass.",
      "Zuerst braucht sie meinen Ausweis.",

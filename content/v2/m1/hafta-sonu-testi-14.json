@@ -5,29 +5,31 @@
   {
    "id": "m1:98:t01",
    "k": "listen_and_respond",
-   "audio_de": "Wann und wo treffen wir uns morgen?",
+   "audio_de": "Wann und wo treffen wir uns am Samstag?",
    "speed": "normal",
-   "situation_tr": "Tobi soruyor. Yarın saat beşte bankamatiğin önünde buluşmayı öner.",
+   "situation_tr": "Derya soruyor. Cumartesi saat iki buçukta garda buluşmayı öner.",
    "accepted": [
-    "Wir treffen uns morgen um fünf am Geldautomaten.",
-    "Um fünf am Geldautomaten.",
-    "Morgen um fünf, am Geldautomaten.",
-    "Treffen wir uns um fünf am Geldautomaten?",
-    "Um fünf Uhr am Geldautomaten, okay?"
+    "Wir treffen uns am Samstag um halb drei am Bahnhof.",
+    "Um halb drei am Bahnhof.",
+    "Am Samstag um halb drei, am Bahnhof.",
+    "Treffen wir uns um halb drei am Bahnhof?",
+    "Um halb drei treffen wir uns am Bahnhof.",
+    "Um halb drei am Bahnhof, okay?"
    ],
-   "why_tr": "Buluşma: önce **Wir treffen uns**, sonra saat ve yer."
+   "why_tr": "Buluşma: önce **Wir treffen uns**, sonra saat ve yer: **um halb drei am Bahnhof**."
   },
   {
    "id": "m1:98:t02",
    "k": "order",
-   "de": "Worauf / freust / du / dich / am / Wochenende",
-   "tr": "Hafta sonu neyi dört gözle bekliyorsun?",
+   "de": "Worüber / ärgert / sich / Frau / Brandl",
+   "tr": "Frau Brandl neye kızıyor?",
    "accepted": [
-    "Worauf freust du dich am Wochenende?",
-    "worauf freust du dich am wochenende",
-    "Worauf freust du dich am Wochenende"
+    "Worüber ärgert sich Frau Brandl?",
+    "worüber ärgert sich frau brandl",
+    "Worüber ärgert sich Frau Brandl",
+    "Worüber ärgert Frau Brandl sich?"
    ],
-   "why_tr": "**Worauf** başta, **freust** hemen arkasında."
+   "why_tr": "**Worüber** başta, **ärgert** hemen arkasında. **sich ärgern über** ile soru: **Worüber?**"
   },
   {
    "id": "m1:98:t03",
@@ -62,16 +64,18 @@
   {
    "id": "m1:98:t05",
    "k": "listen_and_respond",
-   "audio_de": "Nummer achtundvierzig bitte zu Platz fünf.",
+   "audio_de": "Nummer vierundsechzig bitte zu Platz sechs.",
    "speed": "natural",
-   "situation_tr": "Numaran 48. Ioana'ya nereye gittiğini söyle.",
+   "situation_tr": "Derya ile vatandaş bürosundasın. Derya'nın numarası 64, telefonda konuşuyor. Ona nereye gideceğini söyle.",
    "accepted": [
-    "Das ist meine Nummer! Ich muss zu Platz fünf.",
-    "Ich muss zu Platz fünf.",
-    "Achtundvierzig, das bin ich. Zu Platz fünf!",
-    "Meine Nummer! Ich gehe zu Platz fünf."
+    "Derya, das ist deine Nummer! Du musst zu Platz sechs.",
+    "Deine Nummer! Zu Platz sechs.",
+    "Vierundsechzig, das bist du. Geh zu Platz sechs!",
+    "Du bist dran. Zu Platz sechs!",
+    "Du musst zu Platz sechs.",
+    "Derya, du bist dran! Platz sechs."
    ],
-   "why_tr": "Anonsta iki şey: numara ve **zu Platz fünf**."
+   "why_tr": "Anonsta numara ve masa: **zu Platz sechs**. Derya'ya **du** dersin."
   },
   {
    "id": "m1:98:t06",
@@ -90,14 +94,16 @@
   {
    "id": "m1:98:t07",
    "k": "listen_and_respond",
-   "audio_de": "Für eine andere Person brauche ich eine Vollmacht.",
+   "audio_de": "Das ist für Herrn Pichler? Dann brauche ich eine Vollmacht von ihm.",
    "speed": "natural",
-   "situation_tr": "Memur bunu söylüyor. Vekâletnamen yok. Dürüstçe söyle ve ne yapacağını sor.",
+   "situation_tr": "Postanede komşun Herr Pichler'in mektubunu almak istiyorsun. Görevli bunu söylüyor, vekâletnamen yok. Dürüstçe söyle ve ne yapacağını sor.",
    "accepted": [
     "Ich habe leider keine Vollmacht. Was kann ich jetzt machen?",
-    "Eine Vollmacht habe ich nicht. Was kann ich machen?",
+    "Die habe ich leider nicht. Was kann ich jetzt machen?",
     "Leider habe ich keine Vollmacht. Was mache ich jetzt?",
-    "Ich habe keine Vollmacht. Was kann ich jetzt machen?"
+    "Eine Vollmacht habe ich nicht. Was kann ich machen?",
+    "Ich habe keine Vollmacht. Kann ich morgen wiederkommen?",
+    "Leider nicht. Was kann ich jetzt machen?"
    ],
    "why_tr": "Eksik belgede tartışmazsın. Sorarsın: **Was kann ich jetzt machen?**"
   },
@@ -121,27 +127,30 @@
   {
    "id": "m1:98:t09",
    "k": "guided_response",
-   "situation_tr": "Kursta yeni bir arkadaş formu dolduruyor ve soruyor: Familienname'ye ne yazacağım? Soyadını yazmasını söyle.",
-   "prompt_de": "Was schreibe ich beim Familiennamen?",
+   "situation_tr": "Kursta Karim bir form dolduruyor. Vorname alanına Haddad yazmak istiyor. Oraya Karim yazmasını söyle.",
+   "prompt_de": "Was schreibe ich bei Vorname? Haddad?",
    "accepted": [
-    "Da schreibst du deinen Familiennamen.",
-    "Hier schreibst du deinen Familiennamen, nicht den Vornamen.",
-    "Deinen Familiennamen, nicht den Vornamen.",
-    "Beim Familiennamen schreibst du deinen Familiennamen."
+    "Nein, da schreibst du Karim. Haddad ist dein Familienname.",
+    "Nicht Haddad, sondern Karim.",
+    "Nein, hier schreibst du Karim.",
+    "Bei Vorname schreibst du Karim, nicht Haddad.",
+    "Nein, Karim. Haddad ist der Familienname.",
+    "Da schreibst du deinen Vornamen, also Karim."
    ],
-   "why_tr": "**Familienname**: soyadı. **Vorname**: ad."
+   "why_tr": "**Vorname**: ad. **Familienname**: soyadı. **Da schreibst du Karim.**"
   },
   {
    "id": "m1:98:t10",
    "k": "listen_and_respond",
-   "audio_de": "Zuerst brauche ich Ihren Pass und die Bestätigung vom Vermieter.",
+   "audio_de": "Zuerst brauche ich Ihren Pass und die neue Meldebescheinigung.",
    "speed": "fast",
-   "situation_tr": "Memur Ioana'ya hızlı söyledi, Ioana anlamadı. Ona memurun önce ne istediğini söyle.",
+   "situation_tr": "Bankada memur Ioana'ya hızlı söyledi, Ioana anlamadı. Ona memurun önce ne istediğini söyle.",
    "accepted": [
-    "Zuerst braucht sie deinen Pass und die Bestätigung vom Vermieter.",
-    "Sie braucht zuerst deinen Pass und die Bestätigung vom Vermieter.",
-    "Deinen Pass und die Bestätigung vom Vermieter.",
-    "Zuerst deinen Pass und die Bestätigung vom Vermieter."
+    "Zuerst braucht sie deinen Pass und die neue Meldebescheinigung.",
+    "Sie braucht zuerst deinen Pass und die neue Meldebescheinigung.",
+    "Deinen Pass und die neue Meldebescheinigung.",
+    "Zuerst deinen Pass und die Meldebescheinigung.",
+    "Sie braucht deinen Pass und die Meldebescheinigung."
    ],
    "why_tr": "Aktarırken **Ihren** yerine **deinen** dersin: **Sie braucht deinen Pass.**"
   },
@@ -152,20 +161,24 @@
    "accepted": [
     "Wofür brauchst du das Formular?",
     "Wofür brauchen Sie das Formular?",
-    "Und wofür brauchst du das Formular?"
+    "Und wofür brauchst du das Formular?",
+    "Wofür braucht man das Formular?",
+    "Wofür ist das Formular?",
+    "Wofür brauchen wir das Formular?"
    ],
-   "why_tr": "**brauchen** ile soru **Wofür?** olur."
+   "why_tr": "**ne için** diye sorarken **Wofür?** dersin."
   },
   {
    "id": "m1:98:t12",
    "k": "tr_de",
-   "tr": "Vatandaş bürosu pazartesi sekizde açılıyor.",
+   "tr": "Stadtplatz'taki banka pazartesi dokuzda açılıyor.",
    "accepted": [
-    "Das Bürgerbüro öffnet am Montag um acht.",
-    "Am Montag öffnet das Bürgerbüro um acht.",
-    "Das Bürgerbüro öffnet am Montag um acht Uhr."
+    "Die Bank am Stadtplatz öffnet am Montag um neun.",
+    "Am Montag öffnet die Bank am Stadtplatz um neun.",
+    "Die Bank am Stadtplatz öffnet am Montag um neun Uhr.",
+    "Die Bank am Stadtplatz macht am Montag um neun auf."
    ],
-   "why_tr": "**öffnen**: açılmak. Gün ve saat: **am Montag um acht**."
+   "why_tr": "**öffnen**: açılmak. Gün ve saat: **am Montag um neun**."
   }
  ]
 }

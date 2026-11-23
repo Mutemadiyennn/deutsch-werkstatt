@@ -31,7 +31,7 @@
   "status": "draft",
   "by": "dilbilimci-ajan",
   "at": "2026-11-23",
-  "notes": "docs/v2/reviews/ic16/dilbilimci-h14.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
+  "notes": "docs/v2/reviews/ic16/dilbilimci-h14.md; dil incelemesi ONAY, #254 fark turu kapandı. Video ve kart sayısı kapıları açık olduğu için draft."
  },
  "dersler": [
   "dn:kelime-ailesi-2"
@@ -76,6 +76,14 @@
      "tr": "şarkı söylerim – şarkı söyleriz – şarkı söylüyorsunuz – Şarkı söyledik. – bir şarkı – Tobi için bir şarkı"
     },
     {
+     "de": "sprechen – er spricht – Er hat gesprochen.",
+     "tr": "konuşmak – konuşuyor – Konuştu."
+    },
+    {
+     "de": "darauf – Darauf freue ich mich. – wofür – Wofür brauchst du das?",
+     "tr": "onu – Onu dört gözle bekliyorum. – ne için – Bu ne için lazım?"
+    },
+    {
      "de": "früher – Früher hast du im Büro gesungen. – wie früher",
      "tr": "eskiden – Eskiden ofiste şarkı söylerdin. – eskisi gibi"
     },
@@ -84,8 +92,8 @@
      "tr": "aptalca – Aptallık oldu. – Ne saçmalık!"
     },
     {
-     "de": "das Zeug – mein Zeug – sein ganzes Zeug – Er hat sein Zeug eingepackt.",
-     "tr": "eşya – eşyalarım – onun bütün eşyaları – Eşyalarını topladı."
+     "de": "das Zeug – mein Zeug – sein ganzes Zeug – das ganze Zeug – Er hat sein Zeug eingepackt.",
+     "tr": "eşya – eşyalarım – onun bütün eşyaları – bu kadar eşya – Eşyalarını topladı."
     },
     {
      "de": "er zieht aus – sie zieht ein – Er ist ausgezogen. – Sie ist eingezogen.",
@@ -183,6 +191,18 @@
      ]
     },
     {
+     "kart": "lx:singen",
+     "de": "Heute singen wir für Tobi, darauf freue ich mich.",
+     "tr": "Bugün Tobi için şarkı söylüyoruz, bunu dört gözle bekliyorum.",
+     "accepted": [
+      "Heute singen wir für Tobi, darauf freue ich mich.",
+      "Heute singen wir für Tobi. Darauf freue ich mich.",
+      "Wir singen heute für Tobi, darauf freue ich mich.",
+      "Heute singen wir für Tobi, ich freue mich darauf.",
+      "Wir singen heute für Tobi. Ich freue mich darauf."
+     ]
+    },
+    {
      "kart": "lx:dumm",
      "de": "So ein dummes Zeug! Tobi muss sich hier nicht abmelden.",
      "tr": "Ne saçmalık! Tobi'nin burada kaydını sildirmesi gerekmiyor.",
@@ -220,6 +240,17 @@
       "Morgen zieht Tobi aus, sein Zeug ist eingepackt.",
       "Tobi zieht morgen aus, sein Zeug ist eingepackt.",
       "Morgen zieht Tobi aus. Sein Zeug ist eingepackt."
+     ]
+    },
+    {
+     "kart": "lx:Zeug",
+     "de": "Wofür brauchst du das ganze Zeug? – Für die neue Wohnung.",
+     "tr": "Bu kadar eşya ne için lazım? – Yeni ev için.",
+     "accepted": [
+      "Wofür brauchst du das ganze Zeug? – Für die neue Wohnung.",
+      "Wofür brauchst du das ganze Zeug? Für die neue Wohnung.",
+      "Wofür brauchst du das Zeug? – Für die neue Wohnung.",
+      "Wofür brauchst du das ganze Zeug? – Das brauche ich für die neue Wohnung."
      ]
     }
    ],
@@ -841,16 +872,16 @@
      "cevapla": {
       "id": "m1:96:a1:c1",
       "k": "guided_response",
-      "situation_tr": "Tobi soruyor: burada kaydımı sildirmem lazım mı? Gerekmediğini, Hamburg'da kayıt yaptıracağını söyle.",
-      "prompt_de": "Muss ich mich hier abmelden?",
+      "situation_tr": "Herr Wimmer soruyor: Herr Lechner burada kaydını sildirmeli mi? Gerekmediğini, Hamburg'da kayıt yaptıracağını söyle.",
+      "prompt_de": "Muss sich Herr Lechner hier abmelden?",
       "accepted": [
-       "Nein, du musst dich hier nicht abmelden. Du meldest dich in Hamburg an.",
-       "Nein. Du meldest dich in Hamburg an.",
+       "Nein, er muss sich hier nicht abmelden. Er meldet sich in Hamburg an.",
+       "Nein. Er meldet sich in Hamburg an.",
        "Nein, nicht ab, sondern an: in Hamburg.",
-       "Nein, hier nicht. In Hamburg meldest du dich an.",
-       "Nein, du meldest dich nur in Hamburg an."
+       "Nein, hier nicht. In Hamburg meldet er sich an.",
+       "Nein, er meldet sich nur in Hamburg an."
       ],
-      "why_tr": "Almanya içinde taşınan eski şehirde kaydını sildirmez: **Du musst dich hier nicht abmelden.**"
+      "why_tr": "Almanya içinde taşınan eski şehirde kaydını sildirmez: **Er muss sich hier nicht abmelden.**"
      }
     }
    ],
@@ -1201,41 +1232,44 @@
    },
    {
     "id": "n3",
-    "de": "Super. Und hier im Bürgerbüro? Muss ich mich abmelden?",
-    "tr": "Süper. Peki buradaki vatandaş bürosu? Kaydımı sildirmem lazım mı?",
+    "de": "Super. Hier muss ich mich nicht abmelden, stimmt doch, oder?",
+    "tr": "Süper. Burada kaydımı sildirmem gerekmiyor, değil mi?",
     "secenekler": [
      {
-      "de": "Nein, du musst dich hier nicht abmelden. Du meldest dich in Hamburg an.",
-      "tr": "Hayır, burada kaydını sildirmen gerekmiyor. Hamburg'da kayıt yaptırıyorsun.",
+      "de": "Ja, das stimmt. Du meldest dich in Hamburg an.",
+      "tr": "Evet, doğru. Hamburg'da kayıt yaptırıyorsun.",
       "accepted": [
+       "Ja, das stimmt. Du meldest dich in Hamburg an.",
+       "Stimmt. Du meldest dich in Hamburg an.",
+       "Ja, stimmt. Du meldest dich nur in Hamburg an.",
        "Nein, du musst dich hier nicht abmelden. Du meldest dich in Hamburg an.",
-       "Nein. Du meldest dich in Hamburg an.",
-       "Nein, hier nicht. Du meldest dich in Hamburg an."
+       "Ja, hier nicht. Du meldest dich in Hamburg an."
       ],
       "sonraki": "n4",
       "uygun": true,
       "geri_bildirim_tr": "Doğru: Almanya içinde taşınan eski şehirde kaydını sildirmez."
      },
      {
-      "de": "Nicht ab, sondern an: Du meldest dich in Hamburg an.",
-      "tr": "Ab değil, an: Hamburg'da kayıt yaptırıyorsun.",
+      "de": "Stimmt: nicht ab, sondern an. Du meldest dich in Hamburg an.",
+      "tr": "Doğru: ab değil, an. Hamburg'da kayıt yaptırıyorsun.",
       "accepted": [
-       "Nicht ab, sondern an: Du meldest dich in Hamburg an.",
-       "Nicht ab, sondern an. Du meldest dich in Hamburg an.",
+       "Stimmt: nicht ab, sondern an. Du meldest dich in Hamburg an.",
+       "Stimmt, nicht ab, sondern an. Du meldest dich in Hamburg an.",
        "Nicht ab, sondern an!",
-       "Nicht abmelden, sondern in Hamburg anmelden."
+       "Ja: nicht abmelden, sondern in Hamburg anmelden.",
+       "Nicht ab, sondern an: Du meldest dich in Hamburg an."
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Harika: **nicht ab, sondern an** ile düzelttin."
+      "geri_bildirim_tr": "Harika: **nicht ab, sondern an** ile teyit ettin."
      },
      {
-      "de": "Ja, du musst dich hier abmelden.",
-      "tr": "(yanlış) Evet, burada kaydını sildirmen lazım.",
+      "de": "Nein, du musst dich hier abmelden.",
+      "tr": "(yanlış) Hayır, burada kaydını sildirmen gerekiyor.",
       "accepted": [
-       "Ja, du musst dich hier abmelden.",
-       "Ja, du musst dich abmelden.",
-       "Ja, hier musst du dich abmelden."
+       "Nein, du musst dich hier abmelden.",
+       "Doch, du musst dich hier abmelden.",
+       "Nein, hier musst du dich abmelden."
       ],
       "sonraki": "n3",
       "uygun": false,
@@ -1257,29 +1291,30 @@
    },
    {
     "id": "n4",
-    "de": "Stimmt. Und wie lange habe ich Zeit?",
-    "tr": "Doğru. Peki ne kadar vaktim var?",
+    "de": "Gut. Und in Hamburg habe ich zwei Wochen Zeit, oder?",
+    "tr": "Güzel. Hamburg'da da iki haftam var, değil mi?",
     "secenekler": [
      {
-      "de": "Zwei Wochen. Du meldest dich innerhalb von zwei Wochen an.",
-      "tr": "İki hafta. İki hafta içinde kayıt yaptırıyorsun.",
+      "de": "Ja, das stimmt. Du meldest dich innerhalb von zwei Wochen an.",
+      "tr": "Evet, doğru. İki hafta içinde kayıt yaptırıyorsun.",
       "accepted": [
-       "Zwei Wochen. Du meldest dich innerhalb von zwei Wochen an.",
-       "Zwei Wochen.",
-       "Innerhalb von zwei Wochen.",
-       "Du hast zwei Wochen Zeit."
+       "Ja, das stimmt. Du meldest dich innerhalb von zwei Wochen an.",
+       "Ja, zwei Wochen.",
+       "Ja, innerhalb von zwei Wochen.",
+       "Stimmt, du hast zwei Wochen Zeit.",
+       "Ja, du hast zwei Wochen Zeit."
       ],
       "sonraki": "n5",
       "uygun": true,
       "geri_bildirim_tr": "Doğru: yeni adreste iki hafta içinde."
      },
      {
-      "de": "Zwei Monate.",
-      "tr": "(yanlış) İki ay.",
+      "de": "Nein, du hast zwei Monate Zeit.",
+      "tr": "(yanlış) Hayır, iki ayın var.",
       "accepted": [
-       "Zwei Monate.",
-       "Zwei Monate, glaube ich.",
-       "Du hast zwei Monate Zeit."
+       "Nein, du hast zwei Monate Zeit.",
+       "Nein, zwei Monate.",
+       "Zwei Monate, glaube ich."
       ],
       "sonraki": "n4",
       "uygun": false,
@@ -1528,14 +1563,15 @@
    {
     "id": "m1:96:s11",
     "k": "guided_response",
-    "situation_tr": "Tobi soruyor: burada kaydımı sildirmeli miyim? Hayır de. Hamburg'da kayıt yaptıracağını söyle.",
-    "prompt_de": "Muss ich mich hier im Bürgerbüro abmelden?",
+    "situation_tr": "Frau Brandl merdivende soruyor: iş arkadaşın Hamburg'a taşınıyor, burada kaydını sildirmeli mi? Hayır de. Hamburg'da kayıt yaptıracağını söyle.",
+    "prompt_de": "Ihr Kollege zieht nach Hamburg? Muss er sich hier abmelden?",
     "accepted": [
-     "Nein, du meldest dich in Hamburg an.",
+     "Nein, er muss sich hier nicht abmelden. Er meldet sich in Hamburg an.",
+     "Nein, er meldet sich in Hamburg an.",
      "Nein, nicht ab, sondern an. In Hamburg.",
-     "Nein, hier musst du dich nicht abmelden.",
-     "Nein. Du musst dich nur in Hamburg anmelden.",
-     "Nein, du meldest dich in Hamburg im Bürgerbüro an."
+     "Nein, hier muss er sich nicht abmelden.",
+     "Nein. Er muss sich nur in Hamburg anmelden.",
+     "Nein, er meldet sich in Hamburg im Bürgerbüro an."
     ],
     "why_tr": "Başka bir Alman şehrine taşınan: yalnızca yeni şehirde **anmelden**."
    }

@@ -37,18 +37,19 @@
   {
    "id": "m1:h14:g3",
    "can_do": "cd:m1:94",
-   "durum_tr": "Kütüphanede üyelik formu dolduruyorsun. Yanındaki yaşlı bir adam soruyor: Staatsangehörigkeit alanına ne yazıyorum? Oraya vatandaşlığını yazmasını söyle.",
+   "durum_tr": "Kütüphanede üyelik formu dolduruyorsun. Yanındaki yaşlı bir adam soruyor: Geburtsdatum alanına ne yazıyorum? Oraya doğum tarihini yazmasını söyle.",
    "karsi": "ein älterer Mann",
    "yer": "Bibliothek",
-   "prompt_de": "Was schreibe ich hier bei Staatsangehörigkeit?",
+   "prompt_de": "Was muss ich bei Geburtsdatum schreiben?",
    "accepted": [
-    "Da schreiben Sie Ihre Staatsangehörigkeit.",
-    "Hier schreiben Sie Ihre Staatsangehörigkeit, zum Beispiel deutsch.",
-    "Ihre Staatsangehörigkeit, also zum Beispiel deutsch oder rumänisch.",
-    "Hier kommt Ihre Staatsangehörigkeit hin."
+    "Da schreiben Sie Ihr Geburtsdatum.",
+    "Hier schreiben Sie Ihr Geburtsdatum, also Tag, Monat und Jahr.",
+    "Ihr Geburtsdatum, zum Beispiel: 12.05.1950.",
+    "Hier kommt Ihr Geburtsdatum hin.",
+    "Wann sind Sie geboren? Das schreiben Sie hier."
    ],
    "kalip": "Hier schreiben Sie …",
-   "why_tr": "Form alanı: **Staatsangehörigkeit** vatandaşlık demek. Yabancıya **Sie** dersin."
+   "why_tr": "**Geburtsdatum**: doğum tarihi. Yabancıya **Sie** dersin: **Da schreiben Sie Ihr Geburtsdatum.**"
   },
   {
    "id": "m1:h14:g4",
@@ -69,36 +70,37 @@
   {
    "id": "m1:h14:g5",
    "can_do": "cd:m1:96",
-   "durum_tr": "Apartman görevlisi Herr Pichler soruyor: üst kattaki komşu Münih'e taşınıyor. Burada kaydını sildirmesi lazım mı? Hayır de. Münih'te kayıt yaptıracağını söyle.",
+   "durum_tr": "Apartman görevlisi Herr Pichler soruyor: üst kattaki komşu yurt dışına taşınıyor. Burada kaydını sildirmesi lazım mı? Doğru bilgiyi ver.",
    "karsi": "ch:pichler",
    "yer": "pl:haus",
-   "prompt_de": "Muss er sich hier abmelden?",
+   "prompt_de": "Die Nachbarin von oben zieht ins Ausland. Muss sie sich hier abmelden?",
    "accepted": [
-    "Nein, er muss sich hier nicht abmelden. Er meldet sich in München an.",
-    "Nein. Er meldet sich in München an.",
-    "Nein, nicht ab, sondern an: in München.",
-    "Nein, er zieht nach München. Dort meldet er sich an."
+    "Ja, sie muss sich hier abmelden. Sie zieht ins Ausland.",
+    "Ja. Sie zieht ins Ausland, dann meldet sie sich ab.",
+    "Ja, sie meldet sich hier im Bürgerbüro ab.",
+    "Ja, sie muss sich abmelden.",
+    "Ja, ins Ausland: Dann muss sie sich abmelden."
    ],
-   "kalip": "nicht ab, sondern an",
-   "why_tr": "Almanya içinde taşınan yalnızca yeni şehirde **anmelden** yapar."
+   "kalip": "Sie meldet sich ab.",
+   "why_tr": "Yurt dışına taşınan eski adresinde kaydını sildirir: **Sie meldet sich ab.**"
   },
   {
    "id": "m1:h14:g6",
    "can_do": "cd:m1:97",
-   "durum_tr": "Postanede sıra bekliyorsun. Ekranda 23 numara ve 2 numaralı masa yazıyor. Yanındaki yaşlı kadın gözlüğünü unutmuş, numarası 23. Ona 2 numaralı masaya gitmesini söyle.",
+   "durum_tr": "Postanede sıra bekliyorsun. Yanındaki yaşlı kadın gözlüğünü unutmuş, numarası 31. Ekranda 28 yazıyor. Sırasının henüz gelmediğini söyle.",
    "karsi": "eine ältere Dame",
    "yer": "Post",
-   "prompt_de": "Ich habe die Nummer dreiundzwanzig. Was steht da?",
+   "prompt_de": "Ich habe die Nummer einunddreißig. Bin ich jetzt dran?",
    "accepted": [
-    "Ihre Nummer ist auf dem Bildschirm. Gehen Sie bitte zu Platz zwei.",
-    "Dreiundzwanzig, das sind Sie! Bitte zu Platz zwei.",
-    "Das ist Ihre Nummer. Sie müssen zu Platz zwei.",
-    "Da steht Ihre Nummer, dreiundzwanzig. Zu Platz zwei, bitte.",
-    "Gehen Sie bitte zu Platz zwei.",
-    "Sie sind dran. Gehen Sie bitte zu Platz zwei."
+    "Nein, noch nicht. Da steht achtundzwanzig.",
+    "Noch nicht, Sie sind noch nicht dran.",
+    "Nein, Sie sind noch nicht dran. Jetzt ist achtundzwanzig dran.",
+    "Leider noch nicht. Auf dem Bildschirm steht achtundzwanzig.",
+    "Noch nicht. Sie müssen noch ein bisschen warten.",
+    "Nein, Ihre Nummer ist noch nicht dran."
    ],
-   "kalip": "Gehen Sie bitte zu Platz …",
-   "why_tr": "Ekrandaki numara ve masa: **zu Platz zwei**."
+   "kalip": "Sie sind noch nicht dran.",
+   "why_tr": "**dran sein**: sırası gelmek. **Sie sind noch nicht dran.**"
   },
   {
    "id": "m1:h14:g7",

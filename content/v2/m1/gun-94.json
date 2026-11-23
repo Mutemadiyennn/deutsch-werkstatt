@@ -28,7 +28,7 @@
   "status": "draft",
   "by": "dilbilimci-ajan",
   "at": "2026-11-23",
-  "notes": "docs/v2/reviews/ic16/dilbilimci-h14.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
+  "notes": "docs/v2/reviews/ic16/dilbilimci-h14.md; dil incelemesi ONAY, #254 fark turu kapandı. Video ve kart sayısı kapıları açık olduğu için draft."
  },
  "dersler": [
   "gr:a2-05:t3"
@@ -86,8 +86,8 @@
      "tr": "bir şeye kızmak – resmî daireye – belgelere"
     },
     {
-     "de": "sich freuen über – über die Hilfe – warten auf – auf die Meldebescheinigung",
-     "tr": "bir şeye sevinmek – yardıma – beklemek – ikamet belgesini"
+     "de": "sich freuen über – über die Hilfe – warten auf – auf den Termin – für die Bank – Die Meldebescheinigung kostet Geld.",
+     "tr": "bir şeye sevinmek – yardıma – beklemek – randevuyu – banka için – İkamet belgesi ücretli."
     },
     {
      "de": "erst am Samstag – Ich muss hin.",
@@ -168,22 +168,24 @@
     },
     {
      "kart": "lx:Meldebescheinigung",
-     "de": "Ioana wartet auf die neue Meldebescheinigung.",
-     "tr": "Ioana yeni ikamet belgesini bekliyor.",
+     "de": "Ioana braucht für die Bank eine neue Meldebescheinigung.",
+     "tr": "Ioana'ya banka için yeni bir ikamet belgesi lazım.",
      "accepted": [
-      "Ioana wartet auf die neue Meldebescheinigung.",
-      "Ioana wartet auf ihre neue Meldebescheinigung.",
-      "Ioana wartet auf eine neue Meldebescheinigung."
+      "Ioana braucht für die Bank eine neue Meldebescheinigung.",
+      "Für die Bank braucht Ioana eine neue Meldebescheinigung.",
+      "Ioana braucht eine neue Meldebescheinigung für die Bank.",
+      "Ioana braucht für die Bank eine Meldebescheinigung."
      ]
     },
     {
      "kart": "lx:Meldebescheinigung",
-     "de": "Mit der neuen Adresse bekommt Ioana eine neue Meldebescheinigung.",
-     "tr": "Yeni adresle Ioana yeni bir ikamet belgesi alıyor.",
+     "de": "Die Meldebescheinigung kostet Geld, aber Ioana braucht sie.",
+     "tr": "İkamet belgesi ücretli ama Ioana'nın ona ihtiyacı var.",
      "accepted": [
-      "Mit der neuen Adresse bekommt Ioana eine neue Meldebescheinigung.",
-      "Ioana bekommt mit der neuen Adresse eine neue Meldebescheinigung.",
-      "Mit der neuen Adresse bekommt sie eine neue Meldebescheinigung."
+      "Die Meldebescheinigung kostet Geld, aber Ioana braucht sie.",
+      "Die Meldebescheinigung kostet Geld. Aber Ioana braucht sie.",
+      "Die Meldebescheinigung kostet etwas, aber Ioana braucht sie.",
+      "Die Meldebescheinigung kostet Geld, aber Ioana braucht die Meldebescheinigung."
      ]
     }
    ],
@@ -606,17 +608,17 @@
     "cevapla": {
      "id": "m1:94:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Herr Haddad soruyor: Ioana cumartesi nereye gidiyor? Belediyede randevusu olduğunu ve yeni ikamet belgesini beklediğini söyle.",
+     "situation_tr": "Herr Haddad soruyor: Ioana cumartesi ne yapıyor? Belediyede randevusu olduğunu ve onu dört gözle beklediğini söyle.",
      "prompt_de": "Was macht Ioana am Samstag?",
      "accepted": [
-      "Sie hat einen Termin im Rathaus. Sie wartet auf die neue Meldebescheinigung.",
-      "Sie hat am Samstag einen Termin im Rathaus.",
-      "Sie geht zur Behörde. Sie ist umgezogen.",
-      "Ioana hat einen Termin im Rathaus, sie ist umgezogen.",
-      "Am Samstag hat sie einen Termin im Rathaus. Sie braucht eine neue Meldebescheinigung.",
-      "Sie geht ins Rathaus, wegen der neuen Adresse."
+      "Sie hat einen Termin im Rathaus. Sie freut sich auf Samstag.",
+      "Sie hat am Samstag einen Termin im Rathaus. Sie freut sich auf den Termin.",
+      "Sie hat einen Termin im Rathaus und freut sich auf Samstag.",
+      "Ioana hat einen Termin im Rathaus. Sie freut sich auf den Termin.",
+      "Am Samstag hat sie einen Termin im Rathaus. Sie freut sich auf Samstag.",
+      "Sie hat einen Termin im Rathaus, sie freut sich sehr auf Samstag."
      ],
-     "why_tr": "**warten auf**: beklemek. **auf die neue Meldebescheinigung**: **die** değişmez."
+     "why_tr": "**sich freuen auf**: dört gözle beklemek. **auf den Termin**: **der** burada **den** olur."
     }
    },
    {
@@ -1503,8 +1505,8 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Böyle bir formun dört alanını Almanca yaz. Alanın adını yaz, arkasını boş bırak. İstersen uydurma bir bilgi de yazabilirsin.",
-   "ornek_de": "Familienname: ___. Vorname: ___. Geburtsort: ___. Staatsangehörigkeit: ___.",
+   "gorev_tr": "Böyle bir formun dört alanını Almanca yaz. Her alanın adını yaz, arkasına uydurma bir bilgi ekle.",
+   "ornek_de": "Familienname: Popescu. Vorname: Ioana. Geburtsort: Cluj. Staatsangehörigkeit: rumänisch.",
    "zorunlu": [
     "Familienname",
     "Geburtsort",
@@ -1603,13 +1605,14 @@
    {
     "id": "m1:94:s7",
     "k": "tr_de",
-    "tr": "Yeni ikamet belgesini bekliyorum.",
+    "tr": "Cumartesi günkü randevuyu bekliyorum.",
     "accepted": [
-     "Ich warte auf die neue Meldebescheinigung.",
-     "Ich warte auf meine neue Meldebescheinigung.",
-     "Ich warte noch auf die neue Meldebescheinigung."
+     "Ich warte auf den Termin am Samstag.",
+     "Ich warte noch auf den Termin am Samstag.",
+     "Ich warte auf meinen Termin am Samstag.",
+     "Ich warte schon auf den Termin am Samstag."
     ],
-    "why_tr": "**warten auf**: beklemek."
+    "why_tr": "**warten auf**: beklemek. **der Termin** burada **den Termin** olur."
    },
    {
     "id": "m1:94:s8",

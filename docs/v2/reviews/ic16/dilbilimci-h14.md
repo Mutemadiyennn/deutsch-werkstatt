@@ -192,3 +192,63 @@ Düzeltme sırasında iki ihlal çıktı, ikisi de kapandı:
 `review`: yedi gün dosyasında `{status: "draft", by: "dilbilimci-ajan", at: "2026-11-23", notes: …}`. gun-92'de "reviewed" denendi: doğrulayıcı video ve kart sayısı uyarılarını hataya çeviriyor (2 hata), geri alındı. 13. haftadaki uygulamayla aynı.
 
 KARAR: ONAY
+
+## İnceleme farkı (#254, yorum 7108207808 · fark turu 2026-11-23)
+Yalnız 14. hafta dosyaları değişti. `dn-14.json` ve `gr:a2-05:t1–t4` bu turda değişmedi.
+
+### P1
+- **P1-1 · t4 ertesi gün (96).** `m1:96:h1` görev cümlelerine iki madde eklendi (dersten_sonra halkası):
+  - `lx:singen`: „Heute singen wir für Tobi, darauf freue ich mich.“ → „Bugün Tobi için şarkı söylüyoruz, bunu dört gözle bekliyorum.“ (5 kabul; `Ich freue mich darauf` biçimi de var)
+  - `lx:Zeug`: „Wofür brauchst du das ganze Zeug? – Für die neue Wohnung.“ → „Bu kadar eşya ne için lazım? – Yeni ev için.“ (4 kabul)
+  - Doğrulayıcı (`halka.ts`) ve dikiş `darauf`, `wofür` ve `das ganze` biçimini halkada görmek istedi. 95'teki ders tablosu sayılmıyor. Bu yüzden iki kalıp satırı eklendi: „darauf – Darauf freue ich mich. – wofür – Wofür brauchst du das?“ ve Zeug satırına „das ganze Zeug“.
+- **P1-2 · gösterilmemiş Partizip.**
+  - 93 h1 kalıp 2: „… – Ich habe die Überweisung gemacht.“ / „… – Havaleyi yaptım.“
+  - 96 h1 yeni kalıp: „sprechen – er spricht – Er hat gesprochen.“ / „konuşmak – konuşuyor – Konuştu.“
+- **P1-3 · 98 kulak kapısı ↔ vekâletname.**
+  - `m1:98:a1.ortam_tr`: „Pazartesi öğleden sonra vatandaş bürosuna geri geldin. Vekâletname, Frau Brandl'ın kimliği ve kendi kimliğin ya da pasaportun yanında. …“
+  - c3 „Guten Morgen.“ → „Guten Tag.“ (öğleden sonra).
+  - c4: „Eine Meldebescheinigung für Frau Brandl? Gern. Zuerst brauche ich die Vollmacht und Ihren Ausweis oder Pass.“
+  - Buna bağlı olarak: eylem şıkkı „… gidip belgeleri veririm“ ve `why_tr`; ayrıntı „Memur önce ne istiyor?“ doğru şıkkı „Vekâletname ve kimlik ya da pasaport“; orta dikte d2 boşluk cümlesi; d5 örneği; `a1:c1` durum metni ve kabulleri (hepsi Vollmacht ile).
+  - `m1:98:s10.situation_tr`: „Öğleden sonra vekâletnameyle geri geldin. Memur bunu söyledi. …“
+- **P1-4 · şık sırası.** Baş oturumun dağıttığı `ans` değerlerine dokunulmadı. Bu turda değişen ya da yeni yazılan üç seçmelide doğru şık ilk sırada değil: 92 h2 sahne sorusu (`ans: 1`), 93 a1 eylem (`ans: 1`), 97 a1 eylem (`ans: 1`).
+
+### P2
+1. **Test, dersi aynen sormasın** (aynı kalıp, başka kişi ya da durum):
+   - t01: Derya, „Wann und wo treffen wir uns am Samstag?“ → „um halb drei am Bahnhof“.
+   - t02: „Worüber / ärgert / sich / Frau / Brandl“ (`worüber` testte ilk kez; „Worüber ärgert Frau Brandl sich?“ de kabul).
+   - t05: Derya'nın numarası 64, „Nummer vierundsechzig bitte zu Platz sechs.“; du ile („Du bist dran. Zu Platz sechs!“).
+   - t07: postanede Herr Pichler'in mektubu: „Das ist für Herrn Pichler? Dann brauche ich eine Vollmacht von ihm.“ Kaynak: Deutsche Post, Postvollmacht (abholer: Vollmacht + kendi kimliği).
+   - t09: Karim Vorname alanına Haddad yazmak istiyor: „Nicht Haddad, sondern Karim.“
+   - t10: bankada Ioana: „Zuerst brauche ich Ihren Pass und die neue Meldebescheinigung.“ (Ihren → deinen aktarımı korunuyor).
+   - t12: „Stadtplatz'taki banka pazartesi dokuzda açılıyor.“ (93 a1 ile tutarlı; „macht … auf“ da kabul).
+2. **Görülmemiş durumlar:**
+   - g3: kütüphane formu, Geburtsdatum alanı: „Da schreiben Sie Ihr Geburtsdatum.“
+   - g5: üst kattaki komşu yurt dışına taşınıyor: „Ja, sie muss sich hier abmelden. Sie zieht ins Ausland.“ (dn'nin öteki kolu).
+   - g6: postanede numarası 31, ekranda 28: „Sie sind noch nicht dran.“
+3. **brauchen ↔ Wofür genellemesi.**
+   - t11 `why_tr`: „**ne için** diye sorarken **Wofür?** dersin.“ Kabullere „Wofür braucht man das Formular?“, „Wofür ist das Formular?“, „Wofür brauchen wir das Formular?“ eklendi (6 kabul).
+   - 95 prova n2 doğru seçenek: „Doğru: **ne için** diye sorarken **Wofür?** dersin.“; yanlış seçenek: „**ne için** sorusu **für** ile kurulur: …“
+4. **94 yazma.** `gorev_tr`: „Böyle bir formun dört alanını Almanca yaz. Her alanın adını yaz, arkasına uydurma bir bilgi ekle.“ `ornek_de` okumadaki form: „Familienname: Popescu. Vorname: Ioana. Geburtsort: Cluj. Staatsangehörigkeit: rumänisch.“ `yazmaKontrol` ile denendi: alanlar ayrı satırda, noktalı ya da virgüllü yazıldığında üçü de `tamam: true`.
+5. **94 Meldebescheinigung otomatik değil.**
+   - h1 kalıp 8: „… – auf den Termin – für die Bank – Die Meldebescheinigung kostet Geld.“
+   - h1 görev 7: „Ioana braucht für die Bank eine neue Meldebescheinigung.“; görev 8: „Die Meldebescheinigung kostet Geld, aber Ioana braucht sie.“
+   - `v1:c1`: Ioana cumartesi randevusunu dört gözle bekliyor („Sie freut sich auf Samstag.“; s12 ile aynı).
+   - `s7`: „Cumartesi günkü randevuyu bekliyorum.“ → „Ich warte auf den Termin am Samstag.“ (der → den).
+6. **Zaman çizgisi.**
+   - 92 h2: Tobi haberi ikinci kez vermiyor. `ortam_tr` „Sabahki haberden sonra …“; satırlar „Hamburg ist weit weg, oder?“ … „Aber in Hamburg gibt es keine Berge.“; soru „Hamburg'da ne yok?“.
+   - 93 a1: „Salı öğleden sonra ofistesin. Tobi bankayı arıyor …“ (h1'deki haberden sonra, bankadan önce). Eylem: „İş beşte bitiyor. Ne zaman bankaya gidebilir?“ → „Bugün işten sonra, altıdan önce“. `a1:c1` istemi „Meine Bankkarte geht nicht.“ (kart kaybolmadı, eskidi).
+   - 96: prova n3 Tobi teyit ediyor: „Hier muss ich mich nicht abmelden, stimmt doch, oder?“; n4 „Und in Hamburg habe ich zwei Wochen Zeit, oder?“ (s8'de kendisi söylediği için soru değil, teyit). `a1:c1` soran Herr Wimmer („Muss sich Herr Lechner hier abmelden?“). `s11` soran Frau Brandl („Ihr Kollege zieht nach Hamburg? Muss er sich hier abmelden?“).
+   - 97 a1: „Cumartesi sabahı, Ioana ile bekleme salonundasın. … Yanındaki yaşlı kadının elinde 43 numara var.“ Eylem ona ne söyleyeceğin; `c1` kabulü „Das sind Sie!“. `s10`: yanındaki yaşlı adamın numarası 46, „Nummer sechsundvierzig bitte zu Platz fünf.“ (Ioana'nın 47'sinden önce çağrılıyor).
+   - 95 b2 d5: „Tobi hat heute Nachmittag frei. Er braucht den Nachmittag für den Umzug.“ (zorunlu: Nachmittag, Umzug).
+7. **Kimlik belgesi tarafsız.** 98 prova n3: „… und Ihren eigenen Ausweis oder Pass.“; n4 seçenek 2'ye „… ihr Ausweis und mein Pass.“ biçiminde üç kabul.
+8. **-s iyelik.** 93 b1 d5: „Die Bankkarte von Tobi geht nicht. …“; 95 `v1:c2` `why_tr`: „Auf die neue Wohnung von Ioana.“ 96'daki „Tobis letzter Tag“ kalıp satırında gösterildiği için kaldı.
+9. **93 h2 kalıp 0 `tr`:** „buluşuyoruz – Beşte buluşuyoruz. – Beşte buluşuyoruz.“
+
+### Fark turu denetimi
+- `denet.sh 14 wt14`: `content:validate` **0 hata** (206 uyarı). Önceki 205'e göre +1: 98 `a1:c1` „vollmacht“ (eski m1check kart dışı sözcüğü görmüyor; sözcük 98 h1 kalıbında gösteriliyor, dikiş ve kapı temiz).
+- Dikiş 92–98 **İhlal: 0**. Hafta kapısı **GEÇTİ**: kesin 0, sınırda 0, test %100 (12/12), görülmemiş 7/7, sınanmayan can_do yok.
+- `yzkontrol.ts 92 98`: **7/7 TAMAM**.
+- Değişen Türkçe metinler OD-9 taramasından geçti: sembol yok, her cümle en fazla 14 sözcük.
+- Fark: 9 dosyada 49 madde (P1: 15, P2: 34). Bu turda eski koda yeni bulgu: 1 (93 `a1:c1` „ist weg“ ↔ kartı eskimiş; P2-6 ile birlikte düzeltildi).
+
+KARAR (fark turu): KAPANDI. `review.status` "draft" kalıyor (video ve kart sayısı kapıları açık; önceki gerekçe).
