@@ -69,4 +69,16 @@ Kimlik: öğrenci adı yalnız `{name}` (75 a1, 76 a2); `audio_de` ve ses metinl
 6. **Quittung / Kassenbon:** ikisi de "fiş" diye çevrili. Lex kartı yazarken Quittung'a "makbuz, fiş" denmesi ayrımı kolaylaştırır.
 7. **`gr:a2-03:t1`–`t5` açıklamaları:** dilce ve olguca doğru, İngilizce köprü yok. Ama "yan cümle, çekimli fiil, zamir, Akkusativ, eril, mastar" terimleri duruyor (OD-9.2 md. 3). Yazarın görevi yalnız İngilizceyi temizlemekti; terim sadeleştirmesi okur kapısının işi, değiştirmedim. t3 "welche"yi yalnız çoğul için anlatıyor; 73. günde süt için de kullanılıyor (doğru), okur turunda bir cümle eklenebilir.
 
+## Ek düzeltmeler (baş geliştirici kararıyla, 1f1c322 sonrası, aynı tur)
+
+Düzeltmediklerim listesindeki 1–5. maddeler kapandı; 6 ve 7 açık kalıyor (lex ve okur işi).
+
+1. gun-76 · v1 s6 · `Das Abitur! Da habe ich auch eine Geschichte …` → `Das Abitur! Ich habe eine Geschichte für Jonas …` · a2 c4 · `meine Geschichte vom Abitur` → `eine lange Geschichte` (Türkçeleri uyarlandı) · Frau Brandl'a WORLD'de olmayan kişisel geçmiş yüklenmiyor.
+2. Usta dikte: gun-74 v1 d4 `cumle` s11 → s2 (tek cümleli satır: `Ich hätte gern zwei Krapfen, bitte!`); gun-74 a2 d4 ve gun-77 v1 d4 `accepted` artık bütün satır (`… Bis Sonntag!`, `Hast du Bargeld? …`). Doğrulayıcı aynı listede tek cümle ile bütün satırı birlikte kabul etmiyor ("başka bir cümle"), bu yüzden yalnız bütün satır kaldı.
+3. Türkçe hitap: 1.–7. ve 71.–77. günlerde çoğunluk "Herr / Frau + soyad"; 71, 73, 74, 76, 77'deki 13 "Bey / Hanım" satırı buna çevrildi.
+4. gun-75 · v1 s2 · `Ja, auf Aksoy. Einen Tisch für drei Personen.` → `Nein, leider nicht. Einen Tisch für drei Personen, bitte.` · halka sahnesiyle (rezervasyonsuz masa sorma) tutarlı.
+5. gun-76 · prova · "Nein, danke, das ist alles" dalı yeni `n3b` düğümüne gidiyor (`Gern. Und hier, eine Breze für Sie. Die schenke ich Ihnen!`; iki uygun, bir uygunsuz seçenek, sonra n4). Tavsiye dalı n3'te kaldı.
+
+Denetim (`kontrol.sh 11 --tam`): `→ 3 hata, 358 uyarı` (yalnız Quittung, Umtausch, Einkaufswagen), dikiş `İhlal: 0`. Uyarı 357 → 358: 74 v1 d4 artık "krapfen" yazdırıyor (kalıpta gösterilmiş, kartı yok; aynı sınıftan bilinen uyarı).
+
 KARAR: ONAY
