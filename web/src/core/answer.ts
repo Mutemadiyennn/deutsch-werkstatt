@@ -105,23 +105,18 @@ export function esdegerBicim(s: string): string {
 }
 const SELAM = /^\s*(?:hallo|hi|servus|gr(?:ü|ue|u)(?:ß|ss)\s+gott|guten\s+(?:tag|morgen|abend))(?![\p{L}])[\s,.!]*/iu;
 const HITAP = /^(?:(?:herr|frau)\s+(?:(?:dr\.?|doktor)\s+)?[\p{L}][\p{L}-]*)/iu;
-const AD = /^\p{Lu}[\p{L}-]*/u;
-// selamdan sonra büyük harfle gelen bu sözcükler ad değildir (inceleme #227 P1-1: "Hallo! Nein, ich komme.")
-const AD_DEGIL = new Set("nein ja doch also okay ok gut genau na dann super prima klar bitte danke entschuldigung sorry leider heute morgen gestern uebermorgen jetzt gleich spaeter bald hier da dort ich du er sie es wir ihr sie mein meine wie was wo wann warum wer und oder aber".split(" "));
 /**
  * Baştaki selam ve hitap dolgudur ("Guten Tag, Frau Brandl, ich habe …"). Hitap selamsız geldiyse virgül ya da ünlemle
- * ayrılmış olmalı ("Frau Brandl ist nicht da" hitap değildir); selamdan sonra büyük harfli tek ad da hitaptır ("Hallo Tobi, …").
+ * ayrılmış olmalı ("Frau Brandl ist nicht da" hitap değildir). Yalnız Herr/Frau hitabı: selamdan sonraki büyük harfli tek sözcük
+ * ad sayılmaz (inceleme #227 P1-1: "Hallo! Nein/Nicht/Montag, ich komme." açığı; "Hallo Tobi, …" bu yüzden soyulmaz).
  * Dönen biçimler: selamsız, selamsız + hitapsız (boş kalan aday yok).
  */
-export function hitapsiz(answer: string, accepted: string[] = []): string[] {
+export function hitapsiz(answer: string): string[] {
   const out: string[] = [];
   let s = String(answer || "");
   const sm = SELAM.exec(s);
   if (sm) { s = s.slice(sm[0].length); if (s.trim()) out.push(s); }
-  // selamdan sonraki tek ad: dolgu/olumsuzluk/zaman sözcüğü ya da kabul cümlelerinde geçen sözcük ad değildir
-  const kabulSoz = new Set(accepted.flatMap((a) => norm(a).split(" ")));
-  const ad = sm ? AD.exec(s) : null;
-  const hm = HITAP.exec(s) || (ad && !AD_DEGIL.has(norm(ad[0])) && !kabulSoz.has(norm(ad[0])) ? ad : null);
+  const hm = HITAP.exec(s);
   if (hm) {
     const kalan = s.slice(hm[0].length), ayrac = /^\s*[,!.]/.test(kalan);
     if ((ayrac || (sm && HITAP.test(s))) && kalan.replace(/^[\s,!.]+/, "").trim()) out.push(kalan.replace(/^[\s,!.]+/, ""));
@@ -140,7 +135,7 @@ export function ruleVerdict(accepted: string[], answer: string): Verdict {
   // selamla başlayan kabulde selam cevabın özüdür: selamı soyulmuş cevap onunla karşılaştırılmaz ("Guten Tag, guten Morgen!" ≠ "Guten Morgen!")
   const selamsizE = accE.filter((a) => !SELAM.test(a));
   const degisti = accE.some((a, i) => a !== accepted[i]);
-  for (const c of [answer, ...hitapsiz(answer, accepted)]) {
+  for (const c of [answer, ...hitapsiz(answer)]) {
     const cE = esdegerBicim(c), liste = c === answer ? accE : selamsizE;
     if ((c === answer && !degisti && cE === c) || !liste.length) continue;
     const w = kuralKarar(liste, cE);

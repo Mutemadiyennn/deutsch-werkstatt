@@ -66,7 +66,6 @@ describe("PM-101 md. 6 (İÇ-6 7089902512): üç eşdeğerlik", () => {
     expect(ruleVerdict(["Ich habe einen Termin."], "Guten Tag Frau Brandl ich habe einen Termin").kind).toBe("correct");
     expect(ruleVerdict(["Ich habe einen Termin."], "Frau Brandl, ich habe einen Termin.").kind).toBe("correct");
     expect(ruleVerdict(["Ich habe einen Termin."], "Guten Morgen, ich habe einen Termin.").kind).toBe("correct");
-    expect(ruleVerdict(["Hast du Zeit?"], "Hallo Tobi, hast du Zeit?").kind).toBe("correct");
     expect(ruleVerdict(["Ich habe einen Termin."], "Grüß Gott, Herr Dr. Weber, ich habe einen Termin.").kind).toBe("correct");
     // selam + nezaket dolgusu birlikte
     expect(ruleVerdict(["Ich brauche einen Termin."], "Guten Tag, Frau Brandl, ich brauche bitte einen Termin.").kind).not.toBe("correct");
@@ -104,7 +103,9 @@ describe("PM-101 md. 6 (İÇ-6 7089902512): üç eşdeğerlik", () => {
     expect(ruleVerdict(["Ich komme."], "Hallo! Nein, ich komme.").kind).not.toBe("correct");
     expect(ruleVerdict(["Ich komme heute."], "Hallo! Morgen, ich komme heute.").kind).not.toBe("correct");
     expect(ruleVerdict(["Ich komme."], "Hallo! Ja, ich komme.").kind).toBe("correct");
-    expect(ruleVerdict(["Ich komme heute."], "Hallo Tobi, ich komme heute.").kind).toBe("correct");
+    // 2. tur: kapalı liste yerine yalnız Herr/Frau hitabı
+    for (const c of ["Hallo! Nicht, ich komme.", "Hallo! Niemals, ich komme.", "Hallo! Keiner, ich komme.", "Hallo Tobi, ich komme nicht."]) expect(ruleVerdict(["Ich komme."], c).kind).not.toBe("correct");
+    for (const c of ["Hallo! Montag, ich komme heute.", "Hallo! Abends, ich komme heute."]) expect(ruleVerdict(["Ich komme heute."], c).kind).not.toBe("correct");
   });
   it("inceleme #227 P2: kabulün kendisi selamsa selam soyulmaz; yanlış saat biçimleri dönüşmez", () => {
     expect(ruleVerdict(["Guten Morgen!"], "Guten Tag, guten Morgen!").kind).not.toBe("correct");
