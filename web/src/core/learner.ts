@@ -22,7 +22,7 @@ export function applyAssessment(existing: Map<string, LearnerItem>, answers: Ass
   const at = now.toISOString();
   for (const a of answers) {
     const id = itemIdFromAssess(a.itemId);
-    if (!id) continue;
+    if (!id || a.unchecked) continue; // denetlenemeyen cevap boşluk sayılmaz
     const it = changed.get(id) || structuredClone(existing.get(id)) || emptyItem(id);
     const st = a.skill === "vocab_passive" ? it.passive : it.active;
     st.n++; st.last = at;
