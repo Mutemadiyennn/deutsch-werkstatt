@@ -189,3 +189,11 @@ Yalnız geri dönen 2 alan değişti. Okur bu alanları yeniden okumadı. `revie
 | lx:Festnetz | mistakes_tr[0] | Beni sabit hattımdan ara derken **Ruf mich vom Festnetz an** denmez. Doğrusu **Ruf mich auf dem Festnetz an.** | İki durum tek kutudaydı ve kimin hattı olduğu belirsizdi; tek duruma indi. |
 
 `npm run content:validate` → **0 hata, 154 uyarı**.
+
+## Kapanış (2026-11-23, üç dosya)
+
+Okur 03c 2. tur GEÇTİ, örneklem 03c GEÇTİ. `batch-b1-03a.json` (21 kart), `batch-b1-03b.json` (24 kart) ve `batch-b1-03c.json` (5 kart) dosyalarında `review` baş geliştiricinin verdiği biçimde `reviewed`, `okur: passed`.
+
+Okurun takip notu (lx:Festnetz eşdizimi **vom Festnetz telefonieren**): değiştirilmedi. Almanca doğru ve yeni notla çelişmiyor: not, birini kendi hattında aramayı (**auf dem Festnetz anrufen**) anlatıyor; eşdizim, konuşanın hangi hattan konuştuğunu (**vom Festnetz telefonieren**) anlatıyor.
+
+`npm run content:validate` → **0 hata, 154 uyarı**.
