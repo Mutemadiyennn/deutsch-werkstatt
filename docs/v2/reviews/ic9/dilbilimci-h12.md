@@ -88,3 +88,25 @@ du/Sie: Weber, Huber, Wimmer, Brandl, Pichler, Schneider, Stadler Sie; Lechner, 
 - Örneklem 2. tur: g7 yeniden kuruldu (cd:m1:84): cumartesi nöbetçi muayenehane, adsız doktor "Was fehlt Ihnen, und seit wann?" → "Ich habe seit Freitag Kopfschmerzen und Schwindel." (5 kabul, derslerle çakışma 0); `yer` serbest metin "Bereitschaftspraxis" (WORLD'de `pl:` kimliği yok, doğrulayıcı kabul ediyor); denetim 5 bilinen hata, **İhlal: 0**.
 
 KARAR: ONAY
+
+## Fark turu (İÇ-18, 23.11)
+Denetlenen birim: 44 (yazarın listesindeki 41 değişiklik + bağlı dikte bankası, accepted ve geri bildirim metinleri; 78–84 ve gorulmemis-12).
+
+Bulgular ve düzeltmeler (iki ağaçta da aynı):
+- gun-84 · prova n1 · "Grüß Gott. Was haben Sie denn?" → "Grüß Gott. Was fehlt Ihnen?" (tr aynı: "İyi günler. Neyiniz var?"). Gerekçe: 80. günün halka sahnesi, sahnesi ve provası aynı açılışı kullanıyordu; 84 n3 "Was haben Sie noch?" ile de üst üste geliyordu. "Was fehlt Ihnen?" 43. ve 49. günlerde bütün kalıp olarak öğretilmişti; 84 h1 kalıplarına "Was fehlt Ihnen? – Neyiniz var? (Doktor böyle sorar.)" satırı eklendi.
+- gun-80 · prova n5r seçenek · "Gut, natürlich." (tr "Tamam, tabii.") → "Ja, jetzt verstehe ich." (tr "Evet, şimdi anladım."); accepted [Ja, jetzt verstehe ich. / Jetzt verstehe ich. / Ja, ich verstehe. / Ja, natürlich. / Ach so, natürlich.]. Gerekçe: "Gut, natürlich" bir açıklamadan sonra yapay duruyor; seçenek, öğrencinin sorduğu "was soll ich machen?" sorusunun cevabına uyuyor, geri bildirim "Tamam! Anladın." ile örtüşüyor; "Ich verstehe …" 10. günün kalıbı.
+- gun-83 · h1 kalıbı, h1 sahne satırı ve sahne s7 · "He, warte mal! …" → "Warte mal! …"; tr "Hey, …" → "Bir dakika bekle! …". Gerekçe: "He" karşı tarafın repliğinde ünlem; kalıp ve iki replik birlikte değişti (s7 gölgede de var).
+- gorulmemis-12 · g6 · prompt "Jetzt zehn Minuten Pause, und viel Wasser trinken!" → "… Pause und viel Wasser trinken!"; accepted[2] "Zehn Minuten Pause, und viel Wasser trinken. Richtig?" → "Zehn Minuten Pause und viel Wasser trinken, richtig?". Gerekçe: "und" öncesinde virgül yanlış. Mastarla verilen talimat spor hocasının ağzında doğal.
+
+Sorunsuz bulunanlar:
+- 78 kalıp satırları (etwas Warmes, unserer/meiner Mutter, Wie viele Tabletten – Drei am Tag, Grüß Gott, Liebe/Lieber) ve tr'leri doğru ve doğal; 83 (Ich frage …, Fragen, Langsam/langsamer) ve 84 (bewegen, etwas/nichts Schweres) kalıplarının tr'si doğru.
+- 79 a2 c3 "Bitte warten Sie und legen Sie nicht auf." bekleme kaydında doğal; c6 "Gleich sprechen wir mit Ihnen." c2 "Im Moment sprechen wir mit anderen Patienten." ile koşut, kayıt için kabul edilebilir; dikte bankası ve accepted uyumlu.
+- 80 n5r "Ihren Hals, bitte. Zeigen Sie mir Ihren Hals." anlamayan hastaya yapılan yalın tekrar olarak doğal.
+- Ünlemi atılan satırlar (78 s0, s9, n5; 79 s2; 80 s5; 81 s0, s2, s11, n2; 82 s1; 83 s11; 84 s1) anlam ve tr açısından tutarlı; 84 s1 "Kommen Sie rein!" doğru.
+
+Kalan şüphe (engel değil): 81 s11 "Sie sind krank zu Hause." ünlem çıkınca biraz düz kaldı ("also" ile daha doğal olurdu, ancak "also" bu anlamda kalıp olarak gösterilmedi). Ünlem kalanları yalnız ek accepted varyantlarında (80 n5r [4], 82 n1 [3], 84 h1 [2]).
+
+Denetim: `kos.sh 12 78 84` → validate 5 hata (bilinen A1: gun-20, 29, 40; 78–84 için 0), dikiş 78–84 için 0, hafta kapısı GEÇTİ (kesin 0, sınırda 0, test %100, görülmemiş 7/7).
+Hata oranı: 4/44.
+
+ONAY
