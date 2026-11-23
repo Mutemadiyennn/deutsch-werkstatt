@@ -114,3 +114,21 @@ Takip notu (engel değil): 2. turda eski alanlarda yeni bulgu yok.
 - Okunan: 3 alan · GEÇTİ: 3 · GERİ: 0
 
 `batch-b1-03a.json` ve `batch-b1-03b.json`'da okur GERİ'si kalmadı (OD-9.3 okur katmanı geçti).
+
+## 3. tur (yalnız doğrulama)
+
+Girdi: `batch-b1-03a.json`'da lx:leise'nin değişen 3 alanı. Metinler içerik dosyasından okundu. Çelişki var mı diye aynı kartın Almanca cümlelerine, anlamına, ipucuna ve eşdizimlerine de bakıldı.
+
+| kart | alan | yeni açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| lx:leise | forms[3].hint_tr | Sesin az geliyor derken **du bist leise** denir. | karşımdakinin sesini zor duyuyorsam du bist leise derim | GEÇTİ | 8 kelime, tek fikir, sembol ve terim yok. Boşluk cümlesindeki **du bist total ___** ile örtüşüyor |
+| lx:leise | forms[3].tr | Seni zor duyuyorum, sesin çok az geliyor. | seni duyamıyorum, sesin kısık geliyor | GEÇTİ | Almanca cümleyle örtüşüyor |
+| lx:leise | examples[5].tr (lx:leise:5) | – Seni zor duyuyorum, sesin çok az geliyor. – Bir saniye, şimdi daha iyi mi? | telefonda sesin az geliyor, öbürü düzeltip iyi mi diye soruyor | GEÇTİ | Almanca diyalogla ve forms[3] ile aynı. Anlamdaki **alçak sesle konuşan** ile çelişmiyor |
+
+Takip notu (engel değil): yeni bulgu yok.
+
+### 3. tur sonucu
+
+- Okunan: 3 alan · GEÇTİ: 3 · GERİ: 0
+
+`batch-b1-03a.json` ve `batch-b1-03b.json`'da okur GERİ'si yok.
