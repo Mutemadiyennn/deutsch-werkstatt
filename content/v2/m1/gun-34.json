@@ -1,0 +1,1530 @@
+{
+ "schema": 1,
+ "id": "m1:gun:34",
+ "day": 34,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Yol tarif etmek: die zweite Straße links",
+ "goal_tr": "Bir yere nasıl gidildiğini sorar, otobüs saatini ve basit bir tarifi anlarsın.",
+ "can_do": {
+  "id": "cd:m1:34",
+  "tr": "Bir yere nasıl gidildiğini sorar, basit bir tarifi anlarım."
+ },
+ "unit": "u:a1:34",
+ "arm": "is",
+ "place": "pl:bahnhof",
+ "characters": [
+  "ch:aksoy",
+  "ch:lechner"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a1-11:t3",
+  "gr:a1-11:t4",
+  "gr:a1-11:t5"
+ ],
+ "yeni_kartlar": [
+  "lx:Haltestelle",
+  "lx:Kreuzung",
+  "lx:Ampel",
+  "lx:nah",
+  "lx:Auto",
+  "lx:Junge",
+  "lx:Polizei",
+  "lx:Tochter",
+  "lx:Arm",
+  "lx:Bett"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:34:h1",
+   "title_tr": "Durağa nasıl giderim?",
+   "kartlar": [
+    "lx:Haltestelle",
+    "lx:Kreuzung",
+    "lx:Ampel",
+    "lx:nah",
+    "lx:Auto"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wie komme ich zum …? – Wie komme ich zur …?",
+     "tr": "…'e nasıl giderim?"
+    },
+    {
+     "de": "Biegen Sie … ab.",
+     "tr": "… dönün."
+    },
+    {
+     "de": "die … Straße links – die … Straße rechts",
+     "tr": "soldaki … sokak – sağdaki … sokak"
+    },
+    {
+     "de": "Steigen Sie an der … aus.",
+     "tr": "… inin."
+    },
+    {
+     "de": "die nächste … – der nächste …",
+     "tr": "en yakın … – bir sonraki …"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Haltestelle",
+     "de": "Entschuldigung, wie komme ich zur Haltestelle?",
+     "tr": "Affedersiniz, durağa nasıl giderim?",
+     "accepted": [
+      "Entschuldigung, wie komme ich zur Haltestelle?",
+      "Entschuldigung, wie komme ich zur Bushaltestelle?",
+      "Entschuldigung! Wie komme ich zur Haltestelle?"
+     ]
+    },
+    {
+     "kart": "lx:Haltestelle",
+     "de": "Steigen Sie an der zweiten Haltestelle aus.",
+     "tr": "İkinci durakta inin.",
+     "accepted": [
+      "Steigen Sie an der zweiten Haltestelle aus.",
+      "An der zweiten Haltestelle steigen Sie aus.",
+      "Steigen Sie bitte an der zweiten Haltestelle aus."
+     ]
+    },
+    {
+     "kart": "lx:Kreuzung",
+     "de": "Gehen Sie geradeaus bis zur Kreuzung.",
+     "tr": "Kavşağa kadar dümdüz gidin.",
+     "accepted": [
+      "Gehen Sie geradeaus bis zur Kreuzung.",
+      "Gehen Sie bis zur Kreuzung geradeaus.",
+      "Gehen Sie immer geradeaus bis zur Kreuzung."
+     ]
+    },
+    {
+     "kart": "lx:Kreuzung",
+     "de": "An der ersten Kreuzung links.",
+     "tr": "İlk kavşakta sola.",
+     "accepted": [
+      "An der ersten Kreuzung links.",
+      "An der ersten Kreuzung nach links.",
+      "Links an der ersten Kreuzung."
+     ]
+    },
+    {
+     "kart": "lx:Ampel",
+     "de": "An der zweiten Ampel biegen Sie rechts ab.",
+     "tr": "İkinci trafik ışığında sağa dönün.",
+     "accepted": [
+      "An der zweiten Ampel biegen Sie rechts ab.",
+      "Biegen Sie an der zweiten Ampel rechts ab.",
+      "An der zweiten Ampel rechts abbiegen."
+     ]
+    },
+    {
+     "kart": "lx:Ampel",
+     "de": "An der ersten Ampel rechts.",
+     "tr": "İlk trafik ışığında sağa.",
+     "accepted": [
+      "An der ersten Ampel rechts.",
+      "An der ersten Ampel nach rechts.",
+      "Rechts an der ersten Ampel."
+     ]
+    },
+    {
+     "kart": "lx:nah",
+     "de": "Nein, das ist ganz nah, nur fünf Minuten zu Fuß.",
+     "tr": "Hayır, çok yakın, yürüyerek sadece beş dakika.",
+     "accepted": [
+      "Nein, das ist ganz nah, nur fünf Minuten zu Fuß.",
+      "Nein, ganz nah, nur fünf Minuten zu Fuß.",
+      "Nein, das ist nah. Nur fünf Minuten zu Fuß."
+     ]
+    },
+    {
+     "kart": "lx:nah",
+     "de": "Die erste Haltestelle ist ganz nah.",
+     "tr": "İlk durak çok yakın.",
+     "accepted": [
+      "Die erste Haltestelle ist ganz nah.",
+      "Die erste Haltestelle ist sehr nah.",
+      "Die erste Haltestelle ist nah."
+     ]
+    },
+    {
+     "kart": "lx:Auto",
+     "de": "Ich habe kein Auto, ich fahre mit dem Bus.",
+     "tr": "Arabam yok, otobüsle gidiyorum.",
+     "accepted": [
+      "Ich habe kein Auto, ich fahre mit dem Bus.",
+      "Ich habe kein Auto. Ich fahre mit dem Bus.",
+      "Ich fahre mit dem Bus, ich habe kein Auto."
+     ]
+    },
+    {
+     "kart": "lx:Auto",
+     "de": "Ich komme gern, aber mit dem Auto.",
+     "tr": "Seve seve gelirim ama arabayla.",
+     "accepted": [
+      "Ich komme gern, aber mit dem Auto.",
+      "Ich komme gerne, aber mit dem Auto.",
+      "Gern, aber ich komme mit dem Auto."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Şehir merkezi. Durağı bulamıyorsun, bir kadına soruyorsun.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Entschuldigung, wo ist die nächste Haltestelle?",
+      "tr": "Affedersiniz, en yakın durak nerede?"
+     },
+     {
+      "r": "eine Frau",
+      "de": "Gehen Sie hier geradeaus, dann die zweite Straße links.",
+      "tr": "Buradan dümdüz gidin, sonra soldaki ikinci sokak."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Die zweite links? Danke!",
+      "tr": "Soldaki ikinci mi? Teşekkürler!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Kadın hangi sokağı söylüyor?",
+     "opts": [
+      "Soldaki ikinci",
+      "Sağdaki ikinci",
+      "Soldaki ilk",
+      "Sağdaki üçüncü"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:34:h2",
+   "title_tr": "Otobüste ve yolda",
+   "kartlar": [
+    "lx:Junge",
+    "lx:Polizei",
+    "lx:Tochter",
+    "lx:Arm",
+    "lx:Bett"
+   ],
+   "kaliplar": [
+    {
+     "de": "mit dem Bus – mit der U-Bahn – zu Fuß",
+     "tr": "otobüsle – metroyla – yürüyerek"
+    },
+    {
+     "de": "… tut weh.",
+     "tr": "… ağrıyor."
+    },
+    {
+     "de": "im Bett – ins Bett",
+     "tr": "yatakta – yatağa"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Junge",
+     "de": "Der Junge fährt mit dem Fahrrad.",
+     "tr": "Oğlan bisikletle gidiyor.",
+     "accepted": [
+      "Der Junge fährt mit dem Fahrrad.",
+      "Der Junge fährt Fahrrad.",
+      "Mit dem Fahrrad fährt der Junge."
+     ]
+    },
+    {
+     "kart": "lx:Junge",
+     "de": "Der Junge geht zu Fuß zum Bahnhof.",
+     "tr": "Oğlan gara yürüyerek gidiyor.",
+     "accepted": [
+      "Der Junge geht zu Fuß zum Bahnhof.",
+      "Der Junge geht zum Bahnhof zu Fuß.",
+      "Zu Fuß geht der Junge zum Bahnhof."
+     ]
+    },
+    {
+     "kart": "lx:Polizei",
+     "de": "Die Polizei ist an der dritten Kreuzung rechts.",
+     "tr": "Polis üçüncü kavşakta, sağda.",
+     "accepted": [
+      "Die Polizei ist an der dritten Kreuzung rechts.",
+      "An der dritten Kreuzung rechts ist die Polizei.",
+      "Die Polizei ist rechts an der dritten Kreuzung."
+     ]
+    },
+    {
+     "kart": "lx:Polizei",
+     "de": "Fragen Sie doch die Polizei!",
+     "tr": "Polise sorsanıza!",
+     "accepted": [
+      "Fragen Sie doch die Polizei!",
+      "Fragen Sie die Polizei!",
+      "Fragen Sie doch mal die Polizei!"
+     ]
+    },
+    {
+     "kart": "lx:Tochter",
+     "de": "Eine Frau und ihre Tochter warten an der Haltestelle.",
+     "tr": "Bir kadın ve kızı durakta bekliyor.",
+     "accepted": [
+      "Eine Frau und ihre Tochter warten an der Haltestelle.",
+      "An der Haltestelle warten eine Frau und ihre Tochter.",
+      "Eine Frau wartet mit ihrer Tochter an der Haltestelle."
+     ]
+    },
+    {
+     "kart": "lx:Tochter",
+     "de": "Ihre Tochter fährt mit der U-Bahn.",
+     "tr": "Kızı metroyla gidiyor.",
+     "accepted": [
+      "Ihre Tochter fährt mit der U-Bahn.",
+      "Ihre Tochter nimmt die U-Bahn.",
+      "Mit der U-Bahn fährt ihre Tochter."
+     ]
+    },
+    {
+     "kart": "lx:Arm",
+     "de": "Mein Arm tut weh, ich fahre heute nicht mit dem Fahrrad.",
+     "tr": "Kolum ağrıyor, bugün bisikletle gitmiyorum.",
+     "accepted": [
+      "Mein Arm tut weh, ich fahre heute nicht mit dem Fahrrad.",
+      "Mein Arm tut weh. Ich fahre heute nicht mit dem Fahrrad.",
+      "Mein Arm tut weh, heute fahre ich nicht mit dem Fahrrad."
+     ]
+    },
+    {
+     "kart": "lx:Arm",
+     "de": "Mit dem Arm kann ich nicht Auto fahren.",
+     "tr": "Bu kolla araba süremem.",
+     "accepted": [
+      "Mit dem Arm kann ich nicht Auto fahren.",
+      "Ich kann mit dem Arm nicht Auto fahren.",
+      "Mit diesem Arm kann ich nicht Auto fahren."
+     ]
+    },
+    {
+     "kart": "lx:Bett",
+     "de": "Tobi ist noch im Bett!",
+     "tr": "Tobi hâlâ yatakta!",
+     "accepted": [
+      "Tobi ist noch im Bett!",
+      "Tobi liegt noch im Bett!",
+      "Der Tobi ist noch im Bett!"
+     ]
+    },
+    {
+     "kart": "lx:Bett",
+     "de": "Tut mir leid, ich bin noch im Bett!",
+     "tr": "Kusura bakma, hâlâ yataktayım!",
+     "accepted": [
+      "Tut mir leid, ich bin noch im Bett!",
+      "Tut mir leid, ich liege noch im Bett!",
+      "Sorry, ich bin noch im Bett!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Otobüs durağı. Otobüs geliyor, şoföre soruyorsun.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Entschuldigung, fährt der Bus zum Bahnhof?",
+      "tr": "Affedersiniz, otobüs gara gidiyor mu?"
+     },
+     {
+      "r": "der Busfahrer",
+      "de": "Ja, der fährt zum Bahnhof. Das ist die vierte Haltestelle.",
+      "tr": "Evet, gara gidiyor. Dördüncü durak."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Die vierte? Danke schön!",
+      "tr": "Dördüncü mü? Çok teşekkürler!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Kaçıncı durakta inmelisin?",
+     "opts": [
+      "Dördüncü",
+      "Üçüncü",
+      "İkinci",
+      "Birinci"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:34:v1",
+  "title_tr": "Derya'nın evine nasıl gidilir?",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Mola odası. Tobi elinde kahve kupasıyla Derya'ya dönüyor.",
+    "de": "Derya, wie kommen wir am Samstag zu dir?",
+    "tr": "Derya, cumartesi sana nasıl geleceğiz?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya bir kâğıda küçük bir harita çiziyor.",
+    "de": "Ganz einfach. Mit dem Bus Nummer drei bis zum Bahnhof.",
+    "tr": "Çok kolay. Üç numaralı otobüsle gara kadar."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi araba anahtarını sallıyor.",
+    "de": "Mit dem Bus? Ich komme mit dem Auto.",
+    "tr": "Otobüsle mi? Ben arabayla gelirim."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya başını iki yana sallıyor.",
+    "de": "Am Bahnhof ist kein Parkplatz frei, Tobi.",
+    "tr": "Garda boş park yeri yok Tobi."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi iç çekiyor, anahtarı cebine koyuyor.",
+    "de": "Na gut, dann den Bus.",
+    "tr": "Peki, o zaman otobüs."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya haritada gardan bir çizgi çekiyor.",
+    "de": "Vom Bahnhof geht ihr zu Fuß. Das ist ganz nah.",
+    "tr": "Gardan yürüyerek gidiyorsunuz. Çok yakın."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya kalemle düz bir çizgi çiziyor.",
+    "de": "Erst geradeaus bis zur Ampel.",
+    "tr": "Önce trafik ışığına kadar dümdüz."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya çizgiyi sola, sonra sağa kıvırıyor.",
+    "de": "An der Ampel links, dann die zweite Straße rechts.",
+    "tr": "Işıkta sola, sonra sağdaki ikinci sokak."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kâğıdı ters tutuyor, kafası karışık.",
+    "de": "Die zweite rechts? Oder links?",
+    "tr": "Sağdaki ikinci mi? Yoksa soldaki mi?"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya kâğıdı düzeltiyor.",
+    "de": "Rechts! Und dann das dritte Haus.",
+    "tr": "Sağdaki! Sonra üçüncü ev."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi gülerek sana dönüyor.",
+    "de": "Okay. Du kommst mit mir, ja?",
+    "tr": "Tamam. Sen benimle geliyorsun, değil mi?"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Derya ne anlatıyor?",
+     "opts": [
+      "Evine nasıl gidileceğini",
+      "Otobüsün neden geç kaldığını",
+      "Neden gelemeyeceğini"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s2"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Gardan sonra nasıl gidiliyor?",
+      "opts": [
+       "yürüyerek",
+       "otobüsle",
+       "arabayla"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s6"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Trafik ışığında hangi yöne dönülüyor?",
+      "opts": [
+       "sola",
+       "sağa",
+       "dümdüz"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s8"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s2",
+      "seviye": "kolay",
+      "q_tr": "Hangi sayıyı duydun?",
+      "opts": [
+       "zwei",
+       "drei",
+       "dreizehn"
+      ],
+      "ans": 1
+     },
+     {
+      "id": "d2",
+      "cumle": "s7",
+      "seviye": "orta",
+      "de": "Erst geradeaus bis zur ___.",
+      "accepted": [
+       "Ampel",
+       "ampel",
+       "Ampel."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s8",
+      "seviye": "zor",
+      "banka": [
+       "An",
+       "der",
+       "Ampel",
+       "links",
+       "dann",
+       "die",
+       "zweite",
+       "Straße",
+       "rechts",
+       "erste",
+       "Kreuzung"
+      ],
+      "accepted": [
+       "An der Ampel links, dann die zweite Straße rechts.",
+       "an der ampel links dann die zweite straße rechts",
+       "An der Ampel links, dann die zweite Straße rechts",
+       "An der Ampel links, dann die zweite Strasse rechts."
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s6",
+      "seviye": "usta",
+      "accepted": [
+       "Vom Bahnhof geht ihr zu Fuß. Das ist ganz nah.",
+       "vom bahnhof geht ihr zu fuß das ist ganz nah",
+       "Vom Bahnhof geht ihr zu Fuß. Das ist ganz nah",
+       "Vom Bahnhof geht ihr zu Fuss. Das ist ganz nah."
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Derya'nın evine nasıl gidiliyor? Almanca iki kısa cümleyle söyle.",
+      "ornek_de": "Mit dem Bus bis zum Bahnhof. Dann zu Fuß, an der Ampel links.",
+      "zorunlu": [
+       "Bus",
+       "links"
+      ]
+     }
+    ],
+    "golge": [
+     "s7",
+     "s8"
+    ],
+    "cevapla": {
+     "id": "m1:34:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Tobi yolu unuttu, sana soruyor. Otobüsle gara kadar, sonra yürüyerek.",
+     "prompt_de": "Wie kommen wir zu Derya?",
+     "accepted": [
+      "Mit dem Bus bis zum Bahnhof, dann zu Fuß.",
+      "Mit dem Bus Nummer drei bis zum Bahnhof. Dann zu Fuß.",
+      "Wir fahren mit dem Bus bis zum Bahnhof und dann gehen wir zu Fuß.",
+      "Mit dem Bus zum Bahnhof, dann zu Fuß.",
+      "Bis zum Bahnhof mit dem Bus, dann zu Fuß.",
+      "Mit dem Bus bis zum Bahnhof und dann zu Fuß."
+     ],
+     "why_tr": "Araç için **mit dem Bus**, yürümek için **zu Fuß** dersin."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:34:a1",
+   "tur": "anons",
+   "title_tr": "Duraktaki otobüs anonsu",
+   "ortam_tr": "Gardaki otobüs durağındasın. Hoparlörden bir anons geliyor.",
+   "speaker": "der Sprecher",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Der Bus Nummer drei zum Bahnhof fährt heute um vierzehn Uhr zehn.",
+     "tr": "Gara giden üç numaralı otobüs bugün on dört on'da kalkıyor."
+    },
+    {
+     "id": "c2",
+     "de": "Der Bus Nummer fünf fährt um vierzehn Uhr zwanzig.",
+     "tr": "Beş numaralı otobüs on dört yirmide kalkıyor."
+    },
+    {
+     "id": "c3",
+     "de": "Heute fährt der Bus Nummer fünf nicht zum Rathaus.",
+     "tr": "Beş numaralı otobüs bugün belediyeye gitmiyor."
+    },
+    {
+     "id": "c4",
+     "de": "Danke.",
+     "tr": "Teşekkürler."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Bu anons ne hakkında?",
+      "opts": [
+       "Otobüslerin kalkış saatleri",
+       "Yeni bir otobüs bileti",
+       "Gardaki bir mağaza"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1",
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Üç numaralı otobüs kaçta kalkıyor?",
+       "opts": [
+        "14.10",
+        "14.20",
+        "13.10"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c1"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Beş numaralı otobüs bugün nereye gitmiyor?",
+       "opts": [
+        "belediyeye",
+        "gara",
+        "eczaneye"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi sayıyı duydun?",
+       "opts": [
+        "fünf",
+        "vier",
+        "fünfzehn"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Heute fährt der Bus Nummer fünf nicht zum ___.",
+       "accepted": [
+        "Rathaus",
+        "rathaus",
+        "Rathaus."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Der",
+        "Bus",
+        "Nummer",
+        "fünf",
+        "fährt",
+        "um",
+        "vierzehn",
+        "Uhr",
+        "zwanzig",
+        "drei",
+        "zehn"
+       ],
+       "accepted": [
+        "Der Bus Nummer fünf fährt um vierzehn Uhr zwanzig.",
+        "der bus nummer fünf fährt um vierzehn uhr zwanzig",
+        "Der Bus Nummer fünf fährt um vierzehn Uhr zwanzig",
+        "Der Bus Nummer fuenf faehrt um vierzehn Uhr zwanzig."
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c1",
+       "seviye": "usta",
+       "accepted": [
+        "Der Bus Nummer drei zum Bahnhof fährt heute um vierzehn Uhr zehn.",
+        "der bus nummer drei zum bahnhof fährt heute um vierzehn uhr zehn",
+        "Der Bus Nummer drei zum Bahnhof fährt heute um vierzehn Uhr zehn",
+        "Der Bus Nummer drei zum Bahnhof faehrt heute um vierzehn Uhr zehn."
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Hangi otobüs kaçta kalkıyor? Almanca iki kısa cümleyle söyle.",
+       "ornek_de": "Der Bus Nummer drei fährt um vierzehn Uhr zehn. Der Bus Nummer fünf fährt um vierzehn Uhr zwanzig.",
+       "zorunlu": [
+        "drei",
+        "fünf"
+       ]
+      }
+     ],
+     "golge": [
+      "c1",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:34:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi anonsu kaçırdı. Üç numaralı otobüsün saatini söyle.",
+      "prompt_de": "Wann fährt der Bus Nummer drei?",
+      "accepted": [
+       "Um vierzehn Uhr zehn.",
+       "Um zehn nach zwei.",
+       "Der Bus fährt um vierzehn Uhr zehn.",
+       "Der Bus Nummer drei fährt um vierzehn Uhr zehn.",
+       "Vierzehn Uhr zehn.",
+       "Um 14:10 Uhr.",
+       "Er fährt um vierzehn Uhr zehn."
+      ],
+      "why_tr": "Saat için **um** kullanırsın: **um vierzehn Uhr zehn**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:34:a1:e1",
+    "k": "pick",
+    "q_tr": "Gara gitmek istiyorsun. Hangi otobüse binmelisin?",
+    "opts": [
+     "14.10'daki üç numaralı otobüse",
+     "14.20'deki beş numaralı otobüse",
+     "13.10'daki üç numaralı otobüse"
+    ],
+    "ans": 0,
+    "why_tr": "Gara giden otobüs üç numara. Kalkış saati on dört on.",
+    "kanit": [
+     "c1"
+    ]
+   }
+  },
+  {
+   "id": "m1:34:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Derya'dan düzeltme",
+   "ortam_tr": "Akşam Derya'dan kısa bir sesli mesaj geliyor.",
+   "speaker": "ch:aksoy",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Derya noch mal.",
+     "tr": "Merhaba, yine ben, Derya."
+    },
+    {
+     "id": "c2",
+     "de": "Entschuldigung, die zweite Straße rechts ist falsch.",
+     "tr": "Kusura bakma, sağdaki ikinci sokak yanlış."
+    },
+    {
+     "id": "c3",
+     "de": "Es ist die dritte Straße rechts.",
+     "tr": "Sağdaki üçüncü sokak."
+    },
+    {
+     "id": "c4",
+     "de": "Mein Haus ist dann gleich links.",
+     "tr": "Evim de hemen solda."
+    },
+    {
+     "id": "c5",
+     "de": "Bis Samstag!",
+     "tr": "Cumartesi görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Derya neden arıyor?",
+      "opts": [
+       "Yol tarifini düzeltiyor",
+       "Kutlamayı iptal ediyor",
+       "Saati değiştiriyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Doğru sokak hangisi?",
+       "opts": [
+        "sağdaki üçüncü",
+        "sağdaki ikinci",
+        "soldaki üçüncü"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Derya'nın evi o sokakta nerede?",
+       "opts": [
+        "hemen solda",
+        "hemen sağda",
+        "sokağın sonunda"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "zweite",
+        "dritte",
+        "erste"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Entschuldigung, die zweite Straße rechts ist ___.",
+       "accepted": [
+        "falsch",
+        "Falsch",
+        "falsch."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Mein",
+        "Haus",
+        "ist",
+        "dann",
+        "gleich",
+        "links",
+        "rechts",
+        "nah"
+       ],
+       "accepted": [
+        "Mein Haus ist dann gleich links.",
+        "mein haus ist dann gleich links",
+        "Mein Haus ist dann gleich links"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Es ist die dritte Straße rechts.",
+        "es ist die dritte straße rechts",
+        "Es ist die dritte Straße rechts",
+        "Es ist die dritte Strasse rechts."
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Derya neyi düzeltiyor? Almanca bir iki kısa cümleyle söyle.",
+       "ornek_de": "Nicht die zweite, die dritte Straße rechts. Das Haus ist links.",
+       "zorunlu": [
+        "dritte",
+        "rechts"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:34:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi soruyor. Derya'nın sokağını söyle: sağdaki üçüncü.",
+      "prompt_de": "Und welche? Die zweite rechts?",
+      "accepted": [
+       "Die dritte Straße rechts.",
+       "Es ist die dritte Straße rechts.",
+       "Die dritte rechts.",
+       "Die dritte Straße rechts, nicht die zweite.",
+       "Nicht die zweite, die dritte Straße rechts.",
+       "Das ist die dritte Straße rechts."
+      ],
+      "why_tr": "Kaçıncı sokak olduğunu **die dritte Straße** diye söylersin."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:34:a2:e1",
+    "k": "pick",
+    "q_tr": "Derya'nın evine gidiyorsun. Ne yapmalısın?",
+    "opts": [
+     "Sağdaki üçüncü sokağa gir.",
+     "Sağdaki ikinci sokağa gir.",
+     "Soldaki üçüncü sokağa gir."
+    ],
+    "ans": 0,
+    "why_tr": "Derya ikinci sokağın yanlış olduğunu söylüyor. Doğrusu sağdaki üçüncü.",
+    "kanit": [
+     "c2",
+     "c3"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:34:g1",
+   "de": "Haltestelle",
+   "dogru_img": "bus stop with a yellow H sign and a shelter",
+   "celdirici_img": [
+    "train platform",
+    "parking lot",
+    "petrol station"
+   ]
+  },
+  {
+   "id": "m1:34:g2",
+   "de": "Kreuzung",
+   "dogru_img": "street crossroads seen from above",
+   "celdirici_img": [
+    "straight empty road",
+    "roundabout",
+    "bridge over a river"
+   ]
+  },
+  {
+   "id": "m1:34:g3",
+   "de": "Ampel",
+   "dogru_img": "traffic light showing red",
+   "celdirici_img": [
+    "street lamp",
+    "road sign with an arrow",
+    "bus stop sign"
+   ]
+  },
+  {
+   "id": "m1:34:g4",
+   "de": "Auto",
+   "dogru_img": "small car parked on a street",
+   "celdirici_img": [
+    "city bus",
+    "bicycle",
+    "tram"
+   ]
+  },
+  {
+   "id": "m1:34:g5",
+   "de": "Bett",
+   "dogru_img": "bed with a pillow and blanket",
+   "celdirici_img": [
+    "sofa",
+    "wardrobe",
+    "chair"
+   ]
+  },
+  {
+   "id": "m1:34:g6",
+   "de": "Arm",
+   "dogru_img": "human arm, from shoulder to hand",
+   "celdirici_img": [
+    "human leg",
+    "human back",
+    "human head"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:34:p1",
+  "title_tr": "Sokakta yol sormak",
+  "durum_tr": "Şehirdesin ve garı arıyorsun. Kaldırımda bir kadına soruyorsun.",
+  "karsi": "eine Frau",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Ja, bitte?",
+    "tr": "Buyurun?",
+    "secenekler": [
+     {
+      "de": "Entschuldigung, wie komme ich zum Bahnhof?",
+      "tr": "Affedersiniz, gara nasıl giderim?",
+      "accepted": [
+       "Entschuldigung, wie komme ich zum Bahnhof?",
+       "Entschuldigung, wo ist der Bahnhof?",
+       "Entschuldigung! Wie komme ich zum Bahnhof?",
+       "Entschuldigen Sie, wie komme ich zum Bahnhof?",
+       "Entschuldigung, wie komme ich bitte zum Bahnhof?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Önce **Entschuldigung**, sonra soru. Kibar ve açık."
+     },
+     {
+      "de": "Bahnhof!",
+      "tr": "Gar!",
+      "accepted": [
+       "Bahnhof!",
+       "Bahnhof?",
+       "Bahnhof, bitte!"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Tek kelime kaba duyulur. **Entschuldigung, wie komme ich zum Bahnhof?** de."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Zum Bahnhof? Gehen Sie hier geradeaus bis zur Kreuzung.",
+    "tr": "Gara mı? Buradan kavşağa kadar dümdüz gidin.",
+    "secenekler": [
+     {
+      "de": "Geradeaus bis zur Kreuzung. Und dann?",
+      "tr": "Kavşağa kadar dümdüz. Sonra?",
+      "accepted": [
+       "Geradeaus bis zur Kreuzung. Und dann?",
+       "Bis zur Kreuzung geradeaus. Und dann?",
+       "Geradeaus bis zur Kreuzung, ja. Und dann?",
+       "Also geradeaus bis zur Kreuzung. Und dann?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Duyduğunu tekrar ettin ve devamını sordun. Çok iyi."
+     },
+     {
+      "de": "Wie bitte? Langsam, bitte.",
+      "tr": "Efendim? Yavaş, lütfen.",
+      "accepted": [
+       "Wie bitte? Langsam, bitte.",
+       "Wie bitte? Bitte langsam.",
+       "Wie bitte? Können Sie das wiederholen?",
+       "Langsam, bitte!"
+      ],
+      "sonraki": "n2b",
+      "uygun": true,
+      "geri_bildirim_tr": "Anlamadığını söylemek doğru. Kadın yavaşça tekrar ediyor."
+     },
+     {
+      "de": "Links?",
+      "tr": "Sola mı?",
+      "accepted": [
+       "Links?",
+       "Nach links?",
+       "Links, ja?"
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Kadın sol demedi. **geradeaus** dümdüz demek."
+     }
+    ]
+   },
+   {
+    "id": "n2b",
+    "de": "Geradeaus. Bis zur Kreuzung, ja?",
+    "tr": "Dümdüz. Kavşağa kadar, tamam mı?",
+    "secenekler": [
+     {
+      "de": "Ach, geradeaus bis zur Kreuzung. Danke! Und dann?",
+      "tr": "Ha, kavşağa kadar dümdüz. Teşekkürler! Sonra?",
+      "accepted": [
+       "Ach, geradeaus bis zur Kreuzung. Danke! Und dann?",
+       "Geradeaus bis zur Kreuzung, danke! Und dann?",
+       "Ah, geradeaus bis zur Kreuzung. Danke! Und dann?",
+       "Okay, geradeaus. Und dann?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Şimdi anladın ve tekrar ettin."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "An der Kreuzung links. Dann die zweite Straße rechts.",
+    "tr": "Kavşakta sola. Sonra sağdaki ikinci sokak.",
+    "secenekler": [
+     {
+      "de": "Also links und dann die zweite Straße rechts?",
+      "tr": "Yani sola, sonra sağdaki ikinci sokak mı?",
+      "accepted": [
+       "Also links und dann die zweite Straße rechts?",
+       "Links und dann die zweite rechts?",
+       "Also an der Kreuzung links, dann die zweite Straße rechts?",
+       "Links, dann die zweite Straße rechts, ja?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Tarifi tekrar ederek doğruladın. Telefonda da sokakta da çok işe yarar."
+     },
+     {
+      "de": "Ist es weit?",
+      "tr": "Uzak mı?",
+      "accepted": [
+       "Ist es weit?",
+       "Ist das weit?",
+       "Ist es weit von hier?",
+       "Ist das weit von hier?"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel bir soru. Yürüyüp yürümeyeceğini anlarsın."
+     },
+     {
+      "de": "Also rechts und dann die zweite Straße links?",
+      "tr": "Yani sağa, sonra soldaki ikinci sokak mı?",
+      "accepted": [
+       "Also rechts und dann die zweite Straße links?",
+       "Rechts und dann die zweite links?",
+       "Rechts, dann die zweite Straße links?"
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Tersini söyledin. Kavşakta **links**, sonra ikinci sokak **rechts**."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Genau. Das ist ganz nah.",
+    "tr": "Aynen. Çok yakın.",
+    "secenekler": [
+     {
+      "de": "Vielen Dank!",
+      "tr": "Çok teşekkürler!",
+      "accepted": [
+       "Vielen Dank!",
+       "Danke schön!",
+       "Vielen Dank, das ist nett!",
+       "Danke, vielen Dank!"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Teşekkürle kapattın."
+     },
+     {
+      "de": "Okay.",
+      "tr": "Tamam.",
+      "accepted": [
+       "Okay.",
+       "Gut.",
+       "Okay, gut."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Yardım eden birine teşekkür et. **Vielen Dank!** de."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Nein, nur fünf Minuten zu Fuß.",
+    "tr": "Hayır, yürüyerek sadece beş dakika.",
+    "secenekler": [
+     {
+      "de": "Toll, vielen Dank!",
+      "tr": "Harika, çok teşekkürler!",
+      "accepted": [
+       "Toll, vielen Dank!",
+       "Super, vielen Dank!",
+       "Toll, danke schön!",
+       "Gut, vielen Dank!"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Sıcak bir teşekkür."
+     },
+     {
+      "de": "Fünf Stunden?",
+      "tr": "Beş saat mi?",
+      "accepted": [
+       "Fünf Stunden?",
+       "Fünf Stunden zu Fuß?",
+       "Stunden?"
+      ],
+      "sonraki": "n5",
+      "uygun": false,
+      "geri_bildirim_tr": "Kadın saat değil dakika dedi: **fünf Minuten**."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Bitte, gern!",
+    "tr": "Rica ederim!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Kibarca yol sordun, tarifi tekrar ederek doğruladın ve teşekkür ettin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Derya'nın yazılı tarifi",
+  "metin_de": "Hallo! Vom Bahnhof gehst du zu Fuß, das ist nah. An der ersten Ampel gehst du links. Dann kommt eine Kreuzung. Dann die dritte Straße rechts. Mein Haus ist gleich links. Bis Samstag! Derya",
+  "metin_tr": "Merhaba! Gardan yürüyerek gidiyorsun, yakın. İlk trafik ışığında sola gidiyorsun. Sonra bir kavşak geliyor. Sonra sağdaki üçüncü sokak. Evim hemen solda. Cumartesi görüşürüz! Derya",
+  "sorular": [
+   {
+    "id": "m1:34:o1",
+    "kind": "gist",
+    "q_tr": "Bu mesaj ne?",
+    "opts": [
+     "Derya'nın evine giden yol",
+     "Bir otobüs bileti",
+     "Bir doğum günü kartı"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     2,
+     4
+    ]
+   },
+   {
+    "id": "m1:34:o2",
+    "kind": "detail",
+    "q_tr": "Gardan Derya'nın evine nasıl gidiliyor?",
+    "opts": [
+     "yürüyerek",
+     "otobüsle",
+     "arabayla"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:34:o3",
+    "kind": "detail",
+    "q_tr": "İlk trafik ışığında hangi yöne gidiyorsun?",
+    "opts": [
+     "sola",
+     "sağa",
+     "dümdüz"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:34:o4",
+    "k": "guided_response",
+    "situation_tr": "Tobi soruyor: Derya'nın evi gardan uzak mı? Yakın olduğunu söyle.",
+    "prompt_de": "Ist es weit vom Bahnhof?",
+    "accepted": [
+     "Nein, das ist nah.",
+     "Nein, es ist ganz nah.",
+     "Nein, das ist ganz nah.",
+     "Nein, nicht weit. Das ist nah.",
+     "Nein, wir gehen zu Fuß. Das ist nah.",
+     "Nein, nur ein paar Minuten zu Fuß."
+    ],
+    "why_tr": "Uzak değil derken **Nein, das ist nah.** dersin."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Tobi'ye Derya'nın evine giden yolu kısaca yaz.",
+   "ornek_de": "Vom Bahnhof zu Fuß. An der Ampel links. Dann die dritte Straße rechts.",
+   "zorunlu": [
+    "links",
+    "rechts"
+   ],
+   "accepted_kaliplar": [
+    "Vom Bahnhof zu Fuß.",
+    "Mit dem Bus bis zum ___.",
+    "An der ___ links.",
+    "An der ___ rechts.",
+    "Dann die ___ Straße rechts.",
+    "Dann die ___ Straße links.",
+    "Gehen Sie geradeaus.",
+    "Erst geradeaus."
+   ],
+   "kontrol_tr": [
+    "Önce nasıl gidileceğini yazdın mı, otobüsle mi yürüyerek mi?",
+    "**links** ve **rechts** doğru yerde mi?",
+    "Kaçıncı sokak olduğunu **die dritte** gibi yazdın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:34:s",
+  "maddeler": [
+   {
+    "id": "m1:34:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Der Bus Nummer fünf fährt um zwei Uhr.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Bus Nummer fünf fährt um zwei Uhr.",
+     "der bus nummer fünf fährt um zwei uhr",
+     "Der Bus Nummer fünf fährt um zwei Uhr",
+     "Der Bus Nummer fuenf faehrt um zwei Uhr."
+    ],
+    "why_tr": "**um zwei Uhr** saat ikide demek."
+   },
+   {
+    "id": "m1:34:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Gehen Sie bis zur Kreuzung und dann links.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Gehen Sie bis zur Kreuzung und dann links.",
+     "gehen sie bis zur kreuzung und dann links",
+     "Gehen Sie bis zur Kreuzung und dann links"
+    ],
+    "why_tr": "**bis zur Kreuzung** kavşağa kadar demek."
+   },
+   {
+    "id": "m1:34:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Ich fahre heute mit der U-Bahn.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich fahre heute mit der U-Bahn.",
+     "ich fahre heute mit der u-bahn",
+     "Ich fahre heute mit der U-Bahn"
+    ],
+    "why_tr": "**mit der U-Bahn** metroyla demek."
+   },
+   {
+    "id": "m1:34:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Die Polizei ist gleich an der Kreuzung.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Polizei ist gleich an der Kreuzung.",
+     "die polizei ist gleich an der kreuzung",
+     "Die Polizei ist gleich an der Kreuzung"
+    ],
+    "why_tr": "**an der Kreuzung** kavşakta demek."
+   },
+   {
+    "id": "m1:34:s5",
+    "k": "tr_de",
+    "tr": "Affedersiniz, belediyeye nasıl giderim?",
+    "accepted": [
+     "Entschuldigung, wie komme ich zum Rathaus?",
+     "Entschuldigung, wo ist das Rathaus?",
+     "Entschuldigen Sie, wie komme ich zum Rathaus?",
+     "Entschuldigung, wie komme ich bitte zum Rathaus?"
+    ],
+    "why_tr": "Yol sorarken **Wie komme ich zum Rathaus?** dersin. **das Rathaus** ile **zum** olur."
+   },
+   {
+    "id": "m1:34:s6",
+    "k": "tr_de",
+    "tr": "Ben yürüyerek gidiyorum, Tobi arabayla gidiyor.",
+    "accepted": [
+     "Ich gehe zu Fuß, Tobi fährt mit dem Auto.",
+     "Ich gehe zu Fuß und Tobi fährt mit dem Auto.",
+     "Ich gehe zu Fuß. Tobi fährt mit dem Auto.",
+     "Ich laufe, Tobi fährt mit dem Auto."
+    ],
+    "why_tr": "Yürürken **zu Fuß**, arabayla **mit dem Auto** dersin."
+   },
+   {
+    "id": "m1:34:s7",
+    "k": "tr_de",
+    "tr": "Kavşakta sağa dönün.",
+    "accepted": [
+     "Biegen Sie an der Kreuzung rechts ab.",
+     "An der Kreuzung biegen Sie rechts ab.",
+     "An der Kreuzung rechts abbiegen.",
+     "Biegen Sie an der Kreuzung nach rechts ab."
+    ],
+    "why_tr": "**ab** cümlenin sonuna gider: **Biegen Sie an der Kreuzung rechts ab.**"
+   },
+   {
+    "id": "m1:34:s8",
+    "k": "tr_de",
+    "tr": "Uzak değil, çok yakın.",
+    "accepted": [
+     "Das ist nicht weit, das ist ganz nah.",
+     "Es ist nicht weit, es ist ganz nah.",
+     "Nicht weit, ganz nah.",
+     "Das ist nicht weit, ganz nah.",
+     "Das ist nicht weit, das ist sehr nah."
+    ],
+    "why_tr": "**weit** uzak, **nah** yakın demek."
+   },
+   {
+    "id": "m1:34:s9",
+    "k": "guided_response",
+    "situation_tr": "Bir oğlan gara nasıl gidildiğini soruyor. Dümdüz gitmesini, sonra sola dönmesini söyle.",
+    "prompt_de": "Wie komme ich zum Bahnhof?",
+    "accepted": [
+     "Geradeaus und dann links.",
+     "Geh geradeaus und dann links.",
+     "Immer geradeaus und dann links.",
+     "Geradeaus, dann links.",
+     "Du gehst geradeaus und dann links.",
+     "Erst geradeaus, dann links."
+    ],
+    "why_tr": "Tarif kısa olabilir: **Geradeaus und dann links.**"
+   },
+   {
+    "id": "m1:34:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Entschuldigung, wann fährt der Bus Nummer drei?",
+    "speed": "normal",
+    "situation_tr": "Durakta yaşlı bir kadın soruyor. Tabelada üç numara 14.10 yazıyor.",
+    "accepted": [
+     "Um vierzehn Uhr zehn.",
+     "Um zehn nach zwei.",
+     "Der Bus fährt um vierzehn Uhr zehn.",
+     "Vierzehn Uhr zehn.",
+     "Um vierzehn Uhr zehn, glaube ich.",
+     "Der Bus Nummer drei fährt um vierzehn Uhr zehn."
+    ],
+    "why_tr": "Saati **um** ile söylersin: **um vierzehn Uhr zehn**."
+   },
+   {
+    "id": "m1:34:s11",
+    "k": "guided_response",
+    "situation_tr": "Sokaktasın. Birine gara nasıl gidildiğini sor, sonra uzak olup olmadığını sor.",
+    "prompt_de": "Ja, bitte?",
+    "accepted": [
+     "Entschuldigung, wie komme ich zum Bahnhof? Ist es weit?",
+     "Entschuldigung, wo ist der Bahnhof? Ist es weit?",
+     "Entschuldigung, wie komme ich zum Bahnhof? Ist das weit?",
+     "Entschuldigen Sie, wie komme ich zum Bahnhof? Ist es weit?",
+     "Entschuldigung, wie komme ich bitte zum Bahnhof? Ist es weit?",
+     "Entschuldigung, wie komme ich zum Bahnhof? Und ist es weit?"
+    ],
+    "why_tr": "Önce **Entschuldigung**, sonra **Wie komme ich zum Bahnhof?** ve **Ist es weit?**"
+   }
+  ],
+  "sesli": [
+   "m1:34:s9",
+   "m1:34:s10"
+  ],
+  "dikte": [
+   "m1:34:s1",
+   "m1:34:s2",
+   "m1:34:s3",
+   "m1:34:s4"
+  ]
+ }
+}
