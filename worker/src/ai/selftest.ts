@@ -73,8 +73,8 @@ export const ORNEKLER: { gorev: AiTaskName; vars: unknown; alanlar: (o: any) => 
 /* ---------- dil denetimi: kaba ama sınanabilir; yalnız olumlu kanıtla düşürür (kısa ve belirsiz metin geçer) ---------- */
 const DE = new Set("der die das den dem des ein eine einen einem einer ist sind bin bist ich du wir ihr sie und nicht mit für auf zu im vom zum zur von bitte haben habe hat möchte möchten kann können wie gern gerne ja nein auch aber noch schon sehr gut guten tag etwas hier heute morgen danke mal man nach oft soll".split(" "));
 const TR = new Set("bir ve bu da de için ile çok ne mi mı mu mü değil var yok olarak gibi daha ama sen ben anlam anlamı anlama demek demektir cümle iyi sadece şu veya kullanılır doğru yanlış aynı olur oldu ya kısa güzel gelir".split(" "));
-// "in", "an", "was", "will", "also", "die", "man", "hat", "so" iki dilde de var: listeye girmez
-const EN = new Set("the a and is are you your this that with of it be have has please thank thanks what can i'm don't does very good would should could to for one two three take times day after before meals well great job done correct same meaning here okay sure yes at on by from my me they there their but if or how why when where which who need want tablet answer right wrong".split(" "));
+// "in", "an", "was", "will", "also", "die", "man", "hat", "so" Almancada; "on", "at", "can", "tablet" Türkçede de var: listeye girmez
+const EN = new Set("the a and is are you your this that with of it be have has please thank thanks what i'm don't does very good would should could to for one two three take times day after before meals well great job done correct same meaning here okay sure yes by from my me they there their but if or how why when where which who need want answer right wrong".split(" "));
 export function dilPuani(s: string) {
   const w = s.toLowerCase().match(/[\p{L}']+/gu) ?? [];
   const say = (k: Set<string>) => w.filter((x) => k.has(x)).length;
@@ -154,6 +154,8 @@ export async function gorevSina(env: Env, o: (typeof ORNEKLER)[number], simdi = 
  */
 export class OzSinamaCekirdek {
   private suren: Promise<OzSinama> | null = null;
+  /** bu örneğin son koşusu (bellekte): depodaki `son` eski okunduysa da ikinci koşu başlamasın (inceleme #209 2. tur) */
+  private sonKosu: { zaman: number; surum: string } | null = null;
   constructor(private depo: Depo, private env: Env, private simdi = () => Date.now()) {}
 
   async oku(): Promise<OzSinama> {
@@ -175,11 +177,16 @@ export class OzSinamaCekirdek {
     const n = await neuronUsage(env, gun);
     if (n.used >= n.limit * ST.ogrenci_payi_orani) return bos("pay_korunuyor");
     if (this.suren) return this.suren; // bu isteğin beklediği sırada başka istek koşuyu başlattı
+    if (this.sonKosu && this.sonKosu.surum === surum && simdi() - this.sonKosu.zaman < aralik) {
+      // beklerken başka bir koşu başlayıp BİTTİ: depodan taze sonucu oku
+      return this.oku();
+    }
     this.suren = this.kos(gun, surum, saglayici, dun).finally(() => { this.suren = null; });
     return this.suren;
   }
 
   private async kos(gun: string, surum: string, saglayici: string, dun: Ozet): Promise<OzSinama> {
+    this.sonKosu = { zaman: this.simdi(), surum };
     const zaman = new Date(this.simdi()).toISOString(), sonraki = new Date(this.simdi() + ST.aralik_dk * 60_000).toISOString();
     const gorevler: GorevSonucu[] = [];
     for (const o of ORNEKLER) gorevler.push(await gorevSina(this.env, o, this.simdi)); // sırayla: süreler birbirini etkilemesin

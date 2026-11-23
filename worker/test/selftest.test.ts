@@ -72,6 +72,7 @@ describe("dil denetimi (inceleme #209 P1-3)", () => {
     expect(dilHatasi("Great job, well done!", "tr")).toBe("en");
     expect(dilHatasi("Correct. Same meaning.", "tr")).toBe("en");
     expect(dilHatasi("Dreimal am Tag nach dem Essen.", "de")).toBeNull();
+    expect(dilHatasi("Günde en fazla on tablet alma.", "tr")).toBeNull();
   });
 });
 
@@ -101,6 +102,19 @@ describe("GET /v1/ai/selftest (PM-087 A)", () => {
     expect(new Set(yanit.map((j: any) => j.zaman)).size).toBe(1);
     expect(yanit.every((j: any) => j.ok && j.taze)).toBe(true);
     expect((depo.data.get(`gun:${new Date().toISOString().slice(0, 10)}`) as unknown[]).length).toBe(1);
+  });
+  it("depo okuması bir koşudan uzun sürse de ikinci koşu başlamaz (2. tur)", async () => {
+    const { AI, cagri } = iyiAI(); const ic = memDepo(); let yavas = true;
+    // ilk isteğin 'son' okuması, ikinci istek bütün koşuyu bitirene kadar bekletilir
+    let birak!: () => void; const kapi = new Promise<void>((r) => (birak = r));
+    const depo: Depo = { ...ic, async get<T>(k: string) { if (k === "son" && yavas) { yavas = false; await kapi; return undefined; } return ic.get<T>(k); } };
+    const c = new OzSinamaCekirdek(depo, env({ AI }));
+    const a = c.oku();
+    await new Promise((r) => setTimeout(r, 0));
+    const b = await c.oku(); // ikinci istek koşar ve biter
+    birak();
+    const j = await a;
+    expect(cagri.length).toBe(5); expect(j.zaman).toBe(b.zaman); expect(j.durum).toBe("onbellek");
   });
   it(`${ST.aralik_dk} dk içinde ikinci istek modeli çağırmaz; süre dolunca yeniden koşar`, async () => {
     const { AI, cagri } = iyiAI(); const e = env({ AI });

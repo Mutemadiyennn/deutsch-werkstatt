@@ -2,8 +2,8 @@
 /**
  * Canlı yapay zekâ öz-sınamasını okur (PM-087 A.3) ve Markdown tablo yazar. Adres günlüğe yazılmaz.
  * Kullanım: node worker/scripts/oz-sinama.mjs <worker-kök-adresi>
- * Çıkış: 0 = bu sürümün taze koşusu geçti · 1 = kaldı ya da uç okunamadı · 3 = ölçülmedi (kapalı, pay korunuyor, günlük
- * tavan: eski sonuç yeşil SAYILMAZ; inceleme #209 P1-2). Ağ hatasında 3 deneme. Uç koşuyu kendisi tekilleştirir.
+ * Çıkış: 0 = bu sürümün taze koşusu geçti · 1 = kaldı, kapalı (sağlayıcı ya da kilit bağlamı yok) ya da uç okunamadı ·
+ * 3 = ölçülmedi (pay korunuyor, günlük tavan: eski sonuç yeşil SAYILMAZ; inceleme #209 P1-2). Ağ hatasında 3 deneme. Uç koşuyu kendisi tekilleştirir.
  * Tablo stdout'a; GITHUB_STEP_SUMMARY tanımlıysa oraya da eklenir. Yanıttaki her değer güvenli karakterlere süzülür.
  */
 import { appendFileSync } from "node:fs";
@@ -35,4 +35,4 @@ for (const [ad, o] of [["bugün", j.bugun], ["dün", j.dun]]) {
   yaz(`\n**${ad} (${temiz(o.gun)}): ${Number(o.kosu)} koşu**\n\n| görev | geçti/toplam | ortanca ms | en uzun ms |\n|---|---|---|---|`);
   for (const [k, v] of Object.entries(o.gorev || {})) yaz(`| ${temiz(k)} | ${Number(v.gecti)}/${Number(v.toplam)} | ${Number(v.ortanca_ms)} | ${Number(v.en_uzun_ms)} |`);
 }
-process.exit(!j.taze ? 3 : j.ok ? 0 : 1);
+process.exit(j.durum === "kapali" ? 1 : !j.taze ? 3 : j.ok ? 0 : 1);
