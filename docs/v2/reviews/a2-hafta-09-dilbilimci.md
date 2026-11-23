@@ -138,3 +138,32 @@ Dil noktalarında bilerek çıkarılan iki bilgi: t3'teki "bu parçalar vurgusuz
 Düzeltmelerin getirdiği olası kusur: 58 `goal_tr` artık "ge almayan kelimeler" hedefini söylemiyor (konu dersin başlığında duruyor). Okurun "GERİ değil" diye not ettiği 14 satıra dokunulmadı.
 
 **Bu tur için sonuç: ONAY** (okur geri dönüşleri kapandı). 1. turdaki B1 ve B2 hâlâ baş geliştiricinin kararını bekliyor.
+
+## Örneklem notları (3. tur, 2026-11-23)
+
+Kaynak: `docs/v2/reviews/orneklem/a2-hafta-09.md` (30/30 GEÇTİ; sayıya girmeyen 4 not ve 2 kusur) ve 1. turdaki B1. Denetimler: dikiş `İhlal: 0`; `content:validate` yalnız iki şema sınıfı; `h9.sh val` bu dosyalarda yalnız üç izinli sınıf; hafta içi tekrar eden cümle yok.
+
+| # | Yer | Yapılan |
+|---|---|---|
+| 1 | 58 `sahne.bolumler[0].ayrinti[1]` | Çeldirici "Merdivenin ışığını tamir etti" (halka cümlesinde doğru) → "Kutuları bodruma taşıdı". |
+| 2 | 60 prova n1, uygunsuz seçenek | "Ich brauche Ihren Schlüssel!" (onun anahtarı) → "Nehmen Sie meinen Schlüssel!" / "Anahtarımı alın!"; kabuller buna göre. Geri bildirim aynı (önce kibarca sor). |
+| 3 | 60 a1 `cevapla.prompt_de` | "…, Huber, hallo?" → "Guten Tag, Praxis Dr. Weber, Huber?". "grüß Gott?" denendi, dikiş "Gott 61. günde tanıtılıyor" diye ihlal verdi; "…, Huber, guten Tag?" 57'de olduğu için tekrar olurdu. |
+| 4 | 61 `okuma_yazma.sorular[0].kanit` | `[1]` → `[1, 4, 5, 6]`. |
+| 5 | 62 radyo c5–c6 | Kemal'in satırına görüş eklendi: "… Ich habe nur geschlafen. **Das ist auch schön, oder?**"; sunucunun "Da haben Sie recht, das ist auch schön!" cevabı artık oturuyor. c6, gölge ve usta dikte değişmedi; orta dikte satırı güncellendi. |
+| 6 | B3: pazartesi 16.15 ↔ 11 | Provanın saati esas alındı (tuzakları "halb zehn" ve "Viertel nach/vor" buna bağlı). 61 halka sahnesi, 61 `cevapla` (durum + 6 kabul) ve 63 sesli mesaj (c2, ayrıntı şıkları, kolay dikte şıkkı "vier", eylem şıkkı) "Montag um Viertel nach vier" oldu. |
+
+### B1: adsız kişiye çevrilenler (soru ve dikteleriyle birlikte)
+
+- 57: Tobi'nin kız kardeşi (iki kart, 8 satır) → "Eine Freundin ist noch im Studium.", "Tobi hilft einer Freundin in Mathe."; Derya'nın kız kardeşi (s3) → "mit einer Freundin"; Ioana'nın erkek kardeşi (okuma, o2 ve o4 şıkları) → "mit einem Freund".
+- 60: Tobi'nin erkek kardeşi (s4) → "ein Freund aus Berlin"; Derya'nın kız kardeşi ve bebeği (s5, ayrıntı şıkkı, zor dikte bankası ve kabulleri, d5 örneği) → "eine Freundin".
+- 62: Ioana'nın kız kardeşi (prova n4) → "mit einer Freundin"; Derya'nın ailesi (yazma metni ve sorusu) → "mit Freunden am See".
+- 63: Derya'nın annesi, doğum günü ve Passau (s2, iki ayrıntı şıkkı, orta dikte) → "mit einer Freundin".
+
+### B1: bırakılanlar (çevirmek soruları ya da günün kartını bozar)
+
+- **Ioana'nın yeni işi, taşınması ve patronu** (57 okuma ve o2; 58'in bütün birinci halkası, sesli mesajı, provası; 60 okuması): `lx:Stelle`, `lx:Umzug`, `lx:Chefin` kartları ve onlarca soru buna bağlı. WORLD'e ayrıntı olarak yazılması gerekir. B2 (58 "am ersten März" ↔ 60 "ilk iş haftası") bununla birlikte çözülmeli.
+- **Frau Brandl'ın kocası** (62 s8, "Rafı kim yaptı?" sorusu, usta dikte): adsız; WORLD notu yalnız adlı akrabayı yasaklıyor. Sahnenin duygusu buna dayanıyor.
+- 57 gün sınavı s1 "Derya hat am Sonntag ihre Mutter angerufen." (dikte; yeni olay ya da tarih koymuyor) ve 60 okumasında Ioana'nın "meine Familie ist weit weg" cümlesi.
+- Öğrencinin kendi ailesi (57, 62 "meine Familie / meine Eltern"): WORLD karakteri değil.
+
+Açık kalan: B2 ve yukarıdaki "bırakılanlar"ın ilk maddesi (ikisi aynı karar). B4–B7 değişmedi.
