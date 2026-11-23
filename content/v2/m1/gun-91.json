@@ -28,7 +28,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic16/dilbilimci-h13.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
  },
  "dersler": [],
  "yeni_kartlar": [
@@ -69,7 +72,7 @@
      "tr": "Saat onda Dr. Weber'de randevum var."
     },
     {
-     "de": "die Krankmeldung – ab dem ersten Tag – bis Mittwoch",
+     "de": "die Krankschreibung – ab dem ersten Tag – bis Mittwoch",
      "tr": "doktor raporu – ilk günden itibaren – çarşambaya kadar"
     },
     {
@@ -206,7 +209,7 @@
     "id": "s5",
     "speaker": "ch:aksoy",
     "sahne_tr": "Derya devam ediyor.",
-    "de": "Bei uns ist es so: Ab dem vierten Tag brauchst du eine Krankmeldung.",
+    "de": "Bei uns ist es so: Ab dem vierten Tag brauchst du eine Krankschreibung.",
     "tr": "Bizde şöyle: dördüncü günden itibaren rapor gerekir."
    },
    {
@@ -331,9 +334,9 @@
       "seviye": "orta",
       "de": "Bei uns ist es so: Ab dem vierten Tag brauchst du eine ___.",
       "accepted": [
-       "Krankmeldung",
-       "krankmeldung",
-       "Krankmeldung."
+       "Krankschreibung",
+       "krankschreibung",
+       "Krankschreibung."
       ]
      },
      {
@@ -557,7 +560,7 @@
     },
     {
      "id": "c4",
-     "de": "Eine Sache noch: Die Krankmeldung brauche ich bis Mittwoch.",
+     "de": "Eine Sache noch: Die Krankschreibung brauche ich bis Mittwoch.",
      "tr": "Bir şey daha: Raporu çarşambaya kadar istiyorum."
     },
     {
@@ -656,9 +659,9 @@
        "seviye": "orta",
        "de": "Eine Sache noch: Die ___ brauche ich bis Mittwoch.",
        "accepted": [
-        "Krankmeldung",
-        "krankmeldung",
-        "Krankmeldung."
+        "Krankschreibung",
+        "krankschreibung",
+        "Krankschreibung."
        ]
       },
       {
@@ -693,9 +696,9 @@
        "id": "d5",
        "seviye": "gercek",
        "gorev_tr": "Herr Wimmer'in iki isteğini Almanca yaz.",
-       "ornek_de": "Herr Wimmer braucht die Krankmeldung bis Mittwoch. Ich rufe ihn an, wenn ich weiß, wie lange es dauert.",
+       "ornek_de": "Herr Wimmer braucht die Krankschreibung bis Mittwoch. Ich rufe ihn an, wenn ich weiß, wie lange es dauert.",
        "zorunlu": [
-        "Krankmeldung",
+        "Krankschreibung",
         "Mittwoch"
        ]
       }
@@ -708,13 +711,13 @@
       "id": "m1:91:a1:c1",
       "k": "guided_response",
       "situation_tr": "Derya arıyor: Herr Wimmer raporu ne zamana kadar istiyor? Söyle.",
-      "prompt_de": "Bis wann braucht Herr Wimmer die Krankmeldung?",
+      "prompt_de": "Bis wann braucht Herr Wimmer die Krankschreibung?",
       "accepted": [
        "Bis Mittwoch.",
-       "Er braucht die Krankmeldung bis Mittwoch.",
-       "Bis Mittwoch braucht er die Krankmeldung.",
+       "Er braucht die Krankschreibung bis Mittwoch.",
+       "Bis Mittwoch braucht er die Krankschreibung.",
        "Herr Wimmer braucht sie bis Mittwoch.",
-       "Die Krankmeldung braucht er bis Mittwoch."
+       "Die Krankschreibung braucht er bis Mittwoch."
       ],
       "why_tr": "**bis Mittwoch**: çarşambaya kadar. Kulak kapısının cevabı bu."
      }
@@ -960,7 +963,7 @@
   },
   {
    "id": "m1:91:g4",
-   "de": "Krankmeldung",
+   "de": "Krankschreibung",
    "dogru_img": "doctor handing a sick note to a patient",
    "celdirici_img": [
     "receipt from a supermarket",
@@ -972,7 +975,7 @@
  "prova": {
   "id": "m1:91:p1",
   "title_tr": "Haftanın kapısı: Herr Wimmer'i arayıp hasta olduğunu bildir",
-  "durum_tr": "Pazartesi sabahı saat sekiz. Dün akşamdan beri yüksek ateşin var, boğazın ağrıyor. Bugün akşam vardiyan var ama çalışamazsın. Saat onda Dr. Weber'de randevun var. Tobi dün akşam vardiyanı yapabileceğini söyledi. Herr Wimmer'i ara: adını, hasta olduğunu, bugün gelemeyeceğini, ne zaman doktora gideceğini ve raporun ne zaman olacağını söyle.",
+  "durum_tr": "Pazartesi sabahı saat yedi buçuk. Dün akşamdan beri yüksek ateşin var, boğazın ağrıyor. Bugün akşam vardiyan var ama çalışamazsın. Saat onda Dr. Weber'de randevun var. Tobi dün akşam vardiyanı yapabileceğini söyledi. Herr Wimmer'i ara: adını, hasta olduğunu, bugün gelemeyeceğini, ne zaman doktora gideceğini ve raporun ne zaman olacağını söyle.",
   "karsi": "ch:wimmer",
   "baslangic": "n1",
   "dugumler": [
@@ -1098,16 +1101,16 @@
    },
    {
     "id": "n4",
-    "de": "Gut. Ich brauche die Krankmeldung bitte schon ab dem ersten Tag, also ab heute.",
+    "de": "Gut. Ich brauche die Krankschreibung bitte schon ab dem ersten Tag, also ab heute.",
     "tr": "Peki. Raporu lütfen ilk günden, yani bugünden itibaren istiyorum.",
     "secenekler": [
      {
-      "de": "Kein Problem. Ich gehe um zehn zum Arzt. Die Krankmeldung haben Sie dann morgen.",
+      "de": "Kein Problem. Ich gehe um zehn zum Arzt. Die Krankschreibung haben Sie dann morgen.",
       "tr": "Sorun değil. Saat onda doktora gidiyorum. Rapor yarın sizde olur.",
       "accepted": [
-       "Kein Problem. Ich gehe um zehn zum Arzt. Die Krankmeldung haben Sie dann morgen.",
-       "Kein Problem, die Krankmeldung haben Sie morgen.",
-       "Ja, natürlich. Ich gehe heute zum Arzt, die Krankmeldung haben Sie dann morgen."
+       "Kein Problem. Ich gehe um zehn zum Arzt. Die Krankschreibung haben Sie dann morgen.",
+       "Kein Problem, die Krankschreibung haben Sie morgen.",
+       "Ja, natürlich. Ich gehe heute zum Arzt, die Krankschreibung haben Sie dann morgen."
       ],
       "sonraki": "n5",
       "uygun": true,
@@ -1126,16 +1129,16 @@
       "geri_bildirim_tr": "Güzel: haber vereceğini söyledin."
      },
      {
-      "de": "Eine Krankmeldung? Das brauche ich erst ab dem vierten Tag.",
+      "de": "Eine Krankschreibung? Das brauche ich erst ab dem vierten Tag.",
       "tr": "Rapor mu? O, dördüncü günden itibaren gerekir.",
       "accepted": [
-       "Eine Krankmeldung? Das brauche ich erst ab dem vierten Tag.",
+       "Eine Krankschreibung? Das brauche ich erst ab dem vierten Tag.",
        "Erst ab dem vierten Tag, oder?",
        "Ab dem vierten Tag, nicht heute."
       ],
       "sonraki": "n4",
       "uygun": false,
-      "geri_bildirim_tr": "Şef raporu ilk günden de isteyebilir; yasa buna izin verir. Tartışma; ne zaman olacağını söyle."
+      "geri_bildirim_tr": "Şef raporu ilk günden de isteyebilir. Yasa buna izin verir. Şefle tartışma, raporun ne zaman olacağını söyle."
      }
     ]
    },
@@ -1213,7 +1216,7 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Firmanın hastalık kuralı",
-  "metin_de": "Krank? Dann machen Sie es so. Rufen Sie vor Ihrer Schicht Herrn Wimmer an. Ist er nicht da, sprechen Sie auf den Anrufbeantworter. Sagen Sie, wie lange Sie vielleicht krank sind. Sind Sie mehr als drei Tage krank, brauchen wir eine Krankmeldung vom Arzt. Manchmal brauchen wir sie auch schon ab dem ersten Tag. Die Krankmeldung geht vom Arzt an die Krankenkasse, und wir bekommen sie von dort. Aber Bescheid sagen müssen Sie uns immer selbst.",
+  "metin_de": "Krank? Dann machen Sie es so. Rufen Sie vor Ihrer Schicht Herrn Wimmer an. Ist er nicht da, sprechen Sie auf den Anrufbeantworter. Sagen Sie, wie lange Sie vielleicht krank sind. Sind Sie mehr als drei Tage krank, brauchen wir eine Krankschreibung vom Arzt. Manchmal brauchen wir sie auch schon ab dem ersten Tag. Die Krankschreibung geht vom Arzt an die Krankenkasse, und wir bekommen sie von dort. Aber Bescheid sagen müssen Sie uns immer selbst.",
   "metin_tr": "Hasta mısınız? O zaman şöyle yapın. Vardiyanızdan önce Herr Wimmer'i arayın. Yoksa telesekretere konuşun. Ne kadar hasta olabileceğinizi söyleyin. Üç günden fazla hastaysanız doktordan rapor gerekir. Bazen raporu ilk günden de isteriz. Rapor doktordan sağlık sigortasına gider, biz de oradan alırız. Ama bize haber vermek her zaman sizin işiniz.",
   "sorular": [
    {
@@ -1263,28 +1266,28 @@
     "id": "m1:91:o4",
     "k": "guided_response",
     "situation_tr": "Yeni iş arkadaşın Frau Hoffmann soruyor: rapor ne zaman gerekir?",
-    "prompt_de": "Wann brauche ich eine Krankmeldung?",
+    "prompt_de": "Wann brauche ich eine Krankschreibung?",
     "accepted": [
      "Wenn Sie mehr als drei Tage krank sind. Manchmal auch schon ab dem ersten Tag.",
      "Ab dem vierten Tag. Manchmal schon ab dem ersten Tag.",
      "Wenn Sie mehr als drei Tage krank sind.",
      "Nach drei Tagen, aber manchmal schon ab dem ersten Tag.",
-     "Mehr als drei Tage krank: dann brauchen Sie eine Krankmeldung."
+     "Mehr als drei Tage krank: dann brauchen Sie eine Krankschreibung."
     ],
     "why_tr": "**mehr als drei Tage**: üç günden fazla. **ab dem ersten Tag**: ilk günden itibaren."
    }
   ],
   "yazma": {
    "gorev_tr": "Herr Wimmer'e kısa bir mesaj yaz: hastasın, bugün gelemiyorsun, saat onda doktora gidiyorsun, rapor yarın onda olur.",
-   "ornek_de": "Guten Morgen, Herr Wimmer, ich bin leider krank und kann heute nicht kommen. Ich gehe um zehn Uhr zum Arzt. Die Krankmeldung haben Sie dann morgen. Viele Grüße, {name}",
+   "ornek_de": "Guten Morgen, Herr Wimmer, ich bin leider krank und kann heute nicht kommen. Ich gehe um zehn Uhr zum Arzt. Die Krankschreibung haben Sie dann morgen. Viele Grüße, {name}",
    "zorunlu": [
     "krank",
-    "Krankmeldung"
+    "Krankschreibung"
    ],
    "accepted_kaliplar": [
     "Guten Morgen, Herr Wimmer, ich bin leider krank und kann heute nicht kommen.",
     "Ich gehe um ___ Uhr zum Arzt.",
-    "Die Krankmeldung haben Sie dann ___.",
+    "Die Krankschreibung haben Sie dann ___.",
     "Viele Grüße, ___"
    ],
    "kontrol_tr": [
@@ -1292,7 +1295,7 @@
     "Doktor saatini yazdın mı?",
     "Raporun ne zaman olacağını yazdın mı?"
    ],
-   "ornek_de_adsiz": "Guten Morgen, Herr Wimmer, ich bin leider krank und kann heute nicht kommen. Ich gehe um zehn Uhr zum Arzt. Die Krankmeldung haben Sie dann morgen. Viele Grüße"
+   "ornek_de_adsiz": "Guten Morgen, Herr Wimmer, ich bin leider krank und kann heute nicht kommen. Ich gehe um zehn Uhr zum Arzt. Die Krankschreibung haben Sie dann morgen. Viele Grüße"
   }
  },
  "gun_sinavi": {
@@ -1327,13 +1330,13 @@
    {
     "id": "m1:91:s3",
     "k": "listen_and_respond",
-    "audio_de": "Ich brauche die Krankmeldung bis Mittwoch.",
+    "audio_de": "Ich brauche die Krankschreibung bis Mittwoch.",
     "speed": "normal",
     "situation_tr": "Duyduğunu yaz.",
     "accepted": [
-     "Ich brauche die Krankmeldung bis Mittwoch.",
-     "ich brauche die krankmeldung bis mittwoch",
-     "Ich brauche die Krankmeldung bis Mittwoch"
+     "Ich brauche die Krankschreibung bis Mittwoch.",
+     "ich brauche die krankschreibung bis mittwoch",
+     "Ich brauche die Krankschreibung bis Mittwoch"
     ],
     "why_tr": "**bis Mittwoch**: çarşambaya kadar."
    },
@@ -1411,14 +1414,14 @@
    {
     "id": "m1:91:s10",
     "k": "listen_and_respond",
-    "audio_de": "Ich brauche die Krankmeldung schon ab dem ersten Tag.",
+    "audio_de": "Ich brauche die Krankschreibung schon ab dem ersten Tag.",
     "speed": "fast",
     "situation_tr": "Şef raporu ilk günden istiyor. Bugün doktora gideceğini ve raporun yarın olacağını söyle.",
     "accepted": [
-     "Kein Problem. Ich gehe heute zum Arzt, die Krankmeldung haben Sie dann morgen.",
-     "Ja, natürlich. Ich gehe heute zum Arzt. Die Krankmeldung haben Sie morgen.",
-     "Kein Problem, ich gehe heute zum Arzt. Morgen haben Sie die Krankmeldung.",
-     "Natürlich. Heute gehe ich zum Arzt, und morgen haben Sie die Krankmeldung."
+     "Kein Problem. Ich gehe heute zum Arzt, die Krankschreibung haben Sie dann morgen.",
+     "Ja, natürlich. Ich gehe heute zum Arzt. Die Krankschreibung haben Sie morgen.",
+     "Kein Problem, ich gehe heute zum Arzt. Morgen haben Sie die Krankschreibung.",
+     "Natürlich. Heute gehe ich zum Arzt, und morgen haben Sie die Krankschreibung."
     ],
     "why_tr": "Sürprize sakin cevap: **Kein Problem** + ne zaman."
    },
