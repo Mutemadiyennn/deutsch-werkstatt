@@ -5,7 +5,7 @@
  "level": "A2",
  "format": "gun",
  "title_tr": "İsmi tekrarlamamak: einer, keiner, welche",
- "goal_tr": "Fırında ve mağazada bir şeyin kalıp kalmadığını sorar, ismi tekrar etmeden cevap verirsin; fişle değişim istersin.",
+ "goal_tr": "Fırında ve mağazada bir şeyin kalıp kalmadığını sorarsın. İsmi tekrar etmeden cevap verirsin. Fişle değişim istersin.",
  "can_do": {
   "id": "cd:m1:73",
   "tr": "Bir ürünü fişle değiştirmek ister, 'bir tane var mı, hiç kalmadı mı' diye sorarım."
@@ -27,7 +27,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic9/dilbilimci-h11.md; dilbilimci ONAY. okur (OD-9) bekliyor."
  },
  "dersler": [
   "gr:a2-03:t3"
@@ -147,7 +150,7 @@
     {
      "kart": "lx:Typ",
      "de": "Da ist ein Typ im Kostüm. – Wo? Ich sehe keinen.",
-     "tr": "Şurada kostümlü bir adam var. – Nerede? Hiç görmüyorum.",
+     "tr": "Şurada kostümlü bir adam var. – Nerede? Ben kimseyi görmüyorum.",
      "accepted": [
       "Da ist ein Typ im Kostüm. – Wo? Ich sehe keinen.",
       "Da ist ein Typ im Kostüm. – Wo denn? Ich sehe keinen.",
@@ -227,7 +230,7 @@
     "speaker": "ch:lechner",
     "sahne_tr": "Tobi vitrine bakıyor.",
     "de": "Grüß Gott, Frau Stadler! Haben Sie noch Krapfen?",
-    "tr": "Merhaba Stadler Hanım! Hâlâ Krapfen var mı?"
+    "tr": "Merhaba Frau Stadler! Hâlâ Krapfen var mı?"
    },
    {
     "id": "s3",
@@ -468,7 +471,7 @@
     "cevapla": {
      "id": "m1:73:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Gerti sana ekmek isteyip istemediğini soruyor. Evde hâlâ bir ekmeğin var. Kibarca hayır de.",
+     "situation_tr": "Ertesi sabah yine fırındasın. Gerti sana ekmek isteyip istemediğini soruyor. Evde hâlâ bir ekmeğin var. Kibarca hayır de.",
      "prompt_de": "Möchten Sie auch ein Brot?",
      "accepted": [
       "Nein, danke. Ich habe noch eins.",
@@ -661,7 +664,7 @@
        "Guten Tag, ich möchte einen Pullover umtauschen. Der Kassenbon ist da.",
        "Hallo, ich möchte einen Pullover umtauschen. Ich habe den Kassenbon dabei."
       ],
-      "why_tr": "**umtauschen** cümlenin sonunda: **Ich möchte … umtauschen.**"
+      "why_tr": "**umtauschen** cümlenin sonunda: **Ich möchte einen Pullover umtauschen.**"
      }
     }
    ],
@@ -705,7 +708,7 @@
     {
      "id": "c3",
      "de": "Ich kaufe am Morgen die Krapfen bei Frau Stadler.",
-     "tr": "Sabah Krapfenleri Stadler Hanım'dan alıyorum."
+     "tr": "Sabah Krapfenleri Frau Stadler'den alıyorum."
     },
     {
      "id": "c4",
@@ -869,7 +872,7 @@
      "Fırına git, Krapfen al."
     ],
     "ans": 0,
-    "why_tr": "Süt bitti; Derya senden süt istiyor. Krapfenleri o alıyor.",
+    "why_tr": "Süt bitti. Derya senden süt istiyor. Krapfenleri o alıyor.",
     "kanit": [
      "c3",
      "c4"
@@ -1082,7 +1085,7 @@
       ],
       "sonraki": "n3",
       "uygun": false,
-      "geri_bildirim_tr": "**der Pullover** eril: **einen** dersin, **eins** değil."
+      "geri_bildirim_tr": "**der Pullover** için **einen** dersin, **eins** değil."
      }
     ]
    },
@@ -1232,7 +1235,7 @@
      "wir haben keine milch mehr aber noch kaffee",
      "Wir haben keine Milch mehr aber noch Kaffee"
     ],
-    "why_tr": "**keine … mehr** hiç kalmadı demek."
+    "why_tr": "**keine Milch mehr** süt hiç kalmadı demek."
    },
    {
     "id": "m1:73:s2",
@@ -1258,7 +1261,7 @@
      "eigentlich habe ich heute keine zeit",
      "Eigentlich habe ich heute keine Zeit"
     ],
-    "why_tr": "**Eigentlich** başta olunca fiil hemen gelir."
+    "why_tr": "**Eigentlich** başta olunca hemen **habe** gelir."
    },
    {
     "id": "m1:73:s4",
@@ -1307,7 +1310,7 @@
      "Ich tausche die Schuhe um, wenn sie zu klein sind.",
      "Wenn mir die Schuhe zu klein sind, tausche ich sie um."
     ],
-    "why_tr": "wenn başta: **…, tausche ich sie um**."
+    "why_tr": "wenn başta: virgülden sonra **tausche ich sie um**."
    },
    {
     "id": "m1:73:s8",
@@ -1319,7 +1322,7 @@
      "Heute bin ich eigentlich sehr müde.",
      "Eigentlich bin ich heute ganz müde."
     ],
-    "why_tr": "**Eigentlich** başta olunca fiil hemen gelir: **Eigentlich bin ich**."
+    "why_tr": "**Eigentlich** başta olunca hemen **bin** gelir: **Eigentlich bin ich**."
    },
    {
     "id": "m1:73:s9",
@@ -1350,7 +1353,7 @@
      "Ja, im Schrank sind welche.",
      "Ja, im Schrank sind noch Tassen."
     ],
-    "why_tr": "Çoğulda **welche** dersin: **Da sind noch welche.**"
+    "why_tr": "Birden çok şey için **welche** dersin: **Da sind noch welche.**"
    },
    {
     "id": "m1:73:s11",

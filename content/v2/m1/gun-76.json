@@ -4,7 +4,7 @@
  "day": 76,
  "level": "A2",
  "format": "gun",
- "title_tr": "Fırında ve kafede sipariş vermek",
+ "title_tr": "Fırında sıra ve sipariş",
  "goal_tr": "Fırın kuyruğunda sıranın kimde olduğunu sorar, Gerti sormadan siparişini söyler, üstü kalsın dersin.",
  "can_do": {
   "id": "cd:m1:76",
@@ -26,7 +26,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic9/dilbilimci-h11.md; dilbilimci ONAY. okur (OD-9) bekliyor."
  },
  "dersler": [],
  "yeni_kartlar": [
@@ -106,12 +109,12 @@
     },
     {
      "kart": "lx:Geschichte",
-     "de": "Mein Fach in der Schule war Geschichte.",
-     "tr": "Okulda benim dersim tarihti.",
+     "de": "Das Fach Geschichte war in der Schule schwer.",
+     "tr": "Okulda tarih dersi zordu.",
      "accepted": [
-      "Mein Fach in der Schule war Geschichte.",
-      "In der Schule war mein Fach Geschichte.",
-      "Mein Fach war in der Schule Geschichte."
+      "Das Fach Geschichte war in der Schule schwer.",
+      "In der Schule war das Fach Geschichte schwer.",
+      "Das Fach Geschichte war schwer in der Schule."
      ]
     },
     {
@@ -220,7 +223,7 @@
     "speaker": "ch:stadler",
     "sahne_tr": "Cumartesi sabahı, fırın dolu. Gerti tezgâhın arkasında.",
     "de": "Grüß Gott, Frau Brandl! Sie sind dran.",
-    "tr": "Merhaba Brandl Hanım! Sıra sizde."
+    "tr": "Merhaba Frau Brandl! Sıra sizde."
    },
    {
     "id": "s2",
@@ -254,15 +257,15 @@
     "id": "s6",
     "speaker": "ch:brandl",
     "sahne_tr": "Frau Brandl'ın gözleri parlıyor.",
-    "de": "Das Abitur! Da habe ich auch eine Geschichte …",
-    "tr": "Abitur! Benim de bununla ilgili bir hikâyem var…"
+    "de": "Das Abitur! Ich habe eine Geschichte für Jonas …",
+    "tr": "Abitur! Jonas'a anlatacak bir hikâyem var…"
    },
    {
     "id": "s7",
     "speaker": "ch:stadler",
     "sahne_tr": "Gerti gülüyor.",
     "de": "Frau Brandl, Ihre Geschichten sind immer lang!",
-    "tr": "Brandl Hanım, sizin hikâyeleriniz hep uzun!"
+    "tr": "Frau Brandl, sizin hikâyeleriniz hep uzun!"
    },
    {
     "id": "s8",
@@ -297,7 +300,7 @@
     "speaker": "ch:stadler",
     "sahne_tr": "Gerti kasaya yazıyor.",
     "de": "Das macht drei Euro zwanzig, Frau Brandl.",
-    "tr": "Üç avro yirmi ediyor, Brandl Hanım."
+    "tr": "Üç avro yirmi ediyor, Frau Brandl."
    },
    {
     "id": "s13",
@@ -709,8 +712,8 @@
     },
     {
      "id": "c4",
-     "de": "Dann erzähle ich Ihnen meine Geschichte vom Abitur.",
-     "tr": "O zaman size Abitur hikâyemi anlatırım."
+     "de": "Dann erzähle ich Ihnen eine lange Geschichte.",
+     "tr": "O zaman size uzun bir hikâye anlatırım."
     },
     {
      "id": "c5",
@@ -720,7 +723,7 @@
     {
      "id": "c6",
      "de": "Bis später, gell!",
-     "tr": "Sonra görüşürüz, değil mi!"
+     "tr": "Sonra görüşürüz, tamam mı!"
     }
    ],
    "bolumler": [
@@ -876,7 +879,7 @@
      "Ofise git."
     ],
     "ans": 0,
-    "why_tr": "Frau Brandl komşun; seni dörtte kahveye çağırıyor.",
+    "why_tr": "Frau Brandl komşun. Seni dörtte kahveye çağırıyor.",
     "kanit": [
      "c1",
      "c3"
@@ -1030,7 +1033,7 @@
        "Nein danke, das ist alles.",
        "Nein, danke. Das ist alles."
       ],
-      "sonraki": "n3",
+      "sonraki": "n3b",
       "uygun": true,
       "geri_bildirim_tr": "Kısa ve net."
      },
@@ -1066,7 +1069,7 @@
      },
      {
       "de": "Danke, Frau Stadler! Sie sind sehr nett.",
-      "tr": "Teşekkürler Stadler Hanım! Çok naziksiniz.",
+      "tr": "Teşekkürler Frau Stadler! Çok naziksiniz.",
       "accepted": [
        "Danke, Frau Stadler! Sie sind sehr nett.",
        "Danke, Frau Stadler, Sie sind sehr nett.",
@@ -1090,6 +1093,48 @@
     ]
    },
    {
+    "id": "n3b",
+    "de": "Gern. Und hier, eine Breze für Sie. Die schenke ich Ihnen!",
+    "tr": "Memnuniyetle. Bir de şu Breze sizin için. Benden hediye!",
+    "secenekler": [
+     {
+      "de": "Eine Breze für mich? Vielen Dank!",
+      "tr": "Bana bir Breze mi? Çok teşekkürler!",
+      "accepted": [
+       "Eine Breze für mich? Vielen Dank!",
+       "Eine Breze für mich? Danke schön!",
+       "Für mich? Vielen Dank!"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Şaşırdın ve hemen teşekkür ettin."
+     },
+     {
+      "de": "Oh, danke schön! Die esse ich gleich.",
+      "tr": "Aa, çok teşekkürler! Onu hemen yiyeceğim.",
+      "accepted": [
+       "Oh, danke schön! Die esse ich gleich.",
+       "Danke schön! Die esse ich gleich.",
+       "Oh, danke! Die esse ich gleich."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Sıcak bir teşekkür. Gerti çok sevindi."
+     },
+     {
+      "de": "Nein.",
+      "tr": "Hayır.",
+      "accepted": [
+       "Nein.",
+       "Nein, nein."
+      ],
+      "sonraki": "n3b",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu bir hediye! Teşekkür et: **Vielen Dank!**"
+     }
+    ]
+   },
+   {
     "id": "n4",
     "de": "Gern! Das macht zwei Euro achtzig.",
     "tr": "Rica ederim! İki seksen ediyor.",
@@ -1104,7 +1149,7 @@
       ],
       "sonraki": "n5",
       "uygun": true,
-      "geri_bildirim_tr": "Çok iyi. Fırında küçük bahşiş de olur."
+      "geri_bildirim_tr": "Çok iyi. Fırında bahşiş şart değil ama hoş karşılanır."
      },
      {
       "de": "Hier sind drei Euro, bitte.",
@@ -1343,7 +1388,7 @@
    {
     "id": "m1:76:s9",
     "k": "guided_response",
-    "situation_tr": "Gerti soruyor. Sıra sende; bir ekmek istiyorsun.",
+    "situation_tr": "Gerti soruyor. Sıra sende. Bir ekmek istiyorsun.",
     "prompt_de": "Wer ist dran?",
     "accepted": [
      "Ich bin dran. Ein Brot, bitte.",

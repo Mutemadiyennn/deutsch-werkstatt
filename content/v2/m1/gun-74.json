@@ -5,7 +5,7 @@
  "level": "A2",
  "format": "gun",
  "title_tr": "Daha kibar istemek: Ich würde gern … / Ich hätte gern …",
- "goal_tr": "Kafede ve ofiste kibarca istersin; bir şey için hätte gern, bir eylem için würde gern dersin.",
+ "goal_tr": "Kafede ve ofiste kibarca istersin. Bir şey için hätte gern, bir şey yapmak için würde gern dersin.",
  "can_do": {
   "id": "cd:m1:74",
   "tr": "Kafede kibarca sipariş verir, bir şeyi rica ederim."
@@ -27,7 +27,10 @@
   "akicilik": []
  },
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic9/dilbilimci-h11.md; dilbilimci ONAY. okur (OD-9) bekliyor."
  },
  "dersler": [
   "gr:a2-03:t4"
@@ -95,7 +98,7 @@
     {
      "kart": "lx:tragen",
      "de": "Würden Sie heute auch ein Kostüm tragen, Herr Wimmer?",
-     "tr": "Siz de bugün kostüm giyer misiniz Wimmer Bey?",
+     "tr": "Siz de bugün kostüm giyer misiniz Herr Wimmer?",
      "accepted": [
       "Würden Sie heute auch ein Kostüm tragen, Herr Wimmer?",
       "Würden Sie heute auch ein Kostüm tragen?",
@@ -300,7 +303,7 @@
     "speaker": "ch:lechner",
     "sahne_tr": "Tobi'nin ağzı açık kalıyor.",
     "de": "Herr Wimmer?! Sie tragen ein Kostüm?",
-    "tr": "Wimmer Bey?! Kostüm mü giyiyorsunuz?"
+    "tr": "Herr Wimmer?! Kostüm mü giyiyorsunuz?"
    },
    {
     "id": "s8",
@@ -321,7 +324,7 @@
     "speaker": "ch:wimmer",
     "sahne_tr": "Herr Wimmer tepsiye bakıyor.",
     "de": "Danke. Frau Aksoy, ich hätte gern einen Krapfen und einen Kaffee.",
-    "tr": "Teşekkürler. Aksoy Hanım, bir Krapfen ve bir kahve rica ediyorum."
+    "tr": "Teşekkürler. Frau Aksoy, bir Krapfen ve bir kahve rica ediyorum."
    },
    {
     "id": "s11",
@@ -391,7 +394,7 @@
      "kind": "gist",
      "q_tr": "Bu sahnede ne oluyor?",
      "opts": [
-      "Ofiste kutlama var; Herr Wimmer de kostümle geliyor",
+      "Ofiste kutlama var, Herr Wimmer de kostümle geliyor",
       "Herr Wimmer hasta, gelmiyor",
       "Toplantı iptal oluyor"
      ],
@@ -487,12 +490,12 @@
      },
      {
       "id": "d4",
-      "cumle": "s11",
+      "cumle": "s2",
       "seviye": "usta",
       "accepted": [
-       "Würden Sie die Tasse bitte selbst nehmen?",
-       "würden sie die tasse bitte selbst nehmen",
-       "Würden Sie die Tasse bitte selbst nehmen"
+       "Ich hätte gern zwei Krapfen, bitte!",
+       "ich hätte gern zwei krapfen bitte",
+       "Ich hätte gern zwei Krapfen bitte"
       ]
      },
      {
@@ -523,7 +526,7 @@
       "Für mich bitte einen Krapfen und einen Kaffee.",
       "Ich hätte gern auch einen Krapfen und einen Kaffee."
      ],
-     "why_tr": "Bir şey isterken **Ich hätte gern …** dersin."
+     "why_tr": "Bir şey isterken böyle dersin: **Ich hätte gern einen Krapfen.**"
     }
    }
   ]
@@ -707,7 +710,7 @@
        "Am Sonntag gibt es keine Parkplätze. Ich würde mit dem Bus fahren.",
        "Ich würde den Bus nehmen, es gibt keine Parkplätze."
       ],
-      "why_tr": "Öneriyi **Ich würde lieber …** ile yumuşatırsın."
+      "why_tr": "Öneriyi böyle yumuşatırsın: **Ich würde lieber mit dem Bus fahren.**"
      }
     }
    ],
@@ -872,9 +875,9 @@
        "cumle": "c6",
        "seviye": "usta",
        "accepted": [
-        "Ich würde gern mit dir Krapfen essen.",
-        "ich würde gern mit dir krapfen essen",
-        "Ich würde gern mit dir Krapfen essen"
+        "Ich würde gern mit dir Krapfen essen. Bis Sonntag!",
+        "ich würde gern mit dir krapfen essen bis sonntag",
+        "Ich würde gern mit dir Krapfen essen. Bis Sonntag"
        ]
       },
       {
@@ -1105,20 +1108,20 @@
    },
    {
     "id": "n3",
-    "de": "Krapfen haben wir leider keine mehr. Möchten Sie einen Kuchen?",
-    "tr": "Krapfen maalesef kalmadı. Kek ister misiniz?",
+    "de": "Krapfen haben wir leider keine mehr. Möchten Sie ein Stück Kuchen?",
+    "tr": "Krapfen maalesef kalmadı. Bir dilim kek ister misiniz?",
     "secenekler": [
      {
-      "de": "Ja, gern. Dann nehme ich einen.",
+      "de": "Ja, gern. Dann nehme ich eins.",
       "tr": "Evet, memnuniyetle. O zaman bir tane alayım.",
       "accepted": [
-       "Ja, gern. Dann nehme ich einen.",
-       "Ja, gern, dann nehme ich einen.",
-       "Ja, dann nehme ich einen Kuchen."
+       "Ja, gern. Dann nehme ich eins.",
+       "Ja, gern, dann nehme ich eins.",
+       "Ja, dann nehme ich ein Stück Kuchen."
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Güzel. **der Kuchen** yerine **einen** dedin."
+      "geri_bildirim_tr": "Güzel. **ein Stück** yerine kısaca **eins** dedin."
      },
      {
       "de": "Nein, danke. Dann nur den Kaffee, bitte.",
@@ -1133,16 +1136,16 @@
       "geri_bildirim_tr": "Net ve kibar."
      },
      {
-      "de": "Ja, ich möchte keinen.",
+      "de": "Ja, ich möchte keins.",
       "tr": "Evet, hiç istemiyorum.",
       "accepted": [
-       "Ja, ich möchte keinen.",
-       "Ja, keinen.",
-       "Ja, ich will keinen."
+       "Ja, ich möchte keins.",
+       "Ja, keins.",
+       "Ja, ich will keins."
       ],
       "sonraki": "n3",
       "uygun": false,
-      "geri_bildirim_tr": "**Ja** ile **keinen** çelişiyor. **Ja, gern** ya da **Nein, danke** de."
+      "geri_bildirim_tr": "**Ja** ile **keins** çelişiyor. **Ja, gern** ya da **Nein, danke** de."
      }
     ]
    },
@@ -1184,7 +1187,7 @@
       ],
       "sonraki": "n4",
       "uygun": false,
-      "geri_bildirim_tr": "İkisini birden kullanma. **Ja, mit Milch, bitte.** yeter."
+      "geri_bildirim_tr": "**hätte** ile **würde** birlikte olmaz. **Ja, mit Milch, bitte.** yeter."
      }
     ]
    },
@@ -1195,7 +1198,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Kibarca masa istedin, hätte gern ile sipariş verdin ve Krapfen kalmayınca başka bir şey seçtin."
+  "kapanis_tr": "Kibarca masa istedin ve hätte gern ile sipariş verdin. Krapfen kalmayınca başka bir şey seçtin."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1341,7 +1344,7 @@
      "Ich hätte gern einen Kaffee, bitte.",
      "Einen Kaffee, bitte."
     ],
-    "why_tr": "Bir şey isterken **Ich hätte gern …**"
+    "why_tr": "Bir şey isterken: **Ich hätte gern einen Kaffee.**"
    },
    {
     "id": "m1:74:s6",
@@ -1365,7 +1368,7 @@
      "Könnten Sie mir bitte helfen?",
      "Würden Sie mir bitte kurz helfen?"
     ],
-    "why_tr": "Rica ederken **Würden Sie …?** ile başlarsın."
+    "why_tr": "Rica ederken **Würden Sie** ile başlarsın: **Würden Sie mir bitte helfen?**"
    },
    {
     "id": "m1:74:s8",
