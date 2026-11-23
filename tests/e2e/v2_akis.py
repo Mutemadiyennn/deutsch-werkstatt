@@ -33,6 +33,8 @@ def adim_gec(pg, yanlis=False):
     """Şimdiki adımı geçer; yanlis=True ise 'Bilmiyorum' yolu (varsa). Dönen: adım türü"""
     tur = pg.get_attribute("[data-test=akis]", "data-tur")
     if pg.locator("[data-test=akis-durak-gec]").count(): pg.click("[data-test=akis-durak-gec]"); pg.wait_for_timeout(250); return tur
+    # mikrofonlu tarayıcıda (yerel Chromium: konuşma tanıma var) üretim adımı büyük mikrofonla açılır: yazarak yola geç
+    if pg.locator("[data-test=akis-yazarak]").count(): pg.click("[data-test=akis-yazarak]"); pg.wait_for_timeout(100)
     if yanlis and pg.locator("[data-test=akis-bilmiyorum]").count():
         pg.click("[data-test=akis-bilmiyorum]"); pg.click("[data-test=akis-devam]")
     elif pg.locator("[data-test=akis-bilmiyorum]").count():
