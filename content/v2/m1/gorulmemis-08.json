@@ -1,0 +1,74 @@
+{
+  "id": "m1:gorulmemis:08",
+  "hafta": 8,
+  "durumlar": [
+    {
+      "id": "m1:h08:g1",
+      "can_do": "cd:m1:hafta08",
+      "durum_tr": "Cumartesi akşamı dört kişi için göl kenarındaki bir restoranda masa ayırtmak istiyorsun. Restoranı arıyorsun, telefonu bir garson açıyor.",
+      "karsi": "ein Kellner",
+      "yer": "telefon: göl kenarında bir restoran",
+      "prompt_de": "Restaurant am See, guten Abend!",
+      "accepted": [
+        "Guten Abend! Ich möchte für Samstag einen Tisch für vier Personen reservieren.",
+        "Guten Abend, hier ist {name}. Ich möchte am Samstag einen Tisch für vier Personen reservieren.",
+        "Guten Abend! Ich möchte einen Tisch für vier Personen reservieren. Am Samstag um sieben Uhr.",
+        "Guten Abend! Haben Sie am Samstag einen Tisch für vier Personen frei?",
+        "Guten Abend. Kann ich für Samstag einen Tisch für vier Personen reservieren?"
+      ],
+      "kalip": "Ich möchte … reservieren.",
+      "why_tr": "Masa ayırtırken **Ich möchte einen Tisch für vier Personen reservieren** dersin ve günü eklersin."
+    },
+    {
+      "id": "m1:h08:g2",
+      "can_do": "cd:m1:hafta08",
+      "durum_tr": "Süpermarkettesin. Süt arıyorsun ama bulamıyorsun. Bir çalışan yanına geliyor.",
+      "karsi": "eine Verkäuferin",
+      "yer": "süpermarket",
+      "prompt_de": "Kann ich Ihnen helfen?",
+      "accepted": [
+        "Ja, bitte. Wo ist die Milch?",
+        "Entschuldigung, wo ist die Milch?",
+        "Ja, bitte. Wo ist hier die Milch?",
+        "Wo ist die Milch, bitte?",
+        "Ja, danke. Haben Sie Milch? Wo ist sie?"
+      ],
+      "kalip": "Wo ist …?",
+      "why_tr": "Bir ürünün yerini **Wo ist die Milch?** diye sorarsın."
+    },
+    {
+      "id": "m1:h08:g3",
+      "can_do": "cd:m1:hafta08",
+      "durum_tr": "Bir arkadaşının partisindesin. Tanımadığın bir kadın yanına gelip kendini tanıtıyor. Sen de kendini tanıt.",
+      "karsi": "eine Frau auf der Party",
+      "yer": "bir arkadaşın evinde parti",
+      "prompt_de": "Hallo! Ich bin Lena. Und wer bist du?",
+      "accepted": [
+        "Hallo, Lena! Ich bin {name}. Freut mich!",
+        "Hallo! Ich heiße {name}. Freut mich!",
+        "Ich bin {name}. Freut mich, Lena!",
+        "Hallo, ich bin {name}. Ich wohne hier in Wendlfing.",
+        "Freut mich! Ich heiße {name}. Woher kommst du?"
+      ],
+      "kalip": "Ich bin … – Ich heiße …",
+      "why_tr": "Tanışırken önce **Ich bin** ile adını söyler, sonra **Freut mich!** dersin."
+    },
+    {
+      "id": "m1:h08:g4",
+      "can_do": "cd:m1:hafta08",
+      "durum_tr": "Spor salonundasın. Antrenmanı yarıda bırakıp oturdun. Basti yanına gelip ne olduğunu soruyor. Sırtının ağrıdığını söyle.",
+      "karsi": "ch:kraus",
+      "yer": "pl:fitness",
+      "prompt_de": "Alles okay? Was ist los?",
+      "accepted": [
+        "Ich habe Schmerzen im Rücken.",
+        "Nein, ich habe Schmerzen im Rücken.",
+        "Nicht so gut. Ich habe Schmerzen im Rücken.",
+        "Ich habe seit gestern Schmerzen im Rücken.",
+        "Nein. Ich habe Schmerzen im Rücken. Das ist schlimm."
+      ],
+      "kalip": "Ich habe Schmerzen im …",
+      "why_tr": "Sırtın ağrıyorsa **Ich habe Schmerzen im Rücken** dersin."
+    }
+  ]
+}

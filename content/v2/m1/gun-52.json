@@ -1,0 +1,319 @@
+{
+  "schema": 1,
+  "id": "m1:gun:52",
+  "day": 52,
+  "level": "A1",
+  "format": "gun",
+  "title_tr": "Pekiştirme: mahallede konuşmak",
+  "goal_tr": "Mahallede hafta sonu planını konuşur, yanında nakit olmadığını söyler ve bir çözüm sorarsın.",
+  "can_do": { "id": "cd:m1:52", "tr": "Mahallede hafta sonu planımı anlatır, nakit param yoksa çözüm sorarım." },
+  "unit": "u:m1:52",
+  "arm": "pazar",
+  "place": "pl:friseur",
+  "characters": ["ch:petrovic", "ch:kraus", "ch:stadler", "ch:brandl", "ch:pichler"],
+  "requires": { "kelimeler": [], "kaliplar": [], "gramer": [], "tur": [], "baglayicilar": [], "akicilik": [] },
+  "review": { "status": "draft" },
+  "dersler": [],
+  "yeni_kartlar": ["lx:Mannschaft", "lx:Bargeld", "lx:wandern"],
+  "halkalar": [
+    {
+      "id": "m1:52:h1",
+      "title_tr": "Takım, nakit para ve doğa yürüyüşü",
+      "kartlar": ["lx:Mannschaft", "lx:Bargeld", "lx:wandern"],
+      "kaliplar": [
+        { "de": "Die Mannschaft spielt … – Meine Mannschaft spielt …", "tr": "Takım … oynuyor. – Takımım … oynuyor." },
+        { "de": "Ich hole …", "tr": "… gidip alırım." },
+        { "de": "Bei mir nur …", "tr": "Bende sadece …" }
+      ],
+      "gorev_cumleleri": [
+        { "kart": "lx:Mannschaft", "de": "Die Mannschaft spielt am Samstag.", "tr": "Takım cumartesi oynuyor.",
+          "accepted": ["Die Mannschaft spielt am Samstag.", "Am Samstag spielt die Mannschaft.", "Die Mannschaft spielt Samstag."] },
+        { "kart": "lx:Mannschaft", "de": "Ist das deine Mannschaft?", "tr": "Bu senin takımın mı?",
+          "accepted": ["Ist das deine Mannschaft?", "Das ist deine Mannschaft?", "Ist das hier deine Mannschaft?"] },
+        { "kart": "lx:Bargeld", "de": "Haben Sie Bargeld?", "tr": "Nakit paranız var mı?",
+          "accepted": ["Haben Sie Bargeld?", "Haben Sie Bargeld dabei?", "Haben Sie auch Bargeld?"] },
+        { "kart": "lx:Bargeld", "de": "Ich hole schnell Bargeld.", "tr": "Hemen gidip nakit para alıyorum.",
+          "accepted": ["Ich hole schnell Bargeld.", "Ich hole schnell Geld.", "Ich hole kurz Bargeld."] },
+        { "kart": "lx:Bargeld", "de": "Ich habe zehn Euro Bargeld.", "tr": "Bende on avro nakit var.",
+          "accepted": ["Ich habe zehn Euro Bargeld.", "Ich habe 10 Euro Bargeld.", "Ich habe zehn Euro in bar."] },
+        { "kart": "lx:wandern", "de": "Wir wandern zum See.", "tr": "Göle kadar yürüyoruz.",
+          "accepted": ["Wir wandern zum See.", "Wir wandern an den See.", "Wir wandern bis zum See."] },
+        { "kart": "lx:wandern", "de": "Am Wochenende möchte ich wandern.", "tr": "Hafta sonu doğa yürüyüşü yapmak istiyorum.",
+          "accepted": ["Am Wochenende möchte ich wandern.", "Ich möchte am Wochenende wandern.", "Am Wochenende möchte ich wandern gehen."] }
+      ],
+      "sahne": {
+        "ortam_tr": "Stadler fırını, sabah. Ekmeğini aldın, ödeme sırası.",
+        "satirlar": [
+          { "r": "ch:stadler", "de": "Mit Karte oder bar?", "tr": "Kartla mı, nakit mi?" },
+          { "r": "ogrenci", "de": "Mit Karte, bitte. Ich habe kein Bargeld.", "tr": "Kartla, lütfen. Yanımda nakit yok." },
+          { "r": "ch:stadler", "de": "Kein Problem. Karte geht auch.", "tr": "Sorun değil. Kart da olur." }
+        ],
+        "soru": { "q_tr": "Nasıl ödüyorsun?", "opts": ["Kartla", "Nakit", "Ödemiyorsun"], "ans": 0 }
+      }
+    }
+  ],
+  "sahne": {
+    "id": "m1:52:v1",
+    "title_tr": "Kuaförde nakit sorunu",
+    "sahneler": [
+      { "id": "s1", "speaker": "ch:petrovic", "sahne_tr": "Cumartesi sabahı Salon Haarwerk. Luka makasını alıyor, Basti spor çantasıyla içeri giriyor.", "de": "Hallo, Basti! Wie immer?", "tr": "Merhaba Basti! Her zamanki gibi mi?" },
+      { "id": "s2", "speaker": "ch:kraus", "sahne_tr": "Basti koltuğa oturuyor, saatine bakıyor.", "de": "Ja, wie immer. Aber schnell, bitte!", "tr": "Evet, her zamanki gibi. Ama çabuk, lütfen!" },
+      { "id": "s3", "speaker": "ch:petrovic", "sahne_tr": "Luka aynadan Basti'ye bakıp gülümsüyor.", "de": "Warum schnell? Hast du heute etwas vor?", "tr": "Neden çabuk? Bugün bir planın mı var?" },
+      { "id": "s4", "speaker": "ch:kraus", "sahne_tr": "Basti çantasındaki formayı gösteriyor.", "de": "Ja! Meine Mannschaft spielt heute.", "tr": "Evet! Takımım bugün oynuyor." },
+      { "id": "s5", "speaker": "ch:petrovic", "sahne_tr": "Luka makası havada tutuyor.", "de": "Super! Und um wie viel Uhr?", "tr": "Süper! Saat kaçta?" },
+      { "id": "s6", "speaker": "ch:kraus", "sahne_tr": "Basti üç parmağını kaldırıyor.", "de": "Hier in Wendlfing, um drei Uhr.", "tr": "Burada, Wendlfing'de, saat üçte." },
+      { "id": "s7", "speaker": "ch:petrovic", "sahne_tr": "Luka saçları keserken başını sallıyor.", "de": "Ich komme mit! Heute habe ich Zeit.", "tr": "Ben de geliyorum! Bugün vaktim var." },
+      { "id": "s8", "speaker": "ch:petrovic", "sahne_tr": "Luka duvardaki dağ fotoğrafını gösteriyor.", "de": "Und morgen gehe ich wandern.", "tr": "Yarın da doğa yürüyüşüne gidiyorum." },
+      { "id": "s9", "speaker": "ch:petrovic", "sahne_tr": "Luka aynayı Basti'nin arkasına tutuyor, iş bitti.", "de": "So, fertig! Das macht zwanzig Euro.", "tr": "Tamam, bitti! Yirmi avro." },
+      { "id": "s10", "speaker": "ch:kraus", "sahne_tr": "Basti cebinden kartını çıkarıyor.", "de": "Geht auch Karte?", "tr": "Kart da olur mu?" },
+      { "id": "s11", "speaker": "ch:petrovic", "sahne_tr": "Luka kasanın üstündeki küçük yazıyı gösteriyor.", "de": "Nein, bei mir nur Bargeld.", "tr": "Hayır, bende sadece nakit." },
+      { "id": "s12", "speaker": "ch:kraus", "sahne_tr": "Basti cüzdanını açıyor: boş.", "de": "Ach nein! Ich habe kein Bargeld.", "tr": "Eyvah! Yanımda nakit yok." },
+      { "id": "s13", "speaker": "ch:petrovic", "sahne_tr": "Luka elini sallıyor, hiç dert etmiyor.", "de": "Kein Problem. Du kannst morgen zahlen.", "tr": "Sorun değil. Yarın ödersin." },
+      { "id": "s14", "speaker": "ch:kraus", "sahne_tr": "Basti rahatlıyor, Luka'nın elini sıkıyor.", "de": "Danke, Luka! Bis morgen!", "tr": "Sağ ol Luka! Yarın görüşürüz!" },
+      { "id": "s15", "speaker": "ch:petrovic", "sahne_tr": "Luka kapıda el sallıyor.", "de": "Und viel Glück für die Mannschaft!", "tr": "Takıma da bol şans!" }
+    ],
+    "bolumler": [
+      {
+        "id": "b1",
+        "cumleler": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"],
+        "ana_fikir": { "kind": "gist", "q_tr": "Basti neden acele ediyor?", "opts": ["Takımının bugün maçı var", "Doktora gidiyor", "İşe geç kaldı"], "ans": 0, "kanit": ["s4"] },
+        "ayrinti": [
+          { "kind": "detail", "q_tr": "Maç saat kaçta?", "opts": ["Üçte", "İkide", "On üçte"], "ans": 0, "kanit": ["s6"] },
+          { "kind": "detail", "q_tr": "Basti neden şimdi ödeyemiyor?", "opts": ["Luka nakit istiyor, Basti'de nakit yok", "Kartı bozuk", "Luka para istemiyor"], "ans": 0, "kanit": ["s11", "s12"] },
+          { "kind": "detail", "q_tr": "Luka yarın ne yapıyor?", "opts": ["Doğa yürüyüşüne gidiyor", "Maça gidiyor", "Çalışıyor"], "ans": 0, "kanit": ["s8"] }
+        ],
+        "dikte": [
+          { "id": "d1", "cumle": "s6", "seviye": "kolay", "q_tr": "Hangi sayıyı duydun?", "opts": ["zwei", "drei", "dreizehn"], "ans": 1 },
+          { "id": "d2", "cumle": "s12", "seviye": "orta", "de": "Ach nein! Ich habe kein ___.", "accepted": ["Bargeld", "bargeld", "Bargeld."] },
+          { "id": "d3", "cumle": "s13", "seviye": "zor", "banka": ["Du", "kannst", "morgen", "zahlen", "heute", "kaufen"], "accepted": ["Du kannst morgen zahlen.", "du kannst morgen zahlen", "Du kannst morgen zahlen"] },
+          { "id": "d4", "cumle": "s3", "seviye": "usta", "accepted": ["Hast du heute etwas vor?", "hast du heute etwas vor", "Hast du heute etwas vor"] },
+          { "id": "d5", "seviye": "gercek", "gorev_tr": "Kuaförde ne oldu? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Basti hat kein Bargeld. Er kann morgen zahlen.", "zorunlu": ["Bargeld", "morgen"] }
+        ],
+        "golge": ["s12", "s13"],
+        "cevapla": {
+          "id": "m1:52:v1:c1",
+          "k": "guided_response",
+          "situation_tr": "Sen de Luka'dasın, saçın kesildi. Luka nakit istiyor. Sende nakit var.",
+          "prompt_de": "Das macht zwanzig Euro. Nur Bargeld, bitte.",
+          "accepted": ["Kein Problem, ich habe Bargeld.", "Okay, ich habe Bargeld. Hier, bitte.", "Kein Problem. Hier sind zwanzig Euro.", "Ja, ich habe Bargeld.", "Hier, bitte. Zwanzig Euro.", "Kein Problem, hier, bitte."],
+          "why_tr": "Nakdin varsa **Ich habe Bargeld** dersin."
+        }
+      }
+    ]
+  },
+  "sesler": [
+    {
+      "id": "m1:52:a1",
+      "tur": "anons",
+      "title_tr": "Meydanda maç duyurusu",
+      "ortam_tr": "Cuma akşamı Stadtplatz'tan geçiyorsun. Hoparlörden bir duyuru geliyor.",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Am Samstag um drei Uhr spielt die Mannschaft aus Wendlfing.", "tr": "Cumartesi saat üçte Wendlfing takımı oynuyor." },
+        { "id": "c2", "de": "Die Karte kostet fünf Euro.", "tr": "Bilet beş avro." },
+        { "id": "c3", "de": "Kinder zahlen nichts.", "tr": "Çocuklar ödemiyor." },
+        { "id": "c4", "de": "Bitte bringen Sie Bargeld mit.", "tr": "Lütfen yanınızda nakit para getirin." },
+        { "id": "c5", "de": "Am Stand gibt es Bratwurst und Bier.", "tr": "Tezgâhta ızgara sosis ve bira var." }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Duyuru ne hakkında?", "opts": ["Cumartesi bir maç", "Cumartesi bir pazar", "Cumartesi bir konser"], "ans": 0, "kanit": ["c1"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Bilet kaç avro?", "opts": ["5", "15", "50"], "ans": 0, "kanit": ["c2"] },
+            { "kind": "detail", "q_tr": "Neyle ödemelisin?", "opts": ["Nakit", "Kartla", "Fark etmez"], "ans": 0, "kanit": ["c4"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c2", "seviye": "kolay", "q_tr": "Hangi sayıyı duydun?", "opts": ["fünfzehn", "fünf", "fünfzig"], "ans": 1 },
+            { "id": "d2", "cumle": "c4", "seviye": "orta", "de": "Bitte bringen Sie ___ mit.", "accepted": ["Bargeld", "bargeld", "Bargeld."] },
+            { "id": "d3", "cumle": "c3", "seviye": "zor", "banka": ["Kinder", "zahlen", "nichts", "viel", "Kind"], "accepted": ["Kinder zahlen nichts.", "kinder zahlen nichts", "Kinder zahlen nichts"] },
+            { "id": "d4", "cumle": "c1", "seviye": "usta", "accepted": ["Am Samstag um drei Uhr spielt die Mannschaft aus Wendlfing.", "am samstag um drei uhr spielt die mannschaft aus wendlfing", "Am Samstag um drei Uhr spielt die Mannschaft aus Wendlfing"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Duyuruda ne dendi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Die Mannschaft spielt am Samstag um drei. Die Karte kostet fünf Euro.", "zorunlu": ["Mannschaft", "fünf"] }
+          ],
+          "golge": ["c3", "c4"],
+          "cevapla": {
+            "id": "m1:52:a1:c1",
+            "k": "guided_response",
+            "situation_tr": "Komşun duyuruyu kaçırmış. Maçın gününü ve saatini söyle.",
+            "prompt_de": "Wann spielt die Mannschaft?",
+            "accepted": ["Am Samstag um drei Uhr.", "Die Mannschaft spielt am Samstag um drei Uhr.", "Am Samstag um drei.", "Samstag um drei Uhr.", "Am Samstag, um drei Uhr.", "Sie spielt am Samstag um drei."],
+            "why_tr": "Önce günü, sonra saati söyle: **am Samstag um drei Uhr**."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:52:a1:e1", "k": "pick", "q_tr": "Maça gitmek istiyorsun ama cüzdanında hiç para yok. Ne yapmalısın?", "opts": ["Önce nakit para çek.", "Sadece kartını götür.", "Hiçbir şey yapma, bilet bedava."], "ans": 0, "why_tr": "Duyuruya göre nakit para getirmen gerekiyor.", "kanit": ["c4"] }
+    },
+    {
+      "id": "m1:52:a2",
+      "tur": "sesli-mesaj",
+      "title_tr": "Frau Brandl'dan sesli mesaj",
+      "ortam_tr": "Salı sabahı işe gidiyorsun. Alt kattaki komşun Frau Brandl mesaj bırakmış.",
+      "speaker": "ch:brandl",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Hallo, hier ist Rosa Brandl.", "tr": "Merhaba, ben Rosa Brandl." },
+        { "id": "c2", "de": "Der Teppich ist da!", "tr": "Halı geldi!" },
+        { "id": "c3", "de": "Aber der Mann will Bargeld, und ich habe zehn Euro.", "tr": "Ama adam nakit istiyor, bende de on avro var." },
+        { "id": "c4", "de": "Können Sie mir bitte zwanzig Euro leihen?", "tr": "Bana yirmi avro ödünç verebilir misiniz lütfen?" },
+        { "id": "c5", "de": "Ich bin an der Tür. Danke!", "tr": "Kapıdayım. Teşekkürler!" }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Frau Brandl ne istiyor?", "opts": ["Ona nakit para ödünç vermeni", "Halıyı taşımanı", "Satıcıyı aramanı"], "ans": 0, "kanit": ["c4"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Frau Brandl'da ne kadar nakit var?", "opts": ["10 avro", "20 avro", "Hiç yok"], "ans": 0, "kanit": ["c3"] },
+            { "kind": "detail", "q_tr": "Ne kadar ödünç istiyor?", "opts": ["20 avro", "10 avro", "30 avro"], "ans": 0, "kanit": ["c4"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c4", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["leihen", "zahlen", "holen"], "ans": 0 },
+            { "id": "d2", "cumle": "c2", "seviye": "orta", "de": "Der ___ ist da!", "accepted": ["Teppich", "teppich", "Teppich."] },
+            { "id": "d3", "cumle": "c5", "seviye": "zor", "banka": ["Ich", "bin", "an", "der", "Tür", "im", "Haus"], "accepted": ["Ich bin an der Tür.", "ich bin an der tür", "Ich bin an der Tür"] },
+            { "id": "d4", "cumle": "c4", "seviye": "usta", "accepted": ["Können Sie mir bitte zwanzig Euro leihen?", "können sie mir bitte zwanzig euro leihen", "Können Sie mir bitte zwanzig Euro leihen"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Frau Brandl ne dedi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Der Teppich ist da. Frau Brandl möchte zwanzig Euro leihen.", "zorunlu": ["Teppich", "zwanzig"] }
+          ],
+          "golge": ["c2", "c4"],
+          "cevapla": {
+            "id": "m1:52:a2:c1",
+            "k": "guided_response",
+            "situation_tr": "Frau Brandl'ın kapısındasın. Parayı verirken söyle.",
+            "prompt_de": "Ach, da sind Sie ja!",
+            "accepted": ["Hier sind zwanzig Euro, Frau Brandl.", "Hallo, Frau Brandl! Hier sind zwanzig Euro.", "Hier, bitte. Zwanzig Euro.", "Bitte, Frau Brandl, zwanzig Euro.", "Hier sind zwanzig Euro Bargeld.", "Kein Problem, hier sind zwanzig Euro."],
+            "why_tr": "Parayı uzatırken **Hier sind zwanzig Euro** dersin."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:52:a2:e1", "k": "pick", "q_tr": "Ne yapmalısın?", "opts": ["Aşağı inip Frau Brandl'a yirmi avro götür.", "Halı satıcısını ara.", "Akşam Frau Brandl'a mesaj yaz."], "ans": 0, "why_tr": "Frau Brandl kapıda bekliyor ve hemen yirmi avro nakit istiyor.", "kanit": ["c4", "c5"] }
+    }
+  ],
+  "gorsel": [
+    { "id": "m1:52:g1", "de": "Bargeld", "dogru_img": "euro banknotes and coins on a table", "celdirici_img": ["a bank card", "a smartphone with a payment app", "an empty wallet"] },
+    { "id": "m1:52:g2", "de": "Mannschaft", "dogru_img": "amateur football team posing together on a pitch", "celdirici_img": ["a single football player", "an empty football pitch", "fans in a stadium"] },
+    { "id": "m1:52:g3", "de": "wandern", "dogru_img": "two people hiking on a mountain trail with backpacks", "celdirici_img": ["people swimming in a lake", "a person riding a bicycle", "people sitting in a cafe"] },
+    { "id": "m1:52:g4", "de": "Bratwurst", "dogru_img": "grilled sausage in a bread roll", "celdirici_img": ["a slice of cheese", "a pretzel", "a bowl of salad"] }
+  ],
+  "prova": {
+    "id": "m1:52:p1",
+    "title_tr": "Basti seni maça çağırıyor",
+    "durum_tr": "Spor salonunda Basti yanına geliyor. Cumartesi için bir planı var.",
+    "karsi": "ch:kraus",
+    "baslangic": "n1",
+    "dugumler": [
+      {
+        "id": "n1",
+        "de": "Hallo! Hast du am Samstag Zeit?",
+        "tr": "Merhaba! Cumartesi vaktin var mı?",
+        "secenekler": [
+          { "de": "Ja, am Samstag habe ich nichts vor.", "tr": "Evet, cumartesi bir planım yok.",
+            "accepted": ["Ja, am Samstag habe ich nichts vor.", "Ja, am Samstag habe ich Zeit.", "Ja, ich habe am Samstag nichts vor.", "Ja, Samstag habe ich nichts vor."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Açık bir cevap. Basti planını anlatacak." },
+          { "de": "Warum? Was ist am Samstag?", "tr": "Neden? Cumartesi ne var?",
+            "accepted": ["Warum? Was ist am Samstag?", "Warum? Was ist denn am Samstag?", "Was ist am Samstag?"],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Önce sormak da doğal. Basti anlatacak." }
+        ]
+      },
+      {
+        "id": "n2",
+        "de": "Meine Mannschaft spielt um drei. Kommst du mit?",
+        "tr": "Takımım üçte oynuyor. Sen de geliyor musun?",
+        "secenekler": [
+          { "de": "Ja, klar! Was kostet die Karte?", "tr": "Evet, tabii! Bilet ne kadar?",
+            "accepted": ["Ja, klar! Was kostet die Karte?", "Ja, klar! Wie viel kostet die Karte?", "Klar! Was kostet die Karte?", "Ja! Was kostet das?"],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Kabul ettin ve önemli bir şey sordun: fiyat." },
+          { "de": "Um drei? Da gehe ich wandern.", "tr": "Üçte mi? O saatte doğa yürüyüşüne gidiyorum.",
+            "accepted": ["Um drei? Da gehe ich wandern.", "Um drei gehe ich wandern.", "Leider nicht, da gehe ich wandern."],
+            "sonraki": "n2b", "uygun": true, "geri_bildirim_tr": "Kibarca hayır dedin ve nedenini söyledin." },
+          { "de": "Nein.", "tr": "Hayır.",
+            "accepted": ["Nein.", "Nee.", "Nein, nein."],
+            "sonraki": "n2", "uygun": false, "geri_bildirim_tr": "Tek başına **Nein** soğuk duyulur. Bir neden ekle ya da kabul et." }
+        ]
+      },
+      {
+        "id": "n2b",
+        "de": "Schade! Und am Sonntag? Am Sonntag spielen wir auch.",
+        "tr": "Yazık! Peki pazar? Pazar da oynuyoruz.",
+        "secenekler": [
+          { "de": "Am Sonntag habe ich Zeit. Was kostet die Karte?", "tr": "Pazar vaktim var. Bilet ne kadar?",
+            "accepted": ["Am Sonntag habe ich Zeit. Was kostet die Karte?", "Sonntag geht. Was kostet die Karte?", "Am Sonntag geht es. Was kostet die Karte?"],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Başka bir günü kabul ettin ve fiyatı sordun." }
+        ]
+      },
+      {
+        "id": "n3",
+        "de": "Fünf Euro. Aber dort geht nur Bargeld!",
+        "tr": "Beş avro. Ama orada sadece nakit geçiyor!",
+        "secenekler": [
+          { "de": "Kein Problem. Ich hole morgen Geld.", "tr": "Sorun değil. Yarın gidip para çekerim.",
+            "accepted": ["Kein Problem. Ich hole morgen Geld.", "Kein Problem, ich hole morgen Bargeld.", "Okay, ich hole morgen Geld.", "Kein Problem. Ich hole vorher Geld."],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Çözümü kendin buldun: **Ich hole morgen Geld**." },
+          { "de": "Okay, ich habe Bargeld.", "tr": "Tamam, bende nakit var.",
+            "accepted": ["Okay, ich habe Bargeld.", "Kein Problem, ich habe Bargeld.", "Ich habe Bargeld, kein Problem."],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Kısa ve açık." },
+          { "de": "Und mit Karte? Geht das?", "tr": "Peki kartla? Olur mu?",
+            "accepted": ["Und mit Karte? Geht das?", "Kann ich mit Karte zahlen?", "Geht auch Karte?"],
+            "sonraki": "n3", "uygun": false, "geri_bildirim_tr": "Basti az önce **nur Bargeld** dedi: kart geçmiyor. Nakit bul." }
+        ]
+      },
+      {
+        "id": "n4",
+        "de": "Super! Und danach essen wir zusammen eine Bratwurst.",
+        "tr": "Süper! Sonra da birlikte sosis yeriz.",
+        "secenekler": [
+          { "de": "Super! Bis Samstag!", "tr": "Süper! Cumartesi görüşürüz!",
+            "accepted": ["Super! Bis Samstag!", "Gute Idee! Bis Samstag!", "Super Idee! Bis Samstag!", "Gern! Bis Samstag!"],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Sıcak bir kapanış." }
+        ]
+      },
+      { "id": "n9", "de": "Okay, bis Samstag um drei!", "tr": "Tamam, cumartesi üçte görüşürüz!", "son": true }
+    ],
+    "kapanis_tr": "Bir daveti kabul ettin, fiyatı sordun ve nakit sorununu kendin çözdün."
+  },
+  "okuma_yazma": {
+    "tur": "okuma",
+    "title_tr": "Apartman panosunda bir not",
+    "metin_de": "Hallo, liebe Nachbarn! Am Wochenende bin ich nicht da. Ich gehe wandern. Am Montag bin ich wieder hier. Ist etwas kaputt? Bitte schreiben Sie mir eine Nachricht. Josef Pichler, Hausmeister",
+    "metin_tr": "Merhaba sevgili komşular! Hafta sonu burada değilim. Doğa yürüyüşüne gidiyorum. Pazartesi yine buradayım. Bir şey mi bozuldu? Lütfen bana mesaj yazın. Josef Pichler, apartman görevlisi",
+    "sorular": [
+      { "id": "m1:52:o1", "kind": "gist", "q_tr": "Herr Pichler ne duyuruyor?", "opts": ["Hafta sonu burada olmadığını", "Kiranın arttığını", "Kaloriferin bozulduğunu"], "ans": 0, "kanit": [1] },
+      { "id": "m1:52:o2", "kind": "detail", "q_tr": "Hafta sonu ne yapıyor?", "opts": ["Doğa yürüyüşüne gidiyor", "Maça gidiyor", "Çalışıyor"], "ans": 0, "kanit": [2] },
+      { "id": "m1:52:o3", "kind": "detail", "q_tr": "Bir şey bozulursa ne yapmalısın?", "opts": ["Ona mesaj yazmalısın", "Frau Brandl'ı aramalısın", "Hiçbir şey, pazartesi beklemelisin"], "ans": 0, "kanit": [4, 5] },
+      { "id": "m1:52:o4", "k": "guided_response", "situation_tr": "Pazar günü banyodaki musluk bozuldu. Herr Pichler'e kısa bir mesaj yaz.", "prompt_de": "Ist etwas kaputt?",
+        "accepted": ["Ja, im Bad ist etwas kaputt.", "Ja, das Bad ist kaputt.", "Hallo Herr Pichler, im Bad ist etwas kaputt.", "Ja, im Bad ist das Wasser kaputt.", "Ja, bei mir im Bad ist etwas kaputt."],
+        "why_tr": "Bozuk bir şey için **kaputt** dersin, yeri de **im Bad** diye söylersin." }
+    ]
+  },
+  "gun_sinavi": {
+    "id": "m1:52:s",
+    "maddeler": [
+      { "id": "m1:52:s1", "k": "listen_and_respond", "audio_de": "Haben Sie Bargeld oder eine Karte?", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Haben Sie Bargeld oder eine Karte?", "haben sie bargeld oder eine karte", "Haben Sie Bargeld oder eine Karte"], "why_tr": "**Bargeld** nakit para demektir." },
+      { "id": "m1:52:s2", "k": "listen_and_respond", "audio_de": "Wir wollen am Samstag wandern.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Wir wollen am Samstag wandern.", "wir wollen am samstag wandern", "Wir wollen am Samstag wandern"], "why_tr": "**wollen** ile **wandern** sona gelir." },
+      { "id": "m1:52:s3", "k": "listen_and_respond", "audio_de": "Die Mannschaft spielt um drei Uhr.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Die Mannschaft spielt um drei Uhr.", "die mannschaft spielt um drei uhr", "Die Mannschaft spielt um drei Uhr"], "why_tr": "**die Mannschaft** takım demektir." },
+      { "id": "m1:52:s4", "k": "listen_and_respond", "audio_de": "Kann ich morgen zahlen?", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Kann ich morgen zahlen?", "kann ich morgen zahlen", "Kann ich morgen zahlen"], "why_tr": "**Kann ich morgen zahlen?** diyerek izin istersin." },
+      { "id": "m1:52:s5", "k": "tr_de", "tr": "Yanımda nakit yok.",
+        "accepted": ["Ich habe kein Bargeld.", "Ich habe kein Bargeld dabei.", "Ich habe kein Bargeld bei mir.", "Ich hab kein Bargeld."], "why_tr": "Olmayan şey için **kein** dersin: **kein Bargeld**." },
+      { "id": "m1:52:s6", "k": "tr_de", "tr": "Pazar günü doğa yürüyüşü yapmak ister misin?",
+        "accepted": ["Möchtest du am Sonntag wandern?", "Möchtest du am Sonntag wandern gehen?", "Willst du am Sonntag wandern?", "Möchtest du Sonntag wandern?"], "why_tr": "**Möchtest du** ile teklif edersin ve **wandern** en sona gelir." },
+      { "id": "m1:52:s7", "k": "tr_de", "tr": "Takım bugün oynuyor.",
+        "accepted": ["Die Mannschaft spielt heute.", "Heute spielt die Mannschaft.", "Die Mannschaft spielt heute, ja."], "why_tr": "**spielt** oynuyor demektir." },
+      { "id": "m1:52:s8", "k": "tr_de", "tr": "Bana on avro ödünç verebilir misin?",
+        "accepted": ["Kannst du mir zehn Euro leihen?", "Kannst du mir bitte zehn Euro leihen?", "Kannst du mir 10 Euro leihen?", "Kannst du mir zehn Euro borgen?"], "why_tr": "Ödünç isterken **Kannst du mir zehn Euro leihen?** dersin." },
+      { "id": "m1:52:s9", "k": "guided_response", "situation_tr": "Kuaförde ödeme sırası. Luka sadece nakit alıyor, sende yok. Yarın ödeyip ödeyemeyeceğini sor.", "prompt_de": "Bei mir nur Bargeld, bitte.",
+        "accepted": ["Ich habe kein Bargeld. Kann ich morgen zahlen?", "Ich habe leider kein Bargeld. Kann ich morgen zahlen?", "Oh, kein Bargeld. Kann ich morgen zahlen?", "Ich habe kein Bargeld. Geht morgen?", "Ich habe kein Bargeld. Ich hole schnell Geld."],
+        "why_tr": "Önce **Ich habe kein Bargeld** de, sonra **Kann ich morgen zahlen?** diye sor." },
+      { "id": "m1:52:s10", "k": "guided_response", "situation_tr": "Komşun hafta sonu planını soruyor. Pazar doğa yürüyüşüne gidiyorsun.", "prompt_de": "Was haben Sie am Wochenende vor?",
+        "accepted": ["Am Sonntag gehe ich wandern.", "Ich gehe am Sonntag wandern.", "Am Sonntag wandere ich.", "Am Sonntag möchte ich wandern.", "Sonntag gehe ich wandern."],
+        "why_tr": "Planı söylerken **gehe ich wandern** dersin." },
+      { "id": "m1:52:s11", "k": "guided_response", "situation_tr": "Basti seni cumartesi maçına çağırıyor. Kabul et ve saatini sor.", "prompt_de": "Meine Mannschaft spielt am Samstag. Kommst du?",
+        "accepted": ["Ja, klar! Um wie viel Uhr?", "Ja, ich komme! Um wie viel Uhr?", "Klar! Wann spielt die Mannschaft?", "Ja, gern! Um wie viel Uhr?", "Ja, ich komme mit. Wann?"],
+        "why_tr": "Kabul et, sonra saati **Um wie viel Uhr?** ile sor." }
+    ],
+    "sesli": ["m1:52:s9", "m1:52:s10"],
+    "dikte": ["m1:52:s1", "m1:52:s2", "m1:52:s3", "m1:52:s4"]
+  }
+}
