@@ -8,7 +8,7 @@
    "durum_tr": "Spor salonundasın, antrenman bitti. Basti nasıl hissettiğini ve yorgun olup olmadığını soruyor. Kendini iyi hissediyorsun. Sadece az uyuyunca yorgun oluyorsun.",
    "karsi": "ch:kraus",
    "yer": "pl:fitness",
-   "prompt_de": "Na, wie fühlst du dich nach dem Sport? Bist du müde?",
+   "prompt_de": "Na, wie fühlst du dich nach dem Training? Bist du müde?",
    "accepted": [
     "Ich fühle mich gut. Müde bin ich nur, wenn ich zu wenig schlafe.",
     "Ich fühle mich gut. Ich bin nur müde, wenn ich zu wenig schlafe.",
@@ -23,20 +23,20 @@
   {
    "id": "m1:h11:g2",
    "can_do": "cd:m1:72",
-   "durum_tr": "Haftalık pazarda bir sebze tezgâhındasın. Patateslerin indirimde olup olmadığını ve kilosunun kaç olduğunu sor.",
+   "durum_tr": "Haftalık pazarda bir sebze tezgâhındasın. Domateslerin indirimde olup olmadığını ve kilosunun kaç olduğunu sor.",
    "karsi": "ein Verkäufer",
    "yer": "pl:marktplatz",
    "prompt_de": "Guten Morgen! Was möchten Sie?",
    "accepted": [
-    "Sind die Kartoffeln im Angebot? Was kostet das Kilo?",
-    "Guten Morgen! Sind die Kartoffeln heute im Angebot? Was kostet ein Kilo?",
-    "Sind die Kartoffeln im Angebot? Wie viel kostet das Kilo?",
-    "Was kostet das Kilo Kartoffeln? Sind sie im Angebot?",
-    "Sind die Kartoffeln heute im Angebot? Und was kostet das Kilo?",
-    "Guten Morgen. Was kosten die Kartoffeln? Sind sie im Angebot?"
+    "Sind die Tomaten im Angebot? Was kostet das Kilo?",
+    "Guten Morgen! Sind die Tomaten heute im Angebot? Was kostet ein Kilo?",
+    "Sind die Tomaten im Angebot? Wie viel kostet das Kilo?",
+    "Was kostet das Kilo Tomaten? Sind sie im Angebot?",
+    "Sind die Tomaten heute im Angebot? Und was kostet das Kilo?",
+    "Guten Morgen. Was kosten die Tomaten? Sind sie im Angebot?"
    ],
    "kalip": "Ist / Sind … im Angebot? Was kostet …?",
-   "why_tr": "İndirim sorusu: **Sind die Kartoffeln im Angebot?**"
+   "why_tr": "İndirim sorusu: **Sind die Tomaten im Angebot?**"
   },
   {
    "id": "m1:h11:g3",
@@ -59,17 +59,17 @@
   {
    "id": "m1:h11:g4",
    "can_do": "cd:m1:74",
-   "durum_tr": "İstasyondaki kafedesin. Trenin birazdan geliyor. Kibarca bir çay iste ve hemen ödemek istediğini söyle.",
+   "durum_tr": "İstasyondaki kafedesin. Trenin birazdan geliyor. Kibarca bir su iste ve hemen ödemek istediğini söyle.",
    "karsi": "ein Kellner",
    "yer": "pl:bahnhof",
    "prompt_de": "Guten Tag! Was bekommen Sie?",
    "accepted": [
-    "Ich hätte gern einen Tee. Ich würde gern gleich zahlen, mein Zug kommt bald.",
-    "Ich hätte gern einen Tee, und ich würde gern gleich zahlen.",
-    "Einen Tee, bitte. Ich würde gern sofort zahlen, mein Zug kommt gleich.",
-    "Ich hätte gerne einen Tee. Ich würde gerne gleich zahlen.",
-    "Ich hätte gern einen Tee zum Mitnehmen. Ich würde gern gleich zahlen.",
-    "Ich hätte gern einen Tee. Würden Sie bitte gleich kassieren? Mein Zug kommt."
+    "Ich hätte gern ein Wasser. Ich würde gern gleich zahlen, mein Zug kommt bald.",
+    "Ich hätte gern ein Wasser, und ich würde gern gleich zahlen.",
+    "Ein Wasser, bitte. Ich würde gern sofort zahlen, mein Zug kommt gleich.",
+    "Ich hätte gerne ein Wasser. Ich würde gerne gleich zahlen.",
+    "Ich hätte gern ein Wasser zum Mitnehmen. Ich würde gern gleich zahlen.",
+    "Ich hätte gern ein Wasser. Würden Sie bitte gleich kassieren? Mein Zug kommt."
    ],
    "kalip": "Ich hätte gern … / Ich würde gern …",
    "why_tr": "Bir şey için **hätte gern**, ödemek için **würde gern gleich zahlen**."
@@ -77,17 +77,17 @@
   {
    "id": "m1:h11:g5",
    "can_do": "cd:m1:75",
-   "durum_tr": "Kurstan sonra bir kurs arkadaşınla kafedesin. Sen çay ve bir dilim kek aldın. Garson birlikte ödeyip ödemeyeceğinizi soruyor. Ayrı ödüyorsunuz. Senin hesabın yedi yirmi. Sekiz ver ve üstü kalsın de.",
+   "durum_tr": "Kurstan sonra bir kurs arkadaşınla kafedesin. Sen kahve ve bir dilim kek aldın. Garson birlikte ödeyip ödemeyeceğinizi soruyor. Ayrı ödüyorsunuz. Senin hesabın yedi yirmi. Sekiz ver ve üstü kalsın de.",
    "karsi": "eine Kellnerin",
    "yer": "pl:sprachkurs",
    "prompt_de": "Zahlen Sie zusammen?",
    "accepted": [
-    "Nein, getrennt, bitte. Ich hatte einen Tee und ein Stück Kuchen. Machen Sie acht.",
-    "Getrennt, bitte. Ich hatte den Tee und ein Stück Kuchen. Acht Euro, stimmt so.",
-    "Nein, getrennt. Ich zahle den Tee und den Kuchen. Machen Sie acht, bitte.",
-    "Nein, wir zahlen getrennt. Ich hatte einen Tee und ein Stück Kuchen. Hier sind acht Euro, stimmt so.",
-    "Getrennt, bitte. Tee und Kuchen. Machen Sie acht Euro.",
-    "Nein, bitte getrennt. Ich hatte einen Tee und ein Stück Kuchen. Stimmt so, acht."
+    "Nein, getrennt, bitte. Ich hatte einen Kaffee und ein Stück Kuchen. Machen Sie acht.",
+    "Getrennt, bitte. Ich hatte den Kaffee und ein Stück Kuchen. Acht Euro, stimmt so.",
+    "Nein, getrennt. Ich zahle den Kaffee und den Kuchen. Machen Sie acht, bitte.",
+    "Nein, wir zahlen getrennt. Ich hatte einen Kaffee und ein Stück Kuchen. Hier sind acht Euro, stimmt so.",
+    "Getrennt, bitte. Kaffee und Kuchen. Machen Sie acht Euro.",
+    "Nein, bitte getrennt. Ich hatte einen Kaffee und ein Stück Kuchen. Stimmt so, acht."
    ],
    "kalip": "Getrennt, bitte. Ich hatte … Machen Sie …",
    "why_tr": "Bahşişi öderken söylersin: **Machen Sie acht.**"

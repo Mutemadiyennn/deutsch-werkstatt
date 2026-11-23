@@ -90,4 +90,40 @@ Gün dosyaları örneklemde temiz: 24 öğede A ya da B yok. Tek A, `gorulmemis-
 
 C maddeleri isteğe bağlı: 1 (Türkçe "karne"), 18 (tekrar), 23 (uygun olmayan prova seçeneklerinde ≥3 biçim).
 
-KARAR: TAM TUR (gerekçe: A = 1. `gorulmemis-11.json` m1:h11:g5, 75. günün prova ve sahne yanıtının kopyası; görülmemiş durum aktarımı ölçmüyor. Tam tur `gorulmemis-11.json` için; gün dosyalarında A/B bulunmadı.)
+1. tur kararı: TAM TUR (gerekçe: A = 1. `gorulmemis-11.json` m1:h11:g5, 75. günün prova ve sahne yanıtının kopyası; görülmemiş durum aktarımı ölçmüyor. Tam tur `gorulmemis-11.json` için; gün dosyalarında A/B bulunmadı.)
+
+## 2. tur (yalnız düzeltmeler ve düzeltmelerin getirdiği kusurlar)
+Dilbilimcinin tam turundan sonra yeniden yazılan maddeler: `gorulmemis-11` g1, g2, g4, g5; 75/76 `accepted_adsiz`; 72 "karne" → "belge".
+
+**Yan düzeltmeler:**
+- gun-72 m1:72:h1 g5 tr "Kurs bitince belgemi alıyorum." ✓
+- gun-75 ve gun-76 `cevapla` alanlarına `accepted_adsiz` eklendi; 6'şar biçim, hepsi doğru ve adsız. ✓
+
+**7 durum için dört ölçüt:**
+- (a) Derste aynen geçen öğrenci biçimi var mı? Tümce düzeyinde karşılaştırıldı (≥4 sözcük).
+- (b) Kişi ya da yer dersten farklı mı?
+- (c) K(t): `bilinmeyenler()` ile, 77. güne kadar bilinenlere göre.
+- (d) Almanca ve `accepted` doğru mu?
+
+| durum | (a) aynen | (b) kişi/yer | (c) K(t) | (d) Almanca | sonuç |
+|---|---|---|---|---|:-:|
+| g1 (cd:71) Basti, spor salonu, "Müde bin ich nur, wenn ich zu wenig schlafe." | yalnız kalıp ("Ich fühle mich gut.") | farklı (71: ofis/kafe) | `schlafen` 27. gün ✓. Soru cümlesindeki **Sport** sözlükte yok (yalnız duyulan söz; üretilmiyor) | doğru, 6 biçim | ✓ (C: soruda "nach dem Training" kullanılabilir, `lx:Training` 45. gün) |
+| g2 (cd:72) pazar, sebze tezgâhı, "Sind die Kartoffeln im Angebot?" | yok | farklı (72: süpermarket kasası, buket) | **Kartoffeln öğretilmemiş**: `lx:Kartoffel` sözlükte yok, tabloda yok, 71–77'de hiç geçmiyor. 6 biçimin 6'sı istiyor, durum "patates" diyor | doğru | **A** |
+| g3 (cd:73) değişmedi | "Den Kassenbon habe ich." 73'te var; 4. biçim, kısa kalıp | farklı | ✓ | doğru | ✓ (eski kod, engel değil) |
+| g4 (cd:74) istasyon kafesi, "Ich hätte gern einen Tee. Ich würde gern gleich zahlen …" | yok | farklı (74: meydandaki kafe) | **Tee öğretilmemiş**: `lx:Tee` sözlükte yok. Yalnız gr: açıklama metninde örnek olarak geçiyor ("Ich trinke Tee, wenn ich krank bin."); tabloda yok. 6 biçimin 6'sı istiyor | doğru ("Was bekommen Sie?" doğal) | **A** |
+| g5 (cd:75) kurs sonrası kafe, kurs arkadaşı, Kellnerin, 7,20 → 8 | yok; 75'in kopyası giderildi ✓ | farklı ✓ | `Kuchen` 9, `Stück` 41, `bekommen` 9 ✓; **Tee öğretilmemiş** (g4 ile aynı), 6 biçimin 6'sı istiyor | doğru ("Zahlen Sie zusammen?", "Machen Sie acht.") | **A** |
+| g6 (cd:76) değişmedi | yalnız kalıp ("Ich bin dran."); soru 76'daki satırın aynısı | farklı (76: fırın) | ✓ (`hätte` 74. gün dil noktasında) | doğru | ✓ |
+| g7 (cd:77) değişmedi | yalnız kalıp ("Ich habe noch eine."); soru 77'deki satırın aynısı | farklı (77: market) | ✓ | doğru | ✓ |
+
+**Sonuç:**
+- 1. turdaki A (g5 kopyası) giderildi.
+- Düzeltme yeni bir kusur getirdi: K(t) ihlali. Öğrenciden öğretilmemiş iki sözcük isteniyor: **Kartoffeln** (g2) ve **Tee** (g4, g5).
+  - Bu durumlar ayrı bir ölçüm. Dikiş denetçisi görülmemiş dosyasını okumadığı için makine bunları yakalamadı.
+  - "Öğretilmemiş öğeyi üretmesi istenirse" kuralına göre bu P0'dır.
+- Önerilen değişiklik; durum metinlerindeki Türkçe karşılık da değişir (patates → domates, çay → su/kahve):
+  - g2: Kartoffeln → **Tomaten** (`lx:Tomate` 23. gün).
+  - g4: Tee → **ein Wasser** (`lx:Wasser` 38. gün).
+  - g5: Tee → **einen Kaffee** (`lx:Kaffee` 41. gün; "Ich hatte einen Kaffee und ein Stück Kuchen." derste yok).
+  - g1 sorusu: "nach dem Sport" → "nach dem Training" (isteğe bağlı).
+
+KARAR: GERİ (g2: Kartoffeln; g4 ve g5: Tee — öğretilmemiş sözcük isteniyor, K(t) ihlali)
