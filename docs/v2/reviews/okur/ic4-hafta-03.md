@@ -1222,3 +1222,14 @@ Kapsam: ilk turdan sonra değişen ya da eklenen, öğrenciye görünen Türkçe
 - `grammar.json`'daki 15'i: 02:t3 h_tr ve tr; 12:t1 tr; 02:t4 tr; 06:t2 h_tr ve tr; 12:t4 tr; 04:t3 tr; 04:t4 tr; 13:t1 h_tr ve tr; 13:t2 tr; 13:t3 h_tr ve tr; 11:t1 tr.
 
 Bu turla birlikte bu dokuz içerik dosyasında ve 17 durakta açık okur GERİ'si kalmadı (OD-9.4). Kapsam dışı not aynen duruyor: `gun-21` prova başlığındaki **Haftanın kapısı** sözü.
+
+## Son kontrol (23.11)
+
+Kapsam: fark turundan sonra değişen, öğrenciye görünen Türkçe açıklama alanları (aynı alan listesi). Bu hattın önceki dökümü elimde olmadığı için alanları `gun-15` … `gun-21` dosyalarının son hâlinden yeniden çıkardım. Aynı karşılaştırmaya `hafta-sonu-testi-03` ve `gorulmemis-03`'ü de kattım. Çıkan listeyi bu raporun son tablolarıyla eşledim: **Ek: bütün satırlar** tablosunun GEÇTİ satırları ve **Fark turu** tablosunun satırları. Şu an 993 alan var. Bunların 991'i metniyle birlikte bu tablolarda bulunuyor; **2 alan yeni ya da değişmiş**. git kullanmadım.
+
+| Öğe kimliği | Alan | Önceki metin | Yeni açıklama | Kendi sözlerimle | Karar | Not |
+|---|---|---|---|---|---|---|
+| `gun-21` · `m1:21:h1.kalip1` | `kaliplar.tr` | muayenehaneye – firmaya | muayenehaneye | Muayenehaneye gitmek. | GEÇTİ | Almancası artık yalnız **zur Praxis**; sahnedeki **Er geht morgen zur Praxis** ile uyuyor. |
+| `gun-21` · `m1:21:h1.kalip6` | `kaliplar.tr` | bizde – Dr. Weber'de | sizde – Dr. Weber'de | Sizin yerinizde, Dr. Weber'in yerinde. | GEÇTİ | Almancası **bei Ihnen – bei Dr. Weber**, uyuyor. |
+
+**Son kontrol toplamı:** 2 alan · GEÇTİ 2 · GERİ 0. 3. hafta dosyalarında açık okur GERİ'si yok. Kapsam dışı not aynen duruyor: `gun-21` prova başlığındaki **Haftanın kapısı**.
