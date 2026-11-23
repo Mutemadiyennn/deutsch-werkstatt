@@ -39,7 +39,8 @@ export function UretAdimi({ bilgi, kip, onBitti }: { bilgi: CumleBilgi; /** yaz:
   const [cevap, setCevap] = useState("");
   const [yazarak, setYazarak] = useState(!sesli);
   useEffect(() => { if (kip === "duy") void speak(bilgi.de, "de", "normal"); }, [bilgi.de]);
-  const kontrol = (s: string) => { const r = ruleVerdict(bilgi.accepted, s); setCevap(s); setV(r); haptic(r.kind === "correct" ? "success" : "error"); };
+  // dikte yalnız duyulan cümleyi kabul eder; görev cümlesinin öbür kabulleri ve eşdeğerlikler dikte cevabı değildir (PM-102 md. 4, İÇ-4 U-1)
+  const kontrol = (s: string) => { const r = kip === "duy" ? ruleVerdict([bilgi.de], s, { siki: true }) : ruleVerdict(bilgi.accepted, s); setCevap(s); setV(r); haptic(r.kind === "correct" ? "success" : "error"); };
   return (
     <section class="stack fade" data-test={kip === "duy" ? "akis-dikte" : sesli ? "akis-soyle" : "akis-tr-de"}>
       <div>
