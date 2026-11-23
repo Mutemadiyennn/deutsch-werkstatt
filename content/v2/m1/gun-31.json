@@ -5,7 +5,7 @@
  "level": "A1",
  "format": "gun",
  "title_tr": "Meslek sormak: Was sind Sie von Beruf?",
- "goal_tr": "Birine mesleğini sorarsın, nerede çalıştığını söylersin. Garda bilet ve kalkış saatini sorarsın.",
+ "goal_tr": "Birine mesleğini sorarsın. Kendi işini de söylersin. Garda bilet ve kalkış saatini sorarsın.",
  "can_do": {
   "id": "cd:m1:31",
   "tr": "Birine mesleğini sorar, kendi işimi söylerim."
@@ -31,7 +31,9 @@
   "status": "draft",
   "by": "dilbilimci-ajan",
   "at": "2026-11-23",
-  "notes": "docs/v2/reviews/ic5-hafta-05.md"
+  "notes": "docs/v2/reviews/ic5-hafta-05.md; okur: docs/v2/reviews/okur/ic5-hafta-05.md (14 GERİ, okurun önerisiyle düzeltildi)",
+  "okur": "passed",
+  "okur_at": "2026-11-23"
  },
  "dersler": [
   "gr:a1-08:t1",
@@ -228,12 +230,12 @@
     },
     {
      "kart": "lx:Schwester",
-     "de": "Meine Schwester ist Krankenpflegerin.",
-     "tr": "Kız kardeşim hemşire.",
+     "de": "Meine Schwester arbeitet in der Praxis.",
+     "tr": "Kız kardeşim muayenehanede çalışıyor.",
      "accepted": [
-      "Meine Schwester ist Krankenpflegerin.",
-      "Meine Schwester arbeitet als Krankenpflegerin.",
-      "Meine Schwester ist Krankenschwester."
+      "Meine Schwester arbeitet in der Praxis.",
+      "Meine Schwester arbeitet in einer Praxis.",
+      "In der Praxis arbeitet meine Schwester."
      ]
     },
     {
@@ -258,22 +260,22 @@
     },
     {
      "kart": "lx:entschuldigen",
-     "de": "Entschuldigen Sie, sind Sie Ärztin?",
-     "tr": "Affedersiniz, doktor musunuz?",
+     "de": "Entschuldigen Sie, was sind Sie von Beruf?",
+     "tr": "Affedersiniz, mesleğiniz ne?",
      "accepted": [
-      "Entschuldigen Sie, sind Sie Ärztin?",
-      "Entschuldigen Sie bitte, sind Sie Ärztin?",
-      "Entschuldigung, sind Sie Ärztin?"
+      "Entschuldigen Sie, was sind Sie von Beruf?",
+      "Entschuldigen Sie bitte, was sind Sie von Beruf?",
+      "Entschuldigung, was sind Sie von Beruf?"
      ]
     },
     {
      "kart": "lx:toll",
-     "de": "Du bist Koch? Toll!",
-     "tr": "Aşçı mısın? Harika!",
+     "de": "Du bist Verkäufer? Toll!",
+     "tr": "Satış elemanı mısın? Harika!",
      "accepted": [
-      "Du bist Koch? Toll!",
-      "Du bist Koch? Das ist toll!",
-      "Koch? Toll!"
+      "Du bist Verkäufer? Toll!",
+      "Du bist Verkäufer? Das ist toll!",
+      "Verkäufer? Toll!"
      ]
     },
     {
@@ -336,10 +338,6 @@
    ],
    "kaliplar": [
     {
-     "de": "Einmal nach …, bitte.",
-     "tr": "…'e bir bilet, lütfen."
-    },
-    {
      "de": "Von welchem Bahnsteig?",
      "tr": "Hangi perondan?"
     }
@@ -368,12 +366,12 @@
     },
     {
      "kart": "lx:einmal",
-     "de": "Einmal nach München, bitte.",
-     "tr": "Münih'e bir bilet, lütfen.",
+     "de": "Einmal, bitte!",
+     "tr": "Bir tane, lütfen!",
      "accepted": [
-      "Einmal nach München, bitte.",
-      "Einmal München, bitte.",
-      "Bitte einmal nach München."
+      "Einmal, bitte!",
+      "Bitte einmal!",
+      "Einmal bitte."
      ]
     },
     {
@@ -716,9 +714,9 @@
       "cumle": "s7",
       "seviye": "usta",
       "accepted": [
-       "Ja, genau. Am Montag fängt sie an.",
-       "ja genau am montag fängt sie an",
-       "Ja, genau. Am Montag fängt sie an"
+       "Am Montag fängt sie an.",
+       "am montag fängt sie an",
+       "Am Montag fängt sie an"
       ]
      },
      {
@@ -1554,14 +1552,14 @@
    {
     "id": "m1:31:s7",
     "k": "tr_de",
-    "tr": "Münih'e bir bilet, lütfen. Kalkış ne zaman?",
+    "tr": "Bir bilet, lütfen. Kalkış ne zaman?",
     "accepted": [
-     "Einmal nach München, bitte. Wann ist die Abfahrt?",
-     "Einmal München, bitte. Wann ist die Abfahrt?",
-     "Bitte einmal nach München. Wann ist die Abfahrt?",
-     "Einmal nach München, bitte. Wann fährt der Zug ab?"
+     "Einmal, bitte. Wann ist die Abfahrt?",
+     "Einmal bitte! Wann ist die Abfahrt?",
+     "Bitte einmal. Wann ist die Abfahrt?",
+     "Einmal, bitte. Um wie viel Uhr ist die Abfahrt?"
     ],
-    "why_tr": "Bilet alırken **Einmal nach München, bitte** dersin."
+    "why_tr": "Gişede tek bilet için **Einmal, bitte** dersin."
    },
    {
     "id": "m1:31:s8",

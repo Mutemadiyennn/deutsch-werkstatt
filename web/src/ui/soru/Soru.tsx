@@ -13,9 +13,9 @@ import { accepted, availableTypes, collocOf, synonymHit, collocQuestion, formFor
 import { ruleVerdict } from "../../core/answer.ts";
 import { umlautEksik } from "../../core/esdeger.ts";
 import { judgeWord, numberWordHint } from "../../core/grading.ts";
-import { speak } from "../../services/speech.ts";
+import { speak, sttAvailable } from "../../services/speech.ts";
 import { haptic } from "../../services/haptics.ts";
-import { ActionBar, AnswerField, FeedbackBand, ListenButton, YanlisIci } from "../kit.tsx";
+import { ActionBar, AnswerField, FeedbackBand, ListenButton, MicButton, YanlisIci } from "../kit.tsx";
 import { Art } from "../components.tsx";
 import { Photo } from "../learn.tsx";
 import { Rich } from "../rich.tsx";
@@ -44,8 +44,9 @@ function Esdizimler({ l, test }: { l: Lexeme; test?: string }) {
   );
 }
 
-export function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onCevap, onTanitim, onTanitimBitti }: { q: GardenQ; l: Lexeme; all: Lexeme[]; yakin?: Yakinlik; /** öğrencinin gördüğü kelimeler (PM-069 P0) */ gorulen?: Set<string>; onDone: (r: Result, o: Outcome | null, exi: number, m?: SoruBilgi) => void; onSina?: () => void; onCevap?: () => void; onTanitim?: () => void; /** PM-069 madde 3: tanıtım ayrı; ilk soru sonra gelir */ onTanitimBitti?: (exi: number) => void }) {
+export function Question({ q, l, all, yakin, gorulen, akis, onDone: bitir, onSina, onCevap, onTanitim, onTanitimBitti }: { q: GardenQ; /** akış (TARGET3c 3): mikrofon varsa büyük mikrofon + "Yazarak cevapla", yoksa etiket "Almanca yaz" (PM 7055715440 md. 10) */ akis?: boolean; l: Lexeme; all: Lexeme[]; yakin?: Yakinlik; /** öğrencinin gördüğü kelimeler (PM-069 P0) */ gorulen?: Set<string>; onDone: (r: Result, o: Outcome | null, exi: number, m?: SoruBilgi) => void; onSina?: () => void; onCevap?: () => void; onTanitim?: () => void; /** PM-069 madde 3: tanıtım ayrı; ilk soru sonra gelir */ onTanitimBitti?: (exi: number) => void }) {
   const [intro, setIntro] = useState(!!q.intro);
+  const mic = sttAvailable(), [yazarak, setYazarak] = useState(false);
   // B16: sına sorusu; bilemezse "Sorun değil, birlikte bakalım" → tanıtım ve normal tanıma sorusu (PM-066 madde 1)
   const [sina, setSina] = useState(!!q.sina);
   // PM-069 P0: cevabı öğrenciye gösterilmemiş boşluk sorulmaz; sorulabilir biçim yoksa Türkçeden Almancaya (kartın kendi kelimesi)
@@ -216,7 +217,7 @@ export function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onC
   // #137 P2-1 + inceleme #150 P2: görsel yoksa soru tr_de gibi çizilir (okur onaylı metinler; Türkçe ipucu büyük)
   const prompt = qe.type === "photo_say" ? <><div class="kicker" data-test="foto-soru-baslik">{fotoYok ? "Almanca söyle ya da yaz" : "Fotoğraftaki ne? Artikeliyle söyle ya da yaz"}</div><Photo q={l.img} sira={exi} yer={[`${l.id}#kart`]} onYok={() => setFotoYok(true)} />{fotoYok ? <div class="de-lg">{l.tr}{isNoun(l) ? " (der, die ya da das ile)" : ""}</div> : <p class="small muted">{l.tr}</p>}</>
     : qe.type === "tr_de" && sina ? <><div class="kicker" data-test="sina-soru" {...(E2E ? { "data-cevap": sinaKabul(l)[0] } : {})}>Biliyorum, sına beni · ipucu yok</div><div class="de-lg">{l.tr}{isNoun(l) ? " (der, die ya da das ile)" : ""}</div>{ex?.tr && <p class="small" data-test="sina-baglam">Cümlede: <span class="muted">{ex.tr}</span></p>}<p class="small muted">Almanca yaz ya da söyle. Bilirsen bu kelime ileri basamaklardan devam eder.</p>{!res && <button class="btn ghost" data-test="sina-bilmiyorum" onClick={() => show({ ok: false, expected: sinaKabul(l)[0] })}>Bilmiyorum, tanıt</button>}</>
-    : qe.type === "tr_de" ? <><div class="kicker">Almanca söyle ya da yaz</div><div class="de-lg">{l.tr}{isNoun(l) ? " (der, die ya da das ile)" : ""}</div></>
+    : qe.type === "tr_de" ? <><div class="kicker">{akis && !mic ? "Almanca yaz" : "Almanca söyle ya da yaz"}</div><div class="de-lg">{l.tr}{isNoun(l) ? " (der, die ya da das ile)" : ""}</div></>
     : qe.type === "gap" || qe.type === "sep_perfekt" ? <><div class="kicker">Boşluğu doldur: boşluğa gelen kelimeyi ya da bütün cümleyi yaz</div><div class="de-lg" lang="de" data-test="gap-cumle">{form?.de}</div>{form?.tr && <p class="small muted">{form.tr}</p>}{form?.hint_tr && !res && <IpucuDugmesi metin={form.hint_tr} onAc={() => setHinted(true)} />}{!res && bs.sorulabilir > 1 && <button class="btn sm ghost" data-test="baska-cumle" onClick={() => setExi(fi + 1)}>Başka cümle</button>}</>
     : <><div class="kicker">Bu kelimeyle kendi cümleni kur</div><div class="de-lg" lang="de"><Art art={l.art} de={l.de} /></div><p class="small muted">{l.tr}{ex ? ` · Örnek: ` : ""}{ex && <span lang="de" data-test="own-ex">{ex.de}</span>}</p>{!selfCheck && baska(l.examples.length)}</>;
 
@@ -267,7 +268,10 @@ export function Question({ q, l, all, yakin, gorulen, onDone: bitir, onSina, onC
   return (
     <div class="stack fade" data-test={`gq-${qe.type}`} data-lex={l.id} {...(E2E ? { "data-kopru": availableTypes(l, "passive").some((t) => t !== "listen_meaning") ? "1" : "0" } : {})}>
       <section class="card stack">{prompt}{shortNote && <p class="small" data-test="own-short">En az üç kelimelik bir cümle kur.</p>}{synNote && <p class="small" data-test="syn-note">{synNote}</p>}</section>
-      {!res && <ActionBar><AnswerField onSubmit={submit} /></ActionBar>}
+      {!res && (akis && mic && !yazarak
+        ? <div class="stack" style={{ alignItems: "center", gap: 8 }} data-test="akis-mikrofon"><MicButton wide onText={(t) => submit(t, "voice")} label="Dokun ve konuş" />
+            <button class="ikincil-eylem" data-test="akis-yazarak" onClick={() => setYazarak(true)}>Yazarak cevapla</button></div>
+        : <ActionBar><AnswerField onSubmit={submit} voice={!akis} /></ActionBar>)}
       {verdict}
     </div>
   );
