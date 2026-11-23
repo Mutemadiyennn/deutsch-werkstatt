@@ -114,3 +114,4 @@ Okur raporu: `docs/v2/reviews/okur/lexicon-b1-01.md`, 28 GERİ (23 kart). Yalnı
 | lx:Wirkung | exp.ipucu_tr | İlaç etki ediyor derken **Das Medikament wirkt** denir. |
 | lx:zurzeit | exp.ipucu_tr | **Zurzeit** başta olunca hemen arkasından **ist** ya da **habe** gelir. |
 | lx:möglichst | exp.anlam_tr | Bir şeyin olabildiğince erken, hızlı ya da çok olmasını istediğini söyler. |
+| lx:zurzeit | exp.ipucu_tr (okur 2. tur) | **Zurzeit** başta olunca **sind** gibi sözcükler arkasından gelir, örneğin **Zurzeit sind alle Leitungen besetzt.** |
