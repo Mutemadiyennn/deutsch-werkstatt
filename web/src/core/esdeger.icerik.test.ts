@@ -7,8 +7,8 @@
  *     ikinci yerde kalır, öbekler bölünmez, kişi zamiri eksen olmaz ("Seit gestern hab ich Fieber" → "Fieber hab ich seit gestern").
  *  2. Orta alan: ön alan + fiil (2 sözcük; kabul edat/tanımlıkla başlıyorsa 3) ve son sözcük (fiil çerçevesinin sağ ucu) aynı,
  *     aradakiler yer değiştirir.
- *  3. Dolgu: cümlenin başındaki ya da sonundaki nezaket/onay sözcükleri (bitte, danke, ja, nein, also …; başta gern/gerne/dann
- *     hariç, "Gern ich …" V3'tür) düşer; "Uhr" her yerden düşer (PM-101 md. 6); geri kalan sıra aynıdır.
+ *  3. Dolgu: cümlenin başındaki ya da sonundaki nezaket/onay sözcükleri (bitte, danke, ja, nein, also …; başta gern/gerne/dann,
+ *     sonda gut/toll/super/prima/klar/genau ve yalın "schön" hariç: "Gern ich …", "Gut das ist sehr" V3'tür) düşer; "Uhr" her yerden düşer (PM-101 md. 6); geri kalan sıra aynıdır.
  * Kuralların açıklamadığı kabul derecelendiricinin gevşekliğidir: test kırmızı olur. Çözüm ya derecelendiricide (web/) ya da,
  * sıra doğru Almancaysa, o sıranın kabul listesine yazılmasıdır (listede olan sıra taranmaz). İSTISNA: #76 incelemesinde
  * görülüp bırakılmış kabuller; yalnız azalır.
@@ -75,7 +75,10 @@ const sozcukler = (s: string) => s.replace(/[.!?…]+\s*$/, "").split(/\s+/).map
 const DOLGU = new Set("bitte danke vielen dank sehr herzlichen schön gern gerne ja nein also okay ok gut genau na dann super prima toll alles klar oder entschuldigung hallo".split(" "));
 /** Baştan atılmayan dolgu: "Gern ich hätte …", "Dann ich gehe …" V3'tür (inceleme #76 2. tur K2, #259 P1-1) */
 const BAS_DOLGU = new Set([...DOLGU].filter((w) => !["gern", "gerne", "dann"].includes(w)));
-const kenarsiz = (p: string[]) => { let i = 0, j = p.length; while (i < j && BAS_DOLGU.has(p[i]!)) i++; while (j > i && DOLGU.has(p[j - 1]!)) j--; return p.slice(i, j); };
+/** Sondan atılmayan: yüklem sıfatı olabilenler ("Das ist sehr gut" → "Gut das ist sehr" V3'tür, #259 fark); "schön" yalnız danke/bitte'den sonra */
+const SON_DOLGU = new Set([...DOLGU].filter((w) => !["gut", "toll", "super", "prima", "klar", "genau", "schön"].includes(w)));
+const sonDolgu = (p: string[], j: number) => SON_DOLGU.has(p[j - 1]!) || (p[j - 1] === "schön" && ["danke", "bitte"].includes(p[j - 2] ?? ""));
+const kenarsiz = (p: string[]) => { let i = 0, j = p.length; while (i < j && BAS_DOLGU.has(p[i]!)) i++; while (j > i && sonDolgu(p, j)) j--; return p.slice(i, j); };
 /** Yalnız "Uhr" her yerden düşer (PM-101 md. 6); dolgu yalnız kenardan (kenarsiz) */
 const ozu = (p: string[]) => p.filter((w) => w !== "uhr");
 const ayni = (a: string[], b: string[]) => a.length === b.length && a.every((w, i) => w === b[i]);
@@ -147,6 +150,11 @@ describe("kurallar", () => {
     expect(aciklanir("Morgen ich habe Zeit, danke.", ["Ich habe morgen Zeit."])).toBe(false);
     expect(aciklanir("Nach Hause heute ich gehe.", ["Ich gehe heute nach Hause."])).toBe(false);
     expect(aciklanir("Zeit keine ich habe heute.", ["Ich habe heute keine Zeit."])).toBe(false);
+    // #259 fark: yüklem sıfatı sondan atılmaz
+    expect(aciklanir("Gut das ist sehr.", ["Das ist sehr gut."])).toBe(false);
+    expect(aciklanir("Toll das finde ich.", ["Das finde ich toll."])).toBe(false);
+    expect(aciklanir("Schön das ist.", ["Das ist schön."])).toBe(false);
+    expect(aciklanir("Ich bin dabei, danke schön.", ["Ich bin dabei!"])).toBe(true);
   });
 });
 
