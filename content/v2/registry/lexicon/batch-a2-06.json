@@ -1,7 +1,10 @@
 {
   "batch": "a2-06",
   "review": {
-    "status": "draft"
+    "status": "draft",
+    "by": "dilbilimci-ajan",
+    "at": "2026-11-23",
+    "notes": "Dilbilimci turu tamam: docs/v2/reviews/lexicon-batch-a2-06.md. Okur bekliyor."
   },
   "items": [
     {
@@ -111,14 +114,17 @@
             "tr": "yapmak"
           }
         ],
-        "ipucu_tr": "Kapatmayı unutma derken **zu** kelimenin ortasına girer: **auszumachen**."
+        "ipucu_tr": "Işığı kapatmayı unutma derken **zu** kelimenin ortasına girer: **auszumachen**."
       },
       "forms": [
         {
           "de": "Vergiss nicht, das Licht ___!",
           "answer": "auszumachen",
           "tr": "Işığı kapatmayı unutma!",
-          "hint_tr": "Kapatmayı unutma derken **zu** kelimenin ortasına girer: **auszumachen**."
+          "hint_tr": "Işığı kapatmayı unutma derken **zu** kelimenin ortasına girer: **auszumachen**.",
+          "also_ok": [
+            "auszuschalten"
+          ]
         },
         {
           "de": "Bitte machen Sie Ihr Handy ___.",
@@ -130,13 +136,19 @@
           "de": "Hast du die Heizung ___?",
           "answer": "ausgemacht",
           "tr": "Kaloriferi kapattın mı?",
-          "hint_tr": "Kaloriferi kapattın mı derken **Hast du die Heizung ausgemacht** denir."
+          "hint_tr": "Kaloriferi kapattın mı derken **Hast du die Heizung ausgemacht** denir.",
+          "also_ok": [
+            "ausgeschaltet"
+          ]
         },
         {
           "de": "Ich habe vergessen, das Licht im Keller ___.",
           "answer": "auszumachen",
           "tr": "Bodrumdaki ışığı kapatmayı unuttum.",
-          "hint_tr": "Kapatmayı unuttum derken de **zu** kelimenin ortasına girer: **auszumachen**."
+          "hint_tr": "Işığı kapatmayı unuttum derken de **zu** kelimenin ortasına girer: **auszumachen**.",
+          "also_ok": [
+            "auszuschalten"
+          ]
         },
         {
           "de": "___ mal das Licht ___, ich will schlafen.",
@@ -190,7 +202,7 @@
         "lx:Fenster"
       ],
       "mistakes_tr": [
-        "Market yedide açılıyor derken **Der Supermarkt wird um sieben aufgemacht** pek denmez. Doğrusu **Der Supermarkt macht um sieben auf**.",
+        "Işığı aç derken **Mach das Licht auf** yanlış. **aufmachen** kapı ve pencere içindir. Işık için **Mach das Licht an** dersin.",
         "Kapıyı ben açarım derken **Ich die Tür aufmache** yanlış. Doğrusu **Ich mache die Tür auf**. **mache** ikinci sırada, **auf** en sonda."
       ],
       "examples": [
@@ -281,7 +293,10 @@
           "de": "Vergiss nicht, morgens kurz das Fenster ___.",
           "answer": "aufzumachen",
           "tr": "Sabahları pencereyi kısa bir süre açmayı unutma.",
-          "hint_tr": "Açmayı unutma derken **zu** kelimenin ortasına girer: **aufzumachen**."
+          "hint_tr": "Açmayı unutma derken **zu** kelimenin ortasına girer: **aufzumachen**.",
+          "also_ok": [
+            "zu öffnen"
+          ]
         },
         {
           "de": "Mach mal das Fenster ___, hier ist es total warm.",
@@ -337,7 +352,7 @@
       ],
       "mistakes_tr": [
         "Işığı kapat derken **Mach das Licht zu** yanlış. Kapı ve pencere için **zumachen**, ışık için **ausmachen** dersin.",
-        "Kapıyı kapatmayı unutma derken **die Tür zu zumachen** yanlış. Doğrusu tek kelime: **die Tür zuzumachen**."
+        "Kapıyı kapatmayı unutma derken **die Tür zu zumachen** yanlış. Doğrusu bitişik yazılır: **die Tür zuzumachen**."
       ],
       "examples": [
         {
@@ -398,14 +413,17 @@
             "tr": "yapmak"
           }
         ],
-        "ipucu_tr": "Kapatmayı unutma derken **zu** iki kez gelir: **zuzumachen**."
+        "ipucu_tr": "Kapıyı kapatmayı unutma derken **zu** iki kez gelir: **zuzumachen**."
       },
       "forms": [
         {
           "de": "Vergiss nicht, die Tür ___!",
           "answer": "zuzumachen",
           "tr": "Kapıyı kapatmayı unutma!",
-          "hint_tr": "Kapatmayı unutma derken **zu** iki kez gelir: **zuzumachen**."
+          "hint_tr": "Kapıyı kapatmayı unutma derken **zu** iki kez gelir: **zuzumachen**.",
+          "also_ok": [
+            "zu schließen"
+          ]
         },
         {
           "de": "Machen Sie bitte die Tür ___, es ist kalt.",
@@ -417,7 +435,10 @@
           "de": "Hast du das Fenster ___?",
           "answer": "zugemacht",
           "tr": "Pencereyi kapattın mı?",
-          "hint_tr": "Pencereyi kapattın mı derken **Hast du das Fenster zugemacht** denir."
+          "hint_tr": "Pencereyi kapattın mı derken **Hast du das Fenster zugemacht** denir.",
+          "also_ok": [
+            "geschlossen"
+          ]
         },
         {
           "de": "Wann machen Sie heute ___?",
@@ -660,8 +681,8 @@
         },
         {
           "id": "lx:mitbringen:6",
-          "de": "Frau Brandl bringt uns oft etwas zum Essen mit.",
-          "tr": "Brandl Hanım bize sık sık yiyecek bir şeyler getiriyor.",
+          "de": "Meine Nachbarin bringt mir oft etwas zum Essen mit.",
+          "tr": "Komşum bana sık sık yiyecek bir şeyler getiriyor.",
           "layer": "hd"
         }
       ],
@@ -750,7 +771,7 @@
         },
         {
           "de": "schnell den Müll rausbringen",
-          "tr": "çöpü hemen çıkarmak"
+          "tr": "çöpü çabucak çıkarmak"
         }
       ],
       "patterns": [
@@ -772,18 +793,18 @@
           "id": "lx:rausbringen:1",
           "de": "Kannst du bitte den Müll rausbringen?",
           "tr": "Çöpü dışarı çıkarabilir misin lütfen?",
-          "layer": "hd"
+          "layer": "alltag"
         },
         {
           "id": "lx:rausbringen:2",
           "de": "Ich habe vergessen, den Müll rauszubringen.",
           "tr": "Çöpü çıkarmayı unuttum.",
-          "layer": "hd"
+          "layer": "alltag"
         },
         {
           "id": "lx:rausbringen:3",
           "de": "Ich bring schnell den Müll raus, bin gleich wieder da.",
-          "tr": "Çöpü hemen çıkarıyorum, birazdan dönerim.",
+          "tr": "Çöpü çabucak çıkarayım, hemen dönerim.",
           "layer": "alltag"
         },
         {
@@ -797,14 +818,14 @@
           "id": "lx:rausbringen:5",
           "de": "– Soll ich den Müll gleich rausbringen? – Ja, bitte, der ist schon voll.",
           "tr": "– Çöpü şimdi çıkarayım mı? – Evet, lütfen, zaten dolu.",
-          "layer": "hd",
+          "layer": "alltag",
           "dialog": true
         },
         {
           "id": "lx:rausbringen:6",
           "de": "Am Wochenende bringen wir den Müll und die Flaschen raus.",
           "tr": "Hafta sonu çöpü ve şişeleri dışarı çıkarırız.",
-          "layer": "hd"
+          "layer": "alltag"
         }
       ],
       "level": "A2",
@@ -832,13 +853,21 @@
           "de": "Ich habe vergessen, den Müll ___.",
           "answer": "rauszubringen",
           "tr": "Çöpü çıkarmayı unuttum.",
-          "hint_tr": "Çöpü çıkarmayı unuttum derken **zu** kelimenin ortasına girer: **den Müll rauszubringen**."
+          "hint_tr": "Çöpü çıkarmayı unuttum derken **zu** kelimenin ortasına girer: **den Müll rauszubringen**.",
+          "also_ok": [
+            "hinauszubringen",
+            "runterzubringen"
+          ]
         },
         {
           "de": "Kannst du bitte den Müll ___?",
           "answer": "rausbringen",
           "tr": "Çöpü dışarı çıkarabilir misin lütfen?",
-          "hint_tr": "Çöpü çıkarabilir misin derken sona **rausbringen** gelir."
+          "hint_tr": "Çöpü çıkarabilir misin derken sona **rausbringen** gelir.",
+          "also_ok": [
+            "hinausbringen",
+            "runterbringen"
+          ]
         },
         {
           "de": "Wer ___ heute den Müll ___?",
@@ -850,7 +879,11 @@
           "de": "Soll ich den Müll gleich ___?",
           "answer": "rausbringen",
           "tr": "Çöpü şimdi çıkarayım mı?",
-          "hint_tr": "Çöpü şimdi çıkarayım mı derken sona **rausbringen** gelir."
+          "hint_tr": "Çöpü şimdi çıkarayım mı derken sona **rausbringen** gelir.",
+          "also_ok": [
+            "hinausbringen",
+            "runterbringen"
+          ]
         },
         {
           "de": "Am Wochenende ___ wir den Müll und die Flaschen ___.",
@@ -990,13 +1023,19 @@
           "de": "Darf ich das ___?",
           "answer": "wegwerfen",
           "tr": "Bunu atabilir miyim?",
-          "hint_tr": "Bunu atabilir miyim derken sona **wegwerfen** gelir."
+          "hint_tr": "Bunu atabilir miyim derken sona **wegwerfen** gelir.",
+          "also_ok": [
+            "wegschmeißen"
+          ]
         },
         {
           "de": "Wo ist der Zettel? Hast du ihn ___?",
           "answer": "weggeworfen",
           "tr": "Kâğıt nerede? Onu attın mı?",
-          "hint_tr": "Onu attın mı derken **Hast du ihn weggeworfen** denir."
+          "hint_tr": "Onu attın mı derken **Hast du ihn weggeworfen** denir.",
+          "also_ok": [
+            "weggeschmissen"
+          ]
         }
       ]
     },
@@ -1212,7 +1251,7 @@
         {
           "id": "lx:Schalter:6",
           "de": "Der Schalter für das Licht ist links neben der Tür.",
-          "tr": "Işığın düğmesi kapının hemen solunda.",
+          "tr": "Işığın düğmesi solda, kapının yanında.",
           "layer": "hd",
           "img": "light switch on wall"
         }
@@ -1252,7 +1291,7 @@
         {
           "de": "Der ___ für das Licht ist links neben der Tür.",
           "answer": "Schalter",
-          "tr": "Işığın düğmesi kapının hemen solunda.",
+          "tr": "Işığın düğmesi solda, kapının yanında.",
           "hint_tr": "Işığın düğmesi derken **Der Schalter für das Licht** denir."
         },
         {
@@ -1428,8 +1467,8 @@
           "tr": "Bakiyem ne kadar?"
         },
         {
-          "de": "der Kontostand am Geldautomaten",
-          "tr": "bankamatikteki bakiye"
+          "de": "den Kontostand am Geldautomaten sehen",
+          "tr": "bakiyeyi bankamatikte görmek"
         }
       ],
       "patterns": [
@@ -1905,25 +1944,37 @@
           "de": "Guten Tag, ich hätte gern eine ___.",
           "answer": "Auskunft",
           "tr": "İyi günler, bir bilgi almak istiyorum.",
-          "hint_tr": "Bilgi almak istiyorum derken **ich hätte gern eine Auskunft** dersin."
+          "hint_tr": "Bilgi almak istiyorum derken **ich hätte gern eine Auskunft** dersin.",
+          "also_ok": [
+            "Information"
+          ]
         },
         {
           "de": "Leider kann ich Ihnen am Telefon keine ___ geben.",
           "answer": "Auskunft",
           "tr": "Maalesef size telefonda bilgi veremem.",
-          "hint_tr": "Bilgi veremem derken **keine Auskunft geben** denir."
+          "hint_tr": "Bilgi veremem derken **keine Auskunft geben** denir.",
+          "also_ok": [
+            "Information"
+          ]
         },
         {
           "de": "Können Sie mir eine ___ geben?",
           "answer": "Auskunft",
           "tr": "Bana bilgi verebilir misiniz?",
-          "hint_tr": "Bilgi verebilir misiniz derken **eine Auskunft geben** denir."
+          "hint_tr": "Bilgi verebilir misiniz derken **eine Auskunft geben** denir.",
+          "also_ok": [
+            "Information"
+          ]
         },
         {
           "de": "Am Telefon habe ich keine ___ bekommen.",
           "answer": "Auskunft",
           "tr": "Telefonda bilgi alamadım.",
-          "hint_tr": "Bilgi alamadım derken **keine Auskunft bekommen** denir."
+          "hint_tr": "Bilgi alamadım derken **keine Auskunft bekommen** denir.",
+          "also_ok": [
+            "Information"
+          ]
         },
         {
           "de": "Für eine ___ drücken Sie bitte die Zwei.",
@@ -1969,7 +2020,7 @@
       ],
       "mistakes_tr": [
         "Yardım hattını aradım derken **Ich habe die Hotline gesucht** yanlış. **suchen** bir şeyi bulmaya çalışmaktır. Doğrusu **Ich habe die Hotline angerufen**.",
-        "Yardım hattında çalışıyor derken **in der Hotline** yanlış. Doğrusu **Er arbeitet bei der Hotline**."
+        "Yardım hattına telefon ettim derken **Ich habe der Hotline angerufen** yanlış. Doğrusu **Ich habe die Hotline angerufen**."
       ],
       "examples": [
         {
@@ -2017,10 +2068,10 @@
         "telefon"
       ],
       "exp": {
-        "anlam_tr": "**die Hotline** bir firmanın sorular için aradığın telefon hattıdır.",
+        "anlam_tr": "**die Hotline** bir firmaya soru sormak için aradığın telefon hattıdır.",
         "ne_zaman_tr": "Faturada, telefonda ya da bir üründe sorun olunca.",
         "parcalar": [],
-        "ipucu_tr": "Telefonla aramak **anrufen**, kayıp bir şeyi aramak **suchen** demektir."
+        "ipucu_tr": "Yardım hattını aramak için **suchen** değil, **die Hotline anrufen** dersin."
       },
       "forms": [
         {
@@ -2161,31 +2212,46 @@
           "de": "Ich habe gestern mit dem ___ gesprochen.",
           "answer": "Kundenservice",
           "tr": "Dün müşteri hizmetleriyle konuştum.",
-          "hint_tr": "Müşteri hizmetleriyle derken **mit dem Kundenservice** dersin."
+          "hint_tr": "Müşteri hizmetleriyle derken **mit dem Kundenservice** dersin.",
+          "also_ok": [
+            "Kundendienst"
+          ]
         },
         {
           "de": "Willkommen beim ___.",
           "answer": "Kundenservice",
           "tr": "Müşteri hizmetlerine hoş geldiniz.",
-          "hint_tr": "Müşteri hizmetlerine hoş geldiniz derken **Willkommen beim Kundenservice** denir."
+          "hint_tr": "Müşteri hizmetlerine hoş geldiniz derken **Willkommen beim Kundenservice** denir.",
+          "also_ok": [
+            "Kundendienst"
+          ]
         },
         {
           "de": "Ich habe beim ___ angerufen.",
           "answer": "Kundenservice",
           "tr": "Müşteri hizmetlerini aradım.",
-          "hint_tr": "Müşteri hizmetlerini aradım derken **Ich habe beim Kundenservice angerufen** denir."
+          "hint_tr": "Müşteri hizmetlerini aradım derken **Ich habe beim Kundenservice angerufen** denir.",
+          "also_ok": [
+            "Kundendienst"
+          ]
         },
         {
           "de": "Den ___ erreichen Sie von Montag bis Freitag.",
           "answer": "Kundenservice",
           "tr": "Müşteri hizmetlerine pazartesiden cumaya kadar ulaşabilirsiniz.",
-          "hint_tr": "Müşteri hizmetlerine ulaşabilirsiniz derken **Den Kundenservice erreichen Sie** denir."
+          "hint_tr": "Müşteri hizmetlerine ulaşabilirsiniz derken **Den Kundenservice erreichen Sie** denir.",
+          "also_ok": [
+            "Kundendienst"
+          ]
         },
         {
           "de": "Ich möchte bitte mit dem ___ sprechen.",
           "answer": "Kundenservice",
           "tr": "Müşteri hizmetleriyle görüşmek istiyorum lütfen.",
-          "hint_tr": "Müşteri hizmetleriyle görüşmek istiyorum derken **mit dem Kundenservice sprechen** denir."
+          "hint_tr": "Müşteri hizmetleriyle görüşmek istiyorum derken **mit dem Kundenservice sprechen** denir.",
+          "also_ok": [
+            "Kundendienst"
+          ]
         }
       ]
     },
@@ -2431,19 +2497,28 @@
           "de": "Ich habe die Geheimzahl dreimal falsch ___.",
           "answer": "eingegeben",
           "tr": "Şifreyi üç kez yanlış girdim.",
-          "hint_tr": "Yanlış girdim derken **falsch eingegeben** denir."
+          "hint_tr": "Yanlış girdim derken **falsch eingegeben** denir.",
+          "also_ok": [
+            "eingetippt"
+          ]
         },
         {
           "de": "Was soll ich hier ___?",
           "answer": "eingeben",
           "tr": "Buraya ne girmem gerekiyor?",
-          "hint_tr": "Buraya ne girmem gerekiyor derken sona **eingeben** gelir."
+          "hint_tr": "Buraya ne girmem gerekiyor derken sona **eingeben** gelir.",
+          "also_ok": [
+            "eintippen"
+          ]
         },
         {
           "de": "Es ist nicht leicht, am Telefon die Zahlen schnell ___.",
           "answer": "einzugeben",
           "tr": "Telefonda rakamları hızlı girmek kolay değil.",
-          "hint_tr": "Girmek kolay değil derken **zu** kelimenin ortasına girer: **einzugeben**."
+          "hint_tr": "Girmek kolay değil derken **zu** kelimenin ortasına girer: **einzugeben**.",
+          "also_ok": [
+            "einzutippen"
+          ]
         },
         {
           "de": "___ einfach deine Telefonnummer ___.",
@@ -2488,7 +2563,7 @@
       ],
       "mistakes_tr": [
         "İki iş günü sürer derken **Es dauert zwei Werktag** yanlış. Doğrusu **Es dauert zwei Werktage**.",
-        "İş günlerinde derken **in Werktagen** yanlış. Doğrusu **an Werktagen**."
+        "Sadece iş günlerinde açık derken **nur in Werktagen offen** yanlış. Doğrusu **nur an Werktagen offen**."
       ],
       "examples": [
         {
@@ -2518,8 +2593,8 @@
         },
         {
           "id": "lx:Werktag:5",
-          "de": "– Ist Samstag ein Werktag? – Ja, eigentlich schon. Nur Sonntag und Feiertage nicht.",
-          "tr": "– Cumartesi iş günü mü? – Evet, aslında öyle. Sadece pazar ve bayramlar değil.",
+          "de": "– Ist Samstag ein Werktag? – Ja, eigentlich schon. Aber viele Büros sind am Samstag geschlossen.",
+          "tr": "– Cumartesi iş günü mü? – Evet, aslında öyle. Ama birçok ofis cumartesi kapalı.",
           "layer": "hd",
           "dialog": true
         },
@@ -2550,7 +2625,7 @@
             "tr": "gün"
           }
         ],
-        "ipucu_tr": "Resmî dilde cumartesi de **Werktag** sayılır."
+        "ipucu_tr": "Cumartesi de **Werktag** sayılır, ama her yer cumartesi açık değildir."
       },
       "forms": [
         {
@@ -2677,7 +2752,7 @@
       ],
       "exp": {
         "anlam_tr": "**die Raute** telefondaki kare tuşudur.",
-        "ne_zaman_tr": "Telefon menüsü numara girdikten sonra isteyince.",
+        "ne_zaman_tr": "Telefon menüsünde, numarayı girdikten sonra basman istenince.",
         "parcalar": [],
         "ipucu_tr": "Telefonda kare tuşu sağ altta durur, adı **die Raute**."
       },

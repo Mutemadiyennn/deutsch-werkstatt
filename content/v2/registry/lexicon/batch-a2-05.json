@@ -1,7 +1,10 @@
 {
  "batch": "a2-05",
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "Dilbilimci turu tamam: docs/v2/reviews/lexicon-batch-a2-05.md. Okur bekliyor."
  },
  "items": [
   {
@@ -25,8 +28,8 @@
      "tr": "Dikkat, sıcak!"
     },
     {
-     "de": "Achtung, Kontrolle!",
-     "tr": "Dikkat, kontrol var!"
+     "de": "Achtung, Stufe!",
+     "tr": "Dikkat, basamak!"
     }
    ],
    "patterns": [
@@ -91,14 +94,17 @@
     "anlam_tr": "**Achtung** dikkat demektir, önemli bir şey söylenmeden önce gelir.",
     "ne_zaman_tr": "Anonslarda, uyarı yazılarında ya da birini uyarırken.",
     "parcalar": [],
-    "ipucu_tr": "Anons **Achtung** ile başlarsa arkasından önemli bir değişiklik gelir."
+    "ipucu_tr": "Anons **Achtung** ile başlarsa arkasından önemli bir bilgi gelir."
    },
    "forms": [
     {
      "de": "___ an Gleis 2: Der Zug nach Regensburg fällt heute aus.",
      "answer": "Achtung",
      "tr": "2. perondakilerin dikkatine: Regensburg treni bugün iptal.",
-     "hint_tr": "2. perondakilerin dikkatine derken **Achtung an Gleis 2** denir."
+     "hint_tr": "2. perondakilerin dikkatine derken **Achtung an Gleis 2** denir.",
+     "also_ok": [
+      "Vorsicht"
+     ]
     },
     {
      "de": "___, bitte! Der Zug nach München hat zwanzig Minuten Verspätung.",
@@ -260,7 +266,10 @@
      "de": "Der Zug ist heute pünktlich ___.",
      "answer": "abgefahren",
      "tr": "Tren bugün zamanında kalktı.",
-     "hint_tr": "Tren bugün zamanında kalktı derken **Der Zug ist heute pünktlich abgefahren** denir."
+     "hint_tr": "Tren bugün zamanında kalktı derken **Der Zug ist heute pünktlich abgefahren** denir.",
+     "also_ok": [
+      "losgefahren"
+     ]
     },
     {
      "de": "Fährt der Zug nach Landshut hier ___?",
@@ -274,7 +283,8 @@
      "tr": "Otobüs az önce kalktı.",
      "hint_tr": "Otobüs az önce kalktı derken **Der Bus ist gerade abgefahren** denir.",
      "also_ok": [
-      "weggefahren"
+      "weggefahren",
+      "losgefahren"
      ]
     }
    ]
@@ -343,7 +353,7 @@
     {
      "id": "lx:einfahren:3",
      "de": "Schau, unser Zug fährt grad ein!",
-     "tr": "Bak, trenimiz tam şimdi giriyor!",
+     "tr": "Bak, trenimiz şu an perona giriyor!",
      "layer": "alltag"
     },
     {
@@ -356,7 +366,7 @@
     {
      "id": "lx:einfahren:5",
      "de": "– Fährt der Zug aus Regensburg schon ein? – Nein, er hat zehn Minuten Verspätung.",
-     "tr": "– Regensburg'dan gelen tren perona giriyor mu? – Hayır, on dakika rötarlı.",
+     "tr": "– Regensburg'dan gelen tren artık perona giriyor mu? – Hayır, on dakika rötarlı.",
      "layer": "hd",
      "dialog": true
     },
@@ -385,7 +395,7 @@
       "tr": "gitmek (araçla)"
      }
     ],
-    "ipucu_tr": "Anonsta en çok **Ein Zug fährt ein** cümlesini duyarsın."
+    "ipucu_tr": "Anonsta **fährt ein** duyarsan tren şimdi perona giriyor demektir."
    },
    "forms": [
     {
@@ -412,14 +422,14 @@
     {
      "de": "Unser Zug fährt gerade ___!",
      "answer": "ein",
-     "tr": "Trenimiz tam şimdi giriyor!",
-     "hint_tr": "Trenimiz tam şimdi giriyor derken **Unser Zug fährt gerade ein** denir."
+     "tr": "Trenimiz şu an perona giriyor!",
+     "hint_tr": "Trenimiz şu an perona giriyor derken **Unser Zug fährt gerade ein** denir."
     },
     {
      "de": "Fährt der Zug aus Regensburg schon ___?",
      "answer": "ein",
-     "tr": "Regensburg'dan gelen tren perona giriyor mu?",
-     "hint_tr": "Perona giriyor mu derken **Fährt der Zug aus Regensburg schon ein** denir."
+     "tr": "Regensburg'dan gelen tren artık perona giriyor mu?",
+     "hint_tr": "Artık perona giriyor mu derken **Fährt der Zug aus Regensburg schon ein** denir."
     }
    ]
   },
@@ -600,8 +610,8 @@
     },
     {
      "id": "lx:Fahrgast:3",
-     "de": "Mann, die Fahrgäste da hinten sind echt laut.",
-     "tr": "Ya, arkadaki yolcular gerçekten çok gürültücü.",
+     "de": "Na toll, alle Fahrgäste müssen aussteigen. Der Bus ist kaputt.",
+     "tr": "Çok güzel, bütün yolcular inmek zorunda. Otobüs bozulmuş.",
      "layer": "alltag"
     },
     {
@@ -643,7 +653,8 @@
      "tr": "Değerli yolcular, birkaç dakika içinde Münih'e varıyoruz.",
      "hint_tr": "Değerli yolcular derken **Liebe Fahrgäste** denir.",
      "also_ok": [
-      "Reisende"
+      "Reisende",
+      "Passagiere"
      ]
     },
     {
@@ -653,14 +664,19 @@
      "hint_tr": "Çok yolcu derken **viele Fahrgäste** denir.",
      "also_ok": [
       "Leute",
-      "Menschen"
+      "Menschen",
+      "Passagiere"
      ]
     },
     {
      "de": "Ein ___ ist krank.",
      "answer": "Fahrgast",
      "tr": "Bir yolcu hasta.",
-     "hint_tr": "Bir yolcu derken **Ein Fahrgast** denir."
+     "hint_tr": "Bir yolcu derken **Ein Fahrgast** denir.",
+     "also_ok": [
+      "Passagier",
+      "Reisender"
+     ]
     },
     {
      "de": "Sehr geehrte ___, bitte steigen Sie in Plattling um.",
@@ -668,7 +684,8 @@
      "tr": "Sayın yolcular, lütfen Plattling'de aktarma yapın.",
      "hint_tr": "Sayın yolcular derken **Sehr geehrte Fahrgäste** denir.",
      "also_ok": [
-      "Reisende"
+      "Reisende",
+      "Passagiere"
      ]
     },
     {
@@ -678,7 +695,8 @@
      "hint_tr": "Münih'e gidecek yolcular derken **die Fahrgäste nach München** denir.",
      "also_ok": [
       "Reisenden",
-      "Leute"
+      "Leute",
+      "Passagiere"
      ]
     }
    ]
@@ -776,7 +794,7 @@
      "de": "In Landshut ist der ___ in Fahrtrichtung links.",
      "answer": "Ausstieg",
      "tr": "Landshut'ta iniş, gidiş yönüne göre solda.",
-     "hint_tr": "Landshut'ta iniş solda derken **ist der Ausstieg in Fahrtrichtung links** denir."
+     "hint_tr": "İniş, gidiş yönüne göre solda derken **ist der Ausstieg in Fahrtrichtung links** denir."
     },
     {
      "de": "Bitte nehmen Sie beim ___ Ihr Gepäck mit.",
@@ -849,7 +867,7 @@
     {
      "id": "lx:Bauarbeiten:1",
      "de": "Wegen Bauarbeiten fahren heute zwischen Wendlfing und Landshut Busse.",
-     "tr": "Çalışmalar yüzünden bugün Wendlfing ile Landshut arasında otobüsler çalışıyor.",
+     "tr": "Çalışmalar yüzünden bugün Wendlfing ile Landshut arasında otobüsler sefer yapıyor.",
      "layer": "hd"
     },
     {
@@ -910,7 +928,7 @@
     {
      "de": "Wegen ___ fahren heute zwischen Wendlfing und Landshut Busse.",
      "answer": "Bauarbeiten",
-     "tr": "Çalışmalar yüzünden bugün Wendlfing ile Landshut arasında otobüsler çalışıyor.",
+     "tr": "Çalışmalar yüzünden bugün Wendlfing ile Landshut arasında otobüsler sefer yapıyor.",
      "hint_tr": "Çalışmalar yüzünden derken **Wegen Bauarbeiten** denir."
     },
     {
@@ -923,7 +941,10 @@
      "de": "Wie lange dauern die ___ noch?",
      "answer": "Bauarbeiten",
      "tr": "Çalışmalar daha ne kadar sürecek?",
-     "hint_tr": "Çalışmalar daha ne kadar sürecek derken **Wie lange dauern die Bauarbeiten noch** denir."
+     "hint_tr": "Çalışmalar daha ne kadar sürecek derken **Wie lange dauern die Bauarbeiten noch** denir.",
+     "also_ok": [
+      "Arbeiten"
+     ]
     },
     {
      "de": "Der Bus fährt heute anders, weil es in der Hauptstraße ___ gibt.",
@@ -935,7 +956,11 @@
      "de": "Schon wieder ___!",
      "answer": "Bauarbeiten",
      "tr": "Yine çalışma var!",
-     "hint_tr": "Yine çalışma var derken **Schon wieder Bauarbeiten** denir."
+     "hint_tr": "Yine çalışma var derken **Schon wieder Bauarbeiten** denir.",
+     "also_ok": [
+      "Baustelle",
+      "Baustellen"
+     ]
     }
    ]
   },
@@ -1111,7 +1136,7 @@
    ],
    "mistakes_tr": [
     "3 numaralı hat derken **die drei Linie** yanlış. Doğrusu **die Linie 3**, sayı sona gelir.",
-    "Hangi hattın gara gittiğini derken **welche Linie fährt zum Bahnhof** yanlış. Doğrusu **welche Linie zum Bahnhof fährt**."
+    "Soruyu **Wissen Sie** ile açınca **welche Linie fährt zum Bahnhof** yanlış. Doğrusu **welche Linie zum Bahnhof fährt**."
    ],
    "examples": [
     {
@@ -1241,8 +1266,8 @@
     "lx:Linie"
    ],
    "mistakes_tr": [
-    "Können Sie mir sagen derken arkasından **wie komme ich zum Hauptbahnhof** yanlış. Doğrusu **wie ich zum Hauptbahnhof komme**.",
-    "Ana garda derken **in Hauptbahnhof** yanlış. Doğrusu **am Hauptbahnhof**."
+    "**Können Sie mir sagen** dedikten sonra **wie komme ich zum Hauptbahnhof** yanlış. Doğrusu **wie ich zum Hauptbahnhof komme**.",
+    "Ana gara derken **nach Hauptbahnhof** yanlış. Doğrusu **zum Hauptbahnhof**."
    ],
    "examples": [
     {
@@ -1398,7 +1423,7 @@
     {
      "id": "lx:Zentrum:1",
      "de": "Können Sie mir sagen, wie weit es bis ins Zentrum ist?",
-     "tr": "Merkeze ne kadar uzak olduğunu söyleyebilir misiniz?",
+     "tr": "Merkezin ne kadar uzakta olduğunu söyleyebilir misiniz?",
      "layer": "hd"
     },
     {
@@ -1451,8 +1476,8 @@
     {
      "de": "Können Sie mir sagen, wie weit es bis ins ___ ist?",
      "answer": "Zentrum",
-     "tr": "Merkeze ne kadar uzak olduğunu söyleyebilir misiniz?",
-     "hint_tr": "Merkeze ne kadar uzak olduğunu derken **wie weit es bis ins Zentrum ist** denir.",
+     "tr": "Merkezin ne kadar uzakta olduğunu söyleyebilir misiniz?",
+     "hint_tr": "Merkezin ne kadar uzakta olduğunu derken **wie weit es bis ins Zentrum ist** denir.",
      "also_ok": [
       "Stadtzentrum"
      ]
@@ -1650,8 +1675,7 @@
    ],
    "patterns": [
     "pt:ob",
-    "pt:trennbar",
-    "pt:haben-sie"
+    "pt:trennbar"
    ],
    "register": "informal",
    "related": [
@@ -1731,7 +1755,9 @@
      "also_ok": [
       "geöffnet hat",
       "offen hat",
-      "offen ist"
+      "offen ist",
+      "geöffnet ist",
+      "auf ist"
      ]
     },
     {
@@ -1741,7 +1767,10 @@
      "hint_tr": "Akşam sekize kadar açık derken önce **hat**, en sonda **auf** gelir.",
      "also_ok": [
       "hat … offen",
-      "hat … geöffnet"
+      "hat … geöffnet",
+      "ist … offen",
+      "ist … geöffnet",
+      "ist … auf"
      ]
     },
     {
@@ -1772,7 +1801,9 @@
      "also_ok": [
       "geöffnet hat",
       "offen hat",
-      "offen ist"
+      "offen ist",
+      "geöffnet ist",
+      "auf ist"
      ]
     }
    ]
@@ -2105,7 +2136,7 @@
     {
      "id": "lx:durchgehend:4",
      "de": "– Hat der Supermarkt über Mittag zu? – Nee, der hat durchgehend auf.",
-     "tr": "– Süpermarket öğlen kapanıyor mu? – Yok, gün boyu açık.",
+     "tr": "– Süpermarket öğlen kapanıyor mu? – Yok, arasız açık.",
      "layer": "alltag",
      "dialog": true
     },
@@ -2190,12 +2221,11 @@
     },
     {
      "de": "heute Ruhetag",
-     "tr": "bugün kapalı gün"
+     "tr": "bugün kapalı günü"
     }
    ],
    "patterns": [
-    "pt:ob",
-    "pt:haben-sie"
+    "pt:ob"
    ],
    "register": "neutral",
    "related": [
@@ -2221,7 +2251,7 @@
     {
      "id": "lx:Ruhetag:3",
      "de": "Mist, heute ist Ruhetag!",
-     "tr": "Hay aksi, bugün kapalı gün!",
+     "tr": "Hay aksi, bugün kapalı günleriymiş!",
      "layer": "alltag"
     },
     {
@@ -2283,7 +2313,8 @@
      "tr": "Kafe bugün kapalı mı, biliyor musunuz?",
      "hint_tr": "Kafe bugün kapalı mı derken **ob das Café heute Ruhetag hat** denir.",
      "also_ok": [
-      "zu"
+      "zu",
+      "geschlossen"
      ]
     },
     {
@@ -2304,8 +2335,8 @@
     {
      "de": "Mist, heute ist ___!",
      "answer": "Ruhetag",
-     "tr": "Hay aksi, bugün kapalı gün!",
-     "hint_tr": "Bugün kapalı gün derken **heute ist Ruhetag** denir."
+     "tr": "Hay aksi, bugün kapalı günleriymiş!",
+     "hint_tr": "Bugün kapalı günleriymiş derken **heute ist Ruhetag** denir."
     }
    ]
   },
@@ -2328,14 +2359,14 @@
     },
     {
      "de": "kurz nachschauen",
-     "tr": "kısaca bakmak"
+     "tr": "hemen bakmak"
     },
     {
      "de": "noch mal nachschauen",
      "tr": "bir daha bakmak"
     },
     {
-     "de": "Ich schau mal nach.",
+     "de": "Ich schaue mal nach.",
      "tr": "Bir bakayım."
     }
    ],
@@ -2368,13 +2399,13 @@
     {
      "id": "lx:nachschauen:3",
      "de": "Wart mal, ich schau schnell auf dem Handy nach.",
-     "tr": "Dur bir dakika, hemen telefondan bakayım.",
+     "tr": "Dur, telefondan çabucak bakayım.",
      "layer": "alltag"
     },
     {
      "id": "lx:nachschauen:4",
      "de": "– Fährt heute noch ein Bus? – Keine Ahnung, schau doch mal nach.",
-     "tr": "– Bugün daha otobüs var mı? – Bilmiyorum, bir baksana.",
+     "tr": "– Bugün başka otobüs var mı? – Bilmiyorum, bir baksana.",
      "layer": "alltag",
      "dialog": true
     },
@@ -2441,7 +2472,9 @@
      "hint_tr": "Bakabilir misin derken sona **nachschauen** gelir.",
      "also_ok": [
       "nachsehen",
-      "schauen"
+      "schauen",
+      "nachgucken",
+      "gucken"
      ]
     }
    ]
@@ -2479,7 +2512,7 @@
    ],
    "mistakes_tr": [
     "Emin değilim derken **Ich bin nicht unsicher** yanlış, anlamı tam tersi. Doğrusu **Ich bin unsicher**.",
-    "Otobüsün gelip gelmediğinden emin değilim derken **Ich bin unsicher, wenn der Bus kommt** yanlış. Doğrusu **Ich bin unsicher, ob der Bus kommt**."
+    "Otobüsün gelip gelmeyeceğinden emin değilim derken **Ich bin unsicher, wenn der Bus kommt** yanlış. Doğrusu **Ich bin unsicher, ob der Bus kommt**."
    ],
    "examples": [
     {
@@ -2554,7 +2587,10 @@
      "de": "Weiß nicht, ich bin noch ___.",
      "answer": "unsicher",
      "tr": "Bilmiyorum, henüz kararsızım.",
-     "hint_tr": "Henüz kararsızım derken **ich bin noch unsicher** denir."
+     "hint_tr": "Henüz kararsızım derken **ich bin noch unsicher** denir.",
+     "also_ok": [
+      "nicht sicher"
+     ]
     },
     {
      "de": "In der Nacht ist die Gegend etwas ___.",
@@ -2609,7 +2645,6 @@
     }
    ],
    "patterns": [
-    "pt:um-zu",
     "pt:fuer-akk",
     "pt:perfekt-haben",
     "pt:ich-muss"
@@ -2658,8 +2693,8 @@
     },
     {
      "id": "lx:sparen:6",
-     "de": "Ich nehme Essen von zu Hause mit, um Geld zu sparen.",
-     "tr": "Para biriktirmek için evden yemek götürüyorum.",
+     "de": "Ich nehme Essen von zu Hause mit und spare jeden Tag fünf Euro.",
+     "tr": "Evden yemek götürüyorum ve her gün beş avro tasarruf ediyorum.",
      "layer": "hd"
     }
    ],
@@ -2696,10 +2731,10 @@
      "hint_tr": "Bu ay tasarruf etmem lazım derken **muss ich echt sparen** denir."
     },
     {
-     "de": "Ich nehme Essen von zu Hause mit, um Geld zu ___.",
-     "answer": "sparen",
-     "tr": "Para biriktirmek için evden yemek götürüyorum.",
-     "hint_tr": "Para biriktirmek için derken **um Geld zu sparen** denir."
+     "de": "Ich nehme Essen von zu Hause mit und ___ jeden Tag fünf Euro.",
+     "answer": "spare",
+     "tr": "Evden yemek götürüyorum ve her gün beş avro tasarruf ediyorum.",
+     "hint_tr": "Her gün beş avro tasarruf ediyorum derken **spare jeden Tag fünf Euro** denir."
     },
     {
      "de": "Wir haben drei Jahre für das Auto ___.",
@@ -2740,8 +2775,7 @@
    ],
    "patterns": [
     "pt:darf-ich",
-    "pt:perfekt-haben",
-    "pt:imperativ-sie"
+    "pt:perfekt-haben"
    ],
    "register": "neutral",
    "related": [
@@ -2749,7 +2783,7 @@
    ],
    "mistakes_tr": [
     "Denedim derken **Ich habe geprobiert** yanlış. Doğrusu **Ich habe probiert**, başına **ge** gelmez.",
-    "Pastanın tadına bak derken **Schau den Geschmack vom Kuchen** yanlış. Doğrusu **Probier mal den Kuchen**."
+    "Pastanın tadına bak derken **Schau mal den Kuchen** yanlış, pastaya bak demek olur. Doğrusu **Probier mal den Kuchen**."
    ],
    "examples": [
     {
@@ -2802,7 +2836,7 @@
     "anlam_tr": "**probieren** bir şeyi denemek ya da yemeğin tadına bakmaktır.",
     "ne_zaman_tr": "Yemekte, alışverişte ya da bir şey olmayınca yeniden denerken.",
     "parcalar": [],
-    "ipucu_tr": "Yemeğin tadına bakarken **versuchen** değil, **probieren** dersin."
+    "ipucu_tr": "Yemeğin tadına bakarken çoğu zaman **probieren** dersin."
    },
    "forms": [
     {
@@ -2811,7 +2845,8 @@
      "tr": "Peynirin tadına bakabilir miyim?",
      "hint_tr": "Tadına bakabilir miyim derken **Darf ich den Käse mal probieren** denir.",
      "also_ok": [
-      "kosten"
+      "kosten",
+      "versuchen"
      ]
     },
     {
@@ -2821,7 +2856,8 @@
      "hint_tr": "Bir tadına bak derken **Probier mal** denir.",
      "also_ok": [
       "Probiere",
-      "Koste"
+      "Koste",
+      "Versuch"
      ]
     },
     {
@@ -2837,7 +2873,10 @@
      "de": "Ich ___ gern etwas Neues.",
      "answer": "probiere",
      "tr": "Yeni şeyler denemeyi severim.",
-     "hint_tr": "Yeni şeyler denemeyi severim derken **Ich probiere gern etwas Neues** denir."
+     "hint_tr": "Yeni şeyler denemeyi severim derken **Ich probiere gern etwas Neues** denir.",
+     "also_ok": [
+      "versuche"
+     ]
     },
     {
      "de": "Möchten Sie den Kuchen ___?",
@@ -2845,7 +2884,8 @@
      "tr": "Pastanın tadına bakmak ister misiniz?",
      "hint_tr": "Tadına bakmak ister misiniz derken sona **probieren** gelir.",
      "also_ok": [
-      "kosten"
+      "kosten",
+      "versuchen"
      ]
     }
    ]
@@ -2889,7 +2929,7 @@
    ],
    "mistakes_tr": [
     "Daire almayı planlıyoruz derken **Wir planen eine Wohnung kaufen** yanlış. Doğrusu **Wir planen, eine Wohnung zu kaufen**.",
-    "Hafta sonu ne planlıyorsun derken **Was planst du machen** yanlış. Doğrusu **Was planst du am Wochenende**."
+    "Hafta sonu ne planlıyorsun derken **Was planst du am Wochenende machen** yanlış. Doğrusu **Was planst du am Wochenende**."
    ],
    "examples": [
     {
@@ -2926,8 +2966,8 @@
     },
     {
      "id": "lx:planen:6",
-     "de": "Herr Wimmer plant für Freitag eine kurze Besprechung.",
-     "tr": "Wimmer Bey cuma için kısa bir toplantı planlıyor.",
+     "de": "Mein Chef plant für Freitag eine kurze Besprechung.",
+     "tr": "Şefim cuma için kısa bir toplantı planlıyor.",
      "layer": "hd"
     }
    ],
@@ -2973,10 +3013,10 @@
      "hint_tr": "Henüz bir şey planlamadım derken **Ich habe noch nichts geplant** denir."
     },
     {
-     "de": "Herr Wimmer ___ für Freitag eine kurze Besprechung.",
+     "de": "Mein Chef ___ für Freitag eine kurze Besprechung.",
      "answer": "plant",
-     "tr": "Wimmer Bey cuma için kısa bir toplantı planlıyor.",
-     "hint_tr": "Wimmer Bey planlıyor derken **Herr Wimmer plant** denir."
+     "tr": "Şefim cuma için kısa bir toplantı planlıyor.",
+     "hint_tr": "Şefim planlıyor derken **Mein Chef plant** denir."
     }
    ]
   },
@@ -3011,15 +3051,14 @@
    ],
    "patterns": [
     "pt:darf-ich",
-    "pt:seit",
-    "pt:perfekt-haben"
+    "pt:seit"
    ],
    "register": "neutral",
    "related": [
     "lx:aufhören"
    ],
    "mistakes_tr": [
-    "Sigara içiyorum derken **Ich trinke Zigaretten** yanlış. Almancada sigara içilmez, **Ich rauche** dersin.",
+    "Sigara içiyorum derken **Ich trinke Zigaretten** yanlış. Almancada sigara için **trinken** denmez, **Ich rauche** dersin.",
     "Sigarayı bıraktım derken **Ich habe aufgehört rauchen** yanlış. Doğrusu **Ich habe aufgehört zu rauchen**."
    ],
    "examples": [
@@ -3136,8 +3175,7 @@
    ],
    "patterns": [
     "pt:zu-adj",
-    "pt:kein",
-    "pt:darf-ich"
+    "pt:kein"
    ],
    "register": "neutral",
    "related": [
@@ -3319,7 +3357,7 @@
     {
      "id": "lx:Gewohnheit:6",
      "de": "Ich versuche, jeden Tag zehn Minuten Deutsch zu lernen. Das soll eine Gewohnheit werden.",
-     "tr": "Her gün on dakika Almanca çalışmaya çalışıyorum. Bu bir alışkanlığa dönüşmeli.",
+     "tr": "Her gün on dakika Almanca çalışmayı deniyorum. Bu bir alışkanlığa dönüşmeli.",
      "layer": "hd"
     }
    ],
@@ -3416,7 +3454,7 @@
    ],
    "mistakes_tr": [
     "Şemsiyeni yanına al derken **Nimm dein Regenschirm mit** yanlış. Doğrusu **Nimm deinen Regenschirm mit**.",
-    "Şemsiyeyi aç derken **Mach Regenschirm auf** yanlış. Doğrusu **Mach den Regenschirm auf**."
+    "Şemsiyem yok derken **Ich habe nicht Regenschirm** yanlış. Doğrusu **Ich habe keinen Regenschirm**."
    ],
    "examples": [
     {
@@ -3450,8 +3488,8 @@
     },
     {
      "id": "lx:Regenschirm:5",
-     "de": "– Ist das Ihr Regenschirm? – Ja, danke! Ich habe ihn fast vergessen.",
-     "tr": "– Bu sizin şemsiyeniz mi? – Evet, teşekkürler! Az kalsın unutuyordum.",
+     "de": "– Ist das Ihr Regenschirm? – Ja, danke! Den vergesse ich immer.",
+     "tr": "– Bu sizin şemsiyeniz mi? – Evet, teşekkürler! Onu hep unutuyorum.",
      "layer": "hd",
      "dialog": true,
      "img": "handing over umbrella"
