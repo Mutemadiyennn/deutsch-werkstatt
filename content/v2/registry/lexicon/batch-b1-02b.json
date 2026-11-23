@@ -1,7 +1,10 @@
 {
   "batch": "b1-02b",
   "review": {
-    "status": "draft"
+    "status": "draft",
+    "by": "dilbilimci-ajan",
+    "at": "2026-11-23",
+    "notes": "docs/v2/reviews/lexicon-b1-02.md"
   },
   "items": [
     {
@@ -75,7 +78,7 @@
         "arbeit"
       ],
       "exp": {
-        "anlam_tr": "Bu yıl henüz kullanmadığın izin günlerini anlatır.",
+        "anlam_tr": "Henüz kullanmadığın, elinde kalan izin günlerini anlatır.",
         "ne_zaman_tr": "Yıl sonuna doğru izin planlarken.",
         "parcalar": [
           {
@@ -146,7 +149,7 @@
           "tr": "fazla mesainin parasını almak"
         },
         {
-          "de": "mit dem Lohn auszahlen",
+          "de": "mit dem Gehalt auszahlen",
           "tr": "maaşla birlikte ödemek"
         },
         {
@@ -167,7 +170,7 @@
       "examples": [
         {
           "id": "lx:auszahlen:1",
-          "de": "Die Firma zahlt die Überstunden mit dem Lohn aus.",
+          "de": "Die Firma zahlt die Überstunden mit dem Gehalt aus.",
           "tr": "Şirket fazla mesaiyi maaşla birlikte ödüyor.",
           "layer": "hd"
         },
@@ -212,7 +215,7 @@
       },
       "forms": [
         {
-          "de": "Die Firma ___ die Überstunden mit dem Lohn aus.",
+          "de": "Die Firma ___ die Überstunden mit dem Gehalt aus.",
           "answer": "zahlt",
           "tr": "Şirket fazla mesaiyi maaşla birlikte ödüyor.",
           "hint_tr": "**die Firma** ile **zahlt** gelir, **aus** sonda kalır."
@@ -274,7 +277,7 @@
       ],
       "register": "neutral",
       "mistakes_tr": [
-        "Maaşa zam derken **Zuschlag** denmez. Maaşın artması **mehr Lohn** ile söylenir.",
+        "Maaşa zam derken **Zuschlag** denmez. Maaşın artması **mehr Gehalt** ile söylenir.",
         "Birden çok ek ödeme derken **Zuschlags** yanlış. Doğrusu **Zuschläge**."
       ],
       "examples": [
@@ -306,7 +309,7 @@
         {
           "id": "lx:Zuschlag:5",
           "de": "– Machst du am Samstag die Spätschicht? – Klar, gibt ja Zuschlag.",
-          "tr": "– Cumartesi akşam vardiyasına kalıyor musun? – Tabii, ek ödemesi var ya.",
+          "tr": "– Cumartesi akşam vardiyasını sen mi yapıyorsun? – Tabii, ek ödemesi var ya.",
           "layer": "alltag",
           "dialog": true
         }
@@ -499,12 +502,12 @@
       "register": "neutral",
       "mistakes_tr": [
         "**Ich abspreche das mit ihr** yanlış. Doğrusu **Ich spreche das mit ihr ab.**",
-        "Şefle konuştum derken **gesprochen** yalnızca konuşmayı anlatır. Karar da verdiyseniz **abgesprochen** denir."
+        "Şefle konuştum derken **gesprochen** yalnızca konuşmayı anlatır. Karar da verdiysen **abgesprochen** denir."
       ],
       "examples": [
         {
           "id": "lx:absprechen:1",
-          "de": "Das muss ich erst mit meiner Chefin absprechen.",
+          "de": "Das muss ich erst mit meinem Chef absprechen.",
           "tr": "Bunu önce şefimle konuşmam lazım.",
           "layer": "hd"
         },
@@ -548,7 +551,7 @@
       },
       "forms": [
         {
-          "de": "Das muss ich erst mit meiner Chefin ___.",
+          "de": "Das muss ich erst mit meinem Chef ___.",
           "answer": "absprechen",
           "tr": "Bunu önce şefimle konuşmam lazım.",
           "hint_tr": "**muss** ile **absprechen** cümlenin sonuna gelir.",
@@ -724,8 +727,7 @@
       ],
       "patterns": [
         "pt:ich-muss",
-        "pt:perfekt-haben",
-        "pt:bevor-nachdem"
+        "pt:perfekt-haben"
       ],
       "register": "neutral",
       "mistakes_tr": [
@@ -807,7 +809,7 @@
     {
       "id": "lx:Personalabteilung",
       "de": "Personalabteilung",
-      "tr": "personel bölümü",
+      "tr": "personel bölümü, insan kaynakları",
       "pos": "noun",
       "art": "die",
       "pl": "Personalabteilungen",
@@ -827,13 +829,12 @@
       ],
       "patterns": [
         "pt:wo-ist",
-        "pt:imperativ-sie",
-        "pt:mit-dativ"
+        "pt:imperativ-sie"
       ],
       "register": "neutral",
       "mistakes_tr": [
         "Personel bölümüne gidiyorum derken **zu Personalabteilung** eksik kalır. Doğrusu **zur Personalabteilung**.",
-        "**Personal** kişisel demek değildir. Türkçedeki personel gibi çalışanlar demektir."
+        "İngilizcedeki personal ile karıştırma. **Personal** Türkçedeki personel gibi çalışanlar demektir."
       ],
       "examples": [
         {
@@ -950,8 +951,8 @@
       "examples": [
         {
           "id": "lx:Abrechnung:1",
-          "de": "Ich habe eine Frage zur Abrechnung.",
-          "tr": "Hesap dökümüyle ilgili bir sorum var.",
+          "de": "Ich hätte eine Frage zur Abrechnung.",
+          "tr": "Hesap dökümüyle ilgili bir sorum olacaktı.",
           "layer": "hd"
         },
         {
@@ -968,15 +969,15 @@
         },
         {
           "id": "lx:Abrechnung:4",
-          "de": "– Können Sie mir die Abrechnung erklären? – Gern, welche Zeile meinen Sie?",
+          "de": "– Könnten Sie mir die Abrechnung erklären? – Gern, welche Zeile meinen Sie?",
           "tr": "– Hesap dökümünü bana açıklayabilir misiniz? – Tabii, hangi satırı kastediyorsunuz?",
           "layer": "hd",
           "dialog": true
         },
         {
           "id": "lx:Abrechnung:5",
-          "de": "– Hast du die Abrechnung schon gesehen? – Ja, wir müssen nachzahlen.",
-          "tr": "– Hesap dökümünü gördün mü? – Evet, üstüne ödeme yapmamız gerekiyor.",
+          "de": "– Hast du die Abrechnung schon gesehen? – Ja, die ist dieses Jahr ziemlich hoch.",
+          "tr": "– Hesap dökümünü gördün mü? – Evet, bu yıl epey yüksek.",
           "layer": "alltag",
           "dialog": true
         }
@@ -995,13 +996,13 @@
       },
       "forms": [
         {
-          "de": "Ich habe eine Frage zur ___.",
+          "de": "Ich hätte eine Frage zur ___.",
           "answer": "Abrechnung",
-          "tr": "Hesap dökümüyle ilgili bir sorum var.",
+          "tr": "Hesap dökümüyle ilgili bir sorum olacaktı.",
           "hint_tr": "Hesap dökümü **die Abrechnung** olur."
         },
         {
-          "de": "Können Sie mir die ___ erklären?",
+          "de": "Könnten Sie mir die ___ erklären?",
           "answer": "Abrechnung",
           "tr": "Hesap dökümünü bana açıklayabilir misiniz?",
           "hint_tr": "Hesap dökümü **die Abrechnung** olur."
@@ -1072,8 +1073,8 @@
         },
         {
           "id": "lx:Nachzahlung:4",
-          "de": "– Warum ist die Nachzahlung so hoch? – Die Heizkosten sind gestiegen.",
-          "tr": "– Fark ödemesi neden bu kadar yüksek? – Isınma giderleri arttı.",
+          "de": "– Warum ist die Nachzahlung so hoch? – Weil der Winter sehr kalt war.",
+          "tr": "– Fark ödemesi neden bu kadar yüksek? – Çünkü kış çok soğuktu.",
           "layer": "hd",
           "dialog": true
         },
@@ -1129,7 +1130,7 @@
           "de": "In den letzten Jahren hatten wir zwei ___.",
           "answer": "Nachzahlungen",
           "tr": "Son yıllarda iki kez fark ödemesi yaptık.",
-          "hint_tr": "İki kez: **Nachzahlungen**."
+          "hint_tr": "Birden çok fark ödemesi: **Nachzahlungen**."
         }
       ]
     },
@@ -1174,7 +1175,7 @@
         {
           "id": "lx:Guthaben:2",
           "de": "Das Guthaben überweisen wir auf Ihr Konto.",
-          "tr": "Alacağınızı hesabınıza havale ediyoruz.",
+          "tr": "Alacağınızı hesabınıza havale edeceğiz.",
           "layer": "hd"
         },
         {
@@ -1186,7 +1187,7 @@
         {
           "id": "lx:Guthaben:4",
           "de": "– Wann bekomme ich mein Guthaben? – Wir überweisen es nächste Woche.",
-          "tr": "– Alacağımı ne zaman alırım? – Gelecek hafta havale ediyoruz.",
+          "tr": "– Alacağımı ne zaman alırım? – Gelecek hafta havale edeceğiz.",
           "layer": "hd",
           "dialog": true
         },
@@ -1373,8 +1374,7 @@
       ],
       "patterns": [
         "pt:ja-nein-frage",
-        "pt:zu-adj",
-        "pt:weil"
+        "pt:zu-adj"
       ],
       "register": "neutral",
       "mistakes_tr": [
@@ -1392,7 +1392,7 @@
           "id": "lx:Heizkosten:2",
           "de": "Sind die Heizkosten in der Miete drin?",
           "tr": "Isınma giderleri kiraya dahil mi?",
-          "layer": "hd"
+          "layer": "alltag"
         },
         {
           "id": "lx:Heizkosten:3",
@@ -1498,7 +1498,7 @@
           "id": "lx:Strom:1",
           "de": "Der Strom ist nicht in der Miete drin.",
           "tr": "Elektrik kiraya dahil değil.",
-          "layer": "hd"
+          "layer": "alltag"
         },
         {
           "id": "lx:Strom:2",
@@ -1721,8 +1721,8 @@
         },
         {
           "id": "lx:Mieterhöhung:4",
-          "de": "– Haben Sie unseren Brief zur Mieterhöhung bekommen? – Ja, aber ich habe noch eine Frage dazu.",
-          "tr": "– Kira artışıyla ilgili mektubumuzu aldınız mı? – Evet, ama bununla ilgili bir sorum var.",
+          "de": "– Haben Sie unseren Brief zur Mieterhöhung bekommen? – Ja, aber ich hätte noch eine Frage dazu.",
+          "tr": "– Kira artışıyla ilgili mektubumuzu aldınız mı? – Evet, ama bununla ilgili bir sorum olacaktı.",
           "layer": "hd",
           "dialog": true
         },
@@ -1756,9 +1756,9 @@
       },
       "forms": [
         {
-          "de": "Wir haben eine ___ bekommen.",
+          "de": "Wir haben vom Vermieter eine ___ bekommen.",
           "answer": "Mieterhöhung",
-          "tr": "Kira artışı yazısı aldık.",
+          "tr": "Ev sahibinden kira artışı yazısı aldık.",
           "hint_tr": "Kira artışı **die Mieterhöhung** olur."
         },
         {
@@ -1804,7 +1804,7 @@
       ],
       "patterns": [
         "pt:nicht",
-        "pt:koennten-sie",
+        "pt:imperativ-sie",
         "pt:w-frage"
       ],
       "register": "neutral",
@@ -1879,9 +1879,9 @@
           "hint_tr": "Tutar **Betrag** ile söylenir."
         },
         {
-          "de": "Die ___ sind dieses Jahr höher.",
+          "de": "Die ___ auf den Rechnungen sind dieses Jahr höher.",
           "answer": "Beträge",
-          "tr": "Bu yıl tutarlar daha yüksek.",
+          "tr": "Faturalardaki tutarlar bu yıl daha yüksek.",
           "hint_tr": "Birden çok tutar: **Beträge**."
         }
       ]
@@ -1909,8 +1909,7 @@
       ],
       "patterns": [
         "pt:lieber",
-        "pt:dass",
-        "pt:weil"
+        "pt:verb-zweite-stelle"
       ],
       "register": "neutral",
       "mistakes_tr": [
@@ -2010,8 +2009,7 @@
       ],
       "patterns": [
         "pt:verb-zweite-stelle",
-        "pt:indirekte-frage",
-        "pt:w-frage"
+        "pt:indirekte-frage"
       ],
       "register": "neutral",
       "mistakes_tr": [
@@ -2115,8 +2113,7 @@
       ],
       "patterns": [
         "pt:es-gibt",
-        "pt:gefaellt-mir",
-        "pt:ich-finde"
+        "pt:gefaellt-mir"
       ],
       "register": "neutral",
       "mistakes_tr": [
@@ -2139,13 +2136,13 @@
         {
           "id": "lx:Nachbarschaft:3",
           "de": "Hier in der Nachbarschaft kennt jeder jeden.",
-          "tr": "Burada mahallede herkes herkesi tanır.",
+          "tr": "Bu mahallede herkes birbirini tanır.",
           "layer": "alltag"
         },
         {
           "id": "lx:Nachbarschaft:4",
           "de": "– Gibt es hier in der Nachbarschaft einen Bäcker? – Ja, gleich um die Ecke.",
-          "tr": "– Buralarda mahallede bir fırın var mı? – Evet, hemen köşede.",
+          "tr": "– Bu mahallede bir fırın var mı? – Evet, hemen köşede.",
           "layer": "hd",
           "dialog": true
         },
@@ -2192,8 +2189,11 @@
         {
           "de": "Hier in der ___ kennt jeder jeden.",
           "answer": "Nachbarschaft",
-          "tr": "Burada mahallede herkes herkesi tanır.",
-          "hint_tr": "Mahallede **in der Nachbarschaft** ile söylenir."
+          "tr": "Bu mahallede herkes birbirini tanır.",
+          "hint_tr": "Mahallede **in der Nachbarschaft** ile söylenir.",
+          "also_ok": [
+            "Gegend"
+          ]
         },
         {
           "de": "Wie gefällt dir die neue ___?",
@@ -2240,8 +2240,8 @@
       "examples": [
         {
           "id": "lx:Garten:1",
-          "de": "Herr Huber arbeitet jeden Tag im Garten.",
-          "tr": "Huber Bey her gün bahçede çalışıyor.",
+          "de": "Mein Nachbar arbeitet jeden Tag im Garten.",
+          "tr": "Komşum her gün bahçede çalışıyor.",
           "layer": "hd",
           "img": "man working in garden"
         },
@@ -2286,9 +2286,9 @@
       },
       "forms": [
         {
-          "de": "Herr Huber arbeitet jeden Tag im ___.",
+          "de": "Mein Nachbar arbeitet jeden Tag im ___.",
           "answer": "Garten",
-          "tr": "Huber Bey her gün bahçede çalışıyor.",
+          "tr": "Komşum her gün bahçede çalışıyor.",
           "hint_tr": "Bahçede **im Garten** ile söylenir."
         },
         {
@@ -2350,7 +2350,7 @@
         {
           "id": "lx:gießen:1",
           "de": "Könnten Sie im Urlaub meine Blumen gießen?",
-          "tr": "Tatildeyken çiçeklerimi sulayabilir misiniz?",
+          "tr": "Ben tatildeyken çiçeklerimi sulayabilir misiniz?",
           "layer": "hd",
           "img": "watering flowers"
         },
@@ -2362,8 +2362,8 @@
         },
         {
           "id": "lx:gießen:3",
-          "de": "Bei der Hitze gieß ich zweimal am Tag.",
-          "tr": "Bu sıcakta günde iki kez sularım.",
+          "de": "Wenn es so heiß ist, gieß ich zweimal am Tag.",
+          "tr": "Hava böyle sıcakken günde iki kez sularım.",
           "layer": "alltag"
         },
         {
@@ -2397,7 +2397,7 @@
         {
           "de": "Könnten Sie im Urlaub meine Blumen ___?",
           "answer": "gießen",
-          "tr": "Tatildeyken çiçeklerimi sulayabilir misiniz?",
+          "tr": "Ben tatildeyken çiçeklerimi sulayabilir misiniz?",
           "hint_tr": "**Könnten Sie** ile **gießen** sona gelir."
         },
         {
@@ -2407,19 +2407,19 @@
           "hint_tr": "Geçmişte **gegossen** olur."
         },
         {
-          "de": "Bei der Hitze ___ ich zweimal am Tag.",
+          "de": "Wenn es so heiß ist, ___ ich zweimal am Tag.",
           "answer": "gieße",
-          "tr": "Bu sıcakta günde iki kez sularım.",
+          "tr": "Hava böyle sıcakken günde iki kez sularım.",
           "hint_tr": "**ich** ile **gieße** olur.",
           "also_ok": [
             "gieß"
           ]
         },
         {
-          "de": "Frau Novak ___ jeden Abend ihren Garten.",
+          "de": "Frau Nowak ___ jeden Abend ihren Garten.",
           "answer": "gießt",
-          "tr": "Novak Hanım her akşam bahçesini suluyor.",
-          "hint_tr": "**Frau Novak** ile **gießt** olur."
+          "tr": "Nowak Hanım her akşam bahçesini suluyor.",
+          "hint_tr": "**Frau Nowak** ile **gießt** olur."
         }
       ]
     },
@@ -2450,8 +2450,8 @@
       ],
       "patterns": [
         "pt:darf-ich",
-        "pt:sollen-wir",
-        "pt:perfekt-haben"
+        "pt:perfekt-haben",
+        "pt:passiv"
       ],
       "register": "neutral",
       "mistakes_tr": [
@@ -2682,7 +2682,7 @@
       ],
       "patterns": [
         "pt:kann-ich",
-        "pt:zu-adj",
+        "pt:lieber",
         "pt:w-frage"
       ],
       "register": "neutral",
@@ -2816,7 +2816,7 @@
         {
           "id": "lx:Rücksicht:4",
           "de": "– Unser Baby schläft schon. Könnten Sie bitte etwas Rücksicht nehmen? – Oh, Entschuldigung, wir sind sofort leiser.",
-          "tr": "– Bebeğimiz uyudu. Bizi biraz düşünebilir misiniz? – Ah, pardon, hemen sesimizi kısıyoruz.",
+          "tr": "– Bebeğimiz çoktan uyudu. Bizi biraz düşünebilir misiniz? – Ah, pardon, hemen sesimizi kısıyoruz.",
           "layer": "hd",
           "dialog": true
         },

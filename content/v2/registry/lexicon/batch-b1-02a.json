@@ -1,7 +1,10 @@
 {
  "batch": "b1-02a",
  "review": {
-  "status": "draft"
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/lexicon-b1-02.md"
  },
  "items": [
   {
@@ -32,12 +35,12 @@
    "register": "neutral",
    "mistakes_tr": [
     "Listedeyim derken Türkçedeki **-de** yüzünden **in der Warteliste** demek kolay. Almancada **auf der Warteliste** denir.",
-    "Türkçede artikel olmadığı için unutulur. Son parça **die Liste** olduğu için **die Warteliste** denir."
+    "**der Warteliste** ya da **das Warteliste** yanlış. Son parça **die Liste** olduğu için **die Warteliste** denir."
    ],
    "examples": [
     {
      "id": "lx:Warteliste:1",
-     "de": "Können Sie mich auf die Warteliste setzen?",
+     "de": "Könnten Sie mich auf die Warteliste setzen?",
      "tr": "Beni bekleme listesine yazabilir misiniz?",
      "layer": "hd"
     },
@@ -56,7 +59,7 @@
     {
      "id": "lx:Warteliste:4",
      "de": "– Gibt es keinen früheren Termin? – Leider nicht, aber ich setze Sie gern auf die Warteliste.",
-     "tr": "– Daha erken bir randevu yok mu? – Maalesef yok, ama sizi bekleme listesine yazabilirim.",
+     "tr": "– Daha erken bir randevu yok mu? – Maalesef yok, ama isterseniz sizi bekleme listesine yazayım.",
      "layer": "hd",
      "dialog": true
     },
@@ -91,7 +94,7 @@
    },
    "forms": [
     {
-     "de": "Können Sie mich auf die ___ setzen?",
+     "de": "Könnten Sie mich auf die ___ setzen?",
      "answer": "Warteliste",
      "tr": "Beni bekleme listesine yazabilir misiniz?",
      "hint_tr": "Bekleme listesi **die Warteliste** olur.",
@@ -157,7 +160,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Randevuyu iptal ediyorum derken **Ich mache Absage** yanlış. Doğrusu **Ich sage den Termin ab.**",
-    "İsim olan **die Absage** büyük harfle yazılır. Fiil olan **absagen** küçük harfle yazılır."
+    "**die Absage** büyük harfle, **absagen** küçük harfle yazılır."
    ],
    "examples": [
     {
@@ -181,7 +184,7 @@
     {
      "id": "lx:Absage:4",
      "de": "– Haben Sie vielleicht doch einen früheren Termin? – Moment, ja, wir haben eine Absage für Donnerstag.",
-     "tr": "– Belki daha erken bir randevunuz var mı? – Bir dakika, evet, perşembe için bir iptal var.",
+     "tr": "– Acaba yine de daha erken bir randevunuz var mı? – Bir dakika, evet, perşembe için bir iptal var.",
      "layer": "hd",
      "dialog": true
     },
@@ -214,9 +217,9 @@
      "hint_tr": "İptal **die Absage** olur."
     },
     {
-     "de": "Heute gab es zwei ___.",
+     "de": "Heute gab es zwei ___, deshalb sind morgen Termine frei.",
      "answer": "Absagen",
-     "tr": "Bugün iki iptal oldu.",
+     "tr": "Bugün iki iptal oldu, bu yüzden yarın boş randevu var.",
      "hint_tr": "Birden çok iptal: **Absagen**."
     },
     {
@@ -261,7 +264,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Sonuç çıktı mı derken **Ist die Befund da?** yanlış. Doğrusu **Ist der Befund schon da?**",
-    "Sonuçlar derken **die Befunden** yanlış. Çoğul **die Befunde** olur."
+    "Sonuçlar derken **die Befunden** yanlış. Doğrusu **die Befunde**."
    ],
    "examples": [
     {
@@ -306,14 +309,17 @@
     "anlam_tr": "Muayene ya da tahlilden sonra yazılan sonucu anlatır.",
     "ne_zaman_tr": "Uzman doktora giderken ya da sonucu sorarken.",
     "parcalar": [],
-    "ipucu_tr": "Uzmana giderken çoğu zaman çoğul duyulur: **die Befunde mitbringen**."
+    "ipucu_tr": "Uzmana giderken çoğu zaman hepsi birden istenir: **die Befunde mitbringen**."
    },
    "forms": [
     {
      "de": "Bringen Sie bitte alle ___ mit.",
      "answer": "Befunde",
      "tr": "Lütfen bütün sonuçlarınızı getirin.",
-     "hint_tr": "Birden çok sonuç: **Befunde**."
+     "hint_tr": "Birden çok sonuç: **Befunde**.",
+     "also_ok": [
+      "Ergebnisse"
+     ]
     },
     {
      "de": "Der ___ ist noch nicht da.",
@@ -325,12 +331,15 @@
      "de": "Haben Sie die ___ vom Hausarzt dabei?",
      "answer": "Befunde",
      "tr": "Aile hekiminden gelen sonuçlar yanınızda mı?",
-     "hint_tr": "Birden çok sonuç: **Befunde**."
+     "hint_tr": "Birden çok sonuç: **Befunde**.",
+     "also_ok": [
+      "Ergebnisse"
+     ]
     },
     {
-     "de": "Wann ist der ___ da?",
+     "de": "Wann ist der ___ von der Untersuchung da?",
      "answer": "Befund",
-     "tr": "Sonuç ne zaman çıkar?",
+     "tr": "Muayenenin sonucu ne zaman çıkar?",
      "hint_tr": "Tek sonuç **der Befund** olur."
     }
    ]
@@ -363,7 +372,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Yerine bakmak derken Türkçeden çevirip **an seiner Stelle schauen** denmez. Doğrusu **die Vertretung machen**.",
-    "Yerine kim bakıyor derken **Wer macht Vertretung?** eksik. Doğrusu **Wer macht die Vertretung?**"
+    "Yerine bakan kişi erkek de olsa **die Vertretung** denir. **der Vertretung** yanlış."
    ],
    "examples": [
     {
@@ -484,32 +493,32 @@
     {
      "id": "lx:mitteilen:1",
      "de": "Wir teilen Ihnen den Termin schriftlich mit.",
-     "tr": "Randevuyu size yazılı olarak bildiriyoruz.",
+     "tr": "Randevuyu size yazılı olarak bildireceğiz.",
      "layer": "hd"
     },
     {
      "id": "lx:mitteilen:2",
-     "de": "Können Sie mir die Uhrzeit noch mitteilen?",
+     "de": "Könnten Sie mir die Uhrzeit noch mitteilen?",
      "tr": "Saati de bana bildirebilir misiniz?",
      "layer": "hd"
     },
     {
      "id": "lx:mitteilen:3",
      "de": "Die teilen dir das dann per Post mit.",
-     "tr": "Onu sana sonra postayla bildiriyorlar.",
+     "tr": "Onu sana sonra postayla bildirirler.",
      "layer": "alltag"
     },
     {
      "id": "lx:mitteilen:4",
      "de": "– Wann bekomme ich den Termin? – Das teilen wir Ihnen nächste Woche mit.",
-     "tr": "– Randevuyu ne zaman alırım? – Onu size gelecek hafta bildiriyoruz.",
+     "tr": "– Randevuyu ne zaman alırım? – Onu size gelecek hafta bildireceğiz.",
      "layer": "hd",
      "dialog": true
     },
     {
      "id": "lx:mitteilen:5",
      "de": "– Hat die Praxis schon angerufen? – Nee, das teilen die mir erst morgen mit.",
-     "tr": "– Muayenehane aradı mı? – Yok, onu bana ancak yarın bildiriyorlar.",
+     "tr": "– Muayenehane aradı mı? – Yok, onu bana ancak yarın bildirecekler.",
      "layer": "alltag",
      "dialog": true
     }
@@ -532,14 +541,14 @@
     {
      "de": "Wir ___ Ihnen den Termin schriftlich mit.",
      "answer": "teilen",
-     "tr": "Randevuyu size yazılı olarak bildiriyoruz.",
+     "tr": "Randevuyu size yazılı olarak bildireceğiz.",
      "hint_tr": "**wir** ile **teilen mit** olur."
     },
     {
-     "de": "Können Sie mir die Uhrzeit noch ___?",
+     "de": "Könnten Sie mir die Uhrzeit noch ___?",
      "answer": "mitteilen",
      "tr": "Saati de bana bildirebilir misiniz?",
-     "hint_tr": "**können** ile fiil sonda tam hâliyle durur: **mitteilen**.",
+     "hint_tr": "**Könnten Sie** ile birlikte **mitteilen** sona gelir.",
      "also_ok": [
       "sagen"
      ]
@@ -547,7 +556,7 @@
     {
      "de": "Das ___ wir Ihnen nächste Woche mit.",
      "answer": "teilen",
-     "tr": "Onu size gelecek hafta bildiriyoruz.",
+     "tr": "Onu size gelecek hafta bildireceğiz.",
      "hint_tr": "**wir** ile **teilen mit** olur."
     },
     {
@@ -617,8 +626,8 @@
     },
     {
      "id": "lx:zuständig:5",
-     "de": "– Wer macht das mit dem Sperrmüll? – Keine Ahnung, ruf mal bei der Stadt an, die wissen, wer zuständig ist.",
-     "tr": "– Büyük eşya çöpü işine kim bakıyor? – Hiç bilmiyorum, belediyeyi bir ara, kimin baktığını onlar bilir.",
+     "de": "– Wen frag ich wegen der Rechnung? – Keine Ahnung, ruf mal bei der Firma an, die wissen, wer zuständig ist.",
+     "tr": "– Fatura için kime sorayım? – Hiç bilmiyorum, firmayı bir ara, kimin baktığını onlar bilir.",
      "layer": "alltag",
      "dialog": true
     }
@@ -654,12 +663,12 @@
      "de": "Ich verbinde Sie mit der ___ Kollegin.",
      "answer": "zuständigen",
      "tr": "Sizi bu işe bakan arkadaşıma bağlıyorum.",
-     "hint_tr": "**der** ile isimden önce **zuständigen** olur."
+     "hint_tr": "**der** ile **Kollegin** arasında **zuständigen** olur."
     },
     {
-     "de": "Wer ist hier für den Sperrmüll ___?",
+     "de": "Wer ist hier für Termine ___?",
      "answer": "zuständig",
-     "tr": "Burada büyük eşya çöpüne kim bakıyor?",
+     "tr": "Burada randevulara kim bakıyor?",
      "hint_tr": "Bir işe bakmak **zuständig sein** ile söylenir."
     }
    ]
@@ -709,8 +718,8 @@
     },
     {
      "id": "lx:Abteilung:3",
-     "de": "Jetzt bin ich schon bei der dritten Abteilung, echt anstrengend.",
-     "tr": "Şimdiden üçüncü bölümdeyim, gerçekten yorucu.",
+     "de": "Jetzt bin ich schon bei der dritten Abteilung, und keiner kann mir helfen.",
+     "tr": "Şimdiden üçüncü bölümdeyim, kimse de yardım edemiyor.",
      "layer": "alltag"
     },
     {
@@ -739,7 +748,7 @@
     "anlam_tr": "Bir firmanın ya da dairenin ayrı bir bölümünü anlatır.",
     "ne_zaman_tr": "Telefonda bağlanmak istediğin yeri söylerken ya da işte.",
     "parcalar": [],
-    "ipucu_tr": "**-ung** ile biten sözcük **die** alır: **die Abteilung**."
+    "ipucu_tr": "**-ung** ile biten sözcükler neredeyse hep **die** alır: **die Abteilung**."
    },
    "forms": [
     {
@@ -796,7 +805,7 @@
    "register": "formal",
    "mistakes_tr": [
     "Bir konum var derken **Ich habe eine Anliegen** yanlış. Doğrusu **Ich habe ein Anliegen.**",
-    "Çoğulda **die Anliegens** yanlış. Çoğul tekille aynıdır: **die Anliegen**."
+    "Birden çok konu için de **die Anliegen** denir. **die Anliegens** yanlış."
    ],
    "examples": [
     {
@@ -963,7 +972,7 @@
       "tr": "numara"
      }
     ],
-    "ipucu_tr": "Artikeli son parça verir: **die Nummer** ile **die Kundennummer**."
+    "ipucu_tr": "Son parça **die Nummer** olduğu için **die Kundennummer** denir."
    },
    "forms": [
     {
@@ -1021,7 +1030,7 @@
     }
    ],
    "patterns": [
-    "pt:koennten-sie",
+    "pt:ich-muss",
     "pt:perfekt-haben"
    ],
    "register": "neutral",
@@ -1082,7 +1091,7 @@
      "de": "Können wir das heute noch am Telefon ___?",
      "answer": "klären",
      "tr": "Bunu bugün telefonda halledebilir miyiz?",
-     "hint_tr": "**können** ile fiil sonda tam hâliyle durur: **klären**.",
+     "hint_tr": "**können** ile birlikte **klären** sona gelir.",
      "also_ok": [
       "erledigen",
       "besprechen"
@@ -1110,7 +1119,7 @@
      "de": "Eine Sache müssen wir noch ___.",
      "answer": "klären",
      "tr": "Bir şeyi daha netleştirmemiz lazım.",
-     "hint_tr": "**müssen** ile fiil sonda tam hâliyle durur: **klären**.",
+     "hint_tr": "**müssen** ile birlikte **klären** sona gelir.",
      "also_ok": [
       "besprechen",
       "erledigen"
@@ -1267,7 +1276,8 @@
    "register": "neutral",
    "mistakes_tr": [
     "Fazla çektiniz derken **Sie haben zu viel abgebuchen** yanlış. Doğrusu **Sie haben zu viel abgebucht.**",
-    "Her ay çekiyorlar derken **Sie buchen ab das Geld jeden Monat** yanlış. Doğrusu **Sie buchen das Geld jeden Monat ab.**"
+    "Her ay çekiyorlar derken **Sie buchen ab das Geld jeden Monat** yanlış. Doğrusu **Sie buchen das Geld jeden Monat ab.**",
+    "Bankamatikten parayı sen çekersen **abheben** denir. Firma hesabından alırsa **abbuchen** denir."
    ],
    "examples": [
     {
@@ -1370,7 +1380,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "**die Sperrmüll** yanlış. Son parça **der Müll** olduğu için **der Sperrmüll** denir.",
-    "Çoğulu yoktur. Birçok eşya için de **der Sperrmüll** denir, **die Sperrmülle** denmez."
+    "Birçok eşya için de **der Sperrmüll** denir. **die Sperrmülle** denmez."
    ],
    "examples": [
     {
@@ -1528,7 +1538,7 @@
       "tr": "vardiya"
      }
     ],
-    "ipucu_tr": "**Ich habe Frühschicht** derken artikel kullanılmaz."
+    "ipucu_tr": "**Ich habe Frühschicht** derken araya **die** girmez."
    },
    "forms": [
     {
@@ -1541,7 +1551,7 @@
      "de": "Diese Woche habe ich ___.",
      "answer": "Frühschicht",
      "tr": "Bu hafta sabah vardiyasındayım.",
-     "hint_tr": "Vardiyada olmak artikelsiz **Frühschicht haben** ile söylenir."
+     "hint_tr": "Vardiyada olmak **Frühschicht haben** ile söylenir, araya **die** girmez."
     },
     {
      "de": "Nee, ich hab morgen ___.",
@@ -1584,7 +1594,7 @@
    ],
    "register": "neutral",
    "mistakes_tr": [
-    "**spät** geç demek ama **Spätschicht** gece vardiyası değildir. Gece vardiyası **Nachtschicht** olur.",
+    "**spät** geç demek ama **Spätschicht** gece boyu sürmez. Öğleden sonra başlar, akşam biter.",
     "Akşam vardiyasından geliyorum derken **Ich komme aus Spätschicht** yanlış. Doğrusu **Ich komme von der Spätschicht.**"
    ],
    "examples": [
@@ -1615,8 +1625,8 @@
     },
     {
      "id": "lx:Spätschicht:5",
-     "de": "– Hast du morgen früh Zeit? – Ja, ich hab erst Spätschicht.",
-     "tr": "– Yarın sabah vaktin var mı? – Evet, işim akşam vardiyasında başlıyor.",
+     "de": "– Hast du morgen früh Zeit? – Ja, ich hab morgen Spätschicht.",
+     "tr": "– Yarın sabah vaktin var mı? – Evet, yarın akşam vardiyasındayım.",
      "layer": "alltag",
      "dialog": true
     }
@@ -1639,7 +1649,7 @@
       "tr": "vardiya"
      }
     ],
-    "ipucu_tr": "**Ich habe Spätschicht** derken artikel kullanılmaz."
+    "ipucu_tr": "**Ich habe Spätschicht** derken araya **die** girmez."
    },
    "forms": [
     {
@@ -1649,9 +1659,9 @@
      "hint_tr": "Akşam vardiyası **die Spätschicht** olur."
     },
     {
-     "de": "Ich arbeite lieber ___.",
+     "de": "Ich arbeite lieber ___, dann kann ich morgens länger schlafen.",
      "answer": "Spätschicht",
-     "tr": "Akşam vardiyasında çalışmayı tercih ederim.",
+     "tr": "Akşam vardiyasında çalışmayı tercih ederim, o zaman sabahları daha uzun uyuyabilirim.",
      "hint_tr": "Akşam vardiyası **Spätschicht** ile söylenir."
     },
     {
@@ -1696,7 +1706,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Gece vardiyasından sonra uyuyorum derken **Nach der Nachtschicht ich schlafe** yanlış. Doğrusu **Nach der Nachtschicht schlafe ich.**",
-    "Gece vardiyası saat onda başlıyor derken **Nachtschicht beginnt um zehn** eksik. Doğrusu **Die Nachtschicht beginnt um zehn.**"
+    "Gece vardiyası derken **Spätschicht** denmez. **Spätschicht** akşam biter, **Nachtschicht** gece boyu sürer."
    ],
    "examples": [
     {
@@ -1750,7 +1760,7 @@
       "tr": "vardiya"
      }
     ],
-    "ipucu_tr": "**Nach der Nachtschicht** ile başlayınca fiil hemen arkadan gelir."
+    "ipucu_tr": "**Nach der Nachtschicht** ile başlayınca hemen **schlafe** gelir, sonra **ich**."
    },
    "forms": [
     {
@@ -1763,7 +1773,7 @@
      "de": "Wie oft haben Sie ___?",
      "answer": "Nachtschicht",
      "tr": "Ne sıklıkla gece vardiyanız oluyor?",
-     "hint_tr": "Vardiyada olmak artikelsiz **Nachtschicht haben** ile söylenir."
+     "hint_tr": "Vardiyada olmak **Nachtschicht haben** ile söylenir, araya **die** girmez."
     },
     {
      "de": "Wer arbeitet diese Woche in der ___?",
@@ -1840,8 +1850,8 @@
     },
     {
      "id": "lx:tauschen:4",
-     "de": "– Herr Wimmer, darf ich mit Frau Aksoy die Schicht tauschen? – Ja, wenn Sie beide einverstanden sind.",
-     "tr": "– Wimmer Bey, Aksoy Hanım ile vardiyamı değiştirebilir miyim? – Evet, ikiniz de razıysanız olur.",
+     "de": "– Herr Wimmer, darf ich mit Frau Aksoy die Schicht tauschen? – Ja, wenn das für Sie beide in Ordnung ist.",
+     "tr": "– Wimmer Bey, Aksoy Hanım ile vardiyamı değiştirebilir miyim? – Evet, ikiniz için de uygunsa olur.",
      "layer": "hd",
      "dialog": true
     },
@@ -1871,7 +1881,7 @@
      "de": "Kann ich am Montag mit dir die Schicht ___?",
      "answer": "tauschen",
      "tr": "Pazartesi seninle vardiya değiştirebilir miyim?",
-     "hint_tr": "**kann** ile fiil sonda tam hâliyle durur: **tauschen**."
+     "hint_tr": "**kann** ile birlikte **tauschen** sona gelir."
     },
     {
      "de": "Derya hat mit Tobi die Schicht ___.",
@@ -1886,9 +1896,9 @@
      "hint_tr": "**wir** ile **tauschen** olur."
     },
     {
-     "de": "Tobi ___ gern mit dir.",
+     "de": "Tobi ___ gern die Schicht mit dir.",
      "answer": "tauscht",
-     "tr": "Tobi seninle seve seve değiştirir.",
+     "tr": "Tobi seninle seve seve vardiya değiştirir.",
      "hint_tr": "**Tobi** ile **tauscht** olur."
     }
    ]
@@ -1935,7 +1945,7 @@
    "examples": [
     {
      "id": "lx:einspringen:1",
-     "de": "Können Sie morgen für Herrn Lechner einspringen?",
+     "de": "Könnten Sie morgen für Herrn Lechner einspringen?",
      "tr": "Yarın Lechner Bey'in yerine çalışabilir misiniz?",
      "layer": "hd"
     },
@@ -1979,10 +1989,10 @@
    },
    "forms": [
     {
-     "de": "Können Sie morgen für Herrn Lechner ___?",
+     "de": "Könnten Sie morgen für Herrn Lechner ___?",
      "answer": "einspringen",
      "tr": "Yarın Lechner Bey'in yerine çalışabilir misiniz?",
-     "hint_tr": "**können** ile fiil sonda tam hâliyle durur: **einspringen**."
+     "hint_tr": "**Könnten Sie** ile birlikte **einspringen** sona gelir."
     },
     {
      "de": "Derya ist gestern für mich ___.",
@@ -2097,7 +2107,7 @@
      "de": "Ich möchte mir am Freitag ___.",
      "answer": "freinehmen",
      "tr": "Cuma günü izin almak istiyorum.",
-     "hint_tr": "**möchte** ile fiil sonda tam hâliyle durur: **freinehmen**."
+     "hint_tr": "**möchte** ile birlikte **freinehmen** sona gelir."
     },
     {
      "de": "Tobi hat sich die ganze Woche ___.",
@@ -2162,13 +2172,13 @@
     {
      "id": "lx:Urlaubsantrag:2",
      "de": "Den Urlaubsantrag gibst du bei Herrn Wimmer ab.",
-     "tr": "İzin dilekçesini Wimmer Bey'e teslim ediyorsun.",
+     "tr": "İzin dilekçesini Wimmer Bey'e vereceksin.",
      "layer": "hd"
     },
     {
      "id": "lx:Urlaubsantrag:3",
-     "de": "Hast du deinen Urlaubsantrag schon abgegeben? Sonst wird's knapp.",
-     "tr": "İzin dilekçeni verdin mi? Yoksa vakit daralır.",
+     "de": "Hast du deinen Urlaubsantrag schon abgegeben? Sonst wird's zu spät.",
+     "tr": "İzin dilekçeni verdin mi? Yoksa çok geç olur.",
      "layer": "alltag"
     },
     {
@@ -2219,7 +2229,7 @@
     {
      "de": "Den ___ gibst du bei Herrn Wimmer ab.",
      "answer": "Urlaubsantrag",
-     "tr": "İzin dilekçesini Wimmer Bey'e teslim ediyorsun.",
+     "tr": "İzin dilekçesini Wimmer Bey'e vereceksin.",
      "hint_tr": "İzin dilekçesi **Urlaubsantrag** ile söylenir.",
      "also_ok": [
       "Antrag"
@@ -2352,7 +2362,7 @@
      "de": "Können Sie meinen Urlaub ___?",
      "answer": "genehmigen",
      "tr": "İznimi onaylayabilir misiniz?",
-     "hint_tr": "**können** ile fiil sonda tam hâliyle durur: **genehmigen**."
+     "hint_tr": "**können** ile birlikte **genehmigen** sona gelir."
     }
    ]
   },
@@ -2438,7 +2448,7 @@
       "tr": "zaman, saat"
      }
     ],
-    "ipucu_tr": "**halb fünf** dört buçuk demektir, beş buçuk değil."
+    "ipucu_tr": "Çoğu zaman birden çok saat için söylenir: **die Arbeitszeiten**."
    },
    "forms": [
     {
@@ -2451,7 +2461,7 @@
      "de": "Meine ___ ist von acht bis halb fünf.",
      "answer": "Arbeitszeit",
      "tr": "Çalışma saatim sekizden dört buçuğa kadar.",
-     "hint_tr": "**ist** ile tekil **Arbeitszeit** gelir."
+     "hint_tr": "**ist** ile **Arbeitszeit** gelir, sonuna **-en** eklenmez."
     },
     {
      "de": "Haben Sie feste ___?",
@@ -2463,7 +2473,7 @@
      "de": "Diese Woche sind meine ___ anders.",
      "answer": "Arbeitszeiten",
      "tr": "Bu hafta çalışma saatlerim farklı.",
-     "hint_tr": "**sind** ile çoğul **Arbeitszeiten** gelir."
+     "hint_tr": "**sind** ile **Arbeitszeiten** gelir."
     }
    ]
   },
@@ -2549,7 +2559,7 @@
       "tr": "gün"
      }
     ],
-    "ipucu_tr": "Artikeli son parça verir: **der Tag**, yani **der Urlaubstag**."
+    "ipucu_tr": "Son parça **der Tag** olduğu için **der Urlaubstag** denir."
    },
    "forms": [
     {
@@ -2562,7 +2572,7 @@
      "de": "Für den Umzug nehme ich einen ___.",
      "answer": "Urlaubstag",
      "tr": "Taşınma için bir izin günü kullanıyorum.",
-     "hint_tr": "**einen** ile tekil **Urlaubstag** gelir."
+     "hint_tr": "**einen** ile tek gün: **Urlaubstag**."
     },
     {
      "de": "Wie viele ___ haben Sie noch?",
@@ -2574,7 +2584,7 @@
      "de": "Ich habe keine ___ mehr.",
      "answer": "Urlaubstage",
      "tr": "Hiç izin günüm kalmadı.",
-     "hint_tr": "**keine** ile çoğul **Urlaubstage** gelir."
+     "hint_tr": "**keine** ile birden çok gün: **Urlaubstage**."
     }
    ]
   },
@@ -2675,7 +2685,7 @@
      "de": "Kann ich nächste Woche Überstunden ___?",
      "answer": "abbauen",
      "tr": "Gelecek hafta fazla mesaimi izin olarak kullanabilir miyim?",
-     "hint_tr": "**kann** ile fiil sonda tam hâliyle durur: **abbauen**."
+     "hint_tr": "**kann** ile birlikte **abbauen** sona gelir."
     },
     {
      "de": "Derya hat letzte Woche Überstunden ___.",
