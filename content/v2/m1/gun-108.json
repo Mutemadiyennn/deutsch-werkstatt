@@ -8,7 +8,7 @@
  "goal_tr": "sollte ile tavsiye verir, tavsiyeyi anlarsın. Banyodaki su arızasını Herr Pichler'e telefonda anlatırsın.",
  "can_do": {
   "id": "cd:m1:108",
-  "tr": "Birine solltest / sollten ile tavsiye veririm; ev arızasını telefonda anlatırım."
+  "tr": "Birine solltest ya da sollten ile tavsiye veririm. Ev arızasını telefonda anlatırım."
  },
  "unit": "u:a2:telefon-4",
  "arm": "telefon",
@@ -563,7 +563,7 @@
     "cevapla": {
      "id": "m1:108:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Herr Pichler ne zamandan beri su kaçırdığını soruyor. Bu sabahtan beri; su bütün yere yayılmış.",
+     "situation_tr": "Herr Pichler ne zamandan beri su kaçırdığını soruyor. Bu sabahtan beri. Su bütün yere yayılmış.",
      "prompt_de": "Seit wann verliert sie Wasser?",
      "accepted": [
       "Seit heute Morgen. Das Wasser ist auf dem ganzen Boden.",
@@ -572,7 +572,7 @@
       "Die Waschmaschine verliert seit heute Morgen Wasser.",
       "Seit heute Morgen. Jetzt ist das Wasser auf dem ganzen Boden."
      ],
-     "why_tr": "Ne zamandan beri: **seit** + zaman: **seit heute Morgen**."
+     "why_tr": "Ne zamandan beri: **seit** ve zaman, örneğin **seit heute Morgen**."
     }
    },
    {
@@ -713,7 +713,7 @@
     "cevapla": {
      "id": "m1:108:v1:c2",
      "k": "guided_response",
-     "situation_tr": "Herr Pichler arızaları hemen bildirmeni istiyor. Teşekkür et; bir dahaki sefere hemen arayacaksın.",
+     "situation_tr": "Herr Pichler arızaları hemen bildirmeni istiyor. Teşekkür et. Bir dahaki sefere hemen arayacaksın.",
      "prompt_de": "Bitte melden Sie so etwas immer sofort.",
      "accepted": [
       "Ja, natürlich. Danke, Herr Pichler! Ich rufe Sie dann sofort an.",
@@ -920,7 +920,7 @@
        "Danke für die Information, Herr Pichler. Wäre es möglich, um zwölf Uhr zu kommen? Um zehn bin ich im Büro.",
        "Grüß Gott, Herr Pichler! Danke für die Information. Wäre es auch um zwölf möglich?"
       ],
-      "why_tr": "Önce teşekkür (**Danke für die Information!**), sonra kibar rica: **Wäre es möglich, … zu kommen?**"
+      "why_tr": "Önce teşekkür et: **Danke für die Information!** Sonra kibarca rica et: **Wäre es möglich, um zwölf zu kommen?**"
      }
     }
    ],
@@ -1129,7 +1129,7 @@
        "Du solltest heute anrufen. Schmerzen im Mund sind nicht gut.",
        "Ja, ruf heute an. Du solltest nicht bis morgen warten."
       ],
-      "why_tr": "Tavsiye: **Du solltest …** + mastar sonda. Daha yumuşak: **An deiner Stelle würde ich …**"
+      "why_tr": "Tavsiye: **Du solltest heute anrufen.** Yani bugün aramalısın. Daha yumuşak: **An deiner Stelle würde ich heute anrufen.**"
      }
     }
    ],
@@ -1143,7 +1143,7 @@
      "Yarın onu dişçiye götürmen"
     ],
     "ans": 0,
-    "why_tr": "Derya iki seçeneği soruyor ve **Ruf mich bitte zurück** diyor: geri ara, ne yapması gerektiğini söyle.",
+    "why_tr": "Derya **Ruf mich bitte zurück** diyor. Onu geri araman ve fikrini söylemen gerekiyor.",
     "kanit": [
      "c5",
      "c6"
@@ -1196,7 +1196,7 @@
  "prova": {
   "id": "m1:108:p1",
   "title_tr": "Herr Pichler'e arızayı telefonda anlat",
-  "durum_tr": "Çarşamba sabahı. Banyoda yerde su var; çamaşır makinesi bu sabahtan beri su kaçırıyor. Herr Pichler'i ara: sorunu, yeri ve ne zamandan beri olduğunu söyle. Tavsiyesini anla ve ne zaman geleceğini konuş.",
+  "durum_tr": "Çarşamba sabahı. Banyoda yerde su var. Çamaşır makinesi bu sabahtan beri su kaçırıyor. Herr Pichler'i ara: sorunu, yeri ve ne zamandan beri olduğunu söyle. Tavsiyesini anla ve ne zaman geleceğini konuş.",
   "karsi": "ch:pichler",
   "baslangic": "n1",
   "dugumler": [
@@ -1291,7 +1291,7 @@
       ],
       "sonraki": "n2",
       "uygun": false,
-      "geri_bildirim_tr": "Herr Pichler **wo** (nerede) ve **seit wann** (ne zamandan beri) soruyor: **Im Bad, seit heute Morgen.**"
+      "geri_bildirim_tr": "Herr Pichler nerede (**wo**) ve ne zamandan beri (**seit wann**) diye soruyor. Cevap: **Im Bad, seit heute Morgen.**"
      }
     ]
    },
@@ -1323,7 +1323,7 @@
       ],
       "sonraki": "n3b",
       "uygun": true,
-      "geri_bildirim_tr": "Çok iyi: anlamadığını kibarca **sollte ich …?** ile sordun."
+      "geri_bildirim_tr": "Çok iyi: anlamadığını kibarca sordun: **Wo genau sollte ich den Wasserhahn schließen?**"
      },
      {
       "de": "Nein.",
@@ -1396,7 +1396,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Bir ev arızasını telefonda baştan sona anlattın: sorun, yer, ne zamandan beri. Herr Pichler'in tavsiyesini (**Sie sollten …**) anladın, anlamayınca da sordun."
+  "kapanis_tr": "Bir ev arızasını telefonda baştan sona anlattın: sorun, yer, ne zamandan beri. Herr Pichler'in tavsiyesini (**Sie sollten**) anladın. Anlamayınca da sordun."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1473,11 +1473,11 @@
      "Du solltest den Wasserhahn schließen und sofort den Hausmeister anrufen.",
      "Zuerst den Wasserhahn schließen, danach solltest du den Hausmeister anrufen."
     ],
-    "why_tr": "Ioana'ya **du** ile tavsiye: **du solltest** + mastar sonda. Sıra: **zuerst … danach …**"
+    "why_tr": "Ioana'ya **du** ile tavsiye ver: **Zuerst solltest du den Wasserhahn schließen.** **schließen** en sonda. İkinci adımı **danach** ile söyle."
    }
   ],
   "yazma": {
-   "gorev_tr": "Derya'ya kısa bir mesaj yaz ve tavsiye ver: dişçiye gitmeli, bugün aramalı. En az bir kez **solltest**, bir kez **An deiner Stelle würde ich …** kullan. Geçmiş olsun de.",
+   "gorev_tr": "Derya'ya kısa bir mesaj yaz ve tavsiye ver: dişçiye gitmeli, bugün aramalı. Bir kez **solltest** kullan. Bir kez de **An deiner Stelle würde ich** ile başla. Geçmiş olsun de.",
    "ornek_de": "Hallo Derya! Du solltest zum Zahnarzt gehen. An deiner Stelle würde ich heute anrufen. Gute Besserung!",
    "zorunlu": [
     "solltest",
@@ -1490,8 +1490,8 @@
     "Gute Besserung!"
    ],
    "kontrol_tr": [
-    "**du solltest** ile mastar (**gehen**) cümlenin sonunda mı?",
-    "**An deiner Stelle würde ich …** dedin mi?",
+    "**du solltest** ile yazdığın cümlede **gehen** en sonda mı?",
+    "**An deiner Stelle würde ich** ile başlayan bir cümle yazdın mı?",
     "Kibar bir kapanış (**Gute Besserung!**) yazdın mı?"
    ]
   }
@@ -1523,7 +1523,7 @@
      "danke für die information",
      "Danke für die Information"
     ],
-    "why_tr": "**Information** büyük harfle başlar: isim."
+    "why_tr": "**Danke für die Information!**: bilgi için teşekkürler. **Information** büyük harfle yazılır."
    },
    {
     "id": "m1:108:s3",
@@ -1536,7 +1536,7 @@
      "das mache ich selber",
      "Das mache ich selber"
     ],
-    "why_tr": "**selber**: kendim, kendin, kendisi. Konuşmada çok yaygındır; yazıda daha çok **selbst** kullanılır."
+    "why_tr": "**selber**: kendim, kendin, kendisi. Konuşmada çok yaygındır. Yazıda daha çok **selbst** kullanılır."
    },
    {
     "id": "m1:108:s4",
@@ -1549,7 +1549,7 @@
      "du solltest zum zahnarzt gehen",
      "Du solltest zum Zahnarzt gehen"
     ],
-    "why_tr": "**du** ile **solltest**; **gehen** en sonda."
+    "why_tr": "**du** ile **solltest** olur. **gehen** en sonda."
    },
    {
     "id": "m1:108:s5",
@@ -1560,7 +1560,7 @@
      "Bitte nehmen Sie den Schlüssel mit.",
      "Nehmen Sie den Schlüssel bitte mit."
     ],
-    "why_tr": "**mitnehmen** ayrılır: **Nehmen Sie … mit.** **mit** en sonda."
+    "why_tr": "**mitnehmen** ikiye ayrılır: **Nehmen Sie bitte den Schlüssel mit.** **mit** en sonda."
    },
    {
     "id": "m1:108:s6",
@@ -1571,7 +1571,7 @@
      "Du solltest viel mehr schlafen.",
      "Du solltest mehr schlafen!"
     ],
-    "why_tr": "Tavsiye: **Du solltest** + mastar."
+    "why_tr": "Tavsiye: **Du solltest mehr schlafen.** **schlafen** en sonda."
    },
    {
     "id": "m1:108:s7",
@@ -1582,7 +1582,7 @@
      "Wir sollten die Arbeit teilen.",
      "Die Arbeit sollten wir uns teilen."
     ],
-    "why_tr": "**wir** ile **sollten**; **teilen** en sonda."
+    "why_tr": "**wir** ile **sollten** olur. **teilen** en sonda."
    },
    {
     "id": "m1:108:s8",
@@ -1593,14 +1593,14 @@
      "Hätten Sie heute kurz Zeit?",
      "Hätten Sie vielleicht heute Zeit?"
     ],
-    "why_tr": "Dünkü kibar soru: **Hätten Sie … Zeit?**"
+    "why_tr": "Dünkü kibar soru: **Hätten Sie Zeit?** Araya **heute** girer."
    },
    {
     "id": "m1:108:s9",
     "k": "listen_and_respond",
     "audio_de": "Seit wann verliert die Waschmaschine Wasser?",
     "speed": "normal",
-    "situation_tr": "Herr Pichler soruyor. Bu sabahtan beri; su banyoda bütün yere yayılmış.",
+    "situation_tr": "Herr Pichler soruyor. Bu sabahtan beri. Su banyoda bütün yere yayılmış.",
     "accepted": [
      "Seit heute Morgen. Das Wasser ist auf dem ganzen Boden im Bad.",
      "Seit heute Morgen.",
@@ -1622,12 +1622,12 @@
      "Du solltest heute zum Zahnarzt gehen.",
      "Geh zum Zahnarzt! Du solltest nicht warten."
     ],
-    "why_tr": "**Du solltest …** ya da **An deiner Stelle würde ich …**"
+    "why_tr": "Tavsiye: **Du solltest zum Zahnarzt gehen.** Yani dişçiye gitmelisin."
    },
    {
     "id": "m1:108:s11",
     "k": "guided_response",
-    "situation_tr": "Herr Pichler'i ara. Kim olduğunu söyle; banyoda yerde su var, çamaşır makinesi su kaçırıyor; bugün gelmesi mümkün mü, kibarca sor.",
+    "situation_tr": "Herr Pichler'i ara ve kim olduğunu söyle. Banyoda yerde su var, çamaşır makinesi su kaçırıyor. Bugün gelmesi mümkün mü, kibarca sor.",
     "prompt_de": "Pichler, grüß Gott.",
     "accepted": [
      "Grüß Gott, Herr Pichler. Hier ist {name}. Im Bad ist Wasser auf dem Boden. Die Waschmaschine verliert Wasser. Wäre es möglich, heute zu kommen?",
@@ -1636,7 +1636,7 @@
      "Grüß Gott! Hier ist {name}. Im Bad ist Wasser auf dem Boden, die Waschmaschine verliert Wasser. Hätten Sie heute Zeit?",
      "Grüß Gott, Herr Pichler. Hier ist {name}. Im Bad ist Wasser auf dem Boden. Wäre es möglich, heute zu kommen?"
     ],
-    "why_tr": "Sıra: kim (**Hier ist …**), sorun (**Wasser auf dem Boden**), kibar rica (**Wäre es möglich, heute zu kommen?**).",
+    "why_tr": "Sıra: kim olduğun, sorun, kibar rica. Sorun: **Wasser auf dem Boden**. Rica: **Wäre es möglich, heute zu kommen?**",
     "accepted_adsiz": [
      "Grüß Gott, Herr Pichler. Im Bad ist Wasser auf dem Boden. Die Waschmaschine verliert Wasser. Wäre es möglich, heute zu kommen?",
      "Grüß Gott. Die Waschmaschine verliert Wasser, im Bad ist Wasser auf dem Boden. Wäre es möglich, heute zu kommen?",

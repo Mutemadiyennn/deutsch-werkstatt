@@ -8,7 +8,7 @@
  "goal_tr": "Ne yapmak istediğini ve neyi tercih ettiğini würde gern / würde lieber ile söylersin. Merdivendeki arızayı Herr Pichler'in telesekreterine bildirirsin.",
  "can_do": {
   "id": "cd:m1:106",
-  "tr": "Ne yapmak istediğimi würde gern ile söylerim; bir arızayı telefonda bildiririm."
+  "tr": "Ne yapmak istediğimi würde gern ile söylerim. Bir arızayı telefonda bildiririm."
  },
  "unit": "u:a2:telefon-4",
  "arm": "telefon",
@@ -626,7 +626,7 @@
     "cevapla": {
      "id": "m1:106:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Komşu senden Herr Pichler'i aramanı istiyor. Evet de; onu hemen arayacaksın.",
+     "situation_tr": "Komşu senden Herr Pichler'i aramanı istiyor. Evet de. Onu hemen arayacaksın.",
      "prompt_de": "Können Sie ihn auch mal anrufen?",
      "accepted": [
       "Ja, ich rufe Herrn Pichler gleich an.",
@@ -635,7 +635,7 @@
       "Ja, ich rufe ihn jetzt an.",
       "Klar, ich rufe Herrn Pichler sofort an."
      ],
-     "why_tr": "**anrufen** ayrılır: **Ich rufe ihn … an.** **an** en sona gider."
+     "why_tr": "**anrufen** ikiye ayrılır: **Ich rufe ihn gleich an.** **an** en sona gider."
     }
    },
    {
@@ -781,7 +781,7 @@
       "Ich würde gern ausschlafen. Am Sonntag würde ich lieber zu Hause bleiben.",
       "Ich würde am Wochenende gern ausschlafen und zu Hause bleiben."
      ],
-     "why_tr": "Dilek: **Ich würde gern** + mastar. **würde** ikinci yerde, mastar (**ausschlafen**, **bleiben**) en sonda."
+     "why_tr": "Dilek için **Ich würde gern** de. **würde** ikinci yerde, **ausschlafen** ve **bleiben** en sonda."
     }
    }
   ]
@@ -967,7 +967,7 @@
      "cevapla": {
       "id": "m1:106:a1:c1",
       "k": "guided_response",
-      "situation_tr": "Bip sesinden sonra kısa bir mesaj bırak: selam ver, adını söyle, merdivende ışık olmadığını söyle, geri aranmak iste.",
+      "situation_tr": "Bip sesinden sonra kısa bir mesaj bırak. Selam ver ve adını söyle. Merdivende ışık yok, geri aranmak istiyorsun.",
       "prompt_de": "Bitte sprechen Sie jetzt.",
       "accepted": [
        "Grüß Gott, Herr Pichler. Hier ist {name}. Im Treppenhaus ist kein Licht. Bitte rufen Sie mich zurück.",
@@ -976,7 +976,7 @@
        "Guten Abend. Hier ist {name}. Das Licht im Treppenhaus geht seit gestern nicht. Bitte rufen Sie mich zurück.",
        "Grüß Gott, Herr Pichler! Hier ist {name}. Im Treppenhaus ist es ganz dunkel, das Licht geht nicht. Bitte rufen Sie mich zurück."
       ],
-      "why_tr": "Sıra: selam, kim olduğun (**Hier ist …**), sorun, rica (**Bitte rufen Sie mich zurück.**). **zurück** en sona gider.",
+      "why_tr": "Sıra: selam, adın, sorun, rica. Rica: **Bitte rufen Sie mich zurück.** **zurück** en sona gider.",
       "accepted_adsiz": [
        "Grüß Gott, Herr Pichler. Im Treppenhaus ist kein Licht. Bitte rufen Sie mich zurück.",
        "Guten Abend, Herr Pichler. Das Licht im Treppenhaus geht nicht. Bitte rufen Sie mich zurück.",
@@ -1204,7 +1204,7 @@
        "Ich würde am Samstag gern ausschlafen und am Sonntag wandern.",
        "Am Samstag würde ich gern ausschlafen. Und am Sonntag würde ich gern wandern gehen."
       ],
-      "why_tr": "**würde** ikinci yerde, mastar en sonda: **Am Sonntag würde ich gern wandern.**"
+      "why_tr": "**würde** ikinci yerde, **wandern** en sonda: **Am Sonntag würde ich gern wandern.**"
      }
     }
    ],
@@ -1271,7 +1271,7 @@
  "prova": {
   "id": "m1:106:p1",
   "title_tr": "Herr Pichler'in telesekreterine mesaj bırak",
-  "durum_tr": "Pazartesi akşamı. Merdivenin ışığı dünden beri yanmıyor. Herr Pichler'i arıyorsun; telesekreter açılıyor. Mesajını bırak. Bir saat sonra Herr Pichler seni geri arıyor.",
+  "durum_tr": "Pazartesi akşamı. Merdivenin ışığı dünden beri yanmıyor. Herr Pichler'i arıyorsun ama telesekreter açılıyor. Mesajını bırak. Bir saat sonra Herr Pichler seni geri arıyor.",
   "karsi": "ch:pichler",
   "baslangic": "n1",
   "dugumler": [
@@ -1406,7 +1406,7 @@
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Çok iyi: sorun değil, çünkü merdiven ortak alan; Herr Pichler'in anahtarı var."
+      "geri_bildirim_tr": "Çok iyi: yedide evde olmaman sorun değil. Merdiven ortak alan ve Herr Pichler'in anahtarı var."
      }
     ]
    },
@@ -1417,7 +1417,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Telesekretere kısa ve açık bir mesaj bıraktın: kim olduğun, sorun ve rica. Herr Pichler geri aradı; ne zamandan beri olduğunu söyledin ve bir saat ayarladınız. Telefon korkusuna karşı küçük ama gerçek bir adım."
+  "kapanis_tr": "Telesekretere kısa ve açık bir mesaj bıraktın. Herr Pichler geri aradı, birlikte bir saat ayarladınız. Telefon korkusuna karşı küçük ama gerçek bir adım."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1513,7 +1513,7 @@
    ],
    "kontrol_tr": [
     "**würde** ikinci yerde mi?",
-    "Mastar (**ausschlafen**, **bleiben**) cümlenin sonunda mı?",
+    "**ausschlafen** ve **bleiben** cümlenin sonunda mı?",
     "Dilek için **gern**, tercih için **lieber** kullandın mı?"
    ]
   }
@@ -1532,7 +1532,7 @@
      "im treppenhaus ist kein licht",
      "Im Treppenhaus ist kein Licht"
     ],
-    "why_tr": "**Licht** büyük harfle başlar: isim. **kein Licht**: ışık yok."
+    "why_tr": "**Licht** büyük harfle yazılır. **kein Licht**: ışık yok."
    },
    {
     "id": "m1:106:s2",
@@ -1582,7 +1582,7 @@
      "Irgendwo im Keller habe ich eine Lampe.",
      "Im Keller habe ich irgendwo eine Lampe."
     ],
-    "why_tr": "**irgendwo**: bir yerde. Fiil (**habe**) ikinci yerde."
+    "why_tr": "**irgendwo**: bir yerde. **habe** ikinci yerde."
    },
    {
     "id": "m1:106:s6",
@@ -1593,7 +1593,7 @@
      "Was würdest du gern tun?",
      "Was würdest du denn gern machen?"
     ],
-    "why_tr": "**du** ile **würdest** olur; **machen** en sonda."
+    "why_tr": "**du** ile **würdest** olur. **machen** en sonda."
    },
    {
     "id": "m1:106:s7",
@@ -1604,7 +1604,7 @@
      "Ich würde lieber daheim bleiben.",
      "Lieber würde ich zu Hause bleiben."
     ],
-    "why_tr": "Tercih: **würde lieber** + mastar."
+    "why_tr": "Tercih: **Ich würde lieber zu Hause bleiben.** **bleiben** en sonda."
    },
    {
     "id": "m1:106:s8",
@@ -1636,7 +1636,7 @@
     "k": "listen_and_respond",
     "audio_de": "Sie haben mir auf den Anrufbeantworter gesprochen?",
     "speed": "normal",
-    "situation_tr": "Herr Pichler geri arıyor. Evet de; merdivenin ışığı dünden beri yanmıyor.",
+    "situation_tr": "Herr Pichler geri arıyor. Evet de. Merdivenin ışığı dünden beri yanmıyor.",
     "accepted": [
      "Ja, genau. Das Licht im Treppenhaus geht seit gestern nicht.",
      "Ja. Das Licht geht seit gestern nicht.",
@@ -1658,7 +1658,7 @@
      "Guten Abend, Herr Pichler. Hier ist {name}. Seit gestern geht das Licht im Treppenhaus nicht. Bitte rufen Sie mich zurück.",
      "Grüß Gott! Hier ist {name}. Das Licht im Treppenhaus geht seit gestern nicht. Bitte rufen Sie mich zurück."
     ],
-    "why_tr": "Kim, ne sorun, ne istiyorsun: **Hier ist … – Im Treppenhaus ist kein Licht. – Bitte rufen Sie mich zurück.**",
+    "why_tr": "Sıra: kim olduğun, sorun, rica. Sorun: **Im Treppenhaus ist kein Licht.** Rica: **Bitte rufen Sie mich zurück.**",
     "accepted_adsiz": [
      "Grüß Gott, Herr Pichler. Im Treppenhaus ist kein Licht. Bitte rufen Sie mich zurück.",
      "Guten Abend. Das Licht im Treppenhaus geht nicht. Bitte rufen Sie mich zurück.",

@@ -8,7 +8,7 @@
  "goal_tr": "Ne yapmak istediğini (wollte) ve ne yapman gerektiğini (sollte) geçmişte söylersin. Yılbaşı kararının tutup tutmadığını anlatırsın.",
  "can_do": {
   "id": "cd:m1:100",
-  "tr": "Ne yapmak istediğimi ve ne yapmam gerektiğini geçmişte söylerim; nicht müssen ile nicht dürfen farkını bilirim."
+  "tr": "Geçmişte ne istediğimi ve ne yapmam gerektiğini söylerim. musste nicht ile durfte nicht farkını bilirim."
  },
  "unit": "u:a2:is-4",
  "arm": "tiyatro",
@@ -545,7 +545,7 @@
     "cevapla": {
      "id": "m1:100:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Derya sana dönüp soruyor. Daha çok spor yapmak istiyordun; olmadı.",
+     "situation_tr": "Derya sana dönüp soruyor. Daha çok spor yapmak istiyordun. Ama olmadı.",
      "prompt_de": "Und du? Was war dein Vorsatz?",
      "accepted": [
       "Ich wollte mehr Sport machen. Das hat nicht geklappt.",
@@ -899,7 +899,7 @@
      "Ona bisiklet göndermen"
     ],
     "ans": 0,
-    "why_tr": "Mesajın sonunda \"Ruf mich mal an!\" diyor.",
+    "why_tr": "Mesajın sonunda **Ruf mich mal an!** diyor.",
     "kanit": [
      "c6"
     ]
@@ -1111,7 +1111,7 @@
      "cevapla": {
       "id": "m1:100:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Radyo seni de soruyor gibi. Daha çok uyuman gerekiyordu (doktorun öyle dedi); bu olmadı.",
+      "situation_tr": "Radyo seni de soruyor gibi. Daha çok uyuman gerekiyordu, doktorun öyle dedi. Ama bu olmadı.",
       "prompt_de": "Und Sie? Was war Ihr Vorsatz?",
       "accepted": [
        "Ich sollte mehr schlafen. Das hat nicht geklappt.",
@@ -1134,7 +1134,7 @@
      "Kararını unut"
     ],
     "ans": 0,
-    "why_tr": "Sunucu \"Sie können morgen wieder anfangen\" diyor.",
+    "why_tr": "Sunucu **Sie können morgen wieder anfangen** diyor.",
     "kanit": [
      "c10"
     ]
@@ -1186,7 +1186,7 @@
  "prova": {
   "id": "m1:100:p1",
   "title_tr": "Lena'ya yılbaşı kararını anlat",
-  "durum_tr": "Salı öğleden sonra. Lena kahve makinesinin yanında. Yılbaşında Tobi'deydin; iki kararın vardı: daha çok spor yapmak ve her gün Almanca konuşmak. Lena soruyor.",
+  "durum_tr": "Salı öğleden sonra. Lena kahve makinesinin yanında. Yılbaşında Tobi'deydin. İki kararın vardı: daha çok spor yapmak ve her gün Almanca konuşmak. Lena soruyor.",
   "karsi": "Lena",
   "baslangic": "n1",
   "dugumler": [
@@ -1219,7 +1219,7 @@
       ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Güzel bir karar. **wollte** ikinci yerde, mastar sonda."
+      "geri_bildirim_tr": "Güzel bir karar. **wollte** ikinci yerde, **sprechen** en sonda."
      },
      {
       "de": "Ich will mehr Sport machen.",
@@ -1252,7 +1252,7 @@
       ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Şimdi oldu: **An Silvester wollte ich …**"
+      "geri_bildirim_tr": "Şimdi oldu: **An Silvester wollte ich mehr Sport machen.**"
      },
      {
       "de": "Ich will Sport.",
@@ -1298,7 +1298,7 @@
       ],
       "sonraki": "n3",
       "uygun": true,
-      "geri_bildirim_tr": "Harika. **hat … geklappt**."
+      "geri_bildirim_tr": "Harika. **hat** ikinci yerde, **geklappt** en sonda."
      },
      {
       "de": "Ja, ich habe geklappt.",
@@ -1331,7 +1331,7 @@
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Doğru: gerek yoktu = **ich musste nicht**."
+      "geri_bildirim_tr": "Doğru: **ich musste nicht** gerek yoktu demek."
      },
      {
       "de": "Nein, ich durfte nicht arbeiten.",
@@ -1495,7 +1495,7 @@
      "an silvester haben wir bei tobi getanzt",
      "An Silvester haben wir bei Tobi getanzt"
     ],
-    "why_tr": "**An Silvester** başta, fiil **haben** ikinci yerde."
+    "why_tr": "**An Silvester** başta, **haben** ikinci yerde."
    },
    {
     "id": "m1:100:s4",
@@ -1519,7 +1519,7 @@
      "Wir wollten nach Wien fahren.",
      "Nach Wien wollten wir reisen."
     ],
-    "why_tr": "**wir** ile **wollten**; **reisen** sonda."
+    "why_tr": "**wir** ile **wollten** olur. **reisen** en sonda."
    },
    {
     "id": "m1:100:s6",
@@ -1541,7 +1541,7 @@
      "In der Besprechung durften wir kein Handy benutzen.",
      "Wir durften in der Besprechung das Handy nicht benutzen."
     ],
-    "why_tr": "Yasak: **durften … kein / nicht**."
+    "why_tr": "Yasak **durften** ile söylenir: **Wir durften kein Handy benutzen.**"
    },
    {
     "id": "m1:100:s8",
@@ -1581,12 +1581,12 @@
      "Nicht so sehr. Ich interessiere mich für Musik.",
      "Nein, für Musik."
     ],
-    "why_tr": "**Ich interessiere mich für …**: araya **mich** girer, sonra **für**."
+    "why_tr": "**Ich interessiere mich für Musik.** Araya **mich** girer, sonra **für** gelir."
    },
    {
     "id": "m1:100:s11",
     "k": "guided_response",
-    "situation_tr": "Derya spor kararının tutup tutmadığını soruyor. Daha çok spor yapmak istiyordun; olmadı.",
+    "situation_tr": "Derya spor kararının tutup tutmadığını soruyor. Daha çok spor yapmak istiyordun. Ama olmadı.",
     "prompt_de": "Hat dein Vorsatz geklappt?",
     "accepted": [
      "Ich wollte mehr Sport machen. Das hat leider nicht geklappt.",

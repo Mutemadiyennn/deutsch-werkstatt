@@ -5,7 +5,7 @@
  "level": "A2",
  "format": "gun",
  "title_tr": "Öneri yapmak: Wollen wir zusammen essen?",
- "goal_tr": "Birine bir şey önerir, fikrini sorarsın: Wollen wir …? Wie wäre es mit …? Meiner Meinung nach … Derya'nın şenlik önerisini konuşursun.",
+ "goal_tr": "Birine bir şey önerirsin: Wollen wir zusammen essen? Derya'nın şenlik önerisini konuşur, fikrini söylersin.",
  "can_do": {
   "id": "cd:m1:109",
   "tr": "Birine bir şey önerir, fikrini sorarım."
@@ -718,7 +718,7 @@
     "cevapla": {
      "id": "m1:109:v1:c2",
      "k": "guided_response",
-     "situation_tr": "Lena tam üçte buluşmayı öneriyor. Kabul et; ama ondan önce bir şey önermek istiyorsun: kahve içelim mi?",
+     "situation_tr": "Lena tam üçte buluşmayı öneriyor. Kabul et. Ama ondan önce bir şey önermek istiyorsun: kahve içelim mi?",
      "prompt_de": "Wir könnten uns um Punkt drei treffen.",
      "accepted": [
       "Gute Idee! Wollen wir vorher einen Kaffee trinken?",
@@ -727,7 +727,7 @@
       "Gern! Wollen wir vorher zusammen einen Kaffee trinken?",
       "Gute Idee! Und vorher einen Kaffee? Wie wäre es damit?"
      ],
-     "why_tr": "Öneri: **Wollen wir …?** (fiil başta, mastar sonda) ya da **Wie wäre es mit einem Kaffee?**"
+     "why_tr": "Öneri: **Wollen wir vorher einen Kaffee trinken?** **Wollen** başta, **trinken** sonda. Ya da **Wie wäre es mit einem Kaffee?**"
     }
    }
   ]
@@ -934,7 +934,7 @@
        "Hast du Lust? Wollen wir am Samstag zusammen aufs Fest gehen?",
        "Sollen wir am Samstag zusammen aufs Fest gehen?"
       ],
-      "why_tr": "Öneri: **Wollen wir …?** + mastar sonda. Yer: **aufs Fest** (= auf das Fest)."
+      "why_tr": "Öneri: **Wollen wir am Samstag aufs Fest gehen?** **Wollen** başta, **gehen** sonda. **aufs**, **auf das**'ın kısası."
      }
     }
    ],
@@ -1151,7 +1151,7 @@
        "Ja, um drei vor der Bäckerei. Wollen wir auch Ioana fragen?",
        "Ja, das passt mir. Ich nehme den Bus. Sollen wir auch Ioana fragen?"
       ],
-      "why_tr": "Kabul: **Das passt.** Öneri: **Sollen wir …?** / **Wollen wir …?** fiil başta, mastar sonda."
+      "why_tr": "Kabul: **Das passt.** Öneri: **Sollen wir auch Ioana fragen?** **Sollen** başta, **fragen** sonda."
      }
     }
    ],
@@ -1237,7 +1237,7 @@
       ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Çok iyi: **Wollen wir …?** fiil başta, **essen** sonda."
+      "geri_bildirim_tr": "Çok iyi: **Wollen** başta, **essen** sonda."
      },
      {
       "de": "Kein Problem. Hast du morgen Lust, zusammen zu essen?",
@@ -1249,7 +1249,7 @@
       ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Güzel: **Hast du Lust auf …?** samimi bir öneri."
+      "geri_bildirim_tr": "Güzel: **Hast du Lust** ile samimi bir öneri yaptın."
      },
      {
       "de": "Ich esse morgen.",
@@ -1293,7 +1293,7 @@
       ],
       "sonraki": "n3",
       "uygun": true,
-      "geri_bildirim_tr": "Yumuşak bir öneri: **Wir könnten …**"
+      "geri_bildirim_tr": "Yumuşak bir öneri: **Wir könnten** yapabiliriz demek."
      }
     ]
    },
@@ -1313,7 +1313,7 @@
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Güzel: **Lass uns …!** arkadaşlar arasında çok doğal."
+      "geri_bildirim_tr": "Güzel: **Lass uns** ile hadi dedin. Arkadaşlar arasında çok doğal."
      },
      {
       "de": "Wie wäre es mit der Bäckerei Stadler? Die ist nicht weit.",
@@ -1325,7 +1325,7 @@
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "**mit der Bäckerei**: **mit**'ten sonra **die** → **der** olur."
+      "geri_bildirim_tr": "Çok iyi: **mit**'ten sonra **die** değil **der** dedin: **mit der Bäckerei**."
      },
      {
       "de": "Wie wäre es mit die Bäckerei Stadler?",
@@ -1368,7 +1368,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Birine öneri yaptın, olmayınca yeni bir öneri getirdin: **Wollen wir …?**, **Wie wäre es mit …?**, **Wir könnten …**, **Lass uns …!**"
+  "kapanis_tr": "Birine öneri yaptın. Olmayınca yeni bir öneri getirdin. **Wollen wir**, **Wie wäre es mit**, **Wir könnten** ve **Lass uns** kullandın."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1445,11 +1445,11 @@
      "Um drei. Wie wäre es mit drei Uhr?",
      "Ab drei. Sollen wir um drei Uhr da sein?"
     ],
-    "why_tr": "Saat: **um drei Uhr**. Öneri: **Wollen wir …?** / **Sollen wir …?**"
+    "why_tr": "Saat: **um drei Uhr**. Öneri: **Wollen wir um drei da sein?**"
    }
   ],
   "yazma": {
-   "gorev_tr": "Ioana'ya kısa bir mesaj yaz: Cumartesi şenliğe gitmeyi öner (**Wollen wir …?**). Bir saat ve yer öner (**Wie wäre es mit …?**). Kimlerin geldiğini de söyle.",
+   "gorev_tr": "Ioana'ya kısa bir mesaj yaz. Cumartesi şenliğe gitmeyi öner: **Wollen wir aufs Fest gehen?** Bir saat ve yer öner: **Wie wäre es mit drei Uhr?** Kimlerin geldiğini de söyle.",
    "ornek_de": "Hallo Ioana! Wollen wir am Samstag aufs Starkbierfest gehen? Wie wäre es mit drei Uhr vor der Bäckerei Stadler? Lena und Derya kommen auch. Bis bald!",
    "zorunlu": [
     "Wollen wir",
@@ -1463,9 +1463,9 @@
     "Bis bald!"
    ],
    "kontrol_tr": [
-    "**Wollen wir** ile başlayan bir soru yazdın mı; mastar (**gehen**) sonda mı?",
-    "**Wie wäre es mit …?** ile bir saat önerdin mi?",
-    "**aufs** (= auf das) doğru yerde mi: **aufs Starkbierfest**?"
+    "**Wollen wir** ile başlayan bir soru yazdın mı? **gehen** sonda mı?",
+    "**Wie wäre es mit drei Uhr?** gibi bir saat önerdin mi?",
+    "**aufs Starkbierfest** diye yazdın mı? **aufs**, **auf das**'ın kısası."
    ]
   }
  },
@@ -1483,7 +1483,7 @@
      "meiner meinung nach ist der plan gut",
      "Meiner Meinung nach ist der Plan gut"
     ],
-    "why_tr": "**Meiner Meinung nach** başta; fiil (**ist**) hemen ardından gelir."
+    "why_tr": "**Meiner Meinung nach**: bence. Başta durunca **ist** hemen ardından gelir."
    },
    {
     "id": "m1:109:s2",
@@ -1509,7 +1509,7 @@
      "verzeihung ist hier frei",
      "Verzeihung, ist hier frei"
     ],
-    "why_tr": "**Verzeihung** büyük harfle: isim. Kibar bir 'pardon'."
+    "why_tr": "**Verzeihung** büyük harfle yazılır. Kibar bir pardon."
    },
    {
     "id": "m1:109:s4",
@@ -1522,7 +1522,7 @@
      "wollen wir am samstag aufs fest gehen",
      "Wollen wir am Samstag aufs Fest gehen"
     ],
-    "why_tr": "**aufs** = **auf das**, tek kelime."
+    "why_tr": "**aufs**, **auf das**'ın kısası. Tek kelime yazılır."
    },
    {
     "id": "m1:109:s5",
@@ -1533,7 +1533,7 @@
      "Bitte ruf vorher an.",
      "Ruf vorher an, bitte."
     ],
-    "why_tr": "**anrufen** ayrılır: **Ruf … an.** **vorher** araya girer."
+    "why_tr": "**anrufen** ikiye ayrılır: **Ruf bitte vorher an.** **vorher** araya girer."
    },
    {
     "id": "m1:109:s6",
@@ -1544,7 +1544,7 @@
      "Wie wäre es mit dem Samstag?",
      "Wie wär's mit Samstag?"
     ],
-    "why_tr": "Öneri: **Wie wäre es mit …?**"
+    "why_tr": "Bir gün önermek için: **Wie wäre es mit Samstag?**"
    },
    {
     "id": "m1:109:s7",
@@ -1555,7 +1555,7 @@
      "Das ist leider unmöglich.",
      "Das ist doch unmöglich."
     ],
-    "why_tr": "**unmöglich**: imkânsız (**möglich** + **un-**)."
+    "why_tr": "**unmöglich**: imkânsız. **möglich** kelimesinin başına **un** gelir."
    },
    {
     "id": "m1:109:s8",
@@ -1566,7 +1566,7 @@
      "Wir sollten früher gehen.",
      "Wir sollten früh losgehen."
     ],
-    "why_tr": "Dünkü tavsiye: **wir sollten** + mastar."
+    "why_tr": "Dünkü tavsiye: **Wir sollten früh gehen.** **gehen** en sonda."
    },
    {
     "id": "m1:109:s9",
@@ -1581,7 +1581,7 @@
      "Ja, gern. Sollen wir uns um drei in der Kantine treffen?",
      "Gern! Lass uns um Punkt drei in die Kantine gehen!"
     ],
-    "why_tr": "Evet + öneri: **Wollen wir …?**, **Wie wäre es mit …?** ya da **Lass uns …!**"
+    "why_tr": "Evet de ve öner: **Wollen wir uns um drei in der Kantine treffen?**"
    },
    {
     "id": "m1:109:s10",
@@ -1595,7 +1595,7 @@
      "Du solltest mit dem Bus kommen.",
      "Nein, an deiner Stelle würde ich mit dem Bus kommen."
     ],
-    "why_tr": "Tavsiye: **du solltest** + mastar sonda."
+    "why_tr": "Tavsiye: **Du solltest mit dem Bus kommen.** **kommen** sonda."
    },
    {
     "id": "m1:109:s11",
@@ -1609,7 +1609,7 @@
      "Sollen wir am Samstag aufs Fest gehen? Um Punkt drei?",
      "Wir könnten aufs Fest gehen. Wie wäre es mit drei Uhr?"
     ],
-    "why_tr": "Öneri: **Wollen wir …?** Saat: **Wie wäre es mit … Uhr?**"
+    "why_tr": "Öneri: **Wollen wir aufs Fest gehen?** Saat: **Wie wäre es mit drei Uhr?**"
    }
   ],
   "sesli": [

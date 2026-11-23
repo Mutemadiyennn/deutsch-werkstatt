@@ -5,10 +5,10 @@
  "level": "A2",
  "format": "gun",
  "title_tr": "Davet etmek, kabul etmek, kibarca reddetmek",
- "goal_tr": "Starkbierfest'te ne istediğini ve istemediğini söylersin; alkolsüz bir şey sorarsın. Sonra Derya'yı ve Ioana'yı gelecek hafta için davet edersin.",
+ "goal_tr": "Starkbierfest'te ne istediğini ve istemediğini söylersin. Sonra Derya'yı ve Ioana'yı gelecek hafta için davet edersin.",
  "can_do": {
   "id": "cd:m1:111",
-  "tr": "Festte ne istediğimi ve istemediğimi söyler; birini davet ederim."
+  "tr": "Festte ne istediğimi ve istemediğimi söylerim. Birini davet ederim."
  },
  "unit": "u:a2:bag-3",
  "arm": "telefon",
@@ -547,7 +547,7 @@
     "cevapla": {
      "id": "m1:111:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Derya sana da bir Starkbier almak istiyor. Teşekkür et ama istemediğini söyle; alkolsüz bira iste.",
+     "situation_tr": "Derya sana da bir Starkbier almak istiyor. Teşekkür et ama istemediğini söyle. Alkolsüz bira iste.",
      "prompt_de": "Möchtest du auch ein Starkbier?",
      "accepted": [
       "Nein danke, ich trinke keinen Alkohol. Gibt es auch Bier ohne Alkohol?",
@@ -558,7 +558,7 @@
       "Nein danke, ich möchte kein Bier. Ich nehme lieber einen Saft.",
       "Nein danke, ich trinke keinen Alkohol. Gibt es auch alkoholfreies Bier?"
      ],
-     "why_tr": "Ne istemediğini **Nein danke** ve **kein …** ile, ne istediğini **Ich hätte gern …** ile söylersin."
+     "why_tr": "İstemediğin şey: **Nein danke, ich möchte kein Starkbier.** İstediğin şey: **Ich hätte gern ein Bier ohne Alkohol.**"
     }
    },
    {
@@ -699,7 +699,7 @@
     "cevapla": {
      "id": "m1:111:v1:c2",
      "k": "guided_response",
-     "situation_tr": "Derya telefonda nerede olduğunu soruyor. Polisin yanındasın; on buçuk otobüsüne bineceksin.",
+     "situation_tr": "Derya telefonda nerede olduğunu soruyor. Polisin yanındasın. On buçuk otobüsüne bineceksin.",
      "prompt_de": "Wo bist du? Bist du schon unterwegs?",
      "accepted": [
       "Ich bin beim Polizisten. Der Bus um zehn ist voll, ich nehme den Bus um halb elf.",
@@ -919,7 +919,7 @@
      "Belediye binasının arkasına"
     ],
     "ans": 0,
-    "why_tr": "**Bier ohne Alkohol, Saft und Wasser gibt es hinten links.**",
+    "why_tr": "Anons alkolsüz biranın, meyve suyunun ve suyun arkada solda olduğunu söylüyor: **hinten links**.",
     "kanit": [
      "c2"
     ]
@@ -1107,7 +1107,7 @@
      "cevapla": {
       "id": "m1:111:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Derya'ya sesli cevap ver: Teşekkür et; Breze getiriyorsun, birazdan oradasın.",
+      "situation_tr": "Derya'ya sesli cevap ver. Teşekkür et. Breze getiriyorsun, birazdan oradasın.",
       "prompt_de": "Möchtest du auch Brezen?",
       "accepted": [
        "Danke, Derya! Ja, ich bringe Brezen mit. Bis gleich!",
@@ -1116,7 +1116,7 @@
        "Danke, Derya! Ich komme gleich. Bis gleich!",
        "Danke für den Saft! Ich bringe Brezen mit."
       ],
-      "why_tr": "**mitbringen** ayrılır: **Ich bringe … mit.**"
+      "why_tr": "**mitbringen** ikiye ayrılır: **Ich bringe Brezen mit.** **mit** en sonda."
      }
     }
    ],
@@ -1130,7 +1130,7 @@
      "Eve dön"
     ],
     "ans": 0,
-    "why_tr": "Derya **bring bitte Brezen mit, vorne rechts** diyor; kendisi **ganz hinten rechts** oturuyor.",
+    "why_tr": "Derya **bring bitte Brezen mit, vorne rechts** diyor. Breze önde sağda. Kendisi **ganz hinten rechts** oturuyor.",
     "kanit": [
      "c2",
      "c5"
@@ -1218,7 +1218,7 @@
       ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Kibar ret ve isteğin: **Lieber nicht. Ich hätte gern …**"
+      "geri_bildirim_tr": "Kibar ret ve isteğin: **Lieber nicht. Ich hätte gern einen Saft.**"
      },
      {
       "de": "Nein.",
@@ -1230,7 +1230,7 @@
       ],
       "sonraki": "n1",
       "uygun": false,
-      "geri_bildirim_tr": "Ne istemediğini söyledin ama ne istediğini söylemedin. **Ich hätte gern …** ile ekle."
+      "geri_bildirim_tr": "Ne istemediğini söyledin ama ne istediğini söylemedin. **Ich hätte gern einen Saft.** gibi ekle."
      }
     ]
    },
@@ -1282,7 +1282,7 @@
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Kibar davet: **Hättest du … Zeit?** ve öneri **Wollen wir …?**"
+      "geri_bildirim_tr": "Kibar davet: **Hättest du am Freitag Zeit?** Sonra öneri: **Wollen wir ins Café gehen?**"
      },
      {
       "de": "Wie wäre es mit Freitag? Wir könnten mit Ioana ins Kino gehen.",
@@ -1294,7 +1294,7 @@
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Yumuşak öneri: **Wie wäre es mit …?** ve **Wir könnten …**"
+      "geri_bildirim_tr": "İki yumuşak öneri: **Wie wäre es mit Freitag?** ve **Wir könnten ins Kino gehen.**"
      }
     ]
    },
@@ -1305,7 +1305,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Şenlikte ne istediğini ve ne istemediğini söyledin: **keinen Alkohol**, **ohne Alkohol**, **kein Fleisch**. Sonra kibarca davet ettin: **Hättest du … Zeit? Wollen wir …?**"
+  "kapanis_tr": "Şenlikte ne istediğini ve istemediğini söyledin: **keinen Alkohol**, **ohne Alkohol**, **kein Fleisch**. Sonra kibarca davet ettin: **Hättest du am Freitag Zeit?**"
  },
  "okuma_yazma": {
   "tur": "yazma",
@@ -1327,9 +1327,9 @@
     "Gute Besserung!"
    ],
    "kontrol_tr": [
-    "Kibarca sordun mu (**Hättest du … Zeit?**)?",
+    "Kibarca sordun mu: **Hättest du am Freitag Zeit?**",
     "Gün, saat ve yer var mı?",
-    "Öneride fiil başta, mastar sonda mı (**Wollen wir … gehen?**)?"
+    "Öneride **Wollen** başta, **gehen** sonda mı?"
    ]
   }
  },
@@ -1373,7 +1373,7 @@
      "wann kommst du zurück",
      "Wann kommst du zurück"
     ],
-    "why_tr": "**zurückkommen** ayrılır: **kommst … zurück**."
+    "why_tr": "**zurückkommen** ikiye ayrılır: **Wann kommst du zurück?** **zurück** en sonda."
    },
    {
     "id": "m1:111:s4",
@@ -1397,7 +1397,7 @@
      "Ich möchte kein Bier. Ich nehme einen Saft.",
      "Kein Bier für mich, ich nehme einen Saft."
     ],
-    "why_tr": "İsimle olumsuz: **kein Bier**. Tercih: **Ich nehme …**"
+    "why_tr": "Bira istemiyorsun: **kein Bier**. İstediğin: **Ich nehme einen Saft.**"
    },
    {
     "id": "m1:111:s6",
@@ -1408,7 +1408,7 @@
      "Ich packe jetzt meine Tasche.",
      "Ich packe gerade meine Tasche."
     ],
-    "why_tr": "**packen**: çanta hazırlamak. **Ich packe …**"
+    "why_tr": "**packen**: çanta hazırlamak. **Ich packe meine Tasche.**"
    },
    {
     "id": "m1:111:s7",
@@ -1430,12 +1430,12 @@
      "Um elf komme ich mit dem Bus zurück.",
      "Ich komme mit dem Bus um elf zurück."
     ],
-    "why_tr": "**zurück** en sona gider: **Ich komme … zurück.**"
+    "why_tr": "**zurück** en sona gider: **Ich komme um elf mit dem Bus zurück.**"
    },
    {
     "id": "m1:111:s9",
     "k": "guided_response",
-    "situation_tr": "Standdaki görevli ne istediğini soruyor. Starkbier istemiyorsun; alkolsüz bir şey iste.",
+    "situation_tr": "Standdaki görevli ne istediğini soruyor. Starkbier istemiyorsun. Alkolsüz bir şey iste.",
     "prompt_de": "Grüß Gott! Was darf's sein?",
     "accepted": [
      "Grüß Gott! Ein Bier ohne Alkohol, bitte. Kein Starkbier.",
@@ -1445,7 +1445,7 @@
      "Grüß Gott! Kein Bier für mich, ich hätte gern einen Saft.",
      "Grüß Gott! Ein alkoholfreies Bier, bitte."
     ],
-    "why_tr": "İstediğin: **Ich hätte gern …**; istemediğin: **kein Starkbier**."
+    "why_tr": "İstediğin: **Ich hätte gern ein Bier ohne Alkohol.** İstemediğin: **kein Starkbier**."
    },
    {
     "id": "m1:111:s10",
@@ -1459,7 +1459,7 @@
      "Am Sonntag kann ich leider nicht. Ich würde lieber am Freitag gehen.",
      "Leider habe ich am Sonntag keine Zeit. Vielleicht ein anderes Mal?"
     ],
-    "why_tr": "Ret: **leider** + neden ya da **ein anderes Mal**."
+    "why_tr": "Ret için **leider** de. Sonra nedenini söyle ya da başka zaman öner: **Vielleicht ein anderes Mal?**"
    },
    {
     "id": "m1:111:s11",
@@ -1473,7 +1473,7 @@
      "Hallo Ioana, wie geht es dir? Hättest du am Freitag Zeit? Wollen wir zusammen ins Café gehen?",
      "Hallo! Wollen wir am Freitag zusammen ins Café gehen?"
     ],
-    "why_tr": "Kibar davet: **Hättest du … Zeit?** + **Wollen wir …?**"
+    "why_tr": "Kibar davet: **Hättest du am Freitag Zeit?** Sonra öneri: **Wollen wir ins Café gehen?**"
    }
   ],
   "sesli": [

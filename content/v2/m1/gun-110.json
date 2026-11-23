@@ -563,7 +563,7 @@
     "cevapla": {
      "id": "m1:110:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Gerti yarın şenliğe gelip gelmeyeceğini soruyor. Evet de: Derya ile geliyorsun; öğleden önce de pazara gidiyorsun.",
+     "situation_tr": "Gerti yarın şenliğe gelip gelmeyeceğini soruyor. Evet de: Derya ile geliyorsun. Öğleden önce de pazara gidiyorsun.",
      "prompt_de": "Kommen Sie morgen auch auf das Fest?",
      "accepted": [
       "Ja, ich komme mit Derya. Am Vormittag gehe ich auf den Markt.",
@@ -719,7 +719,7 @@
       "Leider habe ich am Samstag keine Zeit. Ich würde lieber am Sonntag kommen.",
       "Morgen kann ich leider nicht. Ich würde lieber am Sonntag gehen."
      ],
-     "why_tr": "Ret + karşı öneri: **leider** ve **Ich würde lieber …**. Yalnız **Nein** demek kaba durur."
+     "why_tr": "Önce **leider** ile kibarca reddet. Sonra öner: **Ich würde lieber am Sonntag kommen.** Yalnız **Nein** demek kaba durur."
     }
    }
   ]
@@ -909,7 +909,7 @@
      "cevapla": {
       "id": "m1:110:a1:c1",
       "k": "guided_response",
-      "situation_tr": "Ioana'ya sesli cevap ver: üzülmesin, geçmiş olsun; pazar günü onu arayacaksın.",
+      "situation_tr": "Ioana'ya sesli cevap ver: üzülmesin, geçmiş olsun. Pazar günü onu arayacaksın.",
       "prompt_de": "Ich bin so traurig!",
       "accepted": [
        "Sei nicht traurig! Gute Besserung! Ich rufe dich am Sonntag an.",
@@ -1120,7 +1120,7 @@
      "cevapla": {
       "id": "m1:110:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Derya mesaj yazıyor: Yarın ceket gerekir mi? Evet de: akşam hava çok soğuk; müzik de üçte başlıyor.",
+      "situation_tr": "Derya mesaj yazıyor: Yarın ceket gerekir mi? Evet de. Akşam hava çok soğuk.",
       "prompt_de": "Brauche ich morgen eine Jacke?",
       "accepted": [
        "Ja, am Abend ist es sehr kalt. Nimm eine Jacke mit!",
@@ -1196,7 +1196,7 @@
  "prova": {
   "id": "m1:110:p1",
   "title_tr": "Basti'nin davetine cevap ver",
-  "durum_tr": "Cuma akşamı. Basti'yi arıyorsun; sabah seni cumartesi saat dokuzda spora çağırmıştı. Yarın akşam şenlik var. Kabul edebilir ya da kibarca reddedip başka bir gün önerebilirsin. Yalnız 'Nein' deme: nedenini ya da yeni bir öneri söyle.",
+  "durum_tr": "Cuma akşamı. Basti seni cumartesi saat dokuzda spora çağırmıştı. Şimdi onu arıyorsun. Yarın akşam şenlik var. Kabul edebilir ya da kibarca reddedip başka bir gün önerebilirsin. Yalnız **Nein** deme. Nedenini ya da yeni bir öneri söyle.",
   "karsi": "ch:kraus",
   "baslangic": "n1",
   "dugumler": [
@@ -1216,7 +1216,7 @@
       ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Kibar ret: **leider** ve karşı öneri **Ich würde lieber …**"
+      "geri_bildirim_tr": "Kibar ret: **leider**. Karşı öneri: **Ich würde lieber am Sonntag kommen.**"
      },
      {
       "de": "Gute Idee! Ich bin dabei. Um neun passt mir.",
@@ -1261,7 +1261,7 @@
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "Saat önerisini kabul ettin: **… passt mir**."
+      "geri_bildirim_tr": "Saat önerisini kabul ettin: **Sonntag um zehn passt mir.**"
      },
      {
       "de": "Um zehn kann ich leider nicht. Wie wäre es mit elf Uhr?",
@@ -1304,7 +1304,7 @@
       ],
       "sonraki": "n5",
       "uygun": true,
-      "geri_bildirim_tr": "Öneri: **Wollen wir …?** Fiil başta, mastar sonda."
+      "geri_bildirim_tr": "Güzel öneri: **Wollen** başta, **fahren** sonda."
      }
     ]
    },
@@ -1321,7 +1321,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Bir davete cevap verdin: kabul ettin ya da **leider** ile kibarca reddedip başka bir gün önerdin. Yalnız 'Nein' demedin."
+  "kapanis_tr": "Bir davete cevap verdin. Kabul ettin ya da **leider** ile kibarca reddettin. Reddedince başka bir gün önerdin. Yalnız **Nein** demedin."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1436,7 +1436,7 @@
      "hier riecht es nach brot",
      "Hier riecht es nach Brot"
     ],
-    "why_tr": "**riecht nach …**: … kokuyor."
+    "why_tr": "**riecht nach Brot**: ekmek kokuyor."
    },
    {
     "id": "m1:110:s2",
@@ -1475,7 +1475,7 @@
      "plötzlich habe ich doch zeit",
      "Plötzlich habe ich doch Zeit"
     ],
-    "why_tr": "**Plötzlich** başta, fiil (**habe**) hemen arkasında."
+    "why_tr": "**Plötzlich** başta, **habe** hemen arkasında."
    },
    {
     "id": "m1:110:s5",
@@ -1497,7 +1497,7 @@
      "Am Sonntag würde ich lieber kommen.",
      "Ich würde lieber Sonntag kommen."
     ],
-    "why_tr": "Karşı öneri: **Ich würde lieber …** + mastar en sonda."
+    "why_tr": "Karşı öneri: **Ich würde lieber am Sonntag kommen.** **kommen** en sonda."
    },
    {
     "id": "m1:110:s7",
@@ -1508,7 +1508,7 @@
      "Ich habe leider keine Zeit.",
      "Leider habe ich gar keine Zeit."
     ],
-    "why_tr": "**Leider** başta ise fiil (**habe**) hemen arkasından gelir."
+    "why_tr": "**Leider** başta ise **habe** hemen arkasından gelir."
    },
    {
     "id": "m1:110:s8",
@@ -1519,7 +1519,7 @@
      "Wollen wir morgen auf den Markt gehen?",
      "Sollen wir morgen zusammen auf den Markt gehen?"
     ],
-    "why_tr": "Öneri: **Wollen wir …?** **gehen** en sonda."
+    "why_tr": "Öneri: **Wollen wir morgen auf den Markt gehen?** **gehen** en sonda."
    },
    {
     "id": "m1:110:s9",
@@ -1533,7 +1533,7 @@
      "Leider habe ich morgen keine Zeit. Ich würde lieber am Sonntag kommen.",
      "Am Samstag leider nicht. Wie wäre es mit Sonntag?"
     ],
-    "why_tr": "Ret + neden ya da yeni gün: **leider … Ich würde lieber …**"
+    "why_tr": "Önce **leider** ile reddet. Sonra yeni gün öner: **Ich würde lieber am Sonntag kommen.**"
    },
    {
     "id": "m1:110:s10",

@@ -5,7 +5,7 @@
  "level": "A2",
  "format": "gun",
  "title_tr": "Hayal ve kibar soru: Ich wäre gern am Meer",
- "goal_tr": "hätte ve wäre ile hayal kurarsın; şefinden kibarca bir şey rica edersin: Hätten Sie kurz Zeit? Wäre es möglich …?",
+ "goal_tr": "hätte ve wäre ile hayal kurarsın. Şefinden kibarca bir şey rica edersin: Hätten Sie kurz Zeit?",
  "can_do": {
   "id": "cd:m1:107",
   "tr": "hätte / wäre ile hayal kurar, kibarca rica ederim."
@@ -603,7 +603,7 @@
     "cevapla": {
      "id": "m1:107:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Herr Wimmer sana da soruyor: cuma vaktin olur mu? Evet de; cuma saat sekizde oradasın.",
+     "situation_tr": "Herr Wimmer sana da soruyor: cuma vaktin olur mu? Evet de. Cuma saat sekizde oradasın.",
      "prompt_de": "Und Sie? Hätten Sie am Freitag auch Zeit?",
      "accepted": [
       "Ja, am Freitag hätte ich Zeit. Ich bin um acht Uhr da.",
@@ -751,7 +751,7 @@
     "cevapla": {
      "id": "m1:107:v1:c2",
      "k": "guided_response",
-     "situation_tr": "Herr Wimmer'e cevap ver: evet, mümkün; perşembe saat onda vaktin olur.",
+     "situation_tr": "Herr Wimmer'e cevap ver: evet, mümkün. Perşembe saat onda vaktin olur.",
      "prompt_de": "Wäre es möglich, am Donnerstag mit Lena zu arbeiten?",
      "accepted": [
       "Ja, das ist möglich. Am Donnerstag um zehn hätte ich Zeit.",
@@ -976,7 +976,7 @@
      "Müşteriyi aramalısın"
     ],
     "ans": 0,
-    "why_tr": "Herr Wimmer **Bitte sagen Sie es auch Frau Aksoy** diyor: toplantının saatini Derya'ya da söyle.",
+    "why_tr": "Herr Wimmer **Bitte sagen Sie es auch Frau Aksoy** diyor. Toplantının saatini Derya'ya da söyle.",
     "kanit": [
      "c3",
      "c4"
@@ -1175,7 +1175,7 @@
      "cevapla": {
       "id": "m1:107:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Radyocu sana soruyor: şu an nerede olmak isterdin? Deniz kenarında olmak isterdin; bir hafta huzur da güzel olurdu.",
+      "situation_tr": "Radyocu sana soruyor: şu an nerede olmak isterdin? Deniz kenarında olmak isterdin. Bir hafta huzur da güzel olurdu.",
       "prompt_de": "Und Sie? Wo wären Sie jetzt gern?",
       "accepted": [
        "Ich wäre jetzt gern am Meer. Eine Woche Ruhe wäre schön.",
@@ -1184,7 +1184,7 @@
        "Ich wäre gern am Meer. Das wäre schön.",
        "Ich wäre jetzt gern am Meer, eine Woche Ruhe wäre wunderbar."
       ],
-      "why_tr": "Bir yerde olmak istemek: **Ich wäre gern …** (**sein** → **wäre**)."
+      "why_tr": "Bir yerde olmayı istemek için **wäre**: **Ich wäre jetzt gern am Meer.**"
      }
     }
    ],
@@ -1250,7 +1250,7 @@
  "prova": {
   "id": "m1:107:p1",
   "title_tr": "Herr Wimmer'den kibarca bir şey rica et",
-  "durum_tr": "Perşembe saat üçte doktor randevun var. Herr Wimmer'in odasına gidiyorsun: perşembe erken çıkmayı kibarca rica et. Ama perşembe Lena ile çalışacaktın; bunun için bir çözüm öner.",
+  "durum_tr": "Perşembe saat üçte doktor randevun var. Herr Wimmer'in odasına gidiyorsun: perşembe erken çıkmayı kibarca rica et. Ama perşembe Lena ile çalışacaktın. Bunun için bir çözüm öner.",
   "karsi": "ch:wimmer",
   "baslangic": "n1",
   "dugumler": [
@@ -1314,7 +1314,7 @@
       ],
       "sonraki": "n3",
       "uygun": true,
-      "geri_bildirim_tr": "Çok iyi: kibar rica **Wäre es möglich, … zu gehen?** ve nedeni."
+      "geri_bildirim_tr": "Çok iyi: **Wäre es möglich** ile kibarca rica ettin, nedenini de söyledin."
      },
      {
       "de": "Ich hätte am Donnerstag ab zwei Uhr gern frei. Ich habe einen Termin beim Arzt.",
@@ -1413,7 +1413,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Şefinden kibarca bir şey rica ettin: **Störe ich?**, **Hätten Sie kurz Zeit?**, **Wäre es möglich, …?** Sorun çıkınca da bir çözüm önerdin."
+  "kapanis_tr": "Şefinden kibarca bir şey rica ettin. Önce **Störe ich?** diye sordun, sonra **Wäre es möglich** dedin. Sorun çıkınca da bir çözüm önerdin."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1494,7 +1494,7 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Herr Wimmer'e kısa ve kibar bir cevap yaz. Cuma saat sekizde oradasın. Ama pazartesi saat sekizde Bürgerbüro'da randevun var: pazartesi saat onda gelmen mümkün olur mu, kibarca sor (**Ich hätte eine Bitte**, **Wäre es möglich …?**).",
+   "gorev_tr": "Herr Wimmer'e kısa ve kibar bir cevap yaz. Cuma saat sekizde oradasın. Ayrıca pazartesi sabah sekizde Bürgerbüro'da randevun var. Bu yüzden pazartesi saat onda gelmek mümkün mü, kibarca sor. **Ich hätte eine Bitte** ve **Wäre es möglich** kullan.",
    "ornek_de": "Guten Tag, Herr Wimmer, am Freitag bin ich um acht Uhr da. Ich hätte eine Bitte: Wäre es möglich, am Montag um zehn Uhr zu kommen? Ich habe um acht einen Termin im Bürgerbüro. Viele Grüße",
    "zorunlu": [
     "hätte",
@@ -1510,7 +1510,7 @@
    ],
    "kontrol_tr": [
     "Kibar başladın mı (**Ich hätte eine Bitte**)?",
-    "Soruda **Wäre es möglich, … zu kommen?** var mı; **zu kommen** sonda mı?",
+    "**Wäre es möglich** diye sordun mu? **zu kommen** sonda mı?",
     "Nedeni (randevu) yazdın mı?"
    ]
   }
@@ -1529,7 +1529,7 @@
      "entschuldigung störe ich",
      "Entschuldigung, störe ich"
     ],
-    "why_tr": "**störe**: rahatsız ediyorum. Soru olunca fiil başa geçer: **Störe ich?**"
+    "why_tr": "**störe**: rahatsız ediyorum. Soruda **störe** başa geçer: **Störe ich?**"
    },
    {
     "id": "m1:107:s2",
@@ -1542,7 +1542,7 @@
      "ich hätte eine bitte",
      "Ich hätte eine Bitte"
     ],
-    "why_tr": "**hätte** iki **t** ile yazılır; **Bitte** burada isim, büyük harf."
+    "why_tr": "**hätte** iki **t** ile yazılır. **Bitte** burada büyük harfle yazılır."
    },
    {
     "id": "m1:107:s3",
@@ -1579,7 +1579,7 @@
      "Hättest du Samstag Zeit?",
      "Am Samstag, hättest du Zeit?"
     ],
-    "why_tr": "**du** ile **hättest**; kibar soru fiille başlar."
+    "why_tr": "**du** ile **hättest** olur. Kibar soru **Hättest** ile başlar."
    },
    {
     "id": "m1:107:s6",
@@ -1590,7 +1590,7 @@
      "Jetzt wäre ich gern am Meer.",
      "Ich wäre gern jetzt am Meer."
     ],
-    "why_tr": "Bir yerde olmak istemek: **Ich wäre gern …**"
+    "why_tr": "Bir yerde olmayı istemek için **wäre**: **Ich wäre jetzt gern am Meer.**"
    },
    {
     "id": "m1:107:s7",
@@ -1612,14 +1612,14 @@
      "Was würdet ihr gern am Sonntag machen?",
      "Was würdet ihr am Sonntag machen?"
     ],
-    "why_tr": "**ihr** ile **würdet**; mastar en sonda."
+    "why_tr": "**ihr** ile **würdet** olur. **machen** en sonda."
    },
    {
     "id": "m1:107:s9",
     "k": "listen_and_respond",
     "audio_de": "Wäre es möglich, am Donnerstag mit Lena zu arbeiten?",
     "speed": "normal",
-    "situation_tr": "Herr Wimmer soruyor. Evet, mümkün; perşembe saat onda vaktin olur.",
+    "situation_tr": "Herr Wimmer soruyor. Evet, mümkün. Perşembe saat onda vaktin olur.",
     "accepted": [
      "Ja, das ist möglich. Am Donnerstag um zehn hätte ich Zeit.",
      "Ja, das ist möglich. Um zehn hätte ich Zeit.",
@@ -1627,7 +1627,7 @@
      "Ja, natürlich. Ich hätte um zehn Zeit.",
      "Ja, das geht. Am Donnerstag hätte ich um zehn Zeit."
     ],
-    "why_tr": "Kibar cevap: **Ja, das ist möglich.** + **Ich hätte … Zeit.**"
+    "why_tr": "Kibar cevap: **Ja, das ist möglich.** Vaktini **Ich hätte um zehn Zeit** ile söyle."
    },
    {
     "id": "m1:107:s10",
@@ -1641,12 +1641,12 @@
      "Ich würde am Samstag gern ausschlafen.",
      "Ausschlafen! Ich würde gern ausschlafen."
     ],
-    "why_tr": "Dünkü kalıp: **Ich würde gern** + mastar."
+    "why_tr": "Dünkü kalıp: **Ich würde gern ausschlafen.** **ausschlafen** en sonda."
    },
    {
     "id": "m1:107:s11",
     "k": "guided_response",
-    "situation_tr": "Herr Wimmer'in kapısındasın. Kibarca rahatsız edip etmediğini sor; perşembe erken çıkmanın mümkün olup olmadığını sor.",
+    "situation_tr": "Herr Wimmer'in odasının önündesin. Rahatsız edip etmediğini kibarca sor. Perşembe erken çıkmak mümkün mü, onu da sor.",
     "prompt_de": "Ja, bitte?",
     "accepted": [
      "Entschuldigung, störe ich? Wäre es möglich, am Donnerstag früher zu gehen?",
@@ -1655,7 +1655,7 @@
      "Entschuldigung, störe ich? Ich hätte eine Bitte. Wäre es möglich, am Donnerstag früher zu gehen?",
      "Störe ich? Wäre es möglich, am Donnerstag um zwei zu gehen?"
     ],
-    "why_tr": "Kibar sıra: **Störe ich?** → **Ich hätte eine Bitte.** → **Wäre es möglich, … zu gehen?**"
+    "why_tr": "Kibar sıra: önce **Störe ich?** Sonra **Ich hätte eine Bitte.** En sonda **Wäre es möglich, früher zu gehen?**"
    }
   ],
   "sesli": [

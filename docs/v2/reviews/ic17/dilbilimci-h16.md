@@ -74,3 +74,38 @@ Bairisch: yalnız `Grüß Gott` ve `Servus` kullanılıyor, ikisi de WORLD §5't
 - Gün dosyalarının review alanı: `{status:"draft", by:"dilbilimci-ajan", at:"2026-11-23", notes:"…; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."}`. hafta-sonu-testi ve gorulmemis dosyalarında review alanı yok, eklenmedi.
 
 **SONUÇ: ONAY**
+
+## Okur fark turu
+
+Kaynak: `docs/v2/reviews/okur/ic17-h16.md` (GERİ 177). Hepsi düzeltildi: **177/177**. Bunlar okurun A tablosundaki 52, B tablosundaki 117 ve C bölümündeki 8 metin. Ayrıca okurun listesinde olmayan bir alan da düzeltildi: gun-112 prova n2 s3 `tr` "(kapı değil)", yeni hâli "(ret değil)". Kapsam dışında kalan gün metni: 0.
+
+Neler yapıldı:
+- "mastar", "fiil", "isim" kaldırıldı. Yerine kelimenin kendisi yazıldı ve yeri söylendi: "**ausschlafen** en sonda", "**habe** ikinci yerde", "**Licht** büyük harfle yazılır".
+- Kalıp boşlukları (`Wollen wir …?`, `Ich hätte gern …`, `Hättest du … Zeit?` …) maddenin kendi kabul cümlesinden alınan tam örnekle değiştirildi (**Wollen wir aufs Fest gehen?**, **Hättest du am Freitag Zeit?**).
+- `;` noktaya çevrildi. `+`, `→`, `=` ve `/` düz Türkçe oldu ("**aufs**, **auf das**'ın kısası"). 14 kelimeyi aşan cümleler bölündü. İki fikir taşıyan `can_do.tr` ve `goal_tr` alanlarında her fikir kendi cümlesine alındı. Bir fikri atmak gerekince küçük olan atıldı (gun-110 sesler[1] durum: müzik saati).
+- İç adlar kaldırıldı: "Kulak kapısı" yerine "Dinleme denemesi", "Haftanın kapısı" yerine "Haftanın provası". "Kapının üç parçası" ve "Kapı:" yerine "Üç adım", "Bu kapıda" yerine "Burada".
+- Türkçe açıklaması olmayan dört alana Türkçe cümle eklendi: gun-111 sesler[0] eylem, gun-112 sesler[0] ve sesler[1] eylem, m1:108:s10.
+- Okurun içerik notları da kapandı. gun-106 n3 s1'de neyin sorun olmadığı artık açık ("yedide evde olmaman"). gun-107 yazma görevi pazartesi randevusunu yeni bilgi olarak veriyor ve nedenini söylüyor ("Ayrıca … randevun var. Bu yüzden …"). m1:112:s11'deki "neden" kaldırıldı ("Üç adım: teşekkür, **leider**, başka gün."). gun-109 n1 s1'deki **Hast du Lust auf** de düzeltildi: seçenekte **Hast du Lust, … zu essen?** geçtiği için şimdi "**Hast du Lust** ile".
+- `gr:a2-08:t1`–`t5`: beş `tr` alanı kısa ve terimsiz yeniden yazıldı. Her birinde bir ana fikir, Almanca örnek ve parantez içinde Türkçesi var. Tırnak, `;`, `=`, `…` yok. t1 `h_tr` "würde gern, würde lieber: dilek ve tercih" oldu. t2 tablo başlıkları "haben → hätte / sein → wäre" yerine "hätte / wäre" oldu. t4 tabloda "+ Dativ" ve "+ Akk." yerine kalıp boşluğu `…` yazıldı (tablo kalıp hücresi, okur t5'te bunu geçirmişti). `ex` alanlarına dokunulmadı.
+- Almanca satırlar, `accepted` ve `ex` değişmedi.
+
+Değişen kimlikler (okurun gösterimiyle; prova nX = `dugumler[X-1]`, şık 0'dan başlar):
+- **gun-106** (17): can_do.tr; sahne b0 cevapla situation_tr; sahne b0 cevapla why_tr; sahne b1 cevapla why_tr; sesler[0] cevapla situation_tr; sesler[0] cevapla why_tr; sesler[1] cevapla why_tr; prova.durum_tr; prova n3 s1 geri_bildirim_tr; prova.kapanis_tr; yazma.kontrol_tr[1]; m1:106:s1 why_tr; m1:106:s5 why_tr; m1:106:s6 why_tr; m1:106:s7 why_tr; m1:106:s10 situation_tr; m1:106:s11 why_tr
+- **gun-107** (21): goal_tr; sahne b0 cevapla situation_tr; sahne b1 cevapla situation_tr; sesler[0] eylem why_tr; sesler[1] cevapla situation_tr; sesler[1] cevapla why_tr; prova.durum_tr; prova n2 s0 geri_bildirim_tr; prova.kapanis_tr; yazma.gorev_tr; yazma.kontrol_tr[1]; m1:107:s1 why_tr; m1:107:s2 why_tr; m1:107:s5 why_tr; m1:107:s6 why_tr; m1:107:s8 why_tr; m1:107:s9 situation_tr; m1:107:s9 why_tr; m1:107:s10 why_tr; m1:107:s11 situation_tr; m1:107:s11 why_tr
+- **gun-108** (26): can_do.tr; sahne b0 cevapla situation_tr; sahne b0 cevapla why_tr; sahne b1 cevapla situation_tr; sesler[0] cevapla why_tr; sesler[1] cevapla why_tr; sesler[1] eylem why_tr; prova.durum_tr; prova n2 s2 geri_bildirim_tr; prova n3 s1 geri_bildirim_tr; prova.kapanis_tr; okuma s4 why_tr; yazma.gorev_tr; yazma.kontrol_tr[0]; yazma.kontrol_tr[1]; m1:108:s2 why_tr; m1:108:s3 why_tr; m1:108:s4 why_tr; m1:108:s5 why_tr; m1:108:s6 why_tr; m1:108:s7 why_tr; m1:108:s8 why_tr; m1:108:s9 situation_tr; m1:108:s10 why_tr; m1:108:s11 situation_tr; m1:108:s11 why_tr
+- **gun-109** (26): goal_tr; sahne b1 cevapla situation_tr; sahne b1 cevapla why_tr; sesler[0] cevapla why_tr; sesler[1] cevapla why_tr; prova n1 s0 geri_bildirim_tr; prova n1 s1 geri_bildirim_tr; prova n2 s1 geri_bildirim_tr; prova n3 s0 geri_bildirim_tr; prova n3 s1 geri_bildirim_tr; prova.kapanis_tr; okuma s4 why_tr; yazma.gorev_tr; yazma.kontrol_tr[0]; yazma.kontrol_tr[1]; yazma.kontrol_tr[2]; m1:109:s1 why_tr; m1:109:s3 why_tr; m1:109:s4 why_tr; m1:109:s5 why_tr; m1:109:s6 why_tr; m1:109:s7 why_tr; m1:109:s8 why_tr; m1:109:s9 why_tr; m1:109:s10 why_tr; m1:109:s11 why_tr
+- **gun-110** (15): sahne b0 cevapla situation_tr; sahne b1 cevapla why_tr; sesler[0] cevapla situation_tr; sesler[1] cevapla situation_tr; prova.durum_tr; prova n1 s0 geri_bildirim_tr; prova n2 s0 geri_bildirim_tr; prova n3 s1 geri_bildirim_tr; prova.kapanis_tr; m1:110:s1 why_tr; m1:110:s4 why_tr; m1:110:s6 why_tr; m1:110:s7 why_tr; m1:110:s8 why_tr; m1:110:s9 why_tr
+- **gun-111** (24): goal_tr; can_do.tr; sahne b0 cevapla situation_tr; sahne b0 cevapla why_tr; sahne b1 cevapla situation_tr; sesler[0] eylem why_tr; sesler[1] cevapla situation_tr; sesler[1] cevapla why_tr; sesler[1] eylem why_tr; prova n1 s1 geri_bildirim_tr; prova n1 s2 geri_bildirim_tr; prova n3 s0 geri_bildirim_tr; prova n3 s1 geri_bildirim_tr; prova.kapanis_tr; yazma.kontrol_tr[0]; yazma.kontrol_tr[2]; m1:111:s3 why_tr; m1:111:s5 why_tr; m1:111:s6 why_tr; m1:111:s8 why_tr; m1:111:s9 situation_tr; m1:111:s9 why_tr; m1:111:s10 why_tr; m1:111:s11 why_tr
+- **gun-112** (25): sahne b0 cevapla situation_tr; sahne b0 cevapla why_tr; sahne b1 cevapla situation_tr; sesler[0] title_tr; sesler[0] cevapla situation_tr; sesler[0] eylem why_tr; sesler[1] cevapla situation_tr; sesler[1] cevapla why_tr; sesler[1] eylem why_tr; prova.title_tr; prova n2 s0 geri_bildirim_tr; prova n2 s1 geri_bildirim_tr; prova n2 s3 tr; prova n2 s3 geri_bildirim_tr; prova.kapanis_tr; okuma s4 situation_tr; yazma.gorev_tr; yazma.kontrol_tr[0]; yazma.kontrol_tr[1]; m1:112:s5 why_tr; m1:112:s7 why_tr; m1:112:s8 why_tr; m1:112:s9 why_tr; m1:112:s10 why_tr; m1:112:s11 why_tr
+- **hafta-sonu-testi-16** (10): m1:112:t01 why_tr; m1:112:t03 why_tr; m1:112:t05 instr_tr; m1:112:t06 why_tr; m1:112:t07 why_tr; m1:112:t08 situation_tr; m1:112:t08 why_tr; m1:112:t09 why_tr; m1:112:t10 why_tr; m1:112:t12 why_tr
+- **gorulmemis-16** (6): m1:h16:g1 why_tr; m1:h16:g2 why_tr; m1:h16:g3 why_tr; m1:h16:g4 why_tr; m1:h16:g5 why_tr; m1:h16:g6 why_tr
+- **grammar.json**: gr:a2-08:t1 (h_tr, tr); gr:a2-08:t2 (tr, tablo başlığı); gr:a2-08:t3 (tr); gr:a2-08:t4 (tr, tablo 2 satır); gr:a2-08:t5 (tr)
+
+Öz-denetim: değişen 170 gün alanı ve 5 gr girdisi betikle tarandı. Taranan şeyler: `;`, `…`, `=`, `+`, `→`, tırnaklı Almanca, yasak terimler (fiil, mastar, isim, özne, nesne, zaman adları, Präteritum, Konjunktiv, Dativ, Akk., çekim, ek, artikel, biçim, modal, kapı), 14 kelimeyi aşan cümle. Sonuç 0. Haftanın bütün açıklama alanlarında kalan tırnaklar yalnız Türkçe sözler için ('dikkatli ol', 'maalesef', Basti'nin Türkçe sözü). gr t4'teki kesme işareti yalnız **mit**'ten ekinde.
+
+Kapılar (fark turundan sonra):
+- `npm run content:validate` → 0 hata (178 uyarı, önceden de vardı).
+- `hafta-kapisi-kos.ts --hafta 16` → **GEÇTİ**. Öğretilmeden istenen 0, hafta sonu testi %100 (12/12), görülmemiş durum 7/7.
+- `review` alanları değişmedi (draft). Okur fark okumasını bekliyor (OD-9.4).
+
+Fark turu sonucu: **KAPANDI** (177/177). Okur fark okuması bekleniyor.

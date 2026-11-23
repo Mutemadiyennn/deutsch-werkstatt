@@ -395,7 +395,7 @@
     "cevapla": {
      "id": "m1:112:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Derya dün gece ne zaman döndüğünü soruyor. On birde otobüsle döndün; bugün sen de yorgunsun.",
+     "situation_tr": "Derya dün gece ne zaman döndüğünü soruyor. On birde otobüsle döndün. Bugün sen de yorgunsun.",
      "prompt_de": "Wann bist du zurückgekommen?",
      "accepted": [
       "Um elf, mit dem Bus. Heute bin ich auch müde.",
@@ -404,7 +404,7 @@
       "Mit dem Bus um elf. Heute bin ich müde.",
       "Ich bin um elf mit dem Bus zurückgekommen."
      ],
-     "why_tr": "Geçmiş: **Ich bin … zurückgekommen.** Kısa da olur: **Um elf.**"
+     "why_tr": "Dün döndün: **Ich bin um elf zurückgekommen.** Kısa da olur: **Um elf.**"
     }
    },
    {
@@ -543,7 +543,7 @@
     "cevapla": {
      "id": "m1:112:v1:c2",
      "k": "guided_response",
-     "situation_tr": "Lena cumartesi pazara gelip gelmeyeceğini soruyor. Kabul et: pazar yeri öğleden önce; saat üçte de Ioana ile buluşuyorsun.",
+     "situation_tr": "Lena cumartesi pazara gelip gelmeyeceğini soruyor. Kabul et. Pazar yeri öğleden önce. Saat üçte de Ioana ile buluşuyorsun.",
      "prompt_de": "Kommst du am Samstag mit auf den Markt?",
      "accepted": [
       "Gute Idee! Ich komme mit. Um drei treffe ich Ioana.",
@@ -561,7 +561,7 @@
   {
    "id": "m1:112:a1",
    "tur": "sesli-mesaj",
-   "title_tr": "Kulak kapısı: Ioana'nın sesli mesajı",
+   "title_tr": "Dinleme denemesi: Ioana'nın sesli mesajı",
    "ortam_tr": "Pazar sabahı erkenden, Derya aramadan önce. Ioana'ya davet mesajı yazmıştın. Şimdi telefonunda ondan bir sesli mesaj var. Dinle: kim geliyor, ne zaman, nerede?",
    "speaker": "ch:popescu",
    "hizlar": [
@@ -754,7 +754,7 @@
      "cevapla": {
       "id": "m1:112:a1:c1",
       "k": "guided_response",
-      "situation_tr": "Ioana'yı geri ara: cumartesi saat üç sana uyuyor; kafede görüşürsünüz.",
+      "situation_tr": "Ioana'yı geri ara. Cumartesi saat üç sana uyuyor. Kafede görüşürsünüz.",
       "prompt_de": "Wie wäre es mit Samstag? Um drei Uhr im Café?",
       "accepted": [
        "Samstag um drei passt mir gut! Bis Samstag im Café.",
@@ -777,7 +777,7 @@
      "Cumartesi 10:00, pazar, Lena"
     ],
     "ans": 0,
-    "why_tr": "**wie wäre es mit Samstag? Um drei Uhr im Café am Stadtplatz.** Ve **Derya kommt auch mit.**",
+    "why_tr": "Ioana cumartesi saat üçü ve Stadtplatz'taki kafeyi öneriyor. Derya da geliyor: **Derya kommt auch mit.**",
     "kanit": [
      "c4",
      "c5"
@@ -969,7 +969,7 @@
      "cevapla": {
       "id": "m1:112:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Ioana mesaj yazıyor: Cumartesi pazara gidelim mi? Kabul et; ama saat on ikiye kadar açık, erken gidin.",
+      "situation_tr": "Ioana mesaj yazıyor: Cumartesi pazara gidelim mi? Kabul et. Ama pazar yeri on ikiye kadar açık, erken gidin.",
       "prompt_de": "Wollen wir am Samstag auch auf den Markt gehen?",
       "accepted": [
        "Gute Idee! Der Markt ist bis zwölf Uhr, wir sollten früh gehen.",
@@ -978,7 +978,7 @@
        "Gute Idee! Ich bin dabei. Der Markt ist von acht bis zwölf.",
        "Ja, ich komme mit! Wir sollten früh gehen."
       ],
-      "why_tr": "Kabul + öneri: **Wir sollten früh gehen** (erken gitmeliyiz)."
+      "why_tr": "Kabul et ve öner: **Wir sollten früh gehen.** Yani erken gitmeliyiz."
      }
     }
    ],
@@ -992,7 +992,7 @@
      "Yürüyerek"
     ],
     "ans": 0,
-    "why_tr": "**Morgen regnet es den ganzen Tag. Fahren Sie lieber mit dem Bus, nicht mit dem Fahrrad!**",
+    "why_tr": "Radyo yarın bütün gün yağmur yağacağını söylüyor. Bisiklet değil, otobüs öneriyor: **lieber mit dem Bus**.",
     "kanit": [
      "c4"
     ]
@@ -1043,7 +1043,7 @@
  ],
  "prova": {
   "id": "m1:112:p1",
-  "title_tr": "Haftanın kapısı: Frau Brandl'ın davetini kibarca reddet",
+  "title_tr": "Haftanın provası: Frau Brandl'ın davetini kibarca reddet",
   "durum_tr": "Pazar öğlen. Frau Brandl arıyor, hat kötü. Seni bugün saat üçte kahve ve pastaya çağırıyor. Bugün gidemiyorsun: şenlikten çok yorgunsun. Kibarca reddet: önce teşekkür et, sonra 'maalesef' ve nedeni, sonra başka bir gün öner. Gün ve saat üzerinde anlaşın.",
   "karsi": "ch:brandl",
   "baslangic": "n1",
@@ -1096,7 +1096,7 @@
       ],
       "sonraki": "n3",
       "uygun": true,
-      "geri_bildirim_tr": "Kapının üç parçası tamam: teşekkür (**sehr nett von Ihnen**), ret ve neden (**leider … müde**), başka gün (**Wie wäre es mit Mittwoch?**)."
+      "geri_bildirim_tr": "Üç adımı da yaptın: teşekkür, ret ve neden, başka gün."
      },
      {
       "de": "Danke, Frau Brandl! Heute habe ich leider keine Zeit, ich bin sehr müde. Ich würde lieber am Mittwoch kommen.",
@@ -1108,7 +1108,7 @@
       ],
       "sonraki": "n3",
       "uygun": true,
-      "geri_bildirim_tr": "Çok kibar: teşekkür, **leider** ve neden, karşı öneri **Ich würde lieber …**"
+      "geri_bildirim_tr": "Çok kibar: teşekkür, **leider** ve neden. Karşı öneri: **Ich würde lieber am Mittwoch kommen.**"
      },
      {
       "de": "Nein, heute nicht.",
@@ -1124,7 +1124,7 @@
      },
      {
       "de": "Ja, gern! Ich komme um drei.",
-      "tr": "(kapı değil) Memnuniyetle! Üçte geliyorum.",
+      "tr": "(ret değil) Memnuniyetle! Üçte geliyorum.",
       "accepted": [
        "Ja, gern! Ich komme um drei.",
        "Gern, ich komme um drei.",
@@ -1132,7 +1132,7 @@
       ],
       "sonraki": "n2",
       "uygun": false,
-      "geri_bildirim_tr": "Bugün çok yorgunsun ve gidemiyorsun. Bu kapıda kibarca reddet ve başka bir gün öner."
+      "geri_bildirim_tr": "Bugün çok yorgunsun ve gidemiyorsun. Burada kibarca reddet ve başka bir gün öner."
      }
     ]
    },
@@ -1181,7 +1181,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Haftanın kapısı tamam: Frau Brandl'ın davetini kibarca reddettin. Önce teşekkür ettin, sonra **leider** ile nedenini söyledin, en sonda başka bir gün önerdin ve saat üzerinde anlaştın. Kötü hatta da **Einen Augenblick, bitte** ve **Können Sie das bitte wiederholen?** ile yolunu buldun."
+  "kapanis_tr": "Haftanın provası tamam: Frau Brandl'ın davetini kibarca reddettin. Önce teşekkür ettin, sonra **leider** ile nedenini söyledin. En sonda başka bir gün önerdin ve saatte anlaştın. Kötü hatta da **Einen Augenblick, bitte** ile yolunu buldun."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1249,7 +1249,7 @@
    {
     "id": "m1:112:o5",
     "k": "guided_response",
-    "situation_tr": "Lena'ya yazılı cevap ver: Kabul et. Saat üçte Ioana ile buluşuyorsun; o yüzden kahveye kısa kalabilirsin.",
+    "situation_tr": "Lena'ya yazılı cevap ver: Kabul et. Saat üçte Ioana ile buluşuyorsun. O yüzden kahveye kısa kalabilirsin.",
     "prompt_de": "Wer kommt mit?",
     "accepted": [
      "Gute Idee, ich bin dabei! Um drei treffe ich Ioana.",
@@ -1262,7 +1262,7 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Haftanı 4 kısa cümleyle yaz: Ne yapmak isterdin (würde gern)? Birine bir tavsiye ver (solltest). Birine bir şey öner (Wollen wir …?). Bir daveti kibarca reddet ve başka gün öner (leider …, Wie wäre es mit …?).",
+   "gorev_tr": "Haftanı 4 kısa cümleyle yaz. Ne yapmak isterdin? **würde gern** kullan. Birine **solltest** ile tavsiye ver. Birine **Wollen wir** ile bir şey öner. Bir daveti **leider** ile reddet ve başka gün öner.",
    "ornek_de": "Am Wochenende würde ich gern ausschlafen. Du solltest mehr schlafen, Derya! Wollen wir am Samstag zusammen auf den Markt gehen? Heute kann ich leider nicht, wie wäre es mit Mittwoch?",
    "zorunlu": [
     "würde",
@@ -1275,8 +1275,8 @@
     "Heute kann ich leider nicht, wie wäre es mit …?"
    ],
    "kontrol_tr": [
-    "**würde** ikinci yerde, mastar en sonda mı (**würde … ausschlafen**)?",
-    "Öneride fiil başta mı (**Wollen wir …?**)?",
+    "**würde** ikinci yerde, **ausschlafen** en sonda mı?",
+    "Öneride **Wollen** başta mı?",
     "Reddederken **leider** ve başka bir gün var mı?"
    ]
   }
@@ -1345,7 +1345,7 @@
      "Hast du am Samstag Zeit?",
      "Hättest du Samstag Zeit?"
     ],
-    "why_tr": "Kibar soru: **Hättest du … Zeit?**"
+    "why_tr": "Kibar soru **Hättest** ile başlar: **Hättest du am Samstag Zeit?**"
    },
    {
     "id": "m1:112:s6",
@@ -1367,7 +1367,7 @@
      "Leider kann ich heute nicht, ich bin müde vom Fest.",
      "Heute kann ich leider nicht. Ich bin müde vom Fest."
     ],
-    "why_tr": "Ret + neden: **leider** ve **ich bin müde**."
+    "why_tr": "Önce reddet: **leider**. Sonra neden: **Ich bin müde vom Fest.**"
    },
    {
     "id": "m1:112:s8",
@@ -1378,7 +1378,7 @@
      "Sollen wir zusammen essen?",
      "Wollen wir zusammen essen gehen?"
     ],
-    "why_tr": "Öneri: **Wollen wir …?** Fiil başta, mastar sonda."
+    "why_tr": "Öneri: **Wollen** başta, **essen** sonda."
    },
    {
     "id": "m1:112:s9",
@@ -1392,7 +1392,7 @@
      "Heute leider nicht, ich bin müde. Wie wäre es mit Mittwoch?",
      "Leider habe ich heute keine Zeit. Passt dir Mittwoch?"
     ],
-    "why_tr": "Kapı: **leider** + neden + başka gün."
+    "why_tr": "Üç adım: **leider**, neden, başka gün."
    },
    {
     "id": "m1:112:s10",
@@ -1407,7 +1407,7 @@
      "Samstag, drei Uhr, Café am Stadtplatz.",
      "Am Samstag um drei, im Café."
     ],
-    "why_tr": "Kulak kapısı: **ne zaman** (Samstag um drei) ve **nerede** (im Café am Stadtplatz)."
+    "why_tr": "İki bilgi: ne zaman (**Samstag um drei**) ve nerede (**im Café am Stadtplatz**)."
    },
    {
     "id": "m1:112:s11",
@@ -1421,7 +1421,7 @@
      "Danke! Heute leider nicht. Wie wäre es mit Mittwoch?",
      "Das ist sehr nett von Ihnen! Leider kann ich heute nicht. Hätten Sie am Mittwoch Zeit?"
     ],
-    "why_tr": "Kapının üç parçası: teşekkür, **leider** ve neden, başka gün."
+    "why_tr": "Üç adım: teşekkür, **leider**, başka gün."
    }
   ],
   "sesli": [

@@ -412,7 +412,7 @@
     "cevapla": {
      "id": "m1:105:v1:c1",
      "k": "guided_response",
-     "situation_tr": "Derya soruyor: Pazartesiki para onun hediye çeki için miydi? Evet de; bu yüzden geç kaldın.",
+     "situation_tr": "Derya soruyor: Pazartesiki para onun hediye çeki için miydi? Evet de. Bu yüzden pazartesi para çekmek zorunda kaldığını söyle.",
      "prompt_de": "War das Geld für meinen Gutschein?",
      "accepted": [
       "Ja! Deswegen musste ich am Montag noch Geld abheben.",
@@ -421,7 +421,7 @@
       "Ja, für deinen Gutschein. Deswegen musste ich Geld abheben.",
       "Ja, das war für dich. Deswegen war ich am Montag zu spät."
      ],
-     "why_tr": "Sonucu **deswegen** ile söylersin, fiil hemen arkasından: **Deswegen musste ich …**"
+     "why_tr": "Sonucu **deswegen** ile söylersin. Hemen arkasından **musste** gelir: **Deswegen musste ich am Montag noch Geld abheben.**"
     }
    },
    {
@@ -565,7 +565,7 @@
   {
    "id": "m1:105:a1",
    "tur": "sesli-mesaj",
-   "title_tr": "Kulak kapısı: Herr Wimmer'in hızlı mesajı",
+   "title_tr": "Haftanın son dinlemesi: Herr Wimmer'in hızlı mesajı",
    "ortam_tr": "Pazar akşamı, Derya'dan dönüyorsun. Telefonunda Herr Wimmer'den bir sesli mesaj var. Çok hızlı konuşuyor. Dinle ve iki cümleyle özetle.",
    "speaker": "ch:wimmer",
    "hizlar": [
@@ -1014,8 +1014,8 @@
  ],
  "prova": {
   "id": "m1:105:p1",
-  "title_tr": "Haftanın kapısı: pazartesi hikâyesi üç kez, her seferinde daha kısa",
-  "durum_tr": "Derya'nın doğum günü kahvesi. Pazartesi neden geç kaldığını üç kişiye anlatıyorsun. Önce Derya'ya her şeyi (dört cümle). Sonra Ioana'ya daha kısa (üç cümle). En sonda telefonda Tobi'ye çok kısa (iki cümle). Olanlar: Derya'nın hediye çeki için para çekmek istedin; bankamatiğin bozuktu; öbür bankamatikte ücret ödedin; şifreyi ilk denemede unuttun; Herr Wimmer'e 'Daha para çekmem gerekiyordu' dedin.",
+  "title_tr": "Haftanın son provası: pazartesi hikâyesi üç kez, her seferinde daha kısa",
+  "durum_tr": "Derya'nın doğum günü kahvesi. Pazartesi neden geç kaldığını üç kişiye anlatıyorsun. Önce Derya'ya her şeyi anlat (dört cümle). Sonra Ioana'ya daha kısa (üç cümle). En sonda telefonda Tobi'ye çok kısa (iki cümle). Olanlar şunlar. Derya'nın hediye çeki için para çekmek istedin. Bankamatiğin bozuktu. Öbür bankamatikte ücret ödedin. Sonra bir an şifreyi unuttun. Herr Wimmer'e önce para çekmen gerektiğini söyledin.",
   "karsi": "ch:aksoy",
   "baslangic": "n1",
   "dugumler": [
@@ -1200,7 +1200,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Haftanın kapısı tamam: Pazartesi hikâyesini üç kez anlattın, dört, üç ve iki cümleyle. Her turda ayrıntı düştü, neden ve sonuç kaldı; geçmişi **wollte, musste, konnte** ile söyledin."
+  "kapanis_tr": "Haftanın son provası tamam. Pazartesi hikâyesini üç kez anlattın: dört, üç ve iki cümleyle. Her turda ayrıntı düştü, neden ve sonuç kaldı. Geçmişi **wollte**, **musste**, **konnte** ile söyledin."
  },
  "okuma_yazma": {
   "tur": "okuma",
@@ -1280,7 +1280,7 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Haftanı 4 kısa cümleyle yaz: Pazartesi neden geç kaldın (musste)? Cumartesi hangi hatayı yaptın? Bugün neden geç kaldın? Sırayı ve sonucu zuerst, danach, deswegen ile göster.",
+   "gorev_tr": "Haftanı dört kısa cümleyle yaz. Pazartesi neden geç kaldın (**musste**)? Cumartesi hangi hatayı yaptın? Bu hataya ne dersin? Bugün ne oldu? Sonucu **deswegen** ile söyle.",
    "ornek_de": "Am Montag musste ich Geld abheben, deswegen war ich zu spät. Am Samstag habe ich Lena fünfzig Euro überwiesen, nicht fünf. Das war blöd! Heute hatte mein Fahrrad keine Luft, deswegen sind wir mit dem Bus gefahren.",
    "zorunlu": [
     "musste",
@@ -1294,7 +1294,7 @@
    ],
    "kontrol_tr": [
     "Pazartesiyi **musste** ile yazdın mı?",
-    "**deswegen**'den hemen sonra fiil geldi mi (**deswegen war ich**)?",
+    "**deswegen**'den hemen sonra **war** geldi mi?",
     "Her günü ayrı bir cümleyle, sırayla yazdın mı?"
    ]
   }
@@ -1313,7 +1313,7 @@
      "ich konnte nicht pünktlich kommen",
      "Ich konnte nicht pünktlich kommen"
     ],
-    "why_tr": "Geçmişte yapamamak: **konnte nicht**. Mastar (**kommen**) en sonda."
+    "why_tr": "Geçmişte yapamamak: **konnte nicht**. **kommen** en sonda."
    },
    {
     "id": "m1:105:s2",
@@ -1352,7 +1352,7 @@
      "wir sind mit dem bus um drei gekommen",
      "Wir sind mit dem Bus um drei gekommen"
     ],
-    "why_tr": "**sind … gekommen**: geldik. **gekommen** en sonda."
+    "why_tr": "**Wir sind gekommen**: geldik. **gekommen** en sonda."
    },
    {
     "id": "m1:105:s5",
@@ -1396,7 +1396,7 @@
      "Ich konnte nicht pünktlich sein.",
      "Ich konnte leider nicht pünktlich kommen."
     ],
-    "why_tr": "**konnte nicht** + mastar en sonda."
+    "why_tr": "**Ich konnte nicht pünktlich kommen.** **kommen** en sonda."
    },
    {
     "id": "m1:105:s9",
