@@ -1,10 +1,12 @@
 {
   "batch": "b1-01a",
   "review": {
-    "status": "draft",
+    "status": "reviewed",
     "by": "dilbilimci-ajan",
     "at": "2026-11-23",
-    "notes": "docs/v2/reviews/lexicon-b1-01.md"
+    "notes": "docs/v2/reviews/lexicon-b1-01.md; okur: docs/v2/reviews/okur/lexicon-b1-01.md; örneklem: docs/v2/reviews/ornek-lexicon-b1-01.md",
+    "okur": "passed",
+    "okur_at": "2026-11-23"
   },
   "items": [
     {
@@ -260,7 +262,7 @@
         },
         {
           "de": "der Ansicht sein, dass",
-          "tr": "… görüşünde olmak"
+          "tr": "şu görüşte olmak"
         },
         {
           "de": "anderer Ansicht sein",
@@ -308,8 +310,8 @@
         },
         {
           "id": "lx:Ansicht:5",
-          "de": "Tobi ist da anderer Ansicht.",
-          "tr": "Tobi bu konuda farklı düşünüyor.",
+          "de": "Derya ist da anderer Ansicht.",
+          "tr": "Derya bu konuda farklı düşünüyor.",
           "layer": "hd"
         },
         {
@@ -352,9 +354,9 @@
           ]
         },
         {
-          "de": "Tobi ist da anderer ___.",
+          "de": "Derya ist da anderer ___.",
           "answer": "Ansicht",
-          "tr": "Tobi bu konuda farklı düşünüyor.",
+          "tr": "Derya bu konuda farklı düşünüyor.",
           "hint_tr": "Farklı düşünmek derken **anderer Ansicht sein** denir.",
           "also_ok": [
             "Meinung"
@@ -386,8 +388,8 @@
           "tr": "Bunu mantıklı buluyorum."
         },
         {
-          "de": "Es ist sinnvoll, … zu …",
-          "tr": "… yapmak mantıklı"
+          "de": "Es ist sinnvoll, früh zu kommen.",
+          "tr": "Erken gelmek mantıklı."
         },
         {
           "de": "nicht sehr sinnvoll",
@@ -400,7 +402,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Bu mantıklı derken **Das macht sinnvoll** yanlış. Doğrusu **Das ist sinnvoll.**",
-        "Mantıklı bir fikir derken **eine sinnvoll Idee** yanlış. Doğrusu **eine sinnvolle Idee.** İsimden önce sona **e** eklenir."
+        "Mantıklı bir fikir derken **eine sinnvoll Idee** yanlış. Doğrusu **eine sinnvolle Idee.** **Idee** önünde sona **e** eklenir."
       ],
       "examples": [
         {
@@ -458,25 +460,39 @@
           "de": "Ich finde die neue Regel ___.",
           "answer": "sinnvoll",
           "tr": "Yeni kuralı mantıklı buluyorum.",
-          "hint_tr": "Mantıklı buluyorum derken **Ich finde das sinnvoll** denir."
+          "hint_tr": "Mantıklı buluyorum derken **Ich finde das sinnvoll** denir.",
+          "also_ok": [
+            "vernünftig",
+            "logisch"
+          ]
         },
         {
           "de": "Es ist ___, früh einen Termin zu machen.",
           "answer": "sinnvoll",
           "tr": "Erkenden randevu almak mantıklı.",
-          "hint_tr": "Bir şeyi yapmak mantıklı derken **Es ist sinnvoll** denir."
+          "hint_tr": "Bir şeyi yapmak mantıklı derken **Es ist sinnvoll** denir.",
+          "also_ok": [
+            "vernünftig"
+          ]
         },
         {
           "de": "Früh anrufen ist eine ___ Idee.",
           "answer": "sinnvolle",
           "tr": "Erken aramak mantıklı bir fikir.",
-          "hint_tr": "**Idee** önünde sona **e** eklenir, **sinnvolle** olur."
+          "hint_tr": "**Idee** önünde sona **e** eklenir, **sinnvolle** olur.",
+          "also_ok": [
+            "vernünftige"
+          ]
         },
         {
           "de": "Soll ich vorher anrufen? Ja, das ist ___.",
           "answer": "sinnvoll",
           "tr": "Önceden arayayım mı? Evet, bu mantıklı.",
-          "hint_tr": "Bu mantıklı derken **Das ist sinnvoll** denir."
+          "hint_tr": "Bu mantıklı derken **Das ist sinnvoll** denir.",
+          "also_ok": [
+            "vernünftig",
+            "logisch"
+          ]
         }
       ]
     },
@@ -549,8 +565,8 @@
         },
         {
           "id": "lx:diskutieren:5",
-          "de": "Derya diskutiert gern mit Tobi.",
-          "tr": "Derya Tobi'yle tartışmayı sever.",
+          "de": "Derya diskutiert gern mit Ioana.",
+          "tr": "Derya Ioana'yla tartışmayı sever.",
           "layer": "hd"
         },
         {
@@ -578,25 +594,36 @@
           "de": "Wir haben lange über das Thema ___.",
           "answer": "diskutiert",
           "tr": "Konuyu uzun uzun tartıştık.",
-          "hint_tr": "Tartıştık derken **haben diskutiert** denir, başa **ge** gelmez."
+          "hint_tr": "Tartıştık derken **haben diskutiert** denir, başa **ge** gelmez.",
+          "also_ok": [
+            "gesprochen",
+            "geredet"
+          ]
         },
         {
           "de": "Im Team ___ wir jeden Montag die Pläne.",
           "answer": "diskutieren",
           "tr": "Ekipte her pazartesi planları tartışırız.",
-          "hint_tr": "**wir** ile söylerken **diskutieren** denir."
+          "hint_tr": "**wir** ile söylerken **diskutieren** denir.",
+          "also_ok": [
+            "besprechen"
+          ]
         },
         {
-          "de": "Derya ___ gern mit Tobi.",
+          "de": "Derya ___ gern mit Ioana.",
           "answer": "diskutiert",
-          "tr": "Derya Tobi'yle tartışmayı sever.",
+          "tr": "Derya Ioana'yla tartışmayı sever.",
           "hint_tr": "**Derya** ile söylerken **diskutiert** denir."
         },
         {
           "de": "Darüber kann man ___.",
           "answer": "diskutieren",
           "tr": "Bu tartışılır.",
-          "hint_tr": "**kann** ile birlikte **diskutieren** sona gelir."
+          "hint_tr": "**kann** ile birlikte **diskutieren** sona gelir.",
+          "also_ok": [
+            "streiten",
+            "reden"
+          ]
         }
       ]
     },
@@ -732,8 +759,8 @@
           "tr": "Önemli olan bu."
         },
         {
-          "de": "Die Hauptsache ist, dass …",
-          "tr": "Önemli olan …"
+          "de": "Die Hauptsache ist, dass es klappt.",
+          "tr": "Önemli olan işin olması."
         }
       ],
       "patterns": [
@@ -842,8 +869,8 @@
           "tr": "birini eleştirmek"
         },
         {
-          "de": "Viele kritisieren, dass …",
-          "tr": "Birçok kişi … eleştiriyor"
+          "de": "Viele kritisieren, dass es zu teuer ist.",
+          "tr": "Birçok kişi fazla pahalı olmasını eleştiriyor."
         },
         {
           "de": "etwas stark kritisieren",
@@ -1037,7 +1064,10 @@
           "de": "Laut einer ___ ist die Straße heute gesperrt.",
           "answer": "Meldung",
           "tr": "Bir habere göre yol bugün kapalı.",
-          "hint_tr": "Bir habere göre derken **laut einer Meldung** denir."
+          "hint_tr": "Bir habere göre derken **laut einer Meldung** denir.",
+          "also_ok": [
+            "Nachricht"
+          ]
         },
         {
           "de": "Gibt es neue ___?",
@@ -1076,8 +1106,8 @@
           "tr": "kısa bir rapor"
         },
         {
-          "de": "ein Bericht über …",
-          "tr": "… hakkında bir haber"
+          "de": "ein Bericht über das Wetter",
+          "tr": "hava durumu hakkında bir haber"
         },
         {
           "de": "den Bericht lesen",
@@ -1090,7 +1120,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Doktordan alınan iş göremezlik raporu **Bericht** değildir. Onun adı **Krankmeldung.**",
-        "**die Bericht** yanlış. Doğrusu **der Bericht**, çoğulu **die Berichte.**"
+        "**die Bericht** yanlış. Doğrusu **der Bericht.**"
       ],
       "examples": [
         {
@@ -1154,7 +1184,10 @@
           "de": "Im Radio kam ein ___ über das Wetter.",
           "answer": "Bericht",
           "tr": "Radyoda hava durumu hakkında bir haber çıktı.",
-          "hint_tr": "Bir olayı anlatan haber için **Bericht** denir."
+          "hint_tr": "Bir olayı anlatan haber için **Bericht** denir.",
+          "also_ok": [
+            "Beitrag"
+          ]
         },
         {
           "de": "Hast du den ___ schon fertig?",
@@ -1166,7 +1199,11 @@
           "de": "Ich lese gern ___ über andere Länder.",
           "answer": "Berichte",
           "tr": "Başka ülkeler hakkında haber yazıları okumayı severim.",
-          "hint_tr": "Birden çok rapor ya da haber için **Berichte** denir."
+          "hint_tr": "Birden çok rapor ya da haber için **Berichte** denir.",
+          "also_ok": [
+            "Artikel",
+            "Reportagen"
+          ]
         }
       ]
     },
@@ -1192,7 +1229,7 @@
         },
         {
           "de": "unter der Überschrift",
-          "tr": "… başlığı altında"
+          "tr": "başlığın altında"
         }
       ],
       "patterns": [
@@ -1257,25 +1294,38 @@
           "de": "Zuerst lese ich die ___.",
           "answer": "Überschrift",
           "tr": "Önce başlığı okurum.",
-          "hint_tr": "Haberin başlığı için **Überschrift** denir."
+          "hint_tr": "Haberin başlığı için **Überschrift** denir.",
+          "also_ok": [
+            "Schlagzeile"
+          ]
         },
         {
           "de": "Die ___ sagt schon viel.",
           "answer": "Überschrift",
           "tr": "Başlık zaten çok şey söylüyor.",
-          "hint_tr": "Başlık için **die Überschrift** denir."
+          "hint_tr": "Başlık için **die Überschrift** denir.",
+          "also_ok": [
+            "Schlagzeile"
+          ]
         },
         {
           "de": "Welche ___ passt?",
           "answer": "Überschrift",
           "tr": "Hangi başlık uyuyor?",
-          "hint_tr": "Başlık için **Überschrift** denir."
+          "hint_tr": "Başlık için **Überschrift** denir.",
+          "also_ok": [
+            "Schlagzeile"
+          ]
         },
         {
           "de": "Ich lese morgens nur die ___.",
           "answer": "Überschriften",
           "tr": "Sabahları sadece başlıkları okurum.",
-          "hint_tr": "Birden çok başlık için **Überschriften** denir."
+          "hint_tr": "Birden çok başlık için **Überschriften** denir.",
+          "also_ok": [
+            "Schlagzeilen",
+            "Titel"
+          ]
         }
       ]
     },
@@ -1310,7 +1360,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Kötü ve beklenmedik bir olay için çoğu zaman **Vorfall** denir. **Ereignis** önemli ya da özel bir olaydır.",
-        "Çoğulu **die Ereignisse**, sonda iki **s** yazılır."
+        "Birden çok olay için **die Ereignisse** denir, sonda iki **s** yazılır."
       ],
       "examples": [
         {
@@ -1369,7 +1419,10 @@
           "de": "Das Stadtfest ist das größte ___ im Sommer.",
           "answer": "Ereignis",
           "tr": "Şehir festivali yazın en büyük olayı.",
-          "hint_tr": "Önemli olay için **Ereignis** denir."
+          "hint_tr": "Önemli olay için **Ereignis** denir.",
+          "also_ok": [
+            "Event"
+          ]
         },
         {
           "de": "Die Zeitung berichtet über die ___ des Tages.",
@@ -1381,13 +1434,19 @@
           "de": "Die Hochzeit war ein schönes ___.",
           "answer": "Ereignis",
           "tr": "Düğün güzel bir olaydı.",
-          "hint_tr": "Olay için **das Ereignis** denir."
+          "hint_tr": "Olay için **das Ereignis** denir.",
+          "also_ok": [
+            "Event"
+          ]
         },
         {
           "de": "Was war das wichtigste ___ der Woche?",
           "answer": "Ereignis",
           "tr": "Haftanın en önemli olayı neydi?",
-          "hint_tr": "Önemli olay için **Ereignis** denir."
+          "hint_tr": "Önemli olay için **Ereignis** denir.",
+          "also_ok": [
+            "Event"
+          ]
         }
       ]
     },
@@ -1422,7 +1481,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "**Vorfall** kötü ya da garip bir olaydır. Güzel bir olay için **Ereignis** denir.",
-        "Çoğulu **die Vorfälle**, **a** harfi **ä** olur."
+        "Birden çok olay için **die Vorfälle** denir, **a** harfi **ä** olur."
       ],
       "examples": [
         {
@@ -1522,8 +1581,8 @@
           "tr": "artık geçerli değil"
         },
         {
-          "de": "Aktuell habe ich …",
-          "tr": "Şu an …"
+          "de": "Aktuell habe ich keine Zeit.",
+          "tr": "Şu an vaktim yok."
         }
       ],
       "patterns": [
@@ -1592,25 +1651,38 @@
           "de": "Hier finden Sie die ___ Nachrichten.",
           "answer": "aktuellen",
           "tr": "Güncel haberleri burada bulursunuz.",
-          "hint_tr": "**die** ve çoğul isim arasında **aktuellen** olur."
+          "hint_tr": "**die Nachrichten** önünde **aktuellen** olur.",
+          "also_ok": [
+            "neuesten"
+          ]
         },
         {
           "de": "Der Fahrplan ist nicht mehr ___.",
           "answer": "aktuell",
           "tr": "Tarife artık güncel değil.",
-          "hint_tr": "Artık geçerli değil derken **nicht mehr aktuell** denir."
+          "hint_tr": "Artık geçerli değil derken **nicht mehr aktuell** denir.",
+          "also_ok": [
+            "gültig"
+          ]
         },
         {
           "de": "Wie ist die ___ Lage auf der Autobahn?",
           "answer": "aktuelle",
           "tr": "Otoyolda şu anki durum ne?",
-          "hint_tr": "**die Lage** önünde **aktuelle** olur."
+          "hint_tr": "**die Lage** önünde **aktuelle** olur.",
+          "also_ok": [
+            "momentane",
+            "derzeitige"
+          ]
         },
         {
           "de": "Ist die Nummer noch ___?",
           "answer": "aktuell",
           "tr": "Numara hâlâ geçerli mi?",
-          "hint_tr": "Hâlâ geçerli mi derken **noch aktuell** denir."
+          "hint_tr": "Hâlâ geçerli mi derken **noch aktuell** denir.",
+          "also_ok": [
+            "gültig"
+          ]
         }
       ]
     },
@@ -1666,8 +1738,8 @@
         },
         {
           "id": "lx:angeblich:4",
-          "de": "– Kommt Tobi heute? – Angeblich ja, aber wer weiß.",
-          "tr": "– Tobi bugün geliyor mu? – Söylediğine göre evet, ama kim bilir.",
+          "de": "– Kommt Basti heute? – Angeblich ja, aber wer weiß.",
+          "tr": "– Basti bugün geliyor mu? – Söylediğine göre evet, ama kim bilir.",
           "layer": "alltag",
           "dialog": true
         },
@@ -1695,7 +1767,7 @@
       "exp": {
         "anlam_tr": "Duyduğun ama emin olmadığın bir bilgiyi aktarır.",
         "parcalar": [],
-        "ipucu_tr": "Türkçedeki -mış eki gibi, duyulan bilgiyi aktarır."
+        "ipucu_tr": "Türkçedeki geliyormuş, gitmiş gibi sözlerle aynı işi görür."
       },
       "forms": [
         {
@@ -1818,25 +1890,39 @@
           "de": "Die Preise für Strom sind ___.",
           "answer": "gesunken",
           "tr": "Elektrik fiyatları düştü.",
-          "hint_tr": "Düştü derken **sind gesunken** denir."
+          "hint_tr": "Düştü derken **sind gesunken** denir.",
+          "also_ok": [
+            "gefallen",
+            "runtergegangen"
+          ]
         },
         {
           "de": "In der Nacht ___ die Temperatur unter null.",
           "answer": "sinkt",
           "tr": "Gece sıcaklık sıfırın altına düşüyor.",
-          "hint_tr": "**die Temperatur** ile söylerken **sinkt** denir."
+          "hint_tr": "**die Temperatur** ile söylerken **sinkt** denir.",
+          "also_ok": [
+            "fällt"
+          ]
         },
         {
           "de": "Endlich ___ die Preise mal!",
           "answer": "sinken",
           "tr": "Nihayet fiyatlar bir düşüyor!",
-          "hint_tr": "**die Preise** ile söylerken **sinken** denir."
+          "hint_tr": "**die Preise** ile söylerken **sinken** denir.",
+          "also_ok": [
+            "fallen"
+          ]
         },
         {
           "de": "Die Zahl der Unfälle ist um zehn Prozent ___.",
           "answer": "gesunken",
           "tr": "Kaza sayısı yüzde on azaldı.",
-          "hint_tr": "Azaldı derken **ist gesunken** denir."
+          "hint_tr": "Azaldı derken **ist gesunken** denir.",
+          "also_ok": [
+            "gefallen",
+            "zurückgegangen"
+          ]
         }
       ]
     },
@@ -2177,13 +2263,20 @@
           "de": "Die Polizei hat zwei Männer ___.",
           "answer": "festgenommen",
           "tr": "Polis iki adamı gözaltına aldı.",
-          "hint_tr": "Gözaltına aldı derken **hat festgenommen** denir."
+          "hint_tr": "Gözaltına aldı derken **hat festgenommen** denir.",
+          "also_ok": [
+            "verhaftet"
+          ]
         },
         {
           "de": "Der Dieb wurde am Bahnhof ___.",
           "answer": "festgenommen",
           "tr": "Hırsız garda yakalandı.",
-          "hint_tr": "Yakalandı derken **wurde festgenommen** denir."
+          "hint_tr": "Yakalandı derken **wurde festgenommen** denir.",
+          "also_ok": [
+            "verhaftet",
+            "gefasst"
+          ]
         },
         {
           "de": "Die Polizei ___ den Fahrer fest.",
@@ -2195,7 +2288,10 @@
           "de": "Sie hat ihn gestern ___.",
           "answer": "festgenommen",
           "tr": "Dün onu gözaltına aldı.",
-          "hint_tr": "Gözaltına aldı derken **hat festgenommen** denir."
+          "hint_tr": "Gözaltına aldı derken **hat festgenommen** denir.",
+          "also_ok": [
+            "verhaftet"
+          ]
         }
       ]
     },
@@ -2327,8 +2423,8 @@
           "tr": "20.000 nüfuslu bir şehir"
         },
         {
-          "de": "Wie viele Einwohner hat …?",
-          "tr": "…in nüfusu ne kadar?"
+          "de": "Wie viele Einwohner hat die Stadt?",
+          "tr": "Şehrin nüfusu ne kadar?"
         },
         {
           "de": "das Einwohnermeldeamt",
@@ -2401,25 +2497,39 @@
           "de": "Die Stadt hat etwa 60.000 ___.",
           "answer": "Einwohner",
           "tr": "Şehrin yaklaşık 60.000 nüfusu var.",
-          "hint_tr": "Nüfus derken **Einwohner** denir, çoğulu da aynıdır."
+          "hint_tr": "Nüfus derken **Einwohner** denir. Birden çok kişi için de **Einwohner** denir.",
+          "also_ok": [
+            "Bewohner"
+          ]
         },
         {
           "de": "Viele ___ sind gegen die neue Straße.",
           "answer": "Einwohner",
           "tr": "Birçok sakin yeni yola karşı.",
-          "hint_tr": "Sakinler için de **Einwohner** denir."
+          "hint_tr": "Sakinler için de **Einwohner** denir.",
+          "also_ok": [
+            "Bewohner",
+            "Anwohner"
+          ]
         },
         {
           "de": "Ein ___ hat die Polizei angerufen.",
           "answer": "Einwohner",
           "tr": "Bir sakin polisi aradı.",
-          "hint_tr": "Orada yaşayan kişi için **Einwohner** denir."
+          "hint_tr": "Orada yaşayan kişi için **Einwohner** denir.",
+          "also_ok": [
+            "Bewohner",
+            "Anwohner"
+          ]
         },
         {
           "de": "Das ist eine Stadt mit 20.000 ___.",
           "answer": "Einwohnern",
           "tr": "Bu 20.000 nüfuslu bir şehir.",
-          "hint_tr": "**mit** ile sona **n** eklenir, **Einwohnern** olur."
+          "hint_tr": "**mit** ile sona **n** eklenir, **Einwohnern** olur.",
+          "also_ok": [
+            "Bewohnern"
+          ]
         }
       ]
     },
@@ -2445,8 +2555,8 @@
           "tr": "yapılmıyor, iptal"
         },
         {
-          "de": "Wann findet … statt?",
-          "tr": "… ne zaman yapılıyor?"
+          "de": "Wann findet der Kurs statt?",
+          "tr": "Kurs ne zaman yapılıyor?"
         },
         {
           "de": "bei jedem Wetter stattfinden",
@@ -2571,7 +2681,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Sadece yağmur varsa **schlechtes Wetter** denir. **Unwetter** fırtına ve dolu gibi tehlikeli havadır.",
-        "**die Unwetter** tekil için yanlış. Doğrusu **das Unwetter**, tıpkı **das Wetter** gibi."
+        "**die Unwetter** tek bir fırtına için yanlış. Doğrusu **das Unwetter**, tıpkı **das Wetter** gibi."
       ],
       "examples": [
         {
@@ -2630,25 +2740,41 @@
           "de": "Nach dem ___ waren viele Straßen gesperrt.",
           "answer": "Unwetter",
           "tr": "Fırtınadan sonra birçok yol kapalıydı.",
-          "hint_tr": "Tehlikeli hava için **Unwetter** denir."
+          "hint_tr": "Tehlikeli hava için **Unwetter** denir.",
+          "also_ok": [
+            "Sturm",
+            "Gewitter"
+          ]
         },
         {
           "de": "Das Radio warnt für heute Abend vor ___.",
           "answer": "Unwetter",
           "tr": "Radyo bu akşam için fırtına uyarısı yapıyor.",
-          "hint_tr": "Fırtına uyarısı derken **vor Unwetter warnen** denir."
+          "hint_tr": "Fırtına uyarısı derken **vor Unwetter warnen** denir.",
+          "also_ok": [
+            "Unwettern",
+            "Sturm"
+          ]
         },
         {
           "de": "Wegen des ___ fahren keine Züge.",
           "answer": "Unwetters",
           "tr": "Fırtına yüzünden tren çalışmıyor.",
-          "hint_tr": "**wegen des** sonrasında sona **s** eklenir, **Unwetters** olur."
+          "hint_tr": "**wegen des** sonrasında sona **s** eklenir, **Unwetters** olur.",
+          "also_ok": [
+            "Sturms",
+            "Gewitters"
+          ]
         },
         {
           "de": "Es kommt ein ___.",
           "answer": "Unwetter",
           "tr": "Fırtına geliyor.",
-          "hint_tr": "Tehlikeli hava için **ein Unwetter** denir."
+          "hint_tr": "Tehlikeli hava için **ein Unwetter** denir.",
+          "also_ok": [
+            "Sturm",
+            "Gewitter"
+          ]
         }
       ]
     },
@@ -2669,8 +2795,8 @@
           "tr": "yeni bir araştırma"
         },
         {
-          "de": "Eine Studie zeigt, dass …",
-          "tr": "Bir araştırma … gösteriyor"
+          "de": "Eine Studie zeigt, dass wir zu wenig schlafen.",
+          "tr": "Bir araştırma çok az uyuduğumuzu gösteriyor."
         },
         {
           "de": "an einer Studie teilnehmen",
@@ -2741,25 +2867,37 @@
           "de": "Laut einer ___ lesen junge Leute weniger Zeitung.",
           "answer": "Studie",
           "tr": "Bir araştırmaya göre gençler daha az gazete okuyor.",
-          "hint_tr": "Bir araştırmaya göre derken **laut einer Studie** denir."
+          "hint_tr": "Bir araştırmaya göre derken **laut einer Studie** denir.",
+          "also_ok": [
+            "Untersuchung"
+          ]
         },
         {
           "de": "Eine neue ___ zeigt, dass viele Menschen zu wenig schlafen.",
           "answer": "Studie",
           "tr": "Yeni bir araştırma birçok insanın çok az uyuduğunu gösteriyor.",
-          "hint_tr": "Bilimsel araştırma için **Studie** denir."
+          "hint_tr": "Bilimsel araştırma için **Studie** denir.",
+          "also_ok": [
+            "Untersuchung"
+          ]
         },
         {
           "de": "Es gibt viele ___ zu diesem Thema.",
           "answer": "Studien",
           "tr": "Bu konuda birçok araştırma var.",
-          "hint_tr": "Birden çok araştırma için **Studien** denir."
+          "hint_tr": "Birden çok araştırma için **Studien** denir.",
+          "also_ok": [
+            "Untersuchungen"
+          ]
         },
         {
           "de": "Woher wissen Sie das? Aus einer ___.",
           "answer": "Studie",
           "tr": "Bunu nereden biliyorsunuz? Bir araştırmadan.",
-          "hint_tr": "Bilimsel araştırma için **Studie** denir."
+          "hint_tr": "Bilimsel araştırma için **Studie** denir.",
+          "also_ok": [
+            "Untersuchung"
+          ]
         }
       ]
     },
@@ -2774,8 +2912,8 @@
           "tr": "toplam 50 avro"
         },
         {
-          "de": "Das macht insgesamt …",
-          "tr": "Toplam … ediyor"
+          "de": "Das macht insgesamt 20 Euro.",
+          "tr": "Toplam 20 avro ediyor."
         },
         {
           "de": "Insgesamt war es gut.",
@@ -2852,13 +2990,19 @@
           "de": "Das macht ___ 23 Euro 50.",
           "answer": "insgesamt",
           "tr": "Toplam 23 avro 50 ediyor.",
-          "hint_tr": "Toplam derken **insgesamt** denir."
+          "hint_tr": "Toplam derken **insgesamt** denir.",
+          "also_ok": [
+            "zusammen"
+          ]
         },
         {
           "de": "Wir waren ___ zehn Leute.",
           "answer": "insgesamt",
           "tr": "Toplam on kişiydik.",
-          "hint_tr": "Toplam derken **insgesamt** denir."
+          "hint_tr": "Toplam derken **insgesamt** denir.",
+          "also_ok": [
+            "zusammen"
+          ]
         },
         {
           "de": "___ war es gut, nur das Wetter war blöd.",
@@ -2870,7 +3014,10 @@
           "de": "Was kostet das ___?",
           "answer": "insgesamt",
           "tr": "Toplam ne kadar tutuyor?",
-          "hint_tr": "Toplam derken **insgesamt** denir."
+          "hint_tr": "Toplam derken **insgesamt** denir.",
+          "also_ok": [
+            "zusammen"
+          ]
         }
       ]
     },
@@ -2883,16 +3030,16 @@
       "pl": "Experten",
       "collocations": [
         {
-          "de": "Experten sagen, dass …",
-          "tr": "uzmanlar … diyor"
+          "de": "Experten sagen, dass die Preise steigen.",
+          "tr": "Uzmanlar fiyatların artacağını söylüyor."
         },
         {
           "de": "laut Experten",
           "tr": "uzmanlara göre"
         },
         {
-          "de": "ein Experte für …",
-          "tr": "… uzmanı"
+          "de": "ein Experte für Computer",
+          "tr": "bilgisayar uzmanı"
         },
         {
           "de": "einen Experten fragen",
@@ -2916,8 +3063,8 @@
         },
         {
           "id": "lx:Experte:2",
-          "de": "Tobi ist unser Experte für Computer.",
-          "tr": "Tobi bilgisayar konusunda uzmanımız.",
+          "de": "Basti ist unser Experte für Computer.",
+          "tr": "Basti bilgisayar konusunda uzmanımız.",
           "layer": "hd"
         },
         {
@@ -2964,25 +3111,43 @@
           "de": "___ sagen, dass die Preise weiter steigen.",
           "answer": "Experten",
           "tr": "Uzmanlar fiyatların artmaya devam edeceğini söylüyor.",
-          "hint_tr": "Birden çok uzman için **Experten** denir."
+          "hint_tr": "Birden çok uzman için **Experten** denir.",
+          "also_ok": [
+            "Fachleute",
+            "Spezialisten"
+          ]
         },
         {
-          "de": "Tobi ist unser ___ für Computer.",
+          "de": "Basti ist unser ___ für Computer.",
           "answer": "Experte",
-          "tr": "Tobi bilgisayar konusunda uzmanımız.",
-          "hint_tr": "Uzman için **Experte** denir."
+          "tr": "Basti bilgisayar konusunda uzmanımız.",
+          "hint_tr": "Uzman için **Experte** denir.",
+          "also_ok": [
+            "Fachmann",
+            "Spezialist",
+            "Profi"
+          ]
         },
         {
           "de": "Wir brauchen einen ___ für die Heizung.",
           "answer": "Experten",
           "tr": "Kalorifer için bir uzmana ihtiyacımız var.",
-          "hint_tr": "**einen** ile **Experte**, **Experten** olur."
+          "hint_tr": "**einen** ile **Experte**, **Experten** olur.",
+          "also_ok": [
+            "Fachmann",
+            "Spezialisten"
+          ]
         },
         {
           "de": "Nee, da ist mein Bruder der ___.",
           "answer": "Experte",
           "tr": "Yok, o işin uzmanı abim.",
-          "hint_tr": "Uzman için **Experte** denir."
+          "hint_tr": "Uzman için **Experte** denir.",
+          "also_ok": [
+            "Fachmann",
+            "Spezialist",
+            "Profi"
+          ]
         }
       ]
     }

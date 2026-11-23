@@ -119,3 +119,62 @@ Bu 13 alan yalnızca `…` yüzünden GERİ. Hepsinde Almanca tarafta da aynı i
   - Eşdizim çevirisi, `…` (13): lx:Ansicht collocations[1], lx:sinnvoll collocations[2], lx:Hauptsache collocations[3], lx:kritisieren collocations[1], lx:Bericht collocations[2], lx:Überschrift collocations[3], lx:aktuell collocations[3], lx:Einwohner collocations[2], lx:stattfinden collocations[2], lx:Studie collocations[2], lx:insgesamt collocations[1], lx:Experte collocations[0], lx:Experte collocations[2]
 
 GERİ olduğu için iki parti de "reviewed" sayılamaz (OD-9.4).
+
+## 2. tur (yalnız doğrulama, PM-079 md. 3)
+
+Girdi: dilbilimcinin düzeltme listesi (`docs/v2/reviews/lexicon-b1-01.md`, "Okur düzeltmeleri (2026-11-23)"). Metinler o listeden değil, iki içerik dosyasından okundu; liste ile dosya aynı. Yalnız 1. turda geri dönen 28 alan ve düzeltmenin getirdiği yeni metin okundu. Değişen eşdizimlerin Almancası da okundu. İki dosyada `…` taşıyan eşdizim kalmadı.
+
+| kart | alan | yeni açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| lx:Ansicht | collocations[1].tr | şu görüşte olmak | bir şeyin öyle olduğunu düşünmek | GEÇTİ | |
+| lx:sinnvoll | collocations[2].tr | Erken gelmek mantıklı. | erken gelmek akıllıca | GEÇTİ | |
+| lx:Hauptsache | collocations[3].tr | Önemli olan işin olması. | iş olsun yeter | GEÇTİ | |
+| lx:kritisieren | collocations[1].tr | Birçok kişi fazla pahalı olmasını eleştiriyor. | çoğu kişi bir şeyin pahalılığından şikâyetçi | GEÇTİ | |
+| lx:Bericht | collocations[2].tr | hava durumu hakkında bir haber | havayı anlatan haber | GEÇTİ | |
+| lx:Überschrift | collocations[3].tr | başlığın altında | yazının başlığının altında | GEÇTİ | |
+| lx:aktuell | collocations[3].tr | Şu an vaktim yok. | şimdilik vaktim yok | GEÇTİ | |
+| lx:Einwohner | collocations[2].tr | Şehrin nüfusu ne kadar? | şehirde kaç kişi yaşıyor | GEÇTİ | |
+| lx:stattfinden | collocations[2].tr | Kurs ne zaman yapılıyor? | kurs ne zaman var | GEÇTİ | |
+| lx:Studie | collocations[2].tr | Bir araştırma çok az uyuduğumuzu gösteriyor. | araştırmaya göre az uyuyoruz | GEÇTİ | |
+| lx:insgesamt | collocations[1].tr | Toplam 20 avro ediyor. | hepsi 20 avro | GEÇTİ | |
+| lx:Experte | collocations[0].tr | Uzmanlar fiyatların artacağını söylüyor. | bilenler fiyatlar artacak diyor | GEÇTİ | |
+| lx:Experte | collocations[2].tr | bilgisayar uzmanı | bilgisayardan çok iyi anlayan kişi | GEÇTİ | |
+| lx:sinnvoll | mistakes_tr[1] | … Doğrusu **eine sinnvolle Idee.** **Idee** önünde sona **e** eklenir. | Idee'den önce sinnvoll'un sonuna e gelir | GEÇTİ | |
+| lx:Bericht | mistakes_tr[1] | **die Bericht** yanlış. Doğrusu **der Bericht.** | önüne der gelir | GEÇTİ | |
+| lx:Ereignis | mistakes_tr[1] | Birden çok olay için **die Ereignisse** denir, sonda iki **s** yazılır. | olaylar derken sonda iki s var | GEÇTİ | |
+| lx:Vorfall | mistakes_tr[1] | Birden çok olay için **die Vorfälle** denir, **a** harfi **ä** olur. | olaylar derken a, ä oluyor | GEÇTİ | |
+| lx:Unwetter | mistakes_tr[1] | **die Unwetter** tek bir fırtına için yanlış. Doğrusu **das Unwetter**, tıpkı **das Wetter** gibi. | tek fırtına için das, Wetter gibi | GEÇTİ | |
+| lx:aktuell | forms[0].hint_tr | **die Nachrichten** önünde **aktuellen** olur. | haberler kelimesinin önünde aktuellen | GEÇTİ | boşluklu cümle yeri gösteriyor; aynı kartın 3. ipucundaki **die Lage** önünde ile aynı kuruluş |
+| lx:Einwohner | forms[0].hint_tr | Nüfus derken **Einwohner** denir. Birden çok kişi için de **Einwohner** denir. | nüfus da, sakinler de Einwohner | GEÇTİ | |
+| lx:aufnehmen | forms[3].hint_tr | **können** varsa **aufnehmen** sona bütün olarak gelir. | können varsa aufnehmen sonda bölünmeden | GEÇTİ | |
+| lx:nachsehen | forms[1].hint_tr | **können** varsa **nachsehen** sona bütün olarak gelir. | aynı | GEÇTİ | |
+| lx:ausstellen | forms[0].hint_tr | **können** varsa **ausstellen** sona bütün olarak gelir. | aynı | GEÇTİ | |
+| lx:abwarten | forms[1].hint_tr | **müssen** varsa **abwarten** sona bütün olarak gelir. | müssen varsa abwarten sonda bölünmeden | GEÇTİ | |
+| lx:angeblich | exp.ipucu_tr | Türkçedeki geliyormuş, gitmiş gibi sözlerle aynı işi görür. | Türkçede geliyormuş deyince olduğu gibi, duyduğunu aktarır | GEÇTİ | |
+| lx:Wirkung | exp.ipucu_tr | İlaç etki ediyor derken **Das Medikament wirkt** denir. | ilaç etki ediyor demek için | GEÇTİ | |
+| lx:zurzeit | exp.ipucu_tr | **Zurzeit** başta olunca hemen arkasından **ist** ya da **habe** gelir. | Zurzeit'ten sonra yalnız ist ya da habe gelir | GERİ | ifadeyle örtüşmüyor (düzeltmenin getirdiği yeni kusur): kutu iki kelimeyle sınırlı bir kural gibi okunuyor. Aynı kartın 1. örneğinde ve 1. boşluğunda **Zurzeit sind alle Leitungen besetzt** var; **sind** ne ist ne habe. |
+| lx:möglichst | exp.anlam_tr | Bir şeyin olabildiğince erken, hızlı ya da çok olmasını istediğini söyler. | bir şeyin mümkün olduğunca öyle olmasını istemek | GEÇTİ | |
+
+Takip notu (engel değil): 2. turda eski alanlarda yeni bulgu yok.
+
+### 2. tur sonucu
+
+- Okunan: 28 alan
+- GEÇTİ: 27
+- GERİ: 1 (lx:zurzeit exp.ipucu_tr)
+
+GERİ kaldığı için `batch-b1-01b.json` "reviewed" sayılamaz (OD-9.4). `batch-b1-01a.json`'da GERİ kalmadı.
+
+## 3. tur (yalnız doğrulama, PM-079 md. 3)
+
+Girdi: `batch-b1-01b.json`, yalnız lx:zurzeit `exp.ipucu_tr`. Kartın örnekleri ve boşlukları yeni metinle çelişki için okundu.
+
+| kart | alan | yeni açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| lx:zurzeit | exp.ipucu_tr | **Zurzeit** başta olunca **sind** gibi sözcükler arkasından gelir, örneğin **Zurzeit sind alle Leitungen besetzt.** | Zurzeit cümlenin başındaysa sind gibi bir kelime hemen arkasından gelir | GEÇTİ | 14 kelime, sembol ve terim yok. Artık tek kelimeye bağlı kural gibi okunmuyor; kartın **Zurzeit sind** ve **Zurzeit hab ich** örnekleriyle çelişmiyor. |
+
+### 3. tur sonucu
+
+- Okunan: 1 alan · GEÇTİ: 1 · GERİ: 0
+
+`batch-b1-01a.json` ve `batch-b1-01b.json`'da okur GERİ'si kalmadı (OD-9.3 okur katmanı geçti).
