@@ -40,9 +40,9 @@
           "accepted": ["Bleib im Bett, ich koche!", "Bleib im Bett! Ich koche.", "Ich koche, bleib im Bett!"] },
         { "kart": "lx:leihen", "de": "Kannst du mir dein Messer leihen?", "tr": "Bana bıçağını ödünç verebilir misin?",
           "accepted": ["Kannst du mir dein Messer leihen?", "Kannst du mir bitte dein Messer leihen?", "Kannst du mir mal dein Messer leihen?"] },
-        { "kart": "lx:leihen", "de": "Frag Frau Brandl, sie kann dir ein Messer leihen.", "tr": "Frau Brandl'a sor, o sana bir bıçak ödünç verebilir.",
+        { "kart": "lx:leihen", "de": "Frag Frau Brandl, sie kann dir ein Messer leihen.", "tr": "Brandl Hanım'a sor, o sana bir bıçak ödünç verebilir.",
           "accepted": ["Frag Frau Brandl, sie kann dir ein Messer leihen.", "Frag Frau Brandl! Sie kann dir ein Messer leihen.", "Frag doch Frau Brandl, sie kann dir ein Messer leihen."] },
-        { "kart": "lx:Tisch", "de": "Bleib nicht am Tisch! Geh ins Bett!", "tr": "Masada oturma! Yatağa git!",
+        { "kart": "lx:Tisch", "de": "Bleib nicht am Tisch! Geh ins Bett!", "tr": "Masada kalma! Yatağa git!",
           "accepted": ["Bleib nicht am Tisch! Geh ins Bett!", "Bleib nicht am Tisch, geh ins Bett!", "Geh ins Bett! Bleib nicht am Tisch!"] },
         { "kart": "lx:Tisch", "de": "Das Wasser ist auf dem Tisch. Trink viel!", "tr": "Su masanın üstünde. Bol iç!",
           "accepted": ["Das Wasser ist auf dem Tisch. Trink viel!", "Das Wasser ist auf dem Tisch, trink viel!", "Auf dem Tisch ist Wasser. Trink viel!"] },
@@ -132,7 +132,7 @@
           { "kind": "detail", "q_tr": "Tobi'nin nesi var?", "opts": ["Ateşi ve öksürüğü var", "Bacağı ağrıyor", "Başı dönüyor"], "ans": 0, "kanit": ["s2"] },
           { "kind": "detail", "q_tr": "Tobi doktora gitti mi?", "opts": ["Evet, rapor da aldı", "Hayır, gitmedi", "Yarın gidecek"], "ans": 0, "kanit": ["s4"] },
           { "kind": "detail", "q_tr": "Cumartesi antrenmanı ne olacak?", "opts": ["Tobi'siz yapılacak", "İptal edilecek", "Pazara kalacak"], "ans": 0, "kanit": ["s7"] },
-          { "kind": "detail", "q_tr": "Bu akşam kim yemek yapacak?", "opts": ["Derya ve sen, Tobi için", "Tobi kendisi", "Frau Brandl"], "ans": 0, "kanit": ["s9"] }
+          { "kind": "detail", "q_tr": "Bu akşam kim yemek yapacak?", "opts": ["Derya ve sen, Tobi için", "Tobi kendisi", "Brandl Hanım"], "ans": 0, "kanit": ["s9"] }
         ],
         "dikte": [
           { "id": "d1", "cumle": "s2", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Fieber", "Bein", "Allergie"], "ans": 0 },
@@ -196,7 +196,7 @@
           }
         }
       ],
-      "eylem": { "id": "m1:48:a1:e1", "k": "pick", "q_tr": "Ne yapmalısın?", "opts": ["Şefi ara, akşam da Tobi'yi ara.", "Tobi'ye ilaç götür.", "Cumartesi partiye git."], "ans": 0, "why_tr": "Tobi şefi aramanı ve akşam onu aramanı istiyor.", "kanit": ["c3", "c6"] }
+      "eylem": { "id": "m1:48:a1:e1", "k": "pick", "q_tr": "Ne yapmalısın?", "opts": ["Şefi ara, Tobi'nin hasta olduğunu söyle.", "Tobi'ye ilaç götür.", "Cumartesi partiye git."], "ans": 0, "why_tr": "Tobi hasta, yarın ofise gelmiyor ve şefi aramanı istiyor.", "kanit": ["c2", "c3"] }
     },
     {
       "id": "m1:48:a2",

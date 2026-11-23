@@ -6,7 +6,7 @@
   "format": "gun",
   "title_tr": "Form doldurmak",
   "goal_tr": "Muayenehanede formu doldurur, sorulara cevap verir, başkasının bilgilerini **sein** ve **ihr** ile söylersin.",
-  "can_do": { "id": "cd:m1:46", "tr": "Muayenehanede formu doldurur, sorulara cevap veririm; başkasının bilgisini (sein, ihr) söylerim." },
+  "can_do": { "id": "cd:m1:46", "tr": "Muayenehanede formu doldurur, sorulara cevap veririm, başkasının bilgisini de söylerim." },
   "unit": "u:m1:46",
   "arm": "pazar",
   "place": "pl:praxis",
@@ -147,7 +147,7 @@
       { "id": "s6", "speaker": "ch:huber", "sahne_tr": "Huber Hanım bir sonraki satıra geçiyor.", "de": "Und sind Sie verheiratet?", "tr": "Peki evli misiniz?" },
       { "id": "s7", "speaker": "ch:brandl", "sahne_tr": "Brandl Hanım bir an susuyor.", "de": "Ich war verheiratet. Jetzt bin ich allein.", "tr": "Evliydim. Şimdi yalnızım." },
       { "id": "s8", "speaker": "ch:huber", "sahne_tr": "Huber Hanım yazıyor.", "de": "Und Ihre Telefonnummer?", "tr": "Peki telefon numaranız?" },
-      { "id": "s9", "speaker": "ch:brandl", "sahne_tr": "Brandl Hanım omuz silkip seni gösteriyor.", "de": "Ach, die Nummer … Fragen Sie meinen Nachbarn!", "tr": "Ah, numara… Komşuma sorun!" },
+      { "id": "s9", "speaker": "ch:brandl", "sahne_tr": "Brandl Hanım omuz silkip seni gösteriyor.", "de": "Ach, die Nummer … Das weiß ich nicht!", "tr": "Ah, numara… Onu bilmiyorum!" },
       { "id": "s10", "speaker": "ch:huber", "sahne_tr": "Huber Hanım sana dönüyor.", "de": "Kennen Sie ihre Telefonnummer?", "tr": "Onun telefon numarasını biliyor musunuz?" },
       { "id": "s11", "speaker": "ch:brandl", "sahne_tr": "Sen numarayı söylerken Brandl Hanım çantasını açıyor.", "de": "Und meine Krankenkasse? Die Karte ist in meiner Tasche.", "tr": "Peki sigortam? Kart çantamda." },
       { "id": "s12", "speaker": "ch:huber", "sahne_tr": "Huber Hanım formu ve kalemi Brandl Hanım'a geri veriyor.", "de": "So. Jetzt unterschreiben Sie bitte hier.", "tr": "Evet. Şimdi lütfen buraya imza atın." },
@@ -178,7 +178,7 @@
           "k": "guided_response",
           "situation_tr": "Huber Hanım soruyor: Brandl Hanım'ın adresi ne? Aynı apartmanda oturuyorsunuz: Brunnengasse 7.",
           "prompt_de": "Und wie ist ihre Adresse?",
-          "accepted": ["Ihre Adresse ist Brunnengasse sieben.", "Brunnengasse sieben.", "Sie wohnt in der Brunnengasse sieben.", "Ihre Adresse ist Brunnengasse 7.", "Brunnengasse sieben, wie ich."],
+          "accepted": ["Ihre Adresse ist Brunnengasse sieben.", "Brunnengasse sieben.", "Sie wohnt in der Brunnengasse sieben.", "Ihre Adresse ist Brunnengasse 7.", "Sie wohnt in der Brunnengasse sieben, wie ich."],
           "why_tr": "Bir kadının adresini söylerken **ihre Adresse** dersin."
         }
       }
@@ -194,7 +194,7 @@
       "hizlar": ["slow", "normal"],
       "script": [
         { "id": "c1", "de": "Hier ist das Rathaus Wendlfing.", "tr": "Burası Wendlfing belediyesi." },
-        { "id": "c2", "de": "Sie möchten umziehen? Bitte kommen Sie mit Ihrem Ausweis.", "tr": "Taşınmak mı istiyorsunuz? Lütfen kimliğinizle gelin." },
+        { "id": "c2", "de": "Sie sind umgezogen? Bitte kommen Sie mit Ihrem Ausweis.", "tr": "Taşındınız mı? Lütfen kimliğinizle gelin." },
         { "id": "c3", "de": "Füllen Sie das Formular bitte vor dem Termin aus.", "tr": "Lütfen formu randevudan önce doldurun." },
         { "id": "c4", "de": "Schreiben Sie bitte Ihre Adresse und Ihre Telefonnummer.", "tr": "Lütfen adresinizi ve telefon numaranızı yazın." },
         { "id": "c5", "de": "Und vergessen Sie die Unterschrift nicht!", "tr": "Ve imzayı unutmayın!" }
@@ -281,7 +281,7 @@
   "prova": {
     "id": "m1:46:p1",
     "title_tr": "Brandl Hanım'ın formu senin elinde",
-    "durum_tr": "Brandl Hanım evde hasta. Yeni hasta formunu onun yerine sen dolduruyorsun. Kayıt masasında Huber Hanım soruyor; Brandl Hanım için **ihr** ve **ihre** kullan.",
+    "durum_tr": "Brandl Hanım evde hasta. Muayenehane ondan bir form daha istiyor, onun yerine sen dolduruyorsun. Kayıt masasında Huber Hanım soruyor. Brandl Hanım için **ihr** ve **ihre** kullan.",
     "karsi": "ch:huber",
     "baslangic": "n1",
     "dugumler": [

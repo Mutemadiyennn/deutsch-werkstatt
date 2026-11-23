@@ -5,7 +5,7 @@
   "level": "A1",
   "format": "gun",
   "title_tr": "Beğendiğini söylemek",
-  "goal_tr": "Ioana'nın yeni dairesini ve Frau Brandl'ın tatil fotoğraflarını görürsün. Neyi beğendiğini, neyin sana olmadığını ya da yakıştığını söylersin.",
+  "goal_tr": "Ioana'nın yeni dairesini ve Brandl Hanım'ın tatil fotoğraflarını görürsün. Neyi beğendiğini, neyin sana olmadığını ya da yakıştığını söylersin.",
   "can_do": { "id": "cd:m1:47", "tr": "Bir şeyi beğendiğimi ya da bana uymadığını söylerim." },
   "unit": "u:m1:47",
   "arm": "pazar",
@@ -39,11 +39,11 @@
         { "kart": "lx:Wohnung", "de": "Die Wohnung ist klein, aber sie gefällt mir.", "tr": "Daire küçük ama hoşuma gidiyor.",
           "accepted": ["Die Wohnung ist klein, aber sie gefällt mir.", "Die Wohnung ist klein, aber mir gefällt sie.", "Die Wohnung ist klein. Aber sie gefällt mir."] },
         { "kart": "lx:Wohnung", "de": "Wie ist die Adresse von deiner Wohnung?", "tr": "Dairenin adresi ne?",
-          "accepted": ["Wie ist die Adresse von deiner Wohnung?", "Wie ist die Adresse von der Wohnung?", "Deine Wohnung: Wie ist die Adresse?"] },
+          "accepted": ["Wie ist die Adresse von deiner Wohnung?", "Wie ist die Adresse von der Wohnung?", "Wie ist jetzt deine Adresse?"] },
         { "kart": "lx:rot", "de": "Das Kleid ist rot. Es steht dir gut.", "tr": "Elbise kırmızı. Sana yakışıyor.",
           "accepted": ["Das Kleid ist rot. Es steht dir gut.", "Das Kleid ist rot, es steht dir gut.", "Das Kleid ist rot und steht dir gut."] },
         { "kart": "lx:rot", "de": "Rot gefällt mir nicht.", "tr": "Kırmızı hoşuma gitmiyor.",
-          "accepted": ["Rot gefällt mir nicht.", "Mir gefällt rot nicht.", "Nein, rot gefällt mir nicht."] },
+          "accepted": ["Rot gefällt mir nicht.", "Mir gefällt Rot nicht.", "Nein, Rot gefällt mir nicht."] },
         { "kart": "lx:weiß", "de": "Die Küche ist weiß. Das gefällt mir.", "tr": "Mutfak beyaz. Bu hoşuma gidiyor.",
           "accepted": ["Die Küche ist weiß. Das gefällt mir.", "Die Küche ist weiß, das gefällt mir.", "Die Küche ist weiß und das gefällt mir."] },
         { "kart": "lx:weiß", "de": "Die Jacke ist weiß, aber sie passt mir nicht.", "tr": "Ceket beyaz ama bana olmuyor.",
@@ -84,7 +84,7 @@
           "accepted": ["Wie ist die Adresse vom Hotel?", "Wie ist die Adresse von dem Hotel?", "Und das Hotel? Wie ist die Adresse?"] },
         { "kart": "lx:Meer", "de": "Das Meer gefällt ihr.", "tr": "Deniz onun (kadın) hoşuna gidiyor.",
           "accepted": ["Das Meer gefällt ihr.", "Ihr gefällt das Meer.", "Das Meer gefällt ihr gut."] },
-        { "kart": "lx:Meer", "de": "Im Sommer war ich am Meer.", "tr": "Yazın denizdeydim.",
+        { "kart": "lx:Meer", "de": "Im Sommer war ich am Meer.", "tr": "Yazın deniz kenarındaydım.",
           "accepted": ["Im Sommer war ich am Meer.", "Ich war im Sommer am Meer.", "Im Sommer war ich auch am Meer."] },
         { "kart": "lx:See", "de": "Der See gefällt mir.", "tr": "Gölü beğeniyorum.",
           "accepted": ["Der See gefällt mir.", "Mir gefällt der See.", "Der See gefällt mir gut."] },
@@ -104,13 +104,13 @@
           "accepted": ["Klasse, das passt!", "Klasse! Das passt.", "Das passt. Klasse!"] }
       ],
       "sahne": {
-        "ortam_tr": "Dr. Weber'in bekleme odası. Frau Brandl telefonundaki fotoğrafları sana gösteriyor.",
+        "ortam_tr": "Dr. Weber'in bekleme odası. Brandl Hanım telefonundaki fotoğrafları sana gösteriyor.",
         "satirlar": [
-          { "r": "ch:brandl", "de": "Schauen Sie mal, das ist mein Hotel am See.", "tr": "Bakın, bu benim göl kenarındaki otelim." },
+          { "r": "ch:brandl", "de": "Schauen Sie mal, das ist mein Hotel am Meer.", "tr": "Bakın, bu benim deniz kenarındaki otelim." },
           { "r": "ogrenci", "de": "Ach, schön! Ist das eine Insel da?", "tr": "Aa, güzel! Oradaki bir ada mı?" },
           { "r": "ch:brandl", "de": "Ja! Die Insel gefällt mir, aber das Hotel war teuer.", "tr": "Evet! Adayı beğeniyorum ama otel pahalıydı." }
         ],
-        "soru": { "q_tr": "Frau Brandl otel için ne diyor?", "opts": ["Otel pahalıydı", "Otel çok küçüktü", "Otel deniz kenarındaydı"], "ans": 0 }
+        "soru": { "q_tr": "Brandl Hanım otel için ne diyor?", "opts": ["Otel pahalıydı", "Otel çok küçüktü", "Otel kapalıydı"], "ans": 0 }
       }
     }
   ],
@@ -118,27 +118,27 @@
     "id": "m1:47:v1",
     "title_tr": "Bekleme odasındaki resim",
     "sahneler": [
-      { "id": "s1", "speaker": "ch:huber", "sahne_tr": "Dr. Weber'in bekleme odası. Frau Brandl ve sen yan yana oturuyorsunuz. Frau Huber kapıdan bakıyor.", "de": "Frau Brandl, Sie müssen zehn Minuten warten.", "tr": "Brandl Hanım, on dakika beklemeniz gerekiyor." },
-      { "id": "s2", "speaker": "ch:brandl", "sahne_tr": "Frau Brandl rahat, çantasından telefonunu çıkarıyor.", "de": "Kein Problem. Ich habe Zeit.", "tr": "Sorun değil. Vaktim var." },
-      { "id": "s3", "speaker": "ch:brandl", "sahne_tr": "Frau Brandl telefonu sana uzatıyor.", "de": "Schauen Sie mal, das sind Fotos vom Sommer.", "tr": "Bakın, bunlar yazdan fotoğraflar." },
+      { "id": "s1", "speaker": "ch:huber", "sahne_tr": "Dr. Weber'in bekleme odası. Brandl Hanım ve sen yan yana oturuyorsunuz. Huber Hanım kapıdan bakıyor.", "de": "Frau Brandl, Sie müssen zehn Minuten warten.", "tr": "Brandl Hanım, on dakika beklemeniz gerekiyor." },
+      { "id": "s2", "speaker": "ch:brandl", "sahne_tr": "Brandl Hanım rahat, çantasından telefonunu çıkarıyor.", "de": "Kein Problem. Ich habe Zeit.", "tr": "Sorun değil. Vaktim var." },
+      { "id": "s3", "speaker": "ch:brandl", "sahne_tr": "Brandl Hanım telefonu sana uzatıyor.", "de": "Schauen Sie mal, das sind Fotos vom Sommer.", "tr": "Bakın, bunlar yazdan fotoğraflar." },
       { "id": "s4", "speaker": "ch:brandl", "sahne_tr": "Ekranda mavi deniz ve küçük beyaz bir otel.", "de": "Das Hotel war am Meer, auf einer Insel.", "tr": "Otel deniz kenarındaydı, bir adada." },
-      { "id": "s5", "speaker": "ch:huber", "sahne_tr": "Frau Huber merakla yaklaşıp ekrana bakıyor.", "de": "Ach, das Meer! Das gefällt mir.", "tr": "Aa, deniz! Bu hoşuma gidiyor." },
-      { "id": "s6", "speaker": "ch:huber", "sahne_tr": "Frau Huber duvardaki büyük, kırmızı-beyaz resmi gösteriyor.", "de": "Und wie gefällt Ihnen das Bild hier im Wartezimmer?", "tr": "Peki bekleme odasındaki şu resmi nasıl buluyorsunuz?" },
-      { "id": "s7", "speaker": "ch:brandl", "sahne_tr": "Frau Brandl resme uzun uzun bakıyor, yüzünü buruşturuyor.", "de": "Das rote Bild? Nein, das gefällt mir nicht.", "tr": "Kırmızı resim mi? Hayır, onu beğenmiyorum." },
-      { "id": "s8", "speaker": "ch:brandl", "sahne_tr": "Frau Brandl elini sallıyor.", "de": "Rot und weiß, das ist zu viel für mich.", "tr": "Kırmızı ve beyaz, bu bana fazla." },
-      { "id": "s9", "speaker": "ch:huber", "sahne_tr": "Frau Huber sesini alçaltıyor, gülümsüyor.", "de": "Das Bild ist von Dr. Weber. Es gefällt ihm gut.", "tr": "Resim Dr. Weber'in. Onun hoşuna gidiyor." },
+      { "id": "s5", "speaker": "ch:huber", "sahne_tr": "Huber Hanım merakla yaklaşıp ekrana bakıyor.", "de": "Ach, das Meer! Das gefällt mir.", "tr": "Aa, deniz! Bu hoşuma gidiyor." },
+      { "id": "s6", "speaker": "ch:huber", "sahne_tr": "Huber Hanım duvardaki büyük, kırmızı-beyaz resmi gösteriyor.", "de": "Und wie gefällt Ihnen das Bild hier im Wartezimmer?", "tr": "Peki bekleme odasındaki şu resmi nasıl buluyorsunuz?" },
+      { "id": "s7", "speaker": "ch:brandl", "sahne_tr": "Brandl Hanım resme uzun uzun bakıyor, yüzünü buruşturuyor.", "de": "Das rote Bild? Nein, das gefällt mir nicht.", "tr": "Kırmızı resim mi? Hayır, onu beğenmiyorum." },
+      { "id": "s8", "speaker": "ch:brandl", "sahne_tr": "Brandl Hanım elini sallıyor.", "de": "Rot und weiß, das ist zu viel für mich.", "tr": "Kırmızı ve beyaz, bu bana fazla." },
+      { "id": "s9", "speaker": "ch:huber", "sahne_tr": "Huber Hanım sesini alçaltıyor, gülümsüyor.", "de": "Das Bild ist von Dr. Weber. Es gefällt ihm gut.", "tr": "Resim Dr. Weber'in. Onun hoşuna gidiyor." },
       { "id": "s10", "speaker": "ch:weber", "sahne_tr": "Kapı açılıyor, Dr. Weber başını uzatıyor.", "de": "Frau Brandl, bitte! Wie gefällt Ihnen mein Bild?", "tr": "Brandl Hanım, buyurun! Resmimi nasıl buluyorsunuz?" },
-      { "id": "s11", "speaker": "ch:brandl", "sahne_tr": "Frau Brandl kalkıyor, sana göz kırpıyor.", "de": "Interessant, Herr Doktor. Interessant!", "tr": "İlginç, doktor bey. İlginç!" }
+      { "id": "s11", "speaker": "ch:brandl", "sahne_tr": "Brandl Hanım kalkıyor, sana göz kırpıyor.", "de": "Interessant, Herr Doktor. Interessant!", "tr": "İlginç, doktor bey. İlginç!" }
     ],
     "bolumler": [
       {
         "id": "b1",
         "cumleler": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11"],
-        "ana_fikir": { "kind": "gist", "q_tr": "Bekleme odasında ne konuşuluyor?", "opts": ["Tatil fotoğrafları ve duvardaki resim", "Frau Brandl'ın ilaçları", "Yeni bir randevu"], "ans": 0, "kanit": ["s3", "s6"] },
+        "ana_fikir": { "kind": "gist", "q_tr": "Bekleme odasında ne konuşuluyor?", "opts": ["Tatil fotoğrafları ve duvardaki resim", "Brandl Hanım'ın ilaçları", "Yeni bir randevu"], "ans": 0, "kanit": ["s3", "s6"] },
         "ayrinti": [
-          { "kind": "detail", "q_tr": "Frau Brandl'ın oteli neredeydi?", "opts": ["Deniz kenarında, bir adada", "Göl kenarında", "Şehrin ortasında"], "ans": 0, "kanit": ["s4"] },
-          { "kind": "detail", "q_tr": "Frau Brandl duvardaki resmi beğeniyor mu?", "opts": ["Hayır, ona fazla geliyor", "Evet, çok beğeniyor", "Resmi görmüyor"], "ans": 0, "kanit": ["s8"] },
-          { "kind": "detail", "q_tr": "Resim kimin?", "opts": ["Dr. Weber'in", "Frau Huber'in", "Frau Brandl'ın"], "ans": 0, "kanit": ["s9"] }
+          { "kind": "detail", "q_tr": "Brandl Hanım'ın oteli neredeydi?", "opts": ["Deniz kenarında, bir adada", "Göl kenarında", "Şehrin ortasında"], "ans": 0, "kanit": ["s4"] },
+          { "kind": "detail", "q_tr": "Brandl Hanım duvardaki resmi beğeniyor mu?", "opts": ["Hayır, ona fazla geliyor", "Evet, çok beğeniyor", "Resmi görmüyor"], "ans": 0, "kanit": ["s8"] },
+          { "kind": "detail", "q_tr": "Resim kimin?", "opts": ["Dr. Weber'in", "Huber Hanım'ın", "Brandl Hanım'ın"], "ans": 0, "kanit": ["s9"] }
         ],
         "dikte": [
           { "id": "d1", "cumle": "s4", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Meer", "See", "Bahnhof"], "ans": 0 },
@@ -151,7 +151,7 @@
         "cevapla": {
           "id": "m1:47:v1:c1",
           "k": "guided_response",
-          "situation_tr": "Frau Huber sana da soruyor. Resim hakkında kendi fikrini söyle.",
+          "situation_tr": "Huber Hanım sana da soruyor. Resim hakkında kendi fikrini söyle.",
           "prompt_de": "Und Ihnen? Wie gefällt Ihnen das Bild?",
           "accepted": ["Es gefällt mir nicht so gut.", "Das Bild gefällt mir nicht.", "Es gefällt mir gut.", "Mir gefällt das Bild gut.", "Das Bild ist interessant."],
           "why_tr": "Fikrini **Es gefällt mir** ya da **Es gefällt mir nicht** ile söylersin. Beğenen kişi **mir** olur."
@@ -181,7 +181,7 @@
           "cumleler": ["c1", "c2", "c3", "c4", "c5", "c6"],
           "ana_fikir": { "kind": "gist", "q_tr": "Derya neden arıyor?", "opts": ["Seni pazar günü göle çağırıyor", "İşe gelemeyeceğini söylüyor", "Otelde oda arıyor"], "ans": 0, "kanit": ["c5"] },
           "ayrinti": [
-            { "kind": "detail", "q_tr": "Derya hafta sonu nerede?", "opts": ["Göl kenarında bir otelde", "Deniz kenarında", "Evde"], "ans": 0, "kanit": ["c2"] },
+            { "kind": "detail", "q_tr": "Derya hafta sonu nerede?", "opts": ["Bir otelde", "Evde", "İş yerinde"], "ans": 0, "kanit": ["c2"] },
             { "kind": "detail", "q_tr": "Derya'yı ne zamana kadar araman gerekiyor?", "opts": ["Cumaya kadar", "Cumartesiye kadar", "Pazara kadar"], "ans": 0, "kanit": ["c6"] }
           ],
           "dikte": [
@@ -316,7 +316,7 @@
             "accepted": ["Ach, danke! Die Jacke passt mir gut.", "Danke! Sie passt mir.", "Danke, die Jacke passt mir!"],
             "sonraki": "n5", "uygun": true, "geri_bildirim_tr": "Beden için **passt** dedin. Doğru fiil." },
           { "de": "Nein. Weiß gefällt mir nicht.", "tr": "Hayır. Beyazı sevmiyorum.",
-            "accepted": ["Nein. Weiß gefällt mir nicht.", "Nein, weiß gefällt mir nicht.", "Nein danke, weiß gefällt mir nicht."],
+            "accepted": ["Nein. Weiß gefällt mir nicht.", "Nein, Weiß gefällt mir nicht.", "Nein danke, Weiß gefällt mir nicht."],
             "sonraki": "n4", "uygun": false, "geri_bildirim_tr": "Cümle doğru ama hediye eden arkadaşına sert duyulur. Önce teşekkür et." }
         ]
       },
@@ -364,13 +364,13 @@
         "accepted": ["Der See gefällt mir, das Meer nicht.", "Mir gefällt der See, nicht das Meer.", "Der See gefällt mir, aber das Meer nicht."], "why_tr": "Beğenilen şey başta, beğenen kişi **mir** olarak gelir." },
       { "id": "m1:47:s6", "k": "tr_de", "tr": "Pantolon sana yakışıyor.",
         "accepted": ["Die Hose steht dir gut.", "Die Hose steht dir.", "Dir steht die Hose gut."], "why_tr": "Yakışmak **stehen** ile söylenir, kişi **dir** olur." },
-      { "id": "m1:47:s7", "k": "tr_de", "tr": "Mont bana olmuyor. Çok küçük.",
+      { "id": "m1:47:s7", "k": "tr_de", "tr": "Palto bana olmuyor. Çok küçük.",
         "accepted": ["Der Mantel passt mir nicht. Er ist zu klein.", "Der Mantel passt mir nicht, er ist zu klein.", "Der Mantel ist zu klein. Er passt mir nicht."], "why_tr": "Beden uymayınca **passt mir nicht** dersin." },
       { "id": "m1:47:s8", "k": "tr_de", "tr": "Otel onun (erkek) hoşuna gitmiyor.",
         "accepted": ["Das Hotel gefällt ihm nicht.", "Ihm gefällt das Hotel nicht.", "Nein, das Hotel gefällt ihm nicht."], "why_tr": "Erkek için ona **ihm** olur: **gefällt ihm**." },
       { "id": "m1:47:s9", "k": "guided_response", "situation_tr": "Ioana yeni kazağını gösteriyor ve soruyor. Yakıştığını söyle.", "prompt_de": "Steht mir der Pullover?",
         "accepted": ["Ja, er steht dir gut!", "Ja, der Pullover steht dir gut.", "Ja, er steht dir super!", "Ja! Der Pullover steht dir."], "why_tr": "Ona cevap verirken **mir** yerine **dir** dersin: **steht dir gut**." },
-      { "id": "m1:47:s10", "k": "guided_response", "situation_tr": "Frau Huber bekleme odasındaki resmi soruyor. Beğendiğini söyle.", "prompt_de": "Wie gefällt Ihnen das Bild?",
+      { "id": "m1:47:s10", "k": "guided_response", "situation_tr": "Huber Hanım bekleme odasındaki resmi soruyor. Beğendiğini söyle.", "prompt_de": "Wie gefällt Ihnen das Bild?",
         "accepted": ["Es gefällt mir gut.", "Das Bild gefällt mir gut.", "Gut, es gefällt mir.", "Es ist schön. Es gefällt mir.", "Mir gefällt das Bild gut."], "why_tr": "Soru **Ihnen** ile gelir, sen **mir** ile cevap verirsin." },
       { "id": "m1:47:s11", "k": "guided_response", "situation_tr": "Ioana'nın yeni dairesindesin. Daireyi beğendiğini ve mutfağı da sevdiğini söyle.", "prompt_de": "Na, wie gefällt dir die Wohnung?",
         "accepted": ["Sie gefällt mir gut! Die Küche ist schön.", "Die Wohnung gefällt mir. Die Küche auch.", "Gut! Die Küche gefällt mir.", "Sie gefällt mir. Die Küche ist toll.", "Die Wohnung gefällt mir gut. Die Küche ist auch schön."], "why_tr": "Daireyi **sie** ile tekrar etmeden söylersin: **Sie gefällt mir**." }
