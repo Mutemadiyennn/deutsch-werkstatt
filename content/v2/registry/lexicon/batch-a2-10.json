@@ -1,6 +1,13 @@
 {
   "batch": "a2-10",
-  "review": { "status": "draft" },
+  "review": {
+    "status": "reviewed",
+    "by": "dilbilimci-ajan",
+    "at": "2026-11-23",
+    "notes": "docs/v2/reviews/lexicon-batch-a2-10.md; okur: docs/v2/reviews/okur/lexicon-batch-a2-10.md; örneklem: docs/v2/reviews/orneklem/lexicon-a2-09-10.md",
+    "okur": "passed",
+    "okur_at": "2026-11-23"
+  },
   "items": [
     {
       "id": "lx:Verlängerung",
@@ -10,42 +17,121 @@
       "art": "die",
       "pl": "Verlängerungen",
       "collocations": [
-        { "de": "um eine Verlängerung bitten", "tr": "ek süre rica etmek" },
-        { "de": "eine Verlängerung bekommen", "tr": "ek süre almak" },
-        { "de": "eine Woche Verlängerung", "tr": "bir hafta ek süre" },
-        { "de": "die Verlängerung der Frist", "tr": "sürenin uzatılması" }
+        {
+          "de": "um eine Verlängerung bitten",
+          "tr": "ek süre rica etmek"
+        },
+        {
+          "de": "eine Verlängerung bekommen",
+          "tr": "ek süre almak"
+        },
+        {
+          "de": "eine Woche Verlängerung",
+          "tr": "bir hafta ek süre"
+        },
+        {
+          "de": "die Verlängerung der Frist",
+          "tr": "sürenin uzatılması"
+        }
       ],
-      "patterns": ["pt:koennten-sie", "pt:deshalb", "pt:ich-war"],
+      "patterns": [
+        "pt:koennten-sie",
+        "pt:deshalb",
+        "pt:ich-war"
+      ],
       "register": "neutral",
-      "related": ["lx:verlängern", "lx:Frist", "lx:bitten"],
+      "related": [
+        "lx:verlängern",
+        "lx:Frist",
+        "lx:bitten"
+      ],
       "mistakes_tr": [
         "Ek süre rica ederken **Ich bitte für eine Verlängerung** yanlış. Doğrusu **Ich bitte um eine Verlängerung**.",
         "Resmî bir yazıda **Ich will eine Verlängerung** çok sert duyulur. Kibarı **Könnten Sie mir bitte eine Verlängerung geben?**"
       ],
       "examples": [
-        { "id": "lx:Verlängerung:1", "de": "Ich bitte um eine Verlängerung der Frist.", "tr": "Sürenin uzatılmasını rica ediyorum.", "layer": "hd" },
-        { "id": "lx:Verlängerung:2", "de": "Leider war ich zwei Wochen krank. Deshalb bitte ich Sie um eine Woche Verlängerung.", "tr": "Maalesef iki hafta hastaydım. Bu yüzden sizden bir hafta ek süre rica ediyorum.", "layer": "hd" },
-        { "id": "lx:Verlängerung:3", "de": "– Hast du die Verlängerung gekriegt? – Ja, zum Glück! Bis Ende Mai.", "tr": "– Ek süreyi aldın mı? – Evet, neyse ki! Mayıs sonuna kadar.", "layer": "alltag", "dialog": true },
-        { "id": "lx:Verlängerung:4", "de": "– Könnten Sie mir bitte eine Verlängerung geben? – Ja, bis nächsten Freitag geht das.", "tr": "– Bana lütfen ek süre verebilir misiniz? – Evet, gelecek cumaya kadar olur.", "layer": "hd", "dialog": true },
-        { "id": "lx:Verlängerung:5", "de": "Ohne Verlängerung schaff ich das nie.", "tr": "Ek süre olmadan bunu asla yetiştiremem.", "layer": "alltag" }
+        {
+          "id": "lx:Verlängerung:1",
+          "de": "Ich bitte um eine Verlängerung der Frist.",
+          "tr": "Sürenin uzatılmasını rica ediyorum.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Verlängerung:2",
+          "de": "Leider war ich zwei Wochen krank. Deshalb bitte ich Sie um eine Woche Verlängerung.",
+          "tr": "Maalesef iki hafta hastaydım. Bu yüzden sizden bir hafta ek süre rica ediyorum.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Verlängerung:3",
+          "de": "– Hast du die Verlängerung gekriegt? – Ja, zum Glück! Bis Ende Mai.",
+          "tr": "– Ek süreyi aldın mı? – Evet, neyse ki! Mayıs sonuna kadar.",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:Verlängerung:4",
+          "de": "– Könnten Sie mir bitte eine Verlängerung geben? – Ja, bis nächsten Freitag geht das.",
+          "tr": "– Bana lütfen ek süre verebilir misiniz? – Evet, gelecek cumaya kadar olur.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:Verlängerung:5",
+          "de": "Ohne Verlängerung schaff ich das nie.",
+          "tr": "Ek süre olmadan bunu asla yetiştiremem.",
+          "layer": "alltag"
+        }
       ],
       "level": "A2",
       "tier": "K1",
-      "domains": ["amt", "arbeit"],
+      "domains": [
+        "amt",
+        "arbeit"
+      ],
       "exp": {
         "anlam_tr": "**die Verlängerung** bir işin süresinin uzatılması, yani ek süredir.",
         "ne_zaman_tr": "Bir işi vaktinde yetiştiremeyeceğini yazarken ya da söylerken.",
         "parcalar": [
-          { "de": "verlängern", "tr": "uzatmak" },
-          { "de": "-ung", "tr": "-ma" }
+          {
+            "de": "verlängern",
+            "tr": "uzatmak"
+          },
+          {
+            "de": "-ung",
+            "tr": "-ma"
+          }
         ],
         "ipucu_tr": "İçinde **länger** var: süreyi daha uzun yapmak demek."
       },
       "forms": [
-        { "de": "Ich bitte um eine ___ der Frist.", "answer": "Verlängerung", "tr": "Sürenin uzatılmasını rica ediyorum.", "hint_tr": "Sürenin uzatılması derken **eine Verlängerung der Frist** denir." },
-        { "de": "Deshalb bitte ich Sie ___ eine Woche Verlängerung.", "answer": "um", "tr": "Bu yüzden sizden bir hafta ek süre rica ediyorum.", "hint_tr": "Rica ederken **bitte ich Sie um** denir." },
-        { "de": "Könnten Sie mir bitte eine ___ geben?", "answer": "Verlängerung", "tr": "Bana lütfen ek süre verebilir misiniz?", "hint_tr": "Ek süre verebilir misiniz derken **eine Verlängerung geben** denir." },
-        { "de": "Ohne ___ schaffe ich das nicht.", "answer": "Verlängerung", "tr": "Ek süre olmadan bunu yetiştiremem.", "hint_tr": "Ek süre olmadan derken **Ohne Verlängerung** denir." }
+        {
+          "de": "Ich bitte um eine ___ der Frist.",
+          "answer": "Verlängerung",
+          "tr": "Sürenin uzatılmasını rica ediyorum.",
+          "hint_tr": "Sürenin uzatılması derken **eine Verlängerung der Frist** denir."
+        },
+        {
+          "de": "Deshalb bitte ich Sie ___ eine Woche Verlängerung.",
+          "answer": "um",
+          "tr": "Bu yüzden sizden bir hafta ek süre rica ediyorum.",
+          "hint_tr": "Rica ederken **bitte ich Sie um** denir."
+        },
+        {
+          "de": "Könnten Sie mir bitte eine ___ geben?",
+          "answer": "Verlängerung",
+          "tr": "Bana lütfen ek süre verebilir misiniz?",
+          "hint_tr": "Ek süre verebilir misiniz derken **eine Verlängerung geben** denir."
+        },
+        {
+          "de": "Ohne ___ schaffe ich das nicht.",
+          "answer": "Verlängerung",
+          "tr": "Ek süre olmadan bunu yetiştiremem.",
+          "hint_tr": "Ek süre olmadan derken **Ohne Verlängerung** denir.",
+          "also_ok": [
+            "Fristverlängerung"
+          ]
+        }
       ]
     },
     {
@@ -53,45 +139,134 @@
       "de": "abgeben",
       "tr": "teslim etmek",
       "pos": "verb",
-      "verb": { "praesens3": "gibt ab", "praeteritum": "gab ab", "perfekt": "hat abgegeben", "aux": "haben", "separable": "ab", "case": ["akk"] },
+      "verb": {
+        "praesens3": "gibt ab",
+        "praeteritum": "gab ab",
+        "perfekt": "hat abgegeben",
+        "aux": "haben",
+        "separable": "ab",
+        "case": [
+          "akk"
+        ]
+      },
       "collocations": [
-        { "de": "eine Arbeit abgeben", "tr": "bir çalışmayı teslim etmek" },
-        { "de": "das Formular abgeben", "tr": "formu teslim etmek" },
-        { "de": "den Schlüssel abgeben", "tr": "anahtarı teslim etmek" },
-        { "de": "pünktlich abgeben", "tr": "zamanında teslim etmek" }
+        {
+          "de": "eine Arbeit abgeben",
+          "tr": "bir çalışmayı teslim etmek"
+        },
+        {
+          "de": "das Formular abgeben",
+          "tr": "formu teslim etmek"
+        },
+        {
+          "de": "den Schlüssel abgeben",
+          "tr": "anahtarı teslim etmek"
+        },
+        {
+          "de": "pünktlich abgeben",
+          "tr": "zamanında teslim etmek"
+        }
       ],
-      "patterns": ["pt:kann-ich", "pt:perfekt-haben", "pt:als-wenn-zeit", "pt:weil"],
+      "patterns": [
+        "pt:kann-ich",
+        "pt:perfekt-haben",
+        "pt:als-wenn-zeit",
+        "pt:weil"
+      ],
       "register": "neutral",
-      "related": ["lx:Verlängerung", "lx:Formular", "lx:abholen"],
+      "related": [
+        "lx:Verlängerung",
+        "lx:Formular",
+        "lx:abholen"
+      ],
       "mistakes_tr": [
         "Formu teslim ediyorum derken **Ich gebe das Formular** yanlış. Doğrusu **Ich gebe das Formular ab**.",
-        "Teslim almak **abgeben** değildir. Paketi teslim aldım derken **Ich habe das Paket abgeholt** dersin."
+        "Paketi teslim aldım derken **Ich habe das Paket abgegeben** yanlış, bu paketi verdim demek. Doğrusu **Ich habe das Paket abgeholt**."
       ],
       "examples": [
-        { "id": "lx:abgeben:1", "de": "Leider kann ich die Arbeit nicht bis Freitag abgeben, weil ich krank war.", "tr": "Maalesef çalışmayı cumaya kadar teslim edemiyorum, çünkü hastaydım.", "layer": "hd" },
-        { "id": "lx:abgeben:2", "de": "Wo kann ich das Formular abgeben?", "tr": "Formu nereye teslim edebilirim?", "layer": "hd" },
-        { "id": "lx:abgeben:3", "de": "– Hast du den Schlüssel abgegeben? – Ja, hab ihn gestern beim Hausmeister abgegeben.", "tr": "– Anahtarı teslim ettin mi? – Evet, dün apartman görevlisine teslim ettim.", "layer": "alltag", "dialog": true },
-        { "id": "lx:abgeben:4", "de": "– Bis wann müssen wir das abgeben? – Bis Montag, zwölf Uhr.", "tr": "– Bunu ne zamana kadar teslim etmemiz gerekiyor? – Pazartesi saat on ikiye kadar.", "layer": "hd", "dialog": true },
-        { "id": "lx:abgeben:5", "de": "Als ich ankam, gab ich zuerst die Unterlagen ab.", "tr": "Vardığımda önce belgeleri teslim ettim.", "layer": "hd" }
+        {
+          "id": "lx:abgeben:1",
+          "de": "Leider kann ich die Arbeit nicht bis Freitag abgeben, weil ich krank war.",
+          "tr": "Maalesef çalışmayı cumaya kadar teslim edemiyorum, çünkü hastaydım.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:abgeben:2",
+          "de": "Wo kann ich das Formular abgeben?",
+          "tr": "Formu nereye teslim edebilirim?",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:abgeben:3",
+          "de": "– Hast du den Schlüssel abgegeben? – Ja, hab ihn gestern beim Hausmeister abgegeben.",
+          "tr": "– Anahtarı teslim ettin mi? – Evet, dün apartman görevlisine teslim ettim.",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:abgeben:4",
+          "de": "– Bis wann müssen wir das abgeben? – Bis Montag, zwölf Uhr.",
+          "tr": "– Bunu ne zamana kadar teslim etmemiz gerekiyor? – Pazartesi saat on ikiye kadar.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:abgeben:5",
+          "de": "Als ich ankam, gab ich zuerst die Unterlagen ab.",
+          "tr": "Vardığımda önce belgeleri teslim ettim.",
+          "layer": "hd"
+        }
       ],
       "level": "A2",
       "tier": "K1",
       "freqRank": 1821,
-      "domains": ["arbeit", "amt"],
+      "domains": [
+        "arbeit",
+        "amt"
+      ],
       "exp": {
         "anlam_tr": "**abgeben** bir şeyi alması gereken kişiye ya da yere teslim etmektir.",
         "ne_zaman_tr": "Ödev, form, anahtar ya da belge teslim ederken.",
         "parcalar": [
-          { "de": "ab", "tr": "elden" },
-          { "de": "geben", "tr": "vermek" }
+          {
+            "de": "ab",
+            "tr": "uzağa, -den"
+          },
+          {
+            "de": "geben",
+            "tr": "vermek"
+          }
         ],
         "ipucu_tr": "Konuşurken **ab** sona gider: **Ich gebe die Arbeit morgen ab**."
       },
       "forms": [
-        { "de": "Leider kann ich die Arbeit nicht bis Freitag ___.", "answer": "abgeben", "tr": "Maalesef çalışmayı cumaya kadar teslim edemiyorum.", "hint_tr": "Teslim edemiyorum derken **kann** ile sonda **abgeben** gelir." },
-        { "de": "Wo kann ich das Formular ___?", "answer": "abgeben", "tr": "Formu nereye teslim edebilirim?", "hint_tr": "Nereye teslim edebilirim derken **Wo kann ich das Formular abgeben** denir." },
-        { "de": "Hast du den Schlüssel ___?", "answer": "abgegeben", "tr": "Anahtarı teslim ettin mi?", "hint_tr": "Teslim ettin mi derken **Hast du** ve sonda **abgegeben** gelir.", "also_ok": ["zurückgegeben"] },
-        { "de": "Als ich ankam, ___ ich zuerst die Unterlagen ab.", "answer": "gab", "tr": "Vardığımda önce belgeleri teslim ettim.", "hint_tr": "Yazıda **gab ich** ve sonda **ab** gelir." }
+        {
+          "de": "Leider kann ich die Arbeit nicht bis Freitag ___.",
+          "answer": "abgeben",
+          "tr": "Maalesef çalışmayı cumaya kadar teslim edemiyorum.",
+          "hint_tr": "Teslim edemiyorum derken **kann** ile sonda **abgeben** gelir."
+        },
+        {
+          "de": "Wo kann ich das Formular ___?",
+          "answer": "abgeben",
+          "tr": "Formu nereye teslim edebilirim?",
+          "hint_tr": "Nereye teslim edebilirim derken **Wo kann ich das Formular abgeben** denir."
+        },
+        {
+          "de": "Hast du den Schlüssel ___?",
+          "answer": "abgegeben",
+          "tr": "Anahtarı teslim ettin mi?",
+          "hint_tr": "Teslim ettin mi derken **Hast du** ve sonda **abgegeben** gelir.",
+          "also_ok": [
+            "zurückgegeben"
+          ]
+        },
+        {
+          "de": "Als ich ankam, ___ ich zuerst die Unterlagen ab.",
+          "answer": "gab",
+          "tr": "Vardığımda önce belgeleri teslim ettim.",
+          "hint_tr": "Yazıda **gab ich** ve sonda **ab** gelir."
+        }
       ]
     },
     {
@@ -99,45 +274,134 @@
       "de": "wiederkommen",
       "tr": "tekrar gelmek",
       "pos": "verb",
-      "verb": { "praesens3": "kommt wieder", "praeteritum": "kam wieder", "perfekt": "ist wiedergekommen", "aux": "sein", "separable": "wieder" },
+      "verb": {
+        "praesens3": "kommt wieder",
+        "praeteritum": "kam wieder",
+        "perfekt": "ist wiedergekommen",
+        "aux": "sein",
+        "separable": "wieder"
+      },
       "collocations": [
-        { "de": "in einer Woche wiederkommen", "tr": "bir hafta sonra tekrar gelmek" },
-        { "de": "morgen wiederkommen", "tr": "yarın tekrar gelmek" },
-        { "de": "gern wiederkommen", "tr": "seve seve tekrar gelmek" },
-        { "de": "nie wiederkommen", "tr": "bir daha hiç gelmemek" }
+        {
+          "de": "in einer Woche wiederkommen",
+          "tr": "bir hafta sonra tekrar gelmek"
+        },
+        {
+          "de": "morgen wiederkommen",
+          "tr": "yarın tekrar gelmek"
+        },
+        {
+          "de": "gern wiederkommen",
+          "tr": "seve seve tekrar gelmek"
+        },
+        {
+          "de": "nie wiederkommen",
+          "tr": "bir daha hiç gelmemek"
+        }
       ],
-      "patterns": ["pt:imperativ-sie", "pt:trennbar", "pt:verb-zweite-stelle", "pt:perfekt-sein"],
+      "patterns": [
+        "pt:imperativ-sie",
+        "pt:trennbar",
+        "pt:verb-zweite-stelle",
+        "pt:perfekt-sein"
+      ],
       "register": "neutral",
-      "related": ["lx:kommen", "lx:zurückkommen", "lx:Termin"],
+      "related": [
+        "lx:kommen",
+        "lx:zurückkommen",
+        "lx:Termin"
+      ],
       "mistakes_tr": [
         "Yarın tekrar geliyorum derken **Ich wiederkomme morgen** yanlış. Doğrusu **Ich komme morgen wieder**.",
         "Tekrar geldi derken **Er hat wiedergekommen** yanlış. Doğrusu **Er ist wiedergekommen**."
       ],
       "examples": [
-        { "id": "lx:wiederkommen:1", "de": "Kommen Sie in einer Woche wieder.", "tr": "Bir hafta sonra tekrar gelin.", "layer": "hd" },
-        { "id": "lx:wiederkommen:2", "de": "Ich werde morgen mit dem Formular wiederkommen.", "tr": "Yarın formla tekrar geleceğim.", "layer": "hd" },
-        { "id": "lx:wiederkommen:3", "de": "– War echt lecker! – Freut mich, kommt bald wieder!", "tr": "– Gerçekten lezzetliydi! – Sevindim, yakında yine gelin!", "layer": "alltag", "dialog": true },
-        { "id": "lx:wiederkommen:4", "de": "– Der Chef ist gerade nicht da. – Okay, dann komme ich in einer Stunde wieder.", "tr": "– Şef şu an burada değil. – Tamam, o zaman bir saat sonra tekrar gelirim.", "layer": "hd", "dialog": true },
-        { "id": "lx:wiederkommen:5", "de": "Er ist nach zwei Jahren wiedergekommen.", "tr": "İki yıl sonra geri geldi.", "layer": "hd" }
+        {
+          "id": "lx:wiederkommen:1",
+          "de": "Kommen Sie in einer Woche wieder.",
+          "tr": "Bir hafta sonra tekrar gelin.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:wiederkommen:2",
+          "de": "Ich werde morgen mit dem Formular wiederkommen.",
+          "tr": "Yarın formla tekrar geleceğim.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:wiederkommen:3",
+          "de": "– War echt lecker! – Freut mich, kommt bald wieder!",
+          "tr": "– Gerçekten lezzetliydi! – Sevindim, yakında yine gelin!",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:wiederkommen:4",
+          "de": "– Der Chef ist gerade nicht da. – Okay, dann komme ich in einer Stunde wieder.",
+          "tr": "– Şef şu an burada değil. – Tamam, o zaman bir saat sonra tekrar gelirim.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:wiederkommen:5",
+          "de": "Er ist nach zwei Jahren wiedergekommen.",
+          "tr": "İki yıl sonra geri geldi.",
+          "layer": "hd"
+        }
       ],
       "level": "A2",
       "tier": "K1",
       "freqRank": 2486,
-      "domains": ["arzt", "smalltalk"],
+      "domains": [
+        "arzt",
+        "smalltalk"
+      ],
       "exp": {
         "anlam_tr": "**wiederkommen** bir yere bir kez daha gelmek ya da geri dönmektir.",
         "ne_zaman_tr": "Doktorda, dükkânda ya da bir yerden ayrılırken.",
         "parcalar": [
-          { "de": "wieder", "tr": "tekrar" },
-          { "de": "kommen", "tr": "gelmek" }
+          {
+            "de": "wieder",
+            "tr": "tekrar"
+          },
+          {
+            "de": "kommen",
+            "tr": "gelmek"
+          }
         ],
         "ipucu_tr": "Doktor **Kommen Sie in einer Woche wieder** derse bir hafta sonra yine gidersin."
       },
       "forms": [
-        { "de": "Kommen Sie in einer Woche ___.", "answer": "wieder", "tr": "Bir hafta sonra tekrar gelin.", "hint_tr": "**wieder** sona gider: **Kommen Sie in einer Woche wieder**." },
-        { "de": "Ich werde morgen mit dem Formular ___.", "answer": "wiederkommen", "tr": "Yarın formla tekrar geleceğim.", "hint_tr": "Geleceğim derken **Ich werde** başta, **wiederkommen** sonda gelir.", "also_ok": ["zurückkommen"] },
-        { "de": "Dann ___ ich in einer Stunde wieder.", "answer": "komme", "tr": "O zaman bir saat sonra tekrar gelirim.", "hint_tr": "Tekrar gelirim derken **komme ich** ve sonda **wieder** gelir." },
-        { "de": "Er ist nach zwei Jahren ___.", "answer": "wiedergekommen", "tr": "İki yıl sonra geri geldi.", "hint_tr": "Geri geldi derken **Er ist** ve sonda **wiedergekommen** gelir.", "also_ok": ["zurückgekommen"] }
+        {
+          "de": "Kommen Sie in einer Woche ___.",
+          "answer": "wieder",
+          "tr": "Bir hafta sonra tekrar gelin.",
+          "hint_tr": "**wieder** sona gider: **Kommen Sie in einer Woche wieder**."
+        },
+        {
+          "de": "Ich werde morgen mit dem Formular ___.",
+          "answer": "wiederkommen",
+          "tr": "Yarın formla tekrar geleceğim.",
+          "hint_tr": "Geleceğim derken **Ich werde** başta, **wiederkommen** sonda gelir.",
+          "also_ok": [
+            "zurückkommen"
+          ]
+        },
+        {
+          "de": "Dann ___ ich in einer Stunde wieder.",
+          "answer": "komme",
+          "tr": "O zaman bir saat sonra tekrar gelirim.",
+          "hint_tr": "Tekrar gelirim derken **komme ich** ve sonda **wieder** gelir."
+        },
+        {
+          "de": "Er ist nach zwei Jahren ___.",
+          "answer": "wiedergekommen",
+          "tr": "İki yıl sonra geri geldi.",
+          "hint_tr": "Geri geldi derken **Er ist** ve sonda **wiedergekommen** gelir.",
+          "also_ok": [
+            "zurückgekommen"
+          ]
+        }
       ]
     },
     {
@@ -146,43 +410,121 @@
       "tr": "bir gün, günün birinde",
       "pos": "adv",
       "collocations": [
-        { "de": "irgendwann mal", "tr": "bir ara" },
-        { "de": "irgendwann im Sommer", "tr": "yazın bir ara" },
-        { "de": "irgendwann nächste Woche", "tr": "gelecek hafta bir ara" },
-        { "de": "Irgendwann ist es vorbei.", "tr": "Bir gün biter." }
+        {
+          "de": "irgendwann mal",
+          "tr": "bir ara"
+        },
+        {
+          "de": "irgendwann im Sommer",
+          "tr": "yazın bir ara"
+        },
+        {
+          "de": "irgendwann nächste Woche",
+          "tr": "gelecek hafta bir ara"
+        },
+        {
+          "de": "Irgendwann ist es vorbei.",
+          "tr": "Bir gün biter."
+        }
       ],
-      "patterns": ["pt:verb-zweite-stelle", "pt:ich-muss", "pt:w-frage"],
+      "patterns": [
+        "pt:verb-zweite-stelle",
+        "pt:ich-muss",
+        "pt:w-frage"
+      ],
       "register": "neutral",
-      "related": ["lx:bald", "lx:vielleicht", "lx:einmal"],
+      "related": [
+        "lx:bald",
+        "lx:vielleicht",
+        "lx:einmal"
+      ],
       "mistakes_tr": [
         "Bir gün her şeyi anlayacağım derken **Irgendwann ich werde alles verstehen** yanlış. Doğrusu **Irgendwann werde ich alles verstehen**.",
         "Günün birinde derken **Ein Tag fahre ich nach Hamburg** yanlış. Doğrusu **Irgendwann fahre ich nach Hamburg**."
       ],
       "examples": [
-        { "id": "lx:irgendwann:1", "de": "Irgendwann werde ich alles verstehen.", "tr": "Bir gün her şeyi anlayacağım.", "layer": "hd" },
-        { "id": "lx:irgendwann:2", "de": "Wir müssen irgendwann mal zusammen essen gehen.", "tr": "Bir ara birlikte yemeğe gitmeliyiz.", "layer": "alltag" },
-        { "id": "lx:irgendwann:3", "de": "– Wann kommst du mal nach Hamburg? – Keine Ahnung, irgendwann im Sommer.", "tr": "– Hamburg'a ne zaman geleceksin? – Bilmem, yazın bir ara.", "layer": "alltag", "dialog": true },
-        { "id": "lx:irgendwann:4", "de": "– Wirst du irgendwann ein Haus kaufen? – Vielleicht, aber nicht in München!", "tr": "– Bir gün ev alacak mısın? – Belki, ama Münih'te değil!", "layer": "hd", "dialog": true },
-        { "id": "lx:irgendwann:5", "de": "Irgendwann ist der Winter vorbei.", "tr": "Kış bir gün biter.", "layer": "hd" }
+        {
+          "id": "lx:irgendwann:1",
+          "de": "Irgendwann werde ich alles verstehen.",
+          "tr": "Bir gün her şeyi anlayacağım.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:irgendwann:2",
+          "de": "Wir müssen irgendwann mal zusammen essen gehen.",
+          "tr": "Bir ara birlikte yemeğe gitmeliyiz.",
+          "layer": "alltag"
+        },
+        {
+          "id": "lx:irgendwann:3",
+          "de": "– Wann kommst du mal nach Hamburg? – Keine Ahnung, irgendwann im Sommer.",
+          "tr": "– Hamburg'a ne zaman geleceksin? – Bilmem, yazın bir ara.",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:irgendwann:4",
+          "de": "– Wirst du irgendwann ein Haus kaufen? – Vielleicht, aber nicht in München!",
+          "tr": "– Bir gün ev alacak mısın? – Belki, ama Münih'te değil!",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:irgendwann:5",
+          "de": "Irgendwann ist der Winter vorbei.",
+          "tr": "Kış bir gün biter.",
+          "layer": "hd"
+        }
       ],
       "level": "A2",
       "tier": "K1",
       "freqRank": 846,
-      "domains": ["smalltalk"],
+      "domains": [
+        "smalltalk"
+      ],
       "exp": {
         "anlam_tr": "**irgendwann** zamanı belli olmayan bir gün, yani günün birinde demektir.",
-        "ne_zaman_tr": "Bir planı ya da hayali tarih vermeden anlatırken.",
+        "ne_zaman_tr": "Bir planını ya da hayalini, tarih vermeden anlatırken.",
         "parcalar": [
-          { "de": "irgend", "tr": "herhangi" },
-          { "de": "wann", "tr": "ne zaman" }
+          {
+            "de": "irgend",
+            "tr": "herhangi"
+          },
+          {
+            "de": "wann",
+            "tr": "ne zaman"
+          }
         ],
         "ipucu_tr": "**irgendwann mal** bir ara demektir: tarih vermeden buluşma önerirken."
       },
       "forms": [
-        { "de": "___ werde ich alles verstehen.", "answer": "Irgendwann", "tr": "Bir gün her şeyi anlayacağım.", "hint_tr": "Bir gün derken **Irgendwann werde ich** denir." },
-        { "de": "Irgendwann ___ ich alles verstehen.", "answer": "werde", "tr": "Bir gün her şeyi anlayacağım.", "hint_tr": "**Irgendwann** başta ise ardından **werde ich** gelir." },
-        { "de": "Wir müssen ___ mal zusammen essen gehen.", "answer": "irgendwann", "tr": "Bir ara birlikte yemeğe gitmeliyiz.", "hint_tr": "Bir ara derken **irgendwann mal** denir." },
-        { "de": "Wirst du ___ ein Haus kaufen?", "answer": "irgendwann", "tr": "Bir gün ev alacak mısın?", "hint_tr": "Bir gün derken soruda **Wirst du irgendwann** denir." }
+        {
+          "de": "___ werde ich alles verstehen.",
+          "answer": "Irgendwann",
+          "tr": "Bir gün her şeyi anlayacağım.",
+          "hint_tr": "Bir gün derken **Irgendwann werde ich** denir."
+        },
+        {
+          "de": "Irgendwann ___ ich alles verstehen.",
+          "answer": "werde",
+          "tr": "Bir gün her şeyi anlayacağım.",
+          "hint_tr": "**Irgendwann** başta ise ardından **werde ich** gelir."
+        },
+        {
+          "de": "Wir müssen ___ mal zusammen essen gehen.",
+          "answer": "irgendwann",
+          "tr": "Bir ara birlikte yemeğe gitmeliyiz.",
+          "hint_tr": "Bir ara derken **irgendwann mal** denir."
+        },
+        {
+          "de": "Wirst du ___ ein Haus kaufen?",
+          "answer": "irgendwann",
+          "tr": "Bir gün ev alacak mısın?",
+          "hint_tr": "Bir gün derken soruda **Wirst du irgendwann** denir.",
+          "also_ok": [
+            "einmal"
+          ]
+        }
       ]
     },
     {
@@ -191,29 +533,79 @@
       "tr": "sonra, birazdan",
       "pos": "adv",
       "collocations": [
-        { "de": "Bis nachher!", "tr": "Sonra görüşürüz!" },
-        { "de": "nachher anrufen", "tr": "sonra aramak" },
-        { "de": "nachher noch einkaufen", "tr": "sonra bir de alışverişe gitmek" },
-        { "de": "vorher und nachher", "tr": "önce ve sonra" }
+        {
+          "de": "Bis nachher!",
+          "tr": "Sonra görüşürüz!"
+        },
+        {
+          "de": "nachher anrufen",
+          "tr": "sonra aramak"
+        },
+        {
+          "de": "nachher noch einkaufen",
+          "tr": "sonra bir de alışverişe gitmek"
+        },
+        {
+          "de": "vorher und nachher",
+          "tr": "önce ve sonra"
+        }
       ],
-      "patterns": ["pt:verb-zweite-stelle", "pt:ich-muss", "pt:ja-nein-frage"],
+      "patterns": [
+        "pt:verb-zweite-stelle",
+        "pt:ich-muss",
+        "pt:ja-nein-frage"
+      ],
       "register": "neutral",
-      "related": ["lx:gleich", "lx:dann", "lx:bald"],
+      "related": [
+        "lx:gleich",
+        "lx:dann",
+        "lx:bald"
+      ],
       "mistakes_tr": [
         "Yemekten sonra derken **nachher dem Essen** yanlış. Doğrusu **nach dem Essen**.",
         "Sonra seni ararım derken **Nachher ich rufe dich an** yanlış. Doğrusu **Nachher rufe ich dich an**."
       ],
       "examples": [
-        { "id": "lx:nachher:1", "de": "Ich werde dich nachher anrufen.", "tr": "Seni sonra arayacağım.", "layer": "hd" },
-        { "id": "lx:nachher:2", "de": "Bis nachher!", "tr": "Sonra görüşürüz!", "layer": "alltag" },
-        { "id": "lx:nachher:3", "de": "– Hast du kurz Zeit? – Jetzt nicht, aber nachher gern.", "tr": "– Biraz vaktin var mı? – Şimdi değil, ama sonra seve seve.", "layer": "hd", "dialog": true },
-        { "id": "lx:nachher:4", "de": "– Gehen wir nachher was trinken? – Klar, um sechs?", "tr": "– Sonra bir şeyler içmeye gidelim mi? – Tabii, altıda mı?", "layer": "alltag", "dialog": true },
-        { "id": "lx:nachher:5", "de": "Ich muss nachher noch einkaufen.", "tr": "Sonra bir de alışverişe gitmem lazım.", "layer": "hd" }
+        {
+          "id": "lx:nachher:1",
+          "de": "Ich werde dich nachher anrufen.",
+          "tr": "Seni sonra arayacağım.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:nachher:2",
+          "de": "Bis nachher!",
+          "tr": "Sonra görüşürüz!",
+          "layer": "alltag"
+        },
+        {
+          "id": "lx:nachher:3",
+          "de": "– Hast du kurz Zeit? – Jetzt nicht, aber nachher gern.",
+          "tr": "– Biraz vaktin var mı? – Şimdi değil, ama sonra seve seve.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:nachher:4",
+          "de": "– Gehen wir nachher was trinken? – Klar, um sechs?",
+          "tr": "– Sonra bir şeyler içmeye gidelim mi? – Tabii, altıda mı?",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:nachher:5",
+          "de": "Ich muss nachher noch einkaufen.",
+          "tr": "Sonra bir de alışverişe gitmem lazım.",
+          "layer": "hd"
+        }
       ],
       "level": "A2",
       "tier": "K1",
       "freqRank": 1493,
-      "domains": ["smalltalk", "arbeit"],
+      "domains": [
+        "smalltalk",
+        "arbeit"
+      ],
       "exp": {
         "anlam_tr": "**nachher** konuştuğun andan biraz sonra, yani sonra ya da birazdan demektir.",
         "ne_zaman_tr": "Aynı gün içinde sonra yapacağın işi söylerken.",
@@ -221,10 +613,41 @@
         "ipucu_tr": "Ayrılırken **Bis nachher!** dersen aynı gün yine görüşeceksiniz demektir."
       },
       "forms": [
-        { "de": "Ich werde dich ___ anrufen.", "answer": "nachher", "tr": "Seni sonra arayacağım.", "hint_tr": "Sonra arayacağım derken **Ich werde dich nachher anrufen** denir.", "also_ok": ["später"] },
-        { "de": "Gut, bis ___!", "answer": "nachher", "tr": "Tamam, sonra görüşürüz!", "hint_tr": "Sonra görüşürüz derken **bis nachher** denir.", "also_ok": ["später", "gleich", "dann"] },
-        { "de": "Nachher ___ ich dich an.", "answer": "rufe", "tr": "Sonra seni ararım.", "hint_tr": "**Nachher** başta ise ardından **rufe ich** gelir." },
-        { "de": "Ich muss ___ noch einkaufen.", "answer": "nachher", "tr": "Sonra bir de alışverişe gitmem lazım.", "hint_tr": "Sonra derken **Ich muss nachher noch einkaufen** denir.", "also_ok": ["später"] }
+        {
+          "de": "Ich werde dich ___ anrufen.",
+          "answer": "nachher",
+          "tr": "Seni sonra arayacağım.",
+          "hint_tr": "Sonra arayacağım derken **Ich werde dich nachher anrufen** denir.",
+          "also_ok": [
+            "später"
+          ]
+        },
+        {
+          "de": "Gut, bis ___!",
+          "answer": "nachher",
+          "tr": "Tamam, sonra görüşürüz!",
+          "hint_tr": "Sonra görüşürüz derken **bis nachher** denir.",
+          "also_ok": [
+            "später",
+            "gleich",
+            "dann"
+          ]
+        },
+        {
+          "de": "Nachher ___ ich dich an.",
+          "answer": "rufe",
+          "tr": "Sonra seni ararım.",
+          "hint_tr": "**Nachher** başta ise ardından **rufe ich** gelir."
+        },
+        {
+          "de": "Ich muss ___ noch einkaufen.",
+          "answer": "nachher",
+          "tr": "Sonra bir de alışverişe gitmem lazım.",
+          "hint_tr": "Sonra derken **Ich muss nachher noch einkaufen** denir.",
+          "also_ok": [
+            "später"
+          ]
+        }
       ]
     },
     {
@@ -235,41 +658,115 @@
       "art": "die",
       "pl": "Hoffnungen",
       "collocations": [
-        { "de": "Hoffnung haben", "tr": "umudu olmak" },
-        { "de": "die Hoffnung nicht verlieren", "tr": "umudu kaybetmemek" },
-        { "de": "keine Hoffnung mehr", "tr": "artık hiç umut yok" },
-        { "de": "große Hoffnung", "tr": "büyük umut" }
+        {
+          "de": "Hoffnung haben",
+          "tr": "umudu olmak"
+        },
+        {
+          "de": "die Hoffnung nicht verlieren",
+          "tr": "umudu kaybetmemek"
+        },
+        {
+          "de": "keine Hoffnung mehr",
+          "tr": "artık hiç umut yok"
+        },
+        {
+          "de": "große Hoffnung",
+          "tr": "büyük umut"
+        }
       ],
-      "patterns": ["pt:es-gibt", "pt:ich-habe", "pt:kein", "pt:dass"],
+      "patterns": [
+        "pt:es-gibt",
+        "pt:ich-habe",
+        "pt:kein",
+        "pt:dass"
+      ],
       "register": "neutral",
-      "related": ["lx:hoffen", "lx:Wunsch", "lx:Angst"],
+      "related": [
+        "lx:hoffen",
+        "lx:Wunsch",
+        "lx:Angst"
+      ],
       "mistakes_tr": [
         "Umut ediyorum derken **Ich mache Hoffnung** yanlış. Doğrusu **Ich habe Hoffnung** ya da **Ich hoffe**."
       ],
       "examples": [
-        { "id": "lx:Hoffnung:1", "de": "Der Arzt sagt, es gibt noch Hoffnung.", "tr": "Doktor hâlâ umut olduğunu söylüyor.", "layer": "hd" },
-        { "id": "lx:Hoffnung:2", "de": "Ich habe die Hoffnung nicht verloren. Ich werde die Prüfung schaffen.", "tr": "Umudumu kaybetmedim. Sınavı başaracağım.", "layer": "hd" },
-        { "id": "lx:Hoffnung:3", "de": "– Glaubst du, wir kriegen die Wohnung? – Ehrlich gesagt hab ich wenig Hoffnung.", "tr": "– Sence evi alacak mıyız? – Açıkçası umudum az.", "layer": "alltag", "dialog": true },
-        { "id": "lx:Hoffnung:4", "de": "– Wird er wieder gesund? – Wir haben große Hoffnung.", "tr": "– Yeniden iyileşecek mi? – Büyük umudumuz var.", "layer": "hd", "dialog": true },
-        { "id": "lx:Hoffnung:5", "de": "Ich hab keine Hoffnung mehr, dass der Bus noch kommt.", "tr": "Otobüsün geleceğine artık hiç umudum yok.", "layer": "alltag" }
+        {
+          "id": "lx:Hoffnung:1",
+          "de": "Der Arzt sagt, es gibt noch Hoffnung.",
+          "tr": "Doktor hâlâ umut olduğunu söylüyor.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Hoffnung:2",
+          "de": "Ich habe die Hoffnung nicht verloren. Ich werde die Prüfung schaffen.",
+          "tr": "Umudumu kaybetmedim. Sınavı başaracağım.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Hoffnung:3",
+          "de": "– Glaubst du, wir kriegen die Wohnung? – Ehrlich gesagt hab ich wenig Hoffnung.",
+          "tr": "– Sence evi alacak mıyız? – Açıkçası umudum az.",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:Hoffnung:4",
+          "de": "– Wird er wieder gesund? – Wir haben große Hoffnung.",
+          "tr": "– İyileşecek mi? – Büyük umudumuz var.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:Hoffnung:5",
+          "de": "Ich hab keine Hoffnung mehr, dass der Bus noch kommt.",
+          "tr": "Otobüsün geleceğine artık hiç umudum yok.",
+          "layer": "alltag"
+        }
       ],
       "level": "A2",
       "tier": "K1",
       "freqRank": 913,
-      "domains": ["gefuehle", "arzt"],
+      "domains": [
+        "gefuehle",
+        "arzt"
+      ],
       "exp": {
         "anlam_tr": "**die Hoffnung** iyi bir şeyin olacağına inanmak, yani umuttur.",
         "ne_zaman_tr": "Zor bir durumda iyi bir sonuç beklerken.",
         "parcalar": [
-          { "de": "hoffen", "tr": "umut etmek" }
+          {
+            "de": "hoffen",
+            "tr": "umut etmek"
+          }
         ],
         "ipucu_tr": "**hoffen** ile aynı aileden: **Ich hoffe** umut ediyorum demek."
       },
       "forms": [
-        { "de": "Der Arzt sagt, es gibt noch ___.", "answer": "Hoffnung", "tr": "Doktor hâlâ umut olduğunu söylüyor.", "hint_tr": "Hâlâ umut var derken **es gibt noch Hoffnung** denir." },
-        { "de": "Ich habe die Hoffnung nicht ___.", "answer": "verloren", "tr": "Umudumu kaybetmedim.", "hint_tr": "Kaybetmedim derken sonda **verloren** gelir." },
-        { "de": "Wir haben große ___.", "answer": "Hoffnung", "tr": "Büyük umudumuz var.", "hint_tr": "Büyük umudumuz var derken **Wir haben große Hoffnung** denir." },
-        { "de": "Ich habe ___ Hoffnung mehr.", "answer": "keine", "tr": "Artık hiç umudum yok.", "hint_tr": "Artık hiç umudum yok derken **keine Hoffnung mehr** denir." }
+        {
+          "de": "Der Arzt sagt, es gibt noch ___.",
+          "answer": "Hoffnung",
+          "tr": "Doktor hâlâ umut olduğunu söylüyor.",
+          "hint_tr": "Hâlâ umut var derken **es gibt noch Hoffnung** denir."
+        },
+        {
+          "de": "Ich habe die Hoffnung nicht ___.",
+          "answer": "verloren",
+          "tr": "Umudumu kaybetmedim.",
+          "hint_tr": "Kaybetmedim derken sonda **verloren** gelir."
+        },
+        {
+          "de": "Wir haben große ___.",
+          "answer": "Hoffnung",
+          "tr": "Büyük umudumuz var.",
+          "hint_tr": "Büyük umudumuz var derken **Wir haben große Hoffnung** denir."
+        },
+        {
+          "de": "Ich habe ___ Hoffnung mehr.",
+          "answer": "keine",
+          "tr": "Artık hiç umudum yok.",
+          "hint_tr": "Artık hiç umudum yok derken **keine Hoffnung mehr** denir."
+        }
       ]
     },
     {
@@ -277,45 +774,127 @@
       "de": "weitermachen",
       "tr": "devam etmek",
       "pos": "verb",
-      "verb": { "praesens3": "macht weiter", "praeteritum": "machte weiter", "perfekt": "hat weitergemacht", "aux": "haben", "separable": "weiter" },
+      "verb": {
+        "praesens3": "macht weiter",
+        "praeteritum": "machte weiter",
+        "perfekt": "hat weitergemacht",
+        "aux": "haben",
+        "separable": "weiter"
+      },
       "collocations": [
-        { "de": "Mach weiter so!", "tr": "Böyle devam et!" },
-        { "de": "mit der Arbeit weitermachen", "tr": "işe devam etmek" },
-        { "de": "nach der Pause weitermachen", "tr": "moladan sonra devam etmek" },
-        { "de": "morgen weitermachen", "tr": "yarın devam etmek" }
+        {
+          "de": "Mach weiter so!",
+          "tr": "Böyle devam et!"
+        },
+        {
+          "de": "mit der Arbeit weitermachen",
+          "tr": "işe devam etmek"
+        },
+        {
+          "de": "nach der Pause weitermachen",
+          "tr": "moladan sonra devam etmek"
+        },
+        {
+          "de": "morgen weitermachen",
+          "tr": "yarın devam etmek"
+        }
       ],
-      "patterns": ["pt:trennbar", "pt:verb-zweite-stelle", "pt:mit-dativ"],
+      "patterns": [
+        "pt:trennbar",
+        "pt:verb-zweite-stelle",
+        "pt:mit-dativ"
+      ],
       "register": "neutral",
-      "related": ["lx:aufhören", "lx:weiter", "lx:Pause"],
+      "related": [
+        "lx:aufhören",
+        "lx:weiter",
+        "lx:Pause"
+      ],
       "mistakes_tr": [
         "Devam ediyorum derken **Ich weitermache** yanlış. Doğrusu **Ich mache weiter**.",
         "Kursa devam ediyorum derken **Ich mache zum Kurs weiter** yanlış. Doğrusu **Ich mache mit dem Kurs weiter**."
       ],
       "examples": [
-        { "id": "lx:weitermachen:1", "de": "Ich werde trotzdem weitermachen.", "tr": "Yine de devam edeceğim.", "layer": "hd" },
-        { "id": "lx:weitermachen:2", "de": "Wir machen nach der Pause weiter.", "tr": "Moladan sonra devam ediyoruz.", "layer": "hd" },
-        { "id": "lx:weitermachen:3", "de": "– Soll ich aufhören? – Nein, mach weiter, das ist super!", "tr": "– Bırakayım mı? – Hayır, devam et, harika!", "layer": "alltag", "dialog": true },
-        { "id": "lx:weitermachen:4", "de": "– Machst du nächstes Jahr mit dem Kurs weiter? – Ja, ich werde bestimmt weitermachen.", "tr": "– Seneye kursa devam ediyor musun? – Evet, kesin devam edeceğim.", "layer": "hd", "dialog": true },
-        { "id": "lx:weitermachen:5", "de": "Mach weiter so!", "tr": "Böyle devam et!", "layer": "alltag" }
+        {
+          "id": "lx:weitermachen:1",
+          "de": "Ich werde trotzdem weitermachen.",
+          "tr": "Yine de devam edeceğim.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:weitermachen:2",
+          "de": "Wir machen nach der Pause weiter.",
+          "tr": "Moladan sonra devam ediyoruz.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:weitermachen:3",
+          "de": "– Soll ich aufhören? – Nein, mach weiter, das ist super!",
+          "tr": "– Bırakayım mı? – Hayır, devam et, harika!",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:weitermachen:4",
+          "de": "– Machst du nächstes Jahr mit dem Kurs weiter? – Ja, ich werde bestimmt weitermachen.",
+          "tr": "– Seneye kursa devam ediyor musun? – Evet, kesin devam edeceğim.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:weitermachen:5",
+          "de": "Mach weiter so!",
+          "tr": "Böyle devam et!",
+          "layer": "alltag"
+        }
       ],
       "level": "A2",
       "tier": "K1",
       "freqRank": 1553,
-      "domains": ["arbeit", "strategie"],
+      "domains": [
+        "arbeit",
+        "strategie"
+      ],
       "exp": {
         "anlam_tr": "**weitermachen** bir işi bırakmadan sürdürmek, yani devam etmektir.",
         "ne_zaman_tr": "Moladan sonra, zor bir işte ya da birine cesaret verirken.",
         "parcalar": [
-          { "de": "weiter", "tr": "ileri" },
-          { "de": "machen", "tr": "yapmak" }
+          {
+            "de": "weiter",
+            "tr": "ileri"
+          },
+          {
+            "de": "machen",
+            "tr": "yapmak"
+          }
         ],
         "ipucu_tr": "Birini övüp cesaret verirken **Mach weiter so!** dersin."
       },
       "forms": [
-        { "de": "Ich werde trotzdem ___.", "answer": "weitermachen", "tr": "Yine de devam edeceğim.", "hint_tr": "Devam edeceğim derken sonda **weitermachen** gelir." },
-        { "de": "Wir machen nach der Pause ___.", "answer": "weiter", "tr": "Moladan sonra devam ediyoruz.", "hint_tr": "**weiter** sona gider: **Wir machen nach der Pause weiter**." },
-        { "de": "Mach ___ so!", "answer": "weiter", "tr": "Böyle devam et!", "hint_tr": "Böyle devam et derken **Mach weiter so** denir." },
-        { "de": "Machst du nächstes Jahr mit dem Kurs ___?", "answer": "weiter", "tr": "Seneye kursa devam ediyor musun?", "hint_tr": "Soruda da **weiter** sona gider: **mit dem Kurs weiter**." }
+        {
+          "de": "Ich werde trotzdem ___.",
+          "answer": "weitermachen",
+          "tr": "Yine de devam edeceğim.",
+          "hint_tr": "Devam edeceğim derken sonda **weitermachen** gelir."
+        },
+        {
+          "de": "Wir machen nach der Pause ___.",
+          "answer": "weiter",
+          "tr": "Moladan sonra devam ediyoruz.",
+          "hint_tr": "**weiter** sona gider: **Wir machen nach der Pause weiter**."
+        },
+        {
+          "de": "Mach ___ so!",
+          "answer": "weiter",
+          "tr": "Böyle devam et!",
+          "hint_tr": "Böyle devam et derken **Mach weiter so** denir."
+        },
+        {
+          "de": "Machst du nächstes Jahr mit dem Kurs ___?",
+          "answer": "weiter",
+          "tr": "Seneye kursa devam ediyor musun?",
+          "hint_tr": "Soruda da **weiter** sona gider: **mit dem Kurs weiter**."
+        }
       ]
     },
     {
@@ -326,41 +905,123 @@
       "art": "die",
       "pl": "Wettervorhersagen",
       "collocations": [
-        { "de": "die Wettervorhersage für morgen", "tr": "yarının hava tahmini" },
-        { "de": "die Wettervorhersage hören", "tr": "hava tahminini dinlemek" },
-        { "de": "Was sagt die Wettervorhersage?", "tr": "Hava tahmini ne diyor?" },
-        { "de": "Die Wettervorhersage stimmt.", "tr": "Hava tahmini tutuyor." }
+        {
+          "de": "die Wettervorhersage für morgen",
+          "tr": "yarının hava tahmini"
+        },
+        {
+          "de": "die Wettervorhersage hören",
+          "tr": "hava tahminini dinlemek"
+        },
+        {
+          "de": "Was sagt die Wettervorhersage?",
+          "tr": "Hava tahmini ne diyor?"
+        },
+        {
+          "de": "Die Wettervorhersage stimmt.",
+          "tr": "Hava tahmini tutuyor."
+        }
       ],
-      "patterns": ["pt:verb-zweite-stelle", "pt:w-frage", "pt:perfekt-haben"],
+      "patterns": [
+        "pt:verb-zweite-stelle",
+        "pt:w-frage",
+        "pt:perfekt-haben"
+      ],
       "register": "neutral",
-      "related": ["lx:Wetter", "lx:Regen", "lx:regnen"],
+      "related": [
+        "lx:Wetter",
+        "lx:Regen",
+        "lx:regnen"
+      ],
       "mistakes_tr": [
-        "Televizyondaki hava durumu için **der Wetterzustand** denmez. **die Wettervorhersage** ya da kısaca **das Wetter** dersin."
+        "Hava tahmini derken **das Wettervorhersage** yanlış. Doğrusu **die Wettervorhersage**."
       ],
       "examples": [
-        { "id": "lx:Wettervorhersage:1", "de": "Hast du die Wettervorhersage für morgen gesehen?", "tr": "Yarının hava tahminini gördün mü?", "layer": "hd" },
-        { "id": "lx:Wettervorhersage:2", "de": "Die Wettervorhersage sagt, morgen wird es regnen.", "tr": "Hava tahmini yarın yağmur yağacağını söylüyor.", "layer": "hd" },
-        { "id": "lx:Wettervorhersage:3", "de": "– Was sagt die Wettervorhersage? – Morgen wird es wieder kalt.", "tr": "– Hava tahmini ne diyor? – Yarın hava yine soğuyacak.", "layer": "hd", "dialog": true },
-        { "id": "lx:Wettervorhersage:4", "de": "– Gehen wir am Samstag wandern? – Mal schauen, was die Wettervorhersage sagt.", "tr": "– Cumartesi doğa yürüyüşüne gidelim mi? – Bakalım hava tahmini ne diyor.", "layer": "alltag", "dialog": true },
-        { "id": "lx:Wettervorhersage:5", "de": "Die Wettervorhersage stimmt doch nie!", "tr": "Hava tahmini hiç tutmuyor ki!", "layer": "alltag" }
+        {
+          "id": "lx:Wettervorhersage:1",
+          "de": "Hast du die Wettervorhersage für morgen gesehen?",
+          "tr": "Yarının hava tahminini gördün mü?",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Wettervorhersage:2",
+          "de": "Die Wettervorhersage sagt, morgen wird es regnen.",
+          "tr": "Hava tahmini yarın yağmur yağacağını söylüyor.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Wettervorhersage:3",
+          "de": "– Was sagt die Wettervorhersage? – Morgen wird es wieder kalt.",
+          "tr": "– Hava tahmini ne diyor? – Yarın hava yine soğuyacak.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:Wettervorhersage:4",
+          "de": "– Gehen wir am Samstag wandern? – Mal schauen, was die Wettervorhersage sagt.",
+          "tr": "– Cumartesi doğa yürüyüşüne gidelim mi? – Bakalım hava tahmini ne diyor.",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:Wettervorhersage:5",
+          "de": "Die Wettervorhersage stimmt doch nie!",
+          "tr": "Hava tahmini hiç tutmuyor ki!",
+          "layer": "alltag"
+        }
       ],
       "level": "A2",
       "tier": "K1",
-      "domains": ["smalltalk", "medien"],
+      "domains": [
+        "smalltalk",
+        "medien"
+      ],
       "exp": {
         "anlam_tr": "**die Wettervorhersage** önümüzdeki günlerde havanın nasıl olacağını söyleyen tahmindir.",
         "ne_zaman_tr": "Bir gezi, yürüyüş ya da hafta sonu planlarken.",
         "parcalar": [
-          { "de": "Wetter", "tr": "hava" },
-          { "de": "Vorhersage", "tr": "tahmin" }
+          {
+            "de": "Wetter",
+            "tr": "hava"
+          },
+          {
+            "de": "Vorhersage",
+            "tr": "tahmin"
+          }
         ],
         "ipucu_tr": "Tahmin gelecekten söz eder, bu yüzden sık sık **wird es** duyarsın."
       },
       "forms": [
-        { "de": "Hast du die ___ für morgen gesehen?", "answer": "Wettervorhersage", "tr": "Yarının hava tahminini gördün mü?", "hint_tr": "Yarının hava tahmini derken **die Wettervorhersage für morgen** denir.", "also_ok": ["Vorhersage"] },
-        { "de": "Die Wettervorhersage sagt, morgen ___ es regnen.", "answer": "wird", "tr": "Hava tahmini yarın yağmur yağacağını söylüyor.", "hint_tr": "Yağacak derken **wird es regnen** denir." },
-        { "de": "Was sagt die ___?", "answer": "Wettervorhersage", "tr": "Hava tahmini ne diyor?", "hint_tr": "Hava tahmini ne diyor derken **Was sagt die Wettervorhersage** denir.", "also_ok": ["Vorhersage"] },
-        { "de": "Die Wettervorhersage ___ doch nie!", "answer": "stimmt", "tr": "Hava tahmini hiç tutmuyor ki!", "hint_tr": "Tutmuyor derken **Die Wettervorhersage stimmt doch nie** denir." }
+        {
+          "de": "Hast du die ___ für morgen gesehen?",
+          "answer": "Wettervorhersage",
+          "tr": "Yarının hava tahminini gördün mü?",
+          "hint_tr": "Yarının hava tahmini derken **die Wettervorhersage für morgen** denir.",
+          "also_ok": [
+            "Vorhersage"
+          ]
+        },
+        {
+          "de": "Die Wettervorhersage sagt, morgen ___ es regnen.",
+          "answer": "wird",
+          "tr": "Hava tahmini yarın yağmur yağacağını söylüyor.",
+          "hint_tr": "Yağacak derken **wird es regnen** denir."
+        },
+        {
+          "de": "Was sagt die ___?",
+          "answer": "Wettervorhersage",
+          "tr": "Hava tahmini ne diyor?",
+          "hint_tr": "Hava tahmini ne diyor derken **Was sagt die Wettervorhersage** denir.",
+          "also_ok": [
+            "Vorhersage"
+          ]
+        },
+        {
+          "de": "Die Wettervorhersage ___ doch nie!",
+          "answer": "stimmt",
+          "tr": "Hava tahmini hiç tutmuyor ki!",
+          "hint_tr": "Tutmuyor derken **Die Wettervorhersage stimmt doch nie** denir."
+        }
       ]
     },
     {
@@ -372,28 +1033,83 @@
       "pl": "Sonnen",
       "img": "sun in blue sky",
       "collocations": [
-        { "de": "in der Sonne sitzen", "tr": "güneşte oturmak" },
-        { "de": "Die Sonne kommt raus.", "tr": "Güneş açıyor." },
-        { "de": "viel Sonne", "tr": "bol güneş" },
-        { "de": "zu viel Sonne", "tr": "fazla güneş" }
+        {
+          "de": "in der Sonne sitzen",
+          "tr": "güneşte oturmak"
+        },
+        {
+          "de": "Die Sonne kommt raus.",
+          "tr": "Güneş açıyor."
+        },
+        {
+          "de": "viel Sonne",
+          "tr": "bol güneş"
+        },
+        {
+          "de": "zu viel Sonne",
+          "tr": "fazla güneş"
+        }
       ],
-      "patterns": ["pt:verb-zweite-stelle", "pt:zu-adj", "pt:w-frage"],
+      "patterns": [
+        "pt:verb-zweite-stelle",
+        "pt:zu-adj",
+        "pt:w-frage"
+      ],
       "register": "neutral",
-      "related": ["lx:Wetter", "lx:warm", "lx:Wolke"],
+      "related": [
+        "lx:Wetter",
+        "lx:warm",
+        "lx:Wolke"
+      ],
       "mistakes_tr": [
         "Güneş açıyor derken **Die Sonne öffnet** yanlış. Doğrusu **Die Sonne kommt raus**."
       ],
       "examples": [
-        { "id": "lx:Sonne:1", "de": "Am Wochenende werden wir viel Sonne haben.", "tr": "Hafta sonu bol güneş olacak.", "layer": "hd", "img": "sunny weekend in a park" },
-        { "id": "lx:Sonne:2", "de": "Wir sitzen draußen in der Sonne.", "tr": "Dışarıda güneşte oturuyoruz.", "layer": "hd", "img": "people sitting outside in the sun" },
-        { "id": "lx:Sonne:3", "de": "– Schau mal, die Sonne kommt raus! – Endlich! Gehen wir raus?", "tr": "– Baksana, güneş açıyor! – Nihayet! Dışarı çıkalım mı?", "layer": "alltag", "dialog": true, "img": "sun breaking through clouds" },
-        { "id": "lx:Sonne:4", "de": "– Wie wird das Wetter am Samstag? – Viel Sonne und zwanzig Grad.", "tr": "– Cumartesi hava nasıl olacak? – Bol güneş ve yirmi derece.", "layer": "hd", "dialog": true, "img": "sunny spring day in a small town" },
-        { "id": "lx:Sonne:5", "de": "In der Sonne ist's mir zu heiß.", "tr": "Güneşte bana fazla sıcak geliyor.", "layer": "alltag", "img": "person resting in the shade on a hot day" }
+        {
+          "id": "lx:Sonne:1",
+          "de": "Am Wochenende werden wir viel Sonne haben.",
+          "tr": "Hafta sonu bol güneş olacak.",
+          "layer": "hd",
+          "img": "sunny weekend in a park"
+        },
+        {
+          "id": "lx:Sonne:2",
+          "de": "Wir sitzen draußen in der Sonne.",
+          "tr": "Dışarıda güneşte oturuyoruz.",
+          "layer": "hd",
+          "img": "people sitting outside in the sun"
+        },
+        {
+          "id": "lx:Sonne:3",
+          "de": "– Schau mal, die Sonne kommt raus! – Endlich! Gehen wir raus?",
+          "tr": "– Baksana, güneş açıyor! – Nihayet! Dışarı çıkalım mı?",
+          "layer": "alltag",
+          "dialog": true,
+          "img": "sun breaking through clouds"
+        },
+        {
+          "id": "lx:Sonne:4",
+          "de": "– Wie wird das Wetter am Samstag? – Viel Sonne und zwanzig Grad.",
+          "tr": "– Cumartesi hava nasıl olacak? – Bol güneş ve yirmi derece.",
+          "layer": "hd",
+          "dialog": true,
+          "img": "sunny spring day in a small town"
+        },
+        {
+          "id": "lx:Sonne:5",
+          "de": "In der Sonne ist's mir zu heiß.",
+          "tr": "Güneşte bana fazla sıcak geliyor.",
+          "layer": "alltag",
+          "img": "person resting in the shade on a hot day"
+        }
       ],
       "level": "A2",
       "tier": "K1",
       "freqRank": 961,
-      "domains": ["smalltalk", "freizeit"],
+      "domains": [
+        "smalltalk",
+        "freizeit"
+      ],
       "exp": {
         "anlam_tr": "**die Sonne** gökyüzünde parlayan, ısı ve ışık veren güneştir.",
         "ne_zaman_tr": "Havadan söz ederken ya da dışarıda vakit geçirirken.",
@@ -401,10 +1117,34 @@
         "ipucu_tr": "Hava tahmininde kısaca **viel Sonne** ya da **wenig Sonne** duyarsın."
       },
       "forms": [
-        { "de": "Wir sitzen draußen in der ___.", "answer": "Sonne", "tr": "Dışarıda güneşte oturuyoruz.", "hint_tr": "Güneşte derken **in der Sonne** denir." },
-        { "de": "Schau mal, die Sonne kommt ___!", "answer": "raus", "tr": "Baksana, güneş açıyor!", "hint_tr": "Güneş açıyor derken **die Sonne kommt raus** denir.", "also_ok": ["heraus"] },
-        { "de": "Am Wochenende werden wir viel ___ haben.", "answer": "Sonne", "tr": "Hafta sonu bol güneş olacak.", "hint_tr": "Bol güneş derken **viel Sonne** denir." },
-        { "de": "Am Wochenende ___ wir viel Sonne haben.", "answer": "werden", "tr": "Hafta sonu bol güneş olacak.", "hint_tr": "Olacak derken **werden wir** ve sonda **haben** gelir." }
+        {
+          "de": "Wir sitzen draußen in der ___.",
+          "answer": "Sonne",
+          "tr": "Dışarıda güneşte oturuyoruz.",
+          "hint_tr": "Güneşte derken **in der Sonne** denir."
+        },
+        {
+          "de": "Schau mal, die Sonne kommt ___!",
+          "answer": "raus",
+          "tr": "Baksana, güneş açıyor!",
+          "hint_tr": "Güneş açıyor derken **die Sonne kommt raus** denir.",
+          "also_ok": [
+            "heraus",
+            "durch"
+          ]
+        },
+        {
+          "de": "Am Wochenende werden wir viel ___ haben.",
+          "answer": "Sonne",
+          "tr": "Hafta sonu bol güneş olacak.",
+          "hint_tr": "Bol güneş derken **viel Sonne** denir."
+        },
+        {
+          "de": "Am Wochenende ___ wir viel Sonne haben.",
+          "answer": "werden",
+          "tr": "Hafta sonu bol güneş olacak.",
+          "hint_tr": "Bol güneşimiz olacak derken **werden wir** ve sonda **haben** gelir."
+        }
       ]
     },
     {
@@ -416,28 +1156,83 @@
       "pl": "Wolken",
       "img": "white clouds in the sky",
       "collocations": [
-        { "de": "dunkle Wolken", "tr": "kara bulutlar" },
-        { "de": "viele Wolken", "tr": "çok bulut" },
-        { "de": "keine Wolke", "tr": "hiç bulut yok" },
-        { "de": "hinter den Wolken", "tr": "bulutların arkasında" }
+        {
+          "de": "dunkle Wolken",
+          "tr": "kara bulutlar"
+        },
+        {
+          "de": "viele Wolken",
+          "tr": "çok bulut"
+        },
+        {
+          "de": "keine Wolke",
+          "tr": "hiç bulut yok"
+        },
+        {
+          "de": "hinter den Wolken",
+          "tr": "bulutların arkasında"
+        }
       ],
-      "patterns": ["pt:es-gibt", "pt:kein", "pt:verb-zweite-stelle"],
+      "patterns": [
+        "pt:es-gibt",
+        "pt:kein",
+        "pt:verb-zweite-stelle"
+      ],
       "register": "neutral",
-      "related": ["lx:Regen", "lx:Sonne", "lx:Wetter"],
+      "related": [
+        "lx:Regen",
+        "lx:Sonne",
+        "lx:Wetter"
+      ],
       "mistakes_tr": [
         "Çok bulut var derken Türkçedeki gibi **viele Wolke** yanlış. Doğrusu **viele Wolken**."
       ],
       "examples": [
-        { "id": "lx:Wolke:1", "de": "Heute gibt es viele Wolken, aber es regnet nicht.", "tr": "Bugün çok bulut var ama yağmur yağmıyor.", "layer": "hd", "img": "cloudy sky over a town" },
-        { "id": "lx:Wolke:2", "de": "Siehst du die dunklen Wolken? Gleich wird es regnen.", "tr": "Kara bulutları görüyor musun? Birazdan yağmur yağacak.", "layer": "hd", "img": "dark rain clouds" },
-        { "id": "lx:Wolke:3", "de": "– Ist es schön draußen? – Ja, keine Wolke, nur Sonne!", "tr": "– Dışarısı güzel mi? – Evet, hiç bulut yok, sadece güneş!", "layer": "alltag", "dialog": true, "img": "clear blue sky with sun" },
-        { "id": "lx:Wolke:4", "de": "– Gehen wir trotzdem wandern? – Ja, die Wolken werden bald weg sein.", "tr": "– Yine de yürüyüşe gidiyor muyuz? – Evet, bulutlar yakında dağılacak.", "layer": "hd", "dialog": true, "img": "hikers under a cloudy sky" },
-        { "id": "lx:Wolke:5", "de": "Die Sonne ist hinter den Wolken.", "tr": "Güneş bulutların arkasında.", "layer": "hd", "img": "sun behind clouds" }
+        {
+          "id": "lx:Wolke:1",
+          "de": "Heute gibt es viele Wolken, aber es regnet nicht.",
+          "tr": "Bugün çok bulut var ama yağmur yağmıyor.",
+          "layer": "hd",
+          "img": "cloudy sky over a town"
+        },
+        {
+          "id": "lx:Wolke:2",
+          "de": "Siehst du die dunklen Wolken? Gleich wird es regnen.",
+          "tr": "Kara bulutları görüyor musun? Birazdan yağmur yağacak.",
+          "layer": "hd",
+          "img": "dark rain clouds"
+        },
+        {
+          "id": "lx:Wolke:3",
+          "de": "– Ist es schön draußen? – Ja, keine Wolke, nur Sonne!",
+          "tr": "– Dışarısı güzel mi? – Evet, hiç bulut yok, sadece güneş!",
+          "layer": "alltag",
+          "dialog": true,
+          "img": "clear blue sky with sun"
+        },
+        {
+          "id": "lx:Wolke:4",
+          "de": "– Gehen wir trotzdem wandern? – Ja, die Wolken werden bald weg sein.",
+          "tr": "– Yine de yürüyüşe gidiyor muyuz? – Evet, bulutlar yakında dağılacak.",
+          "layer": "hd",
+          "dialog": true,
+          "img": "hikers under a cloudy sky"
+        },
+        {
+          "id": "lx:Wolke:5",
+          "de": "Die Sonne ist hinter den Wolken.",
+          "tr": "Güneş bulutların arkasında.",
+          "layer": "hd",
+          "img": "sun behind clouds"
+        }
       ],
       "level": "A2",
       "tier": "K1",
       "freqRank": 2550,
-      "domains": ["smalltalk", "freizeit"],
+      "domains": [
+        "smalltalk",
+        "freizeit"
+      ],
       "exp": {
         "anlam_tr": "**die Wolke** gökyüzündeki beyaz ya da gri buluttur.",
         "ne_zaman_tr": "Havadan söz ederken, özellikle yağmur yaklaşırken.",
@@ -445,10 +1240,33 @@
         "ipucu_tr": "Kara bulut görünce çoğu zaman **Gleich wird es regnen** dersin."
       },
       "forms": [
-        { "de": "Heute gibt es viele ___.", "answer": "Wolken", "tr": "Bugün çok bulut var.", "hint_tr": "Çok bulut derken **viele Wolken** denir." },
-        { "de": "Siehst du die dunklen ___?", "answer": "Wolken", "tr": "Kara bulutları görüyor musun?", "hint_tr": "Kara bulutlar derken **die dunklen Wolken** denir." },
-        { "de": "Ja, keine ___, nur Sonne!", "answer": "Wolke", "tr": "Evet, hiç bulut yok, sadece güneş!", "hint_tr": "Hiç bulut yok derken **keine Wolke** denir." },
-        { "de": "Gleich ___ es regnen.", "answer": "wird", "tr": "Birazdan yağmur yağacak.", "hint_tr": "Yağacak derken **wird es regnen** denir." }
+        {
+          "de": "Heute gibt es viele ___.",
+          "answer": "Wolken",
+          "tr": "Bugün çok bulut var.",
+          "hint_tr": "Çok bulut derken **viele Wolken** denir."
+        },
+        {
+          "de": "Siehst du die dunklen ___?",
+          "answer": "Wolken",
+          "tr": "Kara bulutları görüyor musun?",
+          "hint_tr": "Kara bulutlar derken **die dunklen Wolken** denir."
+        },
+        {
+          "de": "Ja, keine ___, nur Sonne!",
+          "answer": "Wolke",
+          "tr": "Evet, hiç bulut yok, sadece güneş!",
+          "hint_tr": "Hiç bulut yok derken **keine Wolke** denir.",
+          "also_ok": [
+            "Wolken"
+          ]
+        },
+        {
+          "de": "Gleich ___ es regnen.",
+          "answer": "wird",
+          "tr": "Birazdan yağmur yağacak.",
+          "hint_tr": "Yağacak derken **wird es regnen** denir."
+        }
       ]
     },
     {
@@ -459,28 +1277,77 @@
       "art": "die",
       "pl": "Temperaturen",
       "collocations": [
-        { "de": "hohe Temperaturen", "tr": "yüksek sıcaklıklar" },
-        { "de": "Die Temperaturen steigen.", "tr": "Sıcaklıklar artıyor." },
-        { "de": "Temperatur haben", "tr": "ateşi olmak" },
-        { "de": "bei diesen Temperaturen", "tr": "bu sıcaklıklarda" }
+        {
+          "de": "hohe Temperaturen",
+          "tr": "yüksek sıcaklıklar"
+        },
+        {
+          "de": "Die Temperaturen steigen.",
+          "tr": "Sıcaklıklar artıyor."
+        },
+        {
+          "de": "Temperatur haben",
+          "tr": "ateşi olmak"
+        },
+        {
+          "de": "bei diesen Temperaturen",
+          "tr": "bu sıcaklıklarda"
+        }
       ],
-      "patterns": ["pt:verb-zweite-stelle", "pt:haben-sie"],
+      "patterns": [
+        "pt:verb-zweite-stelle",
+        "pt:haben-sie"
+      ],
       "register": "neutral",
-      "related": ["lx:Grad", "lx:Fieber", "lx:warm"],
+      "related": [
+        "lx:Grad",
+        "lx:Fieber",
+        "lx:warm"
+      ],
       "mistakes_tr": [
         "Ateşim var derken **Ich habe Feuer** yanlış. Doğrusu **Ich habe Temperatur** ya da **Ich habe Fieber**."
       ],
       "examples": [
-        { "id": "lx:Temperatur:1", "de": "Morgen werden die Temperaturen auf dreißig Grad steigen.", "tr": "Yarın sıcaklıklar otuz dereceye çıkacak.", "layer": "hd" },
-        { "id": "lx:Temperatur:2", "de": "– Haben Sie Temperatur? – Ja, gestern Abend achtunddreißig Grad.", "tr": "– Ateşiniz var mı? – Evet, dün akşam otuz sekiz dereceydi.", "layer": "hd", "dialog": true },
-        { "id": "lx:Temperatur:3", "de": "– Wie sind morgen die Temperaturen? – So um die zwanzig Grad, glaub ich.", "tr": "– Yarın sıcaklıklar nasıl? – Sanırım yirmi derece civarında.", "layer": "alltag", "dialog": true },
-        { "id": "lx:Temperatur:4", "de": "Bei diesen Temperaturen bleibe ich zu Hause.", "tr": "Bu sıcaklıklarda evde kalıyorum.", "layer": "hd" },
-        { "id": "lx:Temperatur:5", "de": "Puh, bei der Temperatur kann ich nicht schlafen.", "tr": "Of, bu sıcakta uyuyamıyorum.", "layer": "alltag" }
+        {
+          "id": "lx:Temperatur:1",
+          "de": "Morgen werden die Temperaturen auf dreißig Grad steigen.",
+          "tr": "Yarın sıcaklıklar otuz dereceye çıkacak.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Temperatur:2",
+          "de": "– Haben Sie Temperatur? – Ja, gestern Abend achtunddreißig Grad.",
+          "tr": "– Ateşiniz var mı? – Evet, dün akşam otuz sekiz dereceydi.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:Temperatur:3",
+          "de": "– Wie sind morgen die Temperaturen? – So um die zwanzig Grad, glaub ich.",
+          "tr": "– Yarın sıcaklıklar nasıl? – Sanırım yirmi derece civarında.",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:Temperatur:4",
+          "de": "Bei diesen Temperaturen bleibe ich zu Hause.",
+          "tr": "Bu sıcaklıklarda evde kalıyorum.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Temperatur:5",
+          "de": "Puh, bei der Temperatur kann ich nicht schlafen.",
+          "tr": "Of, bu sıcakta uyuyamıyorum.",
+          "layer": "alltag"
+        }
       ],
       "level": "A2",
       "tier": "K1",
       "freqRank": 3798,
-      "domains": ["smalltalk", "arzt"],
+      "domains": [
+        "smalltalk",
+        "arzt"
+      ],
       "exp": {
         "anlam_tr": "**die Temperatur** havanın ya da vücudun ne kadar sıcak olduğunu gösteren sıcaklıktır.",
         "ne_zaman_tr": "Hava tahmininde ve doktorda ateşten söz ederken.",
@@ -488,10 +1355,33 @@
         "ipucu_tr": "Doktorda **Haben Sie Temperatur?** sorusu ateşiniz var mı demektir."
       },
       "forms": [
-        { "de": "Morgen werden die ___ auf dreißig Grad steigen.", "answer": "Temperaturen", "tr": "Yarın sıcaklıklar otuz dereceye çıkacak.", "hint_tr": "Sıcaklıklar derken **die Temperaturen** denir." },
-        { "de": "Haben Sie seit gestern ___?", "answer": "Temperatur", "tr": "Dünden beri ateşiniz var mı?", "hint_tr": "Ateşiniz var mı derken **Haben Sie seit gestern Temperatur** denir.", "also_ok": ["Fieber"] },
-        { "de": "Bei diesen ___ bleibe ich zu Hause.", "answer": "Temperaturen", "tr": "Bu sıcaklıklarda evde kalıyorum.", "hint_tr": "Bu sıcaklıklarda derken **Bei diesen Temperaturen** denir." },
-        { "de": "Morgen ___ die Temperaturen auf dreißig Grad steigen.", "answer": "werden", "tr": "Yarın sıcaklıklar otuz dereceye çıkacak.", "hint_tr": "Çıkacak derken **werden** ve sonda **steigen** gelir." }
+        {
+          "de": "Morgen werden die ___ auf dreißig Grad steigen.",
+          "answer": "Temperaturen",
+          "tr": "Yarın sıcaklıklar otuz dereceye çıkacak.",
+          "hint_tr": "Sıcaklıklar derken **die Temperaturen** denir."
+        },
+        {
+          "de": "Haben Sie seit gestern ___?",
+          "answer": "Temperatur",
+          "tr": "Dünden beri ateşiniz var mı?",
+          "hint_tr": "Dünden beri ateşiniz var mı derken **Haben Sie seit gestern Temperatur** denir.",
+          "also_ok": [
+            "Fieber"
+          ]
+        },
+        {
+          "de": "Bei diesen ___ bleibe ich zu Hause.",
+          "answer": "Temperaturen",
+          "tr": "Bu sıcaklıklarda evde kalıyorum.",
+          "hint_tr": "Bu sıcaklıklarda derken **Bei diesen Temperaturen** denir."
+        },
+        {
+          "de": "Morgen ___ die Temperaturen auf dreißig Grad steigen.",
+          "answer": "werden",
+          "tr": "Yarın sıcaklıklar otuz dereceye çıkacak.",
+          "hint_tr": "Çıkacak derken **werden** ve sonda **steigen** gelir."
+        }
       ]
     },
     {
@@ -499,45 +1389,135 @@
       "de": "sich vornehmen",
       "tr": "kafaya koymak, karar vermek",
       "pos": "verb",
-      "verb": { "praesens3": "nimmt sich vor", "praeteritum": "nahm sich vor", "perfekt": "hat sich vorgenommen", "aux": "haben", "separable": "vor", "reflexive": true, "case": ["dat", "akk"] },
+      "verb": {
+        "praesens3": "nimmt sich vor",
+        "praeteritum": "nahm sich vor",
+        "perfekt": "hat sich vorgenommen",
+        "aux": "haben",
+        "separable": "vor",
+        "reflexive": true,
+        "case": [
+          "dat",
+          "akk"
+        ]
+      },
       "collocations": [
-        { "de": "sich viel vornehmen", "tr": "kendine çok şey planlamak" },
-        { "de": "sich etwas fürs Wochenende vornehmen", "tr": "hafta sonu için bir şey planlamak" },
-        { "de": "Ich habe mir vorgenommen, mehr zu lesen.", "tr": "Daha çok okumaya karar verdim." },
-        { "de": "sich für das neue Jahr etwas vornehmen", "tr": "yeni yıl için bir karar almak" }
+        {
+          "de": "sich viel vornehmen",
+          "tr": "kendine çok şey planlamak"
+        },
+        {
+          "de": "sich etwas fürs Wochenende vornehmen",
+          "tr": "hafta sonu için bir şey planlamak"
+        },
+        {
+          "de": "Ich habe mir vorgenommen, mehr zu lesen.",
+          "tr": "Daha çok okumaya karar verdim."
+        },
+        {
+          "de": "sich für das neue Jahr etwas vornehmen",
+          "tr": "yeni yıl için bir karar almak"
+        }
       ],
-      "patterns": ["pt:reflexiv", "pt:perfekt-haben", "pt:trennbar"],
+      "patterns": [
+        "pt:reflexiv",
+        "pt:perfekt-haben",
+        "pt:trennbar"
+      ],
       "register": "neutral",
-      "related": ["lx:Vorsatz", "lx:vorhaben", "lx:planen"],
+      "related": [
+        "lx:Vorsatz",
+        "lx:vorhaben",
+        "lx:planen"
+      ],
       "mistakes_tr": [
         "Karar verdim derken **Ich habe mich vorgenommen** yanlış. Doğrusu **Ich habe mir vorgenommen**.",
         "Yürüyüşe çıkmaya karar veriyorum derken **Ich nehme mir vor, jeden Tag spazieren gehen** yanlış. Doğrusu **spazieren zu gehen**."
       ],
       "examples": [
-        { "id": "lx:sich_vornehmen:1", "de": "Ich habe mir vorgenommen, jeden Tag zwanzig Minuten Deutsch zu lernen.", "tr": "Her gün yirmi dakika Almanca çalışmaya karar verdim.", "layer": "hd" },
-        { "id": "lx:sich_vornehmen:2", "de": "Für dieses Jahr habe ich mir viel vorgenommen.", "tr": "Bu yıl için kendime çok şey planladım.", "layer": "hd" },
-        { "id": "lx:sich_vornehmen:3", "de": "– Was hast du dir fürs Wochenende vorgenommen? – Nix, ich will nur schlafen!", "tr": "– Hafta sonu için ne planladın? – Hiçbir şey, sadece uyumak istiyorum!", "layer": "alltag", "dialog": true },
-        { "id": "lx:sich_vornehmen:4", "de": "– Rauchst du noch? – Nein, ich hab mir vorgenommen, aufzuhören.", "tr": "– Hâlâ sigara içiyor musun? – Hayır, bırakmaya karar verdim.", "layer": "alltag", "dialog": true },
-        { "id": "lx:sich_vornehmen:5", "de": "Wir nehmen uns vor, mehr zusammen zu kochen.", "tr": "Daha çok birlikte yemek yapmaya niyetliyiz.", "layer": "hd" }
+        {
+          "id": "lx:sich_vornehmen:1",
+          "de": "Ich habe mir vorgenommen, jeden Tag zwanzig Minuten Deutsch zu lernen.",
+          "tr": "Her gün yirmi dakika Almanca çalışmaya karar verdim.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:sich_vornehmen:2",
+          "de": "Für dieses Jahr habe ich mir viel vorgenommen.",
+          "tr": "Bu yıl için kendime çok şey planladım.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:sich_vornehmen:3",
+          "de": "– Was hast du dir fürs Wochenende vorgenommen? – Nix, ich will nur schlafen!",
+          "tr": "– Hafta sonu için ne planladın? – Hiçbir şey, sadece uyumak istiyorum!",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:sich_vornehmen:4",
+          "de": "– Rauchst du noch? – Nein, ich hab mir vorgenommen, aufzuhören.",
+          "tr": "– Hâlâ sigara içiyor musun? – Hayır, bırakmaya karar verdim.",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:sich_vornehmen:5",
+          "de": "Wir nehmen uns vor, mehr zusammen zu kochen.",
+          "tr": "Daha sık birlikte yemek yapmaya karar veriyoruz.",
+          "layer": "hd"
+        }
       ],
       "level": "A2",
       "tier": "K1",
-      "domains": ["strategie", "smalltalk"],
+      "domains": [
+        "strategie",
+        "smalltalk"
+      ],
       "exp": {
         "anlam_tr": "**sich vornehmen** bir şeyi yapmaya kendi kendine karar vermektir.",
         "ne_zaman_tr": "Yeni bir hedef ya da alışkanlık anlatırken.",
         "parcalar": [
-          { "de": "mir", "tr": "kendime" },
-          { "de": "vor", "tr": "önüme" },
-          { "de": "nehmen", "tr": "almak" }
+          {
+            "de": "mir",
+            "tr": "kendime"
+          },
+          {
+            "de": "vor",
+            "tr": "önüme"
+          },
+          {
+            "de": "nehmen",
+            "tr": "almak"
+          }
         ],
         "ipucu_tr": "Kelimesi kelimesine bir işi önüne almak, yani kafaya koymak demek."
       },
       "forms": [
-        { "de": "Ich habe mir ___, jeden Tag zwanzig Minuten Deutsch zu lernen.", "answer": "vorgenommen", "tr": "Her gün yirmi dakika Almanca çalışmaya karar verdim.", "hint_tr": "Karar verdim derken **Ich habe mir** ve ardından **vorgenommen** gelir." },
-        { "de": "Ich habe ___ vorgenommen, jeden Tag spazieren zu gehen.", "answer": "mir", "tr": "Her gün yürüyüşe çıkmaya karar verdim.", "hint_tr": "Kendime derken **mir** gelir: **Ich habe mir vorgenommen**." },
-        { "de": "Ich nehme mir vor, jeden Tag spazieren ___ gehen.", "answer": "zu", "tr": "Her gün yürüyüşe çıkmaya karar veriyorum.", "hint_tr": "Virgülden sonra **spazieren zu gehen** gelir." },
-        { "de": "Für dieses Jahr habe ich mir viel ___.", "answer": "vorgenommen", "tr": "Bu yıl için kendime çok şey planladım.", "hint_tr": "Çok şey planladım derken **habe ich mir viel vorgenommen** denir." }
+        {
+          "de": "Ich habe mir ___, jeden Tag zwanzig Minuten Deutsch zu lernen.",
+          "answer": "vorgenommen",
+          "tr": "Her gün yirmi dakika Almanca çalışmaya karar verdim.",
+          "hint_tr": "Karar verdim derken **Ich habe mir** ve ardından **vorgenommen** gelir."
+        },
+        {
+          "de": "Ich habe ___ vorgenommen, jeden Tag spazieren zu gehen.",
+          "answer": "mir",
+          "tr": "Her gün yürüyüşe çıkmaya karar verdim.",
+          "hint_tr": "Karar verdim derken **Ich habe mir vorgenommen** denir."
+        },
+        {
+          "de": "Ich nehme mir vor, jeden Tag spazieren ___ gehen.",
+          "answer": "zu",
+          "tr": "Her gün yürüyüşe çıkmaya karar veriyorum.",
+          "hint_tr": "Virgülden sonra **spazieren zu gehen** gelir."
+        },
+        {
+          "de": "Für dieses Jahr habe ich mir viel ___.",
+          "answer": "vorgenommen",
+          "tr": "Bu yıl için kendime çok şey planladım.",
+          "hint_tr": "Çok şey planladım derken **habe ich mir viel vorgenommen** denir."
+        }
       ]
     },
     {
@@ -545,44 +1525,128 @@
       "de": "verbessern",
       "tr": "geliştirmek, düzeltmek",
       "pos": "verb",
-      "verb": { "praesens3": "verbessert", "praeteritum": "verbesserte", "perfekt": "hat verbessert", "aux": "haben", "case": ["akk"] },
+      "verb": {
+        "praesens3": "verbessert",
+        "praeteritum": "verbesserte",
+        "perfekt": "hat verbessert",
+        "aux": "haben",
+        "case": [
+          "akk"
+        ]
+      },
       "collocations": [
-        { "de": "sein Deutsch verbessern", "tr": "Almancasını geliştirmek" },
-        { "de": "sich verbessern", "tr": "ilerlemek, daha iyi olmak" },
-        { "de": "einen Fehler verbessern", "tr": "bir hatayı düzeltmek" },
-        { "de": "etwas noch verbessern", "tr": "bir şeyi daha da iyileştirmek" }
+        {
+          "de": "sein Deutsch verbessern",
+          "tr": "Almancasını geliştirmek"
+        },
+        {
+          "de": "sich verbessern",
+          "tr": "ilerlemek, daha iyi olmak"
+        },
+        {
+          "de": "einen Fehler verbessern",
+          "tr": "bir hatayı düzeltmek"
+        },
+        {
+          "de": "etwas noch verbessern",
+          "tr": "bir şeyi daha da iyileştirmek"
+        }
       ],
-      "patterns": ["pt:kann-ich", "pt:reflexiv", "pt:perfekt-haben"],
+      "patterns": [
+        "pt:kann-ich",
+        "pt:reflexiv",
+        "pt:perfekt-haben"
+      ],
       "register": "neutral",
-      "related": ["lx:korrigieren", "lx:Fehler", "lx:üben"],
+      "related": [
+        "lx:korrigieren",
+        "lx:Fehler",
+        "lx:üben"
+      ],
       "mistakes_tr": [
         "Almancamı geliştirmek istiyorum derken **Ich will mein Deutsch entwickeln** yanlış. Doğrusu **Ich will mein Deutsch verbessern**.",
         "İlerledim derken **Ich habe verbessert** yanlış. Doğrusu **Ich habe mich verbessert**."
       ],
       "examples": [
-        { "id": "lx:verbessern:1", "de": "Ich habe vor, mein Deutsch zu verbessern.", "tr": "Almancamı geliştirmeyi düşünüyorum.", "layer": "hd" },
-        { "id": "lx:verbessern:2", "de": "Kannst du bitte meine Fehler verbessern?", "tr": "Lütfen hatalarımı düzeltir misin?", "layer": "hd" },
-        { "id": "lx:verbessern:3", "de": "– Wie läuft's mit Deutsch? – Ich hab mich echt verbessert!", "tr": "– Almancan nasıl gidiyor? – Gerçekten ilerledim!", "layer": "alltag", "dialog": true },
-        { "id": "lx:verbessern:4", "de": "– Was kann ich noch verbessern? – Sprechen Sie ein bisschen langsamer.", "tr": "– Daha neyi iyileştirebilirim? – Biraz daha yavaş konuşun.", "layer": "hd", "dialog": true },
-        { "id": "lx:verbessern:5", "de": "Ich verspreche dir, ich werde mich verbessern.", "tr": "Sana söz veriyorum, kendimi geliştireceğim.", "layer": "hd" }
+        {
+          "id": "lx:verbessern:1",
+          "de": "Ich habe vor, mein Deutsch zu verbessern.",
+          "tr": "Almancamı geliştirmeyi düşünüyorum.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:verbessern:2",
+          "de": "Kannst du bitte meine Fehler verbessern?",
+          "tr": "Lütfen hatalarımı düzeltir misin?",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:verbessern:3",
+          "de": "– Wie läuft's mit Deutsch? – Ich hab mich echt verbessert!",
+          "tr": "– Almancan nasıl gidiyor? – Gerçekten ilerledim!",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:verbessern:4",
+          "de": "– Was kann ich noch verbessern? – Sprechen Sie ein bisschen langsamer.",
+          "tr": "– Daha neyi iyileştirebilirim? – Biraz daha yavaş konuşun.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:verbessern:5",
+          "de": "Ich verspreche dir, ich werde mich verbessern.",
+          "tr": "Sana söz veriyorum, kendimi geliştireceğim.",
+          "layer": "hd"
+        }
       ],
       "level": "A2",
       "tier": "K1",
       "freqRank": 2593,
-      "domains": ["strategie", "arbeit"],
+      "domains": [
+        "strategie",
+        "arbeit"
+      ],
       "exp": {
         "anlam_tr": "**verbessern** bir şeyi daha iyi hâle getirmek ya da bir hatayı düzeltmektir.",
         "ne_zaman_tr": "Dil öğrenirken, işte ya da bir hatayı düzeltirken.",
         "parcalar": [
-          { "de": "besser", "tr": "daha iyi" }
+          {
+            "de": "besser",
+            "tr": "daha iyi"
+          }
         ],
         "ipucu_tr": "İçinde **besser** var: bir şeyi daha iyi yapmak."
       },
       "forms": [
-        { "de": "Ich habe vor, mein Deutsch zu ___.", "answer": "verbessern", "tr": "Almancamı geliştirmeyi düşünüyorum.", "hint_tr": "Geliştirmeyi derken sonda **zu verbessern** gelir." },
-        { "de": "Kannst du bitte meine Fehler ___?", "answer": "verbessern", "tr": "Lütfen hatalarımı düzeltir misin?", "hint_tr": "Hatalarımı düzeltir misin derken **meine Fehler verbessern** denir.", "also_ok": ["korrigieren"] },
-        { "de": "Ich hab mich echt ___!", "answer": "verbessert", "tr": "Gerçekten ilerledim!", "hint_tr": "İlerledim derken **Ich hab mich** ve sonda **verbessert** gelir." },
-        { "de": "Was kann ich noch ___?", "answer": "verbessern", "tr": "Daha neyi iyileştirebilirim?", "hint_tr": "Neyi iyileştirebilirim derken **Was kann ich noch verbessern** denir." }
+        {
+          "de": "Ich habe vor, mein Deutsch zu ___.",
+          "answer": "verbessern",
+          "tr": "Almancamı geliştirmeyi düşünüyorum.",
+          "hint_tr": "Geliştirmeyi derken sonda **zu verbessern** gelir."
+        },
+        {
+          "de": "Kannst du bitte meine Fehler ___?",
+          "answer": "verbessern",
+          "tr": "Lütfen hatalarımı düzeltir misin?",
+          "hint_tr": "Hatalarımı düzeltir misin derken **meine Fehler verbessern** denir.",
+          "also_ok": [
+            "korrigieren"
+          ]
+        },
+        {
+          "de": "Ich hab mich echt ___!",
+          "answer": "verbessert",
+          "tr": "Gerçekten ilerledim!",
+          "hint_tr": "İlerledim derken **Ich hab mich** ve sonda **verbessert** gelir."
+        },
+        {
+          "de": "Was kann ich noch ___?",
+          "answer": "verbessern",
+          "tr": "Daha neyi iyileştirebilirim?",
+          "hint_tr": "Neyi iyileştirebilirim derken **Was kann ich noch verbessern** denir."
+        }
       ]
     },
     {
@@ -593,28 +1657,78 @@
       "art": "das",
       "pl": "Niveaus",
       "collocations": [
-        { "de": "Auf welchem Niveau sind Sie?", "tr": "Hangi seviyedesiniz?" },
-        { "de": "ein Kurs auf Niveau B1", "tr": "B1 seviyesinde bir kurs" },
-        { "de": "ein hohes Niveau", "tr": "yüksek bir seviye" },
-        { "de": "Das Niveau passt.", "tr": "Seviye uygun." }
+        {
+          "de": "Auf welchem Niveau sind Sie?",
+          "tr": "Hangi seviyedesiniz?"
+        },
+        {
+          "de": "ein Kurs auf Niveau B1",
+          "tr": "B1 seviyesinde bir kurs"
+        },
+        {
+          "de": "ein hohes Niveau",
+          "tr": "yüksek bir seviye"
+        },
+        {
+          "de": "Das Niveau passt.",
+          "tr": "Seviye uygun."
+        }
       ],
-      "patterns": ["pt:w-frage", "pt:ich-bin", "pt:zu-adj"],
+      "patterns": [
+        "pt:w-frage",
+        "pt:ich-bin",
+        "pt:zu-adj"
+      ],
       "register": "neutral",
-      "related": ["lx:Kurs", "lx:Prüfung", "lx:Anfänger"],
+      "related": [
+        "lx:Kurs",
+        "lx:Prüfung",
+        "lx:Anfänger"
+      ],
       "mistakes_tr": [
-        "A2 seviyesindeyim derken **Ich bin in Niveau A2** yanlış. Doğrusu **Ich bin auf dem Niveau A2**.",
+        "A2 seviyesindeyim derken **Ich bin in dem Niveau A2** yanlış. Doğrusu **Ich bin auf dem Niveau A2**.",
         "**Niveau** yazıldığı gibi harf harf okunmaz. Türkçedeki nivo gibi okunur."
       ],
       "examples": [
-        { "id": "lx:Niveau:1", "de": "– Auf welchem Niveau sind Sie? – Ich bin auf dem Niveau A2.", "tr": "– Hangi seviyedesiniz? – A2 seviyesindeyim.", "layer": "hd", "dialog": true },
-        { "id": "lx:Niveau:2", "de": "Ich habe vor, im Herbst einen Kurs auf Niveau B1 zu machen.", "tr": "Sonbaharda B1 seviyesinde bir kursa gitmeyi düşünüyorum.", "layer": "hd" },
-        { "id": "lx:Niveau:3", "de": "– Ist der Kurs nicht zu schwer für dich? – Nee, das Niveau passt genau.", "tr": "– Kurs senin için fazla zor değil mi? – Yok, seviye tam uygun.", "layer": "alltag", "dialog": true },
-        { "id": "lx:Niveau:4", "de": "Die Prüfung hatte ein hohes Niveau.", "tr": "Sınavın seviyesi yüksekti.", "layer": "hd" },
-        { "id": "lx:Niveau:5", "de": "Ehrlich, das Niveau ist mir zu hoch.", "tr": "Açıkçası seviye bana fazla yüksek.", "layer": "alltag" }
+        {
+          "id": "lx:Niveau:1",
+          "de": "– Auf welchem Niveau sind Sie? – Ich bin auf dem Niveau A2.",
+          "tr": "– Hangi seviyedesiniz? – A2 seviyesindeyim.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:Niveau:2",
+          "de": "Ich habe vor, im Herbst einen Kurs auf Niveau B1 zu machen.",
+          "tr": "Sonbaharda B1 seviyesinde bir kursa gitmeyi düşünüyorum.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Niveau:3",
+          "de": "– Ist der Kurs nicht zu schwer für dich? – Nee, das Niveau passt genau.",
+          "tr": "– Kurs senin için fazla zor değil mi? – Yok, seviye tam uygun.",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:Niveau:4",
+          "de": "Die Prüfung hatte ein hohes Niveau.",
+          "tr": "Sınavın seviyesi yüksekti.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Niveau:5",
+          "de": "Ehrlich, das Niveau ist mir zu hoch.",
+          "tr": "Açıkçası seviye bana fazla yüksek.",
+          "layer": "alltag"
+        }
       ],
       "level": "A2",
       "tier": "K1",
-      "domains": ["strategie", "smalltalk"],
+      "domains": [
+        "strategie",
+        "smalltalk"
+      ],
       "exp": {
         "anlam_tr": "**das Niveau** bir şeyi ne kadar iyi bildiğini gösteren seviyedir.",
         "ne_zaman_tr": "Kurs, sınav ya da dil bilginden söz ederken.",
@@ -622,10 +1736,39 @@
         "ipucu_tr": "Kursa yazılırken ilk soru çoğu zaman **Auf welchem Niveau sind Sie?** olur."
       },
       "forms": [
-        { "de": "Auf welchem ___ sind Sie?", "answer": "Niveau", "tr": "Hangi seviyedesiniz?", "hint_tr": "Hangi seviyede derken **Auf welchem Niveau** denir.", "also_ok": ["Level"] },
-        { "de": "Ich bin ___ dem Niveau A2.", "answer": "auf", "tr": "A2 seviyesindeyim.", "hint_tr": "Seviyede derken **auf dem Niveau** denir." },
-        { "de": "Nee, das ___ passt genau.", "answer": "Niveau", "tr": "Yok, seviye tam uygun.", "hint_tr": "Seviye uygun derken **das Niveau passt** denir.", "also_ok": ["Level"] },
-        { "de": "Ich habe vor, im Herbst einen Kurs auf Niveau B1 zu ___.", "answer": "machen", "tr": "Sonbaharda B1 seviyesinde bir kursa gitmeyi düşünüyorum.", "hint_tr": "Kursa gitmeyi derken sonda **zu machen** gelir.", "also_ok": ["besuchen"] }
+        {
+          "de": "Auf welchem ___ sind Sie?",
+          "answer": "Niveau",
+          "tr": "Hangi seviyedesiniz?",
+          "hint_tr": "Hangi seviyede derken **Auf welchem Niveau** denir.",
+          "also_ok": [
+            "Level"
+          ]
+        },
+        {
+          "de": "Ich bin ___ dem Niveau A2.",
+          "answer": "auf",
+          "tr": "A2 seviyesindeyim.",
+          "hint_tr": "Seviyede derken **auf dem Niveau** denir."
+        },
+        {
+          "de": "Nee, das ___ passt genau.",
+          "answer": "Niveau",
+          "tr": "Yok, seviye tam uygun.",
+          "hint_tr": "Seviye uygun derken **das Niveau passt** denir.",
+          "also_ok": [
+            "Level"
+          ]
+        },
+        {
+          "de": "Ich habe vor, im Herbst einen Kurs auf Niveau B1 zu ___.",
+          "answer": "machen",
+          "tr": "Sonbaharda B1 seviyesinde bir kursa gitmeyi düşünüyorum.",
+          "hint_tr": "Kursa gitmeyi derken sonda **zu machen** gelir.",
+          "also_ok": [
+            "besuchen"
+          ]
+        }
       ]
     },
     {
@@ -636,42 +1779,119 @@
       "art": "der",
       "pl": "Fortschritte",
       "collocations": [
-        { "de": "Fortschritte machen", "tr": "ilerlemek" },
-        { "de": "große Fortschritte", "tr": "büyük ilerleme" },
-        { "de": "kleine Fortschritte", "tr": "küçük ilerlemeler" },
-        { "de": "Fortschritte sehen", "tr": "ilerlemeyi görmek" }
+        {
+          "de": "Fortschritte machen",
+          "tr": "ilerlemek"
+        },
+        {
+          "de": "große Fortschritte",
+          "tr": "büyük ilerleme"
+        },
+        {
+          "de": "kleine Fortschritte",
+          "tr": "küçük ilerlemeler"
+        },
+        {
+          "de": "Fortschritte sehen",
+          "tr": "ilerlemeyi görmek"
+        }
       ],
-      "patterns": ["pt:perfekt-haben", "pt:verb-zweite-stelle", "pt:w-frage"],
+      "patterns": [
+        "pt:perfekt-haben",
+        "pt:verb-zweite-stelle",
+        "pt:w-frage"
+      ],
       "register": "neutral",
-      "related": ["lx:verbessern", "lx:Erfolg", "lx:Übung"],
+      "related": [
+        "lx:verbessern",
+        "lx:Erfolg",
+        "lx:Übung"
+      ],
       "mistakes_tr": [
         "İlerleme kaydettim derken Türkçedeki gibi **Ich habe Fortschritt gemacht** yanlış. Doğrusu **Ich habe Fortschritte gemacht**."
       ],
       "examples": [
-        { "id": "lx:Fortschritt:1", "de": "Du machst echt Fortschritte!", "tr": "Gerçekten ilerliyorsun!", "layer": "alltag" },
-        { "id": "lx:Fortschritt:2", "de": "In drei Monaten habe ich große Fortschritte gemacht.", "tr": "Üç ayda büyük ilerleme kaydettim.", "layer": "hd" },
-        { "id": "lx:Fortschritt:3", "de": "– Und, wie läuft der Kurs? – Gut, ich sehe kleine Fortschritte.", "tr": "– Eee, kurs nasıl gidiyor? – İyi, küçük ilerlemeler görüyorum.", "layer": "hd", "dialog": true },
-        { "id": "lx:Fortschritt:4", "de": "– Ich habe vor, jeden Tag zu üben. – Super, dann wirst du schnell Fortschritte machen.", "tr": "– Her gün pratik yapmayı düşünüyorum. – Süper, o zaman hızla ilerleyeceksin.", "layer": "hd", "dialog": true },
-        { "id": "lx:Fortschritt:5", "de": "– Hab ich Fortschritte gemacht? – Na klar, und wie!", "tr": "– İlerleme kaydettim mi? – Tabii ki, hem de nasıl!", "layer": "alltag", "dialog": true }
+        {
+          "id": "lx:Fortschritt:1",
+          "de": "Du machst echt Fortschritte!",
+          "tr": "Gerçekten ilerliyorsun!",
+          "layer": "alltag"
+        },
+        {
+          "id": "lx:Fortschritt:2",
+          "de": "In drei Monaten habe ich große Fortschritte gemacht.",
+          "tr": "Üç ayda büyük ilerleme kaydettim.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Fortschritt:3",
+          "de": "– Und, wie läuft der Kurs? – Gut, ich sehe kleine Fortschritte.",
+          "tr": "– Eee, kurs nasıl gidiyor? – İyi, küçük ilerlemeler görüyorum.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:Fortschritt:4",
+          "de": "– Ich habe vor, jeden Tag zu üben. – Super, dann wirst du schnell Fortschritte machen.",
+          "tr": "– Her gün pratik yapmayı düşünüyorum. – Süper, o zaman hızla ilerleyeceksin.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:Fortschritt:5",
+          "de": "– Hab ich Fortschritte gemacht? – Na klar, und wie!",
+          "tr": "– İlerleme kaydettim mi? – Tabii ki, hem de nasıl!",
+          "layer": "alltag",
+          "dialog": true
+        }
       ],
       "level": "A2",
       "tier": "K1",
       "freqRank": 3139,
-      "domains": ["strategie", "arbeit"],
+      "domains": [
+        "strategie",
+        "arbeit"
+      ],
       "exp": {
         "anlam_tr": "**der Fortschritt** bir işte ya da öğrenmede ileri gitmek, yani ilerlemedir.",
         "ne_zaman_tr": "Kursta, işte ya da sağlıkta iyiye gidişi anlatırken.",
         "parcalar": [
-          { "de": "fort", "tr": "ileri" },
-          { "de": "Schritt", "tr": "adım" }
+          {
+            "de": "fort",
+            "tr": "ileri"
+          },
+          {
+            "de": "Schritt",
+            "tr": "adım"
+          }
         ],
         "ipucu_tr": "Kelimesi kelimesine ileri adım demek."
       },
       "forms": [
-        { "de": "Du machst echt ___!", "answer": "Fortschritte", "tr": "Gerçekten ilerliyorsun!", "hint_tr": "İlerliyorsun derken **Du machst echt Fortschritte** denir." },
-        { "de": "In drei Monaten habe ich große Fortschritte ___.", "answer": "gemacht", "tr": "Üç ayda büyük ilerleme kaydettim.", "hint_tr": "Kaydettim derken sonda **gemacht** gelir." },
-        { "de": "Gut, ich sehe kleine ___.", "answer": "Fortschritte", "tr": "İyi, küçük ilerlemeler görüyorum.", "hint_tr": "Küçük ilerlemeler derken **kleine Fortschritte** denir." },
-        { "de": "Dann wirst du schnell Fortschritte ___.", "answer": "machen", "tr": "O zaman hızla ilerleyeceksin.", "hint_tr": "İlerleyeceksin derken **wirst du** ve sonda **machen** gelir." }
+        {
+          "de": "Du machst echt ___!",
+          "answer": "Fortschritte",
+          "tr": "Gerçekten ilerliyorsun!",
+          "hint_tr": "İlerliyorsun derken **Du machst echt Fortschritte** denir."
+        },
+        {
+          "de": "In drei Monaten habe ich große Fortschritte ___.",
+          "answer": "gemacht",
+          "tr": "Üç ayda büyük ilerleme kaydettim.",
+          "hint_tr": "Kaydettim derken sonda **gemacht** gelir."
+        },
+        {
+          "de": "Gut, ich sehe kleine ___.",
+          "answer": "Fortschritte",
+          "tr": "İyi, küçük ilerlemeler görüyorum.",
+          "hint_tr": "Küçük ilerlemeler derken **kleine Fortschritte** denir."
+        },
+        {
+          "de": "Dann wirst du schnell Fortschritte ___.",
+          "answer": "machen",
+          "tr": "O zaman hızla ilerleyeceksin.",
+          "hint_tr": "İlerleyeceksin derken **wirst du** ve sonda **machen** gelir."
+        }
       ]
     },
     {
@@ -679,45 +1899,131 @@
       "de": "beibringen",
       "tr": "öğretmek",
       "pos": "verb",
-      "verb": { "praesens3": "bringt bei", "praeteritum": "brachte bei", "perfekt": "hat beigebracht", "aux": "haben", "separable": "bei", "case": ["dat", "akk"] },
+      "verb": {
+        "praesens3": "bringt bei",
+        "praeteritum": "brachte bei",
+        "perfekt": "hat beigebracht",
+        "aux": "haben",
+        "separable": "bei",
+        "case": [
+          "dat",
+          "akk"
+        ]
+      },
       "collocations": [
-        { "de": "jemandem Deutsch beibringen", "tr": "birine Almanca öğretmek" },
-        { "de": "sich etwas selbst beibringen", "tr": "bir şeyi kendi kendine öğrenmek" },
-        { "de": "Kannst du mir das beibringen?", "tr": "Bunu bana öğretebilir misin?" },
-        { "de": "den Kindern Schwimmen beibringen", "tr": "çocuklara yüzme öğretmek" }
+        {
+          "de": "jemandem Deutsch beibringen",
+          "tr": "birine Almanca öğretmek"
+        },
+        {
+          "de": "sich etwas selbst beibringen",
+          "tr": "bir şeyi kendi kendine öğrenmek"
+        },
+        {
+          "de": "Kannst du mir das beibringen?",
+          "tr": "Bunu bana öğretebilir misin?"
+        },
+        {
+          "de": "den Kindern Schwimmen beibringen",
+          "tr": "çocuklara yüzme öğretmek"
+        }
       ],
-      "patterns": ["pt:trennbar", "pt:perfekt-haben", "pt:ja-nein-frage"],
+      "patterns": [
+        "pt:trennbar",
+        "pt:perfekt-haben",
+        "pt:ja-nein-frage"
+      ],
       "register": "neutral",
-      "related": ["lx:lernen", "lx:zeigen", "lx:erklären"],
+      "related": [
+        "lx:lernen",
+        "lx:zeigen",
+        "lx:erklären"
+      ],
       "mistakes_tr": [
         "Bana Almanca öğretiyor derken **Er beibringt mir Deutsch** yanlış. Doğrusu **Er bringt mir Deutsch bei**.",
         "Kendi kendime öğrendim derken **Ich habe mich selbst gelernt** yanlış. Doğrusu **Ich habe es mir selbst beigebracht**."
       ],
       "examples": [
-        { "id": "lx:beibringen:1", "de": "Ein Kollege hat versprochen, mir das Tanzen beizubringen.", "tr": "Bir iş arkadaşım bana dans etmeyi öğreteceğine söz verdi.", "layer": "hd" },
-        { "id": "lx:beibringen:2", "de": "Wer hat dir so gut Deutsch beigebracht?", "tr": "Sana bu kadar iyi Almancayı kim öğretti?", "layer": "hd" },
-        { "id": "lx:beibringen:3", "de": "– Kannst du mir das beibringen? – Klar, ist ganz einfach!", "tr": "– Bunu bana öğretebilir misin? – Tabii, çok kolay!", "layer": "alltag", "dialog": true },
-        { "id": "lx:beibringen:4", "de": "– Wie hast du Kochen gelernt? – Das habe ich mir selbst beigebracht.", "tr": "– Yemek yapmayı nasıl öğrendin? – Kendi kendime öğrendim.", "layer": "hd", "dialog": true },
-        { "id": "lx:beibringen:5", "de": "Ihr Opa brachte ihr Schwimmen bei, als sie sechs war.", "tr": "Dedesi ona altı yaşındayken yüzme öğretti.", "layer": "hd" }
+        {
+          "id": "lx:beibringen:1",
+          "de": "Ein Kollege hat versprochen, mir das Tanzen beizubringen.",
+          "tr": "Bir iş arkadaşım bana dans etmeyi öğreteceğine söz verdi.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:beibringen:2",
+          "de": "Wer hat dir so gut Deutsch beigebracht?",
+          "tr": "Sana Almancayı bu kadar iyi kim öğretti?",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:beibringen:3",
+          "de": "– Kannst du mir das beibringen? – Klar, ist ganz einfach!",
+          "tr": "– Bunu bana öğretebilir misin? – Tabii, çok kolay!",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:beibringen:4",
+          "de": "– Wie hast du Kochen gelernt? – Das habe ich mir selbst beigebracht.",
+          "tr": "– Yemek yapmayı nasıl öğrendin? – Kendi kendime öğrendim.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:beibringen:5",
+          "de": "Ihr Opa brachte ihr Schwimmen bei, als sie sechs war.",
+          "tr": "Dedesi ona altı yaşındayken yüzme öğretti.",
+          "layer": "hd"
+        }
       ],
       "level": "A2",
       "tier": "K1",
       "freqRank": 1330,
-      "domains": ["strategie", "freizeit"],
+      "domains": [
+        "strategie",
+        "freizeit"
+      ],
       "exp": {
         "anlam_tr": "**beibringen** birine bir şeyi yapmayı göstererek öğretmektir.",
         "ne_zaman_tr": "Bir beceriyi öğretirken ya da öğrenmek isterken.",
         "parcalar": [
-          { "de": "bei", "tr": "yanına" },
-          { "de": "bringen", "tr": "getirmek" }
+          {
+            "de": "bei",
+            "tr": "yanına"
+          },
+          {
+            "de": "bringen",
+            "tr": "getirmek"
+          }
         ],
         "ipucu_tr": "Öğreten **beibringen**, öğrenen **lernen** der."
       },
       "forms": [
-        { "de": "Kannst du mir das ___?", "answer": "beibringen", "tr": "Bunu bana öğretebilir misin?", "hint_tr": "Öğretebilir misin derken **Kannst du mir das beibringen** denir." },
-        { "de": "Er bringt mir Deutsch ___.", "answer": "bei", "tr": "Bana Almanca öğretiyor.", "hint_tr": "**bei** sona gider: **Er bringt mir Deutsch bei**." },
-        { "de": "Das habe ich mir selbst ___.", "answer": "beigebracht", "tr": "Kendi kendime öğrendim.", "hint_tr": "Kendi kendime öğrendim derken **Das habe ich mir selbst beigebracht** denir." },
-        { "de": "Ein Kollege hat versprochen, mir das Tanzen ___.", "answer": "beizubringen", "tr": "Bir iş arkadaşım bana dans etmeyi öğreteceğine söz verdi.", "hint_tr": "Söz verdi derken **versprochen** ve sonda **beizubringen** gelir." }
+        {
+          "de": "Kannst du mir das ___?",
+          "answer": "beibringen",
+          "tr": "Bunu bana öğretebilir misin?",
+          "hint_tr": "Öğretebilir misin derken **Kannst du mir das beibringen** denir."
+        },
+        {
+          "de": "Er bringt mir Deutsch ___.",
+          "answer": "bei",
+          "tr": "Bana Almanca öğretiyor.",
+          "hint_tr": "**bei** sona gider: **Er bringt mir Deutsch bei**."
+        },
+        {
+          "de": "Das habe ich mir selbst ___.",
+          "answer": "beigebracht",
+          "tr": "Kendi kendime öğrendim.",
+          "hint_tr": "Kendi kendime öğrendim derken **Das habe ich mir selbst beigebracht** denir."
+        },
+        {
+          "de": "Ein Kollege hat versprochen, mir das Tanzen ___.",
+          "answer": "beizubringen",
+          "tr": "Bir iş arkadaşım bana dans etmeyi öğreteceğine söz verdi.",
+          "hint_tr": "Öğreteceğine söz verdi derken sonda **beizubringen** gelir."
+        }
       ]
     },
     {
@@ -728,40 +2034,109 @@
       "art": "der",
       "pl": "Erfolge",
       "collocations": [
-        { "de": "Viel Erfolg!", "tr": "Başarılar!" },
-        { "de": "Erfolg haben", "tr": "başarılı olmak" },
-        { "de": "ein großer Erfolg", "tr": "büyük bir başarı" },
-        { "de": "ein voller Erfolg", "tr": "tam bir başarı" }
+        {
+          "de": "Viel Erfolg!",
+          "tr": "Başarılar!"
+        },
+        {
+          "de": "Erfolg haben",
+          "tr": "başarılı olmak"
+        },
+        {
+          "de": "ein großer Erfolg",
+          "tr": "büyük bir başarı"
+        },
+        {
+          "de": "ein voller Erfolg",
+          "tr": "tam bir başarı"
+        }
       ],
-      "patterns": ["pt:kein", "pt:verb-zweite-stelle", "pt:w-frage"],
+      "patterns": [
+        "pt:kein",
+        "pt:verb-zweite-stelle",
+        "pt:w-frage"
+      ],
       "register": "neutral",
-      "related": ["lx:schaffen", "lx:Glück", "lx:Fortschritt"],
+      "related": [
+        "lx:schaffen",
+        "lx:Glück",
+        "lx:Fortschritt"
+      ],
       "mistakes_tr": [
-        "Başarılar dilerken Türkçedeki gibi **Viele Erfolge!** denmez. Doğrusu **Viel Erfolg!**",
+        "Başarılar dilerken Türkçedeki gibi **Viele Erfolge!** pek duyulmaz. Herkesin dediği **Viel Erfolg!**",
         "Başarılı oldu derken **Er war Erfolg** yanlış. Doğrusu **Er hatte Erfolg**."
       ],
       "examples": [
-        { "id": "lx:Erfolg:1", "de": "Viel Erfolg bei der Prüfung!", "tr": "Sınavda başarılar!", "layer": "hd" },
-        { "id": "lx:Erfolg:2", "de": "Sie plant, ein kleines Café aufzumachen, und ich wünsche ihr viel Erfolg.", "tr": "Küçük bir kafe açmayı planlıyor, ona bol başarılar diliyorum.", "layer": "hd" },
-        { "id": "lx:Erfolg:3", "de": "– Morgen habe ich die Prüfung. – Viel Erfolg! Du schaffst das.", "tr": "– Yarın sınavım var. – Başarılar! Bunu başarırsın.", "layer": "hd", "dialog": true },
-        { "id": "lx:Erfolg:4", "de": "– Und, wie war das Fest? – Ein voller Erfolg!", "tr": "– Eee, şenlik nasıldı? – Tam bir başarı!", "layer": "alltag", "dialog": true },
-        { "id": "lx:Erfolg:5", "de": "Ohne Übung kein Erfolg.", "tr": "Pratik olmadan başarı olmaz.", "layer": "alltag" }
+        {
+          "id": "lx:Erfolg:1",
+          "de": "Viel Erfolg bei der Prüfung!",
+          "tr": "Sınavda başarılar!",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Erfolg:2",
+          "de": "Sie plant, ein kleines Café aufzumachen, und ich wünsche ihr viel Erfolg.",
+          "tr": "Küçük bir kafe açmayı planlıyor, ona bol başarılar diliyorum.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Erfolg:3",
+          "de": "– Morgen habe ich die Prüfung. – Viel Erfolg! Du schaffst das.",
+          "tr": "– Yarın sınavım var. – Başarılar! Bunu başarırsın.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:Erfolg:4",
+          "de": "– Und, wie war das Fest? – Ein voller Erfolg!",
+          "tr": "– Eee, şenlik nasıldı? – Tam bir başarı!",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:Erfolg:5",
+          "de": "Ohne Übung kein Erfolg.",
+          "tr": "Pratik olmadan başarı olmaz.",
+          "layer": "alltag"
+        }
       ],
       "level": "A2",
       "tier": "K1",
-      "freqRank": 1105,
-      "domains": ["arbeit", "smalltalk"],
+      "domains": [
+        "arbeit",
+        "smalltalk"
+      ],
       "exp": {
         "anlam_tr": "**der Erfolg** bir işi istediğin gibi bitirmek, yani başarıdır.",
         "ne_zaman_tr": "Sınav, iş ya da yeni bir başlangıç öncesinde iyi dilek olarak.",
         "parcalar": [],
-        "ipucu_tr": "Birine iyi dilek olarak kısa ve sık **Viel Erfolg!** dersin."
+        "ipucu_tr": "Birine başarı dilerken kısaca **Viel Erfolg!** dersin."
       },
       "forms": [
-        { "de": "Viel ___ bei der Prüfung!", "answer": "Erfolg", "tr": "Sınavda başarılar!", "hint_tr": "Başarılar derken **Viel Erfolg** denir." },
-        { "de": "Viel Erfolg! Du ___ das.", "answer": "schaffst", "tr": "Başarılar! Bunu başarırsın.", "hint_tr": "Başarırsın derken **Du schaffst das** denir." },
-        { "de": "Ein voller ___!", "answer": "Erfolg", "tr": "Tam bir başarı!", "hint_tr": "Tam bir başarı derken **Ein voller Erfolg** denir." },
-        { "de": "Ohne Übung kein ___.", "answer": "Erfolg", "tr": "Pratik olmadan başarı olmaz.", "hint_tr": "Başarı olmaz derken **kein Erfolg** denir." }
+        {
+          "de": "Viel ___ bei der Prüfung!",
+          "answer": "Erfolg",
+          "tr": "Sınavda başarılar!",
+          "hint_tr": "Başarılar derken **Viel Erfolg** denir."
+        },
+        {
+          "de": "Viel Erfolg! Du ___ das.",
+          "answer": "schaffst",
+          "tr": "Başarılar! Bunu başarırsın.",
+          "hint_tr": "Başarırsın derken **Du schaffst das** denir."
+        },
+        {
+          "de": "Ein voller ___!",
+          "answer": "Erfolg",
+          "tr": "Tam bir başarı!",
+          "hint_tr": "Tam bir başarı derken **Ein voller Erfolg** denir."
+        },
+        {
+          "de": "Ohne Übung kein ___.",
+          "answer": "Erfolg",
+          "tr": "Pratik olmadan başarı olmaz.",
+          "hint_tr": "Başarı olmaz derken **kein Erfolg** denir."
+        }
       ]
     },
     {
@@ -772,39 +2147,108 @@
       "art": "die",
       "pl": "Karrieren",
       "collocations": [
-        { "de": "Karriere machen", "tr": "kariyer yapmak" },
-        { "de": "eine Karriere planen", "tr": "kariyer planlamak" },
-        { "de": "am Anfang der Karriere", "tr": "kariyerin başında" },
-        { "de": "für die Karriere umziehen", "tr": "kariyer için taşınmak" }
+        {
+          "de": "Karriere machen",
+          "tr": "kariyer yapmak"
+        },
+        {
+          "de": "eine Karriere planen",
+          "tr": "kariyer planlamak"
+        },
+        {
+          "de": "am Anfang der Karriere",
+          "tr": "kariyerin başında"
+        },
+        {
+          "de": "für die Karriere umziehen",
+          "tr": "kariyer için taşınmak"
+        }
       ],
-      "patterns": ["pt:w-frage", "pt:trennbar", "pt:perfekt-sein"],
+      "patterns": [
+        "pt:w-frage",
+        "pt:trennbar",
+        "pt:perfekt-sein"
+      ],
       "register": "neutral",
-      "related": ["lx:Beruf", "lx:Job", "lx:Erfolg"],
+      "related": [
+        "lx:Beruf",
+        "lx:Job",
+        "lx:Erfolg"
+      ],
       "mistakes_tr": [
-        "Yazıda Türkçedeki kariyer gibi **Karier** yanlış. Doğrusu **Karriere**."
+        "Türkçedeki kariyer gibi tek r ile **Kariere** yazmak yanlış. Doğrusu iki r ile **Karriere**."
       ],
       "examples": [
-        { "id": "lx:Karriere:1", "de": "Sie plant, in einer großen Firma Karriere zu machen.", "tr": "Büyük bir şirkette kariyer yapmayı planlıyor.", "layer": "hd" },
-        { "id": "lx:Karriere:2", "de": "Für seine Karriere ist er nach München gezogen.", "tr": "Kariyeri için Münih'e taşındı.", "layer": "hd" },
-        { "id": "lx:Karriere:3", "de": "– Willst du Karriere machen? – Nee, mir ist die Familie wichtiger.", "tr": "– Kariyer yapmak istiyor musun? – Yok, benim için aile daha önemli.", "layer": "alltag", "dialog": true },
-        { "id": "lx:Karriere:4", "de": "– Was hast du nach der Ausbildung vor? – Ich habe vor, in einem Hotel Karriere zu machen.", "tr": "– Meslek eğitiminden sonra ne yapmayı düşünüyorsun? – Bir otelde kariyer yapmayı düşünüyorum.", "layer": "hd", "dialog": true },
-        { "id": "lx:Karriere:5", "de": "Am Anfang ihrer Karriere arbeitete sie in einer Bäckerei.", "tr": "Kariyerinin başında bir fırında çalıştı.", "layer": "hd" }
+        {
+          "id": "lx:Karriere:1",
+          "de": "Sie plant, in einer großen Firma Karriere zu machen.",
+          "tr": "Büyük bir şirkette kariyer yapmayı planlıyor.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Karriere:2",
+          "de": "Für seine Karriere ist er nach München gezogen.",
+          "tr": "Kariyeri için Münih'e taşındı.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Karriere:3",
+          "de": "– Willst du Karriere machen? – Nee, mir ist die Familie wichtiger.",
+          "tr": "– Kariyer yapmak istiyor musun? – Yok, benim için aile daha önemli.",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:Karriere:4",
+          "de": "– Was hast du nach der Ausbildung vor? – Ich habe vor, in einem Hotel Karriere zu machen.",
+          "tr": "– Meslek eğitiminden sonra ne yapmayı düşünüyorsun? – Bir otelde kariyer yapmayı düşünüyorum.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:Karriere:5",
+          "de": "Am Anfang ihrer Karriere arbeitete sie in einer Bäckerei.",
+          "tr": "Kariyerinin başında bir fırında çalıştı.",
+          "layer": "hd"
+        }
       ],
       "level": "A2",
       "tier": "K1",
       "freqRank": 1523,
-      "domains": ["arbeit"],
+      "domains": [
+        "arbeit"
+      ],
       "exp": {
         "anlam_tr": "**die Karriere** bir meslekte yıllar içinde yükselmek, yani kariyerdir.",
         "ne_zaman_tr": "İş, meslek ve gelecek planlarından söz ederken.",
         "parcalar": [],
-        "ipucu_tr": "Kariyer yapmak derken araya bir şey koymadan **Karriere machen** dersin."
+        "ipucu_tr": "Kariyer yapmak derken çoğu zaman **eine** olmadan **Karriere machen** dersin."
       },
       "forms": [
-        { "de": "Sie plant, in einer großen Firma Karriere zu ___.", "answer": "machen", "tr": "Büyük bir şirkette kariyer yapmayı planlıyor.", "hint_tr": "Kariyer yapmayı derken sonda **Karriere zu machen** gelir." },
-        { "de": "Willst du ___ machen?", "answer": "Karriere", "tr": "Kariyer yapmak istiyor musun?", "hint_tr": "Kariyer yapmak derken **Karriere machen** denir." },
-        { "de": "Für seine ___ ist er nach München gezogen.", "answer": "Karriere", "tr": "Kariyeri için Münih'e taşındı.", "hint_tr": "Kariyeri için derken **Für seine Karriere** denir." },
-        { "de": "Am Anfang ihrer ___ arbeitete sie in einer Bäckerei.", "answer": "Karriere", "tr": "Kariyerinin başında bir fırında çalıştı.", "hint_tr": "Kariyerinin başında derken **Am Anfang ihrer Karriere** denir." }
+        {
+          "de": "Sie plant, in einer großen Firma Karriere zu ___.",
+          "answer": "machen",
+          "tr": "Büyük bir şirkette kariyer yapmayı planlıyor.",
+          "hint_tr": "Kariyer yapmayı derken sonda **Karriere zu machen** gelir."
+        },
+        {
+          "de": "Willst du ___ machen?",
+          "answer": "Karriere",
+          "tr": "Kariyer yapmak istiyor musun?",
+          "hint_tr": "Kariyer yapmak derken **Karriere machen** denir."
+        },
+        {
+          "de": "Für seine ___ ist er nach München gezogen.",
+          "answer": "Karriere",
+          "tr": "Kariyeri için Münih'e taşındı.",
+          "hint_tr": "Onun (erkek) kariyeri için derken **Für seine Karriere** denir."
+        },
+        {
+          "de": "Am Anfang ihrer ___ arbeitete sie in einer Bäckerei.",
+          "answer": "Karriere",
+          "tr": "Kariyerinin başında bir fırında çalıştı.",
+          "hint_tr": "Kadın için kariyerinin başında derken **Am Anfang ihrer Karriere** denir."
+        }
       ]
     },
     {
@@ -815,41 +2259,115 @@
       "art": "der",
       "pl": "Anfänger",
       "collocations": [
-        { "de": "ein Kurs für Anfänger", "tr": "yeni başlayanlar için bir kurs" },
-        { "de": "noch Anfänger sein", "tr": "daha acemi olmak" },
-        { "de": "am Anfang sind alle Anfänger", "tr": "başta herkes acemidir" }
+        {
+          "de": "ein Kurs für Anfänger",
+          "tr": "yeni başlayanlar için bir kurs"
+        },
+        {
+          "de": "noch Anfänger sein",
+          "tr": "henüz acemi olmak"
+        },
+        {
+          "de": "am Anfang sind alle Anfänger",
+          "tr": "başta herkes acemidir"
+        }
       ],
-      "patterns": ["pt:es-gibt", "pt:fuer-akk", "pt:trennbar"],
+      "patterns": [
+        "pt:es-gibt",
+        "pt:fuer-akk",
+        "pt:trennbar"
+      ],
       "register": "neutral",
-      "related": ["lx:anfangen", "lx:Kurs", "lx:Niveau"],
+      "related": [
+        "lx:anfangen",
+        "lx:Kurs",
+        "lx:Niveau"
+      ],
       "mistakes_tr": [
-        "Almancada yeni başlayanım derken **Ich bin neu in Deutsch** yanlış. Doğrusu **Ich bin Anfänger** ya da **Ich bin Anfängerin**."
+        "Almancada yeniyim derken **Ich bin neu in Deutsch** denmez. Doğrusu **Ich bin Anfänger** ya da **Ich bin Anfängerin**."
       ],
       "examples": [
-        { "id": "lx:Anfänger:1", "de": "Gibt es hier auch einen Kurs für Anfänger?", "tr": "Burada yeni başlayanlar için de bir kurs var mı?", "layer": "hd" },
-        { "id": "lx:Anfänger:2", "de": "– Warum fährt der so langsam? – Der ist bestimmt noch Anfänger.", "tr": "– Bu adam neden bu kadar yavaş sürüyor? – Kesin daha acemidir.", "layer": "alltag", "dialog": true },
-        { "id": "lx:Anfänger:3", "de": "Wir haben vor, im Herbst einen Kochkurs für Anfänger zu machen.", "tr": "Sonbaharda yeni başlayanlar için bir yemek kursuna gitmeyi düşünüyoruz.", "layer": "hd" },
-        { "id": "lx:Anfänger:4", "de": "– Ist der Kurs schwer? – Nein, er ist für Anfänger.", "tr": "– Kurs zor mu? – Hayır, yeni başlayanlar için.", "layer": "hd", "dialog": true },
-        { "id": "lx:Anfänger:5", "de": "Keine Sorge, am Anfang sind alle Anfänger.", "tr": "Merak etme, başta herkes acemidir.", "layer": "alltag" }
+        {
+          "id": "lx:Anfänger:1",
+          "de": "Gibt es hier auch einen Kurs für Anfänger?",
+          "tr": "Burada yeni başlayanlar için de bir kurs var mı?",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Anfänger:2",
+          "de": "– Warum fährt der so langsam? – Der ist bestimmt noch Anfänger.",
+          "tr": "– Bu adam neden bu kadar yavaş sürüyor? – Kesin henüz acemidir.",
+          "layer": "alltag",
+          "dialog": true
+        },
+        {
+          "id": "lx:Anfänger:3",
+          "de": "Wir haben vor, im Herbst einen Kochkurs für Anfänger zu machen.",
+          "tr": "Sonbaharda yeni başlayanlar için bir yemek kursuna gitmeyi düşünüyoruz.",
+          "layer": "hd"
+        },
+        {
+          "id": "lx:Anfänger:4",
+          "de": "– Ist der Kurs schwer? – Nein, er ist für Anfänger.",
+          "tr": "– Kurs zor mu? – Hayır, yeni başlayanlar için.",
+          "layer": "hd",
+          "dialog": true
+        },
+        {
+          "id": "lx:Anfänger:5",
+          "de": "Keine Sorge, am Anfang sind alle Anfänger.",
+          "tr": "Merak etme, başta herkes acemidir.",
+          "layer": "alltag"
+        }
       ],
       "level": "A2",
       "tier": "K1",
       "freqRank": 4605,
-      "domains": ["strategie", "sport", "freizeit"],
+      "domains": [
+        "strategie",
+        "sport",
+        "freizeit"
+      ],
       "exp": {
         "anlam_tr": "**der Anfänger** bir işi ya da bir dili yeni öğrenmeye başlamış kişidir.",
         "ne_zaman_tr": "Kurs seçerken, sporda ya da bir işe yeni başlarken.",
         "parcalar": [
-          { "de": "anfangen", "tr": "başlamak" },
-          { "de": "-er", "tr": "yapan kişi" }
+          {
+            "de": "anfangen",
+            "tr": "başlamak"
+          },
+          {
+            "de": "-er",
+            "tr": "yapan kişi"
+          }
         ],
         "ipucu_tr": "Kadın için **die Anfängerin** dersin."
       },
       "forms": [
-        { "de": "Gibt es hier auch einen Kurs für ___?", "answer": "Anfänger", "tr": "Burada yeni başlayanlar için de bir kurs var mı?", "hint_tr": "Yeni başlayanlar için derken **für Anfänger** denir." },
-        { "de": "Der ist bestimmt noch ___.", "answer": "Anfänger", "tr": "Kesin daha acemidir.", "hint_tr": "Daha acemi derken **noch Anfänger** denir." },
-        { "de": "Keine Sorge, am Anfang sind alle ___.", "answer": "Anfänger", "tr": "Merak etme, başta herkes acemidir.", "hint_tr": "Herkes acemidir derken **alle Anfänger** denir." },
-        { "de": "Wir haben vor, im Herbst einen Kochkurs für Anfänger ___ machen.", "answer": "zu", "tr": "Sonbaharda yeni başlayanlar için bir yemek kursuna gitmeyi düşünüyoruz.", "hint_tr": "Gitmeyi düşünüyoruz derken sonda **zu machen** gelir." }
+        {
+          "de": "Gibt es hier auch einen Kurs für ___?",
+          "answer": "Anfänger",
+          "tr": "Burada yeni başlayanlar için de bir kurs var mı?",
+          "hint_tr": "Yeni başlayanlar için derken **für Anfänger** denir."
+        },
+        {
+          "de": "Der ist bestimmt noch ___.",
+          "answer": "Anfänger",
+          "tr": "Kesin henüz acemidir.",
+          "hint_tr": "Henüz acemi derken **noch Anfänger** denir."
+        },
+        {
+          "de": "Keine Sorge, am Anfang sind alle ___.",
+          "answer": "Anfänger",
+          "tr": "Merak etme, başta herkes acemidir.",
+          "hint_tr": "Herkes acemidir derken **alle Anfänger** denir."
+        },
+        {
+          "de": "Wir haben vor, im Herbst einen Kochkurs für Anfänger ___ machen.",
+          "answer": "zu",
+          "tr": "Sonbaharda yeni başlayanlar için bir yemek kursuna gitmeyi düşünüyoruz.",
+          "hint_tr": "Gitmeyi düşünüyoruz derken sonda **zu machen** gelir."
+        }
       ]
     }
   ]
