@@ -94,4 +94,28 @@ Not: `grammar.json` içinde `**kalın**` işareti ilk kez bu beş konuda kullan�
 
 Denetim (`kontrol.sh 11 --tam`): `→ 3 hata, 358 uyarı` (yalnız Quittung, Umtausch, Einkaufswagen), dikiş `İhlal: 0`. Kendi taramam (terim, `;`, `=`, `…`, uzun cümle): kalan 0.
 
+## Örneklem tam turu (`docs/v2/reviews/ic9/orneklem-h11.md`; görülmemiş durumlar)
+
+Yöntem: yedi durumun `prompt_de` ve bütün `accepted` biçimleri betikle 71–77. gün dosyaları ve hafta testindeki bütün Almanca satırlarla (tam satır ve cümle cümle) karşılaştırıldı.
+
+| durum | bulgu | yapılan |
+|---|---|---|
+| g1 (cd:71) | Kaffee + müde 71. günün kalıbı; bir biçim derste aynen vardı | Yeniden yazıldı: antrenman sonrası Basti "Bist du müde?" diye soruyor; cevap `Ich fühle mich gut. Müde bin ich nur, wenn ich zu wenig schlafe.` (6 biçim) |
+| g2 (cd:72) | Äpfel + Kilo 72. günle aynı ürün | Ürün Kartoffeln, sebze tezgâhı; soru cümlesi `Guten Morgen! Was möchten Sie?` |
+| g3 (cd:73) | Yalnız kalıp parçası ortak (`Haben Sie noch welche?`); yer, ürün, kişi farklı | Değişmedi |
+| g4 (cd:74) | `Ich hätte gern einen Kaffee.` ve garson cümlesi 74. günde aynen vardı | İçecek Tee; soru cümlesi `Guten Tag! Was bekommen Sie?` |
+| g5 (cd:75) | 75. günün kopyası (yer, yemek, tutar, bahşiş, cümleler) | Yeniden yazıldı: kurstan sonra kafe (`pl:sprachkurs`), adsız kurs arkadaşı, garson `Zahlen Sie zusammen?`, çay + bir dilim kek, 7,20 → 8: `Nein, getrennt, bitte. Ich hatte einen Tee und ein Stück Kuchen. Machen Sie acht.` (6 biçim) |
+| g6 (cd:76) | Yalnız kalıp ortak (`Ich bin dran.`); peynir tezgâhı yeni | `Einmal Käse, bitte.` → `Jetzt bin ich dran. Ein Stück Käse, bitte.` (doğal değildi) |
+| g7 (cd:77) | Yalnız karşı tarafın cümlesi ortak; eczane ve ikinci kart yeni | Değişmedi |
+
+Sonuç: yedi durumun hiçbir `accepted` biçimi derslerde tam satır olarak geçmiyor. Karşı tarafın cümlesi g6 ve g7'de ders cümlesiyle aynı kaldı (`Wer ist der Nächste?`, `Ihre Karte geht leider nicht.`); bunlar öğrencinin üretimi değil. Yeni sözcükler (schlafen, Sport, Kartoffeln, Tee, Kuchen, Stück, acht, bekommen) A1 tablosundan; görülmemiş dosyası dikiş kapsamında olmadığı için K(t) burada makineyle ölçülmedi.
+
+Küçükler:
+- gun-75 · `m1:75:s7` · tekrar eden `Was können Sie empfehlen?` (tr_de) → "Sakin bir masa rica ediyoruz." / `Wir hätten gern einen ruhigen Tisch.` (4 biçim).
+- gun-75 a1 ve gun-76 a2 `cevapla`: `accepted_adsiz` eklendi (altışar biçim; B7 uyarısı kapandı, uyarı 358 → 356).
+- gun-72 h1 · Zeugnis'in üç Türkçesi "karne" → "belge" (kurs bağlamı). Kartın kendi karşılığı "karne, diploma"; lex "belge"yi eklemeli.
+- İskelet belgesindeki g1, g2, g4, g5 tanımları artık eski; baş geliştirici güncellemeli.
+
+Denetim (`kontrol.sh 11 --tam`): `→ 3 hata, 356 uyarı` (yalnız Quittung, Umtausch, Einkaufswagen), dikiş `İhlal: 0`.
+
 KARAR: ONAY
