@@ -339,3 +339,183 @@ else:
     print(" ".join(it["id"] for it in secilen))
 ```
 </details>
+
+## 2. örneklem (23.11)
+Dilbilimcinin geri dönüşünden sonra (`docs/v2/reviews/ic4-hafta-03.md` "Örneklem geri dönüşü (23.11)") yeniden çekildi.
+
+### Dosya parmak izleri (md5, ilk 8 hane)
+gun-15 f2bb82e0 · gun-16 baf38ca3 · gun-17 069cdae0 · gun-18 f3650879 · gun-19 aa9a1042 · gun-20 a1602383 · gun-21 9586644c · hafta-sonu-testi-03 9f3386d3 · gorulmemis-03 a00e76e7
+
+### Yöntem
+- Yöntem ve betik 1. örneklemle aynı. Tek fark **`TOHUM = 20261124`**; tamamlama çekilişi tohum + 1 ile (`20261125`).
+- Katmanlar ve paylar aynı (1034 madde, hedef 104).
+- Ana çekiliş 118 madde verdi. Tamamlama hafta testinden 3 madde ekledi (`t03`, `t12`, `t10`); dikte basamaklarının beşi de ana çekilişte zaten çıkmıştı.
+- **Örneklem: 121 madde (%11,7).** 19'u 1. örneklemde de vardı; bunlar değişen dosyalarda yeniden kontrol edildi. 102 madde yeni (%9,9).
+- Bakılanlar 1. örneklemle aynı. Ek olarak dilbilimcinin geri dönüş kuralına bakıldı: kabul edilen cevap, Türkçede olmayan zaman, sınır ya da ekleme getirmemeli.
+
+### Sonuç
+| | sayı |
+|---|---:|
+| İncelenen madde | 121 |
+| HATA | 1 |
+| **Hata oranı** | **%0,8** (yalnız yeni maddelerde 1/102 = %1,0) |
+
+**KARAR: örneklem GEÇTİ** (≤ %2).
+
+### Hatalı madde
+| kimlik | sınıf | neden | önerilen düzeltme |
+|---|---|---|---|
+| `m1:17:h2:sahne:2` | P2 (aynı günde çelişki) | Halka sahnesinde Schneider Hanım'ın telesekreteri **Ich bin am Dienstag zurück.** diyor. Halka sorusunun cevabı da **Salı**. Aynı gün `a2`'deki aynı telesekreter **Am Mittwoch bin ich zurück.** diyor ve ayrıntı sorusunun cevabı **çarşamba**. Öğrenci aynı kişinin dönüş gününü aynı gün iki farklı cevapla "doğru" işaretliyor. Dilbilimcinin "başka bölümde doğru olan çeldirici" sınıfıyla aynı. | Sahne satırı **Ich bin am Mittwoch zurück.**, sonraki satır **Könnten Sie mich am Mittwoch zurückrufen?**, soru şıkları **Çarşamba** (cevap), Salı, Cuma, Bugün. |
+
+### 1. örneklemin 3 hatası: doğrulama
+| kimlik | durum | not |
+|---|---|---|
+| `m1:18:yazma` | DÜZELDİ | Görev **cumartesi saat onda**, örnek **Er ist am Samstag um zehn.**, zorunlu `Samstag`, `um`. Prova `n4`–`n6` (cumartesi on) ile tutarlı. |
+| `m1:h03:g1` | DÜZELDİ | **Wann …** kabulü çıktı, yerine **Hallo, hier ist {name}. Haben Sie am Samstag offen?** geldi. 7 kabulün hepsi evet/hayır sorusu. |
+| `m1:17:h3:g9` | DÜZELDİ | Kabuller: **Am Samstag gehe ich einkaufen.** · **Ich gehe am Samstag einkaufen.** · **Samstag gehe ich einkaufen.** |
+
+1. örneklemdeki ek bulgular da kontrol edildi:
+- 18. gün tek saat tablosuna bağlanmış:
+  - `v1:c1` cumartesi on.
+  - `a2` c3 **nur bis zwölf da**.
+  - Prova `n3`/`n3b` **nur bis zwölf**.
+  - `s10` salı on, öğleden sonra; `a2` c5 ile tutarlı.
+  - Sahne s7–s8 cumartesi öğleden sonrayı kapatıyor.
+- Anlam ekleyen kabuller (`20:h2:g7`, `19:h1:g10`, `19:h1:g7`, `17:h2:g1`) düzelmiş.
+
+### Madde madde
+| # | kimlik | tür | sonuç | not |
+|---:|---|---|---|---|
+| 1 | m1:16:a2:c1 | cevapla | GEÇTİ | |
+| 2 | m1:15:v1:c1 | cevapla | GEÇTİ | |
+| 3 | m1:15:a1:c1 | cevapla | GEÇTİ | |
+| 4 | m1:20:a2:b1:d2 | dikte orta | GEÇTİ | |
+| 5 | m1:21:a2:b1:d2 | dikte orta | GEÇTİ | |
+| 6 | m1:20:a2:b1:d4 | dikte usta | GEÇTİ | |
+| 7 | m1:16:v1:b1:d3 | dikte zor | GEÇTİ | Bankada 2 çeldirici var (**im**, **K**). |
+| 8 | m1:20:v1:b1:d3 | dikte zor | GEÇTİ | **am** iki kez, gerektiği kadar. Çeldiriciler **im**, **erste**. |
+| 9 | m1:18:a2:b1:d5 | dikte gerçek | GEÇTİ | Yeni c3 ile tutarlı. |
+| 10 | m1:19:v1:b1:d3 | dikte zor | GEÇTİ | |
+| 11 | m1:16:a1:b1:d1 | dikte kolay | GEÇTİ | Çeldiriciler c4'te geçmiyor. |
+| 12 | m1:21:a1:b1:d3 | dikte zor | GEÇTİ | |
+| 13 | m1:18:a2:b1:d2 | dikte orta | GEÇTİ | |
+| 14 | m1:18:a1:b1:d5 | dikte gerçek | GEÇTİ | |
+| 15 | m1:21:g3 | görsel | GEÇTİ | |
+| 16 | m1:17:g5 | görsel | GEÇTİ | |
+| 17 | m1:15:g5 | görsel | GEÇTİ | |
+| 18 | m1:15:g1 | görsel | GEÇTİ | |
+| 19 | m1:h03:g5 | görülmemiş | GEÇTİ | |
+| 20 | m1:h03:g7 | görülmemiş | GEÇTİ | Yeni durum ("gün ya da tarih, yanında saat") bütün kabullerle uyumlu. |
+| 21 | m1:h03:g1 | görülmemiş | GEÇTİ | Düzeltme doğrulandı. |
+| 22 | m1:16:s8 | sınav tr_de | GEÇTİ | |
+| 23 | m1:20:s3 | sınav dikte | GEÇTİ | |
+| 24 | m1:18:s5 | sınav tr_de | GEÇTİ | |
+| 25 | m1:15:s4 | sınav dikte | GEÇTİ | |
+| 26 | m1:21:s4 | sınav dikte | GEÇTİ | |
+| 27 | m1:19:s2 | sınav dikte | GEÇTİ | |
+| 28 | m1:17:s11 | sınav mini prova | GEÇTİ | **Können Sie** kabulü de kibar sayılır. |
+| 29 | m1:15:s10 | sınav sesli | GEÇTİ | |
+| 30 | m1:21:t02 | hafta testi order | GEÇTİ | |
+| 31 | m1:21:t09 | hafta testi tr_de | GEÇTİ | |
+| 32 | m1:21:t05 | hafta testi transform | GEÇTİ | |
+| 33 | m1:20:h3:g8 | halka görev | GEÇTİ | Derece sözleri (**sehr**, **wirklich**). |
+| 34 | m1:16:h1:g7 | halka görev | GEÇTİ | |
+| 35 | m1:18:h2:g10 | halka görev | GEÇTİ | Not: **Ich glaube, ich komme am Freitag um vier.** bu halkada, sahnesi cuma dördün olmadığını söyleyen halkada. Tek başına yanlış değil. |
+| 36 | m1:19:h2:g12 | halka görev | GEÇTİ | |
+| 37 | m1:17:h2:g7 | halka görev | GEÇTİ | |
+| 38 | m1:16:h3:g3 | halka görev | GEÇTİ | |
+| 39 | m1:17:h1:g1 | halka görev | GEÇTİ | |
+| 40 | m1:20:h2:g2 | halka görev | GEÇTİ | |
+| 41 | m1:21:h1:g8 | halka görev | GEÇTİ | P3: **noch ein Patient** için **başka bir hasta** daha doğal olurdu. |
+| 42 | m1:17:h1:g2 | halka görev | GEÇTİ | |
+| 43 | m1:17:h1:g3 | halka görev | GEÇTİ | |
+| 44 | m1:17:h3:g8 | halka görev | GEÇTİ | |
+| 45 | m1:20:h1:g7 | halka görev | GEÇTİ | **also** bağlaç, Türkçedeki sebep ilişkisini veriyor. |
+| 46 | m1:16:h1:g1 | halka görev | GEÇTİ | |
+| 47 | m1:19:h2:g1 | halka görev | GEÇTİ | |
+| 48 | m1:17:h2:g10 | halka görev | GEÇTİ | **beim Bahnhof** konuşmada var. |
+| 49 | m1:15:h1:g8 | halka görev | GEÇTİ | |
+| 50 | m1:17:h2:g2 | halka görev | GEÇTİ | |
+| 51 | m1:15:h3:k1 | kalıp | GEÇTİ | |
+| 52 | m1:17:h1:k1 | kalıp | GEÇTİ | |
+| 53 | m1:15:h2:k1 | kalıp | GEÇTİ | |
+| 54 | m1:18:h2:k7 | kalıp | GEÇTİ | |
+| 55 | m1:20:h3:k1 | kalıp | GEÇTİ | |
+| 56 | m1:20:h1:k1 | kalıp | GEÇTİ | |
+| 57 | m1:17:h3:k1 | kalıp | GEÇTİ | |
+| 58 | m1:18:h1:sahne:1 | halka sahne | GEÇTİ | |
+| 59 | m1:17:h2:sahne:2 | halka sahne | **HATA** | Yukarıda. |
+| 60 | m1:20:h2:sahne:2 | halka sahne | GEÇTİ | |
+| 61 | m1:19:h1:sahne:2 | halka sahne | GEÇTİ | |
+| 62 | m1:18:h1:sahne:3 | halka sahne | GEÇTİ | |
+| 63 | m1:19:h2:sahne:2 | halka sahne | GEÇTİ | |
+| 64 | m1:19:okuma:metin | okuma metni | GEÇTİ | **Am Freitag** düzeltmesi `a2` ile çelişmiyor. |
+| 65 | m1:16:okuma:metin | okuma metni | GEÇTİ | Dolap fiyatı halka sahnesiyle aynı (20 €). |
+| 66 | m1:17:okuma:metin | okuma metni | GEÇTİ | Dahili numara notu aşağıda (E-2). |
+| 67 | m1:16:o2 | okuma sorusu | GEÇTİ | Kanıt 3. |
+| 68 | m1:21:o3 | okuma sorusu | GEÇTİ | Kanıt 1. |
+| 69 | m1:16:o1 | okuma sorusu | GEÇTİ | Kanıt 1, 2. |
+| 70 | m1:15:p1:n6 | prova düğümü | GEÇTİ | |
+| 71 | m1:16:p1:n5 | prova düğümü | GEÇTİ | |
+| 72 | m1:19:p1:n2 | prova düğümü | GEÇTİ | Basti bugün bisikletle; bisikletin bozulduğunu akşamki `a2` söylüyor. Sıra tutarlı. |
+| 73 | m1:20:p1:n5 | prova düğümü | GEÇTİ | Yer tutucular doğru. |
+| 74 | m1:18:p1:n3 | prova düğümü | GEÇTİ | **nur bis zwölf** düzeltmesi doğrulandı. |
+| 75 | m1:21:p1:n8 | prova düğümü | GEÇTİ | |
+| 76 | m1:21:p1:n5:o3 | prova seçeneği | GEÇTİ | |
+| 77 | m1:15:p1:n3:o2 | prova seçeneği | GEÇTİ | |
+| 78 | m1:18:p1:n5:o1 | prova seçeneği | GEÇTİ | |
+| 79 | m1:16:p1:n3:o2 | prova seçeneği | GEÇTİ | |
+| 80 | m1:20:p1:n3:o1 | prova seçeneği | GEÇTİ | |
+| 81 | m1:19:p1:n1:o1 | prova seçeneği | GEÇTİ | |
+| 82 | m1:18:p1:n3b:o1 | prova seçeneği | GEÇTİ | |
+| 83 | m1:19:p1:n3:o2 | prova seçeneği | GEÇTİ | |
+| 84 | m1:15:p1:n4:o1 | prova seçeneği | GEÇTİ | |
+| 85 | m1:19:p1:n2:o2 | prova seçeneği | GEÇTİ | Prova serbest cevap: **immer** ve **nur** ikisi de uygun cevaplar. |
+| 86 | m1:15:p1:n1b:o2 | prova seçeneği | GEÇTİ | |
+| 87 | m1:19:v1:s14 | sahne satırı | GEÇTİ | Ioana'nın otobüsü dokuzda; s4 **schon neun** ile tutarlı. |
+| 88 | m1:21:a2:c5 | ses satırı | GEÇTİ | |
+| 89 | m1:18:a2:c3 | ses satırı | GEÇTİ | Düzeltme doğrulandı. |
+| 90 | m1:20:v1:s8 | sahne satırı | GEÇTİ | 14.12 pazartesi. |
+| 91 | m1:15:a2:c2 | ses satırı | GEÇTİ | |
+| 92 | m1:15:v1:s8 | sahne satırı | GEÇTİ | |
+| 93 | m1:19:v1:s15 | sahne satırı | GEÇTİ | |
+| 94 | m1:17:v1:s1 | sahne satırı | GEÇTİ | |
+| 95 | m1:20:v1:s5b | sahne satırı | GEÇTİ | |
+| 96 | m1:18:v1:s13 | sahne satırı | GEÇTİ | |
+| 97 | m1:19:a1:c1 | ses satırı | GEÇTİ | |
+| 98 | m1:16:v1:s15 | sahne satırı | GEÇTİ | |
+| 99 | m1:21:v1:s7 | sahne satırı | GEÇTİ | |
+| 100 | m1:16:v1:s9 | sahne satırı | GEÇTİ | **ön adınız** TDK'de var; **adınız** daha yaygın (P3). |
+| 101 | m1:21:a2:c1 | ses satırı | GEÇTİ | |
+| 102 | m1:19:v1:s10 | sahne satırı | GEÇTİ | |
+| 103 | m1:21:v1:s10 | sahne satırı | GEÇTİ | |
+| 104 | m1:18:v1:s2 | sahne satırı | GEÇTİ | |
+| 105 | m1:17:v1:s12 | sahne satırı | GEÇTİ | |
+| 106 | m1:18:a2:c1 | ses satırı | GEÇTİ | |
+| 107 | m1:18:a1:b1:ayrinti1 | ayrıntı | GEÇTİ | Kanıt c4. |
+| 108 | m1:18:v1:b1:ana_fikir | ana fikir | GEÇTİ | Kanıt s2. Yeni s7–s8 tutarlı. |
+| 109 | m1:19:a1:e1 | eylem | GEÇTİ | |
+| 110 | m1:20:a2:b1:ayrinti2 | ayrıntı | GEÇTİ | 23.12 çarşamba. |
+| 111 | m1:17:a2:b1:ayrinti2 | ayrıntı | GEÇTİ | |
+| 112 | m1:20:v1:b1:ayrinti2 | ayrıntı | GEÇTİ | |
+| 113 | m1:15:a2:b1:ana_fikir | ana fikir | GEÇTİ | |
+| 114 | m1:15:h2:sahne:soru | soru | GEÇTİ | |
+| 115 | m1:16:h3:sahne:soru | soru | GEÇTİ | |
+| 116 | m1:20:h2:sahne:soru | soru | GEÇTİ | |
+| 117 | m1:18:yazma | yazma | GEÇTİ | Düzeltme doğrulandı. |
+| 118 | m1:16:yazma | yazma | GEÇTİ | |
+| 119 | m1:21:t03 | hafta testi gap | GEÇTİ | |
+| 120 | m1:21:t12 | hafta testi guided | GEÇTİ | |
+| 121 | m1:21:t10 | hafta testi dinleme | GEÇTİ | |
+
+OD-9 betiği ve göz kontrolü: ihlal yok. `{name}` ve `{Herr|Frau}` doğru kullanılmış. Bairisch, kişisel bilgi ve İngilizce köprü yok.
+
+### Örneklem dışı ek notlar (oranı etkilemez)
+- **E-1. 17. günde Schneider Hanım'ın aynı günkü durumu:** `h1` sahnesinde Schneider Hanım telefonu kendisi açıyor ve **Heute um drei** geri arayacağını söylüyor. `a2` ise **Ich bin heute nicht im Büro.** diyor. Düzeltilecek hatayla aynı sınıf; birlikte bakılmalı.
+- **E-2. 17. günde dahili numara üç farklı:** `a2` **für den Ausweis … zwölf**, okuma (Tobi'nin notu) **zwei, vier**, prova `n5` **drei, vier, null**. Kişi ve konu aynı (Schneider Hanım, kimlik). Hepsi aynı numara olmalı ya da metin farkı açıkça söylemeli (ör. santral ile doğrudan hat).
+- **E-3. Kural tutarlılığı:** Dilbilimcinin kuralı **jetzt** ve **schon** eklemesini yasaklıyor, ama iki kabulde bunlar duruyor: `m1:18:h1:g4` **Ich muss jetzt los!** ve `m1:19:h2:g3` **Der Bus ist schon weg.** Ben ikisini de Türkçeyle uyumlu sayıyorum. Ya kural ya da bu iki kabul aynı ölçüye getirilmeli.
+- **E-4. 19. gün sahne s13:** **Und siehst du?** duruyor; prova `n5`'te aynı söz **Siehst du?** yapıldı.
+- **U-1 hâlâ açık:** halka "Duyduğunu yaz" adımı görev cümlesinin bütün kabullerini dikte cevabı sayıyor. Kod işi, baş geliştiricide.
+
+### Betik
+1. örneklemdeki betikle aynı, yalnız `TOHUM = 20261124`. Bu parmak izleriyle aynı 121 kimliği verir.
