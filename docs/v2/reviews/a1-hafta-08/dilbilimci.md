@@ -1,0 +1,214 @@
+# A1 8. hafta (50.–54. gün) ve görülmemiş durumlar: dilbilimci incelemesi
+
+Tarih: 2026-11-23 · Tur: 1 (tam tur) · İnceleyen: dilbilimci-ajan
+Dosyalar: `content/v2/m1/gun-50.json` … `gun-54.json`, `content/v2/m1/gorulmemis-08.json`
+
+## Kapsam
+İncelenen öğe: **514** (gün 50: 103, 51: 104, 52: 99, 53: 100, 54: 104, görülmemiş: 4). Öğe: Almanca satır, soru, dikte maddesi, prova düğümü ya da seçeneği, sınav maddesi, görev. Her öğenin `accepted`, çeviri ve açıklama alanları birlikte okundu.
+
+Gerçek hata: **18** (20 alan). Hata oranı: 18 / 514 = **%3,5**. Ayrıca 3 iyileştirme (hata sayılmadı).
+
+## Düzeltilen hatalar (önce → sonra)
+
+### 50. gün
+1. **a1 cevapla, kabul:** `Am Freitag um acht Uhr fünfzehn geht.` → `… geht es.` Özne eksikti.
+2. **Prova `durum_tr`:** aynı sesli mesaja a1 cevapla "cuma 8.15 uyuyor" derken prova "cuma sabahı işin var" diyordu. → `Bu kez cuma sabahı işin var, o saat sana uymuyor.` Prova ayrı bir olasılık olarak işaretlendi.
+3. **Prova n1:** `Sie sprechen mit Huber.` → `Sie sprechen mit Frau Huber.` Bu kalıpta soyad tek başına söylenmez. Çeviri de uyarlandı.
+4. **Prova n2, seçenek çevirisi:** `Sekize çeyrek var mı?` → `Sekize çeyrek kala mı?` Eski çeviri "saat sekize çeyrek var mı" diye anlaşılıyordu.
+
+### 51. gün
+5. **a2 (Ioana'nın mesajı), saat çelişkisi:** göl otobüsü 9.25'te geliyor (a1), Ioana ise `halb zehn` (9.30) diyor ve beklemenizi istiyordu; beklerseniz otobüs kaçıyordu. → `Ich bin erst um Viertel nach neun am Bahnhof.` Buna bağlı alanlar: çeviri, ayrıntı şıkları (9.15 / 9.00 / 9.45), dikte d4, d5 örneği, `eylem.why_tr`. d5 `zorunlu` → `Verspätung`, `Bahnhof` (ilk denemede `Viertel nach neun` 5. günle aynı üretim cümlesi sayıldı; değiştirildi).
+6. **Yazma `kontrol_tr`:** `**Ich komme … mit**` → `**Ich komme mit**`. OD-9.2: açıklamada üç nokta olmaz.
+
+### 52. gün
+7. **Prova n2b:** Basti pazarı öneriyor, öğrenci pazarı kabul ediyor, ama kapanış `Bis Samstag!` ve `bis Samstag um drei!` idi. → n2b: `Schade! Wandern kannst du auch am Sonntag. Am Samstag spielt meine Mannschaft!` Seçenek: `Okay, ich komme mit. Was kostet die Karte?` (4 kabul). Artık iki yol da cumartesiye çıkıyor.
+8. **a2 c3:** `… und ich habe zehn Euro.` → `… und ich habe nur zehn Euro.` **nur** olmadan cümle "ama" ile bağlanmıyordu. **nur** günün kalıbında var (`Bei mir nur …`); sınama temiz.
+9. **a2 d5 örneği:** `Frau Brandl möchte zwanzig Euro leihen.` → `Frau Brandl braucht zwanzig Euro.` **leihen** tek başına "ödünç vermek" de demek; cümle iki anlamlıydı.
+10. **Okuma o4:** kabul `Ja, im Bad ist das Wasser kaputt.` yanlış Almanca (su bozulmaz) → `Im Bad ist etwas kaputt, Herr Pichler.` Durum metni "musluk" diyordu, öğrenci bu kelimeyi bilmiyor → `banyoda bir şey bozuldu`.
+11. **Sınav s7, kabul:** `Die Mannschaft spielt heute, ja.` çeviri değil → `Unsere Mannschaft spielt heute.`
+
+### 53. gün
+12. **v1 cevapla:** durum "Cumartesi göldeydin" diyordu; gezi pazar günü (51. gün, bu günün sahnesi, a1, prova, s11). → `Pazar göldeydin`; 6 kabul **am Sonntag** ile yeniden yazıldı (prova n2 ile aynı satır olmasın diye sıra ve biçim farklı).
+13. **a2 cevapla:** "Cumartesi gecesi evde değildin, göldeydin" aynı çelişki. → gerekçe çıkarıldı: `Cumartesi gecesi evde değildin. Adını söyle ve bunu anlat.` 5 kabulden `Ich war am See` atıldı; son kabule ad eklendi.
+14. **Yazma metni, gönderen:** Ioana `Am Sonntag war ich zu Hause` yazıyor ve hafta sonunu soruyordu; oysa pazar günü geziye seninle geldi (51. gün sahne ve a2). → gönderen **Derya** (geziye gelmedi; pazartesi sabahı Tobi'ye de aynı soruyu soruyor). Başlık, soru, görev, örnek uyarlandı; `characters` listesinden `ch:popescu` çıktı.
+15. **Prova n2:** `Und du, wie war dein Wochenende?` → `Und, wie war dein Wochenende?` Karşı taraf kendi hafta sonunu anlatmadan "ya sen" diyemez.
+
+### 54. gün
+16. **Kalıp ve görev çevirisi (2 alan):** `ayırtabilir misiniz`, `ayırtıyorum` → `ayırabilir misiniz`, `ayırıyorum`. Eczacı ilacı kendisi ayırır; "ayırtmak" başkasına yaptırmaktır. (`Ich möchte ein Zimmer reservieren` → "ayırtmak istiyorum" doğru, dokunulmadı.)
+17. **a1 cevapla, kabul:** `Guten Tag! Ich komme morgen um zehn für die Salbe.` → `Guten Tag, hier ist {name}. Ich hole die Salbe morgen um zehn Uhr.` **für die Salbe** burada Almanca değil; ayrıca görev ad istiyor.
+18. **a2 cevapla ve d5 örneği (2 alan):** `Ist die Apotheke am Sonntag da?`, `… ist die Apotheke bis dreizehn Uhr da.` → **geöffnet** (37. günde öğretildi). Bir dükkân için **da sein** denmez; kayıttaki `sind wir … da` (kişiler) doğru, dokunulmadı.
+
+## İyileştirmeler (hata değil)
+- 54. gün halka: kabul `Die Salbe ist reserviert, für Sie.` → `Für Sie ist die Salbe reserviert.`
+- Görülmemiş g1: +1 kabul (`Ich möchte einen Tisch reservieren. Am Samstag, für vier Personen.`).
+- Görülmemiş g4: +2 kabul (`Mein Rücken tut weh.`, `Nein, mein Rücken tut weh.`). 54. günün kalıbı; öğrencinin en olası cevabı buydu, haksız ret riski vardı.
+
+## Yazarın açık sorularına cevap
+- **Frau Brandl'ın halısı ve düşmesi:** WORLD 8. hafta satırıyla ("düşer, eczaneden ilacını getirmeni ister") ve karakterle (79 yaş, **Sie**, Brunnengasse 7) uyumlu. Halı ipliği tutarlı: salı 9.30 teslim (50) → salı sabahı nakit (52) → düşme "gestern Abend" (54). Bairisch yok. Onay.
+- **Adsız roller:** der Verkäufer, die Verkäuferin, der Kellner, die Apothekerin kabul. Tek zayıf yer aşağıda (açık nokta 1).
+- **53. günün 5 kalıbı:** kabul. Dördü görevlerde üretiliyor; **nach Hause** yalnız gösterimde (s13). Beş, bir halka için üst sınır; bundan sonraki haftalarda aşılmasın.
+- **Dikte satırın bir cümlesi:** birkaç `zor`/`usta` maddesi iki cümlelik satırın tek cümlesini yazdırıyor (ör. 50 d3, d4). `m1check` buna izin veriyor ("satırın kendisi ya da bir cümlesi"); hata sayılmadı.
+
+## Görülmemiş durumlar
+- Üç zorunlu durum var: telefonda masa (g1), dükkânda ürün (g2), yeni biriyle tanışma (g3); ek g4.
+- Derste geçmiyor: 50.–54. günlerde restoran masası ayırtma, süpermarket, parti, spor salonunda ağrı yok (53. günde yalnız "Boş masa yoktu" çeldiricisi var).
+- Kalıplar başka kişi ve yerde öğretilmiş: **reservieren** (54: merhem, otel odası), **Wo ist …?** (51 ve önceki haftalar), **Ich bin / Ich heiße** (53 prova, iş yeri), **Schmerzen im … / tut weh** (54).
+- Kelimeler K(54) içinde: Tisch 48, Person 41, Milch 16, Rücken 15, Party 41, schlimm 9.
+- Lena: `genel-adlar.md` kimliğiyle çelişen bilgi yok.
+
+## Kurallar
+- Kişisel bilgi, kurs ya da kitap adı yok. `{name}` ve `{Herr|Frau}` yalnız öğrenciye ait satırlarda ve ona hitapta; `audio_de` içinde yer tutucu yok.
+- Bairisch yok; yalnız kabul listelerinde kaynaklı **Grüß Gott**.
+- **Sie/du:** Brandl, Pichler, Wimmer, Huber, Stadler, eczacı, satıcılar **Sie**; Tobi, Derya, Ioana, Basti, Luka, yeni iş arkadaşı, Lena **du**. Tutarlı.
+- Aynı cümle taraması (1.–7. gün + 50.–54. gün + görülmemiş; `de`, `prompt_de`, `audio_de`): tekrar yok. Bütün `accepted` ≥ 3, liste içi tekrar yok.
+- Harf kodlama (50 s10–s11): geleneksel tablo (Berta, Richard, Anton, Nordpol, Dora, Ludwig), doğru.
+
+## Sınama
+Görevdeki benzetim komutu, son düzeltmeden sonra:
+- 50.–54. gün: yalnız bilinen halka hatası "3 kart (4–6)" (5 adet). "öğretilmemiş", "bilinmeyen", "accepted" uyarısı 0.
+- Dikiş: 50.–54. gün satırları (a) (b) (c) (d) biçim = 0.
+- Depodaki `npm run content:validate` ayrıca koşulmadı: şema 8. günden sonrasını henüz kabul etmiyor; benzetim şemayı yamalayarak aynı doğrulayıcıyı koşuyor.
+
+## Kalan açık noktalar (engel değil)
+1. **53. gün prova, yeni iş arkadaşı adını söylemiyor.** Öğrenci adını söylüyor, karşı taraf yalnız `Freut mich!` diyor. Gerçekte adını da söyler. Ad vermek WORLD ya da `genel-adlar.md` kararıdır (baş geliştirici); bu yüzden dokunulmadı. Öneri: boş adlar listesinden bir ad, n1'e `Ich bin …`.
+2. **54. gün a1 c4 `Bitte bringen Sie das Rezept mit.`** Provada reçete eczaneye zaten gösterildi; ertesi gün yeniden istenmesi mümkün ama sık değil. E-reçetede asıl gereken çoğu zaman sigorta kartıdır; ayrıntı sorusunda o çeldirici olarak duruyor. A1 için kabul edilebilir; hukuki iddia yok.
+3. **Doğallık, kart kısıtından:** `Mein Gericht ist kalt` (gündelikte **Essen**), `Ich habe eine Beschwerde` (restoranda resmî kaçar), `ich habe leider nur vier Semmeln` (**nur noch** daha doğal). Hepsi doğru Almanca; karşılıkları küme dışında.
+4. **53. gün s15 `Wir haben eine Stunde gewartet`** ile a1'deki 18.20 otobüsü tam örtüşmüyor (tren 18.00). Çelişki değil, soruya bağlı değil.
+5. **`review.status` "draft" bırakıldı:** halka hatası (3 kart) ve okur (OD-9) adımı duruyor; durum alanını bu adımlardan sonra içerik motoru günceller.
+6. Yazar notlarındaki tablo eski bilgileri taşıyor (53. gün "o gece evde değildin" gerekçesi, Ioana'nın 9.30'u); dosya yazara ait, dokunulmadı.
+
+## Sonuç
+Bulunan 18 hatanın hepsi düzeltildi ve sınandı. Dilbilim açısından KAPANDI.
+
+Hata oranı: 18 / 514 = %3,5
+
+KARAR: ONAY
+
+## PM-097 ek (ses kanıtları yalnız önceki günlerin sözcükleriyle; dilbilimci-ajan, 2026-11-23)
+
+Kapsam: `gun-50.json` … `gun-54.json` içindeki 10 ses kaydının 10 `ana_fikir`, 20 `ayrinti` ve 10 `eylem` sorusu (40 soru). Ölçüt: `kanit` cümlesi 49. güne kadarki sözcüklerle anlaşılır mı, değilse soru bağlamdan çözülüyor mu. Günün kartları: 50 Aussicht, Teppich, schüchtern · 51 Ausflug, vorhaben, Verspätung · 52 Mannschaft, Bargeld, wandern · 53 Beschwerde, ausfallen, Trinkgeld · 54 Rente, einpacken, reservieren.
+
+### Düzeltilen (3)
+| Yer | Önce | Sonra | Gerekçe |
+|---|---|---|---|
+| 51 a1 `ana_fikir` | `kanit: [c2]` | `kanit: [c2, c3]` | c2 yalnız **Verspätung** (günün kartı) ile anlaşılıyor. c3 (**Er kommt nicht um neun, er kommt um neun Uhr fünfundzwanzig.**) bilinen sözcüklerle "gecikiyor"u veriyor. |
+| 52 a1 `ana_fikir` | çeldiriciler "Cumartesi bir pazar", "Cumartesi bir konser"; `kanit: [c1]` | çeldiriciler "Cumartesi kapalı bir eczane", "Cumartesi geciken bir otobüs"; `kanit: [c1, c2]` | **Mannschaft** günün kartı. **spielt** ve **Die Karte kostet …** bir konseri de anlatabilir; eski çeldiricilerle soru çözülmüyordu. Yeni çeldiriciler **spielt** ve bilet cümlesiyle eleniyor. |
+| 53 a1 `eylem` | `kanit: [c1, c2, c3]` | `kanit: [c2, c3]` | Cevap (soldaki duraktan 18.20 otobüsü) c2 ve c3'te. c1'deki **fällt … aus** günün kartı, cevap ona dayanmıyor. |
+
+### Dokunulmayan, günün sözcüğünü içeren kanıtlar (bağlamdan çözülüyor)
+- 50 a2 `ana_fikir` c2 (**Aussicht**): "otel reklamı" cevabı **Hotel** ve **Zimmer** ile çıkıyor.
+- 51 a1 `ayrinti` c2 ve c4, 51 a2 `ana_fikir` c3 ve `ayrinti` c3 (**Verspätung**): soru gecikmeyi kendisi söylüyor ("kaç dakika gecikmeli?", "gecikiyor mu?"); cevap **fünfundzwanzig Minuten**, **dreißig Minuten**, **keine** ile çıkıyor. 51 a2'de c4 ayrıca bilinen sözcüklerle geç kalmayı veriyor.
+- 52 a1 `ayrinti` ve `eylem` c4 (**Bargeld**): **bar** (4. gün) ile **Geld** bilinen iki parça; birleşik sözcük çözülüyor.
+- 52 a2 `ayrinti` c3 (**Bargeld**): cevap **ich habe nur zehn Euro** bölümünde.
+- 53 a1 `ana_fikir` c1 (**fällt … aus**): c2 (**Bitte nehmen Sie den Bus …**) tek uygun seçeneği veriyor.
+- 53 a2 `ana_fikir` c2 (**Beschwerde**): c3 (**die Musik … zu laut**) ve **von den Nachbarn** cevabı veriyor.
+- 54 a1 `ayrinti` ve `eylem` c3 (**reserviere**): Türkçedeki "rezerve" ile aynı; cevap **bis Freitag**.
+- Geri kalan 26 sorunun kanıtında günün sözcüğü yok (50 a1'deki **zurückrufen** 17. günün kartı).
+
+### Sınama
+`sim.sh … 50 gun-5[0-4].json gorulmemis-08.json`: 5 hata, hepsi bilinen `3 kart (4–6)`; 50–54 için "öğretilmemiş", "bilinmeyen", "accepted" uyarısı 0; `dikis.out` 50–54 satırları ihlalsiz.
+
+Sonuç: 3 düzeltme / 40 soru. PM-097 md. 1 açısından KAPANDI.
+
+## Örneklem dönüşü (dilbilimci-ajan, 2026-11-23)
+
+Örneklem GERİ döndü (4/37, `docs/v2/qa/orneklem/a1-hafta-08.md`). Bu ek tam tur değildir: H1–H4 düzeltmesi ve kabul listelerinin hedefli taraması. Değişen alanlar: yalnız `accepted` listeleri ve bir `why_tr` (50 o4). Almanca satır, Türkçe metin, `ans`/`kanit` ve dikteye dokunulmadı.
+
+### H1–H4
+| # | Yer | Önce | Sonra |
+|---|---|---|---|
+| H1 | 50 `o4` | `Ja, um neun geht.` (accepted[0]), `Klar, um neun Uhr geht.`, `Kein Problem, um neun geht.`: özne yok. `why_tr`: `**geht** ile onayla`. | Üçü çıktı. accepted[0] `Ja, um neun geht es.`; yerlerine `Klar, neun Uhr geht.`, `Kein Problem, um neun geht es.`; ayrıca `Ja, um neun geht's.` ve 10 doğal cevap. `why_tr`: `Saati tekrar et ve **geht es** ile onayla.` |
+| H2 | 53 a1 `cevapla` | `Der Zug fällt aus, wir müssen den Bus nehmen.` (saat yok, görev saat istiyor) | Çıktı; yerine `Der Zug fällt aus. Wir müssen den Bus um achtzehn Uhr zwanzig nehmen.` ve `… Der Bus fährt um achtzehn Uhr zwanzig.` (+11 saatli biçim). Saatsiz cevap artık doğru çıkmıyor. |
+| H3 | görülmemiş `g2` | `Wo ist die Milch?` (kendi `why_tr` cümlesi) kabul edilmiyordu | `Wo ist die Milch?`, `Wo finde ich die Milch?`, `Ich suche die Milch.` ve 5 biçim eklendi; `Entschuldigung, wo finde ich die Milch?` dolgu kuralıyla doğru çıkıyor. `Ja, danke. Haben Sie Milch? Wo ist sie?` çıkarıldı (yardım teklifine **Ja, danke** oturmuyor, cümle de doğal değil). |
+| H4 | görülmemiş `g3` | `Ich bin {name}. Freut mich!` kabul edilmiyordu | `Ich bin {name}. Freut mich!`, `Hallo, ich bin {name}.`, `Ich bin {name}.`, **heiße**'li ve **Lena**'lı biçimler (+13). `Hallo! Ich bin {name}. Freut mich!` dolgu kuralıyla doğru çıkıyor. |
+
+"Hata sayılmayan notlar"daki üç cevap da eklendi (hepsi K(t) içinde): 51 a1 `Der Bus kommt erst um neun Uhr fünfundzwanzig.` (**erst** 8. gün kartı), 53 s11 `Am Sonntag war ich am See. Der Zug ist ausgefallen.`, 54 s10 `Ich habe seit gestern Schmerzen.`
+
+### Hedefli tarama
+Kapsam: **134 madde** (cevapla 18, prova seçeneği 57, gün sınavı üretim maddesi 55, görülmemiş 4).
+Yöntem: her madde için doğal cevap adayları yazıldı (cevapla, sınav ve görülmemiş için 564, prova için 330 aday) ve `web/src/core/answer.ts` `ruleVerdict` ile sınandı (Node 22, `--experimental-strip-types`, `{name}` yerine sahte ad). Doğru olup `correct` çıkmayan cevaplar eklendi. Provada cevap düğümün bütün seçeneklerine karşı sınandı: eklenen hiçbir cevap başka bir seçenekle eşleşmiyor.
+
+**(a) Model cümle ve `why_tr` biçimi:** H1 dışında hata yok. Öznesiz **geht** yalnız 50 o4'teydi. `Freitag um Viertel nach acht geht`, `Montag um halb fünf geht` doğru (özne gün). `Am Sonntag ist geschlossen` (54 a2) ve `Um acht ist zu früh` (50 s9) gündelik dilde yerleşik, bırakıldı.
+
+**(c) Kabul görevin istediğini taşıyor mu:** H2 dışında **2 yeni hata**:
+- 52 `s9`: görev "yarın ödeyip ödeyemeyeceğini sor"; `Ich habe kein Bargeld. Ich hole schnell Geld.` sormuyor. Çıkarıldı.
+- 54 `s9`: görev "sipariş edip edemeyeceğini sor"; `Können Sie die Salbe für mich reservieren?` (eczanede olmayan ürün ayrılamaz) ve `Wann ist die Salbe da?` bunu sormuyor. İkisi de çıkarıldı. (Provada bunlar ayrı seçenek olarak duruyor, orada doğru.)
+
+**(b) Yapay zekâsız ölçüt:** ilk sınamada doğru adayların büyük bölümü `ask_ai` çıktı, üçü `wrong` (50 o4 `Kein Problem.`, 53 s9 `Am Samstag? Ich war nicht zu Hause.`, 54 o5 `Abends.`). Neden: dolgu kuralı yalnız birkaç kelimeyi tanıyor (bitte, danke, Entschuldigung, Hallo, ja, okay…). Selam (`Guten Tag`), hitap (`Frau Brandl`), ad kalıbının öbür biçimi, `um drei` ile `um drei Uhr`, `der Bus kommt` ile `der Bus fährt` ayrı cevap sayılıyor. Düzeltme: 83 listeye **476 kabul eklendi, 8 kabul çıkarıldı** (gün 50: +86 −3, 51: +75, 52: +68 −1, 53: +87 −1, 54: +118 −2, görülmemiş: +42 −1). En uzun liste 21.
+
+Eklenenlerin ölçütü: doğru Almanca, görevin istediği bilgiyi taşıyor, provada seçeneğin geri bildirim cümlesiyle çelişmiyor (ör. geri bildirim "selam verdin" diyorsa selamsız cevap eklenmedi). K(t): eklenen her cevap doğrulayıcının `ogretilmemis` işleviyle günün `taught` kümesine karşı sınandı; küme dışı kelime yok (tek istisna **Lena**: karşı tarafın `prompt_de`'de söylediği ad).
+
+Bilerek eklenmeyenler (sınamada `ask_ai`, yani "kontrol edilemedi" kalıyor): saati ya da günü eksik cevaplar (`Am Dienstag.`, `Der Bus hat Verspätung.`, günsüz masa ayırtma), öznesiz **geht**, küme dışı kelimeli biçimler (**dabei**, **zuhause**, **Samstagabend**), Türkçesinden sapan çeviriler.
+
+### Sınama
+`SIM=/tmp/claude-0/sim8d OUT=/tmp/claude-0/s8d … sim.sh a1k-h7.json 50 gun-5[0-4].json gorulmemis-08.json`:
+- `→ 5 hata, 276 uyarı`; 5 hata bilinen `3 kart (4–6)`.
+- 50–54 için "öğretilmemiş", "bilinmeyen" uyarısı 0; AK-3 `50. gün 0/24, 51. gün 0/23, 52. gün 0/21, 53. gün 0/21, 54. gün 0/23`. 8. hafta dosyalarına ait uyarı satırları düzeltme öncesiyle birebir aynı (kalanlar: `yeni_kartlar 3 kart`, video yok, B7 `_adsiz`).
+- `dikis.out` 50–54 satırları `0 | 0 | 0 | 0 | 0`.
+- H1–H4 yeniden sınandı: önerilen cevapların hepsi `correct`; çıkarılan dört hatalı kabul artık `correct` değil.
+
+### Kalan açık noktalar
+1. **Kök neden kodda, içerikte değil.** Selam, hitap ve `Uhr` gibi değişkenler dolgu sayılmadığı için her üretim maddesi 10–20 kabul istiyor; bu liste yine de bütün birleşimleri kapsamaz (provada 330 adaydan 75'i hâlâ "karar öğrencide" kalıyor, çoğu bilerek). Öneri (baş geliştirici, #12): `containsWithFiller` içinde baştaki selamlar (`Guten Tag/Morgen/Abend`, `Grüß Gott`) ve virgülle ayrılmış hitap (`Frau/Herr X`) dolgu sayılsın; `um drei` = `um drei Uhr`.
+2. **Yanlış cevap "yanlış" çıkmıyor.** Yakın ama yanlış cevaplar (`Wo ist das Brot?`, saatsiz cevap) `ruleVerdict`'te `ask_ai`, yapay zekâsız kipte "kontrol edilemedi" oluyor. Doğru sayılmıyor (D-097), ama öğrenci "yanlış" geri bildirimi de almıyor. İçerikle çözülmez.
+3. **Yargıya bağlı bırakılan kabuller:** 51 a1 `Der Bus hat fünfundzwanzig Minuten Verspätung.` (saat yerine gecikme süresi; örneklem de geçirdi), 53 v1 havadan söz etmeyen cevaplar (durum hava için "söyle" demiyor), 50 o4 `Ja, das geht.` ve `Kein Problem.` (saat soruda geçiyor).
+4. **Eski kabullerde küme dışı kelimeler** (dabei, daheim, borgen, Nee, würde, Rentnerin, Rest): doğru Almanca, öğrenciden istenmiyor, yalnız bilen için kabul. Dokunulmadı.
+5. 1. turdaki açık noktalar (1–6) aynen duruyor; `review.status` "draft".
+
+Sonuç: örneklemin 4 hatası ve taramada çıkan 2 hata kapandı. Bu turun hata oranı: (a)/(c) türünden 4 madde / 134 = %3,0 (H1, H2, 52 s9, 54 s9); (b) türünden haksız ret riski 83 listede giderildi.
+
+KARAR: ONAY (örnekleme yeniden hazır)
+
+---
+
+## Kapı düzeltmeleri 2. tur (2026-11-23)
+
+Kapsam: yazarın hafta kapısı için yaptığı değişiklikler ve yeni hafta sonu testi (`yazar-notlari-kapi.md`). Bakılan: 52 `prova` n2b ve n4, 53 `prova` n4, 54 sahne b1 `cevapla` (4 madde) · `gorulmemis-08.json` yeni g5, g6 ve 6 `can_do` bağı · `hafta-sonu-testi-08.json` 12 madde (tam inceleme) · `gun-55.json`, `gun-56.json` (başlık, amaç, `can_do`). Toplam 20 madde + 6 bağ. Bulgu: 15 (12 maddede). Hepsi düzeltildi.
+
+### Bulgular ve düzeltmeler
+| # | Yer | Önce | Sonra | Gerekçe |
+|---|---|---|---|---|
+| 1 | 54 b1 `cevapla` `accepted` | **soll** ile tek kabul | + 3: **Sie soll die Tabletten am Morgen und am Abend nehmen.** · **Sie soll sie am Morgen und am Abend nehmen.** · **Sie soll eine Tablette am Morgen und eine am Abend nehmen.** | Düzeltmenin getirdiği kusur: yeni soru **Wann soll Frau Brandl …?** cevabı **Sie soll …** ile kurduruyor; bu biçimler `ask_ai` çıkıyordu. |
+| 2 | g5 `accepted` | **Der Ausflug ist ausgefallen.** (tek başına) | çıkarıldı | Görev iki bilgi istiyor (iptal + evde kaldın); soru da "ne yaptınız" diyor. Tek başına iptal cümlesi soruyu cevaplamıyor. Durum öbür kabullerle kurulabiliyor. |
+| 3 | g5 `accepted` | **Nicht so gut. Der Ausflug ist ausgefallen. Ich war zu Hause.** | **Nicht viel. Der Ausflug …** | **Was haben Sie am Wochenende gemacht?** sorusuna **Nicht so gut** uymuyor (o, "nasıldı" sorusunun cevabı). **Nicht viel** K(54) içinde. |
+| 4 | g5 `accepted` | – | + 4: **Der Ausflug ist ausgefallen und ich war zu Hause.** · **… Ich war am Samstag zu Hause.** · **… Am Samstag war ich zu Hause.** · **… Ich bin zu Hause geblieben.** | Doğal ve K(54) içinde biçimler `ask_ai` çıkıyordu. |
+| 5 | g6 `durum_tr` | "… ayırtmasını iste ve ne zaman alacağını sor." | "… ayırtmasını iste ve onları ne zaman içmen gerektiğini sor." | "Ne zaman alacağını" Türkçede iki anlamlı: eczaneden teslim almak ya da ilacı içmek. Eczacı zaten "yarın" dediği hâlde öğrenci teslim saatini sorabilirdi; kabul listesi yalnız **nehmen** bekliyor. 54. günün `can_do` metni de "içeceğimi" diyor. |
+| 6 | g6 `accepted` | En kısa biçimler yok | + 6: **Können Sie sie reservieren? Wann soll ich sie nehmen?** · **Können Sie die Tabletten reservieren? Wann soll ich sie nehmen?** · **… für mich reservieren? Wann soll ich sie nehmen?** · **Können Sie sie bitte reservieren? …** · iki biçim **… Wann soll ich die Tabletten nehmen?** ile | `why_tr`'nin örnek gösterdiği iki cümlenin birleşimi bile `ask_ai` çıkıyordu. |
+| 7 | t01 `accepted` | Hepsi **Freitag** (edatsız) | + 3: **Am Freitag um halb elf? Ja, das geht.** · **Also am Freitag um halb elf. Das geht.** · **Ja, am Freitag um halb elf geht.** | **am Freitag** kurallı biçim; `ask_ai` çıkıyordu. |
+| 8 | t06 `accepted` | – | + **Das Training ist ausgefallen und ich war mit Ioana am See.** | **und** ile bağlama `ask_ai` çıkıyordu. |
+| 9 | t07 `tr` | "Dokuz avro yirmi sent. – …" | "Dokuz avro yirmi sent tutuyor. – …" | **Das macht** çevrilmemişti. |
+| 10 | t08 `accepted` | **… da …** var, **dort** yok | + **Ich habe dort eine Bratwurst gegessen.** | 52. günde öğretilen **dort**; eşdeğer. |
+| 11 | t09 `accepted` | En kısa biçimler yok | + 3: **Können Sie die Tropfen reservieren?** · **Können Sie sie reservieren?** · **Können Sie sie bitte reservieren?** | En kısa doğru cevap `ask_ai` çıkıyordu. |
+| 12 | t10 `accepted` | **Die Tropfen soll ich wann nehmen?** | çıkarıldı (3 kabul kaldı) | Yazarın "emin olmadığım nokta"sı. Bu yalnız yankı sorusu olarak kurulur; "Damlaları ne zaman almalıyım?" cümlesinin karşılığı değil. Soru sözcüğünü yerinde bırakmak tam da Türkçe konuşanın aktarım hatası ve `why_tr` ("**Wann** başta") ile çelişiyor. 7. haftanın t10 maddesindeki ek kabuller gerçek sıra seçenekleriydi; burada tek doğal sıra var, FORMAT'ın istediği üç kabul yazım biçimleriyle karşılanıyor (`gap`'teki gibi). |
+| 13 | t11 `accepted` | Çözüm cümlesi yalnız **Okay,/Ach so./Kein Problem,** ile | + 3: **Ich hole schnell Bargeld.** · **Ich hole Bargeld.** · **Ich hole schnell Geld.** | Taban biçim listede yoktu; **Ich hole Bargeld.** `ask_ai` çıkıyordu. |
+| 14 | t12 `situation_tr` | "Muayenehaneyi arıyorsun. Cuma günkü randevun için arıyorsun. Kendini tanıt …" | "Cuma günkü randevun için muayenehaneyi arıyorsun. Telefonu sekreter açıyor. Kendini tanıt …" | "arıyorsun" iki kez; kimin açtığı yazmıyordu. |
+| 15 | 55 `can_do.tr` | "Hiç duymadığım kısa kayıtta ve metinde ana fikri ve bir ayrıntıyı anlarım." | "İlk kez duyduğum kısa bir kayıtta ve ilk kez okuduğum kısa bir metinde ana fikri ve bir ayrıntıyı anlarım." | "Hiç duymadığım … metinde": metin duyulmaz. |
+
+### Bakılıp doğru bulunanlar
+- **52 n2b** **Ach nein! Wandern kannst du auch am Sonntag. …** ("Hay aksi!"): hayal kırıklığı ünlemi olarak doğal; 53 n3b'deki kullanımla tutarlı. Seçenek (**Okay, ich komme mit. …**) ve geri bildirim uyumlu.
+- **52 n4** **Super! Und dann essen wir zusammen eine Bratwurst.**: doğru; Türkçesi ("Sonra da …") zaten uyuyor. Seçenek **Super! Bis Samstag!** uyumlu.
+- **53 n4** **Ich war bei meiner Familie. Das war lustig.**: doğru (datif **meiner**); Türkçesi doğru. Seçenek (**Schön! Möchtest du einen Kaffee?**) ve geri bildirim uyumlu.
+- **54 b1** **Wann soll Frau Brandl die Tabletten nehmen?**: doğru; s8 (**Nehmen Sie am Morgen und am Abend eine Tablette.**) ile ve `why_tr` ile uyumlu.
+- **`can_do` bağları (6/6):** g1 → 50 (telefon, randevu/ayırtma) · g2 → 51 (alışveriş) · g3 → 52 (mahallede konuşma, tanışma) · g4 → 49 (ağrı) · g5 → 53 (hafta sonu, iptal) · g6 → 54 (eczanede ayırtma, ne zaman içilir).
+- **Görülmemişlik:** g5: **Ausflug** 51. günde öğretiliyor, iptali hiçbir günde yok; kurs öğretmeni ve kurs 50–54'te geçmiyor. g6: derste ayırtılan şey merhem (Salbe), kişi 54. günün eczacısı; öksürük tableti, istasyon yanındaki eczane ve adsız eczacı yeni.
+- **Test, FORMAT:** 12 madde · 4 dinleme (t01, t04, t09, t11), 5 kurma (t02, t05, t07, t08, t10), 3 konuşma (t03, t06, t12) · sıra karışık · her `accepted` ≥ 3 · `gap` doğru cevabı `opts` içinde ve öbür iki şık dilbilgisel olarak dışlanıyor (t02 **Und/Oder nehme ich** olmaz; t07 **Ist/Macht so** olmaz) · `order` parçaları ilk cevabın kelimeleri · `audio_de` içinde yer tutucu yok · öğrencinin adı yalnız `{name}` / `{Herr|Frau}` ile. Kişiler WORLD ile uyumlu (Basti, Ioana, Tobi, Frau Huber).
+- **K(54):** g5, g6 ve testin bütün `accepted`, `prompt_de`, `audio_de`, `from_de` cümleleri (eklenenler dahil) hafta kapısının bilgi kümesine karşı tek tek sınandı: yeni maddelerde eksik 0. (Eski g2'de **Ich suche …** sınırda; bu turun kapsamında değil.)
+- **`ruleVerdict`:** en kısa cevaplar `correct` (t01 **Freitag um halb elf geht.**, t03, t04 **Ich gehe mit Ioana wandern.**, t05 üç sıra, t06, t08, t09 **Können Sie sie reservieren?**, t10, t11 **Ich hole Bargeld.**, t12, g5 **Der Ausflug ist ausgefallen. Ich war zu Hause.**, g6 **Können Sie sie reservieren? Wann soll ich sie nehmen?**). Eksik bilgili cevaplar (**Ja, das geht.**, **Ich gehe wandern.**, **Das Training ist ausgefallen.**, **Ich war zu Hause.**) `correct` değil.
+- **55, 56:** başlık ve amaç doğru Türkçe; başlıklar omurga ile aynı. Sınav tarihi ya da kurum adı yok.
+
+### Sınama
+- `hk.sh 8`: öğretilmeden istenen 0 (kesin 0, sınırda 0) · anlaşılmayan karşı soru 0 · hafta sonu testi %100 (12/12) · görülmemiş 6/6. Kalan tek neden: "görülmemiş durumla sınanmayan can_do: cd:m1:55, cd:m1:56" (sınav günleri; araç güncellemesi bekleniyor).
+- Benzetim (`sim8k`, `a1k-h7.json`, 50–54 + gorulmemis-08): `→ 9 hata, 280 uyarı`. 5 hata bilinen `3 kart (4–6)` (50–54); 4 hata 55. ve 56. günlerin `sinav` ve `sinav_bolumleri` alanları için "şemada olmayan alan" (şema güncellemesi bekleniyor, içerik hatası değil). 50–54, görülmemiş ve test için "öğretilmemiş"/"bilinmeyen" uyarısı 0. `dikis.out` 50–54 satırları `0 | 0 | 0 | 0 | 0`; 55 ve 56'da yalnız "halka biçimi yok" (sınav günü).
+- `npm run content:validate` (dalın kendi başına): hatalar önceki günlerin dalda olmamasından; bu turun dosyalarına ait yeni hata yok.
+- Çalışma notu: tek tek cümle sınaması için `/home/claude/dw-hk/content/tools/` altına geçici bir sınama betiği koydum ve iş bitince sildim. `sim.sh` kendi içinde `git fetch`/`git show` çalıştırıyor; başka git komutu çalıştırmadım.
+
+### Kalan açık noktalar
+1. **56. gün başlığı** "A1 sınavı: üç yeni durumda konuşmak" yazmayı anmıyor (bölümler: yazma + konuşma). Başlık omurgadan geliyor (baş geliştiricinin dosyası), tutarlılık için dokunulmadı. Öneri: "A1 sınavı: yazmak ve üç yeni durumda konuşmak".
+2. **"A1 sınavı"** adı: bağlanan değerlendirme `assess:a1-deneme:1`, yani deneme. Öğrenci resmî sınav sanmasın diye arayüzde "deneme" sözü görünmeli; karar PM/baş geliştiricide.
+3. 54 b1 `situation_tr` ve soru metinleri "Frau Brandl" diyor, 7. hafta dosyaları "Brandl Hanım". 8. haftanın eski metni, bu turun kapsamında değil.
+4. t10 parçalarıyla kurulabilen tek doğal cümle var; üç kabul yazım biçimi. Parçalara **bitte** eklenirse gerçek sıra seçenekleri doğar (yazar/PM kararı).
+5. Selamsız/hitaplı biçimler (t12 **Hier ist {name}. …**, PM-101 md. 6) bilerek eklenmedi; kod düzeltmesi bekleniyor.
+6. Önceki turların açık noktaları aynen duruyor; `review.status` "draft".
+
+Sonuç: 15 bulgu, 15 düzeltme (12 maddede; +24 kabul, 2 kabul çıkarıldı, 1 kabul düzeltildi, 4 Türkçe metin düzeltildi). Hata oranı: Almanca/Türkçe/bilgi türünden 6 madde / 20 = %30 (g5 ×2, g6 durum metni, t07, t10, t12, 55 `can_do`); kalan 8 bulgu haksız ret riski (eksik kabul). KAPANDI.
+
+KARAR: ONAY

@@ -1,0 +1,330 @@
+{
+  "schema": 1,
+  "id": "m1:gun:53",
+  "day": 53,
+  "level": "A1",
+  "format": "gun",
+  "title_tr": "Pekiştirme: dün ve hafta sonu",
+  "goal_tr": "Hafta sonunda nerede olduğunu, ne yediğini ve neyin ters gittiğini kısa cümlelerle anlatırsın.",
+  "can_do": { "id": "cd:m1:53", "tr": "Hafta sonumu anlatır, bir şey iptal olduysa ya da kötü gittiyse söylerim." },
+  "unit": "u:m1:53",
+  "arm": "pazar",
+  "place": "pl:firma",
+  "characters": ["ch:lechner", "ch:aksoy", "ch:pichler"],
+  "requires": { "kelimeler": [], "kaliplar": [], "gramer": [], "tur": [], "baglayicilar": [], "akicilik": [] },
+  "review": { "status": "draft" },
+  "dersler": [],
+  "yeni_kartlar": ["lx:Beschwerde", "lx:ausfallen", "lx:Trinkgeld"],
+  "halkalar": [
+    {
+      "id": "m1:53:h1",
+      "title_tr": "Şikâyet, iptal ve bahşiş",
+      "kartlar": ["lx:Beschwerde", "lx:ausfallen", "lx:Trinkgeld"],
+      "kaliplar": [
+        { "de": "Ich habe … gegessen. – Wir haben … gegessen. – Was hast du … gemacht?", "tr": "… yedim. – … yedik. – … ne yaptın?" },
+        { "de": "… fällt aus. – … ist ausgefallen.", "tr": "… iptal oluyor. – … iptal oldu." },
+        { "de": "Ich habe … gegeben.", "tr": "… verdim." },
+        { "de": "Stimmt so.", "tr": "Üstü kalsın." },
+        { "de": "zu Hause – nach Hause", "tr": "evde – eve" }
+      ],
+      "gorev_cumleleri": [
+        { "kart": "lx:Beschwerde", "de": "Ich habe eine Beschwerde: Mein Gericht ist kalt.", "tr": "Bir şikâyetim var: Yemeğim soğuk.",
+          "accepted": ["Ich habe eine Beschwerde: Mein Gericht ist kalt.", "Ich habe eine Beschwerde. Mein Gericht ist kalt.", "Ich habe eine Beschwerde, mein Gericht ist kalt."] },
+        { "kart": "lx:Beschwerde", "de": "Die Nachbarn haben eine Beschwerde.", "tr": "Komşuların bir şikâyeti var.",
+          "accepted": ["Die Nachbarn haben eine Beschwerde.", "Die Nachbarn haben eine Beschwerde, Herr Pichler.", "Es gibt eine Beschwerde von den Nachbarn."] },
+        { "kart": "lx:ausfallen", "de": "Der Kurs ist ausgefallen.", "tr": "Kurs iptal oldu.",
+          "accepted": ["Der Kurs ist ausgefallen.", "Der Kurs ist heute ausgefallen.", "Mein Kurs ist ausgefallen."] },
+        { "kart": "lx:ausfallen", "de": "Fällt der Zug heute aus?", "tr": "Tren bugün iptal mi?",
+          "accepted": ["Fällt der Zug heute aus?", "Fällt heute der Zug aus?", "Der Zug fällt heute aus?"] },
+        { "kart": "lx:Trinkgeld", "de": "Wie viel Trinkgeld geben Sie?", "tr": "Ne kadar bahşiş veriyorsunuz?",
+          "accepted": ["Wie viel Trinkgeld geben Sie?", "Wie viel Trinkgeld geben Sie hier?", "Wie viel Trinkgeld gibt man?"] },
+        { "kart": "lx:Trinkgeld", "de": "Ich habe zwei Euro Trinkgeld gegeben.", "tr": "İki avro bahşiş verdim.",
+          "accepted": ["Ich habe zwei Euro Trinkgeld gegeben.", "Ich habe 2 Euro Trinkgeld gegeben.", "Zwei Euro Trinkgeld habe ich gegeben."] },
+        { "kart": "lx:Trinkgeld", "de": "Das Trinkgeld ist für Sie.", "tr": "Bahşiş sizin için.",
+          "accepted": ["Das Trinkgeld ist für Sie.", "Das ist Trinkgeld für Sie.", "Das Trinkgeld ist für Sie, danke."] }
+      ],
+      "sahne": {
+        "ortam_tr": "Pazar akşamı, göl kenarında bir restoran. Garson hesabı getiriyor.",
+        "satirlar": [
+          { "r": "der Kellner", "de": "Das macht achtzehn Euro fünfzig.", "tr": "On sekiz avro elli." },
+          { "r": "ogrenci", "de": "Hier sind zwanzig Euro. Stimmt so.", "tr": "Buyurun yirmi avro. Üstü kalsın." },
+          { "r": "der Kellner", "de": "Danke schön! Bis bald!", "tr": "Çok teşekkürler! Yine bekleriz!" }
+        ],
+        "soru": { "q_tr": "Garsona ne kadar bahşiş bırakıyorsun?", "opts": ["Bir avro elli", "Yirmi avro", "Hiç"], "ans": 0 }
+      }
+    }
+  ],
+  "sahne": {
+    "id": "m1:53:v1",
+    "title_tr": "Pazartesi sabahı: hafta sonu nasıldı?",
+    "sahneler": [
+      { "id": "s1", "speaker": "ch:aksoy", "sahne_tr": "Pazartesi sabahı ofiste kahve makinesinin önü. Derya fincanını dolduruyor, Tobi esneyerek geliyor.", "de": "Morgen, Tobi! Wie war dein Wochenende?", "tr": "Günaydın Tobi! Hafta sonun nasıldı?" },
+      { "id": "s2", "speaker": "ch:lechner", "sahne_tr": "Tobi telefonundaki göl fotoğrafını gösteriyor.", "de": "Der Ausflug war super! Der See war toll.", "tr": "Gezi süperdi! Göl harikaydı." },
+      { "id": "s3", "speaker": "ch:aksoy", "sahne_tr": "Derya fotoğrafa bakıyor.", "de": "Und das Wetter?", "tr": "Peki hava?" },
+      { "id": "s4", "speaker": "ch:lechner", "sahne_tr": "Tobi güneşi taklit ediyor.", "de": "Das Wetter war gut. Wir sind drei Stunden gewandert.", "tr": "Hava iyiydi. Üç saat yürüdük." },
+      { "id": "s5", "speaker": "ch:lechner", "sahne_tr": "Tobi bir restoran fotoğrafı gösteriyor.", "de": "Am Abend haben wir im Restaurant am See gegessen.", "tr": "Akşam göl kenarındaki restoranda yemek yedik." },
+      { "id": "s6", "speaker": "ch:aksoy", "sahne_tr": "Derya merakla soruyor.", "de": "Und? War das Gericht gut?", "tr": "Eee? Yemek iyi miydi?" },
+      { "id": "s7", "speaker": "ch:lechner", "sahne_tr": "Tobi yüzünü buruşturuyor.", "de": "Nein! Mein Gericht war kalt.", "tr": "Hayır! Yemeğim soğuktu." },
+      { "id": "s8", "speaker": "ch:lechner", "sahne_tr": "Tobi parmağını kaldırıp garsona seslenir gibi yapıyor.", "de": "Ich habe gesagt: Ich habe eine Beschwerde!", "tr": "Dedim ki: Bir şikâyetim var!" },
+      { "id": "s9", "speaker": "ch:lechner", "sahne_tr": "Tobi gülüyor, sıcak bir tabağı tutar gibi yapıyor.", "de": "Dann war das Gericht schnell heiß.", "tr": "Sonra yemek çabucak sıcak geldi." },
+      { "id": "s10", "speaker": "ch:aksoy", "sahne_tr": "Derya kaşını kaldırıyor.", "de": "Und das Trinkgeld?", "tr": "Peki bahşiş?" },
+      { "id": "s11", "speaker": "ch:lechner", "sahne_tr": "Tobi üç parmağını gösteriyor.", "de": "Ich habe drei Euro Trinkgeld gegeben.", "tr": "Üç avro bahşiş verdim." },
+      { "id": "s12", "speaker": "ch:lechner", "sahne_tr": "Tobi omuz silkiyor.", "de": "Die Frau war nett.", "tr": "Kadın nazikti." },
+      { "id": "s13", "speaker": "ch:aksoy", "sahne_tr": "Derya kahvesinden bir yudum alıyor.", "de": "Und wie seid ihr nach Hause gekommen?", "tr": "Peki eve nasıl döndünüz?" },
+      { "id": "s14", "speaker": "ch:lechner", "sahne_tr": "Tobi ellerini havaya kaldırıyor.", "de": "Das war ein Problem! Der Zug ist ausgefallen.", "tr": "Asıl sorun oydu! Tren iptal oldu." },
+      { "id": "s15", "speaker": "ch:lechner", "sahne_tr": "Tobi saatini gösterip iç çekiyor.", "de": "Wir haben eine Stunde gewartet.", "tr": "Bir saat bekledik." },
+      { "id": "s16", "speaker": "ch:aksoy", "sahne_tr": "Derya sana dönüyor, gülümsüyor.", "de": "Und bei dir? Wie war das Wochenende?", "tr": "Peki sende? Hafta sonu nasıldı?" }
+    ],
+    "bolumler": [
+      {
+        "id": "b1",
+        "cumleler": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15", "s16"],
+        "ana_fikir": { "kind": "gist", "q_tr": "Tobi neyi anlatıyor?", "opts": ["Pazar günkü göl gezisini", "İşteki bir sorunu", "Bir doktor randevusunu"], "ans": 0, "kanit": ["s2"] },
+        "ayrinti": [
+          { "kind": "detail", "q_tr": "Restoranda ne sorun vardı?", "opts": ["Yemek soğuktu", "Hesap yanlıştı", "Boş masa yoktu"], "ans": 0, "kanit": ["s7"] },
+          { "kind": "detail", "q_tr": "Tobi ne kadar bahşiş verdi?", "opts": ["3 avro", "13 avro", "Hiç vermedi"], "ans": 0, "kanit": ["s11"] },
+          { "kind": "detail", "q_tr": "Eve dönerken ne oldu?", "opts": ["Tren iptal oldu", "Otobüs on dakika gecikti", "Arabayla döndüler"], "ans": 0, "kanit": ["s14"] }
+        ],
+        "dikte": [
+          { "id": "d1", "cumle": "s11", "seviye": "kolay", "q_tr": "Hangi sayıyı duydun?", "opts": ["zwei", "drei", "dreizehn"], "ans": 1 },
+          { "id": "d2", "cumle": "s7", "seviye": "orta", "de": "Nein! Mein Gericht war ___.", "accepted": ["kalt", "Kalt", "kalt."] },
+          { "id": "d3", "cumle": "s14", "seviye": "zor", "banka": ["Der", "Zug", "ist", "ausgefallen", "Bus", "fällt"], "accepted": ["Der Zug ist ausgefallen.", "der zug ist ausgefallen", "Der Zug ist ausgefallen"] },
+          { "id": "d4", "cumle": "s2", "seviye": "usta", "accepted": ["Der See war toll.", "der see war toll", "Der See war toll"] },
+          { "id": "d5", "seviye": "gercek", "gorev_tr": "Tobi'nin hafta sonunu Almanca bir iki kısa cümleyle anlat.", "ornek_de": "Der Ausflug war super. Der Zug ist ausgefallen.", "zorunlu": ["Ausflug", "Zug"] }
+        ],
+        "golge": ["s7", "s14"],
+        "cevapla": {
+          "id": "m1:53:v1:c1",
+          "k": "guided_response",
+          "situation_tr": "Derya sana soruyor. Pazar göldeydin, hava güzeldi.",
+          "prompt_de": "Wie war dein Wochenende?",
+          "accepted": ["Am Sonntag war ich am See. Das Wetter war gut.", "Gut! Ich war am Sonntag am See.", "Toll! Am Sonntag war ich am See.", "Schön! Am Sonntag war ich am See, das Wetter war toll.", "Gut, danke! Am Sonntag war ich am See. Das Wetter war gut.", "Toll! Ich war am Sonntag am See.", "Ich war am See. Das Wetter war gut.", "Gut! Ich war am See.", "Ich war am Sonntag am See. Das Wetter war gut.", "Am Sonntag war ich am See. Das Wetter war schön.", "Ich war am See.", "Gut! Am Sonntag war ich am See.", "Gut, danke! Ich war am Sonntag am See.", "Ich war am Sonntag am See. Das Wetter war schön.", "Am Sonntag war ich am See und das Wetter war gut."],
+          "why_tr": "Geçmişte nerede olduğunu **war** ile söylersin: **Ich war am See**."
+        }
+      }
+    ]
+  },
+  "sesler": [
+    {
+      "id": "m1:53:a1",
+      "tur": "anons",
+      "title_tr": "Göl kenarındaki istasyonda anons",
+      "ortam_tr": "Pazar akşamı göl kenarındaki küçük istasyondasın. Eve dönmek istiyorsun. Bir anons geliyor.",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Der Zug nach Wendlfing um achtzehn Uhr fällt heute aus.", "tr": "Saat on sekizdeki Wendlfing treni bugün iptal." },
+        { "id": "c2", "de": "Bitte nehmen Sie den Bus um achtzehn Uhr zwanzig.", "tr": "Lütfen on sekiz yirmideki otobüse binin." },
+        { "id": "c3", "de": "Die Haltestelle ist links vom Bahnhof.", "tr": "Durak istasyonun solunda." },
+        { "id": "c4", "de": "Entschuldigen Sie bitte.", "tr": "Özür dileriz." }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Anons ne söylüyor?", "opts": ["Tren iptal, otobüse binmelisin", "Tren erken kalkıyor", "İstasyon kapanıyor"], "ans": 0, "kanit": ["c1", "c2"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Otobüs saat kaçta?", "opts": ["18.20", "18.00", "20.18"], "ans": 0, "kanit": ["c2"] },
+            { "kind": "detail", "q_tr": "Durak nerede?", "opts": ["İstasyonun solunda", "İstasyonun sağında", "Gölün yanında"], "ans": 0, "kanit": ["c3"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c3", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["rechts", "links", "geradeaus"], "ans": 1 },
+            { "id": "d2", "cumle": "c2", "seviye": "orta", "de": "Bitte nehmen Sie den ___ um achtzehn Uhr zwanzig.", "accepted": ["Bus", "bus", "Bus."] },
+            { "id": "d3", "cumle": "c3", "seviye": "zor", "banka": ["Die", "Haltestelle", "ist", "links", "vom", "Bahnhof", "rechts", "Zug"], "accepted": ["Die Haltestelle ist links vom Bahnhof.", "die haltestelle ist links vom bahnhof", "Die Haltestelle ist links vom Bahnhof"] },
+            { "id": "d4", "cumle": "c1", "seviye": "usta", "accepted": ["Der Zug nach Wendlfing um achtzehn Uhr fällt heute aus.", "der zug nach wendlfing um achtzehn uhr fällt heute aus", "Der Zug nach Wendlfing um achtzehn Uhr fällt heute aus"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Anonsta ne dendi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Der Zug fällt aus. Der Bus kommt um achtzehn Uhr zwanzig.", "zorunlu": ["Zug", "Bus"] }
+          ],
+          "golge": ["c1", "c3"],
+          "cevapla": {
+            "id": "m1:53:a1:c1",
+            "k": "guided_response",
+            "situation_tr": "Yanındaki kadın anonsu anlamamış, sana soruyor. Trenin iptal olduğunu ve otobüsün saatini söyle.",
+            "prompt_de": "Entschuldigung, was ist mit dem Zug?",
+            "accepted": ["Der Zug fällt aus. Der Bus kommt um achtzehn Uhr zwanzig.", "Der Zug fällt heute aus. Wir nehmen den Bus um achtzehn Uhr zwanzig.", "Der Zug ist ausgefallen. Der Bus fährt um achtzehn Uhr zwanzig.", "Der Zug fällt aus. Der Bus kommt um 18 Uhr 20.", "Der Zug fällt aus. Wir müssen den Bus um achtzehn Uhr zwanzig nehmen.", "Der Zug fällt aus. Der Bus fährt um achtzehn Uhr zwanzig.", "Der Zug fällt heute aus. Der Bus kommt um achtzehn Uhr zwanzig.", "Der Zug fällt heute aus. Der Bus fährt um achtzehn Uhr zwanzig.", "Der Zug ist ausgefallen. Der Bus kommt um achtzehn Uhr zwanzig.", "Der Zug fällt aus. Nehmen Sie den Bus um achtzehn Uhr zwanzig.", "Der Zug fällt aus. Wir nehmen den Bus um achtzehn Uhr zwanzig.", "Der Zug fällt aus. Bitte nehmen Sie den Bus um achtzehn Uhr zwanzig.", "Der Zug fällt aus. Sie müssen den Bus um achtzehn Uhr zwanzig nehmen.", "Der Zug fällt aus. Es gibt einen Bus um achtzehn Uhr zwanzig.", "Der Zug fällt aus. Um achtzehn Uhr zwanzig kommt der Bus.", "Der Zug fällt aus. Um achtzehn Uhr zwanzig kommt ein Bus.", "Der Zug fällt aus. Ein Bus kommt um achtzehn Uhr zwanzig."],
+            "why_tr": "İptal için **fällt aus** dersin, sonra otobüs saatini söylersin."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:53:a1:e1", "k": "pick", "q_tr": "Eve dönmek için ne yapmalısın?", "opts": ["İstasyonun solundaki duraktan 18.20 otobüsüne bin.", "Saat 18.00 trenini bekle.", "Yarın sabah tekrar gel."], "ans": 0, "why_tr": "Tren iptal olduğu için anons 18.20 otobüsünü ve istasyonun solundaki durağı söylüyor.", "kanit": ["c2", "c3"] }
+    },
+    {
+      "id": "m1:53:a2",
+      "tur": "sesli-mesaj",
+      "title_tr": "Herr Pichler'den sesli mesaj",
+      "ortam_tr": "Pazartesi öğle arasında telefonuna bakıyorsun. Apartman görevlisi Herr Pichler mesaj bırakmış.",
+      "speaker": "ch:pichler",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Hallo, hier ist Pichler, der Hausmeister.", "tr": "Merhaba, ben apartman görevlisi Pichler." },
+        { "id": "c2", "de": "Ich habe eine Beschwerde von den Nachbarn.", "tr": "Komşulardan bir şikâyet aldım." },
+        { "id": "c3", "de": "Am Samstag in der Nacht war die Musik bei Ihnen zu laut.", "tr": "Cumartesi gecesi sizde müzik çok yüksekmiş." },
+        { "id": "c4", "de": "Das geht so nicht.", "tr": "Bu böyle olmaz." },
+        { "id": "c5", "de": "Können Sie mich heute anrufen?", "tr": "Beni bugün arayabilir misiniz?" }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Herr Pichler neden arıyor?", "opts": ["Komşular gürültüden şikâyet etmiş", "Kalorifer bozuk", "Kira ödenmemiş"], "ans": 0, "kanit": ["c2", "c3"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Gürültü ne zaman olmuş?", "opts": ["Cumartesi gecesi", "Pazar sabahı", "Cuma akşamı"], "ans": 0, "kanit": ["c3"] },
+            { "kind": "detail", "q_tr": "Herr Pichler senden ne istiyor?", "opts": ["Onu bugün aramanı", "Komşulara mektup yazmanı", "Ona para vermeni"], "ans": 0, "kanit": ["c5"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c3", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Sonntag", "Samstag", "Freitag"], "ans": 1 },
+            { "id": "d2", "cumle": "c2", "seviye": "orta", "de": "Ich habe eine ___ von den Nachbarn.", "accepted": ["Beschwerde", "beschwerde", "Beschwerde."] },
+            { "id": "d3", "cumle": "c4", "seviye": "zor", "banka": ["Das", "geht", "so", "nicht", "gut", "ist"], "accepted": ["Das geht so nicht.", "das geht so nicht", "Das geht so nicht"] },
+            { "id": "d4", "cumle": "c3", "seviye": "usta", "accepted": ["Am Samstag in der Nacht war die Musik bei Ihnen zu laut.", "am samstag in der nacht war die musik bei ihnen zu laut", "Am Samstag in der Nacht war die Musik bei Ihnen zu laut"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Mesajda ne dendi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Die Nachbarn haben eine Beschwerde. Am Samstag war die Musik zu laut.", "zorunlu": ["Beschwerde", "Samstag"] }
+          ],
+          "golge": ["c2", "c4"],
+          "cevapla": {
+            "id": "m1:53:a2:c1",
+            "k": "guided_response",
+            "situation_tr": "Herr Pichler'i geri arıyorsun. Cumartesi gecesi evde değildin. Adını söyle ve bunu anlat.",
+            "prompt_de": "Pichler. Ja, bitte?",
+            "accepted": ["Hier ist {name}. Am Samstag war ich nicht zu Hause.", "Guten Tag, hier ist {name}. Am Samstag war ich nicht zu Hause.", "Hallo, {name} hier. Ich war am Samstag nicht zu Hause.", "Hier ist {name}. Am Samstag in der Nacht war ich nicht zu Hause.", "Guten Tag, Herr Pichler, hier ist {name}. Am Samstag war ich nicht da.", "Hier ist {name}. Ich war am Samstag nicht zu Hause.", "Guten Tag, hier ist {name}. Ich war am Samstag nicht zu Hause.", "Guten Tag, Herr Pichler, hier ist {name}. Am Samstag war ich nicht zu Hause.", "{name} hier. Am Samstag war ich nicht zu Hause.", "Guten Tag, {name} hier. Am Samstag war ich nicht zu Hause.", "Hier ist {name}. Am Samstag war ich nicht da.", "Hier ist {name}. Ich war am Samstag nicht da.", "Guten Tag, mein Name ist {name}. Am Samstag war ich nicht zu Hause.", "Guten Tag, hier ist {name}. Am Samstag in der Nacht war ich nicht zu Hause.", "Guten Tag, Herr Pichler, hier ist {name}. Ich war am Samstag nicht zu Hause."],
+            "why_tr": "Önce adını söyle, sonra **Am Samstag war ich nicht zu Hause** de."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:53:a2:e1", "k": "pick", "q_tr": "Cumartesi gecesi evde değildin. Ne yapmalısın?", "opts": ["Herr Pichler'i bugün arayıp o gece evde olmadığını söyle.", "Komşulardan özür dile.", "Hiçbir şey yapma."], "ans": 0, "why_tr": "Herr Pichler bugün aramanı istiyor, sen de yanlışlığı açıklamalısın.", "kanit": ["c3", "c5"] }
+    }
+  ],
+  "gorsel": [
+    { "id": "m1:53:g1", "de": "Trinkgeld", "dogru_img": "coins left next to a bill on a restaurant table", "celdirici_img": ["a credit card on a counter", "a shopping receipt in a hand", "an empty plate on a table"] },
+    { "id": "m1:53:g2", "de": "Restaurant", "dogru_img": "restaurant terrace by a lake with set tables", "celdirici_img": ["a supermarket aisle", "a bakery counter", "a hotel reception"] },
+    { "id": "m1:53:g3", "de": "Zug", "dogru_img": "regional train at a small station platform", "celdirici_img": ["a city bus at a stop", "a tram on a street", "a car on a road"] },
+    { "id": "m1:53:g4", "de": "See", "dogru_img": "calm lake with mountains behind", "celdirici_img": ["a wide sea with waves", "a river in a town", "a swimming pool"] }
+  ],
+  "prova": {
+    "id": "m1:53:p1",
+    "title_tr": "Yeni iş arkadaşıyla ilk sohbet",
+    "durum_tr": "Pazartesi sabahı ofiste yeni iş arkadaşı kahve makinesinin yanında duruyor. Onunla ilk kez konuşuyorsun.",
+    "karsi": "die neue Kollegin",
+    "baslangic": "n1",
+    "dugumler": [
+      {
+        "id": "n1",
+        "de": "Hallo! Ich bin neu hier im Büro.",
+        "tr": "Merhaba! Ofiste yeniyim.",
+        "secenekler": [
+          { "de": "Hallo! Ich heiße {name}. Willkommen!", "tr": "Merhaba! Benim adım {name}. Hoş geldin!",
+            "accepted": ["Hallo! Ich heiße {name}. Willkommen!", "Hallo, ich bin {name}. Willkommen!", "Hallo! Mein Name ist {name}. Willkommen!", "Willkommen! Ich heiße {name}.", "Willkommen! Ich bin {name}.", "Hallo und willkommen! Ich bin {name}.", "Willkommen! Ich bin {name}. Freut mich!"],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Adını söyledin ve onu sıcak karşıladın." },
+          { "de": "Hallo! Ich bin {name}. Freut mich!", "tr": "Merhaba! Ben {name}. Memnun oldum!",
+            "accepted": ["Hallo! Ich bin {name}. Freut mich!", "Hallo, ich heiße {name}. Freut mich!", "Freut mich! Ich bin {name}.", "Hallo! Ich bin {name}.", "Hallo! Ich heiße {name}.", "Ich bin {name}. Freut mich!", "Hallo! Mein Name ist {name}. Freut mich!", "Ich heiße {name}. Freut mich!", "Ich bin {name}."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Kısa ve doğal bir tanışma." },
+          { "de": "Und? Wie war das Wochenende?", "tr": "Eee? Hafta sonu nasıldı?",
+            "accepted": ["Und? Wie war das Wochenende?", "Wie war dein Wochenende?", "Wie war das Wochenende?"],
+            "sonraki": "n1b", "uygun": false, "geri_bildirim_tr": "Henüz tanışmadınız. Önce adını söyle." }
+        ]
+      },
+      {
+        "id": "n1b",
+        "de": "Gut, danke. Und wer bist du?",
+        "tr": "İyi, teşekkürler. Peki sen kimsin?",
+        "secenekler": [
+          { "de": "Entschuldigung! Ich bin {name}. Ich bin auch hier im Büro.", "tr": "Pardon! Ben {name}. Ben de bu ofisteyim.",
+            "accepted": ["Entschuldigung! Ich bin {name}. Ich bin auch hier im Büro.", "Entschuldigung! Ich bin {name}. Ich arbeite auch hier.", "Oh, Entschuldigung! Ich heiße {name}.", "Entschuldigung, ich bin {name}.", "Entschuldigung! Ich heiße {name}. Ich arbeite auch hier.", "Entschuldigung! Mein Name ist {name}.", "Entschuldigung! Ich bin {name}. Ich arbeite auch hier im Büro."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "İyi toparladın: özür diledin ve kendini tanıttın." }
+        ]
+      },
+      {
+        "id": "n2",
+        "de": "Freut mich! Und, wie war dein Wochenende?",
+        "tr": "Memnun oldum! Eee, hafta sonun nasıldı?",
+        "secenekler": [
+          { "de": "Gut! Am Sonntag war ich am See.", "tr": "İyiydi! Pazar günü göldeydim.",
+            "accepted": ["Gut! Am Sonntag war ich am See.", "Super! Am Sonntag war ich am See.", "Gut, danke! Ich war am Sonntag am See.", "Schön! Am Sonntag war ich am See.", "Gut! Ich war am See.", "Gut! Ich war am Sonntag am See.", "Ich war am Sonntag am See.", "Gut! Am Sonntag war ich am See. Das Wetter war gut.", "Ich war am See.", "Sehr gut! Am Sonntag war ich am See."],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Nerede olduğunu **war** ile doğru anlattın." },
+          { "de": "Nicht so gut. Mein Zug ist ausgefallen.", "tr": "Pek iyi değil. Trenim iptal oldu.",
+            "accepted": ["Nicht so gut. Mein Zug ist ausgefallen.", "Nicht gut. Der Zug ist ausgefallen.", "Na ja, mein Zug ist ausgefallen.", "Nicht so gut. Der Zug ist ausgefallen.", "Na ja. Der Zug ist ausgefallen."],
+            "sonraki": "n3b", "uygun": true, "geri_bildirim_tr": "Kötü giden şeyi de söylemek sohbeti açar." },
+          { "de": "Ich gehe am Sonntag wandern.", "tr": "Pazar günü doğa yürüyüşüne gidiyorum.",
+            "accepted": ["Ich gehe am Sonntag wandern.", "Am Sonntag gehe ich wandern.", "Ich wandere am Sonntag."],
+            "sonraki": "n2", "uygun": false, "geri_bildirim_tr": "O geçmiş hafta sonunu soruyor, **Am Sonntag war ich am See** gibi anlat." }
+        ]
+      },
+      {
+        "id": "n3",
+        "de": "Schön! Am See ist es toll.",
+        "tr": "Güzel! Göl kenarı harikadır.",
+        "secenekler": [
+          { "de": "Ja! Und du? Was hast du am Wochenende gemacht?", "tr": "Evet! Ya sen? Hafta sonu ne yaptın?",
+            "accepted": ["Ja! Und du? Was hast du am Wochenende gemacht?", "Und du? Was hast du gemacht?", "Und wie war dein Wochenende?", "Ja! Und dein Wochenende?", "Ja! Und du?", "Ja! Was hast du am Wochenende gemacht?", "Ja! Und du? Wie war dein Wochenende?", "Wie war dein Wochenende?"],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Soruyu geri sordun. İyi bir sohbet böyle sürer." }
+        ]
+      },
+      {
+        "id": "n3b",
+        "de": "Ach nein! Das ist schlimm.",
+        "tr": "Hay aksi! Bu kötü.",
+        "secenekler": [
+          { "de": "Ja, aber jetzt bin ich hier. Und dein Wochenende?", "tr": "Evet, ama şimdi buradayım. Ya senin hafta sonun?",
+            "accepted": ["Ja, aber jetzt bin ich hier. Und dein Wochenende?", "Ja. Und wie war dein Wochenende?", "Na ja. Und du? Wie war dein Wochenende?", "Ja. Und dein Wochenende?", "Ja, aber jetzt bin ich hier. Und wie war dein Wochenende?", "Ja, aber jetzt bin ich hier. Und du?", "Ja, aber jetzt bin ich hier. Wie war dein Wochenende?", "Ja. Und du? Was hast du am Wochenende gemacht?"],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "Kötü haberi kısa tuttun ve soruyu geri sordun." }
+        ]
+      },
+      {
+        "id": "n4",
+        "de": "Ich war bei meiner Familie. Das war lustig.",
+        "tr": "Ailemin yanındaydım. Çok eğlenceliydi.",
+        "secenekler": [
+          { "de": "Schön! Möchtest du einen Kaffee?", "tr": "Güzel! Bir kahve ister misin?",
+            "accepted": ["Schön! Möchtest du einen Kaffee?", "Toll! Möchtest du einen Kaffee?", "Super! Möchtest du auch einen Kaffee?", "Schön! Willst du einen Kaffee?", "Das ist schön! Möchtest du einen Kaffee?", "Schön! Möchtest du einen Kaffee trinken?"],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Sıcak bir teklif. Yeni iş arkadaşı rahatlıyor." }
+        ]
+      },
+      { "id": "n9", "de": "Ja, danke! Das ist nett.", "tr": "Evet, teşekkürler! Çok naziksin.", "son": true }
+    ],
+    "kapanis_tr": "Yeni biriyle iş yerinde tanıştın ve hafta sonunda ne yaptığını anlattın."
+  },
+  "okuma_yazma": {
+    "tur": "yazma",
+    "title_tr": "Derya'ya hafta sonunu yaz",
+    "metin_de": "Hallo {name}! Wie war dein Wochenende? Am Samstag ist mein Kurs ausgefallen. Am Sonntag war ich zu Hause. Und du? Derya",
+    "metin_tr": "Merhaba {name}! Hafta sonun nasıldı? Cumartesi kursum iptal oldu. Pazar evdeydim. Ya sen? Derya",
+    "sorular": [
+      { "id": "m1:53:o1", "kind": "detail", "q_tr": "Derya'nın cumartesi kursu ne oldu?", "opts": ["İptal oldu", "Çok güzeldi", "Geç başladı"], "ans": 0, "kanit": [2] }
+    ],
+    "yazma": {
+      "gorev_tr": "Derya'ya cevap yaz. Hafta sonu nerede olduğunu, ne yediğini ve bir sorunu iki üç cümleyle anlat.",
+      "ornek_de": "Hallo Derya! Am Sonntag war ich am See. Wir haben am See gegessen. Der Zug ist ausgefallen.",
+      "zorunlu": ["Sonntag", "war"],
+      "accepted_kaliplar": ["Hallo ___!", "Am ___ war ich ___.", "Ich war am ___ ___.", "Wir haben ___ gegessen.", "Ich habe ___ gegessen.", "Der Zug ist ausgefallen.", "Der Bus ist ausgefallen.", "Mein Kurs ist ausgefallen.", "Das Wetter war ___.", "Das war ___.", "Am ___ war ich zu Hause.", "Und dein Wochenende?", "Bis morgen!"],
+      "kontrol_tr": ["Nerede olduğunu **war** ile yazdın mı?", "Ne yediğini ya da ne yaptığını yazdın mı?", "**gegessen** ve **ausgefallen** cümlenin sonunda mı?"]
+    }
+  },
+  "gun_sinavi": {
+    "id": "m1:53:s",
+    "maddeler": [
+      { "id": "m1:53:s1", "k": "listen_and_respond", "audio_de": "Der Kurs fällt heute aus.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Der Kurs fällt heute aus.", "der kurs fällt heute aus", "Der Kurs faellt heute aus."], "why_tr": "**fällt aus** iptal oluyor demektir ve **aus** en sona gelir." },
+      { "id": "m1:53:s2", "k": "listen_and_respond", "audio_de": "Wir haben im Restaurant gegessen.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Wir haben im Restaurant gegessen.", "wir haben im restaurant gegessen", "Wir haben im Restaurant gegessen"], "why_tr": "**gegessen** cümlenin sonuna gelir." },
+      { "id": "m1:53:s3", "k": "listen_and_respond", "audio_de": "Zwei Euro Trinkgeld sind okay.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Zwei Euro Trinkgeld sind okay.", "zwei euro trinkgeld sind okay", "Zwei Euro Trinkgeld sind okay"], "why_tr": "**das Trinkgeld** bahşiş demektir." },
+      { "id": "m1:53:s4", "k": "listen_and_respond", "audio_de": "Gestern war das Wetter schön.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Gestern war das Wetter schön.", "gestern war das wetter schön", "Gestern war das Wetter schoen."], "why_tr": "**war** geçmişte idi demektir." },
+      { "id": "m1:53:s5", "k": "tr_de", "tr": "Dün gece müzik fazla yüksekti.",
+        "accepted": ["Gestern Nacht war die Musik zu laut.", "Gestern in der Nacht war die Musik zu laut.", "Die Musik war gestern Nacht zu laut.", "Gestern Abend war die Musik zu laut.", "Die Musik war gestern in der Nacht zu laut.", "Die Musik war gestern Abend zu laut."], "why_tr": "Fazla yüksek derken **zu laut** dersin." },
+      { "id": "m1:53:s6", "k": "tr_de", "tr": "Otobüs iptal oldu.",
+        "accepted": ["Der Bus ist ausgefallen.", "Der Bus fällt aus.", "Der Bus ist heute ausgefallen."], "why_tr": "Olmuş bir iptal için **ist ausgefallen** dersin." },
+      { "id": "m1:53:s7", "k": "tr_de", "tr": "Bir şikâyetim var.",
+        "accepted": ["Ich habe eine Beschwerde.", "Ich hätte eine Beschwerde.", "Ich habe da eine Beschwerde."], "why_tr": "Şikâyetim var derken **Ich habe eine Beschwerde** dersin." },
+      { "id": "m1:53:s8", "k": "tr_de", "tr": "Hafta sonu evdeydim.",
+        "accepted": ["Am Wochenende war ich zu Hause.", "Ich war am Wochenende zu Hause.", "Am Wochenende war ich daheim."], "why_tr": "Evde **zu Hause** demektir." },
+      { "id": "m1:53:s9", "k": "guided_response", "situation_tr": "Herr Pichler gürültüden şikâyet ediyor. Cumartesi evde değildin. Söyle.", "prompt_de": "Am Samstag war es bei Ihnen zu laut!",
+        "accepted": ["Am Samstag war ich nicht zu Hause.", "Ich war am Samstag nicht zu Hause.", "Am Samstag war ich nicht da.", "Das war nicht ich. Am Samstag war ich nicht zu Hause.", "Entschuldigung, am Samstag war ich nicht zu Hause.", "Am Samstag war ich nicht zu Hause, Herr Pichler.", "Herr Pichler, am Samstag war ich nicht zu Hause.", "Aber am Samstag war ich nicht zu Hause.", "Am Samstag war ich gar nicht zu Hause.", "Ich war nicht zu Hause.", "Das war ich nicht. Am Samstag war ich nicht zu Hause.", "Am Samstag? Ich war nicht zu Hause."],
+        "why_tr": "**war ich nicht zu Hause** ile o gün evde olmadığını söylersin." },
+      { "id": "m1:53:s10", "k": "guided_response", "situation_tr": "Restoranda hesap on sekiz avro. Yirmi avro ver ve üstü kalsın de.", "prompt_de": "Das macht achtzehn Euro.",
+        "accepted": ["Zwanzig, bitte. Stimmt so.", "Hier sind zwanzig Euro. Stimmt so.", "Zwanzig Euro, stimmt so.", "Machen Sie zwanzig, bitte.", "Zwanzig, bitte. Der Rest ist Trinkgeld.", "Stimmt so.", "Hier, bitte. Stimmt so.", "Zwanzig, stimmt so.", "Hier, zwanzig Euro. Stimmt so.", "Zwanzig Euro, bitte. Stimmt so.", "Hier, bitte. Zwanzig Euro. Stimmt so.", "Machen Sie zwanzig."],
+        "why_tr": "Üstü kalsın derken **Stimmt so** dersin." },
+      { "id": "m1:53:s11", "k": "guided_response", "situation_tr": "Pazartesi işte yeni iş arkadaşın hafta sonunu soruyor. Pazar göldeydin ama tren iptal oldu.", "prompt_de": "Und, wie war dein Wochenende?",
+        "accepted": ["Am Sonntag war ich am See. Aber der Zug ist ausgefallen.", "Gut! Am Sonntag war ich am See, aber der Zug ist ausgefallen.", "Ich war am Sonntag am See. Der Zug ist ausgefallen.", "Am Sonntag war ich am See. Der Zug ist leider ausgefallen.", "Am Sonntag war ich am See. Der Zug ist ausgefallen.", "Ich war am Sonntag am See. Aber der Zug ist ausgefallen.", "Ich war am See, aber der Zug ist ausgefallen.", "Am Sonntag war ich am See. Leider ist der Zug ausgefallen.", "Ich war am See. Der Zug ist ausgefallen.", "Am Sonntag war ich am See. Aber mein Zug ist ausgefallen.", "Nicht so gut. Am Sonntag war ich am See, aber der Zug ist ausgefallen."],
+        "why_tr": "Nerede olduğunu **war** ile, iptali **ist ausgefallen** ile söylersin." }
+    ],
+    "sesli": ["m1:53:s9", "m1:53:s10"],
+    "dikte": ["m1:53:s1", "m1:53:s2", "m1:53:s3", "m1:53:s4"]
+  }
+}
