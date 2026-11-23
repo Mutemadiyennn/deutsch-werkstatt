@@ -7,7 +7,7 @@ Görev kaynağı: PM-095 md. 4 (A2 bekleyen yuvalar), PM-101 md. 4 (önce atanma
 
 ## Sözcük seçimi
 - Önce sana adıyla verilen **öneri kartları** (`content/v2/domains/*/proposals.json`'daki `tr`, `pos`, `art`, `pl`, `verb` bilgisini kullan; kimlik aynen).
-- Kalan yuva: günün konusuna (başlık + dil noktası + haftanın durumu) uyan, öğrencinin o durumda gerçekten kullanacağı A2 sözcüğü (işlev sözcüğü yok). Önce `content/v2/registry/frequency/lemmas.json` K2 sözcükleri (liste gürültülü: yanlış lemma, özel ad, İngilizce, kaba söz alma); listede olan → `tier` ve `freqRank` listeninki. Listede olmayan gerçek alan sözcüğü → `tier: "K1"`, `freqRank` yok.
+- Kalan yuva: günün konusuna (başlık + dil noktası + haftanın durumu) uyan, öğrencinin o durumda gerçekten kullanacağı A2 sözcüğü (işlev sözcüğü yok). Önce `content/v2/registry/frequency/lemmas.json` K2 sözcükleri (liste gürültülü: yanlış lemma, özel ad, İngilizce, kaba söz alma); `tier` bütün A2 partilerinde **"K1"** (karar İÇ-K3; uygulamanın K1 listesi); `freqRank` listede varsa listeninki (büyük/küçük harf satırlarından tekilin sayısını taşıyanı), yoksa alan yok.
 - Her adayı denetle, yalnız `yeni` olanı al: `python3 docs/v2/reviews/lex-a2-hat/kontrol.py Sözcük1 Sözcük2 …` (ağaç + v1/v2 + üç tablo + bütün `origin/content/lex-*` dalları; kimlik ve sözcük düzeyi). Eş anlamlısı zaten kartlıysa alma. Takvim kolu kartı (Weihnachten, Advent …) alma.
 - Gün sırası: bir kart aynı haftanın **sonraki** gününe atanmış yeni karta (ya da sonraki haftaların kartına) dayanmaz.
 

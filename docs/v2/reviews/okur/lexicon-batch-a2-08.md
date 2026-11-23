@@ -68,3 +68,26 @@ Karar değiştirmeyen notlar:
 GERİ kimlikleri: `lx:Bescheinigung.mistakes_tr[0]`, `lx:Postleitzahl.mistakes_tr[0]`, `lx:Postleitzahl.forms[1].hint_tr`, `lx:Benachrichtigung.exp.anlam_tr`, `lx:Anschrift.mistakes_tr[0]`, `lx:Anschrift.examples[2].tr`, `lx:Anschrift.examples[3].tr`, `lx:Anschrift.forms[3].hint_tr`, `lx:Großeltern.forms[3].hint_tr`, `lx:vorlesen.mistakes_tr[0]`
 
 GERİ olduğu için batch-a2-08 "reviewed" sayılamaz (OD-9.4). Düzeltmeden sonra yalnız bu 10 alan yeniden okunur.
+
+## Fark turu (2026-11-23): düzeltilen 10 alan
+
+| kart.alan | yeni açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|
+| `lx:Bescheinigung.mistakes_tr[0]` | Belge lazım derken **Ich brauche ein Bescheinigung** yanlış. Doğrusu **Ich brauche eine Bescheinigung**. | Bir belge lazım derken **ein** değil **eine** denir. | GEÇTİ | Sondaki açıklamasız ek gitmiş. Tek fark, tek fikir. |
+| `lx:Postleitzahl.mistakes_tr[0]` | Posta kodunuz nedir derken **Was ist Ihr Postleitzahl?** yanlış. Doğrusu **Was ist Ihre Postleitzahl?** | Posta kodunuz derken **Ihr** değil **Ihre** denir. | GEÇTİ | Ek gitmiş, tek fark. |
+| `lx:Postleitzahl.forms[1].hint_tr` | Posta kodunuz derken **Ihre Postleitzahl** denir. | "Sizin posta kodunuz" için **Ihre Postleitzahl** derim. | GEÇTİ | Artık Türkçedeki "-nuz" sözüne bağlı, genel kural gibi okunmuyor. Cümleyle örtüşüyor. |
+| `lx:Anschrift.mistakes_tr[0]` | Yeni adresim derken **mein neue Anschrift** yanlış. Doğrusu **meine neue Anschrift**. | Yeni adresim derken **mein** değil **meine** denir. | GEÇTİ | Ek gitmiş, tek fark. |
+| `lx:Anschrift.forms[3].hint_tr` | Benim yeni adresim derken **meine neue Anschrift** denir. | "Benim yeni adresim" için **meine neue Anschrift** derim. | GEÇTİ | "Benim" sözüne bağlı, cümleyle (Bu benim yeni adresim) örtüşüyor. 9 kelime. |
+| `lx:Anschrift.examples[2].tr` | **Anschrift** mı? Bu düpedüz adres işte. | Bu kelime mi? Basbayağı adres demek. | GEÇTİ | Tırnak yok, kalın yazı. |
+| `lx:Anschrift.examples[3].tr` | – **Anschrift** ne demek? – Adres demek: sokak, kapı numarası, posta kodu ve yer. | Bu kelime ne demek diye soruyor, adres diyorlar. | GEÇTİ | Tırnak yok, kalın yazı. |
+| `lx:Großeltern.forms[3].hint_tr` | Büyükannenle deden derken **deine Großeltern** denir. | "Senin büyükannenle deden" için **deine Großeltern** derim. | GEÇTİ | "Senin" sözüne bağlı, `exp.ipucu_tr` ile çelişmiyor. Cümleyle örtüşüyor. |
+| `lx:Benachrichtigung.exp.anlam_tr` | **die Benachrichtigung** bildirimdir: bir SMS ya da kargocunun bıraktığı kâğıt. | Bildirim demek. SMS de olur, kargocunun bıraktığı kâğıt da. | GEÇTİ | Parantezdeki ikinci kelime gitmiş. Tek fikir, 11 kelime. |
+| `lx:vorlesen.mistakes_tr[0]` | Bana mektubu okur musunuz derken **Können Sie mir den Brief lesen?** eksik kalır. Doğrusu **Können Sie mir den Brief vorlesen?** | Birine okumasını isterken **lesen** yetmez, **vorlesen** denir. | GEÇTİ | İki cümlenin başı artık aynı (**Können Sie**). Tek fark var: **lesen** yerine **vorlesen**. |
+
+### Fark turu sayıları
+
+- Okunan satır: 10
+- GEÇTİ: 10
+- GERİ: 0
+
+Fark turunda GERİ kalmadı. Okur kapısı (OD-9.3) açısından batch-a2-08 "reviewed" olabilir (bütün turlar: 576 alan, açık GERİ yok).
