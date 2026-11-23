@@ -136,13 +136,14 @@
   },
   {
    "id": "m1:65:h2",
-   "title_tr": "Mola: akşam ve hafta sonu nereye?",
+   "title_tr": "Akşam apartmanda: sayaç",
    "kartlar": [
     "lx:Fitnessstudio",
     "lx:Schwimmbad",
     "lx:Verein",
     "lx:Spiel",
-    "lx:sich_freuen_(auf/über)"
+    "lx:sich_freuen_(auf/über)",
+    "lx:Zähler"
    ],
    "kaliplar": [
     {
@@ -156,6 +157,18 @@
     {
      "de": "Sie freut sich über …",
      "tr": "O …'e seviniyor."
+    },
+    {
+     "de": "Der Zähler ist im …",
+     "tr": "Sayaç …'de."
+    },
+    {
+     "de": "Ich mache ein Foto vom … und schicke es an Herrn …",
+     "tr": "…'in fotoğrafını çekip … Bey'e gönderiyorum."
+    },
+    {
+     "de": "Dann frage ich … – Ich frage sie.",
+     "tr": "O zaman …'e sorarım. – Ona sorarım."
     }
    ],
    "dersten_sonra": true,
@@ -259,6 +272,26 @@
       "Derya freut sich sehr über den Kuchen von Frau Brandl.",
       "Über den Kuchen von Frau Brandl freut sich Derya."
      ]
+    },
+    {
+     "kart": "lx:Zähler",
+     "de": "Der Zähler für meine Wohnung ist im Keller.",
+     "tr": "Dairemin sayacı bodrumda.",
+     "accepted": [
+      "Der Zähler für meine Wohnung ist im Keller.",
+      "Der Zähler von meiner Wohnung ist im Keller.",
+      "Im Keller ist der Zähler für meine Wohnung."
+     ]
+    },
+    {
+     "kart": "lx:Zähler",
+     "de": "Ich mache ein Foto vom Zähler und schicke es an Herrn Pichler.",
+     "tr": "Sayacın fotoğrafını çekip Herr Pichler'e gönderiyorum.",
+     "accepted": [
+      "Ich mache ein Foto vom Zähler und schicke es an Herrn Pichler.",
+      "Ich mache ein Foto vom Zähler und schicke es Herrn Pichler.",
+      "Ich mache vom Zähler ein Foto und schicke es an Herrn Pichler."
+     ]
     }
    ],
    "sahne": {
@@ -291,79 +324,6 @@
       "Meydandaki lokantada",
       "Stadyumda",
       "Yüzme havuzunda"
-     ],
-     "ans": 0
-    }
-   }
-  },
-  {
-   "id": "m1:65:h3",
-   "title_tr": "Akşam apartmanda: sayaç",
-   "kartlar": [
-    "lx:Zähler"
-   ],
-   "kaliplar": [
-    {
-     "de": "Der Zähler ist im …",
-     "tr": "Sayaç …'de."
-    },
-    {
-     "de": "Ich mache ein Foto vom … und schicke es an Herrn …",
-     "tr": "…'in fotoğrafını çekip … Bey'e gönderiyorum."
-    },
-    {
-     "de": "Dann frage ich … – Ich frage sie.",
-     "tr": "O zaman …'e sorarım. – Ona sorarım."
-    }
-   ],
-   "dersten_sonra": true,
-   "gorev_cumleleri": [
-    {
-     "kart": "lx:Zähler",
-     "de": "Der Zähler für meine Wohnung ist im Keller.",
-     "tr": "Dairemin sayacı bodrumda.",
-     "accepted": [
-      "Der Zähler für meine Wohnung ist im Keller.",
-      "Der Zähler von meiner Wohnung ist im Keller.",
-      "Im Keller ist der Zähler für meine Wohnung."
-     ]
-    },
-    {
-     "kart": "lx:Zähler",
-     "de": "Ich mache ein Foto vom Zähler und schicke es an Herrn Pichler.",
-     "tr": "Sayacın fotoğrafını çekip Herr Pichler'e gönderiyorum.",
-     "accepted": [
-      "Ich mache ein Foto vom Zähler und schicke es an Herrn Pichler.",
-      "Ich mache ein Foto vom Zähler und schicke es Herrn Pichler.",
-      "Ich mache vom Zähler ein Foto und schicke es an Herrn Pichler."
-     ]
-    }
-   ],
-   "sahne": {
-    "ortam_tr": "Akşam merdivende Herr Pichler'le karşılaşıyorsun. Elinde bir kâğıt var.",
-    "satirlar": [
-     {
-      "r": "ch:pichler",
-      "de": "Grüß Gott! Am Donnerstag kommt ein Mann für die Zähler.",
-      "tr": "İyi akşamlar! Perşembe günü sayaçlar için bir adam geliyor."
-     },
-     {
-      "r": "ogrenci",
-      "de": "Ist der Zähler im Keller oder in der Wohnung?",
-      "tr": "Sayaç bodrumda mı, dairede mi?"
-     },
-     {
-      "r": "ch:pichler",
-      "de": "Der Wasserzähler ist im Bad. Der andere ist im Keller.",
-      "tr": "Su sayacı banyoda. Öbürü bodrumda."
-     }
-    ],
-    "soru": {
-     "q_tr": "Su sayacı nerede?",
-     "opts": [
-      "Banyoda",
-      "Bodrumda",
-      "Mutfakta"
      ],
      "ans": 0
     }

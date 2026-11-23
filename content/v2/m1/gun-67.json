@@ -159,10 +159,11 @@
   },
   {
    "id": "m1:67:h2",
-   "title_tr": "Akşam evde: Her şey nerede?",
+   "title_tr": "Telefonda: Frau Brandl nasıl?",
    "kartlar": [
     "lx:hin",
-    "lx:rein"
+    "lx:rein",
+    "lx:fühlen"
    ],
    "kaliplar": [
     {
@@ -172,6 +173,18 @@
     {
      "de": "Ich habe … gelegt. – Ich habe … gehängt. – Hast du … gehängt?",
      "tr": "…'i …'e koydum. – …'i …'e astım. – …'i …'e astın mı?"
+    },
+    {
+     "de": "Ich rufe wegen der … an.",
+     "tr": "… için arıyorum."
+    },
+    {
+     "de": "Wie fühlen Sie sich? – Ich fühle mich …",
+     "tr": "Kendinizi nasıl hissediyorsunuz? – Kendimi … hissediyorum."
+    },
+    {
+     "de": "Wie fühlst du dich?",
+     "tr": "Kendini nasıl hissediyorsun?"
     }
    ],
    "dersten_sonra": true,
@@ -235,65 +248,7 @@
       "Kann ich kurz rein? Ich habe das Handy auf deinen Tisch gelegt.",
       "Darf ich kurz rein? Ich habe mein Handy auf deinen Tisch gelegt."
      ]
-    }
-   ],
-   "sahne": {
-    "ortam_tr": "Akşam eve geliyorsun. Bugün sayaç günüydü: Frau Brandl ve Herr Pichler dairendeydi. Kapı çalıyor.",
-    "satirlar": [
-     {
-      "r": "ogrenci",
-      "de": "Frau Brandl! Kommen Sie rein!",
-      "tr": "Frau Brandl! Buyurun, içeri gelin!"
-     },
-     {
-      "r": "ch:brandl",
-      "de": "Nur kurz. Haben Sie alles gefunden?",
-      "tr": "Sadece bir dakika. Her şeyi buldunuz mu?"
-     },
-     {
-      "r": "ogrenci",
-      "de": "Nicht alles. Wohin haben Sie mein Handy gelegt?",
-      "tr": "Hepsini değil. Telefonumu nereye koydunuz?"
-     },
-     {
-      "r": "ch:brandl",
-      "de": "In den Schrank in der Küche.",
-      "tr": "Mutfaktaki dolaba."
-     }
-    ],
-    "soru": {
-     "q_tr": "Telefon nerede?",
-     "opts": [
-      "Mutfaktaki dolapta",
-      "Askılıkta",
-      "Masada"
-     ],
-     "ans": 0
-    }
-   }
-  },
-  {
-   "id": "m1:67:h3",
-   "title_tr": "Telefonda: Frau Brandl nasıl?",
-   "kartlar": [
-    "lx:fühlen"
-   ],
-   "kaliplar": [
-    {
-     "de": "Ich rufe wegen der … an.",
-     "tr": "… için arıyorum."
     },
-    {
-     "de": "Wie fühlen Sie sich? – Ich fühle mich …",
-     "tr": "Kendinizi nasıl hissediyorsunuz? – Kendimi … hissediyorum."
-    },
-    {
-     "de": "Wie fühlst du dich?",
-     "tr": "Kendini nasıl hissediyorsun?"
-    }
-   ],
-   "dersten_sonra": true,
-   "gorev_cumleleri": [
     {
      "kart": "lx:fühlen",
      "de": "Ich rufe wegen der Zähler an. Wie fühlen Sie sich heute, Frau Brandl?",
@@ -326,30 +281,35 @@
     }
    ],
    "sahne": {
-    "ortam_tr": "Akşam. Frau Brandl'a teşekkür etmek için onu arıyorsun.",
+    "ortam_tr": "Akşam eve geliyorsun. Bugün sayaç günüydü: Frau Brandl ve Herr Pichler dairendeydi. Kapı çalıyor.",
     "satirlar": [
      {
       "r": "ogrenci",
-      "de": "Grüß Gott, Frau Brandl. Ich rufe wegen der Zähler an. Danke für die Hilfe!",
-      "tr": "İyi akşamlar, Frau Brandl. Sayaçlar için arıyorum. Yardımınız için teşekkürler!"
+      "de": "Frau Brandl! Kommen Sie rein!",
+      "tr": "Frau Brandl! Buyurun, içeri gelin!"
      },
      {
       "r": "ch:brandl",
-      "de": "Gern! Und wie fühlen Sie sich jetzt in der Wohnung?",
-      "tr": "Rica ederim! Peki dairede kendinizi nasıl hissediyorsunuz şimdi?"
+      "de": "Nur kurz. Haben Sie alles gefunden?",
+      "tr": "Sadece bir dakika. Her şeyi buldunuz mu?"
      },
      {
       "r": "ogrenci",
-      "de": "Sehr gut. Ich fühle mich hier schon wie zu Hause.",
-      "tr": "Çok iyi. Burada kendimi şimdiden evimde gibi hissediyorum."
+      "de": "Nicht alles. Wohin haben Sie mein Handy gelegt?",
+      "tr": "Hepsini değil. Telefonumu nereye koydunuz?"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "In den Schrank in der Küche.",
+      "tr": "Mutfaktaki dolaba."
      }
     ],
     "soru": {
-     "q_tr": "Dairede kendini nasıl hissediyorsun?",
+     "q_tr": "Telefon nerede?",
      "opts": [
-      "Evimde gibi",
-      "Yorgun",
-      "Yalnız"
+      "Mutfaktaki dolapta",
+      "Askılıkta",
+      "Masada"
      ],
      "ans": 0
     }

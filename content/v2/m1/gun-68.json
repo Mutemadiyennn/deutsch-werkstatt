@@ -134,10 +134,11 @@
   },
   {
    "id": "m1:68:h2",
-   "title_tr": "Akşam merdivende: yeni duyuru",
+   "title_tr": "Telefonda Ioana: bodrumda yer var mı?",
    "kartlar": [
     "lx:Mülltonne",
-    "lx:wahr"
+    "lx:wahr",
+    "lx:genug"
    ],
    "kaliplar": [
     {
@@ -151,6 +152,14 @@
     {
      "de": "Papier kommt in die neue Mülltonne.",
      "tr": "Kâğıt yeni çöp bidonuna atılır."
+    },
+    {
+     "de": "Könnten Sie bitte …? – Natürlich!",
+     "tr": "Lütfen … yapabilir misiniz? – Tabii!"
+    },
+    {
+     "de": "Ist genug Platz im …? – Ja, da ist genug Platz.",
+     "tr": "…'de yeterince yer var mı? – Evet, yeterince yer var."
     }
    ],
    "dersten_sonra": true,
@@ -204,56 +213,7 @@
       "Schuhe dürfen nicht vor der Tür stehen, oder?",
       "Die Schuhe dürfen nicht vor der Tür stehen, nicht wahr?"
      ]
-    }
-   ],
-   "sahne": {
-    "ortam_tr": "Cuma akşamı eve geliyorsun. Merdivende yeni bir duyuru asılı. Frau Brandl onu okuyor.",
-    "satirlar": [
-     {
-      "r": "ch:brandl",
-      "de": "Haben Sie das schon gesehen? Herr Pichler hat eine neue Hausordnung ins Treppenhaus gehängt.",
-      "tr": "Bunu gördünüz mü? Herr Pichler merdivene yeni bir apartman yönetmeliği asmış."
-     },
-     {
-      "r": "ogrenci",
-      "de": "Ja. Man darf keine Schuhe mehr vor die Tür stellen, oder?",
-      "tr": "Evet. Artık kapının önüne ayakkabı konmuyor, değil mi?"
-     },
-     {
-      "r": "ch:brandl",
-      "de": "Genau. Und der Müll muss in die Mülltonne, nicht neben die Tonne!",
-      "tr": "Aynen. Çöp de bidona atılacak, yanına değil!"
-     }
-    ],
-    "soru": {
-     "q_tr": "Herr Pichler ne yaptı?",
-     "opts": [
-      "Merdivene yeni kurallar astı",
-      "Çöpleri topladı",
-      "Ayakkabıları bodruma koydu"
-     ],
-     "ans": 0
-    }
-   }
-  },
-  {
-   "id": "m1:68:h3",
-   "title_tr": "Telefonda Ioana: bodrumda yer var mı?",
-   "kartlar": [
-    "lx:genug"
-   ],
-   "kaliplar": [
-    {
-     "de": "Könnten Sie bitte …? – Natürlich!",
-     "tr": "Lütfen … yapabilir misiniz? – Tabii!"
     },
-    {
-     "de": "Ist genug Platz im …? – Ja, da ist genug Platz.",
-     "tr": "…'de yeterince yer var mı? – Evet, yeterince yer var."
-    }
-   ],
-   "dersten_sonra": true,
-   "gorev_cumleleri": [
     {
      "kart": "lx:genug",
      "de": "Könnten Sie am Abend bitte nicht so laut sein? Ich habe nicht genug geschlafen.",
@@ -286,35 +246,30 @@
     }
    ],
    "sahne": {
-    "ortam_tr": "Cuma akşamı Ioana arıyor. Yarın sana bisikletle gelecek.",
+    "ortam_tr": "Cuma akşamı eve geliyorsun. Merdivende yeni bir duyuru asılı. Frau Brandl onu okuyor.",
     "satirlar": [
      {
-      "r": "ch:popescu",
-      "de": "Morgen komme ich mit dem Fahrrad. Wohin kann ich es stellen?",
-      "tr": "Yarın bisikletle geliyorum. Onu nereye koyabilirim?"
+      "r": "ch:brandl",
+      "de": "Haben Sie das schon gesehen? Herr Pichler hat eine neue Hausordnung ins Treppenhaus gehängt.",
+      "tr": "Bunu gördünüz mü? Herr Pichler merdivene yeni bir apartman yönetmeliği asmış."
      },
      {
       "r": "ogrenci",
-      "de": "In den Keller. Da ist genug Platz.",
-      "tr": "Bodruma. Orada yeterince yer var."
+      "de": "Ja. Man darf keine Schuhe mehr vor die Tür stellen, oder?",
+      "tr": "Evet. Artık kapının önüne ayakkabı konmuyor, değil mi?"
      },
      {
-      "r": "ch:popescu",
-      "de": "Super! Im Treppenhaus darf es nicht stehen, oder?",
-      "tr": "Süper! Merdivende duramaz, değil mi?"
-     },
-     {
-      "r": "ogrenci",
-      "de": "Nein. Herr Pichler sagt dann: Das geht so nicht!",
-      "tr": "Duramaz. Yoksa Herr Pichler şöyle der: Böyle olmaz!"
+      "r": "ch:brandl",
+      "de": "Genau. Und der Müll muss in die Mülltonne, nicht neben die Tonne!",
+      "tr": "Aynen. Çöp de bidona atılacak, yanına değil!"
      }
     ],
     "soru": {
-     "q_tr": "Ioana bisikletini nereye koyacak?",
+     "q_tr": "Herr Pichler ne yaptı?",
      "opts": [
-      "Bodruma",
-      "Merdivene",
-      "Avluya"
+      "Merdivene yeni kurallar astı",
+      "Çöpleri topladı",
+      "Ayakkabıları bodruma koydu"
      ],
      "ans": 0
     }
