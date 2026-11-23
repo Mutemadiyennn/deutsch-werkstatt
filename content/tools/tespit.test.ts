@@ -6,7 +6,7 @@ import { describe, it, expect } from "vitest";
 import { mkdtempSync, mkdirSync, writeFileSync, cpSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { tespitKaynaklari, tespitDenetle, tespitYukle, beceriUyumu, drillUretim, TESPIT_POLITIKA, type GunOzet, type TespitGirdi } from "./tespit.ts";
+import { tespitKaynaklari, tespitDenetle, tespitYukle, tespitPaketi, beceriUyumu, drillUretim, TESPIT_POLITIKA, type GunOzet, type TespitGirdi } from "./tespit.ts";
 import { derinSec, type TespitCozulen } from "../../packages/shared/src/tespit.ts";
 
 const FX = join(import.meta.dirname, "fixtures/tespit");
@@ -205,5 +205,41 @@ describe("seviye tespiti havuzu: kurallar", () => {
     expect(TESPIT_POLITIKA.havuz).toEqual({ tarama_hafta: [2, 3], cikis_min: 1 });
     expect(TESPIT_POLITIKA.derin).toEqual({ can_do_madde: 1, dil_noktasi_madde: 2 });
     expect(TESPIT_POLITIKA.karar).toEqual({ a2_genel_min: 0.8, a2_beceri_min: 0.7, a2_hafta_min: 0.6, bastan_genel_alti: 0.4 });
+  });
+});
+
+describe("seviye tespiti paketi (PR 2) ve motorla birebirlik", () => {
+  const ADLAR = new Map([["r0:01-tage", "Günler"], ["gr:a1-03:t5", "Küçük sözcükler"]]);
+  it("tespitPaketi: havuz sırası, çekirdek dört beceri, hafta hedefleri ve kartları", async () => {
+    const p = tespitPaketi(FX, ADLAR, { "2": { kartlar: ["lx:kesin"] } })!;
+    expect(p.maddeler.map((x) => x.id)).toEqual(HAM.maddeler.map((x: { ref?: string; yeni?: { id: string } }) => x.ref ?? x.yeni!.id));
+    expect(p.cekirdek.map((x) => [x.beceri, x.asama])).toEqual([["dinleme", "cekirdek"], ["okuma", "cekirdek"], ["yazma", "cekirdek"], ["konusma", "cekirdek"]]);
+    expect(p.haftalar.map((h) => [h.hafta, h.can_do.map((c) => c.id), h.dil_noktasi.map((d) => d.id)])).toEqual([
+      [1, ["cd:m1:01", "cd:m1:02"], ["r0:01-tage", "r0:02-monate", "r0:11-praesens"]],
+      [2, ["cd:m1:08"], ["gr:a1-03:t5", "dn:kucuk-sozcukler"]]
+    ]);
+    expect(p.haftalar[0]!.dil_noktasi[0]).toEqual({ id: "r0:01-tage", ad_tr: "Günler" });
+    expect(p.haftalar[0]!.can_do[0]).toEqual({ id: "cd:m1:01", tr: "Günleri söylerim.", gun: 1 });
+    // gün dosyası olmayan gün (2. hafta: 9–14) kartları kesin tablodan; fikstürde 2. gün dosyası var, kesin satırı kullanılmaz
+    expect(p.haftalar[0]!.kartlar).not.toContain("lx:kesin");
+    const { TespitPaket } = await import("../../packages/shared/src/tespit.ts");
+    expect(TespitPaket.safeParse(p).success).toBe(true);
+    // hatalı havuz pakete girmez
+    const d = mkdtempSync(join(tmpdir(), "tespit-")); cpSync(FX, d, { recursive: true });
+    writeFileSync(join(d, "assess/a1-seviye-tespiti.json"), JSON.stringify({ ...HAM, fazla: 1 }));
+    expect(tespitPaketi(d, ADLAR)).toBeNull();
+  });
+  it("motorun derin seçimi doğrulayıcının seçimiyle birebir (aynı derinSec, aynı sıra, aynı hedefler)", async () => {
+    const { derinPlani } = await import("../../web/src/core/tespit.ts");
+    const p = tespitPaketi(FX, ADLAR)!;
+    const r = denetle();
+    for (const h of p.haftalar) {
+      const gunler = K.gunler.filter((g) => Math.ceil(g.day / 7) === h.hafta && !g.sinav);
+      const ilk = new Map<string, number>(); for (const g of K.gunler) for (const x of g.dersler) if (!ilk.has(x)) ilk.set(x, Math.ceil(g.day / 7));
+      const hd = { can_do: gunler.map((g) => g.can_do!), dil_noktasi: [...ilk].filter(([, w]) => w === h.hafta).map(([x]) => x) };
+      const dogrulayici = derinSec(r.cozulen, hd, TESPIT_POLITIKA.derin).secilen.map((x) => x.id);
+      expect(derinPlani(p, [h.hafta]).filter((a) => a.madde).map((a) => a.id)).toEqual(dogrulayici);
+      expect(dogrulayici.length).toBeGreaterThan(0);
+    }
   });
 });
