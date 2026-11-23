@@ -66,7 +66,7 @@ export function ProfileView() {
 
   return (
     <div class="stack">
-      <TopBar title="Profil ve ayarlar" />
+      <TopBar title="Profil ve ayarlar" back="#/ben" />
 
       <section class="card">
         <h2>Odak ve Pomodoro</h2>

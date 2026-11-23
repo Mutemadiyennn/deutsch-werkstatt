@@ -62,7 +62,7 @@ export function DomainView({ id }: { id: string }) {
   const sc = visibleScenarios(index.scenarios, Date.now()).filter((s) => s.domain === id).sort((a, b) => a.order - b.order);
   return (
     <div class="stack">
-      <TopBar title={d.title_tr} back="#/learn" />
+      <TopBar title={d.title_tr} back="#/koy" />
       <p class="small">{d.desc_tr}</p>
       <section class="card">
         <div class="kicker">Senaryolar</div>

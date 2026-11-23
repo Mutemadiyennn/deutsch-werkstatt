@@ -135,7 +135,7 @@ export function SesDeneme() {
   const yavasNot = hedef.filter((s) => kayit[sesAnahtar(s)]).map((s) => { const o = kayit[sesAnahtar(s)]!; return `${kisaAd(s.name)} ${kat(hizOrani(o))}${(yol === "yerel" ? ayrismiyor(o) : hizOrani(o) < ORAN_ESIK) ? " yavaşlamıyor" : ""}`; }).join(", ");
   return (
     <div class="stack ses-deneme" data-test="ses-deneme">
-      <TopBar title="Ses ve mikrofon" back="#/profile" />
+      <TopBar title="Ses ve mikrofon" back="#/ben/ayarlar" />
       <section class="card stack">
         <h2>Sesler</h2>
         <p class="small" style={{ margin: 0 }} data-test="ses-yol">{yol === "yerel" ? "Ses: iPhone'un kendi sesleri" : yol === "web" ? (kabukta ? "Ses: görünümün sesleri (yedek yol)" : "Ses: tarayıcının sesleri") : "Bu cihazda seslendirme yok."}</p>

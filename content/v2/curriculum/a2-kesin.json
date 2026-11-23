@@ -14,7 +14,7 @@
   ],
   "grammar": "content/v2/registry/grammar.json",
   "main": "987f6ae2",
-  "a1_kesin": "origin/content/a1-kesin ba3f805 (PR #198)"
+  "a1_kesin": "origin/content/a1-kesin 6829a3f (PR #198; A1 kümesi ba3f805 ile aynı)"
  },
  "kural_tr": [
   "1. Önceden öğretilmiş ya da atanmış: a1-kesin.json ogretilmis_sayilan + gunler; takvim kolu ve pasif kartlar hiç atanmaz.",
@@ -22,7 +22,7 @@
   "3. Hafta, K1 dışı kısmı (k1_disi): sözlükte kartı olan, K1 dışı, pasif olmayan, seviyesi A2 olan v1 kartları. Kart, v1 birimine karşılık gelen gr: dersinin haftasına gider (o haftanın ders metninde geçiyorsa öncelik); yer yoksa sonraki boş haftaya. Kalan yuva k1_disi_bekleyen (lex işi; kimlik uydurulmaz).",
   "4. Gün (öneri): haftanın dil noktaları sırasıyla birer güne; kalan ders günleri haftanın birimlerine; 7. gün haftanın sınavı. Günlük adet haftalık toplamın 20/17/16/15/14/13/5 oranında bölünmesi. Kart önce günün başlığında ya da dersinin grammar.json Almanca metninde (başlık, tablo, örnek) geçtiği en erken güne, kalanı K1 sırasıyla.",
   "5. Hafta içi ön koşul: bileşik ya da önekli kart, parçası olan karttan önceki bir güne düşerse parça aynı hafta içinde öne alınır (hafta_ici_takas). Hafta sınırını aşanlar yalnız not (hafta_siniri_notlari).",
-  "6. PM 7088230583 md. 1: hafta ve gün başına üç liste. kartlar = öğretilecek sözlük kartları (dikişin hafta kümesi kuralı yalnız bunlar için); cerceve = işlev sözcükleri (sözlükte card:false ya da pos det/pron/conj/prep/particle/num; yeni_kartlar'a yazılmaz, ama o hafta bir kalıpta ya da dil noktasında gösterilmeden kullanılmaz); sozlukte_yok = kartlar içinde sözlükte (lexicon, lexemes.v2, lexemes.v1) kaydı olmayanlar (lex işi; hat o kartların gününü en sona bırakır). Boşalan yer doldurulmaz: haftanın gerçek kart sayısı kart_sayisi (kartlar + k1_disi_bekleyen), planlanan_yeni üst sınırdır. omurga gunler[].kelime.adet = o günün kartlar + bekleyen sayısı (yuva alanı çerçeve dahil yuva).",
+  "6. PM 7088230583 md. 1: hafta ve gün başına üç liste. kartlar = öğretilecek sözlük kartları (dikişin hafta kümesi kuralı yalnız bunlar için); cerceve = işlev sözcükleri (sözlükte card:false ya da pos det/pron/conj/prep/particle/num; yeni_kartlar'a yazılmaz, ama o hafta bir kalıpta ya da dil noktasında gösterilmeden kullanılmaz); sozlukte_yok = kartlar içinde derin sözlük kaydı (registry/lexicon/batch-*.json) olmayanlar; yalnız lexemes.v1/v2 kaydı olan da sayılır (#198 ölçüsü) (lex işi; hat o kartların gününü en sona bırakır). Boşalan yer doldurulmaz: haftanın gerçek kart sayısı kart_sayisi (kartlar + k1_disi_bekleyen), planlanan_yeni üst sınırdır. omurga gunler[].kelime.adet = o günün kartlar + bekleyen sayısı (yuva alanı çerçeve dahil yuva).",
   "7. Lex doldurma (PM-095 md. 4): bekleyen yuvaya giren kart, o günün kartlar listesinin sonuna eklenir; gün bekleyen −1, kart +1; hafta k1_disi_kesin +1, k1_disi_bekleyen −1, kesin +1. kart_sayisi ve planlanan_yeni değişmez. Kayıt lex_doldurma alanında."
  ],
  "haftalar": [
@@ -224,6 +224,7 @@
     "lx:ne"
    ],
    "sozlukte_yok": [
+    "lx:Mietvertrag",
     "lx:Mülltonne",
     "lx:Wasserhahn",
     "lx:Steckdose"
@@ -330,9 +331,11 @@
     "lx:hinter"
    ],
    "sozlukte_yok": [
+    "lx:Kassenbon",
     "lx:Quittung",
     "lx:Umtausch",
-    "lx:Einkaufswagen"
+    "lx:Einkaufswagen",
+    "lx:umtauschen"
    ],
    "hafta_ici_takas": [
     {
@@ -561,6 +564,8 @@
    "sozlukte_yok": [
     "lx:Arbeitsvertrag",
     "lx:Arbeitsunfall",
+    "lx:Bewerbung",
+    "lx:Vorstellungsgespräch",
     "lx:Probezeit",
     "lx:krankmelden"
    ],
@@ -1504,6 +1509,7 @@
     "lx:niemand"
    ],
    "sozlukte_yok": [
+    "lx:Mietvertrag",
     "lx:Wasserhahn",
     "lx:Steckdose"
    ]
@@ -1686,9 +1692,11 @@
    ],
    "cerceve": [],
    "sozlukte_yok": [
+    "lx:Kassenbon",
     "lx:Quittung",
     "lx:Umtausch",
-    "lx:Einkaufswagen"
+    "lx:Einkaufswagen",
+    "lx:umtauschen"
    ]
   },
   {
@@ -2017,7 +2025,8 @@
    "cerceve": [],
    "sozlukte_yok": [
     "lx:Arbeitsvertrag",
-    "lx:Arbeitsunfall"
+    "lx:Arbeitsunfall",
+    "lx:Bewerbung"
    ]
   },
   {
@@ -2045,6 +2054,7 @@
    ],
    "cerceve": [],
    "sozlukte_yok": [
+    "lx:Vorstellungsgespräch",
     "lx:Probezeit",
     "lx:krankmelden"
    ]
@@ -4105,7 +4115,7 @@
   "onceki_tablolarda_atanmisi_yeniden_atama": 0,
   "k1_ve_sozlukte_olmayan_kimlik": 0,
   "sozlukte_kaydi_olmayan_isaretsiz_kimlik": 0,
-  "sozlukte_yok_isaretli": 27,
+  "sozlukte_yok_isaretli": 32,
   "cerceve_toplam": 31,
   "haftalik_toplam_farki": 0,
   "gun_toplami_hafta_toplamina_esit_olmayan_hafta": 0,
@@ -4117,6 +4127,7 @@
     "lx:Anzeige",
     "lx:Arbeitsunfall",
     "lx:Arbeitsvertrag",
+    "lx:Bewerbung",
     "lx:Briefmarke",
     "lx:Einkaufswagen",
     "lx:Empfänger",
@@ -4125,7 +4136,9 @@
     "lx:Girokonto",
     "lx:Haarschnitt",
     "lx:IBAN",
+    "lx:Kassenbon",
     "lx:Kündigung",
+    "lx:Mietvertrag",
     "lx:Mitgliedschaft",
     "lx:Mülltonne",
     "lx:Packstation",
@@ -4136,9 +4149,11 @@
     "lx:Umkleide",
     "lx:Umtausch",
     "lx:Vertrag",
+    "lx:Vorstellungsgespräch",
     "lx:Wasserhahn",
     "lx:färben",
     "lx:krankmelden",
+    "lx:umtauschen",
     "lx:zustellen"
    ],
    "k1_disi_bekleyen_toplam": 186,

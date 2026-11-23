@@ -11,6 +11,7 @@ import { judgeWord, norm, numberWordHint } from "../core/grading.ts";
 import { fillName } from "../core/persona.ts";
 import { addClaim } from "../data/db.ts";
 import { haptic } from "../services/haptics.ts";
+import { sttAvailable } from "../services/speech.ts";
 import { ActionBar, AnswerField, FeedbackBand, ListenButton, YanlisIci } from "./kit.tsx";
 import { Rich } from "./rich.tsx";
 
@@ -70,7 +71,8 @@ const KICKER: Record<Drill["k"], string> = {
 export function DrillView({ d, sira, onDone, artikel }: { d: Drill; sira?: string; onDone: (s: DrillSonuc) => void; artikel?: { de: string; art: string } }) {
   const [v, setV] = useState<{ kind: "correct" | "wrong" | "unchecked"; best: string; note?: string; a: string } | null>(null);
   const [picked, setPicked] = useState<number | null>(null);
-  const kicker = `${KICKER[d.k]}${sira ? ` · ${sira}` : ""}`;
+  // mikrofon yoksa "söyle" denmez: cevap yazarak verilir (PM 7055715440 md. 10)
+  const kicker = `${d.k === "tr_de" && !sttAvailable() ? "Almanca yaz" : KICKER[d.k]}${sira ? ` · ${sira}` : ""}`;
   const done = (s: DrillSonuc) => { setV(null); setPicked(null); onDone(s); };
 
   if (d.k === "pick") return (
