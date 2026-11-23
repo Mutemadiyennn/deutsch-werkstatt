@@ -151,7 +151,7 @@ describe("/v1/ai/run", () => {
     mockGemini([{ status: 503 }, { status: 503 }]);
     const r2 = await handle(run(await token(), "equiv_check", EQ), env());
     expect(r2.status).toBe(503);
-    expect((await r2.json()).error.message_tr).toContain("senin sınırın değil");
+    expect((await r2.json()).error.message_tr).toContain("senin hakkınla ilgisi yok");
   });
   it("geçersiz model çıktısı → yedek; ikisi de geçersizse bad_output (502)", async () => {
     mockGemini([{ text: "kein json" }, { text: "hâlâ değil" }, { text: '{"ok": "yes"}' }, { text: '{"ok": "yes"}' }]);

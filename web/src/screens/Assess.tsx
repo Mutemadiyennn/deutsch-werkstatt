@@ -9,11 +9,10 @@ import { selectItems, nextItem, progress, finish, LISTEN_SPEED, SKILL_TR } from 
 import { applyAssessment, itemIdFromAssess } from "../core/learner.ts";
 import { judge, judgeWord } from "../core/grading.ts";
 import { speak, sttAvailable, listenOnce } from "../services/speech.ts";
-import { ApiError } from "../services/api.ts";
 import { ai, aiState } from "../services/ai.ts";
 import { ErrorPanel, FocusChip, Loading, SpeakBtn, TopBar } from "../ui/components.tsx";
 
-type Fb = { ok: boolean; skipped?: boolean; right: string; tr?: string; note?: string };
+type Fb = { ok: boolean; skipped?: boolean; unchecked?: boolean; right: string; tr?: string; note?: string };
 
 export function AssessRun() {
   const { refreshPlacement } = useApp();
@@ -99,9 +98,9 @@ export function AssessRun() {
 function Feedback({ fb, onNext, last }: { fb: Fb; onNext: () => void; last: boolean }) {
   return (
     <div class="stack" aria-live="polite">
-      <div class={`fb ${fb.ok ? "ok" : fb.skipped ? "info" : "bad"}`} data-test="feedback">
-        <b>{fb.ok ? "Doğru." : fb.skipped ? "Sorun değil." : "Bu sefer olmadı."}</b>
-        {!fb.ok && <> Doğrusu: <span class="de">{fb.right}</span></>}
+      <div class={`fb ${fb.ok ? "ok" : fb.skipped || fb.unchecked ? "info" : "bad"}`} data-test="feedback">
+        <b>{fb.ok ? "Doğru." : fb.skipped ? "Sorun değil." : fb.unchecked ? "Bunu şu an kontrol edemedim." : "Bu sefer olmadı."}</b>
+        {!fb.ok && <> {fb.unchecked ? "Örnek cevap" : "Doğrusu"}: <span class="de">{fb.right}</span></>}
         {fb.tr && <div class="small">{fb.tr}</div>}
         {fb.note && <div class="small">{fb.note}</div>}
       </div>
@@ -221,10 +220,10 @@ function Speak({ it, onAnswer }: { it: Extract<AssessItem, { skill: "speaking" }
         const r = await ai(api, "equiv_check", { prompt_tr: it.tr, expected: variants, answer: j.heard });
         setState("idle");
         return onAnswer({ ...base(it), correct: r.ok, given: j.heard, mode, aiAccepted: r.ok }, { ok: r.ok, right: it.de, tr: it.tr, note: r.reason_tr });
-      } catch (e) {
+      } catch {
         setState("idle");
-        const msg = e instanceof ApiError ? e.message_tr : "Sunucuya ulaşılamadı.";
-        return onAnswer({ ...base(it), correct: false, given: j.heard, mode }, { ok: false, right: it.de, tr: it.tr, note: `Öğretmen kontrolü yapılamadı: ${msg}` });
+        // yapay zekâ denetimi düştü: cevap "yanlış" sayılmaz, puana girmez (ANA-E devri 7090637496 takip; PM-112 A.3)
+        return onAnswer({ ...base(it), correct: false, unchecked: true, given: j.heard, mode }, { ok: false, unchecked: true, right: it.de, tr: it.tr, note: "Bu madde sonuca katılmıyor; seninki de doğru olabilir." });
       }
     }
     onAnswer({ ...base(it), correct: false, given: j.heard, mode }, { ok: false, right: it.de, tr: it.tr, note: heard ? `Duyulan: „${j.heard}“` : undefined });

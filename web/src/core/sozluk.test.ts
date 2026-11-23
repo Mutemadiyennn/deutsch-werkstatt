@@ -25,4 +25,27 @@ describe("yerel sözlük (#58 A11)", () => {
     expect(a.kaynak).toBe("kelimeler");
     expect(a.kelimeler!.map((k) => k.de)).toEqual(["haben", "morgen", "Termin"]);
   });
+  it("cümledeki kalıp bütün açıklanır: Grüß Gott = merhaba, Gott ayrıca Tanrı diye açıklanmaz (PM finali #218)", () => {
+    const lx = [...LEX, L({ id: "Gott", de: "Gott", tr: "Tanrı", pos: "noun", art: "der", collocations: [{ de: "Grüß Gott!", tr: "Merhaba!" }, { de: "Gott sei Dank!", tr: "Çok şükür!" }], exp: { anlam_tr: "Tanrıyı söyler.", ne_zaman_tr: "Güneyde selamlaşırken **Grüß Gott** dersin.", parcalar: [] } }), L({ id: "fuehren", de: "führen", tr: "götürmek", pos: "verb" })];
+    const a = yerelAcikla("Grüß Gott! Was führt Sie zu mir?", lx)!;
+    expect(a.kaynak).toBe("kelimeler");
+    expect(a.ifadeler).toEqual([{ de: "Grüß Gott!", tr: "Merhaba!", not: "Güneyde selamlaşırken Grüß Gott dersin." }]);
+    expect(a.kelimeler!.map((k) => k.de)).not.toContain("Gott");
+    // içerikteki açılış cümlesi (küçük harfle, soru işaretiyle)
+    expect(yerelAcikla("Praxis Dr. Weber, Huber, grüß Gott?", lx)!.ifadeler!.map((x) => x.tr)).toEqual(["Merhaba!"]);
+    expect(a.kelimeler!.map((k) => k.de)).toContain("führen");
+  });
+  it("iletişim kalıbı önce: senaryonun kalıbı ne zaman söylendiğiyle gelir; bütün ifade de kalıbın kendisi", () => {
+    const ch = [{ id: "ch:gruess-gott", tr: "Merhaba (güneyde selam)", lexemes: [], register: "neutral", layers: { hd: "Guten Tag!", alltag: "Grüß Gott!" }, alltag_exp: { anlam_tr: "Merhaba.", ne_zaman_tr: "Bavyera'da **selamlaşırken** söylenir.", parcalar: [] }, requires: [], mistakes_tr: [] }] as never;
+    const lx = [...LEX, L({ id: "Gott", de: "Gott", tr: "Tanrı", pos: "noun", art: "der", collocations: [{ de: "Grüß Gott!", tr: "Merhaba!" }] })];
+    expect(yerelAcikla("Grüß Gott!", lx, { chunks: ch })).toEqual({ kaynak: "ifade", de: "Grüß Gott!", tr: "Merhaba (güneyde selam)", not: "Bavyera'da selamlaşırken söylenir." });
+    const a = yerelAcikla("Grüß Gott, Frau Huber!", lx, { chunks: ch })!;
+    expect(a.ifadeler).toEqual([{ de: "Grüß Gott!", tr: "Merhaba (güneyde selam)", not: "Bavyera'da selamlaşırken söylenir." }]);
+  });
+  it("kalıp örneği bütün olarak; yer tutuculu eşdizim (___, [Name]) eşleşmez", () => {
+    const pt = [{ id: "pt:ich-habe", examples: [{ de: "Ich habe morgen Zeit.", tr: "Yarın vaktim var.", layer: "hd" }] }] as never;
+    expect(yerelAcikla("Ich habe morgen Zeit.", LEX, { patterns: pt })).toMatchObject({ kaynak: "ifade", tr: "Yarın vaktim var." });
+    const lx = [L({ id: "x", de: "machen", tr: "yapmak", pos: "verb", collocations: [{ de: "___ machen", tr: "yapmak" }] }), ...LEX];
+    expect(yerelAcikla("Sie machen das gut.", lx)?.ifadeler).toBeUndefined();
+  });
 });

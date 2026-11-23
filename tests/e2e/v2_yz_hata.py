@@ -206,6 +206,9 @@ def explain_tr(ctx, durum):
     ad = f"explain_tr/{durum}"; srv = Sunucu("explain_tr", durum); RP_STATE["n"] = 0
     pg = sayfa(ctx, srv); rp_baslat(pg)
     pg.locator("[data-test=explain]").first.click(); pg.wait_for_selector("[data-test=explain-ai]", timeout=8000)
+    # yapay zekâsız yedek: açılıştaki "grüß Gott" kalıp olarak bütün açıklanır, "Gott — Tanrı" diye bölünmez (PM finali #218)
+    yerel = metin(pg, "[data-test=explain-out]")
+    check("Merhaba" in metin(pg, "[data-test=yerel-ifade]") and "Tanrı" not in yerel, f"{ad}: yerel yedekte 'Grüß Gott' bütün ({yerel.splitlines()[0][:60] if yerel else ''!r})")
     pg.locator("[data-test=explain-ai]").first.click()
     dt = bekle_secenek(pg, "[data-test=explain-err]", ad, 12.0)
     msg = metin(pg, "[data-test=explain-err]")
@@ -288,6 +291,32 @@ def equiv_check(ctx, durum):
     satir("equiv_check", durum, dt, msg, yedek, yeniden)
     GEC.clear(); pg.close()
 
+def tespit_denetim(ctx):
+    """Seviye tespiti: kuralların tanımadığı konuşma cevabında yapay zekâ denetimi düşerse cevap "yanlış" sayılmaz (PM-112 A.3)"""
+    ad = "equiv_check/tespit-500"; srv = Sunucu("equiv_check", "500")
+    pg = sayfa(ctx, srv)
+    pg.goto(f"http://127.0.0.1:{PORT}/#/assess"); pg.wait_for_selector("[data-test=assess-begin]"); pg.click("[data-test=assess-begin]")
+    bulunan = None
+    for _ in range(60):
+        pg.wait_for_selector("[data-test=feedback], button.opt[data-opt], [data-chip], [data-test=answer], [data-test=overall]")
+        if pg.locator("[data-test=overall]").count(): break
+        if not pg.locator("[data-test=feedback]").count():
+            konusma = pg.locator("text=Almanca söyle").count() > 0
+            if konusma and pg.locator("[data-test=answer]").count():
+                pg.fill("[data-test=answer]", "Ich habe einen Termin"); pg.locator("form button[type=submit]").click()
+            else: pg.click("[data-test=dunno]")
+            pg.wait_for_selector("[data-test=feedback]", timeout=15000)
+            if konusma and bulunan is None:
+                f = pg.locator("[data-test=feedback]")
+                bulunan = (f.inner_text(), f.get_attribute("class") or "")
+        pg.click("[data-test=next]")
+    check(bulunan is not None, f"{ad}: konuşma maddesine gelindi")
+    if bulunan:
+        t, sinif = bulunan
+        check("kontrol edemedim" in t and "olmadı" not in t and " bad" not in f" {sinif}" and "sonuca katılmıyor" in t, f"{ad}: 'Bunu şu an kontrol edemedim' (bilgi, yanlış değil): {t.splitlines()[0][:60]!r}")
+        check(not re.search(r"sunucu|hata kodu|geçersiz", t, re.I), f"{ad}: teknik söz yok")
+    pg.close()
+
 def main():
     srv = serve(PORT)
     gorevler = [arg("--gorev")] if arg("--gorev") else GOREVLER
@@ -306,6 +335,11 @@ def main():
                 b, ctx = launch(p); pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]"); pg.close()
                 try: feedback_yaris(ctx)
                 except Exception as e: check(False, f"feedback_tr/yarış: beklenmeyen hata ({str(e)[:120]})")
+                b.close()
+            if g == "equiv_check" and not arg("--durum"):
+                b, ctx = launch(p); pg = new_page(ctx); login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]"); pg.close()
+                try: tespit_denetim(ctx)
+                except Exception as e: check(False, f"equiv_check/tespit-500: beklenmeyen hata ({str(e)[:120]})")
                 b.close()
     srv.shutdown()
     satirlar = ["| görev | durum | seçenek süresi | ekrandaki mesaj | yapay zekâsız yol | yeniden deneme |", "|---|---|---|---|---|---|"]
