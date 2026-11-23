@@ -11,7 +11,7 @@ import { authenticate } from "./auth.ts";
 import { HttpError, corsHeaders, errorResponse, json } from "./http.ts";
 import { aiUsage, takeAi } from "./quota.ts";
 import { runTask } from "./ai/tasks.ts";
-import { ozSinama } from "./ai/selftest.ts";
+import { ozSinamaUc, OzSinamaDO } from "./ai/selftest.ts";
 import { searchPhotos } from "./photos.ts";
 import { aracJetonu, pixabayAra } from "./pixabay.ts";
 import { VERSION, type Env } from "./env.ts";
@@ -26,8 +26,8 @@ export async function handle(req: Request, env: Env): Promise<Response> {
       return json(body, 200, cors);
     }
     if (url.pathname === "/v1/ai/selftest" && req.method === "GET") {
-      // kimlik ve girdi yok; 30 dk'da en çok 1 koşu, arada son sonuç (PM-087 A.1)
-      return json(await ozSinama(env), 200, cors);
+      // kimlik ve girdi yok; tek örnekli DO: 30 dk'da (ya da yeni sürümde) en çok 1 koşu, arada son sonuç (PM-087 A.1)
+      return await ozSinamaUc(req, env, cors);
     }
     if (url.pathname === "/v1/usage" && req.method === "GET") {
       const u = await authenticate(req, env);
@@ -68,4 +68,5 @@ export async function handle(req: Request, env: Env): Promise<Response> {
   }
 }
 
+export { OzSinamaDO };
 export default { fetch: (req: Request, env: Env) => handle(req, env) };

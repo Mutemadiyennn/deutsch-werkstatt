@@ -103,4 +103,4 @@ jobs:
           URL=$(grep -oE 'https://[A-Za-z0-9.-]+\.workers\.dev' /tmp/deploy.log | head -1)
           [ -n "$URL" ] && echo "::add-mask::$URL"
           if [ -z "$URL" ]; then echo "::warning::Öz-sınama: Worker adresi alınamadı"; exit 0; fi
-          node worker/scripts/oz-sinama.mjs "$URL" --bekle || echo "::warning::Yapay zekâ öz-sınaması: kalan görev var (özet tablosu)"
+          node worker/scripts/oz-sinama.mjs "$URL" || echo "::warning::Yapay zekâ öz-sınaması: kalan görev var ya da ölçülmedi (özet tablosu)"

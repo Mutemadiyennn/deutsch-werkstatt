@@ -32,4 +32,7 @@ jobs:
           URL=$(sed -n 's/^VITE_API_BASE=//p' web/.env.production | tr -d '\r')
           [ -n "$URL" ] && echo "::add-mask::$URL"
           [ -n "$URL" ] || { echo "::error::API adresi yok"; exit 1; }
-          node worker/scripts/oz-sinama.mjs "$URL" --bekle
+          # 3 = ölçülmedi (pay korunuyor / kapalı / tavan): uyarı; 1 = kaldı ya da okunamadı: kırmızı
+          set +e; node worker/scripts/oz-sinama.mjs "$URL"; c=$?; set -e
+          if [ "$c" -eq 3 ]; then echo "::warning::Öz-sınama bu sürümde ölçülmedi (özet tablosu)"; exit 0; fi
+          exit "$c"

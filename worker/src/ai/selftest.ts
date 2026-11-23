@@ -2,13 +2,15 @@
  * Canlı yapay zekâ öz-sınaması (PM-087 A.1–A.2, A.5): GET /v1/ai/selftest.
  * Kimlik istemez, girdi almaz. Sunucudaki sabit örneklerle her görevi bir kez koşar; yanıtta yalnız görev başına
  * geçti/kaldı, süre (ms), model ve kısa neden kodu vardır. Model çıktısı, anahtar, adres, hata ayrıntısı DÖNMEZ.
- * KV ile `aralik_dk` içinde en çok 1 koşu (arada son sonuç okunur, model çağrılmaz). Nöronlar ortak sayaçtan düşer;
- * sayaç `ogrenci_payi_orani`nı geçtiyse öz-sınama koşmaz (öğrencinin payı korunur). Eşikler worker/policy.json `selftest`.
- * KV ardışık tutarlı değildir: aynı anda gelen iki istek nadiren iki koşu yapabilir; sınır yine günlük tavanla korunur.
+ * Kilit ve kayıt tek örnekli bir Durable Object'te (`OzSinamaDO`; SQLite depolu, Workers Free): bütün istekler aynı
+ * örneğe gelir, depo tutarlıdır ve süren koşu bellekte paylaşılır, yani eşzamanlı istekler ikinci koşu başlatamaz
+ * (inceleme #209 P1-1). `aralik_dk` içinde en çok 1 koşu; arada son sonuç okunur. Dağıtım değişince (sürüm kimliği)
+ * önbellek geçmez, yeni sürüm sınanır (P1-2). Nöronlar ortak sayaçtan düşer; sayaç `ogrenci_payi_orani`nı geçtiyse
+ * öz-sınama koşmaz (öğrencinin payı korunur). Yalnız Workers AI sağlayıcısında koşar. Eşikler worker/policy.json `selftest`.
  */
 import type { AiTaskName } from "@dw/shared";
 import type { Env } from "../env.ts";
-import { HttpError } from "../http.ts";
+import { HttpError, json } from "../http.ts";
 import { dayKey } from "../quota.ts";
 import { runTask } from "./tasks.ts";
 import { neuronUsage } from "./workersai.ts";
@@ -69,40 +71,54 @@ export const ORNEKLER: { gorev: AiTaskName; vars: unknown; alanlar: (o: any) => 
 ];
 
 /* ---------- dil denetimi: kaba ama sınanabilir; yalnız olumlu kanıtla düşürür (kısa ve belirsiz metin geçer) ---------- */
-const DE = new Set("der die das den dem des ein eine einen einem einer ist sind bin bist ich du wir ihr sie und nicht mit für auf zu im vom zum zur von bitte haben habe hat möchte möchten kann können wie gern gerne ja nein auch aber noch schon sehr gut guten tag etwas hier heute morgen danke mal man nach".split(" "));
-const TR = new Set("bir ve bu da de için ile çok ne mi mı mu mü değil var yok olarak gibi daha ama sen ben anlam anlamı demek demektir cümle iyi sadece şu veya kullanılır doğru yanlış aynı olur oldu ya kısa güzel".split(" "));
-const EN = new Set("the and is are you your this that with of it be have has please thank thanks what can i'm don't does very good would should".split(" "));
+const DE = new Set("der die das den dem des ein eine einen einem einer ist sind bin bist ich du wir ihr sie und nicht mit für auf zu im vom zum zur von bitte haben habe hat möchte möchten kann können wie gern gerne ja nein auch aber noch schon sehr gut guten tag etwas hier heute morgen danke mal man nach oft soll".split(" "));
+const TR = new Set("bir ve bu da de için ile çok ne mi mı mu mü değil var yok olarak gibi daha ama sen ben anlam anlamı anlama demek demektir cümle iyi sadece şu veya kullanılır doğru yanlış aynı olur oldu ya kısa güzel gelir".split(" "));
+// "in", "an", "was", "will", "also", "die", "man", "hat", "so" iki dilde de var: listeye girmez
+const EN = new Set("the a and is are you your this that with of it be have has please thank thanks what can i'm don't does very good would should could to for one two three take times day after before meals well great job done correct same meaning here okay sure yes at on by from my me they there their but if or how why when where which who need want tablet answer right wrong".split(" "));
 export function dilPuani(s: string) {
   const w = s.toLowerCase().match(/[\p{L}']+/gu) ?? [];
   const say = (k: Set<string>) => w.filter((x) => k.has(x)).length;
   return { de: say(DE) + (/[äß]/i.test(s) ? 2 : 0), tr: say(TR) + (/[ğışçİ]/.test(s) ? 2 : 0), en: say(EN) };
 }
-/** Alan beklenen dilde mi: değilse bulunan dil ("en" | "de" | "tr"), uygunsa null */
+/** Tırnak içi (alıntı) çıkarılır: Türkçe açıklama Almanca örneği alıntılayabilir */
+const alintisiz = (s: string) => s.replace(/'[^']*'|"[^"]*"|„[^“"]*[“"]|“[^”]*”|»[^«]*«|«[^»]*»|‚[^‘’]*[‘’]/g, " ");
+/**
+ * Alan beklenen dilde mi: değilse bulunan dil ("en" | "de" | "tr"), uygunsa null.
+ * İngilizce: ≥ 2 İngilizce sözcük ve iki dilden de baskın, ya da hiç DE/TR kanıtı yokken ≥ 3 sözcüğün çoğu İngilizce.
+ * Öbür dil: beklenen dilden hiç kanıt yok ve öbür dilden ≥ 2 puan (alıntı çıkarıldıktan sonra).
+ */
 export function dilHatasi(s: string, bek: Dil): Dil | "en" | null {
-  const p = dilPuani(s);
-  const ust = Math.max(p.de, p.tr, p.en);
-  if (ust === 0 || p[bek] === ust) return p.en >= 2 && p.en > p[bek] ? "en" : null;
-  return p.en === ust ? "en" : bek === "de" ? "tr" : "de";
+  const p = dilPuani(alintisiz(s));
+  const sozcuk = (alintisiz(s).match(/[\p{L}']+/gu) ?? []).length;
+  if (p.en >= 2 && p.en > p.de && p.en > p.tr) return "en";
+  if (p.de === 0 && p.tr === 0 && sozcuk >= 3 && p.en * 2 >= sozcuk) return "en";
+  const obur: Dil = bek === "de" ? "tr" : "de";
+  if (p[bek] === 0 && p[obur] >= 2) return obur;
+  return null;
 }
 
 /* ---------- koşu ---------- */
 export interface GorevSonucu { gorev: AiTaskName; gecti: boolean; ms: number; model: string | null; neden: string | null }
 export interface OzSinama {
   durum: "kostu" | "onbellek" | "pay_korunuyor" | "gunluk_tavan" | "kapali";
-  ok: boolean; zaman: string | null; sonraki: string | null; saglayici: string;
+  /** son koşunun sonucu; `taze` değilse ölçüm sayılmaz */
+  ok: boolean;
+  /** sonuç bu dağıtımın (sürümün) koşusu mu ve `durum` kostu/onbellek mi (inceleme #209 P1-2) */
+  taze: boolean;
+  /** sürüm kimliğinin ilk 8 karakteri (gizli değil) */
+  surum: string;
+  zaman: string | null; sonraki: string | null; saglayici: string;
   gorevler: GorevSonucu[];
   bugun: Ozet;
   /** bir önceki UTC günü (A.5 ölçümü gün bitince de okunabilsin) */
   dun: Ozet;
 }
 export interface Ozet { gun: string; kosu: number; gorev: Record<string, { gecti: number; toplam: number; ortanca_ms: number; en_uzun_ms: number }> }
-const SON = "st:son";
-const GUN = (d: string) => `st:gun:${d}`;
 type Kayit = { t: string; g: [AiTaskName, 0 | 1, number][] };
+type Son = { ok: boolean; zaman: string; sonraki: string; surum: string; gorevler: GorevSonucu[] };
+/** Durable Object deposu (state.storage) ya da testte bellek */
+export interface Depo { get<T>(k: string): Promise<T | undefined>; put(k: string, v: unknown): Promise<void>; delete(k: string): Promise<boolean> }
 
-async function gunluk(env: Env, gun: string): Promise<Kayit[]> {
-  try { const v = JSON.parse((await env.QUOTA.get(GUN(gun))) || "[]"); return Array.isArray(v) ? v : []; } catch { return []; }
-}
 const ortanca = (a: number[]) => { if (!a.length) return 0; const s = [...a].sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m]! : Math.round((s[m - 1]! + s[m]!) / 2); };
 export function ozet(gun: string, k: Kayit[]): Ozet {
   const g: Ozet["gorev"] = {};
@@ -132,34 +148,62 @@ export async function gorevSina(env: Env, o: (typeof ORNEKLER)[number], simdi = 
   }
 }
 
-export async function ozSinama(env: Env, simdi = () => Date.now()): Promise<OzSinama> {
-  const saglayici = (env.AI_PROVIDER || "none").trim();
-  const gun = dayKey(new Date(simdi()));
-  const dunGun = dayKey(new Date(simdi() - 86_400_000));
-  const [k, kd] = await Promise.all([gunluk(env, gun), gunluk(env, dunGun)]);
-  const dun = ozet(dunGun, kd);
-  let son: Partial<OzSinama> | null = null;
-  try { son = JSON.parse((await env.QUOTA.get(SON)) || "null"); } catch { son = null; }
-  const bos = (durum: OzSinama["durum"]): OzSinama => ({
-    durum, ok: !!son?.ok, zaman: son?.zaman ?? null, sonraki: son?.sonraki ?? null, saglayici, gorevler: son?.gorevler ?? [], bugun: ozet(gun, k), dun
-  });
-  const acik = saglayici === "workers-ai" ? !!env.AI : saglayici === "gemini" ? !!env.GEMINI_KEY : false;
-  if (!acik) return { ...bos("kapali"), ok: false };
-  const aralik = ST.aralik_dk * 60_000;
-  if (son?.zaman && simdi() - Date.parse(son.zaman) < aralik) return bos("onbellek");
-  if (k.length >= ST.gunluk_en_cok) return bos("gunluk_tavan");
-  if (saglayici === "workers-ai") {
+/**
+ * Öz-sınama. `suren`: süren koşunun sözü (aynı örnekte paylaşılır). Karar son `await`ten SONRA, eşzamanlı (senkron)
+ * bölümde verilir: aynı anda gelen istekler ya önbelleği okur ya da süren koşuyu bekler; ikinci koşu başlamaz.
+ */
+export class OzSinamaCekirdek {
+  private suren: Promise<OzSinama> | null = null;
+  constructor(private depo: Depo, private env: Env, private simdi = () => Date.now()) {}
+
+  async oku(): Promise<OzSinama> {
+    if (this.suren) return this.suren;
+    const env = this.env, simdi = this.simdi;
+    const saglayici = (env.AI_PROVIDER || "none").trim();
+    const surum = (env.CF_VERSION_METADATA?.id || "yerel").slice(0, 8);
+    const gun = dayKey(new Date(simdi())), dunGun = dayKey(new Date(simdi() - 86_400_000));
+    const [k, kd, son] = await Promise.all([this.depo.get<Kayit[]>(`gun:${gun}`), this.depo.get<Kayit[]>(`gun:${dunGun}`), this.depo.get<Son>("son")]);
+    const bugunK = Array.isArray(k) ? k : [], dun = ozet(dunGun, Array.isArray(kd) ? kd : []);
+    const bos = (durum: OzSinama["durum"]): OzSinama => ({
+      durum, ok: !!son?.ok, taze: false, surum, zaman: son?.zaman ?? null, sonraki: son?.sonraki ?? null, saglayici, gorevler: son?.gorevler ?? [], bugun: ozet(gun, bugunK), dun
+    });
+    // Gemini kapalı (D-093) ve pay sayacı yok: öz-sınama yalnız Workers AI'da (inceleme #209 P2)
+    if (saglayici !== "workers-ai" || !env.AI) return { ...bos("kapali"), ok: false };
+    const aralik = ST.aralik_dk * 60_000;
+    if (son && son.surum === surum && simdi() - Date.parse(son.zaman) < aralik) return { ...bos("onbellek"), taze: true };
+    if (bugunK.length >= ST.gunluk_en_cok) return bos("gunluk_tavan");
     const n = await neuronUsage(env, gun);
     if (n.used >= n.limit * ST.ogrenci_payi_orani) return bos("pay_korunuyor");
+    if (this.suren) return this.suren; // bu isteğin beklediği sırada başka istek koşuyu başlattı
+    this.suren = this.kos(gun, surum, saglayici, dun).finally(() => { this.suren = null; });
+    return this.suren;
   }
-  // kilit: koşu başlamadan zaman yazılır (aynı pencerede ikinci koşu olmasın)
-  const zaman = new Date(simdi()).toISOString(), sonraki = new Date(simdi() + aralik).toISOString();
-  await env.QUOTA.put(SON, JSON.stringify({ ok: false, zaman, sonraki, gorevler: [] }), { expirationTtl: 8 * 86400 });
-  const gorevler: GorevSonucu[] = [];
-  for (const o of ORNEKLER) gorevler.push(await gorevSina(env, o, simdi)); // sırayla: süreler birbirini etkilemesin
-  const ok = gorevler.every((g) => g.gecti);
-  await env.QUOTA.put(SON, JSON.stringify({ ok, zaman, sonraki, gorevler }), { expirationTtl: 8 * 86400 });
-  const yeni = [...k, { t: zaman, g: gorevler.map((g) => [g.gorev, g.gecti ? 1 : 0, g.ms] as Kayit["g"][number]) }];
-  await env.QUOTA.put(GUN(gun), JSON.stringify(yeni), { expirationTtl: 8 * 86400 });
-  return { durum: "kostu", ok, zaman, sonraki, saglayici, gorevler, bugun: ozet(gun, yeni), dun };
+
+  private async kos(gun: string, surum: string, saglayici: string, dun: Ozet): Promise<OzSinama> {
+    const zaman = new Date(this.simdi()).toISOString(), sonraki = new Date(this.simdi() + ST.aralik_dk * 60_000).toISOString();
+    const gorevler: GorevSonucu[] = [];
+    for (const o of ORNEKLER) gorevler.push(await gorevSina(this.env, o, this.simdi)); // sırayla: süreler birbirini etkilemesin
+    const ok = gorevler.every((g) => g.gecti);
+    // koşu bitince yazılır: yarıda kalan koşu (örnek düştü) boş kırmızı bırakmaz, sonraki istek yeniden koşar
+    const onceki = (await this.depo.get<Kayit[]>(`gun:${gun}`)) ?? [];
+    const yeni = [...onceki, { t: zaman, g: gorevler.map((g) => [g.gorev, g.gecti ? 1 : 0, g.ms] as Kayit["g"][number]) }];
+    await this.depo.put("son", { ok, zaman, sonraki, surum, gorevler } satisfies Son);
+    await this.depo.put(`gun:${gun}`, yeni);
+    await this.depo.delete(`gun:${dayKey(new Date(this.simdi() - 8 * 86_400_000))}`);
+    return { durum: "kostu", ok, taze: true, surum, zaman, sonraki, saglayici, gorevler, bugun: ozet(gun, yeni), dun };
+  }
+}
+
+/** Tek örnekli Durable Object (wrangler.toml `OZ_SINAMA`; SQLite depolu sınıf Workers Free'de var) */
+export class OzSinamaDO {
+  private c: OzSinamaCekirdek;
+  constructor(state: { storage: Depo }, env: Env) { this.c = new OzSinamaCekirdek(state.storage, env); }
+  async fetch(_req: Request): Promise<Response> { return json(await this.c.oku()); }
+}
+
+/** Worker yönlendirmesi: bütün istekler aynı örneğe ("tek") gider. Bağlam yoksa koşu yok. */
+export async function ozSinamaUc(req: Request, env: Env, cors: Record<string, string>): Promise<Response> {
+  if (!env.OZ_SINAMA) return json({ durum: "kapali", ok: false, taze: false, neden: "kilit_yok" }, 200, cors);
+  const r = await env.OZ_SINAMA.get(env.OZ_SINAMA.idFromName("tek")).fetch(new Request(req.url, { method: "GET" }));
+  return json(await r.json(), r.status, cors);
 }
