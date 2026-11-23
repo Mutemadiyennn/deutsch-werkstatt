@@ -204,12 +204,12 @@
     },
     {
      "kart": "lx:rein",
-     "de": "Kommen Sie rein! Ich habe den Tee schon auf den Tisch gestellt.",
-     "tr": "Buyurun, içeri gelin! Çayı masaya koydum bile.",
+     "de": "Kommen Sie rein! Ich habe den Kaffee schon auf den Tisch gestellt.",
+     "tr": "Buyurun, içeri gelin! Kahveyi masaya koydum bile.",
      "accepted": [
-      "Kommen Sie rein! Ich habe den Tee schon auf den Tisch gestellt.",
-      "Kommen Sie rein! Den Tee habe ich schon auf den Tisch gestellt.",
-      "Kommen Sie doch rein! Ich habe den Tee schon auf den Tisch gestellt."
+      "Kommen Sie rein! Ich habe den Kaffee schon auf den Tisch gestellt.",
+      "Kommen Sie rein! Den Kaffee habe ich schon auf den Tisch gestellt.",
+      "Kommen Sie doch rein! Ich habe den Kaffee schon auf den Tisch gestellt."
      ]
     },
     {
@@ -253,14 +253,14 @@
      },
      {
       "r": "ch:brandl",
-      "de": "In die Schublade in der Küche.",
-      "tr": "Mutfaktaki çekmeceye."
+      "de": "In den Schrank in der Küche.",
+      "tr": "Mutfaktaki dolaba."
      }
     ],
     "soru": {
      "q_tr": "Gözlük nerede?",
      "opts": [
-      "Mutfaktaki çekmecede",
+      "Mutfaktaki dolapta",
       "Askılıkta",
       "Masada"
      ],
@@ -363,8 +363,8 @@
     "id": "s2",
     "speaker": "ch:pichler",
     "sahne_tr": "Herr Pichler elindeki kâğıda bakıyor.",
-    "de": "Der Mann von den Stadtwerken war heute um zehn da.",
-    "tr": "Belediye şirketinden adam bugün saat onda buradaydı."
+    "de": "Der Mann von der Firma war heute um zehn da.",
+    "tr": "Firmadan adam bugün saat onda buradaydı."
    },
    {
     "id": "s3",
@@ -398,8 +398,8 @@
     "id": "s7",
     "speaker": "ch:brandl",
     "sahne_tr": "Frau Brandl mutfağı gösteriyor.",
-    "de": "Ihren Schlüssel habe ich in die Schublade in der Küche gelegt.",
-    "tr": "Anahtarınızı mutfaktaki çekmeceye koydum."
+    "de": "Ihren Schlüssel habe ich in den Schrank in der Küche gelegt.",
+    "tr": "Anahtarınızı mutfaktaki dolaba koydum."
    },
    {
     "id": "s8",
@@ -492,7 +492,7 @@
       "kind": "detail",
       "q_tr": "Anahtarın nerede?",
       "opts": [
-       "Mutfaktaki çekmecede",
+       "Mutfaktaki dolapta",
        "Askılıkta",
        "Herr Pichler'de"
       ],
@@ -519,11 +519,11 @@
       "id": "d2",
       "cumle": "s7",
       "seviye": "orta",
-      "de": "Ihren Schlüssel habe ich in die ___ in der Küche gelegt.",
+      "de": "Ihren Schlüssel habe ich in den ___ in der Küche gelegt.",
       "accepted": [
-       "Schublade",
-       "schublade",
-       "Schublade."
+       "Schrank",
+       "schrank",
+       "Schrank."
       ]
      },
      {
@@ -551,23 +551,22 @@
      },
      {
       "id": "d4",
-      "cumle": "s6",
+      "cumle": "s4",
       "seviye": "usta",
       "accepted": [
-       "Vor dem Wasserzähler war ein Karton. Den habe ich in den Keller gestellt.",
-       "vor dem wasserzähler war ein karton den habe ich in den keller gestellt",
-       "Vor dem Wasserzähler war ein Karton. Den habe ich in den Keller gestellt"
+       "Ihre Jacke habe ich an die Garderobe gehängt.",
+       "ihre jacke habe ich an die garderobe gehängt",
+       "Ihre Jacke habe ich an die Garderobe gehängt"
       ]
      },
      {
       "id": "d5",
       "seviye": "gercek",
-      "gorev_tr": "Ceketin, anahtarın ve koli nerede? Almanca üç kısa cümleyle söyle.",
-      "ornek_de": "Die Jacke ist an der Garderobe. Der Schlüssel ist in der Schublade. Der Karton ist im Keller.",
+      "gorev_tr": "Ceketin ve anahtarın nerede? Almanca iki kısa cümleyle söyle.",
+      "ornek_de": "Die Jacke ist an der Garderobe. Der Schlüssel ist im Schrank.",
       "zorunlu": [
        "Garderobe",
-       "Schublade",
-       "Keller"
+       "Schrank"
       ]
      }
     ],
@@ -754,17 +753,17 @@
      "cevapla": {
       "id": "m1:67:a1:c1",
       "k": "guided_response",
-      "situation_tr": "Tobi'yi geri arıyorsun. Anahtarı dün masasındaki çekmeceye koydun.",
+      "situation_tr": "Tobi'yi geri arıyorsun. Anahtarı dün masasının yanındaki dolaba koydun.",
       "prompt_de": "Und? Wo ist der Schlüssel?",
       "accepted": [
-       "Ich habe ihn gestern in die Schublade an deinem Tisch gelegt.",
-       "Ich habe ihn in die Schublade an deinem Tisch gelegt.",
-       "Ich habe den Schlüssel gestern in die Schublade an deinem Tisch gelegt.",
-       "Der Schlüssel ist in der Schublade an deinem Tisch.",
-       "Ich habe ihn gestern in deine Schublade gelegt.",
-       "Ich habe ihn gestern in die Schublade von deinem Tisch gelegt."
+       "Ich habe ihn gestern in den Schrank neben deinem Tisch gelegt.",
+       "Ich habe ihn in den Schrank neben deinem Tisch gelegt.",
+       "Ich habe den Schlüssel gestern in den Schrank neben deinem Tisch gelegt.",
+       "Der Schlüssel ist im Schrank neben deinem Tisch.",
+       "Ich habe ihn gestern in deinen Schrank gelegt.",
+       "Den habe ich gestern in den Schrank neben deinem Tisch gelegt."
       ],
-      "why_tr": "Koydum demek için: **Ich habe ihn gelegt.** Nereye: **in die Schublade**."
+      "why_tr": "Koydum demek için: **Ich habe ihn gelegt.** Nereye: **in den Schrank**."
      }
     }
    ],
@@ -1107,16 +1106,16 @@
       "geri_bildirim_tr": "Güzel. Anahtarı buldun ve teşekkür ettin."
      },
      {
-      "de": "In der Schublade? Da ist er nicht.",
-      "tr": "Çekmecede mi? Orada değil.",
+      "de": "Im Schrank? Da ist er nicht.",
+      "tr": "Dolapta mı? Orada değil.",
       "accepted": [
-       "In der Schublade? Da ist er nicht.",
-       "In die Schublade? Da ist er nicht.",
-       "Er ist nicht in der Schublade."
+       "Im Schrank? Da ist er nicht.",
+       "In den Schrank? Da ist er nicht.",
+       "Er ist nicht im Schrank."
       ],
       "sonraki": "n3",
       "uygun": false,
-      "geri_bildirim_tr": "Dikkat: çekmece değil. **an den Haken neben der Tür gehängt** dedi: kapının yanındaki askıya astı."
+      "geri_bildirim_tr": "Dikkat: dolap değil. **an den Haken neben der Tür gehängt** dedi: kapının yanındaki askıya astı."
      }
     ]
    },
@@ -1216,8 +1215,8 @@
    }
   ],
   "yazma": {
-   "gorev_tr": "Tobi'ye kısa bir cevap yaz: Anahtarı çekmeceye koydun, kahveyi dolaba koydun.",
-   "ornek_de": "Hallo Tobi! Ich habe den Schlüssel in die Schublade gelegt. Den Kaffee habe ich in den Schrank gestellt.",
+   "gorev_tr": "Tobi'ye kısa bir cevap yaz: Anahtarı dolaba koydun, kahveyi rafa koydun.",
+   "ornek_de": "Hallo Tobi! Ich habe den Schlüssel in den Schrank gelegt. Den Kaffee habe ich ins Regal gestellt.",
    "zorunlu": [
     "gelegt",
     "gestellt"
@@ -1231,7 +1230,7 @@
    ],
    "kontrol_tr": [
     "**habe** ikinci yerde, **gelegt** ya da **gestellt** en sonda mı?",
-    "Nereye sorusuna **in die** ya da **in den** kullandın mı?",
+    "Nereye sorusuna **in den** ya da **ins** kullandın mı?",
     "Kahve paketi dik durur: **gestellt**. Anahtar yatar: **gelegt**. Doğru mu?"
    ]
   }
@@ -1339,16 +1338,16 @@
    {
     "id": "m1:67:s9",
     "k": "guided_response",
-    "situation_tr": "Tobi soruyor: Yazıcının anahtarı nerede? Onu çekmeceye koydun.",
+    "situation_tr": "Tobi soruyor: Yazıcının anahtarı nerede? Onu dolaba koydun.",
     "prompt_de": "Wo ist der Schlüssel für den Drucker?",
     "accepted": [
-     "Ich habe ihn in die Schublade gelegt.",
-     "Ich habe den Schlüssel in die Schublade gelegt.",
-     "In die Schublade. Ich habe ihn gestern in die Schublade gelegt.",
-     "Ich habe ihn heute in die Schublade gelegt.",
-     "Den habe ich in die Schublade gelegt."
+     "Ich habe ihn in den Schrank gelegt.",
+     "Ich habe den Schlüssel in den Schrank gelegt.",
+     "In den Schrank. Ich habe ihn gestern in den Schrank gelegt.",
+     "Ich habe ihn heute in den Schrank gelegt.",
+     "Den habe ich in den Schrank gelegt."
     ],
-    "why_tr": "**Ich habe ihn in die Schublade gelegt.** Nereye: **in die Schublade**."
+    "why_tr": "**Ich habe ihn in den Schrank gelegt.** Nereye: **in den Schrank**."
    },
    {
     "id": "m1:67:s10",

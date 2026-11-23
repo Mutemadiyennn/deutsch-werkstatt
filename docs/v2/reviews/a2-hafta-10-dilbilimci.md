@@ -184,6 +184,42 @@ Kaynak: `docs/v2/reviews/okur/a2-hafta-10.md` (24 GERİ). Hepsi kapatıldı; ayr
 
 Denetimler (2. tur sonu): dikiş `İhlal: 0`; val.sh yalnız üç izinli sınıf (156 satır); content:validate yalnız iki şema sınıfı.
 
+## Örneklem notları (3. küçük tur)
+
+Kaynak: `docs/v2/reviews/orneklem/a2-hafta-10.md` (GEÇTİ, 1/30; öğretmeden isteme bulgusu).
+
+**Stadion ve Karton (öğrencinin yazdığı ya da söylediği her yerden çıktı)**
+- 65 görev: "Das Spiel ist am Samstag um drei im Stadion." → "Das Spiel vom Verein ist am Samstag um drei." (vom günün kısa biçimi). Usta dikte (sesler[1] d4) c3 yerine c5'e bağlandı: "Wir freuen uns auf ein schönes Wochenende!". Zor diktenin bankasında Stadion yoktu. Stadion yalnız dinleme metninde, bir kolay dikte çeldiricisinde ve yalnız Spiel'i soran orta diktenin gösterilen cümlesinde kaldı.
+- 67 usta dikte (sahne d4) s6 yerine s4'e bağlandı: "Ihre Jacke habe ich an die Garderobe gehängt." Gerçek dikte iki cümleye indi (ceket ve anahtar; zorunlu Garderobe, Schublade). 68 sınav s4 → "Wer hat das Fahrrad in den Keller gestellt?". Karton yalnız 67 dinleme satırında ve 68 provasında (Hazırlık adımında gösteriliyor) kaldı.
+
+**Örneklem notları 1–5**
+1. 68 geri arama: açılış "Ah, hallo! Passt es Ihnen gegen fünf?", durum metnine "Adını söyledin." eklendi.
+2. 69: kuaförü arayan kişi artık adsız müşteri ("Ah, guten Morgen!"; soru ve gerçek dikte "müşteri", örnek "Eine Frau kann am Dienstag nicht."). Frau Huber haftada yalnız muayenehane sekreteri. B5'in bu maddesi kapandı.
+3. 66 gerçek dikte: "Herr Pichler'in anlattıklarını iki kısa cümleyle yaz."
+4. Test t06: "Wir haben das Bild gestern an die Wand gehängt." kabule eklendi.
+5. 70 s10: "Am Freitagvormittag passt es mir gut." kabule eklendi.
+
+**Tarama: istenen yerlerde sözlükte olmayan sözcük**
+Bakılan yerler: görev cümleleri, `accepted[0]`, orta/zor/usta dikte hedefi, gerçek dikte örneği ve zorunluları, sınav cevapları, yazma örneği, test ve görülmemiş. Ölçü: kart (o güne kadar), o kartın eşdizimi, günün dil noktası tablosu ve örnekleri, 9. haftada geçmiş olması.
+
+Değiştirilenler (öğretilmiş sözcükle):
+- 64 sınav diktesi "Der **Fisch** war gestern zu salzig." → "Das **Brot** war …".
+- 65 görev "im **Gasthaus**" → "im Fernsehen"; "über die **Blumen**" → "über den Kuchen"; gerçek dikte örneği ve zorunlusu **Probetraining**, **Studio** → "Ioana ist neu im Fitnessstudio." (zorunlu Fitnessstudio).
+- 67 görev "den **Tee**" → "den Kaffee".
+- 69 görev "den **Zettel** an den **Kühlschrank** gehängt" → "die Nachricht an die Tür gehängt"; "per **SMS**" görev cümlesinden çıktı ("Könnten Sie mich bitte am Freitag an den Termin erinnern?").
+
+Öğretilmiş sayılanlar (dokunulmadı): Papier (`lx:Drucker` eşdizimi), Salz (`lx:geben` eşdizimi), Garderobe (`lx:hängen` eşdizimi, günün dersi), Brille (t4 örneği), Ruhezeit (t5 tablosu), Hof, Tonne, Post, Fußball (9. haftada geçti), Wasserzähler (Wasser + günün kartı Zähler), Anruf (anrufen).
+
+**Emin olamadıklarım (karar ve lex işi).** A1 gün dosyaları (8–56) bu ağaçta yok; A1'de geçip geçmediklerine bakamadım. Sözlükte kart ya da eşdizim olarak yoklar ve günün omurgası oldukları için değiştirmedim:
+- **Suppe** (64: iki görev, usta dikte, gerçek dikte zorunlusu, cevap). Öneri: `lx:salzig` eşdizimine "die Suppe ist salzig".
+- **Teller** (64 sınav s11 cevabı), **Tablett** (64 usta dikte ve gerçek dikte örneği). Öneri: `lx:Kantine` eşdizimi.
+- **Schublade** (67: orta dikte, cevap, sınav s9, yazma, gerçek dikte zorunlusu). Öneri: `lx:Schlüssel` eşdizimine "in die Schublade legen" ya da t4'e örnek.
+- **Stadtwerken** (65 usta dikte, ses satırının tamamı), **SMS** (69 usta dikte; Türkçede aynı sözcük).
+
+Denetimler (3. tur sonu): dikiş `İhlal: 0`; val.sh yalnız üç izinli sınıf (154 satır; iki "bilinmeyen" azaldı); content:validate yalnız iki şema sınıfı. Aynı Almanca cümle iki kez geçmiyor (üç bilinçli eşleşme dışında); üretimde `accepted` ≥ 3.
+
+**İÇ-8 kararı uygulandı (4. küçük tur):** Suppe, Fisch, Tablett, Teller, Schublade, Stadtwerken, SMS, Messern haftanın bütün Almanca metinlerinden çıktı (dinleme satırları dahil; dikte, soru, seçenek, çeviri ve kabuller birlikte güncellendi): 64'te yemek Fleisch ve Gemüse, Derya'nın isteği Kaffee, Tablett → Tasse, Teller → Tassen, Messern → Löffeln; 65 ve 67'de "von der Firma"; 67'de Schublade → Schrank (yazmada kahve "ins Regal"); 69'da "Ich schicke Ihnen am Mittwoch eine Nachricht." Dikiş `İhlal: 0`, val.sh üç sınıf, content:validate iki sınıf, aynı cümle yok. "Emin olamadıklarım" listesi böylece kapandı.
+
 ## Sonuç
 
-**ONAY (dil ve okur geri dönüşleri kapandı).** 1. turda 97, 2. turda 24 geri dönüş ve B1 düzeltildi. Baş geliştiricide kalan: B4 (dikte, kod ya da satır bölme), B3 (67 başlığı a2-kesin.json'da), B2 ve B5–B7 takip. B8 (dil noktalarının biçimi) bu turda kapandı.
+**ONAY.** Dil, okur ve örneklem geri dönüşleri kapandı. Baş geliştiricide kalan: B4 (dikte, kod ya da satır bölme), B3 (67 başlığı a2-kesin.json'da); B2, B6, B7 takip.
