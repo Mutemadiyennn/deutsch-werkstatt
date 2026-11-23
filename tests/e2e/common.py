@@ -119,7 +119,8 @@ def default_ai(task, v):
 # Akış bayrağının e2e tabanı: yalnız 1. gün (pilot). Üretimde `policy.akis.gunler` "hepsi"dir; e2e paketinde 2. ve 3. güne de halka
 # önerisi eklendiği için taban yazılmasa eski düzeni sınayan testler (ders yolu, devam, gezgin) akışa düşerdi. Hiçbir test bayrağın
 # varsayılanına yaslanmaz: eski düzen '[]', bütün günler '"hepsi"' (v2_akis_hepsi.py) diye KENDİ değerini yazar (sekmede kalıcı).
-AKIS_TABAN = "if (sessionStorage.getItem('e2e-akis-gunler') === null) sessionStorage.setItem('e2e-akis-gunler', '[1]');"
+# try/catch: depolamaya erişimi olmayan belgede (boş sayfa, yalıtılmış çerçeve) sessionStorage okumak sayfa hatası verir
+AKIS_TABAN = "try { if (sessionStorage.getItem('e2e-akis-gunler') === null) sessionStorage.setItem('e2e-akis-gunler', '[1]'); } catch (e) {}"
 
 def launch(p, color_scheme="light", viewport=None, service_workers="block"):
     # Servis işçisi varsayılan kapalı: WebKit'te page.route, SW denetimindeki sayfanın isteklerini görmez (inceleme #43 P0-1). Yalnızca ucak.py açar.
