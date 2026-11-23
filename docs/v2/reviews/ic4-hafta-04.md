@@ -240,3 +240,11 @@ Kaynak: `docs/v2/qa/orneklem-ic4-hafta-04.md` (%3,0; 4/134). Dört hatalı madde
 Sınama (`sina.sh 4`): kalan HATA 0 · İhlal 0 · öğretilmeden istenen 0 · test 12/12 · görülmemiş 7/7 · sınanmayan can_do yok.
 
 **Sonuç:** 4 hatalı madde + sınıf taramasında 23 yer düzeltildi. Yeni örnekleme hazır.
+
+## 2. örneklem düzeltmeleri
+Kaynak: `docs/v2/qa/orneklem-ic4-hafta-04.md`, "2. örneklem (23.11)" (%0,78, GEÇTİ).
+1. `m1:27:v1:c1`: Brandl Hanım öğrenciyi tanıyor; soru **Und Sie? Wo wohnen Sie?** → **Und Sie wohnen im dritten Stock, ja?** (provadaki kat karıştırma). Durum, altı kabul (**Nein, im zweiten Stock.** …) ve gerekçe buna göre yazıldı.
+2. `m1:26:h2` sahnesi: **Ich zeige Ihnen das Haus.** (öğrenci zaten o binada oturuyor) → **Ich zeige Ihnen alles.**; ortam boş yerin kapısı, Tobi için bakıyorsun. **Wohnung** kelime tablosunda olmadığı için **alles** seçildi.
+3. Takip notları: 25. gün 1. halka kalıbı **Holst du …?** → **…'i gidip alır mısın?**; 26. gün 2. halka kalıpları **…'i unutuyorum – …'i unutma!** ve **…'i gösteriyorum – …'i gösterir misin? – …'i gösteriyor**; `m1:27:s11` durumu yalnız katı soruyor, gerekçe yalnız **im zweiten Stock** (kabuller değişmedi, bisikletli iki cevap fazladan doğru).
+
+Sınama (`sina.sh 4`): kalan HATA 0 · İhlal 0 · öğretilmeden istenen 0 · test 12/12 · görülmemiş 7/7.

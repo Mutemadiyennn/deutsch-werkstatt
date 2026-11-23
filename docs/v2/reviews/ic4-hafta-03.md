@@ -244,3 +244,13 @@ Tek ölçü: kabul edilen cevap söz sırasını ve dolgu sözünü (**denn**, *
 Sınama (`sina.sh 3`): kalan HATA 0 · İhlal 0 · öğretilmeden istenen 0 · test 12/12 · görülmemiş 7/7 · sınanmayan can_do yok.
 
 **Sonuç:** 3 hatalı madde + sınıf taramasında 50 yer düzeltildi. Yeni örnekleme hazır.
+
+## 2. örneklem düzeltmeleri
+Kaynak: `docs/v2/qa/orneklem-ic4-hafta-03.md`, "2. örneklem (23.11)" (%0,8, GEÇTİ).
+1. `m1:17:h2` sahnesi: dönüş günü **Dienstag** → **Mittwoch** (`a2` ile aynı); öğrencinin satırı ve sorunun doğru şıkkı da **çarşamba**.
+2. E-1: `m1:17:a2` ortamı **Ertesi gün … yeniden arıyorsun** oldu. Böylece 1. halka (bugün saat üçte geri arıyor), okuma (**Morgen ist sie nicht da**) ve `a2` (**heute nicht im Büro**) aynı sıraya oturdu. Almanca değişmedi.
+3. E-2: Schneider Hanım'ın kendi dahili numarası okuma ve prova `n5`'te aynı: **drei, vier, null** (okuma metni, çevirisi, `o4` sorusu ve şıkları). `a2`'deki **zwölf** bilerek ayrı kaldı: kendi telesekreterinde kendi numarasını vermesi anlamsız olurdu; `eylem` gerekçesi artık bunun kimlik için başka bir hat olduğunu söylüyor.
+4. E-3: ölçü korundu, iki kabul ölçüye uyduruldu. `m1:18:h1` **Ich muss jetzt los!** → **Ich muss weg!**; `m1:19:h2` **Der Bus ist schon weg. …** → **Der Bus ist weg. Bis halb neun warten wir.**
+5. E-4: 19. gün sahne s13 **Und siehst du?** → **Siehst du?** (çevirisiyle).
+
+Sınama (`sina.sh 3`): kalan HATA 0 · İhlal 0 · öğretilmeden istenen 0 · test 12/12 · görülmemiş 7/7.

@@ -280,3 +280,187 @@ OD-9 biçim denetimi örneklemdeki bütün açıklama alanlarında betikle de ko
 Hata oranı %3,0–3,1, eşik %2'nin üstünde. Dört hata da küçük ve yerel. Dördü düzeltildikten sonra yalnız bu dört maddenin fark doğrulaması ve aynı tohumla yeni bir örneklem (dosya sha256'ları değişeceği için seçim yeniden üretilir) önerilir. Bulunan türler ayrıca taranmalı: (a) `gorsel` içinde kat ve sıra sayısı geçen bütün sorgular, (b) gün sınavında `situation_tr` birden çok şey isterken eksik kabul edilen cevaplar, (c) ayrıntı sorularında aynı günün başka bölümünde doğru olan çeldiriciler.
 
 Bairisch yok; öğrenci adı yalnız `{name}`; `audio_de` içinde yer tutucu yok; kişisel bilgi, kurs ya da kitap adı yok; bina örneklemdeki bütün maddelerde tutarlı (öğrenci 2. kat, Brandl ve Pichler 1. kat yan yana, boş yer 3. kat).
+
+## 2. örneklem (23.11)
+
+Dilbilimcinin geri dönüşünden sonra (`docs/v2/reviews/ic4-hafta-04.md` § "Örneklem geri dönüşü (23.11)"). Dosyaların yeni sha256 değerleri (ilk 12 hane): gun-22 `1a4126833ae4` · gun-23 `3046da16b19f` · gun-24 `4cc58e778ed5` · gun-25 `79b5ff727c52` · gun-26 `8319561a9d36` · gun-27 `37fd49fec0cb` · gun-28 `82661813fd3b` · hafta-sonu-testi-04 `ca67a92659b7` (değişmedi) · gorulmemis-04 `1d761567c1d4` (değişmedi).
+
+### Yöntem
+- **Tohum: `20261124`.** Yöntem 1. örneklemle aynı: yukarıdaki betik, yalnız `SEED=20261124`. Evren 991 madde, katman sayıları aynı, seçilen **129** (%13,0).
+- Evren aynı, bu yüzden 1. örneklemle 16 madde çakıştı; dosyalar değiştiği için bunlar da yeniden okundu: `m1:23:h1.gc6`, `m1:25:h1.gc9`, `m1:27:h1.gc5`, `m1:28:h1.kalip1`, `m1:24:h3.soru`, `m1:24:a1.c2`, `m1:24:a1.c5`, `m1:26:v1.b1.ay1`, `m1:25:a1.b1.d5`, `m1:28:a2.b1.d2`, `m1:26:p1.n1.s1`, `m1:22:yazma`, `m1:25:yazma`, `m1:27:yazma`, `m1:28:t05`, `m1:h04:g6`.
+- Ev ilanı türü (`m1:26:okuma`) bu kez rastgele seçime düştü; ek madde gerekmedi.
+- OD-9 biçim, `audio_de` yer tutucusu ve Bairisch betik taraması yeniden koşuldu: bulgu 0.
+
+### 1. örneklemin 4 hatasının doğrulaması
+
+| Kimlik | Şimdiki durum | Karar |
+|---|---|---|
+| `m1:26:v1.b1.ay1` | Şıklar **Fazla pahalı / Çok küçük / Mutfağı yok**. 2. ilanda **Kü.** var, sahne **zu teuer** diyor. Tek cevap. | DÜZELDİ |
+| `m1:28:g5` | Sorgu "ground floor plus three upper floors, the floor two levels above the ground floor highlighted". Çeldiriciler zeminin bir üstü, zemin, müstakil ev. **top floor** yok. | DÜZELDİ |
+| `m1:22:yazma` | `gorev_tr` "… **er** ve **sie** kullan." `kontrol_tr` ile uyumlu. | DÜZELDİ |
+| `m1:28:s9` | 5. kabul "Ich heiße {name}. Ich wohne im zweiten Stock. Freut mich!" Altı kabulün altısı da üç şeyi söylüyor. | DÜZELDİ |
+
+Takip notlarından düzeltilenleri de denetledim, hepsi doğru:
+- `m1:22:h2.kalip2` artık **Kayıp.**
+- `m1:25:h1.gc9` için **Busfahren** kabul ediliyor, çeviri **daha güzel**.
+- `m1:25:a1:e1` doğru şıkkı **Bugün saat dörtten önce bir sandalye al.**
+- `m1:25:p1.n1` seçeneği **Ich möchte eine Tasse, bitte.**
+- `m1:27:a2` ortamı **Cumartesi.** ile başlıyor.
+- 22. gün notu **Gibst du sie morgen zurück?** oldu; `o2` cevabı **Sen**, `s10` ile tutarlı.
+- 24. gün 2. halkada **ab elf**; `a1` sorusunun çeldiricisi **Ondan itibaren** artık yanlış.
+- 26. gün 1. halkada **1 Zi. … am billigsten** ilanla tutarlı.
+- 22. gün `s11` kabullerinin hepsi **er** ve **sie** içeriyor.
+
+### Sonuçlar (129)
+
+| # | Kimlik | Tür | Karar | Neden |
+|---:|---|---|---|---|
+| 1 | `m1:22:h1.gc0` | halka-gorev | GEÇTİ | Doğru; 3 kabul aynı anlam. |
+| 2 | `m1:22:h2.gc1` | halka-gorev | GEÇTİ | **Ist sie weg? → Kayıp mı?** günle tutarlı. |
+| 3 | `m1:22:h2.gc4` | halka-gorev | GEÇTİ | Doğru. |
+| 4 | `m1:22:h2.gc9` | halka-gorev | GEÇTİ | **Was ist das für eine Zahl?** de doğru. |
+| 5 | `m1:22:h4.gc5` | halka-gorev | GEÇTİ | **backt / bäckt** ikisi de kabul. |
+| 6 | `m1:22:h4.gc6` | halka-gorev | GEÇTİ | **das Fahrrad → es** doğru. |
+| 7 | `m1:23:h1.gc3` | halka-gorev | GEÇTİ | Doğru. |
+| 8 | `m1:23:h1.gc6` | halka-gorev | GEÇTİ | Ad yalnız `{name}`. |
+| 9 | `m1:23:h4.gc1` | halka-gorev | GEÇTİ | Doğru. |
+| 10 | `m1:25:h1.gc9` | halka-gorev | GEÇTİ | Düzeltme doğru (4 kabul). |
+| 11 | `m1:25:h2.gc3` | halka-gorev | GEÇTİ | **Das ist lieb → Çok naziksin** doğal. |
+| 12 | `m1:25:h2.gc6` | halka-gorev | GEÇTİ | Doğru. |
+| 13 | `m1:26:h1.gc2` | halka-gorev | GEÇTİ | Anlaşılır; **niedrig** ile ilgili açık not dilbilimcide (açık 3). |
+| 14 | `m1:26:h1.gc8` | halka-gorev | GEÇTİ | **vom Bahnhof** doğru. |
+| 15 | `m1:27:h1.gc5` | halka-gorev | GEÇTİ | Soru tonlu düz cümle ve **hat … offen** gündelik dil; uygun. |
+| 16 | `m1:27:h1.gc7` | halka-gorev | GEÇTİ | **liegen** + **auf dem** doğru. |
+| 17 | `m1:27:h2.gc1` | halka-gorev | GEÇTİ | Doğru. |
+| 18 | `m1:27:h2.gc7` | halka-gorev | GEÇTİ | Doğru. |
+| 19 | `m1:28:h1.gc3` | halka-gorev | GEÇTİ | **den Führerschein machen → ehliyet alıyor** kabul edilebilir. |
+| 20 | `m1:22:h2.kalip0` | halka-kalip | GEÇTİ | **der → er** doğru. |
+| 21 | `m1:25:h1.kalip4` | halka-kalip | GEÇTİ | **Grüß Gott** standart güney selamı; lehçe değil. |
+| 22 | `m1:25:h1.kalip8` | halka-kalip | GEÇTİ | Doğru. Not B: **Holst du … → alır mısın** yerine **gidip alır mısın** daha açık (günün çevirileriyle aynı). |
+| 23 | `m1:26:h2.kalip2` | halka-kalip | GEÇTİ | Çekimler doğru. Not C: Türkçede ilk dize **…gösteriyorum** (boşluk ve ek eksik), **…'i gösteriyorum** olmalı. |
+| 24 | `m1:27:h2.kalip1` | halka-kalip | GEÇTİ | **Schau mal / Schauen Sie mal** doğru. |
+| 25 | `m1:28:h1.kalip1` | halka-kalip | GEÇTİ | Doğru. |
+| 26 | `m1:28:h1.kalip3` | halka-kalip | GEÇTİ | Doğru. |
+| 27 | `m1:22:h2.sahne1` | halka-sahne-satir | GEÇTİ | **die Einladung → sie** doğru. |
+| 28 | `m1:23:h2.sahne0` | halka-sahne-satir | GEÇTİ | Doğru. |
+| 29 | `m1:24:h3.sahne2` | halka-sahne-satir | GEÇTİ | Doğru. |
+| 30 | `m1:25:h2.sahne0` | halka-sahne-satir | GEÇTİ | Luka öğrenciye **Sie** diyor; hafta boyunca aynı. |
+| 31 | `m1:26:h1.sahne1` | halka-sahne-satir | GEÇTİ | Doğru; kurs adı yok. |
+| 32 | `m1:28:h1.sahne0` | halka-sahne-satir | GEÇTİ | Doğru. |
+| 33 | `m1:28:h1.sahne1` | halka-sahne-satir | GEÇTİ | **die Musik → sie** doğru. |
+| 34 | `m1:23:h2.soru` | halka-soru | GEÇTİ | Tek cevap **Muzlar**. |
+| 35 | `m1:24:h3.soru` | halka-soru | GEÇTİ | Tek cevap. |
+| 36 | `m1:26:h2.soru` | halka-soru | GEÇTİ | Soru ve cevap doğru. Örneklem dışı bulgu 1 bu sahnenin ilk satırında. |
+| 37 | `m1:22:v1.s4` | sahne-satir | GEÇTİ | Doğru. |
+| 38 | `m1:23:v1.s2` | sahne-satir | GEÇTİ | **von dem** doğru ama ağır (dilbilimci takip notu); kabul iki biçimi alıyor. |
+| 39 | `m1:23:v1.s13` | sahne-satir | GEÇTİ | **Es ist dann weg → o zamana kadar gitmiş olacak** doğru. |
+| 40 | `m1:24:v1.s2` | sahne-satir | GEÇTİ | Doğru. |
+| 41 | `m1:24:v1.s3` | sahne-satir | GEÇTİ | Doğru. |
+| 42 | `m1:24:v1.s11` | sahne-satir | GEÇTİ | Doğru. |
+| 43 | `m1:24:v1.s15` | sahne-satir | GEÇTİ | Doğru. |
+| 44 | `m1:26:v1.s2` | sahne-satir | GEÇTİ | Doğru. |
+| 45 | `m1:26:v1.s11` | sahne-satir | GEÇTİ | Doğru. |
+| 46 | `m1:26:v1.s12` | sahne-satir | GEÇTİ | Doğru. |
+| 47 | `m1:27:v1.s7` | sahne-satir | GEÇTİ | Doğru. |
+| 48 | `m1:28:v1.s4` | sahne-satir | GEÇTİ | Doğru. |
+| 49 | `m1:28:v1.s6` | sahne-satir | GEÇTİ | Doğru. |
+| 50 | `m1:22:a1.b1.ana` | soru-anafikir | GEÇTİ | `c2` cevabı veriyor. **Ehliyetini arıyor** sahnede doğruydu ama ehliyet orada bulundu (`s13`); mesaj ertesi gün. Tek cevap. |
+| 51 | `m1:23:a1.b1.ana` | soru-anafikir | GEÇTİ | `c2` + `c4`. |
+| 52 | `m1:25:v1.b1.ana` | soru-anafikir | GEÇTİ | `s2` + `s10`. |
+| 53 | `m1:22:v1.b1.ay1` | soru-ayrinti | GEÇTİ | `s14` **Sie ist von mir**. |
+| 54 | `m1:25:v1.b1.ay0` | soru-ayrinti | GEÇTİ | `s10` + `s10b` **Den für zehn Euro**. |
+| 55 | `m1:26:v1.b1.ay1` | soru-ayrinti | GEÇTİ | Düzeltme doğru (yukarıda). |
+| 56 | `m1:26:a2.b1.ay1` | soru-ayrinti | GEÇTİ | `c5` **Ich vergesse immer die Nummer**. |
+| 57 | `m1:27:a1.b1.ay1` | soru-ayrinti | GEÇTİ | `c4` **im zweiten Stock**. |
+| 58 | `m1:23:a1.b1.d4` | dikte usta | GEÇTİ | Tek cümle; 3 yazım. |
+| 59 | `m1:23:a1.b1.d5` | dikte gerçek | GEÇTİ | Örnek zorunluları içeriyor, mesajla tutarlı. |
+| 60 | `m1:23:a2.b1.d2` | dikte orta | GEÇTİ | Tek boşluk **teuer**. |
+| 61 | `m1:24:a2.b1.d1` | dikte kolay | GEÇTİ | **alt** cümlede geçiyor, **neu** ve **klein** geçmiyor. |
+| 62 | `m1:25:a1.b1.d2` | dikte orta | GEÇTİ | **billiger**. |
+| 63 | `m1:25:a1.b1.d5` | dikte gerçek | GEÇTİ | Doğru. |
+| 64 | `m1:26:v1.b1.d2` | dikte orta | GEÇTİ | **billigsten**. |
+| 65 | `m1:26:a1.b1.d1` | dikte kolay | GEÇTİ | **Januar** cümlede geçiyor, **Juni** ve **Juli** geçmiyor. |
+| 66 | `m1:27:v1.b1.d3` | dikte zor | GEÇTİ | Banka 6 cevap kelimesi + 2 çeldirici (**neben**, **im**). |
+| 67 | `m1:27:a1.b1.d4` | dikte usta | GEÇTİ | Tek cümle; 3 yazım. |
+| 68 | `m1:28:v1.b1.d5` | dikte gerçek | GEÇTİ | Sahneyle tutarlı (`s3b`, `s9`); zorunlular var. |
+| 69 | `m1:28:a2.b1.d2` | dikte orta | GEÇTİ | Doğru. |
+| 70 | `m1:23:v1:c1` | cevapla | GEÇTİ | 7 kabul; açıklama terimsiz. |
+| 71 | `m1:24:v1:c1` | cevapla | GEÇTİ | **zu teuer** kabulleri doğru. |
+| 72 | `m1:27:v1:c1` | cevapla | **HATA** | Brandl Hanım öğrenciye **Und Sie? Wo wohnen Sie?** diye soruyor, kabul **Ich wohne auch hier, im zweiten Stock.** Bu hafta Brandl öğrencinin alt kat komşusu: fincan ödünç veriyor, pastaya çağırıyor (`m1:22:a2` ortamı **Alt kattaki komşun**). Dilbilimci aynı sorunu 27. günün provasında düzeltmişti (P1-7), bu madde kaçmış. |
+| 73 | `m1:22:a2.c5` | ses-satir | GEÇTİ | **Kommen Sie doch … zum Kuchen** doğal; ortam **alt kat**, bina tutarlı. |
+| 74 | `m1:23:a1.c4` | ses-satir | GEÇTİ | Doğru. |
+| 75 | `m1:24:a1.c2` | ses-satir | GEÇTİ | Doğru. |
+| 76 | `m1:24:a1.c5` | ses-satir | GEÇTİ | Doğru. |
+| 77 | `m1:26:a2.c4` | ses-satir | GEÇTİ | Doğru. |
+| 78 | `m1:26:a2.c4b` | ses-satir | GEÇTİ | **am schönsten** doğru. |
+| 79 | `m1:27:a1.c2` | ses-satir | GEÇTİ | Doğru. |
+| 80 | `m1:27:a1.c4` | ses-satir | GEÇTİ | 28. gün `a1` ile aynı saat (dokuz). |
+| 81 | `m1:27:a2.c5` | ses-satir | GEÇTİ | Ortam **Cumartesi.**; Derya'nın notuyla tutarlı. |
+| 82 | `m1:22:a1:e1` | eylem | GEÇTİ | `c2`–`c4`; tek cevap. |
+| 83 | `m1:25:a2:e1` | eylem | GEÇTİ | `c4` + `c5`; **ihn** sandalye (`c4b`). |
+| 84 | `m1:28:a2:e1` | eylem | GEÇTİ | `c2` + `c4`. |
+| 85 | `m1:22:g3` | gorsel | GEÇTİ | Ayrışıyor. |
+| 86 | `m1:23:g1` | gorsel | GEÇTİ | Ayrışıyor. |
+| 87 | `m1:26:g3` | gorsel | GEÇTİ | Ayrışıyor. |
+| 88 | `m1:27:g2` | gorsel | GEÇTİ | Kırmızı A doğru Alman eczane işareti. |
+| 89 | `m1:28:g1` | gorsel | GEÇTİ | Ayrışıyor. |
+| 90 | `m1:23:p1.n5` | prova-dugum | GEÇTİ | Doğru. |
+| 91 | `m1:24:p1.n2` | prova-dugum | GEÇTİ | 800 avro sahneyle tutarlı. |
+| 92 | `m1:26:p1.n1` | prova-dugum | GEÇTİ | Doğru. |
+| 93 | `m1:27:p1.n4` | prova-dugum | GEÇTİ | Doğru. |
+| 94 | `m1:28:p1.n3` | prova-dugum | GEÇTİ | Brandl 1. katta, Pichler'in yanında: bina tutarlı. |
+| 95 | `m1:22:p1.n3.s0` | prova-secenek | GEÇTİ | Doğru; 4 kabul. |
+| 96 | `m1:23:p1.n3.s2` | prova-secenek | GEÇTİ | Yanlış seçenek; geri bildirim `durum_tr` ile tutarlı (ceketin büyük, yeni). |
+| 97 | `m1:24:p1.n4.s0` | prova-secenek | GEÇTİ | Doğru. |
+| 98 | `m1:25:p1.n2.s0` | prova-secenek | GEÇTİ | **Die da ist billiger** fiyatlarla tutarlı (1 avro). |
+| 99 | `m1:25:p1.n3.s1` | prova-secenek | GEÇTİ | **lieber … schöner** doğru. |
+| 100 | `m1:25:p1.n4.s2` | prova-secenek | GEÇTİ | Yanlış seçenek; geri bildirim doğru. |
+| 101 | `m1:26:p1.n1.s1` | prova-secenek | GEÇTİ | İlanla tutarlı. |
+| 102 | `m1:26:p1.n4.s0` | prova-secenek | GEÇTİ | **450 Euro ist** gündelik dilde doğru. |
+| 103 | `m1:27:p1.n1.s2` | prova-secenek | GEÇTİ | Yanlış biçim bilerek seçenek (dilbilimci açık 10); geri bildirim doğru. |
+| 104 | `m1:28:p1.n4.s2` | prova-secenek | GEÇTİ | Doğru. |
+| 105 | `m1:28:p1.n5.s1` | prova-secenek | GEÇTİ | Pichler'in kuralıyla tutarlı. |
+| 106 | `m1:24:okuma` | okuma-metin | GEÇTİ | Almanca ve çeviri doğru. |
+| 107 | `m1:26:okuma` | okuma-metin (ev ilanı) | GEÇTİ | Gerçek ilan dili; çeviri doğru. |
+| 108 | `m1:27:okuma` | okuma-metin | GEÇTİ | Doğru. |
+| 109 | `m1:22:o1` | okuma-soru | GEÇTİ | Kanıt 2. |
+| 110 | `m1:22:o3` | okuma-soru | GEÇTİ | Kanıt 4. |
+| 111 | `m1:23:o2` | okuma-soru | GEÇTİ | Kanıt 3; koltuk için **hell → açık renk** doğru. |
+| 112 | `m1:22:yazma` | yazma | GEÇTİ | Düzeltme doğru. |
+| 113 | `m1:25:yazma` | yazma | GEÇTİ | Örnek kalıplara uyuyor. |
+| 114 | `m1:27:yazma` | yazma | GEÇTİ | Notla tutarlı. |
+| 115 | `m1:22:s1` | gun-sinavi dikte | GEÇTİ | 3 yazım. |
+| 116 | `m1:22:s5` | gun-sinavi | GEÇTİ | Kabuller doğru. |
+| 117 | `m1:22:s8` | gun-sinavi | GEÇTİ | **Nummer** doğru (dilbilimci düzeltmesi). |
+| 118 | `m1:22:s10` | gun-sinavi | GEÇTİ | Yeni okuma notuyla tutarlı (yarın sen veriyorsun). |
+| 119 | `m1:24:s5` | gun-sinavi | GEÇTİ | Doğru. |
+| 120 | `m1:27:s1` | gun-sinavi dikte | GEÇTİ | 3 yazım. |
+| 121 | `m1:27:s2` | gun-sinavi dikte | GEÇTİ | 3 yazım. |
+| 122 | `m1:27:s11` | gun-sinavi | GEÇTİ | Kabuller doğru. Not D: `situation_tr` bisikleti bilgi olarak veriyor, `why_tr` **hinter** bekliyor, kabullerin 4'ünde yok. |
+| 123 | `m1:28:s5` | gun-sinavi | GEÇTİ | **Der Hausmeister wohnt …** Pichler için doğru eşdeğer. |
+| 124 | `m1:28:t05` | hafta-testi | GEÇTİ | Doğru. |
+| 125 | `m1:28:t06` | hafta-testi | GEÇTİ | **billiger als die da** doğru. |
+| 126 | `m1:28:t08` | hafta-testi | GEÇTİ | Parçalar ilk cevabın kelimeleri; açıklama artık kart sayımıyla çelişmiyor. |
+| 127 | `m1:h04:g4` | gorulmemis | GEÇTİ | Durum gerçekçi (mola odası, üç ilan); 11 kabul, rakamlı ve yazılı. |
+| 128 | `m1:h04:g6` | gorulmemis | GEÇTİ | Doğru. |
+| 129 | `m1:h04:g7` | gorulmemis | GEÇTİ | Doğru; **es** belirsizliği dilbilimci takip notunda. |
+
+### Hata oranı
+**1 / 129 = %0,78** (eşik %2).
+
+### Hatalı madde
+| Kimlik | Neden | Önerilen düzeltme |
+|---|---|---|
+| `m1:27:v1:c1` | Brandl Hanım alt kat komşusuna nerede oturduğunu soruyor; hafta içinde onu tanıyor. | 27. gün provası (`n1`) gibi: `situation_tr` **Brandl Hanım katını karıştırıyor. Sen ikinci katta oturuyorsun.**, `prompt_de` **Und Sie wohnen im dritten Stock, ja?**, kabuller **Nein, im zweiten Stock.** · **Nein, ich wohne im zweiten Stock.** · **Nein, nicht im dritten. Im zweiten Stock.** … |
+
+### Örneklem dışı bulgu (oranda sayılmadı; 36. maddenin bağlamında görüldü)
+1. `m1:26:h2` sahnesi ilk satır: **Grüß Gott! Ich zeige Ihnen das Haus.** → **Size binayı gösteriyorum.** Öğrenci bu binada oturuyor. Hausmeister'in ona binayı göstermesi anlamsız. Aynı halkanın görev cümlesi **Ich zeige dir das Haus.**'u **Sana evi gösteriyorum** diye çeviriyor; bu haftada **Haus** boş yer, daire anlamında. Öneri: `tr` **Merhaba! Size boş yeri gösteriyorum.**, `ortam_tr`'ye **Tobi için boş yere bakıyorsun.** eklensin.
+
+### Notlar (takip, engel değil)
+- B. `m1:25:h1.kalip8` **Holst du …?** → **gidip alır mısın**.
+- C. `m1:26:h2.kalip2` Türkçe ilk dize **…'i gösteriyorum**.
+- D. `m1:27:s11` `why_tr` **hinter** bekliyor, ama durum bisikleti sormuyor. Ya `why_tr` **Kat için im dersin.** olsun, ya da durum **ikisini de söyle** desin ve kabuller ona göre ayarlansın.
+- Ev zinciri (24 → 26 → 27) hâlâ açık: baş geliştirici ve WORLD işi (1. örneklem not 6).
+
+### Karar: **örneklem GEÇTİ**
+Oran %0,78, eşik %2'nin altında. Tek hatalı madde (`m1:27:v1:c1`) ve örneklem dışı bulgu (`m1:26:h2` 1. satır) içerik motorunun birleştirmeden önce yapacağı küçük düzeltmeler. Yeni bir örneklem gerektirmez; düzeltmenin fark doğrulaması dilbilimcide. Değişen Türkçe satırlar okurdan geçmedi (dilbilimci kalanlar 2); okur turu ayrıca gerekiyorsa o hattın işi.
