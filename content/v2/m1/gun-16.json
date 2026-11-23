@@ -1103,7 +1103,7 @@
       "situation_tr": "Huber Hanım'ı geri arıyorsun. Selam ver, kendini tanıt ve adını harf harf söyleyeceğini söyle.",
       "prompt_de": "Praxis Dr. Weber, Sabine Huber, guten Tag.",
       "accepted": [
-       "Guten Tag, Frau Huber, hier ist {name}. Ich buchstabiere meinen Namen.",
+       "Guten Tag, Frau Huber, hier ist {name}. Ich buchstabiere jetzt.",
        "Guten Tag, hier ist {name}. Ich buchstabiere meinen Namen.",
        "Guten Tag, Frau Huber, hier ist {name}. Ich buchstabiere.",
        "Guten Tag, hier ist {name}. Ich buchstabiere.",
@@ -1399,9 +1399,10 @@
     "tr": "Dr. Weber muayenehanesi, ben Huber, iyi günler.",
     "secenekler": [
      {
-      "de": "Guten Tag, Frau Huber, hier ist {name}.",
-      "tr": "İyi günler Huber Hanım, ben {name}.",
+      "de": "Hallo, Frau Huber, hier ist {name}.",
+      "tr": "Merhaba Huber Hanım, ben {name}.",
       "accepted": [
+       "Hallo, Frau Huber, hier ist {name}.",
        "Guten Tag, Frau Huber, hier ist {name}.",
        "Guten Tag, hier ist {name}.",
        "Guten Tag, Frau Huber, {name} hier.",
@@ -1679,12 +1680,13 @@
   ],
   "yazma": {
    "gorev_tr": "Brandl Hanım'a kısa bir mesaj yaz. Kendini tanıt, dolabı sor ve ne zaman geleceğini yaz.",
-   "ornek_de": "Hallo, Frau Brandl, hier ist {name}. Ist der Schrank noch da? Ich komme am Samstag.",
+   "ornek_de": "Guten Tag, Frau Brandl, hier ist {name}. Ist der Schrank noch da? Ich komme am Samstag.",
    "zorunlu": [
     "hier ist",
     "Schrank"
    ],
    "accepted_kaliplar": [
+    "Guten Tag, Frau Brandl, hier ist ___.",
     "Hallo, Frau Brandl, hier ist ___.",
     "Ist der Schrank noch da?",
     "Ich komme am ___."
@@ -1818,7 +1820,7 @@
     "id": "m1:16:s10",
     "k": "guided_response",
     "situation_tr": "Huber Hanım sokağının ilk harfini soruyor. Brunnengasse'nin ilk harfini bir adla söyle.",
-    "prompt_de": "Brunnengasse? Mit B oder mit P?",
+    "prompt_de": "Brunnengasse? Wie ist der erste Buchstabe?",
     "accepted": [
      "Mit B wie Berta.",
      "Mit B. B wie Berta.",
@@ -1833,15 +1835,15 @@
    {
     "id": "m1:16:s11",
     "k": "guided_response",
-    "situation_tr": "Bir dükkânı arıyorsun. Kendini tanıt ve palto hâlâ sizde mi diye sor.",
+    "situation_tr": "Bir dükkânı arıyorsun. Kendini tanıt ve gömlek hâlâ duruyor mu diye sor.",
     "prompt_de": "Ja, hallo?",
     "accepted": [
-     "Guten Tag, hier ist {name}. Haben Sie den Mantel noch?",
-     "Guten Tag, hier ist {name}. Ist der Mantel noch da?",
-     "Guten Tag, {name} hier. Haben Sie den Mantel noch?",
-     "Hallo, hier ist {name}. Haben Sie den Mantel noch?",
-     "Guten Tag, mein Name ist {name}. Haben Sie den Mantel noch?",
-     "Grüß Gott, hier ist {name}. Haben Sie den Mantel noch?"
+     "Guten Tag, hier ist {name}. Ist das Hemd noch da?",
+     "Guten Tag, hier ist {name}. Haben Sie das Hemd noch?",
+     "Guten Tag, {name} hier. Ist das Hemd noch da?",
+     "Hallo, hier ist {name}. Ist das Hemd noch da?",
+     "Guten Tag, mein Name ist {name}. Ist das Hemd noch da?",
+     "Grüß Gott, hier ist {name}. Ist das Hemd noch da?"
     ],
     "why_tr": "Önce **hier ist** ve adın, sonra **Haben Sie** ile soru."
    }

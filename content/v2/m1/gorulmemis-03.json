@@ -1,0 +1,79 @@
+{
+ "id": "m1:gorulmemis:03",
+ "hafta": 3,
+ "durumlar": [
+  {
+   "id": "m1:h03:g1",
+   "can_do": "cd:m1:15",
+   "durum_tr": "Bir eczaneyi arıyorsun. Eczacı açıyor. Kendini tanıt ve cumartesi açık mı diye sor.",
+   "karsi": "eczacı (yeni kişi)",
+   "yer": "pl:apotheke",
+   "prompt_de": "Guten Tag! Wie kann ich helfen?",
+   "accepted": [
+    "Guten Tag, hier ist {name}. Haben Sie am Samstag offen?",
+    "Guten Tag, hier ist {name}. Ist am Samstag offen?",
+    "Guten Tag, {name} hier. Haben Sie am Samstag offen?",
+    "Guten Tag, hier ist {name}. Wann haben Sie am Samstag offen?",
+    "Guten Tag, mein Name ist {name}. Haben Sie am Samstag offen?",
+    "Guten Tag, hier ist {name}. Haben Sie am Samstag auch offen?",
+    "Grüß Gott, hier ist {name}. Haben Sie am Samstag offen?"
+   ],
+   "kalip": "Guten Tag, hier ist … – Haben Sie am … offen?",
+   "why_tr": "Önce **hier ist** ve adın. Sonra **Haben Sie** ile evet ya da hayır sorusu."
+  },
+  {
+   "id": "m1:h03:g2",
+   "can_do": "cd:m1:16",
+   "durum_tr": "Spor salonundan bir görevli seni arıyor. Deneme antrenmanı için adını ve yazılışını soruyor.",
+   "karsi": "spor salonu görevlisi (yeni kişi)",
+   "yer": "pl:fitness",
+   "prompt_de": "Gern, am Samstag um zehn. Und Ihr Name? Können Sie ihn buchstabieren?",
+   "accepted": [
+    "{name}. Gern, ich buchstabiere langsam.",
+    "Mein Name ist {name}. Ich buchstabiere.",
+    "{name}. Ja, ich buchstabiere langsam.",
+    "Ich heiße {name}. Gern, ich buchstabiere.",
+    "Mein Name ist {name}. Gern, ich buchstabiere langsam.",
+    "Gern. {name}, ich buchstabiere jetzt."
+   ],
+   "kalip": "Mein Name ist … – Ich buchstabiere.",
+   "why_tr": "Adını söyle, sonra **Ich buchstabiere** de ve harfleri yavaşça söyle."
+  },
+  {
+   "id": "m1:h03:g3",
+   "can_do": "cd:m1:17",
+   "durum_tr": "Bisiklet tamircisi hızlı bir sesli mesaj bırakmış. Geri arıyorsun. Saati anlamadın, kibarca tekrar ettir.",
+   "karsi": "bisiklet tamircisi (yeni kişi)",
+   "yer": "bisiklet tamirhanesi (telefon)",
+   "prompt_de": "Ihr Fahrrad geht wieder. Kommen Sie am Freitag um Viertel vor fünf.",
+   "accepted": [
+    "Entschuldigung, könnten Sie das langsam wiederholen?",
+    "Könnten Sie die Uhrzeit langsam wiederholen?",
+    "Wie bitte? Könnten Sie das wiederholen?",
+    "Entschuldigung, könnten Sie bitte langsam sprechen?",
+    "Könnten Sie das bitte wiederholen? Am Freitag um wie viel Uhr?",
+    "Am Freitag um Viertel vor fünf? Könnten Sie das wiederholen?"
+   ],
+   "kalip": "Könnten Sie das wiederholen?",
+   "why_tr": "Anlamadığında kibarca **Könnten Sie** ile tekrar istersin."
+  },
+  {
+   "id": "m1:h03:g4",
+   "can_do": "cd:m1:20",
+   "durum_tr": "Ioana'yı arıyorsun, annesi açıyor. Ioana'nın ne zaman döneceğini duyunca tarihi doğrula.",
+   "karsi": "Ioana'nın annesi (yeni kişi)",
+   "yer": "Ioana'nın evi (telefon)",
+   "prompt_de": "Ioana ist nicht zu Hause. Sie kommt am Dienstag zurück.",
+   "accepted": [
+    "Also am Dienstag, dem fünfzehnten?",
+    "Am Dienstag? Also am fünfzehnten?",
+    "Sie kommt am Dienstag, dem fünfzehnten, zurück?",
+    "Also am fünfzehnten? Danke!",
+    "Am Dienstag, am fünfzehnten? Danke!",
+    "Dienstag, der fünfzehnte? Danke schön!"
+   ],
+   "kalip": "Also am …, dem …?",
+   "why_tr": "Günü duyunca tarihi **am** ve sıra sayısıyla tekrar ederek doğrularsın."
+  }
+ ]
+}

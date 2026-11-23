@@ -883,7 +883,7 @@
       "id": "d5",
       "seviye": "gercek",
       "gorev_tr": "Sahnede duyduklarını Almanca iki kısa cümleyle özetle.",
-      "ornek_de": "Ioana hat am Freitag eine Prüfung. Am Donnerstag um halb neun hat sie einen Termin.",
+      "ornek_de": "Am Donnerstag um halb neun hat Ioana einen Termin.",
       "zorunlu": [
        "Donnerstag",
        "halb neun"
@@ -1084,14 +1084,14 @@
       "situation_tr": "Pichler Bey'i geri arıyorsun. Saati anlamadın. Kendini tanıt ve kibarca tekrar etmesini iste.",
       "prompt_de": "Pichler, hallo?",
       "accepted": [
-       "Hallo, Herr Pichler, hier ist {name}. Könnten Sie das bitte wiederholen?",
-       "Hallo, hier ist {name}. Könnten Sie das bitte wiederholen?",
-       "Guten Tag, Herr Pichler, hier ist {name}. Könnten Sie das wiederholen?",
        "Hallo, Herr Pichler, hier ist {name}. Könnten Sie die Uhrzeit wiederholen?",
+       "Hallo, hier ist {name}. Könnten Sie das bitte wiederholen?",
+       "Hallo, Herr Pichler, hier ist {name}. Könnten Sie das bitte wiederholen?",
+       "Guten Tag, Herr Pichler, hier ist {name}. Könnten Sie das wiederholen?",
        "Hallo, Herr Pichler, {name} hier. Könnten Sie das bitte wiederholen?",
        "Guten Tag, hier ist {name}. Um wie viel Uhr kommen Sie?"
       ],
-      "why_tr": "Önce **hier ist** ve adın. Sonra **Könnten Sie das bitte wiederholen?** de."
+      "why_tr": "Önce **hier ist** ve adın. Sonra **Könnten Sie die Uhrzeit wiederholen?** de."
      }
     }
    ],
@@ -1486,10 +1486,10 @@
     "tr": "Tamam. Lütfen eski kimliğinizi getirin.",
     "secenekler": [
      {
-      "de": "Ja, gut. Könnten Sie mir die Durchwahl geben?",
-      "tr": "Tamam. Bana doğrudan numaranızı verebilir misiniz?",
+      "de": "Ja, gut. Haben Sie auch eine Durchwahl?",
+      "tr": "Tamam. Doğrudan bir numaranız da var mı?",
       "accepted": [
-       "Ja, gut. Könnten Sie mir die Durchwahl geben?",
+       "Ja, gut. Haben Sie auch eine Durchwahl?",
        "Gut. Könnten Sie mir bitte die Durchwahl geben?",
        "Ja. Haben Sie eine Durchwahl?",
        "Gut, danke. Könnten Sie mir Ihre Durchwahl geben?"
@@ -1644,6 +1644,7 @@
     "situation_tr": "Schneider Hanım'ı geri arıyorsun. O açıyor. Kendini tanıt ve onun seni aradığını söyle.",
     "prompt_de": "Schneider, guten Tag.",
     "accepted": [
+     "Hallo, Frau Schneider, hier ist {name}. Sie möchten einen Rückruf?",
      "Guten Tag, Frau Schneider, hier ist {name}. Sie möchten einen Rückruf?",
      "Guten Tag, hier ist {name}. Sie möchten einen Rückruf?",
      "Guten Tag, Frau Schneider, {name} hier. Sie möchten einen Rückruf?",
