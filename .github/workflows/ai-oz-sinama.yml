@@ -1,0 +1,35 @@
+name: v2 — Yapay zekâ öz-sınaması (gece)
+# PM-087 A.3: her gece bir kez canlı Worker'ın /v1/ai/selftest ucu okunur. Kimlik ve gizli değer gerekmez; adres
+# web/.env.production'daki herkese açık API adresi (günlükte maskelenir). Uç 30 dk'da en çok 1 koşu yapar.
+on:
+  schedule:
+    - cron: "17 2 * * *"
+  # Worker Cloudflare Workers Builds ile de dağıtılabilir (PM-081 C): main'e Worker değişikliği girince birkaç dakika sonra oku
+  push:
+    branches: [main]
+    paths: ["worker/**", "packages/shared/**"]
+  workflow_dispatch:
+permissions: { contents: read }
+concurrency: { group: ai-oz-sinama, cancel-in-progress: false }
+jobs:
+  oz-sinama:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            web/.env.production
+            worker/scripts/oz-sinama.mjs
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Dağıtımı bekle (yalnız push)
+        if: github.event_name == 'push'
+        run: sleep 300
+      - name: Öz-sınama
+        run: |
+          URL=$(sed -n 's/^VITE_API_BASE=//p' web/.env.production | tr -d '\r')
+          [ -n "$URL" ] && echo "::add-mask::$URL"
+          [ -n "$URL" ] || { echo "::error::API adresi yok"; exit 1; }
+          node worker/scripts/oz-sinama.mjs "$URL" --bekle

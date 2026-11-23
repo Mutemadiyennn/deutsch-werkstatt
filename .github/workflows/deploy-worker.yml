@@ -96,3 +96,11 @@ jobs:
               if (h.provider !== "workers-ai") console.log("::warning::Duman: provider=" + p + " (beklenen workers-ai)");
               else if (!c.workers_ai) console.log("::warning::Duman: provider workers-ai ama configured.workers_ai=false (AI bağlaması yok)");
             });'
+      - name: Yapay zekâ öz-sınaması (PM-087 A.3)
+        if: steps.chk.outputs.skip != '1'
+        # dağıtım geri alınmaz; kalan görev uyarı olarak görünür, KAPI #12'ye yazar. Adres günlüğe yazılmaz.
+        run: |
+          URL=$(grep -oE 'https://[A-Za-z0-9.-]+\.workers\.dev' /tmp/deploy.log | head -1)
+          [ -n "$URL" ] && echo "::add-mask::$URL"
+          if [ -z "$URL" ]; then echo "::warning::Öz-sınama: Worker adresi alınamadı"; exit 0; fi
+          node worker/scripts/oz-sinama.mjs "$URL" --bekle || echo "::warning::Yapay zekâ öz-sınaması: kalan görev var (özet tablosu)"
