@@ -118,6 +118,65 @@ Kimlik: ad yalnız `{name}` ile (92 prova n1, 98 prova n1), `_adsiz` biçimleri 
 
 `Gute Besserung` ve `Schön, dass du wieder da bist` yalnız karşı tarafın repliklerinde, öğrenciden istenmiyor. Denetim yeni sözcük saymadı.
 
+## Okur farkı (`docs/v2/reviews/okur/ic16-h14.md`, 29 GERİ ve notlar)
+29 GERİ maddesinin hepsi ve notlardaki yazım ve sahne maddeleri düzeltildi. Almanca satırlara dokunulmadı.
+Kontrol taraması sonucu: öğrenciye görünen Türkçede `→`, `=`, `…`, `;` ve tırnak içinde Almanca yok. Açıklama alanlarında, `metin_tr`'de, dn ve ders metinlerinde 14 sözcüğü aşan cümle yok (kalın Almanca örnekler de sayıldı).
+
+**Ok ve eşittir (11)**
+- 95 `prova.dugumler[n2].secenekler[0].geri_bildirim_tr`: "Doğru: **brauchen** ile soru **Wofür?** olur."
+- 95 `s4.why_tr`: "**darauf** burada onu, yani randevuyu demek."
+- 95 `s5.why_tr`: "**sich freuen auf** ile soru: **Worauf freust du dich?**"
+- 95 `s6.why_tr`: "**sich interessieren für** ile kısa cevap: **dafür**."
+- 95 `s9.why_tr`: "**Worauf?** sorusuna kısa cevap: **Auf die Feier.** **die** değişmez."
+- 95 `s11.why_tr`: "**warten auf** ile soru: **Worauf wartest du?**"
+- 96 `s5.why_tr`: "Aynı şehirde **sich ummelden** dersin: **Ioana meldet sich um.**"
+- 98 `s10.why_tr`: "Aktarırken **Ihren** yerine **meinen** dersin: **Sie braucht meinen Ausweis.**"
+- test `t04.why_tr`: "Yeni şehirde **sich anmelden** dersin: **Tobi meldet sich an.**"
+- test `t10.why_tr`: "Aktarırken **Ihren** yerine **deinen** dersin: **Sie braucht deinen Pass.**"
+- test `t11.why_tr`: "**brauchen** ile soru **Wofür?** olur."
+
+**Tırnak içinde Almanca (3 GERİ ve 3 not)**
+- 93 `sahne.sahneler[s1].sahne_tr`: "… Tobi bankamatiğin ekranını gösteriyor: kart geçersiz."
+- 94 `okuma_yazma.sorular[m1:94:o5].situation_tr`: "… **rumänisch** yazmasını söyle."
+- gorulmemis `g6.durum_tr`: "… Ekranda 23 numara ve 2 numaralı masa yazıyor. …"
+- Notlardan: 94 `prova.dugumler[n1].tr` "Burada **Familienname** yazıyor. …" · 94 `prova.dugumler[n3].secenekler[0].tr` "Buraya **rumänisch** yazıyorsun." · 94 `halkalar[m1:94:h2].gorev_cumleleri[4].tr` "Vatandaşlık kısmına Ioana Romen yazıyor."
+
+**Uzunluk (10 GERİ ve 3 not)**
+- 93 `prova.kapanis_tr`: "Gün, saat ve yer ayarladın. **Wann treffen wir uns?** diye sordun. Tobi'nin stresine de sıcak bir cevap verdin."
+- 98 `prova.kapanis_tr`: "İşini anlattın, eksik belgede tartışmadın. **Was kann ich jetzt machen?** diye sordun. Randevuyu sordun, planını tekrar ettin. …"
+- dn-14 `tr`: "**muss** ya da **kann** varsa parça ayrılmaz: **Ich muss mich anmelden.** Olmuş bir şeyi anlatırken parça başta kalır, arkasına **ge** gelir: **Sie ist eingezogen.**"
+  - Bu, okurun `ge` notunu da karşılıyor.
+  - Aynı metinde "**sich anmelden**: yeni adresini kaydettirmek ya da bir yere kaydolmak." oldu: t2 ve 93'teki "kaydolmak" anlamıyla birleşti.
+- gr t1: "… kişiye göre değişir. Örnek: **ich freue mich**, **du freust dich**." · "… için hep **sich** dersin. Örnek: **Derya ärgert sich.**"
+- gr t2: "Küçük kelime çoğu zaman ikinci kelimenin hemen arkasında durur. Örnek: …" · "O zaman da **treffen** ikinci yerde kalır. **wir uns** arkasına geçer: …" · "Nasıl hissettiğini **gut**, **schlecht** ya da **müde** ile söylersin. Örnek: …"
+- gr t3: "**sich freuen über** olmuş bir şeye sevinmektir. Örnek: …"
+- gr t4: "Bu kelime **a**, **e**, **i**, **o**, **u**, **ü** ile başlıyorsa araya **r** girer. Örnek: **worauf**."
+- `metin_tr` (notlardan):
+  - 95: "Bunun için lütfen şu belgeleri getirin. Pasaport, bir fotoğraf, iş sözleşmesi ve son üç maaş bordrosu. Bir de sağlık sigortasından bir belge."
+  - 96: "Kayıt ve yeni adres kaydı için iki belge gerekir. Pasaportunuz ya da kimliğiniz ve ev sahibinin onay belgesi."
+  - 97: "… için lütfen iki belge getirin. Pasaport ya da kimlik ve ev sahibinin onay belgesi."
+
+**Anlam (5)**
+- 93 `halkalar[m1:93:h2].kaliplar[0].tr` (çift Türkçe): "buluşuyoruz – Beşte buluşuyoruz. – Saatle başlayınca da anlam aynı."
+- 95 `sesler[m1:95:a2].bolumler[b1].cevapla.why_tr`: "**Ich interessiere mich für Musik.** Kısa cevap: **Für Musik.**"
+- 98 `okuma_yazma.sorular[m1:98:o5].why_tr` (`Ihr` karışıklığı): "Vekâletnamede iki ad ve bir imza olur. **Ihren Namen** burada sizin adınız demek."
+- gorulmemis `g2.why_tr` (Sie notu): "Önce **Wir treffen uns**, sonra saat ve yer söylersin. Frau Brandl'a **Sie** dersin: **Passt das für Sie?**" (bu cümle kabul listesinde var)
+- gr t3 ve t4 ("küçük kelime" adı kayıyordu). "Küçük kelime" artık yalnız t1–t2'deki **mich, dich, sich, uns, euch** demek.
+  - t3 başı: "Bazı kelimelerin arkasından hep aynı kelime gelir: **auf**, **über** ya da **für**. Kelimeyi ve arkasından geleni birlikte öğren."
+  - t3'te "**auf**, **über** ve **für** kelimesinden sonra **der** kelimesi **den** olur. Örnek: …" Tablo başlığı "birlikte" → "hep birlikte gelen". `ex[0].tr` "Yaz mevsimini dört gözle bekliyoruz."
+  - t4 başı: "… **wo** ile **auf**, **für** ya da **über** kelimesini birleştirirsin." Soru örnekleri artık nokta ile ayrılıyor ("**auf** ile soru: **Worauf freust du dich?** Yani neyi dört gözle bekliyorsun."). "Kısa cevapta **auf** ve şey yeter". Tablo başlığı "küçük kelime" → "kelime".
+
+**Notlardaki öteki maddeler**
+- 93 `okuma_yazma.sorular[m1:93:o5].situation_tr` ve `why_tr`: "halolur" → "hallolur".
+- 96 `sahne.bolumler[b1].ayrinti[2].q_tr`: "Tobi'nin Hamburg'da bir şeye ihtiyacı var mı?"
+- 96 `sahne.sahneler[s6].sahne_tr`: "Tobi paketi açıyor. İçinde Wendlfing fotoğraflı bir kupa var."
+- 97 `sahne.sahneler[s5].sahne_tr`: "Hoparlörden bir ses geliyor. Ekranda 45 yanıp sönüyor."
+- 96 `prova.dugumler[n1].secenekler[2].tr`: "(yanlış) Geçmiş olsun!" (öteki yanlış seçeneklerle aynı biçim).
+- Dokunulmayan notlar:
+  - 93 a1'de "kayboldu" ile "çalışmıyor" farkı: Almanca soru „Meine Bankkarte ist weg“ diyor, Almancaya dokunulmadı.
+  - "iki kalın parça yan yana", "**die** değişmez", "sonda bitişik", çok parçalı kalıp satırları: okur tek okumada anladı.
+  - `gorulmemis` `kalip` alanlarındaki `…`: Almanca alan.
+
 ## Denetim
 `denet.sh 14 wt14` (bütün düzeltmelerden sonra):
 - `content:validate` **0 hata** (204 uyarı, önceki gibi)
