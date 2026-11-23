@@ -91,7 +91,78 @@ export function isSameAsGiven(given: string | undefined, answer: string): boolea
 /** Aynı kelimeler farklı sırada: Almancada çoğu zaman yanlış ama bazen doğru; karar yapay zekâya bırakılır, kendi başına doğru sayılmaz */
 const bag = (s: string) => norm(s).split(" ").filter(Boolean).sort().join(" ");
 
+/* ───────────── PM-101 md. 6 (İÇ-6 7089902512): üç eşdeğerlik ───────────── */
+const SAAT = "null|ein|zwei|zwo|drei|vier|f(?:ü|ue)nf|sechs|sieben|acht|neun|zehn|elf|zw(?:ö|oe)lf|dreizehn|vierzehn|f(?:ü|ue)nfzehn|sechzehn|siebzehn|achtzehn|neunzehn|zwanzig|(?:ein|zwei|drei|vier)undzwanzig";
+const DAKIKA = "\\d{2}|f(?:ü|ue)nf|zehn|f(?:ü|ue)nfzehn|zwanzig|f(?:ü|ue)nfundzwanzig|drei(?:ß|ss)ig|f(?:ü|ue)nfunddrei(?:ß|ss)ig|vierzig|f(?:ü|ue)nfundvierzig|f(?:ü|ue)nfzig|f(?:ü|ue)nfundf(?:ü|ue)nfzig";
+// "um drei Uhr" → "um drei", "um 15.30 Uhr" → "um 15.30", "um acht Uhr dreißig" → "um acht dreißig", "um ein Uhr" → "um eins".
+// Dakika yalnız "Uhr"dan sonra ("um acht dreißig Uhr" yanlış Almanca, dönüşmez); "eins" yalnız Uhr'suz ("um eins Uhr" dönüşmez).
+const UHR = new RegExp(`(^|[^\\p{L}\\d])(um\\s+)(\\d{1,2}(?:[:.]\\d{2})?|${SAAT})\\s+uhr(?![\\p{L}])(\\s+(?:${DAKIKA})(?![\\p{L}\\d]))?`, "giu");
+/** Karşılaştırma biçimi: saatte "Uhr" atılır, "Dr." → "Doktor". Yalnız karşılaştırmada kullanılır; ekranda özgün biçim kalır. */
+export function esdegerBicim(s: string): string {
+  return String(s || "")
+    .replace(UHR, (_m, on: string, um: string, saat: string, dk: string | undefined) => on + um + (/^ein$/i.test(saat) && !dk ? "eins" : saat) + (dk || ""))
+    .replace(/(^|[^\p{L}])Dr\.?(?=\s|$)/giu, (_m, on: string) => on + "Doktor");
+}
+const SELAM = /^\s*(?:hallo|hi|servus|gr(?:ü|ue|u)(?:ß|ss)\s+gott|guten\s+(?:tag|morgen|abend))(?![\p{L}])[\s,.!]*/iu;
+const HITAP = /^(?:(?:herr|frau)\s+(?:(?:dr\.?|doktor)\s+)?[\p{L}][\p{L}-]*)/iu;
+/**
+ * Baştaki selam ve hitap dolgudur ("Guten Tag, Frau Brandl, ich habe …"). Hitap selamsız geldiyse virgül ya da ünlemle
+ * ayrılmış olmalı ("Frau Brandl ist nicht da" hitap değildir). Yalnız Herr/Frau hitabı: selamdan sonraki büyük harfli tek sözcük
+ * ad sayılmaz (inceleme #227 P1-1: "Hallo! Nein/Nicht/Montag, ich komme." açığı; "Hallo Tobi, …" bu yüzden soyulmaz).
+ * Dönen biçimler: selamsız, selamsız + hitapsız (boş kalan aday yok).
+ */
+export function hitapsiz(answer: string): string[] {
+  const out: string[] = [];
+  let s = String(answer || "");
+  const sm = SELAM.exec(s);
+  if (sm) { s = s.slice(sm[0].length); if (s.trim()) out.push(s); }
+  const hm = HITAP.exec(s);
+  if (hm) {
+    const kalan = s.slice(hm[0].length), ayrac = /^\s*[,!.]/.test(kalan);
+    if ((ayrac || (sm && HITAP.test(s))) && kalan.replace(/^[\s,!.]+/, "").trim()) out.push(kalan.replace(/^[\s,!.]+/, ""));
+  }
+  return out;
+}
+
+/**
+ * Kural kararı. PM-101 md. 6'nın üç eşdeğerliği yalnız "doğru"ya çevirir; özgün yolun "doğru" dediği hiçbir cevabın
+ * sonucu değişmez. Dikte bu işlevi kullanmaz (`dikteKarar`).
+ */
 export function ruleVerdict(accepted: string[], answer: string): Verdict {
+  const v = kuralKarar(accepted, answer);
+  if (v.kind === "correct") return v;
+  const accE = accepted.map(esdegerBicim);
+  // selamla başlayan kabulde selam cevabın özüdür: selamı soyulmuş cevap onunla karşılaştırılmaz ("Guten Tag, guten Morgen!" ≠ "Guten Morgen!")
+  const selamsizE = accE.filter((a) => !SELAM.test(a));
+  const degisti = accE.some((a, i) => a !== accepted[i]);
+  for (const c of [answer, ...hitapsiz(answer)]) {
+    const cE = esdegerBicim(c), liste = c === answer ? accE : selamsizE;
+    if ((c === answer && !degisti && cE === c) || !liste.length) continue;
+    const w = kuralKarar(liste, cE);
+    if (w.kind === "correct") {
+      const i = accE.indexOf(w.best);
+      return { kind: "correct", best: i >= 0 ? accepted[i]! : w.best, via: "variant", note: w.note };
+    }
+  }
+  return v;
+}
+
+/**
+ * Dikte ("Duyduğunu yaz", PM-102 md. 4): yalnız duyulan cümle doğrudur. Büyük/küçük harf, noktalama, ümlaut yazımı
+ * (ae/oe/ue) ve rakam/yazı farkı yok sayılır (yazım notu gösterilir); sözcük sırası, dolgu, eşanlamlı ve görev cümlesinin
+ * öbür kabulleri dikte cevabı değildir. Hitapsız profilde ekrandaki "Patient/Patientin" iki biçimden biriyle karşılanır.
+ */
+export function dikteKarar(duyulan: string, answer: string): Verdict {
+  const ALT = /(\p{L}+)\/(\p{L}+)/u;
+  let bicimler = [duyulan];
+  for (let k = 0; k < 4; k++) bicimler = bicimler.flatMap((b) => (ALT.test(b) ? [b.replace(ALT, "$1"), b.replace(ALT, "$2")] : [b]));
+  const best = bicimler.find((b) => norm(b) === norm(answer));
+  if (best && norm(answer)) return { kind: "correct", best, via: answer.trim() === best.trim() ? "exact" : "variant", note: yazimNotu(best, answer) };
+  const ilk = bicimler[0] ?? duyulan;
+  return { kind: "wrong", best: ilk, words: judge([ilk], [answer]).words, note: umlautEksik(ilk, answer) || undefined };
+}
+
+function kuralKarar(accepted: string[], answer: string): Verdict {
   const j = judge(accepted, [answer]);
   if (j.ok) return { kind: "correct", best: j.best, via: norm(j.best) === norm(answer) ? "exact" : "variant", note: yazimNotu(j.best, answer) };
   // fiil üçüncü yerde (Gern ich möchte…) dolgu kuralından önce: baştaki "gern" dolgu sayılıp doğru verilmesin (inceleme #76 2. tur K2)

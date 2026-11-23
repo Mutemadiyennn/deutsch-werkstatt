@@ -103,6 +103,8 @@ jobs:
         run: cd tests/e2e && python v2_core.py
       - name: Oynatıcı (aşama 1–6, dinleme, klavye, uzun basma, dayanıklılık, taşma, %130)
         run: cd tests/e2e && python v2_player.py --shots /tmp/shots
+      - name: Yapay zekâ hata durumları (PM-087 A.4)
+        run: cd tests/e2e && python v2_yz_hata.py --tablo /tmp/yz-hata.md
       - name: DN-2 gezgin (her ekranda her düğme)
         run: mkdir -p /tmp/shots && cd tests/e2e && python gezgin.py --out /tmp/shots/gezgin.json
       - name: "Yerleşim bekçisi (PM-079 md. 4): B1–B8, gezginin ekranları, 844 ve 932 yükseklik; kip dosyada (rapor → kırmızı)"
