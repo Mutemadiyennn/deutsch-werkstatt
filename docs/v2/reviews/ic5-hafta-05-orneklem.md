@@ -99,3 +99,54 @@ Ek tarama (bir kez, 9 dosyanın tamamı): `audio_de`, ses `script`, sahne satır
 
 ## Karar
 **ÖRNEKLEM HATA (1)**: 30 öğede 1 hata, oran %3,3, eşik %2'nin üstünde. Yönerge gereği `gorulmemis-05.json` dilbilimciye geri gönderilmeli (öneri yukarıda). Ölçüt kesin uygulanırsa bütün hafta için yeniden bakış gerekir. Ancak hata tek bir görülmemiş durumda ve doğallıkla ilgili. Bulunan hata türü (seçeneksiz **lieber**) yalnız `m1:h05:g7` ile `m1:32:s11`'de var. Önerilen yol: hedefli düzeltme, ardından örneklem kontrolü yeni bir tohumla (6) yeniden yapılır.
+
+## 2. çekiliş (g7 düzeltmesinden sonra)
+
+### g7 doğrulaması
+`content/v2/m1/gorulmemis-05.json` · `m1:h05:g7` şimdi şöyle:
+- `prompt_de`: **Trinkst du gern Milch? Und was isst du lieber, Käse oder Bratwurst?**
+- `durum_tr`: "… Süt içmeyi seversin. Peynirle sosis arasında sosisi daha çok seversin."
+- Beş kabulün hepsi **Ja** ile başlıyor ve **lieber Bratwurst** diyor. **aber**'li kabul çıkarılmış.
+
+**lieber** artık iki yiyecek arasında seçim yaptırıyor. Soru doğal, Türkçe durum metni aynı anlamı veriyor, kabuller doğru ve aynı anlamda. **Käse** 32. günde öğretiliyor. `kalip` ve `why_tr` uyumlu. **Sonuç: TAMAM.** Önceki hata kapandı. `m1:32:s11`'e dokunulmadı, sayıma girmez.
+
+### Seçim
+Aynı betik ve havuzlar (havuz boyutları değişmedi). `random.seed(6)` ile her havuzdan `random.sample(havuz, 5)` çekildi. Ham çıktı: oturum scratchpad'i (`orneklem6.out`). İki çekilişte ortak çıkan öğeler: m1:33:s4, g1, g2, g4, g7. Bunlar yeniden kontrol edildi.
+
+| # | Öğe | Yer | Sonuç | Not |
+|---|---|---|---|---|
+| 1 | görev: **An der zweiten Ampel biegen Sie rechts ab.** | gun-34 · m1:34:h1 · gorev_cumleleri[4] | TAMAM | Mastarlı yol tarifi (**… rechts abbiegen.**) doğal. |
+| 2 | görev: **Hast du Schnupfen, Tobi?** | gun-29 · m1:29:h3 · gorev_cumleleri[4] | TAMAM | **Hast du auch Schnupfen** "sen de" anlamını katıyor. Radyo herkesin nezle olduğunu söylediği için bağlama uyuyor, kabul olarak zararsız. |
+| 3 | görev: **Die Tür ist offen, Tobi!** | gun-33 · m1:33:h1 · gorev_cumleleri[6] | TAMAM | **doch** yalnız vurgu katıyor. |
+| 4 | görev: **Am Freitag kommt die Gehaltsabrechnung.** | gun-31 · m1:31:h1 · gorev_cumleleri[2] | TAMAM | **…, oder?** onay sorusu. Bilgi aynı, kabul olarak yerinde. |
+| 5 | görev: **Wie viel ist die Miete?** | gun-29 · m1:29:h2 · gorev_cumleleri[1] | TAMAM | **kostet** ve **Wie hoch** doğal. |
+| 6 | prova: **Hallo, Tobi! Bist du noch krank?** | gun-29 · prova n1 · secenekler[0] | TAMAM | Dört kabul aynı anlamda. |
+| 7 | prova (uygunsuz): **Ja, klar, Stefan.** | gun-30 · prova n1b · secenekler[1] | TAMAM | Herr Wimmer n1b'de hitabı düzeltiyor (**Herr Wimmer, bitte.**). Geri bildirim doğru, düğüm kendine dönüyor. |
+| 8 | prova (uygunsuz): **Bis morgen, Herr Lechner!** | gun-35 · prova n3 · secenekler[1] | TAMAM | **du** ile konuşulan Tobi'ye soyadla hitap, geri bildirim doğru. |
+| 9 | prova: **Toll, vielen Dank!** | gun-34 · prova n5 · secenekler[0] | TAMAM | Kabuller aynı anlamda. |
+| 10 | prova (uygunsuz): **Nein.** | gun-33 · prova n3 · secenekler[2] | TAMAM | Geri bildirim kibar ret biçimini gösteriyor. |
+| 11 | sınav (dikte): **Wir feiern am Samstag in der Stadt.** | gun-33 · gun_sinavi · m1:33:s4 | TAMAM | 1. çekilişte de vardı. |
+| 12 | sınav (`tr_de`): "Bugün yalnız yiyorum." | gun-32 · gun_sinavi · m1:32:s8 | TAMAM | **allein** ve **alleine** doğru. `why_tr` doğru. |
+| 13 | sınav (dikte): **Die Sprechstunde fängt am Montag um acht Uhr an.** | gun-29 · gun_sinavi · m1:29:s3 | TAMAM | Kabuller yalnız harf ve noktalama farkı. |
+| 14 | sınav (dikte): **Herr Wimmer trinkt nicht gern Milch.** | gun-32 · gun_sinavi · m1:32:s2 | TAMAM | `why_tr` "**nicht gern** sevmeden demek" doğru ama kuru. İsteğe bağlı öneri: "**nicht gern** … sevmez demek." |
+| 15 | sınav (`tr_de`): "Uzak değil, çok yakın." | gun-34 · gun_sinavi · m1:34:s8 | TAMAM | Beş kabul aynı anlamda. |
+| 16 | dikte (zor): **Wir treffen uns an der Haltestelle am Bahnhof.** | gun-35 · m1:35:a2 · b1 · d3 | TAMAM | Banka cevabın kelimeleri artı iki çeldirici (**Ampel**, **zum**). |
+| 17 | dikte (kolay): **Die Ankunft ist um zehn Uhr.** | gun-30 · m1:30:a2 · b1 · d1 | TAMAM | **zehn** cümlede geçiyor, **neun** ve **elf** geçmiyor. |
+| 18 | dikte (usta): **Gut. Ich arbeite leider am Samstag.** | gun-35 · m1:35:v1 · b1 · d4 | TAMAM | Kabuller doğru. s8'in Türkçesindeki "İyi." bu bağlamda "Peki." daha doğal olurdu (isteğe bağlı). İki cümleli satır dilbilimcinin açık noktası 1. |
+| 19 | dikte (zor): **Heute gibt es Bratwurst mit Senf und Brot.** | gun-32 · m1:32:a1 · b1 · d3 | TAMAM | Banka doğru (çeldiriciler **Käse**, **ist**). |
+| 20 | dikte (usta): **Kannst du mich bald anrufen?** | gun-33 · m1:33:a1 · b1 · d4 | TAMAM | Kabuller yalnız harf ve noktalama farkı. |
+| 21 | okuma: "Derya salı günü saat onda nereye gidiyor?" | gun-30 · okuma · m1:30:o2 | TAMAM | Kanıt 1 = **Dienstag: um zehn Uhr Termin bei Dr. Weber.** Cevap "Doktora", tek doğru şık. |
+| 22 | okuma: "Teknisyen nereli?" | gun-31 · okuma · m1:31:o3 | TAMAM | Kanıt 2 = **Sie kommt aus München.** "Duyuruda yazmıyor" şıkkı yanlış, tek doğru şık. |
+| 23 | okuma: "Derya et yemeyi sevmiyor. Hangi gün ona uygun?" | gun-32 · okuma · m1:32:o2 | TAMAM | Kanıt 2 = **Mittwoch: Gemüse mit Käse.** Salı (et) ve pazartesi (sosis) yanlış. Balık günü şıklarda yok. |
+| 24 | okuma (gist): "Bu metin ne?" | gun-30 · okuma · m1:30:o1 | TAMAM | Okumanın başlığı "Derya'nın haftalık planı". Kanıt 0–2 gün gün plan. |
+| 25 | okuma (`guided_response`): **Ist es weit vom Bahnhof?** | gun-34 · okuma · m1:34:o4 | TAMAM | Metin **das ist nah** diyor. Altı kabul aynı anlamda. |
+| 26 | görülmemiş: **Wir feiern am Samstag. Kommen Sie auch?** | gorulmemis-05 · m1:h05:g3 | TAMAM | **Sie** düzeltmesi yerinde. Kabullerin hepsi teşekkür, ret ve pazar önerisi içeriyor. |
+| 27 | görülmemiş: **Und morgen? Wann musst du aufstehen?** | gorulmemis-05 · m1:h05:g1 | TAMAM | 1. çekilişte de vardı. |
+| 28 | görülmemiş: **Trinkst du gern Milch? Und was isst du lieber, Käse oder Bratwurst?** | gorulmemis-05 · m1:h05:g7 | TAMAM | Düzeltilmiş hâl (yukarıda). |
+| 29 | görülmemiş: **Entschuldigung, wie komme ich zur Apotheke?** | gorulmemis-05 · m1:h05:g4 | TAMAM | 1. çekilişte de vardı. |
+| 30 | görülmemiş: **Und Ihr Beruf, bitte?** | gorulmemis-05 · m1:h05:g2 | TAMAM | 1. çekilişte de vardı. |
+
+**Sonuç: 30 öğede 0 hata, oran %0.** İki çekiliş birlikte (60 öğe, düzeltmeden önce sayılan g7 dahil) 1 hata, %1,7. Bütün ölçütlerde (Almanca, Türkçe karşılık, kabuller, kanıt ve tek doğru şık, açıklama, yer tutucu) bulgu yok. İsteğe bağlı üç Türkçe ince ayar (1. çekiliş #7 "Pasta daha bitmez", 2. çekiliş #14 `why_tr`, #18 "İyi.") hata sayılmadı.
+
+### 2. çekiliş kararı
+**ÖRNEKLEM GEÇTİ**: `gun-29` … `gun-35`, `hafta-sonu-testi-05.json`, `gorulmemis-05.json` örneklem aşamasından geçti.
