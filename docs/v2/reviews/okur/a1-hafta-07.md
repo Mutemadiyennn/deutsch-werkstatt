@@ -713,3 +713,47 @@ Kapsam: 1. turda GERİ dönen 58 madde ve düzeltmeyi yapanın rapor dışında 
 Dosya durumu (OD-9.4): 2. turdan sonra bu girdideki dosyaların hiçbirinde okur GERİ'si kalmadı.
 
 OKUR: GEÇTİ
+
+---
+
+## 3. tur (kapı düzeltmeleri)
+
+Kapsam: hafta kapısı düzeltmeleriyle gelen yeni metinler. `content/v2/m1/gorulmemis-07.json` içinde `m1:h07:g6`, `m1:h07:g7`, `m1:h07:g8` (`durum_tr`, `why_tr`, Türkçe `yer`) ve `gun-43.json` `sahne.bolumler[b1].cevapla` (`situation_tr`, yanındaki `why_tr` de okundu). Sözcük sayımı önceki turlardaki gibi: kalın Almanca sayılır, `…` sayılmaz. Bu sırada dilbilimci aynı dosyalarda küçük düzeltme yapıyor olabilir; aşağıdaki metinler okuma anındaki hâlidir.
+
+### Sonuç
+
+| | |
+|---|---|
+| Okunan metin | 9 (görülmemiş: 7, gün 43: 2) |
+| GEÇTİ | 9 |
+| GERİ | 0 |
+
+### Görülmemiş durumlar (`gorulmemis-07.json`, g6–g8)
+
+| # | Kimlik | Alan | Metin | Kendi sözlerimle | Karar | Neden / not |
+|---|---|---|---|---|---|---|
+| 1 | `m1:h07:g6` | `durum_tr` | Tren istasyonunun bekleme salonundasın. Elinde bir kahve ve yiyecek var, ama duvardaki tabelayı anlamadın. Bir görevli yanına geliyor. Burada yemenin serbest olup olmadığını ya da dışarıda mı yemen gerektiğini kibarca sor. | İstasyonda bekliyorum, elimde yiyecek var. Görevliye burada yiyebilir miyim, yoksa dışarı mı çıkmalıyım diye kibarca soracağım. | GEÇTİ | En uzun cümle 13 kelime. |
+| 2 | `m1:h07:g6` | `why_tr` | İzni **Darf man hier essen?** ile sorarsın, gerekip gerekmediğini **Muss ich draußen essen?** ile. | İzin için **Darf man**, zorunlu mu diye **Muss ich** derim. | GEÇTİ | Tam 14 kelime. İki bilgi; önceki turlardaki gibi GEÇTİ. |
+| 3 | `m1:h07:g7` | `durum_tr` | Fırına giriyorsun. Gerti Stadler dükkânı yeni boyatmış: her yer kırmızı. Gururla soruyor. Kırmızı hoşuna gidiyor, bunu söyle. | Fırın kırmızıya boyanmış, Gerti Hanım nasıl bulduğumu soruyor. Beğendiğimi söyleyeceğim. | GEÇTİ | |
+| 4 | `m1:h07:g7` | `why_tr` | Beğendiğin şeyi **gefällt mir** ile söylersin: **Rot gefällt mir gut**. | Bir şeyi beğenince **gefällt mir** derim. | GEÇTİ | 9 kelime. |
+| 5 | `m1:h07:g8` | `durum_tr` | Cumartesi. Dr. Weber'in muayenehanesi kapalı, sen komşu kasabadaki hafta sonu nöbetçi muayenehanesindesin. Perşembeden beri karnın ağrıyor. Doktor bir ilaç yazdı: günde üç kez, yemekten önce bir tablet. Şimdi soruyor. Ne zamandan beri ağrıdığını söyle, talimatı da tekrar ederek doğrula. | Hafta sonu başka bir doktordayım. Karnım perşembeden beri ağrıyor. Bunu söyleyip ilacın nasıl içileceğini tekrar edeceğim. | GEÇTİ | En uzun cümle 11 kelime. Not (karar değil): altı cümle, iki iş; telefonda bir ekranı dolduruyor. "Nöbetçi muayenehane" ilk duyduğum söz ama "nöbetçi eczane"den tanıdım. |
+| 6 | `m1:h07:g8` | `yer` | komşu kasabada hafta sonu nöbetçi muayenehanesi | Komşu kasabadaki hafta sonu açık olan muayenehane. | GEÇTİ | |
+| 7 | `m1:h07:g8` | `why_tr` | Süreyi **seit Donnerstag** ile söylersin, talimatı **Ich soll …** ile tekrar edip doğrularsın. | **seit** ile süreyi, **Ich soll** ile talimatı söylerim. | GEÇTİ | 12 kelime. İki bilgi; önceki turlardaki gibi. |
+
+### Gün 43 (`gun-43.json`, `sahne.bolumler[b1].cevapla`)
+
+| # | Alan | Metin | Kendi sözlerimle | Karar | Not |
+|---|---|---|---|---|---|
+| 8 | `situation_tr` | Sıra sende. Dr. Weber sana nasıl olduğunu soruyor. Başın iki gündür ağrıyor. | Doktor nasılım diye soruyor, iki gündür başımın ağrıdığını söyleyeceğim. | GEÇTİ | |
+| 9 | `why_tr` | Ağrıyı **Mir tut der Kopf weh** ile, ne zamandan beri olduğunu **seit** ile söylersin. | Ağrıyı **Mir tut der Kopf weh** ile, süreyi **seit** ile söylerim. | GEÇTİ | Tam 14 kelime. |
+
+Sayım notu: g6 ve g7'nin `yer` alanı kimlik (`pl:bahnhof`, `pl:baeckerei`), okunmadı.
+
+### Notlar (karar değil)
+
+- g6 `karsi` alanı **eine Mitarbeiterin vom Bahnhof**, g8 `karsi` alanı **eine Ärztin** Almanca. Öğrenciye görünüyorsa Türkçe değil (1. turdaki g3 notuyla aynı). Kimlik alanı sayıp okumadım.
+- Yeni metinlerin hiçbirinde `=`, `;`, tırnak içinde Almanca, İngilizce ya da dilbilgisi terimi yok. `…` yalnız **Ich soll …** içinde boşluk işareti.
+
+Dosya durumu (OD-9.4): 3. turda okunan metinlerde okur GERİ'si yok.
+
+OKUR: GEÇTİ

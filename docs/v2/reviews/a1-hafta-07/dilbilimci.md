@@ -292,3 +292,42 @@ Değerlendirilip bırakılanlar: 47 a1 ayrıntı 1 (**Hotel**, 1. turun 1. açı
 Sonuç: H1 ve H2 kapandı. Taranan 25 değişiklikte yeni tutarsızlık yok. Örneklemin iki notu düzeltildi. 1. turun ve kabul taramasının açık noktaları aynen duruyor, `review.status` "draft".
 
 KARAR: ONAY
+
+---
+
+## Kapı düzeltmeleri 2. tur (2026-11-23)
+
+Kapsam: yazarın hafta kapısı için yaptığı değişiklikler (`yazar-notlari-kapi.md`). Bakılan: `gun-43.json` sahne b1 `cevapla` (1 madde), `gorulmemis-07.json` yeni g6, g7, g8 (3 durum) ve 8 durumun `can_do` bağı. Toplam 4 madde + 8 bağ. Bulgu: 7 (4 maddede). Hepsi düzeltildi.
+
+### Bulgular ve düzeltmeler
+| # | Yer | Önce | Sonra | Gerekçe |
+|---|---|---|---|---|
+| 1 | 43 b1 `cevapla` `accepted` | 14 kabul, hepsi doğrudan şikâyetle başlıyor | + 6: **Nicht so gut. Mir tut seit zwei Tagen der Kopf weh.** · **Nicht so gut. Ich habe seit zwei Tagen Kopfschmerzen.** · **Nicht so gut. Seit zwei Tagen tut mir der Kopf weh.** · **Nicht so gut. Mein Kopf tut seit zwei Tagen weh.** · **Nicht gut. Mir tut …** · **Nicht gut. Ich habe …** | Düzeltmenin getirdiği kusur: yeni soru **Wie geht es Ihnen heute?** en doğal cevabı **Nicht so gut.** ile başlatıyor. Bu cevap `ruleVerdict`'te `ask_ai` çıkıyordu (dolgu kuralı tanımıyor). Soru, `situation_tr` ve `why_tr` doğru ve doğal, dokunulmadı. |
+| 2 | g6 `accepted` | 15 kabul; iki soruyu birlikte soran biçim yalnız **Ja, bitte.** / **Entschuldigung,** ile | + 5: **Darf man hier essen? Oder muss ich draußen essen?** · **Darf man hier essen oder muss ich draußen essen?** · aynı ikisi **Darf ich** ile · **Kann ich hier essen?** | Durum metni iki soruyu da anıyor; başlangıçsız çift soru `ask_ai` çıkıyordu. **Kann ich hier essen?** doğru bir izin sorusu. |
+| 3 | g7 `accepted` | Yalın biçimler yok: **Rot gefällt mir gut** yalnız **, Frau Stadler!** ile, **Das gefällt mir gut** yalnız hitapla | + 8: **Rot gefällt mir gut.** · **Rot gefällt mir.** · **Das gefällt mir gut.** · **Das gefällt mir.** · **Es gefällt mir gut.** · **Mir gefällt das gut.** · **Mir gefällt das Rot.** · **Das Rot gefällt mir sehr gut.** | En kısa doğru cevaplar `ask_ai` çıkıyordu. Bu hitap eşdeğerliği değil (PM-101 md. 6): listenin taban biçimi eksikti. Not: **Das gefällt mir (gut).** 47. günde birebir geçiyor; araç bu cümleleri saymıyor, durum öbür cevaplarla kurulabiliyor (g5 ile aynı uygulama). Doğru cevap reddedilmesin diye eklendi. |
+| 4 | g8 `prompt_de` + `durum_tr` | **So, hier ist ein Rezept. Seit wann tut der Bauch weh?** Talimat yalnız Türkçe durum metninde. | **So, hier ist das Rezept: dreimal am Tag eine Tablette vor dem Essen. Und seit wann tut der Bauch weh?** Durum metni: "Doktor reçeteyi veriyor, ilacı nasıl alacağını söylüyor ve dosyaya yazmak için bir şey daha soruyor." | Yazarın "emin olmadığım nokta"sı. Öğrenci, doktorun Almanca söylemediği bir talimatı "tekrar ederek doğruluyordu"; `can_do` (cd:m1:49) "talimatı tekrar ederim" diyor. Artık talimat Almanca duyuluyor (g3'teki gibi), tekrar gerçek bir tekrar. Yeni cümlenin bütün sözcükleri K(49) içinde (araçla sınandı, anlaşılmayan karşı soru 0). |
+| 5 | g8 `accepted` | **Seit Donnerstag tut mir der Bauch weh. Ich soll dreimal am Tag eine Tablette nehmen?** | **… Ich soll dreimal am Tag vor dem Essen eine Tablette nehmen?** | Talimatın yarısı (**vor dem Essen**) eksikti; görev talimatı doğrulatıyor. |
+| 6 | g8 `accepted` | **Seit drei Tagen. …** | **Seit zwei Tagen. …** | Gün cumartesi, ağrı perşembeden beri: iki gün. |
+| 7 | g8 `accepted` | 12 kabul, kısa biçimler eksik | + 5: **Seit Donnerstag. Ich soll dreimal am Tag vor dem Essen eine Tablette nehmen?** · **… eine Tablette vor dem Essen nehmen?** · **Seit Donnerstag. Also dreimal am Tag vor dem Essen?** · **Seit Donnerstag. Dreimal am Tag eine Tablette vor dem Essen, richtig?** · **Seit Donnerstag. Also dreimal am Tag eine Tablette vor dem Essen, richtig?** | Dördü de `ask_ai` çıkıyordu. |
+
+### Bakılıp doğru bulunanlar
+- **`can_do` bağları (8/8):** g1, g2 → cd:m1:43 (ağrı + süre; baş dönmesi de 43. günün konusu) · g3 → 45 (talimatı tekrar) · g4 → 48 (öğüt) · g5 → 46 (form, adres) · g6 → 44 (izin/gereklilik) · g7 → 47 (beğeni) · g8 → 49. Her bağ günün `can_do.tr` metniyle örtüşüyor.
+- **Görülmemişlik (gün dosyalarında arandı):** g6: 43–49'da istasyon yalnız yer adı olarak geçiyor (47 okuma, 48 eczane); bekleme salonu, görevli ve yemek izni yok. 44. günde **draußen** yalnız **telefonieren/warten** ile. g7: Gerti Stadler 47. günde yok, fırın 43–49'da sahne değil; **Rot gefällt mir** hiç geçmiyor. g8: nöbetçi muayenehane ve adsız doktor yeni; karın ağrısı + günde üç kez + yemekten önce birleşimi derste yok.
+- **K(49):** üç yeni durumun `prompt_de` ve bütün `accepted` cümleleri (eklenenler dahil) hafta kapısının bilgi kümesine karşı tek tek sınandı: eksik 0. (Dosyada küme dışı üç eski kabul var: g3 **morgens und abends**, g4 **Tee** ×2. Doğru Almanca, bilen için kabul; bu turun kapsamında değil, dokunulmadı.)
+- **`ruleVerdict`:** en kısa cevaplar `correct`: **Darf man hier essen?**, **Muss ich draußen essen?**, **Das gefällt mir.**, **Rot gefällt mir.**, **Seit Donnerstag. Also dreimal am Tag vor dem Essen?**, **Ich habe seit zwei Tagen Kopfschmerzen**. Eksik cevap **Seit Donnerstag.** `wrong`.
+- Almanca: g6 ve g7 karşı taraf cümleleri doğal (**Kann ich Ihnen helfen?**, **Schauen Sie, alles ist jetzt rot! Wie gefällt Ihnen das?**). Türkçe durum metinleri ve `why_tr` OD-9'a uygun, sabit ad/cinsiyet yok.
+
+### Sınama
+- `hk.sh 7`: öğretilmeden istenen 0 (kesin 0, sınırda 0) · anlaşılmayan karşı soru 0 · hafta sonu testi %100 (12/12) · görülmemiş 8/8 · sınanmayan can_do yok · **GEÇTİ**.
+- Benzetim (`sim7k`, `a1k-h7.json`, 43–49 + gorulmemis-07): `→ 0 hata, 261 uyarı`. 43–49 ve görülmemiş için "öğretilmemiş"/"bilinmeyen" uyarısı 0. `dikis.out` 43–49 satırları `0 | 0 | 0 | 0 | 0`.
+- `npm run content:validate` (dalın kendi şemasıyla): hatalar önceki turlardaki gibi dalın eski şemasından ve eksik önceki günlerden; bu turun dosyalarına ait yeni hata yok.
+- Çalışma notu: tek tek cümle sınaması için `/home/claude/dw-hk/content/tools/` altına geçici bir sınama betiği koydum ve iş bitince sildim (depo dosyası değil). `sim.sh` kendi içinde `git fetch`/`git show` çalıştırıyor; başka git komutu çalıştırmadım.
+
+### Kalan açık noktalar
+1. g7'de **Sehr gut!** tek başına soruya doğru cevap ama **gefällt** kalıbını göstermiyor; eklenmedi, yapay zekâsız kipte "kontrol edilemedi" kalıyor.
+2. Selamlı/hitaplı biçimler (PM-101 md. 6) bilerek eklenmedi; kod düzeltmesi bekleniyor.
+3. Önceki turların açık noktaları aynen duruyor; `review.status` "draft".
+
+Sonuç: 7 bulgu, 7 düzeltme (4 maddede; +24 kabul, 2 kabul düzeltildi, 1 karşı taraf cümlesi ve 1 durum metni yeniden yazıldı). KAPANDI.
+
+KARAR: ONAY
