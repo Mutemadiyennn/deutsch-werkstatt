@@ -122,3 +122,86 @@ Okurun sayılmayan notları: sahne anlatımı/ortam/şıklardaki `;` ve başlık
 `review`: değişmedi (draft; video ve kart sayısı kapıları açık, OD-9.4 okur fark okuması bekleniyor).
 
 SONUÇ (fark turu): KAPANDI. 114 GERİ düzeltildi, okur fark okuması bekleniyor.
+
+## İnceleme düzeltmesi (#251 7107670105)
+
+Kapsam: inceleme 1. turunun bütün P1 ve P2 bulguları. Yalnız `gun-99` … `gun-105`, `dn-15`, `hafta-sonu-testi-15`, `gorulmemis-15` değişti. `registry/grammar.json`, `WORLD.md` ve PR açıklaması bu rolün yazma alanında değil (aşağıda "Baş geliştiriciye").
+
+### P1-1 · Kendi haftanda göster
+
+Ölçüt (örneklem h16 ile aynı): haftada kullanılan her Partizip ve her geçmiş biçimi (Präteritum), ilk geçtiği yerden önce bu haftanın bir halka kalıp satırında görünmeli. Halka görevi ve halka sahnesi için o halkanın ve önceki halkaların kalıpları sayılır. Halka dışı adımlarda (sahne, ses, görsel, prova, okuma/yazma, gün sınavı, dn) o günün bütün halkaları sayılır. Test ve görülmemiş en sonda gelir. Önceki haftalar sayılmaz. Öğrencinin ürettiği, karşı tarafın söylediği, sözcük bankası ve yanlış seçenek dahil her Almanca metin tarandı.
+
+Bulgu → yapılan:
+- **vergessen, gekommen** (99 h1 görev ve sahne; Lena'nın sesli mesajı) → 99 h1'e kalıp: `Ich habe … vergessen. – Ich bin zu spät gekommen.` / "… unuttum. – Geç geldim."
+- **war, waren, warst** (99 h1 görev 2; 100 radyo) → 99 h1'e tablo: `ich war – du warst – er/sie war – wir waren – ihr wart – sie/Sie waren` / "idim – idin – idi – idik – idiniz – idiler / idiniz".
+- **hatte, hatten** (99 prova n2; 100 görev ve Tobi'nin mesajı; 101 görev) → 99 h1'e tablo: `ich hatte – du hattest – … – sie/Sie hatten` / "benim vardı – … – sizin vardı".
+- **gekostet** (99 a1 cevapla kabulü; taramayla bulundu) → 99 h1'deki kalıp: `… – Das hat fünf Euro gekostet. – …` / "Beş euro tuttu."
+- **funktioniert** (99 sahne s5, karşı taraf; taramayla bulundu) → replik değişti: "Jetzt hat es funktioniert. Gut!" → "Jetzt geht es. Gut!" (tr "Şimdi çalışıyor. İyi!"). s5 hiçbir dikte ya da gölgede kullanılmıyor.
+- **geschrieben** (99 prova n2, Wimmer) → 99 h2'deki kalıp: `einen Lebenslauf schreiben – Ich habe den Lebenslauf geschrieben. – den Lebenslauf schicken`.
+- **bekommen** (99 a2 cevapla sorusu; görülmemiş m1:h15:g6 kabulleri) → 99 h2'ye kalıp: `Hast du meine Nachricht bekommen? – Ich habe … bekommen.` / "Mesajımı aldın mı? – … aldım."
+- **gesprochen** (100 h1 sahne; 103 okuma metni ve kabulleri) → 100 h1'e kalıp: `Ich habe jeden Tag Deutsch gesprochen. – Hast du … gesprochen?`
+- **gegangen** (102 h2 görev 2) → 102 h2'deki kalıp: `…, trotzdem … – Trotzdem war das … – Trotzdem bin ich … gegangen.` / "Yine de …'e gittim."
+- **gefunden, geschlossen** (103 a1 dikte, 103 a2 ve dikte, 104 telefon bandı) → 103 h1'e kalıp: `Ich habe … nicht gefunden. – Das Büro ist heute geschlossen.` / "…'ı bulamadım. – Büro bugün kapalı."
+- **angerufen, geholfen** (104 a1 cevapla sorusu; 104 sahne s5, Brandl) → 104 h2'ye kalıp: `Hast du … angerufen? – … hat mir geholfen.`
+- **fand** (104 s7 kabul 3; taramayla bulundu) → 104 h2'deki kalıp: `Das ist schrecklich! – Das war schrecklich. – Ich fand das schrecklich.` / "Bana berbat geldi." Kabul silinmedi (doğru cevabı reddetmemek için).
+- **verstanden** (105 prova n3) → 105 h1'e kalıp: `Moment mal! – Hast du alles verstanden? – Ich habe nicht alles verstanden.` (P2-7'nin **Moment mal**'ı da burada).
+
+Yeniden tarama (betik: `scratchpad/inc-15/tara.ts`; dizin ve sözlükteki her fiil kartının `perfekt` ve `praeteritum` alanından kurulan biçim haritası, ayrıca `ge…t/en` ile eşlenemeyen sözcük taraması; ek elle `grep`: ging, kam, fand, wusste, dachte, wurde … 0 başka biçim):
+- **50 biçim** (30 Partizip, 20 Präteritum), **1503 kullanım**. İlk kullanımından önce bu haftanın kalıp satırında gösterilen: **50/50**. Gösterilmeden kullanılan: **0** (önce 18 biçim, 165 kullanım).
+- Kapsam dışı (şüphe): şimdiki zaman çekimleri (fährt, gibt, kann, bist …). Tarama `--hepsi` ile 94 biçim buluyor, 61'i haftada kalıpta yok. İnceleme ve örneklem h16 bunları bulgu saymadı. Kural şimdiki zamana da uygulanacaksa PM kararı gerekir.
+
+### P1-2 · Yanlış genelleme
+
+- **dn-15** `tr`: "**Danach**'tan hemen sonra **habe** gelir … **Deswegen**'den hemen sonra **bin** gelir." → "**Danach** ya da **Deswegen** cümlenin başına gelebilir. O zaman hemen arkasından **habe**, **bin**, **war** gibi bir kelime gelir. **Danach habe ich die Geheimzahl vergessen**. **Deswegen bin ich zu spät gekommen**. Sondaki kelime **habe** mi **bin** mi geleceğini belirler: **vergessen** ile **habe**, **gekommen** ile **bin**." (cümleler 7 / 11 / 6 / 6 / 14 kelime)
+- **m1:103:s3** why_tr: "**Deswegen**'den hemen sonra **bin** gelir." → "Burada **Deswegen**'den hemen sonra **bin** gelir: **Deswegen bin ich zu spät gekommen.**"
+- **m1:104:s11** why_tr: "Her birinin hemen arkasından **hatte**, **habe** ya da **war** gelir." → "Bunlar başa gelince hemen arkasından **hatte**, **habe**, **war** gibi bir kelime gelir."
+- Aynı kalıp, madde düzeyinde kural gibi okunan öteki açıklamalar:
+  - **m1:105:s6**: "Burada **Deswegen**'den hemen sonra **sind** gelir: **Deswegen sind wir mit dem Bus gekommen.**"
+  - **m1:105:t12** (P2-4'ün ikinci yarısı; kabul 3 "deswegen war ich"): "**Zuerst** ve **deswegen** başa gelince hemen arkasından **war** ya da **bin** gelir."
+  - **m1:h15:g5**: "… Bunlar başa gelince hemen arkasından **hatte**, **ist** gibi bir kelime gelir."
+  - **m1:103:s2**, **m1:103:s10**, **m1:103:o5**: başa "Burada" eklendi.
+- OD-9 öz-denetimi (değişen 10 açıklama + kalıp `tr`'leri): `explain.ts textIssues` 0 bulgu. `;`, `…`, `=` ve tırnaklı Almanca yok. Terim yok ("fiil" kullanılmadı). 14 kelimeyi aşan cümle yok. dn-15'te örnek cümlelerin noktası kalın işaretin dışına alındı, doğrulayıcının cümle bölücüsü de cümleleri ayrı sayıyor.
+
+### P2
+
+1. **Noktalama farkıyla dolan kabuller.** `grading.ts norm()` ile sayıldı. Üretim maddesi 272, öncesinde 66'sı 3'ten az farklı cevaptaydı. Bunların 28'i "Duyduğunu yaz" dikte maddesi (`listen_and_respond`, tek doğru metin). Bunlara söz dizimi varyantı eklemek yanlış yazımı kabul ettirirdi, o yüzden dokunulmadı. Kalan 38 maddede noktalama kopyası gerçek bir varyantla değişti: söz dizimi, `bezahlen/zahlen`, `heute/jetzt`, `es/das`, konuşma dilinde `am`'sız gün. Bu 38 madde: 29 halka görevi, 4 tr_de, 2 prova seçeneği, t05, t10, t12. t10'a "Um Geld abzuheben, gehe ich zum Geldautomaten." girdi. Sonuç: dikte dışındaki **her üretim maddesinde ≥ 3 farklı cevap var**. Yeni varyantlar yalnız gösterilmiş biçimleri kullanıyor (P1-1 taraması bunları da kapsadı).
+2. **t3 ertesi gün.** 102 h2 `lx:cool` görevi: "Als Kind hatte ich ein Fahrrad. Das war cool." → "In der Grundschule hatte ich ein Fahrrad. Das war cool." (tr "İlkokulda bir bisikletim vardı. Çok havalıydı."; 3 kabul). 102'de okul sözcüklü görev artık 2.
+3. **105 prova n1 → n2.** n1'in ikinci uygun seçeneği ücretten söz etmiyordu. n2: "Eine Gebühr! Für mich! …" → "So ein blöder Montag! Und Herr Wimmer? Was hast du ihm gesagt?" (tr "Ne saçma bir pazartesi! …"). **So ein blöder …** 105 h1 kalıbında var. İki uygun seçeneğe de uyuyor.
+4. **grammar.json t4** "Öteki kelimeler … **ge** ile söylenir": dosya bu rolün yazma alanında değil (baş geliştiriciye). t12'nin why_tr'si yukarıda düzeltildi.
+5. **101 iki okul.** İlkokul duyurusu: gün perşembe → **çarşamba**. İmza "Ihre Grundschule am Rathaus" → "Ihre Grundschule Wendlfing" (metin_tr birlikte). o3 şıkları "Çarşamba saat yedide / Salı saat yedide / Çarşamba saat sekizde". o5 kabul 5 "Am Mittwoch …". Gymnasium (Rathaus'un yanı, perşembe 19.00, cumaya kadar arama) değişmedi.
+6. **Lena.** 99 v1 s11 `sahne_tr`'ye "Ekipte artık herkes birbirine du diyor." cümlesi eklendi. Lena'nın WORLD'e yan kişi olarak işlenmesi ve Frau Brandl'ın torunu baş geliştiricinin kararı.
+7. **Selam kalıpları.** **Servus** → 100 h2 kalıbı `Servus! Hier ist … – Servus, …!` (Tobi'nin mesajından ve öğrencinin "Servus Tobi!" kabulünden önce). **Kommen S'** → 101 h2 kalıbı `Kommen S' doch morgen! – Kommen Sie doch morgen!`. **Moment mal** → 105 h1 (yukarıda). **Grüß Gott, Passt scho, gell** zaten kullanıldıkları yerden önce kalıptaydı (104 h2, 105 h1).
+8. **PR açıklaması / iskelet-h16 / PM-048**: baş geliştirici.
+9. **gun-105 `place`**: bilerek eklenmedi. Gün Derya'nın evinde geçiyor ve WORLD'de bunun bir yer kimliği yok. `pl:haus` öğrencinin apartmanı, yanlış olurdu.
+
+### Değişen kimlikler
+
+- **gun-99**: halkalar[m1:99:h1].kaliplar (+3: war tablosu, hatte tablosu, vergessen/gekommen; kostet satırı değişti); halkalar[m1:99:h2].kaliplar (Lebenslauf satırı değişti; +1 bekommen); h1 görev "Ist das kostenlos …" kabul 2; h2 görev "Derya ist hier geboren …" kabul 2; sahne.sahneler[s5] de/tr; sahne.sahneler[s11] sahne_tr
+- **gun-100**: halkalar[m1:100:h1].kaliplar (+1 gesprochen); halkalar[m1:100:h2].kaliplar (+1 Servus); h1 görevleri "Ich hatte einen Vorsatz …" kabul 2, "Keine Sorge, ich konnte …" kabul 3, "Keine Sorge, das ist …" kabul 3; h2 görevi "Bei Tobi mussten wir …" kabul 3
+- **gun-101**: halkalar[m1:101:h2].kaliplar (+1 Kommen S'); h2 görevi "Früher hatte er kein Handy …" kabul 2; okuma_yazma.metin_de, metin_tr; m1:101:o3 opts; m1:101:o5 kabul 5
+- **gun-102**: halkalar[m1:102:h2].kaliplar (trotzdem satırı); h2 görevleri "Früher hatten wir …" kabul 2, "Ich war krank …" kabul 2, "Früher war das nicht cool …" kabul 2, `lx:cool` görevi "In der Grundschule hatte ich …" (de, tr, kabul); m1:102:s8 kabul 2
+- **gun-103**: halkalar[m1:103:h1].kaliplar (+1 gefunden/geschlossen); h1 görevleri (Lena fehlt, Was fehlt dir, Am Montag … müde, Geheimzahl … vergessen) birer kabul; h2 görevleri (Zuerst … Gebühr, Geld abheben … deswegen, Der Bus …, Lena ist krank …, nicht reich …, So wird man …) birer kabul; prova n4 seçenek 1 kabul 2; m1:103:s2, s3, s10 why_tr; m1:103:s7 kabul 3; m1:103:s8 kabul 2; m1:103:o5 why_tr
+- **gun-104**: halkalar[m1:104:h2].kaliplar (schrecklich satırı; +1 angerufen/geholfen); h1 görevleri "Zuerst habe ich den Fehler …", "Das Fahrrad hat keine Luft …" kabul 2; h2 görevleri "Zuerst war es schrecklich …", "Komisch, auf meinem Konto …" kabul 2; m1:104:s8 kabul 2; m1:104:s11 why_tr
+- **gun-105**: halkalar[m1:105:h1].kaliplar (+1 Moment mal/verstanden); h1 görevleri (Geldautomat … blöd, Das ist blöd …, So ein blöder Tag, Kreuzung) kabul 2; prova n2 de/tr; prova n2 seçenek 1 kabul 2; m1:105:s6 why_tr
+- **hafta-sonu-testi-15**: m1:105:t05 kabul 3; m1:105:t10 kabul 2–3; m1:105:t12 kabul 2, why_tr
+- **gorulmemis-15**: m1:h15:g5 why_tr
+- **dn-15**: dn:akicilik-432 tr
+
+### Kapılar
+
+- `npm run -s content:validate` → **0 hata** (178 uyarı; 15. haftaya ait olanlar önceden de vardı: kart sayısı hedefi, video yok).
+- `hafta-kapisi-kos.ts --hafta 15 --tablo a1a2-kesin.json` → **GEÇTİ**: öğretilmeden istenen 0 (kesin 0, sınırda 0), test %100 (12/12), görülmemiş 7/7.
+- `dikis-kos.ts --tablo a1a2-kesin.json` → 99–105 **0 ihlal**.
+- `vitest run content/tools` → 173 geçti, 3 başarısız. Başarısız üç test PR'ın bilinen eksiği, öncekiyle aynı.
+
+### Baş geliştiriciye (bu rolün yazma alanı dışında)
+
+- `registry/grammar.json` gr:a2-06:t4: "**ge** ile söylenir" → "çoğu zaman **ge** ile söylenir". Aynı hafta ge'siz **überwiesen** ve **vergessen** var (P2-4).
+- WORLD: Lena Hoffmann yan kişi notu ve Frau Brandl'ın torunu (P2-6).
+- PR açıklaması: grammar.json örnek ve başlık değişikliği, `iskelet-h16.md` dalı, PM-048 satırı (P2-8). Kabul listesindeki P1-1 satırı artık doğru yazılabilir.
+
+`review`: değişmedi (draft; video ve kart sayısı kapıları açık).
+
+Hata oranı (bu tur): 18 biçim gösterimi + 3 yanlış genelleme + 6 kural gibi okunan açıklama + 38 kabul listesi + 5 P2 (t3, prova, okul, hitap, selam ×3 tek bulgu) = **70 düzeltme**. 15. haftanın üretim ve açıklama maddeleri (272 üretim + 10 açıklama) ile oranı ≈ %25. Kabul listeleri çıkarılırsa 32 / 282 ≈ %11.
+
+SONUÇ (inceleme düzeltmesi): **KAPANDI**. P1-1 ve P1-2 kapandı. Yazma alanındaki P2'ler kapandı. P2-4'ün grammar.json yarısı, P2-6'nın WORLD yarısı ve P2-8 baş geliştiriciye kaldı.
