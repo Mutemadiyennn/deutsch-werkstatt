@@ -3,9 +3,9 @@
   "id": "assess:a1-deneme:1",
   "seviye": "A1",
   "review": { "status": "reviewed", "by": "dilbilimci-ajan", "at": "2026-11-22" },
-  "note_tr": "Derslerden bağımsız yazıldı (PM-087 B.2); kaynak yalnız A1 yapabiliyorum listesi ve resmî A1 sınav düzeni. 'kanit': dinlemede ses satırının sırası, okumada metnin cümle sırası (0'dan; cümle . ! ? ile biter, son satırdaki imza da bir cümle sayılır). İkili seçimde (okuma kısım 2) 'kanit' doğru seçenek metnindeki cümleleri gösterir. Konuşma cevaplarında '…' öğrencinin kendi bilgisinin yeridir. Konuşma bölümündeki 'accepted' listeleri örnek cevaplardır; sınavdan önce gösterilmez, puan 'degerlendirme_tr' ölçütüyle verilir (k1:01, k1:02, k1:03 ve k3:04 öğrencinin kendi bilgisini ister, hazır cevapla birebir karşılaştırılmaz).",
+  "note_tr": "Bu deneme derslerden bağımsız yazıldı (PM-087 B.2). Tek kaynak A1 yapabiliyorum listesi ve resmî A1 sınav düzeni. Dinlemede **kanit** ses satırının sırasıdır. Okumada **kanit** metindeki cümlenin sırasıdır. Sayım 0'dan başlar. Cümle nokta, ünlem ya da soru işaretiyle biter. Son satırdaki imza da bir cümle sayılır. Okuma kısım 2'de **kanit** doğru ilandaki cümleleri gösterir. Konuşma cevaplarındaki boş yer öğrencinin kendi bilgisinin yeridir. Konuşmadaki **accepted** listeleri yalnız örnek cevaptır. Bu listeler sınavdan önce gösterilmez. Puan **degerlendirme_tr** ölçütüyle verilir. k1:01, k1:02, k1:03 ve k3:04 öğrencinin kendi bilgisini ister. Bu cevaplar hazır cevapla birebir karşılaştırılmaz.",
   "gecme": { "toplam": 0.6, "konusma": 0.6 },
-  "puanlama_tr": "Her bölümün ham puanı 25 üzerinden ölçeklenir (ham puan / en yüksek ham puan × 25). Geçmek için toplam en az 60 ve konuşma bölümünden ayrıca en az 15 puan gerekir; konuşma eksiği başka bölümle kapatılamaz.",
+  "puanlama_tr": "Her bölümde aldığın puan 25 üzerinden hesaplanır. Örneğin bir bölümde puanların yarısını alırsan, sonuç 12,5 puan olur. Geçmek için toplam en az 60 puan gerekir. Konuşma bölümünden ayrıca en az 15 puan gerekir. Konuşmadaki eksik başka bölümle kapatılamaz.",
   "bolumler": [
     {
       "id": "dinleme",
@@ -397,7 +397,7 @@
         },
         {
           "id": "y2",
-          "yonerge_tr": "Kısa bir e-posta yaz. Yaklaşık 30 kelime yeterli. Üç noktanın hepsini yaz; başta selam, sonda kapanış olsun.",
+          "yonerge_tr": "Kısa bir e-posta yaz. Yaklaşık 30 kelime yeterli. Aşağıdaki üç maddenin hepsini yaz. Başta bir selam, sonda bir kapanış olsun.",
           "maddeler": [
             {
               "id": "a1y:y2:01", "k": "mesaj", "hafta": 3, "puan": 10,
@@ -415,9 +415,9 @@
                 "Grüße|Gruß|Grüsse|Gruss|Gruesse|Vielen Dank|Danke"
               ],
               "degerlendirme_tr": [
-                "Görev (6 puan): her nokta için 2 puan. Nokta yazılmış ve anlaşılıyorsa 2; yazılmış ama tam anlaşılmıyorsa 1; yoksa 0.",
-                "Anlaşılırlık (2 puan): Almanca bilen biri mesajı bir kez okuyup anlıyorsa 2; birkaç yerde durup düşünmesi gerekiyorsa 1; çoğu anlaşılmıyorsa 0. Küçük yazım hataları puan düşürmez.",
-                "Selam ve kapanış (2 puan): uygun bir selam (ör. 'Sehr geehrte Damen und Herren', 'Guten Tag') 1; uygun bir kapanış (ör. 'Mit freundlichen Grüßen', 'Viele Grüße') ve ad 1."
+                "Görev (6 puan): her madde 2 puan. Madde yazılmış ve anlaşılıyorsa 2 puan. Yazılmış ama tam anlaşılmıyorsa 1 puan. Madde yoksa 0 puan.",
+                "Anlaşılırlık (2 puan): Almanca bilen biri mesajı bir kez okuyup anlıyorsa 2 puan. Birkaç yerde durup düşünmesi gerekiyorsa 1 puan. Mesajın çoğu anlaşılmıyorsa 0 puan. Küçük yazım hataları puanı düşürmez.",
+                "Selam ve kapanış (2 puan): uygun bir selam 1 puan. Örnek: **Sehr geehrte Damen und Herren** ya da **Guten Tag**. Uygun bir kapanış ve adın 1 puan. Örnek: **Mit freundlichen Grüßen** ya da **Viele Grüße**."
               ]
             }
           ]
@@ -436,8 +436,8 @@
           "id": "k1",
           "yonerge_tr": "Hazırlık yok. Kartı görünce hemen konuş. Önce kendini tanıt, sonra görevlinin sorusuna cevap ver.",
           "degerlendirme_tr": [
-            "Tanıtma (her kart 1 puan): karttaki her sözcük için anlaşılır bir cümle söylediysen tam puan. Bir ya da iki bilgi eksikse ya da cümle yerine tek sözcük söylediysen yarım puan (0,5). Anlaşılmıyorsa ya da İngilizce konuştuysan 0.",
-            "Heceleme (1 puan): bütün harfler doğru ve anlaşılırsa tam puan; 'A wie Anton' gibi ad ya da şehir kodları zorunlu değil, iki türü de kabul. Bir harf yanlışsa ya da görevli bir kez yeniden sormak zorunda kaldıysa yarım puan. Harflerin çoğu yanlışsa 0."
+            "Tanıtma (her kart 1 puan): her sözcük için anlaşılır bir cümle söylediysen tam puan. Bir ya da iki bilgi eksikse yarım puan (0,5). Cümle yerine tek sözcük söylediysen de yarım puan. Anlaşılmıyorsa ya da İngilizce konuştuysan 0 puan.",
+            "Harf harf söylemek (1 puan): bütün harfler doğru ve anlaşılırsa tam puan. **A wie Anton** gibi bir ad eklemek zorunlu değil. Kişi adı ya da şehir adı eklersen ikisi de doğru. Bir harf yanlışsa yarım puan. Görevli bir kez yeniden sormak zorunda kaldıysa da yarım puan. Harflerin çoğu yanlışsa 0 puan."
           ],
           "maddeler": [
             {
@@ -449,7 +449,7 @@
                 "Mein Name ist {name}. Ich bin … Jahre alt. Ich komme aus … und wohne jetzt in ….",
                 "Guten Tag, ich bin {name}. Ich bin …, ich komme aus … und ich wohne in …."
               ],
-              "why_tr": "'…' yerine kendi bilgini söyle. Bazı ülke adları 'der' ister: 'aus der Türkei', 'aus der Ukraine'. Yaşta 'Jahre alt' sonda gelir."
+              "why_tr": "Bazı ülke adlarından önce **der** gelir: **aus der Türkei**, **aus der Ukraine**."
             },
             {
               "id": "a1k:k1:02", "k": "guided_response", "hafta": 8, "puan": 1,
@@ -460,35 +460,35 @@
                 "Ich spreche … und Deutsch. Ich bin … von Beruf. In meiner Freizeit … ich gern.",
                 "Meine Sprachen sind … und Deutsch. Ich arbeite bei …. Ich koche gern und ich gehe gern spazieren."
               ],
-              "why_tr": "'…' yerine kendi bilgini söyle. Meslek söylerken 'ein' kullanılmaz: 'Ich bin Fahrer', 'Ich arbeite als Köchin'."
+              "why_tr": "Meslek söylerken **ein** kullanılmaz: **Ich bin Fahrer**, **Ich arbeite als Köchin**."
             },
             {
               "id": "a1k:k1:03", "k": "listen_and_respond", "hafta": 3, "puan": 1, "speed": "normal",
               "audio_de": "Wie schreibt man Ihren Familiennamen? Buchstabieren Sie bitte.",
-              "situation_tr": "Görevli soyadını harf harf söylemeni istiyor. Kendi soyadını harf harf söyle. (Örnek cevaplar 'Berger' soyadı içindir; senin cevabın kendi soyadınla, ölçüte göre puanlanır.)",
+              "situation_tr": "Görevli soyadını harf harf söylemeni istiyor. Kendi soyadını harf harf söyle.",
               "accepted": [
                 "B – E – R – G – E – R.",
                 "B wie Berta, E wie Emil, R wie Richard, G wie Gustav, E wie Emil, R wie Richard.",
                 "B wie Berlin, E wie Essen, R wie Rostock, G wie Goslar, E wie Essen, R wie Rostock.",
                 "Berger: B, E, R, G, E, R."
               ],
-              "why_tr": "Harflerin Almanca adlarını söyle: E 'e', I 'i', R 'er'. Anlaşılmazsa 'B wie Berta' (ad) ya da 'B wie Berlin' (şehir) diye ekle; ikisi de doğru."
+              "why_tr": "Harfleri Almanca söyle: **E** için **e**, **I** için **i**, **R** için **er**. Anlaşılmazsa **B wie Berta** ya da **B wie Berlin** diye ekle. İkisi de doğru."
             }
           ]
         },
         {
           "id": "k2",
-          "yonerge_tr": "Hazırlık yok. Sana bir konu ve bir sözcük kartı verilir. Kart sözcüğüyle partnerine bir soru sor. Partner sana soru sorarsa cevap ver. 'du' ya da 'Sie' ikisi de olur.",
+          "yonerge_tr": "Hazırlık yok. Sana bir konu ve bir sözcük kartı verilir. Bu sözcükle karşındaki kişiye bir soru sor. Karşındaki kişi sana soru sorarsa cevap ver. Hem **du** hem **Sie** olur.",
           "degerlendirme_tr": [
             "Her kart 1 puan.",
-            "Tam puan: kart sözcüğünü kullanan, konuya uyan ve anlaşılan bir soru; ya da soruya uyan, anlaşılan tam bir cevap.",
-            "Yarım puan (0,5): anlaşılıyor ama cümle bozuk (ör. sözcükler yanlış sırada) ya da cevap tek sözcük.",
+            "Tam puan: kart sözcüğünü kullanan, konuya uyan ve anlaşılan bir soru. Ya da soruya uyan, anlaşılan, tam bir cevap.",
+            "Yarım puan (0,5): anlaşılıyor ama cümle bozuk. Örneğin sözcükler yanlış sırada. Cevap tek sözcükse de yarım puan.",
             "0: kart sözcüğü kullanılmadı, konu dışı, anlaşılmıyor ya da İngilizce."
           ],
           "maddeler": [
             {
               "id": "a1k:k2:01", "k": "guided_response", "hafta": 2, "puan": 1,
-              "situation_tr": "Konu: Yemek ve içmek. Kartta 'Frühstück' (kahvaltı) yazıyor. Partnerine bu sözcükle bir soru sor.",
+              "situation_tr": "Konu: Yemek ve içmek. Kartta **Frühstück** (kahvaltı) yazıyor. Karşındaki kişiye bu sözcükle bir soru sor.",
               "prompt_de": "Thema: Essen und Trinken – Frühstück",
               "accepted": [
                 "Was isst du zum Frühstück?",
@@ -496,12 +496,12 @@
                 "Was trinken Sie zum Frühstück?",
                 "Frühstückst du jeden Tag?"
               ],
-              "why_tr": "Soru sözcüğü ('Was', 'Wann') ya da fiil başa gelir."
+              "why_tr": "Soru **Was**, **Wann** ya da **Frühstückst du** gibi başlar."
             },
             {
               "id": "a1k:k2:02", "k": "listen_and_respond", "hafta": 2, "puan": 1, "speed": "normal",
               "audio_de": "Was kaufst du in der Bäckerei?",
-              "situation_tr": "Konu: Yemek ve içmek. Partnerinin kartında 'Bäckerei' (fırın) yazıyor ve sana soru soruyor. Cevap ver.",
+              "situation_tr": "Konu: Yemek ve içmek. Karşındaki kişinin kartında **Bäckerei** (fırın) yazıyor ve sana soru soruyor. Cevap ver.",
               "accepted": [
                 "Ich kaufe Brot und Brötchen.",
                 "In der Bäckerei kaufe ich meistens Brezeln.",
@@ -510,7 +510,7 @@
             },
             {
               "id": "a1k:k2:03", "k": "guided_response", "hafta": 8, "puan": 1,
-              "situation_tr": "Konu: Yemek ve içmek. Kartta 'Restaurant' yazıyor. Partnerine bu sözcükle bir soru sor.",
+              "situation_tr": "Konu: Yemek ve içmek. Kartta **Restaurant** yazıyor. Karşındaki kişiye bu sözcükle bir soru sor.",
               "prompt_de": "Thema: Essen und Trinken – Restaurant",
               "accepted": [
                 "Gehst du gern ins Restaurant?",
@@ -521,7 +521,7 @@
             },
             {
               "id": "a1k:k2:04", "k": "guided_response", "hafta": 5, "puan": 1,
-              "situation_tr": "Konu: Benim günüm. Kartta 'Wochenende' (hafta sonu) yazıyor. Partnerine bu sözcükle bir soru sor.",
+              "situation_tr": "Konu: Benim günüm. Kartta **Wochenende** (hafta sonu) yazıyor. Karşındaki kişiye bu sözcükle bir soru sor.",
               "prompt_de": "Thema: Mein Tag – Wochenende",
               "accepted": [
                 "Was machst du am Wochenende?",
@@ -533,42 +533,42 @@
             {
               "id": "a1k:k2:05", "k": "listen_and_respond", "hafta": 6, "puan": 1, "speed": "normal",
               "audio_de": "Was hast du gestern Abend gemacht?",
-              "situation_tr": "Konu: Benim günüm. Partnerinin kartında 'gestern' (dün) yazıyor ve sana soru soruyor. Cevap ver.",
+              "situation_tr": "Konu: Benim günüm. Karşındaki kişinin kartında **gestern** (dün) yazıyor ve sana soru soruyor. Cevap ver.",
               "accepted": [
                 "Gestern Abend habe ich gekocht.",
                 "Ich war zu Hause und habe ferngesehen.",
                 "Gestern Abend habe ich einen Film gesehen.",
                 "Ich habe mit meiner Familie gegessen."
               ],
-              "why_tr": "Dün için 'habe … gemacht/gekocht' ya da 'war' kullan."
+              "why_tr": "Dün için **habe gemacht**, **habe gekocht** ya da **war** kullan."
             },
             {
               "id": "a1k:k2:06", "k": "listen_and_respond", "hafta": 5, "puan": 1, "speed": "normal",
               "audio_de": "Wann stehst du morgen auf?",
-              "situation_tr": "Konu: Benim günüm. Partnerinin kartında 'aufstehen' (kalkmak) yazıyor ve sana soru soruyor. Cevap ver.",
+              "situation_tr": "Konu: Benim günüm. Karşındaki kişinin kartında **aufstehen** (kalkmak) yazıyor ve sana soru soruyor. Cevap ver.",
               "accepted": [
                 "Morgen stehe ich um sechs Uhr auf.",
                 "Ich stehe um halb sieben auf.",
                 "Ich stehe morgen um sieben Uhr auf."
               ],
-              "why_tr": "'auf' cümlenin sonuna gider: 'Ich stehe um sechs Uhr auf.'"
+              "why_tr": "**auf** sözcüğü cümlenin sonuna gider: **Ich stehe um sechs Uhr auf**."
             }
           ]
         },
         {
           "id": "k3",
-          "yonerge_tr": "Hazırlık yok. Kartta bir resim tarif edilir. Resme göre partnerinden kibarca bir şey iste. Partner senden bir şey isterse cevap ver: kabul et ya da kibarca 'hayır' de.",
+          "yonerge_tr": "Hazırlık yok. Kartta bir resim tarif edilir. Resme göre karşındaki kişiden kibarca bir şey iste. Karşındaki kişi senden bir şey isterse cevap ver. Kabul et ya da kibarca hayır de.",
           "degerlendirme_tr": [
             "Her kart 1 puan.",
-            "Rica, tam puan: resme uyan, kibar ('bitte', 'Können Sie …?', 'Ich hätte gern …') ve anlaşılan bir rica.",
-            "Cevap, tam puan: ricaya uyan bir kabul ya da kibar bir ret ('Tut mir leid, …').",
+            "Rica, tam puan: resme uyan, kibar ve anlaşılan bir rica. Kibar sözlere örnek: **bitte**, **Können Sie**, **Ich hätte gern**.",
+            "Cevap, tam puan: ricaya uyan bir kabul ya da kibar bir ret. Kibar ret örneği: **Tut mir leid**.",
             "Yarım puan (0,5): anlaşılıyor ama cümle bozuk ya da kibarlık sözcüğü hiç yok.",
             "0: resme ya da ricaya uymuyor, anlaşılmıyor ya da İngilizce."
           ],
           "maddeler": [
             {
               "id": "a1k:k3:01", "k": "guided_response", "hafta": 8, "puan": 1,
-              "situation_tr": "Resim: bir telefon ve restoranda iki kişilik bir masa; altında 'Samstag'. Restoranı arıyorsun. Masa ayırt.",
+              "situation_tr": "Resim: bir telefon ve restoranda iki kişilik bir masa. Altında **Samstag** yazıyor. Restoranı arıyorsun. Masa ayırt.",
               "prompt_de": "Restaurant Adria, guten Tag.",
               "accepted": [
                 "Guten Tag, ich möchte bitte für Samstag einen Tisch für zwei Personen reservieren.",
@@ -604,19 +604,19 @@
             {
               "id": "a1k:k3:04", "k": "listen_and_respond", "hafta": 1, "puan": 1, "speed": "normal",
               "audio_de": "Kannst du mir bitte deine Telefonnummer geben?",
-              "situation_tr": "Partnerinin kartında bir telefon resmi var ve senden bir şey istiyor. Cevap ver.",
+              "situation_tr": "Karşındaki kişinin kartında bir telefon resmi var. Senden bir şey istiyor. Cevap ver.",
               "accepted": [
                 "Ja, gern. Meine Nummer ist ….",
                 "Klar. Sie ist ….",
                 "Ja, natürlich. Hast du einen Stift?",
                 "Tut mir leid, ich habe im Moment kein Handy."
               ],
-              "why_tr": "Numarayı söylüyorsan '…' yerine rakamları tek tek ya da ikişer ikişer söyle."
+              "why_tr": "Numaranı söylüyorsan rakamları tek tek ya da ikişer ikişer söyle."
             },
             {
               "id": "a1k:k3:05", "k": "listen_and_respond", "hafta": 4, "puan": 1, "speed": "normal",
               "audio_de": "Morgen kommt ein Paket für mich, aber ich bin nicht zu Hause. Können Sie es bitte annehmen?",
-              "situation_tr": "Partnerinin kartında bir koli resmi var. Komşun olarak senden bir şey istiyor. Cevap ver.",
+              "situation_tr": "Karşındaki kişinin kartında bir koli resmi var. Komşun olarak senden bir şey istiyor. Cevap ver.",
               "accepted": [
                 "Ja, gern. Kein Problem.",
                 "Natürlich, das mache ich gern.",
@@ -628,7 +628,7 @@
             {
               "id": "a1k:k3:06", "k": "listen_and_respond", "hafta": 2, "puan": 1, "speed": "normal",
               "audio_de": "Kannst du mir bitte Brötchen vom Bäcker mitbringen?",
-              "situation_tr": "Partnerinin kartında ekmek resmi var. Senden bir şey istiyor. Cevap ver.",
+              "situation_tr": "Karşındaki kişinin kartında ekmek resmi var. Senden bir şey istiyor. Cevap ver.",
               "accepted": [
                 "Ja, gern. Wie viele?",
                 "Klar, mache ich. Wie viele Brötchen brauchst du?",
