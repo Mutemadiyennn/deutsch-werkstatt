@@ -26,7 +26,7 @@ def main():
         for tema in ("light", "dark"):
             b, ctx = launch(p, color_scheme=tema); pg = new_page(ctx)
             login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
-            pg.goto(base + "#/learn"); pg.click("[data-test=kalip-ac]"); pg.wait_for_selector("[data-test=kalip-liste]")
+            pg.goto(base + "#/koy"); pg.click("[data-mekan=atolye]"); pg.wait_for_selector("[data-test=kalip-liste]")
             n = pg.locator("[data-test=kalip-satir]").count()
             check(n == len(pts), f"[{tema}] listede bütün kalıplar ({n}/{len(pts)})")
             pg.goto(base + "#/kalip/pt:ich-bin"); pg.wait_for_selector("[data-test=kalip-karti]")

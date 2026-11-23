@@ -28,7 +28,7 @@ def v2_shots(p, theme, out, viewport=None):
     pg.goto(base + "/today"); pg.wait_for_selector("[data-test=next-activity]"); snap("bugun")
     # Hedef 3 sekmeleri (PM-084 md. 3): Yol ve Köy; Ben en sonda (günün çalışması biriktikten sonra)
     pg.goto(base + "/yol"); pg.wait_for_selector("[data-tab=yol][aria-current=page]"); pg.wait_for_selector("main .yol-harita, main .card"); snap("yol")
-    pg.goto(base + "/koy"); pg.wait_for_selector("[data-tab=koy][aria-current=page]"); pg.wait_for_selector("main .card"); snap("koy")
+    pg.goto(base + "/koy"); pg.wait_for_selector("[data-test=koy] [data-mekan=pazar]"); snap("koy")
     pg.goto(base + f"/scenario/{SC}/chunks"); pg.wait_for_selector("[data-test=ifade-card]"); snap("kelime")
     pg.goto(base + f"/scenario/{SC}/drills"); pg.wait_for_selector("[data-test=answer], [data-chip], button.opt"); snap("alistirma")
     pg.goto(base + f"/scenario/{SC}/dialogue"); pg.wait_for_selector("[data-test=next]"); pg.click("[data-test=next]"); pg.wait_for_selector("[data-test=your-turn]"); snap("diyalog")
