@@ -1,0 +1,1659 @@
+{
+ "schema": 1,
+ "id": "m1:gun:79",
+ "day": 79,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Kısa söylemek: Ich zeige es ihr",
+ "goal_tr": "Bir şeyi kime verdiğini kısaca söylersin (ich gebe es Ihnen); gece ateş için doğru numarayı ararsın.",
+ "can_do": {
+  "id": "cd:m1:79",
+  "tr": "Gece doktora ihtiyacım olunca doğru numarayı ararım ve bir şeyi kime verdiğimi kısaca söylerim."
+ },
+ "unit": "u:a2:saglik-1",
+ "arm": "radyo",
+ "place": "pl:haus",
+ "characters": [
+  "ch:lechner",
+  "ch:aksoy",
+  "ch:brandl",
+  "ch:pichler"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a2-07:t2"
+ ],
+ "yeni_kartlar": [
+  "lx:Notruf",
+  "lx:Bereitschaftsdienst",
+  "lx:Unfall",
+  "lx:Feuerwehr",
+  "lx:an_deiner_Stelle",
+  "lx:hilfsbereit",
+  "lx:Diebstahl",
+  "lx:Nebenwirkung"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:79:h1",
+   "title_tr": "Gece ateş: kimi ararsın?",
+   "kartlar": [
+    "lx:Notruf",
+    "lx:Bereitschaftsdienst",
+    "lx:Unfall",
+    "lx:Feuerwehr"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ruf den Bereitschaftsdienst an!",
+     "tr": "Nöbetçi hekimi ara!"
+    },
+    {
+     "de": "Ich schicke sie dir. – Ich gebe es Ihnen.",
+     "tr": "Onu sana gönderiyorum. – Onu size veriyorum."
+    },
+    {
+     "de": "eins, eins, sechs, eins, eins, sieben",
+     "tr": "116117 (nöbetçi hekim)"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Notruf",
+     "de": "Die Nummer vom Notruf ist eins, eins, zwei.",
+     "tr": "Acil çağrı numarası 112.",
+     "accepted": [
+      "Die Nummer vom Notruf ist eins, eins, zwei.",
+      "Der Notruf ist eins, eins, zwei.",
+      "Die Notrufnummer ist eins, eins, zwei."
+     ]
+    },
+    {
+     "kart": "lx:Notruf",
+     "de": "Die Nummer vom Notruf? Kannst du sie mir aufschreiben?",
+     "tr": "Acil numarası mı? Onu bana yazabilir misin?",
+     "accepted": [
+      "Die Nummer vom Notruf? Kannst du sie mir aufschreiben?",
+      "Die Nummer vom Notruf? Kannst du sie mir bitte aufschreiben?",
+      "Kannst du mir die Nummer vom Notruf aufschreiben?"
+     ]
+    },
+    {
+     "kart": "lx:Bereitschaftsdienst",
+     "de": "In der Nacht rufe ich den Bereitschaftsdienst an.",
+     "tr": "Gece nöbetçi hekim hattını ararım.",
+     "accepted": [
+      "In der Nacht rufe ich den Bereitschaftsdienst an.",
+      "Nachts rufe ich den Bereitschaftsdienst an.",
+      "In der Nacht rufe ich den Bereitschaftsdienst an, nicht den Notruf."
+     ]
+    },
+    {
+     "kart": "lx:Bereitschaftsdienst",
+     "de": "Die Nummer vom Bereitschaftsdienst? Ich schicke sie dir.",
+     "tr": "Nöbetçi hekimin numarası mı? Onu sana gönderiyorum.",
+     "accepted": [
+      "Die Nummer vom Bereitschaftsdienst? Ich schicke sie dir.",
+      "Die Nummer vom Bereitschaftsdienst? Ich schicke sie dir gleich.",
+      "Die Nummer vom Bereitschaftsdienst? Ich schicke sie dir jetzt."
+     ]
+    },
+    {
+     "kart": "lx:Unfall",
+     "de": "Mein Kollege hatte gestern einen Unfall.",
+     "tr": "İş arkadaşım dün kaza geçirdi.",
+     "accepted": [
+      "Mein Kollege hatte gestern einen Unfall.",
+      "Gestern hatte mein Kollege einen Unfall.",
+      "Meine Kollegin hatte gestern einen Unfall."
+     ]
+    },
+    {
+     "kart": "lx:Unfall",
+     "de": "Nach dem Unfall muss der Mann der Polizei seinen Ausweis zeigen.",
+     "tr": "Kazadan sonra adam polise kimliğini göstermek zorunda.",
+     "accepted": [
+      "Nach dem Unfall muss der Mann der Polizei seinen Ausweis zeigen.",
+      "Nach dem Unfall muss der Mann der Polizei den Ausweis zeigen.",
+      "Der Mann muss der Polizei nach dem Unfall seinen Ausweis zeigen."
+     ]
+    },
+    {
+     "kart": "lx:Feuerwehr",
+     "de": "Rufen Sie bitte sofort die Feuerwehr!",
+     "tr": "Lütfen hemen itfaiyeyi çağırın!",
+     "accepted": [
+      "Rufen Sie bitte sofort die Feuerwehr!",
+      "Bitte rufen Sie sofort die Feuerwehr!",
+      "Rufen Sie sofort die Feuerwehr, bitte!"
+     ]
+    },
+    {
+     "kart": "lx:Feuerwehr",
+     "de": "Der Hausmeister soll der Feuerwehr den Keller zeigen.",
+     "tr": "Apartman görevlisi itfaiyeye bodrumu göstermeli.",
+     "accepted": [
+      "Der Hausmeister soll der Feuerwehr den Keller zeigen.",
+      "Herr Pichler soll der Feuerwehr den Keller zeigen.",
+      "Der Hausmeister muss der Feuerwehr den Keller zeigen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Salı gecesi, saat on. Ateşin çıktı. Tobi telefonda.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Du hast Fieber? Und die Praxis ist zu?",
+      "tr": "Ateşin mi var? Muayenehane de kapalı mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja. Soll ich den Notruf anrufen?",
+      "tr": "Evet. Acil numarayı mı arayayım?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Nein, der Notruf ist für einen Unfall. Ruf den Bereitschaftsdienst an!",
+      "tr": "Hayır, acil numara kaza için. Nöbetçi hekimi ara!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi kimi aramanı söylüyor?",
+     "opts": [
+      "Nöbetçi hekim hattını",
+      "Acil numarayı",
+      "Polisi"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:79:h2",
+   "title_tr": "Yardımsever komşu, iyi bir öğüt",
+   "kartlar": [
+    "lx:an_deiner_Stelle",
+    "lx:hilfsbereit",
+    "lx:Diebstahl",
+    "lx:Nebenwirkung"
+   ],
+   "kaliplar": [
+    {
+     "de": "An deiner Stelle würde ich …",
+     "tr": "Senin yerinde olsam … yapardım."
+    },
+    {
+     "de": "Erzähl es mir! – Ich bringe sie Ihnen.",
+     "tr": "Anlat bana! – Onları size getiririm."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:an_deiner_Stelle",
+     "de": "An deiner Stelle würde ich zum Arzt gehen.",
+     "tr": "Senin yerinde olsam doktora giderdim.",
+     "accepted": [
+      "An deiner Stelle würde ich zum Arzt gehen.",
+      "An deiner Stelle würde ich zum Doktor gehen.",
+      "Ich an deiner Stelle würde zum Arzt gehen."
+     ]
+    },
+    {
+     "kart": "lx:an_deiner_Stelle",
+     "de": "An deiner Stelle würde ich es ihr sagen.",
+     "tr": "Senin yerinde olsam ona (kadına) söylerdim.",
+     "accepted": [
+      "An deiner Stelle würde ich es ihr sagen.",
+      "An deiner Stelle würde ich es ihr heute sagen.",
+      "Ich an deiner Stelle würde es ihr sagen."
+     ]
+    },
+    {
+     "kart": "lx:hilfsbereit",
+     "de": "Frau Brandl ist sehr hilfsbereit.",
+     "tr": "Frau Brandl çok yardımsever.",
+     "accepted": [
+      "Frau Brandl ist sehr hilfsbereit.",
+      "Frau Brandl ist wirklich hilfsbereit.",
+      "Frau Brandl ist so hilfsbereit."
+     ]
+    },
+    {
+     "kart": "lx:hilfsbereit",
+     "de": "Die Tabletten? Frau Brandl will sie mir bringen. Sie ist so hilfsbereit.",
+     "tr": "Tabletler mi? Frau Brandl onları bana getirmek istiyor. Çok yardımsever.",
+     "accepted": [
+      "Die Tabletten? Frau Brandl will sie mir bringen. Sie ist so hilfsbereit.",
+      "Die Tabletten? Frau Brandl möchte sie mir bringen. Sie ist so hilfsbereit.",
+      "Die Tabletten? Frau Brandl will sie mir bringen, sie ist so hilfsbereit."
+     ]
+    },
+    {
+     "kart": "lx:Diebstahl",
+     "de": "Mein Fahrrad ist weg. Das ist bestimmt ein Diebstahl.",
+     "tr": "Bisikletim yok. Bu kesin bir hırsızlık.",
+     "accepted": [
+      "Mein Fahrrad ist weg. Das ist bestimmt ein Diebstahl.",
+      "Mein Fahrrad ist weg, das ist bestimmt ein Diebstahl.",
+      "Mein Fahrrad ist weg. Das ist sicher ein Diebstahl."
+     ]
+    },
+    {
+     "kart": "lx:Diebstahl",
+     "de": "Ein Diebstahl im Büro? Erzähl es mir!",
+     "tr": "Ofiste hırsızlık mı? Anlat bana!",
+     "accepted": [
+      "Ein Diebstahl im Büro? Erzähl es mir!",
+      "Ein Diebstahl im Büro? Erzähl es mir bitte!",
+      "Im Büro ein Diebstahl? Erzähl es mir!"
+     ]
+    },
+    {
+     "kart": "lx:Nebenwirkung",
+     "de": "Haben die Tabletten Nebenwirkungen?",
+     "tr": "Tabletlerin yan etkileri var mı?",
+     "accepted": [
+      "Haben die Tabletten Nebenwirkungen?",
+      "Haben diese Tabletten Nebenwirkungen?",
+      "Haben die Tabletten auch Nebenwirkungen?"
+     ]
+    },
+    {
+     "kart": "lx:Nebenwirkung",
+     "de": "Die Nebenwirkungen? Ich kann sie Ihnen zeigen.",
+     "tr": "Yan etkiler mi? Onları size gösterebilirim.",
+     "accepted": [
+      "Die Nebenwirkungen? Ich kann sie Ihnen zeigen.",
+      "Die Nebenwirkungen? Ich kann sie Ihnen gleich zeigen.",
+      "Die Nebenwirkungen? Die kann ich Ihnen zeigen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Çarşamba sabahı, merdiven. Frau Brandl seni pijamayla kapıda görüyor.",
+    "satirlar": [
+     {
+      "r": "ch:brandl",
+      "de": "Sie haben Fieber? Ich hole Ihnen die Tabletten aus der Apotheke.",
+      "tr": "Ateşiniz mi var? Size eczaneden tabletleri ben getiririm."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Danke! Sie sind so hilfsbereit, Frau Brandl.",
+      "tr": "Teşekkürler! Çok yardımseversiniz Frau Brandl."
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Ja mei, das ist doch klar. Gute Besserung!",
+      "tr": "Ne yapalım, bu çok doğal. Geçmiş olsun!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Frau Brandl ne yapacak?",
+     "opts": [
+      "Eczaneden tabletleri getirecek",
+      "Doktoru arayacak",
+      "Sana çorba yapacak"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:79:v1",
+  "title_tr": "Çarşamba sabahı: kaybolan bisiklet ve bodrum anahtarı",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Çarşamba sabahı, ofis. Tobi kapıdan öfkeyle giriyor.",
+    "de": "Derya, mein Fahrrad ist weg! Es war am Bahnhof.",
+    "tr": "Derya, bisikletim yok! İstasyondaydı."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya kahvesini bırakıyor.",
+    "de": "Oh nein! Ein Diebstahl? Bist du sicher?",
+    "tr": "Olamaz! Hırsızlık mı? Emin misin?"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi başını sallıyor.",
+    "de": "Ja, ganz sicher. Ich war schon bei der Polizei.",
+    "tr": "Evet, kesin. Polise de gittim bile."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya merakla soruyor.",
+    "de": "Und? Was hat die Polizei gesagt?",
+    "tr": "Eee? Polis ne dedi?"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi telefonunda bir şey arıyor.",
+    "de": "Sie brauchen die Rechnung vom Fahrrad. Ich bringe sie ihnen morgen.",
+    "tr": "Bisikletin faturasını istiyorlar. Onu yarın onlara götürüyorum."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya sakin bir sesle öneriyor.",
+    "de": "An deiner Stelle würde ich auch ein Foto vom Fahrrad suchen.",
+    "tr": "Senin yerinde olsam bisikletin bir fotoğrafını da arardım."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Aynı sabah, apartmanın girişi. Herr Pichler süpürgeyle duruyor, Frau Brandl merdivenden iniyor.",
+    "de": "Grüß Gott, Frau Brandl! Haben Sie heute Nacht die Feuerwehr gehört?",
+    "tr": "İyi günler Frau Brandl! Bu gece itfaiyeyi duydunuz mu?"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl elini kalbine koyuyor.",
+    "de": "Ja! Was war denn los?",
+    "tr": "Evet! Ne oldu ki?"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler köşeyi gösteriyor.",
+    "de": "Ein Unfall an der Kreuzung. Aber es ist nichts Schlimmes passiert.",
+    "tr": "Kavşakta bir kaza. Ama kötü bir şey olmamış."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl rahatlıyor, sonra fısıldıyor.",
+    "de": "Gut! Und vor dem Haus war gestern ein Diebstahl: Ein Fahrrad ist weg.",
+    "tr": "İyi! Bir de dün evin önünde hırsızlık olmuş: bir bisiklet yok."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler parmağını kaldırıyor.",
+    "de": "Das sage ich schon lange: Die Fahrräder kommen in den Keller!",
+    "tr": "Ben bunu çoktandır söylüyorum: bisikletler bodruma!"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl elini uzatıyor.",
+    "de": "Sie haben ja recht. Den Schlüssel für den Keller, geben Sie ihn mir?",
+    "tr": "Haklısınız. Bodrumun anahtarını bana verir misiniz?"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler anahtarı veriyor.",
+    "de": "Hier, ich gebe ihn Ihnen. Aber bitte heute noch zurückgeben, gell?",
+    "tr": "Buyurun, size veriyorum. Ama lütfen bugün geri verin, tamam mı?"
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl gülümseyerek merdivene dönüyor.",
+    "de": "Ja, ja. Sie sind doch so hilfsbereit, Herr Pichler.",
+    "tr": "Tamam, tamam. Siz ne kadar da yardımseversiniz Herr Pichler."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu bölümde ne oluyor?",
+     "opts": [
+      "Tobi'nin bisikleti çalınmış, polise gitmiş",
+      "Tobi kaza geçirmiş",
+      "Derya bisiklet almak istiyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s3"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Bisiklet neredeydi?",
+      "opts": [
+       "Ofisin önünde",
+       "İstasyonda",
+       "Evde"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s1"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Polis ne istiyor?",
+      "opts": [
+       "Bisikletin faturasını",
+       "Tobi'nin kimliğini",
+       "Bir fotoğraf"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi faturayı ne zaman götürecek?",
+      "opts": [
+       "Bugün",
+       "Yarın",
+       "Pazartesi"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s5"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s1",
+      "seviye": "kolay",
+      "q_tr": "Hangi yeri duydun?",
+      "opts": [
+       "Bahnhof",
+       "Büro",
+       "Keller"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s3",
+      "seviye": "orta",
+      "de": "Ich war schon bei der ___.",
+      "accepted": [
+       "Polizei",
+       "polizei",
+       "Polizei."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s2",
+      "seviye": "zor",
+      "banka": [
+       "Oh",
+       "nein",
+       "Ein",
+       "Diebstahl",
+       "Bist",
+       "du",
+       "sicher",
+       "Unfall",
+       "bin"
+      ],
+      "accepted": [
+       "Oh nein! Ein Diebstahl? Bist du sicher?",
+       "oh nein ein diebstahl bist du sicher",
+       "Oh nein! Ein Diebstahl? Bist du sicher"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s5",
+      "seviye": "usta",
+      "accepted": [
+       "Ich bringe sie ihnen morgen.",
+       "ich bringe sie ihnen morgen",
+       "Ich bringe sie ihnen morgen"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Bölümde ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Tobi hat kein Fahrrad mehr. Er war bei der Polizei.",
+      "zorunlu": [
+       "Fahrrad",
+       "Polizei"
+      ]
+     }
+    ],
+    "golge": [
+     "s3",
+     "s6"
+    ],
+    "cevapla": {
+     "id": "m1:79:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Tobi sana dönüp ne yapması gerektiğini soruyor. Senin yerinde olsam hemen polise giderdim de.",
+     "prompt_de": "Und du? Was würdest du machen?",
+     "accepted": [
+      "An deiner Stelle würde ich sofort zur Polizei gehen.",
+      "An deiner Stelle würde ich zur Polizei gehen.",
+      "Ich an deiner Stelle würde sofort zur Polizei gehen.",
+      "An deiner Stelle würde ich gleich zur Polizei gehen.",
+      "Ich würde sofort zur Polizei gehen.",
+      "An deiner Stelle würde ich auch zur Polizei gehen."
+     ],
+     "why_tr": "**An deiner Stelle würde ich …** ile öğüt verirsin; asıl fiil en sona gider."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Herr Pichler ve Frau Brandl ne konuşuyor?",
+     "opts": [
+      "Gece olanlar, bisikletler ve bodrumun anahtarı",
+      "Kalorifer arızası",
+      "Pazar günkü kahve"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s8",
+      "s11",
+      "s12"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Gece olay nerede oldu?",
+      "opts": [
+       "Kavşakta",
+       "İstasyonda",
+       "Evin önünde"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Herr Pichler'e göre bisikletler nereye konmalı?",
+      "opts": [
+       "Bodruma",
+       "Bahçeye",
+       "Daireye"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Frau Brandl ne istiyor?",
+      "opts": [
+       "Bodrumun anahtarını",
+       "Bir bisiklet",
+       "Polisin numarasını"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s12"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s7",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Feuerwehr",
+       "Polizei",
+       "Praxis"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s11",
+      "seviye": "orta",
+      "de": "Das sage ich schon lange: Die Fahrräder kommen in den ___!",
+      "accepted": [
+       "Keller",
+       "keller",
+       "Keller."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s9",
+      "seviye": "zor",
+      "banka": [
+       "Ein",
+       "Unfall",
+       "an",
+       "der",
+       "Kreuzung",
+       "Ampel",
+       "dem"
+      ],
+      "accepted": [
+       "Ein Unfall an der Kreuzung.",
+       "ein unfall an der kreuzung",
+       "Ein Unfall an der Kreuzung"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s13",
+      "seviye": "usta",
+      "accepted": [
+       "Hier, ich gebe ihn Ihnen.",
+       "hier ich gebe ihn ihnen",
+       "Hier, ich gebe ihn Ihnen"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Herr Pichler'in kuralını ve Frau Brandl'ın isteğini Almanca iki kısa cümleyle söyle.",
+      "ornek_de": "Die Fahrräder kommen in den Keller. Frau Brandl braucht den Schlüssel.",
+      "zorunlu": [
+       "Keller",
+       "Schlüssel"
+      ]
+     }
+    ],
+    "golge": [
+     "s11",
+     "s13"
+    ],
+    "cevapla": {
+     "id": "m1:79:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Herr Pichler anahtarı sana uzatıyor; anahtar Frau Brandl'ın. Ona hemen götüreceğini söyle.",
+     "prompt_de": "Frau Brandl braucht den Kellerschlüssel. Können Sie ihn ihr bringen?",
+     "accepted": [
+      "Ja, ich bringe ihn ihr gleich.",
+      "Ja, natürlich. Ich bringe ihn ihr gleich.",
+      "Klar, ich bringe ihn ihr sofort.",
+      "Ja, ich bringe ihn ihr jetzt.",
+      "Ja, gern. Ich bringe ihn ihr gleich.",
+      "Ja, ich bringe ihn ihr sofort."
+     ],
+     "why_tr": "Önce şey: **ihn** (anahtarı). Sonra kişi: **ihr** (ona). İkisi de kısa sözcükse şey önde."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:79:a1",
+   "tur": "radyo",
+   "title_tr": "Sabah haberleri",
+   "ortam_tr": "Çarşamba sabahı mutfakta yerel radyoyu dinliyorsun.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Wendlfing, die Nachrichten um sieben.",
+     "tr": "Wendlfing, saat yedi haberleri."
+    },
+    {
+     "id": "c2",
+     "de": "Heute Nacht war ein Unfall an der Kreuzung am Bahnhof.",
+     "tr": "Bu gece istasyon kavşağında bir kaza oldu."
+    },
+    {
+     "id": "c3",
+     "de": "Die Feuerwehr war schnell da. Zum Glück war es nicht schlimm.",
+     "tr": "İtfaiye hemen geldi. Neyse ki ciddi değildi."
+    },
+    {
+     "id": "c4",
+     "de": "Die Polizei sagt: Am Bahnhof sind im Moment viele Fahrräder weg.",
+     "tr": "Polis diyor ki: şu sıralar istasyonda çok bisiklet kayboluyor."
+    },
+    {
+     "id": "c5",
+     "de": "Und noch ein Tipp: Ist Ihre Praxis zu? Dann rufen Sie den Bereitschaftsdienst an: eins, eins, sechs, eins, eins, sieben.",
+     "tr": "Bir de bir öneri: muayenehaneniz kapalı mı? O zaman nöbetçi hekimi arayın: 116117."
+    },
+    {
+     "id": "c6",
+     "de": "Bei einem Unfall ist der Notruf eins, eins, zwei.",
+     "tr": "Kazada acil numara 112."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Haberlerde ne var?",
+      "opts": [
+       "Bir kaza, bisiklet kayıpları ve hangi numarayı arayacağın",
+       "Hava durumu ve trafik",
+       "Futbol ve konser"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c4",
+       "c5",
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Kaza nerede oldu?",
+       "opts": [
+        "İstasyon kavşağında",
+        "Okulun önünde",
+        "Otoyolda"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Muayenehane kapalıysa hangi numarayı ararsın?",
+       "opts": [
+        "112",
+        "116117",
+        "110"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c5"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Polise göre istasyonda ne oluyor?",
+       "opts": [
+        "Çok bisiklet kayboluyor",
+        "Trenler geç kalıyor",
+        "Çok kaza oluyor"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Feuerwehr",
+        "Polizei",
+        "Praxis"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c6",
+       "seviye": "orta",
+       "de": "Bei einem ___ ist der Notruf eins, eins, zwei.",
+       "accepted": [
+        "Unfall",
+        "unfall",
+        "Unfall."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c1",
+       "seviye": "zor",
+       "banka": [
+        "Wendlfing",
+        "die",
+        "Nachrichten",
+        "um",
+        "sieben",
+        "acht",
+        "am"
+       ],
+       "accepted": [
+        "Wendlfing, die Nachrichten um sieben.",
+        "wendlfing die nachrichten um sieben",
+        "Wendlfing, die Nachrichten um sieben"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Die Feuerwehr war schnell da.",
+        "die feuerwehr war schnell da",
+        "Die Feuerwehr war schnell da"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyoda hangi iki numaranın söylendiğini Almanca iki kısa cümleyle yaz.",
+       "ornek_de": "Der Notruf ist eins, eins, zwei. Der Bereitschaftsdienst ist eins, eins, sechs, eins, eins, sieben.",
+       "zorunlu": [
+        "Notruf",
+        "Bereitschaftsdienst"
+       ]
+      }
+     ],
+     "golge": [
+      "c5",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:79:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Derya muayenehane kapalıyken ne yapacağını soruyor. Radyoda duydun.",
+      "prompt_de": "Die Praxis ist zu. Was machst du dann?",
+      "accepted": [
+       "Dann rufe ich den Bereitschaftsdienst an.",
+       "Ich rufe den Bereitschaftsdienst an.",
+       "Dann rufe ich eins, eins, sechs, eins, eins, sieben an.",
+       "Ich rufe dann den Bereitschaftsdienst an.",
+       "Den Bereitschaftsdienst. Ich rufe ihn an.",
+       "Dann rufe ich den Bereitschaftsdienst an, nicht den Notruf."
+      ],
+      "why_tr": "**anrufen** ayrılır: **rufe** ikinci yerde, **an** en sonda."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:79:a1:e1",
+    "k": "pick",
+    "q_tr": "Gece ateşin var, muayenehane kapalı. Ne yapmalısın?",
+    "opts": [
+     "116117'yi ara",
+     "112'yi ara",
+     "Sabahı bekle, eczaneye git"
+    ],
+    "ans": 0,
+    "why_tr": "Radyo: muayenehane kapalıysa nöbetçi hekim 116117. 112 kaza ve acil durum için.",
+    "kanit": [
+     "c5",
+     "c6"
+    ]
+   }
+  },
+  {
+   "id": "m1:79:a2",
+   "tur": "bekleme-anonsu",
+   "title_tr": "Nöbetçi hekim hattında bekleme",
+   "ortam_tr": "Salı gecesi 116117'yi aradın. Bir bant kaydı konuşuyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hier ist der Bereitschaftsdienst.",
+     "tr": "Burası nöbetçi hekim hattı."
+    },
+    {
+     "id": "c2",
+     "de": "Im Moment sprechen wir mit anderen Patienten.",
+     "tr": "Şu anda başka hastalarla konuşuyoruz."
+    },
+    {
+     "id": "c3",
+     "de": "Bitte legen Sie nicht auf.",
+     "tr": "Lütfen kapatmayın."
+    },
+    {
+     "id": "c4",
+     "de": "Ist es ein Unfall? Dann rufen Sie bitte eins, eins, zwei an.",
+     "tr": "Bir kaza mı? O zaman lütfen 112'yi arayın."
+    },
+    {
+     "id": "c5",
+     "de": "Halten Sie bitte Ihre Versichertenkarte bereit.",
+     "tr": "Lütfen sağlık sigortası kartınızı hazır tutun."
+    },
+    {
+     "id": "c6",
+     "de": "Wir sind gleich für Sie da.",
+     "tr": "Birazdan sizinleyiz."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Bu kayıt ne diyor?",
+      "opts": [
+       "Beklemen gerektiğini, birazdan bağlanacağını",
+       "Hattın kapalı olduğunu",
+       "Muayenehaneye gitmen gerektiğini"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3",
+       "c6"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Ne hazırlamalısın?",
+       "opts": [
+        "Sağlık sigortası kartını",
+        "Reçeteni",
+        "Kimliğini"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Kayıt başka hangi numarayı söylüyor?",
+       "opts": [
+        "116117",
+        "112",
+        "110"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi fiili duydun?",
+       "opts": [
+        "legen",
+        "stellen",
+        "holen"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c5",
+       "seviye": "orta",
+       "de": "Halten Sie bitte Ihre ___ bereit.",
+       "accepted": [
+        "Versichertenkarte",
+        "versichertenkarte",
+        "Versichertenkarte."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Wir",
+        "sind",
+        "gleich",
+        "für",
+        "Sie",
+        "da",
+        "dich",
+        "dort"
+       ],
+       "accepted": [
+        "Wir sind gleich für Sie da.",
+        "wir sind gleich für sie da",
+        "Wir sind gleich für Sie da"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Im Moment sprechen wir mit anderen Patienten.",
+        "im moment sprechen wir mit anderen patienten",
+        "Im Moment sprechen wir mit anderen Patienten"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Kayıtta ne dendiğini Almanca iki kısa cümleyle söyle.",
+       "ornek_de": "Ich soll warten. Ich brauche meine Versichertenkarte.",
+       "zorunlu": [
+        "warten",
+        "Versichertenkarte"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c6"
+     ],
+     "cevapla": {
+      "id": "m1:79:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Sonunda biri açıyor ve kartını soruyor. Kartın elinde, numarayı ona vereceksin.",
+      "prompt_de": "Haben Sie Ihre Versichertenkarte da?",
+      "accepted": [
+       "Ja, ich habe sie hier.",
+       "Ja, sie ist hier.",
+       "Ja, ich habe sie da.",
+       "Ja, hier ist sie.",
+       "Ja, ich habe sie hier. Die Nummer ist …",
+       "Ja, ich habe die Karte hier."
+      ],
+      "why_tr": "Kart: **die Karte**, kısaca **sie**: **Ich habe sie hier.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:79:a2:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Hatta kal ve kartını hazırla",
+     "Kapat, sabah tekrar ara",
+     "Hemen 112'yi ara"
+    ],
+    "ans": 0,
+    "why_tr": "Kayıt kapatmamanı ve kartını hazır tutmanı istiyor.",
+    "kanit": [
+     "c3",
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:79:g1",
+   "de": "Feuerwehr",
+   "dogru_img": "red fire engine with firefighters",
+   "celdirici_img": [
+    "police car",
+    "ambulance",
+    "garbage truck"
+   ]
+  },
+  {
+   "id": "m1:79:g2",
+   "de": "Unfall",
+   "dogru_img": "two cars after a crash at an intersection",
+   "celdirici_img": [
+    "traffic jam on a highway",
+    "parked cars in a street",
+    "car at a gas station"
+   ]
+  },
+  {
+   "id": "m1:79:g3",
+   "de": "Notruf",
+   "dogru_img": "hand dialing 112 on a phone",
+   "celdirici_img": [
+    "person texting on a phone",
+    "phone charging",
+    "person taking a selfie"
+   ]
+  },
+  {
+   "id": "m1:79:g4",
+   "de": "Diebstahl",
+   "dogru_img": "bicycle lock cut open with the bike missing",
+   "celdirici_img": [
+    "new bicycle in a shop",
+    "person repairing a bicycle",
+    "bicycle parking full of bikes"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:79:p1",
+  "title_tr": "Gece 116117'yi arıyorsun",
+  "durum_tr": "Salı gecesi saat on. Ateşin 39, boğazın çok ağrıyor, öğleden beri. Muayenehane kapalı. 116117'yi arıyorsun; Brunnengasse 7'de oturuyorsun.",
+  "karsi": "die Frau am Telefon",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Bereitschaftsdienst, guten Abend. Was kann ich für Sie tun?",
+    "tr": "Nöbetçi hekim hattı, iyi akşamlar. Size nasıl yardımcı olabilirim?",
+    "secenekler": [
+     {
+      "de": "Guten Abend. Ich habe Fieber, neununddreißig, und meine Praxis ist zu.",
+      "tr": "İyi akşamlar. Ateşim var, 39, ve muayenehanem kapalı.",
+      "accepted": [
+       "Guten Abend. Ich habe Fieber, neununddreißig, und meine Praxis ist zu.",
+       "Guten Abend, ich habe neununddreißig Fieber, und meine Praxis ist zu.",
+       "Ich habe Fieber, neununddreißig. Meine Praxis ist zu.",
+       "Guten Abend. Ich habe Fieber und meine Praxis ist geschlossen."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: sorunu ve neden aradığını söyledin."
+     },
+     {
+      "de": "Guten Abend, hier ist {name}. Ich bin krank und habe Fieber.",
+      "tr": "İyi akşamlar, ben {name}. Hastayım, ateşim var.",
+      "accepted": [
+       "Guten Abend, hier ist {name}. Ich bin krank und habe Fieber.",
+       "Guten Abend, {name} hier. Ich bin krank und habe Fieber.",
+       "Hier ist {name}. Ich bin krank, ich habe Fieber.",
+       "Guten Abend, mein Name ist {name}. Ich habe Fieber."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Kendini tanıttın ve sorunu söyledin.",
+      "de_adsiz": "Guten Abend. Ich bin krank und habe Fieber.",
+      "tr_adsiz": "İyi akşamlar. Hastayım, ateşim var.",
+      "accepted_adsiz": [
+       "Guten Abend. Ich bin krank und habe Fieber.",
+       "Guten Abend, ich bin krank und habe Fieber.",
+       "Ich bin krank, ich habe Fieber.",
+       "Guten Abend. Ich habe Fieber."
+      ]
+     },
+     {
+      "de": "Ich hatte einen Unfall.",
+      "tr": "Kaza geçirdim.",
+      "accepted": [
+       "Ich hatte einen Unfall.",
+       "Ich hatte einen Unfall!",
+       "Ein Unfall."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Kaza geçirmedin. Kaza için 112 aranır. Burada ateşini anlat."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Seit wann haben Sie das Fieber?",
+    "tr": "Ne zamandan beri ateşiniz var?",
+    "secenekler": [
+     {
+      "de": "Seit heute Nachmittag.",
+      "tr": "Bugün öğleden sonradan beri.",
+      "accepted": [
+       "Seit heute Nachmittag.",
+       "Seit heute Nachmittag, ungefähr.",
+       "Das Fieber habe ich seit heute Nachmittag.",
+       "Seit dem Nachmittag."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **seit** ile ne zamandan beri olduğunu söyledin."
+     },
+     {
+      "de": "Um neununddreißig.",
+      "tr": "Otuz dokuzda.",
+      "accepted": [
+       "Um neununddreißig.",
+       "Neununddreißig.",
+       "Bei neununddreißig."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Soru ne zamandan beri (**seit wann**). Saat ya da gün söyle: **Seit heute Nachmittag.**"
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Haben Sie auch Schmerzen?",
+    "tr": "Ağrınız da var mı?",
+    "secenekler": [
+     {
+      "de": "Ja, mein Hals tut sehr weh.",
+      "tr": "Evet, boğazım çok ağrıyor.",
+      "accepted": [
+       "Ja, mein Hals tut sehr weh.",
+       "Ja, der Hals tut sehr weh.",
+       "Ja, mir tut der Hals sehr weh.",
+       "Ja, mein Hals tut weh."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Neresinin ağrıdığını açıkça söyledin."
+     },
+     {
+      "de": "Nur der Hals, und ich bin sehr müde.",
+      "tr": "Sadece boğaz, bir de çok yorgunum.",
+      "accepted": [
+       "Nur der Hals, und ich bin sehr müde.",
+       "Nur der Hals. Und ich bin sehr müde.",
+       "Nur im Hals, und ich bin müde.",
+       "Der Hals, und ich bin sehr müde."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. İki şikâyeti kısa söyledin."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Nehmen Sie schon Tabletten?",
+    "tr": "Tablet alıyor musunuz?",
+    "secenekler": [
+     {
+      "de": "Ja, ich nehme drei Tabletten am Tag.",
+      "tr": "Evet, günde üç tablet alıyorum.",
+      "accepted": [
+       "Ja, ich nehme drei Tabletten am Tag.",
+       "Ja, drei Tabletten am Tag.",
+       "Ja, ich nehme drei am Tag.",
+       "Ja, drei am Tag, aus der Apotheke."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru ve net."
+     },
+     {
+      "de": "Ja. Darf ich sie mit Fieber nehmen?",
+      "tr": "Evet. Ateşliyken onları alabilir miyim?",
+      "accepted": [
+       "Ja. Darf ich sie mit Fieber nehmen?",
+       "Ja. Darf ich die Tabletten mit Fieber nehmen?",
+       "Ja, aber darf ich sie mit Fieber nehmen?",
+       "Ja. Kann ich sie mit Fieber nehmen?"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "İyi soru: **sie** tabletler demek."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Gut. Ein Arzt kann in einer Stunde zu Ihnen kommen. Wie ist Ihre Adresse?",
+    "tr": "Peki. Bir doktor bir saat içinde size gelebilir. Adresiniz nedir?",
+    "secenekler": [
+     {
+      "de": "Brunnengasse sieben, in Wendlfing.",
+      "tr": "Brunnengasse 7, Wendlfing'de.",
+      "accepted": [
+       "Brunnengasse sieben, in Wendlfing.",
+       "Brunnengasse sieben in Wendlfing.",
+       "Meine Adresse ist Brunnengasse sieben.",
+       "Brunnengasse sieben."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Adresi açık söyledin."
+     },
+     {
+      "de": "Können Sie das bitte wiederholen? Wann kommt der Arzt?",
+      "tr": "Lütfen tekrar eder misiniz? Doktor ne zaman geliyor?",
+      "accepted": [
+       "Können Sie das bitte wiederholen? Wann kommt der Arzt?",
+       "Entschuldigung, können Sie das wiederholen? Wann kommt der Arzt?",
+       "Wie bitte? Wann kommt der Arzt?",
+       "Können Sie das bitte noch einmal sagen? Wann kommt der Arzt?"
+      ],
+      "sonraki": "n5r",
+      "uygun": true,
+      "geri_bildirim_tr": "Anlamadığını sormak çok iyi."
+     }
+    ]
+   },
+   {
+    "id": "n5r",
+    "de": "In einer Stunde. Ich sage es Ihnen noch einmal: in einer Stunde. Und Ihre Adresse?",
+    "tr": "Bir saat içinde. Size bir kez daha söylüyorum: bir saat içinde. Adresiniz?",
+    "secenekler": [
+     {
+      "de": "Danke. Brunnengasse sieben.",
+      "tr": "Teşekkürler. Brunnengasse 7.",
+      "accepted": [
+       "Danke. Brunnengasse sieben.",
+       "Danke, Brunnengasse sieben in Wendlfing.",
+       "Brunnengasse sieben, danke.",
+       "Danke! Meine Adresse ist Brunnengasse sieben."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru."
+     },
+     {
+      "de": "In einer Woche?",
+      "tr": "Bir hafta içinde mi?",
+      "accepted": [
+       "In einer Woche?",
+       "Eine Woche?"
+      ],
+      "sonraki": "n5r",
+      "uygun": false,
+      "geri_bildirim_tr": "**Stunde** saat demek; doktor bir saat içinde geliyor."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Gut. Bitte halten Sie Ihre Versichertenkarte bereit. Gute Besserung!",
+    "tr": "Peki. Lütfen sağlık sigortası kartınızı hazır tutun. Geçmiş olsun!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Gece doğru numarayı aradın, ateşini ve ne zamandan beri olduğunu anlattın, adresini verdin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Tabletin kutusundaki kâğıt",
+  "metin_de": "Halstabletten. Nehmen Sie drei Tabletten am Tag, nicht mehr. Kinder unter zwölf Jahren: nur mit dem Arzt. Nebenwirkungen: Manchmal ist man ein bisschen müde. Haben Sie Fieber über drei Tage? Dann gehen Sie bitte zum Arzt.",
+  "metin_tr": "Boğaz tabletleri. Günde üç tablet alın, fazla değil. On iki yaşından küçük çocuklar: yalnızca doktorla. Yan etkiler: bazen insan biraz yorgun olur. Üç günden uzun ateşiniz mi var? O zaman lütfen doktora gidin.",
+  "sorular": [
+   {
+    "id": "m1:79:o1",
+    "kind": "gist",
+    "q_tr": "Bu kâğıt ne anlatıyor?",
+    "opts": [
+     "Tabletleri nasıl alacağını ve yan etkilerini",
+     "Eczanenin açılış saatlerini",
+     "Doktorun adresini"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     3
+    ]
+   },
+   {
+    "id": "m1:79:o2",
+    "kind": "detail",
+    "q_tr": "Günde en fazla kaç tablet alabilirsin?",
+    "opts": [
+     "İki",
+     "Üç",
+     "Beş"
+    ],
+    "ans": 1,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:79:o3",
+    "kind": "detail",
+    "q_tr": "Yan etki ne?",
+    "opts": [
+     "Biraz yorgunluk",
+     "Baş ağrısı",
+     "Ateş"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:79:o4",
+    "kind": "detail",
+    "q_tr": "Ne zaman doktora gitmelisin?",
+    "opts": [
+     "Ateş üç günden uzun sürerse",
+     "Biraz yorgunsan",
+     "Tablet bitince"
+    ],
+    "ans": 0,
+    "kanit": [
+     4,
+     5
+    ]
+   },
+   {
+    "id": "m1:79:o5",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl tabletlerin yan etkisini soruyor. Kâğıtta okudun: bazen biraz yorgunluk.",
+    "prompt_de": "Haben die Tabletten Nebenwirkungen?",
+    "accepted": [
+     "Ja, manchmal ist man ein bisschen müde.",
+     "Manchmal ist man ein bisschen müde.",
+     "Ja, man ist manchmal ein bisschen müde.",
+     "Nur eine: Manchmal ist man müde.",
+     "Ja, manchmal ist man müde.",
+     "Ja, manchmal bin ich ein bisschen müde."
+    ],
+    "why_tr": "Kâğıttaki cümleyi kendi ağzınla söyle: **Manchmal ist man ein bisschen müde.**"
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Tobi'ye kısa bir mesaj yaz: bisiklet için geçmiş olsun de ve bir öğüt ver.",
+   "ornek_de": "Hallo Tobi, das tut mir leid! An deiner Stelle würde ich die Rechnung suchen und sie der Polizei bringen.",
+   "zorunlu": [
+    "Stelle",
+    "Polizei"
+   ],
+   "accepted_kaliplar": [
+    "An deiner Stelle würde ich …",
+    "Das tut mir leid!"
+   ],
+   "kontrol_tr": [
+    "Üzüldüğünü söyledin mi?",
+    "An deiner Stelle würde ich ile başladın mı?",
+    "Asıl fiili cümlenin sonuna koydun mu?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:79:s",
+  "maddeler": [
+   {
+    "id": "m1:79:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Bei einem Unfall rufe ich den Notruf an.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Bei einem Unfall rufe ich den Notruf an.",
+     "bei einem unfall rufe ich den notruf an",
+     "Bei einem Unfall rufe ich den Notruf an"
+    ],
+    "why_tr": "**rufe** ikinci yerde, **an** en sonda."
+   },
+   {
+    "id": "m1:79:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Die Feuerwehr ist schon da.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Feuerwehr ist schon da.",
+     "die feuerwehr ist schon da",
+     "Die Feuerwehr ist schon da"
+    ],
+    "why_tr": "**da** burada demek."
+   },
+   {
+    "id": "m1:79:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Der Schlüssel? Ich gebe ihn dem Hausmeister.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Schlüssel? Ich gebe ihn dem Hausmeister.",
+     "der schlüssel ich gebe ihn dem hausmeister",
+     "Der Schlüssel? Ich gebe ihn dem Hausmeister"
+    ],
+    "why_tr": "Şey kısa: **ihn**. Kişi uzun: **dem Hausmeister**."
+   },
+   {
+    "id": "m1:79:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Haben Sie die Nummer vom Bereitschaftsdienst?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Haben Sie die Nummer vom Bereitschaftsdienst?",
+     "haben sie die nummer vom bereitschaftsdienst",
+     "Haben Sie die Nummer vom Bereitschaftsdienst"
+    ],
+    "why_tr": "**vom** kısa biçim: von dem."
+   },
+   {
+    "id": "m1:79:s5",
+    "k": "tr_de",
+    "tr": "Reçete mi? Onu size veriyorum.",
+    "accepted": [
+     "Das Rezept? Ich gebe es Ihnen.",
+     "Das Rezept? Ich gebe es Ihnen gleich.",
+     "Das Rezept? Das gebe ich Ihnen."
+    ],
+    "why_tr": "Şey: **es**. Kişi: **Ihnen**. İkisi de kısa: şey önde."
+   },
+   {
+    "id": "m1:79:s6",
+    "k": "tr_de",
+    "tr": "Fotoğraf mı? Onu ona (kadına) gösteriyorum.",
+    "accepted": [
+     "Das Foto? Ich zeige es ihr.",
+     "Das Foto? Ich zeige es ihr gleich.",
+     "Das Foto? Das zeige ich ihr."
+    ],
+    "why_tr": "Önce **es** (şey), sonra **ihr** (kadına)."
+   },
+   {
+    "id": "m1:79:s7",
+    "k": "tr_de",
+    "tr": "Senin yerinde olsam evde kalırdım.",
+    "accepted": [
+     "An deiner Stelle würde ich zu Hause bleiben.",
+     "Ich an deiner Stelle würde zu Hause bleiben.",
+     "An deiner Stelle würde ich daheim bleiben."
+    ],
+    "why_tr": "**würde** ikinci yerde, **bleiben** en sonda."
+   },
+   {
+    "id": "m1:79:s8",
+    "k": "tr_de",
+    "tr": "Ofiste bir hırsızlık oldu.",
+    "accepted": [
+     "Im Büro war ein Diebstahl.",
+     "Im Büro gab es einen Diebstahl.",
+     "Es war ein Diebstahl im Büro."
+    ],
+    "why_tr": "Geçmiş için **war** yeter: **Im Büro war ein Diebstahl.**"
+   },
+   {
+    "id": "m1:79:s9",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl anahtarını soruyor. Anahtar sende; ona veriyorsun.",
+    "prompt_de": "Haben Sie meinen Schlüssel?",
+    "accepted": [
+     "Ja, hier. Ich gebe ihn Ihnen.",
+     "Ja, ich gebe ihn Ihnen.",
+     "Ja, hier ist er. Ich gebe ihn Ihnen.",
+     "Ja, hier bitte.",
+     "Ja, ich habe ihn. Hier, bitte."
+    ],
+    "why_tr": "Şey **ihn**, kişi **Ihnen**: **Ich gebe ihn Ihnen.**"
+   },
+   {
+    "id": "m1:79:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Hatten Sie einen Unfall?",
+    "speed": "normal",
+    "situation_tr": "116117 hattındasın. Kaza geçirmedin, ateşin var. Cevap ver.",
+    "accepted": [
+     "Nein, ich hatte keinen Unfall. Ich habe Fieber.",
+     "Nein, kein Unfall. Ich habe Fieber.",
+     "Nein. Ich habe Fieber.",
+     "Nein, ich habe nur Fieber."
+    ],
+    "why_tr": "**keinen Unfall**: kaza yok."
+   },
+   {
+    "id": "m1:79:s11",
+    "k": "guided_response",
+    "situation_tr": "Gece ateşin var. Tobi acil numarayı arayıp aramayacağını soruyor. Nöbetçi hekimi arayacaksın.",
+    "prompt_de": "Rufst du jetzt den Notruf an?",
+    "accepted": [
+     "Nein, ich rufe den Bereitschaftsdienst an.",
+     "Nein, nicht den Notruf. Ich rufe den Bereitschaftsdienst an.",
+     "Nein, den Bereitschaftsdienst.",
+     "Nein, ich rufe eins, eins, sechs, eins, eins, sieben an.",
+     "Nein. Der Notruf ist für einen Unfall. Ich rufe den Bereitschaftsdienst an."
+    ],
+    "why_tr": "Gece ateş için **Bereitschaftsdienst** (116117); 112 acil durum için."
+   }
+  ],
+  "sesli": [
+   "m1:79:s9",
+   "m1:79:s10"
+  ],
+  "dikte": [
+   "m1:79:s1",
+   "m1:79:s2",
+   "m1:79:s3",
+   "m1:79:s4"
+  ]
+ }
+}

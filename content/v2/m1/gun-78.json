@@ -62,6 +62,14 @@
      "tr": "Hafta sonu … istiyorum."
     },
     {
+     "de": "Ich schlafe aus. – Wir schlafen aus. – Ich habe ausgeschlafen.",
+     "tr": "Uykumu alıyorum. – Uykumuzu alıyoruz. – Uykumu aldım."
+    },
+    {
+     "de": "Wir fahren um … los. – Ich bin um … losgefahren.",
+     "tr": "Saat …'da yola çıkıyoruz. – Saat …'da yola çıktım."
+    },
+    {
      "de": "Im Sommer machen wir …",
      "tr": "Yazın … yapıyoruz."
     }
@@ -384,8 +392,8 @@
     "id": "s6",
     "speaker": "ch:wimmer",
     "sahne_tr": "Herr Wimmer kapıdan çıkarken dönüp söylüyor.",
-    "de": "Ja, gehen Sie in die Vils-Apotheke. Meine Frau hilft Ihnen gern.",
-    "tr": "Evet, Vils-Apotheke'ye gidin. Eşim size seve seve yardım eder."
+    "de": "Ja, gehen Sie in die Vils-Apotheke. Meine Frau kann Ihnen gern helfen.",
+    "tr": "Evet, Vils-Apotheke'ye gidin. Eşim size seve seve yardım edebilir."
    },
    {
     "id": "s7",
@@ -466,13 +474,13 @@
      "kind": "gist",
      "q_tr": "Bu bölümde ne oluyor?",
      "opts": [
-      "Herr Wimmer eşine Sevgililer Günü için çiçek almış; Derya seni eczaneye gönderiyor",
+      "Herr Wimmer eşine çiçek almış; Derya seni eczaneye gönderiyor",
       "Herr Wimmer hasta, Derya onu eczaneye gönderiyor",
       "Derya'ya biri yüzük hediye etmiş"
      ],
      "ans": 0,
      "kanit": [
-      "s2",
+      "s1",
       "s5"
      ]
     },
@@ -534,11 +542,11 @@
       "id": "d2",
       "cumle": "s6",
       "seviye": "orta",
-      "de": "Meine Frau hilft Ihnen ___.",
+      "de": "Meine Frau kann Ihnen gern ___.",
       "accepted": [
-       "gern",
-       "Gern",
-       "gern."
+       "helfen",
+       "Helfen",
+       "helfen."
       ]
      },
      {
@@ -729,7 +737,7 @@
       "id": "d5",
       "seviye": "gercek",
       "gorev_tr": "Eczacının adama ne söylediğini Almanca iki kısa cümleyle özetle.",
-      "ornek_de": "Das Kind bekommt Tropfen. Es nimmt am Morgen und am Abend zehn Tropfen.",
+      "ornek_de": "Das Kind bekommt Tropfen, am Morgen und am Abend zehn Tropfen.",
       "zorunlu": [
        "Tropfen",
        "Abend"
@@ -821,23 +829,23 @@
       "kind": "gist",
       "q_tr": "Radyo neler anlatıyor?",
       "opts": [
-       "Soğuk havada sağlık için öneri ve Sevgililer Günü",
+       "Soğuk hava ve hastalık için öneriler, bir de pazar günü çiçek hediyesi",
        "Trafik ve yol çalışmaları",
        "Hafta sonunun futbol sonuçları"
       ],
       "ans": 0,
       "kanit": [
-       "c3",
-       "c5"
+       "c2",
+       "c6"
       ]
      },
      "ayrinti": [
       {
        "kind": "detail",
-       "q_tr": "Radyo dışarıda ne giymeni öneriyor?",
+       "q_tr": "Radyoya göre dışarıda nasıl bir mont giymelisin?",
        "opts": [
-        "Şapka ve eldiven",
-        "Atkı ve sıcak bir mont",
+        "İnce bir mont",
+        "Sıcak bir mont",
         "Yağmurluk"
        ],
        "ans": 1,
@@ -847,15 +855,15 @@
       },
       {
        "kind": "detail",
-       "q_tr": "Sevgililer Günü hangi gün?",
+       "q_tr": "Radyo eşine ne hediye etmeni öneriyor?",
        "opts": [
-        "Pazar",
-        "Cumartesi",
-        "Bugün"
+        "Bir buket çiçek",
+        "Bir yüzük",
+        "Bir atkı"
        ],
        "ans": 0,
        "kanit": [
-        "c5"
+        "c6"
        ]
       },
       {
@@ -965,12 +973,12 @@
     "k": "pick",
     "q_tr": "Radyoya göre bugün ne yapmalısın?",
     "opts": [
-     "Dışarıda atkı ve sıcak bir mont giy",
+     "Dışarıda sıcak bir mont giy, atkı da tak",
      "Bisikletle işe git",
      "Pazar günü muayenehaneye git"
     ],
     "ans": 0,
-    "why_tr": "Sunucu soğuk için atkı ve sıcak mont öneriyor.",
+    "why_tr": "Sunucu soğuk için sıcak bir mont ve atkı öneriyor.",
     "kanit": [
      "c3"
     ]

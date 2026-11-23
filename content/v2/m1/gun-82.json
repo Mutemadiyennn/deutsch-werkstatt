@@ -1,0 +1,1473 @@
+{
+ "schema": 1,
+ "id": "m1:gun:82",
+ "day": 82,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Şikâyetini anlatmak",
+ "goal_tr": "Şikâyetini sırayla anlatırsın: nasıl, nerede, ne zamandan beri.",
+ "can_do": {
+  "id": "cd:m1:82",
+  "tr": "Ağrının nerede, ne zamandan beri ve nasıl olduğunu sırayla anlatırım."
+ },
+ "unit": "u:a2:saglik-3",
+ "arm": "radyo",
+ "place": "pl:praxis",
+ "characters": [
+  "ch:huber",
+  "ch:weber",
+  "ch:popescu",
+  "ch:lechner"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [],
+ "yeni_kartlar": [
+  "lx:klingen",
+  "lx:verlieren",
+  "lx:wünschen",
+  "lx:gewinnen",
+  "lx:Seite",
+  "lx:Ort"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:82:h1",
+   "title_tr": "Cuma kontrolü: nasıl, nerede, ne kaybettin?",
+   "kartlar": [
+    "lx:klingen",
+    "lx:verlieren",
+    "lx:wünschen",
+    "lx:gewinnen",
+    "lx:Seite",
+    "lx:Ort"
+   ],
+   "kaliplar": [
+    {
+     "de": "Das klingt gut. – Du klingst … – Sie klingen …",
+     "tr": "Kulağa iyi geliyor. – Sesin … geliyor. – Sesiniz … geliyor."
+    },
+    {
+     "de": "Ich habe … verloren. – Wer hat … gewonnen?",
+     "tr": "…mı kaybettim. – … kim kazandı?"
+    },
+    {
+     "de": "Ich wünsche Ihnen … – Wir wünschen dir …",
+     "tr": "Size … dilerim. – Sana … dileriz."
+    },
+    {
+     "de": "auf der linken Seite – auf der rechten Seite",
+     "tr": "sol tarafta – sağ tarafta"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:klingen",
+     "de": "Das klingt gut, Frau Huber.",
+     "tr": "Kulağa iyi geliyor Frau Huber.",
+     "accepted": [
+      "Das klingt gut, Frau Huber.",
+      "Das klingt gut, danke, Frau Huber.",
+      "Frau Huber, das klingt gut."
+     ]
+    },
+    {
+     "kart": "lx:klingen",
+     "de": "Du klingst heute ziemlich müde, Tobi.",
+     "tr": "Tobi, bugün sesin epey yorgun geliyor.",
+     "accepted": [
+      "Du klingst heute ziemlich müde, Tobi.",
+      "Du klingst heute ziemlich müde.",
+      "Tobi, du klingst heute ziemlich müde."
+     ]
+    },
+    {
+     "kart": "lx:verlieren",
+     "de": "Ich habe meine Versichertenkarte verloren.",
+     "tr": "Sağlık sigortası kartımı kaybettim.",
+     "accepted": [
+      "Ich habe meine Versichertenkarte verloren.",
+      "Ich habe leider meine Versichertenkarte verloren.",
+      "Ich habe die Versichertenkarte verloren."
+     ]
+    },
+    {
+     "kart": "lx:verlieren",
+     "de": "Die Karte darf ich beim Arzt nicht verlieren.",
+     "tr": "Doktorda kartı kaybetmemem lazım.",
+     "accepted": [
+      "Die Karte darf ich beim Arzt nicht verlieren.",
+      "Beim Arzt darf ich die Karte nicht verlieren.",
+      "Ich darf die Karte beim Arzt nicht verlieren."
+     ]
+    },
+    {
+     "kart": "lx:wünschen",
+     "de": "Ich wünsche Ihnen gute Besserung.",
+     "tr": "Size geçmiş olsun derim.",
+     "accepted": [
+      "Ich wünsche Ihnen gute Besserung.",
+      "Ich wünsche Ihnen gute Besserung!",
+      "Gute Besserung, das wünsche ich Ihnen."
+     ]
+    },
+    {
+     "kart": "lx:wünschen",
+     "de": "Wir wünschen dir viel Glück, Tobi.",
+     "tr": "Sana bol şans dileriz Tobi.",
+     "accepted": [
+      "Wir wünschen dir viel Glück, Tobi.",
+      "Wir wünschen dir viel Glück!",
+      "Tobi, wir wünschen dir viel Glück."
+     ]
+    },
+    {
+     "kart": "lx:gewinnen",
+     "de": "Wer hat am Samstag gewonnen?",
+     "tr": "Cumartesi kim kazandı?",
+     "accepted": [
+      "Wer hat am Samstag gewonnen?",
+      "Wer hat das Spiel am Samstag gewonnen?",
+      "Wer hat denn am Samstag gewonnen?"
+     ]
+    },
+    {
+     "kart": "lx:gewinnen",
+     "de": "Am Sonntag wollen wir gewinnen!",
+     "tr": "Pazar günü kazanmak istiyoruz!",
+     "accepted": [
+      "Am Sonntag wollen wir gewinnen!",
+      "Wir wollen am Sonntag gewinnen!",
+      "Am Sonntag wollen wir das Spiel gewinnen!"
+     ]
+    },
+    {
+     "kart": "lx:Seite",
+     "de": "Es tut auf der linken Seite weh.",
+     "tr": "Sol tarafta ağrıyor.",
+     "accepted": [
+      "Es tut auf der linken Seite weh.",
+      "Auf der linken Seite tut es weh.",
+      "Es tut hier auf der linken Seite weh."
+     ]
+    },
+    {
+     "kart": "lx:Seite",
+     "de": "Die Schmerzen sind hier, auf der rechten Seite.",
+     "tr": "Ağrılar burada, sağ tarafta.",
+     "accepted": [
+      "Die Schmerzen sind hier, auf der rechten Seite.",
+      "Die Schmerzen sind auf der rechten Seite.",
+      "Hier auf der rechten Seite sind die Schmerzen."
+     ]
+    },
+    {
+     "kart": "lx:Ort",
+     "de": "Wendlfing ist ein Ort an der Vils.",
+     "tr": "Wendlfing, Vils kıyısında bir yer.",
+     "accepted": [
+      "Wendlfing ist ein Ort an der Vils.",
+      "Wendlfing ist ein Ort an der Vils, in Bayern.",
+      "Wendlfing ist ein Ort direkt an der Vils."
+     ]
+    },
+    {
+     "kart": "lx:Ort",
+     "de": "Zum Arzt im Ort kann ich zu Fuß gehen.",
+     "tr": "Buradaki doktora yürüyerek gidebilirim.",
+     "accepted": [
+      "Zum Arzt im Ort kann ich zu Fuß gehen.",
+      "Zum Arzt im Ort kann ich zu Fuß laufen.",
+      "Ich kann zum Arzt im Ort zu Fuß gehen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cuma sabahı. Muayenehaneyi arıyorsun; kartını bulamıyorsun.",
+    "satirlar": [
+     {
+      "r": "ch:huber",
+      "de": "Praxis Dr. Weber, Huber, grüß Gott?",
+      "tr": "Dr. Weber muayenehanesi, ben Huber, iyi günler?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Guten Morgen! Ich habe um zehn einen Termin, aber ich habe meine Karte verloren.",
+      "tr": "Günaydın! Saat onda randevum var ama kartımı kaybettim."
+     },
+     {
+      "r": "ch:huber",
+      "de": "Kein Problem. Sie klingen aber noch erkältet! Kommen Sie einfach um zehn.",
+      "tr": "Sorun değil. Ama sesiniz hâlâ nezle gibi! Saat onda gelin yeter."
+     }
+    ],
+    "soru": {
+     "q_tr": "Frau Huber kart için ne diyor?",
+     "opts": [
+      "Sorun değil, saat onda gel",
+      "Kartsız gelemezsin",
+      "Sigortayı ara"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:82:v1",
+  "title_tr": "Cuma: bekleme odasında maç, muayenede iyi haber",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "Herr Berger",
+    "sahne_tr": "Cuma, bekleme odası. Herr Berger seni görüp gülümsüyor.",
+    "de": "Ah, Sie sind auch wieder da! Wie geht's Ihnen?",
+    "tr": "Ah, siz de yine buradasınız! Nasılsınız?"
+   },
+   {
+    "id": "s2",
+    "speaker": "Herr Berger",
+    "sahne_tr": "Öksürüyorsun.",
+    "de": "Sie klingen aber noch erkältet.",
+    "tr": "Sesiniz hâlâ nezle gibi ama."
+   },
+   {
+    "id": "s3",
+    "speaker": "Herr Berger",
+    "sahne_tr": "Herr Berger belini gösteriyor.",
+    "de": "Mein Rücken tut nur noch auf der linken Seite weh.",
+    "tr": "Sırtım artık yalnızca sol tarafta ağrıyor."
+   },
+   {
+    "id": "s4",
+    "speaker": "Herr Berger",
+    "sahne_tr": "Herr Berger heyecanlanıyor.",
+    "de": "Und haben Sie das Spiel am Samstag gesehen? Die Mannschaft aus Wendlfing hat gewonnen, drei zu eins!",
+    "tr": "Cumartesi maçı izlediniz mi? Wendlfing takımı kazandı, üç bir!"
+   },
+   {
+    "id": "s5",
+    "speaker": "Herr Berger",
+    "sahne_tr": "Herr Berger kollarını açıyor.",
+    "de": "Der ganze Ort war da!",
+    "tr": "Bütün kasaba oradaydı!"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:huber",
+    "sahne_tr": "Frau Huber kapıda.",
+    "de": "Herr Berger, bitte! Zimmer eins.",
+    "tr": "Herr Berger, lütfen! Bir numaralı oda."
+   },
+   {
+    "id": "s7",
+    "speaker": "Herr Berger",
+    "sahne_tr": "Herr Berger ayağa kalkıyor.",
+    "de": "So, ich bin dran. Ich wünsche Ihnen gute Besserung!",
+    "tr": "Evet, sıra bende. Size geçmiş olsun!"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:weber",
+    "sahne_tr": "Biraz sonra Dr. Weber seni çağırıyor.",
+    "de": "So, kommen Sie bitte. Wie geht es Ihnen heute?",
+    "tr": "Evet, buyurun. Bugün nasılsınız?"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:weber",
+    "sahne_tr": "Dr. Weber boğazına bakıyor.",
+    "de": "Der Hals ist nicht mehr so rot. Tut es noch weh? Hier, auf der rechten Seite?",
+    "tr": "Boğaz artık o kadar kırmızı değil. Hâlâ ağrıyor mu? Burada, sağ tarafta mı?"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:weber",
+    "sahne_tr": "Başını sallıyorsun.",
+    "de": "Und Kopfschmerzen haben Sie keine mehr? Gut.",
+    "tr": "Baş ağrınız artık yok mu? Güzel."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:weber",
+    "sahne_tr": "Dr. Weber kalbini dinliyor.",
+    "de": "Ihr Herz ist in Ordnung.",
+    "tr": "Kalbiniz iyi."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:weber",
+    "sahne_tr": "Dr. Weber bir kâğıt yazıyor.",
+    "de": "Sie brauchen noch drei Tage Ruhe. Am Dienstag können Sie wieder zur Arbeit.",
+    "tr": "Üç gün daha dinlenmeniz lazım. Salı günü yeniden işe gidebilirsiniz."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Herr Berger ne anlatıyor?",
+     "opts": [
+      "Sırtının daha iyi olduğunu ve cumartesi maçını",
+      "Yeni işini",
+      "Tatil planını"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s3",
+      "s4"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Herr Berger'in sırtı nerede ağrıyor?",
+      "opts": [
+       "Sol tarafta",
+       "Sağ tarafta",
+       "Her yerde"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s3"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Maç kaç kaç bitti?",
+      "opts": [
+       "Üç bir",
+       "İki iki",
+       "Bir sıfır"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Herr Berger hangi odaya gidiyor?",
+      "opts": [
+       "Bir numaralı",
+       "İki numaralı",
+       "Üç numaralı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s6"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s4",
+      "seviye": "kolay",
+      "q_tr": "Hangi günü duydun?",
+      "opts": [
+       "Samstag",
+       "Sonntag",
+       "Freitag"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s5",
+      "seviye": "orta",
+      "de": "Der ganze ___ war da!",
+      "accepted": [
+       "Ort",
+       "ort",
+       "Ort."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s7",
+      "seviye": "zor",
+      "banka": [
+       "So",
+       "ich",
+       "bin",
+       "dran",
+       "bist",
+       "da"
+      ],
+      "accepted": [
+       "So, ich bin dran.",
+       "so ich bin dran",
+       "So, ich bin dran"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s3",
+      "seviye": "usta",
+      "accepted": [
+       "Mein Rücken tut nur noch auf der linken Seite weh.",
+       "mein rücken tut nur noch auf der linken seite weh",
+       "Mein Rücken tut nur noch auf der linken Seite weh"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Herr Berger'in anlattıklarını Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Herr Berger hat Rückenschmerzen auf der linken Seite. Die Mannschaft aus Wendlfing hat gewonnen.",
+      "zorunlu": [
+       "Seite",
+       "gewonnen"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s7"
+    ],
+    "cevapla": {
+     "id": "m1:82:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Herr Berger gitmeden geçmiş olsun diyor. Ona da geçmiş olsun de.",
+     "prompt_de": "Ich wünsche Ihnen gute Besserung!",
+     "accepted": [
+      "Danke, ich wünsche Ihnen auch gute Besserung!",
+      "Danke! Ihnen auch gute Besserung!",
+      "Danke, Ihnen auch!",
+      "Vielen Dank, ich wünsche Ihnen auch gute Besserung.",
+      "Danke schön, Ihnen auch gute Besserung!",
+      "Danke, gleichfalls!"
+     ],
+     "why_tr": "Aynı dileği geri vermek için **Ihnen auch** yeter."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Dr. Weber ne diyor?",
+     "opts": [
+      "Daha iyisin; üç gün daha dinlen",
+      "Hastaneye gitmelisin",
+      "Yarın işe gidebilirsin"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s9",
+      "s12"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Kalbin nasıl?",
+      "opts": [
+       "İyi",
+       "Kötü",
+       "Doktor bilmiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Ne zaman işe gidebilirsin?",
+      "opts": [
+       "Salı",
+       "Pazartesi",
+       "Yarın"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s12"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s12",
+      "seviye": "kolay",
+      "q_tr": "Hangi günü duydun?",
+      "opts": [
+       "Dienstag",
+       "Donnerstag",
+       "Montag"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s11",
+      "seviye": "orta",
+      "de": "Ihr Herz ist in ___.",
+      "accepted": [
+       "Ordnung",
+       "ordnung",
+       "Ordnung."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s10",
+      "seviye": "zor",
+      "banka": [
+       "Und",
+       "Kopfschmerzen",
+       "haben",
+       "Sie",
+       "keine",
+       "mehr",
+       "kein",
+       "du"
+      ],
+      "accepted": [
+       "Und Kopfschmerzen haben Sie keine mehr?",
+       "und kopfschmerzen haben sie keine mehr",
+       "Und Kopfschmerzen haben Sie keine mehr"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s12",
+      "seviye": "usta",
+      "accepted": [
+       "Sie brauchen noch drei Tage Ruhe.",
+       "sie brauchen noch drei tage ruhe",
+       "Sie brauchen noch drei Tage Ruhe"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Dr. Weber'in iki cümlesini Almanca aktar.",
+      "ornek_de": "Mein Herz ist in Ordnung. Ich brauche noch drei Tage Ruhe.",
+      "zorunlu": [
+       "Herz",
+       "Ruhe"
+      ]
+     }
+    ],
+    "golge": [
+     "s11",
+     "s12"
+    ],
+    "cevapla": {
+     "id": "m1:82:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Dr. Weber boğazın nerede ağrıdığını soruyor. Sağ tarafta, yutkunurken.",
+     "prompt_de": "Tut es noch weh? Hier, auf der rechten Seite?",
+     "accepted": [
+      "Ja, auf der rechten Seite, beim Schlucken.",
+      "Ja, hier rechts, beim Schlucken.",
+      "Ja, rechts. Beim Schlucken tut es weh.",
+      "Ja, auf der rechten Seite tut es beim Schlucken weh.",
+      "Ja, beim Schlucken, auf der rechten Seite.",
+      "Ja, ein bisschen, auf der rechten Seite."
+     ],
+     "why_tr": "Yer: **auf der rechten Seite**. Ne zaman: **beim Schlucken**."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:82:a1",
+   "tur": "radyo",
+   "title_tr": "Radyo: Wendlfing'den haberler",
+   "ortam_tr": "Sabah kahvaltıda yerel radyo açık.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Und jetzt Neues aus Wendlfing.",
+     "tr": "Ve şimdi Wendlfing'den haberler."
+    },
+    {
+     "id": "c2",
+     "de": "Die Mannschaft aus Wendlfing hat am Samstag gewonnen: drei zu eins!",
+     "tr": "Wendlfing takımı cumartesi kazandı: üç bir!"
+    },
+    {
+     "id": "c3",
+     "de": "Haben Sie in der Stadt etwas verloren? Eine Tasche, einen Schlüssel, eine Karte?",
+     "tr": "Şehirde bir şey mi kaybettiniz? Bir çanta, bir anahtar, bir kart?"
+    },
+    {
+     "id": "c4",
+     "de": "Dann fragen Sie im Rathaus, Zimmer zwölf, auf der linken Seite.",
+     "tr": "O zaman belediyede sorun, on iki numaralı oda, sol tarafta."
+    },
+    {
+     "id": "c5",
+     "de": "Zimmer zwölf ist von Montag bis Freitag von acht bis zwölf Uhr offen.",
+     "tr": "On iki numaralı oda pazartesiden cumaya sekizden on ikiye açık."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne anlatıyor?",
+      "opts": [
+       "Maç sonucu ve kaybolan eşyalar için nereye gidileceği",
+       "Hava durumu",
+       "Yeni bir mağaza"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Kaybolan eşyalar için nereye gidersin?",
+       "opts": [
+        "Belediyede on iki numaralı odaya",
+        "Polise",
+        "İstasyona"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Oda ne zaman açık?",
+       "opts": [
+        "Pazartesi–cuma, 8–12",
+        "Her gün, 8–18",
+        "Sadece cumartesi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi sayıyı duydun?",
+       "opts": [
+        "zwölf",
+        "zwei",
+        "zehn"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Dann fragen Sie im Rathaus, Zimmer zwölf, auf der linken ___.",
+       "accepted": [
+        "Seite",
+        "seite",
+        "Seite."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Die",
+        "Mannschaft",
+        "aus",
+        "Wendlfing",
+        "hat",
+        "am",
+        "Samstag",
+        "gewonnen",
+        "drei",
+        "zu",
+        "eins",
+        "Sonntag",
+        "verloren"
+       ],
+       "accepted": [
+        "Die Mannschaft aus Wendlfing hat am Samstag gewonnen: drei zu eins!",
+        "die mannschaft aus wendlfing hat am samstag gewonnen drei zu eins",
+        "Die Mannschaft aus Wendlfing hat am Samstag gewonnen: drei zu eins"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Haben Sie in der Stadt etwas verloren?",
+        "haben sie in der stadt etwas verloren",
+        "Haben Sie in der Stadt etwas verloren"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Kaybettiğin bir şey için ne yapacağını Almanca söyle.",
+       "ornek_de": "Ich habe meine Karte verloren. Ich frage im Rathaus, Zimmer zwölf.",
+       "zorunlu": [
+        "verloren",
+        "Rathaus"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:82:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Belediyede on iki numaralı odadasın. Memur ne kaybettiğini soruyor: sağlık sigortası kartını.",
+      "prompt_de": "Was haben Sie verloren?",
+      "accepted": [
+       "Meine Versichertenkarte.",
+       "Ich habe die Versichertenkarte verloren.",
+       "Meine Karte von der Krankenkasse.",
+       "Ich habe meine Karte verloren, die Versichertenkarte.",
+       "Die Versichertenkarte, leider.",
+       "Meine Versichertenkarte, leider."
+      ],
+      "why_tr": "**Ich habe … verloren**: … kaybettim."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:82:a1:e1",
+    "k": "pick",
+    "q_tr": "Kartını kaybettin. Radyoya göre nereye gitmelisin?",
+    "opts": [
+     "Belediyede on iki numaralı odaya",
+     "Muayenehaneye",
+     "Stadyuma"
+    ],
+    "ans": 0,
+    "why_tr": "Radyo kaybolan eşyalar için belediyede on iki numaralı odayı söylüyor.",
+    "kanit": [
+     "c3",
+     "c4"
+    ]
+   }
+  },
+  {
+   "id": "m1:82:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Ioana'dan sesli mesaj",
+   "ortam_tr": "Öğleden sonra telefonunda kurs arkadaşın Ioana'nın mesajı var.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Ioana! Derya sagt, du bist krank.",
+     "tr": "Merhaba, ben Ioana! Derya hasta olduğunu söyledi."
+    },
+    {
+     "id": "c2",
+     "de": "Ich wünsche dir gute Besserung!",
+     "tr": "Sana geçmiş olsun!"
+    },
+    {
+     "id": "c3",
+     "de": "Morgen komme ich vorbei und bringe dir die Hausaufgaben vom Kurs.",
+     "tr": "Yarın uğrayıp sana kursun ödevlerini getiriyorum."
+    },
+    {
+     "id": "c4",
+     "de": "Um drei, ist das okay?",
+     "tr": "Saat üçte, olur mu?"
+    },
+    {
+     "id": "c5",
+     "de": "Und nur Deutsch, ja? Bis morgen!",
+     "tr": "Ve sadece Almanca, tamam mı? Yarın görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Ioana neden arıyor?",
+      "opts": [
+       "Geçmiş olsun diyor, yarın ödevleri getirecek",
+       "Kursu iptal ediyor",
+       "Seni partiye çağırıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Ioana ne getirecek?",
+       "opts": [
+        "Kursun ödevlerini",
+        "Kek",
+        "Tablet"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ioana yarın saat kaçta geliyor?",
+       "opts": [
+        "Üçte",
+        "Dörtte",
+        "İkide"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi sayıyı duydun?",
+       "opts": [
+        "drei",
+        "zwei",
+        "vier"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Morgen komme ich vorbei und bringe dir die ___ vom Kurs.",
+       "accepted": [
+        "Hausaufgaben",
+        "hausaufgaben",
+        "Hausaufgaben."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Ich",
+        "wünsche",
+        "dir",
+        "gute",
+        "Besserung",
+        "Ihnen",
+        "viel"
+       ],
+       "accepted": [
+        "Ich wünsche dir gute Besserung!",
+        "ich wünsche dir gute besserung",
+        "Ich wünsche dir gute Besserung"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c1",
+       "seviye": "usta",
+       "accepted": [
+        "Derya sagt, du bist krank.",
+        "derya sagt du bist krank",
+        "Derya sagt, du bist krank"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Ioana'nın mesajını Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Ioana kommt morgen um drei vorbei. Sie bringt die Hausaufgaben.",
+       "zorunlu": [
+        "morgen",
+        "Hausaufgaben"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:82:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana'ya mesajla cevap ver: saat üç uyar, teşekkür et.",
+      "prompt_de": "Um drei, ist das okay?",
+      "accepted": [
+       "Ja, um drei passt gut. Danke, Ioana!",
+       "Ja, das klingt gut. Danke!",
+       "Um drei ist okay. Vielen Dank, Ioana!",
+       "Ja, gern! Um drei passt mir.",
+       "Super, um drei ist gut. Danke!",
+       "Ja, das passt. Danke, Ioana!"
+      ],
+      "why_tr": "**Das klingt gut** ya da **Das passt** ile kabul edersin."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:82:a2:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Yarın saat üçte evde ol",
+     "Yarın kursa git",
+     "Ioana'ya ödevleri götür"
+    ],
+    "ans": 0,
+    "why_tr": "Ioana yarın saat üçte sana uğrayacak.",
+    "kanit": [
+     "c3",
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:82:g1",
+   "de": "Seite",
+   "dogru_img": "person pointing to the right side of the neck",
+   "celdirici_img": [
+    "person pointing to the forehead",
+    "person pointing to the knee",
+    "person pointing to the foot"
+   ]
+  },
+  {
+   "id": "m1:82:g2",
+   "de": "gewinnen",
+   "dogru_img": "football team celebrating a win",
+   "celdirici_img": [
+    "football team sad after losing",
+    "empty football stadium",
+    "people buying tickets"
+   ]
+  },
+  {
+   "id": "m1:82:g3",
+   "de": "verlieren",
+   "dogru_img": "person searching an empty wallet",
+   "celdirici_img": [
+    "person paying with a card",
+    "person counting money",
+    "person opening a gift"
+   ]
+  },
+  {
+   "id": "m1:82:g4",
+   "de": "Ort",
+   "dogru_img": "small Bavarian town by a river",
+   "celdirici_img": [
+    "big city skyline",
+    "mountain hut",
+    "airport terminal"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:82:p1",
+  "title_tr": "Dr. Weber'e şikâyetini baştan sona anlat",
+  "durum_tr": "Cuma, kontrol muayenesi. Boğazın hâlâ ağrıyor: sağ tarafta, yutkunurken, dün akşamdan beri daha çok. Ateşin dün geçti. Gece öksürüyorsun, iyi uyuyamıyorsun.",
+  "karsi": "ch:weber",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Wie geht es Ihnen heute?",
+    "tr": "Bugün nasılsınız?",
+    "secenekler": [
+     {
+      "de": "Es geht. Der Hals tut noch weh.",
+      "tr": "İdare eder. Boğazım hâlâ ağrıyor.",
+      "accepted": [
+       "Es geht. Der Hals tut noch weh.",
+       "Es geht, aber der Hals tut noch weh.",
+       "Es geht. Mein Hals tut noch weh.",
+       "Na ja, es geht. Der Hals tut noch weh."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel başlangıç."
+     },
+     {
+      "de": "Nicht so gut. Ich habe noch Halsschmerzen.",
+      "tr": "Pek iyi değil. Hâlâ boğaz ağrım var.",
+      "accepted": [
+       "Nicht so gut. Ich habe noch Halsschmerzen.",
+       "Nicht so gut, ich habe noch Halsschmerzen.",
+       "Nicht gut. Ich habe immer noch Halsschmerzen.",
+       "Nicht so gut. Der Hals tut noch weh."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Açık ve net."
+     },
+     {
+      "de": "Danke, gut!",
+      "tr": "Teşekkürler, iyiyim!",
+      "accepted": [
+       "Danke, gut!",
+       "Gut, danke!",
+       "Mir geht es gut."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Durumda boğazın hâlâ ağrıyor. Doktora doğruyu söyle."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Wo genau tut es weh?",
+    "tr": "Tam olarak nereniz ağrıyor?",
+    "secenekler": [
+     {
+      "de": "Hier, auf der rechten Seite.",
+      "tr": "Burada, sağ tarafta.",
+      "accepted": [
+       "Hier, auf der rechten Seite.",
+       "Hier rechts.",
+       "Auf der rechten Seite, hier.",
+       "Hier, auf der rechten Seite vom Hals."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru: **auf der rechten Seite**."
+     },
+     {
+      "de": "Rechts, vor allem beim Schlucken.",
+      "tr": "Sağda, özellikle yutkunurken.",
+      "accepted": [
+       "Rechts, vor allem beim Schlucken.",
+       "Rechts, beim Schlucken.",
+       "Auf der rechten Seite, vor allem beim Schlucken.",
+       "Beim Schlucken, rechts."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: yer ve ne zaman."
+     },
+     {
+      "de": "Auf der linken Seite.",
+      "tr": "Sol tarafta.",
+      "accepted": [
+       "Auf der linken Seite.",
+       "Links."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Durumda sağ taraf yazıyor: **rechts**."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Seit wann ist es so?",
+    "tr": "Ne zamandan beri böyle?",
+    "secenekler": [
+     {
+      "de": "Seit gestern Abend ist es schlimmer.",
+      "tr": "Dün akşamdan beri daha kötü.",
+      "accepted": [
+       "Seit gestern Abend ist es schlimmer.",
+       "Seit gestern Abend.",
+       "Seit gestern Abend tut es mehr weh.",
+       "Seit gestern Abend ist es schlimmer geworden."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel."
+     },
+     {
+      "de": "Seit Montag, aber seit gestern Abend mehr.",
+      "tr": "Pazartesiden beri, ama dün akşamdan beri daha çok.",
+      "accepted": [
+       "Seit Montag, aber seit gestern Abend mehr.",
+       "Seit Montag. Seit gestern Abend mehr.",
+       "Seit Montag, und seit gestern Abend mehr.",
+       "Seit Montag, seit gestern Abend ist es stärker."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika: iki zamanı ayırdın."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Haben Sie noch Fieber?",
+    "tr": "Hâlâ ateşiniz var mı?",
+    "secenekler": [
+     {
+      "de": "Nein, seit gestern nicht mehr.",
+      "tr": "Hayır, dünden beri yok.",
+      "accepted": [
+       "Nein, seit gestern nicht mehr.",
+       "Nein, seit gestern habe ich kein Fieber mehr.",
+       "Nein, kein Fieber mehr.",
+       "Seit gestern nicht mehr."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru: **nicht mehr** artık değil."
+     },
+     {
+      "de": "Ja, ein bisschen.",
+      "tr": "Evet, biraz.",
+      "accepted": [
+       "Ja, ein bisschen.",
+       "Ein bisschen, ja."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Durumda ateşin dün geçti: **Nein, nicht mehr.**"
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Und wie schlafen Sie?",
+    "tr": "Peki nasıl uyuyorsunuz?",
+    "secenekler": [
+     {
+      "de": "Nicht so gut. In der Nacht habe ich Husten.",
+      "tr": "Pek iyi değil. Geceleri öksürüyorum.",
+      "accepted": [
+       "Nicht so gut. In der Nacht habe ich Husten.",
+       "Nicht gut. Ich habe in der Nacht Husten.",
+       "Schlecht. In der Nacht habe ich Husten.",
+       "Nicht so gut, in der Nacht habe ich viel Husten."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: şikâyetini tamamladın."
+     },
+     {
+      "de": "Ziemlich schlecht. Ich bin sehr müde.",
+      "tr": "Epey kötü. Çok yorgunum.",
+      "accepted": [
+       "Ziemlich schlecht. Ich bin sehr müde.",
+       "Ziemlich schlecht, ich bin sehr müde.",
+       "Ziemlich schlecht und ich bin müde.",
+       "Ziemlich schlecht. Ich bin immer müde."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur: **ziemlich** ile derecesini söyledin."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Gut, ich höre noch Ihr Herz. In Ordnung. Sie brauchen noch drei Tage Ruhe, dann geht es Ihnen besser.",
+    "tr": "Peki, kalbinizi de dinleyeyim. İyi. Üç gün daha dinlenmeniz lazım, sonra düzelir.",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Şikâyetini sırayla anlattın: nasıl, nerede, ne zamandan beri, ateş ve uyku."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Muayenehaneden e-posta",
+  "metin_de": "Guten Tag! Ihr Termin bei Dr. Weber: Freitag, zehn Uhr. Bitte zeigen Sie uns Ihre Versichertenkarte. Haben Sie die Karte verloren? Dann rufen Sie bitte Ihre Krankenkasse an. Sie schickt Ihnen eine neue Karte. Viele Grüße, Ihre Praxis Dr. Weber",
+  "metin_tr": "İyi günler! Dr. Weber'deki randevunuz: cuma, saat on. Lütfen bize sağlık sigortası kartınızı gösterin. Kartı mı kaybettiniz? O zaman lütfen sigortanızı arayın. Size yeni bir kart gönderir. Saygılarımızla, Dr. Weber muayenehanesi",
+  "sorular": [
+   {
+    "id": "m1:82:o1",
+    "kind": "gist",
+    "q_tr": "E-posta ne hakkında?",
+    "opts": [
+     "Randevu ve sigorta kartı",
+     "Bir fatura",
+     "Kursun ödevleri"
+    ],
+    "ans": 0,
+    "kanit": [
+     1,
+     2
+    ]
+   },
+   {
+    "id": "m1:82:o2",
+    "kind": "detail",
+    "q_tr": "Kartını kaybettiysen ne yapmalısın?",
+    "opts": [
+     "Sigortanı ara",
+     "Muayenehaneye git",
+     "Polise git"
+    ],
+    "ans": 0,
+    "kanit": [
+     3,
+     4
+    ]
+   },
+   {
+    "id": "m1:82:o3",
+    "kind": "detail",
+    "q_tr": "Randevu ne zaman?",
+    "opts": [
+     "Cuma saat onda",
+     "Cuma saat dokuzda",
+     "Pazartesi saat onda"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:82:o4",
+    "k": "guided_response",
+    "situation_tr": "Kayıt masasında Frau Huber kartını soruyor. Kaybettin; sigortayı aradın.",
+    "prompt_de": "Haben Sie Ihre Versichertenkarte?",
+    "accepted": [
+     "Leider nicht. Ich habe sie verloren.",
+     "Nein, leider. Ich habe sie verloren, aber ich habe die Krankenkasse angerufen.",
+     "Leider nicht, ich habe sie verloren.",
+     "Nein, ich habe sie verloren. Die Krankenkasse schickt mir eine neue.",
+     "Leider nicht. Die Karte habe ich verloren.",
+     "Nein, leider nicht. Ich habe sie verloren."
+    ],
+    "why_tr": "**sie** burada kart demek: **Ich habe sie verloren.**"
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Sigortana kısa bir e-posta yaz: kartını kaybettin, yeni bir kart istiyorsun.",
+   "ornek_de": "Guten Tag, ich habe meine Versichertenkarte verloren. Können Sie mir bitte eine neue Karte schicken? Vielen Dank!",
+   "zorunlu": [
+    "verloren",
+    "Karte"
+   ],
+   "accepted_kaliplar": [
+    "Ich habe … verloren.",
+    "Können Sie mir bitte … schicken?"
+   ],
+   "kontrol_tr": [
+    "Neyi kaybettiğini yazdın mı?",
+    "Kibarca rica ettin mi?",
+    "Selam ve teşekkür var mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:82:s",
+  "maddeler": [
+   {
+    "id": "m1:82:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Die Mannschaft aus Wendlfing hat am Samstag gewonnen.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Mannschaft aus Wendlfing hat am Samstag gewonnen.",
+     "die mannschaft aus wendlfing hat am samstag gewonnen",
+     "Die Mannschaft aus Wendlfing hat am Samstag gewonnen"
+    ],
+    "why_tr": "**hat … gewonnen**: kazandı."
+   },
+   {
+    "id": "m1:82:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Ich habe meinen Schlüssel verloren.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich habe meinen Schlüssel verloren.",
+     "ich habe meinen schlüssel verloren",
+     "Ich habe meinen Schlüssel verloren"
+    ],
+    "why_tr": "**hat … verloren**: kaybetti."
+   },
+   {
+    "id": "m1:82:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Die Praxis ist auf der rechten Seite.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Praxis ist auf der rechten Seite.",
+     "die praxis ist auf der rechten seite",
+     "Die Praxis ist auf der rechten Seite"
+    ],
+    "why_tr": "**auf der rechten Seite**: sağ tarafta."
+   },
+   {
+    "id": "m1:82:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Wir wünschen dir gute Besserung, Tobi!",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir wünschen dir gute Besserung, Tobi!",
+     "wir wünschen dir gute besserung tobi",
+     "Wir wünschen dir gute Besserung, Tobi"
+    ],
+    "why_tr": "**wünschen**: dilemek."
+   },
+   {
+    "id": "m1:82:s5",
+    "k": "tr_de",
+    "tr": "Sol tarafım ağrıyor.",
+    "accepted": [
+     "Meine linke Seite tut weh.",
+     "Es tut auf der linken Seite weh.",
+     "Links tut es weh.",
+     "Auf der linken Seite tut es weh."
+    ],
+    "why_tr": "**auf der linken Seite**: sol tarafta."
+   },
+   {
+    "id": "m1:82:s6",
+    "k": "tr_de",
+    "tr": "Size güzel bir hafta sonu dilerim.",
+    "accepted": [
+     "Ich wünsche Ihnen ein schönes Wochenende.",
+     "Ein schönes Wochenende wünsche ich Ihnen.",
+     "Ich wünsche Ihnen ein schönes Wochenende!"
+    ],
+    "why_tr": "**Ich wünsche Ihnen …**"
+   },
+   {
+    "id": "m1:82:s7",
+    "k": "tr_de",
+    "tr": "Maçı kim kazandı?",
+    "accepted": [
+     "Wer hat das Spiel gewonnen?",
+     "Wer hat gewonnen?",
+     "Wer hat das Spiel denn gewonnen?"
+    ],
+    "why_tr": "**Wer hat … gewonnen?**"
+   },
+   {
+    "id": "m1:82:s8",
+    "k": "tr_de",
+    "tr": "Kartımı kaybettim.",
+    "accepted": [
+     "Ich habe meine Karte verloren.",
+     "Meine Karte habe ich verloren.",
+     "Ich habe die Karte verloren."
+    ],
+    "why_tr": "**Ich habe … verloren.**"
+   },
+   {
+    "id": "m1:82:s9",
+    "k": "guided_response",
+    "situation_tr": "Dr. Weber neresinin ağrıdığını göstermeni istiyor. Sol tarafta, yutkunurken.",
+    "prompt_de": "Zeigen Sie mir: Wo tut es weh?",
+    "accepted": [
+     "Hier links, beim Schlucken.",
+     "Hier, auf der linken Seite.",
+     "Links, beim Schlucken.",
+     "Auf der linken Seite, beim Schlucken.",
+     "Hier links."
+    ],
+    "why_tr": "Yer: **links**, **auf der linken Seite**."
+   },
+   {
+    "id": "m1:82:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Haben Sie etwas verloren?",
+    "speed": "normal",
+    "situation_tr": "Belediyede on iki numaralı odadasın. Çantanı kaybettin. Cevap ver.",
+    "accepted": [
+     "Ja, ich habe meine Tasche verloren.",
+     "Ja, meine Tasche.",
+     "Ja, die Tasche.",
+     "Ja, ich habe die Tasche verloren."
+    ],
+    "why_tr": "**Ich habe … verloren.**"
+   },
+   {
+    "id": "m1:82:s11",
+    "k": "guided_response",
+    "situation_tr": "Dr. Weber neyin olduğunu anlatmanı istiyor. Boğazın sağ tarafta ağrıyor, dünden beri; ateşin yok; gece öksürüyorsun.",
+    "prompt_de": "Erzählen Sie mal: Was haben Sie?",
+    "accepted": [
+     "Mein Hals tut auf der rechten Seite weh, seit gestern. Ich habe kein Fieber, aber in der Nacht Husten.",
+     "Seit gestern tut mein Hals rechts weh. Kein Fieber, aber in der Nacht habe ich Husten.",
+     "Der Hals tut seit gestern auf der rechten Seite weh. Fieber habe ich nicht, aber Husten in der Nacht.",
+     "Seit gestern habe ich auf der rechten Seite Halsschmerzen. Kein Fieber. In der Nacht habe ich Husten.",
+     "Mein Hals tut seit gestern rechts weh, ich habe kein Fieber, aber nachts Husten."
+    ],
+    "why_tr": "Sırayla: nerede, ne zamandan beri, ateş, gece."
+   }
+  ],
+  "sesli": [
+   "m1:82:s9",
+   "m1:82:s10"
+  ],
+  "dikte": [
+   "m1:82:s1",
+   "m1:82:s2",
+   "m1:82:s3",
+   "m1:82:s4"
+  ]
+ }
+}

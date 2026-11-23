@@ -14,12 +14,15 @@ Halka boyu `policy.json` `akis.halka_kart` = 4–6 (doğrulayıcı hatası); bu 
 
 \* `sozlukte_yok`: doğrulayıcı "sözlükte yok" hatası verir; ayrı sayılır.
 
-Dil noktası görev cümleleri (halka `gorev_cumleleri`, dersten sonra): 78 t1 = 6/8 (h2: seiner Frau einen Blumenstrauß · seiner Frau einen Ring · mir den Ring · mir einen Schal · dir meinen Schal · Ihnen das Geschenk). 79: t1 ≥ 2 + t2 ≥ 6; 80: t2 ≥ 2 + t3 ≥ 6; 81: t3 ≥ 2 + t4 ≥ 6; 82: t4 ≥ 2.
+Dil noktası görev cümleleri (halka `gorev_cumleleri`; bugün / ertesi gün): 78 t1 6 (h2, dersten sonra) · 79 t2 6 (sie mir ×2, sie dir, es ihr, es mir, sie Ihnen) + t1 2 (der Polizei seinen Ausweis, der Feuerwehr den Keller) · 80 t3 10 + t2 2 (es mir ×2) · 81 t4 10 + t3 2 (mit Durchfall, beim Arzt) · 82 t4 2 (beim Arzt, zum Arzt).
+Uygulanan kurallar (PM-097): dinleme anlama soruları önceki günlerin sözcükleriyle çözülür; düzensiz biçimler (gewonnen, verloren, ausgeschlafen, losgefahren) önce kalıp satırında gösterildi; halka görev cümlelerinde çekimli fiil yerine kipli fiil / wir / Sie biçimi (araç düzenli çekimi henüz bilinmeyen sayıyor).
 Olgu kaynakları: 116117 nöbetçi hekim, 112 acil: https://www.bundesgesundheitsministerium.de/ministerium/meldungen/2019/bereitschaftsdienst.html · https://www.dak.de/dak/gesundheit/erkrankungen/116117-aerztlicher-notdienst_134932. Sevgililer Günü 14 Şubat. Radyo haberleri kurgusaldır, yasa iddiası yok.
 
-## Görülmemiş durum taslakları (derste kullanılmaz; `gorulmemis-12.json`)
-1. cd:m1:78 · `pl:baeckerei`, Gerti Stadler: komşun için de bir şey iste. Was darf's sein? → Geben Sie mir bitte drei Semmeln. Eine ist für Frau Brandl.
-2. cd:m1:79 · `pl:fitness`, Basti: telefonundaki fotoğrafı soruyor. Zeigst du mir das Foto? → Klar, ich zeige es dir.
-3. cd:m1:80 · `pl:buergerbuero`, Frau Schneider: üç aydır burada oturuyorsun. Seit wann wohnen Sie in Wendlfing? → Seit drei Monaten.
-4. cd:m1:81 · telefon, Derya: kuaförden sonra eve gidiyorsun. Wo bist du gerade? → Ich bin beim Friseur, danach gehe ich nach Hause.
-5. cd:m1:82/83 · nöbetçi muayenehane (adsız doktor, Sie): dünden beri sırt ağrısı; doktorun iki talimatını tekrar et.
+## Görülmemiş durumlar (`gorulmemis-12.json`, 7 durum; derste kullanılmaz)
+1. cd:m1:78 · `pl:baeckerei`, Gerti Stadler: Geben Sie mir bitte drei Semmeln. Eine ist für Frau Brandl.
+2. cd:m1:79 · `pl:fitness`, Basti: Zeigst du es mir? → Klar, ich zeige es dir.
+3. cd:m1:80 · `pl:buergerbuero`, Frau Schneider: Seit wann wohnen Sie in Wendlfing? → Seit einem Jahr.
+4. cd:m1:81 · telefon, Derya: Wo bist du gerade? → Ich bin bei Luka. Dann gehe ich nach Hause.
+5. cd:m1:82 · nöbetçi muayenehane (adsız doktor): Seit gestern habe ich Bauchschmerzen, auf der rechten Seite …
+6. cd:m1:83 · `pl:apotheke`, adsız eczacı hızlı talimat: Zwei Tabletten am Abend und viel Wasser trinken.
+7. cd:m1:84 · telefon, Frau Huber: Ich habe seit einer Woche Kopfschmerzen, deshalb brauche ich einen Termin.

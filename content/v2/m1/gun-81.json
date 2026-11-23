@@ -1,0 +1,1459 @@
+{
+ "schema": 1,
+ "id": "m1:gun:81",
+ "day": 81,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Doktora, doktorda, eve: zum Arzt, beim Arzt, nach Hause",
+ "goal_tr": "Nereye gittiğini, nerede olduğunu ve eve ne zaman gideceğini söylersin; şefine haber verirsin.",
+ "can_do": {
+  "id": "cd:m1:81",
+  "tr": "Nereye gittiğimi, nerede olduğumu ve eve ne zaman gideceğimi söylerim."
+ },
+ "unit": "u:a2:saglik-1",
+ "arm": "radyo",
+ "place": "pl:haus",
+ "characters": [
+  "ch:aksoy",
+  "ch:lechner",
+  "ch:wimmer",
+  "ch:brandl",
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [
+  "gr:a2-07:t4"
+ ],
+ "yeni_kartlar": [
+  "lx:Übelkeit",
+  "lx:Durchfall",
+  "lx:Herz",
+  "lx:ziemlich",
+  "lx:drin",
+  "lx:Feier"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:81:h1",
+   "title_tr": "Perşembe: evde, doktora, kutlamaya?",
+   "kartlar": [
+    "lx:Übelkeit",
+    "lx:Durchfall",
+    "lx:Herz",
+    "lx:ziemlich",
+    "lx:drin",
+    "lx:Feier"
+   ],
+   "kaliplar": [
+    {
+     "de": "zum Arzt – beim Arzt – vom Arzt",
+     "tr": "doktora – doktorda – doktordan"
+    },
+    {
+     "de": "nach Hause – zu Hause",
+     "tr": "eve – evde"
+    },
+    {
+     "de": "Was ist da drin?",
+     "tr": "İçinde ne var?"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Übelkeit",
+     "de": "Wegen Übelkeit muss ich heute zu Hause bleiben.",
+     "tr": "Mide bulantısı yüzünden bugün evde kalmam lazım.",
+     "accepted": [
+      "Wegen Übelkeit muss ich heute zu Hause bleiben.",
+      "Ich muss heute wegen Übelkeit zu Hause bleiben.",
+      "Wegen der Übelkeit muss ich heute zu Hause bleiben."
+     ]
+    },
+    {
+     "kart": "lx:Übelkeit",
+     "de": "Gegen Übelkeit bekommen Sie beim Arzt ein Rezept.",
+     "tr": "Mide bulantısına karşı doktorda reçete alırsınız.",
+     "accepted": [
+      "Gegen Übelkeit bekommen Sie beim Arzt ein Rezept.",
+      "Beim Arzt bekommen Sie ein Rezept gegen Übelkeit.",
+      "Gegen die Übelkeit bekommen Sie beim Arzt ein Rezept."
+     ]
+    },
+    {
+     "kart": "lx:Durchfall",
+     "de": "Mit Durchfall darf das Kind nicht zur Schule gehen.",
+     "tr": "İshalken çocuk okula gidemez.",
+     "accepted": [
+      "Mit Durchfall darf das Kind nicht zur Schule gehen.",
+      "Mit Durchfall darf das Kind nicht in die Schule gehen.",
+      "Das Kind darf mit Durchfall nicht zur Schule gehen."
+     ]
+    },
+    {
+     "kart": "lx:Durchfall",
+     "de": "Tobi hat Durchfall und muss nach Hause gehen.",
+     "tr": "Tobi'nin ishali var, eve gitmesi lazım.",
+     "accepted": [
+      "Tobi hat Durchfall und muss nach Hause gehen.",
+      "Tobi hat Durchfall, er muss nach Hause gehen.",
+      "Tobi hat Durchfall und muss jetzt nach Hause gehen."
+     ]
+    },
+    {
+     "kart": "lx:Herz",
+     "de": "Ist mein Herz in Ordnung, Herr Doktor?",
+     "tr": "Kalbim iyi mi doktor bey?",
+     "accepted": [
+      "Ist mein Herz in Ordnung, Herr Doktor?",
+      "Herr Doktor, ist mein Herz in Ordnung?",
+      "Ist mit meinem Herz alles in Ordnung?"
+     ]
+    },
+    {
+     "kart": "lx:Herz",
+     "de": "Dr. Weber möchte beim Termin am Freitag mein Herz hören.",
+     "tr": "Dr. Weber cuma günkü randevuda kalbimi dinlemek istiyor.",
+     "accepted": [
+      "Dr. Weber möchte beim Termin am Freitag mein Herz hören.",
+      "Beim Termin am Freitag möchte Dr. Weber mein Herz hören.",
+      "Dr. Weber will beim Termin am Freitag mein Herz hören."
+     ]
+    },
+    {
+     "kart": "lx:ziemlich",
+     "de": "Mir ist ziemlich schlecht. Ich will jetzt nach Hause.",
+     "tr": "Midem epey bulanıyor. Şimdi eve gitmek istiyorum.",
+     "accepted": [
+      "Mir ist ziemlich schlecht. Ich will jetzt nach Hause.",
+      "Mir ist ziemlich schlecht, ich will jetzt nach Hause.",
+      "Mir ist ziemlich übel. Ich will jetzt nach Hause."
+     ]
+    },
+    {
+     "kart": "lx:ziemlich",
+     "de": "Der Weg zur Praxis ist ziemlich weit.",
+     "tr": "Muayenehanenin yolu epey uzak.",
+     "accepted": [
+      "Der Weg zur Praxis ist ziemlich weit.",
+      "Der Weg zur Praxis ist ziemlich lang.",
+      "Zur Praxis ist der Weg ziemlich weit."
+     ]
+    },
+    {
+     "kart": "lx:drin",
+     "de": "Was ist in der Tüte drin? Die Tabletten vom Arzt?",
+     "tr": "Poşetin içinde ne var? Doktorun tabletleri mi?",
+     "accepted": [
+      "Was ist in der Tüte drin? Die Tabletten vom Arzt?",
+      "Was ist da in der Tüte drin? Die Tabletten vom Arzt?",
+      "Was ist in der Tüte drin? Sind das die Tabletten vom Arzt?"
+     ]
+    },
+    {
+     "kart": "lx:drin",
+     "de": "Da ist ein Brot vom Supermarkt drin.",
+     "tr": "İçinde süpermarketten bir ekmek var.",
+     "accepted": [
+      "Da ist ein Brot vom Supermarkt drin.",
+      "Da ist ein Brot aus dem Supermarkt drin.",
+      "Da drin ist ein Brot vom Supermarkt."
+     ]
+    },
+    {
+     "kart": "lx:Feier",
+     "de": "Kommst du am Freitag zur Feier?",
+     "tr": "Cuma kutlamaya geliyor musun?",
+     "accepted": [
+      "Kommst du am Freitag zur Feier?",
+      "Kommst du am Freitag auch zur Feier?",
+      "Kommst du Freitag zur Feier?"
+     ]
+    },
+    {
+     "kart": "lx:Feier",
+     "de": "Ich kann leider nicht zur Feier kommen, ich bin krank zu Hause.",
+     "tr": "Maalesef kutlamaya gelemiyorum, hasta hâlde evdeyim.",
+     "accepted": [
+      "Ich kann leider nicht zur Feier kommen, ich bin krank zu Hause.",
+      "Leider kann ich nicht zur Feier kommen, ich bin krank zu Hause.",
+      "Ich kann leider nicht zur Feier kommen. Ich bin krank zu Hause."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Perşembe sabahı. Herr Wimmer'i arıyorsun.",
+    "satirlar": [
+     {
+      "r": "ch:wimmer",
+      "de": "Wimmer. Ah, guten Morgen! Kommen Sie heute?",
+      "tr": "Wimmer. Ah, günaydın! Bugün geliyor musunuz?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Leider nicht. Ich bin noch krank und bleibe zu Hause.",
+      "tr": "Maalesef hayır. Hâlâ hastayım, evde kalıyorum."
+     },
+     {
+      "r": "ch:wimmer",
+      "de": "Ach so. Und morgen ist doch unsere Feier.",
+      "tr": "Anlıyorum. Yarın da bizim kutlamamız var."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Morgen muss ich noch einmal zum Arzt.",
+      "tr": "Yarın bir kez daha doktora gitmem lazım."
+     }
+    ],
+    "soru": {
+     "q_tr": "Yarın ne yapacaksın?",
+     "opts": [
+      "Doktora gideceksin",
+      "Kutlamaya gideceksin",
+      "İşe gideceksin"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:81:v1",
+  "title_tr": "Perşembe: Tobi eve, Frau Brandl kapıda",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Perşembe sabahı, ofis. Tobi masasında, yüzü bembeyaz.",
+    "de": "Tobi, du bist ja ganz weiß! Was ist los?",
+    "tr": "Tobi, bembeyaz olmuşsun! Ne oldu?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi elini karnına koyuyor.",
+    "de": "Mir ist ziemlich übel. Und ich habe Durchfall.",
+    "tr": "Midem epey bulanıyor. Bir de ishalim var."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya kaşlarını kaldırıyor.",
+    "de": "Seit wann?",
+    "tr": "Ne zamandan beri?"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi omuz silkiyor.",
+    "de": "Seit heute Nacht. Vielleicht vom Essen gestern.",
+    "tr": "Bu geceden beri. Belki dünkü yemekten."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya ceketini uzatıyor.",
+    "de": "Dann geh nach Hause! Und morgen zum Arzt.",
+    "tr": "O zaman eve git! Yarın da doktora."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi sızlanıyor.",
+    "de": "Aber morgen ist doch die Feier. Ich will zur Feier!",
+    "tr": "Ama yarın kutlama var. Ben kutlamaya gitmek istiyorum!"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülüyor.",
+    "de": "Die Feier ist auch ohne dich schön. Gute Besserung!",
+    "tr": "Kutlama sensiz de güzel olur. Geçmiş olsun!"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Öğleden sonra, senin kapın. Frau Brandl elinde bir poşetle duruyor.",
+    "de": "Grüß Gott! Ich komme gerade vom Supermarkt. Das ist für Sie.",
+    "tr": "İyi günler! Süpermarketten geliyorum. Bu sizin için."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Poşete bakıyorsun. Frau Brandl gülümsüyor.",
+    "de": "Was da drin ist? Nur ein Brot und ein Stück Kuchen.",
+    "tr": "İçinde ne mi var? Sadece bir ekmek ve bir dilim kek."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl seni süzüyor.",
+    "de": "Sie sind heute nicht in der Arbeit, oder?",
+    "tr": "Bugün işte değilsiniz, değil mi?"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Başınla hayır diyorsun.",
+    "de": "Ach so, Sie sind krank zu Hause. Dann brauchen Sie Ruhe!",
+    "tr": "Anlıyorum, hasta hâlde evdesiniz. O zaman dinlenmeye ihtiyacınız var!"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl merdivene dönmeden soruyor.",
+    "de": "Und morgen? Gehen Sie zum Arzt?",
+    "tr": "Ya yarın? Doktora gidiyor musunuz?"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu bölümde ne oluyor?",
+     "opts": [
+      "Tobi hasta; Derya onu eve gönderiyor",
+      "Tobi kutlamayı hazırlıyor",
+      "Derya hasta"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2",
+      "s5"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Tobi ne zamandan beri hasta?",
+      "opts": [
+       "Bu geceden beri",
+       "Dünden beri",
+       "Bir haftadır"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya Tobi'ye yarın için ne diyor?",
+      "opts": [
+       "Doktora git",
+       "İşe gel",
+       "Kutlamaya gel"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi neden üzülüyor?",
+      "opts": [
+       "Yarınki kutlamaya gidemeyecek",
+       "Bisikleti yok",
+       "İşi çok"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s6"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s4",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Nacht",
+       "Morgen",
+       "Abend"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s5",
+      "seviye": "orta",
+      "de": "Dann geh nach ___!",
+      "accepted": [
+       "Hause",
+       "hause",
+       "Hause."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s6",
+      "seviye": "zor",
+      "banka": [
+       "Ich",
+       "will",
+       "zur",
+       "Feier",
+       "zum",
+       "Arzt"
+      ],
+      "accepted": [
+       "Ich will zur Feier!",
+       "ich will zur feier",
+       "Ich will zur Feier"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s5",
+      "seviye": "usta",
+      "accepted": [
+       "Und morgen zum Arzt.",
+       "und morgen zum arzt",
+       "Und morgen zum Arzt"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Tobi'nin durumunu Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Tobi ist krank und geht nach Hause. Morgen geht er zum Arzt.",
+      "zorunlu": [
+       "nach Hause",
+       "zum Arzt"
+      ]
+     }
+    ],
+    "golge": [
+     "s5",
+     "s7"
+    ],
+    "cevapla": {
+     "id": "m1:81:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Derya sana dönüyor: sen de dün evdeydin. Evet, dün evdeydin ve doktordaydın.",
+     "prompt_de": "Und du? Warst du gestern zu Hause?",
+     "accepted": [
+      "Ja, ich war zu Hause und beim Arzt.",
+      "Ja, gestern war ich zu Hause und beim Arzt.",
+      "Ja, ich war zu Hause. Und beim Arzt.",
+      "Ja, zu Hause und beim Arzt.",
+      "Ja, ich war gestern zu Hause und beim Arzt.",
+      "Ja, ich war beim Arzt und dann zu Hause."
+     ],
+     "why_tr": "Yer: **zu Hause** (evde), **beim Arzt** (doktorda)."
+    }
+   },
+   {
+    "id": "b2",
+    "cumleler": [
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Frau Brandl neden geliyor?",
+     "opts": [
+      "Sana yiyecek getiriyor",
+      "Anahtar istiyor",
+      "Seni kutlamaya çağırıyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s8",
+      "s9"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Frau Brandl nereden geliyor?",
+      "opts": [
+       "Süpermarketten",
+       "Eczaneden",
+       "Doktordan"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s8"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Poşette ne var?",
+      "opts": [
+       "Ekmek ve bir dilim kek",
+       "Tablet",
+       "Bir atkı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s8",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Supermarkt",
+       "Apotheke",
+       "Praxis"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s12",
+      "seviye": "orta",
+      "de": "Gehen Sie zum ___?",
+      "accepted": [
+       "Arzt",
+       "arzt",
+       "Arzt."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s11",
+      "seviye": "zor",
+      "banka": [
+       "Dann",
+       "brauchen",
+       "Sie",
+       "Ruhe",
+       "Ruhig",
+       "du"
+      ],
+      "accepted": [
+       "Dann brauchen Sie Ruhe!",
+       "dann brauchen sie ruhe",
+       "Dann brauchen Sie Ruhe"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s10",
+      "seviye": "usta",
+      "accepted": [
+       "Sie sind heute nicht in der Arbeit, oder?",
+       "sie sind heute nicht in der arbeit oder",
+       "Sie sind heute nicht in der Arbeit, oder"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Frau Brandl'ın getirdiklerini Almanca bir iki cümleyle söyle.",
+      "ornek_de": "Frau Brandl kommt vom Supermarkt. In der Tüte ist ein Brot drin.",
+      "zorunlu": [
+       "Supermarkt",
+       "drin"
+      ]
+     }
+    ],
+    "golge": [
+     "s8",
+     "s11"
+    ],
+    "cevapla": {
+     "id": "m1:81:v1:c2",
+     "k": "guided_response",
+     "situation_tr": "Frau Brandl yarın doktora gidip gitmediğini soruyor. Evet, yarın saat onda doktordasın.",
+     "prompt_de": "Und morgen? Gehen Sie zum Arzt?",
+     "accepted": [
+      "Ja, morgen um zehn bin ich beim Arzt.",
+      "Ja, ich gehe morgen um zehn zum Arzt.",
+      "Ja, morgen um zehn.",
+      "Ja, um zehn gehe ich zum Arzt.",
+      "Ja, morgen gehe ich um zehn zum Arzt.",
+      "Ja, morgen bin ich um zehn beim Arzt."
+     ],
+     "why_tr": "Yön: **zum Arzt** (doktora). Yer: **beim Arzt** (doktorda)."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:81:a1",
+   "tur": "radyo",
+   "title_tr": "Radyo: okullarda mide hastalığı",
+   "ortam_tr": "Öğlen radyoda kısa bir sağlık haberi var.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "In Wendlfing sind im Moment viele Kinder krank.",
+     "tr": "Şu sıralar Wendlfing'de çok çocuk hasta."
+    },
+    {
+     "id": "c2",
+     "de": "Sie haben Übelkeit und Durchfall.",
+     "tr": "Mide bulantısı ve ishalleri var."
+    },
+    {
+     "id": "c3",
+     "de": "Trinken Sie viel Wasser und essen Sie ein bisschen Brot.",
+     "tr": "Bol su için, biraz ekmek yiyin."
+    },
+    {
+     "id": "c4",
+     "de": "Kranke Kinder bleiben bitte zu Hause, nicht in der Schule.",
+     "tr": "Hasta çocuklar lütfen evde kalsın, okulda değil."
+    },
+    {
+     "id": "c5",
+     "de": "Haben Sie hohes Fieber? Dann gehen Sie zum Arzt.",
+     "tr": "Yüksek ateşiniz mi var? O zaman doktora gidin."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne anlatıyor?",
+      "opts": [
+       "Çok çocuk hasta; ne yapmalı",
+       "Okullar tatile giriyor",
+       "Yeni bir doktor geliyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c1",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Radyo ne içmeyi öneriyor?",
+       "opts": [
+        "Su",
+        "Kahve",
+        "Bira"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Hasta çocuklar nerede kalmalı?",
+       "opts": [
+        "Evde",
+        "Okulda",
+        "Muayenehanede"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Wasser",
+        "Kaffee",
+        "Milch"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Kranke Kinder bleiben bitte zu ___, nicht in der Schule.",
+       "accepted": [
+        "Hause",
+        "hause",
+        "Hause."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Dann",
+        "gehen",
+        "Sie",
+        "zum",
+        "Arzt",
+        "zur",
+        "beim"
+       ],
+       "accepted": [
+        "Dann gehen Sie zum Arzt.",
+        "dann gehen sie zum arzt",
+        "Dann gehen Sie zum Arzt"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c1",
+       "seviye": "usta",
+       "accepted": [
+        "In Wendlfing sind im Moment viele Kinder krank.",
+        "in wendlfing sind im moment viele kinder krank",
+        "In Wendlfing sind im Moment viele Kinder krank"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyonun iki önerisini Almanca söyle.",
+       "ornek_de": "Man soll viel Wasser trinken. Kranke Kinder bleiben zu Hause.",
+       "zorunlu": [
+        "Wasser",
+        "zu Hause"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:81:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana kursa gelip gelmeyeceğini soruyor. Bugün evde kalıyorsun.",
+      "prompt_de": "Kommst du heute Abend zum Kurs?",
+      "accepted": [
+       "Nein, heute bleibe ich zu Hause.",
+       "Nein, ich bleibe heute zu Hause.",
+       "Leider nicht, ich bleibe heute zu Hause.",
+       "Nein, ich bin krank und bleibe zu Hause.",
+       "Heute nicht. Ich bleibe zu Hause.",
+       "Nein, heute bleibe ich lieber zu Hause."
+      ],
+      "why_tr": "**zu Hause bleiben**: evde kalmak."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:81:a1:e1",
+    "k": "pick",
+    "q_tr": "Radyoya göre yüksek ateş varsa ne yapmalısın?",
+    "opts": [
+     "Doktora git",
+     "Okula git",
+     "Sadece su iç"
+    ],
+    "ans": 0,
+    "why_tr": "Radyo yüksek ateşte doktora gitmeyi söylüyor.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:81:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Herr Wimmer'den sesli mesaj",
+   "ortam_tr": "Öğleden sonra telefonunda şefinin mesajı var.",
+   "hizlar": [
+    "slow",
+    "normal",
+    "fast"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, hier ist Stefan Wimmer.",
+     "tr": "İyi günler, ben Stefan Wimmer."
+    },
+    {
+     "id": "c2",
+     "de": "Frau Aksoy sagt, Sie sind krank. Gute Besserung!",
+     "tr": "Frau Aksoy hasta olduğunuzu söyledi. Geçmiş olsun!"
+    },
+    {
+     "id": "c3",
+     "de": "Morgen ab vier ist unsere kleine Feier im Büro.",
+     "tr": "Yarın saat dörtten itibaren ofiste küçük kutlamamız var."
+    },
+    {
+     "id": "c4",
+     "de": "Bitte kommen Sie nicht, wenn Sie noch krank sind. Bleiben Sie zu Hause!",
+     "tr": "Hâlâ hastaysanız lütfen gelmeyin. Evde kalın!"
+    },
+    {
+     "id": "c5",
+     "de": "Und schicken Sie mir bitte die Krankschreibung vom Arzt.",
+     "tr": "Bir de lütfen doktordan aldığınız raporu bana gönderin."
+    },
+    {
+     "id": "c6",
+     "de": "Danke, und bis bald!",
+     "tr": "Teşekkürler, görüşmek üzere!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Herr Wimmer ne istiyor?",
+      "opts": [
+       "Evde kalmanı ve raporu göndermeni",
+       "Yarın kutlamaya gelmeni",
+       "Onu geri aramanı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c4",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Kutlama ne zaman?",
+       "opts": [
+        "Yarın saat dörtten itibaren",
+        "Bugün saat dörtte",
+        "Pazartesi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Neyi göndermelisin?",
+       "opts": [
+        "Doktorun raporunu",
+        "Bir fotoğraf",
+        "Reçeteyi"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi sayıyı duydun?",
+       "opts": [
+        "vier",
+        "fünf",
+        "drei"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Morgen ab vier ist unsere kleine ___ im Büro.",
+       "accepted": [
+        "Feier",
+        "feier",
+        "Feier."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c6",
+       "seviye": "zor",
+       "banka": [
+        "Danke",
+        "und",
+        "bis",
+        "bald",
+        "morgen",
+        "bitte"
+       ],
+       "accepted": [
+        "Danke, und bis bald!",
+        "danke und bis bald",
+        "Danke, und bis bald"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Und schicken Sie mir bitte die Krankschreibung vom Arzt.",
+        "und schicken sie mir bitte die krankschreibung vom arzt",
+        "Und schicken Sie mir bitte die Krankschreibung vom Arzt"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajı Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Ich soll zu Hause bleiben. Ich soll die Krankschreibung schicken.",
+       "zorunlu": [
+        "zu Hause",
+        "Krankschreibung"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:81:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Herr Wimmer'e kısa bir mesajla cevap ver: raporu yarın doktordan sonra gönderiyorsun.",
+      "prompt_de": "Schicken Sie mir die Krankschreibung?",
+      "accepted": [
+       "Ja, ich schicke sie Ihnen morgen nach dem Arzt.",
+       "Ja, morgen nach dem Arzt schicke ich sie Ihnen.",
+       "Ja, ich schicke sie Ihnen morgen.",
+       "Ja, nach dem Arzt schicke ich sie Ihnen.",
+       "Natürlich, ich schicke sie Ihnen morgen nach dem Arzt.",
+       "Ja, gern. Ich schicke sie Ihnen morgen nach dem Arzt."
+      ],
+      "why_tr": "Önce **sie** (raporu), sonra **Ihnen** (size). **nach dem Arzt**: doktordan sonra."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:81:a2:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Evde kal, raporu Herr Wimmer'e gönder",
+     "Yarın dörtte kutlamaya git",
+     "Frau Aksoy'u ara"
+    ],
+    "ans": 0,
+    "why_tr": "Herr Wimmer hastaysan gelmemeni ve raporu göndermeni istiyor.",
+    "kanit": [
+     "c4",
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:81:g1",
+   "de": "Herz",
+   "dogru_img": "doctor listening to a patient's heart with a stethoscope",
+   "celdirici_img": [
+    "doctor looking into a patient's ear",
+    "nurse taking blood pressure",
+    "dentist examining teeth"
+   ]
+  },
+  {
+   "id": "m1:81:g2",
+   "de": "Feier",
+   "dogru_img": "small office party with cake and colleagues",
+   "celdirici_img": [
+    "business meeting at a table",
+    "people working at computers",
+    "empty office at night"
+   ]
+  },
+  {
+   "id": "m1:81:g3",
+   "de": "Übelkeit",
+   "dogru_img": "person feeling nauseous holding stomach",
+   "celdirici_img": [
+    "person laughing",
+    "person sleeping",
+    "person eating happily"
+   ]
+  },
+  {
+   "id": "m1:81:g4",
+   "de": "zu Hause",
+   "dogru_img": "person resting on a sofa with a blanket at home",
+   "celdirici_img": [
+    "person in an office",
+    "person at a bus stop",
+    "person in a supermarket"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:81:p1",
+  "title_tr": "Şefine haber veriyorsun",
+  "durum_tr": "Perşembe sabahı. Hâlâ hastasın ve evdesin. Dün doktordaydın, yarın tekrar doktora gidiyorsun. Raporu yarın gönderebilirsin. Cuma kutlamasına gidemiyorsun.",
+  "karsi": "ch:wimmer",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Wimmer?",
+    "tr": "Wimmer?",
+    "secenekler": [
+     {
+      "de": "Guten Morgen, Herr Wimmer. Ich bin noch krank und bleibe heute zu Hause.",
+      "tr": "Günaydın Herr Wimmer. Hâlâ hastayım, bugün evde kalıyorum.",
+      "accepted": [
+       "Guten Morgen, Herr Wimmer. Ich bin noch krank und bleibe heute zu Hause.",
+       "Guten Morgen, Herr Wimmer. Ich bin noch krank, ich bleibe heute zu Hause.",
+       "Guten Morgen. Ich bin noch krank und bleibe zu Hause.",
+       "Herr Wimmer, guten Morgen. Ich bleibe heute krank zu Hause."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: **zu Hause** (evde)."
+     },
+     {
+      "de": "Guten Morgen. Ich kann heute leider nicht kommen, ich bin krank.",
+      "tr": "Günaydın. Bugün maalesef gelemiyorum, hastayım.",
+      "accepted": [
+       "Guten Morgen. Ich kann heute leider nicht kommen, ich bin krank.",
+       "Guten Morgen, Herr Wimmer. Ich kann heute leider nicht kommen. Ich bin krank.",
+       "Ich kann heute leider nicht kommen, ich bin krank.",
+       "Guten Morgen. Leider kann ich heute nicht kommen, ich bin krank."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel, net ve kibar."
+     },
+     {
+      "de": "Ich bin heute nach Hause.",
+      "tr": "(yanlış) Bugün eveyim.",
+      "accepted": [
+       "Ich bin heute nach Hause.",
+       "Ich bleibe nach Hause."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Yerden söz ederken **zu Hause** (evde). **nach Hause** eve gitmek."
+     }
+    ]
+   },
+   {
+    "id": "n1b",
+    "de": "Wie bitte? Sie sind zu Hause?",
+    "tr": "Efendim? Evde misiniz?",
+    "secenekler": [
+     {
+      "de": "Ja, ich bin zu Hause. Ich bin krank.",
+      "tr": "Evet, evdeyim. Hastayım.",
+      "accepted": [
+       "Ja, ich bin zu Hause. Ich bin krank.",
+       "Ja, ich bin krank zu Hause.",
+       "Ja, ich bin zu Hause, ich bin noch krank.",
+       "Ja. Ich bin krank und zu Hause."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Şimdi doğru: **zu Hause**."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Oh, gute Besserung! Waren Sie schon beim Arzt?",
+    "tr": "Geçmiş olsun! Doktora gittiniz mi?",
+    "secenekler": [
+     {
+      "de": "Ja, gestern war ich beim Arzt. Morgen muss ich wieder zum Arzt.",
+      "tr": "Evet, dün doktordaydım. Yarın yine doktora gitmem lazım.",
+      "accepted": [
+       "Ja, gestern war ich beim Arzt. Morgen muss ich wieder zum Arzt.",
+       "Ja, ich war gestern beim Arzt. Morgen muss ich wieder zum Arzt.",
+       "Ja, gestern. Morgen muss ich wieder zum Arzt.",
+       "Ja, gestern war ich beim Arzt, und morgen muss ich noch einmal hin."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika: **beim Arzt** yer, **zum Arzt** yön."
+     },
+     {
+      "de": "Ja, am Mittwoch. Morgen gehe ich noch einmal zum Arzt.",
+      "tr": "Evet, çarşamba. Yarın bir kez daha doktora gidiyorum.",
+      "accepted": [
+       "Ja, am Mittwoch. Morgen gehe ich noch einmal zum Arzt.",
+       "Ja, am Mittwoch, und morgen gehe ich noch einmal zum Arzt.",
+       "Am Mittwoch, ja. Morgen gehe ich wieder zum Arzt.",
+       "Ja, am Mittwoch war ich beim Arzt. Morgen gehe ich noch einmal."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru."
+     },
+     {
+      "de": "Ja, ich war gestern zum Arzt.",
+      "tr": "(yanlış) Evet, dün doktoraydım.",
+      "accepted": [
+       "Ja, ich war gestern zum Arzt.",
+       "Ich war zum Arzt."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "**war** ile yer: **beim Arzt**. **zum Arzt** gitmek için."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Und die Krankschreibung?",
+    "tr": "Ya hastalık raporu?",
+    "secenekler": [
+     {
+      "de": "Ich schicke sie Ihnen morgen.",
+      "tr": "Onu size yarın gönderiyorum.",
+      "accepted": [
+       "Ich schicke sie Ihnen morgen.",
+       "Die schicke ich Ihnen morgen.",
+       "Ich schicke sie Ihnen morgen, nach dem Arzt.",
+       "Morgen schicke ich sie Ihnen."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi: önce **sie**, sonra **Ihnen**."
+     },
+     {
+      "de": "Ich bringe sie Ihnen am Montag.",
+      "tr": "Onu size pazartesi getiriyorum.",
+      "accepted": [
+       "Ich bringe sie Ihnen am Montag.",
+       "Am Montag bringe ich sie Ihnen.",
+       "Die bringe ich Ihnen am Montag.",
+       "Ich bringe sie Ihnen am Montag ins Büro."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gut. Und die Feier morgen? Kommen Sie?",
+    "tr": "Peki. Ya yarınki kutlama? Geliyor musunuz?",
+    "secenekler": [
+     {
+      "de": "Leider nicht, ich bin noch krank. Viel Spaß bei der Feier!",
+      "tr": "Maalesef hayır, hâlâ hastayım. Kutlamada iyi eğlenceler!",
+      "accepted": [
+       "Leider nicht, ich bin noch krank. Viel Spaß bei der Feier!",
+       "Leider nicht. Ich bin noch krank. Viel Spaß bei der Feier!",
+       "Nein, leider nicht. Viel Spaß bei der Feier!",
+       "Leider nicht. Viel Spaß bei der Feier!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar ve doğal."
+     },
+     {
+      "de": "Ja, ich gehe zu Hause.",
+      "tr": "(yanlış) Evet, evde gidiyorum.",
+      "accepted": [
+       "Ja, ich gehe zu Hause.",
+       "Ich gehe zu Hause."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Gitmek için **nach Hause**. Ama kutlamaya gidemiyorsun: **Leider nicht**."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Schade! Dann brauchen Sie Ruhe. Bis bald!",
+    "tr": "Yazık! O zaman dinlenmeniz lazım. Görüşmek üzere!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Şefine evde olduğunu, doktora gideceğini ve raporu ne zaman göndereceğini söyledin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Tobi'den mesaj",
+  "metin_de": "Hi! Ich bin jetzt zu Hause. Mir ist ziemlich übel, und ich liege im Bett. Derya sagt, die Feier ist auch ohne mich schön. Haha! Gehst du morgen auch zum Arzt? Ich bin um neun bei Dr. Weber. Vielleicht sehen wir uns beim Arzt!",
+  "metin_tr": "Selam! Şimdi evdeyim. Midem epey bulanıyor, yatıyorum. Derya kutlamanın bensiz de güzel olacağını söylüyor. Haha! Sen de yarın doktora gidiyor musun? Ben dokuzda Dr. Weber'deyim. Belki doktorda görüşürüz!",
+  "sorular": [
+   {
+    "id": "m1:81:o1",
+    "kind": "gist",
+    "q_tr": "Tobi ne yazıyor?",
+    "opts": [
+     "Evde hasta yatıyor, yarın doktora gidiyor",
+     "İşe geri döndü",
+     "Kutlamaya gidiyor"
+    ],
+    "ans": 0,
+    "kanit": [
+     0,
+     4
+    ]
+   },
+   {
+    "id": "m1:81:o2",
+    "kind": "detail",
+    "q_tr": "Tobi şu anda nerede?",
+    "opts": [
+     "Evde, yatakta",
+     "İşte",
+     "Doktorda"
+    ],
+    "ans": 0,
+    "kanit": [
+     0,
+     1
+    ]
+   },
+   {
+    "id": "m1:81:o3",
+    "kind": "detail",
+    "q_tr": "Tobi yarın saat kaçta doktorda?",
+    "opts": [
+     "Dokuzda",
+     "Onda",
+     "Sekizde"
+    ],
+    "ans": 0,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:81:o4",
+    "k": "guided_response",
+    "situation_tr": "Tobi'ye cevap ver: sen de yarın doktora gidiyorsun, saat onda.",
+    "prompt_de": "Gehst du morgen auch zum Arzt?",
+    "accepted": [
+     "Ja, ich gehe morgen um zehn zum Arzt.",
+     "Ja, um zehn bin ich bei Dr. Weber.",
+     "Ja, auch zu Dr. Weber, um zehn.",
+     "Ja, ich bin um zehn beim Arzt.",
+     "Ja, morgen um zehn.",
+     "Ja, ich auch! Um zehn bei Dr. Weber."
+    ],
+    "why_tr": "Yön: **zum Arzt**. Yer: **beim Arzt**."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Tobi'ye kısa bir cevap yaz: geçmiş olsun de, sen de yarın doktora gidiyorsun, sonra eve gidiyorsun.",
+   "ornek_de": "Gute Besserung, Tobi! Ich gehe morgen auch zum Arzt, um zehn. Und dann gehe ich nach Hause.",
+   "zorunlu": [
+    "zum Arzt",
+    "nach Hause"
+   ],
+   "accepted_kaliplar": [
+    "Ich gehe … zum Arzt.",
+    "Dann gehe ich nach Hause."
+   ],
+   "kontrol_tr": [
+    "Geçmiş olsun dedin mi?",
+    "Doktora için zum Arzt yazdın mı?",
+    "Eve için nach Hause yazdın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:81:s",
+  "maddeler": [
+   {
+    "id": "m1:81:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Tobi geht heute früh nach Hause.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Tobi geht heute früh nach Hause.",
+     "tobi geht heute früh nach hause",
+     "Tobi geht heute früh nach Hause"
+    ],
+    "why_tr": "**nach Hause**: eve."
+   },
+   {
+    "id": "m1:81:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Morgen um zehn bin ich beim Arzt.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Morgen um zehn bin ich beim Arzt.",
+     "morgen um zehn bin ich beim arzt",
+     "Morgen um zehn bin ich beim Arzt"
+    ],
+    "why_tr": "**beim Arzt**: doktorda."
+   },
+   {
+    "id": "m1:81:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Frau Brandl kommt gerade vom Supermarkt.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Frau Brandl kommt gerade vom Supermarkt.",
+     "frau brandl kommt gerade vom supermarkt",
+     "Frau Brandl kommt gerade vom Supermarkt"
+    ],
+    "why_tr": "**vom** kısa biçim: von dem."
+   },
+   {
+    "id": "m1:81:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Am Freitag gehen alle zur Feier ins Büro.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Am Freitag gehen alle zur Feier ins Büro.",
+     "am freitag gehen alle zur feier ins büro",
+     "Am Freitag gehen alle zur Feier ins Büro"
+    ],
+    "why_tr": "**zur Feier**: kutlamaya."
+   },
+   {
+    "id": "m1:81:s5",
+    "k": "tr_de",
+    "tr": "Yarın doktora gidiyorum.",
+    "accepted": [
+     "Morgen gehe ich zum Arzt.",
+     "Ich gehe morgen zum Arzt.",
+     "Morgen gehe ich zum Doktor."
+    ],
+    "why_tr": "Yön: **zum Arzt**."
+   },
+   {
+    "id": "m1:81:s6",
+    "k": "tr_de",
+    "tr": "Bütün gün evdeyim.",
+    "accepted": [
+     "Ich bin den ganzen Tag zu Hause.",
+     "Den ganzen Tag bin ich zu Hause.",
+     "Ich bin den ganzen Tag daheim."
+    ],
+    "why_tr": "Yer: **zu Hause**."
+   },
+   {
+    "id": "m1:81:s7",
+    "k": "tr_de",
+    "tr": "Kutlamadan sonra eve gidiyoruz.",
+    "accepted": [
+     "Nach der Feier gehen wir nach Hause.",
+     "Wir gehen nach der Feier nach Hause.",
+     "Nach der Feier fahren wir nach Hause."
+    ],
+    "why_tr": "Zaman: **nach der Feier**. Yön: **nach Hause**."
+   },
+   {
+    "id": "m1:81:s8",
+    "k": "tr_de",
+    "tr": "Midem oldukça bulanıyor.",
+    "accepted": [
+     "Mir ist ziemlich übel.",
+     "Mir ist ziemlich schlecht.",
+     "Ich habe ziemlich starke Übelkeit."
+    ],
+    "why_tr": "**ziemlich**: oldukça."
+   },
+   {
+    "id": "m1:81:s9",
+    "k": "guided_response",
+    "situation_tr": "Derya nerede olduğunu soruyor. Evdesin, hâlâ hastasın.",
+    "prompt_de": "Wo bist du gerade?",
+    "accepted": [
+     "Ich bin zu Hause, ich bin noch krank.",
+     "Zu Hause. Ich bin noch krank.",
+     "Ich bin zu Hause. Ich bin noch krank.",
+     "Ich bin noch krank zu Hause.",
+     "Zu Hause, ich bin noch krank."
+    ],
+    "why_tr": "Yer: **zu Hause**."
+   },
+   {
+    "id": "m1:81:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Was ist da drin?",
+    "speed": "normal",
+    "situation_tr": "Frau Brandl'ın poşetini tutuyorsun; içinde bir ekmek var. Cevap ver.",
+    "accepted": [
+     "Da ist ein Brot drin.",
+     "Ein Brot.",
+     "Ein Brot ist da drin.",
+     "Da drin ist ein Brot."
+    ],
+    "why_tr": "**drin**: içinde."
+   },
+   {
+    "id": "m1:81:s11",
+    "k": "guided_response",
+    "situation_tr": "Herr Wimmer yarınki kutlamayı soruyor. Yarın doktordasın, sonra evde kalıyorsun; gelemiyorsun.",
+    "prompt_de": "Kommen Sie morgen zur Feier?",
+    "accepted": [
+     "Leider nicht. Morgen bin ich beim Arzt, und dann bleibe ich zu Hause.",
+     "Leider nicht. Morgen bin ich beim Arzt und dann zu Hause.",
+     "Nein, leider. Ich bin morgen beim Arzt und bleibe dann zu Hause.",
+     "Leider nicht, ich gehe morgen zum Arzt und dann nach Hause.",
+     "Nein, ich bin morgen beim Arzt. Dann bleibe ich zu Hause."
+    ],
+    "why_tr": "**beim Arzt** (doktorda), **zu Hause** (evde)."
+   }
+  ],
+  "sesli": [
+   "m1:81:s9",
+   "m1:81:s10"
+  ],
+  "dikte": [
+   "m1:81:s1",
+   "m1:81:s2",
+   "m1:81:s3",
+   "m1:81:s4"
+  ]
+ }
+}
