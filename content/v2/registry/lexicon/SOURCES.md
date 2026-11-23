@@ -44,5 +44,7 @@ Sözlük kartlarında (batch-*.json) geçen olgusal bilgiler ve kaynakları.
 | Jobcenter, geçimini sağlayamayan çalışabilir kişilere bakar | lx:Jobcenter | https://www.betanet.de/jobcenter.html |
 | Dolmetscher sözlü, Übersetzer yazılı çevirir | lx:Dolmetscher | https://www.duden.de/rechtschreibung/Dolmetscher · https://wissen.de/artikel/dolmetscher-in-oder-uebersetzer-in |
 | Silvester, 31 Aralık | lx:Silvester | https://www.duden.de/rechtschreibung/Silvester_Tag |
+| **Warmmiete**, ısınma ve diğer yan giderler dahil kira (b1-02b) | lx:Warmmiete | Duden: "Miete einschließlich Heiz- und sonstige Nebenkosten"; die, çoğul die Warmmieten: https://www.duden.de/rechtschreibung/Warmmiete (dilbilimci 23.11.2026'da açıp doğruladı) |
+| **Brückentag**, resmî tatille hafta sonu arasındaki iş günü; izinle köprülenir (b1-02b) | lx:Brückentag | Duden: "zwischen zwei arbeitsfreien Tagen, etwa einem Feiertag und dem Wochenende liegender einzelner Arbeitstag, der sich besonders als Urlaubstag anbietet"; der, çoğul die Brückentage: https://www.duden.de/rechtschreibung/Brueckentag (dilbilimci 23.11.2026'da açıp doğruladı) |
 
 Sıklık verisi: FrequencyWords 2018 de (OpenSubtitles), H. Dave, CC BY-SA 4.0 — bkz. registry/frequency/lemmas.json.
