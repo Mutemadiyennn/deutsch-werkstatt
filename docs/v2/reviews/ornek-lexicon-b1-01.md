@@ -152,3 +152,93 @@ H-2'den sonra ayrılan fiillerin bütün boşlukları (36) tarandı. Bunlar oran
   2. 195 boşluğun hepsini tek soruyla taramak: "Kartın kökü ya da daha sık bir eş anlamlı aynı çeviriyle boşluğa giriyor mu?"
   3. Ardından yalnızca boşluklardan yeni bir örneklem (en az 20 madde) almak.
 - `review.status` için okur kapısı ayrıca geçerli: okur 2. turda b1-01b'de lx:zurzeit `exp.ipucu_tr` için GERİ vermişti. Dilbilimci raporundaki son satır bu ipucunun düzeltildiğini gösteriyor. Okurun 3. tur onayı kayıtta yok.
+
+## 2. tur (2026-11-23, yalnız boşluklar)
+
+Girdi: dilbilimcinin "Örneklem düzeltmeleri" bölümü (`lexicon-b1-01.md`). 195 boşluk tarandı, 84'üne `also_ok` eklendi, cümleler değişmedi. Bu turda yalnız boşluklara bakıldı.
+
+### Yöntem
+
+- **Tohum: `20261124`.** Evren iki dosyanın 195 boşluğu (önce a, sonra b; kart sırası, `forms[]` dizin sırası).
+- Seçim: `random.Random(20261124).sample(range(195), 30)`. 30 madde (%15,4); 14'ü a dosyasından, 16'sı b dosyasından. 30 maddenin 15'inde `also_ok` bu turda eklenmişti.
+- Her maddeye iki yönden bakıldı:
+  - **(a)** Türkçe çeviri yanındayken doğru ve sık bir cevap hâlâ reddediliyor mu?
+  - **(b)** `also_ok` yanlış ya da başka anlamlı bir cevabı kabul ettiriyor mu? Özellikle kartın kendi hata notuyla çelişen bir cevap var mı?
+
+### 1. turda bildirilen 7 boşluk
+
+| kart | boşluk | şimdiki `also_ok` | sonuç |
+|---|---|---|---|
+| lx:zurzeit | forms[0] | … Gerade, **Jetzt**, Aktuell | kapandı |
+| lx:zurzeit | forms[1] (H-1) | … gerade, **jetzt**, aktuell | kapandı |
+| lx:zurzeit | forms[2] | … gerade, **jetzt**, aktuell | kapandı |
+| lx:abwarten | forms[1] (H-2) | **warten** | kapandı |
+| lx:abwarten | forms[3] | **gewartet** | kapandı |
+| lx:nachfragen | forms[0] | **fragen** | kapandı |
+| lx:nachfragen | forms[1] | **gefragt** | kapandı |
+
+**Aktuell** ve **aktuell** eklemeleri de doğru: kayıtta lx:aktuell kartı var, anlamı "şu an".
+
+### Madde listesi
+
+| # | kart | boşluk | cevap · `also_ok` | sonuç | not |
+|---|---|---|---|---|---|
+| 1 | lx:zustimmen | forms[0] | stimme | D | |
+| 2 | lx:widersprechen | forms[2] | widersprochen | D | |
+| 3 | lx:Ansicht | forms[3] | Ansichten · Meinungen | D | |
+| 4 | lx:sinnvoll | forms[2] | sinnvolle · vernünftige | D | |
+| 5 | lx:diskutieren | forms[2] | diskutiert · **streitet** | **H (b)** | aşağıda H-3 |
+| 6 | lx:diskutieren | forms[3] | diskutieren · streiten, reden | D | **Darüber kann man streiten** yerleşik deyim, "bu tartışılır" |
+| 7 | lx:Meldung | forms[3] | Meldung · Nachricht | D | |
+| 8 | lx:Bericht | forms[0] | Bericht | D | |
+| 9 | lx:Überschrift | forms[1] | Überschrift · Schlagzeile | D | |
+| 10 | lx:Ereignis | forms[0] | Ereignis · Event | D | **Event** Almancada yerleşik |
+| 11 | lx:sinken | forms[3] | gesunken · gefallen, zurückgegangen | D | |
+| 12 | lx:erhöhen | forms[0] | erhöht | D | |
+| 13 | lx:festnehmen | forms[2] | nimmt | D | |
+| 14 | lx:Unwetter | forms[2] | Unwetters · Sturms, Gewitters | D | ek doğru |
+| 15 | lx:Untersuchung | forms[0] | Untersuchung | D | |
+| 16 | lx:Ursache | forms[0] | Ursache | D | **die** artikeli **Grund**'u eliyor |
+| 17 | lx:Ursache | forms[3] | Ursachen · Gründe | D | |
+| 18 | lx:Medikament | forms[0] | Medikament · Mittel | D | |
+| 19 | lx:einnehmen | forms[2] | eingenommen · genommen | D | |
+| 20 | lx:Diagnose | forms[3] | Diagnosen | D | Gündelik söz **zwei Meinungen** diye biter, ama çeviri **teşhis** dediği için eleniyor |
+| 21 | lx:Augenarzt | forms[0] | Augenarzt | D | |
+| 22 | lx:Augenarzt | forms[2] | Augenarzt | D | |
+| 23 | lx:Wartezeit | forms[2] | Wartezeit | **H (a)** | aşağıda H-4 |
+| 24 | lx:Wartezeit | forms[3] | Wartezeiten | D | |
+| 25 | lx:kurzfristig | forms[1] | kurzfristig | D | "son anda" cevabı tek kılıyor |
+| 26 | lx:nachsehen | forms[1] | nachsehen · nachschauen, schauen, nachgucken | D | |
+| 27 | lx:möglichst | forms[0] | möglichst | D | |
+| 28 | lx:ausstellen | forms[2] | ausgestellt · geschrieben, gegeben, ausgeschrieben | D | **gegeben** "verdi" demek, çeviri "yazdı"; bağlamda aynı iş, kabul edilebilir |
+| 29 | lx:Hinweis | forms[1] | Hinweis · Tipp | D | |
+| 30 | lx:Hinweis | forms[2] | Hinweis · Tipp | D | |
+
+### Hatalar
+
+**H-3 · lx:diskutieren forms[2]** (b1-01a), yön (b)
+- Boşluk: `Derya ___ gern mit Ioana.` · tr "Derya Ioana'yla tartışmayı sever." · `also_ok: streitet`
+- **Derya streitet gern mit Ioana** "Ioana'yla kavga etmeyi sever" demek. Aynı kartın `mistakes_tr[1]` notu şöyle: "**diskutieren** sakin bir fikir alışverişidir. Kavga etmek anlamındaki tartışmak için kullanılmaz."
+- Kart bu iki kelimeyi ayırmayı öğretirken boşluk **streitet**'i doğru sayıyor. Öğrenci tam da uyarılan karışıklık için onay alıyor. Örnek cümlenin anlamı da dostça bir fikir alışverişi (ö5).
+- Öneri: **streitet** çıkarılsın.
+
+**H-4 · lx:Wartezeit forms[2]** (b1-01b), yön (a)
+- Boşluk: `Drei Monate ___, echt jetzt?` · tr "Üç ay bekleme, ciddi misin?" · `also_ok` yok
+- **Drei Monate warten, echt jetzt?** aynı ölçüde doğal, hatta daha sık. Türkçedeki "bekleme" iki cevabı da karşılıyor.
+- Öneri: `also_ok: warten`.
+
+### Örneklem dışında görülenler (orana katılmadı)
+
+| kart | boşluk | sorun |
+|---|---|---|
+| lx:diskutieren | forms[0] `Wir haben lange über das Thema ___.` | `also_ok: gestritten`. H-3 ile aynı çelişki; **gesprochen** ve **geredet** yerinde. |
+| lx:Meldung | forms[1] `Laut einer ___ ist die Straße heute gesperrt.` | `also_ok` yok. Kartın öbür üç boşluğu **Nachricht** kabul ediyor, bu boşluk etmiyor. |
+| lx:Vorfall | forms[0], [2], [3] | `also_ok: Ereignis(se)`. Ereignis kartının hata notu "Kötü ve beklenmedik olay için çoğu zaman **Vorfall** denir" diyor, Vorfall kartının notu da Ereignis'i güzel olaya bağlıyor. Yanlış değil ama kartların öğrettiği ayrımı zayıflatıyor. Dilbilimci karar versin, engel değil. |
+
+### 2. tur kararı
+
+- Oran: **2/30 = %6,7 > %2** → **GERİ** (dilbilimciye, dar kapsam).
+- Düzeltilecekler: H-3, H-4, lx:diskutieren forms[0] (**gestritten** çıkarılsın), lx:Meldung forms[1] (**Nachricht** eklensin). lx:Vorfall için dilbilimci karar versin.
+- 1. turda bildirilen 7 boşluk kapandı.
+- Eklenen `also_ok`'ların 15'i örneklemde. Yalnız biri (**streitet**) yanlış anlamı kabul ettiriyor; öbür 14'ü doğru.
+- Düzeltmeler küçük ve elle doğrulanabilir. Onlar yapıldıktan sonra 3. tur için şunu öneriyorum: bu dört boşluk tek tek doğrulansın, ayrıca `also_ok`'ta kartın kendi `mistakes_tr` notunun "doğrusu değil" dediği bir kelime kalmış mı diye 195 boşluk makineyle bir kez taransın. Yeni bir rastgele örneklem şart değil.
