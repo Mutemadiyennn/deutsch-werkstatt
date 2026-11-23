@@ -1,10 +1,12 @@
 {
   "batch": "b1-02b",
   "review": {
-    "status": "draft",
+    "status": "reviewed",
     "by": "dilbilimci-ajan",
     "at": "2026-11-23",
-    "notes": "docs/v2/reviews/lexicon-b1-02.md"
+    "notes": "docs/v2/reviews/lexicon-b1-02.md; okur: docs/v2/reviews/okur/lexicon-b1-02.md; örneklem: docs/v2/reviews/ornek-lexicon-b1-02.md",
+    "okur": "passed",
+    "okur_at": "2026-11-23"
   },
   "items": [
     {
@@ -349,10 +351,7 @@
           "de": "Für Nachtarbeit gibt es höhere ___.",
           "answer": "Zuschläge",
           "tr": "Gece çalışması için daha yüksek ek ödemeler var.",
-          "hint_tr": "Birden çok ek ödeme: **Zuschläge**.",
-          "also_ok": [
-            "Löhne"
-          ]
+          "hint_tr": "Birden çok ek ödeme: **Zuschläge**."
         },
         {
           "de": "Die Nachtschicht ist hart, aber der ___ ist echt gut.",
@@ -360,8 +359,7 @@
           "tr": "Gece vardiyası zor, ama ek ödemesi gerçekten iyi.",
           "hint_tr": "Ek ödeme **der Zuschlag** olur.",
           "also_ok": [
-            "Bonus",
-            "Lohn"
+            "Bonus"
           ]
         }
       ]
@@ -581,7 +579,6 @@
           "tr": "Vardiyaları zaten aramızda ayarladık.",
           "hint_tr": "Geçmişte **abgesprochen** olur.",
           "also_ok": [
-            "besprochen",
             "geklärt"
           ]
         },
@@ -923,37 +920,25 @@
           "de": "Die ___ ist im zweiten Stock.",
           "answer": "Personalabteilung",
           "tr": "Personel bölümü ikinci katta.",
-          "hint_tr": "Personel bölümü **die Personalabteilung** olur.",
-          "also_ok": [
-            "Personalbüro"
-          ]
+          "hint_tr": "Personel bölümü **die Personalabteilung** olur."
         },
         {
           "de": "Ich gehe jetzt zur ___.",
           "answer": "Personalabteilung",
           "tr": "Şimdi personel bölümüne gidiyorum.",
-          "hint_tr": "Personel bölümü **Personalabteilung** ile söylenir.",
-          "also_ok": [
-            "Personalbüro"
-          ]
+          "hint_tr": "Personel bölümü **Personalabteilung** ile söylenir."
         },
         {
           "de": "Schicken Sie den Antrag bitte an die ___.",
           "answer": "Personalabteilung",
           "tr": "Dilekçeyi lütfen personel bölümüne gönderin.",
-          "hint_tr": "Personel bölümü **die Personalabteilung** olur.",
-          "also_ok": [
-            "Personalbüro"
-          ]
+          "hint_tr": "Personel bölümü **die Personalabteilung** olur."
         },
         {
           "de": "Ruf halt die ___ an.",
           "answer": "Personalabteilung",
           "tr": "Personel bölümünü arasana.",
-          "hint_tr": "Personel bölümü **Personalabteilung** ile söylenir.",
-          "also_ok": [
-            "Personalbüro"
-          ]
+          "hint_tr": "Personel bölümü **Personalabteilung** ile söylenir."
         }
       ]
     },
@@ -1041,7 +1026,6 @@
           "tr": "Hesap dökümüyle ilgili bir sorum olacaktı.",
           "hint_tr": "Hesap dökümü **die Abrechnung** olur.",
           "also_ok": [
-            "Rechnung",
             "Nebenkostenabrechnung"
           ]
         },
@@ -1051,7 +1035,6 @@
           "tr": "Hesap dökümünü bana açıklayabilir misiniz?",
           "hint_tr": "Hesap dökümü **die Abrechnung** olur.",
           "also_ok": [
-            "Rechnung",
             "Nebenkostenabrechnung"
           ]
         },
@@ -1059,19 +1042,13 @@
           "de": "Die ___ für die Nebenkosten kommt einmal im Jahr.",
           "answer": "Abrechnung",
           "tr": "Yan giderlerin hesap dökümü yılda bir kez gelir.",
-          "hint_tr": "Hesap dökümü **Abrechnung** ile söylenir.",
-          "also_ok": [
-            "Rechnung"
-          ]
+          "hint_tr": "Hesap dökümü **Abrechnung** ile söylenir."
         },
         {
           "de": "Ich habe hier die ___ von drei Jahren.",
           "answer": "Abrechnungen",
           "tr": "Üç yılın hesap dökümleri burada.",
-          "hint_tr": "Birden çok döküm: **Abrechnungen**.",
-          "also_ok": [
-            "Rechnungen"
-          ]
+          "hint_tr": "Birden çok döküm: **Abrechnungen**."
         }
       ]
     },
@@ -1166,28 +1143,19 @@
           "de": "Wir haben dieses Jahr eine hohe ___.",
           "answer": "Nachzahlung",
           "tr": "Bu yıl yüksek bir fark ödememiz var.",
-          "hint_tr": "Fark ödemesi **die Nachzahlung** olur.",
-          "also_ok": [
-            "Rechnung"
-          ]
+          "hint_tr": "Fark ödemesi **die Nachzahlung** olur."
         },
         {
           "de": "Warum ist die ___ so hoch?",
           "answer": "Nachzahlung",
           "tr": "Fark ödemesi neden bu kadar yüksek?",
-          "hint_tr": "Fark ödemesi **die Nachzahlung** olur.",
-          "also_ok": [
-            "Rechnung"
-          ]
+          "hint_tr": "Fark ödemesi **die Nachzahlung** olur."
         },
         {
           "de": "Die ___ überweise ich bis Ende des Monats.",
           "answer": "Nachzahlung",
           "tr": "Fark ödemesini ay sonuna kadar havale ederim.",
-          "hint_tr": "Fark ödemesi **Nachzahlung** ile söylenir.",
-          "also_ok": [
-            "Rechnung"
-          ]
+          "hint_tr": "Fark ödemesi **Nachzahlung** ile söylenir."
         },
         {
           "de": "In den letzten Jahren hatten wir zwei ___.",
@@ -1306,9 +1274,7 @@
           "tr": "Daha kontör yüklemem lazım.",
           "hint_tr": "Telefona kontör almak **Guthaben aufladen** ile söylenir.",
           "also_ok": [
-            "Geld",
-            "das Handy",
-            "mein Handy"
+            "Geld"
           ]
         }
       ]
@@ -1403,37 +1369,25 @@
           "de": "Wie hoch ist die ___?",
           "answer": "Warmmiete",
           "tr": "Isınma dahil kira ne kadar?",
-          "hint_tr": "Isınma dahil kira **die Warmmiete** olur.",
-          "also_ok": [
-            "Miete"
-          ]
+          "hint_tr": "Isınma dahil kira **die Warmmiete** olur."
         },
         {
           "de": "Die ___ ist für uns zu teuer.",
           "answer": "Warmmiete",
           "tr": "Isınma dahil kira bizim için fazla pahalı.",
-          "hint_tr": "Isınma dahil kira **die Warmmiete** olur.",
-          "also_ok": [
-            "Miete"
-          ]
+          "hint_tr": "Isınma dahil kira **die Warmmiete** olur."
         },
         {
           "de": "Ist das die ___? – Ja, nur den Strom zahlen Sie extra.",
           "answer": "Warmmiete",
           "tr": "Bu ısınma dahil kira mı? – Evet, yalnızca elektriği ayrıca ödüyorsunuz.",
-          "hint_tr": "Isınma dahil kira **Warmmiete** ile söylenir.",
-          "also_ok": [
-            "Miete"
-          ]
+          "hint_tr": "Isınma dahil kira **Warmmiete** ile söylenir."
         },
         {
           "de": "Hier sind die ___ sehr hoch.",
           "answer": "Warmmieten",
           "tr": "Burada ısınma dahil kiralar çok yüksek.",
-          "hint_tr": "Birden çok kira: **Warmmieten**.",
-          "also_ok": [
-            "Mieten"
-          ]
+          "hint_tr": "Birden çok kira: **Warmmieten**."
         }
       ]
     },
@@ -1528,18 +1482,14 @@
           "tr": "Isınma giderleri bu yıl arttı.",
           "hint_tr": "Isınma giderleri **die Heizkosten** olur.",
           "also_ok": [
-            "Kosten",
-            "Nebenkosten"
+            "Kosten"
           ]
         },
         {
           "de": "Sind die ___ in der Miete drin?",
           "answer": "Heizkosten",
           "tr": "Isınma giderleri kiraya dahil mi?",
-          "hint_tr": "Isınma giderleri **Heizkosten** ile söylenir.",
-          "also_ok": [
-            "Nebenkosten"
-          ]
+          "hint_tr": "Isınma giderleri **Heizkosten** ile söylenir."
         },
         {
           "de": "Wie kann ich im Winter ___ sparen?",
@@ -1554,10 +1504,7 @@
           "de": "Wegen der ___ müssen wir nachzahlen.",
           "answer": "Heizkosten",
           "tr": "Isınma giderleri yüzünden fark ödememiz gerekiyor.",
-          "hint_tr": "Isınma giderleri **die Heizkosten** olur.",
-          "also_ok": [
-            "Nebenkosten"
-          ]
+          "hint_tr": "Isınma giderleri **die Heizkosten** olur."
         }
       ]
     },
@@ -1985,8 +1932,7 @@
           "tr": "Faturalardaki tutarlar bu yıl daha yüksek.",
           "hint_tr": "Birden çok tutar: **Beträge**.",
           "also_ok": [
-            "Summen",
-            "Kosten"
+            "Summen"
           ]
         }
       ]
@@ -2196,10 +2142,7 @@
           "de": "Wissen Sie, wer jetzt ___ wohnt?",
           "answer": "nebenan",
           "tr": "Yan dairede şimdi kimin oturduğunu biliyor musunuz?",
-          "hint_tr": "Yan daire **nebenan** ile söylenir.",
-          "also_ok": [
-            "daneben"
-          ]
+          "hint_tr": "Yan daire **nebenan** ile söylenir."
         },
         {
           "de": "Hast du was von ___ gehört?",
@@ -2237,7 +2180,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Mahallede derken **auf der Nachbarschaft** yanlış. Doğrusu **in der Nachbarschaft**.",
-        "**der Nachbarschaft** yanlış. Sonu **-schaft** olan kelimelere **die** gelir: **die Nachbarschaft**."
+        "**Der Nachbarschaft ist ruhig** yanlış. Sonu **-schaft** olan kelimelere **die** gelir: **Die Nachbarschaft ist ruhig.**"
       ],
       "examples": [
         {
@@ -2637,19 +2580,13 @@
           "de": "Darf man auf dem Balkon Fleisch ___?",
           "answer": "grillen",
           "tr": "Balkonda et ızgara yapmak serbest mi?",
-          "hint_tr": "**Darf man** ile **grillen** sona gelir.",
-          "also_ok": [
-            "braten"
-          ]
+          "hint_tr": "**Darf man** ile **grillen** sona gelir."
         },
         {
           "de": "Wir haben gestern Fleisch ___ und dann zusammen gegessen.",
           "answer": "gegrillt",
           "tr": "Dün et ızgara yaptık, sonra birlikte yedik.",
-          "hint_tr": "Geçmişte **gegrillt** olur.",
-          "also_ok": [
-            "gebraten"
-          ]
+          "hint_tr": "Geçmişte **gegrillt** olur."
         },
         {
           "de": "Riechst du das? Nebenan wird schon wieder ___.",

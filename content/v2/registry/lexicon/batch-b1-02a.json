@@ -1,10 +1,12 @@
 {
  "batch": "b1-02a",
  "review": {
-  "status": "draft",
+  "status": "reviewed",
   "by": "dilbilimci-ajan",
   "at": "2026-11-23",
-  "notes": "docs/v2/reviews/lexicon-b1-02.md"
+  "notes": "docs/v2/reviews/lexicon-b1-02.md; okur: docs/v2/reviews/okur/lexicon-b1-02.md; örneklem: docs/v2/reviews/ornek-lexicon-b1-02.md",
+  "okur": "passed",
+  "okur_at": "2026-11-23"
  },
  "items": [
   {
@@ -35,7 +37,7 @@
    "register": "neutral",
    "mistakes_tr": [
     "Listedeyim derken Türkçedeki **-de** yüzünden **in der Warteliste** demek kolay. Almancada **auf der Warteliste** denir.",
-    "**der Warteliste** ya da **das Warteliste** yanlış. Son parça **die Liste** olduğu için **die Warteliste** denir."
+    "**Der Warteliste ist lang** yanlış. Son parça **die Liste** olduğu için **Die Warteliste ist lang** denir."
    ],
    "examples": [
     {
@@ -126,7 +128,6 @@
      "tr": "Birçok uzman doktorda uzun bekleme listeleri var.",
      "hint_tr": "Birden çok liste: **Wartelisten**.",
      "also_ok": [
-      "Wartezeiten",
       "Listen"
      ]
     }
@@ -325,10 +326,7 @@
      "de": "Der ___ ist noch nicht da.",
      "answer": "Befund",
      "tr": "Sonuç henüz gelmedi.",
-     "hint_tr": "Sonuç **der Befund** olur.",
-     "also_ok": [
-      "Bericht"
-     ]
+     "hint_tr": "Sonuç **der Befund** olur."
     },
     {
      "de": "Haben Sie die ___ vom Hausarzt dabei?",
@@ -343,10 +341,7 @@
      "de": "Wann ist der ___ von der Untersuchung da?",
      "answer": "Befund",
      "tr": "Muayenenin sonucu ne zaman çıkar?",
-     "hint_tr": "Tek sonuç **der Befund** olur.",
-     "also_ok": [
-      "Bericht"
-     ]
+     "hint_tr": "Tek sonuç **der Befund** olur."
     }
    ]
   },
@@ -1135,7 +1130,8 @@
      "hint_tr": "**können** ile birlikte **klären** sona gelir.",
      "also_ok": [
       "erledigen",
-      "besprechen"
+      "besprechen",
+      "regeln"
      ]
     },
     {
@@ -1145,7 +1141,8 @@
      "hint_tr": "Halloldu **ist geklärt** ile söylenir.",
      "also_ok": [
       "erledigt",
-      "klar"
+      "klar",
+      "geregelt"
      ]
     },
     {
@@ -1154,7 +1151,8 @@
      "tr": "Fatura işini hallettin mi?",
      "hint_tr": "Geçmişte **hat geklärt** denir.",
      "also_ok": [
-      "erledigt"
+      "erledigt",
+      "geregelt"
      ]
     },
     {
@@ -1164,7 +1162,8 @@
      "hint_tr": "**müssen** ile birlikte **klären** sona gelir.",
      "also_ok": [
       "besprechen",
-      "erledigen"
+      "erledigen",
+      "regeln"
      ]
     }
    ]
@@ -1375,10 +1374,7 @@
      "de": "Sie haben diesen Monat zu viel ___.",
      "answer": "abgebucht",
      "tr": "Bu ay fazla para çektiniz.",
-     "hint_tr": "Geçmişte **hat abgebucht** denir.",
-     "also_ok": [
-      "berechnet"
-     ]
+     "hint_tr": "Geçmişte **hat abgebucht** denir."
     },
     {
      "de": "Wann ___ Sie das Geld ab?",
@@ -1396,11 +1392,7 @@
      "de": "Das Geld wird am Anfang des Monats ___.",
      "answer": "abgebucht",
      "tr": "Para ay başında hesaptan çekiliyor.",
-     "hint_tr": "**wird** ile **abgebucht** gelir.",
-     "also_ok": [
-      "überwiesen",
-      "bezahlt"
-     ]
+     "hint_tr": "**wird** ile **abgebucht** gelir."
     }
    ]
   },
@@ -1736,8 +1728,7 @@
      "also_ok": [
       "spät",
       "abends",
-      "nachmittags",
-      "Nachtschicht"
+      "nachmittags"
      ]
     },
     {
@@ -2096,10 +2087,7 @@
      "de": "Derya ist gestern für mich ___.",
      "answer": "eingesprungen",
      "tr": "Derya dün benim yerime çalıştı.",
-     "hint_tr": "Geçmişte **ist eingesprungen** denir.",
-     "also_ok": [
-      "gekommen"
-     ]
+     "hint_tr": "Geçmişte **ist eingesprungen** denir."
     },
     {
      "de": "Na gut, dann ___ ich halt ein.",
@@ -2453,7 +2441,6 @@
      "tr": "Wimmer Bey iznimi onayladı.",
      "hint_tr": "Geçmişte **hat genehmigt** denir.",
      "also_ok": [
-      "erlaubt",
       "bestätigt"
      ]
     },
@@ -2481,7 +2468,6 @@
      "tr": "İznimi onaylayabilir misiniz?",
      "hint_tr": "**können** ile birlikte **genehmigen** sona gelir.",
      "also_ok": [
-      "erlauben",
       "bestätigen"
      ]
     }
@@ -2587,8 +2573,7 @@
      "tr": "Çalışma saatim sekizden dört buçuğa kadar.",
      "hint_tr": "**ist** ile **Arbeitszeit** gelir, sonuna **-en** eklenmez.",
      "also_ok": [
-      "Schicht",
-      "Arbeit"
+      "Schicht"
      ]
     },
     {

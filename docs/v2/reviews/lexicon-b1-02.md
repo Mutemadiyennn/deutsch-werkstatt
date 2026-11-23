@@ -164,3 +164,34 @@ Yalnız geri dönen 8 alan değişti. Okur bu alanları yeniden okumadı.
 - Cümlesi değişen boşluklar artık örnek cümlelerle birebir aynı değil; ipuçları yeni cümlelerle uyumlu.
 
 `npm run content:validate` → **0 hata, 150 uyarı**.
+
+## Örneklem düzeltmeleri (2026-11-23, örneklem raporu: `docs/v2/reviews/ornek-lexicon-b1-02.md`, 5/87 GERİ)
+
+Beş hatanın üçü benim also_ok taramamda eklediğim girdilerdi (yanlış ya da başka anlamlı cevabı kabul ettiriyordu). Ölçüt daraltıldı: `also_ok`'a yalnız cümleye konunca artikeli uyan, çeviriyle aynı anlamı veren ve hiçbir notun "değil" diye ayırmadığı cevap girer.
+
+| Madde | Kart, alan | Yapılan |
+|---|---|---|
+| H-1 | lx:klären forms[0]–[3] | `also_ok`'a **regeln** (0, 3) ve **geregelt** (1, 2) eklendi. |
+| H-2 | lx:Zuschlag forms[2], [3] | **Löhne**, **Lohn** çıkarıldı. **Bonus** kaldı. |
+| H-3 | lx:Personalabteilung forms[0]–[3] | **Personalbüro** dördünden de çıkarıldı (**das** olduğu için **zur**, **die** ile uymuyordu). |
+| H-4 | lx:grillen forms[1], [2] | **braten**, **gebraten** çıkarıldı. |
+| H-5 | lx:Nachbarschaft mistakes_tr[1] | **Der Nachbarschaft ist ruhig** yanlış. Sonu **-schaft** olan kelimelere **die** gelir: **Die Nachbarschaft ist ruhig.** |
+| aynı sınıf | lx:Warteliste mistakes_tr[1] | **Der Warteliste ist lang** yanlış. Son parça **die Liste** olduğu için **Die Warteliste ist lang** denir. |
+| çelişki | lx:Abrechnung forms[0]–[3] | **Rechnung**, **Rechnungen** çıkarıldı (kartın notu ikisini ayırıyor). **Nebenkostenabrechnung** kaldı. |
+| çelişki | lx:Spätschicht forms[1] | **Nachtschicht** çıkarıldı. **spät**, **abends**, **nachmittags** kaldı. |
+
+**Sınırdaki 8 madde (karar: sekizi de çıkarıldı ya da daraltıldı).**
+- lx:Warteliste forms[3] **Wartezeiten**: çıkarıldı (başka anlam).
+- lx:genehmigen forms[0] **erlaubt**, forms[3] **erlauben**: çıkarıldı. forms[2] **Wenn der Chef das erlaubt** doğal, kaldı. **bestätigt**, **bestätigen** kaldı.
+- lx:absprechen forms[1] **besprochen**: çıkarıldı (kartın notu konuşmak ile kararlaştırmayı ayırıyor). forms[0]'da çeviri "konuşmam lazım" olduğu için **besprechen** kaldı.
+- lx:einspringen forms[1] **gekommen**: çıkarıldı.
+- lx:Nachzahlung forms[0]–[2] **Rechnung**: çıkarıldı.
+- lx:abbuchen forms[3] **überwiesen**, **bezahlt**: ikisi de çıkarıldı.
+- lx:nebenan forms[2] **daneben**: çıkarıldı. forms[0] **gleich daneben** kaldı.
+- lx:Guthaben forms[3] **das Handy**, **mein Handy**: çıkarıldı.
+- Kendi ek bulgum: lx:Heizkosten forms[0], [1], [3] **Nebenkosten** çıkarıldı (ısınma gideri yan giderin yalnız bir parçası; çeviriyle aynı anlam değil). **Kosten** kaldı.
+- Elle son okumada aynı ölçütle çıkarılanlar: lx:Warmmiete forms[0]–[3] **Miete**, **Mieten** (kartın notu kira türlerini ayırıyor) · lx:Befund forms[1], [3] **Bericht** · lx:Arbeitszeit forms[1] **Arbeit** · lx:abbuchen forms[0] **berechnet** · lx:Betrag forms[3] **Kosten**.
+
+**Makine taraması (bir kez, düzeltmelerden sonra).** Kalan `also_ok` girdilerinin (tarama anında 140, elle son okumadan sonra 131) her sözcüğü iki partinin bütün `mistakes_tr` notlarında (aynı kart ve komşu kartlar) tam sözcük olarak arandı: 53 eşleşme, gerçek çelişki **0**. Eşleşmelerin hepsi açıklama niteliğinde (**Liste**, **Müll**, **Antrag** "son parça"; **Urlaub**, **Geld**, **Miete** başka kartın örnek cümlesinde; **klären**, **geklärt** lx:klären notlarında doğru biçim olarak). İkinci tarama: "**der/die/das X** yanlış" biçimindeki notlarda aynı dize kartın başka yerinde doğru olarak geçiyor mu? Kalan tek eşleşme lx:Sperrmüll (**die Sperrmüll** dizesi **die Sperrmülle** içinde), yanlış alarm. Taramanın sınırı: farklı sözcükle yazılmış anlam ayrımlarını göremez; onlar için girdilerin hepsi örneklemin üç sorusuyla elle bir kez daha okundu.
+
+**Durum.** Okur 2. turda 8/8 geçti. İki dosyada `review` baş geliştiricinin verdiği biçimde `reviewed`, `okur: passed`. Bu turda değişen iki not (lx:Nachbarschaft, lx:Warteliste mistakes_tr[1]) okurdan ve değişen boşluklar örneklemin 3. turundan henüz geçmedi. `npm run content:validate` → **0 hata, 150 uyarı**.
