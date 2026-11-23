@@ -1,0 +1,395 @@
+{
+  "schema": 1,
+  "id": "m1:gun:44",
+  "day": 44,
+  "level": "A1",
+  "format": "gun",
+  "title_tr": "Gerek yok mu, yasak mı",
+  "goal_tr": "Bir yerde neyin yasak, neyin gereksiz olduğunu anlar, kuralları sorar, bir şeyi kibarca istersin.",
+  "can_do": { "id": "cd:m1:44", "tr": "Bir yerde neyin yasak, neyin gerekmediğini anlar, kibarca isterim." },
+  "unit": "u:m1:44",
+  "arm": "pazar",
+  "place": "pl:praxis",
+  "characters": ["ch:huber", "ch:weber", "ch:pichler", "ch:petrovic", "ch:stadler", "ch:kraus"],
+  "requires": { "kelimeler": [], "kaliplar": [], "gramer": [], "tur": [], "baglayicilar": [], "akicilik": [] },
+  "review": { "status": "draft" },
+  "dersler": ["gr:a1-09:t2", "gr:a1-09:t3"],
+  "yeni_kartlar": ["lx:Handy", "lx:Tier", "lx:streng", "lx:Restaurant", "lx:abnehmen", "lx:scharf", "lx:lecker", "lx:Training", "lx:bestellen", "lx:Wunsch", "lx:ausgeben", "lx:Kunde", "lx:Aufgabe"],
+  "halkalar": [
+    {
+      "id": "m1:44:h1",
+      "title_tr": "Burada yasak mı?",
+      "kartlar": ["lx:Handy", "lx:Tier", "lx:streng", "lx:Restaurant"],
+      "kaliplar": [
+        { "de": "Man muss … – Man muss nicht … – Man darf … – Man darf nicht …", "tr": "… gerekiyor – … gerekmiyor – … olur, izin var – … yasak" },
+        { "de": "Hier darf man nicht telefonieren. – Hier darf man nicht rauchen.", "tr": "Burada telefonla konuşmak yasak. – Burada sigara içmek yasak." },
+        { "de": "Darf man hier …?", "tr": "Burada … olur mu?" }
+      ],
+      "gorev_cumleleri": [
+        { "kart": "lx:Handy", "de": "Hier darf man nicht mit dem Handy telefonieren.", "tr": "Burada cep telefonuyla konuşmak yasak.",
+          "accepted": ["Hier darf man nicht mit dem Handy telefonieren.", "Hier darf man mit dem Handy nicht telefonieren.", "Mit dem Handy darf man hier nicht telefonieren."] },
+        { "kart": "lx:Handy", "de": "Darf man hier mit dem Handy zahlen?", "tr": "Burada cep telefonuyla ödenebilir mi?",
+          "accepted": ["Darf man hier mit dem Handy zahlen?", "Darf man hier mit dem Handy bezahlen?", "Kann man hier mit dem Handy zahlen?"] },
+        { "kart": "lx:Tier", "de": "Tiere dürfen nicht in die Praxis.", "tr": "Hayvanlar muayenehaneye giremez.",
+          "accepted": ["Tiere dürfen nicht in die Praxis.", "Tiere dürfen nicht in die Praxis kommen.", "In die Praxis dürfen keine Tiere."] },
+        { "kart": "lx:Tier", "de": "Darf man im Haus Tiere haben?", "tr": "Apartmanda hayvan beslemek serbest mi?",
+          "accepted": ["Darf man im Haus Tiere haben?", "Darf man im Haus ein Tier haben?", "Darf ich im Haus Tiere haben?"] },
+        { "kart": "lx:streng", "de": "Frau Huber ist streng, aber nett.", "tr": "Huber Hanım katı ama nazik.",
+          "accepted": ["Frau Huber ist streng, aber nett.", "Frau Huber ist streng, aber sie ist nett.", "Frau Huber ist nett, aber streng."] },
+        { "kart": "lx:streng", "de": "Ist der Chef streng?", "tr": "Şef katı mı?",
+          "accepted": ["Ist der Chef streng?", "Ist dein Chef streng?", "Ist Ihr Chef streng?"] },
+        { "kart": "lx:Restaurant", "de": "Im Restaurant darf man nicht rauchen.", "tr": "Restoranda sigara içmek yasak.",
+          "accepted": ["Im Restaurant darf man nicht rauchen.", "Man darf im Restaurant nicht rauchen.", "Rauchen darf man im Restaurant nicht."] },
+        { "kart": "lx:Restaurant", "de": "Ich möchte heute ins Restaurant gehen.", "tr": "Bugün restorana gitmek istiyorum.",
+          "accepted": ["Ich möchte heute ins Restaurant gehen.", "Ich möchte heute ins Restaurant.", "Heute möchte ich ins Restaurant gehen."] }
+      ],
+      "sahne": {
+        "ortam_tr": "Bekleme odası. Telefonun çaldı, açtın. Huber Hanım kapıda beliriyor.",
+        "satirlar": [
+          { "r": "ch:huber", "de": "Entschuldigung! Bitte nicht hier telefonieren.", "tr": "Affedersiniz! Lütfen burada telefonla konuşmayın." },
+          { "r": "ogrenci", "de": "Ach so, Entschuldigung! Darf ich draußen telefonieren?", "tr": "Anladım, affedersiniz! Dışarıda konuşabilir miyim?" },
+          { "r": "ch:huber", "de": "Ja, draußen dürfen Sie.", "tr": "Evet, dışarıda konuşabilirsiniz." }
+        ],
+        "soru": { "q_tr": "Telefonla nerede konuşabilirsin?", "opts": ["Dışarıda", "Bekleme odasında", "Hiçbir yerde"], "ans": 0 }
+      }
+    },
+    {
+      "id": "m1:44:h2",
+      "title_tr": "Gerekmiyor ama yasak",
+      "kartlar": ["lx:abnehmen", "lx:scharf", "lx:lecker", "lx:Training"],
+      "kaliplar": [
+        { "de": "Sie müssen nicht … – Sie dürfen nicht …", "tr": "…meniz gerekmiyor – …meniz yasak" },
+        { "de": "Ich muss nicht … – Ich darf nicht …", "tr": "…mem gerekmiyor – …mem yasak" },
+        { "de": "Mir tut … weh. – seit …", "tr": "…m ağrıyor. – … beri (dünün kalıbı)" }
+      ],
+      "gorev_cumleleri": [
+        { "kart": "lx:abnehmen", "de": "Muss ich abnehmen?", "tr": "Kilo vermem gerekiyor mu?",
+          "accepted": ["Muss ich abnehmen?", "Muss ich wirklich abnehmen?", "Herr Doktor, muss ich abnehmen?"] },
+        { "kart": "lx:abnehmen", "de": "Ich will bis Mai fünf Kilo abnehmen.", "tr": "Mayısa kadar beş kilo vermek istiyorum.",
+          "accepted": ["Ich will bis Mai fünf Kilo abnehmen.", "Bis Mai will ich fünf Kilo abnehmen.", "Ich möchte bis Mai fünf Kilo abnehmen."] },
+        { "kart": "lx:scharf", "de": "Ich darf nicht scharf essen.", "tr": "Acı yemem yasak.",
+          "accepted": ["Ich darf nicht scharf essen.", "Ich darf nichts Scharfes essen.", "Scharf essen darf ich nicht."] },
+        { "kart": "lx:scharf", "de": "Mir tut der Bauch weh. Das ist zu scharf.", "tr": "Karnım ağrıyor. Bu çok acı.",
+          "accepted": ["Mir tut der Bauch weh. Das ist zu scharf.", "Das ist zu scharf, mir tut der Bauch weh.", "Mir tut der Bauch weh, das ist zu scharf."] },
+        { "kart": "lx:lecker", "de": "Der Kaffee ist lecker.", "tr": "Kahve lezzetli.",
+          "accepted": ["Der Kaffee ist lecker.", "Der Kaffee ist echt lecker.", "Der Kaffee ist wirklich lecker."] },
+        { "kart": "lx:lecker", "de": "Der Kuchen von Frau Brandl ist lecker.", "tr": "Brandl Hanım'ın pastası lezzetli.",
+          "accepted": ["Der Kuchen von Frau Brandl ist lecker.", "Der Kuchen von Frau Brandl ist echt lecker.", "Frau Brandls Kuchen ist lecker."] },
+        { "kart": "lx:Training", "de": "Nach dem Training tut mir der Rücken weh.", "tr": "Antrenmandan sonra sırtım ağrıyor.",
+          "accepted": ["Nach dem Training tut mir der Rücken weh.", "Mir tut nach dem Training der Rücken weh.", "Nach dem Training tut der Rücken weh."] },
+        { "kart": "lx:Training", "de": "Ich muss heute nicht zum Training.", "tr": "Bugün antrenmana gitmem gerekmiyor.",
+          "accepted": ["Ich muss heute nicht zum Training.", "Heute muss ich nicht zum Training.", "Ich muss heute nicht zum Training gehen."] }
+      ],
+      "sahne": {
+        "ortam_tr": "Akşam, şehir meydanında bir restoran. Kuaför Luka seni yemeğe davet etti.",
+        "satirlar": [
+          { "r": "ch:petrovic", "de": "Hier ist alles lecker, aber scharf!", "tr": "Burada her şey lezzetli ama acı!" },
+          { "r": "ogrenci", "de": "Scharf? Nein, danke. Das darf ich nicht essen.", "tr": "Acı mı? Hayır, teşekkürler. Onu yemem yasak." },
+          { "r": "ch:petrovic", "de": "Kein Problem. Hier, das ist nicht scharf.", "tr": "Sorun değil. Bak, bu acı değil." }
+        ],
+        "soru": { "q_tr": "Luka buradaki yemekler için ne diyor?", "opts": ["Lezzetli ama acı", "Pahalı", "Soğuk"], "ans": 0 }
+      }
+    },
+    {
+      "id": "m1:44:h3",
+      "title_tr": "Kibarca istemek",
+      "kartlar": ["lx:bestellen", "lx:Wunsch", "lx:ausgeben", "lx:Kunde", "lx:Aufgabe"],
+      "kaliplar": [
+        { "de": "Ich möchte … – Ich will …", "tr": "… istiyorum (kibar) – … istiyorum (güçlü istek ya da plan)" },
+        { "de": "Was möchten Sie? – Haben Sie noch einen Wunsch?", "tr": "Ne istersiniz? – Başka bir isteğiniz var mı?" },
+        { "de": "Geld für … ausgeben – Ich gebe … aus.", "tr": "…e para harcamak – … harcıyorum." }
+      ],
+      "gorev_cumleleri": [
+        { "kart": "lx:bestellen", "de": "Ich möchte bitte bestellen.", "tr": "Sipariş vermek istiyorum, lütfen.",
+          "accepted": ["Ich möchte bitte bestellen.", "Ich möchte bestellen, bitte.", "Wir möchten bitte bestellen."] },
+        { "kart": "lx:bestellen", "de": "Möchten Sie etwas bestellen?", "tr": "Bir şey sipariş etmek ister misiniz?",
+          "accepted": ["Möchten Sie etwas bestellen?", "Möchten Sie jetzt bestellen?", "Möchten Sie schon bestellen?"] },
+        { "kart": "lx:Wunsch", "de": "Haben Sie einen Wunsch?", "tr": "Bir isteğiniz var mı?",
+          "accepted": ["Haben Sie einen Wunsch?", "Haben Sie noch einen Wunsch?", "Haben Sie vielleicht einen Wunsch?"] },
+        { "kart": "lx:Wunsch", "de": "Mein Wunsch ist ein Termin am Montag.", "tr": "İsteğim pazartesi bir randevu.",
+          "accepted": ["Mein Wunsch ist ein Termin am Montag.", "Mein Wunsch: ein Termin am Montag.", "Ich möchte einen Termin am Montag."] },
+        { "kart": "lx:ausgeben", "de": "Ich will nicht so viel Geld ausgeben.", "tr": "O kadar çok para harcamak istemiyorum.",
+          "accepted": ["Ich will nicht so viel Geld ausgeben.", "Ich will nicht viel Geld ausgeben.", "Ich möchte nicht so viel Geld ausgeben."] },
+        { "kart": "lx:ausgeben", "de": "Ich gebe viel Geld für Kaffee aus.", "tr": "Kahveye çok para harcıyorum.",
+          "accepted": ["Ich gebe viel Geld für Kaffee aus.", "Für Kaffee gebe ich viel Geld aus.", "Ich gebe für Kaffee viel Geld aus."] },
+        { "kart": "lx:Kunde", "de": "Der Kunde möchte einen Termin.", "tr": "Müşteri bir randevu istiyor.",
+          "accepted": ["Der Kunde möchte einen Termin.", "Der Kunde möchte bitte einen Termin.", "Der Kunde möchte gern einen Termin."] },
+        { "kart": "lx:Kunde", "de": "Der Kunde will nicht warten.", "tr": "Müşteri beklemek istemiyor.",
+          "accepted": ["Der Kunde will nicht warten.", "Der Kunde will nicht lange warten.", "Der Kunde möchte nicht warten."] },
+        { "kart": "lx:Aufgabe", "de": "Was ist heute meine Aufgabe?", "tr": "Bugün benim görevim ne?",
+          "accepted": ["Was ist heute meine Aufgabe?", "Was ist meine Aufgabe heute?", "Welche Aufgabe habe ich heute?"] },
+        { "kart": "lx:Aufgabe", "de": "Möchten Sie diese Aufgabe machen?", "tr": "Bu görevi yapmak ister misiniz?",
+          "accepted": ["Möchten Sie diese Aufgabe machen?", "Möchten Sie die Aufgabe machen?", "Möchten Sie diese Aufgabe?"] }
+      ],
+      "sahne": {
+        "ortam_tr": "Stadler fırını. Ekmeğini aldın, Stadler Hanım soruyor.",
+        "satirlar": [
+          { "r": "ch:stadler", "de": "Haben Sie noch einen Wunsch?", "tr": "Başka bir isteğiniz var mı?" },
+          { "r": "ogrenci", "de": "Nein, danke. Das ist alles.", "tr": "Hayır, teşekkürler. Bu kadar." },
+          { "r": "ch:stadler", "de": "Gut. Danke und bis morgen!", "tr": "Peki. Teşekkürler, yarın görüşürüz!" }
+        ],
+        "soru": { "q_tr": "Başka bir şey istiyor musun?", "opts": ["Hayır, bu kadar", "Evet, bir ekmek daha", "Evet, bir kahve"], "ans": 0 }
+      }
+    }
+  ],
+  "sahne": {
+    "id": "m1:44:v1",
+    "title_tr": "Pichler Bey ve muayenehanenin kuralları",
+    "sahneler": [
+      { "id": "s1", "speaker": "ch:huber", "sahne_tr": "Dr. Weber'in muayenehanesi. Apartman görevlisi Pichler Bey küçük köpeğiyle içeri giriyor. Huber Hanım ayağa kalkıyor.", "de": "Herr Pichler, der Hund darf nicht ins Wartezimmer!", "tr": "Pichler Bey, köpek bekleme odasına giremez!" },
+      { "id": "s2", "speaker": "ch:pichler", "sahne_tr": "Pichler Bey köpeği kucağına alıyor.", "de": "Aber er ist klein und lieb!", "tr": "Ama o küçük ve uslu!" },
+      { "id": "s3", "speaker": "ch:huber", "sahne_tr": "Huber Hanım kollarını kavuşturuyor.", "de": "Nein, Herr Pichler. Hier sind wir streng.", "tr": "Hayır Pichler Bey. Burada kurallar katı." },
+      { "id": "s4", "speaker": "ch:pichler", "sahne_tr": "Pichler Bey köpeği kapının önüne bağlıyor.", "de": "Na gut. Er kann draußen warten.", "tr": "Peki. Dışarıda bekleyebilir." },
+      { "id": "s5", "speaker": "ch:pichler", "sahne_tr": "Bekleme odası. Pichler Bey'in telefonu çalıyor, yüksek sesle konuşmaya başlıyor.", "de": "Hallo? Ja, ich bin beim Arzt!", "tr": "Alo? Evet, doktordayım!" },
+      { "id": "s6", "speaker": "ch:huber", "sahne_tr": "Huber Hanım kapıdan başını uzatıyor.", "de": "Herr Pichler! Im Wartezimmer darf man nicht telefonieren!", "tr": "Pichler Bey! Bekleme odasında telefonla konuşmak yasak!" },
+      { "id": "s7", "speaker": "ch:pichler", "sahne_tr": "Pichler Bey telefonu hemen cebine koyuyor.", "de": "Entschuldigung! Das Handy ist aus.", "tr": "Affedersiniz! Telefon kapalı." },
+      { "id": "s8", "speaker": "ch:weber", "sahne_tr": "Dr. Weber bekleme odasının kapısında.", "de": "Herr Pichler, bitte!", "tr": "Pichler Bey, buyurun!" },
+      { "id": "s9", "speaker": "ch:pichler", "sahne_tr": "Muayene odası. Pichler Bey göbeğini gösteriyor.", "de": "Herr Doktor, muss ich abnehmen?", "tr": "Doktor bey, kilo vermem gerekiyor mu?" },
+      { "id": "s10", "speaker": "ch:weber", "sahne_tr": "Dr. Weber tartıya bakıyor.", "de": "Nein, Sie müssen nicht abnehmen.", "tr": "Hayır, kilo vermeniz gerekmiyor." },
+      { "id": "s11", "speaker": "ch:weber", "sahne_tr": "Dr. Weber parmağını kaldırıyor.", "de": "Aber Sie dürfen nicht scharf essen.", "tr": "Ama acı yememelisiniz." },
+      { "id": "s12", "speaker": "ch:pichler", "sahne_tr": "Pichler Bey üzgün bakıyor.", "de": "Nicht scharf? Aber scharf ist lecker!", "tr": "Acı yok mu? Ama acı lezzetli!" },
+      { "id": "s13", "speaker": "ch:weber", "sahne_tr": "Dr. Weber gülümsüyor.", "de": "Und Sie müssen keine Tabletten nehmen.", "tr": "Bir de tablet almanız gerekmiyor." },
+      { "id": "s14", "speaker": "ch:pichler", "sahne_tr": "Pichler Bey sevinçle ellerini çırpıyor.", "de": "Keine Tabletten? Super!", "tr": "Tablet yok mu? Süper!" },
+      { "id": "s15", "speaker": "ch:weber", "sahne_tr": "Dr. Weber pencereden köpeği gösteriyor.", "de": "Aber Sie müssen viel laufen. Jeden Tag.", "tr": "Ama çok yürümeniz gerekiyor. Her gün." },
+      { "id": "s16", "speaker": "ch:pichler", "sahne_tr": "Pichler Bey gülüyor.", "de": "Kein Problem. Mein Hund will jeden Tag laufen!", "tr": "Sorun değil. Köpeğim her gün yürümek istiyor zaten!" }
+    ],
+    "bolumler": [
+      {
+        "id": "b1",
+        "cumleler": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15", "s16"],
+        "ana_fikir": { "kind": "gist", "q_tr": "Bu sahnede ne oluyor?", "opts": ["Pichler Bey muayenehanenin kurallarını ve doktorun önerilerini öğreniyor", "Pichler Bey yeni bir randevu alıyor", "Pichler Bey köpeğini doktora götürüyor"], "ans": 0, "kanit": ["s1", "s6", "s10", "s11"] },
+        "ayrinti": [
+          { "kind": "detail", "q_tr": "Köpek nerede bekliyor?", "opts": ["Dışarıda", "Bekleme odasında", "Evde"], "ans": 0, "kanit": ["s4"] },
+          { "kind": "detail", "q_tr": "Pichler Bey'in kilo vermesi gerekiyor mu?", "opts": ["Hayır, gerekmiyor", "Evet, beş kilo", "Doktor bir şey söylemiyor"], "ans": 0, "kanit": ["s10"] },
+          { "kind": "detail", "q_tr": "Pichler Bey ne yapmamalı?", "opts": ["Acı yememeli", "Yürümemeli", "Kahve içmemeli"], "ans": 0, "kanit": ["s11"] }
+        ],
+        "dikte": [
+          { "id": "d1", "cumle": "s14", "seviye": "kolay", "q_tr": "Hangi kelimeyi duydun?", "opts": ["Tabletten", "Tropfen", "Termine"], "ans": 0 },
+          { "id": "d2", "cumle": "s10", "seviye": "orta", "de": "Nein, Sie müssen nicht ___.", "accepted": ["abnehmen", "Abnehmen", "abnehmen."] },
+          { "id": "d3", "cumle": "s11", "seviye": "zor", "banka": ["Aber", "Sie", "dürfen", "nicht", "scharf", "essen", "müssen", "kalt"], "accepted": ["Aber Sie dürfen nicht scharf essen.", "aber sie dürfen nicht scharf essen", "Aber Sie dürfen nicht scharf essen"] },
+          { "id": "d4", "cumle": "s13", "seviye": "usta", "accepted": ["Und Sie müssen keine Tabletten nehmen.", "und sie müssen keine tabletten nehmen", "Und Sie müssen keine Tabletten nehmen"] },
+          { "id": "d5", "seviye": "gercek", "gorev_tr": "Doktor Pichler Bey'e ne dedi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Herr Pichler muss nicht abnehmen. Er darf nicht scharf essen.", "zorunlu": ["muss nicht", "darf nicht"] }
+        ],
+        "golge": ["s6", "s11"],
+        "cevapla": {
+          "id": "m1:44:v1:c1",
+          "k": "guided_response",
+          "situation_tr": "Brandl Hanım soruyor: bekleme odasında telefonla konuşabilir mi? Yasak olduğunu söyle.",
+          "prompt_de": "Darf man im Wartezimmer telefonieren?",
+          "accepted": ["Nein, im Wartezimmer darf man nicht telefonieren.", "Nein, das darf man nicht.", "Nein, hier darf man nicht telefonieren.", "Nein, Frau Brandl, das darf man nicht.", "Nein, aber draußen darf man telefonieren."],
+          "why_tr": "Yasak için **darf man nicht** dersin, **muss nicht** ise yalnızca gerek yok demektir."
+        }
+      }
+    ]
+  },
+  "sesler": [
+    {
+      "id": "m1:44:a1",
+      "tur": "anons",
+      "title_tr": "Spor salonunda duyuru",
+      "ortam_tr": "Basti seni spor salonuna götürdü. Hoparlörden bir duyuru geliyor.",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Hallo und willkommen!", "tr": "Merhaba, hoş geldiniz!" },
+        { "id": "c2", "de": "Das Training ist heute um achtzehn Uhr, nicht um siebzehn Uhr.", "tr": "Antrenman bugün saat on yedide değil, on sekizde." },
+        { "id": "c3", "de": "Hier darf man nicht essen, aber Sie dürfen Wasser trinken.", "tr": "Burada yemek yemek yasak ama su içebilirsiniz." },
+        { "id": "c4", "de": "Sie müssen kein Wasser kaufen. Wasser haben wir hier.", "tr": "Su satın almanız gerekmiyor. Burada su var." },
+        { "id": "c5", "de": "Telefonieren darf man hier nicht.", "tr": "Burada telefonla konuşmak yasak." }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Bu duyuru ne hakkında?", "opts": ["Spor salonunun kuralları ve antrenman saati", "Yeni bir restoran", "Muayenehanenin saatleri"], "ans": 0, "kanit": ["c2", "c3"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Antrenman bugün saat kaçta?", "opts": ["18.00", "17.00", "8.00"], "ans": 0, "kanit": ["c2"] },
+            { "kind": "detail", "q_tr": "Su satın alman gerekiyor mu?", "opts": ["Hayır, salonda su var", "Evet, su satın almalısın", "Su içmek yasak"], "ans": 0, "kanit": ["c4"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c2", "seviye": "kolay", "q_tr": "Hangi sayıyı duydun?", "opts": ["achtzehn", "acht", "achtzig"], "ans": 0 },
+            { "id": "d2", "cumle": "c3", "seviye": "orta", "de": "Hier darf man nicht ___, aber Sie dürfen Wasser trinken.", "accepted": ["essen", "Essen", "essen."] },
+            { "id": "d3", "cumle": "c5", "seviye": "zor", "banka": ["Telefonieren", "darf", "man", "hier", "nicht", "muss", "Handy"], "accepted": ["Telefonieren darf man hier nicht.", "telefonieren darf man hier nicht", "Telefonieren darf man hier nicht"] },
+            { "id": "d4", "cumle": "c4", "seviye": "usta", "accepted": ["Sie müssen kein Wasser kaufen.", "sie müssen kein wasser kaufen", "Sie müssen kein Wasser kaufen"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Duyuruda ne dendi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Das Training ist um achtzehn Uhr. Man muss kein Wasser kaufen.", "zorunlu": ["Training", "muss"] }
+          ],
+          "golge": ["c3", "c4"],
+          "cevapla": {
+            "id": "m1:44:a1:c1",
+            "k": "guided_response",
+            "situation_tr": "Basti soruyor: su almam gerekiyor mu? Gerekmediğini söyle.",
+            "prompt_de": "Muss ich Wasser kaufen?",
+            "accepted": ["Nein, du musst kein Wasser kaufen.", "Nein, das musst du nicht.", "Nein, Wasser haben sie hier.", "Nein, du musst nicht.", "Nein, du musst kein Wasser kaufen, Basti."],
+            "why_tr": "Gerek yoksa **musst kein** ya da **musst nicht** dersin."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:44:a1:e1", "k": "pick", "q_tr": "Antrenmana gidiyorsun. Ne yapmalısın?", "opts": ["Saat on sekizde git, su almana gerek yok.", "Saat on yedide git, yanına su al.", "Yemeğini yanına al."], "ans": 0, "why_tr": "Antrenman on sekizde, salonda su var ve yemek yemek yasak.", "kanit": ["c2", "c3", "c4"] }
+    },
+    {
+      "id": "m1:44:a2",
+      "tur": "sesli-mesaj",
+      "title_tr": "Huber Hanım'dan yarın için mesaj",
+      "ortam_tr": "Yarın kan tahlili için randevun var. Muayenehaneden bir mesaj geldi.",
+      "speaker": "ch:huber",
+      "hizlar": ["slow", "normal"],
+      "script": [
+        { "id": "c1", "de": "Guten Tag, hier ist Huber, Praxis Dr. Weber.", "tr": "İyi günler, ben Huber, Dr. Weber muayenehanesi." },
+        { "id": "c2", "de": "Ihr Termin ist morgen um neun Uhr.", "tr": "Randevunuz yarın saat dokuzda." },
+        { "id": "c3", "de": "Sie müssen kein Formular ausfüllen, das haben wir schon.", "tr": "Form doldurmanız gerekmiyor, o bizde var." },
+        { "id": "c4", "de": "Aber Sie dürfen vor dem Termin nichts essen.", "tr": "Ama randevudan önce hiçbir şey yememelisiniz." },
+        { "id": "c5", "de": "Wasser trinken dürfen Sie.", "tr": "Su içebilirsiniz." }
+      ],
+      "bolumler": [
+        {
+          "id": "b1",
+          "cumleler": ["c1", "c2", "c3", "c4", "c5"],
+          "ana_fikir": { "kind": "gist", "q_tr": "Mesaj ne hakkında?", "opts": ["Yarınki randevu ve kurallar", "Randevunun iptali", "Bir reçete"], "ans": 0, "kanit": ["c2", "c4"] },
+          "ayrinti": [
+            { "kind": "detail", "q_tr": "Form doldurman gerekiyor mu?", "opts": ["Hayır", "Evet", "Evet, iki form"], "ans": 0, "kanit": ["c3"] },
+            { "kind": "detail", "q_tr": "Randevudan önce ne yapmamalısın?", "opts": ["Yemek yememelisin", "Su içmemelisin", "Spor yapmamalısın"], "ans": 0, "kanit": ["c4"] }
+          ],
+          "dikte": [
+            { "id": "d1", "cumle": "c2", "seviye": "kolay", "q_tr": "Hangi sayıyı duydun?", "opts": ["neun", "zehn", "elf"], "ans": 0 },
+            { "id": "d2", "cumle": "c5", "seviye": "orta", "de": "Wasser ___ dürfen Sie.", "accepted": ["trinken", "Trinken", "trinken."] },
+            { "id": "d3", "cumle": "c4", "seviye": "zor", "banka": ["Aber", "Sie", "dürfen", "vor", "dem", "Termin", "nichts", "essen", "müssen", "nach"], "accepted": ["Aber Sie dürfen vor dem Termin nichts essen.", "aber sie dürfen vor dem termin nichts essen", "Aber Sie dürfen vor dem Termin nichts essen"] },
+            { "id": "d4", "cumle": "c2", "seviye": "usta", "accepted": ["Ihr Termin ist morgen um neun Uhr.", "ihr termin ist morgen um neun uhr", "Ihr Termin ist morgen um neun Uhr"] },
+            { "id": "d5", "seviye": "gercek", "gorev_tr": "Mesajda ne dendi? Almanca bir iki kısa cümleyle yaz.", "ornek_de": "Mein Termin ist morgen um neun. Ich darf vor dem Termin nichts essen.", "zorunlu": ["darf", "nichts"] }
+          ],
+          "golge": ["c4", "c5"],
+          "cevapla": {
+            "id": "m1:44:a2:c1",
+            "k": "guided_response",
+            "situation_tr": "Tobi yarın sabah seni kahvaltıya çağırıyor. Randevudan önce yemek yiyemeyeceğini söyle.",
+            "prompt_de": "Frühstücken wir morgen zusammen?",
+            "accepted": ["Nein, ich darf vor dem Termin nichts essen.", "Morgen nicht, ich darf nichts essen.", "Leider nicht. Ich darf morgen nichts essen.", "Nein, ich habe einen Termin beim Arzt. Ich darf nichts essen.", "Nein, ich darf vor dem Arzt nichts essen."],
+            "why_tr": "Yasak olduğu için **Ich darf nichts essen** dersin."
+          }
+        }
+      ],
+      "eylem": { "id": "m1:44:a2:e1", "k": "pick", "q_tr": "Yarın sabah ne yapmalısın?", "opts": ["Kahvaltı etmeden, yalnız su içip saat dokuzda git.", "Kahvaltı edip git.", "Önce formu doldur."], "ans": 0, "why_tr": "Randevudan önce yemek yasak ama su serbest, form doldurman da gerekmiyor.", "kanit": ["c3", "c4", "c5"] }
+    }
+  ],
+  "gorsel": [
+    { "id": "m1:44:g1", "de": "Handy", "dogru_img": "smartphone lying on a table", "celdirici_img": ["a landline telephone", "a wallet", "a set of keys"] },
+    { "id": "m1:44:g2", "de": "Tier", "dogru_img": "small dog sitting on a sidewalk", "celdirici_img": ["a child sitting on a bench", "a bicycle leaning on a wall", "a shopping bag on the ground"] },
+    { "id": "m1:44:g3", "de": "Restaurant", "dogru_img": "restaurant dining room with set tables and a waiter", "celdirici_img": ["a supermarket aisle", "a bakery counter", "a doctor's waiting room"] },
+    { "id": "m1:44:g4", "de": "Training", "dogru_img": "people exercising in a gym with a trainer", "celdirici_img": ["people sitting in a classroom", "people waiting at a bus stop", "people eating in a restaurant"] }
+  ],
+  "prova": {
+    "id": "m1:44:p1",
+    "title_tr": "Muayenehanede kibarca istemek",
+    "durum_tr": "Sırtın ağrıyor ve randevusuz muayenehaneye geldin. Kayıt masasında Huber Hanım var.",
+    "karsi": "ch:huber",
+    "baslangic": "n1",
+    "dugumler": [
+      {
+        "id": "n1",
+        "de": "Guten Morgen! Was kann ich für Sie tun?",
+        "tr": "Günaydın! Size nasıl yardımcı olabilirim?",
+        "secenekler": [
+          { "de": "Guten Morgen! Ich möchte einen Termin bei Dr. Weber, bitte.", "tr": "Günaydın! Dr. Weber'den bir randevu rica ediyorum.",
+            "accepted": ["Guten Morgen! Ich möchte einen Termin bei Dr. Weber, bitte.", "Guten Morgen! Ich möchte bitte einen Termin bei Dr. Weber.", "Ich möchte einen Termin, bitte.", "Guten Morgen, ich hätte gern einen Termin."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Kibar bir istek: **Ich möchte**." },
+          { "de": "Guten Morgen! Mir tut seit Montag der Rücken weh. Ich möchte zu Dr. Weber.", "tr": "Günaydın! Pazartesiden beri sırtım ağrıyor. Dr. Weber'e görünmek istiyorum.",
+            "accepted": ["Guten Morgen! Mir tut seit Montag der Rücken weh. Ich möchte zu Dr. Weber.", "Mir tut seit Montag der Rücken weh. Ich möchte zu Dr. Weber, bitte.", "Guten Morgen, ich habe seit Montag Rückenschmerzen. Ich möchte zu Dr. Weber."],
+            "sonraki": "n2", "uygun": true, "geri_bildirim_tr": "Çok iyi. Hem sorunu hem isteğini söyledin." },
+          { "de": "Ich will sofort zum Doktor!", "tr": "Hemen doktora gitmek istiyorum!",
+            "accepted": ["Ich will sofort zum Doktor!", "Ich will einen Termin!", "Ich will jetzt zum Arzt!"],
+            "sonraki": "n1", "uygun": false, "geri_bildirim_tr": "**Ich will** burada sert ve kaba duyulur. Kibar istek için **Ich möchte** de." }
+        ]
+      },
+      {
+        "id": "n2",
+        "de": "Heute ist es voll. Sie müssen eine Stunde warten.",
+        "tr": "Bugün çok kalabalık. Bir saat beklemeniz gerekiyor.",
+        "secenekler": [
+          { "de": "Okay. Muss ich im Wartezimmer warten?", "tr": "Tamam. Bekleme odasında mı beklemem gerekiyor?",
+            "accepted": ["Okay. Muss ich im Wartezimmer warten?", "Muss ich hier im Wartezimmer warten?", "Gut. Muss ich hier warten?"],
+            "sonraki": "n3", "uygun": true, "geri_bildirim_tr": "Kuralı **Muss ich …?** ile sordun." },
+          { "de": "Eine Stunde? Ich möchte lieber morgen kommen.", "tr": "Bir saat mi? Yarın gelmeyi tercih ederim.",
+            "accepted": ["Eine Stunde? Ich möchte lieber morgen kommen.", "Ich möchte lieber morgen kommen.", "Eine Stunde? Dann lieber morgen."],
+            "sonraki": "n2b", "uygun": true, "geri_bildirim_tr": "**lieber** ile tercihini kibarca söyledin." }
+        ]
+      },
+      {
+        "id": "n2b",
+        "de": "Morgen um acht Uhr geht.",
+        "tr": "Yarın saat sekiz olur.",
+        "secenekler": [
+          { "de": "Gut, morgen um acht. Danke!", "tr": "Tamam, yarın saat sekizde. Teşekkürler!",
+            "accepted": ["Gut, morgen um acht. Danke!", "Morgen um acht passt. Danke!", "Okay, morgen um acht Uhr. Danke schön!"],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Saati tekrar ettin, yanlış anlaşılma kalmadı." }
+        ]
+      },
+      {
+        "id": "n3",
+        "de": "Nein, das müssen Sie nicht. Sie dürfen auch draußen warten.",
+        "tr": "Hayır, gerekmiyor. Dışarıda da bekleyebilirsiniz.",
+        "secenekler": [
+          { "de": "Super. Darf ich draußen telefonieren?", "tr": "Süper. Dışarıda telefonla konuşabilir miyim?",
+            "accepted": ["Super. Darf ich draußen telefonieren?", "Darf ich draußen telefonieren?", "Gut. Darf man draußen telefonieren?"],
+            "sonraki": "n4", "uygun": true, "geri_bildirim_tr": "İzni **Darf ich …?** ile sordun." },
+          { "de": "Okay, danke. Ich möchte hier warten.", "tr": "Tamam, teşekkürler. Burada beklemek istiyorum.",
+            "accepted": ["Okay, danke. Ich möchte hier warten.", "Danke, ich möchte hier warten.", "Gut, ich warte hier."],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Kısa ve kibar." }
+        ]
+      },
+      {
+        "id": "n4",
+        "de": "Ja, draußen dürfen Sie telefonieren. Im Wartezimmer nicht.",
+        "tr": "Evet, dışarıda telefonla konuşabilirsiniz. Bekleme odasında olmaz.",
+        "secenekler": [
+          { "de": "Alles klar. Danke, Frau Huber!", "tr": "Anlaşıldı. Teşekkürler Huber Hanım!",
+            "accepted": ["Alles klar. Danke, Frau Huber!", "Alles klar, danke!", "Okay, danke schön, Frau Huber!"],
+            "sonraki": "n9", "uygun": true, "geri_bildirim_tr": "Kuralı anladığını gösterdin." }
+        ]
+      },
+      { "id": "n9", "de": "Bitte. Bis gleich!", "tr": "Rica ederim. Birazdan görüşürüz!", "son": true }
+    ],
+    "kapanis_tr": "Kibarca randevu istedin, neyin gerektiğini ve neyin yasak olduğunu sordun."
+  },
+  "okuma_yazma": {
+    "tur": "okuma",
+    "title_tr": "Bekleme odasındaki tabela",
+    "metin_de": "Bitte lesen! Bitte telefonieren Sie nicht im Wartezimmer. Tiere dürfen nicht ins Wartezimmer. Essen darf man hier nicht, aber Wasser trinken dürfen Sie. Sie müssen keine Nummer nehmen. Frau Huber sagt Ihren Namen. Haben Sie Fieber? Bitte sagen Sie es sofort an der Anmeldung. Danke!",
+    "metin_tr": "Lütfen okuyun! Lütfen bekleme odasında telefonla konuşmayın. Hayvanlar bekleme odasına giremez. Burada yemek yenmez ama su içebilirsiniz. Numara almanız gerekmiyor. Huber Hanım adınızı söyler. Ateşiniz var mı? Lütfen hemen kayıt masasında söyleyin. Teşekkürler!",
+    "sorular": [
+      { "id": "m1:44:o1", "kind": "gist", "q_tr": "Bu tabela ne?", "opts": ["Bekleme odasının kuralları", "Doktorun çalışma saatleri", "Bir restoranın menüsü"], "ans": 0, "kanit": [1, 2] },
+      { "id": "m1:44:o2", "kind": "detail", "q_tr": "Bekleme odasında ne yapabilirsin?", "opts": ["Su içebilirsin", "Yemek yiyebilirsin", "Telefonla konuşabilirsin"], "ans": 0, "kanit": [3] },
+      { "id": "m1:44:o3", "kind": "detail", "q_tr": "Numara alman gerekiyor mu?", "opts": ["Hayır, gerekmiyor", "Evet, gerekiyor", "Yalnız sabah"], "ans": 0, "kanit": [4] },
+      { "id": "m1:44:o4", "kind": "detail", "q_tr": "Ateşin varsa ne yapmalısın?", "opts": ["Hemen kayıt masasında söylemelisin", "Eve gitmelisin", "Sessizce beklemelisin"], "ans": 0, "kanit": [6, 7] },
+      { "id": "m1:44:o5", "k": "guided_response", "situation_tr": "Yanındaki hasta soruyor: burada bir şey yiyebilir miyim? Yasak olduğunu söyle.", "prompt_de": "Darf ich hier etwas essen?",
+        "accepted": ["Nein, hier darf man nicht essen.", "Nein, essen darf man hier nicht.", "Nein, leider nicht. Aber Wasser trinken dürfen Sie.", "Nein, das darf man hier nicht.", "Leider nicht. Hier darf man nicht essen."],
+        "why_tr": "Yasak için **darf man nicht** dersin." }
+    ]
+  },
+  "gun_sinavi": {
+    "id": "m1:44:s",
+    "maddeler": [
+      { "id": "m1:44:s1", "k": "listen_and_respond", "audio_de": "Die Kunden sind heute nett.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Die Kunden sind heute nett.", "die kunden sind heute nett", "Die Kunden sind heute nett"], "why_tr": "Birden çok müşteri **die Kunden** olur." },
+      { "id": "m1:44:s2", "k": "listen_and_respond", "audio_de": "Herr Wimmer ist nicht streng.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Herr Wimmer ist nicht streng.", "herr wimmer ist nicht streng", "Herr Wimmer ist nicht streng"], "why_tr": "**streng** katı demektir." },
+      { "id": "m1:44:s3", "k": "listen_and_respond", "audio_de": "Hier muss man nicht lange warten.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Hier muss man nicht lange warten.", "hier muss man nicht lange warten", "Hier muss man nicht lange warten"], "why_tr": "**muss nicht** gerek yok demektir." },
+      { "id": "m1:44:s4", "k": "listen_and_respond", "audio_de": "Das Training ist am Freitag.", "speed": "normal", "situation_tr": "Duyduğunu yaz.",
+        "accepted": ["Das Training ist am Freitag.", "das training ist am freitag", "Das Training ist am Freitag"], "why_tr": "Gün için **am Freitag** dersin." },
+      { "id": "m1:44:s5", "k": "tr_de", "tr": "Bekleme odasında yemek yemek yasak.",
+        "accepted": ["Im Wartezimmer darf man nicht essen.", "Man darf im Wartezimmer nicht essen.", "Essen darf man im Wartezimmer nicht."], "why_tr": "Yasak için **darf man nicht** dersin." },
+      { "id": "m1:44:s6", "k": "tr_de", "tr": "Kilo vermeniz gerekmiyor.",
+        "accepted": ["Sie müssen nicht abnehmen.", "Sie müssen wirklich nicht abnehmen.", "Abnehmen müssen Sie nicht."], "why_tr": "Gerek yoksa **müssen nicht** dersin, yasak değildir." },
+      { "id": "m1:44:s7", "k": "tr_de", "tr": "Bir kahve sipariş etmek istiyorum.",
+        "accepted": ["Ich möchte einen Kaffee bestellen.", "Ich möchte bitte einen Kaffee bestellen.", "Ich möchte gern einen Kaffee bestellen."], "why_tr": "Kibar istek **Ich möchte** ile başlar, **bestellen** sona gelir." },
+      { "id": "m1:44:s8", "k": "tr_de", "tr": "Bir isteğim var.",
+        "accepted": ["Ich habe einen Wunsch.", "Ich habe da einen Wunsch.", "Ich habe noch einen Wunsch."], "why_tr": "İstek **Wunsch** demektir." },
+      { "id": "m1:44:s9", "k": "guided_response", "situation_tr": "Kafede garson soruyor. Kibarca bir su iste.", "prompt_de": "Was möchten Sie?",
+        "accepted": ["Ich möchte ein Wasser, bitte.", "Ein Wasser, bitte.", "Ich möchte bitte ein Wasser.", "Ich hätte gern ein Wasser.", "Ein Wasser, bitte. Danke."], "why_tr": "Kibar istek için **Ich möchte** dersin, **Ich will** sert duyulur." },
+      { "id": "m1:44:s10", "k": "guided_response", "situation_tr": "Doktor soruyor: antrenmandan sonra neren ağrıyor? Bacakların ağrıyor.", "prompt_de": "Was tut nach dem Training weh?",
+        "accepted": ["Nach dem Training tun mir die Beine weh.", "Die Beine tun mir weh.", "Mir tun die Beine weh.", "Meine Beine tun weh."], "why_tr": "Ağrıyan yer birden çoksa **tun** dersin: **Mir tun die Beine weh**." },
+      { "id": "m1:44:s11", "k": "guided_response", "situation_tr": "Bekleme odasındasın. Huber Hanım'a telefonla konuşup konuşamayacağını sor.", "prompt_de": "Bitte nehmen Sie Platz.",
+        "accepted": ["Darf ich hier telefonieren?", "Entschuldigung, darf ich hier telefonieren?", "Darf man im Wartezimmer telefonieren?", "Darf ich im Wartezimmer telefonieren?", "Darf ich kurz telefonieren?"], "why_tr": "İzin sorarken **Darf ich …?** dersin." }
+    ],
+    "sesli": ["m1:44:s9", "m1:44:s10"],
+    "dikte": ["m1:44:s1", "m1:44:s2", "m1:44:s3", "m1:44:s4"]
+  }
+}

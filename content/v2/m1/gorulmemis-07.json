@@ -1,0 +1,91 @@
+{
+  "id": "m1:gorulmemis:07",
+  "hafta": 7,
+  "durumlar": [
+    {
+      "id": "m1:h07:g1",
+      "can_do": "cd:m1:hafta07",
+      "durum_tr": "İş yerindesin. Dünden beri sırtın ağrıyor. Şefin Herr Wimmer yüzüne bakıp soruyor. Ne olduğunu ve ne zamandan beri olduğunu söyle.",
+      "karsi": "ch:wimmer",
+      "yer": "pl:firma",
+      "prompt_de": "Sie sehen müde aus. Alles in Ordnung?",
+      "accepted": [
+        "Nein, ich habe seit gestern Schmerzen im Rücken.",
+        "Leider nicht. Ich habe seit gestern Schmerzen im Rücken.",
+        "Nicht so gut. Ich habe seit gestern Schmerzen im Rücken.",
+        "Ich habe Schmerzen im Rücken, seit gestern.",
+        "Nein. Ich habe seit gestern Schmerzen im Rücken. Kann ich heute um drei gehen?"
+      ],
+      "kalip": "Ich habe seit … Schmerzen im …",
+      "why_tr": "Ağrıyı **Schmerzen im Rücken** ile, başlangıcı **seit gestern** ile söylersin."
+    },
+    {
+      "id": "m1:h07:g2",
+      "can_do": "cd:m1:hafta07",
+      "durum_tr": "Kuaförde koltuktasın. Birden başın dönüyor. Luka aynada yüzünü görüp soruyor. Başının döndüğünü söyle ve su iste.",
+      "karsi": "ch:petrovic",
+      "yer": "pl:friseur",
+      "prompt_de": "Alles gut? Du bist ganz weiß!",
+      "accepted": [
+        "Mir ist schwindelig. Hast du Wasser?",
+        "Nein, mir ist schwindelig. Hast du Wasser?",
+        "Nicht so gut. Mir ist schwindelig.",
+        "Mir ist ein bisschen schwindelig. Hast du Wasser für mich?",
+        "Nein, mir ist schwindelig. Kann ich kurz warten?"
+      ],
+      "kalip": "Mir ist schwindelig.",
+      "why_tr": "Baş dönmesini **Mir ist schwindelig** ile söylersin. Kişi **mir** olur."
+    },
+    {
+      "id": "m1:h07:g3",
+      "can_do": "cd:m1:hafta07",
+      "durum_tr": "Başka bir şehirdesin, gözün kaşınıyor. Bir eczaneden göz damlası aldın. Eczacı nasıl kullanacağını söylüyor. Doğru anladığını göstermek için tekrar et.",
+      "karsi": "ein Apotheker",
+      "yer": "başka bir şehirde bir eczane",
+      "prompt_de": "So, hier sind die Tropfen für die Augen. Nehmen Sie am Morgen und am Abend zwei Tropfen.",
+      "accepted": [
+        "Also am Morgen und am Abend zwei Tropfen?",
+        "Am Morgen und am Abend zwei Tropfen, richtig?",
+        "Okay, zwei Tropfen am Morgen und am Abend.",
+        "Ich soll am Morgen und am Abend zwei Tropfen nehmen?",
+        "Also zwei Tropfen, am Morgen und am Abend. Danke!"
+      ],
+      "kalip": "Also …? – Ich soll … nehmen?",
+      "why_tr": "Talimatı **Also** ile başlayıp soru gibi tekrar edersin: **Also am Morgen und am Abend zwei Tropfen?**"
+    },
+    {
+      "id": "m1:h07:g4",
+      "can_do": "cd:m1:hafta07",
+      "durum_tr": "Apartmanın merdiveninde Herr Pichler öksürüyor. Pazartesiden beri öksürdüğünü söylüyor. Ona kibarca (Sie ile) bir öğüt ver.",
+      "karsi": "ch:pichler",
+      "yer": "pl:haus",
+      "prompt_de": "Ach, ich habe seit Montag Husten.",
+      "accepted": [
+        "Gehen Sie zum Arzt, Herr Pichler!",
+        "Gute Besserung! Gehen Sie zum Arzt.",
+        "Trinken Sie viel Wasser und gehen Sie zum Arzt!",
+        "Bleiben Sie im Bett und trinken Sie viel Wasser.",
+        "Gute Besserung! Sie müssen zum Arzt gehen."
+      ],
+      "kalip": "Gehen Sie zum Arzt! – Trinken Sie viel Wasser!",
+      "why_tr": "Herr Pichler'e **Sie** dersin. Öğütte fiil başa, **Sie** hemen arkasına gelir: **Gehen Sie zum Arzt!**"
+    },
+    {
+      "id": "m1:h07:g5",
+      "can_do": "cd:m1:hafta07",
+      "durum_tr": "Belediyedeki vatandaş bürosundasın. Frau Schneider bir formu dolduruyor ve adresini soruyor. Oturduğun apartmanın adresini söyle.",
+      "karsi": "ch:schneider",
+      "yer": "pl:buergerbuero",
+      "prompt_de": "Wie ist Ihre Adresse?",
+      "accepted": [
+        "Meine Adresse ist Brunnengasse sieben.",
+        "Brunnengasse sieben.",
+        "Ich wohne in der Brunnengasse sieben.",
+        "Brunnengasse sieben, in Wendlfing.",
+        "Meine Adresse ist Brunnengasse sieben in Wendlfing."
+      ],
+      "kalip": "Meine Adresse ist … – Ich wohne in …",
+      "why_tr": "Form sorusuna **Meine Adresse ist** ile ya da **Ich wohne in der Brunnengasse** ile cevap verirsin."
+    }
+  ]
+}
