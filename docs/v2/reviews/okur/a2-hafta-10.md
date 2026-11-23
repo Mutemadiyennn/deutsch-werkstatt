@@ -127,3 +127,58 @@ GERİ kimlik listesi:
 - gun-70: `gun_sinavi.maddeler[0].why_tr`, `gun_sinavi.maddeler[7].why_tr`
 - hafta-sonu-testi-10: `maddeler[0].situation_tr` (t01), `maddeler[6].why_tr` (t07), `maddeler[10].why_tr` (t11)
 - grammar: `gr:a2-02:t1` (`h_tr`, `tr`, `table.head`), `gr:a2-02:t2` (`h_tr`, `tr`, `table.head`), `gr:a2-02:t3` (`h_tr`, `tr`, `table.head`), `gr:a2-02:t4` (`h_tr`, `tr`, `table.head`), `gr:a2-02:t5` (`tr`)
+
+## Ek tur (OD-9.3, dilbilimcinin üç düzeltme turundan sonra)
+
+Tarih: 2026-11-23 · Rol: okur. Ölçütler aynı: terim yok, iç söz yok, sembol yok, cümle en çok 14 kelime, bir alan bir fikir, açıklama cevapla örtüşür, kimin kastedildiği belli.
+
+### Kapsam
+
+- Temel: okur raporu commit'i `09b363c5` ("okur raporu (1579 metin"; `9a1c0f0` depoda yok). Karşılaştırılan: bugünkü çalışma ağacı (temiz).
+- Okunan dosyalar: `gun-64` … `gun-70`, `hafta-sonu-testi-10`, `gorulmemis-10`, `grammar.json` (gr:a2-02:t1–t5 ve diff'te görünen gr:a2-01 tablo satırları).
+- `gun-60` … `gun-63` diff'te görünüyor ama 9. haftanın dosyaları (9. hafta dalından birleşmeyle geldi). Bu turun dışında tutuldu.
+- Yöntem: eski ve yeni dosyadaki bütün Türkçe metinler çıkarıldı. Eski dosyada hiçbir yerde geçmeyen her Türkçe metin okundu (yeni ya da değişmiş). Ayrıca metni aynı kalıp cevabı ya da sorusu değişen bütün `why_tr` ve `geri_bildirim_tr` yeniden okundu (açıklama yeni cevapla hâlâ örtüşüyor mu).
+- Dilbilimci raporundaki "Hafta kapısı" listesi (13 kalıp satırı, g5–g7, g1 ve g4 adları, 64 ve 67 cevap görevleri, değişen cümle çevirileri) bu kümenin içinde; hepsi okundu.
+- Sembol, uzunluk ve terim taraması betikle de yapıldı. `;`, `=`, tırnak, açıklama alanında `…` yok. 14 kelimeyi aşan cümle yok. "kapı", "cümle", "zaman", "hâlâ" geçen satırların hepsi gündelik anlamda (kapı gerçek kapı).
+
+### Sayılar
+
+| Küme | Okunan | GEÇTİ | GERİ |
+|---|---:|---:|---:|
+| Yeni ya da değişmiş Türkçe metin (gün 64–70, test, görülmemiş) | 136 | 135 | 1 |
+| Metni aynı, cevabı ya da sorusu değişen açıklama | 25 | 25 | 0 |
+| grammar.json (a2-02: 5 `tr`, 4 `h_tr`, 4 `table.head`, t2 satır adları; a2-01: 3 yeni tablo satırı) | 17 | 13 | 4 |
+| **Toplam** | **178** | **173** | **5** |
+
+Dosya bazında: gun-64 136 kümesinden 36, gun-65 15, gun-66 7, gun-67 35, gun-68 11, gun-69 15, gun-70 4, test 5, görülmemiş 8.
+
+Önceki turun 24 GERİ'sinden gün dosyaları, test ve görülmemişteki 11'i bu turda yeniden okundu; 10'u GEÇTİ, biri (gun-69 sesli kayıt durumu) yeni biçimiyle yine GERİ. Dil noktalarındaki 13 GERİ'den 9'u GEÇTİ (bütün `h_tr` ve `table.head`, terim ve sembol temizlendi); dördü (t1, t2, t4, t5 `tr`) bir alan bir fikir kuralı yüzünden GERİ.
+
+### Geri dönenler
+
+| yol | metin | kendi sözlerimle | neden | öneri |
+|---|---|---|---|---|
+| `content/v2/m1/gun-69.json` · `sesler[1].bolumler[0].cevapla.situation_tr` | Sinyal geldi. Önce adını söyle. Doğum tarihini sonra söylersin. Pazartesi dokuzdaki randevunu iptal et. Salı ya da çarşamba için yeni randevu iste. | Bip sesinden sonra önce adımı, sonra doğum tarihimi söyleyeceğim. Sonra randevuyu iptal edip yeni gün isteyeceğim. | İki türlü okunuyor. "Önce adını … doğum tarihini sonra" bende "adından hemen sonra doğum tarihini söyle" diye okundu. Kabul listesindeki beş cevabın hiçbirinde doğum tarihi yok. Açıklama da (ad, iptal, yeni gün) doğum tarihini saymıyor. Uzunluk sorunu kapandı, ama kafa karışıklığı kaldı. | Doğum tarihini istemiyorsa bunu açık söylesin ("Doğum tarihi bu kez gerekmiyor" gibi). İstiyorsa kabul listesine girsin. |
+| `content/v2/registry/grammar.json` · `gr:a2-02:t1` · `tr` | Wo nerede demektir … Dokuz kelimede böyledir: an, auf, … zwischen. über üstünde demektir ama değmez, auf ise değer. | Durma nerede, gitme nereye; masada ve masaya gibi. Dokuz kelimede böyle. Bir de über üstte ama dokunmuyor, auf dokunuyor. | İki fikir: nerede/nereye farkı ve über/auf farkı. Son cümlede "değmez / değer" önce "buna değmez" diye okundu; "dokunmak" anlamını ikinci okumada çıkardım. Terim ve sembol sorunu kapandı. | über/auf farkı ayrı bir noktaya ya da tabloya gitsin. Kalırsa "dokunmaz / dokunur" densin. |
+| `content/v2/registry/grammar.json` · `gr:a2-02:t2` · `tr` | Konuşurken iki kelime birleşip kısalır … Nereye sorusunda yalnız der değişir ve den olur: in den Keller. die ve das aynı kalır: in die Küche, ins Bad. | in dem im olur (nerede), in das ins olur (nereye). Bir de nereye diye sorunca der den oluyor, die ve das değişmiyor. | İki fikir: kısa biçimler (başlığın konusu) ve der → den kuralı. Ayrıca "das aynı kalır" denip örnek olarak **ins Bad** verilmiş; das görünmüyor, bir an durdum. | Kutu kısa biçimlerde kalsın. der → den kuralı tabloya ya da ayrı bir noktaya bırakılsın. |
+| `content/v2/registry/grammar.json` · `gr:a2-02:t4` · `tr` | hängen hem asmak hem asılı durmak demektir … Yaptığın işi anlatırken habe ile kurarsın … Kaybolan eşyayı şöyle sorarsın: Wohin hast du meine Brille gelegt? | hängen iki anlamlı: asmak ve asılı durmak. Geçmişte habe … gehängt, gestellt, gelegt. Kaybolan şeyi Wohin hast du … gelegt ile sorarım. | İki ayrı fikir: hängen'in iki anlamı ve "koydum, astım" (başlığın konusu). Son cümle üçüncü bir kullanım notu. | Kutu başlıktaki fikirde kalsın: koydum, astım (habe … gehängt, gestellt, gelegt). hängen'in iki anlamı ayrı noktaya. |
+| `content/v2/registry/grammar.json` · `gr:a2-02:t5` · `tr` | Almanya'da apartmanların yazılı kuralları vardır … man darf nicht … man muss … gece sessizliği, çöp ve merdivendir … Ruhezeit, Treppenhaus … Könnten Sie bitte die Musik leiser machen? | Apartmanın kuralları var, komşular uyuyor. Yasak man darf nicht, şart man muss. Konular sessizlik, çöp, merdiven. Komşudan kibarca rica et. | Dört fikir: kuralların varlığı, yasak/şart nasıl söylenir, sık konular ve kelimeleri, kibar rica. Her cümle kısa ve terimsiz, ama bir alan bir fikir değil. | Tek fikir: apartmanın yazılı kuralları var, komşular uyar. Yasak/şart söyleyişi ve kibar rica tablo ya da ayrı nokta olsun. |
+
+### GEÇTİ ama durduğum yerler (dilbilimciye not, GERİ değil)
+
+| yol | not |
+|---|---|
+| `gun-67.json` · `sesler[1].bolumler[0].cevapla.situation_tr` | Haber, serginin pazartesiden cumaya açık olduğunu söylüyor. Ioana cumartesiyi soruyor, görev "Sergiyi öner" diyor. Cumartesi sergi kapalı. Önceki turda gözümden kaçmış; metnin dili anlaşılır, mantığı çelişiyor. |
+| `gun-70.json` · `gun_sinavi.maddeler[7].why_tr` (s8) | Önceki GERİ kapandı (sıra iddiası kalktı). Ama açıklamadaki **es gibt kein Wasser** cevapta **gibt es … kein Wasser** diye bölünüyor. İki parçayı yan yana koyarsam "Es gibt kein Wasser am Dienstag von neun bis zwölf" çıkar; bu kabul listesinde yok. |
+| `gun-64.json` · `gun_sinavi.maddeler[9].why_tr` (s10) | Görev değişti (artık "çok açsın" da isteniyor, bütün kabullerde Hunger var). Açıklama yalnız **in die Kantine** kısmını anlatıyor. Yanlış değil, yarım. |
+| `gun-68.json` · `gun_sinavi.maddeler[10].situation_tr` | "Söyle ve yediyi sor": "saat yediyi" daha rahat okunur. |
+| `gun-67.json` · `sahne.bolumler[0].dikte[4].gorev_tr` | Gerçek dikte "söyle" diyor; 66 "yaz", 69 "anlat" diyor. Yazacak mıyım, konuşacak mıyım, bir an durdum. |
+| `gun-65.json` · `halkalar[1].kaliplar[4].tr` | Kalıpta "… Bey'e", aynı günün cümlelerinde "Frau Brandl'ın". Hitap iki türlü; anlam bozulmuyor. |
+
+### Sonuç
+
+- Okunan: 178 · GEÇTİ: 173 · GERİ: 5
+- Sonuç: **GERİ DÖN.** Gün dosyalarında tek GERİ var (gun-69). Test ve görülmemiş okur açısından GEÇTİ. Dil noktalarında dört `tr` kutusu bir alan bir fikir kuralına takılıyor.
+- GERİ kimlikleri: `gun-69` `sesler[1].bolumler[0].cevapla.situation_tr`; `gr:a2-02:t1` `tr`; `gr:a2-02:t2` `tr`; `gr:a2-02:t4` `tr`; `gr:a2-02:t5` `tr`.
+- Dosya bazında "reviewed" sayılamayan (OD-9.4): `gun-69.json`, `grammar.json` (gr:a2-02). Okur açısından GEÇTİ: gun-64, 65, 66, 67, 68, 70, hafta-sonu-testi-10, gorulmemis-10.
+- İçerik dosyalarına dokunulmadı.

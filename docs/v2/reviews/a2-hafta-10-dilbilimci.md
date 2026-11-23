@@ -255,6 +255,8 @@ Denetimler: dikiş `İhlal: 0`; val.sh yalnız üç izinli sınıf; content:vali
 
 **Bu turun getirdikleri (okur ve örneklem bu satırları görmedi):** 13 kalıp satırının Türkçesi, g5–g7'nin `durum_tr` ve `why_tr` metinleri, g1 ve g4'ün yeni adları, 64 ve 67 cevap görevlerinin yeni durum ve açıklama metinleri, yukarıdaki değişen cümlelerin çevirileri. On bir halkada kalıp sayısı 3'e çıktı (11 yeni satır, 2 genişletilmiş satır). 68 h2 kalıbı Papier sözcüğünü öğretiyor (sözlükte kart değil): kalıcı çözüm lex'te eşdizim.
 
+**Okur ek turu (6. küçük tur, 5 geri dönüş kapandı):** 69 kayıt durumu "Doğum tarihi bu kez gerekmiyor."; gr:a2-02 t1, t2, t4, t5 `tr` kutuları başlığın tek fikrine indi (3–4 kısa cümle). Tablo satırı silinmedi; çıkan fikirler tabloda ve örneklerde duruyor, t4'e iki örnek (hänge, hängt), t5'e bir örnek eklendi. Notlardan: 67 sergisi "ab heute" ve "von Montag bis Samstag" oldu (cumartesi önerisi artık tutarlı); 70 s8 açıklaması "**kein Wasser**: su yok."; 68 s11 "saat yediyi sor". Dikiş `İhlal: 0`, kapı GEÇTİ, content:validate yalnız şema sınıfı.
+
 ## Sonuç
 
 **ONAY.** Dil, okur ve örneklem geri dönüşleri kapandı. Baş geliştiricide kalan: B4 (dikte, kod ya da satır bölme), B3 (67 başlığı a2-kesin.json'da); B2, B6, B7 takip.
