@@ -114,3 +114,24 @@ Açıklamalarda dilbilgisi terimi, `=`, `;`, `…`, tırnak ve 14 kelimeyi aşan
 ## Sonuç
 
 **Dil incelemesi KAPANDI (ONAY).** Açık kalan dört madde B'de. `reviewed` için okur ve örneklem kapısı bekleniyor; bu turda değişen 28 açıklama alanı (16 not, 6 ipucu, 4 boşluk ipucu, 2 `tr`) okura ilk kez gidiyor.
+
+## B kararları (baş geliştirici, 2026-11-23)
+
+Bu bölüm yukarıdaki B maddelerinin yerine geçer.
+
+1. **Mevsim.** lx:Schnee ve lx:glatt kalır; 32. hafta yerine kış haftasının yuvasına gider (yuva değişikliğini baş geliştirici PR'da yazar). İki kartın örnekleri, boşlukları ve notları tarandı: yaz bağlamı yok, kartlarda değişiklik yapılmadı.
+2. **Üst anlamlı cevap.** Bu turdaki kararlar geçerli (**Nachricht**, **reden / sprechen**, **kommen**, **Frage**, **Antwort** kabul).
+3. **Kartı olmayan sözcükler.** Dokunulmadı.
+4. **lx:Empfang üçüncü anlam.** `lx:Empfang#2` şimdilik açılmıyor. **Takip:** **den Empfang bestätigen** (teslim aldığını onaylamak) resmî mektup konusu yeniden ele alınırken kart adayı.
+
+## Okur düzeltmeleri (2026-11-23, okur raporu: `docs/v2/reviews/okur/lexicon-b1-03.md`, 3 GERİ)
+
+Yalnız geri dönen 3 alan değişti (hepsi b1-03b). Okur bu alanları yeniden okumadı.
+
+| Kart | Alan | Sonra | Neyi çözüyor |
+|---|---|---|---|
+| lx:hiermit | examples[2].tr (lx:hiermit:3) | Doğrudan resmî başvuru cümlesiyle başlıyorum, kulağa çok resmî geliyor, değil mi? | Türkçede tırnak içinde Almanca vardı. |
+| lx:vorlegen | examples[4].tr (lx:vorlegen:5) | – Buradaki bu kelime ne demek? – Eh, onu randevuda göstermen lazım. | Türkçede tırnak içinde Almanca vardı. |
+| lx:rechtzeitig | exp.ipucu_tr | **gerade noch rechtzeitig** ucu ucuna yetişmek demektir. | İpucu **pünktlich** sözcüğünü anlatıyordu; artık kartın kendi sözcüğünü, kartın üçüncü örneğindeki kullanımla anlatıyor. |
+
+`npm run content:validate` → **0 hata, 154 uyarı**. `review` iki dosyada `draft`.
