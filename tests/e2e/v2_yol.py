@@ -20,7 +20,7 @@ def main():
     srv = serve(PORT); base = f"http://127.0.0.1:{PORT}/"
     shots = arg("--shots")
     with sync_playwright() as p:
-        b, ctx = launch(p, color_scheme=arg("--scheme") or "light"); pg = new_page(ctx)
+        b, ctx = launch(p, color_scheme=arg("--scheme") or "light"); ctx.add_init_script("sessionStorage.setItem('e2e-akis-gunler', '[]')"); pg = new_page(ctx)  # eski düzen: 1. gün bayraksız (bayrak PR'ı)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
         # gün dosyası gelmezse Bugün iskelette takılmaz: hata + "Tekrar dene" (inceleme #66 P1-4)
         engel = lambda r: r.abort()

@@ -80,3 +80,67 @@ describe("Medya bölüm oynatıcısı (#58 A4, PM-053)", () => {
     expect(gecerliKonum({ ...bastan, b: 99 }, m)).toEqual({ ...BASLANGIC, ilkBitti: true });
   });
 });
+
+describe("dikteSuz (1. gün öğrenci simülasyonu P0-1)", () => {
+  it("cevabında bilinmeyen sözcük geçen dikte basamağı atlanır; öteki basamaklar ve bölümler aynen", async () => {
+    const { dikteSuz, dikteCevabi } = await import("./medya.ts");
+    const dk = [
+      { seviye: "kolay", cumle: "c1", q_tr: "x", opts: ["Freitag", "Montag"], ans: 0 },
+      { seviye: "usta", cumle: "c2", accepted: ["Guten Tag."] },
+      { seviye: "gercek", gorev_tr: "x", ornek_de: "Danke und schönes Wochenende!", zorunlu: [] }
+    ];
+    const m = { bolumler: [{ id: "b1", dikte: dk }] } as never;
+    expect(dk.map((d) => dikteCevabi(d as never))).toEqual(["Freitag", "Guten Tag.", "Danke und schönes Wochenende!"]);
+    const bilinen = new Set(["guten", "tag"]);
+    const s = dikteSuz(m, (de) => de.toLowerCase().replace(/[.!?,]/g, "").split(/\s+/).some((w) => !bilinen.has(w)));
+    expect((s as { bolumler: { dikte: { seviye: string }[] }[] }).bolumler[0]!.dikte.map((d) => d.seviye)).toEqual(["usta"]);
+  });
+  it("PM kararı (a) şart 1: bütün dikte ve 'Sen ne derdin?' basamakları atlansa da ekran boş kalmaz, dinleme + anlama sorusu kalır (gerçek 1. gün ve fikstür)", async () => {
+    const { dikteSuz } = await import("./medya.ts");
+    const gercek = Gun.parse(JSON.parse(readFileSync(join(import.meta.dirname, "../../../content/v2/m1/gun-01.json"), "utf8")));
+    for (const g of [gercek, gun]) for (const m of medyalar(g)) {
+      const s = dikteSuz(m, () => true); // öğrenci hiçbir sözcüğü bilmiyor
+      expect(s.bolumler.length, m.id).toBe(m.bolumler.length);
+      for (const b of s.bolumler) {
+        const a = adimlar(b);
+        expect(a.slice(0, 2), `${m.id}/${b.id}`).toEqual(["dinle", "ana"]);
+        expect(a).not.toContain("dikte");
+        expect(a).not.toContain("cevapla");
+      }
+      // kayıtlı konum atlanan basamağı gösteriyorsa çökmeden geçerli bir konuma düşer
+      const k = gecerliKonum({ ...BASLANGIC, s: 99, k: 2 }, s);
+      expect(k.s).toBeLessThan(adimlar(s.bolumler[k.b]!).length);
+      // hiçbir şey atlanmazsa medya aynen
+      expect(dikteSuz(m, () => false)).toEqual(m);
+    }
+  });
+});
+
+describe("sesin iki turu (PM-097 md. 1)", () => {
+  it("ilk tur: dinle + anlama (üretim yok); ikinci tur: yalnız dikte, gölge, cevapla; tursuz: hepsi", async () => {
+    const { turaGore, ikinciTurVar, ilerlemeAnahtari } = await import("./medya.ts");
+    const b = video!.bolumler[0]!;
+    expect(adimlar(b, "ilk")).toEqual(["dinle", "ana", "ayrinti", "cumle", "transkript"]);
+    expect(adimlar(b, "ikinci")).toEqual(["dikte", "golge", "cevapla"]);
+    expect(adimlar(b)).toEqual([...adimlar(b, "ilk").slice(0, 4), "dikte", "transkript", "golge", "cevapla"]);
+    expect(ikinciTurVar(video!)).toBe(true);
+    const iki = turaGore(video!, "ikinci");
+    expect(iki.tur).toBe("ikinci");
+    for (const x of iki.bolumler) expect(adimlar(x, "ikinci").length).toBeGreaterThan(0);
+    // ikinci turda ileri yalnız o turun adımlarında yürür ve biter
+    let q = { ...BASLANGIC }; let n = 0;
+    while (!q.bitti && n++ < 200) { const s = adimlar(iki.bolumler[q.b]!, "ikinci")[q.s]!; expect(["dikte", "golge", "cevapla"]).toContain(s); const bb = iki.bolumler[q.b]!; q = ileri(q, iki, s === "dikte" ? bb.dikte.length : s === "golge" ? bb.golge.length : 1); }
+    expect(q.bitti).toBe(true);
+    expect(turaGore({ ...video!, bolumler: [{ ...b, dikte: [], golge: [], cevapla: undefined }] } as never, "ikinci").bolumler).toHaveLength(0);
+    expect([ilerlemeAnahtari("x"), ilerlemeAnahtari("x", "ilk"), ilerlemeAnahtari("x", "ikinci")]).toEqual(["m1:medya:x", "m1:medya:x:1", "m1:medya:x:2"]);
+  });
+});
+
+describe("sesin iki turu: eylem sorusu bir kez (inceleme #207 P1-2)", () => {
+  it("eylem yalnız ilk turda", async () => {
+    const { turaGore } = await import("./medya.ts");
+    const e = { ...ses!, eylem: { q_tr: "x", opts: ["a", "b"], ans: 0 } } as never;
+    expect(turaGore(e, "ilk").eylem).toBeTruthy();
+    expect(turaGore(e, "ikinci").eylem).toBeUndefined();
+  });
+});
