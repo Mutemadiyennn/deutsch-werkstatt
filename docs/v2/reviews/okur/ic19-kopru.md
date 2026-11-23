@@ -1,6 +1,7 @@
 # OKUR — İÇ-19 köprü temizliği (grammar.json, 23 girdi)
 
-**Toplam: 23 · GEÇTİ: 19 · GERİ: 4**
+**Toplam: 23 · GEÇTİ: 19 · GERİ: 4** (1. tur)  
+**Fark turu sonrası (056a73c): 23 GEÇTİ / 0 GERİ** (ayrıntı için en alttaki "Fark turu" bölümüne bakın)
 
 GERİ: `gr:a1-09:t1`, `gr:a2-11:t3`, `gr:b1-02:t2`, `gr:b1-12:t2`
 
@@ -46,3 +47,26 @@ Bu girdiler yapılandırılmış açıklama alanı (`anlam_tr` vb.) değil, ders
 - GEÇTİ: 19
 - GERİ: 4 → `gr:a1-09:t1`, `gr:a2-11:t3`, `gr:b1-02:t2`, `gr:b1-12:t2`
 - OD-9.4: dosyada GERİ olduğu için bu 23 girdilik küme "reviewed" sayılamaz.
+
+## Fark turu (OD-9.4) — commit 056a73c
+
+Yeniden okunan 7 girdi: dilbilimcinin değiştirdiği `tr` metinleri, bugünkü hâliyle. Bu turda bakılan şey, 1. turdaki GERİ gerekçelerinin kalkıp kalkmadığı ve yeni metnin kendi başına açık olup olmadığıydı.
+
+| öğe | alan | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|
+| gr:a2-11:t3 | tr | "obwohl"dan sonra engel olan durum gelir; beklenmeyen sonuç ana cümlededir. Yağmur yağıyor ama yine de yürüyüşe çıkıyoruz. | GEÇTİ | Ters okumaya yol açan "obwohl beklenmeyen bir sonuç verir" eşleştirmesi gitmiş. Artık "engel" ve "beklenmeyen sonuç ana cümlededir" açıkça ayrılıyor. |
+| gr:b1-12:t2 | tr | "während" iki şeyin aynı zamanda olduğunu söyler. "solange" ise bir şart koyar: hat kapalı olduğu sürece otobüs çalışır, hat açılınca otobüs de biter. | GEÇTİ | Ayrım artık açık: "während" yalnız aynı zaman, "solange" koşul; "o durum bitince öbürü de biter" cümlesi farkı somutlaştırıyor. Not: ilk cümledeki "AYNI SÜRE boyunca" ifadesi hâlâ duruyor, ama son cümle karışıklığı gideriyor. |
+| gr:a1-09:t1 | tr | Bu üç fiil "können" gibi çalışır; asıl iş bildiren kelime cümlenin en sonuna gider. "müssen" zorunda olmak, "dürfen" izinli olmak, "wollen" istemek demek. | GEÇTİ | Açıklanmamış "(Satzklammer)" kalkmış. |
+| gr:b1-02:t2 | tr | Türkçede "dün izlediğim film" derken ayrı bir kelime yok; Almancada ise "den" gibi kelime her zaman söylenir, atlanmaz. | GEÇTİ | Uyarının dayanağı artık Türkçe karşılaştırmayla verilmiş; "atlanmaz" sözü de açık. |
+| gr:b1-02:t4 | tr | "über", "mit" gibi kelimeler sona kalmaz; "der/die/das" ile birlikte arkadan gelen cümlenin başında durur: "über die alle sprechen", yani herkesin konuştuğu dizi. | GEÇTİ | Cümle artık ne yapılacağını söylüyor ("ilgi zamiriyle birlikte yan cümlenin başında durur") ve Türkçe karşılığı verilmiş. Hâlâ ilk cümleyi kısmen tekrar ediyor, ama karışıklık yaratmıyor. |
+| gr:a2-12:t2 | tr | Evet/hayır sorusunu kibarca sorarken "ob" kullanırım, "olup olmadığını" anlamında. "ob" yerine "wenn" demem; "wenn" "eğer" ya da "-dığında" demek. | GEÇTİ | "'ob' yerine 'wenn' deme" cümlesi artık neyin yerine konmaması gerektiğini açıkça söylüyor. 1. turdaki not duruyor: "… -ip -mediği" yalnız eklerle yazılmış, ama sondaki "… mi, bilmiyorum" kalıbı anlamı taşıyor. |
+| gr:a2-13:t5 | tr | Türkçede "1998'de" deriz, ama Almancada yıldan önce "in" konmaz: ya yalnız yıl söylenir ya da "im Jahr 1998". | GEÇTİ | Eklenen Türkçe karşılaştırma uyarının nedenini açıkça veriyor. |
+
+**Fark turu: 7 · GEÇTİ: 7 · GERİ: 0**
+
+## Son durum (iki tur birlikte)
+
+- Toplam: 23
+- GEÇTİ: 23
+- GERİ: 0
+- OD-9.4: okur açısından engel kalmadı; 23 girdilik küme "reviewed" sayılabilir.
