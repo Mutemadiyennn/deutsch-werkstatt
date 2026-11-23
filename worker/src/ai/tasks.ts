@@ -9,6 +9,7 @@ import { HttpError } from "../http.ts";
 import type { Env } from "../env.ts";
 import { generateJSON, models } from "./gemini.ts";
 import { WA, generateWA, kisalt } from "./workersai.ts";
+import policy from "../../policy.json";
 
 interface Template { system: (v: any) => string; user: (v: any) => string; version: string }
 const J = (x: unknown) => JSON.stringify(x);
@@ -80,8 +81,38 @@ export const TEMPLATES: Record<AiTaskName, Template> = {
       'Antworte nur als JSON {"goals":[{"id":string,"done":boolean}],"strengths_tr":[string],"fixes":[{"said":string,"better":string,"why_tr":string}],"english_fallbacks":number,"gaps_de":[string],"summary_tr":string}.'
     ].join("\n"),
     user: (v) => `Situation: ${v.scene_tr}\nZiele: ${J(v.goals)}\nGespräch:\n${(v.transcript as { r: string; de: string }[]).map((h) => `${h.r === "partner" ? "FIGUR" : "LERNENDE"}: ${h.de}`).join("\n")}`
+  },
+  // PM-086 md. 3–6: Kendi kelimem kartı. Ad yok, İngilizce yok, Bairisch yok; örnekler öğrencinin bildiği sözcüklerle
+  kelime_kart: {
+    version: "kelime_kart.v1",
+    system: (v) => [
+      `Eine türkischsprachige Deutschlernende (Niveau ${v.seviye}) hat ein Wort aufgeschrieben, das sie lernen möchte. Es kann Deutsch oder Türkisch sein, mit Tippfehlern, ohne Artikel, im Plural oder klein geschrieben.`,
+      "Erstelle eine Lernkarte für das gemeinte DEUTSCHE Wort. Hat das Wort mehrere übliche Bedeutungen (z. B. Bank = banka / oturak), gib bis zu 3 Kandidaten, die häufigste zuerst. Ist die Eingabe kein erkennbares Wort, gib eine leere Liste.",
+      "Felder pro Kandidat: de = Grundform (Nomen im Singular, großgeschrieben, ohne Artikel; Verb im Infinitiv); artikel = der/die/das nur bei Nomen, sonst null; cogul = Pluralform ohne Artikel nur bei Nomen (null, wenn es keinen gibt); tur = isim/fiil/sifat/zarf/ifade/diger; tr = kurze türkische Bedeutung (1–4 Wörter); duzey = hochdeutsch oder alltag (nur Umgangssprache).",
+      "ornekler: GENAU 3 kurze Beispielsätze (höchstens 8 Wörter), drei verschiedene Alltagssituationen in Deutschland, je mit türkischer Übersetzung. Benutze außer dem Zielwort möglichst NUR Wörter aus der Liste der bekannten Wörter (mindestens 70 %). Einfaches Präsens.",
+      "Keine Personennamen, keine Dialektformen (kein Bairisch), kein Englisch. Türkisch mit korrekten Buchstaben (ç, ğ, ı, İ, ö, ş, ü).",
+      'Antworte nur als JSON {"adaylar":[{"de":string,"artikel":"der"|"die"|"das"|null,"cogul":string|null,"tur":string,"tr":string,"duzey":"hochdeutsch"|"alltag","ornekler":[{"de":string,"tr":string}]}]}.'
+    ].join("\n"),
+    user: (v) => [
+      `Eingabe: ${J(v.giris)} (Sprache: ${v.dil === "de" ? "Deutsch" : v.dil === "tr" ? "Türkisch" : "unbekannt"})`,
+      v.baglam ? `Gesehen bei/in: ${({ is: "der Arbeit", doktor: "beim Arzt", market: "im Supermarkt", mektup: "einem Brief", sokak: "auf der Straße" } as Record<string, string>)[v.baglam]}` : "",
+      `Bekannte Wörter: ${(v.bilinen as string[]).join(", ") || "(keine)"}`
+    ].filter(Boolean).join("\n")
+  },
+  kelime_denet: {
+    version: "kelime_denet.v1",
+    system: () => [
+      "Du bist eine strenge Prüferin (Deutsch als Muttersprache, sehr gutes Türkisch). Prüfe eine automatisch erstellte Lernkarte für türkischsprachige Deutschlernende.",
+      "Für jeden Kandidaten, in derselben Reihenfolge: de_ok = das deutsche Wort existiert, ist richtig geschrieben und passt zur Eingabe; tr_ok = die türkische Bedeutung ist richtig; artikel_ok = Artikel richtig (bei Nicht-Nomen: artikel ist null); cogul_ok = Plural richtig (oder korrekt null); ornek_ok = für jeden Beispielsatz: korrektes, natürliches Deutsch, das Zielwort in dieser Bedeutung, und die türkische Übersetzung stimmt.",
+      "Im Zweifel false. Englische Wörter, Personennamen oder Dialektformen im Beispiel: false.",
+      'Antworte nur als JSON {"adaylar":[{"de_ok":boolean,"tr_ok":boolean,"artikel_ok":boolean,"cogul_ok":boolean,"ornek_ok":[boolean]}]}.'
+    ].join("\n"),
+    user: (v) => `Eingabe der Lernenden: ${J(v.giris)}\nKarte: ${J(v.adaylar)}`
   }
 };
+
+/** Görev başına çıktı sınırı (PM-086: kart çıktısı varsayılana sığmaz) */
+const MAX_TOKENS: Partial<Record<AiTaskName, number>> = { kelime_kart: policy.kelime_kart.max_tokens, kelime_denet: policy.kelime_kart.denet_max_tokens };
 
 /** Toplam zaman bütçesi: quick ≤ 12 sn (8 + 4), default ≤ 30 sn (20 + 10) */
 const BUDGET = { quick: [8000, 4000], default: [20000, 10000] } as const; // quick: p95 ≤ 8 sn hedefi; default (rol oyunu, rapor): kalite, toplam ≤45 sn içinde
@@ -90,7 +121,8 @@ export function schemaOf(name: AiTaskName): object {
   try { const j = z.toJSONSchema(AiTasks[name].output) as Record<string, unknown>; delete j.$schema; return j; } catch { return {}; }
 }
 
-export async function runTask(env: Env, taskName: string, vars: unknown): Promise<{ output: unknown; model: string }> {
+/** `ek`: kullanıcı iletisine eklenen satır (kelime kartının yeniden üretiminde bilinmeyen sözcükler; PM-086 md. 4) */
+export async function runTask(env: Env, taskName: string, vars: unknown, ek?: string): Promise<{ output: unknown; model: string }> {
   if (!(taskName in AiTasks)) throw new HttpError("invalid_request", "unknown task");
   const name = taskName as AiTaskName;
   const spec = AiTasks[name];
@@ -110,19 +142,20 @@ export async function runTask(env: Env, taskName: string, vars: unknown): Promis
   const tpl = TEMPLATES[name];
   const budget = BUDGET[spec.tier];
   const schema = schemaOf(name);
-  const sys = tpl.system(parsed.data), usr = tpl.user(parsed.data);
+  const sys = tpl.system(parsed.data), usr = tpl.user(parsed.data) + (ek ? `\n${ek}` : "");
+  const maxTok = MAX_TOKENS[name];
   let last: HttpError = new HttpError("upstream_busy");
   for (let i = 0; i < Math.min(2, order.length); i++) {
     const model = order[i]!;
     const t0 = Date.now();
     try {
-      const text = await gen(env, model, sys, usr, budget[i]!, schema);
+      const text = await gen(env, model, sys, usr, budget[i]!, schema, maxTok);
       const ok = spec.output.safeParse(safeJson(text));
       if (ok.success) return { output: kisa(name, ok.data), model };
       // bir kez onarım denemesi (aynı model, kalan bütçe içinde)
       const left = budget[i]! - (Date.now() - t0);
       if (left > 1500) {
-        const fixed = await gen(env, model, "Repariere das JSON, sodass es exakt dem Schema entspricht. Inhalt beibehalten. Nur JSON ausgeben.", `Schema: ${J(schema)}\nFehlerhaftes JSON: ${text.slice(0, 3000)}\nFehler: ${ok.error.issues[0]?.message}`, left, schema);
+        const fixed = await gen(env, model, "Repariere das JSON, sodass es exakt dem Schema entspricht. Inhalt beibehalten. Nur JSON ausgeben.", `Schema: ${J(schema)}\nFehlerhaftes JSON: ${text.slice(0, 3000)}\nFehler: ${ok.error.issues[0]?.message}`, left, schema, maxTok);
         const ok2 = spec.output.safeParse(safeJson(fixed));
         if (ok2.success) return { output: kisa(name, ok2.data), model };
       }
