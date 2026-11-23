@@ -44,5 +44,9 @@ Sözlük kartlarında (batch-*.json) geçen olgusal bilgiler ve kaynakları.
 | Jobcenter, geçimini sağlayamayan çalışabilir kişilere bakar | lx:Jobcenter | https://www.betanet.de/jobcenter.html |
 | Dolmetscher sözlü, Übersetzer yazılı çevirir | lx:Dolmetscher | https://www.duden.de/rechtschreibung/Dolmetscher · https://wissen.de/artikel/dolmetscher-in-oder-uebersetzer-in |
 | Silvester, 31 Aralık | lx:Silvester | https://www.duden.de/rechtschreibung/Silvester_Tag |
+| Örnekteki telefon numarası kurgusaldır (Drama Number 0171 39200 47); dahili numaralar (214, 307, 25, 12) kurgusal kısa numaralardır | lx:Rückruf, lx:Durchwahl | Bundesnetzagentur: https://bundesnetzagentur.de/DE/Fachthemen/Telekommunikation/Nummerierung/DramaNumbers/artikel.html |
+| Acil numara 112, ambulans (Rettungswagen) için de geçerli | lx:Rettungswagen | Yukarıdaki "Acil numaralar" satırı: https://www.bundesregierung.de/breg-de/aktuelles/notrufnummer-50-jahre-2224394 · https://stadt.muenchen.de/infos/notruf.html |
+| IBAN ülke koduyla başlar; Almanya'daki hesaplarda **DE**, 22 hane (ISO 13616) | lx:IBAN | https://www.bundesbank.de/de/aufgaben/unbarer-zahlungsverkehr/serviceangebot/iban-regeln (dilbilimci doğruladı, 2026-11-23) |
+| Tüketici sözleşmesinin feshi (1.10.2016 sonrası) e-postayla yapılabilir; imzalı mektup istenemez | lx:Kündigung | https://www.verbraucherzentrale.nrw/wissen/vertraege-reklamation/kundenrechte/kuendigung-per-email-darauf-sollten-sie-achten-13132 |
 
 Sıklık verisi: FrequencyWords 2018 de (OpenSubtitles), H. Dave, CC BY-SA 4.0 — bkz. registry/frequency/lemmas.json.
