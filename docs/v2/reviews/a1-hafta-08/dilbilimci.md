@@ -83,3 +83,29 @@ Bulunan 18 hatanın hepsi düzeltildi ve sınandı. Dilbilim açısından KAPAND
 Hata oranı: 18 / 514 = %3,5
 
 KARAR: ONAY
+
+## PM-097 ek (ses kanıtları yalnız önceki günlerin sözcükleriyle; dilbilimci-ajan, 2026-11-23)
+
+Kapsam: `gun-50.json` … `gun-54.json` içindeki 10 ses kaydının 10 `ana_fikir`, 20 `ayrinti` ve 10 `eylem` sorusu (40 soru). Ölçüt: `kanit` cümlesi 49. güne kadarki sözcüklerle anlaşılır mı, değilse soru bağlamdan çözülüyor mu. Günün kartları: 50 Aussicht, Teppich, schüchtern · 51 Ausflug, vorhaben, Verspätung · 52 Mannschaft, Bargeld, wandern · 53 Beschwerde, ausfallen, Trinkgeld · 54 Rente, einpacken, reservieren.
+
+### Düzeltilen (3)
+| Yer | Önce | Sonra | Gerekçe |
+|---|---|---|---|
+| 51 a1 `ana_fikir` | `kanit: [c2]` | `kanit: [c2, c3]` | c2 yalnız **Verspätung** (günün kartı) ile anlaşılıyor. c3 (**Er kommt nicht um neun, er kommt um neun Uhr fünfundzwanzig.**) bilinen sözcüklerle "gecikiyor"u veriyor. |
+| 52 a1 `ana_fikir` | çeldiriciler "Cumartesi bir pazar", "Cumartesi bir konser"; `kanit: [c1]` | çeldiriciler "Cumartesi kapalı bir eczane", "Cumartesi geciken bir otobüs"; `kanit: [c1, c2]` | **Mannschaft** günün kartı. **spielt** ve **Die Karte kostet …** bir konseri de anlatabilir; eski çeldiricilerle soru çözülmüyordu. Yeni çeldiriciler **spielt** ve bilet cümlesiyle eleniyor. |
+| 53 a1 `eylem` | `kanit: [c1, c2, c3]` | `kanit: [c2, c3]` | Cevap (soldaki duraktan 18.20 otobüsü) c2 ve c3'te. c1'deki **fällt … aus** günün kartı, cevap ona dayanmıyor. |
+
+### Dokunulmayan, günün sözcüğünü içeren kanıtlar (bağlamdan çözülüyor)
+- 50 a2 `ana_fikir` c2 (**Aussicht**): "otel reklamı" cevabı **Hotel** ve **Zimmer** ile çıkıyor.
+- 51 a1 `ayrinti` c2 ve c4, 51 a2 `ana_fikir` c3 ve `ayrinti` c3 (**Verspätung**): soru gecikmeyi kendisi söylüyor ("kaç dakika gecikmeli?", "gecikiyor mu?"); cevap **fünfundzwanzig Minuten**, **dreißig Minuten**, **keine** ile çıkıyor. 51 a2'de c4 ayrıca bilinen sözcüklerle geç kalmayı veriyor.
+- 52 a1 `ayrinti` ve `eylem` c4 (**Bargeld**): **bar** (4. gün) ile **Geld** bilinen iki parça; birleşik sözcük çözülüyor.
+- 52 a2 `ayrinti` c3 (**Bargeld**): cevap **ich habe nur zehn Euro** bölümünde.
+- 53 a1 `ana_fikir` c1 (**fällt … aus**): c2 (**Bitte nehmen Sie den Bus …**) tek uygun seçeneği veriyor.
+- 53 a2 `ana_fikir` c2 (**Beschwerde**): c3 (**die Musik … zu laut**) ve **von den Nachbarn** cevabı veriyor.
+- 54 a1 `ayrinti` ve `eylem` c3 (**reserviere**): Türkçedeki "rezerve" ile aynı; cevap **bis Freitag**.
+- Geri kalan 26 sorunun kanıtında günün sözcüğü yok (50 a1'deki **zurückrufen** 17. günün kartı).
+
+### Sınama
+`sim.sh … 50 gun-5[0-4].json gorulmemis-08.json`: 5 hata, hepsi bilinen `3 kart (4–6)`; 50–54 için "öğretilmemiş", "bilinmeyen", "accepted" uyarısı 0; `dikis.out` 50–54 satırları ihlalsiz.
+
+Sonuç: 3 düzeltme / 40 soru. PM-097 md. 1 açısından KAPANDI.
