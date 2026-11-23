@@ -86,3 +86,47 @@ Bulgu: 29 (9 dünya ve iç tutarlılık, 3 Almanca doğallık, 1 hitap, 2 konuş
 `review` alanı düzeltilen bütün dosyalarda `draft` (okur ve örneklem sırada).
 
 **Karar: ONAY** (düzeltmelerle birlikte yayına uygun; açık nokta 1 baş oturumun dünya kararını bekliyor).
+
+## Örneklem dönüşü (İÇ-10)
+
+Tarih: 2026-11-23 · dayanak: `docs/v2/reviews/ic10-hafta-06-orneklem.md` (1. çekiliş 30'da 2 hata, tek kök; 2. çekiliş 0). Yalnız raporun önerdiği dar düzeltmeler yapıldı. Yeni Almanca sözcük ya da çekim eklenmedi.
+
+### 1. 39. gün okul yılları (tek kök, üç yer)
+Frau Brandl'ın hikâyesi: okul 1960'ta vardı, bugün yerinde otopark var. Örneklemin (a) önerisi uygulandı, yıllar hikâyeye çekildi.
+
+| Yer | Önce | Sonra |
+|---|---|---|
+| gun-39 · m1:39:h2 · `gorev_cumleleri[1]` | **2008 war die Schule noch neu.** · "2008'de okul daha yeniydi." | **1965 war die Schule noch neu.** · "1965'te okul henüz yeniydi." Kabuller: **1965 war die Schule noch neu.** / **Im Jahr 1965 war die Schule noch neu.** / **Die Schule war 1965 noch neu.** |
+| gun-39 · `gun_sinavi` m1:39:s8 (`tr_de`) | "1999'da okul yeniydi." · **1999 war die Schule neu.** | "1960'ta okul yeniydi." · **1960 war die Schule neu.** / **Im Jahr 1960 war die Schule neu.** / **Die Schule war 1960 neu.** `why_tr` örneği aynı yılla. |
+| hafta-sonu-testi-06 · m1:42:t08 (`order`) | **neu / Im Jahr 1985 / die Schule / war** · "1985 yılında okul yeniydi." | **neu / Im Jahr 1965 / die Schule / war** · "1965 yılında okul yeniydi." Üç kabul aynı yılla. |
+
+Notlar:
+- Üç maddede de kabul sayısı 3, ilk kabul `de` ile aynı. Üçü de dikte ya da dinleme maddesi değil; ses metni yok.
+- Yıllar rakamla yazılı (önceki karar). 1960 ve 1965 için gereken sayı sözcükleri 4. günden beri biliniyor (**sechzig**). 2000 sonrası yıl okunuşu aynı günde iki yerde kalıyor: **Die Waschmaschine ist von 2008.** ve **Im Jahr 2000 hat das … gedauert.**
+- "daha" → "henüz": karşılaştırma gibi okunmasın diye (bulgu 23 ile aynı gerekçe).
+
+### 2. Ünlem kalıntıları Ü1–Ü9 ve "onu"
+Almancası silinmiş ünlemler `tr` alanlarından da silindi. Dokuz alan, örneklemin önerdiği metinle birebir:
+- gun-36 n1 "Merhaba! Hafta sonu ne yaptın?" · n4 "Ve şimdi yine pazartesi."
+- gun-38 n5 "Olur öyle!" · n6 "O zaman hafta sonun iyi geçmiş!"
+- gun-39 n1 "Merhaba! Hafta sonunuz nasıldı?" · n3 "O parti! Çok gürültülüydü. Ne kadar sürdü?" · n4 "1970'te sokak bu kadar gürültülü değildi."
+- gun-41 n2 "Doktora gitti mi?"
+- gun-42 n1 "Hafta sonun nasıldı?"
+
+gun-41 n4 "Teşekkürler! Tobi'yi arayayım mı?" · n5 "Tamam, o zaman bu akşam Tobi'yi ararım!" (Almancada ad geçiyor; "onu" birebir değildi).
+Almancada karşılığı olan ünlemlere (**Und?**, **Oh**, **Na ja**, **Ach, Tobi!**, **Echt?**) dokunulmadı.
+
+### 3. `dn-06.json` · `dn:kelime-ailesi-1`
+`tr` içine bir cümle eklendi: "Birinci parça fiilse sonundaki **en** düşer: **fahren**, **Fahrkarte**." Tablodaki iki satırı (**fahren**, **waschen**) açıklıyor; öğrenci **Fahrenkarte** kurmasın. Ayrıca "**Bahn** tren ya da hat" → "tren ya da raylı yol" (Türkçe "hat", Almanca **hat** ile karışıyordu).
+
+### 4. `dn-06.json` · `dn:yeniden-anlatma`
+Tablonun son satırı: **Sie sind zu Hause geblieben.** → **Tobi und Derya sind zu Hause geblieben.** `tr` içine bir cümle: "**wir** yerine adları söylersin, **sind** aynı kalır." Gerekçe: cümle başındaki büyük **Sie** kibar hitapla karışıyordu, çoğul **sie** de o güne kadar öğretilmiş bir biçim değil. Adlarla kurulan cümle yalnız bilinen sözcükleri kullanıyor. Sol sütun (**Wir sind zu Hause geblieben.**) değişmedi.
+
+### Denetim (düzeltmelerden sonra)
+- Dokuz dosya geçerli JSON.
+- `kdenet.ts 29 42` (geçici kopyada): 36–42 için görev cümlesi 23, 23, 23, 23, 23, 23, 29; bilinmeyenli 0. HALKA HATA, "görev:", TEKRAR, KALIP ÖRNEKSİZ yok. Yalnız bilinen **Waschen und Maschine** gösterim uyarısı.
+- `content:validate` (geçici kopyada, 8.–28. gün benzetimi olmadan): değişen maddeler için yeni hata sınıfı yok. Çıkan satırlar bilinen halka sınıfı (benzetimsiz ağaçta K(t) eksik). Tam benzetim (araç README 1.–4. adım) git komutu gerektirdiği için bu turda koşulmadı; baş oturumun kapısına kalıyor.
+- Bu turun dışında, dokunulmadan görülen: gun-40 · ses m1:40:a2 · b1 · dikte d4, doğrulayıcı "kabul **Die Sprechstunde ist heute bis 16 Uhr.** başka bir cümle" diyor (hedef **… bis sechzehn Uhr.**). Rakamlı yazım dil açısından doğru bir kabul; silinirse haksız ret olur. Karar baş oturumda: ya doğrulayıcı rakam ile sözcüğü eş sayar ya da kabul çıkarılır.
+- Örneklemin isteğe bağlı notları (gun-40 "O zaman Wendlfing daha küçüktü", gun-38 v1 d5 örneği, gun-42 "Benim gibi!", g3 ve g5 `why_tr`) bu turda kapsam dışı bırakıldı.
+
+**Karar: ONAY.** Örneklemin üç maddelik düzeltme listesi kapandı. Yeniden çekiliş gerekmez; değişen alanların fark kontrolü yeterli.
