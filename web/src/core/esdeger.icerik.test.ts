@@ -106,11 +106,34 @@ function obekTakasi(p: string[], r: string[]): boolean {
 }
 /** Ön alan iki sözcüklü olabilir ("Am Sonntag kann …"): kabul edat/tanımlıkla başlıyorsa ön alan + fiil üç sözcüktür (#259 P1-1) */
 const ortaAlan = (p: string[], r: string[]) => (BAGLI.has(r[0] ?? "") ? [3] : [2, 3]).some((k) => p.length > k + 1 && ayni(p.slice(0, k), r.slice(0, k)) && p.at(-1) === r.at(-1) && torba(p) === torba(r));
+/** Baştaki ünlem kümesi: en az iki ünlem sözcüğü, en az biri cümle değeri taşıyan (ja, nein, okay, ach, also); küme çıkınca kalan sıra aynı
+ *  ("Gern. Ja, zwei Semmeln." ← "Ja, gern. Zwei Semmeln."; "Klar, ja, gern."). "Gern ich hätte …" tek sözcüklü küme olduğundan açıklanmaz. */
+const UNLEM = new Set("ja nein gern gerne klar dann so also okay ok ach gut danke bitte".split(" "));
+const UNLEM_CEKIRDEK = new Set("ja nein okay ok ach also".split(" "));
+function unlemKumesi(p: string[], r: string[]): boolean {
+  let k = 0; while (k < p.length && UNLEM.has(p[k]!)) k++;
+  if (k < 2 || !p.slice(0, k).some((w) => UNLEM_CEKIRDEK.has(w)) || torba(p) !== torba(r)) return false;
+  const kalan = [...r];
+  for (const w of p.slice(0, k)) { const i = kalan.indexOf(w); if (i < 0) return false; kalan.splice(i, 1); }
+  return ayni(p.slice(k), kalan);
+}
+/** Evet/hayır sorusunda (fiil başta) bir öbek başa alınıp düz cümle olur: "Dann geht er aufs Gymnasium." ← "Geht er dann aufs Gymnasium?" */
+function sorudanOne(p: string[], r: string[]): boolean {
+  if (ZAMIR.has(r[0] ?? "") || torba(p) !== torba(r)) return false;
+  for (let i = 1; i < p.length; i++) {
+    if (p[i] !== r[0]) continue;
+    const X = p.slice(0, i), B = r.slice(1);
+    if ((X.length > 1 && X.some((w) => ZAMIR.has(w))) || BAGLI.has(X.at(-1)!)) continue;
+    for (let a = 0; a + X.length <= B.length; a++) if (ayni(B.slice(a, a + X.length), X) && !KOPAN.has(B[a - 1] ?? "") && ayni([...B.slice(0, a), ...B.slice(a + X.length)], p.slice(i + 1))) return true;
+  }
+  return false;
+}
 function aciklanir(cevap: string, kabul: string[]): boolean {
   const p0 = sozcukler(cevap);
   for (const p of [p0, kenarsiz(p0)]) for (const a of kabul) for (const r of [sozcukler(a), kenarsiz(sozcukler(a))]) {
     if (!p.length) continue;
     if (ayni(p, r) || obekTakasi(p, r) || ortaAlan(p, r) || (ozu(p).length > 0 && ayni(ozu(p), ozu(r)))) return true;
+    if (unlemKumesi(p0, sozcukler(a)) || (/\?\s*$/.test(a) && sorudanOne(p, r))) return true;
   }
   return false;
 }
@@ -128,7 +151,11 @@ const ISTISNA = new Set<string>([
   "domains/strategie/scenarios/01-nicht-verstanden.json d31: Ach so! Danke schön. → Ach schön so! Danke.",
   "domains/strategie/scenarios/01-nicht-verstanden.json d31: Ach so! Danke schön. → so! Ach Danke schön.",
   "m1/gun-01.json m1:01:s7: Danke, dann bis Samstag! → dann Danke, bis Samstag.",
-  "m1/gun-07.json m1:07:s10: Nein, ich bin so müde. → so Nein, ich bin müde."
+  "m1/gun-07.json m1:07:s10: Nein, ich bin so müde. → so Nein, ich bin müde.",
+  // PM-117 A.3 ön sınamasında (16 içerik haftası birleşik) görülen, aynı türden derecelendirici toleransı ("so"/"dann" başa); web/ takibi
+  "m1/gun-59.json m1:59:s9: Weil mein Rücken so wehtut. → so Weil mein Rücken wehtut.",
+  "m1/gun-77.json m1:77:v1:c1: Ja, dann zahle ich bar. → dann Ja, ich zahle bar.",
+  "m1/gun-104.json m1:104:s6: Du siehst so müde aus. → so Du siehst müde aus."
 ]);
 
 describe("kurallar", () => {
@@ -155,6 +182,13 @@ describe("kurallar", () => {
     expect(aciklanir("Toll das finde ich.", ["Das finde ich toll."])).toBe(false);
     expect(aciklanir("Schön das ist.", ["Das ist schön."])).toBe(false);
     expect(aciklanir("Ich bin dabei, danke schön.", ["Ich bin dabei!"])).toBe(true);
+    // ön sınama: baştaki ünlem kümesi ve sorudan düz cümle
+    expect(aciklanir("Gern. Ja, zwei Semmeln, bitte.", ["Ja, gern. Zwei Semmeln, bitte."])).toBe(true);
+    expect(aciklanir("Klar, ja, gern.", ["Ja, klar, gern!"])).toBe(true);
+    expect(aciklanir("Dann geht er aufs Gymnasium.", ["Geht er dann aufs Gymnasium?"])).toBe(true);
+    expect(aciklanir("Dann ja, ich zahle bar.", ["Ja, dann zahle ich bar."])).toBe(false);
+    expect(aciklanir("Morgen ich habe Zeit.", ["Habe ich morgen Zeit?"])).toBe(false);
+    expect(aciklanir("Gern, ich komme.", ["Ich komme gern."])).toBe(false);
   });
 });
 
@@ -162,13 +196,16 @@ describe("permütasyon taraması (temel + M1 + senaryo + dünya)", () => {
   it("kabul listesinde olmayan her doğru sıralama kurallarla açıklanır", () => {
     const kabul: string[] = [];
     let n = 0;
+    // aynı kabul listesi + aynı cümle bir kez taranır (içerik büyüdükçe süre; ilk geçişin dosya/madde kimliği raporlanır)
+    const taranan = new Set<string>();
+    const ilkKez = (tur: string, accepted: string[], a: string) => { const k = `${tur}|${accepted.join("|")}|${a}`; if (taranan.has(k)) return false; taranan.add(k); return true; };
     for (const { dosya, d } of maddeler()) {
       if (d.k === "gap") continue;
       const acc = (d.accepted as string[]).filter((a) => !a.includes("{name}") && !/\d/.test(a));
       const accN = new Set((d.accepted as string[]).map((a) => norm(a)));
       for (const a of acc) {
         const w = a.replace(/[.!?…]+\s*$/, "").split(/\s+/).filter(Boolean);
-        if (w.length < 3 || w.length > 8) continue;
+        if (w.length < 3 || w.length > 8 || !ilkKez(`d:${d.k}`, d.accepted as string[], a)) continue;
         const tohum = [...a].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
         const gorulen = new Set<string>();
         for (const p of siralamalar(w, tohum)) {
@@ -185,7 +222,7 @@ describe("permütasyon taraması (temel + M1 + senaryo + dünya)", () => {
       const accN = new Set(m.accepted.map((a) => norm(a)));
       for (const a of acc) {
         const w = a.replace(/[.!?…]+\s*$/, "").split(/\s+/).filter(Boolean);
-        if (w.length < 3 || w.length > 8) continue;
+        if (w.length < 3 || w.length > 8 || !ilkKez("r", m.accepted, a)) continue;
         const tohum = [...a].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 11);
         const gorulen = new Set<string>();
         for (const p of siralamalar(w, tohum)) {
@@ -199,5 +236,5 @@ describe("permütasyon taraması (temel + M1 + senaryo + dünya)", () => {
     }
     expect(n).toBeGreaterThan(5_000);
     expect(kabul.sort(), "derecelendirici bu sıraları kabul ediyor ama hiçbir kural açıklamıyor (başlıktaki 1–3); doğru Almancaysa sırayı kabul listesine yaz, değilse web/ derecelendirici işi").toEqual([]);
-  }, 300_000);
+  }, 900_000);   // 16 hafta ≈ 5 dk; içerik büyüdükçe artar (takip: dosyalara bölüp paralel koşmak)
 });
