@@ -81,4 +81,17 @@ Düzeltmediklerim listesindeki 1–5. maddeler kapandı; 6 ve 7 açık kalıyor 
 
 Denetim (`kontrol.sh 11 --tam`): `→ 3 hata, 358 uyarı` (yalnız Quittung, Umtausch, Einkaufswagen), dikiş `İhlal: 0`. Uyarı 357 → 358: 74 v1 d4 artık "krapfen" yazdırıyor (kalıpta gösterilmiş, kartı yok; aynı sınıftan bilinen uyarı).
 
+## Okur düzeltmeleri (okur GERİ, 78 madde; `docs/v2/reviews/okur/ic9-h11.md`)
+
+Hepsi uygulandı. Almanca satırlara ve `accepted` listelerine dokunulmadı; yalnız Türkçe açıklama alanları değişti.
+
+- **A (25):** "fiil", "ana cümle", "çoğul" kaldırıldı, yerine kelimenin kendisi yazıldı (ör. "**wenn** parçasında **ist** en sonda", "virgülden sonra hemen **gehen wir**", "Birden çok şey için **welche**"). "Kapı" → "Haftanın son provası / son görevi" (77 prova başlığı, n3 geri bildirimi, s11; hafta testi t12). 72 s9 → "**Gutschein** ve **Blumenstrauß** için **einen** dersin." 74 n4 → "**hätte** ile **würde** birlikte olmaz." 75 kalıp → "… yapar mısın? – … yapardım." 76 başlığı → "Fırında sıra ve sipariş".
+- **Okurun listesinde olmayan, aynı kusurlu 2 satır:** 71 ve 72 `kontrol_tr` içindeki "fiil" de kaldırıldı.
+- **B (44):** 16 `;` iki cümleye bölündü (şıklarda virgül); 2 uzun `kapanis_tr` bölündü; 26 `why_tr` / `geri_bildirim_tr` içindeki `…` tam örnekle değişti (ör. **Ich hätte gern einen Kaffee.**, **Wie viel Pfand ist das?**).
+- **C (9 alan):** `gr:a2-03:t1`–`t5` `tr` yeniden yazıldı; t2 `h_tr` → "wenn parçası başta: virgülden sonra koche ich"; tablo başlıkları t1 "ilk parça · wenn ile başlayan parça · en sondaki kelime", t2 "baştaki parça · hemen sonraki kelime · cümlenin kalanı", t3 "Da ist ile · Ich habe ile · örnek" ve satır etiketi "birden çok: die Teller". Terim, `=`, `;`, `→`, `%`, "(a1-12)" yok; her cümle ≤ 14 kelime; Almanca **kalın** işaretli. t3'e eklendi: "**die Milch** gibi sayılamayan şeyler için de **welche** dersin". Kural ve anlam aynı; tablonun Almanca hücreleri ve `ex` değişmedi.
+
+Not: `grammar.json` içinde `**kalın**` işareti ilk kez bu beş konuda kullanılıyor (öteki 197 konu tırnaklı). Bu metni gösteren ekran `Rich` bileşeninden geçirmiyorsa yıldızlar görünür; baş geliştirici bakmalı.
+
+Denetim (`kontrol.sh 11 --tam`): `→ 3 hata, 358 uyarı` (yalnız Quittung, Umtausch, Einkaufswagen), dikiş `İhlal: 0`. Kendi taramam (terim, `;`, `=`, `…`, uzun cümle): kalan 0.
+
 KARAR: ONAY
