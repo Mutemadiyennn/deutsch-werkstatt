@@ -44,7 +44,8 @@
    "title_tr": "Cumartesi sabahı: merdivende bir raf",
    "kartlar": [
     "lx:stellen",
-    "lx:her"
+    "lx:her",
+    "lx:Recht"
    ],
    "kaliplar": [
     {
@@ -58,6 +59,22 @@
     {
      "de": "Ich stelle … in den Keller. – Ich habe … in den Keller gestellt.",
      "tr": "…'ı bodruma koyuyorum. – …'ı bodruma koydum."
+    },
+    {
+     "de": "Wir haben beide … – Wir waren beide …",
+     "tr": "İkimiz de … – İkimiz de … idik."
+    },
+    {
+     "de": "Das war gar nicht … – Ich habe gar nichts gemacht.",
+     "tr": "Hiç de … değildi. – Hiçbir şey yapmadım."
+    },
+    {
+     "de": "Du hast recht. – Da haben Sie recht.",
+     "tr": "Haklısın. – Haklısınız."
+    },
+    {
+     "de": "Ich habe … geholfen.",
+     "tr": "…'a yardım ettim."
     }
    ],
    "gorev_cumleleri": [
@@ -100,6 +117,26 @@
       "Kommen Sie mal her, Frau Brandl!",
       "Frau Brandl, kommen Sie bitte mal her!"
      ]
+    },
+    {
+     "kart": "lx:Recht",
+     "de": "Du hast recht, ich bin müde, weil ich heute so viel gemacht habe.",
+     "tr": "Haklısın, yorgunum, çünkü bugün çok şey yaptım.",
+     "accepted": [
+      "Du hast recht, ich bin müde, weil ich heute so viel gemacht habe.",
+      "Du hast recht. Ich bin müde, weil ich heute so viel gemacht habe.",
+      "Da hast du recht, ich bin müde, weil ich heute so viel gemacht habe."
+     ]
+    },
+    {
+     "kart": "lx:Recht",
+     "de": "Du hast recht, wir haben beide zu viel gearbeitet.",
+     "tr": "Haklısın, ikimiz de çok fazla çalıştık.",
+     "accepted": [
+      "Du hast recht, wir haben beide zu viel gearbeitet.",
+      "Da hast du recht, wir haben beide zu viel gearbeitet.",
+      "Du hast recht. Wir haben beide zu viel gearbeitet."
+     ]
     }
    ],
    "sahne": {
@@ -127,87 +164,6 @@
       "Bodruma",
       "Mutfağa",
       "Balkona"
-     ],
-     "ans": 0
-    }
-   }
-  },
-  {
-   "id": "m1:62:h2",
-   "title_tr": "Akşam: Ioana ile telefonda",
-   "kartlar": [
-    "lx:Recht"
-   ],
-   "kaliplar": [
-    {
-     "de": "Wir haben beide … – Wir waren beide …",
-     "tr": "İkimiz de … – İkimiz de … idik."
-    },
-    {
-     "de": "Das war gar nicht … – Ich habe gar nichts gemacht.",
-     "tr": "Hiç de … değildi. – Hiçbir şey yapmadım."
-    },
-    {
-     "de": "Du hast recht. – Da haben Sie recht.",
-     "tr": "Haklısın. – Haklısınız."
-    },
-    {
-     "de": "Ich habe … geholfen.",
-     "tr": "…'a yardım ettim."
-    }
-   ],
-   "gorev_cumleleri": [
-    {
-     "kart": "lx:Recht",
-     "de": "Du hast recht, ich bin müde, weil ich heute so viel gemacht habe.",
-     "tr": "Haklısın, yorgunum, çünkü bugün çok şey yaptım.",
-     "accepted": [
-      "Du hast recht, ich bin müde, weil ich heute so viel gemacht habe.",
-      "Du hast recht. Ich bin müde, weil ich heute so viel gemacht habe.",
-      "Da hast du recht, ich bin müde, weil ich heute so viel gemacht habe."
-     ]
-    },
-    {
-     "kart": "lx:Recht",
-     "de": "Du hast recht, wir haben beide zu viel gearbeitet.",
-     "tr": "Haklısın, ikimiz de çok fazla çalıştık.",
-     "accepted": [
-      "Du hast recht, wir haben beide zu viel gearbeitet.",
-      "Da hast du recht, wir haben beide zu viel gearbeitet.",
-      "Du hast recht. Wir haben beide zu viel gearbeitet."
-     ]
-    }
-   ],
-   "sahne": {
-    "ortam_tr": "Cumartesi akşamı. Kurstan arkadaşın Ioana arıyor.",
-    "satirlar": [
-     {
-      "r": "ch:popescu",
-      "de": "Hallo! Ich habe heute gar nichts gemacht. Und du?",
-      "tr": "Merhaba! Ben bugün hiçbir şey yapmadım. Ya sen?"
-     },
-     {
-      "r": "ogrenci",
-      "de": "Ich habe der Nachbarin geholfen. Das war gar nicht so schwer.",
-      "tr": "Komşuya yardım ettim. Hiç de o kadar zor değildi."
-     },
-     {
-      "r": "ch:popescu",
-      "de": "Toll! Wir waren beide fleißig, oder?",
-      "tr": "Harika! İkimiz de çalışkandık, değil mi?"
-     },
-     {
-      "r": "ogrenci",
-      "de": "Na ja, du hast heute nur geschlafen!",
-      "tr": "Eh, sen bugün sadece uyudun!"
-     }
-    ],
-    "soru": {
-     "q_tr": "Ioana bugün ne yaptı?",
-     "opts": [
-      "Hiçbir şey yapmadı",
-      "Brandl Hanım'a yardım etti",
-      "Çok çalıştı"
      ],
      "ans": 0
     }
