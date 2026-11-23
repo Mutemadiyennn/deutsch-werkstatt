@@ -1,4 +1,6 @@
 /** İçerik paketi yükleyici: /content/current.json → /content/<sürüm>/… (şemayla doğrulanır, bellekte önbellek) */
+import { rafKayit } from "./raf.ts";
+import { fotoBirlestir } from "./kartFoto.ts";
 import { z } from "zod";
 import { bilinenKelimeler } from "../core/persona.ts";
 import { adsizTasi, AssessItem, ContentIndex, GrammarNote, Gun, Lexeme, Pattern, Scenario, TemelDers, World } from "@dw/shared";
@@ -43,13 +45,18 @@ function file<T>(name: string, schema: z.ZodType<T>): Promise<T> {
 }
 /** PM-064: dünya (karakterlerin ses kaydı); içerikte yoksa boş */
 /** B12 3. parça: seçilmiş açık fotoğraflar; anahtar "lx:Kelime#kart" ya da "lx:Kelime#ornekN" */
-export interface FotoKayit { src: string; sinif: "acik"; yazar?: string | null; lisans: string; lisans_url?: string | null; sayfa?: string | null }
+export interface FotoKayit { src: string; sinif: "acik" | "kapali"; yazar?: string | null; lisans: string; lisans_url?: string | null; sayfa?: string | null;
+  /** PM 7088230583 md. 3: raf kaydında (`sinif: kapali`, `src` = `raf:<yol>`) aynı yerin açık fotoğrafı; raf ulaşılamazsa o gösterilir */ acik?: FotoKayit }
 /** Fotoğraf haritası oturum boyunca bir kez çözülür; hata olursa boş harita saklanır (her dokunuşta ağ/çözüm yok; inceleme #121 P1-5) */
 let fotoHarita: Record<string, FotoKayit> | null = null;
 let fotoSoz: Promise<Record<string, FotoKayit>> | null = null;
 export const fotoHaritasi = () => fotoHarita;
 export const loadFoto = (): Promise<Record<string, FotoKayit>> => fotoHarita ? Promise.resolve(fotoHarita) : (fotoSoz ??= fotoYukle().then((h) => (fotoHarita = h)));
-const fotoYukle = () => within(file("foto.json", z.object({ foto: z.record(z.string(), z.object({ src: z.string().refine((x) => /^https:\/\//.test(x) || /^content\/[\w-]+\/media\/[\w.-]+$/.test(x)), sinif: z.literal("acik"), yazar: z.string().nullish(), lisans: z.string(), lisans_url: z.string().nullish(), sayfa: z.string().nullish() }).passthrough()) }))).then((x) => x.foto as Record<string, FotoKayit>).catch(() => ({} as Record<string, FotoKayit>));
+/** Raf ayarı değişince (Profil → Medya rafı): harita bir sonraki istekte yeniden çözülür */
+export const fotoSifirla = () => { fotoHarita = null; fotoSoz = null; };
+/** önce raftan, yoksa açık fotoğraf (PM 7088230583 md. 3); raf kapalıysa yalnız açık harita (bugünkü davranış) */
+const fotoYukle = () => Promise.all([acikFotoYukle(), rafKayit().catch(() => ({}))]).then(([a, r]) => fotoBirlestir(a, r));
+const acikFotoYukle = () => within(file("foto.json", z.object({ foto: z.record(z.string(), z.object({ src: z.string().refine((x) => /^https:\/\//.test(x) || /^content\/[\w-]+\/media\/[\w.-]+$/.test(x)), sinif: z.literal("acik"), yazar: z.string().nullish(), lisans: z.string(), lisans_url: z.string().nullish(), sayfa: z.string().nullish() }).passthrough()) }))).then((x) => x.foto as Record<string, FotoKayit>).catch(() => ({} as Record<string, FotoKayit>));
 export const loadWorld = () => within(file("world/world.json", World)).catch(() => null);
 export const loadAssessBank = () => within(file("assess.json", z.array(AssessItem)));
 let kayitli = false;

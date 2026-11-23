@@ -3,6 +3,7 @@
  * açıkça söylenir (bağlandı / anahtar yanlış / ulaşılamıyor; PM 14:40 madde 1b). Alanlar boşsa açık kaynaklı medya kullanılır.
  */
 import { useEffect, useState } from "preact/hooks";
+import { fotoSifirla } from "../services/content.ts";
 import { PAROLA_EN_AZ, RAF_DURUM_TR, rafOku, rafSina, rafYaz, type RafDurum } from "../services/raf.ts";
 
 export function MedyaRafi() {
@@ -20,10 +21,11 @@ export function MedyaRafi() {
       // kısa parola girerken söylenir; hiçbir şey kaydedilmez ve rafa istek gitmez (PM 7020257764)
       if (anahtar.trim().length < PAROLA_EN_AZ) { setDurum("parola-kisa"); return; }
       if (!(await rafYaz({ adres, anahtar }))) { setDurum("adres-gecersiz"); return; }
+      fotoSifirla();
       setDurum(await rafSina());
     } catch { setDurum("ulasilamiyor"); } finally { setMesgul(false); }
   };
-  const sil = async () => { setAdres(""); setAnahtar(""); setDurum(null); await rafYaz(null); };
+  const sil = async () => { setAdres(""); setAnahtar(""); setDurum(null); await rafYaz(null); fotoSifirla(); };
   return (
     <div class="stack" style={{ gap: 8 }} data-test="medya-rafi" data-hazir={hazir ? "1" : undefined}>
       <p class="small muted" id="raf-bilgi">Sana özel fotoğraflar. Adres ve parola yalnız bu cihazda. Boşsa herkese açık görseller.</p>

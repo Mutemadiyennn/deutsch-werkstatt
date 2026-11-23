@@ -74,6 +74,49 @@ def main():
         src = f.locator("img").get_attribute("src") if f.count() else None
         check(f.count() == 1 and f.get_attribute("data-kaynak") == "secim" and (src or "").endswith("content/e2eyerel/media/montag.jpg"), f"yerel yollu açık fotoğraf kartta ({src})")
         b.close()
+        # PM 7088230583 md. 3: raf açıkken kartın fotoğrafı önce raftan (kayit.json → kart["lx:X#kart"].dosya; anahtarla, blob:),
+        # atıf rafın; raf dosyası gelmezse açık fotoğraf; raf ulaşılamazsa (önbellek boş) açık fotoğraf, ekran beklemez
+        for durum in ("raf", "dosya-yok", "raf-yok"):
+            b, ctx = launch(p); pg = new_page(ctx)
+            pg.route("**/foto.json", lambda r: r.fulfill(status=200, content_type="application/json", body=json.dumps({"surum": 1, "foto": KAYIT})))
+            pg.route("https://foto.example/**", lambda r: r.fulfill(status=200, content_type="image/jpeg", body=JPEG))
+            yetkiler = []
+            def raf(r, _istek=None, durum=durum):   # Playwright işleyiciye (route, request) verir
+                yetkiler.append(r.request.headers.get("authorization"))
+                if durum == "raf-yok": return r.abort()
+                if r.request.url.endswith("/kayit.json"):
+                    return r.fulfill(status=200, content_type="application/json", headers={"Access-Control-Allow-Origin": "*"}, body=json.dumps({"surum": 1, "kart": {"lx:Montag#kart": {"dosya": "foto/m.jpg", "yazar": "Raf Yazarı", "lisans": "Pixabay İçerik Lisansı", "sayfa": "https://raf-kaynak.example/1", "sinif": "kapali"}}}))
+                if durum == "dosya-yok": return r.fulfill(status=404, headers={"Access-Control-Allow-Origin": "*"}, body="")
+                return r.fulfill(status=200, content_type="image/jpeg", headers={"Access-Control-Allow-Origin": "*"}, body=JPEG)
+            rafk = f"https://raf-{durum}.test"   # her durumun kendi adresi: önbellek anahtarları karışmasın
+            pg.route(f"{rafk}/**", raf)
+            login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
+            pg.evaluate("""async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
+              await new Promise((ok) => { const t = d.transaction('meta', 'readwrite'); t.objectStore('meta').put({ key: 'raf', value: { adres: '""" + rafk + """', anahtar: 'sahte-test-anahtari-0123456789abcdef-01234' } }); t.oncomplete = ok; }); d.close();}""")
+            pg.reload(); pg.wait_for_selector("[data-tab=today]")
+            pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=garden-intro]")
+            try: pg.wait_for_selector("[data-test=garden-intro] [data-test=foto] img", timeout=8000)
+            except Exception: pass
+            f = pg.locator("[data-test=garden-intro] [data-test=foto]")
+            src = f.locator("img").get_attribute("src") if f.count() else None
+            cap = f.inner_text() if f.count() else ""
+            if durum == "raf":
+                check(f.get_attribute("data-kaynak") == "raf" and (src or "").startswith("blob:") and "Raf Yazarı" in cap and "Pixabay İçerik Lisansı" in cap and cap.startswith("Fotoğraf:"),
+                      f"raf açık: kartın fotoğrafı raftan, atıf rafın ({f.get_attribute('data-kaynak') if f.count() else None}, {src}, {cap!r})")
+                check(yetkiler and all(y == "Bearer sahte-test-anahtari-0123456789abcdef-01234" for y in yetkiler), f"raf istekleri parolayla ({len(yetkiler)})")
+                # çevrimdışı: raf ulaşılamazken bir kez görülen fotoğraf ve kayıt kapalı önbellekten
+                pg.unroute(f"{rafk}/**"); pg.route(f"{rafk}/**", lambda r: r.abort())
+                pg.goto(base + "#/today"); pg.reload()
+                pg.goto(base + "#/garden/1"); pg.wait_for_selector("[data-test=garden-intro]")
+                try: pg.wait_for_selector("[data-test=garden-intro] [data-test=foto] img", timeout=8000)
+                except Exception: pass
+                f = pg.locator("[data-test=garden-intro] [data-test=foto]")
+                src = f.locator("img").get_attribute("src") if f.count() else None
+                check(f.count() == 1 and f.get_attribute("data-kaynak") == "raf" and (src or "").startswith("blob:"), f"raf ulaşılamazken görülmüş fotoğraf önbellekten ({src})")
+            else:
+                check(f.count() == 1 and f.get_attribute("data-kaynak") == "secim" and (src or "").startswith("https://foto.example/") and "Örnek Yazar" in cap,
+                      f"{durum}: açık fotoğrafa düştü, atıf açık kaydın ({src}, {cap[:40]!r})")
+            b.close()
         # inceleme #150 P2: artikel sorusu başlığı büyük harfte "DIE" (Almanca kısım lang="de"; Türkçe yerelde "DİE" olmaz)
         b, ctx = launch(p); pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
