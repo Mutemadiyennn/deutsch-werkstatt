@@ -173,3 +173,18 @@ describe("komut satırı", () => {
     expect(r.stdout).toContain("gün dosyası yok: 15, 16, 17, 18, 19, 20, 21");
   }, 30000);
 });
+
+describe("düzenli çekim (PM-097 md. 2; dikişle aynı ölçü)", () => {
+  const ilk = (r: ReturnType<typeof kos>) => r.adimlar.find((a) => a.gun === 8 && a.yer.includes("halka"))!;
+  // 1. haftanın r0 dersleri 1t, 2t, 3t ve 2c'yi sunuyor; düzensiz biçim (spricht) kalıp satırında gösterilmeden engel
+  it("bilinen fiilin düzenli biçimi serbest (sınırda değil); düzensiz biçim kesin; gösterilince serbest", () => {
+    expect(ilk(kos(hafta2((gs) => { gs[0] = gun(8, [g("Tobi wartet hier.")]); })))).toMatchObject({ sonuc: "tamam", eksik: [] });
+    expect(ilk(kos(hafta2((gs) => { gs[0] = gun(8, [g("Tobi spricht Deutsch.")]); })))).toMatchObject({ sonuc: "kesin", eksik: ["çekim:spricht"] });
+    const kalip = (gs: GunHam[]) => { gs[0] = gun(8, [g("Tobi spricht Deutsch.")]); (gs[0].halkalar as Record<string, unknown>[])[0]!.kaliplar = [{ de: "… spricht Deutsch" }]; };
+    expect(ilk(kos(hafta2(kalip)))).toMatchObject({ sonuc: "tamam" });
+  });
+  it("kişinin tablosu sunulmadan düzenli biçim de kesin (temel ders metni verilmeden)", () => {
+    const r = ilk(kos(hafta2((gs) => { gs[0] = gun(8, [g("Ihr wartet hier.")]); }), { dersler: new Map() }));
+    expect(r.sonuc).toBe("kesin"); expect(r.eksik).toContain("çekim:wartet");
+  });
+});

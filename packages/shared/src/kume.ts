@@ -315,7 +315,7 @@ export function sunulanCekim(d: KumeDizini, satirlar: readonly (readonly string[
       const tt = toks(cell);
       tt.forEach((w, j) => {
         const s = siniflar(w); if (!s.size) return;
-        if (s.has("p2")) hedef.add("p2");
+        if (s.size === 1 && s.has("p2")) hedef.add("p2");   // yalnız tek anlamlı ortaç (gewohnt); bestellt 3t de olabilir
         const kisi = new Set<CekimSinifi>([...satirKisi, ...(ZAMIR[tt[j - 1] ?? ""] ?? []), ...(ZAMIR[tt[j + 1] ?? ""] ?? [])]);
         for (const k of kisi) if (s.has(k)) hedef.add(k);
       });
