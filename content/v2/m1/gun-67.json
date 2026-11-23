@@ -63,6 +63,10 @@
     {
      "de": "Leute aus der ganzen Welt",
      "tr": "dünyanın her yerinden insanlar"
+    },
+    {
+     "de": "Grüß Gott! – Grüß Gott, hier ist …",
+     "tr": "İyi günler! Bavyera'da günün her saatinde böyle selam verilir. – İyi günler, ben … (telefonda)"
     }
    ],
    "gorev_cumleleri": [
@@ -142,8 +146,8 @@
      },
      {
       "r": "ch:wimmer",
-      "de": "Danke! Und Herr Lechner bringt die Brezen.",
-      "tr": "Teşekkürler! Lechner Bey de brezelleri getiriyor."
+      "de": "Danke! Und Herr Lechner bringt das Brot.",
+      "tr": "Teşekkürler! Lechner Bey de ekmeği getiriyor."
      }
     ],
     "soru": {
@@ -185,6 +189,14 @@
     {
      "de": "Wie fühlst du dich?",
      "tr": "Kendini nasıl hissediyorsun?"
+    },
+    {
+     "de": "Komm rein!",
+     "tr": "Gel, içeri gir!"
+    },
+    {
+     "de": "Ich habe … auf deinen Tisch gelegt.",
+     "tr": "…'i senin masana koydum."
     }
    ],
    "dersten_sonra": true,
@@ -324,8 +336,8 @@
     "id": "s1",
     "speaker": "ch:brandl",
     "sahne_tr": "Akşam. Apartman koridoru. Frau Brandl ve Herr Pichler kapının önünde bekliyor.",
-    "de": "Grüß Gott! Na, sind Sie wieder zu Hause?",
-    "tr": "İyi akşamlar! Eee, eve döndünüz mü?"
+    "de": "Grüß Gott! Sind Sie wieder zu Hause?",
+    "tr": "İyi akşamlar! Eve döndünüz mü?"
    },
    {
     "id": "s2",
@@ -380,8 +392,8 @@
     "id": "s9",
     "speaker": "ch:brandl",
     "sahne_tr": "Frau Brandl elini sallıyor.",
-    "de": "Na ja, ich helfe gern.",
-    "tr": "Eh, severek yardım ederim."
+    "de": "Ich helfe gern.",
+    "tr": "Seve seve yardım ederim."
    },
    {
     "id": "s10",
@@ -574,7 +586,7 @@
    "script": [
     {
      "id": "c1",
-     "de": "Hey, Tobi hier!",
+     "de": "Hallo, Tobi hier!",
      "tr": "Selam, ben Tobi!"
     },
     {
@@ -707,7 +719,7 @@
        "id": "d5",
        "seviye": "gercek",
        "gorev_tr": "Derya'ya Tobi'nin mesajını iki kısa cümleyle anlat.",
-       "ornek_de": "Tobi findet den Schlüssel für den Drucker nicht. Der Techniker kommt um zehn.",
+       "ornek_de": "Tobi sucht den Schlüssel für den Drucker. Der Techniker kommt um zehn.",
        "zorunlu": [
         "Schlüssel",
         "Techniker"
@@ -1027,15 +1039,15 @@
    },
    {
     "id": "n2",
-    "de": "Ach, Sie sind es! Der Mann war da, alles in Ordnung. Haben Sie eine Frage?",
-    "tr": "Aa, sizsiniz! Adam geldi, her şey yolunda. Bir sorunuz mu var?",
+    "de": "Der Mann war da, alles in Ordnung. Haben Sie eine Frage?",
+    "tr": "Adam geldi, her şey yolunda. Bir sorunuz mu var?",
     "secenekler": [
      {
-      "de": "Alles gut, danke! Nur eine Frage: Wohin haben Sie meinen Schlüssel für den Keller gelegt?",
-      "tr": "Her şey iyi, teşekkürler! Sadece bir soru: Bodrum anahtarımı nereye koydunuz?",
+      "de": "Alles gut, danke! Wohin haben Sie meinen Schlüssel für den Keller gelegt?",
+      "tr": "Her şey iyi, teşekkürler! Bodrum anahtarımı nereye koydunuz?",
       "accepted": [
-       "Alles gut, danke! Nur eine Frage: Wohin haben Sie meinen Schlüssel für den Keller gelegt?",
-       "Nur eine Frage: Wohin haben Sie meinen Schlüssel für den Keller gelegt?",
+       "Alles gut, danke! Wohin haben Sie meinen Schlüssel für den Keller gelegt?",
+       "Danke, alles gut! Wohin haben Sie meinen Schlüssel für den Keller gelegt?",
        "Alles gut. Aber wohin haben Sie meinen Schlüssel für den Keller gelegt?"
       ],
       "sonraki": "n3",
@@ -1062,10 +1074,10 @@
     "tr": "Bodrum anahtarını mı? Onu kapının yanındaki duvara astım.",
     "secenekler": [
      {
-      "de": "Ah, ich sehe ihn! Vielen Dank, Frau Brandl.",
-      "tr": "Ah, görüyorum! Çok teşekkürler, Frau Brandl.",
+      "de": "Ich sehe ihn! Vielen Dank, Frau Brandl.",
+      "tr": "Görüyorum! Çok teşekkürler, Frau Brandl.",
       "accepted": [
-       "Ah, ich sehe ihn! Vielen Dank, Frau Brandl.",
+       "Ich sehe ihn! Vielen Dank, Frau Brandl.",
        "Ah, da ist er! Vielen Dank.",
        "Ich sehe ihn. Danke schön, Frau Brandl!"
       ],

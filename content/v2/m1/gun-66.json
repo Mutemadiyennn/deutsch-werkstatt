@@ -56,6 +56,10 @@
     {
      "de": "Ist jemand da? – Nein, da ist niemand.",
      "tr": "Kimse var mı? – Hayır, kimse yok."
+    },
+    {
+     "de": "Grüß Gott! – Grüß Gott, hier ist …",
+     "tr": "İyi günler! Bavyera'da günün her saatinde böyle selam verilir. – İyi günler, ben … (telefonda)"
     }
    ],
    "gorev_cumleleri": [
@@ -71,12 +75,12 @@
     },
     {
      "kart": "lx:Briefkasten",
-     "de": "Frau Brandl, Ihre Post war in meinem Briefkasten.",
-     "tr": "Frau Brandl, postanız benim posta kutumdaydı.",
+     "de": "Frau Brandl, das ist für Sie. Es war in meinem Briefkasten.",
+     "tr": "Frau Brandl, bu sizin için. Benim posta kutumdaydı.",
      "accepted": [
-      "Frau Brandl, Ihre Post war in meinem Briefkasten.",
-      "Ihre Post war in meinem Briefkasten, Frau Brandl.",
-      "Frau Brandl, Ihre Post war heute in meinem Briefkasten."
+      "Frau Brandl, das ist für Sie. Es war in meinem Briefkasten.",
+      "Das ist für Sie, Frau Brandl. Es war in meinem Briefkasten.",
+      "Frau Brandl, das ist für Sie. Es war heute in meinem Briefkasten."
      ]
     },
     {
@@ -110,8 +114,8 @@
      },
      {
       "r": "ogrenci",
-      "de": "Oh, danke! Am Briefkasten steht ja noch kein Name.",
-      "tr": "Aa, teşekkürler! Posta kutusunda henüz ad yazmıyor."
+      "de": "Danke! Am Briefkasten steht ja noch kein Name.",
+      "tr": "Teşekkürler! Posta kutusunda henüz ad yazmıyor."
      },
      {
       "r": "ch:brandl",
@@ -149,6 +153,10 @@
     {
      "de": "Der Wasserhahn tropft.",
      "tr": "Musluk damlatıyor."
+    },
+    {
+     "de": "Ich stelle … neben das Sofa. – Ich stelle … unter den Wasserhahn.",
+     "tr": "…'i kanepenin yanına koyuyorum. – …'i musluğun altına koyuyorum."
     }
    ],
    "dersten_sonra": true,
@@ -294,13 +302,13 @@
     "satirlar": [
      {
       "r": "ch:pichler",
-      "de": "Grüß Gott! Ich mache heute das Schild für die Klingel. Wie steht Ihr Name im Mietvertrag?",
-      "tr": "İyi akşamlar! Bugün zilin isim kartını yapıyorum. Adınız kira sözleşmesinde nasıl yazıyor?"
+      "de": "Grüß Gott! Heute kommt Ihr Name an die Klingel. Wie steht er im Mietvertrag?",
+      "tr": "İyi akşamlar! Bugün adınız zile yazılıyor. Kira sözleşmesinde nasıl yazıyor?"
      },
      {
       "r": "ogrenci",
-      "de": "Moment, der Mietvertrag ist im Wohnzimmer. Ich bringe ihn.",
-      "tr": "Bir dakika, kira sözleşmesi oturma odasında. Getiriyorum."
+      "de": "Moment, der Mietvertrag liegt im Regal. Ich bringe ihn.",
+      "tr": "Bir dakika, kira sözleşmesi rafta. Getiriyorum."
      },
      {
       "r": "ch:pichler",
@@ -1170,10 +1178,10 @@
     "tr": "Teşekkürler. Bir de dikkat edin: Şuradaki resim düşebilir!",
     "secenekler": [
      {
-      "de": "Oh, danke! Ich lege es gleich auf das Sofa.",
-      "tr": "Aa, teşekkürler! Hemen kanepeye koyuyorum.",
+      "de": "Danke! Ich lege es gleich auf das Sofa.",
+      "tr": "Teşekkürler! Hemen kanepeye koyuyorum.",
       "accepted": [
-       "Oh, danke! Ich lege es gleich auf das Sofa.",
+       "Danke! Ich lege es gleich auf das Sofa.",
        "Danke! Ich lege es auf das Sofa.",
        "Oh! Ich lege das Bild gleich auf das Sofa."
       ],
@@ -1268,13 +1276,13 @@
    {
     "id": "m1:66:s1",
     "k": "listen_and_respond",
-    "audio_de": "Die Post liegt auf dem Tisch im Flur.",
+    "audio_de": "Der Schlüssel liegt auf dem Tisch im Flur.",
     "speed": "normal",
     "situation_tr": "Duyduğunu yaz.",
     "accepted": [
-     "Die Post liegt auf dem Tisch im Flur.",
-     "die post liegt auf dem tisch im flur",
-     "Die Post liegt auf dem Tisch im Flur"
+     "Der Schlüssel liegt auf dem Tisch im Flur.",
+     "der schlüssel liegt auf dem tisch im flur",
+     "Der Schlüssel liegt auf dem Tisch im Flur"
     ],
     "why_tr": "Yatay duruyor: **liegt**. Nerede: **auf dem Tisch**."
    },
@@ -1364,15 +1372,15 @@
    {
     "id": "m1:66:s9",
     "k": "guided_response",
-    "situation_tr": "Frau Brandl postanı getirdi ve nereye koyacağını soruyor. Masaya koysun.",
-    "prompt_de": "Wohin kommt Ihre Post?",
+    "situation_tr": "Frau Brandl sana pasta getirdi ve nereye koyacağını soruyor. Masaya koysun.",
+    "prompt_de": "Wohin kommt der Kuchen?",
     "accepted": [
      "Bitte auf den Tisch.",
      "Auf den Tisch, bitte.",
-     "Die Post kommt auf den Tisch.",
-     "Auf den Tisch im Flur, bitte.",
-     "Sie kommt auf den Tisch, danke.",
-     "Legen Sie sie bitte auf den Tisch."
+     "Der Kuchen kommt auf den Tisch.",
+     "Auf den Tisch in der Küche, bitte.",
+     "Er kommt auf den Tisch, danke.",
+     "Stellen Sie ihn bitte auf den Tisch."
     ],
     "why_tr": "Nereye sorusu: **auf den Tisch**. Masa **der Tisch**, bu yüzden **den**."
    },
