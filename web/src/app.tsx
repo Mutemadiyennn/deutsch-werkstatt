@@ -192,7 +192,7 @@ export function App() {
     case "gorevler": screen = <GorevlerRota />; break;
     case "odak": screen = <OdakEkrani />; break;
     case "akis": screen = <AkisRota key={route.day} day={route.day} />; break;
-    case "m1medya": screen = <MedyaEkrani key={route.id} day={route.day} id={route.id} />; break;
+    case "m1medya": screen = <MedyaEkrani key={`${route.id}:${route.tur ?? ""}`} day={route.day} id={route.id} tur={route.tur} />; break;
     // yalnız e2e: AK-10 3. adımın iki türü, ekran (4. adım) gelene kadar (üretimde bu dal ve modül paketten düşer)
     default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__halka-turleri") ? <HalkaTurRota key={location.hash} /> : <Today />;
   }
