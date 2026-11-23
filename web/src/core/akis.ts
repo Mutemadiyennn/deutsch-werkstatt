@@ -15,6 +15,7 @@
  * Halkasız gün akış günü değildir: `planGun` null döner, çağıran eski düzene düşer (AK-5).
  */
 import POLICY from "../policy.json" with { type: "json" };
+import { ikinciTurVar } from "./medya.ts";
 import { bilinmeyenler, kalipOrtu, kartsizMi, kalipSecenekleri, toks, YUVA, type Bilinen, type Drill, type Gun, type Halka, type KumeDizini, type LearnerItem, type Lexeme, type TemelDers } from "@dw/shared";
 
 export type Kip = "gor" | "duy" | "kur" | "soyle";
@@ -42,10 +43,14 @@ export interface Adim {
   /** dersin öğesi (K8): kelime/kalıp `teach` ya da `drills` maddesi; birleşen kalıpta bütün `teach` kimlikleri `ogeler`de */
   ders?: { id: string; oge: string; ogeler?: string[] };
 }
+/** gün sonu "kendini dene" maddeleri dersin değil günün sınavından gelir (`Adim.ders.id`) */
+export const GUN_SINAVI = "gun_sinavi";
 export type DurakTuru = "isinma" | "ses" | "halka" | "dil" | "video" | "prova" | "okuma" | "gunsonu";
 export interface Durak {
   id: string; tur: DurakTuru; seans: number; title_tr: string; tahmini_dk: number; adimlar: Adim[];
   eski_anahtar?: string; neden: string; parca?: 1 | 2;
+  /** ses durağının turu (PM-097 md. 1): "ilk" başta (dinle + anlama), "ikinci" son halkadan sonra, provadan önce (dikte, gölge, cevapla) */
+  ses_turu?: "ilk" | "ikinci";
   /** tahmini süre `durak_dk` üst sınırını aşıyor (yalnız rapor; K1 cihaz ölçümüne kadar) */
   asim?: true;
 }
@@ -57,6 +62,8 @@ export interface GunPlani { gun: number; surum: 1; tohum: string; duraklar: Dura
 
 export interface AkisPolitikasi {
   seans_dk: [number, number]; durak_dk: [number, number]; gun_dk: [number, number]; halka_kart: [number, number];
+  /** halka sonu eşleştir adımı için kart sayısı (halka sınırından ayrı: 2–3 kartlık halkada eşleştirme yok; PM-098 md. 2, inceleme #234 P1-1) */
+  eslestir_kart: [number, number];
   tanitim_art_arda: number; kelime_tur_min: number; kelime_cumle_min: number; kip_art_arda: number; isinma_dk: number;
   halka_tekrar: [number, number]; gosterim_bilinmeyen_max: number; gorev_bilinmeyen_max: number; cerceve_uretim_min: number;
   /** sıralayıcının baktığı aday sayısı (girdi sırasından) */
@@ -72,7 +79,7 @@ export interface AkisPolitikasi {
 const ikili = (a: readonly number[]): [number, number] => [a[0] ?? NaN, a[1] ?? NaN];
 const PA = POLICY.akis;
 export const POLITIKA: AkisPolitikasi = {
-  ...PA, seans_dk: ikili(PA.seans_dk), durak_dk: ikili(PA.durak_dk), gun_dk: ikili(PA.gun_dk), halka_kart: ikili(PA.halka_kart), halka_tekrar: ikili(PA.halka_tekrar)
+  ...PA, seans_dk: ikili(PA.seans_dk), durak_dk: ikili(PA.durak_dk), gun_dk: ikili(PA.gun_dk), halka_kart: ikili(PA.halka_kart), eslestir_kart: ikili(PA.eslestir_kart), halka_tekrar: ikili(PA.halka_tekrar)
 };
 
 /** Politika girişte doğrulanır (bozuk eşik sonsuz döngü ya da boş plan üretmesin; BY-12) */
@@ -84,7 +91,7 @@ export function politikaHatalari(p: AkisPolitikasi): string[] {
   tam("kelime_tur_min", p.kelime_tur_min, 0); tam("kelime_cumle_min", p.kelime_cumle_min, 0); tam("cerceve_uretim_min", p.cerceve_uretim_min, 0);
   tam("gosterim_bilinmeyen_max", p.gosterim_bilinmeyen_max, 0); tam("gorev_bilinmeyen_max", p.gorev_bilinmeyen_max, 0);
   tam("halka_ders_madde", p.halka_ders_madde, 0); tam("yapboz_min_sozcuk", p.yapboz_min_sozcuk, 2);
-  for (const k of ["seans_dk", "durak_dk", "gun_dk", "halka_kart", "halka_tekrar"] as const) aralik(k, p[k]);
+  for (const k of ["seans_dk", "durak_dk", "gun_dk", "halka_kart", "eslestir_kart", "halka_tekrar"] as const) aralik(k, p[k]);
   if (!(p.isinma_dk >= 0)) h.push("isinma_dk ≥ 0 olmalı");
   for (const t of ADIM_TURLERI) if (!(p.adim_sn?.[t]! > 0)) h.push(`adim_sn.${t} > 0 olmalı`);
   for (const k of ["ses", "prova", "okuma", "gunsonu_ek"] as const) if (!(p.sabit_dk?.[k] >= 0)) h.push(`sabit_dk.${k} ≥ 0 olmalı`);
@@ -103,6 +110,8 @@ export interface PlanGirdi {
   tohum: string;
   simdi: Date;
   politika?: AkisPolitikasi;
+  /** görseli olan kartlar (seçilmiş açık fotoğraf ya da Noto Emoji): `resimden_sec` yalnız bunlarda (PM 7059008858 md. 5) */
+  gorselli?: ReadonlySet<string>;
 }
 
 /** Akış günü mü (AK-5): `halkalar` boş değilse. Değilse planGun null döner ve çağıran eski düzene düşer. */
@@ -169,13 +178,30 @@ class Planlayici {
   constructor(private readonly g: PlanGirdi, private readonly H: Halka[], private readonly pol: AkisPolitikasi) {
     this.lex = g.dizin.kartlar;
     this.r = rng(g.tohum);
-    this.yeni = new Set(g.gun.yeni_kartlar.filter((c) => this.lex.has(c)));
+    // bugünün kartı = günün listesi + halkaların kartları. Halkada tanıtılan her kart kapıda "bugünün kartı"dır: liste ile halkalar
+    // uyuşmasa da (e2e fikstürü gerçek günün halkalarını alır) hiçbir kart kendi tanıtımından önce sorulmaz (PM 7067321013 F1).
+    // Sıra: önce günün listesi (içerikte ikisi aynı küme; plan değişmez).
+    this.yeni = new Set([...g.gun.yeni_kartlar, ...H.flatMap((h) => h.kartlar)].filter((c) => this.lex.has(c)));
     this.tanitilan = new Set(g.oncekiKartlar);
   }
 
   // ---------- kapı ----------
   private K(ek: string[][] = []): Bilinen { return { kart: this.tanitilan, biten: this.g.bitenDersler, kaliplar: [...this.ogretilenKalip, ...ek] }; }
   private bilinmeyen(de: string, haric: string[] = [], ek: string[][] = []): number { return bilinmeyenler(this.g.dizin, de, this.K(ek), haric).length; }
+
+  /**
+   * Gün sonu "kendini dene" (PM 7059008858 md. 4): günün sınav maddelerinden en çok 4'ü, önce her türden biri (duy, Türkçeden
+   * Almancaya, cevap ver). Madde gün sonundaki K(t) kapısından geçmelidir (öğretilmeyen istenmez); geçen yoksa durak boş kalır.
+   */
+  private kendiniDene(gun: { day: number; gun_sinavi?: { maddeler: Drill[] } }): Adim[] {
+    const metin = (m: Drill) => (m.k === "listen_and_respond" ? m.audio_de : "accepted" in m ? m.accepted[0] : undefined) ?? "";
+    const uygun = (gun.gun_sinavi?.maddeler ?? []).filter((m) => (m.k === "listen_and_respond" || m.k === "tr_de" || m.k === "guided_response") && metin(m) && this.bilinmeyen(metin(m)) === 0);
+    const sec: Drill[] = [];
+    for (const k of ["listen_and_respond", "tr_de", "guided_response"]) { const m = uygun.find((x) => x.k === k); if (m) sec.push(m); }
+    for (const m of uygun) { if (sec.length >= 4) break; if (!sec.includes(m)) sec.push(m); }
+    return sec.slice(0, 4).map((m) => ({ id: `gunsonu:${gun.day}:${m.id}`, tur: "ders_madde" as AdimTuru, kip: KIP.ders_madde, kartlar: [], kaynak: "ders" as const, sn: 45,
+      neden: "kendini dene: bugün öğrendiklerinle", ders: { id: GUN_SINAVI, oge: m.id } }));
+  }
   private gorevGecer(de: string, haric: string[] = []): boolean { return this.bilinmeyen(de, haric) <= this.pol.gorev_bilinmeyen_max; }
   private gosterimGecer(de: string, ek: string[][] = []): boolean { return this.bilinmeyen(de, [], ek) <= this.pol.gosterim_bilinmeyen_max; }
   private cerceveMi(t: string): boolean { return kartsizMi(this.g.dizin, t); }
@@ -411,7 +437,7 @@ class Planlayici {
       if (form) secenek.push({ tur: "gap", kartlar: [c], cumle: form.de.replace(/___/g, form.answer), haric: toks(form.answer.replace(/…/g, " ")), kaynak: "halka", neden: `${l.de}: cümlede boşluk` });
       const orderC = gorev.find((de) => toks(de).length >= pol.yapboz_min_sozcuk);
       if (orderC) secenek.push({ tur: "order", kartlar: [c], cumle: orderC, kaynak: "halka", neden: `${l.de}: cümleyi kur` });
-      for (const t2 of turleri(l)) secenek.push({ tur: t2, kartlar: [c], kaynak: "halka", neden: `${l.de}: ${TUR_NEDEN[t2]}` });
+      for (const t2 of turleri(l, this.g.gorselli)) secenek.push({ tur: t2, kartlar: [c], kaynak: "halka", neden: `${l.de}: ${TUR_NEDEN[t2]}` });
       // üretim cümleleri: tanıtım ve yapboz cümlesinden farklı (P2-5); söyle de aday (P1-5)
       const uretim = gorev.filter((de) => de !== orderC);
       if (uretim[0]) secenek.push({ tur: "dikte", kartlar: [c], cumle: uretim[0], kaynak: "halka", neden: `${l.de}: duyduğunu yaz` });
@@ -477,7 +503,7 @@ class Planlayici {
     for (const m of dm) { m.kullanildi = true; havuz.push({ ...m.a, neden: `${m.a.neden}: bildiğin sözcüklerle` }); }
     // halka sonu: eşleştir sondan bir önce, mini sahne en son (AK-2 kural 4–5; K6 önce ses)
     const son: Aday[] = [];
-    if (kartlar.length >= pol.halka_kart[0]) son.push({ tur: "eslestir", kartlar: kartlar.slice(0, pol.halka_kart[1]), kaynak: "halka", neden: "halkanın kelimelerini anlamlarıyla eşleştir" });
+    if (kartlar.length >= pol.eslestir_kart[0]) son.push({ tur: "eslestir", kartlar: kartlar.slice(0, pol.eslestir_kart[1]), kaynak: "halka", neden: "halkanın kelimelerini anlamlarıyla eşleştir" });
     if (h.sahne) son.push({ tur: "sahne", kartlar: kartlar.filter((c) => h.sahne!.satirlar.some((s) => this.kendiSozcugu(c, s.de))), cumle: h.sahne.satirlar.map((s) => s.de).join(" "), satirlar: h.sahne.satirlar.map((s) => s.de), kaynak: "halka", neden: "kelimeler bir sahnede: önce dinle" });
     return { havuz, son, ertelenen };
   }
@@ -579,7 +605,10 @@ class Planlayici {
     const sabit = (tur: DurakTuru, id: string, title: string, dkk: number, eski: string | undefined, n: string): Durak => ({ id, tur, seans: 0, title_tr: title, tahmini_dk: dkk, adimlar: [], ...(eski ? { eski_anahtar: eski } : {}), neden: n });
     const duraklar: Durak[] = [];
     if (isinma.length) duraklar.push({ ...sabit("isinma", `m1:${gun.day}:isinma`, "Isınma", dk(isinma), undefined, "dünden kalanlar: kısa tekrar"), adimlar: isinma });
-    if (gun.sesler.length) duraklar.push(sabit("ses", `m1:${gun.day}:ses`, "Sesler", pol.sabit_dk.ses, undefined, "önce duy: kelimelerden önce sesleri ayırt et"));
+    if (gun.sesler.length) duraklar.push({ ...sabit("ses", `m1:${gun.day}:ses`, "Sesler", pol.sabit_dk.ses, undefined, "önce duy: kelimelerden önce sesleri ayırt et"), ses_turu: "ilk" });
+    // PM-097 md. 1: sesin üretim basamakları (dikte, gölge, "Sen ne derdin?") günün kartları bilinince: son halkadan sonra, provadan önce
+    const ses2: Durak | null = halkalar.length && gun.sesler.some((s) => ikinciTurVar(s))
+      ? { ...sabit("ses", `m1:${gun.day}:ses2`, "Sesler · ikinci tur", pol.sabit_dk.ses, undefined, "şimdi bildiğin kelimelerle: yaz, tekrar et, cevap ver"), ses_turu: "ikinci" } : null;
     const v = pol.video;
     const ara: Record<number, Durak[]> = {
       1: gun.video ? [sabit("video", `video:${gun.video.id}`, "Video", Math.max(v.min_dk, Math.min(v.max_dk, Math.round((gun.video.sure_sn * v.kat) / 60))), `m1:medya:${gun.video.id}`, "gerçek insanlar konuşuyor")] : [],
@@ -587,14 +616,17 @@ class Planlayici {
       4: gun.okuma_yazma ? [sabit("okuma", `okuma:${gun.day}`, "Okuma ve yazma", pol.sabit_dk.okuma, `m1:okuma:${gun.day}`, "oku, sonra kısa yaz")] : []
     };
     const bekleyen: Durak[] = [];
+    // ikinci tur varsa prova ona kadar bekler (sıra: … son halka · ses ikinci tur · prova …)
+    const provaBekler = ses2 ? (ara[3] ?? []).splice(0) : [];
     halkalar.forEach((h, hi) => {
       duraklar.push(h, ...(sonra.get(hi) ?? []));
+      if (ses2 && hi === halkalar.length - 1) duraklar.push(ses2, ...provaBekler.splice(0));
       bekleyen.push(...(ara[hi] ?? []));
       // sabit duraklar halkadan sonra; az halkalı günde sona kalır
       if (hi < halkalar.length - 1) duraklar.push(...bekleyen.splice(0));
     });
     duraklar.push(...bekleyen.splice(0), ...Object.entries(ara).filter(([k]) => +k >= halkalar.length).flatMap(([, d]) => d));
-    const gs = this.yerlestir(gunSonuEk, "gunsonu", halkalar.at(-1)?.adimlar ?? []);
+    const gs = [...this.yerlestir(gunSonuEk, "gunsonu", halkalar.at(-1)?.adimlar ?? []), ...this.kendiniDene(gun)];
     duraklar.push({ ...sabit("gunsonu", `gunsonu:${gun.day}`, "Gün sonu", Math.max(pol.sabit_dk.gunsonu_ek, dk(gs) + pol.sabit_dk.gunsonu_ek), `m1:gun:${gun.day}`, "bugün neyi yapabiliyorsun: 4 kısa madde"), adimlar: gs });
     // son halka eski Bahçe anahtarını yazar (AK-6)
     const sonHalka = [...duraklar].reverse().find((d) => d.tur === "halka");
@@ -625,9 +657,9 @@ class Planlayici {
 const TUR_NEDEN: Partial<Record<AdimTuru, string>> = {
   listen_meaning: "duy, anlamını seç", resimden_sec: "duy, resmini seç", article: "artikeli", colloc: "birlikte geldiği sözcük", tr_de: "Almancasını kur"
 };
-function turleri(l: Lexeme): AdimTuru[] {
-  const t: AdimTuru[] = ["listen_meaning"];
-  if (l.img) t.push("resimden_sec");
+function turleri(l: Lexeme, gorselli?: ReadonlySet<string>): AdimTuru[] {
+  // görseli olan kartta "duy" kipinin ilk adayı resimden seç (TARGET3b 3; görsel gelmezse adım dinle-anlama düşer)
+  const t: AdimTuru[] = l.img || gorselli?.has(l.id) ? ["resimden_sec", "listen_meaning"] : ["listen_meaning"];
   if (l.pos === "noun" && l.art) t.push("article");
   if (l.collocations?.length) t.push("colloc");
   t.push("tr_de");

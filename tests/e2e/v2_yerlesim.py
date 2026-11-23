@@ -59,7 +59,7 @@ def main():
             a = pg.evaluate(LISTE, "[data-test=gorev]")
             check(all(x >= 12 for x in a), f"[{tema}] Görevler: Y3 satırlar arası ≥ 12 px ({a})")
             # Öğren: "Tekrar edilecekler" — Bahçe düğmesi ile "+ Duyduğum kelime" arasında ≥ 12 px, kesişme yok (2. tur P1-2)
-            pg.goto(base + "#/learn"); pg.wait_for_selector("[data-test=weak] [data-test=heard]")
+            pg.goto(base + "#/koy/bahce"); pg.wait_for_selector("[data-test=weak] [data-test=heard]")
             ara = pg.evaluate("() => { const a = document.querySelector('[data-test=tekrar-bahce]').getBoundingClientRect(), b = document.querySelector('[data-test=weak] [data-test=heard]').getBoundingClientRect(); return Math.round(b.top - a.bottom); }")
             check(ara >= 12, f"[{tema}] Öğren: Bahçe düğmesi ile 'Duyduğum kelime' arası ≥ 12 px ({ara})")
             # Bugün: BAŞLA ve görev şeridi ilk ekranda (2. tur P1-1)
