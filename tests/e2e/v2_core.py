@@ -185,7 +185,7 @@ def main():
             draft = STRAT_REVIEW != "reviewed"
             check(("Deneme dersi" in na) == draft, f"inceleme etiketi içerik durumuna uygun ({STRAT_REVIEW})")
         # M1'de Bugün = yol: "Tekrar edilecekler" Öğren'de, günlük süre Odak'ta (PM 7015070303-E)
-        if M1: page.goto(f"http://127.0.0.1:{PORT}/#/learn")
+        if M1: page.goto(f"http://127.0.0.1:{PORT}/#/koy/bahce")
         page.wait_for_selector("[data-test=weak] li")
         weak = page.inner_text("[data-test=weak]")
         check("Seviye tespitinde" not in weak and "Şu an listede kelime yok" not in weak, "bilinmeyen kelimeler zayıflık listesinde")
@@ -226,7 +226,7 @@ def main():
         check(True, "mola bitince sırada seans 2")
 
         print("6) İlerlemem")
-        page.click("[data-tab=progress]")
+        page.click("[data-tab=ben]")
         page.wait_for_selector("[data-test=panel-focus]")
         pf = page.inner_text("[data-test=panel-focus]")
         check("25 / 100 dk" in pf or "26 / 100 dk" in pf, "odak paneli bugünkü süreyi gösteriyor")
@@ -239,7 +239,7 @@ def main():
 
         print("7) Profil: hedef değişikliği kalıcı; sunucu iletişimi")
         page.clock.resume()
-        page.click("[data-tab=profile]")
+        page.click("[data-tab=ben]"); page.click("[data-test=ayarlar-ac]")
         check(page.inner_text("[data-test=uid]") == "e2e-user" and page.locator("[data-test=uid-kopyala]").count() == 1, "Profil: hesap kimliği ve 'Kopyala' (ALLOWED_UIDS için)")
         page.select_option("[data-test=goal]", "120")
         page.wait_for_selector("text=Kaydedildi")
@@ -270,7 +270,7 @@ def main():
         check(re.search(r"/\s?120 dk", hedef_txt) is not None, "yeni hedef (120 dk) yeniden yüklemeden sonra korunuyor")
 
         print("7b) B1 hedefi: SAHTE tarihle (PM-001: gerçek tarih depoda yok)")
-        page.click("[data-tab=profile]")
+        page.click("[data-tab=ben]"); page.click("[data-test=ayarlar-ac]")
         page.check("text=B1 sınavına hazırlık")
         page.fill("input[aria-label='Sınav tarihi']", "2099-01-01"); page.press("input[aria-label='Sınav tarihi']", "Tab")
         page.wait_for_timeout(300)
@@ -278,8 +278,8 @@ def main():
         page.wait_for_selector("[data-test=exam-badge]")
         check("gün" in page.inner_text("[data-test=exam-badge]"), "B1 açıkken Bugün'de sınav rozeti (kalan gün)")
 
-        print("8) Öğren")
-        page.click("[data-tab=learn]")
+        print("8) Köy → Pazar meydanı: gerçek hayat durumları")
+        page.click("[data-tab=koy]"); page.click("[data-mekan=pazar]")
         page.wait_for_selector("[data-domain=telefon]")
         check(page.locator("[data-domain]").count() == 20, "20 gerçek hayat alanı listeleniyor")
         check(page.locator("[data-domain]").first.get_attribute("data-domain") == "strategie" and page.locator("[data-domain]").nth(1).get_attribute("data-domain") == "telefon", "alanlar öncelik sırasına göre (strateji, telefon)")
@@ -289,7 +289,7 @@ def main():
         shot(page, "09-learn-domain")
 
         print("9) sekme çubuğu içeriği örtmüyor; koyu tema")
-        page.click("[data-tab=profile]")
+        page.click("[data-tab=ben]"); page.click("[data-test=ayarlar-ac]")
         page.wait_for_selector("text=Çıkış yap")
         page.wait_for_timeout(300)
         page.evaluate("window.scrollTo(0, document.documentElement.scrollHeight)")

@@ -30,7 +30,7 @@ def main():
     srv = serve(PORT); base = f"http://127.0.0.1:{PORT}/"
     shots = arg("--shots")
     with sync_playwright() as p:
-        b, ctx = launch(p, color_scheme=arg("--scheme") or "light"); ctx.add_init_script(VIB); pg = new_page(ctx)
+        b, ctx = launch(p, color_scheme=arg("--scheme") or "light"); ctx.add_init_script(VIB); ctx.add_init_script("sessionStorage.setItem('e2e-akis-gunler', '[]')"); pg = new_page(ctx)  # eski düzen: 1. gün bayraksız (bayrak PR'ı)
         # sabit saat (yarın 10:00): ileri sarma gece yarısını geçmesin (PM-013)
         pg.clock.install(time=datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days=1), datetime.time(10, 0)))
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
