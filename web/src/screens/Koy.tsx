@@ -39,8 +39,14 @@ function useBekleyen(): number {
 
 export function KoyEkrani() {
   const { index, indexError, toast } = useApp();
-  const { plan } = usePlan();
+  const { plan, err, yok } = usePlan();
   const bekleyen = useBekleyen();
+  // "Telefonun" kartı planla gelir; ızgara plan hazır olana kadar  görünmez, kart sonradan eklenip
+  // dükkânları aşağı itmesin: uzanan parmak yanlış yere basmasın (inceleme #200 P1-3). Plan cihazdaki gün dosyalarından
+  // gelir (oturumda önbellekte); 1,5 sn'de gelmezse ızgara yine görünür (başlık baştan görünür)
+  const [sabir, setSabir] = useState(false);
+  useEffect(() => { const t = setTimeout(() => setSabir(true), 1500); return () => clearTimeout(t); }, []);
+  const hazir = !!plan || !!err || yok || sabir;
   if (indexError) return <ErrorPanel message={indexError} onRetry={() => location.reload()} />;
   if (!index) return <Loading />;
   const veri = { index, bekleyen, gunler: plan?.gunler ?? [], now: Date.now() };
@@ -51,7 +57,7 @@ export function KoyEkrani() {
         <h1 lang="de">{KOY_ADI}</h1>
         <p>Canın neyi istiyorsa oraya git.</p>
       </header>
-      <div class="koy-izgara">
+      <div class="koy-izgara" aria-busy={hazir ? undefined : "true"} style={hazir ? undefined : { visibility: "hidden" }} data-hazir={hazir ? "1" : undefined}>
         {tel && (
           <a class="mekan genis" href={tel.href} data-test="koy-telefon">
             <span class="mekan-ic" aria-hidden="true"><Icon name="tel" size={26} /></span>
@@ -80,7 +86,7 @@ const SATIR = { textDecoration: "none", color: "inherit", flexWrap: "nowrap" } a
 
 export function MekanEkrani({ id }: { id: MekanId }) {
   return (
-    <div class="stack" data-test={`mekan-${id}`}>
+    <div class="stack koy-sayfa" data-test={`mekan-${id}`}>
       <TopBar title={MEKAN_ADI[id]} back="#/koy" />
       {id === "bahce" ? <TekrarListesi /> : id === "kutuphane" ? <Kutuphane /> : id === "pazar" ? <Pazar /> : <MedyaListesi mekan={id} />}
     </div>

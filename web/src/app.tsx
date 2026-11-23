@@ -111,6 +111,8 @@ export function App() {
     const on = () => { duzelt(); ustUsteSifirla(); setRoute(parseHash(location.hash)); };
     duzelt();
     addEventListener("hashchange", on);
+    // ilk çizimle dinleyici arasında adres değiştiyse kaçmasın (açılışta hemen başka sekmeye geçilince eski ekran kalıyordu)
+    setRoute(parseHash(location.hash));
     // iOS: efekt sesi için ses bağlamı ilk dokunuşta açılır (inceleme #87 P2)
     // dinleyici kalır: ilk dokunuş etkinleştirme sayılmayabilir (iOS'ta touchend sayılır, pointerdown sayılmaz) ve ses sonradan
     // açılabilir; ses bağlamı çalışınca sesKilidiAc hemen döner (inceleme #87 2. tur)

@@ -242,7 +242,10 @@ html { scroll-padding-top: calc(var(--safe-top) + 96px); }
 .mekan.genis { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: flex-start; gap: 14px; min-height: 5.6rem; background: var(--sky-b); }
 .mekan.genis .mekan-yazi b { font-size: 1rem; }
 .mekan.genis .mekan-yazi span { font-size: 0.82rem; }
-.mekan-gun { display: block; padding: 6px 0; text-decoration: none; }
+.mekan-gun { display: flex; align-items: center; min-height: 44px; padding: 0; text-decoration: none; }
+/* mekân sayfalarında satırın bütünü dokunulur, en az 44 px (inceleme #200 P1-2): satır dolgusu bağlantıya geçer */
+.koy-sayfa .list li:has(> a) { padding: 0; }
+.koy-sayfa .list li > a { min-height: 44px; padding: 12px 0; align-items: center; box-sizing: border-box; }
 
 .topbar { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; min-height: 46px; }
 .topbar h1 { margin: 0; font-size: 1.25rem; flex: 1; min-width: 0; }
