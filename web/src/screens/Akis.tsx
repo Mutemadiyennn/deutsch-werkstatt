@@ -23,7 +23,7 @@ import { ProgressHeader } from "../ui/kit.tsx";
 import { ErrorPanel, Loading } from "../ui/components.tsx";
 import type { Adim, Durak } from "../core/akis.ts";
 import { durakGecisi, halkaOzeti, ilerle, seansDurumu, simdiki, type AkisKaydi } from "../core/akisKayit.ts";
-import { resimSecenekleri } from "../core/halkaTur.ts";
+import { ESLESTIR_EN_AZ, resimSecenekleri } from "../core/halkaTur.ts";
 import { ResimSec } from "../ui/soru/ResimdenSec.tsx";
 import { Eslestir } from "../ui/soru/Eslestir.tsx";
 import { ActionBar } from "../ui/kit.tsx";
@@ -115,7 +115,7 @@ function AdimGovdesi({ adim, durakOf, lex, harita, emojiHarita, baglam, tohum, b
   if (adli) return null;
   // adımsız durak (ses, video, prova, okuma): var olan ekrana gider, dönüşte akış ilerler (AK-6)
   if (durakGecisi(adim)) return <DurakGecis adim={adim} tur={durakOf(adim).tur} baslik={durakOf(adim).title_tr} dk={durakOf(adim).tahmini_dk} hedef={baglam.hedef(durakOf(adim))} bitir={() => bitir([], true)} />;
-  if (adim.tur === "eslestir" && kartlar.length >= 4) return <Eslestir kartlar={kartlar} tohum={tohum} onBitti={bitir} />;
+  if (adim.tur === "eslestir" && kartlar.length >= ESLESTIR_EN_AZ) return <Eslestir kartlar={kartlar} tohum={tohum} onBitti={bitir} />;
   // görsel gelmezse (çevrimdışı, önbellekte yok) resimden seç o adımda dinle-anlam sorusuna düşer (tek doğru cevap; inceleme #183 P1-2)
   if (adim.tur === "resimden_sec" && soru && !gorselYok) return <ResimSec soru={soru} lex={lex} harita={resim!.h} onYok={() => setGorselYok(true)} onBitti={(ok) => bitir([{ kart: soru.kart, dogru: ok }])} />;
   // dersin alıştırma maddesi (K8 `kaynak: "ders"`): Ders oynatıcısının bileşeniyle, aynı denetimle
