@@ -202,7 +202,8 @@ describe("aynı ölçü: dikiş ve hafta kapısı aynı girdide aynı çekim kar
     { ad: "önceki günün kalıp satırında gösterilen biçim, kalıp dışında da serbest", gun: 9, de: "Spricht Tobi gut Deutsch?", w: "spricht", kalipOnce: "… spricht Deutsch", beklenen: "serbest" },
     { ad: "eşlenemeyen düzenli biçim, 1. haftanın dersleri 2t sunmuş", gun: 8, de: "Du kostest den Kuchen.", w: "kostest", beklenen: "serbest" },
     { ad: "eşlenemeyen düzenli biçim, tablo yok", gun: 8, de: "Du kostest den Kuchen.", w: "kostest", dersYok: true, beklenen: "engel" },
-    { ad: "aynı sözcüğün ikinci geçişi de sayılır", gun: 8, de: "Tobi wartet, ihr wartet.", w: "wartet", sonra: true, dn: [["er/sie/es", "wohnt"]], dersYok: true, beklenen: "engel" }
+    { ad: "aynı sözcüğün ikinci geçişi de sayılır", gun: 8, de: "Tobi wartet und ihr wartet.", w: "wartet", sonra: true, dn: [["er/sie/es", "wohnt"]], dersYok: true, beklenen: "engel" },
+    { ad: "iki serbest geçiş serbest kalır", gun: 8, de: "Tobi wartet, Anna wartet.", w: "wartet", sonra: true, dn: [["er/sie/es", "wohnt"]], dersYok: true, beklenen: "serbest" }
   ];
   const kur = (x: Durum) => hafta2((gs) => {
     const i = x.gun - 8; gs[i] = gun(x.gun, [g(x.de)]);

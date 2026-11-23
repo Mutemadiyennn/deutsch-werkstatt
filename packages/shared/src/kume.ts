@@ -269,9 +269,10 @@ export function bilinmeyenler(d: KumeDizini, cumle: string, k: Bilinen, haric: I
  *  - Düzenli biçim yalnız -en / -eln / -ern mastarlarından türetilir (sein, tun türetilmez). Ara -e- (arbeitest, rechnet, öffnet;
  *    ünsüz + m/n, ama meint, wohnt, lernt) ve s/ß/z sonrası 2t (heißt) kuraldır. -eln 1t iki biçim (sammle, sammele).
  *    p2 ayrılmayan önekte (bestellt; önekten sonra en az 4 harf: geht, gebt ortaç değil) ve -ieren'de, öteki fiilde ge+kök+t.
- *  - Kişi zamirle belirlenir: önce fiilden hemen önceki zamir, yoksa hemen sonraki (ardından büyük harfli ad gelen ihr/sie iyeliktir);
- *    zamir yoksa biçimin olabileceği herhangi bir kişi yeter. Zamir varken belirsiz biçimde p2 sayılmaz (Ihr bestellt → 2c; sıkı yön:
- *    "Was hast du bestellt?" de 2t ister); tek anlamlı ortaç (gewohnt) her zaman p2. Satır başı "sie" 3t ya da 3c.
+ *  - Kişi zamirle belirlenir: önce fiilden hemen önceki zamir, yoksa hemen sonraki (tümce sonundaki fiilde arkaya bakılmaz);
+ *    zamir yoksa biçimin olabileceği herhangi bir kişi yeter. Zamir varken belirsiz biçimde p2 yalnız ortaç yerinde (tümce sonu ve
+ *    önce yardımcı fiil: Was hast du bestellt?) sayılır (Ihr bestellt → 2c); tek anlamlı ortaç (gewohnt) her zaman p2.
+ *    Satır başı "sie" 3t ya da 3c.
  *  - Ayrılan önek: fiilden sonra tümce sonunda (noktalama ya da cümle sonu) duran sözcük + mastar sözlükte fiilse (rufe … an →
  *    anrufen) engel; taban fiilin (rufen) kartı bilinse de.
  *  - Cümle başı dışında büyük harfle yazılan sözcük (die Frage, die Reise) çekimli fiil sayılmaz.
@@ -290,7 +291,7 @@ export function duzenliBicimler(mastar: string): Map<string, Set<CekimSinifi>> {
   const araE = /[dt]$/.test(kok) || /(?:[^aeiouäöüylrmnh]|ch)[mn]$/.test(kok);
   const sz = /(s|ß|z|x)$/.test(kok);
   ekle(kok + "e", "1t");
-  if (kok.endsWith("el")) ekle(kok.slice(0, -2) + "le", "1t");
+  if (/eln$/.test(m)) ekle(kok.slice(0, -2) + "le", "1t");
   ekle(kok + (araE ? "est" : sz ? "t" : "st"), "2t");
   for (const s of ["3t", "2c"] as const) ekle(kok + (araE ? "et" : "t"), s);
   if (AYRILMAZ.test(m) || /ieren$/.test(m)) ekle(kok + (araE ? "et" : "t"), "p2");
@@ -322,13 +323,17 @@ function sozcukler(s: string): Soz[] {
   }
   return out;
 }
-/** j. sözcüğün kişisi: önce öndeki zamir; yoksa arkadaki (ardından büyük harfli ad gelen ihr/sie iyelik sayılır) */
-function kisiOf(ss: readonly { t: string; o: string }[], j: number): CekimSinifi[] {
-  const on = ZAMIR[ss[j - 1]?.t ?? ""]; if (on) return on;
-  const ar = ss[j + 1]; if (!ar || !ZAMIR[ar.t]) return [];
-  if ((ar.t === "ihr" || ar.t === "sie") && /^\p{Lu}/u.test(ss[j + 2]?.o ?? "") && ss[j + 2]?.o !== "Sie") return [];
+/** j. sözcüğün kişisi: önce öndeki zamir; yoksa arkadaki (sözcük tümce sonundaysa arkaya bakılmaz). `iyelik`: arkadaki "ihr" + büyük
+ *  harfli ad (ihr Sohn) kişi sayılmaz; yalnız SUNUM tarafında kullanılır (güvenli yön: daha az sınıf sunulur). Karar tarafında
+ *  "Wohnt ihr Mann hier?" 2c ister (sıkı yön, bilinçli; "Kauft ihr Brot?" gevşemesin diye). */
+function kisiOf(ss: readonly Soz[], j: number, iyelik = false): CekimSinifi[] {
+  const on = ZAMIR[ss[j - 1]?.t ?? ""]; if (on && !ss[j - 1]!.son) return on;
+  const ar = ss[j + 1]; if (ss[j]!.son || !ar || !ZAMIR[ar.t]) return [];
+  if (iyelik && ar.t === "ihr" && !ar.son && /^\p{Lu}/u.test(ss[j + 2]?.o ?? "")) return [];
   return ZAMIR[ar.t]!;
 }
+/** Yardımcı fiil biçimleri: tümce sonundaki ortaç (Ich habe es bestellt) zamirle birlikte de p2 olabilir */
+const YARDIMCI = new Set("habe hast hat haben habt bin bist ist sind seid hatte hattest hatten hattet war warst waren wart".split(" "));
 /** Bir tablonun (satırlar) ya da örnek cümlenin SUNDUĞU düzenli çekim sınıfları: satırın kişisi (ilk hücre zamir; parantez içi
  *  açıklama atılır: "sie (o, kadın)") ya da hücre içinde zamir + biçim; biçim sözlükteki bir fiilin düzenli biçimi ve sınıfı kişiyle
  *  tutuyorsa o sınıf sunulmuştur. Tek anlamlı ortaç (gewohnt) p2 sunar. */
@@ -343,7 +348,7 @@ export function sunulanCekim(d: KumeDizini, satirlar: readonly (readonly string[
       ss.forEach((w, j) => {
         const s = siniflar(w.t); if (!s.size) return;
         if (s.size === 1 && s.has("p2")) hedef.add("p2");
-        for (const k of new Set<CekimSinifi>([...satirKisi, ...kisiOf(ss, j)])) if (s.has(k)) hedef.add(k);
+        for (const k of new Set<CekimSinifi>([...satirKisi, ...kisiOf(ss, j, true)])) if (s.has(k)) hedef.add(k);
       });
     }
   }
@@ -363,6 +368,9 @@ export function cekimKarari(d: KumeDizini, cumle: string, j: number, bilinenKart
   const dz = duzenliDizin(d);
   const zamir = kisiOf(ss, j);
   const uyan = (dz.bicim.get(s.t) ?? []).filter((x) => bilinenKart.has(x.kart));
+  // tümce sonunda ve tümcede önce yardımcı fiil varsa ortaç yeri (Ich habe es bestellt; Hast du es bezahlt?)
+  let bas = j; while (bas > 0 && !ss[bas - 1]!.son) bas--;
+  const ortacYeri = s.son && ss.slice(bas, j).some((x) => YARDIMCI.has(x.t));
   if (uyan.length) {
     // ayrılan önek: fiilden sonraki ilk tümce sonu sözcüğü + mastar sözlükte fiil (rufe … an → anrufen)
     const k = ss.findIndex((x, i) => i > j && x.son);
@@ -370,7 +378,7 @@ export function cekimKarari(d: KumeDizini, cumle: string, j: number, bilinenKart
   }
   for (const x of uyan) {
     // zamir varken belirsiz biçim (bestellt: 3t/2c/p2) kişiyle karar verir; tek anlamlı ortaç (gewohnt) her zaman p2
-    const aday = [...x.sinif].filter((c) => (c === "p2" ? !zamir.length || x.sinif.size === 1 : !zamir.length || zamir.includes(c)));
+    const aday = [...x.sinif].filter((c) => (c === "p2" ? !zamir.length || x.sinif.size === 1 || ortacYeri : !zamir.length || zamir.includes(c)));
     if (aday.some((c) => sunulan.has(c))) return { karar: "serbest", kart: x.kart, neden: `düzenli ${aday.filter((c) => sunulan.has(c)).join("/")}` };
   }
   if (uyan.length) return { karar: "engel", kart: uyan[0]!.kart, neden: `düzenli ama çekim tablosu sunulmadı (${[...uyan[0]!.sinif].join("/")})` };

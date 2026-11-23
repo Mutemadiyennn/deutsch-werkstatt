@@ -171,18 +171,19 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     const u = u0.filter((x) => { const n = (say.get(x.sozcuk) ?? 0) + 1; say.set(x.sozcuk, n); return n <= tt.filter((t, j) => t === x.sozcuk && !ic.has(j) && !dis.has(j)).length; });
     // PM-097 md. 2: bilinen fiilin düzenli biçimi, kişinin tablosu sunulduysa serbest; sunulmadıysa ya da düzensizse engel (kesin)
     const kesin: string[] = [], sinirda: string[] = [];
-    const ckGorulen = new Set<string>();
+    // sözcüğün kalıp dışındaki BÜTÜN geçişleri (Tobi wartet und ihr wartet): biri engelse engel; karar sözcük başına bir kez (dikişle aynı)
+    const ckKarar = new Map<string, CekimKarari>();
     for (const x of u) {
-      // sözcüğün kalıp dışındaki BÜTÜN geçişleri (Er wartet, ihr wartet): biri engelse engel
-      let ck: CekimKarari = null;
-      if (x.tur !== "kart" && !ckGorulen.has(x.sozcuk)) {
-        ckGorulen.add(x.sozcuk);
+      if (x.tur !== "kart" && !ckKarar.has(x.sozcuk)) {
+        let ck: CekimKarari = null;
         tt.forEach((t, i) => {
           if (t !== x.sozcuk || ic.has(i) || dis.has(i) || ck?.karar === "engel") return;
           const k1 = cekimKarari(d, cumle, i, b.kart, b.cekim, x.tur === "bicim" ? x.adaylar : []);
           if (k1 && (!ck || k1.karar === "engel")) ck = k1;
         });
+        ckKarar.set(x.sozcuk, ck);
       }
+      const ck = x.tur === "kart" ? null : ckKarar.get(x.sozcuk) ?? null;
       if (ck?.karar === "serbest") continue;
       if (ck?.karar === "engel") kesin.push(`çekim:${x.sozcuk}`);
       else if (x.tur === "bicim") sinirda.push(`~${x.sozcuk}`);

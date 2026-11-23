@@ -93,6 +93,7 @@ describe("düzenli çekim (PM-097 md. 2)", () => {
     expect(b("bestellen")).toMatchObject({ bestellt: "2c,3t,p2" });
     expect(b("gehen")).toMatchObject({ geht: "2c,3t", gegeht: "p2" });   // ge- önekli değil: geht ortaç sayılmaz
     expect(duzenliBicimler("sein").size).toBe(0);
+    expect(duzenliBicimler("spielen").has("spile")).toBe(false);
   });
   it("tablonun sunduğu sınıflar: satır kişisi (er/sie/es → 3t; parantez atılır) ya da hücre içi zamir + biçim", () => {
     expect([...sunulanCekim(cd, [["ich", "wohne", "arbeite"], ["er/sie/es", "wohnt"]])].sort()).toEqual(["1t", "3t"]);
@@ -106,12 +107,17 @@ describe("düzenli çekim (PM-097 md. 2)", () => {
     expect(karar("Ich arbeite heute.", "arbeite", [])).toBe("engel");            // tablo sunulmadı
     expect(karar("Ihr wohnt hier.", "wohnt", ["3t"])).toBe("engel");             // ihr (2c) sunulmadı
     expect(karar("Ihr kauft es morgen.", "kauft", ["3t"])).toBe("engel");        // öndeki ihr; arkadaki es nesne
-    expect(karar("Wohnt ihr Mann hier?", "wohnt", ["3t"])).toBe("serbest");      // ihr Mann: iyelik
+    expect(karar("Wohnt ihr Mann hier?", "wohnt", ["3t"])).toBe("engel");        // karar tarafında iyelik ayrılmaz (sıkı yön, bilinçli)
+    expect(karar("Kauft ihr Brot?", "kauft", ["3t"])).toBe("engel");             // özne ihr + ad: gevşemez
+    expect(karar("Kommt sie Montag?", "kommt", ["2c"])).toBe("engel");
+    expect(karar("Tobi arbeitet, ich wohne hier.", "arbeitet", ["3t"])).toBe("serbest");   // tümce sonundaki fiilde arkaya bakılmaz
     expect(karar("Tobi wohnt hier.", "wohnt", ["3t"])).toBe("serbest");          // zamir yok: biçimin herhangi bir kişisi yeter
     expect(karar("Ihr bestellt jetzt.", "bestellt", ["3t", "p2"])).toBe("engel"); // zamir varken p2 sayılmaz
     expect(karar("Ich habe bestellt.", "bestellt", ["p2"])).toBe("serbest");     // komşu zamir yok: ortaç
-    expect(karar("Was hast du bestellt?", "bestellt", ["p2"])).toBe("engel");    // belirsiz biçim + zamir: kişiyle (sıkı yön, bilinçli)
+    expect(karar("Was hast du bestellt?", "bestellt", ["p2"])).toBe("serbest");  // ortaç yeri
     expect(karar("Hast du gewohnt?", "gewohnt", ["p2"])).toBe("serbest");        // tek anlamlı ortaç
+    expect(karar("Ich habe es bestellt.", "bestellt", ["p2"])).toBe("serbest");   // ortaç yeri: tümce sonu + yardımcı fiil
+    expect(karar("Hast du es bestellt?", "bestellt", ["p2"])).toBe("serbest");
     expect(karar("Ich sammle Briefmarken.", "sammle", ["1t"])).toBe("serbest");
   });
   it("engel: düzensiz biçim, ayrılan önek (taban fiil bilinse de); büyük harfli ad fiil sayılmaz", () => {
@@ -120,6 +126,8 @@ describe("düzenli çekim (PM-097 md. 2)", () => {
     expect(karar("Ich rufe dich heute Abend an!", "rufe", HEPSI)).toBe("engel");
     expect(karar("Kommst du mit?", "kommst", HEPSI)).toBe("engel");
     expect(karar("Er kommt mit dem Bus.", "kommt", HEPSI)).toBe("serbest");
+    expect(karar("Er kommt. Ich gehe mit.", "kommt", HEPSI)).toBe("serbest");    // fiil tümce sonunda: sonraki tümceye bakılmaz
+    expect(karar("Kommst du mit, wenn ich gehe?", "kommst", HEPSI)).toBe("engel"); // virgül tümce sonu
     expect(karar("Ich rufe laut.", "rufe", HEPSI)).toBe("serbest");
     expect(karar("Die Frage ist gut.", "frage", HEPSI)).toBe(null);
     expect(karar("Frage ich ihn?", "frage", HEPSI)).toBe("serbest");               // cümle başında büyük harf ayırt edici değil
