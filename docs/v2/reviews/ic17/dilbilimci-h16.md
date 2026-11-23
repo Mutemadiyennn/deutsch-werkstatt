@@ -109,3 +109,53 @@ Kapılar (fark turundan sonra):
 - `review` alanları değişmedi (draft). Okur fark okumasını bekliyor (OD-9.4).
 
 Fark turu sonucu: **KAPANDI** (177/177). Okur fark okuması bekleniyor.
+
+## İnceleme düzeltmesi (#252 7107598839)
+
+Ölçüt (PM-103 md. 3): öğrenciden istenen ya da karşı tarafın repliğinde geçen her çekimli biçim, Partizip ve emir, ilk geçişinden önce **bu haftanın** bir halka `kaliplar` satırında görünmeli. Halka görevi için kendi halkası ya da önceki halkalar sayılır. Halka dışı adımlar için o günün bütün halkaları sayılır. 15. hafta sayılmaz, ders tablosu da sayılmaz. Sınanan alanlar: görev `de`, `accepted[0]`, `ornek_de`, `zorunlu`, prova seçenekleri (yanlış olanlar dahil), dikte bankaları ve çeldiricileri, why_tr içindeki kalın Almanca, bütün replikler, ses metinleri, `prompt_de`, `audio_de`, okuma metni.
+
+### Bulgu → yapılan
+**P1-1 (öğrenciden istenen, gösterilmemiş)**
+- 107 h1 `muss`/`musst` → h1 kaliplar[2]'ye "Ich muss mich beeilen. – Du musst dich nicht beeilen." eklendi.
+- 111 h2 `unserem` → h2 kaliplar[5] (eski [4]) "Ich zähle die Leute an unserem Tisch." oldu.
+- 106 radyo dikte `meinem` (ve `mein`, `meine`) → 106 h1'e yeni satır: "mein Handy – meine Wohnung – mit meinem Hund".
+- Aynı ailenin taramada çıkan ötekileri: 106 `rufe`, `kommt` · 107 `hat`, `sollen`, `seine`, `will`, `stimmt`, `arbeite`, `gehe` · 108 `euch` · 109 `esse`, çeldirici `Wollt` · 110 `kaufe`, `Nimm` · 111 `fahre`, `trinkt`, `bringe` · 112 `treffe`. Hepsi kalıp satırıyla kapandı. Tek istisna 108 h2: görev "Ihr solltet den Kuchen teilen." oldu, `euch`'lu iki biçim ek kabulde kaldı.
+
+**P1-2 (karşı taraf repliği, gösterilmemiş)**
+- 106 h1/h2 yeni satırlar: "Können Sie …? – Kannst du …? – Ich komme morgen. – Er kommt am Dienstag. – Passt das? – Das passt." ve "Ich bin so müde. – Bist du müde? – Ich möchte … – Möchtest du …?". Kapsadığı biçimler: `können`, `komme`, `passt`, `bin`, `bist` (107), `möchte` (107), `möchtest` (111). h1 kaliplar[4]'e "Sie haben auf den Anrufbeantworter gesprochen." (`haben`, `gesprochen`). h2'ye "Die Sonne scheint." ve "Was sagt sie? – Sie sagt: …" eklendi.
+- 107 h1 kaliplar[0]: "Das ganze Team wartet." (`wartet`).
+- 108 h1 kaliplar[3]: "Was ist passiert?" (`passiert`, hafta sonu testi t04). kaliplar[7]: "Ich habe die Waschmaschine gestern benutzt." (`benutzt`, banka ve prova). h2'ye yeni satır: "Ich weiß. – Das weiß ich nicht. – Ruf mich bitte zurück!" (`weiß`, `ruf`).
+- 109 h2: "Das Fest beginnt um … Uhr." (`beginnt`) ve yeni satır "Was machst du am Samstag? – Schreib mir kurz!" (`machst`, `schreib`).
+- 110 h2 yeni satır: "Ich wollte aufs Fest gehen. – Am Abend wird es kalt. – Nimm eine Jacke mit!" (`wollte`, `wird`, `nimm`).
+- 111 h1 yeni satırlar: "Wann fährt der Bus? – Der Bus fährt um zehn." ve "Bring bitte Wasser mit! – Ich bringe Wasser mit. – Frag doch Lena!" (`fährt`, `bring`, `bringe`, `frag`). h2 yeni satır: "Ich fahre heute. – Lena trinkt einen Saft."
+- 112 h1 yeni satır: "Ich habe einen Kuchen gemacht. – Gestern waren viele Leute da. – Ich treffe Ioana um drei." (`gemacht`, `waren`, `treffe`).
+
+**P2**
+- P2-1 (106 ↔ 107 saat): 106 prova n3 s1 "Um sieben bin ich schon im Büro" → "Um sieben bin ich nicht zu Hause". tr ve 4 kabul buna göre değişti. Geri bildirim zaten "yedide evde olmaman" diyordu.
+- P2-2 (110 ↔ 112 Basti): 112 h1 sahnesinde Basti artık cuma sözleşilen pazar sporunu soruyor: "Heute Fitnessstudio, passt das noch?". Öğrenci yorgun olduğu için çarşambaya erteliyor. Saat yazılmadı, çünkü 110 provasında saat onda da on birde de anlaşılabiliyor. Ortam: "Pazar sabahı. Basti arıyor, hat çok kötü. Cuma günü bugün için sözleşmiştiniz. Ama sen şenlikten çok yorgunsun." Dağ yürüyüşü ve "ikinci davet" çıktı. Soru şıkkı "Bugün üçte geliyorsun" → "Bugün spora geliyorsun". Gün sınavı s9 da aynı sahneye bağlandı: prompt_de aynı cümle, situation_tr "Basti bugünkü spor buluşmasını soruyor. …". Kalıp [9]'daki "Training im Park" artık kullanılmadığı için "Passt das noch?" oldu.
+- P2-3: `euch` (108), `Nimm` (110), `Wollt` (109), `wird` (110), `will`/`sollen`/`fährt`/`benutzt` gösterildi. Çeldirici `trefft` (109 a2 d3) → `Wollen`, `sollst` (112 sahne d3) → `sollte` (ikisi de gösterilmiş). Yalnız ek kabulde duranlara (107 "in unserem Team", 110/112 `dir`) dokunulmadı. Ek kabul, öğrencinin doğru varyantını haksız reddetmemek için var.
+- P2-4 (PR açıklaması, "Grüß Gott, Servus"): ANA'nın işi, içerikte değişiklik gerekmiyor.
+- P2-5 ("sert bira" / WORLD "Güçlü bira"): İçerik 16 yerde tutarlı olarak "sert bira" diyor. "Sert bira" Türkçede yerleşik söyleyiş, "güçlü bira" ise çeviri kokuyor. Öneri: ANA, WORLD satır 150'yi "Sert bira mevsimi" yapsın. WORLD dilbilimcinin yazma alanında olmadığı için dokunulmadı.
+
+### Değişen kimlikler
+- gun-106: h1 kaliplar[2], [4], yeni [5], yeni [7] · h2 yeni [0], [8], [9] · prova n3 s1 (de, tr, accepted)
+- gun-107: h1 kaliplar[0], [2], yeni [5] · h2 yeni [3], yeni [4], yeni [11]
+- gun-108: h1 kaliplar[3], [7] · h2 yeni [2] · h2 gorev_cumleleri[1] (de, accepted)
+- gun-109: h2 kaliplar[0], [2], [7], yeni [8] · sesler m1:109:a2 b1 d3 banka
+- gun-110: h1 kaliplar[5] · h2 yeni [4]
+- gun-111: h1 yeni [3], yeni [7] · h2 yeni [2], [5]
+- gun-112: h1 kaliplar[9], yeni [10] · h1 sahne (ortam_tr, satirlar[0] de/tr, satirlar[2] de/tr, soru opts[1]) · sahne b1 d3 banka · m1:112:s9 (situation_tr, prompt_de)
+- hafta-sonu-testi-16, gorulmemis-16: değişmedi (t04 `passiert` 108 kalıbıyla kapandı).
+
+### Yeniden tarama (kendi betiğim)
+- Sunum sırasıyla bütün Almanca geçişler gezildi: halka kalıpları, görevler, halka sahnesi, sonra gün dosyasının sırası, sonra test ve görülmemiş. Önce: 553 ayrı sözcük kendi haftasının kalıbında görünmeden geçiyordu. Sonra: 486.
+- Çekimli biçim, Partizip, emir ve iyelik/zamir biçimleri (52 biçim): önce **52 açık**. Sonra **0 açık**: 49'u ilk geçişinden önce kalıpta, 3'ü artık geçmiyor (`trefft`, `sollst`, `euch` accepted[0]'dan çıktı).
+- Kalan gösterilmemiş fiil sözcüklerinin hepsi mastar ya da mastarla aynı biçim. Kartın kendi biçimi oldukları için sayılmadı (33 sözcük): `tun, essen, wandern, bleiben, anrufen, mitkommen, gehen, sagen, sprechen, liegen, mitbringen, wünschen, treffen, bringen, schließen, benutzen, brauchen, bekommen, schlafen, reparieren, ändern, trinken, hören, beginnen, riechen, sehen, erzählen, packen, zurückkommen, wiederholen, frühstücken, hingehen, üben`. Karşı replikteki `Ihren/Ihre/Ihnen` fiil değil, P1-2 kapsamı dışında. 2. turda bunlar da istenirse bunu takip işi olarak yazın.
+- Yeni ve değişen Türkçe açıklamalar (112 ortam_tr, m1:112:s9 situation_tr) OD-9'a uyuyor: terim yok, her cümle ≤ 14 sözcük, `;`, `…`, `=` ve tırnaklı Almanca yok.
+
+### Kapılar
+- `npm run -s content:validate` → 0 hata (178 uyarı, önceden de vardı).
+- `hafta-kapisi-kos.ts --hafta 16` → **GEÇTİ**. Öğretilmeden istenen 0, anlaşılmayan karşı soru 0, test %100 (12/12), görülmemiş 7/7.
+- `dikis-kos.ts --gun 106…112` → yedi günde ihlal 0.
+
+Düzeltme turu sonucu: **KAPANDI** (P1 2/2, P2 5/5; P2-4 ve P2-5'in WORLD kısmı ANA'da). Hata oranı: 52 açık biçim ve 2 hikâye çelişkisi, 9 dosyada.
