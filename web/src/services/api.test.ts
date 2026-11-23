@@ -32,6 +32,12 @@ describe("Worker istemcisi", () => {
     expect(e).toBeInstanceOf(ApiError);
     expect(e.message_tr).toContain("İnternet");
   });
+  it("200 ama gövde JSON değilse bad_output (bozuk yanıt öğrenciye gitmez; PM-087 A.4)", async () => {
+    for (const govde of ["<html>hata</html>", '{"output": {"ok": tr', ""]) {
+      const api = createApi({ base: "https://api.test", token: async () => "t", fetch: (async () => new Response(govde, { status: 200 })) as any });
+      await expect(api.ai("equiv_check", { prompt_tr: "x", expected: ["a"], answer: "b" })).rejects.toMatchObject({ code: "bad_output", retryable: true });
+    }
+  });
   it("giriş yoksa istek gönderilmez", async () => {
     const f = vi.fn();
     const api = createApi({ base: "https://api.test", token: async () => null, fetch: f as any });
