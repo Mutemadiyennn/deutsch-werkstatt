@@ -43,10 +43,17 @@ describe("madde çıkarma (biçimden bağımsız)", () => {
       c: { seviye: "gercek", ornek_de: "Ich bin müde.", zorunlu: ["müde"] },
       d: { secenekler: [{ de: "Nein.", uygun: false, accepted: ["Nein."] }] },
       e: { script: [{ id: "c1", de: "Ich komme morgen." }], bolumler: [{ ana_fikir: { q_tr: "Ne zaman?", opts: ["yarın", "bugün"], ans: 0, kanit: ["c1"] } }] },
-      f: { metin_de: "Heute ist Montag.", sorular: [{ q_tr: "Hangi gün?", opts: ["pazartesi"], ans: 0, kanit: [1] }] }
+      f: { metin_de: "Hallo! Heute ist Montag.", sorular: [{ q_tr: "Hangi gün?", opts: ["pazartesi"], ans: 0, kanit: [1] }] },
+      g: { dikte: [{ seviye: "kolay", q_tr: "Hangisini duydun?", opts: ["Bus", "Zug"], ans: 1 }] },
+      h: [{ id: "g1", de: "Bratwurst", dogru_img: "sausage" }],
+      i: { yazma: { ornek_de: "Ich heiße Ayla.", zorunlu: ["heiße"] } },
+      j: { dugumler: [{ id: "n1", de: "Wie heißen Sie?", secenekler: [{ de: "Ich heiße …", accepted: ["Ich heiße Ayla."] }] }] },
+      k: { sahne: { satirlar: [{ r: "x", de: "Mit Senf?" }], soru: { q_tr: "Ne?", opts: ["hardallı"], ans: 0 } } }
     }, "x");
-    expect(m.map((x) => [x.secenekler, !!x.anlama])).toEqual([
-      [["Ich bin müde."], false], [["Ich bin müde."], false], [["Ich bin müde."], false], [["Ich komme morgen."], true], [["Heute ist Montag."], true]
+    expect(m.map((x) => [x.secenekler, !!x.anlama, x.soru ?? null])).toEqual([
+      [["Ich bin müde."], false, null], [["Ich bin müde."], false, null], [["Ich bin müde."], false, null], [["Ich komme morgen."], true, null],
+      [["Heute ist Montag."], true, null], [["Zug"], false, null], [["Bratwurst"], false, null], [["Ich heiße Ayla."], false, null],
+      [["Ich heiße Ayla."], false, "Wie heißen Sie?"], [["Mit Senf?"], true, null]
     ]);
   });
 });
@@ -67,6 +74,23 @@ describe("hafta kapısı: 2. hafta (önceki hafta öğretilmiş)", () => {
     expect(r.gecti).toBe(false);
     const r2 = kos(hafta2((gs) => { gs[0]!.halkalar = [{ id: "h8", kartlar: [], gorev_cumleleri: [g(sonraki, sonraki, "Hallo!")] }]; }));
     expect(r2.ogretilmedenKesin).toBe(0);
+  });
+  it("ses durağı 1. halkadan önce: bugünün kartı seste kesin, gün sınavında bilinir (akis.ts sırası)", () => {
+    const uygun = (k: string) => !dizin.cerceve.has(k) && /^[A-Za-zÄÖÜäöüß]+$/.test(dizin.kartlar.get(k)?.de ?? "") && !GOSTERIM.includes((dizin.kartlar.get(k)?.de ?? "").toLowerCase());
+    const gn = [8, 9, 10, 11, 12, 13, 14].find((n) => T.get(n)!.some(uygun))!, k8 = dizin.kartlar.get(T.get(gn)!.find(uygun)!)!.de;
+    const ses = { sesler: [{ id: "a1", script: [], bolumler: [{ id: "b1", cevapla: { prompt_de: "Hallo!", accepted: [`Hallo, ${k8}!`] } }] }] };
+    const r = kos(hafta2((gs) => Object.assign(gs[gn - 8]!, ses)));
+    // medyada bilinmeyen sözcük isteyen "Sen ne derdin?" uygulamada sorulmaz (dikteSuz): süzülen, öğretilmeden istenen değil
+    expect(r.adimlar.filter((a) => a.sonuc === "suzuldu").map((a) => a.yer)).toEqual(["gün/sesler[a1]/bolumler[b1]/cevapla"]);
+    expect(r.ogretilmedenKesin).toBe(0);
+    const yazma = { okuma_yazma: { metin_de: "Hallo!", sorular: [], yazma: { ornek_de: `Hallo, ${k8}!` } } };
+    expect(kos(hafta2((gs) => Object.assign(gs[gn - 8]!, ses, yazma))).ogretilmedenKesin).toBe(0);   // okuma halkalardan sonra
+    const r2 = kos(hafta2((gs) => Object.assign(gs[gn - 8]!, { gun_sinavi: { maddeler: [{ id: "s1", prompt_de: "Hallo!", accepted: [`Hallo, ${k8}!`] }] } })));
+    expect(r2.ogretilmedenKesin).toBe(0);
+  });
+  it("karşı tarafın sorusu da anlaşılmalı (ogrenci_akis ile aynı)", () => {
+    const r = kos(hafta2((gs) => Object.assign(gs[0]!, { gun_sinavi: { maddeler: [{ id: "s1", prompt_de: `Hallo, ${H3}?`, accepted: ["Hallo!"] }] } })));
+    expect(r.adimlar.find((a) => a.sonuc === "kesin")!.eksik).toEqual([`soru:${H3.toLowerCase()}`]);
   });
   it("aynı haftanın sonraki gününün kartı önceki günde kesin; tablo sırası değil dosya sırası geçerli", () => {
     const k9 = T.get(9)![0]!; const l = dizin.kartlar.get(k9)!;

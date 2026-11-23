@@ -34,30 +34,45 @@ const sade = (s: string) => s.toLowerCase().replace(/[.,!?;:„“"'»«()–…
 
 /** Öğrenciden istenen bir cevap: kurulabilecek seçenekler + (varsa) karşı tarafın sorusu. `anlama`: Türkçe soru ve şıklı anlama
  *  sorusu (q_tr); seçenek yerine kanıt cümleleri değerlendirilir, öğretilmeden isteneni etkilemez (metin ekranda Türkçesiyle durur) */
-export interface Madde { yer: string; secenekler: string[]; soru?: string; anlama?: boolean }
+export interface Madde { yer: string; secenekler: string[]; soru?: string; anlama?: boolean; suzulur?: boolean }
 const BOS = /_{3,}/;
 const doldur = (de: string | undefined, x: string) => (de && BOS.test(de) && !BOS.test(x) && x.split(/\s+/).length <= 3 ? de.replace(BOS, x) : x);
 
 /** Nesne ağacındaki bütün cevap maddeleri (biçimden bağımsız): `accepted` dizisi, `opts`+`ans` seçme, `seviye: gercek` yazma */
 export function maddeler(kok: unknown, yer: string): Madde[] {
   const out: Madde[] = [];
-  const gez = (x: unknown, at: string, metin: Map<string, string>, tumMetin: string) => {
-    if (Array.isArray(x)) { x.forEach((y, i) => gez(y, `${at}[${String(nesne(y).id ?? i)}]`, metin, tumMetin)); return; }
+  const gez = (x: unknown, at: string, metin: Map<string, string>, tumMetin: string[], baglam: string[] = []) => {
+    if (Array.isArray(x)) { x.forEach((y, i) => gez(y, `${at}[${String(nesne(y).id ?? i)}]`, metin, tumMetin, baglam)); return; }
     const o = nesne(x); if (!Object.keys(o).length || o.uygun === false) return;
     // medya kapsamı: script / sahneler satırları ve okuma metni (anlama sorusunun kanıtı için)
     const satirlar = [...dizi(o.script), ...dizi(o.sahneler)].map(nesne).filter((y) => typeof y.id === "string" && yazi(y.de));
-    if (satirlar.length || yazi(o.metin_de)) { metin = new Map([...metin, ...satirlar.map((y) => [y.id as string, y.de as string] as const)]); tumMetin = yazi(o.metin_de) ?? tumMetin; }
-    const de = yazi(o.de), soru = yazi(o.prompt_de) ?? yazi(o.audio_de);
+    if (satirlar.length || yazi(o.metin_de)) {
+      metin = new Map([...metin, ...satirlar.map((y) => [y.id as string, y.de as string] as const)]);
+      // okuma: sayısal kanıt 0'dan başlayan cümle sırası (FORMAT.md "Pilotun netleştirdikleri")
+      if (yazi(o.metin_de)) tumMetin = (o.metin_de as string).split(/(?<=[.!?…])\s+/).map((x) => x.trim()).filter(Boolean);
+    }
+    const de = yazi(o.de), soru = yazi(o.prompt_de) ?? yazi(o.audio_de) ?? yazi(o.from_de);
+    const cevap = Array.isArray(o.opts) && typeof o.ans === "number" ? yazi(o.opts[o.ans]) : undefined, secme = !!cevap;
+    const sat = dizi(o.satirlar).map((y) => yazi(nesne(y).de)).filter((y): y is string => !!y);
+    if (sat.length) baglam = sat;
     const acc = yazilar(o.accepted);
-    if (yazi(o.q_tr) && !de && !yazi(o.prompt_de)) {
-      const kanit = dizi(o.kanit).map((k) => (typeof k === "string" ? metin.get(k) : typeof k === "number" ? tumMetin : undefined)).filter((k): k is string => !!k);
+    if (yazi(o.q_tr) && Array.isArray(o.kanit)) {
+      // anlama sorusu (Türkçe şık): kanıt cümleleri
+      const kanit = dizi(o.kanit).map((k) => (typeof k === "string" ? metin.get(k) : typeof k === "number" ? tumMetin[k] : undefined)).filter((k): k is string => !!k);
       if (kanit.length) out.push({ yer: at, secenekler: [[...new Set(kanit)].join(" ")], anlama: true });
     } else if (acc.length) out.push({ yer: at, secenekler: acc.map((a) => doldur(de, a)), soru });
-    else if (Array.isArray(o.opts) && typeof o.ans === "number" && yazi(o.opts[o.ans])) out.push({ yer: at, secenekler: [doldur(de, o.opts[o.ans] as string)], soru });
-    else if (o.seviye === "gercek" && yazi(o.ornek_de)) out.push({ yer: at, secenekler: [o.ornek_de as string], soru });
-    for (const [k, v] of Object.entries(o)) if (v && typeof v === "object" && !["accepted", "opts", "halkalar", "script", "sahneler", "kanit"].includes(k)) gez(v, `${at}/${k}`, metin, tumMetin);
+    else if (secme && (o.seviye === "kolay" || !yazi(o.q_tr))) out.push({ yer: at, secenekler: [doldur(de, cevap!)], soru });   // kolay dikte, Almanca şıklı seçme
+    else if (secme && baglam.length) out.push({ yer: at, secenekler: [baglam.join(" ")], anlama: true });   // halka sahnesinin Türkçe sorusu: sahne satırları
+    else if (yazi(o.ornek_de)) out.push({ yer: at, secenekler: [o.ornek_de as string], soru });   // yazma (her seviye) ve gerçek dikte
+    else if (de && yazi(o.dogru_img)) out.push({ yer: at, secenekler: [de], soru });          // resimden seç: sözcüğü tanır
+    for (const [k, v] of Object.entries(o)) {
+      if (!v || typeof v !== "object" || ["accepted", "opts", "halkalar", "script", "sahneler", "kanit"].includes(k)) continue;
+      // prova düğümü: karşı tarafın cümlesi (`de`) seçeneklerin sorusudur
+      if (k === "secenekler" && de) { const once = out.length; gez(v, `${at}/${k}`, metin, tumMetin, baglam); for (const m of out.slice(once)) m.soru ??= de; continue; }
+      gez(v, `${at}/${k}`, metin, tumMetin, baglam);
+    }
   };
-  gez(kok, yer, new Map(), "");
+  gez(kok, yer, new Map(), []);
   return out;
 }
 
@@ -76,7 +91,7 @@ function almancaCumleler(kok: unknown, out: Set<string>) {
 }
 
 export interface Bilgi { kart: Set<string>; biten: Set<string>; kaliplar: string[][]; bicim: Set<string> }
-export type Sonuc = "tamam" | "kesin" | "sinirda" | "anlama";
+export type Sonuc = "tamam" | "kesin" | "sinirda" | "anlama" | "suzuldu";
 export interface AdimSatiri { gun: number; yer: string; sonuc: Sonuc; eksik: string[]; cumle: string; soruEksik: string[] }
 
 export interface KapiGirdi {
@@ -91,7 +106,7 @@ export interface KapiGirdi {
 export interface KapiSonuc {
   hafta: number;
   adimlar: AdimSatiri[];
-  ogretilmedenKesin: number; ogretilmedenSinirda: number; anlasilmayanSoru: number; anlamaEksik: number;
+  ogretilmedenKesin: number; ogretilmedenSinirda: number; anlasilmayanSoru: number; anlamaEksik: number; suzulen: number;
   test: { toplam: number; dogru: number; oran: number; maddeler: AdimSatiri[] } | null;
   gorulmemis: { toplam: number; kurulan: number; durumlar: (AdimSatiri & { can_do?: string })[]; kapsanmayanCanDo: string[] } | null;
   eksikGunler: number[];
@@ -111,10 +126,13 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     const ids = x.startsWith("lx:") ? [x] : [...(d.idx.get(x.toLowerCase()) ?? [])].filter((i) => d.cerceve.has(i));
     for (const id of ids.length ? ids : [`söz:${x.toLowerCase()}`]) if (!cerceveHafta.has(id)) cerceveHafta.set(id, h);
   }
+  const tamHafta = (h: number) => Array.from({ length: 7 }, (_, i) => (h - 1) * 7 + i + 1).every((n) => dosya.has(n));
   const cerceveEksik = (t: string, b: Bilgi): boolean => {
     if (b.bicim.has(t)) return false;
     const ok = [...[...(d.idx.get(t) ?? [])].filter((i) => d.cerceve.has(i)), ...(cerceveHafta.has(`söz:${t}`) ? [`söz:${t}`] : [])];
-    if (!ok.length || !ok.every((i) => (cerceveHafta.get(i) ?? 0) >= hafta)) return false;
+    // bu ve sonraki haftaların çerçevesi her zaman; önceki haftanınki o haftanın 7 gün dosyası daldaysa (yoksa o hafta öğretilmiş sayılır)
+    const kisitli = (i: string) => { const h = cerceveHafta.get(i) ?? 0; return h >= hafta || (h > 1 && tamHafta(h)); };
+    if (!ok.length || !ok.every(kisitli)) return false;
     return ![...(d.idx.get(t) ?? [])].some((i) => !d.cerceve.has(i) && b.kart.has(i) && d.gost.get(i)?.has(t));
   };
 
@@ -157,14 +175,20 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     for (const s of m.secenekler) {
       if (haric?.has(sade(s))) continue;
       const e = eksikler(s, b);
-      const sonuc: Sonuc = e.kesin.length || e.sinirda.length ? (m.anlama ? "anlama" : e.kesin.length ? "kesin" : "sinirda") : "tamam";
+      const sonuc: Sonuc = e.kesin.length || e.sinirda.length ? (m.anlama ? "anlama" : m.suzulur ? "suzuldu" : e.kesin.length ? "kesin" : "sinirda") : "tamam";
       const sat: AdimSatiri = { gun, yer: m.yer, sonuc, eksik: [...e.kesin, ...e.sinirda], cumle: s, soruEksik: [] };
       const puan = (x: AdimSatiri) => (x.sonuc === "tamam" ? 0 : x.sonuc === "kesin" ? 2 : 1) * 100 + x.eksik.length;
       if (!en || puan(sat) < puan(en)) en = sat;
       if (sonuc === "tamam") break;
     }
     en ??= { gun, yer: m.yer, sonuc: "kesin", eksik: ["(derste aynen geçmeyen kabul cümlesi yok)"], cumle: m.secenekler[0] ?? "", soruEksik: [] };
-    if (m.soru) { const e = eksikler(m.soru, b); en.soruEksik = [...e.kesin, ...e.sinirda]; }
+    // karşı tarafın sorusu da anlaşılmalı (ogrenci_akis.py: prompt_de / audio_de / from_de öğretilmeden istenene girer)
+    if (m.soru && !m.anlama && en.sonuc !== "suzuldu") {
+      const e = eksikler(m.soru, b); en.soruEksik = [...e.kesin, ...e.sinirda];
+      if (m.suzulur && en.soruEksik.length) en.sonuc = "suzuldu";
+      else if (e.kesin.length && en.sonuc !== "kesin") en.sonuc = "kesin"; else if (e.sinirda.length && en.sonuc === "tamam") en.sonuc = "sinirda";
+      en.eksik.push(...en.soruEksik.map((x) => `soru:${x}`));
+    }
     return en;
   };
 
@@ -186,24 +210,41 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     almancaCumleler(f, haftaCumleleri);
     const cd = nesne(f.can_do).id; if (typeof cd === "string") canDo.add(cd);
     const yeni = new Set(yazilar(f.yeni_kartlar)), dersler = yazilar(f.dersler);
-    const gunB = kopya(b);
-    for (const h0 of dizi(f.halkalar)) {
-      const h = nesne(h0);
+    // durak sırası uygulamanın planlayıcısıyla aynı (web/src/core/akis.ts, K1 dizisi): ısınma · ses · h1 · h2 · (sahne/video) · h3 · h4 ·
+    // prova · h5 · okuma · gün sonu; az halkalı günde sabit duraklar sona kalır. Dil noktası: `dersten_sonra` olan ilk halkadan önce
+    // (yoksa son halkadan sonra); planlayıcı dil durağını çizince (hat A) buradaki yaklaşık yer onunla değişir.
+    const gunB = kopya(b), halkalar = dizi(f.halkalar).map(nesne);
+    // medya durağı (ses, sahne, video): uygulama bilinmeyen sözcük isteyen dikte ve "Sen ne derdin?" maddesini sormaz
+    // (Medya.tsx `dikteSuz`, 1. gün öğrenci simülasyonu P0-1): öğretilmeden istenen değil, "süzülen" sayılır
+    const MEDYA = new Set(["sesler", "sahne", "video"]);
+    const bolum = (ad: string) => {
+      if (f[ad] === undefined) return;
+      for (const m of maddeler({ [ad]: f[ad] }, "gün")) adimlar.push(degerle(gn, { ...m, suzulur: MEDYA.has(ad) && /\/(dikte|cevapla)\b/.test(m.yer) }, gunB));
+    };
+    const ARA: Record<number, string[]> = { 1: ["sahne", "video"], 3: ["prova"], 4: ["okuma_yazma"] };
+    const dersYeri = halkalar.findIndex((h) => h.dersten_sonra === true);
+    let dersVerildi = false;
+    const dersVer = () => { if (!dersVerildi) { for (const x of dersler) dersEkle(gunB, x); dersVerildi = true; } };
+    bolum("sesler");
+    halkalar.forEach((h, hi) => {
+      if (hi === dersYeri) dersVer();
       halkaKalip(gunB, h);
       for (const k of yazilar(h.kartlar)) if (yeni.has(k)) gunB.kart.add(k);
-      const hb = kopya(gunB); if (h.dersten_sonra === true) for (const x of dersler) dersEkle(hb, x);
-      for (const m of maddeler(h.gorev_cumleleri, `halka ${String(h.id ?? "?")}`)) adimlar.push(degerle(gn, m, hb));
-    }
+      for (const m of maddeler({ gorev_cumleleri: h.gorev_cumleleri, sahne: h.sahne }, `halka ${String(h.id ?? "?")}`)) adimlar.push(degerle(gn, m, gunB));
+      for (const ad of ARA[hi] ?? []) bolum(ad);
+    });
     for (const k of yeni) gunB.kart.add(k);
-    for (const x of dersler) dersEkle(gunB, x);
-    const disi = Object.fromEntries(Object.entries(f).filter(([k]) => !["halkalar", "yeni_kartlar", "dersler", "requires", "review", "can_do"].includes(k)));
-    for (const m of maddeler(disi, "gün")) adimlar.push(degerle(gn, m, gunB));
+    dersVer();
+    for (const [hi, adlar] of Object.entries(ARA)) if (+hi >= halkalar.length) for (const ad of adlar) bolum(ad);
+    const bilinen = new Set(["halkalar", "yeni_kartlar", "dersler", "requires", "review", "can_do", "sesler", "sahne", "video", "prova", "okuma_yazma", "gun_sinavi"]);
+    for (const ad of Object.keys(f).filter((k) => !bilinen.has(k))) bolum(ad);   // resimden seç (gorsel) ve bilinmeyen bölümler: günün bütün kartlarıyla
+    bolum("gun_sinavi");
     for (const k of [...gunB.kart]) b.kart.add(k); for (const x of gunB.biten) b.biten.add(x);
     for (const t of gunB.bicim) b.bicim.add(t); b.kaliplar = gunB.kaliplar;
   }
 
   const ogretilmedenKesin = adimlar.filter((a) => a.sonuc === "kesin").length, ogretilmedenSinirda = adimlar.filter((a) => a.sonuc === "sinirda").length;
-  const anlasilmayanSoru = adimlar.filter((a) => a.soruEksik.length).length, anlamaEksik = adimlar.filter((a) => a.sonuc === "anlama").length;
+  const anlasilmayanSoru = adimlar.filter((a) => a.soruEksik.length).length, anlamaEksik = adimlar.filter((a) => a.sonuc === "anlama").length, suzulen = adimlar.filter((a) => a.sonuc === "suzuldu").length;
 
   let test: KapiSonuc["test"] = null;
   if (g.test !== undefined) {
@@ -219,7 +260,8 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     gorulmemis = { toplam: durumlar.length, kurulan: durumlar.filter((x) => x.sonuc === "tamam").length, durumlar, kapsanmayanCanDo: [...canDo].filter((c) => !sinanan.has(c)).sort() };
   }
 
-  const esik = g.esik ?? 0.8, nedenler: string[] = [];
+  // eşik: PM-087 B.1 "≥ %80" (sayı değilse varsayılan)
+  const esik = typeof g.esik === "number" && Number.isFinite(g.esik) ? g.esik : 0.8, nedenler: string[] = [];
   if (eksikGunler.length) nedenler.push(`gün dosyası yok: ${eksikGunler.join(", ")}`);
   if (ogretilmedenKesin + ogretilmedenSinirda) nedenler.push(`öğretilmeden istenen ${ogretilmedenKesin + ogretilmedenSinirda} (kesin ${ogretilmedenKesin}, sınırda ${ogretilmedenSinirda})`);
   if (!test) nedenler.push(`hafta sonu testi yok (hafta-sonu-testi-${String(hafta).padStart(2, "0")}.json)`);
@@ -230,7 +272,7 @@ export function haftaKapisi(g: KapiGirdi): KapiSonuc {
     if (gorulmemis.kurulan < gorulmemis.toplam) nedenler.push(`görülmemiş durum ${gorulmemis.kurulan}/${gorulmemis.toplam} kurulabiliyor`);
     if (gorulmemis.kapsanmayanCanDo.length) nedenler.push(`görülmemiş durumla sınanmayan can_do: ${gorulmemis.kapsanmayanCanDo.join(", ")}`);
   }
-  return { hafta, adimlar, ogretilmedenKesin, ogretilmedenSinirda, anlasilmayanSoru, anlamaEksik, test, gorulmemis, eksikGunler, gecti: !nedenler.length, nedenler };
+  return { hafta, adimlar, ogretilmedenKesin, ogretilmedenSinirda, anlasilmayanSoru, anlamaEksik, suzulen, test, gorulmemis, eksikGunler, gecti: !nedenler.length, nedenler };
 }
 
 /** kalıp metni → kalıp seçenekleri (" – " kume.ts'te, " / " burada ayrılır) */
@@ -239,16 +281,16 @@ const kalipParca = (de: string): string[][] => de.split(/\s\/\s/).flatMap((p) =>
 export function kapiRaporu(r: KapiSonuc): string {
   const yuzde = (x: number) => `%${Math.round(x * 100)}`;
   const L = [`## Hafta kapısı · ${r.hafta}. hafta (gün ${(r.hafta - 1) * 7 + 1}–${r.hafta * 7}) · ${r.gecti ? "GEÇTİ" : "KALDI"}`, ""];
-  L.push("| gün | adım | tamam | öğretilmeden (kesin) | öğretilmeden (sınırda) | anlaşılmayan soru | anlama: kanıtta yeni |", "|---:|---:|---:|---:|---:|---:|---:|");
+  L.push("| gün | adım | tamam | öğretilmeden (kesin) | öğretilmeden (sınırda) | anlaşılmayan soru | anlama: kanıtta yeni | süzülen (medya) |", "|---:|---:|---:|---:|---:|---:|---:|---:|");
   for (const gn of [...new Set(r.adimlar.map((a) => a.gun))]) {
     const a = r.adimlar.filter((x) => x.gun === gn);
-    L.push(`| ${gn} | ${a.length} | ${a.filter((x) => x.sonuc === "tamam").length} | ${a.filter((x) => x.sonuc === "kesin").length} | ${a.filter((x) => x.sonuc === "sinirda").length} | ${a.filter((x) => x.soruEksik.length).length} | ${a.filter((x) => x.sonuc === "anlama").length} |`);
+    L.push(`| ${gn} | ${a.length} | ${a.filter((x) => x.sonuc === "tamam").length} | ${a.filter((x) => x.sonuc === "kesin").length} | ${a.filter((x) => x.sonuc === "sinirda").length} | ${a.filter((x) => x.soruEksik.length).length} | ${a.filter((x) => x.sonuc === "anlama").length} | ${a.filter((x) => x.sonuc === "suzuldu").length} |`);
   }
-  L.push("", `Öğretilmeden istenen: **${r.ogretilmedenKesin + r.ogretilmedenSinirda}** (kesin ${r.ogretilmedenKesin}, sınırda ${r.ogretilmedenSinirda}) · anlaşılmayan karşı soru: ${r.anlasilmayanSoru} · anlama sorusunun kanıtında yeni sözcük (engel değil): ${r.anlamaEksik}`);
+  L.push("", `Öğretilmeden istenen: **${r.ogretilmedenKesin + r.ogretilmedenSinirda}** (kesin ${r.ogretilmedenKesin}, sınırda ${r.ogretilmedenSinirda}) · anlaşılmayan karşı soru: ${r.anlasilmayanSoru} · anlama sorusunun kanıtında yeni sözcük (engel değil): ${r.anlamaEksik} · süzülen medya maddesi (uygulama sormaz; engel değil): ${r.suzulen}`);
   if (r.test) L.push(`Hafta sonu testi: **${yuzde(r.test.oran)}** (${r.test.dogru}/${r.test.toplam})`);
   if (r.gorulmemis) L.push(`Görülmemiş durum: **${r.gorulmemis.kurulan}/${r.gorulmemis.toplam}** kurulabiliyor · sınanmayan can_do: ${r.gorulmemis.kapsanmayanCanDo.join(", ") || "yok"}`);
   if (r.nedenler.length) L.push("", "Kalma nedenleri:", ...r.nedenler.map((n) => `- ${n}`));
-  const kotu = [...r.adimlar.filter((a) => a.sonuc !== "anlama"), ...(r.test?.maddeler ?? []), ...(r.gorulmemis?.durumlar ?? [])].filter((a) => a.sonuc !== "tamam");
+  const kotu = [...r.adimlar.filter((a) => a.sonuc !== "anlama" && a.sonuc !== "suzuldu"), ...(r.test?.maddeler ?? []), ...(r.gorulmemis?.durumlar ?? [])].filter((a) => a.sonuc !== "tamam");
   if (kotu.length) { L.push("", "Ayrıntı (en yakın kabul seçeneği ve eksik sözcükleri; ~ = gösterilmemiş biçim):"); for (const a of kotu) L.push(`- ${a.gun}. gün ${a.yer} [${a.sonuc}] ${a.eksik.join(", ")} · ${a.cumle}`); }
   return L.join("\n");
 }
