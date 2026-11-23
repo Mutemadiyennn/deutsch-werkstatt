@@ -6,7 +6,7 @@
  *  - Sonuç `m1:sinav:<deneme>:<bölüm>` (son çözüm sayılır). Günün bölümleri bitince gün biter (`m1:gun:<gün>`) ve adım XP'si bir kez.
  *  - Bütün bölümler çözülünce deneme sonucu: toplam ≥ %60 ve konuşma ≥ %60 (PM-087 ek); geçmeyince zayıf bölümler ve yeniden çözme.
  */
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Deneme, DenemeBolum, DenemeKisim, DenemeMadde, Drill, Gun, Speed } from "@dw/shared";
 import { mesajOlcutleri } from "@dw/shared";
 import { useApp } from "../state.ts";
@@ -36,6 +36,8 @@ export function SinavEkrani({ day, bolum }: { day: number; bolum?: string }) {
   const [cevap, setCevap] = useState<Record<string, Cevap>>({});
   const [oz, setOz] = useState<Record<string, number>>({});
   const baslik = `${day}. gün · Deneme sınavı`;
+  // kayıt sürerken ikinci dokunuş yeni kayıt açmaz; yazım düşerse hata paneli (inceleme #247 P2-1)
+  const kaydediyor = useRef(false);
   useEffect(() => {
     if (!index) return;
     setErr(null);
@@ -51,8 +53,9 @@ export function SinavEkrani({ day, bolum }: { day: number; bolum?: string }) {
   // tek bölüm adresi (#/sinav/<g>/<bölüm>): yüklenince doğrudan o bölüm başlar
   useEffect(() => {
     if (!v || typeof v === "string" || !bolum) return;
+    // yalnız bu günün bölümü ya da daha önce çözülmüş bölüm (yeniden çöz): başka günün bölümü adresle önceden bitirilemez (inceleme #247 P2-2)
     const b = v.deneme.bolumler.find((x) => x.id === bolum);
-    if (b) baslat(b);
+    if (b && (sinavBolumleri(v.gun).includes(b.id) || v.sonuclar.has(b.id))) baslat(b);
   }, [v && typeof v !== "string" ? v.deneme.id : null, bolum]);
   useEffect(() => () => stopSpeaking(), []);
 
@@ -71,6 +74,11 @@ export function SinavEkrani({ day, bolum }: { day: number; bolum?: string }) {
 
   function baslat(b: DenemeBolum) { setCevap({}); setOz({}); setAsama({ t: "coz", b, i: 0 }); window.scrollTo(0, 0); }
   async function kaydet(b: DenemeBolum, cevaplar: Record<string, Cevap>, ozp: Record<string, number>) {
+    if (kaydediyor.current) return;
+    kaydediyor.current = true;
+    try { await kaydetIc(b, cevaplar, ozp); } catch (e) { setErr(`Sonuç kaydedilemedi: ${String((e as Error)?.message || e)}`); } finally { kaydediyor.current = false; }
+  }
+  async function kaydetIc(b: DenemeBolum, cevaplar: Record<string, Cevap>, ozp: Record<string, number>) {
     const p = bolumPuani(b, cevaplar, ozp);
     const s = { puan: p.puan, ham: p.ham, hamToplam: b.ham_puan, maddeler: p.maddeler };
     await sinavBolumYaz(deneme.id, b.id, s);
@@ -178,7 +186,7 @@ function SonucKarti({ d, sonuc, kalan, onYeniden }: { d: Deneme; sonuc: ReturnTy
       <h2>{puanTr(sonuc.toplam)}/{sonuc.enCok} puan</h2>
       <p class="small">Konuşma: {puanTr(sonuc.konusma ?? 0)}/{sonuc.konusmaEnCok} puan.</p>
       {sonuc.gecti
-        ? <p data-test="deneme-gecti">Geçme sınırını aştın: {d.seviye} sınavına hazırsın.</p>
+        ? <p data-test="deneme-gecti">Geçme sınırına ulaştın. Yazma ve konuşmanın puanını kendin verdin; gerçek sınavda bunu bir değerlendirici verir.</p>
         : <p data-test="deneme-gecmedi">Henüz geçme sınırında değilsin. Geçmek için toplamda %{Math.round(d.gecme.toplam * 100)}, konuşmada ayrıca %{Math.round(d.gecme.konusma * 100)} gerekir.</p>}
       {zayif.length > 0 && <ul class="zayif-liste" data-test="deneme-zayif">{zayif.map((b) => (
         <li class="row"><span class="grow">{BOLUM_TR[b.id]}: {puanTr(sonuc.bolumler[b.id] ?? 0)}/{b.puan}</span>
@@ -250,13 +258,18 @@ function MaddeView({ m, kisim, onDone }: { m: DenemeMadde; kisim: DenemeKisim; o
 function Dinle({ satirlar, speed, hak }: { satirlar: { r: string; de: string }[]; speed?: Speed; hak: number }) {
   const [dinlenen, setDinlenen] = useState(0);
   const [calis, setCalis] = useState(false);
+  // koşu sayacı: "Durdur" ve ekrandan kalkış diziyi bütünüyle keser (yalnız o anki satırı değil; inceleme #247 P1-1)
+  const kosu = useRef(0);
+  useEffect(() => () => { kosu.current++; stopSpeaking(); }, []);
   const kim = (r: string) => (r === "kadin" ? "Frau" : r === "erkek" ? "Herr" : r);
   const kalan = hak - dinlenen;
   const cal = async () => {
-    if (calis) { stopSpeaking(); setCalis(false); return; }
+    if (calis) { kosu.current++; stopSpeaking(); setCalis(false); return; }
     if (kalan <= 0) return;
+    const k = ++kosu.current;
     setCalis(true); setDinlenen((x) => x + 1);
-    try { await speakDizi(satirlar.map((s) => ({ de: s.de, kim: kim(s.r), speed: speed ?? "normal" })), speed ?? "normal", 350); } finally { setCalis(false); }
+    try { await speakDizi(satirlar.map((s) => ({ de: s.de, kim: kim(s.r), speed: speed ?? "normal" })), speed ?? "normal", 350, () => kosu.current !== k); }
+    finally { if (kosu.current === k) setCalis(false); }
   };
   return (
     <div class="row sinav-dinle" data-test="sinav-dinle" data-kalan={kalan}>
@@ -299,7 +312,7 @@ function Puanla({ b, cevap, oz, setOz, onKaydet }: { b: DenemeBolum; cevap: Reco
               <div class="kicker">Mesaj</div>
               <p class="small"><Rich text={m.gorev_tr} /></p>
               <div class="small">Senin mesajın:</div>
-              <div class="sinav-metin selectable" lang="de" style={{ whiteSpace: "pre-wrap" }}>{a || "(boş)"}</div>
+              <div class="sinav-metin selectable" lang="de" style={{ whiteSpace: "pre-wrap" }}>{a || <span lang="tr">(boş)</span>}</div>
               <div class="small">Örnek mesaj:</div>
               <div class="sinav-metin selectable" lang="de">{adli(m.ornek_de)}</div>
               {ol.map((o, i) => (
@@ -319,7 +332,7 @@ function Puanla({ b, cevap, oz, setOz, onKaydet }: { b: DenemeBolum; cevap: Reco
           <section class="card stack" data-test={`puanla-${m.id}`} data-oneri={oneri[m.id] ?? ""}>
             <div class="kicker">{j + 1}/{ozMaddeler.length}</div>
             {"situation_tr" in m && m.situation_tr && <p class="small"><Rich text={m.situation_tr} /></p>}
-            <div class="small">Senin cevabın: <b lang="de">{a || "(cevap yok)"}</b>{oneri[m.id] === m.puan && a && <span class="chip" data-test="ornekle-ayni">Örnekle aynı</span>}</div>
+            <div class="small">Senin cevabın: {a ? <b lang="de">{a}</b> : <b>(cevap yok)</b>}{oneri[m.id] === m.puan && a && <span class="chip" data-test="ornekle-ayni">Örnekle aynı</span>}</div>
             <div class="small">Örnek cevaplar:</div>
             <ul class="small" lang="de">{ornekler.slice(0, 3).map((x) => <li>{adli(x)}</li>)}</ul>
             {"why_tr" in m && m.why_tr && <p class="small muted"><Rich text={m.why_tr} /></p>}

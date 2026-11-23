@@ -42,7 +42,8 @@ const esik = deger("--esik") ? Number(deger("--esik")) : undefined;
 const haftalar = hepsi ? [...new Set(gunler.map((x) => x.data?.day).filter((n): n is number => typeof n === "number" && n >= 8).map(haftaOf))].sort((a, b) => a - b) : [tekHafta];
 if (!haftalar.length) { console.log("Hafta kapısı: 2. hafta ve sonrası için gün dosyası yok; denetlenecek hafta yok."); process.exit(0); }
 const dersler = new Map(c.temel.map((t) => [t.data.id, t.data]));
-const denemeler = new Map(c.deneme.map((x) => [x.data.id, x.data.bolumler.map((b) => b.id)] as const));
+// yalnız incelenmiş deneme (derleme de yalnız onu pakete alır; taslak denemeli sınav günü uygulamada bitmez)
+const denemeler = new Map(c.deneme.filter((x) => x.data.review.status === "reviewed").map((x) => [x.data.id, x.data.bolumler.map((b) => b.id)] as const));
 const sonuclar = haftalar.map((hafta) => {
   const HH = String(hafta).padStart(2, "0");
   const test = oku<unknown>(join(mdir, `hafta-sonu-testi-${HH}.json`), "hafta sonu testi", false);

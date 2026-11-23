@@ -397,6 +397,8 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
     for (const { file, data: d } of c.deneme ?? []) {
       if (denemeler.has(d.id)) errors.push(`${file}: deneme kimliği iki kez (${d.id})`);
       denemeler.set(d.id, new Set(d.bolumler.map((b) => b.id)));
+      // taslak deneme pakete girmez (build.ts): sınav günü uygulamada "hazırlanıyor" kalır, gün bitmez (inceleme #247 P2-3)
+      if (d.review.status !== "reviewed") warnings.push(`${file}: ${d.id} taslak; pakete girmez, bağlı sınav günü uygulamada "hazırlanıyor" kalır`);
       for (const x of denemeSorunlari(d)) errors.push(`${file}: ${x}`);
     }
     // aynı denemeye bağlı günler bölümleri paylaşmaz; hepsi bölümlüyse denemenin her bölümü bir güne düşer (öğrenci bölümü atlamaz)
@@ -409,6 +411,8 @@ export function checkRules(c: Loaded, opts: { strictPatterns?: boolean; strictTe
         if (var_ && !var_.has(b)) errors.push(`${x.file}: sinav_bolumler: ${b} ${id} denemesinde yok`);
         if (sahibi.has(b)) errors.push(`${x.file}: sinav_bolumler: ${b} ${sahibi.get(b)}. günde de açılıyor (${id})`); else sahibi.set(b, x.day);
       }
+      // bölümlü ve bölümsüz gün aynı denemede: bölümsüz gün bütün bölümleri açar, öteki günle çakışır (inceleme #247 P2-4)
+      if (gs.some((x) => x.bolumler) && gs.some((x) => !x.bolumler)) errors.push(`${id}: ${gs.filter((x) => !x.bolumler).map((x) => x.day).join(", ")}. gün bölümsüz, öteki günler bölümlü; bölümler çakışır`);
       if (gs.filter((x) => !x.bolumler).length > 1) warnings.push(`${id}: ${gs.filter((x) => !x.bolumler).map((x) => x.day).join(", ")}. günler bölümsüz; deneme her gün bütünüyle açılır`);
       if (var_ && gs.every((x) => x.bolumler)) {
         const eksik = SINAV_BOLUM.filter((b) => var_.has(b) && !sahibi.has(b));

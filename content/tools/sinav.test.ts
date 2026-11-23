@@ -113,3 +113,11 @@ describe("sınav günü bölümleri (sinav_bolumler, PM-110)", () => {
     expect(c.errors.some((e) => e.includes("madde kimliği iki kez"))).toBe(true);
   });
 });
+
+describe("inceleme #247 P2: taslak deneme, bölümlü/bölümsüz karışık", () => {
+  it("taslak deneme uyarılır; bölümlü ve bölümsüz gün aynı denemede hata", () => {
+    const c = kok([sinavGunu({ sinav: FXID, sinav_bolumler: ["dinleme", "okuma"] }), sinavGunu({ id: "m1:gun:56", day: 56, sinav: FXID })], [{ ...FX, review: { status: "draft" } }]);
+    expect(c.warnings.some((w) => w.includes("taslak; pakete girmez"))).toBe(true);
+    expect(c.errors.filter((e) => e.includes("56. gün bölümsüz, öteki günler bölümlü"))).toHaveLength(1);
+  });
+});

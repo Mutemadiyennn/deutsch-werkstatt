@@ -846,3 +846,5 @@ section.card[data-duzen="kare"].stack > * + * { margin-top: 8px; }
 .sinav-alan input[readonly] { background: var(--soft); color: var(--muted); }
 .sinav-yonerge .kicker { display: inline; margin-right: 4px; }
 .sinav-dinle { gap: 10px; }
+/* ölçüt düğmeleri dar ekranda ve büyük yazıda alt satıra geçer (6 puanlık ölçüt 7 düğme; inceleme #247 P2-6) */
+.sinav .seg { display: flex; flex-wrap: wrap; max-width: 100%; }

@@ -74,6 +74,13 @@ def main():
         kalan0 = pg.get_attribute("[data-test=sinav-dinle]", "data-kalan")
         pg.click("[data-test=dinle]"); pg.wait_for_function("() => document.querySelector('[data-test=sinav-dinle]')?.dataset.kalan === '1'", timeout=10000)
         check(kalan0 == "2", f"dinleme hakkı yönergedeki kadar (2), dinleyince azalır ({kalan0} → 1)")
+        # "Durdur" diziyi bütünüyle keser: sonraki satırlar çalmaz, hak geri gelmez (inceleme #247 P1-1)
+        pg.evaluate("() => { const ss = window.speechSynthesis; if (!ss || ss.__sayac) return; window.__konus = 0; const o = ss.speak.bind(ss); ss.speak = (u) => { window.__konus++; return o(u); }; ss.__sayac = 1; }")
+        if pg.inner_text("[data-test=dinle]").strip() == "Durdur":
+            pg.click("[data-test=dinle]")
+        c1 = pg.evaluate("() => window.__konus || 0"); pg.wait_for_timeout(1500); c2 = pg.evaluate("() => window.__konus || 0")
+        check(pg.inner_text("[data-test=dinle]").strip() == "Kaydı dinle" and pg.get_attribute("[data-test=sinav-dinle]", "data-kalan") == "1" and c1 == c2,
+              f"Durdur: kayıt durur, sonraki satır çalmaz, hak 1 kalır ({c1} → {c2})")
         no_overflow(pg, "dinleme maddesi"); shot(pg, f"sinav-dinleme-{sema}")
         isaret = sec(pg, True)
         check(isaret == 0, "seçince doğru/yanlış gösterilmez")

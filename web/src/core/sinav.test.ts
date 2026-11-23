@@ -5,7 +5,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { Deneme, Gun } from "@dw/shared";
+import { Deneme, Gun, denemeSorunlari, mesajOlcutleri } from "@dw/shared";
 import { bolumlerTr, gunAdimlari, siradaki, sinavBolumleri, yol, type Ilerleme } from "./gun.ts";
 import { alanDogru, bolumPuani, denemeSonucu, olcekle, otomatik } from "./deneme.ts";
 
@@ -72,5 +72,16 @@ describe("deneme puanlaması", () => {
     const r = denemeSonucu(D, m({ dinleme: 25, okuma: 25, yazma: 25, konusma: 12.5 }));
     expect(r).toMatchObject({ gecti: false, toplam: 87.5, konusma: 12.5, zayif: ["konusma"] });
     expect(denemeSonucu(D, m({ dinleme: 10, okuma: 15, yazma: 15, konusma: 15 })).gecti).toBe(false);
+  });
+});
+
+describe("mesaj ölçütleri (degerlendirme_tr \"Ad (N puan): …\")", () => {
+  it("ölçüt adı ve puanı okunur; puansız satır ölçüt sayılmaz; toplam tutmazsa deneme sorunu", () => {
+    expect(mesajOlcutleri({ degerlendirme_tr: ["Görev (6 puan): her madde 2 puan.", "Selam ve kapanış (2 puan): …", "Not: küçük yazım hatası düşürmez.", "Anlaşılırlık (1,5 puan): yarım"] }))
+      .toEqual([{ ad: "Görev", puan: 6, tr: "her madde 2 puan." }, { ad: "Selam ve kapanış", puan: 2, tr: "…" }, { ad: "Anlaşılırlık", puan: 1.5, tr: "yarım" }]);
+    const bozuk = structuredClone(D);
+    const m = bozuk.bolumler.find((b) => b.id === "yazma")!.kisimlar[1]!.maddeler[0]!;
+    if (m.k === "mesaj") m.degerlendirme_tr = ["Görev (3 puan): x"];
+    expect(denemeSorunlari(bozuk)).toEqual(["e2y:y2:01: ölçüt puanları toplamı ≠ puan 4"]);
   });
 });
