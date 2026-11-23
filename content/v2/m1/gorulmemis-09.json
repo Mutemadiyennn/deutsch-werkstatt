@@ -62,7 +62,7 @@
    "durum_tr": "Diş hekiminin muayenehanesini arıyorsun. Yarınki randevuna gelemiyorsun, çünkü fazla mesai yapman gerek. Sekreter Herr Demir açıyor. Adını ve sebebi söyle, yeni bir randevu iste.",
    "karsi": "Herr Demir (Sekretär)",
    "yer": "Zahnarztpraxis (Telefon)",
-   "prompt_de": "Zahnarztpraxis Dr. Lange, Demir, guten Tag?",
+   "prompt_de": "Praxis Dr. Lange, guten Tag?",
    "accepted": [
     "Guten Tag, hier ist {name}. Ich kann morgen leider nicht kommen, weil ich Überstunden machen muss. Kriege ich einen neuen Termin?",
     "Guten Tag, mein Name ist {name}. Ich habe morgen einen Termin, aber ich kann nicht kommen, weil ich arbeiten muss. Geht es nächste Woche?",
@@ -72,6 +72,58 @@
    ],
    "kalip": "Ich kann morgen leider nicht kommen, weil ich … muss. Kriege ich einen neuen Termin?",
    "why_tr": "**weil** ile **machen muss** en sona gider."
+  },
+  {
+   "id": "m1:h09:g5",
+   "can_do": "cd:m1:57",
+   "durum_tr": "Pazartesi sabahı otobüs durağındasın. Komşun Herr Yıldız cumartesiyi soruyor. Erken kalktın, alışveriş yaptın, sonra bir arkadaşını aradın.",
+   "karsi": "Herr Yıldız (Nachbar)",
+   "yer": "Bushaltestelle",
+   "prompt_de": "Was haben Sie am Samstag gemacht?",
+   "accepted": [
+    "Ich bin früh aufgestanden und habe eingekauft. Dann habe ich einen Freund angerufen.",
+    "Am Samstag bin ich früh aufgestanden. Ich habe eingekauft und dann eine Freundin angerufen.",
+    "Ich bin früh aufgestanden, habe eingekauft und einen Freund angerufen.",
+    "Am Samstag bin ich früh aufgestanden und habe eingekauft. Dann habe ich eine Freundin angerufen.",
+    "Ich bin am Samstag früh aufgestanden. Dann habe ich eingekauft und einen Freund angerufen."
+   ],
+   "kalip": "Ich bin … aufgestanden. Ich habe … eingekauft. Dann habe ich … angerufen.",
+   "why_tr": "Kalkmak için **bin**, alışveriş ve aramak için **habe** dersin. **ge** ortaya girer."
+  },
+  {
+   "id": "m1:h09:g6",
+   "can_do": "cd:m1:58",
+   "durum_tr": "İş yerinde yemekhanedesin. Başka bölümden Frau Lindner yeni evini soruyor. Komşunu ziyaret ettin ve bodrumun anahtarını aldın.",
+   "karsi": "Frau Lindner (Kollegin)",
+   "yer": "Kantine",
+   "prompt_de": "Und, wie ist es im neuen Haus?",
+   "accepted": [
+    "Gut! Ich habe meine Nachbarin besucht und den Schlüssel für den Keller bekommen.",
+    "Ich habe die Nachbarin besucht. Und ich habe den Schlüssel für den Keller bekommen.",
+    "Ich habe meine Nachbarin besucht, und ich habe den Schlüssel für den Keller bekommen.",
+    "Gut. Ich habe schon die Nachbarin besucht und den Schlüssel für den Keller bekommen.",
+    "Schön! Ich habe meine Nachbarin besucht. Den Schlüssel für den Keller habe ich auch bekommen.",
+    "Gut, danke. Ich habe die Nachbarin besucht und den Schlüssel für den Keller bekommen."
+   ],
+   "kalip": "Ich habe … besucht. Ich habe … bekommen.",
+   "why_tr": "**besucht** ve **bekommen** başında ge almaz."
+  },
+  {
+   "id": "m1:h09:g7",
+   "can_do": "cd:m1:60",
+   "durum_tr": "Asansörde başka bölümden Herr Schmid nasıl olduğunu soruyor. Yorgunsun, çünkü bu hafta her gün erken kalktın.",
+   "karsi": "Herr Schmid (Kollege)",
+   "yer": "Aufzug",
+   "prompt_de": "Guten Tag! Wie geht es Ihnen heute?",
+   "accepted": [
+    "Ich bin müde, weil ich diese Woche jeden Tag früh aufgestanden bin.",
+    "Nicht so gut. Ich bin müde, weil ich jeden Tag früh aufgestanden bin.",
+    "Müde. Ich bin diese Woche jeden Tag früh aufgestanden.",
+    "Ich bin sehr müde, weil ich diese Woche jeden Tag früh aufgestanden bin.",
+    "Es geht. Ich bin müde, weil ich diese Woche früh aufgestanden bin."
+   ],
+   "kalip": "Ich bin müde, weil ich … aufgestanden bin.",
+   "why_tr": "**weil** ile **bin** en sona gider, **aufgestanden** hemen önünde durur."
   }
  ]
 }
