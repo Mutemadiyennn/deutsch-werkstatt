@@ -26,9 +26,9 @@
  },
  "review": {
   "status": "draft",
-  "by": "yazar-ajan",
+  "by": "dilbilimci-ajan",
   "at": "2026-11-23",
-  "notes": "Olgu: Starkbierzeit Fastenzeit'tadır, Starkbier festleri çoğunlukla Mart'ta (WORLD §6 cal:starkbier, kaynak: https://www.muenchen.travel/artikel/maerkte-feste/muenchen-starkbierzeit). Wendlfing şenliği, saatleri ve radyo kurgusal. Lena yan kişi; characters dizisine yazılmadı. Çerçeve 'aufs' h2 kalıp satırında."
+  "notes": "docs/v2/reviews/ic17/dilbilimci-h16.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
  },
  "dersler": [
   "gr:a2-08:t4"
@@ -61,7 +61,7 @@
     },
     {
      "de": "vorher – kurz vorher – Ruf vorher an! – Vorher muss ich …",
-     "tr": "önceden, daha önce – az önce – Önceden ara! – Ondan önce … yapmam lazım."
+     "tr": "önceden, daha önce – hemen önce – Önceden ara! – Ondan önce … yapmam lazım."
     },
     {
      "de": "Danke für deine Hilfe! – Am Freitag fehlt eine Person. – Ich frage … – Ich frage Herrn Wimmer.",
@@ -957,7 +957,7 @@
   {
    "id": "m1:109:a2",
    "tur": "sesli-mesaj",
-   "title_tr": "Lena'nın sesli mesajı: önceden buluşalım mı?",
+   "title_tr": "Lena'nın sesli mesajı: buluşma ve yol",
    "ortam_tr": "Perşembe akşamı. Lena sana bir sesli mesaj bırakmış.",
    "speaker": "Lena",
    "hizlar": [
@@ -973,23 +973,23 @@
     },
     {
      "id": "c2",
-     "de": "Zum Fest am Samstag: Wollen wir uns vorher treffen?",
-     "tr": "Cumartesi şenliğe gelince: Önceden buluşalım mı?"
+     "de": "Zum Fest am Samstag: Wir treffen uns um drei vor der Bäckerei, oder?",
+     "tr": "Cumartesi şenliğe gelince: Saat üçte fırının önünde buluşuyoruz, değil mi?"
     },
     {
      "id": "c3",
-     "de": "Wie wäre es mit halb drei am Bahnhof? Dann fahren wir zusammen mit dem Bus.",
-     "tr": "İki buçukta istasyonda ne dersin? Sonra birlikte otobüsle gideriz."
+     "de": "Vorher bin ich noch im Geschäft, das ist nicht weit.",
+     "tr": "Ondan önce dükkândayım, orası uzak değil."
     },
     {
      "id": "c4",
-     "de": "Mit dem Fahrrad ist es am Abend gefährlich.",
-     "tr": "Akşam bisikletle gitmek tehlikeli."
+     "de": "Mit dem Auto? Unmöglich, dort sind keine Parkplätze!",
+     "tr": "Arabayla mı? İmkânsız, orada park yeri yok!"
     },
     {
      "id": "c5",
-     "de": "Mit dem Auto? Unmöglich, wir trinken vielleicht ein Bier!",
-     "tr": "Arabayla mı? İmkânsız, belki bir bira içeriz!"
+     "de": "Wie wäre es mit dem Bus? Ich komme auch mit dem Bus.",
+     "tr": "Otobüse ne dersin? Ben de otobüsle geliyorum."
     },
     {
      "id": "c6",
@@ -1010,15 +1010,16 @@
      ],
      "ana_fikir": {
       "kind": "gist",
-      "q_tr": "Lena ne öneriyor?",
+      "q_tr": "Lena ne söylüyor?",
       "opts": [
-       "Şenlikten önce istasyonda buluşup birlikte otobüsle gitmeyi",
-       "Şenliğe arabayla gitmeyi",
-       "Şenliğe gitmemeyi"
+       "Buluşmayı onaylıyor: saat üçte fırının önünde; arabayla değil, otobüsle gelmeni öneriyor",
+       "Şenliğe arabayla gitmeyi öneriyor",
+       "Şenliğe gitmiyor"
       ],
       "ans": 0,
       "kanit": [
-       "c3"
+       "c2",
+       "c5"
       ]
      },
      "ayrinti": [
@@ -1026,35 +1027,35 @@
        "kind": "detail",
        "q_tr": "Lena saat kaçta buluşmak istiyor?",
        "opts": [
+        "Saat üçte",
         "İki buçukta",
-        "Üçte",
         "On ikide"
        ],
        "ans": 0,
        "kanit": [
-        "c3"
+        "c2"
        ]
       },
       {
        "kind": "detail",
        "q_tr": "Nerede?",
        "opts": [
-        "İstasyonda",
         "Fırının önünde",
+        "İstasyonda",
         "Meydanda"
        ],
        "ans": 0,
        "kanit": [
-        "c3"
+        "c2"
        ]
       },
       {
        "kind": "detail",
-       "q_tr": "Lena'ya göre akşam bisikletle gitmek nasıl?",
+       "q_tr": "Lena'ya göre neden arabayla gelmek imkânsız?",
        "opts": [
-        "Tehlikeli",
-        "Çok güzel",
-        "Çok pahalı"
+        "Orada park yeri yok",
+        "Arabası bozuk",
+        "Yollar kapalı"
        ],
        "ans": 0,
        "kanit": [
@@ -1065,21 +1066,21 @@
      "dikte": [
       {
        "id": "d1",
-       "cumle": "c3",
+       "cumle": "c2",
        "seviye": "kolay",
        "q_tr": "Nerede buluşuyorlar?",
        "opts": [
+        "vor der Bäckerei",
         "am Bahnhof",
-        "im Büro",
-        "zu Hause"
+        "im Büro"
        ],
        "ans": 0
       },
       {
        "id": "d2",
-       "cumle": "c5",
+       "cumle": "c4",
        "seviye": "orta",
-       "de": "___, wir trinken vielleicht ein Bier!",
+       "de": "Mit dem Auto? ___, dort sind keine Parkplätze!",
        "accepted": [
         "Unmöglich",
         "unmöglich",
@@ -1095,18 +1096,22 @@
         "Fest",
         "am",
         "Samstag",
-        "Wollen",
-        "wir",
-        "uns",
-        "vorher",
+        "Wir",
         "treffen",
-        "Wollt",
-        "nachher"
+        "uns",
+        "um",
+        "drei",
+        "vor",
+        "der",
+        "Bäckerei",
+        "oder",
+        "hinter",
+        "trefft"
        ],
        "accepted": [
-        "Zum Fest am Samstag: Wollen wir uns vorher treffen?",
-        "zum fest am samstag wollen wir uns vorher treffen",
-        "Zum Fest am Samstag: Wollen wir uns vorher treffen"
+        "Zum Fest am Samstag: Wir treffen uns um drei vor der Bäckerei, oder?",
+        "zum fest am samstag wir treffen uns um drei vor der bäckerei oder",
+        "Zum Fest am Samstag: Wir treffen uns um drei vor der Bäckerei, oder"
        ]
       },
       {
@@ -1122,29 +1127,29 @@
       {
        "id": "d5",
        "seviye": "gercek",
-       "gorev_tr": "Lena'nın önerisini Almanca iki kısa cümleyle yaz.",
-       "ornek_de": "Wir treffen uns um halb drei am Bahnhof. Wir fahren zusammen mit dem Bus.",
+       "gorev_tr": "Lena'nın mesajını Almanca iki kısa cümleyle yaz.",
+       "ornek_de": "Wir treffen uns um drei vor der Bäckerei. Ich komme mit dem Bus, nicht mit dem Auto.",
        "zorunlu": [
-        "Bahnhof",
+        "Bäckerei",
         "Bus"
        ]
       }
      ],
      "golge": [
       "c2",
-      "c3"
+      "c5"
      ],
      "cevapla": {
       "id": "m1:109:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Lena'ya cevap ver: iki buçuk istasyonda sana uyar. Bir de öneri yap: Derya'yı da soralım mı?",
-      "prompt_de": "Wie wäre es mit halb drei am Bahnhof?",
+      "situation_tr": "Lena'ya cevap ver: saat üçte fırının önü sana uyar, otobüsle geliyorsun. Bir de öneri yap: Ioana'yı da soralım mı?",
+      "prompt_de": "Wir treffen uns um drei vor der Bäckerei, oder?",
       "accepted": [
-       "Halb drei am Bahnhof passt mir. Sollen wir auch Derya fragen?",
-       "Gute Idee! Halb drei passt. Wollen wir auch Derya fragen?",
-       "Ja, das passt. Sollen wir Derya auch fragen?",
-       "Halb drei am Bahnhof, das klingt gut. Wollen wir auch Derya fragen?",
-       "Okay, halb drei am Bahnhof. Sollen wir auch Derya fragen?"
+       "Ja, um drei vor der Bäckerei passt mir. Ich komme mit dem Bus. Sollen wir auch Ioana fragen?",
+       "Genau, um drei. Ich komme mit dem Bus. Wollen wir auch Ioana fragen?",
+       "Ja, das passt. Sollen wir Ioana auch fragen?",
+       "Ja, um drei vor der Bäckerei. Wollen wir auch Ioana fragen?",
+       "Ja, das passt mir. Ich nehme den Bus. Sollen wir auch Ioana fragen?"
       ],
       "why_tr": "Kabul: **Das passt.** Öneri: **Sollen wir …?** / **Wollen wir …?** fiil başta, mastar sonda."
      }
@@ -1156,7 +1161,7 @@
     "q_tr": "Lena'nın mesajından sonra ne yapmalısın?",
     "opts": [
      "Ona kısaca yazmalısın",
-     "Hemen istasyona gitmelisin",
+     "Hemen fırına gitmelisin",
      "Herr Wimmer'i aramalısın"
     ],
     "ans": 0,

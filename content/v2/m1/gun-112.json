@@ -29,9 +29,9 @@
  },
  "review": {
   "status": "draft",
-  "by": "yazar-ajan",
+  "by": "dilbilimci-ajan",
   "at": "2026-11-23",
-  "notes": "Sınav günü (kapı: kibar ret + neden + başka gün; kulak kapısı: Ioana'nın sesli mesajı, kim/ne zaman/nerede). Radyo ve pazar saatleri kurgusal. Bairisch yalnız WORLD §5: Grüß Gott, Servus."
+  "notes": "docs/v2/reviews/ic17/dilbilimci-h16.md; dil incelemesi ONAY. Video ve kart sayısı kapıları açık olduğu için draft."
  },
  "dersler": [],
  "yeni_kartlar": [
@@ -205,8 +205,8 @@
     "id": "s4",
     "speaker": "ch:aksoy",
     "sahne_tr": "Sen Frau Brandl'ın dün merdivende 'Yarın sizi ararım' dediğini söylüyorsun. Derya gülüyor.",
-    "de": "Frau Brandl? Sie ist sehr nett. Du solltest nicht einfach Nein sagen.",
-    "tr": "Frau Brandl mı? Çok iyi biri. Öylece 'Hayır' dememelisin."
+    "de": "Frau Brandl? Sie klingt sehr nett. Du solltest nicht einfach Nein sagen.",
+    "tr": "Frau Brandl mı? Çok iyi birine benziyor. Öylece 'Hayır' dememelisin."
    },
    {
     "id": "s5",
@@ -226,22 +226,22 @@
     "id": "s7",
     "speaker": "ch:aksoy",
     "sahne_tr": "Derya düşünüyor.",
-    "de": "Danke, Lena! Am Samstag kann ich leider nicht, da muss ich arbeiten.",
-    "tr": "Teşekkürler Lena! Cumartesi maalesef olmaz, çalışmam lazım."
+    "de": "Danke, Lena! Am Samstag kann ich leider nicht, da muss ich bis zwei arbeiten.",
+    "tr": "Teşekkürler Lena! Cumartesi maalesef olmaz, saat ikiye kadar çalışmam lazım."
    },
    {
     "id": "s8",
     "speaker": "ch:aksoy",
     "sahne_tr": "Derya devam ediyor.",
     "de": "Aber am Sonntag hätte ich Zeit. Wie wäre es mit Sonntag?",
-    "tr": "Ama pazar vaktim olur. Pazara ne dersin?"
+    "tr": "Ama pazar günü vaktim olur. Pazar gününe ne dersin?"
    },
    {
     "id": "s9",
     "speaker": "Lena",
     "sahne_tr": "Lena gülüyor.",
     "de": "Am Sonntag ist kein Markt. Aber wir könnten zusammen frühstücken.",
-    "tr": "Pazar günü pazar yok. Ama birlikte kahvaltı yapabiliriz."
+    "tr": "Pazar günü pazar yeri kurulmuyor. Ama birlikte kahvaltı yapabiliriz."
    },
    {
     "id": "s10",
@@ -255,7 +255,7 @@
     "speaker": "Lena",
     "sahne_tr": "Sen cumartesi saat üçte Ioana'yla buluşacağını söylüyorsun. Lena seviniyor.",
     "de": "Der Markt ist am Vormittag. Um drei bist du frei. Das passt!",
-    "tr": "Pazar öğleden önce. Saat üçte boşsun. Uyuyor!"
+    "tr": "Pazar yeri öğleden önce. Saat üçte boşsun. Uyar!"
    }
   ],
   "bolumler": [
@@ -340,7 +340,7 @@
       "id": "d2",
       "cumle": "s4",
       "seviye": "orta",
-      "de": "Sie ist sehr ___.",
+      "de": "Sie klingt sehr ___.",
       "accepted": [
        "nett",
        "Nett",
@@ -436,7 +436,7 @@
       "kind": "detail",
       "q_tr": "Derya cumartesi neden gelemiyor?",
       "opts": [
-       "Çalışması lazım",
+       "Saat ikiye kadar çalışması lazım",
        "Bir arkadaşını ziyaret ediyor",
        "Hasta"
       ],
@@ -450,7 +450,7 @@
       "q_tr": "Lena pazar günü ne öneriyor?",
       "opts": [
        "Birlikte kahvaltı",
-       "Pazar",
+       "Pazar yeri",
        "Sinema"
       ],
       "ans": 0,
@@ -460,7 +460,7 @@
      },
      {
       "kind": "detail",
-      "q_tr": "Pazar ne zaman?",
+      "q_tr": "Pazar yeri ne zaman kuruluyor?",
       "opts": [
        "Öğleden önce",
        "Akşam",
@@ -543,7 +543,7 @@
     "cevapla": {
      "id": "m1:112:v1:c2",
      "k": "guided_response",
-     "situation_tr": "Lena cumartesi pazara gelip gelmeyeceğini soruyor. Kabul et: pazar öğleden önce, saat üçte de Ioana ile buluşuyorsun.",
+     "situation_tr": "Lena cumartesi pazara gelip gelmeyeceğini soruyor. Kabul et: pazar yeri öğleden önce; saat üçte de Ioana ile buluşuyorsun.",
      "prompt_de": "Kommst du am Samstag mit auf den Markt?",
      "accepted": [
       "Gute Idee! Ich komme mit. Um drei treffe ich Ioana.",
@@ -562,7 +562,7 @@
    "id": "m1:112:a1",
    "tur": "sesli-mesaj",
    "title_tr": "Kulak kapısı: Ioana'nın sesli mesajı",
-   "ortam_tr": "Pazar öğlen. Ioana'ya davet mesajı yazmıştın. Şimdi telefonunda ondan bir sesli mesaj var. Dinle: kim geliyor, ne zaman, nerede?",
+   "ortam_tr": "Pazar sabahı erkenden, Derya aramadan önce. Ioana'ya davet mesajı yazmıştın. Şimdi telefonunda ondan bir sesli mesaj var. Dinle: kim geliyor, ne zaman, nerede?",
    "speaker": "ch:popescu",
    "hizlar": [
     "normal",
@@ -812,7 +812,7 @@
     {
      "id": "c4",
      "de": "Morgen regnet es den ganzen Tag. Fahren Sie lieber mit dem Bus, nicht mit dem Fahrrad!",
-     "tr": "Yarın bütün gün yağmur yağıyor. Bisikletle değil, otobüsle gitseniz iyi olur!"
+     "tr": "Yarın bütün gün yağmur yağacak. Bisikletle değil, otobüsle gitseniz iyi olur!"
     },
     {
      "id": "c5",
@@ -1186,8 +1186,8 @@
  "okuma_yazma": {
   "tur": "okuma",
   "title_tr": "Lena'nın grup mesajı",
-  "metin_de": "Hallo zusammen! Gestern war wunderschön, danke für den Abend! Am Samstag gehe ich um zehn auf den Markt. Wer kommt mit? Danach könnten wir zusammen einen Kaffee trinken. Bitte sagt mir bis Freitag Bescheid. Lena",
-  "metin_tr": "Herkese merhaba! Dün çok güzeldi, akşam için teşekkürler! Cumartesi saat onda pazara gidiyorum. Kim geliyor? Sonra birlikte kahve içebiliriz. Lütfen cumaya kadar bana haber verin. Lena",
+  "metin_de": "Hallo zusammen! Gestern war wunderschön, danke für den schönen Tag! Am Samstag gehe ich um zehn auf den Markt. Wer kommt mit? Danach könnten wir zusammen einen Kaffee trinken. Bitte sagt mir bis Freitag Bescheid. Lena",
+  "metin_tr": "Herkese merhaba! Dün çok güzeldi, güzel gün için teşekkürler! Cumartesi saat onda pazara gidiyorum. Kim geliyor? Sonra birlikte kahve içebiliriz. Lütfen cumaya kadar bana haber verin. Lena",
   "sorular": [
    {
     "id": "m1:112:o1",
