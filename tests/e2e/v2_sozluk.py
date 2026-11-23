@@ -25,8 +25,8 @@ def main():
     with sync_playwright() as p:
         b, ctx = launch(p); pg = new_page(ctx)
         login_onboard(pg, PORT); pg.wait_for_selector("[data-tab=today]")
-        pg.goto(base + "#/learn"); pg.click("[data-test=sozluk-ac]"); pg.wait_for_selector("[data-test=sozluk-q]")
-        check("#/sozluk" in pg.url, "Öğren ekranından Sözlük açılıyor")
+        pg.goto(base + "#/koy"); pg.click("[data-test=sozluk-ac]"); pg.wait_for_selector("[data-test=sozluk-q]")
+        check("#/sozluk" in pg.url, "Köy sekmesinden Sözlük açılıyor")
         ara(pg, "Termin")
         ilk = pg.locator("[data-test=sozluk-satir]").first.inner_text()
         check("Termin" in ilk and "randevu" in ilk.lower(), f"Almanca arama: ilk sonuç 'Termin' ({ilk!r})")
@@ -45,7 +45,7 @@ def main():
         pg.go_back(); pg.wait_for_selector("[data-test=sozluk-satir]")
         check(pg.input_value("[data-test=sozluk-q]") == "Termin", "geri hareketi kart → aramaya dönüyor, arama korunuyor")
         check("✓" in pg.locator("[data-test=sozluk-satir]").first.inner_text(), "sonuç listesinde 'Listende' işareti")
-        check(pg.get_attribute("[data-tab=learn]", "aria-current") == "page", "alt çubukta Öğren vurgulu")
+        check(pg.get_attribute("[data-tab=koy]", "aria-current") == "page", "alt çubukta Köy vurgulu")
         ara(pg, "Termi")
         check(pg.locator("[data-test=sozluk-satir]").count() >= 1 and pg.locator("[data-test=sozluk-yok]").count() == 1, "tam eşleşme yoksa sonuçlar varken de ekleme kartı çıkıyor")
         # uzun anlamlı satır: Almanca kelime harf harf bölünmüyor

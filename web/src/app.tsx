@@ -15,7 +15,7 @@ import { KalipEkrani } from "./screens/Kalip.tsx";
 import { YolEkrani } from "./screens/Yol.tsx";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Assessment, ContentIndex, Profile } from "@dw/shared";
-import { Ctx, LEARNING_ROUTES, parseHash, type AppCtx, type Route } from "./state.ts";
+import { Ctx, LEARNING_ROUTES, parseHash, yeniAdres, type AppCtx, type Route } from "./state.ts";
 import { auth, type AuthUser } from "./services/auth.ts";
 import { createApi } from "./services/api.ts";
 import { SesDeneme } from "./screens/SesDeneme.tsx";
@@ -68,11 +68,11 @@ function useModul<T>(yukle: () => Promise<T>): T | null | "hata" {
 }
 const yuklenemedi = <ErrorPanel message="Ekran yüklenemedi. İnternet bağlantını kontrol edip tekrar dene." onRetry={() => location.reload()} />;
 function AkisRota({ day }: { day: number }) {
-  const m = useModul(() => (akisModul ??= import("./screens/Akis.tsx").catch((e) => { akisModul = null; throw e; })));
+  const m = useModul(() => (akisModul ??= within(import("./screens/Akis.tsx")).catch((e) => { akisModul = null; throw e; })));
   return m === "hata" ? yuklenemedi : m ? <m.AkisEkrani day={day} /> : <Loading />;
 }
 function HalkaTurRota() {
-  const m = useModul(() => import("./screens/HalkaTurDeneme.tsx"));
+  const m = useModul(() => within(import("./screens/HalkaTurDeneme.tsx")));
   return m === "hata" ? yuklenemedi : m ? <m.HalkaTurDeneme /> : <Loading />;
 }
 
@@ -105,7 +105,10 @@ export function App() {
 
   useEffect(() => {
     // ekran değişince "üst üste" sayacı sıfırlanır (inceleme #87 P2)
-    const on = () => { ustUsteSifirla(); setRoute(parseHash(location.hash)); };
+    // eski sekme adresi (#/learn, #/progress, #/profile) yenisiyle değişir; geçmişe ikinci kayıt düşmez (PM-084 md. 3.2)
+    const duzelt = () => { const y = yeniAdres(location.hash); if (y) history.replaceState(history.state, "", y); };
+    const on = () => { duzelt(); ustUsteSifirla(); setRoute(parseHash(location.hash)); };
+    duzelt();
     addEventListener("hashchange", on);
     // iOS: efekt sesi için ses bağlamı ilk dokunuşta açılır (inceleme #87 P2)
     // dinleyici kalır: ilk dokunuş etkinleştirme sayılmayabilir (iOS'ta touchend sayılır, pointerdown sayılmaz) ve ses sonradan
@@ -166,11 +169,12 @@ export function App() {
   let screen;
   if (!profile.onboardedAt || route.name === "onboarding") screen = <Onboarding />;
   else switch (route.name) {
-    case "learn": screen = <Learn />; break;
+    // Köy ve Ben ekranları gelene kadar sekmeler bugünkü Öğren ve İlerlemem ekranlarını açar (PM-084 md. 3.2)
+    case "koy": screen = <Learn />; break;
     case "domain": screen = <DomainView id={route.id} />; break;
     case "scenario": screen = <PlayerHome id={route.id} />; break;
     case "section": screen = <PlayerSection id={route.id} section={route.section} />; break;
-    case "progress": screen = <Progress />; break;
+    case "ben": screen = <Progress />; break;
     case "profile": screen = <ProfileView />; break;
     case "assess": screen = <AssessRun />; break;
     case "assessResult": screen = <AssessResult id={route.id} />; break;
@@ -188,7 +192,7 @@ export function App() {
     case "gorevler": screen = <GorevlerRota />; break;
     case "odak": screen = <OdakEkrani />; break;
     case "akis": screen = <AkisRota key={route.day} day={route.day} />; break;
-    case "m1medya": screen = <MedyaEkrani key={route.id} day={route.day} id={route.id} />; break;
+    case "m1medya": screen = <MedyaEkrani key={`${route.id}:${route.tur ?? ""}`} day={route.day} id={route.id} tur={route.tur} />; break;
     // yalnız e2e: AK-10 3. adımın iki türü, ekran (4. adım) gelene kadar (üretimde bu dal ve modül paketten düşer)
     default: screen = import.meta.env.MODE === "e2e" && location.hash === "#/__crash" ? <Crash /> : import.meta.env.MODE === "e2e" && location.hash.startsWith("#/__halka-turleri") ? <HalkaTurRota key={location.hash} /> : <Today />;
   }

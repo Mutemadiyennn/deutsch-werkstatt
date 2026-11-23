@@ -38,7 +38,7 @@ def main():
             check(p0["grammar_tr"][:30] not in metin, f"[{tema}] yazar notu (grammar_tr) öğrenciye görünmüyor")
             # OD-9: yazar alanı boşluk adları (terim içerebilir) öğrenciye görünmez (inceleme #94 P1-1)
             check(all(sl["name"] not in metin for sl in p0["slots"]), f"[{tema}] boşluk adları (yazar alanı) görünmüyor")
-            check(pg.get_attribute("[data-tab=learn]", "aria-current") == "page", f"[{tema}] sekme çubuğunda Öğren seçili (inceleme #94 P1-4)")
+            check(pg.get_attribute("[data-tab=koy]", "aria-current") == "page", f"[{tema}] sekme çubuğunda Köy seçili (inceleme #94 P1-4)")
             # slot doldurma: ilk örnekte geçmeyen öbek ("fertig", 9. örnek) → örneği çiplerin hemen altında, ekranda (P1-2)
             pg.locator("[data-test=kalip-dolgu]", has_text="fertig").first.click()
             ornek = pg.locator("[data-test=kalip-secili-ornek]")
