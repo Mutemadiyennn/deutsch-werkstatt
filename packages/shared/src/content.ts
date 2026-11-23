@@ -401,6 +401,8 @@ export const ContentIndex = z.object({
     dn: z.string().optional(), kesin: z.string().optional(),
     /** hafta sonu testleri (PR B-3): hafta → dosya (`hafta/hafta-HH.json`; { id, maddeler }) */
     hafta: z.record(z.string(), z.string()).default({}),
+    /** düzey denemeleri (sınav günü, PM-110): deneme kimliği → dosya (`deneme/<id>.json`; Deneme şeması) */
+    deneme: z.record(z.string(), z.string()).default({}),
     /** paketteki medya dosyaları (servis işçisi ayrı önbelleğe alır; A12) */
     medya: z.array(z.string()).default([]) })
 });

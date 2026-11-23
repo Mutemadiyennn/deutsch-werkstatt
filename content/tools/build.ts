@@ -7,6 +7,7 @@ import { join } from "node:path";
 import { createHash } from "node:crypto";
 import { loadContent, checkRules, ROOT, parseFile } from "./load.ts";
 import { Gun, medyalar } from "../../packages/shared/src/m1.ts";
+import { Deneme } from "../../packages/shared/src/deneme.ts";
 import { readdirSync } from "node:fs";
 import { kartMi, type ContentIndex } from "../../packages/shared/src/content.ts";
 import { Halka, genelAdlarAyikla, kumeDizini } from "../../packages/shared/src/index.ts";
@@ -49,6 +50,17 @@ if (process.env.DW_E2E_FIXTURES === "1") {
   }
   if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
 }
+// sınav günü (PM-110): incelenmiş düzey denemeleri pakete girer (taslak deneme öğrenciye gitmez; sınav günü "hazırlanıyor" der).
+// e2e paketinde fikstür denemesi (content/tools/fixtures/assess) içerikte yoksa eklenir
+const denemeler = c.deneme.map((d) => d.data).filter((d) => d.review.status === "reviewed");
+if (process.env.DW_E2E_FIXTURES === "1") {
+  const fx = join(ROOT, "content/tools/fixtures/assess");
+  for (const f of existsSync(fx) ? readdirSync(fx).filter((x) => x.endsWith(".json")) : []) {
+    const d = parseFile(join(fx, f), Deneme, c.errors);
+    if (d && !denemeler.some((x) => x.id === d.id)) denemeler.push(d);
+  }
+  if (c.errors.length) { console.error(c.errors.join("\n")); process.exit(1); }
+}
 // AKIS AK-3: istemcideki bilinen küme (kumeDizini) aynı genel adlar listesini kullanır (doğrulayıcıyla tek kaynak)
 const gaYol = join(ROOT, "docs/v2/reviews/genel-adlar.md");
 const genelAdlar = existsSync(gaYol) ? genelAdlarAyikla(readFileSync(gaYol, "utf8")) : [];
@@ -86,6 +98,7 @@ const payload = {
   dn: dnNotlar,
   kesin: kesinGunler,
   hafta: haftaTest,
+  deneme: denemeler,
   temel: c.temel.map((t) => t.data),
   lexemes: c.lexemes,
   grammar: c.grammar,
@@ -176,6 +189,9 @@ for (const d of days) { const f = `m1/gun-${String(d.data.day).padStart(2, "0")}
 const haftaFiles: Record<string, string> = {};
 if (Object.keys(haftaTest).length) mkdirSync(join(dir, "hafta"), { recursive: true });
 for (const [h, t] of Object.entries(haftaTest)) { const f = `hafta/hafta-${h.padStart(2, "0")}.json`; w(f, t); haftaFiles[h] = f; }
+const denemeFiles: Record<string, string> = {};
+if (denemeler.length) mkdirSync(join(dir, "deneme"), { recursive: true });
+for (const d of denemeler) { const f = `deneme/${d.id.replace(/[^a-z0-9-]/gi, "_")}.json`; w(f, d); denemeFiles[d.id] = f; }
 // R0 temel dersler (yalnızca incelenmiş olanlar öğrenciye gider; taslak ders pakete girmez)
 const temelFiles: Record<string, string> = {};
 const temel = c.temel.map((t) => t.data).filter((t) => t.review.status === "reviewed").sort((a, b) => a.order - b.order);
@@ -192,7 +208,7 @@ const index: ContentIndex = {
     kartlar: g.yeni_kartlar.filter((id) => { const l = lexById.get(id); return !!l && kartMi(l); }), medya: medyalar(g).map((m) => ({ id: m.id, kind: m.kind, title_tr: m.title_tr })) })),
   temel: temel.map((t) => ({ id: t.id, order: t.order, title_tr: t.title_tr, title_de: t.title_de, review: t.review.status })),
   counts: { lexemes: c.lexemes.length, grammar: c.grammar.length, assess: c.assess.length, scenarios: c.scenarios.length },
-  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles, ...(acik ? { foto: "foto.json" } : {}), ...(resimHarita ? { resim: "resim.json" } : {}), genelAdlar: "genel-adlar.json", dn: "dn.json", kesin: "kesin.json", hafta: haftaFiles }
+  files: { lexemes: "lexemes.json", grammar: "grammar.json", assess: "assess.json", scenarios: scenFiles, m1: m1Files, temel: temelFiles, medya: medyaFiles, ...(acik ? { foto: "foto.json" } : {}), ...(resimHarita ? { resim: "resim.json" } : {}), genelAdlar: "genel-adlar.json", dn: "dn.json", kesin: "kesin.json", hafta: haftaFiles, deneme: denemeFiles }
 };
 w("genel-adlar.json", genelAdlar);
 w("index.json", index);

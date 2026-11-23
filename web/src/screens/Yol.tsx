@@ -56,6 +56,7 @@ export function usePlan(): { plan: Plan | null; err: string | null; yok: boolean
         if (!gunler.length) throw new Error(`Günün dosyası yüklenemedi${sonuc[0]?.status === "rejected" ? `: ${String((sonuc[0] as PromiseRejectedResult).reason?.message || sonuc[0].reason)}` : ""}`);
         const ilr = await ilerlemeOku(gunler.flatMap((g) => g.yeni_kartlar));
         ilr.kartlar = kartlar;
+        ilr.denemeler = new Set(Object.keys(index.files.deneme ?? {}));
         durumlar = gunler.map((g: Gun) => gunAdimlari(g, ilr, basliklar));
         // gün bitişi kalıcı yazılır (sonradan hazır olan adım biten günü geri açmaz)
         for (const g of durumlar) if (g.bitti && !bitenler.has(g.day)) { bitenler.add(g.day); void gunBittiYaz(g.day); }
@@ -94,11 +95,12 @@ function DugumSimge({ tur }: { tur: SimgeTur }) {
     okuma: "M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7",
     gunsonu: "M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z",
     kupa: "M7 4h10v5a5 5 0 0 1-10 0zM7 6H4c0 3 1.5 4.5 3.5 4.5M17 6h3c0 3-1.5 4.5-3.5 4.5M12 14v3M8 21h8M9 17h6v4H9z",
-    tekrar: "M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4"
+    tekrar: "M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4",
+    sinav: "M9 3h6v3H9zM8 4.5H5V21h14V4.5h-3M8.5 13.5l2.5 2.5 4.5-4.5"
   };
   return <svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d={p[tur]} /></svg>;
 }
-const TUR_AD: Record<Adim["tur"], string> = { bahce: "Kelime Bahçesi", ders: "Ders", medya: "Dinle ve izle", prova: "Konuşma provası", okuma: "Okuma ve yazma" };
+const TUR_AD: Record<Adim["tur"], string> = { bahce: "Kelime Bahçesi", ders: "Ders", medya: "Dinle ve izle", prova: "Konuşma provası", okuma: "Okuma ve yazma", sinav: "Deneme sınavı" };
 /** düğüm adı: türün adı; ders ve kayıtlar içerikteki adıyla (iki "Dinle ve izle" olmasın). Ad gün başlığıyla aynıysa türün adı (aynı metin iki kez görünmesin, TASARIM Y5) */
 const dugumAdi = (a: Adim, gunAdi?: string) => (a.tur === "ders" || a.tur === "medya") && a.title_tr && a.title_tr !== gunAdi ? a.title_tr : TUR_AD[a.tur];
 /** Kıvrılan hat: düğümün yatay kayması (px), 8 adımda bir dalga */

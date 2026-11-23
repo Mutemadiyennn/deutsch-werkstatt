@@ -21,7 +21,8 @@ export async function ilerlemeOku(kartlar: string[] = []): Promise<Ilerleme> {
     provaBitti: sayi(pr.filter(bitmis), "m1:prova:"),
     okumaBitti: sayi(ok.filter(bitmis), "m1:okuma:"),
     tanitilan: new Set(it.keys()),
-    akisBasladi: sayi((await metaPrefix<unknown>("akis:")).filter((x) => /^akis:\d+$/.test(x.key)), "akis:")
+    akisBasladi: sayi((await metaPrefix<unknown>("akis:")).filter((x) => /^akis:\d+$/.test(x.key)), "akis:"),
+    sinavBitti: new Set((await metaPrefix<SinavBolumSonuc>("m1:sinav:")).filter((x) => typeof x.value?.puan === "number").map((x) => x.key.slice("m1:sinav:".length)))
   };
 }
 let kuyruk: Promise<unknown> = Promise.resolve();
@@ -86,4 +87,17 @@ export async function haftaSonucYaz(hafta: number, dogru: number, toplam: number
   const eski = await getMeta<HaftaSonuc>(`m1:hafta:${hafta}`);
   if (eski && eski.toplam && eski.dogru / eski.toplam >= dogru / Math.max(1, toplam)) return;
   await setMeta(`m1:hafta:${hafta}`, { dogru, toplam, at: new Date().toISOString() });
+}
+
+/**
+ * Sınav günü (PM-110): deneme bölümünün sonucu `m1:sinav:<deneme>:<bölüm>`. Son çözüm sayılır (deneme gerçek sınavın provasıdır;
+ * yeniden çözünce eski puan silinir). `puan` bölüm puanı üzerinden (A1: 25), `ham` maddelerin puanı; `maddeler` madde → puan.
+ */
+export interface SinavBolumSonuc { puan: number; ham: number; hamToplam: number; at: string; maddeler: Record<string, number> }
+export async function sinavSonuclari(deneme: string): Promise<Map<string, SinavBolumSonuc>> {
+  const on = `m1:sinav:${deneme}:`;
+  return new Map((await metaPrefix<SinavBolumSonuc>(on)).filter((x) => x.key.startsWith(on) && typeof x.value?.puan === "number").map((x) => [x.key.slice(on.length), x.value!]));
+}
+export async function sinavBolumYaz(deneme: string, bolum: string, s: Omit<SinavBolumSonuc, "at">): Promise<void> {
+  await setMeta(`m1:sinav:${deneme}:${bolum}`, { ...s, at: new Date().toISOString() });
 }

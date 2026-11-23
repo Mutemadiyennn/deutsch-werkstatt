@@ -23,7 +23,7 @@
  *      `teach`'i ve tablosu) ya da sunulmuş DİL NOKTASININ TABLOSU (`gr:` grammar.json, `dn:` dn-HH.json; tablodaki bütün biçimler).
  *      Gösterilmiş kalıbın BÜTÜNÜ içinde geçen çerçeve sözcüğü kullanılmış sayılmaz. Kısıt o haftanın ve sonraki haftaların listesindedir;
  *      önceki haftaların çerçevesi bilinir (paralel hatta önceki haftanın dosyaları dalda olmayabilir; o haftayı kendi koşusu denetler). Tablo listeyi `haftalar[].cerceve` (`no` = hafta) ya da `gunler[].cerceve` ile verir.
- *  (biçim) 8. gün ve sonrası halka biçiminde olmalı (`halkalar` boş olamaz); hiç gün denetlenmezse ihlal. `day` tamsayı değilse ya da
+ *  (biçim) 8. gün ve sonrası halka biçiminde olmalı (`halkalar` boş olamaz; sınav günü (`sinav` bağı) halkasızdır); hiç gün denetlenmezse ihlal. `day` tamsayı değilse ya da
  *      dosya adındaki gün (`gun-NN.json`) `day` ile tutmazsa ihlal (sessizce düşülmez; inceleme #199 2. tur takibi).
  * Kalıp örtüsü KONUMA göredir (inceleme #199 2. tur takibi): kalıbın kapsadığı geçiş örtülür, aynı sözcüğün kalıp dışındaki geçişi değil.
  * 1. haftanın halkasız (eski biçim) günleri "atlandı" görünür ve sayılmaz; `tum: true` ile denetlenir. Böyle bir gün varken
@@ -251,10 +251,15 @@ export function dikisDenetle(g: DikisGirdi): DikisSonuc {
     }
     const atla = (neden: string) => { satir.durum = "atlandı"; satir.neden = neden; for (const m of adUyumsuz.get(n) ?? []) satir.not.push(`biçim (sayılmadı): ${m}`); satirlar.push(satir); };
     if (g.sadece?.length && !g.sadece.includes(n)) { atla("seçilmedi"); continue; }
-    if (!halkalar.length) {
+    // sınav günü (PM-101 md. 5, PM-110): kartsız, dersiz, halkasız; o gün deneme açılır. Halka biçimi istenmez, kart/ders kuralları aynen
+    // sayılır (tabloda o gün 0 kart, omurgada 0 ders olmalı; haftalık küme eşitliği sınav gününü boş sayar)
+    const sinav = typeof gun.sinav === "string" ? gun.sinav : null;
+    if (sinav) satir.not.push(`sınav günü (${sinav}${dizi(gun.sinav_bolumler).length ? `: ${yazilar(gun.sinav_bolumler).join(", ")}` : ""})`);
+    if (!halkalar.length && !sinav) {
       if (n <= 7 && !g.tum) { atla("1. hafta, halkasız (eski biçim)"); continue; }
       if (n > 7) ihlal(satir, "bicim", "halkalar", "halka biçimi yok (8. günden sonra zorunlu)");
     }
+    if (sinav && halkalar.length) ihlal(satir, "bicim", "halkalar", `sınav günü halkasızdır (${halkalar.length} halka)`);
     for (const m of adUyumsuz.get(n) ?? []) ihlal(satir, "bicim", file, m);
     const yeni = yazilar(gun.yeni_kartlar);
 

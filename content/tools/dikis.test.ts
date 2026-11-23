@@ -277,6 +277,26 @@ describe("(d) haftalar arası aynı üretim cümlesi", () => {
   });
 });
 
+describe("sınav günü (PM-101 md. 5, PM-110)", () => {
+  // 14. gün sınav günü: tabloda ve omurgada o gün boş (A1'de 55–56 böyle)
+  const t2 = structuredClone(tablo); for (const x of t2.gunler as { day: number; kartlar: string[] }[]) if (x.day === 14) x.kartlar = [];
+  const o2 = structuredClone(omurga); for (const x of o2.gunler) if (x.day === 14) x.dersler = [];
+  const sinavGunu = (ek: Record<string, unknown> = {}): GunHam => ({ day: 14, can_do: { id: "cd:m1:14", tr: "" }, yeni_kartlar: [], dersler: [], sinav: "assess:a1-deneme:1", sinav_bolumler: ["yazma", "konusma"], ...ek });
+  it("halkasız, kartsız, dersiz sınav günü ihlal değil; satırda notu", () => {
+    const r = kos([sinavGunu()], { tablo: t2, omurga: o2 });
+    expect(r.ihlaller.filter((i) => i.gun === 14)).toEqual([]);
+    expect(r.satirlar.find((x) => x.gun === 14)!.not).toContain("sınav günü (assess:a1-deneme:1: yazma, konusma)");
+  });
+  it("halka taşıyan sınav günü biçim ihlali", () => {
+    const r = kos([sinavGunu({ halkalar: [{ id: "h", kartlar: [], gorev_cumleleri: [] }] })], { tablo: t2, omurga: o2 });
+    expect(kural(r, "bicim", 14).map((i) => i.mesaj)).toEqual(["sınav günü halkasızdır (1 halka)"]);
+  });
+  it("sınavsız halkasız gün hâlâ ihlal", () => {
+    const { sinav: _, sinav_bolumler: __, ...g } = sinavGunu();
+    expect(kural(kos([g as GunHam], { tablo: t2, omurga: o2 }), "bicim", 14)).toHaveLength(1);
+  });
+});
+
 describe("biçim ve sağlamlık", () => {
   it("8. gün ve sonrası halkasız ya da boş halkalı gün kırmızı", () => {
     const g = sahte(8); delete g.halkalar;
