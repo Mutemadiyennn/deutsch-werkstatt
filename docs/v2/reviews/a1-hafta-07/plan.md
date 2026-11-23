@@ -1,6 +1,6 @@
 # 7. hafta (gün 43–49) · iskelet (İÇ-6, PM-089)
 
-Kaynak: `content/v2/curriculum/omurga.json` hafta 7 ve gün 43–49. Kelimeler yalnız `content/v2/curriculum/a1-kesin.json`'dan (İÇ-K); bu dosya kelime seçmez.
+Kaynak: `content/v2/curriculum/omurga.json` hafta 7 ve gün 43–49. Kelimeler `a1-kesin.json`'un 7. hafta kümesi (80 kart); gün dağılımı hattın (PM 7087835391 md. 2): 43 (16) weh, schwindelig, Bein, Durst, kalt, gesund, lieber, Wartezimmer, Patientin, Zahnarzt, Krankmeldung, Attest, Notaufnahme, Krankenwagen, Krankenhaus, Allergie · 44 (13) Handy, Tier, streng, Restaurant, scharf, lecker, bestellen, Wunsch, abnehmen, Training, ausgeben, Kunde, Aufgabe · 45 (13) Tropfen, Salbe, Impfung, empfehlen, pünktlich, Nähe, gegenüber, entlang, vorschlagen, Vorschlag, Tasche, Fenster, Schlüssel · 46 (12) verheiratet, Ausbildung, Heimat, aufwachsen, umziehen, Konto, eröffnen, studieren, Kindheit, Jugend, deutsch, Note · 47 (11) Bild, Wohnung, rot, weiß, Klasse, interessant, Hotel, Meer, See, Insel, Gericht · 48 (10) kennenlernen, sich_treffen, siezen, zusagen, vermissen, Freundschaft, leihen, kochen, Tisch, Messer · 49 (5) Blutdruck, Bier, Zug, Tunnel, ankommen.
 
 - **Haftanın "yapabiliyorum"u:** Doktora neremin ağrıdığını söylerim.
 - **Görev:** Eczanede bir şey isteyip nasıl kullanılacağını sorarım.
@@ -8,7 +8,7 @@ Kaynak: `content/v2/curriculum/omurga.json` hafta 7 ve gün 43–49. Kelimeler y
 - **Kulak kapısı:** Eczacının talimatından ilacı günde kaç kez ve ne zaman alacağını söylersin.
 - **Mekân:** pl:praxis (Dr. Weber, Frau Huber), pl:apotheke (Vils-Apotheke; eczacı adsız "die Apothekerin"). Hikâye ipi (WORLD hafta 8 taslağı): Frau Brandl düşer, eczaneden ilacını sen alırsın.
 - **Dosyalar:** `content/v2/m1/gun-43.json` … `gun-49.json`, `hafta-sonu-testi-07.json` (`m1:hafta-sonu-testi:07`, madde `m1:49:tNN`), `gorulmemis-07.json` (`m1:gorulmemis:07`; İÇ-5'in 7087583754 biçimi).
-- **Dil noktaları:** omurganın `gr:`/`dn:` kimlikleri şema kararına kadar `requires.gramer`'de, `dersler: []` (#12 7087571211). Dil noktası halkanın `kaliplar` satırıyla (Türkçe, 2–4 satır, terim yok) öğretilir.
+- **Dil noktaları:** `dersler` omurganın `gr:` kimlikleri (PM-092 md. 1); alıştırma halkadan: o gün ≥6 görev, ertesi gün ≥2.
 
 | Gün | Başlık | Dil noktası (omurga) | can_do (taslak) | Prova | Sesler | Okuma/yazma |
 |---|---|---|---|---|---|---|
