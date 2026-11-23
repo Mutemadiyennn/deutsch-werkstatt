@@ -1,7 +1,12 @@
 {
   "batch": "a2-11",
   "review": {
-    "status": "draft"
+    "status": "reviewed",
+    "by": "dilbilimci-ajan",
+    "at": "2026-11-23",
+    "notes": "docs/v2/reviews/lexicon-batch-a2-11.md; okur: docs/v2/reviews/okur/lexicon-batch-a2-11.md; örneklem: docs/v2/reviews/orneklem/lexicon-a2-11-12.md",
+    "okur": "passed",
+    "okur_at": "2026-11-23"
   },
   "items": [
     {
@@ -28,7 +33,6 @@
       ],
       "patterns": [
         "pt:wenn",
-        "pt:ich-habe",
         "pt:perfekt-haben"
       ],
       "register": "neutral",
@@ -234,7 +238,7 @@
             "wär"
           ],
           "tr": "Ah, şimdi bir dünya turu harika olurdu!",
-          "hint_tr": "Harika olurdu derken **wäre jetzt toll** denir."
+          "hint_tr": "Şimdi harika olurdu derken **wäre jetzt toll** denir."
         }
       ]
     },
@@ -358,7 +362,7 @@
           "de": "Die Kinder wollen unbedingt ein ___.",
           "answer": "Haustier",
           "tr": "Çocuklar ille de bir evcil hayvan istiyor.",
-          "hint_tr": "Bir evcil hayvan istiyor derken **wollen unbedingt ein Haustier** denir."
+          "hint_tr": "İlle de bir evcil hayvan istiyor derken **wollen unbedingt ein Haustier** denir."
         }
       ]
     },
@@ -553,6 +557,7 @@
       ],
       "level": "A2",
       "tier": "K1",
+      "freqRank": 2713,
       "domains": [
         "freizeit",
         "smalltalk"
@@ -668,6 +673,7 @@
       ],
       "level": "A2",
       "tier": "K1",
+      "freqRank": 3358,
       "domains": [
         "freizeit",
         "smalltalk"
@@ -707,7 +713,7 @@
             "wär"
           ],
           "tr": "Biraz yürüyüşe ne dersin?",
-          "hint_tr": "Ne dersin derken **Wie wäre es mit** denir."
+          "hint_tr": "Yürüyüşe ne dersin derken başta **Wie wäre es** denir."
         },
         {
           "de": "Ein Spaziergang ___ dir guttun.",
@@ -772,7 +778,7 @@
         },
         {
           "id": "lx:Rat:3",
-          "de": "Ich habe meine Ärztin um Rat gefragt.",
+          "de": "Ich habe meinen Arzt um Rat gefragt.",
           "tr": "Doktorumdan tavsiye istedim.",
           "layer": "hd"
         },
@@ -807,7 +813,8 @@
           "de": "Kannst du mir einen ___ geben?",
           "answer": "Rat",
           "also_ok": [
-            "Tipp"
+            "Tipp",
+            "Ratschlag"
           ],
           "tr": "Bana bir tavsiye verebilir misin?",
           "hint_tr": "Bir tavsiye verebilir misin derken **einen Rat geben** denir."
@@ -816,13 +823,14 @@
           "de": "Danke für den ___!",
           "answer": "Rat",
           "also_ok": [
-            "Tipp"
+            "Tipp",
+            "Ratschlag"
           ],
           "tr": "Tavsiyen için sağ ol!",
           "hint_tr": "Tavsiyen için derken **für den Rat** denir."
         },
         {
-          "de": "Ich habe meine Ärztin um ___ gefragt.",
+          "de": "Ich habe meinen Arzt um ___ gefragt.",
           "answer": "Rat",
           "tr": "Doktorumdan tavsiye istedim.",
           "hint_tr": "Tavsiye istedim derken **um Rat gefragt** denir."
@@ -905,7 +913,7 @@
         {
           "id": "lx:einatmen:5",
           "de": "– Und? Kannst du wieder normal einatmen? – Ja, geht schon besser.",
-          "tr": "– Eee? Yine normal nefes alabiliyor musun? – Evet, daha iyi.",
+          "tr": "– Eee? Artık normal nefes alabiliyor musun? – Evet, daha iyi.",
           "layer": "alltag",
           "dialog": true
         }
@@ -935,8 +943,11 @@
         {
           "de": "Bitte langsam ___.",
           "answer": "einatmen",
+          "also_ok": [
+            "atmen"
+          ],
           "tr": "Lütfen yavaşça nefes alın.",
-          "hint_tr": "Yavaşça nefes alın derken **langsam einatmen** denir."
+          "hint_tr": "Doktor kısaca **langsam einatmen** de der, bu da yavaşça nefes alın demek."
         },
         {
           "de": "Ich kann nicht richtig ___.",
@@ -1013,7 +1024,7 @@
         },
         {
           "id": "lx:ausatmen:2",
-          "de": "Atmen Sie ganz aus, damit ich Sie gut hören kann.",
+          "de": "Atmen Sie ganz aus, damit ich gut hören kann.",
           "tr": "İyi duyabileyim diye nefesinizi tamamen verin.",
           "layer": "hd"
         },
@@ -1063,13 +1074,13 @@
           "de": "Und jetzt bitte langsam ___.",
           "answer": "ausatmen",
           "tr": "Şimdi de lütfen yavaşça nefes verin.",
-          "hint_tr": "Yavaşça nefes verin derken **langsam ausatmen** denir."
+          "hint_tr": "Doktor kısaca **langsam ausatmen** de der, bu da yavaşça nefes verin demek."
         },
         {
-          "de": "Atmen Sie ganz aus, ___ ich Sie gut hören kann.",
+          "de": "Atmen Sie ganz aus, ___ ich gut hören kann.",
           "answer": "damit",
           "tr": "İyi duyabileyim diye nefesinizi tamamen verin.",
-          "hint_tr": "Duyabileyim diye derken **damit ich Sie gut hören kann** denir."
+          "hint_tr": "İyi duyabileyim diye derken **damit ich gut hören kann** denir."
         },
         {
           "de": "Ganz ruhig. Einmal langsam ___.",
@@ -1081,7 +1092,7 @@
           "de": "Einatmen und wieder ___.",
           "answer": "ausatmen",
           "tr": "Nefes alın ve tekrar verin.",
-          "hint_tr": "Tekrar verin derken **wieder ausatmen** denir."
+          "hint_tr": "Tekrar nefes verin derken doktor kısaca **wieder ausatmen** der."
         }
       ]
     },
@@ -1240,7 +1251,7 @@
         "lx:Uhr"
       ],
       "mistakes_tr": [
-        "Çalar saati altıya kurdum derken **Ich habe den Wecker auf sechs gemacht** yanlış. Doğrusu **Ich habe den Wecker auf sechs gestellt**."
+        "Çalar saati altıya kurdum derken **Ich habe den Wecker auf sechs gemacht** pek denmez. Doğal olan **Ich habe den Wecker auf sechs gestellt**."
       ],
       "examples": [
         {
@@ -1252,7 +1263,7 @@
         },
         {
           "id": "lx:Wecker:2",
-          "de": "– Warum bist du so spät? – Ich hab den Wecker nicht gehört!",
+          "de": "– Warum kommst du so spät? – Ich hab den Wecker nicht gehört!",
           "tr": "– Neden bu kadar geç kaldın? – Çalar saati duymamışım!",
           "layer": "alltag",
           "dialog": true,
@@ -1312,6 +1323,9 @@
         {
           "de": "Ich ___ den Wecker jeden Abend auf sechs Uhr.",
           "answer": "stelle",
+          "also_ok": [
+            "stell"
+          ],
           "tr": "Her akşam çalar saati altıya kuruyorum.",
           "hint_tr": "Çalar saati kuruyorum derken **Ich stelle den Wecker** denir."
         },
@@ -1417,7 +1431,7 @@
             "tr": "uyumak"
           }
         ],
-        "ipucu_tr": "Geç kalınca kısaca **Ich habe verschlafen** dersin."
+        "ipucu_tr": "Uyuyakalıp geç kalınca kısaca **Ich habe verschlafen** dersin."
       },
       "forms": [
         {
@@ -1557,7 +1571,7 @@
           "de": "Nimm das Ladegerät mit, ___ dein Handy nicht leer ist.",
           "answer": "damit",
           "tr": "Telefonunun şarjı bitmesin diye şarj aletini yanına al.",
-          "hint_tr": "Şarjı bitmesin diye derken **damit dein Handy nicht leer ist** denir."
+          "hint_tr": "Telefonunun şarjı bitmesin diye derken **damit dein Handy nicht leer ist** denir."
         },
         {
           "de": "Passt dein ___ auch für mein Handy?",
@@ -1664,7 +1678,7 @@
           "de": "Häng das Handy über Nacht ans Ladegerät, damit es morgen nicht ___ ist.",
           "answer": "leer",
           "tr": "Yarın şarjı bitmiş olmasın diye telefonu gece şarja tak.",
-          "hint_tr": "Şarjı bitmiş olmasın diye derken **damit es morgen nicht leer ist** denir."
+          "hint_tr": "Yarın şarjı bitmiş olmasın diye derken **damit es morgen nicht leer ist** denir."
         },
         {
           "de": "Am Sonntag sind die Straßen ganz ___.",
@@ -1766,7 +1780,7 @@
       ],
       "exp": {
         "anlam_tr": "**beschreiben** bir şeyin nasıl olduğunu sözle anlatmaktır.",
-        "ne_zaman_tr": "Kelimeyi bilmediğinde, yolu ya da ağrıyı anlatırken.",
+        "ne_zaman_tr": "Yol tarif ederken, ağrını anlatırken ya da kelimeyi bilmediğinde.",
         "ipucu_tr": "Kelimeyi bilmiyorsan **Ich beschreibe es** de ve anlat."
       },
       "forms": [
@@ -1851,15 +1865,15 @@
         },
         {
           "id": "lx:ähnlich:3",
-          "de": "– Ihr seht euch so ähnlich! – Klar, wir sind Schwestern.",
-          "tr": "– Birbirinize ne kadar çok benziyorsunuz! – Tabii, kız kardeşiz.",
+          "de": "– Ihr seht euch so ähnlich! – Klar, wir sind Geschwister.",
+          "tr": "– Birbirinize ne kadar çok benziyorsunuz! – Tabii, kardeşiz.",
           "layer": "hd",
           "dialog": true
         },
         {
           "id": "lx:ähnlich:4",
-          "de": "Das Wetter hier ist ähnlich wie in Istanbul.",
-          "tr": "Buradaki hava İstanbul'dakine benziyor.",
+          "de": "Das Wetter heute ist ähnlich wie gestern.",
+          "tr": "Bugün hava dünküne benziyor.",
           "layer": "hd"
         },
         {
@@ -1901,10 +1915,10 @@
           "hint_tr": "Birbirinize ne kadar çok benziyorsunuz derken **seht euch so ähnlich** denir."
         },
         {
-          "de": "Das Wetter hier ist ___ wie in Istanbul.",
+          "de": "Das Wetter heute ist ___ wie gestern.",
           "answer": "ähnlich",
-          "tr": "Buradaki hava İstanbul'dakine benziyor.",
-          "hint_tr": "İstanbul'dakine benziyor derken **ähnlich wie in Istanbul** denir."
+          "tr": "Bugün hava dünküne benziyor.",
+          "hint_tr": "Dünküne benziyor derken **ähnlich wie gestern** denir."
         }
       ]
     },
@@ -1944,7 +1958,7 @@
         "lx:Minute"
       ],
       "mistakes_tr": [
-        "Saat yedi gibi derken **wie sieben Uhr** yanlış. Doğrusu **ungefähr sieben Uhr**."
+        "Saat yedi gibi derken **wie um sieben** yanlış. Doğrusu **ungefähr um sieben**."
       ],
       "examples": [
         {
@@ -1991,7 +2005,7 @@
       "exp": {
         "anlam_tr": "**ungefähr** tam değil, aşağı yukarı demektir.",
         "ne_zaman_tr": "Saati, fiyatı ya da büyüklüğü tam bilmediğinde.",
-        "ipucu_tr": "Tam emin değilsen sayının önüne **ungefähr** koyarsın."
+        "ipucu_tr": "Tam bilmediğin bir sayıyı söylerken önüne **ungefähr** koyarsın."
       },
       "forms": [
         {
@@ -2028,7 +2042,7 @@
             "etwa"
           ],
           "tr": "Aşağı yukarı telefon büyüklüğünde bir şey bu.",
-          "hint_tr": "Aşağı yukarı derken **ungefähr so groß** denir."
+          "hint_tr": "Aşağı yukarı telefon büyüklüğünde derken **ungefähr so groß ist wie ein Handy** denir."
         }
       ]
     },
@@ -2128,14 +2142,14 @@
             "tr": "eşya"
           }
         ],
-        "ipucu_tr": "Adını bilmediğin aleti **Das ist ein Werkzeug, das man** diye anlatırsın."
+        "ipucu_tr": "Adını bilmediğin aleti **Das ist ein Werkzeug, das man zum Reparieren braucht** gibi anlatırsın."
       },
       "forms": [
         {
           "de": "Das ist ein ___, das man zum Reparieren braucht.",
           "answer": "Werkzeug",
           "tr": "Bu, tamir için gereken bir alet.",
-          "hint_tr": "Bir alet derken **ein Werkzeug** denir."
+          "hint_tr": "Tamir için gereken bir alet derken **ein Werkzeug** denir."
         },
         {
           "de": "Hast du ___? Der Stuhl ist kaputt.",
@@ -2349,7 +2363,7 @@
         "strategie"
       ],
       "exp": {
-        "anlam_tr": "**das Plastik** şişe, poşet ve oyuncak yapılan hafif maddedir.",
+        "anlam_tr": "**das Plastik** şişede, poşette ve oyuncakta kullanılan hafif maddedir.",
         "ne_zaman_tr": "Bir şeyin neyden yapıldığını söylerken.",
         "ipucu_tr": "Plastikten derken **aus Plastik** dersin."
       },
@@ -2539,7 +2553,7 @@
         "lx:Idee"
       ],
       "mistakes_tr": [
-        "Aklıma geldi derken **Es ist in meinen Kopf gekommen** yanlış. Doğrusu **Es ist mir eingefallen**.",
+        "Aklıma geldi derken **Es ist in meinen Kopf gekommen** denmez. Doğrusu **Es ist mir eingefallen**.",
         "Aklıma geldi derken **Es hat mir eingefallen** yanlış. Doğrusu **Es ist mir eingefallen**."
       ],
       "examples": [
@@ -3252,8 +3266,8 @@
         },
         {
           "id": "lx:rund:3",
-          "de": "– Ist die Apotheke heute offen? – Die am Bahnhof ist rund um die Uhr offen.",
-          "tr": "– Eczane bugün açık mı? – İstasyondaki yirmi dört saat açık.",
+          "de": "– Ist die Tankstelle heute offen? – Ja, die ist rund um die Uhr offen.",
+          "tr": "– Benzin istasyonu bugün açık mı? – Evet, orası yirmi dört saat açık.",
           "layer": "alltag",
           "dialog": true
         },
@@ -3281,7 +3295,7 @@
       "exp": {
         "anlam_tr": "**rund** top ya da tabak gibi yuvarlak demektir.",
         "ne_zaman_tr": "Bir şeyin şeklini tarif ederken.",
-        "ipucu_tr": "Yirmi dört saat açık derken **rund um die Uhr** dersin."
+        "ipucu_tr": "Yirmi dört saat açık derken **rund um die Uhr offen** dersin."
       },
       "forms": [
         {
@@ -3291,9 +3305,9 @@
           "hint_tr": "Yuvarlak bir şey derken **ein rundes Ding** denir."
         },
         {
-          "de": "Die am Bahnhof ist ___ um die Uhr offen.",
+          "de": "Ja, die ist ___ um die Uhr offen.",
           "answer": "rund",
-          "tr": "İstasyondaki yirmi dört saat açık.",
+          "tr": "Evet, orası yirmi dört saat açık.",
           "hint_tr": "Yirmi dört saat derken **rund um die Uhr** denir."
         },
         {

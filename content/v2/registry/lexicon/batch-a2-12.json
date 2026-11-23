@@ -1,7 +1,12 @@
 {
   "batch": "a2-12",
   "review": {
-    "status": "draft"
+    "status": "reviewed",
+    "by": "dilbilimci-ajan",
+    "at": "2026-11-23",
+    "notes": "docs/v2/reviews/lexicon-batch-a2-12.md; okur: docs/v2/reviews/okur/lexicon-batch-a2-12.md; örneklem: docs/v2/reviews/orneklem/lexicon-a2-11-12.md",
+    "okur": "passed",
+    "okur_at": "2026-11-23"
   },
   "items": [
     {
@@ -154,8 +159,7 @@
       ],
       "patterns": [
         "pt:koennten-sie",
-        "pt:ja-nein-frage",
-        "pt:ich-habe"
+        "pt:ja-nein-frage"
       ],
       "register": "neutral",
       "related": [
@@ -211,7 +215,7 @@
         "anlam_tr": "**die Ziffer** bir numaradaki tek rakamdır, sıfırdan dokuza kadar.",
         "ne_zaman_tr": "Telefon numarasını ya da şifreyi tek tek söylerken ve sorarken.",
         "parcalar": [],
-        "ipucu_tr": "Numarayı tam duymadıysan **Könnten Sie die letzten Ziffern wiederholen?** diye sorarsın."
+        "ipucu_tr": "Numaranın sonunu tam duymadıysan **Könnten Sie die letzten Ziffern wiederholen?** diye sorarsın."
       },
       "forms": [
         {
@@ -284,21 +288,21 @@
         "lx:anrufen"
       ],
       "mistakes_tr": [
-        "**Mailbox** sözünü ma-il-boks diye okumak yanlış. Doğrusu meyl-boks."
+        "Sesli mesaj bıraktım derken **Ich habe der Mailbox gesprochen** yanlış. Doğrusu **Ich habe auf die Mailbox gesprochen**."
       ],
       "examples": [
         {
           "id": "lx:Mailbox:1",
           "de": "Ich habe Ihnen gestern auf die Mailbox gesprochen.",
           "tr": "Dün size sesli mesaj bıraktım.",
-          "img": "woman leaving voicemail on phone",
+          "img": "person leaving voicemail on phone",
           "layer": "hd"
         },
         {
           "id": "lx:Mailbox:2",
           "de": "– Herr Pichler geht nicht ans Telefon. – Dann sprechen Sie doch auf die Mailbox.",
           "tr": "– Pichler Bey telefonu açmıyor. – O zaman sesli mesaj bırakın.",
-          "img": "man calling on smartphone in hallway",
+          "img": "person calling on smartphone in hallway",
           "layer": "hd",
           "dialog": true
         },
@@ -306,7 +310,7 @@
           "id": "lx:Mailbox:3",
           "de": "– Hast du meine Nachricht auf der Mailbox gehört? – Nee, noch nicht. Ich hör sie gleich.",
           "tr": "– Sesli mesaj kutusundaki mesajımı dinledin mi? – Yok, daha değil. Hemen dinliyorum.",
-          "img": "woman listening to phone message",
+          "img": "person listening to phone message",
           "layer": "alltag",
           "dialog": true
         },
@@ -321,7 +325,7 @@
           "id": "lx:Mailbox:5",
           "de": "Seine Mailbox ist voll. Deshalb schreibe ich ihm lieber eine Nachricht.",
           "tr": "Sesli mesaj kutusu dolu. Bu yüzden ona yazılı mesaj atsam daha iyi.",
-          "img": "man typing text message on phone",
+          "img": "person typing text message on phone",
           "layer": "hd"
         }
       ],
@@ -672,8 +676,8 @@
         },
         {
           "id": "lx:krankschreiben:5",
-          "de": "Wenn Sie mich krankschreiben, schicke ich die Krankmeldung heute noch an meine Firma.",
-          "tr": "Bana rapor verirseniz raporu daha bugün şirketime gönderirim.",
+          "de": "Wenn Sie mich krankschreiben, rufe ich heute noch meinen Chef an.",
+          "tr": "Bana rapor verirseniz daha bugün şefimi ararım.",
           "layer": "hd"
         }
       ],
@@ -775,7 +779,7 @@
           "id": "lx:drucken:1",
           "de": "Kann ich hier etwas drucken?",
           "tr": "Burada bir şey yazdırabilir miyim?",
-          "img": "woman using office printer",
+          "img": "person using office printer",
           "layer": "hd"
         },
         {
@@ -811,7 +815,6 @@
       ],
       "level": "A2",
       "tier": "K1",
-      "freqRank": 1131,
       "domains": [
         "amt",
         "arbeit"
@@ -894,7 +897,8 @@
         "lx:Ausdruck#2"
       ],
       "mistakes_tr": [
-        "Çıktı alıyorum derken **Ich nehme einen Ausdruck** yanlış. Doğrusu **Ich mache einen Ausdruck**."
+        "Çıktı alıyorum derken **Ich nehme einen Ausdruck** yanlış. Doğrusu **Ich mache einen Ausdruck**.",
+        "İki çıktı derken **zwei Ausdrücke** denmez, **Ausdrücke** ifadeler demek. Doğrusu **zwei Ausdrucke**."
       ],
       "examples": [
         {
@@ -1129,8 +1133,8 @@
           "tr": "müşteri kartıyla"
         },
         {
-          "de": "Punkte sammeln",
-          "tr": "puan toplamak"
+          "de": "eine Kundenkarte bekommen",
+          "tr": "müşteri kartı almak"
         }
       ],
       "patterns": [
@@ -1185,7 +1189,7 @@
           "id": "lx:Kundenkarte:5",
           "de": "Ich habe meine Kundenkarte zu Hause vergessen.",
           "tr": "Müşteri kartımı evde unuttum.",
-          "img": "woman searching wallet at checkout",
+          "img": "person searching wallet at checkout",
           "layer": "hd"
         }
       ],
@@ -1264,8 +1268,7 @@
       "patterns": [
         "pt:haben-sie",
         "pt:ich-moechte",
-        "pt:ich-wuerde-gern",
-        "pt:ich-habe"
+        "pt:ich-wuerde-gern"
       ],
       "register": "neutral",
       "related": [
@@ -1306,7 +1309,7 @@
           "id": "lx:Reservierung:4",
           "de": "Ich möchte meine Reservierung für Freitag absagen.",
           "tr": "Cuma günkü rezervasyonumu iptal etmek istiyorum.",
-          "img": "woman calling a hotel",
+          "img": "person calling a hotel",
           "layer": "hd"
         },
         {
@@ -1327,7 +1330,7 @@
         "anlam_tr": "**die Reservierung** masayı, odayı ya da yeri önceden kendine ayırtmandır, rezervasyondur.",
         "ne_zaman_tr": "Restoranda, otelde ya da trende yer ayırtırken ve iptal ederken.",
         "parcalar": [],
-        "ipucu_tr": "Restorana girince **Wir haben eine Reservierung auf den Namen Wagner** dersin."
+        "ipucu_tr": "Restorana girince **Wir haben eine Reservierung auf den Namen** dersin, sonra adını söylersin."
       },
       "forms": [
         {
@@ -1447,7 +1450,7 @@
             "tr": "yolculuk"
           }
         ],
-        "ipucu_tr": "Gidiş dönüş bilet isterken kısaca **hin und zurück** da dersin."
+        "ipucu_tr": "Gidiş dönüş bilet isterken **Hin- und Rückfahrt** ya da kısaca **hin und zurück** dersin."
       },
       "forms": [
         {
@@ -1563,7 +1566,7 @@
         "anlam_tr": "**die Laune** o an nasıl hissettiğindir, keyfindir.",
         "ne_zaman_tr": "Molada birinin keyfini sorarken ya da anlatırken.",
         "parcalar": [],
-        "ipucu_tr": "Keyfi yerinde olan biri için **Er hat gute Laune** dersin."
+        "ipucu_tr": "Birinin keyfi kaçık görünüyorsa **Hast du schlechte Laune?** diye sorarsın."
       },
       "forms": [
         {
@@ -1638,7 +1641,7 @@
         "lx:Kollege"
       ],
       "mistakes_tr": [
-        "Şefine biraz konuşabilir miyiz derken **Können wir kurz quatschen?** kulağa laubali gelir. Doğrusu **Können wir kurz sprechen?**"
+        "Şefine biraz konuşabilir miyiz derken **Können wir kurz quatschen?** fazla laubali kaçar. Daha uygunu **Können wir kurz sprechen?**"
       ],
       "examples": [
         {
@@ -1676,7 +1679,6 @@
       ],
       "level": "A2",
       "tier": "K1",
-      "freqRank": 1162,
       "domains": [
         "smalltalk",
         "arbeit"
@@ -1685,7 +1687,7 @@
         "anlam_tr": "**quatschen** arkadaşça, rahat rahat laflamaktır.",
         "ne_zaman_tr": "Molada, kahvede ya da arkadaşlarla yaptığın sohbeti anlatırken.",
         "parcalar": [],
-        "ipucu_tr": "Molada duyduğun **Quatsch!** saçmalık demektir, **quatschen** ise laflamak."
+        "ipucu_tr": "**Quatsch!** saçmalık demektir, **quatschen** ise laflamak."
       },
       "forms": [
         {
@@ -1750,8 +1752,8 @@
           "tr": "doğum günü şerefine kadeh kaldırmak"
         },
         {
-          "de": "mit Wasser anstoßen",
-          "tr": "suyla kadeh tokuşturmak"
+          "de": "mit Saft anstoßen",
+          "tr": "meyve suyuyla kadeh tokuşturmak"
         }
       ],
       "patterns": [
@@ -1769,7 +1771,7 @@
       ],
       "mistakes_tr": [
         "Senin şerefine kadeh kaldırıyoruz derken **Wir stoßen für dich an** yanlış. Doğrusu **Wir stoßen auf dich an**.",
-        "Kadeh kaldırıyoruz derken **Wir anstoßen auf dich** yanlış. Doğrusu **Wir stoßen auf dich an**."
+        "Kadeh kaldırıyoruz derken **Wir anstoßen** yanlış. Doğrusu **Wir stoßen an**."
       ],
       "examples": [
         {
@@ -1782,9 +1784,9 @@
         },
         {
           "id": "lx:anstoßen:2",
-          "de": "– Ich trink heute nur Wasser. – Kein Problem, wir stoßen mit Wasser an.",
-          "tr": "– Ben bugün sadece su içiyorum. – Sorun değil, suyla kadeh tokuştururuz.",
-          "img": "friends toasting with water glasses",
+          "de": "– Ich trink heute nur Saft. – Kein Problem, wir stoßen mit Saft an.",
+          "tr": "– Ben bugün sadece meyve suyu içiyorum. – Sorun değil, meyve suyuyla kadeh tokuştururuz.",
+          "img": "friends toasting with juice glasses",
           "layer": "alltag",
           "dialog": true
         },
@@ -1829,7 +1831,7 @@
             "tr": "çarpmak"
           }
         ],
-        "ipucu_tr": "Alkol içmiyorsan da **mit Wasser anstoßen** olur."
+        "ipucu_tr": "Alkol içmiyorsan **mit Saft anstoßen** olur."
       },
       "forms": [
         {
@@ -1839,9 +1841,9 @@
           "hint_tr": "Kadeh kaldıralım mı derken **Sollen wir anstoßen** denir."
         },
         {
-          "de": "Kein Problem, wir stoßen mit Wasser ___.",
+          "de": "Kein Problem, wir stoßen mit Saft ___.",
           "answer": "an",
-          "tr": "Sorun değil, suyla kadeh tokuştururuz.",
+          "tr": "Sorun değil, meyve suyuyla kadeh tokuştururuz.",
           "hint_tr": "Tokuştururuz derken **stoßen** ve sonda **an** gelir."
         },
         {
