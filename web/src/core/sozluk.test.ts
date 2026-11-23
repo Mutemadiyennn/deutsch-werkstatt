@@ -54,6 +54,9 @@ describe("yerel sözlük (#58 A11)", () => {
     const a = yerelAcikla("Das Wort kenne ich nicht.", lx)!;
     expect(a.ifadeler).toBeUndefined();
     expect(a.kelimeler!.map((k) => k.de)).toEqual(expect.arrayContaining(["ich", "nicht"]));
+    // ünlem/soru kalıbı işlev sözcüklerinden oluşsa da bütün: "Wie bitte?" = Efendim?
+    const wb = [...lx, L({ id: "bitte", de: "bitte", tr: "lütfen", pos: "adv", collocations: [{ de: "Wie bitte?", tr: "Efendim? Pardon?" }] })];
+    expect(yerelAcikla("Wie bitte? Hier ist die Praxis.", wb)!.ifadeler).toEqual([{ de: "Wie bitte?", tr: "Efendim? Pardon?" }]);
     const b = yerelAcikla("Grüß Gott, Grüß Gott!", lx)!;
     expect(b.ifadeler).toEqual([{ de: "Grüß Gott!", tr: "Merhaba!" }]);
     expect(b.kelimeler!.map((k) => k.de)).not.toContain("Gott");

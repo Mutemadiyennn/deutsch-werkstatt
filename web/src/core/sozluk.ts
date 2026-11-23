@@ -36,7 +36,8 @@ const parcala = (s: string) => norm(s).split(" ").filter(Boolean);
  * ich nicht" içinde yanlış eşleşir (inceleme #249 P1-1). Normalleştirilmiş biçimler (norm: ü → ue).
  */
 const ISLEV = new Set("ich du er sie es wir ihr man nicht kein keine und oder aber denn das der die den dem des ein eine einen einem einer ist bin bist sind war hat habe hast haben zu im in an am auf mit von vom zum zur fuer bei ja nein so wie was wo nur auch noch schon mal bitte da hier dann jetzt sehr gut mir dir mich dich uns euch ihn ihm".split(" "));
-const kalipMi = (t: string[]) => t.length >= 3 || (t.length === 2 && t.some((w) => !ISLEV.has(w)));
+/** Ünlem ve soru kalıpları ("Wie bitte?", "Grüß Gott!") işlev sözcüğünden oluşsa da kalıptır (inceleme #249 2. tur) */
+const kalipMi = (x: { de: string; t: string[] }) => x.t.length >= 3 || (x.t.length === 2 && (/[?!]$/.test(x.de.trim()) || x.t.some((w) => !ISLEV.has(w))));
 function adayEkle(a: Aday[], de: string | undefined, tr: string | undefined, o: Partial<Aday> = {}) {
   if (!de || !tr || !ifadeMi(de)) return;
   const t = parcala(temiz(de));
@@ -106,7 +107,7 @@ export function yerelAcikla(metin: string, lex: Lexeme[], ek: YerelEk = {}): Yer
   const kapali = new Array<boolean>(tok.length).fill(false);
   const bulunan: { i: number; x: Aday }[] = [];
   // sıralama kararlı: aynı uzunlukta iletişim kalıbı karttan önce gelir
-  for (const x of [...ekA, ...kartAdaylar(lex)].filter((y) => kalipMi(y.t) && y.t.length <= tok.length).sort((p, q) => q.t.length - p.t.length)) {
+  for (const x of [...ekA, ...kartAdaylar(lex)].filter((y) => kalipMi(y) && y.t.length <= tok.length).sort((p, q) => q.t.length - p.t.length)) {
     for (let i = 0; i + x.t.length <= tok.length; i++) {
       if (x.t.every((w, j) => tok[i + j] === w && !kapali[i + j])) {
         // her geçiş kapanır (aynı kalıp ikinci kez geçerse kelime kelime bölünmez); listede bir kez
