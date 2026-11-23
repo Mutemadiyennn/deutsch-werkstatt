@@ -1,0 +1,1645 @@
+{
+ "schema": 1,
+ "id": "m1:gun:71",
+ "day": 71,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Olunca, olursa: Ich trinke Kaffee, wenn ich müde bin",
+ "goal_tr": "Ne zaman ne yaptığını wenn ile söylersin. Kafede kendini nasıl hissettiğini anlatırsın.",
+ "can_do": {
+  "id": "cd:m1:71",
+  "tr": "Kafede ne zaman ne içtiğimi ve kendimi nasıl hissettiğimi söylerim."
+ },
+ "unit": "u:a2:hizmet-1",
+ "arm": "pazar",
+ "place": "pl:marktplatz",
+ "characters": [
+  "ch:aksoy",
+  "ch:lechner",
+  "ch:wimmer",
+  "ch:stadler",
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic9/dilbilimci-h11.md; dilbilimci ONAY. okur (OD-9) bekliyor."
+ },
+ "dersler": [
+  "gr:a2-03:t1"
+ ],
+ "yeni_kartlar": [
+  "lx:sich_fühlen",
+  "lx:sich_ausruhen",
+  "lx:Grund",
+  "lx:warten_(auf)",
+  "lx:sich_bewegen",
+  "lx:sich_anmelden",
+  "lx:sich_interessieren_(für)",
+  "lx:Grundschule",
+  "lx:Gymnasium"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:71:h1",
+   "title_tr": "Pazartesi sabahı: Tobi yorgun",
+   "kartlar": [
+    "lx:sich_fühlen",
+    "lx:sich_ausruhen",
+    "lx:Grund",
+    "lx:warten_(auf)"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wie fühlst du dich? – Ich fühle mich …",
+     "tr": "Kendini nasıl hissediyorsun? – Kendimi … hissediyorum."
+    },
+    {
+     "de": "Du musst dich ausruhen.",
+     "tr": "Dinlenmen lazım."
+    },
+    {
+     "de": "Was ist denn der Grund?",
+     "tr": "Sebebi ne peki?"
+    },
+    {
+     "de": "Ich warte auf …",
+     "tr": "…i bekliyorum."
+    },
+    {
+     "de": "Am Donnerstag feiern wir Fasching. – Kommst du im Kostüm?",
+     "tr": "Perşembe günü Faşing kutluyoruz. – Kostümle mi geliyorsun?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:sich_fühlen",
+     "de": "Ich fühle mich heute nicht so gut.",
+     "tr": "Bugün kendimi pek iyi hissetmiyorum.",
+     "accepted": [
+      "Ich fühle mich heute nicht so gut.",
+      "Heute fühle ich mich nicht so gut.",
+      "Ich fühle mich heute nicht gut."
+     ]
+    },
+    {
+     "kart": "lx:sich_fühlen",
+     "de": "Wie fühlst du dich jetzt, Tobi?",
+     "tr": "Şimdi kendini nasıl hissediyorsun Tobi?",
+     "accepted": [
+      "Wie fühlst du dich jetzt, Tobi?",
+      "Tobi, wie fühlst du dich jetzt?",
+      "Wie fühlst du dich, Tobi?"
+     ]
+    },
+    {
+     "kart": "lx:sich_ausruhen",
+     "de": "Du musst dich heute ausruhen.",
+     "tr": "Bugün dinlenmen lazım.",
+     "accepted": [
+      "Du musst dich heute ausruhen.",
+      "Heute musst du dich ausruhen.",
+      "Du musst dich heute mal ausruhen."
+     ]
+    },
+    {
+     "kart": "lx:sich_ausruhen",
+     "de": "Am Sonntag will ich mich nur ausruhen.",
+     "tr": "Pazar günü sadece dinlenmek istiyorum.",
+     "accepted": [
+      "Am Sonntag will ich mich nur ausruhen.",
+      "Am Sonntag möchte ich mich nur ausruhen.",
+      "Ich will mich am Sonntag nur ausruhen."
+     ]
+    },
+    {
+     "kart": "lx:Grund",
+     "de": "Was ist der Grund für die Party?",
+     "tr": "Partinin sebebi ne?",
+     "accepted": [
+      "Was ist der Grund für die Party?",
+      "Was ist denn der Grund für die Party?",
+      "Und was ist der Grund für die Party?"
+     ]
+    },
+    {
+     "kart": "lx:Grund",
+     "de": "Ich habe einen guten Grund.",
+     "tr": "İyi bir sebebim var.",
+     "accepted": [
+      "Ich habe einen guten Grund.",
+      "Ich habe einen sehr guten Grund.",
+      "Ich habe aber einen guten Grund."
+     ]
+    },
+    {
+     "kart": "lx:warten_(auf)",
+     "de": "Wir warten schon zehn Minuten auf den Kaffee.",
+     "tr": "On dakikadır kahveyi bekliyoruz.",
+     "accepted": [
+      "Wir warten schon zehn Minuten auf den Kaffee.",
+      "Wir warten seit zehn Minuten auf den Kaffee.",
+      "Wir warten schon seit zehn Minuten auf den Kaffee."
+     ]
+    },
+    {
+     "kart": "lx:warten_(auf)",
+     "de": "Ich warte hier auf Derya.",
+     "tr": "Burada Derya'yı bekliyorum.",
+     "accepted": [
+      "Ich warte hier auf Derya.",
+      "Ich warte auf Derya.",
+      "Hier warte ich auf Derya."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Pazartesi sabahı, ofisin mutfağı. Tobi kahve makinesinin önünde esniyor.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Morgen, Tobi! Wie fühlst du dich?",
+      "tr": "Günaydın Tobi! Kendini nasıl hissediyorsun?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Nicht so gut. Ich warte schon fünf Minuten auf den Kaffee.",
+      "tr": "Pek iyi değil. Beş dakikadır kahveyi bekliyorum."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Warum bist du so müde?",
+      "tr": "Neden bu kadar yorgunsun?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Party am Samstag! Heute muss ich mich ausruhen.",
+      "tr": "Cumartesi parti vardı! Bugün dinlenmem lazım."
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi neden yorgun?",
+     "opts": [
+      "Cumartesi partideydi",
+      "Hasta",
+      "Bütün hafta sonu çalıştı"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:71:h2",
+   "title_tr": "Akşam kafede: wenn ile anlatmak",
+   "kartlar": [
+    "lx:sich_bewegen",
+    "lx:sich_anmelden",
+    "lx:sich_interessieren_(für)",
+    "lx:Grundschule",
+    "lx:Gymnasium"
+   ],
+   "kaliplar": [
+    {
+     "de": "Ich trinke Kaffee, wenn ich müde bin.",
+     "tr": "Yorgun olunca kahve içerim."
+    },
+    {
+     "de": "Wir treffen uns im Café. – Einen Kaffee und einen Krapfen, bitte.",
+     "tr": "Kafede buluşuyoruz. – Bir kahve ve bir Krapfen, lütfen."
+    },
+    {
+     "de": "Ich bewege mich zu wenig.",
+     "tr": "Çok az hareket ediyorum."
+    },
+    {
+     "de": "Ich melde mich für … an. – Meldest du dich auch an?",
+     "tr": "…a kaydoluyorum. – Sen de kaydoluyor musun?"
+    },
+    {
+     "de": "Ich interessiere mich für … – Interessierst du dich für …?",
+     "tr": "…la ilgileniyorum. – …la ilgileniyor musun?"
+    },
+    {
+     "de": "Am Sonntag kommt der Faschingszug auf den Stadtplatz.",
+     "tr": "Pazar günü Faşing alayı meydana geliyor."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:sich_bewegen",
+     "de": "Ich bewege mich zu wenig, wenn ich im Büro bin.",
+     "tr": "Ofisteyken çok az hareket ediyorum.",
+     "accepted": [
+      "Ich bewege mich zu wenig, wenn ich im Büro bin.",
+      "Ich bewege mich sehr wenig, wenn ich im Büro bin.",
+      "Wenn ich im Büro bin, bewege ich mich zu wenig."
+     ]
+    },
+    {
+     "kart": "lx:sich_bewegen",
+     "de": "Ich bewege mich mehr, wenn das Wetter gut ist.",
+     "tr": "Hava güzel olunca daha çok hareket ediyorum.",
+     "accepted": [
+      "Ich bewege mich mehr, wenn das Wetter gut ist.",
+      "Ich bewege mich mehr, wenn das Wetter schön ist.",
+      "Wenn das Wetter gut ist, bewege ich mich mehr."
+     ]
+    },
+    {
+     "kart": "lx:sich_anmelden",
+     "de": "Ich melde mich an, wenn der Kurs nicht zu teuer ist.",
+     "tr": "Kurs çok pahalı değilse kaydolurum.",
+     "accepted": [
+      "Ich melde mich an, wenn der Kurs nicht zu teuer ist.",
+      "Ich melde mich an, wenn der Kurs nicht so teuer ist.",
+      "Wenn der Kurs nicht zu teuer ist, melde ich mich an."
+     ]
+    },
+    {
+     "kart": "lx:sich_anmelden",
+     "de": "Meldest du dich auch für den Kurs an?",
+     "tr": "Sen de kursa kaydoluyor musun?",
+     "accepted": [
+      "Meldest du dich auch für den Kurs an?",
+      "Meldest du dich auch für den Kurs an, Ioana?",
+      "Ioana, meldest du dich auch für den Kurs an?"
+     ]
+    },
+    {
+     "kart": "lx:sich_interessieren_(für)",
+     "de": "Ich interessiere mich sehr für Musik und Filme.",
+     "tr": "Müzik ve filmlerle çok ilgileniyorum.",
+     "accepted": [
+      "Ich interessiere mich sehr für Musik und Filme.",
+      "Ich interessiere mich für Musik und Filme.",
+      "Ich interessiere mich sehr für Filme und Musik."
+     ]
+    },
+    {
+     "kart": "lx:sich_interessieren_(für)",
+     "de": "Ich bin nie müde, wenn ich mich für etwas interessiere.",
+     "tr": "Bir şeyle ilgilenince hiç yorulmam.",
+     "accepted": [
+      "Ich bin nie müde, wenn ich mich für etwas interessiere.",
+      "Ich bin nie müde, wenn ich mich sehr für etwas interessiere.",
+      "Wenn ich mich für etwas interessiere, bin ich nie müde."
+     ]
+    },
+    {
+     "kart": "lx:Grundschule",
+     "de": "Die Grundschule ist am Samstag geschlossen.",
+     "tr": "İlkokul cumartesi kapalı.",
+     "accepted": [
+      "Die Grundschule ist am Samstag geschlossen.",
+      "Am Samstag ist die Grundschule geschlossen.",
+      "Die Grundschule ist am Samstag zu."
+     ]
+    },
+    {
+     "kart": "lx:Grundschule",
+     "de": "Die Kinder haben Hunger, wenn die Grundschule aus ist.",
+     "tr": "İlkokul bitince çocuklar acıkmış oluyor.",
+     "accepted": [
+      "Die Kinder haben Hunger, wenn die Grundschule aus ist.",
+      "Die Kinder haben immer Hunger, wenn die Grundschule aus ist.",
+      "Wenn die Grundschule aus ist, haben die Kinder Hunger."
+     ]
+    },
+    {
+     "kart": "lx:Gymnasium",
+     "de": "Das Gymnasium ist nicht weit von hier.",
+     "tr": "Lise buraya uzak değil.",
+     "accepted": [
+      "Das Gymnasium ist nicht weit von hier.",
+      "Das Gymnasium ist nicht weit weg.",
+      "Von hier ist das Gymnasium nicht weit."
+     ]
+    },
+    {
+     "kart": "lx:Gymnasium",
+     "de": "Hier ist es immer voll, wenn das Gymnasium aus ist.",
+     "tr": "Lise çıkınca burası hep dolu oluyor.",
+     "accepted": [
+      "Hier ist es immer voll, wenn das Gymnasium aus ist.",
+      "Hier ist es voll, wenn das Gymnasium aus ist.",
+      "Wenn das Gymnasium aus ist, ist es hier immer voll."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Akşam, meydandaki küçük kafe. Ioana masada oturmuş, saatine bakıyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Endlich! Ich warte schon zwanzig Minuten auf dich.",
+      "tr": "Nihayet! Yirmi dakikadır seni bekliyorum."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Entschuldigung! Ich gehe jetzt zu Fuß. Ich bewege mich zu wenig.",
+      "tr": "Kusura bakma! Artık yürüyerek gidiyorum. Çok az hareket ediyorum."
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Super! Ich melde mich für den Kurs im März an. Du auch?",
+      "tr": "Süper! Ben mart ayındaki kursa kaydoluyorum. Sen de?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, wenn der Kurs am Abend ist.",
+      "tr": "Evet, kurs akşamsa."
+     }
+    ],
+    "soru": {
+     "q_tr": "Ioana neye kaydoluyor?",
+     "opts": [
+      "Mart ayındaki kursa",
+      "Spor salonuna",
+      "Faşing kutlamasına"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:71:v1",
+  "title_tr": "Pazartesi sabahı: perşembe Faşing var",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Pazartesi sabahı, ofisin mutfağı. Derya duvara renkli bir kâğıt asıyor.",
+    "de": "Guten Morgen, alle! Am Donnerstag ist Unsinniger Donnerstag.",
+    "tr": "Herkese günaydın! Perşembe günü Unsinniger Donnerstag."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi elinde kahve fincanıyla kâğıda bakıyor, yüzü aydınlanıyor.",
+    "de": "Super! Am Donnerstag feiern wir Fasching im Büro, oder?",
+    "tr": "Süper! Perşembe ofiste Faşing kutluyoruz, değil mi?"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülerek başını sallıyor.",
+    "de": "Na klar! Ich kaufe Krapfen in der Bäckerei Stadler.",
+    "tr": "Tabii ki! Stadler fırınından Krapfen alıyorum."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi ellerini ovuşturuyor.",
+    "de": "Ich esse immer Krapfen, wenn Fasching ist.",
+    "tr": "Faşing olunca hep Krapfen yerim."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer kapıda beliriyor, elinde dosyalar.",
+    "de": "Guten Morgen. Was ist denn hier los?",
+    "tr": "Günaydın. Burada neler oluyor?"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya kâğıdı gösteriyor.",
+    "de": "Herr Wimmer, am Donnerstag feiern wir Fasching. Kommen Sie auch im Kostüm?",
+    "tr": "Herr Wimmer, perşembe Faşing kutluyoruz. Siz de kostümle gelir misiniz?"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer kaşlarını kaldırıyor.",
+    "de": "Im Kostüm? Nein, danke. Am Donnerstag haben wir viel Arbeit.",
+    "tr": "Kostümle mi? Hayır, teşekkürler. Perşembe çok işimiz var."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi masum bir yüzle omuz silkiyor.",
+    "de": "Wir arbeiten auch, Herr Wimmer! Nur im Kostüm.",
+    "tr": "Çalışırız da Herr Wimmer! Sadece kostümle."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer saatine bakıp kapıya yöneliyor.",
+    "de": "Die Besprechung fängt um neun an. Ich warte nicht gern.",
+    "tr": "Toplantı dokuzda başlıyor. Beklemeyi sevmem."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Herr Wimmer çıkınca Derya sana dönüyor.",
+    "de": "Und du? Interessierst du dich für Fasching?",
+    "tr": "Ya sen? Faşing'le ilgilenir misin?"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi sen cevap vermeden araya giriyor.",
+    "de": "Man muss Fasching feiern, wenn man neu hier ist!",
+    "tr": "Buralarda yeniysen Faşing kutlamak zorundasın!"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya Tobi'nin yorgun gözlerine bakıyor.",
+    "de": "Tobi, du bist so müde. Wie fühlst du dich?",
+    "tr": "Tobi, çok yorgunsun. Kendini nasıl hissediyorsun?"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi fincanını kaldırıyor.",
+    "de": "Ich trinke viel Kaffee, wenn ich müde bin. Dann geht's.",
+    "tr": "Yorgun olunca çok kahve içerim. O zaman idare eder."
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya parmağını sallıyor.",
+    "de": "Und am Wochenende musst du dich ausruhen.",
+    "tr": "Hafta sonu da dinlenmen lazım."
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi sırıtıyor.",
+    "de": "Am Wochenende? Nein! Am Sonntag ist der Faschingszug!",
+    "tr": "Hafta sonu mu? Yok! Pazar günü Faşing alayı var!"
+   },
+   {
+    "id": "s16",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya sesini alçaltıp Herr Wimmer'in odasına bakıyor.",
+    "de": "Ich glaube, am Donnerstag kommt Herr Wimmer auch im Kostüm.",
+    "tr": "Bence perşembe Herr Wimmer de kostümle gelecek."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s15",
+     "s16"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu sahnede ne oluyor?",
+     "opts": [
+      "Ofiste perşembe Faşing kutlanacak, herkes bunu konuşuyor",
+      "Herr Wimmer'in doğum günü kutlanıyor",
+      "Tobi hasta, eve gidiyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Toplantı kaçta başlıyor?",
+      "opts": [
+       "onda",
+       "dokuzda",
+       "sekizde"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s9"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Herr Wimmer perşembe için ne diyor?",
+      "opts": [
+       "Perşembe çok işleri var",
+       "Perşembe ofise gelmeyecek",
+       "Perşembe Krapfen alacak"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s7"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi yorgun olunca ne yapıyor?",
+      "opts": [
+       "Eve gidiyor",
+       "Çok kahve içiyor",
+       "Dinleniyor"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s13"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s9",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "neun",
+       "zehn",
+       "acht"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s7",
+      "seviye": "orta",
+      "de": "Am Donnerstag haben wir viel ___.",
+      "accepted": [
+       "Arbeit",
+       "arbeit",
+       "Arbeit."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s13",
+      "seviye": "zor",
+      "banka": [
+       "Ich",
+       "trinke",
+       "viel",
+       "Kaffee",
+       "wenn",
+       "ich",
+       "müde",
+       "bin",
+       "wann",
+       "habe"
+      ],
+      "accepted": [
+       "Ich trinke viel Kaffee, wenn ich müde bin.",
+       "ich trinke viel kaffee wenn ich müde bin",
+       "Ich trinke viel Kaffee wenn ich müde bin"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s14",
+      "seviye": "usta",
+      "accepted": [
+       "Und am Wochenende musst du dich ausruhen.",
+       "und am wochenende musst du dich ausruhen",
+       "Und am Wochenende musst du dich ausruhen"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Sahnede ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Am Donnerstag feiern sie Fasching im Büro. Tobi ist sehr müde.",
+      "zorunlu": [
+       "Donnerstag",
+       "müde"
+      ]
+     }
+    ],
+    "golge": [
+     "s13",
+     "s11"
+    ],
+    "cevapla": {
+     "id": "m1:71:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Derya Faşing'le ilgilenip ilgilenmediğini soruyor. Biraz ilgileniyorsun.",
+     "prompt_de": "Interessierst du dich für Fasching?",
+     "accepted": [
+      "Ja, ich interessiere mich ein bisschen für Fasching.",
+      "Ja, ein bisschen.",
+      "Ein bisschen, ja.",
+      "Ja, ich interessiere mich für Fasching.",
+      "Ja, ein bisschen. Ich bin neu hier.",
+      "Ja, ich interessiere mich ein bisschen dafür."
+     ],
+     "why_tr": "**sich interessieren** yanında hep **für** gelir: **Ich interessiere mich für Fasching.**"
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:71:a1",
+   "tur": "radyo",
+   "title_tr": "Sabah radyosu: Faşing haftası",
+   "ortam_tr": "Sabah kahvaltıda yerel radyo açık. Sunucu bu haftanın programını anlatıyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Morgen, Wendlfing! Es ist sieben Uhr.",
+     "tr": "Günaydın Wendlfing! Saat yedi."
+    },
+    {
+     "id": "c2",
+     "de": "Diese Woche ist Fasching in Wendlfing.",
+     "tr": "Bu hafta Wendlfing'de Faşing var."
+    },
+    {
+     "id": "c3",
+     "de": "Am Donnerstag feiern die Kinder in der Schule.",
+     "tr": "Perşembe günü çocuklar okulda kutlama yapıyor."
+    },
+    {
+     "id": "c4",
+     "de": "Am Sonntag um zwei Uhr kommt der Faschingszug auf den Stadtplatz.",
+     "tr": "Pazar saat ikide Faşing alayı meydana geliyor."
+    },
+    {
+     "id": "c5",
+     "de": "Am Sonntag ist es sehr kalt.",
+     "tr": "Pazar günü hava çok soğuk."
+    },
+    {
+     "id": "c6",
+     "de": "Bleiben Sie zu Hause, wenn Sie krank sind.",
+     "tr": "Hastaysanız evde kalın."
+    },
+    {
+     "id": "c7",
+     "de": "Und jetzt: Musik!",
+     "tr": "Ve şimdi: müzik!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne anlatıyor?",
+      "opts": [
+       "Bu haftanın şehir programını ve havayı",
+       "Yeni açılan bir kafeyi",
+       "Yol çalışmalarını"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Perşembe günü kim kutlama yapıyor?",
+       "opts": [
+        "Belediye",
+        "Okuldaki çocuklar",
+        "Fırınlar"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Hasta olan ne yapmalı?",
+       "opts": [
+        "Meydana gitmeli",
+        "Evde kalmalı",
+        "Doktoru aramalı"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c6"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "zwei",
+        "drei",
+        "sechs"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Am Donnerstag feiern die ___ in der Schule.",
+       "accepted": [
+        "Kinder",
+        "kinder",
+        "Kinder."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Am",
+        "Sonntag",
+        "ist",
+        "es",
+        "sehr",
+        "kalt",
+        "warm",
+        "Samstag"
+       ],
+       "accepted": [
+        "Am Sonntag ist es sehr kalt.",
+        "am sonntag ist es sehr kalt",
+        "Am Sonntag ist es sehr kalt"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c6",
+       "seviye": "usta",
+       "accepted": [
+        "Bleiben Sie zu Hause, wenn Sie krank sind.",
+        "bleiben sie zu hause wenn sie krank sind",
+        "Bleiben Sie zu Hause wenn Sie krank sind"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyoda ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Am Donnerstag feiern die Kinder. Am Sonntag ist es kalt.",
+       "zorunlu": [
+        "Kinder",
+        "kalt"
+       ]
+      }
+     ],
+     "golge": [
+      "c6",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:71:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi pazar günü alaya gelip gelmeyeceğini soruyor. Çok soğuk değilse gelirsin.",
+      "prompt_de": "Kommst du am Sonntag zum Faschingszug?",
+      "accepted": [
+       "Ja, wenn es nicht zu kalt ist.",
+       "Ja, ich komme, wenn es nicht zu kalt ist.",
+       "Ja, wenn es nicht so kalt ist.",
+       "Ich komme, wenn es nicht zu kalt ist.",
+       "Vielleicht, wenn es nicht zu kalt ist.",
+       "Ja, gern, wenn es nicht zu kalt ist."
+      ],
+      "why_tr": "**wenn** ile başlayan parçada **ist** en sona gider: **wenn es nicht zu kalt ist**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:71:a1:e1",
+    "k": "pick",
+    "q_tr": "Faşing alayını görmek istiyorsun. Ne yapmalısın?",
+    "opts": [
+     "Pazar saat ikide meydana git, sıkı giyin.",
+     "Perşembe sabahı ilkokula git.",
+     "Cumartesi akşamı fırına git."
+    ],
+    "ans": 0,
+    "why_tr": "Alay pazar saat ikide meydana geliyor. O gün hava çok soğuk.",
+    "kanit": [
+     "c4",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:71:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Ioana'dan sesli mesaj",
+   "ortam_tr": "İş çıkışı telefonuna bakıyorsun. Kurstan arkadaşın Ioana bir mesaj bırakmış.",
+   "speaker": "ch:popescu",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Ioana!",
+     "tr": "Merhaba, ben Ioana!"
+    },
+    {
+     "id": "c2",
+     "de": "Ich bin schon im Café am Stadtplatz. Wo bist du?",
+     "tr": "Ben şimdiden meydandaki kafedeyim. Neredesin?"
+    },
+    {
+     "id": "c3",
+     "de": "Ich habe das Formular für den Kurs im März.",
+     "tr": "Mart ayındaki kursun formu bende."
+    },
+    {
+     "id": "c4",
+     "de": "Ich melde mich heute an. Du auch?",
+     "tr": "Ben bugün kaydoluyorum. Sen de?"
+    },
+    {
+     "id": "c5",
+     "de": "Ruf mich an, wenn du mit der Arbeit fertig bist.",
+     "tr": "İşin bitince beni ara."
+    },
+    {
+     "id": "c6",
+     "de": "Bis gleich!",
+     "tr": "Birazdan görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Ioana neden arıyor?",
+      "opts": [
+       "Bugün gelemiyor",
+       "Kafede seni bekliyor",
+       "Kurs iptal oldu"
+      ],
+      "ans": 1,
+      "kanit": [
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Ioana'nın yanında ne var?",
+       "opts": [
+        "Mart ayındaki kursun formu",
+        "Bir kitap",
+        "Krapfen"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ioana ne zaman aramanı istiyor?",
+       "opts": [
+        "Yarın sabah",
+        "İşin bitince",
+        "Hemen şimdi"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "schon",
+        "noch",
+        "nicht"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Ich habe das Formular für den Kurs im ___.",
+       "accepted": [
+        "März",
+        "märz",
+        "März."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Ich",
+        "melde",
+        "mich",
+        "heute",
+        "an",
+        "Du",
+        "auch",
+        "mir",
+        "morgen"
+       ],
+       "accepted": [
+        "Ich melde mich heute an. Du auch?",
+        "ich melde mich heute an du auch",
+        "Ich melde mich heute an, du auch?"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Ruf mich an, wenn du mit der Arbeit fertig bist.",
+        "ruf mich an wenn du mit der arbeit fertig bist",
+        "Ruf mich an wenn du mit der Arbeit fertig bist"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Ioana'nın mesajını Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Ioana wartet im Café auf mich. Sie hat das Formular für den Kurs.",
+       "zorunlu": [
+        "wartet",
+        "Kurs"
+       ]
+      }
+     ],
+     "golge": [
+      "c5",
+      "c2"
+     ],
+     "cevapla": {
+      "id": "m1:71:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana'ya cevap ver. İşin bitince kafeye geliyorsun.",
+      "prompt_de": "Kommst du ins Café?",
+      "accepted": [
+       "Ja, ich komme, wenn ich mit der Arbeit fertig bin.",
+       "Ja, wenn ich mit der Arbeit fertig bin.",
+       "Ja, ich komme, wenn die Arbeit fertig ist.",
+       "Ja, klar. Ich komme, wenn ich fertig bin.",
+       "Ja, ich komme gleich, wenn ich mit der Arbeit fertig bin.",
+       "Ja, wenn ich fertig bin, komme ich."
+      ],
+      "why_tr": "**wenn** parçasında **bin** en sonda: **wenn ich mit der Arbeit fertig bin**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:71:a2:e1",
+    "k": "pick",
+    "q_tr": "Ne yapmalısın?",
+    "opts": [
+     "Ioana'yı yarın ara.",
+     "İşin bitince Ioana'yı ara ve meydandaki kafeye git.",
+     "Kursa tek başına kaydol."
+    ],
+    "ans": 1,
+    "why_tr": "Ioana meydandaki kafede. İşin bitince onu aramanı istiyor.",
+    "kanit": [
+     "c2",
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:71:g1",
+   "de": "Grundschule",
+   "dogru_img": "small children with school bags in front of a primary school",
+   "celdirici_img": [
+    "university lecture hall",
+    "office building",
+    "supermarket entrance"
+   ]
+  },
+  {
+   "id": "m1:71:g2",
+   "de": "Er wartet auf den Bus.",
+   "dogru_img": "man waiting at a bus stop looking at his watch",
+   "celdirici_img": [
+    "man driving a car",
+    "man riding a bicycle",
+    "man sleeping on a sofa"
+   ]
+  },
+  {
+   "id": "m1:71:g3",
+   "de": "Sie ruht sich aus.",
+   "dogru_img": "woman resting on a sofa with her eyes closed",
+   "celdirici_img": [
+    "woman jogging in a park",
+    "woman cooking in a kitchen",
+    "woman working at a desk"
+   ]
+  },
+  {
+   "id": "m1:71:g4",
+   "de": "Er bewegt sich viel.",
+   "dogru_img": "man jogging in a park",
+   "celdirici_img": [
+    "man watching TV on a sofa",
+    "man reading a newspaper",
+    "man sleeping in bed"
+   ]
+  },
+  {
+   "id": "m1:71:g5",
+   "de": "Sie fühlt sich nicht gut.",
+   "dogru_img": "sick woman in bed with a thermometer",
+   "celdirici_img": [
+    "woman laughing with friends",
+    "woman dancing at a party",
+    "woman eating cake"
+   ]
+  },
+  {
+   "id": "m1:71:g6",
+   "de": "eine Tasse Kaffee",
+   "dogru_img": "cup of coffee on a cafe table",
+   "celdirici_img": [
+    "glass of water",
+    "glass of milk",
+    "bottle of juice"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:71:p1",
+  "title_tr": "Kafede Ioana ile",
+  "durum_tr": "Akşam, meydandaki kafe. Ioana seni bekliyordu. Yorgunsun. Ioana yeni kursu ve Faşing'i soracak.",
+  "karsi": "ch:popescu",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Da bist du ja! Na, wie fühlst du dich nach der Arbeit?",
+    "tr": "İşte geldin! Eee, işten sonra kendini nasıl hissediyorsun?",
+    "secenekler": [
+     {
+      "de": "Ganz gut, aber ich fühle mich ein bisschen müde.",
+      "tr": "Fena değil ama kendimi biraz yorgun hissediyorum.",
+      "accepted": [
+       "Ganz gut, aber ich fühle mich ein bisschen müde.",
+       "Ganz gut, aber ich bin ein bisschen müde.",
+       "Gut, aber ich fühle mich ein bisschen müde.",
+       "Ganz gut, aber ich fühle mich etwas müde."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **Ich fühle mich müde** ile nasıl hissettiğini söyledin."
+     },
+     {
+      "de": "Nicht so gut. Ich muss mich ausruhen.",
+      "tr": "Pek iyi değil. Dinlenmem lazım.",
+      "accepted": [
+       "Nicht so gut. Ich muss mich ausruhen.",
+       "Nicht so gut, ich muss mich ausruhen.",
+       "Nicht gut. Ich muss mich ausruhen.",
+       "Nicht so gut. Ich muss mich mal ausruhen."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. **mich** ile **ausruhen** birlikte: **Ich muss mich ausruhen.**"
+     },
+     {
+      "de": "Ich warte auf den Bus.",
+      "tr": "Otobüsü bekliyorum.",
+      "accepted": [
+       "Ich warte auf den Bus.",
+       "Ich warte auf den Bus, Ioana.",
+       "Ich warte noch auf den Bus."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Ioana nasıl hissettiğini soruyor. **Ich fühle mich gut** gibi cevap ver."
+     }
+    ]
+   },
+   {
+    "id": "n1b",
+    "de": "Auf den Bus? Nein, ich frage: Wie fühlst du dich?",
+    "tr": "Otobüsü mü? Hayır, şunu soruyorum: Kendini nasıl hissediyorsun?",
+    "secenekler": [
+     {
+      "de": "Ach so! Ich fühle mich gut, danke.",
+      "tr": "Haa! Kendimi iyi hissediyorum, sağ ol.",
+      "accepted": [
+       "Ach so! Ich fühle mich gut, danke.",
+       "Ach so, ich fühle mich gut, danke.",
+       "Ach so! Mir geht es gut, danke.",
+       "Ach so! Ich fühle mich gut."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Şimdi oldu. Soruyu anladığını **Ach so!** ile gösterdin."
+     },
+     {
+      "de": "Ich weiß nicht.",
+      "tr": "Bilmiyorum.",
+      "accepted": [
+       "Ich weiß nicht.",
+       "Weiß nicht.",
+       "Ich weiß es nicht."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Kısa bir cevap yeter: **Ich fühle mich gut** ya da **Ich fühle mich müde**."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Möchtest du einen Kaffee? Ich bestelle.",
+    "tr": "Kahve ister misin? Ben sipariş veriyorum.",
+    "secenekler": [
+     {
+      "de": "Ja, bitte. Einen Kaffee mit Milch.",
+      "tr": "Evet, lütfen. Sütlü bir kahve.",
+      "accepted": [
+       "Ja, bitte. Einen Kaffee mit Milch.",
+       "Ja, gern. Einen Kaffee mit Milch.",
+       "Ja, bitte, einen Kaffee mit Milch.",
+       "Ja, bitte. Einen Kaffee mit Milch, bitte."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve kibar. Kafede böyle sipariş verilir."
+     },
+     {
+      "de": "Nein, danke. Ich trinke keinen Kaffee, wenn es so spät ist.",
+      "tr": "Hayır, sağ ol. Bu kadar geç olunca kahve içmem.",
+      "accepted": [
+       "Nein, danke. Ich trinke keinen Kaffee, wenn es so spät ist.",
+       "Nein, danke. Ich trinke keinen Kaffee, wenn es spät ist.",
+       "Nein danke, ich trinke keinen Kaffee, wenn es so spät ist."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **wenn** parçasında **ist** en sonda: **wenn es so spät ist**."
+     },
+     {
+      "de": "Ja, weil ich bin müde.",
+      "tr": "Evet, çünkü yorgunum.",
+      "accepted": [
+       "Ja, weil ich bin müde.",
+       "Ja, weil ich bin so müde.",
+       "Weil ich bin müde."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "**weil** ile **bin** en sona gider: **weil ich müde bin**."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Ich trinke am Abend nie Kaffee. Und du? Wann trinkst du Kaffee?",
+    "tr": "Ben akşam hiç kahve içmem. Ya sen? Ne zaman kahve içersin?",
+    "secenekler": [
+     {
+      "de": "Am Morgen, oder wenn ich viel arbeite.",
+      "tr": "Sabah, bir de çok çalışınca.",
+      "accepted": [
+       "Am Morgen, oder wenn ich viel arbeite.",
+       "Am Morgen oder wenn ich viel arbeite.",
+       "Morgens, oder wenn ich viel arbeite.",
+       "Am Morgen, und wenn ich viel arbeite."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. Soru **wann** ile, cevap **wenn** ile."
+     },
+     {
+      "de": "Ich trinke Kaffee, wenn ich in der Pause müde bin.",
+      "tr": "Molada yorgun olunca kahve içerim.",
+      "accepted": [
+       "Ich trinke Kaffee, wenn ich in der Pause müde bin.",
+       "Ich trinke Kaffee, wenn ich in der Pause so müde bin.",
+       "Wenn ich in der Pause müde bin, trinke ich Kaffee."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **bin** en sonda duruyor."
+     },
+     {
+      "de": "Wann ich müde bin.",
+      "tr": "Yorgun olduğumda.",
+      "accepted": [
+       "Wann ich müde bin.",
+       "Wann ich müde bin, trinke ich Kaffee.",
+       "Wann ich sehr müde bin."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "**wann** soru kelimesidir. Cevapta **wenn** kullan: **Wenn ich müde bin.**"
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Hier ist das Formular für den Kurs im März. Meldest du dich auch an?",
+    "tr": "İşte mart ayındaki kursun formu. Sen de kaydoluyor musun?",
+    "secenekler": [
+     {
+      "de": "Ja, wenn der Kurs nicht zu spät ist.",
+      "tr": "Evet, kurs çok geç değilse.",
+      "accepted": [
+       "Ja, wenn der Kurs nicht zu spät ist.",
+       "Ja, wenn der Kurs nicht so spät ist.",
+       "Ja, ich melde mich an, wenn der Kurs nicht zu spät ist."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel bir koşul. **ist** en sonda."
+     },
+     {
+      "de": "Vielleicht. Wann fängt der Kurs an?",
+      "tr": "Belki. Kurs ne zaman başlıyor?",
+      "accepted": [
+       "Vielleicht. Wann fängt der Kurs an?",
+       "Vielleicht. Wann beginnt der Kurs?",
+       "Vielleicht. Um wie viel Uhr fängt der Kurs an?"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Karar vermeden önce saati sordun."
+     },
+     {
+      "de": "Ja, wenn der Kurs ist am Abend.",
+      "tr": "Evet, kurs akşamsa.",
+      "accepted": [
+       "Ja, wenn der Kurs ist am Abend.",
+       "Wenn der Kurs ist am Abend.",
+       "Ja, wenn ist der Kurs am Abend."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "**wenn** parçasında **ist** en sona gider: **wenn der Kurs am Abend ist**."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Am Montag und am Mittwoch, um sieben. Und am Sonntag ist der Faschingszug. Interessierst du dich für Fasching?",
+    "tr": "Pazartesi ve çarşamba, saat yedide. Bir de pazar günü Faşing alayı var. Faşing'le ilgilenir misin?",
+    "secenekler": [
+     {
+      "de": "Ja, sehr! Im Büro feiern wir am Donnerstag.",
+      "tr": "Evet, çok! Ofiste perşembe kutluyoruz.",
+      "accepted": [
+       "Ja, sehr! Im Büro feiern wir am Donnerstag.",
+       "Ja, sehr. Wir feiern am Donnerstag im Büro.",
+       "Ja, sehr! Am Donnerstag feiern wir im Büro."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Süper. Soruya cevap verdin, bir de kendi haberini ekledin."
+     },
+     {
+      "de": "Ein bisschen. Aber ich gehe nur, wenn das Wetter gut ist.",
+      "tr": "Biraz. Ama ancak hava güzelse giderim.",
+      "accepted": [
+       "Ein bisschen. Aber ich gehe nur, wenn das Wetter gut ist.",
+       "Ein bisschen. Ich gehe nur, wenn das Wetter gut ist.",
+       "Ein bisschen. Aber ich gehe nur, wenn das Wetter schön ist."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **wenn** ile koşulunu söyledin."
+     },
+     {
+      "de": "Ich interessiere mich auf Fasching.",
+      "tr": "Faşing'e ilgileniyorum.",
+      "accepted": [
+       "Ich interessiere mich auf Fasching.",
+       "Ich interessiere mich an Fasching.",
+       "Ich interessiere mich auf den Fasching."
+      ],
+      "sonraki": "n5",
+      "uygun": false,
+      "geri_bildirim_tr": "**sich interessieren** yanında **für** gelir: **Ich interessiere mich für Fasching.**"
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Super! Dann bis Montag im Kurs. Und ruh dich am Wochenende aus!",
+    "tr": "Süper! O zaman pazartesi kursta görüşürüz. Hafta sonu da dinlen!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Kendini nasıl hissettiğini söyledin. Ne zaman kahve içtiğini wenn ile anlattın. Kursa hangi koşulla kaydolacağını da söyledin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Derya'dan ekibe mesaj",
+  "metin_de": "Hallo zusammen! Am Donnerstag ist bei uns im Büro Fasching. Wir treffen uns um zehn Uhr in der Kantine. Kommt im Kostüm, wenn ihr wollt. Ich kaufe Krapfen für alle. Bitte schreibt mir bis Mittwoch, wenn ihr nicht kommt. Herr Wimmer kommt auch, aber ohne Kostüm. Liebe Grüße, Derya",
+  "metin_tr": "Herkese merhaba! Perşembe günü ofisimizde Faşing var. Saat onda kantinde buluşuyoruz. İsterseniz kostümle gelin. Herkese Krapfen alıyorum. Gelmeyecekseniz lütfen çarşambaya kadar bana yazın. Herr Wimmer de geliyor ama kostümsüz. Sevgiler, Derya",
+  "sorular": [
+   {
+    "id": "m1:71:o1",
+    "kind": "gist",
+    "q_tr": "Derya neden yazıyor?",
+    "opts": [
+     "Ofisteki Faşing kutlaması için",
+     "Toplantı iptal oldu",
+     "Tobi hasta"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:71:o2",
+    "kind": "detail",
+    "q_tr": "Kutlama saat kaçta ve nerede?",
+    "opts": [
+     "Saat ikide, meydanda",
+     "Saat onda, kantinde",
+     "Akşam, fırında"
+    ],
+    "ans": 1,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:71:o3",
+    "kind": "detail",
+    "q_tr": "Kostüm zorunlu mu?",
+    "opts": [
+     "Evet, herkes kostüm giyiyor",
+     "Hayır, isteyen kostümle geliyor",
+     "Kostüm yasak"
+    ],
+    "ans": 1,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:71:o4",
+    "kind": "detail",
+    "q_tr": "Gelemeyecek olan ne yapmalı?",
+    "opts": [
+     "Herr Wimmer'i aramalı",
+     "Krapfen almalı",
+     "Çarşambaya kadar Derya'ya yazmalı"
+    ],
+    "ans": 2,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:71:o5",
+    "k": "guided_response",
+    "situation_tr": "Derya'ya kısa cevap ver: perşembe geliyorsun.",
+    "prompt_de": "Kommst du am Donnerstag?",
+    "accepted": [
+     "Ja, ich komme am Donnerstag.",
+     "Ja, am Donnerstag komme ich.",
+     "Ja, klar! Ich komme am Donnerstag.",
+     "Ja, ich komme.",
+     "Ja, natürlich komme ich am Donnerstag.",
+     "Ja, ich bin am Donnerstag da."
+    ],
+    "why_tr": "Gün adının önüne **am** gelir: **am Donnerstag**."
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Derya'ya iki cümlelik bir cevap yaz. Perşembe geldiğini söyle. Sonra wenn ile bir koşul ekle.",
+   "ornek_de": "Hallo Derya, ich komme am Donnerstag gern. Ich kaufe Milch für den Kaffee, wenn ich Zeit habe.",
+   "zorunlu": [
+    "Donnerstag",
+    "wenn"
+   ],
+   "accepted_kaliplar": [
+    "Hallo Derya, ich komme am ___.",
+    "Ich ___, wenn ich ___."
+   ],
+   "kontrol_tr": [
+    "Perşembe geldiğini yazdın mı?",
+    "wenn parçasında habe ya da bin gibi kelime en sonda mı?",
+    "Derya'ya selam verdin mi?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:71:s",
+  "maddeler": [
+   {
+    "id": "m1:71:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Ich trinke einen Kaffee, wenn ich am Morgen müde bin.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich trinke einen Kaffee, wenn ich am Morgen müde bin.",
+     "ich trinke einen kaffee wenn ich am morgen müde bin",
+     "Ich trinke einen Kaffee wenn ich am Morgen müde bin"
+    ],
+    "why_tr": "**wenn** parçasında **bin** en sonda."
+   },
+   {
+    "id": "m1:71:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Die Grundschule feiert am Donnerstag Fasching.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Grundschule feiert am Donnerstag Fasching.",
+     "die grundschule feiert am donnerstag fasching",
+     "Die Grundschule feiert am Donnerstag Fasching"
+    ],
+    "why_tr": "**Grundschule** ilkokul demektir."
+   },
+   {
+    "id": "m1:71:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Wir warten schon lange auf den Bus.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir warten schon lange auf den Bus.",
+     "wir warten schon lange auf den bus",
+     "Wir warten schon lange auf den Bus"
+    ],
+    "why_tr": "**warten** yanında **auf** gelir: **auf den Bus warten**."
+   },
+   {
+    "id": "m1:71:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Er ruht sich am Sonntag zu Hause aus.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Er ruht sich am Sonntag zu Hause aus.",
+     "er ruht sich am sonntag zu hause aus",
+     "Er ruht sich am Sonntag zu Hause aus"
+    ],
+    "why_tr": "**aus** cümlenin en sonuna gider."
+   },
+   {
+    "id": "m1:71:s5",
+    "k": "tr_de",
+    "tr": "Bugün kendimi çok iyi hissediyorum.",
+    "accepted": [
+     "Ich fühle mich heute sehr gut.",
+     "Heute fühle ich mich sehr gut.",
+     "Ich fühle mich heute richtig gut.",
+     "Ich fühle mich sehr gut heute."
+    ],
+    "why_tr": "Kendini nasıl hissettiğini böyle söylersin: **Ich fühle mich gut.**"
+   },
+   {
+    "id": "m1:71:s6",
+    "k": "tr_de",
+    "tr": "Hava sıcak olunca çok su içerim.",
+    "accepted": [
+     "Ich trinke viel Wasser, wenn es heiß ist.",
+     "Wenn es heiß ist, trinke ich viel Wasser.",
+     "Ich trinke viel Wasser, wenn es warm ist.",
+     "Ich trinke immer viel Wasser, wenn es heiß ist."
+    ],
+    "why_tr": "**wenn** parçasında **ist** en sonda: **wenn es heiß ist**."
+   },
+   {
+    "id": "m1:71:s7",
+    "k": "tr_de",
+    "tr": "Kurs ucuzsa kaydolurum.",
+    "accepted": [
+     "Ich melde mich an, wenn der Kurs billig ist.",
+     "Wenn der Kurs billig ist, melde ich mich an.",
+     "Ich melde mich für den Kurs an, wenn er billig ist.",
+     "Ich melde mich an, wenn der Kurs nicht teuer ist."
+    ],
+    "why_tr": "**an** kendi parçasının sonunda, **ist** wenn parçasının sonunda."
+   },
+   {
+    "id": "m1:71:s8",
+    "k": "tr_de",
+    "tr": "Az hareket edince sırtım ağrıyor.",
+    "accepted": [
+     "Mein Rücken tut weh, wenn ich mich wenig bewege.",
+     "Wenn ich mich wenig bewege, tut mein Rücken weh.",
+     "Mir tut der Rücken weh, wenn ich mich wenig bewege.",
+     "Mein Rücken tut weh, wenn ich mich zu wenig bewege."
+    ],
+    "why_tr": "**wenn** parçasında **bewege** en sona gider."
+   },
+   {
+    "id": "m1:71:s9",
+    "k": "guided_response",
+    "situation_tr": "Tobi molada soruyor. Biraz yorgunsun.",
+    "prompt_de": "Wie fühlst du dich heute?",
+    "accepted": [
+     "Ich fühle mich heute etwas müde.",
+     "Ich fühle mich ein bisschen müde.",
+     "Etwas müde.",
+     "Ich bin heute ein bisschen müde.",
+     "Ein bisschen müde.",
+     "Ich fühle mich etwas müde."
+    ],
+    "why_tr": "**sich fühlen** ile: **Ich fühle mich müde.**"
+   },
+   {
+    "id": "m1:71:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Wann trinkst du Kaffee?",
+    "speed": "normal",
+    "situation_tr": "Yorgun olunca kahve içiyorsun. Cevap ver.",
+    "accepted": [
+     "Wenn ich müde bin.",
+     "Ich trinke Kaffee, wenn ich müde bin.",
+     "Nur wenn ich müde bin.",
+     "Immer wenn ich müde bin.",
+     "Wenn ich sehr müde bin.",
+     "Ich trinke nur Kaffee, wenn ich müde bin."
+    ],
+    "why_tr": "**wann** sorusuna **wenn** ile cevap verirsin. **bin** en sonda."
+   },
+   {
+    "id": "m1:71:s11",
+    "k": "guided_response",
+    "situation_tr": "Kafedesin. Ioana kursa kaydolup kaydolmadığını soruyor. Kurs akşamsa kaydolursun. Bunu söyle ve kursun ne zaman başladığını sor.",
+    "prompt_de": "Meldest du dich auch für den Kurs an?",
+    "accepted": [
+     "Ja, ich melde mich an, wenn der Kurs am Abend ist. Wann fängt er an?",
+     "Ja, wenn der Kurs am Abend ist. Wann fängt er an?",
+     "Ich melde mich an, wenn der Kurs am Abend ist. Wann beginnt er?",
+     "Ja, wenn er am Abend ist. Wann fängt der Kurs an?",
+     "Vielleicht, wenn der Kurs am Abend ist. Wann fängt er an?",
+     "Ja, ich melde mich an, wenn er am Abend ist. Wann fängt der Kurs an?"
+    ],
+    "why_tr": "Önce koşulu söyle: **wenn der Kurs am Abend ist**. Sonra **Wann fängt er an?** diye sor."
+   }
+  ],
+  "sesli": [
+   "m1:71:s9",
+   "m1:71:s10"
+  ],
+  "dikte": [
+   "m1:71:s1",
+   "m1:71:s2",
+   "m1:71:s3",
+   "m1:71:s4"
+  ]
+ }
+}

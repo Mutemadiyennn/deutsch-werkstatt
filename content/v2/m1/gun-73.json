@@ -1,0 +1,1385 @@
+{
+ "schema": 1,
+ "id": "m1:gun:73",
+ "day": 73,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "İsmi tekrarlamamak: einer, keiner, welche",
+ "goal_tr": "Fırında ve mağazada bir şeyin kalıp kalmadığını sorarsın. İsmi tekrar etmeden cevap verirsin. Fişle değişim istersin.",
+ "can_do": {
+  "id": "cd:m1:73",
+  "tr": "Bir ürünü fişle değiştirmek ister, 'bir tane var mı, hiç kalmadı mı' diye sorarım."
+ },
+ "unit": "u:a2:hizmet-1",
+ "arm": "pazar",
+ "place": "pl:marktplatz",
+ "characters": [
+  "ch:lechner",
+  "ch:stadler",
+  "ch:aksoy"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic9/dilbilimci-h11.md; dilbilimci ONAY. okur (OD-9) bekliyor."
+ },
+ "dersler": [
+  "gr:a2-03:t3"
+ ],
+ "yeni_kartlar": [
+  "lx:Kassenbon",
+  "lx:umtauschen",
+  "lx:eigentlich",
+  "lx:Typ",
+  "lx:Plan"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:73:h1",
+   "title_tr": "Mağazada değişim ve fırında 'var mı?'",
+   "kartlar": [
+    "lx:Kassenbon",
+    "lx:umtauschen",
+    "lx:eigentlich",
+    "lx:Typ",
+    "lx:Plan"
+   ],
+   "kaliplar": [
+    {
+     "de": "Haben Sie noch …? – Ja, da sind noch welche. – Nein, leider keine mehr.",
+     "tr": "Hâlâ … var mı? – Evet, daha var. – Hayır, maalesef hiç kalmadı."
+    },
+    {
+     "de": "Ich tausche … um.",
+     "tr": "…ı değiştiriyorum."
+    },
+    {
+     "de": "Er ist ein netter Typ.",
+     "tr": "O iyi bir adam."
+    },
+    {
+     "de": "Ich habe kein Kostüm. – Ich habe auch keins.",
+     "tr": "Kostümüm yok. – Benim de yok."
+    },
+    {
+     "de": "Was ist eigentlich der Plan?",
+     "tr": "Plan ne bu arada?"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Kassenbon",
+     "de": "Einen Kassenbon? Nein danke, ich brauche keinen.",
+     "tr": "Fiş mi? Hayır, sağ olun, istemiyorum.",
+     "accepted": [
+      "Einen Kassenbon? Nein danke, ich brauche keinen.",
+      "Einen Kassenbon? Nein, danke, ich brauche keinen.",
+      "Nein danke, ich brauche keinen Kassenbon."
+     ]
+    },
+    {
+     "kart": "lx:Kassenbon",
+     "de": "Ich habe keinen Kassenbon mehr. Hast du einen?",
+     "tr": "Bende fiş kalmadı. Sende var mı?",
+     "accepted": [
+      "Ich habe keinen Kassenbon mehr. Hast du einen?",
+      "Ich habe keinen Kassenbon mehr. Hast du noch einen?",
+      "Ich habe den Kassenbon nicht mehr. Hast du einen?"
+     ]
+    },
+    {
+     "kart": "lx:umtauschen",
+     "de": "Wenn die Jacke zu groß ist, möchte ich sie umtauschen.",
+     "tr": "Ceket büyük gelirse onu değiştirmek isterim.",
+     "accepted": [
+      "Wenn die Jacke zu groß ist, möchte ich sie umtauschen.",
+      "Wenn die Jacke zu groß ist, will ich sie umtauschen.",
+      "Wenn die Jacke zu groß ist, möchte ich sie gern umtauschen."
+     ]
+    },
+    {
+     "kart": "lx:umtauschen",
+     "de": "Ich möchte den Pullover umtauschen. Haben Sie noch einen?",
+     "tr": "Kazağı değiştirmek istiyorum. Bir tane daha var mı?",
+     "accepted": [
+      "Ich möchte den Pullover umtauschen. Haben Sie noch einen?",
+      "Ich möchte den Pullover umtauschen. Haben Sie noch einen da?",
+      "Ich möchte diesen Pullover umtauschen. Haben Sie noch einen?"
+     ]
+    },
+    {
+     "kart": "lx:eigentlich",
+     "de": "Eigentlich brauche ich keinen Pullover. Ich habe schon einen.",
+     "tr": "Aslında kazağa ihtiyacım yok. Zaten bir tane var.",
+     "accepted": [
+      "Eigentlich brauche ich keinen Pullover. Ich habe schon einen.",
+      "Eigentlich brauche ich keinen Pullover, ich habe schon einen.",
+      "Ich brauche eigentlich keinen Pullover. Ich habe schon einen."
+     ]
+    },
+    {
+     "kart": "lx:eigentlich",
+     "de": "Wenn ich müde bin, gehe ich eigentlich früh ins Bett.",
+     "tr": "Yorgun olunca aslında erken yatarım.",
+     "accepted": [
+      "Wenn ich müde bin, gehe ich eigentlich früh ins Bett.",
+      "Wenn ich müde bin, gehe ich eigentlich immer früh ins Bett.",
+      "Eigentlich gehe ich früh ins Bett, wenn ich müde bin."
+     ]
+    },
+    {
+     "kart": "lx:Typ",
+     "de": "Herr Wimmer ist eigentlich ein netter Typ.",
+     "tr": "Herr Wimmer aslında iyi bir adam.",
+     "accepted": [
+      "Herr Wimmer ist eigentlich ein netter Typ.",
+      "Eigentlich ist Herr Wimmer ein netter Typ.",
+      "Herr Wimmer ist eigentlich ein lustiger Typ."
+     ]
+    },
+    {
+     "kart": "lx:Typ",
+     "de": "Da ist ein Typ im Kostüm. – Wo? Ich sehe keinen.",
+     "tr": "Şurada kostümlü bir adam var. – Nerede? Ben kimseyi görmüyorum.",
+     "accepted": [
+      "Da ist ein Typ im Kostüm. – Wo? Ich sehe keinen.",
+      "Da ist ein Typ im Kostüm. – Wo denn? Ich sehe keinen.",
+      "Da ist ein Typ im Kostüm! – Wo? Ich sehe keinen."
+     ]
+    },
+    {
+     "kart": "lx:Plan",
+     "de": "Einen Plan für morgen? Nein, ich habe keinen.",
+     "tr": "Yarın için bir plan mı? Hayır, yok.",
+     "accepted": [
+      "Einen Plan für morgen? Nein, ich habe keinen.",
+      "Einen Plan für morgen? Nein, ich habe noch keinen.",
+      "Nein, ich habe keinen Plan für morgen."
+     ]
+    },
+    {
+     "kart": "lx:Plan",
+     "de": "Wenn du keinen Plan hast, kannst du mit uns kommen.",
+     "tr": "Bir planın yoksa bizimle gelebilirsin.",
+     "accepted": [
+      "Wenn du keinen Plan hast, kannst du mit uns kommen.",
+      "Wenn du noch keinen Plan hast, kannst du mit uns kommen.",
+      "Wenn du keinen Plan hast, dann kannst du mit uns kommen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Meydandaki giyim mağazası. Dün aldığın kazak küçük geldi. Elinde poşet ve fiş var.",
+    "satirlar": [
+     {
+      "r": "Verkäuferin",
+      "de": "Guten Tag! Kann ich Ihnen helfen?",
+      "tr": "İyi günler! Yardımcı olabilir miyim?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, ich möchte den Pullover umtauschen. Er ist zu klein.",
+      "tr": "Evet, kazağı değiştirmek istiyorum. Küçük geldi."
+     },
+     {
+      "r": "Verkäuferin",
+      "de": "Haben Sie den Kassenbon?",
+      "tr": "Fişiniz var mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, hier. Haben Sie noch einen in L?",
+      "tr": "Evet, buyurun. L bedeninden bir tane daha var mı?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Kazağı neden değiştirmek istiyorsun?",
+     "opts": [
+      "Küçük geldi",
+      "Rengini sevmedin",
+      "Çok pahalıydı"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:73:v1",
+  "title_tr": "Fırında: Krapfen kalmadı",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Çarşamba akşamüstü, Stadler fırını. Tobi ile içeri giriyorsunuz.",
+    "de": "Grüß Gott! Was darf's sein?",
+    "tr": "Merhaba! Ne alırsınız?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi vitrine bakıyor.",
+    "de": "Grüß Gott, Frau Stadler! Haben Sie noch Krapfen?",
+    "tr": "Merhaba Frau Stadler! Hâlâ Krapfen var mı?"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Gerti boş tepsiyi gösteriyor.",
+    "de": "Krapfen? Heute leider keine mehr. Morgen früh gibt es wieder welche.",
+    "tr": "Krapfen mi? Bugün maalesef hiç kalmadı. Yarın sabah yine olacak."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi omuz silkiyor.",
+    "de": "Ach nein! Und Semmeln? Haben Sie noch welche?",
+    "tr": "Hay aksi! Ya Semmel? Hâlâ var mı?"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Gerti sepete bakıyor.",
+    "de": "Ja, da sind noch welche. Wie viele?",
+    "tr": "Evet, daha var. Kaç tane?"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi parmaklarıyla gösteriyor.",
+    "de": "Vier, bitte. Und ein Brot.",
+    "tr": "Dört, lütfen. Bir de ekmek."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Gerti raftaki son ekmeği alıyor.",
+    "de": "Brot habe ich nur noch eins. Hier, bitte.",
+    "tr": "Ekmekten sadece bir tane kaldı. Buyurun."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Gerti kasaya yazıyor.",
+    "de": "Das macht fünf Euro zehn. Brauchen Sie den Kassenbon?",
+    "tr": "Beş avro on sent ediyor. Fişi istiyor musunuz?"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi parayı uzatıyor.",
+    "de": "Nein, danke, den brauche ich nicht.",
+    "tr": "Hayır, sağ olun, ona ihtiyacım yok."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Dışarı çıkarken Tobi sana dönüyor.",
+    "de": "Und du? Was ist eigentlich dein Plan für morgen?",
+    "tr": "Ya sen? Yarın için planın ne bu arada?"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi gözlerini kocaman açıyor.",
+    "de": "Hast du ein Kostüm? Ich habe eins!",
+    "tr": "Kostümün var mı? Benim var!"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi gülüyor.",
+    "de": "Herr Wimmer hat sicher keins.",
+    "tr": "Herr Wimmer'in kesin yoktur."
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Gerti kapıdan sesleniyor, gülümsüyor.",
+    "de": "Herr Wimmer? Der ist eigentlich ein lustiger Typ!",
+    "tr": "Herr Wimmer mi? O aslında komik bir adamdır!"
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi şaşırıyor.",
+    "de": "Herr Wimmer? Lustig? Das glaube ich nicht.",
+    "tr": "Herr Wimmer mi? Komik mi? Hiç sanmam."
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi poşeti sallıyor.",
+    "de": "Also, morgen um zehn in der Kantine!",
+    "tr": "Tamam, yarın saat onda kantinde!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s15"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu sahnede ne oluyor?",
+     "opts": [
+      "Tobi fırında alışveriş yapıyor ve yarını konuşuyor",
+      "Tobi fırında iş arıyor",
+      "Fırın kapanıyor"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s4",
+      "s15"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Tobi kaç Semmel alıyor?",
+      "opts": [
+       "İki",
+       "Dört",
+       "Altı"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s6"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Yarın saat kaçta kantinde buluşuyorlar?",
+      "opts": [
+       "Onda",
+       "Dokuzda",
+       "On ikide"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s15"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi ne kadar ödüyor?",
+      "opts": [
+       "On avro",
+       "Beş avro on sent",
+       "Üç avro"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s8"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s6",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "vier",
+       "fünf",
+       "acht"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s5",
+      "seviye": "orta",
+      "de": "Ja, da sind noch ___. Wie viele?",
+      "accepted": [
+       "welche",
+       "Welche",
+       "welche."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s7",
+      "seviye": "zor",
+      "banka": [
+       "Brot",
+       "habe",
+       "ich",
+       "nur",
+       "noch",
+       "eins",
+       "einen",
+       "Semmel"
+      ],
+      "accepted": [
+       "Brot habe ich nur noch eins.",
+       "brot habe ich nur noch eins",
+       "Brot habe ich nur noch eins"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s15",
+      "seviye": "usta",
+      "accepted": [
+       "Also, morgen um zehn in der Kantine!",
+       "also morgen um zehn in der kantine",
+       "Also morgen um zehn in der Kantine"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Sahnede ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Heute gibt es keine Krapfen mehr. Tobi kauft vier Semmeln.",
+      "zorunlu": [
+       "Krapfen",
+       "Semmeln"
+      ]
+     }
+    ],
+    "golge": [
+     "s3",
+     "s5"
+    ],
+    "cevapla": {
+     "id": "m1:73:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Ertesi sabah yine fırındasın. Gerti sana ekmek isteyip istemediğini soruyor. Evde hâlâ bir ekmeğin var. Kibarca hayır de.",
+     "prompt_de": "Möchten Sie auch ein Brot?",
+     "accepted": [
+      "Nein, danke. Ich habe noch eins.",
+      "Nein, danke, ich habe noch eins zu Hause.",
+      "Danke, ich habe noch eins.",
+      "Nein danke, zu Hause habe ich noch eins.",
+      "Nein, danke. Ich habe schon eins.",
+      "Nein, danke, ich habe noch eins."
+     ],
+     "why_tr": "**das Brot** yerine tek başına **eins** dersin: **Ich habe noch eins.**"
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:73:a1",
+   "tur": "bekleme-anonsu",
+   "title_tr": "Mağazanın telefon bekleme anonsu",
+   "ortam_tr": "Kazağı değiştirmeden önce mağazayı arıyorsun. Bir bant kaydı çalıyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, hier ist das Modehaus Vils.",
+     "tr": "İyi günler, burası Modehaus Vils."
+    },
+    {
+     "id": "c2",
+     "de": "Im Moment sprechen wir mit anderen Kunden.",
+     "tr": "Şu anda başka müşterilerle konuşuyoruz."
+    },
+    {
+     "id": "c3",
+     "de": "Bitte warten Sie. Es dauert nur fünf Minuten.",
+     "tr": "Lütfen bekleyin. Sadece beş dakika sürüyor."
+    },
+    {
+     "id": "c4",
+     "de": "Wenn Sie etwas umtauschen möchten, kommen Sie bitte mit dem Kassenbon zu uns.",
+     "tr": "Bir şey değiştirmek isterseniz lütfen fişle bize gelin."
+    },
+    {
+     "id": "c5",
+     "de": "Wir sind von Montag bis Samstag von neun bis neunzehn Uhr da.",
+     "tr": "Pazartesiden cumartesiye dokuzdan on dokuza kadar açığız."
+    },
+    {
+     "id": "c6",
+     "de": "Vielen Dank für Ihre Geduld.",
+     "tr": "Sabrınız için teşekkürler."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Bu ne?",
+      "opts": [
+       "Bir mağazanın telefon bekleme kaydı",
+       "Radyo haberi",
+       "Bir arkadaşın mesajı"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Ne kadar bekleyeceksin?",
+       "opts": [
+        "Beş dakika",
+        "Bir saat",
+        "Yarım saat"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Mağaza pazar günü açık mı?",
+       "opts": [
+        "Evet",
+        "Hayır",
+        "Sadece öğlen"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "fünf",
+        "zehn",
+        "drei"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c5",
+       "seviye": "orta",
+       "de": "Wir sind von Montag bis ___ von neun bis neunzehn Uhr da.",
+       "accepted": [
+        "Samstag",
+        "samstag",
+        "Samstag."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Im",
+        "Moment",
+        "sprechen",
+        "wir",
+        "mit",
+        "anderen",
+        "Kunden",
+        "Kasse",
+        "spreche"
+       ],
+       "accepted": [
+        "Im Moment sprechen wir mit anderen Kunden.",
+        "im moment sprechen wir mit anderen kunden",
+        "Im Moment sprechen wir mit anderen Kunden"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Wenn Sie etwas umtauschen möchten, kommen Sie bitte mit dem Kassenbon zu uns.",
+        "wenn sie etwas umtauschen möchten kommen sie bitte mit dem kassenbon zu uns",
+        "Wenn Sie etwas umtauschen möchten kommen Sie bitte mit dem Kassenbon zu uns"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Kayıtta ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Ich muss fünf Minuten warten. Ich brauche den Kassenbon.",
+       "zorunlu": [
+        "warten",
+        "Kassenbon"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:73:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Sonunda bir çalışan açıyor. Kazağı değiştirmek istediğini ve fişinin olduğunu söyle.",
+      "prompt_de": "Modehaus Vils, guten Tag. Was kann ich für Sie tun?",
+      "accepted": [
+       "Guten Tag, ich möchte einen Pullover umtauschen. Ich habe den Kassenbon.",
+       "Guten Tag. Ich möchte einen Pullover umtauschen, ich habe den Kassenbon.",
+       "Ich möchte einen Pullover umtauschen. Den Kassenbon habe ich.",
+       "Guten Tag, kann ich einen Pullover umtauschen? Ich habe den Kassenbon.",
+       "Guten Tag, ich möchte einen Pullover umtauschen. Der Kassenbon ist da.",
+       "Hallo, ich möchte einen Pullover umtauschen. Ich habe den Kassenbon dabei."
+      ],
+      "why_tr": "**umtauschen** cümlenin sonunda: **Ich möchte einen Pullover umtauschen.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:73:a1:e1",
+    "k": "pick",
+    "q_tr": "Kazağı ne zaman götürebilirsin?",
+    "opts": [
+     "Cumartesi saat onda.",
+     "Pazar öğlen.",
+     "Cumartesi akşam sekizde."
+    ],
+    "ans": 0,
+    "why_tr": "Mağaza cumartesi dokuzdan on dokuza kadar açık. Pazar kapalı.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:73:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Derya'dan sesli mesaj",
+   "ortam_tr": "Akşam evde telefonuna bakıyorsun. Derya yarınki kutlama için mesaj bırakmış.",
+   "speaker": "ch:aksoy",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Derya.",
+     "tr": "Merhaba, ben Derya."
+    },
+    {
+     "id": "c2",
+     "de": "Morgen um zehn feiern wir in der Kantine.",
+     "tr": "Yarın saat onda kantinde kutluyoruz."
+    },
+    {
+     "id": "c3",
+     "de": "Ich kaufe am Morgen die Krapfen bei Frau Stadler.",
+     "tr": "Sabah Krapfenleri Frau Stadler'den alıyorum."
+    },
+    {
+     "id": "c4",
+     "de": "Kannst du bitte Milch kaufen? Wir haben keine mehr.",
+     "tr": "Süt alabilir misin? Hiç kalmadı."
+    },
+    {
+     "id": "c5",
+     "de": "Tassen haben wir genug, da sind noch welche.",
+     "tr": "Fincan yeterince var, daha var."
+    },
+    {
+     "id": "c6",
+     "de": "Danke, bis morgen!",
+     "tr": "Teşekkürler, yarın görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Derya senden ne istiyor?",
+      "opts": [
+       "Süt almanı",
+       "Krapfen almanı",
+       "Kostüm getirmeni"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Kutlama kaçta?",
+       "opts": [
+        "Dokuzda",
+        "Onda",
+        "Öğlen"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Fincan alman gerekiyor mu?",
+       "opts": [
+        "Hayır, yeterince var",
+        "Evet, hiç yok",
+        "Evet, iki tane"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "zehn",
+        "neun",
+        "elf"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Kannst du bitte Milch kaufen? Wir haben ___ mehr.",
+       "accepted": [
+        "keine",
+        "Keine",
+        "keine."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Wir",
+        "haben",
+        "keine",
+        "mehr",
+        "welche",
+        "Milch"
+       ],
+       "accepted": [
+        "Wir haben keine mehr.",
+        "wir haben keine mehr",
+        "Wir haben keine mehr"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Tassen haben wir genug, da sind noch welche.",
+        "tassen haben wir genug da sind noch welche",
+        "Tassen haben wir genug da sind noch welche"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Derya'nın mesajını Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Ich kaufe Milch. Derya kauft die Krapfen.",
+       "zorunlu": [
+        "Milch",
+        "Krapfen"
+       ]
+      }
+     ],
+     "golge": [
+      "c4",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:73:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Derya'ya cevap ver: süt alıyorsun.",
+      "prompt_de": "Kannst du bitte Milch kaufen?",
+      "accepted": [
+       "Ja, klar, ich kaufe welche.",
+       "Ja, ich kaufe heute Abend Milch.",
+       "Klar, ich kaufe welche.",
+       "Ja, kein Problem, ich kaufe Milch.",
+       "Ja, ich kaufe welche. Bis morgen!",
+       "Klar, mache ich."
+      ],
+      "why_tr": "Sütü tekrar etmeden **welche** diyebilirsin: **Ich kaufe welche.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:73:a2:e1",
+    "k": "pick",
+    "q_tr": "Bu akşam ne yapmalısın?",
+    "opts": [
+     "Süt al.",
+     "Fincan al.",
+     "Fırına git, Krapfen al."
+    ],
+    "ans": 0,
+    "why_tr": "Süt bitti. Derya senden süt istiyor. Krapfenleri o alıyor.",
+    "kanit": [
+     "c3",
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:73:g1",
+   "de": "Kassenbon",
+   "dogru_img": "long paper shop receipt",
+   "celdirici_img": [
+    "bus ticket",
+    "banknote",
+    "bank card"
+   ]
+  },
+  {
+   "id": "m1:73:g2",
+   "de": "Ich tausche den Pullover um.",
+   "dogru_img": "customer handing back a sweater at a shop counter",
+   "celdirici_img": [
+    "person knitting a sweater",
+    "person washing clothes",
+    "person trying on a sweater in a fitting room"
+   ]
+  },
+  {
+   "id": "m1:73:g3",
+   "de": "Da sind keine Semmeln mehr.",
+   "dogru_img": "empty bread basket in a bakery",
+   "celdirici_img": [
+    "basket full of bread rolls",
+    "plate with one bread roll",
+    "bread rolls in an oven"
+   ]
+  },
+  {
+   "id": "m1:73:g4",
+   "de": "Da sind noch welche.",
+   "dogru_img": "shelf with a few cups left",
+   "celdirici_img": [
+    "empty shelf",
+    "broken cup on the floor",
+    "person drinking from a cup"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:73:p1",
+  "title_tr": "Mağazada değişim",
+  "durum_tr": "Giyim mağazası. Dün aldığın kazak küçük. Fişin yanında.",
+  "karsi": "Verkäuferin",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Guten Tag! Kann ich Ihnen helfen?",
+    "tr": "İyi günler! Yardımcı olabilir miyim?",
+    "secenekler": [
+     {
+      "de": "Ja, bitte. Ich möchte diesen Pullover umtauschen.",
+      "tr": "Evet, lütfen. Bu kazağı değiştirmek istiyorum.",
+      "accepted": [
+       "Ja, bitte. Ich möchte diesen Pullover umtauschen.",
+       "Ja, ich möchte diesen Pullover umtauschen.",
+       "Ja, bitte, ich möchte den Pullover umtauschen."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **umtauschen** en sonda."
+     },
+     {
+      "de": "Guten Tag. Der Pullover ist zu klein. Kann ich ihn umtauschen?",
+      "tr": "İyi günler. Kazak küçük. Değiştirebilir miyim?",
+      "accepted": [
+       "Guten Tag. Der Pullover ist zu klein. Kann ich ihn umtauschen?",
+       "Guten Tag, der Pullover ist zu klein. Kann ich ihn umtauschen?",
+       "Der Pullover ist zu klein. Kann ich ihn umtauschen?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Sorunu ve isteğini söyledin."
+     },
+     {
+      "de": "Ich möchte einen Pullover.",
+      "tr": "Bir kazak istiyorum.",
+      "accepted": [
+       "Ich möchte einen Pullover.",
+       "Ich möchte einen Pullover kaufen.",
+       "Einen Pullover, bitte."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu, yeni kazak almak demek. Değiştirmek için **umtauschen** de."
+     }
+    ]
+   },
+   {
+    "id": "n1b",
+    "de": "Einen neuen? Die Pullover sind da links.",
+    "tr": "Yeni bir tane mi? Kazaklar şurada, solda.",
+    "secenekler": [
+     {
+      "de": "Nein, ich möchte diesen hier umtauschen.",
+      "tr": "Hayır, bunu değiştirmek istiyorum.",
+      "accepted": [
+       "Nein, ich möchte diesen hier umtauschen.",
+       "Nein, ich möchte diesen umtauschen.",
+       "Nein, ich möchte den Pullover hier umtauschen."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Şimdi açık oldu."
+     },
+     {
+      "de": "Danke.",
+      "tr": "Teşekkürler.",
+      "accepted": [
+       "Danke.",
+       "Danke schön.",
+       "Okay, danke."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Yeni kazak istemiyorsun. **Ich möchte ihn umtauschen.** de."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Haben Sie den Kassenbon?",
+    "tr": "Fişiniz var mı?",
+    "secenekler": [
+     {
+      "de": "Ja, hier ist er.",
+      "tr": "Evet, işte burada.",
+      "accepted": [
+       "Ja, hier ist er.",
+       "Ja, hier ist er, bitte.",
+       "Ja, hier, bitte."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **der Kassenbon** için **er** dersin."
+     },
+     {
+      "de": "Ja, ich habe einen. Hier, bitte.",
+      "tr": "Evet, var. Buyurun.",
+      "accepted": [
+       "Ja, ich habe einen. Hier, bitte.",
+       "Ja, ich habe einen, hier bitte.",
+       "Ja, einen habe ich. Hier, bitte."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. İsmi tekrar etmeden **einen** dedin."
+     },
+     {
+      "de": "Nein, ich habe kein.",
+      "tr": "Hayır, yok.",
+      "accepted": [
+       "Nein, ich habe kein.",
+       "Nein, ich habe kein Kassenbon.",
+       "Ich habe kein."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "**der Kassenbon** için **keinen** dersin: **Ich habe keinen.**"
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Danke. Was ist das Problem?",
+    "tr": "Teşekkürler. Sorun ne?",
+    "secenekler": [
+     {
+      "de": "Er ist zu klein. Haben Sie noch einen in L?",
+      "tr": "Küçük geldi. L bedeninden bir tane daha var mı?",
+      "accepted": [
+       "Er ist zu klein. Haben Sie noch einen in L?",
+       "Er ist zu klein. Haben Sie einen in L?",
+       "Er ist leider zu klein. Haben Sie noch einen in L?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. **der Pullover** için **einen**."
+     },
+     {
+      "de": "Er ist leider zu klein. Ich brauche einen in Größe L.",
+      "tr": "Maalesef küçük. L beden bir tane lazım.",
+      "accepted": [
+       "Er ist leider zu klein. Ich brauche einen in Größe L.",
+       "Er ist zu klein. Ich brauche einen in Größe L.",
+       "Leider zu klein. Ich brauche einen in L."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Bedeni de söyledin."
+     },
+     {
+      "de": "Er ist zu klein. Haben Sie noch eins?",
+      "tr": "Küçük. Bir tane daha var mı?",
+      "accepted": [
+       "Er ist zu klein. Haben Sie noch eins?",
+       "Haben Sie noch eins?",
+       "Er ist zu klein. Haben Sie eins?"
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "**der Pullover** için **einen** dersin, **eins** değil."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "In L? Moment … Nein, leider habe ich keinen mehr. Möchten Sie Ihr Geld zurück oder einen Gutschein?",
+    "tr": "L mi? Bir dakika… Hayır, maalesef hiç kalmadı. Paranızı mı geri istersiniz, hediye çeki mi?",
+    "secenekler": [
+     {
+      "de": "Mein Geld zurück, bitte.",
+      "tr": "Paramı geri, lütfen.",
+      "accepted": [
+       "Mein Geld zurück, bitte.",
+       "Das Geld zurück, bitte.",
+       "Ich möchte mein Geld zurück, bitte."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Net ve kibar."
+     },
+     {
+      "de": "Einen Gutschein, bitte. Dann kaufe ich später etwas.",
+      "tr": "Hediye çeki, lütfen. Sonra bir şey alırım.",
+      "accepted": [
+       "Einen Gutschein, bitte. Dann kaufe ich später etwas.",
+       "Einen Gutschein, bitte.",
+       "Einen Gutschein, bitte, dann kaufe ich später etwas."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Seçimini ve nedenini söyledin."
+     },
+     {
+      "de": "Ich weiß nicht.",
+      "tr": "Bilmiyorum.",
+      "accepted": [
+       "Ich weiß nicht.",
+       "Weiß nicht.",
+       "Ich weiß es nicht."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "İki seçenekten birini söyle: **Mein Geld zurück** ya da **Einen Gutschein**."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Gern. Hier, bitte. Einen schönen Tag noch!",
+    "tr": "Memnuniyetle. Buyurun. İyi günler!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Kazağı değiştirmek istediğini söyledin, fişini gösterdin ve ismi tekrar etmeden einen, keinen ile konuştun."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Mağaza fişi",
+  "metin_de": "Modehaus Vils, Stadtplatz 3. Ein Pullover: 39,90 Euro. Sie haben bar bezahlt. Danke und bis bald! Sie können alles 14 Tage lang umtauschen. Sie brauchen dann diesen Kassenbon. Angebote können wir nicht umtauschen.",
+  "metin_tr": "Modehaus Vils, Stadtplatz 3. Bir kazak: 39,90 avro. Nakit ödediniz. Teşekkürler, yine bekleriz! Her şeyi 14 gün içinde değiştirebilirsiniz. O zaman bu fişe ihtiyacınız var. İndirimli ürünleri değiştiremiyoruz.",
+  "sorular": [
+   {
+    "kind": "gist",
+    "q_tr": "Bu metin ne?",
+    "opts": [
+     "Bir mağaza fişi",
+     "Bir menü",
+     "Bir mektup"
+    ],
+    "ans": 0,
+    "kanit": [
+     0,
+     1
+    ],
+    "id": "m1:73:o1"
+   },
+   {
+    "kind": "detail",
+    "q_tr": "Kazak kaç avro?",
+    "opts": [
+     "39,90",
+     "14",
+     "3"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ],
+    "id": "m1:73:o2"
+   },
+   {
+    "kind": "detail",
+    "q_tr": "Kaç gün içinde değiştirebilirsin?",
+    "opts": [
+     "7",
+     "14",
+     "30"
+    ],
+    "ans": 1,
+    "kanit": [
+     4
+    ],
+    "id": "m1:73:o3"
+   },
+   {
+    "kind": "detail",
+    "q_tr": "İndirimli bir ürünü değiştirebilir misin?",
+    "opts": [
+     "Evet",
+     "Hayır",
+     "Sadece fişle"
+    ],
+    "ans": 1,
+    "kanit": [
+     6
+    ],
+    "id": "m1:73:o4"
+   },
+   {
+    "id": "m1:73:o5",
+    "k": "guided_response",
+    "situation_tr": "Bir iş arkadaşın soruyor. Kazağını indirimden almış. Fişe göre değiştiremez.",
+    "prompt_de": "Ich habe den Pullover im Angebot gekauft. Kann ich ihn umtauschen?",
+    "accepted": [
+     "Nein, leider nicht. Angebote kann man nicht umtauschen.",
+     "Leider nicht. Angebote kann man nicht umtauschen.",
+     "Nein, Angebote kann man nicht umtauschen.",
+     "Nein, leider nicht. Im Angebot geht das nicht.",
+     "Leider nein, Angebote kann man nicht umtauschen.",
+     "Nein. Angebote können sie nicht umtauschen."
+    ],
+    "why_tr": "Olumsuz cevaba **leider nicht** ile başla."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:73:s",
+  "maddeler": [
+   {
+    "id": "m1:73:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Wir haben keine Milch mehr, aber noch Kaffee.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir haben keine Milch mehr, aber noch Kaffee.",
+     "wir haben keine milch mehr aber noch kaffee",
+     "Wir haben keine Milch mehr aber noch Kaffee"
+    ],
+    "why_tr": "**keine Milch mehr** süt hiç kalmadı demek."
+   },
+   {
+    "id": "m1:73:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Ich tausche die Jacke morgen um.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich tausche die Jacke morgen um.",
+     "ich tausche die jacke morgen um",
+     "Ich tausche die Jacke morgen um"
+    ],
+    "why_tr": "**um** cümlenin en sonuna gider."
+   },
+   {
+    "id": "m1:73:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Eigentlich habe ich heute keine Zeit.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Eigentlich habe ich heute keine Zeit.",
+     "eigentlich habe ich heute keine zeit",
+     "Eigentlich habe ich heute keine Zeit"
+    ],
+    "why_tr": "**Eigentlich** başta olunca hemen **habe** gelir."
+   },
+   {
+    "id": "m1:73:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Was ist dein Plan für das Wochenende?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Was ist dein Plan für das Wochenende?",
+     "was ist dein plan für das wochenende",
+     "Was ist dein Plan für das Wochenende"
+    ],
+    "why_tr": "**der Plan** plan demek."
+   },
+   {
+    "id": "m1:73:s5",
+    "k": "tr_de",
+    "tr": "Kaşığım yok. Sende var mı?",
+    "accepted": [
+     "Ich habe keinen Löffel. Hast du einen?",
+     "Ich habe keinen Löffel. Hast du vielleicht einen?",
+     "Ich habe keinen Löffel, hast du einen?",
+     "Ich habe keinen Löffel. Hast du denn einen?"
+    ],
+    "why_tr": "**der Löffel** için **einen** dersin."
+   },
+   {
+    "id": "m1:73:s6",
+    "k": "tr_de",
+    "tr": "Fişe ihtiyacım yok.",
+    "accepted": [
+     "Ich brauche keinen Kassenbon.",
+     "Ich brauche den Kassenbon nicht.",
+     "Den Kassenbon brauche ich nicht.",
+     "Einen Kassenbon brauche ich nicht."
+    ],
+    "why_tr": "**der Kassenbon** için **keinen** dersin."
+   },
+   {
+    "id": "m1:73:s7",
+    "k": "tr_de",
+    "tr": "Ayakkabılar küçükse onları değiştiririm.",
+    "accepted": [
+     "Wenn die Schuhe zu klein sind, tausche ich sie um.",
+     "Wenn die Schuhe klein sind, tausche ich sie um.",
+     "Ich tausche die Schuhe um, wenn sie zu klein sind.",
+     "Wenn mir die Schuhe zu klein sind, tausche ich sie um."
+    ],
+    "why_tr": "wenn başta: virgülden sonra **tausche ich sie um**."
+   },
+   {
+    "id": "m1:73:s8",
+    "k": "tr_de",
+    "tr": "Aslında bugün çok yorgunum.",
+    "accepted": [
+     "Eigentlich bin ich heute sehr müde.",
+     "Ich bin heute eigentlich sehr müde.",
+     "Heute bin ich eigentlich sehr müde.",
+     "Eigentlich bin ich heute ganz müde."
+    ],
+    "why_tr": "**Eigentlich** başta olunca hemen **bin** gelir: **Eigentlich bin ich**."
+   },
+   {
+    "id": "m1:73:s9",
+    "k": "guided_response",
+    "situation_tr": "Gerti'nin son bir Semmel'i kalmış. Evet, istiyorsun.",
+    "prompt_de": "Möchten Sie eine Semmel? Ich habe noch eine.",
+    "accepted": [
+     "Ja, gern, ich nehme eine.",
+     "Ja, gern. Ich nehme eine.",
+     "Ja, bitte, eine.",
+     "Ja, gern, eine bitte.",
+     "Ja, bitte. Ich nehme sie.",
+     "Ja, gern!"
+    ],
+    "why_tr": "**die Semmel** için **eine** dersin."
+   },
+   {
+    "id": "m1:73:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Haben wir noch Tassen?",
+    "speed": "normal",
+    "situation_tr": "Evet, dolapta daha var. Cevap ver.",
+    "accepted": [
+     "Ja, im Schrank sind noch welche.",
+     "Ja, da sind noch welche im Schrank.",
+     "Ja, noch welche, im Schrank.",
+     "Ja, wir haben noch welche.",
+     "Ja, im Schrank sind welche.",
+     "Ja, im Schrank sind noch Tassen."
+    ],
+    "why_tr": "Birden çok şey için **welche** dersin: **Da sind noch welche.**"
+   },
+   {
+    "id": "m1:73:s11",
+    "k": "guided_response",
+    "situation_tr": "Mağazadasın. Kazak küçük, fişin var. Değiştirmek istediğini söyle ve daha büyüğü var mı diye sor.",
+    "prompt_de": "Guten Tag, kann ich Ihnen helfen?",
+    "accepted": [
+     "Ja, ich möchte den Pullover umtauschen. Er ist zu klein. Haben Sie noch einen in L?",
+     "Ja, bitte. Der Pullover ist zu klein. Ich möchte ihn umtauschen. Haben Sie einen in L?",
+     "Ich möchte den Pullover umtauschen, er ist zu klein. Haben Sie noch einen?",
+     "Ja, der Pullover ist zu klein. Kann ich ihn umtauschen? Haben Sie noch einen in L?",
+     "Guten Tag, ich möchte den Pullover umtauschen. Haben Sie einen in L?",
+     "Ja, ich möchte diesen Pullover umtauschen. Er ist zu klein."
+    ],
+    "why_tr": "Önce **umtauschen**, sonra **Haben Sie noch einen?**"
+   }
+  ],
+  "sesli": [
+   "m1:73:s9",
+   "m1:73:s10"
+  ],
+  "dikte": [
+   "m1:73:s1",
+   "m1:73:s2",
+   "m1:73:s3",
+   "m1:73:s4"
+  ]
+ }
+}

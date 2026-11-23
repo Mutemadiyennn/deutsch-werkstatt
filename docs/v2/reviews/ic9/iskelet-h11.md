@@ -1,0 +1,21 @@
+# İÇ-9 · A2 11. hafta iskeleti (gün 71–77, 1–7 Şubat 2027)
+
+Hafta: "Kafede ve markette istediğimi kibarca söylerim." Görev: kafede bir şey ısmarlayıp bir soru sorarım. Kol `pazar`, mekân `pl:marktplatz` (+ `pl:baeckerei`, 77'de `pl:bahnhof`: pazar günü yalnız istasyon dükkânı açık). Birimler `u:a2:hizmet-1` (71–74), `u:a2:hizmet-2` (75–77). Hikâye rengi: Unsinniger Donnerstag (74), pazar günü Faschingszug (77). Çerçeve: `einige` (74 kalıbı), `hinter` (76 kalıbı).
+Halka düzeni (baş geliştirici kararı): policy `akis.halka_kart` = 4–6 kart; günde 1–2 halka. Günlük kart: 71:9 (4+5) · 72:8 (4+4) · 73:5 · 74:6 · 75:6 · 76:5 · 77:4.
+
+| gün | başlık | ders | kartlar | yapabiliyorum | sahne · sesler · prova · okuma | karakterler |
+|---|---|---|---|---|---|---|
+| 71 Pzt | Olunca, olursa: Ich trinke Kaffee, wenn ich müde bin | gr:a2-03:t1 | h1 sich_fühlen, sich_ausruhen, Grund, warten_(auf) · h2 sich_bewegen, sich_anmelden, sich_interessieren_(für), Grundschule, Gymnasium | Kafede ne zaman ne içtiğimi ve kendimi nasıl hissettiğimi söylerim. | ofiste "perşembe Faşing" duyurusu · radyo + Ioana'nın sesli mesajı · prova: kafede Ioana · okuma: Derya'nın ekip mesajı + yazma | Derya, Tobi, Wimmer, Ioana |
+| 72 Sal | Wenn ich Zeit habe, koche ich | gr:a2-03:t2 | h1 Fach, Unterricht, Zeugnis, Gutschein · h2 Blumenstrauß, Kette, Angebot, Kasse | Markette bir ürünün fiyatını ve indirimde olup olmadığını sorarım. | kursun veda hediyesi; kasada indirim fiyatı yanlış, kart geçmiyor · market anonsu + kurs bürosu mesajı · prova: kasada fiyat yanlış · okuma: indirim broşürü + yazma | Ioana, kasiyer Frau Kowalczyk |
+| 73 Çar | einer, keiner, welche | gr:a2-03:t3 | Kassenbon, umtauschen, eigentlich, Typ, Plan | Bir ürünü fişle değiştirmek ister, "bir tane var mı, hiç kalmadı mı" diye sorarım. | fırında "Krapfen keine mehr, Semmeln welche" · mağaza bekleme anonsu + Derya'nın mesajı · prova: kazak değişimi · okuma: mağaza fişi | Tobi, Gerti, Derya, satış görevlisi |
+| 74 Per | Ich würde gern … / Ich hätte gern … | gr:a2-03:t4 | tragen, verrückt, bereit, Ahnung, legen, Ruhe (+ çerçeve einige) | Kafede kibarca sipariş verir, bir şeyi rica ederim. | kostümlü sabah, Derya'nın Krapfen'i, palyaço Herr Wimmer, Tobi alaya çağırır · radyo + Tobi'nin mesajı · prova: öğlen kafede garson · okuma: kafe tahtası | Derya, Tobi, Wimmer, garson |
+| 75 Cum | Restoranda hesap: Zusammen oder getrennt? | gr:a2-03:t5 | ruhig, kümmern, versprechen, fast, bestimmt, runter | Restoranda hesabı ister, ayrı öder ve bahşişi söylerim. | ekip yemeği, Tobi'nin sözü, "Stimmt so" · restoran telesekreteri + radyo · prova: hesap ayrı · okuma: hesap | Derya, Tobi, garson |
+| 76 Cmt | Fırında ve kafede sipariş vermek | — | Abitur, Geschichte, vorbei, dran, arm (+ çerçeve hinter) | Fırında sıramı bilir, ne istediğimi sorulmadan söylerim. | kuyruk, Jonas'ın Abitur'u, Frau Brandl'ın hikâyesi · fırın radyosu + Frau Brandl'ın daveti · prova: Gerti sormadan sipariş, Breze ikramı (WORLD) · okuma: fırın ilanı + yazma | Gerti, Frau Brandl, Jonas |
+| 77 Paz | Haftanın sınavı: kafede ve markette istemek | — | lachen, Quittung, Umtausch, Einkaufswagen (son üçü sözlükte yok) | Kasada kartım çalışmayınca başka bir ödeme yolu sorarım. | istasyon dükkânında Pfand ve kart sürprizi, alayda palyaço Wimmer · market anonsu (kulak kapısı: hangi ürün indirimde) + Derya'nın mesajı · prova: kapı provası · okuma: kasa tabelası + yazma · `hafta-sonu-testi-11.json` | Tobi, Wimmer, Derya, kasiyer |
+
+Dil noktası görev sayımı (halka `gorev_cumleleri`; günün dersi `dersten_sonra: true` halkada):
+71 t1 = 6 (h2) · 72 t2 = 6 (h2), t1 = 2 (h1: Unterricht, Zeugnis) · 73 t3 = 6, t2 = 3 · 74 t4 = 6, t3 = 2 (Ahnung, legen) · 75 t5 = 6, t4 = 2 (kümmern, bestimmt) · 76 t5 = 2 (dran, arm).
+Kart sırası: Grund (71 h1) Grundschule'den (71 h2) önce. Haftada aynı üretim cümlesi: 0 (337 cümle, betikle sayıldı).
+
+## Görülmemiş durumlar (`gorulmemis-11.json`; derste kullanılmaz, 7 durum)
+g1 cd:71 spor salonu barı, Basti (wenn + sich fühlen) · g2 cd:72 haftalık pazar, meyve tezgâhı (im Angebot) · g3 cd:73 spor dükkânı, ayakkabı değişimi (welche) · g4 cd:74 istasyon kafesi (hätte gern / würde gern zahlen) · g5 cd:75 lokanta, Basti ile ayrı hesap + bahşiş · g6 cd:76 pazar yeri peynir tezgâhı (Ich bin dran) · g7 cd:77 eczane, başka kartla ödeme.

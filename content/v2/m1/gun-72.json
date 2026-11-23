@@ -1,0 +1,1534 @@
+{
+ "schema": 1,
+ "id": "m1:gun:72",
+ "day": 72,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Cümleye wenn ile başlamak: Wenn ich Zeit habe, koche ich",
+ "goal_tr": "Markette hediye seçer, indirimi sorar, kasada ödersin. Koşulu cümlenin başına koyarsın.",
+ "can_do": {
+  "id": "cd:m1:72",
+  "tr": "Markette bir ürünün fiyatını ve indirimde olup olmadığını sorarım."
+ },
+ "unit": "u:a2:hizmet-1",
+ "arm": "pazar",
+ "place": "pl:marktplatz",
+ "characters": [
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic9/dilbilimci-h11.md; dilbilimci ONAY. okur (OD-9) bekliyor."
+ },
+ "dersler": [
+  "gr:a2-03:t2"
+ ],
+ "yeni_kartlar": [
+  "lx:Fach",
+  "lx:Unterricht",
+  "lx:Zeugnis",
+  "lx:Gutschein",
+  "lx:Blumenstrauß",
+  "lx:Kette",
+  "lx:Angebot",
+  "lx:Kasse"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:72:h1",
+   "title_tr": "Kursta mola: dersler ve hediye",
+   "kartlar": [
+    "lx:Fach",
+    "lx:Unterricht",
+    "lx:Zeugnis",
+    "lx:Gutschein"
+   ],
+   "kaliplar": [
+    {
+     "de": "Mein Lieblingsfach ist …",
+     "tr": "En sevdiğim ders …"
+    },
+    {
+     "de": "Der Unterricht fängt um … an.",
+     "tr": "Ders saat …de başlıyor."
+    },
+    {
+     "de": "Wir schenken ihr einen Gutschein.",
+     "tr": "Ona bir hediye çeki veriyoruz."
+    },
+    {
+     "de": "Ich bekomme das Zeugnis.",
+     "tr": "Belgemi alıyorum."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Fach",
+     "de": "Das Fach Deutsch macht mir Spaß.",
+     "tr": "Almanca dersi bana keyif veriyor.",
+     "accepted": [
+      "Das Fach Deutsch macht mir Spaß.",
+      "Das Fach Deutsch macht mir viel Spaß.",
+      "Deutsch als Fach macht mir Spaß."
+     ]
+    },
+    {
+     "kart": "lx:Fach",
+     "de": "Welches Fach war in der Schule schwer?",
+     "tr": "Okulda hangi ders zordu?",
+     "accepted": [
+      "Welches Fach war in der Schule schwer?",
+      "Welches Fach war schwer in der Schule?",
+      "Welches Fach war in der Schule schwer für dich?"
+     ]
+    },
+    {
+     "kart": "lx:Unterricht",
+     "de": "Der Unterricht fängt heute um sieben an.",
+     "tr": "Ders bugün saat yedide başlıyor.",
+     "accepted": [
+      "Der Unterricht fängt heute um sieben an.",
+      "Heute fängt der Unterricht um sieben an.",
+      "Der Unterricht fängt heute um sieben Uhr an."
+     ]
+    },
+    {
+     "kart": "lx:Unterricht",
+     "de": "Ich bin oft müde, wenn der Unterricht am Abend ist.",
+     "tr": "Ders akşam olunca çoğu zaman yorgun oluyorum.",
+     "accepted": [
+      "Ich bin oft müde, wenn der Unterricht am Abend ist.",
+      "Ich bin oft so müde, wenn der Unterricht am Abend ist.",
+      "Wenn der Unterricht am Abend ist, bin ich oft müde."
+     ]
+    },
+    {
+     "kart": "lx:Zeugnis",
+     "de": "Wir bekommen am Freitag das Zeugnis.",
+     "tr": "Belgeyi cuma günü alıyoruz.",
+     "accepted": [
+      "Wir bekommen am Freitag das Zeugnis.",
+      "Am Freitag bekommen wir das Zeugnis.",
+      "Wir bekommen das Zeugnis am Freitag."
+     ]
+    },
+    {
+     "kart": "lx:Zeugnis",
+     "de": "Ich bekomme das Zeugnis, wenn der Kurs zu Ende ist.",
+     "tr": "Kurs bitince belgemi alıyorum.",
+     "accepted": [
+      "Ich bekomme das Zeugnis, wenn der Kurs zu Ende ist.",
+      "Ich bekomme mein Zeugnis, wenn der Kurs zu Ende ist.",
+      "Wenn der Kurs zu Ende ist, bekomme ich das Zeugnis."
+     ]
+    },
+    {
+     "kart": "lx:Gutschein",
+     "de": "Wir schenken ihr im März einen Gutschein.",
+     "tr": "Martta ona bir hediye çeki veriyoruz.",
+     "accepted": [
+      "Wir schenken ihr im März einen Gutschein.",
+      "Im März schenken wir ihr einen Gutschein.",
+      "Wir schenken ihr einen Gutschein im März."
+     ]
+    },
+    {
+     "kart": "lx:Gutschein",
+     "de": "Ist ein Gutschein über dreißig Euro genug?",
+     "tr": "Otuz avroluk bir hediye çeki yeterli mi?",
+     "accepted": [
+      "Ist ein Gutschein über dreißig Euro genug?",
+      "Ist ein Gutschein über 30 Euro genug?",
+      "Reicht ein Gutschein über dreißig Euro?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Akşam kursu, mola. Ioana elinde bir zarfla para topluyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Frau Moreau geht im März weg. Wir schenken ihr etwas.",
+      "tr": "Frau Moreau martta gidiyor. Ona bir şey hediye ediyoruz."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Gute Idee! Vielleicht einen Gutschein?",
+      "tr": "İyi fikir! Belki bir hediye çeki?"
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Ja, und einen Blumenstrauß. Der Unterricht fängt gleich an!",
+      "tr": "Evet, bir de buket. Ders birazdan başlıyor!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Kurstakiler Frau Moreau için ne yapıyor?",
+     "opts": [
+      "Ona hediye alıyor",
+      "Ona parti veriyor",
+      "Ona mektup yazıyor"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:72:h2",
+   "title_tr": "Markette: hediye ve kasa",
+   "kartlar": [
+    "lx:Blumenstrauß",
+    "lx:Kette",
+    "lx:Angebot",
+    "lx:Kasse"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wenn …, kaufe ich …",
+     "tr": "… olursa … alırım."
+    },
+    {
+     "de": "… ist im Angebot.",
+     "tr": "… indirimde."
+    },
+    {
+     "de": "Wo ist die Kasse?",
+     "tr": "Kasa nerede?"
+    },
+    {
+     "de": "Wenn du willst, nehmen wir …",
+     "tr": "İstersen …i alalım."
+    },
+    {
+     "de": "Ich zahle mit Karte.",
+     "tr": "Kartla ödüyorum."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Blumenstrauß",
+     "de": "Wenn der Blumenstrauß im Angebot ist, nehmen wir ihn.",
+     "tr": "Buket indirimdeyse onu alırız.",
+     "accepted": [
+      "Wenn der Blumenstrauß im Angebot ist, nehmen wir ihn.",
+      "Wenn der Blumenstrauß im Angebot ist, kaufen wir ihn.",
+      "Wenn der Blumenstrauß im Angebot ist, dann nehmen wir ihn."
+     ]
+    },
+    {
+     "kart": "lx:Blumenstrauß",
+     "de": "Wenn du willst, kaufe ich den Blumenstrauß.",
+     "tr": "İstersen buketi ben alırım.",
+     "accepted": [
+      "Wenn du willst, kaufe ich den Blumenstrauß.",
+      "Wenn du willst, nehme ich den Blumenstrauß.",
+      "Wenn du willst, dann kaufe ich den Blumenstrauß."
+     ]
+    },
+    {
+     "kart": "lx:Kette",
+     "de": "Wenn die Kette zu teuer ist, nehmen wir den Gutschein.",
+     "tr": "Kolye çok pahalıysa hediye çekini alırız.",
+     "accepted": [
+      "Wenn die Kette zu teuer ist, nehmen wir den Gutschein.",
+      "Wenn die Kette zu teuer ist, kaufen wir den Gutschein.",
+      "Wenn die Kette zu teuer ist, dann nehmen wir den Gutschein."
+     ]
+    },
+    {
+     "kart": "lx:Kette",
+     "de": "Eine Kette ist zu teuer für uns.",
+     "tr": "Kolye bizim için çok pahalı.",
+     "accepted": [
+      "Eine Kette ist zu teuer für uns.",
+      "Eine Kette ist für uns zu teuer.",
+      "Die Kette ist zu teuer für uns."
+     ]
+    },
+    {
+     "kart": "lx:Angebot",
+     "de": "Was ist diese Woche im Angebot?",
+     "tr": "Bu hafta ne indirimde?",
+     "accepted": [
+      "Was ist diese Woche im Angebot?",
+      "Was ist in dieser Woche im Angebot?",
+      "Was gibt es diese Woche im Angebot?"
+     ]
+    },
+    {
+     "kart": "lx:Angebot",
+     "de": "Wenn Äpfel im Angebot sind, kaufe ich gleich drei Kilo.",
+     "tr": "Elma indirimdeyse hemen üç kilo alırım.",
+     "accepted": [
+      "Wenn Äpfel im Angebot sind, kaufe ich gleich drei Kilo.",
+      "Wenn die Äpfel im Angebot sind, kaufe ich gleich drei Kilo.",
+      "Wenn Äpfel im Angebot sind, kaufe ich drei Kilo."
+     ]
+    },
+    {
+     "kart": "lx:Kasse",
+     "de": "Wenn Kasse eins zu ist, gehe ich zu Kasse zwei.",
+     "tr": "Bir numaralı kasa kapalıysa iki numaraya giderim.",
+     "accepted": [
+      "Wenn Kasse eins zu ist, gehe ich zu Kasse zwei.",
+      "Wenn Kasse eins geschlossen ist, gehe ich zu Kasse zwei.",
+      "Wenn die Kasse eins zu ist, gehe ich zur Kasse zwei."
+     ]
+    },
+    {
+     "kart": "lx:Kasse",
+     "de": "Wenn ich an der Kasse bin, zahle ich mit Karte.",
+     "tr": "Kasaya gelince kartla öderim.",
+     "accepted": [
+      "Wenn ich an der Kasse bin, zahle ich mit Karte.",
+      "Wenn ich an der Kasse bin, bezahle ich mit Karte.",
+      "Wenn ich an der Kasse bin, zahle ich mit der Karte."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Ertesi akşam, meydandaki süpermarket. Çiçek rafının önünde Ioana ile hediyeye bakıyorsunuz.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Wie viel kostet der Blumenstrauß?",
+      "tr": "Buket ne kadar?"
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Zehn Euro. Er ist im Angebot!",
+      "tr": "On avro. İndirimde!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Super, dann nehmen wir ihn. Wo ist die Kasse?",
+      "tr": "Süper, o zaman onu alalım. Kasa nerede?"
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Gleich da, bei Kasse eins.",
+      "tr": "Hemen şurada, bir numaralı kasada."
+     }
+    ],
+    "soru": {
+     "q_tr": "Buket neden ucuz?",
+     "opts": [
+      "İndirimde",
+      "Solmuş",
+      "Çok küçük"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:72:v1",
+  "title_tr": "Kasada iki sürpriz",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Süpermarket, akşam. Ioana elinde buketle kasa kuyruğunda.",
+    "de": "So, ein Blumenstrauß und ein Gutschein. Das ist genug, oder?",
+    "tr": "Tamam, bir buket ve bir hediye çeki. Bu yeter, değil mi?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana zarftaki paraları sayıyor.",
+    "de": "Wenn alle zehn Euro geben, haben wir fünfzig Euro.",
+    "tr": "Herkes on avro verirse elli avromuz olur."
+   },
+   {
+    "id": "s3",
+    "speaker": "Frau Kowalczyk",
+    "sahne_tr": "Kasiyer Frau Kowalczyk başını kaldırıyor.",
+    "de": "Guten Abend! Der Nächste, bitte.",
+    "tr": "İyi akşamlar! Sıradaki, lütfen."
+   },
+   {
+    "id": "s4",
+    "speaker": "Frau Kowalczyk",
+    "sahne_tr": "Kasiyer buketi ve hediye çekini okutuyor.",
+    "de": "Ein Blumenstrauß und ein Gutschein über dreißig Euro.",
+    "tr": "Bir buket ve otuz avroluk bir hediye çeki."
+   },
+   {
+    "id": "s5",
+    "speaker": "Frau Kowalczyk",
+    "sahne_tr": "Ekranda toplam görünüyor.",
+    "de": "Das macht zweiundvierzig Euro.",
+    "tr": "Kırk iki avro ediyor."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana şaşırıyor, buketin etiketini gösteriyor.",
+    "de": "Moment, der Blumenstrauß ist doch im Angebot.",
+    "tr": "Bir dakika, buket indirimde ama."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana etiketteki rakamı okuyor.",
+    "de": "Er kostet nur neun Euro neunundneunzig.",
+    "tr": "Sadece dokuz doksan dokuz."
+   },
+   {
+    "id": "s8",
+    "speaker": "Frau Kowalczyk",
+    "sahne_tr": "Frau Kowalczyk ekrana bakıyor.",
+    "de": "Wirklich? Einen Moment, ich schaue mal.",
+    "tr": "Gerçekten mi? Bir dakika, bakayım."
+   },
+   {
+    "id": "s9",
+    "speaker": "Frau Kowalczyk",
+    "sahne_tr": "Kasiyer başını sallıyor, fiyatı düzeltiyor.",
+    "de": "Ja, Sie haben recht. Dann macht das neununddreißig Euro neunundneunzig.",
+    "tr": "Evet, haklısınız. O zaman otuz dokuz doksan dokuz ediyor."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana kartını çıkarıyor.",
+    "de": "Danke! Wir zahlen mit Karte.",
+    "tr": "Teşekkürler! Kartla ödüyoruz."
+   },
+   {
+    "id": "s11",
+    "speaker": "Frau Kowalczyk",
+    "sahne_tr": "Kasiyer kart makinesini gösteriyor, ekran kararmış.",
+    "de": "Hier geht heute leider nur Bargeld. Wenn Sie mit Karte zahlen wollen, gehen Sie bitte zu Kasse drei.",
+    "tr": "Burada bugün maalesef sadece nakit geçiyor. Kartla ödemek istiyorsanız lütfen üç numaralı kasaya gidin."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana sana dönüyor.",
+    "de": "Ach nein! Hast du Bargeld?",
+    "tr": "Olamaz! Sende nakit var mı?"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana cüzdanına bakıyor.",
+    "de": "Ich habe nur zwanzig Euro.",
+    "tr": "Bende sadece yirmi avro var."
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana buketi kucaklayıp yürüyor.",
+    "de": "Gut, dann gehen wir zu Kasse drei.",
+    "tr": "Peki, o zaman üç numaralı kasaya gidiyoruz."
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana gülerek iç çekiyor.",
+    "de": "Wenn ich einkaufe, gibt es immer ein Problem!",
+    "tr": "Ben alışverişe çıkınca hep bir sorun çıkıyor!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s15"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu sahnede ne oluyor?",
+     "opts": [
+      "Ioana ile hediye alıyorsunuz, ödemede sorun çıkıyor",
+      "Ioana'nın doğum günü kutlanıyor",
+      "Markette iş arıyorsunuz"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s10",
+      "s12"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Fiyat düzelince toplam ne kadar?",
+      "opts": [
+       "Kırk iki avro",
+       "Otuz dokuz doksan dokuz",
+       "Yirmi avro"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s9"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Ioana'nın cüzdanında ne kadar nakit var?",
+      "opts": [
+       "Yirmi avro",
+       "On avro",
+       "Elli avro"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s13"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Kartla ödemek için nereye gitmeliler?",
+      "opts": [
+       "Yarın gelmeliler",
+       "Üç numaralı kasaya",
+       "Bankaya"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s11"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s13",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "zwanzig",
+       "zehn",
+       "dreißig"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s1",
+      "seviye": "orta",
+      "de": "So, ein Blumenstrauß und ein Gutschein. Das ist ___, oder?",
+      "accepted": [
+       "genug",
+       "Genug",
+       "genug."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s14",
+      "seviye": "zor",
+      "banka": [
+       "Gut",
+       "dann",
+       "gehen",
+       "wir",
+       "zu",
+       "Kasse",
+       "drei",
+       "zwei",
+       "Bus"
+      ],
+      "accepted": [
+       "Gut, dann gehen wir zu Kasse drei.",
+       "gut dann gehen wir zu kasse drei",
+       "Gut dann gehen wir zu Kasse drei"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s15",
+      "seviye": "usta",
+      "accepted": [
+       "Wenn ich einkaufe, gibt es immer ein Problem!",
+       "wenn ich einkaufe gibt es immer ein problem",
+       "Wenn ich einkaufe gibt es immer ein Problem"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Sahnede ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Der Blumenstrauß ist im Angebot. Ioana hat nur zwanzig Euro.",
+      "zorunlu": [
+       "Angebot",
+       "Euro"
+      ]
+     }
+    ],
+    "golge": [
+     "s6",
+     "s15"
+    ],
+    "cevapla": {
+     "id": "m1:72:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Kasiyer sana da soruyor. Sende nakit yok. Kibarca kartla ödeyip ödeyemeyeceğini sor.",
+     "prompt_de": "Haben Sie Bargeld?",
+     "accepted": [
+      "Nein, leider nicht. Kann ich mit Karte zahlen?",
+      "Leider nicht. Kann ich mit Karte zahlen?",
+      "Nein, leider nicht. Geht auch Karte?",
+      "Nein. Kann ich mit Karte bezahlen?",
+      "Nein, leider nicht. Kann ich auch mit Karte zahlen?",
+      "Leider nein. Geht es mit Karte?"
+     ],
+     "why_tr": "Önce **leider nicht** de, sonra **Kann ich mit Karte zahlen?** diye sor."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:72:a1",
+   "tur": "anons",
+   "title_tr": "Süpermarket anonsu",
+   "ortam_tr": "Süpermarkette alışveriş yaparken hoparlörden bir anons duyuyorsun.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Liebe Kunden, herzlich willkommen!",
+     "tr": "Sevgili müşterilerimiz, hoş geldiniz!"
+    },
+    {
+     "id": "c2",
+     "de": "Heute im Angebot: Blumensträuße für neun Euro neunundneunzig.",
+     "tr": "Bugün indirimde: buketler dokuz doksan dokuz."
+    },
+    {
+     "id": "c3",
+     "de": "Äpfel kosten heute nur zwei Euro das Kilo.",
+     "tr": "Elmanın kilosu bugün sadece iki avro."
+    },
+    {
+     "id": "c4",
+     "de": "Kasse drei ist jetzt auch offen.",
+     "tr": "Üç numaralı kasa da şimdi açık."
+    },
+    {
+     "id": "c5",
+     "de": "Wenn Sie mit Karte zahlen möchten, gehen Sie bitte zu Kasse drei.",
+     "tr": "Kartla ödemek isterseniz lütfen üç numaralı kasaya gidin."
+    },
+    {
+     "id": "c6",
+     "de": "Vielen Dank und einen schönen Abend!",
+     "tr": "Teşekkürler, iyi akşamlar!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Anons ne hakkında?",
+      "opts": [
+       "Marketin bugünkü ucuz ürünleri ve ödeme",
+       "Marketin kapanış saati",
+       "Kayıp bir çocuk"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Elmanın kilosu bugün kaç avro?",
+       "opts": [
+        "Bir avro",
+        "İki avro",
+        "Dokuz avro"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Anons günün hangi vaktinde?",
+       "opts": [
+        "Sabah",
+        "Öğlen",
+        "Akşam"
+       ],
+       "ans": 2,
+       "kanit": [
+        "c6"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "zwei",
+        "drei",
+        "zehn"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Äpfel kosten heute nur zwei Euro das ___.",
+       "accepted": [
+        "Kilo",
+        "kilo",
+        "Kilo."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Kasse",
+        "drei",
+        "ist",
+        "jetzt",
+        "auch",
+        "offen",
+        "zu",
+        "zwei"
+       ],
+       "accepted": [
+        "Kasse drei ist jetzt auch offen.",
+        "kasse drei ist jetzt auch offen",
+        "Kasse drei ist jetzt auch offen"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c5",
+       "seviye": "usta",
+       "accepted": [
+        "Wenn Sie mit Karte zahlen möchten, gehen Sie bitte zu Kasse drei.",
+        "wenn sie mit karte zahlen möchten gehen sie bitte zu kasse drei",
+        "Wenn Sie mit Karte zahlen möchten gehen Sie bitte zu Kasse drei"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Anonsta ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Die Äpfel kosten zwei Euro das Kilo. Kasse drei ist offen.",
+       "zorunlu": [
+        "Äpfel",
+        "Kasse"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:72:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Yanındaki yaşlı bir kadın anonsu anlamadı. Elmaların kilosunun bugün iki avro olduğunu söyle.",
+      "prompt_de": "Was kosten die Äpfel heute?",
+      "accepted": [
+       "Heute kosten sie zwei Euro das Kilo.",
+       "Zwei Euro das Kilo.",
+       "Das Kilo kostet heute zwei Euro.",
+       "Nur zwei Euro das Kilo.",
+       "Sie kosten heute nur zwei Euro das Kilo.",
+       "Heute nur zwei Euro das Kilo."
+      ],
+      "why_tr": "Fiyatı kiloyla söylersin: **zwei Euro das Kilo**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:72:a1:e1",
+    "k": "pick",
+    "q_tr": "Kartla ödemek istiyorsun. Ne yapmalısın?",
+    "opts": [
+     "Bir numaralı kasaya git.",
+     "Üç numaralı kasaya git.",
+     "Nakit çek."
+    ],
+    "ans": 1,
+    "why_tr": "Anons kartla ödeyenleri üç numaralı kasaya çağırıyor.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:72:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Kurs bürosundan mesaj",
+   "ortam_tr": "Öğle arası telefonuna bakıyorsun. Akşam kursunun bürosu mesaj bırakmış.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, hier ist das Büro vom Abendkurs.",
+     "tr": "İyi günler, akşam kursunun bürosundan arıyoruz."
+    },
+    {
+     "id": "c2",
+     "de": "Am Donnerstag fängt der Kurs erst um acht Uhr an, nicht um sieben.",
+     "tr": "Perşembe ders yedide değil, ancak sekizde başlıyor."
+    },
+    {
+     "id": "c3",
+     "de": "Bitte vergessen Sie Ihr Buch nicht.",
+     "tr": "Lütfen kitabınızı unutmayın."
+    },
+    {
+     "id": "c4",
+     "de": "Wenn Sie nicht kommen können, rufen Sie bitte an.",
+     "tr": "Gelemiyorsanız lütfen arayın."
+    },
+    {
+     "id": "c5",
+     "de": "Vielen Dank und bis Donnerstag!",
+     "tr": "Teşekkürler, perşembe görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Mesaj ne hakkında?",
+      "opts": [
+       "Perşembe ders daha geç başlıyor",
+       "Kurs iptal oldu",
+       "Yeni bir kitap gerekiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Perşembe ders kaçta başlıyor?",
+       "opts": [
+        "Yedide",
+        "Sekizde",
+        "Altıda"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Gelemezsen ne yapmalısın?",
+       "opts": [
+        "Mesaj yazmalısın",
+        "Aramalısın",
+        "Bir şey yapmana gerek yok"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "acht",
+        "neun",
+        "sechs"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Bitte vergessen Sie Ihr ___ nicht.",
+       "accepted": [
+        "Buch",
+        "buch",
+        "Buch."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Bitte",
+        "vergessen",
+        "Sie",
+        "Ihr",
+        "Buch",
+        "nicht",
+        "Heft",
+        "nichts"
+       ],
+       "accepted": [
+        "Bitte vergessen Sie Ihr Buch nicht.",
+        "bitte vergessen sie ihr buch nicht",
+        "Bitte vergessen Sie Ihr Buch nicht"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Wenn Sie nicht kommen können, rufen Sie bitte an.",
+        "wenn sie nicht kommen können rufen sie bitte an",
+        "Wenn Sie nicht kommen können rufen Sie bitte an"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajı Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Am Donnerstag fängt der Unterricht um acht an. Ich brauche mein Buch.",
+       "zorunlu": [
+        "Unterricht",
+        "acht"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:72:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana perşembe dersinin saatini soruyor. Mesajı sen dinledin.",
+      "prompt_de": "Wann fängt der Unterricht am Donnerstag an?",
+      "accepted": [
+       "Am Donnerstag fängt er erst um acht an.",
+       "Erst um acht Uhr.",
+       "Um acht, nicht um sieben.",
+       "Der Unterricht fängt um acht Uhr an.",
+       "Erst um acht.",
+       "Am Donnerstag erst um acht Uhr."
+      ],
+      "why_tr": "Geç olduğunu **erst** ile söylersin: **erst um acht**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:72:a2:e1",
+    "k": "pick",
+    "q_tr": "Perşembe ne yapmalısın?",
+    "opts": [
+     "Saat yedide kursta ol.",
+     "Saat sekizde kitabınla kursta ol.",
+     "Evde kal."
+    ],
+    "ans": 1,
+    "why_tr": "Ders sekizde başlıyor ve kitabını getirmelisin.",
+    "kanit": [
+     "c2",
+     "c3"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:72:g1",
+   "de": "Blumenstrauß",
+   "dogru_img": "colourful bouquet of flowers",
+   "celdirici_img": [
+    "single potted plant",
+    "fruit basket",
+    "box of chocolates"
+   ]
+  },
+  {
+   "id": "m1:72:g2",
+   "de": "Kette",
+   "dogru_img": "silver necklace on a jewellery display",
+   "celdirici_img": [
+    "wrist watch",
+    "pair of earrings",
+    "leather belt"
+   ]
+  },
+  {
+   "id": "m1:72:g3",
+   "de": "Gutschein",
+   "dogru_img": "gift voucher card in an envelope",
+   "celdirici_img": [
+    "bus ticket",
+    "supermarket receipt",
+    "birthday card"
+   ]
+  },
+  {
+   "id": "m1:72:g4",
+   "de": "Kasse",
+   "dogru_img": "supermarket checkout with cashier",
+   "celdirici_img": [
+    "supermarket shelf with bread",
+    "shopping trolley in a car park",
+    "bakery counter"
+   ]
+  },
+  {
+   "id": "m1:72:g5",
+   "de": "Zeugnis",
+   "dogru_img": "school report card with grades",
+   "celdirici_img": [
+    "shopping list",
+    "train timetable",
+    "restaurant menu"
+   ]
+  },
+  {
+   "id": "m1:72:g6",
+   "de": "im Angebot",
+   "dogru_img": "red discount price sign on a supermarket shelf",
+   "celdirici_img": [
+    "closed sign on a shop door",
+    "empty supermarket shelf",
+    "shop opening hours sign"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:72:p1",
+  "title_tr": "Kasada fiyat yanlış",
+  "durum_tr": "Süpermarket kasası. Bir buket alıyorsun. Rafta indirimde yazıyordu.",
+  "karsi": "Kasiyer",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Guten Abend. Ist das alles?",
+    "tr": "İyi akşamlar. Hepsi bu mu?",
+    "secenekler": [
+     {
+      "de": "Ja, das ist alles. Was kostet der Blumenstrauß?",
+      "tr": "Evet, hepsi bu. Buket ne kadar?",
+      "accepted": [
+       "Ja, das ist alles. Was kostet der Blumenstrauß?",
+       "Ja, das ist alles. Wie viel kostet der Blumenstrauß?",
+       "Ja, das ist alles. Was kostet der Strauß?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Önce cevap verdin, sonra fiyatı sordun."
+     },
+     {
+      "de": "Ja. Ist der Blumenstrauß im Angebot?",
+      "tr": "Evet. Buket indirimde mi?",
+      "accepted": [
+       "Ja. Ist der Blumenstrauß im Angebot?",
+       "Ja. Ist der Blumenstrauß heute im Angebot?",
+       "Ja, danke. Ist der Blumenstrauß im Angebot?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. İndirimi doğrudan sordun."
+     },
+     {
+      "de": "Wenn ich Zeit habe, koche ich.",
+      "tr": "Vaktim olursa yemek pişiririm.",
+      "accepted": [
+       "Wenn ich Zeit habe, koche ich.",
+       "Wenn ich Zeit habe, koche ich gern.",
+       "Ich koche, wenn ich Zeit habe."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Cümle doğru ama burada anlamsız. Kasiyer **Hepsi bu mu?** diye soruyor."
+     }
+    ]
+   },
+   {
+    "id": "n1b",
+    "de": "Wie bitte? Ich frage: Ist das alles?",
+    "tr": "Efendim? Soruyorum: hepsi bu mu?",
+    "secenekler": [
+     {
+      "de": "Ach so! Ja, das ist alles.",
+      "tr": "Haa! Evet, hepsi bu.",
+      "accepted": [
+       "Ach so! Ja, das ist alles.",
+       "Ach so, ja, das ist alles.",
+       "Ja, das ist alles, danke."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Şimdi oldu."
+     },
+     {
+      "de": "Ich weiß nicht.",
+      "tr": "Bilmiyorum.",
+      "accepted": [
+       "Ich weiß nicht.",
+       "Weiß nicht.",
+       "Ich weiß es nicht."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Kısaca **Ja, das ist alles.** de."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Der Blumenstrauß kostet zwölf Euro.",
+    "tr": "Buket on iki avro.",
+    "secenekler": [
+     {
+      "de": "Entschuldigung, er ist doch im Angebot.",
+      "tr": "Affedersiniz, ama indirimde.",
+      "accepted": [
+       "Entschuldigung, er ist doch im Angebot.",
+       "Entschuldigung, aber er ist im Angebot.",
+       "Entschuldigung, er ist doch im Angebot, oder?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar ve net. **doch** karşı tarafa indirimi hatırlatır."
+     },
+     {
+      "de": "Wirklich? Im Angebot kostet er neun Euro neunundneunzig.",
+      "tr": "Gerçekten mi? İndirimde dokuz doksan dokuz.",
+      "accepted": [
+       "Wirklich? Im Angebot kostet er neun Euro neunundneunzig.",
+       "Wirklich? Im Angebot kostet er 9,99 Euro.",
+       "Wirklich? Er kostet im Angebot neun neunundneunzig."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. İndirimli fiyatı da söyledin."
+     },
+     {
+      "de": "Wenn er zwölf Euro kostet, ich nehme ihn nicht.",
+      "tr": "On iki avroysa almıyorum.",
+      "accepted": [
+       "Wenn er zwölf Euro kostet, ich nehme ihn nicht.",
+       "Wenn er zwölf Euro kostet, ich kaufe ihn nicht.",
+       "Wenn er zwölf kostet, ich nehme ihn nicht."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Virgülden sonra hemen **nehme** gelir: **Wenn er zwölf Euro kostet, nehme ich ihn nicht.**"
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Ach ja, stimmt. Neun neunundneunzig. Bar oder mit Karte?",
+    "tr": "Ha evet, doğru. Dokuz doksan dokuz. Nakit mi, kartla mı?",
+    "secenekler": [
+     {
+      "de": "Mit Karte. Geht das hier?",
+      "tr": "Kartla. Burada geçiyor mu?",
+      "accepted": [
+       "Mit Karte. Geht das hier?",
+       "Mit Karte. Geht das?",
+       "Mit Karte, bitte. Geht das hier?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Akıllıca. Kartın geçip geçmediğini de sordun."
+     },
+     {
+      "de": "Bar. Hier sind zehn Euro.",
+      "tr": "Nakit. Buyurun on avro.",
+      "accepted": [
+       "Bar. Hier sind zehn Euro.",
+       "Bar. Hier sind zehn Euro, bitte.",
+       "Ich zahle bar. Hier sind zehn Euro."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. On avro verdin."
+     },
+     {
+      "de": "Ja.",
+      "tr": "Evet.",
+      "accepted": [
+       "Ja.",
+       "Ja, bitte.",
+       "Ja, gern."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Seçmeli bir soru bu. **Bar** ya da **Mit Karte** de."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gut. Möchten Sie eine Tüte?",
+    "tr": "Tamam. Poşet ister misiniz?",
+    "secenekler": [
+     {
+      "de": "Nein, danke. Ich habe eine Tasche.",
+      "tr": "Hayır, teşekkürler. Çantam var.",
+      "accepted": [
+       "Nein, danke. Ich habe eine Tasche.",
+       "Nein danke, ich habe eine Tasche.",
+       "Nein, danke, ich habe eine Tasche dabei."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Kısa ve kibar."
+     },
+     {
+      "de": "Ja, bitte. Wenn sie nicht teuer ist, nehme ich eine.",
+      "tr": "Evet, lütfen. Pahalı değilse bir tane alırım.",
+      "accepted": [
+       "Ja, bitte. Wenn sie nicht teuer ist, nehme ich eine.",
+       "Ja, bitte. Wenn sie nicht zu teuer ist, nehme ich eine.",
+       "Wenn sie nicht teuer ist, nehme ich eine."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. wenn ile başladın, **nehme** hemen geldi."
+     },
+     {
+      "de": "Wenn die Tüte billig, ich nehme.",
+      "tr": "Poşet ucuzsa alırım.",
+      "accepted": [
+       "Wenn die Tüte billig, ich nehme.",
+       "Wenn die Tüte billig ist, ich nehme sie."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "wenn parçasının sonunda **ist** gerekir. Virgülden sonra **nehme ich** gelir: **Wenn sie billig ist, nehme ich eine.**"
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Bitte schön. Einen schönen Abend noch!",
+    "tr": "Buyurun. İyi akşamlar!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Fiyattaki yanlışlığı kibarca söyledin, ödeme yolunu seçtin ve wenn ile başlayan bir cümle kurdun."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Marketin indirim broşürü",
+  "metin_de": "Angebote der Woche! Blumensträuße kosten nur 9,99 Euro. Äpfel: das Kilo für 2 Euro. Wenn Sie zwei Brote kaufen, kostet das dritte Brot nichts. Gutscheine gibt es an der Kasse. Wir sind von Montag bis Samstag von 8 bis 20 Uhr für Sie da.",
+  "metin_tr": "Haftanın indirimleri! Buketler sadece 9,99 avro. Elma: kilosu 2 avro. İki ekmek alırsanız üçüncüsü bedava. Hediye çekleri kasada. Pazartesiden cumartesiye 8'den 20'ye kadar hizmetinizdeyiz.",
+  "sorular": [
+   {
+    "kind": "gist",
+    "q_tr": "Bu metin ne?",
+    "opts": [
+     "Marketin haftalık indirim broşürü",
+     "Bir restoran menüsü",
+     "Kursun ders programı"
+    ],
+    "ans": 0,
+    "kanit": [
+     0
+    ],
+    "id": "m1:72:o1"
+   },
+   {
+    "kind": "detail",
+    "q_tr": "Üç ekmek alırsan kaç ekmeğe para ödersin?",
+    "opts": [
+     "Üç",
+     "İki",
+     "Bir"
+    ],
+    "ans": 1,
+    "kanit": [
+     3
+    ],
+    "id": "m1:72:o2"
+   },
+   {
+    "kind": "detail",
+    "q_tr": "Hediye çeki nereden alınır?",
+    "opts": [
+     "Kasadan",
+     "Fırından",
+     "İnternetten"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ],
+    "id": "m1:72:o3"
+   },
+   {
+    "kind": "detail",
+    "q_tr": "Pazar günü market açık mı?",
+    "opts": [
+     "Evet, 8'den 20'ye",
+     "Hayır",
+     "Sadece öğlen"
+    ],
+    "ans": 1,
+    "kanit": [
+     5
+    ],
+    "id": "m1:72:o4"
+   },
+   {
+    "id": "m1:72:o5",
+    "k": "guided_response",
+    "situation_tr": "Ioana elmaları soruyor. Broşürü sen okudun.",
+    "prompt_de": "Was kosten die Äpfel?",
+    "accepted": [
+     "Das Kilo kostet zwei Euro.",
+     "Zwei Euro das Kilo.",
+     "Sie kosten zwei Euro das Kilo.",
+     "Ein Kilo kostet zwei Euro.",
+     "Das Kilo für zwei Euro.",
+     "Zwei Euro pro Kilo."
+    ],
+    "why_tr": "Fiyatı kiloyla söylersin: **Das Kilo kostet zwei Euro.**"
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Ioana'ya kısa mesaj yaz. Buketin indirimde olduğunu söyle. Sonra wenn ile başlayan bir cümle kur.",
+   "ornek_de": "Hallo Ioana, der Blumenstrauß ist im Angebot. Wenn du willst, kaufe ich ihn morgen.",
+   "zorunlu": [
+    "Angebot",
+    "Wenn"
+   ],
+   "accepted_kaliplar": [
+    "Hallo Ioana, ___ im Angebot.",
+    "Wenn ___, kaufe ich ___."
+   ],
+   "kontrol_tr": [
+    "İndirimi yazdın mı?",
+    "Wenn ile başlayınca virgülden hemen sonra kaufe gibi kelime geliyor mu?",
+    "Ioana'ya selam verdin mi?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:72:s",
+  "maddeler": [
+   {
+    "id": "m1:72:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Wenn das Wetter gut ist, gehen wir zu Fuß.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wenn das Wetter gut ist, gehen wir zu Fuß.",
+     "wenn das wetter gut ist gehen wir zu fuß",
+     "Wenn das Wetter gut ist gehen wir zu Fuß"
+    ],
+    "why_tr": "wenn başta: virgülden sonra hemen **gehen wir**."
+   },
+   {
+    "id": "m1:72:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Der Unterricht fängt heute erst um acht an.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Unterricht fängt heute erst um acht an.",
+     "der unterricht fängt heute erst um acht an",
+     "Der Unterricht fängt heute erst um acht an"
+    ],
+    "why_tr": "**fängt** ikinci yerde, **an** en sonda."
+   },
+   {
+    "id": "m1:72:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Wir kaufen zusammen einen schönen Blumenstrauß.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir kaufen zusammen einen schönen Blumenstrauß.",
+     "wir kaufen zusammen einen schönen blumenstrauß",
+     "Wir kaufen zusammen einen schönen Blumenstrauß"
+    ],
+    "why_tr": "**Blumenstrauß** buket demek."
+   },
+   {
+    "id": "m1:72:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Die Kette ist schön, aber leider zu teuer.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Kette ist schön, aber leider zu teuer.",
+     "die kette ist schön aber leider zu teuer",
+     "Die Kette ist schön aber leider zu teuer"
+    ],
+    "why_tr": "**zu teuer** fazla pahalı demek."
+   },
+   {
+    "id": "m1:72:s5",
+    "k": "tr_de",
+    "tr": "Vaktim olursa akşam yemek pişiririm.",
+    "accepted": [
+     "Wenn ich Zeit habe, koche ich am Abend.",
+     "Wenn ich Zeit habe, koche ich abends.",
+     "Am Abend koche ich, wenn ich Zeit habe.",
+     "Ich koche am Abend, wenn ich Zeit habe."
+    ],
+    "why_tr": "wenn başta olunca virgülden sonra **koche ich** gelir."
+   },
+   {
+    "id": "m1:72:s6",
+    "k": "tr_de",
+    "tr": "Elmalar indirimdeyse üç kilo alırım.",
+    "accepted": [
+     "Wenn die Äpfel im Angebot sind, kaufe ich drei Kilo.",
+     "Wenn Äpfel im Angebot sind, kaufe ich drei Kilo.",
+     "Ich kaufe drei Kilo, wenn die Äpfel im Angebot sind.",
+     "Wenn die Äpfel im Angebot sind, nehme ich drei Kilo."
+    ],
+    "why_tr": "indirimde: **im Angebot**."
+   },
+   {
+    "id": "m1:72:s7",
+    "k": "tr_de",
+    "tr": "Affedersiniz, kasa nerede?",
+    "accepted": [
+     "Entschuldigung, wo ist die Kasse?",
+     "Entschuldigung, wo ist hier die Kasse?",
+     "Entschuldigen Sie, wo ist die Kasse?",
+     "Wo ist die Kasse, bitte?"
+    ],
+    "why_tr": "Kasa: **die Kasse**."
+   },
+   {
+    "id": "m1:72:s8",
+    "k": "tr_de",
+    "tr": "Bir şeyi anlamayınca derste soru sorarım.",
+    "accepted": [
+     "Ich frage im Unterricht, wenn ich etwas nicht verstehe.",
+     "Wenn ich etwas nicht verstehe, frage ich im Unterricht.",
+     "Ich stelle im Unterricht Fragen, wenn ich etwas nicht verstehe.",
+     "Im Unterricht frage ich, wenn ich etwas nicht verstehe."
+    ],
+    "why_tr": "**wenn** parçasında **verstehe** en sonda."
+   },
+   {
+    "id": "m1:72:s9",
+    "k": "guided_response",
+    "situation_tr": "Ioana, Frau Moreau için veda hediyesini soruyor. Buket ve hediye çeki öneriyorsun.",
+    "prompt_de": "Und was schenken wir ihr?",
+    "accepted": [
+     "Vielleicht einen Blumenstrauß und einen Gutschein.",
+     "Einen Blumenstrauß und einen Gutschein.",
+     "Wir schenken ihr einen Blumenstrauß und einen Gutschein.",
+     "Vielleicht einen Gutschein und einen Blumenstrauß.",
+     "Einen Gutschein und Blumen.",
+     "Ich denke, einen Blumenstrauß und einen Gutschein."
+    ],
+    "why_tr": "**Gutschein** ve **Blumenstrauß** için **einen** dersin."
+   },
+   {
+    "id": "m1:72:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Wann kaufst du das Geschenk?",
+    "speed": "normal",
+    "situation_tr": "Vaktin olursa yarın alacaksın. wenn ile başla.",
+    "accepted": [
+     "Wenn ich Zeit habe, kaufe ich es morgen.",
+     "Wenn ich morgen Zeit habe, kaufe ich es.",
+     "Wenn ich Zeit habe, kaufe ich das Geschenk morgen.",
+     "Wenn ich Zeit habe, morgen.",
+     "Morgen, wenn ich Zeit habe.",
+     "Wenn ich Zeit habe, kaufe ich es morgen früh."
+    ],
+    "why_tr": "wenn başta: virgülden sonra **kaufe ich es morgen**."
+   },
+   {
+    "id": "m1:72:s11",
+    "k": "guided_response",
+    "situation_tr": "Kasadasın. Buket on iki avro okunuyor ama rafta indirimde dokuz doksan dokuz yazıyordu. Kibarca söyle.",
+    "prompt_de": "Das macht zwölf Euro.",
+    "accepted": [
+     "Entschuldigung, der Blumenstrauß ist im Angebot. Er kostet neun Euro neunundneunzig.",
+     "Entschuldigung, der Blumenstrauß ist doch im Angebot.",
+     "Entschuldigung, im Angebot kostet er neun Euro neunundneunzig.",
+     "Moment, bitte. Der Blumenstrauß ist im Angebot.",
+     "Entschuldigung, er ist im Angebot. Er kostet nur 9,99 Euro.",
+     "Entschuldigung, aber der Blumenstrauß ist im Angebot."
+    ],
+    "why_tr": "Önce **Entschuldigung**, sonra **im Angebot** de."
+   }
+  ],
+  "sesli": [
+   "m1:72:s9",
+   "m1:72:s10"
+  ],
+  "dikte": [
+   "m1:72:s1",
+   "m1:72:s2",
+   "m1:72:s3",
+   "m1:72:s4"
+  ]
+ }
+}
