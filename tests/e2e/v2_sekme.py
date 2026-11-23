@@ -46,11 +46,14 @@ def main():
                 check(all(s[i]["sag"] <= s[i + 1]["sol"] + 0.5 for i in range(3)) and s[0]["sol"] >= 0 and s[3]["sag"] <= vp["width"], f"{ad} sekmeler kesişmiyor, ekrana sığıyor")
                 for k, etiket, href in SEKMELER:
                     pg.click(f"[data-tab={k}]"); pg.wait_for_selector(f"[data-tab={k}][aria-current=page]")
-                    pg.wait_for_timeout(250)  # renk geçişi (≤ 200 ms)
+                    # renk geçişi bitene kadar (WebKit yükte 250 ms yetmiyor; KAPI 7088581326): ötekilerin rengi tek değere inene kadar, en çok 3 sn
+                    try: pg.wait_for_function("""(k) => { const xs = [...document.querySelectorAll('.tabbar nav a')]; const e = xs.find((a) => a.dataset.tab === k);
+                      const d = new Set(xs.filter((a) => a !== e).map((a) => getComputedStyle(a).color)); return d.size === 1 && !d.has(getComputedStyle(e).color); }""", arg=k, timeout=3000)
+                    except Exception: pass  # süre dolarsa aşağıdaki denetim kırmızı verir
                     s = sekmeler(pg)
                     etkin = [x for x in s if x["etkin"]]; diger = [x for x in s if not x["etkin"]]
                     check(len(etkin) == 1 and etkin[0]["k"] == k and pg.evaluate("location.hash") == href, f"{ad} {etiket}: yalnız kendi sekmesi etkin, adres {href}")
-                    check(all(x["renk"] != etkin[0]["renk"] for x in diger) and len({x["renk"] for x in diger}) == 1, f"{ad} {etiket}: etkin sekme renkle ayrılıyor")
+                    check(all(x["renk"] != etkin[0]["renk"] for x in diger) and len({x["renk"] for x in diger}) == 1, f"{ad} {etiket}: etkin sekme renkle ayrılıyor ({[(x['k'], x['renk']) for x in s]})")
                     check(all(x["zemin"] in ("rgba(0, 0, 0, 0)", "transparent") for x in s), f"{ad} {etiket}: sekmede zemin hapı yok (hedef 3)")
                     check(etkin[0]["kalin"] >= 700 and all(x["kalin"] < 700 for x in diger), f"{ad} {etiket}: etkin sekme yalnız renkle değil, kalın yazıyla da ayrılıyor")
                     no_overflow(pg, f"{ad} {etiket}")
