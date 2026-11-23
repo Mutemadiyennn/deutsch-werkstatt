@@ -1060,3 +1060,104 @@ GEÇTİ satırlarında kendi sözlerimle anlattığım şey açıklamayla örtü
 | gor-006 | gorulmemis-04 | `m1:h04:g3` | `why_tr` | Karşılaştırmada **billiger**, sorun için **zu groß** dersin. | GEÇTİ |
 | gor-007 | gorulmemis-04 | `m1:h04:g4` | `durum_tr` | Bürgerbüro'da bir memur formu dolduruyor. Adresini ve dairenin kaç odası olduğunu soruyor. Dairen Brunnengasse 7'de, ikinci katta, iki odalı. | GEÇTİ |
 | gor-008 | gorulmemis-04 | `m1:h04:g4` | `why_tr` | Önce adresi ve katı söyle. Sayıyı kısaca söylemek yeter: **Zwei** ya da **Zwei Zimmer**. | GEÇTİ |
+
+## Fark turu (23.11)
+
+Kapsam: ilk turdan **sonra** değişen ya da eklenen, öğrenciye görünen Türkçe açıklama alanları (aynı alan listesi). Karşılaştırmayı git ile değil, ilk turda çıkardığım alan listesini (944 satır) aynı betikle dosyaların son hâlinden çıkarılan listeyle alan alan eşleyerek yaptım. Böylece git komutu çalıştırmadım; çalışma ağacındaki dosyalar okundu. Sonuç: metni değişen ya da yeni eklenen **75 alan** var. Bunlara `gun-25`'te yeri değişen halka (eski `h3`, şimdi `h2`) ve görülmemiş durumlar `g4`–`g7` dahil. `gun-25` eski `h2` halkası `h1`'e katılmış, `gun-26` `h3` halkası kaldırılmış: silinen 14 alan okunacak metin olmadığı için sayılmadı. Her alan güncel Almanca bağlamıyla (ses metni, sahne, kabul edilen cevaplar, kartlar) yan yana okundu. Önceki 32 GERİ'nin 32'si de değişmiş; yeni metinleri aşağıda **Önceki** sütununda işaretli.
+
+| # | Dosya | Öğe | Alan | Yeni açıklama | Kendi sözlerimle | Karar | Önceki |
+|---|---|---|---|---|---|---|---|
+| F-01 | gun-22 | `g22` | `goal_tr` | Kaybolan bir eşyanın nerede olduğunu er, sie ya da es ile söylersin. | Kaybolan eşyanın yerini er, sie, es ile söylerim. | GEÇTİ | 22-001 |
+| F-02 | gun-22 | `m1:22:h2.kalip2` | `kaliplar.tr` | … nerede? – Kayıp. (das ile giden eşya) | das'lı eşya nerede? Kayıp. | GEÇTİ |  |
+| F-03 | gun-22 | `m1:22:a1.b1.ay1.opt0` | `opts` | Mutfakta, dolabın üstünde | Mutfakta, dolabın üstünde. | GEÇTİ |  |
+| F-04 | gun-22 | `m1:22:p1` | `kapanis_tr` | Ioana'nın sorularına cevap verdin. Her eşya için doğru kelimeyi seçtin: **er**, **sie**, **es**. | Ioana sordu, ben cevap verdim; doğru kelimeyi seçtim. | GEÇTİ | 22-103 |
+| F-05 | gun-22 | `m1:22:o2` | `q_tr` | Fincanı yarın kim geri verecek? | Fincanı yarın kim geri verecek? | GEÇTİ |  |
+| F-06 | gun-22 | `m1:22:o2.opt0` | `opts` | Sen | Sen. | GEÇTİ |  |
+| F-07 | gun-22 | `m1:22:o2.opt1` | `opts` | Ioana | Ioana. | GEÇTİ |  |
+| F-08 | gun-22 | `m1:22:yazma` | `gorev_tr` | Ioana'ya kısa bir not yaz. Ehliyet dolapta, davetiye fincanın yanında, haplar ceketin içinde. **er** ve **sie** kullan. | Ioana'ya not yazacağım; er ve sie kullanacağım. | GEÇTİ |  |
+| F-09 | gun-23 | `g23` | `goal_tr` | Bir eşyanın büyük, küçük, yeni ya da güzel olduğunu söylersin. | Eşyanın büyük, küçük, yeni, güzel olduğunu söylerim. | GEÇTİ | 23-001 |
+| F-10 | gun-23 | `m1:23:v1:c1` | `why_tr` | **das Sofa** için **Ich finde es schön** dersin. **schön** hiç değişmez. | Kanepe için Ich finde es schön; schön aynen kalır. | GEÇTİ | 23-041 |
+| F-11 | gun-23 | `m1:23:a2:c1` | `why_tr` | **die Tomaten** birden çok domates. Bu yüzden **sie sind** dersin. | Domatesler birden çok, o yüzden sie sind. | GEÇTİ | 23-080 |
+| F-12 | gun-23 | `m1:23:p1.n2.s0` | `geri_bildirim_tr` | Çok iyi. **sie** ile başladın, **groß** ve **hell** aynı kaldı. | sie ile başladım, groß ve hell aynı kaldı. | GEÇTİ | 23-089 |
+| F-13 | gun-23 | `m1:23:p1.n3.s0` | `geri_bildirim_tr` | Güzel. Farkı **neu** ve **groß** ile açıkça söyledin. | Farkı neu ve groß ile söyledim. | GEÇTİ | 23-092 |
+| F-14 | gun-23 | `m1:23:s2` | `why_tr` | Birden çok domates için **sind** gelir. **billig** aynı kalır. | Birden çok domates için sind; billig değişmez. | GEÇTİ | 23-118 |
+| F-15 | gun-23 | `m1:23:s5` | `why_tr` | **ist** ile gelen **neu** gibi kelimeler değişmez: **Das Sofa ist neu**. | ist'ten sonra neu gibi kelimeler değişmez. | GEÇTİ | 23-123 |
+| F-16 | gun-23 | `m1:23:s11` | `why_tr` | **die Jacke** için **sie** dersin: **Sie ist groß und neu**. | Ceket için sie: Sie ist groß und neu. | GEÇTİ | 23-132 |
+| F-17 | gun-24 | `g24` | `goal_tr` | Bir şey için çok güzel, fazla pahalı ya da iyi değil dersin. | Bir şey için çok güzel, fazla pahalı, iyi değil derim. | GEÇTİ | 24-001 |
+| F-18 | gun-24 | `g24` | `can_do.tr` | Bir şey için çok pahalı, fazla küçük ya da büyük değil derim. | Çok pahalı, fazla küçük, büyük değil diyebilirim. | GEÇTİ | 24-002 |
+| F-19 | gun-24 | `m1:24:h2.soru.opt0` | `opts` | Saat on birden itibaren | Saat on birden itibaren. | GEÇTİ |  |
+| F-20 | gun-24 | `m1:24:h2.soru.opt1` | `opts` | Yarından itibaren | Yarından itibaren. | GEÇTİ |  |
+| F-21 | gun-24 | `m1:24:p1.n3.s1` | `geri_bildirim_tr` | İyi bir soru. Tobi'ye mutfak fazla mı küçük diye sordun. | Tobi'ye mutfak fazla mı küçük diye sordum. | GEÇTİ | 24-089 |
+| F-22 | gun-24 | `m1:24:s7` | `why_tr` | Değil derken **nicht** dersin: **nicht gut**. | Değil için nicht: nicht gut. | GEÇTİ | 24-121 |
+| F-23 | gun-24 | `m1:24:s9` | `why_tr` | Çok kötü derken **sehr schlimm** dersin. | Çok kötü için sehr schlimm. | GEÇTİ | 24-124 |
+| F-24 | gun-25 | `g25` | `goal_tr` | İki eşyadan hangisinin daha ucuz olduğunu billiger als ile söylersin. | Hangisi daha ucuz, billiger als ile söylerim. | GEÇTİ | 25-001 |
+| F-25 | gun-25 | `m1:25:h1.kalip5` | `kaliplar.tr` | …'den daha ucuz – …'den daha pahalı | …'den daha ucuz, …'den daha pahalı. | GEÇTİ |  |
+| F-26 | gun-25 | `m1:25:h1.kalip6` | `kaliplar.tr` | daha büyük – daha küçük – daha güzel – daha iyi – tercihen | daha büyük, küçük, güzel, iyi, tercihen. | GEÇTİ |  |
+| F-27 | gun-25 | `m1:25:h1.kalip7` | `kaliplar.tr` | … kadar … | … kadar … (eşitlik). | GEÇTİ |  |
+| F-28 | gun-25 | `m1:25:h1.kalip8` | `kaliplar.tr` | …'i gidip alıyorum – …'i gidip alır mısın? | Gidip alıyorum, gidip alır mısın? | GEÇTİ |  |
+| F-29 | gun-25 | `m1:25:h1.kalip9` | `kaliplar.tr` | bir çift ayakkabı | bir çift ayakkabı. | GEÇTİ |  |
+| F-30 | gun-25 | `m1:25:h1.kalip10` | `kaliplar.tr` | birkaç … | birkaç …. | GEÇTİ |  |
+| F-31 | gun-25 | `m1:25:h2.kalip0` | `kaliplar.tr` | … anlatıyor – Ne anlatıyorsun? | … anlatıyor, ne anlatıyorsun? | GEÇTİ | (eski h3) |
+| F-32 | gun-25 | `m1:25:h2.sahne` | `ortam_tr` | Tezgâhın önünde Luka seni çağırıyor. | Luka seni tezgâhın önünde çağırıyor. | GEÇTİ | (eski h3) |
+| F-33 | gun-25 | `m1:25:h2.soru` | `q_tr` | Nerede buluşuyorsunuz? | Nerede buluşuyoruz? | GEÇTİ | (eski h3) |
+| F-34 | gun-25 | `m1:25:h2.soru.opt0` | `opts` | İstasyonda, saat onda | İstasyonda, onda. | GEÇTİ | (eski h3) |
+| F-35 | gun-25 | `m1:25:h2.soru.opt1` | `opts` | Pazarda, saat dörtte | Pazarda, dörtte. | GEÇTİ | (eski h3) |
+| F-36 | gun-25 | `m1:25:h2.soru.opt2` | `opts` | Kursta | Kursta. | GEÇTİ | (eski h3) |
+| F-37 | gun-25 | `m1:25:a1:c1` | `why_tr` | Daha ucuz derken **billiger** dersin. Sandalyeler için **sie sind billiger**. | Daha ucuz billiger; sandalyeler için sie sind billiger. | GEÇTİ | 25-060 |
+| F-38 | gun-25 | `m1:25:a1:e1.opt0` | `opts` | Yarın gel ve al. | Yarın gelip al. | GEÇTİ |  |
+| F-39 | gun-25 | `m1:25:a1:e1.opt1` | `opts` | Bugün saat dörtten önce bir sandalye al. | Bugün dörtten önce bir sandalye al. | GEÇTİ |  |
+| F-40 | gun-25 | `m1:25:a1:e1.opt2` | `opts` | Bu akşam gel ve al. | Bu akşam gelip al. | GEÇTİ |  |
+| F-41 | gun-25 | `m1:25:p1.n4.s1` | `geri_bildirim_tr` | Güzel. **klein** ve **schön** kelimelerini **aber** ile bağladın. | klein ve schön'ü aber ile bağladım. | GEÇTİ | 25-099 |
+| F-42 | gun-25 | `m1:25:s3` | `why_tr` | Karşılaştırmada **als** gelir: **schöner als**. | Karşılaştırınca als: schöner als. | GEÇTİ |  |
+| F-43 | gun-25 | `m1:25:s6` | `why_tr` | **gut** kuralı bozar: daha iyi **besser** olur. | gut alışılan yolla gitmiyor: daha iyi besser. | GEÇTİ | 25-127 |
+| F-44 | gun-25 | `m1:25:s7` | `why_tr` | **teuer** daha pahalı olunca **teurer** olur. | teuer daha pahalı olunca teurer. | GEÇTİ | 25-128 |
+| F-45 | gun-26 | `m1:26:h1.kalip4` | `kaliplar.tr` | istasyondan uzak – kurstan uzak | istasyondan uzak, kurstan uzak. | GEÇTİ |  |
+| F-46 | gun-26 | `m1:26:h1.kalip5` | `kaliplar.tr` | Haa, anladım! – Ah, evet! | Haa anladım, ah evet. | GEÇTİ |  |
+| F-47 | gun-26 | `m1:26:h2.kalip1` | `kaliplar.tr` | …'i unutuyorum – …'i unutma! | …'i unutuyorum, …'i unutma. | GEÇTİ |  |
+| F-48 | gun-26 | `m1:26:h2.kalip2` | `kaliplar.tr` | …'i gösteriyorum – …'i gösterir misin? – …'i gösteriyor – Göster bakalım! | …'i gösteriyorum, gösterir misin, gösteriyor, göster bakalım. | GEÇTİ |  |
+| F-49 | gun-26 | `m1:26:h2.sahne` | `ortam_tr` | Apartmandaki boş yerin kapısı. Pichler Bey anahtarla bekliyor. Tobi için bakıyorsun. | Boş dairenin kapısındayız, Pichler Bey anahtarla bekliyor; Tobi için bakıyorum. | GEÇTİ |  |
+| F-50 | gun-26 | `m1:26:v1.b1.ay1.opt2` | `opts` | Mutfağı yok | Mutfağı yok. | GEÇTİ |  |
+| F-51 | gun-26 | `m1:26:p1` | `durum_tr` | Ioana ile üç ilana bakıyorsunuz. ⏎ 1. ilan: Brunnengasse, **2 Zi.**, **Kü.**, **Blk.**, 55 m², 650 € ve **NK** 120 €. ⏎ 2. ilan: am Bahnhof, **3 Zi.**, **Kü.**, 70 m², 800 € ve **NK** 150 €. ⏎ 3. ilan: Brunnenviertel, **1 Zi.**, **Kü.**, **Blk.**, 30 m², 450 € ve **NK** 60 €. | Üç ilan alt alta: her birinin oda, mutfak, balkon, metrekare, kira ve yan gideri. | GEÇTİ | 26-087 |
+| F-52 | gun-26 | `m1:26:s11` | `situation_tr` | Üç ilan var: 650, 800 ve 450 avro. İkincisi en büyük. Ioana soruyor. En ucuzu ve en büyüğü söyle. | Üç ilan; en ucuzu ve en büyüğü söyleyeceğim. | GEÇTİ | 26-131 |
+| F-53 | gun-27 | `g27` | `goal_tr` | Evinin ve şehirdeki yerlerin nerede olduğunu neben, hinter, zwischen ile söylersin. | Yerlerin nerede olduğunu neben, hinter, zwischen ile söylerim. | GEÇTİ | 27-001 |
+| F-54 | gun-27 | `m1:27:v1:c1` | `situation_tr` | Brandl Hanım katını karıştırıyor. Sen ikinci katta oturuyorsun. | Brandl Hanım katımı karıştırıyor; ben ikinci kattayım. | GEÇTİ |  |
+| F-55 | gun-27 | `m1:27:v1:c1` | `why_tr` | Önce **Nein** de. Kat için **im** dersin: **im zweiten Stock**. | Önce Nein, sonra im zweiten Stock. | GEÇTİ |  |
+| F-56 | gun-27 | `m1:27:a2` | `ortam_tr` | Cumartesi. Derya sana geliyor ve telefonuna mesaj bırakmış. | Cumartesi, Derya geliyor, mesaj bırakmış. | GEÇTİ |  |
+| F-57 | gun-27 | `m1:27:s11` | `situation_tr` | Yeni bir komşu nerede oturduğunu soruyor. İkinci kattasın. | Komşu nerede oturduğumu soruyor; ikinci kattayım. | GEÇTİ |  |
+| F-58 | gun-27 | `m1:27:s11` | `why_tr` | Kat için **im** dersin: **im zweiten Stock**. | Kat için im zweiten Stock. | GEÇTİ |  |
+| F-59 | gun-28 | `g28` | `goal_tr` | Merdivende Brandl Hanım'a kim olduğunu, nerede oturduğunu ve evini anlatırsın. | Brandl Hanım'a kendimi, oturduğum yeri ve evimi anlatırım. | GEÇTİ | 28-001 |
+| F-60 | gun-28 | `m1:28:a1:e1` | `why_tr` | Teknisyen cumartesi dokuzda mutfağına geliyor. Akşam saat ondan sonra müzik yok. | Teknisyen dokuzda; akşam saat ondan sonra müzik yok. | GEÇTİ | 28-055 |
+| F-61 | gun-28 | `m1:28:p1.n3.s0` | `geri_bildirim_tr` | Güzel. **die Küche** için **sie** dedin, **klein** ve **hell** de doğru. | Mutfak için sie; klein ve hell de doğru. | GEÇTİ | 28-085 |
+| F-62 | gun-28 | `m1:28:p1` | `kapanis_tr` | Brandl Hanım'a kim olduğunu, nerede oturduğunu ve evini anlattın. Haftanın sınavını geçtin. | Kendimi anlattım, haftanın sınavını geçtim. | GEÇTİ | 28-096 |
+| F-63 | gun-28 | `m1:28:s7` | `why_tr` | **sehr hell** çok aydınlık demektir. | sehr hell çok aydınlık. | GEÇTİ | 28-121 |
+| F-64 | gun-28 | `m1:28:s11` | `situation_tr` | Haftanın sınavı. Merdivende Brandl Hanım. Kim olduğunu, nerede oturduğunu ve evini anlat. | Haftanın sınavı: Brandl Hanım'a kendimi anlatacağım. | GEÇTİ | 28-127 |
+| F-65 | hafta-sonu-testi-04 | `m1:28:t02` | `why_tr` | **Das Haus** ilk parça, **ist** hemen arkasından gelir. **nicht** de **weit** kelimesinin önünde durur. | Önce Das Haus, hemen arkasından ist; nicht weit'in önünde. | GEÇTİ | hst-003 |
+| F-66 | hafta-sonu-testi-04 | `m1:28:t07` | `why_tr` | **der Flur** için **er** dersin: **Er ist hell und schön**. | Koridor için er: Er ist hell und schön. | GEÇTİ | hst-011 |
+| F-67 | hafta-sonu-testi-04 | `m1:28:t08` | `why_tr` | **Der Führerschein** ilk parça, **liegt** hemen arkasından gelir. | Önce Der Führerschein, hemen arkasından liegt. | GEÇTİ | hst-012 |
+| F-68 | gorulmemis-04 | `m1:h04:g4` | `durum_tr` | Bir iş arkadaşın telefonunda üç ev ilanı gösteriyor: 500, 700 ve 900 avro. En ucuzunu soruyor. | İş arkadaşım üç ilan gösteriyor, en ucuzunu soruyor. | GEÇTİ | (g4 yeni durum) |
+| F-69 | gorulmemis-04 | `m1:h04:g4` | `why_tr` | En ucuz derken **am billigsten** dersin. | En ucuz için am billigsten. | GEÇTİ | (g4 yeni durum) |
+| F-70 | gorulmemis-04 | `m1:h04:g5` | `durum_tr` | Bir kafede ceketini unuttun. Ertesi gün kafeyi arıyorsun. Garson ceketin nasıl olduğunu soruyor. Ceketin küçük ve yeni. | Kafede ceketimi unuttum, arıyorum; küçük ve yeni. | GEÇTİ | (yeni) |
+| F-71 | gorulmemis-04 | `m1:h04:g5` | `why_tr` | **die Jacke** için **sie** dersin: **Sie ist klein und neu**. | Ceket için sie: Sie ist klein und neu. | GEÇTİ | (yeni) |
+| F-72 | gorulmemis-04 | `m1:h04:g6` | `durum_tr` | Spor salonunda görevli sana bir dolap gösteriyor. Dolap senin çantan için fazla küçük. | Spor salonunda dolap çantama fazla küçük. | GEÇTİ | (yeni) |
+| F-73 | gorulmemis-04 | `m1:h04:g6` | `why_tr` | Sorun varsa **zu** dersin: **zu klein**. **der Schrank** için **er**. | Sorun için zu klein; dolap için er. | GEÇTİ | (yeni) |
+| F-74 | gorulmemis-04 | `m1:h04:g7` | `durum_tr` | Kursta yeni biri seninle tanışıyor ve evini soruyor. Evin büyük değil ama aydınlık, ikinci kattasın. | Kursta biri evimi soruyor: büyük değil ama aydınlık, ikinci kat. | GEÇTİ | (yeni) |
+| F-75 | gorulmemis-04 | `m1:h04:g7` | `why_tr` | Önce **nicht groß, aber hell** de. Sonra katını **im zweiten Stock** ile söyle. | Önce nicht groß, aber hell, sonra im zweiten Stock. | GEÇTİ | (yeni) |
+
+### Sayılar (fark turu)
+
+| | Toplam | GEÇTİ | GERİ |
+|---|---|---|---|
+| Fark turunda okunan alan | 75 | 75 | 0 |
+| bunların içinden önceki GERİ'lerin yeni metni | 32 | 32 | 0 |
+
+Fark turunda GERİ yok. Önceki 32 GERİ'nin hepsi düzelmiş. İlk turda GEÇTİ olan ve metni değişmeyen 869 alanla birlikte dosyaların okur durumu şöyle: `gun-22` … `gun-28`, `hafta-sonu-testi-04`, `gorulmemis-04` için açık okur GERİ'si kalmadı (OD-9.4 açısından okur engeli yok).
+
+### Fark turu notları
+
+- **Sınır:** Karşılaştırma Türkçe metin üzerinden yapıldı. Türkçesi aynı kalıp yalnız Almanca bağlamı (ses metni, kabul listesi) değişen alanlar bu yöntemle yakalanmaz. Okuduğum bağlamlarda böyle bir kayma görmedim: `m1:22:a1:e1` `why_tr` yeni ses metniyle (**auf dem Schrank**) hâlâ doğru, `m1:22:o1`/`o3` yeni okuma metniyle doğru, `m1:24:h2` sorusu yeni saatle (**Ab elf**) doğru.
+- `F-43` (`m1:25:s6`) **kuralı bozar** diyor ama hangi kuralı bozduğunu söylemiyor. Sonucu (**daha iyi besser olur**) açıkça verdiği için GEÇTİ.
+- `F-54` (`m1:27:v1:c1`) **Brandl Hanım katını karıştırıyor**: **katını** onun katı diye de okunabilir. Hemen arkasındaki **Sen ikinci katta oturuyorsun** ve duyulan soru (**Und Sie wohnen im dritten Stock, ja?**) benim katım olduğunu gösteriyor. İlk turdaki `27-083` gibi GEÇTİ.
+- `F-51` (`m1:26:p1` `durum_tr`) satır sonlarıyla bölünmüş. Ekranda satırlar tek paragrafa birleşse de **1. ilan:** / **2. ilan:** başlıkları ilanları ayırdığı için okunuyor. **am Bahnhof** yer adı gibi duruyor, kalın değil; anlamı bozmuyor.
+- `F-65` (`m1:28:t02`) iki cümle ama ikisi de aynı kart dizisinin sırasını anlatıyor; tek fikir saydım. **ilk parça / hemen arkasından** kartları sayınca da doğru çıkıyor (**Das Haus** iki kart, ama tek parça olarak adlandırılmış).
+- İlk turdaki kapsam dışı not hâlâ geçerli: `m1:28:t07` açıklaması artık **Er ist hell und schön** örneğini veriyor, ama kabul listesinin ilk cevabı hâlâ **Ich finde ihn hell und schön**. Dilbilimciye bilgi.
+

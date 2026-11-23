@@ -1120,3 +1120,105 @@ GEÇTİ satırlarında kendi sözlerimle anlattığım şey açıklamayla örtü
 | gor-006 | gorulmemis-03 | `m1:h03:g3` | `why_tr` | Anlamadığında kibarca **Könnten Sie** ile tekrar istersin. | GEÇTİ |
 | gor-007 | gorulmemis-03 | `m1:h03:g4` | `durum_tr` | Ioana'yı arıyorsun, annesi açıyor. Ioana'nın döneceği günü duyunca tarihiyle doğrula. Salı ayın on beşi. | GEÇTİ |
 | gor-008 | gorulmemis-03 | `m1:h03:g4` | `why_tr` | Günü duyunca tarihi **am** ve sıra sayısıyla tekrar ederek doğrularsın. | GERİ |
+
+## Fark turu (23.11)
+
+Kapsam: ilk turdan sonra değişen ya da eklenen, öğrenciye görünen Türkçe açıklama alanları. Alan listesi ilk turla aynı. Farkı git ile değil, ilk turda çıkardığım alan dökümüyle bugünkü dosyaları karşılaştırarak buldum: aynı alan çıkarıcı, aynı anahtar (öğe, alan, sıra). Böylece yalnız benim turumdan sonra değişenler geldi. `grammar.json` için karşılaştırma ilk turdaki tabloya göre yapıldı.
+
+- İçerik dosyalarında 44 alanın metni değişti, 23 alan eklendi. Eklenenlerin 7'si birleşen halkalardan taşınan, metni aynı kalıplar.
+- 29 alan silindi; değerlendirilmedi. Bunlar `gun-16`/`gun-17` h4, `gun-18`/`gun-19` h3 halkalarının kalıpları, sahne ve soruları; halkalar birleşmiş.
+- `grammar.json`'daki 17 durakta 15 alan değişti. Değişenlerin hepsi ilk turun GERİ'leri; GEÇTİ alanlara dokunulmamış.
+- Metni aynı kalıp bağlamı değişen 31 alanı da kontrol ettim; sayıya katmadım. Bağlam derken sahne satırı, kayıt metni, prova satırı ya da şıklar. Hepsi yeni bağlamla da tutuyor; GERİ yok.
+
+| Öğe kimliği | Alan | Durum | Açıklama | Kendi sözlerimle | Karar | Neden |
+|---|---|---|---|---|---|---|
+| `gun-15` · `m1:15:h1.kalip2` | `kaliplar.tr` | yeni̇ | Hangi …? | Hangi şey diye sorarım. | GEÇTİ |  |
+| `gun-15` · `m1:15:h4.soru` | `q_tr` | deği̇şti̇ | Derya bugün nasıl geliyor? | Derya bugün işe nasıl geliyor? | GEÇTİ |  |
+| `gun-15` · `m1:15:a2.b1.ay1` | `q_tr` | deği̇şti̇ | Bu aramada biri ne zaman telefona çıkacak? | Telefonda biri ne zaman cevap verecek? | GEÇTİ | Önceki GERİ (15-082) kapandı: **telefona çıkmak** tek okumalı. |
+| `gun-15` · `m1:15:a2.b1.ay1.opt1` | `opts` | deği̇şti̇ | Yarın sabah | Yanlış şık: yarın sabah. | GEÇTİ |  |
+| `gun-16` · `m1:16:h1.kalip4` | `kaliplar.tr` | yeni̇ | Peki, tamam! | Peki, olsun, tamam. | GEÇTİ |  |
+| `gun-16` · `m1:16:h1.kalip5` | `kaliplar.tr` | yeni̇ | Kimin adına? | Kimin adına diye sorulur. | GEÇTİ |  |
+| `gun-16` · `m1:16:h1.kalip6` | `kaliplar.tr` | yeni̇ | … istiyorum | Bir şey istediğimi söylerim. | GEÇTİ | h4 halkasından taşındı, metin aynı. |
+| `gun-16` · `m1:16:a2:e1` | `why_tr` | deği̇şti̇ | Paltolar bugün ucuz. Akşam sekizde mağaza kapanıyor. | Paltolar ucuz, mağaza akşam sekizde kapanıyor. | GEÇTİ |  |
+| `gun-17` · `m1:17:h1.kalip2` | `kaliplar.tr` | yeni̇ | istasyonda – cuma günü | am hem yer hem gün için: istasyonda, cuma günü. | GEÇTİ | h4 halkasından taşındı, metin aynı. |
+| `gun-17` · `m1:17:h2.soru.opt0` | `opts` | deği̇şti̇ | Çarşamba | Doğru şık: çarşamba. | GEÇTİ | Sahne artık **Mittwoch** diyor, uyuyor. |
+| `gun-17` · `m1:17:a2` | `ortam_tr` | deği̇şti̇ | Ertesi gün Bürgerbüro'da Schneider Hanım'ı yeniden arıyorsun. Telesekreter açılıyor. | Ertesi gün yine arıyorum, telesekreter çıkıyor. | GEÇTİ |  |
+| `gun-17` · `m1:17:a2:e1` | `why_tr` | deği̇şti̇ | Schneider Hanım bugün yok. Kimlik için başka bir hat veriyor: dahili on iki. | Schneider Hanım yok; kimlik için on iki numaralı hattı aramalıyım. | GEÇTİ |  |
+| `gun-17` · `m1:17:o4` | `q_tr` | deği̇şti̇ | Schneider Hanım'ın dahili numarası ne? | Schneider Hanım'ın dahili numarası kaç? | GEÇTİ | Okuma metniyle (**drei, vier, null**) uyuyor. |
+| `gun-17` · `m1:17:o4.opt0` | `opts` | deği̇şti̇ | üç, dört, sıfır | Doğru şık: üç, dört, sıfır. | GEÇTİ |  |
+| `gun-17` · `m1:17:o4.opt1` | `opts` | deği̇şti̇ | dört, üç, sıfır | Yanlış şık: sıra karışık. | GEÇTİ |  |
+| `gun-17` · `m1:17:o4.opt2` | `opts` | deği̇şti̇ | üç, dört, dokuz | Yanlış şık: son rakam farklı. | GEÇTİ |  |
+| `gun-17` · `m1:17:o5` | `situation_tr` | deği̇şti̇ | Schneider Hanım'ı geri arıyorsun, o açıyor. Kendini tanıt. Sonra **Rückruf** istediğini hatırlat ya da kimliğin için aradığını söyle. | Adımı söyleyip geri arama istediğini hatırlatırım ya da kimliğim için aradığımı söylerim. | GEÇTİ | Önceki GERİ (17-124) kapandı: iki yol da kabul listesinde var (**Sie möchten einen Rückruf?**, **Es geht um meinen Ausweis**). |
+| `gun-17` · `m1:17:s8` | `why_tr` | deği̇şti̇ | Telefonu kapatmak **auflegen** demektir. **Legen Sie** derken **auf** en sona gider: **Legen Sie nicht auf!** | auflegen kapatmak; Legen Sie derken auf sona gider. | GEÇTİ | Önceki GERİ (17-137) kapandı. |
+| `gun-17` · `m1:17:s11` | `why_tr` | deği̇şti̇ | Önce **hier ist** ve adın. Sonra **Könnten Sie mich mit**, kişinin adı ve sonda **verbinden**. | hier ist ve adım, sonra Könnten Sie mich mit, kişinin adı, en sonda verbinden. | GEÇTİ | Önceki GERİ (17-143) kapandı. |
+| `gun-18` · `g18` | `goal_tr` | deği̇şti̇ | Kuaförde randevu alırken saati **um**, günü **am**, ayı **im** ile söylersin. | Kuaförde saati um, günü am, ayı im ile söylerim. | GEÇTİ | Önceki GERİ (18-001) kapandı: 11 kelime, eşleşme doğru, tek fikir. |
+| `gun-18` · `m1:18:h1.kalip2` | `kaliplar.tr` | yeni̇ | Luka'da – bizde | Luka'nın yerinde, bizim yerimizde. | GEÇTİ |  |
+| `gun-18` · `m1:18:h1.kalip3` | `kaliplar.tr` | yeni̇ | … günü saat …'de – … ayında | Gün ve saat birlikte, ay ayrı. | GEÇTİ | h3 halkasından taşındı, metin aynı. |
+| `gun-18` · `m1:18:h2.kalip5` | `kaliplar.tr` | yeni̇ | …'den …'e kadar – …'den itibaren | Bir saatten bir saate kadar; bir zamandan itibaren. | GEÇTİ | h3 halkasından taşındı, metin aynı. |
+| `gun-18` · `m1:18:h2.kalip6` | `kaliplar.tr` | yeni̇ | doktora – kursa | Doktora, kursa gitmek. | GEÇTİ |  |
+| `gun-18` · `m1:18:h2.kalip7` | `kaliplar.tr` | yeni̇ | kursumuz – şefimiz | Bizim kursumuz, bizim şefimiz. | GEÇTİ |  |
+| `gun-18` · `m1:18:h2.soru.opt1` | `opts` | deği̇şti̇ | Cumartesi | Doğru şık: cumartesi. | GEÇTİ | Sahne artık **Samstag** diyor, uyuyor. |
+| `gun-18` · `m1:18:h2.soru.opt2` | `opts` | deği̇şti̇ | Pazartesi | Yanlış şık: pazartesi. | GEÇTİ |  |
+| `gun-18` · `m1:18:v1:c1` | `situation_tr` | deği̇şti̇ | Luka sana da soruyor. Cuma saat dört olmuyor. Sen cumartesi saat onda gelebilirsin. | Cuma dört olmuyor; ben cumartesi onda gelebilirim. | GEÇTİ |  |
+| `gun-18` · `m1:18:a2` | `ortam_tr` | deği̇şti̇ | Luka'dan cuma günü saat dört için randevu istemiştin. Luka telefonuna mesaj bırakmış. | Cuma dört için randevu istemiştim; Luka mesaj bırakmış. | GEÇTİ |  |
+| `gun-18` · `m1:18:a2.b1.ana.opt0` | `opts` | deği̇şti̇ | Sana başka bir zaman önermek için | Doğru şık: başka bir zaman önermek için. | GEÇTİ |  |
+| `gun-18` · `m1:18:a2:e1.opt0` | `opts` | deği̇şti̇ | Cuma sabah haber vermeden salona git. | Yanlış şık: cuma sabah habersiz gitmek. | GEÇTİ |  |
+| `gun-18` · `m1:18:a2:e1.opt1` | `opts` | deği̇şti̇ | Luka'yı ara, cumartesi saat onu ya da salıdan itibaren bir öğleden sonrayı seç. | Doğru şık: Luka'yı ara, cumartesi on ya da salıdan sonra bir öğleden sonra seç. | GEÇTİ |  |
+| `gun-18` · `m1:18:a2:e1.opt2` | `opts` | deği̇şti̇ | Bir şey yapma, cuma saat dörtte git. | Yanlış şık: hiçbir şey yapmadan cuma dörtte gitmek. | GEÇTİ |  |
+| `gun-18` · `m1:18:a2:e1` | `why_tr` | deği̇şti̇ | Cuma saat dört olmuyor. Luka cumartesi saat onu ya da salıdan itibaren öğleden sonrayı öneriyor. | Cuma dört olmuyor; Luka cumartesi onu ya da salıdan itibaren öğleden sonraları öneriyor. | GEÇTİ |  |
+| `gun-18` · `m1:18:p1` | `durum_tr` | deği̇şti̇ | Luka'nın mesajını dinledin, ama cuma günü saat dört senin için en iyisi. Bir kez daha sormak için Salon Haarwerk'i aradın, bekleme hattında uzun bekledin. Sonunda Luka açıyor. | Mesajı dinledim ama cuma dört bana en iyisi; bir kez daha sormak için aradım, uzun bekledim, Luka açıyor. | GEÇTİ | Cümleler 12 ve 12 kelime. |
+| `gun-18` · `m1:18:p1.n3b.s1` | `geri_bildirim_tr` | deği̇şti̇ | **bis zwölf** saat on ikiye kadar demek. Saat on ikide Luka gidiyor. | bis zwölf on ikiye kadar; on ikide Luka gidiyor. | GEÇTİ | Prova metni **bis zwölf** diyor, uyuyor. |
+| `gun-18` · `m1:18:p1.n5.s0` | `geri_bildirim_tr` | deği̇şti̇ | Güzel bir kapanış. Günü ve saati bir kez daha söyledin. | Günü ve saati bir kez daha söyledim. | GEÇTİ | Önceki GERİ (18-102) kapandı. |
+| `gun-18` · `g18.yazma` | `gorev_tr` | deği̇şti̇ | Ioana'ya cevap yaz. Senin de Luka'da randevun var: cumartesi saat onda. | Ioana'ya yaz: benim de cumartesi onda randevum var. | GEÇTİ |  |
+| `gun-18` · `m1:18:s10` | `situation_tr` | deği̇şti̇ | Luka salı saat onu soruyor. Saat on olmuyor, öğleden sonra olur. | Luka salı onu soruyor; on olmuyor, öğleden sonra olur. | GEÇTİ | Soru artık **Dienstag**, uyuyor. |
+| `gun-19` · `m1:19:h1.kalip3` | `kaliplar.tr` | yeni̇ | Tamam! – Tamam mı? | Tamam; tamam mı diye sormak. | GEÇTİ |  |
+| `gun-19` · `m1:19:h1.kalip4` | `kaliplar.tr` | yeni̇ | herkes – her gün | Herkes; her gün. | GEÇTİ |  |
+| `gun-19` · `m1:19:h2.kalip3` | `kaliplar.tr` | yeni̇ | istasyona | İstasyona gitmek. | GEÇTİ |  |
+| `gun-19` · `m1:19:h2.kalip4` | `kaliplar.tr` | yeni̇ | yiyorum – yiyorsun – yiyor | Yemek: ben, sen, o. | GEÇTİ | h3 halkasından taşındı, metin aynı. |
+| `gun-19` · `m1:19:h2.kalip5` | `kaliplar.tr` | yeni̇ | görüyorum – görüyorsun – görüyor | Görmek: ben, sen, o. | GEÇTİ | h3 halkasından taşındı, metin aynı. |
+| `gun-19` · `m1:19:h2.kalip6` | `kaliplar.tr` | yeni̇ | …'i severim – …'i sever misin? | Bir şeyi severim; sever misin? | GEÇTİ | h3 halkasından taşındı, metin aynı. |
+| `gun-19` · `m1:19:p1.n2.s1` | `geri_bildirim_tr` | deği̇şti̇ | Güzel. **wir** ile kelime değişmez: **wir reden**, **wir sprechen**. | wir ile kelime aynı kalır: wir reden, wir sprechen. | GEÇTİ | Önceki GERİ (19-092) kapandı: terim yok, örnek var. |
+| `gun-19` · `m1:19:o1` | `q_tr` | deği̇şti̇ | Ioana cuma günü nasıl gidiyor? | Ioana cuma günü neyle gidiyor? | GEÇTİ | Okuma metniyle (**Am Freitag … mit dem Fahrrad**) uyuyor. |
+| `gun-19` · `m1:19:o2` | `q_tr` | deği̇şti̇ | Basti cuma günü nasıl gidiyor? | Basti cuma günü neyle gidiyor? | GEÇTİ |  |
+| `gun-20` · `m1:20:o4` | `situation_tr` | deği̇şti̇ | Ioana randevunu soruyor. Yeni tarihi söyle. | Ioana soruyor; yeni tarihi söylerim. | GEÇTİ |  |
+| `gun-21` · `m1:21:h1.kalip6` | `kaliplar.tr` | yeni̇ | bizde – Dr. Weber'de | Bizim yerimizde, Dr. Weber'in yerinde. | GEÇTİ |  |
+| `gun-21` · `m1:21:v1.b1.ay1` | `q_tr` | deği̇şti̇ | Tobi ne getirmeli? | Tobi muayenehaneye ne götürmeli? | GEÇTİ |  |
+| `gun-21` · `m1:21:v1.b1.ay1.opt0` | `opts` | deği̇şti̇ | babasının kartını | Doğru şık: babasının kartı. | GEÇTİ |  |
+| `gun-21` · `m1:21:v1.b1.ay1.opt1` | `opts` | deği̇şti̇ | babasının kimliğini | Yanlış şık: babasının kimliği. | GEÇTİ |  |
+| `gun-21` · `m1:21:a1.b1.ay0.opt2` | `opts` | deği̇şti̇ | 18 Aralık cuma | Yanlış şık: 18 Aralık cuma. | GEÇTİ |  |
+| `gun-21` · `m1:21:a2:c1` | `situation_tr` | deği̇şti̇ | Derya'yı geri arıyorsun. Baban hasta, yarın muayenehaneye gidiyor. İkisini de söyle. | Babamın hasta olduğunu ve yarın muayenehaneye gittiğini söylerim. | GEÇTİ |  |
+| `gun-21` · `m1:21:o2.opt2` | `opts` | deği̇şti̇ | 18 Aralık cuma | Yanlış şık: 18 Aralık cuma. | GEÇTİ |  |
+| `gun-21` · `m1:21:s11` | `situation_tr` | deği̇şti̇ | Huber Hanım randevuyu söylüyor. Tekrar ederek doğrula: gün ya da tarih, yanında saat. | Duyduğumu tekrar ederek doğrularım: günü ya da tarihi, yanında saati. | GEÇTİ |  |
+| `hafta-sonu-testi-03` · `m1:21:t04` | `situation_tr` | deği̇şti̇ | Adresin Brunnengasse yedi numara. Sokağın adını söyle ve ilk harfi bir adla netleştir. | Adresim Brunnengasse yedi; sokağın adını söyleyip ilk harfi bir adla netleştiririm. | GEÇTİ | Önceki GERİ (hst-005) kapandı. |
+| `hafta-sonu-testi-03` · `m1:21:t06` | `situation_tr` | deği̇şti̇ | Huber Hanım randevuyu söylüyor. Tekrar ederek doğrula: gün ya da tarih, yanında saat. | Randevuyu tekrar ederek doğrularım: gün ya da tarih, yanında saat. | GEÇTİ |  |
+| `hafta-sonu-testi-03` · `m1:21:t12` | `why_tr` | deği̇şti̇ | Önce **hier ist** ve adın. Sonra **Könnten Sie mich mit**, kişinin adı ve sonda **verbinden**. | hier ist ve adım, sonra Könnten Sie mich mit, kişinin adı, en sonda verbinden. | GEÇTİ | Önceki GERİ (hst-019) kapandı. |
+| `gorulmemis-03` · `m1:h03:g4` | `why_tr` | deği̇şti̇ | Günü duyunca tarihi tekrar ederek doğrularsın: **am fünfzehnten**. | Günü duyunca tarihi am fünfzehnten diye tekrar ederim. | GEÇTİ | Önceki GERİ (gor-008) kapandı: terim yok, örnek var. |
+| `gorulmemis-03` · `m1:h03:g5` | `durum_tr` | yeni̇ | Diş hekiminin sekreteri bu hafta yer olmadığını söylüyor ve ocakta ne zaman gelebileceğini soruyor. Sana pazartesi saat dokuz uyuyor. | Diş hekiminde bu hafta yer yok; ocakta ne zaman gelebileceğimi soruyorlar; bana pazartesi dokuz uyuyor. | GEÇTİ | İlk cümle tam 14 kelime. |
+| `gorulmemis-03` · `m1:h03:g5` | `why_tr` | yeni̇ | Gün için **am**, saat için **um** dersin: **am Montag um neun**. | Gün için am, saat için um: am Montag um neun. | GEÇTİ |  |
+| `gorulmemis-03` · `m1:h03:g6` | `durum_tr` | yeni̇ | Kafede yeni tanıştığın biri arkadaşın Ioana'yı soruyor. Ioana her gün bisikletle gidiyor ve iyi Almanca konuşuyor. | Yeni tanıştığım biri Ioana'yı soruyor; Ioana bisikletle gidiyor, iyi Almanca konuşuyor. | GEÇTİ | Soru yalnız otobüs mü bisiklet mi diye soruyor. Almanca bilgisi cevapta istenmiyor ama kafa karıştırmadı. |
+| `gorulmemis-03` · `m1:h03:g6` | `why_tr` | yeni̇ | Başkası için **sie fährt** dersin. **fahren** kelimesindeki **a**, **ä** olur. | Başkası için sie fährt; a harfi ä olur. | GEÇTİ |  |
+| `gorulmemis-03` · `m1:h03:g7` | `durum_tr` | yeni̇ | Fizyoterapi muayenehanesi randevunu söylüyor. Tekrar ederek doğrula: gün ya da tarih, yanında saat. | Fizyoterapi randevumu söylüyor; günü ya da tarihi ve saati tekrar ederek doğrularım. | GEÇTİ |  |
+| `gorulmemis-03` · `m1:h03:g7` | `why_tr` | yeni̇ | Doğrularken günü ya da tarihi ve saati soru gibi tekrar edersin. | Günü ya da tarihi ve saati soru gibi tekrar ederim. | GEÇTİ |  |
+| `registry/grammar.json` · `gr:a1-02:t3` | `h_tr` | değişti (önceki GERİ) | Evet ya da hayır sorusu: Hast du Zeit? | Evet-hayır sorusu: Hast du Zeit? gibi. | GEÇTİ | Önceki GERİ kapandı: terim yok. |
+| `registry/grammar.json` · `gr:a1-02:t3` | `tr` | değişti (önceki GERİ) | Evet ya da hayır sorusunda soru kelimesi yoktur. Soru sorarken **hast**, **bist**, **kommst** gibi kelime en başa geçer. **Du hast Zeit** soruda **Hast du Zeit?** olur. Kelimelerin sırası değişince cümle soru olur. Cevap çoğu zaman **Ja** ya da **Nein** ile başlar. | Soruda hast, bist gibi kelime başa geçer; sıra değişince soru olur; cevap Ja ya da Nein. | GEÇTİ | Önceki GERİ kapandı: terim yok. |
+| `registry/grammar.json` · `gr:a1-12:t1` | `tr` | değişti (önceki GERİ) | Birinden kibarca bir şey isterken **Können Sie** yerine **Könnten Sie** dersin. **Könnten** daha yumuşak ve daha kibar duyulur. Soru **Könnten Sie** ile başlar, **wiederholen** gibi iş bildiren kelime en sona gider. Örneğin **Könnten Sie das bitte wiederholen?** diye sorarsın. Aynı anlamda **Würden Sie bitte langsam sprechen?** da duyarsın. | Könnten Sie daha kibar; wiederholen gibi iş anlatan kelime sona gider. | GEÇTİ | **iş bildiren kelime** terim değil, örnekle açık. |
+| `registry/grammar.json` · `gr:a1-02:t4` | `tr` | değişti (önceki GERİ) | **sprechen** konuşmak demektir. **du** ile ve **er**, **sie**, **es** ile ortadaki **e** harfi **i** olur. Yani **du sprichst** ve **er spricht** dersin. **ich** ve **wir** ile değişmez: **ich spreche**, **wir sprechen**. | sprechen: du ve er ile e harfi i olur; ich ve wir ile değişmez. | GEÇTİ | Önceki GERİ kapandı: terim yok. |
+| `registry/grammar.json` · `gr:a1-06:t2` | `h_tr` | değişti (önceki GERİ) | Harfi değişen kelimeler: du liest, er fährt | Bazı kelimelerde harf değişiyor: du liest, er fährt. | GEÇTİ | Başlıktaki **du liest** metinde açıklanmıyor, tabloda var; engel değil. |
+| `registry/grammar.json` · `gr:a1-06:t2` | `tr` | değişti (önceki GERİ) | Bazı sık kelimelerde **du** ile ve **er**, **sie**, **es** ile ortadaki harf değişir. **a** harfi **ä** olur: **fahren**, **du fährst**, **er fährt**. **e** harfi **i** olur: **essen**, **du isst**, **er isst**. **e** harfi **ie** olur: **sehen**, **du siehst**, **er sieht**. **ich**, **wir** ve **Sie** ile hiçbir şey değişmez. | du ve er ile a ä, e i ya da ie olur; ich, wir, Sie ile değişmez. | GEÇTİ | Önceki GERİ kapandı: terim yok. |
+| `registry/grammar.json` · `gr:a1-12:t4` | `tr` | değişti (önceki GERİ) | Tarihte sayıyı **erste**, **zweite**, **dritte** diye söylersin. Bugünün tarihini söylerken **Heute ist der erste Mai** dersin. Bir şeyin hangi tarihte olduğunu **am** ile söylersin: **am ersten Mai**. **am** gelince sona **n** eklenir: **erste**, **am ersten**. Yazıda **am 1. Mai** yazılır, **am ersten Mai** diye okunur. | Tarihte erste, zweite der; am gelince sona n gelir: am ersten. | GEÇTİ | Önceki GERİ kapandı: terim yok. |
+| `registry/grammar.json` · `gr:a1-04:t3` | `tr` | değişti (önceki GERİ) | **ist** ya da **sind** sonrasında **groß** gibi kelime hiç değişmez. **Der Tisch ist groß**, **die Küche ist groß** ve **das Bad ist groß** dersin. Renkler de böyledir: **Das Sofa ist grau** dersin. Fikrini sormak için **Wie findest du die Küche?** diye sorarsın. Cevap **Ich finde sie schön** olur. | ist ya da sind'den sonra groß gibi kelime değişmez; Wie findest du ile fikir sorarım. | GEÇTİ | Önceki GERİ kapandı: terim yok. |
+| `registry/grammar.json` · `gr:a1-04:t4` | `tr` | değişti (önceki GERİ) | **sehr** çok demektir ve anlamı güçlendirir: **sehr schön**. **ziemlich** oldukça demektir: **ziemlich groß**. **zu** ise gereğinden fazla demektir ve bir sorun bildirir. **Die Wohnung ist zu teuer** dersen o evi tutamazsın. Türkçede ikisine de çok deriz ama Almancada farklıdır. **nicht** ile değil dersin: **Das Zimmer ist nicht groß**. | sehr çok, ziemlich oldukça, zu fazla ve sorunlu, nicht değil. | GEÇTİ | Önceki GERİ kapandı: terim yok. |
+| `registry/grammar.json` · `gr:a1-13:t1` | `h_tr` | değişti (önceki GERİ) | Hangi ve bu: welcher ve dieser | Hangi ve bu: welcher ve dieser. | GEÇTİ | Önceki GERİ kapandı: terim yok. |
+| `registry/grammar.json` · `gr:a1-13:t1` | `tr` | değişti (önceki GERİ) | **welcher** hangi, **dieser** bu demektir. Sonları eşyanın **der**, **die**, **das** kelimesine göre değişir: **welcher Tisch**, **welche Lampe**, **welches Bett**. Birden çok eşya için **welche** ve **diese** dersin. Bir şeyi alırken **der** ile giden eşyada son **en** olur: **Ich nehme diesen Tisch**. | welcher hangi, dieser bu; son der, die, das'a göre değişir; çok eşyada welche, diese; alırken der'li eşyada sonu en. | GEÇTİ | Önceki GERİ kapandı: terim yok. |
+| `registry/grammar.json` · `gr:a1-13:t2` | `tr` | değişti (önceki GERİ) | İki şeyi karşılaştırırken kelimenin sonuna **er** eklersin: **billig**, **billiger**. Neyle karşılaştırdığını **als** ile söylersin: **billiger als der Tisch**. Bazı kısa kelimelerde **a**, **o**, **u** harfi **ä**, **ö**, **ü** olur: **groß**, **größer**. **gut** kuralı bozar, **besser** olur. Aynı derecede demek için **so** ve **wie** kullanırsın: **so teuer wie das Sofa**. | Daha için sona er; als ile neyle; bazı kısa kelimelerde ä, ö, ü; gut besser; aynı derecede so … wie. | GEÇTİ | Önceki GERİ kapandı: terim yok. |
+| `registry/grammar.json` · `gr:a1-13:t3` | `h_tr` | değişti (önceki GERİ) | En ucuz, en iyi: am billigsten, am besten | En ucuz, en iyi: am billigsten, am besten. | GEÇTİ | Önceki GERİ kapandı: terim yok. |
+| `registry/grammar.json` · `gr:a1-13:t3` | `tr` | değişti (önceki GERİ) | En demek için başa **am** gelir, kelimenin sonuna **sten** eklenir: **billig**, **am billigsten**. Daha derken gelen **ä**, **ö**, **ü** burada da kalır: **groß**, **am größten**. **gut** yine kuralı bozar: **am besten**. Soru da aynı yolla kurulur: **Welche Wohnung ist am billigsten?** | En için am ve sonuna sten; ä, ö, ü kalır; gut am besten. | GEÇTİ | Önceki GERİ kapandı: terim yok. |
+| `registry/grammar.json` · `gr:a1-11:t1` | `tr` | değişti (önceki GERİ) | **Wo** nerede demektir. **in** bir şeyin içinde, **an** kenarında, **auf** üstünde demektir. Bunlardan sonra **der** ve **das** değişip **dem** olur. **die** ise **der** olur: **an der Tür**. **in dem** kısalıp **im** olur: **im Bad**. **an dem** de kısalıp **am** olur. | in içinde, an kenarında, auf üstünde; der ve das dem, die der olur; in dem im, an dem am. | GEÇTİ | Önceki GERİ kapandı: terim yok. |
+
+**Fark turu toplamı:** 82 alan · GEÇTİ 82 · GERİ 0.
+
+**Önceki 25 GERİ'nin durumu:** 25'i de yeni metinde GEÇTİ.
+- İçerik dosyalarındaki 10'u: 15-082, 17-124, 17-137, 17-143, 18-001, 18-102, 19-092, hst-005, hst-019, gor-008.
+- `grammar.json`'daki 15'i: 02:t3 h_tr ve tr; 12:t1 tr; 02:t4 tr; 06:t2 h_tr ve tr; 12:t4 tr; 04:t3 tr; 04:t4 tr; 13:t1 h_tr ve tr; 13:t2 tr; 13:t3 h_tr ve tr; 11:t1 tr.
+
+Bu turla birlikte bu dokuz içerik dosyasında ve 17 durakta açık okur GERİ'si kalmadı (OD-9.4). Kapsam dışı not aynen duruyor: `gun-21` prova başlığındaki **Haftanın kapısı** sözü.
