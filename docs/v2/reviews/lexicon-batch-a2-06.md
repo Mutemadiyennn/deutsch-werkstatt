@@ -84,3 +84,7 @@ Okunan alanlar: kart verisi, 84 eşdizim, 126 örnek, 105 boşluk (`forms`), 42 
 Dil açısından bulunan bütün hatalar dosyada düzeltildi, doğrulayıcı 0 hata. Açık soru yok.
 
 Sonuç: KAPALI — okur bekliyor
+
+## Okur dönüşü (2026-11-23)
+
+Okurun geri çevirdiği 2 alan düzeltildi: `lx:Kundenservice` 1. hata notu (yanlış ile doğru arasında tek fark kaldı: **beim Kundenservices** → **beim Kundenservice**, sondaki **s** açıklanıyor; `lx:Hotline` notuyla çelişmiyor) ve `lx:anziehen` boşluk 5 (`Es ist kalt, ich ___ noch einen Pullover ___.`, giyme eylemi açık; **tragen** ipucuyla çelişmiyor). Doğrulayıcı 0 hata. Sonuç: KAPALI — okur bekliyor
