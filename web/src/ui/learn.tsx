@@ -75,7 +75,7 @@ export function ExplainBtn({ de, context, onAsked, acik: ilk = false }: { de: st
   const { api, profile } = useApp();
   const lex = useSozluk();
   const [acik, setAcik] = useState(ilk);
-  const [st, setSt] = useState<{ busy?: boolean; out?: { tr: string; note_tr: string }; err?: string } | null>(null);
+  const [st, setSt] = useState<{ busy?: boolean; out?: { tr: string; note_tr: string }; err?: string; yeniden?: boolean } | null>(null);
   const yerel = useMemo(() => (acik && lex ? yerelAcikla(de, lex) : null), [acik, lex, de]);
   useEffect(() => { setAcik(ilk); setSt(null); }, [de]);
   const sor = async () => {
@@ -83,7 +83,7 @@ export function ExplainBtn({ de, context, onAsked, acik: ilk = false }: { de: st
     setSt({ busy: true });
     const persona = { name: profile.displayName, address: profile.address };
     try { const o = await ai(api, "explain_tr", { de: redact(de, persona).slice(0, 120), context: context ? redact(context, persona).slice(0, 400) : undefined }); setSt({ out: o }); }
-    catch (e) { setSt({ err: e instanceof ApiError ? e.message_tr : "Açıklama alınamadı." }); }
+    catch (e) { setSt({ err: e instanceof ApiError ? e.message_tr : "Açıklama alınamadı.", yeniden: !(e instanceof ApiError) || e.retryable }); }
   };
   const tamCevap = !!yerel && yerel.kaynak !== "kelimeler";
   return (
@@ -92,7 +92,8 @@ export function ExplainBtn({ de, context, onAsked, acik: ilk = false }: { de: st
       {acik && <div class="fb info small stack" style={{ marginTop: 6 }} data-test="explain-out">
         {!lex ? "Sözlük açılıyor…" : yerel ? <YerelCevap a={yerel} /> : !st && <div data-test="yerel-yok">Cihazdaki sözlükte yok.{!aiState(api).available && <> {aiState(api).reason}</>}</div>}
         {lex && !st && aiState(api).available && <button class="btn ghost sm" onClick={sor} data-test="explain-ai">{!yerel ? "Öğretmene sor" : tamCevap ? "Bu cümlede ne demek? Öğretmene sor" : "Cümlenin tamamını öğretmene sor"}</button>}
-        {st && <div>{st.busy && "Açıklanıyor…"}{st.out && <><b>{st.out.tr}</b> — {st.out.note_tr}</>}{st.err && st.err}</div>}
+        {st && <div>{st.busy && "Açıklanıyor…"}{st.out && <><b>{st.out.tr}</b> — {st.out.note_tr}</>}{st.err && <span role="alert" data-test="explain-err">{st.err}</span>}</div>}
+        {st?.err && st.yeniden && aiState(api).available && <button class="btn ghost sm" onClick={sor} data-test="explain-retry">Tekrar dene</button>}
         {!ilk && <button class="btn ghost sm" onClick={() => { setAcik(false); setSt(null); }}>Kapat</button>}</div>}
     </span>
   );
