@@ -141,8 +141,8 @@
  "yeni_kartlar": [
   "lx:genau",
   "lx:Vater",
-  "lx:zur",
-  "lx:passieren"
+  "lx:passieren",
+  "lx:Patient"
  ],
  "halkalar": [
   {
@@ -151,8 +151,8 @@
    "kartlar": [
     "lx:Vater",
     "lx:genau",
-    "lx:zur",
-    "lx:passieren"
+    "lx:passieren",
+    "lx:Patient"
    ],
    "kaliplar": [
     {
@@ -178,6 +178,10 @@
     {
      "de": "Könnten Sie …?",
      "tr": "… -abilir misiniz? (kibar)"
+    },
+    {
+     "de": "bei uns – bei Dr. Weber",
+     "tr": "bizde – Dr. Weber'de"
     }
    ],
    "gorev_cumleleri": [
@@ -222,23 +226,13 @@
      ]
     },
     {
-     "kart": "lx:zur",
+     "kart": "lx:Vater",
      "de": "Mein Vater geht morgen zur Praxis.",
      "tr": "Babam yarın muayenehaneye gidiyor.",
      "accepted": [
       "Mein Vater geht morgen zur Praxis.",
       "Morgen geht mein Vater zur Praxis.",
       "Mein Vater geht morgen in die Praxis."
-     ]
-    },
-    {
-     "kart": "lx:zur",
-     "de": "Fährst du mit dem Bus zur Firma?",
-     "tr": "Firmaya otobüsle mi gidiyorsun?",
-     "accepted": [
-      "Fährst du mit dem Bus zur Firma?",
-      "Fährst du zur Firma mit dem Bus?",
-      "Fährst du mit dem Bus in die Firma?"
      ]
     },
     {
@@ -259,6 +253,26 @@
       "Ist etwas passiert?",
       "Ist was passiert?",
       "Ist denn etwas passiert?"
+     ]
+    },
+    {
+     "kart": "lx:Patient",
+     "de": "Ist noch ein Patient vor meinem Vater?",
+     "tr": "Babamdan önce hâlâ bir hasta var mı?",
+     "accepted": [
+      "Ist noch ein Patient vor meinem Vater?",
+      "Ist vor meinem Vater noch ein Patient?",
+      "Ist noch ein Patient vor meinem Vater da?"
+     ]
+    },
+    {
+     "kart": "lx:Patient",
+     "de": "Mein Vater ist Patient bei Dr. Weber.",
+     "tr": "Babam Dr. Weber'in hastası.",
+     "accepted": [
+      "Mein Vater ist Patient bei Dr. Weber.",
+      "Mein Vater ist bei Dr. Weber Patient.",
+      "Mein Vater ist schon Patient bei Dr. Weber."
      ]
     }
    ],

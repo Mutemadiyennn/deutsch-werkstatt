@@ -120,8 +120,6 @@
   "gr:a1-02:t3"
  ],
  "yeni_kartlar": [
-  "lx:vor",
-  "lx:welcher",
   "lx:krank",
   "lx:nochmal",
   "lx:Schmerz",
@@ -132,7 +130,6 @@
   "lx:Chef",
   "lx:Rücken",
   "lx:Ohr",
-  "lx:Patient",
   "lx:übel",
   "lx:Lust",
   "lx:Fuß",
@@ -149,8 +146,7 @@
     "lx:Chef",
     "lx:Kollege",
     "lx:Bescheid",
-    "lx:welcher",
-    "lx:vor"
+    "lx:feiern"
    ],
    "kaliplar": [
     {
@@ -160,6 +156,10 @@
     {
      "de": "vor einer Woche",
      "tr": "bir hafta önce"
+    },
+    {
+     "de": "Welcher …? – Welche …?",
+     "tr": "Hangi …?"
     }
    ],
    "gorev_cumleleri": [
@@ -224,17 +224,7 @@
      ]
     },
     {
-     "kart": "lx:welcher",
-     "de": "Welcher Tag geht, Herr Wimmer?",
-     "tr": "Hangi gün olur Wimmer Bey?",
-     "accepted": [
-      "Welcher Tag geht, Herr Wimmer?",
-      "Herr Wimmer, welcher Tag geht?",
-      "Welcher Tag passt, Herr Wimmer?"
-     ]
-    },
-    {
-     "kart": "lx:welcher",
+     "kart": "lx:Kollege",
      "de": "Welcher Kollege ist heute da?",
      "tr": "Hangi iş arkadaşı bugün burada?",
      "accepted": [
@@ -244,23 +234,23 @@
      ]
     },
     {
-     "kart": "lx:vor",
-     "de": "Tobi war vor einer Woche im Urlaub.",
-     "tr": "Tobi bir hafta önce izindeydi.",
+     "kart": "lx:feiern",
+     "de": "Feiern wir am Freitag im Büro?",
+     "tr": "Cuma günü ofiste mi kutluyoruz?",
      "accepted": [
-      "Tobi war vor einer Woche im Urlaub.",
-      "Vor einer Woche war Tobi im Urlaub.",
-      "Tobi war vor einer Woche in Urlaub."
+      "Feiern wir am Freitag im Büro?",
+      "Feiern wir im Büro am Freitag?",
+      "Am Freitag feiern wir im Büro?"
      ]
     },
     {
-     "kart": "lx:vor",
-     "de": "Es ist zehn vor zwölf.",
-     "tr": "Saat on ikiye on var.",
+     "kart": "lx:feiern",
+     "de": "Wir feiern am Freitag um vier.",
+     "tr": "Cuma saat dörtte kutluyoruz.",
      "accepted": [
-      "Es ist zehn vor zwölf.",
-      "Zehn vor zwölf.",
-      "Es ist jetzt zehn vor zwölf."
+      "Wir feiern am Freitag um vier.",
+      "Am Freitag um vier feiern wir.",
+      "Wir feiern am Freitag um vier Uhr."
      ]
     }
    ],
@@ -301,7 +291,6 @@
    "kartlar": [
     "lx:Lust",
     "lx:mitkommen",
-    "lx:feiern",
     "lx:Geschenk",
     "lx:Stand"
    ],
@@ -355,26 +344,6 @@
       "Ja, klar, ich komme mit!",
       "Klar, ich komme mit!",
       "Ja, ich komme mit!"
-     ]
-    },
-    {
-     "kart": "lx:feiern",
-     "de": "Feiern wir am Freitag im Büro?",
-     "tr": "Cuma günü ofiste mi kutluyoruz?",
-     "accepted": [
-      "Feiern wir am Freitag im Büro?",
-      "Feiern wir im Büro am Freitag?",
-      "Am Freitag feiern wir im Büro?"
-     ]
-    },
-    {
-     "kart": "lx:feiern",
-     "de": "Wir feiern am Freitag um vier.",
-     "tr": "Cuma saat dörtte kutluyoruz.",
-     "accepted": [
-      "Wir feiern am Freitag um vier.",
-      "Am Freitag um vier feiern wir.",
-      "Wir feiern am Freitag um vier Uhr."
      ]
     },
     {
@@ -608,7 +577,6 @@
    "kartlar": [
     "lx:Ohr",
     "lx:Fuß",
-    "lx:Patient",
     "lx:nochmal",
     "lx:üben"
    ],
@@ -661,26 +629,6 @@
       "Nein, mir tut der Fuß weh.",
       "Nein, der Fuß tut mir weh.",
       "Nein, mein Fuß tut weh."
-     ]
-    },
-    {
-     "kart": "lx:Patient",
-     "de": "Ist noch ein Patient vor mir?",
-     "tr": "Benden önce hâlâ bir hasta var mı?",
-     "accepted": [
-      "Ist noch ein Patient vor mir?",
-      "Ist vor mir noch ein Patient?",
-      "Ist noch ein Patient vor mir da?"
-     ]
-    },
-    {
-     "kart": "lx:Patient",
-     "de": "Heute ist nur ein Patient da.",
-     "tr": "Bugün sadece bir hasta var.",
-     "accepted": [
-      "Heute ist nur ein Patient da.",
-      "Nur ein Patient ist heute da.",
-      "Heute ist nur ein Patient hier."
      ]
     },
     {
@@ -1530,8 +1478,8 @@
    },
    {
     "id": "n1b",
-    "de": "Kein Problem. Und um zwei? Haben Sie da Zeit?",
-    "tr": "Sorun değil. Peki saat ikide? O zaman vaktiniz var mı?",
+    "de": "Gut. Und um zwei? Haben Sie da Zeit?",
+    "tr": "Tamam. Peki saat ikide? O zaman vaktiniz var mı?",
     "secenekler": [
      {
       "de": "Ja, um zwei habe ich Zeit.",
@@ -1653,8 +1601,8 @@
    },
    {
     "id": "n3b",
-    "de": "Schade. Können Sie mir morgen Bescheid sagen?",
-    "tr": "Yazık. Yarın bana haber verebilir misiniz?",
+    "de": "Am Freitag nicht? Können Sie mir morgen Bescheid sagen?",
+    "tr": "Cuma olmuyor mu? Yarın bana haber verebilir misiniz?",
     "secenekler": [
      {
       "de": "Ja, klar, morgen.",

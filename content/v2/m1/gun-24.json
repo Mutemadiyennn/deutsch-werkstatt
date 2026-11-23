@@ -5,10 +5,10 @@
  "level": "A1",
  "format": "gun",
  "title_tr": "Çok, fazla, değil: sehr, zu, nicht",
- "goal_tr": "Bir ev ya da eşya için çok güzel, fazla pahalı ya da iyi değil der, ev sorunlarını kısaca anlatırsın.",
+ "goal_tr": "Bir şeyin çok güzel, fazla pahalı ya da iyi olmadığını söylersin.",
  "can_do": {
   "id": "cd:m1:24",
-  "tr": "Bir şeyin çok, fazla ya da değil olduğunu söylerim."
+  "tr": "Bir şeyin çok pahalı, fazla küçük ya da büyük olmadığını söylerim."
  },
  "unit": "u:m1:24",
  "arm": "pazar",
@@ -119,7 +119,6 @@
   "lx:richtig",
   "lx:Leute",
   "lx:jung",
-  "lx:ab",
   "lx:gerade",
   "lx:Geld",
   "lx:Mutter"
@@ -285,8 +284,7 @@
     "lx:Störung",
     "lx:Morgen",
     "lx:richtig",
-    "lx:gerade",
-    "lx:ab"
+    "lx:gerade"
    ],
    "dersten_sonra": true,
    "kaliplar": [],
@@ -372,23 +370,13 @@
      ]
     },
     {
-     "kart": "lx:ab",
+     "kart": "lx:Störung",
      "de": "Ab Montag ist die Störung weg.",
      "tr": "Pazartesiden itibaren arıza yok.",
      "accepted": [
       "Ab Montag ist die Störung weg.",
       "Die Störung ist ab Montag weg.",
       "Ab Montag ist die Störung wieder weg."
-     ]
-    },
-    {
-     "kart": "lx:ab",
-     "de": "Ab heute ist alles gut.",
-     "tr": "Bugünden itibaren her şey iyi.",
-     "accepted": [
-      "Ab heute ist alles gut.",
-      "Ab heute ist alles wieder gut.",
-      "Alles ist ab heute gut."
      ]
     }
    ],
@@ -586,7 +574,7 @@
     "id": "s2",
     "speaker": "ch:lechner",
     "sahne_tr": "Tobi iki elini havaya kaldırıyor.",
-    "de": "Ach, ich habe Schimmel in der Küche!",
+    "de": "Ja, ich habe Schimmel in der Küche!",
     "tr": "Ah, mutfağımda küf var!"
    },
    {
@@ -1406,7 +1394,7 @@
       ],
       "sonraki": "n4",
       "uygun": true,
-      "geri_bildirim_tr": "İyi bir soru. **zu klein** sorun var mı diye sorar."
+      "geri_bildirim_tr": "İyi bir soru. Tobi'ye mutfak fazla mı küçük diye sordun."
      },
      {
       "de": "Sie ist zu hell.",
@@ -1661,7 +1649,7 @@
      "Das ist nicht gut.",
      "Der Schimmel ist gar nicht gut."
     ],
-    "why_tr": "Değil derken sıfatın önüne **nicht** gelir."
+    "why_tr": "Değil derken **nicht** dersin: **nicht gut**."
    },
    {
     "id": "m1:24:s8",
@@ -1689,7 +1677,7 @@
      "Ich finde das nicht gut.",
      "Das ist wirklich schlimm."
     ],
-    "why_tr": "Güçlendirmek için **sehr**, olumsuz için **nicht** kullan."
+    "why_tr": "Çok kötü derken **sehr schlimm** dersin."
    },
    {
     "id": "m1:24:s10",

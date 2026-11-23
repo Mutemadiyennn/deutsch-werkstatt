@@ -5,7 +5,7 @@
  "level": "A1",
  "format": "gun",
  "title_tr": "Hangisi? Daha ucuz",
- "goal_tr": "İkinci el tezgâhında iki eşyadan hangisini istediğini dieser ile söyler, hangisinin daha ucuz olduğunu billiger als ile karşılaştırırsın.",
+ "goal_tr": "İki eşyadan hangisinin daha ucuz olduğunu billiger als ile söylersin.",
  "can_do": {
   "id": "cd:m1:25",
   "tr": "İki şeyden hangisini istediğimi ve hangisinin daha ucuz olduğunu söylerim."
@@ -111,15 +111,12 @@
   "gr:a1-13:t2"
  ],
  "yeni_kartlar": [
-  "lx:euer",
   "lx:Paar",
-  "lx:paar",
   "lx:wieso",
   "lx:lieb",
   "lx:erzählen",
   "lx:stimmen",
   "lx:laufen",
-  "lx:ohne",
   "lx:holen",
   "lx:natürlich",
   "lx:treffen"
@@ -130,9 +127,10 @@
    "title_tr": "Hangisi? Bu!",
    "kartlar": [
     "lx:Paar",
-    "lx:paar",
     "lx:natürlich",
-    "lx:stimmen"
+    "lx:stimmen",
+    "lx:holen",
+    "lx:laufen"
    ],
    "dersten_sonra": true,
    "kaliplar": [
@@ -155,17 +153,41 @@
     {
      "de": "Grüß Gott!",
      "tr": "Merhaba! (Bavyera'da sık)"
+    },
+    {
+     "de": "billiger als … – teurer als …",
+     "tr": "…'den daha ucuz – …'den daha pahalı"
+    },
+    {
+     "de": "größer – kleiner – schöner – besser – lieber",
+     "tr": "daha büyük – daha küçük – daha güzel – daha iyi – tercihen"
+    },
+    {
+     "de": "so … wie …",
+     "tr": "… kadar …"
+    },
+    {
+     "de": "Ich hole … – Holst du …?",
+     "tr": "…'i gidip alıyorum – …'i alır mısın?"
+    },
+    {
+     "de": "ein Paar Schuhe",
+     "tr": "bir çift ayakkabı"
+    },
+    {
+     "de": "ein paar …",
+     "tr": "birkaç …"
     }
    ],
    "gorev_cumleleri": [
     {
      "kart": "lx:Paar",
-     "de": "Dieses Paar Schuhe ist schön.",
-     "tr": "Bu çift ayakkabı güzel.",
+     "de": "Ein Paar Schuhe für zehn Euro? Schön!",
+     "tr": "On avroya bir çift ayakkabı mı? Güzel!",
      "accepted": [
-      "Dieses Paar Schuhe ist schön.",
-      "Das Paar Schuhe ist schön.",
-      "Dieses Paar Schuhe ist sehr schön."
+      "Ein Paar Schuhe für zehn Euro? Schön!",
+      "Ein Paar Schuhe für zehn Euro? Sehr schön!",
+      "Ein Paar Schuhe für zehn Euro, schön!"
      ]
     },
     {
@@ -176,26 +198,6 @@
       "Welches Paar nimmst du?",
       "Welches Paar nimmst du denn?",
       "Und welches Paar nimmst du?"
-     ]
-    },
-    {
-     "kart": "lx:paar",
-     "de": "Ich habe nur ein paar Euro.",
-     "tr": "Sadece birkaç avrom var.",
-     "accepted": [
-      "Ich habe nur ein paar Euro.",
-      "Ich habe nur noch ein paar Euro.",
-      "Ich habe leider nur ein paar Euro."
-     ]
-    },
-    {
-     "kart": "lx:paar",
-     "de": "Diese Tassen? Ein paar sind kaputt.",
-     "tr": "Bu fincanlar mı? Birkaçı kırık.",
-     "accepted": [
-      "Diese Tassen? Ein paar sind kaputt.",
-      "Diese Tassen? Ein paar Tassen sind kaputt.",
-      "Ein paar Tassen hier sind kaputt."
      ]
     },
     {
@@ -237,67 +239,7 @@
       "Stimmt das? Ist diese Jacke neu?",
       "Diese Jacke ist neu? Stimmt das?"
      ]
-    }
-   ],
-   "sahne": {
-    "ortam_tr": "Cumartesi, şehir meydanında ikinci el tezgâhları. Luka yanında, fincanlara bakıyorsunuz.",
-    "satirlar": [
-     {
-      "r": "ch:petrovic",
-      "de": "Welche Tasse nehmen Sie? Diese hier?",
-      "tr": "Hangi fincanı alıyorsunuz? Bunu mu?"
-     },
-     {
-      "r": "ogrenci",
-      "de": "Nein, natürlich diese da!",
-      "tr": "Hayır, tabii ki şunu!"
-     },
-     {
-      "r": "ch:petrovic",
-      "de": "Gut. Ein paar Tassen hier sind kaputt.",
-      "tr": "İyi. Buradaki fincanların birkaçı kırık."
-     }
-    ],
-    "soru": {
-     "q_tr": "Sen hangi fincanı istiyorsun?",
-     "opts": [
-      "Luka'nın gösterdiğini",
-      "Öbürünü, oradakini",
-      "Hiçbirini"
-     ],
-     "ans": 1
-    }
-   }
-  },
-  {
-   "id": "m1:25:h2",
-   "title_tr": "Daha ucuz, daha güzel",
-   "kartlar": [
-    "lx:holen",
-    "lx:laufen",
-    "lx:ohne",
-    "lx:euer"
-   ],
-   "dersten_sonra": true,
-   "kaliplar": [
-    {
-     "de": "billiger als … – teurer als …",
-     "tr": "…'den daha ucuz – …'den daha pahalı"
     },
-    {
-     "de": "größer – kleiner – schöner – besser – lieber",
-     "tr": "daha büyük – daha küçük – daha güzel – daha iyi – tercihen"
-    },
-    {
-     "de": "so … wie …",
-     "tr": "… kadar …"
-    },
-    {
-     "de": "Ich hole … – Holst du …?",
-     "tr": "…'i gidip alıyorum – …'i alır mısın?"
-    }
-   ],
-   "gorev_cumleleri": [
     {
      "kart": "lx:holen",
      "de": "Ich hole den Stuhl, er ist billiger.",
@@ -337,80 +279,40 @@
       "Laufen ist viel schöner als Bus fahren.",
       "Laufen finde ich schöner als Bus fahren."
      ]
-    },
-    {
-     "kart": "lx:ohne",
-     "de": "Ohne Geld geht das nicht.",
-     "tr": "Parasız olmaz.",
-     "accepted": [
-      "Ohne Geld geht das nicht.",
-      "Ohne Geld geht es nicht.",
-      "Das geht nicht ohne Geld."
-     ]
-    },
-    {
-     "kart": "lx:ohne",
-     "de": "Ohne Ioana ist es nicht so schön.",
-     "tr": "Ioana olmadan o kadar güzel değil.",
-     "accepted": [
-      "Ohne Ioana ist es nicht so schön.",
-      "Ohne Ioana ist es nicht so schön hier.",
-      "Es ist nicht so schön ohne Ioana."
-     ]
-    },
-    {
-     "kart": "lx:euer",
-     "de": "Ist das euer Stand?",
-     "tr": "Bu sizin tezgâhınız mı?",
-     "accepted": [
-      "Ist das euer Stand?",
-      "Ist das hier euer Stand?",
-      "Das ist euer Stand?"
-     ]
-    },
-    {
-     "kart": "lx:euer",
-     "de": "Euer Sofa ist größer als unser Sofa.",
-     "tr": "Sizin kanepeniz bizimkinden büyük.",
-     "accepted": [
-      "Euer Sofa ist größer als unser Sofa.",
-      "Euer Sofa ist größer als unseres.",
-      "Euer Sofa ist viel größer als unser Sofa."
-     ]
     }
    ],
    "sahne": {
-    "ortam_tr": "Stadler Hanım'ın tezgâhı. İki sandalye yan yana duruyor.",
+    "ortam_tr": "Cumartesi, şehir meydanında ikinci el tezgâhları. Luka yanında, fincanlara bakıyorsunuz.",
     "satirlar": [
      {
-      "r": "ch:stadler",
-      "de": "Dieser Stuhl kostet zehn Euro. Der da fünfzehn.",
-      "tr": "Bu sandalye on avro. Şu on beş."
+      "r": "ch:petrovic",
+      "de": "Welche Tasse nehmen Sie? Diese hier?",
+      "tr": "Hangi fincanı alıyorsunuz? Bunu mu?"
      },
      {
       "r": "ogrenci",
-      "de": "Ist der da besser?",
-      "tr": "Şu daha mı iyi?"
+      "de": "Nein, natürlich diese da!",
+      "tr": "Hayır, tabii ki şunu!"
      },
      {
-      "r": "ch:stadler",
-      "de": "Ja, er ist neu und größer.",
-      "tr": "Evet, yeni ve daha büyük."
+      "r": "ch:petrovic",
+      "de": "Gut. Ein paar Tassen hier sind kaputt.",
+      "tr": "İyi. Buradaki fincanların birkaçı kırık."
      }
     ],
     "soru": {
-     "q_tr": "Diğer sandalye neden daha pahalı?",
+     "q_tr": "Sen hangi fincanı istiyorsun?",
      "opts": [
-      "Eski olduğu için",
-      "Yeni ve daha büyük olduğu için",
-      "Daha güzel olduğu için"
+      "Luka'nın gösterdiğini",
+      "Öbürünü, oradakini",
+      "Hiçbirini"
      ],
      "ans": 1
     }
    }
   },
   {
-   "id": "m1:25:h3",
+   "id": "m1:25:h2",
    "title_tr": "Anlatmak ve buluşmak",
    "kartlar": [
     "lx:wieso",
@@ -978,7 +880,7 @@
        "Nein, sie sind heute billiger.",
        "Nein, billiger, zehn Euro."
       ],
-      "why_tr": "Tersini **billiger** ile söyle. Çoğulda **sie sind** gelir."
+      "why_tr": "Daha ucuz derken **billiger** dersin. Sandalyeler için **Sie sind billiger**."
      }
     }
    ],
@@ -1241,12 +1143,12 @@
   },
   {
    "id": "m1:25:g5",
-   "de": "ohne Geld",
-   "dogru_img": "open empty wallet",
+   "de": "Wir holen den Stuhl.",
+   "dogru_img": "two people carrying a wooden chair away from a market stall",
    "celdirici_img": [
-    "wallet full of banknotes",
-    "coins on a table",
-    "bank card in hand"
+    "two people sitting on chairs",
+    "two people buying bread",
+    "one person sleeping on a chair"
    ]
   },
   {
@@ -1426,7 +1328,7 @@
       ],
       "sonraki": "n5",
       "uygun": true,
-      "geri_bildirim_tr": "Güzel. İki sıfatı **aber** ile bağladın."
+      "geri_bildirim_tr": "Güzel. **klein** ve **schön** kelimelerini **aber** ile bağladın."
      },
      {
       "de": "Wendlfing ist zu schön.",
@@ -1561,15 +1463,15 @@
    {
     "id": "m1:25:s3",
     "k": "listen_and_respond",
-    "audio_de": "Euer Sofa ist schöner als unser Sofa.",
+    "audio_de": "Dieser Stuhl ist schöner als der da.",
     "speed": "normal",
     "situation_tr": "Duyduğunu yaz.",
     "accepted": [
-     "Euer Sofa ist schöner als unser Sofa.",
-     "euer sofa ist schöner als unser sofa",
-     "Euer Sofa ist schöner als unser Sofa"
+     "Dieser Stuhl ist schöner als der da.",
+     "dieser stuhl ist schöner als der da",
+     "Dieser Stuhl ist schöner als der da"
     ],
-    "why_tr": "Karşılaştırmada **als** gelir."
+    "why_tr": "Karşılaştırmada **als** gelir: **schöner als**."
    },
    {
     "id": "m1:25:s4",
@@ -1606,7 +1508,7 @@
      "Welcher ist besser, dieser oder der da?",
      "Welcher Stuhl ist hier besser?"
     ],
-    "why_tr": "**gut** düzensizdir: daha iyi **besser** olur."
+    "why_tr": "**gut** kuralı bozar: daha iyi **besser** olur."
    },
    {
     "id": "m1:25:s7",
@@ -1618,7 +1520,7 @@
      "Der Mantel ist teurer als die Jacke hier.",
      "Dieser Mantel ist teurer als die Jacke."
     ],
-    "why_tr": "Daha pahalı **teurer** olur, e harfi düşer."
+    "why_tr": "**teuer** daha pahalı olunca **teurer** olur."
    },
    {
     "id": "m1:25:s8",

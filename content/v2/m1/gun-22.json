@@ -5,7 +5,7 @@
  "level": "A1",
  "format": "gun",
  "title_tr": "Evdeki eşyalar: Wo ist der Schlüssel? Er ist hier",
- "goal_tr": "Evde kaybolan bir eşyanın yerini sorar, eşyaya göre er, sie ya da es ile cevap verirsin.",
+ "goal_tr": "Kaybolan bir eşyanın nerede olduğunu er, sie ya da es ile söylersin.",
  "can_do": {
   "id": "cd:m1:22",
   "tr": "Bir eşyanın nerede olduğunu sorar, er, sie, es ile cevap veririm."
@@ -555,12 +555,12 @@
     },
     {
      "kart": "lx:Amt",
-     "de": "Der Ausweis ist vom Amt. Er ist neu.",
-     "tr": "Kimlik resmî daireden. Yeni.",
+     "de": "Das Amt? Es ist am Bahnhof.",
+     "tr": "Resmî daire mi? Garın orada.",
      "accepted": [
-      "Der Ausweis ist vom Amt. Er ist neu.",
-      "Der Ausweis ist vom Amt, er ist neu.",
-      "Der Ausweis ist neu, er ist vom Amt."
+      "Das Amt? Es ist am Bahnhof.",
+      "Das Amt ist am Bahnhof.",
+      "Das Amt? Das ist am Bahnhof."
      ]
     }
    ],
@@ -819,7 +819,7 @@
     "id": "s12",
     "speaker": "ch:brandl",
     "sahne_tr": "Frau Brandl fincanı gösteriyor: hemen yanında küçük pembe bir kart duruyor.",
-    "de": "Ach! Hier ist er! Bei der Tasse!",
+    "de": "Da! Hier ist er! Bei der Tasse!",
     "tr": "Ah! İşte burada! Fincanın yanında!"
    },
    {
@@ -840,7 +840,7 @@
     "id": "s15",
     "speaker": "ch:popescu",
     "sahne_tr": "Ioana utanarak gülüyor, fincanı yıkamak için alıyor.",
-    "de": "Ach ja! Ich gebe sie gleich zurück.",
+    "de": "Ja, klar! Ich gebe sie gleich zurück.",
     "tr": "Ah evet! Hemen geri veriyorum."
    }
   ],
@@ -1023,8 +1023,8 @@
     },
     {
      "id": "c4",
-     "de": "Sie ist vielleicht in der Küche, beim Kuchen.",
-     "tr": "Belki mutfakta, pastanın yanındadır."
+     "de": "Sie ist vielleicht in der Küche, auf dem Schrank.",
+     "tr": "Belki mutfakta, dolabın üstündedir."
     },
     {
      "id": "c5",
@@ -1073,7 +1073,7 @@
        "kind": "detail",
        "q_tr": "Ioana'ya göre davetiye nerede olabilir?",
        "opts": [
-        "Mutfakta, pastanın yanında",
+        "Mutfakta, dolabın üstünde",
         "Ceketin içinde",
         "Dolapta"
        ],
@@ -1118,15 +1118,16 @@
         "in",
         "der",
         "Küche",
-        "beim",
-        "Kuchen",
+        "auf",
+        "dem",
+        "Schrank",
         "Er",
         "es"
        ],
        "accepted": [
-        "Sie ist vielleicht in der Küche, beim Kuchen.",
-        "sie ist vielleicht in der küche beim kuchen",
-        "Sie ist vielleicht in der Küche beim Kuchen."
+        "Sie ist vielleicht in der Küche, auf dem Schrank.",
+        "sie ist vielleicht in der küche auf dem schrank",
+        "Sie ist vielleicht in der Küche auf dem Schrank."
        ]
       },
       {
@@ -1162,7 +1163,7 @@
        "Ja, sie ist hier, in der Küche.",
        "Ja, sie ist in der Küche.",
        "Ja, sie ist hier.",
-       "Ja! Sie ist in der Küche, beim Kuchen.",
+       "Ja! Sie ist in der Küche, auf dem Schrank.",
        "Ja, die Einladung ist hier, in der Küche.",
        "Ja, sie ist bei mir in der Küche.",
        "Ja, hier ist sie."
@@ -1633,7 +1634,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Eşyaları sordun ve buldun. Her eşya için doğru kelimeyi seçtin: er, sie, es."
+  "kapanis_tr": "Ioana'nın sorularına cevap verdin. Her eşya için doğru kelimeyi seçtin: **er**, **sie**, **es**."
  },
  "okuma_yazma": {
   "tur": "yazma",

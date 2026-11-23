@@ -116,11 +116,8 @@
  "yeni_kartlar": [
   "lx:Balkon",
   "lx:Nebenkosten",
-  "lx:ach",
-  "lx:ins",
   "lx:dort",
   "lx:Ordnung",
-  "lx:vom",
   "lx:Problem",
   "lx:vergessen",
   "lx:zeigen",
@@ -136,8 +133,7 @@
     "lx:Balkon",
     "lx:Nebenkosten",
     "lx:weit",
-    "lx:dort",
-    "lx:vom"
+    "lx:dort"
    ],
    "dersten_sonra": true,
    "kaliplar": [
@@ -156,6 +152,14 @@
     {
      "de": "billiger als …",
      "tr": "…'den daha ucuz"
+    },
+    {
+     "de": "weit vom Bahnhof – weit vom Kurs",
+     "tr": "gardan uzak – kurstan uzak"
+    },
+    {
+     "de": "Ach so! – Ach ja!",
+     "tr": "Haa, anladım! – Ah, evet!"
     }
    ],
    "gorev_cumleleri": [
@@ -240,23 +244,13 @@
      ]
     },
     {
-     "kart": "lx:vom",
+     "kart": "lx:weit",
      "de": "Ist es weit vom Bahnhof?",
      "tr": "İstasyona uzak mı?",
      "accepted": [
       "Ist es weit vom Bahnhof?",
       "Ist das weit vom Bahnhof?",
       "Ist es sehr weit vom Bahnhof?"
-     ]
-    },
-    {
-     "kart": "lx:vom",
-     "de": "Am billigsten ist das Haus zwei Minuten vom Bahnhof.",
-     "tr": "En ucuzu istasyona iki dakika olan ev.",
-     "accepted": [
-      "Am billigsten ist das Haus zwei Minuten vom Bahnhof.",
-      "Das Haus zwei Minuten vom Bahnhof ist am billigsten.",
-      "Am billigsten ist das Haus nur zwei Minuten vom Bahnhof."
      ]
     }
    ],
@@ -297,7 +291,9 @@
     "lx:Problem",
     "lx:Ordnung",
     "lx:vergessen",
-    "lx:zeigen"
+    "lx:zeigen",
+    "lx:Mädchen",
+    "lx:Freund"
    ],
    "dersten_sonra": true,
    "kaliplar": [
@@ -345,12 +341,12 @@
     },
     {
      "kart": "lx:Ordnung",
-     "de": "In Ordnung, ich komme mit.",
-     "tr": "Tamam, ben de geliyorum.",
+     "de": "In Ordnung, das dritte ist am billigsten.",
+     "tr": "Tamam, en ucuzu üçüncüsü.",
      "accepted": [
-      "In Ordnung, ich komme mit.",
-      "In Ordnung, ich komme auch mit.",
-      "Gut, in Ordnung, ich komme mit."
+      "In Ordnung, das dritte ist am billigsten.",
+      "In Ordnung. Das dritte ist am billigsten.",
+      "Gut, in Ordnung, das dritte ist am billigsten."
      ]
     },
     {
@@ -402,49 +398,7 @@
       "Zeigst du mir bitte den Balkon?",
       "Zeigst du mir mal den Balkon?"
      ]
-    }
-   ],
-   "sahne": {
-    "ortam_tr": "Apartmanın girişi. Pichler Bey anahtarla bekliyor.",
-    "satirlar": [
-     {
-      "r": "ch:pichler",
-      "de": "Grüß Gott! Ich zeige Ihnen das Haus.",
-      "tr": "Merhaba! Size binayı gösteriyorum."
-     },
-     {
-      "r": "ogrenci",
-      "de": "Danke! Ist alles in Ordnung mit dem Balkon?",
-      "tr": "Teşekkürler! Balkonda her şey yolunda mı?"
-     },
-     {
-      "r": "ch:pichler",
-      "de": "Ja, kein Problem. Er ist klein, aber schön.",
-      "tr": "Evet, sorun yok. Küçük ama güzel."
-     }
-    ],
-    "soru": {
-     "q_tr": "Balkon nasıl?",
-     "opts": [
-      "Küçük ama güzel",
-      "Büyük ve yeni",
-      "Bozuk"
-     ],
-     "ans": 0
-    }
-   }
-  },
-  {
-   "id": "m1:26:h3",
-   "title_tr": "Arkadaşlar ve çocuklar",
-   "kartlar": [
-    "lx:Mädchen",
-    "lx:Freund",
-    "lx:ins",
-    "lx:ach"
-   ],
-   "kaliplar": [],
-   "gorev_cumleleri": [
+    },
     {
      "kart": "lx:Mädchen",
      "de": "Das Mädchen von Lena ist sieben.",
@@ -484,73 +438,33 @@
       "Kommt dein Freund auch mit?",
       "Dein Freund kommt auch?"
      ]
-    },
-    {
-     "kart": "lx:ins",
-     "de": "Wir gehen ins Haus.",
-     "tr": "Eve giriyoruz.",
-     "accepted": [
-      "Wir gehen ins Haus.",
-      "Wir gehen jetzt ins Haus.",
-      "Komm, wir gehen ins Haus."
-     ]
-    },
-    {
-     "kart": "lx:ins",
-     "de": "Ich gehe ins Büro.",
-     "tr": "Ofise gidiyorum.",
-     "accepted": [
-      "Ich gehe ins Büro.",
-      "Ich gehe jetzt ins Büro.",
-      "Ich gehe heute ins Büro."
-     ]
-    },
-    {
-     "kart": "lx:ach",
-     "de": "Ach so, der Balkon ist klein!",
-     "tr": "Ha, balkon küçükmüş!",
-     "accepted": [
-      "Ach so, der Balkon ist klein!",
-      "Ach so, der Balkon ist sehr klein!",
-      "Ach, der Balkon ist klein!"
-     ]
-    },
-    {
-     "kart": "lx:ach",
-     "de": "Ach, das ist zu teuer!",
-     "tr": "Of, bu fazla pahalı!",
-     "accepted": [
-      "Ach, das ist zu teuer!",
-      "Ach, das ist viel zu teuer!",
-      "Ach nein, das ist zu teuer!"
-     ]
     }
    ],
    "sahne": {
-    "ortam_tr": "Apartmanın önü. Lena kızıyla geçiyor, Ioana selam veriyor.",
+    "ortam_tr": "Apartmanın girişi. Pichler Bey anahtarla bekliyor.",
     "satirlar": [
      {
-      "r": "ch:popescu",
-      "de": "Ach, das Mädchen ist so groß!",
-      "tr": "Aa, kız ne kadar büyümüş!"
+      "r": "ch:pichler",
+      "de": "Grüß Gott! Ich zeige Ihnen das Haus.",
+      "tr": "Merhaba! Size binayı gösteriyorum."
      },
      {
       "r": "ogrenci",
-      "de": "Ist das das Mädchen von Lena?",
-      "tr": "Bu Lena'nın kızı mı?"
+      "de": "Danke! Ist alles in Ordnung mit dem Balkon?",
+      "tr": "Teşekkürler! Balkonda her şey yolunda mı?"
      },
      {
-      "r": "ch:popescu",
-      "de": "Ja! Sie geht jetzt ins Haus, zu Frau Brandl.",
-      "tr": "Evet! Şimdi içeri giriyor, Brandl Hanım'a."
+      "r": "ch:pichler",
+      "de": "Ja, kein Problem. Er ist klein, aber schön.",
+      "tr": "Evet, sorun yok. Küçük ama güzel."
      }
     ],
     "soru": {
-     "q_tr": "Kız nereye gidiyor?",
+     "q_tr": "Balkon nasıl?",
      "opts": [
-      "Brandl Hanım'a",
-      "Okula",
-      "Kursa"
+      "Küçük ama güzel",
+      "Büyük ve yeni",
+      "Bozuk"
      ],
      "ans": 0
     }
@@ -1299,7 +1213,7 @@
  "prova": {
   "id": "m1:26:p1",
   "title_tr": "Tobi için en ucuzunu buluyorsunuz",
-  "durum_tr": "Ioana ile üç ilana bakıyorsunuz. 1: Brunnengasse, 2 Zi., Kü., Blk., 55 m², 650 € + NK 120 €. 2: am Bahnhof, 3 Zi., Kü., 70 m², 800 € + NK 150 €. 3: Brunnenviertel, 1 Zi., Kü., Blk., 30 m², 450 € + NK 60 €.",
+  "durum_tr": "Ioana ile üç ilana bakıyorsunuz.\n1. ilan: Brunnengasse, **2 Zi.**, **Kü.**, **Blk.**, 55 m², 650 € ve **NK** 120 €.\n2. ilan: am Bahnhof, **3 Zi.**, **Kü.**, 70 m², 800 € ve **NK** 150 €.\n3. ilan: Brunnenviertel, **1 Zi.**, **Kü.**, **Blk.**, 30 m², 450 € ve **NK** 60 €.",
   "karsi": "ch:popescu",
   "baslangic": "n1",
   "dugumler": [
@@ -1692,7 +1606,7 @@
    {
     "id": "m1:26:s11",
     "k": "guided_response",
-    "situation_tr": "Üç ilan var: 650, 800 ve 450 avro. İkincisi en büyük. Ioana soruyor; en ucuzu ve en büyüğü söyle.",
+    "situation_tr": "Üç ilan var: 650, 800 ve 450 avro. İkincisi en büyük. Ioana soruyor. En ucuzu ve en büyüğü söyle.",
     "prompt_de": "Welches ist am billigsten, und welches ist am größten?",
     "accepted": [
      "Nummer drei ist am billigsten, Nummer zwei ist am größten.",
