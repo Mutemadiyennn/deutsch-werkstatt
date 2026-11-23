@@ -35,7 +35,8 @@ const geriAdres = () => { try { return sessionStorage.getItem(KALIP_GERI) || "#/
 export function KalipEkrani({ id }: { id?: string }) {
   const { ps, lex, err } = useKaliplar();
   if (err) return <div class="stack koy-sayfa"><TopBar title="Kalıplar" back="#/koy" /><ErrorPanel message={err} onRetry={() => location.reload()} /></div>;
-  if (!ps) return <Loading />;
+  // liste yüklenirken de başlık ve Geri baştan yerinde (mekân sayfaları gibi; inceleme #233 P2-5)
+  if (!ps) return id ? <Loading /> : <div class="stack koy-sayfa"><TopBar title="Kalıplar" back="#/koy" /><Loading /></div>;
   if (!id) return <KalipListesi ps={ps} />;
   const p = ps.find((x) => x.id === id);
   if (!p) return <div class="stack"><ProgressHeader title="Kalıp" back="#/kalip" /><ErrorPanel message="Bu kalıp bulunamadı." /></div>;

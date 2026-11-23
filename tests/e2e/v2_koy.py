@@ -129,6 +129,8 @@ def main():
                         check(g == [gun1["day"]], f"{m}: soğuk açılışta (yeniden yükleme) kilitli gün bir an bile çizilmez (görülen: {g})")
                     git("radyo", "[data-test=m1-gun-1]", "[data-test=m1-gun]"); check(True, "Radyo → gün sayfası (eski 'İlk Hafta' girişi; 2 dokunuş)")
                     git("atolye", bekle="[data-test=kalip-liste]"); check(pg.evaluate("location.hash") == "#/kalip", "Atölye → Kalıplar (1 dokunuş)")
+                    kucuk = pg.evaluate(DOKUN)
+                    check(kucuk == [] and pg.locator(".topbar a[aria-label=Geri]").get_attribute("href") == "#/koy", f"Kalıplar: satırlar en az 44 px, Geri → Köy (inceleme #233 P2-3; küçük: {kucuk[:4]})")
                     BASLIK = "(() => { const h = document.querySelector('main h1'); const r = h.getBoundingClientRect(); const cs = getComputedStyle(h); return [Math.round(r.left), Math.round(r.top), cs.fontSize, cs.fontWeight]; })()"
                     kb = pg.evaluate(BASLIK); git("sinema", bekle="[data-test=mekan-sinema] [data-test^=kayit-]"); sb = pg.evaluate(BASLIK)
                     check(kb == sb, f"Kalıplar başlığı mekân sayfalarıyla aynı ölçü ve hizada (Kalıplar {kb}, Sinema {sb}; #200 PM finali takip c)")
