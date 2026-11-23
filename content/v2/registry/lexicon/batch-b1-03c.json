@@ -1,7 +1,10 @@
 {
   "batch": "b1-03c",
   "review": {
-    "status": "draft"
+    "status": "draft",
+    "by": "dilbilimci-ajan",
+    "at": "2026-11-23",
+    "notes": "docs/v2/reviews/lexicon-b1-03.md"
   },
   "items": [
     {
@@ -31,14 +34,14 @@
       ],
       "register": "neutral",
       "mistakes_tr": [
-        "Çitin üstünden konuşmak derken **auf dem Zaun** yanlış: bu, çitin tepesinde oturmak gibi anlaşılır. Doğrusu **über den Zaun reden**.",
+        "Çitin üstünden konuşmak derken **auf dem Zaun reden** yanlış. Doğrusu **über den Zaun reden**.",
         "Birden fazla çit derken **zwei Zaune** yanlış. Doğrusu **zwei Zäune**."
       ],
       "examples": [
         {
           "id": "lx:Zaun:1",
-          "de": "Frau Brandl steht oft am Zaun und plaudert mit den Nachbarn.",
-          "tr": "Frau Brandl sık sık çitin yanında durup komşularla sohbet ediyor.",
+          "de": "Frau Brandl steht oft am Zaun und redet mit den Nachbarn.",
+          "tr": "Frau Brandl sık sık çitin yanında durup komşularla konuşuyor.",
           "layer": "hd"
         },
         {
@@ -83,10 +86,10 @@
       },
       "forms": [
         {
-          "de": "Frau Brandl steht oft am ___ und plaudert mit den Nachbarn.",
+          "de": "Frau Brandl steht oft am ___ und redet mit den Nachbarn.",
           "answer": "Zaun",
-          "tr": "Frau Brandl sık sık çitin yanında durup komşularla sohbet ediyor.",
-          "hint_tr": "Çit **der Zaun** olur; **am Zaun** = çitin yanında.",
+          "tr": "Frau Brandl sık sık çitin yanında durup komşularla konuşuyor.",
+          "hint_tr": "Çitin yanında derken **am Zaun** denir.",
           "also_ok": [
             "Gartenzaun"
           ]
@@ -148,8 +151,8 @@
       ],
       "register": "neutral",
       "mistakes_tr": [
-        "Gölgeye geçmek derken **im Schatten gehen** yanlış. Bir yere gidiyorsan **in den Schatten gehen**, orada duruyorsan **im Schatten sitzen** denir.",
-        "Bahçedeki güneşlik şemsiyeye **Schatten** denmez. O şemsiye **der Sonnenschirm** olur."
+        "Gölgeye oturmak derken **sich im Schatten setzen** yanlış. Doğrusu **sich in den Schatten setzen**.",
+        "Bol gölge derken **viele Schatten** denmez. Doğrusu **viel Schatten**."
       ],
       "examples": [
         {
@@ -194,7 +197,7 @@
       ],
       "exp": {
         "anlam_tr": "Güneşin gelmediği serin yer.",
-        "ne_zaman_tr": "Sıcak bir günde nerede oturacağınızı konuşurken.",
+        "ne_zaman_tr": "Sıcak bir günde nerede oturacağını konuşurken.",
         "parcalar": [],
         "ipucu_tr": "Oturuyorsan **im Schatten**, oraya gidiyorsan **in den Schatten**."
       },
@@ -203,7 +206,7 @@
           "de": "Bei der Hitze sitze ich lieber im ___.",
           "answer": "Schatten",
           "tr": "Bu sıcakta gölgede oturmayı tercih ederim.",
-          "hint_tr": "Gölge **der Schatten** olur; gölgede = **im Schatten**."
+          "hint_tr": "Gölgede derken **im Schatten** denir."
         },
         {
           "de": "Unter dem Baum im Garten gibt es viel ___.",
@@ -223,7 +226,8 @@
           "tr": "Of, bugün gölgede 30 derece var!",
           "hint_tr": "Gölgede: **im Schatten**."
         }
-      ]
+      ],
+      "freqRank": 1617
     },
     {
       "id": "lx:Straßenfest",
@@ -253,7 +257,7 @@
       ],
       "register": "neutral",
       "mistakes_tr": [
-        "**die Straßenfest** yanlış. Sonu **Fest** ile biter, **das Fest** gibi: **das Straßenfest**.",
+        "**Die Straßenfest war schön** yanlış. Son parça **das Fest** olduğu için **Das Straßenfest war schön** denir.",
         "Şenlikte derken **in dem Straßenfest** denmez. Doğrusu **beim Straßenfest** ya da **auf dem Straßenfest**."
       ],
       "examples": [
@@ -326,7 +330,7 @@
           "de": "Die Nachbarn organisieren jedes Jahr ein ___.",
           "answer": "Straßenfest",
           "tr": "Komşular her yıl bir sokak şenliği düzenliyor.",
-          "hint_tr": "**ein** ile **Straßenfest** gelir.",
+          "hint_tr": "Sokak şenliği **das Straßenfest** olur.",
           "also_ok": [
             "Fest"
           ]
@@ -354,7 +358,7 @@
     {
       "id": "lx:knapp",
       "de": "knapp",
-      "tr": "kısa ve öz",
+      "tr": "kısa ve öz, (vakit) dar",
       "pos": "adj",
       "collocations": [
         {
@@ -430,13 +434,19 @@
           "de": "Bitte sprechen Sie kurz und ___ nach dem Signalton.",
           "answer": "knapp",
           "tr": "Lütfen bip sesinden sonra kısa ve öz konuşun.",
-          "hint_tr": "Kısa ve öz: **kurz und knapp**."
+          "hint_tr": "Kısa ve öz: **kurz und knapp**.",
+          "also_ok": [
+            "bündig"
+          ]
         },
         {
           "de": "Mach's kurz und ___, ich hab nicht viel Zeit.",
           "answer": "knapp",
           "tr": "Kısa kes, fazla vaktim yok.",
-          "hint_tr": "Kısa ve öz: **kurz und knapp**."
+          "hint_tr": "Kısa ve öz: **kurz und knapp**.",
+          "also_ok": [
+            "bündig"
+          ]
         },
         {
           "de": "Das Gespräch dauert ___ zehn Minuten.",
@@ -451,7 +461,10 @@
           "de": "Nee, kurz und ___: Name, Nummer, fertig.",
           "answer": "knapp",
           "tr": "Yok, kısa ve öz: ad, numara, o kadar.",
-          "hint_tr": "Kısa ve öz: **kurz und knapp**."
+          "hint_tr": "Kısa ve öz: **kurz und knapp**.",
+          "also_ok": [
+            "bündig"
+          ]
         }
       ]
     },
@@ -490,7 +503,7 @@
         {
           "id": "lx:Festnetz:1",
           "de": "Sie erreichen mich am Vormittag auf dem Festnetz im Büro.",
-          "tr": "Bana öğleden önce büroda sabit hattan ulaşabilirsiniz.",
+          "tr": "Bana öğleden önce bürodaki sabit hattan ulaşabilirsiniz.",
           "layer": "hd"
         },
         {
@@ -502,13 +515,13 @@
         {
           "id": "lx:Festnetz:3",
           "de": "Ruf mich lieber aufm Handy an, das Festnetz hör ich oft nicht.",
-          "tr": "Beni cepten ara daha iyi, sabit hattı çoğu zaman duymuyorum.",
+          "tr": "Beni cebimden ara daha iyi, sabit hattı çoğu zaman duymuyorum.",
           "layer": "alltag"
         },
         {
           "id": "lx:Festnetz:4",
           "de": "– Soll ich Sie auf dem Handy oder auf dem Festnetz zurückrufen? – Auf dem Festnetz, bitte. Ich bin bis fünf im Büro.",
-          "tr": "– Sizi cep telefonundan mı, sabit hattan mı geri arayayım? – Sabit hattan lütfen. Saat beşe kadar bürodayım.",
+          "tr": "– Sizi cep telefonunuzdan mı, sabit hattınızdan mı geri arayayım? – Sabit hattımdan lütfen. Saat beşe kadar bürodayım.",
           "layer": "hd",
           "dialog": true
         },
@@ -544,7 +557,7 @@
         {
           "de": "Sie erreichen mich am Vormittag auf dem ___ im Büro.",
           "answer": "Festnetz",
-          "tr": "Bana öğleden önce büroda sabit hattan ulaşabilirsiniz.",
+          "tr": "Bana öğleden önce bürodaki sabit hattan ulaşabilirsiniz.",
           "hint_tr": "Sabit hat **das Festnetz** olur."
         },
         {
@@ -556,7 +569,7 @@
         {
           "de": "Soll ich Sie auf dem Handy oder auf dem ___ zurückrufen?",
           "answer": "Festnetz",
-          "tr": "Sizi cep telefonundan mı, sabit hattan mı geri arayayım?",
+          "tr": "Sizi cep telefonunuzdan mı, sabit hattınızdan mı geri arayayım?",
           "hint_tr": "Sabit hatta: **auf dem Festnetz**."
         },
         {

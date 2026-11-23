@@ -143,3 +143,38 @@ Okur 2. tur 3/3 GEÇTİ, örneklem 0/86 GEÇTİ (`docs/v2/reviews/ornek-lexicon-
 Örneklemin takip notundan tek düzeltme: lx:leise forms[3] ipucu **Sesin kısık derken** → **Sesin az geliyor derken du bist leise denir.** Aynı boşluğun ve examples[4]'ün çevirisi de **sesin çok az geliyor** oldu. **kısık** Türkçede hastalıktan kısılmış ses diye okunuyordu (**heiser**). Bu üç alan okurdan yeniden geçmedi.
 
 `npm run content:validate` → **0 hata, 154 uyarı**.
+
+## Çakışma silme (2026-11-23)
+
+A2 hattı (İÇ-K2) lx:Gegend, lx:deutlich, lx:neugierig, lx:Hof ve lx:Schnee kartlarını daha önce yazdı; bu beş kart `batch-b1-03a.json` dosyasından silindi (26 → 21 kart). `review` yeniden `draft`.
+
+- Kalan 45 kartın (03a + 03b) notları, ipuçları, boşluk ipuçları, eşdizimleri, cevapları ve `also_ok` listeleri silinen beş sözcük için makinede tarandı: gönderme **yok**. lx:glatt kartında lx:Schnee'ye gönderme yok (anlamdaki "kar" Türkçe).
+- Sözcük olarak geçtiği yerler yalnız örnek ve boşluk cümleleri: **im Hof** (lx:bellen ö5, lx:Wäsche ö4 ve boşluk 3). Karar gereği bırakıldı.
+- Yukarıdaki bölümlerde bu beş karta ait düzeltme satırları (A-1, A-2, A-4, C) artık dosyada karşılığı olmayan kayıtlardır.
+
+## 03c incelemesi (2026-11-23)
+
+Girdi: `batch-b1-03c.json`, 5 yedek kart (lx:Zaun, lx:Schatten, lx:Straßenfest 32. hafta; lx:knapp, lx:Festnetz 33. hafta). Tek tam tur, aynı ölçütler. **Karar: ONAY** (düzeltmelerle); `review` `draft`. Düzeltilen kart **5/5**, alan **21**.
+
+| Kart | Alan | Önce → Sonra | Gerekçe |
+|---|---|---|---|
+| lx:Schatten | not 1 | **im Schatten gehen** yanlış → Gölgeye oturmak derken **sich im Schatten setzen** yanlış. Doğrusu **sich in den Schatten setzen**. | **im Schatten gehen** (gölgede yürümek) doğru Almanca; not doğruyu yanlış gösteriyordu. |
+| lx:Schatten | not 2 | şemsiyeye **Schatten** denmez, **der Sonnenschirm** → Bol gölge derken **viele Schatten** denmez. Doğrusu **viel Schatten**. | Not başka bir sözcüğü öğretiyordu. |
+| lx:Schatten | `freqRank` | yok → 1617 | Sözcük listede (K1, 1617); lex kuralı listedeki sırayı ister. |
+| lx:Schatten | ne zaman | oturacağınızı → oturacağını | Kartların hitabı **sen**. |
+| lx:Zaun, lx:Schatten | boşluk 1 ipucu | **am Zaun** = çitin yanında (`;` ve `=`) → Çitin yanında derken **am Zaun** denir · Gölgede derken **im Schatten** denir | OD-9.2 sembol yasağı. |
+| lx:Zaun | not 1 | ... yanlış: bu, çitin tepesinde ... → Çitin üstünden konuşmak derken **auf dem Zaun reden** yanlış. Doğrusu **über den Zaun reden**. | Tek fikre indi. |
+| lx:Zaun | ö1, boşluk 1 | **plaudert** → **redet** | lx:plaudern aynı haftanın kartı; yedek kart ondan önceki yuvaya girebilir. |
+| lx:Straßenfest | not 1 | **die Straßenfest** yanlış → **Die Straßenfest war schön** yanlış. Son parça **das Fest** olduğu için **Das Straßenfest war schön** denir. | Yanlış biçim cümle içinde. |
+| lx:Straßenfest | boşluk 2 ipucu | **ein** ile **Straßenfest** gelir → Sokak şenliği **das Straßenfest** olur. | İpucu bir şey söylemiyordu. |
+| lx:knapp | `tr` | kısa ve öz → kısa ve öz, (vakit) dar | Kart **die Zeit ist knapp** anlamını da öğretiyor. |
+| lx:knapp | boşluk 1, 2, 4 | `also_ok`: **bündig** | **kurz und bündig** aynı anlamda yerleşik söyleyiş. |
+| lx:Festnetz | ö1, ö3, ö4, boşluk 1, 3 çevirileri | sabit hattan mı → sabit hattınızdan mı · cepten → cebimden | Kartın kendi notu "sabit hattan ara"nın iki anlamlı olduğunu söylüyor; çeviriler tek anlama çekildi. |
+
+- Almanca, artikel ve çoğullar doğru (der Zaun / Zäune, der Schatten / Schatten, das Straßenfest / -feste, das Festnetz). Sayılan her kalıp bir örnekte geçiyor. **30 Grad im Schatten**, **Im Juli** yaz haftasına uygun.
+- `also_ok` ↔ `mistakes_tr` makine taraması (03c'nin 12 girdisi, üç partinin bütün notlarına karşı): 4 eşleşme, hepsi lx:Straßenfest notundaki **das Fest** ("son parça" açıklaması), gerçek çelişki **0**. **Gartenzaun** (der) dört cümlede, **Fest** (das) dört cümlede, **fast** bir cümlede artikel ve anlamca uyuyor.
+- Birinci tekilde sabit cinsiyet, öğretilmemiş karta gönderme, olgu iddiası, Bairisch, İngilizce köprü yok. Brandl WORLD ile uyumlu (geveze komşu). **aufm**, **hat's**, **Nee** gündelik biçimler.
+- Kalan notlar: lx:Zaun ö2 **Zwischen unseren Gärten** konuşana bahçe veriyor; genel cümle, bırakıldı. Kartı olmayan sözcükler çevirili ve bırakıldı (Ball, Baum, Grad, niedrig, organisieren). lx:knapp örneklerindeki **Signalton**, **Anruf**, **Gespräch** 03a'da aynı haftada daha önce gelen kartlar.
+- Değişen 9 açıklama alanı (5 not, 3 boşluk ipucu, 1 ne zaman, ayrıca `tr`) ve 03c'nin tamamı okurdan ve örneklemden geçmedi.
+
+`npm run content:validate` → **0 hata, 154 uyarı**.
