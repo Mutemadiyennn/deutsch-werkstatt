@@ -329,3 +329,25 @@ describe("komut satırı", () => {
     expect(r.status).toBe(0);
   }, 30000);
 });
+
+describe("(b, çekim) düzenli çekim serbest, düzensiz biçim gösterilmeden engel (PM-097 md. 2)", () => {
+  const g8 = (de: string, h: Record<string, unknown> = {}): GunHam => {
+    const g = sahte(8); (g.halkalar as Record<string, unknown>[])[0] = { ...(g.halkalar as Record<string, unknown>[])[0], gorev_cumleleri: [{ kart: T.get(8)![0]!, de, accepted: [de] }], ...h };
+    return g;
+  };
+  const ck = (r: ReturnType<typeof kos>) => kural(r, "b", 8).filter((i) => i.mesaj.includes("çekimli biçim")).map((i) => i.mesaj.match(/^"[^"]+"/)![0]);
+  // temel ders metni verilmez (1. haftanın r0 dersleri 1t, 2t, 3t, 2c'yi zaten sunuyor); sınıfı yalnız bu dil noktası sunar
+  const dn = (rows: string[][]) => ({ dersler: new Map(), dilNoktasiSatirlari: new Map([[omDers(8)[0]!, rows]]), dilNoktalari: new Map([[omDers(8)[0]!, rows.flat()]]) });
+  it("düzenli biçim: kişinin tablosu sunulunca serbest, sunulmadan (ya da başka kişininki sunulunca) engel", () => {
+    expect(ck(kos([g8("Ihr wartet hier.")], { dersler: new Map() }))).toEqual(['"wartet"']);
+    expect(ck(kos([g8("Ihr wartet hier.", { dersten_sonra: true })], dn([["ihr", "wartet"]])))).toEqual([]);
+    expect(ck(kos([g8("Ihr wartet hier.", { dersten_sonra: true })], dn([["er/sie/es", "wohnt"]])))).toEqual(['"wartet"']);
+    expect(ck(kos([g8("Tobi wartet hier.", { dersten_sonra: true })], dn([["er/sie/es", "wohnt"]])))).toEqual([]);   // başka fiille sunulan 3t yeter
+    expect(ck(kos([g8("Ihr wartet hier.")], dn([["ihr", "wohnt"]])))).toEqual(['"wartet"']);   // aynı günün dil noktası yalnız dersten_sonra
+  });
+  it("düzensiz biçim: tablo sunulsa da engel; kalıp satırında gösterilince serbest; 1. haftanın dersleriyle düzenli biçim serbest", () => {
+    expect(ck(kos([g8("Tobi spricht Deutsch.", { dersten_sonra: true })], dn([["er/sie/es", "wartet"]])))).toEqual(['"spricht"']);
+    expect(ck(kos([g8("Tobi spricht Deutsch.", { kaliplar: [{ de: "… spricht Deutsch" }] })]))).toEqual([]);
+    expect(ck(kos([g8("Tobi wartet hier.")]))).toEqual([]);
+  });
+});
