@@ -118,4 +118,6 @@ Küçükler:
 
 Denetim (`kontrol.sh 11 --tam`): `→ 3 hata, 356 uyarı` (yalnız Quittung, Umtausch, Einkaufswagen), dikiş `İhlal: 0`.
 
+Örneklem 2. tur (GERİ, öğretilmemiş sözcük): gorulmemis-11 g2 Kartoffeln → Tomaten, g4 Tee → ein Wasser, g5 Tee → einen Kaffee, g1 `nach dem Sport` → `nach dem Training`; `durum_tr` metinleri uyarlandı (domates, su, kahve). Denetim: 3 bilinen hata, dikiş `İhlal: 0`.
+
 KARAR: ONAY
