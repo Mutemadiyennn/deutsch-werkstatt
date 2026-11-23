@@ -178,15 +178,17 @@ export class OzSinamaCekirdek {
     if (n.used >= n.limit * ST.ogrenci_payi_orani) return bos("pay_korunuyor");
     if (this.suren) return this.suren; // bu isteğin beklediği sırada başka istek koşuyu başlattı
     if (this.sonKosu && this.sonKosu.surum === surum && simdi() - this.sonKosu.zaman < aralik) {
-      // beklerken başka bir koşu başlayıp BİTTİ: depodan taze sonucu oku
-      return this.oku();
+      // beklerken başka bir koşu başlayıp BİTTİ (sonKosu yalnız depoya yazıldıktan sonra atanır): depodan bir kez oku,
+      // özyineleme yok (inceleme #209 fark doğrulaması P1)
+      const yeni = await this.depo.get<Son>("son");
+      const kb = (await this.depo.get<Kayit[]>(`gun:${gun}`)) ?? bugunK;
+      return { durum: "onbellek", ok: !!yeni?.ok, taze: yeni?.surum === surum, surum, zaman: yeni?.zaman ?? null, sonraki: yeni?.sonraki ?? null, saglayici, gorevler: yeni?.gorevler ?? [], bugun: ozet(gun, kb), dun };
     }
     this.suren = this.kos(gun, surum, saglayici, dun).finally(() => { this.suren = null; });
     return this.suren;
   }
 
   private async kos(gun: string, surum: string, saglayici: string, dun: Ozet): Promise<OzSinama> {
-    this.sonKosu = { zaman: this.simdi(), surum };
     const zaman = new Date(this.simdi()).toISOString(), sonraki = new Date(this.simdi() + ST.aralik_dk * 60_000).toISOString();
     const gorevler: GorevSonucu[] = [];
     for (const o of ORNEKLER) gorevler.push(await gorevSina(this.env, o, this.simdi)); // sırayla: süreler birbirini etkilemesin
@@ -195,6 +197,7 @@ export class OzSinamaCekirdek {
     const onceki = (await this.depo.get<Kayit[]>(`gun:${gun}`)) ?? [];
     const yeni = [...onceki, { t: zaman, g: gorevler.map((g) => [g.gorev, g.gecti ? 1 : 0, g.ms] as Kayit["g"][number]) }];
     await this.depo.put("son", { ok, zaman, sonraki, surum, gorevler } satisfies Son);
+    this.sonKosu = { zaman: Date.parse(zaman), surum };
     await this.depo.put(`gun:${gun}`, yeni);
     await this.depo.delete(`gun:${dayKey(new Date(this.simdi() - 8 * 86_400_000))}`);
     return { durum: "kostu", ok, taze: true, surum, zaman, sonraki, saglayici, gorevler, bugun: ozet(gun, yeni), dun };

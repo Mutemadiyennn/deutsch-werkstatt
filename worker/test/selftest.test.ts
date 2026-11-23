@@ -116,6 +116,15 @@ describe("GET /v1/ai/selftest (PM-087 A)", () => {
     const j = await a;
     expect(cagri.length).toBe(5); expect(j.zaman).toBe(b.zaman); expect(j.durum).toBe("onbellek");
   });
+  it("koşu yazarken depo düşerse sonraki istek sonlanır ve yeniden koşar (döngü yok)", async () => {
+    const { AI, cagri } = iyiAI(); const ic = memDepo(); let bozuk = true; let okuma = 0;
+    const depo: Depo = { ...ic, async get<T>(k: string) { okuma++; return ic.get<T>(k); }, async put(k, v) { if (bozuk) throw new Error("depo"); return ic.put(k, v); } };
+    const c = new OzSinamaCekirdek(depo, env({ AI }));
+    await expect(c.oku()).rejects.toThrow("depo");
+    bozuk = false; okuma = 0;
+    const j = await c.oku();
+    expect(j).toMatchObject({ durum: "kostu", taze: true }); expect(cagri.length).toBe(10); expect(okuma).toBeLessThan(10);
+  });
   it(`${ST.aralik_dk} dk içinde ikinci istek modeli çağırmaz; süre dolunca yeniden koşar`, async () => {
     const { AI, cagri } = iyiAI(); const e = env({ AI });
     let t = T0; const c = new OzSinamaCekirdek(memDepo(), e, () => t);
