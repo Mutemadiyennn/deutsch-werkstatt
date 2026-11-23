@@ -1,7 +1,10 @@
 {
   "batch": "b1-03a",
   "review": {
-    "status": "draft"
+    "status": "draft",
+    "by": "dilbilimci-ajan",
+    "at": "2026-11-23",
+    "notes": "docs/v2/reviews/lexicon-b1-03.md"
   },
   "items": [
     {
@@ -201,7 +204,10 @@
           "de": "Wir wohnen in einer ruhigen ___.",
           "answer": "Gegend",
           "tr": "Sakin bir semtte oturuyoruz.",
-          "hint_tr": "Semt **die Gegend** olur."
+          "hint_tr": "Semt **die Gegend** olur.",
+          "also_ok": [
+            "Nachbarschaft"
+          ]
         },
         {
           "de": "Gibt es hier in der ___ eine Apotheke?",
@@ -209,20 +215,27 @@
           "tr": "Bu civarda bir eczane var mı?",
           "hint_tr": "Bu civarda **hier in der Gegend** ile söylenir.",
           "also_ok": [
-            "Nähe"
+            "Nähe",
+            "Nachbarschaft"
           ]
         },
         {
           "de": "Wie gefällt Ihnen die ___?",
           "answer": "Gegend",
           "tr": "Semti nasıl buldunuz?",
-          "hint_tr": "Semt **die Gegend** olur."
+          "hint_tr": "Semt **die Gegend** olur.",
+          "also_ok": [
+            "Nachbarschaft"
+          ]
         },
         {
           "de": "Die ___ hier ist echt schön.",
           "answer": "Gegend",
           "tr": "Buralar gerçekten güzel.",
-          "hint_tr": "Buralar **die Gegend hier** ile söylenir."
+          "hint_tr": "Buralar **die Gegend hier** ile söylenir.",
+          "also_ok": [
+            "Nachbarschaft"
+          ]
         }
       ]
     },
@@ -320,25 +333,37 @@
           "de": "___ Sie bitte bei Brandl, ich wohne unten.",
           "answer": "Klingeln",
           "tr": "Lütfen Brandl'ın zilini çalın, ben aşağıda oturuyorum.",
-          "hint_tr": "Zili çalın derken **Klingeln Sie** denir."
+          "hint_tr": "Zili çalın derken **Klingeln Sie** denir.",
+          "also_ok": [
+            "Läuten"
+          ]
         },
         {
           "de": "Heute Morgen hat jemand zweimal an der Tür ___.",
           "answer": "geklingelt",
           "tr": "Bu sabah biri kapının zilini iki kez çaldı.",
-          "hint_tr": "Geçmişte **hat geklingelt** olur."
+          "hint_tr": "Geçmişte **hat geklingelt** olur.",
+          "also_ok": [
+            "geläutet"
+          ]
         },
         {
           "de": "Ich glaub, dein Handy ___.",
           "answer": "klingelt",
           "tr": "Sanırım telefonun çalıyor.",
-          "hint_tr": "Telefon çalıyor derken **Das Handy klingelt** denir."
+          "hint_tr": "Telefon çalıyor derken **Das Handy klingelt** denir.",
+          "also_ok": [
+            "läutet"
+          ]
         },
         {
           "de": "Ich habe bei Ihnen ___, aber niemand war da.",
           "answer": "geklingelt",
           "tr": "Zilinizi çaldım ama kimse yoktu.",
-          "hint_tr": "Geçmişte **habe geklingelt** olur."
+          "hint_tr": "Geçmişte **habe geklingelt** olur.",
+          "also_ok": [
+            "geläutet"
+          ]
         }
       ]
     },
@@ -394,8 +419,8 @@
         },
         {
           "id": "lx:aufpassen:2",
-          "de": "Frau Brandl passt manchmal auf die Kinder von nebenan auf.",
-          "tr": "Frau Brandl bazen yandaki çocuklara bakıyor.",
+          "de": "Eine Nachbarin passt manchmal auf die Kinder von nebenan auf.",
+          "tr": "Bir komşu bazen yandaki çocuklara bakıyor.",
           "layer": "hd"
         },
         {
@@ -438,22 +463,22 @@
           "de": "Könnten Sie kurz auf meine Tasche ___?",
           "answer": "aufpassen",
           "tr": "Çantama kısa bir süre göz kulak olabilir misiniz?",
-          "hint_tr": "**könnten** ile birlikte **aufpassen** sona gelir."
+          "hint_tr": "**könnten** ile birlikte **aufpassen** sona gelir.",
+          "also_ok": [
+            "achten"
+          ]
         },
         {
-          "de": "Frau Brandl ___ manchmal auf die Kinder von nebenan auf.",
+          "de": "Eine Nachbarin ___ manchmal auf die Kinder von nebenan auf.",
           "answer": "passt",
-          "tr": "Frau Brandl bazen yandaki çocuklara bakıyor.",
+          "tr": "Bir komşu bazen yandaki çocuklara bakıyor.",
           "hint_tr": "**passt** öne, **auf** sona gelir."
         },
         {
           "de": "___ auf, da kommt ein Fahrrad!",
           "answer": "Pass",
           "tr": "Dikkat et, bisiklet geliyor!",
-          "hint_tr": "Uyarırken **Pass auf!** denir.",
-          "also_ok": [
-            "Passt"
-          ]
+          "hint_tr": "Uyarırken **Pass auf!** denir."
         },
         {
           "de": "Hier musst du gut ___, die Straße ist gefährlich.",
@@ -544,7 +569,7 @@
         "anlam_tr": "Köpeğin havlamasını anlatır.",
         "ne_zaman_tr": "Komşunun köpeğinden ya da gürültüden söz ederken.",
         "parcalar": [],
-        "ipucu_tr": "Kibarca şikâyet ederken **Ihr Hund bellt immer** diyebilirsin."
+        "ipucu_tr": "Yalnız köpek için söylenir: **Der Hund bellt.**"
       },
       "forms": [
         {
@@ -666,13 +691,19 @@
           "de": "Im Sommer sitzen wir abends auf dem ___.",
           "answer": "Rasen",
           "tr": "Yazın akşamları çimenlerde oturuyoruz.",
-          "hint_tr": "Çimenlerde **auf dem Rasen** olur."
+          "hint_tr": "Çimenlerde **auf dem Rasen** olur.",
+          "also_ok": [
+            "Gras"
+          ]
         },
         {
           "de": "Dürfen die Kinder auf dem ___ spielen?",
           "answer": "Rasen",
           "tr": "Çocuklar çimenlerde oynayabilir mi?",
-          "hint_tr": "Çimenlerde **auf dem Rasen** olur."
+          "hint_tr": "Çimenlerde **auf dem Rasen** olur.",
+          "also_ok": [
+            "Gras"
+          ]
         },
         {
           "de": "Wann wird der ___ gemäht?",
@@ -710,7 +741,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Bir sepet çamaşır için **die Wäschen** denmez. Hepsi **die Wäsche** olur.",
-        "Çamaşır makinesi **die Waschmaschine** olur. **Wäschemaschine** yanlış."
+        "Çamaşır asmak derken **die Wäsche hängen** eksik. Doğrusu **die Wäsche aufhängen**."
       ],
       "examples": [
         {
@@ -735,7 +766,7 @@
         {
           "id": "lx:Wäsche:4",
           "de": "– Kann ich meine Wäsche hier im Hof aufhängen? – Ja, klar, da ist genug Platz.",
-          "tr": "– Çamaşırımı burada avluya asabilir miyim? – Tabii, yeterince yer var.",
+          "tr": "– Çamaşırımı burada avluda asabilir miyim? – Tabii, yeterince yer var.",
           "layer": "hd",
           "dialog": true
         },
@@ -775,7 +806,7 @@
         {
           "de": "Kann ich meine ___ hier im Hof aufhängen?",
           "answer": "Wäsche",
-          "tr": "Çamaşırımı burada avluya asabilir miyim?",
+          "tr": "Çamaşırımı burada avluda asabilir miyim?",
           "hint_tr": "Çamaşır **die Wäsche** olur."
         },
         {
@@ -986,7 +1017,7 @@
         "anlam_tr": "Kışın yağan ve yerde kalan beyaz karı anlatır.",
         "ne_zaman_tr": "Kışın hava ya da yol durumu konuşurken.",
         "parcalar": [],
-        "ipucu_tr": "Kapının önündeki karı küremek **Schnee räumen** olur."
+        "ipucu_tr": "Çok kar derken **viel Schnee** denir, **viele Schnee** denmez."
       },
       "forms": [
         {
@@ -1059,7 +1090,7 @@
         {
           "id": "lx:glatt:3",
           "de": "Pass auf, da vorne ist es total glatt!",
-          "tr": "Dikkat et, şurası çok kaygan!",
+          "tr": "Dikkat et, şu ileride çok kaygan!",
           "layer": "alltag"
         },
         {
@@ -1089,7 +1120,7 @@
         "anlam_tr": "Buz ya da kar yüzünden yolun, merdivenin kaygan olmasını anlatır.",
         "ne_zaman_tr": "Kışın birini uyarırken ya da geç kalmanı açıklarken.",
         "parcalar": [],
-        "ipucu_tr": "Kısaca **Es ist glatt** demek yeter."
+        "ipucu_tr": "**glatt** düz ve pürüzsüz de demektir: **glatte Haare**."
       },
       "forms": [
         {
@@ -1113,7 +1144,7 @@
         {
           "de": "Pass auf, da vorne ist es total ___!",
           "answer": "glatt",
-          "tr": "Dikkat et, şurası çok kaygan!",
+          "tr": "Dikkat et, şu ileride çok kaygan!",
           "hint_tr": "Kaygan **glatt** olur.",
           "also_ok": [
             "rutschig"
@@ -1151,8 +1182,7 @@
       ],
       "patterns": [
         "pt:ich-bin",
-        "pt:ob",
-        "pt:verb-praep"
+        "pt:ob"
       ],
       "register": "neutral",
       "mistakes_tr": [
@@ -1275,7 +1305,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Köpeğe mama verdim derken **dem Hund gefüttert** yanlış. Doğrusu **den Hund gefüttert**.",
-        "Hayvana yemek vermek derken en doğal söyleyiş **füttern** olur: **Ich füttere die Katze.**"
+        "Kediye yemek veriyorum derken **Ich gebe der Katze Essen** doğal değil. Doğrusu **Ich füttere die Katze.**"
       ],
       "examples": [
         {
@@ -1299,7 +1329,7 @@
         {
           "id": "lx:füttern:4",
           "de": "– Wie oft muss ich den Hund füttern? – Zweimal am Tag, morgens und abends.",
-          "tr": "– Köpeğe günde kaç kez mama vermem gerekiyor? – Günde iki kez, sabah ve akşam.",
+          "tr": "– Köpeğe ne sıklıkla mama vermem gerekiyor? – Günde iki kez, sabah ve akşam.",
           "layer": "hd",
           "dialog": true
         },
@@ -1340,7 +1370,7 @@
         {
           "de": "Wie oft muss ich den Hund ___?",
           "answer": "füttern",
-          "tr": "Köpeğe günde kaç kez mama vermem gerekiyor?",
+          "tr": "Köpeğe ne sıklıkla mama vermem gerekiyor?",
           "hint_tr": "**muss** ile birlikte **füttern** sona gelir."
         },
         {
@@ -1377,7 +1407,7 @@
         },
         {
           "de": "über das Wetter plaudern",
-          "tr": "havadan sudan konuşmak"
+          "tr": "hava hakkında sohbet etmek"
         }
       ],
       "patterns": [
@@ -1385,7 +1415,7 @@
         "pt:perfekt-haben",
         "pt:deshalb"
       ],
-      "register": "informal",
+      "register": "neutral",
       "mistakes_tr": [
         "Geçmişi anlatırken **Wir sind geplaudert** yanlış. Doğrusu **Wir haben geplaudert.**",
         "Komşuyla sohbet etmek **mit der Nachbarin plaudern** olur. **die Nachbarin plaudern** eksik."
@@ -1400,13 +1430,13 @@
         {
           "id": "lx:plaudern:2",
           "de": "Wir haben eine halbe Stunde über das Wetter geplaudert.",
-          "tr": "Yarım saat havadan sudan sohbet ettik.",
+          "tr": "Yarım saat hava hakkında sohbet ettik.",
           "layer": "hd"
         },
         {
           "id": "lx:plaudern:3",
-          "de": "Ich hab noch kurz mit Frau Brandl geplaudert. Deshalb bin ich spät.",
-          "tr": "Frau Brandl'la biraz laflamıştım. O yüzden geç kaldım.",
+          "de": "Ich hab noch kurz mit Frau Brandl geplaudert. Deshalb komm ich so spät.",
+          "tr": "Frau Brandl'la biraz lafladım. O yüzden bu kadar geç geliyorum.",
           "layer": "alltag"
         },
         {
@@ -1450,7 +1480,7 @@
         {
           "de": "Wir haben eine halbe Stunde über das Wetter ___.",
           "answer": "geplaudert",
-          "tr": "Yarım saat havadan sudan sohbet ettik.",
+          "tr": "Yarım saat hava hakkında sohbet ettik.",
           "hint_tr": "Geçmişte **haben geplaudert** olur.",
           "also_ok": [
             "geredet",
@@ -1460,7 +1490,7 @@
         {
           "de": "Ich hab noch kurz mit Frau Brandl ___.",
           "answer": "geplaudert",
-          "tr": "Frau Brandl'la biraz laflamıştım.",
+          "tr": "Frau Brandl'la biraz lafladım.",
           "hint_tr": "Geçmişte **hab geplaudert** olur.",
           "also_ok": [
             "geredet",
@@ -1729,7 +1759,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Biri aradı derken **Ich habe ein Telefon bekommen** yanlış. Bu, telefon cihazı aldım demektir. Doğrusu **Ich habe einen Anruf bekommen.**",
-        "Aramanızı bekliyorum derken **Ich warte für Ihren Anruf** yanlış. Doğrusu **Ich warte auf Ihren Anruf.**"
+        "Aramanızı bekliyorum derken **Ich warte Ihren Anruf** eksik. Doğrusu **Ich warte auf Ihren Anruf.**"
       ],
       "examples": [
         {
@@ -1797,7 +1827,10 @@
           "de": "Vielen Dank für Ihren ___.",
           "answer": "Anruf",
           "tr": "Aradığınız için çok teşekkürler.",
-          "hint_tr": "Arama **der Anruf** olur."
+          "hint_tr": "Arama **der Anruf** olur.",
+          "also_ok": [
+            "Rückruf"
+          ]
         },
         {
           "de": "Hast du meinen ___ nicht gesehen?",
@@ -1836,7 +1869,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Konuşma yapmak derken **ein Gespräch machen** doğal değil. Doğrusu **ein Gespräch führen** ya da kısaca **sprechen**.",
-        "Şu an telefonda derken **Er spricht gerade Telefon** yanlış. Doğrusu **Er ist gerade im Gespräch.**"
+        "Görüşmede derken **Sie ist in Gespräch** eksik. Doğrusu **Sie ist im Gespräch.**"
       ],
       "examples": [
         {
@@ -1890,19 +1923,13 @@
           "de": "Herr Wimmer ist gerade in einem ___.",
           "answer": "Gespräch",
           "tr": "Herr Wimmer şu anda bir görüşmede.",
-          "hint_tr": "Görüşme **das Gespräch** olur.",
-          "also_ok": [
-            "Termin"
-          ]
+          "hint_tr": "Görüşme **das Gespräch** olur."
         },
         {
           "de": "Ich hatte heute ein langes ___ mit meinem Chef.",
           "answer": "Gespräch",
           "tr": "Bugün şefimle uzun bir konuşma yaptım.",
-          "hint_tr": "Konuşma **das Gespräch** olur.",
-          "also_ok": [
-            "Telefonat"
-          ]
+          "hint_tr": "Konuşma **das Gespräch** olur."
         },
         {
           "de": "Sie ist leider gerade im ___.",
@@ -1967,7 +1994,7 @@
         },
         {
           "id": "lx:besetzt:4",
-          "de": "– Entschuldigung, ist hier noch besetzt? – Nein, der Platz ist frei.",
+          "de": "– Entschuldigung, ist hier besetzt? – Nein, der Platz ist frei.",
           "tr": "– Affedersiniz, burası dolu mu? – Hayır, yer boş.",
           "layer": "hd",
           "dialog": true
@@ -2005,9 +2032,9 @@
           "hint_tr": "Hat meşgul **besetzt** olur."
         },
         {
-          "de": "Entschuldigung, ist hier noch ___?",
+          "de": "Ist hier ___ oder ist der Platz noch frei?",
           "answer": "besetzt",
-          "tr": "Affedersiniz, burası dolu mu?",
+          "tr": "Burası dolu mu, yoksa yer hâlâ boş mu?",
           "hint_tr": "Yer dolu **besetzt** olur."
         },
         {
@@ -2093,7 +2120,7 @@
         "anlam_tr": "Telefonda iki kişiyi birbirine bağlayan hattı anlatır.",
         "ne_zaman_tr": "Telefonda beklerken ya da ses kötü gelince.",
         "parcalar": [],
-        "ipucu_tr": "Hatta kalın demek için **Bleiben Sie in der Leitung** denir."
+        "ipucu_tr": "Su ve elektrik hattına da **die Leitung** denir."
       },
       "forms": [
         {
@@ -2121,17 +2148,14 @@
           "de": "Die ___ ist immer besetzt.",
           "answer": "Leitung",
           "tr": "Hat hep meşgul.",
-          "hint_tr": "Hat **die Leitung** olur.",
-          "also_ok": [
-            "Nummer"
-          ]
+          "hint_tr": "Hat **die Leitung** olur."
         }
       ]
     },
     {
       "id": "lx:Empfang",
       "de": "Empfang",
-      "tr": "(telefonda) çekim",
+      "tr": "(telefonda) çekim, sinyal",
       "pos": "noun",
       "art": "der",
       "pl": "-",
@@ -2156,7 +2180,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Telefon çekmiyor derken **Das Telefon zieht nicht** yanlış. Doğrusu **Ich habe keinen Empfang.**",
-        "Otelde **der Empfang** resepsiyon demektir. Telefonda konuşurken ise çekim anlamına gelir, karıştırma."
+        "Girişteki danışma masasına da **der Empfang** denir: **am Empfang fragen**. Telefonda ise telefonun çekmesidir."
       ],
       "examples": [
         {
@@ -2208,31 +2232,25 @@
           "de": "Ich habe hier im Keller keinen ___.",
           "answer": "Empfang",
           "tr": "Burada bodrumda telefonum çekmiyor.",
-          "hint_tr": "Çekim **der Empfang** olur.",
-          "also_ok": [
-            "Netz"
-          ]
+          "hint_tr": "Çekmiyor derken **keinen Empfang** denir."
         },
         {
           "de": "Ich konnte Sie nicht anrufen, weil ich keinen ___ hatte.",
           "answer": "Empfang",
           "tr": "Sizi arayamadım, çünkü telefonum çekmiyordu.",
-          "hint_tr": "Çekim **der Empfang** olur.",
-          "also_ok": [
-            "Netz"
-          ]
+          "hint_tr": "Çekmiyor derken **keinen Empfang** denir."
         },
         {
           "de": "Warte, hier ist der ___ total schlecht.",
           "answer": "Empfang",
           "tr": "Dur, burada çekim çok kötü.",
-          "hint_tr": "Çekim **der Empfang** olur."
+          "hint_tr": "Telefonun çekmesi **der Empfang** ile söylenir."
         },
         {
           "de": "Ich bin im Zug, der ___ ist hier nicht gut.",
           "answer": "Empfang",
           "tr": "Trendeyim, burada çekim iyi değil.",
-          "hint_tr": "Çekim **der Empfang** olur."
+          "hint_tr": "Telefonun çekmesi **der Empfang** ile söylenir."
         }
       ]
     },
@@ -2316,25 +2334,37 @@
           "de": "Ich bin ab zwei Uhr wieder ___.",
           "answer": "erreichbar",
           "tr": "Saat ikiden sonra bana yine ulaşabilirsiniz.",
-          "hint_tr": "Ulaşılabilir **erreichbar** olur."
+          "hint_tr": "Ulaşılabilir **erreichbar** olur.",
+          "also_ok": [
+            "zu erreichen"
+          ]
         },
         {
           "de": "Ich bin unter dieser Nummer ___.",
           "answer": "erreichbar",
           "tr": "Bana bu numaradan ulaşabilirsiniz.",
-          "hint_tr": "Ulaşılabilir **erreichbar** olur."
+          "hint_tr": "Ulaşılabilir **erreichbar** olur.",
+          "also_ok": [
+            "zu erreichen"
+          ]
         },
         {
           "de": "Wann sind Sie morgen ___?",
           "answer": "erreichbar",
           "tr": "Yarın size ne zaman ulaşabilirim?",
-          "hint_tr": "Ulaşılabilir **erreichbar** olur."
+          "hint_tr": "Ulaşılabilir **erreichbar** olur.",
+          "also_ok": [
+            "zu erreichen"
+          ]
         },
         {
           "de": "Am Wochenende bin ich nicht ___.",
           "answer": "erreichbar",
           "tr": "Hafta sonu bana ulaşılamaz.",
-          "hint_tr": "Ulaşılamaz **nicht erreichbar** olur."
+          "hint_tr": "Ulaşılamaz **nicht erreichbar** olur.",
+          "also_ok": [
+            "zu erreichen"
+          ]
         }
       ]
     },
@@ -2771,7 +2801,7 @@
         "anlam_tr": "Telesekreterde ya da telefonda kayıtlı mesajı açıp dinlemeyi anlatır.",
         "ne_zaman_tr": "Cevapsız aramadan ya da sesli mesajdan sonra.",
         "parcalar": [],
-        "ipucu_tr": "**höre** öne, **ab** sona gelir: **Ich höre die Nachricht ab.**"
+        "ipucu_tr": "Doktorun ciğerlerini dinlemesine de **abhören** denir."
       },
       "forms": [
         {
@@ -2786,7 +2816,8 @@
           "tr": "Mesajı dinledikten sonra sizi geri ararım.",
           "hint_tr": "Geçmişte **habe abgehört** olur.",
           "also_ok": [
-            "gehört"
+            "gehört",
+            "angehört"
           ]
         },
         {
@@ -2795,7 +2826,8 @@
           "tr": "Sesli mesajını ancak şimdi dinledim.",
           "hint_tr": "Geçmişte **hab abgehört** olur.",
           "also_ok": [
-            "gehört"
+            "gehört",
+            "angehört"
           ]
         },
         {
@@ -2836,7 +2868,7 @@
       "register": "neutral",
       "mistakes_tr": [
         "Daha net derken **mehr deutlich** yanlış. Doğrusu **deutlicher**.",
-        "Net konuşmak **deutlich sprechen** olur. **nett sprechen** denmez, **nett** kibar demektir."
+        "Net konuşmak **deutlich sprechen** olur. **nett sprechen** denmez, **nett** hoş ve iyi demektir."
       ],
       "examples": [
         {
@@ -2890,25 +2922,37 @@
           "de": "Könnten Sie bitte etwas ___ sprechen?",
           "answer": "deutlicher",
           "tr": "Biraz daha net konuşabilir misiniz lütfen?",
-          "hint_tr": "Daha net **deutlicher** olur."
+          "hint_tr": "Daha net **deutlicher** olur.",
+          "also_ok": [
+            "klarer"
+          ]
         },
         {
           "de": "Sprechen Sie Ihre Nummer langsam und ___ auf den Anrufbeantworter.",
           "answer": "deutlich",
           "tr": "Numaranızı telesekretere yavaş ve net söyleyin.",
-          "hint_tr": "Net **deutlich** olur."
+          "hint_tr": "Net **deutlich** olur.",
+          "also_ok": [
+            "klar"
+          ]
         },
         {
           "de": "Sag's kurz und ___.",
           "answer": "deutlich",
           "tr": "Kısa ve net söyle.",
-          "hint_tr": "Net **deutlich** olur."
+          "hint_tr": "Net **deutlich** olur.",
+          "also_ok": [
+            "klar"
+          ]
         },
         {
           "de": "Sie haben sehr ___ gesprochen, danke.",
           "answer": "deutlich",
           "tr": "Çok net konuştunuz, teşekkürler.",
-          "hint_tr": "Net **deutlich** olur."
+          "hint_tr": "Net **deutlich** olur.",
+          "also_ok": [
+            "klar"
+          ]
         }
       ]
     }
