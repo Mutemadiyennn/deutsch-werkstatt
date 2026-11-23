@@ -8,6 +8,9 @@
 import { z } from "zod";
 import { Audio, Drill, Level, LexemeId, ReviewState, Speed } from "./content.ts";
 
+/** gün numarası alt deseni: 01…99 iki hane, 100…364 üç hane (PM 7088043877 md. 1; #205 P2-1) */
+export const GUN_NN = "(0[1-9]|[1-9]\\d|[12]\\d{2}|3[0-5]\\d|36[0-4])";
+
 /** Ortam cümlesi: transkript satırı. `t0`/`t1` (saniye) hizalamadan gelir (A9, sapma > 300 ms olan cümle yayına girmez). */
 export const MedyaCumle = z.object({
   id: z.string().min(1),
@@ -134,7 +137,7 @@ export const OkumaYazma = z.object({
 });
 
 /**
- * AKIS AK-5 (PM-078 B; PM #160): günün "halkaları" — İÇ'in grupladığı 4–6 yeni kart, kapıdan geçen görev cümleleri ve mini sahne.
+ * AKIS AK-5 (PM-078 B; PM #160): günün "halkaları" — İÇ'in grupladığı 2–6 yeni kart (policy `akis.halka_kart`; PM-098 md. 2), kapıdan geçen görev cümleleri ve mini sahne.
  * Alan yoksa gün bugünkü düzenle çalışır. Halka kendi kalıplarını öğretir (`kaliplar`; "…" yuvadır) ve günün dersi VARSAYILMAZ
  * (#165 kuralı): `dersten_sonra: true` yalnız halka bilerek dersten sonra konduysa yazılır (planlayıcı sırayı K(t)'den hesaplar, K8).
  */
@@ -149,7 +152,7 @@ export const HalkaSahne = z.object({
   soru: z.object({ q_tr: z.string().min(1), opts: z.array(z.string().min(1)).min(2).max(4), ans: z.number().int().min(0) }).refine((q) => q.ans < q.opts.length, "cevap şıklarda yok")
 });
 export const Halka = z.object({
-  id: z.string().regex(/^m1:\d{2}:h\d+$/),
+  id: z.string().regex(new RegExp(`^m1:${GUN_NN}:h\\d+$`)),
   title_tr: z.string().min(1),
   kartlar: z.array(LexemeId).min(1).max(8),
   /** halkanın öğrettiği kalıplar: bütün olarak bilinir, parçaları tek tek bilinmez ("Guten Tag", "Für …") */
@@ -160,11 +163,37 @@ export const Halka = z.object({
 });
 export type Halka = z.infer<typeof Halka>;
 
+/** gün kimliği ve dosya adı numarası: 01…99 iki hane, 100…364 üç hane */
+export const GUN_SON = 364;
+export const GUN_ID = new RegExp(`^m1:gun:${GUN_NN}$`);
+/** dil noktası kimliği: dn: + küçük harf/rakam parçaları, aralarında tek - ya da : (dn:08-trennbar, dn:a1-08:t1) */
+const DN_ID = "dn:[a-z0-9]+(?:[-:][a-z0-9]+)*";
+/** sınav günü bağı (PM-101 md. 5): assess:<ad>:<n> (ör. assess:a1-deneme:1) */
+export const SINAV_ID = /^assess:[a-z0-9]+(?:-[a-z0-9]+)*:\d+$/;
+export const DERS_ID = new RegExp(`^(r0:\\d{2}-[a-z0-9-]+|gr:[ab][12]-\\d\\d:t\\d+|${DN_ID})$`);
+/** gün numarasından dosya adı numarası: 8 → "08", 120 → "120" */
+export const gunNo = (day: number) => String(day).padStart(2, "0");
+/** dosya adı gun-NN.json → gün numarası (geçersiz adlar null; "gun-8.json", "gun-008.json" geçersiz) */
+export function gunDosyaNo(dosya: string): number | null {
+  const m = /(?:^|\/)gun-(\d{2,3})\.json$/.exec(dosya); if (!m) return null;
+  const n = Number(m[1]); return n >= 1 && n <= GUN_SON && gunNo(n) === m[1] ? n : null;
+}
+/** dil noktası durağı (`gr:` ve `dn:`): grammar.json biçimi; tablo biçimleri sunulduktan sonra bilinen biçimdir (kume.ts) */
+export const DilNoktasi = z.object({
+  id: z.string().regex(new RegExp(`^${DN_ID}$`)),
+  h_tr: z.string().min(1),
+  tr: z.string().min(1),
+  table: z.object({ head: z.array(z.string()), rows: z.array(z.array(z.string())) }).optional(),
+  ex: z.array(z.object({ de: z.string().min(1), tr: z.string().min(1) })).default([])
+});
+export type DilNoktasi = z.infer<typeof DilNoktasi>;
+
 export const Gun = z.object({
   schema: z.literal(1),
-  /** m1:gun:NN (dosya adı gun-NN.json ile birebir) */
-  id: z.string().regex(/^m1:gun:\d{2}$/),
-  day: z.number().int().min(1).max(7),
+  /** m1:gun:NN (dosya adı gun-NN.json ile birebir; 01…99 iki hane, 100'den sonrası üç hane — PM 7088043877 md. 1) */
+  id: z.string().regex(GUN_ID),
+  /** yolun günü: 1…364 (52 hafta; PM-092 md. 3.1) */
+  day: z.number().int().min(1).max(GUN_SON),
   level: Level,
   format: z.literal("gun"),
   title_tr: z.string().min(1),
@@ -177,9 +206,14 @@ export const Gun = z.object({
     tur: z.array(z.string()).default([]), baglayicilar: z.array(z.string()).default([]), akicilik: z.array(z.string()).default([])
   }),
   review: ReviewState,
-  dersler: z.array(z.string().regex(/^r0:\d{2}-[a-z0-9-]+$/)).default([]),
+  /** günün dersleri (PM-092 md. 1, seçenek a): `r0:` tam temel ders; `gr:` (registry/grammar.json) ve `dn:` (o haftanın dn-HH.json'ı)
+   *  dil noktası durağıdır (başlık, açıklama, tablo, sesli örnekler; alıştırma halkadan gelir). Kimliğin var olup olmadığına hat D bakar */
+  dersler: z.array(z.string().regex(DERS_ID)).default([]),
   yeni_kartlar: z.array(LexemeId).default([]),
   halkalar: z.array(Halka).optional(),
+  /** sınav günü (PM-101 md. 5): o gün uygulama bu denemeyi açar (hat F). Sınav günü kartsız, `dersler: []` ve halkasızdır;
+   *  doğrulayıcı böyle günü geçerli sayar (content/tools/load.ts). A1/A2/B1 sonu sınav günleri aynı biçim. */
+  sinav: z.string().regex(SINAV_ID).optional(),
   video: Video.optional(),
   sahne: Sahne.optional(),
   sesler: z.array(Ses).default([]),
@@ -196,6 +230,9 @@ export type Gun = z.infer<typeof Gun>;
 /** Medya oynatıcısının tek arayüzü: video, köy dizisi sahnesi ve ses aynı akışı kullanır (PM-053 §6) */
 export interface Medya {
   id: string;
+  /** akış gününde ses iki turda oynar (PM-097 md. 1): "ilk" = dinle + anlama (önce duy), "ikinci" = dikte, gölge, "Sen ne derdin?"
+   *  (son halkadan sonra; günün kartları bilinir). Yoksa bütün adımlar (eski düzen) */
+  tur?: "ilk" | "ikinci";
   kind: "video" | "sahne" | "ses";
   title_tr: string;
   ortam_tr?: string;

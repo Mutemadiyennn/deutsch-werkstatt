@@ -8,6 +8,7 @@
  */
 import type { Lexeme } from "@dw/shared";
 import { isCard, isNoun, trAnahtar } from "./garden.ts";
+import POLICY from "../policy.json" with { type: "json" };
 
 /** Tohumlu, kararlı rastgele (aynı tohum → aynı seçenekler; plan tekrar kurulunca soru değişmez) */
 export function tohumluRng(tohum: string): () => number {
@@ -43,19 +44,22 @@ export interface ResimSoru { kart: string; secenekler: ResimSecenek[]; dogru: nu
  * Aynı fotoğraf (src) iki kez çıkmaz. Uygun değilse null (planlayıcı bu türü o kart için önermez).
  * @param harita seçilmiş açık fotoğraf haritası (`foto.json`): anahtar → { src }
  */
-export function resimSecenekleri(kart: Lexeme, adaylar: readonly Lexeme[], harita: Readonly<Record<string, { src: string }>>, tohum: string): ResimSoru | null {
+export function resimSecenekleri(kart: Lexeme, adaylar: readonly Lexeme[], harita: Readonly<Record<string, { src: string; ayri?: readonly string[] }>>, tohum: string): ResimSoru | null {
   const kendi = harita[kartGorsel(kart.id)];
   if (!kendi) return null;
+  // görseli karışan kartlar (İÇ haritası "aynı halkada çıkmasın": 👩 Frau ~ 👧 Mädchen) iki yönde çeldirici olmaz (inceleme #193 P1-1)
+  const ayri = (a: Lexeme, b: Lexeme) => (harita[kartGorsel(a.id)]?.ayri ?? []).some((w) => w.toLowerCase() === b.de.toLowerCase());
+  const yasak = (a: Lexeme, b: Lexeme) => karisir(a, b) || ayri(a, b) || ayri(b, a);
   const r = tohumluRng(`${tohum}|resim|${kart.id}`);
   const goruldu = new Set([kendi.src]);
-  const uygun = adaylar.filter((x) => isCard(x) && !!harita[kartGorsel(x.id)] && !karisir(kart, x));
+  const uygun = adaylar.filter((x) => isCard(x) && !!harita[kartGorsel(x.id)] && !yasak(kart, x));
   const ayniTur = karistir(uygun.filter((x) => x.pos === kart.pos), r), oteki = karistir(uygun.filter((x) => x.pos !== kart.pos), r);
   const cel: Lexeme[] = [];
   for (const x of [...ayniTur, ...oteki]) {
     if (cel.length >= 3) break;
     const src = harita[kartGorsel(x.id)]!.src;
     // çeldiriciler birbirine de karışmasın (iki "kış" görseli tek doğruyu bozar)
-    if (goruldu.has(src) || cel.some((c) => karisir(c, x))) continue;
+    if (goruldu.has(src) || cel.some((c) => yasak(c, x))) continue;
     goruldu.add(src); cel.push(x);
   }
   if (cel.length < 3) return null;
@@ -66,7 +70,8 @@ export function resimSecenekleri(kart: Lexeme, adaylar: readonly Lexeme[], harit
 
 /* ---------- Eşleştir ---------- */
 
-export const ESLESTIR_EN_AZ = 4, ESLESTIR_EN_COK = 6;
+/** policy.json → akis.eslestir_kart (tek kaynak; inceleme #234 P2-1) */
+export const [ESLESTIR_EN_AZ, ESLESTIR_EN_COK] = POLICY.akis.eslestir_kart as [number, number];
 
 export interface EslestirDurum {
   /** sol sütun (Almanca), sağ sütun (Türkçe): kart kimlikleri */

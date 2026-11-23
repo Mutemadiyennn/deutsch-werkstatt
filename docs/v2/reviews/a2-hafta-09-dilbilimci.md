@@ -204,3 +204,28 @@ Denetimler: dikiş `İhlal: 0`; `content:validate` yalnız iki şema sınıfı; 
 **Kalan sınırda: yok.** Düzenli biçimler de (brauche, versuche, lasse) kalıp satırıyla gösterildi; gerekçeyle bırakılan madde olmadı.
 
 **Bu turun getirdikleri (okur ve örneklem bu satırları görmedi):** 17 yeni kalıp satırının Türkçesi, 6 yeni tablo satırı, 3 yeni görülmemiş durum ve yukarıdaki değişen cümleler. Bazı halkalarda kalıp sayısı 4'e çıktı (58 h1, 60 h1, 60 h2, 61 h1, 61 h2, 62 h2). 60 h2'deki "Lass mich bitte …" kalıbının Türkçesi ("Lütfen bırak da … yapayım.") okurun gözünden geçmeli.
+
+## Fark turu (İÇ-18, 23.11)
+
+Kapsam: yalnız `content/v2/m1/gun-57…63.json` farkı (PM-105 md. 3). **Denetlenen satır: 58** (14 yeni kalıp satırı, 24 karşı taraf repliği/Türkçesi, 9 görev ya da dinleme cümlesi ve kabulleri, 11 dinleme metni/örnek/prompt satırı).
+
+**Doğru bulunanlar (özet):**
+- Yeni kalıplar dilbilgisi ve Türkçe açısından doğru: "Wie lange dauert …?", "Ich rufe ein Taxi.", "Derya und Ioana treffen sich um …", "Ich glaube, dass … – Wenn ich Zeit habe, …" (Türkçe "Bence … – Vaktim olursa …" doğal), "Gott sei Dank!" ("Çok şükür!"), "Kriege ich … einen Termin? – Ich habe keinen Termin gekriegt." (Alltag, doğru Partizip), "Ich lasse … zu Hause. – Ich habe … zu Hause gelassen.".
+- "Grüß Gott!" (57, 58) ve "Grüß Gott, hier ist …" (63): açıklama `registry/grammar.json` ile aynı ("Bavyera'da günün her saatinde"); kaynak WORLD.md ve arzt/essen `SOURCES.md` içindeki The Local bağlantısı. Uydurma yok.
+- Ünlem/dolgusu çıkan replikler (Na, Ach, Oh, Hey) doğal kaldı; "Gut." / "Gut, noch einmal." / "Hallo, hier ist Basti …" sorunsuz. Türkçeleri eşlendi.
+- 57 "Die Ausstellung im Rathaus?" önceki satırla (öğrenci: "… im Rathaus") tutarlı. 59 "weil es so voll ist" doğal. 60 "in der Nacht gearbeitet", "Wir bitten Derya um Hilfe, weil wir …"; 62 "Wir stellen das Regal in die Küche.", "einen Kuchen gemacht"; 63 "Und jetzt? Was machst du?" ("Ne yapacaksın?") doğru.
+- Üretim maddelerinde accepted[] ≥ 3 ve makul.
+
+**Hatalar ve düzeltmeler (2):**
+1. gun-58, `lx:Treppenhaus` görev cümlesi `tr`: "Herr Pichler merdivenin ışığını tamir etti." → "Herr Pichler merdivendeki lambayı tamir etti." Gerekçe: Almanca "das Licht" yerine "die Lampe" oldu; Türkçe karşılık değişmemişti.
+2. gun-60, `lx:geduldig` accepted[1]: "Derya ist immer geduldig mit mir, weil ich das noch nicht gelernt habe" (ilkiyle yalnız nokta farkı, gerçek varyant değil) → "Derya ist mit mir immer geduldig, weil ich das noch nicht gelernt habe." Gerekçe: D-064'ün amacı farklı doğru sözdizimleri; yalnız nokta farklı bir satır üçüncü varyant sayılmaz.
+
+Aynı iki düzeltme bütünleşik ağaca da (`wt-i`) uygulandı.
+
+**Şüphe değil, not:** 61 Aksoy "Und, hast du schon …?" Türkçesi "Eee, …" kaldı; burada "Und," karşılığı olarak doğal, ünlem kuralı Almanca replik için. 58 "Ich habe eine neue … – Suchst du eine neue …?" anlamca eşli değil ama gösterim satırı olarak kabul.
+
+**Kapılar:** wt-9 `content:validate` → 17 hata (beklenen sehr/noch/schon/dann sınıfı; yeni hata yok). wt-i `kos.sh 9 57 63` → 57–63 için HATA satırı yok, dikiş satırı yok, hafta kapısı GEÇTİ (öğretilmeden istenen 0, test %100, görülmemiş 7/7).
+
+Hata oranı: 2/58.
+
+ONAY
