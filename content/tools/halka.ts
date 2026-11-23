@@ -8,6 +8,7 @@
  */
 import { bilinmeyenler, bilinmeyenYazi, kalipSecenekleri, toks, type Drill, type Gun, type KumeDizini, type TemelDers } from "../../packages/shared/src/index.ts";
 
+import { tabloDolgusu, type KesinTablo } from "./ktablo.ts";
 import POLICY from "../../web/src/policy.json" with { type: "json" };
 /** policy.json → akis.halka_kart (AK-8; PM 7043401257) */
 export const HALKA_KART = POLICY.akis.halka_kart as [number, number];
@@ -43,10 +44,19 @@ export function gunCumleleri(g: Gun, dersler: Map<string, TemelDers>): Cumle[] {
 
 export interface HalkaSonuc { errors: string[]; warnings: string[]; sayac: { gun: number; gorev: number; ihlal: number; kartsiz: string[] }[] }
 
-export function halkaDenetle(gunler: { file: string; data: Gun }[], dersler: Map<string, TemelDers>, d: KumeDizini): HalkaSonuc {
+/**
+ * `tablo`: kesin kelime tabloları (ktablo.ts). Önceki günün dosyası yoksa o günün kartları, çerçeve sözcükleri ve dersleri K(t)'ye
+ * tablodan girer (PM-092 md. 3.2); dosyası olan gün her zaman dosyadan okunur.
+ */
+export function halkaDenetle(gunler: { file: string; data: Gun }[], dersler: Map<string, TemelDers>, d: KumeDizini, tablo?: KesinTablo): HalkaSonuc {
   const errors: string[] = [], warnings: string[] = [], sayac: HalkaSonuc["sayac"] = [];
   const oncekiKart = new Set<string>(), oncekiDers = new Set<string>();
+  const dolgu = tabloDolgusu(gunler.map((x) => x.data.day), tablo);
   for (const { file, data: g } of [...gunler].sort((a, b) => a.data.day - b.data.day)) {
+    for (const t of dolgu.get(g.day) ?? []) {
+      for (const c of [...t.kartlar, ...t.cerceve]) oncekiKart.add(c);
+      for (const id of t.dersler) { oncekiDers.add(id); for (const c of d.dersler.get(id)?.kart ?? []) oncekiKart.add(c); }
+    }
     const bugunDers = new Set(g.dersler);
     const bugunDersKart = new Set(g.dersler.flatMap((id) => [...(d.dersler.get(id)?.kart ?? [])]));
     // --- halkalar (hata) ---
