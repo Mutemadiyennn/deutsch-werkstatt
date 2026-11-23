@@ -86,16 +86,18 @@
     }
   },
   "seviye_tespiti": {
-    "aciklama": "PM-115: A1 seviye tespiti. `havuz` eşiklerini doğrulayıcı (content/tools/tespit.ts) okur; `karar` eşikleri tespit motorunun (PR 2) A2'ye hazır / A1 tamamlama / baştan kararıdır. Sayılar yalnız burada.",
+    "aciklama": "PM-115: A1 seviye tespiti. `derin`: zayıf haftada can_do başına ve dil noktası başına sorulan üretim maddesi (derinSec); `havuz.cikis_min`: derin seçimden sonra her can_do / dil noktası için çıkış yoklamasına kalan, daha önce sorulmamış en az madde; `havuz.tarama_hafta`: hafta başına tarama maddesi aralığı. Doğrulayıcı (content/tools/tespit.ts) ve motor aynı değerleri okur. `karar`: A2'ye hazır (genel ≥, her beceri ≥, hiçbir hafta <) ve baştan (genel <). Sayılar yalnız burada.",
     "a1_hafta": 8,
     "havuz": {
-      "can_do_derin_min": 2,
-      "dil_noktasi_derin_min": 2,
-      "dil_noktasi_cikis_uyari": 4,
       "tarama_hafta": [
         2,
         3
-      ]
+      ],
+      "cikis_min": 1
+    },
+    "derin": {
+      "can_do_madde": 1,
+      "dil_noktasi_madde": 2
     },
     "kelime": {
       "tarama": 6,
@@ -105,7 +107,7 @@
       "a2_genel_min": 0.8,
       "a2_beceri_min": 0.7,
       "a2_hafta_min": 0.6,
-      "bastan_genel_max": 0.4
+      "bastan_genel_alti": 0.4
     }
   }
 }

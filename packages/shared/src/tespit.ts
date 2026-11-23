@@ -28,8 +28,8 @@ export const TESPIT_YENI_ID = /^tespit:a1:m\d{3}$/;
 export const canDoGun = (id: string): number | null => (CAN_DO_ID.test(id) ? Number(id.slice(6)) : null);
 
 const Bag = {
-  /** maddenin ölçtüğü A1 haftası (1–8) */
-  hafta: z.number().int().min(1).max(8),
+  /** maddenin ölçtüğü A1 haftası (üst sınır policy `seviye_tespiti.a1_hafta`, doğrulayıcıda) */
+  hafta: z.number().int().min(1),
   asama: TespitAsama,
   beceri: HavuzBeceri,
   can_do: z.array(z.string().regex(CAN_DO_ID, "can_do biçimi cd:m1:NN")).default([]),
@@ -63,7 +63,7 @@ export const TespitHavuzu = z.strictObject({
 export type TespitHavuzu = z.infer<typeof TespitHavuzu>;
 
 /** Çözülmüş maddenin kaynağı */
-export type TespitKaynak = "gorulmemis" | "hafta_testi" | "gun_sinavi" | "deneme" | "yeni";
+export type TespitKaynak = "gorulmemis" | "hafta_testi" | "gun_sinavi" | "temel" | "deneme" | "yeni";
 /** Çözülmüş madde (derleme paketi ve motor bunu okur): gövde kaynağın biçimindedir */
 export interface TespitCozulen {
   id: string;
@@ -78,4 +78,35 @@ export interface TespitCozulen {
   /** karar üretim maddesine bakar (PM-115 md. 1); seçmeli madde tek başına "biliyor" kanıtı değildir */
   uretim: boolean;
   madde: Record<string, unknown>;
+}
+
+/** Bir haftanın derin bakış hedefleri: haftanın günlerindeki can_do'lar (sınav günü hariç) ve o hafta ilk öğretilen dil noktaları */
+export interface DerinHedef { can_do: readonly string[]; dil_noktasi: readonly string[] }
+/** Hedef başına sorulacak üretim maddesi (policy `seviye_tespiti.derin`) */
+export interface DerinKota { can_do_madde: number; dil_noktasi_madde: number }
+
+/**
+ * Derin bakış seçimi (PM-115 md. 1, aşama 2): zayıf bir haftanın her can_do'su için `can_do_madde`, her dil noktası için
+ * `dil_noktasi_madde` üretim maddesi. Yalnız `derin` + üretim maddeleri adaydır; seçim belirlenimlidir (aynı havuz aynı
+ * maddeleri verir): her adımda en çok açık hedefi karşılayan aday, eşitlikte havuzdaki sıra. Haftalar birbirinden bağımsız
+ * seçilir (birden çok zayıf haftada seçimlerin birleşimi sorulur); bu yüzden doğrulayıcı "bütün haftalar zayıf" durumunda
+ * çıkışa madde kaldığını sınayınca her alt küme için de kalır. Motor (PR 2) ve doğrulayıcı aynı işlevi kullanır.
+ * Dönen `eksik`: kotası dolmayan hedefler (kalan sayıyla).
+ */
+export function derinSec(maddeler: readonly TespitCozulen[], hedef: DerinHedef, kota: DerinKota): { secilen: TespitCozulen[]; eksik: { id: string; kalan: number }[] } {
+  const ihtiyac = new Map<string, number>();
+  for (const c of hedef.can_do) ihtiyac.set(c, kota.can_do_madde);
+  for (const d of hedef.dil_noktasi) ihtiyac.set(d, (ihtiyac.get(d) ?? 0) + kota.dil_noktasi_madde);
+  const etiket = (m: TespitCozulen) => [...m.can_do, ...m.dil_noktasi];
+  const adaylar = maddeler.filter((m) => m.asama === "derin" && m.uretim && etiket(m).some((t) => ihtiyac.has(t)));
+  const secilen: TespitCozulen[] = [];
+  const acik = (m: TespitCozulen) => etiket(m).filter((t) => (ihtiyac.get(t) ?? 0) > 0).length;
+  for (;;) {
+    let en: TespitCozulen | null = null, enN = 0;
+    for (const m of adaylar) { if (secilen.includes(m)) continue; const n = acik(m); if (n > enN) { en = m; enN = n; } }
+    if (!en) break;
+    secilen.push(en);
+    for (const t of etiket(en)) if ((ihtiyac.get(t) ?? 0) > 0) ihtiyac.set(t, ihtiyac.get(t)! - 1);
+  }
+  return { secilen, eksik: [...ihtiyac].filter(([, n]) => n > 0).map(([id, kalan]) => ({ id, kalan })) };
 }

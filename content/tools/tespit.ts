@@ -1,6 +1,7 @@
 /**
  * A1 seviye tespiti madde havuzu: çözücü + doğrulayıcı (PM-115 md. 5; biçim `content/v2/assess/TESPIT_FORMAT.md`).
- *  - `tespitKaynaklari(dir)`: bağlanabilir maddelerin dizini (görülmemiş durum, hafta sonu testi, gün sınavı, deneme) ve A1
+ *  - `tespitKaynaklari(dir)`: bağlanabilir maddelerin dizini (görülmemiş durum, hafta sonu testi, gün sınavı, temel ders
+ *    alıştırması, deneme) ve A1
  *    günlerinin özeti (can_do, dersler, sınav günü). Dosyalar HAM okunur: gün şemasına bağımlı değil (eksik hafta, fikstür ağacı).
  *  - `tespitDenetle(girdi)`: saf; şema + bağ + kapsam kuralları → { hata, uyari, cozulen }.
  *  - `tespitYukle(dir)`: havuz dosyası yoksa null (main'de sessiz); varsa ikisini birleştirir.
@@ -8,7 +9,8 @@
  */
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { TespitHavuzu, CEKIRDEK_BECERI, canDoGun, type HavuzBeceri, type TespitCozulen, type TespitKaynak } from "../../packages/shared/src/tespit.ts";
+import { TespitHavuzu, CEKIRDEK_BECERI, canDoGun, derinSec, type HavuzBeceri, type TespitCozulen, type TespitKaynak } from "../../packages/shared/src/tespit.ts";
+import { textIssues } from "../../packages/shared/src/explain.ts";
 import { Drill } from "../../packages/shared/src/content.ts";
 import POLICY from "../../web/src/policy.json" with { type: "json" };
 
@@ -21,7 +23,7 @@ export interface KaynakMadde {
   id: string;
   kaynak: Exclude<TespitKaynak, "yeni">;
   dosya: string;
-  /** kaynağın haftası (görülmemiş: dosyanın haftası; test/gün sınavı: günün haftası; deneme: maddenin `hafta`sı, yoksa null) */
+  /** kaynağın haftası (görülmemiş: dosyanın haftası; test/gün sınavı: günün haftası; deneme: maddenin `hafta`sı; temel: null) */
   hafta: number | null;
   tur: string;
   uretim: boolean;
@@ -30,6 +32,8 @@ export interface KaynakMadde {
   /** deneme maddesi: deneme kimliği ve bölümü */
   deneme?: string;
   bolum?: string;
+  /** temel ders alıştırması: dersin kimliği (r0:NN-…); madde dersin öğretildiği haftadan önce ölçemez */
+  ders?: string;
   madde: Record<string, unknown>;
 }
 /** A1 gününün tespitte gereken özeti */
@@ -114,6 +118,17 @@ export function tespitKaynaklari(dir: string): { kaynaklar: Map<string, KaynakMa
       }
     }
   }
+  // temel dersler (r0-NN-*.json): `drills` ve `placement` maddeleri (gün içi dil noktası görevleri; 1. haftanın r0 dersleri)
+  const tm = join(dir, "temel");
+  for (const f of existsSync(tm) ? readdirSync(tm).sort() : []) {
+    if (!/^r0-\d{2}-[^/]+\.json$/.test(f)) continue;
+    const t = nesne(jsonOku(join(tm, f), hata, `temel/${f}`));
+    const ders = yazi(t.id); if (!ders) continue;
+    for (const x of [...dizi(t.drills), ...dizi(t.placement)].map(nesne)) {
+      const id = yazi(x.id); if (!id) continue;
+      ekle({ id, kaynak: "temel", dosya: `temel/${f}`, hafta: null, tur: String(x.k), uretim: drillUretim(x), ders, madde: x });
+    }
+  }
   const as = join(dir, "assess");
   for (const f of existsSync(as) ? readdirSync(as).sort() : []) {
     if (!f.endsWith(".json") || f === "bank.json" || f === "a1-seviye-tespiti.json") continue;
@@ -130,6 +145,8 @@ export function tespitKaynaklari(dir: string): { kaynaklar: Map<string, KaynakMa
 
 /* ---------- kurallar ---------- */
 const AD_YER_TUTUCU = /\{[^}]*\}/;
+/** `yeni` maddenin öğrenciye görünen Türkçe alanları (OD-9) */
+const TR_ALAN = ["situation_tr", "tr", "instr_tr", "q_tr", "why_tr"] as const;
 
 export function tespitDenetle(g: TespitGirdi): TespitSonuc {
   const P = g.politika ?? TESPIT_POLITIKA, H = P.havuz;
@@ -167,7 +184,7 @@ export function tespitDenetle(g: TespitGirdi): TespitSonuc {
 
   h.maddeler.forEach((m, i) => {
     const yer = `maddeler.${i}`;
-    let k: Pick<KaynakMadde, "kaynak" | "tur" | "uretim" | "madde" | "hafta" | "can_do">;
+    let k: Pick<KaynakMadde, "kaynak" | "tur" | "uretim" | "madde" | "hafta" | "can_do" | "ders">;
     let id: string;
     if ("ref" in m) {
       id = m.ref; tekil(id, yer);
@@ -181,9 +198,13 @@ export function tespitDenetle(g: TespitGirdi): TespitSonuc {
       k = { kaynak: "yeni", tur: m.yeni.k, uretim: drillUretim(madde), madde, hafta: null };
       const acc = Array.isArray(madde.accepted) ? madde.accepted : [];
       if (k.uretim && acc.length < 3) hata.push(`${yer}: ${id} üretim maddesinde accepted ${acc.length} < 3 (D-064)`);
-      if (typeof madde.audio_de === "string" && AD_YER_TUTUCU.test(madde.audio_de)) hata.push(`${yer}: ${id} audio_de ad yer tutucusu taşıyor (ses önceden üretilir)`);
+      for (const a of ["audio_de", "prompt_de"]) if (typeof madde[a] === "string" && AD_YER_TUTUCU.test(madde[a] as string)) hata.push(`${yer}: ${id} ${a} ad yer tutucusu taşıyor (ses önceden üretilir; yer tutucu yalnız cevapta)`);
+      // OD-9: öğrenciye görünen Türkçe metin (taslakta uyarı, "reviewed" havuzda hata)
+      for (const a of TR_ALAN) if (typeof madde[a] === "string") for (const x of textIssues(madde[a] as string)) (h.review.status === "reviewed" ? hata : uyari).push(`${yer}: ${id}.${a} OD-9 ${x}`);
     }
     const ad = `${yer} (${id})`;
+    if (m.hafta > P.a1_hafta) hata.push(`${ad}: hafta ${m.hafta} A1'in dışında (1–${P.a1_hafta})`);
+    if (k.ders) { const w = dnHafta.get(k.ders); if (w === undefined) hata.push(`${ad}: temel ders ${k.ders} bir A1 gününün dersler'inde yok`); else if (w > m.hafta) hata.push(`${ad}: temel ders ${k.ders} ${w}. haftada öğretiliyor, madde ${m.hafta}. haftayı ölçüyor (önce öğret, sonra iste)`); }
     if (k.hafta !== null && k.hafta !== m.hafta) hata.push(`${ad}: hafta ${m.hafta}, kaynağın haftası ${k.hafta}`);
     // can_do: görülmemiş durumun kendi can_do'su havuzda da bulunur (boşsa ondan alınır)
     const canDo = m.can_do.length ? [...m.can_do] : k.can_do ? [k.can_do] : [];
@@ -213,27 +234,39 @@ export function tespitDenetle(g: TespitGirdi): TespitSonuc {
   for (const x of h.muaf_dil_noktasi) { if (!dnHafta.has(x.id)) hata.push(`muaf_dil_noktasi: ${x.id} bir A1 gününün dersler'inde yok`); muaf.add(x.id); }
   if (muaf.size) uyari.push(`seviye tespiti: ${muaf.size} dil noktası muaf (${[...muaf].join(", ")})`);
 
-  // kapsam: içerikte günü bulunan her A1 haftası
+  // kapsam: içerikte günü bulunan her A1 haftası. Gereken = derin bakışın sorduğu (policy `derin`) + çıkışa kalan (`havuz.cikis_min`)
+  const D = P.derin, cikis = H.cikis_min;
   const derinUretim = cozulen.filter((x) => x.asama === "derin" && x.uretim);
   const say = (f: (x: TespitCozulen) => boolean) => derinUretim.filter(f).length;
   const haftalar = new Set(a1.map((x) => haftaOf(x.day)));
   const yok = Array.from({ length: P.a1_hafta }, (_, i) => i + 1).filter((w) => !haftalar.has(w));
   if (yok.length) uyari.push(`seviye tespiti: günü içerikte olmayan A1 haftası ${yok.join(", ")}: kapsam denetlenmedi`);
   const [tMin, tMax] = H.tarama_hafta as [number, number];
+  const cdMin = D.can_do_madde + cikis, dnMin = D.dil_noktasi_madde + cikis;
+  const sorulan = new Set<TespitCozulen>();
+  const hedefler: { w: number; can_do: string[]; dil_noktasi: string[] }[] = [];
   for (const w of [...haftalar].sort((a, b) => a - b)) {
     const gunlerW = a1.filter((x) => haftaOf(x.day) === w);
     const eksikGun = Array.from({ length: 7 }, (_, i) => (w - 1) * 7 + i + 1).filter((d) => !gunMap.has(d));
-    if (eksikGun.length) uyari.push(`seviye tespiti: ${w}. haftada gün dosyası eksik (${eksikGun.join(", ")}): o günlerin can_do'su denetlenmedi`);
-    const cdEksik = gunlerW.filter((x) => !x.sinav && x.can_do).map((x) => [x.can_do!, say((y) => y.can_do.includes(x.can_do!))] as const).filter(([, n]) => n < H.can_do_derin_min);
-    if (cdEksik.length) hata.push(`seviye tespiti ${w}. hafta: derin üretim maddesi en az ${H.can_do_derin_min} olmalı; eksik can_do: ${cdEksik.map(([c, n]) => `${c} (${n})`).join(", ")}`);
-    const dnW = [...dnHafta].filter(([d, hw]) => hw === w && !muaf.has(d)).map(([d]) => [d, say((y) => y.dil_noktasi.includes(d))] as const);
-    const dnEksik = dnW.filter(([, n]) => n < H.dil_noktasi_derin_min);
-    if (dnEksik.length) hata.push(`seviye tespiti ${w}. hafta: derin üretim maddesi en az ${H.dil_noktasi_derin_min} olmalı; eksik dil noktası: ${dnEksik.map(([d, n]) => `${d} (${n})`).join(", ")}`);
-    const dnAz = dnW.filter(([, n]) => n >= H.dil_noktasi_derin_min && n < H.dil_noktasi_cikis_uyari);
-    if (dnAz.length) uyari.push(`seviye tespiti ${w}. hafta: derin üretim maddesi ${H.dil_noktasi_cikis_uyari} altında olan dil noktası (çıkış yoklamasına yeni madde kalmayabilir): ${dnAz.map(([d, n]) => `${d} (${n})`).join(", ")}`);
+    if (eksikGun.length) uyari.push(`seviye tespiti: ${w}. haftada gün dosyası eksik (${eksikGun.join(", ")}): o günlerin can_do'su ve dil noktaları denetlenmedi`);
+    const cdW = gunlerW.filter((x) => !x.sinav && x.can_do).map((x) => x.can_do!);
+    const dnW = [...dnHafta].filter(([d, hw]) => hw === w && !muaf.has(d)).map(([d]) => d);
+    hedefler.push({ w, can_do: cdW, dil_noktasi: dnW });
+    const cdEksik = cdW.map((c) => [c, say((y) => y.can_do.includes(c))] as const).filter(([, n]) => n < cdMin);
+    if (cdEksik.length) hata.push(`seviye tespiti ${w}. hafta: derin üretim maddesi en az ${cdMin} olmalı (derin ${D.can_do_madde} + çıkış ${cikis}); eksik can_do: ${cdEksik.map(([c, n]) => `${c} (${n})`).join(", ")}`);
+    const dnEksik = dnW.map((d) => [d, say((y) => y.dil_noktasi.includes(d))] as const).filter(([, n]) => n < dnMin);
+    if (dnEksik.length) hata.push(`seviye tespiti ${w}. hafta: derin üretim maddesi en az ${dnMin} olmalı (derin ${D.dil_noktasi_madde} + çıkış ${cikis}); eksik dil noktası: ${dnEksik.map(([d, n]) => `${d} (${n})`).join(", ")}`);
     const tarama = cozulen.filter((x) => x.asama === "tarama" && x.hafta === w);
     if (tarama.length < tMin || tarama.length > tMax) hata.push(`seviye tespiti ${w}. hafta: tarama maddesi ${tarama.length} (beklenen ${tMin}–${tMax})`);
     else if (!tarama.some((x) => x.beceri === "konusma" || x.beceri === "yazma")) hata.push(`seviye tespiti ${w}. hafta: tarama maddelerinde konuşma ya da yazma yok`);
+  }
+  // çıkış yoklaması (PM-115 md. 4: aynı madde ikinci kez sorulmaz): bütün haftalar zayıf sayılıp derin seçim (derinSec, motorla
+  // aynı) yapılınca her hedefe sorulmamış en az `cikis_min` madde kalmalı. Haftalar bağımsız seçildiği için her alt küme de geçer.
+  for (const hd of hedefler) for (const x of derinSec(cozulen, hd, D).secilen) sorulan.add(x);
+  for (const hd of hedefler) {
+    const kalan = (t: string) => derinUretim.filter((y) => !sorulan.has(y) && (y.can_do.includes(t) || y.dil_noktasi.includes(t))).length;
+    const dar = [...hd.can_do, ...hd.dil_noktasi].map((t) => [t, kalan(t)] as const).filter(([t, n]) => n < cikis && say((y) => y.can_do.includes(t) || y.dil_noktasi.includes(t)) >= (t.startsWith("cd:") ? cdMin : dnMin));
+    if (dar.length) hata.push(`seviye tespiti ${hd.w}. hafta: derin seçimden sonra çıkış yoklamasına en az ${cikis} sorulmamış madde kalmıyor (maddeler başka hedeflerle paylaşılıyor; bu hedefe ayrı madde ekle): ${dar.map(([t, n]) => `${t} (${n})`).join(", ")}`);
   }
   return { hata, uyari, cozulen };
 }
