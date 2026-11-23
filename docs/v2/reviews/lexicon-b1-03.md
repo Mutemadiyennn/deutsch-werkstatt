@@ -135,3 +135,11 @@ Yalnız geri dönen 3 alan değişti (hepsi b1-03b). Okur bu alanları yeniden o
 | lx:rechtzeitig | exp.ipucu_tr | **gerade noch rechtzeitig** ucu ucuna yetişmek demektir. | İpucu **pünktlich** sözcüğünü anlatıyordu; artık kartın kendi sözcüğünü, kartın üçüncü örneğindeki kullanımla anlatıyor. |
 
 `npm run content:validate` → **0 hata, 154 uyarı**. `review` iki dosyada `draft`.
+
+## Kapanış (2026-11-23)
+
+Okur 2. tur 3/3 GEÇTİ, örneklem 0/86 GEÇTİ (`docs/v2/reviews/ornek-lexicon-b1-03.md`). İki dosyada `review` baş geliştiricinin verdiği biçimde `reviewed`, `okur: passed`.
+
+Örneklemin takip notundan tek düzeltme: lx:leise forms[3] ipucu **Sesin kısık derken** → **Sesin az geliyor derken du bist leise denir.** Aynı boşluğun ve examples[4]'ün çevirisi de **sesin çok az geliyor** oldu. **kısık** Türkçede hastalıktan kısılmış ses diye okunuyordu (**heiser**). Bu üç alan okurdan yeniden geçmedi.
+
+`npm run content:validate` → **0 hata, 154 uyarı**.
