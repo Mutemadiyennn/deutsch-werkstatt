@@ -85,5 +85,6 @@ du/Sie: Weber, Huber, Wimmer, Brandl, Pichler, Schneider, Stadler Sie; Lechner, 
 - gorulmemis-12 · g2 `durum_tr` "telefonundaki" → "senin telefonundaki".
 - Betikle karşılaştırma: 7 durumun 35 kabul biçimi, 78–84. günlerin ve hafta testinin bütün Almanca satırları ve kabul biçimleriyle (noktalama ve büyük-küçük harf yok sayılarak) karşılaştırıldı; aynen geçen biçim 0.
 - Denetim: `kontrol.sh 12 --tam` → 5 bilinen "sözlükte yok" hatası, dikiş **İhlal: 0**. Uyarı 382 (önce 381): fark bu dosyadan değil; görülmemiş durumlar çıkarılıp konarak sınandı, doğrulayıcı çıktısı aynı. Bu arada ağaçtaki 11. hafta dosyaları güncellenmiş.
+- Örneklem 2. tur: g7 yeniden kuruldu (cd:m1:84): cumartesi nöbetçi muayenehane, adsız doktor "Was fehlt Ihnen, und seit wann?" → "Ich habe seit Freitag Kopfschmerzen und Schwindel." (5 kabul, derslerle çakışma 0); `yer` serbest metin "Bereitschaftspraxis" (WORLD'de `pl:` kimliği yok, doğrulayıcı kabul ediyor); denetim 5 bilinen hata, **İhlal: 0**.
 
 KARAR: ONAY
