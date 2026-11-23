@@ -207,3 +207,77 @@ Sayım: başlık 1 + k1 (yönerge 1, ölçüt 2, durum 3, ipucu 3) 9 + k2 (yöne
 - Dosyanın `review.status` alanı **reviewed**. OD-9.4'e göre okur GERİ'leri kapanmadan bu durum geçerli sayılmaz.
 
 OKUR: GERİ — 26 madde
+
+---
+
+## 2. tur
+
+Tarih: 2026-11-23. Kapsam: 1. turda GERİ dönen 26 madde, iki koşullu alan (`note_tr`, `puanlama_tr`) ve 1. turda "partner" notu düşülen 4 alan (k3 `yonerge_tr`, k3:04, k3:05, k3:06 `situation_tr`). Yeni tam okuma yapılmadı. Metinler dosyanın okuma anındaki hâlidir. Dosyada "partner" sözü artık hiç geçmiyor; k2:02, k2:05, k2:06 `situation_tr` da "karşındaki kişi" oldu.
+
+### GERİ dönen 26 madde
+
+| # | Kimlik · alan | Yeni metin | Kendi sözlerimle | Karar | Not |
+|---|---|---|---|---|---|
+| 1 | `kisimlar[y2].yonerge_tr` | Kısa bir e-posta yaz. Yaklaşık 30 kelime yeterli. Aşağıdaki üç maddenin hepsini yaz. Başta bir selam, sonda bir kapanış olsun. | Otuz kelime kadar kısa bir e-posta yazacağım. Aşağıdaki üç şeyin hepsi içinde olacak. Başına selam, sonuna kapanış koyacağım. | GEÇTİ | Noktalı virgül yok, "üç nokta" karışıklığı gitti. |
+| 2 | `a1y:y2:01` `degerlendirme_tr[0]` | Görev (6 puan): her madde 2 puan. Madde yazılmış ve anlaşılıyorsa 2 puan. Yazılmış ama tam anlaşılmıyorsa 1 puan. Madde yoksa 0 puan. | Üç maddenin her biri 2 puan. Açık yazdıysam 2, yarım anlaşılıyorsa 1, yazmadıysam 0. | GEÇTİ | Basamaklar ayrı kısa cümleler. |
+| 3 | `a1y:y2:01` `degerlendirme_tr[1]` | Anlaşılırlık (2 puan): Almanca bilen biri mesajı bir kez okuyup anlıyorsa 2 puan. Birkaç yerde durup düşünmesi gerekiyorsa 1 puan. Mesajın çoğu anlaşılmıyorsa 0 puan. Küçük yazım hataları puanı düşürmez. | Mesajım bir okumada anlaşılıyorsa 2, zorlanarak anlaşılıyorsa 1, anlaşılmıyorsa 0. Küçük yazım hatası puan kırdırmaz. | GEÇTİ | En uzun cümle 13 kelime. |
+| 4 | `a1y:y2:01` `degerlendirme_tr[2]` | Selam ve kapanış (2 puan): uygun bir selam 1 puan. Örnek: **Sehr geehrte Damen und Herren** ya da **Guten Tag**. Uygun bir kapanış ve adın 1 puan. Örnek: **Mit freundlichen Grüßen** ya da **Viele Grüße**. | Başa uygun selam yazarsam 1 puan. Sona uygun kapanış ve adımı yazarsam 1 puan daha. | GEÇTİ | Tırnak ve noktalı virgül yok; hangi "1"in neye ait olduğu artık belli. |
+| 5 | `kisimlar[k1].degerlendirme_tr[0]` | Tanıtma (her kart 1 puan): her sözcük için anlaşılır bir cümle söylediysen tam puan. Bir ya da iki bilgi eksikse yarım puan (0,5). Cümle yerine tek sözcük söylediysen de yarım puan. Anlaşılmıyorsa ya da İngilizce konuştuysan 0 puan. | Karttaki her kelime için bir cümle: tam puan. Bir iki bilgi eksik ya da tek kelimeyle cevap: yarım. Anlaşılmaz ya da İngilizce: sıfır. | GEÇTİ | İlk cümle tam 14 kelime (sınırda). |
+| 6 | `kisimlar[k1].degerlendirme_tr[1]` | Harf harf söylemek (1 puan): bütün harfler doğru ve anlaşılırsa tam puan. **A wie Anton** gibi bir ad eklemek zorunlu değil. Kişi adı ya da şehir adı eklersen ikisi de doğru. Bir harf yanlışsa yarım puan. Görevli bir kez yeniden sormak zorunda kaldıysa da yarım puan. Harflerin çoğu yanlışsa 0 puan. | Soyadımı harf harf söylerim; hepsi doğruysa tam puan. **Anton** gibi bir ad eklemek şart değil; kişi adı da şehir adı da olur. Bir harf yanlış ya da görevli bir kez yeniden sorduysa yarım, çoğu yanlışsa sıfır. | GEÇTİ | "Heceleme" ve "şehir kodu" gitti; görev metniyle aynı söz. |
+| 7 | `a1k:k1:01` `why_tr` | Bazı ülke adlarından önce **der** gelir: **aus der Türkei**, **aus der Ukraine**. | Bazı ülkelerin adından önce **der** söylenir; örneğin **aus der Türkei**. | GEÇTİ | Tek fikir; görünmeyen cevaba gönderme yok. |
+| 8 | `a1k:k1:02` `why_tr` | Meslek söylerken **ein** kullanılmaz: **Ich bin Fahrer**, **Ich arbeite als Köchin**. | Mesleğimi söylerken **ein** demem: **Ich bin Fahrer**. | GEÇTİ | |
+| 9 | `a1k:k1:03` `situation_tr` | Görevli soyadını harf harf söylemeni istiyor. Kendi soyadını harf harf söyle. | Görevli istiyor, ben de kendi soyadımı harf harf söyleyeceğim. | GEÇTİ | Parantezli öğretmen notu çıktı. |
+| 10 | `a1k:k1:03` `why_tr` | Harfleri Almanca söyle: **E** için **e**, **I** için **i**, **R** için **er**. Anlaşılmazsa **B wie Berta** ya da **B wie Berlin** diye ekle. İkisi de doğru. | Harfleri Almanca okuyuşuyla söylerim, **R** harfine **er** derim. Anlaşılmazsa **B wie Berta** gibi bir ad ya da şehirle desteklerim. | GEÇTİ | İki kısa cümle ama aynı iş: harfleri anlaşılır söylemek (1. turdaki yön: "iki ayrı kısa cümle"). Sembol yok, cümleler ≤ 12 kelime. |
+| 11 | `kisimlar[k2].yonerge_tr` | Hazırlık yok. Sana bir konu ve bir sözcük kartı verilir. Bu sözcükle karşındaki kişiye bir soru sor. Karşındaki kişi sana soru sorarsa cevap ver. Hem **du** hem **Sie** olur. | Karttaki kelimeyle karşımdakine bir soru soracağım. O bana sorarsa cevap vereceğim. **du** da diyebilirim **Sie** de. | GEÇTİ | Tırnak gitti; "partner" yerine "karşındaki kişi". |
+| 12 | `kisimlar[k2].degerlendirme_tr[1]` | Tam puan: kart sözcüğünü kullanan, konuya uyan ve anlaşılan bir soru. Ya da soruya uyan, anlaşılan, tam bir cevap. | Kart kelimesiyle, konuya uygun, anlaşılır bir soru ya da düzgün tam bir cevap: tam puan. | GEÇTİ | |
+| 13 | `kisimlar[k2].degerlendirme_tr[2]` | Yarım puan (0,5): anlaşılıyor ama cümle bozuk. Örneğin sözcükler yanlış sırada. Cevap tek sözcükse de yarım puan. | Anlaşılıyor ama cümle bozuksa ya da tek kelimeyle cevap verdiysem yarım puan. | GEÇTİ | |
+| 14 | `a1k:k2:01` `situation_tr` | Konu: Yemek ve içmek. Kartta **Frühstück** (kahvaltı) yazıyor. Karşındaki kişiye bu sözcükle bir soru sor. | Kahvaltıyla ilgili karşımdakine bir soru soracağım. | GEÇTİ | |
+| 15 | `a1k:k2:01` `why_tr` | Soru **Was**, **Wann** ya da **Frühstückst du** gibi başlar. | Soruma **Was**, **Wann** ya da **Frühstückst du** ile başlayabilirim. | GEÇTİ | "fiil" terimi gitti, örnekle gösteriliyor. |
+| 16 | `a1k:k2:02` `situation_tr` | Konu: Yemek ve içmek. Karşındaki kişinin kartında **Bäckerei** (fırın) yazıyor ve sana soru soruyor. Cevap ver. | Karşımdakinin kartında fırın var, bana fırınla ilgili soru soruyor; cevap vereceğim. | GEÇTİ | |
+| 17 | `a1k:k2:03` `situation_tr` | Konu: Yemek ve içmek. Kartta **Restaurant** yazıyor. Karşındaki kişiye bu sözcükle bir soru sor. | Restoranla ilgili bir soru soracağım. | GEÇTİ | |
+| 18 | `a1k:k2:04` `situation_tr` | Konu: Benim günüm. Kartta **Wochenende** (hafta sonu) yazıyor. Karşındaki kişiye bu sözcükle bir soru sor. | Hafta sonuyla ilgili bir soru soracağım. | GEÇTİ | |
+| 19 | `a1k:k2:05` `situation_tr` | Konu: Benim günüm. Karşındaki kişinin kartında **gestern** (dün) yazıyor ve sana soru soruyor. Cevap ver. | Bana dünle ilgili soru soruyor; cevap vereceğim. | GEÇTİ | |
+| 20 | `a1k:k2:05` `why_tr` | Dün için **habe gemacht**, **habe gekocht** ya da **war** kullan. | Dünü anlatırken **habe gemacht**, **habe gekocht** ya da **war** derim. | GEÇTİ | Eğik çizgi ve tırnak gitti. Not (karar değil): **…** çıkınca araya söz girdiği bilgisi de çıktı; **Ich habe gekocht** doğru bir cümle olduğu için yanlış öğretmiyor. |
+| 21 | `a1k:k2:06` `situation_tr` | Konu: Benim günüm. Karşındaki kişinin kartında **aufstehen** (kalkmak) yazıyor ve sana soru soruyor. Cevap ver. | Bana kaçta kalktığımı soruyor; cevap vereceğim. | GEÇTİ | |
+| 22 | `a1k:k2:06` `why_tr` | **auf** sözcüğü cümlenin sonuna gider: **Ich stehe um sechs Uhr auf**. | **auf** en sona gelir: **Ich stehe um sechs Uhr auf**. | GEÇTİ | |
+| 23 | `kisimlar[k3].degerlendirme_tr[1]` | Rica, tam puan: resme uyan, kibar ve anlaşılan bir rica. Kibar sözlere örnek: **bitte**, **Können Sie**, **Ich hätte gern**. | Resme uygun, kibar ve anlaşılır bir istek tam puan; **bitte** gibi kibar sözler kullanırım. | GEÇTİ | |
+| 24 | `kisimlar[k3].degerlendirme_tr[2]` | Cevap, tam puan: ricaya uyan bir kabul ya da kibar bir ret. Kibar ret örneği: **Tut mir leid**. | İsteği kabul edersem ya da kibarca reddedersem tam puan; ret için **Tut mir leid** derim. | GEÇTİ | |
+| 25 | `a1k:k3:01` `situation_tr` | Resim: bir telefon ve restoranda iki kişilik bir masa. Altında **Samstag** yazıyor. Restoranı arıyorsun. Masa ayırt. | Restoranı arayıp cumartesi için iki kişilik masa ayırtacağım. | GEÇTİ | |
+| 26 | `a1k:k3:04` `why_tr` | Numaranı söylüyorsan rakamları tek tek ya da ikişer ikişer söyle. | Telefon numaramı rakam rakam ya da ikişer ikişer söylerim. | GEÇTİ | Görünmeyen cevaba gönderme gitti. |
+
+### "Partner" geçen 4 alan
+
+| Kimlik · alan | Yeni metin | Kendi sözlerimle | Karar |
+|---|---|---|---|
+| `kisimlar[k3].yonerge_tr` | Hazırlık yok. Kartta bir resim tarif edilir. Resme göre karşındaki kişiden kibarca bir şey iste. Karşındaki kişi senden bir şey isterse cevap ver. Kabul et ya da kibarca hayır de. | Resme göre karşımdakinden kibarca bir şey isteyeceğim. O benden isterse kabul edeceğim ya da kibarca hayır diyeceğim. | GEÇTİ |
+| `a1k:k3:04` `situation_tr` | Karşındaki kişinin kartında bir telefon resmi var. Senden bir şey istiyor. Cevap ver. | Karşımdaki telefonla ilgili bir şey istiyor (numaram); cevap vereceğim. | GEÇTİ |
+| `a1k:k3:05` `situation_tr` | Karşındaki kişinin kartında bir koli resmi var. Komşun olarak senden bir şey istiyor. Cevap ver. | Komşum bir koliyle ilgili benden bir şey istiyor; cevap vereceğim. | GEÇTİ |
+| `a1k:k3:06` `situation_tr` | Karşındaki kişinin kartında ekmek resmi var. Senden bir şey istiyor. Cevap ver. | Karşımdaki ekmekle ilgili bir şey istiyor; cevap vereceğim. | GEÇTİ |
+
+### Koşullu alanlar (öğretmen notu olabilir; sayıma katılmadı)
+
+Web uygulamasında bu dosyayı gösteren ekran hâlâ yok (`web/src` içinde `note_tr` ya da `puanlama_tr` okuyan sınav ekranı bulunmadı).
+
+| Alan | Yeni metin (kısa) | Kendi sözlerimle | Karar (görünürse) | Neden |
+|---|---|---|---|---|
+| `puanlama_tr` | Her bölümde aldığın puan 25 üzerinden hesaplanır. Örneğin bir bölümde puanların yarısını alırsan, sonuç 12,5 puan olur. Geçmek için toplam en az 60 puan gerekir. Konuşma bölümünden ayrıca en az 15 puan gerekir. Konuşmadaki eksik başka bölümle kapatılamaz. | Her bölüm 25 puan üzerinden. Geçmek için toplam 60 ve konuşmadan en az 15 lazım. Konuşma zayıfsa diğer bölümler kurtarmaz. | GEÇTİ | Sembol ve "ham puan" gitti; cümleler ≤ 11 kelime; örnek hesap anlaşılır. |
+| `note_tr` | Bu deneme derslerden bağımsız yazıldı (PM-087 B.2). … Dinlemede **kanit** ses satırının sırasıdır. … Konuşmadaki **accepted** listeleri yalnız örnek cevaptır. … Puan **degerlendirme_tr** ölçütüyle verilir. k1:01, k1:02, k1:03 ve k3:04 … | Yazarlara ve uygulamaya not: hangi alan ne demek, örnek cevaplar gösterilmez. | **GERİ** (yalnız görünürse) | Cümleler artık kısa ve sembolsüz; ama içerik hâlâ öğretmen notu: belge numarası, alan adları (**kanit**, **accepted**, **degerlendirme_tr**), madde kimlikleri, "sayım 0'dan başlar". Öğrenciye gösterilmemeli; gösterilmedikçe karar etkilemez. |
+
+### Düzeltmenin getirdiği yeni sorun
+
+Yok. Okuduğum hiçbir yeni metinde tırnak içinde Almanca, noktalı virgül, `=`, `…`, eğik çizgi ya da dilbilgisi terimi kalmadı. 14 kelimeyi aşan cümle yok (en uzunu k1 `degerlendirme_tr[0]` ilk cümlesi, tam 14). Yalnız iki not (karar değil):
+- k2:05 `why_tr`: **…** çıkınca **habe** ile **gemacht** arasına söz girebildiği bilgisi de gitti. Yanlış öğretmiyor.
+- "Karşındaki kişi"nin uygulamada kim olduğu (yapay zekâ mı, kayıt mı) metinden hâlâ anlaşılmıyor. Bu, açıklamanın değil ekranın işi.
+
+### 2. tur sonucu
+
+| | |
+|---|---|
+| Yeniden okunan | 30 (26 GERİ + 4 "partner" alanı) |
+| GEÇTİ | 30 |
+| GERİ | 0 |
+| Koşullu | `puanlama_tr` görünürse GEÇTİ · `note_tr` görünürse GERİ (öğrenciye gösterilmemeli) |
+
+OD-9.4: okur GERİ'si kalmadı; `note_tr` öğrenciye gösterilmediği sürece dosya okur kapısından geçer.
+
+OKUR: GEÇTİ
