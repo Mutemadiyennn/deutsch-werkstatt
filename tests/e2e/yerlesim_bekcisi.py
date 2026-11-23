@@ -8,7 +8,7 @@ Her ekranda on kural:
      kayan içerik sabit çubuğun altından geçiyorsa öğe ortaya getirilip yeniden ölçülür; yalnız kalıcı binme sayılır)
   B3 ≥ 3 sözcüklü aynı metin bir ekranda iki ayrı blokta yok (aynı listenin kardeş satırlarındaki yineleme bir kez sayılır;
      kardeş satır = aynı etiket + sınıf ve satır yinelenen metinden fazlasını taşıyor; yinelenen metin kart başlığıysa muafiyet yok)
-  B4 ana ekranlarda (Bugün, Öğren, İlerleme, Profil) açıklama (main p.muted, main p.small, [data-aciklama]) ≤ 2 satır
+  B4 ana ekranlarda (dört sekme: Bugün, Yol, Köy, Ben; ve Ben'in ayarları) açıklama (main p.muted, main p.small, [data-aciklama]) ≤ 2 satır
   B5 "·" satır başında ya da sonunda yalnız kalmaz (önceki ve sonraki görünür karakter aynı satırda)
   B6 yatay taşma yok: belge (scrollWidth ≤ innerWidth + 1) ve öğe (kutusu ekran dışına taşan öğe; overflow-x:clip altında da; yatay kaydırmalı şerit hariç)
   B7 başlık sözcüğü (h1–h3; .de, .de-lg, [lang=de] ≥ kök yazının 1,15 katı) iki satıra bölünmez (heceleme ya da kırma; kısa çizgide kırılma serbest)
@@ -31,7 +31,7 @@ import gezgin
 KIP = "rapor"   # PM 7047456551: ilk ölçüm > 5 ihlal → rapor kipi; sıfıra inince "kirmizi"
 PORT = 4237
 BOYUTLAR = [{"width": 390, "height": 844}, {"width": 430, "height": 932}]
-ANA = {"#/today", "#/learn", "#/progress", "#/profile"}
+ANA = {"#/today", "#/yol", "#/koy", "#/ben", "#/ben/ayarlar"}
 
 KURALLAR = r"""(ana) => {
   const ihlal = [];
