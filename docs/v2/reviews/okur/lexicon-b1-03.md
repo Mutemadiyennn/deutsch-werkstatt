@@ -163,3 +163,20 @@ Sınırda geçenler (kararı etkilemedi):
   - lx:Festnetz mistakes_tr[0]
 
 Bu GERİ'ler yüzünden `batch-b1-03c.json` "reviewed" sayılamaz (OD-9.4).
+
+## 03c 2. tur (yalnız doğrulama)
+
+Girdi: `batch-b1-03c.json`'da düzeltilen 2 alan. Metinler içerik dosyasından okundu. Çelişki var mı diye aynı kartın notlarına, örneklerine, eşdizimlerine ve boşluk ipuçlarına da bakıldı.
+
+| kart | alan | yeni açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| lx:Schatten | exp.ipucu_tr | Gölgedeysen **im Schatten**, gölgeye geçiyorsan **in den Schatten** denir. | gölgedeyken im, gölgeye giderken in den | GEÇTİ | 9 kelime, tek fikir. Ayrım artık -de / -e farkına bağlı. mistakes_tr[0] (gölgeye oturmak, **in den**), 4. örnek ve boşluk ipuçlarıyla uyumlu |
+| lx:Festnetz | mistakes_tr[0] | Beni sabit hattımdan ara derken **Ruf mich vom Festnetz an** denmez. Doğrusu **Ruf mich auf dem Festnetz an.** | beni sabit hattımdan ara derken vom değil auf dem | GEÇTİ | en uzun cümle 11 kelime, tek durum, tek okumada anlaşıldı. 4. örnekle (Sabit hattımdan lütfen) uyumlu |
+
+Takip notu (engel değil): lx:Festnetz eşdizimi **vom Festnetz telefonieren** (sabit hattan konuşmak) duruyor. Notla çelişmiyor, çünkü orada sabit hattan arayan kişi kendisi. Yine de bir an "vom hep mi yanlış" diye takıldım.
+
+### 03c 2. tur sonucu
+
+- Okunan: 2 alan · GEÇTİ: 2 · GERİ: 0
+
+`batch-b1-03c.json`'da okur GERİ'si kalmadı (OD-9.3 okur katmanı geçti).
