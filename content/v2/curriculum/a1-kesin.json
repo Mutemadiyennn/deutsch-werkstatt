@@ -16,7 +16,7 @@
   "2. Hafta: omurganın her k1_aralik grubu için o grubun, sıra aralığındaki, öğretilmemiş, daha önce atanmamış, takvim kolunda olmayan kartları; K1 sırasıyla; adet kadar. r0 grubu r0:* gruplarının tamamıdır. 2. haftanın ilk grubu omurganın 8. gün listesidir.",
   "3. Gün: gunler[].kelime.adet kadar. Önce günün başlığında ya da derslerinin grammar.json kaydında (başlık, tablo, örnek cümle; Türkçe açıklama sayılmaz) tam sözcük olarak geçen kartlar ve dersin K1 grubundaki kartlar (r0:10-buchstabieren ↔ r0:heceleme), en erken uyan güne; kalanı K1 sırasıyla, gün sırasıyla. 8. gün omurgadaki listesinin kalanını öğretir.",
   "4. Dilbilimci gün sırası denetimi: bulgular yalnız aynı hafta içinde gün değiştirerek düzeltilir (duzeltmeler alanı).",
-  "5. Kart ve çerçeve (PM 7088230583 md. 1, PM-047 §2): kartlar = kartMi (card:false değil ve tür det/pron/conj/prep/particle/num değil) ya da sözlükte henüz kaydı olmayan kimlik; cerceve = öteki işlev sözcükleri. Hafta kümesi kuralı yalnız kartlar içindir. cerceve sözcüğü yeni_kartlar'a yazılmaz, ama o hafta bir kalıpta ya da dil noktasında gösterilmeden kullanılamaz. Boşalan yer doldurulmaz; planlanan_yeni üst sınırdır. sozlukte_yok: registry/lexicon/batch-*.json içinde derin kaydı olmayan kimlik (3. haftanın 4'ünün yalnız v1 aktarım kaydı var, lexemes.v1.json); işaretli kimlik (kimlik_isaretleri) lex kaydı girene kadar günün en sonuna bırakılır."
+  "5. Kart ve çerçeve (PM 7088230583 md. 1, PM-047 §2): kartlar = kartMi (card:false değil ve tür det/pron/conj/prep/particle/num değil) ya da sözlükte henüz kaydı olmayan kimlik; cerceve = öteki işlev sözcükleri. Hafta kümesi kuralı yalnız kartlar içindir. cerceve sözcüğü yeni_kartlar'a yazılmaz, ama o hafta bir kalıpta ya da dil noktasında gösterilmeden kullanılamaz. Boşalan yer doldurulmaz; planlanan_yeni üst sınırdır. sozlukte_yok: registry/lexicon/batch-*.json içinde derin kaydı olmayan kimlik (3. haftanın 4'ünden Anrufbeantworter'in yalnız v1 aktarım kaydı var, lexemes.v1.json; Durchwahl, Rückruf, Warteschleife yalnız domains/telefon/proposals.json'da yazar önerisi; 5. haftanın 9'unun hiçbir kaydı yok); işaretli kimlik (kimlik_isaretleri) lex kaydı girene kadar günün en sonuna bırakılır."
  ],
  "takaslar": {
   "not_tr": "main'deki gun-0N.json dosyalarında takas yok; bilinen takaslar halka dalında duruyor (PM-090 md. 1: tablo onları hesaba katar). one_gelen kartlar 1. haftada öğretilmiş sayılır ve 8. günden düşer. hafta_ici takaslar 1. haftanın içinde kalır, tabloyu değiştirmez.",
@@ -306,9 +306,10 @@
    "onceki_adet": 106,
    "planlanan_yeni": 115,
    "fark": -44,
-   "birikimli": 194,
+   "birikimli": 270,
    "omurga_birikimli": 270,
-   "birikimli_fark": -76,
+   "birikimli_fark": 0,
+   "kart_birikimli": 194,
    "gruplar": [
     {
      "grup": "öne çekilen küçük sözcükler (gün 8)",
@@ -351,7 +352,7 @@
      "alinan": 23
     }
    ],
-   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. 2. hafta ayrıca −9: omurganın 8. gün listesindeki 9 kart (noch, schon, nur, gern, dann, oft, sehr, Euro, Cent) PM kararı F2 ile 4.–6. güne çıktı.",
+   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123). 2. hafta ayrıca −9: omurganın 8. gün listesindeki 9 kart (noch, schon, nur, gern, dann, oft, sehr, Euro, Cent) PM kararı F2 ile 4.–6. güne çıktı.",
    "kartlar": [
     "lx:lange",
     "lx:erst",
@@ -475,9 +476,10 @@
    "onceki_adet": 95,
    "planlanan_yeni": 95,
    "fark": -14,
-   "birikimli": 275,
+   "birikimli": 365,
    "omurga_birikimli": 365,
-   "birikimli_fark": -90,
+   "birikimli_fark": 0,
+   "kart_birikimli": 275,
    "gruplar": [
     {
      "grup": "r0",
@@ -530,7 +532,7 @@
      "alinan": 21
     }
    ],
-   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. ",
+   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123). ",
    "kartlar": [
     "lx:krank",
     "lx:nochmal",
@@ -648,9 +650,10 @@
    "onceki_adet": 90,
    "planlanan_yeni": 90,
    "fark": -7,
-   "birikimli": 358,
+   "birikimli": 455,
    "omurga_birikimli": 455,
-   "birikimli_fark": -97,
+   "birikimli_fark": 0,
+   "kart_birikimli": 358,
    "gruplar": [
     {
      "grup": "ihtiyac:wohnen",
@@ -693,7 +696,7 @@
      "alinan": 25
     }
    ],
-   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. ",
+   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123). ",
    "kartlar": [
     "lx:Einladung",
     "lx:Zahl",
@@ -801,9 +804,10 @@
    "onceki_adet": 85,
    "planlanan_yeni": 85,
    "fark": -2,
-   "birikimli": 441,
+   "birikimli": 540,
    "omurga_birikimli": 540,
-   "birikimli_fark": -99,
+   "birikimli_fark": 0,
+   "kart_birikimli": 441,
    "gruplar": [
     {
      "grup": "ihtiyac:verkehr",
@@ -856,7 +860,7 @@
      "alinan": 20
     }
    ],
-   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. ",
+   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123). ",
    "kartlar": [
     "lx:Bratwurst",
     "lx:Dialekt",
@@ -969,9 +973,10 @@
    "onceki_adet": 60,
    "planlanan_yeni": 60,
    "fark": 0,
-   "birikimli": 501,
+   "birikimli": 600,
    "omurga_birikimli": 600,
-   "birikimli_fark": -99,
+   "birikimli_fark": 0,
+   "kart_birikimli": 501,
    "gruplar": [
     {
      "grup": "senaryo",
@@ -1014,7 +1019,7 @@
      "alinan": 4
     }
    ],
-   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. ",
+   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123). ",
    "kartlar": [
     "lx:Film",
     "lx:Versichertenkarte",
@@ -1091,9 +1096,10 @@
    "onceki_adet": 80,
    "planlanan_yeni": 80,
    "fark": -2,
-   "birikimli": 579,
+   "birikimli": 680,
    "omurga_birikimli": 680,
-   "birikimli_fark": -101,
+   "birikimli_fark": 0,
+   "kart_birikimli": 579,
    "gruplar": [
     {
      "grup": "ihtiyac:arzt",
@@ -1136,7 +1142,7 @@
      "alinan": 39
     }
    ],
-   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. ",
+   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123). ",
    "kartlar": [
     "lx:weh",
     "lx:lieber",
@@ -1234,9 +1240,10 @@
    "onceki_adet": 15,
    "planlanan_yeni": 15,
    "fark": 0,
-   "birikimli": 594,
+   "birikimli": 695,
    "omurga_birikimli": 695,
-   "birikimli_fark": -101,
+   "birikimli_fark": 0,
+   "kart_birikimli": 594,
    "gruplar": [
     {
      "grup": "v1-A2",
@@ -1249,7 +1256,7 @@
      "alinan": 15
     }
    ],
-   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. ",
+   "neden_tr": "Sayılar kartMi ölçüsüyle (PM 7088230583 md. 1): adet yalnız kartlar; cerceve ayrı sayılır. planlanan_yeni üst sınırdır, hedef değil; boşalan yer doldurulmadı, ileri haftadan kart çekilmedi. onceki_adet ve gruplar[].alinan: çerçeve sözcükleri dahil üretim sayısı. birikimli ve birikimli_fark omurga gibi çerçeve dahildir (1. haftadan 164); kart_birikimli yalnız kartlardır (1. haftadan 123). ",
    "kartlar": [
     "lx:Aussicht",
     "lx:Teppich",
