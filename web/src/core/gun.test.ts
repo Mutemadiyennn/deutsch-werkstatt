@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { Gun } from "@dw/shared";
-import { akisAcik, akisGunleriOku, bayrakli, gunAdimlari, yol, siradaki, xpEkle, seri, XP_BOS } from "./gun.ts";
+import { akisAcik, akisGunleriOku, bayrakli, gunAdimlari, yol, siradaki, xpEkle, seri, XP_BOS, haftaOf, haftaSonuMu, yolGunleri, yuklenecekHafta, gunKilitli, haftaBitti, gunOzeti, haftalara } from "./gun.ts";
 
 const g1 = Gun.parse(JSON.parse(readFileSync(join(import.meta.dirname, "../../../content/tools/fixtures/m1/gun-01.json"), "utf8")));
 const g2 = { ...g1, id: "m1:gun:02", day: 2, title_tr: "İkinci gün" } as Gun;
@@ -118,3 +118,54 @@ describe("AKIS pilot bayrağı (AK-6, 4b)", () => {
   });
 });
 
+
+describe("çok haftalı yol (PR B-3)", () => {
+  const g = (n: number) => Array.from({ length: n }, (_, i) => i + 1);
+  it("hafta ⌈gün/7⌉, hafta sonu her 7. gün, gün ≤ 364", () => {
+    expect([1, 7, 8, 14, 15, 364].map(haftaOf)).toEqual([1, 1, 2, 2, 3, 52]);
+    expect([7, 14, 56].every(haftaSonuMu)).toBe(true);
+    expect(haftaSonuMu(8)).toBe(false);
+    expect(yolGunleri([3, 1, 365, 2, 2, 0])).toEqual([1, 2, 3]);
+  });
+  it("yüklenecek hafta: kalıcı bitişi olmayan ilk günün haftası; hepsi bittiyse son hafta", () => {
+    expect(yuklenecekHafta(g(14), new Set())).toBe(1);
+    expect(yuklenecekHafta(g(14), new Set(g(7)))).toBe(2);
+    expect(yuklenecekHafta(g(14), new Set(g(14)))).toBe(2);
+    // boşluklu paket (1–7 ve 29–35): 7. gün bitince 5. hafta
+    expect(yuklenecekHafta([...g(7), 29, 30, 31], new Set(g(7)))).toBe(5);
+    expect(yuklenecekHafta([], new Set())).toBeNull();
+  });
+  it("gün kilidi sırayla; atlama yok; paket dışı gün kilitli değil", () => {
+    const bitti = new Set([1, 2, 3, 4, 5, 6]);
+    expect(gunKilitli(7, g(9), bitti)).toBe(false);
+    expect(gunKilitli(8, g(9), bitti)).toBe(true);
+    expect(gunKilitli(9, g(9), new Set(g(7)))).toBe(true);
+    expect(gunKilitli(9, g(9), new Set(g(8)))).toBe(false);
+    expect(gunKilitli(1, g(9), new Set())).toBe(false);
+    expect(gunKilitli(40, g(9), new Set())).toBe(false);
+    // ara gün bitmemişse sonraki hafta kilitli (sonradan bitmiş gibi görünen gün de açmaz)
+    expect(gunKilitli(8, g(9), new Set([1, 2, 3, 5, 6, 7]))).toBe(true);
+  });
+  it("hafta bitti: paketteki bütün günleri", () => {
+    expect(haftaBitti(1, g(9), new Set(g(7)))).toBe(true);
+    expect(haftaBitti(2, g(9), new Set(g(8)))).toBe(false);
+    expect(haftaBitti(3, g(9), new Set(g(9)))).toBe(false);
+  });
+  it("haftalara böl: şimdiki hafta, biten, kilitli", () => {
+    const y = yol([...g(9)].map((d) => (d <= 7 ? gunOzeti(d, `G${d}`, true) : { ...gunOzeti(d, `G${d}`, false), adimlar: [] })));
+    const h = haftalara(y.gunler);
+    expect(h.map((x) => [x.hafta, x.durum, x.gunler.length])).toEqual([[1, "bitti", 7], [2, "simdi", 2]]);
+    expect(y.simdi?.day).toBe(8);
+  });
+});
+
+describe("dil noktası adımı Yol'da (#231 takibi)", () => {
+  const gdn = { ...g1, id: "m1:gun:08", day: 8, dersler: ["gr:a1-05:t4"] } as Gun;
+  it("akış gününde hazır, akışa gider; bitişi ders:<id>; akışsız günde hazırlanıyor (günü bekletmez)", () => {
+    const d = gunAdimlari(gdn, bos(), basliklar, "hepsi").adimlar.find((x) => x.id === "gr:a1-05:t4")!;
+    expect(d).toMatchObject({ title_tr: "Dil noktası", href: "#/akis/8", hazir: !!g1.halkalar?.length, bitti: false });
+    const b = gunAdimlari(gdn, { ...bos(), dersBitti: new Set(["gr:a1-05:t4"]) }, basliklar, "hepsi").adimlar.find((x) => x.id === "gr:a1-05:t4")!;
+    expect(b.bitti).toBe(true);
+    expect(gunAdimlari(gdn, bos(), basliklar, []).adimlar.find((x) => x.id === "gr:a1-05:t4")!.hazir).toBe(false);
+  });
+});

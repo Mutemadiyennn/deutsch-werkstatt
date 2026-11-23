@@ -399,6 +399,8 @@ export const ContentIndex = z.object({
     genelAdlar: z.string().optional(),
     /** haftaların dil noktaları (dn-HH.json birleşik; PM-092 md. 1) ve kesin kelime tablosu (gün → kartlar, dersler; PM-100 md. 2) */
     dn: z.string().optional(), kesin: z.string().optional(),
+    /** hafta sonu testleri (PR B-3): hafta → dosya (`hafta/hafta-HH.json`; { id, maddeler }) */
+    hafta: z.record(z.string(), z.string()).default({}),
     /** paketteki medya dosyaları (servis işçisi ayrı önbelleğe alır; A12) */
     medya: z.array(z.string()).default([]) })
 });

@@ -66,3 +66,17 @@ export async function bahceTamam(day: number) {
 }
 /** Gün bitişi kalıcı (inceleme #66 P2-7) */
 export async function gunBittiYaz(day: number) { if (!(await getMeta(`m1:gun:${day}`))) await setMeta(`m1:gun:${day}`, new Date().toISOString()); }
+/** Kalıcı gün bitişleri (`m1:gun:<g>`): hangi haftanın yükleneceği ve gün kilidi (PR B-3) bunlarla karar verir; gün dosyası yüklenmez */
+export async function gunBitisleri(): Promise<Set<number>> {
+  return new Set((await metaPrefix<unknown>("m1:gun:")).map((x) => Number(x.key.slice("m1:gun:".length))).filter((n) => Number.isInteger(n)));
+}
+/** Hafta sonu testi sonucu (PR B-3): `m1:hafta:<H>`; en iyi sonuç kalır (yeniden çözmek düşürmez) */
+export interface HaftaSonuc { dogru: number; toplam: number; at: string }
+export async function haftaSonuclari(): Promise<Map<number, HaftaSonuc>> {
+  return new Map((await metaPrefix<HaftaSonuc>("m1:hafta:")).filter((x) => x.value && typeof x.value.dogru === "number").map((x) => [Number(x.key.slice("m1:hafta:".length)), x.value!]));
+}
+export async function haftaSonucYaz(hafta: number, dogru: number, toplam: number): Promise<void> {
+  const eski = await getMeta<HaftaSonuc>(`m1:hafta:${hafta}`);
+  if (eski && eski.toplam && eski.dogru / eski.toplam >= dogru / Math.max(1, toplam)) return;
+  await setMeta(`m1:hafta:${hafta}`, { dogru, toplam, at: new Date().toISOString() });
+}

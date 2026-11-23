@@ -581,6 +581,13 @@ main { overflow-x: clip; }
 .gun-bant-ad { font-size: 1.15rem; font-weight: 800; }
 .rehber-btn { flex: none; min-height: 44px; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 12px; color: #fff; font-weight: 800; text-decoration: none; box-shadow: 0 0 0 2px rgba(255, 255, 255, .55) inset; }
 .yolgun { display: grid; gap: 6px; }
+.hafta-satir { border-left: 6px solid var(--vurgu, var(--hafta-1)); padding: 12px 14px; }
+.hafta-satir.kilitli { border-left-color: var(--line); color: var(--muted); }
+.hafta-satir-btn { width: 100%; min-height: 44px; background: none; border: 0; padding: 0; color: inherit; font: inherit; text-align: left; gap: 10px; cursor: pointer; }
+.hafta-satir-btn .ico { color: var(--vurgu, var(--hafta-1)); flex: none; }
+.hafta-gunler { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.hafta-gunler li { min-height: 44px; gap: 10px; border-top: 1px solid var(--line); flex-wrap: nowrap; }
+.hafta-gunler .rehber-btn { color: var(--vurgu, var(--hafta-1)); box-shadow: 0 0 0 2px var(--line) inset; }
 .yolgun.kilitli .gun-bant { background: var(--soft); color: var(--muted); box-shadow: 0 4px 0 var(--line); }
 .yolgun.kilitli .rehber-btn { color: var(--muted); box-shadow: 0 0 0 2px var(--line) inset; }
 .dugumler { list-style: none; margin: 8px 0 18px; padding: 0; display: grid; gap: 14px; justify-items: center; }
