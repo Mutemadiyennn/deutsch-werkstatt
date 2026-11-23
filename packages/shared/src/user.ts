@@ -167,6 +167,8 @@ export interface AssessAnswer {
   skipped?: boolean;
   /** Yapay zekâ eşdeğerlik kontrolüyle kabul edildi mi */
   aiAccepted?: boolean;
+  /** Kural tutmadı, yapay zekâ denetimi hata verdi: cevap denetlenemedi; puana ve uyarlamaya sayılmaz (PEDAGOGY §7a md. 3) */
+  unchecked?: boolean;
 }
 export interface SkillResult { skill: AssessSkill; correct: number; total: number; byLevel: Record<Level, { correct: number; total: number }>; estimate: Level | "below-A1"; confidence: "low" | "medium" | "high" }
 export interface Assessment {

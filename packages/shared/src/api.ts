@@ -24,19 +24,19 @@ export type ErrorCode = z.infer<typeof ErrorCode>;
 export const ApiError = z.object({ error: z.object({ code: ErrorCode, message_tr: z.string(), retryable: z.boolean() }) });
 export type ApiError = z.infer<typeof ApiError>;
 
-/** Hata kodlarının Türkçe karşılıkları (istemci ve Worker aynı metni kullanır) */
+/** Hata kodlarının Türkçe karşılıkları (istemci ve Worker aynı metni kullanır). Öğrenci ekranında görünür: "sunucu", "hata kodu" gibi teknik söz yok (PM finali #218) */
 export const ERROR_TR: Record<ErrorCode, { message_tr: string; retryable: boolean; status: number }> = {
   unauthenticated: { message_tr: "Oturumun sona ermiş. Lütfen yeniden giriş yap.", retryable: false, status: 401 },
-  forbidden: { message_tr: "Bu hesabın sunucuya erişim izni yok.", retryable: false, status: 403 },
+  forbidden: { message_tr: "Bu hesapla yapay zekâ kullanılamıyor.", retryable: false, status: 403 },
   quota_user: { message_tr: "Bugünkü yapay zekâ hakkın doldu. Yapay zekâsız alıştırmalarla devam edebilirsin.", retryable: false, status: 429 },
   quota_upstream: { message_tr: "Yapay zekânın ücretsiz kullanım payı doldu. Biraz sonra ya da yarın tekrar dene; şimdilik uygulamanın kendi kuralları geçerli.", retryable: true, status: 429 },
-  upstream_busy: { message_tr: "Yapay zekâ sunucusu şu an yoğun (senin sınırın değil). Birazdan tekrar dene.", retryable: true, status: 503 },
+  upstream_busy: { message_tr: "Yapay zekâ şu an yoğun (senin sınırın değil). Birazdan tekrar dene.", retryable: true, status: 503 },
   timeout: { message_tr: "Yanıt çok uzun sürdü. Tekrar deneyebilirsin.", retryable: true, status: 504 },
   bad_output: { message_tr: "Yapay zekâ geçersiz bir yanıt verdi. Tekrar dene.", retryable: true, status: 502 },
   invalid_request: { message_tr: "İstek geçersiz.", retryable: false, status: 400 },
   // öğrenciye teknik ayrıntı gösterilmez: açılışta sağlık yoklaması yapılamadıysa ilk yapay zekâ isteğinde bu metin görünebilir (web/src/services/ai.ts)
   not_configured: { message_tr: "Bu özellik şu an kapalı. Yapay zekâsız devam edebilirsin.", retryable: false, status: 503 },
-  internal: { message_tr: "Sunucuda beklenmeyen bir hata oldu.", retryable: true, status: 500 }
+  internal: { message_tr: "Şu an cevap alamadım. Birazdan tekrar dene.", retryable: true, status: 500 }
 };
 
 /* ---------- Yapay zekâ görev kaydı ---------- */

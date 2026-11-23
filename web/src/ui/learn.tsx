@@ -11,7 +11,7 @@ import { fillName, redact } from "../core/persona.ts";
 import { verdict, type Verdict } from "../core/answer.ts";
 import { localSayIt, type LocalEntry } from "../core/sayit.ts";
 import { addClaim, addPersonal, cacheGet, cachePut } from "../data/db.ts";
-import { noktadakiKelime, yerelAcikla, type YerelAciklama } from "../core/sozluk.ts";
+import { kalipIcinde, noktadakiKelime, yerelAcikla, type YerelAciklama } from "../core/sozluk.ts";
 import { loadLexicon } from "../services/content.ts";
 
 /** Cihazdaki sözlük (içerik paketi; çevrimdışı da var). Yüklenemezse boş liste: "Bu ne demek?" yine yapay zekâya sorabilir */
@@ -28,7 +28,7 @@ function useSozluk(): Lexeme[] | null {
 }
 
 function YerelCevap({ a }: { a: YerelAciklama }) {
-  if (a.kaynak === "kelimeler") return <div data-test="yerel-kelimeler">{a.kelimeler!.map((k) => <div><b lang="de">{k.art ? `${k.art} ` : ""}{k.de}</b> — {k.tr}</div>)}</div>;
+  if (a.kaynak === "kelimeler") return <div data-test="yerel-kelimeler">{a.kelimeler!.map((k) => <div data-ifade={k.ifade ? "1" : undefined}><b lang="de">{k.art ? `${k.art} ` : ""}{k.de}</b> — {k.tr}</div>)}</div>;
   return <div data-test="yerel-cevap"><b lang="de">{a.art ? `${a.art} ` : ""}{a.de}</b> — {a.tr}{a.kart && <span class="muted"> ({a.kart})</span>}</div>;
 }
 
@@ -71,12 +71,12 @@ export function VerdictView({ v, answer, onNext, onClaim, itemId, scenarioId, pr
  * "Bu ne demek?" — puan düşürmez; konuşma/akış kaldığı yerden sürer. #58 A11: cevap önce cihazdaki sözlükten (ifade, kelime,
  * cümlede kelime kelime); yapay zekâ yalnızca yerel cevap yoksa ya da cümlenin tamamı istenirse, ad maskelenerek (D-061).
  */
-export function ExplainBtn({ de, context, onAsked, acik: ilk = false }: { de: string; context?: string; onAsked?: (de: string) => void; acik?: boolean }) {
+export function ExplainBtn({ de, context, cumle, onAsked, acik: ilk = false }: { de: string; context?: string; /** tek sözcük bu cümleden seçildiyse: sözcük bir kalıbın parçasıysa kalıp bütün açıklanır */ cumle?: string; onAsked?: (de: string) => void; acik?: boolean }) {
   const { api, profile } = useApp();
   const lex = useSozluk();
   const [acik, setAcik] = useState(ilk);
   const [st, setSt] = useState<{ busy?: boolean; out?: { tr: string; note_tr: string }; err?: string; yeniden?: boolean } | null>(null);
-  const yerel = useMemo(() => (acik && lex ? yerelAcikla(de, lex) : null), [acik, lex, de]);
+  const yerel = useMemo(() => (acik && lex ? (cumle && kalipIcinde(de, cumle, lex)) || yerelAcikla(de, lex) : null), [acik, lex, de, cumle]);
   useEffect(() => { setAcik(ilk); setSt(null); }, [de]);
   const sor = async () => {
     if (!aiState(api).available) { setSt({ err: aiState(api).reason }); return; }
@@ -224,7 +224,7 @@ export function LongPressExplain() {
   const tekKelime = !sec.kelime || sec.kelime === sec.de.replace(/[.,!?;:„“"]/g, "").trim();
   return (
     <div class="sheet fade stack" role="dialog" aria-label="Bu ne demek?" data-test="lp-sheet">
-      {!tekKelime && <div data-test="lp-kelime"><ExplainBtn de={sec.kelime!} acik /></div>}
+      {!tekKelime && <div data-test="lp-kelime"><ExplainBtn de={sec.kelime!} cumle={sec.de} acik /></div>}
       <div class="de-lg" lang="de">{sec.de}</div>
       <ExplainBtn de={sec.de} acik />
       <div class="row"><button class="btn ghost sm" onClick={() => setSec(null)} data-test="lp-kapat">Kapat</button></div>

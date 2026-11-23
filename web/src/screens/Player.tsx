@@ -507,6 +507,8 @@ function RoleplaySection({ ctx, finish, back, setRight }: SP) {
   const [kendim, setKendim] = useState(false);
   const yenidenMi = (e: unknown) => !(e instanceof ApiError) || e.retryable;
   const [stuck, setStuck] = useState(0);
+  /** cümle kurmadan "Konuşmayı bitir": boş rapor açılmaz; konuşmaya dön ya da raporsuz çık (devir 7090637496 takibi) */
+  const [bosBitir, setBosBitir] = useState(false);
   const [report, setReport] = useState<any>(null);
   const [selfGoals, setSelfGoals] = useState<Record<string, boolean>>({});
   const surprise = useMemo(() => (level >= 2 && s.roleplay.surprises.length ? s.roleplay.surprises[runs % s.roleplay.surprises.length]!.de : undefined), [level]);
@@ -559,7 +561,7 @@ function RoleplaySection({ ctx, finish, back, setRight }: SP) {
   const send = async (a: string) => {
     const nonDe = NON_GERMAN.test(a) && !/[äöüß]|\b(ich|bitte|ja|nein|danke)\b/i.test(a);
     const st = a.trim().split(/\s+/).length <= 1 || nonDe ? stuck + 1 : 0; setStuck(st);
-    const hist = [...turns, { r: "learner" as const, de: a }]; setTurns(hist);
+    const hist = [...turns, { r: "learner" as const, de: a }]; setTurns(hist); setBosBitir(false);
     await partnerTurn(hist, st);
   };
   const endTalk = async (t: Turn[] = turns) => {
@@ -581,7 +583,7 @@ function RoleplaySection({ ctx, finish, back, setRight }: SP) {
         for (const g of f.gaps_de) await addPersonal({ id: `convo:${g}`, de: g, at: new Date().toISOString(), source: "sayit" });
         const done = f.goals.filter((x) => x.done).length;
         await finish(done, s.roleplay.goals.length, { level, goalsDone: done, goalsTotal: s.roleplay.goals.length, englishFallbacks: f.english_fallbacks, mode: "ai" });
-      } catch (e) { if (reportDoneRef.current || (modeRef.current as string) === "offline") return; reportRef.current = false; setErrYeniden(yenidenMi(e)); setErr(e instanceof ApiError ? e.message_tr : "Rapor alınamadı."); }
+      } catch (e) { if (reportDoneRef.current || (modeRef.current as string) === "offline") return; reportRef.current = false; setErrYeniden(yenidenMi(e)); setErr(e instanceof ApiError ? e.message_tr : "Bağlantıyı kontrol et."); }
       finally { clearTimeout(timer); setBusy(false); setSlow(null); setWaiting(false); }
     }
   };
@@ -605,7 +607,8 @@ function RoleplaySection({ ctx, finish, back, setRight }: SP) {
     const last = [...turns].reverse().find((t) => t.r === "partner");
     return (
       <div class="stack">
-        <div class="row between"><span class="tiny muted">{mode === "offline" ? "Yapay zekâsız mod: senaryodaki diyalog kullanılıyor." : `Zorluk: ${level === 1 ? "kolay" : level === 2 ? "normal" : "gerçekçi"}`}</span><button class="btn ghost sm" onClick={() => void endTalk()} data-test="rp-end">Konuşmayı bitir</button></div>
+        <div class="row between"><span class="tiny muted">{mode === "offline" ? "Yapay zekâsız mod: senaryodaki diyalog kullanılıyor." : `Zorluk: ${level === 1 ? "kolay" : level === 2 ? "normal" : "gerçekçi"}`}</span><button class="btn ghost sm" onClick={() => { if (turns.some((t) => t.r === "learner")) void endTalk(); else setBosBitir(true); }} data-test="rp-end">Konuşmayı bitir</button></div>
+        {bosBitir && <div class="card stack" role="status" data-test="rp-bos"><p style={{ margin: 0 }}><b>Henüz bir cümle kurmadın.</b> <span class="small muted">Rapor için en az bir cümle gerekir. Kaydedilmeden çıkabilirsin.</span></p><div class="row"><button class="btn sm primary" onClick={() => setBosBitir(false)} autoFocus data-test="rp-bos-don">Konuşmaya dön</button><a class="btn sm" href={back} onClick={() => stopSpeaking()} data-test="rp-bos-cik">Kaydetmeden çık</a></div></div>}
         <div class="chat" aria-live="polite" data-test="rp-chat">{turns.map((t) => <div class={`bubble ${t.r === "partner" ? "them" : "me"}`}><div lang="de">{t.de}</div>{t.r === "partner" && <ListenButton text={t.de} speed={lv?.speed} small />}</div>)}
           {busy && <div class="bubble them" aria-label="Karşı taraf yazıyor"><span class="skeleton" style={{ display: "inline-block", width: 60 }} /></div>}</div>
         {slow === "turn" && !waiting && <div class="card stack" role="status" data-test="rp-slow"><p style={{ margin: 0 }}><b>Biraz uzun sürüyor.</b> <span class="small muted">Yanıt gelirse hemen kullanılır.</span></p><div class="row"><button class="btn sm" onClick={() => setWaiting(true)} data-test="rp-wait">Bekle</button><button class="btn sm" onClick={() => void partnerTurn(histRef.current, stuckRef.current)} data-test="rp-retry">Tekrar dene</button><button class="btn sm" onClick={goOffline} data-test="rp-offline">Yapay zekâsız devam</button></div></div>}
@@ -637,7 +640,7 @@ function RoleplaySection({ ctx, finish, back, setRight }: SP) {
     <div class="stack fade" data-test="rp-report">
       {busy && <LoadingCard lines={4} />}
       {slow === "report" && !waiting && !report && <div class="card stack" role="status" data-test="rp-slow"><p style={{ margin: 0 }}><b>Rapor biraz uzun sürüyor.</b> <span class="small muted">Gelirse hemen gösterilir.</span></p><div class="row"><button class="btn sm" onClick={() => setWaiting(true)} data-test="rp-wait">Bekle</button><button class="btn sm" onClick={() => { reportRef.current = false; void endTalk(histRef.current); }} data-test="rp-retry">Tekrar dene</button><button class="btn sm" onClick={kendimDegerlendir} data-test="rp-self">Kendim değerlendireyim</button></div></div>}
-      {err && !report && <div class="card err" role="alert"><p><b>Rapor alınamadı.</b> {err}</p><div class="row">{errYeniden && <button class="btn sm" onClick={() => void endTalk()} data-test="rp-retry">Tekrar dene</button>}<button class="btn sm" onClick={kendimDegerlendir} data-test="rp-self">Kendim değerlendireyim</button></div></div>}
+      {err && !report && <div class="card err" role="alert"><p><b>Rapor şu an alınamadı.</b> {err}</p><div class="row">{errYeniden && <button class="btn sm" onClick={() => void endTalk()} data-test="rp-retry">Tekrar dene</button>}<button class="btn sm" onClick={kendimDegerlendir} data-test="rp-self">Kendim değerlendireyim</button></div></div>}
       {report && <>
         <section class="card hero"><div class="kicker">Görev</div><div class="big">{report.goals.filter((g: any) => g.done).length}/{s.roleplay.goals.length}</div><p class="small">{report.summary_tr}</p></section>
         <section class="card stack"><div class="kicker">Hedefler</div>{s.roleplay.goals.map((g) => <div class="row">{report.goals.find((x: any) => x.id === g.id)?.done ? <Icon name="check" size={18} label="yapıldı" /> : <span class="emptybox" aria-label="yapılmadı" />} <span>{g.tr}</span></div>)}</section>

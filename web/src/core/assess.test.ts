@@ -52,6 +52,21 @@ describe("seviye tespiti", () => {
     expect(s.bySpeed.normal?.correct).toBe(3);
     expect(s.bySpeed.fast?.correct).toBe(0);
   });
+  it("denetlenemeyen konuşma cevabı (yapay zekâ hatası) yanlış sayılmaz: puana ve uyarlamaya girmez", () => {
+    const items = selectItems(bank, "u");
+    const sp = items.filter((i) => i.skill === "speaking" && i.level === "A1");
+    expect(sp.length).toBeGreaterThan(1);
+    const dogru = sp.slice(0, 1).map((it) => answer(it, true));
+    const dene = sp.slice(1).map((it) => ({ ...answer(it, false), unchecked: true }));
+    const r = score(items, [...dogru, ...dene]).results.find((x) => x.skill === "speaking")!;
+    expect(r.byLevel.A1).toEqual({ correct: 1, total: 1 });   // denetlenemeyenler A1'in paydasında yok
+    expect(r.estimate).toBe("A1");
+    // hepsi denetlenemediyse üst seviye kapanmaz; aynı cevaplar yanlış olsaydı kapanırdı
+    const sonraki = (ans: AssessAnswer[]) => { const a = [...ans]; for (let it = nextItem(items, a); it; it = nextItem(items, a)) { if (it.skill === "speaking") return it; a.push(answer(it, true)); } return null; };
+    const hepsi = sp.map((it) => ({ ...answer(it, false), unchecked: true }));
+    expect(sonraki(hepsi)?.level).toBe("A2");
+    expect(sonraki(hepsi.map((d) => ({ ...d, unchecked: undefined })))?.level).not.toBe("A2");
+  });
   it("ilerleme göstergesi uyarlamayı hesaba katar", () => {
     const items = selectItems(bank, "p");
     const ans: AssessAnswer[] = [];

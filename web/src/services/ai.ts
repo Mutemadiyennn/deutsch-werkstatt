@@ -2,7 +2,7 @@
  * Yapay zekâ istemcisi (PEDAGOGY §7d–e):
  *  - devre kesici: art arda 3 hata → 5 dk yapay zekâsız mod
  *  - önbellek zorunlu: equiv_check, explain_tr, say_it_de (IndexedDB)
- *  - hızlı görevlerde 12 sn, konuşmada 30 sn üst sınır; hata kodları Türkçe (shared ERROR_TR)
+ *  - hızlı görevlerde QUICK_TIMEOUT_MS (11 sn; öğrenciye en geç 12 sn), konuşma ve raporda 45 sn (SOFT_WAIT_MS'te seçenek çıkar, istek kesilmez; D-RP1); hata kodları Türkçe (shared ERROR_TR)
  */
 import { AiTasks, ERROR_TR, type AiInput, type AiOutput, type AiTaskName } from "@dw/shared";
 import { ApiError, type Api } from "./api.ts";

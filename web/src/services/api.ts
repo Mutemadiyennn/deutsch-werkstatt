@@ -42,7 +42,7 @@ export function createApi(d: ApiDeps) {
     } catch (e) {
       if (e instanceof ApiError) throw e;
       if ((e as Error).name === "AbortError") throw err("timeout");
-      throw new ApiError("upstream_busy", "Sunucuya ulaşılamadı. İnternet bağlantını kontrol et.", true);
+      throw new ApiError("upstream_busy", "İnternete ulaşılamadı. Bağlantını kontrol et.", true);
     } finally {
       clearTimeout(t);
     }
