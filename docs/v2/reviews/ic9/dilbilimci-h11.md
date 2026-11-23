@@ -121,3 +121,30 @@ Denetim (`kontrol.sh 11 --tam`): `→ 3 hata, 356 uyarı` (yalnız Quittung, Umt
 Örneklem 2. tur (GERİ, öğretilmemiş sözcük): gorulmemis-11 g2 Kartoffeln → Tomaten, g4 Tee → ein Wasser, g5 Tee → einen Kaffee, g1 `nach dem Sport` → `nach dem Training`; `durum_tr` metinleri uyarlandı (domates, su, kahve). Denetim: 3 bilinen hata, dikiş `İhlal: 0`.
 
 KARAR: ONAY
+
+## Fark turu (İÇ-18, 23.11)
+
+Kapsam: yalnız düzeltme farkı (PM-105 md. 3). Denetlenen birim: **31** (6 yeni kalıp satırı + 25 satır değişikliği; gun-71…77, gorulmemis-11). 75 ve hafta testi değişmemiş.
+
+Bulgular:
+1. **gun-76 · prova n2, 3. seçenek (uygun değil) geri bildirimi** eski cümleyi anıyordu: "… ya da **Nein, danke, das ist alles** de." Seçenek artık "Nein, danke. Das ist alles für heute." → "… ya da **Nein, danke. Das ist alles für heute.** de." (iki ağaçta da düzeltildi). Hata 1.
+
+Doğrulananlar (bulgu yok):
+- 76 Breze → Krapfen: "Heute sind die Krapfen sehr gut. Und hier, ein Krapfen für Sie. Den schenke ich Ihnen!" doğru ve doğal; der Krapfen / den / die Krapfen (çoğul) doğru. Faşing öncesi Bavyera fırınında Krapfen tam yerinde (sahne ertesi günkü Faschingszug'a bağlı). n3/n3b seçenekleri, "Den esse ich gleich", kapanis_tr tutarlı.
+- 76 s15 "Jetzt sind Sie dran! Was darf's sein?" / "Şimdi sıra sizde! Ne alırsınız?" doğal; dran kalıbını pekiştiriyor. s4 "Wer ist denn das?" / "Bu da kim?" iyi.
+- 71 a2: "Ich bin schon am Stadtplatz." + "Kommst du heute noch?" sesin geri kalanıyla (Ruf mich an … / Bis gleich!), ana fikir seçeneği, d5 örneği, eylem ve why_tr ile tutarlı. Provadaki "meydandaki kafe" ayrı sahne (buluşma yeri meydandaki kafe); çelişki yok. cevapla accepted (6) yeni soruya uyuyor.
+- 71 s5 "Ich fühle mich heute sehr müde." tr "Bugün kendimi çok yorgun hissediyorum.", 4 accepted, why_tr uyumlu. Not: s9 da müde üzerine; aynı gün iki madde, farklı biçim (tr_de / guided_response), engel değil.
+- Kalıp satırlarının tr'si: "Dinleniyorum. – O dinleniyor."; "… soruyorum."; "Sevgili … Hanım, – Sevgili … Bey, (mektup ve mesaj başında)" (76 yazma görevi "Liebe Frau Brandl," ile örtüşüyor); "şişe başına … sent" (77 s "Fünfundzwanzig Cent pro Flasche." ile örtüşüyor); Grüß Gott satırı 9.–10. haftanınkiyle aynı. Hepsi doğru, terim yok.
+- Ünlem atılan karşı replikler (72 s12, 72 n3, 73 s4, 74 s3/d2, 76 s11, 77 s7/n3, görülmemiş g1) ve Türkçeleri anlamca eksiksiz. Öğrenci seçeneklerinde de/accepted[0] eşit, ünlem yok; "Oh/Ach so" yalnız accepted[1+]'da. Değişen üretim maddelerinde accepted ≥ 3, yalnız noktalamayla ayrılan çift yok.
+- Değişen üretim cümleleri (Ja, das ist alles. · Danke! Zwei Semmeln, bitte. · Vielen Dank! Das ist aber nett. · Ich fühle mich gut, danke. · Geht es vielleicht mit dem Handy? · Nein, danke. Das ist alles für heute. · Ich fühle mich heute sehr müde.) 1–70. günlerde aynen geçmiyor (bütünleşik ağaçta tarandı).
+
+Kalan şüpheler (engel değil, takip):
+- 73 a1 c1 ve fiş metninde "Modehaus Vils" duruyor; mağaza adı (özel ad), yalnız anlama maddesinde. Dokunulmadı.
+- 76 prova n4 "zwei Euro achtzig" (iki Semmel) ile sahne s12 "drei Euro zwanzig" (iki Semmel + bir dilim kek) fiyatları birbirine pek uymuyor; farktan önceki metin, takip işi.
+- 76 n3b "Gern." cevabı "Nein, danke. Das ist alles für heute."dan sonra kabul edilebilir (danke'ye karşılık), önceki metin.
+
+Denetim (`kos.sh 11 71 77`, wt-i): 71–77 için validate HATA satırı yok (kalan 5 HATA A1 dosyalarında), dikiş satırı yok, hafta kapısı GEÇTİ (kesin 0, sınırda 0; test %100; görülmemiş 7/7).
+
+Hata oranı: 1/31.
+
+ONAY
