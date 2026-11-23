@@ -85,7 +85,7 @@ describe("GET /v1/ai/selftest (PM-087 A)", () => {
     const t = await r.text(); const j = JSON.parse(t);
     expect(j).toMatchObject({ durum: "kostu", ok: true, taze: true, surum: "aaaaaaaa" });
     expect(j.gorevler.map((g: any) => g.gorev)).toEqual(["equiv_check", "explain_tr", "say_it_de", "roleplay_turn", "feedback_tr"]);
-    for (const g of j.gorevler) { expect(Object.keys(g).sort()).toEqual(["gecti", "gorev", "model", "ms", "neden"]); expect(g.model).toBe(WA.model); }
+    for (const g of j.gorevler) { expect(Object.keys(g).sort()).toEqual(["dil", "gecti", "gorev", "model", "ms", "neden"]); expect(g.model).toBe(WA.model); expect(g.dil).toBeNull(); }
     expect(t).not.toContain("Ibuprofen"); expect(t).not.toContain("Rezept");
     expect(cagri.length).toBe(5);
     expect(j.bugun.kosu).toBe(1); expect(j.bugun.gorev.equiv_check).toMatchObject({ gecti: 1, toplam: 1 });
@@ -168,7 +168,7 @@ describe("GET /v1/ai/selftest (PM-087 A)", () => {
     const j = await (await handle(new Request("https://api.test/v1/ai/selftest"), env({ AI: iyiAI().AI }))).json();
     expect(j).toMatchObject({ durum: "kapali", ok: false, taze: false });
   });
-  it("bozuk çıktı → sema; İngilizce alan → dil; sağlayıcı hatası → kod; hata ayrıntısı sızmaz", async () => {
+  it("bozuk çıktı → sema; İngilizce Türkçe alan → çalışma anı güvencesi onarır (dil: yedek); sağlayıcı hatası → kod; hata ayrıntısı sızmaz", async () => {
     const { AI } = sahteAI((sys) => {
       const g = gorevi(sys);
       if (g === "equiv_check") return { response: "kein json" };
@@ -181,7 +181,10 @@ describe("GET /v1/ai/selftest (PM-087 A)", () => {
     expect(j).toMatchObject({ ok: false, taze: true });
     const n = Object.fromEntries(j.gorevler.map((g: any) => [g.gorev, g.neden]));
     expect(n.equiv_check).toBe("hata:sema");
-    expect(n.explain_tr).toBe("dil:note_tr:en");
+    // PM-112 A.1: öğrenci İngilizce not görmez; öz-sınama geçer ama onarımı gösterir (sapma görünür kalır)
+    expect(n.explain_tr).toBeNull();
+    expect(j.gorevler.find((g: any) => g.gorev === "explain_tr").dil).toBe("yedek");
+    expect(j.bugun.gorev.explain_tr).toMatchObject({ gecti: 1, dil_onarim: 1 });
     expect(n.say_it_de).toBe("hata:upstream_busy");
     expect(n.roleplay_turn).toBeNull();
     expect(t).not.toContain("secret-detail");
@@ -195,6 +198,6 @@ describe("GET /v1/ai/selftest (PM-087 A)", () => {
   });
   it("özet: ortanca ve en uzun", () => {
     const o = ozet("2026-11-23", [{ t: "a", g: [["equiv_check", 1, 100]] }, { t: "b", g: [["equiv_check", 0, 300]] }, { t: "c", g: [["equiv_check", 1, 200]] }]);
-    expect(o.gorev.equiv_check).toEqual({ gecti: 2, toplam: 3, ortanca_ms: 200, en_uzun_ms: 300 });
+    expect(o.gorev.equiv_check).toEqual({ gecti: 2, toplam: 3, ortanca_ms: 200, en_uzun_ms: 300, dil_onarim: 0 });
   });
 });
