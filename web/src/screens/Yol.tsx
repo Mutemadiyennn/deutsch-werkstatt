@@ -222,7 +222,8 @@ export function YolHarita({ plan, selam, ek, onBasla, yalnizBugun }: { plan: Pla
         </button>
         {ac && <ol class="hafta-gunler" data-test={`hafta-${h.hafta}-gunler`}>{h.gunler.map((g) => (
           <li class="row" data-test={`gun-${g.day}`} data-durum={g.atlandi ? "atlandi" : "bitti"}><span class="grow"><span class="tiny muted">GÜN {g.day}{g.atlandi ? " · ATLANDI" : ""}</span> {g.title_tr}</span>
-            {g.atlandi && <a class="rehber-btn" href={`#/m1/${g.day}`} data-test={`gir-${g.day}`} aria-label={`${g.day}. güne gir`}>Gir</a>}
+            {/* atlanan gün halka biçiminde akışla açılır (inceleme #245 P1-1); gün kilidi atlanan günü açık tutar */}
+            {g.atlandi && <a class="rehber-btn" href={`#/akis/${g.day}`} data-test={`gir-${g.day}`} aria-label={`${g.day}. güne gir`}>Gir</a>}
             <a class="rehber-btn" href={`#/rehber/${g.day}`} aria-label={`${g.day}. günün rehberi`}>Rehber</a></li>))}</ol>}
         {/* üstte "… sonu testi hazır → Çöz" satırı dururken aynı teste ikinci giriş yok (#243 PM finali takip b) */}
         {ac && testAcik(h.hafta) && !bekleyenTest.includes(h.hafta) && <div class="row">{testDugum(h.hafta)}</div>}

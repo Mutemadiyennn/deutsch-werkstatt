@@ -16,8 +16,9 @@ import POLICY from "../policy.json" with { type: "json" };
 export const SEVIYE = POLICY.seviye;
 /** Haftanın ilk günü */
 export const haftaBasi = (hafta: number) => 7 * (hafta - 1) + 1;
-/** Pakette başlangıç gününden itibaren gün yoksa başlangıç uygulanmaz (A2 günleri henüz yoksa öğrenci boş yola düşmez) */
-export const etkinBaslangic = (days: readonly number[], bas: number): number => (bas > 1 && yolGunleri([...days]).some((d) => d >= bas) ? bas : 1);
+/** Başlangıç haftasının günü pakette yoksa başlangıç uygulanmaz (A2 günleri henüz yoksa öğrenci boş yola ya da ileri bir
+ *  haftaya düşmez; inceleme #245 P2-6) */
+export const etkinBaslangic = (days: readonly number[], bas: number): number => (bas > 1 && yolGunleri([...days]).some((d) => d >= bas && haftaOf(d) === haftaOf(bas)) ? bas : 1);
 /** A2 pakette var mı ("A2'den" seçeneği yalnız o zaman) */
 export const a2Var = (days: readonly number[]) => etkinBaslangic(days, SEVIYE.a2_ilk_gun) === SEVIYE.a2_ilk_gun;
 

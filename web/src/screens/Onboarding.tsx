@@ -168,7 +168,7 @@ export function Onboarding() {
           {baslangic === "a2"
             ? <>
                 <div class="card small">
-                  <b>Kısa yoklama.</b> A1'in hafta sonu testlerinden 5–7 dakikalık birkaç soru. Sonuç yalnız bir öneri; nereden başlayacağına sen karar verirsin.
+                  <b>Kısa yoklama.</b> A1'in hafta sonu testlerinden birkaç soru (en çok 5–7 dakika). Sonuç yalnız bir öneri; nereden başlayacağına sen karar verirsin.
                 </div>
                 <button class="btn primary block" onClick={() => finish("seviye")} data-test="yoklama-git">Kısa yoklamaya başla</button>
               </>

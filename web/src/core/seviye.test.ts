@@ -26,6 +26,8 @@ describe("seviye: başlangıç ve atlanan günler", () => {
     expect(a2Var([1, 2, 3])).toBe(false);
     expect(a2Var(days)).toBe(true);
     expect(etkinBaslangic(days, 15)).toBe(15);
+    // başlangıç haftasında gün yoksa ileri haftaya atlanmaz (inceleme #245 P2-6): 1–7 + 57 paketinde "2. haftadan" → baştan
+    expect(etkinBaslangic([1, 2, 3, 4, 5, 6, 7, 57], 8)).toBe(1);
   });
   it("atlanan = başlangıçtan önce, bitmemiş; biten gün atlanmış sayılmaz", () => {
     expect([...atlananlar(days, 57, new Set([1]))]).toEqual([2, 3, 8, 9, 15]);

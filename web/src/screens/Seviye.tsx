@@ -8,7 +8,7 @@
 import { useEffect, useState } from "preact/hooks";
 import type { Drill } from "@dw/shared";
 import { go, useApp } from "../state.ts";
-import { a2Var, enErkenZayif, gecti, haftaBasi, SEVIYE, yoklamaDk, yoklamaSec, yoklamaZayif, type YoklamaMadde } from "../core/seviye.ts";
+import { a2Var, enErkenZayif, etkinBaslangic, gecti, haftaBasi, SEVIYE, yoklamaDk, yoklamaSec, yoklamaZayif, type YoklamaMadde } from "../core/seviye.ts";
 import { haftaOf } from "../core/gun.ts";
 import { personalizeDeep } from "../core/persona.ts";
 import { baslangicOku, baslangicYaz, yoklamaSonOku, yoklamaSonYaz, yoklamaTestleri, type YoklamaSon } from "../services/seviye.ts";
@@ -60,21 +60,24 @@ export function BaslangicSecimi({ kurulum, secili, onSec }: { kurulum?: boolean;
   const [onay, setOnay] = useState(false);
   const { basla, mesgul } = useBasla();
   useEffect(() => { if (!kurulum) void baslangicOku().then(setBas).catch(() => setBas(1)); }, []);
-  const a2 = !!index && a2Var(index.m1.map((g) => g.day));
-  const simdi = kurulum ? secili : bas === null ? undefined : bas >= SEVIYE.a2_ilk_gun ? "a2" : "a1";
+  const days = index?.m1.map((g) => g.day) ?? [];
+  const a2 = !!index && a2Var(days);
+  // kayıtlı başlangıç paketten düştüyse (A2 günleri yok) ekranda etkin olanı (baştan) söyle (inceleme #245 P2-5)
+  const etkin = bas === null || !index ? bas : etkinBaslangic(days, bas);
+  const simdi = kurulum ? secili : etkin === null ? undefined : etkin >= SEVIYE.a2_ilk_gun ? "a2" : "a1";
   const sec = (x: "a1" | "a2") => {
     if (kurulum) return onSec?.(x);
     if (x === "a2") return go("seviye");
-    if ((bas ?? 1) > 1) setOnay(true);
+    if ((etkin ?? 1) > 1) setOnay(true);
   };
   return (
     <div class="stack baslangic" data-test="baslangic-secimi" style={{ gap: 8 }}>
-      {!kurulum && bas !== null && <p class="small muted" data-test="baslangic-simdi" style={{ margin: 0 }}>Şu an: <b>{baslangicAdi(bas)}</b></p>}
+      {!kurulum && etkin !== null && <p class="small muted" data-test="baslangic-simdi" style={{ margin: 0 }}>Şu an: <b>{baslangicAdi(etkin)}</b></p>}
       <button class={`opt baslangic-opt${simdi === "a1" ? " sel" : ""}`} aria-pressed={simdi === "a1"} data-test="baslangic-a1" onClick={() => sec("a1")}>
         <span class="baslangic-ic"><b>Baştan (A1)</b><span class="small muted">1. günden başlarsın: kendini tanıtma, sayılar, randevu…</span></span>
       </button>
       <button class={`opt baslangic-opt${simdi === "a2" ? " sel" : ""}`} aria-pressed={simdi === "a2"} data-test="baslangic-a2" disabled={!a2} onClick={() => sec("a2")}>
-        <span class="baslangic-ic"><b>A2'den</b><span class="small muted">{a2 ? `Önce 5–7 dakikalık kısa bir yoklama; sonra ${a2Hafta}. haftadan başlarsın.` : "A2'nin günleri hazırlanıyor; hazır olunca buradan seçebilirsin."}</span></span>
+        <span class="baslangic-ic"><b>A2'den</b><span class="small muted">{a2 ? `Önce kısa bir yoklama (en çok 5–7 dakika); sonra ${a2Hafta}. haftadan başlarsın.` : "A2'nin günleri hazırlanıyor; hazır olunca buradan seçebilirsin."}</span></span>
       </button>
       {onay && (
         <section class="card stack" data-test="baslangic-a1-soru" style={{ gap: 8 }}>
@@ -90,7 +93,7 @@ export function BaslangicSecimi({ kurulum, secili, onSec }: { kurulum?: boolean;
 }
 
 export function SeviyeYoklama() {
-  const { index } = useApp();
+  const { index, toast } = useApp();
   const { maddeler, err, yenile } = useYoklama();
   const [basladi, setBasladi] = useState(false);
   const [q, setQ] = useState(0);
@@ -119,7 +122,7 @@ export function SeviyeYoklama() {
       <section class="card stack">
         <h2>Nereden başlayacağını birlikte bulalım</h2>
         <p>A1'in {haftalar} haftasından {toplam} soru: dinleme ve yazma karışık. Yaklaşık {yoklamaDk(toplam)} dakika.</p>
-        <p class="small muted">Bilmediğinde "Bilmiyorum" de; puan yok. Sonuç yalnız bir öneri, karar senin.</p>
+        <p class="small muted">Bilmediğinde aklına geleni yaz; puan yok. Sonuç yalnız bir öneri, karar senin.</p>
       </section>
       <ActionBar><button class="btn primary block" data-test="yoklama-basla" onClick={() => { setBasladi(true); window.scrollTo(0, 0); }}>Başla</button></ActionBar>
     </div>
@@ -129,7 +132,7 @@ export function SeviyeYoklama() {
     const y = r === "wrong" ? [...yanlis, m.d.id] : yanlis;
     const d = dogru + (r === "wrong" ? 0 : 1);
     setYanlis(y); setDogru(d); window.scrollTo(0, 0);
-    if (q + 1 >= toplam) { setBitti(true); void yoklamaSonYaz({ dogru: d, toplam, yanlis: y, maddeler: maddeler.map((x) => x.d.id) }).then(() => go("seviye/sonuc")); }
+    if (q + 1 >= toplam) { setBitti(true); void yoklamaSonYaz({ dogru: d, toplam, yanlis: y, maddeler: maddeler.map((x) => x.d.id) }).then(() => go("seviye/sonuc"), () => { setBitti(false); toast("Sonuç kaydedilemedi; son soruyu yeniden cevapla."); }); }
     else setQ(q + 1);
   };
   return (
@@ -164,13 +167,15 @@ export function SeviyeSonuc() {
   const a1Gun = haftaBasi(erken ?? 1);
   const yanlisDrill = bu.filter((x) => yanlis.has(x.d.id)).map((x) => x.d);
   const a2 = a2Var(index.m1.map((g) => g.day));
+  // yoklama A1'in yalnız paketteki haftalarından: az haftayla "A1'in tamamı" denmez (inceleme #245 P2-1)
+  const kapsam = new Set(bu.map((x) => x.hafta)).size;
   return (
     <div class="stack" data-test="yoklama-sonuc" data-dogru={son.dogru} data-toplam={son.toplam} data-gecti={ok ? "1" : "0"} data-erken={erken ?? ""}>
       <ProgressHeader title={BASLIK} back="#/today" ilerleme={{ n: son.toplam, toplam: son.toplam }} />
       <section class="card stack">
         <h2>{son.dogru}/{son.toplam} doğru</h2>
         {ok
-          ? <p>A2'ye hazırsın. A1'in öğrettiklerini kullanabiliyorsun.</p>
+          ? <p>A2'ye hazırsın. {kapsam === SEVIYE.a1_hafta ? "A1'in öğrettiklerini kullanabiliyorsun." : `Yoklamadaki ${kapsam} haftanın öğrettiklerini kullanabiliyorsun.`}</p>
           : zayif.length
             ? <p>A1'in bazı yerleri henüz tam oturmadı. Şunları yaparken zorlandın:</p>
             : <p>A1'in bazı yerleri henüz tam oturmadı. İstersen önce o haftanın günlerinden başla; karar senin.</p>}
@@ -183,6 +188,7 @@ export function SeviyeSonuc() {
             <a class="rehber-btn" href={`#/rehber/${z.gun}`} aria-label={`${z.gun}. günün rehberi`}>Rehber</a>
           </li>))}</ol>}
         {!ok && <p class="small muted">Nereden başlayacağına sen karar verirsin; sonra Ayarlar'dan değiştirebilirsin.</p>}
+        {!a2 && <p class="small muted" data-test="a2-hazirlaniyor">A2'nin günleri hazırlanıyor; hazır olunca buradan ya da Ayarlar'dan başlayabilirsin.</p>}
       </section>
       <ActionBar>
         {ok

@@ -12,6 +12,7 @@ python3 tests/e2e/v2_seviye.py [--browser webkit] [--device "iPhone 15"] [--sche
 from playwright.sync_api import sync_playwright
 from common import serve, launch, new_page, login_onboard, check, finish, shot, arg, no_overflow, HIZLI_KAPAT
 from v2_yol_hafta import coz, yanlis, META
+from v2_akis import adim_gec
 
 PORT = 4257
 ITEMS = """async () => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
@@ -119,10 +120,28 @@ def main():
         g1 = pg.evaluate("() => { const l = document.querySelector('[data-test=hafta-1-gunler] [data-test=gun-1]'); return l ? { d: l.dataset.durum, gir: !!l.querySelector('[data-test=gir-1]'), t: l.innerText } : null; }")
         check(bool(g1) and g1["d"] == "atlandi" and g1["gir"], f"atlanan hafta açılır; gün 'atlandı' + 'Gir' ({g1})")
         no_overflow(pg, "Yol (A2'den)"); shot(pg, f"seviye-yol-atlandi-{sema}", full=False)
-        pg.click("[data-test=gir-1]"); pg.wait_for_selector("[data-test=gun-kilitli], [data-test=m1-gun], [data-test=adim], main", timeout=15000)
-        check(pg.locator("[data-test=gun-kilitli]").count() == 0, "atlanan gün kilitli değil: isteyen döner")
+        check(pg.get_attribute("[data-test=gir-1]", "href") == "#/akis/1", "'Gir' atlanan günün akışına gider")
+        pg.click("[data-test=gir-1]"); pg.wait_for_selector("[data-test=gun-kilitli], [data-test=akis]", timeout=20000)
+        check(pg.locator("[data-test=akis]").count() == 1 and pg.locator("[data-test=gun-kilitli]").count() == 0, "atlanan gün kilitli değil, akışı açılır: isteyen döner")
         pg.goto(base + "#/akis/57"); pg.wait_for_selector("[data-test=akis], [data-test=gun-kilitli]", timeout=20000)
         check(pg.locator("[data-test=akis]").count() == 1, "57. günün akışı açılır")
+        # 57. gün oynanır (PM-114 md. 5): ses durağı bitmiş sayılır, sonra akışın adımları geçilir; akış kaydı ilerler
+        sesler = pg.evaluate("""async () => { const v = (await (await fetch('content/current.json')).json()).version;
+          return (await (await fetch('content/' + v + '/m1/gun-57.json')).json()).sesler.map((x) => x.id); }""")
+        pg.evaluate("""async (ks) => { const d = await new Promise((ok) => { const q = indexedDB.open('dw2'); q.onsuccess = () => ok(q.result); });
+          await new Promise((ok) => { const t = d.transaction('meta', 'readwrite'); for (const k of ks) t.objectStore('meta').put({ key: k, value: { bitti: new Date().toISOString() } }); t.oncomplete = ok; }); d.close(); }""",
+          ["m1:medya:" + x + ":1" for x in sesler])
+        pg.reload(); pg.wait_for_selector("[data-test=akis]", timeout=20000)
+        once = pg.evaluate(META, "akis:57") or {}
+        gecilen = 0
+        for _ in range(25):
+            if pg.locator("[data-test=halka-sonu]").count(): pg.click("[data-test=halka-sonu-devam]"); pg.wait_for_timeout(150); continue
+            if pg.locator("[data-test=akis-durak-gecis]").count(): break
+            if adim_gec(pg) is None: break
+            gecilen += 1
+        sonra = pg.evaluate(META, "akis:57") or {}
+        check(gecilen >= 5 and len(sonra.get("sonuclar", [])) > len(once.get("sonuclar", [])), f"57. günün akışı oynanır: {gecilen} adım geçildi, kayıt ilerledi ({len(once.get('sonuclar', []))} → {len(sonra.get('sonuclar', []))} sonuç)")
+        shot(pg, f"seviye-akis-57-{sema}", full=False)
         pg.goto(base + "#/garden/57"); pg.wait_for_selector("[data-test=garden-intro], [data-test^=gq-], [data-test=garden-done], [data-test=garden-empty], [data-test=hizli-oneri], [data-test=gun-kilitli]", timeout=20000)
         check(pg.locator("[data-test=gun-kilitli]").count() == 0, "57. günün Bahçe'si açılır")
         # fikstürün 57. günü 9. günün kartlarını taşır: hepsi atlanan günden "biliniyor" → Bahçe onları yeniden tanıtmaz (sakin bahçe)
@@ -179,6 +198,8 @@ def main():
         pg.goto(base + "#/ben/ayarlar"); pg.wait_for_selector("[data-test=baslangic-simdi]", timeout=15000)
         check("A2'den (9. hafta)" in pg.inner_text("[data-test=baslangic-simdi]"), "Ayarlar: 'Şu an: A2'den (9. hafta)'")
         pg.click("[data-test=baslangic-a1]"); pg.wait_for_selector("[data-test=baslangic-a1-soru]")
+        try: pg.wait_for_selector(".toast", state="detached", timeout=3500)  # önceki adımın bildirimi görüntüye düşmesin
+        except Exception: pass
         no_overflow(pg, "Ayarlar başlangıç"); shot(pg, f"seviye-ayarlar-{sema}", full=False)
         pg.click("[data-test=baslangic-a1-onay]"); pg.wait_for_selector("[data-test=next-activity]", timeout=20000)
         bugun = pg.evaluate("() => [...document.querySelectorAll('[data-test=yol] section.yolgun')].map((s) => s.dataset.test)")

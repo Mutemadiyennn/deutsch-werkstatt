@@ -23,12 +23,12 @@ import { ErrorPanel, Loading } from "../ui/components.tsx";
 import { ActionBar, ProgressHeader } from "../ui/kit.tsx";
 import POLICY from "../policy.json" with { type: "json" };
 
-function Kilitli({ ust, baslik, metin, test = "gun-kilitli", ek }: { ust: string; baslik: string; metin: string; test?: string; ek?: ComponentChildren }) {
+function Kilitli({ ust, baslik, metin, test = "gun-kilitli", ek, back = "#/today" }: { ust: string; baslik: string; metin: string; test?: string; ek?: ComponentChildren; back?: string }) {
   return (
     <div class="stack" data-test={test}>
-      <ProgressHeader title={ust} back="#/today" />
+      <ProgressHeader title={ust} back={back} />
       <section class="card stack"><h2>{baslik}</h2><p>{metin}</p>{ek}</section>
-      <ActionBar><a class="btn primary block" href="#/today" data-test="bugune-don">Bugüne dön</a></ActionBar>
+      <ActionBar><a class="btn primary block" href={back} data-test="bugune-don">{back === "#/today" ? "Bugüne dön" : "Geri dön"}</a></ActionBar>
     </div>
   );
 }
@@ -195,7 +195,7 @@ export function HaftaTekrarEkrani({ hafta, gunler, seviye = false }: { hafta: nu
   }, [index?.version, hafta, gunler.join(","), n, seviye]);
   if (err) return <div class="stack"><ProgressHeader title={baslik} back={geri} /><ErrorPanel message={err} onRetry={() => setN((x) => x + 1)} /></div>;
   if (!tur) return <Loading />;
-  if (tur === "bos") return <Kilitli ust={baslik} baslik="Burada tekrar yok" metin="Bu günler henüz bitmedi ya da tekrar alıştırması yok." test="hafta-tekrar-bos"
+  if (tur === "bos") return <Kilitli ust={baslik} baslik="Burada tekrar yok" metin={seviye ? "Bu günlerin tekrar alıştırması henüz yok." : "Bu günler henüz bitmedi ya da tekrar alıştırması yok."} test="hafta-tekrar-bos" back={geri}
     ek={gunler.filter((g) => (seviye || haftaOf(g) === hafta) && index?.m1.some((x) => x.day === g)).slice(0, 1).map((g) => <a class="btn sm" href={`#/rehber/${g}`}>{g}. günün Rehber'i</a>)} />;
   if (bitti) return (
     <div class="stack" data-test="hafta-tekrar-sonuc" data-dogru={dogru} data-toplam={tur.length}>
