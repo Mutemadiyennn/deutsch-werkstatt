@@ -135,3 +135,12 @@ describe("sesin iki turu (PM-097 md. 1)", () => {
     expect([ilerlemeAnahtari("x"), ilerlemeAnahtari("x", "ilk"), ilerlemeAnahtari("x", "ikinci")]).toEqual(["m1:medya:x", "m1:medya:x:1", "m1:medya:x:2"]);
   });
 });
+
+describe("sesin iki turu: eylem sorusu bir kez (inceleme #207 P1-2)", () => {
+  it("eylem yalnız ilk turda", async () => {
+    const { turaGore } = await import("./medya.ts");
+    const e = { ...ses!, eylem: { q_tr: "x", opts: ["a", "b"], ans: 0 } } as never;
+    expect(turaGore(e, "ilk").eylem).toBeTruthy();
+    expect(turaGore(e, "ikinci").eylem).toBeUndefined();
+  });
+});

@@ -19,7 +19,9 @@ export function adimlar(b: Bolum, tur?: Medya["tur"]): Adim[] {
 }
 /** Kaydın yalnız o turun adımı olan bölümleri (ikinci turda üretim maddesi olmayan bölüm düşer) */
 export function turaGore(m: Medya, tur: NonNullable<Medya["tur"]>): Medya {
-  return { ...m, tur, bolumler: m.bolumler.filter((b) => adimlar(b, tur).length > 0) };
+  // eylem sorusu ("ne yapacaksın?") yalnız ilk turun sonunda: aynı soru iki kez sorulmaz (döngüsüzlük; inceleme #207 P1-2)
+  const { eylem, ...geri } = m;
+  return { ...geri, ...(tur === "ilk" && eylem ? { eylem } : {}), tur, bolumler: m.bolumler.filter((b) => adimlar(b, tur).length > 0) };
 }
 /** Kayıtta ikinci tur (dikte, gölge, cevapla) var mı */
 export const ikinciTurVar = (m: Pick<Medya, "bolumler">) => m.bolumler.some((b) => adimlar(b, "ikinci").length > 0);

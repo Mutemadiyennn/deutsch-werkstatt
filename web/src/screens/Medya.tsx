@@ -15,7 +15,7 @@ import { personalizeDeep } from "../core/persona.ts";
 import { loadIndex, loadLexicon, loadM1Gun, contentUrl, loadTemeller, loadWorld, loadGenelAdlar } from "../services/content.ts";
 import { addClaim, getMeta, itemsMap, setMeta } from "../data/db.ts";
 import { plain, Rich } from "../ui/rich.tsx";
-import { ADIM_TR, BASLANGIC, dikteSuz, adimlar, turaGore, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
+import { ADIM_TR, BASLANGIC, dikteSuz, adimlar, turaGore, ikinciTurVar, aralik, bolumCumleleri, dikteDegerlendir, eksikZorunlu, hedefSira, ileri, gecerliKonum, ilerlemeAnahtari, type MedyaIlerleme } from "../core/medya.ts";
 import { ruleVerdict } from "../core/answer.ts";
 import { scoreHeard } from "../core/grading.ts";
 import { baslangicYavas, konusanAta, speak, stopSpeaking, sttAvailable } from "../services/speech.ts";
@@ -98,6 +98,9 @@ export function MedyaEkrani({ day, id, tur }: { day: number; id: string; tur?: M
   const [err, setErr] = useState<string | null>(null);
   const [p, setP] = useState<MedyaIlerleme | null>(null);
   const { profile } = useApp();
+  // kaydın son turu bitince eski düzenin eksiz anahtarı da yazılır: Yol ve gün durumu sesi bitmiş görür (inceleme #207 P1-1)
+  const sonTur = useRef(false);
+  const kaydet = (x: MedyaIlerleme) => { void setMeta(ilerlemeAnahtari(id, tur), x); if (tur && sonTur.current && x.bitti) void setMeta(ilerlemeAnahtari(id), x); };
   useEffect(() => {
     (async () => {
       // {name}, {Herr|Frau} yer tutucuları cihaz profiline göre (D-061; inceleme #60 2. tur P1-B)
@@ -105,6 +108,7 @@ export function MedyaEkrani({ day, id, tur }: { day: number; id: string; tur?: M
       const m0 = medyalar(gun).find((x) => x.id === id);
       if (!m0) throw new Error("Bu kayıt bulunamadı.");
       const m = tur ? turaGore(m0, tur) : m0;
+      sonTur.current = tur === "ikinci" || (tur === "ilk" && !ikinciTurVar(m0));
       const [{ lexemes }, i] = await Promise.all([loadLexicon(), loadIndex()]);
       // akış günü: öğretilmemiş sözcük isteyen dikte basamağı atlanır (P0-1). Bilinen: cihazda görülmüş kartlar, ders, dünya ve genel adlar
       let mm = m;
@@ -118,7 +122,7 @@ export function MedyaEkrani({ day, id, tur }: { day: number; id: string; tur?: M
       }
       if (tur && !mm.bolumler.length) {
         const bitti = { ...BASLANGIC, bitti: true, ilkBitti: true };
-        await setMeta(ilerlemeAnahtari(id, tur), bitti);
+        sonTur.current = true; kaydet(bitti);
         setVeri({ gun, m: m0, lex: lexemes, base: contentUrl(i.version) }); setP(bitti); return;
       }
       setVeri({ gun, m: mm, lex: lexemes, base: contentUrl(i.version) });
@@ -129,7 +133,7 @@ export function MedyaEkrani({ day, id, tur }: { day: number; id: string; tur?: M
   }, [day, id, tur]);
   if (err) return <ErrorPanel message={err} onRetry={() => location.reload()} />;
   if (!veri || !p) return <Loading />;
-  return <Akis veri={veri} p={p} setP={(x) => { setP(x); void setMeta(ilerlemeAnahtari(id, tur), x); }} />;
+  return <Akis veri={veri} p={p} setP={(x) => { setP(x); kaydet(x); }} />;
 }
 
 function Akis({ veri, p, setP }: { veri: { gun: Gun; m: Medya; lex: Lexeme[]; base: string }; p: MedyaIlerleme; setP: (p: MedyaIlerleme) => void }) {
@@ -311,7 +315,7 @@ function CumleAdimi({ cs, oy, onNext }: { cs: MedyaCumle[]; oy: ReturnType<typeo
     <section class="card stack fade" data-test="adim-cumle">
       <div class="row"><div class="kicker grow">Cümle cümle dinle</div>
         <button class={`btn sm${yavas ? " primary" : ""}`} aria-pressed={yavas} data-test="yavas" onClick={() => setYavas(!yavas)}>0,75×</button></div>
-      <p class="small muted">Cümleye dokun: o cümle çalar. Anlamadığın cümleyi yavaş dinle; metin dikteden sonra açılacak.</p>
+      <p class="small muted">Cümleye dokun: o cümle çalar. Anlamadığın cümleyi yavaş dinle; metni birazdan göreceksin.</p>
       <ol class="list cumleler">{cs.map((c, i) => (
         <li class={`row${oy.calisiyor === c.id ? " on" : ""}`} style={{ flexWrap: "nowrap" }}>
           <button class="btn sm" data-test={`cumle-${c.id}`} aria-label={`${i + 1}. cümleyi dinle`} onClick={() => void oy.cumle(c, yavas)}><Icon name="play" /> {i + 1}</button>
