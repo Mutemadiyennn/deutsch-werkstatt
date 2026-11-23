@@ -1,0 +1,1707 @@
+{
+ "schema": 1,
+ "id": "m1:gun:30",
+ "day": 30,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Cümleye zamanla başlamak: Am Montag arbeite ich",
+ "goal_tr": "Haftanın planını gün gün söylersin.",
+ "can_do": {
+  "id": "cd:m1:30",
+  "tr": "Haftamın planını gün gün söylerim."
+ },
+ "unit": "u:a1:30",
+ "arm": "kafe",
+ "place": "pl:firma",
+ "characters": [
+  "ch:wimmer",
+  "ch:lechner",
+  "ch:aksoy",
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic5-hafta-05.md; okur: docs/v2/reviews/okur/ic5-hafta-05.md (14 GERİ, okurun önerisiyle düzeltildi)",
+  "okur": "passed",
+  "okur_at": "2026-11-23"
+ },
+ "dersler": [
+  "gr:a1-05:t5"
+ ],
+ "yeni_kartlar": [
+  "lx:Gute_Besserung!",
+  "lx:noch_nicht",
+  "lx:Vorgesetzte",
+  "lx:Gehalt",
+  "lx:Lohn",
+  "lx:Anmeldung",
+  "lx:Formular",
+  "lx:Pass",
+  "lx:ausfüllen",
+  "lx:Wetter",
+  "lx:U-Bahn",
+  "lx:Ankunft",
+  "lx:Parkplatz",
+  "lx:Tankstelle"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:30:h1",
+   "title_tr": "Tobi geri döndü",
+   "kartlar": [
+    "lx:Gute_Besserung!",
+    "lx:noch_nicht",
+    "lx:Vorgesetzte",
+    "lx:Gehalt",
+    "lx:Lohn"
+   ],
+   "kaliplar": [
+    {
+     "de": "Mein Vorgesetzter ist …",
+     "tr": "Amirim …"
+    },
+    {
+     "de": "Ist … schon da?",
+     "tr": "… geldi mi?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Gute_Besserung!",
+     "de": "Gute Besserung, Tobi!",
+     "tr": "Geçmiş olsun Tobi!",
+     "accepted": [
+      "Gute Besserung, Tobi!",
+      "Tobi, gute Besserung!",
+      "Gute Besserung!"
+     ]
+    },
+    {
+     "kart": "lx:Gute_Besserung!",
+     "de": "Danke, und gute Besserung!",
+     "tr": "Teşekkürler, geçmiş olsun!",
+     "accepted": [
+      "Danke, und gute Besserung!",
+      "Danke! Gute Besserung!",
+      "Danke schön und gute Besserung!"
+     ]
+    },
+    {
+     "kart": "lx:noch_nicht",
+     "de": "Herr Wimmer ist noch nicht im Büro.",
+     "tr": "Wimmer Bey henüz ofiste değil.",
+     "accepted": [
+      "Herr Wimmer ist noch nicht im Büro.",
+      "Herr Wimmer ist noch nicht da.",
+      "Im Büro ist Herr Wimmer noch nicht."
+     ]
+    },
+    {
+     "kart": "lx:noch_nicht",
+     "de": "Nein, noch nicht, Tobi.",
+     "tr": "Hayır, henüz değil Tobi.",
+     "accepted": [
+      "Nein, noch nicht, Tobi.",
+      "Noch nicht, Tobi.",
+      "Nein, Tobi, noch nicht."
+     ]
+    },
+    {
+     "kart": "lx:Vorgesetzte",
+     "de": "Mein Vorgesetzter ist Herr Wimmer.",
+     "tr": "Amirim Wimmer Bey.",
+     "accepted": [
+      "Mein Vorgesetzter ist Herr Wimmer.",
+      "Herr Wimmer ist mein Vorgesetzter.",
+      "Mein Vorgesetzter heißt Herr Wimmer."
+     ]
+    },
+    {
+     "kart": "lx:Vorgesetzte",
+     "de": "Tobi ruft den Vorgesetzten an.",
+     "tr": "Tobi amiri arıyor.",
+     "accepted": [
+      "Tobi ruft den Vorgesetzten an.",
+      "Tobi ruft seinen Vorgesetzten an.",
+      "Tobi ruft jetzt den Vorgesetzten an."
+     ]
+    },
+    {
+     "kart": "lx:Gehalt",
+     "de": "Das Gehalt ist noch nicht da.",
+     "tr": "Maaş henüz yatmadı.",
+     "accepted": [
+      "Das Gehalt ist noch nicht da.",
+      "Mein Gehalt ist noch nicht da.",
+      "Das Gehalt ist noch nicht gekommen."
+     ]
+    },
+    {
+     "kart": "lx:Gehalt",
+     "de": "Wann kommt das Gehalt?",
+     "tr": "Maaş ne zaman yatıyor?",
+     "accepted": [
+      "Wann kommt das Gehalt?",
+      "Wann kommt das Gehalt denn?",
+      "Wann ist das Gehalt da?"
+     ]
+    },
+    {
+     "kart": "lx:Lohn",
+     "de": "Der Lohn kommt am Ende vom Monat.",
+     "tr": "Ücret ay sonunda yatıyor.",
+     "accepted": [
+      "Der Lohn kommt am Ende vom Monat.",
+      "Der Lohn kommt am Monatsende.",
+      "Der Lohn kommt Ende des Monats."
+     ]
+    },
+    {
+     "kart": "lx:Lohn",
+     "de": "Der Lohn ist hier gut.",
+     "tr": "Burada ücret iyi.",
+     "accepted": [
+      "Der Lohn ist hier gut.",
+      "Hier ist der Lohn gut.",
+      "Der Lohn hier ist gut."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Salı sabahı, firmanın koridoru. Tobi işe geri dönmüş, burnu hâlâ kıpkırmızı.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Tobi! Bist du wieder da?",
+      "tr": "Tobi! Geri mi döndün?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Ja, aber ich habe noch Schnupfen.",
+      "tr": "Evet ama hâlâ nezleyim."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ach, gute Besserung!",
+      "tr": "Ah, geçmiş olsun!"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Danke! Ist der Lohn schon da?",
+      "tr": "Sağ ol! Ücret yattı mı?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi en sonda ne soruyor?",
+     "opts": [
+      "Ücretin yatıp yatmadığını",
+      "Saatin kaç olduğunu",
+      "Wimmer Bey'in nerede olduğunu"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:30:h2",
+   "title_tr": "Resmî dairede kayıt",
+   "kartlar": [
+    "lx:Anmeldung",
+    "lx:Formular",
+    "lx:Pass",
+    "lx:ausfüllen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Am … arbeite ich.",
+     "tr": "… günü çalışıyorum."
+    },
+    {
+     "de": "Ich fülle … aus.",
+     "tr": "… dolduruyorum."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Anmeldung",
+     "de": "Am Dienstag gehe ich zur Anmeldung.",
+     "tr": "Salı günü kayıt için gidiyorum.",
+     "accepted": [
+      "Am Dienstag gehe ich zur Anmeldung.",
+      "Ich gehe am Dienstag zur Anmeldung.",
+      "Am Dienstag gehe ich zum Amt zur Anmeldung."
+     ]
+    },
+    {
+     "kart": "lx:Anmeldung",
+     "de": "Die Anmeldung ist im Rathaus.",
+     "tr": "Kayıt belediye binasında yapılıyor.",
+     "accepted": [
+      "Die Anmeldung ist im Rathaus.",
+      "Im Rathaus ist die Anmeldung.",
+      "Die Anmeldung ist hier im Rathaus."
+     ]
+    },
+    {
+     "kart": "lx:Formular",
+     "de": "Das Formular ist zu lang.",
+     "tr": "Form çok uzun.",
+     "accepted": [
+      "Das Formular ist zu lang.",
+      "Das Formular ist sehr lang.",
+      "Das Formular ist zu lang!"
+     ]
+    },
+    {
+     "kart": "lx:Formular",
+     "de": "Ist das Formular für die Anmeldung?",
+     "tr": "Bu form kayıt için mi?",
+     "accepted": [
+      "Ist das Formular für die Anmeldung?",
+      "Ist das das Formular für die Anmeldung?",
+      "Ist dieses Formular für die Anmeldung?"
+     ]
+    },
+    {
+     "kart": "lx:Pass",
+     "de": "Hier ist mein Pass.",
+     "tr": "Buyurun, pasaportum.",
+     "accepted": [
+      "Hier ist mein Pass.",
+      "Hier, mein Pass.",
+      "Hier, bitte, mein Pass."
+     ]
+    },
+    {
+     "kart": "lx:Pass",
+     "de": "Am Mittwoch komme ich mit dem Pass.",
+     "tr": "Çarşamba günü pasaportla geliyorum.",
+     "accepted": [
+      "Am Mittwoch komme ich mit dem Pass.",
+      "Ich komme am Mittwoch mit dem Pass.",
+      "Am Mittwoch komme ich mit meinem Pass."
+     ]
+    },
+    {
+     "kart": "lx:ausfüllen",
+     "de": "Ich fülle das Formular aus.",
+     "tr": "Formu dolduruyorum.",
+     "accepted": [
+      "Ich fülle das Formular aus.",
+      "Ich fülle jetzt das Formular aus.",
+      "Ich fülle das Formular jetzt aus."
+     ]
+    },
+    {
+     "kart": "lx:ausfüllen",
+     "de": "Heute Abend fülle ich das Formular aus.",
+     "tr": "Bu akşam formu dolduruyorum.",
+     "accepted": [
+      "Heute Abend fülle ich das Formular aus.",
+      "Ich fülle heute Abend das Formular aus.",
+      "Ich fülle das Formular heute Abend aus."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Herr Wimmer'in odası. Gelecek hafta resmî dairede kaydını yaptıracaksın.",
+    "satirlar": [
+     {
+      "r": "ch:wimmer",
+      "de": "Wann gehen Sie zur Anmeldung?",
+      "tr": "Kayda ne zaman gidiyorsunuz?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Am Montag arbeite ich. Am Dienstag gehe ich zum Amt.",
+      "tr": "Pazartesi çalışıyorum. Salı resmî daireye gidiyorum."
+     },
+     {
+      "r": "ch:wimmer",
+      "de": "Gut. Haben Sie das Formular schon?",
+      "tr": "İyi. Form elinizde mi?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Nein, noch nicht.",
+      "tr": "Hayır, henüz değil."
+     }
+    ],
+    "soru": {
+     "q_tr": "Salı günü ne yapıyorsun?",
+     "opts": [
+      "Resmî daireye gidiyorum",
+      "Çalışıyorum",
+      "Doktora gidiyorum"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:30:h3",
+   "title_tr": "Pazar günü Münih",
+   "kartlar": [
+    "lx:Wetter",
+    "lx:U-Bahn",
+    "lx:Ankunft",
+    "lx:Parkplatz",
+    "lx:Tankstelle"
+   ],
+   "kaliplar": [
+    {
+     "de": "Am … fahre ich nach …",
+     "tr": "… günü …'e gidiyorum."
+    },
+    {
+     "de": "Wie ist das Wetter …?",
+     "tr": "… hava nasıl?"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Wetter",
+     "de": "Wie ist das Wetter am Sonntag?",
+     "tr": "Pazar günü hava nasıl?",
+     "accepted": [
+      "Wie ist das Wetter am Sonntag?",
+      "Wie wird das Wetter am Sonntag?",
+      "Wie ist am Sonntag das Wetter?"
+     ]
+    },
+    {
+     "kart": "lx:Wetter",
+     "de": "Am Sonntag ist das Wetter schön.",
+     "tr": "Pazar günü hava güzel.",
+     "accepted": [
+      "Am Sonntag ist das Wetter schön.",
+      "Das Wetter ist am Sonntag schön.",
+      "Am Sonntag ist schönes Wetter."
+     ]
+    },
+    {
+     "kart": "lx:U-Bahn",
+     "de": "Ich fahre gern mit der U-Bahn.",
+     "tr": "Metroyla gitmeyi severim.",
+     "accepted": [
+      "Ich fahre gern mit der U-Bahn.",
+      "Mit der U-Bahn fahre ich gern.",
+      "Ich fahre gerne mit der U-Bahn."
+     ]
+    },
+    {
+     "kart": "lx:U-Bahn",
+     "de": "Am Sonntag fahren wir mit der U-Bahn.",
+     "tr": "Pazar günü metroyla gidiyoruz.",
+     "accepted": [
+      "Am Sonntag fahren wir mit der U-Bahn.",
+      "Wir fahren am Sonntag mit der U-Bahn.",
+      "Am Sonntag nehmen wir die U-Bahn."
+     ]
+    },
+    {
+     "kart": "lx:Ankunft",
+     "de": "Die Ankunft ist um neun Uhr.",
+     "tr": "Varış saat dokuzda.",
+     "accepted": [
+      "Die Ankunft ist um neun Uhr.",
+      "Die Ankunft ist um neun.",
+      "Um neun Uhr ist die Ankunft."
+     ]
+    },
+    {
+     "kart": "lx:Ankunft",
+     "de": "Wann ist die Ankunft?",
+     "tr": "Varış ne zaman?",
+     "accepted": [
+      "Wann ist die Ankunft?",
+      "Um wie viel Uhr ist die Ankunft?",
+      "Wann ist denn die Ankunft?"
+     ]
+    },
+    {
+     "kart": "lx:Parkplatz",
+     "de": "Ist hier ein Parkplatz frei?",
+     "tr": "Burada boş park yeri var mı?",
+     "accepted": [
+      "Ist hier ein Parkplatz frei?",
+      "Ist hier noch ein Parkplatz frei?",
+      "Ist ein Parkplatz hier frei?"
+     ]
+    },
+    {
+     "kart": "lx:Parkplatz",
+     "de": "Am Bahnhof ist ein Parkplatz.",
+     "tr": "Garda bir otopark var.",
+     "accepted": [
+      "Am Bahnhof ist ein Parkplatz.",
+      "Ein Parkplatz ist am Bahnhof.",
+      "Am Bahnhof ist ein großer Parkplatz."
+     ]
+    },
+    {
+     "kart": "lx:Tankstelle",
+     "de": "Am Morgen fahre ich zur Tankstelle.",
+     "tr": "Sabah benzinciye gidiyorum.",
+     "accepted": [
+      "Am Morgen fahre ich zur Tankstelle.",
+      "Ich fahre am Morgen zur Tankstelle.",
+      "Am Morgen fahre ich noch zur Tankstelle."
+     ]
+    },
+    {
+     "kart": "lx:Tankstelle",
+     "de": "Wo ist hier eine Tankstelle?",
+     "tr": "Buralarda benzinci nerede?",
+     "accepted": [
+      "Wo ist hier eine Tankstelle?",
+      "Wo ist eine Tankstelle?",
+      "Entschuldigung, wo ist hier eine Tankstelle?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Öğle arası. Tobi hafta sonu planını anlatıyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Am Sonntag fahre ich nach München.",
+      "tr": "Pazar günü Münih'e gidiyorum."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Und wie ist das Wetter da?",
+      "tr": "Peki orada hava nasıl?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Schön! Und am Abend bin ich wieder hier.",
+      "tr": "Güzel! Akşam da yine buradayım."
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi pazar günü nereye gidiyor?",
+     "opts": [
+      "Münih'e",
+      "Benzinciye",
+      "İşe"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:30:v1",
+  "title_tr": "Panoda haftanın planı",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Sabah, iş yerindeki büyük pano. Herr Wimmer elinde kalemle panonun önünde duruyor.",
+    "de": "Guten Morgen! Hören Sie bitte kurz zu.",
+    "tr": "Günaydın! Lütfen bir dakika dinleyin."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer panodaki pazartesi ve salı sütunlarını gösteriyor.",
+    "de": "Am Montag und am Dienstag arbeiten wir von sechs bis vierzehn Uhr.",
+    "tr": "Pazartesi ve salı altıdan on dörde kadar çalışıyoruz."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Kalemi çarşamba sütununa vuruyor.",
+    "de": "Am Mittwoch fängt die Arbeit um sieben an.",
+    "tr": "Çarşamba iş yedide başlıyor."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Perşembe sütununda bir anahtar resmi var.",
+    "de": "Am Donnerstag kommt der Techniker.",
+    "tr": "Perşembe teknisyen geliyor."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Cuma sütununa büyük bir saat çiziyor.",
+    "de": "Und am Freitag ist um zwölf Uhr Feierabend.",
+    "tr": "Cuma da saat on ikide paydos."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi'nin gözleri parlıyor.",
+    "de": "Echt? Am Freitag schon um zwölf?",
+    "tr": "Gerçekten mi? Cuma daha on ikide mi?"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer gülümsüyor.",
+    "de": "Ja, Herr Lechner. Und am Samstag ist die Firma geschlossen.",
+    "tr": "Evet Lechner Bey. Cumartesi de firma kapalı."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi yumruğunu havaya kaldırıyor.",
+    "de": "Sehr gut!",
+    "tr": "Çok iyi!"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya elini kaldırıyor.",
+    "de": "Herr Wimmer, am Dienstag habe ich einen Termin beim Arzt.",
+    "tr": "Wimmer Bey, salı günü doktordan randevum var."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer panoya küçük bir not ekliyor.",
+    "de": "Kein Problem, Frau Aksoy.",
+    "tr": "Sorun değil Aksoy Hanım."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer Tobi'ye dönüyor. Tobi burnunu siliyor.",
+    "de": "Herr Lechner, geht es Ihnen besser?",
+    "tr": "Lechner Bey, daha iyi misiniz?"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi omuz silkiyor.",
+    "de": "Na ja, es geht. Danke.",
+    "tr": "Eh, idare eder. Sağ olun."
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer kalemi cebine koyup kapıya yürüyor.",
+    "de": "Gute Besserung! Und jetzt an die Arbeit.",
+    "tr": "Geçmiş olsun! Şimdi de işbaşına."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Herr Wimmer ne anlatıyor?",
+     "opts": [
+      "Haftanın çalışma planını",
+      "Yeni bir makineyi",
+      "Tatil günlerini"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2",
+      "s3"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Çarşamba iş kaçta başlıyor?",
+      "opts": [
+       "altıda",
+       "yedide",
+       "sekizde"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s3"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Teknisyen hangi gün geliyor?",
+      "opts": [
+       "salı",
+       "perşembe",
+       "cuma"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s4"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Cumartesi firma açık mı?",
+      "opts": [
+       "Hayır, kapalı",
+       "Evet, sabah açık",
+       "Evet, bütün gün açık"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s7"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s4",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Dienstag",
+       "Donnerstag",
+       "Mittwoch"
+      ],
+      "ans": 1
+     },
+     {
+      "id": "d2",
+      "cumle": "s3",
+      "seviye": "orta",
+      "de": "Am Mittwoch fängt die Arbeit um ___ an.",
+      "accepted": [
+       "sieben",
+       "Sieben",
+       "sieben."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s5",
+      "seviye": "zor",
+      "banka": [
+       "Und",
+       "am",
+       "Freitag",
+       "ist",
+       "um",
+       "zwölf",
+       "Uhr",
+       "Feierabend",
+       "elf",
+       "Montag"
+      ],
+      "accepted": [
+       "Und am Freitag ist um zwölf Uhr Feierabend.",
+       "und am freitag ist um zwölf uhr feierabend",
+       "Und am Freitag ist um zwölf Uhr Feierabend"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s4",
+      "seviye": "usta",
+      "accepted": [
+       "Am Donnerstag kommt der Techniker.",
+       "am donnerstag kommt der techniker",
+       "Am Donnerstag kommt der Techniker"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Herr Wimmer'in planını Almanca iki kısa cümleyle anlat. Her cümleye bir günle başla.",
+      "ornek_de": "Am Mittwoch fängt die Arbeit um sieben an. Am Freitag ist um zwölf Feierabend.",
+      "zorunlu": [
+       "Am Mittwoch",
+       "Am Freitag"
+      ]
+     }
+    ],
+    "golge": [
+     "s3",
+     "s4"
+    ],
+    "cevapla": {
+     "id": "m1:30:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Tobi soruyor. Cuma öğleden sonra alışveriş yapıyorsun.",
+     "prompt_de": "Und was machst du am Freitag nach der Arbeit?",
+     "accepted": [
+      "Am Freitag kaufe ich ein.",
+      "Am Nachmittag kaufe ich ein.",
+      "Am Freitag kaufe ich am Nachmittag ein.",
+      "Ich kaufe am Freitag ein.",
+      "Nach der Arbeit kaufe ich ein.",
+      "Am Freitag gehe ich einkaufen.",
+      "Ich kaufe ein."
+     ],
+     "why_tr": "Günle başlarsan **kaufe** ikinci yerde kalır, **ein** en sona gider."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:30:a1",
+   "tur": "anons",
+   "title_tr": "Firmanın hoparlör duyurusu",
+   "ortam_tr": "İş yerinde hoparlörden Herr Wimmer'in sesi geliyor.",
+   "speaker": "ch:wimmer",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Morgen, hier spricht Stefan Wimmer.",
+     "tr": "Günaydın, ben Stefan Wimmer."
+    },
+    {
+     "id": "c2",
+     "de": "Am Donnerstag ist der Parkplatz geschlossen.",
+     "tr": "Perşembe günü otopark kapalı."
+    },
+    {
+     "id": "c3",
+     "de": "Am Donnerstag kommen Sie bitte mit dem Bus.",
+     "tr": "Perşembe günü lütfen otobüsle gelin."
+    },
+    {
+     "id": "c4",
+     "de": "Am Freitag fängt die Arbeit schon um sechs an.",
+     "tr": "Cuma günü iş daha altıda başlıyor."
+    },
+    {
+     "id": "c5",
+     "de": "Danke schön!",
+     "tr": "Çok teşekkürler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Duyuru ne hakkında?",
+      "opts": [
+       "Perşembe otopark, cuma çalışma saati",
+       "Yeni çalışanlar",
+       "Maaşlar"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Otopark hangi gün kapalı?",
+       "opts": [
+        "çarşamba",
+        "perşembe",
+        "cuma"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Cuma iş kaçta başlıyor?",
+       "opts": [
+        "altıda",
+        "yedide",
+        "on ikide"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Bahnhof",
+        "Bus",
+        "Parkplatz"
+       ],
+       "ans": 2
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Am Donnerstag kommen Sie bitte mit dem ___.",
+       "accepted": [
+        "Bus",
+        "bus",
+        "Bus."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Am",
+        "Freitag",
+        "fängt",
+        "die",
+        "Arbeit",
+        "schon",
+        "um",
+        "sechs",
+        "an",
+        "auf",
+        "sieben"
+       ],
+       "accepted": [
+        "Am Freitag fängt die Arbeit schon um sechs an.",
+        "am freitag fängt die arbeit schon um sechs an",
+        "Am Freitag fängt die Arbeit schon um sechs an"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Am Donnerstag ist der Parkplatz geschlossen.",
+        "am donnerstag ist der parkplatz geschlossen",
+        "Am Donnerstag ist der Parkplatz geschlossen"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Duyuruda ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Am Donnerstag ist der Parkplatz geschlossen. Ich komme mit dem Bus.",
+       "zorunlu": [
+        "Donnerstag",
+        "Bus"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:30:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Derya cuma iş kaçta başlıyor diye soruyor. Duyuruda duydun.",
+      "prompt_de": "Wann fängt die Arbeit am Freitag an?",
+      "accepted": [
+       "Am Freitag fängt die Arbeit um sechs an.",
+       "Um sechs Uhr.",
+       "Um sechs.",
+       "Am Freitag schon um sechs.",
+       "Sie fängt um sechs an.",
+       "Am Freitag fängt sie um sechs Uhr an.",
+       "Schon um sechs Uhr."
+      ],
+      "why_tr": "Günle başlarsan **fängt** ikinci yerde, **an** en sonda kalır."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:30:a1:e1",
+    "k": "pick",
+    "q_tr": "Perşembe işe nasıl gelmelisin?",
+    "opts": [
+     "Arabayla gel, firmanın otoparkına park et.",
+     "Otobüsle gel.",
+     "Gelme, evde kal."
+    ],
+    "ans": 1,
+    "why_tr": "Perşembe otopark kapalı. Herr Wimmer otobüsle gelmeyi rica ediyor.",
+    "kanit": [
+     "c2",
+     "c3"
+    ]
+   }
+  },
+  {
+   "id": "m1:30:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Ioana'dan sesli mesaj",
+   "ortam_tr": "Akşam telefonuna bakıyorsun. Kurstan arkadaşın Ioana mesaj bırakmış.",
+   "speaker": "ch:popescu",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Ioana aus dem Kurs!",
+     "tr": "Merhaba, ben kurstan Ioana!"
+    },
+    {
+     "id": "c2",
+     "de": "Am Sonntag fahre ich mit Tobi nach München.",
+     "tr": "Pazar günü Tobi'yle Münih'e gidiyorum."
+    },
+    {
+     "id": "c3",
+     "de": "Die Ankunft ist um zehn Uhr.",
+     "tr": "Varış saat onda."
+    },
+    {
+     "id": "c4",
+     "de": "In München fahren wir dann mit der U-Bahn.",
+     "tr": "Münih'te de metroyla geziyoruz."
+    },
+    {
+     "id": "c5",
+     "de": "Das Wetter ist am Sonntag schön. Kommst du mit?",
+     "tr": "Pazar günü hava güzel. Sen de geliyor musun?"
+    },
+    {
+     "id": "c6",
+     "de": "Bis morgen im Kurs!",
+     "tr": "Yarın kursta görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Ioana neden arıyor?",
+      "opts": [
+       "Seni pazar günkü Münih gezisine çağırıyor",
+       "Kursun iptal olduğunu söylüyor",
+       "Hasta olduğunu söylüyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Münih'e varış saat kaçta?",
+       "opts": [
+        "dokuzda",
+        "onda",
+        "on birde"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Münih'te neyle gezecekler?",
+       "opts": [
+        "Metroyla",
+        "Otobüsle",
+        "Yürüyerek"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "neun",
+        "zehn",
+        "elf"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "In München ___ wir dann mit der U-Bahn.",
+       "accepted": [
+        "fahren",
+        "Fahren",
+        "fahren."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Am",
+        "Sonntag",
+        "fahre",
+        "ich",
+        "mit",
+        "Tobi",
+        "nach",
+        "München",
+        "Montag",
+        "fährt"
+       ],
+       "accepted": [
+        "Am Sonntag fahre ich mit Tobi nach München.",
+        "am sonntag fahre ich mit tobi nach münchen",
+        "Am Sonntag fahre ich mit Tobi nach München"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Die Ankunft ist um zehn Uhr.",
+        "die ankunft ist um zehn uhr",
+        "Die Ankunft ist um zehn Uhr"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajda ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Am Sonntag fährt Ioana nach München. Das Wetter ist schön.",
+       "zorunlu": [
+        "Sonntag",
+        "München"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:30:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana'ya cevap ver. Gelmek istiyorsun, pazar günü vaktin var.",
+      "prompt_de": "Kommst du am Sonntag mit?",
+      "accepted": [
+       "Ja, gern! Am Sonntag habe ich Zeit.",
+       "Ja, am Sonntag habe ich Zeit.",
+       "Gern! Am Sonntag habe ich frei.",
+       "Ja, ich komme mit. Am Sonntag habe ich Zeit.",
+       "Ja, gern. Am Sonntag habe ich frei.",
+       "Ja, gern, ich komme mit!"
+      ],
+      "why_tr": "Günle başlarsan **habe** hemen arkasından gelir: **Am Sonntag habe ich Zeit.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:30:a2:e1",
+    "k": "pick",
+    "q_tr": "Ioana senden ne istiyor?",
+    "opts": [
+     "Pazar günü gelip gelmeyeceğini söylemeni",
+     "Pazartesi onu aramanı",
+     "Ona Münih'te metro bileti almanı"
+    ],
+    "ans": 0,
+    "why_tr": "Ioana pazar günü Münih'e gidiyor ve sana geliyor musun diye soruyor.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:30:g1",
+   "de": "U-Bahn",
+   "dogru_img": "subway train at an underground station platform",
+   "celdirici_img": [
+    "city bus at a bus stop",
+    "taxi on a street",
+    "bicycle on a path"
+   ]
+  },
+  {
+   "id": "m1:30:g2",
+   "de": "Tankstelle",
+   "dogru_img": "gas station with fuel pumps",
+   "celdirici_img": [
+    "car repair workshop",
+    "supermarket entrance",
+    "train station hall"
+   ]
+  },
+  {
+   "id": "m1:30:g3",
+   "de": "Parkplatz",
+   "dogru_img": "parking lot with parked cars",
+   "celdirici_img": [
+    "empty football field",
+    "market square with stalls",
+    "train platform"
+   ]
+  },
+  {
+   "id": "m1:30:g4",
+   "de": "Pass",
+   "dogru_img": "passport booklet on a table",
+   "celdirici_img": [
+    "bank card",
+    "train ticket",
+    "letter envelope"
+   ]
+  },
+  {
+   "id": "m1:30:g5",
+   "de": "Formular",
+   "dogru_img": "paper form with empty boxes and a pen",
+   "celdirici_img": [
+    "newspaper page",
+    "restaurant menu",
+    "calendar page"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:30:p1",
+  "title_tr": "Herr Wimmer haftanı soruyor",
+  "durum_tr": "Herr Wimmer gelecek haftanın planını yapıyor. Pazartesi çalışıyorsun, salı kayıt için resmî daireye gidiyorsun. Perşembe otopark kapalı.",
+  "karsi": "ch:wimmer",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Guten Morgen! Haben Sie kurz Zeit?",
+    "tr": "Günaydın! Bir dakikanız var mı?",
+    "secenekler": [
+     {
+      "de": "Ja, natürlich, Herr Wimmer.",
+      "tr": "Evet, tabii Wimmer Bey.",
+      "accepted": [
+       "Ja, natürlich, Herr Wimmer.",
+       "Ja, natürlich.",
+       "Ja, klar, Herr Wimmer.",
+       "Natürlich, Herr Wimmer."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Kibar ve kısa. Şefine **Herr Wimmer** diye seslendin."
+     },
+     {
+      "de": "Ja, gern.",
+      "tr": "Evet, memnuniyetle.",
+      "accepted": [
+       "Ja, gern.",
+       "Ja, gerne.",
+       "Gern.",
+       "Ja, gern, Herr Wimmer."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Kısa ve kibar."
+     },
+     {
+      "de": "Ja, was ist los, Stefan?",
+      "tr": "Evet, ne oldu Stefan?",
+      "accepted": [
+       "Ja, was ist los, Stefan?",
+       "Was ist los, Stefan?",
+       "Ja, Stefan, was ist los?",
+       "Stefan, was ist los?"
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Şefine adıyla seslenme. **Herr Wimmer** de."
+     }
+    ]
+   },
+   {
+    "id": "n1b",
+    "de": "Herr Wimmer, bitte. Haben Sie kurz Zeit?",
+    "tr": "Wimmer Bey, lütfen. Bir dakikanız var mı?",
+    "secenekler": [
+     {
+      "de": "Ja, natürlich, Herr Wimmer. Entschuldigung!",
+      "tr": "Evet, tabii Wimmer Bey. Kusura bakmayın!",
+      "accepted": [
+       "Ja, natürlich, Herr Wimmer. Entschuldigung!",
+       "Entschuldigung, Herr Wimmer. Ja, natürlich.",
+       "Ja, natürlich. Entschuldigung!",
+       "Ja, Herr Wimmer. Entschuldigung!"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Şimdi oldu. Özür diledin ve doğru hitap ettin."
+     },
+     {
+      "de": "Ja, klar, Stefan.",
+      "tr": "Evet, tabii Stefan.",
+      "accepted": [
+       "Ja, klar, Stefan.",
+       "Klar, Stefan.",
+       "Ja, Stefan.",
+       "Ja, klar, Stefan!"
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Hâlâ adıyla seslendin. Şefine **Herr Wimmer** de."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Was machen Sie am Montag?",
+    "tr": "Pazartesi ne yapıyorsunuz?",
+    "secenekler": [
+     {
+      "de": "Am Montag arbeite ich von sechs bis vierzehn Uhr.",
+      "tr": "Pazartesi altıdan on dörde kadar çalışıyorum.",
+      "accepted": [
+       "Am Montag arbeite ich von sechs bis vierzehn Uhr.",
+       "Am Montag arbeite ich von sechs bis vierzehn.",
+       "Am Montag arbeite ich von sechs bis vierzehn Uhr, Herr Wimmer.",
+       "Von sechs bis vierzehn Uhr."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Günle başladın ve **arbeite** ikinci yerde kaldı."
+     },
+     {
+      "de": "Ich arbeite am Montag von sechs bis vierzehn Uhr.",
+      "tr": "Pazartesi altıdan on dörde kadar çalışıyorum.",
+      "accepted": [
+       "Ich arbeite am Montag von sechs bis vierzehn Uhr.",
+       "Ich arbeite am Montag von sechs bis vierzehn.",
+       "Ich arbeite am Montag.",
+       "Ich arbeite am Montag von sechs Uhr bis vierzehn Uhr."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Günle de başlayabilirsin: **Am Montag arbeite ich.**"
+     },
+     {
+      "de": "Am Montag ich arbeite von sechs bis vierzehn Uhr.",
+      "tr": "Pazartesi altıdan on dörde kadar çalışıyorum.",
+      "accepted": [
+       "Am Montag ich arbeite von sechs bis vierzehn Uhr.",
+       "Am Montag ich arbeite.",
+       "Am Montag ich arbeite von sechs bis vierzehn.",
+       "Am Montag ich arbeite von sechs bis vierzehn Uhr, Herr Wimmer."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Günle başlarsan fiil ikinci yere gelir: **Am Montag arbeite ich.**"
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Und am Dienstag? Da haben Sie die Anmeldung, oder?",
+    "tr": "Peki salı? O gün kayıt işiniz var, değil mi?",
+    "secenekler": [
+     {
+      "de": "Ja, am Dienstag habe ich die Anmeldung.",
+      "tr": "Evet, salı günü kaydım var.",
+      "accepted": [
+       "Ja, am Dienstag habe ich die Anmeldung.",
+       "Ja, am Dienstag gehe ich zur Anmeldung.",
+       "Ja, am Dienstag bin ich beim Amt.",
+       "Ja, genau. Am Dienstag bin ich beim Amt."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **Am Dienstag** başta, **habe** ikinci yerde."
+     },
+     {
+      "de": "Ja, genau. Am Mittwoch arbeite ich wieder.",
+      "tr": "Evet, aynen. Çarşamba yine çalışıyorum.",
+      "accepted": [
+       "Ja, genau. Am Mittwoch arbeite ich wieder.",
+       "Genau. Am Mittwoch arbeite ich wieder.",
+       "Ja, genau. Und am Mittwoch arbeite ich wieder.",
+       "Ja. Am Mittwoch arbeite ich wieder."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Bir sonraki günü de söyledin."
+     },
+     {
+      "de": "Nein, am Dienstag arbeite ich.",
+      "tr": "Hayır, salı günü çalışıyorum.",
+      "accepted": [
+       "Nein, am Dienstag arbeite ich.",
+       "Nein, ich arbeite am Dienstag.",
+       "Am Dienstag arbeite ich.",
+       "Nein, am Dienstag arbeite ich, Herr Wimmer."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Salı günü kayıt için resmî daireye gidiyorsun. Planını doğru söyle."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gut. Und am Donnerstag? Wie kommen Sie da zur Arbeit?",
+    "tr": "İyi. Peki perşembe? O gün işe nasıl geliyorsunuz?",
+    "secenekler": [
+     {
+      "de": "Am Donnerstag fahre ich mit dem Bus.",
+      "tr": "Perşembe otobüsle geliyorum.",
+      "accepted": [
+       "Am Donnerstag fahre ich mit dem Bus.",
+       "Am Donnerstag komme ich mit dem Bus.",
+       "Ich fahre am Donnerstag mit dem Bus.",
+       "Am Donnerstag fahre ich mit dem Bus, Herr Wimmer."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Perşembe otopark kapalı."
+     },
+     {
+      "de": "Mit dem Bus, Herr Wimmer.",
+      "tr": "Otobüsle Wimmer Bey.",
+      "accepted": [
+       "Mit dem Bus, Herr Wimmer.",
+       "Mit dem Bus.",
+       "Mit dem Bus, natürlich.",
+       "Ich komme mit dem Bus, Herr Wimmer."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve açık bir cevap."
+     },
+     {
+      "de": "Am Donnerstag schlafe ich lange.",
+      "tr": "Perşembe geç saate kadar uyuyorum.",
+      "accepted": [
+       "Am Donnerstag schlafe ich lange.",
+       "Ich schlafe am Donnerstag lange.",
+       "Am Donnerstag schlafe ich.",
+       "Am Donnerstag schlafe ich lange, Herr Wimmer."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Perşembe iş günü. İşe nasıl geleceğini söyle."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Sehr gut. Danke, {Herr|Frau} {name}. Bis morgen!",
+    "tr": "Çok iyi. Teşekkürler {Herr|Frau} {name}. Yarın görüşürüz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Şefine haftanı gün gün anlattın. Günle başladığında fiil ikinci yerde kaldı."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Derya'nın haftalık planı",
+  "metin_de": "Montag: Arbeit von sechs bis vierzehn Uhr. Dienstag: um zehn Uhr Termin bei Dr. Weber. Mittwoch: Arbeit ab sieben Uhr. Donnerstag: Parkplatz geschlossen, mit dem Bus fahren! Freitag: um zwölf Uhr Feierabend, dann zur Tankstelle. Samstag: lange schlafen!",
+  "metin_tr": "Pazartesi: altıdan on dörde kadar iş. Salı: saat onda Dr. Weber'de randevu. Çarşamba: saat yediden itibaren iş. Perşembe: otopark kapalı, otobüsle git! Cuma: saat on ikide paydos, sonra benzinciye. Cumartesi: geç saate kadar uyu!",
+  "sorular": [
+   {
+    "id": "m1:30:o1",
+    "kind": "gist",
+    "q_tr": "Bu metin ne?",
+    "opts": [
+     "Derya'nın haftalık planı",
+     "Bir iş ilanı",
+     "Bir doktor mektubu"
+    ],
+    "ans": 0,
+    "kanit": [
+     0,
+     1,
+     2
+    ]
+   },
+   {
+    "id": "m1:30:o2",
+    "kind": "detail",
+    "q_tr": "Derya salı günü saat onda nereye gidiyor?",
+    "opts": [
+     "Doktora",
+     "Resmî daireye",
+     "Benzinciye"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:30:o3",
+    "kind": "detail",
+    "q_tr": "Derya perşembe neden otobüsle gidiyor?",
+    "opts": [
+     "Arabası bozuk",
+     "Otopark kapalı",
+     "Hava kötü"
+    ],
+    "ans": 1,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:30:o4",
+    "kind": "detail",
+    "q_tr": "Derya cuma işten sonra nereye gidiyor?",
+    "opts": [
+     "Münih'e",
+     "Benzinciye",
+     "Kursa"
+    ],
+    "ans": 1,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:30:o5",
+    "k": "guided_response",
+    "situation_tr": "Derya soruyor. Perşembe sen de otobüsle geliyorsun.",
+    "prompt_de": "Und du? Wie kommst du am Donnerstag?",
+    "accepted": [
+     "Am Donnerstag komme ich auch mit dem Bus.",
+     "Ich komme auch mit dem Bus.",
+     "Auch mit dem Bus.",
+     "Am Donnerstag fahre ich auch mit dem Bus.",
+     "Ich fahre auch mit dem Bus."
+    ],
+    "why_tr": "**auch** ben de, sen de derken kullanılır: **Ich komme auch mit dem Bus.**"
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Kendi haftanı üç kısa cümleyle yaz. Her cümleye bir günle başla.",
+   "ornek_de": "Am Montag arbeite ich. Am Mittwoch fahre ich zur Tankstelle. Am Samstag kaufe ich ein.",
+   "zorunlu": [
+    "Am"
+   ],
+   "accepted_kaliplar": [
+    "Am ___ arbeite ich.",
+    "Am ___ gehe ich ___.",
+    "Am ___ kaufe ich ein.",
+    "Am ___ fahre ich ___.",
+    "Am ___ habe ich ___."
+   ],
+   "kontrol_tr": [
+    "Her cümle bir günle mi başlıyor? Örnek: **Am Montag**.",
+    "Fiil ikinci yerde mi? **Am Montag arbeite ich.**",
+    "İki parçalı fiilin küçük parçası sonda mı? **Am Freitag kaufe ich ein.**"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:30:s",
+  "maddeler": [
+   {
+    "id": "m1:30:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Am Dienstag gehe ich mit dem Pass ins Rathaus.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Am Dienstag gehe ich mit dem Pass ins Rathaus.",
+     "am dienstag gehe ich mit dem pass ins rathaus",
+     "Am Dienstag gehe ich mit dem Pass ins Rathaus"
+    ],
+    "why_tr": "**Am Dienstag** başta, **gehe** ikinci yerde."
+   },
+   {
+    "id": "m1:30:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Um sieben Uhr fängt die Arbeit an.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Um sieben Uhr fängt die Arbeit an.",
+     "um sieben uhr fängt die arbeit an",
+     "Um sieben Uhr fängt die Arbeit an"
+    ],
+    "why_tr": "Saatle başlayınca **fängt** ikinci yerde, **an** en sonda."
+   },
+   {
+    "id": "m1:30:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Am Freitag fahre ich zur Tankstelle.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Am Freitag fahre ich zur Tankstelle.",
+     "am freitag fahre ich zur tankstelle",
+     "Am Freitag fahre ich zur Tankstelle"
+    ],
+    "why_tr": "**zur Tankstelle** benzinciye demektir."
+   },
+   {
+    "id": "m1:30:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Herr Wimmer ist mein Vorgesetzter.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Herr Wimmer ist mein Vorgesetzter.",
+     "herr wimmer ist mein vorgesetzter",
+     "Herr Wimmer ist mein Vorgesetzter"
+    ],
+    "why_tr": "**mein Vorgesetzter** amirim demektir."
+   },
+   {
+    "id": "m1:30:s5",
+    "k": "tr_de",
+    "tr": "Pazartesi günü çalışıyorum.",
+    "accepted": [
+     "Am Montag arbeite ich.",
+     "Ich arbeite am Montag.",
+     "Montags arbeite ich.",
+     "Montag arbeite ich."
+    ],
+    "why_tr": "Günle başlarsan **arbeite** ikinci yerde, **ich** onun arkasında."
+   },
+   {
+    "id": "m1:30:s6",
+    "k": "tr_de",
+    "tr": "Cumartesi alışveriş yapıyorum.",
+    "accepted": [
+     "Am Samstag kaufe ich ein.",
+     "Ich kaufe am Samstag ein.",
+     "Samstags kaufe ich ein.",
+     "Am Samstag gehe ich einkaufen."
+    ],
+    "why_tr": "**Am Samstag** başta, **kaufe** ikinci yerde, **ein** en sonda."
+   },
+   {
+    "id": "m1:30:s7",
+    "k": "tr_de",
+    "tr": "Akşam formu dolduruyorum.",
+    "accepted": [
+     "Am Abend fülle ich das Formular aus.",
+     "Ich fülle am Abend das Formular aus.",
+     "Ich fülle das Formular am Abend aus.",
+     "Heute Abend fülle ich das Formular aus."
+    ],
+    "why_tr": "**fülle** ikinci yerde, **aus** en sonda."
+   },
+   {
+    "id": "m1:30:s8",
+    "k": "tr_de",
+    "tr": "Yarın amirimi arıyorum.",
+    "accepted": [
+     "Morgen rufe ich meinen Vorgesetzten an.",
+     "Ich rufe morgen meinen Vorgesetzten an.",
+     "Morgen rufe ich den Vorgesetzten an.",
+     "Ich rufe morgen den Vorgesetzten an.",
+     "Morgen rufe ich meine Vorgesetzte an.",
+     "Ich rufe morgen meine Vorgesetzte an.",
+     "Morgen rufe ich meinen Chef an."
+    ],
+    "why_tr": "**Morgen** başta, **rufe** ikinci yerde, **an** en sonda."
+   },
+   {
+    "id": "m1:30:s9",
+    "k": "guided_response",
+    "situation_tr": "Tobi soruyor. Sen de pazar günü Münih'e gidiyorsun.",
+    "prompt_de": "Was machst du am Sonntag?",
+    "accepted": [
+     "Am Sonntag fahre ich auch nach München.",
+     "Am Sonntag fahre ich nach München.",
+     "Ich fahre am Sonntag nach München.",
+     "Ich fahre auch nach München.",
+     "Am Sonntag fahre ich mit Ioana nach München."
+    ],
+    "why_tr": "**Am Sonntag** başta, **fahre** ikinci yerde."
+   },
+   {
+    "id": "m1:30:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Wann arbeiten Sie am Mittwoch?",
+    "speed": "normal",
+    "situation_tr": "Herr Wimmer soruyor. Çarşamba yedide başlıyorsun.",
+    "accepted": [
+     "Am Mittwoch fange ich um sieben an.",
+     "Am Mittwoch arbeite ich ab sieben Uhr.",
+     "Ab sieben Uhr.",
+     "Um sieben Uhr.",
+     "Am Mittwoch fange ich um sieben Uhr an.",
+     "Ich fange am Mittwoch um sieben an."
+    ],
+    "why_tr": "**Am Mittwoch** başta, **fange** ikinci yerde, **an** en sonda."
+   },
+   {
+    "id": "m1:30:s11",
+    "k": "guided_response",
+    "situation_tr": "Herr Wimmer haftanı soruyor. Pazartesi çalışıyorsun, salı resmî daireye gidiyorsun, cuma alışveriş yapıyorsun.",
+    "prompt_de": "Und wie ist Ihre Woche?",
+    "accepted": [
+     "Am Montag arbeite ich. Am Dienstag gehe ich zum Amt. Am Freitag kaufe ich ein.",
+     "Am Montag arbeite ich, am Dienstag gehe ich zum Amt und am Freitag kaufe ich ein.",
+     "Am Montag arbeite ich. Am Dienstag bin ich beim Amt. Am Freitag kaufe ich ein.",
+     "Montag arbeite ich, Dienstag gehe ich zum Amt, Freitag kaufe ich ein."
+    ],
+    "why_tr": "Her güne yeni bir cümleyle başla. Fiil hep ikinci yerde."
+   }
+  ],
+  "sesli": [
+   "m1:30:s9",
+   "m1:30:s10"
+  ],
+  "dikte": [
+   "m1:30:s1",
+   "m1:30:s2",
+   "m1:30:s3",
+   "m1:30:s4"
+  ]
+ }
+}

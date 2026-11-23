@@ -1,0 +1,1869 @@
+{
+ "schema": 1,
+ "id": "m1:gun:29",
+ "day": 29,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Sabah kalkmak: Ich stehe um sieben auf",
+ "goal_tr": "Kaçta kalktığını, işin ve muayene saatinin kaçta başladığını söylersin.",
+ "can_do": {
+  "id": "cd:m1:29",
+  "tr": "Sabah kaçta kalktığımı, işin kaçta başladığını söylerim."
+ },
+ "unit": "u:a1:29",
+ "arm": "kafe",
+ "place": "pl:firma",
+ "characters": [
+  "ch:aksoy",
+  "ch:wimmer",
+  "ch:lechner",
+  "ch:pichler",
+  "ch:brandl",
+  "ch:stadler"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic5-hafta-05.md; okur: docs/v2/reviews/okur/ic5-hafta-05.md (14 GERİ, okurun önerisiyle düzeltildi)",
+  "okur": "passed",
+  "okur_at": "2026-11-23"
+ },
+ "dersler": [
+  "gr:a1-05:t4"
+ ],
+ "yeni_kartlar": [
+  "lx:Wie_spät_ist_es?",
+  "lx:Bad",
+  "lx:Lampe",
+  "lx:schreiben",
+  "lx:Miete",
+  "lx:Dialekt",
+  "lx:ledig",
+  "lx:Bäckerei",
+  "lx:Erkältung",
+  "lx:Hals",
+  "lx:Schnupfen",
+  "lx:Krankschreibung",
+  "lx:Sprechstunde",
+  "lx:Krankenkasse",
+  "lx:Bratwurst",
+  "lx:Senf",
+  "lx:Pfand",
+  "lx:Fleisch"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:29:h1",
+   "title_tr": "Pazartesi sabahı evde",
+   "kartlar": [
+    "lx:Wie_spät_ist_es?",
+    "lx:Bad",
+    "lx:Lampe",
+    "lx:schreiben"
+   ],
+   "kaliplar": [
+    {
+     "de": "Es ist schon …",
+     "tr": "Saat şimdiden …"
+    },
+    {
+     "de": "Ich schreibe …",
+     "tr": "… yazıyorum"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Wie_spät_ist_es?",
+     "de": "Entschuldigung, wie spät ist es?",
+     "tr": "Affedersiniz, saat kaç?",
+     "accepted": [
+      "Entschuldigung, wie spät ist es?",
+      "Entschuldigung, wie spät ist es bitte?",
+      "Wie spät ist es, bitte?"
+     ]
+    },
+    {
+     "kart": "lx:Wie_spät_ist_es?",
+     "de": "Wie spät ist es? Halb sieben?",
+     "tr": "Saat kaç? Altı buçuk mu?",
+     "accepted": [
+      "Wie spät ist es? Halb sieben?",
+      "Wie spät ist es? Ist es halb sieben?",
+      "Wie spät ist es? Schon halb sieben?"
+     ]
+    },
+    {
+     "kart": "lx:Bad",
+     "de": "Ich gehe jetzt ins Bad.",
+     "tr": "Şimdi banyoya gidiyorum.",
+     "accepted": [
+      "Ich gehe jetzt ins Bad.",
+      "Jetzt gehe ich ins Bad.",
+      "Ich gehe jetzt in das Bad."
+     ]
+    },
+    {
+     "kart": "lx:Bad",
+     "de": "Das Bad ist klein, aber neu.",
+     "tr": "Banyo küçük ama yeni.",
+     "accepted": [
+      "Das Bad ist klein, aber neu.",
+      "Das Bad ist klein, aber es ist neu.",
+      "Das Bad ist klein aber neu."
+     ]
+    },
+    {
+     "kart": "lx:Lampe",
+     "de": "Die Lampe im Bad ist kaputt.",
+     "tr": "Banyodaki lamba bozuk.",
+     "accepted": [
+      "Die Lampe im Bad ist kaputt.",
+      "Im Bad ist die Lampe kaputt.",
+      "Die Lampe im Bad ist leider kaputt."
+     ]
+    },
+    {
+     "kart": "lx:Lampe",
+     "de": "Die Lampe geht nicht, Herr Pichler.",
+     "tr": "Lamba yanmıyor Pichler Bey.",
+     "accepted": [
+      "Die Lampe geht nicht, Herr Pichler.",
+      "Herr Pichler, die Lampe geht nicht.",
+      "Die Lampe funktioniert nicht, Herr Pichler."
+     ]
+    },
+    {
+     "kart": "lx:schreiben",
+     "de": "Ich schreibe dir heute Abend.",
+     "tr": "Sana bu akşam yazarım.",
+     "accepted": [
+      "Ich schreibe dir heute Abend.",
+      "Heute Abend schreibe ich dir.",
+      "Ich schreibe dir am Abend."
+     ]
+    },
+    {
+     "kart": "lx:schreiben",
+     "de": "Ich schreibe dem Hausmeister.",
+     "tr": "Apartman görevlisine yazıyorum.",
+     "accepted": [
+      "Ich schreibe dem Hausmeister.",
+      "Ich schreibe jetzt dem Hausmeister.",
+      "Ich schreibe dem Hausmeister jetzt."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Apartmanın merdiveni, sabah erken. Apartman görevlisi Herr Pichler'le karşılaşıyorsun.",
+    "satirlar": [
+     {
+      "r": "ogrenci",
+      "de": "Guten Morgen, Herr Pichler! Im Bad ist die Lampe kaputt.",
+      "tr": "Günaydın Pichler Bey! Banyoda lamba bozuk."
+     },
+     {
+      "r": "ch:pichler",
+      "de": "Die Lampe im Bad? Heute Abend komme ich.",
+      "tr": "Banyodaki lamba mı? Bu akşam gelirim."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Danke! Es ist schon halb sieben. Bis heute Abend!",
+      "tr": "Teşekkürler! Saat şimdiden altı buçuk. Akşam görüşürüz!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Herr Pichler lamba için ne zaman geliyor?",
+     "opts": [
+      "Bu akşam",
+      "Yarın sabah",
+      "Öğlen",
+      "Hafta sonu"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:29:h2",
+   "title_tr": "Merdivende: kaçta kalkıyorsunuz?",
+   "kartlar": [
+    "lx:Miete",
+    "lx:Dialekt",
+    "lx:ledig",
+    "lx:Bäckerei"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wann stehst du auf? – Wann stehen Sie auf?",
+     "tr": "Kaçta kalkıyorsun? – Kaçta kalkıyorsunuz?"
+    },
+    {
+     "de": "Ich verstehe … nicht.",
+     "tr": "… anlamıyorum."
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Miete",
+     "de": "Die Miete ist hier sehr teuer.",
+     "tr": "Burada kira çok pahalı.",
+     "accepted": [
+      "Die Miete ist hier sehr teuer.",
+      "Hier ist die Miete sehr teuer.",
+      "Die Miete hier ist sehr teuer."
+     ]
+    },
+    {
+     "kart": "lx:Miete",
+     "de": "Wie viel ist die Miete?",
+     "tr": "Kira ne kadar?",
+     "accepted": [
+      "Wie viel ist die Miete?",
+      "Wie viel kostet die Miete?",
+      "Wie hoch ist die Miete?"
+     ]
+    },
+    {
+     "kart": "lx:Dialekt",
+     "de": "Ich verstehe den Dialekt nicht.",
+     "tr": "Lehçeyi anlamıyorum.",
+     "accepted": [
+      "Ich verstehe den Dialekt nicht.",
+      "Den Dialekt verstehe ich nicht.",
+      "Ich verstehe den Dialekt leider nicht."
+     ]
+    },
+    {
+     "kart": "lx:Dialekt",
+     "de": "Herr Pichler spricht Dialekt.",
+     "tr": "Pichler Bey lehçeyle konuşuyor.",
+     "accepted": [
+      "Herr Pichler spricht Dialekt.",
+      "Herr Pichler spricht immer Dialekt.",
+      "Herr Pichler spricht im Dialekt."
+     ]
+    },
+    {
+     "kart": "lx:ledig",
+     "de": "Nein, ich bin ledig.",
+     "tr": "Hayır, bekârım.",
+     "accepted": [
+      "Nein, ich bin ledig.",
+      "Ich bin ledig.",
+      "Nein, ich bin noch ledig."
+     ]
+    },
+    {
+     "kart": "lx:ledig",
+     "de": "Ist Tobi ledig?",
+     "tr": "Tobi bekâr mı?",
+     "accepted": [
+      "Ist Tobi ledig?",
+      "Ist Tobi noch ledig?",
+      "Tobi ist ledig?"
+     ]
+    },
+    {
+     "kart": "lx:Bäckerei",
+     "de": "Ich kaufe in der Bäckerei ein.",
+     "tr": "Fırından alışveriş yapıyorum.",
+     "accepted": [
+      "Ich kaufe in der Bäckerei ein.",
+      "Ich kaufe in der Bäckerei Stadler ein.",
+      "Ich kaufe heute in der Bäckerei ein."
+     ]
+    },
+    {
+     "kart": "lx:Bäckerei",
+     "de": "Frau Brandl kauft in der Bäckerei Stadler ein.",
+     "tr": "Brandl Hanım Stadler fırınından alışveriş yapıyor.",
+     "accepted": [
+      "Frau Brandl kauft in der Bäckerei Stadler ein.",
+      "Frau Brandl kauft in der Bäckerei ein.",
+      "Frau Brandl kauft bei der Bäckerei Stadler ein."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Apartmanın kapısı, sabah altıyı çeyrek geçe. Alt kattaki komşun Frau Brandl elinde ekmekle geliyor.",
+    "satirlar": [
+     {
+      "r": "ch:brandl",
+      "de": "Guten Morgen! Sie sind aber früh. Wann stehen Sie auf?",
+      "tr": "Günaydın! Ne kadar erkencisiniz. Kaçta kalkıyorsunuz?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Um sechs, Frau Brandl. Und Sie?",
+      "tr": "Altıda Brandl Hanım. Ya siz?"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Ich stehe um fünf auf und kaufe in der Bäckerei ein.",
+      "tr": "Ben beşte kalkıp fırından alışveriş yapıyorum."
+     }
+    ],
+    "soru": {
+     "q_tr": "Frau Brandl sabah ne yapıyor?",
+     "opts": [
+      "Beşte kalkıp fırından alışveriş yapıyor",
+      "Altıda kalkıp işe gidiyor",
+      "Yedide kalkıp televizyon izliyor"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:29:h3",
+   "title_tr": "Tobi hasta",
+   "kartlar": [
+    "lx:Erkältung",
+    "lx:Hals",
+    "lx:Schnupfen",
+    "lx:Krankschreibung",
+    "lx:Sprechstunde",
+    "lx:Krankenkasse"
+   ],
+   "kaliplar": [
+    {
+     "de": "Mein … tut weh.",
+     "tr": "…m ağrıyor."
+    },
+    {
+     "de": "Ich brauche …",
+     "tr": "…ya ihtiyacım var."
+    },
+    {
+     "de": "Rufst du … an?",
+     "tr": "… arar mısın?"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Erkältung",
+     "de": "Ich habe eine Erkältung und Fieber.",
+     "tr": "Soğuk algınlığım ve ateşim var.",
+     "accepted": [
+      "Ich habe eine Erkältung und Fieber.",
+      "Ich habe Fieber und eine Erkältung.",
+      "Ich habe eine Erkältung und auch Fieber."
+     ]
+    },
+    {
+     "kart": "lx:Erkältung",
+     "de": "Hast du eine Erkältung?",
+     "tr": "Soğuk mu aldın?",
+     "accepted": [
+      "Hast du eine Erkältung?",
+      "Hast du auch eine Erkältung?",
+      "Du hast eine Erkältung?"
+     ]
+    },
+    {
+     "kart": "lx:Hals",
+     "de": "Mein Hals tut weh.",
+     "tr": "Boğazım ağrıyor.",
+     "accepted": [
+      "Mein Hals tut weh.",
+      "Der Hals tut mir weh.",
+      "Mir tut der Hals weh."
+     ]
+    },
+    {
+     "kart": "lx:Hals",
+     "de": "Ich habe Schmerzen im Hals.",
+     "tr": "Boğazımda ağrı var.",
+     "accepted": [
+      "Ich habe Schmerzen im Hals.",
+      "Ich habe Halsschmerzen.",
+      "Ich habe im Hals Schmerzen."
+     ]
+    },
+    {
+     "kart": "lx:Schnupfen",
+     "de": "Hast du Schnupfen, Tobi?",
+     "tr": "Nezle misin Tobi?",
+     "accepted": [
+      "Hast du Schnupfen, Tobi?",
+      "Tobi, hast du Schnupfen?",
+      "Hast du auch Schnupfen, Tobi?"
+     ]
+    },
+    {
+     "kart": "lx:Schnupfen",
+     "de": "Nur Schnupfen, kein Fieber.",
+     "tr": "Sadece nezle, ateş yok.",
+     "accepted": [
+      "Nur Schnupfen, kein Fieber.",
+      "Nur Schnupfen und kein Fieber.",
+      "Ich habe nur Schnupfen, kein Fieber."
+     ]
+    },
+    {
+     "kart": "lx:Krankschreibung",
+     "de": "Ich brauche eine Krankschreibung für die Arbeit.",
+     "tr": "İş için hastalık raporuna ihtiyacım var.",
+     "accepted": [
+      "Ich brauche eine Krankschreibung für die Arbeit.",
+      "Für die Arbeit brauche ich eine Krankschreibung.",
+      "Ich brauche für die Arbeit eine Krankschreibung."
+     ]
+    },
+    {
+     "kart": "lx:Krankschreibung",
+     "de": "Hast du eine Krankschreibung?",
+     "tr": "Raporun var mı?",
+     "accepted": [
+      "Hast du eine Krankschreibung?",
+      "Hast du schon eine Krankschreibung?",
+      "Hast du die Krankschreibung?"
+     ]
+    },
+    {
+     "kart": "lx:Sprechstunde",
+     "de": "Die Sprechstunde fängt um acht an.",
+     "tr": "Muayene saati sekizde başlıyor.",
+     "accepted": [
+      "Die Sprechstunde fängt um acht an.",
+      "Die Sprechstunde fängt um acht Uhr an.",
+      "Um acht fängt die Sprechstunde an."
+     ]
+    },
+    {
+     "kart": "lx:Sprechstunde",
+     "de": "Wann fängt die Sprechstunde an?",
+     "tr": "Muayene saati kaçta başlıyor?",
+     "accepted": [
+      "Wann fängt die Sprechstunde an?",
+      "Wann fängt die Sprechstunde heute an?",
+      "Um wie viel Uhr fängt die Sprechstunde an?"
+     ]
+    },
+    {
+     "kart": "lx:Krankenkasse",
+     "de": "Ich rufe heute die Krankenkasse an.",
+     "tr": "Bugün sağlık sigortasını arıyorum.",
+     "accepted": [
+      "Ich rufe heute die Krankenkasse an.",
+      "Heute rufe ich die Krankenkasse an.",
+      "Ich rufe die Krankenkasse heute an."
+     ]
+    },
+    {
+     "kart": "lx:Krankenkasse",
+     "de": "Rufst du die Krankenkasse an, Tobi?",
+     "tr": "Sağlık sigortasını arıyor musun Tobi?",
+     "accepted": [
+      "Rufst du die Krankenkasse an, Tobi?",
+      "Tobi, rufst du die Krankenkasse an?",
+      "Rufst du heute die Krankenkasse an, Tobi?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Telefon, sabah. Tobi seni arıyor, sesi kısık.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Hallo, hier ist Tobi. Ich bin krank.",
+      "tr": "Merhaba, ben Tobi. Hastayım."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Was hast du denn?",
+      "tr": "Neyin var?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Schnupfen und Fieber, und mein Hals tut weh.",
+      "tr": "Nezle ve ateş, bir de boğazım ağrıyor."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Gehst du in die Sprechstunde?",
+      "tr": "Muayeneye gidiyor musun?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi'nin neyi var?",
+     "opts": [
+      "Nezle, ateş ve boğaz ağrısı",
+      "Sadece baş ağrısı",
+      "Sırt ağrısı",
+      "Hiçbir şeyi yok"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:29:h4",
+   "title_tr": "Öğlen: ekmek arası sosis",
+   "kartlar": [
+    "lx:Bratwurst",
+    "lx:Senf",
+    "lx:Pfand",
+    "lx:Fleisch"
+   ],
+   "kaliplar": [
+    {
+     "de": "Mit oder ohne …?",
+     "tr": "…lı mı, …sız mı?"
+    },
+    {
+     "de": "Bekomme ich … zurück?",
+     "tr": "… geri alıyor muyum?"
+    }
+   ],
+   "dersten_sonra": true,
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Bratwurst",
+     "de": "Ich möchte zwei Bratwürste.",
+     "tr": "İki sosis istiyorum.",
+     "accepted": [
+      "Ich möchte zwei Bratwürste.",
+      "Zwei Bratwürste, bitte.",
+      "Ich möchte bitte zwei Bratwürste."
+     ]
+    },
+    {
+     "kart": "lx:Bratwurst",
+     "de": "Eine Bratwurst in der Semmel, bitte.",
+     "tr": "Ekmek arası bir sosis, lütfen.",
+     "accepted": [
+      "Eine Bratwurst in der Semmel, bitte.",
+      "Ich hätte gern eine Bratwurst in der Semmel.",
+      "Eine Bratwurst in der Semmel, bitte schön."
+     ]
+    },
+    {
+     "kart": "lx:Senf",
+     "de": "Ja, mit Senf, bitte.",
+     "tr": "Evet, hardallı olsun, lütfen.",
+     "accepted": [
+      "Ja, mit Senf, bitte.",
+      "Mit Senf, bitte.",
+      "Ja, bitte mit Senf."
+     ]
+    },
+    {
+     "kart": "lx:Senf",
+     "de": "Ich kaufe noch Senf ein.",
+     "tr": "Bir de hardal alıyorum.",
+     "accepted": [
+      "Ich kaufe noch Senf ein.",
+      "Ich kaufe auch Senf ein.",
+      "Ich kaufe noch schnell Senf ein.",
+      "Ich kaufe noch Senf."
+     ]
+    },
+    {
+     "kart": "lx:Pfand",
+     "de": "Bekomme ich das Pfand für die Flasche zurück?",
+     "tr": "Şişenin depozitosunu geri alıyor muyum?",
+     "accepted": [
+      "Bekomme ich das Pfand für die Flasche zurück?",
+      "Bekomme ich für die Flasche das Pfand zurück?",
+      "Bekomme ich das Pfand zurück?"
+     ]
+    },
+    {
+     "kart": "lx:Pfand",
+     "de": "Wie viel Pfand ist auf der Flasche?",
+     "tr": "Şişenin depozitosu ne kadar?",
+     "accepted": [
+      "Wie viel Pfand ist auf der Flasche?",
+      "Wie viel Pfand hat die Flasche?",
+      "Wie viel Pfand ist auf dieser Flasche?"
+     ]
+    },
+    {
+     "kart": "lx:Fleisch",
+     "de": "Ich esse kein Fleisch.",
+     "tr": "Et yemiyorum.",
+     "accepted": [
+      "Ich esse kein Fleisch.",
+      "Ich esse kein Fleisch, danke.",
+      "Nein danke, ich esse kein Fleisch."
+     ]
+    },
+    {
+     "kart": "lx:Fleisch",
+     "de": "Ist das mit Fleisch?",
+     "tr": "Bunda et var mı?",
+     "accepted": [
+      "Ist das mit Fleisch?",
+      "Ist da Fleisch drin?",
+      "Ist das mit Fleisch oder ohne?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Öğle arası. Fırının yanındaki küçük sosis büfesi.",
+    "satirlar": [
+     {
+      "r": "der Verkäufer",
+      "de": "Was darf's sein?",
+      "tr": "Ne alırsınız?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Eine Bratwurst, bitte.",
+      "tr": "Bir sosis, lütfen."
+     },
+     {
+      "r": "der Verkäufer",
+      "de": "Mit oder ohne Senf?",
+      "tr": "Hardallı mı, hardalsız mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Mit Senf, bitte. Was macht das?",
+      "tr": "Hardallı, lütfen. Ne kadar tutuyor?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Sosisi nasıl istiyorsun?",
+     "opts": [
+      "Hardalsız",
+      "Hardallı",
+      "Ekmeksiz"
+     ],
+     "ans": 1
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:29:v1",
+  "title_tr": "Pazartesi sabahı: Tobi nerede?",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Firmanın giriş kapısı. Derya saatine bakıyor, kaşları kalkıyor.",
+    "de": "Guten Morgen! Es ist schon Viertel nach sieben.",
+    "tr": "Günaydın! Saat şimdiden yediyi çeyrek geçiyor."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya duvardaki büyük saati gösteriyor.",
+    "de": "Die Arbeit fängt um sieben an.",
+    "tr": "İş yedide başlıyor."
+   },
+   {
+    "id": "s2b",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya boş kalan dolaba bakıyor.",
+    "de": "Wo ist Tobi?",
+    "tr": "Tobi nerede?"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer elinde dosyalarla hızlı adımlarla geliyor.",
+    "de": "Guten Morgen, Frau Aksoy. Ist Herr Lechner nicht da?",
+    "tr": "Günaydın Aksoy Hanım. Lechner Bey burada değil mi?"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya omuz silkiyor.",
+    "de": "Nein, Tobi ist noch nicht da.",
+    "tr": "Hayır, Tobi henüz gelmedi."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer iç çekip saatine bakıyor.",
+    "de": "Na, er steht immer spät auf.",
+    "tr": "Eh, o hep geç kalkar."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Derya'nın telefonu çalıyor. Ekranda Tobi'nin adı var.",
+    "de": "Hallo, Derya? Hier ist Tobi.",
+    "tr": "Alo, Derya? Ben Tobi."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi yatakta, boynunda kalın bir atkı, sesi kısık.",
+    "de": "Ich bin krank. Ich habe eine Erkältung.",
+    "tr": "Hastayım. Soğuk algınlığım var."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi burnunu siliyor, boğazını tutuyor.",
+    "de": "Mein Hals tut weh, und ich habe Schnupfen.",
+    "tr": "Boğazım ağrıyor, bir de nezleyim."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya üzgün bir yüzle telefonu kulağına bastırıyor.",
+    "de": "Ach nein! Gehst du zum Arzt?",
+    "tr": "Hay aksi! Doktora gidiyor musun?"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi komodindeki saate bakıyor: yedi yirmi.",
+    "de": "Ja, um acht ist Sprechstunde.",
+    "tr": "Evet, muayene saati sekizde."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi yorgun yorgun başını yastığa koyuyor.",
+    "de": "Ich brauche eine Krankschreibung.",
+    "tr": "Hastalık raporuna ihtiyacım var."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya telefonu kapatıp Herr Wimmer'e dönüyor.",
+    "de": "Herr Wimmer, Tobi ist krank. Er hat eine Erkältung.",
+    "tr": "Wimmer Bey, Tobi hasta. Soğuk algınlığı var."
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer başını sallıyor, bir şey not ediyor.",
+    "de": "Ach so. Wann kommt er wieder?",
+    "tr": "Anladım. Ne zaman geri geliyor?"
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya ellerini iki yana açıyor.",
+    "de": "Vielleicht am Mittwoch.",
+    "tr": "Belki çarşamba."
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:wimmer",
+    "sahne_tr": "Herr Wimmer saatine bakıp ellerini çırpıyor.",
+    "de": "Gut. Wie spät ist es? Halb acht! Also, an die Arbeit!",
+    "tr": "Peki. Saat kaç? Yedi buçuk! Hadi, işe!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s2b",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s15"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu sahnede ne oluyor?",
+     "opts": [
+      "Tobi hasta, bugün işe gelmiyor",
+      "Tobi geç kalıyor ama geliyor",
+      "Herr Wimmer hasta"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s7",
+      "s12"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "İş saat kaçta başlıyor?",
+      "opts": [
+       "sekizde",
+       "yedide",
+       "yedi buçukta"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi'nin neye ihtiyacı var?",
+      "opts": [
+       "Hastalık raporuna",
+       "Yeni bir telefona",
+       "Bir randevuya"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Derya'ya göre Tobi ne zaman dönebilir?",
+      "opts": [
+       "Yarın",
+       "Cuma",
+       "Belki çarşamba"
+      ],
+      "ans": 2,
+      "kanit": [
+       "s14"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s10",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "sechs",
+       "acht",
+       "elf"
+      ],
+      "ans": 1
+     },
+     {
+      "id": "d2",
+      "cumle": "s5",
+      "seviye": "orta",
+      "de": "Na, er steht immer ___ auf.",
+      "accepted": [
+       "spät",
+       "Spät",
+       "spät."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s2",
+      "seviye": "zor",
+      "banka": [
+       "Die",
+       "Arbeit",
+       "fängt",
+       "um",
+       "sieben",
+       "an",
+       "auf",
+       "acht"
+      ],
+      "accepted": [
+       "Die Arbeit fängt um sieben an.",
+       "die arbeit fängt um sieben an",
+       "Die Arbeit fängt um sieben an"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s4",
+      "seviye": "usta",
+      "accepted": [
+       "Nein, Tobi ist noch nicht da.",
+       "nein tobi ist noch nicht da",
+       "Nein, Tobi ist noch nicht da"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Sahnede ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Tobi hat eine Erkältung. Er kommt heute nicht.",
+      "zorunlu": [
+       "Tobi",
+       "Erkältung"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s5"
+    ],
+    "cevapla": {
+     "id": "m1:29:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Derya sana dönüp soruyor. Sen her gün altıda kalkıyorsun.",
+     "prompt_de": "Und du? Wann stehst du auf?",
+     "accepted": [
+      "Ich stehe um sechs auf.",
+      "Ich stehe um sechs Uhr auf.",
+      "Um sechs.",
+      "Um sechs Uhr.",
+      "Ich stehe immer um sechs auf.",
+      "Um sechs stehe ich auf.",
+      "Ich stehe jeden Tag um sechs auf.",
+      "Ich stehe immer um sechs Uhr auf."
+     ],
+     "why_tr": "Fiilin küçük parçası **auf** cümlenin en sonuna gider: **Ich stehe um sechs auf.**"
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:29:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Herr Wimmer'den sesli mesaj",
+   "ortam_tr": "Akşam telefonuna bakıyorsun. Şefin Herr Wimmer bir mesaj bırakmış.",
+   "speaker": "ch:wimmer",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Abend, hier ist Stefan Wimmer.",
+     "tr": "İyi akşamlar, ben Stefan Wimmer."
+    },
+    {
+     "id": "c2",
+     "de": "Herr Lechner ist morgen noch krank.",
+     "tr": "Lechner Bey yarın da hasta."
+    },
+    {
+     "id": "c3",
+     "de": "Morgen fängt die Arbeit schon um sechs Uhr an.",
+     "tr": "Yarın iş daha saat altıda başlıyor."
+    },
+    {
+     "id": "c4",
+     "de": "Können Sie bitte um Viertel vor sechs da sein?",
+     "tr": "Lütfen altıya çeyrek kala burada olabilir misiniz?"
+    },
+    {
+     "id": "c5",
+     "de": "Danke, bis morgen früh!",
+     "tr": "Teşekkürler, yarın sabah görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Herr Wimmer neden arıyor?",
+      "opts": [
+       "Yarın iş yok",
+       "Yarın iş daha erken başlıyor",
+       "Yarın toplantı var"
+      ],
+      "ans": 1,
+      "kanit": [
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Yarın iş saat kaçta başlıyor?",
+       "opts": [
+        "altıda",
+        "yedide",
+        "beşte"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Herr Wimmer seni kaçta işte görmek istiyor?",
+       "opts": [
+        "altıyı çeyrek geçe",
+        "altıya çeyrek kala",
+        "beşte"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "müde",
+        "krank",
+        "spät"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Morgen fängt die Arbeit schon um ___ Uhr an.",
+       "accepted": [
+        "sechs",
+        "Sechs",
+        "sechs."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Herr",
+        "Lechner",
+        "ist",
+        "morgen",
+        "noch",
+        "krank",
+        "heute",
+        "nicht"
+       ],
+       "accepted": [
+        "Herr Lechner ist morgen noch krank.",
+        "herr lechner ist morgen noch krank",
+        "Herr Lechner ist morgen noch krank"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Können Sie bitte um Viertel vor sechs da sein?",
+        "können sie bitte um viertel vor sechs da sein",
+        "Können Sie bitte um Viertel vor sechs da sein"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajda ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Morgen fängt die Arbeit um sechs an. Tobi ist noch krank.",
+       "zorunlu": [
+        "sechs",
+        "krank"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:29:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Herr Wimmer'e cevap veriyorsun. Olur diyorsun, beşte kalkacaksın.",
+      "prompt_de": "Können Sie um Viertel vor sechs da sein?",
+      "accepted": [
+       "Ja, das geht. Ich stehe um fünf auf.",
+       "Ja, kein Problem. Ich stehe um fünf auf.",
+       "Ja, das geht.",
+       "Ja, natürlich. Ich stehe um fünf Uhr auf.",
+       "Ja, ich bin um Viertel vor sechs da.",
+       "Ja, klar. Ich stehe um fünf auf.",
+       "Ja, das geht, ich stehe um fünf auf.",
+       "Ja, das passt. Ich stehe um fünf auf."
+      ],
+      "why_tr": "Önce **Ja, das geht** de. Sonra kaçta kalktığını söyle."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:29:a1:e1",
+    "k": "pick",
+    "q_tr": "Yarın sabah ne yapmalısın?",
+    "opts": [
+     "Her zamanki gibi yedide işte ol.",
+     "Erken kalk, altıya çeyrek kala işte ol.",
+     "Tobi'yi alıp birlikte gel."
+    ],
+    "ans": 1,
+    "why_tr": "Yarın iş altıda başlıyor. Herr Wimmer seni altıya çeyrek kala bekliyor.",
+    "kanit": [
+     "c3",
+     "c4"
+    ]
+   }
+  },
+  {
+   "id": "m1:29:a2",
+   "tur": "radyo",
+   "title_tr": "Sabah radyosu",
+   "ortam_tr": "Sabah kahvaltıda yerel radyo açık. Sunucu kısa bir sağlık notu veriyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Morgen, Wendlfing! Es ist sechs Uhr.",
+     "tr": "Günaydın Wendlfing! Saat altı."
+    },
+    {
+     "id": "c2",
+     "de": "Im Winter haben die Leute oft Schnupfen.",
+     "tr": "Kışın insanlar sık sık nezle oluyor."
+    },
+    {
+     "id": "c3",
+     "de": "Haben Sie Schnupfen oder Fieber?",
+     "tr": "Nezle misiniz ya da ateşiniz mi var?"
+    },
+    {
+     "id": "c4",
+     "de": "Dann bleiben Sie heute zu Hause.",
+     "tr": "O zaman bugün evde kalın."
+    },
+    {
+     "id": "c5",
+     "de": "Die Praxen haben ab acht Uhr Sprechstunde.",
+     "tr": "Muayenehaneler saat sekizden itibaren hasta kabul ediyor."
+    },
+    {
+     "id": "c6",
+     "de": "Und jetzt: Musik!",
+     "tr": "Ve şimdi: müzik!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne öneriyor?",
+      "opts": [
+       "Hastaysan evde kal",
+       "Bugün erken işe git",
+       "Otobüse binme"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Muayene saatleri kaçta başlıyor?",
+       "opts": [
+        "altıda",
+        "sekizde",
+        "yedide"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c5"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Radyoya göre saat kaç?",
+       "opts": [
+        "altı",
+        "yedi",
+        "sekiz"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c1"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c5",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "sieben",
+        "acht",
+        "zehn"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Im Winter haben die Leute oft ___.",
+       "accepted": [
+        "Schnupfen",
+        "schnupfen",
+        "Schnupfen."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Haben",
+        "Sie",
+        "Schnupfen",
+        "oder",
+        "Fieber",
+        "und",
+        "Hals"
+       ],
+       "accepted": [
+        "Haben Sie Schnupfen oder Fieber?",
+        "haben sie schnupfen oder fieber",
+        "Haben Sie Schnupfen oder Fieber"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Dann bleiben Sie heute zu Hause.",
+        "dann bleiben sie heute zu hause",
+        "Dann bleiben Sie heute zu Hause"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyoda ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Die Leute haben oft Schnupfen. Die Praxen haben ab acht Sprechstunde.",
+       "zorunlu": [
+        "Schnupfen",
+        "acht"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:29:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Derya muayene saatini soruyor. Radyoda duydun.",
+      "prompt_de": "Wann ist Sprechstunde?",
+      "accepted": [
+       "Ab acht Uhr.",
+       "Um acht Uhr.",
+       "Ab acht.",
+       "Um acht.",
+       "Die Sprechstunde ist ab acht Uhr.",
+       "Die Sprechstunde fängt um acht Uhr an.",
+       "Sie fängt um acht an.",
+       "Ab acht Uhr ist Sprechstunde."
+      ],
+      "why_tr": "Saatin önüne **ab** gelirse o saatten itibaren demektir: **ab acht Uhr**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:29:a2:e1",
+    "k": "pick",
+    "q_tr": "Ateşin var. Ne yapmalısın?",
+    "opts": [
+     "İşe git, öğlen doktoru ara.",
+     "Evde kal, sekizden sonra muayenehaneyi ara.",
+     "Saat altıda muayenehaneye git."
+    ],
+    "ans": 1,
+    "why_tr": "Radyo ateşi olanlara evde kalmayı söylüyor. Muayene saati sekizde başlıyor.",
+    "kanit": [
+     "c3",
+     "c4",
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:29:g1",
+   "de": "Bratwurst",
+   "dogru_img": "grilled bratwurst sausage in a bread roll",
+   "celdirici_img": [
+    "pretzel on a plate",
+    "slice of cheese",
+    "red apple"
+   ]
+  },
+  {
+   "id": "m1:29:g2",
+   "de": "Senf",
+   "dogru_img": "open jar of yellow mustard",
+   "celdirici_img": [
+    "jar of honey",
+    "bottle of ketchup",
+    "butter dish"
+   ]
+  },
+  {
+   "id": "m1:29:g3",
+   "de": "Lampe",
+   "dogru_img": "ceiling lamp switched on",
+   "celdirici_img": [
+    "wall clock",
+    "wooden chair",
+    "wardrobe"
+   ]
+  },
+  {
+   "id": "m1:29:g4",
+   "de": "Bad",
+   "dogru_img": "small bathroom with shower and sink",
+   "celdirici_img": [
+    "kitchen with stove",
+    "bedroom with bed",
+    "living room with sofa"
+   ]
+  },
+  {
+   "id": "m1:29:g5",
+   "de": "Bäckerei",
+   "dogru_img": "bakery counter with bread and pretzels",
+   "celdirici_img": [
+    "pharmacy counter",
+    "butcher shop counter",
+    "supermarket checkout"
+   ]
+  },
+  {
+   "id": "m1:29:g6",
+   "de": "Fleisch",
+   "dogru_img": "raw meat on a butcher counter",
+   "celdirici_img": [
+    "fresh vegetables",
+    "loaves of bread",
+    "cheese wheel"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:29:p1",
+  "title_tr": "Tobi akşam arıyor",
+  "durum_tr": "Akşam. Hasta olan Tobi seni arıyor. Yarın iş altıda başlıyor, Tobi bunu bilmiyor.",
+  "karsi": "ch:lechner",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Hallo, hier ist Tobi! Na, wie geht's?",
+    "tr": "Merhaba, ben Tobi! Eee, nasılsın?",
+    "secenekler": [
+     {
+      "de": "Hallo, Tobi! Bist du noch krank?",
+      "tr": "Merhaba Tobi! Hâlâ hasta mısın?",
+      "accepted": [
+       "Hallo, Tobi! Bist du noch krank?",
+       "Hallo Tobi! Bist du noch krank?",
+       "Hallo, Tobi! Bist du immer noch krank?",
+       "Hallo, Tobi! Wie geht es dir? Bist du noch krank?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Hasta arkadaşına önce nasıl olduğunu sordun."
+     },
+     {
+      "de": "Gut, danke! Und dir?",
+      "tr": "İyiyim, sağ ol! Ya sen?",
+      "accepted": [
+       "Gut, danke! Und dir?",
+       "Gut, danke. Und dir?",
+       "Danke, gut! Und dir?",
+       "Mir geht es gut. Und dir?",
+       "Gut! Und wie geht es dir?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. **Und dir?** ile Tobi'ye de sordun."
+     },
+     {
+      "de": "Ich habe keine Zeit.",
+      "tr": "Vaktim yok.",
+      "accepted": [
+       "Ich habe keine Zeit.",
+       "Ich habe jetzt keine Zeit.",
+       "Keine Zeit.",
+       "Ich habe heute keine Zeit."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Tobi hasta ve seni arıyor. Önce nasıl olduğunu sor."
+     }
+    ]
+   },
+   {
+    "id": "n1b",
+    "de": "Keine Zeit? Na gut. Nur kurz, bitte!",
+    "tr": "Vaktin yok mu? Peki. Sadece kısaca, lütfen!",
+    "secenekler": [
+     {
+      "de": "Ja, klar. Wie geht es dir?",
+      "tr": "Tabii. Nasılsın?",
+      "accepted": [
+       "Ja, klar. Wie geht es dir?",
+       "Klar. Wie geht es dir?",
+       "Ja, klar. Wie geht's dir?",
+       "Ja, klar. Bist du noch krank?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Şimdi oldu. Tobi'nin hâlini sordun."
+     },
+     {
+      "de": "Nein, heute nicht.",
+      "tr": "Hayır, bugün olmaz.",
+      "accepted": [
+       "Nein, heute nicht.",
+       "Heute nicht.",
+       "Nein, heute nicht, Tobi.",
+       "Nein, nicht heute."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Tobi'nin isteği kısa. Bir cümleyle nasıl olduğunu sor."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Na ja, es geht. Morgen komme ich wieder. Wann fängt die Arbeit an?",
+    "tr": "Eh, idare eder. Yarın geri geliyorum. İş kaçta başlıyor?",
+    "secenekler": [
+     {
+      "de": "Um sechs Uhr. Ich stehe um fünf auf.",
+      "tr": "Saat altıda. Ben beşte kalkıyorum.",
+      "accepted": [
+       "Um sechs Uhr. Ich stehe um fünf auf.",
+       "Um sechs. Ich stehe um fünf auf.",
+       "Um sechs Uhr. Ich stehe um fünf Uhr auf.",
+       "Die Arbeit fängt um sechs an.",
+       "Um sechs Uhr."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Herr Wimmer'in mesajını hatırladın."
+     },
+     {
+      "de": "Morgen schon um sechs!",
+      "tr": "Yarın daha altıda!",
+      "accepted": [
+       "Morgen schon um sechs!",
+       "Morgen um sechs!",
+       "Schon um sechs Uhr!",
+       "Morgen schon um sechs Uhr!"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve doğru. **schon** saatin erken olduğunu gösterir."
+     },
+     {
+      "de": "Um sieben Uhr, wie immer.",
+      "tr": "Saat yedide, her zamanki gibi.",
+      "accepted": [
+       "Um sieben Uhr, wie immer.",
+       "Um sieben, wie immer.",
+       "Wie immer um sieben Uhr.",
+       "Um sieben Uhr."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Herr Wimmer'in mesajına göre iş yarın altıda başlıyor. **sechs** de."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Um sechs?! Ach nein. Wann stehst du auf?",
+    "tr": "Altıda mı?! Olamaz. Sen kaçta kalkıyorsun?",
+    "secenekler": [
+     {
+      "de": "Ich stehe um halb fünf auf.",
+      "tr": "Dört buçukta kalkıyorum.",
+      "accepted": [
+       "Ich stehe um halb fünf auf.",
+       "Um halb fünf.",
+       "Ich stehe morgen um halb fünf auf.",
+       "Um halb fünf stehe ich auf."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **auf** cümlenin en sonunda."
+     },
+     {
+      "de": "Um fünf. Und du?",
+      "tr": "Beşte. Ya sen?",
+      "accepted": [
+       "Um fünf. Und du?",
+       "Um fünf Uhr. Und du?",
+       "Um fünf! Und du, Tobi?",
+       "Ich stehe um fünf auf. Und du?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa cevap da olur. Soruyu Tobi'ye geri sordun."
+     },
+     {
+      "de": "Ich stehe um sieben auf.",
+      "tr": "Yedide kalkıyorum.",
+      "accepted": [
+       "Ich stehe um sieben auf.",
+       "Um sieben.",
+       "Ich stehe um sieben Uhr auf.",
+       "Um sieben Uhr."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "İş altıda başlıyor. Yedide kalkarsan geç kalırsın."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Ich stehe immer zu spät auf! Kannst du mich um halb fünf anrufen?",
+    "tr": "Ben hep çok geç kalkıyorum! Beni dört buçukta arar mısın?",
+    "secenekler": [
+     {
+      "de": "Klar, ich rufe dich um halb fünf an.",
+      "tr": "Tabii, seni dört buçukta ararım.",
+      "accepted": [
+       "Klar, ich rufe dich um halb fünf an.",
+       "Ja, klar. Ich rufe dich um halb fünf an.",
+       "Ja, ich rufe dich um halb fünf an.",
+       "Klar, ich rufe dich an.",
+       "Kein Problem, ich rufe dich um halb fünf an."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. **an** yine cümlenin sonunda."
+     },
+     {
+      "de": "Ja, kein Problem. Bis morgen!",
+      "tr": "Evet, sorun değil. Yarın görüşürüz!",
+      "accepted": [
+       "Ja, kein Problem. Bis morgen!",
+       "Kein Problem. Bis morgen!",
+       "Ja, klar. Bis morgen!",
+       "Ja, kein Problem, Tobi. Bis morgen!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Sabah Tobi'yi aramayı unutma!"
+     },
+     {
+      "de": "Ja, ich rufe dich um sieben an.",
+      "tr": "Evet, seni yedide ararım.",
+      "accepted": [
+       "Ja, ich rufe dich um sieben an.",
+       "Ich rufe dich um sieben an.",
+       "Ja, um sieben rufe ich dich an.",
+       "Ja, ich rufe dich um sieben Uhr an."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Yedi çok geç. Tobi dört buçukta aranmak istiyor."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Danke! Du bist echt lieb. Bis morgen!",
+    "tr": "Sağ ol! Çok tatlısın. Yarın görüşürüz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Hasta arkadaşının hâlini sordun, kalkış saatini söyledin ve sabah aramayı kabul ettin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Tobi'den mesaj",
+  "metin_de": "Hallo {name}, hier ist Tobi. Ich bin krank: Ich habe Schnupfen und mein Hals tut weh. Um acht gehe ich in die Sprechstunde. Ich brauche auch eine Krankschreibung. Morgen komme ich vielleicht wieder. Ich rufe dich heute Abend an!",
+  "metin_tr": "Merhaba {name}, ben Tobi. Hastayım: nezleyim ve boğazım ağrıyor. Sekizde muayeneye gidiyorum. Bir de hastalık raporuna ihtiyacım var. Belki yarın geri gelirim. Bu akşam seni ararım!",
+  "sorular": [
+   {
+    "id": "m1:29:o1",
+    "kind": "gist",
+    "q_tr": "Tobi neden yazıyor?",
+    "opts": [
+     "Hasta, bugün işe gelemiyor",
+     "Seni yemeğe çağırıyor",
+     "İşe geç kalıyor"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:29:o2",
+    "kind": "detail",
+    "q_tr": "Tobi saat kaçta muayeneye gidiyor?",
+    "opts": [
+     "yedide",
+     "sekizde",
+     "on ikide"
+    ],
+    "ans": 1,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:29:o3",
+    "kind": "detail",
+    "q_tr": "Tobi'nin neyi var?",
+    "opts": [
+     "Nezle ve boğaz ağrısı",
+     "Ateş ve sırt ağrısı",
+     "Baş ağrısı"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:29:o4",
+    "kind": "detail",
+    "q_tr": "Tobi seni ne zaman arıyor?",
+    "opts": [
+     "Yarın sabah",
+     "Bu akşam",
+     "Öğlen"
+    ],
+    "ans": 1,
+    "kanit": [
+     5
+    ]
+   },
+   {
+    "id": "m1:29:o5",
+    "k": "guided_response",
+    "situation_tr": "Tobi'ye kısa bir cevap ver. Bu akşam evdesin.",
+    "prompt_de": "Ich rufe dich heute Abend an!",
+    "accepted": [
+     "Okay, ich bin heute Abend zu Hause.",
+     "Gut, ich bin heute Abend zu Hause.",
+     "Ja, okay! Ich bin heute Abend zu Hause.",
+     "Okay, bis heute Abend!",
+     "Gut, bis heute Abend!",
+     "Alles klar, bis heute Abend!",
+     "Okay, Tobi. Ich bin heute Abend zu Hause."
+    ],
+    "why_tr": "Bu akşam derken **heute Abend** dersin."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:29:s",
+  "maddeler": [
+   {
+    "id": "m1:29:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Ich stehe am Montag um halb sechs auf.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Ich stehe am Montag um halb sechs auf.",
+     "ich stehe am montag um halb sechs auf",
+     "Ich stehe am Montag um halb sechs auf"
+    ],
+    "why_tr": "Küçük parça **auf** cümlenin en sonunda duruyor."
+   },
+   {
+    "id": "m1:29:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Frau Brandl kauft am Samstag in der Bäckerei ein.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Frau Brandl kauft am Samstag in der Bäckerei ein.",
+     "frau brandl kauft am samstag in der bäckerei ein",
+     "Frau Brandl kauft am Samstag in der Bäckerei ein"
+    ],
+    "why_tr": "**kauft** ikinci yerde, **ein** en sonda."
+   },
+   {
+    "id": "m1:29:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Die Sprechstunde fängt am Montag um acht Uhr an.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Sprechstunde fängt am Montag um acht Uhr an.",
+     "die sprechstunde fängt am montag um acht uhr an",
+     "Die Sprechstunde fängt am Montag um acht Uhr an"
+    ],
+    "why_tr": "**fängt** ikinci yerde, **an** en sonda."
+   },
+   {
+    "id": "m1:29:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Eine Bratwurst mit Senf kostet drei Euro.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Eine Bratwurst mit Senf kostet drei Euro.",
+     "eine bratwurst mit senf kostet drei euro",
+     "Eine Bratwurst mit Senf kostet drei Euro"
+    ],
+    "why_tr": "**mit Senf** hardallı demektir."
+   },
+   {
+    "id": "m1:29:s5",
+    "k": "tr_de",
+    "tr": "Saat altı buçukta kalkıyorum.",
+    "accepted": [
+     "Ich stehe um halb sieben auf.",
+     "Ich stehe um sechs Uhr dreißig auf.",
+     "Um halb sieben stehe ich auf.",
+     "Ich stehe immer um halb sieben auf."
+    ],
+    "why_tr": "Altı buçuk derken **halb sieben** dersin. **auf** en sona gider."
+   },
+   {
+    "id": "m1:29:s6",
+    "k": "tr_de",
+    "tr": "Nezleyim ve boğazım ağrıyor.",
+    "accepted": [
+     "Ich habe Schnupfen und mein Hals tut weh.",
+     "Ich habe Schnupfen, und mein Hals tut weh.",
+     "Ich habe Schnupfen und der Hals tut mir weh.",
+     "Ich habe Schnupfen und Halsschmerzen.",
+     "Ich habe Schnupfen und mir tut der Hals weh."
+    ],
+    "why_tr": "Boğaz ağrısı için **Mein Hals tut weh** dersin."
+   },
+   {
+    "id": "m1:29:s7",
+    "k": "tr_de",
+    "tr": "Saat kaç? Yediyi çeyrek mi geçiyor?",
+    "accepted": [
+     "Wie spät ist es? Viertel nach sieben?",
+     "Wie spät ist es? Ist es Viertel nach sieben?",
+     "Wie viel Uhr ist es? Viertel nach sieben?",
+     "Wie spät ist es? Ist es schon Viertel nach sieben?"
+    ],
+    "why_tr": "Saati sorarken **Wie spät ist es?** dersin."
+   },
+   {
+    "id": "m1:29:s8",
+    "k": "tr_de",
+    "tr": "Muayenehaneyi saat sekizde arıyorum.",
+    "accepted": [
+     "Ich rufe die Praxis um acht an.",
+     "Ich rufe um acht die Praxis an.",
+     "Ich rufe die Praxis um acht Uhr an.",
+     "Um acht rufe ich die Praxis an.",
+     "Um acht Uhr rufe ich die Praxis an.",
+     "Ich rufe um acht Uhr die Praxis an."
+    ],
+    "why_tr": "**rufe** ikinci yerde, **an** en sonda."
+   },
+   {
+    "id": "m1:29:s9",
+    "k": "guided_response",
+    "situation_tr": "Herr Wimmer kaçta kalktığını soruyor. Beşte kalkıyorsun.",
+    "prompt_de": "Wann stehen Sie auf?",
+    "accepted": [
+     "Ich stehe um fünf Uhr auf.",
+     "Ich stehe um fünf auf.",
+     "Um fünf Uhr.",
+     "Um fünf.",
+     "Ich stehe immer um fünf auf.",
+     "Um fünf Uhr stehe ich auf."
+    ],
+    "why_tr": "Küçük parça **auf** en sonda: **Ich stehe um fünf auf.**"
+   },
+   {
+    "id": "m1:29:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Wann fängt die Arbeit morgen an?",
+    "speed": "normal",
+    "situation_tr": "İş yarın yedide başlıyor. Cevap ver.",
+    "accepted": [
+     "Die Arbeit fängt morgen um sieben an.",
+     "Um sieben Uhr.",
+     "Um sieben.",
+     "Morgen um sieben.",
+     "Sie fängt um sieben an.",
+     "Die Arbeit fängt um sieben Uhr an."
+    ],
+    "why_tr": "**fängt** ikinci yerde, **an** en sonda."
+   },
+   {
+    "id": "m1:29:s11",
+    "k": "guided_response",
+    "situation_tr": "Tobi molada soruyor. Altıda kalkıyorsun, iş yedide başlıyor.",
+    "prompt_de": "Wann stehst du auf? Und wann fängt die Arbeit an?",
+    "accepted": [
+     "Ich stehe um sechs auf. Die Arbeit fängt um sieben an.",
+     "Ich stehe um sechs Uhr auf. Die Arbeit fängt um sieben Uhr an.",
+     "Um sechs. Die Arbeit fängt um sieben an.",
+     "Ich stehe um sechs auf, und die Arbeit fängt um sieben an.",
+     "Um sechs Uhr. Und die Arbeit fängt um sieben an.",
+     "Ich stehe um sechs auf. Um sieben fängt die Arbeit an."
+    ],
+    "why_tr": "Önce kalkış saatini, sonra işin başladığı saati söyle."
+   }
+  ],
+  "sesli": [
+   "m1:29:s9",
+   "m1:29:s10"
+  ],
+  "dikte": [
+   "m1:29:s1",
+   "m1:29:s2",
+   "m1:29:s3",
+   "m1:29:s4"
+  ]
+ }
+}
