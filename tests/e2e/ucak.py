@@ -90,7 +90,7 @@ def main():
             ("listening", "[data-test=to-questions], button.opt"), ("dialogue", "[data-test=next], [data-test=answer]"), ("roleplay", "[data-test=rp-start]")]]
         walk += [(f"#/call/{SC}", "[data-test=call]")]
         # 5. toplu (JS bütçesi): akış ekranı ayrı parçada (`import()`); parça kabuk önbelleğinden internetsiz gelir
-        walk += [("#/akis/2", "[data-test=akis], [data-test=akis-degil]")]
+        walk += [("#/akis/1", "[data-test=akis]"), ("#/akis/2", "[data-test=akis]")]  # bayrak PR md. 9: 1. gün akışı internetsiz (fikstür gerçek halkaları alır)
         bad = []
         for h, sel in walk:
             pg.goto(base + h)
