@@ -94,3 +94,56 @@ Dosyada GERİ olduğu için "reviewed" sayılamaz (OD-9.4).
 - GERİ: 0
 
 Okur kapısı (OD-9.3) açısından batch-a2-06 "reviewed" olabilir.
+
+---
+
+## Fark turu (İÇ-K3, 2026-11-23): yeni ve değişen Türkçe satırlar
+
+- Girdi: `content/v2/registry/lexicon/batch-a2-06.json` ve `batch-a2-05.json` içindeki `lx:Zentrum`.
+- Yalnız baş geliştiricinin verdiği satırlar okundu. `lx:drücken` kartı yeni olduğu için bütün Türkçesi okundu. Her satır kendi kartıyla birlikte okundu.
+- İçeriğe dokunulmadı. Öneriler yazar/dilbilimci içindir.
+
+| öğe kimliği | alan | açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| `lx:drücken` | `tr` | basmak (tuşa, düğmeye), bastırmak, itmek (kapıyı) | Tuşa ya da düğmeye basmak, bir yeri bastırmak, kapıyı itmek. | GEÇTİ | Kartın bütün örnekleriyle örtüşüyor. |
+| `lx:drücken` | `collocations[0].tr` | bire basmak | Telefonda 1 tuşuna basmak. | GEÇTİ | **die Eins drücken** ile örtüşüyor. |
+| `lx:drücken` | `collocations[1].tr` | ışık düğmesine basmak | Duvardaki ışık düğmesine basmak. | GEÇTİ | `lx:Schalter` kartındaki "(ışık) düğmesi" anlamıyla tutarlı. |
+| `lx:drücken` | `collocations[2].tr` | zile basmak | Kapının zilini çalmak için basmak. | GEÇTİ | **auf die Klingel drücken** ile örtüşüyor. |
+| `lx:drücken` | `mistakes_tr[0]` | Kapıda **Drücken** yazınca kapıyı çekmek yanlış. **Drücken** burada itmek demektir, çekmek **ziehen** olur. | Kapıda **Drücken** yazıyorsa kapıyı iterim, çekmem. Çekmek için **Ziehen** yazar. | GEÇTİ | Tek fikir (itmek ile çekmek). Cümleler 7'şer kelime. Almanya'daki kapı yazılarıyla örtüşüyor. |
+| `lx:drücken` | `mistakes_tr[1]` | Bire basın derken **Drücken Sie der Eins** yanlış. Türkçede **bire** dersin, Almancada sayı **die Eins** olarak kalır. Doğrusu **Drücken Sie die Eins**. | Türkçede "bire" deriz ama Almancada sayı değişmez, **die Eins** der kalır. | GEÇTİ | Tek fikir. En uzun cümle 10 kelime. Örnek 1 ile örtüşüyor. |
+| `lx:drücken` | `examples[0].tr` | Almanca için lütfen bire basın. | Almanca istiyorsan 1'e bas. | GEÇTİ | Almancasıyla örtüşüyor. |
+| `lx:drücken` | `examples[1].tr` | Faturayla ilgili sorular için lütfen üçe basın. | Fatura sorusu varsa 3'e bas. | GEÇTİ | Almancasıyla örtüşüyor. |
+| `lx:drücken` | `examples[2].tr` | Üç kere bire bastım ama hiçbir şey olmuyor. | 1'e üç kez bastım, bir şey çıkmadı. | GEÇTİ | **da kommt nix** doğal karşılanmış. |
+| `lx:drücken` | `examples[3].tr` | – Hangi numaraya basmam gerekiyor? – İkiye, o zaman müşteri hizmetlerine bağlanırsın. | Hangi tuşa basayım? 2'ye bas, müşteri hizmetlerine geçersin. | GEÇTİ | Almancasıyla örtüşüyor. |
+| `lx:drücken` | `examples[4].tr` | – Buraya bastırınca acıyor mu? – Evet, orası acıyor. | Doktor bir yere bastırıp acıyor mu diye soruyor, ben evet diyorum. | GEÇTİ | Doktordaki "bastırmak" anlamını iyi gösteriyor. |
+| `lx:drücken` | `examples[5].tr` | Bire mi ikiye mi basmam gerektiğini biliyor musunuz? | 1'e mi 2'ye mi basayım, biliyor musunuz diye soruyorum. | GEÇTİ | Almancasıyla örtüşüyor. |
+| `lx:drücken` | `exp.anlam_tr` | **drücken** bir tuşa ya da düğmeye basmak, bir yere bastırmaktır. | Tuşa, düğmeye ya da bir yere basmak. | GEÇTİ | Tek fikir (basmak). 9 kelime. |
+| `lx:drücken` | `exp.ne_zaman_tr` | Telefonda bilgi hattını ararken, kapıda ve doktorda. | Telefon menüsünde, kapı açarken ve doktorda kullanılır. | GEÇTİ | Kartın örnekleriyle ve alanlarıyla örtüşüyor. |
+| `lx:drücken` | `exp.ipucu_tr` | Telefonda **Drücken Sie die Zwei** duyarsan ikiye basarsın, sayının önünde hep **die** durur. | Telefonda bunu duyunca 2'ye basarım. Bir de sayının önüne hep **die** gelirmiş. | GERİ | İki fikir var. Birincisi "bunu duyunca ne yaparsın", ikincisi "sayının önünde hep **die** durur" kuralı. Virgülle tek cümleye bağlanmış. Yorgun okurken ikinci kural birinciyi gölgeliyor. Kural zaten `mistakes_tr[1]`de var. Öneri: tek fikir kalsın. Örneğin yalnız "Telefonda **Drücken Sie die Zwei** duyarsan ikiye basarsın." ya da yalnız sayının önündeki **die**. |
+| `lx:drücken` | `forms[0].tr` | Almanca için lütfen bire basın. | Almanca için 1'e bas. | GEÇTİ | Cümleyle örtüşüyor. |
+| `lx:drücken` | `forms[0].hint_tr` | Basın derken **drücken Sie** denir. | "Basın" demek için **drücken Sie** derim. | GEÇTİ | Kısa, tek fikir. |
+| `lx:drücken` | `forms[1].tr` | Üç kere bire bastım. | 1'e üç kez bastım. | GEÇTİ | Cümleyle örtüşüyor. |
+| `lx:drücken` | `forms[1].hint_tr` | Bastım derken **Ich habe gedrückt** denir. | "Bastım" demek için **Ich habe gedrückt** derim. | GEÇTİ | Kısa, tek fikir. Boşluktaki **gedrückt** biçimini veriyor. |
+| `lx:drücken` | `forms[2].tr` | Hangi numaraya basmam gerekiyor? | Hangi tuşa basayım? | GEÇTİ | Cümleyle örtüşüyor. |
+| `lx:drücken` | `forms[2].hint_tr` | **muss** ile sona **drücken** gelir. | Cümlede **muss** varsa sona **drücken** gelir, değişmeden. | GEÇTİ | 5 kelime, terim yok. **muss** A2'de bilinen bir kelime. Boşluğa gelecek biçimi açıkça söylüyor. |
+| `lx:drücken` | `forms[3].tr` | Buraya bastırınca acıyor mu? | Buraya bastırırsam acır mı? | GEÇTİ | Cümleyle örtüşüyor. |
+| `lx:drücken` | `forms[3].hint_tr` | **wenn** ile **drücke** en sona gider. | Cümlede **wenn** varsa **drücke** en sona gelir. | GEÇTİ | 6 kelime, terim yok. Biçimi (**drücke**) ve yerini söylüyor. `forms[2]` ile aynı kalıpta, tutarlı. |
+| `lx:Kontostand` | `examples[4].tr` | – Bakiyem ne kadar? – Hesabınızda 820 avro kaldı. | Bakiyemi soruyorum, hesabımda 820 avro var diyorlar. | GEÇTİ | Almancasıyla örtüşüyor. |
+| `lx:Kontostand` | `mistakes_tr[0]` | Türkçede **hesap** hem bankadaki hesap hem lokantada ödenen hesaptır. Hesabında ne kadar para var diye sorarken **Rechnung** deme, o ödeyeceğin hesaptır. Doğrusu **Wie ist mein Kontostand?** | Türkçede "hesap" iki şey demek. Bankadaki paramı sorarken **Rechnung** demem, o ödenecek hesap. | GEÇTİ | Tek fikir (iki "hesap" karışmasın). Cümleler 9 ve 12 kelime. Doğru söz kartın ipucuyla aynı. |
+| `lx:unsicher` | `mistakes_tr[0]` | Telefonda kendimden emin değilim derken **Am Telefon bin ich von mir unsicher** yanlış. Türkçedeki **kendimden** Almancaya geçmez. Doğrusu **Am Telefon bin ich unsicher**. | "Kendimden" sözünü Almancaya çevirmem, yalnız **unsicher** derim. | GEÇTİ | Tek fikir. En uzun cümle 13 kelime. `forms[1]` ile örtüşüyor. |
+| `lx:Zentrum` (a2-05) | `collocations[3].tr` | Wendlfing'in merkezi | Wendlfing şehrinin merkezi. | GEÇTİ | **das Zentrum von Wendlfing** ile örtüşüyor. |
+| `lx:Hotline` | `forms[1].hint_tr` | Yardım hattının numarası derken **Die Nummer von der Hotline** denir. | Yardım hattının numarasını söylemek için **Die Nummer von der Hotline** derim. | GEÇTİ | 10 kelime, tek fikir. Cümleyle ve kartın eşdizimiyle örtüşüyor. |
+| `lx:Öffnungszeiten` (a2-05) | `forms[3].hint_tr` | Vatandaş bürosunun çalışma saatleri derken **Die Öffnungszeiten vom Bürgerbüro** denir. | Vatandaş bürosunun saatlerini söylemek için **Die Öffnungszeiten vom Bürgerbüro** derim. | GEÇTİ | 10 kelime, tek fikir. Cümleyle örtüşüyor. |
+| `lx:Öffnungszeiten` (a2-05) | `forms[4].hint_tr` | Postanenin çalışma saatleri derken **die Öffnungszeiten von der Post** denir. | Postanenin saatlerini söylemek için **die Öffnungszeiten von der Post** derim. | GEÇTİ | 10 kelime, tek fikir. Cümleyle örtüşüyor. |
+
+### Fark turu sayıları
+
+- Okunan satır: 30 (`lx:drücken` 23, `lx:Kontostand` 2, `lx:unsicher` 1, `lx:Zentrum` 1, `lx:Hotline` 1, `lx:Öffnungszeiten` 2)
+- GEÇTİ: 29
+- GERİ: 1
+
+GERİ kimlikleri: `lx:drücken.exp.ipucu_tr`
+
+Bu fark turunda GERİ olduğu için batch-a2-06 "reviewed" sayılamaz (OD-9.4). Düzeltmeden sonra yalnız bu alan yeniden okunur.
+
+- Düzeltme okuması: `lx:drücken.exp.ipucu_tr` "Telefonda **Drücken Sie die Zwei** duyarsan ikiye basarsın." Kendi sözlerimle: telefonda bunu duyunca 2'ye basarım. GEÇTİ (8 kelime, tek fikir, ikinci kural çıkmış). Fark turunda GERİ kalmadı.
