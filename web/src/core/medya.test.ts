@@ -80,3 +80,38 @@ describe("Medya bölüm oynatıcısı (#58 A4, PM-053)", () => {
     expect(gecerliKonum({ ...bastan, b: 99 }, m)).toEqual({ ...BASLANGIC, ilkBitti: true });
   });
 });
+
+describe("dikteSuz (1. gün öğrenci simülasyonu P0-1)", () => {
+  it("cevabında bilinmeyen sözcük geçen dikte basamağı atlanır; öteki basamaklar ve bölümler aynen", async () => {
+    const { dikteSuz, dikteCevabi } = await import("./medya.ts");
+    const dk = [
+      { seviye: "kolay", cumle: "c1", q_tr: "x", opts: ["Freitag", "Montag"], ans: 0 },
+      { seviye: "usta", cumle: "c2", accepted: ["Guten Tag."] },
+      { seviye: "gercek", gorev_tr: "x", ornek_de: "Danke und schönes Wochenende!", zorunlu: [] }
+    ];
+    const m = { bolumler: [{ id: "b1", dikte: dk }] } as never;
+    expect(dk.map((d) => dikteCevabi(d as never))).toEqual(["Freitag", "Guten Tag.", "Danke und schönes Wochenende!"]);
+    const bilinen = new Set(["guten", "tag"]);
+    const s = dikteSuz(m, (de) => de.toLowerCase().replace(/[.!?,]/g, "").split(/\s+/).some((w) => !bilinen.has(w)));
+    expect((s as { bolumler: { dikte: { seviye: string }[] }[] }).bolumler[0]!.dikte.map((d) => d.seviye)).toEqual(["usta"]);
+  });
+  it("PM kararı (a) şart 1: bütün dikte ve 'Sen ne derdin?' basamakları atlansa da ekran boş kalmaz, dinleme + anlama sorusu kalır (gerçek 1. gün ve fikstür)", async () => {
+    const { dikteSuz } = await import("./medya.ts");
+    const gercek = Gun.parse(JSON.parse(readFileSync(join(import.meta.dirname, "../../../content/v2/m1/gun-01.json"), "utf8")));
+    for (const g of [gercek, gun]) for (const m of medyalar(g)) {
+      const s = dikteSuz(m, () => true); // öğrenci hiçbir sözcüğü bilmiyor
+      expect(s.bolumler.length, m.id).toBe(m.bolumler.length);
+      for (const b of s.bolumler) {
+        const a = adimlar(b);
+        expect(a.slice(0, 2), `${m.id}/${b.id}`).toEqual(["dinle", "ana"]);
+        expect(a).not.toContain("dikte");
+        expect(a).not.toContain("cevapla");
+      }
+      // kayıtlı konum atlanan basamağı gösteriyorsa çökmeden geçerli bir konuma düşer
+      const k = gecerliKonum({ ...BASLANGIC, s: 99, k: 2 }, s);
+      expect(k.s).toBeLessThan(adimlar(s.bolumler[k.b]!).length);
+      // hiçbir şey atlanmazsa medya aynen
+      expect(dikteSuz(m, () => false)).toEqual(m);
+    }
+  });
+});
