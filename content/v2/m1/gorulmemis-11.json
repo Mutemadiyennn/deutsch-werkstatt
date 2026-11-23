@@ -1,0 +1,132 @@
+{
+ "id": "m1:gorulmemis:11",
+ "hafta": 11,
+ "durumlar": [
+  {
+   "id": "m1:h11:g1",
+   "can_do": "cd:m1:71",
+   "durum_tr": "Spor salonunun barındasın. Basti nasıl hissettiğini soruyor ve kahve öneriyor. Kendini iyi hissediyorsun; kahveyi sadece yorgun olunca içiyorsun.",
+   "karsi": "ch:kraus",
+   "yer": "pl:fitness",
+   "prompt_de": "Wie fühlst du dich? Willst du einen Kaffee?",
+   "accepted": [
+    "Ich fühle mich gut. Kaffee trinke ich nur, wenn ich müde bin.",
+    "Danke, ich fühle mich gut. Ich trinke nur Kaffee, wenn ich müde bin.",
+    "Ich fühle mich gut, danke. Kaffee nur, wenn ich müde bin.",
+    "Gut! Ich trinke Kaffee nur, wenn ich müde bin.",
+    "Ich fühle mich gut. Ich trinke Kaffee, wenn ich müde bin, und jetzt bin ich nicht müde.",
+    "Danke, nein. Ich fühle mich gut und trinke Kaffee nur, wenn ich müde bin."
+   ],
+   "kalip": "Ich fühle mich … / …, wenn ich müde bin.",
+   "why_tr": "**wenn** parçasında **bin** en sonda."
+  },
+  {
+   "id": "m1:h11:g2",
+   "can_do": "cd:m1:72",
+   "durum_tr": "Haftalık pazarda bir meyve tezgâhındasın. Elmaların indirimde olup olmadığını ve kilosunun kaç olduğunu sor.",
+   "karsi": "ein Verkäufer",
+   "yer": "pl:marktplatz",
+   "prompt_de": "Grüß Gott! Was darf's sein?",
+   "accepted": [
+    "Sind die Äpfel im Angebot? Was kostet das Kilo?",
+    "Grüß Gott! Sind die Äpfel heute im Angebot? Was kostet ein Kilo?",
+    "Sind die Äpfel im Angebot? Wie viel kostet das Kilo?",
+    "Was kostet das Kilo Äpfel? Sind sie im Angebot?",
+    "Sind die Äpfel heute im Angebot? Und was kostet das Kilo?",
+    "Grüß Gott. Was kosten die Äpfel? Sind sie im Angebot?"
+   ],
+   "kalip": "Ist / Sind … im Angebot? Was kostet …?",
+   "why_tr": "İndirim sorusu: **Sind … im Angebot?**"
+  },
+  {
+   "id": "m1:h11:g3",
+   "can_do": "cd:m1:73",
+   "durum_tr": "Spor salonunun dükkânındasın. Dün aldığın ayakkabılar küçük. Fişin var. Değiştirmek istediğini söyle, daha büyük var mı diye sor.",
+   "karsi": "eine Verkäuferin",
+   "yer": "pl:fitness",
+   "prompt_de": "Hallo! Kann ich helfen?",
+   "accepted": [
+    "Ich möchte die Schuhe umtauschen. Sie sind zu klein. Haben Sie noch welche in 43?",
+    "Ja, die Schuhe sind zu klein. Ich möchte sie umtauschen. Haben Sie noch welche?",
+    "Ich möchte die Schuhe umtauschen, sie sind zu klein. Haben Sie welche in 43?",
+    "Ja, bitte. Die Schuhe sind zu klein. Haben Sie noch welche? Den Kassenbon habe ich.",
+    "Ich möchte diese Schuhe umtauschen. Haben Sie noch welche in Größe 43?",
+    "Die Schuhe sind zu klein. Kann ich sie umtauschen? Haben Sie noch welche?"
+   ],
+   "kalip": "Ich möchte … umtauschen. Haben Sie noch welche?",
+   "why_tr": "Çoğul için **welche**: **Haben Sie noch welche?**"
+  },
+  {
+   "id": "m1:h11:g4",
+   "can_do": "cd:m1:74",
+   "durum_tr": "İstasyondaki kafedesin. Trenin birazdan geliyor. Kibarca bir kahve iste ve hemen ödemek istediğini söyle.",
+   "karsi": "ein Kellner",
+   "yer": "pl:bahnhof",
+   "prompt_de": "Was darf ich Ihnen bringen?",
+   "accepted": [
+    "Ich hätte gern einen Kaffee. Ich würde gern gleich zahlen, mein Zug kommt bald.",
+    "Ich hätte gern einen Kaffee, und ich würde gern gleich zahlen.",
+    "Einen Kaffee, bitte. Ich würde gern sofort zahlen, mein Zug kommt gleich.",
+    "Ich hätte gerne einen Kaffee. Ich würde gerne gleich zahlen.",
+    "Ich hätte gern einen Kaffee zum Mitnehmen. Ich würde gern gleich zahlen.",
+    "Ich hätte gern einen Kaffee. Würden Sie bitte gleich kassieren? Mein Zug kommt."
+   ],
+   "kalip": "Ich hätte gern … / Ich würde gern …",
+   "why_tr": "Şey için **hätte gern**, eylem için **würde gern … zahlen**."
+  },
+  {
+   "id": "m1:h11:g5",
+   "can_do": "cd:m1:75",
+   "durum_tr": "Lokantadasın, Basti ile. Sen sosis ve su aldın. Garson soruyor. Ayrı ödüyorsunuz; hesap on üç altmış, on beş verip üstü kalsın de.",
+   "karsi": "ein Kellner",
+   "yer": "pl:marktplatz",
+   "prompt_de": "Zusammen oder getrennt?",
+   "accepted": [
+    "Getrennt, bitte. Ich hatte die Bratwurst und ein Wasser. Machen Sie fünfzehn.",
+    "Getrennt, bitte. Ich hatte eine Bratwurst und ein Wasser. Fünfzehn, stimmt so.",
+    "Getrennt. Die Bratwurst und das Wasser sind von mir. Machen Sie fünfzehn, bitte.",
+    "Getrennt, bitte. Bratwurst und Wasser. Hier sind fünfzehn Euro, stimmt so.",
+    "Bitte getrennt. Ich hatte die Bratwurst und ein Wasser. Machen Sie fünfzehn Euro.",
+    "Getrennt, bitte. Ich zahle die Bratwurst und das Wasser. Stimmt so, fünfzehn."
+   ],
+   "kalip": "Getrennt, bitte. Ich hatte … Machen Sie …",
+   "why_tr": "Bahşişi öderken söylersin: **Machen Sie fünfzehn.**"
+  },
+  {
+   "id": "m1:h11:g6",
+   "can_do": "cd:m1:76",
+   "durum_tr": "Pazar yerinde peynir tezgâhında kuyruk var. Satıcı sıradakini soruyor. Sıra sende; bir parça peynir iste.",
+   "karsi": "eine Verkäuferin",
+   "yer": "pl:marktplatz",
+   "prompt_de": "Wer ist der Nächste?",
+   "accepted": [
+    "Ich bin dran. Ein Stück Käse, bitte.",
+    "Ich! Ich hätte gern ein Stück Käse.",
+    "Ich bin dran. Ich hätte gern ein Stück Käse, bitte.",
+    "Ich glaube, ich bin dran. Ein Stück Käse, bitte.",
+    "Ich bin dran. Ein Stück von dem Käse, bitte.",
+    "Ich bin dran. Einmal Käse, bitte."
+   ],
+   "kalip": "Ich bin dran. … , bitte.",
+   "why_tr": "Sıra bende: **Ich bin dran.**"
+  },
+  {
+   "id": "m1:h11:g7",
+   "can_do": "cd:m1:77",
+   "durum_tr": "Eczanedesin. Kartın geçmiyor. Cüzdanında başka bir kartın var; onu sor.",
+   "karsi": "ein Apotheker",
+   "yer": "pl:apotheke",
+   "prompt_de": "Ihre Karte geht leider nicht.",
+   "accepted": [
+    "Geht es vielleicht mit einer anderen Karte? Ich habe noch eine.",
+    "Kann ich mit einer anderen Karte zahlen? Ich habe noch eine.",
+    "Ich habe noch eine Karte. Geht die vielleicht?",
+    "Oh! Geht es mit einer anderen Karte?",
+    "Dann probiere ich eine andere Karte. Geht das?",
+    "Ich habe noch eine andere Karte. Kann ich damit zahlen?"
+   ],
+   "kalip": "Geht es mit …? Ich habe noch eine.",
+   "why_tr": "Başka yol sorarken **Geht es mit …?**"
+  }
+ ]
+}

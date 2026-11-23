@@ -538,9 +538,9 @@
       "kind": "detail",
       "q_tr": "Herr Wimmer perşembe için ne diyor?",
       "opts": [
-       "Çok iş var, kostüm istemiyor",
-       "Kostümle gelecek",
-       "Ofise hiç gelmeyecek"
+       "Perşembe çok işleri var",
+       "Perşembe ofise gelmeyecek",
+       "Perşembe Krapfen alacak"
       ],
       "ans": 0,
       "kanit": [
@@ -673,8 +673,8 @@
     },
     {
      "id": "c3",
-     "de": "Am Donnerstag feiern die Grundschulen am Vormittag.",
-     "tr": "Perşembe sabahı ilkokullar kutlama yapıyor."
+     "de": "Am Donnerstag feiern die Kinder in der Schule.",
+     "tr": "Perşembe günü çocuklar okulda kutlama yapıyor."
     },
     {
      "id": "c4",
@@ -688,8 +688,8 @@
     },
     {
      "id": "c6",
-     "de": "Bleiben Sie zu Hause, wenn Sie sich nicht gut fühlen.",
-     "tr": "Kendinizi iyi hissetmiyorsanız evde kalın."
+     "de": "Bleiben Sie zu Hause, wenn Sie krank sind.",
+     "tr": "Hastaysanız evde kalın."
     },
     {
      "id": "c7",
@@ -713,24 +713,24 @@
       "kind": "gist",
       "q_tr": "Radyo ne anlatıyor?",
       "opts": [
-       "Bu haftaki Faşing etkinliklerini",
+       "Bu haftanın şehir programını ve havayı",
        "Yeni açılan bir kafeyi",
        "Yol çalışmalarını"
       ],
       "ans": 0,
       "kanit": [
-       "c2",
-       "c4"
+       "c3",
+       "c5"
       ]
      },
      "ayrinti": [
       {
        "kind": "detail",
-       "q_tr": "Perşembe sabahı kim kutlama yapıyor?",
+       "q_tr": "Perşembe günü kim kutlama yapıyor?",
        "opts": [
-        "Lise",
-        "İlkokullar",
-        "Belediye"
+        "Belediye",
+        "Okuldaki çocuklar",
+        "Fırınlar"
        ],
        "ans": 1,
        "kanit": [
@@ -739,7 +739,7 @@
       },
       {
        "kind": "detail",
-       "q_tr": "Kendini iyi hissetmeyen ne yapmalı?",
+       "q_tr": "Hasta olan ne yapmalı?",
        "opts": [
         "Meydana gitmeli",
         "Evde kalmalı",
@@ -768,11 +768,11 @@
        "id": "d2",
        "cumle": "c3",
        "seviye": "orta",
-       "de": "Am Donnerstag feiern die Grundschulen am ___.",
+       "de": "Am Donnerstag feiern die ___ in der Schule.",
        "accepted": [
-        "Vormittag",
-        "vormittag",
-        "Vormittag."
+        "Kinder",
+        "kinder",
+        "Kinder."
        ]
       },
       {
@@ -800,18 +800,18 @@
        "cumle": "c6",
        "seviye": "usta",
        "accepted": [
-        "Bleiben Sie zu Hause, wenn Sie sich nicht gut fühlen.",
-        "bleiben sie zu hause wenn sie sich nicht gut fühlen",
-        "Bleiben Sie zu Hause wenn Sie sich nicht gut fühlen"
+        "Bleiben Sie zu Hause, wenn Sie krank sind.",
+        "bleiben sie zu hause wenn sie krank sind",
+        "Bleiben Sie zu Hause wenn Sie krank sind"
        ]
       },
       {
        "id": "d5",
        "seviye": "gercek",
        "gorev_tr": "Radyoda ne dendiğini Almanca iki kısa cümleyle özetle.",
-       "ornek_de": "Am Donnerstag feiern die Grundschulen. Am Sonntag ist es kalt.",
+       "ornek_de": "Am Donnerstag feiern die Kinder. Am Sonntag ist es kalt.",
        "zorunlu": [
-        "Grundschulen",
+        "Kinder",
         "kalt"
        ]
       }
@@ -872,8 +872,8 @@
     },
     {
      "id": "c2",
-     "de": "Ich bin schon im Café am Stadtplatz und warte auf dich.",
-     "tr": "Ben şimdiden meydandaki kafedeyim ve seni bekliyorum."
+     "de": "Ich bin schon im Café am Stadtplatz. Wo bist du?",
+     "tr": "Ben şimdiden meydandaki kafedeyim. Neredesin?"
     },
     {
      "id": "c3",
@@ -936,15 +936,15 @@
       },
       {
        "kind": "detail",
-       "q_tr": "Ioana bugün ne yapıyor?",
+       "q_tr": "Ioana ne zaman aramanı istiyor?",
        "opts": [
-        "Sinemaya gidiyor",
-        "Faşing kutluyor",
-        "Kursa kaydoluyor"
+        "Yarın sabah",
+        "İşin bitince",
+        "Hemen şimdi"
        ],
-       "ans": 2,
+       "ans": 1,
        "kanit": [
-        "c4"
+        "c5"
        ]
       }
      ],
@@ -955,9 +955,9 @@
        "seviye": "kolay",
        "q_tr": "Hangi kelimeyi duydun?",
        "opts": [
-        "warte",
-        "esse",
-        "wohne"
+        "schon",
+        "noch",
+        "nicht"
        ],
        "ans": 0
       },
@@ -1045,7 +1045,7 @@
      "Kursa tek başına kaydol."
     ],
     "ans": 1,
-    "why_tr": "Ioana kafede bekliyor. İşin bitince onu aramanı istiyor.",
+    "why_tr": "Ioana meydandaki kafede. İşin bitince onu aramanı istiyor.",
     "kanit": [
      "c2",
      "c5"

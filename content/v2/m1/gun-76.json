@@ -1,0 +1,1401 @@
+{
+ "schema": 1,
+ "id": "m1:gun:76",
+ "day": 76,
+ "level": "A2",
+ "format": "gun",
+ "title_tr": "Fırında ve kafede sipariş vermek",
+ "goal_tr": "Fırın kuyruğunda sıranın kimde olduğunu sorar, Gerti sormadan siparişini söyler, üstü kalsın dersin.",
+ "can_do": {
+  "id": "cd:m1:76",
+  "tr": "Fırında sıramı bilir, ne istediğimi sorulmadan söylerim."
+ },
+ "unit": "u:a2:hizmet-2",
+ "arm": "pazar",
+ "place": "pl:baeckerei",
+ "characters": [
+  "ch:stadler",
+  "ch:brandl"
+ ],
+ "requires": {
+  "kelimeler": [],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft"
+ },
+ "dersler": [],
+ "yeni_kartlar": [
+  "lx:Abitur",
+  "lx:Geschichte",
+  "lx:vorbei",
+  "lx:dran",
+  "lx:arm"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:76:h1",
+   "title_tr": "Cumartesi sabahı fırın kuyruğu",
+   "kartlar": [
+    "lx:Abitur",
+    "lx:Geschichte",
+    "lx:vorbei",
+    "lx:dran",
+    "lx:arm"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wer ist dran? – Ich bin dran. – Die Frau hinter mir ist dran.",
+     "tr": "Sıra kimde? – Sıra bende. – Sıra arkamdaki hanımda."
+    },
+    {
+     "de": "Du Armer! – Der Arme! – Du bist arm dran.",
+     "tr": "Zavallım! – Zavallı! – Vah vah, şansın yok."
+    },
+    {
+     "de": "Ich komme … vorbei.",
+     "tr": "…a uğrarım."
+    },
+    {
+     "de": "das Abitur machen",
+     "tr": "lise bitirme sınavına girmek"
+    },
+    {
+     "de": "eine lange Geschichte erzählen",
+     "tr": "uzun bir hikâye anlatmak"
+    },
+    {
+     "de": "Was können Sie empfehlen? – Stimmt so.",
+     "tr": "Ne tavsiye edersiniz? – Üstü kalsın."
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Abitur",
+     "de": "Er macht im Mai das Abitur.",
+     "tr": "Mayısta lise bitirme sınavına giriyor.",
+     "accepted": [
+      "Er macht im Mai das Abitur.",
+      "Im Mai macht er das Abitur.",
+      "Er macht das Abitur im Mai."
+     ]
+    },
+    {
+     "kart": "lx:Abitur",
+     "de": "Was macht er nach dem Abitur?",
+     "tr": "Liseden sonra ne yapacak?",
+     "accepted": [
+      "Was macht er nach dem Abitur?",
+      "Was macht er denn nach dem Abitur?",
+      "Und was macht er nach dem Abitur?"
+     ]
+    },
+    {
+     "kart": "lx:Geschichte",
+     "de": "Frau Brandl erzählt eine lange Geschichte.",
+     "tr": "Frau Brandl uzun bir hikâye anlatıyor.",
+     "accepted": [
+      "Frau Brandl erzählt eine lange Geschichte.",
+      "Frau Brandl erzählt wieder eine lange Geschichte.",
+      "Frau Brandl erzählt eine sehr lange Geschichte."
+     ]
+    },
+    {
+     "kart": "lx:Geschichte",
+     "de": "Mein Fach in der Schule war Geschichte.",
+     "tr": "Okulda benim dersim tarihti.",
+     "accepted": [
+      "Mein Fach in der Schule war Geschichte.",
+      "In der Schule war mein Fach Geschichte.",
+      "Mein Fach war in der Schule Geschichte."
+     ]
+    },
+    {
+     "kart": "lx:vorbei",
+     "de": "Die Party ist um zwölf vorbei.",
+     "tr": "Parti saat on ikide bitiyor.",
+     "accepted": [
+      "Die Party ist um zwölf vorbei.",
+      "Um zwölf ist die Party vorbei.",
+      "Die Party ist um zwölf Uhr vorbei."
+     ]
+    },
+    {
+     "kart": "lx:vorbei",
+     "de": "Ich komme morgen kurz vorbei.",
+     "tr": "Yarın kısaca uğrarım.",
+     "accepted": [
+      "Ich komme morgen kurz vorbei.",
+      "Ich komme morgen mal kurz vorbei.",
+      "Morgen komme ich kurz vorbei."
+     ]
+    },
+    {
+     "kart": "lx:dran",
+     "de": "Wer ist dran? – Ich bin dran.",
+     "tr": "Sıra kimde? – Bende.",
+     "accepted": [
+      "Wer ist dran? – Ich bin dran.",
+      "Wer ist dran? – Ich bin jetzt dran.",
+      "Wer ist dran? – Ich glaube, ich bin dran."
+     ]
+    },
+    {
+     "kart": "lx:dran",
+     "de": "Ich bin dran. Was können Sie heute empfehlen?",
+     "tr": "Sıra bende. Bugün ne tavsiye edersiniz?",
+     "accepted": [
+      "Ich bin dran. Was können Sie heute empfehlen?",
+      "Ich bin dran. Was können Sie mir heute empfehlen?",
+      "Jetzt bin ich dran. Was können Sie heute empfehlen?"
+     ]
+    },
+    {
+     "kart": "lx:arm",
+     "de": "Du bist arm dran! Du musst am Samstag arbeiten?",
+     "tr": "Vah vah! Cumartesi çalışmak zorunda mısın?",
+     "accepted": [
+      "Du bist arm dran! Du musst am Samstag arbeiten?",
+      "Du bist arm dran! Musst du am Samstag arbeiten?",
+      "Du bist arm dran, du musst am Samstag arbeiten?"
+     ]
+    },
+    {
+     "kart": "lx:arm",
+     "de": "Stimmt so. Der Arme muss heute so früh arbeiten.",
+     "tr": "Üstü kalsın. Zavallı bugün çok erken çalışmak zorunda.",
+     "accepted": [
+      "Stimmt so. Der Arme muss heute so früh arbeiten.",
+      "Stimmt so! Der Arme muss heute so früh arbeiten.",
+      "Stimmt so. Der Arme muss heute sehr früh arbeiten."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cumartesi sabahı yedi buçuk, Stadler fırınında kuyruk. Tezgâhta genç yardımcı Jonas.",
+    "satirlar": [
+     {
+      "r": "ch:stadler",
+      "de": "Grüß Gott! Wer ist dran?",
+      "tr": "Merhaba! Sıra kimde?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ich glaube, die Frau hinter mir ist dran.",
+      "tr": "Sanırım sıra arkamdaki hanımda."
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Nein, nein, Sie sind dran! Ich habe Zeit.",
+      "tr": "Yok yok, sıra sizde! Benim vaktim var."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Danke! Zwei Semmeln, bitte.",
+      "tr": "Teşekkürler! İki Semmel, lütfen."
+     }
+    ],
+    "soru": {
+     "q_tr": "Sıra kimde?",
+     "opts": [
+      "Sende",
+      "Frau Brandl'da",
+      "Jonas'ta"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:76:v1",
+  "title_tr": "Cumartesi kuyruğu",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Cumartesi sabahı, fırın dolu. Gerti tezgâhın arkasında.",
+    "de": "Grüß Gott, Frau Brandl! Sie sind dran.",
+    "tr": "Merhaba Brandl Hanım! Sıra sizde."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl çantasını tezgâha koyuyor.",
+    "de": "Grüß Gott! Zwei Semmeln und ein Stück Kuchen, bitte.",
+    "tr": "Merhaba! İki Semmel ve bir dilim kek, lütfen."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Gerti arkaya sesleniyor.",
+    "de": "Gern. Jonas, die Semmeln, bitte!",
+    "tr": "Memnuniyetle. Jonas, Semmeller, lütfen!"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl merakla genç çocuğa bakıyor.",
+    "de": "Oh, wer ist denn das?",
+    "tr": "Aa, bu kim?"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Gerti gururla gülümsüyor.",
+    "de": "Das ist Jonas. Er arbeitet am Samstag hier. Im Mai macht er das Abitur.",
+    "tr": "Bu Jonas. Cumartesileri burada çalışıyor. Mayısta lise bitirme sınavına giriyor."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl'ın gözleri parlıyor.",
+    "de": "Das Abitur! Da habe ich auch eine Geschichte …",
+    "tr": "Abitur! Benim de bununla ilgili bir hikâyem var…"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Gerti gülüyor.",
+    "de": "Frau Brandl, Ihre Geschichten sind immer lang!",
+    "tr": "Brandl Hanım, sizin hikâyeleriniz hep uzun!"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl elini sallıyor.",
+    "de": "Ja mei. Dann erzähle ich sie nächstes Mal.",
+    "tr": "Ne yapalım. O zaman bir dahaki sefere anlatırım."
+   },
+   {
+    "id": "s9",
+    "speaker": "Jonas",
+    "sahne_tr": "Jonas Semmelleri poşete koyuyor.",
+    "de": "Hier sind die Semmeln, bitte.",
+    "tr": "Buyurun Semmeller."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl Jonas'a şefkatle bakıyor.",
+    "de": "Danke! Am Samstag so früh arbeiten, du Armer!",
+    "tr": "Teşekkürler! Cumartesi bu kadar erken çalışmak, zavallım!"
+   },
+   {
+    "id": "s11",
+    "speaker": "Jonas",
+    "sahne_tr": "Jonas omuz silkiyor, gülümsüyor.",
+    "de": "Ach, das geht. Und morgen ist der Faschingszug!",
+    "tr": "Aa, idare eder. Hem yarın Faşing alayı var!"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Gerti kasaya yazıyor.",
+    "de": "Das macht drei Euro zwanzig, Frau Brandl.",
+    "tr": "Üç avro yirmi ediyor, Brandl Hanım."
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl dört avro uzatıyor.",
+    "de": "Machen Sie vier. Stimmt so, für Jonas.",
+    "tr": "Dört olsun. Üstü kalsın, Jonas için."
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Gerti teşekkür edip kuyruğa bakıyor.",
+    "de": "Danke! So, und wer ist jetzt dran?",
+    "tr": "Teşekkürler! Peki, şimdi sıra kimde?"
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Gerti sana bakıyor.",
+    "de": "Ah, Sie! Was darf's sein?",
+    "tr": "Aa, siz! Ne alırsınız?"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s15"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Bu sahnede ne oluyor?",
+     "opts": [
+      "Fırında Frau Brandl alışveriş yapıyor, sonra sıra sana geliyor",
+      "Fırın kapanıyor",
+      "Frau Brandl hasta"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2",
+      "s15"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Frau Brandl ne alıyor?",
+      "opts": [
+       "İki Semmel ve bir dilim kek",
+       "Bir ekmek",
+       "Krapfen"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s2"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Jonas fırında ne zaman çalışıyor?",
+      "opts": [
+       "Cumartesi",
+       "Pazar",
+       "Her gün"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Frau Brandl kaç avro veriyor?",
+      "opts": [
+       "Üç yirmi",
+       "Dört",
+       "Beş"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s13"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s12",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "drei",
+       "vier",
+       "zwei"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s5",
+      "seviye": "orta",
+      "de": "Im Mai macht er das ___.",
+      "accepted": [
+       "Abitur",
+       "abitur",
+       "Abitur."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s2",
+      "seviye": "zor",
+      "banka": [
+       "Zwei",
+       "Semmeln",
+       "und",
+       "ein",
+       "Stück",
+       "Kuchen",
+       "bitte",
+       "Brot",
+       "drei"
+      ],
+      "accepted": [
+       "Zwei Semmeln und ein Stück Kuchen, bitte.",
+       "zwei semmeln und ein stück kuchen bitte",
+       "Zwei Semmeln und ein Stück Kuchen bitte"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s7",
+      "seviye": "usta",
+      "accepted": [
+       "Frau Brandl, Ihre Geschichten sind immer lang!",
+       "frau brandl ihre geschichten sind immer lang",
+       "Frau Brandl Ihre Geschichten sind immer lang"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Sahnede ne olduğunu Almanca iki kısa cümleyle özetle.",
+      "ornek_de": "Frau Brandl kauft zwei Semmeln. Jonas macht im Mai das Abitur.",
+      "zorunlu": [
+       "Semmeln",
+       "Abitur"
+      ]
+     }
+    ],
+    "golge": [
+     "s1",
+     "s13"
+    ],
+    "cevapla": {
+     "id": "m1:76:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Sıra sende. İki Semmel ve bir Krapfen iste.",
+     "prompt_de": "Ah, Sie! Was darf's sein?",
+     "accepted": [
+      "Zwei Semmeln und einen Krapfen, bitte.",
+      "Ich hätte gern zwei Semmeln und einen Krapfen.",
+      "Zwei Semmeln und einen Krapfen, bitte schön.",
+      "Ich hätte gerne zwei Semmeln und einen Krapfen, bitte.",
+      "Zwei Semmeln, bitte, und einen Krapfen.",
+      "Zwei Semmeln und einen Krapfen."
+     ],
+     "why_tr": "Kısa sipariş: önce sayı, sonra ürün, sonunda **bitte**."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:76:a1",
+   "tur": "radyo",
+   "title_tr": "Fırındaki radyo",
+   "ortam_tr": "Fırın kuyruğundasın. Arkada radyo açık.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Morgen, hier ist Radio Wendlfing.",
+     "tr": "Günaydın, burası Radyo Wendlfing."
+    },
+    {
+     "id": "c2",
+     "de": "Heute ist es kalt und es regnet.",
+     "tr": "Bugün hava soğuk ve yağmurlu."
+    },
+    {
+     "id": "c3",
+     "de": "Aber morgen ist das Wetter gut.",
+     "tr": "Ama yarın hava güzel."
+    },
+    {
+     "id": "c4",
+     "de": "Der Faschingszug kommt morgen um zwei Uhr auf den Stadtplatz.",
+     "tr": "Faşing alayı yarın saat ikide meydana geliyor."
+    },
+    {
+     "id": "c5",
+     "de": "Am Mittwoch ist Fasching vorbei.",
+     "tr": "Çarşamba Faşing bitiyor."
+    },
+    {
+     "id": "c6",
+     "de": "Und jetzt: gute Musik für einen guten Samstag!",
+     "tr": "Ve şimdi: güzel bir cumartesi için güzel müzik!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Radyo ne anlatıyor?",
+      "opts": [
+       "Hava durumunu ve yarınki alayı",
+       "Trafik sorunlarını",
+       "Spor haberlerini"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Yarın hava nasıl?",
+       "opts": [
+        "Yağmurlu",
+        "Güzel",
+        "Karlı"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Alay yarın kaçta?",
+       "opts": [
+        "Saat ikide",
+        "Saat onda",
+        "Akşam"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "zwei",
+        "drei",
+        "zehn"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Heute ist es kalt und es ___.",
+       "accepted": [
+        "regnet",
+        "Regnet",
+        "regnet."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Aber",
+        "morgen",
+        "ist",
+        "das",
+        "Wetter",
+        "gut",
+        "heute",
+        "schlecht"
+       ],
+       "accepted": [
+        "Aber morgen ist das Wetter gut.",
+        "aber morgen ist das wetter gut",
+        "Aber morgen ist das Wetter gut"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c6",
+       "seviye": "usta",
+       "accepted": [
+        "Und jetzt: gute Musik für einen guten Samstag!",
+        "und jetzt gute musik für einen guten samstag",
+        "Und jetzt: gute Musik für einen guten Samstag"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Radyoda ne dendiğini Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Heute regnet es. Morgen ist das Wetter gut.",
+       "zorunlu": [
+        "regnet",
+        "morgen"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:76:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Kuyrukta yanındaki adam yarınki havayı soruyor. Radyoda duydun.",
+      "prompt_de": "Wie ist das Wetter morgen?",
+      "accepted": [
+       "Morgen ist das Wetter gut.",
+       "Gut! Morgen regnet es nicht.",
+       "Das Wetter ist morgen gut.",
+       "Morgen ist es gut, heute regnet es.",
+       "Gut, sagt das Radio.",
+       "Morgen ist das Wetter schön."
+      ],
+      "why_tr": "Kısa cevap yeter: **Morgen ist das Wetter gut.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:76:a1:e1",
+    "k": "pick",
+    "q_tr": "Yarın alaya gidiyorsun. Ne düşünürsün?",
+    "opts": [
+     "Hava güzel, şemsiye gerekmez.",
+     "Çok yağmur var, evde kal.",
+     "Alay iptal."
+    ],
+    "ans": 0,
+    "why_tr": "Radyo yarın havanın güzel olacağını söylüyor.",
+    "kanit": [
+     "c3"
+    ]
+   }
+  },
+  {
+   "id": "m1:76:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Frau Brandl'dan sesli mesaj",
+   "ortam_tr": "Öğlen eve dönünce telefonunda Frau Brandl'ın mesajı var.",
+   "speaker": "ch:brandl",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Grüß Gott, hier ist Rosa Brandl, Ihre Nachbarin.",
+     "tr": "Merhaba, ben Rosa Brandl, komşunuz."
+    },
+    {
+     "id": "c2",
+     "de": "Ich habe heute zu viel Kuchen gekauft.",
+     "tr": "Bugün çok fazla kek aldım."
+    },
+    {
+     "id": "c3",
+     "de": "Kommen Sie doch um vier Uhr auf einen Kaffee vorbei!",
+     "tr": "Saat dörtte bir kahveye uğrayın!"
+    },
+    {
+     "id": "c4",
+     "de": "Dann erzähle ich Ihnen meine Geschichte vom Abitur.",
+     "tr": "O zaman size Abitur hikâyemi anlatırım."
+    },
+    {
+     "id": "c5",
+     "de": "Wenn Sie keine Zeit haben, ist das auch kein Problem.",
+     "tr": "Vaktiniz yoksa da sorun değil."
+    },
+    {
+     "id": "c6",
+     "de": "Bis später, gell!",
+     "tr": "Sonra görüşürüz, değil mi!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Frau Brandl ne istiyor?",
+      "opts": [
+       "Seni kahveye çağırıyor",
+       "Yardım istiyor",
+       "Paketini soruyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Saat kaçta?",
+       "opts": [
+        "Üçte",
+        "Dörtte",
+        "Beşte"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Vaktin yoksa ne olur?",
+       "opts": [
+        "Sorun değil",
+        "Onu araman gerek",
+        "Yarın gitmen gerek"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "vier",
+        "fünf",
+        "drei"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Ich habe heute zu viel ___ gekauft.",
+       "accepted": [
+        "Kuchen",
+        "kuchen",
+        "Kuchen."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Wenn",
+        "Sie",
+        "keine",
+        "Zeit",
+        "haben",
+        "ist",
+        "das",
+        "auch",
+        "kein",
+        "Problem",
+        "wann",
+        "keinen"
+       ],
+       "accepted": [
+        "Wenn Sie keine Zeit haben, ist das auch kein Problem.",
+        "wenn sie keine zeit haben ist das auch kein problem",
+        "Wenn Sie keine Zeit haben ist das auch kein Problem"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Kommen Sie doch um vier Uhr auf einen Kaffee vorbei!",
+        "kommen sie doch um vier uhr auf einen kaffee vorbei",
+        "Kommen Sie doch um vier Uhr auf einen Kaffee vorbei"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Frau Brandl'ın mesajını Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Frau Brandl hat zu viel Kuchen. Ich komme um vier vorbei.",
+       "zorunlu": [
+        "Kuchen",
+        "vorbei"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:76:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Frau Brandl'ı geri ara: teşekkür et, saat dörtte geliyorsun.",
+      "prompt_de": "Grüß Gott, Brandl?",
+      "accepted": [
+       "Grüß Gott, Frau Brandl! Danke, ich komme gern um vier vorbei.",
+       "Hallo, Frau Brandl! Danke, ich komme um vier Uhr vorbei.",
+       "Grüß Gott! Danke für die Einladung, ich komme um vier vorbei.",
+       "Hier ist {name}. Danke, ich komme um vier gern vorbei.",
+       "Frau Brandl, danke! Um vier komme ich vorbei.",
+       "Grüß Gott, Frau Brandl, hier ist {name}. Ich komme gern um vier vorbei."
+      ],
+      "why_tr": "**vorbei** cümlenin sonunda: **Ich komme um vier vorbei.**"
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:76:a2:e1",
+    "k": "pick",
+    "q_tr": "Saat dörtte ne yapmalısın?",
+    "opts": [
+     "Komşun Frau Brandl'a kahveye git.",
+     "Fırına git.",
+     "Ofise git."
+    ],
+    "ans": 0,
+    "why_tr": "Frau Brandl komşun; seni dörtte kahveye çağırıyor.",
+    "kanit": [
+     "c1",
+     "c3"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:76:g1",
+   "de": "Wer ist dran?",
+   "dogru_img": "queue of customers at a bakery counter",
+   "celdirici_img": [
+    "empty bakery at night",
+    "baker baking bread",
+    "customer eating at a table"
+   ]
+  },
+  {
+   "id": "m1:76:g2",
+   "de": "Er macht das Abitur.",
+   "dogru_img": "teenager writing an exam in a school hall",
+   "celdirici_img": [
+    "teenager playing football",
+    "teenager sleeping",
+    "teenager working in a bakery"
+   ]
+  },
+  {
+   "id": "m1:76:g3",
+   "de": "Sie erzählt eine Geschichte.",
+   "dogru_img": "old woman telling a story to a listener over coffee",
+   "celdirici_img": [
+    "old woman reading alone",
+    "old woman cooking",
+    "old woman shopping"
+   ]
+  },
+  {
+   "id": "m1:76:g4",
+   "de": "Der Winter ist vorbei.",
+   "dogru_img": "first spring flowers in melting snow",
+   "celdirici_img": [
+    "heavy snowstorm",
+    "autumn leaves",
+    "summer beach"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:76:p1",
+  "title_tr": "Gerti sormadan önce",
+  "durum_tr": "Cumartesi, fırın. Sıra sende. Gerti sana dönüyor. İki Semmel ve bir Krapfen istiyorsun.",
+  "karsi": "ch:stadler",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Grüß Gott! Wer ist dran?",
+    "tr": "Merhaba! Sıra kimde?",
+    "secenekler": [
+     {
+      "de": "Ich bin dran. Zwei Semmeln und einen Krapfen, bitte.",
+      "tr": "Sıra bende. İki Semmel ve bir Krapfen, lütfen.",
+      "accepted": [
+       "Ich bin dran. Zwei Semmeln und einen Krapfen, bitte.",
+       "Ich bin dran. Zwei Semmeln und einen Krapfen.",
+       "Ich bin dran! Zwei Semmeln und einen Krapfen, bitte."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika! Gerti sormadan siparişini söyledin."
+     },
+     {
+      "de": "Ich glaube, ich bin dran. Ein Brot, bitte.",
+      "tr": "Sanırım sıra bende. Bir ekmek, lütfen.",
+      "accepted": [
+       "Ich glaube, ich bin dran. Ein Brot, bitte.",
+       "Ich glaube, ich bin dran. Ein Brot bitte.",
+       "Ich glaube, ich bin dran. Ein Brot, bitte schön."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Sıranı ve siparişini söyledin."
+     },
+     {
+      "de": "Die Frau hinter mir ist dran.",
+      "tr": "Sıra arkamdaki hanımda.",
+      "accepted": [
+       "Die Frau hinter mir ist dran.",
+       "Die Frau hinter mir ist dran, glaube ich."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Sıra sende! Cesur ol: **Ich bin dran.**"
+     }
+    ]
+   },
+   {
+    "id": "n1b",
+    "de": "Nein, Sie sind dran! Was darf's sein?",
+    "tr": "Hayır, sıra sizde! Ne alırsınız?",
+    "secenekler": [
+     {
+      "de": "Ach so, danke! Zwei Semmeln, bitte.",
+      "tr": "Haa, teşekkürler! İki Semmel, lütfen.",
+      "accepted": [
+       "Ach so, danke! Zwei Semmeln, bitte.",
+       "Ach so! Zwei Semmeln, bitte.",
+       "Danke! Zwei Semmeln, bitte."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Şimdi oldu."
+     },
+     {
+      "de": "Ich weiß nicht.",
+      "tr": "Bilmiyorum.",
+      "accepted": [
+       "Ich weiß nicht.",
+       "Weiß nicht."
+      ],
+      "sonraki": "n1b",
+      "uygun": false,
+      "geri_bildirim_tr": "Siparişini söyle: **Zwei Semmeln, bitte.**"
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Sie sind aber schnell! Sonst noch was?",
+    "tr": "Ne kadar hızlısınız! Başka bir şey?",
+    "secenekler": [
+     {
+      "de": "Ja, was können Sie heute empfehlen?",
+      "tr": "Evet, bugün ne tavsiye edersiniz?",
+      "accepted": [
+       "Ja, was können Sie heute empfehlen?",
+       "Ja. Was können Sie heute empfehlen?",
+       "Was können Sie heute empfehlen?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Tavsiye sordun."
+     },
+     {
+      "de": "Nein, danke, das ist alles.",
+      "tr": "Hayır, teşekkürler, hepsi bu.",
+      "accepted": [
+       "Nein, danke, das ist alles.",
+       "Nein danke, das ist alles.",
+       "Nein, danke. Das ist alles."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve net."
+     },
+     {
+      "de": "Ja, noch was.",
+      "tr": "Evet, bir şey daha.",
+      "accepted": [
+       "Ja, noch was.",
+       "Noch was."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Ne istediğini söyle ya da **Nein, danke, das ist alles** de."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Heute sind die Krapfen sehr gut. Und hier, eine Breze für Sie. Die schenke ich Ihnen!",
+    "tr": "Bugün Krapfenler çok güzel. Bir de şu Breze sizin için. Benden hediye!",
+    "secenekler": [
+     {
+      "de": "Oh, vielen Dank! Das ist aber nett.",
+      "tr": "Aa, çok teşekkürler! Ne kadar naziksiniz.",
+      "accepted": [
+       "Oh, vielen Dank! Das ist aber nett.",
+       "Vielen Dank! Das ist aber nett.",
+       "Oh, vielen Dank, das ist sehr nett."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel teşekkür. Gerti çok sevindi."
+     },
+     {
+      "de": "Danke, Frau Stadler! Sie sind sehr nett.",
+      "tr": "Teşekkürler Stadler Hanım! Çok naziksiniz.",
+      "accepted": [
+       "Danke, Frau Stadler! Sie sind sehr nett.",
+       "Danke, Frau Stadler, Sie sind sehr nett.",
+       "Danke schön, Frau Stadler! Sie sind sehr nett."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Adıyla teşekkür etmek sıcak olur."
+     },
+     {
+      "de": "Was kostet die Breze?",
+      "tr": "Breze ne kadar?",
+      "accepted": [
+       "Was kostet die Breze?",
+       "Was kostet das?"
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Bu bir hediye! Önce teşekkür et."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gern! Das macht zwei Euro achtzig.",
+    "tr": "Rica ederim! İki seksen ediyor.",
+    "secenekler": [
+     {
+      "de": "Machen Sie drei Euro. Stimmt so.",
+      "tr": "Üç avro olsun. Üstü kalsın.",
+      "accepted": [
+       "Machen Sie drei Euro. Stimmt so.",
+       "Machen Sie drei. Stimmt so.",
+       "Drei Euro, bitte. Stimmt so."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Fırında küçük bahşiş de olur."
+     },
+     {
+      "de": "Hier sind drei Euro, bitte.",
+      "tr": "Buyurun üç avro.",
+      "accepted": [
+       "Hier sind drei Euro, bitte.",
+       "Hier sind drei Euro.",
+       "Drei Euro, bitte schön."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Tamam. Gerti üstünü verecek."
+     },
+     {
+      "de": "Getrennt, bitte.",
+      "tr": "Ayrı, lütfen.",
+      "accepted": [
+       "Getrennt, bitte.",
+       "Getrennt."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Burada tek başınasın. **Hier sind drei Euro** de."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Danke! Schönes Wochenende und viel Spaß beim Faschingszug!",
+    "tr": "Teşekkürler! İyi hafta sonları, alayda iyi eğlenceler!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Sıranın sende olduğunu söyledin, Gerti sormadan siparişini verdin ve hediye Breze için teşekkür ettin."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Fırının kapısındaki ilan",
+  "metin_de": "Bäckerei Stadler: Krapfen-Tage! Bis Dienstag gibt es jeden Tag Krapfen. Drei Krapfen kosten nur fünf Euro. Am Mittwoch ist Fasching vorbei. Am Samstag haben wir von sechs bis zwölf Uhr offen. Am Sonntag haben wir geschlossen.",
+  "metin_tr": "Stadler Fırını: Krapfen günleri! Salıya kadar her gün Krapfen var. Üç Krapfen sadece beş avro. Çarşamba Faşing bitiyor. Cumartesi altıdan on ikiye kadar açığız. Pazar kapalıyız.",
+  "sorular": [
+   {
+    "kind": "gist",
+    "q_tr": "Bu ilan ne hakkında?",
+    "opts": [
+     "Fırının Krapfen günleri ve açılış saatleri",
+     "Bir iş ilanı",
+     "Bir kayıp kedi"
+    ],
+    "ans": 0,
+    "kanit": [
+     0,
+     1
+    ],
+    "id": "m1:76:o1"
+   },
+   {
+    "kind": "detail",
+    "q_tr": "Üç Krapfen kaç avro?",
+    "opts": [
+     "Üç",
+     "Beş",
+     "Altı"
+    ],
+    "ans": 1,
+    "kanit": [
+     2
+    ],
+    "id": "m1:76:o2"
+   },
+   {
+    "kind": "detail",
+    "q_tr": "Cumartesi fırın kaça kadar açık?",
+    "opts": [
+     "On ikiye",
+     "Altıya",
+     "Akşama"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ],
+    "id": "m1:76:o3"
+   },
+   {
+    "kind": "detail",
+    "q_tr": "Pazar günü fırın açık mı?",
+    "opts": [
+     "Evet",
+     "Hayır",
+     "Sadece sabah"
+    ],
+    "ans": 1,
+    "kanit": [
+     5
+    ],
+    "id": "m1:76:o4"
+   },
+   {
+    "id": "m1:76:o5",
+    "k": "guided_response",
+    "situation_tr": "Frau Brandl Krapfenlerin fiyatını soruyor. İlanı okudun.",
+    "prompt_de": "Was kosten die Krapfen?",
+    "accepted": [
+     "Drei Krapfen kosten fünf Euro.",
+     "Drei kosten fünf Euro.",
+     "Fünf Euro für drei Krapfen.",
+     "Drei Krapfen kosten nur fünf Euro.",
+     "Drei Stück kosten fünf Euro.",
+     "Drei für fünf Euro."
+    ],
+    "why_tr": "Fiyatı sayıyla söylersin: **Drei Krapfen kosten fünf Euro.**"
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Frau Brandl'ın kapısına kısa bir not bırak: teşekkür et ve saat dörtte uğrayacağını yaz.",
+   "ornek_de": "Liebe Frau Brandl, danke! Ich komme um vier Uhr gern vorbei.",
+   "zorunlu": [
+    "vier",
+    "vorbei"
+   ],
+   "accepted_kaliplar": [
+    "Liebe Frau Brandl, ___!",
+    "Ich komme um ___ vorbei."
+   ],
+   "kontrol_tr": [
+    "Teşekkür ettin mi?",
+    "Saati yazdın mı?",
+    "vorbei en sonda mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:76:s",
+  "maddeler": [
+   {
+    "id": "m1:76:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Wer ist dran? Ich glaube, Sie sind dran.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wer ist dran? Ich glaube, Sie sind dran.",
+     "wer ist dran ich glaube sie sind dran",
+     "Wer ist dran? Ich glaube Sie sind dran"
+    ],
+    "why_tr": "Sıra sorusu: **Wer ist dran?**"
+   },
+   {
+    "id": "m1:76:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Meine Kollegin erzählt gern lange Geschichten.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Meine Kollegin erzählt gern lange Geschichten.",
+     "meine kollegin erzählt gern lange geschichten",
+     "Meine Kollegin erzählt gern lange Geschichten"
+    ],
+    "why_tr": "**Geschichten** hikâyeler demek."
+   },
+   {
+    "id": "m1:76:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Nach dem Abitur möchte er in München arbeiten.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Nach dem Abitur möchte er in München arbeiten.",
+     "nach dem abitur möchte er in münchen arbeiten",
+     "Nach dem Abitur möchte er in München arbeiten"
+    ],
+    "why_tr": "**nach dem Abitur** liseden sonra."
+   },
+   {
+    "id": "m1:76:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Der Winter ist bald vorbei.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Winter ist bald vorbei.",
+     "der winter ist bald vorbei",
+     "Der Winter ist bald vorbei"
+    ],
+    "why_tr": "**vorbei** bitti demek."
+   },
+   {
+    "id": "m1:76:s5",
+    "k": "tr_de",
+    "tr": "Sanırım sıra bende.",
+    "accepted": [
+     "Ich glaube, ich bin dran.",
+     "Ich glaube, jetzt bin ich dran.",
+     "Ich bin dran, glaube ich.",
+     "Ich glaube, ich bin jetzt dran."
+    ],
+    "why_tr": "Sıra bende: **Ich bin dran.**"
+   },
+   {
+    "id": "m1:76:s6",
+    "k": "tr_de",
+    "tr": "Zavallı! Bütün gün çalışıyor.",
+    "accepted": [
+     "Der Arme! Er arbeitet den ganzen Tag.",
+     "Der Arme, er arbeitet den ganzen Tag.",
+     "Der Arme! Er muss den ganzen Tag arbeiten.",
+     "Der Arme arbeitet den ganzen Tag."
+    ],
+    "why_tr": "Erkek için **der Arme**, kadın için **die Arme**."
+   },
+   {
+    "id": "m1:76:s7",
+    "k": "tr_de",
+    "tr": "Üstü kalsın, teşekkürler!",
+    "accepted": [
+     "Stimmt so, danke!",
+     "Stimmt so, vielen Dank!",
+     "Danke, stimmt so!",
+     "Stimmt so. Danke schön!"
+    ],
+    "why_tr": "Üstü kalsın: **Stimmt so.**"
+   },
+   {
+    "id": "m1:76:s8",
+    "k": "tr_de",
+    "tr": "Yarın öğleden sonra sana uğrarım.",
+    "accepted": [
+     "Ich komme morgen Nachmittag bei dir vorbei.",
+     "Morgen Nachmittag komme ich bei dir vorbei.",
+     "Ich komme morgen am Nachmittag bei dir vorbei.",
+     "Ich komme morgen Nachmittag vorbei."
+    ],
+    "why_tr": "**vorbei** en sona gider."
+   },
+   {
+    "id": "m1:76:s9",
+    "k": "guided_response",
+    "situation_tr": "Gerti soruyor. Sıra sende; bir ekmek istiyorsun.",
+    "prompt_de": "Wer ist dran?",
+    "accepted": [
+     "Ich bin dran. Ein Brot, bitte.",
+     "Ich! Ein Brot, bitte.",
+     "Ich bin dran. Ich hätte gern ein Brot.",
+     "Ich bin dran, ein Brot bitte.",
+     "Ich bin dran. Ein Brot, bitte schön.",
+     "Ich bin dran. Einmal Brot, bitte."
+    ],
+    "why_tr": "Önce **Ich bin dran**, sonra sipariş."
+   },
+   {
+    "id": "m1:76:s10",
+    "k": "listen_and_respond",
+    "audio_de": "Was macht Jonas im Mai?",
+    "speed": "normal",
+    "situation_tr": "Jonas mayısta lise bitirme sınavına giriyor. Cevap ver.",
+    "accepted": [
+     "Er macht das Abitur.",
+     "Im Mai macht er das Abitur.",
+     "Jonas macht das Abitur.",
+     "Das Abitur.",
+     "Er macht im Mai das Abitur.",
+     "Er macht sein Abitur."
+    ],
+    "why_tr": "**das Abitur machen** kalıbını kullan."
+   },
+   {
+    "id": "m1:76:s11",
+    "k": "guided_response",
+    "situation_tr": "Fırındasın. Gerti sıranın kimde olduğunu soruyor. Sıranın sende olduğunu söyle, iki Semmel iste ve ne tavsiye ettiğini sor.",
+    "prompt_de": "Wer ist der Nächste?",
+    "accepted": [
+     "Ich bin dran. Zwei Semmeln, bitte. Was können Sie empfehlen?",
+     "Ich bin dran! Zwei Semmeln, bitte. Und was können Sie empfehlen?",
+     "Ich bin dran. Ich hätte gern zwei Semmeln. Was können Sie empfehlen?",
+     "Ich. Zwei Semmeln, bitte. Was können Sie heute empfehlen?",
+     "Ich bin dran. Zwei Semmeln, bitte, und was empfehlen Sie?",
+     "Ich bin dran. Zwei Semmeln. Was können Sie mir empfehlen?"
+    ],
+    "why_tr": "Sıra, sipariş, sonra soru: **Was können Sie empfehlen?**"
+   }
+  ],
+  "sesli": [
+   "m1:76:s9",
+   "m1:76:s10"
+  ],
+  "dikte": [
+   "m1:76:s1",
+   "m1:76:s2",
+   "m1:76:s3",
+   "m1:76:s4"
+  ]
+ }
+}
