@@ -124,3 +124,24 @@ Kartta rakam ve **brutto** kalmadı; 1. turun B takip notundaki lx:Gehaltsvorste
 - Okunan: 14 alan · GEÇTİ: 14 · GERİ: 0
 
 `batch-b1-04a.json` ve `batch-b1-04b.json`'da okur GERİ'si kalmadı (OD-9.3 okur katmanı geçti).
+
+## 04c (yedek kartlar, tam okuma) ve lx:Kenntnis mistakes_tr[0]
+
+Girdi: `content/v2/registry/lexicon/batch-b1-04c.json` (3 kart, `review.status: draft`). Her kartta öğrenciye görünen alanların hepsi okundu: kartın `tr`'si, `exp.*`, `mistakes_tr`, `forms[].hint_tr`, `forms[].tr`, örneklerin ve eşdizimlerin `tr`'si. Toplam 68 alan (açıklama 30 + çeviri 38). Ayrıca `batch-b1-04b.json` dosyasında lx:Kenntnis kartının `mistakes_tr[0]` alanı okundu (örneklemden sonra yeniden yazılmıştı). Çelişki var mı diye kartın öbür notlarına ve örneklerine de bakıldı.
+
+Mekanik tarama: `=`, `;`, `…`, 14 kelimeden uzun cümle ve dilbilgisi terimi yok. Tırnak beş çeviri alanında var: lx:Gruß forms[0].tr ve forms[1].tr, örnek 1, 2 ve 4'ün tr'si. Hepsinde tırnak içinde Türkçe yazıyor («Saygılarımla», «Selamlar»), Almanca değil. Kurala girmez.
+
+| kart | alan | açıklama | kendi sözlerimle | karar | neden |
+|---|---|---|---|---|---|
+| lx:Gruß | hepsi | | selam ve e-posta sonundaki kapanış; resmîde Mit freundlichen Grüßen, tanıdığa Viele Grüße | GEÇTİ | |
+| lx:beantworten | hepsi | | bir soruyu, e-postayı yanıtlamak; auf gerekmez, geçmişte beantwortet | GEÇTİ | |
+| lx:sachlich | hepsi | | duyguya kapılmadan konuya bağlı, ölçülü; kaba demek değil | GEÇTİ | |
+| lx:Kenntnis | mistakes_tr[0] | Türkçede bilgi hem haber hem bildiğin şeydir. Bir dilde, bir işte bildiklerin için **Informationen** değil **Kenntnisse** denir. | Türkçe bilgi iki anlamlı; dil, iş bilgisi için Kenntnisse | GEÇTİ | tek fikir, en uzun cümle 11 kelime, kartın kelimesi var. Örneklerle ve eşdizimlerle uyumlu |
+
+Sınırda geçen (kararı etkilemedi): lx:Gruß `mistakes_tr[1]` (**mit** ile sonda **-n** gelir): hangi kelimenin sonu, ilk anda takıldım. Arkasındaki tam söz (**Mit freundlichen Grüßen**) ile hemen anlaşılıyor.
+
+### 04c sonucu
+
+- Okunan: 69 alan (04c 68 + Kenntnis 1) · GEÇTİ: 69 · GERİ: 0
+
+`batch-b1-04c.json`'da okur GERİ'si yok. lx:Kenntnis'in yeni `mistakes_tr[0]` alanı geçti.

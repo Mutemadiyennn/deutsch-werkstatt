@@ -172,3 +172,62 @@ Tarama yöntemi (Hata 1): 23 adın kendi sözcüğünü soran her boşluğu içi
 - Geri dönen alanlar: lx:Gewitter forms[0], forms[1], forms[2] (çeviri ya da `also_ok`) · lx:Kenntnis mistakes_tr[0]. Değişen iki açıklama/çeviri alanı okura kısa doğrulama için gider; ardından bu örneklem yalnız bu dört alanı yeniden okur.
 - Dilbilimcinin iki sorusu karara bağlandı: lx:Versehen **Fehler** ve lx:ergänzen **angeben / eintragen** kalsın.
 - Önceki partilerin GERİ nedenlerinden "başka anlamlı ya da artikeli uymayan kabul" ve "kartın kendi öğrettiğiyle çelişen not" bu örneklemde görülmedi. "Eksik doğru cevap" bir kez görüldü (Hata 1, komşu kart lx:Unwetter).
+
+## 2. tur + 04c (2026-11-23)
+
+### 2. tur: geri dönen alanların doğrulanması
+
+Girdi: dilbilimcinin "Örneklem düzeltmeleri" bölümü (`lexicon-b1-04.md`). Metinler listeden değil, `batch-b1-04b.json`'dan okundu.
+
+| madde | kart, alan | şimdiki durum | sonuç |
+|---|---|---|---|
+| Hata 1 | lx:Gewitter forms[0] `Heute Abend soll es ein ___ geben.` | `also_ok: Unwetter`; çeviri "Bu akşam fırtına olacakmış." | kapandı. **ein Unwetter** artikel ve çeviriyle uyuyor |
+| Hata 1 | lx:Gewitter forms[1] `Haben Sie das ___ heute Nacht gehört?` | `also_ok: Unwetter` | kapandı |
+| Hata 1 | lx:Gewitter forms[2] `Das ___ letzte Nacht war echt laut!` | `also_ok: Unwetter` | kapandı |
+| Hata 2 | lx:Kenntnis mistakes_tr[0] | "Türkçede bilgi hem haber hem bildiğin şeydir. Bir dilde, bir işte bildiklerin için **Informationen** değil **Kenntnisse** denir." | kapandı. "beceri" kalktı; lx:Fähigkeit ("beceri") ile çelişki yok. İki cümle 14 kelimenin altında |
+
+Düzeltmenin getirdiği kusur aranan noktalar:
+- lx:Gewitter not 1 ("Türkçede rüzgâra da sağanağa da fırtına denir. **Gewitter** şimşekli, gürültülü yağmurdur.") **Unwetter**'i ayırmıyor. Makine taraması: **Unwetter** kartın notlarında geçmiyor. **der Sturm** üç boşlukta da artikelle eleniyor (**ein / das**), not 1'in ayırdığı rüzgâr anlamı kabul edilmiyor.
+- lx:Unwetter (b1-01a) **Gewitter / Gewitters** kabul ediyor; kabul artık iki yönlü ve tutarlı.
+- lx:Gewitter forms[3] (**Nach ___ Gewitter**, cevap **dem**) değişmedi, etkilenmiyor.
+
+Değişen tek açıklama alanı (lx:Kenntnis mistakes_tr[0]) okurdan henüz geçmedi.
+
+### 04c: tam bakış
+
+Girdi: `batch-b1-04c.json`, 3 yedek kart (lx:Gruß, lx:beantworten, lx:sachlich), dilbilimcinin "04c incelemesi" düzeltmeleri işlenmiş hâli. Bütün alanlar okundu.
+
+| tür | madde | hata |
+|---|---|---|
+| örnek cümle + çeviri | 17 | 0 |
+| eşdizim | 9 | 0 |
+| boşluk | 12 | 0 |
+| hata notu | 6 | 0 |
+| ad: `art` + `pl` + `tr` (lx:Gruß) | 1 | 0 |
+| fiil: `verb` biçimleri + `tr` (lx:beantworten) | 1 | 0 |
+| **toplam** | **46** | **0** |
+
+Ayrıca 12 açıklama alanı okundu (`tr`, `anlam_tr`, `ne_zaman_tr`, `ipucu_tr` × 3).
+
+| kart | sonuç | bakılanlar |
+|---|---|---|
+| lx:Gruß | D | der / Grüße. **Mit freundlichen Grüßen**, **Viele / Schöne Grüße an, von**, **Schöne Grüße zurück** yerleşik. Dört boşlukta tek doğru cevap var. Not 1'in Türkçe kaynağı ("çok selam", tekil) yerinde. Not 2 **mit** sonrası **-n**'yi terimsiz anlatıyor. « » içinde yalnız Türkçe var. Herr Wimmer'e **Mit freundlichen Grüßen** WORLD'deki **Sie** ilişkisiyle uyumlu |
+| lx:beantworten | D | beantwortet · beantwortete · hat beantwortet · akk. Not 1 (**auf die Frage beantworten**) iki doğru biçimi de veriyor; lx:antworten ve lx:Antwort ile tutarlı. Not 2 (**gebeantwortet**) doğru. Boşluklarda **antworten** yok; edatsız cümlede yanlış olurdu, doğru |
+| lx:sachlich | D | Karşılık "ölçülü, konuya odaklı" sözcüğün üslup anlamına uyuyor. Not 1 yanlış anlamayı ("soğuk, kaba") önlüyor, kartın örneği ö3 / ö5 ile aynı. Not 2 **ein sachlicher Ton**, eşdizim 3 ile aynı. Boşluklarda eksik doğru cevap yok: **ruhig**, **höflich** çeviriyle çelişiyor |
+
+Taramalar: `also_ok` girdisi yok (12 boşluk), çelişki taraması boş. Açıklama ve çeviri alanlarında dilbilgisi terimi, İngilizce sözcük, kurs ya da kitap adı, `{name}`, `=`, `;`, `…` ve 14 kelimeyi aşan cümle yok. Olgu iddiası, Bairisch, öğrencinin ağzında sabit cinsiyet yok. Üç kimlik kayıtta başka partide yok.
+
+Silme doğrulaması: lx:Geduld, lx:höflich, lx:korrigieren 04a / 04b / 04c'de yok. Notlarda, ipuçlarında, `also_ok`'ta gönderme yok. Sözcük olarak yalnız lx:sachlich ö5 ve forms[3]'te **höflich** geçiyor (A2 kartı, daha önce gelir). 1. tur örneklemindeki üç lx:korrigieren maddesi (#14, #34, #35) D idi; silinince oran 2/82 olur, 1. turun kararı değişmez.
+
+### Takip (engel değil)
+
+1. lx:sachlich forms[0] **kurz und ___**: lx:knapp (b1-03c, 33. hafta) bir hafta önce **kurz und knapp** öğretiyor. Çeviriler ayırıyor ("kısa ve konuya odaklı" / "kısa ve öz"), iki kart da öbürünü kabul etmiyor. Tutarlı. Öğrenci **knapp** yazarsa ret alır; bilgi için.
+2. lx:beantworten eşdizim 3 **schnell beantworten** → "hemen yanıtlamak". **schnell** için "çabuk" daha birebir.
+3. Bu ağaçta `batch-b1-03a.json` hâlâ 26 kartlık eski hâlinde ve `batch-b1-03c.json` yok (yığın b1-03'ün çakışma silmesinden önceki hâlin üstünde). Yığın yeniden tabanlanınca gelir; doğrulayıcının buradaki kelime sayısı (1684) bu yüzden 03'ün eski hâlini içeriyor.
+
+### Karar
+
+- **2. tur:** 4/4 alan kapandı, düzeltmenin getirdiği kusur yok → **GEÇTİ**.
+- **04c:** 46/46 doğru, hata 0 (%0) → **GEÇTİ**.
+- `reviewed` için kalan: lx:Kenntnis mistakes_tr[0] ve 04c'nin açıklama ve çeviri alanları okurdan geçmedi.
+- `npm run content:validate` (wt-04) → **0 hata, 156 uyarı**; uyarıların hiçbiri b1-03 / b1-04 dosyalarına ait değil.
