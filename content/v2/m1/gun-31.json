@@ -144,7 +144,7 @@
     {
      "kart": "lx:passen",
      "de": "Am Montag passt es mir gut.",
-     "tr": "Pazartesi bana iyi uyar.",
+     "tr": "Pazartesi bana çok uygun.",
      "accepted": [
       "Am Montag passt es mir gut.",
       "Montag passt mir gut.",
@@ -360,7 +360,7 @@
      "accepted": [
       "Hier ist mein Fahrschein.",
       "Hier, mein Fahrschein.",
-      "Mein Fahrschein, bitte."
+      "Hier, bitte, mein Fahrschein."
      ]
     },
     {
@@ -410,7 +410,7 @@
      "accepted": [
       "Wo ist Bahnsteig zwei?",
       "Entschuldigung, wo ist Bahnsteig zwei?",
-      "Wo ist der Bahnsteig zwei?"
+      "Wo ist Bahnsteig zwei, bitte?"
      ]
     },
     {
@@ -420,7 +420,7 @@
      "accepted": [
       "Ich warte auf dem Bahnsteig.",
       "Ich warte am Bahnsteig.",
-      "Ich bin auf dem Bahnsteig."
+      "Ich warte hier auf dem Bahnsteig."
      ]
     },
     {
@@ -445,12 +445,12 @@
     },
     {
      "kart": "lx:Zugausfall",
-     "de": "Heute ist Zugausfall.",
-     "tr": "Bugün tren iptal.",
+     "de": "Schon wieder ein Zugausfall!",
+     "tr": "Yine bir tren iptali!",
      "accepted": [
-      "Heute ist Zugausfall.",
-      "Heute gibt es einen Zugausfall.",
-      "Heute ist leider Zugausfall."
+      "Schon wieder ein Zugausfall!",
+      "Schon wieder Zugausfall!",
+      "Ach nein, schon wieder ein Zugausfall!"
      ]
     },
     {
@@ -460,7 +460,7 @@
      "accepted": [
       "Zugausfall! Ich nehme den Bus.",
       "Zugausfall! Dann nehme ich den Bus.",
-      "Es ist Zugausfall. Ich nehme den Bus."
+      "Zugausfall! Ich nehme jetzt den Bus."
      ]
     }
    ],
@@ -977,8 +977,8 @@
     },
     {
      "id": "c4",
-     "de": "Um neun Uhr ist wieder eine Abfahrt nach München.",
-     "tr": "Saat dokuzda Münih'e yine bir kalkış var."
+     "de": "Die Abfahrt nach München ist heute erst um neun Uhr.",
+     "tr": "Münih'e kalkış bugün ancak saat dokuzda."
     },
     {
      "id": "c5",
@@ -1085,17 +1085,17 @@
        "cumle": "c4",
        "seviye": "usta",
        "accepted": [
-        "Um neun Uhr ist wieder eine Abfahrt nach München.",
-        "um neun uhr ist wieder eine abfahrt nach münchen",
-        "Um neun Uhr ist wieder eine Abfahrt nach München",
-        "Um neun Uhr ist wieder eine Abfahrt nach Muenchen."
+        "Die Abfahrt nach München ist heute erst um neun Uhr.",
+        "die abfahrt nach münchen ist heute erst um neun uhr",
+        "Die Abfahrt nach München ist heute erst um neun Uhr",
+        "Die Abfahrt nach Muenchen ist heute erst um neun Uhr."
        ]
       },
       {
        "id": "d5",
        "seviye": "gercek",
        "gorev_tr": "Duyuruda ne dendiğini Almanca iki kısa cümleyle özetle.",
-       "ornek_de": "Heute ist Zugausfall. Ich nehme den Bus.",
+       "ornek_de": "Schon wieder Zugausfall! Ich nehme den Bus vor dem Bahnhof.",
        "zorunlu": [
         "Zugausfall",
         "Bus"
@@ -1112,13 +1112,15 @@
       "situation_tr": "Ioana telefonda nerede kaldığını soruyor. Tren iptal, otobüse biniyorsun.",
       "prompt_de": "Wo bist du? Wann kommst du?",
       "accepted": [
-       "Heute ist Zugausfall. Ich nehme den Bus.",
        "Zugausfall! Ich komme mit dem Bus.",
-       "Es ist Zugausfall, ich nehme den Bus.",
-       "Ich komme mit dem Bus. Heute ist Zugausfall.",
-       "Heute ist leider Zugausfall. Ich nehme den Bus."
+       "Zugausfall! Ich nehme den Bus.",
+       "Es gibt einen Zugausfall. Ich nehme den Bus.",
+       "Ich komme mit dem Bus. Es gibt einen Zugausfall.",
+       "Heute ist Zugausfall. Ich nehme den Bus.",
+       "Der Zug fällt aus. Ich nehme den Bus.",
+       "Schon wieder Zugausfall! Ich komme mit dem Bus."
       ],
-      "why_tr": "Önce sorunu söyle: **Zugausfall**. Sonra çözümü: **Ich nehme den Bus.**"
+      "why_tr": "Önce sorunu söyle: **Zugausfall**. Sonra çözümü: **Ich komme mit dem Bus.**"
      }
     }
    ],
@@ -1127,7 +1129,7 @@
     "k": "pick",
     "q_tr": "Münih'e gitmek istiyorsun. Ne yapabilirsin?",
     "opts": [
-     "Garın önündeki otobüse bin ya da dokuzu bekle.",
+     "Garın önündeki otobüse bin ya da dokuzdaki kalkışı bekle.",
      "Saat sekizde peronda bekle.",
      "Eve dön, yarın gel."
     ],
@@ -1355,7 +1357,7 @@
       ],
       "sonraki": "n5",
       "uygun": true,
-      "geri_bildirim_tr": "Güzel. Kendi mesleğinin adını Benim cümlelerim bölümüne ekleyebilirsin."
+      "geri_bildirim_tr": "Güzel. Nerede ve kimlerle çalıştığını söyledin."
      },
      {
       "de": "Ich arbeite hier in Wendlfing in einer Firma.",
@@ -1561,7 +1563,7 @@
      "Einmal nach München, bitte. Wann ist die Abfahrt?",
      "Einmal München, bitte. Wann ist die Abfahrt?",
      "Bitte einmal nach München. Wann ist die Abfahrt?",
-     "Einmal nach München, bitte. Wann fährt er ab?"
+     "Einmal nach München, bitte. Wann fährt der Zug ab?"
     ],
     "why_tr": "Bilet alırken **Einmal nach München, bitte** dersin."
    },
