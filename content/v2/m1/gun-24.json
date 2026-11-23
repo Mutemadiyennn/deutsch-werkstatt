@@ -1,0 +1,1736 @@
+{
+ "schema": 1,
+ "id": "m1:gun:24",
+ "day": 24,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Çok, fazla, değil: sehr, zu, nicht",
+ "goal_tr": "Bir ev ya da eşya için çok güzel, fazla pahalı ya da iyi değil der, ev sorunlarını kısaca anlatırsın.",
+ "can_do": {
+  "id": "cd:m1:24",
+  "tr": "Bir şeyin çok, fazla ya da değil olduğunu söylerim."
+ },
+ "unit": "u:m1:24",
+ "arm": "pazar",
+ "place": "pl:firma",
+ "characters": [
+  "ch:lechner",
+  "ch:aksoy",
+  "ch:pichler",
+  "ch:brandl"
+ ],
+ "requires": {
+  "kelimeler": [
+   "lx:Montag",
+   "lx:Samstag",
+   "lx:Tag",
+   "lx:heute",
+   "lx:morgen",
+   "lx:gehen",
+   "lx:hallo",
+   "lx:danke",
+   "lx:bitte",
+   "lx:ja",
+   "lx:nein",
+   "lx:Frau",
+   "lx:Herr",
+   "lx:Januar",
+   "lx:Monat",
+   "lx:haben",
+   "lx:kommen",
+   "lx:drei",
+   "lx:zehn",
+   "lx:zwölf",
+   "lx:alt",
+   "lx:teuer",
+   "lx:also",
+   "lx:leider",
+   "lx:wieder",
+   "lx:da",
+   "lx:gern",
+   "lx:wo",
+   "lx:wie",
+   "lx:wie_viel",
+   "lx:was",
+   "lx:sehr",
+   "lx:sein",
+   "lx:müssen",
+   "lx:sprechen",
+   "lx:müde",
+   "lx:viel",
+   "lx:Zeit",
+   "lx:gut",
+   "lx:klar",
+   "lx:immer",
+   "lx:mehr",
+   "lx:Küche",
+   "lx:hier",
+   "lx:schnell",
+   "lx:schlimm",
+   "lx:frei",
+   "lx:Entschuldigung",
+   "lx:langsam",
+   "lx:zu#2",
+   "lx:so",
+   "lx:auch",
+   "lx:mitkommen",
+   "lx:billig",
+   "lx:hell",
+   "lx:Bahnhof",
+   "lx:Haus",
+   "lx:los",
+   "lx:finden",
+   "lx:vielleicht",
+   "lx:wirklich",
+   "lx:nie",
+   "lx:weg",
+   "lx:Weg",
+   "lx:schön",
+   "lx:klein",
+   "lx:groß",
+   "lx:Zahl",
+   "lx:Techniker",
+   "lx:Freut_mich!"
+  ],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic4-hafta-04.md"
+ },
+ "dersler": [
+  "gr:a1-04:t4"
+ ],
+ "yeni_kartlar": [
+  "lx:geradeaus",
+  "lx:Störung",
+  "lx:Kaution",
+  "lx:Hausmeister",
+  "lx:Nachbarin",
+  "lx:Vermieter",
+  "lx:Schimmel",
+  "lx:Morgen",
+  "lx:richtig",
+  "lx:Leute",
+  "lx:jung",
+  "lx:ab",
+  "lx:gerade",
+  "lx:Geld",
+  "lx:Mutter"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:24:h1",
+   "title_tr": "Kiracı sorunları",
+   "kartlar": [
+    "lx:Vermieter",
+    "lx:Hausmeister",
+    "lx:Schimmel",
+    "lx:Kaution",
+    "lx:Geld"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "sehr … – zu … – nicht …",
+     "tr": "çok … – fazla …, sorun var – … değil"
+    },
+    {
+     "de": "ziemlich …",
+     "tr": "oldukça …"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Vermieter",
+     "de": "Der Vermieter ist sehr langsam.",
+     "tr": "Ev sahibi çok yavaş.",
+     "accepted": [
+      "Der Vermieter ist sehr langsam.",
+      "Mein Vermieter ist sehr langsam.",
+      "Der Vermieter ist wirklich sehr langsam."
+     ]
+    },
+    {
+     "kart": "lx:Vermieter",
+     "de": "Der Vermieter hat nie Zeit.",
+     "tr": "Ev sahibinin hiç vakti yok.",
+     "accepted": [
+      "Der Vermieter hat nie Zeit.",
+      "Mein Vermieter hat nie Zeit.",
+      "Der Vermieter hat nie Zeit für mich."
+     ]
+    },
+    {
+     "kart": "lx:Hausmeister",
+     "de": "Herr Pichler ist unser Hausmeister.",
+     "tr": "Pichler Bey bizim apartman görevlimiz.",
+     "accepted": [
+      "Herr Pichler ist unser Hausmeister.",
+      "Unser Hausmeister ist Herr Pichler.",
+      "Herr Pichler ist der Hausmeister."
+     ]
+    },
+    {
+     "kart": "lx:Hausmeister",
+     "de": "Der Hausmeister ist heute nicht da.",
+     "tr": "Apartman görevlisi bugün yok.",
+     "accepted": [
+      "Der Hausmeister ist heute nicht da.",
+      "Heute ist der Hausmeister nicht da.",
+      "Der Hausmeister ist heute leider nicht da."
+     ]
+    },
+    {
+     "kart": "lx:Schimmel",
+     "de": "In der Küche ist Schimmel.",
+     "tr": "Mutfakta küf var.",
+     "accepted": [
+      "In der Küche ist Schimmel.",
+      "Ich habe Schimmel in der Küche.",
+      "Da ist Schimmel in der Küche."
+     ]
+    },
+    {
+     "kart": "lx:Schimmel",
+     "de": "Der Schimmel ist sehr schlimm.",
+     "tr": "Küf çok kötü.",
+     "accepted": [
+      "Der Schimmel ist sehr schlimm.",
+      "Der Schimmel ist wirklich schlimm.",
+      "Der Schimmel ist schlimm, sehr schlimm."
+     ]
+    },
+    {
+     "kart": "lx:Kaution",
+     "de": "Drei Monate Kaution? Das ist zu viel!",
+     "tr": "Üç aylık depozito mu? Bu fazla!",
+     "accepted": [
+      "Drei Monate Kaution? Das ist zu viel!",
+      "Drei Monate Kaution? Das ist viel zu viel!",
+      "Drei Monate Kaution ist zu viel!"
+     ]
+    },
+    {
+     "kart": "lx:Kaution",
+     "de": "Die Kaution ist nicht billig.",
+     "tr": "Depozito ucuz değil.",
+     "accepted": [
+      "Die Kaution ist nicht billig.",
+      "Die Kaution ist gar nicht billig.",
+      "Die Kaution ist leider nicht billig."
+     ]
+    },
+    {
+     "kart": "lx:Geld",
+     "de": "Ich habe nicht so viel Geld.",
+     "tr": "O kadar param yok.",
+     "accepted": [
+      "Ich habe nicht so viel Geld.",
+      "So viel Geld habe ich nicht.",
+      "Ich habe leider nicht so viel Geld."
+     ]
+    },
+    {
+     "kart": "lx:Geld",
+     "de": "Das Haus ist zu teuer, ich habe kein Geld.",
+     "tr": "Ev fazla pahalı, param yok.",
+     "accepted": [
+      "Das Haus ist zu teuer, ich habe kein Geld.",
+      "Das Haus ist zu teuer. Ich habe kein Geld.",
+      "Das Haus ist mir zu teuer, ich habe kein Geld."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "İş yerinde mola. Tobi yorgun görünüyor.",
+    "satirlar": [
+     {
+      "r": "ch:lechner",
+      "de": "Ich habe Schimmel in der Küche!",
+      "tr": "Mutfağımda küf var!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Das ist nicht gut! Und der Vermieter?",
+      "tr": "Bu iyi değil! Peki ev sahibi?"
+     },
+     {
+      "r": "ch:lechner",
+      "de": "Er hat nie Zeit. Und der Hausmeister ist auch nie da.",
+      "tr": "Hiç vakti yok. Apartman görevlisi de hiç yok."
+     }
+    ],
+    "soru": {
+     "q_tr": "Tobi'nin sorunu ne?",
+     "opts": [
+      "Mutfakta küf var, kimse ilgilenmiyor.",
+      "Kira çok yüksek.",
+      "Komşular gürültülü."
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:24:h2",
+   "title_tr": "Arıza, sabah, doğru",
+   "kartlar": [
+    "lx:Störung",
+    "lx:Morgen",
+    "lx:richtig",
+    "lx:gerade",
+    "lx:ab"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Störung",
+     "de": "Wir haben eine Störung.",
+     "tr": "Bir arızamız var.",
+     "accepted": [
+      "Wir haben eine Störung.",
+      "Wir haben hier eine Störung.",
+      "Wir haben gerade eine Störung."
+     ]
+    },
+    {
+     "kart": "lx:Störung",
+     "de": "Die Störung ist nicht schlimm.",
+     "tr": "Arıza kötü değil.",
+     "accepted": [
+      "Die Störung ist nicht schlimm.",
+      "Die Störung ist nicht so schlimm.",
+      "Die Störung ist gar nicht schlimm."
+     ]
+    },
+    {
+     "kart": "lx:Morgen",
+     "de": "Am Morgen ist die Küche nicht hell.",
+     "tr": "Sabah mutfak aydınlık değil.",
+     "accepted": [
+      "Am Morgen ist die Küche nicht hell.",
+      "Die Küche ist am Morgen nicht hell.",
+      "Am Morgen ist die Küche nicht sehr hell."
+     ]
+    },
+    {
+     "kart": "lx:Morgen",
+     "de": "Guten Morgen, Tobi!",
+     "tr": "Günaydın Tobi!",
+     "accepted": [
+      "Guten Morgen, Tobi!",
+      "Morgen, Tobi!",
+      "Tobi, guten Morgen!"
+     ]
+    },
+    {
+     "kart": "lx:richtig",
+     "de": "Ist das richtig?",
+     "tr": "Bu doğru mu?",
+     "accepted": [
+      "Ist das richtig?",
+      "Ist das so richtig?",
+      "Das ist richtig?"
+     ]
+    },
+    {
+     "kart": "lx:richtig",
+     "de": "Die Zahl ist nicht richtig.",
+     "tr": "Sayı doğru değil.",
+     "accepted": [
+      "Die Zahl ist nicht richtig.",
+      "Die Zahl ist leider nicht richtig.",
+      "Die Zahl hier ist nicht richtig."
+     ]
+    },
+    {
+     "kart": "lx:gerade",
+     "de": "Ich habe gerade keine Zeit.",
+     "tr": "Şu an vaktim yok.",
+     "accepted": [
+      "Ich habe gerade keine Zeit.",
+      "Gerade habe ich keine Zeit.",
+      "Ich habe gerade leider keine Zeit."
+     ]
+    },
+    {
+     "kart": "lx:gerade",
+     "de": "Tobi ist gerade nicht da.",
+     "tr": "Tobi şu an burada değil.",
+     "accepted": [
+      "Tobi ist gerade nicht da.",
+      "Tobi ist gerade nicht hier.",
+      "Gerade ist Tobi nicht da."
+     ]
+    },
+    {
+     "kart": "lx:ab",
+     "de": "Ab Montag ist die Störung weg.",
+     "tr": "Pazartesiden itibaren arıza yok.",
+     "accepted": [
+      "Ab Montag ist die Störung weg.",
+      "Die Störung ist ab Montag weg.",
+      "Ab Montag ist die Störung wieder weg."
+     ]
+    },
+    {
+     "kart": "lx:ab",
+     "de": "Ab heute ist alles gut.",
+     "tr": "Bugünden itibaren her şey iyi.",
+     "accepted": [
+      "Ab heute ist alles gut.",
+      "Ab heute ist alles wieder gut.",
+      "Alles ist ab heute gut."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Sabah, ofiste. Derya bilgisayarın başında.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Guten Morgen! Wir haben gerade eine Störung.",
+      "tr": "Günaydın! Şu an bir arızamız var."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ist das schlimm?",
+      "tr": "Kötü mü?"
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Nein, nicht sehr schlimm. Ab zehn ist alles wieder gut.",
+      "tr": "Hayır, çok kötü değil. Saat ondan itibaren her şey yine iyi."
+     }
+    ],
+    "soru": {
+     "q_tr": "Arıza ne zaman bitiyor?",
+     "opts": [
+      "Saat ondan itibaren",
+      "Pazartesiden itibaren",
+      "Öğleden sonra"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:24:h3",
+   "title_tr": "Komşular, insanlar, yol",
+   "kartlar": [
+    "lx:Nachbarin",
+    "lx:Leute",
+    "lx:jung",
+    "lx:Mutter",
+    "lx:geradeaus"
+   ],
+   "kaliplar": [
+    {
+     "de": "Wie findest du …? – Ich finde … zu …",
+     "tr": "…'i nasıl buluyorsun? – Bence … fazla …"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Nachbarin",
+     "de": "Frau Brandl ist meine Nachbarin.",
+     "tr": "Brandl Hanım komşum.",
+     "accepted": [
+      "Frau Brandl ist meine Nachbarin.",
+      "Meine Nachbarin ist Frau Brandl.",
+      "Frau Brandl ist die Nachbarin."
+     ]
+    },
+    {
+     "kart": "lx:Nachbarin",
+     "de": "Die Nachbarin ist nicht mehr jung.",
+     "tr": "Komşu kadın artık genç değil.",
+     "accepted": [
+      "Die Nachbarin ist nicht mehr jung.",
+      "Meine Nachbarin ist nicht mehr jung.",
+      "Die Nachbarin ist nicht mehr so jung."
+     ]
+    },
+    {
+     "kart": "lx:Leute",
+     "de": "Die Leute hier sprechen schnell.",
+     "tr": "Buradaki insanlar hızlı konuşuyor.",
+     "accepted": [
+      "Die Leute hier sprechen schnell.",
+      "Die Leute hier sprechen sehr schnell.",
+      "Hier sprechen die Leute schnell."
+     ]
+    },
+    {
+     "kart": "lx:Leute",
+     "de": "Wie findest du die Leute hier?",
+     "tr": "Buradaki insanları nasıl buluyorsun?",
+     "accepted": [
+      "Wie findest du die Leute hier?",
+      "Und wie findest du die Leute hier?",
+      "Wie findest du die Leute in Wendlfing?"
+     ]
+    },
+    {
+     "kart": "lx:jung",
+     "de": "Die Leute im Haus sind sehr jung.",
+     "tr": "Apartmandaki insanlar çok genç.",
+     "accepted": [
+      "Die Leute im Haus sind sehr jung.",
+      "Im Haus sind die Leute sehr jung.",
+      "Die Leute im Haus sind alle sehr jung."
+     ]
+    },
+    {
+     "kart": "lx:jung",
+     "de": "Ich bin nicht mehr so jung!",
+     "tr": "Artık o kadar genç değilim!",
+     "accepted": [
+      "Ich bin nicht mehr so jung!",
+      "Ich bin ja nicht mehr so jung!",
+      "So jung bin ich nicht mehr!"
+     ]
+    },
+    {
+     "kart": "lx:Mutter",
+     "de": "Die Mutter von Tobi kommt am Samstag.",
+     "tr": "Tobi'nin annesi cumartesi geliyor.",
+     "accepted": [
+      "Die Mutter von Tobi kommt am Samstag.",
+      "Am Samstag kommt die Mutter von Tobi.",
+      "Tobis Mutter kommt am Samstag."
+     ]
+    },
+    {
+     "kart": "lx:Mutter",
+     "de": "Wie alt ist deine Mutter?",
+     "tr": "Annen kaç yaşında?",
+     "accepted": [
+      "Wie alt ist deine Mutter?",
+      "Und wie alt ist deine Mutter?",
+      "Wie alt ist denn deine Mutter?"
+     ]
+    },
+    {
+     "kart": "lx:geradeaus",
+     "de": "Der Bahnhof? Immer geradeaus.",
+     "tr": "İstasyon mu? Hep dümdüz.",
+     "accepted": [
+      "Der Bahnhof? Immer geradeaus.",
+      "Zum Bahnhof? Immer geradeaus.",
+      "Zum Bahnhof? Hier immer geradeaus."
+     ]
+    },
+    {
+     "kart": "lx:geradeaus",
+     "de": "Gehen Sie hier geradeaus.",
+     "tr": "Buradan düz gidin.",
+     "accepted": [
+      "Gehen Sie hier geradeaus.",
+      "Gehen Sie hier immer geradeaus.",
+      "Bitte gehen Sie hier geradeaus."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Apartmanın önü. Brandl Hanım yeni komşuları soruyor.",
+    "satirlar": [
+     {
+      "r": "ch:brandl",
+      "de": "Wie finden Sie die Leute hier im Haus?",
+      "tr": "Apartmandaki insanları nasıl buluyorsunuz?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Sie sind sehr jung!",
+      "tr": "Çok gençler!"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Ja, zu jung für mich! Ich bin nicht mehr so schnell.",
+      "tr": "Evet, benim için fazla genç! Ben artık o kadar hızlı değilim."
+     }
+    ],
+    "soru": {
+     "q_tr": "Brandl Hanım komşular için ne diyor?",
+     "opts": [
+      "Onun için fazla gençler.",
+      "Çok yaşlılar.",
+      "Hiç konuşmuyorlar."
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:24:v1",
+  "title_tr": "Tobi'nin ev derdi",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Firma Kerschbaum'un mutfağı, öğle molası. Tobi kahvesine bakıp esniyor.",
+    "de": "Tobi, was ist los? Du bist so müde.",
+    "tr": "Tobi, ne oldu? Çok yorgunsun."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi iki elini havaya kaldırıyor.",
+    "de": "Ach, ich habe Schimmel in der Küche!",
+    "tr": "Ah, mutfağımda küf var!"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya yüzünü buruşturuyor.",
+    "de": "Schimmel? Das ist nicht gut!",
+    "tr": "Küf mü? Bu iyi değil!"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi telefonunu gösteriyor, ekranda cevapsız mesajlar.",
+    "de": "Und der Vermieter? Er hat nie Zeit.",
+    "tr": "Ya ev sahibi? Hiç vakti yok."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi omuzlarını düşürüyor.",
+    "de": "Der Hausmeister ist auch nie da.",
+    "tr": "Apartman görevlisi de hiç yok."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya telefonunda bir ilan açıyor.",
+    "de": "Am Bahnhof ist etwas frei. Es ist sehr schön und hell.",
+    "tr": "İstasyonun orada boş bir yer var. Çok güzel ve aydınlık."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi ilgiyle eğiliyor.",
+    "de": "Wie teuer ist es?",
+    "tr": "Fiyatı ne kadar?"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya ekranı okuyor.",
+    "de": "800 Euro. Und drei Monate Kaution.",
+    "tr": "800 avro. Bir de üç aylık depozito."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi neredeyse kahvesini döküyor.",
+    "de": "800? Das ist zu teuer! Ich habe nicht so viel Geld.",
+    "tr": "800 mü? Bu fazla pahalı! O kadar param yok."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya ilandaki mutfak fotoğrafını büyütüyor.",
+    "de": "Und die Küche ist ziemlich klein.",
+    "tr": "Mutfağı da oldukça küçük."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi parmaklarıyla sayıyor.",
+    "de": "Zu klein, zu teuer! Nein, danke!",
+    "tr": "Fazla küçük, fazla pahalı! Hayır, sağ ol!"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya gülümsüyor.",
+    "de": "Aber die Leute im Haus sind jung, wie du!",
+    "tr": "Ama apartmandakiler genç, senin gibi!"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kendini gösterip gülüyor.",
+    "de": "Ich? Jung? Danke, Derya!",
+    "tr": "Ben mi? Genç mi? Sağ ol Derya!"
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:aksoy",
+    "sahne_tr": "Derya ciddileşiyor, parmağını kaldırıyor.",
+    "de": "Und dein Schimmel? Der muss weg!",
+    "tr": "Peki sendeki küf? O gitmeli!"
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi başını sallıyor, fincanını bırakıyor.",
+    "de": "Richtig! Morgen gehe ich zum Hausmeister.",
+    "tr": "Doğru! Yarın apartman görevlisine gidiyorum."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s15"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Tobi neden mutsuz?",
+     "opts": [
+      "Mutfağında küf var ve kimse ilgilenmiyor",
+      "İşini kaybetti",
+      "Kursu bitti"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2",
+      "s4"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "İstasyonun oradaki yer neden Tobi'ye uymuyor?",
+      "opts": [
+       "Fazla pahalı ve mutfağı küçük",
+       "Çok uzak",
+       "Karanlık"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s9",
+       "s10",
+       "s11"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Tobi yarın ne yapacak?",
+      "opts": [
+       "Apartman görevlisine gidecek",
+       "Yeni eve taşınacak",
+       "Ev sahibini arayacak"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s15"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s3",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "gut",
+       "schön",
+       "neu"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s9",
+      "seviye": "orta",
+      "de": "800? Das ist ___ teuer! Ich habe nicht so viel Geld.",
+      "accepted": [
+       "zu",
+       "Zu",
+       "zu."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s5",
+      "seviye": "zor",
+      "banka": [
+       "Der",
+       "Hausmeister",
+       "ist",
+       "auch",
+       "nie",
+       "da",
+       "zu",
+       "sehr"
+      ],
+      "accepted": [
+       "Der Hausmeister ist auch nie da.",
+       "der hausmeister ist auch nie da",
+       "Der Hausmeister ist auch nie da"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s10",
+      "seviye": "usta",
+      "accepted": [
+       "Und die Küche ist ziemlich klein.",
+       "und die küche ist ziemlich klein",
+       "Und die Küche ist ziemlich klein"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Tobi'nin derdini Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Bei Tobi ist Schimmel in der Küche. Das Haus am Bahnhof ist zu teuer.",
+      "zorunlu": [
+       "Schimmel",
+       "zu teuer"
+      ]
+     }
+    ],
+    "golge": [
+     "s3",
+     "s11"
+    ],
+    "cevapla": {
+     "id": "m1:24:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Derya sana soruyor. 800 avroyu fazla pahalı buluyorsun.",
+     "prompt_de": "800 Euro. Wie findest du das?",
+     "accepted": [
+      "Ich finde das zu teuer.",
+      "Zu teuer!",
+      "Das ist zu teuer.",
+      "Ich finde das viel zu teuer.",
+      "Das ist mir zu teuer.",
+      "Ich finde es zu teuer.",
+      "Zu teuer, finde ich."
+     ],
+     "why_tr": "Sorun varsa **zu** dersin: **zu teuer**. **sehr teuer** yalnızca çok pahalı demek."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:24:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Apartman görevlisinden mesaj",
+   "ortam_tr": "Sabah telefonunda Pichler Bey'den bütün kiracılara giden bir sesli mesaj var.",
+   "speaker": "ch:pichler",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, hier ist Josef Pichler, Ihr Hausmeister.",
+     "tr": "İyi günler, ben Josef Pichler, apartman görevliniz."
+    },
+    {
+     "id": "c2",
+     "de": "Wir haben eine Störung im Haus. Es ist nicht schlimm.",
+     "tr": "Apartmanda bir arıza var. Kötü değil."
+    },
+    {
+     "id": "c3",
+     "de": "Der Techniker kommt heute um zehn.",
+     "tr": "Teknisyen bugün saat onda geliyor."
+    },
+    {
+     "id": "c4",
+     "de": "Ab zwölf ist alles wieder gut.",
+     "tr": "On ikiden itibaren her şey yine iyi."
+    },
+    {
+     "id": "c5",
+     "de": "Danke!",
+     "tr": "Teşekkürler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Mesaj ne hakkında?",
+      "opts": [
+       "Apartmanda bir arıza var, teknisyen geliyor",
+       "Kira artıyor",
+       "Yeni bir komşu geliyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Teknisyen saat kaçta geliyor?",
+       "opts": [
+        "Onda",
+        "On ikide",
+        "İkide"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Ne zamandan itibaren her şey yine iyi?",
+       "opts": [
+        "On ikiden itibaren",
+        "Ondan itibaren",
+        "Yarından itibaren"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi saati duydun?",
+       "opts": [
+        "zehn",
+        "zwölf",
+        "zwei"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "___ zwölf ist alles wieder gut.",
+       "accepted": [
+        "Ab",
+        "ab",
+        "Ab."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Der",
+        "Techniker",
+        "kommt",
+        "heute",
+        "um",
+        "zehn",
+        "am",
+        "ab"
+       ],
+       "accepted": [
+        "Der Techniker kommt heute um zehn.",
+        "der techniker kommt heute um zehn",
+        "Der Techniker kommt heute um zehn"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Wir haben eine Störung im Haus. Es ist nicht schlimm.",
+        "wir haben eine störung im haus es ist nicht schlimm",
+        "Wir haben eine Störung im Haus, es ist nicht schlimm."
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajı Almanca bir iki kısa cümleyle özetle.",
+       "ornek_de": "Im Haus ist eine Störung. Der Techniker kommt um zehn.",
+       "zorunlu": [
+        "Störung",
+        "zehn"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:24:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Brandl Hanım merdivende soruyor. Arıza kötü değil, on ikiden itibaren her şey iyi.",
+      "prompt_de": "Was ist denn los im Haus? Ist das schlimm?",
+      "accepted": [
+       "Nein, nicht schlimm. Der Techniker kommt um zehn.",
+       "Nein, nicht schlimm. Ab zwölf ist alles wieder gut.",
+       "Nein, es ist nicht schlimm.",
+       "Nicht schlimm. Ab zwölf ist alles gut.",
+       "Eine Störung, aber nicht schlimm.",
+       "Nein, nicht so schlimm. Der Techniker kommt um zehn.",
+       "Nein. Ab zwölf ist alles wieder gut."
+      ],
+      "why_tr": "Kötü değil derken **nicht schlimm** dersin."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:24:a1:e1",
+    "k": "pick",
+    "q_tr": "Mesajdan sonra ne yapmalısın?",
+    "opts": [
+     "Hiç endişelenme, on ikiden sonra her şey yine normal.",
+     "Hemen ev sahibini ara.",
+     "Bugün evden çık ve yarın dön."
+    ],
+    "ans": 0,
+    "why_tr": "Arıza kötü değil. Teknisyen onda geliyor, on ikiden sonra her şey iyi.",
+    "kanit": [
+     "c2",
+     "c3",
+     "c4"
+    ]
+   }
+  },
+  {
+   "id": "m1:24:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Tobi'den sesli mesaj",
+   "ortam_tr": "Akşam telefonuna Tobi'den bir mesaj gelmiş. Hızlı konuşuyor.",
+   "speaker": "ch:lechner",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Tobi!",
+     "tr": "Merhaba, ben Tobi!"
+    },
+    {
+     "id": "c2",
+     "de": "Du, das Haus am Bahnhof ist wirklich zu teuer.",
+     "tr": "Bak, istasyonun oradaki ev gerçekten fazla pahalı."
+    },
+    {
+     "id": "c3",
+     "de": "Aber in der Brunnengasse ist etwas frei: nicht teuer, nicht sehr groß.",
+     "tr": "Ama Brunnengasse'de boş bir yer var: pahalı değil, çok büyük değil."
+    },
+    {
+     "id": "c4",
+     "de": "Es ist ziemlich alt, aber hell.",
+     "tr": "Oldukça eski ama aydınlık."
+    },
+    {
+     "id": "c5",
+     "de": "Kommst du am Samstag mit? Um zehn, in der Brunnengasse!",
+     "tr": "Cumartesi benimle gelir misin? Saat onda, Brunnengasse'de!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Tobi neden arıyor?",
+      "opts": [
+       "Bir evi birlikte görmek için",
+       "Borç para istemek için",
+       "Küfü anlatmak için"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Brunnengasse'deki yer nasıl?",
+       "opts": [
+        "Pahalı değil, oldukça eski ama aydınlık",
+        "Çok pahalı ve büyük",
+        "Yeni ama karanlık"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3",
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Nerede ve ne zaman buluşuyorsunuz?",
+       "opts": [
+        "Cumartesi saat onda, Brunnengasse'de",
+        "Cumartesi saat onda, istasyonda",
+        "Pazar saat onda, Brunnengasse'de"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "alt",
+        "neu",
+        "klein"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Du, das Haus am Bahnhof ist wirklich ___ teuer.",
+       "accepted": [
+        "zu",
+        "Zu",
+        "zu."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Es",
+        "ist",
+        "ziemlich",
+        "alt",
+        "aber",
+        "hell",
+        "zu",
+        "Er"
+       ],
+       "accepted": [
+        "Es ist ziemlich alt, aber hell.",
+        "es ist ziemlich alt aber hell",
+        "Es ist ziemlich alt aber hell."
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Aber in der Brunnengasse ist etwas frei: nicht teuer, nicht sehr groß.",
+        "aber in der brunnengasse ist etwas frei nicht teuer nicht sehr groß",
+        "Aber in der Brunnengasse ist etwas frei, nicht teuer, nicht sehr groß."
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Brunnengasse'deki yeri Almanca bir iki kısa cümleyle anlat.",
+       "ornek_de": "Es ist nicht teuer und nicht sehr groß. Es ist alt, aber hell.",
+       "zorunlu": [
+        "nicht teuer",
+        "hell"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:24:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi'yi geri arıyorsun. Cumartesi saat on sana uyuyor.",
+      "prompt_de": "Und? Kommst du am Samstag?",
+      "accepted": [
+       "Ja, gern! Bis Samstag!",
+       "Ja, gern! Um zehn in der Brunnengasse.",
+       "Ja, gern!",
+       "Ja, ich komme mit. Um zehn in der Brunnengasse.",
+       "Ja, klar! Bis Samstag um zehn!",
+       "Ja, um zehn in der Brunnengasse. Bis Samstag!",
+       "Ja, gern, am Samstag um zehn."
+      ],
+      "why_tr": "Evet de, sonra saati ve yeri tekrar et."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:24:a2:e1",
+    "k": "pick",
+    "q_tr": "Mesajdan sonra ne yapmalısın?",
+    "opts": [
+     "Cumartesi saat onda Brunnengasse'de ol.",
+     "Cumartesi saat onda istasyona git.",
+     "Tobi'ye para gönder."
+    ],
+    "ans": 0,
+    "why_tr": "Tobi seni cumartesi saat onda Brunnengasse'de bekliyor.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:24:g1",
+   "de": "der Schimmel",
+   "dogru_img": "black mould spots in the corner of a white wall",
+   "celdirici_img": [
+    "clean white wall",
+    "wall with a painting",
+    "wall with a crack"
+   ]
+  },
+  {
+   "id": "m1:24:g2",
+   "de": "das Geld",
+   "dogru_img": "euro banknotes and coins on a table",
+   "celdirici_img": [
+    "bank card on a table",
+    "keys on a table",
+    "receipt on a table"
+   ]
+  },
+  {
+   "id": "m1:24:g3",
+   "de": "der Hausmeister",
+   "dogru_img": "older caretaker with a toolbox in the stairwell of an apartment building",
+   "celdirici_img": [
+    "doctor in a white coat",
+    "baker behind a counter",
+    "office worker at a computer"
+   ]
+  },
+  {
+   "id": "m1:24:g4",
+   "de": "geradeaus",
+   "dogru_img": "road sign with an arrow pointing straight ahead",
+   "celdirici_img": [
+    "road sign with an arrow pointing left",
+    "road sign with an arrow pointing right",
+    "road sign with a U-turn arrow"
+   ]
+  },
+  {
+   "id": "m1:24:g5",
+   "de": "die Leute",
+   "dogru_img": "group of people standing and talking on a town square",
+   "celdirici_img": [
+    "one person alone on a bench",
+    "empty town square",
+    "two dogs on a town square"
+   ]
+  },
+  {
+   "id": "m1:24:g6",
+   "de": "Das ist zu teuer.",
+   "dogru_img": "shocked person looking at a very high price tag",
+   "celdirici_img": [
+    "happy person looking at a low price tag",
+    "person paying calmly at a till",
+    "person reading a menu"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:24:p1",
+  "title_tr": "Tobi'ye fikrini söylüyorsun",
+  "durum_tr": "Molada Tobi ev derdini anlatıyor ve istasyonun oradaki yer için fikrini soruyor. Sen çok, fazla ve değil ile cevap veriyorsun.",
+  "karsi": "ch:lechner",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Ich habe Schimmel in der Küche! Ist das schlimm?",
+    "tr": "Mutfağımda küf var! Bu kötü mü?",
+    "secenekler": [
+     {
+      "de": "Ja, das ist sehr schlimm!",
+      "tr": "Evet, bu çok kötü!",
+      "accepted": [
+       "Ja, das ist sehr schlimm!",
+       "Ja, sehr schlimm!",
+       "Ja, das ist wirklich sehr schlimm!",
+       "Ja, Schimmel ist sehr schlimm!"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **sehr** ile güçlendirdin."
+     },
+     {
+      "de": "Ja, das ist nicht gut. Der Vermieter muss kommen.",
+      "tr": "Evet, bu iyi değil. Ev sahibi gelmeli.",
+      "accepted": [
+       "Ja, das ist nicht gut. Der Vermieter muss kommen.",
+       "Das ist nicht gut. Der Vermieter muss kommen.",
+       "Ja, nicht gut. Der Vermieter muss kommen."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **nicht gut** dedin ve bir çözüm önerdin."
+     },
+     {
+      "de": "Nein, das ist sehr gut.",
+      "tr": "Hayır, bu çok iyi.",
+      "accepted": [
+       "Nein, das ist sehr gut.",
+       "Das ist sehr gut.",
+       "Nein, sehr gut."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Küf iyi bir şey değil. **nicht gut** ya da **sehr schlimm** de."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Der Vermieter hat nie Zeit. Und das Haus am Bahnhof: 800 Euro.",
+    "tr": "Ev sahibinin hiç vakti yok. İstasyonun oradaki ev de 800 avro.",
+    "secenekler": [
+     {
+      "de": "800? Das ist zu teuer!",
+      "tr": "800 mü? Bu fazla pahalı!",
+      "accepted": [
+       "800? Das ist zu teuer!",
+       "Das ist zu teuer!",
+       "800 Euro? Das ist zu teuer!",
+       "800? Zu teuer!"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Sorun olduğu için **zu teuer** dedin."
+     },
+     {
+      "de": "Das ist sehr teuer, aber vielleicht okay.",
+      "tr": "Bu çok pahalı ama belki olur.",
+      "accepted": [
+       "Das ist sehr teuer, aber vielleicht okay.",
+       "Sehr teuer, aber vielleicht okay.",
+       "Das ist sehr teuer, aber okay."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **sehr teuer** pahalı ama belki alınabilir demek."
+     },
+     {
+      "de": "Das ist zu billig!",
+      "tr": "Bu fazla ucuz!",
+      "accepted": [
+       "Das ist zu billig!",
+       "Zu billig!",
+       "800? Zu billig!"
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "800 avro ucuz değil. Burada **zu teuer** ya da **sehr teuer** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Die Küche ist ziemlich klein. Aber sie ist hell.",
+    "tr": "Mutfak oldukça küçük. Ama aydınlık.",
+    "secenekler": [
+     {
+      "de": "Klein ist nicht schlimm. Hell ist gut!",
+      "tr": "Küçük olması kötü değil. Aydınlık olması iyi!",
+      "accepted": [
+       "Klein ist nicht schlimm. Hell ist gut!",
+       "Klein ist nicht schlimm, hell ist gut!",
+       "Das ist nicht schlimm. Hell ist gut!"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **nicht schlimm** ile Tobi'yi rahatlattın."
+     },
+     {
+      "de": "Ist sie zu klein für dich?",
+      "tr": "Senin için fazla mı küçük?",
+      "accepted": [
+       "Ist sie zu klein für dich?",
+       "Ist die Küche zu klein für dich?",
+       "Zu klein für dich?"
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "İyi bir soru. **zu klein** sorun var mı diye sorar."
+     },
+     {
+      "de": "Sie ist zu hell.",
+      "tr": "Fazla aydınlık.",
+      "accepted": [
+       "Sie ist zu hell.",
+       "Zu hell!",
+       "Die Küche ist zu hell."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Aydınlık mutfak iyi bir şey. **zu** yalnızca bir sorun varsa gelir."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Und die Leute im Haus sind jung. Wie findest du das?",
+    "tr": "Bir de apartmandakiler genç. Bunu nasıl buluyorsun?",
+    "secenekler": [
+     {
+      "de": "Ich finde das sehr gut!",
+      "tr": "Bence çok iyi!",
+      "accepted": [
+       "Ich finde das sehr gut!",
+       "Sehr gut!",
+       "Das finde ich sehr gut!",
+       "Ich finde das gut!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. İyi bir şey için **sehr gut** dersin."
+     },
+     {
+      "de": "Das ist schön, Tobi!",
+      "tr": "Bu güzel Tobi!",
+      "accepted": [
+       "Das ist schön, Tobi!",
+       "Schön, Tobi!",
+       "Das ist sehr schön, Tobi!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve sıcak bir cevap."
+     },
+     {
+      "de": "Ich finde das zu gut.",
+      "tr": "Bence fazla iyi.",
+      "accepted": [
+       "Ich finde das zu gut.",
+       "Zu gut!",
+       "Das ist zu gut."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "**zu** bir sorun bildirir. İyi bir şey için **sehr gut** de."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Also: zu teuer, aber schön. Ja oder nein?",
+    "tr": "Yani: fazla pahalı ama güzel. Evet mi, hayır mı?",
+    "secenekler": [
+     {
+      "de": "Nein. Es ist zu teuer, Tobi.",
+      "tr": "Hayır. Fazla pahalı Tobi.",
+      "accepted": [
+       "Nein. Es ist zu teuer, Tobi.",
+       "Nein, es ist zu teuer.",
+       "Nein, Tobi. Es ist zu teuer.",
+       "Nein, das ist zu teuer."
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Açık bir fikir. Nedenini de **zu teuer** ile söyledin."
+     },
+     {
+      "de": "Vielleicht. Wie viel ist die Kaution?",
+      "tr": "Belki. Depozito ne kadar?",
+      "accepted": [
+       "Vielleicht. Wie viel ist die Kaution?",
+       "Vielleicht. Und die Kaution?",
+       "Vielleicht. Wie viel Kaution?"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Akıllıca. Önce depozitoyu sormak doğru."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Drei Monate. Das ist zu viel! Danke!",
+    "tr": "Üç ay. Bu fazla! Sağ ol!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Tobi'ye fikrini söyledin. sehr, zu ve nicht arasındaki farkı doğru kullandın."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Tobi'den kısa mesaj",
+  "metin_de": "Hallo {name}! Der Vermieter ist heute da. Für ihn ist der Schimmel nicht schlimm. Ich finde das nicht richtig! Im Januar habe ich mehr Geld. Bis morgen, Tobi!",
+  "metin_tr": "Merhaba {name}! Ev sahibi bugün burada. Ona göre küf kötü değil. Bence bu doğru değil! Ocakta daha çok param olacak. Yarın görüşürüz, Tobi!",
+  "sorular": [
+   {
+    "id": "m1:24:o1",
+    "kind": "detail",
+    "q_tr": "Ev sahibi küf için ne düşünüyor?",
+    "opts": [
+     "Kötü değil",
+     "Çok kötü",
+     "Hiçbir şey demiyor"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:24:o2",
+    "kind": "detail",
+    "q_tr": "Tobi ne düşünüyor?",
+    "opts": [
+     "Bu doğru değil",
+     "Ev sahibi haklı",
+     "Küf önemli değil"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:24:o3",
+    "kind": "detail",
+    "q_tr": "Tobi'nin ne zaman daha çok parası olacak?",
+    "opts": [
+     "Ocakta",
+     "Yarın",
+     "Aralıkta"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:24:o4",
+    "k": "guided_response",
+    "situation_tr": "Tobi'ye cevap ver. Sen de bunun doğru olmadığını düşünüyorsun.",
+    "prompt_de": "Ich finde das nicht richtig! Und du?",
+    "accepted": [
+     "Ich finde das auch nicht richtig.",
+     "Ich auch! Das ist nicht richtig.",
+     "Das ist wirklich nicht richtig.",
+     "Ich finde das auch nicht gut.",
+     "Ich auch. Schimmel ist sehr schlimm.",
+     "Nein, das ist nicht richtig."
+    ],
+    "why_tr": "Katıldığını **auch** ile söylersin: **Ich finde das auch nicht richtig**."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:24:s",
+  "maddeler": [
+   {
+    "id": "m1:24:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Der Vermieter ist heute nicht da.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Vermieter ist heute nicht da.",
+     "der vermieter ist heute nicht da",
+     "Der Vermieter ist heute nicht da"
+    ],
+    "why_tr": "**der Vermieter** ev sahibi demektir."
+   },
+   {
+    "id": "m1:24:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Die Kaution ist sehr viel Geld.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Kaution ist sehr viel Geld.",
+     "die kaution ist sehr viel geld",
+     "Die Kaution ist sehr viel Geld"
+    ],
+    "why_tr": "**die Kaution** depozito demektir."
+   },
+   {
+    "id": "m1:24:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Am Morgen bin ich sehr müde.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Am Morgen bin ich sehr müde.",
+     "am morgen bin ich sehr müde",
+     "Am Morgen bin ich sehr müde"
+    ],
+    "why_tr": "**am Morgen** sabah demektir. Burada **Morgen** büyük harfle yazılır."
+   },
+   {
+    "id": "m1:24:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Gehen Sie immer geradeaus.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Gehen Sie immer geradeaus.",
+     "gehen sie immer geradeaus",
+     "Gehen Sie immer geradeaus"
+    ],
+    "why_tr": "**geradeaus** dümdüz demektir."
+   },
+   {
+    "id": "m1:24:s5",
+    "k": "tr_de",
+    "tr": "Mutfak fazla küçük.",
+    "accepted": [
+     "Die Küche ist zu klein.",
+     "Die Küche ist mir zu klein.",
+     "Die Küche ist leider zu klein.",
+     "Die Küche ist viel zu klein."
+    ],
+    "why_tr": "Sorun varsa **zu** dersin: **zu klein**."
+   },
+   {
+    "id": "m1:24:s6",
+    "k": "tr_de",
+    "tr": "Ev sahibi çok genç.",
+    "accepted": [
+     "Der Vermieter ist sehr jung.",
+     "Mein Vermieter ist sehr jung.",
+     "Der Vermieter ist wirklich sehr jung.",
+     "Die Vermieterin ist sehr jung."
+    ],
+    "why_tr": "Sorun yoksa **sehr** dersin: **sehr jung**."
+   },
+   {
+    "id": "m1:24:s7",
+    "k": "tr_de",
+    "tr": "Küf iyi değil.",
+    "accepted": [
+     "Der Schimmel ist nicht gut.",
+     "Schimmel ist nicht gut.",
+     "Das ist nicht gut.",
+     "Der Schimmel ist gar nicht gut."
+    ],
+    "why_tr": "Değil derken sıfatın önüne **nicht** gelir."
+   },
+   {
+    "id": "m1:24:s8",
+    "k": "tr_de",
+    "tr": "Hiç param yok.",
+    "accepted": [
+     "Ich habe kein Geld.",
+     "Ich habe gar kein Geld.",
+     "Ich habe leider kein Geld.",
+     "Ich habe überhaupt kein Geld."
+    ],
+    "why_tr": "Bir şey yok derken **kein** dersin: **kein Geld**."
+   },
+   {
+    "id": "m1:24:s9",
+    "k": "guided_response",
+    "situation_tr": "Tobi mutfağındaki küfü anlatıyor ve fikrini soruyor. Bence çok kötü.",
+    "prompt_de": "In der Küche ist Schimmel. Wie findest du das?",
+    "accepted": [
+     "Das ist sehr schlimm.",
+     "Sehr schlimm!",
+     "Ich finde das sehr schlimm.",
+     "Das ist nicht gut.",
+     "Das ist gar nicht gut.",
+     "Ich finde das nicht gut.",
+     "Das ist wirklich schlimm."
+    ],
+    "why_tr": "Güçlendirmek için **sehr**, olumsuz için **nicht** kullan."
+   },
+   {
+    "id": "m1:24:s10",
+    "k": "guided_response",
+    "situation_tr": "Sokakta biri istasyonu soruyor. İstasyon dümdüz ileride.",
+    "prompt_de": "Entschuldigung, wo ist der Bahnhof?",
+    "accepted": [
+     "Hier immer geradeaus, bitte.",
+     "Immer geradeaus.",
+     "Geradeaus.",
+     "Gehen Sie immer geradeaus.",
+     "Der Bahnhof? Immer geradeaus.",
+     "Hier geradeaus."
+    ],
+    "why_tr": "Dümdüz derken **geradeaus** dersin."
+   },
+   {
+    "id": "m1:24:s11",
+    "k": "guided_response",
+    "situation_tr": "Tobi bir ev soruyor: 900 avro, mutfak küçük. Sence fiyat fazla, mutfak da fazla küçük.",
+    "prompt_de": "900 Euro, und die Küche ist klein. Wie findest du das?",
+    "accepted": [
+     "Das ist zu teuer, und die Küche ist zu klein.",
+     "Zu teuer und zu klein!",
+     "Ich finde das zu teuer, und die Küche ist zu klein.",
+     "Das ist zu teuer. Die Küche ist zu klein.",
+     "Zu teuer! Und die Küche ist zu klein.",
+     "900 ist zu teuer und die Küche ist zu klein."
+    ],
+    "why_tr": "İki sorun için iki kez **zu** dersin: **zu teuer**, **zu klein**."
+   }
+  ],
+  "sesli": [
+   "m1:24:s9",
+   "m1:24:s10"
+  ],
+  "dikte": [
+   "m1:24:s1",
+   "m1:24:s2",
+   "m1:24:s3",
+   "m1:24:s4"
+  ]
+ }
+}

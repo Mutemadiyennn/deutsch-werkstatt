@@ -1,0 +1,1718 @@
+{
+ "schema": 1,
+ "id": "m1:gun:26",
+ "day": 26,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Ev ilanında en ucuzunu bulmak",
+ "goal_tr": "Ev ilanlarındaki kısaltmaları okur, ilanları karşılaştırıp en ucuzunu am billigsten ile söylersin.",
+ "can_do": {
+  "id": "cd:m1:26",
+  "tr": "Ev ilanlarını karşılaştırır, en ucuzunu bulurum."
+ },
+ "unit": "u:m1:26",
+ "arm": "pazar",
+ "place": "pl:sprachkurs",
+ "characters": [
+  "ch:popescu",
+  "ch:lechner",
+  "ch:brandl",
+  "ch:pichler"
+ ],
+ "requires": {
+  "kelimeler": [
+   "lx:Samstag",
+   "lx:heute",
+   "lx:gehen",
+   "lx:hallo",
+   "lx:danke",
+   "lx:bitte",
+   "lx:ja",
+   "lx:nein",
+   "lx:Frau",
+   "lx:Herr",
+   "lx:Januar",
+   "lx:Jahr",
+   "lx:haben",
+   "lx:kommen",
+   "lx:wohnen",
+   "lx:eins",
+   "lx:zwei",
+   "lx:drei",
+   "lx:sieben",
+   "lx:zehn",
+   "lx:Nummer",
+   "lx:Büro",
+   "lx:alt",
+   "lx:teuer",
+   "lx:Minute",
+   "lx:Termin",
+   "lx:da",
+   "lx:nur",
+   "lx:gern",
+   "lx:dann",
+   "lx:erster",
+   "lx:zweiter",
+   "lx:dritter",
+   "lx:wo",
+   "lx:wie",
+   "lx:wie_viel",
+   "lx:was",
+   "lx:Telefonnummer",
+   "lx:sehr",
+   "lx:sein",
+   "lx:sagen",
+   "lx:viel",
+   "lx:Zeit",
+   "lx:gut",
+   "lx:klar",
+   "lx:kurz",
+   "lx:immer",
+   "lx:jetzt",
+   "lx:hier",
+   "lx:frei",
+   "lx:einladen",
+   "lx:zu#2",
+   "lx:so",
+   "lx:Kurs",
+   "lx:auch",
+   "lx:Mal",
+   "lx:mitkommen",
+   "lx:billig",
+   "lx:hell",
+   "lx:einkaufen",
+   "lx:Bahnhof",
+   "lx:Haus",
+   "lx:finden",
+   "lx:wirklich",
+   "lx:weg",
+   "lx:Weg",
+   "lx:schön",
+   "lx:klein",
+   "lx:groß",
+   "lx:genau",
+   "lx:absagen",
+   "lx:Schimmel",
+   "lx:richtig",
+   "lx:lieb",
+   "lx:natürlich"
+  ],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic4-hafta-04.md"
+ },
+ "dersler": [
+  "gr:a1-13:t3",
+  "gr:a1-04:t5"
+ ],
+ "yeni_kartlar": [
+  "lx:Balkon",
+  "lx:Nebenkosten",
+  "lx:ach",
+  "lx:ins",
+  "lx:dort",
+  "lx:Ordnung",
+  "lx:vom",
+  "lx:Problem",
+  "lx:vergessen",
+  "lx:zeigen",
+  "lx:Mädchen",
+  "lx:Freund",
+  "lx:weit"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:26:h1",
+   "title_tr": "İlan: Zi., Kü., Blk.",
+   "kartlar": [
+    "lx:Balkon",
+    "lx:Nebenkosten",
+    "lx:weit",
+    "lx:dort",
+    "lx:vom"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "Zi. – Kü. – Blk. – NK – m²",
+     "tr": "oda – mutfak – balkon – yan giderler – metrekare"
+    },
+    {
+     "de": "am billigsten – am teuersten – am größten – am schönsten – am besten",
+     "tr": "en ucuz – en pahalı – en büyük – en güzel – en iyi"
+    },
+    {
+     "de": "dieser – diese – dieses",
+     "tr": "bu"
+    },
+    {
+     "de": "billiger als …",
+     "tr": "…'den daha ucuz"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Balkon",
+     "de": "Dieses Haus hat einen Balkon.",
+     "tr": "Bu evin bir balkonu var.",
+     "accepted": [
+      "Dieses Haus hat einen Balkon.",
+      "Das Haus hier hat einen Balkon.",
+      "Dieses Haus hat auch einen Balkon."
+     ]
+    },
+    {
+     "kart": "lx:Balkon",
+     "de": "Welcher Balkon ist am größten?",
+     "tr": "Hangi balkon en büyük?",
+     "accepted": [
+      "Welcher Balkon ist am größten?",
+      "Welcher Balkon ist denn am größten?",
+      "Und welcher Balkon ist am größten?"
+     ]
+    },
+    {
+     "kart": "lx:Nebenkosten",
+     "de": "Wo sind die Nebenkosten am billigsten?",
+     "tr": "Yan giderler en ucuz nerede?",
+     "accepted": [
+      "Wo sind die Nebenkosten am billigsten?",
+      "Wo sind denn die Nebenkosten am billigsten?",
+      "Und wo sind die Nebenkosten am billigsten?"
+     ]
+    },
+    {
+     "kart": "lx:Nebenkosten",
+     "de": "Hier sind die Nebenkosten billiger als dort.",
+     "tr": "Burada yan giderler oradan daha ucuz.",
+     "accepted": [
+      "Hier sind die Nebenkosten billiger als dort.",
+      "Die Nebenkosten sind hier billiger als dort.",
+      "Hier sind die Nebenkosten viel billiger als dort."
+     ]
+    },
+    {
+     "kart": "lx:weit",
+     "de": "Der Bahnhof ist nicht weit.",
+     "tr": "İstasyon uzak değil.",
+     "accepted": [
+      "Der Bahnhof ist nicht weit.",
+      "Der Bahnhof ist gar nicht weit.",
+      "Der Bahnhof ist nicht so weit."
+     ]
+    },
+    {
+     "kart": "lx:weit",
+     "de": "Das Haus ist zu weit vom Kurs.",
+     "tr": "Ev kursa fazla uzak.",
+     "accepted": [
+      "Das Haus ist zu weit vom Kurs.",
+      "Das Haus ist mir zu weit vom Kurs.",
+      "Das Haus ist zu weit weg vom Kurs."
+     ]
+    },
+    {
+     "kart": "lx:dort",
+     "de": "Dort ist es am schönsten.",
+     "tr": "En güzel orası.",
+     "accepted": [
+      "Dort ist es am schönsten.",
+      "Am schönsten ist es dort.",
+      "Dort ist es wirklich am schönsten."
+     ]
+    },
+    {
+     "kart": "lx:dort",
+     "de": "Ist es dort am billigsten?",
+     "tr": "En ucuzu orası mı?",
+     "accepted": [
+      "Ist es dort am billigsten?",
+      "Ist es dort wirklich am billigsten?",
+      "Ist das dort am billigsten?"
+     ]
+    },
+    {
+     "kart": "lx:vom",
+     "de": "Ist es weit vom Bahnhof?",
+     "tr": "İstasyona uzak mı?",
+     "accepted": [
+      "Ist es weit vom Bahnhof?",
+      "Ist das weit vom Bahnhof?",
+      "Ist es sehr weit vom Bahnhof?"
+     ]
+    },
+    {
+     "kart": "lx:vom",
+     "de": "Am billigsten ist das Haus zwei Minuten vom Bahnhof.",
+     "tr": "En ucuzu istasyona iki dakika olan ev.",
+     "accepted": [
+      "Am billigsten ist das Haus zwei Minuten vom Bahnhof.",
+      "Das Haus zwei Minuten vom Bahnhof ist am billigsten.",
+      "Am billigsten ist das Haus nur zwei Minuten vom Bahnhof."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Kurstan sonra, sınıfta. Ioana elinde bir ilan kâğıdı tutuyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Hier, 2 Zi., Kü., Blk.! Mit Balkon!",
+      "tr": "Burada 2 oda, mutfak, balkon! Balkonlu!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ist es weit vom Kurs?",
+      "tr": "Kursa uzak mı?"
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Nein, nicht weit. Und es ist am billigsten!",
+      "tr": "Hayır, uzak değil. Hem en ucuzu!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Ioana'nın bulduğu yer nasıl?",
+     "opts": [
+      "Uzak değil ve en ucuzu",
+      "Uzak ama balkonlu",
+      "Pahalı ve büyük"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:26:h2",
+   "title_tr": "Sorun var mı?",
+   "kartlar": [
+    "lx:Problem",
+    "lx:Ordnung",
+    "lx:vergessen",
+    "lx:zeigen"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "Kein Problem! – In Ordnung.",
+     "tr": "Sorun değil! – Tamam."
+    },
+    {
+     "de": "Ich vergesse … – Vergiss … nicht!",
+     "tr": "…unutuyorum – …unutma!"
+    },
+    {
+     "de": "Ich zeige … – Zeigst du …? – Er zeigt … – Zeig mal!",
+     "tr": "…gösteriyorum – … gösterir misin? – … gösteriyor – Göster bakalım!"
+    },
+    {
+     "de": "Grüß Gott!",
+     "tr": "Merhaba! (Bavyera'da sık)"
+    },
+    {
+     "de": "Wie findest du …? – Ich finde … am besten.",
+     "tr": "…'i nasıl buluyorsun? – Bence en iyisi …"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Problem",
+     "de": "Kein Problem, das dritte ist am besten.",
+     "tr": "Sorun değil, en iyisi üçüncüsü.",
+     "accepted": [
+      "Kein Problem, das dritte ist am besten.",
+      "Kein Problem. Das dritte ist am besten.",
+      "Das ist kein Problem, das dritte ist am besten."
+     ]
+    },
+    {
+     "kart": "lx:Problem",
+     "de": "Das Problem ist der Schimmel.",
+     "tr": "Sorun küf.",
+     "accepted": [
+      "Das Problem ist der Schimmel.",
+      "Das Problem ist hier der Schimmel.",
+      "Der Schimmel ist das Problem."
+     ]
+    },
+    {
+     "kart": "lx:Ordnung",
+     "de": "In Ordnung, ich komme mit.",
+     "tr": "Tamam, ben de geliyorum.",
+     "accepted": [
+      "In Ordnung, ich komme mit.",
+      "In Ordnung, ich komme auch mit.",
+      "Gut, in Ordnung, ich komme mit."
+     ]
+    },
+    {
+     "kart": "lx:Ordnung",
+     "de": "Ist alles in Ordnung?",
+     "tr": "Her şey yolunda mı?",
+     "accepted": [
+      "Ist alles in Ordnung?",
+      "Ist bei dir alles in Ordnung?",
+      "Alles in Ordnung?"
+     ]
+    },
+    {
+     "kart": "lx:vergessen",
+     "de": "Ich vergesse immer die Nummer.",
+     "tr": "Numarayı hep unutuyorum.",
+     "accepted": [
+      "Ich vergesse immer die Nummer.",
+      "Ich vergesse die Nummer immer.",
+      "Die Nummer vergesse ich immer."
+     ]
+    },
+    {
+     "kart": "lx:vergessen",
+     "de": "Vergiss den Termin nicht!",
+     "tr": "Randevuyu unutma!",
+     "accepted": [
+      "Vergiss den Termin nicht!",
+      "Vergiss bitte den Termin nicht!",
+      "Den Termin nicht vergessen!"
+     ]
+    },
+    {
+     "kart": "lx:zeigen",
+     "de": "Ich zeige dir das Haus.",
+     "tr": "Sana evi gösteriyorum.",
+     "accepted": [
+      "Ich zeige dir das Haus.",
+      "Ich zeige dir das Haus gern.",
+      "Das Haus zeige ich dir."
+     ]
+    },
+    {
+     "kart": "lx:zeigen",
+     "de": "Zeigst du mir den Balkon?",
+     "tr": "Bana balkonu gösterir misin?",
+     "accepted": [
+      "Zeigst du mir den Balkon?",
+      "Zeigst du mir bitte den Balkon?",
+      "Zeigst du mir mal den Balkon?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Apartmanın girişi. Pichler Bey anahtarla bekliyor.",
+    "satirlar": [
+     {
+      "r": "ch:pichler",
+      "de": "Grüß Gott! Ich zeige Ihnen das Haus.",
+      "tr": "Merhaba! Size binayı gösteriyorum."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Danke! Ist alles in Ordnung mit dem Balkon?",
+      "tr": "Teşekkürler! Balkonda her şey yolunda mı?"
+     },
+     {
+      "r": "ch:pichler",
+      "de": "Ja, kein Problem. Er ist klein, aber schön.",
+      "tr": "Evet, sorun yok. Küçük ama güzel."
+     }
+    ],
+    "soru": {
+     "q_tr": "Balkon nasıl?",
+     "opts": [
+      "Küçük ama güzel",
+      "Büyük ve yeni",
+      "Bozuk"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:26:h3",
+   "title_tr": "Arkadaşlar ve çocuklar",
+   "kartlar": [
+    "lx:Mädchen",
+    "lx:Freund",
+    "lx:ins",
+    "lx:ach"
+   ],
+   "kaliplar": [],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Mädchen",
+     "de": "Das Mädchen von Lena ist sieben.",
+     "tr": "Lena'nın kızı yedi yaşında.",
+     "accepted": [
+      "Das Mädchen von Lena ist sieben.",
+      "Das Mädchen von Lena ist sieben Jahre alt.",
+      "Lenas Mädchen ist sieben."
+     ]
+    },
+    {
+     "kart": "lx:Mädchen",
+     "de": "Das Mädchen ist sehr lieb.",
+     "tr": "Kız çok tatlı.",
+     "accepted": [
+      "Das Mädchen ist sehr lieb.",
+      "Das Mädchen ist wirklich sehr lieb.",
+      "Das Mädchen ist so lieb."
+     ]
+    },
+    {
+     "kart": "lx:Freund",
+     "de": "Tobi ist ein Freund von mir.",
+     "tr": "Tobi benim bir arkadaşım.",
+     "accepted": [
+      "Tobi ist ein Freund von mir.",
+      "Tobi ist mein Freund.",
+      "Tobi ist ein guter Freund von mir."
+     ]
+    },
+    {
+     "kart": "lx:Freund",
+     "de": "Kommt dein Freund auch?",
+     "tr": "Arkadaşın da geliyor mu?",
+     "accepted": [
+      "Kommt dein Freund auch?",
+      "Kommt dein Freund auch mit?",
+      "Dein Freund kommt auch?"
+     ]
+    },
+    {
+     "kart": "lx:ins",
+     "de": "Wir gehen ins Haus.",
+     "tr": "Eve giriyoruz.",
+     "accepted": [
+      "Wir gehen ins Haus.",
+      "Wir gehen jetzt ins Haus.",
+      "Komm, wir gehen ins Haus."
+     ]
+    },
+    {
+     "kart": "lx:ins",
+     "de": "Ich gehe ins Büro.",
+     "tr": "Ofise gidiyorum.",
+     "accepted": [
+      "Ich gehe ins Büro.",
+      "Ich gehe jetzt ins Büro.",
+      "Ich gehe heute ins Büro."
+     ]
+    },
+    {
+     "kart": "lx:ach",
+     "de": "Ach so, der Balkon ist klein!",
+     "tr": "Ha, balkon küçükmüş!",
+     "accepted": [
+      "Ach so, der Balkon ist klein!",
+      "Ach so, der Balkon ist sehr klein!",
+      "Ach, der Balkon ist klein!"
+     ]
+    },
+    {
+     "kart": "lx:ach",
+     "de": "Ach, das ist zu teuer!",
+     "tr": "Of, bu fazla pahalı!",
+     "accepted": [
+      "Ach, das ist zu teuer!",
+      "Ach, das ist viel zu teuer!",
+      "Ach nein, das ist zu teuer!"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Apartmanın önü. Lena kızıyla geçiyor, Ioana selam veriyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Ach, das Mädchen ist so groß!",
+      "tr": "Aa, kız ne kadar büyümüş!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ist das das Mädchen von Lena?",
+      "tr": "Bu Lena'nın kızı mı?"
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Ja! Sie geht jetzt ins Haus, zu Frau Brandl.",
+      "tr": "Evet! Şimdi içeri giriyor, Brandl Hanım'a."
+     }
+    ],
+    "soru": {
+     "q_tr": "Kız nereye gidiyor?",
+     "opts": [
+      "Brandl Hanım'a",
+      "Okula",
+      "Kursa"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:26:v1",
+  "title_tr": "Üç ilan, hangisi en ucuz?",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Kafede. Tobi masaya üç ilan kâğıdı koyuyor.",
+    "de": "Ioana, hast du kurz Zeit? Es geht um ein Haus.",
+    "tr": "Ioana, biraz vaktin var mı? Bir ev meselesi."
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana kâğıtlara uzanıyor.",
+    "de": "Klar! Zeig mal.",
+    "tr": "Tabii! Göster bakalım."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi ilk kâğıdı gösteriyor.",
+    "de": "Das erste ist in der Brunnengasse. Mit Balkon!",
+    "tr": "Birincisi Brunnengasse'de. Balkonlu!"
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana gülümsüyor.",
+    "de": "Schön! Und wie teuer ist es?",
+    "tr": "Güzel! Peki fiyatı ne kadar?"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi rakamları okuyor.",
+    "de": "650 Euro, und die Nebenkosten sind 120.",
+    "tr": "650 avro, yan giderler de 120."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana ikinci kâğıdı alıyor.",
+    "de": "Und das zweite?",
+    "tr": "Peki ikincisi?"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi iç çekiyor.",
+    "de": "Am Bahnhof. Es ist am größten, aber auch am teuersten.",
+    "tr": "İstasyonun orada. En büyüğü ama en pahalısı da."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana başını iki yana sallıyor.",
+    "de": "Ach, das ist zu teuer für dich.",
+    "tr": "Of, o sana fazla pahalı."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi üçüncü kâğıdı sallıyor.",
+    "de": "Ja. Und das dritte ist am billigsten: 450 Euro.",
+    "tr": "Evet. Üçüncüsü en ucuzu: 450 avro."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana merakla bakıyor.",
+    "de": "Wo ist es?",
+    "tr": "Nerede?"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kâğıdı okuyor.",
+    "de": "Im Brunnenviertel.",
+    "tr": "Brunnenviertel'de."
+   },
+   {
+    "id": "s11b",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi parmağıyla haritada istasyonu gösteriyor.",
+    "de": "Es ist klein, aber nicht weit vom Bahnhof.",
+    "tr": "Küçük ama istasyona uzak değil."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana omuz silkiyor.",
+    "de": "Klein ist kein Problem.",
+    "tr": "Küçük olması sorun değil."
+   },
+   {
+    "id": "s12b",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana kâğıda eğiliyor.",
+    "de": "Hat es einen Balkon?",
+    "tr": "Balkonu var mı?"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi sevinçle parmağını kaldırıyor.",
+    "de": "Ja! Und ab Januar ist es frei.",
+    "tr": "Evet! Hem ocaktan itibaren boş."
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana üçüncü kâğıdı Tobi'ye uzatıyor.",
+    "de": "Dann ist das dritte am besten!",
+    "tr": "O zaman en iyisi üçüncüsü!"
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:lechner",
+    "sahne_tr": "Tobi kâğıdı cebine koyuyor.",
+    "de": "In Ordnung! Danke, Ioana, du bist lieb!",
+    "tr": "Tamam! Sağ ol Ioana, çok tatlısın!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s11b",
+     "s12",
+     "s12b",
+     "s13",
+     "s14",
+     "s15"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Tobi ile Ioana ne yapıyor?",
+     "opts": [
+      "Tobi için üç ev ilanını karşılaştırıyorlar",
+      "Ioana'nın kursunu konuşuyorlar",
+      "Hafta sonunu planlıyorlar"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s9"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "En ucuz yer nerede?",
+      "opts": [
+       "İstasyonun orada",
+       "Brunnenviertel'de",
+       "Brunnengasse'de"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s9",
+       "s11"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "İstasyonun oradaki yer neden uymuyor?",
+      "opts": [
+       "Fazla pahalı",
+       "Çok küçük",
+       "Balkonu yok"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s7",
+       "s8"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s5",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "Balkon",
+       "Nebenkosten",
+       "Problem"
+      ],
+      "ans": 1
+     },
+     {
+      "id": "d2",
+      "cumle": "s9",
+      "seviye": "orta",
+      "de": "Ja. Und das dritte ist am ___: 450 Euro.",
+      "accepted": [
+       "billigsten",
+       "Billigsten",
+       "billigsten."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s11b",
+      "seviye": "zor",
+      "banka": [
+       "Es",
+       "ist",
+       "klein",
+       "aber",
+       "nicht",
+       "weit",
+       "vom",
+       "Bahnhof",
+       "zu",
+       "am"
+      ],
+      "accepted": [
+       "Es ist klein, aber nicht weit vom Bahnhof.",
+       "es ist klein aber nicht weit vom bahnhof",
+       "Es ist klein, aber nicht weit vom Bahnhof"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s12",
+      "seviye": "usta",
+      "accepted": [
+       "Klein ist kein Problem.",
+       "klein ist kein problem",
+       "Klein ist kein Problem"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Tobi için en iyi yeri Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Das dritte Haus ist am billigsten. Es hat einen Balkon.",
+      "zorunlu": [
+       "am billigsten",
+       "Balkon"
+      ]
+     }
+    ],
+    "golge": [
+     "s4",
+     "s14"
+    ],
+    "cevapla": {
+     "id": "m1:26:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Tobi sana da soruyor. Sence üçüncüsü en iyisi, çünkü en ucuzu.",
+     "prompt_de": "Und du? Welches ist am besten?",
+     "accepted": [
+      "Das dritte ist am besten, es ist am billigsten.",
+      "Das dritte. Es ist am billigsten.",
+      "Ich finde das dritte am besten.",
+      "Das dritte ist am besten.",
+      "Nummer drei, es ist am billigsten.",
+      "Das im Brunnenviertel ist am besten."
+     ],
+     "why_tr": "En iyi **am besten**, en ucuz **am billigsten** olur."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:26:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Brandl Hanım'dan mesaj",
+   "ortam_tr": "Brandl Hanım telefonuna mesaj bırakmış. Tobi'nin ev aradığını duymuş.",
+   "speaker": "ch:brandl",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Grüß Gott, hier ist Rosa Brandl.",
+     "tr": "Merhaba, ben Rosa Brandl."
+    },
+    {
+     "id": "c2",
+     "de": "Tobi ist doch Ihr Freund, ja?",
+     "tr": "Tobi sizin arkadaşınız, değil mi?"
+    },
+    {
+     "id": "c3",
+     "de": "Bei uns im Haus ist ab Januar etwas frei.",
+     "tr": "Bizim apartmanda ocaktan itibaren bir yer boşalıyor."
+    },
+    {
+     "id": "c4",
+     "de": "Es ist nicht groß, aber hell, und die Nebenkosten sind nicht teuer.",
+     "tr": "Büyük değil ama aydınlık, yan giderler de pahalı değil."
+    },
+    {
+     "id": "c5",
+     "de": "Herr Pichler zeigt es am Samstag um zehn.",
+     "tr": "Pichler Bey cumartesi saat onda gösteriyor."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Brandl Hanım neden arıyor?",
+      "opts": [
+       "Apartmanda Tobi için boş bir yer var",
+       "Pichler Bey'le bir sorun var",
+       "Seni kahveye çağırıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Yer nasıl?",
+       "opts": [
+        "Büyük ve karanlık",
+        "Büyük değil ama aydınlık",
+        "Pahalı"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c4"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Pichler Bey yeri ne zaman gösteriyor?",
+       "opts": [
+        "Cumartesi saat onda",
+        "Ocakta",
+        "Pazartesi saat onda"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi ayı duydun?",
+       "opts": [
+        "Juni",
+        "Juli",
+        "Januar"
+       ],
+       "ans": 2
+      },
+      {
+       "id": "d2",
+       "cumle": "c5",
+       "seviye": "orta",
+       "de": "Herr Pichler ___ es am Samstag um zehn.",
+       "accepted": [
+        "zeigt",
+        "Zeigt",
+        "zeigt."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Es",
+        "ist",
+        "nicht",
+        "groß",
+        "aber",
+        "hell",
+        "und",
+        "die",
+        "Nebenkosten",
+        "sind",
+        "nicht",
+        "teuer",
+        "zu",
+        "sehr"
+       ],
+       "accepted": [
+        "Es ist nicht groß, aber hell, und die Nebenkosten sind nicht teuer.",
+        "es ist nicht groß aber hell und die nebenkosten sind nicht teuer",
+        "Es ist nicht groß, aber hell, und die Nebenkosten sind nicht teuer"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Bei uns im Haus ist ab Januar etwas frei.",
+        "bei uns im haus ist ab januar etwas frei",
+        "Bei uns im Haus ist ab Januar etwas frei"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Mesajı Almanca bir kısa cümleyle özetle.",
+       "ornek_de": "Bei Frau Brandl im Haus ist ab Januar etwas frei.",
+       "zorunlu": [
+        "Januar",
+        "frei"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:26:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Brandl Hanım'ı geri arıyorsun. Tobi'ye söyleyeceksin, unutmayacaksın.",
+      "prompt_de": "Sagen Sie das Tobi?",
+      "accepted": [
+       "Ja, natürlich! Ich vergesse es nicht.",
+       "Ja, natürlich!",
+       "Ja, ich sage es Tobi.",
+       "Natürlich, ich vergesse es nicht.",
+       "Ja, gern! Ich vergesse es nicht.",
+       "Ja, ich sage es ihm."
+      ],
+      "why_tr": "Unutmam derken **Ich vergesse es nicht** dersin."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:26:a1:e1",
+    "k": "pick",
+    "q_tr": "Mesajdan sonra ne yapmalısın?",
+    "opts": [
+     "Tobi'ye haber ver: cumartesi saat onda Pichler Bey yeri gösteriyor.",
+     "Brandl Hanım'a para götür.",
+     "Pichler Bey'i hemen ara."
+    ],
+    "ans": 0,
+    "why_tr": "Ocakta boşalacak yer Tobi için. Pichler Bey cumartesi saat onda gösteriyor.",
+    "kanit": [
+     "c3",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:26:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Tobi'den mesaj",
+   "ortam_tr": "Akşam Tobi'den bir sesli mesaj geliyor.",
+   "speaker": "ch:lechner",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Tobi!",
+     "tr": "Merhaba, ben Tobi!"
+    },
+    {
+     "id": "c2",
+     "de": "Das im Brunnenviertel ist wirklich am billigsten.",
+     "tr": "Brunnenviertel'deki gerçekten en ucuzu."
+    },
+    {
+     "id": "c3",
+     "de": "Aber der Balkon ist sehr klein.",
+     "tr": "Ama balkonu çok küçük."
+    },
+    {
+     "id": "c4",
+     "de": "Und bei Frau Brandl?",
+     "tr": "Peki Brandl Hanım'daki?"
+    },
+    {
+     "id": "c4b",
+     "de": "Ist es dort am schönsten?",
+     "tr": "En güzeli orası mı?"
+    },
+    {
+     "id": "c5",
+     "de": "Ich vergesse immer die Nummer: Brunnengasse sieben, ja?",
+     "tr": "Numarayı hep unutuyorum: Brunnengasse yedi, değil mi?"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c4b",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Tobi neden arıyor?",
+      "opts": [
+       "İki yeri karşılaştırıyor ve adresi soruyor",
+       "Taşındığını söylüyor",
+       "Brandl Hanım'dan şikâyet ediyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4",
+       "c4b",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Brunnenviertel'deki yerin sorunu ne?",
+       "opts": [
+        "Fazla pahalı",
+        "Balkonu çok küçük",
+        "Çok uzak"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Tobi neyi unutuyor?",
+       "opts": [
+        "Saati",
+        "Brandl Hanım'ın adını",
+        "Adresin numarasını"
+       ],
+       "ans": 2,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "groß",
+        "klein",
+        "alt"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Das im Brunnenviertel ist wirklich am ___.",
+       "accepted": [
+        "billigsten",
+        "Billigsten",
+        "billigsten."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c3",
+       "seviye": "zor",
+       "banka": [
+        "Aber",
+        "der",
+        "Balkon",
+        "ist",
+        "sehr",
+        "klein",
+        "zu",
+        "groß"
+       ],
+       "accepted": [
+        "Aber der Balkon ist sehr klein.",
+        "aber der balkon ist sehr klein",
+        "Aber der Balkon ist sehr klein"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4b",
+       "seviye": "usta",
+       "accepted": [
+        "Ist es dort am schönsten?",
+        "ist es dort am schönsten",
+        "Ist es dort am schönsten"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Tobi'nin mesajını Almanca bir kısa cümleyle özetle.",
+       "ornek_de": "Im Brunnenviertel ist es am billigsten, aber der Balkon ist klein.",
+       "zorunlu": [
+        "am billigsten",
+        "Balkon"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:26:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi'ye cevap ver. Adres doğru: Brunnengasse 7.",
+      "prompt_de": "Brunnengasse sieben, ja?",
+      "accepted": [
+       "Ja, genau! Brunnengasse sieben.",
+       "Ja, genau!",
+       "Ja, Brunnengasse sieben.",
+       "Genau, Nummer sieben.",
+       "Ja, richtig! Brunnengasse sieben.",
+       "Ja, sieben. Vergiss es nicht!"
+      ],
+      "why_tr": "Doğrularken **genau** ya da **richtig** dersin."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:26:a2:e1",
+    "k": "pick",
+    "q_tr": "Mesajdan sonra ne yapmalısın?",
+    "opts": [
+     "Tobi'ye adresi doğrula: Brunnengasse 7.",
+     "Tobi'ye balkonlu bir yer bul.",
+     "Brandl Hanım'ı ara."
+    ],
+    "ans": 0,
+    "why_tr": "Tobi adresin numarasını unutmuş ve doğru olup olmadığını soruyor.",
+    "kanit": [
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:26:g1",
+   "de": "der Balkon",
+   "dogru_img": "small balcony with plants on an apartment building",
+   "celdirici_img": [
+    "window without balcony",
+    "front door of a house",
+    "staircase"
+   ]
+  },
+  {
+   "id": "m1:26:g2",
+   "de": "die Nebenkosten",
+   "dogru_img": "monthly bills for heating, water and rubbish on a table",
+   "celdirici_img": [
+    "shopping receipt",
+    "birthday card",
+    "bus ticket"
+   ]
+  },
+  {
+   "id": "m1:26:g3",
+   "de": "das Mädchen",
+   "dogru_img": "girl of about seven with a school bag",
+   "celdirici_img": [
+    "old woman",
+    "adult man",
+    "baby in a pram"
+   ]
+  },
+  {
+   "id": "m1:26:g4",
+   "de": "weit",
+   "dogru_img": "long empty country road disappearing into the distance",
+   "celdirici_img": [
+    "short path to a nearby door",
+    "crowded street",
+    "small room"
+   ]
+  },
+  {
+   "id": "m1:26:g5",
+   "de": "am billigsten",
+   "dogru_img": "three flat ads side by side, the cheapest price circled",
+   "celdirici_img": [
+    "three flat ads, the most expensive circled",
+    "three flat ads, the largest circled",
+    "one single flat ad"
+   ]
+  },
+  {
+   "id": "m1:26:g6",
+   "de": "Er zeigt den Balkon.",
+   "dogru_img": "caretaker pointing at a balcony for a visitor",
+   "celdirici_img": [
+    "caretaker repairing a door",
+    "visitor sitting alone on a balcony",
+    "two people at a kitchen table"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:26:p1",
+  "title_tr": "Tobi için en ucuzunu buluyorsunuz",
+  "durum_tr": "Ioana ile üç ilana bakıyorsunuz. 1: Brunnengasse, 2 Zi., Kü., Blk., 55 m², 650 € + NK 120 €. 2: am Bahnhof, 3 Zi., Kü., 70 m², 800 € + NK 150 €. 3: Brunnenviertel, 1 Zi., Kü., Blk., 30 m², 450 € + NK 60 €.",
+  "karsi": "ch:popescu",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Für Tobi: Welches ist am billigsten?",
+    "tr": "Tobi için: hangisi en ucuz?",
+    "secenekler": [
+     {
+      "de": "Das im Brunnenviertel. Es ist am billigsten.",
+      "tr": "Brunnenviertel'deki. En ucuzu o.",
+      "accepted": [
+       "Das im Brunnenviertel. Es ist am billigsten.",
+       "Das im Brunnenviertel ist am billigsten.",
+       "Nummer drei ist am billigsten.",
+       "Das dritte ist am billigsten."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **am billigsten** dedin."
+     },
+     {
+      "de": "Nummer drei: 450 Euro und 60 Euro Nebenkosten.",
+      "tr": "Üç numara: 450 avro ve 60 avro yan gider.",
+      "accepted": [
+       "Nummer drei: 450 Euro und 60 Euro Nebenkosten.",
+       "Nummer drei, 450 Euro und 60 Euro Nebenkosten.",
+       "Nummer drei: 450 Euro."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Fiyatı ve yan giderleri okudun."
+     },
+     {
+      "de": "Das am Bahnhof ist am billigsten.",
+      "tr": "İstasyonun oradaki en ucuz.",
+      "accepted": [
+       "Das am Bahnhof ist am billigsten.",
+       "Nummer zwei ist am billigsten.",
+       "Das zweite ist am billigsten."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "İstasyonun oradaki 800 avro. O en pahalısı."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Und welches ist am größten?",
+    "tr": "Peki hangisi en büyük?",
+    "secenekler": [
+     {
+      "de": "Das am Bahnhof, 70 m².",
+      "tr": "İstasyonun oradaki, 70 metrekare.",
+      "accepted": [
+       "Das am Bahnhof, 70 m².",
+       "Das am Bahnhof ist am größten.",
+       "Das am Bahnhof, es hat 70 m².",
+       "Das am Bahnhof, 70 Quadratmeter.",
+       "Das am Bahnhof, siebzig Quadratmeter."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Metrekareyi de okudun."
+     },
+     {
+      "de": "Nummer zwei ist am größten.",
+      "tr": "İki numara en büyük.",
+      "accepted": [
+       "Nummer zwei ist am größten.",
+       "Das zweite ist am größten.",
+       "Nummer zwei."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **am größten** dedin."
+     },
+     {
+      "de": "Nummer drei ist am größten.",
+      "tr": "Üç numara en büyük.",
+      "accepted": [
+       "Nummer drei ist am größten.",
+       "Das dritte ist am größten.",
+       "Das im Brunnenviertel ist am größten."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "Üçüncüsü 30 metrekare, en küçüğü o."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Hat Nummer zwei einen Balkon?",
+    "tr": "İki numaranın balkonu var mı?",
+    "secenekler": [
+     {
+      "de": "Nein, Nummer zwei hat keinen Balkon.",
+      "tr": "Hayır, iki numaranın balkonu yok.",
+      "accepted": [
+       "Nein, Nummer zwei hat keinen Balkon.",
+       "Nein, keinen Balkon.",
+       "Nein, Nummer zwei hat keinen."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. İlanda **Blk.** yok."
+     },
+     {
+      "de": "Nein, nur eins und drei.",
+      "tr": "Hayır, yalnızca bir ve üç.",
+      "accepted": [
+       "Nein, nur eins und drei.",
+       "Nein, nur Nummer eins und Nummer drei.",
+       "Nein, nur eins und drei haben einen Balkon."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. İki ilanı birden kontrol ettin."
+     },
+     {
+      "de": "Ja, es hat einen Balkon.",
+      "tr": "Evet, balkonu var.",
+      "accepted": [
+       "Ja, es hat einen Balkon.",
+       "Ja, einen Balkon.",
+       "Ja, mit Balkon."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "İkinci ilanda **Blk.** yazmıyor. Balkonu yok."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Und welches findest du am besten?",
+    "tr": "Peki sence en iyisi hangisi?",
+    "secenekler": [
+     {
+      "de": "Ich finde Nummer drei am besten. 450 Euro ist nicht teuer.",
+      "tr": "Bence üç numara en iyisi. 450 avro pahalı değil.",
+      "accepted": [
+       "Ich finde Nummer drei am besten. 450 Euro ist nicht teuer.",
+       "Nummer drei ist am besten. Es ist am billigsten.",
+       "Ich finde das dritte am besten, es ist am billigsten."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Fikrini ve nedenini söyledin."
+     },
+     {
+      "de": "Nummer eins. Es ist nicht so billig, aber es hat einen Balkon.",
+      "tr": "Bir numara. O kadar ucuz değil ama balkonu var.",
+      "accepted": [
+       "Nummer eins. Es ist nicht so billig, aber es hat einen Balkon.",
+       "Nummer eins, es hat einen Balkon.",
+       "Das erste. Es hat einen Balkon."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Balkonu fiyattan önemli buldun."
+     },
+     {
+      "de": "Nummer zwei, es ist am billigsten.",
+      "tr": "İki numara, en ucuzu o.",
+      "accepted": [
+       "Nummer zwei, es ist am billigsten.",
+       "Das zweite, es ist am billigsten.",
+       "Nummer zwei ist am billigsten."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "İki numara en pahalısı. **am teuersten** o."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "In Ordnung! Wir zeigen es Tobi.",
+    "tr": "Tamam! Tobi'ye gösteririz.",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "İlanlardaki kısaltmaları okudun, en ucuzunu ve en büyüğünü buldun."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Üç kısa ev ilanı",
+  "metin_de": "Brunnengasse: 2 Zi., Kü., Blk., 55 m², 650 € + NK 120 €\nAm Bahnhof: 3 Zi., Kü., 70 m², 800 € + NK 150 €\nBrunnenviertel: 1 Zi., Kü., Blk., 30 m², 450 € + NK 60 €, ab Januar frei",
+  "metin_tr": "Brunnengasse: 2 oda, mutfak, balkon, 55 metrekare, 650 € artı 120 € yan gider\nİstasyonun yanı: 3 oda, mutfak, 70 metrekare, 800 € artı 150 € yan gider\nBrunnenviertel: 1 oda, mutfak, balkon, 30 metrekare, 450 € artı 60 € yan gider, ocaktan itibaren boş",
+  "sorular": [
+   {
+    "id": "m1:26:o1",
+    "kind": "detail",
+    "q_tr": "Hangi ilan en ucuz?",
+    "opts": [
+     "Brunnengasse",
+     "İstasyonun yanı",
+     "Brunnenviertel"
+    ],
+    "ans": 2,
+    "kanit": [
+     0,
+     1,
+     2
+    ]
+   },
+   {
+    "id": "m1:26:o2",
+    "kind": "detail",
+    "q_tr": "Hangisinde balkon yok?",
+    "opts": [
+     "İstasyonun yanındakinde",
+     "Brunnengasse'dekinde",
+     "Brunnenviertel'dekinde"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:26:o3",
+    "kind": "detail",
+    "q_tr": "En büyük yer hangisi?",
+    "opts": [
+     "İstasyonun yanındaki, 70 m²",
+     "Brunnengasse'deki, 55 m²",
+     "Brunnenviertel'deki, 30 m²"
+    ],
+    "ans": 0,
+    "kanit": [
+     0,
+     1,
+     2
+    ]
+   },
+   {
+    "id": "m1:26:o4",
+    "k": "guided_response",
+    "situation_tr": "Ioana en ucuz ilanı soruyor. Söyle.",
+    "prompt_de": "Was ist am billigsten?",
+    "accepted": [
+     "Das im Brunnenviertel ist am billigsten.",
+     "Brunnenviertel ist am billigsten.",
+     "Nummer drei ist am billigsten.",
+     "Das dritte ist am billigsten.",
+     "Im Brunnenviertel, 450 Euro.",
+     "Das im Brunnenviertel, 450 Euro."
+    ],
+    "why_tr": "En ucuz derken **am billigsten** dersin."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:26:s",
+  "maddeler": [
+   {
+    "id": "m1:26:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Dort sind die Nebenkosten am billigsten.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Dort sind die Nebenkosten am billigsten.",
+     "dort sind die nebenkosten am billigsten",
+     "Dort sind die Nebenkosten am billigsten"
+    ],
+    "why_tr": "**am billigsten** en ucuz demektir."
+   },
+   {
+    "id": "m1:26:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Der Balkon ist nicht sehr groß.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Balkon ist nicht sehr groß.",
+     "der balkon ist nicht sehr groß",
+     "Der Balkon ist nicht sehr groß"
+    ],
+    "why_tr": "**nicht sehr groß** çok büyük değil demektir."
+   },
+   {
+    "id": "m1:26:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Das Mädchen ist sieben Jahre alt.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Das Mädchen ist sieben Jahre alt.",
+     "das mädchen ist sieben jahre alt",
+     "Das Mädchen ist sieben Jahre alt"
+    ],
+    "why_tr": "**das Mädchen** kız çocuk demektir."
+   },
+   {
+    "id": "m1:26:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Mein Freund wohnt nicht weit vom Bahnhof.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Mein Freund wohnt nicht weit vom Bahnhof.",
+     "mein freund wohnt nicht weit vom bahnhof",
+     "Mein Freund wohnt nicht weit vom Bahnhof"
+    ],
+    "why_tr": "**weit** uzak, **vom** -den demektir."
+   },
+   {
+    "id": "m1:26:s5",
+    "k": "tr_de",
+    "tr": "Hangi ev en ucuz?",
+    "accepted": [
+     "Welches Haus ist am billigsten?",
+     "Welches ist am billigsten?",
+     "Welches Haus ist denn am billigsten?",
+     "Was ist am billigsten?"
+    ],
+    "why_tr": "En ucuz için **am billigsten** dersin."
+   },
+   {
+    "id": "m1:26:s6",
+    "k": "tr_de",
+    "tr": "Burası en güzeli.",
+    "accepted": [
+     "Hier ist es am schönsten.",
+     "Am schönsten ist es hier.",
+     "Hier ist es wirklich am schönsten.",
+     "Das hier ist am schönsten."
+    ],
+    "why_tr": "En güzel **am schönsten** olur."
+   },
+   {
+    "id": "m1:26:s7",
+    "k": "tr_de",
+    "tr": "Sorun değil, tamam.",
+    "accepted": [
+     "Kein Problem, in Ordnung.",
+     "Kein Problem, alles in Ordnung.",
+     "In Ordnung, kein Problem.",
+     "Kein Problem. In Ordnung."
+    ],
+    "why_tr": "Tamam derken **in Ordnung** dersin."
+   },
+   {
+    "id": "m1:26:s8",
+    "k": "tr_de",
+    "tr": "Telefon numarasını unutma!",
+    "accepted": [
+     "Vergiss die Telefonnummer nicht!",
+     "Vergiss bitte die Telefonnummer nicht!",
+     "Die Telefonnummer nicht vergessen!",
+     "Vergiss die Nummer nicht!"
+    ],
+    "why_tr": "Unutma derken **Vergiss** ile başlarsın, **nicht** sona gelir."
+   },
+   {
+    "id": "m1:26:s9",
+    "k": "guided_response",
+    "situation_tr": "Ioana yan giderleri soruyor. 120 avro.",
+    "prompt_de": "Wie viel sind die Nebenkosten?",
+    "accepted": [
+     "Die Nebenkosten sind 120 Euro.",
+     "120 Euro.",
+     "Sie sind 120 Euro.",
+     "Hundertzwanzig Euro.",
+     "Die Nebenkosten? 120 Euro.",
+     "Nur 120 Euro."
+    ],
+    "why_tr": "**die Nebenkosten** yan giderler demektir."
+   },
+   {
+    "id": "m1:26:s10",
+    "k": "guided_response",
+    "situation_tr": "Tobi soruyor: Balkonu var mı? Evet, var.",
+    "prompt_de": "Hat das Haus einen Balkon?",
+    "accepted": [
+     "Ja, es hat einen Balkon.",
+     "Ja, einen Balkon.",
+     "Ja, es hat auch einen Balkon.",
+     "Ja, mit Balkon.",
+     "Ja, da ist ein Balkon.",
+     "Ja, es hat einen kleinen Balkon."
+    ],
+    "why_tr": "**das Haus** için **es** dersin."
+   },
+   {
+    "id": "m1:26:s11",
+    "k": "guided_response",
+    "situation_tr": "Üç ilan var: 650, 800 ve 450 avro. İkincisi en büyük. Ioana soruyor; en ucuzu ve en büyüğü söyle.",
+    "prompt_de": "Welches ist am billigsten, und welches ist am größten?",
+    "accepted": [
+     "Nummer drei ist am billigsten, Nummer zwei ist am größten.",
+     "Das dritte ist am billigsten, das zweite am größten.",
+     "Am billigsten ist Nummer drei, am größten Nummer zwei.",
+     "Nummer drei ist am billigsten. Nummer zwei ist am größten.",
+     "Das im Brunnenviertel ist am billigsten, das am Bahnhof ist am größten."
+    ],
+    "why_tr": "İki soruya iki **am** ile cevap ver: **am billigsten**, **am größten**."
+   }
+  ],
+  "sesli": [
+   "m1:26:s9",
+   "m1:26:s10"
+  ],
+  "dikte": [
+   "m1:26:s1",
+   "m1:26:s2",
+   "m1:26:s3",
+   "m1:26:s4"
+  ]
+ }
+}

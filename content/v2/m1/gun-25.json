@@ -1,0 +1,1692 @@
+{
+ "schema": 1,
+ "id": "m1:gun:25",
+ "day": 25,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Hangisi? Daha ucuz",
+ "goal_tr": "İkinci el tezgâhında iki eşyadan hangisini istediğini dieser ile söyler, hangisinin daha ucuz olduğunu billiger als ile karşılaştırırsın.",
+ "can_do": {
+  "id": "cd:m1:25",
+  "tr": "İki şeyden hangisini istediğimi ve hangisinin daha ucuz olduğunu söylerim."
+ },
+ "unit": "u:m1:25",
+ "arm": "pazar",
+ "place": "pl:marktplatz",
+ "characters": [
+  "ch:stadler",
+  "ch:petrovic",
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [
+   "lx:Freitag",
+   "lx:Samstag",
+   "lx:heute",
+   "lx:morgen",
+   "lx:gehen",
+   "lx:hallo",
+   "lx:danke",
+   "lx:bitte",
+   "lx:ja",
+   "lx:nein",
+   "lx:Frau",
+   "lx:haben",
+   "lx:kommen",
+   "lx:zwei",
+   "lx:vier",
+   "lx:zehn",
+   "lx:fünfzehn",
+   "lx:neu",
+   "lx:kosten",
+   "lx:alt",
+   "lx:teuer",
+   "lx:noch",
+   "lx:Uhr",
+   "lx:Termin",
+   "lx:leider",
+   "lx:da",
+   "lx:nur",
+   "lx:gern",
+   "lx:dann",
+   "lx:wo",
+   "lx:wie",
+   "lx:wie_viel",
+   "lx:was",
+   "lx:sehr",
+   "lx:sein",
+   "lx:möchten",
+   "lx:viel",
+   "lx:gut",
+   "lx:immer",
+   "lx:jetzt",
+   "lx:Kuchen",
+   "lx:hier",
+   "lx:nehmen",
+   "lx:fahren",
+   "lx:schnell",
+   "lx:Schuh",
+   "lx:einladen",
+   "lx:kaputt",
+   "lx:Bus",
+   "lx:sehen",
+   "lx:zu#2",
+   "lx:so",
+   "lx:Kurs",
+   "lx:auch",
+   "lx:Stand",
+   "lx:mitkommen",
+   "lx:Stuhl",
+   "lx:Jacke",
+   "lx:billig",
+   "lx:Mantel",
+   "lx:einkaufen",
+   "lx:Bahnhof",
+   "lx:finden",
+   "lx:mögen#2",
+   "lx:wirklich",
+   "lx:schön",
+   "lx:klein",
+   "lx:groß",
+   "lx:Tasse",
+   "lx:Sofa",
+   "lx:Morgen",
+   "lx:Leute",
+   "lx:Geld"
+  ],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic4-hafta-04.md"
+ },
+ "dersler": [
+  "gr:a1-13:t1",
+  "gr:a1-13:t2"
+ ],
+ "yeni_kartlar": [
+  "lx:euer",
+  "lx:Paar",
+  "lx:paar",
+  "lx:wieso",
+  "lx:lieb",
+  "lx:erzählen",
+  "lx:stimmen",
+  "lx:laufen",
+  "lx:ohne",
+  "lx:holen",
+  "lx:natürlich",
+  "lx:treffen"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:25:h1",
+   "title_tr": "Hangisi? Bu!",
+   "kartlar": [
+    "lx:Paar",
+    "lx:paar",
+    "lx:natürlich",
+    "lx:stimmen"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "welcher – welche – welches – welchen",
+     "tr": "hangi"
+    },
+    {
+     "de": "dieser – diese – dieses – diesen",
+     "tr": "bu"
+    },
+    {
+     "de": "Ich nehme … – Nimmst du …? – Er nimmt …",
+     "tr": "…'i alıyorum – … alıyor musun? – … alıyor"
+    },
+    {
+     "de": "Das stimmt. – Stimmt das?",
+     "tr": "Doğru. – Doğru mu?"
+    },
+    {
+     "de": "Grüß Gott!",
+     "tr": "Merhaba! (Bavyera'da sık)"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Paar",
+     "de": "Dieses Paar Schuhe ist schön.",
+     "tr": "Bu çift ayakkabı güzel.",
+     "accepted": [
+      "Dieses Paar Schuhe ist schön.",
+      "Das Paar Schuhe ist schön.",
+      "Dieses Paar Schuhe ist sehr schön."
+     ]
+    },
+    {
+     "kart": "lx:Paar",
+     "de": "Welches Paar nimmst du?",
+     "tr": "Hangi çifti alıyorsun?",
+     "accepted": [
+      "Welches Paar nimmst du?",
+      "Welches Paar nimmst du denn?",
+      "Und welches Paar nimmst du?"
+     ]
+    },
+    {
+     "kart": "lx:paar",
+     "de": "Ich habe nur ein paar Euro.",
+     "tr": "Sadece birkaç avrom var.",
+     "accepted": [
+      "Ich habe nur ein paar Euro.",
+      "Ich habe nur noch ein paar Euro.",
+      "Ich habe leider nur ein paar Euro."
+     ]
+    },
+    {
+     "kart": "lx:paar",
+     "de": "Diese Tassen? Ein paar sind kaputt.",
+     "tr": "Bu fincanlar mı? Birkaçı kırık.",
+     "accepted": [
+      "Diese Tassen? Ein paar sind kaputt.",
+      "Diese Tassen? Ein paar Tassen sind kaputt.",
+      "Ein paar Tassen hier sind kaputt."
+     ]
+    },
+    {
+     "kart": "lx:natürlich",
+     "de": "Natürlich nehme ich diesen Stuhl.",
+     "tr": "Tabii ki bu sandalyeyi alıyorum.",
+     "accepted": [
+      "Natürlich nehme ich diesen Stuhl.",
+      "Ich nehme natürlich diesen Stuhl.",
+      "Natürlich nehme ich den Stuhl."
+     ]
+    },
+    {
+     "kart": "lx:natürlich",
+     "de": "Welche Jacke? Natürlich diese!",
+     "tr": "Hangi ceket mi? Tabii ki bu!",
+     "accepted": [
+      "Welche Jacke? Natürlich diese!",
+      "Welche Jacke? Diese, natürlich!",
+      "Natürlich diese Jacke!"
+     ]
+    },
+    {
+     "kart": "lx:stimmen",
+     "de": "Das stimmt, dieser Stuhl ist alt.",
+     "tr": "Doğru, bu sandalye eski.",
+     "accepted": [
+      "Das stimmt, dieser Stuhl ist alt.",
+      "Stimmt, dieser Stuhl ist alt.",
+      "Das stimmt, der Stuhl ist alt."
+     ]
+    },
+    {
+     "kart": "lx:stimmen",
+     "de": "Stimmt das? Diese Jacke ist neu?",
+     "tr": "Doğru mu? Bu ceket yeni mi?",
+     "accepted": [
+      "Stimmt das? Diese Jacke ist neu?",
+      "Stimmt das? Ist diese Jacke neu?",
+      "Diese Jacke ist neu? Stimmt das?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cumartesi, şehir meydanında ikinci el tezgâhları. Luka yanında, fincanlara bakıyorsunuz.",
+    "satirlar": [
+     {
+      "r": "ch:petrovic",
+      "de": "Welche Tasse nehmen Sie? Diese hier?",
+      "tr": "Hangi fincanı alıyorsunuz? Bunu mu?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Nein, natürlich diese da!",
+      "tr": "Hayır, tabii ki şunu!"
+     },
+     {
+      "r": "ch:petrovic",
+      "de": "Gut. Ein paar Tassen hier sind kaputt.",
+      "tr": "İyi. Buradaki fincanların birkaçı kırık."
+     }
+    ],
+    "soru": {
+     "q_tr": "Sen hangi fincanı istiyorsun?",
+     "opts": [
+      "Luka'nın gösterdiğini",
+      "Öbürünü, oradakini",
+      "Hiçbirini"
+     ],
+     "ans": 1
+    }
+   }
+  },
+  {
+   "id": "m1:25:h2",
+   "title_tr": "Daha ucuz, daha güzel",
+   "kartlar": [
+    "lx:holen",
+    "lx:laufen",
+    "lx:ohne",
+    "lx:euer"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "billiger als … – teurer als …",
+     "tr": "…'den daha ucuz – …'den daha pahalı"
+    },
+    {
+     "de": "größer – kleiner – schöner – besser – lieber",
+     "tr": "daha büyük – daha küçük – daha güzel – daha iyi – tercihen"
+    },
+    {
+     "de": "so … wie …",
+     "tr": "… kadar …"
+    },
+    {
+     "de": "Ich hole … – Holst du …?",
+     "tr": "…'i gidip alıyorum – …'i alır mısın?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:holen",
+     "de": "Ich hole den Stuhl, er ist billiger.",
+     "tr": "Sandalyeyi gidip alıyorum, o daha ucuz.",
+     "accepted": [
+      "Ich hole den Stuhl, er ist billiger.",
+      "Ich hole den Stuhl. Er ist billiger.",
+      "Den Stuhl hole ich, er ist billiger."
+     ]
+    },
+    {
+     "kart": "lx:holen",
+     "de": "Holst du die Tassen?",
+     "tr": "Fincanları getirir misin?",
+     "accepted": [
+      "Holst du die Tassen?",
+      "Holst du bitte die Tassen?",
+      "Holst du die Tassen, bitte?"
+     ]
+    },
+    {
+     "kart": "lx:laufen",
+     "de": "Wir laufen zum Bahnhof, das ist billiger als der Bus.",
+     "tr": "İstasyona yürüyoruz, bu otobüsten ucuz.",
+     "accepted": [
+      "Wir laufen zum Bahnhof, das ist billiger als der Bus.",
+      "Wir laufen zum Bahnhof. Das ist billiger als der Bus.",
+      "Wir laufen zum Bahnhof, das ist billiger als mit dem Bus."
+     ]
+    },
+    {
+     "kart": "lx:laufen",
+     "de": "Laufen ist schöner als Bus fahren.",
+     "tr": "Yürümek otobüse binmekten güzel.",
+     "accepted": [
+      "Laufen ist schöner als Bus fahren.",
+      "Laufen ist viel schöner als Bus fahren.",
+      "Laufen finde ich schöner als Bus fahren."
+     ]
+    },
+    {
+     "kart": "lx:ohne",
+     "de": "Ohne Geld geht das nicht.",
+     "tr": "Parasız olmaz.",
+     "accepted": [
+      "Ohne Geld geht das nicht.",
+      "Ohne Geld geht es nicht.",
+      "Das geht nicht ohne Geld."
+     ]
+    },
+    {
+     "kart": "lx:ohne",
+     "de": "Ohne Ioana ist es nicht so schön.",
+     "tr": "Ioana olmadan o kadar güzel değil.",
+     "accepted": [
+      "Ohne Ioana ist es nicht so schön.",
+      "Ohne Ioana ist es nicht so schön hier.",
+      "Es ist nicht so schön ohne Ioana."
+     ]
+    },
+    {
+     "kart": "lx:euer",
+     "de": "Ist das euer Stand?",
+     "tr": "Bu sizin tezgâhınız mı?",
+     "accepted": [
+      "Ist das euer Stand?",
+      "Ist das hier euer Stand?",
+      "Das ist euer Stand?"
+     ]
+    },
+    {
+     "kart": "lx:euer",
+     "de": "Euer Sofa ist größer als unser Sofa.",
+     "tr": "Sizin kanepeniz bizimkinden büyük.",
+     "accepted": [
+      "Euer Sofa ist größer als unser Sofa.",
+      "Euer Sofa ist größer als unseres.",
+      "Euer Sofa ist viel größer als unser Sofa."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Stadler Hanım'ın tezgâhı. İki sandalye yan yana duruyor.",
+    "satirlar": [
+     {
+      "r": "ch:stadler",
+      "de": "Dieser Stuhl kostet zehn Euro. Der da fünfzehn.",
+      "tr": "Bu sandalye on avro. Şu on beş."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ist der da besser?",
+      "tr": "Şu daha mı iyi?"
+     },
+     {
+      "r": "ch:stadler",
+      "de": "Ja, er ist neu und größer.",
+      "tr": "Evet, yeni ve daha büyük."
+     }
+    ],
+    "soru": {
+     "q_tr": "Diğer sandalye neden daha pahalı?",
+     "opts": [
+      "Eski olduğu için",
+      "Yeni ve daha büyük olduğu için",
+      "Daha güzel olduğu için"
+     ],
+     "ans": 1
+    }
+   }
+  },
+  {
+   "id": "m1:25:h3",
+   "title_tr": "Anlatmak ve buluşmak",
+   "kartlar": [
+    "lx:wieso",
+    "lx:lieb",
+    "lx:erzählen",
+    "lx:treffen"
+   ],
+   "kaliplar": [
+    {
+     "de": "Er erzählt … – Was erzählst du?",
+     "tr": "… anlatıyor – Ne anlatıyorsun?"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:wieso",
+     "de": "Wieso ist dieser Stuhl so billig?",
+     "tr": "Bu sandalye neden bu kadar ucuz?",
+     "accepted": [
+      "Wieso ist dieser Stuhl so billig?",
+      "Wieso ist der Stuhl so billig?",
+      "Wieso ist dieser Stuhl denn so billig?"
+     ]
+    },
+    {
+     "kart": "lx:wieso",
+     "de": "Wieso kommst du nicht?",
+     "tr": "Neden gelmiyorsun?",
+     "accepted": [
+      "Wieso kommst du nicht?",
+      "Wieso kommst du denn nicht?",
+      "Und wieso kommst du nicht?"
+     ]
+    },
+    {
+     "kart": "lx:lieb",
+     "de": "Frau Stadler ist sehr lieb.",
+     "tr": "Stadler Hanım çok tatlı.",
+     "accepted": [
+      "Frau Stadler ist sehr lieb.",
+      "Frau Stadler ist wirklich sehr lieb.",
+      "Frau Stadler ist so lieb."
+     ]
+    },
+    {
+     "kart": "lx:lieb",
+     "de": "Das ist lieb, danke!",
+     "tr": "Çok naziksin, teşekkürler!",
+     "accepted": [
+      "Das ist lieb, danke!",
+      "Das ist sehr lieb, danke!",
+      "Danke, das ist lieb!"
+     ]
+    },
+    {
+     "kart": "lx:erzählen",
+     "de": "Luka erzählt immer viel.",
+     "tr": "Luka hep çok şey anlatır.",
+     "accepted": [
+      "Luka erzählt immer viel.",
+      "Luka erzählt immer sehr viel.",
+      "Luka erzählt viel."
+     ]
+    },
+    {
+     "kart": "lx:erzählen",
+     "de": "Was erzählst du da?",
+     "tr": "Sen ne anlatıyorsun öyle?",
+     "accepted": [
+      "Was erzählst du da?",
+      "Was erzählst du denn da?",
+      "Was erzählst du?"
+     ]
+    },
+    {
+     "kart": "lx:treffen",
+     "de": "Wir treffen Luka am Samstag.",
+     "tr": "Luka'yla cumartesi buluşuyoruz.",
+     "accepted": [
+      "Wir treffen Luka am Samstag.",
+      "Am Samstag treffen wir Luka.",
+      "Wir treffen Luka am Samstag um zehn."
+     ]
+    },
+    {
+     "kart": "lx:treffen",
+     "de": "Treffen wir uns am Bahnhof?",
+     "tr": "İstasyonda buluşalım mı?",
+     "accepted": [
+      "Treffen wir uns am Bahnhof?",
+      "Treffen wir uns am Bahnhof, ja?",
+      "Treffen wir uns dann am Bahnhof?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Tezgâhın önünde Luka seni çağırıyor.",
+    "satirlar": [
+     {
+      "r": "ch:petrovic",
+      "de": "Wir treffen Ioana am Samstag. Kommen Sie auch?",
+      "tr": "Cumartesi Ioana'yla buluşuyoruz. Siz de gelir misiniz?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Natürlich! Wo treffen wir uns?",
+      "tr": "Tabii! Nerede buluşuyoruz?"
+     },
+     {
+      "r": "ch:petrovic",
+      "de": "Am Bahnhof, um zehn. Ioana erzählt dann von ihrem Kurs.",
+      "tr": "İstasyonda, saat onda. Ioana da kursunu anlatır."
+     }
+    ],
+    "soru": {
+     "q_tr": "Nerede buluşuyorsunuz?",
+     "opts": [
+      "İstasyonda, saat onda",
+      "Pazarda, saat dörtte",
+      "Kursta"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:25:v1",
+  "title_tr": "İki sandalye",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Cumartesi sabahı, şehir meydanı. Frau Stadler'in tezgâhında eski sandalyeler, fincanlar, ayakkabılar. Luka geliyor.",
+    "de": "Grüß Gott, Luka! Was möchtest du?",
+    "tr": "Merhaba Luka! Ne istersin?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka iki sandalyeyi gösteriyor.",
+    "de": "Einen Stuhl. Welcher ist billiger?",
+    "tr": "Bir sandalye. Hangisi daha ucuz?"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler küçük, ahşap sandalyeye dokunuyor.",
+    "de": "Dieser hier. Er kostet zehn Euro.",
+    "tr": "Bu. On avro."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Sonra yandaki büyük, parlak sandalyeyi gösteriyor.",
+    "de": "Der da ist teurer, fünfzehn Euro.",
+    "tr": "Şu daha pahalı, on beş avro."
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka kaşlarını kaldırıyor.",
+    "de": "Wieso ist der da teurer?",
+    "tr": "Şu neden daha pahalı?"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler sandalyeyi okşuyor.",
+    "de": "Er ist größer und neu. Und er ist schöner.",
+    "tr": "Daha büyük ve yeni. Hem de daha güzel."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka sandalyeye oturup deniyor.",
+    "de": "Das stimmt. Er ist wirklich schön.",
+    "tr": "Doğru. Gerçekten güzel."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka cüzdanına bakıyor.",
+    "de": "Aber zehn Euro ist billiger als fünfzehn!",
+    "tr": "Ama on avro on beşten ucuz!"
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler gülüyor.",
+    "de": "Natürlich! Und dieser ist so gut wie der da.",
+    "tr": "Tabii! Bu da onun kadar iyi."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka küçük sandalyeyi kaldırıyor.",
+    "de": "Gut, ich nehme diesen.",
+    "tr": "Tamam, bunu alıyorum."
+   },
+   {
+    "id": "s10b",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka sandalyenin fiyat etiketini gösteriyor.",
+    "de": "Den für zehn Euro.",
+    "tr": "On avroluk olanı."
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler fincanları gösteriyor.",
+    "de": "Und ein paar Tassen? Nur zwei Euro.",
+    "tr": "Birkaç fincan da? Sadece iki avro."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka boş cüzdanını gösteriyor.",
+    "de": "Nein, danke. Mein Geld ist alle!",
+    "tr": "Hayır, sağ ol. Param bitti!"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler sandalyeyi tezgâhın arkasından alıyor.",
+    "de": "Du bist lieb, Luka. Ich hole ihn schnell.",
+    "tr": "Çok tatlısın Luka. Hemen getiriyorum."
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:petrovic",
+    "sahne_tr": "Luka on avroyu uzatıyor.",
+    "de": "Danke, Gerti! Wir treffen uns am Samstag, ja?",
+    "tr": "Teşekkürler Gerti! Cumartesi buluşuyoruz, değil mi?"
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:stadler",
+    "sahne_tr": "Frau Stadler el sallıyor.",
+    "de": "Ja, am Samstag! Bis dann!",
+    "tr": "Evet, cumartesi! Görüşürüz!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s10b",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s15"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Luka ne alıyor?",
+     "opts": [
+      "Bir sandalye",
+      "İki fincan",
+      "Bir çift ayakkabı"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2",
+      "s10"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Luka hangi sandalyeyi alıyor?",
+      "opts": [
+       "On beş avroluk olanı",
+       "On avroluk olanı",
+       "İkisini de"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s10",
+       "s10b"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Diğer sandalye neden daha pahalı?",
+      "opts": [
+       "Daha eski",
+       "Daha büyük ve yeni",
+       "Daha küçük"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s6"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s3",
+      "seviye": "kolay",
+      "q_tr": "Hangi sayıyı duydun?",
+      "opts": [
+       "zwölf",
+       "zehn",
+       "zwei"
+      ],
+      "ans": 1
+     },
+     {
+      "id": "d2",
+      "cumle": "s4",
+      "seviye": "orta",
+      "de": "Der da ist ___, fünfzehn Euro.",
+      "accepted": [
+       "teurer",
+       "Teurer",
+       "teurer."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s8",
+      "seviye": "zor",
+      "banka": [
+       "Aber",
+       "zehn",
+       "Euro",
+       "ist",
+       "billiger",
+       "als",
+       "fünfzehn",
+       "teurer",
+       "wie"
+      ],
+      "accepted": [
+       "Aber zehn Euro ist billiger als fünfzehn!",
+       "aber zehn euro ist billiger als fünfzehn",
+       "Aber zehn Euro ist billiger als fünfzehn"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s10",
+      "seviye": "usta",
+      "accepted": [
+       "Gut, ich nehme diesen.",
+       "gut ich nehme diesen",
+       "Gut, ich nehme diesen"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Luka'nın seçimini Almanca iki kısa cümleyle yaz.",
+      "ornek_de": "Der Stuhl für zehn Euro ist billiger. Luka nimmt ihn.",
+      "zorunlu": [
+       "billiger",
+       "Stuhl"
+      ]
+     }
+    ],
+    "golge": [
+     "s5",
+     "s9"
+    ],
+    "cevapla": {
+     "id": "m1:25:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Stadler Hanım sana da soruyor. Sen ucuz olanı alıyorsun.",
+     "prompt_de": "Und Sie? Welchen Stuhl nehmen Sie?",
+     "accepted": [
+      "Ich nehme diesen hier, er ist billiger.",
+      "Diesen hier, er ist billiger.",
+      "Ich nehme diesen, er ist billiger.",
+      "Den für zehn Euro, er ist billiger.",
+      "Ich nehme den Stuhl für zehn Euro.",
+      "Diesen hier, bitte. Er ist billiger.",
+      "Ich nehme den hier. Er ist billiger."
+     ],
+     "why_tr": "**der Stuhl** alırken **diesen** dersin. Sebebi **billiger** ile söyle."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:25:a1",
+   "tur": "anons",
+   "title_tr": "Meydanda hoparlör anonsu",
+   "ortam_tr": "Cumartesi sabahı şehir meydanındasın. Hoparlörden bir anons geliyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, Leute!",
+     "tr": "Merhaba millet!"
+    },
+    {
+     "id": "c2",
+     "de": "Heute sind alle Stühle billiger: nur zehn Euro.",
+     "tr": "Bugün bütün sandalyeler daha ucuz: sadece on avro."
+    },
+    {
+     "id": "c3",
+     "de": "Ein paar Tassen kosten nur einen Euro.",
+     "tr": "Birkaç fincan sadece bir avro."
+    },
+    {
+     "id": "c4",
+     "de": "Frau Stadler hat auch Kuchen, natürlich!",
+     "tr": "Stadler Hanım'da pasta da var, tabii ki!"
+    },
+    {
+     "id": "c5",
+     "de": "Wir sind bis vier Uhr hier.",
+     "tr": "Saat dörde kadar buradayız."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Anons ne söylüyor?",
+      "opts": [
+       "Bugün pazarda eşyalar ucuz",
+       "Pazar bugün kapalı",
+       "Yeni bir fırın açılıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Sandalyeler kaç avro?",
+       "opts": [
+        "Bir",
+        "On",
+        "Dört"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Tezgâhlar saat kaça kadar açık?",
+       "opts": [
+        "Dörde kadar",
+        "Ona kadar",
+        "Bire kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Stühle",
+        "Schuhe",
+        "Tassen"
+       ],
+       "ans": 2
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Heute sind alle Stühle ___: nur zehn Euro.",
+       "accepted": [
+        "billiger",
+        "Billiger",
+        "billiger."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Wir",
+        "sind",
+        "bis",
+        "vier",
+        "Uhr",
+        "hier",
+        "um",
+        "da"
+       ],
+       "accepted": [
+        "Wir sind bis vier Uhr hier.",
+        "wir sind bis vier uhr hier",
+        "Wir sind bis vier Uhr hier"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Frau Stadler hat auch Kuchen, natürlich!",
+        "frau stadler hat auch kuchen natürlich",
+        "Frau Stadler hat auch Kuchen, natürlich"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Anonsu Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Heute sind die Stühle billiger. Sie kosten nur zehn Euro.",
+       "zorunlu": [
+        "Stühle",
+        "billiger"
+       ]
+      }
+     ],
+     "golge": [
+      "c1",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:25:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Ioana anonsu duymadı, soruyor. Sandalyeler bugün daha ucuz, on avro.",
+      "prompt_de": "Sind die Stühle heute teurer?",
+      "accepted": [
+       "Nein, sie sind billiger. Nur zehn Euro.",
+       "Nein, billiger! Nur zehn Euro.",
+       "Nein, heute sind sie billiger.",
+       "Nein, sie kosten nur zehn Euro.",
+       "Nein, sie sind heute billiger.",
+       "Nein, billiger, zehn Euro."
+      ],
+      "why_tr": "Tersini **billiger** ile söyle. Çoğulda **sie sind** gelir."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:25:a1:e1",
+    "k": "pick",
+    "q_tr": "Ucuz bir sandalye almak istiyorsun. Ne yapmalısın?",
+    "opts": [
+     "Yarın meydana git.",
+     "Bugün saat dörtten önce meydana git.",
+     "Bu akşam meydana git."
+    ],
+    "ans": 1,
+    "why_tr": "Sandalyeler bugün ucuz. Tezgâhlar saat dörde kadar açık.",
+    "kanit": [
+     "c2",
+     "c5"
+    ]
+   }
+  },
+  {
+   "id": "m1:25:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Luka'dan sesli mesaj",
+   "ortam_tr": "Luka telefonuna mesaj bırakmış.",
+   "speaker": "ch:petrovic",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Luka.",
+     "tr": "Merhaba, ben Luka."
+    },
+    {
+     "id": "c2",
+     "de": "Ich habe jetzt zwei Stühle.",
+     "tr": "Artık iki sandalyem var."
+    },
+    {
+     "id": "c3",
+     "de": "Der Stuhl von Frau Stadler ist schöner als mein Stuhl.",
+     "tr": "Stadler Hanım'ın sandalyesi benim sandalyemden güzel."
+    },
+    {
+     "id": "c4",
+     "de": "Kommen Sie am Freitag zum Termin?",
+     "tr": "Cuma randevuya geliyor musunuz?"
+    },
+    {
+     "id": "c4b",
+     "de": "Dann sehen Sie ihn!",
+     "tr": "O zaman görürsünüz!"
+    },
+    {
+     "id": "c5",
+     "de": "Ihr Termin ist um vier. Bis Freitag!",
+     "tr": "Randevunuz saat dörtte. Cuma görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c4b",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Luka neden mesaj bırakıyor?",
+      "opts": [
+       "Yeni sandalyesini anlatıyor ve randevuyu hatırlatıyor",
+       "Randevuyu iptal ediyor",
+       "Sandalye için para istiyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c3",
+       "c5"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Hangi sandalye daha güzel?",
+       "opts": [
+        "Luka'nın eski sandalyesi",
+        "Stadler Hanım'dan gelen sandalye",
+        "İkisi aynı"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Randevu ne zaman?",
+       "opts": [
+        "Cuma saat dörtte",
+        "Cumartesi saat dörtte",
+        "Cuma saat onda"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c4",
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c5",
+       "seviye": "kolay",
+       "q_tr": "Hangi saati duydun?",
+       "opts": [
+        "acht",
+        "vier",
+        "zwei"
+       ],
+       "ans": 1
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Der Stuhl von Frau Stadler ist ___ als mein Stuhl.",
+       "accepted": [
+        "schöner",
+        "Schöner",
+        "schöner."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Ich",
+        "habe",
+        "jetzt",
+        "zwei",
+        "Stühle",
+        "Stuhl",
+        "hat"
+       ],
+       "accepted": [
+        "Ich habe jetzt zwei Stühle.",
+        "ich habe jetzt zwei stühle",
+        "Ich habe jetzt zwei Stühle"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Kommen Sie am Freitag zum Termin?",
+        "kommen sie am freitag zum termin",
+        "Kommen Sie am Freitag zum Termin"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Luka'nın mesajını Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Der Stuhl von Frau Stadler ist schöner. Der Termin ist am Freitag um vier.",
+       "zorunlu": [
+        "schöner",
+        "Freitag"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:25:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Luka'yı geri arıyorsun. Cuma geliyorsun.",
+      "prompt_de": "Kommen Sie am Freitag?",
+      "accepted": [
+       "Ja, natürlich! Bis Freitag um vier.",
+       "Ja, natürlich!",
+       "Ja, ich komme am Freitag um vier.",
+       "Natürlich, bis Freitag!",
+       "Ja, gern! Bis Freitag.",
+       "Ja, natürlich komme ich."
+      ],
+      "why_tr": "Tabii ki derken **natürlich** dersin. Saati tekrar etmek iyi olur."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:25:a2:e1",
+    "k": "pick",
+    "q_tr": "Mesajdan sonra ne yapmalısın?",
+    "opts": [
+     "Cuma saat dörtte Luka'ya git.",
+     "Stadler Hanım'ın tezgâhına git.",
+     "Luka'yı cumartesi ara."
+    ],
+    "ans": 0,
+    "why_tr": "Randevun cuma saat dörtte. Luka yeni sandalyeyi orada gösterecek.",
+    "kanit": [
+     "c4",
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:25:g1",
+   "de": "ein Paar Schuhe",
+   "dogru_img": "one pair of shoes side by side",
+   "celdirici_img": [
+    "one single shoe",
+    "three different shoes",
+    "a pair of gloves"
+   ]
+  },
+  {
+   "id": "m1:25:g2",
+   "de": "ein paar Tassen",
+   "dogru_img": "a few cups on a market table",
+   "celdirici_img": [
+    "one single cup",
+    "a bottle",
+    "a plate"
+   ]
+  },
+  {
+   "id": "m1:25:g3",
+   "de": "Er erzählt.",
+   "dogru_img": "man telling a story with lively gestures to two listeners",
+   "celdirici_img": [
+    "man sleeping",
+    "man eating",
+    "man reading alone"
+   ]
+  },
+  {
+   "id": "m1:25:g4",
+   "de": "Wir laufen.",
+   "dogru_img": "two people walking on a street",
+   "celdirici_img": [
+    "two people in a bus",
+    "two people on bicycles",
+    "two people sitting on a bench"
+   ]
+  },
+  {
+   "id": "m1:25:g5",
+   "de": "ohne Geld",
+   "dogru_img": "open empty wallet",
+   "celdirici_img": [
+    "wallet full of banknotes",
+    "coins on a table",
+    "bank card in hand"
+   ]
+  },
+  {
+   "id": "m1:25:g6",
+   "de": "Wir treffen uns.",
+   "dogru_img": "two friends meeting and shaking hands at a station",
+   "celdirici_img": [
+    "two friends saying goodbye with luggage",
+    "one person waiting alone",
+    "two people arguing"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:25:p1",
+  "title_tr": "Stadler Hanım'ın tezgâhında",
+  "durum_tr": "Cumartesi pazarda Stadler Hanım'ın tezgâhındasın. Bir fincan almak istiyorsun. Hangisinin daha ucuz olduğunu sor ve seç.",
+  "karsi": "ch:stadler",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Grüß Gott! Was möchten Sie?",
+    "tr": "Merhaba! Ne istersiniz?",
+    "secenekler": [
+     {
+      "de": "Eine Tasse, bitte. Welche ist billiger?",
+      "tr": "Bir fincan, lütfen. Hangisi daha ucuz?",
+      "accepted": [
+       "Eine Tasse, bitte. Welche ist billiger?",
+       "Eine Tasse. Welche ist billiger?",
+       "Eine Tasse, bitte. Welche Tasse ist billiger?",
+       "Ich möchte eine Tasse. Welche ist billiger?"
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **die Tasse** için **welche** dedin."
+     },
+     {
+      "de": "Ein paar Tassen, bitte.",
+      "tr": "Birkaç fincan, lütfen.",
+      "accepted": [
+       "Ein paar Tassen, bitte.",
+       "Ein paar Tassen.",
+       "Ich möchte ein paar Tassen."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Şimdi fiyatları dinle."
+     },
+     {
+      "de": "Welcher Tasse ist billiger?",
+      "tr": "Hangi fincan daha ucuz? (yanlış)",
+      "accepted": [
+       "Welcher Tasse ist billiger?",
+       "Welches Tasse ist billiger?",
+       "Welcher Tasse ist billig?"
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "**die Tasse** ile **welche** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Diese hier kostet zwei Euro, die da einen Euro.",
+    "tr": "Bu iki avro, şu bir avro.",
+    "secenekler": [
+     {
+      "de": "Die da ist billiger. Ich nehme sie.",
+      "tr": "Şu daha ucuz. Onu alıyorum.",
+      "accepted": [
+       "Die da ist billiger. Ich nehme sie.",
+       "Die da ist billiger, ich nehme sie.",
+       "Die da ist billiger. Die nehme ich.",
+       "Ich nehme die da, sie ist billiger."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru karşılaştırdın ve seçtin."
+     },
+     {
+      "de": "Ist diese besser als die da?",
+      "tr": "Bu, şundan daha mı iyi?",
+      "accepted": [
+       "Ist diese besser als die da?",
+       "Ist diese hier besser als die da?",
+       "Ist diese besser?"
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "İyi bir soru. Fiyat her şey değil."
+     },
+     {
+      "de": "Diese hier ist billiger als die da.",
+      "tr": "Bu, şundan daha ucuz. (yanlış)",
+      "accepted": [
+       "Diese hier ist billiger als die da.",
+       "Diese ist billiger als die da.",
+       "Die hier ist billiger."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "İki avro bir avrodan pahalıdır. Bu **teurer**, öbürü **billiger**."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Die da ist alt, aber so gut wie diese hier. Nehmen Sie die?",
+    "tr": "Şu eski ama bunun kadar iyi. Onu alıyor musunuz?",
+    "secenekler": [
+     {
+      "de": "Ja, ich nehme diese da. Danke!",
+      "tr": "Evet, şunu alıyorum. Teşekkürler!",
+      "accepted": [
+       "Ja, ich nehme diese da. Danke!",
+       "Ja, ich nehme die da. Danke!",
+       "Ja, die da. Danke!",
+       "Gut, ich nehme diese da."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **die Tasse** için **diese** dedin."
+     },
+     {
+      "de": "Nein, ich nehme lieber diese hier. Sie ist schöner.",
+      "tr": "Hayır, ben bunu tercih ediyorum. Daha güzel.",
+      "accepted": [
+       "Nein, ich nehme lieber diese hier. Sie ist schöner.",
+       "Ich nehme lieber diese hier, sie ist schöner.",
+       "Nein, lieber diese. Sie ist schöner."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **lieber** ve **schöner** ile nedenini söyledin."
+     },
+     {
+      "de": "Ja, ich nehme dieser.",
+      "tr": "Evet, bunu alıyorum. (yanlış)",
+      "accepted": [
+       "Ja, ich nehme dieser.",
+       "Ich nehme dieser.",
+       "Ja, dieser."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "**die Tasse** için **diese** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Gern! Und wie finden Sie Wendlfing?",
+    "tr": "Memnuniyetle! Peki Wendlfing'i nasıl buluyorsunuz?",
+    "secenekler": [
+     {
+      "de": "Sehr schön! Und die Leute sind lieb.",
+      "tr": "Çok güzel! İnsanlar da tatlı.",
+      "accepted": [
+       "Sehr schön! Und die Leute sind lieb.",
+       "Sehr schön! Die Leute sind lieb.",
+       "Sehr schön, und die Leute sind sehr lieb."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Sıcak bir cevap. **sehr schön** doğru."
+     },
+     {
+      "de": "Wendlfing ist klein, aber sehr schön.",
+      "tr": "Wendlfing küçük ama çok güzel.",
+      "accepted": [
+       "Wendlfing ist klein, aber sehr schön.",
+       "Klein, aber sehr schön.",
+       "Es ist klein, aber sehr schön."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. İki sıfatı **aber** ile bağladın."
+     },
+     {
+      "de": "Wendlfing ist zu schön.",
+      "tr": "Wendlfing fazla güzel. (yanlış)",
+      "accepted": [
+       "Wendlfing ist zu schön.",
+       "Zu schön!",
+       "Es ist zu schön."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "**zu** bir sorun bildirir. Burada **sehr schön** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Das ist lieb! Bis Samstag!",
+    "tr": "Ne tatlı! Cumartesi görüşürüz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "İki fincanı karşılaştırdın, birini dieser ile seçtin ve Wendlfing için fikrini söyledin."
+ },
+ "okuma_yazma": {
+  "tur": "yazma",
+  "title_tr": "Ioana'nın iki ceketi",
+  "metin_de": "Hallo {name}! Hier sind zwei Jacken: eine für 30 Euro und eine für 45 Euro. Die Jacke für 30 Euro ist kleiner, aber schöner. Die Jacke für 45 Euro ist größer und neu. Welche nehme ich? Danke, Ioana!",
+  "metin_tr": "Merhaba {name}! Burada iki ceket var: biri 30 avro, biri 45 avro. 30 avroluk ceket daha küçük ama daha güzel. 45 avroluk ceket daha büyük ve yeni. Hangisini alayım? Teşekkürler, Ioana!",
+  "sorular": [
+   {
+    "id": "m1:25:o1",
+    "kind": "detail",
+    "q_tr": "Hangi ceket daha ucuz?",
+    "opts": [
+     "45 avroluk",
+     "30 avroluk",
+     "İkisi aynı"
+    ],
+    "ans": 1,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:25:o2",
+    "kind": "detail",
+    "q_tr": "30 avroluk ceket nasıl?",
+    "opts": [
+     "Daha küçük ama daha güzel",
+     "Daha büyük ve yeni",
+     "Daha pahalı"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:25:o3",
+    "kind": "detail",
+    "q_tr": "45 avroluk ceket nasıl?",
+    "opts": [
+     "Daha küçük",
+     "Daha büyük ve yeni",
+     "Eski"
+    ],
+    "ans": 1,
+    "kanit": [
+     3
+    ]
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Ioana'ya cevap yaz. Hangi ceketi önerirsin ve neden? billiger ve als kullan.",
+   "ornek_de": "Hallo Ioana! Die Jacke für 30 Euro ist billiger als die Jacke für 45 Euro. Sie ist auch schöner. Bis morgen!",
+   "zorunlu": [
+    "billiger",
+    "als"
+   ],
+   "accepted_kaliplar": [
+    "Hallo ___!",
+    "Hallo ___,",
+    "Die Jacke für ___ Euro ist billiger als die Jacke für ___ Euro.",
+    "Die Jacke für ___ Euro ist billiger.",
+    "Die Jacke für ___ Euro ist größer.",
+    "Diese Jacke ist billiger.",
+    "Sie ist auch schöner.",
+    "Sie ist schöner.",
+    "Sie ist größer.",
+    "Sie ist besser.",
+    "Ich nehme ___.",
+    "Bis morgen!",
+    "Bis ___!"
+   ],
+   "kontrol_tr": [
+    "Hangi ceketi önerdiğini yazdın mı?",
+    "**billiger** gibi bir karşılaştırma yazdın mı?",
+    "Karşılaştırmada **als** kullandın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:25:s",
+  "maddeler": [
+   {
+    "id": "m1:25:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Dieser Stuhl ist billiger.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Dieser Stuhl ist billiger.",
+     "dieser stuhl ist billiger",
+     "Dieser Stuhl ist billiger"
+    ],
+    "why_tr": "**dieser** bu demektir. **der Stuhl** ile gelir."
+   },
+   {
+    "id": "m1:25:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Welches Paar Schuhe nehmen Sie?",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Welches Paar Schuhe nehmen Sie?",
+     "welches paar schuhe nehmen sie",
+     "Welches Paar Schuhe nehmen Sie"
+    ],
+    "why_tr": "**das Paar** ile **welches** dersin."
+   },
+   {
+    "id": "m1:25:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Euer Sofa ist schöner als unser Sofa.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Euer Sofa ist schöner als unser Sofa.",
+     "euer sofa ist schöner als unser sofa",
+     "Euer Sofa ist schöner als unser Sofa"
+    ],
+    "why_tr": "Karşılaştırmada **als** gelir."
+   },
+   {
+    "id": "m1:25:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Wir treffen uns um vier am Bahnhof.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Wir treffen uns um vier am Bahnhof.",
+     "wir treffen uns um vier am bahnhof",
+     "Wir treffen uns um vier am Bahnhof"
+    ],
+    "why_tr": "**treffen** buluşmak demektir."
+   },
+   {
+    "id": "m1:25:s5",
+    "k": "tr_de",
+    "tr": "Bu ceket daha ucuz.",
+    "accepted": [
+     "Diese Jacke ist billiger.",
+     "Diese Jacke hier ist billiger.",
+     "Die Jacke hier ist billiger.",
+     "Diese Jacke ist billiger als die da."
+    ],
+    "why_tr": "**die Jacke** için **diese** dersin, sonra **billiger**."
+   },
+   {
+    "id": "m1:25:s6",
+    "k": "tr_de",
+    "tr": "Hangi sandalye daha iyi?",
+    "accepted": [
+     "Welcher Stuhl ist besser?",
+     "Welcher Stuhl ist denn besser?",
+     "Welcher ist besser, dieser oder der da?",
+     "Welcher Stuhl ist hier besser?"
+    ],
+    "why_tr": "**gut** düzensizdir: daha iyi **besser** olur."
+   },
+   {
+    "id": "m1:25:s7",
+    "k": "tr_de",
+    "tr": "Palto ceketten daha pahalı.",
+    "accepted": [
+     "Der Mantel ist teurer als die Jacke.",
+     "Der Mantel ist viel teurer als die Jacke.",
+     "Der Mantel ist teurer als die Jacke hier.",
+     "Dieser Mantel ist teurer als die Jacke."
+    ],
+    "why_tr": "Daha pahalı **teurer** olur, e harfi düşer."
+   },
+   {
+    "id": "m1:25:s8",
+    "k": "tr_de",
+    "tr": "Kanepe sandalyeden daha büyük.",
+    "accepted": [
+     "Das Sofa ist größer als der Stuhl.",
+     "Das Sofa ist viel größer als der Stuhl.",
+     "Dieses Sofa ist größer als der Stuhl.",
+     "Das Sofa ist größer als dieser Stuhl."
+    ],
+    "why_tr": "**groß** daha büyük olunca **größer** olur."
+   },
+   {
+    "id": "m1:25:s9",
+    "k": "guided_response",
+    "situation_tr": "Stadler Hanım hangi fincanı aldığını soruyor. Bunu alıyorsun, çünkü daha ucuz.",
+    "prompt_de": "Welche Tasse nehmen Sie?",
+    "accepted": [
+     "Ich nehme diese, sie ist billiger.",
+     "Diese hier, sie ist billiger.",
+     "Ich nehme diese hier. Sie ist billiger.",
+     "Diese, bitte. Sie ist billiger.",
+     "Ich nehme die da, sie ist billiger.",
+     "Diese da, die ist billiger."
+    ],
+    "why_tr": "**die Tasse** için **diese** dersin."
+   },
+   {
+    "id": "m1:25:s10",
+    "k": "guided_response",
+    "situation_tr": "Ioana iki ceketi gösteriyor. Sence bu daha güzel.",
+    "prompt_de": "Welche Jacke ist schöner?",
+    "accepted": [
+     "Diese hier ist schöner.",
+     "Diese ist schöner.",
+     "Die hier ist schöner.",
+     "Ich finde diese schöner.",
+     "Diese Jacke ist schöner.",
+     "Die da ist schöner."
+    ],
+    "why_tr": "Daha güzel **schöner** olur."
+   },
+   {
+    "id": "m1:25:s11",
+    "k": "guided_response",
+    "situation_tr": "Pazarda iki sandalye var: biri 10, biri 15 avro. Ucuz olanı al ve nedenini söyle.",
+    "prompt_de": "Welchen Stuhl nehmen Sie?",
+    "accepted": [
+     "Ich nehme diesen, er ist billiger als der da.",
+     "Diesen, er ist billiger als der da.",
+     "Ich nehme diesen hier. Er ist billiger als der da.",
+     "Ich nehme den für zehn Euro, er ist billiger.",
+     "Diesen hier, er ist billiger.",
+     "Ich nehme diesen, der ist billiger als der da."
+    ],
+    "why_tr": "Seçerken **diesen**, karşılaştırırken **billiger als** dersin."
+   }
+  ],
+  "sesli": [
+   "m1:25:s9",
+   "m1:25:s10"
+  ],
+  "dikte": [
+   "m1:25:s1",
+   "m1:25:s2",
+   "m1:25:s3",
+   "m1:25:s4"
+  ]
+ }
+}

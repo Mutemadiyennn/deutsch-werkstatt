@@ -1,0 +1,1639 @@
+{
+ "schema": 1,
+ "id": "m1:gun:27",
+ "day": 27,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Nerede? in, an, auf, neben",
+ "goal_tr": "Evinin ve şehirdeki yerlerin nerede olduğunu in, an, auf, neben, hinter ve zwischen ile söylersin.",
+ "can_do": {
+  "id": "cd:m1:27",
+  "tr": "Evimin ve eşyaların yerini in, an, auf, neben ile söylerim."
+ },
+ "unit": "u:m1:27",
+ "arm": "pazar",
+ "place": "pl:haus",
+ "characters": [
+  "ch:brandl",
+  "ch:popescu",
+  "ch:pichler",
+  "ch:aksoy"
+ ],
+ "requires": {
+  "kelimeler": [
+   "lx:Montag",
+   "lx:Samstag",
+   "lx:heute",
+   "lx:morgen",
+   "lx:gehen",
+   "lx:hallo",
+   "lx:danke",
+   "lx:bitte",
+   "lx:ja",
+   "lx:nein",
+   "lx:Frau",
+   "lx:Herr",
+   "lx:haben",
+   "lx:kommen",
+   "lx:wohnen",
+   "lx:zwei",
+   "lx:sieben",
+   "lx:zehn",
+   "lx:offen",
+   "lx:Tüte",
+   "lx:noch",
+   "lx:Minute",
+   "lx:Nachmittag",
+   "lx:da",
+   "lx:dann",
+   "lx:erster",
+   "lx:zweiter",
+   "lx:dritter",
+   "lx:wo",
+   "lx:wie",
+   "lx:wie_viel",
+   "lx:was",
+   "lx:sehr",
+   "lx:sein",
+   "lx:können",
+   "lx:gleich",
+   "lx:Zeit",
+   "lx:gut",
+   "lx:immer",
+   "lx:jetzt",
+   "lx:Küche",
+   "lx:Kuchen",
+   "lx:hier",
+   "lx:fahren",
+   "lx:Entschuldigung",
+   "lx:Schuh",
+   "lx:rechts",
+   "lx:zu#2",
+   "lx:so",
+   "lx:wissen",
+   "lx:auch",
+   "lx:Mal",
+   "lx:mitkommen",
+   "lx:Stuhl",
+   "lx:hell",
+   "lx:Schrank",
+   "lx:Ausweis",
+   "lx:Fahrrad",
+   "lx:Bahnhof",
+   "lx:Haus",
+   "lx:los",
+   "lx:wirklich",
+   "lx:schön",
+   "lx:helfen",
+   "lx:klein",
+   "lx:stehen",
+   "lx:Kind",
+   "lx:Tasse",
+   "lx:Führerschein",
+   "lx:Rezept",
+   "lx:Werkstatt",
+   "lx:suchen",
+   "lx:Flur",
+   "lx:Sofa",
+   "lx:Techniker",
+   "lx:Hausmeister",
+   "lx:Morgen",
+   "lx:Balkon",
+   "lx:dort",
+   "lx:zeigen",
+   "lx:Mädchen",
+   "lx:weit"
+  ],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic4-hafta-04.md"
+ },
+ "dersler": [
+  "gr:a1-11:t1",
+  "gr:a1-11:t2"
+ ],
+ "yeni_kartlar": [
+  "lx:Rathaus",
+  "lx:Supermarkt",
+  "lx:Apotheke",
+  "lx:spielen",
+  "lx:zusammen",
+  "lx:schlafen",
+  "lx:Hand",
+  "lx:liegen",
+  "lx:lang",
+  "lx:Moment",
+  "lx:schauen"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:27:h1",
+   "title_tr": "Şehirde: nerede?",
+   "kartlar": [
+    "lx:Rathaus",
+    "lx:Supermarkt",
+    "lx:Apotheke",
+    "lx:liegen",
+    "lx:Moment"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "im … – am … – auf dem … – in der …",
+     "tr": "…'de, …'in üstünde"
+    },
+    {
+     "de": "neben dem … – neben der … – neben mir",
+     "tr": "…'in yanında – benim yanımda"
+    },
+    {
+     "de": "vor dem … – hinter dem … – hinter der …",
+     "tr": "…'in önünde – …'in arkasında"
+    },
+    {
+     "de": "zwischen dem … und der …",
+     "tr": "… ile … arasında"
+    },
+    {
+     "de": "Es liegt … – Wo liegt …?",
+     "tr": "… duruyor – … nerede duruyor?"
+    },
+    {
+     "de": "am billigsten",
+     "tr": "en ucuz"
+    },
+    {
+     "de": "Grüß Gott!",
+     "tr": "Merhaba! (Bavyera'da sık)"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Rathaus",
+     "de": "Das Rathaus ist neben dem Supermarkt.",
+     "tr": "Belediye binası süpermarketin yanında.",
+     "accepted": [
+      "Das Rathaus ist neben dem Supermarkt.",
+      "Das Rathaus ist direkt neben dem Supermarkt.",
+      "Neben dem Supermarkt ist das Rathaus."
+     ]
+    },
+    {
+     "kart": "lx:Rathaus",
+     "de": "Wo ist das Rathaus?",
+     "tr": "Belediye binası nerede?",
+     "accepted": [
+      "Wo ist das Rathaus?",
+      "Entschuldigung, wo ist das Rathaus?",
+      "Wo ist denn das Rathaus?"
+     ]
+    },
+    {
+     "kart": "lx:Supermarkt",
+     "de": "Der Supermarkt ist hinter dem Bahnhof.",
+     "tr": "Süpermarket istasyonun arkasında.",
+     "accepted": [
+      "Der Supermarkt ist hinter dem Bahnhof.",
+      "Hinter dem Bahnhof ist der Supermarkt.",
+      "Der Supermarkt ist gleich hinter dem Bahnhof."
+     ]
+    },
+    {
+     "kart": "lx:Supermarkt",
+     "de": "Im Supermarkt ist es am billigsten.",
+     "tr": "En ucuzu süpermarkette.",
+     "accepted": [
+      "Im Supermarkt ist es am billigsten.",
+      "Am billigsten ist es im Supermarkt.",
+      "Im Supermarkt ist alles am billigsten."
+     ]
+    },
+    {
+     "kart": "lx:Apotheke",
+     "de": "Ist die Apotheke neben dem Supermarkt?",
+     "tr": "Eczane süpermarketin yanında mı?",
+     "accepted": [
+      "Ist die Apotheke neben dem Supermarkt?",
+      "Ist die Apotheke direkt neben dem Supermarkt?",
+      "Die Apotheke ist neben dem Supermarkt?"
+     ]
+    },
+    {
+     "kart": "lx:Apotheke",
+     "de": "Ist die Apotheke heute offen?",
+     "tr": "Eczane bugün açık mı?",
+     "accepted": [
+      "Ist die Apotheke heute offen?",
+      "Ist die Apotheke heute noch offen?",
+      "Hat die Apotheke heute offen?"
+     ]
+    },
+    {
+     "kart": "lx:liegen",
+     "de": "Der Ausweis liegt im Schrank.",
+     "tr": "Kimlik dolapta duruyor.",
+     "accepted": [
+      "Der Ausweis liegt im Schrank.",
+      "Mein Ausweis liegt im Schrank.",
+      "Der Ausweis liegt da, im Schrank."
+     ]
+    },
+    {
+     "kart": "lx:liegen",
+     "de": "Das Rezept liegt auf dem Stuhl.",
+     "tr": "Reçete sandalyenin üstünde duruyor.",
+     "accepted": [
+      "Das Rezept liegt auf dem Stuhl.",
+      "Das Rezept liegt da, auf dem Stuhl.",
+      "Das Rezept liegt hier auf dem Stuhl."
+     ]
+    },
+    {
+     "kart": "lx:Moment",
+     "de": "Einen Moment, bitte!",
+     "tr": "Bir dakika, lütfen!",
+     "accepted": [
+      "Einen Moment, bitte!",
+      "Moment, bitte!",
+      "Einen Moment noch, bitte!"
+     ]
+    },
+    {
+     "kart": "lx:Moment",
+     "de": "Moment, welcher Supermarkt ist am billigsten?",
+     "tr": "Dur bir dakika, hangi süpermarket en ucuz?",
+     "accepted": [
+      "Moment, welcher Supermarkt ist am billigsten?",
+      "Moment! Welcher Supermarkt ist am billigsten?",
+      "Einen Moment, welcher Supermarkt ist am billigsten?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "İstasyon çıkışı. Ioana elinde küçük bir şehir planı tutuyor.",
+    "satirlar": [
+     {
+      "r": "ch:popescu",
+      "de": "Wo ist der Supermarkt? Neben dem Rathaus?",
+      "tr": "Süpermarket nerede? Belediye binasının yanında mı?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ja, und hinter dem Bahnhof.",
+      "tr": "Evet, bir de istasyonun arkasında."
+     },
+     {
+      "r": "ch:popescu",
+      "de": "Und die Apotheke? Ist sie neben dem Supermarkt?",
+      "tr": "Peki eczane? Süpermarketin yanında mı?"
+     }
+    ],
+    "soru": {
+     "q_tr": "Süpermarket nerede?",
+     "opts": [
+      "İstasyonun önünde",
+      "İstasyonun arkasında, belediye binasının yanında",
+      "Eczanenin içinde"
+     ],
+     "ans": 1
+    }
+   }
+  },
+  {
+   "id": "m1:27:h2",
+   "title_tr": "Evde ve evin önünde",
+   "kartlar": [
+    "lx:spielen",
+    "lx:zusammen",
+    "lx:schlafen",
+    "lx:Hand",
+    "lx:lang",
+    "lx:schauen"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "Er spielt … – Er schläft … – Ich schlafe …",
+     "tr": "… oynuyor – … uyuyor – … uyuyorum"
+    },
+    {
+     "de": "Ich schaue … – Schau mal! – Schauen Sie mal!",
+     "tr": "…'e bakıyorum – Baksana! – Bakın!"
+    },
+    {
+     "de": "im ersten Stock – im zweiten Stock",
+     "tr": "birinci katta – ikinci katta"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:spielen",
+     "de": "Die Kinder spielen vor dem Haus.",
+     "tr": "Çocuklar evin önünde oynuyor.",
+     "accepted": [
+      "Die Kinder spielen vor dem Haus.",
+      "Vor dem Haus spielen die Kinder.",
+      "Die Kinder spielen draußen vor dem Haus."
+     ]
+    },
+    {
+     "kart": "lx:spielen",
+     "de": "Das Mädchen spielt im Flur.",
+     "tr": "Kız koridorda oynuyor.",
+     "accepted": [
+      "Das Mädchen spielt im Flur.",
+      "Im Flur spielt das Mädchen.",
+      "Das Mädchen spielt da im Flur."
+     ]
+    },
+    {
+     "kart": "lx:zusammen",
+     "de": "Wir fahren zusammen zum Supermarkt.",
+     "tr": "Süpermarkete birlikte gidiyoruz.",
+     "accepted": [
+      "Wir fahren zusammen zum Supermarkt.",
+      "Wir fahren zusammen in den Supermarkt.",
+      "Zusammen fahren wir zum Supermarkt."
+     ]
+    },
+    {
+     "kart": "lx:zusammen",
+     "de": "Gehen wir zusammen ins Rathaus?",
+     "tr": "Belediyeye birlikte gidelim mi?",
+     "accepted": [
+      "Gehen wir zusammen ins Rathaus?",
+      "Gehen wir zusammen zum Rathaus?",
+      "Gehen wir dann zusammen ins Rathaus?"
+     ]
+    },
+    {
+     "kart": "lx:schlafen",
+     "de": "Tobi schläft auf dem Sofa.",
+     "tr": "Tobi kanepede uyuyor.",
+     "accepted": [
+      "Tobi schläft auf dem Sofa.",
+      "Auf dem Sofa schläft Tobi.",
+      "Tobi schläft da auf dem Sofa."
+     ]
+    },
+    {
+     "kart": "lx:schlafen",
+     "de": "Frau Brandl schläft am Nachmittag.",
+     "tr": "Brandl Hanım öğleden sonra uyuyor.",
+     "accepted": [
+      "Frau Brandl schläft am Nachmittag.",
+      "Am Nachmittag schläft Frau Brandl.",
+      "Frau Brandl schläft immer am Nachmittag."
+     ]
+    },
+    {
+     "kart": "lx:Hand",
+     "de": "Was hast du in der Hand?",
+     "tr": "Elinde ne var?",
+     "accepted": [
+      "Was hast du in der Hand?",
+      "Was hast du denn in der Hand?",
+      "Was hast du da in der Hand?"
+     ]
+    },
+    {
+     "kart": "lx:Hand",
+     "de": "Das Kind hat eine Tasse in der Hand.",
+     "tr": "Çocuğun elinde bir fincan var.",
+     "accepted": [
+      "Das Kind hat eine Tasse in der Hand.",
+      "Das Kind hat die Tasse in der Hand.",
+      "In der Hand hat das Kind eine Tasse."
+     ]
+    },
+    {
+     "kart": "lx:lang",
+     "de": "Der Flur ist sehr lang.",
+     "tr": "Koridor çok uzun.",
+     "accepted": [
+      "Der Flur ist sehr lang.",
+      "Der Flur ist wirklich sehr lang.",
+      "Der Flur hier ist sehr lang."
+     ]
+    },
+    {
+     "kart": "lx:lang",
+     "de": "Wie lang ist der Balkon?",
+     "tr": "Balkon ne kadar uzun?",
+     "accepted": [
+      "Wie lang ist der Balkon?",
+      "Wie lang ist denn der Balkon?",
+      "Und wie lang ist der Balkon?"
+     ]
+    },
+    {
+     "kart": "lx:schauen",
+     "de": "Wir schauen hinter dem Sofa.",
+     "tr": "Kanepenin arkasına bakıyoruz.",
+     "accepted": [
+      "Wir schauen hinter dem Sofa.",
+      "Wir schauen mal hinter dem Sofa.",
+      "Hinter dem Sofa schauen wir.",
+      "Wir schauen hinter das Sofa."
+     ]
+    },
+    {
+     "kart": "lx:schauen",
+     "de": "Ich schaue im Schrank.",
+     "tr": "Dolaba bakıyorum.",
+     "accepted": [
+      "Ich schaue im Schrank.",
+      "Ich schaue mal im Schrank.",
+      "Ich schaue jetzt im Schrank."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Merdiven boşluğu. Brandl Hanım bir şey arıyor.",
+    "satirlar": [
+     {
+      "r": "ch:brandl",
+      "de": "Wo ist meine Tasse? Sie ist nicht im Flur!",
+      "tr": "Fincanım nerede? Koridorda değil!"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Schauen Sie mal, das Kind hat sie in der Hand!",
+      "tr": "Bakın, çocuğun elinde!"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Ach so! Es spielt vor dem Haus.",
+      "tr": "Ha! Evin önünde oynuyor."
+     }
+    ],
+    "soru": {
+     "q_tr": "Fincan nerede?",
+     "opts": [
+      "Koridorda",
+      "Çocuğun elinde",
+      "Dolapta"
+     ],
+     "ans": 1
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:27:v1",
+  "title_tr": "Pichler Bey nerede oturuyor?",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Brunnengasse 7, giriş. Ioana elinde bir kâğıtla kapı zillerine bakıyor. Frau Brandl merdivenden iniyor.",
+    "de": "Grüß Gott! Kann ich Ihnen helfen?",
+    "tr": "Merhaba! Size yardım edebilir miyim?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana kâğıdı gösteriyor.",
+    "de": "Ja, bitte. Wo wohnt Herr Pichler?",
+    "tr": "Evet, lütfen. Pichler Bey nerede oturuyor?"
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl yukarıyı gösteriyor.",
+    "de": "Im ersten Stock, neben mir.",
+    "tr": "Birinci katta, benim yanımda."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana merdivene bakıyor.",
+    "de": "Und ist er jetzt da?",
+    "tr": "Şimdi evde mi?"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl başını sallıyor.",
+    "de": "Nein, er ist im Supermarkt. Der ist hinter dem Bahnhof.",
+    "tr": "Hayır, süpermarkette. O da istasyonun arkasında."
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana kaşlarını kaldırıyor.",
+    "de": "Hinter dem Bahnhof? Ist das weit?",
+    "tr": "İstasyonun arkasında mı? Uzak mı?"
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl eliyle yolu tarif ediyor.",
+    "de": "Nein, zwei Minuten.",
+    "tr": "Hayır, iki dakika."
+   },
+   {
+    "id": "s7b",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl iki eliyle iki binayı tarif ediyor.",
+    "de": "Zwischen dem Rathaus und der Apotheke.",
+    "tr": "Belediye binası ile eczanenin arasında."
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana kapının yanındaki banka oturuyor.",
+    "de": "Ach so. Gut, ich habe Zeit.",
+    "tr": "Anladım. İyi, vaktim var."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl kapıdan dışarıyı gösteriyor.",
+    "de": "Moment! Da kommt er! Er hat eine Tüte in der Hand.",
+    "tr": "Bir dakika! İşte geliyor! Elinde bir poşet var."
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler kapıdan giriyor.",
+    "de": "Grüß Gott! Was ist denn los?",
+    "tr": "Merhaba! Ne oldu?"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana ayağa kalkıyor.",
+    "de": "Es geht um das Haus für Tobi. Zeigen Sie es am Samstag?",
+    "tr": "Tobi için olan yer hakkında. Cumartesi gösteriyor musunuz?"
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler poşeti yere bırakıyor.",
+    "de": "Ja, am Samstag um zehn. Es ist im dritten Stock.",
+    "tr": "Evet, cumartesi saat onda. Üçüncü katta."
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana sevinçle soruyor.",
+    "de": "Im dritten Stock? Mit Balkon?",
+    "tr": "Üçüncü katta mı? Balkonlu mu?"
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler başını sallıyor.",
+    "de": "Ja, mit Balkon.",
+    "tr": "Evet, balkonlu."
+   },
+   {
+    "id": "s14b",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler arka bahçeyi gösteriyor.",
+    "de": "Hinter dem Haus spielen die Kinder.",
+    "tr": "Evin arkasında çocuklar oynuyor."
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:popescu",
+    "sahne_tr": "Ioana el sıkıyor.",
+    "de": "Schön! Danke, Herr Pichler!",
+    "tr": "Güzel! Teşekkürler Pichler Bey!"
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s7b",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s14b",
+     "s15"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Ioana ne istiyor?",
+     "opts": [
+      "Pichler Bey'i bulup Tobi için olan yeri sormak",
+      "Süpermarketi bulmak",
+      "Brandl Hanım'ı ziyaret etmek"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s2",
+      "s11"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Pichler Bey nerede oturuyor?",
+      "opts": [
+       "İkinci katta",
+       "Birinci katta, Brandl Hanım'ın yanında",
+       "Üçüncü katta"
+      ],
+      "ans": 1,
+      "kanit": [
+       "s3"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Boş yer hangi katta?",
+      "opts": [
+       "Birinci katta",
+       "İkinci katta",
+       "Üçüncü katta"
+      ],
+      "ans": 2,
+      "kanit": [
+       "s12"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s3",
+      "seviye": "kolay",
+      "q_tr": "Hangi katı duydun?",
+      "opts": [
+       "zweiten",
+       "ersten",
+       "dritten"
+      ],
+      "ans": 1
+     },
+     {
+      "id": "d2",
+      "cumle": "s5",
+      "seviye": "orta",
+      "de": "Nein, er ist im Supermarkt. Der ist ___ dem Bahnhof.",
+      "accepted": [
+       "hinter",
+       "Hinter",
+       "hinter."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s7b",
+      "seviye": "zor",
+      "banka": [
+       "Zwischen",
+       "dem",
+       "Rathaus",
+       "und",
+       "der",
+       "Apotheke",
+       "neben",
+       "im"
+      ],
+      "accepted": [
+       "Zwischen dem Rathaus und der Apotheke.",
+       "zwischen dem rathaus und der apotheke",
+       "Zwischen dem Rathaus und der Apotheke"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s14b",
+      "seviye": "usta",
+      "accepted": [
+       "Hinter dem Haus spielen die Kinder.",
+       "hinter dem haus spielen die kinder",
+       "Hinter dem Haus spielen die Kinder"
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Pichler Bey'in nerede oturduğunu Almanca bir cümleyle yaz.",
+      "ornek_de": "Herr Pichler wohnt im ersten Stock, neben Frau Brandl.",
+      "zorunlu": [
+       "Stock",
+       "neben"
+      ]
+     }
+    ],
+    "golge": [
+     "s2",
+     "s13"
+    ],
+    "cevapla": {
+     "id": "m1:27:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Brandl Hanım sana da soruyor. Sen ikinci katta oturuyorsun.",
+     "prompt_de": "Und Sie? Wo wohnen Sie?",
+     "accepted": [
+      "Ich wohne auch hier, im zweiten Stock.",
+      "Im zweiten Stock.",
+      "Ich wohne im zweiten Stock.",
+      "Auch hier, im zweiten Stock.",
+      "Hier im Haus, im zweiten Stock.",
+      "Ich wohne hier im zweiten Stock."
+     ],
+     "why_tr": "Kat için **im** dersin: **im zweiten Stock**."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:27:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Pichler Bey'in duyurusu",
+   "ortam_tr": "Apartmandaki herkese Pichler Bey'den bir sesli mesaj gelmiş.",
+   "speaker": "ch:pichler",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Grüß Gott, hier ist Pichler, Ihr Hausmeister.",
+     "tr": "Merhaba, ben Pichler, apartman görevliniz."
+    },
+    {
+     "id": "c2",
+     "de": "Die Fahrräder sind ab Montag hinter dem Haus, nicht im Flur.",
+     "tr": "Bisikletler pazartesiden itibaren evin arkasında, koridorda değil."
+    },
+    {
+     "id": "c3",
+     "de": "Im Flur bitte keine Schuhe!",
+     "tr": "Koridora lütfen ayakkabı koymayın!"
+    },
+    {
+     "id": "c4",
+     "de": "Am Samstag um neun ist der Techniker im zweiten Stock.",
+     "tr": "Cumartesi saat dokuzda teknisyen ikinci katta."
+    },
+    {
+     "id": "c5",
+     "de": "Danke!",
+     "tr": "Teşekkürler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Duyuru ne hakkında?",
+      "opts": [
+       "Apartman kuralları ve teknisyen",
+       "Kira",
+       "Bir parti"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Bisikletler nerede durmalı?",
+       "opts": [
+        "Koridorda",
+        "Evin arkasında",
+        "Evin önünde"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Teknisyen cumartesi hangi katta?",
+       "opts": [
+        "Birinci katta",
+        "İkinci katta",
+        "Üçüncü katta"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c4"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c4",
+       "seviye": "kolay",
+       "q_tr": "Hangi katı duydun?",
+       "opts": [
+        "ersten",
+        "dritten",
+        "zweiten"
+       ],
+       "ans": 2
+      },
+      {
+       "id": "d2",
+       "cumle": "c2",
+       "seviye": "orta",
+       "de": "Die Fahrräder sind ab Montag ___ dem Haus, nicht im Flur.",
+       "accepted": [
+        "hinter",
+        "Hinter",
+        "hinter."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c4",
+       "seviye": "zor",
+       "banka": [
+        "Am",
+        "Samstag",
+        "um",
+        "neun",
+        "ist",
+        "der",
+        "Techniker",
+        "im",
+        "zweiten",
+        "Stock",
+        "am",
+        "vor"
+       ],
+       "accepted": [
+        "Am Samstag um neun ist der Techniker im zweiten Stock.",
+        "am samstag um neun ist der techniker im zweiten stock",
+        "Am Samstag um neun ist der Techniker im zweiten Stock"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Im Flur bitte keine Schuhe!",
+        "im flur bitte keine schuhe",
+        "Im Flur bitte keine Schuhe"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Duyuruyu Almanca iki kısa cümleyle özetle.",
+       "ornek_de": "Die Fahrräder sind hinter dem Haus. Im Flur sind keine Schuhe.",
+       "zorunlu": [
+        "Fahrräder",
+        "hinter"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:27:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Brandl Hanım duyuruyu duymadı. Bisikletler pazartesiden itibaren evin arkasında.",
+      "prompt_de": "Wo sind die Fahrräder ab Montag?",
+      "accepted": [
+       "Hinter dem Haus.",
+       "Ab Montag hinter dem Haus.",
+       "Sie sind hinter dem Haus.",
+       "Ab Montag sind sie hinter dem Haus.",
+       "Hinter dem Haus, nicht im Flur.",
+       "Die Fahrräder sind hinter dem Haus."
+      ],
+      "why_tr": "Arkasında derken **hinter dem Haus** dersin."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:27:a1:e1",
+    "k": "pick",
+    "q_tr": "Bisikletin koridorda duruyor. Ne yapmalısın?",
+    "opts": [
+     "Bir şey yapma.",
+     "Bisikleti mutfağa al.",
+     "Pazartesiden itibaren bisikleti evin arkasına koy."
+    ],
+    "ans": 2,
+    "why_tr": "Pichler Bey pazartesiden itibaren bisikletlerin evin arkasında durmasını istiyor.",
+    "kanit": [
+     "c2"
+    ]
+   }
+  },
+  {
+   "id": "m1:27:a2",
+   "tur": "sesli-mesaj",
+   "title_tr": "Derya'dan mesaj",
+   "ortam_tr": "Derya sana geliyor ve telefonuna mesaj bırakmış.",
+   "speaker": "ch:aksoy",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Hallo, hier ist Derya!",
+     "tr": "Merhaba, ben Derya!"
+    },
+    {
+     "id": "c2",
+     "de": "Ich bin jetzt am Bahnhof, mit Kuchen für dich.",
+     "tr": "Şimdi istasyondayım, sana pasta getiriyorum."
+    },
+    {
+     "id": "c3",
+     "de": "Wo ist dein Haus? Ist es neben dem Supermarkt?",
+     "tr": "Evin nerede? Süpermarketin yanında mı?"
+    },
+    {
+     "id": "c4",
+     "de": "Und welcher Stock?",
+     "tr": "Peki hangi kat?"
+    },
+    {
+     "id": "c4b",
+     "de": "Der zweite, ja?",
+     "tr": "İkinci, değil mi?"
+    },
+    {
+     "id": "c5",
+     "de": "Bis gleich!",
+     "tr": "Birazdan görüşürüz!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c4b",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Derya neden arıyor?",
+      "opts": [
+       "Kursu soruyor",
+       "Evinin yerini ve katını soruyor",
+       "Gelemeyeceğini söylüyor"
+      ],
+      "ans": 1,
+      "kanit": [
+       "c3",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Derya şimdi nerede?",
+       "opts": [
+        "İstasyonda",
+        "Süpermarkette",
+        "Senin kapında"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Derya yanında ne getiriyor?",
+       "opts": [
+        "Fincan",
+        "Pasta",
+        "Ekmek"
+       ],
+       "ans": 1,
+       "kanit": [
+        "c2"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Kuchen",
+        "Brot",
+        "Tasse"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c3",
+       "seviye": "orta",
+       "de": "Wo ist dein Haus? Ist es ___ dem Supermarkt?",
+       "accepted": [
+        "neben",
+        "Neben",
+        "neben."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Ich",
+        "bin",
+        "jetzt",
+        "am",
+        "Bahnhof",
+        "mit",
+        "Kuchen",
+        "für",
+        "dich",
+        "im",
+        "dir"
+       ],
+       "accepted": [
+        "Ich bin jetzt am Bahnhof, mit Kuchen für dich.",
+        "ich bin jetzt am bahnhof mit kuchen für dich",
+        "Ich bin jetzt am Bahnhof, mit Kuchen für dich"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c4",
+       "seviye": "usta",
+       "accepted": [
+        "Und welcher Stock?",
+        "und welcher stock",
+        "Und welcher Stock"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Derya'nın mesajını Almanca bir kısa cümleyle özetle.",
+       "ornek_de": "Derya ist am Bahnhof und sucht mein Haus.",
+       "zorunlu": [
+        "Bahnhof",
+        "Haus"
+       ]
+      }
+     ],
+     "golge": [
+      "c3",
+      "c5"
+     ],
+     "cevapla": {
+      "id": "m1:27:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Derya'yı geri arıyorsun. Evin süpermarketin yanında değil, arkasında. İkinci kattasın.",
+      "prompt_de": "Ist dein Haus neben dem Supermarkt?",
+      "accepted": [
+       "Nein, es ist hinter dem Supermarkt, im zweiten Stock.",
+       "Nein, hinter dem Supermarkt. Im zweiten Stock.",
+       "Nein, es ist hinter dem Supermarkt.",
+       "Nein, hinter dem Supermarkt, und ich wohne im zweiten Stock.",
+       "Nicht neben, hinter dem Supermarkt. Im zweiten Stock."
+      ],
+      "why_tr": "Düzeltirken **nicht neben** yerine doğru yeri söyle: **hinter dem Supermarkt**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:27:a2:e1",
+    "k": "pick",
+    "q_tr": "Mesajdan sonra ne yapmalısın?",
+    "opts": [
+     "İstasyona git ve pastayı al.",
+     "Derya'ya evinin yerini ve katını söyle.",
+     "Süpermarkete git."
+    ],
+    "ans": 1,
+    "why_tr": "Derya istasyondan geliyor ve evinin yerini bilmiyor.",
+    "kanit": [
+     "c3",
+     "c4"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:27:g1",
+   "de": "das Rathaus",
+   "dogru_img": "old town hall building with a clock on a town square",
+   "celdirici_img": [
+    "supermarket entrance",
+    "pharmacy with a green cross sign",
+    "train station"
+   ]
+  },
+  {
+   "id": "m1:27:g2",
+   "de": "die Apotheke",
+   "dogru_img": "German pharmacy front with a red A sign",
+   "celdirici_img": [
+    "bakery front",
+    "town hall",
+    "supermarket"
+   ]
+  },
+  {
+   "id": "m1:27:g3",
+   "de": "der Supermarkt",
+   "dogru_img": "supermarket entrance with shopping trolleys",
+   "celdirici_img": [
+    "pharmacy front",
+    "hair salon",
+    "post office"
+   ]
+  },
+  {
+   "id": "m1:27:g4",
+   "de": "neben dem Sofa",
+   "dogru_img": "cup on the floor next to a sofa",
+   "celdirici_img": [
+    "cup on a sofa",
+    "cup behind a sofa",
+    "cup under a table"
+   ]
+  },
+  {
+   "id": "m1:27:g5",
+   "de": "hinter dem Haus",
+   "dogru_img": "bicycles parked behind a house",
+   "celdirici_img": [
+    "bicycles in front of a house",
+    "bicycles inside a hallway",
+    "bicycles on a street"
+   ]
+  },
+  {
+   "id": "m1:27:g6",
+   "de": "Die Kinder spielen.",
+   "dogru_img": "children playing ball in a yard",
+   "celdirici_img": [
+    "children sleeping",
+    "children eating at a table",
+    "children in a classroom"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:27:p1",
+  "title_tr": "Merdivende Brandl Hanım",
+  "durum_tr": "Merdivende Brandl Hanım'la karşılaşıyorsun. Katını karıştırıyor, eşyalarını ve dükkânları soruyor. Sen ikinci katta oturuyorsun.",
+  "karsi": "ch:brandl",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Grüß Gott! Sie wohnen im dritten Stock, ja?",
+    "tr": "Merhaba! Siz üçüncü katta oturuyorsunuz, değil mi?",
+    "secenekler": [
+     {
+      "de": "Nein, im zweiten Stock.",
+      "tr": "Hayır, ikinci katta.",
+      "accepted": [
+       "Nein, im zweiten Stock.",
+       "Nein, ich wohne im zweiten Stock.",
+       "Im zweiten Stock.",
+       "Nein, hier im zweiten Stock."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Kibarca düzelttin, kat için **im** dedin."
+     },
+     {
+      "de": "Nein! Im zweiten Stock, rechts.",
+      "tr": "Hayır! İkinci katta, sağda.",
+      "accepted": [
+       "Nein! Im zweiten Stock, rechts.",
+       "Im zweiten Stock, rechts.",
+       "Nein, im zweiten Stock rechts."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Kapının yönünü de söyledin."
+     },
+     {
+      "de": "Nein, auf dem zweiten Stock.",
+      "tr": "Hayır, ikinci katta. (yanlış)",
+      "accepted": [
+       "Nein, auf dem zweiten Stock.",
+       "Auf dem zweiten Stock.",
+       "Nein, am zweiten Stock."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "Katlar için **im** dersin: **im zweiten Stock**."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Ach, schön! Und wo ist Ihr Fahrrad? Im Flur?",
+    "tr": "Ah, güzel! Peki bisikletiniz nerede? Koridorda mı?",
+    "secenekler": [
+     {
+      "de": "Nein, es ist hinter dem Haus.",
+      "tr": "Hayır, evin arkasında.",
+      "accepted": [
+       "Nein, es ist hinter dem Haus.",
+       "Nein, hinter dem Haus.",
+       "Nein, das Fahrrad ist hinter dem Haus."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **das Fahrrad** için **es** ve **hinter dem Haus**."
+     },
+     {
+      "de": "Nein, es ist in der Werkstatt.",
+      "tr": "Hayır, tamirhanede.",
+      "accepted": [
+       "Nein, es ist in der Werkstatt.",
+       "Nein, in der Werkstatt.",
+       "Nein, das Fahrrad ist in der Werkstatt."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. **in der Werkstatt** doğru."
+     },
+     {
+      "de": "Nein, er ist hinter dem Haus.",
+      "tr": "Hayır, evin arkasında. (yanlış)",
+      "accepted": [
+       "Nein, er ist hinter dem Haus.",
+       "Er ist hinter dem Haus.",
+       "Nein, sie ist hinter dem Haus."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "**das Fahrrad** için **es** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Gut. Und der Supermarkt? Wissen Sie schon, wo er ist?",
+    "tr": "İyi. Peki süpermarket? Nerede olduğunu öğrendiniz mi?",
+    "secenekler": [
+     {
+      "de": "Ja, er ist hinter dem Bahnhof.",
+      "tr": "Evet, istasyonun arkasında.",
+      "accepted": [
+       "Ja, er ist hinter dem Bahnhof.",
+       "Ja, hinter dem Bahnhof.",
+       "Er ist hinter dem Bahnhof."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **hinter dem Bahnhof** dedin."
+     },
+     {
+      "de": "Ja, zwischen dem Rathaus und der Apotheke.",
+      "tr": "Evet, belediye binası ile eczanenin arasında.",
+      "accepted": [
+       "Ja, zwischen dem Rathaus und der Apotheke.",
+       "Zwischen dem Rathaus und der Apotheke.",
+       "Ja, er ist zwischen dem Rathaus und der Apotheke."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. **zwischen** ile iki yeri doğru söyledin."
+     },
+     {
+      "de": "Ja, er ist neben dem Apotheke.",
+      "tr": "Evet, eczanenin yanında. (yanlış)",
+      "accepted": [
+       "Ja, er ist neben dem Apotheke.",
+       "Neben dem Apotheke.",
+       "Ja, neben das Apotheke."
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "**die Apotheke** için **neben der Apotheke** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Und Ihre Küche? Wie ist sie?",
+    "tr": "Peki mutfağınız? Nasıl?",
+    "secenekler": [
+     {
+      "de": "Sie ist klein, aber hell.",
+      "tr": "Küçük ama aydınlık.",
+      "accepted": [
+       "Sie ist klein, aber hell.",
+       "Klein, aber hell.",
+       "Sie ist klein, aber sehr hell."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. **die Küche** için **sie** dedin."
+     },
+     {
+      "de": "Sie ist sehr schön. Der Balkon ist neben der Küche.",
+      "tr": "Çok güzel. Balkon mutfağın yanında.",
+      "accepted": [
+       "Sie ist sehr schön. Der Balkon ist neben der Küche.",
+       "Sie ist schön, und der Balkon ist neben der Küche.",
+       "Schön! Der Balkon ist neben der Küche."
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. Hem tarif ettin hem yer söyledin."
+     },
+     {
+      "de": "Er ist klein, aber hell.",
+      "tr": "Küçük ama aydınlık. (yanlış)",
+      "accepted": [
+       "Er ist klein, aber hell.",
+       "Es ist klein, aber hell.",
+       "Er ist klein."
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "**die Küche** için **sie** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Schön! Dann bis morgen!",
+    "tr": "Güzel! O zaman yarın görüşürüz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Nerede oturduğunu, bisikletinin ve süpermarketin yerini in, hinter, neben, zwischen ile anlattın."
+ },
+ "okuma_yazma": {
+  "tur": "yazma",
+  "title_tr": "Derya'ya yol tarifi",
+  "metin_de": "Hallo {name}! Ich komme am Samstag zu dir. Wo ist dein Haus? Ist es weit vom Bahnhof? Und welcher Stock? Bis Samstag, Derya!",
+  "metin_tr": "Merhaba {name}! Cumartesi sana geliyorum. Evin nerede? İstasyona uzak mı? Peki hangi kat? Cumartesi görüşürüz, Derya!",
+  "sorular": [
+   {
+    "id": "m1:27:o1",
+    "kind": "detail",
+    "q_tr": "Derya ne zaman geliyor?",
+    "opts": [
+     "Cumartesi",
+     "Pazar",
+     "Yarın"
+    ],
+    "ans": 0,
+    "kanit": [
+     1
+    ]
+   },
+   {
+    "id": "m1:27:o2",
+    "kind": "detail",
+    "q_tr": "Derya neyi soruyor?",
+    "opts": [
+     "Evinin yerini ve katını",
+     "Kursun saatini",
+     "Süpermarketin fiyatlarını"
+    ],
+    "ans": 0,
+    "kanit": [
+     2,
+     3,
+     4
+    ]
+   }
+  ],
+  "yazma": {
+   "gorev_tr": "Derya'ya cevap yaz. Evin Brunnengasse 7'de, istasyona uzak değil, süpermarketin arkasında. Sen ikinci kattasın.",
+   "ornek_de": "Hallo Derya! Mein Haus ist in der Brunnengasse sieben. Es ist nicht weit vom Bahnhof, hinter dem Supermarkt. Ich wohne im zweiten Stock. Bis Samstag!",
+   "zorunlu": [
+    "Brunnengasse",
+    "Stock"
+   ],
+   "accepted_kaliplar": [
+    "Hallo ___!",
+    "Hallo ___,",
+    "Mein Haus ist in der Brunnengasse ___.",
+    "Ich wohne in der Brunnengasse ___.",
+    "Es ist nicht weit vom Bahnhof, hinter dem Supermarkt.",
+    "Es ist nicht weit vom Bahnhof.",
+    "Es ist hinter dem Supermarkt.",
+    "Es ist neben ___.",
+    "Es ist hinter ___.",
+    "Ich wohne im ___ Stock.",
+    "Bis Samstag!",
+    "Bis ___!"
+   ],
+   "kontrol_tr": [
+    "Sokağı ve numarayı yazdın mı?",
+    "Kat için **im zweiten Stock** yazdın mı?",
+    "Yer için **hinter** ya da **neben** kullandın mı?"
+   ]
+  }
+ },
+ "gun_sinavi": {
+  "id": "m1:27:s",
+  "maddeler": [
+   {
+    "id": "m1:27:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Der Ausweis liegt auf dem Schrank.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Ausweis liegt auf dem Schrank.",
+     "der ausweis liegt auf dem schrank",
+     "Der Ausweis liegt auf dem Schrank"
+    ],
+    "why_tr": "**auf dem** üstünde demektir."
+   },
+   {
+    "id": "m1:27:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Die Kinder spielen hinter dem Haus.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Kinder spielen hinter dem Haus.",
+     "die kinder spielen hinter dem haus",
+     "Die Kinder spielen hinter dem Haus"
+    ],
+    "why_tr": "**hinter** arkasında demektir."
+   },
+   {
+    "id": "m1:27:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Frau Brandl wohnt im ersten Stock.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Frau Brandl wohnt im ersten Stock.",
+     "frau brandl wohnt im ersten stock",
+     "Frau Brandl wohnt im ersten Stock"
+    ],
+    "why_tr": "Kat için **im ersten Stock** dersin."
+   },
+   {
+    "id": "m1:27:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Moment, ich schaue im Flur.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Moment, ich schaue im Flur.",
+     "moment ich schaue im flur",
+     "Moment, ich schaue im Flur"
+    ],
+    "why_tr": "**Moment** bir dakika demektir."
+   },
+   {
+    "id": "m1:27:s5",
+    "k": "tr_de",
+    "tr": "Eczane süpermarketin yanında.",
+    "accepted": [
+     "Die Apotheke ist neben dem Supermarkt.",
+     "Die Apotheke ist direkt neben dem Supermarkt.",
+     "Neben dem Supermarkt ist die Apotheke.",
+     "Die Apotheke liegt neben dem Supermarkt."
+    ],
+    "why_tr": "Yanında derken **neben** dersin. **der Supermarkt** burada **dem** olur."
+   },
+   {
+    "id": "m1:27:s6",
+    "k": "tr_de",
+    "tr": "Bisiklet evin önünde.",
+    "accepted": [
+     "Das Fahrrad ist vor dem Haus.",
+     "Das Fahrrad steht vor dem Haus.",
+     "Vor dem Haus ist das Fahrrad.",
+     "Mein Fahrrad ist vor dem Haus."
+    ],
+    "why_tr": "Önünde derken **vor** dersin."
+   },
+   {
+    "id": "m1:27:s7",
+    "k": "tr_de",
+    "tr": "Fincan dolapta.",
+    "accepted": [
+     "Die Tasse ist im Schrank.",
+     "Die Tasse steht im Schrank.",
+     "Im Schrank ist die Tasse.",
+     "Die Tasse ist in dem Schrank."
+    ],
+    "why_tr": "**in dem** kısalıp **im** olur."
+   },
+   {
+    "id": "m1:27:s8",
+    "k": "tr_de",
+    "tr": "Birlikte gidiyoruz.",
+    "accepted": [
+     "Wir gehen zusammen.",
+     "Wir fahren zusammen.",
+     "Zusammen gehen wir.",
+     "Wir gehen jetzt zusammen."
+    ],
+    "why_tr": "Birlikte derken **zusammen** dersin."
+   },
+   {
+    "id": "m1:27:s9",
+    "k": "guided_response",
+    "situation_tr": "Ioana ehliyetini soruyor. Sandalyenin üstünde duruyor.",
+    "prompt_de": "Wo ist mein Führerschein?",
+    "accepted": [
+     "Er liegt auf dem Stuhl.",
+     "Auf dem Stuhl.",
+     "Er ist auf dem Stuhl.",
+     "Dein Führerschein liegt auf dem Stuhl.",
+     "Da, auf dem Stuhl.",
+     "Er liegt da, auf dem Stuhl."
+    ],
+    "why_tr": "**der Führerschein** için **er** dersin. Üstünde **auf dem**."
+   },
+   {
+    "id": "m1:27:s10",
+    "k": "guided_response",
+    "situation_tr": "Yeni komşu süpermarketi soruyor. İstasyonun arkasında.",
+    "prompt_de": "Wo ist der Supermarkt?",
+    "accepted": [
+     "Er ist hinter dem Bahnhof.",
+     "Hinter dem Bahnhof.",
+     "Der Supermarkt ist hinter dem Bahnhof, nicht weit.",
+     "Gleich hinter dem Bahnhof.",
+     "Er ist hinter dem Bahnhof, nicht weit.",
+     "Hinter dem Bahnhof, zwei Minuten."
+    ],
+    "why_tr": "Arkasında derken **hinter dem** dersin."
+   },
+   {
+    "id": "m1:27:s11",
+    "k": "guided_response",
+    "situation_tr": "Yeni bir komşu soruyor: Nerede oturuyorsun? İkinci kattasın, evin arkasında da bisikletin var.",
+    "prompt_de": "Wo wohnen Sie?",
+    "accepted": [
+     "Ich wohne hier im zweiten Stock.",
+     "Im zweiten Stock. Mein Fahrrad ist hinter dem Haus.",
+     "Ich wohne im zweiten Stock, und mein Fahrrad ist hinter dem Haus.",
+     "Hier, im zweiten Stock.",
+     "Im zweiten Stock, rechts.",
+     "Ich wohne hier, im zweiten Stock."
+    ],
+    "why_tr": "Kat için **im**, yer için **hinter** kullan."
+   }
+  ],
+  "sesli": [
+   "m1:27:s9",
+   "m1:27:s10"
+  ],
+  "dikte": [
+   "m1:27:s1",
+   "m1:27:s2",
+   "m1:27:s3",
+   "m1:27:s4"
+  ]
+ }
+}

@@ -1,0 +1,1805 @@
+{
+ "schema": 1,
+ "id": "m1:gun:23",
+ "day": 23,
+ "level": "A1",
+ "format": "gun",
+ "title_tr": "Eşyayı tarif etmek: Er ist groß und weiß",
+ "goal_tr": "Bir eşyanın büyük, küçük, yeni ya da güzel olduğunu söyler, birine Wie findest du diye fikrini sorarsın.",
+ "can_do": {
+  "id": "cd:m1:23",
+  "tr": "Bir eşyayı büyüklüğü ve görünüşüyle anlatırım."
+ },
+ "unit": "u:m1:23",
+ "arm": "pazar",
+ "place": "pl:haus",
+ "characters": [
+  "ch:pichler",
+  "ch:brandl",
+  "ch:aksoy",
+  "ch:popescu"
+ ],
+ "requires": {
+  "kelimeler": [
+   "lx:Montag",
+   "lx:Freitag",
+   "lx:Samstag",
+   "lx:Wochenende",
+   "lx:Tag",
+   "lx:heute",
+   "lx:morgen",
+   "lx:gehen",
+   "lx:hallo",
+   "lx:danke",
+   "lx:bitte",
+   "lx:ja",
+   "lx:nein",
+   "lx:Frau",
+   "lx:geschlossen",
+   "lx:Herr",
+   "lx:Januar",
+   "lx:Mai",
+   "lx:haben",
+   "lx:kommen",
+   "lx:wohnen",
+   "lx:zwei",
+   "lx:drei",
+   "lx:vier",
+   "lx:sechs",
+   "lx:acht",
+   "lx:neun",
+   "lx:zehn",
+   "lx:neu",
+   "lx:fünfzig",
+   "lx:alt",
+   "lx:Kilo",
+   "lx:teuer",
+   "lx:noch",
+   "lx:Uhr",
+   "lx:Minute",
+   "lx:leider",
+   "lx:wieder",
+   "lx:da",
+   "lx:schon",
+   "lx:nur",
+   "lx:gern",
+   "lx:dann",
+   "lx:wie",
+   "lx:wie_viel",
+   "lx:was",
+   "lx:heißen",
+   "lx:sehr",
+   "lx:sein",
+   "lx:Zeit",
+   "lx:gut",
+   "lx:klar",
+   "lx:immer",
+   "lx:jetzt",
+   "lx:ganz",
+   "lx:Küche",
+   "lx:hier",
+   "lx:fahren",
+   "lx:schnell",
+   "lx:einladen",
+   "lx:sehen",
+   "lx:zu#2",
+   "lx:so",
+   "lx:Kurs",
+   "lx:wissen",
+   "lx:auch",
+   "lx:krank",
+   "lx:mitkommen",
+   "lx:Name",
+   "lx:Jacke",
+   "lx:billig",
+   "lx:hell",
+   "lx:einkaufen",
+   "lx:Fahrrad",
+   "lx:finden",
+   "lx:wirklich",
+   "lx:weg",
+   "lx:Weg",
+   "lx:schön",
+   "lx:klein",
+   "lx:groß",
+   "lx:genau",
+   "lx:suchen"
+  ],
+  "kaliplar": [],
+  "gramer": [],
+  "tur": [],
+  "baglayicilar": [],
+  "akicilik": []
+ },
+ "review": {
+  "status": "draft",
+  "by": "dilbilimci-ajan",
+  "at": "2026-11-23",
+  "notes": "docs/v2/reviews/ic4-hafta-04.md"
+ },
+ "dersler": [
+  "gr:a1-04:t3"
+ ],
+ "yeni_kartlar": [
+  "lx:Flur",
+  "lx:Sofa",
+  "lx:Banane",
+  "lx:Feiertag",
+  "lx:Hobby",
+  "lx:Kollegin",
+  "lx:Geschwister",
+  "lx:Freizeit",
+  "lx:Verkäufer",
+  "lx:arbeitslos",
+  "lx:Tomate",
+  "lx:Techniker",
+  "lx:Freut_mich!",
+  "lx:Nachbar",
+  "lx:Arbeit",
+  "lx:Gemüse"
+ ],
+ "halkalar": [
+  {
+   "id": "m1:23:h1",
+   "title_tr": "Koridor, kanepe, yeni komşu",
+   "kartlar": [
+    "lx:Flur",
+    "lx:Sofa",
+    "lx:Nachbar",
+    "lx:Freut_mich!"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [
+    {
+     "de": "Wie findest du …? – Ich finde ihn schön.",
+     "tr": "…'i nasıl buluyorsun? – Bence güzel."
+    },
+    {
+     "de": "Ich finde sie … – Ich finde es …",
+     "tr": "Bence o … (die ile) – Bence o … (das ile)"
+    },
+    {
+     "de": "Grüß Gott!",
+     "tr": "Merhaba! (Bavyera'da sık)"
+    }
+   ],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Flur",
+     "de": "Der Flur? Er ist hell und groß.",
+     "tr": "Koridor mu? Aydınlık ve büyük.",
+     "accepted": [
+      "Der Flur? Er ist hell und groß.",
+      "Der Flur ist hell und groß.",
+      "Der Flur? Er ist groß und hell."
+     ]
+    },
+    {
+     "kart": "lx:Flur",
+     "de": "Wie findest du den Flur, Ioana?",
+     "tr": "Koridoru nasıl buluyorsun Ioana?",
+     "accepted": [
+      "Wie findest du den Flur, Ioana?",
+      "Ioana, wie findest du den Flur?",
+      "Und wie findest du den Flur, Ioana?"
+     ]
+    },
+    {
+     "kart": "lx:Sofa",
+     "de": "Das Sofa ist alt, aber es ist schön.",
+     "tr": "Kanepe eski ama güzel.",
+     "accepted": [
+      "Das Sofa ist alt, aber es ist schön.",
+      "Das Sofa ist alt, aber schön.",
+      "Das Sofa ist alt, aber es ist sehr schön."
+     ]
+    },
+    {
+     "kart": "lx:Sofa",
+     "de": "Das Sofa? Ich finde es sehr schön.",
+     "tr": "Kanepe mi? Bence çok güzel.",
+     "accepted": [
+      "Das Sofa? Ich finde es sehr schön.",
+      "Das Sofa finde ich sehr schön.",
+      "Ich finde das Sofa sehr schön."
+     ]
+    },
+    {
+     "kart": "lx:Nachbar",
+     "de": "Unser Nachbar ist neu hier.",
+     "tr": "Komşumuz burada yeni.",
+     "accepted": [
+      "Unser Nachbar ist neu hier.",
+      "Unser Nachbar ist hier neu.",
+      "Der Nachbar ist neu hier."
+     ]
+    },
+    {
+     "kart": "lx:Nachbar",
+     "de": "Wie findest du den Nachbarn?",
+     "tr": "Komşuyu nasıl buluyorsun?",
+     "accepted": [
+      "Wie findest du den Nachbarn?",
+      "Und wie findest du den Nachbarn?",
+      "Wie findest du denn den Nachbarn?"
+     ]
+    },
+    {
+     "kart": "lx:Freut_mich!",
+     "de": "Freut mich! Ich bin {name}.",
+     "tr": "Memnun oldum! Ben {name}.",
+     "accepted": [
+      "Freut mich! Ich bin {name}.",
+      "Freut mich, ich bin {name}.",
+      "Freut mich! Mein Name ist {name}."
+     ]
+    },
+    {
+     "kart": "lx:Freut_mich!",
+     "de": "Freut mich! Ich wohne auch hier.",
+     "tr": "Memnun oldum! Ben de burada oturuyorum.",
+     "accepted": [
+      "Freut mich! Ich wohne auch hier.",
+      "Freut mich, ich wohne auch hier.",
+      "Freut mich! Ich wohne hier auch."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Apartmanın koridoru. Yeni komşunun kanepesi koridorda duruyor. Pichler Bey yanına geliyor.",
+    "satirlar": [
+     {
+      "r": "ch:pichler",
+      "de": "Grüß Gott! Wie finden Sie das Sofa?",
+      "tr": "Merhaba! Kanepeyi nasıl buluyorsunuz?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Ich finde es schön. Aber es ist sehr groß.",
+      "tr": "Bence güzel. Ama çok büyük."
+     },
+     {
+      "r": "ch:pichler",
+      "de": "Ja, und der Flur ist nicht groß!",
+      "tr": "Evet, koridor da büyük değil!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Pichler Bey'e göre sorun ne?",
+     "opts": [
+      "Koridor küçük, kanepe büyük.",
+      "Kanepe çok eski.",
+      "Koridor karanlık."
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:23:h2",
+   "title_tr": "Pazarda: sebze, domates, muz",
+   "kartlar": [
+    "lx:Gemüse",
+    "lx:Tomate",
+    "lx:Banane",
+    "lx:Verkäufer"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Gemüse",
+     "de": "Das Gemüse ist hier sehr billig.",
+     "tr": "Sebze burada çok ucuz.",
+     "accepted": [
+      "Das Gemüse ist hier sehr billig.",
+      "Hier ist das Gemüse sehr billig.",
+      "Das Gemüse ist hier wirklich billig."
+     ]
+    },
+    {
+     "kart": "lx:Gemüse",
+     "de": "Wie findest du das Gemüse?",
+     "tr": "Sebzeleri nasıl buluyorsun?",
+     "accepted": [
+      "Wie findest du das Gemüse?",
+      "Und wie findest du das Gemüse?",
+      "Wie findest du das Gemüse hier?"
+     ]
+    },
+    {
+     "kart": "lx:Tomate",
+     "de": "Die Tomaten sind teuer.",
+     "tr": "Domatesler pahalı.",
+     "accepted": [
+      "Die Tomaten sind teuer.",
+      "Die Tomaten sind sehr teuer.",
+      "Die Tomaten sind heute teuer."
+     ]
+    },
+    {
+     "kart": "lx:Tomate",
+     "de": "Die Tomate ist klein, aber gut.",
+     "tr": "Domates küçük ama iyi.",
+     "accepted": [
+      "Die Tomate ist klein, aber gut.",
+      "Die Tomate ist klein, aber sie ist gut.",
+      "Die Tomate ist klein aber gut."
+     ]
+    },
+    {
+     "kart": "lx:Banane",
+     "de": "Die Banane ist schon alt.",
+     "tr": "Muz artık bayat.",
+     "accepted": [
+      "Die Banane ist schon alt.",
+      "Die Banane ist schon sehr alt.",
+      "Die Banane ist alt."
+     ]
+    },
+    {
+     "kart": "lx:Banane",
+     "de": "Zwei Bananen, bitte.",
+     "tr": "İki muz, lütfen.",
+     "accepted": [
+      "Zwei Bananen, bitte.",
+      "Bitte zwei Bananen.",
+      "Ich hätte gern zwei Bananen."
+     ]
+    },
+    {
+     "kart": "lx:Verkäufer",
+     "de": "Der Verkäufer ist sehr schnell.",
+     "tr": "Satıcı çok hızlı.",
+     "accepted": [
+      "Der Verkäufer ist sehr schnell.",
+      "Der Verkäufer ist wirklich schnell.",
+      "Der Verkäufer ist so schnell."
+     ]
+    },
+    {
+     "kart": "lx:Verkäufer",
+     "de": "Ist der Verkäufer neu?",
+     "tr": "Satıcı yeni mi?",
+     "accepted": [
+      "Ist der Verkäufer neu?",
+      "Ist der Verkäufer hier neu?",
+      "Der Verkäufer ist neu?"
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Cumartesi, şehir meydanındaki sebze tezgâhı. Derya yanında.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Wie findest du die Tomaten?",
+      "tr": "Domatesleri nasıl buluyorsun?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Sie sind schön, aber sehr teuer.",
+      "tr": "Güzeller ama çok pahalı."
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Und die Bananen? Sie sind billig!",
+      "tr": "Peki muzlar? Onlar ucuz!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Hangisi ucuz?",
+     "opts": [
+      "Muzlar",
+      "Domatesler",
+      "İkisi de"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:23:h3",
+   "title_tr": "Boş zaman ve aile",
+   "kartlar": [
+    "lx:Hobby",
+    "lx:Freizeit",
+    "lx:Geschwister",
+    "lx:Feiertag"
+   ],
+   "kaliplar": [],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Hobby",
+     "de": "Was ist dein Hobby?",
+     "tr": "Hobin ne?",
+     "accepted": [
+      "Was ist dein Hobby?",
+      "Und was ist dein Hobby?",
+      "Was ist denn dein Hobby?"
+     ]
+    },
+    {
+     "kart": "lx:Hobby",
+     "de": "Mein Hobby ist Fahrrad fahren.",
+     "tr": "Hobim bisiklet sürmek.",
+     "accepted": [
+      "Mein Hobby ist Fahrrad fahren.",
+      "Mein Hobby? Fahrrad fahren.",
+      "Fahrrad fahren ist mein Hobby."
+     ]
+    },
+    {
+     "kart": "lx:Freizeit",
+     "de": "Freizeit? Ich habe keine Freizeit!",
+     "tr": "Boş zaman mı? Hiç boş zamanım yok!",
+     "accepted": [
+      "Freizeit? Ich habe keine Freizeit!",
+      "Freizeit? Ich habe keine!",
+      "Ich habe keine Freizeit!"
+     ]
+    },
+    {
+     "kart": "lx:Freizeit",
+     "de": "Am Wochenende habe ich Freizeit.",
+     "tr": "Hafta sonu boş zamanım var.",
+     "accepted": [
+      "Am Wochenende habe ich Freizeit.",
+      "Ich habe am Wochenende Freizeit.",
+      "Am Wochenende habe ich dann Freizeit."
+     ]
+    },
+    {
+     "kart": "lx:Geschwister",
+     "de": "Hast du Geschwister?",
+     "tr": "Kardeşin var mı?",
+     "accepted": [
+      "Hast du Geschwister?",
+      "Und du? Hast du Geschwister?",
+      "Hast du auch Geschwister?"
+     ]
+    },
+    {
+     "kart": "lx:Geschwister",
+     "de": "Wie alt sind deine Geschwister?",
+     "tr": "Kardeşlerin kaç yaşında?",
+     "accepted": [
+      "Wie alt sind deine Geschwister?",
+      "Und wie alt sind deine Geschwister?",
+      "Wie alt sind denn deine Geschwister?"
+     ]
+    },
+    {
+     "kart": "lx:Feiertag",
+     "de": "Morgen ist Feiertag.",
+     "tr": "Yarın resmî tatil.",
+     "accepted": [
+      "Morgen ist Feiertag.",
+      "Morgen ist ein Feiertag.",
+      "Morgen ist ja Feiertag."
+     ]
+    },
+    {
+     "kart": "lx:Feiertag",
+     "de": "Am Feiertag ist alles geschlossen.",
+     "tr": "Resmî tatilde her yer kapalı.",
+     "accepted": [
+      "Am Feiertag ist alles geschlossen.",
+      "Am Feiertag ist alles zu.",
+      "Alles ist am Feiertag geschlossen."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "İş yerinde mola. Derya seninle sohbet ediyor.",
+    "satirlar": [
+     {
+      "r": "ch:aksoy",
+      "de": "Was ist dein Hobby?",
+      "tr": "Hobin ne?"
+     },
+     {
+      "r": "ogrenci",
+      "de": "Hobby? Ich habe keine Freizeit. Ich habe nur Kurs!",
+      "tr": "Hobi mi? Boş zamanım yok. Sadece kursum var!"
+     },
+     {
+      "r": "ch:aksoy",
+      "de": "Der Kurs ist auch ein Hobby!",
+      "tr": "Kurs da bir hobi!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Derya'ya göre senin hobin ne?",
+     "opts": [
+      "Almanca kursu",
+      "Bisiklet sürmek",
+      "Pasta yapmak"
+     ],
+     "ans": 0
+    }
+   }
+  },
+  {
+   "id": "m1:23:h4",
+   "title_tr": "İş ve meslektaşlar",
+   "kartlar": [
+    "lx:Kollegin",
+    "lx:Arbeit",
+    "lx:arbeitslos",
+    "lx:Techniker"
+   ],
+   "dersten_sonra": true,
+   "kaliplar": [],
+   "gorev_cumleleri": [
+    {
+     "kart": "lx:Kollegin",
+     "de": "Derya ist meine Kollegin.",
+     "tr": "Derya iş arkadaşım.",
+     "accepted": [
+      "Derya ist meine Kollegin.",
+      "Das ist Derya, meine Kollegin.",
+      "Derya ist eine Kollegin."
+     ]
+    },
+    {
+     "kart": "lx:Kollegin",
+     "de": "Meine Kollegin ist heute krank.",
+     "tr": "İş arkadaşım bugün hasta.",
+     "accepted": [
+      "Meine Kollegin ist heute krank.",
+      "Heute ist meine Kollegin krank.",
+      "Meine Kollegin ist heute leider krank."
+     ]
+    },
+    {
+     "kart": "lx:Arbeit",
+     "de": "Nach der Arbeit gehe ich zum Kurs.",
+     "tr": "İşten sonra kursa gidiyorum.",
+     "accepted": [
+      "Nach der Arbeit gehe ich zum Kurs.",
+      "Ich gehe nach der Arbeit zum Kurs.",
+      "Nach der Arbeit gehe ich in den Kurs."
+     ]
+    },
+    {
+     "kart": "lx:Arbeit",
+     "de": "Wie findest du die Arbeit?",
+     "tr": "İşi nasıl buluyorsun?",
+     "accepted": [
+      "Wie findest du die Arbeit?",
+      "Und wie findest du die Arbeit?",
+      "Wie findest du die Arbeit hier?"
+     ]
+    },
+    {
+     "kart": "lx:arbeitslos",
+     "de": "Der Nachbar ist seit Mai arbeitslos.",
+     "tr": "Komşu mayıstan beri işsiz.",
+     "accepted": [
+      "Der Nachbar ist seit Mai arbeitslos.",
+      "Seit Mai ist der Nachbar arbeitslos.",
+      "Unser Nachbar ist seit Mai arbeitslos."
+     ]
+    },
+    {
+     "kart": "lx:arbeitslos",
+     "de": "Ist er noch arbeitslos?",
+     "tr": "Hâlâ işsiz mi?",
+     "accepted": [
+      "Ist er noch arbeitslos?",
+      "Ist er immer noch arbeitslos?",
+      "Er ist noch arbeitslos?"
+     ]
+    },
+    {
+     "kart": "lx:Techniker",
+     "de": "Der Techniker kommt am Montag um neun.",
+     "tr": "Teknisyen pazartesi saat dokuzda geliyor.",
+     "accepted": [
+      "Der Techniker kommt am Montag um neun.",
+      "Am Montag um neun kommt der Techniker.",
+      "Der Techniker kommt am Montag um neun Uhr."
+     ]
+    },
+    {
+     "kart": "lx:Techniker",
+     "de": "Der Techniker ist schnell und gut.",
+     "tr": "Teknisyen hızlı ve iyi.",
+     "accepted": [
+      "Der Techniker ist schnell und gut.",
+      "Der Techniker ist gut und schnell.",
+      "Der Techniker ist sehr schnell und gut."
+     ]
+    }
+   ],
+   "sahne": {
+    "ortam_tr": "Merdiven. Brandl Hanım yeni komşuyu anlatıyor.",
+    "satirlar": [
+     {
+      "r": "ch:brandl",
+      "de": "Der Nachbar ist neu hier. Er ist arbeitslos.",
+      "tr": "Komşu burada yeni. İşsiz."
+     },
+     {
+      "r": "ogrenci",
+      "de": "Arbeitslos? Hat er keine Arbeit?",
+      "tr": "İşsiz mi? Hiç işi yok mu?"
+     },
+     {
+      "r": "ch:brandl",
+      "de": "Nein, aber ab Januar ist er Techniker!",
+      "tr": "Yok, ama ocaktan itibaren teknisyen!"
+     }
+    ],
+    "soru": {
+     "q_tr": "Komşu ocaktan itibaren ne oluyor?",
+     "opts": [
+      "Teknisyen",
+      "Satıcı",
+      "Kurs öğrencisi"
+     ],
+     "ans": 0
+    }
+   }
+  }
+ ],
+ "sahne": {
+  "id": "m1:23:v1",
+  "title_tr": "Koridordaki kanepe",
+  "sahneler": [
+   {
+    "id": "s1",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Brunnengasse 7, birinci kat. Dar koridorun ortasında büyük bir kanepe duruyor. Herr Pichler elleri belinde.",
+    "de": "Grüß Gott, Frau Brandl! Sehen Sie das Sofa im Flur?",
+    "tr": "Merhaba Brandl Hanım! Koridordaki kanepeyi görüyor musunuz?"
+   },
+   {
+    "id": "s2",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl kapısından başını uzatıyor.",
+    "de": "Ja! Es ist sehr groß. Es ist vom Nachbarn.",
+    "tr": "Evet! Çok büyük. Komşunun."
+   },
+   {
+    "id": "s3",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler kanepe ile duvar arasındaki dar boşluğu gösteriyor.",
+    "de": "Der Flur ist nicht groß.",
+    "tr": "Koridor büyük değil."
+   },
+   {
+    "id": "s3b",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler başını iki yana sallıyor.",
+    "de": "Das geht so nicht.",
+    "tr": "Bu böyle olmaz."
+   },
+   {
+    "id": "s4",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl kanepeye oturup yumuşaklığını deniyor.",
+    "de": "Ach, Herr Pichler. Wie finden Sie das Sofa?",
+    "tr": "Ah, Pichler Bey. Kanepeyi nasıl buluyorsunuz?"
+   },
+   {
+    "id": "s5",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler istemeye istemeye gülümsüyor.",
+    "de": "Ich finde es schön. Aber nicht im Flur!",
+    "tr": "Bence güzel. Ama koridorda değil!"
+   },
+   {
+    "id": "s6",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl sesini alçaltıp sır verir gibi konuşuyor.",
+    "de": "Er ist neu hier. Und er ist arbeitslos.",
+    "tr": "Burada yeni. Ve işsiz."
+   },
+   {
+    "id": "s7",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler kaşlarını kaldırıyor.",
+    "de": "Arbeitslos? Dann hat er ja Zeit für den Flur!",
+    "tr": "İşsiz mi? O zaman koridor için vakti var demek!"
+   },
+   {
+    "id": "s8",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl parmaklarıyla sayıyor.",
+    "de": "Und er hat drei Geschwister. Und sein Hobby ist Fahrrad fahren.",
+    "tr": "Üç kardeşi var. Hobisi de bisiklet sürmek."
+   },
+   {
+    "id": "s9",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler başını iki yana sallayıp gülüyor.",
+    "de": "Frau Brandl! Sie wissen alles!",
+    "tr": "Brandl Hanım! Siz her şeyi biliyorsunuz!"
+   },
+   {
+    "id": "s10",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl gururla omuz silkiyor.",
+    "de": "Klar!",
+    "tr": "Tabii!"
+   },
+   {
+    "id": "s11",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler cebinden bir not çıkarıyor.",
+    "de": "Und der Techniker kommt morgen um acht.",
+    "tr": "Bir de teknisyen yarın saat sekizde geliyor."
+   },
+   {
+    "id": "s12",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl şaşırıyor.",
+    "de": "Morgen? Morgen ist Samstag!",
+    "tr": "Yarın mı? Yarın cumartesi!"
+   },
+   {
+    "id": "s13",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler kararlı, kanepeyi gösteriyor.",
+    "de": "Ja, er kommt auch am Samstag. Und das Sofa? Es ist dann weg!",
+    "tr": "Evet, cumartesi de geliyor. Ya kanepe? O zamana kadar gitmiş olacak!"
+   },
+   {
+    "id": "s14",
+    "speaker": "ch:brandl",
+    "sahne_tr": "Frau Brandl kanepeden kalkıyor.",
+    "de": "Gut! Dann ist der Flur wieder schön.",
+    "tr": "İyi! O zaman koridor yine güzel olur."
+   },
+   {
+    "id": "s15",
+    "speaker": "ch:pichler",
+    "sahne_tr": "Herr Pichler koridorun lambasına bakıp başını sallıyor.",
+    "de": "Genau. Wieder schön und hell.",
+    "tr": "Aynen. Yine güzel ve aydınlık."
+   }
+  ],
+  "bolumler": [
+   {
+    "id": "b1",
+    "cumleler": [
+     "s1",
+     "s2",
+     "s3",
+     "s3b",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s9",
+     "s10",
+     "s11",
+     "s12",
+     "s13",
+     "s14",
+     "s15"
+    ],
+    "ana_fikir": {
+     "kind": "gist",
+     "q_tr": "Pichler Bey ile Brandl Hanım neyi konuşuyor?",
+     "opts": [
+      "Koridordaki kanepeyi ve yeni komşuyu",
+      "Kirayı",
+      "Noel kutlamasını"
+     ],
+     "ans": 0,
+     "kanit": [
+      "s1",
+      "s2",
+      "s6"
+     ]
+    },
+    "ayrinti": [
+     {
+      "kind": "detail",
+      "q_tr": "Pichler Bey kanepeyi nasıl buluyor?",
+      "opts": [
+       "Güzel ama koridorda olmamalı",
+       "Çirkin",
+       "Fazla küçük"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s5"
+      ]
+     },
+     {
+      "kind": "detail",
+      "q_tr": "Teknisyen ne zaman geliyor?",
+      "opts": [
+       "Yarın saat sekizde",
+       "Bugün saat sekizde",
+       "Pazartesi"
+      ],
+      "ans": 0,
+      "kanit": [
+       "s11"
+      ]
+     }
+    ],
+    "dikte": [
+     {
+      "id": "d1",
+      "cumle": "s2",
+      "seviye": "kolay",
+      "q_tr": "Hangi kelimeyi duydun?",
+      "opts": [
+       "groß",
+       "klein",
+       "neu"
+      ],
+      "ans": 0
+     },
+     {
+      "id": "d2",
+      "cumle": "s5",
+      "seviye": "orta",
+      "de": "Ich finde ___ schön. Aber nicht im Flur!",
+      "accepted": [
+       "es",
+       "Es",
+       "es."
+      ]
+     },
+     {
+      "id": "d3",
+      "cumle": "s3",
+      "seviye": "zor",
+      "banka": [
+       "Der",
+       "Flur",
+       "ist",
+       "nicht",
+       "groß",
+       "klein",
+       "sie"
+      ],
+      "accepted": [
+       "Der Flur ist nicht groß.",
+       "der flur ist nicht groß",
+       "Der Flur ist nicht groß"
+      ]
+     },
+     {
+      "id": "d4",
+      "cumle": "s14",
+      "seviye": "usta",
+      "accepted": [
+       "Gut! Dann ist der Flur wieder schön.",
+       "gut dann ist der flur wieder schön",
+       "Gut, dann ist der Flur wieder schön."
+      ]
+     },
+     {
+      "id": "d5",
+      "seviye": "gercek",
+      "gorev_tr": "Kanepeyi Almanca iki kısa cümleyle anlat.",
+      "ornek_de": "Das Sofa ist groß. Es ist im Flur.",
+      "zorunlu": [
+       "Sofa",
+       "groß"
+      ]
+     }
+    ],
+    "golge": [
+     "s7",
+     "s9"
+    ],
+    "cevapla": {
+     "id": "m1:23:v1:c1",
+     "k": "guided_response",
+     "situation_tr": "Brandl Hanım sana da soruyor. Kanepeyi güzel buluyorsun.",
+     "prompt_de": "Und Sie? Wie finden Sie das Sofa?",
+     "accepted": [
+      "Ich finde es schön.",
+      "Schön!",
+      "Ich finde es sehr schön.",
+      "Es ist schön.",
+      "Ich finde das Sofa schön.",
+      "Es ist schön, aber sehr groß.",
+      "Ich finde es schön, aber es ist groß."
+     ],
+     "why_tr": "**das Sofa** için **Ich finde es schön** dersin. Sıfat değişmez."
+    }
+   }
+  ]
+ },
+ "sesler": [
+  {
+   "id": "m1:23:a1",
+   "tur": "sesli-mesaj",
+   "title_tr": "Pichler Bey'den sesli mesaj",
+   "ortam_tr": "Pichler Bey sabah erkenden telefonuna mesaj bırakmış. Kanepenin kimin olduğunu henüz bilmiyor.",
+   "speaker": "ch:pichler",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Grüß Gott, hier ist Josef Pichler.",
+     "tr": "Merhaba, ben Josef Pichler."
+    },
+    {
+     "id": "c2",
+     "de": "Morgen um acht kommt der Techniker.",
+     "tr": "Yarın saat sekizde teknisyen geliyor."
+    },
+    {
+     "id": "c3",
+     "de": "Er ist zehn Minuten in Ihrer Küche.",
+     "tr": "On dakika mutfağınızda olacak."
+    },
+    {
+     "id": "c4",
+     "de": "Und das Sofa im Flur? Ist es von Ihnen?",
+     "tr": "Bir de koridordaki kanepe? O sizin mi?"
+    },
+    {
+     "id": "c5",
+     "de": "Danke!",
+     "tr": "Teşekkürler!"
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Pichler Bey neden arıyor?",
+      "opts": [
+       "Teknisyen geliyor ve kanepeyi soruyor",
+       "Kirayı istiyor",
+       "Seni pastaya çağırıyor"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Teknisyen nereye bakacak?",
+       "opts": [
+        "Mutfağa",
+        "Koridora",
+        "Kanepeye"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Teknisyen ne kadar kalacak?",
+       "opts": [
+        "On dakika",
+        "Bir saat",
+        "Yarım saat"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c3"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c2",
+       "seviye": "kolay",
+       "q_tr": "Hangi saati duydun?",
+       "opts": [
+        "acht",
+        "neun",
+        "zehn"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Und das Sofa im Flur? Ist ___ von Ihnen?",
+       "accepted": [
+        "es",
+        "Es",
+        "es."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c2",
+       "seviye": "zor",
+       "banka": [
+        "Morgen",
+        "um",
+        "acht",
+        "kommt",
+        "der",
+        "Techniker",
+        "am",
+        "die"
+       ],
+       "accepted": [
+        "Morgen um acht kommt der Techniker.",
+        "morgen um acht kommt der techniker",
+        "Morgen um acht kommt der Techniker"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c3",
+       "seviye": "usta",
+       "accepted": [
+        "Er ist zehn Minuten in Ihrer Küche.",
+        "er ist zehn minuten in ihrer küche",
+        "Er ist zehn Minuten in Ihrer Küche"
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Pichler Bey'in mesajını Almanca bir iki kısa cümleyle özetle.",
+       "ornek_de": "Der Techniker kommt morgen um acht. Er ist in der Küche.",
+       "zorunlu": [
+        "Techniker",
+        "acht"
+       ]
+      }
+     ],
+     "golge": [
+      "c2",
+      "c4"
+     ],
+     "cevapla": {
+      "id": "m1:23:a1:c1",
+      "k": "guided_response",
+      "situation_tr": "Pichler Bey'i geri arıyorsun. Kanepe senin değil.",
+      "prompt_de": "Ist das Sofa im Flur von Ihnen?",
+      "accepted": [
+       "Nein, es ist nicht von mir.",
+       "Nein, das Sofa ist nicht von mir.",
+       "Nein, es ist vom Nachbarn.",
+       "Nein, das ist nicht mein Sofa.",
+       "Nein, nicht von mir. Es ist vom Nachbarn.",
+       "Nein, das ist vom Nachbarn."
+      ],
+      "why_tr": "**das Sofa** için **es** dersin: **Es ist nicht von mir**."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:23:a1:e1",
+    "k": "pick",
+    "q_tr": "Mesajdan sonra ne yapmalısın?",
+    "opts": [
+     "Yarın sekizde evde ol, mutfağı aç ve kanepenin kimin olduğunu söyle.",
+     "Kanepeyi kendi evine taşı.",
+     "Teknisyeni pazartesiye çağır."
+    ],
+    "ans": 0,
+    "why_tr": "Teknisyen yarın sekizde mutfağına geliyor. Pichler Bey kanepeyi de soruyor.",
+    "kanit": [
+     "c2",
+     "c3",
+     "c4"
+    ]
+   }
+  },
+  {
+   "id": "m1:23:a2",
+   "tur": "radyo",
+   "title_tr": "Radyoda sebzeci reklamı",
+   "ortam_tr": "Sabah mutfakta yerel radyo açık. Kısa bir reklam çıkıyor.",
+   "hizlar": [
+    "slow",
+    "normal"
+   ],
+   "script": [
+    {
+     "id": "c1",
+     "de": "Guten Tag, Wendlfing!",
+     "tr": "İyi günler Wendlfing!"
+    },
+    {
+     "id": "c2",
+     "de": "Heute sind Tomaten sehr billig: ein Kilo nur zwei Euro.",
+     "tr": "Bugün domates çok ucuz: kilosu yalnızca iki avro."
+    },
+    {
+     "id": "c3",
+     "de": "Bananen: ein Kilo, ein Euro fünfzig.",
+     "tr": "Muz: kilosu bir avro elli."
+    },
+    {
+     "id": "c4",
+     "de": "Und das Gemüse ist heute nicht teuer.",
+     "tr": "Sebze de bugün pahalı değil."
+    },
+    {
+     "id": "c5",
+     "de": "Wir sind bis sechs Uhr da.",
+     "tr": "Saat altıya kadar buradayız."
+    }
+   ],
+   "bolumler": [
+    {
+     "id": "b1",
+     "cumleler": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+     ],
+     "ana_fikir": {
+      "kind": "gist",
+      "q_tr": "Reklam ne söylüyor?",
+      "opts": [
+       "Bugün sebze ve meyve ucuz",
+       "Dükkân bugün kapalı",
+       "Yeni bir satıcı arıyorlar"
+      ],
+      "ans": 0,
+      "kanit": [
+       "c2",
+       "c4"
+      ]
+     },
+     "ayrinti": [
+      {
+       "kind": "detail",
+       "q_tr": "Bir kilo domates kaç avro?",
+       "opts": [
+        "İki avro",
+        "Bir avro elli",
+        "Altı avro"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c2"
+       ]
+      },
+      {
+       "kind": "detail",
+       "q_tr": "Dükkân saat kaça kadar açık?",
+       "opts": [
+        "Altıya kadar",
+        "Sekize kadar",
+        "İkiye kadar"
+       ],
+       "ans": 0,
+       "kanit": [
+        "c5"
+       ]
+      }
+     ],
+     "dikte": [
+      {
+       "id": "d1",
+       "cumle": "c3",
+       "seviye": "kolay",
+       "q_tr": "Hangi kelimeyi duydun?",
+       "opts": [
+        "Bananen",
+        "Tomaten",
+        "Kuchen"
+       ],
+       "ans": 0
+      },
+      {
+       "id": "d2",
+       "cumle": "c4",
+       "seviye": "orta",
+       "de": "Und das Gemüse ist heute nicht ___.",
+       "accepted": [
+        "teuer",
+        "Teuer",
+        "teuer."
+       ]
+      },
+      {
+       "id": "d3",
+       "cumle": "c5",
+       "seviye": "zor",
+       "banka": [
+        "Wir",
+        "sind",
+        "bis",
+        "sechs",
+        "Uhr",
+        "da",
+        "um",
+        "ist"
+       ],
+       "accepted": [
+        "Wir sind bis sechs Uhr da.",
+        "wir sind bis sechs uhr da",
+        "Wir sind bis sechs Uhr da"
+       ]
+      },
+      {
+       "id": "d4",
+       "cumle": "c2",
+       "seviye": "usta",
+       "accepted": [
+        "Heute sind Tomaten sehr billig: ein Kilo nur zwei Euro.",
+        "heute sind tomaten sehr billig ein kilo nur zwei euro",
+        "Heute sind Tomaten sehr billig, ein Kilo nur zwei Euro."
+       ]
+      },
+      {
+       "id": "d5",
+       "seviye": "gercek",
+       "gorev_tr": "Reklamı Almanca bir kısa cümleyle özetle.",
+       "ornek_de": "Heute sind Tomaten und Bananen billig.",
+       "zorunlu": [
+        "Tomaten",
+        "billig"
+       ]
+      }
+     ],
+     "golge": [
+      "c1",
+      "c3"
+     ],
+     "cevapla": {
+      "id": "m1:23:a2:c1",
+      "k": "guided_response",
+      "situation_tr": "Tobi soruyor. Reklama göre domates bugün çok ucuz.",
+      "prompt_de": "Sind die Tomaten heute teuer?",
+      "accepted": [
+       "Nein, sie sind sehr billig.",
+       "Nein, sie sind heute billig.",
+       "Nein, sehr billig!",
+       "Nein, ein Kilo nur zwei Euro.",
+       "Nein, sie sind heute sehr billig.",
+       "Nein, die Tomaten sind billig.",
+       "Nein, sie sind billig, nur zwei Euro."
+      ],
+      "why_tr": "**die Tomaten** çoğul. Bu yüzden **sie sind** dersin."
+     }
+    }
+   ],
+   "eylem": {
+    "id": "m1:23:a2:e1",
+    "k": "pick",
+    "q_tr": "Ucuz domates almak istiyorsun. Ne yapmalısın?",
+    "opts": [
+     "Bugün saat altıdan önce git.",
+     "Yarın git.",
+     "Bu akşam saat sekizde git."
+    ],
+    "ans": 0,
+    "why_tr": "Domates bugün ucuz. Dükkân saat altıya kadar açık.",
+    "kanit": [
+     "c2",
+     "c5"
+    ]
+   }
+  }
+ ],
+ "gorsel": [
+  {
+   "id": "m1:23:g1",
+   "de": "das Sofa",
+   "dogru_img": "large sofa in a living room",
+   "celdirici_img": [
+    "single wooden chair",
+    "wardrobe",
+    "kitchen table"
+   ]
+  },
+  {
+   "id": "m1:23:g2",
+   "de": "der Flur",
+   "dogru_img": "narrow hallway inside an apartment with doors and coat hooks",
+   "celdirici_img": [
+    "kitchen with stove",
+    "bathroom with bathtub",
+    "balcony with plants"
+   ]
+  },
+  {
+   "id": "m1:23:g3",
+   "de": "die Tomate",
+   "dogru_img": "one red tomato",
+   "celdirici_img": [
+    "one apple",
+    "one banana",
+    "one egg"
+   ]
+  },
+  {
+   "id": "m1:23:g4",
+   "de": "die Banane",
+   "dogru_img": "one yellow banana",
+   "celdirici_img": [
+    "one tomato",
+    "one bread roll",
+    "one apple"
+   ]
+  },
+  {
+   "id": "m1:23:g5",
+   "de": "das Gemüse",
+   "dogru_img": "market crate full of mixed vegetables",
+   "celdirici_img": [
+    "market crate full of bread",
+    "market crate full of cheese",
+    "box of cakes"
+   ]
+  },
+  {
+   "id": "m1:23:g6",
+   "de": "der Techniker",
+   "dogru_img": "technician in work clothes with a toolbox repairing a heater",
+   "celdirici_img": [
+    "doctor in a white coat",
+    "baker with bread",
+    "hairdresser with scissors"
+   ]
+  }
+ ],
+ "prova": {
+  "id": "m1:23:p1",
+  "title_tr": "Pichler Bey'e ceketini anlatıyorsun",
+  "durum_tr": "Ceketini apartmanda bir yerde unuttun. Koridorda Pichler Bey'le karşılaşıyorsun. Ceketin büyük, yeni ve açık renk.",
+  "karsi": "ch:pichler",
+  "baslangic": "n1",
+  "dugumler": [
+   {
+    "id": "n1",
+    "de": "Grüß Gott! Suchen Sie etwas?",
+    "tr": "Merhaba! Bir şey mi arıyorsunuz?",
+    "secenekler": [
+     {
+      "de": "Ja, meine Jacke ist weg.",
+      "tr": "Evet, ceketim kayıp.",
+      "accepted": [
+       "Ja, meine Jacke ist weg.",
+       "Ja, meine Jacke. Sie ist weg.",
+       "Ja, ich suche meine Jacke.",
+       "Grüß Gott! Ja, meine Jacke ist weg.",
+       "Ja, meine Jacke ist weg, Herr Pichler."
+      ],
+      "sonraki": "n2",
+      "uygun": true,
+      "geri_bildirim_tr": "Açık ve kısa. Pichler Bey ne aradığını hemen anladı."
+     },
+     {
+      "de": "Ja, meine Jacke. Er ist weg.",
+      "tr": "Evet, ceketim. Kayıp. (yanlış)",
+      "accepted": [
+       "Ja, meine Jacke. Er ist weg.",
+       "Meine Jacke, er ist weg.",
+       "Ja, meine Jacke. Es ist weg."
+      ],
+      "sonraki": "n1",
+      "uygun": false,
+      "geri_bildirim_tr": "**die Jacke** için **sie** dersin: **Sie ist weg**."
+     }
+    ]
+   },
+   {
+    "id": "n2",
+    "de": "Ihre Jacke? Wie ist sie? Groß? Klein?",
+    "tr": "Ceketiniz mi? Nasıl? Büyük mü? Küçük mü?",
+    "secenekler": [
+     {
+      "de": "Sie ist groß und hell.",
+      "tr": "Büyük ve açık renk.",
+      "accepted": [
+       "Sie ist groß und hell.",
+       "Sie ist hell und groß.",
+       "Groß und hell.",
+       "Sie ist groß, hell und neu.",
+       "Meine Jacke ist groß und hell."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Çok iyi. **sie** ile başladın, sıfatlar değişmedi."
+     },
+     {
+      "de": "Sie ist neu und sehr schön.",
+      "tr": "Yeni ve çok güzel.",
+      "accepted": [
+       "Sie ist neu und sehr schön.",
+       "Sie ist neu und schön.",
+       "Neu und sehr schön.",
+       "Meine Jacke ist neu und sehr schön."
+      ],
+      "sonraki": "n3",
+      "uygun": true,
+      "geri_bildirim_tr": "Olur. Ama büyüklüğünü de söylersen Pichler Bey daha kolay bulur."
+     },
+     {
+      "de": "Er ist groß und hell.",
+      "tr": "Büyük ve açık renk. (yanlış)",
+      "accepted": [
+       "Er ist groß und hell.",
+       "Es ist groß und hell.",
+       "Er ist groß."
+      ],
+      "sonraki": "n2",
+      "uygun": false,
+      "geri_bildirim_tr": "**die Jacke** için **sie** dersin, **er** değil."
+     }
+    ]
+   },
+   {
+    "id": "n3",
+    "de": "Hier ist eine Jacke. Sie ist alt und klein. Ist das Ihre?",
+    "tr": "Burada bir ceket var. Eski ve küçük. Sizin mi?",
+    "secenekler": [
+     {
+      "de": "Nein, meine Jacke ist neu und groß.",
+      "tr": "Hayır, benim ceketim yeni ve büyük.",
+      "accepted": [
+       "Nein, meine Jacke ist neu und groß.",
+       "Nein, meine ist neu und groß.",
+       "Nein, meine Jacke ist groß und neu.",
+       "Nein. Meine Jacke ist neu und groß."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Güzel. Farkı sıfatlarla açıkça söyledin."
+     },
+     {
+      "de": "Nein, die ist nicht von mir.",
+      "tr": "Hayır, o benim değil.",
+      "accepted": [
+       "Nein, die ist nicht von mir.",
+       "Nein, sie ist nicht von mir.",
+       "Nein, das ist nicht meine Jacke."
+      ],
+      "sonraki": "n4",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. Kısa ve kibar bir hayır."
+     },
+     {
+      "de": "Ja, danke!",
+      "tr": "Evet, teşekkürler!",
+      "accepted": [
+       "Ja, danke!",
+       "Ja, das ist sie, danke!",
+       "Ja!"
+      ],
+      "sonraki": "n3",
+      "uygun": false,
+      "geri_bildirim_tr": "Senin ceketin yeni ve büyük. Bu ceket eski ve küçük."
+     }
+    ]
+   },
+   {
+    "id": "n4",
+    "de": "Und hier, die Jacke beim Sofa?",
+    "tr": "Peki burada, kanepenin yanındaki ceket?",
+    "secenekler": [
+     {
+      "de": "Ja! Das ist sie! Danke, Herr Pichler!",
+      "tr": "Evet! İşte o! Teşekkürler Pichler Bey!",
+      "accepted": [
+       "Ja! Das ist sie! Danke, Herr Pichler!",
+       "Ja, das ist sie! Danke!",
+       "Ja! Das ist meine Jacke! Danke, Herr Pichler!",
+       "Da ist sie! Danke, Herr Pichler!"
+      ],
+      "sonraki": "n5",
+      "uygun": true,
+      "geri_bildirim_tr": "Harika. Ceketi buldun ve teşekkür ettin."
+     },
+     {
+      "de": "Ja, das ist er!",
+      "tr": "Evet, işte o! (yanlış)",
+      "accepted": [
+       "Ja, das ist er!",
+       "Das ist er!",
+       "Ja, da ist er!"
+      ],
+      "sonraki": "n4",
+      "uygun": false,
+      "geri_bildirim_tr": "Ceket **die Jacke**. Bu yüzden **Das ist sie** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n5",
+    "de": "Bitte. Wie finden Sie den Flur? Er ist jetzt sehr hell.",
+    "tr": "Rica ederim. Koridoru nasıl buluyorsunuz? Artık çok aydınlık.",
+    "secenekler": [
+     {
+      "de": "Er ist sehr schön!",
+      "tr": "Çok güzel!",
+      "accepted": [
+       "Er ist sehr schön!",
+       "Er ist schön!",
+       "Er ist sehr schön und hell!",
+       "Sehr schön!"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Doğru. **der Flur** için **er** dedin."
+     },
+     {
+      "de": "Schön und hell, ja!",
+      "tr": "Güzel ve aydınlık, evet!",
+      "accepted": [
+       "Schön und hell, ja!",
+       "Ja, schön und hell!",
+       "Hell und schön!"
+      ],
+      "sonraki": "n6",
+      "uygun": true,
+      "geri_bildirim_tr": "Kısa ve doğal bir cevap."
+     },
+     {
+      "de": "Sie ist sehr schön!",
+      "tr": "Çok güzel! (yanlış)",
+      "accepted": [
+       "Sie ist sehr schön!",
+       "Es ist sehr schön!",
+       "Sie ist schön!"
+      ],
+      "sonraki": "n5",
+      "uygun": false,
+      "geri_bildirim_tr": "**der Flur** için **er** dersin."
+     }
+    ]
+   },
+   {
+    "id": "n6",
+    "de": "Gut. Dann bis morgen!",
+    "tr": "İyi. O zaman yarın görüşürüz!",
+    "son": true
+   }
+  ],
+  "kapanis_tr": "Kaybolan ceketini büyüklüğü ve görünüşüyle anlattın, doğru olanı tanıdın."
+ },
+ "okuma_yazma": {
+  "tur": "okuma",
+  "title_tr": "Derya'dan mesaj",
+  "metin_de": "Hallo {name}! Am Samstag habe ich Freizeit. Am Samstag sind Tomaten und Bananen billig. Mein Sofa ist neu, es ist groß und hell. Kommst du am Samstag um vier? Bis Samstag, Derya!",
+  "metin_tr": "Merhaba {name}! Cumartesi boş zamanım var. Cumartesi domates ve muz ucuz. Kanepem yeni, büyük ve açık renk. Cumartesi saat dörtte gelir misin? Cumartesi görüşürüz, Derya!",
+  "sorular": [
+   {
+    "id": "m1:23:o1",
+    "kind": "detail",
+    "q_tr": "Cumartesi ne ucuz?",
+    "opts": [
+     "Domates ve muz",
+     "Kanepe",
+     "Ekmek"
+    ],
+    "ans": 0,
+    "kanit": [
+     2
+    ]
+   },
+   {
+    "id": "m1:23:o2",
+    "kind": "detail",
+    "q_tr": "Derya'nın kanepesi nasıl?",
+    "opts": [
+     "Yeni, büyük ve açık renk",
+     "Eski ve küçük",
+     "Yeni ama küçük"
+    ],
+    "ans": 0,
+    "kanit": [
+     3
+    ]
+   },
+   {
+    "id": "m1:23:o3",
+    "kind": "detail",
+    "q_tr": "Derya seni ne zaman çağırıyor?",
+    "opts": [
+     "Cumartesi saat dörtte",
+     "Pazartesi saat dörtte",
+     "Cumartesi sabah"
+    ],
+    "ans": 0,
+    "kanit": [
+     4
+    ]
+   },
+   {
+    "id": "m1:23:o4",
+    "k": "guided_response",
+    "situation_tr": "Derya'ya cevap ver. Evet, saat dörtte geliyorsun.",
+    "prompt_de": "Kommst du am Samstag um vier?",
+    "accepted": [
+     "Ja, gern! Ich komme um vier.",
+     "Ja, gern! Um vier.",
+     "Ja, ich komme um vier.",
+     "Ja, gern, am Samstag um vier.",
+     "Ja! Bis Samstag um vier!",
+     "Ja, gern. Ich komme am Samstag um vier."
+    ],
+    "why_tr": "Önce evet de, sonra saati tekrar et."
+   }
+  ]
+ },
+ "gun_sinavi": {
+  "id": "m1:23:s",
+  "maddeler": [
+   {
+    "id": "m1:23:s1",
+    "k": "listen_and_respond",
+    "audio_de": "Der Flur ist sehr hell.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Flur ist sehr hell.",
+     "der flur ist sehr hell",
+     "Der Flur ist sehr hell"
+    ],
+    "why_tr": "**hell** aydınlık demektir."
+   },
+   {
+    "id": "m1:23:s2",
+    "k": "listen_and_respond",
+    "audio_de": "Die Tomaten sind heute billig.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Die Tomaten sind heute billig.",
+     "die tomaten sind heute billig",
+     "Die Tomaten sind heute billig"
+    ],
+    "why_tr": "Çoğulda **sind** gelir, sıfat değişmez."
+   },
+   {
+    "id": "m1:23:s3",
+    "k": "listen_and_respond",
+    "audio_de": "Mein Nachbar ist arbeitslos.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Mein Nachbar ist arbeitslos.",
+     "mein nachbar ist arbeitslos",
+     "Mein Nachbar ist arbeitslos"
+    ],
+    "why_tr": "**arbeitslos** işsiz demektir."
+   },
+   {
+    "id": "m1:23:s4",
+    "k": "listen_and_respond",
+    "audio_de": "Der Techniker kommt am Freitag.",
+    "speed": "normal",
+    "situation_tr": "Duyduğunu yaz.",
+    "accepted": [
+     "Der Techniker kommt am Freitag.",
+     "der techniker kommt am freitag",
+     "Der Techniker kommt am Freitag"
+    ],
+    "why_tr": "**der Techniker** teknisyen demektir."
+   },
+   {
+    "id": "m1:23:s5",
+    "k": "tr_de",
+    "tr": "Kanepe yeni.",
+    "accepted": [
+     "Das Sofa ist neu.",
+     "Das Sofa ist ganz neu.",
+     "Es ist neu.",
+     "Das Sofa ist noch neu."
+    ],
+    "why_tr": "**ist** ile gelen sıfat değişmez: **Das Sofa ist neu**."
+   },
+   {
+    "id": "m1:23:s6",
+    "k": "tr_de",
+    "tr": "Muzları nasıl buluyorsun?",
+    "accepted": [
+     "Wie findest du die Bananen?",
+     "Und wie findest du die Bananen?",
+     "Wie findest du denn die Bananen?",
+     "Wie findest du die Bananen hier?"
+    ],
+    "why_tr": "Fikir sorarken **Wie findest du** dersin."
+   },
+   {
+    "id": "m1:23:s7",
+    "k": "tr_de",
+    "tr": "Bugün resmî tatil, her şey kapalı.",
+    "accepted": [
+     "Heute ist Feiertag, alles ist geschlossen.",
+     "Heute ist ein Feiertag, alles ist geschlossen.",
+     "Heute ist Feiertag. Alles ist geschlossen.",
+     "Heute ist Feiertag, alles ist zu."
+    ],
+    "why_tr": "Resmî tatil derken **Feiertag** dersin."
+   },
+   {
+    "id": "m1:23:s8",
+    "k": "tr_de",
+    "tr": "İş arkadaşımın adı Derya.",
+    "accepted": [
+     "Meine Kollegin heißt Derya.",
+     "Meine Kollegin ist Derya.",
+     "Die Kollegin heißt Derya.",
+     "Derya ist meine Kollegin."
+    ],
+    "why_tr": "Kadın iş arkadaşı için **die Kollegin** dersin."
+   },
+   {
+    "id": "m1:23:s9",
+    "k": "guided_response",
+    "situation_tr": "Ioana mutfağını nasıl bulduğunu soruyor. Büyük ve aydınlık buluyorsun.",
+    "prompt_de": "Wie findest du meine Küche?",
+    "accepted": [
+     "Ich finde sie groß und hell.",
+     "Sie ist groß und hell.",
+     "Groß und hell!",
+     "Ich finde sie sehr groß und hell.",
+     "Ich finde sie schön, groß und hell.",
+     "Deine Küche ist groß und hell.",
+     "Ich finde sie hell und groß."
+    ],
+    "why_tr": "**die Küche** için **Ich finde sie** dersin."
+   },
+   {
+    "id": "m1:23:s10",
+    "k": "guided_response",
+    "situation_tr": "Yeni komşu kendini tanıtıyor. Sen de adını söyle ve memnun olduğunu belirt.",
+    "prompt_de": "Hallo! Ich wohne jetzt auch hier.",
+    "accepted": [
+     "Guten Tag, ich bin {name}. Freut mich!",
+     "Hallo, mein Name ist {name}. Freut mich!",
+     "Hallo! Ich bin {name}. Freut mich!",
+     "Freut mich! Ich heiße {name}.",
+     "Hallo, ich heiße {name}. Freut mich!",
+     "Grüß Gott! Ich bin {name}. Freut mich!"
+    ],
+    "why_tr": "Tanışırken adını söyle, sonra **Freut mich** de."
+   },
+   {
+    "id": "m1:23:s11",
+    "k": "guided_response",
+    "situation_tr": "Pichler Bey kayıp ceketinin nasıl olduğunu soruyor. Büyük ve yeni.",
+    "prompt_de": "Wie ist Ihre Jacke?",
+    "accepted": [
+     "Sie ist groß und neu.",
+     "Groß und neu.",
+     "Sie ist neu und groß.",
+     "Meine Jacke ist groß und neu.",
+     "Sie ist sehr groß und neu.",
+     "Sie ist groß, neu und hell."
+    ],
+    "why_tr": "**die Jacke** için **sie** dersin. Sıfatlar **ist** ile değişmez."
+   }
+  ],
+  "sesli": [
+   "m1:23:s9",
+   "m1:23:s10"
+  ],
+  "dikte": [
+   "m1:23:s1",
+   "m1:23:s2",
+   "m1:23:s3",
+   "m1:23:s4"
+  ]
+ }
+}
