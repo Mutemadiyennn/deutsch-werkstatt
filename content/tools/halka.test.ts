@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { Lexeme, kumeDizini, type Gun, type TemelDers } from "../../packages/shared/src/index.ts";
-import { halkaDenetle } from "./halka.ts";
+import { HALKA_KART, halkaDenetle } from "./halka.ts";
 
 const L = (id: string, de: string, ex: string[] = []) => Lexeme.parse({ id, de, tr: "x", pos: "noun", examples: ex.map((x, i) => ({ id: `${id}:${i}`, de: x, tr: "x" })) });
 const LEX = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"].map((x) => L(`lx:${x}`, x, [`${x}!`, `${x}?`])).concat([L("lx:heute", "heute"), L("lx:ja", "ja")]);
@@ -12,10 +12,23 @@ describe("halkalar denetimi (AKIS AK-5, AK-10 1. adım)", () => {
   it("doğru halka: hata yok", () => {
     expect(halkaDenetle(gun([H()]), new Map(), d).errors).toEqual([]);
   });
-  it("halka kartları yeni_kartlar ile aynı olmalı; 4–6 kart", () => {
+  it("halka kartları yeni_kartlar ile aynı olmalı", () => {
     const e = halkaDenetle(gun([H({ kartlar: ["lx:Montag", "lx:Dienstag", "lx:Mittwoch"] })]), new Map(), d).errors;
     expect(e.some((x) => x.includes("yeni_kartlar ile aynı değil"))).toBe(true);
-    expect(e.some((x) => x.includes("3 kart (4–6)"))).toBe(true);
+    expect(e.some((x) => x.includes("3 kart ("))).toBe(false);
+  });
+  it("halka sınırı [2, 6] (PM-098 md. 2): tek kartlık halka hata, 2 ve 3 kart geçer, 7 kart hata", () => {
+    expect(HALKA_KART).toEqual([2, 6]);
+    const L7 = [...LEX.slice(0, 5), L("lx:Samstag", "Samstag", ["Samstag!", "Samstag?"]), L("lx:Sonntag", "Sonntag", ["Sonntag!", "Sonntag?"])];
+    const d7 = kumeDizini(L7, [] as TemelDers[], null);
+    const id = (n: number) => L7.slice(0, n).map((l) => l.id);
+    const halkalar = (...n: number[]) => { let i = 0; return n.map((k, j) => { const h = { id: `m1:01:h${j + 1}`, title_tr: "x", kartlar: id(7).slice(i, i + k), gorev_cumleleri: [] }; i += k; return h; }); };
+    const sinir = (...n: number[]) => halkaDenetle(gun(halkalar(...n), id(n.reduce((a, b) => a + b, 0))), new Map(), d7).errors.filter((x) => / kart \(2–6\)/.test(x));
+    expect(sinir(1, 4)).toEqual(["gun-01.json: m1:01:h1: 1 kart (2–6)"]);
+    expect(sinir(2, 3)).toEqual([]);
+    expect(sinir(4, 3)).toEqual([]);
+    expect(sinir(6)).toEqual([]);
+    expect(sinir(7)).toEqual(["gun-01.json: m1:01:h1: 7 kart (2–6)"]);
   });
   it("görev cümlesinde bilinmeyen 0 ve kartın kelimesi; sahnede en çok 1 bilinmeyen", () => {
     const e = halkaDenetle(gun([H({

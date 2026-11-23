@@ -74,6 +74,14 @@
     {
      "de": "Was können Sie empfehlen? – Stimmt so.",
      "tr": "Ne tavsiye edersiniz? – Üstü kalsın."
+    },
+    {
+     "de": "Grüß Gott! – Grüß Gott, hier ist …",
+     "tr": "İyi günler! Bavyera'da günün her saatinde böyle selam verilir. – İyi günler, ben … (telefonda)"
+    },
+    {
+     "de": "Liebe Frau …, – Lieber Herr …,",
+     "tr": "Sevgili … Hanım, – Sevgili … Bey, (mektup ve mesaj başında)"
     }
    ],
    "gorev_cumleleri": [
@@ -243,8 +251,8 @@
     "id": "s4",
     "speaker": "ch:brandl",
     "sahne_tr": "Frau Brandl merakla genç çocuğa bakıyor.",
-    "de": "Oh, wer ist denn das?",
-    "tr": "Aa, bu kim?"
+    "de": "Wer ist denn das?",
+    "tr": "Bu da kim?"
    },
    {
     "id": "s5",
@@ -292,8 +300,8 @@
     "id": "s11",
     "speaker": "Jonas",
     "sahne_tr": "Jonas omuz silkiyor, gülümsüyor.",
-    "de": "Ach, das geht. Und morgen ist der Faschingszug!",
-    "tr": "Aa, idare eder. Hem yarın Faşing alayı var!"
+    "de": "Das geht. Und morgen ist der Faschingszug!",
+    "tr": "İdare eder. Hem yarın Faşing alayı var!"
    },
    {
     "id": "s12",
@@ -320,8 +328,8 @@
     "id": "s15",
     "speaker": "ch:stadler",
     "sahne_tr": "Gerti sana bakıyor.",
-    "de": "Ah, Sie! Was darf's sein?",
-    "tr": "Aa, siz! Ne alırsınız?"
+    "de": "Jetzt sind Sie dran! Was darf's sein?",
+    "tr": "Şimdi sıra sizde! Ne alırsınız?"
    }
   ],
   "bolumler": [
@@ -473,7 +481,7 @@
      "id": "m1:76:v1:c1",
      "k": "guided_response",
      "situation_tr": "Sıra sende. İki Semmel ve bir Krapfen iste.",
-     "prompt_de": "Ah, Sie! Was darf's sein?",
+     "prompt_de": "Jetzt sind Sie dran! Was darf's sein?",
      "accepted": [
       "Zwei Semmeln und einen Krapfen, bitte.",
       "Ich hätte gern zwei Semmeln und einen Krapfen.",
@@ -992,12 +1000,12 @@
     "tr": "Hayır, sıra sizde! Ne alırsınız?",
     "secenekler": [
      {
-      "de": "Ach so, danke! Zwei Semmeln, bitte.",
-      "tr": "Haa, teşekkürler! İki Semmel, lütfen.",
+      "de": "Danke! Zwei Semmeln, bitte.",
+      "tr": "Teşekkürler! İki Semmel, lütfen.",
       "accepted": [
+       "Danke! Zwei Semmeln, bitte.",
        "Ach so, danke! Zwei Semmeln, bitte.",
-       "Ach so! Zwei Semmeln, bitte.",
-       "Danke! Zwei Semmeln, bitte."
+       "Ach so! Zwei Semmeln, bitte."
       ],
       "sonraki": "n2",
       "uygun": true,
@@ -1034,12 +1042,12 @@
       "geri_bildirim_tr": "Çok iyi. Tavsiye sordun."
      },
      {
-      "de": "Nein, danke, das ist alles.",
-      "tr": "Hayır, teşekkürler, hepsi bu.",
+      "de": "Nein, danke. Das ist alles für heute.",
+      "tr": "Hayır, teşekkürler. Bugünlük bu kadar.",
       "accepted": [
-       "Nein, danke, das ist alles.",
-       "Nein danke, das ist alles.",
-       "Nein, danke. Das ist alles."
+       "Nein, danke. Das ist alles für heute.",
+       "Nein danke, das ist alles für heute.",
+       "Das ist alles für heute, danke."
       ],
       "sonraki": "n3b",
       "uygun": true,
@@ -1054,21 +1062,21 @@
       ],
       "sonraki": "n2",
       "uygun": false,
-      "geri_bildirim_tr": "Ne istediğini söyle ya da **Nein, danke, das ist alles** de."
+      "geri_bildirim_tr": "Ne istediğini söyle ya da **Nein, danke. Das ist alles für heute.** de."
      }
     ]
    },
    {
     "id": "n3",
-    "de": "Heute sind die Krapfen sehr gut. Und hier, eine Breze für Sie. Die schenke ich Ihnen!",
-    "tr": "Bugün Krapfenler çok güzel. Bir de şu Breze sizin için. Benden hediye!",
+    "de": "Heute sind die Krapfen sehr gut. Und hier, ein Krapfen für Sie. Den schenke ich Ihnen!",
+    "tr": "Bugün Krapfenler çok güzel. Bir de şu Krapfen sizin için. Benden hediye!",
     "secenekler": [
      {
-      "de": "Oh, vielen Dank! Das ist aber nett.",
-      "tr": "Aa, çok teşekkürler! Ne kadar naziksiniz.",
+      "de": "Vielen Dank! Das ist aber nett.",
+      "tr": "Çok teşekkürler! Ne kadar naziksiniz.",
       "accepted": [
-       "Oh, vielen Dank! Das ist aber nett.",
        "Vielen Dank! Das ist aber nett.",
+       "Oh, vielen Dank! Das ist aber nett.",
        "Oh, vielen Dank, das ist sehr nett."
       ],
       "sonraki": "n4",
@@ -1088,10 +1096,10 @@
       "geri_bildirim_tr": "Adıyla teşekkür etmek sıcak olur."
      },
      {
-      "de": "Was kostet die Breze?",
-      "tr": "Breze ne kadar?",
+      "de": "Was kostet der Krapfen?",
+      "tr": "Krapfen ne kadar?",
       "accepted": [
-       "Was kostet die Breze?",
+       "Was kostet der Krapfen?",
        "Was kostet das?"
       ],
       "sonraki": "n3",
@@ -1102,15 +1110,15 @@
    },
    {
     "id": "n3b",
-    "de": "Gern. Und hier, eine Breze für Sie. Die schenke ich Ihnen!",
-    "tr": "Memnuniyetle. Bir de şu Breze sizin için. Benden hediye!",
+    "de": "Gern. Und hier, ein Krapfen für Sie. Den schenke ich Ihnen!",
+    "tr": "Memnuniyetle. Bir de şu Krapfen sizin için. Benden hediye!",
     "secenekler": [
      {
-      "de": "Eine Breze für mich? Vielen Dank!",
-      "tr": "Bana bir Breze mi? Çok teşekkürler!",
+      "de": "Ein Krapfen für mich? Vielen Dank!",
+      "tr": "Bana bir Krapfen mi? Çok teşekkürler!",
       "accepted": [
-       "Eine Breze für mich? Vielen Dank!",
-       "Eine Breze für mich? Danke schön!",
+       "Ein Krapfen für mich? Vielen Dank!",
+       "Ein Krapfen für mich? Danke schön!",
        "Für mich? Vielen Dank!"
       ],
       "sonraki": "n4",
@@ -1118,12 +1126,12 @@
       "geri_bildirim_tr": "Güzel. Şaşırdın ve hemen teşekkür ettin."
      },
      {
-      "de": "Oh, danke schön! Die esse ich gleich.",
-      "tr": "Aa, çok teşekkürler! Onu hemen yiyeceğim.",
+      "de": "Danke schön! Den esse ich gleich.",
+      "tr": "Çok teşekkürler! Onu hemen yiyeceğim.",
       "accepted": [
-       "Oh, danke schön! Die esse ich gleich.",
-       "Danke schön! Die esse ich gleich.",
-       "Oh, danke! Die esse ich gleich."
+       "Danke schön! Den esse ich gleich.",
+       "Oh, danke schön! Den esse ich gleich.",
+       "Oh, danke! Den esse ich gleich."
       ],
       "sonraki": "n4",
       "uygun": true,
@@ -1191,7 +1199,7 @@
     "son": true
    }
   ],
-  "kapanis_tr": "Sıranın sende olduğunu söyledin, Gerti sormadan siparişini verdin ve hediye Breze için teşekkür ettin."
+  "kapanis_tr": "Sıranın sende olduğunu söyledin, Gerti sormadan siparişini verdin ve hediye Krapfen için teşekkür ettin."
  },
  "okuma_yazma": {
   "tur": "okuma",

@@ -68,6 +68,10 @@
      "tr": "Dinlenmen lazım."
     },
     {
+     "de": "Ich ruhe mich aus. – Er ruht sich aus.",
+     "tr": "Dinleniyorum. – O dinleniyor."
+    },
+    {
      "de": "Was ist denn der Grund?",
      "tr": "Sebebi ne peki?"
     },
@@ -394,7 +398,7 @@
     "id": "s3",
     "speaker": "ch:aksoy",
     "sahne_tr": "Derya gülerek başını sallıyor.",
-    "de": "Na klar! Ich kaufe Krapfen in der Bäckerei Stadler.",
+    "de": "Klar! Ich kaufe Krapfen in der Bäckerei Stadler.",
     "tr": "Tabii ki! Stadler fırınından Krapfen alıyorum."
    },
    {
@@ -875,8 +879,8 @@
     },
     {
      "id": "c2",
-     "de": "Ich bin schon im Café am Stadtplatz. Wo bist du?",
-     "tr": "Ben şimdiden meydandaki kafedeyim. Neredesin?"
+     "de": "Ich bin schon am Stadtplatz. Wo bist du?",
+     "tr": "Ben şimdiden meydandayım. Neredesin?"
     },
     {
      "id": "c3",
@@ -915,7 +919,7 @@
       "q_tr": "Ioana neden arıyor?",
       "opts": [
        "Bugün gelemiyor",
-       "Kafede seni bekliyor",
+       "Meydanda seni bekliyor",
        "Kurs iptal oldu"
       ],
       "ans": 1,
@@ -1010,7 +1014,7 @@
        "id": "d5",
        "seviye": "gercek",
        "gorev_tr": "Ioana'nın mesajını Almanca iki kısa cümleyle özetle.",
-       "ornek_de": "Ioana wartet im Café auf mich. Sie hat das Formular für den Kurs.",
+       "ornek_de": "Ioana wartet am Stadtplatz auf mich. Sie hat das Formular für den Kurs.",
        "zorunlu": [
         "wartet",
         "Kurs"
@@ -1024,8 +1028,8 @@
      "cevapla": {
       "id": "m1:71:a2:c1",
       "k": "guided_response",
-      "situation_tr": "Ioana'ya cevap ver. İşin bitince kafeye geliyorsun.",
-      "prompt_de": "Kommst du ins Café?",
+      "situation_tr": "Ioana'ya cevap ver. İşin bitince meydana geliyorsun.",
+      "prompt_de": "Kommst du heute noch?",
       "accepted": [
        "Ja, ich komme, wenn ich mit der Arbeit fertig bin.",
        "Ja, wenn ich mit der Arbeit fertig bin.",
@@ -1044,11 +1048,11 @@
     "q_tr": "Ne yapmalısın?",
     "opts": [
      "Ioana'yı yarın ara.",
-     "İşin bitince Ioana'yı ara ve meydandaki kafeye git.",
+     "İşin bitince Ioana'yı ara ve meydana git.",
      "Kursa tek başına kaydol."
     ],
     "ans": 1,
-    "why_tr": "Ioana meydandaki kafede. İşin bitince onu aramanı istiyor.",
+    "why_tr": "Ioana meydanda. İşin bitince onu aramanı istiyor.",
     "kanit": [
      "c2",
      "c5"
@@ -1127,8 +1131,8 @@
   "dugumler": [
    {
     "id": "n1",
-    "de": "Da bist du ja! Na, wie fühlst du dich nach der Arbeit?",
-    "tr": "İşte geldin! Eee, işten sonra kendini nasıl hissediyorsun?",
+    "de": "Da bist du ja! Wie fühlst du dich nach der Arbeit?",
+    "tr": "İşte geldin! İşten sonra kendini nasıl hissediyorsun?",
     "secenekler": [
      {
       "de": "Ganz gut, aber ich fühle mich ein bisschen müde.",
@@ -1176,17 +1180,17 @@
     "tr": "Otobüsü mü? Hayır, şunu soruyorum: Kendini nasıl hissediyorsun?",
     "secenekler": [
      {
-      "de": "Ach so! Ich fühle mich gut, danke.",
-      "tr": "Haa! Kendimi iyi hissediyorum, sağ ol.",
+      "de": "Ich fühle mich gut, danke.",
+      "tr": "Kendimi iyi hissediyorum, sağ ol.",
       "accepted": [
-       "Ach so! Ich fühle mich gut, danke.",
+       "Ich fühle mich gut, danke.",
        "Ach so, ich fühle mich gut, danke.",
        "Ach so! Mir geht es gut, danke.",
        "Ach so! Ich fühle mich gut."
       ],
       "sonraki": "n2",
       "uygun": true,
-      "geri_bildirim_tr": "Şimdi oldu. Soruyu anladığını **Ach so!** ile gösterdin."
+      "geri_bildirim_tr": "Şimdi oldu. Soruya doğrudan cevap verdin."
      },
      {
       "de": "Ich weiß nicht.",
@@ -1539,14 +1543,14 @@
    {
     "id": "m1:71:s5",
     "k": "tr_de",
-    "tr": "Bugün kendimi çok iyi hissediyorum.",
+    "tr": "Bugün kendimi çok yorgun hissediyorum.",
     "accepted": [
-     "Ich fühle mich heute sehr gut.",
-     "Heute fühle ich mich sehr gut.",
-     "Ich fühle mich heute richtig gut.",
-     "Ich fühle mich sehr gut heute."
+     "Ich fühle mich heute sehr müde.",
+     "Heute fühle ich mich sehr müde.",
+     "Ich fühle mich heute richtig müde.",
+     "Ich fühle mich sehr müde heute."
     ],
-    "why_tr": "Kendini nasıl hissettiğini böyle söylersin: **Ich fühle mich gut.**"
+    "why_tr": "Kendini nasıl hissettiğini böyle söylersin: **Ich fühle mich müde.**"
    },
    {
     "id": "m1:71:s6",

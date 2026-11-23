@@ -116,6 +116,12 @@ def default_ai(task, v):
         return 200, {"goals": [{"id": g["id"], "done": i < len(gs) - 1} for i, g in enumerate(gs)], "strengths_tr": ["Kibar başladın."], "fixes": [{"said": "Ich will Termin", "better": "Ich hätte gern einen Termin.", "why_tr": "Kibar istek."}], "english_fallbacks": 0, "gaps_de": ["der Vormittag"], "summary_tr": "Randevuyu aldın; saat kısmında kısa kaldın."}
     return 404, {"error": {"code": "bad_request"}}
 
+# Akış bayrağının e2e tabanı: yalnız 1. gün (pilot). Üretimde `policy.akis.gunler` "hepsi"dir; e2e paketinde 2. ve 3. güne de halka
+# önerisi eklendiği için taban yazılmasa eski düzeni sınayan testler (ders yolu, devam, gezgin) akışa düşerdi. Hiçbir test bayrağın
+# varsayılanına yaslanmaz: eski düzen '[]', bütün günler '"hepsi"' (v2_akis_hepsi.py) diye KENDİ değerini yazar (sekmede kalıcı).
+# try/catch: depolamaya erişimi olmayan belgede (boş sayfa, yalıtılmış çerçeve) sessionStorage okumak sayfa hatası verir
+AKIS_TABAN = "try { if (sessionStorage.getItem('e2e-akis-gunler') === null) sessionStorage.setItem('e2e-akis-gunler', '[1]'); } catch (e) {}"
+
 def launch(p, color_scheme="light", viewport=None, service_workers="block"):
     # Servis işçisi varsayılan kapalı: WebKit'te page.route, SW denetimindeki sayfanın isteklerini görmez (inceleme #43 P0-1). Yalnızca ucak.py açar.
     bt = getattr(p, BROWSER)
@@ -129,6 +135,7 @@ def launch(p, color_scheme="light", viewport=None, service_workers="block"):
         ctx = b.new_context(**d, locale="tr-TR", color_scheme=color_scheme, service_workers=service_workers)
     else:
         ctx = b.new_context(viewport=viewport or {"width": 390, "height": 844}, device_scale_factor=2, locale="tr-TR", color_scheme=color_scheme, has_touch=True, service_workers=service_workers)
+    ctx.add_init_script(AKIS_TABAN)
     return b, ctx
 
 IPTAL = []
