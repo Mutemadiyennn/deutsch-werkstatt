@@ -9,7 +9,6 @@ import { selectItems, nextItem, progress, finish, LISTEN_SPEED, SKILL_TR } from 
 import { applyAssessment, itemIdFromAssess } from "../core/learner.ts";
 import { judge, judgeWord } from "../core/grading.ts";
 import { speak, sttAvailable, listenOnce } from "../services/speech.ts";
-import { ApiError } from "../services/api.ts";
 import { ai, aiState } from "../services/ai.ts";
 import { ErrorPanel, FocusChip, Loading, SpeakBtn, TopBar } from "../ui/components.tsx";
 
@@ -221,11 +220,11 @@ function Speak({ it, onAnswer }: { it: Extract<AssessItem, { skill: "speaking" }
         const r = await ai(api, "equiv_check", { prompt_tr: it.tr, expected: variants, answer: j.heard });
         setState("idle");
         return onAnswer({ ...base(it), correct: r.ok, given: j.heard, mode, aiAccepted: r.ok }, { ok: r.ok, right: it.de, tr: it.tr, note: r.reason_tr });
-      } catch (e) {
-        // denetim hata verdi: cevap yanlış sayılmaz, puana ve uyarlamaya girmez (PEDAGOGY §7a md. 3; PM-087 A.4)
+      } catch {
+        // denetim hata verdi: cevap yanlış sayılmaz, puana ve uyarlamaya girmez (PEDAGOGY §7a md. 3; PM-087 A.4).
+        // Tespitte yeniden deneme yok: "tekrar dene" diyen hata metni gösterilmez
         setState("idle");
-        const msg = e instanceof ApiError ? e.message_tr : "İnternete ulaşılamadı.";
-        return onAnswer({ ...base(it), correct: false, unchecked: true, given: j.heard, mode }, { ok: false, unchecked: true, right: it.de, tr: it.tr, note: `${msg} Bu soru puanına sayılmadı.` });
+        return onAnswer({ ...base(it), correct: false, unchecked: true, given: j.heard, mode }, { ok: false, unchecked: true, right: it.de, tr: it.tr, note: "Bu soru puanına sayılmadı; ne doğru ne yanlış." });
       }
     }
     onAnswer({ ...base(it), correct: false, given: j.heard, mode }, { ok: false, right: it.de, tr: it.tr, note: heard ? `Duyulan: „${j.heard}“` : undefined });
